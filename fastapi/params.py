@@ -1,5 +1,6 @@
-from typing import Sequence
 from enum import Enum
+from typing import Sequence, Any, Dict
+
 from pydantic import Schema
 
 
@@ -12,6 +13,7 @@ class ParamTypes(Enum):
 
 class Param(Schema):
     in_: ParamTypes
+
     def __init__(
         self,
         default,
@@ -27,7 +29,7 @@ class Param(Schema):
         min_length: int = None,
         max_length: int = None,
         regex: str = None,
-        **extra: object,
+        **extra: Dict[str, Any],
     ):
         self.deprecated = deprecated
         super().__init__(
@@ -64,7 +66,7 @@ class Path(Param):
         min_length: int = None,
         max_length: int = None,
         regex: str = None,
-        **extra: object,
+        **extra: Dict[str, Any],
     ):
         self.description = description
         self.deprecated = deprecated
@@ -103,7 +105,7 @@ class Query(Param):
         min_length: int = None,
         max_length: int = None,
         regex: str = None,
-        **extra: object,
+        **extra: Dict[str, Any],
     ):
         self.description = description
         self.deprecated = deprecated
@@ -141,7 +143,7 @@ class Header(Param):
         min_length: int = None,
         max_length: int = None,
         regex: str = None,
-        **extra: object,
+        **extra: Dict[str, Any],
     ):
         self.description = description
         self.deprecated = deprecated
@@ -179,7 +181,7 @@ class Cookie(Param):
         min_length: int = None,
         max_length: int = None,
         regex: str = None,
-        **extra: object,
+        **extra: Dict[str, Any],
     ):
         self.description = description
         self.deprecated = deprecated
@@ -204,7 +206,8 @@ class Body(Schema):
         self,
         default,
         *,
-        sub_key=False,
+        embed=False,
+        media_type: str = "application/json",
         alias: str = None,
         title: str = None,
         description: str = None,
@@ -215,9 +218,10 @@ class Body(Schema):
         min_length: int = None,
         max_length: int = None,
         regex: str = None,
-        **extra: object,
+        **extra: Dict[str, Any],
     ):
-        self.sub_key = sub_key
+        self.embed = embed
+        self.media_type = media_type
         super().__init__(
             default,
             alias=alias,
@@ -234,13 +238,86 @@ class Body(Schema):
         )
 
 
+class Form(Body):
+    def __init__(
+        self,
+        default,
+        *,
+        sub_key=False,
+        media_type: str = "application/x-www-form-urlencoded",
+        alias: str = None,
+        title: str = None,
+        description: str = None,
+        gt: float = None,
+        ge: float = None,
+        lt: float = None,
+        le: float = None,
+        min_length: int = None,
+        max_length: int = None,
+        regex: str = None,
+        **extra: Dict[str, Any],
+    ):
+        super().__init__(
+            default,
+            embed=sub_key,
+            media_type=media_type,
+            alias=alias,
+            title=title,
+            description=description,
+            gt=gt,
+            ge=ge,
+            lt=lt,
+            le=le,
+            min_length=min_length,
+            max_length=max_length,
+            regex=regex,
+            **extra,
+        )
+
+
+class File(Form):
+    def __init__(
+        self,
+        default,
+        *,
+        sub_key=False,
+        media_type: str = "multipart/form-data",
+        alias: str = None,
+        title: str = None,
+        description: str = None,
+        gt: float = None,
+        ge: float = None,
+        lt: float = None,
+        le: float = None,
+        min_length: int = None,
+        max_length: int = None,
+        regex: str = None,
+        **extra: Dict[str, Any],
+    ):
+        super().__init__(
+            default,
+            embed=sub_key,
+            media_type=media_type,
+            alias=alias,
+            title=title,
+            description=description,
+            gt=gt,
+            ge=ge,
+            lt=lt,
+            le=le,
+            min_length=min_length,
+            max_length=max_length,
+            regex=regex,
+            **extra,
+        )
+
+
 class Depends:
-    def __init__(self, dependency = None):
+    def __init__(self, dependency=None):
         self.dependency = dependency
 
 
-class Security:
-    def __init__(self, security_scheme = None, scopes: Sequence[str] = None):
-        self.security_scheme = security_scheme
-        self.scopes = scopes
-
+class Security(Depends):
+    def __init__(self, dependency=None, scopes: Sequence[str] = None):
+        self.scopes = scopes or []
+        super().__init__(dependency=dependency)

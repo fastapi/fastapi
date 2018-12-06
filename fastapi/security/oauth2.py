@@ -3,10 +3,8 @@ from typing import Dict
 from pydantic import BaseModel, Schema
 
 from starlette.requests import Request
+
 from .base import SecurityBase, Types
-
-# __all__ = ["HTTPBase", "HTTPBasic", "HTTPBearer", "HTTPDigest"]
-
 
 class OAuthFlow(BaseModel):
     refreshUrl: str = None
