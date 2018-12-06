@@ -1,26 +1,40 @@
-from pydantic import Schema
-
 from starlette.requests import Request
 
-from .base import SecurityBase, Types
+from .base import SecurityBase
+from fastapi.openapi.models import HTTPBase as HTTPBaseModel, HTTPBearer as HTTPBearerModel
 
 
 class HTTPBase(SecurityBase):
-    type_ = Schema(Types.http, alias="type")
-    scheme: str
+    def __init__(self, *, scheme: str, scheme_name: str = None):
+        self.model = HTTPBaseModel(scheme=scheme)
+        self.scheme_name = scheme_name or self.__class__.__name__
 
     async def __call__(self, request: Request):
         return request.headers.get("Authorization")
 
 
 class HTTPBasic(HTTPBase):
-    scheme = "basic"
+    def __init__(self, *, scheme_name: str = None):
+        self.model = HTTPBaseModel(scheme="basic")
+        self.scheme_name = scheme_name or self.__class__.__name__
+    
+    async def __call__(self, request: Request):
+        return request.headers.get("Authorization")
 
 
 class HTTPBearer(HTTPBase):
-    scheme = "bearer"
-    bearerFormat: str = None
+    def __init__(self, *, bearerFormat: str = None, scheme_name: str = None):
+        self.model = HTTPBearerModel(bearerFormat=bearerFormat)
+        self.scheme_name = scheme_name or self.__class__.__name__
+    
+    async def __call__(self, request: Request):
+        return request.headers.get("Authorization")
 
 
 class HTTPDigest(HTTPBase):
-    scheme = "digest"
+    def __init__(self, *, scheme_name: str = None):
+        self.model = HTTPBaseModel(scheme="digest")
+        self.scheme_name = scheme_name or self.__class__.__name__
+    
+    async def __call__(self, request: Request):
+        return request.headers.get("Authorization")

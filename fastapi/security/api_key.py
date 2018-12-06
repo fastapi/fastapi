@@ -1,39 +1,34 @@
-from enum import Enum
-
-from pydantic import Schema
-
 from starlette.requests import Request
 
-from .base import SecurityBase, Types
-
-class APIKeyIn(Enum):
-    query = "query"
-    header = "header"
-    cookie = "cookie"
-
+from .base import SecurityBase
+from fastapi.openapi.models import APIKeyIn, APIKey
 
 class APIKeyBase(SecurityBase):
-    type_ = Schema(Types.apiKey, alias="type")
-    in_: str = Schema(..., alias="in")
-    name: str
-
+    pass
 
 class APIKeyQuery(APIKeyBase):
-    in_ = Schema(APIKeyIn.query, alias="in")
+
+    def __init__(self, *, name: str, scheme_name: str = None):
+        self.model = APIKey(in_=APIKeyIn.query, name=name)
+        self.scheme_name = scheme_name or self.__class__.__name__
 
     async def __call__(self, requests: Request):
-        return requests.query_params.get(self.name)
+        return requests.query_params.get(self.model.name)
 
 
 class APIKeyHeader(APIKeyBase):
-    in_ = Schema(APIKeyIn.header, alias="in")
+    def __init__(self, *, name: str, scheme_name: str = None):
+        self.model = APIKey(in_=APIKeyIn.header, name=name)
+        self.scheme_name = scheme_name or self.__class__.__name__
 
     async def __call__(self, requests: Request):
-        return requests.headers.get(self.name)
+        return requests.headers.get(self.model.name)
 
 
 class APIKeyCookie(APIKeyBase):
-    in_ = Schema(APIKeyIn.cookie, alias="in")
+    def __init__(self, *, name: str, scheme_name: str = None):
+        self.model = APIKey(in_=APIKeyIn.cookie, name=name)
+        self.scheme_name = scheme_name or self.__class__.__name__
 
     async def __call__(self, requests: Request):
-        return requests.cookies.get(self.name)
+        return requests.cookies.get(self.model.name)

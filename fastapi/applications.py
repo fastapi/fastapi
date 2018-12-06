@@ -8,7 +8,8 @@ from starlette.responses import JSONResponse
 
 
 from fastapi import routing
-from fastapi.openapi.utils import get_swagger_ui_html, get_openapi, get_redoc_html
+from fastapi.openapi.utils import get_openapi
+from fastapi.openapi.docs import get_redoc_html, get_swagger_ui_html
 
 
 async def http_exception(request, exc: HTTPException):
@@ -154,8 +155,10 @@ class FastAPI(Starlette):
                 response_wrapper=response_wrapper,
             )
             return func
-
         return decorator
+    
+    def include_router(self, router: "APIRouter", *, prefix=""):
+        self.router.include_router(router, prefix=prefix)
 
     def get(
         self,

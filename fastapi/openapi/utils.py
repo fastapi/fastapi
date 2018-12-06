@@ -1,4 +1,8 @@
-from typing import Any, Dict, Sequence, Type
+from typing import Any, Dict, Sequence, Type, List
+
+from pydantic.fields import Field
+from pydantic.schema import field_schema, get_model_name_map
+from pydantic.utils import lenient_issubclass
 
 from starlette.responses import HTMLResponse, JSONResponse
 from starlette.routing import BaseRoute
@@ -12,9 +16,7 @@ from fastapi.openapi.constants import REF_PREFIX, METHODS_WITH_BODY
 from fastapi.openapi.models import OpenAPI
 from fastapi.params import Body
 from fastapi.utils import get_flat_models_from_routes, get_model_definitions
-from pydantic.fields import Field
-from pydantic.schema import field_schema, get_model_name_map
-from pydantic.utils import lenient_issubclass
+
 
 validation_error_definition = {
     "title": "ValidationError",
@@ -49,91 +51,126 @@ def get_openapi_params(dependant: Dependant):
         + flat_dependant.cookie_params
     )
 
+
+def get_openapi_security_definitions(flat_dependant: Dependant):
+    security_definitions = {}
+    operation_security = []
+    for security_requirement in flat_dependant.security_requirements:
+        security_definition = jsonable_encoder(
+            security_requirement.security_scheme.model,
+            by_alias=True,
+            include_none=False,
+        )
+        security_name = (
+            security_requirement.security_scheme.scheme_name
+            
+        )
+        security_definitions[security_name] = security_definition
+        operation_security.append({security_name: security_requirement.scopes})
+    return security_definitions, operation_security
+
+
+def get_openapi_operation_parameters(all_route_params: List[Field]):
+    definitions: Dict[str, Dict] = {}
+    parameters = []
+    for param in all_route_params:
+        if "ValidationError" not in definitions:
+            definitions["ValidationError"] = validation_error_definition
+            definitions["HTTPValidationError"] = validation_error_response_definition
+        parameter = {
+            "name": param.alias,
+            "in": param.schema.in_.value,
+            "required": param.required,
+            "schema": field_schema(param, model_name_map={})[0],
+        }
+        if param.schema.description:
+            parameter["description"] = param.schema.description
+        if param.schema.deprecated:
+            parameter["deprecated"] = param.schema.deprecated
+        parameters.append(parameter)
+    return definitions, parameters
+
+
+def get_openapi_operation_request_body(
+    *, body_field: Field, model_name_map: Dict[Type, str]
+):
+    if not body_field:
+        return None
+    assert isinstance(body_field, Field)
+    body_schema, _ = field_schema(
+        body_field, model_name_map=model_name_map, ref_prefix=REF_PREFIX
+    )
+    if isinstance(body_field.schema, Body):
+        request_media_type = body_field.schema.media_type
+    else:
+        # Includes not declared media types (Schema)
+        request_media_type = "application/json"
+    required = body_field.required
+    request_body_oai = {}
+    if required:
+        request_body_oai["required"] = required
+    request_body_oai["content"] = {request_media_type: {"schema": body_schema}}
+    return request_body_oai
+
+
+def generate_operation_id(*, route: routing.APIRoute, method: str):
+    if route.operation_id:
+        return route.operation_id
+    path: str = route.path
+    operation_id = route.name + path
+    operation_id = operation_id.replace("{", "_").replace("}", "_").replace("/", "_")
+    operation_id = operation_id + "_" + method.lower()
+    return operation_id
+
+
+def generate_operation_summary(*, route: routing.APIRoute, method: str):
+    if route.summary:
+        return route.summary
+    return method.title() + " " + route.name.replace("_", " ").title()
+
+def get_openapi_operation_metadata(*, route: BaseRoute, method: str):
+    operation: Dict[str, Any] = {}
+    if route.tags:
+        operation["tags"] = route.tags
+    operation["summary"] = generate_operation_summary(route=route, method=method)
+    if route.description:
+        operation["description"] = route.description
+    operation["operationId"] = generate_operation_id(route=route, method=method)
+    if route.deprecated:
+        operation["deprecated"] = route.deprecated
+    return operation
+
+
 def get_openapi_path(*, route: BaseRoute, model_name_map: Dict[Type, str]):
     if not (route.include_in_schema and isinstance(route, routing.APIRoute)):
         return None
     path = {}
-    security_schemes = {}
-    definitions = {}
+    security_schemes: Dict[str, Any] = {}
+    definitions: Dict[str, Any] = {}
     for method in route.methods:
-        operation: Dict[str, Any] = {}
-        if route.tags:
-            operation["tags"] = route.tags
-        if route.summary:
-            operation["summary"] = route.summary
-        if route.description:
-            operation["description"] = route.description
-        if route.operation_id:
-            operation["operationId"] = route.operation_id
-        else:
-            operation["operationId"] = route.name
-        if route.deprecated:
-            operation["deprecated"] = route.deprecated
-        parameters = []
+        operation = get_openapi_operation_metadata(route=route, method=method)
+        parameters: List[Dict] = []
         flat_dependant = get_flat_dependant(route.dependant)
-        security_definitions = {}
-        for security_requirement in flat_dependant.security_requirements:
-            security_definition = jsonable_encoder(
-                security_requirement.security_scheme,
-                exclude={"scheme_name"},
-                by_alias=True,
-                include_none=False,
-            )
-            security_name = (
-                getattr(
-                    security_requirement.security_scheme, "scheme_name", None
-                )
-                or security_requirement.security_scheme.__class__.__name__
-            )
-            security_definitions[security_name] = security_definition
-            operation.setdefault("security", []).append(
-                {security_name: security_requirement.scopes}
-            )
+        security_definitions, operation_security = get_openapi_security_definitions(
+            flat_dependant=flat_dependant
+        )
+        if operation_security:
+            operation.setdefault("security", []).extend(operation_security)
         if security_definitions:
-            security_schemes.update(
-                security_definitions
-            )
+            security_schemes.update(security_definitions)
         all_route_params = get_openapi_params(route.dependant)
-        for param in all_route_params:
-            if "ValidationError" not in definitions:
-                definitions["ValidationError"] = validation_error_definition
-                definitions[
-                    "HTTPValidationError"
-                ] = validation_error_response_definition
-            parameter = {
-                "name": param.alias,
-                "in": param.schema.in_.value,
-                "required": param.required,
-                "schema": field_schema(param, model_name_map={})[0],
-            }
-            if param.schema.description:
-                parameter["description"] = param.schema.description
-            if param.schema.deprecated:
-                parameter["deprecated"] = param.schema.deprecated
-            parameters.append(parameter)
+        validation_definitions, operation_parameters = get_openapi_operation_parameters(
+            all_route_params=all_route_params
+        )
+        definitions.update(validation_definitions)
+        parameters.extend(operation_parameters)
         if parameters:
             operation["parameters"] = parameters
         if method in METHODS_WITH_BODY:
-            body_field = route.body_field
-            if body_field:
-                assert isinstance(body_field, Field)
-                body_schema, _ = field_schema(
-                    body_field,
-                    model_name_map=model_name_map,
-                    ref_prefix=REF_PREFIX,
-                )
-                if isinstance(body_field.schema, Body):
-                    request_media_type = body_field.schema.media_type
-                else:
-                    # Includes not declared media types (Schema)
-                    request_media_type = "application/json"
-                required = body_field.required
-                request_body_oai = {}
-                if required:
-                    request_body_oai["required"] = required
-                request_body_oai["content"] = {
-                    request_media_type: {"schema": body_schema}
-                }
+            request_body_oai = get_openapi_operation_request_body(
+                body_field=route.body_field, model_name_map=model_name_map
+            )
+            if request_body_oai:
                 operation["requestBody"] = request_body_oai
         response_code = str(route.response_code)
         response_schema = {"type": "string"}
@@ -206,75 +243,3 @@ def get_openapi(
         output["components"] = components
     output["paths"] = paths
     return jsonable_encoder(OpenAPI(**output), by_alias=True, include_none=False)
-
-
-def get_swagger_ui_html(*, openapi_url: str, title: str):
-    return HTMLResponse(
-        """
-    <! doctype html>
-    <html>
-    <head>
-    <link type="text/css" rel="stylesheet" href="//unpkg.com/swagger-ui-dist@3/swagger-ui.css">
-    <title>
-    """ + title + """
-    </title>
-    </head>
-    <body>
-    <div id="swagger-ui">
-    </div>
-    <script src="//unpkg.com/swagger-ui-dist@3/swagger-ui-bundle.js"></script>
-    <!-- `SwaggerUIBundle` is now available on the page -->
-    <script>
-            
-    const ui = SwaggerUIBundle({
-        url: '"""
-        + openapi_url
-        + """',
-        dom_id: '#swagger-ui',
-        presets: [
-        SwaggerUIBundle.presets.apis,
-        SwaggerUIBundle.SwaggerUIStandalonePreset
-        ],
-        layout: "BaseLayout"
- 
-    })
-    </script>
-    </body>
-    </html>
-    """,
-        media_type="text/html",
-    )
-
-
-def get_redoc_html(*, openapi_url: str, title: str):
-    return HTMLResponse(
-        """
-    <!DOCTYPE html>
-<html>
-  <head>
-    <title>
-    """ + title + """
-    </title>
-    <!-- needed for adaptive design -->
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Roboto:300,400,700" rel="stylesheet">
-
-    <!--
-    ReDoc doesn't change outer page styles
-    -->
-    <style>
-      body {
-        margin: 0;
-        padding: 0;
-      }
-    </style>
-  </head>
-  <body>
-    <redoc spec-url='""" + openapi_url + """'></redoc>
-    <script src="https://cdn.jsdelivr.net/npm/redoc@next/bundles/redoc.standalone.js"> </script>
-  </body>
-</html>
-    """,
-        media_type="text/html",
-    )

@@ -2,6 +2,11 @@ import asyncio
 import inspect
 from typing import Callable, List, Type
 
+from pydantic import BaseConfig, BaseModel, Schema
+from pydantic.error_wrappers import ErrorWrapper, ValidationError
+from pydantic.fields import Field
+from pydantic.utils import lenient_issubclass
+
 from starlette import routing
 from starlette.concurrency import run_in_threadpool
 from starlette.exceptions import HTTPException
@@ -15,10 +20,6 @@ from fastapi import params
 from fastapi.dependencies.models import Dependant
 from fastapi.dependencies.utils import get_body_field, get_dependant, solve_dependencies
 from fastapi.encoders import jsonable_encoder
-from pydantic import BaseConfig, BaseModel, Schema
-from pydantic.error_wrappers import ErrorWrapper, ValidationError
-from pydantic.fields import Field
-from pydantic.utils import lenient_issubclass
 
 
 def serialize_response(*, field: Field = None, response):
@@ -44,11 +45,12 @@ def get_app(
     response_field: Type[Field] = None,
 ):
     is_coroutine = dependant.call and asyncio.iscoroutinefunction(dependant.call)
+    is_body_form = body_field and isinstance(body_field.schema, params.Form)
 
     async def app(request: Request) -> Response:
         body = None
         if body_field:
-            if isinstance(body_field.schema, params.Form):
+            if is_body_form:
                 raw_body = await request.form()
                 body = {}
                 for field, value in raw_body.items():
@@ -127,12 +129,7 @@ class APIRoute(routing.Route):
         response_code=200,
         response_wrapper=JSONResponse,
     ) -> None:
-        # TODO define how to read and provide security params, and how to have them globally too
-        # TODO implement dependencies and injection
-        # TODO refactor code structure
-        # TODO create testing
-        # TODO testing coverage
-        assert path.startswith("/"), "Routed paths must always start '/'"
+        assert path.startswith("/"), "Routed paths must always start with '/'"
         self.path = path
         self.endpoint = endpoint
         self.name = get_name(endpoint) if name is None else name
@@ -259,6 +256,39 @@ class APIRouter(routing.Router):
             return func
 
         return decorator
+
+    def include_router(self, router: "APIRouter", *, prefix=""):
+        if prefix:
+            assert prefix.startswith("/"), "A path prefix must start with '/'"
+            assert not prefix.endswith(
+                "/"
+            ), "A path prefix must not end with '/', as the routes will start with '/'"
+        for route in router.routes:
+            if isinstance(route, APIRoute):
+                self.add_api_route(
+                    prefix + route.path,
+                    route.endpoint,
+                    methods=route.methods,
+                    name=route.name,
+                    include_in_schema=route.include_in_schema,
+                    tags=route.tags,
+                    summary=route.summary,
+                    description=route.description,
+                    operation_id=route.operation_id,
+                    deprecated=route.deprecated,
+                    response_type=route.response_type,
+                    response_description=route.response_description,
+                    response_code=route.response_code,
+                    response_wrapper=route.response_wrapper,
+                )
+            elif isinstance(route, routing.Route):
+                self.add_route(
+                    prefix + route.path,
+                    route.endpoint,
+                    methods=route.methods,
+                    name=route.name,
+                    include_in_schema=route.include_in_schema,
+                )
 
     def get(
         self,

@@ -1,43 +1,13 @@
-from typing import Dict
-
-from pydantic import BaseModel, Schema
-
 from starlette.requests import Request
 
-from .base import SecurityBase, Types
-
-class OAuthFlow(BaseModel):
-    refreshUrl: str = None
-    scopes: Dict[str, str] = {}
-
-
-class OAuthFlowImplicit(OAuthFlow):
-    authorizationUrl: str
-
-
-class OAuthFlowPassword(OAuthFlow):
-    tokenUrl: str
-
-
-class OAuthFlowClientCredentials(OAuthFlow):
-    tokenUrl: str
-
-
-class OAuthFlowAuthorizationCode(OAuthFlow):
-    authorizationUrl: str
-    tokenUrl: str
-
-
-class OAuthFlows(BaseModel):
-    implicit: OAuthFlowImplicit = None
-    password: OAuthFlowPassword = None
-    clientCredentials: OAuthFlowClientCredentials = None
-    authorizationCode: OAuthFlowAuthorizationCode = None
+from .base import SecurityBase
+from fastapi.openapi.models import OAuth2 as OAuth2Model, OAuthFlows as OAuthFlowsModel
 
 
 class OAuth2(SecurityBase):
-    type_ = Schema(Types.oauth2, alias="type")
-    flows: OAuthFlows
-
+    def __init__(self, *, flows: OAuthFlowsModel = OAuthFlowsModel(), scheme_name: str = None):
+        self.model = OAuth2Model(flows=flows)
+        self.scheme_name = scheme_name or self.__class__.__name__
+    
     async def __call__(self, request: Request):
         return request.headers.get("Authorization")

@@ -1,16 +1,6 @@
-from enum import Enum
+from pydantic import BaseModel
 
-from pydantic import BaseModel, Schema
+from fastapi.openapi.models import SecurityBase as SecurityBaseModel
 
-
-class Types(Enum):
-    apiKey = "apiKey"
-    http = "http"
-    oauth2 = "oauth2"
-    openIdConnect = "openIdConnect"
-
-
-class SecurityBase(BaseModel):
-    scheme_name: str = None
-    type_: Types = Schema(..., alias="type")
-    description: str = None
+class SecurityBase:
+    pass
