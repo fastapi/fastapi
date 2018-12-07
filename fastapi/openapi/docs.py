@@ -1,6 +1,7 @@
 from starlette.responses import HTMLResponse
 
-def get_swagger_ui_html(*, openapi_url: str, title: str):
+
+def get_swagger_ui_html(*, openapi_url: str, title: str) -> HTMLResponse:
     return HTMLResponse(
         """
     <! doctype html>
@@ -35,12 +36,11 @@ def get_swagger_ui_html(*, openapi_url: str, title: str):
     </script>
     </body>
     </html>
-    """,
-        media_type="text/html",
+    """
     )
 
 
-def get_redoc_html(*, openapi_url: str, title: str):
+def get_redoc_html(*, openapi_url: str, title: str) -> HTMLResponse:
     return HTMLResponse(
         """
     <!DOCTYPE html>
@@ -73,6 +73,5 @@ def get_redoc_html(*, openapi_url: str, title: str):
     <script src="https://cdn.jsdelivr.net/npm/redoc@next/bundles/redoc.standalone.js"> </script>
   </body>
 </html>
-    """,
-        media_type="text/html",
+    """
     )

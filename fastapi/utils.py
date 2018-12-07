@@ -1,20 +1,24 @@
 import re
-from typing import Dict, Sequence, Set, Type
+from typing import Any, Dict, List, Sequence, Set, Type
 
+from pydantic import BaseModel
+from pydantic.fields import Field
+from pydantic.schema import get_flat_models_from_fields, model_process_schema
 from starlette.routing import BaseRoute
 
 from fastapi import routing
 from fastapi.openapi.constants import REF_PREFIX
-from pydantic import BaseModel
-from pydantic.fields import Field
-from pydantic.schema import get_flat_models_from_fields, model_process_schema
 
 
-def get_flat_models_from_routes(routes: Sequence[BaseRoute]):
-    body_fields_from_routes = []
-    responses_from_routes = []
+def get_flat_models_from_routes(
+    routes: Sequence[Type[BaseRoute]]
+) -> Set[Type[BaseModel]]:
+    body_fields_from_routes: List[Field] = []
+    responses_from_routes: List[Field] = []
     for route in routes:
-        if route.include_in_schema and isinstance(route, routing.APIRoute):
+        if getattr(route, "include_in_schema", None) and isinstance(
+            route, routing.APIRoute
+        ):
             if route.body_field:
                 assert isinstance(
                     route.body_field, Field
@@ -30,7 +34,7 @@ def get_flat_models_from_routes(routes: Sequence[BaseRoute]):
 
 def get_model_definitions(
     *, flat_models: Set[Type[BaseModel]], model_name_map: Dict[Type[BaseModel], str]
-):
+) -> Dict[str, Any]:
     definitions: Dict[str, Dict] = {}
     for model in flat_models:
         m_schema, m_definitions = model_process_schema(
@@ -42,5 +46,5 @@ def get_model_definitions(
     return definitions
 
 
-def get_path_param_names(path: str):
+def get_path_param_names(path: str) -> Set[str]:
     return {item.strip("{}") for item in re.findall("{[^}]*}", path)}

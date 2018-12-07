@@ -1,5 +1,5 @@
 from enum import Enum
-from typing import Sequence, Any, Dict
+from typing import Any, Callable, Sequence
 
 from pydantic import Schema
 
@@ -16,7 +16,7 @@ class Param(Schema):
 
     def __init__(
         self,
-        default,
+        default: Any,
         *,
         deprecated: bool = None,
         alias: str = None,
@@ -29,7 +29,7 @@ class Param(Schema):
         min_length: int = None,
         max_length: int = None,
         regex: str = None,
-        **extra: Dict[str, Any],
+        **extra: Any,
     ):
         self.deprecated = deprecated
         super().__init__(
@@ -53,7 +53,7 @@ class Path(Param):
 
     def __init__(
         self,
-        default,
+        default: Any,
         *,
         deprecated: bool = None,
         alias: str = None,
@@ -66,7 +66,7 @@ class Path(Param):
         min_length: int = None,
         max_length: int = None,
         regex: str = None,
-        **extra: Dict[str, Any],
+        **extra: Any,
     ):
         self.description = description
         self.deprecated = deprecated
@@ -92,7 +92,7 @@ class Query(Param):
 
     def __init__(
         self,
-        default,
+        default: Any,
         *,
         deprecated: bool = None,
         alias: str = None,
@@ -105,7 +105,7 @@ class Query(Param):
         min_length: int = None,
         max_length: int = None,
         regex: str = None,
-        **extra: Dict[str, Any],
+        **extra: Any,
     ):
         self.description = description
         self.deprecated = deprecated
@@ -130,10 +130,11 @@ class Header(Param):
 
     def __init__(
         self,
-        default,
+        default: Any,
         *,
         deprecated: bool = None,
         alias: str = None,
+        alias_underscore_to_hyphen: bool = True,
         title: str = None,
         description: str = None,
         gt: float = None,
@@ -143,10 +144,11 @@ class Header(Param):
         min_length: int = None,
         max_length: int = None,
         regex: str = None,
-        **extra: Dict[str, Any],
+        **extra: Any,
     ):
         self.description = description
         self.deprecated = deprecated
+        self.alias_underscore_to_hyphen = alias_underscore_to_hyphen
         super().__init__(
             default,
             alias=alias,
@@ -168,7 +170,7 @@ class Cookie(Param):
 
     def __init__(
         self,
-        default,
+        default: Any,
         *,
         deprecated: bool = None,
         alias: str = None,
@@ -181,7 +183,7 @@ class Cookie(Param):
         min_length: int = None,
         max_length: int = None,
         regex: str = None,
-        **extra: Dict[str, Any],
+        **extra: Any,
     ):
         self.description = description
         self.deprecated = deprecated
@@ -204,9 +206,9 @@ class Cookie(Param):
 class Body(Schema):
     def __init__(
         self,
-        default,
+        default: Any,
         *,
-        embed=False,
+        embed: bool = False,
         media_type: str = "application/json",
         alias: str = None,
         title: str = None,
@@ -218,7 +220,7 @@ class Body(Schema):
         min_length: int = None,
         max_length: int = None,
         regex: str = None,
-        **extra: Dict[str, Any],
+        **extra: Any,
     ):
         self.embed = embed
         self.media_type = media_type
@@ -241,9 +243,9 @@ class Body(Schema):
 class Form(Body):
     def __init__(
         self,
-        default,
+        default: Any,
         *,
-        sub_key=False,
+        sub_key: bool = False,
         media_type: str = "application/x-www-form-urlencoded",
         alias: str = None,
         title: str = None,
@@ -255,7 +257,7 @@ class Form(Body):
         min_length: int = None,
         max_length: int = None,
         regex: str = None,
-        **extra: Dict[str, Any],
+        **extra: Any,
     ):
         super().__init__(
             default,
@@ -278,9 +280,9 @@ class Form(Body):
 class File(Form):
     def __init__(
         self,
-        default,
+        default: Any,
         *,
-        sub_key=False,
+        sub_key: bool = False,
         media_type: str = "multipart/form-data",
         alias: str = None,
         title: str = None,
@@ -292,7 +294,7 @@ class File(Form):
         min_length: int = None,
         max_length: int = None,
         regex: str = None,
-        **extra: Dict[str, Any],
+        **extra: Any,
     ):
         super().__init__(
             default,
@@ -313,11 +315,11 @@ class File(Form):
 
 
 class Depends:
-    def __init__(self, dependency=None):
+    def __init__(self, dependency: Callable = None):
         self.dependency = dependency
 
 
 class Security(Depends):
-    def __init__(self, dependency=None, scopes: Sequence[str] = None):
+    def __init__(self, dependency: Callable = None, scopes: Sequence[str] = None):
         self.scopes = scopes or []
         super().__init__(dependency=dependency)

@@ -1,12 +1,11 @@
 import asyncio
 import inspect
-from typing import Callable, List, Type
+from typing import Any, Callable, List, Optional, Type
 
 from pydantic import BaseConfig, BaseModel, Schema
 from pydantic.error_wrappers import ErrorWrapper, ValidationError
 from pydantic.fields import Field
 from pydantic.utils import lenient_issubclass
-
 from starlette import routing
 from starlette.concurrency import run_in_threadpool
 from starlette.exceptions import HTTPException
@@ -22,7 +21,7 @@ from fastapi.dependencies.utils import get_body_field, get_dependant, solve_depe
 from fastapi.encoders import jsonable_encoder
 
 
-def serialize_response(*, field: Field = None, response):
+def serialize_response(*, field: Field = None, response: Response) -> Any:
     if field:
         errors = []
         value, errors_ = field.validate(response, {}, loc=("response",))
@@ -40,11 +39,12 @@ def serialize_response(*, field: Field = None, response):
 def get_app(
     dependant: Dependant,
     body_field: Field = None,
-    response_code: str = 200,
-    response_wrapper: Type[Response] = JSONResponse,
-    response_field: Type[Field] = None,
-):
-    is_coroutine = dependant.call and asyncio.iscoroutinefunction(dependant.call)
+    status_code: int = 200,
+    content_type: Type[Response] = JSONResponse,
+    response_field: Field = None,
+) -> Callable:
+    assert dependant.call is not None, "dependant.call must me a function"
+    is_coroutine = asyncio.iscoroutinefunction(dependant.call)
     is_body_form = body_field and isinstance(body_field.schema, params.Form)
 
     async def app(request: Request) -> Response:
@@ -69,6 +69,7 @@ def get_app(
                 status_code=HTTP_422_UNPROCESSABLE_ENTITY, detail=errors_out.errors()
             )
         else:
+            assert dependant.call is not None, "dependant.call must me a function"
             if is_coroutine:
                 raw_response = await dependant.call(**values)
             else:
@@ -76,32 +77,32 @@ def get_app(
             if isinstance(raw_response, Response):
                 return raw_response
             if isinstance(raw_response, BaseModel):
-                return response_wrapper(
-                    content=jsonable_encoder(raw_response), status_code=response_code
+                return content_type(
+                    content=jsonable_encoder(raw_response), status_code=status_code
                 )
             errors = []
             try:
-                return response_wrapper(
+                return content_type(
                     content=serialize_response(
                         field=response_field, response=raw_response
                     ),
-                    status_code=response_code,
+                    status_code=status_code,
                 )
             except Exception as e:
                 errors.append(e)
             try:
                 response = dict(raw_response)
-                return response_wrapper(
+                return content_type(
                     content=serialize_response(field=response_field, response=response),
-                    status_code=response_code,
+                    status_code=status_code,
                 )
             except Exception as e:
                 errors.append(e)
             try:
                 response = vars(raw_response)
-                return response_wrapper(
+                return content_type(
                     content=serialize_response(field=response_field, response=response),
-                    status_code=response_code,
+                    status_code=status_code,
                 )
             except Exception as e:
                 errors.append(e)
@@ -116,43 +117,32 @@ class APIRoute(routing.Route):
         path: str,
         endpoint: Callable,
         *,
-        methods: List[str] = None,
-        name: str = None,
-        include_in_schema: bool = True,
+        response_model: Type[BaseModel] = None,
+        status_code: int = 200,
         tags: List[str] = None,
         summary: str = None,
         description: str = None,
-        operation_id: str = None,
-        deprecated: bool = None,
-        response_type: Type = None,
         response_description: str = "Successful Response",
-        response_code=200,
-        response_wrapper=JSONResponse,
+        deprecated: bool = None,
+        name: str = None,
+        methods: List[str] = None,
+        operation_id: str = None,
+        include_in_schema: bool = True,
+        content_type: Type[Response] = JSONResponse,
     ) -> None:
         assert path.startswith("/"), "Routed paths must always start with '/'"
         self.path = path
         self.endpoint = endpoint
         self.name = get_name(endpoint) if name is None else name
-        self.include_in_schema = include_in_schema
-        self.tags = tags or []
-        self.summary = summary
-        self.description = description or self.endpoint.__doc__
-        self.operation_id = operation_id
-        self.deprecated = deprecated
-        self.body_field: Field = None
-        self.response_description = response_description
-        self.response_code = response_code
-        self.response_wrapper = response_wrapper
-        self.response_field = None
-        if response_type:
+        self.response_model = response_model
+        if self.response_model:
             assert lenient_issubclass(
-                response_wrapper, JSONResponse
+                content_type, JSONResponse
             ), "To declare a type the response must be a JSON response"
-            self.response_type = response_type
             response_name = "Response_" + self.name
-            self.response_field = Field(
+            self.response_field: Optional[Field] = Field(
                 name=response_name,
-                type_=self.response_type,
+                type_=self.response_model,
                 class_validators=[],
                 default=None,
                 required=False,
@@ -160,25 +150,34 @@ class APIRoute(routing.Route):
                 schema=Schema(None),
             )
         else:
-            self.response_type = None
+            self.response_field = None
+        self.status_code = status_code
+        self.tags = tags or []
+        self.summary = summary
+        self.description = description or self.endpoint.__doc__
+        self.response_description = response_description
+        self.deprecated = deprecated
         if methods is None:
             methods = ["GET"]
         self.methods = methods
+        self.operation_id = operation_id
+        self.include_in_schema = include_in_schema
+        self.content_type = content_type
+
         self.path_regex, self.path_format, self.param_convertors = self.compile_path(
             path
         )
         assert inspect.isfunction(endpoint) or inspect.ismethod(
             endpoint
         ), f"An endpoint must be a function or method"
-
         self.dependant = get_dependant(path=path, call=self.endpoint)
         self.body_field = get_body_field(dependant=self.dependant, name=self.name)
         self.app = request_response(
             get_app(
                 dependant=self.dependant,
                 body_field=self.body_field,
-                response_code=self.response_code,
-                response_wrapper=self.response_wrapper,
+                status_code=self.status_code,
+                content_type=self.content_type,
                 response_field=self.response_field,
             )
         )
@@ -189,75 +188,77 @@ class APIRouter(routing.Router):
         self,
         path: str,
         endpoint: Callable,
-        methods: List[str] = None,
-        name: str = None,
-        include_in_schema: bool = True,
+        *,
+        response_model: Type[BaseModel] = None,
+        status_code: int = 200,
         tags: List[str] = None,
         summary: str = None,
         description: str = None,
-        operation_id: str = None,
-        deprecated: bool = None,
-        response_type: Type = None,
         response_description: str = "Successful Response",
-        response_code=200,
-        response_wrapper=JSONResponse,
+        deprecated: bool = None,
+        name: str = None,
+        methods: List[str] = None,
+        operation_id: str = None,
+        include_in_schema: bool = True,
+        content_type: Type[Response] = JSONResponse,
     ) -> None:
         route = APIRoute(
             path,
             endpoint=endpoint,
-            methods=methods,
-            name=name,
-            include_in_schema=include_in_schema,
+            response_model=response_model,
+            status_code=status_code,
             tags=tags or [],
             summary=summary,
             description=description,
-            operation_id=operation_id,
-            deprecated=deprecated,
-            response_type=response_type,
             response_description=response_description,
-            response_code=response_code,
-            response_wrapper=response_wrapper,
+            deprecated=deprecated,
+            name=name,
+            methods=methods,
+            operation_id=operation_id,
+            include_in_schema=include_in_schema,
+            content_type=content_type,
         )
         self.routes.append(route)
 
     def api_route(
         self,
         path: str,
-        methods: List[str] = None,
-        name: str = None,
-        include_in_schema: bool = True,
+        *,
+        response_model: Type[BaseModel] = None,
+        status_code: int = 200,
         tags: List[str] = None,
         summary: str = None,
         description: str = None,
-        operation_id: str = None,
-        deprecated: bool = None,
-        response_type: Type = None,
         response_description: str = "Successful Response",
-        response_code=200,
-        response_wrapper=JSONResponse,
+        deprecated: bool = None,
+        name: str = None,
+        methods: List[str] = None,
+        operation_id: str = None,
+        include_in_schema: bool = True,
+        content_type: Type[Response] = JSONResponse,
     ) -> Callable:
         def decorator(func: Callable) -> Callable:
             self.add_api_route(
                 path,
                 func,
-                methods=methods,
-                name=name,
-                include_in_schema=include_in_schema,
+                response_model=response_model,
+                status_code=status_code,
                 tags=tags or [],
                 summary=summary,
                 description=description,
-                operation_id=operation_id,
-                deprecated=deprecated,
-                response_type=response_type,
                 response_description=response_description,
-                response_code=response_code,
-                response_wrapper=response_wrapper,
+                deprecated=deprecated,
+                name=name,
+                methods=methods,
+                operation_id=operation_id,
+                include_in_schema=include_in_schema,
+                content_type=content_type,
             )
             return func
 
         return decorator
 
-    def include_router(self, router: "APIRouter", *, prefix=""):
+    def include_router(self, router: "APIRouter", *, prefix: str = "") -> None:
         if prefix:
             assert prefix.startswith("/"), "A path prefix must start with '/'"
             assert not prefix.endswith(
@@ -268,18 +269,18 @@ class APIRouter(routing.Router):
                 self.add_api_route(
                     prefix + route.path,
                     route.endpoint,
-                    methods=route.methods,
-                    name=route.name,
-                    include_in_schema=route.include_in_schema,
-                    tags=route.tags,
+                    response_model=route.response_model,
+                    status_code=route.status_code,
+                    tags=route.tags or [],
                     summary=route.summary,
                     description=route.description,
-                    operation_id=route.operation_id,
-                    deprecated=route.deprecated,
-                    response_type=route.response_type,
                     response_description=route.response_description,
-                    response_code=route.response_code,
-                    response_wrapper=route.response_wrapper,
+                    deprecated=route.deprecated,
+                    name=route.name,
+                    methods=route.methods,
+                    operation_id=route.operation_id,
+                    include_in_schema=route.include_in_schema,
+                    content_type=route.content_type,
                 )
             elif isinstance(route, routing.Route):
                 self.add_route(
@@ -293,247 +294,255 @@ class APIRouter(routing.Router):
     def get(
         self,
         path: str,
-        name: str = None,
-        include_in_schema: bool = True,
+        *,
+        response_model: Type[BaseModel] = None,
+        status_code: int = 200,
         tags: List[str] = None,
         summary: str = None,
         description: str = None,
-        operation_id: str = None,
-        deprecated: bool = None,
-        response_type: Type = None,
         response_description: str = "Successful Response",
-        response_code=200,
-        response_wrapper=JSONResponse,
-    ):
+        deprecated: bool = None,
+        name: str = None,
+        operation_id: str = None,
+        include_in_schema: bool = True,
+        content_type: Type[Response] = JSONResponse,
+    ) -> Callable:
         return self.api_route(
             path=path,
-            methods=["GET"],
-            name=name,
-            include_in_schema=include_in_schema,
+            response_model=response_model,
+            status_code=status_code,
             tags=tags or [],
             summary=summary,
             description=description,
-            operation_id=operation_id,
-            deprecated=deprecated,
-            response_type=response_type,
             response_description=response_description,
-            response_code=response_code,
-            response_wrapper=response_wrapper,
+            deprecated=deprecated,
+            name=name,
+            methods=["GET"],
+            operation_id=operation_id,
+            include_in_schema=include_in_schema,
+            content_type=content_type,
         )
 
     def put(
         self,
         path: str,
-        name: str = None,
-        include_in_schema: bool = True,
+        *,
+        response_model: Type[BaseModel] = None,
+        status_code: int = 200,
         tags: List[str] = None,
         summary: str = None,
         description: str = None,
-        operation_id: str = None,
-        deprecated: bool = None,
-        response_type: Type = None,
         response_description: str = "Successful Response",
-        response_code=200,
-        response_wrapper=JSONResponse,
-    ):
+        deprecated: bool = None,
+        name: str = None,
+        operation_id: str = None,
+        include_in_schema: bool = True,
+        content_type: Type[Response] = JSONResponse,
+    ) -> Callable:
         return self.api_route(
             path=path,
-            methods=["PUT"],
-            name=name,
-            include_in_schema=include_in_schema,
+            response_model=response_model,
+            status_code=status_code,
             tags=tags or [],
             summary=summary,
             description=description,
-            operation_id=operation_id,
-            deprecated=deprecated,
-            response_type=response_type,
             response_description=response_description,
-            response_code=response_code,
-            response_wrapper=response_wrapper,
+            deprecated=deprecated,
+            name=name,
+            methods=["PUT"],
+            operation_id=operation_id,
+            include_in_schema=include_in_schema,
+            content_type=content_type,
         )
 
     def post(
         self,
         path: str,
-        name: str = None,
-        include_in_schema: bool = True,
+        *,
+        response_model: Type[BaseModel] = None,
+        status_code: int = 200,
         tags: List[str] = None,
         summary: str = None,
         description: str = None,
-        operation_id: str = None,
-        deprecated: bool = None,
-        response_type: Type = None,
         response_description: str = "Successful Response",
-        response_code=200,
-        response_wrapper=JSONResponse,
-    ):
+        deprecated: bool = None,
+        name: str = None,
+        operation_id: str = None,
+        include_in_schema: bool = True,
+        content_type: Type[Response] = JSONResponse,
+    ) -> Callable:
         return self.api_route(
             path=path,
-            methods=["POST"],
-            name=name,
-            include_in_schema=include_in_schema,
+            response_model=response_model,
+            status_code=status_code,
             tags=tags or [],
             summary=summary,
             description=description,
-            operation_id=operation_id,
-            deprecated=deprecated,
-            response_type=response_type,
             response_description=response_description,
-            response_code=response_code,
-            response_wrapper=response_wrapper,
+            deprecated=deprecated,
+            name=name,
+            methods=["POST"],
+            operation_id=operation_id,
+            include_in_schema=include_in_schema,
+            content_type=content_type,
         )
 
     def delete(
         self,
         path: str,
-        name: str = None,
-        include_in_schema: bool = True,
+        *,
+        response_model: Type[BaseModel] = None,
+        status_code: int = 200,
         tags: List[str] = None,
         summary: str = None,
         description: str = None,
-        operation_id: str = None,
-        deprecated: bool = None,
-        response_type: Type = None,
         response_description: str = "Successful Response",
-        response_code=200,
-        response_wrapper=JSONResponse,
-    ):
+        deprecated: bool = None,
+        name: str = None,
+        operation_id: str = None,
+        include_in_schema: bool = True,
+        content_type: Type[Response] = JSONResponse,
+    ) -> Callable:
         return self.api_route(
             path=path,
-            methods=["DELETE"],
-            name=name,
-            include_in_schema=include_in_schema,
+            response_model=response_model,
+            status_code=status_code,
             tags=tags or [],
             summary=summary,
             description=description,
-            operation_id=operation_id,
-            deprecated=deprecated,
-            response_type=response_type,
             response_description=response_description,
-            response_code=response_code,
-            response_wrapper=response_wrapper,
+            deprecated=deprecated,
+            name=name,
+            methods=["DELETE"],
+            operation_id=operation_id,
+            include_in_schema=include_in_schema,
+            content_type=content_type,
         )
 
     def options(
         self,
         path: str,
-        name: str = None,
-        include_in_schema: bool = True,
+        *,
+        response_model: Type[BaseModel] = None,
+        status_code: int = 200,
         tags: List[str] = None,
         summary: str = None,
         description: str = None,
-        operation_id: str = None,
-        deprecated: bool = None,
-        response_type: Type = None,
         response_description: str = "Successful Response",
-        response_code=200,
-        response_wrapper=JSONResponse,
-    ):
+        deprecated: bool = None,
+        name: str = None,
+        operation_id: str = None,
+        include_in_schema: bool = True,
+        content_type: Type[Response] = JSONResponse,
+    ) -> Callable:
         return self.api_route(
             path=path,
-            methods=["OPTIONS"],
-            name=name,
-            include_in_schema=include_in_schema,
+            response_model=response_model,
+            status_code=status_code,
             tags=tags or [],
             summary=summary,
             description=description,
-            operation_id=operation_id,
-            deprecated=deprecated,
-            response_type=response_type,
             response_description=response_description,
-            response_code=response_code,
-            response_wrapper=response_wrapper,
+            deprecated=deprecated,
+            name=name,
+            methods=["OPTIONS"],
+            operation_id=operation_id,
+            include_in_schema=include_in_schema,
+            content_type=content_type,
         )
 
     def head(
         self,
         path: str,
-        name: str = None,
-        include_in_schema: bool = True,
+        *,
+        response_model: Type[BaseModel] = None,
+        status_code: int = 200,
         tags: List[str] = None,
         summary: str = None,
         description: str = None,
-        operation_id: str = None,
-        deprecated: bool = None,
-        response_type: Type = None,
         response_description: str = "Successful Response",
-        response_code=200,
-        response_wrapper=JSONResponse,
-    ):
+        deprecated: bool = None,
+        name: str = None,
+        operation_id: str = None,
+        include_in_schema: bool = True,
+        content_type: Type[Response] = JSONResponse,
+    ) -> Callable:
         return self.api_route(
             path=path,
-            methods=["HEAD"],
-            name=name,
-            include_in_schema=include_in_schema,
+            response_model=response_model,
+            status_code=status_code,
             tags=tags or [],
             summary=summary,
             description=description,
-            operation_id=operation_id,
-            deprecated=deprecated,
-            response_type=response_type,
             response_description=response_description,
-            response_code=response_code,
-            response_wrapper=response_wrapper,
+            deprecated=deprecated,
+            name=name,
+            methods=["HEAD"],
+            operation_id=operation_id,
+            include_in_schema=include_in_schema,
+            content_type=content_type,
         )
 
     def patch(
         self,
         path: str,
-        name: str = None,
-        include_in_schema: bool = True,
+        *,
+        response_model: Type[BaseModel] = None,
+        status_code: int = 200,
         tags: List[str] = None,
         summary: str = None,
         description: str = None,
-        operation_id: str = None,
-        deprecated: bool = None,
-        response_type: Type = None,
         response_description: str = "Successful Response",
-        response_code=200,
-        response_wrapper=JSONResponse,
-    ):
+        deprecated: bool = None,
+        name: str = None,
+        operation_id: str = None,
+        include_in_schema: bool = True,
+        content_type: Type[Response] = JSONResponse,
+    ) -> Callable:
         return self.api_route(
             path=path,
-            methods=["PATCH"],
-            name=name,
-            include_in_schema=include_in_schema,
+            response_model=response_model,
+            status_code=status_code,
             tags=tags or [],
             summary=summary,
             description=description,
-            operation_id=operation_id,
-            deprecated=deprecated,
-            response_type=response_type,
             response_description=response_description,
-            response_code=response_code,
-            response_wrapper=response_wrapper,
+            deprecated=deprecated,
+            name=name,
+            methods=["PATCH"],
+            operation_id=operation_id,
+            include_in_schema=include_in_schema,
+            content_type=content_type,
         )
 
     def trace(
         self,
         path: str,
-        name: str = None,
-        include_in_schema: bool = True,
+        *,
+        response_model: Type[BaseModel] = None,
+        status_code: int = 200,
         tags: List[str] = None,
         summary: str = None,
         description: str = None,
-        operation_id: str = None,
-        deprecated: bool = None,
-        response_type: Type = None,
         response_description: str = "Successful Response",
-        response_code=200,
-        response_wrapper=JSONResponse,
-    ):
+        deprecated: bool = None,
+        name: str = None,
+        operation_id: str = None,
+        include_in_schema: bool = True,
+        content_type: Type[Response] = JSONResponse,
+    ) -> Callable:
         return self.api_route(
             path=path,
-            methods=["TRACE"],
-            name=name,
-            include_in_schema=include_in_schema,
+            response_model=response_model,
+            status_code=status_code,
             tags=tags or [],
             summary=summary,
             description=description,
-            operation_id=operation_id,
-            deprecated=deprecated,
-            response_type=response_type,
             response_description=response_description,
-            response_code=response_code,
-            response_wrapper=response_wrapper,
+            deprecated=deprecated,
+            name=name,
+            methods=["TRACE"],
+            operation_id=operation_id,
+            include_in_schema=include_in_schema,
+            content_type=content_type,
         )

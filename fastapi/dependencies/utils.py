@@ -1,8 +1,14 @@
 import asyncio
 import inspect
 from copy import deepcopy
-from typing import Any, Callable, Dict, List, Tuple
+from typing import Any, Callable, Dict, List, Mapping, Sequence, Tuple, Type
 
+from pydantic import BaseConfig, Schema, create_model
+from pydantic.error_wrappers import ErrorWrapper
+from pydantic.errors import MissingError
+from pydantic.fields import Field, Required
+from pydantic.schema import get_annotation_from_schema
+from pydantic.utils import lenient_issubclass
 from starlette.concurrency import run_in_threadpool
 from starlette.requests import Request
 
@@ -10,17 +16,11 @@ from fastapi import params
 from fastapi.dependencies.models import Dependant, SecurityRequirement
 from fastapi.security.base import SecurityBase
 from fastapi.utils import get_path_param_names
-from pydantic import BaseConfig, Schema, create_model
-from pydantic.error_wrappers import ErrorWrapper
-from pydantic.errors import MissingError
-from pydantic.fields import Field, Required
-from pydantic.schema import get_annotation_from_schema
-from pydantic.utils import lenient_issubclass
 
 param_supported_types = (str, int, float, bool)
 
 
-def get_sub_dependant(*, param: inspect.Parameter, path: str):
+def get_sub_dependant(*, param: inspect.Parameter, path: str) -> Dependant:
     depends: params.Depends = param.default
     if depends.dependency:
         dependency = depends.dependency
@@ -36,7 +36,7 @@ def get_sub_dependant(*, param: inspect.Parameter, path: str):
     return sub_dependant
 
 
-def get_flat_dependant(dependant: Dependant):
+def get_flat_dependant(dependant: Dependant) -> Dependant:
     flat_dependant = Dependant(
         path_params=dependant.path_params.copy(),
         query_params=dependant.query_params.copy(),
@@ -58,7 +58,7 @@ def get_flat_dependant(dependant: Dependant):
     return flat_dependant
 
 
-def get_dependant(*, path: str, call: Callable, name: str = None):
+def get_dependant(*, path: str, call: Callable, name: str = None) -> Dependant:
     path_param_names = get_path_param_names(path)
     endpoint_signature = inspect.signature(call)
     signature_params = endpoint_signature.parameters
@@ -73,9 +73,10 @@ def get_dependant(*, path: str, call: Callable, name: str = None):
         if (
             (param.default == param.empty) or isinstance(param.default, params.Path)
         ) and (param_name in path_param_names):
-            assert lenient_issubclass(
-                param.annotation, param_supported_types
-            ) or param.annotation == param.empty, f"Path params must be of type str, int, float or boot: {param}"
+            assert (
+                lenient_issubclass(param.annotation, param_supported_types)
+                or param.annotation == param.empty
+            ), f"Path params must be of type str, int, float or boot: {param}"
             param = signature_params[param_name]
             add_param_to_fields(
                 param=param,
@@ -109,9 +110,9 @@ def add_param_to_fields(
     *,
     param: inspect.Parameter,
     dependant: Dependant,
-    default_schema=params.Param,
+    default_schema: Type[Schema] = params.Param,
     force_type: params.ParamTypes = None,
-):
+) -> None:
     default_value = Required
     if not param.default == param.empty:
         default_value = param.default
@@ -125,15 +126,19 @@ def add_param_to_fields(
     else:
         schema = default_schema(default_value)
     required = default_value == Required
-    annotation = Any
+    annotation: Type = Type[Any]
     if not param.annotation == param.empty:
         annotation = param.annotation
     annotation = get_annotation_from_schema(annotation, schema)
+    if not schema.alias and getattr(schema, "alias_underscore_to_hyphen", None):
+        alias = param.name.replace("_", "-")
+    else:
+        alias = schema.alias or param.name
     field = Field(
         name=param.name,
         type_=annotation,
         default=None if required else default_value,
-        alias=schema.alias or param.name,
+        alias=alias,
         required=required,
         model_config=BaseConfig(),
         class_validators=[],
@@ -152,7 +157,7 @@ def add_param_to_fields(
         dependant.cookie_params.append(field)
 
 
-def add_param_to_body_fields(*, param: inspect.Parameter, dependant: Dependant):
+def add_param_to_body_fields(*, param: inspect.Parameter, dependant: Dependant) -> None:
     default_value = Required
     if not param.default == param.empty:
         default_value = param.default
@@ -176,7 +181,7 @@ def add_param_to_body_fields(*, param: inspect.Parameter, dependant: Dependant):
     dependant.body_params.append(field)
 
 
-def is_coroutine_callable(call: Callable = None):
+def is_coroutine_callable(call: Callable = None) -> bool:
     if not call:
         return False
     if inspect.isfunction(call):
@@ -191,7 +196,7 @@ def is_coroutine_callable(call: Callable = None):
 
 async def solve_dependencies(
     *, request: Request, dependant: Dependant, body: Dict[str, Any] = None
-):
+) -> Tuple[Dict[str, Any], List[ErrorWrapper]]:
     values: Dict[str, Any] = {}
     errors: List[ErrorWrapper] = []
     for sub_dependant in dependant.dependencies:
@@ -200,13 +205,13 @@ async def solve_dependencies(
         )
         if sub_errors:
             return {}, errors
-        if sub_dependant.call and is_coroutine_callable(sub_dependant.call):
+        assert sub_dependant.call is not None, "sub_dependant.call must be a function"
+        if is_coroutine_callable(sub_dependant.call):
             solved = await sub_dependant.call(**sub_values)
         else:
             solved = await run_in_threadpool(sub_dependant.call, **sub_values)
-        values[
-            sub_dependant.name
-        ] = solved  # type: ignore # Sub-dependants always have a name
+        assert sub_dependant.name is not None, "Subdependants always have a name"
+        values[sub_dependant.name] = solved
     path_values, path_errors = request_params_to_args(
         dependant.path_params, request.path_params
     )
@@ -236,7 +241,7 @@ async def solve_dependencies(
 
 
 def request_params_to_args(
-    required_params: List[Field], received_params: Dict[str, Any]
+    required_params: Sequence[Field], received_params: Mapping[str, Any]
 ) -> Tuple[Dict[str, Any], List[ErrorWrapper]]:
     values = {}
     errors = []
@@ -250,9 +255,9 @@ def request_params_to_args(
             else:
                 values[field.name] = deepcopy(field.default)
             continue
-        v_, errors_ = field.validate(
-            value, values, loc=(field.schema.in_.value, field.alias)
-        )
+        schema: params.Param = field.schema
+        assert isinstance(schema, params.Param), "Params must be subclasses of Param"
+        v_, errors_ = field.validate(value, values, loc=(schema.in_.value, field.alias))
         if isinstance(errors_, ErrorWrapper):
             errors.append(errors_)
         elif isinstance(errors_, list):
@@ -294,7 +299,7 @@ async def request_body_to_args(
     return values, errors
 
 
-def get_body_field(*, dependant: Dependant, name: str):
+def get_body_field(*, dependant: Dependant, name: str) -> Field:
     flat_dependant = get_flat_dependant(dependant)
     if not flat_dependant.body_params:
         return None
@@ -308,7 +313,7 @@ def get_body_field(*, dependant: Dependant, name: str):
         BodyModel.__fields__[f.name] = f
     required = any(True for f in flat_dependant.body_params if f.required)
     if any(isinstance(f.schema, params.File) for f in flat_dependant.body_params):
-        BodySchema = params.File
+        BodySchema: Type[params.Body] = params.File
     elif any(isinstance(f.schema, params.Form) for f in flat_dependant.body_params):
         BodySchema = params.Form
     else:
