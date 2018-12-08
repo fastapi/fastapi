@@ -3,6 +3,10 @@ import inspect
 from copy import deepcopy
 from typing import Any, Callable, Dict, List, Mapping, Sequence, Tuple, Type
 
+from fastapi import params
+from fastapi.dependencies.models import Dependant, SecurityRequirement
+from fastapi.security.base import SecurityBase
+from fastapi.utils import get_path_param_names
 from pydantic import BaseConfig, Schema, create_model
 from pydantic.error_wrappers import ErrorWrapper
 from pydantic.errors import MissingError
@@ -11,11 +15,6 @@ from pydantic.schema import get_annotation_from_schema
 from pydantic.utils import lenient_issubclass
 from starlette.concurrency import run_in_threadpool
 from starlette.requests import Request
-
-from fastapi import params
-from fastapi.dependencies.models import Dependant, SecurityRequirement
-from fastapi.security.base import SecurityBase
-from fastapi.utils import get_path_param_names
 
 param_supported_types = (str, int, float, bool)
 
@@ -26,7 +25,6 @@ def get_sub_dependant(*, param: inspect.Parameter, path: str) -> Dependant:
         dependency = depends.dependency
     else:
         dependency = param.annotation
-    assert callable(dependency)
     sub_dependant = get_dependant(path=path, call=dependency, name=param.name)
     if isinstance(depends, params.Security) and isinstance(dependency, SecurityBase):
         security_requirement = SecurityRequirement(
@@ -119,18 +117,18 @@ def add_param_to_fields(
     if isinstance(default_value, params.Param):
         schema = default_value
         default_value = schema.default
-        if schema.in_ is None:
+        if getattr(schema, "in_", None) is None:
             schema.in_ = default_schema.in_
         if force_type:
             schema.in_ = force_type
     else:
         schema = default_schema(default_value)
     required = default_value == Required
-    annotation: Type = Type[Any]
+    annotation: Any = Any
     if not param.annotation == param.empty:
         annotation = param.annotation
     annotation = get_annotation_from_schema(annotation, schema)
-    if not schema.alias and getattr(schema, "alias_underscore_to_hyphen", None):
+    if not schema.alias and getattr(schema, "convert_underscores", None):
         alias = param.name.replace("_", "-")
     else:
         alias = schema.alias or param.name

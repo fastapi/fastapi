@@ -1,7 +1,6 @@
-from starlette.requests import Request
-
 from fastapi.openapi.models import APIKey, APIKeyIn
 from fastapi.security.base import SecurityBase
+from starlette.requests import Request
 
 
 class APIKeyBase(SecurityBase):

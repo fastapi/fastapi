@@ -1,5 +1,6 @@
 from typing import Any, Callable, Dict, List, Sequence, Tuple
 
+from fastapi.security.base import SecurityBase
 from pydantic import BaseConfig, Schema
 from pydantic.error_wrappers import ErrorWrapper
 from pydantic.errors import MissingError
@@ -7,8 +8,6 @@ from pydantic.fields import Field, Required
 from pydantic.schema import get_annotation_from_schema
 from starlette.concurrency import run_in_threadpool
 from starlette.requests import Request
-
-from fastapi.security.base import SecurityBase
 
 param_supported_types = (str, int, float, bool)
 

@@ -1,10 +1,9 @@
-from starlette.requests import Request
-
 from fastapi.openapi.models import (
     HTTPBase as HTTPBaseModel,
     HTTPBearer as HTTPBearerModel,
 )
 from fastapi.security.base import SecurityBase
+from starlette.requests import Request
 
 
 class HTTPBase(SecurityBase):

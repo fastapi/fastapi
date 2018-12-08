@@ -134,7 +134,7 @@ class Header(Param):
         *,
         deprecated: bool = None,
         alias: str = None,
-        alias_underscore_to_hyphen: bool = True,
+        convert_underscores: bool = True,
         title: str = None,
         description: str = None,
         gt: float = None,
@@ -148,7 +148,7 @@ class Header(Param):
     ):
         self.description = description
         self.deprecated = deprecated
-        self.alias_underscore_to_hyphen = alias_underscore_to_hyphen
+        self.convert_underscores = convert_underscores
         super().__init__(
             default,
             alias=alias,
