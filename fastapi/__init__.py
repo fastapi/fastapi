@@ -1,3 +1,3 @@
-"""Fast API framework, fast high performance, fast to learn, fast to code"""
+"""Fast API framework, high performance, fast to learn, fast to code, fast to production"""
 
-__version__ = "0.1"
+__version__ = "0.1.0"
