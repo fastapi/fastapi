@@ -1,0 +1,16 @@
+language: python
+
+cache: pip
+
+python:
+    - "3.6"
+    - "3.7-dev"
+
+install:
+    - pipenv install
+
+script:
+    - scripts/test
+
+# after_script:
+#     - codecov
