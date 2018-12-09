@@ -11,7 +11,7 @@ install:
     - flit install
 
 script:
-    - scripts/test.sh
+    - bash scripts/test.sh
 
 # after_script:
 #     - codecov
