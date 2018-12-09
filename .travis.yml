@@ -7,7 +7,8 @@ python:
     - "3.7-dev"
 
 install:
-    - pipenv install
+    - pip install flit
+    - flit install
 
 script:
     - scripts/test
