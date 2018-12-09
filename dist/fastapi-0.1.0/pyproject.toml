@@ -1,0 +1,15 @@
+[build-system]
+requires = ["flit"]
+build-backend = "flit.buildapi"
+
+[tool.flit.metadata]
+module = "fastapi"
+author = "Sebastián Ramírez"
+author-email = "tiangolo@gmail.com"
+home-page = "https://github.com/tiangolo/fastapi"
+classifiers = ["License :: OSI Approved :: MIT License"]
+requires = [
+    "starlette >=0.9.7",
+    "pydantic >=0.16"
+]
+requires-python = ">=3.6"
