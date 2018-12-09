@@ -1,9 +1,11 @@
-#!/bin/sh -e
+#!/usr/bin/env bash
+
+set -e
+set -x
 
 export VERSION_SCRIPT="import sys; print('%s.%s' % sys.version_info[0:2])"
 export PYTHON_VERSION=`python -c "$VERSION_SCRIPT"`
 
-set -x
 
 PYTHONPATH=. pytest --cov=fastapi --cov=tests --cov-fail-under=100 --cov-report=term-missing ${@} --cov-report=html
 mypy fastapi --disallow-untyped-defs
