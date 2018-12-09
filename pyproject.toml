@@ -13,3 +13,39 @@ requires = [
     "pydantic >=0.16"
 ]
 requires-python = ">=3.6"
+
+[tool.flit.metadata.requires-extra]
+test = [
+    "pytest >=4.0.0",
+    "pytest-cov",
+    "mypy",
+    "black",
+    "isort",
+    "requests"
+]
+doc = [
+    "mkdocs",
+    "mkdocs-material",
+    "markdown-include"
+]
+dev = [
+    "prospector",
+    "rope"
+]
+all = [
+    "requests",
+    "aiofiles",
+    "jinja2",
+    "python-multipart",
+    "graphene",
+    "itsdangerous",
+    "pyyaml",
+    "ujson",
+    "email_validator",
+    "starlette",
+    "pydantic",
+    "json",
+    "openapi",
+    "swagger",
+    "redoc",
+]
