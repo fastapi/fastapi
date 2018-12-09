@@ -44,8 +44,8 @@ all = [
     "email_validator",
     "starlette",
     "pydantic",
-    "json",
+    "json-schema",
     "openapi",
-    "swagger",
+    "swagger-ui",
     "redoc",
 ]
