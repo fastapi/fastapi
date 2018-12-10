@@ -5,3 +5,8 @@
 __pycache__
 .pytest_cache
 htmlcov
+dist
+site
+.coverage
+coverage.xml
+.netlify
