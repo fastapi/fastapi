@@ -38,7 +38,7 @@ The key features are:
 
 Python 3.6+
 
-FastAPI rests on the shoulders of giants:
+FastAPI stands on the shoulders of giants:
 
 * <a href="https://www.starlette.io/" target="_blank">Starlette</a> for the web parts.
 * <a href="https://pydantic-docs.helpmanual.io/" target="_blank">Pydantic</a> for the data parts.
@@ -166,7 +166,7 @@ And now, go to <a href="http://127.0.0.1:8000/redoc" target="_blank">http://127.
 
 * The alternative documentation will also reflect the new query parameter and body:
 
-![ReDoc](img/index/index-05-redoc-02.png)
+![ReDoc](img/index/index-06-redoc-02.png)
 
 
 ### Recap
@@ -202,7 +202,7 @@ item: Item
     * Cookies.
     * Headers.
 * Serialization of output data: from Python to network (as JSON):
-    * Convert Python types.
+    * Convert Python types (`str`, `int`, `float`, `bool`, `list`, etc).
     * `datetime` objects.
     * `UUID` objects.
     * Database models.

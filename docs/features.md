@@ -7,11 +7,11 @@
 * Automatic data model documentation with <a href="http://json-schema.org/" target="_blank"><strong>JSON Schema</strong></a> (as OpenAPI itself is based on JSON Schema).
 * Interactive API documentation and exploration web user interface with <a href="https://github.com/swagger-api/swagger-ui" target="_blank"><strong>Swagger UI</strong></a>.
 
-![Swagger UI interaction](img/readme-assets/readme05.png)
+![Swagger UI interaction](img/index/index-03-swagger-02.png)
 
 * Alternative API documentation with <a href="https://github.com/Rebilly/ReDoc" target="_blank"><strong>ReDoc</strong></a>.
 
-![ReDoc](img/readme-assets/readme06.png)
+![ReDoc](img/index/index-06-redoc-02.png)
 
 
 * All based on standard **Python 3.6 type** declarations (thanks to Pydantic). No new syntax to learn:
@@ -22,29 +22,22 @@ from datetime import date
 
 from pydantic import BaseModel
 
-# Declare a variable as an int
-user_id: int
+# Declare a variable as an str
+# and get editor support inside the function
+def main(user_id: str):
+    return user_id
 
-# Declare the type and set a value
-user_id: int = 3
-
-# tags is a list of str
-tags: List[str] = ["fast", "easy", "short", "robust"]
-
-
-# item_tags is a dict with str as keys, and lists of str as values
-item_tags: Dict[str, List[str]] = {
-    "foo": ["The Foo", "Foo Fighters"], 
-    "bar": ["Bar Halen", "Bars N' Roses"]
-    }
 
 # A Pydantic model
 class User(BaseModel):
     id: int
     name: str
-    joined: datetime
+    joined: date
+```
 
+That can then be used like:
 
+```Python
 my_user: User = User(id=3, name="John Doe", joined="2018-07-19")
 
 second_user_data = {
@@ -54,14 +47,27 @@ second_user_data = {
 }
 
 
-# **second_user_data means "pass the keys and values of the dict directly as arguments
+# **second_user_data means: 
+# pass the keys and values of the dict 
+# directly as key-value arguments
+# equivalent to:
+# id=4, name="Mary", joined="2018-11-30"
 my_second_user: User = User(**second_user_data)
 ```
 
 * Sensible **defaults** for everything, with optional configurations everywhere.
-* Validation for many **data types**, including JSON objects (`dict`) fields, JSON array (`list`) item types, string (`str`) min and max lengths, number (`int`, `float`) min and max values, etc.
-* Security and authentication included: all the security schemes defined in OpenAPI, including HTTP Basic, **OAuth2** (also with **JWT tokens**), API keys, etc. Plus the security features from Starlette (including session cookies). All built as reusable tools and components that are easy to integrate with your systems, data stores, databases, etc.
-* Extremely easy, but extremely powerful **Dependency Injection** (also known as "components", "resources", "services", "providers"):
+* Validation for many **data types**, including:
+    * JSON objects (`dict`).
+    * JSON array (`list`) defining item types.
+    * String (`str`) fields, defining min and max lengths.
+    * Numbers (`int`, `float`) with min and max values, etc.
+* Security and authentication included: all the security schemes defined in OpenAPI, including:
+    * HTTP Basic.
+    * **OAuth2** (also with **JWT tokens**)
+    * API keys, etc. 
+* Plus the security features from Starlette (including session cookies). 
+* All built as reusable tools and components that are easy to integrate with your systems, data stores, databases, etc.
+* Extremely easy, but extremely powerful <abbr title='also known as "components", "resources", "services", "providers"'><strong>Dependency Injection</strong></abbr> system:
     * Even dependencies can have dependencies, creating a hierarchy or **"graph" of dependencies**.
     * All **automatically handled** by the framework. 
     * All the dependencies can **augment the endpoint** parameters and constraints.
@@ -70,12 +76,12 @@ my_second_user: User = User(**second_user_data)
 * **No compromise** with databases, frontends, etc. But easy integration with all.
 * **Unlimited "plug-ins"**:
     * Or in other way, no need for them, import and use the code you need. 
-    * Any integration is designed to be so simple to use (with dependencies) that you can create a "plug-in" for your application in 2 lines of code.
+    * Any integration is designed to be so simple to use (with dependencies) that you can create a "plug-in" for your application in 2 lines of code using the same structure and syntax as for your endpoints.
 * Fully compatible with (and based on) **Starlette**.
     * Any additional Starlette code you have, will also work.
 * Fully compatible with (and based on) **Pydantic**. 
     * Any additional Pydantic code you have will also work.
-    * Including external libraries also based on Pydantic.
+    * Including external libraries also based on Pydantic, as <abbr title="Object-Relational Mapper">ORM</abbr>s, <abbr title="Object-Document Mapper">ODM</abbr>s for databases.
 * 100% test coverage (* not yet, in a couple days).
 * 100% type annotated code base.
 
