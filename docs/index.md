@@ -26,9 +26,9 @@ FastAPI is a modern, fast (high-performance), web framework for building APIs wi
 
 The key features are:
 
-* **Fast**: Very high performance, on par with **NodeJS** and **Go**.
-* **Easy**: Designed to be easy to use and learn.
-* **Intuitive**: Great editor support. Completion (auto-complete, IntelliSense) everywhere.
+* **Fast**: Very high performance, on par with **NodeJS** and **Go** (thanks to Starlette and Pydantic).
+* **Intuitive**: Great editor support. <abbr title="also known as auto-complete, autocompletion, IntelliSense">Completion</abbr> everywhere. Less time debugging.
+* **Easy**: Designed to be easy to use and learn. Less time reading docs.
 * **Short**: Minimize code duplication. Multiple features from each parameter declaration.
 * **Robust**: Get production-ready code. With automatic interactive documentation.
 * **Standards-based**: Based on (and fully compatible with) the open standards for APIs: <a href="https://github.com/OAI/OpenAPI-Specification" target="_blank">OpenAPI</a> and <a href="http://json-schema.org/" target="_blank">JSON Schema</a>.
