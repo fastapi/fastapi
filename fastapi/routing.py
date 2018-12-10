@@ -1,5 +1,6 @@
 import asyncio
 import inspect
+import logging
 from typing import Any, Callable, List, Optional, Type
 
 from fastapi import params
@@ -47,21 +48,30 @@ def get_app(
     is_body_form = body_field and isinstance(body_field.schema, params.Form)
 
     async def app(request: Request) -> Response:
-        body = None
-        if body_field:
-            if is_body_form:
-                raw_body = await request.form()
-                body = {}
-                for field, value in raw_body.items():
-                    if isinstance(value, UploadFile):
-                        body[field] = await value.read()
-                    else:
-                        body[field] = value
-            else:
-                body = await request.json()
-        values, errors = await solve_dependencies(
-            request=request, dependant=dependant, body=body
-        )
+        try:
+            body = None
+            if body_field:
+                if is_body_form:
+                    raw_body = await request.form()
+                    body = {}
+                    for field, value in raw_body.items():
+                        if isinstance(value, UploadFile):
+                            body[field] = await value.read()
+                        else:
+                            body[field] = value
+                else:
+                    body = await request.json()
+        except Exception:
+            raise HTTPException(
+                status_code=400, detail="There was an error parsing the body"
+            )
+        try:
+            values, errors = await solve_dependencies(
+                request=request, dependant=dependant, body=body
+            )
+        except Exception as e:
+            logging.error("Error solving dependencies", e)
+            raise HTTPException(status_code=400, detail="Error processing request")
         if errors:
             errors_out = ValidationError(errors)
             raise HTTPException(
@@ -77,7 +87,10 @@ def get_app(
                 return raw_response
             if isinstance(raw_response, BaseModel):
                 return content_type(
-                    content=jsonable_encoder(raw_response), status_code=status_code
+                    content=serialize_response(
+                        field=response_field, response=raw_response
+                    ),
+                    status_code=status_code,
                 )
             errors = []
             try:

@@ -38,104 +38,124 @@ response_not_valid_float = {
     ]
 }
 
-response_at_least_3 = {"detail":[{"loc":["path","item_id"],"msg":"ensure this value has at least 3 characters","type":"value_error.any_str.min_length","ctx":{"limit_value":3}}]}
+response_at_least_3 = {
+    "detail": [
+        {
+            "loc": ["path", "item_id"],
+            "msg": "ensure this value has at least 3 characters",
+            "type": "value_error.any_str.min_length",
+            "ctx": {"limit_value": 3},
+        }
+    ]
+}
 
 
-response_at_least_2 = {"detail":[{"loc":["path","item_id"],"msg":"ensure this value has at least 2 characters","type":"value_error.any_str.min_length","ctx":{"limit_value":2}}]}
+response_at_least_2 = {
+    "detail": [
+        {
+            "loc": ["path", "item_id"],
+            "msg": "ensure this value has at least 2 characters",
+            "type": "value_error.any_str.min_length",
+            "ctx": {"limit_value": 2},
+        }
+    ]
+}
 
 
-response_maximum_3 = {"detail":[{"loc":["path","item_id"],"msg":"ensure this value has at most 3 characters","type":"value_error.any_str.max_length","ctx":{"limit_value":3}}]}
+response_maximum_3 = {
+    "detail": [
+        {
+            "loc": ["path", "item_id"],
+            "msg": "ensure this value has at most 3 characters",
+            "type": "value_error.any_str.max_length",
+            "ctx": {"limit_value": 3},
+        }
+    ]
+}
 
 
 response_greater_than_3 = {
-  "detail": [
-    {
-      "loc": [
-        "path",
-        "item_id"
-      ],
-      "msg": "ensure this value is greater than 3",
-      "type": "value_error.number.not_gt",
-      "ctx": {
-        "limit_value": 3
-      }
-    }
-  ]
+    "detail": [
+        {
+            "loc": ["path", "item_id"],
+            "msg": "ensure this value is greater than 3",
+            "type": "value_error.number.not_gt",
+            "ctx": {"limit_value": 3},
+        }
+    ]
 }
 
 
 response_greater_than_0 = {
-  "detail": [
-    {
-      "loc": [
-        "path",
-        "item_id"
-      ],
-      "msg": "ensure this value is greater than 0",
-      "type": "value_error.number.not_gt",
-      "ctx": {
-        "limit_value": 0
-      }
-    }
-  ]
+    "detail": [
+        {
+            "loc": ["path", "item_id"],
+            "msg": "ensure this value is greater than 0",
+            "type": "value_error.number.not_gt",
+            "ctx": {"limit_value": 0},
+        }
+    ]
 }
 
 
 response_greater_than_1 = {
-  "detail": [
-    {
-      "loc": [
-        "path",
-        "item_id"
-      ],
-      "msg": "ensure this value is greater than 1",
-      "type": "value_error.number.not_gt",
-      "ctx": {
-        "limit_value": 1
-      }
-    }
-  ]
+    "detail": [
+        {
+            "loc": ["path", "item_id"],
+            "msg": "ensure this value is greater than 1",
+            "type": "value_error.number.not_gt",
+            "ctx": {"limit_value": 1},
+        }
+    ]
 }
 
 
-response_greater_than_equal_3 = {"detail":[{"loc":["path","item_id"],"msg":"ensure this value is greater than or equal to 3","type":"value_error.number.not_ge","ctx":{"limit_value":3}}]}
+response_greater_than_equal_3 = {
+    "detail": [
+        {
+            "loc": ["path", "item_id"],
+            "msg": "ensure this value is greater than or equal to 3",
+            "type": "value_error.number.not_ge",
+            "ctx": {"limit_value": 3},
+        }
+    ]
+}
 
 
 response_less_than_3 = {
-  "detail": [
-    {
-      "loc": [
-        "path",
-        "item_id"
-      ],
-      "msg": "ensure this value is less than 3",
-      "type": "value_error.number.not_lt",
-      "ctx": {
-        "limit_value": 3
-      }
-    }
-  ]
+    "detail": [
+        {
+            "loc": ["path", "item_id"],
+            "msg": "ensure this value is less than 3",
+            "type": "value_error.number.not_lt",
+            "ctx": {"limit_value": 3},
+        }
+    ]
 }
 
 
 response_less_than_0 = {
-  "detail": [
-    {
-      "loc": [
-        "path",
-        "item_id"
-      ],
-      "msg": "ensure this value is less than 0",
-      "type": "value_error.number.not_lt",
-      "ctx": {
-        "limit_value": 0
-      }
-    }
-  ]
+    "detail": [
+        {
+            "loc": ["path", "item_id"],
+            "msg": "ensure this value is less than 0",
+            "type": "value_error.number.not_lt",
+            "ctx": {"limit_value": 0},
+        }
+    ]
 }
 
 
-response_less_than_equal_3 = {"detail":[{"loc":["path","item_id"],"msg":"ensure this value is less than or equal to 3","type":"value_error.number.not_le","ctx":{"limit_value":3}}]}
+response_less_than_equal_3 = {
+    "detail": [
+        {
+            "loc": ["path", "item_id"],
+            "msg": "ensure this value is less than or equal to 3",
+            "type": "value_error.number.not_le",
+            "ctx": {"limit_value": 3},
+        }
+    ]
+}
 
 
 @pytest.mark.parametrize(
