@@ -7,7 +7,7 @@ def get_swagger_ui_html(*, openapi_url: str, title: str) -> HTMLResponse:
     <! doctype html>
     <html>
     <head>
-    <link type="text/css" rel="stylesheet" href="//unpkg.com/swagger-ui-dist@3/swagger-ui.css">
+    <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@3/swagger-ui.css">
     <title>
     """
         + title
@@ -17,7 +17,7 @@ def get_swagger_ui_html(*, openapi_url: str, title: str) -> HTMLResponse:
     <body>
     <div id="swagger-ui">
     </div>
-    <script src="//unpkg.com/swagger-ui-dist@3/swagger-ui-bundle.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swagger-ui-dist@3/swagger-ui-bundle.js"></script>
     <!-- `SwaggerUIBundle` is now available on the page -->
     <script>
             
