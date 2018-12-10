@@ -1,22 +1,16 @@
-from fastapi.applications import FastAPI
-from fastapi.params import (
+from fastapi.applications import (
     Body,
     Cookie,
     Depends,
+    FastAPI,
     File,
     Form,
     Header,
-    Param,
     Path,
     Query,
     Security,
 )
-from fastapi.security.http import HTTPBasic
-from fastapi.security.oauth2 import (
-    OAuth2,
-    OAuth2PasswordRequestData,
-    OAuth2PasswordRequestForm,
-)
+from fastapi.security import HTTPBasic, OAuth2, OAuth2PasswordRequestForm
 from pydantic import BaseModel
 from starlette.responses import HTMLResponse, JSONResponse, PlainTextResponse
 from starlette.status import HTTP_202_ACCEPTED
