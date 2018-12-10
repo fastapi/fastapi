@@ -1,4 +1,4 @@
-from fastapi.applications import (
+from fastapi import (
     Body,
     Cookie,
     Depends,
@@ -213,11 +213,6 @@ def get_header(head_name=Header(None)):
 @app.get("/header_under")
 def get_header(head_name=Header(None, convert_underscores=False)):
     return head_name
-
-
-@app.get("/param")
-def get_param(par=Param(None)):
-    return par
 
 
 @app.get("/security")
