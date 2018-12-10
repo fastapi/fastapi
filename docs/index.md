@@ -98,7 +98,7 @@ Now go to <a href="http://127.0.0.1:8000/docs" target="_blank">http://127.0.0.1:
 
 You will see the automatic interactive API documentation (provided by <a href="https://github.com/swagger-api/swagger-ui" target="_blank">Swagger UI</a>):
 
-![Swagger UI](img/readme-assets/readme01.png)
+![Swagger UI](img/index/index-01-swagger-ui-simple.png)
 
 
 ### Alternative API docs
@@ -107,7 +107,7 @@ And now, go to <a href="http://127.0.0.1:8000/redoc" target="_blank">http://127.
 
 You will see the alternative automatic documentation (provided by <a href="https://github.com/Rebilly/ReDoc" target="_blank">ReDoc</a>):
 
-![ReDoc](img/readme-assets/readme02.png)
+![ReDoc](img/index/index-02-redoc-simple.png)
 
 ## Example upgrade
 
@@ -149,15 +149,15 @@ Now go to <a href="http://127.0.0.1:8000/docs" target="_blank">http://127.0.0.1:
 
 * The interactive API documentation will be automatically updated, including the new query, and body:
 
-![Swagger UI](img/readme-assets/readme03.png)
+![Swagger UI](img/index/index-03-swagger-02.png)
 
 * Click on the button "Try it out", it allows you to fill the parameters and directly interact with the API:
 
-![Swagger UI interaction](img/readme-assets/readme04.png)
+![Swagger UI interaction](img/index/index-04-swagger-03.png)
 
 * Then click on the "Execute" button, the user interface will communicate with your API, send the parameters, get the results and show them on the screen:
 
-![Swagger UI interaction](img/readme-assets/readme05.png)
+![Swagger UI interaction](img/index/index-05-swagger-04.png)
 
 
 ### Alternative API docs upgrade
@@ -166,7 +166,7 @@ And now, go to <a href="http://127.0.0.1:8000/redoc" target="_blank">http://127.
 
 * The alternative documentation will also reflect the new query parameter and body:
 
-![ReDoc](img/readme-assets/readme06.png)
+![ReDoc](img/index/index-05-redoc-02.png)
 
 
 ### Recap
