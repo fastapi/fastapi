@@ -6,13 +6,13 @@ from pydantic import BaseModel, Schema as PSchema
 from pydantic.types import UrlStr
 
 try:
-    import pydantic.types.EmailStr
+    import email_validator
     from pydantic.types import EmailStr  # type: ignore
 except ImportError:
     logging.warning(
-        "email-validator not installed, email fields will be treated as str"
+        "email-validator not installed, email fields will be treated as str.\n" +
+        "To install, run: pip install email-validator"
     )
-
     class EmailStr(str):  # type: ignore
         pass
 
