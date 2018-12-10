@@ -82,7 +82,11 @@ def get_dependant(*, path: str, call: Callable, name: str = None) -> Dependant:
                 default_schema=params.Path,
                 force_type=params.ParamTypes.path,
             )
-        elif (param.default == param.empty or param.default is None) and (
+        elif (
+            param.default == param.empty
+            or param.default is None
+            or type(param.default) in param_supported_types
+        ) and (
             param.annotation == param.empty
             or lenient_issubclass(param.annotation, param_supported_types)
         ):
