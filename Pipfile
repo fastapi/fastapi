@@ -16,6 +16,9 @@ pytest-cov = "*"
 isort = "*"
 requests = "*"
 flit = "*"
+mkdocs = "*"
+mkdocs-material = "*"
+markdown-include = "*"
 
 [packages]
 starlette = "*"
