@@ -61,7 +61,8 @@ def get_app(
                             body[field] = value
                 else:
                     body = await request.json()
-        except Exception:
+        except Exception as e:
+            logging.error("Error getting request body", e)
             raise HTTPException(
                 status_code=400, detail="There was an error parsing the body"
             )
