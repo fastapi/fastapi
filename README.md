@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://fastapi.tiangolo.com"><img style="width: 70%;" src="img/logo-teal-vector.svg" alt='FastAPI'></a>
+  <a href="https://fastapi.tiangolo.com"><img style="width: 70%;" src="https://fastapi.tiangolo.com/img/logo-teal-vector.svg" alt='FastAPI'></a>
 </p>
 <p align="center">
     <em>FastAPI framework, high performance, easy to learn, fast to code, ready for production</em>
@@ -98,7 +98,7 @@ Now go to <a href="http://127.0.0.1:8000/docs" target="_blank">http://127.0.0.1:
 
 You will see the automatic interactive API documentation (provided by <a href="https://github.com/swagger-api/swagger-ui" target="_blank">Swagger UI</a>):
 
-![Swagger UI](img/index/index-01-swagger-ui-simple.png)
+![Swagger UI](https://fastapi.tiangolo.com/img/index/index-01-swagger-ui-simple.png)
 
 
 ### Alternative API docs
@@ -107,7 +107,7 @@ And now, go to <a href="http://127.0.0.1:8000/redoc" target="_blank">http://127.
 
 You will see the alternative automatic documentation (provided by <a href="https://github.com/Rebilly/ReDoc" target="_blank">ReDoc</a>):
 
-![ReDoc](img/index/index-02-redoc-simple.png)
+![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
 ## Example upgrade
 
@@ -149,15 +149,15 @@ Now go to <a href="http://127.0.0.1:8000/docs" target="_blank">http://127.0.0.1:
 
 * The interactive API documentation will be automatically updated, including the new query, and body:
 
-![Swagger UI](img/index/index-03-swagger-02.png)
+![Swagger UI](https://fastapi.tiangolo.com/img/index/index-03-swagger-02.png)
 
 * Click on the button "Try it out", it allows you to fill the parameters and directly interact with the API:
 
-![Swagger UI interaction](img/index/index-04-swagger-03.png)
+![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-04-swagger-03.png)
 
 * Then click on the "Execute" button, the user interface will communicate with your API, send the parameters, get the results and show them on the screen:
 
-![Swagger UI interaction](img/index/index-05-swagger-04.png)
+![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-05-swagger-04.png)
 
 
 ### Alternative API docs upgrade
@@ -166,7 +166,7 @@ And now, go to <a href="http://127.0.0.1:8000/redoc" target="_blank">http://127.
 
 * The alternative documentation will also reflect the new query parameter and body:
 
-![ReDoc](img/index/index-06-redoc-02.png)
+![ReDoc](https://fastapi.tiangolo.com/img/index/index-06-redoc-02.png)
 
 
 ### Recap
@@ -252,7 +252,7 @@ Try changing the line with:
 
 ...and see how your editor will auto-complete the attributes and know their types:
 
-![editor support](img/vscode-completion.png)
+![editor support](https://fastapi.tiangolo.com/img/vscode-completion.png)
 
 
 For a more complete example including more features, [see the tutorial](tutorial).
