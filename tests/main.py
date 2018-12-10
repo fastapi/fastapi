@@ -179,6 +179,11 @@ def get_query_type_optional(query: int = None):
     return f"foo bar {query}"
 
 
+@app.get("/query/int/default")
+def get_query_type_optional(query: int = 10):
+    return f"foo bar {query}"
+
+
 @app.get("/query/param")
 def get_query_param(query=Query(None)):
     if query is None:

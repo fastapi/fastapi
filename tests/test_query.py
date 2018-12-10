@@ -36,6 +36,9 @@ response_not_valid_int = {
         ("/query/int?query=42.5", 422, response_not_valid_int),
         ("/query/int?query=baz", 422, response_not_valid_int),
         ("/query/int?not_declared=baz", 422, response_missing),
+        ("/query/int/default", 200, "foo bar 10"),
+        ("/query/int/default?query=50", 200, "foo bar 50"),
+        ("/query/int/default?query=foo", 422, response_not_valid_int),
     ],
 )
 def test_get_path(path, expected_status, expected_response):
