@@ -1,3 +1,6 @@
+from typing import Optional
+
+import fastapi
 from fastapi import (
     Body,
     Cookie,
@@ -10,8 +13,14 @@ from fastapi import (
     Query,
     Security,
 )
-from fastapi.security import HTTPBasic, OAuth2, OAuth2PasswordRequestForm
+from fastapi.security import (
+    HTTPBasic,
+    OAuth2,
+    OAuth2PasswordBearer,
+    OAuth2PasswordRequestForm,
+)
 from pydantic import BaseModel
+from starlette.exceptions import HTTPException
 from starlette.responses import HTMLResponse, JSONResponse, PlainTextResponse
 from starlette.status import HTTP_202_ACCEPTED
 from starlette.testclient import TestClient
@@ -240,14 +249,27 @@ def get_security_oauth2(sec=Security(reusable_oauth2, scopes=["read:user"])):
     return sec
 
 
+reusable_oauth2b = OAuth2PasswordBearer(tokenUrl="/token")
+
+
+class User(BaseModel):
+    username: str
+
+
+def get_current_user(oauth_header: str = Security(reusable_oauth2b)):
+    user = User(username=oauth_header)
+    return user
+
+
+@app.get("/security/oauth2b")
+def read_current_user(current_user: User = Depends(get_current_user)):
+    return current_user
+
+
 @app.post("/token")
 def post_token(request_data: OAuth2PasswordRequestForm = Form(...)):
-    print(request_data)
     data = request_data.parse()
-    print(data)
-
-    print(request_data())
-    access_token = request_data.username + ":" + request_data.password
+    access_token = data.username + ":" + data.password
     return {"access_token": access_token}
 
 
