@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   width="451.52316mm"
+   height="162.82199mm"
+   viewBox="0 0 451.52316 162.82198"
+   version="1.1"
+   id="svg8">
+  <defs
+     id="defs2" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <rect
+     y="7.1054274e-15"
+     x="0"
+     height="162.82199"
+     width="451.52316"
+     id="rect824"
+     style="opacity:0.98000004;fill:none;fill-opacity:1;stroke-width:0.31103656" />
+  <g
+     id="layer1"
+     transform="translate(83.131114,-6.0791148)">
+    <path
+       d="m 1.4365174,55.50154 c -17.6610514,0 -31.9886064,14.327532 -31.9886064,31.988554 0,17.661036 14.327555,31.988586 31.9886064,31.988586 17.6609756,0 31.9885196,-14.32755 31.9885196,-31.988586 0,-17.661022 -14.327544,-31.988554 -31.9885196,-31.988554 z m -1.66678692,57.63069 V 93.067264 H -11.384533 L 4.6417437,61.847974 V 81.912929 H 15.379405 Z"
+       id="path817"
+       style="opacity:0.98000004;fill:#009688;fill-opacity:1;stroke-width:3.20526505" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:79.71511078px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#009688;fill-opacity:1;stroke:none;stroke-width:1.99287772"
+       x="52.115433"
+       y="114.91215"
+       id="text979"><tspan
+         id="tspan977"
+         x="52.115433"
+         y="114.91215"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Ubuntu;-inkscape-font-specification:Ubuntu;fill:#009688;fill-opacity:1;stroke-width:1.99287772">FastAPI</tspan></text>
+  </g>
+</svg>
