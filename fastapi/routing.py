@@ -66,9 +66,9 @@ def get_app(
             raise HTTPException(
                 status_code=400, detail="There was an error parsing the body"
             )
-            values, errors = await solve_dependencies(
-                request=request, dependant=dependant, body=body
-            )
+        values, errors = await solve_dependencies(
+            request=request, dependant=dependant, body=body
+        )
         if errors:
             errors_out = ValidationError(errors)
             raise HTTPException(
