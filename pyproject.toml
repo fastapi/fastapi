@@ -43,4 +43,5 @@ all = [
     "ujson",
     "ujson",
     "email_validator",
+    "uvicorn",
 ]
