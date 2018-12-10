@@ -46,14 +46,14 @@ FastAPI stands on the shoulders of giants:
 
 ## Installation
 
-```shell
-$ pip3 install fastapi
+```bash
+$ pip install fastapi
 ```
 
 You will also need an ASGI server, for production such as <a href="http://www.uvicorn.org" target="_blank">uvicorn</a>.
 
-```shell
-$ pip3 install uvicorn
+```bash
+$ pip install uvicorn
 ```
 
 ## Example
