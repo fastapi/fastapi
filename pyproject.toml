@@ -7,12 +7,26 @@ module = "fastapi"
 author = "Sebastián Ramírez"
 author-email = "tiangolo@gmail.com"
 home-page = "https://github.com/tiangolo/fastapi"
-classifiers = ["License :: OSI Approved :: MIT License"]
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Development Status :: 4 - Beta",
+    "Framework :: AsyncIO",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3 :: Only",
+    "Topic :: Internet :: WWW/HTTP :: HTTP Servers",
+]
 requires = [
     "starlette >=0.9.7",
     "pydantic >=0.16"
 ]
+description-file = "README.md"
 requires-python = ">=3.6"
+
+[tool.flit.metadata.urls]
+Documentation = "https://fastapi.tiangolo.com/"
 
 [tool.flit.metadata.requires-extra]
 test = [
