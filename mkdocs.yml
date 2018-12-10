@@ -1,0 +1,26 @@
+site_name: FastAPI
+site_description: FastAPI framework, high performance, easy to learn, fast to code, ready for production
+
+theme:
+    name: 'material'
+    palette:
+      primary: 'teal'
+      accent: 'amber'
+    logo: 'img/icon-white.svg'
+    favicon: 'img/favicon.png'
+
+repo_name: tiangolo/fastapi
+repo_url: https://github.com/tiangolo/fastapi
+edit_uri: ""
+
+nav:
+    - Introduction: 'index.md'
+    - Tutorial: 'tutorial/index.md'
+    - Features: 'features.md'
+    
+
+markdown_extensions:
+  - markdown.extensions.codehilite:
+      guess_lang: false
+  - markdown_include.include:
+      base_path: docs
