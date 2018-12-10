@@ -172,6 +172,11 @@ def get_openapi_path(
             )
             if request_body_oai:
                 operation["requestBody"] = request_body_oai
+                if "ValidationError" not in definitions:
+                    definitions["ValidationError"] = validation_error_definition
+                    definitions[
+                        "HTTPValidationError"
+                    ] = validation_error_response_definition
         status_code = str(route.status_code)
         response_schema = {"type": "string"}
         if lenient_issubclass(route.content_type, JSONResponse):
