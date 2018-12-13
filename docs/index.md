@@ -27,11 +27,16 @@ FastAPI is a modern, fast (high-performance), web framework for building APIs wi
 The key features are:
 
 * **Fast**: Very high performance, on par with **NodeJS** and **Go** (thanks to Starlette and Pydantic).
+
+* **Fast to code**: Increase the speed to develop features by about 200% to 300% *.
+* **Less bugs**: Reduce about 40% of human (developer) induced errors. *
 * **Intuitive**: Great editor support. <abbr title="also known as auto-complete, autocompletion, IntelliSense">Completion</abbr> everywhere. Less time debugging.
 * **Easy**: Designed to be easy to use and learn. Less time reading docs.
-* **Short**: Minimize code duplication. Multiple features from each parameter declaration.
+* **Short**: Minimize code duplication. Multiple features from each parameter declaration. Less bugs.
 * **Robust**: Get production-ready code. With automatic interactive documentation.
 * **Standards-based**: Based on (and fully compatible with) the open standards for APIs: <a href="https://github.com/OAI/OpenAPI-Specification" target="_blank">OpenAPI</a> and <a href="http://json-schema.org/" target="_blank">JSON Schema</a>.
+
+<small>* estimation based on tests on an internal development team, building production applications.</small>
 
 
 ## Requirements
@@ -66,9 +71,25 @@ from fastapi import FastAPI
 app = FastAPI()
 
 @app.get('/')
+def read_root():
+    return {'hello': 'world'}
+```
+
+Or if your code uses `async` / `await`, use `async def`:
+
+```Python hl_lines="6"
+from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.get('/')
 async def read_root():
     return {'hello': 'world'}
 ```
+
+!!! note
+    If you don't know, check the section about [`async` and `await` in the docs](async.md).
+
 
 * Run the server with:
 
@@ -118,7 +139,7 @@ Now modify the file `main.py` to include:
 * an optional query parameter `q`.
 
 
-```Python
+```Python hl_lines="2 7 8 9 10 19"
 from fastapi import FastAPI
 from pydantic import BaseModel
 
@@ -287,6 +308,9 @@ Used by Starlette:
 * <a href="https://graphene-python.org/" target="_blank"><code>graphene</code></a> - Required for `GraphQLApp` support.
 * <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - Required if you want to use `UJSONResponse`.
 
+Used by FastAPI / Starlette:
+
+* <a href="http://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - for the server that loads and serves your application.
 
 You can install all of these with `pip3 install fastapi[full]`.
 
