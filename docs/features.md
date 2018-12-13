@@ -202,3 +202,4 @@ With **FastAPI** you get all of **Pydantic**'s features (as FastAPI is based on 
     * You can have deeply **nested JSON** objects and have them all validated and annotated.
 * **Extendible**:
     * Pydantic allows custom data types to be defined or you can extend validation with methods on a model decorated with the validator decorator.
+* 100% test coverage.

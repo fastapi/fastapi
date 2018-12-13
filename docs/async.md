@@ -14,20 +14,21 @@ results = await some_library()
 
 Then, declare your endpoint functions with `async def` like:
 
-```Python
+```Python hl_lines="2"
 @app.get('/')
 async def read_results():
     results = await some_library()
     return results
 ```
 
-**Note**: You can only use `await` inside of functions created with `async def`.
+!!! note
+    You can only use `await` inside of functions created with `async def`.
 
 ---
 
 If you are using a third party library that communicates with something (a database, an API, the file system, etc) and doesn't have support for using `await`, (this is currently the case for most database libraries), then declare your endpoint functions as normally, with just `def`, like:
 
-```Python
+```Python hl_lines="2"
 @app.get('/')
 def results():
     results = some_library()
@@ -283,7 +284,7 @@ The key here is the `await`. It tells Python that it has to wait for `get_burger
 
 For `await` to work, it has to be inside a function that supports this asynchronicity. To do that, you just declare it with `async def`:
 
-```Python
+```Python hl_lines="1"
 async def get_burgers(number: int):
     # Do some asynchronous stuff to create the burgers
     return burgers
@@ -291,7 +292,7 @@ async def get_burgers(number: int):
 
 ...instead of `def`:
 
-```Python
+```Python hl_lines="2"
 # This is not asynchronous
 def get_sequential_burgers(number: int):
     # Do some sequential stuff to create the burgers
@@ -311,7 +312,7 @@ burgers = get_burgers(2)
 
 So, if you are using a library that tells you that you can call it with `await`, you need to create the endpoint that uses it with `async def`, like in:
 
-```Python
+```Python hl_lines="2 3"
 @app.get('/burgers')
 async def read_burgers():
     burgers = await get_burgers(2)
@@ -360,4 +361,4 @@ Let's see the same phrase from above:
 
 That should make more sense now.
 
-All that is what powers FastAPI (through Starlette) and what makes it so powerful and have an impressive performance.
+All that is what powers FastAPI (through Starlette) and what makes it have such an impressive performance.
