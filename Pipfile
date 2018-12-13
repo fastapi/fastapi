@@ -19,6 +19,7 @@ flit = "*"
 mkdocs = "*"
 mkdocs-material = "*"
 markdown-include = "*"
+autoflake = "*"
 
 [packages]
 starlette = "*"
