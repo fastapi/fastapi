@@ -11,8 +11,8 @@ from fastapi.utils import get_flat_models_from_routes, get_model_definitions
 from pydantic.fields import Field
 from pydantic.schema import Schema, field_schema, get_model_name_map
 from pydantic.utils import lenient_issubclass
-from starlette.responses import HTMLResponse, JSONResponse
-from starlette.routing import BaseRoute, Route
+from starlette.responses import JSONResponse
+from starlette.routing import BaseRoute
 from starlette.status import HTTP_422_UNPROCESSABLE_ENTITY
 
 validation_error_definition = {

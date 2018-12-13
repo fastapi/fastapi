@@ -1,6 +1,3 @@
-from typing import Optional
-
-import fastapi
 from fastapi import (
     Body,
     Cookie,
@@ -20,10 +17,8 @@ from fastapi.security import (
     OAuth2PasswordRequestForm,
 )
 from pydantic import BaseModel
-from starlette.exceptions import HTTPException
 from starlette.responses import HTMLResponse, JSONResponse, PlainTextResponse
 from starlette.status import HTTP_202_ACCEPTED
-from starlette.testclient import TestClient
 
 from .endpoints.a import router as router_a
 from .endpoints.b import router as router_b

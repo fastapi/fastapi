@@ -6,7 +6,6 @@ from pydantic import BaseModel, Schema as PSchema
 from pydantic.types import UrlStr
 
 try:
-    import email_validator
     from pydantic.types import EmailStr  # type: ignore
 except ImportError:
     logging.warning(
