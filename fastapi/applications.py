@@ -106,11 +106,11 @@ class FastAPI(Starlette):
         description: str = None,
         response_description: str = "Successful Response",
         deprecated: bool = None,
-        name: str = None,
         methods: List[str] = None,
         operation_id: str = None,
         include_in_schema: bool = True,
         content_type: Type[Response] = JSONResponse,
+        name: str = None,
     ) -> None:
         self.router.add_api_route(
             path,
@@ -122,11 +122,11 @@ class FastAPI(Starlette):
             description=description,
             response_description=response_description,
             deprecated=deprecated,
-            name=name,
             methods=methods,
             operation_id=operation_id,
             include_in_schema=include_in_schema,
             content_type=content_type,
+            name=name,
         )
 
     def api_route(
@@ -140,11 +140,11 @@ class FastAPI(Starlette):
         description: str = None,
         response_description: str = "Successful Response",
         deprecated: bool = None,
-        name: str = None,
         methods: List[str] = None,
         operation_id: str = None,
         include_in_schema: bool = True,
         content_type: Type[Response] = JSONResponse,
+        name: str = None,
     ) -> Callable:
         def decorator(func: Callable) -> Callable:
             self.router.add_api_route(
@@ -157,11 +157,11 @@ class FastAPI(Starlette):
                 description=description,
                 response_description=response_description,
                 deprecated=deprecated,
-                name=name,
                 methods=methods,
                 operation_id=operation_id,
                 include_in_schema=include_in_schema,
                 content_type=content_type,
+                name=name,
             )
             return func
 
@@ -181,10 +181,10 @@ class FastAPI(Starlette):
         description: str = None,
         response_description: str = "Successful Response",
         deprecated: bool = None,
-        name: str = None,
         operation_id: str = None,
         include_in_schema: bool = True,
         content_type: Type[Response] = JSONResponse,
+        name: str = None,
     ) -> Callable:
         return self.router.get(
             path,
@@ -195,10 +195,10 @@ class FastAPI(Starlette):
             description=description,
             response_description=response_description,
             deprecated=deprecated,
-            name=name,
             operation_id=operation_id,
             include_in_schema=include_in_schema,
             content_type=content_type,
+            name=name,
         )
 
     def put(
@@ -212,10 +212,10 @@ class FastAPI(Starlette):
         description: str = None,
         response_description: str = "Successful Response",
         deprecated: bool = None,
-        name: str = None,
         operation_id: str = None,
         include_in_schema: bool = True,
         content_type: Type[Response] = JSONResponse,
+        name: str = None,
     ) -> Callable:
         return self.router.put(
             path,
@@ -226,10 +226,10 @@ class FastAPI(Starlette):
             description=description,
             response_description=response_description,
             deprecated=deprecated,
-            name=name,
             operation_id=operation_id,
             include_in_schema=include_in_schema,
             content_type=content_type,
+            name=name,
         )
 
     def post(
@@ -243,10 +243,10 @@ class FastAPI(Starlette):
         description: str = None,
         response_description: str = "Successful Response",
         deprecated: bool = None,
-        name: str = None,
         operation_id: str = None,
         include_in_schema: bool = True,
         content_type: Type[Response] = JSONResponse,
+        name: str = None,
     ) -> Callable:
         return self.router.post(
             path,
@@ -257,10 +257,10 @@ class FastAPI(Starlette):
             description=description,
             response_description=response_description,
             deprecated=deprecated,
-            name=name,
             operation_id=operation_id,
             include_in_schema=include_in_schema,
             content_type=content_type,
+            name=name,
         )
 
     def delete(
@@ -274,10 +274,10 @@ class FastAPI(Starlette):
         description: str = None,
         response_description: str = "Successful Response",
         deprecated: bool = None,
-        name: str = None,
         operation_id: str = None,
         include_in_schema: bool = True,
         content_type: Type[Response] = JSONResponse,
+        name: str = None,
     ) -> Callable:
         return self.router.delete(
             path,
@@ -288,10 +288,10 @@ class FastAPI(Starlette):
             description=description,
             response_description=response_description,
             deprecated=deprecated,
-            name=name,
             operation_id=operation_id,
             include_in_schema=include_in_schema,
             content_type=content_type,
+            name=name,
         )
 
     def options(
@@ -305,10 +305,10 @@ class FastAPI(Starlette):
         description: str = None,
         response_description: str = "Successful Response",
         deprecated: bool = None,
-        name: str = None,
         operation_id: str = None,
         include_in_schema: bool = True,
         content_type: Type[Response] = JSONResponse,
+        name: str = None,
     ) -> Callable:
         return self.router.options(
             path,
@@ -319,10 +319,10 @@ class FastAPI(Starlette):
             description=description,
             response_description=response_description,
             deprecated=deprecated,
-            name=name,
             operation_id=operation_id,
             include_in_schema=include_in_schema,
             content_type=content_type,
+            name=name,
         )
 
     def head(
@@ -336,10 +336,10 @@ class FastAPI(Starlette):
         description: str = None,
         response_description: str = "Successful Response",
         deprecated: bool = None,
-        name: str = None,
         operation_id: str = None,
         include_in_schema: bool = True,
         content_type: Type[Response] = JSONResponse,
+        name: str = None,
     ) -> Callable:
         return self.router.head(
             path,
@@ -350,10 +350,10 @@ class FastAPI(Starlette):
             description=description,
             response_description=response_description,
             deprecated=deprecated,
-            name=name,
             operation_id=operation_id,
             include_in_schema=include_in_schema,
             content_type=content_type,
+            name=name,
         )
 
     def patch(
@@ -367,10 +367,10 @@ class FastAPI(Starlette):
         description: str = None,
         response_description: str = "Successful Response",
         deprecated: bool = None,
-        name: str = None,
         operation_id: str = None,
         include_in_schema: bool = True,
         content_type: Type[Response] = JSONResponse,
+        name: str = None,
     ) -> Callable:
         return self.router.patch(
             path,
@@ -381,10 +381,10 @@ class FastAPI(Starlette):
             description=description,
             response_description=response_description,
             deprecated=deprecated,
-            name=name,
             operation_id=operation_id,
             include_in_schema=include_in_schema,
             content_type=content_type,
+            name=name,
         )
 
     def trace(
@@ -398,10 +398,10 @@ class FastAPI(Starlette):
         description: str = None,
         response_description: str = "Successful Response",
         deprecated: bool = None,
-        name: str = None,
         operation_id: str = None,
         include_in_schema: bool = True,
         content_type: Type[Response] = JSONResponse,
+        name: str = None,
     ) -> Callable:
         return self.router.trace(
             path,
@@ -412,8 +412,8 @@ class FastAPI(Starlette):
             description=description,
             response_description=response_description,
             deprecated=deprecated,
-            name=name,
             operation_id=operation_id,
             include_in_schema=include_in_schema,
             content_type=content_type,
+            name=name,
         )

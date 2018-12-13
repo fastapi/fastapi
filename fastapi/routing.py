@@ -205,11 +205,11 @@ class APIRouter(routing.Router):
         description: str = None,
         response_description: str = "Successful Response",
         deprecated: bool = None,
-        name: str = None,
         methods: List[str] = None,
         operation_id: str = None,
         include_in_schema: bool = True,
         content_type: Type[Response] = JSONResponse,
+        name: str = None,
     ) -> None:
         route = APIRoute(
             path,
@@ -221,11 +221,11 @@ class APIRouter(routing.Router):
             description=description,
             response_description=response_description,
             deprecated=deprecated,
-            name=name,
             methods=methods,
             operation_id=operation_id,
             include_in_schema=include_in_schema,
             content_type=content_type,
+            name=name,
         )
         self.routes.append(route)
 
@@ -240,11 +240,11 @@ class APIRouter(routing.Router):
         description: str = None,
         response_description: str = "Successful Response",
         deprecated: bool = None,
-        name: str = None,
         methods: List[str] = None,
         operation_id: str = None,
         include_in_schema: bool = True,
         content_type: Type[Response] = JSONResponse,
+        name: str = None,
     ) -> Callable:
         def decorator(func: Callable) -> Callable:
             self.add_api_route(
@@ -257,11 +257,11 @@ class APIRouter(routing.Router):
                 description=description,
                 response_description=response_description,
                 deprecated=deprecated,
-                name=name,
                 methods=methods,
                 operation_id=operation_id,
                 include_in_schema=include_in_schema,
                 content_type=content_type,
+                name=name,
             )
             return func
 
@@ -285,19 +285,19 @@ class APIRouter(routing.Router):
                     description=route.description,
                     response_description=route.response_description,
                     deprecated=route.deprecated,
-                    name=route.name,
                     methods=route.methods,
                     operation_id=route.operation_id,
                     include_in_schema=route.include_in_schema,
                     content_type=route.content_type,
+                    name=route.name,
                 )
             elif isinstance(route, routing.Route):
                 self.add_route(
                     prefix + route.path,
                     route.endpoint,
                     methods=route.methods,
-                    name=route.name,
                     include_in_schema=route.include_in_schema,
+                    name=route.name,
                 )
 
     def get(
@@ -311,10 +311,10 @@ class APIRouter(routing.Router):
         description: str = None,
         response_description: str = "Successful Response",
         deprecated: bool = None,
-        name: str = None,
         operation_id: str = None,
         include_in_schema: bool = True,
         content_type: Type[Response] = JSONResponse,
+        name: str = None,
     ) -> Callable:
         return self.api_route(
             path=path,
@@ -325,11 +325,11 @@ class APIRouter(routing.Router):
             description=description,
             response_description=response_description,
             deprecated=deprecated,
-            name=name,
             methods=["GET"],
             operation_id=operation_id,
             include_in_schema=include_in_schema,
             content_type=content_type,
+            name=name,
         )
 
     def put(
@@ -343,10 +343,10 @@ class APIRouter(routing.Router):
         description: str = None,
         response_description: str = "Successful Response",
         deprecated: bool = None,
-        name: str = None,
         operation_id: str = None,
         include_in_schema: bool = True,
         content_type: Type[Response] = JSONResponse,
+        name: str = None,
     ) -> Callable:
         return self.api_route(
             path=path,
@@ -357,11 +357,11 @@ class APIRouter(routing.Router):
             description=description,
             response_description=response_description,
             deprecated=deprecated,
-            name=name,
             methods=["PUT"],
             operation_id=operation_id,
             include_in_schema=include_in_schema,
             content_type=content_type,
+            name=name,
         )
 
     def post(
@@ -375,10 +375,10 @@ class APIRouter(routing.Router):
         description: str = None,
         response_description: str = "Successful Response",
         deprecated: bool = None,
-        name: str = None,
         operation_id: str = None,
         include_in_schema: bool = True,
         content_type: Type[Response] = JSONResponse,
+        name: str = None,
     ) -> Callable:
         return self.api_route(
             path=path,
@@ -389,11 +389,11 @@ class APIRouter(routing.Router):
             description=description,
             response_description=response_description,
             deprecated=deprecated,
-            name=name,
             methods=["POST"],
             operation_id=operation_id,
             include_in_schema=include_in_schema,
             content_type=content_type,
+            name=name,
         )
 
     def delete(
@@ -407,10 +407,10 @@ class APIRouter(routing.Router):
         description: str = None,
         response_description: str = "Successful Response",
         deprecated: bool = None,
-        name: str = None,
         operation_id: str = None,
         include_in_schema: bool = True,
         content_type: Type[Response] = JSONResponse,
+        name: str = None,
     ) -> Callable:
         return self.api_route(
             path=path,
@@ -421,11 +421,11 @@ class APIRouter(routing.Router):
             description=description,
             response_description=response_description,
             deprecated=deprecated,
-            name=name,
             methods=["DELETE"],
             operation_id=operation_id,
             include_in_schema=include_in_schema,
             content_type=content_type,
+            name=name,
         )
 
     def options(
@@ -439,10 +439,10 @@ class APIRouter(routing.Router):
         description: str = None,
         response_description: str = "Successful Response",
         deprecated: bool = None,
-        name: str = None,
         operation_id: str = None,
         include_in_schema: bool = True,
         content_type: Type[Response] = JSONResponse,
+        name: str = None,
     ) -> Callable:
         return self.api_route(
             path=path,
@@ -453,11 +453,11 @@ class APIRouter(routing.Router):
             description=description,
             response_description=response_description,
             deprecated=deprecated,
-            name=name,
             methods=["OPTIONS"],
             operation_id=operation_id,
             include_in_schema=include_in_schema,
             content_type=content_type,
+            name=name,
         )
 
     def head(
@@ -471,10 +471,10 @@ class APIRouter(routing.Router):
         description: str = None,
         response_description: str = "Successful Response",
         deprecated: bool = None,
-        name: str = None,
         operation_id: str = None,
         include_in_schema: bool = True,
         content_type: Type[Response] = JSONResponse,
+        name: str = None,
     ) -> Callable:
         return self.api_route(
             path=path,
@@ -485,11 +485,11 @@ class APIRouter(routing.Router):
             description=description,
             response_description=response_description,
             deprecated=deprecated,
-            name=name,
             methods=["HEAD"],
             operation_id=operation_id,
             include_in_schema=include_in_schema,
             content_type=content_type,
+            name=name,
         )
 
     def patch(
@@ -503,10 +503,10 @@ class APIRouter(routing.Router):
         description: str = None,
         response_description: str = "Successful Response",
         deprecated: bool = None,
-        name: str = None,
         operation_id: str = None,
         include_in_schema: bool = True,
         content_type: Type[Response] = JSONResponse,
+        name: str = None,
     ) -> Callable:
         return self.api_route(
             path=path,
@@ -517,11 +517,11 @@ class APIRouter(routing.Router):
             description=description,
             response_description=response_description,
             deprecated=deprecated,
-            name=name,
             methods=["PATCH"],
             operation_id=operation_id,
             include_in_schema=include_in_schema,
             content_type=content_type,
+            name=name,
         )
 
     def trace(
@@ -535,10 +535,10 @@ class APIRouter(routing.Router):
         description: str = None,
         response_description: str = "Successful Response",
         deprecated: bool = None,
-        name: str = None,
         operation_id: str = None,
         include_in_schema: bool = True,
         content_type: Type[Response] = JSONResponse,
+        name: str = None,
     ) -> Callable:
         return self.api_route(
             path=path,
@@ -549,9 +549,9 @@ class APIRouter(routing.Router):
             description=description,
             response_description=response_description,
             deprecated=deprecated,
-            name=name,
             methods=["TRACE"],
             operation_id=operation_id,
             include_in_schema=include_in_schema,
             content_type=content_type,
+            name=name,
         )

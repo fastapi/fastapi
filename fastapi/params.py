@@ -18,7 +18,6 @@ class Param(Schema):
         self,
         default: Any,
         *,
-        deprecated: bool = None,
         alias: str = None,
         title: str = None,
         description: str = None,
@@ -29,6 +28,7 @@ class Param(Schema):
         min_length: int = None,
         max_length: int = None,
         regex: str = None,
+        deprecated: bool = None,
         **extra: Any,
     ):
         self.deprecated = deprecated
@@ -55,7 +55,6 @@ class Path(Param):
         self,
         default: Any,
         *,
-        deprecated: bool = None,
         alias: str = None,
         title: str = None,
         description: str = None,
@@ -66,13 +65,12 @@ class Path(Param):
         min_length: int = None,
         max_length: int = None,
         regex: str = None,
+        deprecated: bool = None,
         **extra: Any,
     ):
-        self.description = description
-        self.deprecated = deprecated
         self.in_ = self.in_
         super().__init__(
-            default,
+            ...,
             alias=alias,
             title=title,
             description=description,
@@ -83,6 +81,7 @@ class Path(Param):
             min_length=min_length,
             max_length=max_length,
             regex=regex,
+            deprecated=deprecated,
             **extra,
         )
 
@@ -94,7 +93,6 @@ class Query(Param):
         self,
         default: Any,
         *,
-        deprecated: bool = None,
         alias: str = None,
         title: str = None,
         description: str = None,
@@ -105,10 +103,9 @@ class Query(Param):
         min_length: int = None,
         max_length: int = None,
         regex: str = None,
+        deprecated: bool = None,
         **extra: Any,
     ):
-        self.description = description
-        self.deprecated = deprecated
         super().__init__(
             default,
             alias=alias,
@@ -121,6 +118,7 @@ class Query(Param):
             min_length=min_length,
             max_length=max_length,
             regex=regex,
+            deprecated=deprecated,
             **extra,
         )
 
@@ -132,7 +130,6 @@ class Header(Param):
         self,
         default: Any,
         *,
-        deprecated: bool = None,
         alias: str = None,
         convert_underscores: bool = True,
         title: str = None,
@@ -144,10 +141,9 @@ class Header(Param):
         min_length: int = None,
         max_length: int = None,
         regex: str = None,
+        deprecated: bool = None,
         **extra: Any,
     ):
-        self.description = description
-        self.deprecated = deprecated
         self.convert_underscores = convert_underscores
         super().__init__(
             default,
@@ -161,6 +157,7 @@ class Header(Param):
             min_length=min_length,
             max_length=max_length,
             regex=regex,
+            deprecated=deprecated,
             **extra,
         )
 
@@ -172,7 +169,6 @@ class Cookie(Param):
         self,
         default: Any,
         *,
-        deprecated: bool = None,
         alias: str = None,
         title: str = None,
         description: str = None,
@@ -183,10 +179,9 @@ class Cookie(Param):
         min_length: int = None,
         max_length: int = None,
         regex: str = None,
+        deprecated: bool = None,
         **extra: Any,
     ):
-        self.description = description
-        self.deprecated = deprecated
         super().__init__(
             default,
             alias=alias,
@@ -199,6 +194,7 @@ class Cookie(Param):
             min_length=min_length,
             max_length=max_length,
             regex=regex,
+            deprecated=deprecated,
             **extra,
         )
 
