@@ -1,7 +1,4 @@
-from fastapi import Body, FastAPI, Path, Query, Form
-from pydantic import BaseModel
-from pydantic.types import EmailStr
-from typing import Set, List
+from fastapi import FastAPI, Form
 
 app = FastAPI()
 

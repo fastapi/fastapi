@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Query, Path
+from fastapi import FastAPI, Path
 
 app = FastAPI()
 

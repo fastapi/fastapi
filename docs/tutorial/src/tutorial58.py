@@ -1,8 +1,7 @@
-from fastapi import Body, FastAPI, Path, Query
-from starlette.status import HTTP_201_CREATED
+from typing import Set
+
+from fastapi import FastAPI
 from pydantic import BaseModel
-from pydantic.types import UrlStr
-from typing import Set, List
 
 app = FastAPI()
 
@@ -15,7 +14,12 @@ class Item(BaseModel):
     tags: Set[str] = []
 
 
-@app.post("/items/", response_model=Item, summary="Create an item", response_description="The created item")
+@app.post(
+    "/items/",
+    response_model=Item,
+    summary="Create an item",
+    response_description="The created item",
+)
 async def create_item(*, item: Item):
     """
     Create an item with all the information:

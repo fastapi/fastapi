@@ -1,10 +1,5 @@
-from typing import List, Set
-
-from fastapi import Body, FastAPI, Path, Query, Depends
+from fastapi import Depends, FastAPI
 from pydantic import BaseModel
-from pydantic.types import UrlStr
-from starlette.status import HTTP_201_CREATED
-from starlette.responses import HTMLResponse
 
 app = FastAPI()
 
@@ -27,6 +22,6 @@ async def read_items(commons: CommonQueryParams = Depends(common_parameters)):
     response = {}
     if commons.q:
         response.update({"q": commons.q})
-    items = fake_items_db[commons.skip:commons.limit]
+    items = fake_items_db[commons.skip : commons.limit]
     response.update({"items": items})
     return response

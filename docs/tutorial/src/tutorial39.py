@@ -1,7 +1,8 @@
-from fastapi import Body, FastAPI, Path, Query
+from typing import Set
+
+from fastapi import FastAPI
 from pydantic import BaseModel
 from pydantic.types import UrlStr
-from typing import Set
 
 app = FastAPI()
 
@@ -21,10 +22,6 @@ class Item(BaseModel):
 
 
 @app.put("/items/{item_id}")
-async def update_item(
-    *,
-    item_id: int,
-    item: Item,
-):
+async def update_item(*, item_id: int, item: Item):
     results = {"item_id": item_id, "item": item}
     return results

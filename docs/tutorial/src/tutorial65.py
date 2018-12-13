@@ -1,10 +1,7 @@
-from typing import List, Set
+from typing import List
 
-from fastapi import Body, FastAPI, Path, Query, Depends, Cookie
+from fastapi import Cookie, Depends, FastAPI
 from pydantic import BaseModel
-from pydantic.types import UrlStr
-from starlette.status import HTTP_201_CREATED
-from starlette.responses import HTMLResponse
 
 app = FastAPI()
 
@@ -30,6 +27,8 @@ async def get_tracked_interests(track_code: str = Cookie(None)):
 
 
 @app.get("/interests/")
-async def read_interests(tracked_interests: InterestsTracker = Depends(get_tracked_interests)):
+async def read_interests(
+    tracked_interests: InterestsTracker = Depends(get_tracked_interests)
+):
     response = {"interests": tracked_interests.interests}
     return response

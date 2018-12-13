@@ -1,7 +1,6 @@
-from fastapi import Body, FastAPI, Path, Query
+from fastapi import FastAPI
 from pydantic import BaseModel
 from pydantic.types import EmailStr
-from typing import Set, List
 
 app = FastAPI()
 
@@ -11,7 +10,6 @@ class UserIn(BaseModel):
     password: str
     email: EmailStr
     full_name: str = None
-    
 
 
 # Don't do this in production!

@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Query, Path, Body
+from fastapi import Body, FastAPI
 from pydantic import BaseModel
 
 app = FastAPI()
@@ -25,7 +25,12 @@ async def update_item(
     access_token: str = Body(...),
     q: str = None,
 ):
-    results = {"item_id": item_id, "item": item, "user": user, "access_token": access_token}
+    results = {
+        "item_id": item_id,
+        "item": item,
+        "user": user,
+        "access_token": access_token,
+    }
     if q:
         results.update({"q": q})
     return results

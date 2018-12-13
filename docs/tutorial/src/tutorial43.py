@@ -1,7 +1,4 @@
-from fastapi import FastAPI, Cookie
-from pydantic import BaseModel
-from pydantic.types import UrlStr
-from typing import Set, List
+from fastapi import Cookie, FastAPI
 
 app = FastAPI()
 

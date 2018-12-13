@@ -1,11 +1,8 @@
-from typing import List, Set
-
-from fastapi import Body, FastAPI, Path, Query, Depends, Cookie
-from pydantic import BaseModel
-from pydantic.types import UrlStr
-from starlette.status import HTTP_201_CREATED
-from starlette.responses import HTMLResponse
 from random import choice
+from typing import List
+
+from fastapi import Cookie, Depends, FastAPI
+from pydantic import BaseModel
 
 app = FastAPI()
 
@@ -21,6 +18,7 @@ fake_tracked_users_db = {
     "Baz": {"track_code": "Baz", "interests": ["gaming", "virtual reality"]},
 }
 
+
 async def get_tracked_interests(track_code: str = Cookie(None)):
     if track_code in fake_tracked_users_db:
         track_dict = fake_tracked_users_db[track_code]
@@ -28,10 +26,11 @@ async def get_tracked_interests(track_code: str = Cookie(None)):
         return track
     return None
 
+
 class ComplexTracker:
     def __init__(self, tracker: InterestsTracker = Depends(get_tracked_interests)):
         self.tracker = tracker
-    
+
     def random_interest(self):
         """
         Get a random interest from the tracked ones for the current user.
@@ -39,7 +38,9 @@ class ComplexTracker:
         """
         if self.tracker.interests:
             return choice(self.tracker.interests)
-        return choice(["sports", "movies", "food", "shows", "gaming", "virtual reality"])
+        return choice(
+            ["sports", "movies", "food", "shows", "gaming", "virtual reality"]
+        )
 
 
 @app.get("/suggested-category")

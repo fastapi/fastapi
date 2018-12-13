@@ -1,21 +1,12 @@
-from typing import List, Set
+from typing import Optional
 
-from fastapi import Body, FastAPI, Path, Query, Depends, Cookie
-from pydantic import BaseModel
-from pydantic.types import UrlStr
-from starlette.status import HTTP_201_CREATED
-from starlette.responses import HTMLResponse
-from random import choice
-
-from typing import List, Optional, Union
-
+from fastapi import FastAPI
 from pydantic import BaseModel
 
 from app.models.config import USERPROFILE_DOC_TYPE
-from app.models.role import RoleEnum
+from couchbase import LOCKMODE_WAIT
 from couchbase.bucket import Bucket
 from couchbase.cluster import Cluster, PasswordAuthenticator
-from couchbase import LOCKMODE_WAIT
 
 
 def get_bucket():

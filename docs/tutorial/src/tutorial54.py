@@ -1,8 +1,8 @@
-from fastapi import Body, FastAPI, Path, Query
-from starlette.status import HTTP_201_CREATED
+from typing import Set
+
+from fastapi import FastAPI
 from pydantic import BaseModel
-from pydantic.types import UrlStr
-from typing import Set, List
+from starlette.status import HTTP_201_CREATED
 
 app = FastAPI()
 
