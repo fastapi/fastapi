@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Header
+from fastapi import Body, FastAPI, Path, Query
 from pydantic import BaseModel
 from pydantic.types import UrlStr
 from typing import Set, List
@@ -6,6 +6,11 @@ from typing import Set, List
 app = FastAPI()
 
 
-@app.get("/items/")
-async def read_items(*, strange_header: str = Header(None, convert_underscores=False)):
-    return {"strange_header": strange_header}
+class Image(BaseModel):
+    url: UrlStr
+    name: str
+
+
+@app.post("/images/multiple/")
+async def create_multiple_images(*, images: List[Image]):
+    return images

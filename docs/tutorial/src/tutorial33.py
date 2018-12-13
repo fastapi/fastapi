@@ -1,6 +1,5 @@
-from fastapi import Body, FastAPI, Path, Query
+from fastapi import FastAPI, Query, Path, Body
 from pydantic import BaseModel
-from typing import List
 
 app = FastAPI()
 
@@ -10,14 +9,13 @@ class Item(BaseModel):
     description: str = None
     price: float
     tax: float = None
-    tags: List[str] = []
 
 
 @app.put("/items/{item_id}")
 async def update_item(
     *,
     item_id: int,
-    item: Item,
+    item: Item = Body(..., embed=True),
 ):
     results = {"item_id": item_id, "item": item}
     return results

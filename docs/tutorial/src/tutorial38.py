@@ -1,13 +1,12 @@
 from fastapi import Body, FastAPI, Path, Query
 from pydantic import BaseModel
-from pydantic.types import UrlStr
-from typing import Set, List
+from typing import Set
 
 app = FastAPI()
 
 
 class Image(BaseModel):
-    url: UrlStr
+    url: str
     name: str
 
 
@@ -17,16 +16,14 @@ class Item(BaseModel):
     price: float
     tax: float = None
     tags: Set[str] = []
-    image: List[Image] = None
+    image: Image = None
 
 
-class Offer(BaseModel):
-    name: str
-    description: str = None
-    price: float
-    items: List[Item]
-
-
-@app.post("/offers/")
-async def create_offer(*, offer: Offer):
-    return offer
+@app.put("/items/{item_id}")
+async def update_item(
+    *,
+    item_id: int,
+    item: Item,
+):
+    results = {"item_id": item_id, "item": item}
+    return results

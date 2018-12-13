@@ -1,13 +1,20 @@
-from typing import List, Set
-
 from fastapi import Body, FastAPI, Path, Query
+from starlette.status import HTTP_201_CREATED
 from pydantic import BaseModel
 from pydantic.types import UrlStr
-from starlette.status import HTTP_201_CREATED
+from typing import Set, List
 
 app = FastAPI()
 
 
-@app.get("/items/", operation_id="some_specific_id_you_define")
-async def read_items():
-    return [{"item_id": "Foo"}]
+class Item(BaseModel):
+    name: str
+    description: str = None
+    price: float
+    tax: float = None
+    tags: Set[str] = []
+
+
+@app.post("/items/", response_model=Item, status_code=HTTP_201_CREATED)
+async def create_item(*, item: Item):
+    return item

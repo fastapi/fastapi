@@ -1,13 +1,11 @@
-from typing import List, Set
-
-from fastapi import Body, FastAPI, Path, Query
+from fastapi import Body, FastAPI, Path, Query, File, Form
 from pydantic import BaseModel
-from pydantic.types import UrlStr
-from starlette.status import HTTP_201_CREATED
+from pydantic.types import EmailStr
+from typing import Set, List
 
 app = FastAPI()
 
 
-@app.get("/items/", deprecated=True)
-async def read_items():
-    return [{"item_id": "Foo"}]
+@app.post("/files/")
+async def create_file(*, file: bytes = File(...), token: str = Form(...)):
+    return {"file_size": len(file), "token": token}

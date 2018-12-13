@@ -1,14 +1,8 @@
 from fastapi import Body, FastAPI, Path, Query
 from pydantic import BaseModel
-from pydantic.types import UrlStr
-from typing import Set, List
+from typing import Set
 
 app = FastAPI()
-
-
-class Image(BaseModel):
-    url: UrlStr
-    name: str
 
 
 class Item(BaseModel):
@@ -17,7 +11,6 @@ class Item(BaseModel):
     price: float
     tax: float = None
     tags: Set[str] = []
-    image: List[Image] = None
 
 
 @app.put("/items/{item_id}")

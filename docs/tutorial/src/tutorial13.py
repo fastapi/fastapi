@@ -1,11 +1,18 @@
-from fastapi import FastAPI, Query
+from fastapi import FastAPI
+from pydantic import BaseModel
+
+class Item(BaseModel):
+    name: str
+    description: str = None
+    price: float
+    tax: float = None
+
 
 app = FastAPI()
 
-
-@app.get("/items/")
-async def read_items(q: str = Query(None, max_length=50)):
-    results = {"items": [{"item_id": "Foo"}, {"item_id": "Bar"}]}
+@app.put("/items/{item_id}")
+async def create_item(item_id: int, item: Item, q: str = None):
+    result = {"item_id": item_id, **item.dict()}
     if q:
-        results.update({"q": q})
-    return results
+        result.update({"q": q})
+    return result

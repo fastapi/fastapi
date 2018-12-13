@@ -1,25 +1,37 @@
 from fastapi import Body, FastAPI, Path, Query
-from starlette.status import HTTP_201_CREATED
 from pydantic import BaseModel
-from pydantic.types import UrlStr
+from pydantic.types import EmailStr
 from typing import Set, List
 
 app = FastAPI()
 
+class UserBase(BaseModel):
+    username: str
+    email: EmailStr
+    full_name: str = None
 
-class Item(BaseModel):
-    name: str
-    description: str = None
-    price: float
-    tax: float = None
-    tags: Set[str] = []
+class UserIn(UserBase):
+    password: str
 
 
-@app.post(
-    "/items/",
-    response_model=Item,
-    summary="Create an item",
-    description="Create an item with all the information, name, description, price, tax and a set of unique tags",
-)
-async def create_item(*, item: Item):
-    return item
+class UserOut(UserBase):
+    pass
+
+class UserInDB(UserBase):
+    hashed_password: str
+    
+
+def fake_password_hasher(raw_password: str):
+    return "supersecret" + raw_password
+
+
+def fake_save_user(user_in: UserIn):
+    hashed_password = fake_password_hasher(user_in.password)
+    user_in_db = UserInDB(**user_in.dict(), hashed_password=hashed_password)
+    print("User saved! ..not really")
+    return user_in_db
+
+@app.post("/user/", response_model=UserOut)
+async def create_user(*, user_in: UserIn):
+    user_saved = fake_save_user(user_in)
+    return user_saved

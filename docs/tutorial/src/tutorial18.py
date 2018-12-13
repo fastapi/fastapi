@@ -6,8 +6,7 @@ app = FastAPI()
 @app.get("/items/")
 async def read_items(
     q: str = Query(
-        "fixedquery",
-        alias="item-query",
+        None,
         title="Query string",
         description="Query string for the items to search in the database that have a good match",
         min_length=3,
