@@ -16,7 +16,9 @@ edit_uri: ""
 nav:
     - Introduction: 'index.md'
     - Features: 'features.md'
-    - Tutorial: 'tutorial/index.md' 
+    - Tutorial: 'tutorial/index.md'
+    - Concurrency and async / await: 'async.md'
+    - Deployment: 'deployment.md'
     
 
 markdown_extensions:
