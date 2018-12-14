@@ -20,6 +20,8 @@
 
 **Documentation**: [https://fastapi.tiangolo.com](https://fastapi.tiangolo.com)
 
+**Source**: [https://github.com/tiangolo/fastapi](https://github.com/tiangolo/fastapi)
+
 ---
 
 FastAPI is a modern, fast (high-performance), web framework for building APIs with Python 3.6+.
@@ -97,11 +99,12 @@ async def read_root():
 uvicorn main:app --debug
 ```
 
-**Note**: the command `uvicorn main:app` refers to:
+!!! note
+    The command `uvicorn main:app` refers to:
 
-* `main`: the file `main.py` (the Python "module").
-* `app`: the object created inside of `main.py` with the line `app = FastAPI()`.
-* `--debug`: make the server restart after code changes. Only use for development.
+    * `main`: the file `main.py` (the Python "module").
+    * `app`: the object created inside of `main.py` with the line `app = FastAPI()`.
+    * `--debug`: make the server restart after code changes. Only use for development.
 
 ### Check it
 
@@ -214,7 +217,7 @@ item: Item
 * Validation of data:
     * Automatic and clear errors when the data is invalid.
     * Validation even for deeply nested JSON objects.
-* Serialization of input data: from the network to Python, reading from:
+* Serialization of input data: conversion of data coming from the network to Python data and types. Reading from:
     * JSON.
     * Forms.
     * Files.
@@ -222,7 +225,7 @@ item: Item
     * Query parameters.
     * Cookies.
     * Headers.
-* Serialization of output data: from Python to network (as JSON):
+* Serialization of output data: converting from Python data and types to network data (as JSON):
     * Convert Python types (`str`, `int`, `float`, `bool`, `list`, etc).
     * `datetime` objects.
     * `UUID` objects.
@@ -276,7 +279,7 @@ Try changing the line with:
 ![editor support](https://fastapi.tiangolo.com/img/vscode-completion.png)
 
 
-For a more complete example including more features, [see the tutorial](tutorial).
+For a more complete example including more features, [see the tutorial]().
 
 **Spoiler alert**: the tutorial, although very short, includes:
 
@@ -293,7 +296,7 @@ For a more complete example including more features, [see the tutorial](tutorial
 
 Used by Pydantic:
 
-* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - for faster JSON parsing.
+* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - for faster JSON <abbr title="converting the string that comes from an HTTP request into Python data">"parsing"</abbr>.
 * <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - for email validation.
 
 
@@ -302,7 +305,7 @@ Used by Starlette:
 * <a href="http://docs.python-requests.org" target="_blank"><code>requests</code></a> - Required if you want to use the `TestClient`.
 * <a href="https://github.com/Tinche/aiofiles" target="_blank"><code>aiofiles</code></a> - Required if you want to use `FileResponse` or `StaticFiles`.
 * <a href="http://jinja.pocoo.org" target="_blank"><code>jinja2</code></a> - Required if you want to use the default template configuration.
-* <a href="https://andrew-d.github.io/python-multipart/" target="_blank"><code>python-multipart</code></a> - Required if you want to support form parsing, with `request.form()`.
+* <a href="https://andrew-d.github.io/python-multipart/" target="_blank"><code>python-multipart</code></a> - Required if you want to support form <abbr title="converting the string that comes from an HTTP request into Python data">"parsing"</abbr>, with `request.form()`.
 * <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - Required for `SessionMiddleware` support.
 * <a href="https://pyyaml.org/wiki/PyYAMLDocumentation" target="_blank"><code>pyyaml</code></a> - Required for `SchemaGenerator` support.
 * <a href="https://graphene-python.org/" target="_blank"><code>graphene</code></a> - Required for `GraphQLApp` support.
