@@ -18,9 +18,10 @@ nav:
     - Features: 'features.md'
     - Tutorial:
         - Tutorial Intro: 'tutorial/intro.md'
-        - First steps: 'tutorial/first-steps.md'
+        - First Steps: 'tutorial/first-steps.md'
         - Path Parameters: 'tutorial/path-params.md'
         - Query Parameters: 'tutorial/query-params.md'
+        - Request Body: 'tutorial/body.md'
     - Concurrency and async / await: 'async.md'
     - Deployment: 'deployment.md'
     

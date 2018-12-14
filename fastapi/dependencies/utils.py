@@ -254,7 +254,11 @@ def request_params_to_args(
         if value is None:
             if field.required:
                 errors.append(
-                    ErrorWrapper(MissingError(), loc=(schema.in_.value, field.alias), config=BaseConfig)
+                    ErrorWrapper(
+                        MissingError(),
+                        loc=(schema.in_.value, field.alias),
+                        config=BaseConfig,
+                    )
                 )
             else:
                 values[field.name] = deepcopy(field.default)

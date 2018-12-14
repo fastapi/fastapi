@@ -131,7 +131,7 @@ If you don't want to add a specific value but just make it optional, set the def
 
 But when you want to make a query parameter required, you can just do not declare any default value:
 
-```Python hl_lines="6 8"
+```Python hl_lines="6 7"
 {!./tutorial/src/query-params/tutorial005.py!}
 ```
 
