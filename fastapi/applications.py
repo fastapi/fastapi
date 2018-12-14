@@ -24,9 +24,9 @@ class FastAPI(Starlette):
         title: str = "Fast API",
         description: str = "",
         version: str = "0.1.0",
-        openapi_url: str = "/openapi.json",
-        swagger_ui_url: str = "/docs",
-        redoc_url: str = "/redoc",
+        openapi_url: Optional[str] = "/openapi.json",
+        docs_url: Optional[str] = "/docs",
+        redoc_url: Optional[str] = "/redoc",
         **extra: Dict[str, Any],
     ) -> None:
         self._debug = debug
@@ -43,7 +43,7 @@ class FastAPI(Starlette):
         self.description = description
         self.version = version
         self.openapi_url = openapi_url
-        self.swagger_ui_url = swagger_ui_url
+        self.docs_url = docs_url
         self.redoc_url = redoc_url
         self.extra = extra
 
@@ -53,7 +53,7 @@ class FastAPI(Starlette):
             assert self.title, "A title must be provided for OpenAPI, e.g.: 'My API'"
             assert self.version, "A version must be provided for OpenAPI, e.g.: '2.1.0'"
 
-        if self.swagger_ui_url or self.redoc_url:
+        if self.docs_url or self.redoc_url:
             assert self.openapi_url, "The openapi_url is required for the docs"
         self.openapi_schema: Optional[Dict[str, Any]] = None
         self.setup()
@@ -76,9 +76,9 @@ class FastAPI(Starlette):
                 lambda req: JSONResponse(self.openapi()),
                 include_in_schema=False,
             )
-        if self.swagger_ui_url:
+        if self.docs_url:
             self.add_route(
-                self.swagger_ui_url,
+                self.docs_url,
                 lambda r: get_swagger_ui_html(
                     openapi_url=self.openapi_url, title=self.title + " - Swagger UI"
                 ),
