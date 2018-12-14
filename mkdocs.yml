@@ -27,6 +27,7 @@ nav:
         - Body - Multiple Parameters: 'tutorial/body-multiple-params.md'
         - Body - Schema: 'tutorial/body-schema.md'
         - Body - Nested Models: 'tutorial/body-nested-models.md'
+        - Cookie Parameters: 'tutorial/cookie-params.md'
     - Concurrency and async / await: 'async.md'
     - Deployment: 'deployment.md'
     
