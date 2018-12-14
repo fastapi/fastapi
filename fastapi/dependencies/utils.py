@@ -249,16 +249,16 @@ def request_params_to_args(
     errors = []
     for field in required_params:
         value = received_params.get(field.alias)
+        schema: params.Param = field.schema
+        assert isinstance(schema, params.Param), "Params must be subclasses of Param"
         if value is None:
             if field.required:
                 errors.append(
-                    ErrorWrapper(MissingError(), loc=field.alias, config=BaseConfig)
+                    ErrorWrapper(MissingError(), loc=(schema.in_.value, field.alias), config=BaseConfig)
                 )
             else:
                 values[field.name] = deepcopy(field.default)
             continue
-        schema: params.Param = field.schema
-        assert isinstance(schema, params.Param), "Params must be subclasses of Param"
         v_, errors_ = field.validate(value, values, loc=(schema.in_.value, field.alias))
         if isinstance(errors_, ErrorWrapper):
             errors.append(errors_)
