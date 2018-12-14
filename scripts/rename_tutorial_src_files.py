@@ -4,8 +4,9 @@ from string import digits
 
 
 #%%
-directory = Path("../docs/tutorial/src")
-output_directory = Path("../docs/tutorial/out")
+directory = Path("./docs/tutorial/src")
+output_directory = Path("./docs/tutorial/out")
+output_directory.mkdir(exist_ok=True)
 files = sorted([Path(f) for f in directory.iterdir()])
 for i, f in enumerate(files):
     f: Path
