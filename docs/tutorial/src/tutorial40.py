@@ -1,4 +1,4 @@
-from typing import List, Set
+from typing import Set
 
 from fastapi import FastAPI
 from pydantic import BaseModel
@@ -18,7 +18,7 @@ class Item(BaseModel):
     price: float
     tax: float = None
     tags: Set[str] = []
-    image: List[Image] = None
+    image: Image = None
 
 
 @app.put("/items/{item_id}")

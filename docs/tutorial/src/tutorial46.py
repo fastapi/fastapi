@@ -1,19 +1,8 @@
-from typing import Set
-
-from fastapi import FastAPI
-from pydantic import BaseModel
+from fastapi import FastAPI, Header
 
 app = FastAPI()
 
 
-class Item(BaseModel):
-    name: str
-    description: str = None
-    price: float
-    tax: float = None
-    tags: Set[str] = []
-
-
-@app.post("/items/", response_model=Item)
-async def create_item(*, item: Item):
-    return item
+@app.get("/items/")
+async def read_items(*, strange_header: str = Header(None, convert_underscores=False)):
+    return {"strange_header": strange_header}

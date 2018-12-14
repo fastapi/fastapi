@@ -4,5 +4,5 @@ app = FastAPI()
 
 
 @app.get("/items/")
-async def read_items(*, strange_header: str = Header(None, convert_underscores=False)):
-    return {"strange_header": strange_header}
+async def read_items(*, accept_encoding: str = Header(None)):
+    return {"Accept-Encoding": accept_encoding}

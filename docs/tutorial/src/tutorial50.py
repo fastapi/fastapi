@@ -5,22 +5,24 @@ from pydantic.types import EmailStr
 app = FastAPI()
 
 
-class UserBase(BaseModel):
+class UserIn(BaseModel):
+    username: str
+    password: str
+    email: EmailStr
+    full_name: str = None
+
+
+class UserOut(BaseModel):
     username: str
     email: EmailStr
     full_name: str = None
 
 
-class UserIn(UserBase):
-    password: str
-
-
-class UserOut(UserBase):
-    pass
-
-
-class UserInDB(UserBase):
+class UserInDB(BaseModel):
+    username: str
     hashed_password: str
+    email: EmailStr
+    full_name: str = None
 
 
 def fake_password_hasher(raw_password: str):

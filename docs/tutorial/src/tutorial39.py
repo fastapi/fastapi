@@ -2,13 +2,12 @@ from typing import Set
 
 from fastapi import FastAPI
 from pydantic import BaseModel
-from pydantic.types import UrlStr
 
 app = FastAPI()
 
 
 class Image(BaseModel):
-    url: UrlStr
+    url: str
     name: str
 
 

@@ -1,34 +1,27 @@
-from typing import List
-
-from fastapi import Cookie, Depends, FastAPI
+from fastapi import Depends, FastAPI
 from pydantic import BaseModel
 
 app = FastAPI()
 
 
-class InterestsTracker(BaseModel):
-    track_code: str
-    interests: List[str]
+fake_items_db = [{"item_name": "Foo"}, {"item_name": "Bar"}, {"item_name": "Baz"}]
 
 
-fake_tracked_users_db = {
-    "Foo": {"track_code": "Foo", "interests": ["sports", "movies"]},
-    "Bar": {"track_code": "Bar", "interests": ["food", "shows"]},
-    "Baz": {"track_code": "Baz", "interests": ["gaming", "virtual reality"]},
-}
+class CommonQueryParams(BaseModel):
+    q: str = None
+    skip: int = None
+    limit: int = None
 
 
-async def get_tracked_interests(track_code: str = Cookie(None)):
-    if track_code in fake_tracked_users_db:
-        track_dict = fake_tracked_users_db[track_code]
-        track = InterestsTracker(**track_dict)
-        return track
-    return None
+async def common_parameters(q: str = None, skip: int = 0, limit: int = 100):
+    return CommonQueryParams(q=q, skip=skip, limit=limit)
 
 
-@app.get("/interests/")
-async def read_interests(
-    tracked_interests: InterestsTracker = Depends(get_tracked_interests)
-):
-    response = {"interests": tracked_interests.interests}
+@app.get("/items/")
+async def read_items(commons: CommonQueryParams = Depends(common_parameters)):
+    response = {}
+    if commons.q:
+        response.update({"q": commons.q})
+    items = fake_items_db[commons.skip : commons.limit]
+    response.update({"items": items})
     return response

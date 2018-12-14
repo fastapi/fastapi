@@ -1,8 +1,8 @@
-from fastapi import FastAPI, File
+from fastapi import FastAPI, Form
 
 app = FastAPI()
 
 
-@app.post("/files/")
-async def create_file(*, file: bytes = File(...)):
-    return {"file_size": len(file)}
+@app.post("/login/")
+async def login(*, username: str = Form(...), password: str = Form(...)):
+    return {"username": username}

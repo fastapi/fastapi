@@ -1,4 +1,4 @@
-from typing import Set
+from typing import List
 
 from fastapi import FastAPI
 from pydantic import BaseModel
@@ -11,7 +11,7 @@ class Item(BaseModel):
     description: str = None
     price: float
     tax: float = None
-    tags: Set[str] = []
+    tags: List[str] = []
 
 
 @app.put("/items/{item_id}")

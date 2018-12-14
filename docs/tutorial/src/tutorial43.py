@@ -1,8 +1,17 @@
-from fastapi import Cookie, FastAPI
+from typing import List
+
+from fastapi import FastAPI
+from pydantic import BaseModel
+from pydantic.types import UrlStr
 
 app = FastAPI()
 
 
-@app.get("/items/")
-async def read_items(*, ads_id: str = Cookie(None)):
-    return {"ads_id": ads_id}
+class Image(BaseModel):
+    url: UrlStr
+    name: str
+
+
+@app.post("/images/multiple/")
+async def create_multiple_images(*, images: List[Image]):
+    return images

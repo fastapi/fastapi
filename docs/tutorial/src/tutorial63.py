@@ -1,18 +1,9 @@
 from fastapi import FastAPI
-from starlette.responses import HTMLResponse
+from starlette.responses import UJSONResponse
 
 app = FastAPI()
 
 
-@app.get("/items/", content_type=HTMLResponse)
+@app.get("/items/", content_type=UJSONResponse)
 async def read_items():
-    return """
-    <html>
-        <head>
-            <title>Some HTML in here</title>
-        </head>
-        <body>
-            <h1>Look ma! HTML!</h1>
-        </body>
-    </html>
-    """
+    return [{"item_id": "Foo"}]

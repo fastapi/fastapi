@@ -1,18 +1,19 @@
+from typing import Set
+
 from fastapi import FastAPI
 from pydantic import BaseModel
-from pydantic.types import EmailStr
 
 app = FastAPI()
 
 
-class UserIn(BaseModel):
-    username: str
-    password: str
-    email: EmailStr
-    full_name: str = None
+class Item(BaseModel):
+    name: str
+    description: str = None
+    price: float
+    tax: float = None
+    tags: Set[str] = []
 
 
-# Don't do this in production!
-@app.post("/user/", response_model=UserIn)
-async def create_user(*, user: UserIn):
-    return user
+@app.post("/items/", response_model=Item)
+async def create_item(*, item: Item):
+    return item

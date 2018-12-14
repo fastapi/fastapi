@@ -1,52 +1,49 @@
-from fastapi import FastAPI
+from random import choice
+from typing import List
 
-from sqlalchemy import Boolean, Column, Integer, String, create_engine
-from sqlalchemy.ext.declarative import declarative_base, declared_attr
-from sqlalchemy.orm import scoped_session, sessionmaker
+from fastapi import Cookie, Depends, FastAPI
+from pydantic import BaseModel
 
-# SQLAlchemy specific code, as with any other app
-
-
-SQLALCHEMY_DATABASE_URI = "postgresql://user:password@postgresserver/db"
-
-# By creating this a CustomBase class and inheriting from it, your models will have
-# automatic __tablename__ attributes. So you don't have to declare them.
-# So, your models will behave very similarly to, for example, Flask-SQLAlchemy
-
-
-class CustomBase:
-    # Generate __tablename__ automatically
-    @declared_attr
-    def __tablename__(cls):
-        return cls.__name__.lower()
-
-
-Base = declarative_base(cls=CustomBase)
-
-
-class User(Base):
-    # Own properties
-    id = Column(Integer, primary_key=True, index=True)
-    email = Column(String, unique=True, index=True)
-    hashed_password = Column(String)
-    is_active = Column(Boolean(), default=True)
-
-
-engine = create_engine(SQLALCHEMY_DATABASE_URI, convert_unicode=True)
-db_session = scoped_session(
-    sessionmaker(autocommit=False, autoflush=False, bind=engine)
-)
-
-
-def get_user(username, db_session):
-    return db_session.query(User).filter(User.id == username).first()
-
-
-# FastAPI specific code
 app = FastAPI()
 
 
-@app.get("/users/{username}")
-def read_user(username: str):
-    user = get_user(username, db_session)
-    return user
+class InterestsTracker(BaseModel):
+    track_code: str
+    interests: List[str]
+
+
+fake_tracked_users_db = {
+    "Foo": {"track_code": "Foo", "interests": ["sports", "movies"]},
+    "Bar": {"track_code": "Bar", "interests": ["food", "shows"]},
+    "Baz": {"track_code": "Baz", "interests": ["gaming", "virtual reality"]},
+}
+
+
+async def get_tracked_interests(track_code: str = Cookie(None)):
+    if track_code in fake_tracked_users_db:
+        track_dict = fake_tracked_users_db[track_code]
+        track = InterestsTracker(**track_dict)
+        return track
+    return None
+
+
+class ComplexTracker:
+    def __init__(self, tracker: InterestsTracker = Depends(get_tracked_interests)):
+        self.tracker = tracker
+
+    def random_interest(self):
+        """
+        Get a random interest from the tracked ones for the current user.
+        If the user doesn't have tracked interests, return a random one from the ones available.
+        """
+        if self.tracker.interests:
+            return choice(self.tracker.interests)
+        return choice(
+            ["sports", "movies", "food", "shows", "gaming", "virtual reality"]
+        )
+
+
+@app.get("/suggested-category")
+async def read_suggested_category(tracker: ComplexTracker = Depends(None)):
+    response = {"category": tracker.random_interest()}
+    return response

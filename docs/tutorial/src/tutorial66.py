@@ -1,4 +1,3 @@
-from random import choice
 from typing import List
 
 from fastapi import Cookie, Depends, FastAPI
@@ -27,23 +26,9 @@ async def get_tracked_interests(track_code: str = Cookie(None)):
     return None
 
 
-class ComplexTracker:
-    def __init__(self, tracker: InterestsTracker = Depends(get_tracked_interests)):
-        self.tracker = tracker
-
-    def random_interest(self):
-        """
-        Get a random interest from the tracked ones for the current user.
-        If the user doesn't have tracked interests, return a random one from the ones available.
-        """
-        if self.tracker.interests:
-            return choice(self.tracker.interests)
-        return choice(
-            ["sports", "movies", "food", "shows", "gaming", "virtual reality"]
-        )
-
-
-@app.get("/suggested-category")
-async def read_suggested_category(tracker: ComplexTracker = Depends(None)):
-    response = {"category": tracker.random_interest()}
+@app.get("/interests/")
+async def read_interests(
+    tracked_interests: InterestsTracker = Depends(get_tracked_interests)
+):
+    response = {"interests": tracked_interests.interests}
     return response

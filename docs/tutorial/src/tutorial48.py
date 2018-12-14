@@ -12,12 +12,7 @@ class UserIn(BaseModel):
     full_name: str = None
 
 
-class UserOut(BaseModel):
-    username: str
-    email: EmailStr
-    full_name: str = None
-
-
-@app.post("/user/", response_model=UserOut)
+# Don't do this in production!
+@app.post("/user/", response_model=UserIn)
 async def create_user(*, user: UserIn):
     return user
