@@ -19,7 +19,42 @@ class OAuth2PasswordRequestData(BaseModel):
 
 
 class OAuth2PasswordRequestForm(BaseModel):
-    grant_type: str = Schema(..., regex="password")  # it must have the value "password"
+    """
+    This is not a "Security" model. Use it as request Body. As in:
+
+        @app.post("/login")
+        def login(form_data: Oauth2PasswordRequestForm):
+            data = form_data.parse()
+            print(data.username)
+            print(data.password)
+            for scope in data.scope:
+                print(scope)
+            if data.client_id:
+                print(data.client_id)
+            if data.client_secret:
+                print(data.client_secret)
+            return data
+
+    
+    It creates the following Form request parameters in your endpoint:
+
+    grant_type: the OAuth2 spec says it is required and MUST be the fixed string "password".
+        Nevertheless, this model is permissive and allows not passing it. If you want to enforce it,
+        use instead the OAuth2PasswordRequestFormStrict model.
+    username: username string. The OAuth2 spec requires the exact field name "username".
+    password: password string. The OAuth2 spec requires the exact field name "password".
+    scope: Optional string. Several scopes (each one a string) separated by spaces. E.g.
+        "items:read items:write users:read profile openid"
+    client_id: optional string. OAuth2 recommends sending the client_id and client_secret (if any)
+        using HTTP Basic auth, as: client_id:client_secret
+    client_secret: optional string. OAuth2 recommends sending the client_id and client_secret (if any)
+        using HTTP Basic auth, as: client_id:client_secret
+    
+
+    It has the method parse() that returns a model with all the same data and the scopes extracted as a list of strings.
+    """
+
+    grant_type: str = Schema(None, regex="password")
     username: str
     password: str
     scope: str = ""
@@ -36,6 +71,11 @@ class OAuth2PasswordRequestForm(BaseModel):
             client_id=self.client_id,
             client_secret=self.client_secret,
         )
+
+
+class OAuth2PasswordRequestFormStrict(OAuth2PasswordRequestForm):
+    # The OAuth2 spec says it MUST have the value "password"
+    grant_type: str = Schema(..., regex="password")
 
 
 class OAuth2(SecurityBase):
