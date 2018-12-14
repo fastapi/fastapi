@@ -130,6 +130,19 @@ uvicorn main:my_awesome_api --debug
 
 The `@app.get("/")` tells **FastAPI** that the function right below is an endpoint and that it should go to the path route `/`.
 
+You can also use other HTTP methods:
+
+* `@app.post()`
+* `@app.put()`
+* `@app.delete()`
+
+And more exotic ones:
+
+* `@app.options()`
+* `@app.head()`
+* `@app.patch()`
+* `@app.trace()`
+
 ### Step 4: define the endpoint function
 
 ```Python hl_lines="7"

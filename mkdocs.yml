@@ -29,6 +29,7 @@ nav:
         - Body - Nested Models: 'tutorial/body-nested-models.md'
         - Cookie Parameters: 'tutorial/cookie-params.md'
         - Header Parameters: 'tutorial/header-params.md'
+        - Response Model: 'tutorial/response-model.md'
     - Concurrency and async / await: 'async.md'
     - Deployment: 'deployment.md'
     
