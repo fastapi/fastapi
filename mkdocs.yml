@@ -16,7 +16,11 @@ edit_uri: ""
 nav:
     - Introduction: 'index.md'
     - Features: 'features.md'
-    - Tutorial: 'tutorial/index.md'
+    - Tutorial:
+        - Tutorial Intro: 'tutorial/intro.md'
+        - First steps: 'tutorial/first-steps.md'
+        - Path Parameters: 'tutorial/path-params.md'
+        - Query Parameters: 'tutorial/query-params.md'
     - Concurrency and async / await: 'async.md'
     - Deployment: 'deployment.md'
     
