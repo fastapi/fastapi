@@ -26,6 +26,7 @@ nav:
         - Path Parameters - Numeric Validations: 'tutorial/path-params-numeric-validations.md'
         - Body - Multiple Parameters: 'tutorial/body-multiple-params.md'
         - Body - Schema: 'tutorial/body-schema.md'
+        - Body - Nested Models: 'tutorial/body-nested-models.md'
     - Concurrency and async / await: 'async.md'
     - Deployment: 'deployment.md'
     
