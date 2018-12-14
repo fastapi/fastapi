@@ -101,3 +101,8 @@ And you can also declare numeric validations:
 * `ge`: `g`reater than or `e`qual
 * `lt`: `l`ess `t`han
 * `le`: `l`ess than or `e`qual
+
+!!! info
+    `Query`, `Path` and others you will see later are subclasses of a common `Param` class (that you don't need to use).
+    
+    And all of them share the same all these same parameters of additional validation and metadata you have seen.
