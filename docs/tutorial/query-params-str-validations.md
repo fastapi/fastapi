@@ -179,3 +179,24 @@ Then pass the parameter `deprecated=True` to `Query`:
 The docs will show it like this:
 
 <img src="/img/tutorial/query-params-str-validations/image01.png">
+
+## Recap
+
+You can declare additional validations and metadata for your parameters.
+
+Generic validations and metadata:
+
+* `alias`
+* `title`
+* `description`
+* `deprecated`
+
+Validations specific for strings:
+
+* `min_length`
+* `max_length`
+* `regex`
+
+In these examples you saw how to declare validations for `str` values.
+
+See the next sections to see how to declare validations for other types, like numbers.
