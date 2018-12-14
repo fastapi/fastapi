@@ -25,6 +25,7 @@ nav:
         - Query Parameters - String Validations: 'tutorial/query-params-str-validations.md'
         - Path Parameters - Numeric Validations: 'tutorial/path-params-numeric-validations.md'
         - Body - Multiple Parameters: 'tutorial/body-multiple-params.md'
+        - Body - Schema: 'tutorial/body-schema.md'
     - Concurrency and async / await: 'async.md'
     - Deployment: 'deployment.md'
     
