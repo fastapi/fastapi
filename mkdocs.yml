@@ -22,6 +22,7 @@ nav:
         - Path Parameters: 'tutorial/path-params.md'
         - Query Parameters: 'tutorial/query-params.md'
         - Request Body: 'tutorial/body.md'
+        - Query Parameters with toppings: 'tutorial/query-params-schema.md'
     - Concurrency and async / await: 'async.md'
     - Deployment: 'deployment.md'
     

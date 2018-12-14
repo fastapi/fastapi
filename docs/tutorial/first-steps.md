@@ -57,6 +57,33 @@ You will see the alternative automatic documentation (provided by <a href="https
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
+If you are curious about how the raw OpenAPI schema looks like, it is just an automatically generated JSON with the descriptions of all your API.
+
+You can see it directly at: <a href="http://127.0.0.1:8000/openapi.json" target="_blank">http://127.0.0.1:8000/openapi.json</a>.
+
+It will show a JSON starting with something like:
+
+```JSON
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "Fast API",
+        "version": "0.1.0"
+    },
+    "paths": {
+        "/items/": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+
+
+
+...
+```
+
 ## Recap, step by step
 
 ### Step 1: import `FastAPI`

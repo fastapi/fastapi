@@ -279,7 +279,7 @@ Try changing the line with:
 ![editor support](https://fastapi.tiangolo.com/img/vscode-completion.png)
 
 
-For a more complete example including more features, [see the tutorial]().
+For a more complete example including more features, [see the tutorial](tutorial/intro/).
 
 **Spoiler alert**: the tutorial, although very short, includes:
 
