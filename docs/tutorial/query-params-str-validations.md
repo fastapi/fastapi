@@ -3,7 +3,7 @@
 Let's take this application as example:
 
 ```Python hl_lines="7"
-{!./tutorial/src/query-params-schema/tutorial001.py!}
+{!./tutorial/src/query-params-str-validations/tutorial001.py!}
 ```
 
 The query parameter `q` is of type `str`, and by default is `None`, so it is optional.
@@ -18,7 +18,7 @@ We are going to enforce that even though `q` is optional, whenever it is provide
 To achieve that, first import `Query` from `fastapi`:
 
 ```Python hl_lines="1"
-{!./tutorial/src/query-params-schema/tutorial002.py!}
+{!./tutorial/src/query-params-str-validations/tutorial002.py!}
 ```
 
 ## Use `Query` as the default value
@@ -26,7 +26,7 @@ To achieve that, first import `Query` from `fastapi`:
 And now use it as the default value of your parameter, setting the parameter `max_length` to 50:
 
 ```Python hl_lines="7"
-{!./tutorial/src/query-params-schema/tutorial002.py!}
+{!./tutorial/src/query-params-str-validations/tutorial002.py!}
 ```
 
 As we have to replace the default value `None` with `Query(None)`, the first parameter to `Query` serves the same purpose of defining that default value. 
@@ -59,7 +59,7 @@ This will validate the data, show a clear error when the data is not valid, and 
 You can also add a parameter `min_length`:
 
 ```Python hl_lines="7"
-{!./tutorial/src/query-params-schema/tutorial003.py!}
+{!./tutorial/src/query-params-str-validations/tutorial003.py!}
 ```
 
 ## Add regular expressions
@@ -67,7 +67,7 @@ You can also add a parameter `min_length`:
 You can define a <abbr title="A regular expression, regex or regexp is a sequence of characters that define a search pattern for strings.">regular expression</abbr> that the parameter should match:
 
 ```Python hl_lines="8"
-{!./tutorial/src/query-params-schema/tutorial004.py!}
+{!./tutorial/src/query-params-str-validations/tutorial004.py!}
 ```
 
 This specific regular expression checks that the received parameter value:
@@ -87,7 +87,7 @@ The same way that you can pass `None` as the first argument to be used as the de
 Let's say that you want to declare the `q` query parameter to have a `min_length` of `3`, and to have a default value of `"fixedquery"`:
 
 ```Python hl_lines="7"
-{!./tutorial/src/query-params-schema/tutorial005.py!}
+{!./tutorial/src/query-params-str-validations/tutorial005.py!}
 ```
 
 !!! note
@@ -116,7 +116,7 @@ q: str = Query(None, min_length=3)
 So, when you need to declare a value as required while using `Query`, you can use `...` as the first argument:
 
 ```Python hl_lines="7"
-{!./tutorial/src/query-params-schema/tutorial006.py!}
+{!./tutorial/src/query-params-str-validations/tutorial006.py!}
 ```
 
 !!! info 
@@ -133,13 +133,13 @@ That information will be included in the generated OpenAPI and used by the docum
 You can add a `title`:
 
 ```Python hl_lines="7"
-{!./tutorial/src/query-params-schema/tutorial007.py!}
+{!./tutorial/src/query-params-str-validations/tutorial007.py!}
 ```
 
 And a `description`:
 
 ```Python hl_lines="11"
-{!./tutorial/src/query-params-schema/tutorial008.py!}
+{!./tutorial/src/query-params-str-validations/tutorial008.py!}
 ```
 
 ## Alias parameters
@@ -161,7 +161,7 @@ But you still need it to be exactly `item-query`...
 Then you can declare an `alias`, and that alias is what will be used to find the parameter value:
 
 ```Python hl_lines="7"
-{!./tutorial/src/query-params-schema/tutorial009.py!}
+{!./tutorial/src/query-params-str-validations/tutorial009.py!}
 ```
 
 ## Deprecating parameters
@@ -173,9 +173,9 @@ You have to leave it there a while because there are clients using it, but you w
 Then pass the parameter `deprecated=True` to `Query`:
 
 ```Python hl_lines="16"
-{!./tutorial/src/query-params-schema/tutorial010.py!}
+{!./tutorial/src/query-params-str-validations/tutorial010.py!}
 ```
 
 The docs will show it like this:
 
-<img src="/img/tutorial/query-params-schema/image01.png">
+<img src="/img/tutorial/query-params-str-validations/image01.png">
