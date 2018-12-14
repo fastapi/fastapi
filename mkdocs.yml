@@ -30,6 +30,7 @@ nav:
         - Cookie Parameters: 'tutorial/cookie-params.md'
         - Header Parameters: 'tutorial/header-params.md'
         - Response Model: 'tutorial/response-model.md'
+        - Extra Models: 'tutorial/extra-models.md'
     - Concurrency and async / await: 'async.md'
     - Deployment: 'deployment.md'
     
