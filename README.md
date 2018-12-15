@@ -20,6 +20,8 @@
 
 **Documentation**: [https://fastapi.tiangolo.com](https://fastapi.tiangolo.com)
 
+**Source Code**: [https://github.com/tiangolo/fastapi](https://github.com/tiangolo/fastapi)
+
 ---
 
 FastAPI is a modern, fast (high-performance), web framework for building APIs with Python 3.6+.
@@ -27,11 +29,16 @@ FastAPI is a modern, fast (high-performance), web framework for building APIs wi
 The key features are:
 
 * **Fast**: Very high performance, on par with **NodeJS** and **Go** (thanks to Starlette and Pydantic).
+
+* **Fast to code**: Increase the speed to develop features by about 200% to 300% *.
+* **Less bugs**: Reduce about 40% of human (developer) induced errors. *
 * **Intuitive**: Great editor support. <abbr title="also known as auto-complete, autocompletion, IntelliSense">Completion</abbr> everywhere. Less time debugging.
 * **Easy**: Designed to be easy to use and learn. Less time reading docs.
-* **Short**: Minimize code duplication. Multiple features from each parameter declaration.
+* **Short**: Minimize code duplication. Multiple features from each parameter declaration. Less bugs.
 * **Robust**: Get production-ready code. With automatic interactive documentation.
 * **Standards-based**: Based on (and fully compatible with) the open standards for APIs: <a href="https://github.com/OAI/OpenAPI-Specification" target="_blank">OpenAPI</a> and <a href="http://json-schema.org/" target="_blank">JSON Schema</a>.
+
+<small>* estimation based on tests on an internal development team, building production applications.</small>
 
 
 ## Requirements
@@ -66,9 +73,25 @@ from fastapi import FastAPI
 app = FastAPI()
 
 @app.get('/')
+def read_root():
+    return {'hello': 'world'}
+```
+
+Or if your code uses `async` / `await`, use `async def`:
+
+```Python hl_lines="6"
+from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.get('/')
 async def read_root():
     return {'hello': 'world'}
 ```
+
+!!! note
+    If you don't know, check the section about [`async` and `await` in the docs](async.md).
+
 
 * Run the server with:
 
@@ -76,11 +99,12 @@ async def read_root():
 uvicorn main:app --debug
 ```
 
-**Note**: the command `uvicorn main:app` refers to:
+!!! note
+    The command `uvicorn main:app` refers to:
 
-* `main`: the file `main.py` (the Python "module").
-* `app`: the object created inside of `main.py` with the line `app = FastAPI()`.
-* `--debug`: make the server restart after code changes. Only use for development.
+    * `main`: the file `main.py` (the Python "module").
+    * `app`: the object created inside of `main.py` with the line `app = FastAPI()`.
+    * `--debug`: make the server restart after code changes. Only do this for development.
 
 ### Check it
 
@@ -118,7 +142,7 @@ Now modify the file `main.py` to include:
 * an optional query parameter `q`.
 
 
-```Python
+```Python hl_lines="2 7 8 9 10 19"
 from fastapi import FastAPI
 from pydantic import BaseModel
 
@@ -171,7 +195,13 @@ And now, go to <a href="http://127.0.0.1:8000/redoc" target="_blank">http://127.
 
 ### Recap
 
-In summary, you declare **once** the types of parameters, body, etc. as function parameters. You don't have to learn a new syntax, use a specific library, class or object to declare fields, you just type standard Python types.
+In summary, you declare **once** the types of parameters, body, etc. as function parameters. 
+
+You do that with standard modern Python types.
+
+You don't have to learn a new syntax, the methods or classes of a specific library, etc.
+
+Just standard **Python 3.6+**.
 
 For example, for an `int`:
 
@@ -193,15 +223,15 @@ item: Item
 * Validation of data:
     * Automatic and clear errors when the data is invalid.
     * Validation even for deeply nested JSON objects.
-* Serialization of input data: from the network to Python, reading from:
+* <abbr title="also known as: serialization, parsing, marshalling">Conversion</abbr> of input data: coming from the network, to Python data and types. Reading from:
     * JSON.
-    * Forms.
-    * Files.
     * Path parameters.
     * Query parameters.
     * Cookies.
     * Headers.
-* Serialization of output data: from Python to network (as JSON):
+    * Forms.
+    * Files.
+* <abbr title="also known as: serialization, parsing, marshalling">Conversion</abbr> of output data: converting from Python data and types to network data (as JSON):
     * Convert Python types (`str`, `int`, `float`, `bool`, `list`, etc).
     * `datetime` objects.
     * `UUID` objects.
@@ -216,16 +246,21 @@ item: Item
 Coming back to the previous code example, **FastAPI** will:
 
 * Validate that there is an `item_id` in the path.
-* Validate that the `item_id` is of type `int`. If it is not, the client will see a useful error.
-* Check if there is an optional query parameter named `q` (as in `http://127.0.0.1:8000/items/foo?q=somequery`). As the `q` parameter is declared with `= None`, it is optional. Without the `None` it would be required (as is the body).
+* Validate that the `item_id` is of type `int`.
+    * If it is not, the client will see a useful, clear error.
+* Check if there is an optional query parameter named `q` (as in `http://127.0.0.1:8000/items/foo?q=somequery`).
+    * As the `q` parameter is declared with `= None`, it is optional.
+    * Without the `None` it would be required (as is the body).
 * Read the body as JSON:
     * Check that it has a required attribute `name` that should be a `str`. 
     * Check that is has a required attribute `price` that has to be a `float`.
     * Check that it has an optional attribute `is_offer`, that should be a `bool`, if present.
-    * All this would also work for deeply nested JSON objects
+    * All this would also work for deeply nested JSON objects.
 * Convert from and to JSON automatically.
-* Document everything as OpenAPI, so the interactive documentation is created and updated automatically.
-* Provide the interactive documentation web interfaces.
+* Document everything as an OpenAPI schema, that can be used by:
+    * Interactive documentation sytems.
+    * Automatic client code generation systems, for many languages.
+* Provide 2 interactive documentation web interfaces directly.
 
 
 ---
@@ -255,16 +290,22 @@ Try changing the line with:
 ![editor support](https://fastapi.tiangolo.com/img/vscode-completion.png)
 
 
-For a more complete example including more features, [see the tutorial](tutorial).
+For a more complete example including more features, [see the tutorial - user guide](tutorial/intro/).
 
-**Spoiler alert**: the tutorial, although very short, includes:
+**Spoiler alert**: the tutorial - user guide includes:
 
-* Declaration of **parameters** from different places as: headers, cookies, form data and files.
+* Declaration of **parameters** from other different places as: **headers**, **cookies**, **form fields** and **files**.
 * How to set **validation constrains** as `maximum_length` or `regex`.
-* A very powerful and easy to use **Dependency Injection** system (also known as "components", "resources", "providers", "services").
+* A very powerful and easy to use **<abbr title="also known as components, resources, providers, services, injectables">Dependency Injection</abbr>** system.
 * Security and authentication, including support for **OAuth2** with **JWT tokens** and **HTTP Basic** auth.
-* More advanced (but equally easy) techniques for declaring **deeply nested models** (JSON body, Form and Files) (thanks to Pydantic).
-* Many extra features (thanks to Starlette) as **WebSockets**, **GraphQL**, extremely easy tests based on `requests` and `pytest`, CORS, Cookie Sessions and more.
+* More advanced (but equally easy) techniques for declaring **deeply nested JSON models** (thanks to Pydantic).
+* Many extra features (thanks to Starlette) as:
+    * **WebSockets**
+    * **GraphQL**
+    * extremely easy tests based on `requests` and `pytest`
+    * **CORS**
+    * **Cookie Sessions**
+    * ...and more.
 
 
 
@@ -272,7 +313,7 @@ For a more complete example including more features, [see the tutorial](tutorial
 
 Used by Pydantic:
 
-* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - for faster JSON parsing.
+* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - for faster JSON <abbr title="converting the string that comes from an HTTP request into Python data">"parsing"</abbr>.
 * <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - for email validation.
 
 
@@ -281,12 +322,15 @@ Used by Starlette:
 * <a href="http://docs.python-requests.org" target="_blank"><code>requests</code></a> - Required if you want to use the `TestClient`.
 * <a href="https://github.com/Tinche/aiofiles" target="_blank"><code>aiofiles</code></a> - Required if you want to use `FileResponse` or `StaticFiles`.
 * <a href="http://jinja.pocoo.org" target="_blank"><code>jinja2</code></a> - Required if you want to use the default template configuration.
-* <a href="https://andrew-d.github.io/python-multipart/" target="_blank"><code>python-multipart</code></a> - Required if you want to support form parsing, with `request.form()`.
+* <a href="https://andrew-d.github.io/python-multipart/" target="_blank"><code>python-multipart</code></a> - Required if you want to support form <abbr title="converting the string that comes from an HTTP request into Python data">"parsing"</abbr>, with `request.form()`.
 * <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - Required for `SessionMiddleware` support.
 * <a href="https://pyyaml.org/wiki/PyYAMLDocumentation" target="_blank"><code>pyyaml</code></a> - Required for `SchemaGenerator` support.
 * <a href="https://graphene-python.org/" target="_blank"><code>graphene</code></a> - Required for `GraphQLApp` support.
 * <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - Required if you want to use `UJSONResponse`.
 
+Used by FastAPI / Starlette:
+
+* <a href="http://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - for the server that loads and serves your application.
 
 You can install all of these with `pip3 install fastapi[full]`.
 

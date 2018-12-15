@@ -123,7 +123,7 @@ Security and authentication integrated. Without any compromise with databases or
 All the security schemes defined in OpenAPI, including:
 
 * HTTP Basic.
-* **OAuth2** (also with **JWT tokens**). Check the [tutorial on OAuth2 with JWT](tutorial/oauth2-jwt.md).
+* **OAuth2** (also with **JWT tokens**). Check the [tutorial on OAuth2 with JWT](tutorial/security/oauth2-jwt.md).
 * API keys in:
     * Headers.
     * Query parameters.

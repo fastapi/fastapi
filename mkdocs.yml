@@ -18,6 +18,7 @@ nav:
     - Features: 'features.md'
     - Tutorial - User Guide:
         - Tutorial - User Guide - Intro: 'tutorial/intro.md'
+        - Python types intro: 'tutorial/python-types.md'
         - First Steps: 'tutorial/first-steps.md'
         - Path Parameters: 'tutorial/path-params.md'
         - Query Parameters: 'tutorial/query-params.md'

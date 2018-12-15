@@ -20,7 +20,7 @@
 
 **Documentation**: [https://fastapi.tiangolo.com](https://fastapi.tiangolo.com)
 
-**Source**: [https://github.com/tiangolo/fastapi](https://github.com/tiangolo/fastapi)
+**Source Code**: [https://github.com/tiangolo/fastapi](https://github.com/tiangolo/fastapi)
 
 ---
 
