@@ -59,13 +59,13 @@ But if you go to the browser at <a href="http://127.0.0.1:8000/items/foo" target
 
 because the path parameter `item_id` had a value of `"foo"`, which is not an `int`.
 
-The same error would appear if you provided a `foat` instead of an int, as in: <a href="http://127.0.0.1:8000/items/4.2" target="_blank">http://127.0.0.1:8000/items/4.2</a>
+The same error would appear if you provided a `float` instead of an int, as in: <a href="http://127.0.0.1:8000/items/4.2" target="_blank">http://127.0.0.1:8000/items/4.2</a>
 
 
 !!! check
     So, with the same Python type declaration, **FastAPI** gives you data validation.
 
-    Notice that the error also clearly states exactly the point where the validaton didn't pass. 
+    Notice that the error also clearly states exactly the point where the validation didn't pass. 
     
     This is incredibly helpful while developing and debugging code that interacts with your API.
 
@@ -109,4 +109,4 @@ With **FastAPI**, by using short, intuitive and standard Python type declaration
 
 And you only have to declare them once.
 
-That's probably the main visible advantage of **FastAPI** compared to alternative frameworks (appart from the raw performance).
+That's probably the main visible advantage of **FastAPI** compared to alternative frameworks (apart from the raw performance).

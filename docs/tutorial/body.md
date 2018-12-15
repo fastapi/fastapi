@@ -83,7 +83,7 @@ You also get error checks for incorrect type operations:
 
 <img src="/img/tutorial/body/image04.png">
 
-This is not by chance, the whole framework was built around that desing.
+This is not by chance, the whole framework was built around that design.
 
 And it was thoroughly tested at the design phase, before any implementation, to ensure it would work with all the editors.
 
