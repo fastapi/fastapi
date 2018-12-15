@@ -154,9 +154,9 @@ Any integration is designed to be so simple to use (with dependencies) that you 
 
 ### Tested
 
-* 100% test coverage (* not yet, in a couple days).
-* 100% type annotated code base.
-<!-- * Used in production applications -->
+* 100% <abbr title="The amount of code that is automatically tested">test coverage</abbr> (* not yet, in a couple days).
+* 100% <abbr title="Python type annotations, with this your editor and external tools can give you better support">type annotated</abbr> code base.
+* Used in production applications.
 
 ## Starlette features
 
@@ -192,7 +192,7 @@ With **FastAPI** you get all of **Pydantic**'s features (as FastAPI is based on 
 * **No brainfuck**: 
     * No new schema definition micro-language to learn.
     * If you know Python types you know how to use Pydantic.
-* Plays nicely with your **IDE/linter/brain**:
+* Plays nicely with your **<abbr title="Integrated Development Environment, similar to a code editor">IDE</abbr>/<abbr title="A program that checks for code errors">linter</abbr>/brain**:
     * Because pydantic data structures are just instances of classes you define; auto-completion, linting, mypy and your intuition should all work properly with your validated data.
 * **Fast**:
     * in <a href="https://pydantic-docs.helpmanual.io/#benchmarks-tag" target="_blank">benchmarks</a> Pydantic is faster than all other tested libraries.

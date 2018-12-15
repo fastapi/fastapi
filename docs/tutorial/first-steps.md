@@ -109,7 +109,7 @@ Here the `app` variable will be an "instance" of the class `FastAPI`.
 
 This will be the main point of interaction to create all your API.
 
-This `app` is the same one referred by `uvicorn` in thet command:
+This `app` is the same one referred by `uvicorn` in the command:
 
 ```bash
 uvicorn main:app --debug
