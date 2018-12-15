@@ -31,6 +31,7 @@ nav:
         - Header Parameters: 'tutorial/header-params.md'
         - Response Model: 'tutorial/response-model.md'
         - Extra Models: 'tutorial/extra-models.md'
+        - Form Data: 'tutorial/form-data.md'
     - Concurrency and async / await: 'async.md'
     - Deployment: 'deployment.md'
     
