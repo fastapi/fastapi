@@ -34,6 +34,7 @@ nav:
         - Form Data: 'tutorial/request-forms.md'
         - Request Files: 'tutorial/request-files.md'
         - Request Forms and Files: 'tutorial/request-forms-and-files.md'
+        - Path Operation Configuration: 'tutorial/path-operation-configuration.md'
     - Concurrency and async / await: 'async.md'
     - Deployment: 'deployment.md'
     
