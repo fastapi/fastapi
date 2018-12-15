@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
-mkdocs build
+python -m mkdocs build
 
 cp ./docs/index.md ./README.md
