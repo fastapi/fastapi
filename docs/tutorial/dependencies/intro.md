@@ -51,7 +51,7 @@ You can define dependencies that in turn can define dependencies themselves.
 
 In the end, a hierarchical tree of dependencies is built, and the **Dependency Injection** system takes care of solving all these dependencies for you (and your dependencies) and providing the results at each step.
 
-## Integrated with OpenAPI
+## Integrated with **OpenAPI**
 
 All these dependencies, while declaring their requirements, might have been adding parameters, validations, etc. to your path operations. 
 

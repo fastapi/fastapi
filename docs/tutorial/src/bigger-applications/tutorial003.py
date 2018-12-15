@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 
-from .tutorial74 import router as users_router
-from .tutorial75 import router as items_router
+from .tutorial01 import router as users_router
+from .tutorial02 import router as items_router
 
 app = FastAPI()
 
