@@ -42,6 +42,7 @@ nav:
             - First Steps: 'tutorial/dependencies/first-steps.md'
             - Second Steps: 'tutorial/dependencies/second-steps.md'
         - SQL (Relational) Databases: 'tutorial/sql-databases.md'
+        - NoSQL (Distributed / Big Data) Databases: 'tutorial/nosql-databases.md'
     - Concurrency and async / await: 'async.md'
     - Deployment: 'deployment.md'
     

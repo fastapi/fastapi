@@ -12,6 +12,7 @@ db_session = scoped_session(
     sessionmaker(autocommit=False, autoflush=False, bind=engine)
 )
 
+
 class CustomBase:
     # Generate __tablename__ automatically
     @declared_attr
