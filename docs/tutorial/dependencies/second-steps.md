@@ -61,6 +61,12 @@ And now we can use that model in our code, with all the lovable editor support:
 
 <img src="/img/tutorial/dependencies/image02.png">
 
+## Trees of hierarchical dependencies
+
+With the **Dependency Injection** system you can build arbitrarily deep trees of hierarchical dependencies (also known as dependency graphs) by having dependencies that also have dependencies themselves.
+
+You will see examples of these dependency trees in the next chapters about security.
+
 ## Recap
 
 By using Pydantic models in your dependencies too you can keep all the editor support that **FastAPI** is designed to support.
