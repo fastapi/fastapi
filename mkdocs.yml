@@ -36,6 +36,7 @@ nav:
         - Request Forms and Files: 'tutorial/request-forms-and-files.md'
         - Path Operation Configuration: 'tutorial/path-operation-configuration.md'
         - Path Operation Advanced Configuration: 'tutorial/path-operation-advanced-configuration.md'
+        - Custom Response: 'tutorial/custom-response.md'
     - Concurrency and async / await: 'async.md'
     - Deployment: 'deployment.md'
     
