@@ -5,7 +5,7 @@
 
 ### Based on open standards
 
-* <a href="https://github.com/OAI/OpenAPI-Specification" target="_blank"><strong>OpenAPI</strong></a> for API creation, including declarations of endpoints, parameters, body requests, security, etc.
+* <a href="https://github.com/OAI/OpenAPI-Specification" target="_blank"><strong>OpenAPI</strong></a> for API creation, including declarations of <abbr title="also known as: endpoints, routes">path</abbr> <abbr title="also known as HTTP methods, as POST, GET, PUT, DELETE">operations</abbr>, parameters, body requests, security, etc.
 * Automatic data model documentation with <a href="http://json-schema.org/" target="_blank"><strong>JSON Schema</strong></a> (as OpenAPI itself is based on JSON Schema).
 * Designed around these standards, after a meticulous study. Instead of an afterthought layer on top.
 * This also allows using automatic **client code generation** in many languages.
@@ -139,8 +139,8 @@ FastAPI includes an extremely easy to use, but extremely powerful <abbr title='a
 
 * Even dependencies can have dependencies, creating a hierarchy or **"graph" of dependencies**.
 * All **automatically handled** by the framework. 
-* All the dependencies can require data from requests and **augment the endpoint** constraints and automatic documentation.
-* **Automatic validation** even for endpoint parameters defined in dependencies.
+* All the dependencies can require data from requests and **augment the path operation** constraints and automatic documentation.
+* **Automatic validation** even for path operation parameters defined in dependencies.
 * Support for complex user authentication systems, **database connections**, etc.
 * **No compromise** with databases, frontends, etc. But easy integration with all of them.
 
@@ -149,7 +149,7 @@ FastAPI includes an extremely easy to use, but extremely powerful <abbr title='a
 
 Or in other way, no need for them, import and use the code you need. 
 
-Any integration is designed to be so simple to use (with dependencies) that you can create a "plug-in" for your application in 2 lines of code using the same structure and syntax used for your endpoints.
+Any integration is designed to be so simple to use (with dependencies) that you can create a "plug-in" for your application in 2 lines of code using the same structure and syntax used for your path operations.
 
 
 ### Tested

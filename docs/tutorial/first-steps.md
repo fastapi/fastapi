@@ -94,6 +94,11 @@ It will show a JSON starting with something like:
 
 `FastAPI` is a Python class that provides all the functionality for your API.
 
+!!! note "Technical Details"
+    `FastAPI` is a class that inherits directly from `Starlette`.
+
+    You can use all the Starlette functionality with `FastAPI` too.
+
 ### Step 2: create a `FastAPI` "instance"
 
 ```Python hl_lines="3"
@@ -102,7 +107,7 @@ It will show a JSON starting with something like:
 
 Here the `app` variable will be an "instance" of the class `FastAPI`.
 
-This will be the main point of interaction to create all your API endpoints.
+This will be the main point of interaction to create all your API.
 
 This `app` is the same one referred by `uvicorn` in thet command:
 
@@ -122,28 +127,98 @@ And put it in a file `main.py`, then you would call `uvicorn` like:
 uvicorn main:my_awesome_api --debug
 ```
 
-### Step 3: create an endpoint
+### Step 3: create a path operation
+
+#### Path
+
+"Path" here refers to the last part of the URL starting from the first `/`.
+
+So, in a URL like:
+
+```
+https://example.com/items/foo
+```
+
+...the path would be:
+
+```
+/items/foo
+```
+
+!!! info
+    A "path" is also commonly called an "endpoint" or a "route".
+
+Building an API, the "path" is the main way to separate "concerns" and functionalities.
+
+#### Operation
+
+"Operation" here refers to one of the HTTP "methods".
+
+One of:
+
+* `POST`
+* `GET`
+* `PUT`
+* `DELETE`
+
+...and the more exotic ones:
+
+* `OPTIONS`
+* `HEAD`
+* `PATCH`
+* `TRACE`
+
+In the HTTP protocol, you can communicate to each path using one (or more) of these "methods".
+
+---
+
+When building APIs, you normally use these specific HTTP methods to perform a specific operation.
+
+Normally you use:
+
+* `POST`: to create data.
+* `GET`: to read data.
+* `PUT`: to update data.
+* `DELETE`: to delete data.
+
+So, in OpenAPI, each of the HTTP methods is called an "operation".
+
+We are going to call them "operations" too.
+
+#### Define a path operation function
 
 ```Python hl_lines="6"
 {!tutorial/src/first-steps/tutorial001.py!}
 ```
 
-The `@app.get("/")` tells **FastAPI** that the function right below is an endpoint and that it should go to the path route `/`.
+The `@app.get("/")` tells **FastAPI** that the function right below is in charge of handling requests that go to:
 
-You can also use other HTTP methods:
+* the path `/`
+* using a <abbr title="an HTTP GET method"><code>get</code> operation</abbr>
+
+You can also use the other operations:
 
 * `@app.post()`
 * `@app.put()`
 * `@app.delete()`
 
-And more exotic ones:
+And the more exotic ones:
 
 * `@app.options()`
 * `@app.head()`
 * `@app.patch()`
 * `@app.trace()`
 
-### Step 4: define the endpoint function
+!!! tip
+    You are free to use each operation (HTTP method) as you wish.
+    
+    **FastAPI** doesn't enforce any specific meaning.
+
+    The information here is presented as a guideline, not a requirement.
+
+    For example, when using GraphQL you normally perform all the operations using only `post`.
+
+### Step 4: define the path operation function
 
 ```Python hl_lines="7"
 {!tutorial/src/first-steps/tutorial001.py!}

@@ -42,7 +42,7 @@ For example, this model above declares a JSON "`object`" (or Python `dict`) like
 
 ## Declare it as a parameter
 
-To add it to your endpoint, declare it the same way you declared path and query parameters:
+To add it to your path operation, declare it the same way you declared path and query parameters:
 
 ```Python hl_lines="16"
 {!./tutorial/src/body/tutorial001.py!}
@@ -69,7 +69,7 @@ The JSON Schemas of your models will be part of your OpenAPI generated schema, a
 
 <img src="/img/tutorial/body/image01.png">
 
-And will be also used in the API docs inside each endpoint that needs them:
+And will be also used in the API docs inside each path operation that needs them:
 
 <img src="/img/tutorial/body/image02.png">
 

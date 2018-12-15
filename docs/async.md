@@ -1,4 +1,4 @@
-Details about the `async def` syntax for endpoint functions and some background about asynchronous code, concurrency, and parallelism.
+Details about the `async def` syntax for path operation functions and some background about asynchronous code, concurrency, and parallelism.
 
 
 ## In a hurry?
@@ -12,7 +12,7 @@ If you are using third party libraries that tell you to call them with `await`, 
 results = await some_library()
 ```
 
-Then, declare your endpoint functions with `async def` like:
+Then, declare your path operation functions with `async def` like:
 
 ```Python hl_lines="2"
 @app.get('/')
@@ -26,7 +26,7 @@ async def read_results():
 
 ---
 
-If you are using a third party library that communicates with something (a database, an API, the file system, etc) and doesn't have support for using `await`, (this is currently the case for most database libraries), then declare your endpoint functions as normally, with just `def`, like:
+If you are using a third party library that communicates with something (a database, an API, the file system, etc) and doesn't have support for using `await`, (this is currently the case for most database libraries), then declare your path operation functions as normally, with just `def`, like:
 
 ```Python hl_lines="2"
 @app.get('/')
@@ -45,7 +45,7 @@ If you just don't know, use normal `def`.
 
 ---
 
-**Note**: you can mix `def` and `async def` in your endpoints as much as you need and define each one using the best option for you. FastAPI will do the right thing with them.
+**Note**: you can mix `def` and `async def` in your path operation functions as much as you need and define each one using the best option for you. FastAPI will do the right thing with them.
 
 Anyway, in any of the cases above, FastAPI will still work asynchronously and be extremely fast.
 
@@ -310,7 +310,7 @@ burgers = get_burgers(2)
 
 ---
 
-So, if you are using a library that tells you that you can call it with `await`, you need to create the endpoint that uses it with `async def`, like in:
+So, if you are using a library that tells you that you can call it with `await`, you need to create the path operation functions that uses it with `async def`, like in:
 
 ```Python hl_lines="2 3"
 @app.get('/burgers')
@@ -327,7 +327,7 @@ But at the same time, functions defined with `async def` have to be "awaited". S
 
 So, about the egg and the chicken, how do you call the first `async` function?
 
-If you are working with **FastAPI** you don't have to worry about that, because that "first" function will be your endpoint, and FastAPI will know how to do the right thing.
+If you are working with **FastAPI** you don't have to worry about that, because that "first" function will be your path operation function, and FastAPI will know how to do the right thing.
 
 But if you want to use `async` / `await` without FastAPI, <a href="https://docs.python.org/3/library/asyncio-task.html#coroutine" target="_blank">check the official Python docs</a>
 

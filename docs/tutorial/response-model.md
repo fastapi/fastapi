@@ -1,4 +1,4 @@
-You can declare the model used for the response with the parameter `response_model` in any of the endpoint creation methods:
+You can declare the model used for the response with the parameter `response_model` in any of the path operations:
 
 * `@app.get()`
 * `@app.post()`
@@ -11,13 +11,13 @@ You can declare the model used for the response with the parameter `response_mod
 ```
 
 !!! note
-    Notice that `response_model` is a parameter of the "decorator" method (`get`, `post`, etc), not of your endpoint function like all the parameters and body.
+    Notice that `response_model` is a parameter of the "decorator" method (`get`, `post`, etc). Not of your path operation function, like all the parameters and body.
 
 It receives a standard Pydantic model and will:
 
 * Convert the output data to the type declarations of the model
 * Validate the data
-* Add a JSON Schema for the response, in the OpenAPI endpoint
+* Add a JSON Schema for the response, in the OpenAPI path operation
 * Will be used by the automatic documentation systems
 
 But most importantly:
@@ -42,7 +42,7 @@ Now, whenever a browser is creating a user with a password, the API will return 
 
 In this case, it might not be a problem, becase the user himself is sending the password.
 
-But if we use sthe same model for another endpoint, we could be sending the passwords of our users to every client.
+But if we use sthe same model for another path operation, we could be sending the passwords of our users to every client.
 
 !!! danger
     Never send the plain password of a user in a response.
@@ -55,7 +55,7 @@ We can instead create an input model with the plaintext password and an output m
 {!./tutorial/src/response-model/tutorial003.py!}
 ```
 
-Here, even though our endpoint function is returning the same input user that contains the password:
+Here, even though our path operation function is returning the same input user that contains the password:
 
 ```Python hl_lines="23"
 {!./tutorial/src/response-model/tutorial003.py!}
@@ -81,4 +81,4 @@ And both models will be used for the interactive API documentation:
 
 ## Recap
 
-Use the endpoint decorator's parameter `response_model` to define response models and especially to ensure private data is filtered out.
+Use the path operation decorator's parameter `response_model` to define response models and especially to ensure private data is filtered out.

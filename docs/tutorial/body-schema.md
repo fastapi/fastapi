@@ -1,4 +1,4 @@
-The same way you can declare additional validation and metadata in endpoint function parameters with `Query`, `Path` and `Body`, you can declare validation and metadata inside of Pydantic models using `Schema`.
+The same way you can declare additional validation and metadata in path operation function parameters with `Query`, `Path` and `Body`, you can declare validation and metadata inside of Pydantic models using `Schema`.
 
 ## Import Schema
 
@@ -29,7 +29,7 @@ You can then use `Schema` with model attributes:
     `Body` is also a subclass of `Schema` directly. And there are others you will see later that are subclasses of `Body`.
 
 !!! tip
-    Notice how each model's attribute with a type, default value and `Schema` has the same structure as an endpoint's function's parameter, with `Schema` instead of `Path`, `Query` and `Body`.
+    Notice how each model's attribute with a type, default value and `Schema` has the same structure as a path operation function's parameter, with `Schema` instead of `Path`, `Query` and `Body`.
 
 ## Schema extras
 

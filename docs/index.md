@@ -104,7 +104,7 @@ uvicorn main:app --debug
 
     * `main`: the file `main.py` (the Python "module").
     * `app`: the object created inside of `main.py` with the line `app = FastAPI()`.
-    * `--debug`: make the server restart after code changes. Only use for development.
+    * `--debug`: make the server restart after code changes. Only do this for development.
 
 ### Check it
 
@@ -195,7 +195,13 @@ And now, go to <a href="http://127.0.0.1:8000/redoc" target="_blank">http://127.
 
 ### Recap
 
-In summary, you declare **once** the types of parameters, body, etc. as function parameters. You don't have to learn a new syntax, use a specific library, class or object to declare fields, you just type standard Python types.
+In summary, you declare **once** the types of parameters, body, etc. as function parameters. 
+
+You do that with standard modern Python types.
+
+You don't have to learn a new syntax, the methods or classes of a specific library, etc.
+
+Just standard **Python 3.6+**.
 
 For example, for an `int`:
 
@@ -217,15 +223,15 @@ item: Item
 * Validation of data:
     * Automatic and clear errors when the data is invalid.
     * Validation even for deeply nested JSON objects.
-* Serialization of input data: conversion of data coming from the network to Python data and types. Reading from:
+* <abbr title="also known as: serialization, parsing, marshalling">Conversion</abbr> of input data: coming from the network, to Python data and types. Reading from:
     * JSON.
-    * Forms.
-    * Files.
     * Path parameters.
     * Query parameters.
     * Cookies.
     * Headers.
-* Serialization of output data: converting from Python data and types to network data (as JSON):
+    * Forms.
+    * Files.
+* <abbr title="also known as: serialization, parsing, marshalling">Conversion</abbr> of output data: converting from Python data and types to network data (as JSON):
     * Convert Python types (`str`, `int`, `float`, `bool`, `list`, etc).
     * `datetime` objects.
     * `UUID` objects.
@@ -240,16 +246,21 @@ item: Item
 Coming back to the previous code example, **FastAPI** will:
 
 * Validate that there is an `item_id` in the path.
-* Validate that the `item_id` is of type `int`. If it is not, the client will see a useful error.
-* Check if there is an optional query parameter named `q` (as in `http://127.0.0.1:8000/items/foo?q=somequery`). As the `q` parameter is declared with `= None`, it is optional. Without the `None` it would be required (as is the body).
+* Validate that the `item_id` is of type `int`.
+    * If it is not, the client will see a useful, clear error.
+* Check if there is an optional query parameter named `q` (as in `http://127.0.0.1:8000/items/foo?q=somequery`).
+    * As the `q` parameter is declared with `= None`, it is optional.
+    * Without the `None` it would be required (as is the body).
 * Read the body as JSON:
     * Check that it has a required attribute `name` that should be a `str`. 
     * Check that is has a required attribute `price` that has to be a `float`.
     * Check that it has an optional attribute `is_offer`, that should be a `bool`, if present.
-    * All this would also work for deeply nested JSON objects
+    * All this would also work for deeply nested JSON objects.
 * Convert from and to JSON automatically.
-* Document everything as OpenAPI, so the interactive documentation is created and updated automatically.
-* Provide the interactive documentation web interfaces.
+* Document everything as an OpenAPI schema, that can be used by:
+    * Interactive documentation sytems.
+    * Automatic client code generation systems, for many languages.
+* Provide 2 interactive documentation web interfaces directly.
 
 
 ---
@@ -281,14 +292,20 @@ Try changing the line with:
 
 For a more complete example including more features, [see the tutorial](tutorial/intro/).
 
-**Spoiler alert**: the tutorial, although very short, includes:
+**Spoiler alert**: the tutorial includes:
 
-* Declaration of **parameters** from different places as: headers, cookies, form data and files.
+* Declaration of **parameters** from other different places as: **headers**, **cookies**, **form fields** and **files**.
 * How to set **validation constrains** as `maximum_length` or `regex`.
-* A very powerful and easy to use **Dependency Injection** system (also known as "components", "resources", "providers", "services").
+* A very powerful and easy to use **<abbr title="also known as components, resources, providers, services, injectables">Dependency Injection</abbr>** system.
 * Security and authentication, including support for **OAuth2** with **JWT tokens** and **HTTP Basic** auth.
-* More advanced (but equally easy) techniques for declaring **deeply nested models** (JSON body, Form and Files) (thanks to Pydantic).
-* Many extra features (thanks to Starlette) as **WebSockets**, **GraphQL**, extremely easy tests based on `requests` and `pytest`, CORS, Cookie Sessions and more.
+* More advanced (but equally easy) techniques for declaring **deeply nested JSON models** (thanks to Pydantic).
+* Many extra features (thanks to Starlette) as:
+    * **WebSockets**
+    * **GraphQL**
+    * extremely easy tests based on `requests` and `pytest`
+    * **CORS**
+    * **Cookie Sessions**
+    * ...and more.
 
 
 
