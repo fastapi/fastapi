@@ -37,6 +37,10 @@ nav:
         - Path Operation Configuration: 'tutorial/path-operation-configuration.md'
         - Path Operation Advanced Configuration: 'tutorial/path-operation-advanced-configuration.md'
         - Custom Response: 'tutorial/custom-response.md'
+        - Dependencies:
+            - Dependencies Intro: 'tutorial/dependencies/intro.md'
+            - First Steps: 'tutorial/dependencies/first-steps.md'
+            - Second Steps: 'tutorial/dependencies/second-steps.md'
     - Concurrency and async / await: 'async.md'
     - Deployment: 'deployment.md'
     
