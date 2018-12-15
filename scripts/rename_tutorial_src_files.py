@@ -2,8 +2,6 @@
 from pathlib import Path, PurePath
 from string import digits
 
-
-#%%
 directory = Path("./docs/tutorial/src")
 dirs = sorted([Path(f) for f in directory.iterdir()])
 d: PurePath

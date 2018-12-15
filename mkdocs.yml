@@ -50,6 +50,7 @@ nav:
             - OAuth2 with Password (and hashing), Bearer with JWT tokens: 'tutorial/security/oauth2-jwt.md'
         - Bigger Applications - Multiple Files: 'tutorial/bigger-applications.md'
         - Application Configuration: 'tutorial/application-configuration.md'
+        - Extra Starlette options: 'tutorial/extra-starlette.md'
         
     - Concurrency and async / await: 'async.md'
     - Deployment: 'deployment.md'

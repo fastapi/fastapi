@@ -290,9 +290,9 @@ Try changing the line with:
 ![editor support](https://fastapi.tiangolo.com/img/vscode-completion.png)
 
 
-For a more complete example including more features, [see the tutorial](tutorial/intro/).
+For a more complete example including more features, [see the tutorial - user guide](tutorial/intro/).
 
-**Spoiler alert**: the tutorial includes:
+**Spoiler alert**: the tutorial - user guide includes:
 
 * Declaration of **parameters** from other different places as: **headers**, **cookies**, **form fields** and **files**.
 * How to set **validation constrains** as `maximum_length` or `regex`.
