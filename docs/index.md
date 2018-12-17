@@ -18,9 +18,9 @@
 
 ---
 
-**Documentation**: [https://fastapi.tiangolo.com](https://fastapi.tiangolo.com)
+**Documentation**: <a href="https://fastapi.tiangolo.com" target="_blank">https://fastapi.tiangolo.com</a>](https://fastapi.tiangolo.com)
 
-**Source Code**: [https://github.com/tiangolo/fastapi](https://github.com/tiangolo/fastapi)
+**Source Code**: <a href="https://github.com/tiangolo/fastapi" target="_blank">https://github.com/tiangolo/fastapi</a>
 
 ---
 
@@ -90,7 +90,7 @@ async def read_root():
 ```
 
 !!! note
-    If you don't know, check the section about [`async` and `await` in the docs](async.md).
+    If you don't know, check the _"In a hurry?"_ section about <a href="https://fastapi.tiangolo.com/async/#in-a-hurry" target="_blank">`async` and `await` in the docs</a>.
 
 
 * Run the server with:
@@ -290,7 +290,7 @@ Try changing the line with:
 ![editor support](https://fastapi.tiangolo.com/img/vscode-completion.png)
 
 
-For a more complete example including more features, [see the tutorial - user guide](tutorial/intro/).
+For a more complete example including more features, see the <a href="https://fastapi.tiangolo.com/tutorial/intro/">Tutorial - User Guide</a>.
 
 **Spoiler alert**: the tutorial - user guide includes:
 
