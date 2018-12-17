@@ -7,7 +7,11 @@ client = TestClient(app)
 
 response_missing = {
     "detail": [
-        {"loc": ["query"], "msg": "field required", "type": "value_error.missing"}
+        {
+            "loc": ["query", "query"],
+            "msg": "field required",
+            "type": "value_error.missing",
+        }
     ]
 }
 

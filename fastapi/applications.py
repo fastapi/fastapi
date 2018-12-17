@@ -76,7 +76,7 @@ class FastAPI(Starlette):
                 lambda req: JSONResponse(self.openapi()),
                 include_in_schema=False,
             )
-        if self.docs_url:
+        if self.openapi_url and self.docs_url:
             self.add_route(
                 self.docs_url,
                 lambda r: get_swagger_ui_html(
@@ -84,7 +84,7 @@ class FastAPI(Starlette):
                 ),
                 include_in_schema=False,
             )
-        if self.redoc_url:
+        if self.openapi_url and self.redoc_url:
             self.add_route(
                 self.redoc_url,
                 lambda r: get_redoc_html(
