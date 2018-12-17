@@ -43,11 +43,13 @@ In the code, a `Bucket` represents the main entrypoint of communication with the
 This utility function will:
 
 * Connect to a **Couchbase** cluster (that might be a single machine).
+    * Set defaults for timeouts.
 * Authenticate in the cluster.
 * Get a `Bucket` instance.
+    * Set defaults for timeouts.
 * Return it.
 
-```Python hl_lines="13 14 15 16 17 18"
+```Python hl_lines="13 14 15 16 17 18 19 20"
 {!./tutorial/src/nosql-databases/tutorial001.py!}
 ```
 
@@ -59,7 +61,7 @@ As **Couchbase** "documents" are actually just "JSON objects", we can model them
 
 First, let's create a `User` model:
 
-```Python hl_lines="21 22 23 24 25"
+```Python hl_lines="23 24 25 26 27"
 {!./tutorial/src/nosql-databases/tutorial001.py!}
 ```
 
@@ -71,26 +73,10 @@ Now, let's create a `UserInDB` model.
 
 This will have the data that is actually stored in the database.
 
-In Couchbase, each document has a document <abbr title="Identification">ID</abbr> or "key".
+We don't create it as a subclass of Pydantic's `BaseModel` but as a subclass of our own `User`, because it will have all the attributes in `User` plus a couple more:
 
-But it is not part of the document itself.
-
-It is stored as "metadata" of the document.
-
-So, to be able to have that document ID as part of our model without it being part of the attributes (document contents), we can do a simple trick.
-
-We can create an internal `class`, in this case named `Meta`, and declare the extra attribute(s) in that class.
-
-This class doesn't have any special meaning and doesn't provide any special functionality other than not being directly an attribute of our main model:
-
-```Python hl_lines="28 29 30 31 32 33"
+```Python hl_lines="30 31 32"
 {!./tutorial/src/nosql-databases/tutorial001.py!}
-```
-
-This `Meta` class won't be included when we generate a `dict` from our model, but we will be able to access it's data with something like:
-
-```Python
-my_user.Meta.key
 ```
 
 !!! note
@@ -107,11 +93,10 @@ Now create a function that will:
 * Generate a document ID from it.
 * Get the document with that ID.
 * Put the contents of the document in a `UserInDB` model.
-* Add the extracted document `key` to our model.
 
 By creating a function that is only dedicated to getting your user from a `username` (or any other parameter) independent of your path operation function, you can more easily re-use it in multiple parts and also add <abbr title="Automated test, written in code, that checks if another piece of code is working correctly.">unit tests</abbr> for it:
 
-```Python hl_lines="36 37 38 39 40 41 42 43"
+```Python hl_lines="35 36 37 38 39 40 41"
 {!./tutorial/src/nosql-databases/tutorial001.py!}
 ```
 
@@ -146,7 +131,7 @@ UserInDB(username="johndoe", hashed_password="some_hash")
 
 ### Create the `FastAPI` app
 
-```Python hl_lines="47"
+```Python hl_lines="45"
 {!./tutorial/src/nosql-databases/tutorial001.py!}
 ```
 
@@ -156,7 +141,7 @@ As our code is calling Couchbase and we are not using the <a href="https://docs.
 
 Also, Couchbase recommends not using a single `Bucket` object in multiple "<abbr title="A sequence of code being executed by the program, while at the same time, or at intervals, there can be others being executed too.">thread</abbr>s", so, we can get just get the bucket directly and pass it to our utility functions:
 
-```Python hl_lines="50 51 52 53 54"
+```Python hl_lines="48 49 50 51 52"
 {!./tutorial/src/nosql-databases/tutorial001.py!}
 ```
 

@@ -96,7 +96,7 @@ All the data validation is performed under the hood by <a href="https://pydantic
 
 You can use the same type declarations with `str`, `float`, `bool` and many other complex data types.
 
-These are explored in the next sections of the tutorial.
+These are explored in the next chapters of the tutorial.
 
 ## Recap
 

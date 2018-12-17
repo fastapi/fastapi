@@ -11,10 +11,12 @@ USERPROFILE_DOC_TYPE = "userprofile"
 
 
 def get_bucket():
-    cluster = Cluster("couchbase://couchbasehost:8091")
+    cluster = Cluster("couchbase://couchbasehost:8091?fetch_mutation_tokens=1&operation_timeout=30&n1ql_timeout=300")
     authenticator = PasswordAuthenticator("username", "password")
     cluster.authenticate(authenticator)
     bucket: Bucket = cluster.open_bucket("bucket_name", lockmode=LOCKMODE_WAIT)
+    bucket.timeout = 30
+    bucket.n1ql_timeout = 300
     return bucket
 
 
@@ -29,9 +31,6 @@ class UserInDB(User):
     type: str = USERPROFILE_DOC_TYPE
     hashed_password: str
 
-    class Meta:
-        key: Optional[str] = None
-
 
 def get_user(bucket: Bucket, username: str):
     doc_id = f"userprofile::{username}"
@@ -39,7 +38,6 @@ def get_user(bucket: Bucket, username: str):
     if not result.value:
         return None
     user = UserInDB(**result.value)
-    user.Meta.key = result.key
     return user
 
 

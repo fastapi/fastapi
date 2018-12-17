@@ -14,7 +14,7 @@ repo_url: https://github.com/tiangolo/fastapi
 edit_uri: ""
 
 nav:
-    - Introduction: 'index.md'
+    - FastAPI: 'index.md'
     - Features: 'features.md'
     - Tutorial - User Guide:
         - Tutorial - User Guide - Intro: 'tutorial/intro.md'

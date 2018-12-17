@@ -76,7 +76,7 @@ And you can declare dependencies with `async def` inside of normal `def` path op
 It doesn't matter. **FastAPI** will know what to do.
 
 !!! note
-    If you don't if you should use `async def` or not, check the section about [`async` and `await` in the docs](/tutorial/async.md).
+    If you don't know, check the _"In a hurry?"_ section about <a href="https://fastapi.tiangolo.com/async/#in-a-hurry" target="_blank">`async` and `await` in the docs</a>.
 
 ## Integrated wiht OpenAPI
 

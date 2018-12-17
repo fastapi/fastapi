@@ -61,14 +61,13 @@ second_user_data = {
     "joined": "2018-11-30",
 }
 
-
-# **second_user_data means: 
-# pass the keys and values of the dict 
-# directly as key-value arguments
-# equivalent to:
-# id=4, name="Mary", joined="2018-11-30"
 my_second_user: User = User(**second_user_data)
 ```
+
+!!! info
+    `**second_user_data` means:
+    
+    Pass the keys and values of the `second_user_data` dict directly as key-value arguments, equivalent to: `User(id=4, name="Mary", joined="2018-11-30")`
 
 ### Editor support
 
