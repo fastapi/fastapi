@@ -124,6 +124,16 @@ name_price_missing = {
     ]
 }
 
+body_missing = {
+    "detail": [
+        {
+            "loc": ["body", "item"],
+            "msg": "field required",
+            "type": "value_error.missing",
+        }
+    ]
+}
+
 
 @pytest.mark.parametrize(
     "path,body,expected_status,expected_response",
@@ -155,6 +165,7 @@ name_price_missing = {
         ("/items/", {"name": "Foo"}, 422, price_missing),
         ("/items/", {"name": "Foo", "price": "twenty"}, 422, price_not_float),
         ("/items/", {}, 422, name_price_missing),
+        ("/items/", None, 422, body_missing),
     ],
 )
 def test_post_body(path, body, expected_status, expected_response):
