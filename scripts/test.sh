@@ -6,9 +6,9 @@ set -x
 export VERSION_SCRIPT="import sys; print('%s.%s' % sys.version_info[0:2])"
 export PYTHON_VERSION=`python -c "$VERSION_SCRIPT"`
 
-
+export PYTHONPATH=.:./docs/tutorial/src
 # PYTHONPATH=. pytest --cov=fastapi --cov=tests --cov-fail-under=100 --cov-report=term-missing ${@} --cov-report=html
-PYTHONPATH=.:./docs/tutorial/src pipenv run -- pytest --cov=fastapi --cov=tests --cov=docs/tutorial/src --cov-report=term-missing ${@} --cov-report=html
+pipenv run -- pytest --cov=fastapi --cov=tests --cov=docs/tutorial/src --cov-report=term-missing ${@} --cov-report=html
 pipenv run -- mypy fastapi --disallow-untyped-defs
 if [ "${PYTHON_VERSION}" = '3.7' ]; then
     echo "Skipping 'black' on 3.7. See issue https://github.com/ambv/black/issues/494"
