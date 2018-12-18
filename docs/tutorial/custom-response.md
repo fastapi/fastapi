@@ -13,7 +13,7 @@ For example, if you are squeezing performance, you can use `ujson` and set the r
 
 ### Import `UJSONResponse`
 
-```Python hl_lines="1"
+```Python hl_lines="2"
 {!./tutorial/src/custom_response/tutorial001.py!}
 ```
 
@@ -24,7 +24,7 @@ For example, if you are squeezing performance, you can use `ujson` and set the r
 
 Make your path operation use `UJSONResponse` as the response class using the parameter `content_type`:
 
-```Python hl_lines="8"
+```Python hl_lines="7"
 {!./tutorial/src/custom_response/tutorial001.py!}
 ```
 
@@ -39,7 +39,7 @@ To return a response with HTML directly from **FastAPI**, use `HTMLResponse`.
 
 ### Import `HTMLResponse`
 
-```Python hl_lines="1"
+```Python hl_lines="2"
 {!./tutorial/src/custom_response/tutorial002.py!}
 ```
 
@@ -51,7 +51,7 @@ To return a response with HTML directly from **FastAPI**, use `HTMLResponse`.
 
 Pass `HTMLResponse` as the parameter `content_type` of your path operation:
 
-```Python hl_lines="8"
+```Python hl_lines="7"
 {!./tutorial/src/custom_response/tutorial002.py!}
 ```
 
@@ -71,7 +71,7 @@ If you return an object that is an instance of Starlette's `Response`, it will b
 
 The same example from above, returning an `HTMLResponse`, could look like:
 
-```Python hl_lines="8 20"
+```Python hl_lines="7"
 {!./tutorial/src/custom_response/tutorial003.py!}
 ```
 
@@ -92,7 +92,7 @@ The `content_type` class will then be used only to document the OpenAPI path ope
 
 For example, it could be something like:
 
-```Python hl_lines="8 19 22"
+```Python hl_lines="7 23"
 {!./tutorial/src/custom_response/tutorial004.py!}
 ```
 
@@ -104,7 +104,7 @@ By returning the result of calling `generate_html_response()`, you are already r
 
 But by declaring it also in the path operation decorator:
 
-```Python hl_lines="22"
+```Python hl_lines="21"
 {!./tutorial/src/custom_response/tutorial004.py!}
 ```
 

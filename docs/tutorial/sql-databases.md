@@ -23,7 +23,7 @@ In this example, we'll use **PostgreSQL**.
 
 For now, don't pay attention to the rest, only the imports:
 
-```Python hl_lines="2 3 4"
+```Python hl_lines="3 4 5"
 {!./tutorial/src/sql_databases/tutorial001.py!}
 ```
 
@@ -31,7 +31,7 @@ For now, don't pay attention to the rest, only the imports:
 
 Define the database that SQLAlchemy should connect to:
 
-```Python hl_lines="7"
+```Python hl_lines="8"
 {!./tutorial/src/sql_databases/tutorial001.py!}
 ```
 
@@ -40,13 +40,13 @@ Define the database that SQLAlchemy should connect to:
 
 ## Create the SQLAlchemy `engine`
 
-```Python hl_lines="9"
+```Python hl_lines="10"
 {!./tutorial/src/sql_databases/tutorial001.py!}
 ```
 
 ## Create a `scoped_session`
 
-```Python hl_lines="10 11 12"
+```Python hl_lines="11 12 13"
 {!./tutorial/src/sql_databases/tutorial001.py!}
 ```
 

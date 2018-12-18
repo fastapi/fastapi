@@ -6,7 +6,7 @@ You can declare the model used for the response with the parameter `response_mod
 * `@app.delete()`
 * etc.
 
-```Python hl_lines="18"
+```Python hl_lines="17"
 {!./tutorial/src/response_model/tutorial001.py!}
 ```
 
@@ -28,13 +28,13 @@ But most importantly:
 
 Here we are declaring a `UserIn` model, it will contain a plaintext password:
 
-```Python hl_lines="9 11"
+```Python hl_lines="8 10"
 {!./tutorial/src/response_model/tutorial002.py!}
 ```
 
 And we are using this model to declare our input and the same model to declare our output:
 
-```Python hl_lines="17 18"
+```Python hl_lines="16 17"
 {!./tutorial/src/response_model/tutorial002.py!}
 ```
 
@@ -51,19 +51,19 @@ But if we use sthe same model for another path operation, we could be sending th
 
 We can instead create an input model with the plaintext password and an output model without it:
 
-```Python hl_lines="9 11 16"
+```Python hl_lines="8 10 15"
 {!./tutorial/src/response_model/tutorial003.py!}
 ```
 
 Here, even though our path operation function is returning the same input user that contains the password:
 
-```Python hl_lines="24"
+```Python hl_lines="23"
 {!./tutorial/src/response_model/tutorial003.py!}
 ```
 
 ...we declared the `response_model` to be our model `UserOut`, that doesn't include the password:
 
-```Python hl_lines="22"
+```Python hl_lines="21"
 {!./tutorial/src/response_model/tutorial003.py!}
 ```
 
