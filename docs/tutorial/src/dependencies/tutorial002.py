@@ -1,6 +1,5 @@
-from pydantic import BaseModel
-
 from fastapi import Depends, FastAPI
+from pydantic import BaseModel
 
 app = FastAPI()
 

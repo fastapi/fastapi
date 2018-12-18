@@ -1,9 +1,8 @@
 from typing import Set
 
+from fastapi import FastAPI
 from pydantic import BaseModel
 from starlette.status import HTTP_201_CREATED
-
-from fastapi import FastAPI
 
 app = FastAPI()
 

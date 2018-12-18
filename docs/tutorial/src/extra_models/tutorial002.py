@@ -1,7 +1,6 @@
+from fastapi import FastAPI
 from pydantic import BaseModel
 from pydantic.types import EmailStr
-
-from fastapi import FastAPI
 
 app = FastAPI()
 

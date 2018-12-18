@@ -1,12 +1,11 @@
 from typing import List, Optional
 
+from fastapi.openapi.models import OAuth2 as OAuth2Model, OAuthFlows as OAuthFlowsModel
+from fastapi.security.base import SecurityBase
 from pydantic import BaseModel, Schema
 from starlette.exceptions import HTTPException
 from starlette.requests import Request
 from starlette.status import HTTP_403_FORBIDDEN
-
-from fastapi.openapi.models import OAuth2 as OAuth2Model, OAuthFlows as OAuthFlowsModel
-from fastapi.security.base import SecurityBase
 
 
 class OAuth2PasswordRequestData(BaseModel):

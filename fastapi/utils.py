@@ -1,13 +1,12 @@
 import re
 from typing import Any, Dict, List, Sequence, Set, Type
 
+from fastapi import routing
+from fastapi.openapi.constants import REF_PREFIX
 from pydantic import BaseModel
 from pydantic.fields import Field
 from pydantic.schema import get_flat_models_from_fields, model_process_schema
 from starlette.routing import BaseRoute
-
-from fastapi import routing
-from fastapi.openapi.constants import REF_PREFIX
 
 
 def get_flat_models_from_routes(

@@ -1,6 +1,5 @@
-from pydantic import BaseModel, Schema
-
 from fastapi import Body, FastAPI
+from pydantic import BaseModel, Schema
 
 app = FastAPI()
 

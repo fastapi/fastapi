@@ -1,7 +1,3 @@
-from pydantic import BaseModel
-from starlette.responses import HTMLResponse, JSONResponse, PlainTextResponse
-from starlette.status import HTTP_202_ACCEPTED
-
 from fastapi import (
     Body,
     Cookie,
@@ -20,6 +16,9 @@ from fastapi.security import (
     OAuth2PasswordBearer,
     OAuth2PasswordRequestForm,
 )
+from pydantic import BaseModel
+from starlette.responses import HTMLResponse, JSONResponse, PlainTextResponse
+from starlette.status import HTTP_202_ACCEPTED
 
 from .endpoints.a import router as router_a
 from .endpoints.b import router as router_b

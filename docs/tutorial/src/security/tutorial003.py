@@ -1,10 +1,9 @@
 from typing import Optional
 
-from pydantic import BaseModel
-from starlette.exceptions import HTTPException
-
 from fastapi import Depends, FastAPI, Security
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
+from pydantic import BaseModel
+from starlette.exceptions import HTTPException
 
 fake_users_db = {
     "johndoe": {
