@@ -7,8 +7,8 @@ python:
     - "3.7-dev"
 
 install:
-    - pip install pipenv --dev
-    - pipenv install
+    - pip install pipenv
+    - pipenv install --dev
 
 script:
     - bash scripts/test.sh
