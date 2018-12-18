@@ -20,6 +20,7 @@ mkdocs = "*"
 mkdocs-material = "*"
 markdown-include = "*"
 autoflake = "*"
+email-validator = "*"
 
 [packages]
 starlette = "*"
