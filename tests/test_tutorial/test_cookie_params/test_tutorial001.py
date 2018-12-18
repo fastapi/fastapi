@@ -83,7 +83,12 @@ openapi_schema = {
         ("/openapi.json", None, 200, openapi_schema),
         ("/items", None, 200, {"ads_id": None}),
         ("/items", {"ads_id": "ads_track"}, 200, {"ads_id": "ads_track"}),
-        ("/items", {"ads_id": "ads_track", "session": "cookiesession"}, 200, {"ads_id": "ads_track"}),
+        (
+            "/items",
+            {"ads_id": "ads_track", "session": "cookiesession"},
+            200,
+            {"ads_id": "ads_track"},
+        ),
         ("/items", {"session": "cookiesession"}, 200, {"ads_id": None}),
     ],
 )
