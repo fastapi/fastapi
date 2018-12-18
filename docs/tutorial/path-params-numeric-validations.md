@@ -5,7 +5,7 @@ The same way you can declare more validations and metadata for query parameters 
 First, import `Path` from `fastapi`:
 
 ```Python hl_lines="1"
-{!./tutorial/src/path-params-numeric-validations/tutorial001.py!}
+{!./tutorial/src/path_params_numeric_validations/tutorial001.py!}
 ```
 
 ## Declare metadata
@@ -15,7 +15,7 @@ You can declare all the same parameters as for `Query`.
 For example, to declare a `title` metadata value for the path parameter `item_id` you can type:
 
 ```Python hl_lines="8"
-{!./tutorial/src/path-params-numeric-validations/tutorial001.py!}
+{!./tutorial/src/path_params_numeric_validations/tutorial001.py!}
 ```
 
 !!! note
@@ -42,7 +42,7 @@ It doesn't matter for **FastAPI**. It will detect the parameters by their names,
 So, you can declare your function as:
 
 ```Python hl_lines="8"
-{!./tutorial/src/path-params-numeric-validations/tutorial002.py!}
+{!./tutorial/src/path_params_numeric_validations/tutorial002.py!}
 ```
 
 ## Order the parameters as you need, tricks
@@ -54,7 +54,7 @@ Pass `*`, as the first parameter of the function.
 Python won't do anything with that `*`, but it will know that all the following parameters should be called as keyword arguments (key-value pairs), also known as <abbr title="From: K-ey W-ord Arg-uments"><code>kwargs</code></abbr>. Even if they don't have a default value.
 
 ```Python hl_lines="8"
-{!./tutorial/src/path-params-numeric-validations/tutorial003.py!}
+{!./tutorial/src/path_params_numeric_validations/tutorial003.py!}
 ```
 
 ## Number validations: greater than or equal
@@ -64,7 +64,7 @@ With `Query` and `Path` (and other's you'll see later) you can declare string co
 Here, with `ge=1`, `item_id` will need to be an integer number "`g`reater than or `e`qual" to `1`.
 
 ```Python hl_lines="8"
-{!./tutorial/src/path-params-numeric-validations/tutorial004.py!}
+{!./tutorial/src/path_params_numeric_validations/tutorial004.py!}
 ```
 ## Number validations: greater than and less than or equal
 
@@ -74,7 +74,7 @@ The same applies for:
 * `le`: `l`ess than or `e`qual
 
 ```Python hl_lines="9"
-{!./tutorial/src/path-params-numeric-validations/tutorial005.py!}
+{!./tutorial/src/path_params_numeric_validations/tutorial005.py!}
 ```
 
 ## Number validations: floats, greater than and less than
@@ -88,7 +88,7 @@ So, `0.5` would be a valid value. But `0.0` or `0` would not.
 And the same for <abbr title="less than"><code>lt</code></abbr>.
 
 ```Python hl_lines="11"
-{!./tutorial/src/path-params-numeric-validations/tutorial006.py!}
+{!./tutorial/src/path_params_numeric_validations/tutorial006.py!}
 ```
 
 ## Recap

@@ -4,8 +4,8 @@ With **FastAPI**, you can define, validate, document, and use arbitrarily deeply
 
 You can define an attribute to be a subtype. For example, a Python `list`:
 
-```Python hl_lines="12"
-{!./tutorial/src/body-nested-models/tutorial001.py!}
+```Python hl_lines="13"
+{!./tutorial/src/body_nested_models/tutorial001.py!}
 ```
 
 This will make `tags` be a list of items. Although it doesn't declare the type of each of the items.
@@ -19,7 +19,7 @@ But Python has a specific way to declare lists with subtypes:
 First, import `List` from standard Python's `typing` module:
 
 ```Python hl_lines="1"
-{!./tutorial/src/body-nested-models/tutorial002.py!}
+{!./tutorial/src/body_nested_models/tutorial002.py!}
 ```
 
 ### Declare a `List` with a subtype
@@ -41,8 +41,8 @@ Use that same standard syntax for model attributes with subtypes.
 
 So, in our example, we can make `tags` be specifically a "list of strings":
 
-```Python hl_lines="14"
-{!./tutorial/src/body-nested-models/tutorial002.py!}
+```Python hl_lines="15"
+{!./tutorial/src/body_nested_models/tutorial002.py!}
 ```
 
 ## Set types
@@ -53,8 +53,8 @@ And Python has a special data type for sets of unique items, the `set`.
 
 Then we can import `Set` and declare `tags` as a `set` of `str`:
 
-```Python hl_lines="1 14"
-{!./tutorial/src/body-nested-models/tutorial003.py!}
+```Python hl_lines="1 15"
+{!./tutorial/src/body_nested_models/tutorial003.py!}
 ```
 
 With this, even if you receive a request with duplicate data, it will be converted to a set of unique items.
@@ -77,16 +77,16 @@ All that, arbitrarily nested.
 
 For example, we can define an `Image` model:
 
-```Python hl_lines="9 10 11"
-{!./tutorial/src/body-nested-models/tutorial004.py!}
+```Python hl_lines="10 11 12"
+{!./tutorial/src/body_nested_models/tutorial004.py!}
 ```
 
 ### Use the submodel as a type
 
 And then we can use it as the type of an attribute:
 
-```Python hl_lines="20"
-{!./tutorial/src/body-nested-models/tutorial004.py!}
+```Python hl_lines="21"
+{!./tutorial/src/body_nested_models/tutorial004.py!}
 ```
 
 This would mean that **FastAPI** would expect a body similar to:
@@ -120,8 +120,8 @@ To see all the options you have, checkout the docs for <a href="https://pydantic
 
 For example, as in the `Image` model we have a `url` field, we can declare it to be instead of a `str`, a Pydantic's `UrlStr`:
 
-```Python hl_lines="5 11"
-{!./tutorial/src/body-nested-models/tutorial005.py!}
+```Python hl_lines="4 12"
+{!./tutorial/src/body_nested_models/tutorial005.py!}
 ```
 
 The string will be checked to be a valid URL, and documented in JSON Schema / OpenAPI as such.
@@ -130,8 +130,8 @@ The string will be checked to be a valid URL, and documented in JSON Schema / Op
 
 You can also use Pydantic models as subtypes of `list`, `set`, etc:
 
-```Python hl_lines="21"
-{!./tutorial/src/body-nested-models/tutorial006.py!}
+```Python hl_lines="22"
+{!./tutorial/src/body_nested_models/tutorial006.py!}
 ```
 
 This will expect (convert, validate, document, etc) a JSON body like:
@@ -167,8 +167,8 @@ This will expect (convert, validate, document, etc) a JSON body like:
 
 You can define arbitrarily deeply nested models:
 
-```Python hl_lines="10 15 21 24 28"
-{!./tutorial/src/body-nested-models/tutorial007.py!}
+```Python hl_lines="11 16 22 25 29"
+{!./tutorial/src/body_nested_models/tutorial007.py!}
 ```
 
 !!! info
@@ -184,8 +184,8 @@ images: List[Image]
 
 as in:
 
-```Python hl_lines="16"
-{!./tutorial/src/body-nested-models/tutorial008.py!}
+```Python hl_lines="17"
+{!./tutorial/src/body_nested_models/tutorial008.py!}
 ```
 
 ## Editor support everywhere

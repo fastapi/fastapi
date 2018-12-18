@@ -2,9 +2,9 @@ Continuing with the previous example, it will be common to have more than one re
 
 This is especially the case for user models, because:
 
-* The **input model** needs to be able to have a password
-* The **output model** should do not have a password
-* The **database model** would probably need to have a hashed password
+* The **input model** needs to be able to have a password.
+* The **output model** should do not have a password.
+* The **database model** would probably need to have a hashed password.
 
 !!! danger
     Never store user's plaintext passwords. Always store a secure hash that you can then verify.
@@ -13,8 +13,8 @@ This is especially the case for user models, because:
 
 Here's a general idea of how the models could look like with their password fields and the places where they are used:
 
-```Python hl_lines="8 10 15 21 23 32 34 39 40"
-{!./tutorial/src/extra-models/tutorial001.py!}
+```Python hl_lines="9 11 16 22 24 33 35 40 41"
+{!./tutorial/src/extra_models/tutorial001.py!}
 ```
 
 !!! warning
@@ -36,8 +36,8 @@ All the data conversion, validation, documentation, etc. will still work as norm
 
 That way, we can declare just the differences between the models (with plaintext `password`, with `hashed_password` and without password):
 
-```Python hl_lines="8 14 15 18 19 22 23"
-{!./tutorial/src/extra-models/tutorial002.py!}
+```Python hl_lines="9 15 16 19 20 23 24"
+{!./tutorial/src/extra_models/tutorial002.py!}
 ```
 
 ## Recap

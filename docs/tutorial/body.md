@@ -4,7 +4,7 @@ To declare a request body, you use <a href="https://pydantic-docs.helpmanual.io/
 
 First, you need to import `BaseModel` from `pydantic`:
 
-```Python hl_lines="2"
+```Python hl_lines="1"
 {!./tutorial/src/body/tutorial001.py!}
 ```
 
@@ -14,7 +14,7 @@ Then you declare your data model as a class that inherits from `BaseModel`.
 
 Use standard Python types for all the attributes:
 
-```Python hl_lines="5 6 7 8 9"
+```Python hl_lines="6 7 8 9 10"
 {!./tutorial/src/body/tutorial001.py!}
 ```
 
@@ -44,7 +44,7 @@ For example, this model above declares a JSON "`object`" (or Python `dict`) like
 
 To add it to your path operation, declare it the same way you declared path and query parameters:
 
-```Python hl_lines="16"
+```Python hl_lines="17"
 {!./tutorial/src/body/tutorial001.py!}
 ```
 
@@ -100,7 +100,7 @@ But you would get the same editor support with <a href="https://www.jetbrains.co
 
 Inside of the function, you can access all the attributes of the model object directly:
 
-```Python hl_lines="19"
+```Python hl_lines="20"
 {!./tutorial/src/body/tutorial002.py!}
 ```
 
@@ -110,7 +110,7 @@ You can declare path parameters and body requests at the same time.
 
 **FastAPI** will recognize that the function parameters that match path parameters should be **taken from the path**, and that function parameters that are declared to be Pydantic models should be **taken from the request body**.
 
-```Python hl_lines="15 16"
+```Python hl_lines="16 17"
 {!./tutorial/src/body/tutorial003.py!}
 ```
 
@@ -120,7 +120,7 @@ You can also declare **body**, **path** and **query** parameters, all at the sam
 
 **FastAPI** will recognize each of them and take the data from the correct place.
 
-```Python hl_lines="16"
+```Python hl_lines="17"
 {!./tutorial/src/body/tutorial004.py!}
 ```
 

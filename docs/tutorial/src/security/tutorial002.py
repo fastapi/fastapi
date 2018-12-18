@@ -1,8 +1,9 @@
 from typing import Optional
 
+from pydantic import BaseModel
+
 from fastapi import Depends, FastAPI, Security
 from fastapi.security import OAuth2PasswordBearer
-from pydantic import BaseModel
 
 app = FastAPI()
 

@@ -4,8 +4,10 @@ Now that we have seen how to use `Path` and `Query`, let's see more advanced use
 
 First, of course, you can mix `Path`, `Query` and request body parameter declarations freely and **FastAPI** will know what to do.
 
-```Python hl_lines="17 18 19"
-{!./tutorial/src/body-multiple-params/tutorial001.py!}
+And you can also declare body parameters as optional, by setting the default to `None`:
+
+```Python hl_lines="18 19 20"
+{!./tutorial/src/body_multiple_params/tutorial001.py!}
 ```
 
 !!! note
@@ -27,8 +29,8 @@ In the previous example, the path operations would expect a JSON body with the a
 
 But you can also declare multiple body parameters, e.g. `item` and `user`:
 
-```Python hl_lines="20"
-{!./tutorial/src/body-multiple-params/tutorial002.py!}
+```Python hl_lines="21"
+{!./tutorial/src/body_multiple_params/tutorial002.py!}
 ```
 
 In this case, **FastAPI** will notice that there are more than one body parameter in the function (two parameters that are Pydantic models).
@@ -69,8 +71,8 @@ If you declare it as is, because it is a singular value, **FastAPI** will assume
 But you can instruct **FastAPI** to treat it as another body key using `Body`:
 
 
-```Python hl_lines="21"
-{!./tutorial/src/body-multiple-params/tutorial003.py!}
+```Python hl_lines="22"
+{!./tutorial/src/body_multiple_params/tutorial003.py!}
 ```
 
 In this case, **FastAPI** will expect a body like:
@@ -106,8 +108,8 @@ q: str = None
 
 as in:
 
-```Python hl_lines="25"
-{!./tutorial/src/body-multiple-params/tutorial004.py!}
+```Python hl_lines="27"
+{!./tutorial/src/body_multiple_params/tutorial004.py!}
 ```
 
 !!! info
@@ -128,8 +130,8 @@ item: Item = Body(..., embed=True)
 
 as in:
 
-```Python hl_lines="15"
-{!./tutorial/src/body-multiple-params/tutorial005.py!}
+```Python hl_lines="16"
+{!./tutorial/src/body_multiple_params/tutorial005.py!}
 ```
 
 In this case **FastAPI** will expect a body like:

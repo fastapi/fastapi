@@ -7,7 +7,7 @@ from pydantic.types import UrlStr
 
 try:
     from pydantic.types import EmailStr  # type: ignore
-except ImportError:
+except ImportError:  # pragma: no cover
     logging.warning(
         "email-validator not installed, email fields will be treated as str.\n"
         + "To install, run: pip install email-validator"

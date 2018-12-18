@@ -2,13 +2,14 @@ from datetime import datetime, timedelta
 from typing import Optional
 
 import jwt
-from fastapi import Depends, FastAPI, Security
-from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from jwt import PyJWTError
 from passlib.context import CryptContext
 from pydantic import BaseModel
 from starlette.exceptions import HTTPException
 from starlette.status import HTTP_403_FORBIDDEN
+
+from fastapi import Depends, FastAPI, Security
+from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 
 # to get a string like this run:
 # openssl rand -hex 32

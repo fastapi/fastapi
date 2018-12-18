@@ -1,6 +1,7 @@
+from starlette.requests import Request
+
 from fastapi.openapi.models import OpenIdConnect as OpenIdConnectModel
 from fastapi.security.base import SecurityBase
-from starlette.requests import Request
 
 
 class OpenIdConnect(SecurityBase):

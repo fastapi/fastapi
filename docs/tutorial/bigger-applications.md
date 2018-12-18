@@ -1,13 +1,13 @@
 Coming soon...
 
 ```Python
-{!./tutorial/src/bigger-applications/tutorial001.py!}
+{!./tutorial/src/bigger_applications/app/routers/tutorial001.py!}
 ```
 
 ```Python
-{!./tutorial/src/bigger-applications/tutorial002.py!}
+{!./tutorial/src/bigger_applications/app/routers/tutorial002.py!}
 ```
 
 ```Python
-{!./tutorial/src/bigger-applications/tutorial003.py!}
+{!./tutorial/src/bigger_applications/app/tutorial003.py!}
 ```

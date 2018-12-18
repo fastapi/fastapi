@@ -18,7 +18,7 @@ But even if you never use **FastAPI**, you would benefit from learning a bit abo
 Let's start with a simple example:
 
 ```Python
-{!./tutorial/src/python-types/tutorial001.py!}
+{!./tutorial/src/python_types/tutorial001.py!}
 ```
 
 Calling this program outputs:
@@ -34,7 +34,7 @@ The function does the following:
 * <abbr title="Puts them together, as one. With the contents of one after the other.">Concatenates</abbr> them with a space in the middle.
 
 ```Python hl_lines="2"
-{!./tutorial/src/python-types/tutorial001.py!}
+{!./tutorial/src/python_types/tutorial001.py!}
 ```
 
 ### Edit it
@@ -78,7 +78,7 @@ That's it.
 Those are the "type hints":
 
 ```Python hl_lines="1"
-{!./tutorial/src/python-types/tutorial002.py!}
+{!./tutorial/src/python_types/tutorial002.py!}
 ```
 
 That is not the same as declaring default values like would be with:
@@ -108,7 +108,7 @@ With that, you can scroll, seeing the options, until you find the one that "ring
 Check this function, it already has type hints:
 
 ```Python hl_lines="1"
-{!./tutorial/src/python-types/tutorial003.py!}
+{!./tutorial/src/python_types/tutorial003.py!}
 ```
 
 Because the editor knows the types of the variables, you don't only get completion, you also get error checks:
@@ -118,7 +118,7 @@ Because the editor knows the types of the variables, you don't only get completi
 Now you know that you have to fix it, convert `age` to a string with `str(age)`:
 
 ```Python hl_lines="2"
-{!./tutorial/src/python-types/tutorial004.py!}
+{!./tutorial/src/python_types/tutorial004.py!}
 ```
 
 
@@ -140,7 +140,7 @@ You can use, for example:
 * `bytes`
 
 ```Python hl_lines="1"
-{!./tutorial/src/python-types/tutorial005.py!}
+{!./tutorial/src/python_types/tutorial005.py!}
 ```
 
 ### Types with subtypes
@@ -158,7 +158,7 @@ For example, let's define a variable to be a `list` of `str`.
 From `typing`, import `List` (with a capital `L`):
 
 ```Python hl_lines="1"
-{!./tutorial/src/python-types/tutorial006.py!}
+{!./tutorial/src/python_types/tutorial006.py!}
 ```
 
 Declare the variable, with the same colon (`:`) syntax.
@@ -168,7 +168,7 @@ As the type, put the `List`.
 As the list is a type that takes a "subtype", you put the subtype in square brackets:
 
 ```Python hl_lines="4"
-{!./tutorial/src/python-types/tutorial006.py!}
+{!./tutorial/src/python_types/tutorial006.py!}
 ```
 
 That means: "the variable `items` is a `list`, and each of the items in this list is a `str`".
@@ -188,7 +188,7 @@ And still, the editor knows it is a `str`, and provides support for that.
 You would do the same to declare `tuple`s and `set`s:
 
 ```Python hl_lines="1 4"
-{!./tutorial/src/python-types/tutorial007.py!}
+{!./tutorial/src/python_types/tutorial007.py!}
 ```
 
 This means:
@@ -205,7 +205,7 @@ The first subtype is for the keys of the `dict`.
 The second subtype is for the values of the `dict`:
 
 ```Python hl_lines="1 4"
-{!./tutorial/src/python-types/tutorial008.py!}
+{!./tutorial/src/python_types/tutorial008.py!}
 ```
 
 This means:
@@ -222,13 +222,13 @@ You can also declare a class as the type of a variable.
 Let's say you have a class `Person`, with a name:
 
 ```Python hl_lines="1 2 3"
-{!./tutorial/src/python-types/tutorial009.py!}
+{!./tutorial/src/python_types/tutorial009.py!}
 ```
 
 Then you can declare a variable to be of type `Person`:
 
 ```Python hl_lines="6"
-{!./tutorial/src/python-types/tutorial009.py!}
+{!./tutorial/src/python_types/tutorial009.py!}
 ```
 
 And then, again, you get all the editor support:
@@ -251,7 +251,7 @@ And you get all the editor support with that resulting object.
 Taken from the official Pydantic docs:
 
 ```Python
-{!./tutorial/src/python-types/tutorial010.py!}
+{!./tutorial/src/python_types/tutorial010.py!}
 ```
 
 !!! info

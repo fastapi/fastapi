@@ -4,8 +4,8 @@ The same way you can declare additional validation and metadata in path operatio
 
 First, you have to import it:
 
-```Python hl_lines="2"
-{!./tutorial/src/body-schema/tutorial001.py!}
+```Python hl_lines="3"
+{!./tutorial/src/body_schema/tutorial001.py!}
 ```
 
 !!! warning
@@ -16,8 +16,8 @@ First, you have to import it:
 
 You can then use `Schema` with model attributes:
 
-```Python hl_lines="9 10"
-{!./tutorial/src/body-schema/tutorial001.py!}
+```Python hl_lines="10 11"
+{!./tutorial/src/body_schema/tutorial001.py!}
 ```
 
 `Schema` works the same way as `Query`, `Path` and `Body`, it has all the same parameters, etc.
@@ -44,8 +44,8 @@ If you know JSON Schema and want to add extra information appart from what we ha
 
 For example, you can use that functionality to pass a <a href="http://json-schema.org/latest/json-schema-validation.html#rfc.section.8.5" target="_blank">JSON Schema example</a> field to a body request JSON Schema:
 
-```Python hl_lines="20 21 22 23 24 25"
-{!./tutorial/src/body-schema/tutorial002.py!}
+```Python hl_lines="21 22 23 24 25 26"
+{!./tutorial/src/body_schema/tutorial002.py!}
 ```
 
 ## Recap

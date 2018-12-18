@@ -5,7 +5,7 @@ You can define Header parameters the same way you define `Query`, `Path` and `Co
 First import `Header`:
 
 ```Python hl_lines="1"
-{!./tutorial/src/header-params/tutorial001.py!}
+{!./tutorial/src/header_params/tutorial001.py!}
 ```
 
 ## Declare `Header` parameteres
@@ -15,7 +15,7 @@ Then declare the header parameters using the same structure as with `Path`, `Que
 The first value is the default value, you can pass all the extra validation or annotation parameteres:
 
 ```Python hl_lines="7"
-{!./tutorial/src/header-params/tutorial001.py!}
+{!./tutorial/src/header_params/tutorial001.py!}
 ```
 
 !!! info
@@ -41,7 +41,7 @@ So, you can use `user_agent` as you normally would in Python code, instead of ne
 If for some reason you need to disable automatic conversion of underscores to hyphens, set the parameter `convert_underscores` of `Header` to `False`:
 
 ```Python hl_lines="7"
-{!./tutorial/src/header-params/tutorial002.py!}
+{!./tutorial/src/header_params/tutorial002.py!}
 ```
 
 !!! warning

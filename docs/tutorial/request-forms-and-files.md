@@ -3,7 +3,7 @@ You can define files and form fields at the same time using `File` and `Form`.
 ## Import `File` and `Form`
 
 ```Python hl_lines="1"
-{!./tutorial/src/request-forms-and-files/tutorial001.py!}
+{!./tutorial/src/request_forms_and_files/tutorial001.py!}
 ```
 
 ## Define `File` and `Form` parameters
@@ -11,7 +11,7 @@ You can define files and form fields at the same time using `File` and `Form`.
 Create file and form parameters the same way you would for `Body` or `Query`:
 
 ```Python hl_lines="7"
-{!./tutorial/src/request-forms-and-files/tutorial001.py!}
+{!./tutorial/src/request_forms_and_files/tutorial001.py!}
 ```
 
 The files and form fields will be uploaded as form data and you will receive the files and form fields.

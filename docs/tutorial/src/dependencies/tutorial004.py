@@ -1,8 +1,9 @@
 from random import choice
 from typing import List
 
-from fastapi import Cookie, Depends, FastAPI
 from pydantic import BaseModel
+
+from fastapi import Cookie, Depends, FastAPI
 
 app = FastAPI()
 

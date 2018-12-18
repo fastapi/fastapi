@@ -23,16 +23,16 @@ In this example, we'll use **PostgreSQL**.
 
 For now, don't pay attention to the rest, only the imports:
 
-```Python hl_lines="3 4 5"
-{!./tutorial/src/sql-databases/tutorial001.py!}
+```Python hl_lines="2 3 4"
+{!./tutorial/src/sql_databases/tutorial001.py!}
 ```
 
 ## Define the database
 
 Define the database that SQLAlchemy should connect to:
 
-```Python hl_lines="8"
-{!./tutorial/src/sql-databases/tutorial001.py!}
+```Python hl_lines="7"
+{!./tutorial/src/sql_databases/tutorial001.py!}
 ```
 
 !!! tip
@@ -40,14 +40,14 @@ Define the database that SQLAlchemy should connect to:
 
 ## Create the SQLAlchemy `engine`
 
-```Python hl_lines="10"
-{!./tutorial/src/sql-databases/tutorial001.py!}
+```Python hl_lines="9"
+{!./tutorial/src/sql_databases/tutorial001.py!}
 ```
 
 ## Create a `scoped_session`
 
-```Python hl_lines="11 12 13"
-{!./tutorial/src/sql-databases/tutorial001.py!}
+```Python hl_lines="10 11 12"
+{!./tutorial/src/sql_databases/tutorial001.py!}
 ```
 
 !!! note "Very Technical Details"
@@ -70,13 +70,13 @@ That way you don't have to declare them explicitly.
 So, your models will behave very similarly to, for example, Flask-SQLAlchemy.
 
 ```Python hl_lines="15 16 17 18 19"
-{!./tutorial/src/sql-databases/tutorial001.py!}
+{!./tutorial/src/sql_databases/tutorial001.py!}
 ```
 
 ## Create the SQLAlchemy `Base` model
 
 ```Python hl_lines="22"
-{!./tutorial/src/sql-databases/tutorial001.py!}
+{!./tutorial/src/sql_databases/tutorial001.py!}
 ```
 
 ## Create your application data model
@@ -86,7 +86,7 @@ Now this is finally code specific to your app.
 Here's a user model that will be a table in the database:
 
 ```Python hl_lines="25 26 27 28 29"
-{!./tutorial/src/sql-databases/tutorial001.py!}
+{!./tutorial/src/sql_databases/tutorial001.py!}
 ```
 
 ## Get a user
@@ -94,7 +94,7 @@ Here's a user model that will be a table in the database:
 By creating a function that is only dedicated to getting your user from a `username` (or any other parameter) independent of your path operation function, you can more easily re-use it in multiple parts and also add <abbr title="Automated test, written in code, that checks if another piece of code is working correctly.">unit tests</abbr> for it:
 
 ```Python hl_lines="32 33"
-{!./tutorial/src/sql-databases/tutorial001.py!}
+{!./tutorial/src/sql_databases/tutorial001.py!}
 ```
 
 ## Create your **FastAPI** code
@@ -104,7 +104,7 @@ Now, finally, here's the standard **FastAPI** code.
 Create your app and path operation function:
 
 ```Python hl_lines="37 40 41 42 43"
-{!./tutorial/src/sql-databases/tutorial001.py!}
+{!./tutorial/src/sql_databases/tutorial001.py!}
 ```
 
 As we are using SQLAlchemy's `scoped_session`, we don't even have to create a dependency with `Depends`.
@@ -132,7 +132,7 @@ user = get_user(username, db_session)
 Then we should declare the path operation without `async def`, just with a normal `def`:
 
 ```Python hl_lines="41"
-{!./tutorial/src/sql-databases/tutorial001.py!}
+{!./tutorial/src/sql_databases/tutorial001.py!}
 ```
 
 ## Migrations
