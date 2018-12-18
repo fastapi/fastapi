@@ -140,7 +140,7 @@ Here the query parameter `needy` is a required query parameter of type `str`.
 If you open in your browser a URL like:
 
 ```
-http://127.0.0.1:8000/users/2/items/foo-item
+http://127.0.0.1:8000/items/foo-item
 ```
 
 ...without adding the required parameter `needy`, you will see an error like:
@@ -163,7 +163,7 @@ http://127.0.0.1:8000/users/2/items/foo-item
 As `needy` is a required parameter, you would need to set it in the URL:
 
 ```
-http://127.0.0.1:8000/users/2/items/foo-item?needy=sooooneedy
+http://127.0.0.1:8000/items/foo-item?needy=sooooneedy
 ```
 
 ...this would work:
@@ -171,7 +171,18 @@ http://127.0.0.1:8000/users/2/items/foo-item?needy=sooooneedy
 ```JSON
 {
     "item_id": "foo-item",
-    "owner_id": 2,
     "needy": "sooooneedy"
 }
 ```
+
+And of course, you can define some parameters as required, some as having a default value, and some entirely optional:
+
+```Python hl_lines="7"
+{!./tutorial/src/query_params/tutorial006.py!}
+```
+
+In this case, there are 3 query parameters:
+
+* `needy`, a required `str`.
+* `skip`, an `int` with a default value of `0`.
+* `limit`, an optional `int`.

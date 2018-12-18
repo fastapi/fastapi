@@ -1,7 +1,7 @@
 import pytest
 from starlette.testclient import TestClient
 
-from cookie_params.tutorial001 import app
+from query_params.tutorial005 import app
 
 client = TestClient(app)
 
@@ -9,7 +9,7 @@ openapi_schema = {
     "openapi": "3.0.2",
     "info": {"title": "Fast API", "version": "0.1.0"},
     "paths": {
-        "/items/": {
+        "/items/{item_id}": {
             "get": {
                 "responses": {
                     "200": {
@@ -27,15 +27,21 @@ openapi_schema = {
                         },
                     },
                 },
-                "summary": "Read Items Get",
-                "operationId": "read_items_items__get",
+                "summary": "Read User Item Get",
+                "operationId": "read_user_item_items__item_id__get",
                 "parameters": [
                     {
-                        "required": False,
-                        "schema": {"title": "Ads_Id", "type": "string"},
-                        "name": "ads_id",
-                        "in": "cookie",
-                    }
+                        "required": True,
+                        "schema": {"title": "Item_Id", "type": "string"},
+                        "name": "item_id",
+                        "in": "path",
+                    },
+                    {
+                        "required": True,
+                        "schema": {"title": "Needy", "type": "string"},
+                        "name": "needy",
+                        "in": "query",
+                    },
                 ],
             }
         }
@@ -72,22 +78,27 @@ openapi_schema = {
 }
 
 
+query_required = {
+    "detail": [
+        {
+            "loc": ["query", "needy"],
+            "msg": "field required",
+            "type": "value_error.missing",
+        }
+    ]
+}
+
+
 @pytest.mark.parametrize(
-    "path,cookies,expected_status,expected_response",
+    "path,expected_status,expected_response",
     [
-        ("/openapi.json", None, 200, openapi_schema),
-        ("/items", None, 200, {"ads_id": None}),
-        ("/items", {"ads_id": "ads_track"}, 200, {"ads_id": "ads_track"}),
-        (
-            "/items",
-            {"ads_id": "ads_track", "session": "cookiesession"},
-            200,
-            {"ads_id": "ads_track"},
-        ),
-        ("/items", {"session": "cookiesession"}, 200, {"ads_id": None}),
+        ("/openapi.json", 200, openapi_schema),
+        ("/items/foo?needy=very", 200, {"item_id": "foo", "needy": "very"}),
+        ("/items/foo", 422, query_required),
+        ("/items/foo", 422, query_required),
     ],
 )
-def test(path, cookies, expected_status, expected_response):
-    response = client.get(path, cookies=cookies)
+def test(path, expected_status, expected_response):
+    response = client.get(path)
     assert response.status_code == expected_status
     assert response.json() == expected_response
