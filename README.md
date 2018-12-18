@@ -5,13 +5,13 @@
     <em>FastAPI framework, high performance, easy to learn, fast to code, ready for production</em>
 </p>
 <p align="center">
-<a href="https://travis-ci.org/tiangolo/fastapi">
+<a href="https://travis-ci.org/tiangolo/fastapi" target="_blank">
     <img src="https://travis-ci.org/tiangolo/fastapi.svg?branch=master" alt="Build Status">
 </a>
-<a href="https://codecov.io/gh/tiangolo/fastapi">
+<a href="https://codecov.io/gh/tiangolo/fastapi" target="_blank">
     <img src="https://codecov.io/gh/tiangolo/fastapi/branch/master/graph/badge.svg" alt="Coverage">
 </a>
-<a href="https://pypi.org/project/fastapi">
+<a href="https://pypi.org/project/fastapi" target="_blank">
     <img src="https://badge.fury.io/py/fastapi.svg" alt="Package version">
 </a>
 </p>
