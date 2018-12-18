@@ -3,10 +3,6 @@ import inspect
 from copy import deepcopy
 from typing import Any, Callable, Dict, List, Mapping, Sequence, Tuple, Type
 
-from fastapi import params
-from fastapi.dependencies.models import Dependant, SecurityRequirement
-from fastapi.security.base import SecurityBase
-from fastapi.utils import get_path_param_names
 from pydantic import BaseConfig, Schema, create_model
 from pydantic.error_wrappers import ErrorWrapper
 from pydantic.errors import MissingError
@@ -15,6 +11,11 @@ from pydantic.schema import get_annotation_from_schema
 from pydantic.utils import lenient_issubclass
 from starlette.concurrency import run_in_threadpool
 from starlette.requests import Request
+
+from fastapi import params
+from fastapi.dependencies.models import Dependant, SecurityRequirement
+from fastapi.security.base import SecurityBase
+from fastapi.utils import get_path_param_names
 
 param_supported_types = (str, int, float, bool)
 
@@ -283,6 +284,8 @@ async def request_body_to_args(
         embed = getattr(field.schema, "embed", None)
         if len(required_params) == 1 and not embed:
             received_body = {field.alias: received_body}
+        elif received_body is None:
+            received_body = {}
         for field in required_params:
             value = received_body.get(field.alias)
             if value is None:

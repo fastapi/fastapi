@@ -3,10 +3,6 @@ import inspect
 import logging
 from typing import Any, Callable, List, Optional, Type
 
-from fastapi import params
-from fastapi.dependencies.models import Dependant
-from fastapi.dependencies.utils import get_body_field, get_dependant, solve_dependencies
-from fastapi.encoders import jsonable_encoder
 from pydantic import BaseConfig, BaseModel, Schema
 from pydantic.error_wrappers import ErrorWrapper, ValidationError
 from pydantic.fields import Field
@@ -19,6 +15,11 @@ from starlette.requests import Request
 from starlette.responses import JSONResponse, Response
 from starlette.routing import get_name, request_response
 from starlette.status import HTTP_422_UNPROCESSABLE_ENTITY
+
+from fastapi import params
+from fastapi.dependencies.models import Dependant
+from fastapi.dependencies.utils import get_body_field, get_dependant, solve_dependencies
+from fastapi.encoders import jsonable_encoder
 
 
 def serialize_response(*, field: Field = None, response: Response) -> Any:
@@ -51,7 +52,8 @@ def get_app(
         try:
             body = None
             if body_field:
-                if is_body_form:
+                body_bytes = await request.body()
+                if body_bytes and is_body_form:
                     raw_body = await request.form()
                     body = {}
                     for field, value in raw_body.items():
@@ -59,7 +61,7 @@ def get_app(
                             body[field] = await value.read()
                         else:
                             body[field] = value
-                else:
+                elif body_bytes:
                     body = await request.json()
         except Exception as e:
             logging.error("Error getting request body", e)
