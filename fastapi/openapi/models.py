@@ -6,6 +6,9 @@ from pydantic import BaseModel, Schema as PSchema
 from pydantic.types import UrlStr
 
 try:
+    import email_validator
+
+    assert email_validator  # make autoflake ignore the unused import
     from pydantic.types import EmailStr  # type: ignore
 except ImportError:  # pragma: no cover
     logging.warning(
