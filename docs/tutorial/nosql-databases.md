@@ -10,6 +10,9 @@ You can adapt it to any other NoSQL database like:
 * **ArangoDB**
 * **ElasticSearch**, etc.
 
+!!! tip
+    There is an official project generator with **FastAPI** and **Couchbase**, all based on **Docker**, including a frontend and more tools: <a href="https://github.com/tiangolo/full-stack-fastapi-couchbase" target="_blank">https://github.com/tiangolo/full-stack-fastapi-couchbase</a>
+
 ## Import Couchbase components
 
 For now, don't pay attention to the rest, only the imports:
@@ -49,7 +52,7 @@ This utility function will:
     * Set defaults for timeouts.
 * Return it.
 
-```Python hl_lines="13 14 15 16 17 18 19 20"
+```Python hl_lines="13 14 15 16 17 18 19 20 21 22"
 {!./src/nosql_databases/tutorial001.py!}
 ```
 
@@ -61,7 +64,7 @@ As **Couchbase** "documents" are actually just "JSON objects", we can model them
 
 First, let's create a `User` model:
 
-```Python hl_lines="23 24 25 26 27"
+```Python hl_lines="25 26 27 28 29"
 {!./src/nosql_databases/tutorial001.py!}
 ```
 
@@ -75,7 +78,7 @@ This will have the data that is actually stored in the database.
 
 We don't create it as a subclass of Pydantic's `BaseModel` but as a subclass of our own `User`, because it will have all the attributes in `User` plus a couple more:
 
-```Python hl_lines="30 31 32"
+```Python hl_lines="32 33 34"
 {!./src/nosql_databases/tutorial001.py!}
 ```
 
@@ -96,7 +99,7 @@ Now create a function that will:
 
 By creating a function that is only dedicated to getting your user from a `username` (or any other parameter) independent of your path operation function, you can more easily re-use it in multiple parts and also add <abbr title="Automated test, written in code, that checks if another piece of code is working correctly.">unit tests</abbr> for it:
 
-```Python hl_lines="35 36 37 38 39 40 41"
+```Python hl_lines="37 38 39 40 41 42 43"
 {!./src/nosql_databases/tutorial001.py!}
 ```
 
@@ -131,7 +134,7 @@ UserInDB(username="johndoe", hashed_password="some_hash")
 
 ### Create the `FastAPI` app
 
-```Python hl_lines="45"
+```Python hl_lines="47"
 {!./src/nosql_databases/tutorial001.py!}
 ```
 
@@ -141,7 +144,7 @@ As our code is calling Couchbase and we are not using the <a href="https://docs.
 
 Also, Couchbase recommends not using a single `Bucket` object in multiple "<abbr title="A sequence of code being executed by the program, while at the same time, or at intervals, there can be others being executed too.">thread</abbr>s", so, we can get just get the bucket directly and pass it to our utility functions:
 
-```Python hl_lines="48 49 50 51 52"
+```Python hl_lines="50 51 52 53 54"
 {!./src/nosql_databases/tutorial001.py!}
 ```
 

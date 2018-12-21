@@ -54,6 +54,7 @@ nav:
         - Extra Starlette options: 'tutorial/extra-starlette.md'    
     - Concurrency and async / await: 'async.md'
     - Deployment: 'deployment.md'
+    - Project Generation - Template: 'project-generation.md'
 
 markdown_extensions:
   - markdown.extensions.codehilite:

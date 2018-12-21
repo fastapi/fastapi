@@ -28,7 +28,7 @@ Create a model for the common parameters (and don't pay attention to the rest, f
 
 Now we can return a Pydantic model from the dependency ("dependable") with the same data as the dict before:
 
-```Python hl_lines="18"
+```Python hl_lines="17"
 {!./src/dependencies/tutorial002.py!}
 ```
 
@@ -42,7 +42,7 @@ commons: CommonQueryParams = Depends(common_parameters)
 
 It won't be interpreted as a JSON request `Body` because we are using `Depends`:
 
-```Python hl_lines="22"
+```Python hl_lines="21"
 {!./src/dependencies/tutorial002.py!}
 ```
 
@@ -55,7 +55,7 @@ It won't be interpreted as a JSON request `Body` because we are using `Depends`:
 
 And now we can use that model in our code, with all the lovable editor support:
 
-```Python hl_lines="24 25 26"
+```Python hl_lines="23 24 25"
 {!./src/dependencies/tutorial002.py!}
 ```
 
