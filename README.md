@@ -65,6 +65,8 @@ $ pip install uvicorn
 
 ## Example
 
+### Create it
+
 * Create a file `main.py` with:
 
 ```Python
@@ -109,7 +111,9 @@ If you don't know, check the _"In a hurry?"_ section about <a href="https://fast
 
 </details>
 
-* Run the server with:
+### Run it
+
+Run the server with:
 
 ```bash
 uvicorn main:app --debug
@@ -139,9 +143,9 @@ You will see the JSON response as:
 You already created an API that:
 
 * Receives HTTP requests in the _paths_ `/` and `/items/{item_id}`.
-* Both _paths_ take `GET` <abbr title="also known as HTTP methods"><em>operations</em></abbr>.
+* Both _paths_ take `GET` <em>operations</em> (also known as HTTP _methods_).
 * The _path_ `/items/{item_id}` has a _path parameter_ `item_id` that should be an `int`.
-* The _path_ `/items/{item_id}` has an optional _query parameter_ `q` that is a `str`.
+* The _path_ `/items/{item_id}` has an optional `str` _query parameter_ `q`.
 
 ### Interactive API docs
 
