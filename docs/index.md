@@ -72,26 +72,42 @@ from fastapi import FastAPI
 
 app = FastAPI()
 
-@app.get('/')
+
+@app.get("/")
 def read_root():
-    return {'hello': 'world'}
+    return {"Hello": "World"}
+
+
+@app.get("/items/{item_id}")
+def read_item(item_id: int, q: str = None):
+    return {"item_id": item_id, "q": q}
 ```
+<details markdown="1">
+<summary>Or use <code>async def</code>...</summary>
 
-Or if your code uses `async` / `await`, use `async def`:
+If your code uses `async` / `await`, use `async def`:
 
-```Python hl_lines="6"
+```Python hl_lines="7 12"
 from fastapi import FastAPI
 
 app = FastAPI()
 
-@app.get('/')
+
+@app.get("/")
 async def read_root():
-    return {'hello': 'world'}
+    return {"Hello": "World"}
+
+
+@app.get("/items/{item_id}")
+async def read_item(item_id: int, q: str = None):
+    return {"item_id": item_id, "q": q}
 ```
 
-!!! note
-    If you don't know, check the _"In a hurry?"_ section about <a href="https://fastapi.tiangolo.com/async/#in-a-hurry" target="_blank">`async` and `await` in the docs</a>.
+**Note**:
+    
+If you don't know, check the _"In a hurry?"_ section about <a href="https://fastapi.tiangolo.com/async/#in-a-hurry" target="_blank">`async` and `await` in the docs</a>.
 
+</details>
 
 * Run the server with:
 
@@ -99,22 +115,33 @@ async def read_root():
 uvicorn main:app --debug
 ```
 
-!!! note
-    The command `uvicorn main:app` refers to:
+<details markdown="1">
+<summary>About the command <code>uvicorn main:app --debug</code>...</summary>
 
-    * `main`: the file `main.py` (the Python "module").
-    * `app`: the object created inside of `main.py` with the line `app = FastAPI()`.
-    * `--debug`: make the server restart after code changes. Only do this for development.
+The command `uvicorn main:app` refers to:
+
+* `main`: the file `main.py` (the Python "module").
+* `app`: the object created inside of `main.py` with the line `app = FastAPI()`.
+* `--debug`: make the server restart after code changes. Only do this for development.
+
+</details>
 
 ### Check it
 
-Open your browser at <a href="http://127.0.0.1:8000" target="_blank">http://127.0.0.1:8000</a>. 
+Open your browser at <a href="http://127.0.0.1:8000/items/5?q=somequery" target="_blank">http://127.0.0.1:8000/items/5?q=somequery</a>. 
 
 You will see the JSON response as:
 
 ```JSON
-{"hello": "world"}
+{"item_id": 5, "q": "somequery"}
 ```
+
+You already created an API that:
+
+* Receives HTTP requests in the _paths_ `/` and `/items/{item_id}`.
+* Both _paths_ take `GET` <abbr title="also known as HTTP methods"><em>operations</em></abbr>.
+* The _path_ `/items/{item_id}` has a _path parameter_ `item_id` that should be an `int`.
+* The _path_ `/items/{item_id}` has an optional _query parameter_ `q` that is a `str`.
 
 ### Interactive API docs
 
@@ -135,14 +162,12 @@ You will see the alternative automatic documentation (provided by <a href="https
 
 ## Example upgrade
 
-Now modify the file `main.py` to include:
+Now modify the file `main.py` to recive a body from a `PUT` request.
 
-* a path parameter `item_id`.
-* a body, declared using standard Python types (thanks to Pydantic).
-* an optional query parameter `q`.
+Declare the body using standard Python types, thanks to Pydantic.
 
 
-```Python hl_lines="2 7 8 9 10 19"
+```Python hl_lines="2 7 8 9 10 24"
 from fastapi import FastAPI
 from pydantic import BaseModel
 
@@ -155,14 +180,19 @@ class Item(BaseModel):
     is_offer: bool = None
 
 
-@app.get('/')
-async def read_root():
-    return {'hello': 'world'}
+@app.get("/")
+def read_root():
+    return {"Hello": "World"}
 
 
-@app.post('/items/{item_id}')
-async def create_item(item_id: int, item: Item, q: str = None):
-    return {"item_name": item.name, "item_id": item_id, "query": q}
+@app.get("/items/{item_id}")
+def read_item(item_id: int, q: str = None):
+    return {"item_id": item_id, "q": q}
+
+
+@app.put("/items/{item_id}")
+def create_item(item_id: int, item: Item):
+    return {"item_name": item.name, "item_id": item_id}
 ```
 
 The server should reload automatically (because you added `--debug` to the `uvicorn` command above).
@@ -171,7 +201,7 @@ The server should reload automatically (because you added `--debug` to the `uvic
 
 Now go to <a href="http://127.0.0.1:8000/docs" target="_blank">http://127.0.0.1:8000/docs</a>.
 
-* The interactive API documentation will be automatically updated, including the new query, and body:
+* The interactive API documentation will be automatically updated, including the new body:
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-03-swagger-02.png)
 
@@ -245,13 +275,13 @@ item: Item
 
 Coming back to the previous code example, **FastAPI** will:
 
-* Validate that there is an `item_id` in the path.
-* Validate that the `item_id` is of type `int`.
+* Validate that there is an `item_id` in the path for `GET` and `PUT` requests.
+* Validate that the `item_id` is of type `int` for `GET` and `PUT` requests.
     * If it is not, the client will see a useful, clear error.
-* Check if there is an optional query parameter named `q` (as in `http://127.0.0.1:8000/items/foo?q=somequery`).
+* Check if there is an optional query parameter named `q` (as in `http://127.0.0.1:8000/items/foo?q=somequery`) for `GET` requests.
     * As the `q` parameter is declared with `= None`, it is optional.
-    * Without the `None` it would be required (as is the body).
-* Read the body as JSON:
+    * Without the `None` it would be required (as is the body in the case with `PUT`).
+* For `PUT` requests to `/items/{item_id}`, Read the body as JSON:
     * Check that it has a required attribute `name` that should be a `str`. 
     * Check that is has a required attribute `price` that has to be a `float`.
     * Check that it has an optional attribute `is_offer`, that should be a `bool`, if present.
@@ -270,7 +300,7 @@ We just scratched the surface, but you already get the idea of how it all works.
 Try changing the line with:
 
 ```Python
-    return {"item_name": item.name, "item_id": item_id, "query": q}
+    return {"item_name": item.name, "item_id": item_id}
 ```
 
 ...from:
@@ -287,6 +317,7 @@ Try changing the line with:
 
 ...and see how your editor will auto-complete the attributes and know their types:
 
+![editor support](img/vscode-completion.png)
 ![editor support](https://fastapi.tiangolo.com/img/vscode-completion.png)
 
 

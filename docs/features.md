@@ -27,7 +27,7 @@ Interactive API documentation and exploration web user interfaces. As the framew
 
 It's all based on standard **Python 3.6 type** declarations (thanks to Pydantic). No new syntax to learn. Just standard modern Python.
 
-If you need a 2 minute refresher of how to use Python types (even if you don't use FastAPI), check the tutorial section: [Python types](tutorial/python-types.md).
+If you need a 2 minute refresher of how to use Python types (even if you don't use FastAPI), check the tutorial section: [Python types](python-types.md).
 
 You write standard Python with types:
 
