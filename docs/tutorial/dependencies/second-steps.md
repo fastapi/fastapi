@@ -5,7 +5,7 @@ Before diving deeper into the **Dependency Injection** system, let's upgrade the
 In the previous example, we where returning a `dict` from our dependency ("dependable"):
 
 ```Python hl_lines="7"
-{!./tutorial/src/dependencies/tutorial001.py!}
+{!./src/dependencies/tutorial001.py!}
 ```
 
 But then we get a `dict` in the parameter `commons` of the path operation function.
@@ -21,7 +21,7 @@ Let's use them here too.
 Create a model for the common parameters (and don't pay attention to the rest, for now):
 
 ```Python hl_lines="11 12 13 14"
-{!./tutorial/src/dependencies/tutorial002.py!}
+{!./src/dependencies/tutorial002.py!}
 ```
 
 ## Return a Pydantic model
@@ -29,7 +29,7 @@ Create a model for the common parameters (and don't pay attention to the rest, f
 Now we can return a Pydantic model from the dependency ("dependable") with the same data as the dict before:
 
 ```Python hl_lines="18"
-{!./tutorial/src/dependencies/tutorial002.py!}
+{!./src/dependencies/tutorial002.py!}
 ```
 
 ## Declare the Pydantic model
@@ -43,7 +43,7 @@ commons: CommonQueryParams = Depends(common_parameters)
 It won't be interpreted as a JSON request `Body` because we are using `Depends`:
 
 ```Python hl_lines="22"
-{!./tutorial/src/dependencies/tutorial002.py!}
+{!./src/dependencies/tutorial002.py!}
 ```
 
 !!! info
@@ -56,7 +56,7 @@ It won't be interpreted as a JSON request `Body` because we are using `Depends`:
 And now we can use that model in our code, with all the lovable editor support:
 
 ```Python hl_lines="24 25 26"
-{!./tutorial/src/dependencies/tutorial002.py!}
+{!./src/dependencies/tutorial002.py!}
 ```
 
 <img src="/img/tutorial/dependencies/image02.png">

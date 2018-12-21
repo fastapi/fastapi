@@ -5,7 +5,7 @@ You can define Cookie parameters the same way you define `Query` and `Path` para
 First import `Cookie`:
 
 ```Python hl_lines="1"
-{!./tutorial/src/cookie_params/tutorial001.py!}
+{!./src/cookie_params/tutorial001.py!}
 ```
 
 ## Declare `Cookie` parameteres
@@ -15,7 +15,7 @@ Then declare the cookie parameters using the same structure as with `Path` and `
 The first value is the default value, you can pass all the extra validation or annotation parameteres:
 
 ```Python hl_lines="7"
-{!./tutorial/src/cookie_params/tutorial001.py!}
+{!./src/cookie_params/tutorial001.py!}
 ```
 
 !!! info

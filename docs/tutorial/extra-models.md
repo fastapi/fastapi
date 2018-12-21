@@ -14,7 +14,7 @@ This is especially the case for user models, because:
 Here's a general idea of how the models could look like with their password fields and the places where they are used:
 
 ```Python hl_lines="8 10 15 21 23 32 34 39 40"
-{!./tutorial/src/extra_models/tutorial001.py!}
+{!./src/extra_models/tutorial001.py!}
 ```
 
 !!! warning
@@ -37,7 +37,7 @@ All the data conversion, validation, documentation, etc. will still work as norm
 That way, we can declare just the differences between the models (with plaintext `password`, with `hashed_password` and without password):
 
 ```Python hl_lines="8 14 15 18 19 22 23"
-{!./tutorial/src/extra_models/tutorial002.py!}
+{!./src/extra_models/tutorial002.py!}
 ```
 
 ## Recap

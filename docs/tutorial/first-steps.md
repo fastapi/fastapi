@@ -1,7 +1,7 @@
 The simplest FastAPI file could look like this:
 
 ```Python
-{!tutorial/src/first_steps/tutorial001.py!}
+{!./src/first_steps/tutorial001.py!}
 ```
 
 Copy that to a file `main.py`.
@@ -89,7 +89,7 @@ It will show a JSON starting with something like:
 ### Step 1: import `FastAPI`
 
 ```Python hl_lines="1"
-{!tutorial/src/first_steps/tutorial001.py!}
+{!./src/first_steps/tutorial001.py!}
 ```
 
 `FastAPI` is a Python class that provides all the functionality for your API.
@@ -102,7 +102,7 @@ It will show a JSON starting with something like:
 ### Step 2: create a `FastAPI` "instance"
 
 ```Python hl_lines="3"
-{!tutorial/src/first_steps/tutorial001.py!}
+{!./src/first_steps/tutorial001.py!}
 ```
 
 Here the `app` variable will be an "instance" of the class `FastAPI`.
@@ -118,7 +118,7 @@ uvicorn main:app --debug
 If you create your app like:
 
 ```Python hl_lines="3"
-{!tutorial/src/first_steps/tutorial002.py!}
+{!./src/first_steps/tutorial002.py!}
 ```
 
 And put it in a file `main.py`, then you would call `uvicorn` like:
@@ -188,7 +188,7 @@ We are going to call them "operations" too.
 #### Define a path operation function
 
 ```Python hl_lines="6"
-{!tutorial/src/first_steps/tutorial001.py!}
+{!./src/first_steps/tutorial001.py!}
 ```
 
 The `@app.get("/")` tells **FastAPI** that the function right below is in charge of handling requests that go to:
@@ -221,7 +221,7 @@ And the more exotic ones:
 ### Step 4: define the path operation function
 
 ```Python hl_lines="7"
-{!tutorial/src/first_steps/tutorial001.py!}
+{!./src/first_steps/tutorial001.py!}
 ```
 
 This is a Python function. 
@@ -235,7 +235,7 @@ In this case, it is an `async` function.
 You could also define it as a normal function instead of `async def`:
 
 ```Python hl_lines="7"
-{!tutorial/src/first_steps/tutorial003.py!}
+{!./src/first_steps/tutorial003.py!}
 ```
 
 To know the difference, read the section about [Concurrency and `async` / `await`](/async/).
@@ -243,7 +243,7 @@ To know the difference, read the section about [Concurrency and `async` / `await
 ### Step 5: return the content
 
 ```Python hl_lines="8"
-{!tutorial/src/first_steps/tutorial001.py!}
+{!./src/first_steps/tutorial001.py!}
 ```
 
 You can return a `dict`, `list`, singular values as `str`, `int`, etc.

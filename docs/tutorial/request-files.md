@@ -5,7 +5,7 @@ You can define files to be uploaded by the client using `File`.
 Import `File` from `fastapi`:
 
 ```Python hl_lines="1"
-{!./tutorial/src/request_files/tutorial001.py!}
+{!./src/request_files/tutorial001.py!}
 ```
 
 ## Define `File` parameters
@@ -13,7 +13,7 @@ Import `File` from `fastapi`:
 Create file parameters the same way you would for `Body` or `Form`:
 
 ```Python hl_lines="7"
-{!./tutorial/src/request_files/tutorial001.py!}
+{!./src/request_files/tutorial001.py!}
 ```
 
 The files will be uploaded as form data and you will receive the contents as `bytes`.

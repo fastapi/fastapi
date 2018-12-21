@@ -7,7 +7,7 @@ First, of course, you can mix `Path`, `Query` and request body parameter declara
 And you can also declare body parameters as optional, by setting the default to `None`:
 
 ```Python hl_lines="17 18 19"
-{!./tutorial/src/body_multiple_params/tutorial001.py!}
+{!./src/body_multiple_params/tutorial001.py!}
 ```
 
 !!! note
@@ -30,7 +30,7 @@ In the previous example, the path operations would expect a JSON body with the a
 But you can also declare multiple body parameters, e.g. `item` and `user`:
 
 ```Python hl_lines="20"
-{!./tutorial/src/body_multiple_params/tutorial002.py!}
+{!./src/body_multiple_params/tutorial002.py!}
 ```
 
 In this case, **FastAPI** will notice that there are more than one body parameter in the function (two parameters that are Pydantic models).
@@ -72,7 +72,7 @@ But you can instruct **FastAPI** to treat it as another body key using `Body`:
 
 
 ```Python hl_lines="21"
-{!./tutorial/src/body_multiple_params/tutorial003.py!}
+{!./src/body_multiple_params/tutorial003.py!}
 ```
 
 In this case, **FastAPI** will expect a body like:
@@ -109,7 +109,7 @@ q: str = None
 as in:
 
 ```Python hl_lines="25"
-{!./tutorial/src/body_multiple_params/tutorial004.py!}
+{!./src/body_multiple_params/tutorial004.py!}
 ```
 
 !!! info
@@ -131,7 +131,7 @@ item: Item = Body(..., embed=True)
 as in:
 
 ```Python hl_lines="15"
-{!./tutorial/src/body_multiple_params/tutorial005.py!}
+{!./src/body_multiple_params/tutorial005.py!}
 ```
 
 In this case **FastAPI** will expect a body like:

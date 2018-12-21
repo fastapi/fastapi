@@ -1,7 +1,7 @@
 You can declare path "parameters" or "variables" with the same syntax used by Python format strings:
 
 ```Python hl_lines="6 7"
-{!./tutorial/src/path_params/tutorial001.py!}
+{!./src/path_params/tutorial001.py!}
 ```
 
 The value of the path parameter `item_id` will be passed to your function as the argument `item_id`.
@@ -17,7 +17,7 @@ So, if you run this example and go to <a href="http://127.0.0.1:8000/items/foo" 
 You can declare the type of a path parameter in the function, using standard Python type annotations:
 
 ```Python hl_lines="7"
-{!./tutorial/src/path_params/tutorial002.py!}
+{!./src/path_params/tutorial002.py!}
 ```
 
 In this case, `item_id` is declared to be an `int`.

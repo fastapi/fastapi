@@ -15,7 +15,7 @@ You can adapt it to any other NoSQL database like:
 For now, don't pay attention to the rest, only the imports:
 
 ```Python hl_lines="6 7 8"
-{!./tutorial/src/nosql_databases/tutorial001.py!}
+{!./src/nosql_databases/tutorial001.py!}
 ```
 
 ## Define a constant to use as a "document type"
@@ -25,7 +25,7 @@ We will use it later as a fixed field `type` in our documents.
 This is not required by Couchbase, but is a good practice that will help you afterwards.
 
 ```Python hl_lines="10"
-{!./tutorial/src/nosql_databases/tutorial001.py!}
+{!./src/nosql_databases/tutorial001.py!}
 ```
 
 ## Add a function to get a `Bucket`
@@ -50,7 +50,7 @@ This utility function will:
 * Return it.
 
 ```Python hl_lines="13 14 15 16 17 18 19 20"
-{!./tutorial/src/nosql_databases/tutorial001.py!}
+{!./src/nosql_databases/tutorial001.py!}
 ```
 
 ## Create Pydantic models
@@ -62,7 +62,7 @@ As **Couchbase** "documents" are actually just "JSON objects", we can model them
 First, let's create a `User` model:
 
 ```Python hl_lines="23 24 25 26 27"
-{!./tutorial/src/nosql_databases/tutorial001.py!}
+{!./src/nosql_databases/tutorial001.py!}
 ```
 
 We will use this model in our path operation function, so, we don't include in it the `hashed_password`.
@@ -76,7 +76,7 @@ This will have the data that is actually stored in the database.
 We don't create it as a subclass of Pydantic's `BaseModel` but as a subclass of our own `User`, because it will have all the attributes in `User` plus a couple more:
 
 ```Python hl_lines="30 31 32"
-{!./tutorial/src/nosql_databases/tutorial001.py!}
+{!./src/nosql_databases/tutorial001.py!}
 ```
 
 !!! note
@@ -97,7 +97,7 @@ Now create a function that will:
 By creating a function that is only dedicated to getting your user from a `username` (or any other parameter) independent of your path operation function, you can more easily re-use it in multiple parts and also add <abbr title="Automated test, written in code, that checks if another piece of code is working correctly.">unit tests</abbr> for it:
 
 ```Python hl_lines="35 36 37 38 39 40 41"
-{!./tutorial/src/nosql_databases/tutorial001.py!}
+{!./src/nosql_databases/tutorial001.py!}
 ```
 
 ### f-strings
@@ -132,7 +132,7 @@ UserInDB(username="johndoe", hashed_password="some_hash")
 ### Create the `FastAPI` app
 
 ```Python hl_lines="45"
-{!./tutorial/src/nosql_databases/tutorial001.py!}
+{!./src/nosql_databases/tutorial001.py!}
 ```
 
 ### Create the path operation function
@@ -142,7 +142,7 @@ As our code is calling Couchbase and we are not using the <a href="https://docs.
 Also, Couchbase recommends not using a single `Bucket` object in multiple "<abbr title="A sequence of code being executed by the program, while at the same time, or at intervals, there can be others being executed too.">thread</abbr>s", so, we can get just get the bucket directly and pass it to our utility functions:
 
 ```Python hl_lines="48 49 50 51 52"
-{!./tutorial/src/nosql_databases/tutorial001.py!}
+{!./src/nosql_databases/tutorial001.py!}
 ```
 
 ## Recap

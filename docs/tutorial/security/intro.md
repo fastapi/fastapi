@@ -1,5 +1,5 @@
 Coming soon...
 
 ```Python
-{!./tutorial/src/security/tutorial001.py!}
+{!./src/security/tutorial001.py!}
 ```

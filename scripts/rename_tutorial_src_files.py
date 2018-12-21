@@ -2,7 +2,7 @@
 from pathlib import Path, PurePath
 from string import digits
 
-directory = Path("./docs/tutorial/src")
+directory = Path("./docs/src")
 skip_names = {"bigger_applications"}
 skip_dirs = {directory / name for name in skip_names}
 dirs = sorted([Path(f) for f in directory.iterdir() if f not in skip_dirs])

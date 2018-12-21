@@ -5,7 +5,7 @@ When you need to receive form fields instead of JSON, you can use `Form`.
 Import `Form` from `fastapi`:
 
 ```Python hl_lines="1"
-{!./tutorial/src/request_forms/tutorial001.py!}
+{!./src/request_forms/tutorial001.py!}
 ```
 
 ## Define `Form` parameters
@@ -13,7 +13,7 @@ Import `Form` from `fastapi`:
 Create form parameters the same way you would for `Body` or `Query`:
 
 ```Python hl_lines="7"
-{!./tutorial/src/request_forms/tutorial001.py!}
+{!./src/request_forms/tutorial001.py!}
 ```
 
 For example, in one of the ways the OAuth2 specification can be used (called "password flow") it is required to send a `username` and `password` as form fields.

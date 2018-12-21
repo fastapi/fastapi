@@ -12,7 +12,7 @@ You can pass directly the `int` code, like `404`.
 But if you don't remember what each number code is for, you can use the shortcut constants from `starlette`:
 
 ```Python hl_lines="5 18"
-{!./tutorial/src/path_operation_configuration/tutorial001.py!}
+{!./src/path_operation_configuration/tutorial001.py!}
 ```
 
 That status code will be used in the response and will be added to the OpenAPI schema.
@@ -23,7 +23,7 @@ That status code will be used in the response and will be added to the OpenAPI s
 You can add tags to your path operation, pass the parameter `tags` with a `list` of `str` (commonly just one `str`):
 
 ```Python hl_lines="17 22 27"
-{!./tutorial/src/path_operation_configuration/tutorial002.py!}
+{!./src/path_operation_configuration/tutorial002.py!}
 ```
 
 They will be added to the OpenAPI schema and used by the automatic documentation interfaces:
@@ -35,7 +35,7 @@ They will be added to the OpenAPI schema and used by the automatic documentation
 You can add a `summary` and `description`:
 
 ```Python hl_lines="20 21"
-{!./tutorial/src/path_operation_configuration/tutorial003.py!}
+{!./src/path_operation_configuration/tutorial003.py!}
 ```
 
 ## Description from docstring
@@ -43,7 +43,7 @@ You can add a `summary` and `description`:
 As descriptions tend to be long and cover multiple lines, you can declare the path operation description in the function <abbr title="a multi-line string as the first expression inside a function (not assigned to any variable) used for documentation">docstring</abbr> and **FastAPI** will read it from there.
 
 ```Python hl_lines="19 20 21 22 23 24 25 26 27"
-{!./tutorial/src/path_operation_configuration/tutorial004.py!}
+{!./src/path_operation_configuration/tutorial004.py!}
 ```
 
 It will be used in the interactive docs:
@@ -58,7 +58,7 @@ It will be used in the interactive docs:
 You can specify the response description with the parameter `response_description`:
 
 ```Python hl_lines="21"
-{!./tutorial/src/path_operation_configuration/tutorial005.py!}
+{!./src/path_operation_configuration/tutorial005.py!}
 ```
 
 !!! info
@@ -77,7 +77,7 @@ If you need to mark a path operation as <abbr title="obsolete, recommended not t
 
 
 ```Python hl_lines="16"
-{!./tutorial/src/path_operation_configuration/tutorial006.py!}
+{!./src/path_operation_configuration/tutorial006.py!}
 ```
 
 It will be clearly marked as deprecated in the interactive docs:
