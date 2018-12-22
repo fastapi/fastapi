@@ -2,7 +2,7 @@ import os
 
 from starlette.testclient import TestClient
 
-from request_files.tutorial001 import app
+from request_forms_and_files.tutorial001 import app
 
 client = TestClient(app)
 
@@ -45,10 +45,11 @@ openapi_schema = {
         "schemas": {
             "Body_create_file": {
                 "title": "Body_create_file",
-                "required": ["file"],
+                "required": ["file", "token"],
                 "type": "object",
                 "properties": {
-                    "file": {"title": "File", "type": "string", "format": "binary"}
+                    "file": {"title": "File", "type": "string", "format": "binary"},
+                    "token": {"title": "Token", "type": "string"},
                 },
             },
             "ValidationError": {
@@ -97,25 +98,69 @@ file_required = {
     ]
 }
 
+token_required = {
+    "detail": [
+        {
+            "loc": ["body", "token"],
+            "msg": "field required",
+            "type": "value_error.missing",
+        }
+    ]
+}
+
+file_and_token_required = {
+    "detail": [
+        {
+            "loc": ["body", "file"],
+            "msg": "field required",
+            "type": "value_error.missing",
+        },
+        {
+            "loc": ["body", "token"],
+            "msg": "field required",
+            "type": "value_error.missing",
+        },
+    ]
+}
+
 
 def test_post_form_no_body():
     response = client.post("/files/")
+    assert response.status_code == 422
+    assert response.json() == file_and_token_required
+
+
+def test_post_form_no_file():
+    response = client.post("/files/", data={"token": "foo"})
     assert response.status_code == 422
     assert response.json() == file_required
 
 
 def test_post_body_json():
-    response = client.post("/files/", json={"file": "Foo"})
+    response = client.post("/files/", json={"file": "Foo", "token": "Bar"})
     assert response.status_code == 422
-    assert response.json() == file_required
+    assert response.json() == file_and_token_required
 
 
-def test_post_file(tmpdir):
+def test_post_file_no_token(tmpdir):
     path = os.path.join(tmpdir, "test.txt")
     with open(path, "wb") as file:
         file.write(b"<file content>")
 
     client = TestClient(app)
     response = client.post("/files/", files={"file": open(path, "rb")})
+    assert response.status_code == 422
+    assert response.json() == token_required
+
+
+def test_post_file_and_token(tmpdir):
+    path = os.path.join(tmpdir, "test.txt")
+    with open(path, "wb") as file:
+        file.write(b"<file content>")
+
+    client = TestClient(app)
+    response = client.post(
+        "/files/", data={"token": "foo"}, files={"file": open(path, "rb")}
+    )
     assert response.status_code == 200
-    assert response.json() == {"file_size": 14}
+    assert response.json() == {"file_size": 14, "token": "foo"}

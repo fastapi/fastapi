@@ -87,16 +87,6 @@ def test_openapi_scheme():
     assert response.json() == openapi_schema
 
 
-item_id_not_int = {
-    "detail": [
-        {
-            "loc": ["path", "item_id"],
-            "msg": "value is not a valid integer",
-            "type": "type_error.integer",
-        }
-    ]
-}
-
 password_required = {
     "detail": [
         {

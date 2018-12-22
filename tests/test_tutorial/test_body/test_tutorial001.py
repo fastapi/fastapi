@@ -172,3 +172,9 @@ def test_post_body(path, body, expected_status, expected_response):
     response = client.post(path, json=body)
     assert response.status_code == expected_status
     assert response.json() == expected_response
+
+
+def test_post_broken_body():
+    response = client.post("/items/", data={"name": "Foo", "price": 50.5})
+    assert response.status_code == 400
+    assert response.json() == {"detail": "There was an error parsing the body"}
