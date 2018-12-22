@@ -1,5 +1,3 @@
-import sys
-
 import pytest
 from starlette.testclient import TestClient
 
@@ -7,8 +5,6 @@ from body_schema.tutorial001 import app
 
 client = TestClient(app)
 
-
-print(sys.path)
 
 openapi_schema = {
     "openapi": "3.0.2",

@@ -143,6 +143,5 @@ item_id_not_int = {
 )
 def test_post_body(path, body, expected_status, expected_response):
     response = client.put(path, json=body)
-    print(response.text)
     assert response.status_code == expected_status
     assert response.json() == expected_response
