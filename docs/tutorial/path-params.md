@@ -25,7 +25,7 @@ In this case, `item_id` is declared to be an `int`.
 !!! check
     This will give you editor support inside of your function, with error checks, completion, etc.
 
-## Data "parsing"
+## Data <abbr title="also known as: serialization, parsing, marshalling">conversion</abbr>
 
 If you run this example and open your browser at <a href="http://127.0.0.1:8000/items/3" target="_blank">http://127.0.0.1:8000/items/3</a>, you will see a response of:
 

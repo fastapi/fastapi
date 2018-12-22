@@ -1,7 +1,10 @@
 import asyncio
 import inspect
 from copy import deepcopy
+from datetime import date, datetime, time, timedelta
+from decimal import Decimal
 from typing import Any, Callable, Dict, List, Mapping, Sequence, Tuple, Type
+from uuid import UUID
 
 from fastapi import params
 from fastapi.dependencies.models import Dependant, SecurityRequirement
@@ -16,7 +19,18 @@ from pydantic.utils import lenient_issubclass
 from starlette.concurrency import run_in_threadpool
 from starlette.requests import Request
 
-param_supported_types = (str, int, float, bool)
+param_supported_types = (
+    str,
+    int,
+    float,
+    bool,
+    UUID,
+    date,
+    datetime,
+    time,
+    timedelta,
+    Decimal,
+)
 
 
 def get_sub_dependant(*, param: inspect.Parameter, path: str) -> Dependant:
@@ -74,7 +88,7 @@ def get_dependant(*, path: str, call: Callable, name: str = None) -> Dependant:
             assert (
                 lenient_issubclass(param.annotation, param_supported_types)
                 or param.annotation == param.empty
-            ), f"Path params must be of type str, int, float or boot: {param}"
+            ), f"Path params must be of one of the supported types"
             param = signature_params[param_name]
             add_param_to_fields(
                 param=param,

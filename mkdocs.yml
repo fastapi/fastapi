@@ -28,6 +28,7 @@ nav:
         - Body - Multiple Parameters: 'tutorial/body-multiple-params.md'
         - Body - Schema: 'tutorial/body-schema.md'
         - Body - Nested Models: 'tutorial/body-nested-models.md'
+        - Extra data types: 'tutorial/extra-data-types.md'
         - Cookie Parameters: 'tutorial/cookie-params.md'
         - Header Parameters: 'tutorial/header-params.md'
         - Response Model: 'tutorial/response-model.md'

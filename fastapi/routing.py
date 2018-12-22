@@ -22,9 +22,10 @@ from starlette.status import HTTP_422_UNPROCESSABLE_ENTITY
 
 
 def serialize_response(*, field: Field = None, response: Response) -> Any:
+    encoded = jsonable_encoder(response)
     if field:
         errors = []
-        value, errors_ = field.validate(response, {}, loc=("response",))
+        value, errors_ = field.validate(encoded, {}, loc=("response",))
         if isinstance(errors_, ErrorWrapper):
             errors.append(errors_)
         elif isinstance(errors_, list):
@@ -33,7 +34,7 @@ def serialize_response(*, field: Field = None, response: Response) -> Any:
             raise ValidationError(errors)
         return jsonable_encoder(value)
     else:
-        return jsonable_encoder(response)
+        return encoded
 
 
 def get_app(
@@ -86,40 +87,10 @@ def get_app(
                 raw_response = await run_in_threadpool(dependant.call, **values)
             if isinstance(raw_response, Response):
                 return raw_response
-            if isinstance(raw_response, BaseModel):
-                return content_type(
-                    content=serialize_response(
-                        field=response_field, response=raw_response
-                    ),
-                    status_code=status_code,
-                )
-            errors = []
-            try:
-                return content_type(
-                    content=serialize_response(
-                        field=response_field, response=raw_response
-                    ),
-                    status_code=status_code,
-                )
-            except Exception as e:
-                errors.append(e)
-            try:
-                response = dict(raw_response)
-                return content_type(
-                    content=serialize_response(field=response_field, response=response),
-                    status_code=status_code,
-                )
-            except Exception as e:
-                errors.append(e)
-            try:
-                response = vars(raw_response)
-                return content_type(
-                    content=serialize_response(field=response_field, response=response),
-                    status_code=status_code,
-                )
-            except Exception as e:
-                errors.append(e)
-                raise ValueError(errors)
+            response_data = serialize_response(
+                field=response_field, response=raw_response
+            )
+            return content_type(content=response_data, status_code=status_code)
 
     return app
 
