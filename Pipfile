@@ -21,6 +21,7 @@ mkdocs-material = "*"
 markdown-include = "*"
 autoflake = "*"
 email-validator = "*"
+ujson = "*"
 
 [packages]
 starlette = "*"

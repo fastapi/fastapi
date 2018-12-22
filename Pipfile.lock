@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "64539bfa9f03f10715a5f83b1d62776513ae44518c0cff011b7540c17eada955"
+            "sha256": "a0f966a95cb84845ca4aad02c44fc0e7c5e2047fc44dcf19a95a4abaa02d0197"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -624,9 +624,9 @@
         },
         "pyrsistent": {
             "hashes": [
-                "sha256:05910b7ff43cec0a853c15da0bfaf2867faa95f29b08e71f5846a195f1f38c75"
+                "sha256:59880cc33ac293515892b2969aa8f4ed2cec592cbd0be4c4e20f2410468bbc62"
             ],
-            "version": "==0.14.7"
+            "version": "==0.14.8"
         },
         "pytest": {
             "hashes": [
@@ -818,6 +818,13 @@
             ],
             "markers": "python_version < '3.7' and implementation_name == 'cpython'",
             "version": "==1.1.1"
+        },
+        "ujson": {
+            "hashes": [
+                "sha256:f66073e5506e91d204ab0c614a148d5aa938bdbf104751be66f8ad7a222f5f86"
+            ],
+            "index": "pypi",
+            "version": "==1.35"
         },
         "urllib3": {
             "hashes": [
