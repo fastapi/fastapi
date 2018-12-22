@@ -84,6 +84,12 @@ openapi_schema = {
 }
 
 
+def test_openapi_schema():
+    response = client.get("/openapi.json")
+    assert response.status_code == 200
+    assert response.json() == openapi_schema
+
+
 @pytest.mark.parametrize(
     "path,expected_status,expected_response",
     [
