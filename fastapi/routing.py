@@ -51,8 +51,7 @@ def get_app(
         try:
             body = None
             if body_field:
-                body_bytes = await request.body()
-                if body_bytes and is_body_form:
+                if is_body_form:
                     raw_body = await request.form()
                     body = {}
                     for field, value in raw_body.items():
@@ -60,8 +59,12 @@ def get_app(
                             body[field] = await value.read()
                         else:
                             body[field] = value
-                elif body_bytes:
-                    body = await request.json()
+                    if not body:
+                        body = None
+                else:
+                    body_bytes = await request.body()
+                    if body_bytes:
+                        body = await request.json()
         except Exception as e:
             logging.error("Error getting request body", e)
             raise HTTPException(
