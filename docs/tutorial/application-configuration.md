@@ -1,13 +1,13 @@
 Coming soon...
 
 ```Python
-{!./src/application-configuration/tutorial001.py!}
+{!./src/application_configuration/tutorial001.py!}
 ```
 
 ```Python
-{!./src/application-configuration/tutorial002.py!}
+{!./src/application_configuration/tutorial002.py!}
 ```
 
 ```Python
-{!./src/application-configuration/tutorial003.py!}
+{!./src/application_configuration/tutorial003.py!}
 ```
