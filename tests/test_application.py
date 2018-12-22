@@ -1147,10 +1147,12 @@ def test_get_path(path, expected_status, expected_response):
 def test_swagger_ui():
     response = client.get("/docs")
     assert response.status_code == 200
+    assert response.headers["content-type"] == "text/html; charset=utf-8"
     assert "swagger-ui-dist" in response.text
 
 
 def test_redoc():
     response = client.get("/redoc")
     assert response.status_code == 200
+    assert response.headers["content-type"] == "text/html; charset=utf-8"
     assert "redoc@next" in response.text
