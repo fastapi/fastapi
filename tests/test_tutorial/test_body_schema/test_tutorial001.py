@@ -107,8 +107,8 @@ openapi_schema = {
 }
 
 
-def openapi_schema():
-    response = client.put("/openapi.json")
+def test_openapi_schema():
+    response = client.get("/openapi.json")
     assert response.status_code == 200
     assert response.json() == openapi_schema
 

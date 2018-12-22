@@ -35,7 +35,8 @@ test = [
     "mypy",
     "black",
     "isort",
-    "requests"
+    "requests",
+    "email_validator"
 ]
 doc = [
     "mkdocs",
