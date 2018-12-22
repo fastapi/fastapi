@@ -321,7 +321,6 @@ Try changing the line with:
 
 ...and see how your editor will auto-complete the attributes and know their types:
 
-![editor support](img/vscode-completion.png)
 ![editor support](https://fastapi.tiangolo.com/img/vscode-completion.png)
 
 
