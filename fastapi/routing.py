@@ -53,14 +53,14 @@ def get_app(
             if body_field:
                 if is_body_form:
                     raw_body = await request.form()
-                    body = {}
+                    form_fields = {}
                     for field, value in raw_body.items():
                         if isinstance(value, UploadFile):
-                            body[field] = await value.read()
+                            form_fields[field] = await value.read()
                         else:
-                            body[field] = value
-                    if not body:
-                        body = None
+                            form_fields[field] = value
+                    if form_fields:
+                        body = form_fields
                 else:
                     body_bytes = await request.body()
                     if body_bytes:
