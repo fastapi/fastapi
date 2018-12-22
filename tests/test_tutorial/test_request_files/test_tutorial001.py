@@ -1,7 +1,8 @@
-import pytest
+import os
+
 from starlette.testclient import TestClient
 
-from request_forms.tutorial001 import app
+from request_files.tutorial001 import app
 
 client = TestClient(app)
 
@@ -9,7 +10,7 @@ openapi_schema = {
     "openapi": "3.0.2",
     "info": {"title": "Fast API", "version": "0.1.0"},
     "paths": {
-        "/login/": {
+        "/files/": {
             "post": {
                 "responses": {
                     "200": {
@@ -27,12 +28,12 @@ openapi_schema = {
                         },
                     },
                 },
-                "summary": "Login Post",
-                "operationId": "login_login__post",
+                "summary": "Create File Post",
+                "operationId": "create_file_files__post",
                 "requestBody": {
                     "content": {
-                        "application/x-www-form-urlencoded": {
-                            "schema": {"$ref": "#/components/schemas/Body_login"}
+                        "multipart/form-data": {
+                            "schema": {"$ref": "#/components/schemas/Body_create_file"}
                         }
                     },
                     "required": True,
@@ -42,13 +43,12 @@ openapi_schema = {
     },
     "components": {
         "schemas": {
-            "Body_login": {
-                "title": "Body_login",
-                "required": ["username", "password"],
+            "Body_create_file": {
+                "title": "Body_create_file",
+                "required": ["file"],
                 "type": "object",
                 "properties": {
-                    "username": {"title": "Username", "type": "string"},
-                    "password": {"title": "Password", "type": "string"},
+                    "file": {"title": "File", "type": "string", "format": "binary"}
                 },
             },
             "ValidationError": {
@@ -87,71 +87,34 @@ def test_openapi_scheme():
     assert response.json() == openapi_schema
 
 
-item_id_not_int = {
+file_required = {
     "detail": [
         {
-            "loc": ["path", "item_id"],
-            "msg": "value is not a valid integer",
-            "type": "type_error.integer",
-        }
-    ]
-}
-
-password_required = {
-    "detail": [
-        {
-            "loc": ["body", "password"],
+            "loc": ["body", "file"],
             "msg": "field required",
             "type": "value_error.missing",
         }
     ]
 }
-username_required = {
-    "detail": [
-        {
-            "loc": ["body", "username"],
-            "msg": "field required",
-            "type": "value_error.missing",
-        }
-    ]
-}
-username_and_password_required = {
-    "detail": [
-        {
-            "loc": ["body", "username"],
-            "msg": "field required",
-            "type": "value_error.missing",
-        },
-        {
-            "loc": ["body", "password"],
-            "msg": "field required",
-            "type": "value_error.missing",
-        },
-    ]
-}
 
 
-@pytest.mark.parametrize(
-    "path,body,expected_status,expected_response",
-    [
-        (
-            "/login/",
-            {"username": "Foo", "password": "secret"},
-            200,
-            {"username": "Foo"},
-        ),
-        ("/login/", {"username": "Foo"}, 422, password_required),
-        ("/login/", {"password": "secret"}, 422, username_required),
-        ("/login/", None, 422, username_and_password_required),
-    ],
-)
-def test_post_body_form(path, body, expected_status, expected_response):
-    response = client.post(path, data=body)
-    assert response.status_code == expected_status
-    assert response.json() == expected_response
+def test_post_form_no_body():
+    response = client.post("/files/")
+    assert response.status_code == 422
+    assert response.json() == file_required
 
 
 def test_post_body_json():
-    response = client.post("/login/", json={"username": "Foo", "password": "secret"})
+    response = client.post("/files/", json={"file": "Foo"})
     assert response.status_code == 422
-    assert response.json() == username_and_password_required
+    assert response.json() == file_required
+
+
+def test_multipart_request_files(tmpdir):
+    path = os.path.join(tmpdir, "test.txt")
+    with open(path, "wb") as file:
+        file.write(b"<file content>")
+
+    client = TestClient(app)
+    response = client.post("/files/", files={"file": open(path, "rb")})
+    assert response.json() == {"file_size": 14}

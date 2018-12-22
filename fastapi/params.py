@@ -241,7 +241,6 @@ class Form(Body):
         self,
         default: Any,
         *,
-        sub_key: bool = False,
         media_type: str = "application/x-www-form-urlencoded",
         alias: str = None,
         title: str = None,
@@ -257,7 +256,7 @@ class Form(Body):
     ):
         super().__init__(
             default,
-            embed=sub_key,
+            embed=True,
             media_type=media_type,
             alias=alias,
             title=title,
@@ -278,7 +277,6 @@ class File(Form):
         self,
         default: Any,
         *,
-        sub_key: bool = False,
         media_type: str = "multipart/form-data",
         alias: str = None,
         title: str = None,
@@ -294,7 +292,6 @@ class File(Form):
     ):
         super().__init__(
             default,
-            embed=sub_key,
             media_type=media_type,
             alias=alias,
             title=title,
