@@ -44,8 +44,8 @@ doc = [
     "markdown-include"
 ]
 dev = [
-    "prospector",
-    "rope"
+    "pyjwt",
+    "passlib[bcrypt]"
 ]
 all = [
     "requests",
