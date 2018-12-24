@@ -48,6 +48,7 @@ nav:
         - Security: 
             - Security Intro: 'tutorial/security/intro.md'
             - First Steps: 'tutorial/security/first-steps.md'
+            - Get Current User: 'tutorial/security/get-current-user.md'
             - Simple OAuth2 with Password and Bearer: 'tutorial/security/simple-oauth2.md'
             - OAuth2 with Password (and hashing), Bearer with JWT tokens: 'tutorial/security/oauth2-jwt.md'
         - SQL (Relational) Databases: 'tutorial/sql-databases.md'
