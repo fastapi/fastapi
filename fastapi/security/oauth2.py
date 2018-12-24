@@ -1,6 +1,7 @@
 from typing import List, Optional
 
 from fastapi.openapi.models import OAuth2 as OAuth2Model, OAuthFlows as OAuthFlowsModel
+from fastapi.params import Form
 from fastapi.security.base import SecurityBase
 from pydantic import BaseModel, Schema
 from starlette.exceptions import HTTPException
@@ -18,12 +19,12 @@ class OAuth2PasswordRequestData(BaseModel):
     client_secret: Optional[str] = None
 
 
-class OAuth2PasswordRequestForm(BaseModel):
+class OAuth2PasswordRequestForm:
     """
-    This is not a "Security" model. Use it as request Body. As in:
+    This is a dependency class, use it like:
 
         @app.post("/login")
-        def login(form_data: Oauth2PasswordRequestForm):
+        def login(form_data: Oauth2PasswordRequestForm = Depends()):
             data = form_data.parse()
             print(data.username)
             print(data.password)
@@ -54,13 +55,21 @@ class OAuth2PasswordRequestForm(BaseModel):
     It has the method parse() that returns a model with all the same data and the scopes extracted as a list of strings.
     """
 
-    grant_type: str = Schema(None, regex="password")
-    username: str
-    password: str
-    scope: str = ""
-    # Client ID and secret might come from headers
-    client_id: Optional[str] = None
-    client_secret: Optional[str] = None
+    def __init__(
+        self,
+        grant_type: str = Form(None, regex="password"),
+        username: str = Form(...),
+        password: str = Form(...),
+        scope: str = Form(""),
+        client_id: Optional[str] = Form(None),
+        client_secret: Optional[str] = Form(None),
+    ):
+        self.grant_type = grant_type
+        self.username = username
+        self.password = password
+        self.scope = scope
+        self.client_id = client_id
+        self.client_secret = client_secret
 
     def parse(self) -> OAuth2PasswordRequestData:
         return OAuth2PasswordRequestData(
