@@ -1,22 +1,11 @@
-from typing import List, Optional
+from typing import Optional
 
 from fastapi.openapi.models import OAuth2 as OAuth2Model, OAuthFlows as OAuthFlowsModel
 from fastapi.params import Form
 from fastapi.security.base import SecurityBase
-from pydantic import BaseModel, Schema
 from starlette.exceptions import HTTPException
 from starlette.requests import Request
 from starlette.status import HTTP_403_FORBIDDEN
-
-
-class OAuth2PasswordRequestData(BaseModel):
-    grant_type: str = "password"
-    username: str
-    password: str
-    scope: Optional[List[str]] = None
-    # Client ID and secret might come from headers
-    client_id: Optional[str] = None
-    client_secret: Optional[str] = None
 
 
 class OAuth2PasswordRequestForm:
@@ -28,7 +17,7 @@ class OAuth2PasswordRequestForm:
             data = form_data.parse()
             print(data.username)
             print(data.password)
-            for scope in data.scope:
+            for scope in data.scopes:
                 print(scope)
             if data.client_id:
                 print(data.client_id)
@@ -40,8 +29,8 @@ class OAuth2PasswordRequestForm:
     It creates the following Form request parameters in your endpoint:
 
     grant_type: the OAuth2 spec says it is required and MUST be the fixed string "password".
-        Nevertheless, this model is permissive and allows not passing it. If you want to enforce it,
-        use instead the OAuth2PasswordRequestFormStrict model.
+        Nevertheless, this dependency class is permissive and allows not passing it. If you want to enforce it,
+        use instead the OAuth2PasswordRequestFormStrict dependency.
     username: username string. The OAuth2 spec requires the exact field name "username".
     password: password string. The OAuth2 spec requires the exact field name "password".
     scope: Optional string. Several scopes (each one a string) separated by spaces. E.g.
@@ -50,9 +39,6 @@ class OAuth2PasswordRequestForm:
         using HTTP Basic auth, as: client_id:client_secret
     client_secret: optional string. OAuth2 recommends sending the client_id and client_secret (if any)
         using HTTP Basic auth, as: client_id:client_secret
-    
-
-    It has the method parse() that returns a model with all the same data and the scopes extracted as a list of strings.
     """
 
     def __init__(
@@ -67,24 +53,61 @@ class OAuth2PasswordRequestForm:
         self.grant_type = grant_type
         self.username = username
         self.password = password
-        self.scope = scope
+        self.scopes = scope.split()
         self.client_id = client_id
         self.client_secret = client_secret
 
-    def parse(self) -> OAuth2PasswordRequestData:
-        return OAuth2PasswordRequestData(
-            grant_type=self.grant_type,
-            username=self.username,
-            password=self.password,
-            scope=self.scope.split(),
-            client_id=self.client_id,
-            client_secret=self.client_secret,
-        )
-
 
 class OAuth2PasswordRequestFormStrict(OAuth2PasswordRequestForm):
-    # The OAuth2 spec says it MUST have the value "password"
-    grant_type: str = Schema(..., regex="password")
+    """
+    This is a dependency class, use it like:
+
+        @app.post("/login")
+        def login(form_data: Oauth2PasswordRequestFormStrict = Depends()):
+            data = form_data.parse()
+            print(data.username)
+            print(data.password)
+            for scope in data.scopes:
+                print(scope)
+            if data.client_id:
+                print(data.client_id)
+            if data.client_secret:
+                print(data.client_secret)
+            return data
+
+    
+    It creates the following Form request parameters in your endpoint:
+
+    grant_type: the OAuth2 spec says it is required and MUST be the fixed string "password".
+        This dependency is strict about it. If you want to be permissive, use instead the
+        OAuth2PasswordRequestFormStrict dependency class.
+    username: username string. The OAuth2 spec requires the exact field name "username".
+    password: password string. The OAuth2 spec requires the exact field name "password".
+    scope: Optional string. Several scopes (each one a string) separated by spaces. E.g.
+        "items:read items:write users:read profile openid"
+    client_id: optional string. OAuth2 recommends sending the client_id and client_secret (if any)
+        using HTTP Basic auth, as: client_id:client_secret
+    client_secret: optional string. OAuth2 recommends sending the client_id and client_secret (if any)
+        using HTTP Basic auth, as: client_id:client_secret
+    """
+
+    def __init__(
+        self,
+        grant_type: str = Form(..., regex="password"),
+        username: str = Form(...),
+        password: str = Form(...),
+        scope: str = Form(""),
+        client_id: Optional[str] = Form(None),
+        client_secret: Optional[str] = Form(None),
+    ):
+        super().__init__(
+            grant_type=grant_type,
+            username=username,
+            password=password,
+            scope=scope,
+            client_id=client_id,
+            client_secret=client_secret,
+        )
 
 
 class OAuth2(SecurityBase):
