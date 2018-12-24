@@ -1,5 +1,4 @@
 from datetime import datetime, timedelta
-from typing import Optional
 
 import jwt
 from fastapi import Depends, FastAPI, Security
@@ -23,7 +22,8 @@ fake_users_db = {
         "username": "johndoe",
         "full_name": "John Doe",
         "email": "johndoe@example.com",
-        "password_hash": "$2b$12$EixZaYVK1fsbw1ZfbX3OXePaWxn96p36WQoeG6Lruj3vjPGga31lW",
+        "hashed_password": "$2b$12$EixZaYVK1fsbw1ZfbX3OXePaWxn96p36WQoeG6Lruj3vjPGga31lW",
+        "disabled": False,
     }
 }
 
@@ -39,9 +39,9 @@ class TokenPayload(BaseModel):
 
 class User(BaseModel):
     username: str
-    email: Optional[str] = None
-    full_name: Optional[str] = None
-    disabled: Optional[bool] = None
+    email: str = None
+    full_name: str = None
+    disabled: bool = None
 
 
 class UserInDB(User):
@@ -102,24 +102,21 @@ async def get_current_user(token: str = Security(oauth2_scheme)):
 
 
 async def get_current_active_user(current_user: User = Depends(get_current_user)):
-    if not current_user.disabled:
+    if current_user.disabled:
         raise HTTPException(status_code=400, detail="Inactive user")
     return current_user
 
 
 @app.post("/token", response_model=Token)
-async def route_login_access_token(form_data: OAuth2PasswordRequestForm):
-    data = form_data.parse()
-    user = authenticate_user(fake_users_db, data.username, data.password)
+async def route_login_access_token(form_data: OAuth2PasswordRequestForm = Depends()):
+    user = authenticate_user(fake_users_db, form_data.username, form_data.password)
     if not user:
         raise HTTPException(status_code=400, detail="Incorrect email or password")
     access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
-    return {
-        "access_token": create_access_token(
-            data={"username": data.username}, expires_delta=access_token_expires
-        ),
-        "token_type": "bearer",
-    }
+    access_token = create_access_token(
+        data={"username": form_data.username}, expires_delta=access_token_expires
+    )
+    return {"access_token": access_token, "token_type": "bearer"}
 
 
 @app.get("/users/me", response_model=User)

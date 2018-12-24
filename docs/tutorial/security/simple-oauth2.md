@@ -16,13 +16,13 @@ But for the login path operation, we need to use these names to be compatible wi
 
 The spec also states that the `username` and `password` must be sent as form data (so, no JSON here).
 
-### `scopes`
+### `scope`
 
-The spec also says that the client can send another field of "`scopes`".
+The spec also says that the client can send another form field "`scope`".
 
-As a long string with all these "scopes" separated by spaces.
+The form field name is `scope` (in singular), but it is actually a long string with "scopes" separated by spaces.
 
-Each "scope" is just a string.
+Each "scope" is just a string (without spaces).
 
 They are normally used to declare specific security permissions, for exampe:
 
@@ -39,8 +39,6 @@ They are normally used to declare specific security permissions, for exampe:
 
     For OAuth2 they are just strings.
 
-    And when using `scopes` it normally referes to a long string of "scopes" separated by spaces.
-
 
 ## Code to get the `username` and `password`
 
@@ -48,17 +46,17 @@ Now let's use the utilities provided by **FastAPI** to handle this.
 
 ### `OAuth2PasswordRequestForm`
 
-First, import `OAuth2PasswordRequestForm`, and use it as the body declaration of the path `/token`:
+First, import `OAuth2PasswordRequestForm`, and use it as a dependency with `Depends` for the path `/token`:
 
-```Python hl_lines="2 63"
+```Python hl_lines="2 66"
 {!./src/security/tutorial003.py!}
 ```
 
-`OAuth2PasswordRequestForm` declares a form body with:
+`OAuth2PasswordRequestForm` is a class dependency that declares a form body with:
 
 * The `username`.
 * The `password`.
-* An optional `scopes` field as a big string, composed of strings separated by spaces.
+* An optional `scope` field as a big string, composed of strings separated by spaces.
 * An optional `grant_type`.
 
 !!! tip
@@ -69,24 +67,20 @@ First, import `OAuth2PasswordRequestForm`, and use it as the body declaration of
 * An optional `client_id` (we don't need it for our example).
 * An optional `client_secret` (we don't need it for our example).
 
-### Parse and use the form data
-
-`OAuth2PasswordRequestForm` provides a `.parse()` method that converts the `scopes` string into an actual list of strings.
-
-We are not using `scopes` in this example, but the functionality is there if you need it.
+### Use the form data
 
 !!! tip
-    The `.parse()` method returns a Pydantic model `OAuth2PasswordRequestData`.
+    The instance of the dependency class `OAuth2PasswordRequestForm` won't have an attribute `scope` with the long string separated by spaces, instead, it will have a `scopes` attribute with the actual list of strings for each scope sent.
 
-    But you don't need to import it, your editor will know its type and provide you with completion and type checks automatically.
+    We are not using `scopes` in this example, but the functionality is there if you need it.
 
-Now, get the user data from the (fake) database, using this `username`.
+Now, get the user data from the (fake) database, using the `username` from the form field.
 
 If there is no such user, we return an error saying "incorrect username or password".
 
 For the error, we use the exception `HTTPException` provided by Starlette directly:
 
-```Python hl_lines="4 64 65 66 67"
+```Python hl_lines="4 67 68 69"
 {!./src/security/tutorial003.py!}
 ```
 
@@ -98,9 +92,9 @@ Let's put that data in the Pydantic `UserInDB` model first.
 
 You should never save plaintext passwords, so, we'll use the (fake) password hashing system.
 
-If the password doesn't match, we return the same error.
+If the passwords don't match, we return the same error.
 
-```Python hl_lines="68 69 70 71"
+```Python hl_lines="70 71 72 73"
 {!./src/security/tutorial003.py!}
 ```
 
@@ -112,11 +106,11 @@ Pass the keys and values of the `user_dict` directly as key-value arguments, equ
 
 ```Python
 UserInDB(
-    username=user_dict["username"],
-    email=user_dict["email"],
-    full_name=user_dict["full_name"],
-    disabled=user_dict["disabled"],
-    hashed_password=user_dict["hashed_password"],
+    username = user_dict["username"],
+    email = user_dict["email"],
+    full_name = user_dict["full_name"],
+    disabled = user_dict["disabled"],
+    hashed_password = user_dict["hashed_password"],
 )
 ```
 
@@ -124,18 +118,18 @@ UserInDB(
 
 The response of the `token` endpoint must be a JSON object.
 
-It should have a `token_type`. In our case, as we are using "Bearer" tokens, the token type should be `bearer`.
+It should have a `token_type`. In our case, as we are using "Bearer" tokens, the token type should be "`bearer`".
 
 And it should have an `access_token`, with a string containing our access token.
 
 For this simple example, we are going to just be completely insecure and return the same `username` as the token.
 
 !!! tip
-    In the next chapter, you will see a real secure implementation, with password hasing and JWT tokens.
+    In the next chapter, you will see a real secure implementation, with password hashing and JWT tokens.
 
     But for now, let's focus on the specific details we need.
 
-```Python hl_lines="73"
+```Python hl_lines="75"
 {!./src/security/tutorial003.py!}
 ```
 
@@ -151,7 +145,7 @@ Both of these dependencies will just return an HTTP error if the user doesn't ex
 
 So, in our endpoint, we will only get a user if the user exists, was correctly authenticated, and is active:
 
-```Python hl_lines="49 50 51 52 53 56 57 58 59 77"
+```Python hl_lines="50 51 52 53 54 55 56 59 60 61 62 79"
 {!./src/security/tutorial003.py!}
 ```
 
