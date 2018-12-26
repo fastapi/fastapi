@@ -39,13 +39,13 @@ pip install fastapi[all]
     
     This is what you would probably do once you want to deploy your application to production:
 
-    ```bash
+    ```
     pip install fastapi
     ```
 
     Also install `uvicorn` to work as the server:
 
-    ```bash
+    ```
     pip install uvicorn
     ```
 

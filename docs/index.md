@@ -366,7 +366,7 @@ Used by FastAPI / Starlette:
 
 * <a href="http://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - for the server that loads and serves your application.
 
-You can install all of these with `pip3 install fastapi[full]`.
+You can install all of these with `pip3 install fastapi[all]`.
 
 ## License
 
