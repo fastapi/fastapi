@@ -28,7 +28,7 @@ FastAPI is a modern, fast (high-performance), web framework for building APIs wi
 
 The key features are:
 
-* **Fast**: Very high performance, on par with **NodeJS** and **Go** (thanks to Starlette and Pydantic).
+* **Fast**: Very high performance, on par with **NodeJS** and **Go** (thanks to Starlette and Pydantic). [One of the fastest Python frameworks available](#performance).
 
 * **Fast to code**: Increase the speed to develop features by about 200% to 300% *.
 * **Less bugs**: Reduce about 40% of human (developer) induced errors. *
@@ -342,6 +342,11 @@ For a more complete example including more features, see the <a href="https://fa
     * ...and more.
 
 
+## Performance
+
+Independent TechEmpower benchmarks show **FastAPI** applications running under Uvicorn as <a href="https://www.techempower.com/benchmarks/#section=test&runid=a979de55-980d-4721-a46f-77298b3f3923&hw=ph&test=fortune&l=zijzen-7" target="_blank">one of the fastest Python frameworks available</a>, only below Starlette and Uvicorn themselves (used internally by FastAPI). (*)
+
+To understand more about it, see the section <a href="https://fastapi.tiangolo.com/benchmarks/" target="_blank">Benchmarks</a>.
 
 ## Optional Dependencies
 
