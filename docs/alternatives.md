@@ -1,10 +1,10 @@
-What inspired **FastAPI**, how it compares to other alternatives and what it learnt from them.
+What inspired **FastAPI**, how it compares to other alternatives and what it learned from them.
 
 ## Intro
 
 **FastAPI** wouldn't exist if not for the previous work of others.
 
-There have been many tools created before that have helped inspiring its creation.
+There have been many tools created before that have helped inspire its creation.
 
 I have been avoiding the creation of a new framework for several years. First I tried to solve all the features covered by **FastAPI** using many different frameworks, plug-ins and tools.
 
@@ -26,7 +26,7 @@ Django REST framework was created to be a flexible toolkit for building Web APIs
 
 It is used by many companies including Mozilla, Red Hat and Eventbrite.
 
-It was one of the first examples of **automatic API documentation**, and this specifically was one of the first ideas that inspired "the search for" **FastAPI**.
+It was one of the first examples of **automatic API documentation**, and this was specifically one of the first ideas that inspired "the search for" **FastAPI**.
 
 !!! note
     Django REST Framework was created by Tom Christie. The same creator of Starlette and Uvicorn, on which **FastAPI** is based.
@@ -39,7 +39,7 @@ It was one of the first examples of **automatic API documentation**, and this sp
 
 Flask is a "microframework", it doesn't include database integrations nor many of the things that come by default in Django.
 
-This simplicity and flexibility allows doing things like using NoSQL databases as the main data storage system.
+This simplicity and flexibility allow doing things like using NoSQL databases as the main data storage system.
 
 As it is very simple, it's relatively intuitive to learn, although the documentation gets somewhat technical at some points.
 
@@ -62,7 +62,7 @@ Then I found that there was a standard to document APIs, using JSON (or YAML, an
 
 And there was a web user interface for Swagger APIs already created. So, being able to generate Swagger documentation for an API would allow using this web user interface automatically.
 
-At some point, Swagger was given to the Linux foundation, to be renamed OpenAPI.
+At some point, Swagger was given to the Linux Foundation, to be renamed OpenAPI.
 
 That's why when talking about version 2.0 it's common to say "Swagger", and for version 3+ "OpenAPI".
 
@@ -84,7 +84,7 @@ There are several Flask REST frameworks, but after investing the time and work i
 
 One of the main features needed by API systems is data "<abbr title="also called marshalling, convertion">serialization</abbr>" which is taking data from the code (Python) and converting it into something that can be sent through the network. For example, converting an object containing data from a database into a JSON object. Converting `datetime` objects into strings, etc.
 
-Another big feature needed by APIs is data validation, making sure that the data is valid, given certain parameters. For example, that some field is an `int`, and not some random string. This is specially useful for incoming data.
+Another big feature needed by APIs is data validation, making sure that the data is valid, given certain parameters. For example, that some field is an `int`, and not some random string. This is especially useful for incoming data.
 
 Without a data validation system, you would have to do all the checks by hand, in code.
 
@@ -123,7 +123,7 @@ The way it works is that you write the definition of the schema using YAML forma
 
 And it generates Swagger 2.0 schemas (OpenAPI 2.0).
 
-That't how it works in Flask, Starlette, Responder, etc.
+That's how it works in Flask, Starlette, Responder, etc.
 
 But then, we have again the problem of having a micro-syntax, inside of a Python string (a big YAML).
 
@@ -168,7 +168,7 @@ This isn't even Python, NestJS is a JavaScript (TypeScript) NodeJS framework ins
 
 It achieves something somewhat similar to what can be done with Flask-apispec.
 
-It has an integrated dependency injection system, inspired by Angular two. It requires pre-registering the "injectables" (as all the other dependency injection systems I know), so, it adds to the verbosity and code repetition.
+It has an integrated dependency injection system, inspired by Angular two. It requires pre-registering the "injectables" (like all the other dependency injection systems I know), so, it adds to the verbosity and code repetition.
 
 As the parameters are described with TypeScript types (similar to Python type hints), editor support is quite good.
 
@@ -191,9 +191,9 @@ It was one of the first extremely fast Python frameworks based on `asyncio`. It 
     It <a href="https://github.com/huge-success/sanic/issues/761" target="_blank">still doesn't implement the ASGI spec for Python asynchronous web development</a>, but it clearly inspired Uvicorn and Starlette, that are currently faster than Sanic in open benchmarks.
 
 !!! check "Inspired **FastAPI** to"
-    Find a way to have crazy performance.
+    Find a way to have a crazy performance.
     
-    That's why **FastAPI** is based on Starlette, as it is the fastest framework available (tested by third party benchmarks).
+    That's why **FastAPI** is based on Starlette, as it is the fastest framework available (tested by third-party benchmarks).
 
 ### <a href="https://moltenframework.com/" target="_blank">Molten</a>
 
@@ -203,11 +203,11 @@ I discovered Molten in the first stages of building **FastAPI**. And it has quit
 * Validation and documentation from these types.
 * Dependency Injection system.
 
-It doesn't use a data validaton, serialization and documentation third party library like Pydantic, it has its own. So, these data type definitions would not be reusable as easily.
+It doesn't use a data validation, serialization and documentation third-party library like Pydantic, it has its own. So, these data type definitions would not be reusable as easily.
 
-It requires a little bit more verbose configurations. And as it is based on WSGI (instead of ASGI), it is not designed to take advantage of the high performance provided by tools like Uvicorn, Starlette and Sanic.
+It requires a little bit more verbose configurations. And as it is based on WSGI (instead of ASGI), it is not designed to take advantage of the high-performance provided by tools like Uvicorn, Starlette and Sanic.
 
-The dependency injection system requires pre-registration of the dependencies and the dependencies are solved based on the declared types. So, it's not possible to declare more than one "component" that provides certain type.
+The dependency injection system requires pre-registration of the dependencies and the dependencies are solved based on the declared types. So, it's not possible to declare more than one "component" that provides a certain type.
 
 Routes are declared in a single place, using functions declared in other places (instead of using decorators that can be placed right on top of the function that handles the endpoint). This is closer to how Django does it than to how Flask (and Starlette) does it. It separates in the code things that are relatively tightly coupled.
 
@@ -218,7 +218,7 @@ Routes are declared in a single place, using functions declared in other places 
 
 ### <a href="https://github.com/encode/apistar" target="_blank">APIStar</a> (<= 0.5)
 
-Right before deciding to to build **FastAPI** I found **APIStar** server. It had almost everything I was looking for and had a great design.
+Right before deciding to build **FastAPI** I found **APIStar** server. It had almost everything I was looking for and had a great design.
 
 It was actually the first implementation of a framework using Python type hints to declare parameters and requests that I ever saw (before NestJS and Molten).
 
@@ -271,11 +271,11 @@ It is comparable to Marshmallow. Although it's faster than Marshmallow in benchm
 !!! check "**FastAPI** uses it to"
     Handle all the data validation, data serialization and automatic model documentation (based on JSON Schema).
 
-    **FastAPI** then takes that JSON Schema data and puts it in OpenAPI, appart from all the other things it does.
+    **FastAPI** then takes that JSON Schema data and puts it in OpenAPI, apart from all the other things it does.
 
 ### <a href="https://www.starlette.io/" target="_blank">Starlette</a>
 
-Starlette is a lightweight <abbr title="The new standard for building asynchronous Python web">ASGI</abbr> framework/toolkit, which is ideal for building high performance asyncio services.
+Starlette is a lightweight <abbr title="The new standard for building asynchronous Python web">ASGI</abbr> framework/toolkit, which is ideal for building high-performance asyncio services.
 
 It is very simple and intuitive. It's designed to be easily extensible, and have modular components.
 
@@ -324,7 +324,7 @@ It is the recommended server for Starlette and **FastAPI**.
 !!! check "**FastAPI** recommends it as"
     The main web server to run **FastAPI** applications.
 
-    You can combine it with Gunicorn, to have an asyncrhonous multiprocess server.
+    You can combine it with Gunicorn, to have an asynchronous multiprocess server.
 
     Check more details in the <a href="/deployment/" target="_blank">Deployment</a> section.
 
