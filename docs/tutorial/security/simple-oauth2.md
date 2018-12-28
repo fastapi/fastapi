@@ -48,7 +48,7 @@ Now let's use the utilities provided by **FastAPI** to handle this.
 
 First, import `OAuth2PasswordRequestForm`, and use it as a dependency with `Depends` for the path `/token`:
 
-```Python hl_lines="2 66"
+```Python hl_lines="2 73"
 {!./src/security/tutorial003.py!}
 ```
 
@@ -80,7 +80,7 @@ If there is no such user, we return an error saying "incorrect username or passw
 
 For the error, we use the exception `HTTPException` provided by Starlette directly:
 
-```Python hl_lines="4 67 68 69"
+```Python hl_lines="4 74 75 76"
 {!./src/security/tutorial003.py!}
 ```
 
@@ -94,7 +94,21 @@ You should never save plaintext passwords, so, we'll use the (fake) password has
 
 If the passwords don't match, we return the same error.
 
-```Python hl_lines="70 71 72 73"
+#### Password hashing
+
+"Hashing" means: converting some content (a password in this case) into a sequence of bytes (just a string) that look like gibberish.
+
+Whenever you pass exactly the same content (exactly the same password) you get exactly the same gibberish.
+
+But you cannot convert from the gibberish back to the password.
+
+##### What for?
+
+If your database is stolen, the thief won't have your users' plaintext passwords, only the hashes.
+
+So, the thief won't be able to try to use that password in another system (as many users use the same password everywhere, this would be dangerous).
+
+```Python hl_lines="77 78 79 80"
 {!./src/security/tutorial003.py!}
 ```
 
@@ -129,7 +143,7 @@ For this simple example, we are going to just be completely insecure and return 
 
     But for now, let's focus on the specific details we need.
 
-```Python hl_lines="75"
+```Python hl_lines="82"
 {!./src/security/tutorial003.py!}
 ```
 
@@ -145,7 +159,7 @@ Both of these dependencies will just return an HTTP error if the user doesn't ex
 
 So, in our endpoint, we will only get a user if the user exists, was correctly authenticated, and is active:
 
-```Python hl_lines="50 51 52 53 54 55 56 59 60 61 62 79"
+```Python hl_lines="57 58 59 60 61 62 63 66 67 68 69 86"
 {!./src/security/tutorial003.py!}
 ```
 
@@ -160,6 +174,7 @@ Click the "Authorize" button.
 Use the credentials:
 
 User: `johndoe`
+
 Password: `secret`
 
 <img src="/img/tutorial/security/image04.png">
@@ -191,6 +206,24 @@ If you click the lock icon and logout, and then try the same operation again, yo
 ```JSON
 {
   "detail": "Not authenticated"
+}
+```
+
+### Inactive user
+
+Now try with an inactive user, authenticate with:
+
+User: `alice`
+
+Password: `secret2`
+
+And try to use the operation `GET` with the path `/users/me`.
+
+You will get an "inactive user" error, like:
+
+```JSON
+{
+  "detail": "Inactive user"
 }
 ```
 

@@ -7,7 +7,9 @@ This is especially the case for user models, because:
 * The **database model** would probably need to have a hashed password.
 
 !!! danger
-    Never store user's plaintext passwords. Always store a secure hash that you can then verify.
+    Never store user's plaintext passwords. Always store a "secure hash" that you can then verify.
+
+    If you don't know, you will learn what a "password hash" is in the <a href="/tutorial/security/simple-oauth2/#password-hashing" target="_blank">security chapters</a>.
 
 ## Multiple models
 
@@ -15,6 +17,39 @@ Here's a general idea of how the models could look like with their password fiel
 
 ```Python hl_lines="8 10 15 21 23 32 34 39 40"
 {!./src/extra_models/tutorial001.py!}
+```
+
+#### About `**user_dict`
+
+`UserInDB(**user_dict)` means:
+    
+Pass the keys and values of the `user_dict` directly as key-value arguments, equivalent to:
+
+```Python
+UserInDB(
+    username = user_dict["username"],
+    password = user_dict["password"],
+    email = user_dict["email"],
+    full_name = user_dict["full_name"],
+)
+```
+
+And then adding the extra `hashed_password=hashed_password`, like in:
+
+```Python
+UserInDB(**user_in.dict(), hashed_password=hashed_password)
+```
+
+...ends up being like:
+
+```Python
+UserInDB(
+    username = user_dict["username"],
+    password = user_dict["password"],
+    email = user_dict["email"],
+    full_name = user_dict["full_name"],
+    hashed_password = hashed_password,
+)
 ```
 
 !!! warning

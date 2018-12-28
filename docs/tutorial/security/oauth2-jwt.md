@@ -52,7 +52,7 @@ The recommended algorithm is "Bcrypt".
 
 So, install PassLib with Bcrypt:
 
-```Python
+```bash
 pip install passlib[bcrypt]
 ```
 
