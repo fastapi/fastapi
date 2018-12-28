@@ -147,61 +147,65 @@ def get_openapi_path(
     security_schemes: Dict[str, Any] = {}
     definitions: Dict[str, Any] = {}
     assert route.methods is not None, "Methods must be a list"
-    for method in route.methods:
-        operation = get_openapi_operation_metadata(route=route, method=method)
-        parameters: List[Dict] = []
-        flat_dependant = get_flat_dependant(route.dependant)
-        security_definitions, operation_security = get_openapi_security_definitions(
-            flat_dependant=flat_dependant
-        )
-        if operation_security:
-            operation.setdefault("security", []).extend(operation_security)
-        if security_definitions:
-            security_schemes.update(security_definitions)
-        all_route_params = get_openapi_params(route.dependant)
-        validation_definitions, operation_parameters = get_openapi_operation_parameters(
-            all_route_params=all_route_params
-        )
-        definitions.update(validation_definitions)
-        parameters.extend(operation_parameters)
-        if parameters:
-            operation["parameters"] = parameters
-        if method in METHODS_WITH_BODY:
-            request_body_oai = get_openapi_operation_request_body(
-                body_field=route.body_field, model_name_map=model_name_map
+    if route.include_in_schema:
+        for method in route.methods:
+            operation = get_openapi_operation_metadata(route=route, method=method)
+            parameters: List[Dict] = []
+            flat_dependant = get_flat_dependant(route.dependant)
+            security_definitions, operation_security = get_openapi_security_definitions(
+                flat_dependant=flat_dependant
             )
-            if request_body_oai:
-                operation["requestBody"] = request_body_oai
-                if "ValidationError" not in definitions:
-                    definitions["ValidationError"] = validation_error_definition
-                    definitions[
-                        "HTTPValidationError"
-                    ] = validation_error_response_definition
-        status_code = str(route.status_code)
-        response_schema = {"type": "string"}
-        if lenient_issubclass(route.content_type, JSONResponse):
-            if route.response_field:
-                response_schema, _ = field_schema(
-                    route.response_field,
-                    model_name_map=model_name_map,
-                    ref_prefix=REF_PREFIX,
+            if operation_security:
+                operation.setdefault("security", []).extend(operation_security)
+            if security_definitions:
+                security_schemes.update(security_definitions)
+            all_route_params = get_openapi_params(route.dependant)
+            validation_definitions, operation_parameters = get_openapi_operation_parameters(
+                all_route_params=all_route_params
+            )
+            definitions.update(validation_definitions)
+            parameters.extend(operation_parameters)
+            if parameters:
+                operation["parameters"] = parameters
+            if method in METHODS_WITH_BODY:
+                request_body_oai = get_openapi_operation_request_body(
+                    body_field=route.body_field, model_name_map=model_name_map
                 )
-            else:
-                response_schema = {}
-        content = {route.content_type.media_type: {"schema": response_schema}}
-        operation["responses"] = {
-            status_code: {"description": route.response_description, "content": content}
-        }
-        if all_route_params or route.body_field:
-            operation["responses"][str(HTTP_422_UNPROCESSABLE_ENTITY)] = {
-                "description": "Validation Error",
-                "content": {
-                    "application/json": {
-                        "schema": {"$ref": REF_PREFIX + "HTTPValidationError"}
-                    }
-                },
+                if request_body_oai:
+                    operation["requestBody"] = request_body_oai
+                    if "ValidationError" not in definitions:
+                        definitions["ValidationError"] = validation_error_definition
+                        definitions[
+                            "HTTPValidationError"
+                        ] = validation_error_response_definition
+            status_code = str(route.status_code)
+            response_schema = {"type": "string"}
+            if lenient_issubclass(route.content_type, JSONResponse):
+                if route.response_field:
+                    response_schema, _ = field_schema(
+                        route.response_field,
+                        model_name_map=model_name_map,
+                        ref_prefix=REF_PREFIX,
+                    )
+                else:
+                    response_schema = {}
+            content = {route.content_type.media_type: {"schema": response_schema}}
+            operation["responses"] = {
+                status_code: {
+                    "description": route.response_description,
+                    "content": content,
+                }
             }
-        path[method.lower()] = operation
+            if all_route_params or route.body_field:
+                operation["responses"][str(HTTP_422_UNPROCESSABLE_ENTITY)] = {
+                    "description": "Validation Error",
+                    "content": {
+                        "application/json": {
+                            "schema": {"$ref": REF_PREFIX + "HTTPValidationError"}
+                        }
+                    },
+                }
+            path[method.lower()] = operation
     return path, security_schemes, definitions
 
 

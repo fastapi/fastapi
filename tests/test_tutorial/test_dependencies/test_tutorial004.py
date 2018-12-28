@@ -1,7 +1,7 @@
 import pytest
 from starlette.testclient import TestClient
 
-from query_params_str_validations.tutorial010 import app
+from dependencies.tutorial004 import app
 
 client = TestClient(app)
 
@@ -31,20 +31,23 @@ openapi_schema = {
                 "operationId": "read_items_items__get",
                 "parameters": [
                     {
-                        "description": "Query string for the items to search in the database that have a good match",
                         "required": False,
-                        "deprecated": True,
-                        "schema": {
-                            "title": "Query string",
-                            "maxLength": 50,
-                            "minLength": 3,
-                            "pattern": "^fixedquery$",
-                            "type": "string",
-                            "description": "Query string for the items to search in the database that have a good match",
-                        },
-                        "name": "item-query",
+                        "schema": {"title": "Q", "type": "string"},
+                        "name": "q",
                         "in": "query",
-                    }
+                    },
+                    {
+                        "required": False,
+                        "schema": {"title": "Skip", "type": "integer", "default": 0},
+                        "name": "skip",
+                        "in": "query",
+                    },
+                    {
+                        "required": False,
+                        "schema": {"title": "Limit", "type": "integer", "default": 100},
+                        "name": "limit",
+                        "in": "query",
+                    },
                 ],
             }
         }
@@ -87,36 +90,55 @@ def test_openapi_schema():
     assert response.json() == openapi_schema
 
 
-regex_error = {
-    "detail": [
-        {
-            "ctx": {"pattern": "^fixedquery$"},
-            "loc": ["query", "item-query"],
-            "msg": 'string does not match regex "^fixedquery$"',
-            "type": "value_error.str.regex",
-        }
-    ]
-}
-
-
 @pytest.mark.parametrize(
-    "q_name,q,expected_status,expected_response",
+    "path,expected_status,expected_response",
     [
-        (None, None, 200, {"items": [{"item_id": "Foo"}, {"item_id": "Bar"}]}),
         (
-            "item-query",
-            "fixedquery",
+            "/items",
             200,
-            {"items": [{"item_id": "Foo"}, {"item_id": "Bar"}], "q": "fixedquery"},
+            {
+                "items": [
+                    {"item_name": "Foo"},
+                    {"item_name": "Bar"},
+                    {"item_name": "Baz"},
+                ]
+            },
         ),
-        ("q", "fixedquery", 200, {"items": [{"item_id": "Foo"}, {"item_id": "Bar"}]}),
-        ("item-query", "nonregexquery", 422, regex_error),
+        (
+            "/items?q=foo",
+            200,
+            {
+                "items": [
+                    {"item_name": "Foo"},
+                    {"item_name": "Bar"},
+                    {"item_name": "Baz"},
+                ],
+                "q": "foo",
+            },
+        ),
+        (
+            "/items?q=foo&skip=1",
+            200,
+            {"items": [{"item_name": "Bar"}, {"item_name": "Baz"}], "q": "foo"},
+        ),
+        (
+            "/items?q=bar&limit=2",
+            200,
+            {"items": [{"item_name": "Foo"}, {"item_name": "Bar"}], "q": "bar"},
+        ),
+        (
+            "/items?q=bar&skip=1&limit=1",
+            200,
+            {"items": [{"item_name": "Bar"}], "q": "bar"},
+        ),
+        (
+            "/items?limit=1&q=bar&skip=1",
+            200,
+            {"items": [{"item_name": "Bar"}], "q": "bar"},
+        ),
     ],
 )
-def test_query_params_str_validations(q_name, q, expected_status, expected_response):
-    url = "/items/"
-    if q_name and q:
-        url = f"{url}?{q_name}={q}"
-    response = client.get(url)
+def test_get(path, expected_status, expected_response):
+    response = client.get(path)
     assert response.status_code == expected_status
     assert response.json() == expected_response

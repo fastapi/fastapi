@@ -74,7 +74,7 @@ openapi_schema = {
                     },
                     "process_after": {
                         "title": "Process_After",
-                        "type": "string",
+                        "type": "number",
                         "format": "time-delta",
                     },
                 },

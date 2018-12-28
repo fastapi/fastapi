@@ -1,6 +1,6 @@
 from starlette.testclient import TestClient
 
-from custom_response.tutorial004 import app
+from path_operation_advanced_configuration.tutorial001 import app
 
 client = TestClient(app)
 
@@ -13,26 +13,15 @@ openapi_schema = {
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"text/html": {"schema": {"type": "string"}}},
+                        "content": {"application/json": {"schema": {}}},
                     }
                 },
                 "summary": "Read Items Get",
-                "operationId": "read_items_items__get",
+                "operationId": "some_specific_id_you_define",
             }
         }
     },
 }
-
-html_contents = """
-    <html>
-        <head>
-            <title>Some HTML in here</title>
-        </head>
-        <body>
-            <h1>Look ma! HTML!</h1>
-        </body>
-    </html>
-    """
 
 
 def test_openapi_schema():
@@ -41,7 +30,7 @@ def test_openapi_schema():
     assert response.json() == openapi_schema
 
 
-def test_get_custom_response():
+def test_get():
     response = client.get("/items/")
     assert response.status_code == 200
-    assert response.text == html_contents
+    assert response.json() == [{"item_id": "Foo"}]

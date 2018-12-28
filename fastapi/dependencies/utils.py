@@ -58,8 +58,6 @@ def get_flat_dependant(dependant: Dependant) -> Dependant:
         security_schemes=dependant.security_requirements.copy(),
     )
     for sub_dependant in dependant.dependencies:
-        if sub_dependant is dependant:
-            raise ValueError("recursion", dependant.dependencies)
         flat_sub = get_flat_dependant(sub_dependant)
         flat_dependant.path_params.extend(flat_sub.path_params)
         flat_dependant.query_params.extend(flat_sub.query_params)
@@ -197,16 +195,12 @@ def add_param_to_body_fields(*, param: inspect.Parameter, dependant: Dependant) 
     dependant.body_params.append(field)
 
 
-def is_coroutine_callable(call: Callable = None) -> bool:
-    if not call:
-        return False
+def is_coroutine_callable(call: Callable) -> bool:
     if inspect.isfunction(call):
         return asyncio.iscoroutinefunction(call)
     if inspect.isclass(call):
         return False
     call = getattr(call, "__call__", None)
-    if not call:
-        return False
     return asyncio.iscoroutinefunction(call)
 
 

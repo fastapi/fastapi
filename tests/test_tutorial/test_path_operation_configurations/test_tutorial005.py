@@ -1,7 +1,6 @@
-import pytest
 from starlette.testclient import TestClient
 
-from body.tutorial001 import app
+from path_operation_configuration.tutorial005 import app
 
 client = TestClient(app)
 
@@ -13,8 +12,12 @@ openapi_schema = {
             "post": {
                 "responses": {
                     "200": {
-                        "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
+                        "description": "The created item",
+                        "content": {
+                            "application/json": {
+                                "schema": {"$ref": "#/components/schemas/Item"}
+                            }
+                        },
                     },
                     "422": {
                         "description": "Validation Error",
@@ -27,7 +30,8 @@ openapi_schema = {
                         },
                     },
                 },
-                "summary": "Create Item Post",
+                "summary": "Create an item",
+                "description": "\n    Create an item with all the information:\n    \n    * name: each item must have a name\n    * description: a long description\n    * price: required\n    * tax: if the item doesn't have tax, you can omit this\n    * tags: a set of unique tag strings for this item\n    ",
                 "operationId": "create_item_items__post",
                 "requestBody": {
                     "content": {
@@ -51,6 +55,13 @@ openapi_schema = {
                     "price": {"title": "Price", "type": "number"},
                     "description": {"title": "Description", "type": "string"},
                     "tax": {"title": "Tax", "type": "number"},
+                    "tags": {
+                        "title": "Tags",
+                        "uniqueItems": True,
+                        "type": "array",
+                        "items": {"type": "string"},
+                        "default": [],
+                    },
                 },
             },
             "ValidationError": {
@@ -89,92 +100,13 @@ def test_openapi_schema():
     assert response.json() == openapi_schema
 
 
-price_missing = {
-    "detail": [
-        {
-            "loc": ["body", "item", "price"],
-            "msg": "field required",
-            "type": "value_error.missing",
-        }
-    ]
-}
-
-price_not_float = {
-    "detail": [
-        {
-            "loc": ["body", "item", "price"],
-            "msg": "value is not a valid float",
-            "type": "type_error.float",
-        }
-    ]
-}
-
-name_price_missing = {
-    "detail": [
-        {
-            "loc": ["body", "item", "name"],
-            "msg": "field required",
-            "type": "value_error.missing",
-        },
-        {
-            "loc": ["body", "item", "price"],
-            "msg": "field required",
-            "type": "value_error.missing",
-        },
-    ]
-}
-
-body_missing = {
-    "detail": [
-        {
-            "loc": ["body", "item"],
-            "msg": "field required",
-            "type": "value_error.missing",
-        }
-    ]
-}
-
-
-@pytest.mark.parametrize(
-    "path,body,expected_status,expected_response",
-    [
-        (
-            "/items/",
-            {"name": "Foo", "price": 50.5},
-            200,
-            {"name": "Foo", "price": 50.5, "description": None, "tax": None},
-        ),
-        (
-            "/items/",
-            {"name": "Foo", "price": "50.5"},
-            200,
-            {"name": "Foo", "price": 50.5, "description": None, "tax": None},
-        ),
-        (
-            "/items/",
-            {"name": "Foo", "price": "50.5", "description": "Some Foo"},
-            200,
-            {"name": "Foo", "price": 50.5, "description": "Some Foo", "tax": None},
-        ),
-        (
-            "/items/",
-            {"name": "Foo", "price": "50.5", "description": "Some Foo", "tax": 0.3},
-            200,
-            {"name": "Foo", "price": 50.5, "description": "Some Foo", "tax": 0.3},
-        ),
-        ("/items/", {"name": "Foo"}, 422, price_missing),
-        ("/items/", {"name": "Foo", "price": "twenty"}, 422, price_not_float),
-        ("/items/", {}, 422, name_price_missing),
-        ("/items/", None, 422, body_missing),
-    ],
-)
-def test_post_body(path, body, expected_status, expected_response):
-    response = client.post(path, json=body)
-    assert response.status_code == expected_status
-    assert response.json() == expected_response
-
-
-def test_post_broken_body():
-    response = client.post("/items/", data={"name": "Foo", "price": 50.5})
-    assert response.status_code == 400
-    assert response.json() == {"detail": "There was an error parsing the body"}
+def test_query_params_str_validations():
+    response = client.post("/items/", json={"name": "Foo", "price": 42})
+    assert response.status_code == 200
+    assert response.json() == {
+        "name": "Foo",
+        "price": 42,
+        "description": None,
+        "tax": None,
+        "tags": [],
+    }
