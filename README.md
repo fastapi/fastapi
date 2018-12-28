@@ -291,7 +291,7 @@ Coming back to the previous code example, **FastAPI** will:
     * Check that it has an optional attribute `is_offer`, that should be a `bool`, if present.
     * All this would also work for deeply nested JSON objects.
 * Convert from and to JSON automatically.
-* Document everything as an OpenAPI schema, that can be used by:
+* Document everything with OpenAPI, that can be used by:
     * Interactive documentation sytems.
     * Automatic client code generation systems, for many languages.
 * Provide 2 interactive documentation web interfaces directly.

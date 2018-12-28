@@ -57,6 +57,32 @@ You will see the alternative automatic documentation (provided by <a href="https
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
+### OpenAPI
+
+**FastAPI** generates a "schema" with all your API using the **OpenAPI** standard for defining APIs.
+
+#### "Schema"
+
+A "schema" is a definition or description of something. Not the code that implements it, but just the abstract description.
+
+#### API "schema"
+
+In this case, OpenAPI is a specification that dictates how to define a schema of your API.
+
+This OpenAPI schema would include your API paths, the posible parameters they take, etc.
+
+#### Data "schema"
+
+The term "schema" might also refer to the shape of some data, like a JSON content.
+
+In that case, it would mean the JSON attributes, and data types they have, etc.
+
+#### OpenAPI and JSON Schema
+
+OpenAPI defines an API schema for your API. And that schema includes definitions (or "schemas") of the data sent and received by your API using **JSON Schema**, the standard for JSON data schemas.
+
+#### Check it
+
 If you are curious about how the raw OpenAPI schema looks like, it is just an automatically generated JSON with the descriptions of all your API.
 
 You can see it directly at: <a href="http://127.0.0.1:8000/openapi.json" target="_blank">http://127.0.0.1:8000/openapi.json</a>.
@@ -83,6 +109,14 @@ It will show a JSON starting with something like:
 
 ...
 ```
+
+#### What for?
+
+This OpenAPI schema is what powers the 2 interactive documentation systems included.
+
+And there are dozens of alternatives, all based on OpenAPI. You could easily add any of those alternatives to your application built with **FastAPI**.
+
+You could also use it to generate code automatically, for clients that communicate with your API. For example, frontend, mobile or IoT applications.
 
 ## Recap, step by step
 
