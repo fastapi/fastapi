@@ -1078,19 +1078,6 @@ openapi_schema = {
                 ],
             }
         },
-        "/security/oauth2b": {
-            "get": {
-                "responses": {
-                    "200": {
-                        "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
-                    }
-                },
-                "summary": "Read Current User Get",
-                "operationId": "read_current_user_security_oauth2b_get",
-                "security": [{"OAuth2PasswordBearer": []}],
-            }
-        },
     },
     "components": {
         "schemas": {
@@ -1119,13 +1106,7 @@ openapi_schema = {
                     }
                 },
             },
-        },
-        "securitySchemes": {
-            "OAuth2PasswordBearer": {
-                "type": "oauth2",
-                "flows": {"password": {"scopes": {}, "tokenUrl": "/token"}},
-            }
-        },
+        }
     },
 }
 
@@ -1134,6 +1115,7 @@ openapi_schema = {
     "path,expected_status,expected_response",
     [
         ("/api_route", 200, {"message": "Hello World"}),
+        ("/non_decorated_route", 200, {"message": "Hello World"}),
         ("/nonexistent", 404, {"detail": "Not Found"}),
         ("/openapi.json", 200, openapi_schema),
     ],

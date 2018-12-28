@@ -1,6 +1,8 @@
 from fastapi.openapi.models import OpenIdConnect as OpenIdConnectModel
 from fastapi.security.base import SecurityBase
+from starlette.exceptions import HTTPException
 from starlette.requests import Request
+from starlette.status import HTTP_403_FORBIDDEN
 
 
 class OpenIdConnect(SecurityBase):
@@ -9,4 +11,9 @@ class OpenIdConnect(SecurityBase):
         self.scheme_name = scheme_name or self.__class__.__name__
 
     async def __call__(self, request: Request) -> str:
-        return request.headers.get("Authorization")
+        authorization: str = request.headers.get("Authorization")
+        if not authorization:
+            raise HTTPException(
+                status_code=HTTP_403_FORBIDDEN, detail="Not authenticated"
+            )
+        return authorization

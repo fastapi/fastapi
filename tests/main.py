@@ -1,6 +1,4 @@
-from fastapi import Depends, FastAPI, Path, Query, Security
-from fastapi.security import OAuth2PasswordBearer
-from pydantic import BaseModel
+from fastapi import FastAPI, Path, Query
 
 app = FastAPI()
 
@@ -144,8 +142,6 @@ def get_path_param_le_ge_int(item_id: int = Path(..., le=3, ge=1)):
 
 @app.get("/query")
 def get_query(query):
-    if query is None:
-        return "foo bar"
     return f"foo bar {query}"
 
 
@@ -158,8 +154,6 @@ def get_query_optional(query=None):
 
 @app.get("/query/int")
 def get_query_type(query: int):
-    if query is None:
-        return "foo bar"
     return f"foo bar {query}"
 
 
@@ -184,30 +178,9 @@ def get_query_param(query=Query(None)):
 
 @app.get("/query/param-required")
 def get_query_param_required(query=Query(...)):
-    if query is None:
-        return "foo bar"
     return f"foo bar {query}"
 
 
 @app.get("/query/param-required/int")
 def get_query_param_required_type(query: int = Query(...)):
-    if query is None:
-        return "foo bar"
     return f"foo bar {query}"
-
-
-reusable_oauth2b = OAuth2PasswordBearer(tokenUrl="/token")
-
-
-class User(BaseModel):
-    username: str
-
-
-def get_current_user(oauth_header: str = Security(reusable_oauth2b)):
-    user = User(username=oauth_header)
-    return user
-
-
-@app.get("/security/oauth2b")
-def read_current_user(current_user: User = Depends(get_current_user)):
-    return current_user

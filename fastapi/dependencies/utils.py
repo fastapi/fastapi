@@ -97,7 +97,7 @@ def get_dependant(*, path: str, call: Callable, name: str = None) -> Dependant:
         elif (
             param.default == param.empty
             or param.default is None
-            or type(param.default) in param_supported_types
+            or isinstance(param.default, param_supported_types)
         ) and (
             param.annotation == param.empty
             or lenient_issubclass(param.annotation, param_supported_types)
@@ -214,7 +214,8 @@ async def solve_dependencies(
             request=request, dependant=sub_dependant, body=body
         )
         if sub_errors:
-            return {}, errors
+            errors.extend(sub_errors)
+            continue
         assert sub_dependant.call is not None, "sub_dependant.call must be a function"
         if is_coroutine_callable(sub_dependant.call):
             solved = await sub_dependant.call(**sub_values)
@@ -238,7 +239,7 @@ async def solve_dependencies(
     values.update(query_values)
     values.update(header_values)
     values.update(cookie_values)
-    errors = path_errors + query_errors + header_errors + cookie_errors
+    errors += path_errors + query_errors + header_errors + cookie_errors
     if dependant.body_params:
         body_values, body_errors = await request_body_to_args(  # type: ignore # body_params checked above
             dependant.body_params, body
@@ -295,7 +296,7 @@ async def request_body_to_args(
             received_body = {}
         for field in required_params:
             value = received_body.get(field.alias)
-            if value is None:
+            if value is None or (isinstance(field.schema, params.Form) and value == ""):
                 if field.required:
                     errors.append(
                         ErrorWrapper(
