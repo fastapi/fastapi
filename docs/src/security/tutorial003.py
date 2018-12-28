@@ -17,7 +17,7 @@ fake_users_db = {
         "email": "alice@example.com",
         "hashed_password": "fakehashedsecret2",
         "disabled": True,
-    }
+    },
 }
 
 app = FastAPI()

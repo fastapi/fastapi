@@ -120,7 +120,9 @@ def test_login():
 
 
 def test_login_incorrect_password():
-    response = client.post("/token", data={"username": "johndoe", "password": "incorrect"})
+    response = client.post(
+        "/token", data={"username": "johndoe", "password": "incorrect"}
+    )
     assert response.status_code == 400
     assert response.json() == {"detail": "Incorrect username or password"}
 
@@ -154,12 +156,14 @@ def test_incorrect_token():
     assert response.status_code == 400
     assert response.json() == {"detail": "Invalid authentication credentials"}
 
+
 def test_incorrect_token_type():
     response = client.get(
         "/users/me", headers={"Authorization": "Notexistent testtoken"}
     )
     assert response.status_code == 403
     assert response.json() == {"detail": "Not authenticated"}
+
 
 def test_inactive_user():
     response = client.get("/users/me", headers={"Authorization": "Bearer alice"})
