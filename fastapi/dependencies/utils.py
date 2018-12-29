@@ -3,7 +3,7 @@ import inspect
 from copy import deepcopy
 from datetime import date, datetime, time, timedelta
 from decimal import Decimal
-from typing import Any, Callable, Dict, List, Mapping, Sequence, Tuple, Type, Union
+from typing import Any, Callable, Dict, List, Mapping, Sequence, Set, Tuple, Type, Union
 from uuid import UUID
 
 from fastapi import params
@@ -108,7 +108,8 @@ def get_dependant(*, path: str, call: Callable, name: str = None) -> Dependant:
         elif isinstance(param.default, params.Param):
             if param.annotation != param.empty:
                 assert lenient_issubclass(
-                    param.annotation, param_supported_types + (list, tuple, set)
+                    param.annotation,
+                    param_supported_types + (List, Tuple, Set, list, tuple, set),
                 ), f"Parameters for Path, Query, Header and Cookies must be of type str, int, float, bool, list, tuple or set: {param}"
             add_param_to_fields(
                 param=param, dependant=dependant, default_schema=params.Query
