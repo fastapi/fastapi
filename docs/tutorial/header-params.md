@@ -1,4 +1,4 @@
-You can define Header parameters the same way you define `Query`, `Path` and `Cookie` parameteres.
+You can define Header parameters the same way you define `Query`, `Path` and `Cookie` parameters.
 
 ## Import `Header`
 
@@ -8,11 +8,11 @@ First import `Header`:
 {!./src/header_params/tutorial001.py!}
 ```
 
-## Declare `Header` parameteres
+## Declare `Header` parameters
 
 Then declare the header parameters using the same structure as with `Path`, `Query` and `Cookie`.
 
-The first value is the default value, you can pass all the extra validation or annotation parameteres:
+The first value is the default value, you can pass all the extra validation or annotation parameters:
 
 ```Python hl_lines="7"
 {!./src/header_params/tutorial001.py!}
@@ -22,7 +22,7 @@ The first value is the default value, you can pass all the extra validation or a
     `Header` is a "sister" class of `Path`, `Query` and `Cookie`. It also inherits from the same common `Param` class.
 
 !!! info
-    To declare headers, you need to use `Header`, because otherwise the parameters would be interpreted as query parameteres.
+    To declare headers, you need to use `Header`, because otherwise the parameters would be interpreted as query parameters.
 
 ## Automatic conversion
 
@@ -49,6 +49,6 @@ If for some reason you need to disable automatic conversion of underscores to hy
 
 ## Recap
 
-Declare headeres with `Header`, using the same common pattern as `Query`, `Path` and `Cookie`.
+Declare headers with `Header`, using the same common pattern as `Query`, `Path` and `Cookie`.
 
 And don't worry about underscores in your variables, **FastAPI** will take care of converting them.

@@ -33,7 +33,7 @@ But you can also declare multiple body parameters, e.g. `item` and `user`:
 {!./src/body_multiple_params/tutorial002.py!}
 ```
 
-In this case, **FastAPI** will notice that there are more than one body parameter in the function (two parameters that are Pydantic models).
+In this case, **FastAPI** will notice that there are more than one body parameters in the function (two parameters that are Pydantic models).
 
 So, it will then use the parameter names as keys (field names) in the body, and expect a body like:
 

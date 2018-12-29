@@ -86,7 +86,7 @@ And will be also used in the API docs inside each path operation that needs them
 
 ## Editor support
 
-In your editor, inside your function you will get type hints and completion everywhere (this wouldn't happen if your received a `dict` instead of a Pydantic model):
+In your editor, inside your function you will get type hints and completion everywhere (this wouldn't happen if you received a `dict` instead of a Pydantic model):
 
 <img src="/img/tutorial/body/image03.png">
 

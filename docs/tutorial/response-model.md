@@ -42,7 +42,7 @@ Now, whenever a browser is creating a user with a password, the API will return 
 
 In this case, it might not be a problem, becase the user himself is sending the password.
 
-But if we use sthe same model for another path operation, we could be sending the passwords of our users to every client.
+But if we use the same model for another path operation, we could be sending the passwords of our users to every client.
 
 !!! danger
     Never send the plain password of a user in a response.

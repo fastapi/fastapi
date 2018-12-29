@@ -130,6 +130,11 @@ You can add more information about the parameter.
 
 That information will be included in the generated OpenAPI and used by the documentation user interfaces and external tools.
 
+!!! note
+    Have in mind that different tools might have different levels of OpenAPI support.
+
+    Some of them might not show all the extra information declared yet, although in most of the cases, the missing feature is already planned for development.
+
 You can add a `title`:
 
 ```Python hl_lines="7"

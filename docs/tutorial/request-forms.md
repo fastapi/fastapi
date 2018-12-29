@@ -26,7 +26,7 @@ With `Form` you can declare the same metadata and validation as with `Body` (and
     `Form` is a class that inherits directly from `Body`.
 
 !!! info
-    To declare form bodies, you need to use `Form` explicitly, because without it the parameters would be interpreted as query parameteres or body (JSON) parameters.
+    To declare form bodies, you need to use `Form` explicitly, because without it the parameters would be interpreted as query parameters or body (JSON) parameters.
 
 ## "Form Fields"? 
 

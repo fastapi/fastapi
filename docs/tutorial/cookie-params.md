@@ -1,4 +1,4 @@
-You can define Cookie parameters the same way you define `Query` and `Path` parameteres.
+You can define Cookie parameters the same way you define `Query` and `Path` parameters.
 
 ## Import `Cookie`
 
@@ -8,11 +8,11 @@ First import `Cookie`:
 {!./src/cookie_params/tutorial001.py!}
 ```
 
-## Declare `Cookie` parameteres
+## Declare `Cookie` parameters
 
 Then declare the cookie parameters using the same structure as with `Path` and `Query`.
 
-The first value is the default value, you can pass all the extra validation or annotation parameteres:
+The first value is the default value, you can pass all the extra validation or annotation parameters:
 
 ```Python hl_lines="7"
 {!./src/cookie_params/tutorial001.py!}
@@ -22,7 +22,7 @@ The first value is the default value, you can pass all the extra validation or a
     `Cookie` is a "sister" class of `Path` and `Query`. It also inherits from the same common `Param` class.
 
 !!! info
-    To declare cookies, you need to use `Cookie`, because otherwise the parameters would be interpreted as query parameteres.
+    To declare cookies, you need to use `Cookie`, because otherwise the parameters would be interpreted as query parameters.
 
 ## Recap
 

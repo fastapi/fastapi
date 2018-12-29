@@ -63,7 +63,7 @@ Pass `HTMLResponse` as the parameter `content_type` of your path operation:
     And it will be documented as such in OpenAPI.
 
 
-### return a Starlette `Response`
+### Return a Starlette `Response`
 
 You can also override the response directly in your path operation.
 

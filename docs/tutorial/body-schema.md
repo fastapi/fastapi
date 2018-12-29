@@ -9,7 +9,7 @@ First, you have to import it:
 ```
 
 !!! warning
-    Notice that `Schema` is imported directly from `pydantic`, not form `fastapi` as are all the rest (`Query`, `Path`, `Body`, etc).
+    Notice that `Schema` is imported directly from `pydantic`, not from `fastapi` as are all the rest (`Query`, `Path`, `Body`, etc).
 
 
 ## Declare model attributes
@@ -37,7 +37,7 @@ In `Schema`, `Path`, `Query`, `Body` and others you'll see later, you can declar
 
 Those parameters will be added as-is to the output JSON Schema.
 
-If you know JSON Schema and want to add extra information appart from what we have discussed here, you can pass that as extra keyword arguments.
+If you know JSON Schema and want to add extra information apart from what we have discussed here, you can pass that as extra keyword arguments.
 
 !!! warning
     Have in mind that extra parameters passed won't add any validation, only annotation, for documentation purposes.

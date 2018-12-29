@@ -50,7 +50,7 @@ What FastAPI actually checks is that it is a "callable" (function, class or anyt
 
 If you pass a "callable" as a dependency in **FastAPI**, it will analyze the parameters for that "callable", and process them in the same way as the parameters for a path operation function. Including sub-dependencies.
 
-That also applies to callables with no parameters at all. The same as would be for path operation functions with no parameteres.
+That also applies to callables with no parameters at all. The same as would be for path operation functions with no parameters.
 
 Then, we can change the dependency "dependable" `common_parameters` from above to the class `CommonQueryParameters`:
 

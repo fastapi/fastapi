@@ -129,7 +129,7 @@ When you declare a default value for non-path parameters (for now, we have only 
 
 If you don't want to add a specific value but just make it optional, set the default as `None`.
 
-But when you want to make a query parameter required, you can just do not declare any default value:
+But when you want to make a query parameter required, you can just not declare any default value:
 
 ```Python hl_lines="6 7"
 {!./src/query_params/tutorial005.py!}

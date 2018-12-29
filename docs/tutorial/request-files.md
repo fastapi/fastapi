@@ -22,7 +22,7 @@ The files will be uploaded as form data and you will receive the contents as `by
     `File` is a class that inherits directly from `Form`.
 
 !!! info
-    To declare File bodies, you need to use `File`, because otherwise the parameters would be interpreted as query parameteres or body (JSON) parameters.
+    To declare File bodies, you need to use `File`, because otherwise the parameters would be interpreted as query parameters or body (JSON) parameters.
 
 ## "Form Data"? 
 
