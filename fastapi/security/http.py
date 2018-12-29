@@ -78,6 +78,11 @@ class HTTPBearer(HTTPBase):
             raise HTTPException(
                 status_code=HTTP_403_FORBIDDEN, detail="Not authenticated"
             )
+        if scheme.lower() != "bearer":
+            raise HTTPException(
+                status_code=HTTP_403_FORBIDDEN,
+                detail="Invalid authentication credentials",
+            )
         return HTTPAuthorizationCredentials(scheme=scheme, credentials=credentials)
 
 
@@ -92,5 +97,10 @@ class HTTPDigest(HTTPBase):
         if not (authorization and scheme and credentials):
             raise HTTPException(
                 status_code=HTTP_403_FORBIDDEN, detail="Not authenticated"
+            )
+        if scheme.lower() != "digest":
+            raise HTTPException(
+                status_code=HTTP_403_FORBIDDEN,
+                detail="Invalid authentication credentials",
             )
         return HTTPAuthorizationCredentials(scheme=scheme, credentials=credentials)
