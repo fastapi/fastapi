@@ -153,7 +153,7 @@ Any integration is designed to be so simple to use (with dependencies) that you 
 
 ### Tested
 
-* 100% <abbr title="The amount of code that is automatically tested">test coverage</abbr> (* not yet, in a couple days).
+* 100% <abbr title="The amount of code that is automatically tested">test coverage</abbr>.
 * 100% <abbr title="Python type annotations, with this your editor and external tools can give you better support">type annotated</abbr> code base.
 * Used in production applications.
 
