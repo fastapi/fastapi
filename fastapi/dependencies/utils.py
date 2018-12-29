@@ -3,7 +3,7 @@ import inspect
 from copy import deepcopy
 from datetime import date, datetime, time, timedelta
 from decimal import Decimal
-from typing import Any, Callable, Dict, List, Mapping, Sequence, Tuple, Type
+from typing import Any, Callable, Dict, List, Mapping, Sequence, Tuple, Type, Union
 from uuid import UUID
 
 from fastapi import params
@@ -13,11 +13,11 @@ from fastapi.utils import get_path_param_names
 from pydantic import BaseConfig, Schema, create_model
 from pydantic.error_wrappers import ErrorWrapper
 from pydantic.errors import MissingError
-from pydantic.fields import Field, Required
+from pydantic.fields import Field, Required, Shape
 from pydantic.schema import get_annotation_from_schema
 from pydantic.utils import lenient_issubclass
 from starlette.concurrency import run_in_threadpool
-from starlette.requests import Request
+from starlette.requests import Headers, QueryParams, Request
 
 param_supported_types = (
     str,
@@ -108,8 +108,8 @@ def get_dependant(*, path: str, call: Callable, name: str = None) -> Dependant:
         elif isinstance(param.default, params.Param):
             if param.annotation != param.empty:
                 assert lenient_issubclass(
-                    param.annotation, param_supported_types
-                ), f"Parameters for Path, Query, Header and Cookies must be of type str, int, float or bool: {param}"
+                    param.annotation, param_supported_types + (list, tuple, set)
+                ), f"Parameters for Path, Query, Header and Cookies must be of type str, int, float, bool, list, tuple or set: {param}"
             add_param_to_fields(
                 param=param, dependant=dependant, default_schema=params.Query
             )
@@ -252,12 +252,18 @@ async def solve_dependencies(
 
 
 def request_params_to_args(
-    required_params: Sequence[Field], received_params: Mapping[str, Any]
+    required_params: Sequence[Field],
+    received_params: Union[Mapping[str, Any], QueryParams, Headers],
 ) -> Tuple[Dict[str, Any], List[ErrorWrapper]]:
     values = {}
     errors = []
     for field in required_params:
-        value = received_params.get(field.alias)
+        if field.shape in {Shape.LIST, Shape.SET, Shape.TUPLE} and isinstance(
+            received_params, (QueryParams, Headers)
+        ):
+            value = received_params.getlist(field.alias)
+        else:
+            value = received_params.get(field.alias)
         schema: params.Param = field.schema
         assert isinstance(schema, params.Param), "Params must be subclasses of Param"
         if value is None:
