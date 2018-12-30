@@ -12,7 +12,7 @@ If you look at it, path operation functions are declared to be used whenever a p
 
 Actually, all (or most) of the web frameworks work in this same way.
 
-You never call those functions directly. The are called by your framework (in this case, **FastAPI**).
+You never call those functions directly. They are called by your framework (in this case, **FastAPI**).
 
 With the Dependency Injection system, you can also tell **FastAPI** that your path operation function also "depends" on something else that should be executed before your path operation function, and **FastAPI** will take care of executing it and "injecting" the results.
 
