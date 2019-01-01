@@ -50,7 +50,49 @@ openapi_schema = {
                     },
                 ],
             }
-        }
+        },
+        "/users/": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {"application/json": {"schema": {}}},
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        },
+                    },
+                },
+                "summary": "Read Users Get",
+                "operationId": "read_users_users__get",
+                "parameters": [
+                    {
+                        "required": False,
+                        "schema": {"title": "Q", "type": "string"},
+                        "name": "q",
+                        "in": "query",
+                    },
+                    {
+                        "required": False,
+                        "schema": {"title": "Skip", "type": "integer", "default": 0},
+                        "name": "skip",
+                        "in": "query",
+                    },
+                    {
+                        "required": False,
+                        "schema": {"title": "Limit", "type": "integer", "default": 100},
+                        "name": "limit",
+                        "in": "query",
+                    },
+                ],
+            }
+        },
     },
     "components": {
         "schemas": {
@@ -97,6 +139,7 @@ def test_openapi_schema():
         ("/items?q=foo", 200, {"q": "foo", "skip": 0, "limit": 100}),
         ("/items?q=foo&skip=5", 200, {"q": "foo", "skip": 5, "limit": 100}),
         ("/items?q=foo&skip=5&limit=30", 200, {"q": "foo", "skip": 5, "limit": 30}),
+        ("/users", 200, {"q": None, "skip": 0, "limit": 100}),
         ("/openapi.json", 200, openapi_schema),
     ],
 )
