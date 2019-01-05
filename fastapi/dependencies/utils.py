@@ -9,8 +9,8 @@ from uuid import UUID
 from fastapi import params
 from fastapi.dependencies.models import Dependant, SecurityRequirement
 from fastapi.security.base import SecurityBase
-from fastapi.utils import get_path_param_names
-from pydantic import BaseConfig, Schema, create_model
+from fastapi.utils import UnconstrainedConfig, get_path_param_names
+from pydantic import Schema, create_model
 from pydantic.error_wrappers import ErrorWrapper
 from pydantic.errors import MissingError
 from pydantic.fields import Field, Required, Shape
@@ -163,7 +163,7 @@ def add_param_to_fields(
         default=None if required else default_value,
         alias=alias,
         required=required,
-        model_config=BaseConfig(),
+        model_config=UnconstrainedConfig,
         class_validators=[],
         schema=schema,
     )
@@ -197,7 +197,7 @@ def add_param_to_body_fields(*, param: inspect.Parameter, dependant: Dependant) 
         default=None if required else default_value,
         alias=schema.alias or param.name,
         required=required,
-        model_config=BaseConfig,
+        model_config=UnconstrainedConfig,
         class_validators=[],
         schema=schema,
     )
@@ -281,7 +281,7 @@ def request_params_to_args(
                     ErrorWrapper(
                         MissingError(),
                         loc=(schema.in_.value, field.alias),
-                        config=BaseConfig,
+                        config=UnconstrainedConfig,
                     )
                 )
             else:
@@ -315,7 +315,9 @@ async def request_body_to_args(
                 if field.required:
                     errors.append(
                         ErrorWrapper(
-                            MissingError(), loc=("body", field.alias), config=BaseConfig
+                            MissingError(),
+                            loc=("body", field.alias),
+                            config=UnconstrainedConfig,
                         )
                     )
                 else:
@@ -356,7 +358,7 @@ def get_body_field(*, dependant: Dependant, name: str) -> Field:
         type_=BodyModel,
         default=None,
         required=required,
-        model_config=BaseConfig,
+        model_config=UnconstrainedConfig,
         class_validators=[],
         alias="body",
         schema=BodySchema(None),

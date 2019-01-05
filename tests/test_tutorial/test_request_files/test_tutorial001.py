@@ -119,3 +119,15 @@ def test_post_file(tmpdir):
     response = client.post("/files/", files={"file": open(path, "rb")})
     assert response.status_code == 200
     assert response.json() == {"file_size": 14}
+
+
+def test_post_large_file(tmpdir):
+    default_pydantic_max_size = 2 ** 16
+    path = os.path.join(tmpdir, "test.txt")
+    with open(path, "wb") as file:
+        file.write(b"x" * (default_pydantic_max_size + 1))
+
+    client = TestClient(app)
+    response = client.post("/files/", files={"file": open(path, "rb")})
+    assert response.status_code == 200
+    assert response.json() == {"file_size": default_pydantic_max_size + 1}

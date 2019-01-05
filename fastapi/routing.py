@@ -7,7 +7,8 @@ from fastapi import params
 from fastapi.dependencies.models import Dependant
 from fastapi.dependencies.utils import get_body_field, get_dependant, solve_dependencies
 from fastapi.encoders import jsonable_encoder
-from pydantic import BaseConfig, BaseModel, Schema
+from fastapi.utils import UnconstrainedConfig
+from pydantic import BaseModel, Schema
 from pydantic.error_wrappers import ErrorWrapper, ValidationError
 from pydantic.fields import Field
 from pydantic.utils import lenient_issubclass
@@ -130,7 +131,7 @@ class APIRoute(routing.Route):
                 class_validators=[],
                 default=None,
                 required=False,
-                model_config=BaseConfig(),
+                model_config=UnconstrainedConfig,
                 schema=Schema(None),
             )
         else:
