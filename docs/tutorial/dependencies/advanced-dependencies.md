@@ -25,6 +25,8 @@ To do that, we declare a method `__call__`:
 {!./src/dependencies/tutorial006.py!}
 ```
 
+In this case, this `__call__` is what **FastAPI** will use to check for additional parameters and sub-dependencies, and this is what will be called to pass a value to the parameter in your *path operation function* later.
+
 ## Parameterize the instance
 
 And now, we can use `__init__` to declare the parameters of the instance that we can use to "parameterize" the dependency:

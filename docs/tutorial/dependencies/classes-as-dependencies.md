@@ -10,7 +10,7 @@ In the previous example, we where returning a `dict` from our dependency ("depen
 
 But then we get a `dict` in the parameter `commons` of the path operation function.
 
-And we know that `dict`s can't provide a lot of editor support because they can't know their keys and value types.
+And we know that editors can't provide a lot of support (like completion) for `dict`s, because they can't know their keys and value types.
 
 We can do better...
 
@@ -24,7 +24,7 @@ The key factor is that a dependency should be a "callable".
 
 A "**callable**" in Python is anything that Python can "call" like a function.
 
-So, if you have an object `something` (that might _not_ be a function) and you can do:
+So, if you have an object `something` (that might _not_ be a function) and you can "call" it (execute it) like:
 
 ```Python
 something()
@@ -42,6 +42,21 @@ then it is a "callable".
 
 You might notice that to create an instance of a Python class, you use that same syntax.
 
+For example:
+
+```Python
+class Cat:
+    def __init__(self, name: str):
+        self.name = name
+
+
+fluffy = Cat(name="Mr Fluffy")
+```
+
+In this case, `fluffy` is an instance of the class `Cat`.
+
+And to create `fluffy`, you are "calling" `Cat`.
+
 So, a Python class is also a **callable**.
 
 Then, in **FastAPI**, you could use a Python class as a dependency.
@@ -50,7 +65,7 @@ What FastAPI actually checks is that it is a "callable" (function, class or anyt
 
 If you pass a "callable" as a dependency in **FastAPI**, it will analyze the parameters for that "callable", and process them in the same way as the parameters for a path operation function. Including sub-dependencies.
 
-That also applies to callables with no parameters at all. The same as would be for path operation functions with no parameters.
+That also applies to callables with no parameters at all. The same as it would be for path operation functions with no parameters.
 
 Then, we can change the dependency "dependable" `common_parameters` from above to the class `CommonQueryParameters`:
 
