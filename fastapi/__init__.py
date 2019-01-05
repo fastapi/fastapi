@@ -1,6 +1,6 @@
 """FastAPI framework, high performance, easy to learn, fast to code, ready for production"""
 
-__version__ = "0.1.16"
+__version__ = "0.1.17"
 
 from .applications import FastAPI
 from .routing import APIRouter
