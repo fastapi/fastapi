@@ -5,10 +5,7 @@ verify_ssl = true
 
 [dev-packages]
 mypy = "*"
-jedi = "*"
 black = "*"
-prospector = "*"
-rope = "*"
 jupyter = "*"
 better-exceptions = "*"
 pytest = "*"
@@ -22,6 +19,7 @@ markdown-include = "*"
 autoflake = "*"
 email-validator = "*"
 ujson = "*"
+flake8 = "*"
 
 [packages]
 starlette = "*"
