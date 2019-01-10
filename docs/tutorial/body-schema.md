@@ -48,6 +48,10 @@ For example, you can use that functionality to pass a <a href="http://json-schem
 {!./src/body_schema/tutorial002.py!}
 ```
 
+And it would look in the `/docs` like this:
+
+<img src="/img/tutorial/body-schema/image01.png">
+
 ## Recap
 
 You can use Pydantic's `Schema` to declare extra validations and metadata for model attributes.
