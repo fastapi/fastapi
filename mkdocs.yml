@@ -33,6 +33,7 @@ nav:
         - Header Parameters: 'tutorial/header-params.md'
         - Response Model: 'tutorial/response-model.md'
         - Extra Models: 'tutorial/extra-models.md'
+        - Response Status Code: 'tutorial/response-status-code.md'
         - Form Data: 'tutorial/request-forms.md'
         - Request Files: 'tutorial/request-files.md'
         - Request Forms and Files: 'tutorial/request-forms-and-files.md'
