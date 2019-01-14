@@ -19,11 +19,67 @@ Here's a general idea of how the models could look like with their password fiel
 {!./src/extra_models/tutorial001.py!}
 ```
 
-#### About `**user_dict`
+### About `**user_in.dict()`
 
-`UserInDB(**user_dict)` means:
-    
-Pass the keys and values of the `user_dict` directly as key-value arguments, equivalent to:
+#### Pydantic's `.dict()`
+
+`user_in` is a Pydantic model of class `UserIn`.
+
+Pydantic models have a `.dict()` method that returns a `dict` with the model's data.
+
+So, if we create a Pydantic object `user_in` like:
+
+```Python
+user_in = UserIn(username="john", password="secret", email="john.doe@example.com")
+```
+
+and then we call:
+
+```Python
+user_dict = user_in.dict()
+```
+
+we now have a `dict` with the data in the variable `user_dict` (it's a `dict` instead of a Pydantic model object).
+
+And if we call:
+
+```Python
+print(user_dict)
+```
+
+we would get a Python `dict` with:
+
+```Python
+{
+    'username': 'john',
+    'password': 'secret',
+    'email': 'john.doe@example.com',
+    'full_name': None,
+}
+```
+
+#### Unwrapping a `dict`
+
+If we take a `dict` like `user_dict` and pass it to a function (or class) with `**user_dict`, Python will "unwrap" it. It will pass the keys and values of the `user_dict` directly as key-value arguments.
+
+So, continuing with the `user_dict` from above, writing:
+
+```Python
+UserInDB(**user_dict)
+```
+
+Would result in something equivalent to:
+
+```Python
+UserInDB(
+    username="john",
+    password="secret",
+    email="john.doe@example.com",
+    full_name=None,
+)
+```
+
+Or more exactly, using `user_dict` directly, with whatever contents it might have in the future:
 
 ```Python
 UserInDB(
@@ -34,7 +90,28 @@ UserInDB(
 )
 ```
 
-And then adding the extra `hashed_password=hashed_password`, like in:
+#### A Pydantic model from the contents of another
+
+As in the example above we got `user_dict` from `user_in.dict()`, this code:
+
+```Python
+user_dict = user_in.dict()
+UserInDB(**user_dict)
+```
+
+would be equivalent to:
+
+```Python
+UserInDB(**user_in.dict())
+```
+
+...because `user_in.dict()` is a `dict`, and then we make Python "unwrap" it by passing it to `UserInDB` prepended with `**`.
+
+So, we get a Pydantic model from the data in another Pydantic model.
+
+#### Unrapping a `dict` and extra keywords
+
+And then adding the extra keyword argument `hashed_password=hashed_password`, like in:
 
 ```Python
 UserInDB(**user_in.dict(), hashed_password=hashed_password)
@@ -65,7 +142,7 @@ And these models are all sharing a lot of the data and duplicating attribute nam
 
 We could do better.
 
-We can declare a `Userbase` model that serves as a base for our other models. And then we can make subclasses of that model that inherit its attributes (type declarations, validation, etc).
+We can declare a `UserBase` model that serves as a base for our other models. And then we can make subclasses of that model that inherit its attributes (type declarations, validation, etc).
 
 All the data conversion, validation, documentation, etc. will still work as normally.
 
@@ -77,4 +154,6 @@ That way, we can declare just the differences between the models (with plaintext
 
 ## Recap
 
-Use multiple Pydantic models and inherit freely for each case. You don't need to have a single data model per entity if that entity must be able to have different "states". As the case with the user "entity" with a state including `password`, `password_hash` and no password.
+Use multiple Pydantic models and inherit freely for each case.
+
+You don't need to have a single data model per entity if that entity must be able to have different "states". As the case with the user "entity" with a state including `password`, `password_hash` and no password.

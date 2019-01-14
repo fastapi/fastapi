@@ -128,6 +128,9 @@ UserInDB(
 )
 ```
 
+!!! info
+    For a more complete explanation of `**user_dict` check back in <a href="/tutorial/extra-models/#about-user_indict" target="_blank">the documentation for **Extra Models**</a>.
+
 ## Return the token
 
 The response of the `token` endpoint must be a JSON object.
