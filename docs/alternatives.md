@@ -121,7 +121,7 @@ It is a plug-in for many frameworks (and there's a plug-in for Starlette too).
 
 The way it works is that you write the definition of the schema using YAML format inside the docstring of each function handling a route.
 
-And it generates Swagger 2.0 schemas (OpenAPI 2.0).
+And it generates OpenAPI schemas.
 
 That's how it works in Flask, Starlette, Responder, etc.
 
@@ -140,7 +140,7 @@ The editor can't help much with that. And if we modify parameters or Marshmallow
 
 It's a Flask plug-in, that ties together Webargs, Marshmallow and APISpec.
 
-It uses the information from Webargs and Marshmallow to automatically generate Swagger 2.0 schemas, using APISpec.
+It uses the information from Webargs and Marshmallow to automatically generate OpenAPI schemas, using APISpec.
 
 It's a great tool, very under-rated. It should be way more popular than many Flask plug-ins out there. It might be due to its documentation being too concise and abstract.
 
