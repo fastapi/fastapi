@@ -1,7 +1,7 @@
 import pytest
 from starlette.testclient import TestClient
 
-from bigger_applications.app.tutorial003 import app
+from bigger_applications.app.main import app
 
 client = TestClient(app)
 
@@ -17,8 +17,22 @@ openapi_schema = {
                         "content": {"application/json": {"schema": {}}},
                     }
                 },
+                "tags": ["users"],
                 "summary": "Read Users Get",
                 "operationId": "read_users_users__get",
+            }
+        },
+        "/users/me": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {"application/json": {"schema": {}}},
+                    }
+                },
+                "tags": ["users"],
+                "summary": "Read User Me Get",
+                "operationId": "read_user_me_users_me_get",
             }
         },
         "/users/{username}": {
@@ -39,6 +53,7 @@ openapi_schema = {
                         },
                     },
                 },
+                "tags": ["users"],
                 "summary": "Read User Get",
                 "operationId": "read_user_users__username__get",
                 "parameters": [
@@ -51,18 +66,6 @@ openapi_schema = {
                 ],
             }
         },
-        "/users/me": {
-            "get": {
-                "responses": {
-                    "200": {
-                        "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
-                    }
-                },
-                "summary": "Read User Me Get",
-                "operationId": "read_user_me_users_me_get",
-            }
-        },
         "/items/": {
             "get": {
                 "responses": {
@@ -71,6 +74,7 @@ openapi_schema = {
                         "content": {"application/json": {"schema": {}}},
                     }
                 },
+                "tags": ["items"],
                 "summary": "Read Items Get",
                 "operationId": "read_items_items__get",
             }
@@ -93,6 +97,7 @@ openapi_schema = {
                         },
                     },
                 },
+                "tags": ["items"],
                 "summary": "Read Item Get",
                 "operationId": "read_item_items__item_id__get",
                 "parameters": [
