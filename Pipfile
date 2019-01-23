@@ -22,8 +22,8 @@ ujson = "*"
 flake8 = "*"
 
 [packages]
-starlette = "*"
-pydantic = "*"
+starlette = "==0.9.10"
+pydantic = "==0.18.2"
 
 [requires]
 python_version = "3.6"
