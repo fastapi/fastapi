@@ -11,7 +11,10 @@ theme:
 
 repo_name: tiangolo/fastapi
 repo_url: https://github.com/tiangolo/fastapi
-edit_uri: ""
+edit_uri: ''
+google_analytics:
+    - 'UA-133183413-1'
+    - 'auto'
 
 nav:
     - FastAPI: 'index.md'
