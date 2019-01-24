@@ -54,6 +54,47 @@ Given the simplicity of Flask, it seemed like a good match for building APIs. Th
 
     Have a simple and easy to use routing system.
 
+
+### <a href="http://docs.python-requests.org" target="_blank">Requests</a>
+
+**FastAPI** is not actually an alternative to **Requests**. Their scope is very different.
+
+It would actually be common to use Requests *inside* of a FastAPI application.
+
+But still, FastAPI got quite some inspiration from Requests.
+
+**Requests** is a library to *interact* with APIs (as a client), while **FastAPI** is a library to *build* APIs (as a server).
+
+They are, more or less, at opposite ends, complementing each other.
+
+Requests has a very simple and intuitive design, it's very easy to use, with sensible defaults. But at the same time, it's very powerful and customizable.
+
+That's why, as said in the official website:
+
+> Requests is one of the most downloaded Python packages of all time
+
+The way you use it is very simple. For example, to do a `GET` request, you would write:
+
+```Python
+response = requests.get("http://example.com/some/url")
+```
+
+The FastAPI counterpart API path operation could look like:
+
+```Python hl_lines="1"
+@app.get("/some/url")
+def read_url():
+    return {"message": "Hello World"}
+```
+
+See the similarities in `requests.get(...)` and `@app.get(...)`.
+
+!!! check "Inspired **FastAPI** to"
+    * Have a simple and intuitive API.
+    * Use HTTP method names (operations) directly, in a straightforward and intuitive way.
+    * Have sensible defaults, but powerful customizations.
+
+
 ### <a href="https://swagger.io/" target="_blank">Swagger</a> / <a href="https://github.com/OAI/OpenAPI-Specification/" target="_blank">OpenAPI</a>
 
 The main feature I wanted from Django REST Framework was the automatic API documentation.
@@ -80,7 +121,7 @@ That's why when talking about version 2.0 it's common to say "Swagger", and for 
 
 There are several Flask REST frameworks, but after investing the time and work into investigating them, I found that many are discontinued or abandoned, with several standing issues that made them unfit.
 
-## <a href="https://marshmallow.readthedocs.io/en/3.0/" target="_blank">Marshmallow</a>
+### <a href="https://marshmallow.readthedocs.io/en/3.0/" target="_blank">Marshmallow</a>
 
 One of the main features needed by API systems is data "<abbr title="also called marshalling, convertion">serialization</abbr>" which is taking data from the code (Python) and converting it into something that can be sent through the network. For example, converting an object containing data from a database into a JSON object. Converting `datetime` objects into strings, etc.
 
