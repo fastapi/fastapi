@@ -1,8 +1,10 @@
+import logging
 from typing import List
 
 import pytest
 import sqlalchemy
 from pydantic import BaseModel
+from starlette.applications import Starlette
 
 from starlette.database import transaction
 from starlette.middleware.database import DatabaseMiddleware
@@ -11,8 +13,12 @@ from starlette.testclient import TestClient
 
 from fastapi import FastAPI
 
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
+
 try:
-    DATABASE_URL = 'postgresql://foo:bar@localhost/fastapi'
+    DATABASE_URL_STARLETTE = 'postgresql://foo:bar@localhost/starlette'
+    DATABASE_URL_FASTAPI = 'postgresql://foo:bar@localhost/fastapi'
 except KeyError:  # pragma: no cover
     pytest.skip("DATABASE_URL is not set", allow_module_level=True)
 
@@ -26,18 +32,26 @@ notes = sqlalchemy.Table(
     sqlalchemy.Column("completed", sqlalchemy.Boolean),
 )
 
-app = FastAPI()
-app.add_middleware(
-    DatabaseMiddleware, database_url=DATABASE_URL, rollback_on_shutdown=True
+starlette = Starlette()
+starlette.add_middleware(
+    DatabaseMiddleware, database_url=DATABASE_URL_STARLETTE, rollback_on_shutdown=True
+)
+
+fastapi = FastAPI()
+fastapi.add_middleware(
+    DatabaseMiddleware, database_url=DATABASE_URL_FASTAPI, rollback_on_shutdown=True
 )
 
 
 @pytest.fixture(autouse=True, scope="module")
 def create_test_database():
-    engine = sqlalchemy.create_engine(DATABASE_URL)
-    metadata.create_all(engine)
+    engine_starlette = sqlalchemy.create_engine(DATABASE_URL_STARLETTE)
+    engine_fastapi = sqlalchemy.create_engine(DATABASE_URL_FASTAPI)
+    metadata.create_all(engine_starlette)
+    metadata.create_all(engine_fastapi)
     yield
-    engine.execute("DROP TABLE notes")
+    engine_starlette.execute("DROP TABLE notes")
+    engine_fastapi.execute("DROP TABLE notes")
 
 
 class NoteIn(BaseModel):
@@ -60,21 +74,21 @@ class NoteDB(BaseModel):
     completed: bool
 
 
-@app.post("/notes")
+@fastapi.post("/notes")
 async def add_note_fastapi(note: NoteIn, raise_exc: bool = False):
     """
     Create a note: FastAPI style
     """
     query = notes.insert().values(text=note.text, completed=note.completed)
-    await app.error_middleware.app.backend.session().execute(query)
+    await fastapi.error_middleware.app.backend.session().execute(query)
     if raise_exc:
         raise RuntimeError()
     return note
 
 
-@app.route("/notes_starlette", methods=["POST"])
+@starlette.route("/notes_starlette", methods=["POST"])
 @transaction
-async def add_note(request):
+async def add_note_starlette(request):
     """
     Create a note: Starlette style
     """
@@ -86,18 +100,18 @@ async def add_note(request):
     return JSONResponse({"text": data["text"], "completed": data["completed"]})
 
 
-@app.get("/notes", response_model=List[NoteOut])
+@fastapi.get("/notes", response_model=List[NoteOut])
 async def list_notes_fastapi():
     """
     Get all notes: FastAPI style
     """
     query = notes.select()
-    results = await app.error_middleware.app.backend.session().fetchall(query)
+    results = await fastapi.error_middleware.app.backend.session().fetchall(query)
     return results
 
 
-@app.route("/notes_starlette", methods=["GET"])
-async def list_notes(request):
+@starlette.route("/notes_starlette", methods=["GET"])
+async def list_notes_starlette(request):
     """
     Get all notes: Starlette style
     """
@@ -109,18 +123,18 @@ async def list_notes(request):
     return JSONResponse(content)
 
 
-@app.post("/notes/bulk_create")
+@fastapi.post("/notes/bulk_create")
 async def bulk_create_notes_fastapi(notelist: List[dict]):
     """
     Create notes in bulk: FastAPI style
     """
     query = notes.insert()
-    await app.error_middleware.app.backend.session().executemany(query, notelist)
+    await fastapi.error_middleware.app.backend.session().executemany(query, notelist)
     return notelist
 
 
-@app.route("/notes_starlette/bulk_create", methods=["POST"])
-async def bulk_create_notes(request):
+@starlette.route("/notes_starlette/bulk_create", methods=["POST"])
+async def bulk_create_notes_starlette(request):
     """
     Create notes in bulk: Starlette style
     """
@@ -130,18 +144,20 @@ async def bulk_create_notes(request):
     return JSONResponse({"notes": data})
 
 
-@app.get("/notes/{note_id}", response_model=NoteOut)
-async def read_note_fastapi(note_id: int):
+@fastapi.get("/notes/{note_id}", response_model=NoteOut)
+async def read_note_fastapi_starlette(note_id: int):
     """
     Get a note by id: FastAPI
     """
     query = notes.select().where(notes.c.id == note_id)
-    result = await app.error_middleware.app.backend.session().fetchone(query)
+    result = await fastapi.error_middleware.app.backend.session().fetchone(query)
+    logger.debug('result')
+    logger.debug(result)
     return result
 
 
-@app.route("/notes_starlette/{note_id:int}", methods=["GET"])
-async def read_note(request):
+@starlette.route("/notes_starlette/{note_id:int}", methods=["GET"])
+async def read_note_starlette(request):
     """
     Get a note by id: Starlette
     """
@@ -152,18 +168,18 @@ async def read_note(request):
     return JSONResponse(content)
 
 
-@app.get("/notes/{note_id}/text")
+@fastapi.get("/notes/{note_id}/text")
 async def read_note_text_fastapi(note_id: int):
     """
     Get the text of a note by id: FastAPI
     """
     query = sqlalchemy.select([notes.c.text]).where(notes.c.id == note_id)
-    text = await app.error_middleware.app.backend.session().fetchval(query)
+    text = await fastapi.error_middleware.app.backend.session().fetchval(query)
     return text
 
 
-@app.route("/notes_starlette/{note_id:int}/text", methods=["GET"])
-async def read_note_text(request):
+@starlette.route("/notes_starlette/{note_id:int}/text", methods=["GET"])
+async def read_note_text_starlette(request):
     """
     Get the text of a note by id: Starlette
     """
@@ -176,7 +192,7 @@ async def read_note_text(request):
 class TestStarletteStyle():
 
     def test_database(self):
-        with TestClient(app) as client:
+        with TestClient(starlette) as client:
             response = client.post(
                 "/notes_starlette", json={"text": "buy the milk", "completed": True}
             )
@@ -209,9 +225,8 @@ class TestStarletteStyle():
             assert response.status_code == 200
             assert response.json() == "buy the milk"
 
-
     def test_database_executemany(self):
-        with TestClient(app) as client:
+        with TestClient(starlette) as client:
             data = [
                 {"text": "buy the milk", "completed": True},
                 {"text": "walk the dog", "completed": False},
@@ -226,13 +241,12 @@ class TestStarletteStyle():
                 {"text": "walk the dog", "completed": False},
             ]
 
-
     def test_database_isolated_during_test_cases(self):
         """
         Using `TestClient` as a context manager
         """
 
-        with TestClient(app) as client:
+        with TestClient(starlette) as client:
             response = client.post(
                 "/notes_starlette", json={"text": "just one note", "completed": True}
             )
@@ -242,7 +256,7 @@ class TestStarletteStyle():
             assert response.status_code == 200
             assert response.json() == [{"text": "just one note", "completed": True}]
 
-        with TestClient(app) as client:
+        with TestClient(starlette) as client:
             response = client.post(
                 "/notes_starlette", json={"text": "just one note", "completed": True}
             )
@@ -251,11 +265,12 @@ class TestStarletteStyle():
             response = client.get("/notes_starlette")
             assert response.status_code == 200
             assert response.json() == [{"text": "just one note", "completed": True}]
+
 
 class TestFastAPIStyle():
 
     def test_database(self):
-        with TestClient(app) as client:
+        with TestClient(fastapi) as client:
             response = client.post(
                 "/notes", json={"text": "buy the milk", "completed": True}
             )
@@ -275,12 +290,10 @@ class TestFastAPIStyle():
 
             response = client.get("/notes")
             assert response.status_code == 200
-            # commented as the raise RuntimeError didnt triggeered a db rollback
-            # in the FastAPI route
-            # assert response.json() == [
-            #     {"text": "buy the milk", "completed": True},
-            #     {"text": "walk the dog", "completed": False},
-            # ]
+            assert response.json() == [
+                {"text": "buy the milk", "completed": True},
+                {"text": "walk the dog", "completed": False},
+            ]
 
             response = client.get("/notes/1")
             assert response.status_code == 200
@@ -290,9 +303,8 @@ class TestFastAPIStyle():
             assert response.status_code == 200
             assert response.json() == "buy the milk"
 
-
     def test_database_executemany(self):
-        with TestClient(app) as client:
+        with TestClient(fastapi) as client:
             data = [
                 {"text": "buy the milk", "completed": True},
                 {"text": "walk the dog", "completed": False},
@@ -307,13 +319,12 @@ class TestFastAPIStyle():
                 {"text": "walk the dog", "completed": False},
             ]
 
-
     def test_database_isolated_during_test_cases(self):
         """
         Using `TestClient` as a context manager
         """
 
-        with TestClient(app) as client:
+        with TestClient(fastapi) as client:
             response = client.post(
                 "/notes", json={"text": "just one note", "completed": True}
             )
@@ -323,7 +334,7 @@ class TestFastAPIStyle():
             assert response.status_code == 200
             assert response.json() == [{"text": "just one note", "completed": True}]
 
-        with TestClient(app) as client:
+        with TestClient(client) as client:
             response = client.post(
                 "/notes", json={"text": "just one note", "completed": True}
             )
