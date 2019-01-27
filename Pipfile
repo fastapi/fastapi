@@ -20,6 +20,9 @@ autoflake = "*"
 email-validator = "*"
 ujson = "*"
 flake8 = "*"
+sqlalchemy = "*"
+asyncpg = "*"
+"psycopg2-binary" = "*"
 
 [packages]
 starlette = "==0.9.10"
