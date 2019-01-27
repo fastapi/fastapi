@@ -36,7 +36,10 @@ test = [
     "black",
     "isort",
     "requests",
-    "email_validator"
+    "email_validator",
+    "sqlalchemy",
+    "asyncpg",
+    "psycopg2-binary"
 ]
 doc = [
     "mkdocs",
