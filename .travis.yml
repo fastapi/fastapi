@@ -10,6 +10,9 @@ install:
     - pip install flit
     - flit install
 
+before_script:
+    - psql -c 'create database fastapi;' -U postgres
+
 script:
     - bash scripts/test.sh
 

@@ -12,7 +12,7 @@ from starlette.testclient import TestClient
 from fastapi import FastAPI
 
 try:
-    DATABASE_URL = 'postgresql://postgres:postgres@localhost/fastapi'
+    DATABASE_URL = 'postgresql://localhost/fastapi'
 except KeyError:  # pragma: no cover
     pytest.skip("DATABASE_URL is not set", allow_module_level=True)
 
