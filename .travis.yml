@@ -6,6 +6,9 @@ python:
     - "3.6"
     - "3.7-dev"
 
+services:
+    - postgresql
+
 install:
     - pip install flit
     - flit install
