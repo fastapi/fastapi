@@ -5,7 +5,6 @@ import pytest
 
 import sqlalchemy
 from pydantic import BaseModel
-from pytest_lazyfixture import lazy_fixture
 from starlette.applications import Starlette
 from starlette.database import transaction
 
