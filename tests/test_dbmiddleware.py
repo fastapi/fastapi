@@ -486,10 +486,11 @@ class TestFastAPIStyle():
             assert response.status_code == 200
 
             response = client.get("/notes")
+            logger.debug(response.json())
             assert response.status_code == 200
             assert response.json() == [{"text": "just one note", "completed": True}]
 
-        with TestClient(client) as client:
+        with TestClient(fastapi) as client:
             response = client.post(
                 "/notes", json={"text": "just one note", "completed": True}
             )
