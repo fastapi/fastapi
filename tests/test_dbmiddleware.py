@@ -17,6 +17,7 @@ from fastapi import FastAPI
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
+# docker run --name fastapi-postgres -e POSTGRES_PASSWORD=bar -e POSTGRES_USER=foo -e POSTGRES_DB=fastapi -p 5432:5432 -d postgres
 try:
     DATABASE_URL = 'postgresql://foo:bar@localhost/fastapi'
 except KeyError:  # pragma: no cover
