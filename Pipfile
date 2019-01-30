@@ -23,6 +23,7 @@ flake8 = "*"
 sqlalchemy = "*"
 asyncpg = "*"
 "psycopg2-binary" = "*"
+pytest-lazy-fixture = "*"
 
 [packages]
 starlette = "==0.9.10"
