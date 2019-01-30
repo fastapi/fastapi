@@ -18,7 +18,7 @@ from starlette.exceptions import HTTPException
 from starlette.formparsers import UploadFile
 from starlette.requests import Request
 from starlette.responses import JSONResponse, Response
-from starlette.routing import get_name, request_response
+from starlette.routing import get_name, request_response, compile_path
 from starlette.status import HTTP_422_UNPROCESSABLE_ENTITY
 
 
@@ -149,7 +149,7 @@ class APIRoute(routing.Route):
         self.include_in_schema = include_in_schema
         self.content_type = content_type
 
-        self.path_regex, self.path_format, self.param_convertors = self.compile_path(
+        self.path_regex, self.path_format, self.param_convertors = compile_path(
             path
         )
         assert inspect.isfunction(endpoint) or inspect.ismethod(
