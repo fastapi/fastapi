@@ -168,12 +168,12 @@ async def list_notes_starlette(request):
 
 
 @fastapi.post("/notes/bulk_create")
-async def bulk_create_notes_fastapi(notelist: List[dict]):
+async def bulk_create_notes_fastapi(notelist: List[NoteIn]):
     """
     Create notes in bulk: FastAPI style
     """
     query = fastapinotes.insert()
-    await fastapi.error_middleware.app.backend.session().executemany(query, notelist)
+    await fastapi.error_middleware.app.backend.session().executemany(query, [n.dict() for n in notelist])
     return notelist
 
 
