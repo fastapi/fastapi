@@ -149,9 +149,7 @@ class APIRoute(routing.Route):
         self.include_in_schema = include_in_schema
         self.content_type = content_type
 
-        self.path_regex, self.path_format, self.param_convertors = compile_path(
-            path
-        )
+        self.path_regex, self.path_format, self.param_convertors = compile_path(path)
         assert inspect.isfunction(endpoint) or inspect.ismethod(
             endpoint
         ), f"An endpoint must be a function or method"
