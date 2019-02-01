@@ -20,7 +20,7 @@ logger.setLevel(logging.DEBUG)
 
 # docker run --name fastapi-postgres -e POSTGRES_PASSWORD=bar -e POSTGRES_USER=foo -e POSTGRES_DB=fastapi -p 5432:5432 -d postgres
 try:
-    DATABASE_URL = 'postgresql://foo:bar@localhost/fastapi'
+    DATABASE_URL = "postgresql://foo:bar@localhost/fastapi"
 except KeyError:  # pragma: no cover
     pytest.skip("DATABASE_URL is not set", allow_module_level=True)
 
@@ -118,7 +118,7 @@ async def read_note_fastapi_starlette(request: Request, note_id: int):
     """
     query = fastapinotes.select().where(fastapinotes.c.id == note_id)
     result = await request.database.fetchone(query)
-    logger.debug('result')
+    logger.debug("result")
     logger.debug(result)
     return result
 
@@ -133,8 +133,7 @@ async def read_note_text_fastapi(request: Request, note_id: int):
     return text
 
 
-class TestFastAPIStyle():
-
+class TestFastAPIStyle:
     def test_database(self):
         with TestClient(fastapi) as client:
             response = client.post(
@@ -212,19 +211,20 @@ class TestFastAPIStyle():
             assert response.json() == [{"text": "just one note", "completed": True}]
 
 
-@pytest.fixture(params=['fastapistarlette', "starlette"])
+@pytest.fixture(params=["fastapistarlette", "starlette"])
 def framework(request):
-    if request.param == 'fastapistarlette':
+    if request.param == "fastapistarlette":
         app = FastAPI()
     else:
         app = Starlette()
-    app.add_route("/notes", add_note_s, methods=['POST'])
-    app.add_route("/notes", list_notes_s, methods=['GET'])
-    app.add_route("/notes/{note_id:int}", read_note_s, methods=['GET'])
-    app.add_route("/notes/{note_id:int}/text", read_note_text_s, methods=['GET'])
-    app.add_route("/notes/bulk_create", bulk_create_notes_s, methods=['POST'])
-    app.add_middleware(DatabaseMiddleware, database_url=DATABASE_URL,
-                       rollback_on_shutdown=True)
+    app.add_route("/notes", add_note_s, methods=["POST"])
+    app.add_route("/notes", list_notes_s, methods=["GET"])
+    app.add_route("/notes/{note_id:int}", read_note_s, methods=["GET"])
+    app.add_route("/notes/{note_id:int}/text", read_note_text_s, methods=["GET"])
+    app.add_route("/notes/bulk_create", bulk_create_notes_s, methods=["POST"])
+    app.add_middleware(
+        DatabaseMiddleware, database_url=DATABASE_URL, rollback_on_shutdown=True
+    )
     yield app
 
 
@@ -234,7 +234,9 @@ async def add_note_s(request):
     Create a note: Starlette style
     """
     data = await request.json()
-    query = starlettenotes.insert().values(text=data["text"], completed=data["completed"])
+    query = starlettenotes.insert().values(
+        text=data["text"], completed=data["completed"]
+    )
     await request.database.execute(query)
     if "raise_exc" in request.query_params:
         raise RuntimeError()
@@ -269,7 +271,9 @@ async def read_note_text_s(request):
     Get the text of a note by id: Starlette
     """
     note_id = request.path_params["note_id"]
-    query = sqlalchemy.select([starlettenotes.c.text]).where(starlettenotes.c.id == note_id)
+    query = sqlalchemy.select([starlettenotes.c.text]).where(
+        starlettenotes.c.id == note_id
+    )
     text = await request.database.fetchval(query)
     return JSONResponse(text)
 
@@ -290,40 +294,39 @@ def frameworkclient(framework):
 
 
 class TestStarletteStyle(object):
-
     def test_database(self, frameworkclient):
-            with frameworkclient:
+        with frameworkclient:
+            response = frameworkclient.post(
+                "/notes", json={"text": "buy the milk", "completed": True}
+            )
+            assert response.status_code == 200
+
+            with pytest.raises(RuntimeError):
                 response = frameworkclient.post(
-                    "/notes", json={"text": "buy the milk", "completed": True}
+                    "/notes",
+                    json={"text": "you wont see me", "completed": False},
+                    params={"raise_exc": "true"},
                 )
-                assert response.status_code == 200
 
-                with pytest.raises(RuntimeError):
-                    response = frameworkclient.post(
-                        "/notes",
-                        json={"text": "you wont see me", "completed": False},
-                        params={"raise_exc": "true"},
-                    )
+            response = frameworkclient.post(
+                "/notes", json={"text": "walk the dog", "completed": False}
+            )
+            assert response.status_code == 200
 
-                response = frameworkclient.post(
-                    "/notes", json={"text": "walk the dog", "completed": False}
-                )
-                assert response.status_code == 200
+            response = frameworkclient.get("/notes")
+            assert response.status_code == 200
+            assert response.json() == [
+                {"text": "buy the milk", "completed": True},
+                {"text": "walk the dog", "completed": False},
+            ]
 
-                response = frameworkclient.get("/notes")
-                assert response.status_code == 200
-                assert response.json() == [
-                    {"text": "buy the milk", "completed": True},
-                    {"text": "walk the dog", "completed": False},
-                ]
+            response = frameworkclient.get("/notes/1")
+            assert response.status_code == 200
+            assert response.json() == {"text": "buy the milk", "completed": True}
 
-                response = frameworkclient.get("/notes/1")
-                assert response.status_code == 200
-                assert response.json() == {"text": "buy the milk", "completed": True}
-
-                response = frameworkclient.get("/notes/1/text")
-                assert response.status_code == 200
-                assert response.json() == "buy the milk"
+            response = frameworkclient.get("/notes/1/text")
+            assert response.status_code == 200
+            assert response.json() == "buy the milk"
 
     def test_database_executemany(self, frameworkclient):
         with frameworkclient:
