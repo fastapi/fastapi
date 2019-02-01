@@ -23,7 +23,7 @@ flake8 = "*"
 python-multipart = "*"
 
 [packages]
-starlette = "*"
+starlette = "==0.10.1"
 pydantic = "==0.18.2"
 
 [requires]
