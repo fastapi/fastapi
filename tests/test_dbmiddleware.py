@@ -9,6 +9,7 @@ from starlette.applications import Starlette
 from starlette.database import transaction
 
 from starlette.middleware.database import DatabaseMiddleware
+from starlette.requests import Request
 from starlette.responses import JSONResponse
 from starlette.testclient import TestClient
 
@@ -78,57 +79,56 @@ class NoteDB(BaseModel):
 
 
 @fastapi.post("/notes")
-async def add_note_fastapi(note: NoteIn, raise_exc: bool = False):
+async def add_note_fastapi(request: Request, note: NoteIn, raise_exc: bool = False):
     """
     Create a note: FastAPI style
     """
     query = fastapinotes.insert().values(text=note.text, completed=note.completed)
-    async with fastapi.error_middleware.app.backend.session().transaction():
-        if raise_exc:
-            raise RuntimeError()
-        await fastapi.error_middleware.app.backend.session().execute(query)
+    await request.database.execute(query)
+    if raise_exc:
+        raise RuntimeError()
     return note
 
 
 @fastapi.get("/notes", response_model=List[NoteOut])
-async def list_notes_fastapi():
+async def list_notes_fastapi(request: Request):
     """
     Get all notes: FastAPI style
     """
     query = fastapinotes.select()
-    results = await fastapi.error_middleware.app.backend.session().fetchall(query)
+    results = await request.database.fetchall(query)
     return results
 
 
 @fastapi.post("/notes/bulk_create")
-async def bulk_create_notes_fastapi(notelist: List[NoteIn]):
+async def bulk_create_notes_fastapi(request: Request, notelist: List[NoteIn]):
     """
     Create notes in bulk: FastAPI style
     """
     query = fastapinotes.insert()
-    await fastapi.error_middleware.app.backend.session().executemany(query, [n.dict() for n in notelist])
+    await request.database.executemany(query, [n.dict() for n in notelist])
     return notelist
 
 
 @fastapi.get("/notes/{note_id}", response_model=NoteOut)
-async def read_note_fastapi_starlette(note_id: int):
+async def read_note_fastapi_starlette(request: Request, note_id: int):
     """
     Get a note by id: FastAPI
     """
     query = fastapinotes.select().where(fastapinotes.c.id == note_id)
-    result = await fastapi.error_middleware.app.backend.session().fetchone(query)
+    result = await request.database.fetchone(query)
     logger.debug('result')
     logger.debug(result)
     return result
 
 
 @fastapi.get("/notes/{note_id}/text")
-async def read_note_text_fastapi(note_id: int):
+async def read_note_text_fastapi(request: Request, note_id: int):
     """
     Get the text of a note by id: FastAPI
     """
     query = sqlalchemy.select([fastapinotes.c.text]).where(fastapinotes.c.id == note_id)
-    text = await fastapi.error_middleware.app.backend.session().fetchval(query)
+    text = await request.database.fetchval(query)
     return text
 
 
