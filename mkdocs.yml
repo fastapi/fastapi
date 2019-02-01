@@ -64,6 +64,7 @@ nav:
     - Project Generation - Template: 'project-generation.md'
     - Alternatives, Inspiration and Comparisons: 'alternatives.md'
     - Benchmarks: 'benchmarks.md'
+    - Release Notes: release-notes.md
 
 markdown_extensions:
   - markdown.extensions.codehilite:
