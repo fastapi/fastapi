@@ -79,14 +79,15 @@ class NoteDB(BaseModel):
 
 
 @fastapi.post("/notes")
-async def add_note_fastapi(request: Request, note: NoteIn, raise_exc: bool = False):
+async def add_note_fastapi(request: Request, note: NoteIn):
     """
     Create a note: FastAPI style
     """
     query = fastapinotes.insert().values(text=note.text, completed=note.completed)
-    await request.database.execute(query)
-    if raise_exc:
-        raise RuntimeError()
+    async with request.database.transaction():
+        await request.database.execute(query)
+        if "raise_exc" in request.query_params:
+            raise RuntimeError()
     return note
 
 
