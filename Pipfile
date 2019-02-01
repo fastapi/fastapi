@@ -20,9 +20,10 @@ autoflake = "*"
 email-validator = "*"
 ujson = "*"
 flake8 = "*"
+python-multipart = "*"
 
 [packages]
-starlette = "==0.9.10"
+starlette = "==0.10.1"
 pydantic = "==0.18.2"
 
 [requires]
