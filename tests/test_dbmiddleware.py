@@ -3,6 +3,7 @@ from typing import List
 
 import pytest
 import sqlalchemy
+from fastapi import FastAPI
 from pydantic import BaseModel
 from starlette.applications import Starlette
 from starlette.database import transaction
@@ -10,8 +11,6 @@ from starlette.middleware.database import DatabaseMiddleware
 from starlette.requests import Request
 from starlette.responses import JSONResponse
 from starlette.testclient import TestClient
-
-from fastapi import FastAPI
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
