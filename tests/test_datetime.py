@@ -1,8 +1,8 @@
 import json
 from datetime import datetime, timezone
 
-from fastapi import FastAPI
 import pytest
+from fastapi import FastAPI
 from pydantic import BaseModel
 from starlette.testclient import TestClient
 
