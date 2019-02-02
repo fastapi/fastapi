@@ -12,7 +12,7 @@ def jsonable_encoder(
     exclude: Set[str] = set(),
     by_alias: bool = False,
     include_none: bool = True,
-    custom_encoder: dict = {}
+    custom_encoder: dict = {},
 ) -> Any:
     if isinstance(obj, BaseModel):
         if obj.Config.json_encoders == {}:
@@ -23,7 +23,8 @@ def jsonable_encoder(
         else:
             return jsonable_encoder(
                 obj.dict(include=include, exclude=exclude, by_alias=by_alias),
-                include_none=include_none, custom_encoder=obj.Config.json_encoders
+                include_none=include_none,
+                custom_encoder=obj.Config.json_encoders,
             )
     if isinstance(obj, Enum):
         return obj.value
@@ -32,8 +33,16 @@ def jsonable_encoder(
     if isinstance(obj, dict):
         return {
             jsonable_encoder(
-                key, by_alias=by_alias, include_none=include_none, custom_encoder=custom_encoder
-            ): jsonable_encoder(value, by_alias=by_alias, include_none=include_none, custom_encoder=custom_encoder)
+                key,
+                by_alias=by_alias,
+                include_none=include_none,
+                custom_encoder=custom_encoder,
+            ): jsonable_encoder(
+                value,
+                by_alias=by_alias,
+                include_none=include_none,
+                custom_encoder=custom_encoder,
+            )
             for key, value in obj.items()
             if value is not None or include_none
         }
@@ -45,7 +54,7 @@ def jsonable_encoder(
                 exclude=exclude,
                 by_alias=by_alias,
                 include_none=include_none,
-                custom_encoder=custom_encoder
+                custom_encoder=custom_encoder,
             )
             for item in obj
         ]

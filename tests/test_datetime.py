@@ -1,15 +1,15 @@
 import json
 from datetime import datetime, timezone
 
-import pytest
-from starlette.testclient import TestClient
-
 from fastapi import FastAPI
+import pytest
 from pydantic import BaseModel
+from starlette.testclient import TestClient
 
 
 class ModelWithDatetimeField(BaseModel):
     dt_field: datetime
+
     class Config:
         json_encoders = {
             datetime: lambda dt: dt.replace(
