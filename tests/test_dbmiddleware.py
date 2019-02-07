@@ -66,16 +66,6 @@ class NoteOut(BaseModel):
     completed: bool
 
 
-class NoteOutJustText(BaseModel):
-    text: str
-
-
-class NoteDB(BaseModel):
-    id: int
-    text: str
-    completed: bool
-
-
 @fastapi.post("/notes")
 async def add_note_fastapi(request: Request, note: NoteIn):
     """
