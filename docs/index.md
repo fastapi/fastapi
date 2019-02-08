@@ -24,7 +24,7 @@
 
 ---
 
-FastAPI is a modern, fast (high-performance), web framework for building APIs with Python 3.6+.
+FastAPI is a modern, fast (high-performance), web framework for building APIs with Python 3.6+ based on standard Python type hints.
 
 The key features are:
 
@@ -166,7 +166,7 @@ You will see the alternative automatic documentation (provided by <a href="https
 
 ## Example upgrade
 
-Now modify the file `main.py` to recive a body from a `PUT` request.
+Now modify the file `main.py` to receive a body from a `PUT` request.
 
 Declare the body using standard Python types, thanks to Pydantic.
 
@@ -257,7 +257,7 @@ item: Item
 * Validation of data:
     * Automatic and clear errors when the data is invalid.
     * Validation even for deeply nested JSON objects.
-* <abbr title="also known as: serialization, parsing, marshalling">Conversion</abbr> of input data: coming from the network, to Python data and types. Reading from:
+* <abbr title="also known as: serialization, parsing, marshalling">Conversion</abbr> of input data: coming from the network to Python data and types. Reading from:
     * JSON.
     * Path parameters.
     * Query parameters.
@@ -292,7 +292,7 @@ Coming back to the previous code example, **FastAPI** will:
     * All this would also work for deeply nested JSON objects.
 * Convert from and to JSON automatically.
 * Document everything with OpenAPI, that can be used by:
-    * Interactive documentation sytems.
+    * Interactive documentation systems.
     * Automatic client code generation systems, for many languages.
 * Provide 2 interactive documentation web interfaces directly.
 
@@ -329,7 +329,7 @@ For a more complete example including more features, see the <a href="https://fa
 **Spoiler alert**: the tutorial - user guide includes:
 
 * Declaration of **parameters** from other different places as: **headers**, **cookies**, **form fields** and **files**.
-* How to set **validation constrains** as `maximum_length` or `regex`.
+* How to set **validation constraints** as `maximum_length` or `regex`.
 * A very powerful and easy to use **<abbr title="also known as components, resources, providers, services, injectables">Dependency Injection</abbr>** system.
 * Security and authentication, including support for **OAuth2** with **JWT tokens** and **HTTP Basic** auth.
 * More advanced (but equally easy) techniques for declaring **deeply nested JSON models** (thanks to Pydantic).
