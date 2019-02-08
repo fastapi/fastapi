@@ -1,4 +1,4 @@
-There are many ways to handle security, authentication and autorization.
+There are many ways to handle security, authentication and authorization.
 
 And it normally is a complex and "difficult" topic.
 
@@ -14,9 +14,9 @@ If you don't care about any of these terms and you just need to add security wit
 
 ## OAuth2
 
-OAuth2 is a specification that defines several ways to handle authentication and autorization.
+OAuth2 is a specification that defines several ways to handle authentication and authorization.
 
-It is quite an extensive especification and covers several complex use cases.
+It is quite an extensive specification and covers several complex use cases.
 
 It includes ways to authenticate using a "third party".
 
