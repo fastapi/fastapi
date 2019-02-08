@@ -1,7 +1,6 @@
 import json
 from datetime import datetime, timezone
 
-import pytest
 from fastapi import FastAPI
 from pydantic import BaseModel
 from starlette.testclient import TestClient
@@ -27,12 +26,10 @@ def get_model():
     return model
 
 
-@pytest.fixture
-def client():
-    yield TestClient(app)
+client = TestClient(app)
 
 
-def test_dt(client):
+def test_dt():
     with client:
         response = client.get("/model")
     assert json.loads(model.json()) == response.json()

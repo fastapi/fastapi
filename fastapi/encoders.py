@@ -15,7 +15,7 @@ def jsonable_encoder(
     custom_encoder: dict = {},
 ) -> Any:
     if isinstance(obj, BaseModel):
-        if obj.Config.json_encoders == {}:
+        if not obj.Config.json_encoders:
             return jsonable_encoder(
                 obj.dict(include=include, exclude=exclude, by_alias=by_alias),
                 include_none=include_none,
@@ -60,11 +60,8 @@ def jsonable_encoder(
         ]
     errors = []
     try:
-        if custom_encoder != {}:
-            if type(obj) in custom_encoder.keys():
-                encoder = custom_encoder[type(obj)]
-            else:
-                encoder = ENCODERS_BY_TYPE[type(obj)]
+        if custom_encoder and type(obj) in custom_encoder:
+            encoder = custom_encoder[type(obj)]
         else:
             encoder = ENCODERS_BY_TYPE[type(obj)]
         return encoder(obj)
