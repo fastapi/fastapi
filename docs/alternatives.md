@@ -6,7 +6,7 @@ What inspired **FastAPI**, how it compares to other alternatives and what it lea
 
 There have been many tools created before that have helped inspire its creation.
 
-I have been avoiding the creation of a new framework for several years. First I tried to solve all the features covered by **FastAPI** using many different frameworks, plug-ins and tools.
+I have been avoiding the creation of a new framework for several years. First I tried to solve all the features covered by **FastAPI** using many different frameworks, plug-ins, and tools.
 
 But at some point, there was no other option than creating something that provided all these features, taking the best ideas from previous tools, and combining them in the best way possible, using language features that weren't even available before (Python 3.6+ type hints).
 
