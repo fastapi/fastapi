@@ -1,0 +1,15 @@
+<mjml>
+  <mj-body background-color="#fff">
+    <mj-section>
+      <mj-column>
+        <mj-divider border-color="#555"></mj-divider>
+        <mj-text font-size="20px" color="#555" font-family="helvetica">{{ project_name }} - New Account</mj-text>
+        <mj-text font-size="16px" color="#555">You have a new account:</mj-text>
+        <mj-text font-size="16px" color="#555">Username: {{ username }}</mj-text>
+        <mj-text font-size="16px" color="#555">Password: {{ password }}</mj-text>
+        <mj-button padding="50px 0px" href="{{ link }}">Go to Dashboard</mj-button>
+        <mj-divider border-color="#555" border-width="2px" />
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>

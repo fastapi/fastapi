@@ -1,0 +1,6 @@
+version: '3.3'
+services:
+  db:
+    image: postgres:11
+  queue:
+    image: rabbitmq:3

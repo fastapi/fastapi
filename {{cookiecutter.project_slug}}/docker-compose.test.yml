@@ -1,0 +1,17 @@
+version: '3.3'
+services:
+  backend-tests:
+    build:
+      context: ./backend
+      dockerfile: tests.dockerfile
+    command: bash -c "while true; do sleep 1; done"
+    env_file:
+      - env-couchbase.env
+      - env-sync-gateway.env
+      - env-backend.env
+    environment:
+      - SERVER_NAME=backend
+  backend:
+    environment:
+      # Don't send emails during testing
+      - SMTP_HOST=

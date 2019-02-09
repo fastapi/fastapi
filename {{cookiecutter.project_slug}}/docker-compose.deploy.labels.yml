@@ -1,0 +1,66 @@
+version: '3.3'
+services:
+  pgadmin:
+    deploy:
+      labels:
+        - traefik.frontend.rule=Host:pgadmin.${DOMAIN}
+        - traefik.enable=true
+        - traefik.port=5050
+        - traefik.tags=${TRAEFIK_PUBLIC_TAG}
+        - traefik.docker.network=${TRAEFIK_PUBLIC_NETWORK}
+        # Traefik service that listens to HTTP
+        - traefik.redirectorservice.frontend.entryPoints=http
+        - traefik.redirectorservice.frontend.redirect.entryPoint=https
+        # Traefik service that listens to HTTPS
+        - traefik.webservice.frontend.entryPoints=https
+  proxy:
+    deploy:
+      labels:
+        # For the configured domain
+        - traefik.frontend.rule=Host:${DOMAIN}
+        # For a domain with and without 'www'
+        # Comment the previous line above and un-comment the line below
+        # - "traefik.frontend.rule=Host:www.${DOMAIN},${DOMAIN}"
+        - traefik.enable=true
+        - traefik.port=80
+        - traefik.tags=${TRAEFIK_PUBLIC_TAG}
+        - traefik.docker.network=${TRAEFIK_PUBLIC_NETWORK}
+        # Traefik service that listens to HTTP
+        - traefik.servicehttp.frontend.entryPoints=http
+        - traefik.servicehttp.frontend.redirect.entryPoint=https
+        # Traefik service that listens to HTTPS
+        - traefik.servicehttps.frontend.entryPoints=https
+        # Uncomment the config line below to detect and redirect www to non-www (or the contrary)
+        # The lines above for traefik.frontend.rule are needed too
+        # - "traefik.servicehttps.frontend.redirect.regex=^https?://(www.)?(${DOMAIN})/(.*)"
+        # To redirect from non-www to www un-comment the line below
+        # - "traefik.servicehttps.frontend.redirect.replacement=https://www.${DOMAIN}/$$3"
+        # To redirect from www to non-www un-comment the line below
+        # - "traefik.servicehttps.frontend.redirect.replacement=https://${DOMAIN}/$$3"
+  flower:
+    deploy:
+      labels:
+        - traefik.frontend.rule=Host:flower.${DOMAIN}
+        - traefik.enable=true
+        - traefik.port=5555
+        - traefik.tags=${TRAEFIK_PUBLIC_TAG}
+        - traefik.docker.network=${TRAEFIK_PUBLIC_NETWORK}
+        # Traefik service that listens to HTTP
+        - traefik.redirectorservice.frontend.entryPoints=http
+        - traefik.redirectorservice.frontend.redirect.entryPoint=https
+        # Traefik service that listens to HTTPS
+        - traefik.webservice.frontend.entryPoints=https
+  backend:
+    deploy:
+      labels:
+        - traefik.frontend.rule=PathPrefix:/api,/docs,/redoc
+        - traefik.enable=true
+        - traefik.port=80
+        - traefik.tags=${TRAEFIK_TAG}
+  frontend:
+    deploy:
+      labels:
+        - traefik.frontend.rule=PathPrefix:/
+        - traefik.enable=true
+        - traefik.port=80
+        - traefik.tags=${TRAEFIK_TAG}

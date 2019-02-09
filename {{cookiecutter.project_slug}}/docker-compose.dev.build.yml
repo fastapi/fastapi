@@ -1,0 +1,25 @@
+version: '3.3'
+services:
+  backend:
+    build: 
+      context: ./backend
+      dockerfile: backend.dockerfile
+      args: 
+        env: dev
+  celeryworker:
+    build:
+      context: ./backend
+      dockerfile: celeryworker.dockerfile
+      args: 
+        env: dev
+  backend-tests:
+    build:
+      context: ./backend
+      dockerfile: tests.dockerfile
+      args: 
+        env: dev
+  frontend:
+    build: 
+      context: ./frontend
+      args: 
+        FRONTEND_ENV: dev

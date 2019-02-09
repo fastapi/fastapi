@@ -1,0 +1,4 @@
+.vscode
+testing-project
+docker-stack.yml
+.mypy_cache

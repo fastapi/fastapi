@@ -1,0 +1,18 @@
+version: '3.3'
+services:
+  pgadmin:
+    networks:
+      - ${TRAEFIK_PUBLIC_NETWORK}
+      - default
+  proxy:
+    networks:
+      - ${TRAEFIK_PUBLIC_NETWORK}
+      - default
+  flower:
+    networks:
+      - ${TRAEFIK_PUBLIC_NETWORK}
+      - default
+
+networks:
+  {{cookiecutter.traefik_public_network}}:
+    external: true

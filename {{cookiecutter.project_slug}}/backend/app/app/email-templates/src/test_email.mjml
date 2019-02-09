@@ -1,0 +1,11 @@
+<mjml>
+  <mj-body background-color="#fff">
+    <mj-section>
+      <mj-column>
+        <mj-divider border-color="#555"></mj-divider>
+        <mj-text font-size="20px" color="#555" font-family="helvetica">{{ project_name }}</mj-text>
+        <mj-text font-size="16px" color="#555">Test email for: {{ email }}</mj-text>
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>

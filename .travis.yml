@@ -1,0 +1,12 @@
+sudo: required
+
+language: python
+
+install:
+  - pip install cookiecutter
+
+services:
+  - docker
+
+script:
+- bash ./test.sh

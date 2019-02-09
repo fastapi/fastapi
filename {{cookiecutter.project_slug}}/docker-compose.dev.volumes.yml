@@ -1,0 +1,11 @@
+version: '3.3'
+services:
+  backend:
+    volumes:
+      - ./backend/app:/app
+  celeryworker:
+    volumes:
+      - ./backend/app:/app
+  backend-tests:
+    volumes:
+      - ./backend/app:/app

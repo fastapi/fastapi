@@ -1,0 +1,16 @@
+version: '3.3'
+services:
+  pgadmin:
+    image: dpage/pgadmin4
+    depends_on:
+      - db
+    env_file:
+      - env-pgadmin.env
+  proxy:
+    image: traefik:v1.7
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+  flower:
+    image: totem/celery-flower-docker
+    env_file:
+      - env-flower.env

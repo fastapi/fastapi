@@ -1,0 +1,15 @@
+version: '3.3'
+services:
+  backend:
+    build: 
+      context: ./backend
+      dockerfile: backend.dockerfile
+  celeryworker:
+    build:
+      context: ./backend
+      dockerfile: celeryworker.dockerfile
+  frontend:
+    build: 
+      context: ./frontend
+      args:
+          FRONTEND_ENV: ${FRONTEND_ENV-production}
