@@ -235,7 +235,7 @@ def get_openapi(
             if result:
                 path, security_schemes, path_definitions = result
                 if path:
-                    paths.setdefault(prefix + route.path, {}).update(path)
+                    paths.setdefault(routes_prefix + route.path, {}).update(path)
                 if security_schemes:
                     components.setdefault("securitySchemes", {}).update(
                         security_schemes
