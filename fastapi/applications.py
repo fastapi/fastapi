@@ -44,7 +44,7 @@ class FastAPI(Starlette):
         self.description = description
         self.version = version
         self.openapi_url = openapi_url
-        self.openapi_prefix = openapi_prefix.rstrip('/')
+        self.openapi_prefix = openapi_prefix.rstrip("/")
         self.docs_url = docs_url
         self.redoc_url = redoc_url
         self.extra = extra
@@ -83,7 +83,8 @@ class FastAPI(Starlette):
             self.add_route(
                 self.docs_url,
                 lambda r: get_swagger_ui_html(
-                    openapi_url=self.openapi_prefix + self.openapi_url, title=self.title + " - Swagger UI"
+                    openapi_url=self.openapi_prefix + self.openapi_url,
+                    title=self.title + " - Swagger UI",
                 ),
                 include_in_schema=False,
             )
@@ -91,7 +92,8 @@ class FastAPI(Starlette):
             self.add_route(
                 self.redoc_url,
                 lambda r: get_redoc_html(
-                    openapi_url=self.openapi_prefix + self.openapi_url, title=self.title + " - ReDoc"
+                    openapi_url=self.openapi_prefix + self.openapi_url,
+                    title=self.title + " - ReDoc",
                 ),
                 include_in_schema=False,
             )
