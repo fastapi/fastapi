@@ -216,7 +216,7 @@ def get_openapi(
     openapi_version: str = "3.0.2",
     description: str = None,
     routes: Sequence[BaseRoute],
-    routes_prefix: Optional[str] = ""
+    routes_prefix: str = None
 ) -> Dict:
     info = {"title": title, "version": version}
     if description:
