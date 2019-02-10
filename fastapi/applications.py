@@ -75,7 +75,7 @@ class FastAPI(Starlette):
     def setup(self) -> None:
         if self.openapi_url:
             self.add_route(
-                self.openapi_prefix + self.openapi_url,
+                self.openapi_url,
                 lambda req: JSONResponse(self.openapi()),
                 include_in_schema=False,
             )
