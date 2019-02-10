@@ -25,6 +25,7 @@ class FastAPI(Starlette):
         description: str = "",
         version: str = "0.1.0",
         openapi_url: Optional[str] = "/openapi.json",
+        openapi_prefix: Optional[str] = "",
         docs_url: Optional[str] = "/docs",
         redoc_url: Optional[str] = "/redoc",
         **extra: Dict[str, Any],
@@ -43,6 +44,7 @@ class FastAPI(Starlette):
         self.description = description
         self.version = version
         self.openapi_url = openapi_url
+        self.openapi_prefix = openapi_prefix
         self.docs_url = docs_url
         self.redoc_url = redoc_url
         self.extra = extra
@@ -66,6 +68,7 @@ class FastAPI(Starlette):
                 openapi_version=self.openapi_version,
                 description=self.description,
                 routes=self.routes,
+                routes_prefix=self.openapi_prefix,
             )
         return self.openapi_schema
 
