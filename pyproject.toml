@@ -36,7 +36,8 @@ test = [
     "black",
     "isort",
     "requests",
-    "email_validator"
+    "email_validator",
+    "sqlalchemy"
 ]
 doc = [
     "mkdocs",
