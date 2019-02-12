@@ -1,6 +1,6 @@
 ## 0.3.0
 
-* Fix/add SQLAlchemy support, including ORM, and update docs for SQLAlchemy: <a href="https://github.com/tiangolo/fastapi/pull/30" target="_blank">#30</a>
+* Fix/add SQLAlchemy support, including ORM, and update <a href="https://fastapi.tiangolo.com/tutorial/sql-databases/" target="_blank">docs for SQLAlchemy</a>: <a href="https://github.com/tiangolo/fastapi/pull/30" target="_blank">#30</a>
 
 ## 0.2.1
 
