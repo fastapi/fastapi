@@ -1,4 +1,3 @@
-import json
 from datetime import datetime, timezone
 
 from fastapi import FastAPI
@@ -18,7 +17,7 @@ class ModelWithDatetimeField(BaseModel):
 
 
 app = FastAPI()
-model = ModelWithDatetimeField(dt_field=datetime.utcnow())
+model = ModelWithDatetimeField(dt_field=datetime(2019, 1, 1, 8))
 
 
 @app.get("/model", response_model=ModelWithDatetimeField)
@@ -32,4 +31,4 @@ client = TestClient(app)
 def test_dt():
     with client:
         response = client.get("/model")
-    assert json.loads(model.json()) == response.json()
+    assert response.json() == {"dt_field": "2019-01-01T08:00:00+00:00"}
