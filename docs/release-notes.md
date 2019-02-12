@@ -1,6 +1,10 @@
+## 0.3.0
+
+* Fix/add SQLAlchemy support, including ORM, and update docs for SQLAlchemy: <a href="https://github.com/tiangolo/fastapi/pull/30" target="_blank">#30</a>
+
 ## 0.2.1
 
-* Fix `jsonable_encoder` for Pydantic models with `Config` but without `json_encoders`: <a href="https://github.com/tiangolo/fastapi/pull/29" target="_blank">#29</a>.
+* Fix `jsonable_encoder` for Pydantic models with `Config` but without `json_encoders`: <a href="https://github.com/tiangolo/fastapi/pull/29" target="_blank">#29</a>
 
 ## 0.2.0
 
