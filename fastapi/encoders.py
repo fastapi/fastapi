@@ -15,17 +15,12 @@ def jsonable_encoder(
     custom_encoder: dict = {},
 ) -> Any:
     if isinstance(obj, BaseModel):
-        if not obj.Config.json_encoders:
-            return jsonable_encoder(
-                obj.dict(include=include, exclude=exclude, by_alias=by_alias),
-                include_none=include_none,
-            )
-        else:
-            return jsonable_encoder(
-                obj.dict(include=include, exclude=exclude, by_alias=by_alias),
-                include_none=include_none,
-                custom_encoder=obj.Config.json_encoders,
-            )
+        encoder = getattr(obj.Config, "json_encoders", custom_encoder)
+        return jsonable_encoder(
+            obj.dict(include=include, exclude=exclude, by_alias=by_alias),
+            include_none=include_none,
+            custom_encoder=encoder,
+        )
     if isinstance(obj, Enum):
         return obj.value
     if isinstance(obj, (str, int, float, type(None))):
