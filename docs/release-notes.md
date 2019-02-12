@@ -1,3 +1,7 @@
+## Next
+
+* Update <a href="https://fastapi.tiangolo.com/tutorial/sql-databases/" target="_blank">docs/tutorial for SQLAlchemy</a> including note about *DB Browser for SQLite*.
+
 ## 0.3.0
 
 * Fix/add SQLAlchemy support, including ORM, and update <a href="https://fastapi.tiangolo.com/tutorial/sql-databases/" target="_blank">docs for SQLAlchemy</a>: <a href="https://github.com/tiangolo/fastapi/pull/30" target="_blank">#30</a>
