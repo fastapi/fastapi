@@ -21,6 +21,7 @@ email-validator = "*"
 ujson = "*"
 flake8 = "*"
 python-multipart = "*"
+sqlalchemy = "*"
 
 [packages]
 starlette = "==0.10.1"

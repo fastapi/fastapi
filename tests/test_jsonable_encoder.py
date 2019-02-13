@@ -1,5 +1,9 @@
+from datetime import datetime, timezone
+from enum import Enum
+
 import pytest
 from fastapi.encoders import jsonable_encoder
+from pydantic import BaseModel
 
 
 class Person:
@@ -32,6 +36,29 @@ class Unserializable:
         raise NotImplementedError()
 
 
+class ModelWithCustomEncoder(BaseModel):
+    dt_field: datetime
+
+    class Config:
+        json_encoders = {
+            datetime: lambda dt: dt.replace(
+                microsecond=0, tzinfo=timezone.utc
+            ).isoformat()
+        }
+
+
+class RoleEnum(Enum):
+    admin = "admin"
+    normal = "normal"
+
+
+class ModelWithConfig(BaseModel):
+    role: RoleEnum = None
+
+    class Config:
+        use_enum_values = True
+
+
 def test_encode_class():
     person = Person(name="Foo")
     pet = Pet(owner=person, name="Firulais")
@@ -48,3 +75,13 @@ def test_encode_unsupported():
     unserializable = Unserializable()
     with pytest.raises(ValueError):
         jsonable_encoder(unserializable)
+
+
+def test_encode_custom_json_encoders_model():
+    model = ModelWithCustomEncoder(dt_field=datetime(2019, 1, 1, 8))
+    assert jsonable_encoder(model) == {"dt_field": "2019-01-01T08:00:00+00:00"}
+
+
+def test_encode_model_with_config():
+    model = ModelWithConfig(role=RoleEnum.admin)
+    assert jsonable_encoder(model) == {"role": "admin"}
