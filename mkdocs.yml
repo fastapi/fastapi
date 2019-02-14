@@ -57,7 +57,7 @@ nav:
         - SQL (Relational) Databases: 'tutorial/sql-databases.md'
         - NoSQL (Distributed / Big Data) Databases: 'tutorial/nosql-databases.md'
         - Bigger Applications - Multiple Files: 'tutorial/bigger-applications.md'
-        - Sub Applications - Under a Proxy: 'tutorial/sub-applications-proxy.md'
+        - Sub Applications - Behind a Proxy: 'tutorial/sub-applications-proxy.md'
         - Application Configuration: 'tutorial/application-configuration.md'
         - Extra Starlette options: 'tutorial/extra-starlette.md'    
     - Concurrency and async / await: 'async.md'
