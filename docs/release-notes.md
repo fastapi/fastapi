@@ -1,5 +1,7 @@
 ## Next
 
+* Update example for the SQLAlchemy tutorial at <a href="https://fastapi.tiangolo.com/tutorial/sql-databases/" target="_blank">https://fastapi.tiangolo.com/tutorial/sql-databases/</a> using middleware and database session attached to request.
+
 ## 0.4.0
 
 * Add `openapi_prefix`, support for reverse proxy and mounting sub-applicaitons. See the docs at <a href="https://fastapi.tiangolo.com/tutorial/sub-applications-proxy/" target="_blank">https://fastapi.tiangolo.com/tutorial/sub-applications-proxy/</a>: <a href="https://github.com/tiangolo/fastapi/pull/26" target="_blank">#26</a> by <a href="https://github.com/kabirkhan" target="_blank">@kabirkhan</a>
