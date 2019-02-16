@@ -1,5 +1,7 @@
 ## Next
 
+* Add section about <a href="https://fastapi.tiangolo.com/help-fastapi/" target="">helping and getting help with **FastAPI**</a>.
+
 ## 0.5.0
 
 * Add new `HTTPException` with support for custom headers. With new documentation for handling errors at: <a href="https://fastapi.tiangolo.com/tutorial/handling-errors/" target="_blank">https://fastapi.tiangolo.com/tutorial/handling-errors/</a>. PR <a href="https://github.com/tiangolo/fastapi/pull/35" target="_blank">#35</a>.
