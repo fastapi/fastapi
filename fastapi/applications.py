@@ -13,7 +13,13 @@ from starlette.responses import JSONResponse, Response
 
 
 async def http_exception(request: Request, exc: HTTPException) -> JSONResponse:
-    return JSONResponse({"detail": exc.detail}, status_code=exc.status_code)
+    headers = getattr(exc, "headers", None)
+    if headers:
+        return JSONResponse(
+            {"detail": exc.detail}, status_code=exc.status_code, headers=headers
+        )
+    else:
+        return JSONResponse({"detail": exc.detail}, status_code=exc.status_code)
 
 
 class FastAPI(Starlette):
@@ -25,6 +31,7 @@ class FastAPI(Starlette):
         description: str = "",
         version: str = "0.1.0",
         openapi_url: Optional[str] = "/openapi.json",
+        openapi_prefix: str = "",
         docs_url: Optional[str] = "/docs",
         redoc_url: Optional[str] = "/redoc",
         **extra: Dict[str, Any],
@@ -43,6 +50,7 @@ class FastAPI(Starlette):
         self.description = description
         self.version = version
         self.openapi_url = openapi_url
+        self.openapi_prefix = openapi_prefix.rstrip("/")
         self.docs_url = docs_url
         self.redoc_url = redoc_url
         self.extra = extra
@@ -66,6 +74,7 @@ class FastAPI(Starlette):
                 openapi_version=self.openapi_version,
                 description=self.description,
                 routes=self.routes,
+                openapi_prefix=self.openapi_prefix,
             )
         return self.openapi_schema
 
@@ -80,7 +89,8 @@ class FastAPI(Starlette):
             self.add_route(
                 self.docs_url,
                 lambda r: get_swagger_ui_html(
-                    openapi_url=self.openapi_url, title=self.title + " - Swagger UI"
+                    openapi_url=self.openapi_prefix + self.openapi_url,
+                    title=self.title + " - Swagger UI",
                 ),
                 include_in_schema=False,
             )
@@ -88,7 +98,8 @@ class FastAPI(Starlette):
             self.add_route(
                 self.redoc_url,
                 lambda r: get_redoc_html(
-                    openapi_url=self.openapi_url, title=self.title + " - ReDoc"
+                    openapi_url=self.openapi_prefix + self.openapi_url,
+                    title=self.title + " - ReDoc",
                 ),
                 include_in_schema=False,
             )

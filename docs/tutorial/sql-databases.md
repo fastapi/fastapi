@@ -33,7 +33,7 @@ For now, don't pay attention to the rest, only the imports:
 
 Define the database that SQLAlchemy should "connect" to:
 
-```Python hl_lines="7"
+```Python hl_lines="8"
 {!./src/sql_databases/tutorial001.py!}
 ```
 
@@ -55,7 +55,7 @@ SQLALCHEMY_DATABASE_URI = "postgresql://user:password@postgresserver/db"
 
 ## Create the SQLAlchemy `engine`
 
-```Python hl_lines="10 11 12"
+```Python hl_lines="11 12 13"
 {!./src/sql_databases/tutorial001.py!}
 ```
 
@@ -74,20 +74,43 @@ connect_args={"check_same_thread": False}
     That argument `check_same_thread` is there mainly to be able to run the tests that cover this example.
     
 
-## Create a `scoped_session`
+## Create a `Session` class
 
-```Python hl_lines="13 14 15"
+Each instance of the `Session` class will have a connection to the database.
+
+This is not a connection to the database yet, but once we create an instance of this class, that instance will have the actual connection to the database.
+
+```Python hl_lines="14"
 {!./src/sql_databases/tutorial001.py!}
 ```
 
-!!! note "Very Technical Details"
-    Don't worry too much if you don't understand this. You can still use the code.
+## Create a middleware to handle sessions
 
-    This `scoped_session` is a feature of SQLAlchemy.
+Now let's temporarily jump to the end of the file, to use the `Session` class we created above.
 
-    The resulting object, the `db_session` can then be used anywhere as a normal SQLAlchemy session.
-    
-    It can be used as a "global" variable because it is implemented to work independently on each "<abbr title="A sequence of code being executed by the program, while at the same time, or at intervals, there can be others being executed too.">thread</abbr>", so the actions you perform with it in one path operation function won't affect the actions performed (possibly concurrently) by other path operation functions.
+We need to have an independent `Session` per request, use the same session through all the request and then close it after the request is finished.
+
+And then a new session will be created for the next request.
+
+For that, we will create a new middleware.
+
+A "middleware" is a function that is always executed for each request, and have code before and after the request.
+
+The middleware we will create (just a function) will create a new SQLAlchemy `Session` for each request, add it to the request and then close it once the request is finished.
+
+```Python hl_lines="62 63 64 65 66 67"
+{!./src/sql_databases/tutorial001.py!}
+```
+
+### About `request._scope`
+
+`request._scope` is a "private property" of each request. We normally shouldn't need to use a "private property" from a Python object.
+
+But we need to attach the session to the request to be able to ensure a single session/database-connection is used through all the request, and then closed afterwards.
+
+In the near future, Starlette <a href="https://github.com/encode/starlette/issues/379" target="_blank">will have a way to attach custom objects to each request</a>.
+
+When that happens, this tutorial will be updated to use the new official way of doing it.
 
 ## Create a `CustomBase` model
 
@@ -99,13 +122,13 @@ That way you don't have to declare them explicitly in every model.
 
 So, your models will behave very similarly to, for example, Flask-SQLAlchemy.
 
-```Python hl_lines="18 19 20 21 22"
+```Python hl_lines="17 18 19 20 21"
 {!./src/sql_databases/tutorial001.py!}
 ```
 
 ## Create the SQLAlchemy `Base` model
 
-```Python hl_lines="25"
+```Python hl_lines="24"
 {!./src/sql_databases/tutorial001.py!}
 ```
 
@@ -115,7 +138,7 @@ Now this is finally code specific to your app.
 
 Here's a user model that will be a table in the database:
 
-```Python hl_lines="28 29 30 31 32"
+```Python hl_lines="27 28 29 30 31"
 {!./src/sql_databases/tutorial001.py!}
 ```
 
@@ -123,9 +146,16 @@ Here's a user model that will be a table in the database:
 
 In a very simplistic way, initialize your database (create the tables, etc) and make sure you have a first user:
 
-```Python hl_lines="35 37 38 39 40 41"
+```Python hl_lines="34  36 38 39 40 41 42 44"
 {!./src/sql_databases/tutorial001.py!}
 ```
+
+!!! info
+    Notice that we close the session with `db_session.close()`.
+
+    We close this session because we only used it to create this first user.
+
+    Every new request will get its own new session.
 
 ### Note
 
@@ -144,7 +174,7 @@ Also, as all the functionality is self-contained in the same code, you can copy 
 
 By creating a function that is only dedicated to getting your user from a `user_id` (or any other parameter) independent of your path operation function, you can more easily re-use it in multiple parts and also add <abbr title="Automated tests, written in code, that check if another piece of code is working correctly.">unit tests</abbr> for it:
 
-```Python hl_lines="45 46"
+```Python hl_lines="48 49"
 {!./src/sql_databases/tutorial001.py!}
 ```
 
@@ -154,13 +184,17 @@ Now, finally, here's the standard **FastAPI** code.
 
 Create your app and path operation function:
 
-```Python hl_lines="50 53 54 55 56"
+```Python hl_lines="53 56 57 58 59"
 {!./src/sql_databases/tutorial001.py!}
 ```
 
-As we are using SQLAlchemy's `scoped_session`, we don't even have to create a dependency with `Depends`.
+We are creating the database session before each request, attaching it to the request, and then closing it afterwards.
 
-We can just call `get_user` directly from inside of the path operation function and use the global `db_session`.
+All of this is done in the middleware explained above.
+
+Because of that, we can use the `Request` to access the database session with `request._scope["db"]`.
+
+Then we can just call `get_user` directly from inside of the path operation function and use that session.
 
 ## Create the path operation function
 
@@ -182,7 +216,7 @@ user = get_user(db_session, user_id=user_id)
 
 Then we should declare the path operation without `async def`, just with a normal `def`:
 
-```Python hl_lines="54"
+```Python hl_lines="57"
 {!./src/sql_databases/tutorial001.py!}
 ```
 

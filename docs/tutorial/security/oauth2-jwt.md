@@ -81,7 +81,7 @@ And another utility to verify if a received password matches the hash stored.
 
 And another one to authenticate and return a user.
 
-```Python hl_lines="7 51 58 59 62 63 72 73 74 75 76 77 78"
+```Python hl_lines="7 50 57 58 61 62 71 72 73 74 75 76 77"
 {!./src/security/tutorial004.py!}
 ```
 
@@ -112,7 +112,7 @@ Define a Pydantic Model that will be used in the token endpoint for the response
 
 Create a utility function to generate a new access token.
 
-```Python hl_lines="3 6 14 15 16 17 31 32 33 81 82 83 84 85 86 87 88 89"
+```Python hl_lines="3 6 13 14 15 16 30 31 32 80 81 82 83 84 85 86 87 88"
 {!./src/security/tutorial004.py!}
 ```
 
@@ -124,7 +124,7 @@ Decode the received token, verify it, and return the current user.
 
 If the token is invalid, return an HTTP error right away.
 
-```Python hl_lines="92 93 94 95 96 97 98 99 100 101"
+```Python hl_lines="91 92 93 94 95 96 97 98 99 100"
 {!./src/security/tutorial004.py!}
 ```
 
@@ -134,7 +134,7 @@ Create a `timedelta` with the expiration time of the token.
 
 Create a real JWT access token and return it.
 
-```Python hl_lines="115 116 117 118 119"
+```Python hl_lines="114 115 116 117 118"
 {!./src/security/tutorial004.py!}
 ```
 

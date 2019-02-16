@@ -1,12 +1,11 @@
 from datetime import datetime, timedelta
 
 import jwt
-from fastapi import Depends, FastAPI, Security
+from fastapi import Depends, FastAPI, Security, HTTPException
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from jwt import PyJWTError
 from passlib.context import CryptContext
 from pydantic import BaseModel
-from starlette.exceptions import HTTPException
 from starlette.status import HTTP_403_FORBIDDEN
 
 # to get a string like this run:
