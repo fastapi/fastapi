@@ -40,6 +40,7 @@ nav:
         - Form Data: 'tutorial/request-forms.md'
         - Request Files: 'tutorial/request-files.md'
         - Request Forms and Files: 'tutorial/request-forms-and-files.md'
+        - Handling Errors: 'tutorial/handling-errors.md'
         - Path Operation Configuration: 'tutorial/path-operation-configuration.md'
         - Path Operation Advanced Configuration: 'tutorial/path-operation-advanced-configuration.md'
         - Custom Response: 'tutorial/custom-response.md'

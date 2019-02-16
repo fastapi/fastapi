@@ -13,7 +13,13 @@ from starlette.responses import JSONResponse, Response
 
 
 async def http_exception(request: Request, exc: HTTPException) -> JSONResponse:
-    return JSONResponse({"detail": exc.detail}, status_code=exc.status_code)
+    headers = getattr(exc, "headers", None)
+    if headers:
+        return JSONResponse(
+            {"detail": exc.detail}, status_code=exc.status_code, headers=headers
+        )
+    else:
+        return JSONResponse({"detail": exc.detail}, status_code=exc.status_code)
 
 
 class FastAPI(Starlette):
