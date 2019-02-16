@@ -1,6 +1,8 @@
 ## Next
 
-* Add section about <a href="https://fastapi.tiangolo.com/help-fastapi/" target="">helping and getting help with **FastAPI**</a>.
+* Add section about <a href="https://fastapi.tiangolo.com/help-fastapi/" target="_blank">helping and getting help with **FastAPI**</a>.
+
+* Add note about <a href="https://fastapi.tiangolo.com/tutorial/path-params/#order-matters" target="_blank">path operations order in docs</a>.
 
 ## 0.5.0
 
