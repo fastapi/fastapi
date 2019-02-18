@@ -71,9 +71,7 @@ def jsonable_encoder(
                 )
             )
         return encoded_list
-    if (
-        isinstance(obj, databases.backends.postgres.Record)
-    ):
+    if isinstance(obj, databases.backends.postgres.Record):
         return obj._row
     errors = []
     try:
