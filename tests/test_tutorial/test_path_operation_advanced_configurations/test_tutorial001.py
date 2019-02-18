@@ -1,6 +1,5 @@
-from starlette.testclient import TestClient
-
 from path_operation_advanced_configuration.tutorial001 import app
+from starlette.testclient import TestClient
 
 client = TestClient(app)
 

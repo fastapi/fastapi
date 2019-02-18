@@ -61,3 +61,7 @@ all = [
     "email_validator",
     "uvicorn",
 ]
+
+[tool.isort]
+known_first_party="fatapi"
+default_section="THIRDPARTY"

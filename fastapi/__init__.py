@@ -3,6 +3,6 @@
 __version__ = "0.5.0"
 
 from .applications import FastAPI
-from .routing import APIRouter
-from .params import Body, Path, Query, Header, Cookie, Form, File, Security, Depends
 from .exceptions import HTTPException
+from .params import Body, Cookie, Depends, File, Form, Header, Path, Query, Security
+from .routing import APIRouter

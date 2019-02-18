@@ -10,7 +10,6 @@ jupyter = "*"
 better-exceptions = "*"
 pytest = "*"
 pytest-cov = "*"
-isort = "*"
 requests = "*"
 flit = "*"
 mkdocs = "*"
@@ -22,6 +21,7 @@ ujson = "*"
 flake8 = "*"
 python-multipart = "*"
 sqlalchemy = "*"
+develop = {git = "https://github.com/timothycrosley/isort"}
 
 [packages]
 starlette = "==0.10.1"
