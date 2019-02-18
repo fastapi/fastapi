@@ -22,6 +22,7 @@ ujson = "*"
 flake8 = "*"
 python-multipart = "*"
 sqlalchemy = "*"
+databases = "*"
 
 [packages]
 starlette = "==0.11.1"

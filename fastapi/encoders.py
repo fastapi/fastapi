@@ -2,6 +2,7 @@ from enum import Enum
 from types import GeneratorType
 from typing import Any, Set
 
+import databases
 from pydantic import BaseModel
 from pydantic.json import ENCODERS_BY_TYPE
 
@@ -70,6 +71,10 @@ def jsonable_encoder(
                 )
             )
         return encoded_list
+    if (
+        isinstance(obj, databases.backends.postgres.Record)
+    ):
+        return obj._row
     errors = []
     try:
         if custom_encoder and type(obj) in custom_encoder:
