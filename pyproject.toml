@@ -63,5 +63,10 @@ all = [
 ]
 
 [tool.isort]
-known_first_party="fatapi"
-default_section="THIRDPARTY"
+known_first_party = "fatapi"
+default_section = "THIRDPARTY"
+multi_line_output = 3
+include_trailing_comma = true
+force_grid_wrap = 0
+use_parenthese = true
+line_length = 88
