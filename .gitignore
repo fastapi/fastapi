@@ -10,3 +10,4 @@ site
 .coverage
 coverage.xml
 .netlify
+test.db
