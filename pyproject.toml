@@ -39,7 +39,8 @@ test = [
     "email_validator",
     "sqlalchemy",
     "databases",
-    "asyncpg"
+    "asyncpg",
+    "psycopg2"
 ]
 doc = [
     "mkdocs",
