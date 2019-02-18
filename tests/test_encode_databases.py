@@ -2,9 +2,9 @@ import logging
 from typing import List
 
 import databases
-from fastapi import FastAPI
 import pytest
 import sqlalchemy
+from fastapi import FastAPI
 from pydantic import BaseModel, EmailStr
 from starlette.testclient import TestClient
 
