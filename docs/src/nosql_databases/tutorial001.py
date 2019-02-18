@@ -1,10 +1,10 @@
 from typing import Optional
 
-from pydantic import BaseModel
-
 from couchbase import LOCKMODE_WAIT
 from couchbase.bucket import Bucket
 from couchbase.cluster import Cluster, PasswordAuthenticator
+from pydantic import BaseModel
+
 from fastapi import FastAPI
 
 USERPROFILE_DOC_TYPE = "userprofile"

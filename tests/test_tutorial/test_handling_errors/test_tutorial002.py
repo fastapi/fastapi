@@ -1,6 +1,5 @@
-from starlette.testclient import TestClient
-
 from handling_errors.tutorial002 import app
+from starlette.testclient import TestClient
 
 client = TestClient(app)
 

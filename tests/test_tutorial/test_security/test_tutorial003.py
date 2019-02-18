@@ -1,6 +1,5 @@
-from starlette.testclient import TestClient
-
 from security.tutorial003 import app
+from starlette.testclient import TestClient
 
 client = TestClient(app)
 
