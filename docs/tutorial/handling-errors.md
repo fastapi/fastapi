@@ -43,6 +43,31 @@ In this example, when the client request an item by an ID that doesn't exist, ra
 {!./src/handling_errors/tutorial001.py!}
 ```
 
+### The resulting response
+
+If the client requests `http://example.com/items/foo` (an `item_id` `"foo"`), he will receive an HTTP status code of 200, and a JSON response of:
+
+```JSON
+{
+  "item": "The Foo Wrestlers"
+}
+```
+
+But if the client requests `http://example.com/items/bar` (a non-existent `item_id` `"bar"`), he will receive an HTTP status code of 404 (the "not found" error), and a JSON response of:
+
+```JSON
+{
+  "detail": "Item not found"
+}
+```
+
+!!! tip
+    When raising an `HTTPException`, you can pass any value that can be converted to JSON as the parameter `detail`, not only `str`.
+
+    You could pass a `dict`, a `list`, etc.
+
+    They are handled automatically by **FastAPI** and converted to JSON.
+
 ### Adding custom headers
 
 There are some situations in where it's useful to be able to add custom headers to the HTTP error. For example, for some types of security.
@@ -55,3 +80,20 @@ But in case you needed it for an advanced scenario, you can add custom headers:
 ```Python hl_lines="14"
 {!./src/handling_errors/tutorial002.py!}
 ```
+
+### Installing custom handlers
+
+If you need to add other custom exception handlers, or override the default one (that sends the errors as JSON), you can use <a href="https://www.starlette.io/exceptions/" target="_blank">the same exception utilities from Starlette</a>.
+
+For example, you could override the default exception handler with:
+
+```Python hl_lines="2 3 8 9 10"
+{!./src/handling_errors/tutorial003.py!}
+```
+
+...this would make it return "plain text" responses with the errors, instead of JSON responses.
+
+!!! info
+    Note that in this example we set the exception handler with Starlette's `HTTPException` instead of FastAPI's `HTTPException`.
+
+    This would ensure that if you use a plug-in or any other third-party tool that raises Starlette's `HTTPException` directly, it will be catched by your exception handler.
