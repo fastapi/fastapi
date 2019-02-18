@@ -38,7 +38,8 @@ test = [
     "requests",
     "email_validator",
     "sqlalchemy",
-    "databases"
+    "databases",
+    "asyncpg"
 ]
 doc = [
     "mkdocs",
