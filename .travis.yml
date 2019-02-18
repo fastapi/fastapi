@@ -6,9 +6,16 @@ python:
     - "3.6"
     - "3.7-dev"
 
+services:
+    - postgresql
+
 install:
     - pip install flit
     - flit install
+
+before_script:
+    - psql -c 'create database fastapi;' -U postgres
+    - psql -c "CREATE USER foo WITH PASSWORD 'bar';" -U postgres
 
 script:
     - bash scripts/test.sh
