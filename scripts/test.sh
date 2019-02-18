@@ -19,5 +19,8 @@ if [ "${PYTHON_VERSION}" = '3.7' ]; then
 else
     black fastapi tests --check
 fi
-isort --recursive --check-only --diff fastapi tests
-#isort --multi-line=3 --trailing-comma --force-grid-wrap=0 --combine-as --line-width 88 --recursive --check-only --diff fastapi tests
+# original
+# isort --multi-line=3 --trailing-comma --force-grid-wrap=0 --combine-as --line-width 88 --recursive --check-only --diff fastapi tests
+# this one ok with the develop isort version that reads the pyproject.toml
+# isort --recursive --check-only --diff fastapi tests
+isort --multi-line=3 --trailing-comma --force-grid-wrap=0 --use-parentheses --line-width 88 --project fastapi --section-default=THIRDPARTY --recursive --check-only --diff
