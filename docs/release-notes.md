@@ -4,7 +4,7 @@
 
 * Add note about <a href="https://fastapi.tiangolo.com/tutorial/path-params/#order-matters" target="_blank">path operations order in docs</a>.
 
-* Update <a href="https://fastapi.tiangolo.com/tutorial/handling-errors/" target="_blank">section about error handling</a> with more information and make relation with Starlette error handling utilities more explicit.
+* Update <a href="https://fastapi.tiangolo.com/tutorial/handling-errors/" target="_blank">section about error handling</a> with more information and make relation with Starlette error handling utilities more explicit. PR <a href="https://github.com/tiangolo/fastapi/pull/41" target="_blank">#41</a>.
 
 ## 0.5.0
 
