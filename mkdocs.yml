@@ -66,6 +66,7 @@ nav:
     - Project Generation - Template: 'project-generation.md'
     - Alternatives, Inspiration and Comparisons: 'alternatives.md'
     - Benchmarks: 'benchmarks.md'
+    - Help FastAPI - Get Help: 'help-fastapi.md'
     - Release Notes: release-notes.md
 
 markdown_extensions:

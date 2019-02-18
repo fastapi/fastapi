@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta
 
 import jwt
-from fastapi import Depends, FastAPI, Security, HTTPException
+from fastapi import Depends, FastAPI, HTTPException, Security
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from jwt import PyJWTError
 from passlib.context import CryptContext
