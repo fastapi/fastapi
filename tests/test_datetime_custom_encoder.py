@@ -1,8 +1,9 @@
 from datetime import datetime, timezone
 
-from fastapi import FastAPI
 from pydantic import BaseModel
 from starlette.testclient import TestClient
+
+from fastapi import FastAPI
 
 
 class ModelWithDatetimeField(BaseModel):

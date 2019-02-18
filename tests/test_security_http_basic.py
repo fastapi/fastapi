@@ -1,9 +1,10 @@
 from base64 import b64encode
 
-from fastapi import FastAPI, Security
-from fastapi.security import HTTPBasic, HTTPBasicCredentials
 from requests.auth import HTTPBasicAuth
 from starlette.testclient import TestClient
+
+from fastapi import FastAPI, Security
+from fastapi.security import HTTPBasic, HTTPBasicCredentials
 
 app = FastAPI()
 

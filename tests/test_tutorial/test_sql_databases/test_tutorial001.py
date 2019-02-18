@@ -1,5 +1,6 @@
-from sql_databases.tutorial001 import app
 from starlette.testclient import TestClient
+
+from sql_databases.tutorial001 import app
 
 client = TestClient(app)
 

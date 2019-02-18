@@ -1,7 +1,8 @@
 from typing import List
 
-from fastapi import FastAPI, Query
 from starlette.testclient import TestClient
+
+from fastapi import FastAPI, Query
 
 app = FastAPI()
 

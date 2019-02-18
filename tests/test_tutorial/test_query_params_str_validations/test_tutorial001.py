@@ -1,6 +1,7 @@
 import pytest
-from query_params_str_validations.tutorial010 import app
 from starlette.testclient import TestClient
+
+from query_params_str_validations.tutorial010 import app
 
 client = TestClient(app)
 

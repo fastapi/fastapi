@@ -6,10 +6,6 @@ from decimal import Decimal
 from typing import Any, Callable, Dict, List, Mapping, Sequence, Tuple, Type, Union
 from uuid import UUID
 
-from fastapi import params
-from fastapi.dependencies.models import Dependant, SecurityRequirement
-from fastapi.security.base import SecurityBase
-from fastapi.utils import UnconstrainedConfig, get_path_param_names
 from pydantic import Schema, create_model
 from pydantic.error_wrappers import ErrorWrapper
 from pydantic.errors import MissingError
@@ -18,6 +14,11 @@ from pydantic.schema import get_annotation_from_schema
 from pydantic.utils import lenient_issubclass
 from starlette.concurrency import run_in_threadpool
 from starlette.requests import Headers, QueryParams, Request
+
+from fastapi import params
+from fastapi.dependencies.models import Dependant, SecurityRequirement
+from fastapi.security.base import SecurityBase
+from fastapi.utils import UnconstrainedConfig, get_path_param_names
 
 param_supported_types = (
     str,

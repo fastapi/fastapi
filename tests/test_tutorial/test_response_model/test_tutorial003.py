@@ -1,5 +1,6 @@
-from response_model.tutorial003 import app
 from starlette.testclient import TestClient
+
+from response_model.tutorial003 import app
 
 client = TestClient(app)
 

@@ -1,8 +1,9 @@
-from fastapi import FastAPI
 from sqlalchemy import Boolean, Column, Integer, String, create_engine
 from sqlalchemy.ext.declarative import declarative_base, declared_attr
 from sqlalchemy.orm import sessionmaker
 from starlette.requests import Request
+
+from fastapi import FastAPI
 
 # SQLAlchemy specific code, as with any other app
 SQLALCHEMY_DATABASE_URI = "sqlite:///./test.db"

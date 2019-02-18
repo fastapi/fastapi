@@ -1,6 +1,7 @@
 import pytest
-from body.tutorial001 import app
 from starlette.testclient import TestClient
+
+from body.tutorial001 import app
 
 client = TestClient(app)
 

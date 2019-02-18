@@ -1,6 +1,7 @@
 import pytest
-from cookie_params.tutorial001 import app
 from starlette.testclient import TestClient
+
+from cookie_params.tutorial001 import app
 
 client = TestClient(app)
 

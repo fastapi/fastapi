@@ -1,5 +1,6 @@
-from extra_data_types.tutorial001 import app
 from starlette.testclient import TestClient
+
+from extra_data_types.tutorial001 import app
 
 client = TestClient(app)
 

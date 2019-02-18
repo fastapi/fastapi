@@ -1,7 +1,8 @@
 from typing import Callable, List, Sequence
 
-from fastapi.security.base import SecurityBase
 from pydantic.fields import Field
+
+from fastapi.security.base import SecurityBase
 
 param_supported_types = (str, int, float, bool)
 

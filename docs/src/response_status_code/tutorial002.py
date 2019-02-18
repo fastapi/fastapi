@@ -1,5 +1,6 @@
-from fastapi import FastAPI
 from starlette.status import HTTP_201_CREATED
+
+from fastapi import FastAPI
 
 app = FastAPI()
 
