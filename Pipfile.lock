@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "e773d1e1357544e31f9fe93300c9df36813d43f0ff4b5f7483b27ec5551732f8"
+            "sha256": "37b34bb892b6b4dc0f7c941434d0e08199aa7a7ca83efb6294b89ace44168bba"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -160,10 +160,6 @@
             ],
             "version": "==0.5.0"
         },
-        "develop": {
-            "git": "https://github.com/timothycrosley/isort",
-            "ref": "003bea4f6bf2cf13accd1900d7f887a664121410"
-        },
         "dnspython": {
             "hashes": [
                 "sha256:36c5e8e38d4369a08b6780b7f27d790a292b2b08eea01607865bf0936c558e01",
@@ -244,6 +240,15 @@
                 "sha256:a3e224f430163f767047ab9a042fc55adbcab0c24bbe6cf9f306c4f89fdf0ba3"
             ],
             "version": "==7.4.2"
+        },
+        "isort": {
+            "hashes": [
+                "sha256:1153601da39a25b14ddc54955dbbacbb6b2d19135386699e2ad58517953b34af",
+                "sha256:b9c40e9750f3d77e6e4d441d8b0266cf555e7cdabdcff33c4fd06366ca761ef8",
+                "sha256:ec9ef8f4a9bc6f71eec99e1806bfa2de401650d996c59330782b89a5555c1497"
+            ],
+            "index": "pypi",
+            "version": "==4.3.4"
         },
         "jedi": {
             "hashes": [

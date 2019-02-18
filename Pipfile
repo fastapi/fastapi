@@ -21,7 +21,7 @@ ujson = "*"
 flake8 = "*"
 python-multipart = "*"
 sqlalchemy = "*"
-develop = {git = "https://github.com/timothycrosley/isort"}
+isort = "*"
 
 [packages]
 starlette = "==0.10.1"
