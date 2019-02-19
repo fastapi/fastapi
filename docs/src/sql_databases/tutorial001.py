@@ -55,13 +55,13 @@ app = FastAPI()
 
 @app.get("/users/{user_id}")
 def read_user(request: Request, user_id: int):
-    user = get_user(request._scope["db"], user_id=user_id)
+    user = get_user(request.state.db, user_id=user_id)
     return user
 
 
 @app.middleware("http")
-async def close_db(request, call_next):
-    request._scope["db"] = Session()
+async def close_db(request: Request, call_next):
+    request.state.db = Session()
     response = await call_next(request)
-    request._scope["db"].close()
+    request.state.db.close()
     return response
