@@ -24,7 +24,7 @@ python-multipart = "*"
 sqlalchemy = "*"
 
 [packages]
-starlette = "==0.10.1"
+starlette = "==0.11.1"
 pydantic = "==0.18.2"
 
 [requires]

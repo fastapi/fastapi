@@ -7,9 +7,9 @@ from pydantic import BaseModel
 from starlette.applications import Starlette
 from starlette.exceptions import ExceptionMiddleware, HTTPException
 from starlette.middleware.errors import ServerErrorMiddleware
-from starlette.middleware.lifespan import LifespanMiddleware
 from starlette.requests import Request
 from starlette.responses import JSONResponse, Response
+from starlette.routing import BaseRoute
 
 
 async def http_exception(request: Request, exc: HTTPException) -> JSONResponse:
@@ -26,6 +26,7 @@ class FastAPI(Starlette):
     def __init__(
         self,
         debug: bool = False,
+        routes: List[BaseRoute] = None,
         template_directory: str = None,
         title: str = "Fast API",
         description: str = "",
@@ -37,14 +38,11 @@ class FastAPI(Starlette):
         **extra: Dict[str, Any],
     ) -> None:
         self._debug = debug
-        self.router: routing.APIRouter = routing.APIRouter()
+        self.router: routing.APIRouter = routing.APIRouter(routes)
         self.exception_middleware = ExceptionMiddleware(self.router, debug=debug)
         self.error_middleware = ServerErrorMiddleware(
             self.exception_middleware, debug=debug
         )
-        self.lifespan_middleware = LifespanMiddleware(self.error_middleware)
-        self.schema_generator = None
-        self.template_env = self.load_template_env(template_directory)
 
         self.title = title
         self.description = description
