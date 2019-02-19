@@ -1,5 +1,7 @@
 ## Next
 
+## 0.6.0
+
 * Update SQL with SQLAlchemy tutorial at <a href="https://fastapi.tiangolo.com/tutorial/sql-databases/" target="_blank">https://fastapi.tiangolo.com/tutorial/sql-databases/</a> using the new official `request.state`.
 
 * Upgrade Starlette to version `0.11.1` and add required compatibility changes. PR <a href="https://github.com/tiangolo/fastapi/pull/44" target="_blank">#44</a>.
