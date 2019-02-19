@@ -102,15 +102,12 @@ The middleware we will create (just a function) will create a new SQLAlchemy `Se
 {!./src/sql_databases/tutorial001.py!}
 ```
 
-### About `request._scope`
+### About `request.state`
 
-`request._scope` is a "private property" of each request. We normally shouldn't need to use a "private property" from a Python object.
+<a href="https://www.starlette.io/requests/#other-state" target="_blank">`request.state` is a property of each Starlette `Request` object</a>, it is there to store arbitrary objects attached to the request itself, like the database session in this case.
 
-But we need to attach the session to the request to be able to ensure a single session/database-connection is used through all the request, and then closed afterwards.
+For us in this case, it helps us ensuring a single session/database-connection is used through all the request, and then closed afterwards (in the middleware).
 
-In the near future, Starlette <a href="https://github.com/encode/starlette/issues/379" target="_blank">will have a way to attach custom objects to each request</a>.
-
-When that happens, this tutorial will be updated to use the new official way of doing it.
 
 ## Create a `CustomBase` model
 
