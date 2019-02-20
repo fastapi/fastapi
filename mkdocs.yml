@@ -61,7 +61,7 @@ nav:
         - Bigger Applications - Multiple Files: 'tutorial/bigger-applications.md'
         - Sub Applications - Behind a Proxy: 'tutorial/sub-applications-proxy.md'
         - Application Configuration: 'tutorial/application-configuration.md'
-        - GraphQL: 'tutorial/graphq.md'
+        - GraphQL: 'tutorial/graphql.md'
     - Concurrency and async / await: 'async.md'
     - Deployment: 'deployment.md'
     - Project Generation - Template: 'project-generation.md'
