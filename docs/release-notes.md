@@ -1,5 +1,7 @@
 ## Next
 
+* Improve middleware naming in tutorial for SQL with SQLAlchemy <a href="https://fastapi.tiangolo.com/tutorial/sql-databases/" target="_blank">https://fastapi.tiangolo.com/tutorial/sql-databases/</a>.
+
 ## 0.6.1
 
 * Add docs for GraphQL: <a href="https://fastapi.tiangolo.com/tutorial/graphql/" target="_blank">https://fastapi.tiangolo.com/tutorial/graphql/</a>. PR <a href="https://github.com/tiangolo/fastapi/pull/48" target="_blank">#48</a>.
