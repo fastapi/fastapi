@@ -73,7 +73,7 @@ export default new Router({
                     /* webpackChunkName: "main-admin-users" */ './views/main/admin/AdminUsers.vue'),
                 },
                 {
-                  path: 'users/edit/:name',
+                  path: 'users/edit/:id',
                   name: 'main-admin-users-edit',
                   component: () => import(
                     /* webpackChunkName: "main-admin-users-edit" */ './views/main/admin/EditUser.vue'),

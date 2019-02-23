@@ -181,6 +181,8 @@ Make sure you create a "revision" of your models and that you "upgrade" your dat
 docker-compose exec backend bash
 ```
 
+* If you created a new model in `./backend/app/app/db_models/`, make sure to import it in `./backend/app/app/db/base.py`, that Python module (`base.py`) that imports all the models will be used by Alembic.
+
 * After changing a model (for example, adding a column), inside the container, create a revision, e.g.:
 
 ```bash

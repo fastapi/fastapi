@@ -23,11 +23,11 @@ import { readUserProfile } from '@/store/main/accessors';
 export default class Dashboard extends Vue {
   get greetedUser() {
     const userProfile = readUserProfile(this.$store);
-    if (userProfile && userProfile.human_name) {
-      if (userProfile.human_name) {
-        return userProfile.human_name;
+    if (userProfile && userProfile.full_name) {
+      if (userProfile.full_name) {
+        return userProfile.full_name;
       } else {
-        return userProfile.name;
+        return userProfile.email;
       }
     }
   }

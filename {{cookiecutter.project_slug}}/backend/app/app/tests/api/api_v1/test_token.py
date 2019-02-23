@@ -27,4 +27,4 @@ def test_use_access_token(superuser_token_headers):
     )
     result = r.json()
     assert r.status_code == 200
-    assert "username" in result
+    assert "email" in result

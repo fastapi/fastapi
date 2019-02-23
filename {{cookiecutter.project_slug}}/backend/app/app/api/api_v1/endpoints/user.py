@@ -1,21 +1,15 @@
 from typing import List
 
-from fastapi import APIRouter, Body, Depends
+from fastapi import APIRouter, Body, Depends, HTTPException
+from fastapi.encoders import jsonable_encoder
 from pydantic.types import EmailStr
-from starlette.exceptions import HTTPException
+from sqlalchemy.orm import Session
 
+from app.api.utils.db import get_db
+from app.api.utils.security import get_current_user
 from app.core import config
-from app.core.jwt import get_current_user
-from app.crud.user import (
-    check_if_user_is_active,
-    check_if_user_is_superuser,
-    get_user,
-    get_users,
-    search_users,
-    update_user,
-    upsert_user,
-)
-from app.db.database import get_default_bucket
+from app.crud import user as crud_user
+from app.db_models.user import User as DBUser
 from app.models.user import User, UserInCreate, UserInDB, UserInUpdate
 from app.utils import send_new_account_email
 
@@ -23,116 +17,99 @@ router = APIRouter()
 
 
 @router.get("/users/", tags=["users"], response_model=List[User])
-def route_users_get(
-    skip: int = 0, limit: int = 100, current_user: UserInDB = Depends(get_current_user)
+def read_users(
+    db: Session = Depends(get_db),
+    skip: int = 0,
+    limit: int = 100,
+    current_user: DBUser = Depends(get_current_user),
 ):
     """
     Retrieve users
     """
-    if not check_if_user_is_active(current_user):
+    if not crud_user.is_active(current_user):
         raise HTTPException(status_code=400, detail="Inactive user")
-    elif not check_if_user_is_superuser(current_user):
+    elif not crud_user.is_superuser(current_user):
         raise HTTPException(
             status_code=400, detail="The user doesn't have enough privileges"
         )
-    bucket = get_default_bucket()
-    users = get_users(bucket, skip=skip, limit=limit)
-    return users
-
-
-@router.get("/users/search/", tags=["users"], response_model=List[User])
-def route_search_users(
-    q: str,
-    skip: int = 0,
-    limit: int = 100,
-    current_user: UserInDB = Depends(get_current_user),
-):
-    """
-    Search users, use Bleve Query String syntax: http://blevesearch.com/docs/Query-String-Query/
-
-    For typeahead sufix with `*`. For example, a query with: `email:johnd*` will match users with
-    email `johndoe@example.com`, `johndid@example.net`, etc.
-    """
-    if not check_if_user_is_active(current_user):
-        raise HTTPException(status_code=400, detail="Inactive user")
-    elif not check_if_user_is_superuser(current_user):
-        raise HTTPException(
-            status_code=400, detail="The user doesn't have enough privileges"
-        )
-    bucket = get_default_bucket()
-    users = search_users(bucket=bucket, query_string=q, skip=skip, limit=limit)
+    users = crud_user.get_multi(db, skip=skip, limit=limit)
     return users
 
 
 @router.post("/users/", tags=["users"], response_model=User)
-def route_users_post(
-    *, user_in: UserInCreate, current_user: UserInDB = Depends(get_current_user)
+def create_user(
+    *,
+    db: Session = Depends(get_db),
+    user_in: UserInCreate,
+    current_user: DBUser = Depends(get_current_user),
 ):
     """
     Create new user
     """
-    if not check_if_user_is_active(current_user):
+    if not crud_user.is_active(current_user):
         raise HTTPException(status_code=400, detail="Inactive user")
-    elif not check_if_user_is_superuser(current_user):
+    elif not crud_user.is_superuser(current_user):
         raise HTTPException(
             status_code=400, detail="The user doesn't have enough privileges"
         )
-    bucket = get_default_bucket()
-    user = get_user(bucket, user_in.username)
+    user = crud_user.get_by_email(db, email=user_in.email)
     if user:
         raise HTTPException(
             status_code=400,
             detail="The user with this username already exists in the system.",
         )
-    user = upsert_user(bucket, user_in, persist_to=1)
+    user = crud_user.create(db, user_in=user_in)
     if config.EMAILS_ENABLED and user_in.email:
         send_new_account_email(
-            email_to=user_in.email, username=user_in.username, password=user_in.password
+            email_to=user_in.email, username=user_in.email, password=user_in.password
         )
     return user
 
 
 @router.put("/users/me", tags=["users"], response_model=User)
-def route_users_me_put(
+def update_user_me(
     *,
-    password: str = None,
-    full_name: str = None,
-    email: EmailStr = None,
-    current_user: UserInDB = Depends(get_current_user),
+    db: Session = Depends(get_db),
+    password: str = Body(None),
+    full_name: str = Body(None),
+    email: EmailStr = Body(None),
+    current_user: DBUser = Depends(get_current_user),
 ):
     """
     Update own user
     """
-    if not check_if_user_is_active(current_user):
+    if not crud_user.is_active(current_user):
         raise HTTPException(status_code=400, detail="Inactive user")
-    user_in = UserInUpdate(**current_user.dict())
+    current_user_data = jsonable_encoder(current_user)
+    user_in = UserInUpdate(**current_user_data)
     if password is not None:
         user_in.password = password
     if full_name is not None:
         user_in.full_name = full_name
     if email is not None:
         user_in.email = email
-    bucket = get_default_bucket()
-    user = update_user(bucket, user_in)
+    user = crud_user.update(db, user=current_user, user_in=user_in)
     return user
 
 
 @router.get("/users/me", tags=["users"], response_model=User)
-def route_users_me_get(current_user: UserInDB = Depends(get_current_user)):
+def read_user_me(
+    db: Session = Depends(get_db), current_user: DBUser = Depends(get_current_user)
+):
     """
     Get current user
     """
-    if not check_if_user_is_active(current_user):
+    if not crud_user.is_active(current_user):
         raise HTTPException(status_code=400, detail="Inactive user")
     return current_user
 
 
 @router.post("/users/open", tags=["users"], response_model=User)
-def route_users_post_open(
+def create_user_open(
     *,
-    username: str = Body(...),
+    db: Session = Depends(get_db),
     password: str = Body(...),
-    email: EmailStr = Body(None),
+    email: EmailStr = Body(...),
     full_name: str = Body(None),
 ):
     """
@@ -143,63 +120,61 @@ def route_users_post_open(
             status_code=403,
             detail="Open user resgistration is forbidden on this server",
         )
-    bucket = get_default_bucket()
-    user = get_user(bucket, username)
+    user = crud_user.get_by_email(db, email=email)
     if user:
         raise HTTPException(
             status_code=400,
             detail="The user with this username already exists in the system",
         )
-    user_in = UserInCreate(
-        username=username, password=password, email=email, full_name=full_name
-    )
-    user = upsert_user(bucket, user_in, persist_to=1)
+    user_in = UserInCreate(password=password, email=email, full_name=full_name)
+    user = crud_user.create(db, user_in=user_in)
     return user
 
 
-@router.get("/users/{username}", tags=["users"], response_model=User)
-def route_users_id_get(
-    username: str, current_user: UserInDB = Depends(get_current_user)
+@router.get("/users/{user_id}", tags=["users"], response_model=User)
+def read_user_by_id(
+    user_id: int,
+    current_user: DBUser = Depends(get_current_user),
+    db: Session = Depends(get_db),
 ):
     """
     Get a specific user by username (email)
     """
-    if not check_if_user_is_active(current_user):
+    if not crud_user.is_active(current_user):
         raise HTTPException(status_code=400, detail="Inactive user")
-    bucket = get_default_bucket()
-    user = get_user(bucket, username)
+    user = crud_user.get(db, user_id=user_id)
     if user == current_user:
         return user
-    if not check_if_user_is_superuser(current_user):
+    if not crud_user.is_superuser(current_user):
         raise HTTPException(
             status_code=400, detail="The user doesn't have enough privileges"
         )
     return user
 
 
-@router.put("/users/{username}", tags=["users"], response_model=User)
-def route_users_put(
+@router.put("/users/{user_id}", tags=["users"], response_model=User)
+def update_user(
     *,
-    username: str,
+    db: Session = Depends(get_db),
+    user_id: int,
     user_in: UserInUpdate,
     current_user: UserInDB = Depends(get_current_user),
 ):
     """
     Update a user
     """
-    if not check_if_user_is_active(current_user):
+    if not crud_user.is_active(current_user):
         raise HTTPException(status_code=400, detail="Inactive user")
-    elif not check_if_user_is_superuser(current_user):
+    elif not crud_user.is_superuser(current_user):
         raise HTTPException(
             status_code=400, detail="The user doesn't have enough privileges"
         )
-    bucket = get_default_bucket()
-    user = get_user(bucket, username)
+    user = crud_user.get(db, user_id=user_id)
 
     if not user:
         raise HTTPException(
             status_code=404,
             detail="The user with this username does not exist in the system",
         )
-    user = update_user(bucket, user_in)
+    user = crud_user.update(db, user=user, user_in=user_in)
     return user

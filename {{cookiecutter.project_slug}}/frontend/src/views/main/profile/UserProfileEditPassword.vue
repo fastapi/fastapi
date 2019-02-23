@@ -7,9 +7,9 @@
       <v-card-text>
         <template>
           <div class="my-3">
-            <div class="subheading secondary--text text--lighten-2">Username</div>
-            <div class="title primary--text text--darken-2" v-if="userProfile.name">{{userProfile.name}}</div>
-            <div class="title primary--text text--darken-2" v-else>-----</div>
+            <div class="subheading secondary--text text--lighten-2">User</div>
+            <div class="title primary--text text--darken-2" v-if="userProfile.full_name">{{userProfile.full_name}}</div>
+            <div class="title primary--text text--darken-2" v-else>{{userProfile.email}}</div>
           </div>
           <v-form ref="form">
             <v-text-field 

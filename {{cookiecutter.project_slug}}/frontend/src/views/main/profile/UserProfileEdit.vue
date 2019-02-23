@@ -6,11 +6,6 @@
       </v-card-title>
       <v-card-text>
         <template>
-          <div class="my-3">
-            <div class="subheading secondary--text text--lighten-2">Username</div>
-            <div class="title primary--text text--darken-2" v-if="userProfile.name">{{userProfile.name}}</div>
-            <div class="title primary--text text--darken-2" v-else>-----</div>
-          </div>
           <v-form v-model="valid" ref="form" lazy-validation>
             <v-text-field label="Full Name" v-model="fullName" required></v-text-field>
             <v-text-field label="E-mail" type="email" v-model="email" v-validate="'required|email'" data-vv-name="email" :error-messages="errors.collect('email')" required></v-text-field>
@@ -41,7 +36,7 @@ export default class UserProfileEdit extends Vue {
   public created() {
     const userProfile = readUserProfile(this.$store);
     if (userProfile) {
-      this.fullName = userProfile.human_name;
+      this.fullName = userProfile.full_name;
       this.email = userProfile.email;
     }
   }
@@ -53,7 +48,7 @@ export default class UserProfileEdit extends Vue {
   public reset() {
     const userProfile = readUserProfile(this.$store);
     if (userProfile) {
-      this.fullName = userProfile.human_name;
+      this.fullName = userProfile.full_name;
       this.email = userProfile.email;
     }
   }
@@ -66,7 +61,7 @@ export default class UserProfileEdit extends Vue {
     if ((this.$refs.form as any).validate()) {
       const updatedProfile: IUserProfileUpdate = {};
       if (this.fullName) {
-        updatedProfile.human_name = this.fullName;
+        updatedProfile.full_name = this.fullName;
       }
       if (this.email) {
         updatedProfile.email = this.email;

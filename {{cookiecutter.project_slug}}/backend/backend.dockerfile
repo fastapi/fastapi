@@ -1,6 +1,6 @@
-FROM python:3.6
+FROM tiangolo/uvicorn-gunicorn-fastapi:python3.6
 
-RUN pip install celery==4.2.1 passlib[bcrypt] tenacity requests pydantic emails fastapi>=0.2.0 uvicorn gunicorn pyjwt python-multipart email_validator jinja2 psycopg2-binary alembic SQLAlchemy
+RUN pip install celery==4.2.1 passlib[bcrypt] tenacity requests pydantic emails "fastapi>=0.6.0" uvicorn gunicorn pyjwt python-multipart email_validator jinja2 psycopg2-binary alembic SQLAlchemy
 
 # For development, Jupyter remote kernel, Hydrogen
 # Using inside the container:
@@ -15,5 +15,3 @@ WORKDIR /app/
 ENV PYTHONPATH=/app
 
 EXPOSE 80
-
-CMD ["bash", "/app/backend-start.sh"]

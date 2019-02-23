@@ -21,7 +21,7 @@ SERVER_NAME = os.getenv("SERVER_NAME")
 SERVER_HOST = os.getenv("SERVER_HOST")
 BACKEND_CORS_ORIGINS = os.getenv(
     "BACKEND_CORS_ORIGINS"
-)  # a string of origins separated by commas, e.g: "http://localhost, http://localhost:4200, http://localhost:3000, http://localhost:8080, http://dev.couchbase-project.com, https://stag.couchbase-project.com, https://couchbase-project.com, http://local.dockertoolbox.tiangolo.com"
+)  # a string of origins separated by commas, e.g: "http://localhost, http://localhost:4200, http://localhost:3000, http://localhost:8080, http://local.dockertoolbox.tiangolo.com"
 PROJECT_NAME = os.getenv("PROJECT_NAME")
 SENTRY_DSN = os.getenv("SENTRY_DSN")
 
@@ -46,8 +46,6 @@ EMAILS_FROM_NAME = PROJECT_NAME
 EMAIL_RESET_TOKEN_EXPIRE_HOURS = 48
 EMAIL_TEMPLATES_DIR = "/app/app/email-templates/build"
 EMAILS_ENABLED = SMTP_HOST and SMTP_PORT and EMAILS_FROM_EMAIL
-
-ROLE_SUPERUSER = "superuser"
 
 FIRST_SUPERUSER = os.getenv("FIRST_SUPERUSER")
 FIRST_SUPERUSER_PASSWORD = os.getenv("FIRST_SUPERUSER_PASSWORD")

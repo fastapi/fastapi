@@ -3,7 +3,6 @@ import { ActionContext } from 'vuex';
 import {
     commitSetUsers,
     commitSetUser,
-    commitSetRoles,
 } from './accessors/commit';
 import { IUserProfileCreate, IUserProfileUpdate } from '@/interfaces';
 import { State } from '../state';
@@ -23,12 +22,12 @@ export const actions = {
             await dispatchCheckApiError(context, error);
         }
     },
-    async actionUpdateUser(context: MainContext, payload: { name: string, user: IUserProfileUpdate }) {
+    async actionUpdateUser(context: MainContext, payload: { id: number, user: IUserProfileUpdate }) {
         try {
             const loadingNotification = { content: 'saving', showProgress: true };
             commitAddNotification(context, loadingNotification);
             const response = (await Promise.all([
-                api.updateUser(context.rootState.main.token, payload.name, payload.user),
+                api.updateUser(context.rootState.main.token, payload.id, payload.user),
                 await new Promise((resolve, reject) => setTimeout(() => resolve(), 500)),
             ]))[0];
             commitSetUser(context, response.data);
@@ -49,14 +48,6 @@ export const actions = {
             commitSetUser(context, response.data);
             commitRemoveNotification(context, loadingNotification);
             commitAddNotification(context, { content: 'User successfully created', color: 'success' });
-        } catch (error) {
-            await dispatchCheckApiError(context, error);
-        }
-    },
-    async actionGetRoles(context: MainContext) {
-        try {
-            const response = await api.getRoles(context.rootState.main.token);
-            commitSetRoles(context, response.data.roles);
         } catch (error) {
             await dispatchCheckApiError(context, error);
         }

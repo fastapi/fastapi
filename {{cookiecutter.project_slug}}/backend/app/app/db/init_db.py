@@ -1,11 +1,6 @@
 from app.core import config
-from app.db.utils import (
-    assign_role_to_user,
-    create_role,
-    create_user,
-    get_role_by_name,
-    get_user_by_username,
-)
+from app.crud import user as crud_user
+from app.models.user import UserInCreate
 
 
 def init_db(db_session):
@@ -14,16 +9,11 @@ def init_db(db_session):
     # the tables uncommenting the next line
     # Base.metadata.create_all(bind=engine)
 
-    role = get_role_by_name("default", db_session)
-    if not role:
-        role = create_role("default", db_session)
-
-    user = get_user_by_username(config.FIRST_SUPERUSER, db_session)
+    user = crud_user.get_by_email(db_session, email=config.FIRST_SUPERUSER)
     if not user:
-        user = create_user(
-            db_session,
-            config.FIRST_SUPERUSER,
-            config.FIRST_SUPERUSER_PASSWORD,
+        user_in = UserInCreate(
+            email=config.FIRST_SUPERUSER,
+            password=config.FIRST_SUPERUSER_PASSWORD,
             is_superuser=True,
         )
-        assign_role_to_user(role, user, db_session)
+        user = crud_user.create(db_session, user_in=user_in)

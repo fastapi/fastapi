@@ -11,15 +11,13 @@
       <template slot="items" slot-scope="props">
         <td>{{ props.item.name }}</td>
         <td>{{ props.item.email }}</td>
-        <td>{{ props.item.human_name }}</td>
-        <td>{{ props.item.disabled }}</td>
-        <td>
-          <v-chip v-for="role in props.item.admin_roles" :key="role">{{role}}</v-chip>
-        </td>
+        <td>{{ props.item.full_name }}</td>
+        <td><v-icon v-if="props.item.is_active">checkmark</v-icon></td>
+        <td><v-icon v-if="props.item.is_superuser">checkmark</v-icon></td>
         <td class="justify-center layout px-0">
           <v-tooltip top>
             <span>Edit</span>
-            <v-btn slot="activator" flat :to="{name: 'main-admin-users-edit', params: {name: props.item.name}}">
+            <v-btn slot="activator" flat :to="{name: 'main-admin-users-edit', params: {id: props.item.id}}">
               <v-icon>edit</v-icon>
             </v-btn>
           </v-tooltip>
@@ -36,7 +34,7 @@ import { IUserProfile } from '@/interfaces';
 import { readAdminUsers, dispatchGetUsers } from '@/store/admin/accessors';
 
 @Component
-export default class UserProfile extends Vue {
+export default class AdminUsers extends Vue {
   public headers = [
     {
       text: 'Name',
@@ -53,23 +51,24 @@ export default class UserProfile extends Vue {
     {
       text: 'Full Name',
       sortable: true,
-      value: 'human_name',
+      value: 'full_name',
       align: 'left',
     },
     {
-      text: 'Disabled',
+      text: 'Is Active',
       sortable: true,
-      value: 'disabled',
+      value: 'isActive',
       align: 'left',
     },
     {
-      text: 'Roles',
-      value: 'admin_roles',
+      text: 'Is Superuser',
+      sortable: true,
+      value: 'isSuperuser',
       align: 'left',
     },
     {
       text: 'Actions',
-      value: 'name',
+      value: 'id',
     },
   ];
   get users() {

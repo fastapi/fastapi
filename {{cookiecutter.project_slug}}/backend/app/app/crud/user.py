@@ -1,81 +1,47 @@
-from app.core.security import get_password_hash
-from app.models.role import Role
-from app.models.user import User
+from typing import List, Union
+
+from fastapi.encoders import jsonable_encoder
+
+from app.core.security import get_password_hash, verify_password
+from app.db_models.user import User
+from app.models.user import UserInCreate, UserInUpdate
 
 
-def get_user(username, db_session):
-    return db_session.query(User).filter(User.id == username).first()
+def get(db_session, *, user_id: int) -> Union[User, None]:
+    return db_session.query(User).filter(User.id == user_id).first()
 
 
-def check_if_user_is_active(user):
+def get_by_email(db_session, *, email: str) -> Union[User, None]:
+    return db_session.query(User).filter(User.email == email).first()
+
+
+def authenticate(db_session, *, email: str, password: str) -> Union[User, bool]:
+    user = get_by_email(db_session, email=email)
+    if not user:
+        return False
+    if not verify_password(password, user.hashed_password):
+        return False
+    return user
+
+
+def is_active(user) -> bool:
     return user.is_active
 
 
-def check_if_user_is_superuser(user):
+def is_superuser(user) -> bool:
     return user.is_superuser
 
 
-def check_if_username_is_active(username, db_session):
-    user = get_user(username, db_session)
-    return check_if_user_is_active(user)
+def get_multi(db_session, *, skip=0, limit=100) -> Union[List[User], List[None]]:
+    return db_session.query(User).offset(skip).limit(limit).all()
 
 
-def get_role_by_name(name, db_session):
-    role = db_session.query(Role).filter(Role.name == name).first()
-    return role
-
-
-def get_role_by_id(role_id, db_session):
-    role = db_session.query(Role).filter(Role.id == role_id).first()
-    return role
-
-
-def create_role(name, db_session):
-    role = Role(name=name)
-    db_session.add(role)
-    db_session.commit()
-    return role
-
-
-def get_roles(db_session):
-    return db_session.query(Role).all()
-
-
-def get_user_roles(user):
-    return user.roles
-
-
-def get_user_by_username(username, db_session) -> User:
-    user = db_session.query(User).filter(User.email == username).first()  # type: User
-    return user
-
-
-def get_user_by_id(user_id, db_session):
-    user = db_session.query(User).filter(User.id == user_id).first()  # type: User
-    return user
-
-
-def get_user_hashed_password(user):
-    return user.password
-
-
-def get_user_id(user):
-    return user.id
-
-
-def get_users(db_session):
-    return db_session.query(User).all()
-
-
-def create_user(
-    db_session, username, password, first_name=None, last_name=None, is_superuser=False
-):
+def create(db_session, *, user_in: UserInCreate) -> User:
     user = User(
-        email=username,
-        password=get_password_hash(password),
-        first_name=first_name,
-        last_name=last_name,
-        is_superuser=is_superuser,
+        email=user_in.email,
+        hashed_password=get_password_hash(user_in.password),
+        full_name=user_in.full_name,
+        is_superuser=user_in.is_superuser,
     )
     db_session.add(user)
     db_session.commit()
@@ -83,8 +49,16 @@ def create_user(
     return user
 
 
-def assign_role_to_user(role: Role, user: User, db_session):
-    user.roles.append(role)
+def update(db_session, *, user: User, user_in: UserInUpdate) -> User:
+    user_data = jsonable_encoder(user)
+    for field in user_data:
+        if field in user_in.fields:
+            value_in = getattr(user_in, field)
+            if value_in is not None:
+                setattr(user, field, value_in)
+    if user_in.password:
+        passwordhash = get_password_hash(user_in.password)
+        user.hashed_password = passwordhash
     db_session.add(user)
     db_session.commit()
     db_session.refresh(user)

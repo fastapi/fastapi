@@ -2,8 +2,8 @@ version: '3.3'
 services:
   backend:
     depends_on: 
-      - couchbase
+      - db
   celeryworker:
     depends_on: 
-      - couchbase
+      - db
       - queue

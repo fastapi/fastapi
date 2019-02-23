@@ -11,6 +11,7 @@ isort = "*"
 autoflake = "*"
 flake8 = "*"
 pytest = "*"
+vulture = "*"
 
 [packages]
 fastapi = "*"
@@ -25,6 +26,11 @@ tenacity = "*"
 pydantic = "*"
 emails = "*"
 raven = "*"
+gunicorn = "*"
+jinja2 = "*"
+psycopg2-binary = "*"
+alembic = "*"
+sqlalchemy = "*"
 
 [requires]
 python_version = "3.6"

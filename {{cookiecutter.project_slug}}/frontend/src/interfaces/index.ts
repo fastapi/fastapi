@@ -1,27 +1,23 @@
 export interface IUserProfile {
-    admin_channels: string[];
-    admin_roles: string[];
-    disabled: boolean;
     email: string;
-    human_name: string;
-    name: string;
+    is_active: boolean;
+    is_superuser: boolean;
+    full_name: string;
+    id: number;
 }
 
 export interface IUserProfileUpdate {
-    human_name?: string;
-    password?: string;
     email?: string;
-    admin_channels?: string[];
-    admin_roles?: string[];
-    disabled?: boolean;
+    full_name?: string;
+    password?: string;
+    is_active?: boolean;
+    is_superuser?: boolean;
 }
 
 export interface IUserProfileCreate {
-    name: string;
-    human_name?: string;
+    email: string;
+    full_name?: string;
     password?: string;
-    email?: string;
-    admin_channels?: string[];
-    admin_roles?: string[];
-    disabled?: boolean;
+    is_active?: boolean;
+    is_superuser?: boolean;
 }

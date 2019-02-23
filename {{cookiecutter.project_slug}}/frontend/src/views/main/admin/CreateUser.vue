@@ -7,13 +7,12 @@
       <v-card-text>
         <template>
           <v-form v-model="valid" ref="form" lazy-validation>
-            <v-text-field label="Username" v-model="name" required></v-text-field>
             <v-text-field label="Full Name" v-model="fullName" required></v-text-field>
             <v-text-field label="E-mail" type="email" v-model="email" v-validate="'required|email'" data-vv-name="email" :error-messages="errors.collect('email')" required></v-text-field>
-            <div class="subheading secondary--text text--lighten-2">Roles</div>
-            <v-checkbox v-for="(value, role) in selectedRoles" :key="role" :label="role" v-model="selectedRoles[role]"></v-checkbox>
-            <div class="subheading secondary--text text--lighten-2">Disable User <span v-if="userDisabled">(currently disabled)</span><span v-else>(currently enabled)</span></div>
-            <v-checkbox :label="'Disabled'" v-model="userDisabled"></v-checkbox>
+            <div class="subheading secondary--text text--lighten-2">User is superuser <span v-if="isSuperuser">(currently is a superuser)</span><span v-else>(currently is not a superuser)</span></div>
+            <v-checkbox label="Is Superuser" v-model="isSuperuser"></v-checkbox>
+            <div class="subheading secondary--text text--lighten-2">User is active <span v-if="isActive">(currently active)</span><span v-else>(currently not active)</span></div>
+            <v-checkbox label="Is Active" v-model="isActive"></v-checkbox>
             <v-layout align-center>
               <v-flex>
                 <v-text-field type="password" ref="password" label="Set Password" data-vv-name="password" data-vv-delay="100" v-validate="{required: true}" v-model="password1" :error-messages="errors.first('password')">
@@ -41,38 +40,32 @@ import {
   IUserProfileUpdate,
   IUserProfileCreate,
 } from '@/interfaces';
-import { dispatchGetUsers, dispatchGetRoles, dispatchCreateUser, readAdminRoles } from '@/store/admin/accessors';
+import { dispatchGetUsers, dispatchCreateUser } from '@/store/admin/accessors';
 
 @Component
-export default class EditUser extends Vue {
+export default class CreateUser extends Vue {
   public valid = false;
-  public name: string = '';
   public fullName: string = '';
   public email: string = '';
+  public isActive: boolean = true;
+  public isSuperuser: boolean = false;
   public setPassword = false;
   public password1: string = '';
   public password2: string = '';
-  public userDisabled: boolean = false;
-
-  public selectedRoles: { [role: string]: boolean } = {};
 
   public async mounted() {
     await dispatchGetUsers(this.$store);
-    await dispatchGetRoles(this.$store);
     this.reset();
   }
 
   public reset() {
     this.password1 = '';
     this.password2 = '';
-    this.name = '';
     this.fullName = '';
     this.email = '';
-    this.userDisabled = false;
+    this.isActive = true;
+    this.isSuperuser = false;
     this.$validator.reset();
-    this.availableRoles.forEach((value) => {
-      Vue.set(this.selectedRoles, value, false);
-    });
   }
 
   public cancel() {
@@ -82,29 +75,20 @@ export default class EditUser extends Vue {
   public async submit() {
     if (await this.$validator.validateAll()) {
       const updatedProfile: IUserProfileCreate = {
-        name: this.name,
+        email: this.email,
       };
       if (this.fullName) {
-        updatedProfile.human_name = this.fullName;
+        updatedProfile.full_name = this.fullName;
       }
       if (this.email) {
         updatedProfile.email = this.email;
       }
-      updatedProfile.disabled = this.userDisabled;
-      updatedProfile.admin_roles = [];
-      this.availableRoles.forEach((role: string) => {
-        if (this.selectedRoles[role]) {
-          updatedProfile.admin_roles!.push(role);
-        }
-      });
+      updatedProfile.is_active = this.isActive;
+      updatedProfile.is_superuser = this.isSuperuser;
       updatedProfile.password = this.password1;
       await dispatchCreateUser(this.$store, updatedProfile);
       this.$router.push('/main/admin/users');
     }
-  }
-
-  get availableRoles() {
-    return readAdminRoles(this.$store);
   }
 }
 </script>

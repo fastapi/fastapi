@@ -8,16 +8,16 @@
         <template>
           <div class="my-3">
             <div class="subheading secondary--text text--lighten-2">Username</div>
-            <div class="title primary--text text--darken-2" v-if="user">{{user.name}}</div>
+            <div class="title primary--text text--darken-2" v-if="user">{{user.email}}</div>
             <div class="title primary--text text--darken-2" v-else>-----</div>
           </div>
           <v-form v-model="valid" ref="form" lazy-validation>
             <v-text-field label="Full Name" v-model="fullName" required></v-text-field>
             <v-text-field label="E-mail" type="email" v-model="email" v-validate="'required|email'" data-vv-name="email" :error-messages="errors.collect('email')" required></v-text-field>
-            <div class="subheading secondary--text text--lighten-2">Roles</div>
-            <v-checkbox v-for="(value, role) in selectedRoles" :key="role" :label="role" v-model="selectedRoles[role]"></v-checkbox>
-            <div class="subheading secondary--text text--lighten-2">Disable User <span v-if="userDisabled">(currently disabled)</span><span v-else>(currently enabled)</span></div>
-            <v-checkbox :label="'Disabled'" v-model="userDisabled"></v-checkbox>
+            <div class="subheading secondary--text text--lighten-2">User is superuser <span v-if="isSuperuser">(currently is a superuser)</span><span v-else>(currently is not a superuser)</span></div>
+            <v-checkbox label="Is Superuser" v-model="isSuperuser"></v-checkbox>
+            <div class="subheading secondary--text text--lighten-2">User is active <span v-if="isActive">(currently active)</span><span v-else>(currently not active)</span></div>
+            <v-checkbox label="Is Active" v-model="isActive"></v-checkbox>
             <v-layout align-center>
               <v-flex shrink>
                 <v-checkbox v-model="setPassword" class="mr-2"></v-checkbox>
@@ -48,31 +48,23 @@ import { Component, Vue } from 'vue-property-decorator';
 import { IUserProfile, IUserProfileUpdate } from '@/interfaces';
 import {
   dispatchGetUsers,
-  dispatchGetRoles,
   dispatchUpdateUser,
   readAdminOneUser,
-  readAdminRoles,
 } from '@/store/admin/accessors';
 
 @Component
 export default class EditUser extends Vue {
   public valid = true;
-  public name: string = '';
   public fullName: string = '';
   public email: string = '';
+  public isActive: boolean = true;
+  public isSuperuser: boolean = false;
   public setPassword = false;
   public password1: string = '';
   public password2: string = '';
-  public userDisabled: boolean = false;
-
-  public selectedRoles: { [role: string]: boolean } = {};
 
   public async mounted() {
     await dispatchGetUsers(this.$store);
-    await dispatchGetRoles(this.$store);
-    this.availableRoles.forEach((value) => {
-      Vue.set(this.selectedRoles, value, false);
-    });
     this.reset();
   }
 
@@ -82,17 +74,10 @@ export default class EditUser extends Vue {
     this.password2 = '';
     this.$validator.reset();
     if (this.user) {
-      this.name = this.user.name;
-      this.fullName = this.user.human_name;
+      this.fullName = this.user.full_name;
       this.email = this.user.email;
-      this.userDisabled = this.user.disabled;
-      this.availableRoles.forEach((role: string) => {
-        if (this.user!.admin_roles.includes(role)) {
-          Vue.set(this.selectedRoles, role, true);
-        } else {
-          Vue.set(this.selectedRoles, role, false);
-        }
-      });
+      this.isActive = this.user.is_active;
+      this.isSuperuser = this.user.is_superuser;
     }
   }
 
@@ -104,33 +89,23 @@ export default class EditUser extends Vue {
     if (await this.$validator.validateAll()) {
       const updatedProfile: IUserProfileUpdate = {};
       if (this.fullName) {
-        updatedProfile.human_name = this.fullName;
+        updatedProfile.full_name = this.fullName;
       }
       if (this.email) {
         updatedProfile.email = this.email;
       }
-      updatedProfile.disabled = this.userDisabled;
-      updatedProfile.admin_roles = [];
-      this.availableRoles.forEach((role: string) => {
-        if (this.selectedRoles[role]) {
-          updatedProfile.admin_roles!.push(role);
-        }
-      });
+      updatedProfile.is_active = this.isActive;
+      updatedProfile.is_superuser = this.isSuperuser;
       if (this.setPassword) {
         updatedProfile.password = this.password1;
       }
-      const payload = { name: this.name, user: updatedProfile };
-      await dispatchUpdateUser(this.$store, payload);
+      await dispatchUpdateUser(this.$store, { id: this.user!.id, user: updatedProfile });
       this.$router.push('/main/admin/users');
     }
   }
 
   get user() {
-    return readAdminOneUser(this.$store)(this.$router.currentRoute.params.name);
-  }
-
-  get availableRoles() {
-    return readAdminRoles(this.$store);
+    return readAdminOneUser(this.$store)(+this.$router.currentRoute.params.id);
   }
 }
 </script>

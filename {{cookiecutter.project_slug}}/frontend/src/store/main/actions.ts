@@ -17,7 +17,6 @@ import {
     commitAddNotification,
 } from './accessors';
 import { AxiosError } from 'axios';
-import { IUserProfileCreate, IUserProfileUpdate } from '@/interfaces';
 import { State } from '../state';
 import { MainState, AppNotification } from './state';
 
