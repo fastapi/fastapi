@@ -1,7 +1,7 @@
-from fastapi import FastAPI
+from fastapi import Depends, FastAPI
 from sqlalchemy import Boolean, Column, Integer, String, create_engine
 from sqlalchemy.ext.declarative import declarative_base, declared_attr
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import Session, sessionmaker
 from starlette.requests import Request
 
 # SQLAlchemy specific code, as with any other app
@@ -11,7 +11,7 @@ SQLALCHEMY_DATABASE_URI = "sqlite:///./test.db"
 engine = create_engine(
     SQLALCHEMY_DATABASE_URI, connect_args={"check_same_thread": False}
 )
-Session = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 
 class CustomBase:
@@ -33,7 +33,7 @@ class User(Base):
 
 Base.metadata.create_all(bind=engine)
 
-db_session = Session()
+db_session = SessionLocal()
 
 first_user = db_session.query(User).first()
 if not first_user:
@@ -45,8 +45,13 @@ db_session.close()
 
 
 # Utility
-def get_user(db_session, user_id: int):
+def get_user(db_session: Session, user_id: int):
     return db_session.query(User).filter(User.id == user_id).first()
+
+
+# Dependency
+def get_db(request: Request):
+    return request.state.db
 
 
 # FastAPI specific code
@@ -54,14 +59,14 @@ app = FastAPI()
 
 
 @app.get("/users/{user_id}")
-def read_user(request: Request, user_id: int):
-    user = get_user(request.state.db, user_id=user_id)
+def read_user(user_id: int, db: Session = Depends(get_db)):
+    user = get_user(db, user_id=user_id)
     return user
 
 
 @app.middleware("http")
 async def db_session_middleware(request: Request, call_next):
-    request.state.db = Session()
+    request.state.db = SessionLocal()
     response = await call_next(request)
     request.state.db.close()
     return response
