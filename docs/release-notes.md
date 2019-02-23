@@ -1,5 +1,7 @@
 ## Next
 
+* Add Favicons to docs. PR <a href="https://github.com/tiangolo/fastapi/pull/53" target="_blank">#53</a>.
+
 ## 0.6.2
 
 * Introduce new project generator based on FastAPI and PostgreSQL: <a href="https://github.com/tiangolo/full-stack-fastapi-postgresql" target="_blank">https://github.com/tiangolo/full-stack-fastapi-postgresql</a>. PR <a href="https://github.com/tiangolo/fastapi/pull/52" target="_blank">#52</a>.
