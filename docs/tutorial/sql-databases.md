@@ -16,6 +16,10 @@ In this example, we'll use **SQLite**, because it uses a single file and Python 
 
 Later, for your production application, you might want to use a database server like **PostgreSQL**.
 
+!!! tip
+    There is an official project generator with **FastAPI** and **PostgreSQL**, all based on **Docker**, including a frontend and more tools: <a href="https://github.com/tiangolo/full-stack-fastapi-postgresql" target="_blank">https://github.com/tiangolo/full-stack-fastapi-postgresql</a>
+
+
 !!! note
     Notice that most of the code is the standard `SQLAlchemy` code you would use with any framework.
 
@@ -74,11 +78,17 @@ connect_args={"check_same_thread": False}
     That argument `check_same_thread` is there mainly to be able to run the tests that cover this example.
     
 
-## Create a `Session` class
+## Create a `SessionLocal` class
 
-Each instance of the `Session` class will have a connection to the database.
+Each instance of the `SessionLocal` class will have a connection to the database.
 
-This is not a connection to the database yet, but once we create an instance of this class, that instance will have the actual connection to the database.
+This object (class) is not a connection to the database yet, but once we create an instance of this class, that instance will have the actual connection to the database.
+
+We name it `SessionLocal` to distinguish it form the `Session` we are importing from SQLAlchemy.
+
+We will use `Session` to declare types later and getter better editor support and completion.
+
+For now, create the `SessionLocal`:
 
 ```Python hl_lines="14"
 {!./src/sql_databases/tutorial001.py!}
@@ -86,9 +96,9 @@ This is not a connection to the database yet, but once we create an instance of 
 
 ## Create a middleware to handle sessions
 
-Now let's temporarily jump to the end of the file, to use the `Session` class we created above.
+Now let's temporarily jump to the end of the file, to use the `SessionLocal` class we created above.
 
-We need to have an independent `Session` per request, use the same session through all the request and then close it after the request is finished.
+We need to have an independent database session/connection (`SessionLocal`) per request, use the same session through all the request and then close it after the request is finished.
 
 And then a new session will be created for the next request.
 
@@ -96,9 +106,9 @@ For that, we will create a new middleware.
 
 A "middleware" is a function that is always executed for each request, and have code before and after the request.
 
-The middleware we will create (just a function) will create a new SQLAlchemy `Session` for each request, add it to the request and then close it once the request is finished.
+This middleware (just a function) will create a new SQLAlchemy `SessionLocal` for each request, add it to the request and then close it once the request is finished.
 
-```Python hl_lines="62 63 64 65 66 67"
+```Python hl_lines="67 68 69 70 71 72"
 {!./src/sql_databases/tutorial001.py!}
 ```
 
@@ -108,6 +118,22 @@ The middleware we will create (just a function) will create a new SQLAlchemy `Se
 
 For us in this case, it helps us ensuring a single session/database-connection is used through all the request, and then closed afterwards (in the middleware).
 
+## Create a dependency
+
+To simplify the code, reduce repetition and get better editor support, we will create a dependency that returns this same database session from the request.
+
+And when using the dependency in a path operation function, we declare it with the type `Session` we imported directly from SQLAlchemy.
+
+This will then give us better editor support inside the path operation function, because the editor will know that the `db` parameter is of type `Session`.
+
+```Python hl_lines="53 54 68"
+{!./src/sql_databases/tutorial001.py!}
+```
+
+!!! info "Technical Detail"
+    The parameter `db` is actually of type `SessionLocal`, but this class (created with `sessionmaker()`) is a "proxy" of a SQLAlchemy `Session`, so, the editor doesn't really know what methods are provided.
+    
+    But by declaring the type as `Session`, the editor now can know the available methods (`.add()`, `.query()`, `.commit()`, etc) and can provide better support (like completion). The type declaration doesn't affect the actual object.
 
 ## Create a `CustomBase` model
 
@@ -181,7 +207,7 @@ Now, finally, here's the standard **FastAPI** code.
 
 Create your app and path operation function:
 
-```Python hl_lines="53 56 57 58 59"
+```Python hl_lines="58 61 62 63 64"
 {!./src/sql_databases/tutorial001.py!}
 ```
 
@@ -189,9 +215,13 @@ We are creating the database session before each request, attaching it to the re
 
 All of this is done in the middleware explained above.
 
-Because of that, we can use the `Request` to access the database session with `request._scope["db"]`.
+Then, in the dependency `get_db()` we are extracting the database session from the request.
 
-Then we can just call `get_user` directly from inside of the path operation function and use that session.
+And then we can create the dependency in the path operation function, to get that session directly.
+
+With that, we can just call `get_user` directly from inside of the path operation function and use that session.
+
+Having this 3-step process (middleware, dependency, path operation) in this simple example might seem like an overkill. But imagine if you had 20 or 100 path operations, doing this, you would be reducing a lot of code repetition, and getting better support/checks/completion in all those path operation functions.
 
 ## Create the path operation function
 
@@ -213,7 +243,7 @@ user = get_user(db_session, user_id=user_id)
 
 Then we should declare the path operation without `async def`, just with a normal `def`:
 
-```Python hl_lines="57"
+```Python hl_lines="62"
 {!./src/sql_databases/tutorial001.py!}
 ```
 
