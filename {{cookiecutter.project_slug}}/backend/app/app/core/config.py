@@ -25,36 +25,13 @@ BACKEND_CORS_ORIGINS = os.getenv(
 PROJECT_NAME = os.getenv("PROJECT_NAME")
 SENTRY_DSN = os.getenv("SENTRY_DSN")
 
-# Couchbase server settings
-COUCHBASE_MEMORY_QUOTA_MB = os.getenv("COUCHBASE_MEMORY_QUOTA_MB", "256")
-COUCHBASE_INDEX_MEMORY_QUOTA_MB = os.getenv("COUCHBASE_INDEX_MEMORY_QUOTA_MB" "256")
-COUCHBASE_FTS_MEMORY_QUOTA_MB = os.getenv("COUCHBASE_FTS_MEMORY_QUOTA_MB", "256")
-COUCHBASE_HOST = os.getenv("COUCHBASE_HOST", "couchbase")
-COUCHBASE_PORT = os.getenv("COUCHBASE_PORT", "8091")
-COUCHBASE_FULL_TEXT_PORT = os.getenv("COUCHBASE_FULL_TEXT_PORT", "8094")
-COUCHBASE_ENTERPRISE = getenv_boolean("COUCHBASE_ENTERPRISE")
-COUCHBASE_USER = os.getenv("COUCHBASE_USER", "Administrator")
-COUCHBASE_PASSWORD = os.getenv("COUCHBASE_PASSWORD", "password")
-COUCHBASE_BUCKET_NAME = os.getenv("COUCHBASE_BUCKET_NAME", "app")
-
-COUCHBASE_SYNC_GATEWAY_HOST = os.getenv("COUCHBASE_SYNC_GATEWAY_HOST", "sync-gateway")
-COUCHBASE_SYNC_GATEWAY_PORT = os.getenv("COUCHBASE_SYNC_GATEWAY_PORT", "4985")
-COUCHBASE_SYNC_GATEWAY_USER = os.getenv("COUCHBASE_SYNC_GATEWAY_USER")
-COUCHBASE_SYNC_GATEWAY_PASSWORD = os.getenv("COUCHBASE_SYNC_GATEWAY_PASSWORD")
-COUCHBASE_SYNC_GATEWAY_DATABASE = os.getenv("COUCHBASE_SYNC_GATEWAY_DATABASE")
-
-# Couchbase query timeouts
-COUCHBASE_DURABILITY_TIMEOUT_SECS = 60.0
-COUCHBASE_OPERATION_TIMEOUT_SECS = 30.0
-COUCHBASE_N1QL_TIMEOUT_SECS = 300.0
-
-
-# Couchbase Sync Gateway settings
-COUCHBASE_CORS_ORIGINS = os.getenv("COUCHBASE_CORS_ORIGINS")
-# a string of origins separated by commas, e.g: "http://localhost:5984, http://localhost, http://localhost:4200, http://localhost:3000, http://localhost:8080, http://dev.couchbase-project.com, https://stag.couchbase-project.com, https://db.stag.couchbase-project.com, https://couchbase-project.com, https://db.couchbase-project.com, http://local.dockertoolbox.tiangolo.com, http://local.dockertoolbox.tiangolo.com:5984"
-COUCHBASE_AUTH_TIMEOUT = ACCESS_TOKEN_EXPIRE_MINUTES * 60
-
-COUCHBASE_FULL_TEXT_INDEX_DEFINITIONS_DIR = "/app/app/search_index_definitions/"
+POSTGRES_SERVER = os.getenv("POSTGRES_SERVER")
+POSTGRES_USER = os.getenv("POSTGRES_USER")
+POSTGRES_PASSWORD = os.getenv("POSTGRES_PASSWORD")
+POSTGRES_DB = os.getenv("POSTGRES_DB")
+SQLALCHEMY_DATABASE_URI = (
+    f"postgresql://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_SERVER}/{POSTGRES_DB}"
+)
 
 SMTP_TLS = getenv_boolean("SMTP_TLS", True)
 SMTP_PORT = None
