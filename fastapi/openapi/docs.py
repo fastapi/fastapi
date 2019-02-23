@@ -8,6 +8,7 @@ def get_swagger_ui_html(*, openapi_url: str, title: str) -> HTMLResponse:
     <html>
     <head>
     <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@3/swagger-ui.css">
+    <link rel="shortcut icon" href="https://fastapi.tiangolo.com/img/favicon.png">
     <title>
     """
         + title
@@ -55,6 +56,7 @@ def get_redoc_html(*, openapi_url: str, title: str) -> HTMLResponse:
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Roboto:300,400,700" rel="stylesheet">
+    <link rel="shortcut icon" href="https://fastapi.tiangolo.com/img/favicon.png">
 
     <!--
     ReDoc doesn't change outer page styles
