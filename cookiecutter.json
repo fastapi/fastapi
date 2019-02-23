@@ -19,7 +19,7 @@
 
     "postgres_password": "changethis",
     "pgadmin_default_user": "{{cookiecutter.first_superuser}}",
-    "pgadmin_default_user_password": "changethis",
+    "pgadmin_default_user_password": "{{cookiecutter.first_superuser_password}}",
 
     "traefik_constraint_tag": "{{cookiecutter.domain_main}}",
     "traefik_constraint_tag_staging": "{{cookiecutter.domain_staging}}",
