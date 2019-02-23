@@ -1,5 +1,9 @@
 ## Next
 
+* Introduce new project generator based on FastAPI and PostgreSQL<a href="https://github.com/tiangolo/full-stack-fastapi-postgresql" target="_blank">https://github.com/tiangolo/full-stack-fastapi-postgresql</a>. PR <a href="https://github.com/tiangolo/fastapi/pull/52" target="_blank">#52</a>.
+
+* Update <a href="https://fastapi.tiangolo.com/tutorial/sql-databases/" target="_blank">SQL tutorial with SQLAlchemy, using `Depends` to improve editor support and reduce code repetition</a>. PR <a href="https://github.com/tiangolo/fastapi/pull/52" target="_blank">#52</a>.
+
 * Improve middleware naming in tutorial for SQL with SQLAlchemy <a href="https://fastapi.tiangolo.com/tutorial/sql-databases/" target="_blank">https://fastapi.tiangolo.com/tutorial/sql-databases/</a>.
 
 ## 0.6.1
