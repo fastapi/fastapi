@@ -46,7 +46,8 @@ def test_tags_in_schema():
     ) == ["tag1"]
 
     assert response.json().get("paths").get("/tag2prefix/").get("get").get("tags") == [
-        "tag2", "tag1"
+        "tag2",
+        "tag1",
     ]
     assert response.json().get("paths").get("/tag2prefix/test").get("get").get(
         "tags"
