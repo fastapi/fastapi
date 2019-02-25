@@ -1,3 +1,4 @@
+import pytest
 from fastapi import APIRouter, FastAPI
 from starlette.testclient import TestClient
 
@@ -15,17 +16,17 @@ async def tag1_root():
 
 @tag1.get("/test")
 async def tag1_test():
-    return {"Tag": "test"}
+    return {"Tag": "tag1"}
 
 
 @tag2.get("/")
 async def tag2_root():
-    return {"Tag": "tag2 and tag1"}
+    return {"Tag": ["tag2", "tag1"]}
 
 
 @tag2.get("/test", tags=["tag3"])
-async def tag1_test():
-    return {"Tag": "test"}
+async def tag2_test():
+    return {"Tag": ["tag2", "tag1", "tag3"]}
 
 
 app.include_router(tag1, prefix="/tag1prefix")
@@ -52,3 +53,19 @@ def test_tags_in_schema():
     assert response.json().get("paths").get("/tag2prefix/test").get("get").get(
         "tags"
     ) == ["tag2", "tag1", "tag3"]
+
+
+route_tag_data = [
+    ("tag1_root", {"Tag": "tag1"}),
+    ("tag1_test", {"Tag": "tag1"}),
+    ("tag2_root", {"Tag": ["tag2", "tag1"]}),
+    ("tag2_test", {"Tag": ["tag2", "tag1", "tag3"]}),
+]
+
+
+@pytest.mark.parametrize("route, expected_tags", route_tag_data)
+def test_tag_answers(route, expected_tags):
+    url = app.url_path_for(route)
+    response = client.get(url)
+    assert response.status_code == 200
+    assert response.json() == expected_tags
