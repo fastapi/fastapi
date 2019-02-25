@@ -294,11 +294,20 @@ class APIRouter(routing.Router):
         content_type: Type[Response] = JSONResponse,
         name: str = None,
     ) -> Callable:
+
+        if self.tags is not None:
+            alltags = self.tags.copy()
+            if tags is not None:
+                for tag in tags:
+                    alltags.append(tag)
+        else:
+            alltags = tags
+
         return self.api_route(
             path=path,
             response_model=response_model,
             status_code=status_code,
-            tags=self.tags or [],
+            tags=alltags or [],
             summary=summary,
             description=description,
             response_description=response_description,
@@ -326,11 +335,20 @@ class APIRouter(routing.Router):
         content_type: Type[Response] = JSONResponse,
         name: str = None,
     ) -> Callable:
+
+        if self.tags is not None:
+            alltags = self.tags.copy()
+            if tags is not None:
+                for tag in tags:
+                    alltags.append(tag)
+        else:
+            alltags = tags
+
         return self.api_route(
             path=path,
             response_model=response_model,
             status_code=status_code,
-            tags=self.tags or [],
+            tags=alltags or [],
             summary=summary,
             description=description,
             response_description=response_description,
@@ -358,11 +376,20 @@ class APIRouter(routing.Router):
         content_type: Type[Response] = JSONResponse,
         name: str = None,
     ) -> Callable:
+
+        if self.tags is not None:
+            alltags = self.tags.copy()
+            if tags is not None:
+                for tag in tags:
+                    alltags.append(tag)
+        else:
+            alltags = tags
+
         return self.api_route(
             path=path,
             response_model=response_model,
             status_code=status_code,
-            tags=self.tags or [],
+            tags=alltags or [],
             summary=summary,
             description=description,
             response_description=response_description,
@@ -390,11 +417,20 @@ class APIRouter(routing.Router):
         content_type: Type[Response] = JSONResponse,
         name: str = None,
     ) -> Callable:
+
+        if self.tags is not None:
+            alltags = self.tags.copy()
+            if tags is not None:
+                for tag in tags:
+                    alltags.append(tag)
+        else:
+            alltags = tags
+
         return self.api_route(
             path=path,
             response_model=response_model,
             status_code=status_code,
-            tags=self.tags or [],
+            tags=alltags or [],
             summary=summary,
             description=description,
             response_description=response_description,
@@ -422,11 +458,20 @@ class APIRouter(routing.Router):
         content_type: Type[Response] = JSONResponse,
         name: str = None,
     ) -> Callable:
+
+        if self.tags is not None:
+            alltags = self.tags.copy()
+            if tags is not None:
+                for tag in tags:
+                    alltags.append(tag)
+        else:
+            alltags = tags
+
         return self.api_route(
             path=path,
             response_model=response_model,
             status_code=status_code,
-            tags=self.tags or [],
+            tags=alltags or [],
             summary=summary,
             description=description,
             response_description=response_description,
@@ -454,11 +499,20 @@ class APIRouter(routing.Router):
         content_type: Type[Response] = JSONResponse,
         name: str = None,
     ) -> Callable:
+
+        if self.tags is not None:
+            alltags = self.tags.copy()
+            if tags is not None:
+                for tag in tags:
+                    alltags.append(tag)
+        else:
+            alltags = tags
+
         return self.api_route(
             path=path,
             response_model=response_model,
             status_code=status_code,
-            tags=self.tags or [],
+            tags=alltags or [],
             summary=summary,
             description=description,
             response_description=response_description,
@@ -486,11 +540,20 @@ class APIRouter(routing.Router):
         content_type: Type[Response] = JSONResponse,
         name: str = None,
     ) -> Callable:
+
+        if self.tags is not None:
+            alltags = self.tags.copy()
+            if tags is not None:
+                for tag in tags:
+                    alltags.append(tag)
+        else:
+            alltags = tags
+
         return self.api_route(
             path=path,
             response_model=response_model,
             status_code=status_code,
-            tags=self.tags or [],
+            tags=alltags or [],
             summary=summary,
             description=description,
             response_description=response_description,
@@ -518,11 +581,20 @@ class APIRouter(routing.Router):
         content_type: Type[Response] = JSONResponse,
         name: str = None,
     ) -> Callable:
+
+        if self.tags is not None:
+            alltags = self.tags.copy()
+            if tags is not None:
+                for tag in tags:
+                    alltags.append(tag)
+        else:
+            alltags = tags
+
         return self.api_route(
             path=path,
             response_model=response_model,
             status_code=status_code,
-            tags=self.tags or [],
+            tags=alltags or [],
             summary=summary,
             description=description,
             response_description=response_description,

@@ -5,7 +5,7 @@ app = FastAPI()
 
 
 tag1 = APIRouter(tags=["tag1"])
-tag2 = APIRouter(tags=["tag2, tag1"])
+tag2 = APIRouter(tags=["tag2", "tag1"])
 
 
 @tag1.get("/")
@@ -23,7 +23,7 @@ async def tag2_root():
     return {"Tag": "tag2 and tag1"}
 
 
-@tag2.get("/test")
+@tag2.get("/test", tags=["tag3"])
 async def tag1_test():
     return {"Tag": "test"}
 
@@ -46,8 +46,8 @@ def test_tags_in_schema():
     ) == ["tag1"]
 
     assert response.json().get("paths").get("/tag2prefix/").get("get").get("tags") == [
-        "tag2, tag1"
+        "tag2", "tag1"
     ]
     assert response.json().get("paths").get("/tag2prefix/test").get("get").get(
         "tags"
-    ) == ["tag2, tag1"]
+    ) == ["tag2", "tag1", "tag3"]
