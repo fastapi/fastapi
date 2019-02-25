@@ -295,13 +295,12 @@ class APIRouter(routing.Router):
         name: str = None,
     ) -> Callable:
 
+        alltags = tags
         if self.tags is not None:
             alltags = self.tags.copy()
             if tags is not None:
                 for tag in tags:
                     alltags.append(tag)
-        else:
-            alltags = tags
 
         return self.api_route(
             path=path,
@@ -336,13 +335,12 @@ class APIRouter(routing.Router):
         name: str = None,
     ) -> Callable:
 
+        alltags = tags
         if self.tags is not None:
             alltags = self.tags.copy()
             if tags is not None:
                 for tag in tags:
                     alltags.append(tag)
-        else:
-            alltags = tags
 
         return self.api_route(
             path=path,
@@ -377,13 +375,12 @@ class APIRouter(routing.Router):
         name: str = None,
     ) -> Callable:
 
+        alltags = tags
         if self.tags is not None:
             alltags = self.tags.copy()
             if tags is not None:
                 for tag in tags:
                     alltags.append(tag)
-        else:
-            alltags = tags
 
         return self.api_route(
             path=path,
@@ -418,13 +415,12 @@ class APIRouter(routing.Router):
         name: str = None,
     ) -> Callable:
 
+        alltags = tags
         if self.tags is not None:
             alltags = self.tags.copy()
             if tags is not None:
                 for tag in tags:
                     alltags.append(tag)
-        else:
-            alltags = tags
 
         return self.api_route(
             path=path,
@@ -459,13 +455,12 @@ class APIRouter(routing.Router):
         name: str = None,
     ) -> Callable:
 
+        alltags = tags
         if self.tags is not None:
             alltags = self.tags.copy()
             if tags is not None:
                 for tag in tags:
                     alltags.append(tag)
-        else:
-            alltags = tags
 
         return self.api_route(
             path=path,
@@ -500,13 +495,12 @@ class APIRouter(routing.Router):
         name: str = None,
     ) -> Callable:
 
+        alltags = tags
         if self.tags is not None:
             alltags = self.tags.copy()
             if tags is not None:
                 for tag in tags:
                     alltags.append(tag)
-        else:
-            alltags = tags
 
         return self.api_route(
             path=path,
@@ -541,13 +535,12 @@ class APIRouter(routing.Router):
         name: str = None,
     ) -> Callable:
 
+        alltags = tags
         if self.tags is not None:
             alltags = self.tags.copy()
             if tags is not None:
                 for tag in tags:
                     alltags.append(tag)
-        else:
-            alltags = tags
 
         return self.api_route(
             path=path,
@@ -582,13 +575,12 @@ class APIRouter(routing.Router):
         name: str = None,
     ) -> Callable:
 
+        alltags = tags
         if self.tags is not None:
             alltags = self.tags.copy()
             if tags is not None:
                 for tag in tags:
                     alltags.append(tag)
-        else:
-            alltags = tags
 
         return self.api_route(
             path=path,
