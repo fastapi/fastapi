@@ -1,5 +1,6 @@
 import pytest
 from fastapi import APIRouter, FastAPI
+from starlette.responses import JSONResponse
 from starlette.testclient import TestClient
 
 
@@ -29,10 +30,6 @@ def framework():
 
     @tag1.options("/options")
     async def tag1_options():
-        return {"Tag": "tag1"}
-
-    @tag1.head("/head")
-    async def tag1_head():
         return {"Tag": "tag1"}
 
     @tag1.patch("/patch")
@@ -73,7 +70,7 @@ def framework():
 
     @tag4.head("/head", tags=["tag4head"])
     async def tag4_head():
-        return {"Tag": "tag4"}
+        return JSONResponse(headers={"x-fastapi-tag": "tag4head"})
 
     @tag4.patch("/patch", tags=["tag4patch"])
     async def tag4_patch():
@@ -106,6 +103,7 @@ data = [
         [],
         {"Tag": "tag4"},
     ),
+    ("tag4", ["head"], [], b""),
 ]
 
 
@@ -143,4 +141,8 @@ def test_tags_in_schema(framework, tag, methods, expected_tags, expected_json):
                 url = framework.url_path_for(f"{tag}_{method}")
                 rresponse = client.request(method, url)
                 assert rresponse.status_code == 200
-                assert rresponse.json() == expected_json
+                if method != "head":
+                    assert rresponse.json() == expected_json
+                else:
+                    assert rresponse.content == expected_json
+                    assert rresponse.headers.get("x-fastapi-tag") == "tag4head"
