@@ -167,6 +167,10 @@ class APIRoute(routing.Route):
 
 
 class APIRouter(routing.Router):
+    def __init__(self, tags: List[str] = None):
+        self.tags = tags
+        super().__init__()
+
     def add_api_route(
         self,
         path: str,
@@ -294,7 +298,7 @@ class APIRouter(routing.Router):
             path=path,
             response_model=response_model,
             status_code=status_code,
-            tags=tags or [],
+            tags=self.tags or [],
             summary=summary,
             description=description,
             response_description=response_description,
@@ -326,7 +330,7 @@ class APIRouter(routing.Router):
             path=path,
             response_model=response_model,
             status_code=status_code,
-            tags=tags or [],
+            tags=self.tags or [],
             summary=summary,
             description=description,
             response_description=response_description,
@@ -358,7 +362,7 @@ class APIRouter(routing.Router):
             path=path,
             response_model=response_model,
             status_code=status_code,
-            tags=tags or [],
+            tags=self.tags or [],
             summary=summary,
             description=description,
             response_description=response_description,
@@ -390,7 +394,7 @@ class APIRouter(routing.Router):
             path=path,
             response_model=response_model,
             status_code=status_code,
-            tags=tags or [],
+            tags=self.tags or [],
             summary=summary,
             description=description,
             response_description=response_description,
@@ -422,7 +426,7 @@ class APIRouter(routing.Router):
             path=path,
             response_model=response_model,
             status_code=status_code,
-            tags=tags or [],
+            tags=self.tags or [],
             summary=summary,
             description=description,
             response_description=response_description,
@@ -454,7 +458,7 @@ class APIRouter(routing.Router):
             path=path,
             response_model=response_model,
             status_code=status_code,
-            tags=tags or [],
+            tags=self.tags or [],
             summary=summary,
             description=description,
             response_description=response_description,
@@ -486,7 +490,7 @@ class APIRouter(routing.Router):
             path=path,
             response_model=response_model,
             status_code=status_code,
-            tags=tags or [],
+            tags=self.tags or [],
             summary=summary,
             description=description,
             response_description=response_description,
@@ -518,7 +522,7 @@ class APIRouter(routing.Router):
             path=path,
             response_model=response_model,
             status_code=status_code,
-            tags=tags or [],
+            tags=self.tags or [],
             summary=summary,
             description=description,
             response_description=response_description,
