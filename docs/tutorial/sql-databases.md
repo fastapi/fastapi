@@ -130,7 +130,7 @@ This will then give us better editor support inside the path operation function,
 {!./src/sql_databases/tutorial001.py!}
 ```
 
-!!! info "Technical Detail"
+!!! info "Technical Details"
     The parameter `db` is actually of type `SessionLocal`, but this class (created with `sessionmaker()`) is a "proxy" of a SQLAlchemy `Session`, so, the editor doesn't really know what methods are provided.
     
     But by declaring the type as `Session`, the editor now can know the available methods (`.add()`, `.query()`, `.commit()`, etc) and can provide better support (like completion). The type declaration doesn't affect the actual object.
@@ -246,6 +246,9 @@ Then we should declare the path operation without `async def`, just with a norma
 ```Python hl_lines="62"
 {!./src/sql_databases/tutorial001.py!}
 ```
+
+!!! note "Very Technical Details"
+    If you are curious and have a deep technical knowledge, you can check <a href="https://fastapi.tiangolo.com/async/#very-technical-details" target="_blank">the very technical details of how this `async def` vs `def` is handled</a>.
 
 ## Migrations
 
