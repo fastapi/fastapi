@@ -10,6 +10,8 @@
 
 * Add section about <a href="https://fastapi.tiangolo.com/history-design-future/" target="_blank">History, Design and Future</a>.
 
+* Add docs for using <a href="https://fastapi.tiangolo.com/tutorial/websockets/" target="_blank">WebSockets with **FastAPI**</a>. PR <a href="https://github.com/tiangolo/fastapi/pull/62" target="_blank">#62</a>.
+
 ## 0.6.3
 
 * Add Favicons to docs. PR <a href="https://github.com/tiangolo/fastapi/pull/53" target="_blank">#53</a>.
