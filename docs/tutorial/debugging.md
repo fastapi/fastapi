@@ -64,6 +64,9 @@ So, the line:
 
 will not be executed.
 
+!!! info
+    For more information, check <a href="https://docs.python.org/3/library/__main__.html" target="_blank">the official Python docs</a>.
+
 ## Run your code with your debugger
 
 Because you are running the Uvicorn server directly from your code, you can call your Python program (your FastAPI application) directly form the debugger.
