@@ -1,5 +1,7 @@
 ## Next
 
+## 0.6.4
+
 * Add <a href="https://fastapi.tiangolo.com/async/#very-technical-details" target="_blank">technical details about `async def` handling to docs</a>. PR <a href="https://github.com/tiangolo/fastapi/pull/61" target="_blank">#61</a>.
 
 * Add docs for <a href="https://fastapi.tiangolo.com/tutorial/debugging/" target="_blank">Debugging FastAPI applications in editors</a>.
