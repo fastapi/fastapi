@@ -62,6 +62,7 @@ nav:
         - Sub Applications - Behind a Proxy: 'tutorial/sub-applications-proxy.md'
         - Application Configuration: 'tutorial/application-configuration.md'
         - GraphQL: 'tutorial/graphql.md'
+        - WebSockets: 'tutorial/websockets.md'
         - Debugging: 'tutorial/debugging.md'
     - Concurrency and async / await: 'async.md'
     - Deployment: 'deployment.md'
