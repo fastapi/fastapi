@@ -81,6 +81,18 @@ docker run -d --name mycontainer -p 80:80 myimage
 Now you have an optimized FastAPI server in a Docker container. Auto-tuned for your current server (and number of CPU cores).
 
 
+#### Bigger Applications
+
+If you followed the section about creating <a href="" target="_blank">Bigger Applications with Multiple Files
+</a>, your `Dockerfile` might instead look like:
+
+```Dockerfile
+FROM tiangolo/uvicorn-gunicorn-fastapi:python3.7
+
+COPY ./app /app/app
+```
+
+
 ### Check it
 
 You should be able to check it in your Docker container's URL, for example: <a href="http://192.168.99.100/items/5?q=somequery" target="_blank">http://192.168.99.100/items/5?q=somequery</a> or <a href="http://127.0.0.1/items/5?q=somequery" target="_blank">http://127.0.0.1/items/5?q=somequery</a> (or equivalent, using your Docker host).
