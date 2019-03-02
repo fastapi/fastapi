@@ -6,6 +6,10 @@
 
 * Clarify <a href="https://fastapi.tiangolo.com/deployment/#bigger-applications" target="_blank">Bigger Applications deployed with Docker</a>.
 
+* Fix typos in docs.
+
+* Add section about <a href="https://fastapi.tiangolo.com/history-design-future/" target="_blank">History, Design and Future</a>.
+
 ## 0.6.3
 
 * Add Favicons to docs. PR <a href="https://github.com/tiangolo/fastapi/pull/53" target="_blank">#53</a>.
