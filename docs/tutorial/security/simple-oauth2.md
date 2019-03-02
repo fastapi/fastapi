@@ -24,14 +24,14 @@ The form field name is `scope` (in singular), but it is actually a long string w
 
 Each "scope" is just a string (without spaces).
 
-They are normally used to declare specific security permissions, for exampe:
+They are normally used to declare specific security permissions, for example:
 
 * `"users:read"` or `"users:write"` are common examples.
 * `instagram_basic` is used by Facebook / Instagram.
 * `https://www.googleapis.com/auth/drive` is used by Google.
 
 !!! info
-    In OAuth2 a "scope" is just a string that declares a specific permision required.
+    In OAuth2 a "scope" is just a string that declares a specific permission required.
 
     It doesn't matter if it has other characters like `:`, or if it is a URL.
     

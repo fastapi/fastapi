@@ -1,4 +1,4 @@
-**FastAPI** allows you to declare additonal information and validation for your parameters.
+**FastAPI** allows you to declare additional information and validation for your parameters.
 
 Let's take this application as example:
 

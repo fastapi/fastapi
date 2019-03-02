@@ -74,7 +74,7 @@ All the documentation is in Markdown format in the directory `./docs`.
 
 Many of the tutorials have blocks of code.
 
-In most of the cases, these blocks of code are actual complete applicactions that can be run as is.
+In most of the cases, these blocks of code are actual complete applications that can be run as is.
 
 In fact, those blocks of code are not written inside the Markdown, they are Python files in the `./docs/src/` directory.
 

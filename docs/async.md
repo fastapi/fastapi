@@ -391,7 +391,7 @@ Any other utility function that you call directly can be created with normal `de
 
 This is in contrast to the functions that FastAPI calls for you: *path operation functions* and dependencies.
 
-If your utility funciton is a normal function with `def`, it will be called directly (as you write it in your code), not in a threadpool, if the function is created with `async def` then you should await for that function when you call it in your code.
+If your utility function is a normal function with `def`, it will be called directly (as you write it in your code), not in a threadpool, if the function is created with `async def` then you should await for that function when you call it in your code.
 
 ---
 

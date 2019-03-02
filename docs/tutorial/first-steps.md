@@ -69,7 +69,7 @@ A "schema" is a definition or description of something. Not the code that implem
 
 In this case, OpenAPI is a specification that dictates how to define a schema of your API.
 
-This OpenAPI schema would include your API paths, the posible parameters they take, etc.
+This OpenAPI schema would include your API paths, the possible parameters they take, etc.
 
 #### Data "schema"
 

@@ -157,7 +157,7 @@ Now, from a developer's perspective, here are several things to have in mind whi
     * It goes encrypted, but the encrypted contents are the same HTTP protocol.
 
 
-It is a common practice to have one program/HTTP server runing in the server (the machine, host, etc) and managing all the HTTPS parts, sending the decrypted HTTP requests to the actual HTTP application running in the same server (the **FastAPI** application, in this case), take the HTTP response from the application, encrypt it using the appropriate certificate and sending it back to the client using HTTPS. This server is ofter called a <a href="https://en.wikipedia.org/wiki/TLS_termination_proxy" target="_blank">TLS Termination Proxy</a>.
+It is a common practice to have one program/HTTP server running in the server (the machine, host, etc) and managing all the HTTPS parts, sending the decrypted HTTP requests to the actual HTTP application running in the same server (the **FastAPI** application, in this case), take the HTTP response from the application, encrypt it using the appropriate certificate and sending it back to the client using HTTPS. This server is ofter called a <a href="https://en.wikipedia.org/wiki/TLS_termination_proxy" target="_blank">TLS Termination Proxy</a>.
 
 
 ### Let's Encrypt

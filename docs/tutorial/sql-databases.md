@@ -300,7 +300,7 @@ That's something that you can improve in this example application, here's the cu
 }
 ```
 
-## Interact with the database direclty
+## Interact with the database directly
 
 If you want to explore the SQLite database (file) directly, independently of FastAPI, to debug its contents, add tables, columns, records, modify data, etc. you can use <a href="https://sqlitebrowser.org/" target="_blank">DB Browser for SQLite</a>.
 

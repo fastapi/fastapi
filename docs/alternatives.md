@@ -123,7 +123,7 @@ There are several Flask REST frameworks, but after investing the time and work i
 
 ### <a href="https://marshmallow.readthedocs.io/en/3.0/" target="_blank">Marshmallow</a>
 
-One of the main features needed by API systems is data "<abbr title="also called marshalling, convertion">serialization</abbr>" which is taking data from the code (Python) and converting it into something that can be sent through the network. For example, converting an object containing data from a database into a JSON object. Converting `datetime` objects into strings, etc.
+One of the main features needed by API systems is data "<abbr title="also called marshalling, conversion">serialization</abbr>" which is taking data from the code (Python) and converting it into something that can be sent through the network. For example, converting an object containing data from a database into a JSON object. Converting `datetime` objects into strings, etc.
 
 Another big feature needed by APIs is data validation, making sure that the data is valid, given certain parameters. For example, that some field is an `int`, and not some random string. This is especially useful for incoming data.
 
@@ -365,7 +365,7 @@ It is the recommended server for Starlette and **FastAPI**.
 !!! check "**FastAPI** recommends it as"
     The main web server to run **FastAPI** applications.
 
-    You can combine it with Gunicorn, to have an asynchronous multiprocess server.
+    You can combine it with Gunicorn, to have an asynchronous multi-process server.
 
     Check more details in the <a href="/deployment/" target="_blank">Deployment</a> section.
 

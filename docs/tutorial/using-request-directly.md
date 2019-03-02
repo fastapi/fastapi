@@ -21,7 +21,7 @@ Although any other parameter declared normally (for example, the body with a Pyd
 
 But there are specific cases where it's useful to get the `Request` object.
 
-## Use the `Request` object direclty
+## Use the `Request` object directly
 
 Let's imagine you want to get the client's IP address/host inside of your *path operation function*.
 

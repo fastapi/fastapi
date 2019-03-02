@@ -96,4 +96,4 @@ For example, you could override the default exception handler with:
 !!! info
     Note that in this example we set the exception handler with Starlette's `HTTPException` instead of FastAPI's `HTTPException`.
 
-    This would ensure that if you use a plug-in or any other third-party tool that raises Starlette's `HTTPException` directly, it will be catched by your exception handler.
+    This would ensure that if you use a plug-in or any other third-party tool that raises Starlette's `HTTPException` directly, it will be caught by your exception handler.
