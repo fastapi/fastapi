@@ -17,6 +17,7 @@ from pydantic.fields import Field, Required, Shape
 from pydantic.schema import get_annotation_from_schema
 from pydantic.utils import lenient_issubclass
 from starlette.concurrency import run_in_threadpool
+from starlette.datastructures import UploadFile
 from starlette.requests import Headers, QueryParams, Request
 
 param_supported_types = (
@@ -323,6 +324,12 @@ async def request_body_to_args(
                 else:
                     values[field.name] = deepcopy(field.default)
                 continue
+            if (
+                isinstance(field.schema, params.File)
+                and lenient_issubclass(field.type_, bytes)
+                and isinstance(value, UploadFile)
+            ):
+                value = await value.read()
             v_, errors_ = field.validate(value, values, loc=("body", field.alias))
             if isinstance(errors_, ErrorWrapper):
                 errors.append(errors_)
@@ -333,6 +340,21 @@ async def request_body_to_args(
     return values, errors
 
 
+def get_schema_compatible_field(*, field: Field) -> Field:
+    if lenient_issubclass(field.type_, UploadFile):
+        return Field(
+            name=field.name,
+            type_=bytes,
+            class_validators=field.class_validators,
+            model_config=field.model_config,
+            default=field.default,
+            required=field.required,
+            alias=field.alias,
+            schema=field.schema,
+        )
+    return field
+
+
 def get_body_field(*, dependant: Dependant, name: str) -> Field:
     flat_dependant = get_flat_dependant(dependant)
     if not flat_dependant.body_params:
@@ -340,11 +362,11 @@ def get_body_field(*, dependant: Dependant, name: str) -> Field:
     first_param = flat_dependant.body_params[0]
     embed = getattr(first_param.schema, "embed", None)
     if len(flat_dependant.body_params) == 1 and not embed:
-        return first_param
+        return get_schema_compatible_field(field=first_param)
     model_name = "Body_" + name
     BodyModel = create_model(model_name)
     for f in flat_dependant.body_params:
-        BodyModel.__fields__[f.name] = f
+        BodyModel.__fields__[f.name] = get_schema_compatible_field(field=f)
     required = any(True for f in flat_dependant.body_params if f.required)
     if any(isinstance(f.schema, params.File) for f in flat_dependant.body_params):
         BodySchema: Type[params.Body] = params.File

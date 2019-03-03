@@ -6,3 +6,4 @@ from .applications import FastAPI
 from .routing import APIRouter
 from .params import Body, Path, Query, Header, Cookie, Form, File, Security, Depends
 from .exceptions import HTTPException
+from .datastructures import UploadFile

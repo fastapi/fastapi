@@ -15,7 +15,6 @@ from pydantic.utils import lenient_issubclass
 from starlette import routing
 from starlette.concurrency import run_in_threadpool
 from starlette.exceptions import HTTPException
-from starlette.formparsers import UploadFile
 from starlette.requests import Request
 from starlette.responses import JSONResponse, Response
 from starlette.routing import compile_path, get_name, request_response
@@ -57,10 +56,7 @@ def get_app(
                     raw_body = await request.form()
                     form_fields = {}
                     for field, value in raw_body.items():
-                        if isinstance(value, UploadFile):
-                            form_fields[field] = await value.read()
-                        else:
-                            form_fields[field] = value
+                        form_fields[field] = value
                     if form_fields:
                         body = form_fields
                 else:
