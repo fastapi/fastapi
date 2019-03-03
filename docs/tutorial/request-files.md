@@ -24,14 +24,14 @@ Create file parameters the same way you would for `Body` or `Form`:
 
 The files will be uploaded as "form data".
 
-If you declare the type of your *path operation function* parameter to be `bytes`, **FastAPI** will read the file for you and you will receive the contents as `bytes`.
+If you declare the type of your *path operation function* parameter as `bytes`, **FastAPI** will read the file for you and you will receive the contents as `bytes`.
 
 Have in mind that this means that the whole contents will be stored in memory. This will work well for small files.
 
 But there are several cases in where you might benefit from using `UploadFile`.
 
 
-## Define `File` parameters with type `UploadFile`
+## `File` parameters with `UploadFile`
 
 Define a `File` parameter with a type of `UploadFile`:
 
@@ -42,10 +42,10 @@ Define a `File` parameter with a type of `UploadFile`:
 Using `UploadFile` has several advantages over `bytes`:
 
 * It uses a "spooled" file:
-    * A file stored in memory up to a maximum limit, and after passing this limit it will be stored in disk.
+    * A file stored in memory up to a maximum size limit, and after passing this limit it will be stored in disk.
 * This means that it will work well for large files like images, videos, large binaries, etc. All without consuming all the memory.
-* You can get more metadata from the uploaded file.
-* It has a <a href="https://docs.python.org/3/glossary.html#term-file-like-object" target="_blank">file-like</a> interface.
+* You can get metadata from the uploaded file.
+* It has a <a href="https://docs.python.org/3/glossary.html#term-file-like-object" target="_blank">file-like</a> `async` interface.
 * It exposes an actual Python <a href="https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile" target="_blank">`SpooledTemporaryFile`</a> object that you can pass directly to other libraries that expect a file-like object.
 
 
@@ -58,7 +58,7 @@ Using `UploadFile` has several advantages over `bytes`:
 * `file`: A <a href="https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile" target="_blank">`SpooledTemporaryFile`</a> (a <a href="https://docs.python.org/3/glossary.html#term-file-like-object" target="_blank">file-like</a> object). This is the actual Python file that you can pass directly to other functions or libraries that expect a "file-like" object.
 
 
-`UploadFile` has the following `async` methods. They all call the corresponding file methods (using the internal `SpooledTemporaryFile`).
+`UploadFile` has the following `async` methods. They all call the corresponding file methods underneath (using the internal `SpooledTemporaryFile`).
 
 * `write(data)`: Writes `data` (`str` or `bytes`) to the file.
 * `read(size)`: Reads `size` (`int`) bytes/characters of the file.
@@ -82,11 +82,11 @@ contents = myfile.file.read()
 ```
 
 !!! note "`async` Technical Details"
-    When you use the `async` methods, it runs the file methods in a threadpool and awaits for them.
+    When you use the `async` methods, **FastAPI** runs the file methods in a threadpool and awaits for them.
 
 
 !!! note "Starlette Technical Details"
-    **FastAPI**'s `UploadFile` inherits directly from **Starlette**'s `UploadFile`, but adds some necessary parts to make it compatible with **Pydantic**, the rest of FastAPI, and the corresponding standard **OpenAPI** schema (with **JSON Schema**).
+    **FastAPI**'s `UploadFile` inherits directly from **Starlette**'s `UploadFile`, but adds some necessary parts to make it compatible with **Pydantic** and the other parts of FastAPI.
 
 ## "Form Data"? 
 
