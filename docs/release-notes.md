@@ -1,5 +1,7 @@
 ## Next
 
+## 0.7.0
+
 * Add support for `UploadFile` in `File` parameter annotations.
     * This includes a file-like interface.
     * Here's the updated documentation for declaring <a href="https://fastapi.tiangolo.com/tutorial/request-files/#file-parameters-with-uploadfile" target="_blank"> `File` parameters with `UploadFile`</a>.
