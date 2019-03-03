@@ -1,5 +1,11 @@
 ## Next
 
+* Add support for `UploadFile` in `File` parameter annotations.
+    * This includes a file-like interface.
+    * Here's the updated documentation for declaring <a href="https://fastapi.tiangolo.com/tutorial/request-files/#file-parameters-with-uploadfile" target="_blank"> `File` parameters with `UploadFile`</a>.
+    * And here's the updated documentation for using <a href="https://fastapi.tiangolo.com/tutorial/request-forms-and-files/" target="_blank">`Form` parameters mixed with `File` parameters, supporting `bytes` and `UploadFile`</a> at the same time.
+    * PR <a href="https://github.com/tiangolo/fastapi/pull/63" target="_blank">#63</a>.
+
 ## 0.6.4
 
 * Add <a href="https://fastapi.tiangolo.com/async/#very-technical-details" target="_blank">technical details about `async def` handling to docs</a>. PR <a href="https://github.com/tiangolo/fastapi/pull/61" target="_blank">#61</a>.
