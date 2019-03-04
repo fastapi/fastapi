@@ -26,7 +26,7 @@ But you can still change and update all the configurations with environment vari
     To see all the configurations and options, go to the Docker image page: <a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker" target="_blank">tiangolo/uvicorn-gunicorn-fastapi</a>.
 
 
-### Build your Image
+### Create a `Dockerfile`
 
 * Go to your project directory.
 * Create a `Dockerfile` with:
@@ -36,6 +36,37 @@ FROM tiangolo/uvicorn-gunicorn-fastapi:python3.7
 
 COPY ./app /app
 ```
+
+#### Bigger Applications
+
+If you followed the section about creating <a href="" target="_blank">Bigger Applications with Multiple Files
+</a>, your `Dockerfile` might instead look like:
+
+```Dockerfile
+FROM tiangolo/uvicorn-gunicorn-fastapi:python3.7
+
+COPY ./app /app/app
+```
+
+#### Raspberry Pi and other architectures
+
+If you are running Docker in a Raspberry Pi (that has an ARM processor) or any other architecture, you can create a `Dockerfile` from scratch, based on a Python base image (that is multi-architecture) and use Uvicorn alone.
+
+In this case, your `Dockerfile` could look like:
+
+```Dockerfile
+FROM python:3.7
+
+RUN pip install fastapi uvicorn
+
+EXPOSE 80
+
+COPY ./app /app
+
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
+```
+
+### Create the **FastAPI** Code
 
 * Create an `app` directory and enter in it.
 * Create a `main.py` file with:
@@ -65,12 +96,16 @@ def read_item(item_id: int, q: str = None):
 └── Dockerfile
 ```
 
+### Build the Docker image
+
 * Go to the project directory (in where your `Dockerfile` is, containing your `app` directory).
 * Build your FastAPI image:
 
 ```bash
 docker build -t myimage .
 ```
+
+### Start the Docker container
 
 * Run a container based on your image:
 
@@ -79,18 +114,6 @@ docker run -d --name mycontainer -p 80:80 myimage
 ```
 
 Now you have an optimized FastAPI server in a Docker container. Auto-tuned for your current server (and number of CPU cores).
-
-
-#### Bigger Applications
-
-If you followed the section about creating <a href="" target="_blank">Bigger Applications with Multiple Files
-</a>, your `Dockerfile` might instead look like:
-
-```Dockerfile
-FROM tiangolo/uvicorn-gunicorn-fastapi:python3.7
-
-COPY ./app /app/app
-```
 
 
 ### Check it

@@ -1,5 +1,7 @@
 ## Next
 
+* Add <a href="https://fastapi.tiangolo.com/deployment/#raspberry-pi-and-other-architectures" target="_blank">deployment documentation for Docker in Raspberry Pi</a> and other architectures.
+
 * Trigger Docker images build on Travis CI automatically. PR <a href="https://github.com/tiangolo/fastapi/pull/65" target="_blank">#65</a>.
 
 ## 0.7.0
