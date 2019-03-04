@@ -19,5 +19,5 @@ after_script:
 deploy:
   provider: script
   script: bash scripts/trigger-docker.sh
-#   on:
-#     branch: master
+  on:
+    branch: master
