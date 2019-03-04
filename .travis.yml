@@ -15,3 +15,9 @@ script:
 
 after_script:
     - bash <(curl -s https://codecov.io/bash)
+
+deploy:
+  provider: script
+  script: bash scripts/trigger-docker.sh
+#   on:
+#     branch: master
