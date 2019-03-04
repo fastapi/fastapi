@@ -63,8 +63,8 @@ Using `UploadFile` has several advantages over `bytes`:
 * `write(data)`: Writes `data` (`str` or `bytes`) to the file.
 * `read(size)`: Reads `size` (`int`) bytes/characters of the file.
 * `seek(offset)`: Goes to the byte position `offset` (`int`) in the file.
-    * E.g., `myfile.seek(0)` would go to the start of the file.
-    * This is especially useful if you run `myfile.read()` once and then need to read the contents again.
+    * E.g., `await myfile.seek(0)` would go to the start of the file.
+    * This is especially useful if you run `await myfile.read()` once and then need to read the contents again.
 * `close()`: Closes the file.
 
 As all these methods are `async` methods, you need to "await" them.
