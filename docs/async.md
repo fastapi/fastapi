@@ -377,6 +377,9 @@ All that is what powers FastAPI (through Starlette) and what makes it have such 
 
 When you declare a *path operation function* with normal `def` instead of `async def`, it is run in an external threadpool that is then awaited, instead of being called directly (as it would block the server).
 
+If you are coming from another async framework that does not have the above heuristics and you are used to define trivial compute-only handlers with plain `def` for a tiny (about 100 nanoseconds) performance gain,
+please note that in FastAPI the effect would be quite opposite. Again, use `async def` unless your request handlers use code that performs blocking IO.
+
 ### Dependencies
 
 The same applies for dependencies. If a dependency is a standard `def` function instead of `async def`, it is run in the external threadpool.
