@@ -377,6 +377,10 @@ All that is what powers FastAPI (through Starlette) and what makes it have such 
 
 When you declare a *path operation function* with normal `def` instead of `async def`, it is run in an external threadpool that is then awaited, instead of being called directly (as it would block the server).
 
+If you are coming from another async framework that does not work in the way described above and you are used to define trivial compute-only *path operation functions* with plain `def` for a tiny performance gain (about 100 nanoseconds), please note that in **FastAPI** the effect would be quite opposite. In these cases, it's better to use `async def` unless your *path operation functions* use code that performs blocking <abbr title="Input/Output: disk reading or writing, network communications.">IO</abbr>.
+
+Still, in both situations, chances are that **FastAPI** will <a href="https://fastapi.tiangolo.com/#performance" target="_blank">still be faster</a> than (or at least comparable to) your previous framework.
+
 ### Dependencies
 
 The same applies for dependencies. If a dependency is a standard `def` function instead of `async def`, it is run in the external threadpool.
