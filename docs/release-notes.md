@@ -1,5 +1,7 @@
 ## Next
 
+* Update <a href="https://fastapi.tiangolo.com/async/#path-operation-functions" target="_blank">technical details about `async def` handling</a> with respect to previous frameworks. PR <a href="https://github.com/tiangolo/fastapi/pull/64" target="_blank">#64</a> by <a href="https://github.com/haizaar" target="_blank">@haizaar</a>.
+
 * Add <a href="https://fastapi.tiangolo.com/deployment/#raspberry-pi-and-other-architectures" target="_blank">deployment documentation for Docker in Raspberry Pi</a> and other architectures.
 
 * Trigger Docker images build on Travis CI automatically. PR <a href="https://github.com/tiangolo/fastapi/pull/65" target="_blank">#65</a>.
