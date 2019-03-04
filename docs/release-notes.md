@@ -1,5 +1,7 @@
 ## Next
 
+* Trigger Docker images build on Travis CI automatically. PR <a href="https://github.com/tiangolo/fastapi/pull/65" target="_blank">#65</a>.
+
 ## 0.7.0
 
 * Add support for `UploadFile` in `File` parameter annotations.
