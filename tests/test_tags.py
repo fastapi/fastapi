@@ -128,7 +128,7 @@ def test_tags_in_schema(framework, tag, methods, expected_tags, expected_json):
                 assert rresponse.json() == expected_json
         elif tag == "tag4":
             for method in methods:
-                expected_tags= [f"tag4{method}"]
+                expected_tags = [f"tag4{method}"]
                 expected_tags.append("tag4")
                 assert (
                     response.json()
