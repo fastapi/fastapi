@@ -167,10 +167,6 @@ class APIRoute(routing.Route):
 
 
 class APIRouter(routing.Router):
-    def __init__(self, tags: List[str] = None):
-        self.tags = tags
-        super().__init__()
-
     def add_api_route(
         self,
         path: str,
@@ -245,7 +241,7 @@ class APIRouter(routing.Router):
 
         return decorator
 
-    def include_router(self, router: "APIRouter", *, prefix: str = "") -> None:
+    def include_router(self, router: "APIRouter", *, prefix: str = "", tags: List[str] = None) -> None:
         if prefix:
             assert prefix.startswith("/"), "A path prefix must start with '/'"
             assert not prefix.endswith(
@@ -258,7 +254,7 @@ class APIRouter(routing.Router):
                     route.endpoint,
                     response_model=route.response_model,
                     status_code=route.status_code,
-                    tags=route.tags or [],
+                    tags=(route.tags or []) + (tags or []),
                     summary=route.summary,
                     description=route.description,
                     response_description=route.response_description,
@@ -294,19 +290,11 @@ class APIRouter(routing.Router):
         content_type: Type[Response] = JSONResponse,
         name: str = None,
     ) -> Callable:
-
-        alltags = tags
-        if self.tags is not None:
-            alltags = self.tags.copy()
-            if tags is not None:
-                for tag in tags:
-                    alltags.append(tag)
-
         return self.api_route(
             path=path,
             response_model=response_model,
             status_code=status_code,
-            tags=alltags or [],
+            tags=tags or [],
             summary=summary,
             description=description,
             response_description=response_description,
@@ -334,19 +322,11 @@ class APIRouter(routing.Router):
         content_type: Type[Response] = JSONResponse,
         name: str = None,
     ) -> Callable:
-
-        alltags = tags
-        if self.tags is not None:
-            alltags = self.tags.copy()
-            if tags is not None:
-                for tag in tags:
-                    alltags.append(tag)
-
         return self.api_route(
             path=path,
             response_model=response_model,
             status_code=status_code,
-            tags=alltags or [],
+            tags=tags or [],
             summary=summary,
             description=description,
             response_description=response_description,
@@ -375,18 +355,11 @@ class APIRouter(routing.Router):
         name: str = None,
     ) -> Callable:
 
-        alltags = tags
-        if self.tags is not None:
-            alltags = self.tags.copy()
-            if tags is not None:
-                for tag in tags:
-                    alltags.append(tag)
-
         return self.api_route(
             path=path,
             response_model=response_model,
             status_code=status_code,
-            tags=alltags or [],
+            tags=tags or [],
             summary=summary,
             description=description,
             response_description=response_description,
@@ -415,18 +388,11 @@ class APIRouter(routing.Router):
         name: str = None,
     ) -> Callable:
 
-        alltags = tags
-        if self.tags is not None:
-            alltags = self.tags.copy()
-            if tags is not None:
-                for tag in tags:
-                    alltags.append(tag)
-
         return self.api_route(
             path=path,
             response_model=response_model,
             status_code=status_code,
-            tags=alltags or [],
+            tags=tags or [],
             summary=summary,
             description=description,
             response_description=response_description,
@@ -455,18 +421,11 @@ class APIRouter(routing.Router):
         name: str = None,
     ) -> Callable:
 
-        alltags = tags
-        if self.tags is not None:
-            alltags = self.tags.copy()
-            if tags is not None:
-                for tag in tags:
-                    alltags.append(tag)
-
         return self.api_route(
             path=path,
             response_model=response_model,
             status_code=status_code,
-            tags=alltags or [],
+            tags=tags or [],
             summary=summary,
             description=description,
             response_description=response_description,
@@ -495,18 +454,11 @@ class APIRouter(routing.Router):
         name: str = None,
     ) -> Callable:
 
-        alltags = tags
-        if self.tags is not None:
-            alltags = self.tags.copy()
-            if tags is not None:
-                for tag in tags:
-                    alltags.append(tag)
-
         return self.api_route(
             path=path,
             response_model=response_model,
             status_code=status_code,
-            tags=alltags or [],
+            tags=tags or [],
             summary=summary,
             description=description,
             response_description=response_description,
@@ -535,18 +487,11 @@ class APIRouter(routing.Router):
         name: str = None,
     ) -> Callable:
 
-        alltags = tags
-        if self.tags is not None:
-            alltags = self.tags.copy()
-            if tags is not None:
-                for tag in tags:
-                    alltags.append(tag)
-
         return self.api_route(
             path=path,
             response_model=response_model,
             status_code=status_code,
-            tags=alltags or [],
+            tags=tags or [],
             summary=summary,
             description=description,
             response_description=response_description,
@@ -575,18 +520,11 @@ class APIRouter(routing.Router):
         name: str = None,
     ) -> Callable:
 
-        alltags = tags
-        if self.tags is not None:
-            alltags = self.tags.copy()
-            if tags is not None:
-                for tag in tags:
-                    alltags.append(tag)
-
         return self.api_route(
             path=path,
             response_model=response_model,
             status_code=status_code,
-            tags=alltags or [],
+            tags=tags or [],
             summary=summary,
             description=description,
             response_description=response_description,

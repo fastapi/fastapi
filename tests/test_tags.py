@@ -7,10 +7,10 @@ from starlette.testclient import TestClient
 @pytest.fixture()
 def framework():
     app = FastAPI()
-    tag1 = APIRouter(tags=["tag1"])
-    tag2 = APIRouter(tags=["tag2", "tag1"])
-    tag3 = APIRouter(tags=["tag2", "tag1"])
-    tag4 = APIRouter(tags=["tag4"])
+    tag1 = APIRouter()
+    tag2 = APIRouter()
+    tag3 = APIRouter()
+    tag4 = APIRouter()
 
     @tag1.get("/get")
     async def tag1_get():
@@ -80,10 +80,10 @@ def framework():
     async def tag4_trace():
         return {"Tag": "tag4"}
 
-    app.include_router(tag1, prefix="/tag1prefix")
-    app.include_router(tag2, prefix="/tag2prefix")
-    app.include_router(tag3, prefix="/tag3prefix")
-    app.include_router(tag4, prefix="/tag4prefix")
+    app.include_router(tag1, tags=["tag1"], prefix="/tag1prefix")
+    app.include_router(tag2, tags=["tag2", "tag1"], prefix="/tag2prefix")
+    app.include_router(tag3, tags=["tag2", "tag1"], prefix="/tag3prefix")
+    app.include_router(tag4, tags=["tag4"], prefix="/tag4prefix")
 
     yield app
 
@@ -96,7 +96,7 @@ data = [
         {"Tag": "tag1"},
     ),
     ("tag2", ["get"], ["tag2", "tag1"], {"Tag": "tag2"}),
-    ("tag3", ["get"], ["tag2", "tag1", "tag3"], {"Tag": "tag3"}),
+    ("tag3", ["get"], ["tag3", "tag2", "tag1"], {"Tag": "tag3"}),
     (
         "tag4",
         ["get", "put", "post", "delete", "options", "patch", "trace"],
@@ -128,8 +128,8 @@ def test_tags_in_schema(framework, tag, methods, expected_tags, expected_json):
                 assert rresponse.json() == expected_json
         elif tag == "tag4":
             for method in methods:
-                expected_tags = ["tag4"]
-                expected_tags.append(f"tag4{method}")
+                expected_tags= [f"tag4{method}"]
+                expected_tags.append("tag4")
                 assert (
                     response.json()
                     .get("paths")
