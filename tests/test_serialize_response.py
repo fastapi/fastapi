@@ -1,9 +1,10 @@
 from typing import List
 
 import pytest
-from fastapi import FastAPI
 from pydantic import BaseModel, ValidationError
 from starlette.testclient import TestClient
+
+from fastapi import FastAPI
 
 app = FastAPI()
 

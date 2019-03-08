@@ -1,7 +1,8 @@
-from fastapi import Depends, FastAPI, Security
-from fastapi.security import APIKeyHeader
 from pydantic import BaseModel
 from starlette.testclient import TestClient
+
+from fastapi import Depends, FastAPI, Security
+from fastapi.security import APIKeyHeader
 
 app = FastAPI()
 

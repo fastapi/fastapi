@@ -1,16 +1,17 @@
 import binascii
 from base64 import b64decode
 
+from pydantic import BaseModel
+from starlette.exceptions import HTTPException
+from starlette.requests import Request
+from starlette.status import HTTP_403_FORBIDDEN
+
 from fastapi.openapi.models import (
     HTTPBase as HTTPBaseModel,
     HTTPBearer as HTTPBearerModel,
 )
 from fastapi.security.base import SecurityBase
 from fastapi.security.utils import get_authorization_scheme_param
-from pydantic import BaseModel
-from starlette.exceptions import HTTPException
-from starlette.requests import Request
-from starlette.status import HTTP_403_FORBIDDEN
 
 
 class HTTPBasicCredentials(BaseModel):

@@ -2,8 +2,9 @@ from datetime import datetime, timezone
 from enum import Enum
 
 import pytest
-from fastapi.encoders import jsonable_encoder
 from pydantic import BaseModel
+
+from fastapi.encoders import jsonable_encoder
 
 
 class Person:
