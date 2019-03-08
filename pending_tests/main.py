@@ -62,7 +62,7 @@ class FakeDB:
             "johndoe": {
                 "username": "johndoe",
                 "password": "shouldbehashed",
-                "fist_name": "John",
+                "first_name": "John",
                 "last_name": "Doe",
             }
         }
@@ -87,7 +87,7 @@ class TokenUserData(BaseModel):
 class UserInDB(BaseModel):
     username: str
     password: str
-    fist_name: str
+    first_name: str
     last_name: str
 
 
@@ -109,7 +109,7 @@ def require_user(
 
 class UserOut(BaseModel):
     username: str
-    fist_name: str
+    first_name: str
     last_name: str
 
 

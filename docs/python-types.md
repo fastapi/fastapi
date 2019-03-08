@@ -29,7 +29,7 @@ John Doe
 
 The function does the following: 
 
-* Takes a `fist_name` and `last_name`.
+* Takes a `first_name` and `last_name`.
 * Converts the first letter of each one to upper case with `title()`.
 * <abbr title="Puts them together, as one. With the contents of one after the other.">Concatenates</abbr> them with a space in the middle.
 
