@@ -1,5 +1,7 @@
 ## Next
 
+* Update `isort` imports and scripts to be compatible with newer versions. PR <a href="https://github.com/tiangolo/fastapi/pull/75" target="_blank">#75</a>.
+
 ## 0.7.1
 
 * Update <a href="https://fastapi.tiangolo.com/async/#path-operation-functions" target="_blank">technical details about `async def` handling</a> with respect to previous frameworks. PR <a href="https://github.com/tiangolo/fastapi/pull/64" target="_blank">#64</a> by <a href="https://github.com/haizaar" target="_blank">@haizaar</a>.
