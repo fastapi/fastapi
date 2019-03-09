@@ -13,7 +13,7 @@ All the code blocks can be copied and used directly (they are actually tested Py
 To run any of the examples, copy the code to a file `main.py`, and start `uvicorn` with:
 
 ```bash
-uvicorn main:app --debug
+uvicorn main:app --reload
 ```
 
 It is **HIGHLY encouraged** that you write or copy the code, edit it and run it locally.

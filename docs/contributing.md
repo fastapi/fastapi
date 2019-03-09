@@ -106,7 +106,7 @@ That way, you can edit the documentation/source files and see the changes live.
 And if you run the examples with, e.g.:
 
 ```bash
-uvicorn tutorial001:app --debug
+uvicorn tutorial001:app --reload
 ```
 
 as Uvicorn by default will use the port `8000`, the documentation on port `8008` won't clash.

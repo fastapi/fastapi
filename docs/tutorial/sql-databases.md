@@ -270,7 +270,7 @@ You can copy it, let's say, to a file `main.py`.
 Then you can run it with Uvicorn:
 
 ```bash
-uvicorn main:app --debug
+uvicorn main:app --reload
 ```
 
 And then, you can open your browser at <a href="http://127.0.0.1:8000/docs" target="_blank">http://127.0.0.1:8000/docs</a>.

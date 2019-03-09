@@ -75,7 +75,7 @@ Here you need to make sure you use the same path that you used for the `openapi_
 Now, run `uvicorn`, if your file is at `main.py`, it would be:
 
 ```bash
-uvicorn main:app --debug
+uvicorn main:app --reload
 ```
 
 And open the docs at <a href="http://127.0.0.1:8000/docs" target="_blank">http://127.0.0.1:8000/docs</a>.

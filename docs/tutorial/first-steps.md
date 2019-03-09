@@ -9,7 +9,7 @@ Copy that to a file `main.py`.
 Run the live server:
 
 ```bash
-uvicorn main:app --debug
+uvicorn main:app --reload
 ```
 
 !!! note
@@ -17,7 +17,7 @@ uvicorn main:app --debug
 
     * `main`: the file `main.py` (the Python "module").
     * `app`: the object created inside of `main.py` with the line `app = FastAPI()`.
-    * `--debug`: make the server restart after code changes. Only use for development.
+    * `--reload`: make the server restart after code changes. Only use for development.
 
 You will see an output like:
 
@@ -146,7 +146,7 @@ This will be the main point of interaction to create all your API.
 This `app` is the same one referred by `uvicorn` in the command:
 
 ```bash
-uvicorn main:app --debug
+uvicorn main:app --reload
 ```
 
 If you create your app like:
@@ -158,7 +158,7 @@ If you create your app like:
 And put it in a file `main.py`, then you would call `uvicorn` like:
 
 ```bash
-uvicorn main:my_awesome_api --debug
+uvicorn main:my_awesome_api --reload
 ```
 
 ### Step 3: create a path operation
@@ -311,4 +311,4 @@ There are many other objects and models that will be automatically converted to 
 * Create an `app` instance.
 * Write a **path operation decorator** (like `@app.get("/")`).
 * Write a **path operation function** (like `def root(): ...` above).
-* Run the debugging server (like `uvicorn main:app --debug`).
+* Run the development server (like `uvicorn main:app --reload`).
