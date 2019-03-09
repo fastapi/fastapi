@@ -69,7 +69,7 @@ To learn more about the options, check Starlette's documentation for:
 If your file is named `main.py`, run your application with:
 
 ```bash
-uvicorn main:app --debug
+uvicorn main:app --reload
 ```
 
 Open your browser at <a href="http://127.0.0.1:8000" target="_blank">http://127.0.0.1:8000</a>.

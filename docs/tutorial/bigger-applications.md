@@ -274,7 +274,7 @@ The end result is that the item paths are now:
 Now, run `uvicorn`, using the module `app.main` and the variable `app`:
 
 ```bash
-uvicorn app.main:app --debug
+uvicorn app.main:app --reload
 ```
 
 And open the docs at <a href="http://127.0.0.1:8000/docs" target="_blank">http://127.0.0.1:8000/docs</a>.

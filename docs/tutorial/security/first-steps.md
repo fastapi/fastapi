@@ -27,7 +27,7 @@ Copy the example in a file `main.py`:
 Run the example with:
 
 ```bash
-uvicorn main:app --debug
+uvicorn main:app --reload
 ```
 
 ## Check it

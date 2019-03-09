@@ -116,17 +116,17 @@ If you don't know, check the _"In a hurry?"_ section about <a href="https://fast
 Run the server with:
 
 ```bash
-uvicorn main:app --debug
+uvicorn main:app --reload
 ```
 
 <details markdown="1">
-<summary>About the command <code>uvicorn main:app --debug</code>...</summary>
+<summary>About the command <code>uvicorn main:app --reload</code>...</summary>
 
 The command `uvicorn main:app` refers to:
 
 * `main`: the file `main.py` (the Python "module").
 * `app`: the object created inside of `main.py` with the line `app = FastAPI()`.
-* `--debug`: make the server restart after code changes. Only do this for development.
+* `--reload`: make the server restart after code changes. Only do this for development.
 
 </details>
 
@@ -199,7 +199,7 @@ def create_item(item_id: int, item: Item):
     return {"item_name": item.name, "item_id": item_id}
 ```
 
-The server should reload automatically (because you added `--debug` to the `uvicorn` command above).
+The server should reload automatically (because you added `--reload` to the `uvicorn` command above).
 
 ### Interactive API docs upgrade
 

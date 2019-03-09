@@ -239,7 +239,7 @@ You can deploy **FastAPI** directly without Docker too.
 
 You just need to install <a href="https://www.uvicorn.org/" target="_blank">Uvicorn</a> (or any other ASGI server).
 
-And run your application the same way you have done in the tutorials, but without the `--debug` option, e.g.:
+And run your application the same way you have done in the tutorials, but without the `--reload` option, e.g.:
 
 ```bash
 uvicorn main:app --host 0.0.0.0 --port 80
