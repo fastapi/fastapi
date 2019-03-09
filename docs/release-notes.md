@@ -1,5 +1,7 @@
 ## Next
 
+* Update docs related to Uvicorn to use new `--reload` option from version `0.5.x`. PR <a href="https://github.com/tiangolo/fastapi/pull/74" target="_blank">#74</a>.
+
 * Update `isort` imports and scripts to be compatible with newer versions. PR <a href="https://github.com/tiangolo/fastapi/pull/75" target="_blank">#75</a>.
 
 ## 0.7.1
