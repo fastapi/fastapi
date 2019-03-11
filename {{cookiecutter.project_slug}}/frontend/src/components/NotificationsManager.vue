@@ -8,8 +8,10 @@
 </template>
 <script lang="ts">
 import { Vue, Component, Prop, Watch } from 'vue-property-decorator';
-import { readFirstNotification, dispatchRemoveNotification, commitRemoveNotification } from '@/store/main/accessors';
 import { AppNotification } from '@/store/main/state';
+import { commitRemoveNotification } from '@/store/main/mutations';
+import { readFirstNotification } from '@/store/main/getters';
+import { dispatchRemoveNotification } from '@/store/main/actions';
 
 @Component
 export default class NotificationsManager extends Vue {

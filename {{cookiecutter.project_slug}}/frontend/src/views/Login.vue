@@ -35,7 +35,8 @@
 import { Component, Vue } from 'vue-property-decorator';
 import { api } from '@/api';
 import { appName } from '@/env';
-import { readLoginError, dispatchLogIn } from '@/store/main/accessors';
+import { readLoginError } from '@/store/main/getters';
+import { dispatchLogIn } from '@/store/main/actions';
 
 @Component
 export default class Login extends Vue {

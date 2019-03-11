@@ -1,13 +1,12 @@
 import { api } from '@/api';
 import { ActionContext } from 'vuex';
-import {
-    commitSetUsers,
-    commitSetUser,
-} from './accessors/commit';
 import { IUserProfileCreate, IUserProfileUpdate } from '@/interfaces';
 import { State } from '../state';
 import { AdminState } from './state';
-import { dispatchCheckApiError, commitAddNotification, commitRemoveNotification } from '../main/accessors';
+import { getStoreAccessors } from 'typesafe-vuex';
+import { commitSetUsers, commitSetUser } from './mutations';
+import { dispatchCheckApiError } from '../main/actions';
+import { commitAddNotification, commitRemoveNotification } from '../main/mutations';
 
 type MainContext = ActionContext<AdminState, State>;
 
@@ -32,7 +31,7 @@ export const actions = {
             ]))[0];
             commitSetUser(context, response.data);
             commitRemoveNotification(context, loadingNotification);
-            commitAddNotification(context, {content: 'User successfully updated', color: 'success'});
+            commitAddNotification(context, { content: 'User successfully updated', color: 'success' });
         } catch (error) {
             await dispatchCheckApiError(context, error);
         }
@@ -53,3 +52,9 @@ export const actions = {
         }
     },
 };
+
+const { dispatch } = getStoreAccessors<AdminState, State>('');
+
+export const dispatchCreateUser = dispatch(actions.actionCreateUser);
+export const dispatchGetUsers = dispatch(actions.actionGetUsers);
+export const dispatchUpdateUser = dispatch(actions.actionUpdateUser);

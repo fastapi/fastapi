@@ -19,10 +19,14 @@ wait_seconds = 1
     after=after_log(logger, logging.WARN),
 )
 def init():
-    # Try to create session to check if DB is awake
-    db_session.execute("SELECT 1")
-    # Wait for API to be awake, run one simple tests to authenticate
-    test_get_access_token()
+    try:
+        # Try to create session to check if DB is awake
+        db_session.execute("SELECT 1")
+        # Wait for API to be awake, run one simple tests to authenticate
+        test_get_access_token()
+    except Exception as e:
+        logger.error(e)
+        raise e
 
 
 def main():

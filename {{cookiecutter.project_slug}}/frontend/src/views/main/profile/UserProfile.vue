@@ -27,7 +27,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import { Store } from 'vuex';
-import { readUserProfile } from '@/store/main/accessors';
+import { readUserProfile } from '@/store/main/getters';
 
 @Component
 export default class UserProfile extends Vue {

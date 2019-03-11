@@ -6,17 +6,39 @@
       </v-card-title>
       <v-card-text>
         <template>
-          <v-form v-model="valid" ref="form" lazy-validation>
-            <v-text-field label="Full Name" v-model="fullName" required></v-text-field>
-            <v-text-field label="E-mail" type="email" v-model="email" v-validate="'required|email'" data-vv-name="email" :error-messages="errors.collect('email')" required></v-text-field>
-            <v-btn @click="submit" :disabled="!valid">
-              Save
-            </v-btn>
-            <v-btn @click="reset">Reset</v-btn>
-            <v-btn @click="cancel">Cancel</v-btn>
+          <v-form
+            v-model="valid"
+            ref="form"
+            lazy-validation
+          >
+            <v-text-field
+              label="Full Name"
+              v-model="fullName"
+              required
+            ></v-text-field>
+            <v-text-field
+              label="E-mail"
+              type="email"
+              v-model="email"
+              v-validate="'required|email'"
+              data-vv-name="email"
+              :error-messages="errors.collect('email')"
+              required
+            ></v-text-field>
           </v-form>
         </template>
       </v-card-text>
+      <v-card-actions>
+        <v-spacer></v-spacer>
+        <v-btn @click="cancel">Cancel</v-btn>
+        <v-btn @click="reset">Reset</v-btn>
+        <v-btn
+          @click="submit"
+          :disabled="!valid"
+        >
+          Save
+        </v-btn>
+      </v-card-actions>
     </v-card>
   </v-container>
 </template>
@@ -25,7 +47,8 @@
 import { Component, Vue } from 'vue-property-decorator';
 import { Store } from 'vuex';
 import { IUserProfileUpdate } from '@/interfaces';
-import { dispatchUpdateUserProfile, readUserProfile } from '@/store/main/accessors';
+import { readUserProfile } from '@/store/main/getters';
+import { dispatchUpdateUserProfile } from '@/store/main/actions';
 
 @Component
 export default class UserProfileEdit extends Vue {

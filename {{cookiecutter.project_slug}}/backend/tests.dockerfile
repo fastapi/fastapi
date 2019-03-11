@@ -1,6 +1,6 @@
 FROM python:3.6
 
-RUN pip install requests pytest tenacity passlib[bcrypt] pydantic "fastapi>=0.6.0" psycopg2-binary SQLAlchemy
+RUN pip install requests pytest tenacity passlib[bcrypt] "fastapi>=0.7.1" psycopg2-binary SQLAlchemy
 
 # For development, Jupyter remote kernel, Hydrogen
 # Using inside the container:

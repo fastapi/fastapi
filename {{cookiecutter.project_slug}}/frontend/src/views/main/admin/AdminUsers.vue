@@ -31,7 +31,8 @@
 import { Component, Vue } from 'vue-property-decorator';
 import { Store } from 'vuex';
 import { IUserProfile } from '@/interfaces';
-import { readAdminUsers, dispatchGetUsers } from '@/store/admin/accessors';
+import { readAdminUsers } from '@/store/admin/getters';
+import { dispatchGetUsers } from '@/store/admin/actions';
 
 @Component
 export default class AdminUsers extends Vue {

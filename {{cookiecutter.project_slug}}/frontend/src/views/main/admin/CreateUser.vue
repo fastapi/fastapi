@@ -21,14 +21,17 @@
                 </v-text-field>
               </v-flex>
             </v-layout>
-            <v-btn @click="submit" :disabled="!valid">
-              Save
-            </v-btn>
-            <v-btn @click="reset">Reset</v-btn>
-            <v-btn @click="cancel">Cancel</v-btn>
           </v-form>
         </template>
       </v-card-text>
+      <v-card-actions>
+        <v-spacer></v-spacer>
+        <v-btn @click="cancel">Cancel</v-btn>
+        <v-btn @click="reset">Reset</v-btn>
+        <v-btn @click="submit" :disabled="!valid">
+              Save
+            </v-btn>
+      </v-card-actions>
     </v-card>
   </v-container>
 </template>
@@ -40,7 +43,7 @@ import {
   IUserProfileUpdate,
   IUserProfileCreate,
 } from '@/interfaces';
-import { dispatchGetUsers, dispatchCreateUser } from '@/store/admin/accessors';
+import { dispatchGetUsers, dispatchCreateUser } from '@/store/admin/actions';
 
 @Component
 export default class CreateUser extends Vue {

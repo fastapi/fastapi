@@ -121,14 +121,9 @@
 import { Vue, Component } from 'vue-property-decorator';
 
 import { appName } from '@/env';
-import {
-  commitSetDashboardShowDrawer,
-  readDashboardShowDrawer,
-  commitSetDashboardMiniDrawer,
-  readDashboardMiniDrawer,
-  dispatchUserLogOut,
-readHasAdminAccess,
-} from '@/store/main/accessors';
+import { readDashboardMiniDrawer, readDashboardShowDrawer, readHasAdminAccess } from '@/store/main/getters';
+import { commitSetDashboardShowDrawer, commitSetDashboardMiniDrawer } from '@/store/main/mutations';
+import { dispatchUserLogOut } from '@/store/main/actions';
 
 const routeGuardMain = async (to, from, next) => {
   if (to.path === '/main') {

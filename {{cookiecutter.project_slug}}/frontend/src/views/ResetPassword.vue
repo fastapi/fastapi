@@ -33,13 +33,9 @@
 import { Component, Vue } from 'vue-property-decorator';
 import { Store } from 'vuex';
 import { IUserProfileUpdate } from '@/interfaces';
-import {
-  dispatchUpdateUserProfile,
-  readUserProfile,
-  dispatchResetPassword,
-  commitAddNotification,
-} from '@/store/main/accessors';
 import { appName } from '@/env';
+import { commitAddNotification } from '@/store/main/mutations';
+import { dispatchResetPassword } from '@/store/main/actions';
 
 @Component
 export default class UserProfileEdit extends Vue {

@@ -18,8 +18,12 @@ wait_seconds = 1
     after=after_log(logger, logging.WARN),
 )
 def init():
-    # Try to create session to check if DB is awake
-    db_session.execute("SELECT 1")
+    try:
+        # Try to create session to check if DB is awake
+        db_session.execute("SELECT 1")
+    except Exception as e:
+        logger.error(e)
+        raise e
 
 
 def main():

@@ -4,8 +4,9 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import { dispatchCheckLoggedIn, readIsLoggedIn } from '@/store/main/accessors';
 import { store } from '@/store';
+import { dispatchCheckLoggedIn } from '@/store/main/actions';
+import { readIsLoggedIn } from '@/store/main/getters';
 
 const startRouteGuard = async (to, from, next) => {
   await dispatchCheckLoggedIn(store);

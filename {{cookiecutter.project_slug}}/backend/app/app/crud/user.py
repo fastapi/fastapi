@@ -1,4 +1,4 @@
-from typing import List, Union
+from typing import List, Optional
 
 from fastapi.encoders import jsonable_encoder
 
@@ -7,20 +7,20 @@ from app.db_models.user import User
 from app.models.user import UserInCreate, UserInUpdate
 
 
-def get(db_session, *, user_id: int) -> Union[User, None]:
+def get(db_session, *, user_id: int) -> Optional[User]:
     return db_session.query(User).filter(User.id == user_id).first()
 
 
-def get_by_email(db_session, *, email: str) -> Union[User, None]:
+def get_by_email(db_session, *, email: str) -> Optional[User]:
     return db_session.query(User).filter(User.email == email).first()
 
 
-def authenticate(db_session, *, email: str, password: str) -> Union[User, bool]:
+def authenticate(db_session, *, email: str, password: str) -> Optional[User]:
     user = get_by_email(db_session, email=email)
     if not user:
-        return False
+        return None
     if not verify_password(password, user.hashed_password):
-        return False
+        return None
     return user
 
 
@@ -32,7 +32,7 @@ def is_superuser(user) -> bool:
     return user.is_superuser
 
 
-def get_multi(db_session, *, skip=0, limit=100) -> Union[List[User], List[None]]:
+def get_multi(db_session, *, skip=0, limit=100) -> List[Optional[User]]:
     return db_session.query(User).offset(skip).limit(limit).all()
 
 

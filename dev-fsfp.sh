@@ -1,5 +1,7 @@
 #! /usr/bin/env bash
 
+# Run this script from outside the project, to generate a dev-fsfp project
+
 # Exit in case of error
 set -e
 

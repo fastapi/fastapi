@@ -26,7 +26,7 @@
     "@vue/cli-plugin-babel": "^3.3.0",
     "@vue/cli-plugin-pwa": "^3.3.0",
     "@vue/cli-plugin-typescript": "^3.3.0",
-    "@vue/cli-plugin-unit-jest": "^3.3.0",
+    "@vue/cli-plugin-unit-jest": "^3.5.0",
     "@vue/cli-service": "^3.3.1",
     "@vue/test-utils": "^1.0.0-beta.28",
     "babel-core": "7.0.0-bridge.0",
