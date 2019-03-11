@@ -30,7 +30,7 @@ So, we can have sub-dependencies using `Security` too.
 
 `get_current_user` will have a `Security` dependency with the same `oauth2_scheme` we created before.
 
-The same as we were doing before in the path operation direclty, our new dependency will receive a `token` as a `str` from the `Security` dependency:
+The same as we were doing before in the path operation directly, our new dependency will receive a `token` as a `str` from the `Security` dependency:
 
 ```Python hl_lines="25"
 {!./src/security/tutorial002.py!}

@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 
 from starlette.testclient import TestClient
 
@@ -45,10 +46,11 @@ openapi_schema = {
         "schemas": {
             "Body_create_file": {
                 "title": "Body_create_file",
-                "required": ["file", "token"],
+                "required": ["file", "fileb", "token"],
                 "type": "object",
                 "properties": {
                     "file": {"title": "File", "type": "string", "format": "binary"},
+                    "fileb": {"title": "Fileb", "type": "string", "format": "binary"},
                     "token": {"title": "Token", "type": "string"},
                 },
             },
@@ -94,24 +96,41 @@ file_required = {
             "loc": ["body", "file"],
             "msg": "field required",
             "type": "value_error.missing",
-        }
+        },
+        {
+            "loc": ["body", "fileb"],
+            "msg": "field required",
+            "type": "value_error.missing",
+        },
     ]
 }
 
 token_required = {
     "detail": [
         {
+            "loc": ["body", "fileb"],
+            "msg": "field required",
+            "type": "value_error.missing",
+        },
+        {
             "loc": ["body", "token"],
             "msg": "field required",
             "type": "value_error.missing",
-        }
+        },
     ]
 }
+
+# {'detail': [, {'loc': ['body', 'token'], 'msg': 'field required', 'type': 'value_error.missing'}]}
 
 file_and_token_required = {
     "detail": [
         {
             "loc": ["body", "file"],
+            "msg": "field required",
+            "type": "value_error.missing",
+        },
+        {
+            "loc": ["body", "fileb"],
             "msg": "field required",
             "type": "value_error.missing",
         },
@@ -153,14 +172,24 @@ def test_post_file_no_token(tmpdir):
     assert response.json() == token_required
 
 
-def test_post_file_and_token(tmpdir):
-    path = os.path.join(tmpdir, "test.txt")
-    with open(path, "wb") as file:
-        file.write(b"<file content>")
+def test_post_files_and_token(tmpdir):
+    patha = Path(tmpdir) / "test.txt"
+    pathb = Path(tmpdir) / "testb.txt"
+    patha.write_text("<file content>")
+    pathb.write_text("<file b content>")
 
     client = TestClient(app)
     response = client.post(
-        "/files/", data={"token": "foo"}, files={"file": open(path, "rb")}
+        "/files/",
+        data={"token": "foo"},
+        files={
+            "file": patha.open("rb"),
+            "fileb": ("testb.txt", pathb.open("rb"), "text/plain"),
+        },
     )
     assert response.status_code == 200
-    assert response.json() == {"file_size": 14, "token": "foo"}
+    assert response.json() == {
+        "file_size": 14,
+        "token": "foo",
+        "fileb_content_type": "text/plain",
+    }

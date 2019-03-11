@@ -24,14 +24,14 @@ The form field name is `scope` (in singular), but it is actually a long string w
 
 Each "scope" is just a string (without spaces).
 
-They are normally used to declare specific security permissions, for exampe:
+They are normally used to declare specific security permissions, for example:
 
 * `"users:read"` or `"users:write"` are common examples.
 * `instagram_basic` is used by Facebook / Instagram.
 * `https://www.googleapis.com/auth/drive` is used by Google.
 
 !!! info
-    In OAuth2 a "scope" is just a string that declares a specific permision required.
+    In OAuth2 a "scope" is just a string that declares a specific permission required.
 
     It doesn't matter if it has other characters like `:`, or if it is a URL.
     
@@ -78,9 +78,9 @@ Now, get the user data from the (fake) database, using the `username` from the f
 
 If there is no such user, we return an error saying "incorrect username or password".
 
-For the error, we use the exception `HTTPException` provided by Starlette directly:
+For the error, we use the exception `HTTPException`:
 
-```Python hl_lines="4 74 75 76"
+```Python hl_lines="1 73 74 75"
 {!./src/security/tutorial003.py!}
 ```
 
@@ -108,7 +108,7 @@ If your database is stolen, the thief won't have your users' plaintext passwords
 
 So, the thief won't be able to try to use that password in another system (as many users use the same password everywhere, this would be dangerous).
 
-```Python hl_lines="77 78 79 80"
+```Python hl_lines="76 77 78 79"
 {!./src/security/tutorial003.py!}
 ```
 
@@ -146,7 +146,7 @@ For this simple example, we are going to just be completely insecure and return 
 
     But for now, let's focus on the specific details we need.
 
-```Python hl_lines="82"
+```Python hl_lines="81"
 {!./src/security/tutorial003.py!}
 ```
 
@@ -162,7 +162,7 @@ Both of these dependencies will just return an HTTP error if the user doesn't ex
 
 So, in our endpoint, we will only get a user if the user exists, was correctly authenticated, and is active:
 
-```Python hl_lines="57 58 59 60 61 62 63 66 67 68 69 86"
+```Python hl_lines="56 57 58 59 60 61 62 65 66 67 68 85"
 {!./src/security/tutorial003.py!}
 ```
 

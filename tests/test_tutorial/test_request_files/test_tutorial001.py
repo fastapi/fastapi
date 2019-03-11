@@ -39,12 +39,52 @@ openapi_schema = {
                     "required": True,
                 },
             }
-        }
+        },
+        "/uploadfile/": {
+            "post": {
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {"application/json": {"schema": {}}},
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        },
+                    },
+                },
+                "summary": "Create Upload File Post",
+                "operationId": "create_upload_file_uploadfile__post",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Body_create_upload_file"
+                            }
+                        }
+                    },
+                    "required": True,
+                },
+            }
+        },
     },
     "components": {
         "schemas": {
             "Body_create_file": {
                 "title": "Body_create_file",
+                "required": ["file"],
+                "type": "object",
+                "properties": {
+                    "file": {"title": "File", "type": "string", "format": "binary"}
+                },
+            },
+            "Body_create_upload_file": {
+                "title": "Body_create_upload_file",
                 "required": ["file"],
                 "type": "object",
                 "properties": {
@@ -131,3 +171,14 @@ def test_post_large_file(tmpdir):
     response = client.post("/files/", files={"file": open(path, "rb")})
     assert response.status_code == 200
     assert response.json() == {"file_size": default_pydantic_max_size + 1}
+
+
+def test_post_upload_file(tmpdir):
+    path = os.path.join(tmpdir, "test.txt")
+    with open(path, "wb") as file:
+        file.write(b"<file content>")
+
+    client = TestClient(app)
+    response = client.post("/uploadfile/", files={"file": open(path, "rb")})
+    assert response.status_code == 200
+    assert response.json() == {"filename": "test.txt"}

@@ -329,7 +329,7 @@ So, about the egg and the chicken, how do you call the first `async` function?
 
 If you are working with **FastAPI** you don't have to worry about that, because that "first" function will be your path operation function, and FastAPI will know how to do the right thing.
 
-But if you want to use `async` / `await` without FastAPI, <a href="https://docs.python.org/3/library/asyncio-task.html#coroutine" target="_blank">check the official Python docs</a>
+But if you want to use `async` / `await` without FastAPI, <a href="https://docs.python.org/3/library/asyncio-task.html#coroutine" target="_blank">check the official Python docs</a>.
 
 
 ### Other forms of asynchronous code
@@ -362,3 +362,43 @@ Let's see the same phrase from above:
 That should make more sense now.
 
 All that is what powers FastAPI (through Starlette) and what makes it have such an impressive performance.
+
+
+## Very Technical Details
+
+!!! warning
+    You can probably skip this.
+    
+    These are very technical details of how **FastAPI** works underneath.
+    
+    If you have quite some technical knowledge (co-routines, threads, blocking, etc) and are curious about how FastAPI handles `async def` vs normal `def`, go ahead.
+
+### Path operation functions
+
+When you declare a *path operation function* with normal `def` instead of `async def`, it is run in an external threadpool that is then awaited, instead of being called directly (as it would block the server).
+
+If you are coming from another async framework that does not work in the way described above and you are used to define trivial compute-only *path operation functions* with plain `def` for a tiny performance gain (about 100 nanoseconds), please note that in **FastAPI** the effect would be quite opposite. In these cases, it's better to use `async def` unless your *path operation functions* use code that performs blocking <abbr title="Input/Output: disk reading or writing, network communications.">IO</abbr>.
+
+Still, in both situations, chances are that **FastAPI** will <a href="https://fastapi.tiangolo.com/#performance" target="_blank">still be faster</a> than (or at least comparable to) your previous framework.
+
+### Dependencies
+
+The same applies for dependencies. If a dependency is a standard `def` function instead of `async def`, it is run in the external threadpool.
+
+### Sub-dependencies
+
+You can have multiple dependencies and sub-dependencies requiring each other (as parameters of the function definitions), some of them might be created with `async def` and some with normal `def`. It would still work, and the ones created with normal `def` would be called on an external thread instead of being "awaited".
+
+### Other utility functions
+
+Any other utility function that you call directly can be created with normal `def` or `async def` and FastAPI won't affect the way you call it.
+
+This is in contrast to the functions that FastAPI calls for you: *path operation functions* and dependencies.
+
+If your utility function is a normal function with `def`, it will be called directly (as you write it in your code), not in a threadpool, if the function is created with `async def` then you should await for that function when you call it in your code.
+
+---
+
+Again, these are very technical details that would probably be useful if you came searching for them.
+
+Otherwise, you should be good with the guidelines from the section above: <a href="#in-a-hurry">In a hurry?</a>.

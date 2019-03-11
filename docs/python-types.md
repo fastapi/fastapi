@@ -49,7 +49,7 @@ But then you have to call "that method that converts the first letter to upper c
 
 Was it `upper`? Was it `uppercase`? `first_uppercase`? `capitalize`?
 
-Then, you try with the old programer's friend, editor autocompletion.
+Then, you try with the old programmer's friend, editor autocompletion.
 
 You type the first parameter of the function, `first_name`, then a dot (`.`) and then hit `Ctrl+Space` to trigger the completion.
 

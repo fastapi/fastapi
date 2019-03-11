@@ -215,7 +215,8 @@ def get_openapi(
     version: str,
     openapi_version: str = "3.0.2",
     description: str = None,
-    routes: Sequence[BaseRoute]
+    routes: Sequence[BaseRoute],
+    openapi_prefix: str = ""
 ) -> Dict:
     info = {"title": title, "version": version}
     if description:
@@ -234,7 +235,7 @@ def get_openapi(
             if result:
                 path, security_schemes, path_definitions = result
                 if path:
-                    paths.setdefault(route.path, {}).update(path)
+                    paths.setdefault(openapi_prefix + route.path, {}).update(path)
                 if security_schemes:
                     components.setdefault("securitySchemes", {}).update(
                         security_schemes

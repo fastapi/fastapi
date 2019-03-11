@@ -109,7 +109,7 @@ UserInDB(**user_in.dict())
 
 So, we get a Pydantic model from the data in another Pydantic model.
 
-#### Unrapping a `dict` and extra keywords
+#### Unwrapping a `dict` and extra keywords
 
 And then adding the extra keyword argument `hashed_password=hashed_password`, like in:
 

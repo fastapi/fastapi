@@ -26,7 +26,7 @@ But you can still change and update all the configurations with environment vari
     To see all the configurations and options, go to the Docker image page: <a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker" target="_blank">tiangolo/uvicorn-gunicorn-fastapi</a>.
 
 
-### Build your Image
+### Create a `Dockerfile`
 
 * Go to your project directory.
 * Create a `Dockerfile` with:
@@ -36,6 +36,37 @@ FROM tiangolo/uvicorn-gunicorn-fastapi:python3.7
 
 COPY ./app /app
 ```
+
+#### Bigger Applications
+
+If you followed the section about creating <a href="" target="_blank">Bigger Applications with Multiple Files
+</a>, your `Dockerfile` might instead look like:
+
+```Dockerfile
+FROM tiangolo/uvicorn-gunicorn-fastapi:python3.7
+
+COPY ./app /app/app
+```
+
+#### Raspberry Pi and other architectures
+
+If you are running Docker in a Raspberry Pi (that has an ARM processor) or any other architecture, you can create a `Dockerfile` from scratch, based on a Python base image (that is multi-architecture) and use Uvicorn alone.
+
+In this case, your `Dockerfile` could look like:
+
+```Dockerfile
+FROM python:3.7
+
+RUN pip install fastapi uvicorn
+
+EXPOSE 80
+
+COPY ./app /app
+
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
+```
+
+### Create the **FastAPI** Code
 
 * Create an `app` directory and enter in it.
 * Create a `main.py` file with:
@@ -65,12 +96,16 @@ def read_item(item_id: int, q: str = None):
 └── Dockerfile
 ```
 
+### Build the Docker image
+
 * Go to the project directory (in where your `Dockerfile` is, containing your `app` directory).
 * Build your FastAPI image:
 
 ```bash
 docker build -t myimage .
 ```
+
+### Start the Docker container
 
 * Run a container based on your image:
 
@@ -145,7 +180,7 @@ Now, from a developer's perspective, here are several things to have in mind whi
     * It goes encrypted, but the encrypted contents are the same HTTP protocol.
 
 
-It is a common practice to have one program/HTTP server runing in the server (the machine, host, etc) and managing all the HTTPS parts, sending the decrypted HTTP requests to the actual HTTP application running in the same server (the **FastAPI** application, in this case), take the HTTP response from the application, encrypt it using the appropriate certificate and sending it back to the client using HTTPS. This server is ofter called a <a href="https://en.wikipedia.org/wiki/TLS_termination_proxy" target="_blank">TLS Termination Proxy</a>.
+It is a common practice to have one program/HTTP server running in the server (the machine, host, etc) and managing all the HTTPS parts, sending the decrypted HTTP requests to the actual HTTP application running in the same server (the **FastAPI** application, in this case), take the HTTP response from the application, encrypt it using the appropriate certificate and sending it back to the client using HTTPS. This server is ofter called a <a href="https://en.wikipedia.org/wiki/TLS_termination_proxy" target="_blank">TLS Termination Proxy</a>.
 
 
 ### Let's Encrypt
@@ -204,7 +239,7 @@ You can deploy **FastAPI** directly without Docker too.
 
 You just need to install <a href="https://www.uvicorn.org/" target="_blank">Uvicorn</a> (or any other ASGI server).
 
-And run your application the same way you have done in the tutorials, but without the `--debug` option, e.g.:
+And run your application the same way you have done in the tutorials, but without the `--reload` option, e.g.:
 
 ```bash
 uvicorn main:app --host 0.0.0.0 --port 80

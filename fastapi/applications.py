@@ -7,42 +7,48 @@ from pydantic import BaseModel
 from starlette.applications import Starlette
 from starlette.exceptions import ExceptionMiddleware, HTTPException
 from starlette.middleware.errors import ServerErrorMiddleware
-from starlette.middleware.lifespan import LifespanMiddleware
 from starlette.requests import Request
 from starlette.responses import JSONResponse, Response
+from starlette.routing import BaseRoute
 
 
 async def http_exception(request: Request, exc: HTTPException) -> JSONResponse:
-    return JSONResponse({"detail": exc.detail}, status_code=exc.status_code)
+    headers = getattr(exc, "headers", None)
+    if headers:
+        return JSONResponse(
+            {"detail": exc.detail}, status_code=exc.status_code, headers=headers
+        )
+    else:
+        return JSONResponse({"detail": exc.detail}, status_code=exc.status_code)
 
 
 class FastAPI(Starlette):
     def __init__(
         self,
         debug: bool = False,
+        routes: List[BaseRoute] = None,
         template_directory: str = None,
         title: str = "Fast API",
         description: str = "",
         version: str = "0.1.0",
         openapi_url: Optional[str] = "/openapi.json",
+        openapi_prefix: str = "",
         docs_url: Optional[str] = "/docs",
         redoc_url: Optional[str] = "/redoc",
         **extra: Dict[str, Any],
     ) -> None:
         self._debug = debug
-        self.router: routing.APIRouter = routing.APIRouter()
+        self.router: routing.APIRouter = routing.APIRouter(routes)
         self.exception_middleware = ExceptionMiddleware(self.router, debug=debug)
         self.error_middleware = ServerErrorMiddleware(
             self.exception_middleware, debug=debug
         )
-        self.lifespan_middleware = LifespanMiddleware(self.error_middleware)
-        self.schema_generator = None
-        self.template_env = self.load_template_env(template_directory)
 
         self.title = title
         self.description = description
         self.version = version
         self.openapi_url = openapi_url
+        self.openapi_prefix = openapi_prefix.rstrip("/")
         self.docs_url = docs_url
         self.redoc_url = redoc_url
         self.extra = extra
@@ -66,6 +72,7 @@ class FastAPI(Starlette):
                 openapi_version=self.openapi_version,
                 description=self.description,
                 routes=self.routes,
+                openapi_prefix=self.openapi_prefix,
             )
         return self.openapi_schema
 
@@ -80,7 +87,8 @@ class FastAPI(Starlette):
             self.add_route(
                 self.docs_url,
                 lambda r: get_swagger_ui_html(
-                    openapi_url=self.openapi_url, title=self.title + " - Swagger UI"
+                    openapi_url=self.openapi_prefix + self.openapi_url,
+                    title=self.title + " - Swagger UI",
                 ),
                 include_in_schema=False,
             )
@@ -88,7 +96,8 @@ class FastAPI(Starlette):
             self.add_route(
                 self.redoc_url,
                 lambda r: get_redoc_html(
-                    openapi_url=self.openapi_url, title=self.title + " - ReDoc"
+                    openapi_url=self.openapi_prefix + self.openapi_url,
+                    title=self.title + " - ReDoc",
                 ),
                 include_in_schema=False,
             )

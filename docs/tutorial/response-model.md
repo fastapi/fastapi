@@ -40,7 +40,7 @@ And we are using this model to declare our input and the same model to declare o
 
 Now, whenever a browser is creating a user with a password, the API will return the same password in the response.
 
-In this case, it might not be a problem, becase the user himself is sending the password.
+In this case, it might not be a problem, because the user himself is sending the password.
 
 But if we use the same model for another path operation, we could be sending the passwords of our users to every client.
 

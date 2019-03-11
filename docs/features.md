@@ -71,7 +71,7 @@ my_second_user: User = User(**second_user_data)
 
 ### Editor support
 
-All the framework was designed to be easy and intuitive to use, all the decisons where tested on multiple editors even before starting development, to ensure the best development experience.
+All the framework was designed to be easy and intuitive to use, all the decisions where tested on multiple editors even before starting development, to ensure the best development experience.
 
 In the last Python developer survey it was clear <a href="https://www.jetbrains.com/research/python-developers-survey-2017/#tools-and-features" target="_blank">that the most used feature is "autocompletion"</a>. 
 
@@ -89,7 +89,7 @@ Here's how your editor might help you:
 
 ![editor support](img/pycharm-completion.png)
 
-You will get completion in code you might even consider imposible before. As for example, the `price` key inside a JSON body (that could have been nested) that comes from a request.
+You will get completion in code you might even consider impossible before. As for example, the `price` key inside a JSON body (that could have been nested) that comes from a request.
 
 No more typing the wrong key names, coming back and forth between docs, or scrolling up and down to find if you finally used `username` or `user_name`.
 

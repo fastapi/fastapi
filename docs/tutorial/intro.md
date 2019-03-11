@@ -1,6 +1,6 @@
 This tutorial shows you how to use **FastAPI** with all its features, step by step.
 
-Eeach section gradually builds on the previous ones, but it's structured to separate topics, so that you can go directly to any specific one to solve your specific API needs.
+Each section gradually builds on the previous ones, but it's structured to separate topics, so that you can go directly to any specific one to solve your specific API needs.
 
 It is also built to work as a future reference.
 
@@ -13,7 +13,7 @@ All the code blocks can be copied and used directly (they are actually tested Py
 To run any of the examples, copy the code to a file `main.py`, and start `uvicorn` with:
 
 ```bash
-uvicorn main:app --debug
+uvicorn main:app --reload
 ```
 
 It is **HIGHLY encouraged** that you write or copy the code, edit it and run it locally.

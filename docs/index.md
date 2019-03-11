@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://fastapi.tiangolo.com"><img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal-vector.svg" alt='FastAPI'></a>
+  <a href="https://fastapi.tiangolo.com"><img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI"></a>
 </p>
 <p align="center">
     <em>FastAPI framework, high performance, easy to learn, fast to code, ready for production</em>
@@ -24,7 +24,7 @@
 
 ---
 
-FastAPI is a modern, fast (high-performance), web framework for building APIs with Python 3.6+.
+FastAPI is a modern, fast (high-performance), web framework for building APIs with Python 3.6+ based on standard Python type hints.
 
 The key features are:
 
@@ -116,17 +116,17 @@ If you don't know, check the _"In a hurry?"_ section about <a href="https://fast
 Run the server with:
 
 ```bash
-uvicorn main:app --debug
+uvicorn main:app --reload
 ```
 
 <details markdown="1">
-<summary>About the command <code>uvicorn main:app --debug</code>...</summary>
+<summary>About the command <code>uvicorn main:app --reload</code>...</summary>
 
 The command `uvicorn main:app` refers to:
 
 * `main`: the file `main.py` (the Python "module").
 * `app`: the object created inside of `main.py` with the line `app = FastAPI()`.
-* `--debug`: make the server restart after code changes. Only do this for development.
+* `--reload`: make the server restart after code changes. Only do this for development.
 
 </details>
 
@@ -166,7 +166,7 @@ You will see the alternative automatic documentation (provided by <a href="https
 
 ## Example upgrade
 
-Now modify the file `main.py` to recive a body from a `PUT` request.
+Now modify the file `main.py` to receive a body from a `PUT` request.
 
 Declare the body using standard Python types, thanks to Pydantic.
 
@@ -199,7 +199,7 @@ def create_item(item_id: int, item: Item):
     return {"item_name": item.name, "item_id": item_id}
 ```
 
-The server should reload automatically (because you added `--debug` to the `uvicorn` command above).
+The server should reload automatically (because you added `--reload` to the `uvicorn` command above).
 
 ### Interactive API docs upgrade
 
@@ -257,7 +257,7 @@ item: Item
 * Validation of data:
     * Automatic and clear errors when the data is invalid.
     * Validation even for deeply nested JSON objects.
-* <abbr title="also known as: serialization, parsing, marshalling">Conversion</abbr> of input data: coming from the network, to Python data and types. Reading from:
+* <abbr title="also known as: serialization, parsing, marshalling">Conversion</abbr> of input data: coming from the network to Python data and types. Reading from:
     * JSON.
     * Path parameters.
     * Query parameters.
@@ -292,7 +292,7 @@ Coming back to the previous code example, **FastAPI** will:
     * All this would also work for deeply nested JSON objects.
 * Convert from and to JSON automatically.
 * Document everything with OpenAPI, that can be used by:
-    * Interactive documentation sytems.
+    * Interactive documentation systems.
     * Automatic client code generation systems, for many languages.
 * Provide 2 interactive documentation web interfaces directly.
 
@@ -329,7 +329,7 @@ For a more complete example including more features, see the <a href="https://fa
 **Spoiler alert**: the tutorial - user guide includes:
 
 * Declaration of **parameters** from other different places as: **headers**, **cookies**, **form fields** and **files**.
-* How to set **validation constrains** as `maximum_length` or `regex`.
+* How to set **validation constraints** as `maximum_length` or `regex`.
 * A very powerful and easy to use **<abbr title="also known as components, resources, providers, services, injectables">Dependency Injection</abbr>** system.
 * Security and authentication, including support for **OAuth2** with **JWT tokens** and **HTTP Basic** auth.
 * More advanced (but equally easy) techniques for declaring **deeply nested JSON models** (thanks to Pydantic).
@@ -344,7 +344,7 @@ For a more complete example including more features, see the <a href="https://fa
 
 ## Performance
 
-Independent TechEmpower benchmarks show **FastAPI** applications running under Uvicorn as <a href="https://www.techempower.com/benchmarks/#section=test&runid=a979de55-980d-4721-a46f-77298b3f3923&hw=ph&test=fortune&l=zijzen-7" target="_blank">one of the fastest Python frameworks available</a>, only below Starlette and Uvicorn themselves (used internally by FastAPI). (*)
+Independent TechEmpower benchmarks show **FastAPI** applications running under Uvicorn as <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" target="_blank">one of the fastest Python frameworks available</a>, only below Starlette and Uvicorn themselves (used internally by FastAPI). (*)
 
 To understand more about it, see the section <a href="https://fastapi.tiangolo.com/benchmarks/" target="_blank">Benchmarks</a>.
 
