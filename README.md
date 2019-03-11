@@ -144,6 +144,34 @@ After using this generator, your new project (the directory created) will contai
 
 * Based on Couchbase: [https://github.com/tiangolo/full-stack-fastapi-couchbase](https://github.com/tiangolo/full-stack-fastapi-couchbase).
 
+## Release Notes
+
+### Next
+
+### 0.2.0
+
+**<a href="https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/2" target="_blank">PR #2</a>**:
+
+* Simplify and update backend `Dockerfile`s.
+* Refactor and simplify backend code, improve naming, imports, modules and "namespaces".
+* Improve and simplify Vuex integration with TypeScript accessors.
+* Standardize frontend components layout, buttons order, etc.
+* Add local development scripts (to develop this project generator itself).
+* Add logs to startup modules to detect errors early.
+* Improve FastAPI dependency utilities, to simplify and reduce code (to require a superuser).
+
+### 0.1.2
+
+* Fix path operation to update self-user, set parameters as body payload.
+
+### 0.1.1
+
+Several bug fixes since initial publication, including:
+
+* Order of path operations for users.
+* Frontend sending login data in the correct format.
+* Add https://localhost variants to CORS.
+
 ## License
 
 This project is licensed under the terms of the MIT license.
