@@ -3,8 +3,6 @@ import inspect
 import logging
 from typing import Any, Callable, List, Optional, Type
 
-from starlette.background import BackgroundTask
-
 from fastapi import params
 from fastapi.dependencies.models import Dependant
 from fastapi.dependencies.utils import get_body_field, get_dependant, solve_dependencies
@@ -15,6 +13,7 @@ from pydantic.error_wrappers import ErrorWrapper, ValidationError
 from pydantic.fields import Field
 from pydantic.utils import lenient_issubclass
 from starlette import routing
+from starlette.background import BackgroundTask
 from starlette.concurrency import run_in_threadpool
 from starlette.exceptions import HTTPException
 from starlette.requests import Request
@@ -24,6 +23,10 @@ from starlette.status import HTTP_422_UNPROCESSABLE_ENTITY
 
 
 def serialize_response(*, field: Field = None, response: Response) -> Any:
+    background: BackgroundTask = None
+    if isinstance(response, dict):
+        if isinstance(response.get("background"), BackgroundTask):
+            background = response.pop("background")
     encoded = jsonable_encoder(response)
     if field:
         errors = []
@@ -34,9 +37,9 @@ def serialize_response(*, field: Field = None, response: Response) -> Any:
             errors.extend(errors_)
         if errors:
             raise ValidationError(errors)
-        return jsonable_encoder(value)
+        return jsonable_encoder(value), background
     else:
-        return encoded
+        return encoded, background
 
 
 def get_app(
@@ -86,10 +89,12 @@ def get_app(
                 raw_response = await run_in_threadpool(dependant.call, **values)
             if isinstance(raw_response, Response):
                 return raw_response
-            response_data = serialize_response(
+            response_data, background = serialize_response(
                 field=response_field, response=raw_response
             )
-            return content_type(content=response_data, status_code=status_code)
+            return content_type(
+                content=response_data, status_code=status_code, background=background
+            )
 
     return app
 
