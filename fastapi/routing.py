@@ -3,6 +3,8 @@ import inspect
 import logging
 from typing import Any, Callable, List, Optional, Type
 
+from starlette.background import BackgroundTask
+
 from fastapi import params
 from fastapi.dependencies.models import Dependant
 from fastapi.dependencies.utils import get_body_field, get_dependant, solve_dependencies
