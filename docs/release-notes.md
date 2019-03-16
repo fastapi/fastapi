@@ -1,4 +1,6 @@
-## Next
+## Next release
+
+## 0.8.0
 
 * Make development scripts executable. PR <a href="htthttps://github.com/tiangolo/fastapi/pull/76" target="_blank">#76</a> by <a href="https://github.com/euri10" target="_blank">@euri10</a>.
 
