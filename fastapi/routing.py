@@ -356,7 +356,6 @@ class APIRouter(routing.Router):
         content_type: Type[Response] = JSONResponse,
         name: str = None,
     ) -> Callable:
-
         return self.api_route(
             path=path,
             response_model=response_model,
@@ -389,7 +388,6 @@ class APIRouter(routing.Router):
         content_type: Type[Response] = JSONResponse,
         name: str = None,
     ) -> Callable:
-
         return self.api_route(
             path=path,
             response_model=response_model,
@@ -422,7 +420,6 @@ class APIRouter(routing.Router):
         content_type: Type[Response] = JSONResponse,
         name: str = None,
     ) -> Callable:
-
         return self.api_route(
             path=path,
             response_model=response_model,
@@ -455,7 +452,6 @@ class APIRouter(routing.Router):
         content_type: Type[Response] = JSONResponse,
         name: str = None,
     ) -> Callable:
-
         return self.api_route(
             path=path,
             response_model=response_model,
@@ -488,7 +484,6 @@ class APIRouter(routing.Router):
         content_type: Type[Response] = JSONResponse,
         name: str = None,
     ) -> Callable:
-
         return self.api_route(
             path=path,
             response_model=response_model,
@@ -521,7 +516,6 @@ class APIRouter(routing.Router):
         content_type: Type[Response] = JSONResponse,
         name: str = None,
     ) -> Callable:
-
         return self.api_route(
             path=path,
             response_model=response_model,
