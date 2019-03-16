@@ -1,5 +1,7 @@
 ## Next
 
+* Make development scripts executable. PR <a href="htthttps://github.com/tiangolo/fastapi/pull/76" target="_blank">#76</a> by <a href="https://github.com/euri10" target="_blank">@euri10</a>.
+
 * Add support for adding `tags` in `app.include_router()`. PR <a href="https://github.com/tiangolo/fastapi/pull/55" target="_blank">#55</a> by <a href="https://github.com/euri10" target="_blank">@euri10</a>. Documentation updated in the section: <a href="https://fastapi.tiangolo.com/tutorial/bigger-applications/" target="_blank">Bigger Applications</a>.
 
 * Update docs related to Uvicorn to use new `--reload` option from version `0.5.x`. PR <a href="https://github.com/tiangolo/fastapi/pull/74" target="_blank">#74</a>.
