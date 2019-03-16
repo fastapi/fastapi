@@ -176,8 +176,10 @@ class FastAPI(Starlette):
 
         return decorator
 
-    def include_router(self, router: routing.APIRouter, *, prefix: str = "") -> None:
-        self.router.include_router(router, prefix=prefix)
+    def include_router(
+        self, router: routing.APIRouter, *, prefix: str = "", tags: List[str] = None
+    ) -> None:
+        self.router.include_router(router, prefix=prefix, tags=tags)
 
     def get(
         self,
