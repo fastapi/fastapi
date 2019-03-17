@@ -2,6 +2,8 @@ If you are building an application or a web API, it's rarely the case that you c
 
 **FastAPI** provides a convenience tool to structure your application while keeping all the flexibility.
 
+!!! info
+    If you come from Flask, this would be the equivalent of Flask's Blueprints.
 
 ## An example file structure
 
@@ -99,12 +101,11 @@ It's all the same structure as with `app/routers/users.py`.
 
 But let's say that this time we are more lazy.
 
-And we don't want to have to explicitly type `/items/` in every path operation, we can do it later:
+And we don't want to have to explicitly type `/items/` and `tags=["items"]` in every *path operation* (we will be able to do it later):
 
 ```Python hl_lines="6 11 16"
 {!./src/bigger_applications/app/routers/items.py!}
 ```
-
 
 ## The main `FastAPI`
 
@@ -124,9 +125,9 @@ You import and create a `FastAPI` class as normally:
 
 ### Import the `APIRouter`
 
-But this time we are not adding path operations directly with the `FastAPI` `app`.
+But this time we are not adding *path operations* directly with the `FastAPI` `app`.
 
-We import the `APIRouter`s from the other files:
+We import the other submodules that have `APIRouter`s:
 
 ```Python hl_lines="3 4"
 {!./src/bigger_applications/app/main.py!}
@@ -140,22 +141,21 @@ As the file `app/routers/items.py` is part of the same Python package, we can im
 The section:
 
 ```Python
-from .routers.items import router
+from .routers import items
 ```
 
 Means:
 
 * Starting in the same package that this module (the file `app/main.py`) lives in (the directory `app/`)...
 * look for the subpackage `routers` (the directory at `app/routers/`)...
-* and from it, the submodule `items` (the file at `app/routers/items.py`)...
-* and from that submodule, import the variable `router`.
+* and from it, import the submodule `items` (the file at `app/routers/items.py`)...
 
-The variable `router` is the same one we created in the file `app/routers/items.py`. It's an `APIRouter`.
+The module `items` will have a variable `router` (`items.router`). This is the same one we created in the file `app/routers/items.py`. It's an `APIRouter`.
 
 We could also import it like:
 
 ```Python
-from app.routers.items import router
+from app.routers import items
 ```
 
 !!! info
@@ -168,20 +168,20 @@ from app.routers.items import router
 
 ### Avoid name collisions
 
-We are importing a variable named `router` from the submodule `items`.
+We are importing the submodule `items` directly, instead of importing just its variable `router`.
 
-But we also have another variable named `router` in the submodule `users`.
+This is because we also have another variable named `router` in the submodule `users`.
 
-If we import one after the other, like:
+If we had imported one after the other, like:
 
 ```Python
 from .routers.items import router
 from .routers.users import router
 ```
 
-The `router` from `users` will overwrite the one form `items` and we won't be able to use them at the same time.
+The `router` from `users` would overwrite the one from `items` and we wouldn't be able to use them at the same time.
 
-So, to be able to use both of them in the same file, we rename them while importing them using `as`:
+So, to be able to use both of them in the same file, we import the submodules directly:
 
 ```Python hl_lines="3 4"
 {!./src/bigger_applications/app/main.py!}
@@ -190,18 +190,21 @@ So, to be able to use both of them in the same file, we rename them while import
 
 ### Include an `APIRouter`
 
-Now, let's include the router from the submodule `users`, now in the variable `users_router`:
+Now, let's include the `router` from the submodule `users`:
 
 ```Python hl_lines="8"
 {!./src/bigger_applications/app/main.py!}
 ```
+
+!!! info
+    `users.router` contains the `APIRouter` inside of the file `app/routers/users.py`.
 
 With `app.include_router()` we can add an `APIRouter` to the main `FastAPI` application.
 
 It will include all the routes from that router as part of it.
 
 !!! note "Technical Details"
-    It will actually internally create a path operation for each path operation that was declared in the `APIRouter`.
+    It will actually internally create a *path operation* for each *path operation* that was declared in the `APIRouter`.
 
     So, behind the scenes, it will actually work as if everything was the same single app.
 
@@ -216,23 +219,25 @@ It will include all the routes from that router as part of it.
 
 ### Include an `APIRouter` with a prefix
 
-Now, let's include the router form the `items` submodule, now in the variable `items_router`.
+Now, let's include the router form the `items` submodule.
 
-But, remember that we were lazy and didn't add `/items/` to all the path operations?
+But, remember that we were lazy and didn't add `/items/` nor `tags` to all the *path operations*?
 
 We can add a prefix to all the path operations using the parameter `prefix` of `app.include_router()`.
 
 As the path of each path operation has to start with `/`, like in:
 
 ```Python hl_lines="1"
-@router.get("/{item_id}", tags=["items"])
+@router.get("/{item_id}")
 async def read_item(item_id: str):
     ...
 ```
 
 ...the prefix must not include a final `/`.
 
-So, the prefix in this case would be `/items`:
+So, the prefix in this case would be `/items`.
+
+And we can also add a list of `tags` that will be applied to all the *path operations* included in this router:
 
 ```Python hl_lines="9"
 {!./src/bigger_applications/app/main.py!}
@@ -245,8 +250,12 @@ The end result is that the item paths are now:
 
 ...as we intended.
 
+And they are marked with a list of tags that contain a single string `"items"`.
+
+These "tags" are especially useful for the automatic interactive documentation systems (using OpenAPI).
+
 !!! check
-    The `prefix` parameter is (as in many other cases) just a feature from **FastAPI** to help you avoid code duplication.
+    The `prefix` and `tags` parameters are (as in many other cases) just a feature from **FastAPI** to help you avoid code duplication.
 
 
 !!! tip
@@ -279,6 +288,6 @@ uvicorn app.main:app --reload
 
 And open the docs at <a href="http://127.0.0.1:8000/docs" target="_blank">http://127.0.0.1:8000/docs</a>.
 
-You will see the automatic API docs, including the paths from all the submodules:
+You will see the automatic API docs, including the paths from all the submodules, using the correct paths (and prefixes) and the correct tags:
 
 <img src="/img/tutorial/bigger-applications/image01.png">

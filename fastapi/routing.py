@@ -237,7 +237,9 @@ class APIRouter(routing.Router):
 
         return decorator
 
-    def include_router(self, router: "APIRouter", *, prefix: str = "") -> None:
+    def include_router(
+        self, router: "APIRouter", *, prefix: str = "", tags: List[str] = None
+    ) -> None:
         if prefix:
             assert prefix.startswith("/"), "A path prefix must start with '/'"
             assert not prefix.endswith(
@@ -250,7 +252,7 @@ class APIRouter(routing.Router):
                     route.endpoint,
                     response_model=route.response_model,
                     status_code=route.status_code,
-                    tags=route.tags or [],
+                    tags=(route.tags or []) + (tags or []),
                     summary=route.summary,
                     description=route.description,
                     response_description=route.response_description,
