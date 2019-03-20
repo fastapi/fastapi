@@ -99,7 +99,7 @@ class SchemaBase(BaseModel):
     not_: Optional[List[Any]] = PSchema(None, alias="not")  # type: ignore
     items: Optional[Any] = None
     properties: Optional[Dict[str, Any]] = None
-    additionalProperties: Optional[Union[bool, Any]] = None
+    additionalProperties: Optional[Union[Dict[str, Any], bool]] = None
     description: Optional[str] = None
     format: Optional[str] = None
     default: Optional[Any] = None
