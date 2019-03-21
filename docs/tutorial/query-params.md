@@ -186,3 +186,12 @@ In this case, there are 3 query parameters:
 * `needy`, a required `str`.
 * `skip`, an `int` with a default value of `0`.
 * `limit`, an optional `int`.
+
+
+## Query parameter list / multiple values
+
+You can declare a query parameter to receive a list of values, or said in other way, to receive multiple values.
+
+```Python hl_lines="9"
+{!./src/query_params/tutorial007.py!}
+```
