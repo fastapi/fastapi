@@ -1,6 +1,6 @@
 from enum import Enum
 from types import GeneratorType
-from typing import Any, Set
+from typing import Any, List, Set
 
 from pydantic import BaseModel
 from pydantic.json import ENCODERS_BY_TYPE
@@ -70,7 +70,7 @@ def jsonable_encoder(
                 )
             )
         return encoded_list
-    errors = []
+    errors: List[Exception] = []
     try:
         if custom_encoder and type(obj) in custom_encoder:
             encoder = custom_encoder[type(obj)]
