@@ -39,7 +39,7 @@ COPY ./app /app
 
 #### Bigger Applications
 
-If you followed the section about creating <a href="" target="_blank">Bigger Applications with Multiple Files
+If you followed the section about creating <a href="https://fastapi.tiangolo.com/tutorial/bigger-applications/" target="_blank">Bigger Applications with Multiple Files
 </a>, your `Dockerfile` might instead look like:
 
 ```Dockerfile
