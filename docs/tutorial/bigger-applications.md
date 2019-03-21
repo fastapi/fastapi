@@ -119,7 +119,7 @@ This will be the main file in your application that ties everything together.
 
 You import and create a `FastAPI` class as normally:
 
-```Python hl_lines="1 6"
+```Python hl_lines="1 5"
 {!./src/bigger_applications/app/main.py!}
 ```
 
@@ -129,7 +129,7 @@ But this time we are not adding *path operations* directly with the `FastAPI` `a
 
 We import the other submodules that have `APIRouter`s:
 
-```Python hl_lines="3 4"
+```Python hl_lines="3"
 {!./src/bigger_applications/app/main.py!}
 ```
 
@@ -141,21 +141,21 @@ As the file `app/routers/items.py` is part of the same Python package, we can im
 The section:
 
 ```Python
-from .routers import items
+from .routers import items, users
 ```
 
 Means:
 
 * Starting in the same package that this module (the file `app/main.py`) lives in (the directory `app/`)...
 * look for the subpackage `routers` (the directory at `app/routers/`)...
-* and from it, import the submodule `items` (the file at `app/routers/items.py`)...
+* and from it, import the submodule `items` (the file at `app/routers/items.py`) and `users` (the file at `app/routers/users.py`)...
 
-The module `items` will have a variable `router` (`items.router`). This is the same one we created in the file `app/routers/items.py`. It's an `APIRouter`.
+The module `items` will have a variable `router` (`items.router`). This is the same one we created in the file `app/routers/items.py`. It's an `APIRouter`. The same for the module `users`.
 
-We could also import it like:
+We could also import them like:
 
 ```Python
-from app.routers import items
+from app.routers import items, users
 ```
 
 !!! info
@@ -183,7 +183,7 @@ The `router` from `users` would overwrite the one from `items` and we wouldn't b
 
 So, to be able to use both of them in the same file, we import the submodules directly:
 
-```Python hl_lines="3 4"
+```Python hl_lines="3"
 {!./src/bigger_applications/app/main.py!}
 ```
 
