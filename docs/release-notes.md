@@ -4,6 +4,8 @@
 
 * Add documentation for: <a href="https://fastapi.tiangolo.com/tutorial/application-configuration/" target="_blank">Application Configuration</a>.
 
+* Fix typo in docs. PR <a href="https://github.com/tiangolo/fastapi/pull/76" target="_blank">#76</a> by <a href="https://github.com/matthewhegarty" target="_blank">@matthewhegarty</a>.
+
 ## 0.8.0
 
 * Make development scripts executable. PR <a href="https://github.com/tiangolo/fastapi/pull/76" target="_blank">#76</a> by <a href="https://github.com/euri10" target="_blank">@euri10</a>.
