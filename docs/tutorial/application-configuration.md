@@ -27,7 +27,7 @@ But you can configure it with the parameter `openapi_url`.
 
 For example, to set it to be served at `/api/v1/openapi.json`:
 
-```Python hl_lines="4"
+```Python hl_lines="3"
 {!./src/application_configuration/tutorial002.py!}
 ```
 
@@ -46,6 +46,6 @@ You can configure the two documentation user interfaces included:
 
 For example, to set Swagger UI to be served at `/documentation` and disable ReDoc:
 
-```Python hl_lines="4 5"
+```Python hl_lines="3"
 {!./src/application_configuration/tutorial003.py!}
 ```

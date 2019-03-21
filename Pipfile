@@ -26,7 +26,7 @@ uvicorn = "*"
 
 [packages]
 starlette = "==0.11.1"
-pydantic = "==0.18.2"
+pydantic = "==0.21.0"
 
 [requires]
 python_version = "3.6"
