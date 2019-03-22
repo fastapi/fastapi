@@ -27,7 +27,7 @@ Doing it, you will receive notifications (in your email) whenever there's a new 
 
 ## Connect with the author
 
-You can connect with me (Sebastián Ramírez / `tiangolo`), the author.
+You can connect with <a href="https://tiangolo.com" target="_blank">me (Sebastián Ramírez / `tiangolo`)</a>, the author.
 
 You can:
 
