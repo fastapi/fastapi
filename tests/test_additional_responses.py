@@ -1,3 +1,4 @@
+import pytest
 from fastapi import FastAPI
 from fastapi.openapi.models import AdditionalResponse
 from pydantic import BaseModel
@@ -407,6 +408,19 @@ openapi_schema = {
         }
     },
 }
+
+
+def test_uncompatible_response_model_undecorated():
+    app = FastAPI()
+
+    class NotBaseModel:
+        pass
+
+    response_403 = AdditionalResponse(
+        status_code=403, description="Forbidden", models=[NotBaseModel]
+    )
+    with pytest.raises(ValueError):
+        app.add_api_route("/", get_not_decorated, additional_responses=[response_403])
 
 
 def test_openapi_schema():
