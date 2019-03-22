@@ -1,6 +1,6 @@
 """FastAPI framework, high performance, easy to learn, fast to code, ready for production"""
 
-__version__ = "0.9.0"
+__version__ = "0.9.1"
 
 from .applications import FastAPI
 from .datastructures import UploadFile
