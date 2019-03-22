@@ -1,5 +1,7 @@
 ## Next release
 
+## 0.9.0
+
 * Upgrade compatible Pydantic version to `0.21.0`. PR <a href="https://github.com/tiangolo/fastapi/pull/90" target="_blank">#90</a>.
 
 * Add documentation for: <a href="https://fastapi.tiangolo.com/tutorial/application-configuration/" target="_blank">Application Configuration</a>.
