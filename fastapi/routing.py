@@ -141,11 +141,7 @@ class APIRoute(routing.Route):
         self.response_description = response_description
         self.additional_responses: Dict[int, AdditionalResponseDescription] = {}
         existed_codes = [self.status_code, 422]
-        if isinstance(additional_responses, dict):
-            self.additional_responses = additional_responses.copy()
         for add_response in additional_responses:
-            if isinstance(add_response, int):
-                continue
             assert (
                 add_response.status_code not in existed_codes
             ), f"(Duplicated Status Code): Response with status code [{add_response.status_code}] already defined!"
@@ -156,7 +152,7 @@ class APIRoute(routing.Route):
                 valid_response_models = all(
                     [issubclass(m, BaseModel) for m in response_models]
                 )
-            except TypeError as te:
+            except TypeError:
                 valid_response_models = False
             if not valid_response_models:
                 raise ValueError(

@@ -2,7 +2,7 @@ from typing import Any, Callable, Dict, List, Optional, Type
 
 from fastapi import routing
 from fastapi.openapi.docs import get_redoc_html, get_swagger_ui_html
-from fastapi.openapi.models import AdditionalResponse, AdditionalResponseDescription
+from fastapi.openapi.models import AdditionalResponse
 from fastapi.openapi.utils import get_openapi
 from pydantic import BaseModel
 from starlette.applications import Starlette
