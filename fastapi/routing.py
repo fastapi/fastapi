@@ -1,14 +1,14 @@
 import asyncio
 import inspect
 import logging
-from typing import Any, Callable, List, Optional, Type, Dict, Union
+from typing import Any, Callable, Dict, List, Optional, Type, Union
 
 from fastapi import params
 from fastapi.dependencies.models import Dependant
 from fastapi.dependencies.utils import get_body_field, get_dependant, solve_dependencies
 from fastapi.encoders import jsonable_encoder
-from fastapi.utils import UnconstrainedConfig
 from fastapi.openapi.models import AdditionalResponse, AdditionalResponseDescription
+from fastapi.utils import UnconstrainedConfig
 from pydantic import BaseModel, Schema
 from pydantic.error_wrappers import ErrorWrapper, ValidationError
 from pydantic.fields import Field
@@ -146,31 +146,30 @@ class APIRoute(routing.Route):
         for add_response in additional_responses:
             if isinstance(add_response, int):
                 continue
-            assert add_response.status_code not in existed_codes, f"(Duplicated Status Code): Response with status code [{add_response.status_code}] already defined!"
+            assert (
+                add_response.status_code not in existed_codes
+            ), f"(Duplicated Status Code): Response with status code [{add_response.status_code}] already defined!"
             existed_codes.append(add_response.status_code)
-            response_models = [
-                m for m in\
-                    add_response.models
-            ]
+            response_models = [m for m in add_response.models]
             valid_response_models = True
             try:
-                valid_response_models = all([
-                    issubclass(m, BaseModel)
-                        for m in response_models
-                ])
+                valid_response_models = all(
+                    [issubclass(m, BaseModel) for m in response_models]
+                )
             except TypeError as te:
                 valid_response_models = False
             if not valid_response_models:
                 raise ValueError(
                     "All response models must be "
                     "a subclass of `pydantic.BaseModel` "
-                    "model.",
+                    "model."
                 )
-            if (add_response.content_type == 'application/json' or lenient_issubclass(
-                    content_type, JSONResponse)):
+            if add_response.content_type == "application/json" or lenient_issubclass(
+                content_type, JSONResponse
+            ):
                 if len(response_models):
                     schema_field = Field(
-                        name=f'Additional_response_{add_response.status_code}',
+                        name=f"Additional_response_{add_response.status_code}",
                         type_=Union[tuple(response_models)],
                         class_validators=[],
                         default=None,
@@ -186,9 +185,8 @@ class APIRoute(routing.Route):
                 description=add_response.description,
                 content_type=add_response.content_type,
                 schema_field=schema_field,
-                )
-            self.additional_responses[add_response.status_code] = \
-                add_resp_description
+            )
+            self.additional_responses[add_response.status_code] = add_resp_description
         self.deprecated = deprecated
         if methods is None:
             methods = ["GET"]
@@ -216,23 +214,23 @@ class APIRoute(routing.Route):
 
 class APIRouter(routing.Router):
     def add_api_route(
-            self,
-            path: str,
-            endpoint: Callable,
-            *,
-            response_model: Type[BaseModel] = None,
-            status_code: int = 200,
-            tags: List[str] = None,
-            summary: str = None,
-            description: str = None,
-            response_description: str = "Successful Response",
-            additional_responses: List[AdditionalResponse] = [],
-            deprecated: bool = None,
-            methods: List[str] = None,
-            operation_id: str = None,
-            include_in_schema: bool = True,
-            content_type: Type[Response] = JSONResponse,
-            name: str = None,
+        self,
+        path: str,
+        endpoint: Callable,
+        *,
+        response_model: Type[BaseModel] = None,
+        status_code: int = 200,
+        tags: List[str] = None,
+        summary: str = None,
+        description: str = None,
+        response_description: str = "Successful Response",
+        additional_responses: List[AdditionalResponse] = [],
+        deprecated: bool = None,
+        methods: List[str] = None,
+        operation_id: str = None,
+        include_in_schema: bool = True,
+        content_type: Type[Response] = JSONResponse,
+        name: str = None,
     ) -> None:
         route = APIRoute(
             path,
@@ -254,22 +252,22 @@ class APIRouter(routing.Router):
         self.routes.append(route)
 
     def api_route(
-            self,
-            path: str,
-            *,
-            response_model: Type[BaseModel] = None,
-            status_code: int = 200,
-            tags: List[str] = None,
-            summary: str = None,
-            description: str = None,
-            response_description: str = "Successful Response",
-            additional_responses: List[AdditionalResponse] = [],
-            deprecated: bool = None,
-            methods: List[str] = None,
-            operation_id: str = None,
-            include_in_schema: bool = True,
-            content_type: Type[Response] = JSONResponse,
-            name: str = None,
+        self,
+        path: str,
+        *,
+        response_model: Type[BaseModel] = None,
+        status_code: int = 200,
+        tags: List[str] = None,
+        summary: str = None,
+        description: str = None,
+        response_description: str = "Successful Response",
+        additional_responses: List[AdditionalResponse] = [],
+        deprecated: bool = None,
+        methods: List[str] = None,
+        operation_id: str = None,
+        include_in_schema: bool = True,
+        content_type: Type[Response] = JSONResponse,
+        name: str = None,
     ) -> Callable:
         def decorator(func: Callable) -> Callable:
             self.add_api_route(
@@ -294,12 +292,12 @@ class APIRouter(routing.Router):
         return decorator
 
     def include_router(
-            self,
-            router: "APIRouter",
-            *,
-            prefix: str = "",
-            tags: List[str] = None,
-            additional_responses: List[AdditionalResponse] = [],
+        self,
+        router: "APIRouter",
+        *,
+        prefix: str = "",
+        tags: List[str] = None,
+        additional_responses: List[AdditionalResponse] = [],
     ) -> None:
         if prefix:
             assert prefix.startswith("/"), "A path prefix must start with '/'"
@@ -310,20 +308,20 @@ class APIRouter(routing.Router):
             if isinstance(route, APIRoute):
                 # really ugly hack and repitition
                 prev_add_resp = route.additional_responses
-                existed_codes = [422, route.status_code
-                                 ] + [int(c) for c in prev_add_resp.keys()]
+                existed_codes = [422, route.status_code] + [
+                    int(c) for c in prev_add_resp.keys()
+                ]
                 for add_response in additional_responses:
-                    assert add_response.status_code not in existed_codes, f"(Duplicated Status Code): Response with status code [{add_response.status_code}] already defined!"
+                    assert (
+                        add_response.status_code not in existed_codes
+                    ), f"(Duplicated Status Code): Response with status code [{add_response.status_code}] already defined!"
                     existed_codes.append(add_response.status_code)
-                    response_models = [
-                        m for m in\
-                            add_response.models
-                    ]
+                    response_models = [m for m in add_response.models]
                     valid_response_models = True
                     try:
-                        valid_response_models = all([
-                            issubclass(m, BaseModel) for m in response_models
-                        ])
+                        valid_response_models = all(
+                            [issubclass(m, BaseModel) for m in response_models]
+                        )
                     except AttributeError as ae:
                         valid_response_models = False
                     if not valid_response_models:
@@ -332,11 +330,13 @@ class APIRouter(routing.Router):
                             "a subclass of `pydantic.BaseModel`"
                             "model."
                         )
-                    if (add_response.content_type == 'application/json' or lenient_issubclass(
-                    route.content_type, JSONResponse)):
+                    if (
+                        add_response.content_type == "application/json"
+                        or lenient_issubclass(route.content_type, JSONResponse)
+                    ):
                         if len(response_models):
                             schema_field = Field(
-                                name=f'Additional_response_{add_response.status_code}',
+                                name=f"Additional_response_{add_response.status_code}",
                                 type_=Union[tuple(response_models)],
                                 class_validators=[],
                                 default=None,
@@ -352,9 +352,10 @@ class APIRouter(routing.Router):
                         description=add_response.description,
                         content_type=add_response.content_type,
                         schema_field=schema_field,
-                        )
-                    route.additional_responses[add_response.status_code] = \
-                        add_resp_description
+                    )
+                    route.additional_responses[
+                        add_response.status_code
+                    ] = add_resp_description
                 self.add_api_route(
                     prefix + route.path,
                     route.endpoint,
@@ -382,21 +383,21 @@ class APIRouter(routing.Router):
                 )
 
     def get(
-            self,
-            path: str,
-            *,
-            response_model: Type[BaseModel] = None,
-            status_code: int = 200,
-            tags: List[str] = None,
-            summary: str = None,
-            description: str = None,
-            response_description: str = "Successful Response",
-            additional_responses: List[AdditionalResponse] = [],
-            deprecated: bool = None,
-            operation_id: str = None,
-            include_in_schema: bool = True,
-            content_type: Type[Response] = JSONResponse,
-            name: str = None,
+        self,
+        path: str,
+        *,
+        response_model: Type[BaseModel] = None,
+        status_code: int = 200,
+        tags: List[str] = None,
+        summary: str = None,
+        description: str = None,
+        response_description: str = "Successful Response",
+        additional_responses: List[AdditionalResponse] = [],
+        deprecated: bool = None,
+        operation_id: str = None,
+        include_in_schema: bool = True,
+        content_type: Type[Response] = JSONResponse,
+        name: str = None,
     ) -> Callable:
         return self.api_route(
             path=path,
@@ -416,21 +417,21 @@ class APIRouter(routing.Router):
         )
 
     def put(
-            self,
-            path: str,
-            *,
-            response_model: Type[BaseModel] = None,
-            status_code: int = 200,
-            tags: List[str] = None,
-            summary: str = None,
-            description: str = None,
-            response_description: str = "Successful Response",
-            additional_responses: List[AdditionalResponse] = [],
-            deprecated: bool = None,
-            operation_id: str = None,
-            include_in_schema: bool = True,
-            content_type: Type[Response] = JSONResponse,
-            name: str = None,
+        self,
+        path: str,
+        *,
+        response_model: Type[BaseModel] = None,
+        status_code: int = 200,
+        tags: List[str] = None,
+        summary: str = None,
+        description: str = None,
+        response_description: str = "Successful Response",
+        additional_responses: List[AdditionalResponse] = [],
+        deprecated: bool = None,
+        operation_id: str = None,
+        include_in_schema: bool = True,
+        content_type: Type[Response] = JSONResponse,
+        name: str = None,
     ) -> Callable:
         return self.api_route(
             path=path,
@@ -450,21 +451,21 @@ class APIRouter(routing.Router):
         )
 
     def post(
-            self,
-            path: str,
-            *,
-            response_model: Type[BaseModel] = None,
-            status_code: int = 200,
-            tags: List[str] = None,
-            summary: str = None,
-            description: str = None,
-            response_description: str = "Successful Response",
-            additional_responses: List[AdditionalResponse] = [],
-            deprecated: bool = None,
-            operation_id: str = None,
-            include_in_schema: bool = True,
-            content_type: Type[Response] = JSONResponse,
-            name: str = None,
+        self,
+        path: str,
+        *,
+        response_model: Type[BaseModel] = None,
+        status_code: int = 200,
+        tags: List[str] = None,
+        summary: str = None,
+        description: str = None,
+        response_description: str = "Successful Response",
+        additional_responses: List[AdditionalResponse] = [],
+        deprecated: bool = None,
+        operation_id: str = None,
+        include_in_schema: bool = True,
+        content_type: Type[Response] = JSONResponse,
+        name: str = None,
     ) -> Callable:
         return self.api_route(
             path=path,
@@ -484,21 +485,21 @@ class APIRouter(routing.Router):
         )
 
     def delete(
-            self,
-            path: str,
-            *,
-            response_model: Type[BaseModel] = None,
-            status_code: int = 200,
-            tags: List[str] = None,
-            summary: str = None,
-            description: str = None,
-            response_description: str = "Successful Response",
-            additional_responses: List[AdditionalResponse] = [],
-            deprecated: bool = None,
-            operation_id: str = None,
-            include_in_schema: bool = True,
-            content_type: Type[Response] = JSONResponse,
-            name: str = None,
+        self,
+        path: str,
+        *,
+        response_model: Type[BaseModel] = None,
+        status_code: int = 200,
+        tags: List[str] = None,
+        summary: str = None,
+        description: str = None,
+        response_description: str = "Successful Response",
+        additional_responses: List[AdditionalResponse] = [],
+        deprecated: bool = None,
+        operation_id: str = None,
+        include_in_schema: bool = True,
+        content_type: Type[Response] = JSONResponse,
+        name: str = None,
     ) -> Callable:
         return self.api_route(
             path=path,
@@ -518,21 +519,21 @@ class APIRouter(routing.Router):
         )
 
     def options(
-            self,
-            path: str,
-            *,
-            response_model: Type[BaseModel] = None,
-            status_code: int = 200,
-            tags: List[str] = None,
-            summary: str = None,
-            description: str = None,
-            response_description: str = "Successful Response",
-            additional_responses: List[AdditionalResponse] = [],
-            deprecated: bool = None,
-            operation_id: str = None,
-            include_in_schema: bool = True,
-            content_type: Type[Response] = JSONResponse,
-            name: str = None,
+        self,
+        path: str,
+        *,
+        response_model: Type[BaseModel] = None,
+        status_code: int = 200,
+        tags: List[str] = None,
+        summary: str = None,
+        description: str = None,
+        response_description: str = "Successful Response",
+        additional_responses: List[AdditionalResponse] = [],
+        deprecated: bool = None,
+        operation_id: str = None,
+        include_in_schema: bool = True,
+        content_type: Type[Response] = JSONResponse,
+        name: str = None,
     ) -> Callable:
         return self.api_route(
             path=path,
@@ -552,21 +553,21 @@ class APIRouter(routing.Router):
         )
 
     def head(
-            self,
-            path: str,
-            *,
-            response_model: Type[BaseModel] = None,
-            status_code: int = 200,
-            tags: List[str] = None,
-            summary: str = None,
-            description: str = None,
-            response_description: str = "Successful Response",
-            additional_responses: List[AdditionalResponse] = [],
-            deprecated: bool = None,
-            operation_id: str = None,
-            include_in_schema: bool = True,
-            content_type: Type[Response] = JSONResponse,
-            name: str = None,
+        self,
+        path: str,
+        *,
+        response_model: Type[BaseModel] = None,
+        status_code: int = 200,
+        tags: List[str] = None,
+        summary: str = None,
+        description: str = None,
+        response_description: str = "Successful Response",
+        additional_responses: List[AdditionalResponse] = [],
+        deprecated: bool = None,
+        operation_id: str = None,
+        include_in_schema: bool = True,
+        content_type: Type[Response] = JSONResponse,
+        name: str = None,
     ) -> Callable:
         return self.api_route(
             path=path,
@@ -586,21 +587,21 @@ class APIRouter(routing.Router):
         )
 
     def patch(
-            self,
-            path: str,
-            *,
-            response_model: Type[BaseModel] = None,
-            status_code: int = 200,
-            tags: List[str] = None,
-            summary: str = None,
-            description: str = None,
-            response_description: str = "Successful Response",
-            additional_responses: List[AdditionalResponse] = [],
-            deprecated: bool = None,
-            operation_id: str = None,
-            include_in_schema: bool = True,
-            content_type: Type[Response] = JSONResponse,
-            name: str = None,
+        self,
+        path: str,
+        *,
+        response_model: Type[BaseModel] = None,
+        status_code: int = 200,
+        tags: List[str] = None,
+        summary: str = None,
+        description: str = None,
+        response_description: str = "Successful Response",
+        additional_responses: List[AdditionalResponse] = [],
+        deprecated: bool = None,
+        operation_id: str = None,
+        include_in_schema: bool = True,
+        content_type: Type[Response] = JSONResponse,
+        name: str = None,
     ) -> Callable:
         return self.api_route(
             path=path,
@@ -620,21 +621,21 @@ class APIRouter(routing.Router):
         )
 
     def trace(
-            self,
-            path: str,
-            *,
-            response_model: Type[BaseModel] = None,
-            status_code: int = 200,
-            tags: List[str] = None,
-            summary: str = None,
-            description: str = None,
-            response_description: str = "Successful Response",
-            additional_responses: List[AdditionalResponse] = [],
-            deprecated: bool = None,
-            operation_id: str = None,
-            include_in_schema: bool = True,
-            content_type: Type[Response] = JSONResponse,
-            name: str = None,
+        self,
+        path: str,
+        *,
+        response_model: Type[BaseModel] = None,
+        status_code: int = 200,
+        tags: List[str] = None,
+        summary: str = None,
+        description: str = None,
+        response_description: str = "Successful Response",
+        additional_responses: List[AdditionalResponse] = [],
+        deprecated: bool = None,
+        operation_id: str = None,
+        include_in_schema: bool = True,
+        content_type: Type[Response] = JSONResponse,
+        name: str = None,
     ) -> Callable:
         return self.api_route(
             path=path,

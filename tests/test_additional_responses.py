@@ -13,28 +13,22 @@ class Item(BaseModel):
 
 
 class Response400(BaseModel):
-    '''HTTP 4xx Response Schema'''
+    """HTTP 4xx Response Schema"""
+
     title: str
     detail: str
-    error_code: int # functional error ref
+    error_code: int  # functional error ref
 
 
 response_403 = AdditionalResponse(
-    status_code = 403,
-    description = 'Forbidden',
-    models = [
-        Response400,
-    ],
+    status_code=403, description="Forbidden", models=[Response400]
 )
 
-additional_responses = [
-    response_403,
-]
+additional_responses = [response_403]
+
 
 @app.api_route(
-    "/items/{item_id}",
-    methods=["GET"],
-    additional_responses=additional_responses,
+    "/items/{item_id}", methods=["GET"], additional_responses=additional_responses
 )
 def get_items(item_id: str):
     return {"item_id": item_id}
@@ -51,42 +45,27 @@ app.add_api_route(
 )
 
 
-@app.delete(
-    "/items/{item_id}",
-    additional_responses=additional_responses,
-)
+@app.delete("/items/{item_id}", additional_responses=additional_responses)
 def delete_item(item_id: str, item: Item):
     return {"item_id": item_id, "item": item}
 
 
-@app.head(
-    "/items/{item_id}",
-    additional_responses=additional_responses,
-)
+@app.head("/items/{item_id}", additional_responses=additional_responses)
 def head_item(item_id: str):
     return JSONResponse(headers={"x-fastapi-item-id": item_id})
 
 
-@app.options(
-    "/items/{item_id}",
-    additional_responses=additional_responses,
-)
+@app.options("/items/{item_id}", additional_responses=additional_responses)
 def options_item(item_id: str):
     return JSONResponse(headers={"x-fastapi-item-id": item_id})
 
 
-@app.patch(
-    "/items/{item_id}",
-    additional_responses=additional_responses,
-)
+@app.patch("/items/{item_id}", additional_responses=additional_responses)
 def patch_item(item_id: str, item: Item):
     return {"item_id": item_id, "item": item}
 
 
-@app.trace(
-    "/items/{item_id}",
-    additional_responses=additional_responses,
-)
+@app.trace("/items/{item_id}", additional_responses=additional_responses)
 def trace_item(item_id: str):
     return JSONResponse(media_type="message/http")
 
@@ -95,29 +74,20 @@ client = TestClient(app)
 
 openapi_schema = {
     "openapi": "3.0.2",
-    "info": {
-        "title": "Fast API",
-        "version": "0.1.0"
-    },
+    "info": {"title": "Fast API", "version": "0.1.0"},
     "paths": {
         "/items/{item_id}": {
             "get": {
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {
-                            "application/json": {
-                                "schema": {}
-                            }
-                        },
+                        "content": {"application/json": {"schema": {}}},
                     },
                     "403": {
                         "description": "Forbidden",
                         "content": {
                             "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Response400"
-                                }
+                                "schema": {"$ref": "#/components/schemas/Response400"}
                             }
                         },
                     },
@@ -126,44 +96,34 @@ openapi_schema = {
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref":
-                                    "#/components/schemas/HTTPValidationError"
+                                    "$ref": "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
                     },
                 },
-                "summary":
-                "Get Items Get",
-                "operationId":
-                "get_items_items__item_id__get",
-                "parameters": [{
-                    "required": True,
-                    "schema": {
-                        "title": "Item_Id",
-                        "type": "string"
-                    },
-                    "name": "item_id",
-                    "in": "path",
-                }],
+                "summary": "Get Items Get",
+                "operationId": "get_items_items__item_id__get",
+                "parameters": [
+                    {
+                        "required": True,
+                        "schema": {"title": "Item_Id", "type": "string"},
+                        "name": "item_id",
+                        "in": "path",
+                    }
+                ],
             },
             "delete": {
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {
-                            "application/json": {
-                                "schema": {}
-                            }
-                        },
+                        "content": {"application/json": {"schema": {}}},
                     },
                     "403": {
                         "description": "Forbidden",
                         "content": {
                             "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Response400"
-                                }
+                                "schema": {"$ref": "#/components/schemas/Response400"}
                             }
                         },
                     },
@@ -172,32 +132,26 @@ openapi_schema = {
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref":
-                                    "#/components/schemas/HTTPValidationError"
+                                    "$ref": "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
                     },
                 },
-                "summary":
-                "Delete Item Delete",
-                "operationId":
-                "delete_item_items__item_id__delete",
-                "parameters": [{
-                    "required": True,
-                    "schema": {
-                        "title": "Item_Id",
-                        "type": "string"
-                    },
-                    "name": "item_id",
-                    "in": "path",
-                }],
+                "summary": "Delete Item Delete",
+                "operationId": "delete_item_items__item_id__delete",
+                "parameters": [
+                    {
+                        "required": True,
+                        "schema": {"title": "Item_Id", "type": "string"},
+                        "name": "item_id",
+                        "in": "path",
+                    }
+                ],
                 "requestBody": {
                     "content": {
                         "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/Item"
-                            }
+                            "schema": {"$ref": "#/components/schemas/Item"}
                         }
                     },
                     "required": True,
@@ -207,9 +161,13 @@ openapi_schema = {
                 "responses": {
                     "200": {
                         "description": "Successful Response",
+                        "content": {"application/json": {"schema": {}}},
+                    },
+                    "403": {
+                        "description": "Forbidden",
                         "content": {
                             "application/json": {
-                                "schema": {}
+                                "schema": {"$ref": "#/components/schemas/Response400"}
                             }
                         },
                     },
@@ -217,19 +175,7 @@ openapi_schema = {
                         "description": "Forbidden",
                         "content": {
                             "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Response400"
-                                }
-                            }
-                        },
-                    },
-                    "403": {
-                        "description": "Forbidden",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Response400"
-                                }
+                                "schema": {"$ref": "#/components/schemas/Response400"}
                             }
                         },
                     },
@@ -238,44 +184,34 @@ openapi_schema = {
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref":
-                                    "#/components/schemas/HTTPValidationError"
+                                    "$ref": "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
                     },
                 },
-                "summary":
-                "Options Item Options",
-                "operationId":
-                "options_item_items__item_id__options",
-                "parameters": [{
-                    "required": True,
-                    "schema": {
-                        "title": "Item_Id",
-                        "type": "string"
-                    },
-                    "name": "item_id",
-                    "in": "path",
-                }],
+                "summary": "Options Item Options",
+                "operationId": "options_item_items__item_id__options",
+                "parameters": [
+                    {
+                        "required": True,
+                        "schema": {"title": "Item_Id", "type": "string"},
+                        "name": "item_id",
+                        "in": "path",
+                    }
+                ],
             },
             "head": {
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {
-                            "application/json": {
-                                "schema": {}
-                            }
-                        },
+                        "content": {"application/json": {"schema": {}}},
                     },
                     "403": {
                         "description": "Forbidden",
                         "content": {
                             "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Response400"
-                                }
+                                "schema": {"$ref": "#/components/schemas/Response400"}
                             }
                         },
                     },
@@ -284,44 +220,34 @@ openapi_schema = {
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref":
-                                    "#/components/schemas/HTTPValidationError"
+                                    "$ref": "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
                     },
                 },
-                "summary":
-                "Head Item Head",
-                "operationId":
-                "head_item_items__item_id__head",
-                "parameters": [{
-                    "required": True,
-                    "schema": {
-                        "title": "Item_Id",
-                        "type": "string"
-                    },
-                    "name": "item_id",
-                    "in": "path",
-                }],
+                "summary": "Head Item Head",
+                "operationId": "head_item_items__item_id__head",
+                "parameters": [
+                    {
+                        "required": True,
+                        "schema": {"title": "Item_Id", "type": "string"},
+                        "name": "item_id",
+                        "in": "path",
+                    }
+                ],
             },
             "patch": {
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {
-                            "application/json": {
-                                "schema": {}
-                            }
-                        },
+                        "content": {"application/json": {"schema": {}}},
                     },
                     "403": {
                         "description": "Forbidden",
                         "content": {
                             "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Response400"
-                                }
+                                "schema": {"$ref": "#/components/schemas/Response400"}
                             }
                         },
                     },
@@ -330,32 +256,26 @@ openapi_schema = {
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref":
-                                    "#/components/schemas/HTTPValidationError"
+                                    "$ref": "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
                     },
                 },
-                "summary":
-                "Patch Item Patch",
-                "operationId":
-                "patch_item_items__item_id__patch",
-                "parameters": [{
-                    "required": True,
-                    "schema": {
-                        "title": "Item_Id",
-                        "type": "string"
-                    },
-                    "name": "item_id",
-                    "in": "path",
-                }],
+                "summary": "Patch Item Patch",
+                "operationId": "patch_item_items__item_id__patch",
+                "parameters": [
+                    {
+                        "required": True,
+                        "schema": {"title": "Item_Id", "type": "string"},
+                        "name": "item_id",
+                        "in": "path",
+                    }
+                ],
                 "requestBody": {
                     "content": {
                         "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/Item"
-                            }
+                            "schema": {"$ref": "#/components/schemas/Item"}
                         }
                     },
                     "required": True,
@@ -365,19 +285,13 @@ openapi_schema = {
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {
-                            "application/json": {
-                                "schema": {}
-                            }
-                        },
+                        "content": {"application/json": {"schema": {}}},
                     },
                     "403": {
                         "description": "Forbidden",
                         "content": {
                             "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Response400"
-                                }
+                                "schema": {"$ref": "#/components/schemas/Response400"}
                             }
                         },
                     },
@@ -386,26 +300,22 @@ openapi_schema = {
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref":
-                                    "#/components/schemas/HTTPValidationError"
+                                    "$ref": "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
                     },
                 },
-                "summary":
-                "Trace Item Trace",
-                "operationId":
-                "trace_item_items__item_id__trace",
-                "parameters": [{
-                    "required": True,
-                    "schema": {
-                        "title": "Item_Id",
-                        "type": "string"
-                    },
-                    "name": "item_id",
-                    "in": "path",
-                }],
+                "summary": "Trace Item Trace",
+                "operationId": "trace_item_items__item_id__trace",
+                "parameters": [
+                    {
+                        "required": True,
+                        "schema": {"title": "Item_Id", "type": "string"},
+                        "name": "item_id",
+                        "in": "path",
+                    }
+                ],
             },
         },
         "/items-not-decorated/{item_id}": {
@@ -413,19 +323,13 @@ openapi_schema = {
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {
-                            "application/json": {
-                                "schema": {}
-                            }
-                        },
+                        "content": {"application/json": {"schema": {}}},
                     },
                     "403": {
                         "description": "Forbidden",
                         "content": {
                             "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Response400"
-                                }
+                                "schema": {"$ref": "#/components/schemas/Response400"}
                             }
                         },
                     },
@@ -434,26 +338,22 @@ openapi_schema = {
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref":
-                                    "#/components/schemas/HTTPValidationError"
+                                    "$ref": "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
                     },
                 },
-                "summary":
-                "Get Not Decorated Get",
-                "operationId":
-                "get_not_decorated_items-not-decorated__item_id__get",
-                "parameters": [{
-                    "required": True,
-                    "schema": {
-                        "title": "Item_Id",
-                        "type": "string"
-                    },
-                    "name": "item_id",
-                    "in": "path",
-                }],
+                "summary": "Get Not Decorated Get",
+                "operationId": "get_not_decorated_items-not-decorated__item_id__get",
+                "parameters": [
+                    {
+                        "required": True,
+                        "schema": {"title": "Item_Id", "type": "string"},
+                        "name": "item_id",
+                        "in": "path",
+                    }
+                ],
             }
         },
     },
@@ -464,14 +364,8 @@ openapi_schema = {
                 "required": ["name"],
                 "type": "object",
                 "properties": {
-                    "name": {
-                        "title": "Name",
-                        "type": "string"
-                    },
-                    "price": {
-                        "title": "Price",
-                        "type": "number"
-                    },
+                    "name": {"title": "Name", "type": "string"},
+                    "price": {"title": "Price", "type": "number"},
                 },
             },
             "Response400": {
@@ -480,18 +374,9 @@ openapi_schema = {
                 "required": ["title", "detail", "error_code"],
                 "type": "object",
                 "properties": {
-                    "title": {
-                        "title": "Title",
-                        "type": "string"
-                    },
-                    "detail": {
-                        "title": "Detail",
-                        "type": "string"
-                    },
-                    "error_code": {
-                        "title": "Error_Code",
-                        "type": "integer"
-                    },
+                    "title": {"title": "Title", "type": "string"},
+                    "detail": {"title": "Detail", "type": "string"},
+                    "error_code": {"title": "Error_Code", "type": "integer"},
                 },
             },
             "ValidationError": {
@@ -502,18 +387,10 @@ openapi_schema = {
                     "loc": {
                         "title": "Location",
                         "type": "array",
-                        "items": {
-                            "type": "string"
-                        },
+                        "items": {"type": "string"},
                     },
-                    "msg": {
-                        "title": "Message",
-                        "type": "string"
-                    },
-                    "type": {
-                        "title": "Error Type",
-                        "type": "string"
-                    },
+                    "msg": {"title": "Message", "type": "string"},
+                    "type": {"title": "Error Type", "type": "string"},
                 },
             },
             "HTTPValidationError": {
@@ -523,9 +400,7 @@ openapi_schema = {
                     "detail": {
                         "title": "Detail",
                         "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/ValidationError"
-                        },
+                        "items": {"$ref": "#/components/schemas/ValidationError"},
                     }
                 },
             },
@@ -555,13 +430,7 @@ def test_get_api_route_not_decorated():
 def test_delete():
     response = client.delete("/items/foo", json={"name": "Foo"})
     assert response.status_code == 200
-    assert response.json() == {
-        "item_id": "foo",
-        "item": {
-            "name": "Foo",
-            "price": None
-        }
-    }
+    assert response.json() == {"item_id": "foo", "item": {"name": "Foo", "price": None}}
 
 
 def test_head():
@@ -579,13 +448,7 @@ def test_options():
 def test_patch():
     response = client.patch("/items/foo", json={"name": "Foo"})
     assert response.status_code == 200
-    assert response.json() == {
-        "item_id": "foo",
-        "item": {
-            "name": "Foo",
-            "price": None
-        }
-    }
+    assert response.json() == {"item_id": "foo", "item": {"name": "Foo", "price": None}}
 
 
 def test_trace():
