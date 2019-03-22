@@ -346,7 +346,7 @@ class Tag(BaseModel):
 
 class BaseAdditionalResponse(BaseModel):
     description: str
-    content_type: str = None
+    content_type: Optional[str] = None
 
 
 class AdditionalResponse(BaseAdditionalResponse):
@@ -356,7 +356,7 @@ class AdditionalResponse(BaseAdditionalResponse):
     # NOTE: waiting for pydantic to allow `typing.Type[BasicModel]` type
     # so, going for `Any` and extra validation on
     # routing methods
-    models: Optional[List[Any]] = PSchema([], title="Additional Response Models")
+    models: List[Any] = PSchema([], title="Additional Response Models")
 
 
 class AdditionalResponseDescription(BaseAdditionalResponse):

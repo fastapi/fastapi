@@ -150,7 +150,7 @@ class APIRoute(routing.Route):
                 add_response.status_code not in existed_codes
             ), f"(Duplicated Status Code): Response with status code [{add_response.status_code}] already defined!"
             existed_codes.append(add_response.status_code)
-            response_models = [m for m in add_response.models]
+            response_models: List[Any] = [m for m in add_response.models]
             valid_response_models = True
             try:
                 valid_response_models = all(
@@ -306,56 +306,6 @@ class APIRouter(routing.Router):
             ), "A path prefix must not end with '/', as the routes will start with '/'"
         for route in router.routes:
             if isinstance(route, APIRoute):
-                # really ugly hack and repitition
-                prev_add_resp = route.additional_responses
-                existed_codes = [422, route.status_code] + [
-                    int(c) for c in prev_add_resp.keys()
-                ]
-                for add_response in additional_responses:
-                    assert (
-                        add_response.status_code not in existed_codes
-                    ), f"(Duplicated Status Code): Response with status code [{add_response.status_code}] already defined!"
-                    existed_codes.append(add_response.status_code)
-                    response_models = [m for m in add_response.models]
-                    valid_response_models = True
-                    try:
-                        valid_response_models = all(
-                            [issubclass(m, BaseModel) for m in response_models]
-                        )
-                    except AttributeError as ae:
-                        valid_response_models = False
-                    if not valid_response_models:
-                        raise ValueError(
-                            "All response models must be"
-                            "a subclass of `pydantic.BaseModel`"
-                            "model."
-                        )
-                    if (
-                        add_response.content_type == "application/json"
-                        or lenient_issubclass(route.content_type, JSONResponse)
-                    ):
-                        if len(response_models):
-                            schema_field = Field(
-                                name=f"Additional_response_{add_response.status_code}",
-                                type_=Union[tuple(response_models)],
-                                class_validators=[],
-                                default=None,
-                                required=False,
-                                model_config=UnconstrainedConfig,
-                                schema=Schema(None),
-                            )
-                        else:
-                            schema_field = None
-                    else:
-                        schema_field = None
-                    add_resp_description = AdditionalResponseDescription(
-                        description=add_response.description,
-                        content_type=add_response.content_type,
-                        schema_field=schema_field,
-                    )
-                    route.additional_responses[
-                        add_response.status_code
-                    ] = add_resp_description
                 self.add_api_route(
                     prefix + route.path,
                     route.endpoint,
@@ -365,7 +315,7 @@ class APIRouter(routing.Router):
                     summary=route.summary,
                     description=route.description,
                     response_description=route.response_description,
-                    additional_responses=route.additional_responses,
+                    additional_responses=additional_responses,
                     deprecated=route.deprecated,
                     methods=route.methods,
                     operation_id=route.operation_id,

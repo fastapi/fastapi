@@ -206,7 +206,7 @@ def get_openapi_path(
                     },
                 }
             for add_response_code, add_response in route.additional_responses.items():
-                add_response_schema = {}
+                add_response_schema: Dict[str, Any] = {}
                 if (
                     add_response.content_type or route.content_type.media_type
                 ) == "application/json" and add_response.schema_field is not None:
