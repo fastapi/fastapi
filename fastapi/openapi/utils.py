@@ -205,6 +205,26 @@ def get_openapi_path(
                         }
                     },
                 }
+            for add_response_code, add_response in route.additional_responses.items():
+                add_response_schema = {}
+                if (add_response.content_type or route.content_type.media_type
+                    ) == 'application/json' and add_response.schema_field is not None:
+                    add_response_schema, _ = field_schema(
+                        add_response.schema_field,
+                        model_name_map=model_name_map,
+                        ref_prefix=REF_PREFIX,
+                    )
+                add_content = {
+                    add_response.content_type or
+                    route.content_type.media_type: {
+                        "schema": add_response_schema,
+                    },
+                }
+                operation["responses"][str(add_response_code)] = \
+                    {
+                        "description": add_response.description,
+                        "content": add_content,
+                    }
             path[method.lower()] = operation
     return path, security_schemes, definitions
 

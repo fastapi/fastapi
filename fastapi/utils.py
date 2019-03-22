@@ -30,6 +30,12 @@ def get_flat_models_from_routes(
                 body_fields_from_routes.append(route.body_field)
             if route.response_field:
                 responses_from_routes.append(route.response_field)
+            if route.additional_responses:
+                for _, add_response in route.additional_responses.items():
+                    if add_response.schema_field is not None:
+                        responses_from_routes.append(
+                            add_response.schema_field,
+                        )
     flat_models = get_flat_models_from_fields(
         body_fields_from_routes + responses_from_routes
     )

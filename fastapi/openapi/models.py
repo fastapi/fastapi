@@ -1,9 +1,10 @@
 import logging
 from enum import Enum
-from typing import Any, Dict, List, Optional, Union
+from typing import Any, Dict, List, Optional, Union, Type, ClassVar, Callable
 
 from pydantic import BaseModel, Schema as PSchema
 from pydantic.types import UrlStr
+from pydantic.fields import Field
 
 try:
     import email_validator
@@ -341,6 +342,35 @@ class Tag(BaseModel):
     name: str
     description: Optional[str] = None
     externalDocs: Optional[ExternalDocumentation] = None
+
+
+class BaseAdditionalResponse(BaseModel):
+    description: str
+    content_type: str = None
+
+
+class AdditionalResponse(BaseAdditionalResponse):
+    status_code: int = PSchema(
+        ...,
+        ge=100,
+        le=540,
+        title='Status Code',
+        description='HTTP status code',
+    )
+    # NOTE: waiting for pydantic to allow `typing.Type[BasicModel]` type
+    # so, going for `Any` and extra validation on
+    # routing methods
+    models: Optional[List[Any]] = PSchema(
+        [],
+        title='Additional Response Models',
+    )
+
+
+class AdditionalResponseDescription(BaseAdditionalResponse):
+    schema_field: Optional[Field] = None
+
+    class Config:
+        arbitrary_types_allowed = True
 
 
 class OpenAPI(BaseModel):
