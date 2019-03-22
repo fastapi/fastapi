@@ -1,5 +1,7 @@
 ## Next release
 
+* Document receiving <a href="https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#query-parameter-list-multiple-values" target="_blank">Multiple values with the same query parameter</a> and <a href="https://fastapi.tiangolo.com/tutorial/header-params/#duplicate-headers" target="_blank">Duplicate headers</a>. PR <a href="https://github.com/tiangolo/fastapi/pull/95" target="_blank">#95</a>.
+
 ## 0.9.0
 
 * Upgrade compatible Pydantic version to `0.21.0`. PR <a href="https://github.com/tiangolo/fastapi/pull/90" target="_blank">#90</a>.
