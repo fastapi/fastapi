@@ -47,6 +47,39 @@ If for some reason you need to disable automatic conversion of underscores to hy
 !!! warning
     Before setting `convert_underscores` to `False`, bear in mind that some HTTP proxies and servers disallow the usage of headers with underscores.
 
+
+## Duplicate headers
+
+It is possible to receive duplicate headers. That means, the same header with multiple values.
+
+You can define those cases using a list in the type declaration.
+
+You will receive all the values from the duplicate header as a Python `list`.
+
+For example, to declare a header of `X-Token` that can appear more than once, you can write:
+
+```Python hl_lines="9"
+{!./src/header_params/tutorial003.py!}
+```
+
+If you communicate with that *path operation* sending two HTTP headers like:
+
+```
+X-Token: foo
+X-Token: bar
+```
+
+The response would be like:
+
+```JSON
+{
+    "X-Token values": [
+        "bar",
+        "foo"
+    ]
+}
+```
+
 ## Recap
 
 Declare headers with `Header`, using the same common pattern as `Query`, `Path` and `Cookie`.
