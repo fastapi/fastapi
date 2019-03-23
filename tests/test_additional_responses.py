@@ -2,6 +2,7 @@ import pytest
 from fastapi import FastAPI
 from fastapi.openapi.models import AdditionalResponse
 from pydantic import BaseModel
+from pydantic.error_wrappers import ValidationError
 from starlette.responses import JSONResponse
 from starlette.testclient import TestClient
 
@@ -419,7 +420,7 @@ def test_uncompatible_response_model_undecorated():
     response_403 = AdditionalResponse(
         status_code=403, description="Forbidden", models=[NotBaseModel]
     )
-    with pytest.raises(ValueError):
+    with pytest.raises(RuntimeError):
         app.add_api_route("/", get_not_decorated, additional_responses=[response_403])
 
 

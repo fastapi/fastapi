@@ -147,36 +147,19 @@ class APIRoute(routing.Route):
             ), f"(Duplicated Status Code): Response with status code [{add_response.status_code}] already defined!"
             existed_codes.append(add_response.status_code)
             response_models: List[Any] = [m for m in add_response.models]
-            valid_response_models = True
-            try:
-                valid_response_models = all(
-                    [issubclass(m, BaseModel) for m in response_models]
-                )
-            except TypeError:
-                valid_response_models = False
-            if not valid_response_models:
-                raise ValueError(
-                    "All response models must be "
-                    "a subclass of `pydantic.BaseModel` "
-                    "model."
-                )
+            schema_field = None
             if add_response.content_type == "application/json" or lenient_issubclass(
                 content_type, JSONResponse
-            ):
-                if len(response_models):
-                    schema_field = Field(
-                        name=f"Additional_response_{add_response.status_code}",
-                        type_=Union[tuple(response_models)],
-                        class_validators=[],
-                        default=None,
-                        required=False,
-                        model_config=UnconstrainedConfig,
-                        schema=Schema(None),
-                    )
-                else:
-                    schema_field = None
-            else:
-                schema_field = None
+            ) and len(response_models):
+                schema_field = Field(
+                    name=f"Additional_response_{add_response.status_code}",
+                    type_=Union[tuple(response_models)],
+                    class_validators=[],
+                    default=None,
+                    required=False,
+                    model_config=UnconstrainedConfig,
+                    schema=Schema(None),
+                )
             add_resp_description = AdditionalResponseDescription(
                 description=add_response.description,
                 content_type=add_response.content_type,
