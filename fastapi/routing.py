@@ -148,9 +148,11 @@ class APIRoute(routing.Route):
             existed_codes.append(add_response.status_code)
             response_models: List[Any] = [m for m in add_response.models]
             schema_field = None
-            if add_response.content_type == "application/json" or lenient_issubclass(
-                content_type, JSONResponse
-            ) and len(response_models):
+            if (
+                add_response.content_type == "application/json"
+                or lenient_issubclass(content_type, JSONResponse)
+                and len(response_models)
+            ):
                 schema_field = Field(
                     name=f"Additional_response_{add_response.status_code}",
                     type_=Union[tuple(response_models)],

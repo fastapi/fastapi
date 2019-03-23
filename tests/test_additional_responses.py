@@ -2,7 +2,6 @@ import pytest
 from fastapi import FastAPI
 from fastapi.openapi.models import AdditionalResponse
 from pydantic import BaseModel
-from pydantic.error_wrappers import ValidationError
 from starlette.responses import JSONResponse
 from starlette.testclient import TestClient
 
