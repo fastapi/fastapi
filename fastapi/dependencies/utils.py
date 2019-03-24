@@ -3,7 +3,18 @@ import inspect
 from copy import deepcopy
 from datetime import date, datetime, time, timedelta
 from decimal import Decimal
-from typing import Any, Callable, Dict, List, Mapping, Sequence, Tuple, Type, Union
+from typing import (
+    Any,
+    Callable,
+    Dict,
+    List,
+    Mapping,
+    Optional,
+    Sequence,
+    Tuple,
+    Type,
+    Union,
+)
 from uuid import UUID
 
 from fastapi import params
@@ -223,7 +234,7 @@ async def solve_dependencies(
     dependant: Dependant,
     body: Dict[str, Any] = None,
     background_tasks: BackgroundTasks = None,
-) -> Tuple[Dict[str, Any], List[ErrorWrapper]]:
+) -> Tuple[Dict[str, Any], List[ErrorWrapper], Optional[BackgroundTasks]]:
     values: Dict[str, Any] = {}
     errors: List[ErrorWrapper] = []
     for sub_dependant in dependant.dependencies:
