@@ -11,7 +11,7 @@ client = TestClient(app)
 def test():
     log = Path("log.txt")
     if log.is_file():
-        os.remove(log)
+        os.remove(log)  # pragma: no cover
     response = client.post("/send-notification/foo@example.com?q=some-query")
     assert response.status_code == 200
     assert response.json() == {"message": "Message sent"}
