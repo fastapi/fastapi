@@ -63,6 +63,7 @@ nav:
         - Application Configuration: 'tutorial/application-configuration.md'
         - GraphQL: 'tutorial/graphql.md'
         - WebSockets: 'tutorial/websockets.md'
+        - 'Events: startup - shutdown': 'tutorial/events.md'
         - Debugging: 'tutorial/debugging.md'
     - Concurrency and async / await: 'async.md'
     - Deployment: 'deployment.md'
