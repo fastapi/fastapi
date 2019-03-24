@@ -2,6 +2,8 @@
 
 __version__ = "0.9.1"
 
+from starlette.background import BackgroundTasks
+
 from .applications import FastAPI
 from .datastructures import UploadFile
 from .exceptions import HTTPException
