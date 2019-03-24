@@ -271,6 +271,10 @@ class APIRouter(routing.Router):
                     include_in_schema=route.include_in_schema,
                     name=route.name,
                 )
+            elif isinstance(route, routing.WebSocketRoute):
+                self.add_websocket_route(
+                    prefix + route.path, route.endpoint, name=route.name
+                )
 
     def get(
         self,
