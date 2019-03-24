@@ -16,6 +16,7 @@ from pydantic.errors import MissingError
 from pydantic.fields import Field, Required, Shape
 from pydantic.schema import get_annotation_from_schema
 from pydantic.utils import lenient_issubclass
+from starlette.background import BackgroundTasks
 from starlette.concurrency import run_in_threadpool
 from starlette.datastructures import UploadFile
 from starlette.requests import Headers, QueryParams, Request
@@ -125,6 +126,8 @@ def get_dependant(*, path: str, call: Callable, name: str = None) -> Dependant:
             )
         elif lenient_issubclass(param.annotation, Request):
             dependant.request_param_name = param_name
+        elif lenient_issubclass(param.annotation, BackgroundTasks):
+            dependant.background_tasks_param_name = param_name
         elif not isinstance(param.default, params.Depends):
             add_param_to_body_fields(param=param, dependant=dependant)
     return dependant
@@ -215,13 +218,20 @@ def is_coroutine_callable(call: Callable) -> bool:
 
 
 async def solve_dependencies(
-    *, request: Request, dependant: Dependant, body: Dict[str, Any] = None
+    *,
+    request: Request,
+    dependant: Dependant,
+    body: Dict[str, Any] = None,
+    background_tasks: BackgroundTasks = None,
 ) -> Tuple[Dict[str, Any], List[ErrorWrapper]]:
     values: Dict[str, Any] = {}
     errors: List[ErrorWrapper] = []
     for sub_dependant in dependant.dependencies:
-        sub_values, sub_errors = await solve_dependencies(
-            request=request, dependant=sub_dependant, body=body
+        sub_values, sub_errors, background_tasks = await solve_dependencies(
+            request=request,
+            dependant=sub_dependant,
+            body=body,
+            background_tasks=background_tasks,
         )
         if sub_errors:
             errors.extend(sub_errors)
@@ -258,7 +268,11 @@ async def solve_dependencies(
         errors.extend(body_errors)
     if dependant.request_param_name:
         values[dependant.request_param_name] = request
-    return values, errors
+    if dependant.background_tasks_param_name:
+        if background_tasks is None:
+            background_tasks = BackgroundTasks()
+        values[dependant.background_tasks_param_name] = background_tasks
+    return values, errors, background_tasks
 
 
 def request_params_to_args(

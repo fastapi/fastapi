@@ -59,6 +59,7 @@ nav:
         - SQL (Relational) Databases: 'tutorial/sql-databases.md'
         - NoSQL (Distributed / Big Data) Databases: 'tutorial/nosql-databases.md'
         - Bigger Applications - Multiple Files: 'tutorial/bigger-applications.md'
+        - Background Tasks: 'tutorial/background-tasks.md'
         - Sub Applications - Behind a Proxy: 'tutorial/sub-applications-proxy.md'
         - Application Configuration: 'tutorial/application-configuration.md'
         - GraphQL: 'tutorial/graphql.md'
