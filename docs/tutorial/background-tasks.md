@@ -81,6 +81,16 @@ It's still possible to use `BackgroundTask` alone in FastAPI, but you have to cr
 
 You can see more details in <a href="https://www.starlette.io/background/" target="_blank">Starlette's official docs for Background Tasks</a>.
 
+## Caveat
+
+If you need to perform heavy background computation and you don't necessarily need it to be run by the same process (for example, you don't need to share memory, variables, etc), you might benefit from using other bigger tools like <a href="http://www.celeryproject.org/" target="_blank">Celery</a>.
+
+They tend to require more complex configurations, a message/job queue manager, like RabbitMQ or Redis, but they allow you to run background tasks in multiple processes, and especially, in multiple servers.
+
+To see an example, check the <a href="https://fastapi.tiangolo.com/project-generation/" target="_blank">Project Generators</a>, they all include Celery already configured.
+
+But if you need to access variables and objects from the same **FastAPI** app, or you need to perform small background tasks (like sending an email notification), you can simply just use `BackgroundTasks`.
+
 ## Recap
 
 Import and use `BackgroundTasks` with parameters in *path operation functions* and dependencies to add background tasks.
