@@ -1,5 +1,7 @@
 ## Next release
 
+* Update <a href="https://fastapi.tiangolo.com/tutorial/background-tasks/" target="_blank">Background Tasks</a> with a note on Celery.
+
 * Document response models using unions and lists, updated at: <a href="https://fastapi.tiangolo.com/tutorial/extra-models/" target="_blank">Extra Models</a>. PR <a href="https://github.com/tiangolo/fastapi/pull/108" target="_blank">#108</a>.
 
 ## 0.10.1
