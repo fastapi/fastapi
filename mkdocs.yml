@@ -57,6 +57,7 @@ nav:
             - OAuth2 with Password (and hashing), Bearer with JWT tokens: 'tutorial/security/oauth2-jwt.md'
         - Using the Request Directly: 'tutorial/using-request-directly.md'    
         - SQL (Relational) Databases: 'tutorial/sql-databases.md'
+        - Async SQL (Relational) Databases: 'tutorial/async-sql-databases.md'
         - NoSQL (Distributed / Big Data) Databases: 'tutorial/nosql-databases.md'
         - Bigger Applications - Multiple Files: 'tutorial/bigger-applications.md'
         - Background Tasks: 'tutorial/background-tasks.md'
