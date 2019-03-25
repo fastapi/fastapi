@@ -152,6 +152,28 @@ That way, we can declare just the differences between the models (with plaintext
 {!./src/extra_models/tutorial002.py!}
 ```
 
+## `Union` or `anyOf`
+
+You can declare a response to be the `Union` of two types, that means, that the response would be any of the two.
+
+It will be defined in OpenAPI with `anyOf`.
+
+To do that, use the standard Python type hint <a href="https://docs.python.org/3/library/typing.html#typing.Union" target="_blank">`typing.Union`</a>:
+
+```Python hl_lines="1 14 15 18 19 20 33"
+{!./src/extra_models/tutorial003.py!}
+```
+
+## List of models
+
+The same way, you can declare responses of lists of objects.
+
+For that, use the standard Python `typing.List`:
+
+```Python hl_lines="1 20"
+{!./src/extra_models/tutorial004.py!}
+```
+
 ## Recap
 
 Use multiple Pydantic models and inherit freely for each case.
