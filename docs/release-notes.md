@@ -1,5 +1,11 @@
 ## Next release
 
+## 0.10.0
+
+* Add support for Background Tasks in *path operation functions* and dependencies. New documentation about <a href="https://fastapi.tiangolo.com/tutorial/background-tasks/" target="_blank">Background Tasks is here</a>. PR <a href="https://github.com/tiangolo/fastapi/pull/103" target="_blank">#103</a>.
+
+* Add support for `.websocket_route()` in `APIRouter`. PR <a href="https://github.com/tiangolo/fastapi/pull/100" target="_blank">#100</a> by <a href="https://github.com/euri10" target="_blank">@euri10</a>.
+
 * New docs section about <a href="https://fastapi.tiangolo.com/tutorial/events/" target="_blank">Events: startup - shutdown</a>. PR <a href="https://github.com/tiangolo/fastapi/pull/99" target="_blank">#99</a>.
 
 ## 0.9.1

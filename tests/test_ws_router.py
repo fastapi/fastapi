@@ -3,6 +3,7 @@ from starlette.testclient import TestClient
 from starlette.websockets import WebSocket
 
 router = APIRouter()
+prefix_router = APIRouter()
 app = FastAPI()
 
 
@@ -20,7 +21,15 @@ async def routerindex(websocket: WebSocket):
     await websocket.close()
 
 
+@prefix_router.websocket_route("/")
+async def routerprefixindex(websocket: WebSocket):
+    await websocket.accept()
+    await websocket.send_text("Hello, router with prefix!")
+    await websocket.close()
+
+
 app.include_router(router)
+app.include_router(prefix_router, prefix="/prefix")
 
 
 def test_app():
@@ -35,3 +44,10 @@ def test_router():
     with client.websocket_connect("/router") as websocket:
         data = websocket.receive_text()
         assert data == "Hello, router!"
+
+
+def test_prefix_router():
+    client = TestClient(app)
+    with client.websocket_connect("/prefix/") as websocket:
+        data = websocket.receive_text()
+        assert data == "Hello, router with prefix!"
