@@ -1,5 +1,9 @@
 ## Next release
 
+## 0.10.1
+
+* Add docs and tests for <a href="https://github.com/encode/databases" target="_blank">encode/databases</a>. New docs at: <a href="https://fastapi.tiangolo.com/tutorial/async-sql-databases/" target="_blank">Async SQL (Relational) Databases</a>. PR <a href="https://github.com/tiangolo/fastapi/pull/107" target="_blank">#107</a>.
+
 ## 0.10.0
 
 * Add support for Background Tasks in *path operation functions* and dependencies. New documentation about <a href="https://fastapi.tiangolo.com/tutorial/background-tasks/" target="_blank">Background Tasks is here</a>. PR <a href="https://github.com/tiangolo/fastapi/pull/103" target="_blank">#103</a>.
