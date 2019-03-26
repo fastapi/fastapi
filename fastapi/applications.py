@@ -10,6 +10,7 @@ from starlette.middleware.errors import ServerErrorMiddleware
 from starlette.requests import Request
 from starlette.responses import JSONResponse, Response
 from starlette.routing import BaseRoute
+from starlette.staticfiles import StaticFiles
 
 
 async def http_exception(request: Request, exc: HTTPException) -> JSONResponse:
@@ -35,6 +36,7 @@ class FastAPI(Starlette):
         openapi_prefix: str = "",
         docs_url: Optional[str] = "/docs",
         redoc_url: Optional[str] = "/redoc",
+        static_directory: Optional[str] = None,
         **extra: Dict[str, Any],
     ) -> None:
         self._debug = debug
@@ -62,6 +64,30 @@ class FastAPI(Starlette):
         if self.docs_url or self.redoc_url:
             assert self.openapi_url, "The openapi_url is required for the docs"
         self.openapi_schema: Optional[Dict[str, Any]] = None
+        self.static_directory = static_directory
+        if self.static_directory:
+            if not all(
+                x in self.extra.get("swagger_static").keys()
+                for x in ["js", "css", "favicon"]
+            ):
+                raise ValueError(f"The swagger_static dict needs to be passed to extra")
+            self.swagger_static_js = "/static/" + self.extra.get("swagger_static").get(
+                "js"
+            )
+            self.swagger_static_css = "/static/" + self.extra.get("swagger_static").get(
+                "css"
+            )
+            self.swagger_static_icon = "/static/" + self.extra.get(
+                "swagger_static"
+            ).get("favicon")
+        else:
+            self.swagger_static_js = (
+                "https://cdn.jsdelivr.net/npm/swagger-ui-dist@3/swagger-ui-bundle.js"
+            )
+            self.swagger_static_css = (
+                "https://cdn.jsdelivr.net/npm/swagger-ui-dist@3/swagger-ui.css"
+            )
+            self.swagger_static_icon = "https://fastapi.tiangolo.com/img/favicon.png"
         self.setup()
 
     def openapi(self) -> Dict:
@@ -83,15 +109,22 @@ class FastAPI(Starlette):
                 lambda req: JSONResponse(self.openapi()),
                 include_in_schema=False,
             )
+        if self.static_directory:
+            static = StaticFiles(directory=self.static_directory)
+            self.mount("/static", static)
         if self.openapi_url and self.docs_url:
             self.add_route(
                 self.docs_url,
                 lambda r: get_swagger_ui_html(
                     openapi_url=self.openapi_prefix + self.openapi_url,
                     title=self.title + " - Swagger UI",
+                    swagger_static_js=self.swagger_static_js,
+                    swagger_static_css=self.swagger_static_css,
+                    swagger_static_icon=self.swagger_static_icon,
                 ),
                 include_in_schema=False,
             )
+
         if self.openapi_url and self.redoc_url:
             self.add_route(
                 self.redoc_url,
