@@ -7,7 +7,7 @@ def get_swagger_ui_html(
     title: str,
     swagger_static_js: str = None,
     swagger_static_css: str = None,
-    swagger_static_icon: str= None,
+    swagger_static_icon: str = None,
 ) -> HTMLResponse:
     html = f"""
     <! doctype html>
