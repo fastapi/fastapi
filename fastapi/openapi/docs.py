@@ -1,44 +1,43 @@
 from starlette.responses import HTMLResponse
 
 
-def get_swagger_ui_html(*, openapi_url: str, title: str) -> HTMLResponse:
-    return HTMLResponse(
-        """
+def get_swagger_ui_html(
+    *,
+    openapi_url: str,
+    title: str,
+    swagger_static_js: str = None,
+    swagger_static_css: str = None,
+    swagger_static_icon: None,
+) -> HTMLResponse:
+    html = f"""
     <! doctype html>
     <html>
     <head>
-    <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@3/swagger-ui.css">
-    <link rel="shortcut icon" href="https://fastapi.tiangolo.com/img/favicon.png">
-    <title>
-    """
-        + title
-        + """
-    </title>
+    <link type="text/css" rel="stylesheet" href="{swagger_static_css}">
+    <link rel="shortcut icon" href="{swagger_static_icon}">
+    <title>{title}</title>
     </head>
     <body>
     <div id="swagger-ui">
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/swagger-ui-dist@3/swagger-ui-bundle.js"></script>
+    <script src="{swagger_static_js}"></script>
     <!-- `SwaggerUIBundle` is now available on the page -->
     <script>
-            
-    const ui = SwaggerUIBundle({
-        url: '"""
-        + openapi_url
-        + """',
+    const ui = SwaggerUIBundle({{
+        url: '{openapi_url}',
         dom_id: '#swagger-ui',
         presets: [
         SwaggerUIBundle.presets.apis,
         SwaggerUIBundle.SwaggerUIStandalonePreset
         ],
         layout: "BaseLayout"
- 
-    })
+
+    }})
     </script>
     </body>
     </html>
     """
-    )
+    return HTMLResponse(html)
 
 
 def get_redoc_html(*, openapi_url: str, title: str) -> HTMLResponse:
