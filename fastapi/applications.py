@@ -66,12 +66,18 @@ class FastAPI(Starlette):
         self.openapi_schema: Optional[Dict[str, Any]] = None
         self.static_directory = static_directory
         if self.static_directory:
-            swagger_static= self.extra.get("swagger_static", {})
-            if not all(
-                x in swagger_static.keys()
-                for x in ["js", "css", "favicon"]
-            ):
-                raise ValueError(f"The swagger_static dict needs to be passed to extra")
+            swagger_static = self.extra.get("swagger_static", {})
+            required_keys = ["js", "css", "favicon"]
+            swagger_keys_test = [x in swagger_static.keys() for x in required_keys]
+            if not all(swagger_keys_test):
+                missing = [
+                    required_keys[idx]
+                    for idx, x in enumerate(swagger_keys_test)
+                    if not x
+                ]
+                raise ValueError(
+                    f"The swagger_static dict needs to be passed to extra, missing {missing}"
+                )
             self.swagger_static_js = "/static/" + swagger_static.get("js", None)
             self.swagger_static_css = "/static/" + swagger_static.get("css", None)
             self.swagger_static_icon = "/static/" + swagger_static.get("favicon", None)
