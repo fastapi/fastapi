@@ -18,6 +18,8 @@
 
 ---
 
+[![Join the chat at https://gitter.im/tiangolo/fastapi](https://badges.gitter.im/tiangolo/fastapi.svg)](https://gitter.im/tiangolo/fastapi?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 **Documentation**: <a href="https://fastapi.tiangolo.com" target="_blank">https://fastapi.tiangolo.com</a>
 
 **Source Code**: <a href="https://github.com/tiangolo/fastapi" target="_blank">https://github.com/tiangolo/fastapi</a>
