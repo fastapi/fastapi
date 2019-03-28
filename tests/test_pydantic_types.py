@@ -1,16 +1,41 @@
+import json
 from datetime import date, datetime, time, timedelta
 from enum import Enum
-from typing import List, Tuple, Dict, Union
+from typing import Dict, List, Tuple, Union
 from uuid import UUID
 
-from pydantic import BaseModel, EmailStr, NameEmail, UrlStr, DSN, Decimal, UUID1, UUID3, \
-    UUID4, UUID5, FilePath, DirectoryPath, Path, Json, IPvAnyAddress, StrictStr, \
-    ConstrainedStr, constr, ConstrainedInt, conint, PositiveInt, NegativeInt, \
-    ConstrainedFloat, confloat, PositiveFloat, NegativeFloat, ConstrainedDecimal, \
-    condecimal
-from starlette.testclient import TestClient
-
 from fastapi import FastAPI
+from pydantic import (
+    DSN,
+    UUID1,
+    UUID3,
+    UUID4,
+    UUID5,
+    BaseModel,
+    ConstrainedDecimal,
+    ConstrainedFloat,
+    ConstrainedInt,
+    ConstrainedStr,
+    Decimal,
+    DirectoryPath,
+    EmailStr,
+    FilePath,
+    IPvAnyAddress,
+    Json,
+    NameEmail,
+    NegativeFloat,
+    NegativeInt,
+    Path,
+    PositiveFloat,
+    PositiveInt,
+    StrictStr,
+    UrlStr,
+    condecimal,
+    confloat,
+    conint,
+    constr,
+)
+from starlette.testclient import TestClient
 
 
 class MyConstrainedInt(ConstrainedInt):
@@ -59,7 +84,7 @@ class Working(BaseModel):
     # my_IPvAnyAddress: IPvAnyAddress
     my_StrictStr: StrictStr
     # my_ConstrainedStr: ConstrainedStr
-    my_constr: constr(regex='^text$', min_length=2, max_length=10)
+    my_constr: constr(regex="^text$", min_length=2, max_length=10)
     # my_ConstrainedInt: MyConstrainedInt
     # my_conint: conint(gt=1, lt=6, multiple_of=2)
     # my_PositiveInt: PositiveInt
@@ -79,7 +104,7 @@ class Failing(BaseModel):
     my_tuple_str_int: Tuple[str, int]
     my_enum: Enum
     # my_IPvAnyAddress: IPvAnyAddress  # crash Pydantic if declared this way, no idea how to use
-    # my_ConstrainedStr: ConstrainedStr  # crash Pydantic if declared this way, no idea how to use  # crash Pydantic
+    # my_ConstrainedStr: ConstrainedStr  # crash Pydantic if declared this way, no idea how to use
     my_ConstrainedInt: MyConstrainedInt
     my_conint: conint(gt=1, lt=6, multiple_of=2)
     my_PositiveInt: PositiveInt
@@ -108,4 +133,14 @@ def test_openapi():
         response = client.get("/openapi.json")
         assert response.status_code == 200
         print(response.json())
+        with open("opentestapi.json", 'w') as f:
+            json.dump(response.json(),f)
 
+
+
+def test_tuple():
+    class Model(BaseModel):
+        v: Tuple[int, float, bool]
+
+    m = Model(v=[1.2, '2.2', 'true'])
+    assert m.v == (1, 2.2, True)
