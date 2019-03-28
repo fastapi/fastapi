@@ -94,12 +94,12 @@ app = FastAPI()
 
 
 @app.post("/workingtypes")
-async def types(tt: Working):
+async def workingtypes(tt: Working):
     return tt
 
 
 @app.post("/failingtypes")
-async def types(tt: Failing):
+async def failingtypes(tt: Failing):
     return tt
 
 
