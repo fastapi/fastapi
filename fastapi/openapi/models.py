@@ -99,7 +99,7 @@ class SchemaBase(BaseModel):
     not_: Optional[List[Any]] = PSchema(None, alias="not")  # type: ignore
     items: Optional[Any] = None
     properties: Optional[Dict[str, Any]] = None
-    additionalProperties: Optional[Union[bool, Any]] = None
+    additionalProperties: Optional[Union[Dict[str, Any], bool]] = None
     description: Optional[str] = None
     format: Optional[str] = None
     default: Optional[Any] = None
@@ -120,7 +120,7 @@ class Schema(SchemaBase):
     not_: Optional[List[SchemaBase]] = PSchema(None, alias="not")  # type: ignore
     items: Optional[SchemaBase] = None
     properties: Optional[Dict[str, SchemaBase]] = None
-    additionalProperties: Optional[Union[bool, SchemaBase]] = None
+    additionalProperties: Optional[Union[SchemaBase, bool]] = None
 
 
 class Example(BaseModel):
@@ -220,7 +220,7 @@ class Operation(BaseModel):
     operationId: Optional[str] = None
     parameters: Optional[List[Union[Parameter, Reference]]] = None
     requestBody: Optional[Union[RequestBody, Reference]] = None
-    responses: Union[Responses, Dict[Union[str], Response]]
+    responses: Union[Responses, Dict[str, Response]]
     # Workaround OpenAPI recursive reference
     callbacks: Optional[Dict[str, Union[Dict[str, Any], Reference]]] = None
     deprecated: Optional[bool] = None
