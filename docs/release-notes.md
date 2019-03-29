@@ -1,5 +1,7 @@
 ## Next release
 
+* Fix event docs (startup/shutdown) function name. PR <a href="https://github.com/tiangolo/fastapi/pull/105" target="_blank">#105</a> by <a href="https://github.com/stratosgear" target="_blank">@stratosgear</a>.
+
 ## 0.10.2
 
 * Fix OpenAPI (JSON Schema) for declarations of Python `Union` (JSON Schema `additionalProperties`). PR <a href="https://github.com/tiangolo/fastapi/pull/121" target="_blank">#121</a>.
