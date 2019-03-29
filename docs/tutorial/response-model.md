@@ -24,6 +24,9 @@ But most importantly:
 
 * Will limit the output data to that of the model. We'll see how that's important below.
 
+!!! note "Technical Details"
+    The response model is declared in this parameter instead of as a function return type annotation, because the path function may not actually return that response model but rather return a `dict`, database object or some other model, and then use the `response_model` to perform the field limiting and serialization.
+
 ## Return the same input data
 
 Here we are declaring a `UserIn` model, it will contain a plaintext password:
