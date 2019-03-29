@@ -146,7 +146,11 @@ After using this generator, your new project (the directory created) will contai
 
 ## Release Notes
 
-### Next
+### Next release
+
+### 0.2.1
+
+* Fix documentation for *path operation* to get user by ID. <a href="https://github.com/tiangolo/fastapi/pull/97" target="_blank">PR #97</a> by <a href="https://github.com/mpclarkson" target="_blank">@mpclarkson</a>.
 
 * Set `/start-reload.sh` as a command override for development by default.
 
