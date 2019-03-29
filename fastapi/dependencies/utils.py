@@ -100,7 +100,6 @@ def get_dependant(*, path: str, call: Callable, name: str = None) -> Dependant:
                 lenient_issubclass(param.annotation, param_supported_types)
                 or param.annotation == param.empty
             ), f"Path params must be of one of the supported types"
-            param = signature_params[param_name]
             add_param_to_fields(
                 param=param,
                 dependant=dependant,
