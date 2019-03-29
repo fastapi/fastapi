@@ -1,5 +1,7 @@
 ## Next release
 
+* Add note in <a href="https://fastapi.tiangolo.com/tutorial/response-model/" target="_blank">Response Model docs</a> about why using a function parameter instead of a function return type annotation. PR <a href="https://github.com/tiangolo/fastapi/pull/109" target="_blank">#109</a> by <a href="https://github.com/JHSaunders" target="_blank">@JHSaunders</a>.
+
 * Fix event docs (startup/shutdown) function name. PR <a href="https://github.com/tiangolo/fastapi/pull/105" target="_blank">#105</a> by <a href="https://github.com/stratosgear" target="_blank">@stratosgear</a>.
 
 ## 0.10.2
