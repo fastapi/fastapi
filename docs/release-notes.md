@@ -1,5 +1,7 @@
 ## Next release
 
+## 0.10.2
+
 * Fix OpenAPI (JSON Schema) for declarations of Python `Union` (JSON Schema `additionalProperties`). PR <a href="https://github.com/tiangolo/fastapi/pull/121" target="_blank">#121</a>.
 
 * Update <a href="https://fastapi.tiangolo.com/tutorial/background-tasks/" target="_blank">Background Tasks</a> with a note on Celery.
