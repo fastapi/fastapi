@@ -123,7 +123,7 @@ def read_user_by_id(
     db: Session = Depends(get_db),
 ):
     """
-    Get a specific user by username (email)
+    Get a specific user by id
     """
     user = crud.user.get(db, user_id=user_id)
     if user == current_user:
