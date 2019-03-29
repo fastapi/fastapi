@@ -68,7 +68,7 @@ def get_app(
             raise HTTPException(
                 status_code=400, detail="There was an error parsing the body"
             )
-        values, errors = await solve_dependencies(
+        values, errors, background_tasks = await solve_dependencies(
             request=request, dependant=dependant, body=body
         )
         if errors:
@@ -83,11 +83,17 @@ def get_app(
             else:
                 raw_response = await run_in_threadpool(dependant.call, **values)
             if isinstance(raw_response, Response):
+                if raw_response.background is None:
+                    raw_response.background = background_tasks
                 return raw_response
             response_data = serialize_response(
                 field=response_field, response=raw_response
             )
-            return content_type(content=response_data, status_code=status_code)
+            return content_type(
+                content=response_data,
+                status_code=status_code,
+                background=background_tasks,
+            )
 
     return app
 

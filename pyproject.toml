@@ -37,7 +37,8 @@ test = [
     "isort",
     "requests",
     "email_validator",
-    "sqlalchemy"
+    "sqlalchemy",
+    "databases[sqlite]",
 ]
 doc = [
     "mkdocs",

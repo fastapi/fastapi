@@ -27,6 +27,7 @@ uvicorn = "*"
 [packages]
 starlette = "==0.11.1"
 pydantic = "==0.21.0"
+databases = {extras = ["sqlite"],version = "*"}
 
 [requires]
 python_version = "3.6"

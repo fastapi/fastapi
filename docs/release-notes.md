@@ -1,5 +1,27 @@
 ## Next release
 
+* Add note in <a href="https://fastapi.tiangolo.com/tutorial/response-model/" target="_blank">Response Model docs</a> about why using a function parameter instead of a function return type annotation. PR <a href="https://github.com/tiangolo/fastapi/pull/109" target="_blank">#109</a> by <a href="https://github.com/JHSaunders" target="_blank">@JHSaunders</a>.
+
+* Fix event docs (startup/shutdown) function name. PR <a href="https://github.com/tiangolo/fastapi/pull/105" target="_blank">#105</a> by <a href="https://github.com/stratosgear" target="_blank">@stratosgear</a>.
+
+## 0.10.2
+
+* Fix OpenAPI (JSON Schema) for declarations of Python `Union` (JSON Schema `additionalProperties`). PR <a href="https://github.com/tiangolo/fastapi/pull/121" target="_blank">#121</a>.
+
+* Update <a href="https://fastapi.tiangolo.com/tutorial/background-tasks/" target="_blank">Background Tasks</a> with a note on Celery.
+
+* Document response models using unions and lists, updated at: <a href="https://fastapi.tiangolo.com/tutorial/extra-models/" target="_blank">Extra Models</a>. PR <a href="https://github.com/tiangolo/fastapi/pull/108" target="_blank">#108</a>.
+
+## 0.10.1
+
+* Add docs and tests for <a href="https://github.com/encode/databases" target="_blank">encode/databases</a>. New docs at: <a href="https://fastapi.tiangolo.com/tutorial/async-sql-databases/" target="_blank">Async SQL (Relational) Databases</a>. PR <a href="https://github.com/tiangolo/fastapi/pull/107" target="_blank">#107</a>.
+
+## 0.10.0
+
+* Add support for Background Tasks in *path operation functions* and dependencies. New documentation about <a href="https://fastapi.tiangolo.com/tutorial/background-tasks/" target="_blank">Background Tasks is here</a>. PR <a href="https://github.com/tiangolo/fastapi/pull/103" target="_blank">#103</a>.
+
+* Add support for `.websocket_route()` in `APIRouter`. PR <a href="https://github.com/tiangolo/fastapi/pull/100" target="_blank">#100</a> by <a href="https://github.com/euri10" target="_blank">@euri10</a>.
+
 * New docs section about <a href="https://fastapi.tiangolo.com/tutorial/events/" target="_blank">Events: startup - shutdown</a>. PR <a href="https://github.com/tiangolo/fastapi/pull/99" target="_blank">#99</a>.
 
 ## 0.9.1
