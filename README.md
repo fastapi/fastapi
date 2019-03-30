@@ -14,11 +14,12 @@
 <a href="https://pypi.org/project/fastapi" target="_blank">
     <img src="https://badge.fury.io/py/fastapi.svg" alt="Package version">
 </a>
+<a href="https://gitter.im/tiangolo/fastapi?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge" target="_blank">
+    <img src="https://badges.gitter.im/tiangolo/fastapi.svg" alt="Join the chat at https://gitter.im/tiangolo/fastapi">
+</a>
 </p>
 
 ---
-
-[![Join the chat at https://gitter.im/tiangolo/fastapi](https://badges.gitter.im/tiangolo/fastapi.svg)](https://gitter.im/tiangolo/fastapi?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 **Documentation**: <a href="https://fastapi.tiangolo.com" target="_blank">https://fastapi.tiangolo.com</a>
 
