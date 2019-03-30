@@ -1,5 +1,7 @@
 ## Next release
 
+* Add docs about <a href="https://fastapi.tiangolo.com/tutorial/extending-openapi/" target="_blank">Extending OpenAPI</a>. PR <a href="https://github.com/tiangolo/fastapi/pull/126" target="_blank">#126</a>.
+
 * Add Gitter chat, badge, links, etc. <a href="https://gitter.im/tiangolo/fastapi" target="_blank">https://gitter.im/tiangolo/fastapi
 </a>. PR <a href="https://github.com/tiangolo/fastapi/pull/117" target="_blank">#117</a>.
 
