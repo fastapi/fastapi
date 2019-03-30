@@ -18,7 +18,7 @@ class Item(BaseModel):
     price: float
     tax: float = None
     tags: Set[str] = []
-    image: List[Image] = None
+    images: List[Image] = None
 
 
 @app.put("/items/{item_id}")
