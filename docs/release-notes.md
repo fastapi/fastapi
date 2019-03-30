@@ -1,13 +1,15 @@
 ## Next release
 
-* Make Travis run Ubuntu Xenial (newer version) and Python 3.7 instead of Python 3.7-dev. PR <a href="https://github.com/tiangolo/fastapi/pull/92" target="_blank">#92</a> by <a href="https://github.com/blueyed" target="_blank">@blueyed</a>.
-
-* Fix duplicated param variable creation. PR <a href="https://github.com/tiangolo/fastapi/pull/123" target="_blank">#123</a> by <a href="https://github.com/yihuang" target="_blank">@yihuang</a>.
-
-* Add docs about <a href="https://fastapi.tiangolo.com/tutorial/extending-openapi/" target="_blank">Extending OpenAPI</a>. PR <a href="https://github.com/tiangolo/fastapi/pull/126" target="_blank">#126</a>.
+## 0.10.3
 
 * Add Gitter chat, badge, links, etc. <a href="https://gitter.im/tiangolo/fastapi" target="_blank">https://gitter.im/tiangolo/fastapi
 </a>. PR <a href="https://github.com/tiangolo/fastapi/pull/117" target="_blank">#117</a>.
+
+* Add docs about <a href="https://fastapi.tiangolo.com/tutorial/extending-openapi/" target="_blank">Extending OpenAPI</a>. PR <a href="https://github.com/tiangolo/fastapi/pull/126" target="_blank">#126</a>.
+
+* Make Travis run Ubuntu Xenial (newer version) and Python 3.7 instead of Python 3.7-dev. PR <a href="https://github.com/tiangolo/fastapi/pull/92" target="_blank">#92</a> by <a href="https://github.com/blueyed" target="_blank">@blueyed</a>.
+
+* Fix duplicated param variable creation. PR <a href="https://github.com/tiangolo/fastapi/pull/123" target="_blank">#123</a> by <a href="https://github.com/yihuang" target="_blank">@yihuang</a>.
 
 * Add note in <a href="https://fastapi.tiangolo.com/tutorial/response-model/" target="_blank">Response Model docs</a> about why using a function parameter instead of a function return type annotation. PR <a href="https://github.com/tiangolo/fastapi/pull/109" target="_blank">#109</a> by <a href="https://github.com/JHSaunders" target="_blank">@JHSaunders</a>.
 
