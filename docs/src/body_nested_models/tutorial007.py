@@ -18,7 +18,7 @@ class Item(BaseModel):
     price: float
     tax: float = None
     tags: Set[str] = []
-    image: List[Image] = None
+    images: List[Image] = None
 
 
 class Offer(BaseModel):
