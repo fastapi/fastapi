@@ -67,6 +67,7 @@ nav:
         - WebSockets: 'tutorial/websockets.md'
         - 'Events: startup - shutdown': 'tutorial/events.md'
         - Debugging: 'tutorial/debugging.md'
+        - Extending OpenAPI: 'tutorial/extending-openapi.md'
     - Concurrency and async / await: 'async.md'
     - Deployment: 'deployment.md'
     - Project Generation - Template: 'project-generation.md'
