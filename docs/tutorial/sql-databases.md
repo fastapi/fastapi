@@ -37,7 +37,7 @@ For now, don't pay attention to the rest, only the imports:
 
 Define the database that SQLAlchemy should "connect" to:
 
-```Python hl_lines="8"
+```Python hl_lines="9"
 {!./src/sql_databases/tutorial001.py!}
 ```
 
@@ -59,7 +59,7 @@ SQLALCHEMY_DATABASE_URI = "postgresql://user:password@postgresserver/db"
 
 ## Create the SQLAlchemy `engine`
 
-```Python hl_lines="11 12 13"
+```Python hl_lines="12 13 14"
 {!./src/sql_databases/tutorial001.py!}
 ```
 
@@ -90,7 +90,7 @@ We will use `Session` to declare types later and getter better editor support an
 
 For now, create the `SessionLocal`:
 
-```Python hl_lines="14"
+```Python hl_lines="15"
 {!./src/sql_databases/tutorial001.py!}
 ```
 
@@ -108,9 +108,16 @@ A "middleware" is a function that is always executed for each request, and have 
 
 This middleware (just a function) will create a new SQLAlchemy `SessionLocal` for each request, add it to the request and then close it once the request is finished.
 
-```Python hl_lines="67 68 69 70 71 72"
+```Python hl_lines="68 69 70 71 72 73 74 75 76"
 {!./src/sql_databases/tutorial001.py!}
 ```
+
+!!! info
+    We put the creation of the `SessionLocal()` and handling of the requests in a `try` block.
+
+    And then we close it in the `finally` block.
+    
+    This way we make sure the database session is always closed after the request. Even if there was an exception in the middle.
 
 ### About `request.state`
 
@@ -126,7 +133,7 @@ And when using the dependency in a path operation function, we declare it with t
 
 This will then give us better editor support inside the path operation function, because the editor will know that the `db` parameter is of type `Session`.
 
-```Python hl_lines="53 54 68"
+```Python hl_lines="54 55 69"
 {!./src/sql_databases/tutorial001.py!}
 ```
 
@@ -145,13 +152,13 @@ That way you don't have to declare them explicitly in every model.
 
 So, your models will behave very similarly to, for example, Flask-SQLAlchemy.
 
-```Python hl_lines="17 18 19 20 21"
+```Python hl_lines="18 19 20 21 22"
 {!./src/sql_databases/tutorial001.py!}
 ```
 
 ## Create the SQLAlchemy `Base` model
 
-```Python hl_lines="24"
+```Python hl_lines="25"
 {!./src/sql_databases/tutorial001.py!}
 ```
 
@@ -161,7 +168,7 @@ Now this is finally code specific to your app.
 
 Here's a user model that will be a table in the database:
 
-```Python hl_lines="27 28 29 30 31"
+```Python hl_lines="28 29 30 31 32"
 {!./src/sql_databases/tutorial001.py!}
 ```
 
@@ -169,7 +176,7 @@ Here's a user model that will be a table in the database:
 
 In a very simplistic way, initialize your database (create the tables, etc) and make sure you have a first user:
 
-```Python hl_lines="34  36 38 39 40 41 42 44"
+```Python hl_lines="35 37 39 40 41 42 43 45"
 {!./src/sql_databases/tutorial001.py!}
 ```
 
@@ -197,7 +204,7 @@ Also, as all the functionality is self-contained in the same code, you can copy 
 
 By creating a function that is only dedicated to getting your user from a `user_id` (or any other parameter) independent of your path operation function, you can more easily re-use it in multiple parts and also add <abbr title="Automated tests, written in code, that check if another piece of code is working correctly.">unit tests</abbr> for it:
 
-```Python hl_lines="48 49"
+```Python hl_lines="49 50"
 {!./src/sql_databases/tutorial001.py!}
 ```
 
@@ -207,7 +214,7 @@ Now, finally, here's the standard **FastAPI** code.
 
 Create your app and path operation function:
 
-```Python hl_lines="58 61 62 63 64"
+```Python hl_lines="59 62 63 64 65"
 {!./src/sql_databases/tutorial001.py!}
 ```
 
@@ -243,7 +250,7 @@ user = get_user(db_session, user_id=user_id)
 
 Then we should declare the path operation without `async def`, just with a normal `def`:
 
-```Python hl_lines="62"
+```Python hl_lines="63"
 {!./src/sql_databases/tutorial001.py!}
 ```
 

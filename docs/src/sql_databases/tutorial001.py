@@ -3,6 +3,7 @@ from sqlalchemy import Boolean, Column, Integer, String, create_engine
 from sqlalchemy.ext.declarative import declarative_base, declared_attr
 from sqlalchemy.orm import Session, sessionmaker
 from starlette.requests import Request
+from starlette.responses import Response
 
 # SQLAlchemy specific code, as with any other app
 SQLALCHEMY_DATABASE_URI = "sqlite:///./test.db"
@@ -66,7 +67,10 @@ def read_user(user_id: int, db: Session = Depends(get_db)):
 
 @app.middleware("http")
 async def db_session_middleware(request: Request, call_next):
-    request.state.db = SessionLocal()
-    response = await call_next(request)
-    request.state.db.close()
+    response = Response('', status_code=500)
+    try:
+        request.state.db = SessionLocal()
+        response = await call_next(request)
+    finally:
+        request.state.db.close()
     return response
