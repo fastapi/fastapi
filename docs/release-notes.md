@@ -1,5 +1,7 @@
 ## Next release
 
+* Fix duplicate dependency in `pyproject.toml`. PR <a href="https://github.com/tiangolo/fastapi/pull/128" target="_blank">#128</a> by <a href="https://github.com/zxalif" target="_blank">@zxalif</a>.
+
 ## 0.10.3
 
 * Add Gitter chat, badge, links, etc. <a href="https://gitter.im/tiangolo/fastapi" target="_blank">https://gitter.im/tiangolo/fastapi
