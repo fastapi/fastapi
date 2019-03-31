@@ -112,6 +112,13 @@ This middleware (just a function) will create a new SQLAlchemy `SessionLocal` fo
 {!./src/sql_databases/tutorial001.py!}
 ```
 
+!!! info
+    We put the creation of the `SessionLocal()` and handling of the requests in a `try` block.
+
+    And then we close it in the `finally` block.
+    
+    This way we make sure the database session is always closed after the request. Even if there was an exception in the middle.
+
 ### About `request.state`
 
 <a href="https://www.starlette.io/requests/#other-state" target="_blank">`request.state` is a property of each Starlette `Request` object</a>, it is there to store arbitrary objects attached to the request itself, like the database session in this case.
