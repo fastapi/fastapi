@@ -22,7 +22,7 @@ If you want to play with JWT tokens and see how they work, check <a href="https:
 
 ## Install `PyJWT`
 
-We need to install `PyJWT` to generate and verity the JWT tokens in Python:
+We need to install `PyJWT` to generate and verify the JWT tokens in Python:
 
 ```bash
 pip install pyjwt
