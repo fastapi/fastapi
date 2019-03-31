@@ -58,7 +58,6 @@ all = [
     "pyyaml",
     "graphene",
     "ujson",
-    "ujson",
     "email_validator",
     "uvicorn",
 ]
