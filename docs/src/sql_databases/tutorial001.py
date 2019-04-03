@@ -67,7 +67,7 @@ def read_user(user_id: int, db: Session = Depends(get_db)):
 
 @app.middleware("http")
 async def db_session_middleware(request: Request, call_next):
-    response = Response('', status_code=500)
+    response = Response("Internal server error", status_code=500)
     try:
         request.state.db = SessionLocal()
         response = await call_next(request)
