@@ -1,5 +1,7 @@
 ## Next release
 
+## 0.11.0
+
 * Add `auto_error` parameter to security utility functions. Allowing them to be optional. Also allowing to have multiple alternative security schemes that are then checked in a single dependency instead of each one verifying and returning the error to the client automatically when not satisfied. PR <a href="https://github.com/tiangolo/fastapi/pull/134" target="_blank">#134</a>.
 
 * Update <a href="https://fastapi.tiangolo.com/tutorial/sql-databases/#create-a-middleware-to-handle-sessions" target="_blank">SQL Tutorial</a> to close database sessions even when there are exceptions. PR <a href="https://github.com/tiangolo/fastapi/pull/89" target="_blank">#89</a> by <a href="https://github.com/alexiri" target="_blank">@alexiri</a>.
