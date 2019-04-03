@@ -113,32 +113,49 @@ class OAuth2PasswordRequestFormStrict(OAuth2PasswordRequestForm):
 
 class OAuth2(SecurityBase):
     def __init__(
-        self, *, flows: OAuthFlowsModel = OAuthFlowsModel(), scheme_name: str = None
+        self,
+        *,
+        flows: OAuthFlowsModel = OAuthFlowsModel(),
+        scheme_name: str = None,
+        auto_error: bool = True
     ):
         self.model = OAuth2Model(flows=flows)
         self.scheme_name = scheme_name or self.__class__.__name__
+        self.auto_error = auto_error
 
-    async def __call__(self, request: Request) -> str:
+    async def __call__(self, request: Request) -> Optional[str]:
         authorization: str = request.headers.get("Authorization")
         if not authorization:
-            raise HTTPException(
-                status_code=HTTP_403_FORBIDDEN, detail="Not authenticated"
-            )
+            if self.auto_error:
+                raise HTTPException(
+                    status_code=HTTP_403_FORBIDDEN, detail="Not authenticated"
+                )
+            else:
+                return None
         return authorization
 
 
 class OAuth2PasswordBearer(OAuth2):
-    def __init__(self, tokenUrl: str, scheme_name: str = None, scopes: dict = None):
+    def __init__(
+        self,
+        tokenUrl: str,
+        scheme_name: str = None,
+        scopes: dict = None,
+        auto_error: bool = True,
+    ):
         if not scopes:
             scopes = {}
         flows = OAuthFlowsModel(password={"tokenUrl": tokenUrl, "scopes": scopes})
-        super().__init__(flows=flows, scheme_name=scheme_name)
+        super().__init__(flows=flows, scheme_name=scheme_name, auto_error=auto_error)
 
-    async def __call__(self, request: Request) -> str:
+    async def __call__(self, request: Request) -> Optional[str]:
         authorization: str = request.headers.get("Authorization")
         scheme, param = get_authorization_scheme_param(authorization)
         if not authorization or scheme.lower() != "bearer":
-            raise HTTPException(
-                status_code=HTTP_403_FORBIDDEN, detail="Not authenticated"
-            )
+            if self.auto_error:
+                raise HTTPException(
+                    status_code=HTTP_403_FORBIDDEN, detail="Not authenticated"
+                )
+            else:
+                return None
         return param
