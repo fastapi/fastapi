@@ -1,5 +1,11 @@
 ## Next release
 
+* Add additional `responses` parameter to *path operation decorators* to extend responses in OpenAPI (and API docs).
+    * It also allows extending existing responses generated from `response_model`, declare other media types (like images), etc.
+    * The new documentation is here: <a href="https://fastapi.tiangolo.com/tutorial/additional-responses/" target="_blank">Additional Responses</a>.
+    * `responses` can also be added to `.include_router()`, the updated docs are here: <a href="https://fastapi.tiangolo.com/tutorial/bigger-applications/#add-some-custom-tags-and-responses" target="_blank">Bigger Applications</a>.
+    * PR <a href="https://github.com/tiangolo/fastapi/pull/97" target="_blank">#97</a> originally initiated by <a href="https://github.com/barsi" target="_blank">@barsi</a>.
+
 ## 0.11.0
 
 * Add `auto_error` parameter to security utility functions. Allowing them to be optional. Also allowing to have multiple alternative security schemes that are then checked in a single dependency instead of each one verifying and returning the error to the client automatically when not satisfied. PR <a href="https://github.com/tiangolo/fastapi/pull/134" target="_blank">#134</a>.
