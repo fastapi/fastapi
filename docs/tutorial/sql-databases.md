@@ -86,7 +86,7 @@ This object (class) is not a connection to the database yet, but once we create 
 
 We name it `SessionLocal` to distinguish it form the `Session` we are importing from SQLAlchemy.
 
-We will use `Session` to declare types later and getter better editor support and completion.
+We will use `Session` to declare types later and to get better editor support and completion.
 
 For now, create the `SessionLocal`:
 
