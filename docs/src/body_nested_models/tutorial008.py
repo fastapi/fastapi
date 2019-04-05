@@ -1,8 +1,7 @@
 from typing import List
 
 from fastapi import FastAPI
-from pydantic import BaseModel
-from pydantic.types import UrlStr
+from pydantic import BaseModel, UrlStr
 
 app = FastAPI()
 

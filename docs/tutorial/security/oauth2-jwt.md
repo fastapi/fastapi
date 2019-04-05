@@ -22,7 +22,7 @@ If you want to play with JWT tokens and see how they work, check <a href="https:
 
 ## Install `PyJWT`
 
-We need to install `PyJWT` to generate and verity the JWT tokens in Python:
+We need to install `PyJWT` to generate and verify the JWT tokens in Python:
 
 ```bash
 pip install pyjwt
@@ -198,7 +198,7 @@ Many packages that simplify it a lot have to make many compromises with the data
 
 **FastAPI** doesn't make any compromise with any database, data model or tool.
 
-It gives you all the flexibility to chose the ones that fit your project the best.
+It gives you all the flexibility to choose the ones that fit your project the best.
 
 And you can use directly many well maintained and widely used packages like `passlib` and `pyjwt`, because **FastAPI** doesn't require any complex mechanisms to integrate external packages.
 

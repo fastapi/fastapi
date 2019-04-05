@@ -120,7 +120,7 @@ To see all the options you have, checkout the docs for <a href="https://pydantic
 
 For example, as in the `Image` model we have a `url` field, we can declare it to be instead of a `str`, a Pydantic's `UrlStr`:
 
-```Python hl_lines="5 11"
+```Python hl_lines="4 10"
 {!./src/body_nested_models/tutorial005.py!}
 ```
 
@@ -130,7 +130,7 @@ The string will be checked to be a valid URL, and documented in JSON Schema / Op
 
 You can also use Pydantic models as subtypes of `list`, `set`, etc:
 
-```Python hl_lines="21"
+```Python hl_lines="20"
 {!./src/body_nested_models/tutorial006.py!}
 ```
 
@@ -167,7 +167,7 @@ This will expect (convert, validate, document, etc) a JSON body like:
 
 You can define arbitrarily deeply nested models:
 
-```Python hl_lines="10 15 21 24 28"
+```Python hl_lines="9 14 20 23 27"
 {!./src/body_nested_models/tutorial007.py!}
 ```
 
@@ -184,7 +184,7 @@ images: List[Image]
 
 as in:
 
-```Python hl_lines="16"
+```Python hl_lines="15"
 {!./src/body_nested_models/tutorial008.py!}
 ```
 
