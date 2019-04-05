@@ -6,6 +6,8 @@
     * `responses` can also be added to `.include_router()`, the updated docs are here: <a href="https://fastapi.tiangolo.com/tutorial/bigger-applications/#add-some-custom-tags-and-responses" target="_blank">Bigger Applications</a>.
     * PR <a href="https://github.com/tiangolo/fastapi/pull/97" target="_blank">#97</a> originally initiated by <a href="https://github.com/barsi" target="_blank">@barsi</a>.
 
+* Update `scripts/test-cov-html.sh` to allow passing extra parameters like `-vv`, for development.
+
 ## 0.11.0
 
 * Add `auto_error` parameter to security utility functions. Allowing them to be optional. Also allowing to have multiple alternative security schemes that are then checked in a single dependency instead of each one verifying and returning the error to the client automatically when not satisfied. PR <a href="https://github.com/tiangolo/fastapi/pull/134" target="_blank">#134</a>.
