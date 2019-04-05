@@ -1,5 +1,7 @@
 ## Next release
 
+* Fix typos in section about nested models and OAuth2 with JWT. PR <a href="https://github.com/tiangolo/fastapi/pull/127" target="_blank">#127</a> by <a href="https://github.com/mostaphaRoudsari" target="_blank">@mostaphaRoudsari</a>.
+
 ## 0.12.0
 
 * Add additional `responses` parameter to *path operation decorators* to extend responses in OpenAPI (and API docs).
