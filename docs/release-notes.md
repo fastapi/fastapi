@@ -1,6 +1,8 @@
 ## Next release
 
-* Fix typos in section about nested models and OAuth2 with JWT. PR <a href="https://github.com/tiangolo/fastapi/pull/127" target="_blank">#127</a> by <a href="https://github.com/mostaphaRoudsari" target="_blank">@mostaphaRoudsari</a>.
+* Fix typo in SQL tutorial. PR <a href="https://github.com/tiangolo/fastapi/pull/138" target="_blank">#138</a> by <a href="https://github.com/mostaphaRoudsari" target="_blank">@mostaphaRoudsari</a>.
+
+* Fix typos in section about nested models and OAuth2 with JWT. PR <a href="https://github.com/tiangolo/fastapi/pull/127" target="_blank">#127</a> by <a href="https://github.com/mmcloud" target="_blank">@mmcloud</a>.
 
 ## 0.12.0
 
