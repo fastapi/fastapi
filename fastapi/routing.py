@@ -285,11 +285,11 @@ class APIRouter(routing.Router):
             assert not prefix.endswith(
                 "/"
             ), "A path prefix must not end with '/', as the routes will start with '/'"
+        if responses is None:
+            responses = {}
         for route in router.routes:
             if isinstance(route, APIRoute):
-                if responses is None:
-                    responses = {}
-                responses = {**responses, **route.responses}
+                combined_responses = {**responses, **route.responses}
                 self.add_api_route(
                     prefix + route.path,
                     route.endpoint,
@@ -299,7 +299,7 @@ class APIRouter(routing.Router):
                     summary=route.summary,
                     description=route.description,
                     response_description=route.response_description,
-                    responses=responses,
+                    responses=combined_responses,
                     deprecated=route.deprecated,
                     methods=route.methods,
                     operation_id=route.operation_id,
