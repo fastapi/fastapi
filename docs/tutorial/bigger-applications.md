@@ -103,7 +103,17 @@ But let's say that this time we are more lazy.
 
 And we don't want to have to explicitly type `/items/` and `tags=["items"]` in every *path operation* (we will be able to do it later):
 
-```Python hl_lines="6 11 16"
+```Python hl_lines="6 11"
+{!./src/bigger_applications/app/routers/items.py!}
+```
+
+### Add some custom `tags` and `responses`
+
+We are not adding the prefix `/items/` nor the `tags=["items"]` to add them later.
+
+But we can add custom `tags` and `responses` that will be applied to a specific *path operation*:
+
+```Python hl_lines="18 19"
 {!./src/bigger_applications/app/routers/items.py!}
 ```
 
@@ -192,7 +202,7 @@ So, to be able to use both of them in the same file, we import the submodules di
 
 Now, let's include the `router` from the submodule `users`:
 
-```Python hl_lines="8"
+```Python hl_lines="7"
 {!./src/bigger_applications/app/main.py!}
 ```
 
@@ -217,7 +227,7 @@ It will include all the routes from that router as part of it.
     So it won't affect performance.
 
 
-### Include an `APIRouter` with a prefix
+### Include an `APIRouter` with a `prefix`, `tags`, and `responses`
 
 Now, let's include the router form the `items` submodule.
 
@@ -237,9 +247,11 @@ async def read_item(item_id: str):
 
 So, the prefix in this case would be `/items`.
 
-And we can also add a list of `tags` that will be applied to all the *path operations* included in this router:
+We can also add a list of `tags` that will be applied to all the *path operations* included in this router.
 
-```Python hl_lines="9"
+And we can add predefined `responses` that will be included in all the *path operations* too.
+
+```Python hl_lines="8 9 10 11 12 13"
 {!./src/bigger_applications/app/main.py!}
 ```
 
@@ -250,12 +262,18 @@ The end result is that the item paths are now:
 
 ...as we intended.
 
-And they are marked with a list of tags that contain a single string `"items"`.
+They will be marked with a list of tags that contain a single string `"items"`.
+
+The *path operation* that declared a `"custom"` tag will have both tags, `items` and `custom`.
 
 These "tags" are especially useful for the automatic interactive documentation systems (using OpenAPI).
 
+And all of them will include the the predefined `responses`.
+
+The *path operation* that declared a custom `403` response will have both the predefined responses (`404`) and the `403` declared in it directly.
+
 !!! check
-    The `prefix` and `tags` parameters are (as in many other cases) just a feature from **FastAPI** to help you avoid code duplication.
+    The `prefix`, `tags`, and `responses` parameters are (as in many other cases) just a feature from **FastAPI** to help you avoid code duplication.
 
 
 !!! tip

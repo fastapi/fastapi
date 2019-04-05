@@ -5,4 +5,9 @@ from .routers import items, users
 app = FastAPI()
 
 app.include_router(users.router)
-app.include_router(items.router, prefix="/items", tags=["items"])
+app.include_router(
+    items.router,
+    prefix="/items",
+    tags=["items"],
+    responses={404: {"description": "Not found"}},
+)

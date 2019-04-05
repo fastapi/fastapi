@@ -44,6 +44,7 @@ nav:
         - Path Operation Configuration: 'tutorial/path-operation-configuration.md'
         - Path Operation Advanced Configuration: 'tutorial/path-operation-advanced-configuration.md'
         - Custom Response: 'tutorial/custom-response.md'
+        - Additional Responses: 'tutorial/additional-responses.md'
         - Dependencies:
             - First Steps: 'tutorial/dependencies/first-steps.md'
             - Classes as Dependencies: 'tutorial/dependencies/classes-as-dependencies.md'

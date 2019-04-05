@@ -1,7 +1,7 @@
 import asyncio
 import inspect
 import logging
-from typing import Any, Callable, List, Optional, Type
+from typing import Any, Callable, Dict, List, Optional, Type, Union
 
 from fastapi import params
 from fastapi.dependencies.models import Dependant
@@ -110,6 +110,7 @@ class APIRoute(routing.Route):
         summary: str = None,
         description: str = None,
         response_description: str = "Successful Response",
+        responses: Dict[Union[int, str], Dict[str, Any]] = None,
         deprecated: bool = None,
         name: str = None,
         methods: List[str] = None,
@@ -143,6 +144,30 @@ class APIRoute(routing.Route):
         self.summary = summary
         self.description = description or self.endpoint.__doc__
         self.response_description = response_description
+        self.responses = responses or {}
+        response_fields = {}
+        for additional_status_code, response in self.responses.items():
+            assert isinstance(response, dict), "An additional response must be a dict"
+            model = response.get("model")
+            if model:
+                assert lenient_issubclass(
+                    model, BaseModel
+                ), "A response model must be a Pydantic model"
+                response_name = f"Response_{additional_status_code}_{self.name}"
+                response_field = Field(
+                    name=response_name,
+                    type_=model,
+                    class_validators=None,
+                    default=None,
+                    required=False,
+                    model_config=UnconstrainedConfig,
+                    schema=Schema(None),
+                )
+                response_fields[additional_status_code] = response_field
+        if response_fields:
+            self.response_fields: Dict[Union[int, str], Field] = response_fields
+        else:
+            self.response_fields = {}
         self.deprecated = deprecated
         if methods is None:
             methods = ["GET"]
@@ -180,6 +205,7 @@ class APIRouter(routing.Router):
         summary: str = None,
         description: str = None,
         response_description: str = "Successful Response",
+        responses: Dict[Union[int, str], Dict[str, Any]] = None,
         deprecated: bool = None,
         methods: List[str] = None,
         operation_id: str = None,
@@ -196,6 +222,7 @@ class APIRouter(routing.Router):
             summary=summary,
             description=description,
             response_description=response_description,
+            responses=responses or {},
             deprecated=deprecated,
             methods=methods,
             operation_id=operation_id,
@@ -215,6 +242,7 @@ class APIRouter(routing.Router):
         summary: str = None,
         description: str = None,
         response_description: str = "Successful Response",
+        responses: Dict[Union[int, str], Dict[str, Any]] = None,
         deprecated: bool = None,
         methods: List[str] = None,
         operation_id: str = None,
@@ -232,6 +260,7 @@ class APIRouter(routing.Router):
                 summary=summary,
                 description=description,
                 response_description=response_description,
+                responses=responses or {},
                 deprecated=deprecated,
                 methods=methods,
                 operation_id=operation_id,
@@ -244,7 +273,12 @@ class APIRouter(routing.Router):
         return decorator
 
     def include_router(
-        self, router: "APIRouter", *, prefix: str = "", tags: List[str] = None
+        self,
+        router: "APIRouter",
+        *,
+        prefix: str = "",
+        tags: List[str] = None,
+        responses: Dict[Union[int, str], Dict[str, Any]] = None,
     ) -> None:
         if prefix:
             assert prefix.startswith("/"), "A path prefix must start with '/'"
@@ -253,6 +287,9 @@ class APIRouter(routing.Router):
             ), "A path prefix must not end with '/', as the routes will start with '/'"
         for route in router.routes:
             if isinstance(route, APIRoute):
+                if responses is None:
+                    responses = {}
+                responses = {**responses, **route.responses}
                 self.add_api_route(
                     prefix + route.path,
                     route.endpoint,
@@ -262,6 +299,7 @@ class APIRouter(routing.Router):
                     summary=route.summary,
                     description=route.description,
                     response_description=route.response_description,
+                    responses=responses,
                     deprecated=route.deprecated,
                     methods=route.methods,
                     operation_id=route.operation_id,
@@ -292,6 +330,7 @@ class APIRouter(routing.Router):
         summary: str = None,
         description: str = None,
         response_description: str = "Successful Response",
+        responses: Dict[Union[int, str], Dict[str, Any]] = None,
         deprecated: bool = None,
         operation_id: str = None,
         include_in_schema: bool = True,
@@ -306,6 +345,7 @@ class APIRouter(routing.Router):
             summary=summary,
             description=description,
             response_description=response_description,
+            responses=responses or {},
             deprecated=deprecated,
             methods=["GET"],
             operation_id=operation_id,
@@ -324,6 +364,7 @@ class APIRouter(routing.Router):
         summary: str = None,
         description: str = None,
         response_description: str = "Successful Response",
+        responses: Dict[Union[int, str], Dict[str, Any]] = None,
         deprecated: bool = None,
         operation_id: str = None,
         include_in_schema: bool = True,
@@ -338,6 +379,7 @@ class APIRouter(routing.Router):
             summary=summary,
             description=description,
             response_description=response_description,
+            responses=responses or {},
             deprecated=deprecated,
             methods=["PUT"],
             operation_id=operation_id,
@@ -356,6 +398,7 @@ class APIRouter(routing.Router):
         summary: str = None,
         description: str = None,
         response_description: str = "Successful Response",
+        responses: Dict[Union[int, str], Dict[str, Any]] = None,
         deprecated: bool = None,
         operation_id: str = None,
         include_in_schema: bool = True,
@@ -370,6 +413,7 @@ class APIRouter(routing.Router):
             summary=summary,
             description=description,
             response_description=response_description,
+            responses=responses or {},
             deprecated=deprecated,
             methods=["POST"],
             operation_id=operation_id,
@@ -388,6 +432,7 @@ class APIRouter(routing.Router):
         summary: str = None,
         description: str = None,
         response_description: str = "Successful Response",
+        responses: Dict[Union[int, str], Dict[str, Any]] = None,
         deprecated: bool = None,
         operation_id: str = None,
         include_in_schema: bool = True,
@@ -402,6 +447,7 @@ class APIRouter(routing.Router):
             summary=summary,
             description=description,
             response_description=response_description,
+            responses=responses or {},
             deprecated=deprecated,
             methods=["DELETE"],
             operation_id=operation_id,
@@ -420,6 +466,7 @@ class APIRouter(routing.Router):
         summary: str = None,
         description: str = None,
         response_description: str = "Successful Response",
+        responses: Dict[Union[int, str], Dict[str, Any]] = None,
         deprecated: bool = None,
         operation_id: str = None,
         include_in_schema: bool = True,
@@ -434,6 +481,7 @@ class APIRouter(routing.Router):
             summary=summary,
             description=description,
             response_description=response_description,
+            responses=responses or {},
             deprecated=deprecated,
             methods=["OPTIONS"],
             operation_id=operation_id,
@@ -452,6 +500,7 @@ class APIRouter(routing.Router):
         summary: str = None,
         description: str = None,
         response_description: str = "Successful Response",
+        responses: Dict[Union[int, str], Dict[str, Any]] = None,
         deprecated: bool = None,
         operation_id: str = None,
         include_in_schema: bool = True,
@@ -466,6 +515,7 @@ class APIRouter(routing.Router):
             summary=summary,
             description=description,
             response_description=response_description,
+            responses=responses or {},
             deprecated=deprecated,
             methods=["HEAD"],
             operation_id=operation_id,
@@ -484,6 +534,7 @@ class APIRouter(routing.Router):
         summary: str = None,
         description: str = None,
         response_description: str = "Successful Response",
+        responses: Dict[Union[int, str], Dict[str, Any]] = None,
         deprecated: bool = None,
         operation_id: str = None,
         include_in_schema: bool = True,
@@ -498,6 +549,7 @@ class APIRouter(routing.Router):
             summary=summary,
             description=description,
             response_description=response_description,
+            responses=responses or {},
             deprecated=deprecated,
             methods=["PATCH"],
             operation_id=operation_id,
@@ -516,6 +568,7 @@ class APIRouter(routing.Router):
         summary: str = None,
         description: str = None,
         response_description: str = "Successful Response",
+        responses: Dict[Union[int, str], Dict[str, Any]] = None,
         deprecated: bool = None,
         operation_id: str = None,
         include_in_schema: bool = True,
@@ -530,6 +583,7 @@ class APIRouter(routing.Router):
             summary=summary,
             description=description,
             response_description=response_description,
+            responses=responses or {},
             deprecated=deprecated,
             methods=["TRACE"],
             operation_id=operation_id,
