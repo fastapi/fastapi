@@ -1,5 +1,7 @@
 ## Next release
 
+## 0.12.0
+
 * Add additional `responses` parameter to *path operation decorators* to extend responses in OpenAPI (and API docs).
     * It also allows extending existing responses generated from `response_model`, declare other media types (like images), etc.
     * The new documentation is here: <a href="https://fastapi.tiangolo.com/tutorial/additional-responses/" target="_blank">Additional Responses</a>.
