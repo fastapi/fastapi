@@ -178,6 +178,23 @@ def get_openapi_path(
                         definitions[
                             "HTTPValidationError"
                         ] = validation_error_response_definition
+            if route.responses:
+                for (additional_status_code, response) in route.responses.items():
+                    assert isinstance(
+                        response, dict
+                    ), "An additional response must be a dict"
+                    field = route.response_fields.get(additional_status_code)
+                    if field:
+                        response_schema, _ = field_schema(
+                            field, model_name_map=model_name_map, ref_prefix=REF_PREFIX
+                        )
+                        response.setdefault("content", {}).setdefault(
+                            "application/json", {}
+                        )["schema"] = response_schema
+                    response.setdefault("description", "Additional Response")
+                    operation.setdefault("responses", {})[
+                        str(additional_status_code)
+                    ] = response
             status_code = str(route.status_code)
             response_schema = {"type": "string"}
             if lenient_issubclass(route.content_type, JSONResponse):
@@ -189,13 +206,14 @@ def get_openapi_path(
                     )
                 else:
                     response_schema = {}
-            content = {route.content_type.media_type: {"schema": response_schema}}
-            operation["responses"] = {
-                status_code: {
-                    "description": route.response_description,
-                    "content": content,
-                }
-            }
+            operation.setdefault("responses", {}).setdefault(status_code, {})[
+                "description"
+            ] = route.response_description
+            operation.setdefault("responses", {}).setdefault(
+                status_code, {}
+            ).setdefault("content", {}).setdefault(route.content_type.media_type, {})[
+                "schema"
+            ] = response_schema
             if all_route_params or route.body_field:
                 operation["responses"][str(HTTP_422_UNPROCESSABLE_ENTITY)] = {
                     "description": "Validation Error",
@@ -204,24 +222,6 @@ def get_openapi_path(
                             "schema": {"$ref": REF_PREFIX + "HTTPValidationError"}
                         }
                     },
-                }
-            for add_response_code, add_response in route.additional_responses.items():
-                add_response_schema: Dict[str, Any] = {}
-                if (
-                    add_response.content_type or route.content_type.media_type
-                ) == "application/json" and add_response.schema_field is not None:
-                    add_response_schema, _ = field_schema(
-                        add_response.schema_field,
-                        model_name_map=model_name_map,
-                        ref_prefix=REF_PREFIX,
-                    )
-                add_content = {
-                    add_response.content_type
-                    or route.content_type.media_type: {"schema": add_response_schema}
-                }
-                operation["responses"][str(add_response_code)] = {
-                    "description": add_response.description,
-                    "content": add_content,
                 }
             path[method.lower()] = operation
     return path, security_schemes, definitions

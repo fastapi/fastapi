@@ -69,10 +69,11 @@ openapi_schema = {
         "/items/": {
             "get": {
                 "responses": {
+                    "404": {"description": "Not found"},
                     "200": {
                         "description": "Successful Response",
                         "content": {"application/json": {"schema": {}}},
-                    }
+                    },
                 },
                 "tags": ["items"],
                 "summary": "Read Items Get",
@@ -82,6 +83,7 @@ openapi_schema = {
         "/items/{item_id}": {
             "get": {
                 "responses": {
+                    "404": {"description": "Not found"},
                     "200": {
                         "description": "Successful Response",
                         "content": {"application/json": {"schema": {}}},
@@ -108,7 +110,38 @@ openapi_schema = {
                         "in": "path",
                     }
                 ],
-            }
+            },
+            "put": {
+                "responses": {
+                    "404": {"description": "Not found"},
+                    "403": {"description": "Operation forbidden"},
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {"application/json": {"schema": {}}},
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        },
+                    },
+                },
+                "tags": ["custom", "items"],
+                "summary": "Update Item Put",
+                "operationId": "update_item_items__item_id__put",
+                "parameters": [
+                    {
+                        "required": True,
+                        "schema": {"title": "Item_Id", "type": "string"},
+                        "name": "item_id",
+                        "in": "path",
+                    }
+                ],
+            },
         },
     },
     "components": {
@@ -158,3 +191,15 @@ def test_get_path(path, expected_status, expected_response):
     response = client.get(path)
     assert response.status_code == expected_status
     assert response.json() == expected_response
+
+
+def test_put():
+    response = client.put("/items/foo")
+    assert response.status_code == 200
+    assert response.json() == {"item_id": "foo", "name": "The Fighters"}
+
+
+def test_put_forbidden():
+    response = client.put("/items/bar")
+    assert response.status_code == 403
+    assert response.json() == {"detail": "You can only update the item: foo"}
