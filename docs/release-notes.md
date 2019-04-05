@@ -1,5 +1,7 @@
 ## Next release
 
+## 0.12.1
+
 * Fix bug: handling additional `responses` in `APIRouter.include_router()`. PR <a href="https://github.com/tiangolo/fastapi/pull/140" target="_blank">#140</a>.
 
 * Fix typo in SQL tutorial. PR <a href="https://github.com/tiangolo/fastapi/pull/138" target="_blank">#138</a> by <a href="https://github.com/mostaphaRoudsari" target="_blank">@mostaphaRoudsari</a>.
