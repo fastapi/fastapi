@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import List, Optional
 
 from fastapi.openapi.models import OAuth2 as OAuth2Model, OAuthFlows as OAuthFlowsModel
 from fastapi.params import Form
@@ -159,3 +159,8 @@ class OAuth2PasswordBearer(OAuth2):
             else:
                 return None
         return param
+
+
+class SecurityScopes:
+    def __init__(self, scopes: List[str] = None):
+        self.scopes = scopes or []
