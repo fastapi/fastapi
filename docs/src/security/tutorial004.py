@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta
 
 import jwt
-from fastapi import Depends, FastAPI, HTTPException, Security
+from fastapi import Depends, FastAPI, HTTPException
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from jwt import PyJWTError
 from passlib.context import CryptContext
@@ -12,7 +12,6 @@ from starlette.status import HTTP_403_FORBIDDEN
 # openssl rand -hex 32
 SECRET_KEY = "09d25e094faa6ca2556c818166b7a9563b93f7099f6f0f4caa6cf63b88e8d3e7"
 ALGORITHM = "HS256"
-TOKEN_SUBJECT = "access"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
 
@@ -32,7 +31,7 @@ class Token(BaseModel):
     token_type: str
 
 
-class TokenPayload(BaseModel):
+class TokenData(BaseModel):
     username: str = None
 
 
@@ -83,20 +82,29 @@ def create_access_token(*, data: dict, expires_delta: timedelta = None):
         expire = datetime.utcnow() + expires_delta
     else:
         expire = datetime.utcnow() + timedelta(minutes=15)
-    to_encode.update({"exp": expire, "sub": TOKEN_SUBJECT})
+    to_encode.update({"exp": expire})
     encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
     return encoded_jwt
 
 
-async def get_current_user(token: str = Security(oauth2_scheme)):
+async def get_current_user(token: str = Depends(oauth2_scheme)):
+    credentials_exception = HTTPException(
+        status_code=HTTP_403_FORBIDDEN, detail="Could not validate credentials"
+    )
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-        token_data = TokenPayload(**payload)
+        subject: str = payload.get("sub")
+        if subject is None:
+            raise credentials_exception
+        prefix, separator, username = subject.partition(":")
+        if not username:
+            raise credentials_exception
+        token_data = TokenData(username=username)
     except PyJWTError:
-        raise HTTPException(
-            status_code=HTTP_403_FORBIDDEN, detail="Could not validate credentials"
-        )
+        raise credentials_exception
     user = get_user(fake_users_db, username=token_data.username)
+    if user is None:
+        raise credentials_exception
     return user
 
 
@@ -110,10 +118,11 @@ async def get_current_active_user(current_user: User = Depends(get_current_user)
 async def route_login_access_token(form_data: OAuth2PasswordRequestForm = Depends()):
     user = authenticate_user(fake_users_db, form_data.username, form_data.password)
     if not user:
-        raise HTTPException(status_code=400, detail="Incorrect email or password")
+        raise HTTPException(status_code=400, detail="Incorrect username or password")
     access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
+    subject = "username:" + form_data.username
     access_token = create_access_token(
-        data={"username": form_data.username}, expires_delta=access_token_expires
+        data={"sub": subject}, expires_delta=access_token_expires
     )
     return {"access_token": access_token, "token_type": "bearer"}
 
