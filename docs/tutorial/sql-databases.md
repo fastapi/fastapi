@@ -54,7 +54,7 @@ SQLALCHEMY_DATABASE_URI = "postgresql://user:password@postgresserver/db"
 ...and adapt it with your database data and credentials (equivalently for MySQL, MariaDB or any other).
 
 !!! tip
-    
+
     This is the main line that you would have to modify if you wanted to use a different database.
 
 ## Create the SQLAlchemy `engine`
@@ -76,7 +76,7 @@ connect_args={"check_same_thread": False}
 !!! info "Technical Details"
 
     That argument `check_same_thread` is there mainly to be able to run the tests that cover this example.
-    
+
 
 ## Create a `SessionLocal` class
 
@@ -116,7 +116,7 @@ This middleware (just a function) will create a new SQLAlchemy `SessionLocal` fo
     We put the creation of the `SessionLocal()` and handling of the requests in a `try` block.
 
     And then we close it in the `finally` block.
-    
+
     This way we make sure the database session is always closed after the request. Even if there was an exception in the middle.
 
 ### About `request.state`
@@ -139,7 +139,7 @@ This will then give us better editor support inside the path operation function,
 
 !!! info "Technical Details"
     The parameter `db` is actually of type `SessionLocal`, but this class (created with `sessionmaker()`) is a "proxy" of a SQLAlchemy `Session`, so, the editor doesn't really know what methods are provided.
-    
+
     But by declaring the type as `Session`, the editor now can know the available methods (`.add()`, `.query()`, `.commit()`, etc) and can provide better support (like completion). The type declaration doesn't affect the actual object.
 
 ## Create a `CustomBase` model
@@ -232,7 +232,7 @@ Having this 3-step process (middleware, dependency, path operation) in this simp
 
 ## Create the path operation function
 
-Here we are using SQLAlchemy code inside of the path operation function, and in turn it will go and communicate with an external database. 
+Here we are using SQLAlchemy code inside of the path operation function, and in turn it will go and communicate with an external database.
 
 That could potentially require some "waiting".
 
