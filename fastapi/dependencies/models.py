@@ -28,7 +28,7 @@ class Dependant:
         request_param_name: str = None,
         background_tasks_param_name: str = None,
         security_scopes_param_name: str = None,
-        security_scopes: Sequence[str] = None,
+        security_scopes: List[str] = None,
     ) -> None:
         self.path_params = path_params or []
         self.query_params = query_params or []
