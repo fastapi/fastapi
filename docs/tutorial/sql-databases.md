@@ -133,7 +133,7 @@ And when using the dependency in a path operation function, we declare it with t
 
 This will then give us better editor support inside the path operation function, because the editor will know that the `db` parameter is of type `Session`.
 
-```Python hl_lines="54 55 69"
+```Python hl_lines="53 54 63"
 {!./src/sql_databases/tutorial001.py!}
 ```
 
