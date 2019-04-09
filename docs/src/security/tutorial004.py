@@ -93,11 +93,8 @@ async def get_current_user(token: str = Depends(oauth2_scheme)):
     )
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-        subject: str = payload.get("sub")
-        if subject is None:
-            raise credentials_exception
-        prefix, separator, username = subject.partition(":")
-        if not username:
+        username: str = payload.get("sub")
+        if username is None:
             raise credentials_exception
         token_data = TokenData(username=username)
     except PyJWTError:
@@ -120,14 +117,13 @@ async def route_login_access_token(form_data: OAuth2PasswordRequestForm = Depend
     if not user:
         raise HTTPException(status_code=400, detail="Incorrect username or password")
     access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
-    subject = "username:" + form_data.username
     access_token = create_access_token(
-        data={"sub": subject}, expires_delta=access_token_expires
+        data={"sub": user.username}, expires_delta=access_token_expires
     )
     return {"access_token": access_token, "token_type": "bearer"}
 
 
-@app.get("/users/me", response_model=User)
+@app.get("/users/me/", response_model=User)
 async def read_users_me(current_user: User = Depends(get_current_active_user)):
     return current_user
 

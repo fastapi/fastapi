@@ -103,17 +103,16 @@ def create_access_token(*, data: dict, expires_delta: timedelta = None):
     return encoded_jwt
 
 
-async def get_current_user(scopes: SecurityScopes, token: str = Depends(oauth2_scheme)):
+async def get_current_user(
+    security_scopes: SecurityScopes, token: str = Depends(oauth2_scheme)
+):
     credentials_exception = HTTPException(
         status_code=HTTP_403_FORBIDDEN, detail="Could not validate credentials"
     )
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-        subject: str = payload.get("sub")
-        if subject is None:
-            raise credentials_exception
-        prefix, separator, username = subject.partition(":")
-        if not username:
+        username: str = payload.get("sub")
+        if username is None:
             raise credentials_exception
         token_scopes = payload.get("scopes", [])
         token_data = TokenData(scopes=token_scopes, username=username)
@@ -122,7 +121,7 @@ async def get_current_user(scopes: SecurityScopes, token: str = Depends(oauth2_s
     user = get_user(fake_users_db, username=token_data.username)
     if user is None:
         raise credentials_exception
-    for scope in scopes.scopes:
+    for scope in security_scopes.scopes:
         if scope not in token_data.scopes:
             raise HTTPException(
                 status_code=HTTP_403_FORBIDDEN, detail="Not enough permissions"
@@ -144,15 +143,14 @@ async def route_login_access_token(form_data: OAuth2PasswordRequestForm = Depend
     if not user:
         raise HTTPException(status_code=400, detail="Incorrect username or password")
     access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
-    subject = "username:" + form_data.username
     access_token = create_access_token(
-        data={"sub": subject, "scopes": form_data.scopes},
+        data={"sub": user.username, "scopes": form_data.scopes},
         expires_delta=access_token_expires,
     )
     return {"access_token": access_token, "token_type": "bearer"}
 
 
-@app.get("/users/me", response_model=User)
+@app.get("/users/me/", response_model=User)
 async def read_users_me(current_user: User = Depends(get_current_active_user)):
     return current_user
 

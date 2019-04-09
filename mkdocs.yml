@@ -56,6 +56,7 @@ nav:
             - Get Current User: 'tutorial/security/get-current-user.md'
             - Simple OAuth2 with Password and Bearer: 'tutorial/security/simple-oauth2.md'
             - OAuth2 with Password (and hashing), Bearer with JWT tokens: 'tutorial/security/oauth2-jwt.md'
+            - OAuth2 scopes: 'tutorial/security/oauth2-scopes.md'
         - Using the Request Directly: 'tutorial/using-request-directly.md'    
         - SQL (Relational) Databases: 'tutorial/sql-databases.md'
         - Async SQL (Relational) Databases: 'tutorial/async-sql-databases.md'

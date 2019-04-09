@@ -50,7 +50,7 @@ openapi_schema = {
                 },
             }
         },
-        "/users/me": {
+        "/users/me/": {
             "get": {
                 "responses": {
                     "200": {
@@ -63,7 +63,7 @@ openapi_schema = {
                     }
                 },
                 "summary": "Read Users Me Get",
-                "operationId": "read_users_me_users_me_get",
+                "operationId": "read_users_me_users_me__get",
                 "security": [{"OAuth2PasswordBearer": ["me"]}],
             }
         },
@@ -83,15 +83,6 @@ openapi_schema = {
     },
     "components": {
         "schemas": {
-            "Token": {
-                "title": "Token",
-                "required": ["access_token", "token_type"],
-                "type": "object",
-                "properties": {
-                    "access_token": {"title": "Access_Token", "type": "string"},
-                    "token_type": {"title": "Token_Type", "type": "string"},
-                },
-            },
             "Body_route_login_access_token": {
                 "title": "Body_route_login_access_token",
                 "required": ["username", "password"],
@@ -107,6 +98,15 @@ openapi_schema = {
                     "scope": {"title": "Scope", "type": "string", "default": ""},
                     "client_id": {"title": "Client_Id", "type": "string"},
                     "client_secret": {"title": "Client_Secret", "type": "string"},
+                },
+            },
+            "Token": {
+                "title": "Token",
+                "required": ["access_token", "token_type"],
+                "type": "object",
+                "properties": {
+                    "access_token": {"title": "Access_Token", "type": "string"},
+                    "token_type": {"title": "Token_Type", "type": "string"},
                 },
             },
             "User": {
