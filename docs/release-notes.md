@@ -1,5 +1,7 @@
 ## Next release
 
+## 0.13.0
+
 * Improve/upgrade OAuth2 scopes support with `SecurityScopes`:
     * `SecurityScopes` can be declared as a parameter like `Request`, to get the scopes of all super-dependencies/dependants.
     * Improve `Security` handling, merging scopes when declaring `SecurityScopes`.
