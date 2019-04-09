@@ -27,6 +27,8 @@ class Dependant:
         call: Callable = None,
         request_param_name: str = None,
         background_tasks_param_name: str = None,
+        security_scopes_param_name: str = None,
+        security_scopes: List[str] = None,
     ) -> None:
         self.path_params = path_params or []
         self.query_params = query_params or []
@@ -37,5 +39,7 @@ class Dependant:
         self.security_requirements = security_schemes or []
         self.request_param_name = request_param_name
         self.background_tasks_param_name = background_tasks_param_name
+        self.security_scopes = security_scopes
+        self.security_scopes_param_name = security_scopes_param_name
         self.name = name
         self.call = call

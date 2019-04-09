@@ -1,11 +1,16 @@
 from datetime import datetime, timedelta
+from typing import List
 
 import jwt
-from fastapi import Depends, FastAPI, HTTPException
-from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
+from fastapi import Depends, FastAPI, HTTPException, Security
+from fastapi.security import (
+    OAuth2PasswordBearer,
+    OAuth2PasswordRequestForm,
+    SecurityScopes,
+)
 from jwt import PyJWTError
 from passlib.context import CryptContext
-from pydantic import BaseModel
+from pydantic import BaseModel, ValidationError
 from starlette.status import HTTP_403_FORBIDDEN
 
 # to get a string like this run:
@@ -22,7 +27,14 @@ fake_users_db = {
         "email": "johndoe@example.com",
         "hashed_password": "$2b$12$EixZaYVK1fsbw1ZfbX3OXePaWxn96p36WQoeG6Lruj3vjPGga31lW",
         "disabled": False,
-    }
+    },
+    "alice": {
+        "username": "alice",
+        "full_name": "Alice Chains",
+        "email": "alicechains@example.com",
+        "hashed_password": "$2b$12$gSvqqUPvlXP2tfVFaWK1Be7DlH.PKZbv5H8KnzzVgXXbVxpva.pFm",
+        "disabled": True,
+    },
 }
 
 
@@ -33,6 +45,7 @@ class Token(BaseModel):
 
 class TokenData(BaseModel):
     username: str = None
+    scopes: List[str] = []
 
 
 class User(BaseModel):
@@ -48,7 +61,10 @@ class UserInDB(User):
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/token")
+oauth2_scheme = OAuth2PasswordBearer(
+    tokenUrl="/token",
+    scopes={"me": "Read information about the current user.", "items": "Read items."},
+)
 
 app = FastAPI()
 
@@ -87,7 +103,9 @@ def create_access_token(*, data: dict, expires_delta: timedelta = None):
     return encoded_jwt
 
 
-async def get_current_user(token: str = Depends(oauth2_scheme)):
+async def get_current_user(
+    security_scopes: SecurityScopes, token: str = Depends(oauth2_scheme)
+):
     credentials_exception = HTTPException(
         status_code=HTTP_403_FORBIDDEN, detail="Could not validate credentials"
     )
@@ -96,16 +114,24 @@ async def get_current_user(token: str = Depends(oauth2_scheme)):
         username: str = payload.get("sub")
         if username is None:
             raise credentials_exception
-        token_data = TokenData(username=username)
-    except PyJWTError:
+        token_scopes = payload.get("scopes", [])
+        token_data = TokenData(scopes=token_scopes, username=username)
+    except (PyJWTError, ValidationError):
         raise credentials_exception
     user = get_user(fake_users_db, username=token_data.username)
     if user is None:
         raise credentials_exception
+    for scope in security_scopes.scopes:
+        if scope not in token_data.scopes:
+            raise HTTPException(
+                status_code=HTTP_403_FORBIDDEN, detail="Not enough permissions"
+            )
     return user
 
 
-async def get_current_active_user(current_user: User = Depends(get_current_user)):
+async def get_current_active_user(
+    current_user: User = Security(get_current_user, scopes=["me"])
+):
     if current_user.disabled:
         raise HTTPException(status_code=400, detail="Inactive user")
     return current_user
@@ -118,7 +144,8 @@ async def route_login_access_token(form_data: OAuth2PasswordRequestForm = Depend
         raise HTTPException(status_code=400, detail="Incorrect username or password")
     access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
     access_token = create_access_token(
-        data={"sub": user.username}, expires_delta=access_token_expires
+        data={"sub": user.username, "scopes": form_data.scopes},
+        expires_delta=access_token_expires,
     )
     return {"access_token": access_token, "token_type": "bearer"}
 
@@ -129,5 +156,7 @@ async def read_users_me(current_user: User = Depends(get_current_active_user)):
 
 
 @app.get("/users/me/items/")
-async def read_own_items(current_user: User = Depends(get_current_active_user)):
+async def read_own_items(
+    current_user: User = Security(get_current_active_user, scopes=["items"])
+):
     return [{"item_id": "Foo", "owner": current_user.username}]

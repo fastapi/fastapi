@@ -20,6 +20,8 @@ from uuid import UUID
 from fastapi import params
 from fastapi.dependencies.models import Dependant, SecurityRequirement
 from fastapi.security.base import SecurityBase
+from fastapi.security.oauth2 import OAuth2, SecurityScopes
+from fastapi.security.open_id_connect_url import OpenIdConnect
 from fastapi.utils import UnconstrainedConfig, get_path_param_names
 from pydantic import Schema, create_model
 from pydantic.error_wrappers import ErrorWrapper
@@ -46,18 +48,32 @@ param_supported_types = (
 )
 
 
-def get_sub_dependant(*, param: inspect.Parameter, path: str) -> Dependant:
+def get_sub_dependant(
+    *, param: inspect.Parameter, path: str, security_scopes: List[str] = None
+) -> Dependant:
     depends: params.Depends = param.default
     if depends.dependency:
         dependency = depends.dependency
     else:
         dependency = param.annotation
-    sub_dependant = get_dependant(path=path, call=dependency, name=param.name)
-    if isinstance(depends, params.Security) and isinstance(dependency, SecurityBase):
+    security_requirement = None
+    security_scopes = security_scopes or []
+    if isinstance(depends, params.Security):
+        dependency_scopes = depends.scopes
+        security_scopes.extend(dependency_scopes)
+    if isinstance(dependency, SecurityBase):
+        use_scopes = []
+        if isinstance(dependency, (OAuth2, OpenIdConnect)):
+            use_scopes = security_scopes
         security_requirement = SecurityRequirement(
-            security_scheme=dependency, scopes=depends.scopes
+            security_scheme=dependency, scopes=use_scopes
         )
+    sub_dependant = get_dependant(
+        path=path, call=dependency, name=param.name, security_scopes=security_scopes
+    )
+    if security_requirement:
         sub_dependant.security_requirements.append(security_requirement)
+    sub_dependant.security_scopes = security_scopes
     return sub_dependant
 
 
@@ -81,7 +97,9 @@ def get_flat_dependant(dependant: Dependant) -> Dependant:
     return flat_dependant
 
 
-def get_dependant(*, path: str, call: Callable, name: str = None) -> Dependant:
+def get_dependant(
+    *, path: str, call: Callable, name: str = None, security_scopes: List[str] = None
+) -> Dependant:
     path_param_names = get_path_param_names(path)
     endpoint_signature = inspect.signature(call)
     signature_params = endpoint_signature.parameters
@@ -89,7 +107,9 @@ def get_dependant(*, path: str, call: Callable, name: str = None) -> Dependant:
     for param_name in signature_params:
         param = signature_params[param_name]
         if isinstance(param.default, params.Depends):
-            sub_dependant = get_sub_dependant(param=param, path=path)
+            sub_dependant = get_sub_dependant(
+                param=param, path=path, security_scopes=security_scopes
+            )
             dependant.dependencies.append(sub_dependant)
     for param_name in signature_params:
         param = signature_params[param_name]
@@ -138,6 +158,8 @@ def get_dependant(*, path: str, call: Callable, name: str = None) -> Dependant:
             dependant.request_param_name = param_name
         elif lenient_issubclass(param.annotation, BackgroundTasks):
             dependant.background_tasks_param_name = param_name
+        elif lenient_issubclass(param.annotation, SecurityScopes):
+            dependant.security_scopes_param_name = param_name
         elif not isinstance(param.default, params.Depends):
             add_param_to_body_fields(param=param, dependant=dependant)
     return dependant
@@ -282,6 +304,10 @@ async def solve_dependencies(
         if background_tasks is None:
             background_tasks = BackgroundTasks()
         values[dependant.background_tasks_param_name] = background_tasks
+    if dependant.security_scopes_param_name:
+        values[dependant.security_scopes_param_name] = SecurityScopes(
+            scopes=dependant.security_scopes
+        )
     return values, errors, background_tasks
 
 
