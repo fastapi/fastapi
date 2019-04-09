@@ -1,6 +1,6 @@
 You can use OAuth2 scopes directly with **FastAPI**, they are integrated to work seamlessly.
 
-This would allow you to have a more fine-grained permission system, following standards like OAuth2, integrated into your OpenAPI application (and the API docs).
+This would allow you to have a more fine-grained permission system, following the OAuth2 standard, integrated into your OpenAPI application (and the API docs).
 
 OAuth2 with scopes is the mechanism used by many big authentication providers, like Facebook, Google, GitHub, Microsoft, Twitter, etc. They use it to provide specific permissions to users and applications.
 

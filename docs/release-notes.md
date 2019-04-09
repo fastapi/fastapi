@@ -1,5 +1,13 @@
 ## Next release
 
+* Improve/upgrade OAuth2 scopes support with `SecurityScopes`:
+    * `SecurityScopes` can be declared as a parameter like `Request`, to get the scopes of all super-dependencies/dependants.
+    * Improve `Security` handling, merging scopes when declaring `SecurityScopes`.
+    * Allow using `SecurityBase` (like `OAuth2`) classes with `Depends` and still document them. `Security` now is needed only to declare `scopes`.
+    * Updated docs about: <a href="https://fastapi.tiangolo.com/tutorial/security/oauth2-jwt/" target="_blank">OAuth2 with Password (and hashing), Bearer with JWT tokens</a>.
+    * New docs about: <a href="https://fastapi.tiangolo.com/tutorial/security/oauth2-scopes/" target="_blank">OAuth2 scopes</a>.
+    * PR <a href="https://github.com/tiangolo/fastapi/pull/141" target="_blank">#141</a>.
+
 ## 0.12.1
 
 * Fix bug: handling additional `responses` in `APIRouter.include_router()`. PR <a href="https://github.com/tiangolo/fastapi/pull/140" target="_blank">#140</a>.
