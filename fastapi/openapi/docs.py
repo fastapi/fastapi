@@ -31,7 +31,8 @@ def get_swagger_ui_html(*, openapi_url: str, title: str) -> HTMLResponse:
         SwaggerUIBundle.presets.apis,
         SwaggerUIBundle.SwaggerUIStandalonePreset
         ],
-        layout: "BaseLayout"
+        layout: "BaseLayout",
+        deepLinking: true
  
     })
     </script>
