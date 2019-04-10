@@ -1,5 +1,7 @@
 ## Next release
 
+* Include Falcon and Hug in: <a href="https://fastapi.tiangolo.com/alternatives/" target="_blank">Alternatives, Inspiration and Comparisons</a>.
+
 ## 0.13.0
 
 * Improve/upgrade OAuth2 scopes support with `SecurityScopes`:
