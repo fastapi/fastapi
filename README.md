@@ -148,9 +148,13 @@ After using this generator, your new project (the directory created) will contai
 
 ### Next release
 
+### 0.2.2
+
+* Fix frontend hijacking /docs in development. Using latest https://github.com/tiangolo/node-frontend with custom Nginx configs in frontend. <a href="https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/6" target="_blank">PR #6</a>.
+
 ### 0.2.1
 
-* Fix documentation for *path operation* to get user by ID. <a href="https://github.com/tiangolo/fastapi/pull/97" target="_blank">PR #97</a> by <a href="https://github.com/mpclarkson" target="_blank">@mpclarkson</a>.
+* Fix documentation for *path operation* to get user by ID. <a href="https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/4" target="_blank">PR #4</a> by <a href="https://github.com/mpclarkson" target="_blank">@mpclarkson</a> in FastAPI.
 
 * Set `/start-reload.sh` as a command override for development by default.
 
