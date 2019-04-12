@@ -36,13 +36,13 @@ openapi_schema = {
                         },
                     },
                 },
-                "summary": "Route Login Access Token Post",
-                "operationId": "route_login_access_token_token_post",
+                "summary": "Login For Access Token",
+                "operationId": "login_for_access_token_token_post",
                 "requestBody": {
                     "content": {
                         "application/x-www-form-urlencoded": {
                             "schema": {
-                                "$ref": "#/components/schemas/Body_route_login_access_token"
+                                "$ref": "#/components/schemas/Body_login_for_access_token"
                             }
                         }
                     },
@@ -62,7 +62,7 @@ openapi_schema = {
                         },
                     }
                 },
-                "summary": "Read Users Me Get",
+                "summary": "Read Users Me",
                 "operationId": "read_users_me_users_me__get",
                 "security": [{"OAuth2PasswordBearer": ["me"]}],
             }
@@ -75,7 +75,7 @@ openapi_schema = {
                         "content": {"application/json": {"schema": {}}},
                     }
                 },
-                "summary": "Read Own Items Get",
+                "summary": "Read Own Items",
                 "operationId": "read_own_items_users_me_items__get",
                 "security": [{"OAuth2PasswordBearer": ["items", "me"]}],
             }
@@ -83,8 +83,8 @@ openapi_schema = {
     },
     "components": {
         "schemas": {
-            "Body_route_login_access_token": {
-                "title": "Body_route_login_access_token",
+            "Body_login_for_access_token": {
+                "title": "Body_login_for_access_token",
                 "required": ["username", "password"],
                 "type": "object",
                 "properties": {

@@ -18,7 +18,7 @@ openapi_schema = {
                     }
                 },
                 "tags": ["users"],
-                "summary": "Read Users Get",
+                "summary": "Read Users",
                 "operationId": "read_users_users__get",
             }
         },
@@ -31,7 +31,7 @@ openapi_schema = {
                     }
                 },
                 "tags": ["users"],
-                "summary": "Read User Me Get",
+                "summary": "Read User Me",
                 "operationId": "read_user_me_users_me_get",
             }
         },
@@ -54,7 +54,7 @@ openapi_schema = {
                     },
                 },
                 "tags": ["users"],
-                "summary": "Read User Get",
+                "summary": "Read User",
                 "operationId": "read_user_users__username__get",
                 "parameters": [
                     {
@@ -76,7 +76,7 @@ openapi_schema = {
                     },
                 },
                 "tags": ["items"],
-                "summary": "Read Items Get",
+                "summary": "Read Items",
                 "operationId": "read_items_items__get",
             }
         },
@@ -100,7 +100,7 @@ openapi_schema = {
                     },
                 },
                 "tags": ["items"],
-                "summary": "Read Item Get",
+                "summary": "Read Item",
                 "operationId": "read_item_items__item_id__get",
                 "parameters": [
                     {
@@ -131,7 +131,7 @@ openapi_schema = {
                     },
                 },
                 "tags": ["custom", "items"],
-                "summary": "Update Item Put",
+                "summary": "Update Item",
                 "operationId": "update_item_items__item_id__put",
                 "parameters": [
                     {

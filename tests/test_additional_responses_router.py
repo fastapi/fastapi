@@ -35,7 +35,7 @@ openapi_schema = {
                         "content": {"application/json": {"schema": {}}},
                     },
                 },
-                "summary": "A Get",
+                "summary": "A",
                 "operationId": "a_a_get",
             }
         },
@@ -48,7 +48,7 @@ openapi_schema = {
                         "content": {"application/json": {"schema": {}}},
                     },
                 },
-                "summary": "B Get",
+                "summary": "B",
                 "operationId": "b_b_get",
             }
         },
@@ -61,7 +61,7 @@ openapi_schema = {
                         "content": {"application/json": {"schema": {}}},
                     },
                 },
-                "summary": "C Get",
+                "summary": "C",
                 "operationId": "c_c_get",
             }
         },

@@ -29,7 +29,7 @@ openapi_schema = {
                         },
                     },
                 },
-                "summary": "Create File Post",
+                "summary": "Create File",
                 "operationId": "create_file_files__post",
                 "requestBody": {
                     "content": {
