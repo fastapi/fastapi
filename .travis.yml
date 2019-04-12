@@ -14,7 +14,6 @@ install:
 
 script:
     - bash scripts/test.sh
-    - cat coverage.xml
 
 after_script:
     - bash <(curl -s https://codecov.io/bash)
