@@ -43,6 +43,7 @@ nav:
         - Handling Errors: 'tutorial/handling-errors.md'
         - Path Operation Configuration: 'tutorial/path-operation-configuration.md'
         - Path Operation Advanced Configuration: 'tutorial/path-operation-advanced-configuration.md'
+        - Additional Status Codes: 'tutorial/additional-status-codes.md'
         - Custom Response: 'tutorial/custom-response.md'
         - Additional Responses: 'tutorial/additional-responses.md'
         - Dependencies:

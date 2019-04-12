@@ -1,5 +1,7 @@
 ## Next release
 
+* Add docs for: <a href="https://fastapi.tiangolo.com/tutorial/additional-status-codes/" target="_blank">Additional Status Codes</a>. PR <a href="https://github.com/tiangolo/fastapi/pull/156" target="_blank">#156</a>.
+
 ## 0.14.0
 
 * Improve automatically generated names of path operations in OpenAPI (in API docs). A function `read_items` instead of having a generated name "Read Items Get" will have "Read Items". PR <a href="https://github.com/tiangolo/fastapi/pull/155" target="_blank">#155</a>.
