@@ -24,8 +24,8 @@ openapi_schema = {
                         },
                     },
                 },
-                "summary": "Read Item Get",
-                "operationId": "read_item_items__item_id__get",
+                "summary": "Read Items Get",
+                "operationId": "read_items_items__item_id__get",
                 "parameters": [
                     {
                         "required": True,

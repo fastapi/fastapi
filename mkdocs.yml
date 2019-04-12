@@ -68,6 +68,7 @@ nav:
         - GraphQL: 'tutorial/graphql.md'
         - WebSockets: 'tutorial/websockets.md'
         - 'Events: startup - shutdown': 'tutorial/events.md'
+        - Testing: 'tutorial/testing.md'
         - Debugging: 'tutorial/debugging.md'
         - Extending OpenAPI: 'tutorial/extending-openapi.md'
     - Concurrency and async / await: 'async.md'
