@@ -1,5 +1,7 @@
 ## Next release
 
+* Add docs for: <a href="https://fastapi.tiangolo.com/tutorial/testing/" target="_blank">Testing **FastAPI**</a>. PR <a href="https://github.com/tiangolo/fastapi/pull/151" target="_blank">#151</a>.
+
 * Update `/docs` Swagger UI to enable deep linking. This allows sharing the URL pointing directly to the path operation documentation in the docs. PR <a href="https://github.com/tiangolo/fastapi/pull/148" target="_blank">#148</a> by <a href="https://github.com/wshayes" target="_blank">@wshayes</a>.
 
 * Update development dependencies, `Pipfile.lock`. PR <a href="https://github.com/tiangolo/fastapi/pull/150" target="_blank">#150</a>.
