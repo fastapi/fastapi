@@ -12,7 +12,7 @@ if [ -f ./test.db ]; then
 fi
 
 export PYTHONPATH=./docs/src
-pytest --cov=fastapi --cov=tests --cov=docs/src --cov-report=term-missing ${@}
+pytest --cov=fastapi --cov=tests --cov=docs/src --cov-report=xml --cov-report=term-missing ${@}
 mypy fastapi --disallow-untyped-defs --follow-imports=skip
 if [ "${PYTHON_VERSION}" = '3.7' ]; then
     echo "Skipping 'black' on 3.7. See issue https://github.com/ambv/black/issues/494"
