@@ -67,3 +67,19 @@ When you need your event handlers (`startup` and `shutdown`) to run in your test
 ```Python hl_lines="9 10 11 12 20 21 22 23 24"
 {!./src/app_testing/tutorial003.py!}
 ```
+
+## Run it
+
+After that, you just need to install `pytest`:
+
+```bash
+pip install pytest
+```
+
+It will detect the files and tests automatically, execute them, and report the results back to you.
+
+Run the tests with:
+
+```bash
+pytest
+```
