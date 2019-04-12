@@ -10,7 +10,7 @@ python:
 
 install:
     - pip install flit
-    - flit install
+    - flit install --symlink
 
 script:
     - bash scripts/test.sh
