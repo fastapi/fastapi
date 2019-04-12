@@ -20,7 +20,7 @@ It is quite an extensive specification and covers several complex use cases.
 
 It includes ways to authenticate using a "third party".
 
-That's what all the system with "login with Facebook, Google, Twitter, GitHub" use underneath.
+That's what all the systems with "login with Facebook, Google, Twitter, GitHub" use underneath.
 
 ### OAuth 1
 

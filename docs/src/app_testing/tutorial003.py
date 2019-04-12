@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from starlette.testclient import TestClient
 
 app = FastAPI()
 
@@ -14,3 +15,10 @@ async def startup_event():
 @app.get("/items/{item_id}")
 async def read_items(item_id: str):
     return items[item_id]
+
+
+def test_read_items():
+    with TestClient(app) as client:
+        response = client.get("/items/foo")
+        assert response.status_code == 200
+        assert response.json() == {"name": "Fighters"}
