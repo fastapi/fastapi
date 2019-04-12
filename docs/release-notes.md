@@ -1,5 +1,7 @@
 ## Next release
 
+* Improve automatically generated names of path operations in OpenAPI (in API docs). A function `read_items` instead of having a generated name "Read Items Get" will have "Read Items". PR <a href="https://github.com/tiangolo/fastapi/pull/155" target="_blank">#155</a>.
+
 * Add docs for: <a href="https://fastapi.tiangolo.com/tutorial/testing/" target="_blank">Testing **FastAPI**</a>. PR <a href="https://github.com/tiangolo/fastapi/pull/151" target="_blank">#151</a>.
 
 * Update `/docs` Swagger UI to enable deep linking. This allows sharing the URL pointing directly to the path operation documentation in the docs. PR <a href="https://github.com/tiangolo/fastapi/pull/148" target="_blank">#148</a> by <a href="https://github.com/wshayes" target="_blank">@wshayes</a>.
