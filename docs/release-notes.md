@@ -1,5 +1,7 @@
 ## Next release
 
+* Update development dependencies, `Pipfile.lock`. PR <a href="https://github.com/tiangolo/fastapi/pull/150" target="_blank">#150</a>.
+
 * Include Falcon and Hug in: <a href="https://fastapi.tiangolo.com/alternatives/" target="_blank">Alternatives, Inspiration and Comparisons</a>.
 
 ## 0.13.0
