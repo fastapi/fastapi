@@ -22,3 +22,9 @@ To achieve that, import `JSONResponse`, and return your content there directly, 
     It won't be serialized with a model, etc.
     
     Make sure it has the data you want it to have, and that the values are valid JSON (if you are using `JSONResponse`).
+
+## OpenAPI and API docs
+
+If you return additional status codes and responses directly, they won't be included in the OpenAPI schema (the API docs), because FastAPI doesn't have a way to know before hand what you are going to return.
+
+But you can document that in your code, using: <a href="https://fastapi.tiangolo.com/tutorial/additional-responses/" target="_blank">Additional Responses</a>.
