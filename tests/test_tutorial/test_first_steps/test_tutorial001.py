@@ -17,7 +17,7 @@ openapi_schema = {
                         "content": {"application/json": {"schema": {}}},
                     }
                 },
-                "summary": "Root Get",
+                "summary": "Root",
                 "operationId": "root__get",
             }
         }

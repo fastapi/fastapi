@@ -16,7 +16,7 @@ openapi_schema_main = {
                         "content": {"application/json": {"schema": {}}},
                     }
                 },
-                "summary": "Read Main Get",
+                "summary": "Read Main",
                 "operationId": "read_main_app_get",
             }
         }
@@ -34,7 +34,7 @@ openapi_schema_sub = {
                         "content": {"application/json": {"schema": {}}},
                     }
                 },
-                "summary": "Read Sub Get",
+                "summary": "Read Sub",
                 "operationId": "read_sub_sub_get",
             }
         }

@@ -67,7 +67,7 @@ openapi_schema = {
                         },
                     },
                 },
-                "summary": "Read Current User Post",
+                "summary": "Read Current User",
                 "operationId": "read_current_user_login_post",
                 "requestBody": {
                     "content": {
@@ -89,7 +89,7 @@ openapi_schema = {
                         "content": {"application/json": {"schema": {}}},
                     }
                 },
-                "summary": "Read Current User Get",
+                "summary": "Read Current User",
                 "operationId": "read_current_user_users_me_get",
                 "security": [{"OAuth2": []}],
             }

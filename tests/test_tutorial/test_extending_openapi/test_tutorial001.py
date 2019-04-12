@@ -21,7 +21,7 @@ openapi_schema = {
                         "content": {"application/json": {"schema": {}}},
                     }
                 },
-                "summary": "Read Items Get",
+                "summary": "Read Items",
                 "operationId": "read_items_items__get",
             }
         }

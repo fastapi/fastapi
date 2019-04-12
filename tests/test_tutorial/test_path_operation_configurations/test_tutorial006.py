@@ -18,7 +18,7 @@ openapi_schema = {
                     }
                 },
                 "tags": ["items"],
-                "summary": "Read Items Get",
+                "summary": "Read Items",
                 "operationId": "read_items_items__get",
             }
         },
@@ -31,7 +31,7 @@ openapi_schema = {
                     }
                 },
                 "tags": ["users"],
-                "summary": "Read Users Get",
+                "summary": "Read Users",
                 "operationId": "read_users_users__get",
             }
         },
@@ -44,7 +44,7 @@ openapi_schema = {
                     }
                 },
                 "tags": ["items"],
-                "summary": "Read Elements Get",
+                "summary": "Read Elements",
                 "operationId": "read_elements_elements__get",
                 "deprecated": True,
             }

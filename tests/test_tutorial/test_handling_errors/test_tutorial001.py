@@ -26,8 +26,8 @@ openapi_schema = {
                         },
                     },
                 },
-                "summary": "Create Item Get",
-                "operationId": "create_item_items__item_id__get",
+                "summary": "Read Item",
+                "operationId": "read_item_items__item_id__get",
                 "parameters": [
                     {
                         "required": True,

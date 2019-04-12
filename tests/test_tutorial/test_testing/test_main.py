@@ -12,7 +12,7 @@ openapi_schema = {
                         "content": {"application/json": {"schema": {}}},
                     }
                 },
-                "summary": "Read Main Get",
+                "summary": "Read Main",
                 "operationId": "read_main__get",
             }
         }

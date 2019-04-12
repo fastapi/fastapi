@@ -26,7 +26,7 @@ openapi_schema = {
                         },
                     },
                 },
-                "summary": "Login Post",
+                "summary": "Login",
                 "operationId": "login_token_post",
                 "requestBody": {
                     "content": {
@@ -46,7 +46,7 @@ openapi_schema = {
                         "content": {"application/json": {"schema": {}}},
                     }
                 },
-                "summary": "Read Users Me Get",
+                "summary": "Read Users Me",
                 "operationId": "read_users_me_users_me_get",
                 "security": [{"OAuth2PasswordBearer": []}],
             }
