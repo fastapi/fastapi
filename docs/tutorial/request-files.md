@@ -121,6 +121,13 @@ To use that, declare a `List` of `bytes` or `UploadFile`:
 
 You will receive, as declared, a `list` of `bytes` or `UploadFile`s.
 
+!!! note
+    Notice that, as of 2019-04-14, Swagger UI doesn't support multiple file uploads in the same form field. For more information, check <a href="https://github.com/swagger-api/swagger-ui/issues/4276" target="_blank">#4276</a> and <a href="https://github.com/swagger-api/swagger-ui/issues/3641" target="_blank">#3641</a>.
+
+    Nevertheless, **FastAPI** is already compatible with it, using the standard OpenAPI.
+    
+    So, whenever Swagger UI supports multi-file uploads, or any other tools that supports OpenAPI, they will be compatible with **FastAPI**.
+
 ## Recap
 
 Use `File` to declare files to be uploaded as input parameters (as form data).
