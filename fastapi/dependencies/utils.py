@@ -31,8 +31,8 @@ from pydantic.schema import get_annotation_from_schema
 from pydantic.utils import lenient_issubclass
 from starlette.background import BackgroundTasks
 from starlette.concurrency import run_in_threadpool
-from starlette.datastructures import UploadFile
-from starlette.requests import Headers, QueryParams, Request
+from starlette.datastructures import FormData, Headers, QueryParams, UploadFile
+from starlette.requests import Request
 
 param_supported_types = (
     str,
@@ -46,6 +46,10 @@ param_supported_types = (
     timedelta,
     Decimal,
 )
+
+sequence_shapes = {Shape.LIST, Shape.SET, Shape.TUPLE}
+sequence_types = (list, set, tuple)
+sequence_shape_to_type = {Shape.LIST: list, Shape.SET: set, Shape.TUPLE: tuple}
 
 
 def get_sub_dependant(
@@ -318,7 +322,7 @@ def request_params_to_args(
     values = {}
     errors = []
     for field in required_params:
-        if field.shape in {Shape.LIST, Shape.SET, Shape.TUPLE} and isinstance(
+        if field.shape in sequence_shapes and isinstance(
             received_params, (QueryParams, Headers)
         ):
             value = received_params.getlist(field.alias)
@@ -358,11 +362,20 @@ async def request_body_to_args(
         embed = getattr(field.schema, "embed", None)
         if len(required_params) == 1 and not embed:
             received_body = {field.alias: received_body}
-        elif received_body is None:
-            received_body = {}
         for field in required_params:
-            value = received_body.get(field.alias)
-            if value is None or (isinstance(field.schema, params.Form) and value == ""):
+            if field.shape in sequence_shapes and isinstance(received_body, FormData):
+                value = received_body.getlist(field.alias)
+            else:
+                value = received_body.get(field.alias)
+            if (
+                value is None
+                or (isinstance(field.schema, params.Form) and value == "")
+                or (
+                    isinstance(field.schema, params.Form)
+                    and field.shape in sequence_shapes
+                    and len(value) == 0
+                )
+            ):
                 if field.required:
                     errors.append(
                         ErrorWrapper(
@@ -380,6 +393,15 @@ async def request_body_to_args(
                 and isinstance(value, UploadFile)
             ):
                 value = await value.read()
+            elif (
+                field.shape in sequence_shapes
+                and isinstance(field.schema, params.File)
+                and lenient_issubclass(field.type_, bytes)
+                and isinstance(value, sequence_types)
+            ):
+                awaitables = [sub_value.read() for sub_value in value]
+                contents = await asyncio.gather(*awaitables)
+                value = sequence_shape_to_type[field.shape](contents)
             v_, errors_ = field.validate(value, values, loc=("body", field.alias))
             if isinstance(errors_, ErrorWrapper):
                 errors.append(errors_)
@@ -391,10 +413,14 @@ async def request_body_to_args(
 
 
 def get_schema_compatible_field(*, field: Field) -> Field:
+    out_field = field
     if lenient_issubclass(field.type_, UploadFile):
-        return Field(
+        use_type: type = bytes
+        if field.shape in sequence_shapes:
+            use_type = List[bytes]
+        out_field = Field(
             name=field.name,
-            type_=bytes,
+            type_=use_type,
             class_validators=field.class_validators,
             model_config=field.model_config,
             default=field.default,
@@ -402,10 +428,10 @@ def get_schema_compatible_field(*, field: Field) -> Field:
             alias=field.alias,
             schema=field.schema,
         )
-    return field
+    return out_field
 
 
-def get_body_field(*, dependant: Dependant, name: str) -> Field:
+def get_body_field(*, dependant: Dependant, name: str) -> Optional[Field]:
     flat_dependant = get_flat_dependant(dependant)
     if not flat_dependant.body_params:
         return None

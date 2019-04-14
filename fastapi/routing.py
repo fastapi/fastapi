@@ -53,12 +53,7 @@ def get_app(
             body = None
             if body_field:
                 if is_body_form:
-                    raw_body = await request.form()
-                    form_fields = {}
-                    for field, value in raw_body.items():
-                        form_fields[field] = value
-                    if form_fields:
-                        body = form_fields
+                    body = await request.form()
                 else:
                     body_bytes = await request.body()
                     if body_bytes:
