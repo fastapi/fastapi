@@ -1,5 +1,74 @@
 ## Next release
 
+## 0.15.0
+
+* Add support for multiple file uploads (as a single form field). New docs at: <a href="https://fastapi.tiangolo.com/tutorial/request-files/#multiple-file-uploads" target="_blank">Multiple file uploads</a>. PR <a href="https://github.com/tiangolo/fastapi/pull/158" target="_blank">#158</a>.
+
+* Add docs for: <a href="https://fastapi.tiangolo.com/tutorial/additional-status-codes/" target="_blank">Additional Status Codes</a>. PR <a href="https://github.com/tiangolo/fastapi/pull/156" target="_blank">#156</a>.
+
+## 0.14.0
+
+* Improve automatically generated names of path operations in OpenAPI (in API docs). A function `read_items` instead of having a generated name "Read Items Get" will have "Read Items". PR <a href="https://github.com/tiangolo/fastapi/pull/155" target="_blank">#155</a>.
+
+* Add docs for: <a href="https://fastapi.tiangolo.com/tutorial/testing/" target="_blank">Testing **FastAPI**</a>. PR <a href="https://github.com/tiangolo/fastapi/pull/151" target="_blank">#151</a>.
+
+* Update `/docs` Swagger UI to enable deep linking. This allows sharing the URL pointing directly to the path operation documentation in the docs. PR <a href="https://github.com/tiangolo/fastapi/pull/148" target="_blank">#148</a> by <a href="https://github.com/wshayes" target="_blank">@wshayes</a>.
+
+* Update development dependencies, `Pipfile.lock`. PR <a href="https://github.com/tiangolo/fastapi/pull/150" target="_blank">#150</a>.
+
+* Include Falcon and Hug in: <a href="https://fastapi.tiangolo.com/alternatives/" target="_blank">Alternatives, Inspiration and Comparisons</a>.
+
+## 0.13.0
+
+* Improve/upgrade OAuth2 scopes support with `SecurityScopes`:
+    * `SecurityScopes` can be declared as a parameter like `Request`, to get the scopes of all super-dependencies/dependants.
+    * Improve `Security` handling, merging scopes when declaring `SecurityScopes`.
+    * Allow using `SecurityBase` (like `OAuth2`) classes with `Depends` and still document them. `Security` now is needed only to declare `scopes`.
+    * Updated docs about: <a href="https://fastapi.tiangolo.com/tutorial/security/oauth2-jwt/" target="_blank">OAuth2 with Password (and hashing), Bearer with JWT tokens</a>.
+    * New docs about: <a href="https://fastapi.tiangolo.com/tutorial/security/oauth2-scopes/" target="_blank">OAuth2 scopes</a>.
+    * PR <a href="https://github.com/tiangolo/fastapi/pull/141" target="_blank">#141</a>.
+
+## 0.12.1
+
+* Fix bug: handling additional `responses` in `APIRouter.include_router()`. PR <a href="https://github.com/tiangolo/fastapi/pull/140" target="_blank">#140</a>.
+
+* Fix typo in SQL tutorial. PR <a href="https://github.com/tiangolo/fastapi/pull/138" target="_blank">#138</a> by <a href="https://github.com/mostaphaRoudsari" target="_blank">@mostaphaRoudsari</a>.
+
+* Fix typos in section about nested models and OAuth2 with JWT. PR <a href="https://github.com/tiangolo/fastapi/pull/127" target="_blank">#127</a> by <a href="https://github.com/mmcloud" target="_blank">@mmcloud</a>.
+
+## 0.12.0
+
+* Add additional `responses` parameter to *path operation decorators* to extend responses in OpenAPI (and API docs).
+    * It also allows extending existing responses generated from `response_model`, declare other media types (like images), etc.
+    * The new documentation is here: <a href="https://fastapi.tiangolo.com/tutorial/additional-responses/" target="_blank">Additional Responses</a>.
+    * `responses` can also be added to `.include_router()`, the updated docs are here: <a href="https://fastapi.tiangolo.com/tutorial/bigger-applications/#add-some-custom-tags-and-responses" target="_blank">Bigger Applications</a>.
+    * PR <a href="https://github.com/tiangolo/fastapi/pull/97" target="_blank">#97</a> originally initiated by <a href="https://github.com/barsi" target="_blank">@barsi</a>.
+
+* Update `scripts/test-cov-html.sh` to allow passing extra parameters like `-vv`, for development.
+
+## 0.11.0
+
+* Add `auto_error` parameter to security utility functions. Allowing them to be optional. Also allowing to have multiple alternative security schemes that are then checked in a single dependency instead of each one verifying and returning the error to the client automatically when not satisfied. PR <a href="https://github.com/tiangolo/fastapi/pull/134" target="_blank">#134</a>.
+
+* Update <a href="https://fastapi.tiangolo.com/tutorial/sql-databases/#create-a-middleware-to-handle-sessions" target="_blank">SQL Tutorial</a> to close database sessions even when there are exceptions. PR <a href="https://github.com/tiangolo/fastapi/pull/89" target="_blank">#89</a> by <a href="https://github.com/alexiri" target="_blank">@alexiri</a>.
+
+* Fix duplicate dependency in `pyproject.toml`. PR <a href="https://github.com/tiangolo/fastapi/pull/128" target="_blank">#128</a> by <a href="https://github.com/zxalif" target="_blank">@zxalif</a>.
+
+## 0.10.3
+
+* Add Gitter chat, badge, links, etc. <a href="https://gitter.im/tiangolo/fastapi" target="_blank">https://gitter.im/tiangolo/fastapi
+</a>. PR <a href="https://github.com/tiangolo/fastapi/pull/117" target="_blank">#117</a>.
+
+* Add docs about <a href="https://fastapi.tiangolo.com/tutorial/extending-openapi/" target="_blank">Extending OpenAPI</a>. PR <a href="https://github.com/tiangolo/fastapi/pull/126" target="_blank">#126</a>.
+
+* Make Travis run Ubuntu Xenial (newer version) and Python 3.7 instead of Python 3.7-dev. PR <a href="https://github.com/tiangolo/fastapi/pull/92" target="_blank">#92</a> by <a href="https://github.com/blueyed" target="_blank">@blueyed</a>.
+
+* Fix duplicated param variable creation. PR <a href="https://github.com/tiangolo/fastapi/pull/123" target="_blank">#123</a> by <a href="https://github.com/yihuang" target="_blank">@yihuang</a>.
+
+* Add note in <a href="https://fastapi.tiangolo.com/tutorial/response-model/" target="_blank">Response Model docs</a> about why using a function parameter instead of a function return type annotation. PR <a href="https://github.com/tiangolo/fastapi/pull/109" target="_blank">#109</a> by <a href="https://github.com/JHSaunders" target="_blank">@JHSaunders</a>.
+
+* Fix event docs (startup/shutdown) function name. PR <a href="https://github.com/tiangolo/fastapi/pull/105" target="_blank">#105</a> by <a href="https://github.com/stratosgear" target="_blank">@stratosgear</a>.
+
 ## 0.10.2
 
 * Fix OpenAPI (JSON Schema) for declarations of Python `Union` (JSON Schema `additionalProperties`). PR <a href="https://github.com/tiangolo/fastapi/pull/121" target="_blank">#121</a>.

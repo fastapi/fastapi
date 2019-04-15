@@ -1,4 +1,4 @@
-from typing import Any, Callable, Dict, List, Optional, Type
+from typing import Any, Callable, Dict, List, Optional, Type, Union
 
 from fastapi import routing
 from fastapi.openapi.docs import get_redoc_html, get_swagger_ui_html
@@ -114,6 +114,7 @@ class FastAPI(Starlette):
         summary: str = None,
         description: str = None,
         response_description: str = "Successful Response",
+        responses: Dict[Union[int, str], Dict[str, Any]] = None,
         deprecated: bool = None,
         methods: List[str] = None,
         operation_id: str = None,
@@ -130,6 +131,7 @@ class FastAPI(Starlette):
             summary=summary,
             description=description,
             response_description=response_description,
+            responses=responses or {},
             deprecated=deprecated,
             methods=methods,
             operation_id=operation_id,
@@ -148,6 +150,7 @@ class FastAPI(Starlette):
         summary: str = None,
         description: str = None,
         response_description: str = "Successful Response",
+        responses: Dict[Union[int, str], Dict[str, Any]] = None,
         deprecated: bool = None,
         methods: List[str] = None,
         operation_id: str = None,
@@ -165,6 +168,7 @@ class FastAPI(Starlette):
                 summary=summary,
                 description=description,
                 response_description=response_description,
+                responses=responses or {},
                 deprecated=deprecated,
                 methods=methods,
                 operation_id=operation_id,
@@ -177,9 +181,16 @@ class FastAPI(Starlette):
         return decorator
 
     def include_router(
-        self, router: routing.APIRouter, *, prefix: str = "", tags: List[str] = None
+        self,
+        router: routing.APIRouter,
+        *,
+        prefix: str = "",
+        tags: List[str] = None,
+        responses: Dict[Union[int, str], Dict[str, Any]] = None,
     ) -> None:
-        self.router.include_router(router, prefix=prefix, tags=tags)
+        self.router.include_router(
+            router, prefix=prefix, tags=tags, responses=responses or {}
+        )
 
     def get(
         self,
@@ -191,6 +202,7 @@ class FastAPI(Starlette):
         summary: str = None,
         description: str = None,
         response_description: str = "Successful Response",
+        responses: Dict[Union[int, str], Dict[str, Any]] = None,
         deprecated: bool = None,
         operation_id: str = None,
         include_in_schema: bool = True,
@@ -205,6 +217,7 @@ class FastAPI(Starlette):
             summary=summary,
             description=description,
             response_description=response_description,
+            responses=responses or {},
             deprecated=deprecated,
             operation_id=operation_id,
             include_in_schema=include_in_schema,
@@ -222,6 +235,7 @@ class FastAPI(Starlette):
         summary: str = None,
         description: str = None,
         response_description: str = "Successful Response",
+        responses: Dict[Union[int, str], Dict[str, Any]] = None,
         deprecated: bool = None,
         operation_id: str = None,
         include_in_schema: bool = True,
@@ -236,6 +250,7 @@ class FastAPI(Starlette):
             summary=summary,
             description=description,
             response_description=response_description,
+            responses=responses or {},
             deprecated=deprecated,
             operation_id=operation_id,
             include_in_schema=include_in_schema,
@@ -253,6 +268,7 @@ class FastAPI(Starlette):
         summary: str = None,
         description: str = None,
         response_description: str = "Successful Response",
+        responses: Dict[Union[int, str], Dict[str, Any]] = None,
         deprecated: bool = None,
         operation_id: str = None,
         include_in_schema: bool = True,
@@ -267,6 +283,7 @@ class FastAPI(Starlette):
             summary=summary,
             description=description,
             response_description=response_description,
+            responses=responses or {},
             deprecated=deprecated,
             operation_id=operation_id,
             include_in_schema=include_in_schema,
@@ -284,6 +301,7 @@ class FastAPI(Starlette):
         summary: str = None,
         description: str = None,
         response_description: str = "Successful Response",
+        responses: Dict[Union[int, str], Dict[str, Any]] = None,
         deprecated: bool = None,
         operation_id: str = None,
         include_in_schema: bool = True,
@@ -298,6 +316,7 @@ class FastAPI(Starlette):
             summary=summary,
             description=description,
             response_description=response_description,
+            responses=responses or {},
             deprecated=deprecated,
             operation_id=operation_id,
             include_in_schema=include_in_schema,
@@ -315,6 +334,7 @@ class FastAPI(Starlette):
         summary: str = None,
         description: str = None,
         response_description: str = "Successful Response",
+        responses: Dict[Union[int, str], Dict[str, Any]] = None,
         deprecated: bool = None,
         operation_id: str = None,
         include_in_schema: bool = True,
@@ -329,6 +349,7 @@ class FastAPI(Starlette):
             summary=summary,
             description=description,
             response_description=response_description,
+            responses=responses or {},
             deprecated=deprecated,
             operation_id=operation_id,
             include_in_schema=include_in_schema,
@@ -346,6 +367,7 @@ class FastAPI(Starlette):
         summary: str = None,
         description: str = None,
         response_description: str = "Successful Response",
+        responses: Dict[Union[int, str], Dict[str, Any]] = None,
         deprecated: bool = None,
         operation_id: str = None,
         include_in_schema: bool = True,
@@ -360,6 +382,7 @@ class FastAPI(Starlette):
             summary=summary,
             description=description,
             response_description=response_description,
+            responses=responses or {},
             deprecated=deprecated,
             operation_id=operation_id,
             include_in_schema=include_in_schema,
@@ -377,6 +400,7 @@ class FastAPI(Starlette):
         summary: str = None,
         description: str = None,
         response_description: str = "Successful Response",
+        responses: Dict[Union[int, str], Dict[str, Any]] = None,
         deprecated: bool = None,
         operation_id: str = None,
         include_in_schema: bool = True,
@@ -391,6 +415,7 @@ class FastAPI(Starlette):
             summary=summary,
             description=description,
             response_description=response_description,
+            responses=responses or {},
             deprecated=deprecated,
             operation_id=operation_id,
             include_in_schema=include_in_schema,
@@ -408,6 +433,7 @@ class FastAPI(Starlette):
         summary: str = None,
         description: str = None,
         response_description: str = "Successful Response",
+        responses: Dict[Union[int, str], Dict[str, Any]] = None,
         deprecated: bool = None,
         operation_id: str = None,
         include_in_schema: bool = True,
@@ -422,6 +448,7 @@ class FastAPI(Starlette):
             summary=summary,
             description=description,
             response_description=response_description,
+            responses=responses or {},
             deprecated=deprecated,
             operation_id=operation_id,
             include_in_schema=include_in_schema,

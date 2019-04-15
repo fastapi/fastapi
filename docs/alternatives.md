@@ -236,6 +236,19 @@ It was one of the first extremely fast Python frameworks based on `asyncio`. It 
     
     That's why **FastAPI** is based on Starlette, as it is the fastest framework available (tested by third-party benchmarks).
 
+### <a href="https://falconframework.org/" target="_blank">Falcon</a>
+
+Falcon is another high performance Python framework, it is designed to be minimal, and work as the foundation of other frameworks like Hug.
+
+It uses the previous standard for Python web frameworks (WSGI) which is synchronous, so it can't handle Websockets and other use cases. Nevertheless, it also has a very good performance.
+
+It is designed to have functions that receive two parameters, one "request" and one "response". Then you "read" parts from the request, and "write" parts to the response. Because of this design, it is not possible to declare request parameters and bodies with standard Python type hints as function parameters.
+
+So, data validation, serialization, and documentation, have to be done in code, not automatically. Or they have to be implemented as a framework on top of Falcon, like Hug. This same distinction happens in other frameworks that are inspired by Falcon's design, of having one request object and one response object as parameters.
+
+!!! check "Inspired **FastAPI** to"
+    Find ways to get great performance.
+
 ### <a href="https://moltenframework.com/" target="_blank">Molten</a>
 
 I discovered Molten in the first stages of building **FastAPI**. And it has quite similar ideas:
@@ -257,11 +270,34 @@ Routes are declared in a single place, using functions declared in other places 
 
     This actually inspired updating parts of Pydantic, to support the same validation declaration style (all this functionality is now already available in Pydantic).
 
+### <a href="http://www.hug.rest/" target="_blank">Hug</a>
+
+Hug was one of the first frameworks to implement the declaration of API parameter types using Python type hints. This was a great idea that inspired other tools to do the same.
+
+It used custom types in its declarations instead of standard Python types, but it was still a huge step forward.
+
+It also was one of the first frameworks to generate a custom schema declaring the whole API in JSON.
+
+It was not based on a standard like OpenAPI and JSON Schema. So it wouldn't be straightforward to integrate it with other tools, like Swagger UI. But again, it was a very innovative idea.
+
+It has an interesting, uncommon feature: using the same framework, it's possible to create APIs and also CLIs.
+
+As it is based on the previous standard for synchronous Python web frameworks (WSGI), it can't handle Websockets and other things, although it still has high performance too.
+
+!!! info
+    Hug was created by Timothy Crosley, the same creator of <a href="https://github.com/timothycrosley/isort" target="_blank">`isort`</a>, a great tool to automatically sort imports in Python files.
+
+!!! check "Ideas inspired in **FastAPI**"
+    Hug inspired parts of APIStar, and was one of the tools I found most promising, alongside APIStar.
+
+    Hug helped inspiring **FastAPI** to use Python type hints to declare parameters, and to generate a schema defining the API automatically.
+
+
 ### <a href="https://github.com/encode/apistar" target="_blank">APIStar</a> (<= 0.5)
 
 Right before deciding to build **FastAPI** I found **APIStar** server. It had almost everything I was looking for and had a great design.
 
-It was actually the first implementation of a framework using Python type hints to declare parameters and requests that I ever saw (before NestJS and Molten).
+It was one of the first implementations of a framework using Python type hints to declare parameters and requests that I ever saw (before NestJS and Molten). I found it more or less at the same time as Hug. But APIStar used the OpenAPI standard.
 
 It had automatic data validation, data serialization and OpenAPI schema generation based on the same type hints in several places.
 

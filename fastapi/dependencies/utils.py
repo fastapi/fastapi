@@ -20,6 +20,8 @@ from uuid import UUID
 from fastapi import params
 from fastapi.dependencies.models import Dependant, SecurityRequirement
 from fastapi.security.base import SecurityBase
+from fastapi.security.oauth2 import OAuth2, SecurityScopes
+from fastapi.security.open_id_connect_url import OpenIdConnect
 from fastapi.utils import UnconstrainedConfig, get_path_param_names
 from pydantic import Schema, create_model
 from pydantic.error_wrappers import ErrorWrapper
@@ -29,8 +31,8 @@ from pydantic.schema import get_annotation_from_schema
 from pydantic.utils import lenient_issubclass
 from starlette.background import BackgroundTasks
 from starlette.concurrency import run_in_threadpool
-from starlette.datastructures import UploadFile
-from starlette.requests import Headers, QueryParams, Request
+from starlette.datastructures import FormData, Headers, QueryParams, UploadFile
+from starlette.requests import Request
 
 param_supported_types = (
     str,
@@ -45,19 +47,37 @@ param_supported_types = (
     Decimal,
 )
 
+sequence_shapes = {Shape.LIST, Shape.SET, Shape.TUPLE}
+sequence_types = (list, set, tuple)
+sequence_shape_to_type = {Shape.LIST: list, Shape.SET: set, Shape.TUPLE: tuple}
 
-def get_sub_dependant(*, param: inspect.Parameter, path: str) -> Dependant:
+
+def get_sub_dependant(
+    *, param: inspect.Parameter, path: str, security_scopes: List[str] = None
+) -> Dependant:
     depends: params.Depends = param.default
     if depends.dependency:
         dependency = depends.dependency
     else:
         dependency = param.annotation
-    sub_dependant = get_dependant(path=path, call=dependency, name=param.name)
-    if isinstance(depends, params.Security) and isinstance(dependency, SecurityBase):
+    security_requirement = None
+    security_scopes = security_scopes or []
+    if isinstance(depends, params.Security):
+        dependency_scopes = depends.scopes
+        security_scopes.extend(dependency_scopes)
+    if isinstance(dependency, SecurityBase):
+        use_scopes = []
+        if isinstance(dependency, (OAuth2, OpenIdConnect)):
+            use_scopes = security_scopes
         security_requirement = SecurityRequirement(
-            security_scheme=dependency, scopes=depends.scopes
+            security_scheme=dependency, scopes=use_scopes
         )
+    sub_dependant = get_dependant(
+        path=path, call=dependency, name=param.name, security_scopes=security_scopes
+    )
+    if security_requirement:
         sub_dependant.security_requirements.append(security_requirement)
+    sub_dependant.security_scopes = security_scopes
     return sub_dependant
 
 
@@ -81,7 +101,9 @@ def get_flat_dependant(dependant: Dependant) -> Dependant:
     return flat_dependant
 
 
-def get_dependant(*, path: str, call: Callable, name: str = None) -> Dependant:
+def get_dependant(
+    *, path: str, call: Callable, name: str = None, security_scopes: List[str] = None
+) -> Dependant:
     path_param_names = get_path_param_names(path)
     endpoint_signature = inspect.signature(call)
     signature_params = endpoint_signature.parameters
@@ -89,7 +111,9 @@ def get_dependant(*, path: str, call: Callable, name: str = None) -> Dependant:
     for param_name in signature_params:
         param = signature_params[param_name]
         if isinstance(param.default, params.Depends):
-            sub_dependant = get_sub_dependant(param=param, path=path)
+            sub_dependant = get_sub_dependant(
+                param=param, path=path, security_scopes=security_scopes
+            )
             dependant.dependencies.append(sub_dependant)
     for param_name in signature_params:
         param = signature_params[param_name]
@@ -100,7 +124,6 @@ def get_dependant(*, path: str, call: Callable, name: str = None) -> Dependant:
                 lenient_issubclass(param.annotation, param_supported_types)
                 or param.annotation == param.empty
             ), f"Path params must be of one of the supported types"
-            param = signature_params[param_name]
             add_param_to_fields(
                 param=param,
                 dependant=dependant,
@@ -139,6 +162,8 @@ def get_dependant(*, path: str, call: Callable, name: str = None) -> Dependant:
             dependant.request_param_name = param_name
         elif lenient_issubclass(param.annotation, BackgroundTasks):
             dependant.background_tasks_param_name = param_name
+        elif lenient_issubclass(param.annotation, SecurityScopes):
+            dependant.security_scopes_param_name = param_name
         elif not isinstance(param.default, params.Depends):
             add_param_to_body_fields(param=param, dependant=dependant)
     return dependant
@@ -283,6 +308,10 @@ async def solve_dependencies(
         if background_tasks is None:
             background_tasks = BackgroundTasks()
         values[dependant.background_tasks_param_name] = background_tasks
+    if dependant.security_scopes_param_name:
+        values[dependant.security_scopes_param_name] = SecurityScopes(
+            scopes=dependant.security_scopes
+        )
     return values, errors, background_tasks
 
 
@@ -293,7 +322,7 @@ def request_params_to_args(
     values = {}
     errors = []
     for field in required_params:
-        if field.shape in {Shape.LIST, Shape.SET, Shape.TUPLE} and isinstance(
+        if field.shape in sequence_shapes and isinstance(
             received_params, (QueryParams, Headers)
         ):
             value = received_params.getlist(field.alias)
@@ -333,11 +362,20 @@ async def request_body_to_args(
         embed = getattr(field.schema, "embed", None)
         if len(required_params) == 1 and not embed:
             received_body = {field.alias: received_body}
-        elif received_body is None:
-            received_body = {}
         for field in required_params:
-            value = received_body.get(field.alias)
-            if value is None or (isinstance(field.schema, params.Form) and value == ""):
+            if field.shape in sequence_shapes and isinstance(received_body, FormData):
+                value = received_body.getlist(field.alias)
+            else:
+                value = received_body.get(field.alias)
+            if (
+                value is None
+                or (isinstance(field.schema, params.Form) and value == "")
+                or (
+                    isinstance(field.schema, params.Form)
+                    and field.shape in sequence_shapes
+                    and len(value) == 0
+                )
+            ):
                 if field.required:
                     errors.append(
                         ErrorWrapper(
@@ -355,6 +393,15 @@ async def request_body_to_args(
                 and isinstance(value, UploadFile)
             ):
                 value = await value.read()
+            elif (
+                field.shape in sequence_shapes
+                and isinstance(field.schema, params.File)
+                and lenient_issubclass(field.type_, bytes)
+                and isinstance(value, sequence_types)
+            ):
+                awaitables = [sub_value.read() for sub_value in value]
+                contents = await asyncio.gather(*awaitables)
+                value = sequence_shape_to_type[field.shape](contents)
             v_, errors_ = field.validate(value, values, loc=("body", field.alias))
             if isinstance(errors_, ErrorWrapper):
                 errors.append(errors_)
@@ -366,10 +413,14 @@ async def request_body_to_args(
 
 
 def get_schema_compatible_field(*, field: Field) -> Field:
+    out_field = field
     if lenient_issubclass(field.type_, UploadFile):
-        return Field(
+        use_type: type = bytes
+        if field.shape in sequence_shapes:
+            use_type = List[bytes]
+        out_field = Field(
             name=field.name,
-            type_=bytes,
+            type_=use_type,
             class_validators=field.class_validators,
             model_config=field.model_config,
             default=field.default,
@@ -377,10 +428,10 @@ def get_schema_compatible_field(*, field: Field) -> Field:
             alias=field.alias,
             schema=field.schema,
         )
-    return field
+    return out_field
 
 
-def get_body_field(*, dependant: Dependant, name: str) -> Field:
+def get_body_field(*, dependant: Dependant, name: str) -> Optional[Field]:
     flat_dependant = get_flat_dependant(dependant)
     if not flat_dependant.body_params:
         return None

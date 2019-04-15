@@ -27,7 +27,7 @@ openapi_schema = {
                         },
                     },
                 },
-                "summary": "Read Items Get",
+                "summary": "Read Items",
                 "operationId": "read_items_items__get",
                 "parameters": [
                     {
@@ -69,7 +69,7 @@ openapi_schema = {
                         },
                     },
                 },
-                "summary": "Read Users Get",
+                "summary": "Read Users",
                 "operationId": "read_users_users__get",
                 "parameters": [
                     {

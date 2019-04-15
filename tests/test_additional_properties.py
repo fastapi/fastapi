@@ -41,7 +41,7 @@ openapi_schema = {
                         },
                     },
                 },
-                "summary": "Foo Post",
+                "summary": "Foo",
                 "operationId": "foo_foo_post",
                 "requestBody": {
                     "content": {

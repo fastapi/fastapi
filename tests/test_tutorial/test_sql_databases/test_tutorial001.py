@@ -26,7 +26,7 @@ openapi_schema = {
                         },
                     },
                 },
-                "summary": "Read User Get",
+                "summary": "Read User",
                 "operationId": "read_user_users__user_id__get",
                 "parameters": [
                     {

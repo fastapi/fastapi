@@ -43,7 +43,7 @@ Using `UploadFile` has several advantages over `bytes`:
 
 * It uses a "spooled" file:
     * A file stored in memory up to a maximum size limit, and after passing this limit it will be stored in disk.
-* This means that it will work well for large files like images, videos, large binaries, etc. All without consuming all the memory.
+* This means that it will work well for large files like images, videos, large binaries, etc. without consuming all the memory.
 * You can get metadata from the uploaded file.
 * It has a <a href="https://docs.python.org/3/glossary.html#term-file-like-object" target="_blank">file-like</a> `async` interface.
 * It exposes an actual Python <a href="https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile" target="_blank">`SpooledTemporaryFile`</a> object that you can pass directly to other libraries that expect a file-like object.
@@ -106,6 +106,27 @@ The way HTML forms (`<form></form>`) sends the data to the server normally uses 
     You can declare multiple `File` and `Form` parameters in a path operation, but you can't also declare `Body` fields that you expect to receive as JSON, as the request will have the body encoded using `multipart/form-data` instead of `application/json`.
 
     This is not a limitation of **FastAPI**, it's part of the HTTP protocol.
+
+## Multiple file uploads
+
+It's possible to upload several files at the same time.
+
+They would be associated to the same "form field" sent using "form data".
+
+To use that, declare a `List` of `bytes` or `UploadFile`:
+
+```Python hl_lines="10 15"
+{!./src/request_files/tutorial002.py!}
+```
+
+You will receive, as declared, a `list` of `bytes` or `UploadFile`s.
+
+!!! note
+    Notice that, as of 2019-04-14, Swagger UI doesn't support multiple file uploads in the same form field. For more information, check <a href="https://github.com/swagger-api/swagger-ui/issues/4276" target="_blank">#4276</a> and <a href="https://github.com/swagger-api/swagger-ui/issues/3641" target="_blank">#3641</a>.
+
+    Nevertheless, **FastAPI** is already compatible with it, using the standard OpenAPI.
+    
+    So, whenever Swagger UI supports multi-file uploads, or any other tools that supports OpenAPI, they will be compatible with **FastAPI**.
 
 ## Recap
 

@@ -34,7 +34,7 @@ openapi_schema = {
                         },
                     },
                 },
-                "summary": "Save Item No Body Put",
+                "summary": "Save Item No Body",
                 "operationId": "save_item_no_body_items__item_id__put",
                 "parameters": [
                     {

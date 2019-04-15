@@ -22,7 +22,7 @@ openapi_schema = {
                         },
                     }
                 },
-                "summary": "Read Notes Get",
+                "summary": "Read Notes",
                 "operationId": "read_notes_notes__get",
             },
             "post": {
@@ -46,7 +46,7 @@ openapi_schema = {
                         },
                     },
                 },
-                "summary": "Create Note Post",
+                "summary": "Create Note",
                 "operationId": "create_note_notes__post",
                 "requestBody": {
                     "content": {
