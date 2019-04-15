@@ -3,7 +3,7 @@ Continuing with the previous example, it will be common to have more than one re
 This is especially the case for user models, because:
 
 * The **input model** needs to be able to have a password.
-* The **output model** should do not have a password.
+* The **output model** should not have a password.
 * The **database model** would probably need to have a hashed password.
 
 !!! danger
