@@ -137,7 +137,7 @@ class APIRoute(routing.Route):
         self.status_code = status_code
         self.tags = tags or []
         self.summary = summary
-        self.description = description or self.endpoint.__doc__
+        self.description = description or inspect.cleandoc(self.endpoint.__doc__ or "")
         self.response_description = response_description
         self.responses = responses or {}
         response_fields = {}
