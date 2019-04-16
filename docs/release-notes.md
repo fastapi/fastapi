@@ -1,5 +1,7 @@
 ## Next release
 
+* Fix typo in Tutorial about Extra Models. PR <a href="https://github.com/tiangolo/fastapi/pull/159" target="_blank">#159</a> by <a href="https://github.com/danielmichaels" target="_blank">@danielmichaels</a>.
+
 * Fix <a href="https://fastapi.tiangolo.com/tutorial/query-params/" target="_blank">Query Parameters</a> URL examples in docs. PR <a href="https://github.com/tiangolo/fastapi/pull/157" target="_blank">#157</a> by <a href="https://github.com/hayata-yamamoto" target="_blank">@hayata-yamamoto</a>.
 
 ## 0.15.0
