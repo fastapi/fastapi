@@ -2,6 +2,8 @@
 
 * Upgrade *path operation* `doctsring` parsing to support proper Markdown descriptions. New documentation at <a href="https://fastapi.tiangolo.com/tutorial/path-operation-configuration/#description-from-docstring" target="_blank">Path Operation Configuration</a>. PR <a href="https://github.com/tiangolo/fastapi/pull/163" target="_blank">#163</a>.
 
+* Refactor internal usage of Pydantic to use correct data types. PR <a href="https://github.com/tiangolo/fastapi/pull/164" target="_blank">#164</a>.
+
 * Upgrade Pydantic to version `0.23`. PR <a href="https://github.com/tiangolo/fastapi/pull/160" target="_blank">#160</a> by <a href="https://github.com/euri10" target="_blank">@euri10</a>.
 
 * Fix typo in Tutorial about Extra Models. PR <a href="https://github.com/tiangolo/fastapi/pull/159" target="_blank">#159</a> by <a href="https://github.com/danielmichaels" target="_blank">@danielmichaels</a>.
