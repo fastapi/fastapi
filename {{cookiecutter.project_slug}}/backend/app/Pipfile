@@ -20,7 +20,7 @@ pyjwt = "*"
 python-multipart = "*"
 email-validator = "*"
 requests = "*"
-celery = "==4.2.1"
+celery = "~=4.3"
 passlib = {extras = ["bcrypt"],version = "*"}
 tenacity = "*"
 pydantic = "*"

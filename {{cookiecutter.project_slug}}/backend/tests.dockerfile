@@ -1,4 +1,4 @@
-FROM python:3.6
+FROM python:3.7
 
 RUN pip install requests pytest tenacity passlib[bcrypt] "fastapi>=0.7.1" psycopg2-binary SQLAlchemy
 
