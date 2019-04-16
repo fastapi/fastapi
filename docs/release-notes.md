@@ -1,5 +1,7 @@
 ## Next release
 
+* Fix <a href="https://fastapi.tiangolo.com/tutorial/query-params/" target="_blank">Query Parameters</a> URL examples in docs. PR <a href="https://github.com/tiangolo/fastapi/pull/157" target="_blank">#157</a> by <a href="https://github.com/hayata-yamamoto" target="_blank">@hayata-yamamoto</a>.
+
 ## 0.15.0
 
 * Add support for multiple file uploads (as a single form field). New docs at: <a href="https://fastapi.tiangolo.com/tutorial/request-files/#multiple-file-uploads" target="_blank">Multiple file uploads</a>. PR <a href="https://github.com/tiangolo/fastapi/pull/158" target="_blank">#158</a>.
