@@ -22,8 +22,8 @@ from fastapi.dependencies.models import Dependant, SecurityRequirement
 from fastapi.security.base import SecurityBase
 from fastapi.security.oauth2 import OAuth2, SecurityScopes
 from fastapi.security.open_id_connect_url import OpenIdConnect
-from fastapi.utils import UnconstrainedConfig, get_path_param_names
-from pydantic import Schema, create_model
+from fastapi.utils import get_path_param_names
+from pydantic import BaseConfig, Schema, create_model
 from pydantic.error_wrappers import ErrorWrapper
 from pydantic.errors import MissingError
 from pydantic.fields import Field, Required, Shape
@@ -203,8 +203,8 @@ def add_param_to_fields(
         default=None if required else default_value,
         alias=alias,
         required=required,
-        model_config=UnconstrainedConfig,
-        class_validators=[],
+        model_config=BaseConfig,
+        class_validators={},
         schema=schema,
     )
     if schema.in_ == params.ParamTypes.path:
@@ -237,8 +237,8 @@ def add_param_to_body_fields(*, param: inspect.Parameter, dependant: Dependant) 
         default=None if required else default_value,
         alias=schema.alias or param.name,
         required=required,
-        model_config=UnconstrainedConfig,
-        class_validators=[],
+        model_config=BaseConfig,
+        class_validators={},
         schema=schema,
     )
     dependant.body_params.append(field)
@@ -336,7 +336,7 @@ def request_params_to_args(
                     ErrorWrapper(
                         MissingError(),
                         loc=(schema.in_.value, field.alias),
-                        config=UnconstrainedConfig,
+                        config=BaseConfig,
                     )
                 )
             else:
@@ -379,9 +379,7 @@ async def request_body_to_args(
                 if field.required:
                     errors.append(
                         ErrorWrapper(
-                            MissingError(),
-                            loc=("body", field.alias),
-                            config=UnconstrainedConfig,
+                            MissingError(), loc=("body", field.alias), config=BaseConfig
                         )
                     )
                 else:
@@ -456,8 +454,8 @@ def get_body_field(*, dependant: Dependant, name: str) -> Optional[Field]:
         type_=BodyModel,
         default=None,
         required=required,
-        model_config=UnconstrainedConfig,
-        class_validators=[],
+        model_config=BaseConfig,
+        class_validators={},
         alias="body",
         schema=BodySchema(None),
     )

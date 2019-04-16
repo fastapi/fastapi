@@ -7,8 +7,7 @@ from fastapi import params
 from fastapi.dependencies.models import Dependant
 from fastapi.dependencies.utils import get_body_field, get_dependant, solve_dependencies
 from fastapi.encoders import jsonable_encoder
-from fastapi.utils import UnconstrainedConfig
-from pydantic import BaseModel, Schema
+from pydantic import BaseConfig, BaseModel, Schema
 from pydantic.error_wrappers import ErrorWrapper, ValidationError
 from pydantic.fields import Field
 from pydantic.utils import lenient_issubclass
@@ -59,7 +58,7 @@ def get_app(
                     if body_bytes:
                         body = await request.json()
         except Exception as e:
-            logging.error("Error getting request body", e)
+            logging.error(f"Error getting request body: {e}")
             raise HTTPException(
                 status_code=400, detail="There was an error parsing the body"
             )
@@ -126,10 +125,10 @@ class APIRoute(routing.Route):
             self.response_field: Optional[Field] = Field(
                 name=response_name,
                 type_=self.response_model,
-                class_validators=[],
+                class_validators={},
                 default=None,
                 required=False,
-                model_config=UnconstrainedConfig,
+                model_config=BaseConfig,
                 schema=Schema(None),
             )
         else:
@@ -155,7 +154,7 @@ class APIRoute(routing.Route):
                     class_validators=None,
                     default=None,
                     required=False,
-                    model_config=UnconstrainedConfig,
+                    model_config=BaseConfig,
                     schema=Schema(None),
                 )
                 response_fields[additional_status_code] = response_field
