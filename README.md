@@ -148,6 +148,8 @@ After using this generator, your new project (the directory created) will contai
 
 ### Next release
 
+* Upgrade Python to 3.7 as Celery is now compatible too. <a href="https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/10" target="_blank">PR #10</a> by <a href="https://github.com/ebreton" target="_blank">@ebreton</a>.
+
 ### 0.2.2
 
 * Fix frontend hijacking /docs in development. Using latest https://github.com/tiangolo/node-frontend with custom Nginx configs in frontend. <a href="https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/6" target="_blank">PR #6</a>.
