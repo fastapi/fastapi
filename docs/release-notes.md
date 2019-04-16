@@ -1,5 +1,7 @@
 ## Next release
 
+## 0.16.0
+
 * Upgrade *path operation* `doctsring` parsing to support proper Markdown descriptions. New documentation at <a href="https://fastapi.tiangolo.com/tutorial/path-operation-configuration/#description-from-docstring" target="_blank">Path Operation Configuration</a>. PR <a href="https://github.com/tiangolo/fastapi/pull/163" target="_blank">#163</a>.
 
 * Refactor internal usage of Pydantic to use correct data types. PR <a href="https://github.com/tiangolo/fastapi/pull/164" target="_blank">#164</a>.
