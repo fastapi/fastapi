@@ -10,13 +10,13 @@ from app.api.utils.db import get_db
 from app.api.utils.security import get_current_active_superuser, get_current_active_user
 from app.core import config
 from app.db_models.user import User as DBUser
-from app.models.user import User, UserInCreate, UserInDB, UserInUpdate
+from app.models.user import User, UserCreate, UserInDB, UserUpdate
 from app.utils import send_new_account_email
 
 router = APIRouter()
 
 
-@router.get("/users/", tags=["users"], response_model=List[User])
+@router.get("/", response_model=List[User])
 def read_users(
     db: Session = Depends(get_db),
     skip: int = 0,
@@ -24,21 +24,21 @@ def read_users(
     current_user: DBUser = Depends(get_current_active_superuser),
 ):
     """
-    Retrieve users
+    Retrieve users.
     """
     users = crud.user.get_multi(db, skip=skip, limit=limit)
     return users
 
 
-@router.post("/users/", tags=["users"], response_model=User)
+@router.post("/", response_model=User)
 def create_user(
     *,
     db: Session = Depends(get_db),
-    user_in: UserInCreate,
+    user_in: UserCreate,
     current_user: DBUser = Depends(get_current_active_superuser),
 ):
     """
-    Create new user
+    Create new user.
     """
     user = crud.user.get_by_email(db, email=user_in.email)
     if user:
@@ -54,7 +54,7 @@ def create_user(
     return user
 
 
-@router.put("/users/me", tags=["users"], response_model=User)
+@router.put("/me", response_model=User)
 def update_user_me(
     *,
     db: Session = Depends(get_db),
@@ -64,10 +64,10 @@ def update_user_me(
     current_user: DBUser = Depends(get_current_active_user),
 ):
     """
-    Update own user
+    Update own user.
     """
     current_user_data = jsonable_encoder(current_user)
-    user_in = UserInUpdate(**current_user_data)
+    user_in = UserUpdate(**current_user_data)
     if password is not None:
         user_in.password = password
     if full_name is not None:
@@ -78,18 +78,18 @@ def update_user_me(
     return user
 
 
-@router.get("/users/me", tags=["users"], response_model=User)
+@router.get("/me", response_model=User)
 def read_user_me(
     db: Session = Depends(get_db),
     current_user: DBUser = Depends(get_current_active_user),
 ):
     """
-    Get current user
+    Get current user.
     """
     return current_user
 
 
-@router.post("/users/open", tags=["users"], response_model=User)
+@router.post("/open", response_model=User)
 def create_user_open(
     *,
     db: Session = Depends(get_db),
@@ -98,7 +98,7 @@ def create_user_open(
     full_name: str = Body(None),
 ):
     """
-    Create new user without the need to be logged in
+    Create new user without the need to be logged in.
     """
     if not config.USERS_OPEN_REGISTRATION:
         raise HTTPException(
@@ -111,19 +111,19 @@ def create_user_open(
             status_code=400,
             detail="The user with this username already exists in the system",
         )
-    user_in = UserInCreate(password=password, email=email, full_name=full_name)
+    user_in = UserCreate(password=password, email=email, full_name=full_name)
     user = crud.user.create(db, user_in=user_in)
     return user
 
 
-@router.get("/users/{user_id}", tags=["users"], response_model=User)
+@router.get("/{user_id}", response_model=User)
 def read_user_by_id(
     user_id: int,
     current_user: DBUser = Depends(get_current_active_user),
     db: Session = Depends(get_db),
 ):
     """
-    Get a specific user by id
+    Get a specific user by id.
     """
     user = crud.user.get(db, user_id=user_id)
     if user == current_user:
@@ -135,19 +135,18 @@ def read_user_by_id(
     return user
 
 
-@router.put("/users/{user_id}", tags=["users"], response_model=User)
+@router.put("/{user_id}", response_model=User)
 def update_user(
     *,
     db: Session = Depends(get_db),
     user_id: int,
-    user_in: UserInUpdate,
+    user_in: UserUpdate,
     current_user: UserInDB = Depends(get_current_active_superuser),
 ):
     """
-    Update a user
+    Update a user.
     """
     user = crud.user.get(db, user_id=user_id)
-
     if not user:
         raise HTTPException(
             status_code=404,

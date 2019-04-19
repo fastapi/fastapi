@@ -16,13 +16,13 @@ class UserBaseInDB(UserBase):
 
 
 # Properties to receive via API on creation
-class UserInCreate(UserBaseInDB):
+class UserCreate(UserBaseInDB):
     email: str
     password: str
 
 
 # Properties to receive via API on update
-class UserInUpdate(UserBaseInDB):
+class UserUpdate(UserBaseInDB):
     password: Optional[str] = None
 
 

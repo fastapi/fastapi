@@ -148,6 +148,17 @@ After using this generator, your new project (the directory created) will contai
 
 ### Next release
 
+* PR <a href="https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/14" target="_blank">#14</a>:
+    * Update CRUD utils to use types better.
+    * Simplify Pydantic model names, from `UserInCreate` to `UserCreate`, etc.
+    * Upgrade packages.
+    * Add new generic "Items" models, crud utils, endpoints, and tests. To facilitate re-using them to create new functionality. As they are simple and generic (not like Users), it's easier to copy-paste and adapt them to each use case.
+    * Update endpoints/*path operations* to simplify code and use new utilities, prefix and tags in `include_router`.
+    * Update testing utils.
+    * Update linting rules, relax vulture to reduce false positives.
+    * Update migrations to include new Items.
+    * Update project README.md with tips about how to start with backend.
+
 * Upgrade Python to 3.7 as Celery is now compatible too. <a href="https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/10" target="_blank">PR #10</a> by <a href="https://github.com/ebreton" target="_blank">@ebreton</a>.
 
 ### 0.2.2
