@@ -1,5 +1,7 @@
 ## Next release
 
+* By default, encode by alias. This allows using Pydantic `alias` parameters working by default. PR <a href="https://github.com/tiangolo/fastapi/pull/168" target="_blank">#168</a>.
+
 ## 0.16.0
 
 * Upgrade *path operation* `doctsring` parsing to support proper Markdown descriptions. New documentation at <a href="https://fastapi.tiangolo.com/tutorial/path-operation-configuration/#description-from-docstring" target="_blank">Path Operation Configuration</a>. PR <a href="https://github.com/tiangolo/fastapi/pull/163" target="_blank">#163</a>.
