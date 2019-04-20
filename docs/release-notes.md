@@ -1,5 +1,9 @@
 ## Next release
 
+## 0.17.0
+
+* Make Flit publish from CI. PR <a href="https://github.com/tiangolo/fastapi/pull/170" target="_blank">#170</a>.
+
 * Add documentation about handling <a href="https://fastapi.tiangolo.com/tutorial/cors/" target="_blank">CORS (Cross-Origin Resource Sharing)</a>. PR <a href="https://github.com/tiangolo/fastapi/pull/169" target="_blank">#169</a>.
 
 * By default, encode by alias. This allows using Pydantic `alias` parameters working by default. PR <a href="https://github.com/tiangolo/fastapi/pull/168" target="_blank">#168</a>.
