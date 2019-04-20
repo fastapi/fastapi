@@ -28,7 +28,8 @@ def get_multi_by_owner(
 
 
 def create(db_session: Session, *, item_in: ItemCreate, owner_id: int) -> Item:
-    item = Item(title=item_in.title, description=item_in.description, owner_id=owner_id)
+    item_in_data = jsonable_encoder(item_in)
+    item = Item(**item_in_data, owner_id=owner_id)
     db_session.add(item)
     db_session.commit()
     db_session.refresh(item)
