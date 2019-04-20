@@ -148,6 +148,8 @@ After using this generator, your new project (the directory created) will contai
 
 ### Next release
 
+* Update development scripts.
+
 ### 0.3.0
 
 * PR <a href="https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/14" target="_blank">#14</a>:
