@@ -20,6 +20,6 @@ after_script:
 
 deploy:
   provider: script
-  script: bash scripts/trigger-docker.sh
+  script: bash scripts/deploy.sh
   on:
-    branch: master
+    tags: true
