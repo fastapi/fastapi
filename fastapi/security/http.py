@@ -59,7 +59,6 @@ class HTTPBasic(HTTPBase):
     async def __call__(self, request: Request) -> Optional[HTTPBasicCredentials]:
         authorization: str = request.headers.get("Authorization")
         scheme, param = get_authorization_scheme_param(authorization)
-        # before implementing headers with 401 errors, wait for: https://github.com/encode/starlette/issues/295
         if self.realm:
             unauthorized_headers = {"WWW-Authenticate": f'Basic realm="{self.realm}"'}
         else:
