@@ -1,5 +1,7 @@
 ## Next release
 
+* Add docs for <a href="https://fastapi.tiangolo.com/tutorial/middleware/" target="_blank">Middleware</a>. PR <a href="https://github.com/tiangolo/fastapi/pull/173" target="_blank">#173</a>.
+
 ## 0.17.0
 
 * Make Flit publish from CI. PR <a href="https://github.com/tiangolo/fastapi/pull/170" target="_blank">#170</a>.
