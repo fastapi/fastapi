@@ -1,5 +1,4 @@
 from base64 import b64encode
-from typing import Optional
 
 from fastapi import FastAPI, Security
 from fastapi.security import HTTPBasic, HTTPBasicCredentials
@@ -8,13 +7,11 @@ from starlette.testclient import TestClient
 
 app = FastAPI()
 
-security = HTTPBasic(auto_error=False)
+security = HTTPBasic(realm="simple")
 
 
 @app.get("/users/me")
-def read_current_user(credentials: Optional[HTTPBasicCredentials] = Security(security)):
-    if credentials is None:
-        return {"msg": "Create an account first"}
+def read_current_user(credentials: HTTPBasicCredentials = Security(security)):
     return {"username": credentials.username, "password": credentials.password}
 
 
@@ -59,8 +56,9 @@ def test_security_http_basic():
 
 def test_security_http_basic_no_credentials():
     response = client.get("/users/me")
-    assert response.status_code == 200
-    assert response.json() == {"msg": "Create an account first"}
+    assert response.json() == {"detail": "Not authenticated"}
+    assert response.status_code == 401
+    assert response.headers["WWW-Authenticate"] == 'Basic realm="simple"'
 
 
 def test_security_http_basic_invalid_credentials():
@@ -68,7 +66,7 @@ def test_security_http_basic_invalid_credentials():
         "/users/me", headers={"Authorization": "Basic notabase64token"}
     )
     assert response.status_code == 401
-    assert response.headers["WWW-Authenticate"] == "Basic"
+    assert response.headers["WWW-Authenticate"] == 'Basic realm="simple"'
     assert response.json() == {"detail": "Invalid authentication credentials"}
 
 
@@ -77,5 +75,5 @@ def test_security_http_basic_non_basic_credentials():
     auth_header = f"Basic {payload}"
     response = client.get("/users/me", headers={"Authorization": auth_header})
     assert response.status_code == 401
-    assert response.headers["WWW-Authenticate"] == "Basic"
+    assert response.headers["WWW-Authenticate"] == 'Basic realm="simple"'
     assert response.json() == {"detail": "Invalid authentication credentials"}
