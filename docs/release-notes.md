@@ -1,5 +1,7 @@
 ## Next release
 
+* Update dependencies for security. PR <a href="https://github.com/tiangolo/fastapi/pull/174" target="_blank">#174</a>.
+
 * Add docs for <a href="https://fastapi.tiangolo.com/tutorial/middleware/" target="_blank">Middleware</a>. PR <a href="https://github.com/tiangolo/fastapi/pull/173" target="_blank">#173</a>.
 
 ## 0.17.0
