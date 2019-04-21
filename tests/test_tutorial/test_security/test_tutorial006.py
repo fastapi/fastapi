@@ -1,19 +1,9 @@
 from base64 import b64encode
 
-from fastapi import FastAPI, Security
-from fastapi.security import HTTPBasic, HTTPBasicCredentials
 from requests.auth import HTTPBasicAuth
 from starlette.testclient import TestClient
 
-app = FastAPI()
-
-security = HTTPBasic()
-
-
-@app.get("/users/me")
-def read_current_user(credentials: HTTPBasicCredentials = Security(security)):
-    return {"username": credentials.username, "password": credentials.password}
-
+from security.tutorial006 import app
 
 client = TestClient(app)
 
