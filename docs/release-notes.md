@@ -1,5 +1,7 @@
 ## Next release
 
+## 0.18.0
+
 * Add docs for <a href="https://fastapi.tiangolo.com/tutorial/security/http-basic-auth/" target="_blank">HTTP Basic Auth</a>. PR <a href="https://github.com/tiangolo/fastapi/pull/177" target="_blank">#177</a>.
 
 * Upgrade HTTP Basic Auth handling with automatic headers (automatic browser login prompt). PR <a href="https://github.com/tiangolo/fastapi/pull/175" target="_blank">#175</a>.
