@@ -33,6 +33,7 @@ from starlette.background import BackgroundTasks
 from starlette.concurrency import run_in_threadpool
 from starlette.datastructures import FormData, Headers, QueryParams, UploadFile
 from starlette.requests import Request
+from starlette.websockets import WebSocket
 
 param_supported_types = (
     str,
@@ -158,7 +159,9 @@ def get_dependant(
             add_param_to_fields(
                 param=param, dependant=dependant, default_schema=params.Query
             )
-        elif lenient_issubclass(param.annotation, Request):
+        elif lenient_issubclass(param.annotation, Request) or lenient_issubclass(
+            param.annotation, WebSocket
+        ):
             dependant.request_param_name = param_name
         elif lenient_issubclass(param.annotation, BackgroundTasks):
             dependant.background_tasks_param_name = param_name

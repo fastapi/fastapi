@@ -18,6 +18,7 @@ from starlette.requests import Request
 from starlette.responses import JSONResponse, Response
 from starlette.routing import compile_path, get_name, request_response
 from starlette.status import HTTP_422_UNPROCESSABLE_ENTITY
+from starlette.websockets import WebSocket
 
 
 def serialize_response(*, field: Field = None, response: Response) -> Any:
@@ -90,6 +91,30 @@ def get_app(
             )
 
     return app
+
+
+class WebSocketAPIRoute(routing.WebSocketRoute):
+    def __init__(self, path: str, endpoint: Callable, *, name: str = None) -> None:
+        super().__init__(path, endpoint, name=name)
+        self.dependant = get_dependant(path=path, call=self.endpoint)
+
+        def app(scope):
+            async def awaitable(receive, send) -> None:
+                websocket = WebSocket(scope, receive=receive, send=send)
+                values, errors, background_tasks = await solve_dependencies(
+                    request=websocket, dependant=self.dependant
+                )
+                if errors:
+                    errors_out = ValidationError(errors)
+                    raise HTTPException(
+                        status_code=HTTP_422_UNPROCESSABLE_ENTITY,
+                        detail=errors_out.errors(),
+                    )
+                await self.dependant.call(**values)
+
+            return awaitable
+
+        self.app = app
 
 
 class APIRoute(routing.Route):
@@ -313,6 +338,12 @@ class APIRouter(routing.Router):
                 self.add_websocket_route(
                     prefix + route.path, route.endpoint, name=route.name
                 )
+
+    def add_websocket_route(
+        self, path: str, endpoint: Callable, name: str = None
+    ) -> None:
+        route = WebSocketAPIRoute(path, endpoint=endpoint, name=name)
+        self.routes.append(route)
 
     def get(
         self,
