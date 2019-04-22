@@ -18,6 +18,7 @@ from starlette.requests import Request
 from starlette.responses import JSONResponse, Response
 from starlette.routing import compile_path, get_name, request_response
 from starlette.status import HTTP_422_UNPROCESSABLE_ENTITY
+from starlette.types import ASGIInstance, Receive, Scope, Send
 from starlette.websockets import WebSocket
 
 
@@ -98,8 +99,8 @@ class WebSocketAPIRoute(routing.WebSocketRoute):
         super().__init__(path, endpoint, name=name)
         self.dependant = get_dependant(path=path, call=self.endpoint)
 
-        def app(scope):
-            async def awaitable(receive, send) -> None:
+        def app(scope: Scope) -> ASGIInstance:
+            async def awaitable(receive: Receive, send: Send) -> None:
                 websocket = WebSocket(scope, receive=receive, send=send)
                 values, errors, background_tasks = await solve_dependencies(
                     request=websocket, dependant=self.dependant
@@ -110,6 +111,9 @@ class WebSocketAPIRoute(routing.WebSocketRoute):
                         status_code=HTTP_422_UNPROCESSABLE_ENTITY,
                         detail=errors_out.errors(),
                     )
+                assert (
+                    self.dependant.call is not None
+                ), "dependant.call must me a function"
                 await self.dependant.call(**values)
 
             return awaitable
