@@ -154,6 +154,8 @@ After using this generator, your new project (the directory created) will contai
 
 * Create DB Item objects from all Pydantic model's fields.
 
+* Update Jupyter Lab installation and util script/environment variable for local development.
+
 ### 0.3.0
 
 * PR <a href="https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/14" target="_blank">#14</a>:
