@@ -4,9 +4,9 @@ RUN pip install celery~=4.3 passlib[bcrypt] tenacity requests emails "fastapi>=0
 
 # For development, Jupyter remote kernel, Hydrogen
 # Using inside the container:
-# jupyter notebook --ip=0.0.0.0 --allow-root
+# jupyter lab --ip=0.0.0.0 --allow-root --NotebookApp.custom_display_url=http://127.0.0.1:8888
 ARG env=prod
-RUN bash -c "if [ $env == 'dev' ] ; then pip install jupyter ; fi"
+RUN bash -c "if [ $env == 'dev' ] ; then pip install jupyterlab ; fi"
 EXPOSE 8888
 
 COPY ./app /app
