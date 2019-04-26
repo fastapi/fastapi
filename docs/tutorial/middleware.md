@@ -28,6 +28,12 @@ The middleware function receives:
 !!! tip
     This technique is used in the tutorial about <a href="https://fastapi.tiangolo.com/tutorial/sql-databases/" target="_blank">SQL (Relational) Databases</a>.
 
+
+!!! tip
+    Have in mind that custom proprietary headers can be added <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers" target="_blank">using the 'X-' prefix</a>.
+
+    But if you have custom headers that you want a client in a browser to be able to see, you need to add them to your <a href="https://fastapi.tiangolo.com/tutorial/cors/" target="_blank">CORS configurations</a>, using the parameter `expose_headers` documented in <a href="https://www.starlette.io/middleware/#corsmiddleware" target="_blank">Starlette's CORS docs</a>.
+
 ### Before and after the `response`
 
 You can add code to be run with the `request`,  before any *path operation* receives it. 

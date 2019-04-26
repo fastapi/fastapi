@@ -48,6 +48,8 @@ nav:
         - Return a Response directly: 'tutorial/response-directly.md'
         - Custom Response Class: 'tutorial/custom-response.md'
         - Additional Responses in OpenAPI: 'tutorial/additional-responses.md'
+        - Response Cookies: 'tutorial/response-cookies.md'
+        - Response Headers: 'tutorial/response-headers.md'
         - Dependencies:
             - First Steps: 'tutorial/dependencies/first-steps.md'
             - Classes as Dependencies: 'tutorial/dependencies/classes-as-dependencies.md'
