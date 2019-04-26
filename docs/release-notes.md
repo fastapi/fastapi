@@ -1,5 +1,7 @@
 ## Next release
 
+* Include <a href="https://gitlab.com/pgjones/hypercorn" target="_blank">Hypercorn</a> as an alternative ASGI server in the docs. PR <a href="https://github.com/tiangolo/fastapi/pull/187" target="_blank">#187</a>.
+
 * Add docs for <a href="https://fastapi.tiangolo.com/tutorial/static-files/" target="_blank">Static Files</a> and <a href="https://fastapi.tiangolo.com/tutorial/templates/" target="_blank">Templates</a>. PR <a href="https://github.com/tiangolo/fastapi/pull/186" target="_blank">#186</a>.
 
 * Add docs for handling <a href="https://fastapi.tiangolo.com/tutorial/response-cookies/" target="_blank">Response Cookies</a> and <a href="https://fastapi.tiangolo.com/tutorial/response-headers/" target="_blank">Response Headers</a>. PR <a href="https://github.com/tiangolo/fastapi/pull/185" target="_blank">#185</a>.
