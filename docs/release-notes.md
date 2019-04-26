@@ -1,5 +1,7 @@
 ## Next release
 
+## 0.19.0
+
 * Rename *path operation decorator* parameter `content_type` to `response_class`. PR <a href="https://github.com/tiangolo/fastapi/pull/183" target="_blank">#183</a>.
 
 * Add docs:
