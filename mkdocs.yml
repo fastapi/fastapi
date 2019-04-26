@@ -73,6 +73,8 @@ nav:
         - Background Tasks: 'tutorial/background-tasks.md'
         - Sub Applications - Behind a Proxy: 'tutorial/sub-applications-proxy.md'
         - Application Configuration: 'tutorial/application-configuration.md'
+        - Static Files: 'tutorial/static-files.md'
+        - Templates: 'tutorial/templates.md'
         - GraphQL: 'tutorial/graphql.md'
         - WebSockets: 'tutorial/websockets.md'
         - 'Events: startup - shutdown': 'tutorial/events.md'
