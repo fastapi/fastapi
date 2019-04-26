@@ -1,13 +1,15 @@
 ## Next release
 
+* Add docs for handling <a href="https://fastapi.tiangolo.com/tutorial/response-cookies/" target="_blank">Response Cookies</a> and <a href="https://fastapi.tiangolo.com/tutorial/response-headers/" target="_blank">Response Headers</a>. PR <a href="https://github.com/tiangolo/fastapi/pull/185" target="_blank">#185</a>.
+
 ## 0.19.0
 
 * Rename *path operation decorator* parameter `content_type` to `response_class`. PR <a href="https://github.com/tiangolo/fastapi/pull/183" target="_blank">#183</a>.
 
 * Add docs:
-    * How to use the `jsonable_encoder` in <a href="https://fastapi.tiangolo.com/tutorial/tutorial/encoder/" target="_blank">JSON compatible encoder</a>.
-    * How to <a href="https://fastapi.tiangolo.com/tutorial/tutorial/response-directly/" target="_blank">Return a Response directly</a>.
-    * Update how to use a <a href="https://fastapi.tiangolo.com/tutorial/tutorial/custom-response/" target="_blank">Custom Response Class</a>.
+    * How to use the `jsonable_encoder` in <a href="https://fastapi.tiangolo.com/tutorial/encoder/" target="_blank">JSON compatible encoder</a>.
+    * How to <a href="https://fastapi.tiangolo.com/tutorial/response-directly/" target="_blank">Return a Response directly</a>.
+    * Update how to use a <a href="https://fastapi.tiangolo.com/tutorial/custom-response/" target="_blank">Custom Response Class</a>.
     * PR <a href="https://github.com/tiangolo/fastapi/pull/184" target="_blank">#184</a>.
 
 ## 0.18.0
