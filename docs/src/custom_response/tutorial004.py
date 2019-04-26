@@ -18,6 +18,6 @@ def generate_html_response():
     return HTMLResponse(content=html_content, status_code=200)
 
 
-@app.get("/items/", content_type=HTMLResponse)
+@app.get("/items/", response_class=HTMLResponse)
 async def read_items():
     return generate_html_response()

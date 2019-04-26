@@ -40,7 +40,7 @@ def get_app(
     dependant: Dependant,
     body_field: Field = None,
     status_code: int = 200,
-    content_type: Type[Response] = JSONResponse,
+    response_class: Type[Response] = JSONResponse,
     response_field: Field = None,
 ) -> Callable:
     assert dependant.call is not None, "dependant.call must me a function"
@@ -83,7 +83,7 @@ def get_app(
             response_data = serialize_response(
                 field=response_field, response=raw_response
             )
-            return content_type(
+            return response_class(
                 content=response_data,
                 status_code=status_code,
                 background=background_tasks,
@@ -110,7 +110,7 @@ class APIRoute(routing.Route):
         methods: List[str] = None,
         operation_id: str = None,
         include_in_schema: bool = True,
-        content_type: Type[Response] = JSONResponse,
+        response_class: Type[Response] = JSONResponse,
     ) -> None:
         assert path.startswith("/"), "Routed paths must always start with '/'"
         self.path = path
@@ -119,7 +119,7 @@ class APIRoute(routing.Route):
         self.response_model = response_model
         if self.response_model:
             assert lenient_issubclass(
-                content_type, JSONResponse
+                response_class, JSONResponse
             ), "To declare a type the response must be a JSON response"
             response_name = "Response_" + self.name
             self.response_field: Optional[Field] = Field(
@@ -168,7 +168,7 @@ class APIRoute(routing.Route):
         self.methods = methods
         self.operation_id = operation_id
         self.include_in_schema = include_in_schema
-        self.content_type = content_type
+        self.response_class = response_class
 
         self.path_regex, self.path_format, self.param_convertors = compile_path(path)
         assert inspect.isfunction(endpoint) or inspect.ismethod(
@@ -181,7 +181,7 @@ class APIRoute(routing.Route):
                 dependant=self.dependant,
                 body_field=self.body_field,
                 status_code=self.status_code,
-                content_type=self.content_type,
+                response_class=self.response_class,
                 response_field=self.response_field,
             )
         )
@@ -204,7 +204,7 @@ class APIRouter(routing.Router):
         methods: List[str] = None,
         operation_id: str = None,
         include_in_schema: bool = True,
-        content_type: Type[Response] = JSONResponse,
+        response_class: Type[Response] = JSONResponse,
         name: str = None,
     ) -> None:
         route = APIRoute(
@@ -221,7 +221,7 @@ class APIRouter(routing.Router):
             methods=methods,
             operation_id=operation_id,
             include_in_schema=include_in_schema,
-            content_type=content_type,
+            response_class=response_class,
             name=name,
         )
         self.routes.append(route)
@@ -241,7 +241,7 @@ class APIRouter(routing.Router):
         methods: List[str] = None,
         operation_id: str = None,
         include_in_schema: bool = True,
-        content_type: Type[Response] = JSONResponse,
+        response_class: Type[Response] = JSONResponse,
         name: str = None,
     ) -> Callable:
         def decorator(func: Callable) -> Callable:
@@ -259,7 +259,7 @@ class APIRouter(routing.Router):
                 methods=methods,
                 operation_id=operation_id,
                 include_in_schema=include_in_schema,
-                content_type=content_type,
+                response_class=response_class,
                 name=name,
             )
             return func
@@ -298,7 +298,7 @@ class APIRouter(routing.Router):
                     methods=route.methods,
                     operation_id=route.operation_id,
                     include_in_schema=route.include_in_schema,
-                    content_type=route.content_type,
+                    response_class=route.response_class,
                     name=route.name,
                 )
             elif isinstance(route, routing.Route):
@@ -328,7 +328,7 @@ class APIRouter(routing.Router):
         deprecated: bool = None,
         operation_id: str = None,
         include_in_schema: bool = True,
-        content_type: Type[Response] = JSONResponse,
+        response_class: Type[Response] = JSONResponse,
         name: str = None,
     ) -> Callable:
         return self.api_route(
@@ -344,7 +344,7 @@ class APIRouter(routing.Router):
             methods=["GET"],
             operation_id=operation_id,
             include_in_schema=include_in_schema,
-            content_type=content_type,
+            response_class=response_class,
             name=name,
         )
 
@@ -362,7 +362,7 @@ class APIRouter(routing.Router):
         deprecated: bool = None,
         operation_id: str = None,
         include_in_schema: bool = True,
-        content_type: Type[Response] = JSONResponse,
+        response_class: Type[Response] = JSONResponse,
         name: str = None,
     ) -> Callable:
         return self.api_route(
@@ -378,7 +378,7 @@ class APIRouter(routing.Router):
             methods=["PUT"],
             operation_id=operation_id,
             include_in_schema=include_in_schema,
-            content_type=content_type,
+            response_class=response_class,
             name=name,
         )
 
@@ -396,7 +396,7 @@ class APIRouter(routing.Router):
         deprecated: bool = None,
         operation_id: str = None,
         include_in_schema: bool = True,
-        content_type: Type[Response] = JSONResponse,
+        response_class: Type[Response] = JSONResponse,
         name: str = None,
     ) -> Callable:
         return self.api_route(
@@ -412,7 +412,7 @@ class APIRouter(routing.Router):
             methods=["POST"],
             operation_id=operation_id,
             include_in_schema=include_in_schema,
-            content_type=content_type,
+            response_class=response_class,
             name=name,
         )
 
@@ -430,7 +430,7 @@ class APIRouter(routing.Router):
         deprecated: bool = None,
         operation_id: str = None,
         include_in_schema: bool = True,
-        content_type: Type[Response] = JSONResponse,
+        response_class: Type[Response] = JSONResponse,
         name: str = None,
     ) -> Callable:
         return self.api_route(
@@ -446,7 +446,7 @@ class APIRouter(routing.Router):
             methods=["DELETE"],
             operation_id=operation_id,
             include_in_schema=include_in_schema,
-            content_type=content_type,
+            response_class=response_class,
             name=name,
         )
 
@@ -464,7 +464,7 @@ class APIRouter(routing.Router):
         deprecated: bool = None,
         operation_id: str = None,
         include_in_schema: bool = True,
-        content_type: Type[Response] = JSONResponse,
+        response_class: Type[Response] = JSONResponse,
         name: str = None,
     ) -> Callable:
         return self.api_route(
@@ -480,7 +480,7 @@ class APIRouter(routing.Router):
             methods=["OPTIONS"],
             operation_id=operation_id,
             include_in_schema=include_in_schema,
-            content_type=content_type,
+            response_class=response_class,
             name=name,
         )
 
@@ -498,7 +498,7 @@ class APIRouter(routing.Router):
         deprecated: bool = None,
         operation_id: str = None,
         include_in_schema: bool = True,
-        content_type: Type[Response] = JSONResponse,
+        response_class: Type[Response] = JSONResponse,
         name: str = None,
     ) -> Callable:
         return self.api_route(
@@ -514,7 +514,7 @@ class APIRouter(routing.Router):
             methods=["HEAD"],
             operation_id=operation_id,
             include_in_schema=include_in_schema,
-            content_type=content_type,
+            response_class=response_class,
             name=name,
         )
 
@@ -532,7 +532,7 @@ class APIRouter(routing.Router):
         deprecated: bool = None,
         operation_id: str = None,
         include_in_schema: bool = True,
-        content_type: Type[Response] = JSONResponse,
+        response_class: Type[Response] = JSONResponse,
         name: str = None,
     ) -> Callable:
         return self.api_route(
@@ -548,7 +548,7 @@ class APIRouter(routing.Router):
             methods=["PATCH"],
             operation_id=operation_id,
             include_in_schema=include_in_schema,
-            content_type=content_type,
+            response_class=response_class,
             name=name,
         )
 
@@ -566,7 +566,7 @@ class APIRouter(routing.Router):
         deprecated: bool = None,
         operation_id: str = None,
         include_in_schema: bool = True,
-        content_type: Type[Response] = JSONResponse,
+        response_class: Type[Response] = JSONResponse,
         name: str = None,
     ) -> Callable:
         return self.api_route(
@@ -582,6 +582,6 @@ class APIRouter(routing.Router):
             methods=["TRACE"],
             operation_id=operation_id,
             include_in_schema=include_in_schema,
-            content_type=content_type,
+            response_class=response_class,
             name=name,
         )
