@@ -44,7 +44,9 @@ nav:
         - Path Operation Configuration: 'tutorial/path-operation-configuration.md'
         - Path Operation Advanced Configuration: 'tutorial/path-operation-advanced-configuration.md'
         - Additional Status Codes: 'tutorial/additional-status-codes.md'
-        - Custom Response: 'tutorial/custom-response.md'
+        - JSON compatible encoder: 'tutorial/encoder.md'
+        - Return a Response directly: 'tutorial/response-directly.md'
+        - Custom Response Class: 'tutorial/custom-response.md'
         - Additional Responses in OpenAPI: 'tutorial/additional-responses.md'
         - Dependencies:
             - First Steps: 'tutorial/dependencies/first-steps.md'
