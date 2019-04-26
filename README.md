@@ -82,7 +82,7 @@ FastAPI stands on the shoulders of giants:
 $ pip install fastapi
 ```
 
-You will also need an ASGI server, for production such as <a href="http://www.uvicorn.org" target="_blank">uvicorn</a>.
+You will also need an ASGI server, for production such as <a href="http://www.uvicorn.org" target="_blank">Uvicorn</a> or <a href="https://gitlab.com/pgjones/hypercorn" target="_blank">Hypercorn</a>.
 
 ```bash
 $ pip install uvicorn
