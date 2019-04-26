@@ -1,8 +1,16 @@
 ## Next release
 
+* Rename *path operation decorator* parameter `content_type` to `response_class`. PR <a href="https://github.com/tiangolo/fastapi/pull/183" target="_blank">#183</a>.
+
+* Add docs:
+    * How to use the `jsonable_encoder` in <a href="https://fastapi.tiangolo.com/tutorial/tutorial/encoder/" target="_blank">JSON compatible encoder</a>.
+    * How to <a href="https://fastapi.tiangolo.com/tutorial/tutorial/response-directly/" target="_blank">Return a Response directly</a>.
+    * Update how to use a <a href="https://fastapi.tiangolo.com/tutorial/tutorial/custom-response/" target="_blank">Custom Response Class</a>.
+    * PR <a href="https://github.com/tiangolo/fastapi/pull/184" target="_blank">#184</a>.
+
 ## 0.18.0
 
-* Add docs for <a href="https://fastapi.tiangolo.com/tutorial/security/http-basic-auth/" target="_blank">HTTP Basic Auth</a>. PR <a href="https://github.com/tiangolo/fastapi/pull/177" target="_blank">#177</a>.
+* Add docs for <a href="https://fastapi.tiangolo.com/tutorial/custom-response/" target="_blank">HTTP Basic Auth</a>. PR <a href="https://github.com/tiangolo/fastapi/pull/177" target="_blank">#177</a>.
 
 * Upgrade HTTP Basic Auth handling with automatic headers (automatic browser login prompt). PR <a href="https://github.com/tiangolo/fastapi/pull/175" target="_blank">#175</a>.
 
