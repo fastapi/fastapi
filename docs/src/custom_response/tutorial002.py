@@ -4,7 +4,7 @@ from starlette.responses import HTMLResponse
 app = FastAPI()
 
 
-@app.get("/items/", content_type=HTMLResponse)
+@app.get("/items/", response_class=HTMLResponse)
 async def read_items():
     return """
     <html>
