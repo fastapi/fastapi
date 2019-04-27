@@ -13,6 +13,8 @@
 
 * Add docs for handling <a href="https://fastapi.tiangolo.com/tutorial/response-cookies/" target="_blank">Response Cookies</a> and <a href="https://fastapi.tiangolo.com/tutorial/response-headers/" target="_blank">Response Headers</a>. PR <a href="https://github.com/tiangolo/fastapi/pull/185" target="_blank">#185</a>.
 
+* Fix typos in docs. PR <a href="https://github.com/tiangolo/fastapi/pull/176" target="_blank">#176</a> by <a href="https://github.com/chdsbd" target="_blank">@chdsbd</a>.
+
 ## 0.19.0
 
 * Rename *path operation decorator* parameter `content_type` to `response_class`. PR <a href="https://github.com/tiangolo/fastapi/pull/183" target="_blank">#183</a>.
