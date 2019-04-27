@@ -34,7 +34,7 @@ So, for everything to work correctly, it's better to specify explicitly the allo
 
 You can configure it in your **FastAPI** application using Starlette's <a href="https://www.starlette.io/middleware/#corsmiddleware" target="_blank">`CORSMiddleware`</a>.
 
-* Import it form Starlette.
+* Import it from Starlette.
 * Create a list of allowed origins (as strings).
 * Add it as a "middleware" to your **FastAPI** application.
 

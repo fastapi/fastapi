@@ -229,7 +229,7 @@ It will include all the routes from that router as part of it.
 
 ### Include an `APIRouter` with a `prefix`, `tags`, and `responses`
 
-Now, let's include the router form the `items` submodule.
+Now, let's include the router from the `items` submodule.
 
 But, remember that we were lazy and didn't add `/items/` nor `tags` to all the *path operations*?
 
