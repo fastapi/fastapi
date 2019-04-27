@@ -4,76 +4,76 @@
 
 * Upgrade OAuth2:
     * Upgrade Password flow using Bearer tokens to use the correct HTTP status code 401 `UNAUTHORIZED`, with `WWW-Authenticate` headers.
-    * Update, simplify, and improve all the <a href="https://fastapi.tiangolo.com/tutorial/security/intro/" target="_blank">security docs</a>.
-    * Add new `scope_str` to `SecurityScopes` and update docs: <a href="https://fastapi.tiangolo.com/tutorial/security/oauth2-scopes/" target="_blank">OAuth2 scopes</a>.
+    * Update, simplify, and improve all the [security docs](https://fastapi.tiangolo.com/tutorial/security/intro/).
+    * Add new `scope_str` to `SecurityScopes` and update docs: [OAuth2 scopes](https://fastapi.tiangolo.com/tutorial/security/oauth2-scopes/).
     * Update docs, images, tests.
-    * PR <a href="https://github.com/tiangolo/fastapi/pull/188" target="_blank">#188</a>.
+    * PR [#188](https://github.com/tiangolo/fastapi/pull/188).
 
-* Include <a href="https://gitlab.com/pgjones/hypercorn" target="_blank">Hypercorn</a> as an alternative ASGI server in the docs. PR <a href="https://github.com/tiangolo/fastapi/pull/187" target="_blank">#187</a>.
+* Include [Hypercorn](https://gitlab.com/pgjones/hypercorn) as an alternative ASGI server in the docs. PR [#187](https://github.com/tiangolo/fastapi/pull/187).
 
-* Add docs for <a href="https://fastapi.tiangolo.com/tutorial/static-files/" target="_blank">Static Files</a> and <a href="https://fastapi.tiangolo.com/tutorial/templates/" target="_blank">Templates</a>. PR <a href="https://github.com/tiangolo/fastapi/pull/186" target="_blank">#186</a>.
+* Add docs for [Static Files](https://fastapi.tiangolo.com/tutorial/static-files/) and [Templates](https://fastapi.tiangolo.com/tutorial/templates/). PR [#186](https://github.com/tiangolo/fastapi/pull/186).
 
-* Add docs for handling <a href="https://fastapi.tiangolo.com/tutorial/response-cookies/" target="_blank">Response Cookies</a> and <a href="https://fastapi.tiangolo.com/tutorial/response-headers/" target="_blank">Response Headers</a>. PR <a href="https://github.com/tiangolo/fastapi/pull/185" target="_blank">#185</a>.
+* Add docs for handling [Response Cookies](https://fastapi.tiangolo.com/tutorial/response-cookies/) and [Response Headers](https://fastapi.tiangolo.com/tutorial/response-headers/). PR [#185](https://github.com/tiangolo/fastapi/pull/185).
 
-* Fix typos in docs. PR <a href="https://github.com/tiangolo/fastapi/pull/176" target="_blank">#176</a> by <a href="https://github.com/chdsbd" target="_blank">@chdsbd</a>.
+* Fix typos in docs. PR [#176](https://github.com/tiangolo/fastapi/pull/176) by [@chdsbd](https://github.com/chdsbd).
 
 ## 0.19.0
 
-* Rename *path operation decorator* parameter `content_type` to `response_class`. PR <a href="https://github.com/tiangolo/fastapi/pull/183" target="_blank">#183</a>.
+* Rename _path operation decorator_ parameter `content_type` to `response_class`. PR [#183](https://github.com/tiangolo/fastapi/pull/183).
 
 * Add docs:
-    * How to use the `jsonable_encoder` in <a href="https://fastapi.tiangolo.com/tutorial/encoder/" target="_blank">JSON compatible encoder</a>.
-    * How to <a href="https://fastapi.tiangolo.com/tutorial/response-directly/" target="_blank">Return a Response directly</a>.
-    * Update how to use a <a href="https://fastapi.tiangolo.com/tutorial/custom-response/" target="_blank">Custom Response Class</a>.
-    * PR <a href="https://github.com/tiangolo/fastapi/pull/184" target="_blank">#184</a>.
+    * How to use the `jsonable_encoder` in [JSON compatible encoder](https://fastapi.tiangolo.com/tutorial/encoder/).
+    * How to [Return a Response directly](https://fastapi.tiangolo.com/tutorial/response-directly/).
+    * Update how to use a [Custom Response Class](https://fastapi.tiangolo.com/tutorial/custom-response/).
+    * PR [#184](https://github.com/tiangolo/fastapi/pull/184).
 
 ## 0.18.0
 
-* Add docs for <a href="https://fastapi.tiangolo.com/tutorial/custom-response/" target="_blank">HTTP Basic Auth</a>. PR <a href="https://github.com/tiangolo/fastapi/pull/177" target="_blank">#177</a>.
+* Add docs for [HTTP Basic Auth](https://fastapi.tiangolo.com/tutorial/custom-response/). PR [#177](https://github.com/tiangolo/fastapi/pull/177).
 
-* Upgrade HTTP Basic Auth handling with automatic headers (automatic browser login prompt). PR <a href="https://github.com/tiangolo/fastapi/pull/175" target="_blank">#175</a>.
+* Upgrade HTTP Basic Auth handling with automatic headers (automatic browser login prompt). PR [#175](https://github.com/tiangolo/fastapi/pull/175).
 
-* Update dependencies for security. PR <a href="https://github.com/tiangolo/fastapi/pull/174" target="_blank">#174</a>.
+* Update dependencies for security. PR [#174](https://github.com/tiangolo/fastapi/pull/174).
 
-* Add docs for <a href="https://fastapi.tiangolo.com/tutorial/middleware/" target="_blank">Middleware</a>. PR <a href="https://github.com/tiangolo/fastapi/pull/173" target="_blank">#173</a>.
+* Add docs for [Middleware](https://fastapi.tiangolo.com/tutorial/middleware/). PR [#173](https://github.com/tiangolo/fastapi/pull/173).
 
 ## 0.17.0
 
-* Make Flit publish from CI. PR <a href="https://github.com/tiangolo/fastapi/pull/170" target="_blank">#170</a>.
+* Make Flit publish from CI. PR [#170](https://github.com/tiangolo/fastapi/pull/170).
 
-* Add documentation about handling <a href="https://fastapi.tiangolo.com/tutorial/cors/" target="_blank">CORS (Cross-Origin Resource Sharing)</a>. PR <a href="https://github.com/tiangolo/fastapi/pull/169" target="_blank">#169</a>.
+* Add documentation about handling [CORS (Cross-Origin Resource Sharing)](https://fastapi.tiangolo.com/tutorial/cors/). PR [#169](https://github.com/tiangolo/fastapi/pull/169).
 
-* By default, encode by alias. This allows using Pydantic `alias` parameters working by default. PR <a href="https://github.com/tiangolo/fastapi/pull/168" target="_blank">#168</a>.
+* By default, encode by alias. This allows using Pydantic `alias` parameters working by default. PR [#168](https://github.com/tiangolo/fastapi/pull/168).
 
 ## 0.16.0
 
-* Upgrade *path operation* `doctsring` parsing to support proper Markdown descriptions. New documentation at <a href="https://fastapi.tiangolo.com/tutorial/path-operation-configuration/#description-from-docstring" target="_blank">Path Operation Configuration</a>. PR <a href="https://github.com/tiangolo/fastapi/pull/163" target="_blank">#163</a>.
+* Upgrade _path operation_ `doctsring` parsing to support proper Markdown descriptions. New documentation at [Path Operation Configuration](https://fastapi.tiangolo.com/tutorial/path-operation-configuration/#description-from-docstring). PR [#163](https://github.com/tiangolo/fastapi/pull/163).
 
-* Refactor internal usage of Pydantic to use correct data types. PR <a href="https://github.com/tiangolo/fastapi/pull/164" target="_blank">#164</a>.
+* Refactor internal usage of Pydantic to use correct data types. PR [#164](https://github.com/tiangolo/fastapi/pull/164).
 
-* Upgrade Pydantic to version `0.23`. PR <a href="https://github.com/tiangolo/fastapi/pull/160" target="_blank">#160</a> by <a href="https://github.com/euri10" target="_blank">@euri10</a>.
+* Upgrade Pydantic to version `0.23`. PR [#160](https://github.com/tiangolo/fastapi/pull/160) by [@euri10](https://github.com/euri10).
 
-* Fix typo in Tutorial about Extra Models. PR <a href="https://github.com/tiangolo/fastapi/pull/159" target="_blank">#159</a> by <a href="https://github.com/danielmichaels" target="_blank">@danielmichaels</a>.
+* Fix typo in Tutorial about Extra Models. PR [#159](https://github.com/tiangolo/fastapi/pull/159) by [@danielmichaels](https://github.com/danielmichaels).
 
-* Fix <a href="https://fastapi.tiangolo.com/tutorial/query-params/" target="_blank">Query Parameters</a> URL examples in docs. PR <a href="https://github.com/tiangolo/fastapi/pull/157" target="_blank">#157</a> by <a href="https://github.com/hayata-yamamoto" target="_blank">@hayata-yamamoto</a>.
+* Fix [Query Parameters](https://fastapi.tiangolo.com/tutorial/query-params/) URL examples in docs. PR [#157](https://github.com/tiangolo/fastapi/pull/157) by [@hayata-yamamoto](https://github.com/hayata-yamamoto).
 
 ## 0.15.0
 
-* Add support for multiple file uploads (as a single form field). New docs at: <a href="https://fastapi.tiangolo.com/tutorial/request-files/#multiple-file-uploads" target="_blank">Multiple file uploads</a>. PR <a href="https://github.com/tiangolo/fastapi/pull/158" target="_blank">#158</a>.
+* Add support for multiple file uploads (as a single form field). New docs at: [Multiple file uploads](https://fastapi.tiangolo.com/tutorial/request-files/#multiple-file-uploads). PR [#158](https://github.com/tiangolo/fastapi/pull/158).
 
-* Add docs for: <a href="https://fastapi.tiangolo.com/tutorial/additional-status-codes/" target="_blank">Additional Status Codes</a>. PR <a href="https://github.com/tiangolo/fastapi/pull/156" target="_blank">#156</a>.
+* Add docs for: [Additional Status Codes](https://fastapi.tiangolo.com/tutorial/additional-status-codes/). PR [#156](https://github.com/tiangolo/fastapi/pull/156).
 
 ## 0.14.0
 
-* Improve automatically generated names of path operations in OpenAPI (in API docs). A function `read_items` instead of having a generated name "Read Items Get" will have "Read Items". PR <a href="https://github.com/tiangolo/fastapi/pull/155" target="_blank">#155</a>.
+* Improve automatically generated names of path operations in OpenAPI (in API docs). A function `read_items` instead of having a generated name "Read Items Get" will have "Read Items". PR [#155](https://github.com/tiangolo/fastapi/pull/155).
 
-* Add docs for: <a href="https://fastapi.tiangolo.com/tutorial/testing/" target="_blank">Testing **FastAPI**</a>. PR <a href="https://github.com/tiangolo/fastapi/pull/151" target="_blank">#151</a>.
+* Add docs for: [Testing **FastAPI**](https://fastapi.tiangolo.com/tutorial/testing/). PR [#151](https://github.com/tiangolo/fastapi/pull/151).
 
-* Update `/docs` Swagger UI to enable deep linking. This allows sharing the URL pointing directly to the path operation documentation in the docs. PR <a href="https://github.com/tiangolo/fastapi/pull/148" target="_blank">#148</a> by <a href="https://github.com/wshayes" target="_blank">@wshayes</a>.
+* Update `/docs` Swagger UI to enable deep linking. This allows sharing the URL pointing directly to the path operation documentation in the docs. PR [#148](https://github.com/tiangolo/fastapi/pull/148) by [@wshayes](https://github.com/wshayes).
 
-* Update development dependencies, `Pipfile.lock`. PR <a href="https://github.com/tiangolo/fastapi/pull/150" target="_blank">#150</a>.
+* Update development dependencies, `Pipfile.lock`. PR [#150](https://github.com/tiangolo/fastapi/pull/150).
 
-* Include Falcon and Hug in: <a href="https://fastapi.tiangolo.com/alternatives/" target="_blank">Alternatives, Inspiration and Comparisons</a>.
+* Include Falcon and Hug in: [Alternatives, Inspiration and Comparisons](https://fastapi.tiangolo.com/alternatives/).
 
 ## 0.13.0
 
@@ -81,187 +81,185 @@
     * `SecurityScopes` can be declared as a parameter like `Request`, to get the scopes of all super-dependencies/dependants.
     * Improve `Security` handling, merging scopes when declaring `SecurityScopes`.
     * Allow using `SecurityBase` (like `OAuth2`) classes with `Depends` and still document them. `Security` now is needed only to declare `scopes`.
-    * Updated docs about: <a href="https://fastapi.tiangolo.com/tutorial/security/oauth2-jwt/" target="_blank">OAuth2 with Password (and hashing), Bearer with JWT tokens</a>.
-    * New docs about: <a href="https://fastapi.tiangolo.com/tutorial/security/oauth2-scopes/" target="_blank">OAuth2 scopes</a>.
-    * PR <a href="https://github.com/tiangolo/fastapi/pull/141" target="_blank">#141</a>.
+    * Updated docs about: [OAuth2 with Password (and hashing), Bearer with JWT tokens](https://fastapi.tiangolo.com/tutorial/security/oauth2-jwt/).
+    * New docs about: [OAuth2 scopes](https://fastapi.tiangolo.com/tutorial/security/oauth2-scopes/).
+    * PR [#141](https://github.com/tiangolo/fastapi/pull/141).
 
 ## 0.12.1
 
-* Fix bug: handling additional `responses` in `APIRouter.include_router()`. PR <a href="https://github.com/tiangolo/fastapi/pull/140" target="_blank">#140</a>.
+* Fix bug: handling additional `responses` in `APIRouter.include_router()`. PR [#140](https://github.com/tiangolo/fastapi/pull/140).
 
-* Fix typo in SQL tutorial. PR <a href="https://github.com/tiangolo/fastapi/pull/138" target="_blank">#138</a> by <a href="https://github.com/mostaphaRoudsari" target="_blank">@mostaphaRoudsari</a>.
+* Fix typo in SQL tutorial. PR [#138](https://github.com/tiangolo/fastapi/pull/138) by [@mostaphaRoudsari](https://github.com/mostaphaRoudsari).
 
-* Fix typos in section about nested models and OAuth2 with JWT. PR <a href="https://github.com/tiangolo/fastapi/pull/127" target="_blank">#127</a> by <a href="https://github.com/mmcloud" target="_blank">@mmcloud</a>.
+* Fix typos in section about nested models and OAuth2 with JWT. PR [#127](https://github.com/tiangolo/fastapi/pull/127) by [@mmcloud](https://github.com/mmcloud).
 
 ## 0.12.0
 
-* Add additional `responses` parameter to *path operation decorators* to extend responses in OpenAPI (and API docs).
+* Add additional `responses` parameter to _path operation decorators_ to extend responses in OpenAPI (and API docs).
     * It also allows extending existing responses generated from `response_model`, declare other media types (like images), etc.
-    * The new documentation is here: <a href="https://fastapi.tiangolo.com/tutorial/additional-responses/" target="_blank">Additional Responses</a>.
-    * `responses` can also be added to `.include_router()`, the updated docs are here: <a href="https://fastapi.tiangolo.com/tutorial/bigger-applications/#add-some-custom-tags-and-responses" target="_blank">Bigger Applications</a>.
-    * PR <a href="https://github.com/tiangolo/fastapi/pull/97" target="_blank">#97</a> originally initiated by <a href="https://github.com/barsi" target="_blank">@barsi</a>.
-
+    * The new documentation is here: [Additional Responses](https://fastapi.tiangolo.com/tutorial/additional-responses/).
+    * `responses` can also be added to `.include_router()`, the updated docs are here: [Bigger Applications](https://fastapi.tiangolo.com/tutorial/bigger-applications/#add-some-custom-tags-and-responses).
+    * PR [#97](https://github.com/tiangolo/fastapi/pull/97) originally initiated by [@barsi](https://github.com/barsi).
 * Update `scripts/test-cov-html.sh` to allow passing extra parameters like `-vv`, for development.
 
 ## 0.11.0
 
-* Add `auto_error` parameter to security utility functions. Allowing them to be optional. Also allowing to have multiple alternative security schemes that are then checked in a single dependency instead of each one verifying and returning the error to the client automatically when not satisfied. PR <a href="https://github.com/tiangolo/fastapi/pull/134" target="_blank">#134</a>.
+* Add `auto_error` parameter to security utility functions. Allowing them to be optional. Also allowing to have multiple alternative security schemes that are then checked in a single dependency instead of each one verifying and returning the error to the client automatically when not satisfied. PR [#134](https://github.com/tiangolo/fastapi/pull/134).
 
-* Update <a href="https://fastapi.tiangolo.com/tutorial/sql-databases/#create-a-middleware-to-handle-sessions" target="_blank">SQL Tutorial</a> to close database sessions even when there are exceptions. PR <a href="https://github.com/tiangolo/fastapi/pull/89" target="_blank">#89</a> by <a href="https://github.com/alexiri" target="_blank">@alexiri</a>.
+* Update [SQL Tutorial](https://fastapi.tiangolo.com/tutorial/sql-databases/#create-a-middleware-to-handle-sessions) to close database sessions even when there are exceptions. PR [#89](https://github.com/tiangolo/fastapi/pull/89) by [@alexiri](https://github.com/alexiri).
 
-* Fix duplicate dependency in `pyproject.toml`. PR <a href="https://github.com/tiangolo/fastapi/pull/128" target="_blank">#128</a> by <a href="https://github.com/zxalif" target="_blank">@zxalif</a>.
+* Fix duplicate dependency in `pyproject.toml`. PR [#128](https://github.com/tiangolo/fastapi/pull/128) by [@zxalif](https://github.com/zxalif).
 
 ## 0.10.3
 
-* Add Gitter chat, badge, links, etc. <a href="https://gitter.im/tiangolo/fastapi" target="_blank">https://gitter.im/tiangolo/fastapi
-</a>. PR <a href="https://github.com/tiangolo/fastapi/pull/117" target="_blank">#117</a>.
+* Add Gitter chat, badge, links, etc. [https://gitter.im/tiangolo/fastapi](https://gitter.im/tiangolo/fastapi) . PR [#117](https://github.com/tiangolo/fastapi/pull/117).
 
-* Add docs about <a href="https://fastapi.tiangolo.com/tutorial/extending-openapi/" target="_blank">Extending OpenAPI</a>. PR <a href="https://github.com/tiangolo/fastapi/pull/126" target="_blank">#126</a>.
+* Add docs about [Extending OpenAPI](https://fastapi.tiangolo.com/tutorial/extending-openapi/). PR [#126](https://github.com/tiangolo/fastapi/pull/126).
 
-* Make Travis run Ubuntu Xenial (newer version) and Python 3.7 instead of Python 3.7-dev. PR <a href="https://github.com/tiangolo/fastapi/pull/92" target="_blank">#92</a> by <a href="https://github.com/blueyed" target="_blank">@blueyed</a>.
+* Make Travis run Ubuntu Xenial (newer version) and Python 3.7 instead of Python 3.7-dev. PR [#92](https://github.com/tiangolo/fastapi/pull/92) by [@blueyed](https://github.com/blueyed).
 
-* Fix duplicated param variable creation. PR <a href="https://github.com/tiangolo/fastapi/pull/123" target="_blank">#123</a> by <a href="https://github.com/yihuang" target="_blank">@yihuang</a>.
+* Fix duplicated param variable creation. PR [#123](https://github.com/tiangolo/fastapi/pull/123) by [@yihuang](https://github.com/yihuang).
 
-* Add note in <a href="https://fastapi.tiangolo.com/tutorial/response-model/" target="_blank">Response Model docs</a> about why using a function parameter instead of a function return type annotation. PR <a href="https://github.com/tiangolo/fastapi/pull/109" target="_blank">#109</a> by <a href="https://github.com/JHSaunders" target="_blank">@JHSaunders</a>.
+* Add note in [Response Model docs](https://fastapi.tiangolo.com/tutorial/response-model/) about why using a function parameter instead of a function return type annotation. PR [#109](https://github.com/tiangolo/fastapi/pull/109) by [@JHSaunders](https://github.com/JHSaunders).
 
-* Fix event docs (startup/shutdown) function name. PR <a href="https://github.com/tiangolo/fastapi/pull/105" target="_blank">#105</a> by <a href="https://github.com/stratosgear" target="_blank">@stratosgear</a>.
+* Fix event docs (startup/shutdown) function name. PR [#105](https://github.com/tiangolo/fastapi/pull/105) by [@stratosgear](https://github.com/stratosgear).
 
 ## 0.10.2
 
-* Fix OpenAPI (JSON Schema) for declarations of Python `Union` (JSON Schema `additionalProperties`). PR <a href="https://github.com/tiangolo/fastapi/pull/121" target="_blank">#121</a>.
+* Fix OpenAPI (JSON Schema) for declarations of Python `Union` (JSON Schema `additionalProperties`). PR [#121](https://github.com/tiangolo/fastapi/pull/121).
 
-* Update <a href="https://fastapi.tiangolo.com/tutorial/background-tasks/" target="_blank">Background Tasks</a> with a note on Celery.
+* Update [Background Tasks](https://fastapi.tiangolo.com/tutorial/background-tasks/) with a note on Celery.
 
-* Document response models using unions and lists, updated at: <a href="https://fastapi.tiangolo.com/tutorial/extra-models/" target="_blank">Extra Models</a>. PR <a href="https://github.com/tiangolo/fastapi/pull/108" target="_blank">#108</a>.
+* Document response models using unions and lists, updated at: [Extra Models](https://fastapi.tiangolo.com/tutorial/extra-models/). PR [#108](https://github.com/tiangolo/fastapi/pull/108).
 
 ## 0.10.1
 
-* Add docs and tests for <a href="https://github.com/encode/databases" target="_blank">encode/databases</a>. New docs at: <a href="https://fastapi.tiangolo.com/tutorial/async-sql-databases/" target="_blank">Async SQL (Relational) Databases</a>. PR <a href="https://github.com/tiangolo/fastapi/pull/107" target="_blank">#107</a>.
+* Add docs and tests for [encode/databases](https://github.com/encode/databases). New docs at: [Async SQL (Relational) Databases](https://fastapi.tiangolo.com/tutorial/async-sql-databases/). PR [#107](https://github.com/tiangolo/fastapi/pull/107).
 
 ## 0.10.0
 
-* Add support for Background Tasks in *path operation functions* and dependencies. New documentation about <a href="https://fastapi.tiangolo.com/tutorial/background-tasks/" target="_blank">Background Tasks is here</a>. PR <a href="https://github.com/tiangolo/fastapi/pull/103" target="_blank">#103</a>.
+* Add support for Background Tasks in _path operation functions_ and dependencies. New documentation about [Background Tasks is here](https://fastapi.tiangolo.com/tutorial/background-tasks/). PR [#103](https://github.com/tiangolo/fastapi/pull/103).
 
-* Add support for `.websocket_route()` in `APIRouter`. PR <a href="https://github.com/tiangolo/fastapi/pull/100" target="_blank">#100</a> by <a href="https://github.com/euri10" target="_blank">@euri10</a>.
+* Add support for `.websocket_route()` in `APIRouter`. PR [#100](https://github.com/tiangolo/fastapi/pull/100) by [@euri10](https://github.com/euri10).
 
-* New docs section about <a href="https://fastapi.tiangolo.com/tutorial/events/" target="_blank">Events: startup - shutdown</a>. PR <a href="https://github.com/tiangolo/fastapi/pull/99" target="_blank">#99</a>.
+* New docs section about [Events: startup - shutdown](https://fastapi.tiangolo.com/tutorial/events/). PR [#99](https://github.com/tiangolo/fastapi/pull/99).
 
 ## 0.9.1
 
-* Document receiving <a href="https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#query-parameter-list-multiple-values" target="_blank">Multiple values with the same query parameter</a> and <a href="https://fastapi.tiangolo.com/tutorial/header-params/#duplicate-headers" target="_blank">Duplicate headers</a>. PR <a href="https://github.com/tiangolo/fastapi/pull/95" target="_blank">#95</a>.
+* Document receiving [Multiple values with the same query parameter](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#query-parameter-list-multiple-values) and [Duplicate headers](https://fastapi.tiangolo.com/tutorial/header-params/#duplicate-headers). PR [#95](https://github.com/tiangolo/fastapi/pull/95).
 
 ## 0.9.0
 
-* Upgrade compatible Pydantic version to `0.21.0`. PR <a href="https://github.com/tiangolo/fastapi/pull/90" target="_blank">#90</a>.
+* Upgrade compatible Pydantic version to `0.21.0`. PR [#90](https://github.com/tiangolo/fastapi/pull/90).
 
-* Add documentation for: <a href="https://fastapi.tiangolo.com/tutorial/application-configuration/" target="_blank">Application Configuration</a>.
+* Add documentation for: [Application Configuration](https://fastapi.tiangolo.com/tutorial/application-configuration/).
 
-* Fix typo in docs. PR <a href="https://github.com/tiangolo/fastapi/pull/76" target="_blank">#76</a> by <a href="https://github.com/matthewhegarty" target="_blank">@matthewhegarty</a>.
+* Fix typo in docs. PR [#76](https://github.com/tiangolo/fastapi/pull/76) by [@matthewhegarty](https://github.com/matthewhegarty).
 
 * Fix link in "Deployment" to "Bigger Applications".
 
 ## 0.8.0
 
-* Make development scripts executable. PR <a href="https://github.com/tiangolo/fastapi/pull/76" target="_blank">#76</a> by <a href="https://github.com/euri10" target="_blank">@euri10</a>.
+* Make development scripts executable. PR [#76](https://github.com/tiangolo/fastapi/pull/76) by [@euri10](https://github.com/euri10).
 
-* Add support for adding `tags` in `app.include_router()`. PR <a href="https://github.com/tiangolo/fastapi/pull/55" target="_blank">#55</a> by <a href="https://github.com/euri10" target="_blank">@euri10</a>. Documentation updated in the section: <a href="https://fastapi.tiangolo.com/tutorial/bigger-applications/" target="_blank">Bigger Applications</a>.
+* Add support for adding `tags` in `app.include_router()`. PR [#55](https://github.com/tiangolo/fastapi/pull/55) by [@euri10](https://github.com/euri10). Documentation updated in the section: [Bigger Applications](https://fastapi.tiangolo.com/tutorial/bigger-applications/).
 
-* Update docs related to Uvicorn to use new `--reload` option from version `0.5.x`. PR <a href="https://github.com/tiangolo/fastapi/pull/74" target="_blank">#74</a>.
+* Update docs related to Uvicorn to use new `--reload` option from version `0.5.x`. PR [#74](https://github.com/tiangolo/fastapi/pull/74).
 
-* Update `isort` imports and scripts to be compatible with newer versions. PR <a href="https://github.com/tiangolo/fastapi/pull/75" target="_blank">#75</a>.
+* Update `isort` imports and scripts to be compatible with newer versions. PR [#75](https://github.com/tiangolo/fastapi/pull/75).
 
 ## 0.7.1
 
-* Update <a href="https://fastapi.tiangolo.com/async/#path-operation-functions" target="_blank">technical details about `async def` handling</a> with respect to previous frameworks. PR <a href="https://github.com/tiangolo/fastapi/pull/64" target="_blank">#64</a> by <a href="https://github.com/haizaar" target="_blank">@haizaar</a>.
+* Update [technical details about `async def` handling](https://fastapi.tiangolo.com/async/#path-operation-functions) with respect to previous frameworks. PR [#64](https://github.com/tiangolo/fastapi/pull/64) by [@haizaar](https://github.com/haizaar).
 
-* Add <a href="https://fastapi.tiangolo.com/deployment/#raspberry-pi-and-other-architectures" target="_blank">deployment documentation for Docker in Raspberry Pi</a> and other architectures.
+* Add [deployment documentation for Docker in Raspberry Pi](https://fastapi.tiangolo.com/deployment/#raspberry-pi-and-other-architectures) and other architectures.
 
-* Trigger Docker images build on Travis CI automatically. PR <a href="https://github.com/tiangolo/fastapi/pull/65" target="_blank">#65</a>.
+* Trigger Docker images build on Travis CI automatically. PR [#65](https://github.com/tiangolo/fastapi/pull/65).
 
 ## 0.7.0
 
 * Add support for `UploadFile` in `File` parameter annotations.
     * This includes a file-like interface.
-    * Here's the updated documentation for declaring <a href="https://fastapi.tiangolo.com/tutorial/request-files/#file-parameters-with-uploadfile" target="_blank"> `File` parameters with `UploadFile`</a>.
-    * And here's the updated documentation for using <a href="https://fastapi.tiangolo.com/tutorial/request-forms-and-files/" target="_blank">`Form` parameters mixed with `File` parameters, supporting `bytes` and `UploadFile`</a> at the same time.
-    * PR <a href="https://github.com/tiangolo/fastapi/pull/63" target="_blank">#63</a>.
+    * Here's the updated documentation for declaring [`File` parameters with `UploadFile`](https://fastapi.tiangolo.com/tutorial/request-files/#file-parameters-with-uploadfile).
+    * And here's the updated documentation for using [`Form` parameters mixed with `File` parameters, supporting `bytes` and `UploadFile`](https://fastapi.tiangolo.com/tutorial/request-forms-and-files/) at the same time.
+    * PR [#63](https://github.com/tiangolo/fastapi/pull/63).
 
 ## 0.6.4
 
-* Add <a href="https://fastapi.tiangolo.com/async/#very-technical-details" target="_blank">technical details about `async def` handling to docs</a>. PR <a href="https://github.com/tiangolo/fastapi/pull/61" target="_blank">#61</a>.
+* Add [technical details about `async def` handling to docs](https://fastapi.tiangolo.com/async/#very-technical-details). PR [#61](https://github.com/tiangolo/fastapi/pull/61).
 
-* Add docs for <a href="https://fastapi.tiangolo.com/tutorial/debugging/" target="_blank">Debugging FastAPI applications in editors</a>.
+* Add docs for [Debugging FastAPI applications in editors](https://fastapi.tiangolo.com/tutorial/debugging/).
 
-* Clarify <a href="https://fastapi.tiangolo.com/deployment/#bigger-applications" target="_blank">Bigger Applications deployed with Docker</a>.
+* Clarify [Bigger Applications deployed with Docker](https://fastapi.tiangolo.com/deployment/#bigger-applications).
 
 * Fix typos in docs.
 
-* Add section about <a href="https://fastapi.tiangolo.com/history-design-future/" target="_blank">History, Design and Future</a>.
+* Add section about [History, Design and Future](https://fastapi.tiangolo.com/history-design-future/).
 
-* Add docs for using <a href="https://fastapi.tiangolo.com/tutorial/websockets/" target="_blank">WebSockets with **FastAPI**</a>. PR <a href="https://github.com/tiangolo/fastapi/pull/62" target="_blank">#62</a>.
+* Add docs for using [WebSockets with **FastAPI**](https://fastapi.tiangolo.com/tutorial/websockets/). PR [#62](https://github.com/tiangolo/fastapi/pull/62).
 
 ## 0.6.3
 
-* Add Favicons to docs. PR <a href="https://github.com/tiangolo/fastapi/pull/53" target="_blank">#53</a>.
+* Add Favicons to docs. PR [#53](https://github.com/tiangolo/fastapi/pull/53).
 
 ## 0.6.2
 
-* Introduce new project generator based on FastAPI and PostgreSQL: <a href="https://github.com/tiangolo/full-stack-fastapi-postgresql" target="_blank">https://github.com/tiangolo/full-stack-fastapi-postgresql</a>. PR <a href="https://github.com/tiangolo/fastapi/pull/52" target="_blank">#52</a>.
+* Introduce new project generator based on FastAPI and PostgreSQL: [https://github.com/tiangolo/full-stack-fastapi-postgresql](https://github.com/tiangolo/full-stack-fastapi-postgresql). PR [#52](https://github.com/tiangolo/fastapi/pull/52).
 
-* Update <a href="https://fastapi.tiangolo.com/tutorial/sql-databases/" target="_blank">SQL tutorial with SQLAlchemy, using `Depends` to improve editor support and reduce code repetition</a>. PR <a href="https://github.com/tiangolo/fastapi/pull/52" target="_blank">#52</a>.
+* Update [SQL tutorial with SQLAlchemy, using `Depends` to improve editor support and reduce code repetition](https://fastapi.tiangolo.com/tutorial/sql-databases/). PR [#52](https://github.com/tiangolo/fastapi/pull/52).
 
-* Improve middleware naming in tutorial for SQL with SQLAlchemy <a href="https://fastapi.tiangolo.com/tutorial/sql-databases/" target="_blank">https://fastapi.tiangolo.com/tutorial/sql-databases/</a>.
+* Improve middleware naming in tutorial for SQL with SQLAlchemy [https://fastapi.tiangolo.com/tutorial/sql-databases/](https://fastapi.tiangolo.com/tutorial/sql-databases/).
 
 ## 0.6.1
 
-* Add docs for GraphQL: <a href="https://fastapi.tiangolo.com/tutorial/graphql/" target="_blank">https://fastapi.tiangolo.com/tutorial/graphql/</a>. PR <a href="https://github.com/tiangolo/fastapi/pull/48" target="_blank">#48</a>.
+* Add docs for GraphQL: [https://fastapi.tiangolo.com/tutorial/graphql/](https://fastapi.tiangolo.com/tutorial/graphql/). PR [#48](https://github.com/tiangolo/fastapi/pull/48).
 
 ## 0.6.0
 
-* Update SQL with SQLAlchemy tutorial at <a href="https://fastapi.tiangolo.com/tutorial/sql-databases/" target="_blank">https://fastapi.tiangolo.com/tutorial/sql-databases/</a> using the new official `request.state`. PR <a href="https://github.com/tiangolo/fastapi/pull/45" target="_blank">#45</a>.
+* Update SQL with SQLAlchemy tutorial at [https://fastapi.tiangolo.com/tutorial/sql-databases/](https://fastapi.tiangolo.com/tutorial/sql-databases/) using the new official `request.state`. PR [#45](https://github.com/tiangolo/fastapi/pull/45).
 
-* Upgrade Starlette to version `0.11.1` and add required compatibility changes. PR <a href="https://github.com/tiangolo/fastapi/pull/44" target="_blank">#44</a>.
+* Upgrade Starlette to version `0.11.1` and add required compatibility changes. PR [#44](https://github.com/tiangolo/fastapi/pull/44).
 
 ## 0.5.1
 
-* Add section about <a href="https://fastapi.tiangolo.com/help-fastapi/" target="_blank">helping and getting help with **FastAPI**</a>.
+* Add section about [helping and getting help with **FastAPI**](https://fastapi.tiangolo.com/help-fastapi/).
 
-* Add note about <a href="https://fastapi.tiangolo.com/tutorial/path-params/#order-matters" target="_blank">path operations order in docs</a>.
+* Add note about [path operations order in docs](https://fastapi.tiangolo.com/tutorial/path-params/#order-matters).
 
-* Update <a href="https://fastapi.tiangolo.com/tutorial/handling-errors/" target="_blank">section about error handling</a> with more information and make relation with Starlette error handling utilities more explicit. PR <a href="https://github.com/tiangolo/fastapi/pull/41" target="_blank">#41</a>.
+* Update [section about error handling](https://fastapi.tiangolo.com/tutorial/handling-errors/) with more information and make relation with Starlette error handling utilities more explicit. PR [#41](https://github.com/tiangolo/fastapi/pull/41).
 
-* Add <a href="" target="_blank">Development - Contributing section to the docs</a>. PR <a href="https://github.com/tiangolo/fastapi/pull/42" target="_blank">#42</a>.
+* Add <a href="" target="_blank">Development - Contributing section to the docs</a>. PR [#42](https://github.com/tiangolo/fastapi/pull/42).
 
 ## 0.5.0
 
-* Add new `HTTPException` with support for custom headers. With new documentation for handling errors at: <a href="https://fastapi.tiangolo.com/tutorial/handling-errors/" target="_blank">https://fastapi.tiangolo.com/tutorial/handling-errors/</a>. PR <a href="https://github.com/tiangolo/fastapi/pull/35" target="_blank">#35</a>.
+* Add new `HTTPException` with support for custom headers. With new documentation for handling errors at: [https://fastapi.tiangolo.com/tutorial/handling-errors/](https://fastapi.tiangolo.com/tutorial/handling-errors/). PR [#35](https://github.com/tiangolo/fastapi/pull/35).
 
-* Add <a href="https://fastapi.tiangolo.com/tutorial/using-request-directly/" target="_blank">documentation to use Starlette `Request` object</a> directly. Check <a href="https://github.com/tiangolo/fastapi/pull/25" target="_blank">#25</a> by <a href="https://github.com/euri10" target="_blank">@euri10</a>.
+* Add [documentation to use Starlette `Request` object](https://fastapi.tiangolo.com/tutorial/using-request-directly/) directly. Check [#25](https://github.com/tiangolo/fastapi/pull/25) by [@euri10](https://github.com/euri10).
 
-* Add issue templates to simplify reporting bugs, getting help, etc: <a href="https://github.com/tiangolo/fastapi/pull/34" target="_blank">#34</a>.
+* Add issue templates to simplify reporting bugs, getting help, etc: [#34](https://github.com/tiangolo/fastapi/pull/34).
 
-* Update example for the SQLAlchemy tutorial at <a href="https://fastapi.tiangolo.com/tutorial/sql-databases/" target="_blank">https://fastapi.tiangolo.com/tutorial/sql-databases/</a> using middleware and database session attached to request.
+* Update example for the SQLAlchemy tutorial at [https://fastapi.tiangolo.com/tutorial/sql-databases/](https://fastapi.tiangolo.com/tutorial/sql-databases/) using middleware and database session attached to request.
 
 ## 0.4.0
 
-* Add `openapi_prefix`, support for reverse proxy and mounting sub-applications. See the docs at <a href="https://fastapi.tiangolo.com/tutorial/sub-applications-proxy/" target="_blank">https://fastapi.tiangolo.com/tutorial/sub-applications-proxy/</a>: <a href="https://github.com/tiangolo/fastapi/pull/26" target="_blank">#26</a> by <a href="https://github.com/kabirkhan" target="_blank">@kabirkhan</a>.
+* Add `openapi_prefix`, support for reverse proxy and mounting sub-applications. See the docs at [https://fastapi.tiangolo.com/tutorial/sub-applications-proxy/](https://fastapi.tiangolo.com/tutorial/sub-applications-proxy/): [#26](https://github.com/tiangolo/fastapi/pull/26) by [@kabirkhan](https://github.com/kabirkhan).
 
-* Update <a href="https://fastapi.tiangolo.com/tutorial/sql-databases/" target="_blank">docs/tutorial for SQLAlchemy</a> including note about *DB Browser for SQLite*.
+* Update [docs/tutorial for SQLAlchemy](https://fastapi.tiangolo.com/tutorial/sql-databases/) including note about _DB Browser for SQLite_.
 
 ## 0.3.0
 
-* Fix/add SQLAlchemy support, including ORM, and update <a href="https://fastapi.tiangolo.com/tutorial/sql-databases/" target="_blank">docs for SQLAlchemy</a>: <a href="https://github.com/tiangolo/fastapi/pull/30" target="_blank">#30</a>.
+* Fix/add SQLAlchemy support, including ORM, and update [docs for SQLAlchemy](https://fastapi.tiangolo.com/tutorial/sql-databases/): [#30](https://github.com/tiangolo/fastapi/pull/30).
 
 ## 0.2.1
 
-* Fix `jsonable_encoder` for Pydantic models with `Config` but without `json_encoders`: <a href="https://github.com/tiangolo/fastapi/pull/29" target="_blank">#29</a>.
+* Fix `jsonable_encoder` for Pydantic models with `Config` but without `json_encoders`: [#29](https://github.com/tiangolo/fastapi/pull/29).
 
 ## 0.2.0
 
-* Fix typos in Security section: <a href="https://github.com/tiangolo/fastapi/pull/24" target="_blank">#24</a> by <a href="https://github.com/kkinder" target="_blank">@kkinder</a>.
+* Fix typos in Security section: [#24](https://github.com/tiangolo/fastapi/pull/24) by [@kkinder](https://github.com/kkinder).
 
-* Add support for Pydantic custom JSON encoders: <a href="https://github.com/tiangolo/fastapi/pull/21" target="_blank">#21</a> by <a href="https://github.com/euri10" target="_blank">@euri10</a>.
+* Add support for Pydantic custom JSON encoders: [#21](https://github.com/tiangolo/fastapi/pull/21) by [@euri10](https://github.com/euri10).
 
 ## 0.1.19
 
-* Upgrade Starlette version to the current latest `0.10.1`: <a href="https://github.com/tiangolo/fastapi/pull/17" target="_blank">#17</a> by <a href="https://github.com/euri10" target="_blank">@euri10</a>.
+* Upgrade Starlette version to the current latest `0.10.1`: [#17](https://github.com/tiangolo/fastapi/pull/17) by [@euri10](https://github.com/euri10).
