@@ -1,5 +1,7 @@
 ## Next release
 
+## 0.20.0
+
 * Upgrade OAuth2:
     * Upgrade Password flow using Bearer tokens to use the correct HTTP status code 401 `UNAUTHORIZED`, with `WWW-Authenticate` headers.
     * Update, simplify, and improve all the <a href="https://fastapi.tiangolo.com/tutorial/security/intro/" target="_blank">security docs</a>.
