@@ -1,4 +1,4 @@
-Now that we have all the security flow, let's make the application actually secure, using JWT tokens and secure password hashing.
+Now that we have all the security flow, let's make the application actually secure, using <abbr title="JSON Web Tokens">JWT</abbr> tokens and secure password hashing.
 
 This code is something you can actually use in your application, save the password hashes in your database, etc.
 
@@ -8,7 +8,11 @@ We are going to start from where we left in the previous chapter and increment i
 
 JWT means "JSON Web Tokens".
 
-It's a standard to codify a JSON object in a long string.
+It's a standard to codify a JSON object in a long dense string without spaces. It looks like this:
+
+```
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+```
 
 It is not encrypted, so, anyone could recover the information from the contents.
 
@@ -16,7 +20,7 @@ But it's signed. So, when you receive a token that you emitted, you can verify t
 
 That way, you can create a token with an expiration of, let's say, 1 week, and then, after a week, when the user comes back with the token, you know he's still signed into your system.
 
-And after a week, the token will be expired. And if the user (or a third party) tried to modify the token to change the expiration, you would be able to discover it, because the signature would not match.
+And after a week, the token will be expired. And if the user (or a third party) tried to modify the token to change the expiration, you would be able to discover it, because the signatures would not match.
 
 If you want to play with JWT tokens and see how they work, check <a href="https://jwt.io/" target="_blank">https://jwt.io</a>.
 
@@ -30,7 +34,7 @@ pip install pyjwt
 
 ## Password hashing
 
-"Hashing" means converting some content (a password in this case) into a sequence of bytes (just a string) that look like gibberish.
+"Hashing" means converting some content (a password in this case) into a sequence of bytes (just a string) that looks like gibberish.
 
 Whenever you pass exactly the same content (exactly the same password) you get exactly the same gibberish.
 
@@ -57,10 +61,11 @@ pip install passlib[bcrypt]
 ```
 
 !!! tip
-    With `passlib`, you could even configure it to be able to read passwords created by **Django** (among many others).
+    With `passlib`, you could even configure it to be able to read passwords created by **Django**, a **Flask** security plug-in or many others.
 
     So, you would be able to, for example, share the same data from a Django application in a database with a FastAPI application. Or gradually migrate a Django application using the same database.
 
+    And your users would be able to login from your Django app or from your **FastAPI** app, at the same time.
 
 ## Hash and verify the passwords
 
@@ -122,7 +127,7 @@ Decode the received token, verify it, and return the current user.
 
 If the token is invalid, return an HTTP error right away.
 
-```Python hl_lines="90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105"
+```Python hl_lines="90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107"
 {!./src/security/tutorial004.py!}
 ```
 
@@ -132,7 +137,7 @@ Create a `timedelta` with the expiration time of the token.
 
 Create a real JWT access token and return it.
 
-```Python hl_lines="114 115 116 117 118 119 120 121 122 123"
+```Python hl_lines="116 117 118 119 120 121 122 123 124 125 126 127 128 129"
 {!./src/security/tutorial004.py!}
 ```
 
@@ -155,9 +160,9 @@ Using these ideas, JWT can be used for way more sophisticate scenarios.
 
 In those cases, several of those entities could have the same ID, let's say `foo` (a user `foo`, a car `foo`, and a blog post `foo`).
 
-So, to avoid ID collisions, when creating the JWT token for the user, you could prefix the value of the `sub` key, e.g. with `username:`.
+So, to avoid ID collisions, when creating the JWT token for the user, you could prefix the value of the `sub` key, e.g. with `username:`. So, in this example, the value of `sub` could have been: `username:johndoe`.
 
-The important thing to have in mind is that the `sub` key should have a unique identifier across the entire application.
+The important thing to have in mind is that the `sub` key should have a unique identifier across the entire application, and it should be a string.
 
 ## Check it
 
@@ -192,7 +197,7 @@ Call the endpoint `/users/me/`, you will get the response as:
 
 <img src="/img/tutorial/security/image09.png">
 
-If you open the developer tools, you could see how the data sent and received is just the token, the password is only sent in the first request to authenticate the user:
+If you open the developer tools, you could see how the data sent and only includes the token, the password is only sent in the first request to authenticate the user and get that access token, but not afterwards:
 
 <img src="/img/tutorial/security/image10.png">
 
@@ -207,7 +212,7 @@ You can use them to add a specific set of permissions to a JWT token.
 
 Then you can give this token to a user directly or a third party, to interact with your API with a set of restrictions.
 
-You can learn how to use them and how they are integrated into **FastAPI** in the next section.
+You can learn how to use them and how they are integrated into **FastAPI** in the next chapter.
 
 ## Recap
 
@@ -227,8 +232,8 @@ And you can use directly many well maintained and widely used packages like `pas
 
 But it provides you the tools to simplify the process as much as possible without compromising flexibility, robustness or security.
 
-And you can use secure, standard protocols like OAuth2 in a relatively simple way.
+And you can use and implement secure, standard protocols, like OAuth2 in a relatively simple way.
 
-In the next (optional) section you can see how to extend this even further, using OAuth2 "scopes", for a more fine-grained permission system following standards.
+In the next (optional) section you can see how to extend this even further, using OAuth2 "scopes", for a more fine-grained permission system, following these same standards.
 
 OAuth2 with scopes (explained in the next section) is the mechanism used by many big authentication providers, like Facebook, Google, GitHub, Microsoft, Twitter, etc.

@@ -135,8 +135,9 @@ def test_login_incorrect_username():
 
 def test_no_token():
     response = client.get("/users/me")
-    assert response.status_code == 403
+    assert response.status_code == 401
     assert response.json() == {"detail": "Not authenticated"}
+    assert response.headers["WWW-Authenticate"] == "Bearer"
 
 
 def test_token():
@@ -153,16 +154,18 @@ def test_token():
 
 def test_incorrect_token():
     response = client.get("/users/me", headers={"Authorization": "Bearer nonexistent"})
-    assert response.status_code == 400
+    assert response.status_code == 401
     assert response.json() == {"detail": "Invalid authentication credentials"}
+    assert response.headers["WWW-Authenticate"] == "Bearer"
 
 
 def test_incorrect_token_type():
     response = client.get(
         "/users/me", headers={"Authorization": "Notexistent testtoken"}
     )
-    assert response.status_code == 403
+    assert response.status_code == 401
     assert response.json() == {"detail": "Not authenticated"}
+    assert response.headers["WWW-Authenticate"] == "Bearer"
 
 
 def test_inactive_user():
