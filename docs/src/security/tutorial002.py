@@ -1,6 +1,6 @@
 from typing import Optional
 
-from fastapi import Depends, FastAPI, Security
+from fastapi import Depends, FastAPI
 from fastapi.security import OAuth2PasswordBearer
 from pydantic import BaseModel
 
@@ -22,7 +22,7 @@ def fake_decode_token(token):
     )
 
 
-async def get_current_user(token: str = Security(oauth2_scheme)):
+async def get_current_user(token: str = Depends(oauth2_scheme)):
     user = fake_decode_token(token)
     return user
 

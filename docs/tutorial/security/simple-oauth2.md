@@ -4,7 +4,7 @@ Now let's build from the previous chapter and add the missing parts to have a co
 
 We are going to use **FastAPI** security utilities to get the `username` and `password`.
 
-OAuth2 specifies that when using the "password flow" (that we are using) the client / user must send a `username` and `password` fields as form data.
+OAuth2 specifies that when using the "password flow" (that we are using) the client/user must send a `username` and `password` fields as form data.
 
 And the spec says that the fields have to be named like that. So `user-name` or `email` wouldn't work.
 
@@ -48,7 +48,7 @@ Now let's use the utilities provided by **FastAPI** to handle this.
 
 First, import `OAuth2PasswordRequestForm`, and use it as a dependency with `Depends` for the path `/token`:
 
-```Python hl_lines="2 73"
+```Python hl_lines="2 75"
 {!./src/security/tutorial003.py!}
 ```
 
@@ -67,6 +67,15 @@ First, import `OAuth2PasswordRequestForm`, and use it as a dependency with `Depe
 * An optional `client_id` (we don't need it for our example).
 * An optional `client_secret` (we don't need it for our example).
 
+!!! info
+    The `OAuth2PasswordRequestForm` is not a special class for **FastAPI** as is `OAuth2PasswordBearer`.
+    
+    `OAuth2PasswordBearer` makes **FastAPI** know that it is a security scheme. So it is added that way to OpenAPI.
+    
+    But `OAuth2PasswordRequestForm` is just a class dependency that you could have written yourself, or you could have declared `Form` parameters directly.
+    
+    But as it's a common use case, it is provided by **FastAPI** directly, just to make it easier.
+
 ### Use the form data
 
 !!! tip
@@ -80,13 +89,13 @@ If there is no such user, we return an error saying "incorrect username or passw
 
 For the error, we use the exception `HTTPException`:
 
-```Python hl_lines="1 73 74 75"
+```Python hl_lines="1 76 77 78"
 {!./src/security/tutorial003.py!}
 ```
 
 ### Check the password
 
-At this point we have a the user data from our database, but we haven't checked the password.
+At this point we have the user data from our database, but we haven't checked the password.
 
 Let's put that data in the Pydantic `UserInDB` model first.
 
@@ -96,7 +105,7 @@ If the passwords don't match, we return the same error.
 
 #### Password hashing
 
-"Hashing" means: converting some content (a password in this case) into a sequence of bytes (just a string) that look like gibberish.
+"Hashing" means: converting some content (a password in this case) into a sequence of bytes (just a string) that looks like gibberish.
 
 Whenever you pass exactly the same content (exactly the same password) you get exactly the same gibberish.
 
@@ -108,7 +117,7 @@ If your database is stolen, the thief won't have your users' plaintext passwords
 
 So, the thief won't be able to try to use that password in another system (as many users use the same password everywhere, this would be dangerous).
 
-```Python hl_lines="76 77 78 79"
+```Python hl_lines="79 80 81 82"
 {!./src/security/tutorial003.py!}
 ```
 
@@ -116,7 +125,7 @@ So, the thief won't be able to try to use that password in another system (as ma
 
 `UserInDB(**user_dict)` means:
     
-Pass the keys and values of the `user_dict` directly as key-value arguments, equivalent to:
+*Pass the keys and values of the `user_dict` directly as key-value arguments, equivalent to:*
 
 ```Python
 UserInDB(
@@ -142,13 +151,22 @@ And it should have an `access_token`, with a string containing our access token.
 For this simple example, we are going to just be completely insecure and return the same `username` as the token.
 
 !!! tip
-    In the next chapter, you will see a real secure implementation, with password hashing and JWT tokens.
+    In the next chapter, you will see a real secure implementation, with password hashing and <abbr title="JSON Web Tokens">JWT</abbr> tokens.
 
     But for now, let's focus on the specific details we need.
 
-```Python hl_lines="81"
+```Python hl_lines="84"
 {!./src/security/tutorial003.py!}
 ```
+
+!!! tip
+    By the spec, you should return a JSON with an `access_token` and a `token_type`, the same as in this example.
+
+    This is something that you have to do yourself in your code, and make sure you use those JSON keys.
+
+    It's almost the only thing that you have to remember to do correctly yourself, to be compliant with the specifications.
+    
+    For the rest, **FastAPI** handles it for you.
 
 ## Update the dependencies
 
@@ -162,9 +180,24 @@ Both of these dependencies will just return an HTTP error if the user doesn't ex
 
 So, in our endpoint, we will only get a user if the user exists, was correctly authenticated, and is active:
 
-```Python hl_lines="56 57 58 59 60 61 62 65 66 67 68 85"
+```Python hl_lines="57 58 59 60 61 62 63 64 65 68 69 70 71 88"
 {!./src/security/tutorial003.py!}
 ```
+
+!!! info
+    The additional header `WWW-Authenticate` with value `Bearer` we are returning here is also part of the spec.
+
+    Any HTTP (error) status code 401 "UNAUTHORIZED" is supposed to also return a `WWW-Authenticate` header.
+
+    In the case of bearer tokens (our case), the value of that header should be `Bearer`.
+
+    You can actually skip that extra header and it would still work.
+
+    But it's provided here to be compliant with the specifications.
+
+    Also, there might be tools that expect and use it (now or in the future) and that might be useful for you or your users, now or in the future.
+
+    That's the benefit of standards...
 
 ## See it in action
 
@@ -204,7 +237,7 @@ You will get your user's data, like:
 
 <img src="/img/tutorial/security/image06.png">
 
-If you click the lock icon and logout, and then try the same operation again, you will get an HTTP 403 error of:
+If you click the lock icon and logout, and then try the same operation again, you will get an HTTP 401 error of:
 
 ```JSON
 {
@@ -238,4 +271,4 @@ Using these tools, you can make the security system compatible with any database
 
 The only detail missing is that it is not actually "secure" yet.
 
-In the next chapter you'll see how to use a secure password hashing library and JWT tokens.
+In the next chapter you'll see how to use a secure password hashing library and <abbr title="JSON Web Tokens">JWT</abbr> tokens.

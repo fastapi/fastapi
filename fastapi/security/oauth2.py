@@ -1,12 +1,12 @@
 from typing import List, Optional
 
+from fastapi.exceptions import HTTPException
 from fastapi.openapi.models import OAuth2 as OAuth2Model, OAuthFlows as OAuthFlowsModel
 from fastapi.params import Form
 from fastapi.security.base import SecurityBase
 from fastapi.security.utils import get_authorization_scheme_param
-from starlette.exceptions import HTTPException
 from starlette.requests import Request
-from starlette.status import HTTP_403_FORBIDDEN
+from starlette.status import HTTP_401_UNAUTHORIZED, HTTP_403_FORBIDDEN
 
 
 class OAuth2PasswordRequestForm:
@@ -154,7 +154,9 @@ class OAuth2PasswordBearer(OAuth2):
         if not authorization or scheme.lower() != "bearer":
             if self.auto_error:
                 raise HTTPException(
-                    status_code=HTTP_403_FORBIDDEN, detail="Not authenticated"
+                    status_code=HTTP_401_UNAUTHORIZED,
+                    detail="Not authenticated",
+                    headers={"WWW-Authenticate": "Bearer"},
                 )
             else:
                 return None
@@ -164,3 +166,4 @@ class OAuth2PasswordBearer(OAuth2):
 class SecurityScopes:
     def __init__(self, scopes: List[str] = None):
         self.scopes = scopes or []
+        self.scope_str = " ".join(self.scopes)
