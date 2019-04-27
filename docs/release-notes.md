@@ -1,5 +1,7 @@
 ## Next release
 
+* Add FastAPI bot for Gitter. To automatically announce new releases. PR [#189](https://github.com/tiangolo/fastapi/pull/189).
+
 ## 0.20.0
 
 * Upgrade OAuth2:
