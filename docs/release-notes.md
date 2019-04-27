@@ -1,5 +1,12 @@
 ## Next release
 
+* Upgrade OAuth2:
+    * Upgrade Password flow using Bearer tokens to use the correct HTTP status code 401 `UNAUTHORIZED`, with `WWW-Authenticate` headers.
+    * Update, simplify, and improve all the <a href="https://fastapi.tiangolo.com/tutorial/security/intro/" target="_blank">security docs</a>.
+    * Add new `scope_str` to `SecurityScopes` and update docs: <a href="https://fastapi.tiangolo.com/tutorial/security/oauth2-scopes/" target="_blank">OAuth2 scopes</a>.
+    * Update docs, images, tests.
+    * PR <a href="https://github.com/tiangolo/fastapi/pull/188" target="_blank">#188</a>.
+
 * Include <a href="https://gitlab.com/pgjones/hypercorn" target="_blank">Hypercorn</a> as an alternative ASGI server in the docs. PR <a href="https://github.com/tiangolo/fastapi/pull/187" target="_blank">#187</a>.
 
 * Add docs for <a href="https://fastapi.tiangolo.com/tutorial/static-files/" target="_blank">Static Files</a> and <a href="https://fastapi.tiangolo.com/tutorial/templates/" target="_blank">Templates</a>. PR <a href="https://github.com/tiangolo/fastapi/pull/186" target="_blank">#186</a>.
