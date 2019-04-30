@@ -61,7 +61,7 @@ def get_app(
             logging.error(f"Error getting request body: {e}")
             raise HTTPException(
                 status_code=400, detail="There was an error parsing the body"
-            )
+            ) from e
         values, errors, background_tasks = await solve_dependencies(
             request=request, dependant=dependant, body=body
         )
