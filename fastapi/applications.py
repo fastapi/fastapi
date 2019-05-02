@@ -1,7 +1,11 @@
 from typing import Any, Callable, Dict, List, Optional, Type, Union
 
 from fastapi import routing
-from fastapi.openapi.docs import get_redoc_html, get_swagger_ui_html
+from fastapi.openapi.docs import (
+    get_redoc_html,
+    get_swagger_ui_html,
+    get_swagger_ui_oauth2_redirect_html,
+)
 from fastapi.openapi.utils import get_openapi
 from pydantic import BaseModel
 from starlette.applications import Starlette
@@ -89,7 +93,13 @@ class FastAPI(Starlette):
                 lambda r: get_swagger_ui_html(
                     openapi_url=self.openapi_prefix + self.openapi_url,
                     title=self.title + " - Swagger UI",
+                    request=r,
                 ),
+                include_in_schema=False,
+            )
+            self.add_route(
+                self.docs_url + "/oauth2-redirect",
+                get_swagger_ui_oauth2_redirect_html,
                 include_in_schema=False,
             )
         if self.openapi_url and self.redoc_url:
