@@ -123,10 +123,10 @@ Nevertheless, if it doesn't detect a change but a syntax error, it will just sto
 To test the backend run:
 
 ```bash
-DOMAIN=backend sh ./script-test.sh
+DOMAIN=backend sh ./scripts/test.sh
 ```
 
-The file `./script-test.sh` has the commands to generate a testing `docker-stack.yml` file from the needed Docker Compose files, start the stack and test it.
+The file `./scripts/test.sh` has the commands to generate a testing `docker-stack.yml` file from the needed Docker Compose files, start the stack and test it.
 
 The tests run with Pytest, modify and add tests to `./backend/app/app/tests/`.
 
@@ -400,7 +400,7 @@ Then you need to have those constraints in your deployment Docker Compose file f
 To be able to use different environments, like `prod` and `stag`, you should pass the name of the stack as an environment variable. Like:
 
 ```bash
-STACK_NAME={{cookiecutter.docker_swarm_stack_name_staging}} sh ./script-deploy.sh
+STACK_NAME={{cookiecutter.docker_swarm_stack_name_staging}} sh ./scripts/deploy.sh
 ```
 
 To use and expand that environment variable inside the `docker-compose.deploy.volumes-placement.yml` files you can add the constraints to the services like:
@@ -417,7 +417,7 @@ services:
           - node.labels.${STACK_NAME}.app-db-data == true
 ```
 
-note the `${STACK_NAME}`. In the script `./script-deploy.sh`, that `docker-compose.deploy.volumes-placement.yml` would be converted, and saved to a file `docker-stack.yml` containing:
+note the `${STACK_NAME}`. In the script `./scripts/deploy.sh`, that `docker-compose.deploy.volumes-placement.yml` would be converted, and saved to a file `docker-stack.yml` containing:
 
 ```yaml
 version: '3'
@@ -506,10 +506,10 @@ Here are the steps in detail:
 * Set these environment variables, prepended to the next command:
   * `TAG=prod`
   * `FRONTEND_ENV=production`
-* Use the provided `script-build.sh` file with those environment variables:
+* Use the provided `scripts/build.sh` file with those environment variables:
 
 ```bash
-TAG=prod FRONTEND_ENV=production bash ./script-build.sh
+TAG=prod FRONTEND_ENV=production bash ./scripts/build.sh
 ```
 
 2. **Optionally, push your images to a Docker Registry**
@@ -521,10 +521,10 @@ If you are using a registry and pushing your images, you can omit running the pr
 * Set these environment variables:
   * `TAG=prod`
   * `FRONTEND_ENV=production`
-* Use the provided `script-build-push.sh` file with those environment variables:
+* Use the provided `scripts/build-push.sh` file with those environment variables:
 
 ```bash
-TAG=prod FRONTEND_ENV=production bash ./script-build.sh
+TAG=prod FRONTEND_ENV=production bash ./scripts/build-push.sh
 ```
 
 3. **Deploy your stack**
@@ -534,14 +534,14 @@ TAG=prod FRONTEND_ENV=production bash ./script-build.sh
   * `TRAEFIK_TAG={{cookiecutter.traefik_constraint_tag}}`
   * `STACK_NAME={{cookiecutter.docker_swarm_stack_name_main}}`
   * `TAG=prod`
-* Use the provided `script-deploy.sh` file with those environment variables:
+* Use the provided `scripts/deploy.sh` file with those environment variables:
 
 ```bash
 DOMAIN={{cookiecutter.domain_main}} \
 TRAEFIK_TAG={{cookiecutter.traefik_constraint_tag}} \
 STACK_NAME={{cookiecutter.docker_swarm_stack_name_main}} \
 TAG=prod \
-bash ./script-deploy.sh
+bash ./scripts/deploy.sh
 ```
 
 ---
