@@ -134,6 +134,22 @@ If you need to install any additional package for the tests, add it to the file 
 
 If you use GitLab CI the tests will run automatically.
 
+#### Test running stack
+
+If your stack is already up and you just want to run the tests, you can use:
+
+```bash
+docker-compose exec backend-tests /tests-start.sh
+```
+
+That `/tests-start.sh` script inside the `backend-tests` container calls `pytest`. If you need to pass extra arguments to `pytest`, you can pass them to that command and they will be forwarded.
+
+For example, to stop on first error:
+
+```bash
+docker-compose exec backend-tests /tests-start.sh -x
+```
+
 ### Live development with Python Jupyter Notebooks
 
 If you know about Python [Jupyter Notebooks](http://jupyter.org/), you can take advantage of them during local development.
