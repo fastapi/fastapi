@@ -3,4 +3,4 @@ set -e
 
 python /app/app/tests_pre_start.py
 
-pytest /app/app/tests/
+pytest $* /app/app/tests/
