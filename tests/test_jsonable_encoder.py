@@ -48,8 +48,8 @@ class ModelWithCustomEncoder(BaseModel):
 
 
 class RoleEnum(Enum):
-    admin = "admin"
-    normal = "normal"
+    adminkey = "adminvalue"
+    normalkey = "normalvalue"
 
 
 class ModelWithConfig(BaseModel):
@@ -57,6 +57,10 @@ class ModelWithConfig(BaseModel):
 
     class Config:
         use_enum_values = True
+
+
+class ModelWithoutConfig(BaseModel):
+    role: RoleEnum = None
 
 
 class ModelWithAlias(BaseModel):
@@ -87,8 +91,8 @@ def test_encode_custom_json_encoders_model():
 
 
 def test_encode_model_with_config():
-    model = ModelWithConfig(role=RoleEnum.admin)
-    assert jsonable_encoder(model) == {"role": "admin"}
+    model = ModelWithConfig(role=RoleEnum.adminkey)
+    assert jsonable_encoder(model) == {"role": "adminvalue"}
 
 
 def test_encode_model_with_alias_raises():
@@ -99,3 +103,8 @@ def test_encode_model_with_alias_raises():
 def test_encode_model_with_alias():
     model = ModelWithAlias(Foo="Bar")
     assert jsonable_encoder(model) == {"Foo": "Bar"}
+
+
+def test_encode_model_without_config():
+    model = ModelWithoutConfig(role=RoleEnum.adminkey)
+    assert jsonable_encoder(model) == {"role": "adminkey"}

@@ -14,17 +14,23 @@ def jsonable_encoder(
     include_none: bool = True,
     custom_encoder: dict = {},
     sqlalchemy_safe: bool = True,
+    use_enum_values: bool = False,
 ) -> Any:
     if isinstance(obj, BaseModel):
+        use_enum_values = getattr(obj.Config, "use_enum_values", use_enum_values)
         encoder = getattr(obj.Config, "json_encoders", custom_encoder)
         return jsonable_encoder(
             obj.dict(include=include, exclude=exclude, by_alias=by_alias),
             include_none=include_none,
             custom_encoder=encoder,
             sqlalchemy_safe=sqlalchemy_safe,
+            use_enum_values=use_enum_values,
         )
     if isinstance(obj, Enum):
-        return obj.value
+        if use_enum_values:
+            return obj.value
+        else:
+            return obj.name
     if isinstance(obj, (str, int, float, type(None))):
         return obj
     if isinstance(obj, dict):
