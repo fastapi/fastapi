@@ -1,4 +1,4 @@
-It is recommended to use <a href="https://www.docker.com/" target="_blank">**Docker**</a> for security, replicability, development simplicity, etc.
+You can use <a href="https://www.docker.com/" target="_blank">**Docker**</a> for deployment. It has several advantages like security, replicability, development simplicity, etc.
 
 In this section you'll see instructions and links to guides to know how to:
 
@@ -237,7 +237,21 @@ The generated project has instructions to deploy it, doing it takes other 2 min.
 
 You can deploy **FastAPI** directly without Docker too.
 
-You just need to install <a href="https://www.uvicorn.org/" target="_blank">Uvicorn</a> (or any other ASGI server).
+You just need to install an ASGI compatible server like:
+
+* <a href="https://www.uvicorn.org/" target="_blank">Uvicorn</a>, a lightning-fast ASGI server, built on uvloop and httptools.
+
+```bash
+pip install uvicorn
+```
+
+* <a href="https://gitlab.com/pgjones/hypercorn" target="_blank">Hypercorn</a>, an ASGI server also compatible with HTTP/2.
+
+```bash
+pip install hypercorn
+```
+
+...or any other ASGI server.
 
 And run your application the same way you have done in the tutorials, but without the `--reload` option, e.g.:
 
@@ -245,9 +259,15 @@ And run your application the same way you have done in the tutorials, but withou
 uvicorn main:app --host 0.0.0.0 --port 80
 ```
 
+or with Hypercorn:
+
+```bash
+hypercorn main:app --bind 0.0.0.0:80
+```
+
 You might want to set up some tooling to make sure it is restarted automatically if it stops.
 
-You might also want to install <a href="https://gunicorn.org/" target="_blank">Gunicorn</a> and <a href="https://www.uvicorn.org/#running-with-gunicorn" target="_blank">use it as a manager for Uvicorn</a>.
+You might also want to install <a href="https://gunicorn.org/" target="_blank">Gunicorn</a> and <a href="https://www.uvicorn.org/#running-with-gunicorn" target="_blank">use it as a manager for Uvicorn</a>, or use Hypercorn with multiple workers.
 
 Making sure to fine-tune the number of workers, etc.
 

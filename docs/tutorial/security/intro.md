@@ -40,7 +40,7 @@ OpenID Connect is another specification, based on **OAuth2**.
 
 It just extends OAuth2 specifying some things that are relatively ambiguous in OAuth2, to try to make it more interoperable.
 
-For example, Google login used OpenID Connect (which underneath uses OAuth2).
+For example, Google login uses OpenID Connect (which underneath uses OAuth2).
 
 But Facebook login doesn't support OpenID Connect. It has its own flavor of OAuth2.
 
@@ -75,7 +75,7 @@ OpenAPI defines the following security schemes:
     * HTTP Basic authentication.
     * HTTP Digest, etc.
 * `oauth2`: all the OAuth2 ways to handle security (called "flows").
-    * Several of these flows are appropriate for delegating the authentication to a third party (like Google, Facebook, Twitter, GitHub, etc):
+    * Several of these flows are appropriate for building an OAuth 2.0 authentication provider (like Google, Facebook, Twitter, GitHub, etc):
         * `implicit`
         * `clientCredentials`
         * `authorizationCode`
@@ -84,10 +84,16 @@ OpenAPI defines the following security schemes:
 * `openIdConnect`: has a way to define how to discover OAuth2 authentication data automatically.
     * This automatic discovery is what is defined in the OpenID Connect specification.
 
+
+!!! tip
+    Integrating other authentication/authorization providers like Google, Facebook, Twitter, GitHub, etc. is also possible and relatively easy.
+
+    The most complex problem is building an authentication/authorization provider like those, but **FastAPI** gives you the tools to do it easily, while doing the heavy lifting for you.
+
 ## **FastAPI** utilities
 
-FastAPI provides several tools for each of these security schemes in the `fastapi.security` module, to simplify using these security mechanisms.
+FastAPI provides several tools for each of these security schemes in the `fastapi.security` module that simplify using these security mechanisms.
 
-In the next chapters you will see how to add security to your API in a very simple way, using the tools provided by **FastAPI**.
+In the next chapters you will see how to add security to your API using those tools provided by **FastAPI**.
 
 And you will also see how it gets automatically integrated into the interactive documentation system.

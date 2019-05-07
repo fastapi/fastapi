@@ -2,6 +2,7 @@ import binascii
 from base64 import b64decode
 from typing import Optional
 
+from fastapi.exceptions import HTTPException
 from fastapi.openapi.models import (
     HTTPBase as HTTPBaseModel,
     HTTPBearer as HTTPBearerModel,
@@ -9,9 +10,8 @@ from fastapi.openapi.models import (
 from fastapi.security.base import SecurityBase
 from fastapi.security.utils import get_authorization_scheme_param
 from pydantic import BaseModel
-from starlette.exceptions import HTTPException
 from starlette.requests import Request
-from starlette.status import HTTP_403_FORBIDDEN
+from starlette.status import HTTP_401_UNAUTHORIZED, HTTP_403_FORBIDDEN
 
 
 class HTTPBasicCredentials(BaseModel):
@@ -59,15 +59,21 @@ class HTTPBasic(HTTPBase):
     async def __call__(self, request: Request) -> Optional[HTTPBasicCredentials]:
         authorization: str = request.headers.get("Authorization")
         scheme, param = get_authorization_scheme_param(authorization)
-        # before implementing headers with 401 errors, wait for: https://github.com/encode/starlette/issues/295
-        # unauthorized_headers = {"WWW-Authenticate": "Basic"}
+        if self.realm:
+            unauthorized_headers = {"WWW-Authenticate": f'Basic realm="{self.realm}"'}
+        else:
+            unauthorized_headers = {"WWW-Authenticate": "Basic"}
         invalid_user_credentials_exc = HTTPException(
-            status_code=HTTP_403_FORBIDDEN, detail="Invalid authentication credentials"
+            status_code=HTTP_401_UNAUTHORIZED,
+            detail="Invalid authentication credentials",
+            headers=unauthorized_headers,
         )
         if not authorization or scheme.lower() != "basic":
             if self.auto_error:
                 raise HTTPException(
-                    status_code=HTTP_403_FORBIDDEN, detail="Not authenticated"
+                    status_code=HTTP_401_UNAUTHORIZED,
+                    detail="Not authenticated",
+                    headers=unauthorized_headers,
                 )
             else:
                 return None
@@ -87,7 +93,7 @@ class HTTPBearer(HTTPBase):
         *,
         bearerFormat: str = None,
         scheme_name: str = None,
-        auto_error: bool = True
+        auto_error: bool = True,
     ):
         self.model = HTTPBearerModel(bearerFormat=bearerFormat)
         self.scheme_name = scheme_name or self.__class__.__name__

@@ -12,7 +12,7 @@ Let's use the tools provided by **FastAPI** to handle security.
 
 ## How it looks
 
-But let's first just use the code and see how it works, and then we'll come back to understand what's happening.
+Let's first just use the code and see how it works, and then we'll come back to understand what's happening.
 
 ## Create `main.py`
 
@@ -77,37 +77,14 @@ So, let's review it from that simplified point of view:
 * The API checks that `username` and `password`, and responds with a "token".
     * A "token" is just a string with some content that we can use later to verify this user.
     * Normally, a token is set to expire after some time.
-    * So, the user will have to login again at some point later.
-    * And if the token is stolen, the risk is less. It is not like a permanent key that will work forever.
+        * So, the user will have to login again at some point later.
+        * And if the token is stolen, the risk is less. It is not like a permanent key that will work forever (in most of the cases).
 * The frontend stores that token temporarily somewhere.
 * The user clicks in the frontend to go to another section of the frontend web app.
 * The frontend needs to fetch some more data from the API.
     * But it needs authentication for that specific endpoint.
     * So, to authenticate with our API, it sends a header `Authorization` with a value of `Bearer ` plus the token.
     * If the token contains `foobar`, the content of the `Authorization` header would be: `Bearer foobar`.
-    * Note that although the header is case-insensitive (`Authorization` is the same as `authorization`), the value is not. So, `bearer foobar` would not be valid. It has to be `Bearer foobar`.
-
-## **FastAPI**'s `Security`
-
-### Import it
-
-The same way **FastAPI** provides a `Depends`, there is a `Security` that you can import:
-
-```Python hl_lines="1"
-{!./src/security/tutorial001.py!}
-```
-
-### Use it
-
-It is actually a subclass of `Depends`, and it has just one extra parameter that we'll see later.
-
-But by using `Security` instead of `Depends`, **FastAPI** will know that it can use this dependency to define "security schemes" in OpenAPI.
-
-```Python hl_lines="10"
-{!./src/security/tutorial001.py!}
-```
-
-In this case, we have a `Security` definition (which at the same time is a dependency definition) that will provide a `str` that is assigned to the parameter `token`.
 
 ## **FastAPI**'s `OAuth2PasswordBearer`
 
@@ -146,13 +123,30 @@ It could be called as:
 oauth2_scheme(some, parameters)
 ```
 
-So, it can be used with `Security` (as it could be used with `Depends`).
+So, it can be used with `Depends`.
+
+### Use it
+
+Now you can pass that `oauth2_scheme` in a dependency with `Depends`.
+
+```Python hl_lines="10"
+{!./src/security/tutorial001.py!}
+```
+
+This dependency will provide a `str` that is assigned to the parameter `token` of the *path operation function*.
+
+**FastAPI** will know that it can use this dependency to define a "security scheme" in the OpenAPI schema (and the automatic API docs).
+
+!!! info "Technical Details"
+    **FastAPI** will know that it can use the class `OAuth2PasswordBearer` (declared in a dependency) to define the security scheme in OpenAPI because it inherits from `fastapi.security.oauth2.OAuth2`, which in turn inherits from `fastapi.security.base.SecurityBase`.
+
+    All the security utilities that integrate with OpenAPI (and the automatic API docs) inherit from `SecurityBase`, that's how **FastAPI** can know how to integrate them in OpenAPI.
 
 ## What it does
 
 It will go and look in the request for that `Authorization` header, check if the value is `Bearer ` plus some token, and will return the token as a `str`.
 
-If it doesn't see an `Authorization` header, or the value doesn't have a `Bearer ` token, it will respond with a 403 status code error (`FORBIDDEN`) directly.
+If it doesn't see an `Authorization` header, or the value doesn't have a `Bearer ` token, it will respond with a 401 status code error (`UNAUTHORIZED`) directly.
 
 You don't even have to check if the token exists to return an error. You can be sure that if your function is executed, it will have a `str` in that token.
 

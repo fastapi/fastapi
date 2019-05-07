@@ -11,11 +11,11 @@ In this section you will see how to manage authentication and authorization with
 !!! warning
     This is a more or less advanced section. If you are just starting, you can skip it.
 
-    You don't necessarily need OAuth2 scopes, you can handle authentication and authorization however you want.
+    You don't necessarily need OAuth2 scopes, and you can handle authentication and authorization however you want.
 
     But OAuth2 with scopes can be nicely integrated into your API (with OpenAPI) and your API docs.
     
-    Nevertheless, you still enforce those scopes or any other security/authorization requirement however you need in your code.
+    Nevertheless, you still enforce those scopes, or any other security/authorization requirement, however you need, in your code.
 
     In many cases, OAuth2 with scopes can be an overkill.
     
@@ -37,7 +37,7 @@ When one of these security schemes uses OAuth2, you can also declare and use sco
 
 First, let's quickly see the parts that change from the previous section about OAuth2 and JWT. Now using OAuth2 scopes:
 
-```Python hl_lines="2 5 9 13 48 66 106 115 116 117 122 123 124 125 126 131 145 158"
+```Python hl_lines="2 5 9 13 48 66 107 109 110 111 112 113 114 115 116 117 123 124 125 126 130 131 132 133 134 135 136 141 155"
 {!./src/security/tutorial005.py!}
 ```
 
@@ -53,7 +53,7 @@ The `scopes` parameter receives a `dict` with each scope as a key and the descri
 {!./src/security/tutorial005.py!}
 ```
 
-Because we are now declaring those scopes,they will show up in the API docs when you log-in/authorize.
+Because we are now declaring those scopes, they will show up in the API docs when you log-in/authorize.
 
 And you will be able to select which scopes you want to give access to: `me` and `items`.
 
@@ -65,7 +65,7 @@ This is the same mechanism used when you give permissions while logging in with 
 
 Now, modify the token *path operation* to return the scopes requested.
 
-We are still using the same `OAuth2PasswordRequestForm`. It includes a property `scopes` with each scope it received.
+We are still using the same `OAuth2PasswordRequestForm`. It includes a property `scopes` with a `list` of `str`, with each scope it received in the request.
 
 And we return the scopes as part of the JWT token.
 
@@ -74,7 +74,7 @@ And we return the scopes as part of the JWT token.
 
     But in your application, for security, you should make sure you only add the scopes that the user is actually able to have, or the ones you have predefined.
 
-```Python hl_lines="145"
+```Python hl_lines="156"
 {!./src/security/tutorial005.py!}
 ```
 
@@ -99,9 +99,14 @@ In this case, it requires the scope `me` (it could require more than one scope).
     
     We are doing it here to demonstrate how **FastAPI** handles scopes declared at different levels.
 
-```Python hl_lines="5 131 158"
+```Python hl_lines="5 141 168"
 {!./src/security/tutorial005.py!}
 ```
+
+!!! info "Technical Details"
+    `Security` is actually a subclass of `Depends`, and it has just one extra parameter that we'll see later.
+
+    But by using `Security` instead of `Depends`, **FastAPI** will know that it can declare security scopes, use them internally, and document the API with OpenAPI.
 
 ## Use `SecurityScopes`
 
@@ -109,28 +114,67 @@ Now update the dependency `get_current_user`.
 
 This is the one used by the dependencies above.
 
-Here's were we are declaring the same OAuth2 scheme we created above as a dependency: `oauth2_scheme`.
+Here's were we are using the same OAuth2 scheme we created before, declaring it as a dependency: `oauth2_scheme`.
 
-Because this dependency function doesn't have any scope requirements itself, we can use `Depends` with `oauth2_scheme`, we don't have to use `Security`.
+Because this dependency function doesn't have any scope requirements itself, we can use `Depends` with `oauth2_scheme`, we don't have to use `Security` when we don't need to specify security scopes.
 
 We also declare a special parameter of type `SecurityScopes`, imported from `fastapi.security`.
 
 This `SecurityScopes` class is similar to `Request` (`Request` was used to get the request object directly).
 
-The parameter `security_scopes` will be of type `SecurityScopes`. It will have a property `scopes` with a list containing all the scopes required by itself and all the dependencies that use this as a sub-dependency. That means, all the "dependants" or all the super-dependencies (the contrary of sub-dependencies).
-
-We verify that all the scopes required, by this dependency and all the dependants (including *path operations*), are included in the scopes provided in the token received, otherwise raise an `HTTPException`.
-
-We also check that the token data is validated with the Pydantic model (catching the `ValidationError` exception), and if we get an error reading the JWT token or validating the data with Pydantic, we also raise an `HTTPException`.
-
-By validating the data with Pydantic we can make sure that we have, for example, exactly a `list` of `str` with the scopes and a `str` with the `username`. Instead of, for example, a `dict`, or something else, as it could break the application at some point later.
-
-
-```Python hl_lines="9 13 106 48 106 115 116 117 122 123"
+```Python hl_lines="9 107"
 {!./src/security/tutorial005.py!}
 ```
 
-So, as the other dependency `get_current_active_user` has as a sub-dependency this `get_current_user`, the scope `"me"` declared at `get_current_active_user` will be included in the `security_scopes.scopes` `list` inside of `get_current_user`.
+## Use the `scopes`
+
+The parameter `security_scopes` will be of type `SecurityScopes`.
+
+It will have a property `scopes` with a list containing all the scopes required by itself and all the dependencies that use this as a sub-dependency. That means, all the "dependants"... this might sound confusing, it is explained again later below.
+
+The `security_scopes` object (of class `SecurityScopes`) also provides a `scope_str` attribute with a single string, containing those scopes separated by spaces (we are going to use it).
+
+We create an `HTTPException` that we can re-use (`raise`) later at several points.
+
+In this exception, we include the scopes required (if any) as a string separated by spaces (using `scope_str`). We put that string containing the scopes in in the `WWW-Authenticate` header (this is part of the spec).
+
+```Python hl_lines="107 109 110 111 112 113 114 115 116 117"
+{!./src/security/tutorial005.py!}
+```
+
+## Verify the `username` and data shape
+
+We verify that we get a `username`, and extract the scopes.
+
+And then we validate that data with the Pydantic model (catching the `ValidationError` exception), and if we get an error reading the JWT token or validating the data with Pydantic, we raise the `HTTPException` we created before.
+
+For that, we update the Pydantic model `TokenData` with a new property `scopes`.
+
+By validating the data with Pydantic we can make sure that we have, for example, exactly a `list` of `str` with the scopes and a `str` with the `username`.
+
+Instead of, for example, a `dict`, or something else, as it could break the application at some point later, making it a security risk.
+
+We also verify that we have a user with that username, and if not, we raise that same exception we created before.
+
+```Python hl_lines="48 118 119 120 121 122 123 124 125 126 127 128 129"
+{!./src/security/tutorial005.py!}
+```
+
+## Verify the `scopes`
+
+We now verify that all the scopes required, by this dependency and all the dependants (including *path operations*), are included in the scopes provided in the token received, otherwise raise an `HTTPException`.
+
+For this, we use `security_scopes.scopes`, that contains a `list` with all these scopes as `str`.
+
+```Python hl_lines="130 131 132 133 134 135 136"
+{!./src/security/tutorial005.py!}
+```
+
+## Dependency tree and scopes
+
+Let's review again this dependency tree and the scopes.
+
+As the other dependency `get_current_active_user` has as a sub-dependency this `get_current_user`, the scope `"me"` declared at `get_current_active_user` will be included in the `security_scopes.scopes` `list` inside of `get_current_user`.
 
 And as the *path operation* itself also declares a scope `"items"`, it will also be part of this `list` `security_scopes.scopes` in `get_current_user`.
 
@@ -147,15 +191,24 @@ Here's how the hierarchy of dependencies and scopes looks like:
                     * A dependency using `oauth2_scheme`.
                     * A `security_scopes` parameter of type `SecurityScopes`:
                         * This `security_scopes` parameter has a property `scopes` with a `list` containing all these scopes declared above, so:
-                            * `security_scopes.scopes` will contain `["me", "items"]`
+                            * `security_scopes.scopes` will contain `["me", "items"]` for the *path operation* `read_own_items`.
+                            * `security_scopes.scopes` will contain `["me"]` for the *path operation* `read_users_me`, because it is declared in the dependency `get_current_active_user`.
+                            * `security_scopes.scopes` will contain `[]` (nothing) for the *path operation* `read_system_status`, because it didn't declare any `Security` with `scopes`, and its dependency, `get_current_user`, doesn't declare any `scope` either.
+
+!!! tip
+    The important and "magic" thing here is that `get_current_user` will have a different list of `scopes` to check for each *path operation*.
+
+    All depending on the `scopes` declared in each *path operation* and each dependency in the dependency tree for that specific path operation.
 
 ## More details about `SecurityScopes`
 
 You can use `SecurityScopes` at any point, and in multiple places, it doesn't have to be at the "root" dependency.
 
-It will always have the security scopes declared in the current `Security` dependencies and all the super-dependencies/dependants.
+It will always have the security scopes declared in the current `Security` dependencies and all the dependants for **that specific** *path operation* and **that specific** dependency tree.
 
-Because the `SecurityScopes` will have all the scopes declared by super-dependencies/dependants, you can use it to verify that a token has the required scopes in a central dependency function, and then declare different scope requirements in different *path operations*.
+Because the `SecurityScopes` will have all the scopes declared by dependants, you can use it to verify that a token has the required scopes in a central dependency function, and then declare different scope requirements in different *path operations*.
+
+They will be checked independently for each path operation.
 
 ## Check it
 
@@ -163,7 +216,7 @@ If you open the API docs, you can authenticate and specify which scopes you want
 
 <img src="/img/tutorial/security/image11.png">
 
-If you don't select any scope, you will be "authenticated", but when you try to access `/users/me/` or `/users/me/items/` you will get an error saying that you don't have enough permissions.
+If you don't select any scope, you will be "authenticated", but when you try to access `/users/me/` or `/users/me/items/` you will get an error saying that you don't have enough permissions. You will still be able to access `/status/`.
 
 And if you select the scope `me` but not the scope `items`, you will be able to access `/users/me/` but not `/users/me/items/`.
 
@@ -181,7 +234,7 @@ But if you are building an OAuth2 application that others would connect to (i.e.
 
 The most common is the implicit flow.
 
-The most secure is the code flow, but is more complex to implement as it requires more steps. As it is more cumbersome, many providers end up suggesting the implicit flow.
+The most secure is the code flow, but is more complex to implement as it requires more steps. As it is more complex, many providers end up suggesting the implicit flow.
 
 !!! note
     It's common that each authentication provider names their flows in a different way, to make it part of their brand.

@@ -119,7 +119,7 @@ class FastAPI(Starlette):
         methods: List[str] = None,
         operation_id: str = None,
         include_in_schema: bool = True,
-        content_type: Type[Response] = JSONResponse,
+        response_class: Type[Response] = JSONResponse,
         name: str = None,
     ) -> None:
         self.router.add_api_route(
@@ -136,7 +136,7 @@ class FastAPI(Starlette):
             methods=methods,
             operation_id=operation_id,
             include_in_schema=include_in_schema,
-            content_type=content_type,
+            response_class=response_class,
             name=name,
         )
 
@@ -155,7 +155,7 @@ class FastAPI(Starlette):
         methods: List[str] = None,
         operation_id: str = None,
         include_in_schema: bool = True,
-        content_type: Type[Response] = JSONResponse,
+        response_class: Type[Response] = JSONResponse,
         name: str = None,
     ) -> Callable:
         def decorator(func: Callable) -> Callable:
@@ -173,7 +173,7 @@ class FastAPI(Starlette):
                 methods=methods,
                 operation_id=operation_id,
                 include_in_schema=include_in_schema,
-                content_type=content_type,
+                response_class=response_class,
                 name=name,
             )
             return func
@@ -206,7 +206,7 @@ class FastAPI(Starlette):
         deprecated: bool = None,
         operation_id: str = None,
         include_in_schema: bool = True,
-        content_type: Type[Response] = JSONResponse,
+        response_class: Type[Response] = JSONResponse,
         name: str = None,
     ) -> Callable:
         return self.router.get(
@@ -221,7 +221,7 @@ class FastAPI(Starlette):
             deprecated=deprecated,
             operation_id=operation_id,
             include_in_schema=include_in_schema,
-            content_type=content_type,
+            response_class=response_class,
             name=name,
         )
 
@@ -239,7 +239,7 @@ class FastAPI(Starlette):
         deprecated: bool = None,
         operation_id: str = None,
         include_in_schema: bool = True,
-        content_type: Type[Response] = JSONResponse,
+        response_class: Type[Response] = JSONResponse,
         name: str = None,
     ) -> Callable:
         return self.router.put(
@@ -254,7 +254,7 @@ class FastAPI(Starlette):
             deprecated=deprecated,
             operation_id=operation_id,
             include_in_schema=include_in_schema,
-            content_type=content_type,
+            response_class=response_class,
             name=name,
         )
 
@@ -272,7 +272,7 @@ class FastAPI(Starlette):
         deprecated: bool = None,
         operation_id: str = None,
         include_in_schema: bool = True,
-        content_type: Type[Response] = JSONResponse,
+        response_class: Type[Response] = JSONResponse,
         name: str = None,
     ) -> Callable:
         return self.router.post(
@@ -287,7 +287,7 @@ class FastAPI(Starlette):
             deprecated=deprecated,
             operation_id=operation_id,
             include_in_schema=include_in_schema,
-            content_type=content_type,
+            response_class=response_class,
             name=name,
         )
 
@@ -305,7 +305,7 @@ class FastAPI(Starlette):
         deprecated: bool = None,
         operation_id: str = None,
         include_in_schema: bool = True,
-        content_type: Type[Response] = JSONResponse,
+        response_class: Type[Response] = JSONResponse,
         name: str = None,
     ) -> Callable:
         return self.router.delete(
@@ -320,7 +320,7 @@ class FastAPI(Starlette):
             deprecated=deprecated,
             operation_id=operation_id,
             include_in_schema=include_in_schema,
-            content_type=content_type,
+            response_class=response_class,
             name=name,
         )
 
@@ -338,7 +338,7 @@ class FastAPI(Starlette):
         deprecated: bool = None,
         operation_id: str = None,
         include_in_schema: bool = True,
-        content_type: Type[Response] = JSONResponse,
+        response_class: Type[Response] = JSONResponse,
         name: str = None,
     ) -> Callable:
         return self.router.options(
@@ -353,7 +353,7 @@ class FastAPI(Starlette):
             deprecated=deprecated,
             operation_id=operation_id,
             include_in_schema=include_in_schema,
-            content_type=content_type,
+            response_class=response_class,
             name=name,
         )
 
@@ -371,7 +371,7 @@ class FastAPI(Starlette):
         deprecated: bool = None,
         operation_id: str = None,
         include_in_schema: bool = True,
-        content_type: Type[Response] = JSONResponse,
+        response_class: Type[Response] = JSONResponse,
         name: str = None,
     ) -> Callable:
         return self.router.head(
@@ -386,7 +386,7 @@ class FastAPI(Starlette):
             deprecated=deprecated,
             operation_id=operation_id,
             include_in_schema=include_in_schema,
-            content_type=content_type,
+            response_class=response_class,
             name=name,
         )
 
@@ -404,7 +404,7 @@ class FastAPI(Starlette):
         deprecated: bool = None,
         operation_id: str = None,
         include_in_schema: bool = True,
-        content_type: Type[Response] = JSONResponse,
+        response_class: Type[Response] = JSONResponse,
         name: str = None,
     ) -> Callable:
         return self.router.patch(
@@ -419,7 +419,7 @@ class FastAPI(Starlette):
             deprecated=deprecated,
             operation_id=operation_id,
             include_in_schema=include_in_schema,
-            content_type=content_type,
+            response_class=response_class,
             name=name,
         )
 
@@ -437,7 +437,7 @@ class FastAPI(Starlette):
         deprecated: bool = None,
         operation_id: str = None,
         include_in_schema: bool = True,
-        content_type: Type[Response] = JSONResponse,
+        response_class: Type[Response] = JSONResponse,
         name: str = None,
     ) -> Callable:
         return self.router.trace(
@@ -452,6 +452,6 @@ class FastAPI(Starlette):
             deprecated=deprecated,
             operation_id=operation_id,
             include_in_schema=include_in_schema,
-            content_type=content_type,
+            response_class=response_class,
             name=name,
         )

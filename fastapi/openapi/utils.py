@@ -197,7 +197,7 @@ def get_openapi_path(
                     ] = response
             status_code = str(route.status_code)
             response_schema = {"type": "string"}
-            if lenient_issubclass(route.content_type, JSONResponse):
+            if lenient_issubclass(route.response_class, JSONResponse):
                 if route.response_field:
                     response_schema, _ = field_schema(
                         route.response_field,
@@ -211,7 +211,7 @@ def get_openapi_path(
             ] = route.response_description
             operation.setdefault("responses", {}).setdefault(
                 status_code, {}
-            ).setdefault("content", {}).setdefault(route.content_type.media_type, {})[
+            ).setdefault("content", {}).setdefault(route.response_class.media_type, {})[
                 "schema"
             ] = response_schema
             if all_route_params or route.body_field:

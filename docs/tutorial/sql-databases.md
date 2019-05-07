@@ -84,7 +84,7 @@ Each instance of the `SessionLocal` class will have a connection to the database
 
 This object (class) is not a connection to the database yet, but once we create an instance of this class, that instance will have the actual connection to the database.
 
-We name it `SessionLocal` to distinguish it form the `Session` we are importing from SQLAlchemy.
+We name it `SessionLocal` to distinguish it from the `Session` we are importing from SQLAlchemy.
 
 We will use `Session` to declare types later and to get better editor support and completion.
 

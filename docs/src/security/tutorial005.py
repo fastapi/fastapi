@@ -11,7 +11,7 @@ from fastapi.security import (
 from jwt import PyJWTError
 from passlib.context import CryptContext
 from pydantic import BaseModel, ValidationError
-from starlette.status import HTTP_403_FORBIDDEN
+from starlette.status import HTTP_401_UNAUTHORIZED
 
 # to get a string like this run:
 # openssl rand -hex 32
@@ -106,8 +106,14 @@ def create_access_token(*, data: dict, expires_delta: timedelta = None):
 async def get_current_user(
     security_scopes: SecurityScopes, token: str = Depends(oauth2_scheme)
 ):
+    if security_scopes.scopes:
+        authenticate_value = f'Bearer scope="{security_scopes.scope_str}"'
+    else:
+        authenticate_value = f"Bearer"
     credentials_exception = HTTPException(
-        status_code=HTTP_403_FORBIDDEN, detail="Could not validate credentials"
+        status_code=HTTP_401_UNAUTHORIZED,
+        detail="Could not validate credentials",
+        headers={"WWW-Authenticate": authenticate_value},
     )
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
@@ -124,7 +130,9 @@ async def get_current_user(
     for scope in security_scopes.scopes:
         if scope not in token_data.scopes:
             raise HTTPException(
-                status_code=HTTP_403_FORBIDDEN, detail="Not enough permissions"
+                status_code=HTTP_401_UNAUTHORIZED,
+                detail="Not enough permissions",
+                headers={"WWW-Authenticate": authenticate_value},
             )
     return user
 
@@ -160,3 +168,8 @@ async def read_own_items(
     current_user: User = Security(get_current_active_user, scopes=["items"])
 ):
     return [{"item_id": "Foo", "owner": current_user.username}]
+
+
+@app.get("/status/")
+async def read_system_status(current_user: User = Depends(get_current_user)):
+    return {"status": "ok"}

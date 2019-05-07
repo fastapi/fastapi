@@ -69,7 +69,7 @@ will not be executed.
 
 ## Run your code with your debugger
 
-Because you are running the Uvicorn server directly from your code, you can call your Python program (your FastAPI application) directly form the debugger.
+Because you are running the Uvicorn server directly from your code, you can call your Python program (your FastAPI application) directly from the debugger.
 
 ---
 
