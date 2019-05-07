@@ -6,7 +6,7 @@ With it, you can use <a href="https://docs.pytest.org/" target="_blank">pytest</
 
 ## Using `TestClient`
 
-Import `TestClient` from `starlette.testclient`.
+Importhttps://github.com/ebretonfrom `starlette.testclient`.
 
 Create a `TestClient` passing to it your **FastAPI**.
 
@@ -83,3 +83,36 @@ Run the tests with:
 ```bash
 pytest
 ```
+
+## Disambiguation
+
+The Starlette `TestClient` uses an API close to the `requests` library, so if you're familiar with it, things will be quite easy, if not here is an attempt at summarizing frequent quirks you may encounter:
+
+Should you want to test sending a json in a post route, the correct way is to use the `json=` kwarg of the `TestClient` and pass the result of the `.dict()` method of a Pydantic object to that kwarg.
+
+You might have been tempted at first to pass the result of the `.json()` method, but it returns a string and the `json=` kwarg expects a dictionary which is what the `.dict()` method of Pydantic returns.
+
+```Python hl_lines="21 22"
+{!./src/app_testing/tutorial004.py!}
+```
+
+## Reusing your tests
+
+Most of the time you can test your routes using the string associated.
+
+It might be interesting however to discover the url with Starlette `url_path_for()` method and use that url with the `TestClient`.
+
+Imagine indeed you have an entire [APIRouter](https://fastapi.tiangolo.com/tutorial/bigger-applications/#apirouter) tested and want to reuse it in another application, but you want it prefixed differently.
+
+If you tested using the hardcoded string like here
+ 
+```Python hl_lines="37"
+{!./src/app_testing/tutorial005.py!}
+```
+
+ you'll have to change all you tests code occurences, while if you used the `url_path_for()` syntax, the new route will be discovered automatically:
+ 
+ ```Python hl_lines="28"
+{!./src/app_testing/tutorial005.py!}
+```
+ 
