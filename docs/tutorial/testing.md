@@ -110,7 +110,7 @@ If you tested using the hardcoded string like here
 {!./src/app_testing/tutorial005.py!}
 ```
 
- you'll have to change all you tests code occurences, while if you used the `url_path_for()` syntax, the new route will be discovered automatically:
+ you'll have to change all you tests code occurrences, while if you used the `url_path_for()` syntax, the new route will be discovered automatically:
  
  ```Python hl_lines="28"
 {!./src/app_testing/tutorial005.py!}
