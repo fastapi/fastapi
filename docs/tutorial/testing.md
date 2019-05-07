@@ -6,7 +6,7 @@ With it, you can use <a href="https://docs.pytest.org/" target="_blank">pytest</
 
 ## Using `TestClient`
 
-Importhttps://github.com/ebretonfrom `starlette.testclient`.
+Import `TestClient` from `starlette.testclient`.
 
 Create a `TestClient` passing to it your **FastAPI**.
 
