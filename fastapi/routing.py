@@ -21,10 +21,15 @@ from starlette.status import HTTP_422_UNPROCESSABLE_ENTITY
 
 
 def serialize_response(*, field: Field = None, response: Response) -> Any:
-    encoded = jsonable_encoder(response)
     if field:
         errors = []
-        value, errors_ = field.validate(encoded, {}, loc=("response",))
+
+        # when return a pydantic model, if the data not convert to json or dict, fields cannot be ignored
+        # compatible
+        if isinstance(response, BaseModel):
+            response = jsonable_encoder(response)
+
+        value, errors_ = field.validate(response, {}, loc=("response",))
         if isinstance(errors_, ErrorWrapper):
             errors.append(errors_)
         elif isinstance(errors_, list):
@@ -33,7 +38,7 @@ def serialize_response(*, field: Field = None, response: Response) -> Any:
             raise ValidationError(errors)
         return jsonable_encoder(value)
     else:
-        return encoded
+        return jsonable_encoder(response)
 
 
 def get_app(
