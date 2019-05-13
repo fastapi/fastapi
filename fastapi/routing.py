@@ -43,7 +43,7 @@ def get_app(
     response_class: Type[Response] = JSONResponse,
     response_field: Field = None,
 ) -> Callable:
-    assert dependant.call is not None, "dependant.call must me a function"
+    assert dependant.call is not None, "dependant.call must be a function"
     is_coroutine = asyncio.iscoroutinefunction(dependant.call)
     is_body_form = body_field and isinstance(body_field.schema, params.Form)
 
@@ -71,7 +71,7 @@ def get_app(
                 status_code=HTTP_422_UNPROCESSABLE_ENTITY, detail=errors_out.errors()
             )
         else:
-            assert dependant.call is not None, "dependant.call must me a function"
+            assert dependant.call is not None, "dependant.call must be a function"
             if is_coroutine:
                 raw_response = await dependant.call(**values)
             else:
