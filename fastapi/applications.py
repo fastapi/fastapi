@@ -68,20 +68,18 @@ class FastAPI(Starlette):
             assert self.openapi_url, "The openapi_url is required for the docs"
         self.openapi_schema: Optional[Dict[str, Any]] = None
         self.static_directory = static_directory
+        swagger_default_location = {
+            "js": "https://cdn.jsdelivr.net/npm/swagger-ui-dist@3/swagger-ui-bundle.js",
+            "css": "https://cdn.jsdelivr.net/npm/swagger-ui-dist@3/swagger-ui.css",
+            "favicon": "https://fastapi.tiangolo.com/img/favicon.png",
+        }
+        self.swagger_locations = swagger_default_location
         if self.static_directory:
-            self.swagger_locations = {}
-            swagger_default_location = {
-                "js": "https://cdn.jsdelivr.net/npm/swagger-ui-dist@3/swagger-ui-bundle.js",
-                "css": "https://cdn.jsdelivr.net/npm/swagger-ui-dist@3/swagger-ui.css",
-                "favicon": "https://fastapi.tiangolo.com/img/favicon.png",
-            }
             swagger_static = self.extra.get("swagger_static", {})
             custom_keys = ["js", "css", "favicon"]
             for idx, custom_key in enumerate(custom_keys):
                 if custom_key in swagger_static.keys():
-                    self.swagger_locations[
-                        custom_key
-                    ] = "/static/" + swagger_static.get(custom_key)
+                    self.swagger_locations[custom_key] = f"/static/{swagger_static.get(custom_key)}"
                 else:
                     self.swagger_locations[custom_key] = swagger_default_location[
                         custom_key
