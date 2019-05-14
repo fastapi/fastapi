@@ -7,6 +7,7 @@ from pydantic.types import UrlStr
 
 
 logger = logging.getLogger("fastapi")
+logger.addHandler(logging.NullHandler())
 
 try:
     import email_validator
