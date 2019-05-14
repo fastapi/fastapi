@@ -1,3 +1,4 @@
+import logging
 from typing import Any, Callable, Dict, List, Optional, Type, Union
 
 from fastapi import routing
@@ -11,6 +12,9 @@ from starlette.requests import Request
 from starlette.responses import JSONResponse, Response
 from starlette.routing import BaseRoute
 from starlette.staticfiles import StaticFiles
+
+
+logger = logging.getLogger("fastapi")
 
 
 async def http_exception(request: Request, exc: HTTPException) -> JSONResponse:
@@ -66,29 +70,22 @@ class FastAPI(Starlette):
         self.openapi_schema: Optional[Dict[str, Any]] = None
         self.static_directory = static_directory
         if self.static_directory:
+            self.swagger_locations = {}
+            swagger_default_location = {
+                "js": "https://cdn.jsdelivr.net/npm/swagger-ui-dist@3/swagger-ui-bundle.js",
+                "css": "https://cdn.jsdelivr.net/npm/swagger-ui-dist@3/swagger-ui.css",
+                "favicon": "https://fastapi.tiangolo.com/img/favicon.png",
+            }
             swagger_static = self.extra.get("swagger_static", {})
-            required_keys = ["js", "css", "favicon"]
-            swagger_keys_test = [x in swagger_static.keys() for x in required_keys]
-            if not all(swagger_keys_test):
-                missing = [
-                    required_keys[idx]
-                    for idx, x in enumerate(swagger_keys_test)
-                    if not x
-                ]
-                raise ValueError(
-                    f"The swagger_static dict needs to be passed to extra, missing {missing}"
-                )
-            self.swagger_static_js = "/static/" + swagger_static.get("js", None)
-            self.swagger_static_css = "/static/" + swagger_static.get("css", None)
-            self.swagger_static_icon = "/static/" + swagger_static.get("favicon", None)
-        else:
-            self.swagger_static_js = (
-                "https://cdn.jsdelivr.net/npm/swagger-ui-dist@3/swagger-ui-bundle.js"
-            )
-            self.swagger_static_css = (
-                "https://cdn.jsdelivr.net/npm/swagger-ui-dist@3/swagger-ui.css"
-            )
-            self.swagger_static_icon = "https://fastapi.tiangolo.com/img/favicon.png"
+            custom_keys = ["js", "css", "favicon"]
+            for idx, custom_key in enumerate(custom_keys):
+                if custom_key in swagger_static.keys():
+                    self.swagger_locations[custom_key] = "/static/" + swagger_static.get(custom_key)
+                else:
+                    self.swagger_locations[custom_key] = swagger_default_location[custom_key]
+                    logger.warning(f"Using a static directory and missing {custom_key} so using default")
+
+
         self.setup()
 
     def openapi(self) -> Dict:
@@ -119,9 +116,7 @@ class FastAPI(Starlette):
                 lambda r: get_swagger_ui_html(
                     openapi_url=self.openapi_prefix + self.openapi_url,
                     title=self.title + " - Swagger UI",
-                    swagger_static_js=self.swagger_static_js,
-                    swagger_static_css=self.swagger_static_css,
-                    swagger_static_icon=self.swagger_static_icon,
+                    swagger_locations = self.swagger_locations
                 ),
                 include_in_schema=False,
             )

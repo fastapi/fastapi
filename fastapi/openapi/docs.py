@@ -1,3 +1,5 @@
+from typing import Dict
+
 from starlette.responses import HTMLResponse
 
 
@@ -5,22 +7,20 @@ def get_swagger_ui_html(
     *,
     openapi_url: str,
     title: str,
-    swagger_static_js: str = None,
-    swagger_static_css: str = None,
-    swagger_static_icon: str = None,
+    swagger_locations: Dict
 ) -> HTMLResponse:
     html = f"""
     <! doctype html>
     <html>
     <head>
-    <link type="text/css" rel="stylesheet" href="{swagger_static_css}">
-    <link rel="shortcut icon" href="{swagger_static_icon}">
+    <link type="text/css" rel="stylesheet" href="{swagger_locations.get("css")}">
+    <link rel="shortcut icon" href="{swagger_locations.get("favicon")}">
     <title>{title}</title>
     </head>
     <body>
     <div id="swagger-ui">
     </div>
-    <script src="{swagger_static_js}"></script>
+    <script src="{swagger_locations.get("js")}"></script>
     <!-- `SwaggerUIBundle` is now available on the page -->
     <script>
     const ui = SwaggerUIBundle({{

@@ -30,17 +30,23 @@ def test_swagger_ui_local(request):
         assert response.status_code == 200
 
 
-def test_swagger_ui_local_no_extra(request):
+def test_swagger_ui_local_fakevalues_default(request, caplog):
     static_directory = os.path.join(request.fspath.dirname, "static")
-    required_keys = ["js", "css", "favicon"]
+    custom_keys = ["js", "css", "favicon"]
     for p in range(3):
-        for permutation in permutations(required_keys, p):
-            with pytest.raises(ValueError) as e:
-                swagger_static = {k: "fakevalue" for k in permutation}
-                app = FastAPI(
-                    static_directory=static_directory, swagger_static=swagger_static
-                )
-            assert (
-                str(e.value)
-                == f"The swagger_static dict needs to be passed to extra, missing {[i for i in required_keys if i not in permutation]}"
+        for permutation in permutations(custom_keys, p):
+            swagger_static = {k: "fakevalue" for k in permutation}
+            app = FastAPI(
+                static_directory=static_directory, swagger_static=swagger_static
             )
+
+            swagger_keys_test = [x in swagger_static.keys() for x in custom_keys]
+
+            if not all(swagger_keys_test):
+                missings = [
+                    custom_keys[idx]
+                    for idx, x in enumerate(swagger_keys_test)
+                    if not x
+                ]
+                for missing in missings:
+                    assert f"Using a static directory and missing {missing} so using default" in caplog.messages
