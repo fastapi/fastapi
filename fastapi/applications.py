@@ -79,7 +79,9 @@ class FastAPI(Starlette):
             custom_keys = ["js", "css", "favicon"]
             for idx, custom_key in enumerate(custom_keys):
                 if custom_key in swagger_static.keys():
-                    self.swagger_locations[custom_key] = f"/static/{swagger_static.get(custom_key)}"
+                    self.swagger_locations[
+                        custom_key
+                    ] = f"/static/{swagger_static.get(custom_key)}"
                 else:
                     self.swagger_locations[custom_key] = swagger_default_location[
                         custom_key
