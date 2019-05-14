@@ -1,7 +1,6 @@
 import os
 from itertools import permutations
 
-import pytest
 from fastapi import FastAPI
 from starlette.testclient import TestClient
 
@@ -44,9 +43,10 @@ def test_swagger_ui_local_fakevalues_default(request, caplog):
 
             if not all(swagger_keys_test):
                 missings = [
-                    custom_keys[idx]
-                    for idx, x in enumerate(swagger_keys_test)
-                    if not x
+                    custom_keys[idx] for idx, x in enumerate(swagger_keys_test) if not x
                 ]
                 for missing in missings:
-                    assert f"Using a static directory and missing {missing} so using default" in caplog.messages
+                    assert (
+                        f"Using a static directory and missing {missing} so using default"
+                        in caplog.messages
+                    )

@@ -13,7 +13,6 @@ from starlette.responses import JSONResponse, Response
 from starlette.routing import BaseRoute
 from starlette.staticfiles import StaticFiles
 
-
 logger = logging.getLogger("fastapi")
 
 
@@ -80,11 +79,16 @@ class FastAPI(Starlette):
             custom_keys = ["js", "css", "favicon"]
             for idx, custom_key in enumerate(custom_keys):
                 if custom_key in swagger_static.keys():
-                    self.swagger_locations[custom_key] = "/static/" + swagger_static.get(custom_key)
+                    self.swagger_locations[
+                        custom_key
+                    ] = "/static/" + swagger_static.get(custom_key)
                 else:
-                    self.swagger_locations[custom_key] = swagger_default_location[custom_key]
-                    logger.warning(f"Using a static directory and missing {custom_key} so using default")
-
+                    self.swagger_locations[custom_key] = swagger_default_location[
+                        custom_key
+                    ]
+                    logger.warning(
+                        f"Using a static directory and missing {custom_key} so using default"
+                    )
 
         self.setup()
 
@@ -116,7 +120,7 @@ class FastAPI(Starlette):
                 lambda r: get_swagger_ui_html(
                     openapi_url=self.openapi_prefix + self.openapi_url,
                     title=self.title + " - Swagger UI",
-                    swagger_locations = self.swagger_locations
+                    swagger_locations=self.swagger_locations,
                 ),
                 include_in_schema=False,
             )

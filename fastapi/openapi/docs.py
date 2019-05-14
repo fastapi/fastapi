@@ -4,10 +4,7 @@ from starlette.responses import HTMLResponse
 
 
 def get_swagger_ui_html(
-    *,
-    openapi_url: str,
-    title: str,
-    swagger_locations: Dict
+    *, openapi_url: str, title: str, swagger_locations: Dict
 ) -> HTMLResponse:
     html = f"""
     <! doctype html>
