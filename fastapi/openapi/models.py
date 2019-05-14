@@ -5,7 +5,6 @@ from typing import Any, Dict, List, Optional, Union
 from pydantic import BaseModel, Schema as PSchema
 from pydantic.types import UrlStr
 
-
 logger = logging.getLogger("fastapi")
 logger.addHandler(logging.NullHandler())
 
