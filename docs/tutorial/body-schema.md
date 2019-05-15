@@ -22,11 +22,12 @@ You can then use `Schema` with model attributes:
 
 `Schema` works the same way as `Query`, `Path` and `Body`, it has all the same parameters, etc.
 
-
-!!! info
+!!! note "Technical Details"
     Actually, `Query`, `Path` and others you'll see next are subclasses of a common `Param` which is itself a subclass of Pydantic's `Schema`.
 
     `Body` is also a subclass of `Schema` directly. And there are others you will see later that are subclasses of `Body`.
+
+    But remember that when you import `Query`, `Path` and others from `fastapi`, <a href="https://fastapi.tiangolo.com/tutorial/path-params-numeric-validations/#recap" target="_blank">those are actually functions that return classes of the same name</a>.
 
 !!! tip
     Notice how each model's attribute with a type, default value and `Schema` has the same structure as a path operation function's parameter, with `Schema` instead of `Path`, `Query` and `Body`.

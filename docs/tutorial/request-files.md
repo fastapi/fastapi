@@ -19,6 +19,8 @@ Create file parameters the same way you would for `Body` or `Form`:
 !!! info
     `File` is a class that inherits directly from `Form`.
 
+    But remember that when you import `Query`, `Path`, `File` and others from `fastapi`, <a href="https://fastapi.tiangolo.com/tutorial/path-params-numeric-validations/#recap" target="_blank">those are actually functions that return classes of the same name</a>.
+
 !!! info
     To declare File bodies, you need to use `File`, because otherwise the parameters would be interpreted as query parameters or body (JSON) parameters.
 
