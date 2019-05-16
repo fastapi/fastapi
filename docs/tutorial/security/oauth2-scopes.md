@@ -108,6 +108,8 @@ In this case, it requires the scope `me` (it could require more than one scope).
 
     But by using `Security` instead of `Depends`, **FastAPI** will know that it can declare security scopes, use them internally, and document the API with OpenAPI.
 
+    But when you import `Query`, `Path`, `Depends`, `Security` and others from `fastapi`, <a href="https://fastapi.tiangolo.com/tutorial/path-params-numeric-validations/#recap" target="_blank">those are actually functions that return classes of the same name</a>.
+
 ## Use `SecurityScopes`
 
 Now update the dependency `get_current_user`.
