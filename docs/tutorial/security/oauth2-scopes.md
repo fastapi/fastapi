@@ -244,3 +244,7 @@ The most secure is the code flow, but is more complex to implement as it require
     But in the end, they are implementing the same OAuth2 standard.
 
 **FastAPI** includes utilities for all these OAuth2 authentication flows in `fastapi.security.oauth2`.
+
+## `Security` in decorator `dependencies`
+
+The same way you can define a `list` of <a href="https://fastapi.tiangolo.com/tutorial/dependencies/dependencies-in-decorator/" target="_blank">`Depends` in the decorator's `dependencies` parameter</a>, you could also use `Security` with `scopes` there.

@@ -166,8 +166,6 @@ def test_post_form_no_body():
 
 def test_post_body_json():
     response = client.post("/files/", json={"file": "Foo"})
-    print(response)
-    print(response.content)
     assert response.status_code == 422
     assert response.json() == file_required
 

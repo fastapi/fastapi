@@ -5,7 +5,12 @@ from typing import Any, Callable, Dict, List, Optional, Type, Union
 
 from fastapi import params
 from fastapi.dependencies.models import Dependant
-from fastapi.dependencies.utils import get_body_field, get_dependant, solve_dependencies
+from fastapi.dependencies.utils import (
+    get_body_field,
+    get_dependant,
+    get_parameterless_sub_dependant,
+    solve_dependencies,
+)
 from fastapi.encoders import jsonable_encoder
 from pydantic import BaseConfig, BaseModel, Schema
 from pydantic.error_wrappers import ErrorWrapper, ValidationError
@@ -101,6 +106,7 @@ class APIRoute(routing.Route):
         response_model: Type[BaseModel] = None,
         status_code: int = 200,
         tags: List[str] = None,
+        dependencies: List[params.Depends] = None,
         summary: str = None,
         description: str = None,
         response_description: str = "Successful Response",
@@ -135,6 +141,7 @@ class APIRoute(routing.Route):
             self.response_field = None
         self.status_code = status_code
         self.tags = tags or []
+        self.dependencies = dependencies or []
         self.summary = summary
         self.description = description or inspect.cleandoc(self.endpoint.__doc__ or "")
         self.response_description = response_description
@@ -175,6 +182,10 @@ class APIRoute(routing.Route):
             endpoint
         ), f"An endpoint must be a function or method"
         self.dependant = get_dependant(path=path, call=self.endpoint)
+        for depends in self.dependencies[::-1]:
+            self.dependant.dependencies.insert(
+                0, get_parameterless_sub_dependant(depends=depends, path=path)
+            )
         self.body_field = get_body_field(dependant=self.dependant, name=self.name)
         self.app = request_response(
             get_app(
@@ -196,6 +207,7 @@ class APIRouter(routing.Router):
         response_model: Type[BaseModel] = None,
         status_code: int = 200,
         tags: List[str] = None,
+        dependencies: List[params.Depends] = None,
         summary: str = None,
         description: str = None,
         response_description: str = "Successful Response",
@@ -213,6 +225,7 @@ class APIRouter(routing.Router):
             response_model=response_model,
             status_code=status_code,
             tags=tags or [],
+            dependencies=dependencies or [],
             summary=summary,
             description=description,
             response_description=response_description,
@@ -233,6 +246,7 @@ class APIRouter(routing.Router):
         response_model: Type[BaseModel] = None,
         status_code: int = 200,
         tags: List[str] = None,
+        dependencies: List[params.Depends] = None,
         summary: str = None,
         description: str = None,
         response_description: str = "Successful Response",
@@ -251,6 +265,7 @@ class APIRouter(routing.Router):
                 response_model=response_model,
                 status_code=status_code,
                 tags=tags or [],
+                dependencies=dependencies or [],
                 summary=summary,
                 description=description,
                 response_description=response_description,
@@ -272,6 +287,7 @@ class APIRouter(routing.Router):
         *,
         prefix: str = "",
         tags: List[str] = None,
+        dependencies: List[params.Depends] = None,
         responses: Dict[Union[int, str], Dict[str, Any]] = None,
     ) -> None:
         if prefix:
@@ -290,6 +306,7 @@ class APIRouter(routing.Router):
                     response_model=route.response_model,
                     status_code=route.status_code,
                     tags=(route.tags or []) + (tags or []),
+                    dependencies=(dependencies or []) + (route.dependencies or []),
                     summary=route.summary,
                     description=route.description,
                     response_description=route.response_description,
@@ -321,6 +338,7 @@ class APIRouter(routing.Router):
         response_model: Type[BaseModel] = None,
         status_code: int = 200,
         tags: List[str] = None,
+        dependencies: List[params.Depends] = None,
         summary: str = None,
         description: str = None,
         response_description: str = "Successful Response",
@@ -336,6 +354,7 @@ class APIRouter(routing.Router):
             response_model=response_model,
             status_code=status_code,
             tags=tags or [],
+            dependencies=dependencies or [],
             summary=summary,
             description=description,
             response_description=response_description,
@@ -355,6 +374,7 @@ class APIRouter(routing.Router):
         response_model: Type[BaseModel] = None,
         status_code: int = 200,
         tags: List[str] = None,
+        dependencies: List[params.Depends] = None,
         summary: str = None,
         description: str = None,
         response_description: str = "Successful Response",
@@ -370,6 +390,7 @@ class APIRouter(routing.Router):
             response_model=response_model,
             status_code=status_code,
             tags=tags or [],
+            dependencies=dependencies or [],
             summary=summary,
             description=description,
             response_description=response_description,
@@ -389,6 +410,7 @@ class APIRouter(routing.Router):
         response_model: Type[BaseModel] = None,
         status_code: int = 200,
         tags: List[str] = None,
+        dependencies: List[params.Depends] = None,
         summary: str = None,
         description: str = None,
         response_description: str = "Successful Response",
@@ -404,6 +426,7 @@ class APIRouter(routing.Router):
             response_model=response_model,
             status_code=status_code,
             tags=tags or [],
+            dependencies=dependencies or [],
             summary=summary,
             description=description,
             response_description=response_description,
@@ -423,6 +446,7 @@ class APIRouter(routing.Router):
         response_model: Type[BaseModel] = None,
         status_code: int = 200,
         tags: List[str] = None,
+        dependencies: List[params.Depends] = None,
         summary: str = None,
         description: str = None,
         response_description: str = "Successful Response",
@@ -438,6 +462,7 @@ class APIRouter(routing.Router):
             response_model=response_model,
             status_code=status_code,
             tags=tags or [],
+            dependencies=dependencies or [],
             summary=summary,
             description=description,
             response_description=response_description,
@@ -457,6 +482,7 @@ class APIRouter(routing.Router):
         response_model: Type[BaseModel] = None,
         status_code: int = 200,
         tags: List[str] = None,
+        dependencies: List[params.Depends] = None,
         summary: str = None,
         description: str = None,
         response_description: str = "Successful Response",
@@ -472,6 +498,7 @@ class APIRouter(routing.Router):
             response_model=response_model,
             status_code=status_code,
             tags=tags or [],
+            dependencies=dependencies or [],
             summary=summary,
             description=description,
             response_description=response_description,
@@ -491,6 +518,7 @@ class APIRouter(routing.Router):
         response_model: Type[BaseModel] = None,
         status_code: int = 200,
         tags: List[str] = None,
+        dependencies: List[params.Depends] = None,
         summary: str = None,
         description: str = None,
         response_description: str = "Successful Response",
@@ -506,6 +534,7 @@ class APIRouter(routing.Router):
             response_model=response_model,
             status_code=status_code,
             tags=tags or [],
+            dependencies=dependencies or [],
             summary=summary,
             description=description,
             response_description=response_description,
@@ -525,6 +554,7 @@ class APIRouter(routing.Router):
         response_model: Type[BaseModel] = None,
         status_code: int = 200,
         tags: List[str] = None,
+        dependencies: List[params.Depends] = None,
         summary: str = None,
         description: str = None,
         response_description: str = "Successful Response",
@@ -540,6 +570,7 @@ class APIRouter(routing.Router):
             response_model=response_model,
             status_code=status_code,
             tags=tags or [],
+            dependencies=dependencies or [],
             summary=summary,
             description=description,
             response_description=response_description,
@@ -559,6 +590,7 @@ class APIRouter(routing.Router):
         response_model: Type[BaseModel] = None,
         status_code: int = 200,
         tags: List[str] = None,
+        dependencies: List[params.Depends] = None,
         summary: str = None,
         description: str = None,
         response_description: str = "Successful Response",
@@ -574,6 +606,7 @@ class APIRouter(routing.Router):
             response_model=response_model,
             status_code=status_code,
             tags=tags or [],
+            dependencies=dependencies or [],
             summary=summary,
             description=description,
             response_description=response_description,
