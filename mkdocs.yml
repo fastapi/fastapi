@@ -54,6 +54,7 @@ nav:
             - First Steps: 'tutorial/dependencies/first-steps.md'
             - Classes as Dependencies: 'tutorial/dependencies/classes-as-dependencies.md'
             - Sub-dependencies: 'tutorial/dependencies/sub-dependencies.md'
+            - Dependencies in path operation decorators: 'tutorial/dependencies/dependencies-in-path-operation-decorators.md'
             - Advanced Dependencies: 'tutorial/dependencies/advanced-dependencies.md'
         - Security: 
             - Security Intro: 'tutorial/security/intro.md'
