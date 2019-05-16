@@ -1,5 +1,7 @@
 ## Next release
 
+## 0.22.0
+
 * Add support for `dependencies` parameter:
     * A parameter in *path operation decorators*, for dependencies that should be executed but the return value is not important or not used in the *path operation function*.
     * A parameter in the `.include_router()` method of FastAPI applications and routers, to include dependencies that should be executed in each *path operation* in a router.
