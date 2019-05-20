@@ -1,9 +1,18 @@
 import json
 from datetime import date, datetime, time, timedelta
 from enum import Enum
+from ipaddress import (
+    IPv4Address,
+    IPv4Interface,
+    IPv4Network,
+    IPv6Address,
+    IPv6Interface,
+    IPv6Network,
+)
 from typing import Dict, List, Tuple, Union
 from uuid import UUID
 
+import uvicorn
 from fastapi import FastAPI
 from pydantic import (
     DSN,
@@ -21,6 +30,8 @@ from pydantic import (
     EmailStr,
     FilePath,
     IPvAnyAddress,
+    IPvAnyInterface,
+    IPvAnyNetwork,
     Json,
     NameEmail,
     NegativeFloat,
@@ -28,6 +39,7 @@ from pydantic import (
     Path,
     PositiveFloat,
     PositiveInt,
+    Schema,
     StrictStr,
     UrlStr,
     condecimal,
@@ -46,6 +58,13 @@ class MyConstrainedInt(ConstrainedInt):
 class MyConstrainedFloat(ConstrainedFloat):
     gt: 1.0
     le: 2.0
+
+
+class MyConstrainedStr(ConstrainedStr):
+    strip_whitespace: True
+    min_length: 1
+    max_length: 12
+    curtail_length: 2
 
 
 class Working(BaseModel):
@@ -81,9 +100,18 @@ class Working(BaseModel):
     my_time: time
     my_timedelta: timedelta
     my_Json: Json
-    # my_IPvAnyAddress: IPvAnyAddress
+    my_IPvAnyAddress: IPvAnyAddress
+    # my_ipv4address: IPv4Address = Schema("127.0.0.1", examples=["127.0.0.1"])
+    my_ipv4address: IPv4Address
+    my_ipv6address: IPv6Address
+    my_IPvAnyInterface: IPvAnyInterface
+    my_ipv4interface: IPv4Interface
+    my_ipv6interface: IPv6Interface
+    my_IPvAnyNetwork: IPvAnyNetwork
+    my_ipv4network: IPv4Network
+    my_ipv6network: IPv6Network
     my_StrictStr: StrictStr
-    # my_ConstrainedStr: ConstrainedStr
+    # my_ConstrainedStr: MyConstrainedStr
     my_constr: constr(regex="^text$", min_length=2, max_length=10)
     # my_ConstrainedInt: MyConstrainedInt
     # my_conint: conint(gt=1, lt=6, multiple_of=2)
@@ -103,8 +131,6 @@ class Failing(BaseModel):
     my_set: set
     my_tuple_str_int: Tuple[str, int]
     my_enum: Enum
-    # my_IPvAnyAddress: IPvAnyAddress  # crash Pydantic if declared this way, no idea how to use
-    # my_ConstrainedStr: ConstrainedStr  # crash Pydantic if declared this way, no idea how to use
     my_ConstrainedInt: MyConstrainedInt
     my_conint: conint(gt=1, lt=6, multiple_of=2)
     my_PositiveInt: PositiveInt
@@ -116,6 +142,7 @@ class Failing(BaseModel):
 
 
 app = FastAPI()
+
 
 
 @app.post("/workingtypes")
@@ -133,14 +160,6 @@ def test_openapi():
         response = client.get("/openapi.json")
         assert response.status_code == 200
         print(response.json())
-        with open("opentestapi.json", 'w') as f:
-            json.dump(response.json(),f)
+        with open("opentestapi.json", "w") as f:
+            json.dump(response.json(), f)
 
-
-
-def test_tuple():
-    class Model(BaseModel):
-        v: Tuple[int, float, bool]
-
-    m = Model(v=[1.2, '2.2', 'true'])
-    assert m.v == (1, 2.2, True)
