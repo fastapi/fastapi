@@ -9,7 +9,7 @@ from starlette.applications import Starlette
 from starlette.exceptions import ExceptionMiddleware, HTTPException
 from starlette.middleware.errors import ServerErrorMiddleware
 from starlette.requests import Request
-from starlette.responses import JSONResponse, Response
+from starlette.responses import HTMLResponse, JSONResponse, Response
 from starlette.routing import BaseRoute
 
 
@@ -79,29 +79,28 @@ class FastAPI(Starlette):
 
     def setup(self) -> None:
         if self.openapi_url:
-            self.add_route(
-                self.openapi_url,
-                lambda req: JSONResponse(self.openapi()),
-                include_in_schema=False,
-            )
+
+            async def openapi(req: Request) -> JSONResponse:
+                return JSONResponse(self.openapi())
+
+            self.add_route(self.openapi_url, openapi, include_in_schema=False)
+            openapi_url = self.openapi_prefix + self.openapi_url
         if self.openapi_url and self.docs_url:
-            self.add_route(
-                self.docs_url,
-                lambda r: get_swagger_ui_html(
-                    openapi_url=self.openapi_prefix + self.openapi_url,
-                    title=self.title + " - Swagger UI",
-                ),
-                include_in_schema=False,
-            )
+
+            async def swagger_ui_html(req: Request) -> HTMLResponse:
+                return get_swagger_ui_html(
+                    openapi_url=openapi_url, title=self.title + " - Swagger UI"
+                )
+
+            self.add_route(self.docs_url, swagger_ui_html, include_in_schema=False)
         if self.openapi_url and self.redoc_url:
-            self.add_route(
-                self.redoc_url,
-                lambda r: get_redoc_html(
-                    openapi_url=self.openapi_prefix + self.openapi_url,
-                    title=self.title + " - ReDoc",
-                ),
-                include_in_schema=False,
-            )
+
+            async def redoc_html(req: Request) -> HTMLResponse:
+                return get_redoc_html(
+                    openapi_url=openapi_url, title=self.title + " - ReDoc"
+                )
+
+            self.add_route(self.redoc_url, redoc_html, include_in_schema=False)
         self.add_exception_handler(HTTPException, http_exception)
 
     def add_api_route(
