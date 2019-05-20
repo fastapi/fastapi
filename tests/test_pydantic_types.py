@@ -12,7 +12,6 @@ from ipaddress import (
 from typing import Dict, List, Tuple, Union
 from uuid import UUID
 
-import uvicorn
 from fastapi import FastAPI
 from pydantic import (
     DSN,
@@ -22,9 +21,6 @@ from pydantic import (
     UUID5,
     BaseModel,
     ConstrainedDecimal,
-    ConstrainedFloat,
-    ConstrainedInt,
-    ConstrainedStr,
     Decimal,
     DirectoryPath,
     EmailStr,
@@ -39,7 +35,6 @@ from pydantic import (
     Path,
     PositiveFloat,
     PositiveInt,
-    Schema,
     StrictStr,
     UrlStr,
     condecimal,
@@ -48,23 +43,6 @@ from pydantic import (
     constr,
 )
 from starlette.testclient import TestClient
-
-
-class MyConstrainedInt(ConstrainedInt):
-    gt = 1
-    lt = 10
-
-
-class MyConstrainedFloat(ConstrainedFloat):
-    gt: 1.0
-    le: 2.0
-
-
-class MyConstrainedStr(ConstrainedStr):
-    strip_whitespace: True
-    min_length: 1
-    max_length: 12
-    curtail_length: 2
 
 
 class Working(BaseModel):
@@ -101,7 +79,6 @@ class Working(BaseModel):
     my_timedelta: timedelta
     my_Json: Json
     my_IPvAnyAddress: IPvAnyAddress
-    # my_ipv4address: IPv4Address = Schema("127.0.0.1", examples=["127.0.0.1"])
     my_ipv4address: IPv4Address
     my_ipv6address: IPv6Address
     my_IPvAnyInterface: IPvAnyInterface
@@ -111,14 +88,10 @@ class Working(BaseModel):
     my_ipv4network: IPv4Network
     my_ipv6network: IPv6Network
     my_StrictStr: StrictStr
-    # my_ConstrainedStr: MyConstrainedStr
-    my_constr: constr(regex="^text$", min_length=2, max_length=10)
-    # my_ConstrainedInt: MyConstrainedInt
+    my_ConstrainedStr: constr(regex="^text$", min_length=2, max_length=10)
     # my_conint: conint(gt=1, lt=6, multiple_of=2)
     # my_PositiveInt: PositiveInt
     # my_NegativeInt: NegativeInt
-    my_ConstrainedFloat: MyConstrainedFloat
-    # my_confloat: confloat(gt=1.0, lt=6.7)
     # my_PositiveFloat: PositiveFloat
     # my_NegativeFloat: NegativeFloat
     my_ConstrainedDecimal: ConstrainedDecimal
@@ -131,18 +104,16 @@ class Failing(BaseModel):
     my_set: set
     my_tuple_str_int: Tuple[str, int]
     my_enum: Enum
-    my_ConstrainedInt: MyConstrainedInt
     my_conint: conint(gt=1, lt=6, multiple_of=2)
     my_PositiveInt: PositiveInt
     my_NegativeInt: NegativeInt
-    my_confloat: confloat(gt=1.0, lt=6.7)
+    my_ConstrainedFloat: confloat(gt=1.0, lt=6.7)
     my_PositiveFloat: PositiveFloat
     my_NegativeFloat: NegativeFloat
     my_condecimal: condecimal(gt=1, le=5, multiple_of=2)
 
 
 app = FastAPI()
-
 
 
 @app.post("/workingtypes")
@@ -162,4 +133,3 @@ def test_openapi():
         print(response.json())
         with open("opentestapi.json", "w") as f:
             json.dump(response.json(), f)
-
