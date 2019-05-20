@@ -49,8 +49,8 @@ def get_redoc_html(
 ) -> HTMLResponse:
 
     html = f"""
-    <!DOCTYPE html> 
-    <html>  
+    <!DOCTYPE html>
+    <html>
     <head>
     <title>{title}</title>
     <!-- needed for adaptive design -->
@@ -69,7 +69,7 @@ def get_redoc_html(
     </style>
     </head>
     <body>
-    <redoc spec-url='{openapi_url}'></redoc>
+    <redoc spec-url="{openapi_url}"></redoc>
     <script src="{redoc_js_url}"> </script>
     </body>
     </html>
