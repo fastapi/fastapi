@@ -22,15 +22,14 @@ Let's say you have a file structure like this:
 
 !!! tip
     There are two `__init__.py` files: one in each directory or subdirectory.
-    
+
     This is what allows importing code from one file into another.
 
     For example, in `app/main.py` you could have a line like:
-    
+
     ```
     from app.routers import items
     ```
-
 
 * The `app` directory contains everything.
 * This `app` directory has an empty file `app/__init__.py`.
@@ -103,7 +102,17 @@ But let's say that this time we are more lazy.
 
 And we don't want to have to explicitly type `/items/` and `tags=["items"]` in every *path operation* (we will be able to do it later):
 
-```Python hl_lines="6 11 16"
+```Python hl_lines="6 11"
+{!./src/bigger_applications/app/routers/items.py!}
+```
+
+### Add some custom `tags`, `responses`, and `dependencies`
+
+We are not adding the prefix `/items/` nor the `tags=["items"]` to add them later.
+
+But we can add custom `tags` and `responses` that will be applied to a specific *path operation*:
+
+```Python hl_lines="18 19"
 {!./src/bigger_applications/app/routers/items.py!}
 ```
 
@@ -187,12 +196,11 @@ So, to be able to use both of them in the same file, we import the submodules di
 {!./src/bigger_applications/app/main.py!}
 ```
 
-
 ### Include an `APIRouter`
 
 Now, let's include the `router` from the submodule `users`:
 
-```Python hl_lines="8"
+```Python hl_lines="13"
 {!./src/bigger_applications/app/main.py!}
 ```
 
@@ -211,15 +219,14 @@ It will include all the routes from that router as part of it.
 
 !!! check
     You don't have to worry about performance when including routers.
-    
+
     This will take microseconds and will only happen at startup.
-    
+
     So it won't affect performance.
 
+### Include an `APIRouter` with a `prefix`, `tags`, `responses`, and `dependencies`
 
-### Include an `APIRouter` with a prefix
-
-Now, let's include the router form the `items` submodule.
+Now, let's include the router from the `items` submodule.
 
 But, remember that we were lazy and didn't add `/items/` nor `tags` to all the *path operations*?
 
@@ -237,9 +244,13 @@ async def read_item(item_id: str):
 
 So, the prefix in this case would be `/items`.
 
-And we can also add a list of `tags` that will be applied to all the *path operations* included in this router:
+We can also add a list of `tags` that will be applied to all the *path operations* included in this router.
 
-```Python hl_lines="9"
+And we can add predefined `responses` that will be included in all the *path operations* too.
+
+And we can add a list of `dependencies` that will be added to all the *path operations* in the router and will be executed/solved for each request made to them.
+
+```Python hl_lines="8 9 10 14 15 16 17 18 19 20"
 {!./src/bigger_applications/app/main.py!}
 ```
 
@@ -250,21 +261,28 @@ The end result is that the item paths are now:
 
 ...as we intended.
 
-And they are marked with a list of tags that contain a single string `"items"`.
+* They will be marked with a list of tags that contain a single string `"items"`.
+* The *path operation* that declared a `"custom"` tag will have both tags, `items` and `custom`.
+    * These "tags" are especially useful for the automatic interactive documentation systems (using OpenAPI).
+* All of them will include the predefined `responses`.
+* The *path operation* that declared a custom `403` response will have both the predefined responses (`404`) and the `403` declared in it directly.
+* All these *path operations* will have the list of `dependencies` evaluated/executed before them.
+    * If you also declare dependencies in a specific *path operation*, **they will be executed too**.
+    * The router dependencies are executed first, then the <a href="https://fastapi.tiangolo.com/tutorial/dependencies/dependencies-in-decorator/" target="_blank">`dependencies` in the decorator</a>, and then the normal parameter dependencies.
+    * You can also add <a href="https://fastapi.tiangolo.com/tutorial/security/oauth2-scopes/" target="_blank">`Security` dependencies with `scopes`</a>.
 
-These "tags" are especially useful for the automatic interactive documentation systems (using OpenAPI).
+!!! tip
+    Having `dependencies` in a decorator can be used, for example, to require authentication for a whole group of *path operations*. Even if the dependencies are not added individually to each one of them.
 
 !!! check
-    The `prefix` and `tags` parameters are (as in many other cases) just a feature from **FastAPI** to help you avoid code duplication.
-
+    The `prefix`, `tags`, `responses` and `dependencies` parameters are (as in many other cases) just a feature from **FastAPI** to help you avoid code duplication.
 
 !!! tip
     You could also add path operations directly, for example with: `@app.get(...)`.
-    
-    Apart from `app.include_router()`, in the same **FastAPI** app.
-    
-    It would still work the same.
 
+    Apart from `app.include_router()`, in the same **FastAPI** app.
+
+    It would still work the same.
 
 !!! info "Very Technical Details"
     **Note**: this is a very technical detail that you probably can **just skip**.

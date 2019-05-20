@@ -10,7 +10,7 @@ def jsonable_encoder(
     obj: Any,
     include: Set[str] = None,
     exclude: Set[str] = set(),
-    by_alias: bool = False,
+    by_alias: bool = True,
     include_none: bool = True,
     custom_encoder: dict = {},
     sqlalchemy_safe: bool = True,

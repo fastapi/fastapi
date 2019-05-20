@@ -42,6 +42,8 @@ You can add a `summary` and `description`:
 
 As descriptions tend to be long and cover multiple lines, you can declare the path operation description in the function <abbr title="a multi-line string as the first expression inside a function (not assigned to any variable) used for documentation">docstring</abbr> and **FastAPI** will read it from there.
 
+You can write <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank">Markdown</a> in the docstring, it will be interpreted and displayed correctly (taking into account docstring indentation).
+
 ```Python hl_lines="19 20 21 22 23 24 25 26 27"
 {!./src/path_operation_configuration/tutorial004.py!}
 ```
@@ -49,9 +51,6 @@ As descriptions tend to be long and cover multiple lines, you can declare the pa
 It will be used in the interactive docs:
 
 <img src="/img/tutorial/path-operation-configuration/image02.png">
-
-!!! info
-    OpenAPI specifies that descriptions can be written in Markdown syntax, but the interactive documentation systems included still don't support it at the time of writing this, although they have it in their plans.
 
 ## Response description
 

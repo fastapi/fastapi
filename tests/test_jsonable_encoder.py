@@ -3,7 +3,7 @@ from enum import Enum
 
 import pytest
 from fastapi.encoders import jsonable_encoder
-from pydantic import BaseModel
+from pydantic import BaseModel, Schema, ValidationError
 
 
 class Person:
@@ -59,6 +59,10 @@ class ModelWithConfig(BaseModel):
         use_enum_values = True
 
 
+class ModelWithAlias(BaseModel):
+    foo: str = Schema(..., alias="Foo")
+
+
 def test_encode_class():
     person = Person(name="Foo")
     pet = Pet(owner=person, name="Firulais")
@@ -85,3 +89,13 @@ def test_encode_custom_json_encoders_model():
 def test_encode_model_with_config():
     model = ModelWithConfig(role=RoleEnum.admin)
     assert jsonable_encoder(model) == {"role": "admin"}
+
+
+def test_encode_model_with_alias_raises():
+    with pytest.raises(ValidationError):
+        model = ModelWithAlias(foo="Bar")
+
+
+def test_encode_model_with_alias():
+    model = ModelWithAlias(Foo="Bar")
+    assert jsonable_encoder(model) == {"Foo": "Bar"}

@@ -1,8 +1,7 @@
 from typing import List, Set
 
 from fastapi import FastAPI
-from pydantic import BaseModel
-from pydantic.types import UrlStr
+from pydantic import BaseModel, UrlStr
 
 app = FastAPI()
 
@@ -18,7 +17,7 @@ class Item(BaseModel):
     price: float
     tax: float = None
     tags: Set[str] = []
-    image: List[Image] = None
+    images: List[Image] = None
 
 
 class Offer(BaseModel):

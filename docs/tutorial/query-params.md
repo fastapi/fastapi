@@ -81,31 +81,31 @@ You can also declare `bool` types, and they will be converted:
 In this case, if you go to:
 
 ```
-http://127.0.0.1:8000/items/?short=1
+http://127.0.0.1:8000/items/foo?short=1
 ```
 
 or
 
 ```
-http://127.0.0.1:8000/items/?short=True
+http://127.0.0.1:8000/items/foo?short=True
 ```
 
 or
 
 ```
-http://127.0.0.1:8000/items/?short=true
+http://127.0.0.1:8000/items/foo?short=true
 ```
 
 or
 
 ```
-http://127.0.0.1:8000/items/?short=on
+http://127.0.0.1:8000/items/foo?short=on
 ```
 
 or
 
 ```
-http://127.0.0.1:8000/items/?short=yes
+http://127.0.0.1:8000/items/foo?short=yes
 ```
 
 or any other case variation (uppercase, first letter in uppercase, etc), your function will see the parameter `short` with a `bool` value of `True`. Otherwise as `False`.

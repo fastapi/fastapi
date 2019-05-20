@@ -27,7 +27,7 @@ openapi_schema = {
                         },
                     },
                 },
-                "summary": "Update Item Put",
+                "summary": "Update Item",
                 "operationId": "update_item_items__item_id__put",
                 "parameters": [
                     {

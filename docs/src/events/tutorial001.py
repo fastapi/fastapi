@@ -12,5 +12,5 @@ async def startup_event():
 
 
 @app.get("/items/{item_id}")
-async def read_item(item_id: str):
+async def read_items(item_id: str):
     return items[item_id]

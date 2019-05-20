@@ -27,7 +27,7 @@ openapi_schema = {
                         },
                     },
                 },
-                "summary": "Login Post",
+                "summary": "Login",
                 "operationId": "login_login__post",
                 "requestBody": {
                     "content": {

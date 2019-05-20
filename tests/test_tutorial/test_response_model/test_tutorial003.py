@@ -30,7 +30,7 @@ openapi_schema = {
                         },
                     },
                 },
-                "summary": "Create User Post",
+                "summary": "Create User",
                 "operationId": "create_user_user__post",
                 "requestBody": {
                     "content": {

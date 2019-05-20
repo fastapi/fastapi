@@ -27,7 +27,7 @@ openapi_schema = {
                         },
                     },
                 },
-                "summary": "Create Item Post",
+                "summary": "Create Item",
                 "operationId": "create_item_items__post",
                 "requestBody": {
                     "content": {

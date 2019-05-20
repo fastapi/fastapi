@@ -14,6 +14,9 @@
 <a href="https://pypi.org/project/fastapi" target="_blank">
     <img src="https://badge.fury.io/py/fastapi.svg" alt="Package version">
 </a>
+<a href="https://gitter.im/tiangolo/fastapi?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge" target="_blank">
+    <img src="https://badges.gitter.im/tiangolo/fastapi.svg" alt="Join the chat at https://gitter.im/tiangolo/fastapi">
+</a>
 </p>
 
 ---
@@ -40,6 +43,28 @@ The key features are:
 
 <small>* estimation based on tests on an internal development team, building production applications.</small>
 
+## Opinions
+
+"*[...] I'm using **FastAPI** a ton these days. [...] I'm actually planning to use it for all of my team's **ML services at Microsoft**. Some of them are getting integrated into the core **Windows** product and some **Office** products.*"
+
+<div style="text-align: right; margin-right: 10%;">Kabir Khan - <strong>Microsoft</strong> <a href="https://github.com/tiangolo/fastapi/pull/26" target="_blank"><small>(ref)</small></a></div>
+
+---
+
+"*I’m over the moon excited about **FastAPI**. It’s so fun!*"
+
+<div style="text-align: right; margin-right: 10%;">Brian Okken - <strong><a href="https://pythonbytes.fm/episodes/show/123/time-to-right-the-py-wrongs?time_in_sec=855" target="_blank">Python Bytes</a> podcast host</strong> <a href="https://twitter.com/brianokken/status/1112220079972728832" target="_blank"><small>(ref)</small></a></div>
+
+---
+
+"*Honestly, what you've built looks super solid and polished. In many ways, it's what I wanted **Hug** to be - it's really inspiring to see someone build that.*"
+
+<div style="text-align: right; margin-right: 10%;">Timothy Crosley - <strong><a href="http://www.hug.rest/" target="_blank">Hug</a> creator</strong> <a href="https://news.ycombinator.com/item?id=19455465" target="_blank"><small>(ref)</small></a></div>
+
+---
+
+
+
 
 ## Requirements
 
@@ -57,7 +82,7 @@ FastAPI stands on the shoulders of giants:
 $ pip install fastapi
 ```
 
-You will also need an ASGI server, for production such as <a href="http://www.uvicorn.org" target="_blank">uvicorn</a>.
+You will also need an ASGI server, for production such as <a href="http://www.uvicorn.org" target="_blank">Uvicorn</a> or <a href="https://gitlab.com/pgjones/hypercorn" target="_blank">Hypercorn</a>.
 
 ```bash
 $ pip install uvicorn
@@ -195,7 +220,7 @@ def read_item(item_id: int, q: str = None):
 
 
 @app.put("/items/{item_id}")
-def create_item(item_id: int, item: Item):
+def update_item(item_id: int, item: Item):
     return {"item_name": item.name, "item_id": item_id}
 ```
 

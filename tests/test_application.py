@@ -17,7 +17,7 @@ openapi_schema = {
                         "content": {"application/json": {"schema": {}}},
                     }
                 },
-                "summary": "Non Operation Get",
+                "summary": "Non Operation",
                 "operationId": "non_operation_api_route_get",
             }
         },
@@ -29,7 +29,7 @@ openapi_schema = {
                         "content": {"application/json": {"schema": {}}},
                     }
                 },
-                "summary": "Non Decorated Route Get",
+                "summary": "Non Decorated Route",
                 "operationId": "non_decorated_route_non_decorated_route_get",
             }
         },
@@ -41,7 +41,7 @@ openapi_schema = {
                         "content": {"application/json": {"schema": {}}},
                     }
                 },
-                "summary": "Get Text Get",
+                "summary": "Get Text",
                 "operationId": "get_text_text_get",
             }
         },
@@ -63,7 +63,7 @@ openapi_schema = {
                         },
                     },
                 },
-                "summary": "Get Id Get",
+                "summary": "Get Id",
                 "operationId": "get_id_path__item_id__get",
                 "parameters": [
                     {
@@ -93,7 +93,7 @@ openapi_schema = {
                         },
                     },
                 },
-                "summary": "Get Str Id Get",
+                "summary": "Get Str Id",
                 "operationId": "get_str_id_path_str__item_id__get",
                 "parameters": [
                     {
@@ -123,7 +123,7 @@ openapi_schema = {
                         },
                     },
                 },
-                "summary": "Get Int Id Get",
+                "summary": "Get Int Id",
                 "operationId": "get_int_id_path_int__item_id__get",
                 "parameters": [
                     {
@@ -153,7 +153,7 @@ openapi_schema = {
                         },
                     },
                 },
-                "summary": "Get Float Id Get",
+                "summary": "Get Float Id",
                 "operationId": "get_float_id_path_float__item_id__get",
                 "parameters": [
                     {
@@ -183,7 +183,7 @@ openapi_schema = {
                         },
                     },
                 },
-                "summary": "Get Bool Id Get",
+                "summary": "Get Bool Id",
                 "operationId": "get_bool_id_path_bool__item_id__get",
                 "parameters": [
                     {
@@ -213,7 +213,7 @@ openapi_schema = {
                         },
                     },
                 },
-                "summary": "Get Path Param Id Get",
+                "summary": "Get Path Param Id",
                 "operationId": "get_path_param_id_path_param__item_id__get",
                 "parameters": [
                     {
@@ -243,7 +243,7 @@ openapi_schema = {
                         },
                     },
                 },
-                "summary": "Get Path Param Required Id Get",
+                "summary": "Get Path Param Required Id",
                 "operationId": "get_path_param_required_id_path_param-required__item_id__get",
                 "parameters": [
                     {
@@ -273,7 +273,7 @@ openapi_schema = {
                         },
                     },
                 },
-                "summary": "Get Path Param Min Length Get",
+                "summary": "Get Path Param Min Length",
                 "operationId": "get_path_param_min_length_path_param-minlength__item_id__get",
                 "parameters": [
                     {
@@ -307,7 +307,7 @@ openapi_schema = {
                         },
                     },
                 },
-                "summary": "Get Path Param Max Length Get",
+                "summary": "Get Path Param Max Length",
                 "operationId": "get_path_param_max_length_path_param-maxlength__item_id__get",
                 "parameters": [
                     {
@@ -341,7 +341,7 @@ openapi_schema = {
                         },
                     },
                 },
-                "summary": "Get Path Param Min Max Length Get",
+                "summary": "Get Path Param Min Max Length",
                 "operationId": "get_path_param_min_max_length_path_param-min_maxlength__item_id__get",
                 "parameters": [
                     {
@@ -376,7 +376,7 @@ openapi_schema = {
                         },
                     },
                 },
-                "summary": "Get Path Param Gt Get",
+                "summary": "Get Path Param Gt",
                 "operationId": "get_path_param_gt_path_param-gt__item_id__get",
                 "parameters": [
                     {
@@ -410,7 +410,7 @@ openapi_schema = {
                         },
                     },
                 },
-                "summary": "Get Path Param Gt0 Get",
+                "summary": "Get Path Param Gt0",
                 "operationId": "get_path_param_gt0_path_param-gt0__item_id__get",
                 "parameters": [
                     {
@@ -444,7 +444,7 @@ openapi_schema = {
                         },
                     },
                 },
-                "summary": "Get Path Param Ge Get",
+                "summary": "Get Path Param Ge",
                 "operationId": "get_path_param_ge_path_param-ge__item_id__get",
                 "parameters": [
                     {
@@ -478,7 +478,7 @@ openapi_schema = {
                         },
                     },
                 },
-                "summary": "Get Path Param Lt Get",
+                "summary": "Get Path Param Lt",
                 "operationId": "get_path_param_lt_path_param-lt__item_id__get",
                 "parameters": [
                     {
@@ -512,7 +512,7 @@ openapi_schema = {
                         },
                     },
                 },
-                "summary": "Get Path Param Lt0 Get",
+                "summary": "Get Path Param Lt0",
                 "operationId": "get_path_param_lt0_path_param-lt0__item_id__get",
                 "parameters": [
                     {
@@ -546,7 +546,7 @@ openapi_schema = {
                         },
                     },
                 },
-                "summary": "Get Path Param Le Get",
+                "summary": "Get Path Param Le",
                 "operationId": "get_path_param_le_path_param-le__item_id__get",
                 "parameters": [
                     {
@@ -580,7 +580,7 @@ openapi_schema = {
                         },
                     },
                 },
-                "summary": "Get Path Param Lt Gt Get",
+                "summary": "Get Path Param Lt Gt",
                 "operationId": "get_path_param_lt_gt_path_param-lt-gt__item_id__get",
                 "parameters": [
                     {
@@ -615,7 +615,7 @@ openapi_schema = {
                         },
                     },
                 },
-                "summary": "Get Path Param Le Ge Get",
+                "summary": "Get Path Param Le Ge",
                 "operationId": "get_path_param_le_ge_path_param-le-ge__item_id__get",
                 "parameters": [
                     {
@@ -650,7 +650,7 @@ openapi_schema = {
                         },
                     },
                 },
-                "summary": "Get Path Param Lt Int Get",
+                "summary": "Get Path Param Lt Int",
                 "operationId": "get_path_param_lt_int_path_param-lt-int__item_id__get",
                 "parameters": [
                     {
@@ -684,7 +684,7 @@ openapi_schema = {
                         },
                     },
                 },
-                "summary": "Get Path Param Gt Int Get",
+                "summary": "Get Path Param Gt Int",
                 "operationId": "get_path_param_gt_int_path_param-gt-int__item_id__get",
                 "parameters": [
                     {
@@ -718,7 +718,7 @@ openapi_schema = {
                         },
                     },
                 },
-                "summary": "Get Path Param Le Int Get",
+                "summary": "Get Path Param Le Int",
                 "operationId": "get_path_param_le_int_path_param-le-int__item_id__get",
                 "parameters": [
                     {
@@ -752,7 +752,7 @@ openapi_schema = {
                         },
                     },
                 },
-                "summary": "Get Path Param Ge Int Get",
+                "summary": "Get Path Param Ge Int",
                 "operationId": "get_path_param_ge_int_path_param-ge-int__item_id__get",
                 "parameters": [
                     {
@@ -786,7 +786,7 @@ openapi_schema = {
                         },
                     },
                 },
-                "summary": "Get Path Param Lt Gt Int Get",
+                "summary": "Get Path Param Lt Gt Int",
                 "operationId": "get_path_param_lt_gt_int_path_param-lt-gt-int__item_id__get",
                 "parameters": [
                     {
@@ -821,7 +821,7 @@ openapi_schema = {
                         },
                     },
                 },
-                "summary": "Get Path Param Le Ge Int Get",
+                "summary": "Get Path Param Le Ge Int",
                 "operationId": "get_path_param_le_ge_int_path_param-le-ge-int__item_id__get",
                 "parameters": [
                     {
@@ -856,7 +856,7 @@ openapi_schema = {
                         },
                     },
                 },
-                "summary": "Get Query Get",
+                "summary": "Get Query",
                 "operationId": "get_query_query_get",
                 "parameters": [
                     {
@@ -886,7 +886,7 @@ openapi_schema = {
                         },
                     },
                 },
-                "summary": "Get Query Optional Get",
+                "summary": "Get Query Optional",
                 "operationId": "get_query_optional_query_optional_get",
                 "parameters": [
                     {
@@ -916,7 +916,7 @@ openapi_schema = {
                         },
                     },
                 },
-                "summary": "Get Query Type Get",
+                "summary": "Get Query Type",
                 "operationId": "get_query_type_query_int_get",
                 "parameters": [
                     {
@@ -946,7 +946,7 @@ openapi_schema = {
                         },
                     },
                 },
-                "summary": "Get Query Type Optional Get",
+                "summary": "Get Query Type Optional",
                 "operationId": "get_query_type_optional_query_int_optional_get",
                 "parameters": [
                     {
@@ -976,7 +976,7 @@ openapi_schema = {
                         },
                     },
                 },
-                "summary": "Get Query Type Optional Get",
+                "summary": "Get Query Type Optional",
                 "operationId": "get_query_type_optional_query_int_default_get",
                 "parameters": [
                     {
@@ -1006,7 +1006,7 @@ openapi_schema = {
                         },
                     },
                 },
-                "summary": "Get Query Param Get",
+                "summary": "Get Query Param",
                 "operationId": "get_query_param_query_param_get",
                 "parameters": [
                     {
@@ -1036,7 +1036,7 @@ openapi_schema = {
                         },
                     },
                 },
-                "summary": "Get Query Param Required Get",
+                "summary": "Get Query Param Required",
                 "operationId": "get_query_param_required_query_param-required_get",
                 "parameters": [
                     {
@@ -1066,7 +1066,7 @@ openapi_schema = {
                         },
                     },
                 },
-                "summary": "Get Query Param Required Type Get",
+                "summary": "Get Query Param Required Type",
                 "operationId": "get_query_param_required_type_query_param-required_int_get",
                 "parameters": [
                     {

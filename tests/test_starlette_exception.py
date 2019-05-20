@@ -49,7 +49,7 @@ openapi_schema = {
                         },
                     },
                 },
-                "summary": "Create Item Get",
+                "summary": "Create Item",
                 "operationId": "create_item_items__item_id__get",
                 "parameters": [
                     {
@@ -79,7 +79,7 @@ openapi_schema = {
                         },
                     },
                 },
-                "summary": "Create Item Get",
+                "summary": "Create Item",
                 "operationId": "create_item_starlette-items__item_id__get",
                 "parameters": [
                     {

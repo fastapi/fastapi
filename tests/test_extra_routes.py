@@ -72,7 +72,7 @@ openapi_schema = {
                         },
                     },
                 },
-                "summary": "Get Items Get",
+                "summary": "Get Items",
                 "operationId": "get_items_items__item_id__get",
                 "parameters": [
                     {
@@ -100,7 +100,7 @@ openapi_schema = {
                         },
                     },
                 },
-                "summary": "Delete Item Delete",
+                "summary": "Delete Item",
                 "operationId": "delete_item_items__item_id__delete",
                 "parameters": [
                     {
@@ -136,7 +136,7 @@ openapi_schema = {
                         },
                     },
                 },
-                "summary": "Options Item Options",
+                "summary": "Options Item",
                 "operationId": "options_item_items__item_id__options",
                 "parameters": [
                     {
@@ -164,7 +164,7 @@ openapi_schema = {
                         },
                     },
                 },
-                "summary": "Head Item Head",
+                "summary": "Head Item",
                 "operationId": "head_item_items__item_id__head",
                 "parameters": [
                     {
@@ -192,7 +192,7 @@ openapi_schema = {
                         },
                     },
                 },
-                "summary": "Patch Item Patch",
+                "summary": "Patch Item",
                 "operationId": "patch_item_items__item_id__patch",
                 "parameters": [
                     {
@@ -228,7 +228,7 @@ openapi_schema = {
                         },
                     },
                 },
-                "summary": "Trace Item Trace",
+                "summary": "Trace Item",
                 "operationId": "trace_item_items__item_id__trace",
                 "parameters": [
                     {
@@ -258,7 +258,7 @@ openapi_schema = {
                         },
                     },
                 },
-                "summary": "Get Not Decorated Get",
+                "summary": "Get Not Decorated",
                 "operationId": "get_not_decorated_items-not-decorated__item_id__get",
                 "parameters": [
                     {

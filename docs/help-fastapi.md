@@ -24,6 +24,15 @@ There you can select "Releases only".
 
 Doing it, you will receive notifications (in your email) whenever there's a new release (a new version) of **FastAPI** with bug fixes and new features.
 
+## Join the chat
+
+<a href="https://gitter.im/tiangolo/fastapi?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge" target="_blank">
+    <img src="https://badges.gitter.im/tiangolo/fastapi.svg" alt="Join the chat at https://gitter.im/tiangolo/fastapi">
+</a>
+
+Join the chat on Gitter: <a href="https://gitter.im/tiangolo/fastapi" target="_blank">https://gitter.im/tiangolo/fastapi</a>.
+
+There you can ask quick questions, help others, share ideas, etc.
 
 ## Connect with the author
 

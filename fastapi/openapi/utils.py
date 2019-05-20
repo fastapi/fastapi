@@ -114,7 +114,7 @@ def get_openapi_operation_request_body(
 def generate_operation_id(*, route: routing.APIRoute, method: str) -> str:
     if route.operation_id:
         return route.operation_id
-    path: str = route.path
+    path: str = route.path_format
     operation_id = route.name + path
     operation_id = operation_id.replace("{", "_").replace("}", "_").replace("/", "_")
     operation_id = operation_id + "_" + method.lower()
@@ -124,7 +124,7 @@ def generate_operation_id(*, route: routing.APIRoute, method: str) -> str:
 def generate_operation_summary(*, route: routing.APIRoute, method: str) -> str:
     if route.summary:
         return route.summary
-    return route.name.replace("_", " ").title() + " " + method.title()
+    return route.name.replace("_", " ").title()
 
 
 def get_openapi_operation_metadata(*, route: routing.APIRoute, method: str) -> Dict:
@@ -178,9 +178,26 @@ def get_openapi_path(
                         definitions[
                             "HTTPValidationError"
                         ] = validation_error_response_definition
+            if route.responses:
+                for (additional_status_code, response) in route.responses.items():
+                    assert isinstance(
+                        response, dict
+                    ), "An additional response must be a dict"
+                    field = route.response_fields.get(additional_status_code)
+                    if field:
+                        response_schema, _ = field_schema(
+                            field, model_name_map=model_name_map, ref_prefix=REF_PREFIX
+                        )
+                        response.setdefault("content", {}).setdefault(
+                            "application/json", {}
+                        )["schema"] = response_schema
+                    response.setdefault("description", "Additional Response")
+                    operation.setdefault("responses", {})[
+                        str(additional_status_code)
+                    ] = response
             status_code = str(route.status_code)
             response_schema = {"type": "string"}
-            if lenient_issubclass(route.content_type, JSONResponse):
+            if lenient_issubclass(route.response_class, JSONResponse):
                 if route.response_field:
                     response_schema, _ = field_schema(
                         route.response_field,
@@ -189,13 +206,14 @@ def get_openapi_path(
                     )
                 else:
                     response_schema = {}
-            content = {route.content_type.media_type: {"schema": response_schema}}
-            operation["responses"] = {
-                status_code: {
-                    "description": route.response_description,
-                    "content": content,
-                }
-            }
+            operation.setdefault("responses", {}).setdefault(status_code, {})[
+                "description"
+            ] = route.response_description
+            operation.setdefault("responses", {}).setdefault(
+                status_code, {}
+            ).setdefault("content", {}).setdefault(route.response_class.media_type, {})[
+                "schema"
+            ] = response_schema
             if all_route_params or route.body_field:
                 operation["responses"][str(HTTP_422_UNPROCESSABLE_ENTITY)] = {
                     "description": "Validation Error",
@@ -235,7 +253,9 @@ def get_openapi(
             if result:
                 path, security_schemes, path_definitions = result
                 if path:
-                    paths.setdefault(openapi_prefix + route.path, {}).update(path)
+                    paths.setdefault(openapi_prefix + route.path_format, {}).update(
+                        path
+                    )
                 if security_schemes:
                     components.setdefault("securitySchemes", {}).update(
                         security_schemes

@@ -1,14 +1,16 @@
+dist: xenial
+
 language: python
 
 cache: pip
 
 python:
     - "3.6"
-    - "3.7-dev"
+    - "3.7"
 
 install:
     - pip install flit
-    - flit install
+    - flit install --symlink
 
 script:
     - bash scripts/test.sh
@@ -18,6 +20,7 @@ after_script:
 
 deploy:
   provider: script
-  script: bash scripts/trigger-docker.sh
+  script: bash scripts/deploy.sh
   on:
-    branch: master
+    tags: true
+    python: "3.6"

@@ -1,21 +1,19 @@
-from fastapi import Depends, FastAPI
+from fastapi import Depends, FastAPI, Header, HTTPException
 
 app = FastAPI()
 
 
-class FixedContentQueryChecker:
-    def __init__(self, fixed_content: str):
-        self.fixed_content = fixed_content
-
-    def __call__(self, q: str = ""):
-        if q:
-            return self.fixed_content in q
-        return False
+async def verify_token(x_token: str = Header(...)):
+    if x_token != "fake-super-secret-token":
+        raise HTTPException(status_code=400, detail="X-Token header invalid")
 
 
-checker = FixedContentQueryChecker("bar")
+async def verify_key(x_key: str = Header(...)):
+    if x_key != "fake-super-secret-key":
+        raise HTTPException(status_code=400, detail="X-Key header invalid")
+    return x_key
 
 
-@app.get("/query-checker/")
-async def read_query_check(fixed_content_included: bool = Depends(checker)):
-    return {"fixed_content_in_query": fixed_content_included}
+@app.get("/items/", dependencies=[Depends(verify_token), Depends(verify_key)])
+async def read_items():
+    return [{"item": "Foo"}, {"item": "Bar"}]

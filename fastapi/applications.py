@@ -1,8 +1,9 @@
-from typing import Any, Callable, Dict, List, Optional, Type
+from typing import Any, Callable, Dict, List, Optional, Type, Union
 
 from fastapi import routing
 from fastapi.openapi.docs import get_redoc_html, get_swagger_ui_html
 from fastapi.openapi.utils import get_openapi
+from fastapi.params import Depends
 from pydantic import BaseModel
 from starlette.applications import Starlette
 from starlette.exceptions import ExceptionMiddleware, HTTPException
@@ -111,14 +112,16 @@ class FastAPI(Starlette):
         response_model: Type[BaseModel] = None,
         status_code: int = 200,
         tags: List[str] = None,
+        dependencies: List[Depends] = None,
         summary: str = None,
         description: str = None,
         response_description: str = "Successful Response",
+        responses: Dict[Union[int, str], Dict[str, Any]] = None,
         deprecated: bool = None,
         methods: List[str] = None,
         operation_id: str = None,
         include_in_schema: bool = True,
-        content_type: Type[Response] = JSONResponse,
+        response_class: Type[Response] = JSONResponse,
         name: str = None,
     ) -> None:
         self.router.add_api_route(
@@ -127,14 +130,16 @@ class FastAPI(Starlette):
             response_model=response_model,
             status_code=status_code,
             tags=tags or [],
+            dependencies=dependencies or [],
             summary=summary,
             description=description,
             response_description=response_description,
+            responses=responses or {},
             deprecated=deprecated,
             methods=methods,
             operation_id=operation_id,
             include_in_schema=include_in_schema,
-            content_type=content_type,
+            response_class=response_class,
             name=name,
         )
 
@@ -145,14 +150,16 @@ class FastAPI(Starlette):
         response_model: Type[BaseModel] = None,
         status_code: int = 200,
         tags: List[str] = None,
+        dependencies: List[Depends] = None,
         summary: str = None,
         description: str = None,
         response_description: str = "Successful Response",
+        responses: Dict[Union[int, str], Dict[str, Any]] = None,
         deprecated: bool = None,
         methods: List[str] = None,
         operation_id: str = None,
         include_in_schema: bool = True,
-        content_type: Type[Response] = JSONResponse,
+        response_class: Type[Response] = JSONResponse,
         name: str = None,
     ) -> Callable:
         def decorator(func: Callable) -> Callable:
@@ -162,14 +169,16 @@ class FastAPI(Starlette):
                 response_model=response_model,
                 status_code=status_code,
                 tags=tags or [],
+                dependencies=dependencies or [],
                 summary=summary,
                 description=description,
                 response_description=response_description,
+                responses=responses or {},
                 deprecated=deprecated,
                 methods=methods,
                 operation_id=operation_id,
                 include_in_schema=include_in_schema,
-                content_type=content_type,
+                response_class=response_class,
                 name=name,
             )
             return func
@@ -177,9 +186,21 @@ class FastAPI(Starlette):
         return decorator
 
     def include_router(
-        self, router: routing.APIRouter, *, prefix: str = "", tags: List[str] = None
+        self,
+        router: routing.APIRouter,
+        *,
+        prefix: str = "",
+        tags: List[str] = None,
+        dependencies: List[Depends] = None,
+        responses: Dict[Union[int, str], Dict[str, Any]] = None,
     ) -> None:
-        self.router.include_router(router, prefix=prefix, tags=tags)
+        self.router.include_router(
+            router,
+            prefix=prefix,
+            tags=tags,
+            dependencies=dependencies,
+            responses=responses or {},
+        )
 
     def get(
         self,
@@ -188,13 +209,15 @@ class FastAPI(Starlette):
         response_model: Type[BaseModel] = None,
         status_code: int = 200,
         tags: List[str] = None,
+        dependencies: List[Depends] = None,
         summary: str = None,
         description: str = None,
         response_description: str = "Successful Response",
+        responses: Dict[Union[int, str], Dict[str, Any]] = None,
         deprecated: bool = None,
         operation_id: str = None,
         include_in_schema: bool = True,
-        content_type: Type[Response] = JSONResponse,
+        response_class: Type[Response] = JSONResponse,
         name: str = None,
     ) -> Callable:
         return self.router.get(
@@ -202,13 +225,15 @@ class FastAPI(Starlette):
             response_model=response_model,
             status_code=status_code,
             tags=tags or [],
+            dependencies=dependencies or [],
             summary=summary,
             description=description,
             response_description=response_description,
+            responses=responses or {},
             deprecated=deprecated,
             operation_id=operation_id,
             include_in_schema=include_in_schema,
-            content_type=content_type,
+            response_class=response_class,
             name=name,
         )
 
@@ -219,13 +244,15 @@ class FastAPI(Starlette):
         response_model: Type[BaseModel] = None,
         status_code: int = 200,
         tags: List[str] = None,
+        dependencies: List[Depends] = None,
         summary: str = None,
         description: str = None,
         response_description: str = "Successful Response",
+        responses: Dict[Union[int, str], Dict[str, Any]] = None,
         deprecated: bool = None,
         operation_id: str = None,
         include_in_schema: bool = True,
-        content_type: Type[Response] = JSONResponse,
+        response_class: Type[Response] = JSONResponse,
         name: str = None,
     ) -> Callable:
         return self.router.put(
@@ -233,13 +260,15 @@ class FastAPI(Starlette):
             response_model=response_model,
             status_code=status_code,
             tags=tags or [],
+            dependencies=dependencies or [],
             summary=summary,
             description=description,
             response_description=response_description,
+            responses=responses or {},
             deprecated=deprecated,
             operation_id=operation_id,
             include_in_schema=include_in_schema,
-            content_type=content_type,
+            response_class=response_class,
             name=name,
         )
 
@@ -250,13 +279,15 @@ class FastAPI(Starlette):
         response_model: Type[BaseModel] = None,
         status_code: int = 200,
         tags: List[str] = None,
+        dependencies: List[Depends] = None,
         summary: str = None,
         description: str = None,
         response_description: str = "Successful Response",
+        responses: Dict[Union[int, str], Dict[str, Any]] = None,
         deprecated: bool = None,
         operation_id: str = None,
         include_in_schema: bool = True,
-        content_type: Type[Response] = JSONResponse,
+        response_class: Type[Response] = JSONResponse,
         name: str = None,
     ) -> Callable:
         return self.router.post(
@@ -264,13 +295,15 @@ class FastAPI(Starlette):
             response_model=response_model,
             status_code=status_code,
             tags=tags or [],
+            dependencies=dependencies or [],
             summary=summary,
             description=description,
             response_description=response_description,
+            responses=responses or {},
             deprecated=deprecated,
             operation_id=operation_id,
             include_in_schema=include_in_schema,
-            content_type=content_type,
+            response_class=response_class,
             name=name,
         )
 
@@ -281,13 +314,15 @@ class FastAPI(Starlette):
         response_model: Type[BaseModel] = None,
         status_code: int = 200,
         tags: List[str] = None,
+        dependencies: List[Depends] = None,
         summary: str = None,
         description: str = None,
         response_description: str = "Successful Response",
+        responses: Dict[Union[int, str], Dict[str, Any]] = None,
         deprecated: bool = None,
         operation_id: str = None,
         include_in_schema: bool = True,
-        content_type: Type[Response] = JSONResponse,
+        response_class: Type[Response] = JSONResponse,
         name: str = None,
     ) -> Callable:
         return self.router.delete(
@@ -295,13 +330,15 @@ class FastAPI(Starlette):
             response_model=response_model,
             status_code=status_code,
             tags=tags or [],
+            dependencies=dependencies or [],
             summary=summary,
             description=description,
             response_description=response_description,
+            responses=responses or {},
             deprecated=deprecated,
             operation_id=operation_id,
             include_in_schema=include_in_schema,
-            content_type=content_type,
+            response_class=response_class,
             name=name,
         )
 
@@ -312,13 +349,15 @@ class FastAPI(Starlette):
         response_model: Type[BaseModel] = None,
         status_code: int = 200,
         tags: List[str] = None,
+        dependencies: List[Depends] = None,
         summary: str = None,
         description: str = None,
         response_description: str = "Successful Response",
+        responses: Dict[Union[int, str], Dict[str, Any]] = None,
         deprecated: bool = None,
         operation_id: str = None,
         include_in_schema: bool = True,
-        content_type: Type[Response] = JSONResponse,
+        response_class: Type[Response] = JSONResponse,
         name: str = None,
     ) -> Callable:
         return self.router.options(
@@ -326,13 +365,15 @@ class FastAPI(Starlette):
             response_model=response_model,
             status_code=status_code,
             tags=tags or [],
+            dependencies=dependencies or [],
             summary=summary,
             description=description,
             response_description=response_description,
+            responses=responses or {},
             deprecated=deprecated,
             operation_id=operation_id,
             include_in_schema=include_in_schema,
-            content_type=content_type,
+            response_class=response_class,
             name=name,
         )
 
@@ -343,13 +384,15 @@ class FastAPI(Starlette):
         response_model: Type[BaseModel] = None,
         status_code: int = 200,
         tags: List[str] = None,
+        dependencies: List[Depends] = None,
         summary: str = None,
         description: str = None,
         response_description: str = "Successful Response",
+        responses: Dict[Union[int, str], Dict[str, Any]] = None,
         deprecated: bool = None,
         operation_id: str = None,
         include_in_schema: bool = True,
-        content_type: Type[Response] = JSONResponse,
+        response_class: Type[Response] = JSONResponse,
         name: str = None,
     ) -> Callable:
         return self.router.head(
@@ -357,13 +400,15 @@ class FastAPI(Starlette):
             response_model=response_model,
             status_code=status_code,
             tags=tags or [],
+            dependencies=dependencies or [],
             summary=summary,
             description=description,
             response_description=response_description,
+            responses=responses or {},
             deprecated=deprecated,
             operation_id=operation_id,
             include_in_schema=include_in_schema,
-            content_type=content_type,
+            response_class=response_class,
             name=name,
         )
 
@@ -374,13 +419,15 @@ class FastAPI(Starlette):
         response_model: Type[BaseModel] = None,
         status_code: int = 200,
         tags: List[str] = None,
+        dependencies: List[Depends] = None,
         summary: str = None,
         description: str = None,
         response_description: str = "Successful Response",
+        responses: Dict[Union[int, str], Dict[str, Any]] = None,
         deprecated: bool = None,
         operation_id: str = None,
         include_in_schema: bool = True,
-        content_type: Type[Response] = JSONResponse,
+        response_class: Type[Response] = JSONResponse,
         name: str = None,
     ) -> Callable:
         return self.router.patch(
@@ -388,13 +435,15 @@ class FastAPI(Starlette):
             response_model=response_model,
             status_code=status_code,
             tags=tags or [],
+            dependencies=dependencies or [],
             summary=summary,
             description=description,
             response_description=response_description,
+            responses=responses or {},
             deprecated=deprecated,
             operation_id=operation_id,
             include_in_schema=include_in_schema,
-            content_type=content_type,
+            response_class=response_class,
             name=name,
         )
 
@@ -405,13 +454,15 @@ class FastAPI(Starlette):
         response_model: Type[BaseModel] = None,
         status_code: int = 200,
         tags: List[str] = None,
+        dependencies: List[Depends] = None,
         summary: str = None,
         description: str = None,
         response_description: str = "Successful Response",
+        responses: Dict[Union[int, str], Dict[str, Any]] = None,
         deprecated: bool = None,
         operation_id: str = None,
         include_in_schema: bool = True,
-        content_type: Type[Response] = JSONResponse,
+        response_class: Type[Response] = JSONResponse,
         name: str = None,
     ) -> Callable:
         return self.router.trace(
@@ -419,12 +470,14 @@ class FastAPI(Starlette):
             response_model=response_model,
             status_code=status_code,
             tags=tags or [],
+            dependencies=dependencies or [],
             summary=summary,
             description=description,
             response_description=response_description,
+            responses=responses or {},
             deprecated=deprecated,
             operation_id=operation_id,
             include_in_schema=include_in_schema,
-            content_type=content_type,
+            response_class=response_class,
             name=name,
         )

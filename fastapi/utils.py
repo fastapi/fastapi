@@ -3,15 +3,10 @@ from typing import Any, Dict, List, Sequence, Set, Type
 
 from fastapi import routing
 from fastapi.openapi.constants import REF_PREFIX
-from pydantic import BaseConfig, BaseModel
+from pydantic import BaseModel
 from pydantic.fields import Field
 from pydantic.schema import get_flat_models_from_fields, model_process_schema
 from starlette.routing import BaseRoute
-
-
-class UnconstrainedConfig(BaseConfig):
-    min_anystr_length = None
-    max_anystr_length = None
 
 
 def get_flat_models_from_routes(
@@ -30,6 +25,8 @@ def get_flat_models_from_routes(
                 body_fields_from_routes.append(route.body_field)
             if route.response_field:
                 responses_from_routes.append(route.response_field)
+            if route.response_fields:
+                responses_from_routes.extend(route.response_fields.values())
     flat_models = get_flat_models_from_fields(
         body_fields_from_routes + responses_from_routes
     )

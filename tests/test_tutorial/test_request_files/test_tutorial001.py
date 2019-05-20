@@ -28,7 +28,7 @@ openapi_schema = {
                         },
                     },
                 },
-                "summary": "Create File Post",
+                "summary": "Create File",
                 "operationId": "create_file_files__post",
                 "requestBody": {
                     "content": {
@@ -58,7 +58,7 @@ openapi_schema = {
                         },
                     },
                 },
-                "summary": "Create Upload File Post",
+                "summary": "Create Upload File",
                 "operationId": "create_upload_file_uploadfile__post",
                 "requestBody": {
                     "content": {

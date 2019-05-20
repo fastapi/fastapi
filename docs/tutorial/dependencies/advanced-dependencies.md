@@ -22,7 +22,7 @@ Not the class itself (which is already a callable), but an instance of that clas
 To do that, we declare a method `__call__`:
 
 ```Python hl_lines="10"
-{!./src/dependencies/tutorial006.py!}
+{!./src/dependencies/tutorial007.py!}
 ```
 
 In this case, this `__call__` is what **FastAPI** will use to check for additional parameters and sub-dependencies, and this is what will be called to pass a value to the parameter in your *path operation function* later.
@@ -32,7 +32,7 @@ In this case, this `__call__` is what **FastAPI** will use to check for addition
 And now, we can use `__init__` to declare the parameters of the instance that we can use to "parameterize" the dependency:
 
 ```Python hl_lines="7"
-{!./src/dependencies/tutorial006.py!}
+{!./src/dependencies/tutorial007.py!}
 ```
 
 In this case, **FastAPI** won't ever touch or care about `__init__`, we will use it directly in our code.
@@ -42,7 +42,7 @@ In this case, **FastAPI** won't ever touch or care about `__init__`, we will use
 We could create an instance of this class with:
 
 ```Python hl_lines="16"
-{!./src/dependencies/tutorial006.py!}
+{!./src/dependencies/tutorial007.py!}
 ```
 
 And that way we are able to "parameterize" our dependency, that now has `"bar"` inside of it, as the attribute `checker.fixed_content`.
@@ -60,7 +60,7 @@ checker(q="somequery")
 ...and pass whatever that returns as the value of the dependency in our path operation function as the parameter `fixed_content_included`:
 
 ```Python hl_lines="20"
-{!./src/dependencies/tutorial006.py!}
+{!./src/dependencies/tutorial007.py!}
 ```
 
 !!! tip
