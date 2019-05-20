@@ -1,5 +1,7 @@
 ## Next release
 
+* Make Swagger UI and ReDoc URLs parameterizable, allowing to host and serve local versions of them and have offline docs. PR [#112](https://github.com/tiangolo/fastapi/pull/112) by [@euri10](https://github.com/euri10).
+
 ## 0.22.0
 
 * Add support for `dependencies` parameter:
