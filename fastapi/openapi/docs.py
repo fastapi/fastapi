@@ -1,3 +1,6 @@
+from typing import Awaitable, Callable
+
+from starlette.requests import Request
 from starlette.responses import HTMLResponse
 
 
@@ -40,6 +43,17 @@ def get_swagger_ui_html(
     return HTMLResponse(html)
 
 
+def get_swagger_ui_handler(
+    openapi_url: str, title: str
+) -> Callable[[Request], Awaitable[HTMLResponse]]:
+    async def swagger_ui_handler(req: Request) -> HTMLResponse:
+        return get_swagger_ui_html(
+            openapi_url=openapi_url, title=title + " - Swagger UI"
+        )
+
+    return swagger_ui_handler
+
+
 def get_redoc_html(
     *,
     openapi_url: str,
@@ -75,3 +89,12 @@ def get_redoc_html(
     </html>
     """
     return HTMLResponse(html)
+
+
+def get_redoc_handler(
+    openapi_url: str, title: str
+) -> Callable[[Request], Awaitable[HTMLResponse]]:
+    async def redoc_html(req: Request) -> HTMLResponse:
+        return get_redoc_html(openapi_url=openapi_url, title=title + " - ReDoc")
+
+    return redoc_html
