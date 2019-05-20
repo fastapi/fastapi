@@ -52,7 +52,7 @@ sequence_types = (list, set, tuple)
 sequence_shape_to_type = {Shape.LIST: list, Shape.SET: set, Shape.TUPLE: tuple}
 
 
-def get_sub_dependant(
+def get_param_sub_dependant(
     *, param: inspect.Parameter, path: str, security_scopes: List[str] = None
 ) -> Dependant:
     depends: params.Depends = param.default
@@ -60,6 +60,30 @@ def get_sub_dependant(
         dependency = depends.dependency
     else:
         dependency = param.annotation
+    return get_sub_dependant(
+        depends=depends,
+        dependency=dependency,
+        path=path,
+        name=param.name,
+        security_scopes=security_scopes,
+    )
+
+
+def get_parameterless_sub_dependant(*, depends: params.Depends, path: str) -> Dependant:
+    assert callable(
+        depends.dependency
+    ), "A parameter-less dependency must have a callable dependency"
+    return get_sub_dependant(depends=depends, dependency=depends.dependency, path=path)
+
+
+def get_sub_dependant(
+    *,
+    depends: params.Depends,
+    dependency: Callable,
+    path: str,
+    name: str = None,
+    security_scopes: List[str] = None,
+) -> Dependant:
     security_requirement = None
     security_scopes = security_scopes or []
     if isinstance(depends, params.Security):
@@ -73,7 +97,7 @@ def get_sub_dependant(
             security_scheme=dependency, scopes=use_scopes
         )
     sub_dependant = get_dependant(
-        path=path, call=dependency, name=param.name, security_scopes=security_scopes
+        path=path, call=dependency, name=name, security_scopes=security_scopes
     )
     if security_requirement:
         sub_dependant.security_requirements.append(security_requirement)
@@ -111,7 +135,7 @@ def get_dependant(
     for param_name in signature_params:
         param = signature_params[param_name]
         if isinstance(param.default, params.Depends):
-            sub_dependant = get_sub_dependant(
+            sub_dependant = get_param_sub_dependant(
                 param=param, path=path, security_scopes=security_scopes
             )
             dependant.dependencies.append(sub_dependant)
@@ -277,8 +301,8 @@ async def solve_dependencies(
             solved = await sub_dependant.call(**sub_values)
         else:
             solved = await run_in_threadpool(sub_dependant.call, **sub_values)
-        assert sub_dependant.name is not None, "Subdependants always have a name"
-        values[sub_dependant.name] = solved
+        if sub_dependant.name is not None:
+            values[sub_dependant.name] = solved
     path_values, path_errors = request_params_to_args(
         dependant.path_params, request.path_params
     )

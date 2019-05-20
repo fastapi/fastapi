@@ -114,7 +114,7 @@ def get_openapi_operation_request_body(
 def generate_operation_id(*, route: routing.APIRoute, method: str) -> str:
     if route.operation_id:
         return route.operation_id
-    path: str = route.path
+    path: str = route.path_format
     operation_id = route.name + path
     operation_id = operation_id.replace("{", "_").replace("}", "_").replace("/", "_")
     operation_id = operation_id + "_" + method.lower()
@@ -253,7 +253,9 @@ def get_openapi(
             if result:
                 path, security_schemes, path_definitions = result
                 if path:
-                    paths.setdefault(openapi_prefix + route.path, {}).update(path)
+                    paths.setdefault(openapi_prefix + route.path_format, {}).update(
+                        path
+                    )
                 if security_schemes:
                     components.setdefault("securitySchemes", {}).update(
                         security_schemes
