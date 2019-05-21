@@ -1,5 +1,11 @@
 ## Next release
 
+* Upgrade the compatible version of Starlette to `0.12.0`.
+    * This includes support for ASGI 3 (the latest version of the standard).
+    * It's now possible to use [Starlette's `StreamingResponse`](https://www.starlette.io/responses/#streamingresponse) with iterators, like [file-like](https://docs.python.org/3/glossary.html#term-file-like-object) objects (as those returned by `open()`).
+    * It's now possible to use the low level utility `iterate_in_threadpool` from `starlette.concurrency` (for advanced scenarios).
+    * PR [#243](https://github.com/tiangolo/fastapi/pull/243).
+
 * Add OAuth2 redirect page for Swagger UI. This allows having delegated authentication in the Swagger UI docs. For this to work, you need to add `{your_origin}/docs/oauth2-redirect` to the allowed callbacks in your OAuth2 provider (in Auth0, Facebook, Google, etc).
     * For example, during development, it could be `http://localhost:8000/docs/oauth2-redirect`.
     * Have in mind that this callback URL is independent of whichever one is used by your frontend. You might also have another callback at `https://yourdomain.com/login/callback`.
