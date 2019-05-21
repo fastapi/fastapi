@@ -18,8 +18,10 @@ The first value is the default value, you can pass all the extra validation or a
 {!./src/header_params/tutorial001.py!}
 ```
 
-!!! info
+!!! note "Technical Details"
     `Header` is a "sister" class of `Path`, `Query` and `Cookie`. It also inherits from the same common `Param` class.
+
+    But remember that when you import `Query`, `Path`, `Header`, and others from `fastapi`, <a href="https://fastapi.tiangolo.com/tutorial/path-params-numeric-validations/#recap" target="_blank">those are actually functions that return classes of the same name</a>.
 
 !!! info
     To declare headers, you need to use `Header`, because otherwise the parameters would be interpreted as query parameters.

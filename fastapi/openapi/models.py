@@ -5,13 +5,15 @@ from typing import Any, Dict, List, Optional, Union
 from pydantic import BaseModel, Schema as PSchema
 from pydantic.types import UrlStr
 
+logger = logging.getLogger("fastapi")
+
 try:
     import email_validator
 
     assert email_validator  # make autoflake ignore the unused import
     from pydantic.types import EmailStr  # type: ignore
 except ImportError:  # pragma: no cover
-    logging.warning(
+    logger.warning(
         "email-validator not installed, email fields will be treated as str.\n"
         + "To install, run: pip install email-validator"
     )

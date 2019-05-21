@@ -108,6 +108,8 @@ In this case, it requires the scope `me` (it could require more than one scope).
 
     But by using `Security` instead of `Depends`, **FastAPI** will know that it can declare security scopes, use them internally, and document the API with OpenAPI.
 
+    But when you import `Query`, `Path`, `Depends`, `Security` and others from `fastapi`, <a href="https://fastapi.tiangolo.com/tutorial/path-params-numeric-validations/#recap" target="_blank">those are actually functions that return classes of the same name</a>.
+
 ## Use `SecurityScopes`
 
 Now update the dependency `get_current_user`.
@@ -242,3 +244,7 @@ The most secure is the code flow, but is more complex to implement as it require
     But in the end, they are implementing the same OAuth2 standard.
 
 **FastAPI** includes utilities for all these OAuth2 authentication flows in `fastapi.security.oauth2`.
+
+## `Security` in decorator `dependencies`
+
+The same way you can define a `list` of <a href="https://fastapi.tiangolo.com/tutorial/dependencies/dependencies-in-decorator/" target="_blank">`Depends` in the decorator's `dependencies` parameter</a>, you could also use `Security` with `scopes` there.

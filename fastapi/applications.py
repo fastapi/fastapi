@@ -7,12 +7,13 @@ from fastapi.openapi.docs import (
     get_swagger_ui_oauth2_redirect_html,
 )
 from fastapi.openapi.utils import get_openapi
+from fastapi.params import Depends
 from pydantic import BaseModel
 from starlette.applications import Starlette
 from starlette.exceptions import ExceptionMiddleware, HTTPException
 from starlette.middleware.errors import ServerErrorMiddleware
 from starlette.requests import Request
-from starlette.responses import JSONResponse, Response
+from starlette.responses import HTMLResponse, JSONResponse, Response
 from starlette.routing import BaseRoute
 
 
@@ -39,6 +40,7 @@ class FastAPI(Starlette):
         openapi_prefix: str = "",
         docs_url: Optional[str] = "/docs",
         redoc_url: Optional[str] = "/redoc",
+        swagger_ui_oauth2_redirect_url: Optional[str] = "/docs/oauth2-redirect",
         **extra: Dict[str, Any],
     ) -> None:
         self._debug = debug
@@ -55,6 +57,7 @@ class FastAPI(Starlette):
         self.openapi_prefix = openapi_prefix.rstrip("/")
         self.docs_url = docs_url
         self.redoc_url = redoc_url
+        self.swagger_ui_oauth2_redirect_url = swagger_ui_oauth2_redirect_url
         self.extra = extra
 
         self.openapi_version = "3.0.2"
@@ -82,35 +85,41 @@ class FastAPI(Starlette):
 
     def setup(self) -> None:
         if self.openapi_url:
-            self.add_route(
-                self.openapi_url,
-                lambda req: JSONResponse(self.openapi()),
-                include_in_schema=False,
-            )
+
+            async def openapi(req: Request) -> JSONResponse:
+                return JSONResponse(self.openapi())
+
+            self.add_route(self.openapi_url, openapi, include_in_schema=False)
+            openapi_url = self.openapi_prefix + self.openapi_url
         if self.openapi_url and self.docs_url:
-            self.add_route(
-                self.docs_url,
-                lambda r: get_swagger_ui_html(
-                    openapi_url=self.openapi_prefix + self.openapi_url,
+
+            async def swagger_ui_html(req: Request) -> HTMLResponse:
+                return get_swagger_ui_html(
+                    openapi_url=openapi_url,
                     title=self.title + " - Swagger UI",
-                    request=r,
-                ),
-                include_in_schema=False,
-            )
-            self.add_route(
-                self.docs_url + "/oauth2-redirect",
-                get_swagger_ui_oauth2_redirect_html,
-                include_in_schema=False,
-            )
+                    oauth2_redirect_url=self.swagger_ui_oauth2_redirect_url,
+                )
+
+            self.add_route(self.docs_url, swagger_ui_html, include_in_schema=False)
+
+            if self.swagger_ui_oauth2_redirect_url:
+
+                async def swagger_ui_redirect(req: Request) -> HTMLResponse:
+                    return get_swagger_ui_oauth2_redirect_html()
+
+                self.add_route(
+                    self.swagger_ui_oauth2_redirect_url,
+                    swagger_ui_redirect,
+                    include_in_schema=False,
+                )
         if self.openapi_url and self.redoc_url:
-            self.add_route(
-                self.redoc_url,
-                lambda r: get_redoc_html(
-                    openapi_url=self.openapi_prefix + self.openapi_url,
-                    title=self.title + " - ReDoc",
-                ),
-                include_in_schema=False,
-            )
+
+            async def redoc_html(req: Request) -> HTMLResponse:
+                return get_redoc_html(
+                    openapi_url=openapi_url, title=self.title + " - ReDoc"
+                )
+
+            self.add_route(self.redoc_url, redoc_html, include_in_schema=False)
         self.add_exception_handler(HTTPException, http_exception)
 
     def add_api_route(
@@ -121,6 +130,7 @@ class FastAPI(Starlette):
         response_model: Type[BaseModel] = None,
         status_code: int = 200,
         tags: List[str] = None,
+        dependencies: List[Depends] = None,
         summary: str = None,
         description: str = None,
         response_description: str = "Successful Response",
@@ -138,6 +148,7 @@ class FastAPI(Starlette):
             response_model=response_model,
             status_code=status_code,
             tags=tags or [],
+            dependencies=dependencies or [],
             summary=summary,
             description=description,
             response_description=response_description,
@@ -157,6 +168,7 @@ class FastAPI(Starlette):
         response_model: Type[BaseModel] = None,
         status_code: int = 200,
         tags: List[str] = None,
+        dependencies: List[Depends] = None,
         summary: str = None,
         description: str = None,
         response_description: str = "Successful Response",
@@ -175,6 +187,7 @@ class FastAPI(Starlette):
                 response_model=response_model,
                 status_code=status_code,
                 tags=tags or [],
+                dependencies=dependencies or [],
                 summary=summary,
                 description=description,
                 response_description=response_description,
@@ -196,10 +209,15 @@ class FastAPI(Starlette):
         *,
         prefix: str = "",
         tags: List[str] = None,
+        dependencies: List[Depends] = None,
         responses: Dict[Union[int, str], Dict[str, Any]] = None,
     ) -> None:
         self.router.include_router(
-            router, prefix=prefix, tags=tags, responses=responses or {}
+            router,
+            prefix=prefix,
+            tags=tags,
+            dependencies=dependencies,
+            responses=responses or {},
         )
 
     def get(
@@ -209,6 +227,7 @@ class FastAPI(Starlette):
         response_model: Type[BaseModel] = None,
         status_code: int = 200,
         tags: List[str] = None,
+        dependencies: List[Depends] = None,
         summary: str = None,
         description: str = None,
         response_description: str = "Successful Response",
@@ -224,6 +243,7 @@ class FastAPI(Starlette):
             response_model=response_model,
             status_code=status_code,
             tags=tags or [],
+            dependencies=dependencies or [],
             summary=summary,
             description=description,
             response_description=response_description,
@@ -242,6 +262,7 @@ class FastAPI(Starlette):
         response_model: Type[BaseModel] = None,
         status_code: int = 200,
         tags: List[str] = None,
+        dependencies: List[Depends] = None,
         summary: str = None,
         description: str = None,
         response_description: str = "Successful Response",
@@ -257,6 +278,7 @@ class FastAPI(Starlette):
             response_model=response_model,
             status_code=status_code,
             tags=tags or [],
+            dependencies=dependencies or [],
             summary=summary,
             description=description,
             response_description=response_description,
@@ -275,6 +297,7 @@ class FastAPI(Starlette):
         response_model: Type[BaseModel] = None,
         status_code: int = 200,
         tags: List[str] = None,
+        dependencies: List[Depends] = None,
         summary: str = None,
         description: str = None,
         response_description: str = "Successful Response",
@@ -290,6 +313,7 @@ class FastAPI(Starlette):
             response_model=response_model,
             status_code=status_code,
             tags=tags or [],
+            dependencies=dependencies or [],
             summary=summary,
             description=description,
             response_description=response_description,
@@ -308,6 +332,7 @@ class FastAPI(Starlette):
         response_model: Type[BaseModel] = None,
         status_code: int = 200,
         tags: List[str] = None,
+        dependencies: List[Depends] = None,
         summary: str = None,
         description: str = None,
         response_description: str = "Successful Response",
@@ -323,6 +348,7 @@ class FastAPI(Starlette):
             response_model=response_model,
             status_code=status_code,
             tags=tags or [],
+            dependencies=dependencies or [],
             summary=summary,
             description=description,
             response_description=response_description,
@@ -341,6 +367,7 @@ class FastAPI(Starlette):
         response_model: Type[BaseModel] = None,
         status_code: int = 200,
         tags: List[str] = None,
+        dependencies: List[Depends] = None,
         summary: str = None,
         description: str = None,
         response_description: str = "Successful Response",
@@ -356,6 +383,7 @@ class FastAPI(Starlette):
             response_model=response_model,
             status_code=status_code,
             tags=tags or [],
+            dependencies=dependencies or [],
             summary=summary,
             description=description,
             response_description=response_description,
@@ -374,6 +402,7 @@ class FastAPI(Starlette):
         response_model: Type[BaseModel] = None,
         status_code: int = 200,
         tags: List[str] = None,
+        dependencies: List[Depends] = None,
         summary: str = None,
         description: str = None,
         response_description: str = "Successful Response",
@@ -389,6 +418,7 @@ class FastAPI(Starlette):
             response_model=response_model,
             status_code=status_code,
             tags=tags or [],
+            dependencies=dependencies or [],
             summary=summary,
             description=description,
             response_description=response_description,
@@ -407,6 +437,7 @@ class FastAPI(Starlette):
         response_model: Type[BaseModel] = None,
         status_code: int = 200,
         tags: List[str] = None,
+        dependencies: List[Depends] = None,
         summary: str = None,
         description: str = None,
         response_description: str = "Successful Response",
@@ -422,6 +453,7 @@ class FastAPI(Starlette):
             response_model=response_model,
             status_code=status_code,
             tags=tags or [],
+            dependencies=dependencies or [],
             summary=summary,
             description=description,
             response_description=response_description,
@@ -440,6 +472,7 @@ class FastAPI(Starlette):
         response_model: Type[BaseModel] = None,
         status_code: int = 200,
         tags: List[str] = None,
+        dependencies: List[Depends] = None,
         summary: str = None,
         description: str = None,
         response_description: str = "Successful Response",
@@ -455,6 +488,7 @@ class FastAPI(Starlette):
             response_model=response_model,
             status_code=status_code,
             tags=tags or [],
+            dependencies=dependencies or [],
             summary=summary,
             description=description,
             response_description=response_description,
