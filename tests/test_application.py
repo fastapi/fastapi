@@ -1131,6 +1131,17 @@ def test_swagger_ui():
     assert response.status_code == 200
     assert response.headers["content-type"] == "text/html; charset=utf-8"
     assert "swagger-ui-dist" in response.text
+    assert (
+        f"oauth2RedirectUrl: window.location.origin + '/docs/oauth2-redirect'"
+        in response.text
+    )
+
+
+def test_swagger_ui_oauth2_redirect():
+    response = client.get("/docs/oauth2-redirect")
+    assert response.status_code == 200
+    assert response.headers["content-type"] == "text/html; charset=utf-8"
+    assert "window.opener.swaggerUIRedirectOauth2" in response.text
 
 
 def test_redoc():
