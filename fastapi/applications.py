@@ -1,11 +1,7 @@
 from typing import Any, Callable, Dict, List, Optional, Type, Union
 
 from fastapi import routing
-from fastapi.openapi.docs import (
-    get_redoc_html,
-    get_swagger_ui_html,
-    get_swagger_ui_oauth2_redirect_html,
-)
+from fastapi.openapi.docs import get_redoc_html, get_swagger_ui_html
 from fastapi.openapi.utils import get_openapi
 from fastapi.params import Depends
 from pydantic import BaseModel
@@ -40,7 +36,6 @@ class FastAPI(Starlette):
         openapi_prefix: str = "",
         docs_url: Optional[str] = "/docs",
         redoc_url: Optional[str] = "/redoc",
-        swagger_ui_oauth2_redirect_url: Optional[str] = "/docs/oauth2-redirect",
         **extra: Dict[str, Any],
     ) -> None:
         self._debug = debug
@@ -57,7 +52,6 @@ class FastAPI(Starlette):
         self.openapi_prefix = openapi_prefix.rstrip("/")
         self.docs_url = docs_url
         self.redoc_url = redoc_url
-        self.swagger_ui_oauth2_redirect_url = swagger_ui_oauth2_redirect_url
         self.extra = extra
 
         self.openapi_version = "3.0.2"
@@ -95,23 +89,10 @@ class FastAPI(Starlette):
 
             async def swagger_ui_html(req: Request) -> HTMLResponse:
                 return get_swagger_ui_html(
-                    openapi_url=openapi_url,
-                    title=self.title + " - Swagger UI",
-                    oauth2_redirect_url=self.swagger_ui_oauth2_redirect_url,
+                    openapi_url=openapi_url, title=self.title + " - Swagger UI"
                 )
 
             self.add_route(self.docs_url, swagger_ui_html, include_in_schema=False)
-
-            if self.swagger_ui_oauth2_redirect_url:
-
-                async def swagger_ui_redirect(req: Request) -> HTMLResponse:
-                    return get_swagger_ui_oauth2_redirect_html()
-
-                self.add_route(
-                    self.swagger_ui_oauth2_redirect_url,
-                    swagger_ui_redirect,
-                    include_in_schema=False,
-                )
         if self.openapi_url and self.redoc_url:
 
             async def redoc_html(req: Request) -> HTMLResponse:
@@ -138,6 +119,7 @@ class FastAPI(Starlette):
         deprecated: bool = None,
         methods: List[str] = None,
         operation_id: str = None,
+        skip_defaults: bool = False,
         include_in_schema: bool = True,
         response_class: Type[Response] = JSONResponse,
         name: str = None,
@@ -156,6 +138,7 @@ class FastAPI(Starlette):
             deprecated=deprecated,
             methods=methods,
             operation_id=operation_id,
+            skip_defaults=skip_defaults,
             include_in_schema=include_in_schema,
             response_class=response_class,
             name=name,
@@ -176,6 +159,7 @@ class FastAPI(Starlette):
         deprecated: bool = None,
         methods: List[str] = None,
         operation_id: str = None,
+        skip_defaults: bool = False,
         include_in_schema: bool = True,
         response_class: Type[Response] = JSONResponse,
         name: str = None,
@@ -195,6 +179,7 @@ class FastAPI(Starlette):
                 deprecated=deprecated,
                 methods=methods,
                 operation_id=operation_id,
+                skip_defaults=skip_defaults,
                 include_in_schema=include_in_schema,
                 response_class=response_class,
                 name=name,
@@ -234,6 +219,7 @@ class FastAPI(Starlette):
         responses: Dict[Union[int, str], Dict[str, Any]] = None,
         deprecated: bool = None,
         operation_id: str = None,
+        skip_defaults: bool = False,
         include_in_schema: bool = True,
         response_class: Type[Response] = JSONResponse,
         name: str = None,
@@ -250,6 +236,7 @@ class FastAPI(Starlette):
             responses=responses or {},
             deprecated=deprecated,
             operation_id=operation_id,
+            skip_defaults=skip_defaults,
             include_in_schema=include_in_schema,
             response_class=response_class,
             name=name,
@@ -269,6 +256,7 @@ class FastAPI(Starlette):
         responses: Dict[Union[int, str], Dict[str, Any]] = None,
         deprecated: bool = None,
         operation_id: str = None,
+        skip_defaults: bool = False,
         include_in_schema: bool = True,
         response_class: Type[Response] = JSONResponse,
         name: str = None,
@@ -285,6 +273,7 @@ class FastAPI(Starlette):
             responses=responses or {},
             deprecated=deprecated,
             operation_id=operation_id,
+            skip_defaults=skip_defaults,
             include_in_schema=include_in_schema,
             response_class=response_class,
             name=name,
@@ -304,6 +293,7 @@ class FastAPI(Starlette):
         responses: Dict[Union[int, str], Dict[str, Any]] = None,
         deprecated: bool = None,
         operation_id: str = None,
+        skip_defaults: bool = False,
         include_in_schema: bool = True,
         response_class: Type[Response] = JSONResponse,
         name: str = None,
@@ -320,6 +310,7 @@ class FastAPI(Starlette):
             responses=responses or {},
             deprecated=deprecated,
             operation_id=operation_id,
+            skip_defaults=skip_defaults,
             include_in_schema=include_in_schema,
             response_class=response_class,
             name=name,
@@ -339,6 +330,7 @@ class FastAPI(Starlette):
         responses: Dict[Union[int, str], Dict[str, Any]] = None,
         deprecated: bool = None,
         operation_id: str = None,
+        skip_defaults: bool = False,
         include_in_schema: bool = True,
         response_class: Type[Response] = JSONResponse,
         name: str = None,
@@ -355,6 +347,7 @@ class FastAPI(Starlette):
             responses=responses or {},
             deprecated=deprecated,
             operation_id=operation_id,
+            skip_defaults=skip_defaults,
             include_in_schema=include_in_schema,
             response_class=response_class,
             name=name,
@@ -374,6 +367,7 @@ class FastAPI(Starlette):
         responses: Dict[Union[int, str], Dict[str, Any]] = None,
         deprecated: bool = None,
         operation_id: str = None,
+        skip_defaults: bool = False,
         include_in_schema: bool = True,
         response_class: Type[Response] = JSONResponse,
         name: str = None,
@@ -390,6 +384,7 @@ class FastAPI(Starlette):
             responses=responses or {},
             deprecated=deprecated,
             operation_id=operation_id,
+            skip_defaults=skip_defaults,
             include_in_schema=include_in_schema,
             response_class=response_class,
             name=name,
@@ -409,6 +404,7 @@ class FastAPI(Starlette):
         responses: Dict[Union[int, str], Dict[str, Any]] = None,
         deprecated: bool = None,
         operation_id: str = None,
+        skip_defaults: bool = False,
         include_in_schema: bool = True,
         response_class: Type[Response] = JSONResponse,
         name: str = None,
@@ -425,6 +421,7 @@ class FastAPI(Starlette):
             responses=responses or {},
             deprecated=deprecated,
             operation_id=operation_id,
+            skip_defaults=skip_defaults,
             include_in_schema=include_in_schema,
             response_class=response_class,
             name=name,
@@ -444,6 +441,7 @@ class FastAPI(Starlette):
         responses: Dict[Union[int, str], Dict[str, Any]] = None,
         deprecated: bool = None,
         operation_id: str = None,
+        skip_defaults: bool = False,
         include_in_schema: bool = True,
         response_class: Type[Response] = JSONResponse,
         name: str = None,
@@ -460,6 +458,7 @@ class FastAPI(Starlette):
             responses=responses or {},
             deprecated=deprecated,
             operation_id=operation_id,
+            skip_defaults=skip_defaults,
             include_in_schema=include_in_schema,
             response_class=response_class,
             name=name,
@@ -479,6 +478,7 @@ class FastAPI(Starlette):
         responses: Dict[Union[int, str], Dict[str, Any]] = None,
         deprecated: bool = None,
         operation_id: str = None,
+        skip_defaults: bool = False,
         include_in_schema: bool = True,
         response_class: Type[Response] = JSONResponse,
         name: str = None,
@@ -495,6 +495,7 @@ class FastAPI(Starlette):
             responses=responses or {},
             deprecated=deprecated,
             operation_id=operation_id,
+            skip_defaults=skip_defaults,
             include_in_schema=include_in_schema,
             response_class=response_class,
             name=name,

@@ -30,6 +30,30 @@ They will be added to the OpenAPI schema and used by the automatic documentation
 
 <img src="/img/tutorial/path-operation-configuration/image01.png">
 
+## Skip Defaults in Response
+
+The skip_defaults option ([Pydantic docs](https://pydantic-docs.helpmanual.io/#copying))
+will not serialize null values from the response body.
+
+For the following Pydantic class and API endpoint:
+```Python hl_lines="8"
+class Item(BaseModel):
+    name: str
+    description: str = None
+    store: Optional[str]
+    tags: Set[str] = []
+
+
+@app.get("/items/{name}", skip_defaults=True, response_class=Item, tags=["items"])
+async def read_item(id):
+    return {"name": name}
+```
+
+`skip_defaults=True` will result in a response of `{"name": name}`
+
+`skip_defaults=False` will result in `{"name": name, "description": None, "store": None, "tags": None}`
+
+
 ## Summary and description
 
 You can add a `summary` and `description`:
@@ -65,7 +89,7 @@ You can specify the response description with the parameter `response_descriptio
 
 !!! info
     OpenAPI specifies that each path operation requires a response description.
-    
+
     So, if you don't provide one, **FastAPI** will automatically generate one of "Successful response".
 
 <img src="/img/tutorial/path-operation-configuration/image03.png">

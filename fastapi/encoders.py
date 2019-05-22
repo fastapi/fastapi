@@ -10,6 +10,7 @@ def jsonable_encoder(
     obj: Any,
     include: Set[str] = None,
     exclude: Set[str] = set(),
+    skip_defaults: bool = False,
     by_alias: bool = True,
     include_none: bool = True,
     custom_encoder: dict = {},
@@ -18,7 +19,9 @@ def jsonable_encoder(
     if isinstance(obj, BaseModel):
         encoder = getattr(obj.Config, "json_encoders", custom_encoder)
         return jsonable_encoder(
-            obj.dict(include=include, exclude=exclude, by_alias=by_alias),
+            obj.dict(
+                include=include, exclude=exclude, by_alias=by_alias, skip_defaults=False
+            ),
             include_none=include_none,
             custom_encoder=encoder,
             sqlalchemy_safe=sqlalchemy_safe,
