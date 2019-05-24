@@ -1,4 +1,4 @@
-from fastapi import Cookie, Depends, FastAPI, Header, HTTPException
+from fastapi import Cookie, Depends, FastAPI, Header
 from starlette.responses import HTMLResponse
 from starlette.status import WS_1008_POLICY_VIOLATION
 from starlette.websockets import WebSocket
