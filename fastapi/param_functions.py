@@ -1,4 +1,4 @@
-from typing import Any, Callable, Sequence
+from typing import Any, Callable, Sequence, TypeVar, Optional, Type
 
 from fastapi import params
 
@@ -236,6 +236,17 @@ def File(  # noqa: N802
         regex=regex,
         **extra,
     )
+
+
+D = TypeVar("D")
+
+
+def depends_on(func: Callable[..., D]) -> D:
+    return params.Depends(dependency=func)  # type: ignore
+
+
+def depends(dependency_type: Optional[Type[D]] = None) -> D:
+    return params.Depends(dependency=dependency_type)  # type: ignore
 
 
 def Depends(dependency: Callable = None) -> Any:  # noqa: N802

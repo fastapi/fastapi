@@ -11,6 +11,8 @@ from .param_functions import (
     Body,
     Cookie,
     Depends,
+    depends,
+    depends_on,
     File,
     Form,
     Header,

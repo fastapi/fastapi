@@ -1,6 +1,6 @@
 from typing import Optional
 
-from fastapi import Depends, FastAPI, Security
+from fastapi import depends_on, FastAPI, Security
 from fastapi.security import APIKeyCookie
 from pydantic import BaseModel
 from starlette.testclient import TestClient
@@ -22,7 +22,7 @@ def get_current_user(oauth_header: Optional[str] = Security(api_key)):
 
 
 @app.get("/users/me")
-def read_current_user(current_user: User = Depends(get_current_user)):
+def read_current_user(current_user: User = depends_on(get_current_user)):
     if current_user is None:
         return {"msg": "Create an account first"}
     else:
