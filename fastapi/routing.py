@@ -1,6 +1,7 @@
 import asyncio
 import inspect
 import logging
+import re
 from typing import Any, Callable, Dict, List, Optional, Type, Union
 
 from fastapi import params
@@ -16,9 +17,13 @@ from starlette.concurrency import run_in_threadpool
 from starlette.exceptions import HTTPException
 from starlette.requests import Request
 from starlette.responses import JSONResponse, Response
-from starlette.routing import compile_path, get_name, request_response
-from starlette.status import HTTP_422_UNPROCESSABLE_ENTITY
-from starlette.types import ASGIInstance, Receive, Scope, Send
+from starlette.routing import (
+    compile_path,
+    get_name,
+    request_response,
+    websocket_session,
+)
+from starlette.status import HTTP_422_UNPROCESSABLE_ENTITY, WS_1008_POLICY_VIOLATION
 from starlette.websockets import WebSocket
 
 
@@ -94,31 +99,33 @@ def get_app(
     return app
 
 
-class WebSocketAPIRoute(routing.WebSocketRoute):
+def get_websocket_app(dependant: Dependant) -> Callable:
+    async def app(websocket: WebSocket) -> None:
+        values, errors, _ = await solve_dependencies(
+            request=websocket, dependant=dependant
+        )
+        if errors:
+            await websocket.close(code=WS_1008_POLICY_VIOLATION)
+            errors_out = ValidationError(errors)
+            raise HTTPException(
+                status_code=HTTP_422_UNPROCESSABLE_ENTITY, detail=errors_out.errors()
+            )
+        assert dependant.call is not None, "dependant.call must me a function"
+        await dependant.call(**values)
+
+    return app
+
+
+class APIWebSocketRoute(routing.WebSocketRoute):
     def __init__(self, path: str, endpoint: Callable, *, name: str = None) -> None:
-        super().__init__(path, endpoint, name=name)
+        self.path = path
+        self.endpoint = endpoint
+        self.name = get_name(endpoint) if name is None else name
         self.dependant = get_dependant(path=path, call=self.endpoint)
-
-        def app(scope: Scope) -> ASGIInstance:
-            async def awaitable(receive: Receive, send: Send) -> None:
-                websocket = WebSocket(scope, receive=receive, send=send)
-                values, errors, background_tasks = await solve_dependencies(
-                    request=websocket, dependant=self.dependant
-                )
-                if errors:
-                    errors_out = ValidationError(errors)
-                    raise HTTPException(
-                        status_code=HTTP_422_UNPROCESSABLE_ENTITY,
-                        detail=errors_out.errors(),
-                    )
-                assert (
-                    self.dependant.call is not None
-                ), "dependant.call must me a function"
-                await self.dependant.call(**values)
-
-            return awaitable
-
-        self.app = app
+        self.app = websocket_session(get_websocket_app(dependant=self.dependant))
+        regex = "^" + path + "$"
+        regex = re.sub("{([a-zA-Z_][a-zA-Z0-9_]*)}", r"(?P<\1>[^/]+)", regex)
+        self.path_regex, self.path_format, self.param_convertors = compile_path(path)
 
 
 class APIRoute(routing.Route):
@@ -295,6 +302,19 @@ class APIRouter(routing.Router):
 
         return decorator
 
+    def add_api_websocket_route(
+        self, path: str, endpoint: Callable, name: str = None
+    ) -> None:
+        route = APIWebSocketRoute(path, endpoint=endpoint, name=name)
+        self.routes.append(route)
+
+    def websocket(self, path: str, name: str = None) -> Callable:
+        def decorator(func: Callable) -> Callable:
+            self.add_api_websocket_route(path, func, name=name)
+            return func
+
+        return decorator
+
     def include_router(
         self,
         router: "APIRouter",
@@ -338,16 +358,14 @@ class APIRouter(routing.Router):
                     include_in_schema=route.include_in_schema,
                     name=route.name,
                 )
+            elif isinstance(route, APIWebSocketRoute):
+                self.add_api_websocket_route(
+                    prefix + route.path, route.endpoint, name=route.name
+                )
             elif isinstance(route, routing.WebSocketRoute):
                 self.add_websocket_route(
                     prefix + route.path, route.endpoint, name=route.name
                 )
-
-    def add_websocket_route(
-        self, path: str, endpoint: Callable, name: str = None
-    ) -> None:
-        route = WebSocketAPIRoute(path, endpoint=endpoint, name=name)
-        self.routes.append(route)
 
     def get(
         self,

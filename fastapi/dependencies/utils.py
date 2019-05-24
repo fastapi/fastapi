@@ -159,10 +159,10 @@ def get_dependant(
             add_param_to_fields(
                 param=param, dependant=dependant, default_schema=params.Query
             )
-        elif lenient_issubclass(param.annotation, Request) or lenient_issubclass(
-            param.annotation, WebSocket
-        ):
+        elif lenient_issubclass(param.annotation, Request):
             dependant.request_param_name = param_name
+        elif lenient_issubclass(param.annotation, WebSocket):
+            dependant.websocket_param_name = param_name
         elif lenient_issubclass(param.annotation, BackgroundTasks):
             dependant.background_tasks_param_name = param_name
         elif lenient_issubclass(param.annotation, SecurityScopes):
@@ -258,7 +258,7 @@ def is_coroutine_callable(call: Callable) -> bool:
 
 async def solve_dependencies(
     *,
-    request: Request,
+    request: Union[Request, WebSocket],
     dependant: Dependant,
     body: Dict[str, Any] = None,
     background_tasks: BackgroundTasks = None,
@@ -305,8 +305,10 @@ async def solve_dependencies(
         )
         values.update(body_values)
         errors.extend(body_errors)
-    if dependant.request_param_name:
+    if dependant.request_param_name and isinstance(request, Request):
         values[dependant.request_param_name] = request
+    elif dependant.websocket_param_name and isinstance(request, WebSocket):
+        values[dependant.websocket_param_name] = request
     if dependant.background_tasks_param_name:
         if background_tasks is None:
             background_tasks = BackgroundTasks()
