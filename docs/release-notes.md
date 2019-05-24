@@ -1,5 +1,7 @@
 ## Next release
 
+## 0.24.0
+
 * Add support for WebSockets with dependencies and parameters.
     * Support included for:
         * `Depends`
