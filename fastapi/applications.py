@@ -203,6 +203,18 @@ class FastAPI(Starlette):
 
         return decorator
 
+    def add_api_websocket_route(
+        self, path: str, endpoint: Callable, name: str = None
+    ) -> None:
+        self.router.add_api_websocket_route(path, endpoint, name=name)
+
+    def websocket(self, path: str, name: str = None) -> Callable:
+        def decorator(func: Callable) -> Callable:
+            self.add_api_websocket_route(path, func, name=name)
+            return func
+
+        return decorator
+
     def include_router(
         self,
         router: routing.APIRouter,
