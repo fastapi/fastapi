@@ -1,5 +1,11 @@
 ## Next release
 
+* Add support for Pydantic's `skip_defaults`:
+    * There's a new *path operation decorator* parameter `response_model_skip_defaults`.
+        * The name of the parameter will most probably change in a future version to `response_skip_defaults`, `model_skip_defaults` or something similar.
+    * New [documentation section about using `response_model_skip_defaults`](https://fastapi.tiangolo.com/tutorial/response-model/#response-model-encoding-parameters).
+    * PR [#248](https://github.com/tiangolo/fastapi/pull/248) by [@wshayes](https://github.com/wshayes).
+
 ## 0.24.0
 
 * Add support for WebSockets with dependencies and parameters.
