@@ -10,8 +10,8 @@ def jsonable_encoder(
     obj: Any,
     include: Set[str] = None,
     exclude: Set[str] = set(),
-    skip_defaults: bool = False,
     by_alias: bool = True,
+    skip_defaults: bool = False,
     include_none: bool = True,
     custom_encoder: dict = {},
     sqlalchemy_safe: bool = True,
@@ -20,7 +20,10 @@ def jsonable_encoder(
         encoder = getattr(obj.Config, "json_encoders", custom_encoder)
         return jsonable_encoder(
             obj.dict(
-                include=include, exclude=exclude, by_alias=by_alias, skip_defaults=False
+                include=include,
+                exclude=exclude,
+                by_alias=by_alias,
+                skip_defaults=skip_defaults,
             ),
             include_none=include_none,
             custom_encoder=encoder,
@@ -45,6 +48,7 @@ def jsonable_encoder(
                 encoded_key = jsonable_encoder(
                     key,
                     by_alias=by_alias,
+                    skip_defaults=skip_defaults,
                     include_none=include_none,
                     custom_encoder=custom_encoder,
                     sqlalchemy_safe=sqlalchemy_safe,
@@ -52,6 +56,7 @@ def jsonable_encoder(
                 encoded_value = jsonable_encoder(
                     value,
                     by_alias=by_alias,
+                    skip_defaults=skip_defaults,
                     include_none=include_none,
                     custom_encoder=custom_encoder,
                     sqlalchemy_safe=sqlalchemy_safe,
@@ -67,6 +72,7 @@ def jsonable_encoder(
                     include=include,
                     exclude=exclude,
                     by_alias=by_alias,
+                    skip_defaults=skip_defaults,
                     include_none=include_none,
                     custom_encoder=custom_encoder,
                     sqlalchemy_safe=sqlalchemy_safe,
@@ -94,6 +100,7 @@ def jsonable_encoder(
     return jsonable_encoder(
         data,
         by_alias=by_alias,
+        skip_defaults=skip_defaults,
         include_none=include_none,
         custom_encoder=custom_encoder,
         sqlalchemy_safe=sqlalchemy_safe,
