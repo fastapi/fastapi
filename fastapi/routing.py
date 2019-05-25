@@ -32,8 +32,11 @@ from starlette.status import HTTP_422_UNPROCESSABLE_ENTITY, WS_1008_POLICY_VIOLA
 from starlette.websockets import WebSocket
 
 
-def serialize_response(*, field: Field = None, response: Response) -> Any:
-    encoded = jsonable_encoder(response)
+def serialize_response(
+    *, field: Field = None, response: Response, skip_defaults: bool = False
+) -> Any:
+
+    encoded = jsonable_encoder(response, skip_defaults=skip_defaults)
     if field:
         errors = []
         value, errors_ = field.validate(encoded, {}, loc=("response",))
@@ -43,7 +46,7 @@ def serialize_response(*, field: Field = None, response: Response) -> Any:
             errors.extend(errors_)
         if errors:
             raise ValidationError(errors)
-        return jsonable_encoder(value)
+        return jsonable_encoder(value, skip_defaults=skip_defaults)
     else:
         return encoded
 
@@ -54,6 +57,7 @@ def get_app(
     status_code: int = 200,
     response_class: Type[Response] = JSONResponse,
     response_field: Field = None,
+    skip_defaults: bool = False,
 ) -> Callable:
     assert dependant.call is not None, "dependant.call must be a function"
     is_coroutine = asyncio.iscoroutinefunction(dependant.call)
@@ -93,7 +97,7 @@ def get_app(
                     raw_response.background = background_tasks
                 return raw_response
             response_data = serialize_response(
-                field=response_field, response=raw_response
+                field=response_field, response=raw_response, skip_defaults=skip_defaults
             )
             return response_class(
                 content=response_data,
@@ -151,6 +155,7 @@ class APIRoute(routing.Route):
         name: str = None,
         methods: List[str] = None,
         operation_id: str = None,
+        response_model_skip_defaults: bool = False,
         include_in_schema: bool = True,
         response_class: Type[Response] = JSONResponse,
     ) -> None:
@@ -210,6 +215,7 @@ class APIRoute(routing.Route):
             methods = ["GET"]
         self.methods = methods
         self.operation_id = operation_id
+        self.response_model_skip_defaults = response_model_skip_defaults
         self.include_in_schema = include_in_schema
         self.response_class = response_class
 
@@ -230,6 +236,7 @@ class APIRoute(routing.Route):
                 status_code=self.status_code,
                 response_class=self.response_class,
                 response_field=self.response_field,
+                skip_defaults=self.response_model_skip_defaults,
             )
         )
 
@@ -251,6 +258,7 @@ class APIRouter(routing.Router):
         deprecated: bool = None,
         methods: List[str] = None,
         operation_id: str = None,
+        response_model_skip_defaults: bool = False,
         include_in_schema: bool = True,
         response_class: Type[Response] = JSONResponse,
         name: str = None,
@@ -269,6 +277,7 @@ class APIRouter(routing.Router):
             deprecated=deprecated,
             methods=methods,
             operation_id=operation_id,
+            response_model_skip_defaults=response_model_skip_defaults,
             include_in_schema=include_in_schema,
             response_class=response_class,
             name=name,
@@ -290,6 +299,7 @@ class APIRouter(routing.Router):
         deprecated: bool = None,
         methods: List[str] = None,
         operation_id: str = None,
+        response_model_skip_defaults: bool = False,
         include_in_schema: bool = True,
         response_class: Type[Response] = JSONResponse,
         name: str = None,
@@ -309,6 +319,7 @@ class APIRouter(routing.Router):
                 deprecated=deprecated,
                 methods=methods,
                 operation_id=operation_id,
+                response_model_skip_defaults=response_model_skip_defaults,
                 include_in_schema=include_in_schema,
                 response_class=response_class,
                 name=name,
@@ -363,6 +374,7 @@ class APIRouter(routing.Router):
                     deprecated=route.deprecated,
                     methods=route.methods,
                     operation_id=route.operation_id,
+                    response_model_skip_defaults=route.response_model_skip_defaults,
                     include_in_schema=route.include_in_schema,
                     response_class=route.response_class,
                     name=route.name,
@@ -398,10 +410,12 @@ class APIRouter(routing.Router):
         responses: Dict[Union[int, str], Dict[str, Any]] = None,
         deprecated: bool = None,
         operation_id: str = None,
+        response_model_skip_defaults: bool = False,
         include_in_schema: bool = True,
         response_class: Type[Response] = JSONResponse,
         name: str = None,
     ) -> Callable:
+
         return self.api_route(
             path=path,
             response_model=response_model,
@@ -415,6 +429,7 @@ class APIRouter(routing.Router):
             deprecated=deprecated,
             methods=["GET"],
             operation_id=operation_id,
+            response_model_skip_defaults=response_model_skip_defaults,
             include_in_schema=include_in_schema,
             response_class=response_class,
             name=name,
@@ -434,6 +449,7 @@ class APIRouter(routing.Router):
         responses: Dict[Union[int, str], Dict[str, Any]] = None,
         deprecated: bool = None,
         operation_id: str = None,
+        response_model_skip_defaults: bool = False,
         include_in_schema: bool = True,
         response_class: Type[Response] = JSONResponse,
         name: str = None,
@@ -451,6 +467,7 @@ class APIRouter(routing.Router):
             deprecated=deprecated,
             methods=["PUT"],
             operation_id=operation_id,
+            response_model_skip_defaults=response_model_skip_defaults,
             include_in_schema=include_in_schema,
             response_class=response_class,
             name=name,
@@ -470,6 +487,7 @@ class APIRouter(routing.Router):
         responses: Dict[Union[int, str], Dict[str, Any]] = None,
         deprecated: bool = None,
         operation_id: str = None,
+        response_model_skip_defaults: bool = False,
         include_in_schema: bool = True,
         response_class: Type[Response] = JSONResponse,
         name: str = None,
@@ -487,6 +505,7 @@ class APIRouter(routing.Router):
             deprecated=deprecated,
             methods=["POST"],
             operation_id=operation_id,
+            response_model_skip_defaults=response_model_skip_defaults,
             include_in_schema=include_in_schema,
             response_class=response_class,
             name=name,
@@ -506,6 +525,7 @@ class APIRouter(routing.Router):
         responses: Dict[Union[int, str], Dict[str, Any]] = None,
         deprecated: bool = None,
         operation_id: str = None,
+        response_model_skip_defaults: bool = False,
         include_in_schema: bool = True,
         response_class: Type[Response] = JSONResponse,
         name: str = None,
@@ -523,6 +543,7 @@ class APIRouter(routing.Router):
             deprecated=deprecated,
             methods=["DELETE"],
             operation_id=operation_id,
+            response_model_skip_defaults=response_model_skip_defaults,
             include_in_schema=include_in_schema,
             response_class=response_class,
             name=name,
@@ -542,6 +563,7 @@ class APIRouter(routing.Router):
         responses: Dict[Union[int, str], Dict[str, Any]] = None,
         deprecated: bool = None,
         operation_id: str = None,
+        response_model_skip_defaults: bool = False,
         include_in_schema: bool = True,
         response_class: Type[Response] = JSONResponse,
         name: str = None,
@@ -559,6 +581,7 @@ class APIRouter(routing.Router):
             deprecated=deprecated,
             methods=["OPTIONS"],
             operation_id=operation_id,
+            response_model_skip_defaults=response_model_skip_defaults,
             include_in_schema=include_in_schema,
             response_class=response_class,
             name=name,
@@ -578,6 +601,7 @@ class APIRouter(routing.Router):
         responses: Dict[Union[int, str], Dict[str, Any]] = None,
         deprecated: bool = None,
         operation_id: str = None,
+        response_model_skip_defaults: bool = False,
         include_in_schema: bool = True,
         response_class: Type[Response] = JSONResponse,
         name: str = None,
@@ -595,6 +619,7 @@ class APIRouter(routing.Router):
             deprecated=deprecated,
             methods=["HEAD"],
             operation_id=operation_id,
+            response_model_skip_defaults=response_model_skip_defaults,
             include_in_schema=include_in_schema,
             response_class=response_class,
             name=name,
@@ -614,6 +639,7 @@ class APIRouter(routing.Router):
         responses: Dict[Union[int, str], Dict[str, Any]] = None,
         deprecated: bool = None,
         operation_id: str = None,
+        response_model_skip_defaults: bool = False,
         include_in_schema: bool = True,
         response_class: Type[Response] = JSONResponse,
         name: str = None,
@@ -631,6 +657,7 @@ class APIRouter(routing.Router):
             deprecated=deprecated,
             methods=["PATCH"],
             operation_id=operation_id,
+            response_model_skip_defaults=response_model_skip_defaults,
             include_in_schema=include_in_schema,
             response_class=response_class,
             name=name,
@@ -650,6 +677,7 @@ class APIRouter(routing.Router):
         responses: Dict[Union[int, str], Dict[str, Any]] = None,
         deprecated: bool = None,
         operation_id: str = None,
+        response_model_skip_defaults: bool = False,
         include_in_schema: bool = True,
         response_class: Type[Response] = JSONResponse,
         name: str = None,
@@ -667,6 +695,7 @@ class APIRouter(routing.Router):
             deprecated=deprecated,
             methods=["TRACE"],
             operation_id=operation_id,
+            response_model_skip_defaults=response_model_skip_defaults,
             include_in_schema=include_in_schema,
             response_class=response_class,
             name=name,
