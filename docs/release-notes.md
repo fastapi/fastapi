@@ -1,5 +1,7 @@
 ## Next release
 
+* Add `CONTRIBUTING.md` file to GitHub, to help new contributors. PR [#255](https://github.com/tiangolo/fastapi/pull/255) by [@wshayes](https://github.com/wshayes).
+
 * Add support for Pydantic's `skip_defaults`:
     * There's a new *path operation decorator* parameter `response_model_skip_defaults`.
         * The name of the parameter will most probably change in a future version to `response_skip_defaults`, `model_skip_defaults` or something similar.
