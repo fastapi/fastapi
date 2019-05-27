@@ -28,6 +28,13 @@ async def routerprefixindex(websocket: WebSocket):
     await websocket.close()
 
 
+@router.websocket("/router2")
+async def routerindex(websocket: WebSocket):
+    await websocket.accept()
+    await websocket.send_text("Hello, router!")
+    await websocket.close()
+
+
 app.include_router(router)
 app.include_router(prefix_router, prefix="/prefix")
 
@@ -51,3 +58,10 @@ def test_prefix_router():
     with client.websocket_connect("/prefix/") as websocket:
         data = websocket.receive_text()
         assert data == "Hello, router with prefix!"
+
+
+def test_router2():
+    client = TestClient(app)
+    with client.websocket_connect("/router2") as websocket:
+        data = websocket.receive_text()
+        assert data == "Hello, router!"

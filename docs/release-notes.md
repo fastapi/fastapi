@@ -1,5 +1,33 @@
 ## Next release
 
+* Add support for Pydantic's `include`, `exclude`, `by_alias`.
+    * Update documentation: [Response Model](https://fastapi.tiangolo.com/tutorial/response-model/#response_model_include-and-response_model_exclude).
+    * Add docs for: [Body - updates](https://fastapi.tiangolo.com/tutorial/body-updates/), using Pydantic's `skip_defaults`.
+    * Add method consistency tests.
+    * PR [#264](https://github.com/tiangolo/fastapi/pull/264).
+
+* Add `CONTRIBUTING.md` file to GitHub, to help new contributors. PR [#255](https://github.com/tiangolo/fastapi/pull/255) by [@wshayes](https://github.com/wshayes).
+
+* Add support for Pydantic's `skip_defaults`:
+    * There's a new *path operation decorator* parameter `response_model_skip_defaults`.
+        * The name of the parameter will most probably change in a future version to `response_skip_defaults`, `model_skip_defaults` or something similar.
+    * New [documentation section about using `response_model_skip_defaults`](https://fastapi.tiangolo.com/tutorial/response-model/#response-model-encoding-parameters).
+    * PR [#248](https://github.com/tiangolo/fastapi/pull/248) by [@wshayes](https://github.com/wshayes).
+
+## 0.24.0
+
+* Add support for WebSockets with dependencies and parameters.
+    * Support included for:
+        * `Depends`
+        * `Security`
+        * `Cookie`
+        * `Header`
+        * `Path`
+        * `Query`
+        * ...as these are compatible with the WebSockets protocol (e.g. `Body` is not).
+    * [Updated documentation for WebSockets](https://fastapi.tiangolo.com/tutorial/websockets/).
+    * PR [#178](https://github.com/tiangolo/fastapi/pull/178) by [@jekirl](https://github.com/jekirl).
+
 * Upgrade the compatible version of Pydantic to `0.26.0`.
     * This includes JSON Schema support for IP address and network objects, bug fixes, and other features.
     * PR [#247](https://github.com/tiangolo/fastapi/pull/247) by [@euri10](https://github.com/euri10).

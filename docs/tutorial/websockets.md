@@ -27,9 +27,9 @@ But it's the simplest way to focus on the server-side of WebSockets and have a w
 {!./src/websockets/tutorial001.py!}
 ```
 
-## Create a `websocket_route`
+## Create a `websocket`
 
-In your **FastAPI** application, create a `websocket_route`:
+In your **FastAPI** application, create a `websocket`:
 
 ```Python hl_lines="3 47 48"
 {!./src/websockets/tutorial001.py!}
@@ -37,15 +37,6 @@ In your **FastAPI** application, create a `websocket_route`:
 
 !!! tip
     In this example we are importing `WebSocket` from `starlette.websockets` to use it in the type declaration in the WebSocket route function.
-
-    That is not required, but it's recommended as it will provide you completion and checks inside the function.
-
-
-!!! info
-    This `websocket_route` we are using comes directly from <a href="https://www.starlette.io/applications/" target="_blank">Starlette</a>. 
-    
-    That's why the naming convention is not the same as with other API path operations (`get`, `post`, etc).
-
 
 ## Await for messages and send messages
 
@@ -56,6 +47,32 @@ In your WebSocket route you can `await` for messages and send messages.
 ```
 
 You can receive and send binary, text, and JSON data.
+
+## Using `Depends` and others
+
+In WebSocket endpoints you can import from `fastapi` and use:
+
+* `Depends`
+* `Security`
+* `Cookie`
+* `Header`
+* `Path`
+* `Query`
+
+They work the same way as for other FastAPI endpoints/*path operations*:
+
+```Python hl_lines="55 56 57 58 59 60 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78"
+{!./src/websockets/tutorial002.py!}
+```
+
+!!! info
+    In a WebSocket it doesn't really make sense to raise an `HTTPException`. So it's better to close the WebSocket connection directly.
+
+    You can use a closing code from the <a href="https://tools.ietf.org/html/rfc6455#section-7.4.1" target="_blank">valid codes defined in the specification</a>.
+
+    In the future, there will be a `WebSocketException` that you will be able to `raise` from anywhere, and add exception handlers for it. It depends on the <a href="https://github.com/encode/starlette/pull/527" target="_blank">PR #527</a> in Starlette.
+
+## More info
 
 To learn more about the options, check Starlette's documentation for:
 

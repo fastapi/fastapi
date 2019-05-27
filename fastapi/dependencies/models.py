@@ -26,6 +26,7 @@ class Dependant:
         name: str = None,
         call: Callable = None,
         request_param_name: str = None,
+        websocket_param_name: str = None,
         background_tasks_param_name: str = None,
         security_scopes_param_name: str = None,
         security_scopes: List[str] = None,
@@ -38,6 +39,7 @@ class Dependant:
         self.dependencies = dependencies or []
         self.security_requirements = security_schemes or []
         self.request_param_name = request_param_name
+        self.websocket_param_name = websocket_param_name
         self.background_tasks_param_name = background_tasks_param_name
         self.security_scopes = security_scopes
         self.security_scopes_param_name = security_scopes_param_name
