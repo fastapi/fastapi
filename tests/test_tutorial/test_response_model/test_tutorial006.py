@@ -1,7 +1,6 @@
-import pytest
 from starlette.testclient import TestClient
 
-from response_model.tutorial004 import app
+from response_model.tutorial006 import app
 
 client = TestClient(app)
 
@@ -9,7 +8,7 @@ openapi_schema = {
     "openapi": "3.0.2",
     "info": {"title": "Fast API", "version": "0.1.0"},
     "paths": {
-        "/items/{item_id}": {
+        "/items/{item_id}/name": {
             "get": {
                 "responses": {
                     "200": {
@@ -31,8 +30,8 @@ openapi_schema = {
                         },
                     },
                 },
-                "summary": "Read Item",
-                "operationId": "read_item_items__item_id__get",
+                "summary": "Read Item Name",
+                "operationId": "read_item_name_items__item_id__name_get",
                 "parameters": [
                     {
                         "required": True,
@@ -42,7 +41,41 @@ openapi_schema = {
                     }
                 ],
             }
-        }
+        },
+        "/items/{item_id}/public": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {"$ref": "#/components/schemas/Item"}
+                            }
+                        },
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        },
+                    },
+                },
+                "summary": "Read Item Public Data",
+                "operationId": "read_item_public_data_items__item_id__public_get",
+                "parameters": [
+                    {
+                        "required": True,
+                        "schema": {"title": "Item_Id", "type": "string"},
+                        "name": "item_id",
+                        "in": "path",
+                    }
+                ],
+            }
+        },
     },
     "components": {
         "schemas": {
@@ -55,12 +88,6 @@ openapi_schema = {
                     "price": {"title": "Price", "type": "number"},
                     "description": {"title": "Description", "type": "string"},
                     "tax": {"title": "Tax", "type": "number", "default": 10.5},
-                    "tags": {
-                        "title": "Tags",
-                        "type": "array",
-                        "items": {"type": "string"},
-                        "default": [],
-                    },
                 },
             },
             "ValidationError": {
@@ -99,27 +126,17 @@ def test_openapi_schema():
     assert response.json() == openapi_schema
 
 
-@pytest.mark.parametrize(
-    "url,data",
-    [
-        ("/items/foo", {"name": "Foo", "price": 50.2}),
-        (
-            "/items/bar",
-            {"name": "Bar", "description": "The bartenders", "price": 62, "tax": 20.2},
-        ),
-        (
-            "/items/baz",
-            {
-                "name": "Baz",
-                "description": None,
-                "price": 50.2,
-                "tax": 10.5,
-                "tags": [],
-            },
-        ),
-    ],
-)
-def test_get(url, data):
-    response = client.get(url)
+def test_read_item_name():
+    response = client.get("/items/bar/name")
     assert response.status_code == 200
-    assert response.json() == data
+    assert response.json() == {"name": "Bar", "description": "The Bar fighters"}
+
+
+def test_read_item_public_data():
+    response = client.get("/items/bar/public")
+    assert response.status_code == 200
+    assert response.json() == {
+        "name": "Bar",
+        "description": "The Bar fighters",
+        "price": 62,
+    }

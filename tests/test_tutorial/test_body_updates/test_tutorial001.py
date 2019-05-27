@@ -1,7 +1,6 @@
-import pytest
 from starlette.testclient import TestClient
 
-from response_model.tutorial004 import app
+from body_updates.tutorial001 import app
 
 client = TestClient(app)
 
@@ -41,19 +40,58 @@ openapi_schema = {
                         "in": "path",
                     }
                 ],
-            }
+            },
+            "put": {
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {"$ref": "#/components/schemas/Item"}
+                            }
+                        },
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        },
+                    },
+                },
+                "summary": "Update Item",
+                "operationId": "update_item_items__item_id__put",
+                "parameters": [
+                    {
+                        "required": True,
+                        "schema": {"title": "Item_Id", "type": "string"},
+                        "name": "item_id",
+                        "in": "path",
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {"$ref": "#/components/schemas/Item"}
+                        }
+                    },
+                    "required": True,
+                },
+            },
         }
     },
     "components": {
         "schemas": {
             "Item": {
                 "title": "Item",
-                "required": ["name", "price"],
                 "type": "object",
                 "properties": {
                     "name": {"title": "Name", "type": "string"},
-                    "price": {"title": "Price", "type": "number"},
                     "description": {"title": "Description", "type": "string"},
+                    "price": {"title": "Price", "type": "number"},
                     "tax": {"title": "Tax", "type": "number", "default": 10.5},
                     "tags": {
                         "title": "Tags",
@@ -99,27 +137,26 @@ def test_openapi_schema():
     assert response.json() == openapi_schema
 
 
-@pytest.mark.parametrize(
-    "url,data",
-    [
-        ("/items/foo", {"name": "Foo", "price": 50.2}),
-        (
-            "/items/bar",
-            {"name": "Bar", "description": "The bartenders", "price": 62, "tax": 20.2},
-        ),
-        (
-            "/items/baz",
-            {
-                "name": "Baz",
-                "description": None,
-                "price": 50.2,
-                "tax": 10.5,
-                "tags": [],
-            },
-        ),
-    ],
-)
-def test_get(url, data):
-    response = client.get(url)
+def test_get():
+    response = client.get("/items/baz")
     assert response.status_code == 200
-    assert response.json() == data
+    assert response.json() == {
+        "name": "Baz",
+        "description": None,
+        "price": 50.2,
+        "tax": 10.5,
+        "tags": [],
+    }
+
+
+def test_put():
+    response = client.put(
+        "/items/bar", json={"name": "Barz", "price": 3, "description": None}
+    )
+    assert response.json() == {
+        "name": "Barz",
+        "description": None,
+        "price": 3,
+        "tax": 10.5,
+        "tags": [],
+    }

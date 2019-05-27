@@ -1,15 +1,16 @@
 from typing import List
 
 from fastapi import FastAPI
+from fastapi.encoders import jsonable_encoder
 from pydantic import BaseModel
 
 app = FastAPI()
 
 
 class Item(BaseModel):
-    name: str
+    name: str = None
     description: str = None
-    price: float
+    price: float = None
     tax: float = 10.5
     tags: List[str] = []
 
@@ -21,6 +22,13 @@ items = {
 }
 
 
-@app.get("/items/{item_id}", response_model=Item, response_model_skip_defaults=True)
+@app.get("/items/{item_id}", response_model=Item)
 async def read_item(item_id: str):
     return items[item_id]
+
+
+@app.put("/items/{item_id}", response_model=Item)
+async def update_item(item_id: str, item: Item):
+    update_item_encoded = jsonable_encoder(item)
+    items[item_id] = update_item_encoded
+    return update_item_encoded
