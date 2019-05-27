@@ -1,5 +1,11 @@
 ## Next release
 
+* Add support for Pydantic's `include`, `exclude`, `by_alias`.
+    * Update documentation: [Response Model](https://fastapi.tiangolo.com/tutorial/response-model/#response_model_include-and-response_model_exclude).
+    * Add docs for: [Body - updates](https://fastapi.tiangolo.com/tutorial/body-updates/), using Pydantic's `skip_defaults`.
+    * Add method consistency tests.
+    * PR [#264](https://github.com/tiangolo/fastapi/pull/264).
+
 * Add `CONTRIBUTING.md` file to GitHub, to help new contributors. PR [#255](https://github.com/tiangolo/fastapi/pull/255) by [@wshayes](https://github.com/wshayes).
 
 * Add support for Pydantic's `skip_defaults`:
