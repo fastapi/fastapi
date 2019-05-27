@@ -1,4 +1,4 @@
-from typing import Any, Callable, Sequence
+from typing import Any, Callable, Sequence, TypeVar
 
 from fastapi import params
 
@@ -238,8 +238,13 @@ def File(  # noqa: N802
     )
 
 
-def Depends(dependency: Callable = None) -> Any:  # noqa: N802
-    return params.Depends(dependency=dependency)
+DependencyType = TypeVar("DependencyType")
+
+
+def Depends(
+    dependency: Callable[..., DependencyType] = None
+) -> DependencyType:  # noqa: N802
+    return params.Depends(dependency=dependency)  # type: ignore
 
 
 def Security(  # noqa: N802
