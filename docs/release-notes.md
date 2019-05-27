@@ -1,5 +1,7 @@
 ## Next release
 
+* Fix type declaration of `response_model` to allow generic Python types as `List[Model]`. Mainly to fix `mypy` for users. PR [#266](https://github.com/tiangolo/fastapi/pull/266).
+
 ## 0.25.0
 
 * Add support for Pydantic's `include`, `exclude`, `by_alias`.
