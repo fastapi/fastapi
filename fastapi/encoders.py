@@ -16,6 +16,10 @@ def jsonable_encoder(
     custom_encoder: dict = {},
     sqlalchemy_safe: bool = True,
 ) -> Any:
+    if include is not None and not isinstance(include, set):
+        include = set(include)
+    if exclude is not None and not isinstance(exclude, set):
+        exclude = set(exclude)
     if isinstance(obj, BaseModel):
         encoder = getattr(obj.Config, "json_encoders", custom_encoder)
         return jsonable_encoder(
