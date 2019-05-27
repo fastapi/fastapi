@@ -1,5 +1,7 @@
 ## Next release
 
+## 0.25.0
+
 * Add support for Pydantic's `include`, `exclude`, `by_alias`.
     * Update documentation: [Response Model](https://fastapi.tiangolo.com/tutorial/response-model/#response_model_include-and-response_model_exclude).
     * Add docs for: [Body - updates](https://fastapi.tiangolo.com/tutorial/body-updates/), using Pydantic's `skip_defaults`.
