@@ -1,5 +1,7 @@
 ## Next release
 
+## 0.26.0
+
 * Separate error handling for validation errors.
     * This will allow developers to customize the exception handlers.
     * Document better how to handle exceptions and use error handlers.
