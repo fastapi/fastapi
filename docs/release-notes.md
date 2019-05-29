@@ -1,5 +1,15 @@
 ## Next release
 
+* Separate error handling for validation errors.
+    * This will allow developers to customize the exception handlers.
+    * Document better how to handle exceptions and use error handlers.
+    * Include `RequestValidationError` and `WebSocketRequestValidationError` (this last one will be useful once [encode/starlette#527](https://github.com/encode/starlette/pull/527) or equivalent is merged).
+    * New documentation about exceptions handlers:
+        * [Install custom exception handlers](https://fastapi.tiangolo.com/tutorial/handling-errors/#install-custom-exception-handlers).
+        * [Override the default exception handlers](https://fastapi.tiangolo.com/tutorial/handling-errors/#override-the-default-exception-handlers).
+        * [Re-use **FastAPI's** exception handlers](https://fastapi.tiangolo.com/tutorial/handling-errors/#re-use-fastapis-exception-handlers).
+    * PR [#273](https://github.com/tiangolo/fastapi/pull/273).
+
 * Fix support for *paths* in *path parameters* without needing explicit `Path(...)`.
     * PR [#256](https://github.com/tiangolo/fastapi/pull/256).
     * Documented in PR [#272](https://github.com/tiangolo/fastapi/pull/272) by [@wshayes](https://github.com/wshayes).
