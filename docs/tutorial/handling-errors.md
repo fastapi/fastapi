@@ -68,7 +68,7 @@ But if the client requests `http://example.com/items/bar` (a non-existent `item_
 
     They are handled automatically by **FastAPI** and converted to JSON.
 
-### Adding custom headers
+## Add custom headers
 
 There are some situations in where it's useful to be able to add custom headers to the HTTP error. For example, for some types of security.
 
@@ -76,24 +76,138 @@ You probably won't need to use it directly in your code.
 
 But in case you needed it for an advanced scenario, you can add custom headers:
 
-
 ```Python hl_lines="14"
 {!./src/handling_errors/tutorial002.py!}
 ```
 
-### Installing custom handlers
+## Install custom exception handlers
 
-If you need to add other custom exception handlers, or override the default one (that sends the errors as JSON), you can use <a href="https://www.starlette.io/exceptions/" target="_blank">the same exception utilities from Starlette</a>.
+You can add custom exception handlers with <a href="https://www.starlette.io/exceptions/" target="_blank">the same exception utilities from Starlette</a>.
 
-For example, you could override the default exception handler with:
+Let's say you have a custom exception `UnicornException` that you (or a library you use) might `raise`.
 
-```Python hl_lines="2 3 8 9 10"
+And you want to handle this exception globally with FastAPI.
+
+You could add a custom exception handler with `@app.exception_handler()`:
+
+```Python hl_lines="6 7 8 14 15 16 17 18 24"
 {!./src/handling_errors/tutorial003.py!}
 ```
 
-...this would make it return "plain text" responses with the errors, instead of JSON responses.
+Here, if you request `/unicorns/yolo`, the *path operation* will `raise` a `UnicornException`.
 
-!!! info
-    Note that in this example we set the exception handler with Starlette's `HTTPException` instead of FastAPI's `HTTPException`.
+But it will be handled by the `unicorn_exception_handler`.
 
-    This would ensure that if you use a plug-in or any other third-party tool that raises Starlette's `HTTPException` directly, it will be caught by your exception handler.
+So, you will receive a clean error, with an HTTP status code of `418` and a JSON content of:
+
+```JSON
+{"message": "Oops! yolo did something. There goes a rainbow..."}
+```
+
+## Override the default exception handlers
+
+**FastAPI** has some default exception handlers.
+
+These handlers are in charge or returning the default JSON responses when you `raise` an `HTTPException` and when the request has invalid data.
+
+You can override these exception handlers with your own.
+
+### Override request validation exceptions
+
+When a request contains invalid data, **FastAPI** internally raises a `RequestValidationError`.
+
+And it also includes a default exception handler for it.
+
+To override it, import the `RequestValidationError` and use it with `@app.exception_handler(RequestValidationError)` to decorate the exception handler.
+
+The exception handler will receive a `Request` and the exception.
+
+```Python hl_lines="2 14 15 16"
+{!./src/handling_errors/tutorial004.py!}
+```
+
+Now, if you go to `/items/foo`, instead of getting the default JSON error with:
+
+```JSON
+{
+    "detail": [
+        {
+            "loc": [
+                "path",
+                "item_id"
+            ],
+            "msg": "value is not a valid integer",
+            "type": "type_error.integer"
+        }
+    ]
+}
+```
+
+you will get a text version, with:
+
+```
+1 validation error
+path -> item_id
+  value is not a valid integer (type=type_error.integer)
+```
+
+#### `RequestValidationError` vs `ValidationError`
+
+!!! warning
+    These are technical details that you might skip if it's not important for you now.
+
+`RequestValidationError` is a sub-class of Pydantic's <a href="https://pydantic-docs.helpmanual.io/#error-handling" target="_blank">`ValidationError`</a>.
+
+**FastAPI** uses it so that, if you use a Pydantic model in `response_model`, and your data has an error, you will see the error in your log.
+
+But the client/user will not see it. Instead, the client will receive an "Internal Server Error" with a HTTP status code `500`.
+
+It should be this way because if you have a Pydantic `ValidationError` in your *response* or anywhere in your code (not in the client's *request*), it's actually a bug in your code.
+
+And while you fix it, your clients/users shouldn't have access to internal information about the error, as that could expose a security vulnerability.
+
+### Override the `HTTPException` error handler
+
+The same way, you can override the `HTTPException` handler.
+
+For example, you could want to return a plain text response instead of JSON for these errors:
+
+```Python hl_lines="1 3 9 10 11 22"
+{!./src/handling_errors/tutorial004.py!}
+```
+
+#### FastAPI's `HTTPException` vs Starlette's `HTTPException`
+
+**FastAPI** has its own `HTTPException`.
+
+And **FastAPI**'s `HTTPException` error class inherits from Starlette's `HTTPException` error class.
+
+The only difference, is that **FastAPI**'s `HTTPException` allows you to add headers to be included in the response.
+
+This is needed/used internally for OAuth 2.0 and some security utilities.
+
+So, you can keep raising **FastAPI**'s `HTTPException` as normally in your code.
+
+But when you register an exception handler, you should register it for Starlette's `HTTPException`.
+
+This way, if any part of Starlette's internal code, or a Starlette extension or plug-in, raises an `HTTPException`, your handler will be able to catch handle it.
+
+In this example, to be able to have both `HTTPException`s in the same code, Starlette's exceptions is renamed to `StarletteHTTPException`:
+
+```Python
+from starlette.exceptions import HTTPException as StarletteHTTPException
+```
+
+### Re-use **FastAPI**'s exception handlers
+
+You could also just want to use the exception somehow, but then use the same default exception handlers from **FastAPI**.
+
+You can import and re-use the default exception handlers from `fastapi.exception_handlers`:
+
+```Python hl_lines="2 3 4 5 15 21"
+{!./src/handling_errors/tutorial005.py!}
+```
+
+In this example, you are just `print`ing the error with a very expressive notification.
+
+But you get the idea, you can use the exception and then just re-use the default exception handlers.
