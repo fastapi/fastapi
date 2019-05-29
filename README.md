@@ -148,6 +148,8 @@ After using this generator, your new project (the directory created) will contai
 
 ### Next release
 
+### 0.4.0
+
 * Fix security on resetting a password. Receive token as body, not query. PR [#34](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/34).
 
 * Fix security on resetting a password. Receive it as body, not query. PR [#33](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/33) by [@dmontagu](https://github.com/dmontagu).
