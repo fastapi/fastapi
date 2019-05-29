@@ -141,7 +141,7 @@ Using an option directly from Starlette you can declare a *path parameter* conta
 
 In this case, the name of the parameter is `file_path`, and the last part, `:path`, tells it that the parameter should match any *path*.
 
-So, you can use like:
+So, you can use it with:
 
 ```Python hl_lines="6"
 {!./src/path_params/tutorial004.py!}
