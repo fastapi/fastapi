@@ -1,6 +1,11 @@
 from typing import Any, Callable, Dict, List, Optional, Set, Type, Union
 
 from fastapi import routing
+from fastapi.exception_handlers import (
+    http_exception_handler,
+    request_validation_exception_handler,
+)
+from fastapi.exceptions import RequestValidationError
 from fastapi.openapi.docs import (
     get_redoc_html,
     get_swagger_ui_html,
@@ -8,23 +13,12 @@ from fastapi.openapi.docs import (
 )
 from fastapi.openapi.utils import get_openapi
 from fastapi.params import Depends
-from pydantic import BaseModel
 from starlette.applications import Starlette
 from starlette.exceptions import ExceptionMiddleware, HTTPException
 from starlette.middleware.errors import ServerErrorMiddleware
 from starlette.requests import Request
 from starlette.responses import HTMLResponse, JSONResponse, Response
 from starlette.routing import BaseRoute
-
-
-async def http_exception(request: Request, exc: HTTPException) -> JSONResponse:
-    headers = getattr(exc, "headers", None)
-    if headers:
-        return JSONResponse(
-            {"detail": exc.detail}, status_code=exc.status_code, headers=headers
-        )
-    else:
-        return JSONResponse({"detail": exc.detail}, status_code=exc.status_code)
 
 
 class FastAPI(Starlette):
@@ -120,7 +114,10 @@ class FastAPI(Starlette):
                 )
 
             self.add_route(self.redoc_url, redoc_html, include_in_schema=False)
-        self.add_exception_handler(HTTPException, http_exception)
+        self.add_exception_handler(HTTPException, http_exception_handler)
+        self.add_exception_handler(
+            RequestValidationError, request_validation_exception_handler
+        )
 
     def add_api_route(
         self,

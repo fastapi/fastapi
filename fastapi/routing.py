@@ -13,6 +13,7 @@ from fastapi.dependencies.utils import (
     solve_dependencies,
 )
 from fastapi.encoders import jsonable_encoder
+from fastapi.exceptions import RequestValidationError, WebSocketRequestValidationError
 from pydantic import BaseConfig, BaseModel, Schema
 from pydantic.error_wrappers import ErrorWrapper, ValidationError
 from pydantic.fields import Field
@@ -28,7 +29,7 @@ from starlette.routing import (
     request_response,
     websocket_session,
 )
-from starlette.status import HTTP_422_UNPROCESSABLE_ENTITY, WS_1008_POLICY_VIOLATION
+from starlette.status import WS_1008_POLICY_VIOLATION
 from starlette.websockets import WebSocket
 
 
@@ -103,10 +104,7 @@ def get_app(
             request=request, dependant=dependant, body=body
         )
         if errors:
-            errors_out = ValidationError(errors)
-            raise HTTPException(
-                status_code=HTTP_422_UNPROCESSABLE_ENTITY, detail=errors_out.errors()
-            )
+            raise RequestValidationError(errors)
         else:
             assert dependant.call is not None, "dependant.call must be a function"
             if is_coroutine:
@@ -141,10 +139,7 @@ def get_websocket_app(dependant: Dependant) -> Callable:
         )
         if errors:
             await websocket.close(code=WS_1008_POLICY_VIOLATION)
-            errors_out = ValidationError(errors)
-            raise HTTPException(
-                status_code=HTTP_422_UNPROCESSABLE_ENTITY, detail=errors_out.errors()
-            )
+            raise WebSocketRequestValidationError(errors)
         assert dependant.call is not None, "dependant.call must me a function"
         await dependant.call(**values)
 
