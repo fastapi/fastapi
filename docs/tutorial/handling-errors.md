@@ -68,7 +68,7 @@ But if the client requests `http://example.com/items/bar` (a non-existent `item_
 
     They are handled automatically by **FastAPI** and converted to JSON.
 
-## Adding custom headers
+## Add custom headers
 
 There are some situations in where it's useful to be able to add custom headers to the HTTP error. For example, for some types of security.
 
@@ -80,7 +80,7 @@ But in case you needed it for an advanced scenario, you can add custom headers:
 {!./src/handling_errors/tutorial002.py!}
 ```
 
-## Installing custom exception handlers
+## Install custom exception handlers
 
 You can add custom exception handlers with <a href="https://www.starlette.io/exceptions/" target="_blank">the same exception utilities from Starlette</a>.
 
@@ -104,7 +104,7 @@ So, you will receive a clean error, with an HTTP status code of `418` and a JSON
 {"message": "Oops! yolo did something. There goes a rainbow..."}
 ```
 
-## Overriding the default exception handlers
+## Override the default exception handlers
 
 **FastAPI** has some default exception handlers.
 
