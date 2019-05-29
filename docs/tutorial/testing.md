@@ -22,11 +22,10 @@ Write simple `assert` statements with the standard Python expressions that you n
 
 !!! tip
     Notice that the testing functions are normal `def`, not `async def`. 
-    
+
     And the calls to the client are also normal calls, not using `await`.
 
     This allows you to use `pytest` directly without complications.
-
 
 ## Separating tests
 
@@ -49,6 +48,51 @@ Then you could have a file `test_main.py` with your tests, and import your `app`
 ```Python
 {!./src/app_testing/test_main.py!}
 ```
+
+## Testing: extended example
+
+Now let's extend this example and add more details to see how to test different parts.
+
+### Extended **FastAPI** app file
+
+Let's say you have a file `main_b.py` with your **FastAPI** app.
+
+It has a `GET` operation that could return an error.
+
+It has a `POST` operation that could return several errors.
+
+Both *path operations* require an `X-Token` header.
+
+```Python
+{!./src/app_testing/main_b.py!}
+```
+
+### Extended testing file
+
+You could then have a `test_main_b.py`, the same as before, with the extended tests:
+
+```Python
+{!./src/app_testing/test_main_b.py!}
+```
+
+Whenever you need the client to pass information in the request and you don't know how to, you can search (Google) how to do it in `requests`.
+
+Then you just do the same in your tests.
+
+E.g.:
+
+* To pass a *path* or *query* parameter, add it to the URL itself.
+* To pass a JSON body, pass a Python object (e.g. a `dict`) to the parameter `json`.
+* If you need to send *Form Data* instead of JSON, use the `data` parameter instead.
+* To pass *headers*, use a `dict` in the `headers` parameter.
+* For *cookies*, a `dict` in the `cookies` parameter.
+
+For more information about how to pass data to the backend (using `requests` or the `TestClient`) check the <a href="http://docs.python-requests.org" target="_blank">Requests documentation</a>.
+
+!!! info
+    Note that the `TestClient` receives data that can be converted to JSON, not Pydantic models.
+
+    If you have a Pydantic model in your test and you want to send its data to the application during testing, you can use the <a href="https://fastapi.tiangolo.com/tutorial/encoder/" target="_blank">JSON compatible encoder: `jsonable_encoder`</a>.
 
 ## Testing WebSockets
 
