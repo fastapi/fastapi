@@ -255,10 +255,11 @@ class APIRoute(routing.Route):
         assert inspect.isfunction(endpoint) or inspect.ismethod(
             endpoint
         ), f"An endpoint must be a function or method"
-        self.dependant = get_dependant(path=path, call=self.endpoint)
+        self.dependant = get_dependant(path=self.path_format, call=self.endpoint)
         for depends in self.dependencies[::-1]:
             self.dependant.dependencies.insert(
-                0, get_parameterless_sub_dependant(depends=depends, path=path)
+                0,
+                get_parameterless_sub_dependant(depends=depends, path=self.path_format),
             )
         self.body_field = get_body_field(dependant=self.dependant, name=self.name)
         self.app = request_response(
