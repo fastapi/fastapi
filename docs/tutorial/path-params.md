@@ -38,35 +38,6 @@ If you run this example and open your browser at <a href="http://127.0.0.1:8000/
     
     So, with that type declaration, **FastAPI** gives you automatic request <abbr title="converting the string that comes from an HTTP request into Python data">"parsing"</abbr>.
 
-## Path parameter converters
-
-You can work with dynamic paths using the following approach:
-
-```Python hl_lines="6"
-from fastapi import FastAPI, Path
-from starlette.testclient import TestClient
-
-app = FastAPI()
-
-@app.get("/path/{param:path}")
-def path_convertor(param: str = Path(...)):
-    return {"path": param}
-
-client = TestClient(app)
-
-response = client.get("/path/some/example")
-
-assert response.json() == {"path": "some/example"}
-```
-
-You can also swap out `param:path` and `param: str` with `int` or `float`, for example:
-
-```Python
-@app.get("/path/{param:float}")
-def path_convertor(param: float = Path(...)):
-    return {"path": param}
-```
-
 ## Data validation
 
 But if you go to the browser at <a href="http://127.0.0.1:8000/items/foo" target="_blank">http://127.0.0.1:8000/items/foo</a>, you will see a nice HTTP error of:
