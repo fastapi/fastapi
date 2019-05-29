@@ -115,6 +115,42 @@ Because path operations are evaluated in order, you need to make sure that the p
 
 Otherwise, the path for `/users/{user_id}` would match also for `/users/me`, "thinking" that it's receiving a parameter `user_id` with a value of `"me"`.
 
+## Path parameters containing paths
+
+Let's say you have a *path operation* with a path `/files/{file_path}`.
+
+But you need `file_path` itself to contain a *path*, like `home/johndoe/myfile.txt`.
+
+So, the URL for that file would be something like: `/files/home/johndoe/myfile.txt`.
+
+### OpenAPI support
+
+OpenAPI doesn't support a way to declare a *path parameter* to contain a *path* inside, as that could lead to scenarios that are difficult to test and define.
+
+Nevertheless, you can still do it in **FastAPI**, using one of the internal tools from Starlette.
+
+And the docs would still work, although not adding any documentation telling that the parameter should contain a path.
+
+### Path convertor
+
+Using an option directly from Starlette you can declare a *path parameter* containing a *path* using a URL like:
+
+```
+/files/{file_path:path}
+```
+
+In this case, the name of the parameter is `file_path`, and the last part, `:path`, tells it that the parameter should match any *path*.
+
+So, you can use it with:
+
+```Python hl_lines="6"
+{!./src/path_params/tutorial004.py!}
+```
+
+!!! tip
+    You could need the parameter to contain `/home/johndoe/myfile.txt`, with a leading slash (`/`).
+
+    In that case, the URL would be: `/files//home/johndoe/myfile.txt`, with a double slash (`//`) between `files` and `home`.
 
 ## Recap
 
