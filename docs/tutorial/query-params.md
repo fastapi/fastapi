@@ -186,3 +186,39 @@ In this case, there are 3 query parameters:
 * `needy`, a required `str`.
 * `skip`, an `int` with a default value of `0`.
 * `limit`, an optional `int`.
+
+!!! tip
+    You could also use `Enum`s <a href="https://fastapi.tiangolo.com/tutorial/path-params/#predefined-values" target="_blank">the same way as with *path parameters*</a>.
+
+## Optional type declarations
+
+!!! warning
+    This might be an advanced use case.
+
+    You might want to skip it.
+
+If you are using `mypy` it could complain with type declarations like:
+
+```Python
+limit: int = None
+```
+
+With an error like:
+
+```
+Incompatible types in assignment (expression has type "None", variable has type "int")
+```
+
+In those cases you can use `Optional` to tell `mypy` that the value could be `None`, like:
+
+```Python
+from typing import Optional
+
+limit: Optional[int] = None
+```
+
+In a *path operation* that could look like:
+
+```Python hl_lines="9"
+{!./src/query_params/tutorial007.py!}
+```
