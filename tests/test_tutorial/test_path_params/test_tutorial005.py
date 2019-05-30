@@ -1,0 +1,120 @@
+import pytest
+from starlette.testclient import TestClient
+
+from path_params.tutorial005 import app
+
+client = TestClient(app)
+
+openapi_schema = {
+    "openapi": "3.0.2",
+    "info": {"title": "Fast API", "version": "0.1.0"},
+    "paths": {
+        "/model/{model_name}": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {"application/json": {"schema": {}}},
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        },
+                    },
+                },
+                "summary": "Get Model",
+                "operationId": "get_model_model__model_name__get",
+                "parameters": [
+                    {
+                        "required": True,
+                        "schema": {
+                            "title": "Model_Name",
+                            "enum": ["alexnet", "resnet", "lenet"],
+                        },
+                        "name": "model_name",
+                        "in": "path",
+                    }
+                ],
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "ValidationError": {
+                "title": "ValidationError",
+                "required": ["loc", "msg", "type"],
+                "type": "object",
+                "properties": {
+                    "loc": {
+                        "title": "Location",
+                        "type": "array",
+                        "items": {"type": "string"},
+                    },
+                    "msg": {"title": "Message", "type": "string"},
+                    "type": {"title": "Error Type", "type": "string"},
+                },
+            },
+            "HTTPValidationError": {
+                "title": "HTTPValidationError",
+                "type": "object",
+                "properties": {
+                    "detail": {
+                        "title": "Detail",
+                        "type": "array",
+                        "items": {"$ref": "#/components/schemas/ValidationError"},
+                    }
+                },
+            },
+        }
+    },
+}
+
+
+def test_openapi():
+    response = client.get("/openapi.json")
+    assert response.status_code == 200
+    assert response.json() == openapi_schema
+
+
+@pytest.mark.parametrize(
+    "url,status_code,expected",
+    [
+        (
+            "/model/alexnet",
+            200,
+            {"model_name": "alexnet", "message": "Deep Learning FTW!"},
+        ),
+        (
+            "/model/lenet",
+            200,
+            {"model_name": "lenet", "message": "LeCNN all the images"},
+        ),
+        (
+            "/model/resnet",
+            200,
+            {"model_name": "resnet", "message": "Have some residuals"},
+        ),
+        (
+            "/model/foo",
+            422,
+            {
+                "detail": [
+                    {
+                        "loc": ["path", "model_name"],
+                        "msg": "value is not a valid enumeration member",
+                        "type": "type_error.enum",
+                    }
+                ]
+            },
+        ),
+    ],
+)
+def test_get_enums(url, status_code, expected):
+    response = client.get(url)
+    assert response.status_code == status_code
+    assert response.json() == expected

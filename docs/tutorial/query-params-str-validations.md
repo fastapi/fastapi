@@ -12,7 +12,6 @@ The query parameter `q` is of type `str`, and by default is `None`, so it is opt
 
 We are going to enforce that even though `q` is optional, whenever it is provided, it **doesn't exceed a length of 50 characters**.
 
-
 ### Import `Query`
 
 To achieve that, first import `Query` from `fastapi`:
@@ -29,7 +28,7 @@ And now use it as the default value of your parameter, setting the parameter `ma
 {!./src/query_params_str_validations/tutorial002.py!}
 ```
 
-As we have to replace the default value `None` with `Query(None)`, the first parameter to `Query` serves the same purpose of defining that default value. 
+As we have to replace the default value `None` with `Query(None)`, the first parameter to `Query` serves the same purpose of defining that default value.
 
 So:
 
@@ -41,7 +40,7 @@ q: str = Query(None)
 
 ```Python
 q: str = None
-``` 
+```
 
 But it declares it explicitly as being a query parameter.
 
@@ -52,7 +51,6 @@ q: str = Query(None, max_length=50)
 ```
 
 This will validate the data, show a clear error when the data is not valid, and document the parameter in the OpenAPI schema path operation.
-
 
 ## Add more validations
 
@@ -119,7 +117,7 @@ So, when you need to declare a value as required while using `Query`, you can us
 {!./src/query_params_str_validations/tutorial006.py!}
 ```
 
-!!! info 
+!!! info
     If you hadn't seen that `...` before: it is a a special single value, it is <a href="https://docs.python.org/3/library/constants.html#Ellipsis" target="_blank">part of Python and is called "Ellipsis"</a>.
 
 This will let **FastAPI** know that this parameter is required.
@@ -156,10 +154,34 @@ So, the response to that URL would be:
 !!! tip
     To declare a query parameter with a type of `list`, like in the example above, you need to explicitly use `Query`, otherwise it would be interpreted as a request body.
 
-
 The interactive API docs will update accordingly, to allow multiple values:
 
 <img src="/img/tutorial/query-params-str-validations/image02.png">
+
+### Query parameter list / multiple values with defaults
+
+And you can also define a default `list` of values if none are provided:
+
+```Python hl_lines="9"
+{!./src/query_params_str_validations/tutorial012.py!}
+```
+
+If you go to:
+
+```
+http://localhost:8000/items/
+```
+
+the default of `q` will be: `["foo", "bar"]` and your response will be:
+
+```JSON
+{
+  "q": [
+    "foo",
+    "bar"
+  ]
+}
+```
 
 ## Declare more metadata
 

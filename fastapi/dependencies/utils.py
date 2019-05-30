@@ -1,8 +1,6 @@
 import asyncio
 import inspect
 from copy import deepcopy
-from datetime import date, datetime, time, timedelta
-from decimal import Decimal
 from typing import (
     Any,
     Callable,
@@ -14,8 +12,8 @@ from typing import (
     Tuple,
     Type,
     Union,
+    cast,
 )
-from uuid import UUID
 
 from fastapi import params
 from fastapi.dependencies.models import Dependant, SecurityRequirement
@@ -23,7 +21,7 @@ from fastapi.security.base import SecurityBase
 from fastapi.security.oauth2 import OAuth2, SecurityScopes
 from fastapi.security.open_id_connect_url import OpenIdConnect
 from fastapi.utils import get_path_param_names
-from pydantic import BaseConfig, Schema, create_model
+from pydantic import BaseConfig, BaseModel, Schema, create_model
 from pydantic.error_wrappers import ErrorWrapper
 from pydantic.errors import MissingError
 from pydantic.fields import Field, Required, Shape
@@ -35,22 +33,21 @@ from starlette.datastructures import FormData, Headers, QueryParams, UploadFile
 from starlette.requests import Request
 from starlette.websockets import WebSocket
 
-param_supported_types = (
-    str,
-    int,
-    float,
-    bool,
-    UUID,
-    date,
-    datetime,
-    time,
-    timedelta,
-    Decimal,
-)
-
-sequence_shapes = {Shape.LIST, Shape.SET, Shape.TUPLE}
+sequence_shapes = {
+    Shape.LIST,
+    Shape.SET,
+    Shape.TUPLE,
+    Shape.SEQUENCE,
+    Shape.TUPLE_ELLIPS,
+}
 sequence_types = (list, set, tuple)
-sequence_shape_to_type = {Shape.LIST: list, Shape.SET: set, Shape.TUPLE: tuple}
+sequence_shape_to_type = {
+    Shape.LIST: list,
+    Shape.SET: set,
+    Shape.TUPLE: tuple,
+    Shape.SEQUENCE: list,
+    Shape.TUPLE_ELLIPS: list,
+}
 
 
 def get_param_sub_dependant(
@@ -126,6 +123,26 @@ def get_flat_dependant(dependant: Dependant) -> Dependant:
     return flat_dependant
 
 
+def is_scalar_field(field: Field) -> bool:
+    return (
+        field.shape == Shape.SINGLETON
+        and not lenient_issubclass(field.type_, BaseModel)
+        and not isinstance(field.schema, params.Body)
+    )
+
+
+def is_scalar_sequence_field(field: Field) -> bool:
+    if field.shape in sequence_shapes and not lenient_issubclass(
+        field.type_, BaseModel
+    ):
+        if field.sub_fields is not None:
+            for sub_field in field.sub_fields:
+                if not is_scalar_field(sub_field):
+                    return False
+        return True
+    return False
+
+
 def get_dependant(
     *, path: str, call: Callable, name: str = None, security_scopes: List[str] = None
 ) -> Dependant:
@@ -133,83 +150,78 @@ def get_dependant(
     endpoint_signature = inspect.signature(call)
     signature_params = endpoint_signature.parameters
     dependant = Dependant(call=call, name=name)
-    for param_name in signature_params:
-        param = signature_params[param_name]
+    for param_name, param in signature_params.items():
         if isinstance(param.default, params.Depends):
             sub_dependant = get_param_sub_dependant(
                 param=param, path=path, security_scopes=security_scopes
             )
             dependant.dependencies.append(sub_dependant)
-    for param_name in signature_params:
-        param = signature_params[param_name]
-        if (
-            (param.default == param.empty) or isinstance(param.default, params.Path)
-        ) and (param_name in path_param_names):
-            assert (
-                lenient_issubclass(param.annotation, param_supported_types)
-                or param.annotation == param.empty
+    for param_name, param in signature_params.items():
+        if isinstance(param.default, params.Depends):
+            continue
+        if add_non_field_param_to_dependency(param=param, dependant=dependant):
+            continue
+        param_field = get_param_field(param=param, default_schema=params.Query)
+        if param_name in path_param_names:
+            assert param.default == param.empty or isinstance(
+                param.default, params.Path
+            ), "Path params must have no defaults or use Path(...)"
+            assert is_scalar_field(
+                field=param_field
             ), f"Path params must be of one of the supported types"
-            add_param_to_fields(
+            param_field = get_param_field(
                 param=param,
-                dependant=dependant,
                 default_schema=params.Path,
                 force_type=params.ParamTypes.path,
             )
-        elif (
-            param.default == param.empty
-            or param.default is None
-            or isinstance(param.default, param_supported_types)
-        ) and (
-            param.annotation == param.empty
-            or lenient_issubclass(param.annotation, param_supported_types)
-        ):
-            add_param_to_fields(
-                param=param, dependant=dependant, default_schema=params.Query
-            )
-        elif isinstance(param.default, params.Param):
-            if param.annotation != param.empty:
-                origin = getattr(param.annotation, "__origin__", None)
-                param_all_types = param_supported_types + (list, tuple, set)
-                if isinstance(param.default, (params.Query, params.Header)):
-                    assert lenient_issubclass(
-                        param.annotation, param_all_types
-                    ) or lenient_issubclass(
-                        origin, param_all_types
-                    ), f"Parameters for Query and Header must be of type str, int, float, bool, list, tuple or set: {param}"
-                else:
-                    assert lenient_issubclass(
-                        param.annotation, param_supported_types
-                    ), f"Parameters for Path and Cookies must be of type str, int, float, bool: {param}"
-            add_param_to_fields(
-                param=param, dependant=dependant, default_schema=params.Query
-            )
-        elif lenient_issubclass(param.annotation, Request):
-            dependant.request_param_name = param_name
-        elif lenient_issubclass(param.annotation, WebSocket):
-            dependant.websocket_param_name = param_name
-        elif lenient_issubclass(param.annotation, BackgroundTasks):
-            dependant.background_tasks_param_name = param_name
-        elif lenient_issubclass(param.annotation, SecurityScopes):
-            dependant.security_scopes_param_name = param_name
-        elif not isinstance(param.default, params.Depends):
-            add_param_to_body_fields(param=param, dependant=dependant)
+            add_param_to_fields(field=param_field, dependant=dependant)
+        elif is_scalar_field(field=param_field):
+            add_param_to_fields(field=param_field, dependant=dependant)
+        elif isinstance(
+            param.default, (params.Query, params.Header)
+        ) and is_scalar_sequence_field(param_field):
+            add_param_to_fields(field=param_field, dependant=dependant)
+        else:
+            assert isinstance(
+                param_field.schema, params.Body
+            ), f"Param: {param_field.name} can only be a request body, using Body(...)"
+            dependant.body_params.append(param_field)
     return dependant
 
 
-def add_param_to_fields(
+def add_non_field_param_to_dependency(
+    *, param: inspect.Parameter, dependant: Dependant
+) -> Optional[bool]:
+    if lenient_issubclass(param.annotation, Request):
+        dependant.request_param_name = param.name
+        return True
+    elif lenient_issubclass(param.annotation, WebSocket):
+        dependant.websocket_param_name = param.name
+        return True
+    elif lenient_issubclass(param.annotation, BackgroundTasks):
+        dependant.background_tasks_param_name = param.name
+        return True
+    elif lenient_issubclass(param.annotation, SecurityScopes):
+        dependant.security_scopes_param_name = param.name
+        return True
+    return None
+
+
+def get_param_field(
     *,
     param: inspect.Parameter,
-    dependant: Dependant,
-    default_schema: Type[Schema] = params.Param,
+    default_schema: Type[params.Param] = params.Param,
     force_type: params.ParamTypes = None,
-) -> None:
+) -> Field:
     default_value = Required
+    had_schema = False
     if not param.default == param.empty:
         default_value = param.default
-    if isinstance(default_value, params.Param):
+    if isinstance(default_value, Schema):
+        had_schema = True
         schema = default_value
         default_value = schema.default
-        if getattr(schema, "in_", None) is None:
+        if isinstance(schema, params.Param) and getattr(schema, "in_", None) is None:
             schema.in_ = default_schema.in_
         if force_type:
             schema.in_ = force_type
@@ -234,41 +246,24 @@ def add_param_to_fields(
         class_validators={},
         schema=schema,
     )
-    if schema.in_ == params.ParamTypes.path:
+    if not had_schema and not is_scalar_field(field=field):
+        field.schema = params.Body(schema.default)
+    return field
+
+
+def add_param_to_fields(*, field: Field, dependant: Dependant) -> None:
+    field.schema = cast(params.Param, field.schema)
+    if field.schema.in_ == params.ParamTypes.path:
         dependant.path_params.append(field)
-    elif schema.in_ == params.ParamTypes.query:
+    elif field.schema.in_ == params.ParamTypes.query:
         dependant.query_params.append(field)
-    elif schema.in_ == params.ParamTypes.header:
+    elif field.schema.in_ == params.ParamTypes.header:
         dependant.header_params.append(field)
     else:
         assert (
-            schema.in_ == params.ParamTypes.cookie
-        ), f"non-body parameters must be in path, query, header or cookie: {param.name}"
+            field.schema.in_ == params.ParamTypes.cookie
+        ), f"non-body parameters must be in path, query, header or cookie: {field.name}"
         dependant.cookie_params.append(field)
-
-
-def add_param_to_body_fields(*, param: inspect.Parameter, dependant: Dependant) -> None:
-    default_value = Required
-    if not param.default == param.empty:
-        default_value = param.default
-    if isinstance(default_value, Schema):
-        schema = default_value
-        default_value = schema.default
-    else:
-        schema = Schema(default_value)
-    required = default_value == Required
-    annotation = get_annotation_from_schema(param.annotation, schema)
-    field = Field(
-        name=param.name,
-        type_=annotation,
-        default=None if required else default_value,
-        alias=schema.alias or param.name,
-        required=required,
-        model_config=BaseConfig,
-        class_validators={},
-        schema=schema,
-    )
-    dependant.body_params.append(field)
 
 
 def is_coroutine_callable(call: Callable) -> bool:
@@ -354,7 +349,7 @@ def request_params_to_args(
         if field.shape in sequence_shapes and isinstance(
             received_params, (QueryParams, Headers)
         ):
-            value = received_params.getlist(field.alias)
+            value = received_params.getlist(field.alias) or field.default
         else:
             value = received_params.get(field.alias)
         schema: params.Param = field.schema
