@@ -247,4 +247,4 @@ The most secure is the code flow, but is more complex to implement as it require
 
 ## `Security` in decorator `dependencies`
 
-The same way you can define a `list` of <a href="https://fastapi.tiangolo.com/tutorial/dependencies/dependencies-in-decorator/" target="_blank">`Depends` in the decorator's `dependencies` parameter</a>, you could also use `Security` with `scopes` there.
+The same way you can define a `list` of <a href="https://fastapi.tiangolo.com/tutorial/dependencies/dependencies-in-path-operation-decorators/" target="_blank">`Depends` in the decorator's `dependencies` parameter</a>, you could also use `Security` with `scopes` there.
