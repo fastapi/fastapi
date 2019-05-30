@@ -1,5 +1,7 @@
 ## Next release
 
+* Fix broken link in docs about OAuth 2.0 with scopes. PR [#275](https://github.com/tiangolo/fastapi/pull/275) by [@dmontagu](https://github.com/dmontagu).
+
 * Refactor param extraction using Pydantic `Field`:
     * Large refactor, improvement, and simplification of param extraction from *path operations*.
     * Fix/add support for list *query parameters* with list defaults. New documentation: [Query parameter list / multiple values with defaults](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#query-parameter-list-multiple-values-with-defaults).
