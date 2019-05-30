@@ -1,5 +1,7 @@
 ## Next release
 
+## 0.27.0
+
 * Fix broken link in docs about OAuth 2.0 with scopes. PR [#275](https://github.com/tiangolo/fastapi/pull/275) by [@dmontagu](https://github.com/dmontagu).
 
 * Refactor param extraction using Pydantic `Field`:
