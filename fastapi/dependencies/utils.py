@@ -1,8 +1,6 @@
 import asyncio
 import inspect
 from copy import deepcopy
-from datetime import date, datetime, time, timedelta
-from decimal import Decimal
 from typing import (
     Any,
     Callable,
@@ -16,7 +14,6 @@ from typing import (
     Union,
     cast,
 )
-from uuid import UUID
 
 from fastapi import params
 from fastapi.dependencies.models import Dependant, SecurityRequirement
@@ -192,7 +189,9 @@ def get_dependant(
     return dependant
 
 
-def add_non_field_param_to_dependency(*, param: inspect.Parameter, dependant: Dependant):
+def add_non_field_param_to_dependency(
+    *, param: inspect.Parameter, dependant: Dependant
+) -> Optional[bool]:
     if lenient_issubclass(param.annotation, Request):
         dependant.request_param_name = param.name
         return True
@@ -205,6 +204,7 @@ def add_non_field_param_to_dependency(*, param: inspect.Parameter, dependant: De
     elif lenient_issubclass(param.annotation, SecurityScopes):
         dependant.security_scopes_param_name = param.name
         return True
+    return None
 
 
 def get_param_field(
@@ -251,11 +251,7 @@ def get_param_field(
     return field
 
 
-def add_param_to_fields(
-    *,
-    field: Field,
-    dependant: Dependant,
-) -> None:
+def add_param_to_fields(*, field: Field, dependant: Dependant) -> None:
     field.schema = cast(params.Param, field.schema)
     if field.schema.in_ == params.ParamTypes.path:
         dependant.path_params.append(field)
