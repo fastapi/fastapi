@@ -1,5 +1,12 @@
 ## Next release
 
+* Refactor param extraction using Pydantic `Field`:
+    * Large refactor, improvement, and simplification of param extraction from *path operations*.
+    * Fix/add support for list *query parameters* with list defaults. New documentation: [Query parameter list / multiple values with defaults](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#query-parameter-list-multiple-values-with-defaults).
+    * Add support for enumerations in *path operation* parameters. New documentation: [Path Parameters: Predefined values](https://fastapi.tiangolo.com/tutorial/path-params/#predefined-values).
+    * Add support for type annotations using `Optional` as in `param: Optional[str] = None`. New documentation: [Optional type declarations](https://fastapi.tiangolo.com/tutorial/query-params/#optional-type-declarations).
+    * PR [#278](https://github.com/tiangolo/fastapi/pull/278).
+
 ## 0.26.0
 
 * Separate error handling for validation errors.
