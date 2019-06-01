@@ -1,5 +1,7 @@
 ## Next release
 
+* Fix `auto_error=False` handling in `HTTPBearer` security scheme. Do not `raise` when there's an incorrect `Authorization` header if `auto_error=False`. PR [#282](https://github.com/tiangolo/fastapi/pull/282).
+
 * Fix type declaration of `HTTPException`. PR [#279](https://github.com/tiangolo/fastapi/pull/279).
 
 ## 0.27.0
