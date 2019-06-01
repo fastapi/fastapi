@@ -112,10 +112,13 @@ class HTTPBearer(HTTPBase):
             else:
                 return None
         if scheme.lower() != "bearer":
-            raise HTTPException(
-                status_code=HTTP_403_FORBIDDEN,
-                detail="Invalid authentication credentials",
-            )
+            if self.auto_error:
+                raise HTTPException(
+                    status_code=HTTP_403_FORBIDDEN,
+                    detail="Invalid authentication credentials",
+                )
+            else:
+                return None
         return HTTPAuthorizationCredentials(scheme=scheme, credentials=credentials)
 
 
