@@ -93,7 +93,7 @@ Your response model could have default values, like:
 ```
 
 * `description: str = None` has a default of `None`.
-* `tax: float = None` has a default of `None`.
+* `tax: float = 10.5` has a default of `10.5`.
 * `tags: List[str] = []` has a default of an empty list: `[]`.
 
 but you might want to omit them from the result if they were not actually stored.
