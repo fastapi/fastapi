@@ -127,18 +127,21 @@ def is_scalar_field(field: Field) -> bool:
     return (
         field.shape == Shape.SINGLETON
         and not lenient_issubclass(field.type_, BaseModel)
+        and not lenient_issubclass(field.type_, sequence_types + (dict,))
         and not isinstance(field.schema, params.Body)
     )
 
 
 def is_scalar_sequence_field(field: Field) -> bool:
-    if field.shape in sequence_shapes and not lenient_issubclass(
+    if (field.shape in sequence_shapes) and not lenient_issubclass(
         field.type_, BaseModel
     ):
         if field.sub_fields is not None:
             for sub_field in field.sub_fields:
                 if not is_scalar_field(sub_field):
                     return False
+        return True
+    if lenient_issubclass(field.type_, sequence_types):
         return True
     return False
 
@@ -346,7 +349,7 @@ def request_params_to_args(
     values = {}
     errors = []
     for field in required_params:
-        if field.shape in sequence_shapes and isinstance(
+        if is_scalar_sequence_field(field) and isinstance(
             received_params, (QueryParams, Headers)
         ):
             value = received_params.getlist(field.alias) or field.default
