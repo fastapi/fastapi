@@ -1,6 +1,6 @@
 from starlette.testclient import TestClient
 
-from query_params_str_validations.tutorial011 import app
+from query_params_str_validations.tutorial013 import app
 
 client = TestClient(app)
 
@@ -31,11 +31,7 @@ openapi_schema = {
                 "parameters": [
                     {
                         "required": False,
-                        "schema": {
-                            "title": "Q",
-                            "type": "array",
-                            "items": {"type": "string"},
-                        },
+                        "schema": {"title": "Q", "type": "array"},
                         "name": "q",
                         "in": "query",
                     }

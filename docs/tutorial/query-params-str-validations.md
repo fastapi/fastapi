@@ -183,6 +183,19 @@ the default of `q` will be: `["foo", "bar"]` and your response will be:
 }
 ```
 
+#### Using `list`
+
+You can also use `list` directly instead of `List[str]`:
+
+```Python hl_lines="7"
+{!./src/query_params_str_validations/tutorial013.py!}
+```
+
+!!! note
+    Have in mind that in this case, FastAPI won't check the contents of the list.
+
+    For example, `List[int]` would check (and document) that the contents of the list are integers. But `list` alone wouldn't.
+
 ## Declare more metadata
 
 You can add more information about the parameter.
