@@ -1,5 +1,7 @@
 ## Latest changes
 
+## 0.27.2
+
 * Fix path and query parameters receiving `dict` as a valid type. It should be mapped to a body payload. PR [#287](https://github.com/tiangolo/fastapi/pull/287). Updated docs at: [Query parameter list / multiple values with defaults: Using `list`](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#using-list).
 
 ## 0.27.1
