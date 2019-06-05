@@ -111,6 +111,7 @@ def get_flat_dependant(dependant: Dependant) -> Dependant:
         cookie_params=dependant.cookie_params.copy(),
         body_params=dependant.body_params.copy(),
         security_schemes=dependant.security_requirements.copy(),
+        path=dependant.path,
     )
     for sub_dependant in dependant.dependencies:
         flat_sub = get_flat_dependant(sub_dependant)
@@ -152,7 +153,7 @@ def get_dependant(
     path_param_names = get_path_param_names(path)
     endpoint_signature = inspect.signature(call)
     signature_params = endpoint_signature.parameters
-    dependant = Dependant(call=call, name=name)
+    dependant = Dependant(call=call, name=name, path=path)
     for param_name, param in signature_params.items():
         if isinstance(param.default, params.Depends):
             sub_dependant = get_param_sub_dependant(
@@ -284,26 +285,46 @@ async def solve_dependencies(
     dependant: Dependant,
     body: Dict[str, Any] = None,
     background_tasks: BackgroundTasks = None,
+    dependency_overrides_provider: Any = None,
 ) -> Tuple[Dict[str, Any], List[ErrorWrapper], Optional[BackgroundTasks]]:
     values: Dict[str, Any] = {}
     errors: List[ErrorWrapper] = []
+    sub_dependant: Dependant
     for sub_dependant in dependant.dependencies:
+        call: Callable = sub_dependant.call  # type: ignore
+        use_sub_dependant = sub_dependant
+        if (
+            dependency_overrides_provider
+            and dependency_overrides_provider.dependency_overrides
+        ):
+            original_call: Callable = sub_dependant.call  # type: ignore
+            call = getattr(
+                dependency_overrides_provider, "dependency_overrides", {}
+            ).get(original_call, original_call)
+            use_path: str = sub_dependant.path  # type: ignore
+            use_sub_dependant = get_dependant(
+                path=use_path,
+                call=call,
+                name=sub_dependant.name,
+                security_scopes=sub_dependant.security_scopes,
+            )
+
         sub_values, sub_errors, background_tasks = await solve_dependencies(
             request=request,
-            dependant=sub_dependant,
+            dependant=use_sub_dependant,
             body=body,
             background_tasks=background_tasks,
+            dependency_overrides_provider=dependency_overrides_provider,
         )
         if sub_errors:
             errors.extend(sub_errors)
             continue
-        assert sub_dependant.call is not None, "sub_dependant.call must be a function"
-        if is_coroutine_callable(sub_dependant.call):
-            solved = await sub_dependant.call(**sub_values)
+        if is_coroutine_callable(call):
+            solved = await call(**sub_values)
         else:
-            solved = await run_in_threadpool(sub_dependant.call, **sub_values)
-        if sub_dependant.name is not None:
-            values[sub_dependant.name] = solved
+            solved = await run_in_threadpool(call, **sub_values)
+        if use_sub_dependant.name is not None:
+            values[use_sub_dependant.name] = solved
     path_values, path_errors = request_params_to_args(
         dependant.path_params, request.path_params
     )

@@ -30,6 +30,7 @@ class Dependant:
         background_tasks_param_name: str = None,
         security_scopes_param_name: str = None,
         security_scopes: List[str] = None,
+        path: str = None,
     ) -> None:
         self.path_params = path_params or []
         self.query_params = query_params or []
@@ -45,3 +46,5 @@ class Dependant:
         self.security_scopes_param_name = security_scopes_param_name
         self.name = name
         self.call = call
+        # Store the path to be able to re-generate a dependable from it in overrides
+        self.path = path

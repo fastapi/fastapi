@@ -38,7 +38,9 @@ class FastAPI(Starlette):
         **extra: Dict[str, Any],
     ) -> None:
         self._debug = debug
-        self.router: routing.APIRouter = routing.APIRouter(routes)
+        self.router: routing.APIRouter = routing.APIRouter(
+            routes, dependency_overrides_provider=self
+        )
         self.exception_middleware = ExceptionMiddleware(self.router, debug=debug)
         self.error_middleware = ServerErrorMiddleware(
             self.exception_middleware, debug=debug
@@ -53,6 +55,7 @@ class FastAPI(Starlette):
         self.redoc_url = redoc_url
         self.swagger_ui_oauth2_redirect_url = swagger_ui_oauth2_redirect_url
         self.extra = extra
+        self.dependency_overrides: Dict[Callable, Callable] = {}
 
         self.openapi_version = "3.0.2"
 
