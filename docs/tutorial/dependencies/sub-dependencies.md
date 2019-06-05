@@ -11,6 +11,7 @@ You could create a first dependency ("dependable") like:
 ```Python hl_lines="6 7"
 {!./src/dependencies/tutorial005.py!}
 ```
+
 It declares an optional query parameter `q` as a `str`, and then it just returns it.
 
 This is quite simple (not very useful), but will help us focus on how the sub-dependencies work.
@@ -43,6 +44,18 @@ Then we can use the dependency with:
 
     But **FastAPI** will know that it has to solve `query_extractor` first, to pass the results of that to `query_or_cookie_extractor` while calling it.
 
+## Using the same dependency multiple times
+
+If one of your dependencies is declared multiple times for the same *path operation*, for example, multiple dependencies have a common sub-dependency, **FastAPI** will know to call that sub-dependency only once per request.
+
+And it will save the returned value in a <abbr title="A utility/system to store computed/generated values, to re-use them instead of computing them again.">"cache"</abbr> and pass it to all the "dependants" that need it in that specific request, instead of calling the dependency multiple times for the same request.
+
+In an advanced scenario where you know you need the dependency to be called at every step (possibly multiple times) in the same request instead of using the "cached" value, you can set the parameter `use_cache=False` when using `Depends`:
+
+```Python hl_lines="1"
+async def needy_dependency(fresh_value: str = Depends(get_value, use_cache=False)):
+    return {"fresh_value": fresh_value}
+```
 
 ## Recap
 
@@ -54,7 +67,7 @@ But still, it is very powerful, and allows you to declare arbitrarily deeply nes
 
 !!! tip
     All this might not seem as useful with these simple examples.
-    
+
     But you will see how useful it is in the chapters about **security**.
 
     And you will also see the amounts of code it will save you.
