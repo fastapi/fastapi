@@ -1,5 +1,16 @@
 ## Latest changes
 
+* Implement dependency cache per request.
+    * This avoids calling each dependency multiple times for the same request.
+    * This is useful while calling external services, performing costly computation, etc.
+    * This also means that if a dependency was declared as a *path operation decorator* dependency, possibly at the router level (with `.include_router()`) and then it is declared again in a specific *path operation*, the dependency will be called only once.
+    * The cache can be disabled per dependency declaration, using `use_cache=False` as in `Depends(your_dependency, use_cache=False)`.
+    * Updated docs at: [Using the same dependency multiple times](https://fastapi.tiangolo.com/tutorial/dependencies/sub-dependencies/#using-the-same-dependency-multiple-times).
+    * PR [#292](https://github.com/tiangolo/fastapi/pull/292).
+
+* Implement dependency overrides for testing. This allows using overrides/mocks of dependencies during tests. New docs: [Testing Dependencies with Overrides
+](https://fastapi.tiangolo.com/tutorial/testing-dependencies/). PR [#291](https://github.com/tiangolo/fastapi/pull/291).
+
 ## 0.27.2
 
 * Fix path and query parameters receiving `dict` as a valid type. It should be mapped to a body payload. PR [#287](https://github.com/tiangolo/fastapi/pull/287). Updated docs at: [Query parameter list / multiple values with defaults: Using `list`](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#using-list).
