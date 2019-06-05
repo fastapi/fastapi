@@ -30,6 +30,7 @@ from starlette.routing import (
     websocket_session,
 )
 from starlette.status import WS_1008_POLICY_VIOLATION
+from starlette.types import ASGIApp
 from starlette.websockets import WebSocket
 
 
@@ -80,6 +81,7 @@ def get_app(
     response_model_exclude: Set[str] = set(),
     response_model_by_alias: bool = True,
     response_model_skip_defaults: bool = False,
+    dependency_overrides_provider: Any = None,
 ) -> Callable:
     assert dependant.call is not None, "dependant.call must be a function"
     is_coroutine = asyncio.iscoroutinefunction(dependant.call)
@@ -101,7 +103,10 @@ def get_app(
                 status_code=400, detail="There was an error parsing the body"
             ) from e
         values, errors, background_tasks = await solve_dependencies(
-            request=request, dependant=dependant, body=body
+            request=request,
+            dependant=dependant,
+            body=body,
+            dependency_overrides_provider=dependency_overrides_provider,
         )
         if errors:
             raise RequestValidationError(errors)
@@ -132,10 +137,14 @@ def get_app(
     return app
 
 
-def get_websocket_app(dependant: Dependant) -> Callable:
+def get_websocket_app(
+    dependant: Dependant, dependency_overrides_provider: Any = None
+) -> Callable:
     async def app(websocket: WebSocket) -> None:
         values, errors, _ = await solve_dependencies(
-            request=websocket, dependant=dependant
+            request=websocket,
+            dependant=dependant,
+            dependency_overrides_provider=dependency_overrides_provider,
         )
         if errors:
             await websocket.close(code=WS_1008_POLICY_VIOLATION)
@@ -147,12 +156,24 @@ def get_websocket_app(dependant: Dependant) -> Callable:
 
 
 class APIWebSocketRoute(routing.WebSocketRoute):
-    def __init__(self, path: str, endpoint: Callable, *, name: str = None) -> None:
+    def __init__(
+        self,
+        path: str,
+        endpoint: Callable,
+        *,
+        name: str = None,
+        dependency_overrides_provider: Any = None,
+    ) -> None:
         self.path = path
         self.endpoint = endpoint
         self.name = get_name(endpoint) if name is None else name
         self.dependant = get_dependant(path=path, call=self.endpoint)
-        self.app = websocket_session(get_websocket_app(dependant=self.dependant))
+        self.app = websocket_session(
+            get_websocket_app(
+                dependant=self.dependant,
+                dependency_overrides_provider=dependency_overrides_provider,
+            )
+        )
         regex = "^" + path + "$"
         regex = re.sub("{([a-zA-Z_][a-zA-Z0-9_]*)}", r"(?P<\1>[^/]+)", regex)
         self.path_regex, self.path_format, self.param_convertors = compile_path(path)
@@ -182,6 +203,7 @@ class APIRoute(routing.Route):
         response_model_skip_defaults: bool = False,
         include_in_schema: bool = True,
         response_class: Type[Response] = JSONResponse,
+        dependency_overrides_provider: Any = None,
     ) -> None:
         assert path.startswith("/"), "Routed paths must always start with '/'"
         self.path = path
@@ -257,6 +279,7 @@ class APIRoute(routing.Route):
                 get_parameterless_sub_dependant(depends=depends, path=self.path_format),
             )
         self.body_field = get_body_field(dependant=self.dependant, name=self.name)
+        self.dependency_overrides_provider = dependency_overrides_provider
         self.app = request_response(
             get_app(
                 dependant=self.dependant,
@@ -268,11 +291,24 @@ class APIRoute(routing.Route):
                 response_model_exclude=self.response_model_exclude,
                 response_model_by_alias=self.response_model_by_alias,
                 response_model_skip_defaults=self.response_model_skip_defaults,
+                dependency_overrides_provider=self.dependency_overrides_provider,
             )
         )
 
 
 class APIRouter(routing.Router):
+    def __init__(
+        self,
+        routes: List[routing.BaseRoute] = None,
+        redirect_slashes: bool = True,
+        default: ASGIApp = None,
+        dependency_overrides_provider: Any = None,
+    ) -> None:
+        super().__init__(
+            routes=routes, redirect_slashes=redirect_slashes, default=default
+        )
+        self.dependency_overrides_provider = dependency_overrides_provider
+
     def add_api_route(
         self,
         path: str,
@@ -318,6 +354,7 @@ class APIRouter(routing.Router):
             include_in_schema=include_in_schema,
             response_class=response_class,
             name=name,
+            dependency_overrides_provider=self.dependency_overrides_provider,
         )
         self.routes.append(route)
 
