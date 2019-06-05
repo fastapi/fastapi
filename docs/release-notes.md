@@ -1,5 +1,7 @@
 ## Latest changes
 
+## 0.28.0
+
 * Implement dependency cache per request.
     * This avoids calling each dependency multiple times for the same request.
     * This is useful while calling external services, performing costly computation, etc.
