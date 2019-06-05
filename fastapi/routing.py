@@ -102,7 +102,7 @@ def get_app(
             raise HTTPException(
                 status_code=400, detail="There was an error parsing the body"
             ) from e
-        values, errors, background_tasks = await solve_dependencies(
+        values, errors, background_tasks, _ = await solve_dependencies(
             request=request,
             dependant=dependant,
             body=body,
@@ -141,7 +141,7 @@ def get_websocket_app(
     dependant: Dependant, dependency_overrides_provider: Any = None
 ) -> Callable:
     async def app(websocket: WebSocket) -> None:
-        values, errors, _ = await solve_dependencies(
+        values, errors, _, _2 = await solve_dependencies(
             request=websocket,
             dependant=dependant,
             dependency_overrides_provider=dependency_overrides_provider,

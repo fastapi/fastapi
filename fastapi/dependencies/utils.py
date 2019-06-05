@@ -95,7 +95,11 @@ def get_sub_dependant(
             security_scheme=dependency, scopes=use_scopes
         )
     sub_dependant = get_dependant(
-        path=path, call=dependency, name=name, security_scopes=security_scopes
+        path=path,
+        call=dependency,
+        name=name,
+        security_scopes=security_scopes,
+        use_cache=depends.use_cache,
     )
     if security_requirement:
         sub_dependant.security_requirements.append(security_requirement)
@@ -111,6 +115,7 @@ def get_flat_dependant(dependant: Dependant) -> Dependant:
         cookie_params=dependant.cookie_params.copy(),
         body_params=dependant.body_params.copy(),
         security_schemes=dependant.security_requirements.copy(),
+        use_cache=dependant.use_cache,
         path=dependant.path,
     )
     for sub_dependant in dependant.dependencies:
@@ -148,12 +153,17 @@ def is_scalar_sequence_field(field: Field) -> bool:
 
 
 def get_dependant(
-    *, path: str, call: Callable, name: str = None, security_scopes: List[str] = None
+    *,
+    path: str,
+    call: Callable,
+    name: str = None,
+    security_scopes: List[str] = None,
+    use_cache: bool = True,
 ) -> Dependant:
     path_param_names = get_path_param_names(path)
     endpoint_signature = inspect.signature(call)
     signature_params = endpoint_signature.parameters
-    dependant = Dependant(call=call, name=name, path=path)
+    dependant = Dependant(call=call, name=name, path=path, use_cache=use_cache)
     for param_name, param in signature_params.items():
         if isinstance(param.default, params.Depends):
             sub_dependant = get_param_sub_dependant(
@@ -286,18 +296,29 @@ async def solve_dependencies(
     body: Dict[str, Any] = None,
     background_tasks: BackgroundTasks = None,
     dependency_overrides_provider: Any = None,
-) -> Tuple[Dict[str, Any], List[ErrorWrapper], Optional[BackgroundTasks]]:
+    dependency_cache: Dict[Tuple[Callable, Tuple[str]], Any] = None,
+) -> Tuple[
+    Dict[str, Any],
+    List[ErrorWrapper],
+    Optional[BackgroundTasks],
+    Dict[Tuple[Callable, Tuple[str]], Any],
+]:
     values: Dict[str, Any] = {}
     errors: List[ErrorWrapper] = []
+    dependency_cache = dependency_cache or {}
     sub_dependant: Dependant
     for sub_dependant in dependant.dependencies:
-        call: Callable = sub_dependant.call  # type: ignore
+        sub_dependant.call = cast(Callable, sub_dependant.call)
+        sub_dependant.cache_key = cast(
+            Tuple[Callable, Tuple[str]], sub_dependant.cache_key
+        )
+        call = sub_dependant.call
         use_sub_dependant = sub_dependant
         if (
             dependency_overrides_provider
             and dependency_overrides_provider.dependency_overrides
         ):
-            original_call: Callable = sub_dependant.call  # type: ignore
+            original_call = sub_dependant.call
             call = getattr(
                 dependency_overrides_provider, "dependency_overrides", {}
             ).get(original_call, original_call)
@@ -309,22 +330,28 @@ async def solve_dependencies(
                 security_scopes=sub_dependant.security_scopes,
             )
 
-        sub_values, sub_errors, background_tasks = await solve_dependencies(
+        sub_values, sub_errors, background_tasks, sub_dependency_cache = await solve_dependencies(
             request=request,
             dependant=use_sub_dependant,
             body=body,
             background_tasks=background_tasks,
             dependency_overrides_provider=dependency_overrides_provider,
+            dependency_cache=dependency_cache,
         )
+        dependency_cache.update(sub_dependency_cache)
         if sub_errors:
             errors.extend(sub_errors)
             continue
-        if is_coroutine_callable(call):
+        if sub_dependant.use_cache and sub_dependant.cache_key in dependency_cache:
+            solved = dependency_cache[sub_dependant.cache_key]
+        elif is_coroutine_callable(call):
             solved = await call(**sub_values)
         else:
             solved = await run_in_threadpool(call, **sub_values)
-        if use_sub_dependant.name is not None:
-            values[use_sub_dependant.name] = solved
+        if sub_dependant.name is not None:
+            values[sub_dependant.name] = solved
+        if sub_dependant.cache_key not in dependency_cache:
+            dependency_cache[sub_dependant.cache_key] = solved
     path_values, path_errors = request_params_to_args(
         dependant.path_params, request.path_params
     )
@@ -360,7 +387,7 @@ async def solve_dependencies(
         values[dependant.security_scopes_param_name] = SecurityScopes(
             scopes=dependant.security_scopes
         )
-    return values, errors, background_tasks
+    return values, errors, background_tasks, dependency_cache
 
 
 def request_params_to_args(

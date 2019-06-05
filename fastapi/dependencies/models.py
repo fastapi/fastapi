@@ -30,6 +30,7 @@ class Dependant:
         background_tasks_param_name: str = None,
         security_scopes_param_name: str = None,
         security_scopes: List[str] = None,
+        use_cache: bool = True,
         path: str = None,
     ) -> None:
         self.path_params = path_params or []
@@ -46,5 +47,8 @@ class Dependant:
         self.security_scopes_param_name = security_scopes_param_name
         self.name = name
         self.call = call
+        self.use_cache = use_cache
         # Store the path to be able to re-generate a dependable from it in overrides
         self.path = path
+        # Save the cache key at creation to optimize performance
+        self.cache_key = (self.call, tuple(sorted(set(self.security_scopes or []))))
