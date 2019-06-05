@@ -10,8 +10,10 @@
     * Updated docs at: [Using the same dependency multiple times](https://fastapi.tiangolo.com/tutorial/dependencies/sub-dependencies/#using-the-same-dependency-multiple-times).
     * PR [#292](https://github.com/tiangolo/fastapi/pull/292).
 
-* Implement dependency overrides for testing. This allows using overrides/mocks of dependencies during tests. New docs: [Testing Dependencies with Overrides
-](https://fastapi.tiangolo.com/tutorial/testing-dependencies/). PR [#291](https://github.com/tiangolo/fastapi/pull/291).
+* Implement dependency overrides for testing.
+    * This allows using overrides/mocks of dependencies during tests.
+    * New docs: [Testing Dependencies with Overrides](https://fastapi.tiangolo.com/tutorial/testing-dependencies/).
+    * PR [#291](https://github.com/tiangolo/fastapi/pull/291).
 
 ## 0.27.2
 
