@@ -17,13 +17,11 @@ This is very useful when you need to:
 
 All these, while minimizing code repetition.
 
-
 ## First Steps
 
 Let's see a very simple example. It will be so simple that it is not very useful, for now.
 
 But this way we can focus on how the **Dependency Injection** system works.
-
 
 ### Create a dependency, or "dependable"
 
@@ -150,7 +148,6 @@ The simplicity of the dependency injection system makes **FastAPI** compatible w
 * API usage monitoring systems
 * response data injection systems
 * etc.
-
 
 ## Simple and Powerful
 
