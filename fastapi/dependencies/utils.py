@@ -31,6 +31,7 @@ from starlette.background import BackgroundTasks
 from starlette.concurrency import run_in_threadpool
 from starlette.datastructures import FormData, Headers, QueryParams, UploadFile
 from starlette.requests import Request
+from starlette.responses import Response
 from starlette.websockets import WebSocket
 
 sequence_shapes = {
@@ -212,6 +213,9 @@ def add_non_field_param_to_dependency(
     elif lenient_issubclass(param.annotation, WebSocket):
         dependant.websocket_param_name = param.name
         return True
+    elif lenient_issubclass(param.annotation, Response):
+        dependant.response_param_name = param.name
+        return True
     elif lenient_issubclass(param.annotation, BackgroundTasks):
         dependant.background_tasks_param_name = param.name
         return True
@@ -295,16 +299,21 @@ async def solve_dependencies(
     dependant: Dependant,
     body: Dict[str, Any] = None,
     background_tasks: BackgroundTasks = None,
+    response: Response = None,
     dependency_overrides_provider: Any = None,
     dependency_cache: Dict[Tuple[Callable, Tuple[str]], Any] = None,
 ) -> Tuple[
     Dict[str, Any],
     List[ErrorWrapper],
     Optional[BackgroundTasks],
+    Response,
     Dict[Tuple[Callable, Tuple[str]], Any],
 ]:
     values: Dict[str, Any] = {}
     errors: List[ErrorWrapper] = []
+    response = response or Response(  # type: ignore
+        content=None, status_code=None, headers=None, media_type=None, background=None
+    )
     dependency_cache = dependency_cache or {}
     sub_dependant: Dependant
     for sub_dependant in dependant.dependencies:
@@ -330,14 +339,22 @@ async def solve_dependencies(
                 security_scopes=sub_dependant.security_scopes,
             )
 
-        sub_values, sub_errors, background_tasks, sub_dependency_cache = await solve_dependencies(
+        solved_result = await solve_dependencies(
             request=request,
             dependant=use_sub_dependant,
             body=body,
             background_tasks=background_tasks,
+            response=response,
             dependency_overrides_provider=dependency_overrides_provider,
             dependency_cache=dependency_cache,
         )
+        sub_values, sub_errors, background_tasks, sub_response, sub_dependency_cache = (
+            solved_result
+        )
+        sub_response = cast(Response, sub_response)
+        response.headers.raw.extend(sub_response.headers.raw)
+        if sub_response.status_code:
+            response.status_code = sub_response.status_code
         dependency_cache.update(sub_dependency_cache)
         if sub_errors:
             errors.extend(sub_errors)
@@ -383,11 +400,13 @@ async def solve_dependencies(
         if background_tasks is None:
             background_tasks = BackgroundTasks()
         values[dependant.background_tasks_param_name] = background_tasks
+    if dependant.response_param_name:
+        values[dependant.response_param_name] = response
     if dependant.security_scopes_param_name:
         values[dependant.security_scopes_param_name] = SecurityScopes(
             scopes=dependant.security_scopes
         )
-    return values, errors, background_tasks, dependency_cache
+    return values, errors, background_tasks, response, dependency_cache
 
 
 def request_params_to_args(

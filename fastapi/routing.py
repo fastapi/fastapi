@@ -102,12 +102,13 @@ def get_app(
             raise HTTPException(
                 status_code=400, detail="There was an error parsing the body"
             ) from e
-        values, errors, background_tasks, _ = await solve_dependencies(
+        solved_result = await solve_dependencies(
             request=request,
             dependant=dependant,
             body=body,
             dependency_overrides_provider=dependency_overrides_provider,
         )
+        values, errors, background_tasks, sub_response, _ = solved_result
         if errors:
             raise RequestValidationError(errors)
         else:
@@ -128,11 +129,15 @@ def get_app(
                 by_alias=response_model_by_alias,
                 skip_defaults=response_model_skip_defaults,
             )
-            return response_class(
+            response = response_class(
                 content=response_data,
                 status_code=status_code,
                 background=background_tasks,
             )
+            response.headers.raw.extend(sub_response.headers.raw)
+            if sub_response.status_code:
+                response.status_code = sub_response.status_code
+            return response
 
     return app
 
@@ -141,11 +146,12 @@ def get_websocket_app(
     dependant: Dependant, dependency_overrides_provider: Any = None
 ) -> Callable:
     async def app(websocket: WebSocket) -> None:
-        values, errors, _, _2 = await solve_dependencies(
+        solved_result = await solve_dependencies(
             request=websocket,
             dependant=dependant,
             dependency_overrides_provider=dependency_overrides_provider,
         )
+        values, errors, _, _2, _3 = solved_result
         if errors:
             await websocket.close(code=WS_1008_POLICY_VIOLATION)
             raise WebSocketRequestValidationError(errors)
