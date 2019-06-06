@@ -1,5 +1,7 @@
 ## Latest changes
 
+## 0.29.0
+
 * Add support for declaring a `Response` parameter:
     * This allows declaring:
         * [Response Cookies](https://fastapi.tiangolo.com/tutorial/response-cookies/).
