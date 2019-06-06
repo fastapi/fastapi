@@ -51,6 +51,7 @@ nav:
         - Additional Responses in OpenAPI: 'tutorial/additional-responses.md'
         - Response Cookies: 'tutorial/response-cookies.md'
         - Response Headers: 'tutorial/response-headers.md'
+        - Response - Change Status Code: 'tutorial/response-change-status-code.md'
         - Dependencies:
             - First Steps: 'tutorial/dependencies/first-steps.md'
             - Classes as Dependencies: 'tutorial/dependencies/classes-as-dependencies.md'
