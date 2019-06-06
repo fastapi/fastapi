@@ -1,5 +1,14 @@
 ## Latest changes
 
+* Add support for declaring a `Response` parameter:
+    * This allows declaring:
+        * [Response Cookies](https://fastapi.tiangolo.com/tutorial/response-cookies/).
+        * [Response Headers](https://fastapi.tiangolo.com/tutorial/response-headers/).
+        * An HTTP Status Code different than the default: [Response - Change Status Code](https://fastapi.tiangolo.com/tutorial/response-change-status-code/).
+    * All of this while still being able to return arbitrary objects (`dict`, DB model, etc).
+    * Update attribution to Hug, for inspiring the `response` parameter pattern.
+    * PR [#294](https://github.com/tiangolo/fastapi/pull/294).
+
 ## 0.28.0
 
 * Implement dependency cache per request.
