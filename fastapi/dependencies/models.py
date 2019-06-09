@@ -27,9 +27,12 @@ class Dependant:
         call: Callable = None,
         request_param_name: str = None,
         websocket_param_name: str = None,
+        response_param_name: str = None,
         background_tasks_param_name: str = None,
         security_scopes_param_name: str = None,
         security_scopes: List[str] = None,
+        use_cache: bool = True,
+        path: str = None,
     ) -> None:
         self.path_params = path_params or []
         self.query_params = query_params or []
@@ -40,8 +43,14 @@ class Dependant:
         self.security_requirements = security_schemes or []
         self.request_param_name = request_param_name
         self.websocket_param_name = websocket_param_name
+        self.response_param_name = response_param_name
         self.background_tasks_param_name = background_tasks_param_name
         self.security_scopes = security_scopes
         self.security_scopes_param_name = security_scopes_param_name
         self.name = name
         self.call = call
+        self.use_cache = use_cache
+        # Store the path to be able to re-generate a dependable from it in overrides
+        self.path = path
+        # Save the cache key at creation to optimize performance
+        self.cache_key = (self.call, tuple(sorted(set(self.security_scopes or []))))

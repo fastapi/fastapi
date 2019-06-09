@@ -1,4 +1,74 @@
-## Next release
+## Latest changes
+
+## 0.29.0
+
+* Add support for declaring a `Response` parameter:
+    * This allows declaring:
+        * [Response Cookies](https://fastapi.tiangolo.com/tutorial/response-cookies/).
+        * [Response Headers](https://fastapi.tiangolo.com/tutorial/response-headers/).
+        * An HTTP Status Code different than the default: [Response - Change Status Code](https://fastapi.tiangolo.com/tutorial/response-change-status-code/).
+    * All of this while still being able to return arbitrary objects (`dict`, DB model, etc).
+    * Update attribution to Hug, for inspiring the `response` parameter pattern.
+    * PR [#294](https://github.com/tiangolo/fastapi/pull/294).
+
+## 0.28.0
+
+* Implement dependency cache per request.
+    * This avoids calling each dependency multiple times for the same request.
+    * This is useful while calling external services, performing costly computation, etc.
+    * This also means that if a dependency was declared as a *path operation decorator* dependency, possibly at the router level (with `.include_router()`) and then it is declared again in a specific *path operation*, the dependency will be called only once.
+    * The cache can be disabled per dependency declaration, using `use_cache=False` as in `Depends(your_dependency, use_cache=False)`.
+    * Updated docs at: [Using the same dependency multiple times](https://fastapi.tiangolo.com/tutorial/dependencies/sub-dependencies/#using-the-same-dependency-multiple-times).
+    * PR [#292](https://github.com/tiangolo/fastapi/pull/292).
+
+* Implement dependency overrides for testing.
+    * This allows using overrides/mocks of dependencies during tests.
+    * New docs: [Testing Dependencies with Overrides](https://fastapi.tiangolo.com/tutorial/testing-dependencies/).
+    * PR [#291](https://github.com/tiangolo/fastapi/pull/291).
+
+## 0.27.2
+
+* Fix path and query parameters receiving `dict` as a valid type. It should be mapped to a body payload. PR [#287](https://github.com/tiangolo/fastapi/pull/287). Updated docs at: [Query parameter list / multiple values with defaults: Using `list`](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#using-list).
+
+## 0.27.1
+
+* Fix `auto_error=False` handling in `HTTPBearer` security scheme. Do not `raise` when there's an incorrect `Authorization` header if `auto_error=False`. PR [#282](https://github.com/tiangolo/fastapi/pull/282).
+
+* Fix type declaration of `HTTPException`. PR [#279](https://github.com/tiangolo/fastapi/pull/279).
+
+## 0.27.0
+
+* Fix broken link in docs about OAuth 2.0 with scopes. PR [#275](https://github.com/tiangolo/fastapi/pull/275) by [@dmontagu](https://github.com/dmontagu).
+
+* Refactor param extraction using Pydantic `Field`:
+    * Large refactor, improvement, and simplification of param extraction from *path operations*.
+    * Fix/add support for list *query parameters* with list defaults. New documentation: [Query parameter list / multiple values with defaults](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#query-parameter-list-multiple-values-with-defaults).
+    * Add support for enumerations in *path operation* parameters. New documentation: [Path Parameters: Predefined values](https://fastapi.tiangolo.com/tutorial/path-params/#predefined-values).
+    * Add support for type annotations using `Optional` as in `param: Optional[str] = None`. New documentation: [Optional type declarations](https://fastapi.tiangolo.com/tutorial/query-params/#optional-type-declarations).
+    * PR [#278](https://github.com/tiangolo/fastapi/pull/278).
+
+## 0.26.0
+
+* Separate error handling for validation errors.
+    * This will allow developers to customize the exception handlers.
+    * Document better how to handle exceptions and use error handlers.
+    * Include `RequestValidationError` and `WebSocketRequestValidationError` (this last one will be useful once [encode/starlette#527](https://github.com/encode/starlette/pull/527) or equivalent is merged).
+    * New documentation about exceptions handlers:
+        * [Install custom exception handlers](https://fastapi.tiangolo.com/tutorial/handling-errors/#install-custom-exception-handlers).
+        * [Override the default exception handlers](https://fastapi.tiangolo.com/tutorial/handling-errors/#override-the-default-exception-handlers).
+        * [Re-use **FastAPI's** exception handlers](https://fastapi.tiangolo.com/tutorial/handling-errors/#re-use-fastapis-exception-handlers).
+    * PR [#273](https://github.com/tiangolo/fastapi/pull/273).
+
+* Fix support for *paths* in *path parameters* without needing explicit `Path(...)`.
+    * PR [#256](https://github.com/tiangolo/fastapi/pull/256).
+    * Documented in PR [#272](https://github.com/tiangolo/fastapi/pull/272) by [@wshayes](https://github.com/wshayes).
+    * New documentation at: [Path Parameters containing paths](https://fastapi.tiangolo.com/tutorial/path-params/#path-parameters-containing-paths).
+
+* Update docs for testing FastAPI. Include using `POST`, sending JSON, testing headers, etc. New documentation: [Testing](https://fastapi.tiangolo.com/tutorial/testing/#testing-extended-example). PR [#271](https://github.com/tiangolo/fastapi/pull/271).
+
+* Fix type declaration of `response_model` to allow generic Python types as `List[Model]`. Mainly to fix `mypy` for users. PR [#266](https://github.com/tiangolo/fastapi/pull/266).
+
+## 0.25.0
 
 * Add support for Pydantic's `include`, `exclude`, `by_alias`.
     * Update documentation: [Response Model](https://fastapi.tiangolo.com/tutorial/response-model/#response_model_include-and-response_model_exclude).

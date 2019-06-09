@@ -86,3 +86,10 @@ def test_multi_query_values():
     response = client.get(url)
     assert response.status_code == 200
     assert response.json() == {"q": ["foo", "bar"]}
+
+
+def test_query_no_values():
+    url = "/items/"
+    response = client.get(url)
+    assert response.status_code == 200
+    assert response.json() == {"q": None}

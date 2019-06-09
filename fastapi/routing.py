@@ -13,6 +13,7 @@ from fastapi.dependencies.utils import (
     solve_dependencies,
 )
 from fastapi.encoders import jsonable_encoder
+from fastapi.exceptions import RequestValidationError, WebSocketRequestValidationError
 from pydantic import BaseConfig, BaseModel, Schema
 from pydantic.error_wrappers import ErrorWrapper, ValidationError
 from pydantic.fields import Field
@@ -28,7 +29,8 @@ from starlette.routing import (
     request_response,
     websocket_session,
 )
-from starlette.status import HTTP_422_UNPROCESSABLE_ENTITY, WS_1008_POLICY_VIOLATION
+from starlette.status import WS_1008_POLICY_VIOLATION
+from starlette.types import ASGIApp
 from starlette.websockets import WebSocket
 
 
@@ -79,6 +81,7 @@ def get_app(
     response_model_exclude: Set[str] = set(),
     response_model_by_alias: bool = True,
     response_model_skip_defaults: bool = False,
+    dependency_overrides_provider: Any = None,
 ) -> Callable:
     assert dependant.call is not None, "dependant.call must be a function"
     is_coroutine = asyncio.iscoroutinefunction(dependant.call)
@@ -99,14 +102,15 @@ def get_app(
             raise HTTPException(
                 status_code=400, detail="There was an error parsing the body"
             ) from e
-        values, errors, background_tasks = await solve_dependencies(
-            request=request, dependant=dependant, body=body
+        solved_result = await solve_dependencies(
+            request=request,
+            dependant=dependant,
+            body=body,
+            dependency_overrides_provider=dependency_overrides_provider,
         )
+        values, errors, background_tasks, sub_response, _ = solved_result
         if errors:
-            errors_out = ValidationError(errors)
-            raise HTTPException(
-                status_code=HTTP_422_UNPROCESSABLE_ENTITY, detail=errors_out.errors()
-            )
+            raise RequestValidationError(errors)
         else:
             assert dependant.call is not None, "dependant.call must be a function"
             if is_coroutine:
@@ -125,26 +129,32 @@ def get_app(
                 by_alias=response_model_by_alias,
                 skip_defaults=response_model_skip_defaults,
             )
-            return response_class(
+            response = response_class(
                 content=response_data,
                 status_code=status_code,
                 background=background_tasks,
             )
+            response.headers.raw.extend(sub_response.headers.raw)
+            if sub_response.status_code:
+                response.status_code = sub_response.status_code
+            return response
 
     return app
 
 
-def get_websocket_app(dependant: Dependant) -> Callable:
+def get_websocket_app(
+    dependant: Dependant, dependency_overrides_provider: Any = None
+) -> Callable:
     async def app(websocket: WebSocket) -> None:
-        values, errors, _ = await solve_dependencies(
-            request=websocket, dependant=dependant
+        solved_result = await solve_dependencies(
+            request=websocket,
+            dependant=dependant,
+            dependency_overrides_provider=dependency_overrides_provider,
         )
+        values, errors, _, _2, _3 = solved_result
         if errors:
             await websocket.close(code=WS_1008_POLICY_VIOLATION)
-            errors_out = ValidationError(errors)
-            raise HTTPException(
-                status_code=HTTP_422_UNPROCESSABLE_ENTITY, detail=errors_out.errors()
-            )
+            raise WebSocketRequestValidationError(errors)
         assert dependant.call is not None, "dependant.call must me a function"
         await dependant.call(**values)
 
@@ -152,12 +162,24 @@ def get_websocket_app(dependant: Dependant) -> Callable:
 
 
 class APIWebSocketRoute(routing.WebSocketRoute):
-    def __init__(self, path: str, endpoint: Callable, *, name: str = None) -> None:
+    def __init__(
+        self,
+        path: str,
+        endpoint: Callable,
+        *,
+        name: str = None,
+        dependency_overrides_provider: Any = None,
+    ) -> None:
         self.path = path
         self.endpoint = endpoint
         self.name = get_name(endpoint) if name is None else name
         self.dependant = get_dependant(path=path, call=self.endpoint)
-        self.app = websocket_session(get_websocket_app(dependant=self.dependant))
+        self.app = websocket_session(
+            get_websocket_app(
+                dependant=self.dependant,
+                dependency_overrides_provider=dependency_overrides_provider,
+            )
+        )
         regex = "^" + path + "$"
         regex = re.sub("{([a-zA-Z_][a-zA-Z0-9_]*)}", r"(?P<\1>[^/]+)", regex)
         self.path_regex, self.path_format, self.param_convertors = compile_path(path)
@@ -169,7 +191,7 @@ class APIRoute(routing.Route):
         path: str,
         endpoint: Callable,
         *,
-        response_model: Type[BaseModel] = None,
+        response_model: Type[Any] = None,
         status_code: int = 200,
         tags: List[str] = None,
         dependencies: List[params.Depends] = None,
@@ -187,6 +209,7 @@ class APIRoute(routing.Route):
         response_model_skip_defaults: bool = False,
         include_in_schema: bool = True,
         response_class: Type[Response] = JSONResponse,
+        dependency_overrides_provider: Any = None,
     ) -> None:
         assert path.startswith("/"), "Routed paths must always start with '/'"
         self.path = path
@@ -255,12 +278,14 @@ class APIRoute(routing.Route):
         assert inspect.isfunction(endpoint) or inspect.ismethod(
             endpoint
         ), f"An endpoint must be a function or method"
-        self.dependant = get_dependant(path=path, call=self.endpoint)
+        self.dependant = get_dependant(path=self.path_format, call=self.endpoint)
         for depends in self.dependencies[::-1]:
             self.dependant.dependencies.insert(
-                0, get_parameterless_sub_dependant(depends=depends, path=path)
+                0,
+                get_parameterless_sub_dependant(depends=depends, path=self.path_format),
             )
         self.body_field = get_body_field(dependant=self.dependant, name=self.name)
+        self.dependency_overrides_provider = dependency_overrides_provider
         self.app = request_response(
             get_app(
                 dependant=self.dependant,
@@ -272,17 +297,30 @@ class APIRoute(routing.Route):
                 response_model_exclude=self.response_model_exclude,
                 response_model_by_alias=self.response_model_by_alias,
                 response_model_skip_defaults=self.response_model_skip_defaults,
+                dependency_overrides_provider=self.dependency_overrides_provider,
             )
         )
 
 
 class APIRouter(routing.Router):
+    def __init__(
+        self,
+        routes: List[routing.BaseRoute] = None,
+        redirect_slashes: bool = True,
+        default: ASGIApp = None,
+        dependency_overrides_provider: Any = None,
+    ) -> None:
+        super().__init__(
+            routes=routes, redirect_slashes=redirect_slashes, default=default
+        )
+        self.dependency_overrides_provider = dependency_overrides_provider
+
     def add_api_route(
         self,
         path: str,
         endpoint: Callable,
         *,
-        response_model: Type[BaseModel] = None,
+        response_model: Type[Any] = None,
         status_code: int = 200,
         tags: List[str] = None,
         dependencies: List[params.Depends] = None,
@@ -322,6 +360,7 @@ class APIRouter(routing.Router):
             include_in_schema=include_in_schema,
             response_class=response_class,
             name=name,
+            dependency_overrides_provider=self.dependency_overrides_provider,
         )
         self.routes.append(route)
 
@@ -329,7 +368,7 @@ class APIRouter(routing.Router):
         self,
         path: str,
         *,
-        response_model: Type[BaseModel] = None,
+        response_model: Type[Any] = None,
         status_code: int = 200,
         tags: List[str] = None,
         dependencies: List[params.Depends] = None,
@@ -450,7 +489,7 @@ class APIRouter(routing.Router):
         self,
         path: str,
         *,
-        response_model: Type[BaseModel] = None,
+        response_model: Type[Any] = None,
         status_code: int = 200,
         tags: List[str] = None,
         dependencies: List[params.Depends] = None,
@@ -495,7 +534,7 @@ class APIRouter(routing.Router):
         self,
         path: str,
         *,
-        response_model: Type[BaseModel] = None,
+        response_model: Type[Any] = None,
         status_code: int = 200,
         tags: List[str] = None,
         dependencies: List[params.Depends] = None,
@@ -539,7 +578,7 @@ class APIRouter(routing.Router):
         self,
         path: str,
         *,
-        response_model: Type[BaseModel] = None,
+        response_model: Type[Any] = None,
         status_code: int = 200,
         tags: List[str] = None,
         dependencies: List[params.Depends] = None,
@@ -583,7 +622,7 @@ class APIRouter(routing.Router):
         self,
         path: str,
         *,
-        response_model: Type[BaseModel] = None,
+        response_model: Type[Any] = None,
         status_code: int = 200,
         tags: List[str] = None,
         dependencies: List[params.Depends] = None,
@@ -627,7 +666,7 @@ class APIRouter(routing.Router):
         self,
         path: str,
         *,
-        response_model: Type[BaseModel] = None,
+        response_model: Type[Any] = None,
         status_code: int = 200,
         tags: List[str] = None,
         dependencies: List[params.Depends] = None,
@@ -671,7 +710,7 @@ class APIRouter(routing.Router):
         self,
         path: str,
         *,
-        response_model: Type[BaseModel] = None,
+        response_model: Type[Any] = None,
         status_code: int = 200,
         tags: List[str] = None,
         dependencies: List[params.Depends] = None,
@@ -715,7 +754,7 @@ class APIRouter(routing.Router):
         self,
         path: str,
         *,
-        response_model: Type[BaseModel] = None,
+        response_model: Type[Any] = None,
         status_code: int = 200,
         tags: List[str] = None,
         dependencies: List[params.Depends] = None,
@@ -759,7 +798,7 @@ class APIRouter(routing.Router):
         self,
         path: str,
         *,
-        response_model: Type[BaseModel] = None,
+        response_model: Type[Any] = None,
         status_code: int = 200,
         tags: List[str] = None,
         dependencies: List[params.Depends] = None,

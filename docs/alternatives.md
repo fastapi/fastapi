@@ -240,7 +240,7 @@ It was one of the first extremely fast Python frameworks based on `asyncio`. It 
 
 Falcon is another high performance Python framework, it is designed to be minimal, and work as the foundation of other frameworks like Hug.
 
-It uses the previous standard for Python web frameworks (WSGI) which is synchronous, so it can't handle Websockets and other use cases. Nevertheless, it also has a very good performance.
+It uses the previous standard for Python web frameworks (WSGI) which is synchronous, so it can't handle WebSockets and other use cases. Nevertheless, it also has a very good performance.
 
 It is designed to have functions that receive two parameters, one "request" and one "response". Then you "read" parts from the request, and "write" parts to the response. Because of this design, it is not possible to declare request parameters and bodies with standard Python type hints as function parameters.
 
@@ -248,6 +248,10 @@ So, data validation, serialization, and documentation, have to be done in code, 
 
 !!! check "Inspired **FastAPI** to"
     Find ways to get great performance.
+
+    Along with Hug (as Hug is based on Falcon) inspired **FastAPI** to declare a `response` parameter in functions.
+
+    Although in FastAPI it's optional, and is used mainly to set headers, cookies, and alternative status codes.
 
 ### <a href="https://moltenframework.com/" target="_blank">Molten</a>
 
@@ -292,6 +296,7 @@ As it is based on the previous standard for synchronous Python web frameworks (W
 
     Hug helped inspiring **FastAPI** to use Python type hints to declare parameters, and to generate a schema defining the API automatically.
 
+    Hug inspired **FastAPI** to declare a `response` parameter in functions to set headers and cookies.
 
 ### <a href="https://github.com/encode/apistar" target="_blank">APIStar</a> (<= 0.5)
 

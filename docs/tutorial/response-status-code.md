@@ -47,7 +47,6 @@ In short:
 !!! tip
     To know more about each status code and which code is for what, check the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status" target="_blank"><abbr title="Mozilla Developer Network">MDN</abbr> documentation about HTTP status codes</a>.
 
-
 ## Shortcut to remember the names
 
 Let's see the previous example again:
@@ -69,3 +68,7 @@ You can use the convenience variables from `starlette.status`.
 They are just a convenience, they hold the same number, but that way you can use the editor's autocomplete to find them:
 
 <img src="/img/tutorial/response-status-code/image02.png">
+
+## Changing the default
+
+Later, in a more advanced part of the tutorial/user guide, you will see how to <a href="https://fastapi.tiangolo.com/tutorial/response-change-status-code/" target="_blank">return a different status code than the default</a> you are declaring here.

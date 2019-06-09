@@ -1,4 +1,4 @@
-from typing import Any, Dict, List, Optional, Sequence, Tuple, Type
+from typing import Any, Dict, List, Optional, Sequence, Tuple, Type, cast
 
 from fastapi import routing
 from fastapi.dependencies.models import Dependant
@@ -9,7 +9,7 @@ from fastapi.openapi.models import OpenAPI
 from fastapi.params import Body, Param
 from fastapi.utils import get_flat_models_from_routes, get_model_definitions
 from pydantic.fields import Field
-from pydantic.schema import Schema, field_schema, get_model_name_map
+from pydantic.schema import field_schema, get_model_name_map
 from pydantic.utils import lenient_issubclass
 from starlette.responses import JSONResponse
 from starlette.routing import BaseRoute
@@ -97,12 +97,8 @@ def get_openapi_operation_request_body(
     body_schema, _ = field_schema(
         body_field, model_name_map=model_name_map, ref_prefix=REF_PREFIX
     )
-    schema: Schema = body_field.schema
-    if isinstance(schema, Body):
-        request_media_type = schema.media_type
-    else:
-        # Includes not declared media types (Schema)
-        request_media_type = "application/json"
+    body_field.schema = cast(Body, body_field.schema)
+    request_media_type = body_field.schema.media_type
     required = body_field.required
     request_body_oai: Dict[str, Any] = {}
     if required:
