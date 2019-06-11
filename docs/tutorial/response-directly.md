@@ -56,7 +56,7 @@ You could put your XML content in a string, put it in a Starlette Response, and 
 
 When you return a `Response` directly its data is not validated, converted (serialized), nor documented automatically.
 
-But you can still <a href="tutorial/additional-responses/" target="_blank">document it</a>.
+But you can still <a href="https://fastapi.tiangolo.com/tutorial/additional-responses/" target="_blank">document it</a>.
 
 In the next sections you will see how to use/declare these custom `Response`s while still having automatic data conversion, documentation, etc.
 
