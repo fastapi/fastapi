@@ -297,7 +297,7 @@ async def solve_dependencies(
     *,
     request: Union[Request, WebSocket],
     dependant: Dependant,
-    body: Dict[str, Any] = None,
+    body: Optional[Union[Dict[str, Any], FormData]] = None,
     background_tasks: BackgroundTasks = None,
     response: Response = None,
     dependency_overrides_provider: Any = None,
@@ -388,7 +388,7 @@ async def solve_dependencies(
     errors += path_errors + query_errors + header_errors + cookie_errors
     if dependant.body_params:
         body_values, body_errors = await request_body_to_args(  # type: ignore # body_params checked above
-            dependant.body_params, body
+            required_params=dependant.body_params, received_body=body
         )
         values.update(body_values)
         errors.extend(body_errors)
@@ -447,7 +447,8 @@ def request_params_to_args(
 
 
 async def request_body_to_args(
-    required_params: List[Field], received_body: Dict[str, Any]
+    required_params: List[Field],
+    received_body: Optional[Union[Dict[str, Any], FormData]],
 ) -> Tuple[Dict[str, Any], List[ErrorWrapper]]:
     values = {}
     errors = []
@@ -457,10 +458,14 @@ async def request_body_to_args(
         if len(required_params) == 1 and not embed:
             received_body = {field.alias: received_body}
         for field in required_params:
-            if field.shape in sequence_shapes and isinstance(received_body, FormData):
-                value = received_body.getlist(field.alias)
-            else:
-                value = received_body.get(field.alias)
+            value = None
+            if received_body is not None:
+                if field.shape in sequence_shapes and isinstance(
+                    received_body, FormData
+                ):
+                    value = received_body.getlist(field.alias)
+                else:
+                    value = received_body.get(field.alias)
             if (
                 value is None
                 or (isinstance(field.schema, params.Form) and value == "")
