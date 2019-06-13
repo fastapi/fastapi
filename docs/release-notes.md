@@ -1,5 +1,7 @@
 ## Latest changes
 
+## 0.29.1
+
 * Fix handling an empty-body request with a required body param. PR [#311](https://github.com/tiangolo/fastapi/pull/311).
 
 * Fix broken link in docs: [Return a Response directly](https://fastapi.tiangolo.com/tutorial/response-directly/). PR [#306](https://github.com/tiangolo/fastapi/pull/306) by [@dmontagu](https://github.com/dmontagu).
