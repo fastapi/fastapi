@@ -1,5 +1,11 @@
 ## Latest changes
 
+* Fix handling an empty-body request with a required body param. PR [#311](https://github.com/tiangolo/fastapi/pull/311).
+
+* Fix broken link in docs: [Return a Response directly](https://fastapi.tiangolo.com/tutorial/response-directly/). PR [#306](https://github.com/tiangolo/fastapi/pull/306) by [@dmontagu](https://github.com/dmontagu).
+
+* Fix docs discrepancy in docs for [Response Model](https://fastapi.tiangolo.com/tutorial/response-model/). PR [#288](https://github.com/tiangolo/fastapi/pull/288) by [@awiddersheim](https://github.com/awiddersheim).
+
 ## 0.29.0
 
 * Add support for declaring a `Response` parameter:
