@@ -1,3 +1,4 @@
+import http.client
 from typing import Any, Dict, List, Optional, Sequence, Tuple, Type, cast
 
 from fastapi import routing
@@ -187,7 +188,7 @@ def get_openapi_path(
                         response.setdefault("content", {}).setdefault(
                             "application/json", {}
                         )["schema"] = response_schema
-                    response.setdefault("description", "Additional Response")
+                    response.setdefault("description", http.client.responses[int(additional_status_code)])
                     operation.setdefault("responses", {})[
                         str(additional_status_code)
                     ] = response
