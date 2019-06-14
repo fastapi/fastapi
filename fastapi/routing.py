@@ -180,8 +180,6 @@ class APIWebSocketRoute(routing.WebSocketRoute):
                 dependency_overrides_provider=dependency_overrides_provider,
             )
         )
-        regex = "^" + path + "$"
-        regex = re.sub("{([a-zA-Z_][a-zA-Z0-9_]*)}", r"(?P<\1>[^/]+)", regex)
         self.path_regex, self.path_format, self.param_convertors = compile_path(path)
 
 
