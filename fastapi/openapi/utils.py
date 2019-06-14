@@ -188,7 +188,8 @@ def get_openapi_path(
                         response.setdefault("content", {}).setdefault(
                             "application/json", {}
                         )["schema"] = response_schema
-                    response.setdefault("description", http.client.responses[int(additional_status_code)])
+                    status_text = http.client.responses[int(additional_status_code)]
+                    response.setdefault("description", status_text)
                     operation.setdefault("responses", {})[
                         str(additional_status_code)
                     ] = response
