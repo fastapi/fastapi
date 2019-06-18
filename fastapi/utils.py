@@ -28,7 +28,7 @@ def get_flat_models_from_routes(
             if route.response_fields:
                 responses_from_routes.extend(route.response_fields.values())
     flat_models = get_flat_models_from_fields(
-        body_fields_from_routes + responses_from_routes
+        body_fields_from_routes + responses_from_routes, known_models=set()
     )
     return flat_models
 

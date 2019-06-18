@@ -31,7 +31,7 @@ openapi_schema = {
                 "parameters": [
                     {
                         "required": False,
-                        "schema": {"title": "Q", "type": "array"},
+                        "schema": {"title": "Q", "type": "array", "items": {}},
                         "name": "q",
                         "in": "query",
                     }
