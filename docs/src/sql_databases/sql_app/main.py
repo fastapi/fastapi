@@ -10,13 +10,23 @@ from .database import SessionLocal, engine
 
 models.Base.metadata.create_all(bind=engine)
 
+app = FastAPI()
+
+
+@app.middleware("http")
+async def db_session_middleware(request: Request, call_next):
+    response = Response("Internal server error", status_code=500)
+    try:
+        request.state.db = SessionLocal()
+        response = await call_next(request)
+    finally:
+        request.state.db.close()
+    return response
+
+
 # Dependency
 def get_db(request: Request):
     return request.state.db
-
-
-# FastAPI specific code
-app = FastAPI()
 
 
 @app.post("/users/", response_model=schemas.User)
@@ -24,12 +34,7 @@ def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
     db_user = crud.get_user_by_email(db, email=user.email)
     if db_user:
         raise HTTPException(status_code=400, detail="Email already registered")
-    fake_hashed_password = user.password + "notreallyhashed"
-    db_user = models.User(email=user.email, hashed_password=fake_hashed_password)
-    db.add(db_user)
-    db.commit()
-    db.refresh(db_user)
-    return db_user
+    return crud.create_user(db=db, user=user)
 
 
 @app.get("/users/", response_model=List[schemas.User])
@@ -50,26 +55,10 @@ def read_user(user_id: int, db: Session = Depends(get_db)):
 def create_item_for_user(
     user_id: int, item: schemas.ItemCreate, db: Session = Depends(get_db)
 ):
-    db_user = crud.get_user(db, user_id=user_id)
-    db_item = models.Item(**item.dict(), owner_id=db_user.id)
-    db.add(db_item)
-    db.commit()
-    db.refresh(db_item)
-    return db_item
+    return crud.create_user_item(db=db, item=item, user_id=user_id)
 
 
 @app.get("/items/", response_model=List[schemas.Item])
 def read_items(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
     items = crud.get_items(db, skip=skip, limit=limit)
     return items
-
-
-@app.middleware("http")
-async def db_session_middleware(request: Request, call_next):
-    response = Response("Internal server error", status_code=500)
-    try:
-        request.state.db = SessionLocal()
-        response = await call_next(request)
-    finally:
-        request.state.db.close()
-    return response
