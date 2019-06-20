@@ -82,12 +82,12 @@ def create_cloned_field(field: Field) -> Field:
     new_field.schema = field.schema
     new_field.allow_none = field.allow_none
     new_field.validate_always = field.validate_always
-    if new_field.sub_fields:
+    if field.sub_fields:
         new_field.sub_fields = [
-            create_cloned_field(sub_field) for sub_field in new_field.sub_fields
+            create_cloned_field(sub_field) for sub_field in field.sub_fields
         ]
-    if new_field.key_field:
-        new_field.key_field = create_cloned_field(new_field.key_field)
+    if field.key_field:
+        new_field.key_field = create_cloned_field(field.key_field)
     new_field.validators = field.validators
     new_field.whole_pre_validators = field.whole_pre_validators
     new_field.whole_post_validators = field.whole_post_validators
