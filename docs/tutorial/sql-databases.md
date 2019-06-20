@@ -355,9 +355,8 @@ Create utility functions to:
 * Read a single user by ID and by email.
 * Read multiple users.
 * Read a single item.
-* Read a user's items.
 
-```Python hl_lines="1 3 6 7 10 11 14 15 27 28 31 32 33 34 35 36 37 38"
+```Python hl_lines="1 3 6 7 10 11 14 15 27 28"
 {!./src/sql_databases/sql_app/crud.py!}
 ```
 
@@ -375,7 +374,7 @@ The steps are:
 * `commit` the changes to the database (so that they are saved).
 * `refresh` your instance (so that it contains any new data from the database, like the generated ID).
 
-```Python hl_lines="18 19 20 21 22 23 24 41 42 43 44 45 46"
+```Python hl_lines="18 19 20 21 22 23 24 31 32 33 34 35 36"
 {!./src/sql_databases/sql_app/crud.py!}
 ```
 
