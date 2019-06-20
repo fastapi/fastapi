@@ -174,6 +174,18 @@ For that, use the standard Python `typing.List`:
 {!./src/extra_models/tutorial004.py!}
 ```
 
+## Response with arbitrary `dict`
+
+You can also declare a response using a plain arbitrary `dict`, declaring just the type of the keys and values, without using a Pydantic model.
+
+This is useful if you don't know the valid field/attribute names (that would be needed for a Pydantic model) beforehand.
+
+In this case, you can use `typing.Dict`:
+
+```Python hl_lines="1 8"
+{!./src/extra_models/tutorial005.py!}
+```
+
 ## Recap
 
 Use multiple Pydantic models and inherit freely for each case.
