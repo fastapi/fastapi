@@ -1,6 +1,6 @@
 from starlette.testclient import TestClient
 
-from sql_databases.tutorial001 import app
+from body_nested_models.tutorial009 import app
 
 client = TestClient(app)
 
@@ -8,8 +8,8 @@ openapi_schema = {
     "openapi": "3.0.2",
     "info": {"title": "Fast API", "version": "0.1.0"},
     "paths": {
-        "/users/{user_id}": {
-            "get": {
+        "/index-weights/": {
+            "post": {
                 "responses": {
                     "200": {
                         "description": "Successful Response",
@@ -26,16 +26,20 @@ openapi_schema = {
                         },
                     },
                 },
-                "summary": "Read User",
-                "operationId": "read_user_users__user_id__get",
-                "parameters": [
-                    {
-                        "required": True,
-                        "schema": {"title": "User_Id", "type": "integer"},
-                        "name": "user_id",
-                        "in": "path",
-                    }
-                ],
+                "summary": "Create Index Weights",
+                "operationId": "create_index_weights_index-weights__post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "title": "Weights",
+                                "type": "object",
+                                "additionalProperties": {"type": "number"},
+                            }
+                        }
+                    },
+                    "required": True,
+                },
             }
         }
     },
@@ -77,12 +81,23 @@ def test_openapi_schema():
     assert response.json() == openapi_schema
 
 
-def test_first_user():
-    response = client.get("/users/1")
+def test_post_body():
+    data = {"2": 2.2, "3": 3.3}
+    response = client.post("/index-weights/", json=data)
     assert response.status_code == 200
+    assert response.json() == data
+
+
+def test_post_invalid_body():
+    data = {"foo": 2.2, "3": 3.3}
+    response = client.post("/index-weights/", json=data)
+    assert response.status_code == 422
     assert response.json() == {
-        "is_active": True,
-        "hashed_password": "notreallyhashed",
-        "email": "johndoe@example.com",
-        "id": 1,
+        "detail": [
+            {
+                "loc": ["body", "weights", "__key__"],
+                "msg": "value is not a valid integer",
+                "type": "type_error.integer",
+            }
+        ]
     }

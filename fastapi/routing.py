@@ -1,7 +1,6 @@
 import asyncio
 import inspect
 import logging
-import re
 from typing import Any, Callable, Dict, List, Optional, Set, Type, Union
 
 from fastapi import params
@@ -14,6 +13,7 @@ from fastapi.dependencies.utils import (
 )
 from fastapi.encoders import jsonable_encoder
 from fastapi.exceptions import RequestValidationError, WebSocketRequestValidationError
+from fastapi.utils import create_cloned_field
 from pydantic import BaseConfig, BaseModel, Schema
 from pydantic.error_wrappers import ErrorWrapper, ValidationError
 from pydantic.fields import Field
@@ -43,17 +43,9 @@ def serialize_response(
     by_alias: bool = True,
     skip_defaults: bool = False,
 ) -> Any:
-
-    encoded = jsonable_encoder(
-        response,
-        include=include,
-        exclude=exclude,
-        by_alias=by_alias,
-        skip_defaults=skip_defaults,
-    )
     if field:
         errors = []
-        value, errors_ = field.validate(encoded, {}, loc=("response",))
+        value, errors_ = field.validate(response, {}, loc=("response",))
         if isinstance(errors_, ErrorWrapper):
             errors.append(errors_)
         elif isinstance(errors_, list):
@@ -68,7 +60,7 @@ def serialize_response(
             skip_defaults=skip_defaults,
         )
     else:
-        return encoded
+        return jsonable_encoder(response)
 
 
 def get_app(
@@ -228,8 +220,17 @@ class APIRoute(routing.Route):
                 model_config=BaseConfig,
                 schema=Schema(None),
             )
+            # Create a clone of the field, so that a Pydantic submodel is not returned
+            # as is just because it's an instance of a subclass of a more limited class
+            # e.g. UserInDB (containing hashed_password) could be a subclass of User
+            # that doesn't have the hashed_password. But because it's a subclass, it
+            # would pass the validation and be returned as is.
+            # By being a new field, no inheritance will be passed as is. A new model
+            # will be always created.
+            self.secure_cloned_response_field = create_cloned_field(self.response_field)
         else:
             self.response_field = None
+            self.secure_cloned_response_field = None
         self.status_code = status_code
         self.tags = tags or []
         self.dependencies = dependencies or []
@@ -290,7 +291,7 @@ class APIRoute(routing.Route):
                 body_field=self.body_field,
                 status_code=self.status_code,
                 response_class=self.response_class,
-                response_field=self.response_field,
+                response_field=self.secure_cloned_response_field,
                 response_model_include=self.response_model_include,
                 response_model_exclude=self.response_model_exclude,
                 response_model_by_alias=self.response_model_by_alias,
