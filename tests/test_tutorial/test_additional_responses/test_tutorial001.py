@@ -12,7 +12,7 @@ openapi_schema = {
             "get": {
                 "responses": {
                     "404": {
-                        "description": "Additional Response",
+                        "description": "Not Found",
                         "content": {
                             "application/json": {
                                 "schema": {"$ref": "#/components/schemas/Message"}

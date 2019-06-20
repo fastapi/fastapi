@@ -200,6 +200,35 @@ You couldn't get this kind of editor support if you where working directly with 
 
 But you don't have to worry about them either, incoming dicts are converted automatically and your output is converted automatically to JSON too.
 
+## Bodies of arbitrary `dict`s
+
+You can also declare a body as a `dict` with keys of some type and values of other type.
+
+Without having to know beforehand what are the valid field/attribute names (as would be the case with Pydantic models).
+
+This would be useful if you want to receive keys that you don't already know.
+
+---
+
+Other useful case is when you want to have keys of other type, e.g. `int`.
+
+That's what we are going to see here.
+
+In this case, you would accept any `dict` as long as it has `int` keys with `float` values:
+
+```Python hl_lines="15"
+{!./src/body_nested_models/tutorial009.py!}
+```
+
+!!! tip
+    Have in mind that JSON only supports `str` as keys.
+
+    But Pydantic has automatic data conversion.
+
+    This means that, even though your API clients can only send strings as keys, as long as those strings contain pure integers, Pydantic will convert them and validate them.
+    
+    And the `dict` you receive as `weights` will actually have `int` keys and `float` values.
+
 ## Recap
 
 With **FastAPI** you have the maximum flexibility provided by Pydantic models, while keeping your code simple, short and elegant. 
