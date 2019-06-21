@@ -42,7 +42,7 @@ def get_model_definitions(
         m_schema, m_definitions = model_process_schema(
             model, model_name_map=model_name_map, ref_prefix=REF_PREFIX
         )
-        m_definitions.pop('_nested', None)
+        m_definitions.pop("_nested", None)
         definitions.update(m_definitions)
         model_name = model_name_map[model]
         definitions[model_name] = m_schema
