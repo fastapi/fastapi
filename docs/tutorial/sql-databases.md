@@ -39,15 +39,15 @@ For example a class `Pet` could represent a SQL table `pets`.
 
 And each *instance* object of that class represents a row in the database.
 
-For example an object `mr_furry` (an instance of `Pet`) could have an attribute `mr_furry.type`, for the column `type`. And the value of that attribute could be, e.g. `"cat"`.
+For example an object `orion_cat` (an instance of `Pet`) could have an attribute `orion_cat.type`, for the column `type`. And the value of that attribute could be, e.g. `"cat"`.
 
 These ORMs also have tools to make the connections or relations between tables or entities.
 
-This way, you could also have an attribute `mr_furry.owner` and the owner would contain the data for this pet's owner, taken from the table *owners*.
+This way, you could also have an attribute `orion_cat.owner` and the owner would contain the data for this pet's owner, taken from the table *owners*.
 
-So, `mr_furry.owner.name` could be the name (from the `name` column in the `owners` table) of this pet's owner.
+So, `orion_cat.owner.name` could be the name (from the `name` column in the `owners` table) of this pet's owner.
 
-It could have a value like `"Alice"`.
+It could have a value like `"Arquilian"`.
 
 And the ORM will do all the work to get the information from the corresponding table *owners* when you try to access it from your pet object.
 
@@ -59,7 +59,7 @@ The same way, you could use Peewee or any other.
 
 ## File structure
 
-For these examples, let's say you have a directory `sql_app` with a structure like this:
+For these examples, let's say you have a directory named `my_super_project` that contains a sub-directory called `sql_app` with a structure like this:
 
 ```
 ├── sql_app
@@ -77,7 +77,7 @@ Now let's see what each file/module does.
 
 ## Create the SQLAlchemy parts
 
-Let's see the file `sql_app/database.py`.
+Let's refer to the file `sql_app/database.py`.
 
 ### Import the SQLAlchemy parts
 
@@ -100,7 +100,7 @@ That's why the last part is `./test.db`.
 If you were using a **PostgreSQL** database instead, you would just have to uncomment the line:
 
 ```Python
-SQLALCHEMY_DATABASE_URI = "postgresql://user:password@postgresserver/db"
+SQLALCHEMY_DATABASE_URL = "postgresql://user:password@postgresserver/db"
 ```
 
 ...and adapt it with your database data and credentials (equivalently for MySQL, MariaDB or any other).
@@ -136,9 +136,9 @@ connect_args={"check_same_thread": False}
 
 ### Create a `SessionLocal` class
 
-Each instance of the `SessionLocal` class will have a session/connection to the database.
+Each instance of the `SessionLocal` class will be a database session. The class itself is not a database session yet. 
 
-This object (class) is not a session/connection to the database yet, but once we create an instance of this class, that instance will have the actual connection to the database.
+But once we create an instance of the `SessionLocal` class, this instance will be the actual database session.
 
 We name it `SessionLocal` to distinguish it from the `Session` we are importing from SQLAlchemy.
 
@@ -152,7 +152,7 @@ To create the `SessionLocal` class, use the function `sessionmaker`:
 
 ### Create a `Base` class
 
-Now use the function `declarative_base()` that returns a class.
+Now we will use the function `declarative_base()` that returns a class.
 
 Later we will inherit from this class to create each of the database models or classes (the ORM models):
 
@@ -298,7 +298,7 @@ In the `Config` class, set the attribute `orm_mode = True`.
 
 Pydantic's `orm_mode` will tell the Pydantic *model* to read the data even if it is not a `dict`, but an ORM model (or any other arbitrary object with attributes).
 
-This way, Instead of only trying to get the `id` value from a `dict`, as in:
+This way, instead of only trying to get the `id` value from a `dict`, as in:
 
 ```Python
 id = data["id"]
@@ -456,7 +456,7 @@ This middleware (just a function) will create a new SQLAlchemy `SessionLocal` fo
 
 <a href="https://www.starlette.io/requests/#other-state" target="_blank">`request.state` is a property of each Starlette `Request` object</a>, it is there to store arbitrary objects attached to the request itself, like the database session in this case.
 
-For us in this case, it helps us ensuring a single session/database-connection is used through all the request, and then closed afterwards (in the middleware).
+For us in this case, it helps us ensuring a single database session is used through all the request, and then closed afterwards (in the middleware).
 
 ### Create a dependency
 
@@ -546,6 +546,10 @@ The same way, you would be able to use the same SQLAlchemy models and utilities 
 For example, in a background task worker with <a href="http://www.celeryproject.org/" target="_blank">Celery</a>, <a href="https://python-rq.org/" target="_blank">RQ</a>, or <a href="https://arq-docs.helpmanual.io/" target="_blank">ARQ</a>.
 
 ## Review all the files
+
+ Remember you should have a directory named `my_super_project` that contains a sub-directory called `sql_app`.
+ 
+ `sql_app` should have the following files:
 
 * `sql_app/__init__.py`: is an empty file.
 
