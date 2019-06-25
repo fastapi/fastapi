@@ -17,7 +17,7 @@ def test_get_openapi():
 
     @app.get("/", response_model=Model3)
     def f():
-        pass
+        pass  # pragma: no cover
 
     openapi = app.openapi()
     assert isinstance(openapi, dict)
