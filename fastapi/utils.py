@@ -38,7 +38,7 @@ def get_model_definitions(
     *, flat_models: Set[Type[BaseModel]], model_name_map: Dict[Type[BaseModel], str]
 ) -> Dict[str, Any]:
     definitions: Dict[str, Dict] = {}
-    for model in flat_models:
+    for model in sorted(flat_models, key=lambda x: x.__name__):
         m_schema, _ = model_process_schema(
             model, model_name_map=model_name_map, ref_prefix=REF_PREFIX
         )
