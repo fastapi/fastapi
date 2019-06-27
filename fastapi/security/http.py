@@ -56,7 +56,9 @@ class HTTPBasic(HTTPBase):
         self.realm = realm
         self.auto_error = auto_error
 
-    async def __call__(self, request: Request) -> Optional[HTTPBasicCredentials]:
+    async def __call__(  # type: ignore
+        self, request: Request
+    ) -> Optional[HTTPBasicCredentials]:
         authorization: str = request.headers.get("Authorization")
         scheme, param = get_authorization_scheme_param(authorization)
         if self.realm:

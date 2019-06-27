@@ -54,7 +54,7 @@ class APIKeyCookie(APIKeyBase):
         self.auto_error = auto_error
 
     async def __call__(self, request: Request) -> Optional[str]:
-        api_key: str = request.cookies.get(self.model.name)
+        api_key = request.cookies.get(self.model.name)
         if not api_key:
             if self.auto_error:
                 raise HTTPException(
