@@ -1,5 +1,7 @@
 ## Latest changes
 
+* Add SQLite [online viewers to the docs](https://fastapi.tiangolo.com/tutorial/sql-databases/#interact-with-the-database-directly). PR [#330](https://github.com/tiangolo/fastapi/pull/330) by [@cyrilbois](https://github.com/cyrilbois).
+
 ## 0.30.0
 
 * Add support for Pydantic's ORM mode:
