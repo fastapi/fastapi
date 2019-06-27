@@ -456,7 +456,8 @@ class APIRouter(routing.Router):
                     response_model=route.response_model,
                     status_code=route.status_code,
                     tags=(route.tags or []) + (tags or []),
-                    dependencies=list(dependencies or []) + list(route.dependencies or []),
+                    dependencies=list(dependencies or [])
+                    + list(route.dependencies or []),
                     summary=route.summary,
                     description=route.description,
                     response_description=route.response_description,
