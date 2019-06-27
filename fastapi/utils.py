@@ -10,9 +10,7 @@ from pydantic.utils import lenient_issubclass
 from starlette.routing import BaseRoute
 
 
-def get_flat_models_from_routes(
-    routes: Sequence[Type[BaseRoute]]
-) -> Set[Type[BaseModel]]:
+def get_flat_models_from_routes(routes: Sequence[BaseRoute]) -> Set[Type[BaseModel]]:
     body_fields_from_routes: List[Field] = []
     responses_from_routes: List[Field] = []
     for route in routes:

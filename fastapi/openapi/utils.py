@@ -71,7 +71,8 @@ def get_openapi_operation_parameters(
     definitions: Dict[str, Dict] = {}
     parameters = []
     for param in all_route_params:
-        schema: Param = param.schema
+        schema = param.schema
+        schema = cast(Param, schema)
         if "ValidationError" not in definitions:
             definitions["ValidationError"] = validation_error_definition
             definitions["HTTPValidationError"] = validation_error_response_definition
@@ -90,7 +91,7 @@ def get_openapi_operation_parameters(
 
 
 def get_openapi_operation_request_body(
-    *, body_field: Field, model_name_map: Dict[Type, str]
+    *, body_field: Optional[Field], model_name_map: Dict[Type, str]
 ) -> Optional[Dict]:
     if not body_field:
         return None

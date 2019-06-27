@@ -242,7 +242,7 @@ def get_param_field(
         if isinstance(schema, params.Param) and getattr(schema, "in_", None) is None:
             schema.in_ = default_schema.in_
         if force_type:
-            schema.in_ = force_type
+            schema.in_ = force_type  # type: ignore
     else:
         schema = default_schema(default_value)
     required = default_value == Required
@@ -422,7 +422,7 @@ def request_params_to_args(
             value = received_params.getlist(field.alias) or field.default
         else:
             value = received_params.get(field.alias)
-        schema: params.Param = field.schema
+        schema = field.schema
         assert isinstance(schema, params.Param), "Params must be subclasses of Param"
         if value is None:
             if field.required:
@@ -458,7 +458,7 @@ async def request_body_to_args(
         if len(required_params) == 1 and not embed:
             received_body = {field.alias: received_body}
         for field in required_params:
-            value = None
+            value: Any = None
             if received_body is not None:
                 if field.shape in sequence_shapes and isinstance(
                     received_body, FormData
