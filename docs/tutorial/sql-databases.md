@@ -609,3 +609,5 @@ If you want to explore the SQLite database (file) directly, independently of Fas
 It will look like this:
 
 <img src="/img/tutorial/sql-databases/image02.png">
+
+You can also use an online SQLite browser like <a href="https://inloop.github.io/sqlite-viewer/" target="_blank">SQLite Viewer</a> or <a href="https://extendsclass.com/sqlite-browser.html" target="_blank">ExtendsClass</a>.
