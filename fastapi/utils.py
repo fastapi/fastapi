@@ -93,3 +93,10 @@ def create_cloned_field(field: Field) -> Field:
     new_field.shape = field.shape
     new_field._populate_validators()
     return new_field
+
+
+def generate_operation_id_for_path(*, name: str, path: str, method: str) -> str:
+    operation_id = name + path
+    operation_id = operation_id.replace("{", "_").replace("}", "_").replace("/", "_")
+    operation_id = operation_id + "_" + method.lower()
+    return operation_id
