@@ -174,7 +174,6 @@ from app.routers import items, users
 
     To learn more about Python Packages and Modules, read <a href="https://docs.python.org/3/tutorial/modules.html" target="_blank">the official Python documentation about Modules</a>.
 
-
 ### Avoid name collisions
 
 We are importing the submodule `items` directly, instead of importing just its variable `router`.
@@ -215,7 +214,6 @@ It will include all the routes from that router as part of it.
     It will actually internally create a *path operation* for each *path operation* that was declared in the `APIRouter`.
 
     So, behind the scenes, it will actually work as if everything was the same single app.
-
 
 !!! check
     You don't have to worry about performance when including routers.
@@ -295,7 +293,6 @@ The end result is that the item paths are now:
 
     As we cannot just isolate them and "mount" them independently of the rest, the path operations are "cloned" (re-created), not included directly.
 
-
 ## Check the automatic API docs
 
 Now, run `uvicorn`, using the module `app.main` and the variable `app`:
@@ -309,3 +306,11 @@ And open the docs at <a href="http://127.0.0.1:8000/docs" target="_blank">http:/
 You will see the automatic API docs, including the paths from all the submodules, using the correct paths (and prefixes) and the correct tags:
 
 <img src="/img/tutorial/bigger-applications/image01.png">
+
+## Include the same router multiple times with different `prefix`
+
+You can also use `.include_router()` multiple times with the *same* router using different prefixes.
+
+This could be useful, for example, to expose the same API under different prefixes, e.g. `/api/v1` and `/api/latest`.
+
+This is an advanced usage that you might not really need, but it's there in case you do.
