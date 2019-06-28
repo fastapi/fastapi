@@ -40,7 +40,8 @@ def get_swagger_ui_html(
         SwaggerUIBundle.presets.apis,
         SwaggerUIBundle.SwaggerUIStandalonePreset
         ],
-        layout: "BaseLayout"
+        layout: "BaseLayout",
+        deepLinking: true
     })
     </script>
     </body>
