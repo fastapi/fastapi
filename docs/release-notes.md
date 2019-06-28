@@ -1,5 +1,13 @@
 ## Latest changes
 
+* Fix OpenAPI/JSON Schema generation for two functions with the same name (in different modules) with the same composite bodies.
+    * Composite bodies' IDs are now based on path, not only on route name, as the auto-generated name uses the function names, that can be duplicated in different modules.
+    * The same new ID generation applies to response models.
+    * This also changes the generated title for those models.
+    * Only composite bodies and response models are affected because those are generated dynamically, they don't have a module (a Python file).
+    * This also adds the possibility of using `.include_router()` with the same `APIRouter` *multiple*  times, with different prefixes, e.g. `/api/v2` and `/api/latest`, and it will now work correctly.
+    * PR [#347](https://github.com/tiangolo/fastapi/pull/347).
+
 ## 0.31.0
 
 * Upgrade Pydantic supported version to `0.29.0`.
