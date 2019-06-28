@@ -1,5 +1,7 @@
 ## Latest changes
 
+* Add note to docs: [Include the same router multiple times with different `prefix`](https://fastapi.tiangolo.com/tutorial/bigger-applications/#include-the-same-router-multiple-times-with-different-prefix). PR [#348](https://github.com/tiangolo/fastapi/pull/348).
+
 * Fix OpenAPI/JSON Schema generation for two functions with the same name (in different modules) with the same composite bodies.
     * Composite bodies' IDs are now based on path, not only on route name, as the auto-generated name uses the function names, that can be duplicated in different modules.
     * The same new ID generation applies to response models.
