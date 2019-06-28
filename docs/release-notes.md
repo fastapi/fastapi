@@ -1,5 +1,7 @@
 ## Latest changes
 
+## 0.31.0
+
 * Upgrade Pydantic supported version to `0.29.0`.
     * New supported version range is `"pydantic >=0.28,<=0.29.0"`.
     * This adds support for Pydantic [Generic Models](https://pydantic-docs.helpmanual.io/#generic-models), kudos to [@dmontagu](https://github.com/dmontagu).
