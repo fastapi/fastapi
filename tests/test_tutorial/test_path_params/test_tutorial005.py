@@ -35,6 +35,7 @@ openapi_schema = {
                         "schema": {
                             "title": "Model_Name",
                             "enum": ["alexnet", "resnet", "lenet"],
+                            "type": "string",
                         },
                         "name": "model_name",
                         "in": "path",

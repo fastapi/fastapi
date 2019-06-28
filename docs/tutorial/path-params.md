@@ -119,7 +119,9 @@ If you have a *path operation* that receives a *path parameter*, but you want th
 
 ### Create an `Enum` class
 
-Import `Enum` and create a sub-class that inherits from it.
+Import `Enum` and create a sub-class that inherits from `str` and from `Enum`.
+
+By inheriting from `str` the API docs will be able to know that the values must be of type `string` and will be able to render correctly.
 
 And create class attributes with fixed values, those fixed values will be the available valid values:
 
