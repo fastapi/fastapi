@@ -34,7 +34,9 @@ openapi_schema = {
                 "requestBody": {
                     "content": {
                         "multipart/form-data": {
-                            "schema": {"$ref": "#/components/schemas/Body_create_file"}
+                            "schema": {
+                                "$ref": "#/components/schemas/Body_create_file_files__post"
+                            }
                         }
                     },
                     "required": True,
@@ -44,8 +46,8 @@ openapi_schema = {
     },
     "components": {
         "schemas": {
-            "Body_create_file": {
-                "title": "Body_create_file",
+            "Body_create_file_files__post": {
+                "title": "Body_create_file_files__post",
                 "required": ["file", "fileb", "token"],
                 "type": "object",
                 "properties": {

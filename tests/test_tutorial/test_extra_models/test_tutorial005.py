@@ -16,7 +16,7 @@ openapi_schema = {
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "title": "Response_Read_Keyword_Weights",
+                                    "title": "Response_Read_Keyword_Weights_Keyword-Weights__Get",
                                     "type": "object",
                                     "additionalProperties": {"type": "number"},
                                 }

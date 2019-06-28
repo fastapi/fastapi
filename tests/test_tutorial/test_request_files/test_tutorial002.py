@@ -33,7 +33,9 @@ openapi_schema = {
                 "requestBody": {
                     "content": {
                         "multipart/form-data": {
-                            "schema": {"$ref": "#/components/schemas/Body_create_files"}
+                            "schema": {
+                                "$ref": "#/components/schemas/Body_create_files_files__post"
+                            }
                         }
                     },
                     "required": True,
@@ -64,7 +66,7 @@ openapi_schema = {
                     "content": {
                         "multipart/form-data": {
                             "schema": {
-                                "$ref": "#/components/schemas/Body_create_upload_files"
+                                "$ref": "#/components/schemas/Body_create_upload_files_uploadfiles__post"
                             }
                         }
                     },
@@ -87,8 +89,8 @@ openapi_schema = {
     },
     "components": {
         "schemas": {
-            "Body_create_files": {
-                "title": "Body_create_files",
+            "Body_create_upload_files_uploadfiles__post": {
+                "title": "Body_create_upload_files_uploadfiles__post",
                 "required": ["files"],
                 "type": "object",
                 "properties": {
@@ -99,8 +101,8 @@ openapi_schema = {
                     }
                 },
             },
-            "Body_create_upload_files": {
-                "title": "Body_create_upload_files",
+            "Body_create_files_files__post": {
+                "title": "Body_create_files_files__post",
                 "required": ["files"],
                 "type": "object",
                 "properties": {

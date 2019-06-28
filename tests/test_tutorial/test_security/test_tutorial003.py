@@ -31,7 +31,9 @@ openapi_schema = {
                 "requestBody": {
                     "content": {
                         "application/x-www-form-urlencoded": {
-                            "schema": {"$ref": "#/components/schemas/Body_login"}
+                            "schema": {
+                                "$ref": "#/components/schemas/Body_login_token_post"
+                            }
                         }
                     },
                     "required": True,
@@ -54,8 +56,8 @@ openapi_schema = {
     },
     "components": {
         "schemas": {
-            "Body_login": {
-                "title": "Body_login",
+            "Body_login_token_post": {
+                "title": "Body_login_token_post",
                 "required": ["username", "password"],
                 "type": "object",
                 "properties": {

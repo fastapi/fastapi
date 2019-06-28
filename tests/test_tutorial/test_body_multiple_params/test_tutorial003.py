@@ -40,7 +40,9 @@ openapi_schema = {
                 "requestBody": {
                     "content": {
                         "application/json": {
-                            "schema": {"$ref": "#/components/schemas/Body_update_item"}
+                            "schema": {
+                                "$ref": "#/components/schemas/Body_update_item_items__item_id__put"
+                            }
                         }
                     },
                     "required": True,
@@ -70,8 +72,8 @@ openapi_schema = {
                     "full_name": {"title": "Full_Name", "type": "string"},
                 },
             },
-            "Body_update_item": {
-                "title": "Body_update_item",
+            "Body_update_item_items__item_id__put": {
+                "title": "Body_update_item_items__item_id__put",
                 "required": ["item", "user", "importance"],
                 "type": "object",
                 "properties": {
