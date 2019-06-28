@@ -1,5 +1,7 @@
 ## Latest changes
 
+* Add test for having path templates in `prefix` of `.include_router`. PR [#349](https://github.com/tiangolo/fastapi/pull/349).
+
 * Add note to docs: [Include the same router multiple times with different `prefix`](https://fastapi.tiangolo.com/tutorial/bigger-applications/#include-the-same-router-multiple-times-with-different-prefix). PR [#348](https://github.com/tiangolo/fastapi/pull/348).
 
 * Fix OpenAPI/JSON Schema generation for two functions with the same name (in different modules) with the same composite bodies.
