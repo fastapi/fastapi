@@ -1,5 +1,10 @@
 ## Latest changes
 
+* Upgrade Pydantic supported version to `0.29.0`.
+    * New supported version range is `"pydantic >=0.28,<=0.29.0"`.
+    * This adds support for Pydantic [Generic Models](https://pydantic-docs.helpmanual.io/#generic-models), kudos to [@dmontagu](https://github.com/dmontagu).
+    * PR [#344](https://github.com/tiangolo/fastapi/pull/344).
+
 ## 0.30.1
 
 * Add section in docs about [External Links and Articles](https://fastapi.tiangolo.com/external-links/). PR [#341](https://github.com/tiangolo/fastapi/pull/341).
