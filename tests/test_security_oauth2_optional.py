@@ -73,7 +73,7 @@ openapi_schema = {
                     "content": {
                         "application/x-www-form-urlencoded": {
                             "schema": {
-                                "$ref": "#/components/schemas/Body_read_current_user"
+                                "$ref": "#/components/schemas/Body_read_current_user_login_post"
                             }
                         }
                     },
@@ -97,8 +97,8 @@ openapi_schema = {
     },
     "components": {
         "schemas": {
-            "Body_read_current_user": {
-                "title": "Body_read_current_user",
+            "Body_read_current_user_login_post": {
+                "title": "Body_read_current_user_login_post",
                 "required": ["grant_type", "username", "password"],
                 "type": "object",
                 "properties": {

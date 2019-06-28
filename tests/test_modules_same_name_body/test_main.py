@@ -1,8 +1,6 @@
-import os
-
 from starlette.testclient import TestClient
 
-from request_files.tutorial002 import app
+from .app.main import app
 
 client = TestClient(app)
 
@@ -10,7 +8,7 @@ openapi_schema = {
     "openapi": "3.0.2",
     "info": {"title": "Fast API", "version": "0.1.0"},
     "paths": {
-        "/files/": {
+        "/a/compute": {
             "post": {
                 "responses": {
                     "200": {
@@ -28,13 +26,13 @@ openapi_schema = {
                         },
                     },
                 },
-                "summary": "Create Files",
-                "operationId": "create_files_files__post",
+                "summary": "Compute",
+                "operationId": "compute_a_compute_post",
                 "requestBody": {
                     "content": {
-                        "multipart/form-data": {
+                        "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/Body_create_files_files__post"
+                                "$ref": "#/components/schemas/Body_compute_a_compute_post"
                             }
                         }
                     },
@@ -42,7 +40,7 @@ openapi_schema = {
                 },
             }
         },
-        "/uploadfiles/": {
+        "/b/compute/": {
             "post": {
                 "responses": {
                     "200": {
@@ -60,57 +58,39 @@ openapi_schema = {
                         },
                     },
                 },
-                "summary": "Create Upload Files",
-                "operationId": "create_upload_files_uploadfiles__post",
+                "summary": "Compute",
+                "operationId": "compute_b_compute__post",
                 "requestBody": {
                     "content": {
-                        "multipart/form-data": {
+                        "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/Body_create_upload_files_uploadfiles__post"
+                                "$ref": "#/components/schemas/Body_compute_b_compute__post"
                             }
                         }
                     },
                     "required": True,
                 },
-            }
-        },
-        "/": {
-            "get": {
-                "responses": {
-                    "200": {
-                        "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
-                    }
-                },
-                "summary": "Main",
-                "operationId": "main__get",
             }
         },
     },
     "components": {
         "schemas": {
-            "Body_create_upload_files_uploadfiles__post": {
-                "title": "Body_create_upload_files_uploadfiles__post",
-                "required": ["files"],
+            "Body_compute_b_compute__post": {
+                "title": "Body_compute_b_compute__post",
+                "required": ["a", "b"],
                 "type": "object",
                 "properties": {
-                    "files": {
-                        "title": "Files",
-                        "type": "array",
-                        "items": {"type": "string", "format": "binary"},
-                    }
+                    "a": {"title": "A", "type": "integer"},
+                    "b": {"title": "B", "type": "string"},
                 },
             },
-            "Body_create_files_files__post": {
-                "title": "Body_create_files_files__post",
-                "required": ["files"],
+            "Body_compute_a_compute_post": {
+                "title": "Body_compute_a_compute_post",
+                "required": ["a", "b"],
                 "type": "object",
                 "properties": {
-                    "files": {
-                        "title": "Files",
-                        "type": "array",
-                        "items": {"type": "string", "format": "binary"},
-                    }
+                    "a": {"title": "A", "type": "integer"},
+                    "b": {"title": "B", "type": "string"},
                 },
             },
             "ValidationError": {
@@ -149,71 +129,27 @@ def test_openapi_schema():
     assert response.json() == openapi_schema
 
 
-file_required = {
-    "detail": [
-        {
-            "loc": ["body", "files"],
-            "msg": "field required",
-            "type": "value_error.missing",
-        }
-    ]
-}
+def test_post_a():
+    data = {"a": 2, "b": "foo"}
+    response = client.post("/a/compute", json=data)
+    assert response.status_code == 200
+    data = response.json()
 
 
-def test_post_form_no_body():
-    response = client.post("/files/")
+def test_post_a_invalid():
+    data = {"a": "bar", "b": "foo"}
+    response = client.post("/a/compute", json=data)
     assert response.status_code == 422
-    assert response.json() == file_required
 
 
-def test_post_body_json():
-    response = client.post("/files/", json={"file": "Foo"})
+def test_post_b():
+    data = {"a": 2, "b": "foo"}
+    response = client.post("/b/compute/", json=data)
+    assert response.status_code == 200
+    data = response.json()
+
+
+def test_post_b_invalid():
+    data = {"a": "bar", "b": "foo"}
+    response = client.post("/b/compute/", json=data)
     assert response.status_code == 422
-    assert response.json() == file_required
-
-
-def test_post_files(tmpdir):
-    path = os.path.join(tmpdir, "test.txt")
-    with open(path, "wb") as file:
-        file.write(b"<file content>")
-    path2 = os.path.join(tmpdir, "test2.txt")
-    with open(path2, "wb") as file:
-        file.write(b"<file content2>")
-
-    client = TestClient(app)
-    response = client.post(
-        "/files/",
-        files=(
-            ("files", ("test.txt", open(path, "rb"))),
-            ("files", ("test2.txt", open(path2, "rb"))),
-        ),
-    )
-    assert response.status_code == 200
-    assert response.json() == {"file_sizes": [14, 15]}
-
-
-def test_post_upload_file(tmpdir):
-    path = os.path.join(tmpdir, "test.txt")
-    with open(path, "wb") as file:
-        file.write(b"<file content>")
-    path2 = os.path.join(tmpdir, "test2.txt")
-    with open(path2, "wb") as file:
-        file.write(b"<file content2>")
-
-    client = TestClient(app)
-    response = client.post(
-        "/uploadfiles/",
-        files=(
-            ("files", ("test.txt", open(path, "rb"))),
-            ("files", ("test2.txt", open(path2, "rb"))),
-        ),
-    )
-    assert response.status_code == 200
-    assert response.json() == {"filenames": ["test.txt", "test2.txt"]}
-
-
-def test_get_root():
-    client = TestClient(app)
-    response = client.get("/")
-    assert response.status_code == 200
-    assert b"<form" in response.content

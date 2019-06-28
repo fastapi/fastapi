@@ -8,7 +8,11 @@ from fastapi.encoders import jsonable_encoder
 from fastapi.openapi.constants import METHODS_WITH_BODY, REF_PREFIX
 from fastapi.openapi.models import OpenAPI
 from fastapi.params import Body, Param
-from fastapi.utils import get_flat_models_from_routes, get_model_definitions
+from fastapi.utils import (
+    generate_operation_id_for_path,
+    get_flat_models_from_routes,
+    get_model_definitions,
+)
 from pydantic.fields import Field
 from pydantic.schema import field_schema, get_model_name_map
 from pydantic.utils import lenient_issubclass
@@ -113,10 +117,7 @@ def generate_operation_id(*, route: routing.APIRoute, method: str) -> str:
     if route.operation_id:
         return route.operation_id
     path: str = route.path_format
-    operation_id = route.name + path
-    operation_id = operation_id.replace("{", "_").replace("}", "_").replace("/", "_")
-    operation_id = operation_id + "_" + method.lower()
-    return operation_id
+    return generate_operation_id_for_path(name=route.name, path=path, method=method)
 
 
 def generate_operation_summary(*, route: routing.APIRoute, method: str) -> str:

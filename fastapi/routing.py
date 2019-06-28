@@ -13,7 +13,7 @@ from fastapi.dependencies.utils import (
 )
 from fastapi.encoders import jsonable_encoder
 from fastapi.exceptions import RequestValidationError, WebSocketRequestValidationError
-from fastapi.utils import create_cloned_field
+from fastapi.utils import create_cloned_field, generate_operation_id_for_path
 from pydantic import BaseConfig, BaseModel, Schema
 from pydantic.error_wrappers import ErrorWrapper, ValidationError
 from pydantic.fields import Field
@@ -205,12 +205,19 @@ class APIRoute(routing.Route):
         self.path = path
         self.endpoint = endpoint
         self.name = get_name(endpoint) if name is None else name
+        self.path_regex, self.path_format, self.param_convertors = compile_path(path)
+        if methods is None:
+            methods = ["GET"]
+        self.methods = set([method.upper() for method in methods])
+        self.unique_id = generate_operation_id_for_path(
+            name=self.name, path=self.path_format, method=list(methods)[0]
+        )
         self.response_model = response_model
         if self.response_model:
             assert lenient_issubclass(
                 response_class, JSONResponse
             ), "To declare a type the response must be a JSON response"
-            response_name = "Response_" + self.name
+            response_name = "Response_" + self.unique_id
             self.response_field: Optional[Field] = Field(
                 name=response_name,
                 type_=self.response_model,
@@ -251,7 +258,7 @@ class APIRoute(routing.Route):
                 assert lenient_issubclass(
                     model, BaseModel
                 ), "A response model must be a Pydantic model"
-                response_name = f"Response_{additional_status_code}_{self.name}"
+                response_name = f"Response_{additional_status_code}_{self.unique_id}"
                 response_field = Field(
                     name=response_name,
                     type_=model,
@@ -267,9 +274,6 @@ class APIRoute(routing.Route):
         else:
             self.response_fields = {}
         self.deprecated = deprecated
-        if methods is None:
-            methods = ["GET"]
-        self.methods = set([method.upper() for method in methods])
         self.operation_id = operation_id
         self.response_model_include = response_model_include
         self.response_model_exclude = response_model_exclude
@@ -278,7 +282,6 @@ class APIRoute(routing.Route):
         self.include_in_schema = include_in_schema
         self.response_class = response_class
 
-        self.path_regex, self.path_format, self.param_convertors = compile_path(path)
         assert inspect.isfunction(endpoint) or inspect.ismethod(
             endpoint
         ), f"An endpoint must be a function or method"
@@ -288,7 +291,7 @@ class APIRoute(routing.Route):
                 0,
                 get_parameterless_sub_dependant(depends=depends, path=self.path_format),
             )
-        self.body_field = get_body_field(dependant=self.dependant, name=self.name)
+        self.body_field = get_body_field(dependant=self.dependant, name=self.unique_id)
         self.dependency_overrides_provider = dependency_overrides_provider
         self.app = request_response(
             get_app(

@@ -44,7 +44,9 @@ openapi_schema = {
                 "requestBody": {
                     "content": {
                         "application/json": {
-                            "schema": {"$ref": "#/components/schemas/Body_read_items"}
+                            "schema": {
+                                "$ref": "#/components/schemas/Body_read_items_items__item_id__put"
+                            }
                         }
                     }
                 },
@@ -53,8 +55,8 @@ openapi_schema = {
     },
     "components": {
         "schemas": {
-            "Body_read_items": {
-                "title": "Body_read_items",
+            "Body_read_items_items__item_id__put": {
+                "title": "Body_read_items_items__item_id__put",
                 "type": "object",
                 "properties": {
                     "start_datetime": {
