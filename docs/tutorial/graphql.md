@@ -32,6 +32,41 @@ You will see GraphiQL web user interface:
 
 <img src="/img/tutorial/graphql/image01.png">
 
+## Write test for it
+
+```python
+# run with pytest
+import graphene
+from graphene.test import Client
+from graphql.execution.executors.asyncio import AsyncioExecutor
+
+
+class Query(graphene.ObjectType):
+    hey = graphene.String(name=graphene.String(default_value="stranger"))
+    async_hey = graphene.String(name=graphene.String(default_value="stranger"))
+
+    def resolve_hey(self, info, name):
+        return "hello!"
+
+    async def resolve_async_hey(self, info, name):
+        return "async hello!"
+
+
+my_schema = graphene.Schema(query=Query)
+
+
+def test_hey(event_loop):
+    client = Client(my_schema)
+    query = '''
+    {
+      hey
+      asyncHey
+    }
+    '''
+    executed = client.execute(query, executor=AsyncioExecutor())
+    assert executed == {'data': {'hey': 'hello!', 'asyncHey': "async hello!"}}
+```
+
 
 ## More details
 
