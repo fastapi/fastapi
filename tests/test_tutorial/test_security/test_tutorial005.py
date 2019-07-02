@@ -42,7 +42,7 @@ openapi_schema = {
                     "content": {
                         "application/x-www-form-urlencoded": {
                             "schema": {
-                                "$ref": "#/components/schemas/Body_login_for_access_token"
+                                "$ref": "#/components/schemas/Body_login_for_access_token_token_post"
                             }
                         }
                     },
@@ -116,8 +116,8 @@ openapi_schema = {
                     "token_type": {"title": "Token_Type", "type": "string"},
                 },
             },
-            "Body_login_for_access_token": {
-                "title": "Body_login_for_access_token",
+            "Body_login_for_access_token_token_post": {
+                "title": "Body_login_for_access_token_token_post",
                 "required": ["username", "password"],
                 "type": "object",
                 "properties": {
@@ -177,6 +177,12 @@ openapi_schema = {
 }
 
 
+def test_openapi_schema():
+    response = client.get("/openapi.json")
+    assert response.status_code == 200
+    assert response.json() == openapi_schema
+
+
 def get_access_token(username="johndoe", password="secret", scope=None):
     data = {"username": username, "password": password}
     if scope:
@@ -185,12 +191,6 @@ def get_access_token(username="johndoe", password="secret", scope=None):
     content = response.json()
     access_token = content.get("access_token")
     return access_token
-
-
-def test_openapi_schema():
-    response = client.get("/openapi.json")
-    assert response.status_code == 200
-    assert response.json() == openapi_schema
 
 
 def test_login():

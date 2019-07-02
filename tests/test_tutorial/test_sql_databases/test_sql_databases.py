@@ -16,7 +16,7 @@ openapi_schema = {
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "title": "Response_Read_Users",
+                                    "title": "Response_Read_Users_Users__Get",
                                     "type": "array",
                                     "items": {"$ref": "#/components/schemas/User"},
                                 }
@@ -168,7 +168,7 @@ openapi_schema = {
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "title": "Response_Read_Items",
+                                    "title": "Response_Read_Items_Items__Get",
                                     "type": "array",
                                     "items": {"$ref": "#/components/schemas/Item"},
                                 }

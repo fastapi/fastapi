@@ -122,7 +122,7 @@ class Schema(SchemaBase):
     not_: Optional[List[SchemaBase]] = PSchema(None, alias="not")  # type: ignore
     items: Optional[SchemaBase] = None
     properties: Optional[Dict[str, SchemaBase]] = None
-    additionalProperties: Optional[Union[SchemaBase, bool]] = None
+    additionalProperties: Optional[Union[SchemaBase, bool]] = None  # type: ignore
 
 
 class Example(BaseModel):
@@ -149,9 +149,9 @@ class Encoding(BaseModel):
 
 
 class MediaType(BaseModel):
-    schema_: Optional[Union[Schema, Reference]] = PSchema(
+    schema_: Optional[Union[Schema, Reference]] = PSchema(  # type: ignore
         None, alias="schema"
-    )  # type: ignore
+    )
     example: Optional[Any] = None
     examples: Optional[Dict[str, Union[Example, Reference]]] = None
     encoding: Optional[Dict[str, Encoding]] = None
@@ -165,9 +165,9 @@ class ParameterBase(BaseModel):
     style: Optional[str] = None
     explode: Optional[bool] = None
     allowReserved: Optional[bool] = None
-    schema_: Optional[Union[Schema, Reference]] = PSchema(
+    schema_: Optional[Union[Schema, Reference]] = PSchema(  # type: ignore
         None, alias="schema"
-    )  # type: ignore
+    )
     example: Optional[Any] = None
     examples: Optional[Dict[str, Union[Example, Reference]]] = None
     # Serialization rules for more complex scenarios

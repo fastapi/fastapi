@@ -70,10 +70,8 @@ You can let me know:
 
 ## Vote for FastAPI
 
-You can vote to include FastAPI in several "awesome lists":
-
 * <a href="https://github.com/vinta/awesome-python/pull/1209" target="_blank">Vote to include **FastAPI** in `awesome-python`</a>.
-* <a href="https://github.com/timofurrer/awesome-asyncio/pull/43" target="_blank">Vote to include **FastAPI** in `awesome-asyncio`</a>.
+* <a href="https://www.slant.co/options/34241/~fastapi-review" target="_blank">Vote for **FastAPI** in Slant</a>.
 
 ## Help others with issues in GitHub
 

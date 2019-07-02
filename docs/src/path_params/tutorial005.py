@@ -3,7 +3,7 @@ from enum import Enum
 from fastapi import FastAPI
 
 
-class ModelName(Enum):
+class ModelName(str, Enum):
     alexnet = "alexnet"
     resnet = "resnet"
     lenet = "lenet"

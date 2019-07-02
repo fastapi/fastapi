@@ -41,7 +41,9 @@ openapi_schema = {
                 "requestBody": {
                     "content": {
                         "application/json": {
-                            "schema": {"$ref": "#/components/schemas/Body_update_item"}
+                            "schema": {
+                                "$ref": "#/components/schemas/Body_update_item_items__item_id__put"
+                            }
                         }
                     },
                     "required": True,
@@ -71,8 +73,8 @@ openapi_schema = {
                     "tax": {"title": "Tax", "type": "number"},
                 },
             },
-            "Body_update_item": {
-                "title": "Body_update_item",
+            "Body_update_item_items__item_id__put": {
+                "title": "Body_update_item_items__item_id__put",
                 "required": ["item"],
                 "type": "object",
                 "properties": {"item": {"$ref": "#/components/schemas/Item"}},
