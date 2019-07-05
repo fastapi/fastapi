@@ -31,7 +31,7 @@ databases = {extras = ["sqlite"],version = "*"}
 hypercorn = "*"
 
 [requires]
-python_version = "3.6"
+python_version = ">=3.6"
 
 [pipenv]
 allow_prereleases = true
