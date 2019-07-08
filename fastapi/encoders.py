@@ -42,25 +42,6 @@ def _jsonable_encoder(
     custom_encoder: dict,
     sqlalchemy_safe: bool,
 ) -> Any:
-    if isinstance(obj, BaseModel):
-        encoder = getattr(obj.Config, "json_encoders", custom_encoder)
-        return _jsonable_encoder(
-            obj.dict(
-                include=include,
-                exclude=exclude,
-                by_alias=by_alias,
-                skip_defaults=skip_defaults,
-            ),
-            include=include,
-            exclude=exclude,
-            by_alias=by_alias,
-            skip_defaults=skip_defaults,
-            include_none=include_none,
-            custom_encoder=encoder,
-            sqlalchemy_safe=sqlalchemy_safe,
-        )
-    if isinstance(obj, Enum):
-        return obj.value
     if isinstance(obj, (str, int, float, type(None))):
         return obj
     if isinstance(obj, dict):
@@ -113,6 +94,26 @@ def _jsonable_encoder(
                 )
             )
         return encoded_list
+
+    if isinstance(obj, BaseModel):
+        encoder = getattr(obj.Config, "json_encoders", custom_encoder)
+        return _jsonable_encoder(
+            obj.dict(
+                include=include,
+                exclude=exclude,
+                by_alias=by_alias,
+                skip_defaults=skip_defaults,
+            ),
+            include=include,
+            exclude=exclude,
+            by_alias=by_alias,
+            skip_defaults=skip_defaults,
+            include_none=include_none,
+            custom_encoder=encoder,
+            sqlalchemy_safe=sqlalchemy_safe,
+        )
+    if isinstance(obj, Enum):
+        return obj.value
     errors: List[Exception] = []
     try:
         if custom_encoder and type(obj) in custom_encoder:
