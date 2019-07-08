@@ -20,15 +20,41 @@ def jsonable_encoder(
         include = set(include)
     if exclude is not None and not isinstance(exclude, set):
         exclude = set(exclude)
+    return _jsonable_encoder(
+        obj,
+        include=include,
+        exclude=exclude,
+        by_alias=by_alias,
+        skip_defaults=skip_defaults,
+        include_none=include_none,
+        custom_encoder=custom_encoder,
+        sqlalchemy_safe=sqlalchemy_safe,
+    )
+
+
+def _jsonable_encoder(
+    obj: Any,
+    include: Set[str],
+    exclude: Set[str],
+    by_alias: bool,
+    skip_defaults: bool,
+    include_none: bool,
+    custom_encoder: dict,
+    sqlalchemy_safe: bool,
+) -> Any:
     if isinstance(obj, BaseModel):
         encoder = getattr(obj.Config, "json_encoders", custom_encoder)
-        return jsonable_encoder(
+        return _jsonable_encoder(
             obj.dict(
                 include=include,
                 exclude=exclude,
                 by_alias=by_alias,
                 skip_defaults=skip_defaults,
             ),
+            include=include,
+            exclude=exclude,
+            by_alias=by_alias,
+            skip_defaults=skip_defaults,
             include_none=include_none,
             custom_encoder=encoder,
             sqlalchemy_safe=sqlalchemy_safe,
@@ -49,16 +75,20 @@ def jsonable_encoder(
                 and (value is not None or include_none)
                 and ((include and key in include) or key not in exclude)
             ):
-                encoded_key = jsonable_encoder(
+                encoded_key = _jsonable_encoder(
                     key,
+                    include=include,
+                    exclude=exclude,
                     by_alias=by_alias,
                     skip_defaults=skip_defaults,
                     include_none=include_none,
                     custom_encoder=custom_encoder,
                     sqlalchemy_safe=sqlalchemy_safe,
                 )
-                encoded_value = jsonable_encoder(
+                encoded_value = _jsonable_encoder(
                     value,
+                    include=include,
+                    exclude=exclude,
                     by_alias=by_alias,
                     skip_defaults=skip_defaults,
                     include_none=include_none,
@@ -71,7 +101,7 @@ def jsonable_encoder(
         encoded_list = []
         for item in obj:
             encoded_list.append(
-                jsonable_encoder(
+                _jsonable_encoder(
                     item,
                     include=include,
                     exclude=exclude,
@@ -101,8 +131,10 @@ def jsonable_encoder(
             except Exception as e:
                 errors.append(e)
                 raise ValueError(errors)
-    return jsonable_encoder(
+    return _jsonable_encoder(
         data,
+        include=include,
+        exclude=exclude,
         by_alias=by_alias,
         skip_defaults=skip_defaults,
         include_none=include_none,
