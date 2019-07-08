@@ -125,10 +125,14 @@ def _jsonable_encoder(
         errors.append(e)
         try:
             data = dict(obj)
+            if not data:
+                return data
         except Exception as e:
             errors.append(e)
             try:
                 data = vars(obj)
+                if not data:
+                    return data
             except Exception as e:
                 errors.append(e)
                 raise ValueError(errors)
