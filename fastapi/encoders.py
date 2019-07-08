@@ -1,6 +1,6 @@
 from enum import Enum
 from types import GeneratorType
-from typing import Any, List, Set
+from typing import Any, List, Set, Optional
 
 from pydantic import BaseModel
 from pydantic.json import ENCODERS_BY_TYPE
@@ -34,7 +34,8 @@ def jsonable_encoder(
 
 def _jsonable_encoder(
     obj: Any,
-    include: Set[str],
+    *,
+    include: Optional[Set[str]],
     exclude: Set[str],
     by_alias: bool,
     skip_defaults: bool,
