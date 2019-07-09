@@ -1,6 +1,6 @@
 from enum import Enum
 from types import GeneratorType
-from typing import Any, List, Set, Optional
+from typing import Any, List, Optional, Set
 
 from pydantic import BaseModel
 from pydantic.json import ENCODERS_BY_TYPE
