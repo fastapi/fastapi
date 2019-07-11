@@ -99,3 +99,18 @@ def test_encode_model_with_alias_raises():
 def test_encode_model_with_alias():
     model = ModelWithAlias(Foo="Bar")
     assert jsonable_encoder(model) == {"Foo": "Bar"}
+
+
+def test_unknown_type_value_and_empty_dict():
+    class _Unknown:
+        def __iter__(self):
+            return iter([])
+
+    assert jsonable_encoder({"k": _Unknown()}) == {"k": {}}
+
+
+def test_unknown_type_value_and_empty_vars():
+    class _Unknown:
+        pass
+
+    assert jsonable_encoder({"k": _Unknown()}) == {"k": {}}
