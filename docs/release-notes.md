@@ -1,6 +1,6 @@
 ## Latest changes
 
-## 0.31.1
+## 0.32.0
 
 * Fix typo in docs for features. PR [#380](https://github.com/tiangolo/fastapi/pull/380) by [@MartinoMensio](https://github.com/MartinoMensio).
 
