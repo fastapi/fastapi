@@ -37,7 +37,7 @@ def get_model_definitions(
 ) -> Dict[str, Any]:
     definitions: Dict[str, Dict] = {}
     for model in flat_models:
-        m_schema, m_definitions = model_process_schema(
+        m_schema, m_definitions, m_nested_models = model_process_schema(
             model, model_name_map=model_name_map, ref_prefix=REF_PREFIX
         )
         definitions.update(m_definitions)
