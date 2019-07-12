@@ -100,7 +100,7 @@ def get_openapi_operation_request_body(
     if not body_field:
         return None
     assert isinstance(body_field, Field)
-    body_schema, _ = field_schema(
+    body_schema, _, _ = field_schema(
         body_field, model_name_map=model_name_map, ref_prefix=REF_PREFIX
     )
     body_field.schema = cast(Body, body_field.schema)
@@ -184,7 +184,7 @@ def get_openapi_path(
                     ), "An additional response must be a dict"
                     field = route.response_fields.get(additional_status_code)
                     if field:
-                        response_schema, _ = field_schema(
+                        response_schema, _, _ = field_schema(
                             field, model_name_map=model_name_map, ref_prefix=REF_PREFIX
                         )
                         response.setdefault("content", {}).setdefault(
@@ -201,7 +201,7 @@ def get_openapi_path(
             response_schema = {"type": "string"}
             if lenient_issubclass(route.response_class, JSONResponse):
                 if route.response_field:
-                    response_schema, _ = field_schema(
+                    response_schema, _, _ = field_schema(
                         route.response_field,
                         model_name_map=model_name_map,
                         ref_prefix=REF_PREFIX,
