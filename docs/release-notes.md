@@ -1,5 +1,7 @@
 ## Latest changes
 
+* Update wording in docs about [OAuth2 scopes](https://fastapi.tiangolo.com/tutorial/security/oauth2-scopes/). PR [#371](https://github.com/tiangolo/fastapi/pull/371).
+
 * Update docs for `Enum`s to inherit from `str` and improve Swagger UI rendering. PR [#351](https://github.com/tiangolo/fastapi/pull/351).
 
 * Fix regression, add Swagger UI deep linking again. PR [#350](https://github.com/tiangolo/fastapi/pull/350).
