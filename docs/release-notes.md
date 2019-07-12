@@ -1,6 +1,8 @@
 ## Latest changes
 
-* Update wording in docs about [OAuth2 scopes](https://fastapi.tiangolo.com/tutorial/security/oauth2-scopes/). PR [#371](https://github.com/tiangolo/fastapi/pull/371).
+* Fix source code `limit` for example in [Query Parameters](https://fastapi.tiangolo.com/tutorial/query-params/). PR [#366](https://github.com/tiangolo/fastapi/pull/366) by [@Smashman](https://github.com/Smashman).
+
+* Update wording in docs about [OAuth2 scopes](https://fastapi.tiangolo.com/tutorial/security/oauth2-scopes/). PR [#371](https://github.com/tiangolo/fastapi/pull/371) by [@cjw296](https://github.com/cjw296).
 
 * Update docs for `Enum`s to inherit from `str` and improve Swagger UI rendering. PR [#351](https://github.com/tiangolo/fastapi/pull/351).
 
