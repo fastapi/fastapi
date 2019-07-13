@@ -1,5 +1,7 @@
 ## Latest changes
 
+## 0.33.0
+
 * Upgrade Pydantic version to `0.30.0`. PR [#384](https://github.com/tiangolo/fastapi/pull/384) by [@jekirl](https://github.com/jekirl).
 
 ## 0.32.0
