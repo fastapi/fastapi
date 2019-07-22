@@ -131,12 +131,19 @@ def get_flat_dependant(dependant: Dependant) -> Dependant:
 
 
 def is_scalar_field(field: Field) -> bool:
-    return (
-        field.shape == Shape.SINGLETON
-        and not lenient_issubclass(field.type_, BaseModel)
-        and not lenient_issubclass(field.type_, sequence_types + (dict,))
-        and not isinstance(field.schema, params.Body)
-    )
+    def is_scalar_field_(field_: Field) -> bool:
+        return (
+            field_.shape == Shape.SINGLETON
+            and not lenient_issubclass(field_.type_, BaseModel)
+            and not lenient_issubclass(field_.type_, sequence_types + (dict,))
+            and not isinstance(field_.schema, params.Body)
+        )
+
+    if field.sub_fields:
+        return all(is_scalar_field_(f) for f in field.sub_fields) and not isinstance(
+            field.schema, params.Body
+        )
+    return is_scalar_field_(field)
 
 
 def is_scalar_sequence_field(field: Field) -> bool:
