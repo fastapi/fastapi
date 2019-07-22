@@ -1,8 +1,12 @@
+import sys
 from typing import Optional, Union
 
+import pytest
 from fastapi import FastAPI
 from pydantic import BaseModel
 from starlette.testclient import TestClient
+
+skip_py36 = pytest.mark.skipif(sys.version_info < (3, 7), reason="skip python3.6")
 
 app = FastAPI()
 
@@ -11,18 +15,19 @@ class Item(BaseModel):
     name: Optional[str] = None
 
 
-class OtherItem(BaseModel):
-    price: int
+class ExtendedItem(Item):
+    age: int
 
 
 @app.post("/items/")
-def save_union_body(item: Union[OtherItem, Item]):
+def save_union_different_body(item: Union[ExtendedItem, Item]):
     return {"item": item}
 
 
 client = TestClient(app)
 
-item_openapi_schema = {
+
+inherited_item_openapi_schema = {
     "openapi": "3.0.2",
     "info": {"title": "Fast API", "version": "0.1.0"},
     "paths": {
@@ -44,15 +49,15 @@ item_openapi_schema = {
                         },
                     },
                 },
-                "summary": "Save Union Body",
-                "operationId": "save_union_body_items__post",
+                "summary": "Save Union Different Body",
+                "operationId": "save_union_different_body_items__post",
                 "requestBody": {
                     "content": {
                         "application/json": {
                             "schema": {
                                 "title": "Item",
                                 "anyOf": [
-                                    {"$ref": "#/components/schemas/OtherItem"},
+                                    {"$ref": "#/components/schemas/ExtendedItem"},
                                     {"$ref": "#/components/schemas/Item"},
                                 ],
                             }
@@ -65,16 +70,19 @@ item_openapi_schema = {
     },
     "components": {
         "schemas": {
-            "OtherItem": {
-                "title": "OtherItem",
-                "required": ["price"],
-                "type": "object",
-                "properties": {"price": {"title": "Price", "type": "integer"}},
-            },
             "Item": {
                 "title": "Item",
                 "type": "object",
                 "properties": {"name": {"title": "Name", "type": "string"}},
+            },
+            "ExtendedItem": {
+                "title": "ExtendedItem",
+                "required": ["age"],
+                "type": "object",
+                "properties": {
+                    "name": {"title": "Name", "type": "string"},
+                    "age": {"title": "Age", "type": "integer"},
+                },
             },
             "ValidationError": {
                 "title": "ValidationError",
@@ -106,18 +114,21 @@ item_openapi_schema = {
 }
 
 
-def test_item_openapi_schema():
+@skip_py36
+def test_inherited_item_openapi_schema():
     response = client.get("/openapi.json")
     assert response.status_code == 200
-    assert response.json() == item_openapi_schema
+    assert response.json() == inherited_item_openapi_schema
 
 
-def test_put_other_item():
-    response = client.post("/items/", json={"price": 100})
+@skip_py36
+def test_put_extended_item():
+    response = client.post("/items/", json={"name": "Foo", "age": 5})
     assert response.status_code == 200
-    assert response.json() == {"item": {"price": 100}}
+    assert response.json() == {"item": {"name": "Foo", "age": 5}}
 
 
+@skip_py36
 def test_put_item():
     response = client.post("/items/", json={"name": "Foo"})
     assert response.status_code == 200
