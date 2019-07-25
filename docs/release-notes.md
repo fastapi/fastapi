@@ -5,6 +5,7 @@
 * Upgrade Starlette supported range to include the latest `0.12.7`. The new range is `0.11.1,<=0.12.7`. PR [#367](https://github.com/tiangolo/fastapi/pull/367) by [@dedsm](https://github.com/dedsm).
 
 * Add test for OpenAPI schema with duplicate models from PR [#333](https://github.com/tiangolo/fastapi/pull/333) by [@dmontagu](https://github.com/dmontagu). PR [#385](https://github.com/tiangolo/fastapi/pull/385).
+* Upgrade Pydantic version to `0.31.0`, Starlette version to `0.12.4`. PR [#398](https://github.com/tiangolo/fastapi/pull/398) by [@haizaar](https://github.com/haizaar).
 
 ## 0.33.0
 
