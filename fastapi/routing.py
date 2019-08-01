@@ -201,7 +201,6 @@ class APIRoute(routing.Route):
         response_class: Type[Response] = JSONResponse,
         dependency_overrides_provider: Any = None,
     ) -> None:
-        assert path.startswith("/"), "Routed paths must always start with '/'"
         self.path = path
         self.endpoint = endpoint
         self.name = get_name(endpoint) if name is None else name
@@ -448,6 +447,12 @@ class APIRouter(routing.Router):
             assert not prefix.endswith(
                 "/"
             ), "A path prefix must not end with '/', as the routes will start with '/'"
+        else:
+            for r in router.routes:
+                if not r.path:
+                    raise Exception(
+                        f"Prefix and path cannot be both empty (operation: {r.name})"
+                    )
         if responses is None:
             responses = {}
         for route in router.routes:
