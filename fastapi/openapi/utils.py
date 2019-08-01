@@ -45,7 +45,7 @@ validation_error_response_definition = {
 
 
 def get_openapi_params(dependant: Dependant) -> List[Field]:
-    flat_dependant = get_flat_dependant(dependant)
+    flat_dependant = get_flat_dependant(dependant, skip_repeats=True)
     return (
         flat_dependant.path_params
         + flat_dependant.query_params
@@ -150,7 +150,7 @@ def get_openapi_path(
         for method in route.methods:
             operation = get_openapi_operation_metadata(route=route, method=method)
             parameters: List[Dict] = []
-            flat_dependant = get_flat_dependant(route.dependant)
+            flat_dependant = get_flat_dependant(route.dependant, skip_repeats=True)
             security_definitions, operation_security = get_openapi_security_definitions(
                 flat_dependant=flat_dependant
             )
