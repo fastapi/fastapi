@@ -147,7 +147,7 @@ def get_websocket_app(
         if errors:
             await websocket.close(code=WS_1008_POLICY_VIOLATION)
             raise WebSocketRequestValidationError(errors)
-        assert dependant.call is not None, "dependant.call must me a function"
+        assert dependant.call is not None, "dependant.call must be a function"
         await dependant.call(**values)
 
     return app
