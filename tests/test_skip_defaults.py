@@ -17,5 +17,4 @@ def test_return_defaults():
 
     client = TestClient(app)
     response = client.get("/")
-    print(response)
     assert response.content == b"{}"
