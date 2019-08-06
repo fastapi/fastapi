@@ -19,7 +19,7 @@ classifiers = [
     "Topic :: Internet :: WWW/HTTP :: HTTP Servers",
 ]
 requires = [
-    "starlette >=0.11.1,<=0.12.0",
+    "starlette >=0.11.1,<=0.12.7",
     "pydantic >=0.30,<=0.30.0"
 ]
 description-file = "README.md"
