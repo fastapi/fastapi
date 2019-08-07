@@ -106,8 +106,9 @@ def test_openapi():
             {
                 "detail": [
                     {
+                        "ctx": {"enum_values": ["alexnet", "resnet", "lenet"]},
                         "loc": ["path", "model_name"],
-                        "msg": "value is not a valid enumeration member",
+                        "msg": "value is not a valid enumeration member; permitted: 'alexnet', 'resnet', 'lenet'",
                         "type": "type_error.enum",
                     }
                 ]
