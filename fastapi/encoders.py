@@ -1,15 +1,18 @@
 from enum import Enum
 from types import GeneratorType
-from typing import Any, List, Set, Union
+from typing import Any, Dict, List, Set, Union
 
 from pydantic import BaseModel
 from pydantic.json import ENCODERS_BY_TYPE
 
+SetIntStr = Set[Union[int, str]]
+DictIntStrAny = Dict[Union[int, str], Any]
+
 
 def jsonable_encoder(
     obj: Any,
-    include: Set[Union[int, str]] = None,
-    exclude: Set[Union[int, str]] = set(),
+    include: Union[SetIntStr, DictIntStrAny] = None,
+    exclude: Union[SetIntStr, DictIntStrAny] = set(),
     by_alias: bool = True,
     skip_defaults: bool = False,
     include_none: bool = True,
