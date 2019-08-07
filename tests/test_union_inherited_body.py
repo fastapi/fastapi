@@ -6,6 +6,11 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 from starlette.testclient import TestClient
 
+# In Python 3.6:
+# u = Union[ExtendedItem, Item] == __main__.Item
+
+# But in Python 3.7:
+# u = Union[ExtendedItem, Item] == typing.Union[__main__.ExtendedItem, __main__.Item]
 skip_py36 = pytest.mark.skipif(sys.version_info < (3, 7), reason="skip python3.6")
 
 app = FastAPI()
@@ -122,14 +127,14 @@ def test_inherited_item_openapi_schema():
 
 
 @skip_py36
-def test_put_extended_item():
+def test_post_extended_item():
     response = client.post("/items/", json={"name": "Foo", "age": 5})
     assert response.status_code == 200
     assert response.json() == {"item": {"name": "Foo", "age": 5}}
 
 
 @skip_py36
-def test_put_item():
+def test_post_item():
     response = client.post("/items/", json={"name": "Foo"})
     assert response.status_code == 200
     assert response.json() == {"item": {"name": "Foo"}}

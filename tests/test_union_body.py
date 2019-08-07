@@ -112,13 +112,13 @@ def test_item_openapi_schema():
     assert response.json() == item_openapi_schema
 
 
-def test_put_other_item():
+def test_post_other_item():
     response = client.post("/items/", json={"price": 100})
     assert response.status_code == 200
     assert response.json() == {"item": {"price": 100}}
 
 
-def test_put_item():
+def test_post_item():
     response = client.post("/items/", json={"name": "Foo"})
     assert response.status_code == 200
     assert response.json() == {"item": {"name": "Foo"}}
