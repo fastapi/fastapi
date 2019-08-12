@@ -1,4 +1,4 @@
-from typing import Any, Callable, Sequence
+from typing import Any, Callable, Sequence, TypeVar, overload
 
 from fastapi import params
 
@@ -238,10 +238,40 @@ def File(  # noqa: N802
     )
 
 
+T = TypeVar("T")
+
+
+@overload
+def Depends(dependency: Callable[..., T], *, use_cache: bool = True) -> T:
+    ...
+
+
+@overload
+def Depends(dependency: None = None, *, use_cache: bool = True) -> Any:
+    ...
+
+
 def Depends(  # noqa: N802
     dependency: Callable = None, *, use_cache: bool = True
 ) -> Any:
     return params.Depends(dependency=dependency, use_cache=use_cache)
+
+
+@overload
+def Security(
+    dependency: Callable[..., T],
+    *,
+    scopes: Sequence[str] = None,
+    use_cache: bool = True,
+) -> T:
+    ...
+
+
+@overload
+def Security(
+    dependency: None = None, *, scopes: Sequence[str] = None, use_cache: bool = True
+) -> Any:
+    ...
 
 
 def Security(  # noqa: N802
