@@ -243,12 +243,12 @@ T = TypeVar("T")
 
 @overload
 def Depends(dependency: Callable[..., T], *, use_cache: bool = True) -> T:
-    ...
+    ...  # pragma: no cover
 
 
 @overload
 def Depends(dependency: None = None, *, use_cache: bool = True) -> Any:
-    ...
+    ...  # pragma: no cover
 
 
 def Depends(  # noqa: N802
@@ -264,14 +264,14 @@ def Security(
     scopes: Sequence[str] = None,
     use_cache: bool = True,
 ) -> T:
-    ...
+    ...  # pragma: no cover
 
 
 @overload
 def Security(
     dependency: None = None, *, scopes: Sequence[str] = None, use_cache: bool = True
 ) -> Any:
-    ...
+    ...  # pragma: no cover
 
 
 def Security(  # noqa: N802
