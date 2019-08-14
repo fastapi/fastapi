@@ -25,6 +25,8 @@ Here's an incomplete list of some of them.
 
 * <a href="https://blog.bartab.fr/fastapi-logging-on-the-fly/" target="_blank">FastAPI, a simple use case on logging</a> by <a href="https://blog.bartab.fr/" target="_blank">@euri10</a>.
 
+* <a href="https://medium.com/@nico.axtmann95/deploying-a-scikit-learn-model-with-onnx-und-fastapi-1af398268915?source=friends_link&sk=a9e395c8cc206205fcd9964479b22fa6" target="_blank">Deploying a scikit-learn model with ONNX und FastAPI</a> by <a href="https://www.linkedin.com/in/nico-axtmann" target="_blank">Nico Axtmann</a>.
+
 ### Japanese
 
 * <a href="https://qiita.com/mtitg/items/47770e9a562dd150631d" target="_blank">FastAPI｜DB接続してCRUDするPython製APIサーバーを構築</a> by <a href="https://qiita.com/mtitg" target="_blank">@mtitg</a>.
