@@ -188,7 +188,7 @@ def get_openapi_path(
                             field, model_name_map=model_name_map, ref_prefix=REF_PREFIX
                         )
                         response.setdefault("content", {}).setdefault(
-                            "application/json", {}
+                            route.response_class.media_type, {}
                         )["schema"] = response_schema
                     status_text = http.client.responses.get(int(additional_status_code))
                     response.setdefault(
