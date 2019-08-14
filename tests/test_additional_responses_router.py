@@ -15,7 +15,7 @@ async def b():
     return "b"
 
 
-@router.get("/c", responses={501: {"description": "Error 3"}})
+@router.get("/c", responses={"5xx": {"description": "Error 3"}})
 async def c():
     return "c"
 
@@ -55,7 +55,7 @@ openapi_schema = {
         "/c": {
             "get": {
                 "responses": {
-                    "501": {"description": "Error 3"},
+                    "5xx": {"description": "Error 3"},
                     "200": {
                         "description": "Successful Response",
                         "content": {"application/json": {"schema": {}}},
