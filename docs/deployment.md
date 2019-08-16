@@ -193,7 +193,7 @@ But then <a href="https://letsencrypt.org/" target="_blank">Let's Encrypt</a> wa
 
 It is a project from the Linux Foundation. It provides HTTPS certificates for free. In an automated way. These certificates use all the standard cryptographic security, and are short lived (about 3 months), so, the security is actually increased, by reducing their lifespan.
 
-The domain's are securely verified and the certificates are generated automatically. This also allows automatizing the renewal of these certificates.
+The domains are securely verified and the certificates are generated automatically. This also allows automatizing the renewal of these certificates.
 
 The idea is to automatize the acquisition and renewal of these certificates, so that you can have secure HTTPS, free, forever.
 
