@@ -108,7 +108,16 @@ def get_sub_dependant(
     return sub_dependant
 
 
-def get_flat_dependant(dependant: Dependant) -> Dependant:
+CacheKey = Tuple[Optional[Callable], Tuple[str, ...]]
+
+
+def get_flat_dependant(
+    dependant: Dependant, *, skip_repeats: bool = False, visited: List[CacheKey] = None
+) -> Dependant:
+    if visited is None:
+        visited = []
+    visited.append(dependant.cache_key)
+
     flat_dependant = Dependant(
         path_params=dependant.path_params.copy(),
         query_params=dependant.query_params.copy(),
@@ -120,7 +129,11 @@ def get_flat_dependant(dependant: Dependant) -> Dependant:
         path=dependant.path,
     )
     for sub_dependant in dependant.dependencies:
-        flat_sub = get_flat_dependant(sub_dependant)
+        if skip_repeats and sub_dependant.cache_key in visited:
+            continue
+        flat_sub = get_flat_dependant(
+            sub_dependant, skip_repeats=skip_repeats, visited=visited
+        )
         flat_dependant.path_params.extend(flat_sub.path_params)
         flat_dependant.query_params.extend(flat_sub.query_params)
         flat_dependant.header_params.extend(flat_sub.header_params)
