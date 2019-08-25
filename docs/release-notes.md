@@ -1,5 +1,12 @@
 ## Latest changes
 
+* Allow having empty paths in *path operations* used with `include_router` and a `prefix`.
+    * This allows having a router for `/cats` and all its *path operations*, while having one of them for `/cats`.
+    * Now it doesn't have to be only `/cats/` (with a trailing slash).
+    * To use it, declare the path in the *path operation* as the empty string (`""`).
+    * PR [#415](https://github.com/tiangolo/fastapi/pull/415) by [@vitalik](https://github.com/vitalik).
+* Fix mypy error after merging PR #415. PR [#462](https://github.com/tiangolo/fastapi/pull/462).
+
 ## 0.35.0
 
 * Fix typo in routing `assert`. PR [#419](https://github.com/tiangolo/fastapi/pull/419) by [@pablogamboa](https://github.com/pablogamboa).
