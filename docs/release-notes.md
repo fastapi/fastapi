@@ -1,5 +1,6 @@
 ## Latest changes
 
+* Fix OpenAPI generation when using the same dependency in multiple places for the same *path operation*. PR [#417](https://github.com/tiangolo/fastapi/pull/417) by [@dmontagu](https://github.com/dmontagu).
 * Allow having empty paths in *path operations* used with `include_router` and a `prefix`.
     * This allows having a router for `/cats` and all its *path operations*, while having one of them for `/cats`.
     * Now it doesn't have to be only `/cats/` (with a trailing slash).
