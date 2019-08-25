@@ -112,7 +112,7 @@ CacheKey = Tuple[Optional[Callable], Tuple[str, ...]]
 
 
 def get_flat_dependant(
-    dependant: Dependant, skip_repeats: bool = False, visited: List[CacheKey] = None
+    dependant: Dependant, *, skip_repeats: bool = False, visited: List[CacheKey] = None
 ) -> Dependant:
     if visited is None:
         visited = []
@@ -131,7 +131,9 @@ def get_flat_dependant(
     for sub_dependant in dependant.dependencies:
         if skip_repeats and sub_dependant.cache_key in visited:
             continue
-        flat_sub = get_flat_dependant(sub_dependant, skip_repeats, visited)
+        flat_sub = get_flat_dependant(
+            sub_dependant, skip_repeats=skip_repeats, visited=visited
+        )
         flat_dependant.path_params.extend(flat_sub.path_params)
         flat_dependant.query_params.extend(flat_sub.query_params)
         flat_dependant.header_params.extend(flat_sub.header_params)

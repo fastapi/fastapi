@@ -2,7 +2,7 @@ from fastapi import Depends, FastAPI, Header
 from starlette.status import HTTP_200_OK
 from starlette.testclient import TestClient
 
-app = FastAPI(title="Access", redoc_url=None)
+app = FastAPI()
 
 
 def get_header(*, someheader: str = Header(...)):
@@ -50,7 +50,7 @@ schema = {
             },
         }
     },
-    "info": {"title": "Access", "version": "0.1.0"},
+    "info": {"title": "Fast API", "version": "0.1.0"},
     "openapi": "3.0.2",
     "paths": {
         "/": {
@@ -89,7 +89,7 @@ schema = {
 
 def test_schema():
     response = client.get("/openapi.json")
-    assert response.status_code == 200
+    assert response.status_code == HTTP_200_OK
     actual_schema = response.json()
     assert actual_schema == schema
     assert (
