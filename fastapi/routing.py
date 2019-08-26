@@ -52,6 +52,8 @@ def serialize_response(
             errors.extend(errors_)
         if errors:
             raise ValidationError(errors)
+        if skip_defaults and isinstance(response, BaseModel):
+            value = response.dict(skip_defaults=skip_defaults)
         return jsonable_encoder(
             value,
             include=include,
