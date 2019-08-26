@@ -1,5 +1,7 @@
 ## Latest changes
 
+## 0.36.0
+
 * Fix implementation for `skip_defaults` when returning a Pydantic model. PR [#422](https://github.com/tiangolo/fastapi/pull/422) by [@dmontagu](https://github.com/dmontagu).
 * Fix OpenAPI generation when using the same dependency in multiple places for the same *path operation*. PR [#417](https://github.com/tiangolo/fastapi/pull/417) by [@dmontagu](https://github.com/dmontagu).
 * Allow having empty paths in *path operations* used with `include_router` and a `prefix`.
