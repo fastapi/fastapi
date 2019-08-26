@@ -53,7 +53,7 @@ def serialize_response(
         if errors:
             raise ValidationError(errors)
         if skip_defaults and isinstance(response, BaseModel):
-            exclude |= value.__fields_set__.difference(response.__fields_set__)
+            value = response.dict(skip_defaults=skip_defaults)
         return jsonable_encoder(
             value,
             include=include,
