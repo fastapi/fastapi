@@ -56,6 +56,7 @@ def get_redoc_html(
     title: str,
     redoc_js_url: str = "https://cdn.jsdelivr.net/npm/redoc@next/bundles/redoc.standalone.js",
     redoc_favicon_url: str = "https://fastapi.tiangolo.com/img/favicon.png",
+    with_google_fonts: bool = True,
 ) -> HTMLResponse:
     html = f"""
     <!DOCTYPE html>
@@ -65,7 +66,12 @@ def get_redoc_html(
     <!-- needed for adaptive design -->
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    """
+    if with_google_fonts:
+        html += """
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Roboto:300,400,700" rel="stylesheet">
+    """
+    html += f"""
     <link rel="shortcut icon" href="{redoc_favicon_url}">
     <!--
     ReDoc doesn't change outer page styles
