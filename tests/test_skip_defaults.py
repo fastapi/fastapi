@@ -16,9 +16,13 @@ class Model(BaseModel):
     sub: SubModel
 
 
+class ModelSubclass(Model):
+    y: int
+
+
 @app.get("/", response_model=Model, response_model_skip_defaults=True)
-def get() -> Model:
-    return Model(sub={})
+def get() -> ModelSubclass:
+    return ModelSubclass(sub={}, y=1)
 
 
 client = TestClient(app)

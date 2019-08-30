@@ -45,6 +45,8 @@ def serialize_response(
 ) -> Any:
     if field:
         errors = []
+        if skip_defaults and isinstance(response, BaseModel):
+            response = response.dict(skip_defaults=skip_defaults)
         value, errors_ = field.validate(response, {}, loc=("response",))
         if isinstance(errors_, ErrorWrapper):
             errors.append(errors_)
@@ -52,8 +54,6 @@ def serialize_response(
             errors.extend(errors_)
         if errors:
             raise ValidationError(errors)
-        if skip_defaults and isinstance(response, BaseModel):
-            value = response.dict(skip_defaults=skip_defaults)
         return jsonable_encoder(
             value,
             include=include,
