@@ -49,7 +49,7 @@ status_code_ranges: Dict[str, str] = {
     "3XX": "Redirection",
     "4XX": "Client Error",
     "5XX": "Server Error",
-    "default": "Default Response",
+    "DEFAULT": "Default Response",
 }
 
 
@@ -205,9 +205,10 @@ def get_openapi_path(
                     response.setdefault(
                         "description", status_text or "Additional Response"
                     )
-                    operation.setdefault("responses", {})[
-                        str(additional_status_code).upper()
-                    ] = response
+                    status_code_key = str(additional_status_code).upper()
+                    if status_code_key == "DEFAULT":
+                        status_code_key = "default"
+                    operation.setdefault("responses", {})[status_code_key] = response
             status_code = str(route.status_code)
             response_schema = {"type": "string"}
             if lenient_issubclass(route.response_class, JSONResponse):

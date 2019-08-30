@@ -26,6 +26,7 @@ async def b():
     responses={
         "400": {"description": "Error with str"},
         "5xx": {"description": "Error with range, lower"},
+        "default": {"description": "A default response"},
     },
 )
 async def c():
@@ -74,6 +75,7 @@ openapi_schema = {
                         "description": "Successful Response",
                         "content": {"application/json": {"schema": {}}},
                     },
+                    "default": {"description": "A default response"},
                 },
                 "summary": "C",
                 "operationId": "c_c_get",
