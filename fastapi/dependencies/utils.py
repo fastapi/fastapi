@@ -559,12 +559,22 @@ def get_body_field(*, dependant: Dependant, name: str) -> Optional[Field]:
     for f in flat_dependant.body_params:
         BodyModel.__fields__[f.name] = get_schema_compatible_field(field=f)
     required = any(True for f in flat_dependant.body_params if f.required)
+
+    BodySchema_kwargs: Dict[str, Any] = dict(default=None)
     if any(isinstance(f.schema, params.File) for f in flat_dependant.body_params):
         BodySchema: Type[params.Body] = params.File
     elif any(isinstance(f.schema, params.Form) for f in flat_dependant.body_params):
         BodySchema = params.Form
     else:
         BodySchema = params.Body
+
+        body_param_media_types = [
+            getattr(f.schema, "media_type")
+            for f in flat_dependant.body_params
+            if isinstance(f.schema, params.Body)
+        ]
+        if len(set(body_param_media_types)) == 1:
+            BodySchema_kwargs["media_type"] = body_param_media_types[0]
 
     field = Field(
         name="body",
@@ -574,6 +584,6 @@ def get_body_field(*, dependant: Dependant, name: str) -> Optional[Field]:
         model_config=BaseConfig,
         class_validators={},
         alias="body",
-        schema=BodySchema(None),
+        schema=BodySchema(**BodySchema_kwargs),
     )
     return field
