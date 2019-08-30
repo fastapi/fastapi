@@ -56,10 +56,10 @@ def secure_dict(
         include=include, exclude=exclude, skip_defaults=skip_defaults
     )
     if return_keys is None:
-        return_keys = set(model.__values__.keys())
+        return_keys = set(model.__dict__.keys())
     return_keys = return_keys.intersection(model_type.__fields__.keys())
     response = {}
-    for k, v in model.__values__.items():
+    for k, v in model.__dict__.items():
         if k not in return_keys:
             continue
         response[get_key(k)] = get_secure_field_value(v, model_type.__fields__[k])

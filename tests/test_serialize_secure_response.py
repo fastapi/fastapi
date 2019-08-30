@@ -1,3 +1,5 @@
+from typing import List
+
 from fastapi import FastAPI
 from pydantic import BaseModel
 from starlette.testclient import TestClient
@@ -37,6 +39,13 @@ def get_secure():
     return item
 
 
+@app.get("/item/secure-list", response_model=List[Item])
+def get_secure():
+    sub_item = SensitiveSubItem(sub_name="sub_item", sub_secret="sub_secret")
+    item = SensitiveItem(name="item", sub_item=sub_item, secret="secret")
+    return [item]
+
+
 client = TestClient(app)
 
 
@@ -45,6 +54,12 @@ def test_secure_serialization():
         "name": "item",
         "sub_item": {"sub_name": "sub_item"},
     }
+
+
+def test_secure_list_serialization():
+    assert client.get("/item/secure").json() == [
+        {"name": "item", "sub_item": {"sub_name": "sub_item"}}
+    ]
 
 
 def test_insecure_serialization():
