@@ -11,9 +11,9 @@ from fastapi.dependencies.utils import (
     get_parameterless_sub_dependant,
     solve_dependencies,
 )
-from fastapi.encoders import DictIntStrAny, SetIntStr, jsonable_encoder
+from fastapi.encoders import SecureFieldValue, DictIntStrAny, SetIntStr, jsonable_encoder
 from fastapi.exceptions import RequestValidationError, WebSocketRequestValidationError
-from fastapi.utils import create_cloned_field, generate_operation_id_for_path
+from fastapi.utils import generate_operation_id_for_path
 from pydantic import BaseConfig, BaseModel, Schema
 from pydantic.error_wrappers import ErrorWrapper, ValidationError
 from pydantic.fields import Field
@@ -54,6 +54,11 @@ def serialize_response(
             errors.extend(errors_)
         if errors:
             raise ValidationError(errors, field.type_)
+            raise ValidationError(errors)
+        if isinstance(response, BaseModel) and lenient_issubclass(
+            field.type_, BaseModel
+        ):
+            value = SecureFieldValue(response, field.type_)
         return jsonable_encoder(
             value,
             include=include,
@@ -228,19 +233,8 @@ class APIRoute(routing.Route):
                 model_config=BaseConfig,
                 schema=Schema(None),
             )
-            # Create a clone of the field, so that a Pydantic submodel is not returned
-            # as is just because it's an instance of a subclass of a more limited class
-            # e.g. UserInDB (containing hashed_password) could be a subclass of User
-            # that doesn't have the hashed_password. But because it's a subclass, it
-            # would pass the validation and be returned as is.
-            # By being a new field, no inheritance will be passed as is. A new model
-            # will be always created.
-            self.secure_cloned_response_field: Optional[Field] = create_cloned_field(
-                self.response_field
-            )
         else:
             self.response_field = None
-            self.secure_cloned_response_field = None
         self.status_code = status_code
         self.tags = tags or []
         if dependencies:
@@ -300,7 +294,7 @@ class APIRoute(routing.Route):
                 body_field=self.body_field,
                 status_code=self.status_code,
                 response_class=self.response_class,
-                response_field=self.secure_cloned_response_field,
+                response_field=self.response_field,
                 response_model_include=self.response_model_include,
                 response_model_exclude=self.response_model_exclude,
                 response_model_by_alias=self.response_model_by_alias,
