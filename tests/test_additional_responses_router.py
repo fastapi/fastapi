@@ -10,12 +10,24 @@ async def a():
     return "a"
 
 
-@router.get("/b", responses={502: {"description": "Error 2"}})
+@router.get(
+    "/b",
+    responses={
+        502: {"description": "Error 2"},
+        "4XX": {"description": "Error with range, upper"},
+    },
+)
 async def b():
     return "b"
 
 
-@router.get("/c", responses={501: {"description": "Error 3"}})
+@router.get(
+    "/c",
+    responses={
+        "400": {"description": "Error with str"},
+        "5xx": {"description": "Error with range, lower"},
+    },
+)
 async def c():
     return "c"
 
@@ -43,6 +55,7 @@ openapi_schema = {
             "get": {
                 "responses": {
                     "502": {"description": "Error 2"},
+                    "4XX": {"description": "Error with range, upper"},
                     "200": {
                         "description": "Successful Response",
                         "content": {"application/json": {"schema": {}}},
@@ -55,7 +68,8 @@ openapi_schema = {
         "/c": {
             "get": {
                 "responses": {
-                    "501": {"description": "Error 3"},
+                    "400": {"description": "Error with str"},
+                    "5XX": {"description": "Error with range, lower"},
                     "200": {
                         "description": "Successful Response",
                         "content": {"application/json": {"schema": {}}},
