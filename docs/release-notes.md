@@ -1,5 +1,8 @@
 ## Latest changes
 
+* Allow setting custom `422` (validation error) response/schema in OpenAPI.
+    * And use media type from response class instead of fixed `application/json` (the default).
+    * PR [#437](https://github.com/tiangolo/fastapi/pull/437) by [@divums](https://github.com/divums).
 * Fix using `"default"` extra response with status codes at the same time. PR [#489](https://github.com/tiangolo/fastapi/pull/489).
 * Allow additional responses to use status code ranges (like `5XX` and `4XX`) and `"default"`. PR [#435](https://github.com/tiangolo/fastapi/pull/435) by [@divums](https://github.com/divums).
 
