@@ -43,12 +43,12 @@ validation_error_response_definition = {
     },
 }
 
-status_groups: Dict[str, str] = {
-    "1xx": "Information",
-    "2xx": "Success",
-    "3xx": "Redirection",
-    "4xx": "Client Error",
-    "5xx": "Server Error",
+status_code_ranges: Dict[str, str] = {
+    "1XX": "Information",
+    "2XX": "Success",
+    "3XX": "Redirection",
+    "4XX": "Client Error",
+    "5XX": "Server Error",
     "default": "Default Response",
 }
 
@@ -199,17 +199,14 @@ def get_openapi_path(
                         response.setdefault("content", {}).setdefault(
                             "application/json", {}
                         )["schema"] = response_schema
-                    status_text: Optional[str] = status_groups.get(
-                        str(additional_status_code).lower()
-                    )
-                    status_text = status_text or http.client.responses.get(
-                        int(additional_status_code)
-                    )
+                    status_text: Optional[str] = status_code_ranges.get(
+                        str(additional_status_code).upper()
+                    ) or http.client.responses.get(int(additional_status_code))
                     response.setdefault(
                         "description", status_text or "Additional Response"
                     )
                     operation.setdefault("responses", {})[
-                        str(additional_status_code).lower()
+                        str(additional_status_code).upper()
                     ] = response
             status_code = str(route.status_code)
             response_schema = {"type": "string"}
