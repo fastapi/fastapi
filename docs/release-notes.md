@@ -1,5 +1,6 @@
 ## Latest changes
 
+* Add article [Deploying a scikit-learn model with ONNX and FastAPI](https://medium.com/@nico.axtmann95/deploying-a-scikit-learn-model-with-onnx-und-fastapi-1af398268915) by [https://www.linkedin.com/in/nico-axtmann](Nico Axtmann). PR [#438](https://github.com/tiangolo/fastapi/pull/438) by [@naxty](https://github.com/naxty).
 * Allow setting custom `422` (validation error) response/schema in OpenAPI.
     * And use media type from response class instead of fixed `application/json` (the default).
     * PR [#437](https://github.com/tiangolo/fastapi/pull/437) by [@divums](https://github.com/divums).
