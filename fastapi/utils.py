@@ -1,4 +1,5 @@
 import re
+from dataclasses import is_dataclass
 from typing import Any, Dict, List, Sequence, Set, Type, cast
 
 from fastapi import routing
@@ -52,6 +53,8 @@ def get_path_param_names(path: str) -> Set[str]:
 
 def create_cloned_field(field: Field) -> Field:
     original_type = field.type_
+    if is_dataclass(original_type) and hasattr(original_type, "__pydantic_model__"):
+        original_type = original_type.__pydantic_model__  # type: ignore
     use_type = original_type
     if lenient_issubclass(original_type, BaseModel):
         original_type = cast(Type[BaseModel], original_type)

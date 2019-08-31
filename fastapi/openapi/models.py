@@ -210,10 +210,6 @@ class Response(BaseModel):
     links: Optional[Dict[str, Union[Link, Reference]]] = None
 
 
-class Responses(BaseModel):
-    default: Response
-
-
 class Operation(BaseModel):
     tags: Optional[List[str]] = None
     summary: Optional[str] = None
@@ -222,7 +218,7 @@ class Operation(BaseModel):
     operationId: Optional[str] = None
     parameters: Optional[List[Union[Parameter, Reference]]] = None
     requestBody: Optional[Union[RequestBody, Reference]] = None
-    responses: Union[Responses, Dict[str, Response]]
+    responses: Dict[str, Response]
     # Workaround OpenAPI recursive reference
     callbacks: Optional[Dict[str, Union[Dict[str, Any], Reference]]] = None
     deprecated: Optional[bool] = None

@@ -1,7 +1,10 @@
-from typing import Any
+from typing import Any, Sequence
 
 from pydantic import ValidationError
+from pydantic.error_wrappers import ErrorList
+from requests import Request
 from starlette.exceptions import HTTPException as StarletteHTTPException
+from starlette.websockets import WebSocket
 
 
 class HTTPException(StarletteHTTPException):
@@ -13,8 +16,10 @@ class HTTPException(StarletteHTTPException):
 
 
 class RequestValidationError(ValidationError):
-    pass
+    def __init__(self, errors: Sequence[ErrorList]) -> None:
+        super().__init__(errors, Request)
 
 
 class WebSocketRequestValidationError(ValidationError):
-    pass
+    def __init__(self, errors: Sequence[ErrorList]) -> None:
+        super().__init__(errors, WebSocket)
