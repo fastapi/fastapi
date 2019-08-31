@@ -27,6 +27,14 @@ Here's an incomplete list of some of them.
 
 * <a href="https://medium.com/@nico.axtmann95/deploying-a-scikit-learn-model-with-onnx-und-fastapi-1af398268915" target="_blank">Deploying a scikit-learn model with ONNX and FastAPI</a> by <a href="https://www.linkedin.com/in/nico-axtmann" target="_blank">Nico Axtmann</a>.
 
+* <a href="https://geekflare.com/python-asynchronous-web-frameworks/" target="_blank">Top 5 Asynchronous Web Frameworks for Python</a> by <a href="https://geekflare.com/author/ankush/" target="_blank">Ankush Thakur</a> on <a href="https://geekflare.com" target="_blank">GeekFlare</a>.
+
+* <a href="https://medium.com/@gntrm/jwt-authentication-with-fastapi-and-aws-cognito-1333f7f2729e" target="_blank">JWT Authentication with FastAPI and AWS Cognito</a> by <a href="https://twitter.com/gntrm" target="_blank">Johannes Gontrum</a>.
+
+* <a href="https://towardsdatascience.com/how-to-deploy-a-machine-learning-model-dc51200fe8cf" target="_blank">How to Deploy a Machine Learning Model</a> by <a href="https://www.linkedin.com/in/mgrootendorst/" target="_blank">Maarten Grootendorst</a> on <a href="https://towardsdatascience.com/" target="_blank">Towards Data Science</a>.
+
+* <a href="https://eng.uber.com/ludwig-v0-2/" target="_blank">Uber: Ludwig v0.2 Adds New Features and Other Improvements to its Deep Learning Toolbox [including a FastAPI server]</a> on <a href="https://eng.uber.com" target="_blank">Uber Engineering</a>.
+
 ### Japanese
 
 * <a href="https://qiita.com/mtitg/items/47770e9a562dd150631d" target="_blank">FastAPI｜DB接続してCRUDするPython製APIサーバーを構築</a> by <a href="https://qiita.com/mtitg" target="_blank">@mtitg</a>.
