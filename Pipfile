@@ -25,7 +25,7 @@ sqlalchemy = "*"
 uvicorn = "*"
 
 [packages]
-starlette = "==0.12.7"
+starlette = "==0.12.8"
 pydantic = "==0.32.2"
 databases = {extras = ["sqlite"],version = "*"}
 hypercorn = "*"
