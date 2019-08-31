@@ -45,6 +45,8 @@ def serialize_response(
 ) -> Any:
     if field:
         errors = []
+        if skip_defaults and isinstance(response, BaseModel):
+            response = response.dict(skip_defaults=skip_defaults)
         value, errors_ = field.validate(response, {}, loc=("response",))
         if isinstance(errors_, ErrorWrapper):
             errors.append(errors_)
@@ -52,8 +54,6 @@ def serialize_response(
             errors.extend(errors_)
         if errors:
             raise ValidationError(errors, field.type_)
-        if skip_defaults and isinstance(response, BaseModel):
-            value = response.dict(skip_defaults=skip_defaults)
         return jsonable_encoder(
             value,
             include=include,
@@ -317,11 +317,13 @@ class APIRouter(routing.Router):
         redirect_slashes: bool = True,
         default: ASGIApp = None,
         dependency_overrides_provider: Any = None,
+        route_class: Type[APIRoute] = APIRoute,
     ) -> None:
         super().__init__(
             routes=routes, redirect_slashes=redirect_slashes, default=default
         )
         self.dependency_overrides_provider = dependency_overrides_provider
+        self.route_class = route_class
 
     def add_api_route(
         self,
@@ -347,7 +349,7 @@ class APIRouter(routing.Router):
         response_class: Type[Response] = JSONResponse,
         name: str = None,
     ) -> None:
-        route = APIRoute(
+        route = self.route_class(
             path,
             endpoint=endpoint,
             response_model=response_model,
