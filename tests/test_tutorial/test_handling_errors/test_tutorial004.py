@@ -81,7 +81,7 @@ def test_get_validation_error():
     response = client.get("/items/foo")
     assert response.status_code == 400
     validation_error_str_lines = [
-        b"1 validation error",
+        b"1 validation error for Request",
         b"path -> item_id",
         b"  value is not a valid integer (type=type_error.integer)",
     ]

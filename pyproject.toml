@@ -20,7 +20,7 @@ classifiers = [
 ]
 requires = [
     "starlette >=0.11.1,<=0.12.7",
-    "pydantic >=0.30,<=0.30.0"
+    "pydantic >=0.32.2,<=0.32.2"
 ]
 description-file = "README.md"
 requires-python = ">=3.6"
