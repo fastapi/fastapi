@@ -2,8 +2,8 @@ from typing import Any, Sequence
 
 from pydantic import ValidationError
 from pydantic.error_wrappers import ErrorList
-from requests import Request
 from starlette.exceptions import HTTPException as StarletteHTTPException
+from starlette.requests import Request
 from starlette.websockets import WebSocket
 
 
