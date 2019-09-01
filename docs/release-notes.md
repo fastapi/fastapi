@@ -1,5 +1,7 @@
 ## Latest changes
 
+## 0.38.1
+
 * Fix incorrect `Request` class import. PR [#493](https://github.com/tiangolo/fastapi/pull/493) by [@kamalgill](https://github.com/kamalgill).
 
 ## 0.38.0
