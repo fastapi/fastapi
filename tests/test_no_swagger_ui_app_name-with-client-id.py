@@ -1,7 +1,6 @@
 from fastapi import FastAPI
 from starlette.testclient import TestClient
 
-
 swagger_ui_client_id = "some_client_id"
 
 app = FastAPI(swagger_ui_client_id=swagger_ui_client_id)
