@@ -11,6 +11,8 @@ def get_swagger_ui_html(
     swagger_css_url: str = "https://cdn.jsdelivr.net/npm/swagger-ui-dist@3/swagger-ui.css",
     swagger_favicon_url: str = "https://fastapi.tiangolo.com/img/favicon.png",
     oauth2_redirect_url: Optional[str] = None,
+    client_id: Optional[str] = None,
+    app_name: Optional[str] = None,
 ) -> HTMLResponse:
 
     html = f"""
@@ -42,7 +44,17 @@ def get_swagger_ui_html(
         ],
         layout: "BaseLayout",
         deepLinking: true
-    })
+    })"""
+
+    if client_id or app_name:
+        html += "ui.initOAuth({"
+        if client_id:
+            html += f"clientId: {client_id},"
+        if app_name:
+            html += f"appName: {app_name}"
+        html += "})"
+
+    html += """
     </script>
     </body>
     </html>
