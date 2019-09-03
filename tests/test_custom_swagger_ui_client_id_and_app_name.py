@@ -24,8 +24,8 @@ def test_swagger_ui():
     assert "swagger-ui-dist" in response.text
     print(client.base_url)
     assert f"ui.initOAuth" in response.text
-    assert f"clientId: {swagger_ui_client_id}" in response.text
-    assert f"appName: {swagger_ui_app_name}" in response.text
+    assert f"clientId: '{swagger_ui_client_id}'" in response.text
+    assert f"appName: '{swagger_ui_app_name}'" in response.text
 
 
 def test_response():

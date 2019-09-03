@@ -47,11 +47,11 @@ def get_swagger_ui_html(
     })"""
 
     if client_id or app_name:
-        html += "ui.initOAuth({"
+        html += "\nui.initOAuth({\n"
         if client_id:
-            html += f"clientId: {client_id},"
+            html += f"clientId: '{client_id}',\n"
         if app_name:
-            html += f"appName: {app_name}"
+            html += f"appName: '{app_name}'\n"
         html += "})"
 
     html += """
