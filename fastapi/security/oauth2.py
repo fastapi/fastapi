@@ -117,7 +117,7 @@ class OAuth2(SecurityBase):
         *,
         flows: OAuthFlowsModel = OAuthFlowsModel(),
         scheme_name: str = None,
-        auto_error: bool = True
+        auto_error: bool = True,
     ):
         self.model = OAuth2Model(flows=flows)
         self.scheme_name = scheme_name or self.__class__.__name__

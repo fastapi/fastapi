@@ -23,7 +23,7 @@ async def update_item(
             "price": 35.4,
             "tax": 3.2,
         },
-    )
+    ),
 ):
     results = {"item_id": item_id, "item": item}
     return results
