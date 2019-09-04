@@ -1,4 +1,5 @@
 import asyncio
+from dataclasses import is_dataclass
 import inspect
 import logging
 from typing import Any, Callable, Dict, List, Optional, Sequence, Set, Type, Union
@@ -218,6 +219,8 @@ class APIRoute(routing.Route):
         self.unique_id = generate_operation_id_for_path(
             name=self.name, path=self.path_format, method=list(methods)[0]
         )
+        if is_dataclass(response_model) and hasattr(response_model, "__pydantic_model__"):
+            response_model = response_model.__pydantic_model__  # type: ignore
         self.response_model = response_model
         if self.response_model:
             assert lenient_issubclass(
