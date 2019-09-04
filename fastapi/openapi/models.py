@@ -281,38 +281,38 @@ class HTTPBearer(HTTPBase):
     bearerFormat: Optional[str] = None
 
 
-class OAuthFlow(BaseModel):
+class OAuthFlowModel(BaseModel):
     refreshUrl: Optional[str] = None
     scopes: Dict[str, str] = {}
 
 
-class OAuthFlowImplicit(OAuthFlow):
+class OAuthFlowModelImplicit(OAuthFlowModel):
     authorizationUrl: str
 
 
-class OAuthFlowPassword(OAuthFlow):
+class OAuthFlowModelPassword(OAuthFlowModel):
     tokenUrl: str
 
 
-class OAuthFlowClientCredentials(OAuthFlow):
+class OAuthFlowModelClientCredentials(OAuthFlowModel):
     tokenUrl: str
 
 
-class OAuthFlowAuthorizationCode(OAuthFlow):
+class OAuthFlowModelAuthorizationCode(OAuthFlowModel):
     authorizationUrl: str
     tokenUrl: str
 
 
-class OAuthFlows(BaseModel):
-    implicit: Optional[OAuthFlowImplicit] = None
-    password: Optional[OAuthFlowPassword] = None
-    clientCredentials: Optional[OAuthFlowClientCredentials] = None
-    authorizationCode: Optional[OAuthFlowAuthorizationCode] = None
+class OAuthFlowsModel(BaseModel):
+    implicit: Optional[OAuthFlowModelImplicit] = None
+    password: Optional[OAuthFlowModelPassword] = None
+    clientCredentials: Optional[OAuthFlowModelClientCredentials] = None
+    authorizationCode: Optional[OAuthFlowModelAuthorizationCode] = None
 
 
-class OAuth2(SecurityBase):
+class OAuth2Model(SecurityBase):
     type_ = PSchema(SecuritySchemeType.oauth2, alias="type")  # type: ignore
-    flows: OAuthFlows
+    flows: OAuthFlowsModel
 
 
 class OpenIdConnect(SecurityBase):
@@ -320,7 +320,7 @@ class OpenIdConnect(SecurityBase):
     openIdConnectUrl: str
 
 
-SecurityScheme = Union[APIKey, HTTPBase, OAuth2, OpenIdConnect, HTTPBearer]
+SecurityScheme = Union[APIKey, HTTPBase, OAuth2Model, OpenIdConnect, HTTPBearer]
 
 
 class Components(BaseModel):
