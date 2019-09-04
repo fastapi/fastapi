@@ -286,28 +286,28 @@ class OAuthFlowModel(BaseModel):
     scopes: Dict[str, str] = {}
 
 
-class OAuthFlowModelImplicit(OAuthFlowModel):
+class OAuthFlowImplicitModel(OAuthFlowModel):
     authorizationUrl: str
 
 
-class OAuthFlowModelPassword(OAuthFlowModel):
+class OAuthFlowPasswordModel(OAuthFlowModel):
     tokenUrl: str
 
 
-class OAuthFlowModelClientCredentials(OAuthFlowModel):
+class OAuthFlowClientCredentialsModel(OAuthFlowModel):
     tokenUrl: str
 
 
-class OAuthFlowModelAuthorizationCode(OAuthFlowModel):
+class OAuthFlowAuthorizationCodeModel(OAuthFlowModel):
     authorizationUrl: str
     tokenUrl: str
 
 
 class OAuthFlowsModel(BaseModel):
-    implicit: Optional[OAuthFlowModelImplicit] = None
-    password: Optional[OAuthFlowModelPassword] = None
-    clientCredentials: Optional[OAuthFlowModelClientCredentials] = None
-    authorizationCode: Optional[OAuthFlowModelAuthorizationCode] = None
+    implicit: Optional[OAuthFlowImplicitModel] = None
+    password: Optional[OAuthFlowPasswordModel] = None
+    clientCredentials: Optional[OAuthFlowClientCredentialsModel] = None
+    authorizationCode: Optional[OAuthFlowAuthorizationCodeModel] = None
 
 
 class OAuth2Model(SecurityBase):
