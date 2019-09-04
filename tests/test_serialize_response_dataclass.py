@@ -1,13 +1,14 @@
 from typing import List
 
 from fastapi import FastAPI
-from pydantic import BaseModel
+from pydantic.dataclasses import dataclass
 from starlette.testclient import TestClient
 
 app = FastAPI()
 
 
-class Item(BaseModel):
+@dataclass
+class Item:
     name: str
     price: float = None
     owner_ids: List[int] = None

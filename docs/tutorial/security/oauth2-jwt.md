@@ -156,7 +156,7 @@ Then you could add permissions about that entity, like "drive" (for the car) or 
 
 And then, you could give that JWT token to a user (or bot), and he could use it to perform those actions (drive the car, or edit the blog post) without even needing to have an account, just with the JWT token your API generated for that.
 
-Using these ideas, JWT can be used for way more sophisticate scenarios.
+Using these ideas, JWT can be used for way more sophisticated scenarios.
 
 In those cases, several of those entities could have the same ID, let's say `foo` (a user `foo`, a car `foo`, and a blog post `foo`).
 

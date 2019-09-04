@@ -11,7 +11,7 @@ from fastapi.dependencies.utils import (
     get_parameterless_sub_dependant,
     solve_dependencies,
 )
-from fastapi.encoders import jsonable_encoder
+from fastapi.encoders import DictIntStrAny, SetIntStr, jsonable_encoder
 from fastapi.exceptions import RequestValidationError, WebSocketRequestValidationError
 from fastapi.utils import create_cloned_field, generate_operation_id_for_path
 from pydantic import BaseConfig, BaseModel, Schema
@@ -38,20 +38,22 @@ def serialize_response(
     *,
     field: Field = None,
     response: Response,
-    include: Set[str] = None,
-    exclude: Set[str] = set(),
+    include: Union[SetIntStr, DictIntStrAny] = None,
+    exclude: Union[SetIntStr, DictIntStrAny] = set(),
     by_alias: bool = True,
     skip_defaults: bool = False,
 ) -> Any:
     if field:
         errors = []
+        if skip_defaults and isinstance(response, BaseModel):
+            response = response.dict(skip_defaults=skip_defaults)
         value, errors_ = field.validate(response, {}, loc=("response",))
         if isinstance(errors_, ErrorWrapper):
             errors.append(errors_)
         elif isinstance(errors_, list):
             errors.extend(errors_)
         if errors:
-            raise ValidationError(errors)
+            raise ValidationError(errors, field.type_)
         return jsonable_encoder(
             value,
             include=include,
@@ -69,8 +71,8 @@ def get_app(
     status_code: int = 200,
     response_class: Type[Response] = JSONResponse,
     response_field: Field = None,
-    response_model_include: Set[str] = None,
-    response_model_exclude: Set[str] = set(),
+    response_model_include: Union[SetIntStr, DictIntStrAny] = None,
+    response_model_exclude: Union[SetIntStr, DictIntStrAny] = set(),
     response_model_by_alias: bool = True,
     response_model_skip_defaults: bool = False,
     dependency_overrides_provider: Any = None,
@@ -193,15 +195,14 @@ class APIRoute(routing.Route):
         name: str = None,
         methods: Optional[Union[Set[str], List[str]]] = None,
         operation_id: str = None,
-        response_model_include: Set[str] = None,
-        response_model_exclude: Set[str] = set(),
+        response_model_include: Union[SetIntStr, DictIntStrAny] = None,
+        response_model_exclude: Union[SetIntStr, DictIntStrAny] = set(),
         response_model_by_alias: bool = True,
         response_model_skip_defaults: bool = False,
         include_in_schema: bool = True,
         response_class: Type[Response] = JSONResponse,
         dependency_overrides_provider: Any = None,
     ) -> None:
-        assert path.startswith("/"), "Routed paths must always start with '/'"
         self.path = path
         self.endpoint = endpoint
         self.name = get_name(endpoint) if name is None else name
@@ -316,11 +317,13 @@ class APIRouter(routing.Router):
         redirect_slashes: bool = True,
         default: ASGIApp = None,
         dependency_overrides_provider: Any = None,
+        route_class: Type[APIRoute] = APIRoute,
     ) -> None:
         super().__init__(
             routes=routes, redirect_slashes=redirect_slashes, default=default
         )
         self.dependency_overrides_provider = dependency_overrides_provider
+        self.route_class = route_class
 
     def add_api_route(
         self,
@@ -338,15 +341,15 @@ class APIRouter(routing.Router):
         deprecated: bool = None,
         methods: Optional[Union[Set[str], List[str]]] = None,
         operation_id: str = None,
-        response_model_include: Set[str] = None,
-        response_model_exclude: Set[str] = set(),
+        response_model_include: Union[SetIntStr, DictIntStrAny] = None,
+        response_model_exclude: Union[SetIntStr, DictIntStrAny] = set(),
         response_model_by_alias: bool = True,
         response_model_skip_defaults: bool = False,
         include_in_schema: bool = True,
         response_class: Type[Response] = JSONResponse,
         name: str = None,
     ) -> None:
-        route = APIRoute(
+        route = self.route_class(
             path,
             endpoint=endpoint,
             response_model=response_model,
@@ -386,8 +389,8 @@ class APIRouter(routing.Router):
         deprecated: bool = None,
         methods: List[str] = None,
         operation_id: str = None,
-        response_model_include: Set[str] = None,
-        response_model_exclude: Set[str] = set(),
+        response_model_include: Union[SetIntStr, DictIntStrAny] = None,
+        response_model_exclude: Union[SetIntStr, DictIntStrAny] = set(),
         response_model_by_alias: bool = True,
         response_model_skip_defaults: bool = False,
         include_in_schema: bool = True,
@@ -448,6 +451,14 @@ class APIRouter(routing.Router):
             assert not prefix.endswith(
                 "/"
             ), "A path prefix must not end with '/', as the routes will start with '/'"
+        else:
+            for r in router.routes:
+                path = getattr(r, "path")
+                name = getattr(r, "name", "unknown")
+                if path is not None and not path:
+                    raise Exception(
+                        f"Prefix and path cannot be both empty (path operation: {name})"
+                    )
         if responses is None:
             responses = {}
         for route in router.routes:
@@ -507,8 +518,8 @@ class APIRouter(routing.Router):
         responses: Dict[Union[int, str], Dict[str, Any]] = None,
         deprecated: bool = None,
         operation_id: str = None,
-        response_model_include: Set[str] = None,
-        response_model_exclude: Set[str] = set(),
+        response_model_include: Union[SetIntStr, DictIntStrAny] = None,
+        response_model_exclude: Union[SetIntStr, DictIntStrAny] = set(),
         response_model_by_alias: bool = True,
         response_model_skip_defaults: bool = False,
         include_in_schema: bool = True,
@@ -552,8 +563,8 @@ class APIRouter(routing.Router):
         responses: Dict[Union[int, str], Dict[str, Any]] = None,
         deprecated: bool = None,
         operation_id: str = None,
-        response_model_include: Set[str] = None,
-        response_model_exclude: Set[str] = set(),
+        response_model_include: Union[SetIntStr, DictIntStrAny] = None,
+        response_model_exclude: Union[SetIntStr, DictIntStrAny] = set(),
         response_model_by_alias: bool = True,
         response_model_skip_defaults: bool = False,
         include_in_schema: bool = True,
@@ -596,8 +607,8 @@ class APIRouter(routing.Router):
         responses: Dict[Union[int, str], Dict[str, Any]] = None,
         deprecated: bool = None,
         operation_id: str = None,
-        response_model_include: Set[str] = None,
-        response_model_exclude: Set[str] = set(),
+        response_model_include: Union[SetIntStr, DictIntStrAny] = None,
+        response_model_exclude: Union[SetIntStr, DictIntStrAny] = set(),
         response_model_by_alias: bool = True,
         response_model_skip_defaults: bool = False,
         include_in_schema: bool = True,
@@ -640,8 +651,8 @@ class APIRouter(routing.Router):
         responses: Dict[Union[int, str], Dict[str, Any]] = None,
         deprecated: bool = None,
         operation_id: str = None,
-        response_model_include: Set[str] = None,
-        response_model_exclude: Set[str] = set(),
+        response_model_include: Union[SetIntStr, DictIntStrAny] = None,
+        response_model_exclude: Union[SetIntStr, DictIntStrAny] = set(),
         response_model_by_alias: bool = True,
         response_model_skip_defaults: bool = False,
         include_in_schema: bool = True,
@@ -684,8 +695,8 @@ class APIRouter(routing.Router):
         responses: Dict[Union[int, str], Dict[str, Any]] = None,
         deprecated: bool = None,
         operation_id: str = None,
-        response_model_include: Set[str] = None,
-        response_model_exclude: Set[str] = set(),
+        response_model_include: Union[SetIntStr, DictIntStrAny] = None,
+        response_model_exclude: Union[SetIntStr, DictIntStrAny] = set(),
         response_model_by_alias: bool = True,
         response_model_skip_defaults: bool = False,
         include_in_schema: bool = True,
@@ -728,8 +739,8 @@ class APIRouter(routing.Router):
         responses: Dict[Union[int, str], Dict[str, Any]] = None,
         deprecated: bool = None,
         operation_id: str = None,
-        response_model_include: Set[str] = None,
-        response_model_exclude: Set[str] = set(),
+        response_model_include: Union[SetIntStr, DictIntStrAny] = None,
+        response_model_exclude: Union[SetIntStr, DictIntStrAny] = set(),
         response_model_by_alias: bool = True,
         response_model_skip_defaults: bool = False,
         include_in_schema: bool = True,
@@ -772,8 +783,8 @@ class APIRouter(routing.Router):
         responses: Dict[Union[int, str], Dict[str, Any]] = None,
         deprecated: bool = None,
         operation_id: str = None,
-        response_model_include: Set[str] = None,
-        response_model_exclude: Set[str] = set(),
+        response_model_include: Union[SetIntStr, DictIntStrAny] = None,
+        response_model_exclude: Union[SetIntStr, DictIntStrAny] = set(),
         response_model_by_alias: bool = True,
         response_model_skip_defaults: bool = False,
         include_in_schema: bool = True,
@@ -816,8 +827,8 @@ class APIRouter(routing.Router):
         responses: Dict[Union[int, str], Dict[str, Any]] = None,
         deprecated: bool = None,
         operation_id: str = None,
-        response_model_include: Set[str] = None,
-        response_model_exclude: Set[str] = set(),
+        response_model_include: Union[SetIntStr, DictIntStrAny] = None,
+        response_model_exclude: Union[SetIntStr, DictIntStrAny] = set(),
         response_model_by_alias: bool = True,
         response_model_skip_defaults: bool = False,
         include_in_schema: bool = True,

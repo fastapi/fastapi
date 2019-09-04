@@ -43,9 +43,18 @@ validation_error_response_definition = {
     },
 }
 
+status_code_ranges: Dict[str, str] = {
+    "1XX": "Information",
+    "2XX": "Success",
+    "3XX": "Redirection",
+    "4XX": "Client Error",
+    "5XX": "Server Error",
+    "DEFAULT": "Default Response",
+}
+
 
 def get_openapi_params(dependant: Dependant) -> List[Field]:
-    flat_dependant = get_flat_dependant(dependant)
+    flat_dependant = get_flat_dependant(dependant, skip_repeats=True)
     return (
         flat_dependant.path_params
         + flat_dependant.query_params
@@ -71,15 +80,11 @@ def get_openapi_security_definitions(flat_dependant: Dependant) -> Tuple[Dict, L
 
 def get_openapi_operation_parameters(
     all_route_params: Sequence[Field]
-) -> Tuple[Dict[str, Dict], List[Dict[str, Any]]]:
-    definitions: Dict[str, Dict] = {}
+) -> List[Dict[str, Any]]:
     parameters = []
     for param in all_route_params:
         schema = param.schema
         schema = cast(Param, schema)
-        if "ValidationError" not in definitions:
-            definitions["ValidationError"] = validation_error_definition
-            definitions["HTTPValidationError"] = validation_error_response_definition
         parameter = {
             "name": param.alias,
             "in": schema.in_.value,
@@ -91,7 +96,7 @@ def get_openapi_operation_parameters(
         if schema.deprecated:
             parameter["deprecated"] = schema.deprecated
         parameters.append(parameter)
-    return definitions, parameters
+    return parameters
 
 
 def get_openapi_operation_request_body(
@@ -150,7 +155,7 @@ def get_openapi_path(
         for method in route.methods:
             operation = get_openapi_operation_metadata(route=route, method=method)
             parameters: List[Dict] = []
-            flat_dependant = get_flat_dependant(route.dependant)
+            flat_dependant = get_flat_dependant(route.dependant, skip_repeats=True)
             security_definitions, operation_security = get_openapi_security_definitions(
                 flat_dependant=flat_dependant
             )
@@ -159,10 +164,7 @@ def get_openapi_path(
             if security_definitions:
                 security_schemes.update(security_definitions)
             all_route_params = get_openapi_params(route.dependant)
-            validation_definitions, operation_parameters = get_openapi_operation_parameters(
-                all_route_params=all_route_params
-            )
-            definitions.update(validation_definitions)
+            operation_parameters = get_openapi_operation_parameters(all_route_params)
             parameters.extend(operation_parameters)
             if parameters:
                 operation["parameters"] = parameters
@@ -172,11 +174,6 @@ def get_openapi_path(
                 )
                 if request_body_oai:
                     operation["requestBody"] = request_body_oai
-                    if "ValidationError" not in definitions:
-                        definitions["ValidationError"] = validation_error_definition
-                        definitions[
-                            "HTTPValidationError"
-                        ] = validation_error_response_definition
             if route.responses:
                 for (additional_status_code, response) in route.responses.items():
                     assert isinstance(
@@ -188,15 +185,18 @@ def get_openapi_path(
                             field, model_name_map=model_name_map, ref_prefix=REF_PREFIX
                         )
                         response.setdefault("content", {}).setdefault(
-                            "application/json", {}
+                            route.response_class.media_type, {}
                         )["schema"] = response_schema
-                    status_text = http.client.responses.get(int(additional_status_code))
+                    status_text: Optional[str] = status_code_ranges.get(
+                        str(additional_status_code).upper()
+                    ) or http.client.responses.get(int(additional_status_code))
                     response.setdefault(
                         "description", status_text or "Additional Response"
                     )
-                    operation.setdefault("responses", {})[
-                        str(additional_status_code)
-                    ] = response
+                    status_code_key = str(additional_status_code).upper()
+                    if status_code_key == "DEFAULT":
+                        status_code_key = "default"
+                    operation.setdefault("responses", {})[status_code_key] = response
             status_code = str(route.status_code)
             response_schema = {"type": "string"}
             if lenient_issubclass(route.response_class, JSONResponse):
@@ -216,8 +216,15 @@ def get_openapi_path(
             ).setdefault("content", {}).setdefault(route.response_class.media_type, {})[
                 "schema"
             ] = response_schema
-            if all_route_params or route.body_field:
-                operation["responses"][str(HTTP_422_UNPROCESSABLE_ENTITY)] = {
+
+            http422 = str(HTTP_422_UNPROCESSABLE_ENTITY)
+            if (all_route_params or route.body_field) and not any(
+                [
+                    status in operation["responses"]
+                    for status in [http422, "4xx", "default"]
+                ]
+            ):
+                operation["responses"][http422] = {
                     "description": "Validation Error",
                     "content": {
                         "application/json": {
@@ -225,6 +232,13 @@ def get_openapi_path(
                         }
                     },
                 }
+                if "ValidationError" not in definitions:
+                    definitions.update(
+                        {
+                            "ValidationError": validation_error_definition,
+                            "HTTPValidationError": validation_error_response_definition,
+                        }
+                    )
             path[method.lower()] = operation
     return path, security_schemes, definitions
 
