@@ -37,7 +37,7 @@ Open your browser at <a href="http://127.0.0.1:8000" target="_blank">http://127.
 You will see the JSON response as:
 
 ```JSON
-{"hello": "world"}
+{"message": "Hello World"}
 ```
 
 ### Interactive API docs
