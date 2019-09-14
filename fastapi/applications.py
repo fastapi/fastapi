@@ -31,6 +31,7 @@ class FastAPI(Starlette):
         title: str = "Fast API",
         description: str = "",
         version: str = "0.1.0",
+        add_openapi_route: bool = True,
         openapi_url: Optional[str] = "/openapi.json",
         openapi_prefix: str = "",
         docs_url: Optional[str] = "/docs",
@@ -50,6 +51,7 @@ class FastAPI(Starlette):
         self.title = title
         self.description = description
         self.version = version
+        self.add_openapi_route = add_openapi_route
         self.openapi_url = openapi_url
         self.openapi_prefix = openapi_prefix.rstrip("/")
         self.docs_url = docs_url
@@ -84,11 +86,13 @@ class FastAPI(Starlette):
     def setup(self) -> None:
         if self.openapi_url:
 
-            async def openapi(req: Request) -> JSONResponse:
-                return JSONResponse(self.openapi())
+            if self.add_openapi_route:
+                async def openapi(req: Request) -> JSONResponse:
+                    return JSONResponse(self.openapi())
 
-            self.add_route(self.openapi_url, openapi, include_in_schema=False)
+                self.add_route(self.openapi_url, openapi, include_in_schema=False)
             openapi_url = self.openapi_prefix + self.openapi_url
+
         if self.openapi_url and self.docs_url:
 
             async def swagger_ui_html(req: Request) -> HTMLResponse:
