@@ -14,7 +14,7 @@ def get_swagger_ui_html(
 ) -> HTMLResponse:
 
     html = f"""
-    <! doctype html>
+    <!DOCTYPE html>
     <html>
     <head>
     <link type="text/css" rel="stylesheet" href="{swagger_css_url}">
@@ -94,7 +94,7 @@ def get_redoc_html(
 
 def get_swagger_ui_oauth2_redirect_html() -> HTMLResponse:
     html = """
-    <!doctype html>
+    <!DOCTYPE html>
     <html lang="en-US">
     <body onload="run()">
     </body>
