@@ -43,12 +43,17 @@ validation_error_response_definition = {
     },
 }
 
+HTTP_1XX_RANGE = "1XX"
+HTTP_2XX_RANGE = "2XX"
+HTTP_3XX_RANGE = "3XX"
+HTTP_4XX_RANGE = "4XX"
+HTTP_5XX_RANGE = "5XX"
 status_code_ranges: Dict[str, str] = {
-    "1XX": "Information",
-    "2XX": "Success",
-    "3XX": "Redirection",
-    "4XX": "Client Error",
-    "5XX": "Server Error",
+    HTTP_1XX_RANGE: "Information",
+    HTTP_2XX_RANGE: "Success",
+    HTTP_3XX_RANGE: "Redirection",
+    HTTP_4XX_RANGE: "Client Error",
+    HTTP_5XX_RANGE: "Server Error",
     "DEFAULT": "Default Response",
 }
 
@@ -221,7 +226,7 @@ def get_openapi_path(
             if (all_route_params or route.body_field) and not any(
                 [
                     status in operation["responses"]
-                    for status in [http422, "4xx", "default"]
+                    for status in [http422, HTTP_4XX_RANGE, "default"]
                 ]
             ):
                 operation["responses"][http422] = {
