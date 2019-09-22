@@ -9,7 +9,7 @@ def doc_without_linefeed():
     Normal doc without
     line feed.
     """
-    return {"id": "foo"}
+    pass
 
 
 @app.get("/split")
@@ -19,7 +19,7 @@ def doc_with_linefeed():
     \f
     by a line feed. This part should not appear in the description.
     """
-    return {"id": "foo"}
+    pass
 
 
 def test_route_description_normal():
