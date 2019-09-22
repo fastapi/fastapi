@@ -9,7 +9,6 @@ def doc_without_linefeed():
     Normal doc without
     line feed.
     """
-    pass
 
 
 @app.get("/split")
@@ -19,7 +18,6 @@ def doc_with_linefeed():
     \f
     by a line feed. This part should not appear in the description.
     """
-    pass
 
 
 def test_route_description_normal():
@@ -27,8 +25,11 @@ def test_route_description_normal():
     for route in app.routes:
         if route.path == "/normal":
             found = True
-            assert route.description == """Normal doc without
+            assert (
+                route.description
+                == """Normal doc without
 line feed."""
+            )
     assert found, "Route was not found"
 
 
