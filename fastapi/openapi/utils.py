@@ -283,7 +283,7 @@ def get_openapi(
                 if path_definitions:
                     definitions.update(path_definitions)
     if definitions:
-        components.setdefault("schemas", {}).update(definitions)
+        components["schemas"] = {k: definitions[k] for k in sorted(definitions)}
     if components:
         output["components"] = components
     output["paths"] = paths
