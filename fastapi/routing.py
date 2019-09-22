@@ -249,6 +249,10 @@ class APIRoute(routing.Route):
             self.dependencies = []
         self.summary = summary
         self.description = description or inspect.cleandoc(self.endpoint.__doc__ or "")
+        # if a form feed (page break) is found in the description text, truncate
+        # description text to the content preceding the first form feed
+        if self.description and "\f" in self.description:
+            self.description = self.description.split("\f")[0]
         self.response_description = response_description
         self.responses = responses or {}
         response_fields = {}

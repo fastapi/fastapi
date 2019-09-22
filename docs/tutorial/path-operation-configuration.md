@@ -44,7 +44,9 @@ As descriptions tend to be long and cover multiple lines, you can declare the pa
 
 You can write <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank">Markdown</a> in the docstring, it will be interpreted and displayed correctly (taking into account docstring indentation).
 
-```Python hl_lines="19 20 21 22 23 24 25 26 27"
+The docstring is sometimes used for other purposes, such as documenting the function parameters. Adding a `\\f` (line feed) causes **FastAPI** to truncate the output at this point and it won't show up in the documentation, but other tools such as Sphinx will read past it.
+
+```Python hl_lines="19 20 21 22 23 24 25 26 27 28 29"
 {!./src/path_operation_configuration/tutorial004.py!}
 ```
 
