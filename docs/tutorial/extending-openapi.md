@@ -100,19 +100,19 @@ Let's assume that these files are places in the applications ``/static/`` path.
 
 To replace the builtin methods, set the ``docs_url`` (for Swagger) and ``redoc_url`` (for ReDoc) to None when creating the app, so FastAPI won't set its own versions up.
 
-```Python hl_lines="11"
+```Python hl_lines="10"
 {!./src/extending_openapi/tutorial002.py!}
 ```
 
 Next, set up your own functions that return the HTML, setting the urls to the files to the destination of your liking:
 
-```Python hl_lines="14 15 16 17 18 19 20 21 25 26 27 36 37 38 39 40 41"
+```Python hl_lines="13 14 15 16 17 18 19 20 25 27 28 35 36 37 38 39 40"
 {!./src/extending_openapi/tutorial002.py!}
 ```
 
 The functions need to be added as routes, using the paths that would normally sit in the two variables ``docs_url`` and ``redoc_url``. The example uses the default values:
 
-```Python hl_lines="23 29 30 31 32 33 43"
+```Python hl_lines="23 30 31 32 43"
 {!./src/extending_openapi/tutorial002.py!}
 ```
 
