@@ -88,3 +88,32 @@ Now you can replace the `.openapi()` method with your new function.
 Once you go to <a href="http://127.0.0.1:8000/redoc" target="_blank">http://127.0.0.1:8000/redoc</a> you will see that you are using your custom logo (in this example, **FastAPI**'s logo):
 
 <img src="/img/tutorial/extending-openapi/image01.png">
+
+
+## Self-hosting javascript and CSS
+
+Javascript and CSS for both Swagger UI and ReDoc are included using a CDN. For setups where a custom CDN is to be used or where the application should provide the files itself, the paths need to be changed.
+
+`Swagger` uses the files ``swagger-ui-bundle.js`` and ``swagger-ui.css``, while `ReDoc` needs ``redoc.standalone.js``.
+
+Let's assume that these files are places in the applications ``/static/`` path.
+
+To replace the builtin methods, set the ``docs_url`` (for Swagger) and ``redoc_url`` (for ReDoc) to None when creating the app, so FastAPI won't set its own versions up.
+
+```Python hl_lines="11"
+{!./src/extending_openapi/tutorial002.py!}
+```
+
+Next, set up your own functions that return the HTML, setting the urls to the files to the destination of your liking:
+
+```Python hl_lines="14 15 16 17 18 19 20 21 25 26 27 36 37 38 39 40 41"
+{!./src/extending_openapi/tutorial002.py!}
+```
+
+The functions need to be added as routes, using the paths that would normally sit in the two variables ``docs_url`` and ``redoc_url``. The example uses the default values:
+
+```Python hl_lines="23 29 30 31 32 33 43"
+{!./src/extending_openapi/tutorial002.py!}
+```
+
+Of course, it is possible to overwrite only one of the functions, simply by not supplying ``None`` to the one that is to be left at the defaults.
