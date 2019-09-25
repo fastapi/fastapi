@@ -410,6 +410,14 @@ async def solve_dependencies(
             continue
         if sub_dependant.use_cache and sub_dependant.cache_key in dependency_cache:
             solved = dependency_cache[sub_dependant.cache_key]
+        elif inspect.isgeneratorfunction(call):
+            if background_tasks is None:
+                background_tasks = BackgroundTasks()
+            solved = await solve_generator(call, sub_values, background_tasks)
+        elif inspect.isasyncgenfunction(call):
+            if background_tasks is None:
+                background_tasks = BackgroundTasks()
+            solved = await solve_asyncgen(call, sub_values, background_tasks)
         elif is_coroutine_callable(call):
             solved = await call(**sub_values)
         else:
@@ -456,6 +464,49 @@ async def solve_dependencies(
             scopes=dependant.security_scopes
         )
     return values, errors, background_tasks, response, dependency_cache
+
+
+async def solve_generator(
+    call: Callable, sub_values: Dict[str, Any], background_tasks: BackgroundTasks
+) -> Any:
+    generator = call(**sub_values)
+
+    def solve() -> Any:
+        try:
+            return next(generator)
+        except StopIteration:
+            raise RuntimeError("generator didn't yield")
+
+    def teardown() -> None:
+        try:
+            next(generator)
+        except StopIteration:  # pragma: no cover
+            pass  # prevents BackgroundTasks from hanging
+        else:
+            raise RuntimeError("generator didn't stop")
+
+    background_tasks.add_task(teardown)
+    return await run_in_threadpool(solve)
+
+
+async def solve_asyncgen(
+    call: Callable, sub_values: Dict[str, Any], background_tasks: BackgroundTasks
+) -> Any:
+    asyncgen = call(**sub_values)
+
+    async def teardown() -> None:
+        try:
+            await asyncgen.__anext__()
+        except StopAsyncIteration:
+            return
+        else:
+            raise RuntimeError("generator didn't stop")
+
+    background_tasks.add_task(teardown)
+    try:
+        return await asyncgen.__anext__()
+    except StopAsyncIteration:
+        raise RuntimeError("generator didn't yield")
 
 
 def request_params_to_args(
