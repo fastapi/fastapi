@@ -151,6 +151,10 @@ def get_openapi_path(
     security_schemes: Dict[str, Any] = {}
     definitions: Dict[str, Any] = {}
     assert route.methods is not None, "Methods must be a list"
+    assert (
+        route.response_class and route.response_class.media_type
+    ), "A response class with media_type is needed to generate OpenAPI"
+    route_response_media_type: str = route.response_class.media_type
     if route.include_in_schema:
         for method in route.methods:
             operation = get_openapi_operation_metadata(route=route, method=method)
@@ -185,7 +189,7 @@ def get_openapi_path(
                             field, model_name_map=model_name_map, ref_prefix=REF_PREFIX
                         )
                         response.setdefault("content", {}).setdefault(
-                            route.response_class.media_type, {}
+                            route_response_media_type, {}
                         )["schema"] = response_schema
                     status_text: Optional[str] = status_code_ranges.get(
                         str(additional_status_code).upper()
@@ -213,7 +217,7 @@ def get_openapi_path(
             ] = route.response_description
             operation.setdefault("responses", {}).setdefault(
                 status_code, {}
-            ).setdefault("content", {}).setdefault(route.response_class.media_type, {})[
+            ).setdefault("content", {}).setdefault(route_response_media_type, {})[
                 "schema"
             ] = response_schema
 

@@ -200,7 +200,7 @@ class APIRoute(routing.Route):
         response_model_by_alias: bool = True,
         response_model_skip_defaults: bool = False,
         include_in_schema: bool = True,
-        response_class: Type[Response] = JSONResponse,
+        response_class: Optional[Type[Response]] = None,
         dependency_overrides_provider: Any = None,
     ) -> None:
         self.path = path
@@ -215,9 +215,6 @@ class APIRoute(routing.Route):
         )
         self.response_model = response_model
         if self.response_model:
-            assert lenient_issubclass(
-                response_class, JSONResponse
-            ), "To declare a type the response must be a JSON response"
             response_name = "Response_" + self.unique_id
             self.response_field: Optional[Field] = Field(
                 name=response_name,
@@ -299,7 +296,7 @@ class APIRoute(routing.Route):
                 dependant=self.dependant,
                 body_field=self.body_field,
                 status_code=self.status_code,
-                response_class=self.response_class,
+                response_class=self.response_class or JSONResponse,
                 response_field=self.secure_cloned_response_field,
                 response_model_include=self.response_model_include,
                 response_model_exclude=self.response_model_exclude,
@@ -346,7 +343,7 @@ class APIRouter(routing.Router):
         response_model_by_alias: bool = True,
         response_model_skip_defaults: bool = False,
         include_in_schema: bool = True,
-        response_class: Type[Response] = JSONResponse,
+        response_class: Type[Response] = None,
         name: str = None,
     ) -> None:
         route = self.route_class(
@@ -394,7 +391,7 @@ class APIRouter(routing.Router):
         response_model_by_alias: bool = True,
         response_model_skip_defaults: bool = False,
         include_in_schema: bool = True,
-        response_class: Type[Response] = JSONResponse,
+        response_class: Type[Response] = None,
         name: str = None,
     ) -> Callable:
         def decorator(func: Callable) -> Callable:
@@ -445,6 +442,7 @@ class APIRouter(routing.Router):
         tags: List[str] = None,
         dependencies: Sequence[params.Depends] = None,
         responses: Dict[Union[int, str], Dict[str, Any]] = None,
+        default_response_class: Optional[Type[Response]] = None,
     ) -> None:
         if prefix:
             assert prefix.startswith("/"), "A path prefix must start with '/'"
@@ -484,7 +482,7 @@ class APIRouter(routing.Router):
                     response_model_by_alias=route.response_model_by_alias,
                     response_model_skip_defaults=route.response_model_skip_defaults,
                     include_in_schema=route.include_in_schema,
-                    response_class=route.response_class,
+                    response_class=route.response_class or default_response_class,
                     name=route.name,
                 )
             elif isinstance(route, routing.Route):
@@ -523,10 +521,9 @@ class APIRouter(routing.Router):
         response_model_by_alias: bool = True,
         response_model_skip_defaults: bool = False,
         include_in_schema: bool = True,
-        response_class: Type[Response] = JSONResponse,
+        response_class: Type[Response] = None,
         name: str = None,
     ) -> Callable:
-
         return self.api_route(
             path=path,
             response_model=response_model,
@@ -568,7 +565,7 @@ class APIRouter(routing.Router):
         response_model_by_alias: bool = True,
         response_model_skip_defaults: bool = False,
         include_in_schema: bool = True,
-        response_class: Type[Response] = JSONResponse,
+        response_class: Type[Response] = None,
         name: str = None,
     ) -> Callable:
         return self.api_route(
@@ -612,7 +609,7 @@ class APIRouter(routing.Router):
         response_model_by_alias: bool = True,
         response_model_skip_defaults: bool = False,
         include_in_schema: bool = True,
-        response_class: Type[Response] = JSONResponse,
+        response_class: Type[Response] = None,
         name: str = None,
     ) -> Callable:
         return self.api_route(
@@ -656,7 +653,7 @@ class APIRouter(routing.Router):
         response_model_by_alias: bool = True,
         response_model_skip_defaults: bool = False,
         include_in_schema: bool = True,
-        response_class: Type[Response] = JSONResponse,
+        response_class: Type[Response] = None,
         name: str = None,
     ) -> Callable:
         return self.api_route(
@@ -700,7 +697,7 @@ class APIRouter(routing.Router):
         response_model_by_alias: bool = True,
         response_model_skip_defaults: bool = False,
         include_in_schema: bool = True,
-        response_class: Type[Response] = JSONResponse,
+        response_class: Type[Response] = None,
         name: str = None,
     ) -> Callable:
         return self.api_route(
@@ -744,7 +741,7 @@ class APIRouter(routing.Router):
         response_model_by_alias: bool = True,
         response_model_skip_defaults: bool = False,
         include_in_schema: bool = True,
-        response_class: Type[Response] = JSONResponse,
+        response_class: Type[Response] = None,
         name: str = None,
     ) -> Callable:
         return self.api_route(
@@ -788,7 +785,7 @@ class APIRouter(routing.Router):
         response_model_by_alias: bool = True,
         response_model_skip_defaults: bool = False,
         include_in_schema: bool = True,
-        response_class: Type[Response] = JSONResponse,
+        response_class: Type[Response] = None,
         name: str = None,
     ) -> Callable:
         return self.api_route(
@@ -832,7 +829,7 @@ class APIRouter(routing.Router):
         response_model_by_alias: bool = True,
         response_model_skip_defaults: bool = False,
         include_in_schema: bool = True,
-        response_class: Type[Response] = JSONResponse,
+        response_class: Type[Response] = None,
         name: str = None,
     ) -> Callable:
         return self.api_route(

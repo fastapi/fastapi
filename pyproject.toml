@@ -39,6 +39,7 @@ test = [
     "email_validator",
     "sqlalchemy",
     "databases[sqlite]",
+    "orjson"
 ]
 doc = [
     "mkdocs",
