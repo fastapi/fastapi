@@ -1,5 +1,8 @@
+import pytest
 from starlette.testclient import TestClient
 
+from dependencies.tutorial008 import get_db as get_db_override_1
+from dependencies.tutorial009 import get_db as get_db_override_2
 from sql_databases.sql_app.main import app, get_db
 
 client = TestClient(app)
@@ -353,9 +356,8 @@ def test_read_items():
     assert "description" in first_item
 
 
-def test_contextmanager_override():
-    from dependencies.tutorial008 import get_db as get_db_override
-
+@pytest.mark.parametrize("get_db_override", [get_db_override_1, get_db_override_2])
+def test_contextmanager_override(get_db_override):
     app.dependency_overrides[get_db] = get_db_override
     try:
         test_get_user()

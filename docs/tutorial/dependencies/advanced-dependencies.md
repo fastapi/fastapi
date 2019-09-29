@@ -81,17 +81,33 @@ For example, this would enable you to eliminate the use of middleware while impl
 the `get_db` dependency from the
 [SQL Databases](https://fastapi.tiangolo.com/tutorial/sql-databases/) section of the tutorial:
 
- ```Python hl_lines="9"
+```Python hl_lines="4"
 {!./src/dependencies/tutorial008.py!}
 ```
 
-Only the code prior to and including the `yield` statement is executed during the handling
-of the request. The value yielded by the `yield` statement is injected into endpoint
-calls (and other dependencies). Finally, the code following the `yield` statement is executed
-as a `BackgroundTask`, and so is executed only after the response has been delivered.
+Only the code prior to and including the `yield` statement is executed before sending a response:
+```Python hl_lines="5 6 7"
+{!./src/dependencies/tutorial008.py!}
+```
+
+The yielded value is what is injected into endpoint calls and other dependencies:
+```Python hl_lines="7"
+{!./src/dependencies/tutorial008.py!}
+```
+
+The code following the `yield` statement is executed as a `BackgroundTask` after the response has been delivered:
+```Python hl_lines="8 9"
+{!./src/dependencies/tutorial008.py!}
+```
 
 !!! info
     Any function that is valid for use with the
     [`@contextlib.contextmanager`](https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager)
     or [`@contextlib.asynccontextmanager`](https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager)
     decorators should be valid for use as a fastapi dependency, and will be handled as described above.
+
+This approach can be made compatible with traditional context managers and async context managers by using
+`with` or `async with` statements inside the dependency function: 
+```Python hl_lines="16"
+{!./src/dependencies/tutorial009.py!}
+```

@@ -1,11 +1,10 @@
 from typing import Dict
 
 import pytest
-from fastapi import Depends
+from fastapi import Depends, FastAPI
 from starlette.testclient import TestClient
 
-from dependencies.tutorial008 import app
-
+app = FastAPI()
 state = {"/async": "asyncgen not started", "/sync": "generator not started"}
 
 
@@ -106,9 +105,3 @@ def test_invalid_context_dependency(endpoint, message):
     with pytest.raises(RuntimeError) as exc_info:
         client.get(endpoint)
     assert str(exc_info.value) == message
-
-
-def test_docs():
-    response = client.get("/get-db-check")
-    assert response.status_code == 200
-    assert response.content == b"true"
