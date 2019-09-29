@@ -21,17 +21,20 @@ class User(BaseModel):
     username: str
 
 
+# Here we use string annotations to test them
 def get_current_user(oauth_header: "str" = Security(reusable_oauth2)):
     user = User(username=oauth_header)
     return user
 
 
 @app.post("/login")
+# Here we use string annotations to test them
 def read_current_user(form_data: "OAuth2PasswordRequestFormStrict" = Depends()):
     return form_data
 
 
 @app.get("/users/me")
+# Here we use string annotations to test them
 def read_current_user(current_user: "User" = Depends(get_current_user)):
     return current_user
 
