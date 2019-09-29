@@ -42,9 +42,7 @@ class FastAPI(Starlette):
         self.default_response_class = default_response_class
         self._debug = debug
         self.router: routing.APIRouter = routing.APIRouter(
-            routes,
-            dependency_overrides_provider=self,
-            default_response_class=self.default_response_class,
+            routes, dependency_overrides_provider=self
         )
         self.exception_middleware = ExceptionMiddleware(self.router, debug=debug)
         self.error_middleware = ServerErrorMiddleware(
@@ -170,7 +168,7 @@ class FastAPI(Starlette):
             response_model_by_alias=response_model_by_alias,
             response_model_skip_defaults=response_model_skip_defaults,
             include_in_schema=include_in_schema,
-            response_class=response_class,
+            response_class=response_class or self.default_response_class,
             name=name,
         )
 
@@ -217,7 +215,7 @@ class FastAPI(Starlette):
                 response_model_by_alias=response_model_by_alias,
                 response_model_skip_defaults=response_model_skip_defaults,
                 include_in_schema=include_in_schema,
-                response_class=response_class,
+                response_class=response_class or self.default_response_class,
                 name=name,
             )
             return func
@@ -244,6 +242,7 @@ class FastAPI(Starlette):
         tags: List[str] = None,
         dependencies: Sequence[Depends] = None,
         responses: Dict[Union[int, str], Dict[str, Any]] = None,
+        default_response_class: Optional[Type[Response]] = None,
     ) -> None:
         self.router.include_router(
             router,
@@ -251,6 +250,8 @@ class FastAPI(Starlette):
             tags=tags,
             dependencies=dependencies,
             responses=responses or {},
+            default_response_class=default_response_class
+            or self.default_response_class,
         )
 
     def get(
@@ -292,7 +293,7 @@ class FastAPI(Starlette):
             response_model_by_alias=response_model_by_alias,
             response_model_skip_defaults=response_model_skip_defaults,
             include_in_schema=include_in_schema,
-            response_class=response_class,
+            response_class=response_class or self.default_response_class,
             name=name,
         )
 
@@ -335,7 +336,7 @@ class FastAPI(Starlette):
             response_model_by_alias=response_model_by_alias,
             response_model_skip_defaults=response_model_skip_defaults,
             include_in_schema=include_in_schema,
-            response_class=response_class,
+            response_class=response_class or self.default_response_class,
             name=name,
         )
 
@@ -378,7 +379,7 @@ class FastAPI(Starlette):
             response_model_by_alias=response_model_by_alias,
             response_model_skip_defaults=response_model_skip_defaults,
             include_in_schema=include_in_schema,
-            response_class=response_class,
+            response_class=response_class or self.default_response_class,
             name=name,
         )
 
@@ -421,7 +422,7 @@ class FastAPI(Starlette):
             operation_id=operation_id,
             response_model_skip_defaults=response_model_skip_defaults,
             include_in_schema=include_in_schema,
-            response_class=response_class,
+            response_class=response_class or self.default_response_class,
             name=name,
         )
 
@@ -464,7 +465,7 @@ class FastAPI(Starlette):
             response_model_by_alias=response_model_by_alias,
             response_model_skip_defaults=response_model_skip_defaults,
             include_in_schema=include_in_schema,
-            response_class=response_class,
+            response_class=response_class or self.default_response_class,
             name=name,
         )
 
@@ -507,7 +508,7 @@ class FastAPI(Starlette):
             response_model_by_alias=response_model_by_alias,
             response_model_skip_defaults=response_model_skip_defaults,
             include_in_schema=include_in_schema,
-            response_class=response_class,
+            response_class=response_class or self.default_response_class,
             name=name,
         )
 
@@ -550,7 +551,7 @@ class FastAPI(Starlette):
             response_model_by_alias=response_model_by_alias,
             response_model_skip_defaults=response_model_skip_defaults,
             include_in_schema=include_in_schema,
-            response_class=response_class,
+            response_class=response_class or self.default_response_class,
             name=name,
         )
 
@@ -593,6 +594,6 @@ class FastAPI(Starlette):
             response_model_by_alias=response_model_by_alias,
             response_model_skip_defaults=response_model_skip_defaults,
             include_in_schema=include_in_schema,
-            response_class=response_class,
+            response_class=response_class or self.default_response_class,
             name=name,
         )

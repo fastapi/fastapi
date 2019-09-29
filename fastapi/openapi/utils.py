@@ -211,6 +211,9 @@ def get_openapi_path(
             operation.setdefault("responses", {}).setdefault(status_code, {})[
                 "description"
             ] = route.response_description
+            assert (
+                route.response_class
+            ), "A response class is needed to generate OpenAPI"
             operation.setdefault("responses", {}).setdefault(
                 status_code, {}
             ).setdefault("content", {}).setdefault(route.response_class.media_type, {})[
