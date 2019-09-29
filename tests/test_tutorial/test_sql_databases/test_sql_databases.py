@@ -1,6 +1,6 @@
 from starlette.testclient import TestClient
 
-from sql_databases.sql_app.main import app
+from sql_databases.sql_app.main import app, get_db
 
 client = TestClient(app)
 
@@ -351,3 +351,16 @@ def test_read_items():
     first_item = data[0]
     assert "title" in first_item
     assert "description" in first_item
+
+
+def test_contextmanager_override():
+    from dependencies.tutorial008 import get_db as get_db_override
+
+    app.dependency_overrides[get_db] = get_db_override
+    try:
+        test_get_user()
+        test_inexistent_user()
+        test_get_users()
+        test_read_items()
+    finally:
+        del app.dependency_overrides[get_db]

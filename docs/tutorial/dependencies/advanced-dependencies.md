@@ -71,3 +71,27 @@ checker(q="somequery")
     In the chapters about security, you will be using utility functions that are implemented in this same way.
 
     If you understood all this, you already know how those utility tools for security work underneath.
+
+## Context Manager Dependencies
+
+FastAPI supports dependencies that require both setup and teardown through the use of appropriate generator or
+async generator functions.
+
+For example, this would enable you to eliminate the use of middleware while implementing
+the `get_db` dependency from the
+[SQL Databases](https://fastapi.tiangolo.com/tutorial/sql-databases/) section of the tutorial:
+
+ ```Python hl_lines="9"
+{!./src/dependencies/tutorial008.py!}
+```
+
+Only the code prior to and including the `yield` statement is executed during the handling
+of the request. The value yielded by the `yield` statement is injected into endpoint
+calls (and other dependencies). Finally, the code following the `yield` statement is executed
+as a `BackgroundTask`, and so is executed only after the response has been delivered.
+
+!!! info
+    Any function that is valid for use with the
+    [`@contextlib.contextmanager`](https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager)
+    or [`@contextlib.asynccontextmanager`](https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager)
+    decorators should be valid for use as a fastapi dependency, and will be handled as described above.
