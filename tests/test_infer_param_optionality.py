@@ -137,7 +137,6 @@ def test_schema_1():
 
 def test_schema_2():
     """Check that the user_id is an optional query parameter under /items"""
-    """
     response = client.get("/openapi.json")
     assert response.status_code == 200
     r = response.json()
