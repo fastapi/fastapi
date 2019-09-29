@@ -5,7 +5,7 @@ app = FastAPI()
 
 
 user_router = APIRouter()
-item_router = APIRouter()  # pylint: disable=invalid-name
+item_router = APIRouter()
 
 
 @user_router.get("/")
