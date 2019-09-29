@@ -29,6 +29,7 @@ starlette = "==0.12.8"
 pydantic = "==0.32.2"
 databases = {extras = ["sqlite"],version = "*"}
 hypercorn = "*"
+orjson = "*"
 
 [requires]
 python_version = "3.6"
