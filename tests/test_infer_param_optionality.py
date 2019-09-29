@@ -1,7 +1,7 @@
 from fastapi import APIRouter, FastAPI
 from starlette.testclient import TestClient
 
-app = FastAPI()  # pylint: disable=invalid-name
+app = FastAPI()
 
 
 user_router = APIRouter()  # pylint: disable=invalid-name
