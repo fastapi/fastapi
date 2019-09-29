@@ -1,5 +1,7 @@
 ## Latest changes
 
+## 0.39.0
+
 * Allow path parameters to have default values (e.g. `None`) and discard them instead of raising an error.
     * This allows declaring a parameter like `user_id: str = None` that can be taken from a query parameter, but the same path operation can be included in a router with a path `/users/{user_id}`, in which case will be taken from the path and will be required.
     * PR [#464](https://github.com/tiangolo/fastapi/pull/464) by [@jonathanunderwood](https://github.com/jonathanunderwood).
