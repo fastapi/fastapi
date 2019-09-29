@@ -1,5 +1,8 @@
 ## Latest changes
 
+* Allow path parameters to have default values (e.g. `None`) and discard them instead of raising an error.
+    * This allows declaring a parameter like `user_id: str = None` that can be taken from a query parameter, but the same path operation can be included in a router with a path `/users/{user_id}`, in which case will be taken from the path and will be required.
+    * PR [#464](https://github.com/tiangolo/fastapi/pull/464) by [@jonathanunderwood](https://github.com/jonathanunderwood).
 * Add support for setting a `default_response_class` in the `FastAPI` instance or in `include_router`. Initial PR [#467](https://github.com/tiangolo/fastapi/pull/467) by [@toppk](https://github.com/toppk).
 * Add support for type annotations using strings and `from __future__ import annotations`. PR [#451](https://github.com/tiangolo/fastapi/pull/451) by [@dmontagu](https://github.com/dmontagu).
 
