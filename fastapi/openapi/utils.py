@@ -212,11 +212,12 @@ def get_openapi_path(
                 "description"
             ] = route.response_description
             assert (
-                route.response_class
-            ), "A response class is needed to generate OpenAPI"
+                route.response_class and route.response_class.media_type
+            ), "A response class with media_type is needed to generate OpenAPI"
+            media_type: str = route.response_class.media_type
             operation.setdefault("responses", {}).setdefault(
                 status_code, {}
-            ).setdefault("content", {}).setdefault(route.response_class.media_type, {})[
+            ).setdefault("content", {}).setdefault(media_type, {})[
                 "schema"
             ] = response_schema
 
