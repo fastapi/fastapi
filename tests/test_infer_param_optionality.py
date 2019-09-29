@@ -40,7 +40,7 @@ app.include_router(item_router, prefix="/items")
 app.include_router(item_router, prefix="/users/{user_id}/items")
 
 
-client = TestClient(app)  # pylint: disable=invalid-name
+client = TestClient(app)
 
 
 def test_get_users():
