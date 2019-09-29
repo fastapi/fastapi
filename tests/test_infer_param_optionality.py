@@ -51,7 +51,7 @@ def test_get_users():
 
 
 def test_get_user():
-    """Check that /users/{user_id} returns expected data
+    """Check that /users/{user_id} returns expected data"""
 
     """
     response = client.get("/users/abc123")
