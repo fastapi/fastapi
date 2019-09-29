@@ -1,7 +1,19 @@
 import asyncio
 import inspect
 import logging
-from typing import Any, Callable, Dict, List, Optional, Sequence, Set, Type, Union
+from copy import deepcopy
+from typing import (
+    Any,
+    Callable,
+    Dict,
+    List,
+    Optional,
+    Pattern,
+    Sequence,
+    Set,
+    Type,
+    Union,
+)
 
 from fastapi import params
 from fastapi.dependencies.models import Dependant
@@ -20,6 +32,7 @@ from pydantic.fields import Field
 from pydantic.utils import lenient_issubclass
 from starlette import routing
 from starlette.concurrency import run_in_threadpool
+from starlette.convertors import Convertor
 from starlette.exceptions import HTTPException
 from starlette.requests import Request
 from starlette.responses import JSONResponse, Response
@@ -178,6 +191,23 @@ class APIWebSocketRoute(routing.WebSocketRoute):
 
 
 class APIRoute(routing.Route):
+    body_field: Optional[Field]
+    dependant: Dependant
+    dependencies: Sequence[params.Depends]
+    dependency_overrides_provider: Any
+    methods: Set[str]
+    param_convertors: Dict[str, Convertor]
+    path: str
+    path_format: str
+    path_regex: Pattern
+    responses: Dict[Union[int, str], Dict[str, Any]]
+    response_class: Optional[Type[Response]]
+    response_field: Optional[Field]
+    response_fields: Dict[Union[int, str], Field]
+    response_model: Optional[Type[Any]]
+    secure_cloned_response_field: Optional[Field]
+    unique_id: str
+
     def __init__(
         self,
         path: str,
@@ -203,16 +233,42 @@ class APIRoute(routing.Route):
         response_class: Optional[Type[Response]] = None,
         dependency_overrides_provider: Any = None,
     ) -> None:
-        self.path = path
+        assert inspect.isfunction(endpoint) or inspect.ismethod(
+            endpoint
+        ), f"An endpoint must be a function or method"
         self.endpoint = endpoint
         self.name = get_name(endpoint) if name is None else name
-        self.path_regex, self.path_format, self.param_convertors = compile_path(path)
         if methods is None:
             methods = ["GET"]
         self.methods = set([method.upper() for method in methods])
+        self.setup_path(path)
+        self.status_code = status_code
+        self.tags = tags or []
+        self.summary = summary
+        self.description = description or inspect.cleandoc(self.endpoint.__doc__ or "")
+        self.response_description = response_description
+        self.deprecated = deprecated
+        self.operation_id = operation_id
+        self.response_model_include = response_model_include
+        self.response_model_exclude = response_model_exclude
+        self.response_model_by_alias = response_model_by_alias
+        self.response_model_skip_defaults = response_model_skip_defaults
+        self.include_in_schema = include_in_schema
+        self.setup_response(response_class, response_model)
+        self.setup_responses(responses)
+        self.setup_dependencies(dependencies, dependency_overrides_provider)
+
+    def setup_path(self, path: str) -> None:
+        self.path = path
+        self.path_regex, self.path_format, self.param_convertors = compile_path(path)
         self.unique_id = generate_operation_id_for_path(
-            name=self.name, path=self.path_format, method=list(methods)[0]
+            name=self.name, path=self.path_format, method=list(self.methods)[0]
         )
+
+    def setup_response(
+        self, response_class: Type[Response] = None, response_model: Type[Any] = None
+    ) -> None:
+        self.response_class = response_class
         self.response_model = response_model
         if self.response_model:
             response_name = "Response_" + self.unique_id
@@ -238,15 +294,10 @@ class APIRoute(routing.Route):
         else:
             self.response_field = None
             self.secure_cloned_response_field = None
-        self.status_code = status_code
-        self.tags = tags or []
-        if dependencies:
-            self.dependencies = list(dependencies)
-        else:
-            self.dependencies = []
-        self.summary = summary
-        self.description = description or inspect.cleandoc(self.endpoint.__doc__ or "")
-        self.response_description = response_description
+
+    def setup_responses(
+        self, responses: Dict[Union[int, str], Dict[str, Any]] = None
+    ) -> None:
         self.responses = responses or {}
         response_fields = {}
         for additional_status_code, response in self.responses.items():
@@ -271,18 +322,17 @@ class APIRoute(routing.Route):
             self.response_fields: Dict[Union[int, str], Field] = response_fields
         else:
             self.response_fields = {}
-        self.deprecated = deprecated
-        self.operation_id = operation_id
-        self.response_model_include = response_model_include
-        self.response_model_exclude = response_model_exclude
-        self.response_model_by_alias = response_model_by_alias
-        self.response_model_skip_defaults = response_model_skip_defaults
-        self.include_in_schema = include_in_schema
-        self.response_class = response_class
 
-        assert inspect.isfunction(endpoint) or inspect.ismethod(
-            endpoint
-        ), f"An endpoint must be a function or method"
+    def setup_dependencies(
+        self,
+        dependencies: Sequence[params.Depends] = None,
+        dependency_overrides_provider: Any = None,
+    ) -> None:
+        self.dependency_overrides_provider = dependency_overrides_provider
+        if dependencies:
+            self.dependencies = list(dependencies)
+        else:
+            self.dependencies = []
         self.dependant = get_dependant(path=self.path_format, call=self.endpoint)
         for depends in self.dependencies[::-1]:
             self.dependant.dependencies.insert(
@@ -290,21 +340,31 @@ class APIRoute(routing.Route):
                 get_parameterless_sub_dependant(depends=depends, path=self.path_format),
             )
         self.body_field = get_body_field(dependant=self.dependant, name=self.unique_id)
-        self.dependency_overrides_provider = dependency_overrides_provider
-        self.app = request_response(
-            get_app(
-                dependant=self.dependant,
-                body_field=self.body_field,
-                status_code=self.status_code,
-                response_class=self.response_class or JSONResponse,
-                response_field=self.secure_cloned_response_field,
-                response_model_include=self.response_model_include,
-                response_model_exclude=self.response_model_exclude,
-                response_model_by_alias=self.response_model_by_alias,
-                response_model_skip_defaults=self.response_model_skip_defaults,
-                dependency_overrides_provider=self.dependency_overrides_provider,
-            )
+        self.app = request_response(self.get_app())
+
+    def get_app(self) -> Callable:
+        return get_app(
+            dependant=self.dependant,
+            body_field=self.body_field,
+            status_code=self.status_code,
+            response_class=self.response_class or JSONResponse,
+            response_field=self.secure_cloned_response_field,
+            response_model_include=self.response_model_include,
+            response_model_exclude=self.response_model_exclude,
+            response_model_by_alias=self.response_model_by_alias,
+            response_model_skip_defaults=self.response_model_skip_defaults,
+            dependency_overrides_provider=self.dependency_overrides_provider,
         )
+
+    def deepcopy(self) -> "APIRoute":
+        """
+        Necessary for compatibility with Python 3.6
+        """
+        original_path_regex = self.path_regex
+        self.path_regex = None  # type: ignore
+        copied = deepcopy(self)
+        self.path_regex = copied.path_regex = original_path_regex
+        return copied
 
 
 class APIRouter(routing.Router):
@@ -461,30 +521,21 @@ class APIRouter(routing.Router):
             responses = {}
         for route in router.routes:
             if isinstance(route, APIRoute):
-                combined_responses = {**responses, **route.responses}
-                self.add_api_route(
-                    prefix + route.path,
-                    route.endpoint,
-                    response_model=route.response_model,
-                    status_code=route.status_code,
-                    tags=(route.tags or []) + (tags or []),
-                    dependencies=list(dependencies or [])
-                    + list(route.dependencies or []),
-                    summary=route.summary,
-                    description=route.description,
-                    response_description=route.response_description,
-                    responses=combined_responses,
-                    deprecated=route.deprecated,
-                    methods=route.methods,
-                    operation_id=route.operation_id,
-                    response_model_include=route.response_model_include,
-                    response_model_exclude=route.response_model_exclude,
-                    response_model_by_alias=route.response_model_by_alias,
-                    response_model_skip_defaults=route.response_model_skip_defaults,
-                    include_in_schema=route.include_in_schema,
-                    response_class=route.response_class or default_response_class,
-                    name=route.name,
+                response_class = route.response_class or default_response_class
+                combined_dependencies = list(dependencies or []) + list(
+                    route.dependencies
                 )
+                combined_responses = {**responses, **route.responses}
+                combined_tags = (route.tags or []) + (tags or [])
+                copied_route: APIRoute = route.deepcopy()
+                copied_route.tags = combined_tags
+                copied_route.setup_path(prefix + route.path)
+                copied_route.setup_response(response_class, route.response_model)
+                copied_route.setup_responses(combined_responses)
+                copied_route.setup_dependencies(
+                    combined_dependencies, self.dependency_overrides_provider
+                )
+                self.routes.append(copied_route)
             elif isinstance(route, routing.Route):
                 self.add_route(
                     prefix + route.path,
