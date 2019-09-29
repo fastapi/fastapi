@@ -120,7 +120,6 @@ def test_get_users_item():
 
 def test_schema_1():
     """Check that the user_id is a required path parameter under /users
-
     """
     response = client.get("/openapi.json")
     assert response.status_code == 200
