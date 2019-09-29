@@ -220,16 +220,18 @@ def get_dependant(
             continue
         param_field = get_param_field(param=param, default_schema=params.Query)
         if param_name in path_param_names:
-            assert param.default == param.empty or isinstance(
-                param.default, params.Path
-            ), "Path params must have no defaults or use Path(...)"
             assert is_scalar_field(
                 field=param_field
             ), f"Path params must be of one of the supported types"
+            if isinstance(param.default, params.Path):
+                ignore_default = False
+            else:
+                ignore_default = True
             param_field = get_param_field(
                 param=param,
                 default_schema=params.Path,
                 force_type=params.ParamTypes.path,
+                ignore_default=ignore_default,
             )
             add_param_to_fields(field=param_field, dependant=dependant)
         elif is_scalar_field(field=param_field):
@@ -272,10 +274,11 @@ def get_param_field(
     param: inspect.Parameter,
     default_schema: Type[params.Param] = params.Param,
     force_type: params.ParamTypes = None,
+    ignore_default: bool = False,
 ) -> Field:
     default_value = Required
     had_schema = False
-    if not param.default == param.empty:
+    if not param.default == param.empty and ignore_default is False:
         default_value = param.default
     if isinstance(default_value, Schema):
         had_schema = True
