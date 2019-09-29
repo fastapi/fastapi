@@ -11,7 +11,7 @@ try:
     import email_validator
 
     assert email_validator  # make autoflake ignore the unused import
-    from pydantic.types import EmailStr  # type: ignore
+    from pydantic.types import EmailStr
 except ImportError:  # pragma: no cover
     logger.warning(
         "email-validator not installed, email fields will be treated as str.\n"
