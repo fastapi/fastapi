@@ -44,7 +44,7 @@ client = TestClient(app)
 
 
 def test_get_users():
-    """Check that /users returns expected data
+    """Check that /users returns expected data"""
 
     """
     response = client.get("/users")
