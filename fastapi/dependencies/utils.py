@@ -355,10 +355,10 @@ async def solve_dependencies(
     errors: List[ErrorWrapper] = []
     response = response or Response(
         content=None,
-        status_code=None,
+        status_code=None,  # type: ignore
         headers=None,
         media_type=None,
-        background=None,  # type: ignore
+        background=None,
     )
     dependency_cache = dependency_cache or {}
     sub_dependant: Dependant
@@ -433,7 +433,7 @@ async def solve_dependencies(
     values.update(cookie_values)
     errors += path_errors + query_errors + header_errors + cookie_errors
     if dependant.body_params:
-        body_values, body_errors = await request_body_to_args(  # type: ignore # body_params checked above
+        body_values, body_errors = await request_body_to_args(  # body_params checked above
             required_params=dependant.body_params, received_body=body
         )
         values.update(body_values)
