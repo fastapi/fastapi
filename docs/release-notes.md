@@ -1,5 +1,7 @@
 ## Latest changes
 
+## 0.40.0
+
 * Add notes to docs about installing `python-multipart` when using forms. PR [#574](https://github.com/tiangolo/fastapi/pull/574) by [@sliptonic](https://github.com/sliptonic).
 * Generate OpenAPI schemas in alphabetical order. PR [#554](https://github.com/tiangolo/fastapi/pull/554) by [@dmontagu](https://github.com/dmontagu).
 * Add support for truncating docstrings from *path operation functions*.
