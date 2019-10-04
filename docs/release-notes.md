@@ -1,5 +1,8 @@
 ## Latest changes
 
+* Add support for truncating docstrings from *path operation functions*.
+    * New docs at [Advanced description from docstring](https://fastapi.tiangolo.com/tutorial/path-operation-advanced-configuration/#advanced-description-from-docstring).
+    * PR [#556](https://github.com/tiangolo/fastapi/pull/556) by [@svalouch](https://github.com/svalouch).
 * Fix `DOCTYPE` in HTML files generated for Swagger UI and ReDoc. PR [#537](https://github.com/tiangolo/fastapi/pull/537) by [@Trim21](https://github.com/Trim21).
 * Fix handling `4XX` responses overriding default `422` validation error responses. PR [#517](https://github.com/tiangolo/fastapi/pull/517) by [@tsouvarev](https://github.com/tsouvarev).
 * Fix typo in documentation for [Simple HTTP Basic Auth](https://fastapi.tiangolo.com/tutorial/security/http-basic-auth/#simple-http-basic-auth). PR [#514](https://github.com/tiangolo/fastapi/pull/514) by [@prostomarkeloff](https://github.com/prostomarkeloff).
