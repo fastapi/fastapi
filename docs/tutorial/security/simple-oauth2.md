@@ -219,10 +219,6 @@ After authenticating in the system, you will see it like:
 
 <img src="/img/tutorial/security/image05.png">
 
-!!! info
-   If you don't see the message above but instead get an 'auth error' you may to install python-multipart with pip or by adding it to your requirements.txt file.
-
-
 ### Get your own user data
 
 Now use the operation `GET` with the path `/users/me`.
