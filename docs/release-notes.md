@@ -1,5 +1,6 @@
 ## Latest changes
 
+* Generate OpenAPI schemas in alphabetical order. PR [#554](https://github.com/tiangolo/fastapi/pull/554) by [@dmontagu](https://github.com/dmontagu).
 * Add support for truncating docstrings from *path operation functions*.
     * New docs at [Advanced description from docstring](https://fastapi.tiangolo.com/tutorial/path-operation-advanced-configuration/#advanced-description-from-docstring).
     * PR [#556](https://github.com/tiangolo/fastapi/pull/556) by [@svalouch](https://github.com/svalouch).
