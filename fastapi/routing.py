@@ -348,8 +348,10 @@ class APIRouter(routing.Router):
         include_in_schema: bool = True,
         response_class: Type[Response] = None,
         name: str = None,
+        route_class_override: Optional[Type[APIRoute]] = None,
     ) -> None:
-        route = self.route_class(
+        route_class = route_class_override or self.route_class
+        route = route_class(
             path,
             endpoint=endpoint,
             response_model=response_model,
@@ -487,6 +489,7 @@ class APIRouter(routing.Router):
                     include_in_schema=route.include_in_schema,
                     response_class=route.response_class or default_response_class,
                     name=route.name,
+                    route_class_override=type(route),
                 )
             elif isinstance(route, routing.Route):
                 self.add_route(
