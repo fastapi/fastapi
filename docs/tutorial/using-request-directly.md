@@ -53,3 +53,63 @@ Then declare a *path operation function* parameter with the type being the `Requ
 ## `Request` documentation
 
 You can read more details about the <a href="https://www.starlette.io/requests/" target="_blank">`Request` object in the official Starlette documentation site</a>.
+
+## Using a custom `Request` class
+
+!!! danger
+    This is an "advanced" feature.
+    
+    If you are just starting with **FastAPI** you might want to skip this section.
+
+In some cases, it may be desirable to override the logic used by the `Request` class.
+
+In particular, this may be a good alternative to middleware if you want to read or manipulate the request body before it is processed by your application.
+
+Some use cases include:
+
+* converting non-JSON request bodies to JSON (e.g., `msgpack`)
+* decompressing gzip-compressed request bodies
+* automatically logging all request bodies
+* accessing the request body in an exception handler
+
+### Handling custom request body encodings
+Let's see how to make use of a custom `Request` subclass to decompress gzip requests.
+
+First, we create a `GzipRequest` class, which will override `Request.body` to decompress the body in the presence of an appropriate header: 
+
+```Python hl_lines="10"
+{!./src/using_request_directly/tutorial002.py!}
+```
+
+Next, we create a custom subclass of `fastapi.routing.APIRoute` that will make use of the `GzipRequest`:
+
+```Python hl_lines="20"
+{!./src/using_request_directly/tutorial002.py!}
+```
+
+!!! info
+    The `get_app` method uses all of the information stored on the `APIRoute` to *build* a callable that accepts a `Request`, and returns a `Response`.
+
+    The name doesn't refer to your *whole app*, it just reflects the additional pre- and post-processing logic beyond the endpoint call.
+
+The only thing the result of `GzipRequest.get_app` does differently is start by converting the `Request` to a `GzipRequest`.
+
+After that, all of the processing logic is the same.
+
+But because of our changes in `GzipRequest.body`, the request body can will be automatically decompressed when it is loaded by **FastAPI**.     
+
+## Accessing the request body in an exception handler  
+
+We can also use this same approach to access the request body in an exception handler. 
+
+All we need to do is handle the request inside a `try`/`except` block:
+
+```Python hl_lines="15"
+{!./src/using_request_directly/tutorial003.py!}
+```
+
+If an exception occurs, the`Request` instance will still be in scope, so we can read and make use of the request body when handling the error: 
+
+```Python hl_lines="18"
+{!./src/using_request_directly/tutorial003.py!}
+```
