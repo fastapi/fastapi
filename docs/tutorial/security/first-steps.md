@@ -24,6 +24,13 @@ Copy the example in a file `main.py`:
 
 ## Run it
 
+!!! info
+    First install [`python-multipart`](https://andrew-d.github.io/python-multipart/).
+
+    E.g. `pip install python-multipart`.
+
+    This is because **OAuth2** uses "form data" for sending the `username` and `password`.
+
 Run the example with:
 
 ```bash

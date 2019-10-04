@@ -1,5 +1,10 @@
 You can define files and form fields at the same time using `File` and `Form`.
 
+!!! info
+    To receive uploaded files and/or form data, first install [`python-multipart`](https://andrew-d.github.io/python-multipart/).
+
+    E.g. `pip install python-multipart`.
+
 ## Import `File` and `Form`
 
 ```Python hl_lines="1"
