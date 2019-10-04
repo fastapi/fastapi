@@ -225,7 +225,7 @@ def get_openapi_path(
             if (all_route_params or route.body_field) and not any(
                 [
                     status in operation["responses"]
-                    for status in [http422, "4xx", "default"]
+                    for status in [http422, "4XX", "default"]
                 ]
             ):
                 operation["responses"][http422] = {
