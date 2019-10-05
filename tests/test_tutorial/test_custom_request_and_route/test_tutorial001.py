@@ -5,7 +5,7 @@ import pytest
 from starlette.requests import Request
 from starlette.testclient import TestClient
 
-from using_request_directly.tutorial002 import app
+from custom_request_and_route.tutorial001 import app
 
 
 @app.get("/check-class")

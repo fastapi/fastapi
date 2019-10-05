@@ -1,6 +1,6 @@
 from starlette.testclient import TestClient
 
-from using_request_directly.tutorial003 import app
+from custom_request_and_route.tutorial002 import app
 
 client = TestClient(app)
 
