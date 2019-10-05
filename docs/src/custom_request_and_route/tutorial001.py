@@ -18,14 +18,14 @@ class GzipRequest(Request):
 
 
 class GzipRoute(APIRoute):
-    def get_app(self) -> Callable:
-        original_app = super().get_app()
+    def get_route_handler(self) -> Callable:
+        original_route_handler = super().get_route_handler()
 
-        async def custom_app(request: Request) -> Response:
+        async def custom_route_handler(request: Request) -> Response:
             request = GzipRequest(request.scope, request.receive)
-            return await original_app(request)
+            return await original_route_handler(request)
 
-        return custom_app
+        return custom_route_handler
 
 
 app = FastAPI()
