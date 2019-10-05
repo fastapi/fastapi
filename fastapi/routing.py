@@ -65,7 +65,7 @@ def serialize_response(
         return jsonable_encoder(response)
 
 
-def get_app(
+def get_request_handler(
     dependant: Dependant,
     body_field: Field = None,
     status_code: int = 200,
@@ -294,10 +294,10 @@ class APIRoute(routing.Route):
             )
         self.body_field = get_body_field(dependant=self.dependant, name=self.unique_id)
         self.dependency_overrides_provider = dependency_overrides_provider
-        self.app = request_response(self.get_app())
+        self.app = request_response(self.get_route_handler())
 
-    def get_app(self) -> Callable:
-        return get_app(
+    def get_route_handler(self) -> Callable:
+        return get_request_handler(
             dependant=self.dependant,
             body_field=self.body_field,
             status_code=self.status_code,
