@@ -1,5 +1,8 @@
 ## Latest changes
 
+* Upgrade required Starlette to `0.12.9`, the new range is `>=0.12.9,<=0.12.9`.
+    * Add `State` to FastAPI apps at `app.state`.
+    * PR [#593](https://github.com/tiangolo/fastapi/pull/593).
 * Improve handling of custom classes for `Request`s and `APIRoute`s.
     * This helps to more easily solve use cases like:
         * Reading a body before and/or after a request (equivalent to a middleware).
