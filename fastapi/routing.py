@@ -65,7 +65,7 @@ def serialize_response(
         return jsonable_encoder(response)
 
 
-def get_app(
+def get_request_handler(
     dependant: Dependant,
     body_field: Field = None,
     status_code: int = 200,
@@ -294,19 +294,20 @@ class APIRoute(routing.Route):
             )
         self.body_field = get_body_field(dependant=self.dependant, name=self.unique_id)
         self.dependency_overrides_provider = dependency_overrides_provider
-        self.app = request_response(
-            get_app(
-                dependant=self.dependant,
-                body_field=self.body_field,
-                status_code=self.status_code,
-                response_class=self.response_class or JSONResponse,
-                response_field=self.secure_cloned_response_field,
-                response_model_include=self.response_model_include,
-                response_model_exclude=self.response_model_exclude,
-                response_model_by_alias=self.response_model_by_alias,
-                response_model_skip_defaults=self.response_model_skip_defaults,
-                dependency_overrides_provider=self.dependency_overrides_provider,
-            )
+        self.app = request_response(self.get_route_handler())
+
+    def get_route_handler(self) -> Callable:
+        return get_request_handler(
+            dependant=self.dependant,
+            body_field=self.body_field,
+            status_code=self.status_code,
+            response_class=self.response_class or JSONResponse,
+            response_field=self.secure_cloned_response_field,
+            response_model_include=self.response_model_include,
+            response_model_exclude=self.response_model_exclude,
+            response_model_by_alias=self.response_model_by_alias,
+            response_model_skip_defaults=self.response_model_skip_defaults,
+            dependency_overrides_provider=self.dependency_overrides_provider,
         )
 
 

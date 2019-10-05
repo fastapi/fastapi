@@ -81,6 +81,7 @@ nav:
         - GraphQL: 'tutorial/graphql.md'
         - WebSockets: 'tutorial/websockets.md'
         - 'Events: startup - shutdown': 'tutorial/events.md'
+        - Custom Request and APIRoute class: 'tutorial/custom-request-and-route.md'
         - Testing: 'tutorial/testing.md'
         - Testing Dependencies with Overrides: 'tutorial/testing-dependencies.md'
         - Debugging: 'tutorial/debugging.md'
