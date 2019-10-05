@@ -15,6 +15,7 @@ from fastapi.openapi.docs import (
 from fastapi.openapi.utils import get_openapi
 from fastapi.params import Depends
 from starlette.applications import Starlette
+from starlette.datastructures import State
 from starlette.exceptions import ExceptionMiddleware, HTTPException
 from starlette.middleware.errors import ServerErrorMiddleware
 from starlette.requests import Request
@@ -42,6 +43,7 @@ class FastAPI(Starlette):
     ) -> None:
         self.default_response_class = default_response_class
         self._debug = debug
+        self.state = State()
         self.router: routing.APIRouter = routing.APIRouter(
             routes, dependency_overrides_provider=self
         )
