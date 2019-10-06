@@ -1,4 +1,3 @@
-import logging
 from typing import Dict
 
 import pytest
@@ -47,27 +46,21 @@ def generator_state(state: Dict[str, str] = Depends(get_state)):
 async def asyncgen_state_try(state: Dict[str, str] = Depends(get_state)):
     state["/async_raise"] = "asyncgen raise started"
     try:
-        print(f'asyncgen_try: {state["/async_raise"]}')
         yield state["/async_raise"]
-    except AsyncDependencyError as e:
-        logging.error(f"error: {e}")
+    except AsyncDependencyError:
         errors.append("/async_raise")
     finally:
         state["/async_raise"] = "asyncgen raise finalized"
-        print(f'asyncgen_try: {state["/async_raise"]}')
 
 
 def generator_state_try(state: Dict[str, str] = Depends(get_state)):
     state["/sync_raise"] = "generator raise started"
     try:
-        logging.error(f"yielding: {state['/sync_raise']}")
         yield state["/sync_raise"]
-    except SyncDependencyError as e:
-        logging.error(f"error: {e}")
+    except SyncDependencyError:
         errors.append("/sync_raise")
     finally:
         state["/sync_raise"] = "generator raise finalized"
-        logging.error(f"completed: {state['/sync_raise']}")
 
 
 @app.get("/async")
