@@ -3,7 +3,8 @@ from typing import Any, Callable
 from starlette.concurrency import iterate_in_threadpool, run_in_threadpool  # noqa
 
 asynccontextmanager_error_message = """
-FastAPI contextmanagers with require Python 3.7 or the backport installed with:
+FastAPI's contextmanager_in_threadpool require Python 3.7 or above,
+or the backport for Python 3.6, installed with:
     pip install async-generator
 """
 

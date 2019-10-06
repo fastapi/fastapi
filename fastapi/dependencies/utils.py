@@ -203,8 +203,8 @@ def get_typed_annotation(param: inspect.Parameter, globalns: Dict[str, Any]) -> 
 
 
 async_contextmanager_dependencies_error = """
-FastAPI dependencies with yield (used as "context managers") require Python 3.7
-or the backports installed with:
+FastAPI dependencies with yield require Python 3.7 or above,
+or the backports for Python 3.6, installed with:
     pip install async-exit-stack async-generator
 """
 
