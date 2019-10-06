@@ -1,8 +1,7 @@
+from pathlib import Path
+
+import pytest
 from starlette.testclient import TestClient
-
-from sql_databases.sql_app.main import app
-
-client = TestClient(app)
 
 openapi_schema = {
     "openapi": "3.0.2",
@@ -282,13 +281,24 @@ openapi_schema = {
 }
 
 
-def test_openapi_schema():
+@pytest.fixture(scope="module")
+def client():
+    # Import while creating the client to create the DB after starting the test session
+    from sql_databases.sql_app.main import app
+
+    test_db = Path("./test.db")
+    with TestClient(app) as c:
+        yield c
+    test_db.unlink()
+
+
+def test_openapi_schema(client):
     response = client.get("/openapi.json")
     assert response.status_code == 200
     assert response.json() == openapi_schema
 
 
-def test_create_user():
+def test_create_user(client):
     test_user = {"email": "johndoe@example.com", "password": "secret"}
     response = client.post("/users/", json=test_user)
     assert response.status_code == 200
@@ -299,7 +309,7 @@ def test_create_user():
     assert response.status_code == 400
 
 
-def test_get_user():
+def test_get_user(client):
     response = client.get("/users/1")
     assert response.status_code == 200
     data = response.json()
@@ -307,12 +317,12 @@ def test_get_user():
     assert "id" in data
 
 
-def test_inexistent_user():
+def test_inexistent_user(client):
     response = client.get("/users/999")
     assert response.status_code == 404
 
 
-def test_get_users():
+def test_get_users(client):
     response = client.get("/users/")
     assert response.status_code == 200
     data = response.json()
@@ -320,7 +330,7 @@ def test_get_users():
     assert "id" in data[0]
 
 
-def test_create_item():
+def test_create_item(client):
     item = {"title": "Foo", "description": "Something that fights"}
     response = client.post("/users/1/items/", json=item)
     assert response.status_code == 200
@@ -343,7 +353,7 @@ def test_create_item():
     assert item_to_check["description"] == item["description"]
 
 
-def test_read_items():
+def test_read_items(client):
     response = client.get("/items/")
     assert response.status_code == 200
     data = response.json()
