@@ -209,9 +209,9 @@ or the backports installed with:
 """
 
 
-def check_dependency_contextmanagers():
+def check_dependency_contextmanagers() -> None:
     if AsyncExitStack is None or asynccontextmanager == _fake_asynccontextmanager:
-        raise RuntimeError(async_contextmanager_dependencies_error)
+        raise RuntimeError(async_contextmanager_dependencies_error)  # pragma: no cover
 
 
 def get_dependant(
@@ -361,7 +361,7 @@ def is_coroutine_callable(call: Callable) -> bool:
 
 async def solve_generator(
     *, call: Callable, stack: AsyncExitStack, sub_values: Dict[str, Any]
-):
+) -> Any:
     if inspect.isgeneratorfunction(call):
         cm = contextmanager_in_threadpool(contextmanager(call)(**sub_values))
     elif inspect.isasyncgenfunction(call):
@@ -444,7 +444,9 @@ async def solve_dependencies(
         elif inspect.isgeneratorfunction(call) or inspect.isasyncgenfunction(call):
             stack = request.scope.get("fastapi_astack")
             if stack is None:
-                raise RuntimeError(async_contextmanager_dependencies_error)
+                raise RuntimeError(
+                    async_contextmanager_dependencies_error
+                )  # pragma: no cover
             solved = await solve_generator(
                 call=call, stack=stack, sub_values=sub_values
             )

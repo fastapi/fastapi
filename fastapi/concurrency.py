@@ -1,4 +1,4 @@
-from typing import Any
+from typing import Any, Callable
 
 from starlette.concurrency import iterate_in_threadpool, run_in_threadpool  # noqa
 
@@ -8,24 +8,24 @@ FastAPI contextmanagers with require Python 3.7 or the backport installed with:
 """
 
 
-def _fake_asynccontextmanager(func):
-    def raiser(*args, **kwargs):
+def _fake_asynccontextmanager(func: Callable) -> Callable:
+    def raiser(*args: Any, **kwargs: Any) -> Any:
         raise RuntimeError(asynccontextmanager_error_message)
 
     return raiser
 
 
 try:
-    from contextlib import asynccontextmanager
-except ImportError:  # pragma: no cover
+    from contextlib import asynccontextmanager  # type: ignore
+except ImportError:
     try:
         from async_generator import asynccontextmanager
     except ImportError:  # pragma: no cover
         asynccontextmanager = _fake_asynccontextmanager
 
 try:
-    from contextlib import AsyncExitStack
-except ImportError:  # pragma: no cover
+    from contextlib import AsyncExitStack  # type: ignore
+except ImportError:
     try:
         from async_exit_stack import AsyncExitStack
     except ImportError:  # pragma: no cover

@@ -138,7 +138,7 @@ class FastAPI(Starlette):
                 scope["fastapi_astack"] = stack
                 await super().__call__(scope, receive, send)
         else:
-            await super().__call__(scope, receive, send)
+            await super().__call__(scope, receive, send)  # pragma: no cover
 
     def add_api_route(
         self,
