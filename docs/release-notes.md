@@ -1,5 +1,7 @@
 ## Latest changes
 
+## 0.41.0
+
 * Upgrade required Starlette to `0.12.9`, the new range is `>=0.12.9,<=0.12.9`.
     * Add `State` to FastAPI apps at `app.state`.
     * PR [#593](https://github.com/tiangolo/fastapi/pull/593).
