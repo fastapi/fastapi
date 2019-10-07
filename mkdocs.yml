@@ -1,5 +1,6 @@
 site_name: FastAPI
 site_description: FastAPI framework, high performance, easy to learn, fast to code, ready for production
+site_url: https://fastapi.tiangolo.com/
 
 theme:
     name: 'material'
