@@ -9,13 +9,13 @@ Starlette has utilities to configure it easily that you can use directly in your
 Install `jinja2`:
 
 ```bash
-pip install jinja2
+python3 -m pip install jinja2
 ```
 
 If you need to also serve static files (as in this example), install `aiofiles`:
 
 ```bash
-pip install aiofiles
+python3 -m pip install aiofiles
 ```
 
 ## Using `Jinja2Templates`

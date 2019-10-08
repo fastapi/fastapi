@@ -5,7 +5,7 @@ You can serve static files automatically from a directory using <a href="https:/
 First you need to install `aiofiles`:
 
 ```bash
-pip install aiofiles
+python3 -m pip install aiofiles
 ```
 
 ## Use `StaticFiles`

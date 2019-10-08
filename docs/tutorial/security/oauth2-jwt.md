@@ -29,7 +29,7 @@ If you want to play with JWT tokens and see how they work, check <a href="https:
 We need to install `PyJWT` to generate and verify the JWT tokens in Python:
 
 ```bash
-pip install pyjwt
+python3 -m pip install pyjwt
 ```
 
 ## Password hashing
@@ -57,7 +57,7 @@ The recommended algorithm is "Bcrypt".
 So, install PassLib with Bcrypt:
 
 ```bash
-pip install passlib[bcrypt]
+python3 -m pip install passlib[bcrypt]
 ```
 
 !!! tip

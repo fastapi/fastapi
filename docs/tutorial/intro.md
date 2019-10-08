@@ -29,7 +29,7 @@ The first step is to install FastAPI.
 For the tutorial, you might want to install it with all the optional dependencies and features:
 
 ```bash
-pip install fastapi[all]
+python3 -m pip install fastapi[all]
 ```
 
 ...that also includes `uvicorn`, that you can use as the server that runs your code.
@@ -40,13 +40,13 @@ pip install fastapi[all]
     This is what you would probably do once you want to deploy your application to production:
 
     ```
-    pip install fastapi
+    python3 -m pip install fastapi
     ```
 
     Also install `uvicorn` to work as the server:
 
     ```
-    pip install uvicorn
+    python3 -m pip install uvicorn
     ```
 
     And the same for each of the optional dependencies that you want to use.

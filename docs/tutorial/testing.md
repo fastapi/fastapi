@@ -117,7 +117,7 @@ When you need your event handlers (`startup` and `shutdown`) to run in your test
 After that, you just need to install `pytest`:
 
 ```bash
-pip install pytest
+python3 -m pip install pytest
 ```
 
 It will detect the files and tests automatically, execute them, and report the results back to you.

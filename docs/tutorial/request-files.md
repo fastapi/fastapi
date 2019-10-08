@@ -3,7 +3,7 @@ You can define files to be uploaded by the client using `File`.
 !!! info
     To receive uploaded files, first install [`python-multipart`](https://andrew-d.github.io/python-multipart/).
 
-    E.g. `pip install python-multipart`.
+    E.g. `python3 -m pip install python-multipart`.
 
     This is because uploaded files are sent as "form data".
 

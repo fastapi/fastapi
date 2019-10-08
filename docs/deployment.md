@@ -57,7 +57,7 @@ In this case, your `Dockerfile` could look like:
 ```Dockerfile
 FROM python:3.7
 
-RUN pip install fastapi uvicorn
+RUN python3 -m pip install fastapi uvicorn
 
 EXPOSE 80
 
@@ -242,13 +242,13 @@ You just need to install an ASGI compatible server like:
 * <a href="https://www.uvicorn.org/" target="_blank">Uvicorn</a>, a lightning-fast ASGI server, built on uvloop and httptools.
 
 ```bash
-pip install uvicorn
+python3 -m pip install uvicorn
 ```
 
 * <a href="https://gitlab.com/pgjones/hypercorn" target="_blank">Hypercorn</a>, an ASGI server also compatible with HTTP/2.
 
 ```bash
-pip install hypercorn
+python3 -m pip install hypercorn
 ```
 
 ...or any other ASGI server.
