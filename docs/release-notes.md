@@ -1,5 +1,7 @@
 ## Latest changes
 
+* Fix `sitemap.xml` in website. PR [#598](https://github.com/tiangolo/fastapi/pull/598) by [@samuelcolvin](https://github.com/samuelcolvin).
+
 ## 0.41.0
 
 * Upgrade required Starlette to `0.12.9`, the new range is `>=0.12.9,<=0.12.9`.
