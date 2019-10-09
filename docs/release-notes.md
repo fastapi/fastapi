@@ -1,5 +1,16 @@
 ## Latest changes
 
+* Add dependencies with `yield`, a.k.a. exit steps, context managers, cleanup, teardown, ...
+    * This allows adding extra code after a dependency is done. It can be used, for example, to close database connections.
+    * Dependencies with `yield` can be normal or `async`, **FastAPI** will run normal dependencies in a threadpool.
+    * They can be combined with normal dependencies.
+    * It's possible to have arbitrary trees/levels of dependencies with `yield` and exit steps are handled in the correct order automatically.
+    * It works by default in Python 3.7 or above. For Python 3.6, it requires the extra backport dependencies:
+        * `async-exit-stack`
+        * `async-generator`
+    * New docs at [Dependencies with `yield`](https://fastapi.tiangolo.com/tutorial/dependencies/dependencies-with-yield/).
+    * Updated database docs [SQL (Relational) Databases: Main **FastAPI** app](https://fastapi.tiangolo.com/tutorial/sql-databases/#main-fastapi-app).
+    * PR [#595](https://github.com/tiangolo/fastapi/pull/595).
 * Fix `sitemap.xml` in website. PR [#598](https://github.com/tiangolo/fastapi/pull/598) by [@samuelcolvin](https://github.com/samuelcolvin).
 
 ## 0.41.0
