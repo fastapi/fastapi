@@ -1,6 +1,6 @@
 # Dependencies with `yield`
 
-FastAPI supports dependencies that do some <abbr title='sometimes also called "exit", "teardown", "close", "context managers"...'>extra steps after finishing</abbr>.
+FastAPI supports dependencies that do some <abbr title='sometimes also called "exit", "cleanup", "teardown", "close", "context managers", ...'>extra steps after finishing</abbr>.
 
 To do this, use `yield` instead of `return`, and write the extra steps after.
 
@@ -59,9 +59,9 @@ If you use a `try` block in a dependency with `yield`, you'll receive any except
 
 For example, if some code at some point in the middle, in another dependency or in a *path operation*, made a database transaction "rollback" or create any other error, you will receive the exception in your dependency.
 
-So, you can look for that specific dependency with `except SomeException`.
+So, you can look for that specific exception inside the dependency with `except SomeException`.
 
-The same way, you can use `finally` to make sure the exit steps are executed, no matter if there was an exception or not.
+In the same way, you can use `finally` to make sure the exit steps are executed, no matter if there was an exception or not.
 
 ```Python hl_lines="3 5"
 {!./src/dependencies/tutorial007.py!}
@@ -118,7 +118,7 @@ with open("./somefile.txt") as f:
 
 Underneath, the `open("./somefile.txt")` returns an object that is a called a "Context Manager".
 
-When the `with` block finishes, it makes sure to close the file, even if there where exceptions.
+When the `with` block finishes, it makes sure to close the file, even if there were exceptions.
 
 When you create a dependency with `yield`, **FastAPI** will internally convert it to a context manager, and combine it with some other related tools.
 
@@ -131,7 +131,7 @@ When you create a dependency with `yield`, **FastAPI** will internally convert i
 
 In Python, you can create context managers by <a href="https://docs.python.org/3/reference/datamodel.html#context-managers" target="_blank">creating a class with two methods: `__enter__()` and `__exit__()`</a>.
 
-You can also use them with **FastAPI** dependencies with `yield` by by using
+You can also use them with **FastAPI** dependencies with `yield` by using
 `with` or `async with` statements inside of the dependency function:
 
 ```Python hl_lines="1 2 3 4 5 6 7 8 9 13"

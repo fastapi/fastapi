@@ -438,7 +438,7 @@ A "migration" is the set of steps needed whenever you change the structure of yo
 
     This installs <a href="https://github.com/sorcio/async_exit_stack" target="_blank">async-exit-stack</a> and <a href="https://github.com/python-trio/async_generator" target="_blank">async-generator</a>.
 
-    You can also us the alternative method with a "middleware" explained at the end.
+    You can also use the alternative method with a "middleware" explained at the end.
 
 Now use the `SessionLocal` class we created in the `sql_app/databases.py` file to create a dependency.
 
@@ -608,9 +608,9 @@ You can also use an online SQLite browser like <a href="https://inloop.github.io
 
 ## Alternative DB session with middleware
 
-If you can't use dependencies with `yield`, for example, if you are not using **Python 3.7** and can't install the "backports" mentioned above for **Python 3.6**, you can set up the session in a "middleware" in a similar way.
+If you can't use dependencies with `yield` -- for example, if you are not using **Python 3.7** and can't install the "backports" mentioned above for **Python 3.6** -- you can set up the session in a "middleware" in a similar way.
 
-A "middleware" is a function that is always executed for each request, and have code before and after the request.
+A "middleware" is basically a function that is always executed for each request, with some code executed before, and some code executed after the endpoint function.
 
 ### Create a middleware
 
@@ -629,9 +629,9 @@ The middleware we'll add (just a function) will create a new SQLAlchemy `Session
 
 ### About `request.state`
 
-<a href="https://www.starlette.io/requests/#other-state" target="_blank">`request.state` is a property of each Starlette `Request` object</a>, it is there to store arbitrary objects attached to the request itself, like the database session in this case.
+<a href="https://www.starlette.io/requests/#other-state" target="_blank">`request.state` is a property of each Starlette `Request` object</a>. It is there to store arbitrary objects attached to the request itself, like the database session in this case.
 
-For us in this case, it helps us ensuring a single database session is used through all the request, and then closed afterwards (in the middleware).
+For us in this case, it helps us ensure a single database session is used through all the request, and then closed afterwards (in the middleware).
 
 ### Dependencies with `yield` or middleware
 
