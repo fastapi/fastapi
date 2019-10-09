@@ -1,5 +1,7 @@
 ## Latest changes
 
+## 0.42.0
+
 * Add dependencies with `yield`, a.k.a. exit steps, context managers, cleanup, teardown, ...
     * This allows adding extra code after a dependency is done. It can be used, for example, to close database connections.
     * Dependencies with `yield` can be normal or `async`, **FastAPI** will run normal dependencies in a threadpool.
