@@ -1,6 +1,7 @@
 from typing import Any, Callable, Dict, List, Optional, Sequence, Type, Union
 
 from fastapi import routing
+from fastapi.concurrency import AsyncExitStack
 from fastapi.encoders import DictIntStrAny, SetIntStr
 from fastapi.exception_handlers import (
     http_exception_handler,
@@ -21,6 +22,7 @@ from starlette.middleware.errors import ServerErrorMiddleware
 from starlette.requests import Request
 from starlette.responses import HTMLResponse, JSONResponse, Response
 from starlette.routing import BaseRoute
+from starlette.types import Receive, Scope, Send
 
 
 class FastAPI(Starlette):
@@ -129,6 +131,14 @@ class FastAPI(Starlette):
         self.add_exception_handler(
             RequestValidationError, request_validation_exception_handler
         )
+
+    async def __call__(self, scope: Scope, receive: Receive, send: Send) -> None:
+        if AsyncExitStack:
+            async with AsyncExitStack() as stack:
+                scope["fastapi_astack"] = stack
+                await super().__call__(scope, receive, send)
+        else:
+            await super().__call__(scope, receive, send)  # pragma: no cover
 
     def add_api_route(
         self,

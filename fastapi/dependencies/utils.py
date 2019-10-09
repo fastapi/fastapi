@@ -1,5 +1,6 @@
 import asyncio
 import inspect
+from contextlib import contextmanager
 from copy import deepcopy
 from typing import (
     Any,
@@ -16,6 +17,12 @@ from typing import (
 )
 
 from fastapi import params
+from fastapi.concurrency import (
+    AsyncExitStack,
+    _fake_asynccontextmanager,
+    asynccontextmanager,
+    contextmanager_in_threadpool,
+)
 from fastapi.dependencies.models import Dependant, SecurityRequirement
 from fastapi.security.base import SecurityBase
 from fastapi.security.oauth2 import OAuth2, SecurityScopes
@@ -195,6 +202,18 @@ def get_typed_annotation(param: inspect.Parameter, globalns: Dict[str, Any]) -> 
     return annotation
 
 
+async_contextmanager_dependencies_error = """
+FastAPI dependencies with yield require Python 3.7 or above,
+or the backports for Python 3.6, installed with:
+    pip install async-exit-stack async-generator
+"""
+
+
+def check_dependency_contextmanagers() -> None:
+    if AsyncExitStack is None or asynccontextmanager == _fake_asynccontextmanager:
+        raise RuntimeError(async_contextmanager_dependencies_error)  # pragma: no cover
+
+
 def get_dependant(
     *,
     path: str,
@@ -206,6 +225,8 @@ def get_dependant(
     path_param_names = get_path_param_names(path)
     endpoint_signature = get_typed_signature(call)
     signature_params = endpoint_signature.parameters
+    if inspect.isgeneratorfunction(call) or inspect.isasyncgenfunction(call):
+        check_dependency_contextmanagers()
     dependant = Dependant(call=call, name=name, path=path, use_cache=use_cache)
     for param_name, param in signature_params.items():
         if isinstance(param.default, params.Depends):
@@ -338,6 +359,16 @@ def is_coroutine_callable(call: Callable) -> bool:
     return asyncio.iscoroutinefunction(call)
 
 
+async def solve_generator(
+    *, call: Callable, stack: AsyncExitStack, sub_values: Dict[str, Any]
+) -> Any:
+    if inspect.isgeneratorfunction(call):
+        cm = contextmanager_in_threadpool(contextmanager(call)(**sub_values))
+    elif inspect.isasyncgenfunction(call):
+        cm = asynccontextmanager(call)(**sub_values)
+    return await stack.enter_async_context(cm)
+
+
 async def solve_dependencies(
     *,
     request: Union[Request, WebSocket],
@@ -410,6 +441,15 @@ async def solve_dependencies(
             continue
         if sub_dependant.use_cache and sub_dependant.cache_key in dependency_cache:
             solved = dependency_cache[sub_dependant.cache_key]
+        elif inspect.isgeneratorfunction(call) or inspect.isasyncgenfunction(call):
+            stack = request.scope.get("fastapi_astack")
+            if stack is None:
+                raise RuntimeError(
+                    async_contextmanager_dependencies_error
+                )  # pragma: no cover
+            solved = await solve_generator(
+                call=call, stack=stack, sub_values=sub_values
+            )
         elif is_coroutine_callable(call):
             solved = await call(**sub_values)
         else:

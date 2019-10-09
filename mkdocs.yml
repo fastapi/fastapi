@@ -58,6 +58,7 @@ nav:
             - Classes as Dependencies: 'tutorial/dependencies/classes-as-dependencies.md'
             - Sub-dependencies: 'tutorial/dependencies/sub-dependencies.md'
             - Dependencies in path operation decorators: 'tutorial/dependencies/dependencies-in-path-operation-decorators.md'
+            - Dependencies with yield: 'tutorial/dependencies/dependencies-with-yield.md'
             - Advanced Dependencies: 'tutorial/dependencies/advanced-dependencies.md'
         - Security: 
             - Security Intro: 'tutorial/security/intro.md'

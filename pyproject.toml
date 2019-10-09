@@ -39,7 +39,9 @@ test = [
     "email_validator",
     "sqlalchemy",
     "databases[sqlite]",
-    "orjson"
+    "orjson",
+    "async_exit_stack",
+    "async_generator"
 ]
 doc = [
     "mkdocs",
@@ -61,4 +63,6 @@ all = [
     "ujson",
     "email_validator",
     "uvicorn",
+    "async_exit_stack",
+    "async_generator"
 ]
