@@ -12,6 +12,12 @@ def test_swagger_ui_html():
     assert "/static/swagger-ui.css" in response.text
 
 
+def test_swagger_ui_oauth2_redirect_html():
+    response = client.get("/docs/oauth2-redirect")
+    assert response.status_code == 200
+    assert "window.opener.swaggerUIRedirectOauth2" in response.text
+
+
 def test_redoc_html():
     response = client.get("/redoc")
     assert response.status_code == 200
