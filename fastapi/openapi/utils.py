@@ -5,7 +5,11 @@ from fastapi import routing
 from fastapi.dependencies.models import Dependant
 from fastapi.dependencies.utils import get_flat_dependant
 from fastapi.encoders import jsonable_encoder
-from fastapi.openapi.constants import METHODS_WITH_BODY, REF_PREFIX
+from fastapi.openapi.constants import (
+    METHODS_WITH_BODY,
+    REF_PREFIX,
+    STATUS_CODES_WITH_NO_BODY,
+)
 from fastapi.openapi.models import OpenAPI
 from fastapi.params import Body, Param
 from fastapi.utils import (
@@ -151,10 +155,8 @@ def get_openapi_path(
     security_schemes: Dict[str, Any] = {}
     definitions: Dict[str, Any] = {}
     assert route.methods is not None, "Methods must be a list"
-    assert (
-        route.response_class and route.response_class.media_type
-    ), "A response class with media_type is needed to generate OpenAPI"
-    route_response_media_type: str = route.response_class.media_type
+    assert route.response_class, "A response class is needed to generate OpenAPI"
+    route_response_media_type: Optional[str] = route.response_class.media_type
     if route.include_in_schema:
         for method in route.methods:
             operation = get_openapi_operation_metadata(route=route, method=method)
@@ -178,48 +180,51 @@ def get_openapi_path(
                 )
                 if request_body_oai:
                     operation["requestBody"] = request_body_oai
-            if route.responses:
-                for (additional_status_code, response) in route.responses.items():
-                    assert isinstance(
-                        response, dict
-                    ), "An additional response must be a dict"
-                    field = route.response_fields.get(additional_status_code)
-                    if field:
-                        response_schema, _, _ = field_schema(
-                            field, model_name_map=model_name_map, ref_prefix=REF_PREFIX
-                        )
-                        response.setdefault("content", {}).setdefault(
-                            route_response_media_type, {}
-                        )["schema"] = response_schema
-                    status_text: Optional[str] = status_code_ranges.get(
-                        str(additional_status_code).upper()
-                    ) or http.client.responses.get(int(additional_status_code))
-                    response.setdefault(
-                        "description", status_text or "Additional Response"
-                    )
-                    status_code_key = str(additional_status_code).upper()
-                    if status_code_key == "DEFAULT":
-                        status_code_key = "default"
-                    operation.setdefault("responses", {})[status_code_key] = response
-            status_code = str(route.status_code)
-            response_schema = {"type": "string"}
-            if lenient_issubclass(route.response_class, JSONResponse):
-                if route.response_field:
+            for (additional_status_code, response) in route.responses.items():
+                assert isinstance(
+                    response, dict
+                ), "An additional response must be a dict"
+                field = route.response_fields.get(additional_status_code)
+                if field:
                     response_schema, _, _ = field_schema(
-                        route.response_field,
-                        model_name_map=model_name_map,
-                        ref_prefix=REF_PREFIX,
+                        field, model_name_map=model_name_map, ref_prefix=REF_PREFIX
                     )
-                else:
-                    response_schema = {}
+                    response.setdefault("content", {}).setdefault(
+                        route_response_media_type or "application/json", {}
+                    )["schema"] = response_schema
+                status_text: Optional[str] = status_code_ranges.get(
+                    str(additional_status_code).upper()
+                ) or http.client.responses.get(int(additional_status_code))
+                response.setdefault("description", status_text or "Additional Response")
+                status_code_key = str(additional_status_code).upper()
+                if status_code_key == "DEFAULT":
+                    status_code_key = "default"
+                operation.setdefault("responses", {})[status_code_key] = response
+            status_code = str(route.status_code)
             operation.setdefault("responses", {}).setdefault(status_code, {})[
                 "description"
             ] = route.response_description
-            operation.setdefault("responses", {}).setdefault(
-                status_code, {}
-            ).setdefault("content", {}).setdefault(route_response_media_type, {})[
-                "schema"
-            ] = response_schema
+            if (
+                route_response_media_type
+                and route.status_code not in STATUS_CODES_WITH_NO_BODY
+            ):
+                response_schema = {"type": "string"}
+                if lenient_issubclass(route.response_class, JSONResponse):
+                    if route.response_field:
+                        response_schema, _, _ = field_schema(
+                            route.response_field,
+                            model_name_map=model_name_map,
+                            ref_prefix=REF_PREFIX,
+                        )
+                    else:
+                        response_schema = {}
+                operation.setdefault("responses", {}).setdefault(
+                    status_code, {}
+                ).setdefault("content", {}).setdefault(route_response_media_type, {})[
+                    "schema"
+                ] = response_schema
+            else:
+                operation.setdefault("responses", {}).setdefault(status_code, {})
 
             http422 = str(HTTP_422_UNPROCESSABLE_ENTITY)
             if (all_route_params or route.body_field) and not any(
