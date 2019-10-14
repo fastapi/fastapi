@@ -13,11 +13,11 @@ from fastapi.dependencies.utils import (
 )
 from fastapi.encoders import DictIntStrAny, SetIntStr, jsonable_encoder
 from fastapi.exceptions import RequestValidationError, WebSocketRequestValidationError
+from fastapi.openapi.constants import STATUS_CODES_WITH_NO_BODY
 from fastapi.utils import create_cloned_field, generate_operation_id_for_path
 from pydantic import BaseConfig, BaseModel, Schema
 from pydantic.error_wrappers import ErrorWrapper, ValidationError
 from pydantic.fields import Field
-from fastapi.openapi.constants import STATUS_CODES_WITH_NO_BODY
 from pydantic.utils import lenient_issubclass
 from starlette import routing
 from starlette.concurrency import run_in_threadpool
