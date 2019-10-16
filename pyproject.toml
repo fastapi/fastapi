@@ -19,7 +19,7 @@ classifiers = [
     "Topic :: Internet :: WWW/HTTP :: HTTP Servers",
 ]
 requires = [
-    "starlette >=0.11.1,<=0.12.8",
+    "starlette >=0.12.9,<=0.12.9",
     "pydantic >=0.32.2,<=0.32.2"
 ]
 description-file = "README.md"
@@ -39,6 +39,9 @@ test = [
     "email_validator",
     "sqlalchemy",
     "databases[sqlite]",
+    "orjson",
+    "async_exit_stack",
+    "async_generator"
 ]
 doc = [
     "mkdocs",
@@ -60,4 +63,6 @@ all = [
     "ujson",
     "email_validator",
     "uvicorn",
+    "async_exit_stack",
+    "async_generator"
 ]

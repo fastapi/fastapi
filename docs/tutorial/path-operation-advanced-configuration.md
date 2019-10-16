@@ -18,3 +18,15 @@ To exclude a path operation from the generated OpenAPI schema (and thus, from th
 ```Python hl_lines="6"
 {!./src/path_operation_advanced_configuration/tutorial002.py!}
 ```
+
+## Advanced description from docstring
+
+You can limit the lines used from the docstring of a *path operation function* for OpenAPI.
+
+Adding an `\f` (an escaped "form feed" character) causes **FastAPI** to truncate the output used for OpenAPI at this point.
+
+It won't show up in the documentation, but other tools (such as Sphinx) will be able to use the rest.
+
+```Python hl_lines="19 20 21 22 23 24 25 26 27 28 29"
+{!./src/path_operation_advanced_configuration/tutorial003.py!}
+```

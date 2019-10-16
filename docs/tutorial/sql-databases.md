@@ -427,21 +427,30 @@ And you would also use Alembic for "migrations" (that's its main job).
 
 A "migration" is the set of steps needed whenever you change the structure of your SQLAlchemy models, add a new attribute, etc. to replicate those changes in the database, add a new column, a new table, etc.
 
-### Create a middleware to handle sessions
+### Create a dependency
 
-Now use the `SessionLocal` class we created in the `sql_app/databases.py` file.
+!!! info
+    For this to work, you need to use **Python 3.7** or above, or in **Python 3.6**, install the "backports":
+
+    ```bash
+    pip install async-exit-stack async-generator
+    ```
+
+    This installs <a href="https://github.com/sorcio/async_exit_stack" target="_blank">async-exit-stack</a> and <a href="https://github.com/python-trio/async_generator" target="_blank">async-generator</a>.
+
+    You can also use the alternative method with a "middleware" explained at the end.
+
+Now use the `SessionLocal` class we created in the `sql_app/databases.py` file to create a dependency.
 
 We need to have an independent database session/connection (`SessionLocal`) per request, use the same session through all the request and then close it after the request is finished.
 
 And then a new session will be created for the next request.
 
-For that, we will create a new middleware.
+For that, we will create a new dependency with `yield`, as explained before in the section about <a href="https://fastapi.tiangolo.com/tutorial/dependencies/dependencies-with-yield/" target="_blank">Dependencies with `yield`</a>.
 
-A "middleware" is a function that is always executed for each request, and have code before and after the request.
+Our dependency will create a new SQLAlchemy `SessionLocal` that will be used in a single request, and then close it once the request is finished.
 
-This middleware (just a function) will create a new SQLAlchemy `SessionLocal` for each request, add it to the request and then close it once the request is finished.
-
-```Python hl_lines="16 17 18 19 20 21 22 23 24"
+```Python hl_lines="15 16 17 18 19 20"
 {!./src/sql_databases/sql_app/main.py!}
 ```
 
@@ -452,21 +461,11 @@ This middleware (just a function) will create a new SQLAlchemy `SessionLocal` fo
     
     This way we make sure the database session is always closed after the request. Even if there was an exception while processing the request.
 
-#### About `request.state`
+And then, when using the dependency in a *path operation function*, we declare it with the type `Session` we imported directly from SQLAlchemy.
 
-<a href="https://www.starlette.io/requests/#other-state" target="_blank">`request.state` is a property of each Starlette `Request` object</a>, it is there to store arbitrary objects attached to the request itself, like the database session in this case.
+This will then give us better editor support inside the *path operation function*, because the editor will know that the `db` parameter is of type `Session`:
 
-For us in this case, it helps us ensuring a single database session is used through all the request, and then closed afterwards (in the middleware).
-
-### Create a dependency
-
-To simplify the code, reduce repetition and get better editor support, we will create a dependency that returns this same database session from the request.
-
-And when using the dependency in a path operation function, we declare it with the type `Session` we imported directly from SQLAlchemy.
-
-This will then give us better editor support inside the path operation function, because the editor will know that the `db` parameter is of type `Session`.
-
-```Python hl_lines="28 29"
+```Python hl_lines="24  32  38  47  53"
 {!./src/sql_databases/sql_app/main.py!}
 ```
 
@@ -479,21 +478,15 @@ This will then give us better editor support inside the path operation function,
 
 Now, finally, here's the standard **FastAPI** *path operations* code.
 
-```Python hl_lines="32 33 34 35 36 37 40 41 42 43 46 47 48 49 50 51 54 55 56 57 58 61 62 63 64 65"
+```Python hl_lines="23 24 25 26 27 28  31 32 33 34  37 38 39 40 41 42  45 46 47 48 49  52 53 54 55"
 {!./src/sql_databases/sql_app/main.py!}
 ```
 
-We are creating the database session before each request, attaching it to the request, and then closing it afterwards.
+We are creating the database session before each request in the dependency with `yield`, and then closing it afterwards.
 
-All of this is done in the middleware explained above.
-
-Then, in the dependency `get_db()` we are extracting the database session from the request.
-
-And then we can create the dependency in the path operation function, to get that session directly.
+And then we can create the required dependency in the path operation function, to get that session directly.
 
 With that, we can just call `crud.get_user` directly from inside of the path operation function and use that session.
-
-Having this 3-step process (middleware, dependency, path operation) you get better support/checks/completion in all the path operation functions while reducing code repetition.
 
 !!! tip
     Notice that the values you return are SQLAlchemy models, or lists of SQLAlchemy models.
@@ -507,7 +500,7 @@ Having this 3-step process (middleware, dependency, path operation) you get bett
 
 ### About `def` vs `async def`
 
-Here we are using SQLAlchemy code inside of the path operation function, and, in turn, it will go and communicate with an external database.
+Here we are using SQLAlchemy code inside of the path operation function and in the dependency, and, in turn, it will go and communicate with an external database.
 
 That could potentially require some "waiting".
 
@@ -523,7 +516,7 @@ user = await db.query(User).first()
 user = db.query(User).first()
 ```
 
-Then we should declare the path operation without `async def`, just with a normal `def`, as:
+Then we should declare the *path operation functions* and the dependency without `async def`, just with a normal `def`, as:
 
 ```Python hl_lines="2"
 @app.get("/users/{user_id}", response_model=schemas.User)
@@ -548,8 +541,8 @@ For example, in a background task worker with <a href="http://www.celeryproject.
 ## Review all the files
 
  Remember you should have a directory named `my_super_project` that contains a sub-directory called `sql_app`.
- 
- `sql_app` should have the following files:
+
+`sql_app` should have the following files:
 
 * `sql_app/__init__.py`: is an empty file.
 
@@ -591,9 +584,6 @@ You can copy this code and use it as is.
 
     In fact, the code shown here is part of the tests. As most of the code in these docs.
 
-
-You can copy it as is.
-
 Then you can run it with Uvicorn:
 
 ```bash
@@ -615,3 +605,51 @@ It will look like this:
 <img src="/img/tutorial/sql-databases/image02.png">
 
 You can also use an online SQLite browser like <a href="https://inloop.github.io/sqlite-viewer/" target="_blank">SQLite Viewer</a> or <a href="https://extendsclass.com/sqlite-browser.html" target="_blank">ExtendsClass</a>.
+
+## Alternative DB session with middleware
+
+If you can't use dependencies with `yield` -- for example, if you are not using **Python 3.7** and can't install the "backports" mentioned above for **Python 3.6** -- you can set up the session in a "middleware" in a similar way.
+
+A "middleware" is basically a function that is always executed for each request, with some code executed before, and some code executed after the endpoint function.
+
+### Create a middleware
+
+The middleware we'll add (just a function) will create a new SQLAlchemy `SessionLocal` for each request, add it to the request and then close it once the request is finished.
+
+```Python hl_lines="16 17 18 19 20 21 22 23 24"
+{!./src/sql_databases/sql_app/alt_main.py!}
+```
+
+!!! info
+    We put the creation of the `SessionLocal()` and handling of the requests in a `try` block.
+
+    And then we close it in the `finally` block.
+    
+    This way we make sure the database session is always closed after the request. Even if there was an exception while processing the request.
+
+### About `request.state`
+
+<a href="https://www.starlette.io/requests/#other-state" target="_blank">`request.state` is a property of each Starlette `Request` object</a>. It is there to store arbitrary objects attached to the request itself, like the database session in this case.
+
+For us in this case, it helps us ensure a single database session is used through all the request, and then closed afterwards (in the middleware).
+
+### Dependencies with `yield` or middleware
+
+Adding a **middleware** here is similar to what a dependency with `yield` does, with some differences:
+
+* It requires more code and is a bit more complex.
+* The middleware has to be an `async` function.
+    * If there is code in it that has to "wait" for the network, it could "block" your application there and degrade performance a bit.
+    * Although it's probably not very problematic here with the way `SQLAlchemy` works.
+    * But if you added more code to the middleware that had a lot of <abbr title="input and output">I/O</abbr> waiting, it could then be problematic.
+* A middleware is run for *every* request.
+    * So, a connection will be created for every request.
+    * Even when the *path operation* that handles that request didn't need the DB.
+
+!!! tip
+    It's probably better to use dependencies with `yield` when they are enough for the use case.
+
+!!! info
+    Dependencies with `yield` were added recently to **FastAPI**.
+
+    A previous version of this tutorial only had the examples with a middleware and there are probably several applications using the middleware for database session management.

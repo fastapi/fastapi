@@ -65,7 +65,7 @@ def serialize_response(
         return jsonable_encoder(response)
 
 
-def get_app(
+def get_request_handler(
     dependant: Dependant,
     body_field: Field = None,
     status_code: int = 200,
@@ -200,7 +200,7 @@ class APIRoute(routing.Route):
         response_model_by_alias: bool = True,
         response_model_skip_defaults: bool = False,
         include_in_schema: bool = True,
-        response_class: Type[Response] = JSONResponse,
+        response_class: Optional[Type[Response]] = None,
         dependency_overrides_provider: Any = None,
     ) -> None:
         self.path = path
@@ -215,9 +215,6 @@ class APIRoute(routing.Route):
         )
         self.response_model = response_model
         if self.response_model:
-            assert lenient_issubclass(
-                response_class, JSONResponse
-            ), "To declare a type the response must be a JSON response"
             response_name = "Response_" + self.unique_id
             self.response_field: Optional[Field] = Field(
                 name=response_name,
@@ -249,6 +246,9 @@ class APIRoute(routing.Route):
             self.dependencies = []
         self.summary = summary
         self.description = description or inspect.cleandoc(self.endpoint.__doc__ or "")
+        # if a "form feed" character (page break) is found in the description text,
+        # truncate description text to the content preceding the first "form feed"
+        self.description = self.description.split("\f")[0]
         self.response_description = response_description
         self.responses = responses or {}
         response_fields = {}
@@ -294,19 +294,20 @@ class APIRoute(routing.Route):
             )
         self.body_field = get_body_field(dependant=self.dependant, name=self.unique_id)
         self.dependency_overrides_provider = dependency_overrides_provider
-        self.app = request_response(
-            get_app(
-                dependant=self.dependant,
-                body_field=self.body_field,
-                status_code=self.status_code,
-                response_class=self.response_class,
-                response_field=self.secure_cloned_response_field,
-                response_model_include=self.response_model_include,
-                response_model_exclude=self.response_model_exclude,
-                response_model_by_alias=self.response_model_by_alias,
-                response_model_skip_defaults=self.response_model_skip_defaults,
-                dependency_overrides_provider=self.dependency_overrides_provider,
-            )
+        self.app = request_response(self.get_route_handler())
+
+    def get_route_handler(self) -> Callable:
+        return get_request_handler(
+            dependant=self.dependant,
+            body_field=self.body_field,
+            status_code=self.status_code,
+            response_class=self.response_class or JSONResponse,
+            response_field=self.secure_cloned_response_field,
+            response_model_include=self.response_model_include,
+            response_model_exclude=self.response_model_exclude,
+            response_model_by_alias=self.response_model_by_alias,
+            response_model_skip_defaults=self.response_model_skip_defaults,
+            dependency_overrides_provider=self.dependency_overrides_provider,
         )
 
 
@@ -346,10 +347,12 @@ class APIRouter(routing.Router):
         response_model_by_alias: bool = True,
         response_model_skip_defaults: bool = False,
         include_in_schema: bool = True,
-        response_class: Type[Response] = JSONResponse,
+        response_class: Type[Response] = None,
         name: str = None,
+        route_class_override: Optional[Type[APIRoute]] = None,
     ) -> None:
-        route = self.route_class(
+        route_class = route_class_override or self.route_class
+        route = route_class(
             path,
             endpoint=endpoint,
             response_model=response_model,
@@ -394,7 +397,7 @@ class APIRouter(routing.Router):
         response_model_by_alias: bool = True,
         response_model_skip_defaults: bool = False,
         include_in_schema: bool = True,
-        response_class: Type[Response] = JSONResponse,
+        response_class: Type[Response] = None,
         name: str = None,
     ) -> Callable:
         def decorator(func: Callable) -> Callable:
@@ -445,6 +448,7 @@ class APIRouter(routing.Router):
         tags: List[str] = None,
         dependencies: Sequence[params.Depends] = None,
         responses: Dict[Union[int, str], Dict[str, Any]] = None,
+        default_response_class: Optional[Type[Response]] = None,
     ) -> None:
         if prefix:
             assert prefix.startswith("/"), "A path prefix must start with '/'"
@@ -484,8 +488,9 @@ class APIRouter(routing.Router):
                     response_model_by_alias=route.response_model_by_alias,
                     response_model_skip_defaults=route.response_model_skip_defaults,
                     include_in_schema=route.include_in_schema,
-                    response_class=route.response_class,
+                    response_class=route.response_class or default_response_class,
                     name=route.name,
+                    route_class_override=type(route),
                 )
             elif isinstance(route, routing.Route):
                 self.add_route(
@@ -523,10 +528,9 @@ class APIRouter(routing.Router):
         response_model_by_alias: bool = True,
         response_model_skip_defaults: bool = False,
         include_in_schema: bool = True,
-        response_class: Type[Response] = JSONResponse,
+        response_class: Type[Response] = None,
         name: str = None,
     ) -> Callable:
-
         return self.api_route(
             path=path,
             response_model=response_model,
@@ -568,7 +572,7 @@ class APIRouter(routing.Router):
         response_model_by_alias: bool = True,
         response_model_skip_defaults: bool = False,
         include_in_schema: bool = True,
-        response_class: Type[Response] = JSONResponse,
+        response_class: Type[Response] = None,
         name: str = None,
     ) -> Callable:
         return self.api_route(
@@ -612,7 +616,7 @@ class APIRouter(routing.Router):
         response_model_by_alias: bool = True,
         response_model_skip_defaults: bool = False,
         include_in_schema: bool = True,
-        response_class: Type[Response] = JSONResponse,
+        response_class: Type[Response] = None,
         name: str = None,
     ) -> Callable:
         return self.api_route(
@@ -656,7 +660,7 @@ class APIRouter(routing.Router):
         response_model_by_alias: bool = True,
         response_model_skip_defaults: bool = False,
         include_in_schema: bool = True,
-        response_class: Type[Response] = JSONResponse,
+        response_class: Type[Response] = None,
         name: str = None,
     ) -> Callable:
         return self.api_route(
@@ -700,7 +704,7 @@ class APIRouter(routing.Router):
         response_model_by_alias: bool = True,
         response_model_skip_defaults: bool = False,
         include_in_schema: bool = True,
-        response_class: Type[Response] = JSONResponse,
+        response_class: Type[Response] = None,
         name: str = None,
     ) -> Callable:
         return self.api_route(
@@ -744,7 +748,7 @@ class APIRouter(routing.Router):
         response_model_by_alias: bool = True,
         response_model_skip_defaults: bool = False,
         include_in_schema: bool = True,
-        response_class: Type[Response] = JSONResponse,
+        response_class: Type[Response] = None,
         name: str = None,
     ) -> Callable:
         return self.api_route(
@@ -788,7 +792,7 @@ class APIRouter(routing.Router):
         response_model_by_alias: bool = True,
         response_model_skip_defaults: bool = False,
         include_in_schema: bool = True,
-        response_class: Type[Response] = JSONResponse,
+        response_class: Type[Response] = None,
         name: str = None,
     ) -> Callable:
         return self.api_route(
@@ -832,7 +836,7 @@ class APIRouter(routing.Router):
         response_model_by_alias: bool = True,
         response_model_skip_defaults: bool = False,
         include_in_schema: bool = True,
-        response_class: Type[Response] = JSONResponse,
+        response_class: Type[Response] = None,
         name: str = None,
     ) -> Callable:
         return self.api_route(

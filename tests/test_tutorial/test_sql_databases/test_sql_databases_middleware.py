@@ -284,7 +284,7 @@ openapi_schema = {
 @pytest.fixture(scope="module")
 def client():
     # Import while creating the client to create the DB after starting the test session
-    from sql_databases.sql_app.main import app
+    from sql_databases.sql_app.alt_main import app
 
     test_db = Path("./test.db")
     with TestClient(app) as c:

@@ -1,5 +1,6 @@
 site_name: FastAPI
 site_description: FastAPI framework, high performance, easy to learn, fast to code, ready for production
+site_url: https://fastapi.tiangolo.com/
 
 theme:
     name: 'material'
@@ -57,6 +58,7 @@ nav:
             - Classes as Dependencies: 'tutorial/dependencies/classes-as-dependencies.md'
             - Sub-dependencies: 'tutorial/dependencies/sub-dependencies.md'
             - Dependencies in path operation decorators: 'tutorial/dependencies/dependencies-in-path-operation-decorators.md'
+            - Dependencies with yield: 'tutorial/dependencies/dependencies-with-yield.md'
             - Advanced Dependencies: 'tutorial/dependencies/advanced-dependencies.md'
         - Security: 
             - Security Intro: 'tutorial/security/intro.md'
@@ -81,6 +83,7 @@ nav:
         - GraphQL: 'tutorial/graphql.md'
         - WebSockets: 'tutorial/websockets.md'
         - 'Events: startup - shutdown': 'tutorial/events.md'
+        - Custom Request and APIRoute class: 'tutorial/custom-request-and-route.md'
         - Testing: 'tutorial/testing.md'
         - Testing Dependencies with Overrides: 'tutorial/testing-dependencies.md'
         - Debugging: 'tutorial/debugging.md'

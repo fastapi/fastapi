@@ -1,5 +1,10 @@
 When you need to receive form fields instead of JSON, you can use `Form`.
 
+!!! info
+    To use forms, first install [`python-multipart`](https://andrew-d.github.io/python-multipart/).
+
+    E.g. `pip install python-multipart`.
+
 ## Import `Form`
 
 Import `Form` from `fastapi`:

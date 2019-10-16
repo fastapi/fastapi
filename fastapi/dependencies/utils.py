@@ -1,5 +1,6 @@
 import asyncio
 import inspect
+from contextlib import contextmanager
 from copy import deepcopy
 from typing import (
     Any,
@@ -16,6 +17,12 @@ from typing import (
 )
 
 from fastapi import params
+from fastapi.concurrency import (
+    AsyncExitStack,
+    _fake_asynccontextmanager,
+    asynccontextmanager,
+    contextmanager_in_threadpool,
+)
 from fastapi.dependencies.models import Dependant, SecurityRequirement
 from fastapi.security.base import SecurityBase
 from fastapi.security.oauth2 import OAuth2, SecurityScopes
@@ -26,7 +33,7 @@ from pydantic.error_wrappers import ErrorWrapper
 from pydantic.errors import MissingError
 from pydantic.fields import Field, Required, Shape
 from pydantic.schema import get_annotation_from_schema
-from pydantic.utils import lenient_issubclass
+from pydantic.utils import ForwardRef, evaluate_forwardref, lenient_issubclass
 from starlette.background import BackgroundTasks
 from starlette.concurrency import run_in_threadpool
 from starlette.datastructures import FormData, Headers, QueryParams, UploadFile
@@ -171,6 +178,42 @@ def is_scalar_sequence_field(field: Field) -> bool:
     return False
 
 
+def get_typed_signature(call: Callable) -> inspect.Signature:
+    signature = inspect.signature(call)
+    globalns = getattr(call, "__globals__", {})
+    typed_params = [
+        inspect.Parameter(
+            name=param.name,
+            kind=param.kind,
+            default=param.default,
+            annotation=get_typed_annotation(param, globalns),
+        )
+        for param in signature.parameters.values()
+    ]
+    typed_signature = inspect.Signature(typed_params)
+    return typed_signature
+
+
+def get_typed_annotation(param: inspect.Parameter, globalns: Dict[str, Any]) -> Any:
+    annotation = param.annotation
+    if isinstance(annotation, str):
+        annotation = ForwardRef(annotation)
+        annotation = evaluate_forwardref(annotation, globalns, globalns)
+    return annotation
+
+
+async_contextmanager_dependencies_error = """
+FastAPI dependencies with yield require Python 3.7 or above,
+or the backports for Python 3.6, installed with:
+    pip install async-exit-stack async-generator
+"""
+
+
+def check_dependency_contextmanagers() -> None:
+    if AsyncExitStack is None or asynccontextmanager == _fake_asynccontextmanager:
+        raise RuntimeError(async_contextmanager_dependencies_error)  # pragma: no cover
+
+
 def get_dependant(
     *,
     path: str,
@@ -180,8 +223,10 @@ def get_dependant(
     use_cache: bool = True,
 ) -> Dependant:
     path_param_names = get_path_param_names(path)
-    endpoint_signature = inspect.signature(call)
+    endpoint_signature = get_typed_signature(call)
     signature_params = endpoint_signature.parameters
+    if inspect.isgeneratorfunction(call) or inspect.isasyncgenfunction(call):
+        check_dependency_contextmanagers()
     dependant = Dependant(call=call, name=name, path=path, use_cache=use_cache)
     for param_name, param in signature_params.items():
         if isinstance(param.default, params.Depends):
@@ -196,16 +241,18 @@ def get_dependant(
             continue
         param_field = get_param_field(param=param, default_schema=params.Query)
         if param_name in path_param_names:
-            assert param.default == param.empty or isinstance(
-                param.default, params.Path
-            ), "Path params must have no defaults or use Path(...)"
             assert is_scalar_field(
                 field=param_field
             ), f"Path params must be of one of the supported types"
+            if isinstance(param.default, params.Path):
+                ignore_default = False
+            else:
+                ignore_default = True
             param_field = get_param_field(
                 param=param,
                 default_schema=params.Path,
                 force_type=params.ParamTypes.path,
+                ignore_default=ignore_default,
             )
             add_param_to_fields(field=param_field, dependant=dependant)
         elif is_scalar_field(field=param_field):
@@ -248,10 +295,11 @@ def get_param_field(
     param: inspect.Parameter,
     default_schema: Type[params.Param] = params.Param,
     force_type: params.ParamTypes = None,
+    ignore_default: bool = False,
 ) -> Field:
     default_value = Required
     had_schema = False
-    if not param.default == param.empty:
+    if not param.default == param.empty and ignore_default is False:
         default_value = param.default
     if isinstance(default_value, Schema):
         had_schema = True
@@ -311,6 +359,16 @@ def is_coroutine_callable(call: Callable) -> bool:
     return asyncio.iscoroutinefunction(call)
 
 
+async def solve_generator(
+    *, call: Callable, stack: AsyncExitStack, sub_values: Dict[str, Any]
+) -> Any:
+    if inspect.isgeneratorfunction(call):
+        cm = contextmanager_in_threadpool(contextmanager(call)(**sub_values))
+    elif inspect.isasyncgenfunction(call):
+        cm = asynccontextmanager(call)(**sub_values)
+    return await stack.enter_async_context(cm)
+
+
 async def solve_dependencies(
     *,
     request: Union[Request, WebSocket],
@@ -329,8 +387,12 @@ async def solve_dependencies(
 ]:
     values: Dict[str, Any] = {}
     errors: List[ErrorWrapper] = []
-    response = response or Response(  # type: ignore
-        content=None, status_code=None, headers=None, media_type=None, background=None
+    response = response or Response(
+        content=None,
+        status_code=None,  # type: ignore
+        headers=None,
+        media_type=None,
+        background=None,
     )
     dependency_cache = dependency_cache or {}
     sub_dependant: Dependant
@@ -379,6 +441,15 @@ async def solve_dependencies(
             continue
         if sub_dependant.use_cache and sub_dependant.cache_key in dependency_cache:
             solved = dependency_cache[sub_dependant.cache_key]
+        elif inspect.isgeneratorfunction(call) or inspect.isasyncgenfunction(call):
+            stack = request.scope.get("fastapi_astack")
+            if stack is None:
+                raise RuntimeError(
+                    async_contextmanager_dependencies_error
+                )  # pragma: no cover
+            solved = await solve_generator(
+                call=call, stack=stack, sub_values=sub_values
+            )
         elif is_coroutine_callable(call):
             solved = await call(**sub_values)
         else:
@@ -405,7 +476,7 @@ async def solve_dependencies(
     values.update(cookie_values)
     errors += path_errors + query_errors + header_errors + cookie_errors
     if dependant.body_params:
-        body_values, body_errors = await request_body_to_args(  # type: ignore # body_params checked above
+        body_values, body_errors = await request_body_to_args(  # body_params checked above
             required_params=dependant.body_params, received_body=body
         )
         values.update(body_values)

@@ -1,5 +1,7 @@
+import json
 from typing import Optional
 
+from fastapi.encoders import jsonable_encoder
 from starlette.responses import HTMLResponse
 
 
@@ -11,10 +13,11 @@ def get_swagger_ui_html(
     swagger_css_url: str = "https://cdn.jsdelivr.net/npm/swagger-ui-dist@3/swagger-ui.css",
     swagger_favicon_url: str = "https://fastapi.tiangolo.com/img/favicon.png",
     oauth2_redirect_url: Optional[str] = None,
+    init_oauth: Optional[dict] = None,
 ) -> HTMLResponse:
 
     html = f"""
-    <! doctype html>
+    <!DOCTYPE html>
     <html>
     <head>
     <link type="text/css" rel="stylesheet" href="{swagger_css_url}">
@@ -42,7 +45,14 @@ def get_swagger_ui_html(
         ],
         layout: "BaseLayout",
         deepLinking: true
-    })
+    })"""
+
+    if init_oauth:
+        html += f"""
+        ui.initOAuth({json.dumps(jsonable_encoder(init_oauth))})
+        """
+
+    html += """
     </script>
     </body>
     </html>
@@ -94,7 +104,7 @@ def get_redoc_html(
 
 def get_swagger_ui_oauth2_redirect_html() -> HTMLResponse:
     html = """
-    <!doctype html>
+    <!DOCTYPE html>
     <html lang="en-US">
     <body onload="run()">
     </body>

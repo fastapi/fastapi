@@ -1,6 +1,7 @@
 from typing import Any, Callable, Dict, List, Optional, Sequence, Type, Union
 
 from fastapi import routing
+from fastapi.concurrency import AsyncExitStack
 from fastapi.encoders import DictIntStrAny, SetIntStr
 from fastapi.exception_handlers import (
     http_exception_handler,
@@ -15,11 +16,13 @@ from fastapi.openapi.docs import (
 from fastapi.openapi.utils import get_openapi
 from fastapi.params import Depends
 from starlette.applications import Starlette
+from starlette.datastructures import State
 from starlette.exceptions import ExceptionMiddleware, HTTPException
 from starlette.middleware.errors import ServerErrorMiddleware
 from starlette.requests import Request
 from starlette.responses import HTMLResponse, JSONResponse, Response
 from starlette.routing import BaseRoute
+from starlette.types import Receive, Scope, Send
 
 
 class FastAPI(Starlette):
@@ -33,12 +36,16 @@ class FastAPI(Starlette):
         version: str = "0.1.0",
         openapi_url: Optional[str] = "/openapi.json",
         openapi_prefix: str = "",
+        default_response_class: Type[Response] = JSONResponse,
         docs_url: Optional[str] = "/docs",
         redoc_url: Optional[str] = "/redoc",
         swagger_ui_oauth2_redirect_url: Optional[str] = "/docs/oauth2-redirect",
+        swagger_ui_init_oauth: Optional[dict] = None,
         **extra: Dict[str, Any],
     ) -> None:
+        self.default_response_class = default_response_class
         self._debug = debug
+        self.state = State()
         self.router: routing.APIRouter = routing.APIRouter(
             routes, dependency_overrides_provider=self
         )
@@ -55,6 +62,7 @@ class FastAPI(Starlette):
         self.docs_url = docs_url
         self.redoc_url = redoc_url
         self.swagger_ui_oauth2_redirect_url = swagger_ui_oauth2_redirect_url
+        self.swagger_ui_init_oauth = swagger_ui_init_oauth
         self.extra = extra
         self.dependency_overrides: Dict[Callable, Callable] = {}
 
@@ -96,6 +104,7 @@ class FastAPI(Starlette):
                     openapi_url=openapi_url,
                     title=self.title + " - Swagger UI",
                     oauth2_redirect_url=self.swagger_ui_oauth2_redirect_url,
+                    init_oauth=self.swagger_ui_init_oauth,
                 )
 
             self.add_route(self.docs_url, swagger_ui_html, include_in_schema=False)
@@ -123,6 +132,14 @@ class FastAPI(Starlette):
             RequestValidationError, request_validation_exception_handler
         )
 
+    async def __call__(self, scope: Scope, receive: Receive, send: Send) -> None:
+        if AsyncExitStack:
+            async with AsyncExitStack() as stack:
+                scope["fastapi_astack"] = stack
+                await super().__call__(scope, receive, send)
+        else:
+            await super().__call__(scope, receive, send)  # pragma: no cover
+
     def add_api_route(
         self,
         path: str,
@@ -144,7 +161,7 @@ class FastAPI(Starlette):
         response_model_by_alias: bool = True,
         response_model_skip_defaults: bool = False,
         include_in_schema: bool = True,
-        response_class: Type[Response] = JSONResponse,
+        response_class: Type[Response] = None,
         name: str = None,
     ) -> None:
         self.router.add_api_route(
@@ -166,7 +183,7 @@ class FastAPI(Starlette):
             response_model_by_alias=response_model_by_alias,
             response_model_skip_defaults=response_model_skip_defaults,
             include_in_schema=include_in_schema,
-            response_class=response_class,
+            response_class=response_class or self.default_response_class,
             name=name,
         )
 
@@ -190,7 +207,7 @@ class FastAPI(Starlette):
         response_model_by_alias: bool = True,
         response_model_skip_defaults: bool = False,
         include_in_schema: bool = True,
-        response_class: Type[Response] = JSONResponse,
+        response_class: Type[Response] = None,
         name: str = None,
     ) -> Callable:
         def decorator(func: Callable) -> Callable:
@@ -213,7 +230,7 @@ class FastAPI(Starlette):
                 response_model_by_alias=response_model_by_alias,
                 response_model_skip_defaults=response_model_skip_defaults,
                 include_in_schema=include_in_schema,
-                response_class=response_class,
+                response_class=response_class or self.default_response_class,
                 name=name,
             )
             return func
@@ -240,6 +257,7 @@ class FastAPI(Starlette):
         tags: List[str] = None,
         dependencies: Sequence[Depends] = None,
         responses: Dict[Union[int, str], Dict[str, Any]] = None,
+        default_response_class: Optional[Type[Response]] = None,
     ) -> None:
         self.router.include_router(
             router,
@@ -247,6 +265,8 @@ class FastAPI(Starlette):
             tags=tags,
             dependencies=dependencies,
             responses=responses or {},
+            default_response_class=default_response_class
+            or self.default_response_class,
         )
 
     def get(
@@ -268,7 +288,7 @@ class FastAPI(Starlette):
         response_model_by_alias: bool = True,
         response_model_skip_defaults: bool = False,
         include_in_schema: bool = True,
-        response_class: Type[Response] = JSONResponse,
+        response_class: Type[Response] = None,
         name: str = None,
     ) -> Callable:
         return self.router.get(
@@ -288,7 +308,7 @@ class FastAPI(Starlette):
             response_model_by_alias=response_model_by_alias,
             response_model_skip_defaults=response_model_skip_defaults,
             include_in_schema=include_in_schema,
-            response_class=response_class,
+            response_class=response_class or self.default_response_class,
             name=name,
         )
 
@@ -311,7 +331,7 @@ class FastAPI(Starlette):
         response_model_by_alias: bool = True,
         response_model_skip_defaults: bool = False,
         include_in_schema: bool = True,
-        response_class: Type[Response] = JSONResponse,
+        response_class: Type[Response] = None,
         name: str = None,
     ) -> Callable:
         return self.router.put(
@@ -331,7 +351,7 @@ class FastAPI(Starlette):
             response_model_by_alias=response_model_by_alias,
             response_model_skip_defaults=response_model_skip_defaults,
             include_in_schema=include_in_schema,
-            response_class=response_class,
+            response_class=response_class or self.default_response_class,
             name=name,
         )
 
@@ -354,7 +374,7 @@ class FastAPI(Starlette):
         response_model_by_alias: bool = True,
         response_model_skip_defaults: bool = False,
         include_in_schema: bool = True,
-        response_class: Type[Response] = JSONResponse,
+        response_class: Type[Response] = None,
         name: str = None,
     ) -> Callable:
         return self.router.post(
@@ -374,7 +394,7 @@ class FastAPI(Starlette):
             response_model_by_alias=response_model_by_alias,
             response_model_skip_defaults=response_model_skip_defaults,
             include_in_schema=include_in_schema,
-            response_class=response_class,
+            response_class=response_class or self.default_response_class,
             name=name,
         )
 
@@ -397,7 +417,7 @@ class FastAPI(Starlette):
         response_model_by_alias: bool = True,
         response_model_skip_defaults: bool = False,
         include_in_schema: bool = True,
-        response_class: Type[Response] = JSONResponse,
+        response_class: Type[Response] = None,
         name: str = None,
     ) -> Callable:
         return self.router.delete(
@@ -417,7 +437,7 @@ class FastAPI(Starlette):
             operation_id=operation_id,
             response_model_skip_defaults=response_model_skip_defaults,
             include_in_schema=include_in_schema,
-            response_class=response_class,
+            response_class=response_class or self.default_response_class,
             name=name,
         )
 
@@ -440,7 +460,7 @@ class FastAPI(Starlette):
         response_model_by_alias: bool = True,
         response_model_skip_defaults: bool = False,
         include_in_schema: bool = True,
-        response_class: Type[Response] = JSONResponse,
+        response_class: Type[Response] = None,
         name: str = None,
     ) -> Callable:
         return self.router.options(
@@ -460,7 +480,7 @@ class FastAPI(Starlette):
             response_model_by_alias=response_model_by_alias,
             response_model_skip_defaults=response_model_skip_defaults,
             include_in_schema=include_in_schema,
-            response_class=response_class,
+            response_class=response_class or self.default_response_class,
             name=name,
         )
 
@@ -483,7 +503,7 @@ class FastAPI(Starlette):
         response_model_by_alias: bool = True,
         response_model_skip_defaults: bool = False,
         include_in_schema: bool = True,
-        response_class: Type[Response] = JSONResponse,
+        response_class: Type[Response] = None,
         name: str = None,
     ) -> Callable:
         return self.router.head(
@@ -503,7 +523,7 @@ class FastAPI(Starlette):
             response_model_by_alias=response_model_by_alias,
             response_model_skip_defaults=response_model_skip_defaults,
             include_in_schema=include_in_schema,
-            response_class=response_class,
+            response_class=response_class or self.default_response_class,
             name=name,
         )
 
@@ -526,7 +546,7 @@ class FastAPI(Starlette):
         response_model_by_alias: bool = True,
         response_model_skip_defaults: bool = False,
         include_in_schema: bool = True,
-        response_class: Type[Response] = JSONResponse,
+        response_class: Type[Response] = None,
         name: str = None,
     ) -> Callable:
         return self.router.patch(
@@ -546,7 +566,7 @@ class FastAPI(Starlette):
             response_model_by_alias=response_model_by_alias,
             response_model_skip_defaults=response_model_skip_defaults,
             include_in_schema=include_in_schema,
-            response_class=response_class,
+            response_class=response_class or self.default_response_class,
             name=name,
         )
 
@@ -569,7 +589,7 @@ class FastAPI(Starlette):
         response_model_by_alias: bool = True,
         response_model_skip_defaults: bool = False,
         include_in_schema: bool = True,
-        response_class: Type[Response] = JSONResponse,
+        response_class: Type[Response] = None,
         name: str = None,
     ) -> Callable:
         return self.router.trace(
@@ -589,6 +609,6 @@ class FastAPI(Starlette):
             response_model_by_alias=response_model_by_alias,
             response_model_skip_defaults=response_model_skip_defaults,
             include_in_schema=include_in_schema,
-            response_class=response_class,
+            response_class=response_class or self.default_response_class,
             name=name,
         )
