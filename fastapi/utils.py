@@ -61,10 +61,11 @@ def create_cloned_field(field: Field) -> Field:
         use_type = create_model(
             original_type.__name__,
             __config__=original_type.__config__,
-            __validators__=original_type.__validators__,  # type: ignore
         )
         for f in original_type.__fields__.values():
             use_type.__fields__[f.name] = f
+        for k, f in original_type.__validators__.items():
+            use_type.__validators__[k] = f
     new_field = Field(
         name=field.name,
         type_=use_type,
