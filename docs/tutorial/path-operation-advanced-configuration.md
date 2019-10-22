@@ -11,6 +11,12 @@ You would have to make sure that it is unique for each operation.
 {!./src/path_operation_advanced_configuration/tutorial001.py!}
 ```
 
+If you want to use your APIs' function names as `operationId`s, you can override each `APIRoute.name` as after you add all your routes and before you call `app.openapi()`.
+
+```Python hl_lines="2 12 13 14 15 16 17 18 19 20 21 24"
+{!./src/path_operation_advanced_configuration/tutorial004.py!}
+```
+
 ## Exclude from OpenAPI
 
 To exclude a path operation from the generated OpenAPI schema (and thus, from the automatic documentation systems), use the parameter `include_in_schema` and set it to `False`;
