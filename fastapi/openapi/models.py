@@ -54,7 +54,7 @@ class Server(BaseModel):
 
 
 class Reference(BaseModel):
-    ref: str = Field(..., alias="$ref")  # type: ignore
+    ref: str = Field(..., alias="$ref")
 
 
 class Discriminator(BaseModel):
@@ -76,28 +76,28 @@ class ExternalDocumentation(BaseModel):
 
 
 class SchemaBase(BaseModel):
-    ref: Optional[str] = Field(None, alias="$ref")  # type: ignore
+    ref: Optional[str] = Field(None, alias="$ref")
     title: Optional[str] = None
     multipleOf: Optional[float] = None
     maximum: Optional[float] = None
     exclusiveMaximum: Optional[float] = None
     minimum: Optional[float] = None
     exclusiveMinimum: Optional[float] = None
-    maxLength: Optional[int] = Field(None, gte=0)  # type: ignore
-    minLength: Optional[int] = Field(None, gte=0)  # type: ignore
+    maxLength: Optional[int] = Field(None, gte=0)
+    minLength: Optional[int] = Field(None, gte=0)
     pattern: Optional[str] = None
-    maxItems: Optional[int] = Field(None, gte=0)  # type: ignore
-    minItems: Optional[int] = Field(None, gte=0)  # type: ignore
+    maxItems: Optional[int] = Field(None, gte=0)
+    minItems: Optional[int] = Field(None, gte=0)
     uniqueItems: Optional[bool] = None
-    maxProperties: Optional[int] = Field(None, gte=0)  # type: ignore
-    minProperties: Optional[int] = Field(None, gte=0)  # type: ignore
+    maxProperties: Optional[int] = Field(None, gte=0)
+    minProperties: Optional[int] = Field(None, gte=0)
     required: Optional[List[str]] = None
     enum: Optional[List[str]] = None
     type: Optional[str] = None
     allOf: Optional[List[Any]] = None
     oneOf: Optional[List[Any]] = None
     anyOf: Optional[List[Any]] = None
-    not_: Optional[List[Any]] = Field(None, alias="not")  # type: ignore
+    not_: Optional[List[Any]] = Field(None, alias="not")
     items: Optional[Any] = None
     properties: Optional[Dict[str, Any]] = None
     additionalProperties: Optional[Union[Dict[str, Any], bool]] = None
@@ -118,10 +118,10 @@ class Schema(SchemaBase):
     allOf: Optional[List[SchemaBase]] = None
     oneOf: Optional[List[SchemaBase]] = None
     anyOf: Optional[List[SchemaBase]] = None
-    not_: Optional[List[SchemaBase]] = Field(None, alias="not")  # type: ignore
+    not_: Optional[List[SchemaBase]] = Field(None, alias="not")
     items: Optional[SchemaBase] = None
     properties: Optional[Dict[str, SchemaBase]] = None
-    additionalProperties: Optional[Union[SchemaBase, bool]] = None  # type: ignore
+    additionalProperties: Optional[Union[Dict[str, Any], bool]] = None
 
 
 class Example(BaseModel):
@@ -148,7 +148,7 @@ class Encoding(BaseModel):
 
 
 class MediaType(BaseModel):
-    schema_: Optional[Union[Schema, Reference]] = Field(  # type: ignore
+    schema_: Optional[Union[Schema, Reference]] = Field(
         None, alias="schema"
     )
     example: Optional[Any] = None
@@ -164,7 +164,7 @@ class ParameterBase(BaseModel):
     style: Optional[str] = None
     explode: Optional[bool] = None
     allowReserved: Optional[bool] = None
-    schema_: Optional[Union[Schema, Reference]] = Field(  # type: ignore
+    schema_: Optional[Union[Schema, Reference]] = Field(
         None, alias="schema"
     )
     example: Optional[Any] = None
@@ -175,7 +175,7 @@ class ParameterBase(BaseModel):
 
 class Parameter(ParameterBase):
     name: str
-    in_: ParameterInType = Field(..., alias="in")  # type: ignore
+    in_: ParameterInType = Field(..., alias="in")
 
 
 class Header(ParameterBase):
@@ -226,7 +226,7 @@ class Operation(BaseModel):
 
 
 class PathItem(BaseModel):
-    ref: Optional[str] = Field(None, alias="$ref")  # type: ignore
+    ref: Optional[str] = Field(None, alias="$ref")
     summary: Optional[str] = None
     description: Optional[str] = None
     get: Optional[Operation] = None
@@ -254,7 +254,7 @@ class SecuritySchemeType(Enum):
 
 
 class SecurityBase(BaseModel):
-    type_: SecuritySchemeType = Field(..., alias="type")  # type: ignore
+    type_: SecuritySchemeType = Field(..., alias="type")
     description: Optional[str] = None
 
 
@@ -265,13 +265,13 @@ class APIKeyIn(Enum):
 
 
 class APIKey(SecurityBase):
-    type_ = Field(SecuritySchemeType.apiKey, alias="type")  # type: ignore
-    in_: APIKeyIn = Field(..., alias="in")  # type: ignore
+    type_ = Field(SecuritySchemeType.apiKey, alias="type")
+    in_: APIKeyIn = Field(..., alias="in")
     name: str
 
 
 class HTTPBase(SecurityBase):
-    type_ = Field(SecuritySchemeType.http, alias="type")  # type: ignore
+    type_ = Field(SecuritySchemeType.http, alias="type")
     scheme: str
 
 
@@ -310,12 +310,12 @@ class OAuthFlows(BaseModel):
 
 
 class OAuth2(SecurityBase):
-    type_ = Field(SecuritySchemeType.oauth2, alias="type")  # type: ignore
+    type_ = Field(SecuritySchemeType.oauth2, alias="type")
     flows: OAuthFlows
 
 
 class OpenIdConnect(SecurityBase):
-    type_ = Field(SecuritySchemeType.openIdConnect, alias="type")  # type: ignore
+    type_ = Field(SecuritySchemeType.openIdConnect, alias="type")
     openIdConnectUrl: str
 
 
