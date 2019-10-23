@@ -26,7 +26,7 @@ uvicorn = "*"
 
 [packages]
 starlette = "==0.12.9"
-pydantic = "==0.32.2"
+pydantic = "==1.0.0"
 databases = {extras = ["sqlite"],version = "*"}
 hypercorn = "*"
 orjson = "*"
