@@ -1,6 +1,5 @@
 from typing import Any, Callable
 
-from starlette.concurrency import iterate_in_threadpool  # noqa
 from starlette.concurrency import run_in_threadpool
 
 asynccontextmanager_error_message = """
