@@ -148,9 +148,7 @@ class Encoding(BaseModel):
 
 
 class MediaType(BaseModel):
-    schema_: Optional[Union[Schema, Reference]] = Field(
-        None, alias="schema"
-    )
+    schema_: Optional[Union[Schema, Reference]] = Field(None, alias="schema")
     example: Optional[Any] = None
     examples: Optional[Dict[str, Union[Example, Reference]]] = None
     encoding: Optional[Dict[str, Encoding]] = None
@@ -164,9 +162,7 @@ class ParameterBase(BaseModel):
     style: Optional[str] = None
     explode: Optional[bool] = None
     allowReserved: Optional[bool] = None
-    schema_: Optional[Union[Schema, Reference]] = Field(
-        None, alias="schema"
-    )
+    schema_: Optional[Union[Schema, Reference]] = Field(None, alias="schema")
     example: Optional[Any] = None
     examples: Optional[Dict[str, Union[Example, Reference]]] = None
     # Serialization rules for more complex scenarios
