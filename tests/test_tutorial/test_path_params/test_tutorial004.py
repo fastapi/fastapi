@@ -31,7 +31,7 @@ openapi_schema = {
                 "parameters": [
                     {
                         "required": True,
-                        "schema": {"title": "File_Path", "type": "string"},
+                        "schema": {"title": "File Path", "type": "string"},
                         "name": "file_path",
                         "in": "path",
                     }

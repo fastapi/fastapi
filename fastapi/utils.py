@@ -4,23 +4,23 @@ from typing import Any, Dict, List, Sequence, Set, Type, cast
 
 from fastapi import routing
 from fastapi.openapi.constants import REF_PREFIX
-from pydantic import BaseConfig, BaseModel, Schema, create_model
-from pydantic.fields import Field
+from pydantic import BaseConfig, BaseModel, create_model
+from pydantic.fields import FieldInfo, ModelField
 from pydantic.schema import get_flat_models_from_fields, model_process_schema
 from pydantic.utils import lenient_issubclass
 from starlette.routing import BaseRoute
 
 
 def get_flat_models_from_routes(routes: Sequence[BaseRoute]) -> Set[Type[BaseModel]]:
-    body_fields_from_routes: List[Field] = []
-    responses_from_routes: List[Field] = []
+    body_fields_from_routes: List[ModelField] = []
+    responses_from_routes: List[ModelField] = []
     for route in routes:
         if getattr(route, "include_in_schema", None) and isinstance(
             route, routing.APIRoute
         ):
             if route.body_field:
                 assert isinstance(
-                    route.body_field, Field
+                    route.body_field, ModelField
                 ), "A request body must be a Pydantic Field"
                 body_fields_from_routes.append(route.body_field)
             if route.response_field:
@@ -51,7 +51,7 @@ def get_path_param_names(path: str) -> Set[str]:
     return {item.strip("{}") for item in re.findall("{[^}]*}", path)}
 
 
-def create_cloned_field(field: Field) -> Field:
+def create_cloned_field(field: ModelField) -> ModelField:
     original_type = field.type_
     if is_dataclass(original_type) and hasattr(original_type, "__pydantic_model__"):
         original_type = original_type.__pydantic_model__  # type: ignore
@@ -65,14 +65,14 @@ def create_cloned_field(field: Field) -> Field:
         )
         for f in original_type.__fields__.values():
             use_type.__fields__[f.name] = f
-    new_field = Field(
+    new_field = ModelField(
         name=field.name,
         type_=use_type,
         class_validators={},
         default=None,
         required=False,
         model_config=BaseConfig,
-        schema=Schema(None),
+        field_info=FieldInfo(None),
     )
     new_field.has_alias = field.has_alias
     new_field.alias = field.alias
@@ -80,7 +80,7 @@ def create_cloned_field(field: Field) -> Field:
     new_field.default = field.default
     new_field.required = field.required
     new_field.model_config = field.model_config
-    new_field.schema = field.schema
+    new_field.field_info = field.field_info
     new_field.allow_none = field.allow_none
     new_field.validate_always = field.validate_always
     if field.sub_fields:
@@ -90,8 +90,8 @@ def create_cloned_field(field: Field) -> Field:
     if field.key_field:
         new_field.key_field = create_cloned_field(field.key_field)
     new_field.validators = field.validators
-    new_field.whole_pre_validators = field.whole_pre_validators
-    new_field.whole_post_validators = field.whole_post_validators
+    new_field.pre_validators = field.pre_validators
+    new_field.post_validators = field.post_validators
     new_field.parse_json = field.parse_json
     new_field.shape = field.shape
     new_field._populate_validators()

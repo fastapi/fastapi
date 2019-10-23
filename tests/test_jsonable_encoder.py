@@ -3,7 +3,7 @@ from enum import Enum
 
 import pytest
 from fastapi.encoders import jsonable_encoder
-from pydantic import BaseModel, Schema, ValidationError
+from pydantic import BaseModel, Field, ValidationError
 
 
 class Person:
@@ -60,7 +60,7 @@ class ModelWithConfig(BaseModel):
 
 
 class ModelWithAlias(BaseModel):
-    foo: str = Schema(..., alias="Foo")
+    foo: str = Field(..., alias="Foo")
 
 
 def test_encode_class():

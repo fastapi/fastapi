@@ -16,7 +16,7 @@ openapi_schema = {
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "title": "Response_Read_Item_Items__Item_Id__Get",
+                                    "title": "Response Read Item Items  Item Id  Get",
                                     "anyOf": [
                                         {"$ref": "#/components/schemas/PlaneItem"},
                                         {"$ref": "#/components/schemas/CarItem"},
@@ -41,7 +41,7 @@ openapi_schema = {
                 "parameters": [
                     {
                         "required": True,
-                        "schema": {"title": "Item_Id", "type": "string"},
+                        "schema": {"title": "Item Id", "type": "string"},
                         "name": "item_id",
                         "in": "path",
                     }

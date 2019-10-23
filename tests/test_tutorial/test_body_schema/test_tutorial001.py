@@ -33,7 +33,7 @@ openapi_schema = {
                 "parameters": [
                     {
                         "required": True,
-                        "schema": {"title": "Item_Id", "type": "integer"},
+                        "schema": {"title": "Item Id", "type": "integer"},
                         "name": "item_id",
                         "in": "path",
                     }

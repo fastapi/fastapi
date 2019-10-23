@@ -1,7 +1,7 @@
 from enum import Enum
 from typing import Any, Callable, Sequence
 
-from pydantic import Schema
+from pydantic.fields import FieldInfo
 
 
 class ParamTypes(Enum):
@@ -11,7 +11,7 @@ class ParamTypes(Enum):
     cookie = "cookie"
 
 
-class Param(Schema):
+class Param(FieldInfo):
     in_: ParamTypes
 
     def __init__(
@@ -199,7 +199,7 @@ class Cookie(Param):
         )
 
 
-class Body(Schema):
+class Body(FieldInfo):
     def __init__(
         self,
         default: Any,

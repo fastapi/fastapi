@@ -2,8 +2,7 @@ import logging
 from enum import Enum
 from typing import Any, Dict, List, Optional, Union
 
-from pydantic import BaseModel, Schema as PSchema
-from pydantic.types import UrlStr
+from pydantic import AnyUrl, BaseModel, Field
 
 logger = logging.getLogger("fastapi")
 
@@ -11,7 +10,7 @@ try:
     import email_validator
 
     assert email_validator  # make autoflake ignore the unused import
-    from pydantic.types import EmailStr
+    from pydantic import EmailStr
 except ImportError:  # pragma: no cover
     logger.warning(
         "email-validator not installed, email fields will be treated as str.\n"
@@ -24,13 +23,13 @@ except ImportError:  # pragma: no cover
 
 class Contact(BaseModel):
     name: Optional[str] = None
-    url: Optional[UrlStr] = None
+    url: Optional[AnyUrl] = None
     email: Optional[EmailStr] = None
 
 
 class License(BaseModel):
     name: str
-    url: Optional[UrlStr] = None
+    url: Optional[AnyUrl] = None
 
 
 class Info(BaseModel):
@@ -49,13 +48,13 @@ class ServerVariable(BaseModel):
 
 
 class Server(BaseModel):
-    url: UrlStr
+    url: AnyUrl
     description: Optional[str] = None
     variables: Optional[Dict[str, ServerVariable]] = None
 
 
 class Reference(BaseModel):
-    ref: str = PSchema(..., alias="$ref")  # type: ignore
+    ref: str = Field(..., alias="$ref")  # type: ignore
 
 
 class Discriminator(BaseModel):
@@ -73,32 +72,32 @@ class XML(BaseModel):
 
 class ExternalDocumentation(BaseModel):
     description: Optional[str] = None
-    url: UrlStr
+    url: AnyUrl
 
 
 class SchemaBase(BaseModel):
-    ref: Optional[str] = PSchema(None, alias="$ref")  # type: ignore
+    ref: Optional[str] = Field(None, alias="$ref")  # type: ignore
     title: Optional[str] = None
     multipleOf: Optional[float] = None
     maximum: Optional[float] = None
     exclusiveMaximum: Optional[float] = None
     minimum: Optional[float] = None
     exclusiveMinimum: Optional[float] = None
-    maxLength: Optional[int] = PSchema(None, gte=0)  # type: ignore
-    minLength: Optional[int] = PSchema(None, gte=0)  # type: ignore
+    maxLength: Optional[int] = Field(None, gte=0)  # type: ignore
+    minLength: Optional[int] = Field(None, gte=0)  # type: ignore
     pattern: Optional[str] = None
-    maxItems: Optional[int] = PSchema(None, gte=0)  # type: ignore
-    minItems: Optional[int] = PSchema(None, gte=0)  # type: ignore
+    maxItems: Optional[int] = Field(None, gte=0)  # type: ignore
+    minItems: Optional[int] = Field(None, gte=0)  # type: ignore
     uniqueItems: Optional[bool] = None
-    maxProperties: Optional[int] = PSchema(None, gte=0)  # type: ignore
-    minProperties: Optional[int] = PSchema(None, gte=0)  # type: ignore
+    maxProperties: Optional[int] = Field(None, gte=0)  # type: ignore
+    minProperties: Optional[int] = Field(None, gte=0)  # type: ignore
     required: Optional[List[str]] = None
     enum: Optional[List[str]] = None
     type: Optional[str] = None
     allOf: Optional[List[Any]] = None
     oneOf: Optional[List[Any]] = None
     anyOf: Optional[List[Any]] = None
-    not_: Optional[List[Any]] = PSchema(None, alias="not")  # type: ignore
+    not_: Optional[List[Any]] = Field(None, alias="not")  # type: ignore
     items: Optional[Any] = None
     properties: Optional[Dict[str, Any]] = None
     additionalProperties: Optional[Union[Dict[str, Any], bool]] = None
@@ -119,7 +118,7 @@ class Schema(SchemaBase):
     allOf: Optional[List[SchemaBase]] = None
     oneOf: Optional[List[SchemaBase]] = None
     anyOf: Optional[List[SchemaBase]] = None
-    not_: Optional[List[SchemaBase]] = PSchema(None, alias="not")  # type: ignore
+    not_: Optional[List[SchemaBase]] = Field(None, alias="not")  # type: ignore
     items: Optional[SchemaBase] = None
     properties: Optional[Dict[str, SchemaBase]] = None
     additionalProperties: Optional[Union[SchemaBase, bool]] = None  # type: ignore
@@ -129,7 +128,7 @@ class Example(BaseModel):
     summary: Optional[str] = None
     description: Optional[str] = None
     value: Optional[Any] = None
-    externalValue: Optional[UrlStr] = None
+    externalValue: Optional[AnyUrl] = None
 
 
 class ParameterInType(Enum):
@@ -149,7 +148,7 @@ class Encoding(BaseModel):
 
 
 class MediaType(BaseModel):
-    schema_: Optional[Union[Schema, Reference]] = PSchema(  # type: ignore
+    schema_: Optional[Union[Schema, Reference]] = Field(  # type: ignore
         None, alias="schema"
     )
     example: Optional[Any] = None
@@ -165,7 +164,7 @@ class ParameterBase(BaseModel):
     style: Optional[str] = None
     explode: Optional[bool] = None
     allowReserved: Optional[bool] = None
-    schema_: Optional[Union[Schema, Reference]] = PSchema(  # type: ignore
+    schema_: Optional[Union[Schema, Reference]] = Field(  # type: ignore
         None, alias="schema"
     )
     example: Optional[Any] = None
@@ -176,7 +175,7 @@ class ParameterBase(BaseModel):
 
 class Parameter(ParameterBase):
     name: str
-    in_: ParameterInType = PSchema(..., alias="in")  # type: ignore
+    in_: ParameterInType = Field(..., alias="in")  # type: ignore
 
 
 class Header(ParameterBase):
@@ -227,7 +226,7 @@ class Operation(BaseModel):
 
 
 class PathItem(BaseModel):
-    ref: Optional[str] = PSchema(None, alias="$ref")  # type: ignore
+    ref: Optional[str] = Field(None, alias="$ref")  # type: ignore
     summary: Optional[str] = None
     description: Optional[str] = None
     get: Optional[Operation] = None
@@ -255,7 +254,7 @@ class SecuritySchemeType(Enum):
 
 
 class SecurityBase(BaseModel):
-    type_: SecuritySchemeType = PSchema(..., alias="type")  # type: ignore
+    type_: SecuritySchemeType = Field(..., alias="type")  # type: ignore
     description: Optional[str] = None
 
 
@@ -266,13 +265,13 @@ class APIKeyIn(Enum):
 
 
 class APIKey(SecurityBase):
-    type_ = PSchema(SecuritySchemeType.apiKey, alias="type")  # type: ignore
-    in_: APIKeyIn = PSchema(..., alias="in")  # type: ignore
+    type_ = Field(SecuritySchemeType.apiKey, alias="type")  # type: ignore
+    in_: APIKeyIn = Field(..., alias="in")  # type: ignore
     name: str
 
 
 class HTTPBase(SecurityBase):
-    type_ = PSchema(SecuritySchemeType.http, alias="type")  # type: ignore
+    type_ = Field(SecuritySchemeType.http, alias="type")  # type: ignore
     scheme: str
 
 
@@ -311,12 +310,12 @@ class OAuthFlows(BaseModel):
 
 
 class OAuth2(SecurityBase):
-    type_ = PSchema(SecuritySchemeType.oauth2, alias="type")  # type: ignore
+    type_ = Field(SecuritySchemeType.oauth2, alias="type")  # type: ignore
     flows: OAuthFlows
 
 
 class OpenIdConnect(SecurityBase):
-    type_ = PSchema(SecuritySchemeType.openIdConnect, alias="type")  # type: ignore
+    type_ = Field(SecuritySchemeType.openIdConnect, alias="type")  # type: ignore
     openIdConnectUrl: str
 
 

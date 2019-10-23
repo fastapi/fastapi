@@ -32,7 +32,7 @@ openapi_schema = {
                 "parameters": [
                     {
                         "required": True,
-                        "schema": {"title": "Item_Id", "type": "integer"},
+                        "schema": {"title": "Item Id", "type": "integer"},
                         "name": "item_id",
                         "in": "path",
                     }
@@ -69,7 +69,7 @@ openapi_schema = {
                 "type": "object",
                 "properties": {
                     "username": {"title": "Username", "type": "string"},
-                    "full_name": {"title": "Full_Name", "type": "string"},
+                    "full_name": {"title": "Full Name", "type": "string"},
                 },
             },
             "Body_update_item_items__item_id__put": {
