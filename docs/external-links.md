@@ -35,7 +35,7 @@ Here's an incomplete list of some of them.
 
 * <a href="https://eng.uber.com/ludwig-v0-2/" target="_blank">Uber: Ludwig v0.2 Adds New Features and Other Improvements to its Deep Learning Toolbox [including a FastAPI server]</a> on <a href="https://eng.uber.com" target="_blank">Uber Engineering</a>.
 
- <a href="https://wuilly.com/2019/10/real-time-notifications-with-python-and-postgres/" target="_blank">Real-time notifications with Python and Postgres (using Fastapi)</a> by <a>https://github.com/webjunkie01</a>
+ * <a href="https://wuilly.com/2019/10/real-time-notifications-with-python-and-postgres/" target="_blank">Real-time notifications with Python and Postgres (using Fastapi)</a> by <a>https://github.com/webjunkie01</a>
 ### Japanese
 
 * <a href="https://qiita.com/mtitg/items/47770e9a562dd150631d" target="_blank">FastAPI｜DB接続してCRUDするPython製APIサーバーを構築</a> by <a href="https://qiita.com/mtitg" target="_blank">@mtitg</a>.
