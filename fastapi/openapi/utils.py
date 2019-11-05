@@ -79,7 +79,7 @@ def get_openapi_security_definitions(flat_dependant: Dependant) -> Tuple[Dict, L
 
 
 def get_openapi_operation_parameters(
-    all_route_params: Sequence[Field]
+    all_route_params: Sequence[Field],
 ) -> List[Dict[str, Any]]:
     parameters = []
     for param in all_route_params:
