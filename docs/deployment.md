@@ -170,32 +170,33 @@ Now, from a developer's perspective, here are several things to have in mind whi
     * So, the certificate and encryption handling is done before HTTP.
 * TCP doesn't know about "domains". Only about IP addresses.
     * The information about the specific domain requested goes in the HTTP data.
-* The HTTPS certificates "certificate" a certain domain, but the protocol and encryption happen at the TCP level, before knowing which domain is being dealt with.
+* The HTTPS certificates "certify" a certain domain, but the protocol and encryption happen at the TCP level, before knowing which domain is being dealt with.
 * By default, that would mean that you can only have one HTTPS certificate per IP address.
-    * No matter how big is your server and how small each application you have there might be. But...
+    * No matter how big your server is or how small each application you have on it might be.
+    * There is a solution to this, however.
 * There's an extension to the TLS protocol (the one handling the encryption at the TCP level, before HTTP) called <a href="https://en.wikipedia.org/wiki/Server_Name_Indication" target="_blank"><abbr title="Server Name Indication">SNI</abbr></a>.
-    * This SNI extension allows one single server (with a single IP address) to have several HTTPS certificates and server multiple HTTPS domains/applications.
-    * For this to work, a single component (program) running in the server, listening in the public IP address, must have all the HTTPS certificates in the server.
-* After having a secure connection, the communication protocol is the same HTTP.
-    * It goes encrypted, but the encrypted contents are the same HTTP protocol.
+    * This SNI extension allows one single server (with a single IP address) to have several HTTPS certificates and serve multiple HTTPS domains/applications.
+    * For this to work, a single component (program) running on the server, listening on the public IP address, must have all the HTTPS certificates in the server.
+* After obtaining a secure connection, the communication protocol is still HTTP.
+    * The contents are encrypted, even though they are being sent with the HTTP protocol.
 
 
-It is a common practice to have one program/HTTP server running in the server (the machine, host, etc) and managing all the HTTPS parts, sending the decrypted HTTP requests to the actual HTTP application running in the same server (the **FastAPI** application, in this case), take the HTTP response from the application, encrypt it using the appropriate certificate and sending it back to the client using HTTPS. This server is ofter called a <a href="https://en.wikipedia.org/wiki/TLS_termination_proxy" target="_blank">TLS Termination Proxy</a>.
+It is a common practice to have one program/HTTP server running on the server (the machine, host, etc.) and managing all the HTTPS parts : sending the decrypted HTTP requests to the actual HTTP application running in the same server (the **FastAPI** application, in this case), take the HTTP response from the application, encrypt it using the appropriate certificate and sending it back to the client using HTTPS. This server is often called a <a href="https://en.wikipedia.org/wiki/TLS_termination_proxy" target="_blank">TLS Termination Proxy</a>.
 
 
 ### Let's Encrypt
 
-Up to some years ago, these HTTPS certificates were sold by trusted third-parties.
+Before Let's Encrypt, these HTTPS certificates were sold by trusted third-parties.
 
 The process to acquire one of these certificates used to be cumbersome, require quite some paperwork and the certificates were quite expensive.
 
 But then <a href="https://letsencrypt.org/" target="_blank">Let's Encrypt</a> was created.
 
-It is a project from the Linux Foundation. It provides HTTPS certificates for free. In an automated way. These certificates use all the standard cryptographic security, and are short lived (about 3 months), so, the security is actually increased, by reducing their lifespan.
+It is a project from the Linux Foundation. It provides HTTPS certificates for free. In an automated way. These certificates use all the standard cryptographic security, and are short lived (about 3 months), so the security is actually better because of their reduced lifespan.
 
-The domains are securely verified and the certificates are generated automatically. This also allows automatizing the renewal of these certificates.
+The domains are securely verified and the certificates are generated automatically. This also allows automating the renewal of these certificates.
 
-The idea is to automatize the acquisition and renewal of these certificates, so that you can have secure HTTPS, free, forever.
+The idea is to automate the acquisition and renewal of these certificates, so that you can have secure HTTPS, for free, forever.
 
 
 ### Traefik
@@ -204,7 +205,7 @@ The idea is to automatize the acquisition and renewal of these certificates, so 
 
 It has integration with Let's Encrypt. So, it can handle all the HTTPS parts, including certificate acquisition and renewal.
 
-It also has integrations with Docker. So, you can declare your domains in each application configurations and have it read those configurations, generate the HTTPS certificates and serve HTTPS to your application, all automatically. Without requiring any change in its configuration.
+It also has integrations with Docker. So, you can declare your domains in each application configurations and have it read those configurations, generate the HTTPS certificates and serve HTTPS to your application automatically, without requiring any change in its configuration.
 
 ---
 
@@ -230,7 +231,7 @@ It is designed to be integrated with this Docker Swarm cluster with Traefik and 
 
 You can generate a project in about 2 min.
 
-The generated project has instructions to deploy it, doing it takes other 2 min.
+The generated project has instructions to deploy it, doing it takes another 2 min.
 
 
 ## Alternatively, deploy **FastAPI** without Docker
