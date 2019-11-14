@@ -6,12 +6,11 @@ app = FastAPI()
 
 @app.get("/legacy/")
 def get_legacy_data():
-    data = """
-    <?xml version="1.0"?>
+    data = """<?xml version="1.0"?>
     <shampoo>
     <Header>
         Apply shampoo here.
-    <Header>
+    </Header>
     <Body>
         You'll have to use soap here.
     </Body>
