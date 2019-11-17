@@ -46,6 +46,7 @@ def warning_response_model_skip_defaults_deprecated() -> None:
 def get_flat_models_from_routes(routes: Sequence[BaseRoute]) -> Set[Type[BaseModel]]:
     body_fields_from_routes: List[ModelField] = []
     responses_from_routes: List[ModelField] = []
+    callback_flat_models: Set[Type[BaseModel]] = set()
     for route in routes:
         if getattr(route, "include_in_schema", None) and isinstance(
             route, routing.APIRoute
@@ -59,7 +60,9 @@ def get_flat_models_from_routes(routes: Sequence[BaseRoute]) -> Set[Type[BaseMod
                 responses_from_routes.append(route.response_field)
             if route.response_fields:
                 responses_from_routes.extend(route.response_fields.values())
-    flat_models = get_flat_models_from_fields(
+            if route.callbacks:
+                callback_flat_models |= get_flat_models_from_routes(route.callbacks)
+    flat_models = callback_flat_models | get_flat_models_from_fields(
         body_fields_from_routes + responses_from_routes, known_models=set()
     )
     return flat_models
