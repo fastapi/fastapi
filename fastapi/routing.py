@@ -218,7 +218,7 @@ class APIRoute(routing.Route):
         include_in_schema: bool = True,
         response_class: Optional[Type[Response]] = None,
         dependency_overrides_provider: Any = None,
-        callbacks: Optional[Dict[str, 'ApiRoute']] = None,
+        callbacks: Optional[List[Any]] = None,
     ) -> None:
         self.path = path
         self.endpoint = endpoint

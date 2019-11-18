@@ -1,6 +1,5 @@
 import http.client
 import logging
-
 from typing import Any, Dict, List, Optional, Sequence, Tuple, Type, cast
 
 from fastapi import routing
@@ -194,13 +193,15 @@ def get_openapi_path(
             if route.callbacks:
                 callbacks = {}
                 for callback in route.callbacks:
-                    cb_path, cb_security_schemes, cb_definitions,  = get_openapi_path(route=callback, model_name_map=model_name_map)
+                    cb_path, cb_security_schemes, cb_definitions, = get_openapi_path(
+                        route=callback, model_name_map=model_name_map
+                    )
                     logging.error(cb_definitions)
                     logging.error(cb_path)
                     callbacks[callback.name] = {callback.path: cb_path}
                     # TODO: - do we need to add these definitions here?
                     # definitions.update(cb_definitions)
-                operation["callbacks"]  = callbacks
+                operation["callbacks"] = callbacks
             if route.responses:
                 for (additional_status_code, response) in route.responses.items():
                     assert isinstance(
