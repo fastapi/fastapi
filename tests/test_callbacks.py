@@ -12,28 +12,39 @@ app = FastAPI()
 class HealthResponse(BaseModel):
     status: str
 
+
 class HealthRequest(BaseModel):
     endpoint_name: str
+
 
 class ClientInfo(BaseModel):
     name: str
     health: UrlStr = None
 
+
 class ClientAddedResponse(BaseModel):
     id: UUID4
 
 
-
 callback_router = APIRouter()
 
-@callback_router.get("{$request.body.health}", name="health", response_model=HealthResponse, response_class=JSONResponse)
+
+@callback_router.get(
+    "{$request.body.health}",
+    name="health",
+    response_model=HealthResponse,
+    response_class=JSONResponse,
+)
 async def health(endpoint: str):
     return {"status": f"{endpoint} ok"}
 
 
-@app.post("/clients/", response_model=ClientAddedResponse, callbacks=callback_router.routes)
+@app.post(
+    "/clients/", response_model=ClientAddedResponse, callbacks=callback_router.routes
+)
 async def register_client(client_info: ClientInfo):
     pass
+
 
 client = TestClient(app)
 
@@ -222,9 +233,9 @@ expected_schema = """
 
 schema_as_dict = json.loads(expected_schema)
 
+
 def test_openapi_callback():
     with client:
         response = client.get("/openapi.json")
 
         assert response.json() == schema_as_dict
-
