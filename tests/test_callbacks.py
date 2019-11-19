@@ -1,8 +1,8 @@
 import json
-import pytest
 
+import pytest
 from fastapi import APIRouter, FastAPI
-from pydantic import BaseModel, UrlStr, UUID4
+from pydantic import UUID4, BaseModel, UrlStr
 from starlette.responses import JSONResponse
 from starlette.testclient import TestClient
 
