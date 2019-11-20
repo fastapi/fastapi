@@ -796,6 +796,7 @@ class APIRouter(routing.Router):
         include_in_schema: bool = True,
         response_class: Type[Response] = None,
         name: str = None,
+        callbacks: List[Any] = None,
     ) -> Callable:
         if response_model_skip_defaults is not None:
             warning_response_model_skip_defaults_deprecated()  # pragma: nocover
@@ -821,6 +822,7 @@ class APIRouter(routing.Router):
             include_in_schema=include_in_schema,
             response_class=response_class,
             name=name,
+            callbacks=callbacks,
         )
 
     def head(
@@ -845,6 +847,7 @@ class APIRouter(routing.Router):
         include_in_schema: bool = True,
         response_class: Type[Response] = None,
         name: str = None,
+        callbacks: List[Any] = None,
     ) -> Callable:
         if response_model_skip_defaults is not None:
             warning_response_model_skip_defaults_deprecated()  # pragma: nocover
@@ -870,6 +873,7 @@ class APIRouter(routing.Router):
             include_in_schema=include_in_schema,
             response_class=response_class,
             name=name,
+            callbacks=callbacks,
         )
 
     def patch(
@@ -894,6 +898,7 @@ class APIRouter(routing.Router):
         include_in_schema: bool = True,
         response_class: Type[Response] = None,
         name: str = None,
+        callbacks: List[Any] = None,
     ) -> Callable:
         if response_model_skip_defaults is not None:
             warning_response_model_skip_defaults_deprecated()  # pragma: nocover
@@ -919,6 +924,7 @@ class APIRouter(routing.Router):
             include_in_schema=include_in_schema,
             response_class=response_class,
             name=name,
+            callbacks=callbacks,
         )
 
     def trace(
@@ -943,6 +949,7 @@ class APIRouter(routing.Router):
         include_in_schema: bool = True,
         response_class: Type[Response] = None,
         name: str = None,
+        callbacks: List[Any] = None,
     ) -> Callable:
         if response_model_skip_defaults is not None:
             warning_response_model_skip_defaults_deprecated()  # pragma: nocover
@@ -968,4 +975,5 @@ class APIRouter(routing.Router):
             include_in_schema=include_in_schema,
             response_class=response_class,
             name=name,
+            callbacks=callbacks,
         )
