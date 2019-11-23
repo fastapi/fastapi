@@ -428,9 +428,13 @@ async def solve_dependencies(
             dependency_overrides_provider=dependency_overrides_provider,
             dependency_cache=dependency_cache,
         )
-        sub_values, sub_errors, background_tasks, sub_response, sub_dependency_cache = (
-            solved_result
-        )
+        (
+            sub_values,
+            sub_errors,
+            background_tasks,
+            sub_response,
+            sub_dependency_cache,
+        ) = solved_result
         sub_response = cast(Response, sub_response)
         response.headers.raw.extend(sub_response.headers.raw)
         if sub_response.status_code:
@@ -476,7 +480,10 @@ async def solve_dependencies(
     values.update(cookie_values)
     errors += path_errors + query_errors + header_errors + cookie_errors
     if dependant.body_params:
-        body_values, body_errors = await request_body_to_args(  # body_params checked above
+        (
+            body_values,
+            body_errors,
+        ) = await request_body_to_args(  # body_params checked above
             required_params=dependant.body_params, received_body=body
         )
         values.update(body_values)
