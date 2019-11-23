@@ -4,13 +4,15 @@ from fastapi.openapi.docs import (
     get_swagger_ui_html,
     get_swagger_ui_oauth2_redirect_html,
 )
-from starlette.requests import Request
-from starlette.responses import HTMLResponse
+from starlette.staticfiles import StaticFiles
 
 app = FastAPI(docs_url=None, redoc_url=None)
 
+app.mount("/static", StaticFiles(directory="static"), name="static")
 
-async def swagger_ui_html(req: Request) -> HTMLResponse:
+
+@app.get("/docs", include_in_schema=False)
+async def custom_swagger_ui_html():
     return get_swagger_ui_html(
         openapi_url=app.openapi_url,
         title=app.title + " - Swagger UI",
@@ -20,19 +22,13 @@ async def swagger_ui_html(req: Request) -> HTMLResponse:
     )
 
 
-app.add_route("/docs", swagger_ui_html, include_in_schema=False)
-
-if app.swagger_ui_oauth2_redirect_url:
-
-    async def swagger_ui_redirect(req: Request) -> HTMLResponse:
-        return get_swagger_ui_oauth2_redirect_html()
-
-    app.add_route(
-        app.swagger_ui_oauth2_redirect_url, swagger_ui_redirect, include_in_schema=False
-    )
+@app.get(app.swagger_ui_oauth2_redirect_url, include_in_schema=False)
+async def swagger_ui_redirect():
+    return get_swagger_ui_oauth2_redirect_html()
 
 
-async def redoc_html(req: Request) -> HTMLResponse:
+@app.get("/redoc", include_in_schema=False)
+async def redoc_html():
     return get_redoc_html(
         openapi_url=app.openapi_url,
         title=app.title + " - ReDoc",
@@ -40,4 +36,6 @@ async def redoc_html(req: Request) -> HTMLResponse:
     )
 
 
-app.add_route("/redoc", redoc_html, include_in_schema=False)
+@app.get("/users/{username}")
+async def read_user(username: str):
+    return {"message": f"Hello {username}"}
