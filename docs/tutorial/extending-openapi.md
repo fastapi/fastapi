@@ -89,31 +89,155 @@ Once you go to <a href="http://127.0.0.1:8000/redoc" target="_blank">http://127.
 
 <img src="/img/tutorial/extending-openapi/image01.png">
 
+## Self-hosting JavaScript and CSS for docs
 
-## Self-hosting javascript and CSS
+The API docs use **Swagger UI** and **ReDoc**, and each of those need some JavaScript and CSS files.
 
-Javascript and CSS for both Swagger UI and ReDoc are included using a CDN. For setups where a custom CDN is to be used or where the application should provide the files itself, the paths need to be changed.
+By default, those files are served from a <abbr title="Content Delivery Network: A service, normally composed of several servers, that provides static files, like JavaScript and CSS. It's commonly used to serve those files from the server closer to the client, improving performance.">CDN</abbr>.
 
-`Swagger` uses the files ``swagger-ui-bundle.js`` and ``swagger-ui.css``, while `ReDoc` needs ``redoc.standalone.js``.
+But it's possible to customize it, you can set a specific CDN, or serve the files yourself.
 
-Let's assume that these files are places in the applications ``/static/`` path.
+That's useful, for example, if you need your app to keep working even while offline, without open Internet access, or in a local network.
 
-To replace the builtin methods, set the ``docs_url`` (for Swagger) and ``redoc_url`` (for ReDoc) to None when creating the app, so FastAPI won't set its own versions up.
+Here you'll see how to serve those files yourself, in the same FastAPI app, and configure the docs to use them.
 
-```Python hl_lines="10"
+### Project file structure
+
+Let's say your project file structure looks like this:
+
+```
+.
+├── app
+│   ├── __init__.py
+│   ├── main.py
+```
+
+Now create a directory to store those static files.
+
+Your new file structure could look like this:
+
+```
+.
+├── app
+│   ├── __init__.py
+│   ├── main.py
+└── static/
+```
+
+### Download the files
+
+Download the static files needed for the docs and put them on that `static/` directory.
+
+You can probably right-click each link and select an option similar to `Save link as...`.
+
+**Swagger UI** uses the files:
+
+* <a href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@3/swagger-ui-bundle.js">`swagger-ui-bundle.js`</a>
+* <a href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@3/swagger-ui.css" target="_blank">`swagger-ui.css`</a>
+
+And **ReDoc** uses the file:
+
+* <a href="https://cdn.jsdelivr.net/npm/redoc@next/bundles/redoc.standalone.js" target="_blank">`redoc.standalone.js`</a>
+
+After that, your file structure could look like:
+
+```
+.
+├── app
+│   ├── __init__.py
+│   ├── main.py
+└── static
+    ├── redoc.standalone.js
+    ├── swagger-ui-bundle.js
+    └── swagger-ui.css
+```
+
+### Install `aiofiles`
+
+Now you need to install `aiofiles`:
+
+```bash
+pip install aiofiles
+```
+
+### Serve the static files
+
+* Import `StaticFiles` from Starlette.
+* "Mount" it the same way you would <a href="https://fastapi.tiangolo.com/tutorial/sub-applications-proxy/" target="_blank">mount a Sub-Application</a>.
+
+```Python hl_lines="7 11"
 {!./src/extending_openapi/tutorial002.py!}
 ```
 
-Next, set up your own functions that return the HTML, setting the urls to the files to the destination of your liking:
+### Test the static files
 
-```Python hl_lines="13 14 15 16 17 18 19 20 25 27 28 35 36 37 38 39 40"
+Start your application and go to <a href="http://127.0.0.1:8000/static/redoc.standalone.js" target="_blank">http://127.0.0.1:8000/static/redoc.standalone.js</a>.
+
+You should see a very long JavaScript file for **ReDoc**.
+
+It could start with something like:
+
+```JavaScript
+/*!
+ * ReDoc - OpenAPI/Swagger-generated API Reference Documentation
+ * -------------------------------------------------------------
+ *   Version: "2.0.0-rc.18"
+ *   Repo: https://github.com/Redocly/redoc
+ */
+!function(e,t){"object"==typeof exports&&"object"==typeof m
+
+...
+```
+
+That confirms that you are being able to serve static files from your app, and that you placed the static files for the docs in the correct place.
+
+Now we can configure the app to use those static files for the docs.
+
+### Disable the automatic docs
+
+The first step is to disable the automatic docs, as those use the CDN by default.
+
+To disable them, set their URLs to `None` when creating your `FastAPI` app:
+
+```Python hl_lines="9"
 {!./src/extending_openapi/tutorial002.py!}
 ```
 
-The functions need to be added as routes, using the paths that would normally sit in the two variables ``docs_url`` and ``redoc_url``. The example uses the default values:
+### Include the custom docs
 
-```Python hl_lines="23 30 31 32 43"
+Now you can create the *path operations* for the custom docs.
+
+You can re-use FastAPI's internal functions to create the HTML pages for the docs, and pass them the needed arguments:
+
+* `openapi_url`: the URL where the HTML page for the docs can get the OpenAPI schema for your API. You can use here the attribute `app.openapi_url`.
+* `title`: the title of your API.
+* `oauth2_redirect_url`: you can use `app.swagger_ui_oauth2_redirect_url` here to use the default.
+* `swagger_js_url`: the URL where the HTML for your Swagger UI docs can get the **JavaScript** file. This is the one that your own app is now serving.
+* `swagger_css_url`: the URL where the HTML for your Swagger UI docs can get the **CSS** file. This is the one that your own app is now serving.
+
+And similarly for ReDoc...
+
+```Python hl_lines="2 3 4 5 6   14 15 16 17 18 19 20 21 22    25 26 27   30 31 32 33 34 35 36"
 {!./src/extending_openapi/tutorial002.py!}
 ```
 
-Of course, it is possible to overwrite only one of the functions, simply by not supplying ``None`` to the one that is to be left at the defaults.
+!!! tip
+    The *path operation* for `swagger_ui_redirect` is a helper for when you use OAuth2.
+
+    If you integrate your API with an OAuth2 provider, you will be able to authenticate and come back to the API docs with the acquired credentials. And interact with it using the real OAuth2 authentication.
+
+    Swagger UI will handle it behind the scenes for you, but it needs this "redirect" helper.
+
+### Create a *path operation* to test it
+
+Now, to be able to test that everything works, create a path operation:
+
+```Python hl_lines="39 40 41"
+{!./src/extending_openapi/tutorial002.py!}
+```
+
+### Test it
+
+Now, you should be able to disconnect your WiFi, go to your docs at <a href="http://127.0.0.1:8000/docs" target="_blank">http://127.0.0.1:8000/docs</a>, and reload the page.
+
+And even without Internet, you would be able to see the docs for your API and interact with it.
