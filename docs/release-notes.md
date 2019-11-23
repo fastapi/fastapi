@@ -1,5 +1,7 @@
 ## Latest changes
 
+* Fix `black` linting after upgrade. PR [#682](https://github.com/tiangolo/fastapi/pull/682) by [@frankie567](https://github.com/frankie567).
+
 ## 0.42.0
 
 * Add dependencies with `yield`, a.k.a. exit steps, context managers, cleanup, teardown, ...
