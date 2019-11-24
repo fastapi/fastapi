@@ -13,6 +13,7 @@ from fastapi.dependencies.utils import (
 )
 from fastapi.encoders import DictIntStrAny, SetIntStr, jsonable_encoder
 from fastapi.exceptions import RequestValidationError, WebSocketRequestValidationError
+from fastapi.openapi.constants import STATUS_CODES_WITH_NO_BODY
 from fastapi.utils import (
     PYDANTIC_1,
     create_cloned_field,
@@ -230,6 +231,9 @@ class APIRoute(routing.Route):
         )
         self.response_model = response_model
         if self.response_model:
+            assert (
+                status_code not in STATUS_CODES_WITH_NO_BODY
+            ), f"Status code {status_code} must not have a response body"
             response_name = "Response_" + self.unique_id
             if PYDANTIC_1:
                 self.response_field: Optional[ModelField] = ModelField(
@@ -282,6 +286,9 @@ class APIRoute(routing.Route):
             assert isinstance(response, dict), "An additional response must be a dict"
             model = response.get("model")
             if model:
+                assert (
+                    additional_status_code not in STATUS_CODES_WITH_NO_BODY
+                ), f"Status code {additional_status_code} must not have a response body"
                 assert lenient_issubclass(
                     model, BaseModel
                 ), "A response model must be a Pydantic model"

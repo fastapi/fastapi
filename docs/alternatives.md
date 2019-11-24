@@ -142,12 +142,12 @@ Another big feature required by APIs is <abbr title="reading and converting to P
 
 Webargs is a tool that was made to provide that on top of several frameworks, including Flask.
 
-It uses Marshmallow underneath to do the data validation. And it was created by the same guys.
+It uses Marshmallow underneath to do the data validation. And it was created by the same developers.
 
 It's a great tool and I have used it a lot too, before having **FastAPI**.
 
 !!! info
-    Webargs was created by the same Marshmallow guys.
+    Webargs was created by the same Marshmallow developers.
 
 !!! check "Inspired **FastAPI** to"
     Have automatic validation of incoming request data.
@@ -171,7 +171,7 @@ But then, we have again the problem of having a micro-syntax, inside of a Python
 The editor can't help much with that. And if we modify parameters or Marshmallow schemas and forget to also modify that YAML docstring, the generated schema would be obsolete.
 
 !!! info
-    APISpec was created by the same Marshmallow guys.
+    APISpec was created by the same Marshmallow developers.
 
 
 !!! check "Inspired **FastAPI** to"
@@ -198,7 +198,7 @@ Using it led to the creation of several Flask full-stack generators. These are t
 And these same full-stack generators were the base of the <a href="/project-generation/" target="_blank">**FastAPI** project generator</a>.
 
 !!! info
-    Flask-apispec was created by the same Marshmallow guys.
+    Flask-apispec was created by the same Marshmallow developers.
 
 !!! check "Inspired **FastAPI** to"
     Generate the OpenAPI schema automatically, from the same code that defines serialization and validation.

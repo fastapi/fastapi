@@ -7,7 +7,20 @@ client = TestClient(app)
 openapi_schema = {
     "openapi": "3.0.2",
     "info": {"title": "Fast API", "version": "0.1.0"},
-    "paths": {},
+    "paths": {
+        "/items/": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {"application/json": {"schema": {}}},
+                    }
+                },
+                "summary": "Read Items",
+                "operationId": "read_items",
+            }
+        }
+    },
 }
 
 
