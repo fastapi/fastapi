@@ -5,10 +5,9 @@
 
 You can declare additional responses, with additional status codes, media types, descriptions, etc.
 
-Those additional responses will be included in the OpenAPI schema, so they will also appear in the API docs. 
+Those additional responses will be included in the OpenAPI schema, so they will also appear in the API docs.
 
 But for those additional responses you have to make sure you return a `Response` like `JSONResponse` directly, with your status code and content.
-
 
 ## Additional Response with `model`
 
@@ -176,7 +175,9 @@ For example, you can add an additional media type of `image/png`, declaring that
     Notice that you have to return the image using a `FileResponse` directly.
 
 !!! info
-    Unless you specify a different media type explicitly in your `responses` parameter, FastAPI will assume the response has the same media type as the response class used by your main response (default `application/json`).  But if you have specified a custom response class with `None` as its media type, FastAPI will use `application/json` for any additional response that has an associated model.
+    Unless you specify a different media type explicitly in your `responses` parameter, FastAPI will assume the response has the same media type as the main response class (default `application/json`).
+
+    But if you have specified a custom response class with `None` as its media type, FastAPI will use `application/json` for any additional response that has an associated model.
 
 ## Combining information
 
