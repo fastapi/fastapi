@@ -11,11 +11,23 @@ You would have to make sure that it is unique for each operation.
 {!./src/path_operation_advanced_configuration/tutorial001.py!}
 ```
 
-If you want to use your APIs' function names as `operationId`s, you can override each `APIRoute.name` as after you add all your routes and before you call `app.openapi()`.
+### Using the *path operation function* name as the operationId
+
+If you want to use your APIs' function names as `operationId`s, you can iterate over all of them and override each *path operation's* `operation_id` using their `APIRoute.name`.
+
+You should do it after adding all your *path operations*.
 
 ```Python hl_lines="2 12 13 14 15 16 17 18 19 20 21 24"
 {!./src/path_operation_advanced_configuration/tutorial004.py!}
 ```
+
+!!! tip
+    If you manually call `app.openapi()`, you should update the `operationId`s before that.
+
+!!! warning
+    If you do this, you have to make sure each one of your *path operation functions* has a unique name.
+
+    Even if they are in different modules (Python files).
 
 ## Exclude from OpenAPI
 
