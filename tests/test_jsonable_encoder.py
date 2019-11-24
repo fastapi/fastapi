@@ -3,7 +3,13 @@ from enum import Enum
 
 import pytest
 from fastapi.encoders import jsonable_encoder
-from pydantic import BaseModel, Field, ValidationError
+from pydantic import BaseModel, ValidationError
+
+try:
+    from pydantic import Field
+except ImportError:  # pragma: nocover
+    # TODO: remove when removing support for Pydantic < 1.0.0
+    from pydantic import Schema as Field
 
 
 class Person:
