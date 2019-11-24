@@ -1,8 +1,11 @@
 from typing import Any, Sequence
 
+from fastapi.utils import PYDANTIC_1
 from pydantic import ValidationError, create_model
 from pydantic.error_wrappers import ErrorList
 from starlette.exceptions import HTTPException as StarletteHTTPException
+from starlette.requests import Request
+from starlette.websockets import WebSocket
 
 
 class HTTPException(StarletteHTTPException):
@@ -19,9 +22,15 @@ WebSocketErrorModel = create_model("WebSocket")
 
 class RequestValidationError(ValidationError):
     def __init__(self, errors: Sequence[ErrorList]) -> None:
-        super().__init__(errors, RequestErrorModel)
+        if PYDANTIC_1:
+            super().__init__(errors, RequestErrorModel)
+        else:
+            super().__init__(errors, Request)  # type: ignore  # pragma: nocover
 
 
 class WebSocketRequestValidationError(ValidationError):
     def __init__(self, errors: Sequence[ErrorList]) -> None:
-        super().__init__(errors, WebSocketErrorModel)
+        if PYDANTIC_1:
+            super().__init__(errors, WebSocketErrorModel)
+        else:
+            super().__init__(errors, WebSocket)  # type: ignore  # pragma: nocover

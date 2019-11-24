@@ -27,23 +27,10 @@ from fastapi.dependencies.models import Dependant, SecurityRequirement
 from fastapi.security.base import SecurityBase
 from fastapi.security.oauth2 import OAuth2, SecurityScopes
 from fastapi.security.open_id_connect_url import OpenIdConnect
-from fastapi.utils import get_path_param_names
+from fastapi.utils import PYDANTIC_1, get_field_info, get_path_param_names
 from pydantic import BaseConfig, BaseModel, create_model
 from pydantic.error_wrappers import ErrorWrapper
 from pydantic.errors import MissingError
-from pydantic.fields import (
-    SHAPE_LIST,
-    SHAPE_SEQUENCE,
-    SHAPE_SET,
-    SHAPE_SINGLETON,
-    SHAPE_TUPLE,
-    SHAPE_TUPLE_ELLIPSIS,
-    FieldInfo,
-    ModelField,
-    Required,
-)
-from pydantic.schema import get_annotation_from_field_info
-from pydantic.typing import ForwardRef, evaluate_forwardref
 from pydantic.utils import lenient_issubclass
 from starlette.background import BackgroundTasks
 from starlette.concurrency import run_in_threadpool
@@ -51,6 +38,41 @@ from starlette.datastructures import FormData, Headers, QueryParams, UploadFile
 from starlette.requests import Request
 from starlette.responses import Response
 from starlette.websockets import WebSocket
+
+try:
+    from pydantic.fields import (
+        SHAPE_LIST,
+        SHAPE_SEQUENCE,
+        SHAPE_SET,
+        SHAPE_SINGLETON,
+        SHAPE_TUPLE,
+        SHAPE_TUPLE_ELLIPSIS,
+        FieldInfo,
+        ModelField,
+        Required,
+    )
+    from pydantic.schema import get_annotation_from_field_info
+    from pydantic.typing import ForwardRef, evaluate_forwardref
+except ImportError:  # pragma: nocover
+    # TODO: remove when removing support for Pydantic < 1.0.0
+    from pydantic.fields import Field as ModelField  # type: ignore
+    from pydantic.fields import Required, Shape  # type: ignore
+    from pydantic import Schema as FieldInfo  # type: ignore
+    from pydantic.schema import get_annotation_from_schema  # type: ignore
+    from pydantic.utils import ForwardRef, evaluate_forwardref  # type: ignore
+
+    SHAPE_LIST = Shape.LIST
+    SHAPE_SEQUENCE = Shape.SEQUENCE
+    SHAPE_SET = Shape.SET
+    SHAPE_SINGLETON = Shape.SINGLETON
+    SHAPE_TUPLE = Shape.TUPLE
+    SHAPE_TUPLE_ELLIPSIS = Shape.TUPLE_ELLIPS
+
+    def get_annotation_from_field_info(
+        annotation: Any, field_info: FieldInfo, field_name: str
+    ) -> Type[Any]:
+        return get_annotation_from_schema(annotation, field_info)
+
 
 sequence_shapes = {
     SHAPE_LIST,
@@ -162,11 +184,12 @@ def get_flat_dependant(
 
 
 def is_scalar_field(field: ModelField) -> bool:
+    field_info = get_field_info(field)
     if not (
         field.shape == SHAPE_SINGLETON
         and not lenient_issubclass(field.type_, BaseModel)
         and not lenient_issubclass(field.type_, sequence_types + (dict,))
-        and not isinstance(field.field_info, params.Body)
+        and not isinstance(field_info, params.Body)
     ):
         return False
     if field.sub_fields:
@@ -276,8 +299,9 @@ def get_dependant(
         ) and is_scalar_sequence_field(param_field):
             add_param_to_fields(field=param_field, dependant=dependant)
         else:
+            field_info = get_field_info(param_field)
             assert isinstance(
-                param_field.field_info, params.Body
+                field_info, params.Body
             ), f"Param: {param_field.name} can only be a request body, using Body(...)"
             dependant.body_params.append(param_field)
     return dependant
@@ -338,23 +362,39 @@ def get_param_field(
         alias = param.name.replace("_", "-")
     else:
         alias = field_info.alias or param.name
-    field = ModelField(
-        name=param.name,
-        type_=annotation,
-        default=None if required else default_value,
-        alias=alias,
-        required=required,
-        model_config=BaseConfig,
-        class_validators={},
-        field_info=field_info,
-    )
+    if PYDANTIC_1:
+        field = ModelField(
+            name=param.name,
+            type_=annotation,
+            default=None if required else default_value,
+            alias=alias,
+            required=required,
+            model_config=BaseConfig,
+            class_validators={},
+            field_info=field_info,
+        )
+    else:
+        field = ModelField(  # type: ignore  # pragma: nocover
+            name=param.name,
+            type_=annotation,
+            default=None if required else default_value,
+            alias=alias,
+            required=required,
+            model_config=BaseConfig,
+            class_validators={},
+            schema=field_info,
+        )
     if not had_schema and not is_scalar_field(field=field):
-        field.field_info = params.Body(field_info.default)
+        if PYDANTIC_1:
+            field.field_info = params.Body(field_info.default)
+        else:
+            field.schema = params.Body(field_info.default)  # type: ignore  # pragma: nocover
+
     return field
 
 
 def add_param_to_fields(*, field: ModelField, dependant: Dependant) -> None:
-    field_info = cast(params.Param, field.field_info)
+    field_info = cast(params.Param, get_field_info(field))
     if field_info.in_ == params.ParamTypes.path:
         dependant.path_params.append(field)
     elif field_info.in_ == params.ParamTypes.query:
@@ -446,9 +486,13 @@ async def solve_dependencies(
             dependency_overrides_provider=dependency_overrides_provider,
             dependency_cache=dependency_cache,
         )
-        sub_values, sub_errors, background_tasks, sub_response, sub_dependency_cache = (
-            solved_result
-        )
+        (
+            sub_values,
+            sub_errors,
+            background_tasks,
+            sub_response,
+            sub_dependency_cache,
+        ) = solved_result
         sub_response = cast(Response, sub_response)
         response.headers.raw.extend(sub_response.headers.raw)
         if sub_response.status_code:
@@ -494,7 +538,10 @@ async def solve_dependencies(
     values.update(cookie_values)
     errors += path_errors + query_errors + header_errors + cookie_errors
     if dependant.body_params:
-        body_values, body_errors = await request_body_to_args(  # body_params checked above
+        (
+            body_values,
+            body_errors,
+        ) = await request_body_to_args(  # body_params checked above
             required_params=dependant.body_params, received_body=body
         )
         values.update(body_values)
@@ -529,17 +576,26 @@ def request_params_to_args(
             value = received_params.getlist(field.alias) or field.default
         else:
             value = received_params.get(field.alias)
-        field_info = field.field_info
+        field_info = get_field_info(field)
         assert isinstance(
             field_info, params.Param
         ), "Params must be subclasses of Param"
         if value is None:
             if field.required:
-                errors.append(
-                    ErrorWrapper(
-                        MissingError(), loc=(field_info.in_.value, field.alias)
+                if PYDANTIC_1:
+                    errors.append(
+                        ErrorWrapper(
+                            MissingError(), loc=(field_info.in_.value, field.alias)
+                        )
                     )
-                )
+                else:  # pragma: nocover
+                    errors.append(
+                        ErrorWrapper(  # type: ignore
+                            MissingError(),
+                            loc=(field_info.in_.value, field.alias),
+                            config=BaseConfig,
+                        )
+                    )
             else:
                 values[field.name] = deepcopy(field.default)
             continue
@@ -563,7 +619,8 @@ async def request_body_to_args(
     errors = []
     if required_params:
         field = required_params[0]
-        embed = getattr(field.field_info, "embed", None)
+        field_info = get_field_info(field)
+        embed = getattr(field_info, "embed", None)
         if len(required_params) == 1 and not embed:
             received_body = {field.alias: received_body}
         for field in required_params:
@@ -577,29 +634,38 @@ async def request_body_to_args(
                     value = received_body.get(field.alias)
             if (
                 value is None
-                or (isinstance(field.field_info, params.Form) and value == "")
+                or (isinstance(field_info, params.Form) and value == "")
                 or (
-                    isinstance(field.field_info, params.Form)
+                    isinstance(field_info, params.Form)
                     and field.shape in sequence_shapes
                     and len(value) == 0
                 )
             ):
                 if field.required:
-                    errors.append(
-                        ErrorWrapper(MissingError(), loc=("body", field.alias))
-                    )
+                    if PYDANTIC_1:
+                        errors.append(
+                            ErrorWrapper(MissingError(), loc=("body", field.alias))
+                        )
+                    else:  # pragma: nocover
+                        errors.append(
+                            ErrorWrapper(  # type: ignore
+                                MissingError(),
+                                loc=("body", field.alias),
+                                config=BaseConfig,
+                            )
+                        )
                 else:
                     values[field.name] = deepcopy(field.default)
                 continue
             if (
-                isinstance(field.field_info, params.File)
+                isinstance(field_info, params.File)
                 and lenient_issubclass(field.type_, bytes)
                 and isinstance(value, UploadFile)
             ):
                 value = await value.read()
             elif (
                 field.shape in sequence_shapes
-                and isinstance(field.field_info, params.File)
+                and isinstance(field_info, params.File)
                 and lenient_issubclass(field.type_, bytes)
                 and isinstance(value, sequence_types)
             ):
@@ -622,16 +688,29 @@ def get_schema_compatible_field(*, field: ModelField) -> ModelField:
         use_type: type = bytes
         if field.shape in sequence_shapes:
             use_type = List[bytes]
-        out_field = ModelField(
-            name=field.name,
-            type_=use_type,
-            class_validators=field.class_validators,
-            model_config=field.model_config,
-            default=field.default,
-            required=field.required,
-            alias=field.alias,
-            field_info=field.field_info,
-        )
+        if PYDANTIC_1:
+            out_field = ModelField(
+                name=field.name,
+                type_=use_type,
+                class_validators=field.class_validators,
+                model_config=field.model_config,
+                default=field.default,
+                required=field.required,
+                alias=field.alias,
+                field_info=field.field_info,
+            )
+        else:  # pragma: nocover
+            out_field = ModelField(  # type: ignore
+                name=field.name,
+                type_=use_type,
+                class_validators=field.class_validators,
+                model_config=field.model_config,
+                default=field.default,
+                required=field.required,
+                alias=field.alias,
+                schema=field.schema,  # type: ignore
+            )
+
     return out_field
 
 
@@ -640,7 +719,8 @@ def get_body_field(*, dependant: Dependant, name: str) -> Optional[ModelField]:
     if not flat_dependant.body_params:
         return None
     first_param = flat_dependant.body_params[0]
-    embed = getattr(first_param.field_info, "embed", None)
+    field_info = get_field_info(first_param)
+    embed = getattr(field_info, "embed", None)
     if len(flat_dependant.body_params) == 1 and not embed:
         return get_schema_compatible_field(field=first_param)
     model_name = "Body_" + name
@@ -650,29 +730,44 @@ def get_body_field(*, dependant: Dependant, name: str) -> Optional[ModelField]:
     required = any(True for f in flat_dependant.body_params if f.required)
 
     BodyFieldInfo_kwargs: Dict[str, Any] = dict(default=None)
-    if any(isinstance(f.field_info, params.File) for f in flat_dependant.body_params):
+    if any(
+        isinstance(get_field_info(f), params.File) for f in flat_dependant.body_params
+    ):
         BodyFieldInfo: Type[params.Body] = params.File
-    elif any(isinstance(f.field_info, params.Form) for f in flat_dependant.body_params):
+    elif any(
+        isinstance(get_field_info(f), params.Form) for f in flat_dependant.body_params
+    ):
         BodyFieldInfo = params.Form
     else:
         BodyFieldInfo = params.Body
 
         body_param_media_types = [
-            getattr(f.field_info, "media_type")
+            getattr(get_field_info(f), "media_type")
             for f in flat_dependant.body_params
-            if isinstance(f.field_info, params.Body)
+            if isinstance(get_field_info(f), params.Body)
         ]
         if len(set(body_param_media_types)) == 1:
             BodyFieldInfo_kwargs["media_type"] = body_param_media_types[0]
-
-    field = ModelField(
-        name="body",
-        type_=BodyModel,
-        default=None,
-        required=required,
-        model_config=BaseConfig,
-        class_validators={},
-        alias="body",
-        field_info=BodyFieldInfo(**BodyFieldInfo_kwargs),
-    )
+    if PYDANTIC_1:
+        field = ModelField(
+            name="body",
+            type_=BodyModel,
+            default=None,
+            required=required,
+            model_config=BaseConfig,
+            class_validators={},
+            alias="body",
+            field_info=BodyFieldInfo(**BodyFieldInfo_kwargs),
+        )
+    else:  # pragma: nocover
+        field = ModelField(  # type: ignore
+            name="body",
+            type_=BodyModel,
+            default=None,
+            required=required,
+            model_config=BaseConfig,
+            class_validators={},
+            alias="body",
+            schema=BodyFieldInfo(**BodyFieldInfo_kwargs),
+        )
     return field

@@ -1,16 +1,25 @@
-import logging
 from enum import Enum
 from typing import Any, Dict, List, Optional, Union
 
-from pydantic import AnyUrl, BaseModel, Field
+from fastapi.utils import logger
+from pydantic import BaseModel
 
-logger = logging.getLogger("fastapi")
+try:
+    from pydantic import AnyUrl, Field
+except ImportError:  # pragma: nocover
+    # TODO: remove when removing support for Pydantic < 1.0.0
+    from pydantic import Schema as Field  # type: ignore
+    from pydantic import UrlStr as AnyUrl  # type: ignore
 
 try:
     import email_validator
 
     assert email_validator  # make autoflake ignore the unused import
-    from pydantic import EmailStr
+    try:
+        from pydantic import EmailStr
+    except ImportError:  # pragma: nocover
+        # TODO: remove when removing support for Pydantic < 1.0.0
+        from pydantic.types import EmailStr  # type: ignore
 except ImportError:  # pragma: no cover
     logger.warning(
         "email-validator not installed, email fields will be treated as str.\n"
