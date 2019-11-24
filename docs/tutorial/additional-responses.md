@@ -174,6 +174,11 @@ For example, you can add an additional media type of `image/png`, declaring that
 !!! note
     Notice that you have to return the image using a `FileResponse` directly.
 
+!!! info
+    Unless you specify a different media type explicitly in your `responses` parameter, FastAPI will assume the response has the same media type as the main response class (default `application/json`).
+
+    But if you have specified a custom response class with `None` as its media type, FastAPI will use `application/json` for any additional response that has an associated model.
+
 ## Combining information
 
 You can also combine response information from multiple places, including the `response_model`, `status_code`, and `responses` parameters.
