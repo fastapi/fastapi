@@ -83,7 +83,7 @@ def get_openapi_security_definitions(flat_dependant: Dependant) -> Tuple[Dict, L
 
 
 def get_openapi_operation_parameters(
-    all_route_params: Sequence[Field]
+    all_route_params: Sequence[Field],
 ) -> List[Dict[str, Any]]:
     parameters = []
     for param in all_route_params:
@@ -180,26 +180,29 @@ def get_openapi_path(
                 )
                 if request_body_oai:
                     operation["requestBody"] = request_body_oai
-            for (additional_status_code, response) in route.responses.items():
-                assert isinstance(
-                    response, dict
-                ), "An additional response must be a dict"
-                field = route.response_fields.get(additional_status_code)
-                if field:
-                    response_schema, _, _ = field_schema(
-                        field, model_name_map=model_name_map, ref_prefix=REF_PREFIX
+            if route.responses:
+                for (additional_status_code, response) in route.responses.items():
+                    assert isinstance(
+                        response, dict
+                    ), "An additional response must be a dict"
+                    field = route.response_fields.get(additional_status_code)
+                    if field:
+                        response_schema, _, _ = field_schema(
+                            field, model_name_map=model_name_map, ref_prefix=REF_PREFIX
+                        )
+                        response.setdefault("content", {}).setdefault(
+                            route_response_media_type or "application/json", {}
+                        )["schema"] = response_schema
+                    status_text: Optional[str] = status_code_ranges.get(
+                        str(additional_status_code).upper()
+                    ) or http.client.responses.get(int(additional_status_code))
+                    response.setdefault(
+                        "description", status_text or "Additional Response"
                     )
-                    response.setdefault("content", {}).setdefault(
-                        route_response_media_type or "application/json", {}
-                    )["schema"] = response_schema
-                status_text: Optional[str] = status_code_ranges.get(
-                    str(additional_status_code).upper()
-                ) or http.client.responses.get(int(additional_status_code))
-                response.setdefault("description", status_text or "Additional Response")
-                status_code_key = str(additional_status_code).upper()
-                if status_code_key == "DEFAULT":
-                    status_code_key = "default"
-                operation.setdefault("responses", {})[status_code_key] = response
+                    status_code_key = str(additional_status_code).upper()
+                    if status_code_key == "DEFAULT":
+                        status_code_key = "default"
+                    operation.setdefault("responses", {})[status_code_key] = response
             status_code = str(route.status_code)
             operation.setdefault("responses", {}).setdefault(status_code, {})[
                 "description"
@@ -223,8 +226,6 @@ def get_openapi_path(
                 ).setdefault("content", {}).setdefault(route_response_media_type, {})[
                     "schema"
                 ] = response_schema
-            else:
-                operation.setdefault("responses", {}).setdefault(status_code, {})
 
             http422 = str(HTTP_422_UNPROCESSABLE_ENTITY)
             if (all_route_params or route.body_field) and not any(
