@@ -59,12 +59,11 @@ def create_cloned_field(field: Field) -> Field:
     if lenient_issubclass(original_type, BaseModel):
         original_type = cast(Type[BaseModel], original_type)
         use_type = create_model(
-            original_type.__name__,
-            __config__=original_type.__config__,
-            __validators__=original_type.__validators__,  # type: ignore
+            original_type.__name__, __config__=original_type.__config__
         )
         for f in original_type.__fields__.values():
             use_type.__fields__[f.name] = f
+        use_type.__validators__ = original_type.__validators__
     new_field = Field(
         name=field.name,
         type_=use_type,
