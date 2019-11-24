@@ -1,24 +1,30 @@
+from typing import Set
+
 from fastapi import FastAPI
-from fastapi.routing import APIRoute
+from pydantic import BaseModel
 
 app = FastAPI()
 
 
-@app.get("/items/")
-async def read_items():
-    return [{"item_id": "Foo"}]
+class Item(BaseModel):
+    name: str
+    description: str = None
+    price: float
+    tax: float = None
+    tags: Set[str] = []
 
 
-def use_route_names_as_operation_ids(app: FastAPI) -> None:
+@app.post("/items/", response_model=Item, summary="Create an item")
+async def create_item(*, item: Item):
     """
-    Simplify operation IDs so that generated API clients have simpler function
-    names.
+    Create an item with all the information:
 
-    Should be called only after all routes have been added.
+    - **name**: each item must have a name
+    - **description**: a long description
+    - **price**: required
+    - **tax**: if the item doesn't have tax, you can omit this
+    - **tags**: a set of unique tag strings for this item
+    \f
+    :param item: User input.
     """
-    for route in app.routes:
-        if isinstance(route, APIRoute):
-            route.operation_id = route.name  # in this case, 'read_items'
-
-
-use_route_names_as_operation_ids(app)
+    return item
