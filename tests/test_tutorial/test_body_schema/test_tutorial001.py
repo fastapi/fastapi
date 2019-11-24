@@ -1,15 +1,16 @@
 import pytest
 from starlette.testclient import TestClient
 
+from body_schema.tutorial001 import app
+
 # TODO: remove when removing support for Pydantic < 1.0.0
 try:
-    from pydantic import Field
+    from pydantic import Field  # noqa
 except ImportError:  # pragma: nocover
     import pydantic
 
     pydantic.Field = pydantic.Schema
 
-from body_schema.tutorial001 import app
 
 client = TestClient(app)
 
