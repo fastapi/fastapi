@@ -145,7 +145,11 @@ def create_cloned_field(field: ModelField) -> ModelField:
         new_field.whole_post_validators = field.whole_post_validators  # type: ignore
     new_field.parse_json = field.parse_json
     new_field.shape = field.shape
-    new_field._populate_validators()
+    try:
+        new_field.populate_validators()
+    except AttributeError:  # pragma: nocover
+        # TODO: remove when removing support for Pydantic < 1.0.0
+        new_field._populate_validators()  # type: ignore
     return new_field
 
 
