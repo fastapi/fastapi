@@ -1,0 +1,19 @@
+on:
+  schedule:
+  - cron: "* * * * *"
+
+jobs:
+  issue-manager:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: tiangolo/issue-manager@master
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        config: >
+            {
+              "answered": {
+                "users": ["tiangolo", "dmontagu"],
+                "delay": 864000,
+                "message": "Assuming the original issue was solved, it will be automatically closed now. But feel free to add more comments or create new issues."
+              }
+            }
