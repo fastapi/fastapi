@@ -35,6 +35,8 @@ Here's an incomplete list of some of them.
 
 * <a href="https://eng.uber.com/ludwig-v0-2/" target="_blank">Uber: Ludwig v0.2 Adds New Features and Other Improvements to its Deep Learning Toolbox [including a FastAPI server]</a> on <a href="https://eng.uber.com" target="_blank">Uber Engineering</a>.
 
+* <a href="https://gitlab.com/euri10/fastapi_cheatsheet" target="_blank">A FastAPI and Swagger UI visual cheatsheet</a> by <a href="https://gitlab.com/euri10" target="_blank">@euri10</a>
+
 ### Japanese
 
 * <a href="https://qiita.com/mtitg/items/47770e9a562dd150631d" target="_blank">FastAPI｜DB接続してCRUDするPython製APIサーバーを構築</a> by <a href="https://qiita.com/mtitg" target="_blank">@mtitg</a>.

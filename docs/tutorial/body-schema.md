@@ -1,6 +1,6 @@
-The same way you can declare additional validation and metadata in path operation function parameters with `Query`, `Path` and `Body`, you can declare validation and metadata inside of Pydantic models using `Schema`.
+The same way you can declare additional validation and metadata in path operation function parameters with `Query`, `Path` and `Body`, you can declare validation and metadata inside of Pydantic models using Pydantic's `Field`.
 
-## Import Schema
+## Import `Field`
 
 First, you have to import it:
 
@@ -9,32 +9,34 @@ First, you have to import it:
 ```
 
 !!! warning
-    Notice that `Schema` is imported directly from `pydantic`, not from `fastapi` as are all the rest (`Query`, `Path`, `Body`, etc).
+    Notice that `Field` is imported directly from `pydantic`, not from `fastapi` as are all the rest (`Query`, `Path`, `Body`, etc).
 
 
 ## Declare model attributes
 
-You can then use `Schema` with model attributes:
+You can then use `Field` with model attributes:
 
 ```Python hl_lines="9 10"
 {!./src/body_schema/tutorial001.py!}
 ```
 
-`Schema` works the same way as `Query`, `Path` and `Body`, it has all the same parameters, etc.
+`Field` works the same way as `Query`, `Path` and `Body`, it has all the same parameters, etc.
 
 !!! note "Technical Details"
-    Actually, `Query`, `Path` and others you'll see next are subclasses of a common `Param` which is itself a subclass of Pydantic's `Schema`.
+    Actually, `Query`, `Path` and others you'll see next create objects of subclasses of a common `Param` class, which is itself a subclass of Pydantic's `FieldInfo` class.
 
-    `Body` is also a subclass of `Schema` directly. And there are others you will see later that are subclasses of `Body`.
+    And Pydantic's `Field` returns an instance of `FieldInfo` as well.
 
-    But remember that when you import `Query`, `Path` and others from `fastapi`, <a href="https://fastapi.tiangolo.com/tutorial/path-params-numeric-validations/#recap" target="_blank">those are actually functions that return classes of the same name</a>.
+    `Body` also returns objects of a subclass of `FieldInfo` directly. And there are others you will see later that are subclasses of the `Body` class.
+
+    Remember that when you import `Query`, `Path`, and others from `fastapi`, <a href="https://fastapi.tiangolo.com/tutorial/path-params-numeric-validations/#recap" target="_blank">those are actually functions that return classes of the same name</a>.
 
 !!! tip
-    Notice how each model's attribute with a type, default value and `Schema` has the same structure as a path operation function's parameter, with `Schema` instead of `Path`, `Query` and `Body`.
+    Notice how each model's attribute with a type, default value and `Field` has the same structure as a path operation function's parameter, with `Field` instead of `Path`, `Query` and `Body`.
 
 ## Schema extras
 
-In `Schema`, `Path`, `Query`, `Body` and others you'll see later, you can declare extra parameters apart from those described before.
+In `Field`, `Path`, `Query`, `Body` and others you'll see later, you can declare extra parameters apart from those described before.
 
 Those parameters will be added as-is to the output JSON Schema.
 
@@ -55,6 +57,6 @@ And it would look in the `/docs` like this:
 
 ## Recap
 
-You can use Pydantic's `Schema` to declare extra validations and metadata for model attributes.
+You can use Pydantic's `Field` to declare extra validations and metadata for model attributes.
 
 You can also use the extra keyword arguments to pass additional JSON Schema metadata.

@@ -15,6 +15,9 @@ The contents that you return from your *path operation function* will be put ins
 
 And if that `Response` has a JSON media type (`application/json`), like is the case with the `JSONResponse` and `UJSONResponse`, the data you return will be automatically converted (and filtered) with any Pydantic `response_model` that you declared in the *path operation decorator*.
 
+!!! note
+    If you use a response class with no media type, FastAPI will expect your response to have no content, so it will not document the response format in its generated OpenAPI docs.
+
 ## Use `UJSONResponse`
 
 For example, if you are squeezing performance, you can install and use `ujson` and set the response to be Starlette's `UJSONResponse`.

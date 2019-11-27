@@ -16,7 +16,7 @@ openapi_schema = {
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "title": "Response_Read_Items_Items__Get",
+                                    "title": "Response Read Items Items  Get",
                                     "type": "array",
                                     "items": {"$ref": "#/components/schemas/Item"},
                                 }

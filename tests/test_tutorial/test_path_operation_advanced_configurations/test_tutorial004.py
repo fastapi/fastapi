@@ -1,6 +1,6 @@
 from starlette.testclient import TestClient
 
-from response_model.tutorial006 import app
+from path_operation_advanced_configuration.tutorial004 import app
 
 client = TestClient(app)
 
@@ -8,8 +8,8 @@ openapi_schema = {
     "openapi": "3.0.2",
     "info": {"title": "Fast API", "version": "0.1.0"},
     "paths": {
-        "/items/{item_id}/name": {
-            "get": {
+        "/items/": {
+            "post": {
                 "responses": {
                     "200": {
                         "description": "Successful Response",
@@ -30,52 +30,19 @@ openapi_schema = {
                         },
                     },
                 },
-                "summary": "Read Item Name",
-                "operationId": "read_item_name_items__item_id__name_get",
-                "parameters": [
-                    {
-                        "required": True,
-                        "schema": {"title": "Item Id", "type": "string"},
-                        "name": "item_id",
-                        "in": "path",
-                    }
-                ],
-            }
-        },
-        "/items/{item_id}/public": {
-            "get": {
-                "responses": {
-                    "200": {
-                        "description": "Successful Response",
-                        "content": {
-                            "application/json": {
-                                "schema": {"$ref": "#/components/schemas/Item"}
-                            }
-                        },
+                "summary": "Create an item",
+                "description": "Create an item with all the information:\n\n- **name**: each item must have a name\n- **description**: a long description\n- **price**: required\n- **tax**: if the item doesn't have tax, you can omit this\n- **tags**: a set of unique tag strings for this item\n",
+                "operationId": "create_item_items__post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {"$ref": "#/components/schemas/Item"}
+                        }
                     },
-                    "422": {
-                        "description": "Validation Error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
-                                }
-                            }
-                        },
-                    },
+                    "required": True,
                 },
-                "summary": "Read Item Public Data",
-                "operationId": "read_item_public_data_items__item_id__public_get",
-                "parameters": [
-                    {
-                        "required": True,
-                        "schema": {"title": "Item Id", "type": "string"},
-                        "name": "item_id",
-                        "in": "path",
-                    }
-                ],
             }
-        },
+        }
     },
     "components": {
         "schemas": {
@@ -87,7 +54,14 @@ openapi_schema = {
                     "name": {"title": "Name", "type": "string"},
                     "price": {"title": "Price", "type": "number"},
                     "description": {"title": "Description", "type": "string"},
-                    "tax": {"title": "Tax", "type": "number", "default": 10.5},
+                    "tax": {"title": "Tax", "type": "number"},
+                    "tags": {
+                        "title": "Tags",
+                        "uniqueItems": True,
+                        "type": "array",
+                        "items": {"type": "string"},
+                        "default": [],
+                    },
                 },
             },
             "ValidationError": {
@@ -126,17 +100,13 @@ def test_openapi_schema():
     assert response.json() == openapi_schema
 
 
-def test_read_item_name():
-    response = client.get("/items/bar/name")
-    assert response.status_code == 200
-    assert response.json() == {"name": "Bar", "description": "The Bar fighters"}
-
-
-def test_read_item_public_data():
-    response = client.get("/items/bar/public")
+def test_query_params_str_validations():
+    response = client.post("/items/", json={"name": "Foo", "price": 42})
     assert response.status_code == 200
     assert response.json() == {
-        "name": "Bar",
-        "description": "The Bar fighters",
-        "price": 62,
+        "name": "Foo",
+        "price": 42,
+        "description": None,
+        "tax": None,
+        "tags": [],
     }

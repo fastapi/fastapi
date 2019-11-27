@@ -3,6 +3,15 @@ from starlette.testclient import TestClient
 
 from body_schema.tutorial001 import app
 
+# TODO: remove when removing support for Pydantic < 1.0.0
+try:
+    from pydantic import Field  # noqa
+except ImportError:  # pragma: nocover
+    import pydantic
+
+    pydantic.Field = pydantic.Schema
+
+
 client = TestClient(app)
 
 
@@ -33,7 +42,7 @@ openapi_schema = {
                 "parameters": [
                     {
                         "required": True,
-                        "schema": {"title": "Item_Id", "type": "integer"},
+                        "schema": {"title": "Item Id", "type": "integer"},
                         "name": "item_id",
                         "in": "path",
                     }

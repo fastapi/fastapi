@@ -33,13 +33,13 @@ But most importantly:
 
 Here we are declaring a `UserIn` model, it will contain a plaintext password:
 
-```Python hl_lines="8 10"
+```Python hl_lines="7 9"
 {!./src/response_model/tutorial002.py!}
 ```
 
 And we are using this model to declare our input and the same model to declare our output:
 
-```Python hl_lines="16 17"
+```Python hl_lines="15 16"
 {!./src/response_model/tutorial002.py!}
 ```
 
@@ -56,19 +56,19 @@ But if we use the same model for another path operation, we could be sending our
 
 We can instead create an input model with the plaintext password and an output model without it:
 
-```Python hl_lines="8 10 15"
+```Python hl_lines="7 9 14"
 {!./src/response_model/tutorial003.py!}
 ```
 
 Here, even though our path operation function is returning the same input user that contains the password:
 
-```Python hl_lines="23"
+```Python hl_lines="22"
 {!./src/response_model/tutorial003.py!}
 ```
 
 ...we declared the `response_model` to be our model `UserOut`, that doesn't include the password:
 
-```Python hl_lines="21"
+```Python hl_lines="20"
 {!./src/response_model/tutorial003.py!}
 ```
 
@@ -100,15 +100,15 @@ but you might want to omit them from the result if they were not actually stored
 
 For example, if you have models with many optional attributes in a NoSQL database, but you don't want to send very long JSON responses full of default values.
 
-### Use the `response_model_skip_defaults` parameter
+### Use the `response_model_exclude_unset` parameter
 
-You can set the *path operation decorator* parameter `response_model_skip_defaults=True`:
+You can set the *path operation decorator* parameter `response_model_exclude_unset=True`:
 
 ```Python hl_lines="24"
 {!./src/response_model/tutorial004.py!}
 ```
 
-and those default values won't be included in the response.
+and those default values won't be included in the response, only the values actually set.
 
 So, if you send a request to that *path operation* for the item with ID `foo`, the response (not including default values) will be:
 
@@ -120,7 +120,7 @@ So, if you send a request to that *path operation* for the item with ID `foo`, t
 ```
 
 !!! info
-    FastAPI uses Pydantic model's `.dict()` with <a href="https://pydantic-docs.helpmanual.io/#copying" target="_blank">its `skip_defaults` parameter</a> to achieve this.
+    FastAPI uses Pydantic model's `.dict()` with <a href="https://pydantic-docs.helpmanual.io/usage/exporting_models/#modeldict" target="_blank">its `exclude_unset` parameter</a> to achieve this.
 
 #### Data with values for fields with defaults
 
@@ -194,4 +194,4 @@ If you forget to use a `set` and use a `list` or `tuple` instead, FastAPI will s
 
 Use the path operation decorator's parameter `response_model` to define response models and especially to ensure private data is filtered out.
 
-Use `response_model_skip_defaults` to return only the values explicitly set.
+Use `response_model_exclude_unset` to return only the values explicitly set.

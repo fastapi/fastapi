@@ -103,7 +103,7 @@ openapi_schema = {
                 "properties": {
                     "username": {"title": "Username", "type": "string"},
                     "email": {"title": "Email", "type": "string"},
-                    "full_name": {"title": "Full_Name", "type": "string"},
+                    "full_name": {"title": "Full Name", "type": "string"},
                     "disabled": {"title": "Disabled", "type": "boolean"},
                 },
             },
@@ -112,8 +112,8 @@ openapi_schema = {
                 "required": ["access_token", "token_type"],
                 "type": "object",
                 "properties": {
-                    "access_token": {"title": "Access_Token", "type": "string"},
-                    "token_type": {"title": "Token_Type", "type": "string"},
+                    "access_token": {"title": "Access Token", "type": "string"},
+                    "token_type": {"title": "Token Type", "type": "string"},
                 },
             },
             "Body_login_for_access_token_token_post": {
@@ -122,15 +122,15 @@ openapi_schema = {
                 "type": "object",
                 "properties": {
                     "grant_type": {
-                        "title": "Grant_Type",
+                        "title": "Grant Type",
                         "pattern": "password",
                         "type": "string",
                     },
                     "username": {"title": "Username", "type": "string"},
                     "password": {"title": "Password", "type": "string"},
                     "scope": {"title": "Scope", "type": "string", "default": ""},
-                    "client_id": {"title": "Client_Id", "type": "string"},
-                    "client_secret": {"title": "Client_Secret", "type": "string"},
+                    "client_id": {"title": "Client Id", "type": "string"},
+                    "client_secret": {"title": "Client Secret", "type": "string"},
                 },
             },
             "ValidationError": {

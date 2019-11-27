@@ -18,6 +18,16 @@ def test_nonexistent():
     assert response.json() == {"detail": "Not Found"}
 
 
+response_not_valid_bool = {
+    "detail": [
+        {
+            "loc": ["path", "item_id"],
+            "msg": "value could not be parsed to a boolean",
+            "type": "type_error.bool",
+        }
+    ]
+}
+
 response_not_valid_int = {
     "detail": [
         {
@@ -173,10 +183,10 @@ response_less_than_equal_3 = {
         ("/path/float/True", 422, response_not_valid_float),
         ("/path/float/42", 200, 42),
         ("/path/float/42.5", 200, 42.5),
-        ("/path/bool/foobar", 200, False),
+        ("/path/bool/foobar", 422, response_not_valid_bool),
         ("/path/bool/True", 200, True),
-        ("/path/bool/42", 200, False),
-        ("/path/bool/42.5", 200, False),
+        ("/path/bool/42", 422, response_not_valid_bool),
+        ("/path/bool/42.5", 422, response_not_valid_bool),
         ("/path/bool/1", 200, True),
         ("/path/bool/0", 200, False),
         ("/path/bool/true", 200, True),

@@ -1,13 +1,13 @@
 from fastapi import Body, FastAPI
-from pydantic import BaseModel, Schema
+from pydantic import BaseModel, Field
 
 app = FastAPI()
 
 
 class Item(BaseModel):
     name: str
-    description: str = Schema(None, title="The description of the item", max_length=300)
-    price: float = Schema(..., gt=0, description="The price must be greater than zero")
+    description: str = Field(None, title="The description of the item", max_length=300)
+    price: float = Field(..., gt=0, description="The price must be greater than zero")
     tax: float = None
 
 

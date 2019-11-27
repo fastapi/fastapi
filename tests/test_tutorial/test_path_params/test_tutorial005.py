@@ -33,7 +33,7 @@ openapi_schema = {
                     {
                         "required": True,
                         "schema": {
-                            "title": "Model_Name",
+                            "title": "Model Name",
                             "enum": ["alexnet", "resnet", "lenet"],
                             "type": "string",
                         },

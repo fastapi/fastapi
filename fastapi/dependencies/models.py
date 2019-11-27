@@ -1,7 +1,12 @@
 from typing import Callable, List, Sequence
 
 from fastapi.security.base import SecurityBase
-from pydantic.fields import Field
+
+try:
+    from pydantic.fields import ModelField
+except ImportError:  # pragma: nocover
+    # TODO: remove when removing support for Pydantic < 1.0.0
+    from pydantic.fields import Field as ModelField  # type: ignore
 
 param_supported_types = (str, int, float, bool)
 
@@ -16,11 +21,11 @@ class Dependant:
     def __init__(
         self,
         *,
-        path_params: List[Field] = None,
-        query_params: List[Field] = None,
-        header_params: List[Field] = None,
-        cookie_params: List[Field] = None,
-        body_params: List[Field] = None,
+        path_params: List[ModelField] = None,
+        query_params: List[ModelField] = None,
+        header_params: List[ModelField] = None,
+        cookie_params: List[ModelField] = None,
+        body_params: List[ModelField] = None,
         dependencies: List["Dependant"] = None,
         security_schemes: List[SecurityRequirement] = None,
         name: str = None,

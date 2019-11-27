@@ -110,7 +110,7 @@ def test_schema_1():
 
     d = {
         "required": True,
-        "schema": {"title": "User_Id", "type": "string"},
+        "schema": {"title": "User Id", "type": "string"},
         "name": "user_id",
         "in": "path",
     }
@@ -127,7 +127,7 @@ def test_schema_2():
 
     d = {
         "required": False,
-        "schema": {"title": "User_Id", "type": "string"},
+        "schema": {"title": "User Id", "type": "string"},
         "name": "user_id",
         "in": "query",
     }
