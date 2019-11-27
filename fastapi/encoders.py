@@ -32,7 +32,9 @@ def jsonable_encoder(
     if exclude is not None and not isinstance(exclude, set):
         exclude = set(exclude)
     if isinstance(obj, BaseModel):
-        encoder = getattr(obj.Config, "json_encoders", custom_encoder)
+        encoder = getattr(obj.Config, "json_encoders", {})
+        if custom_encoder:
+            encoder.update(custom_encoder)
         if PYDANTIC_1:
             obj_dict = obj.dict(
                 include=include,
