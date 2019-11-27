@@ -2,7 +2,7 @@ Before diving deeper into the **Dependency Injection** system, let's upgrade the
 
 ## A `dict` from the previous example
 
-In the previous example, we where returning a `dict` from our dependency ("dependable"):
+In the previous example, we are returning a `dict` from our dependency ("dependable"):
 
 ```Python hl_lines="7"
 {!./src/dependencies/tutorial001.py!}

@@ -41,7 +41,7 @@ Later, for your production application, you might want to use a database server 
 ```
 
 !!! tip
-    If you where connecting to a different database (e.g. PostgreSQL), you would need to change the `DATABASE_URL`.
+    If you were connecting to a different database (e.g. PostgreSQL), you would need to change the `DATABASE_URL`.
 
 ## Create the tables
 
