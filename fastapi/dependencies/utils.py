@@ -373,6 +373,8 @@ def get_param_field(
             class_validators={},
             field_info=field_info,
         )
+        # TODO: remove when removing support for Pydantic < 1.2.0
+        field.required = required
     else:
         field = ModelField(  # type: ignore  # pragma: nocover
             name=param.name,
@@ -384,6 +386,7 @@ def get_param_field(
             class_validators={},
             schema=field_info,
         )
+        field.required = required
     if not had_schema and not is_scalar_field(field=field):
         if PYDANTIC_1:
             field.field_info = params.Body(field_info.default)
