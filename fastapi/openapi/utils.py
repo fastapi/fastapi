@@ -14,15 +14,22 @@ from fastapi.openapi.models import OpenAPI
 from fastapi.params import Body, Param
 from fastapi.utils import (
     generate_operation_id_for_path,
+    get_field_info,
     get_flat_models_from_routes,
     get_model_definitions,
 )
-from pydantic.fields import Field
+from pydantic import BaseModel
 from pydantic.schema import field_schema, get_model_name_map
 from pydantic.utils import lenient_issubclass
 from starlette.responses import JSONResponse
 from starlette.routing import BaseRoute
 from starlette.status import HTTP_422_UNPROCESSABLE_ENTITY
+
+try:
+    from pydantic.fields import ModelField
+except ImportError:  # pragma: nocover
+    # TODO: remove when removing support for Pydantic < 1.0.0
+    from pydantic.fields import Field as ModelField  # type: ignore
 
 validation_error_definition = {
     "title": "ValidationError",
@@ -57,7 +64,7 @@ status_code_ranges: Dict[str, str] = {
 }
 
 
-def get_openapi_params(dependant: Dependant) -> List[Field]:
+def get_openapi_params(dependant: Dependant) -> List[ModelField]:
     flat_dependant = get_flat_dependant(dependant, skip_repeats=True)
     return (
         flat_dependant.path_params
@@ -83,37 +90,37 @@ def get_openapi_security_definitions(flat_dependant: Dependant) -> Tuple[Dict, L
 
 
 def get_openapi_operation_parameters(
-    all_route_params: Sequence[Field],
+    all_route_params: Sequence[ModelField],
 ) -> List[Dict[str, Any]]:
     parameters = []
     for param in all_route_params:
-        schema = param.schema
-        schema = cast(Param, schema)
+        field_info = get_field_info(param)
+        field_info = cast(Param, field_info)
         parameter = {
             "name": param.alias,
-            "in": schema.in_.value,
+            "in": field_info.in_.value,
             "required": param.required,
             "schema": field_schema(param, model_name_map={})[0],
         }
-        if schema.description:
-            parameter["description"] = schema.description
-        if schema.deprecated:
-            parameter["deprecated"] = schema.deprecated
+        if field_info.description:
+            parameter["description"] = field_info.description
+        if field_info.deprecated:
+            parameter["deprecated"] = field_info.deprecated
         parameters.append(parameter)
     return parameters
 
 
 def get_openapi_operation_request_body(
-    *, body_field: Optional[Field], model_name_map: Dict[Type, str]
+    *, body_field: Optional[ModelField], model_name_map: Dict[Type[BaseModel], str]
 ) -> Optional[Dict]:
     if not body_field:
         return None
-    assert isinstance(body_field, Field)
+    assert isinstance(body_field, ModelField)
     body_schema, _, _ = field_schema(
         body_field, model_name_map=model_name_map, ref_prefix=REF_PREFIX
     )
-    body_field.schema = cast(Body, body_field.schema)
-    request_media_type = body_field.schema.media_type
+    field_info = cast(Body, get_field_info(body_field))
+    request_media_type = field_info.media_type
     required = body_field.required
     request_body_oai: Dict[str, Any] = {}
     if required:

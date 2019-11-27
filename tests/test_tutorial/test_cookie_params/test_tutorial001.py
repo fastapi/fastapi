@@ -32,7 +32,7 @@ openapi_schema = {
                 "parameters": [
                     {
                         "required": False,
-                        "schema": {"title": "Ads_Id", "type": "string"},
+                        "schema": {"title": "Ads Id", "type": "string"},
                         "name": "ads_id",
                         "in": "cookie",
                     }

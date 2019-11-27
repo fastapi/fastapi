@@ -20,7 +20,7 @@ class ModelSubclass(Model):
     y: int
 
 
-@app.get("/", response_model=Model, response_model_skip_defaults=True)
+@app.get("/", response_model=Model, response_model_exclude_unset=True)
 def get() -> ModelSubclass:
     return ModelSubclass(sub={}, y=1)
 

@@ -2,6 +2,7 @@ from enum import Enum
 from types import GeneratorType
 from typing import Any, Dict, List, Set, Union
 
+from fastapi.utils import PYDANTIC_1, logger
 from pydantic import BaseModel
 from pydantic.json import ENCODERS_BY_TYPE
 
@@ -14,24 +15,40 @@ def jsonable_encoder(
     include: Union[SetIntStr, DictIntStrAny] = None,
     exclude: Union[SetIntStr, DictIntStrAny] = set(),
     by_alias: bool = True,
-    skip_defaults: bool = False,
+    skip_defaults: bool = None,
+    exclude_unset: bool = False,
     include_none: bool = True,
     custom_encoder: dict = {},
     sqlalchemy_safe: bool = True,
 ) -> Any:
+    if skip_defaults is not None:
+        logger.warning(  # pragma: nocover
+            "skip_defaults in jsonable_encoder has been deprecated in \
+            favor of exclude_unset to keep in line with Pydantic v1, support for it \
+                will be removed soon."
+        )
     if include is not None and not isinstance(include, set):
         include = set(include)
     if exclude is not None and not isinstance(exclude, set):
         exclude = set(exclude)
     if isinstance(obj, BaseModel):
         encoder = getattr(obj.Config, "json_encoders", custom_encoder)
-        return jsonable_encoder(
-            obj.dict(
+        if PYDANTIC_1:
+            obj_dict = obj.dict(
                 include=include,
                 exclude=exclude,
                 by_alias=by_alias,
-                skip_defaults=skip_defaults,
-            ),
+                exclude_unset=bool(exclude_unset or skip_defaults),
+            )
+        else:  # pragma: nocover
+            obj_dict = obj.dict(
+                include=include,
+                exclude=exclude,
+                by_alias=by_alias,
+                skip_defaults=bool(exclude_unset or skip_defaults),
+            )
+        return jsonable_encoder(
+            obj_dict,
             include_none=include_none,
             custom_encoder=encoder,
             sqlalchemy_safe=sqlalchemy_safe,
@@ -55,7 +72,7 @@ def jsonable_encoder(
                 encoded_key = jsonable_encoder(
                     key,
                     by_alias=by_alias,
-                    skip_defaults=skip_defaults,
+                    exclude_unset=exclude_unset,
                     include_none=include_none,
                     custom_encoder=custom_encoder,
                     sqlalchemy_safe=sqlalchemy_safe,
@@ -63,7 +80,7 @@ def jsonable_encoder(
                 encoded_value = jsonable_encoder(
                     value,
                     by_alias=by_alias,
-                    skip_defaults=skip_defaults,
+                    exclude_unset=exclude_unset,
                     include_none=include_none,
                     custom_encoder=custom_encoder,
                     sqlalchemy_safe=sqlalchemy_safe,
@@ -79,7 +96,7 @@ def jsonable_encoder(
                     include=include,
                     exclude=exclude,
                     by_alias=by_alias,
-                    skip_defaults=skip_defaults,
+                    exclude_unset=exclude_unset,
                     include_none=include_none,
                     custom_encoder=custom_encoder,
                     sqlalchemy_safe=sqlalchemy_safe,
@@ -107,7 +124,7 @@ def jsonable_encoder(
     return jsonable_encoder(
         data,
         by_alias=by_alias,
-        skip_defaults=skip_defaults,
+        exclude_unset=exclude_unset,
         include_none=include_none,
         custom_encoder=custom_encoder,
         sqlalchemy_safe=sqlalchemy_safe,

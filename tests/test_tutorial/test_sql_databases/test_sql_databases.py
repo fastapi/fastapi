@@ -15,7 +15,7 @@ openapi_schema = {
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "title": "Response_Read_Users_Users__Get",
+                                    "title": "Response Read Users Users  Get",
                                     "type": "array",
                                     "items": {"$ref": "#/components/schemas/User"},
                                 }
@@ -110,7 +110,7 @@ openapi_schema = {
                 "parameters": [
                     {
                         "required": True,
-                        "schema": {"title": "User_Id", "type": "integer"},
+                        "schema": {"title": "User Id", "type": "integer"},
                         "name": "user_id",
                         "in": "path",
                     }
@@ -144,7 +144,7 @@ openapi_schema = {
                 "parameters": [
                     {
                         "required": True,
-                        "schema": {"title": "User_Id", "type": "integer"},
+                        "schema": {"title": "User Id", "type": "integer"},
                         "name": "user_id",
                         "in": "path",
                     }
@@ -167,7 +167,7 @@ openapi_schema = {
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "title": "Response_Read_Items_Items__Get",
+                                    "title": "Response Read Items Items  Get",
                                     "type": "array",
                                     "items": {"$ref": "#/components/schemas/Item"},
                                 }
@@ -223,7 +223,7 @@ openapi_schema = {
                     "title": {"title": "Title", "type": "string"},
                     "description": {"title": "Description", "type": "string"},
                     "id": {"title": "Id", "type": "integer"},
-                    "owner_id": {"title": "Owner_Id", "type": "integer"},
+                    "owner_id": {"title": "Owner Id", "type": "integer"},
                 },
             },
             "User": {
@@ -233,7 +233,7 @@ openapi_schema = {
                 "properties": {
                     "email": {"title": "Email", "type": "string"},
                     "id": {"title": "Id", "type": "integer"},
-                    "is_active": {"title": "Is_Active", "type": "boolean"},
+                    "is_active": {"title": "Is Active", "type": "boolean"},
                     "items": {
                         "title": "Items",
                         "type": "array",
