@@ -246,7 +246,7 @@ We can also add a list of `tags` that will be applied to all the *path operation
 
 And we can add predefined `responses` that will be included in all the *path operations* too.
 
-And we can add a list of `dependencies` that will be added to all the *path operations* in the router and will be executed/solved for each request made to them.
+And we can add a list of `dependencies` that will be added to all the *path operations* in the router and will be executed/solved for each request made to them. Note that, much like dependencies in *path operation decorators*, no value will be passed to your *path operation function*.
 
 ```Python hl_lines="8 9 10 14 15 16 17 18 19 20"
 {!./src/bigger_applications/app/main.py!}
