@@ -375,8 +375,8 @@ def get_param_field(
         )
         # TODO: remove when removing support for Pydantic < 1.2.0
         field.required = required
-    else:
-        field = ModelField(  # type: ignore  # pragma: nocover
+    else:  # pragma: nocover
+        field = ModelField(  # type: ignore
             name=param.name,
             type_=annotation,
             default=None if required else default_value,
