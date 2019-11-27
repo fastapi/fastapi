@@ -412,7 +412,7 @@ def add_param_to_fields(*, field: ModelField, dependant: Dependant) -> None:
 
 
 def is_coroutine_callable(call: Callable) -> bool:
-    if inspect.isfunction(call):
+    if inspect.isroutine(call):
         return asyncio.iscoroutinefunction(call)
     if inspect.isclass(call):
         return False
