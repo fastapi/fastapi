@@ -7,14 +7,20 @@ assignees: ''
 
 ---
 
-**Is your feature request related to a problem? Please describe.**
-A clear and concise description of what the problem is. Ex. I want to be able to [...] but I can't because [...]
+### Is your feature request related to a problem
 
-**Describe the solution you'd like**
-A clear and concise description of what you want to happen.
+Is your feature request related to a problem?
 
-**Describe alternatives you've considered**
-A clear and concise description of any alternative solutions or features you've considered.
+Add a clear and concise description of what the problem is. Ex. I want to be able to [...] but I can't because [...]
 
-**Additional context**
+### The solution you would like
+
+Add a clear and concise description of what you want to happen.
+
+### Describe alternatives you've considered
+
+Add a clear and concise description of any alternative solutions or features you've considered.
+
+### Additional context
+
 Add any other context or screenshots about the feature request here.

@@ -7,29 +7,48 @@ assignees: ''
 
 ---
 
-**Describe the bug**
-A clear and concise description of what the bug is.
+### Describe the bug
 
-**To Reproduce**
-Steps to reproduce the behavior:
-1. Create a file with '...'
-2. Add a path operation function with '....'
-3. Open the browser and call it with a payload of '....'
-4. See error
+Write here a clear and concise description of what the bug is.
 
-**Expected behavior**
-A clear and concise description of what you expected to happen.
+### To Reproduce
 
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
+Steps to reproduce the behavior with a minimum self-contained file.
 
-**Environment:**
- - OS: [e.g. Linux / Windows / macOS]
- - FastAPI Version [e.g. 0.3.0], get it with:
+Replace each part with your own scenario:
+
+1. Create a file with:
 
 ```Python
-import fastapi
-print(fastapi.__version__)
+from fastapi import FastAPI
+
+app = FastAPI()
+
+
+@app.get("/")
+def read_root():
+    return {"Hello": "World"}
+```
+
+3. Open the browser and call the endpoint `/`.
+4. It returns a JSON with `{"Hello": "World"}`.
+5. But I expected it to return `{"Hello": "Sara"}`.
+
+### Expected behavior
+
+Add a clear and concise description of what you expected to happen.
+
+### Screenshots
+
+If applicable, add screenshots to help explain your problem.
+
+### Environment
+
+- OS: [e.g. Linux / Windows / macOS]
+- FastAPI Version [e.g. 0.3.0], get it with:
+
+```bash
+python -c "import fastapi; print(fastapi.__version__)"
 ```
 
 - Python version, get it with:
@@ -38,5 +57,6 @@ print(fastapi.__version__)
 python --version
 ```
 
-**Additional context**
+### Additional context
+
 Add any other context about the problem here.
