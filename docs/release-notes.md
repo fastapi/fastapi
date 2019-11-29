@@ -1,5 +1,6 @@
 ## Latest changes
 
+* Add GitHub social preview images to git. PR [#752](https://github.com/tiangolo/fastapi/pull/752).
 * Update PyPI "trove classifiers". PR [#751](https://github.com/tiangolo/fastapi/pull/751).
 * Add full support for Python 3.8. Enable Python 3.8 in full in Travis. PR [749](https://github.com/tiangolo/fastapi/pull/749).
 * Update "new issue" templates. PR [#749](https://github.com/tiangolo/fastapi/pull/749).
