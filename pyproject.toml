@@ -8,15 +8,28 @@ author = "Sebastián Ramírez"
 author-email = "tiangolo@gmail.com"
 home-page = "https://github.com/tiangolo/fastapi"
 classifiers = [
-    "License :: OSI Approved :: MIT License",
+    'Intended Audience :: Information Technology',
+    'Intended Audience :: System Administrators',
+    'Operating System :: OS Independent',
+    'Programming Language :: Python :: 3',
+    'Programming Language :: Python',
+    'Topic :: Internet',
+    'Topic :: Software Development :: Libraries :: Application Frameworks',
+    'Topic :: Software Development :: Libraries :: Python Modules',
+    'Topic :: Software Development :: Libraries',
+    'Topic :: Software Development',
+    'Typing :: Typed',
     "Development Status :: 4 - Beta",
+    "Environment :: Web Environment",
     "Framework :: AsyncIO",
     "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3 :: Only",
     "Programming Language :: Python :: 3.6",
     "Programming Language :: Python :: 3.7",
     "Programming Language :: Python :: 3.8",
-    "Programming Language :: Python :: 3 :: Only",
     "Topic :: Internet :: WWW/HTTP :: HTTP Servers",
+    "Topic :: Internet :: WWW/HTTP",
 ]
 requires = [
     "starlette >=0.12.9,<=0.12.9",
