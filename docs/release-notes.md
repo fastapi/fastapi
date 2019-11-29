@@ -1,5 +1,8 @@
 ## Latest changes
 
+* Update PyPI "trove classifiers". PR [#751](https://github.com/tiangolo/fastapi/pull/751).
+* Add full support for Python 3.8. Enable Python 3.8 in full in Travis. PR [749](https://github.com/tiangolo/fastapi/pull/749).
+* Update "new issue" templates. PR [#749](https://github.com/tiangolo/fastapi/pull/749).
 * Fix serialization of errors for exotic Pydantic types. PR [#748](https://github.com/tiangolo/fastapi/pull/748) by [@dmontagu](https://github.com/dmontagu).
 
 ## 0.44.0
