@@ -1,16 +1,14 @@
-import logging
 import re
 from dataclasses import is_dataclass
 from typing import Any, Dict, List, Sequence, Set, Type, cast
 
 from fastapi import routing
+from fastapi.logger import logger
 from fastapi.openapi.constants import REF_PREFIX
 from pydantic import BaseConfig, BaseModel, create_model
 from pydantic.schema import get_flat_models_from_fields, model_process_schema
 from pydantic.utils import lenient_issubclass
 from starlette.routing import BaseRoute
-
-logger = logging.getLogger("fastapi")
 
 try:
     from pydantic.fields import FieldInfo, ModelField
@@ -22,8 +20,8 @@ except ImportError:  # pragma: nocover
     from pydantic import Schema as FieldInfo  # type: ignore
 
     logger.warning(
-        "Pydantic versions < 1.0.0 are deprecated in FastAPI and support will be \
-            removed soon"
+        "Pydantic versions < 1.0.0 are deprecated in FastAPI and support will be "
+        "removed soon."
     )
     PYDANTIC_1 = False
 
@@ -39,9 +37,9 @@ def get_field_info(field: ModelField) -> FieldInfo:
 # TODO: remove when removing support for Pydantic < 1.0.0
 def warning_response_model_skip_defaults_deprecated() -> None:
     logger.warning(  # pragma: nocover
-        "response_model_skip_defaults has been deprecated in favor \
-                of response_model_exclude_unset to keep in line with Pydantic v1, \
-                support for it will be removed soon."
+        "response_model_skip_defaults has been deprecated in favor of "
+        "response_model_exclude_unset to keep in line with Pydantic v1, support for "
+        "it will be removed soon."
     )
 
 

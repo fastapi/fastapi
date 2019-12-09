@@ -1,6 +1,5 @@
 import asyncio
 import inspect
-import logging
 from typing import Any, Callable, Dict, List, Optional, Sequence, Set, Type, Union
 
 from fastapi import params
@@ -9,6 +8,7 @@ from fastapi.dependencies.utils import (
     get_body_field,
     get_dependant,
     get_parameterless_sub_dependant,
+    logger,
     solve_dependencies,
 )
 from fastapi.encoders import DictIntStrAny, SetIntStr, jsonable_encoder
@@ -108,7 +108,7 @@ def get_request_handler(
                     if body_bytes:
                         body = await request.json()
         except Exception as e:
-            logging.error(f"Error getting request body: {e}")
+            logger.error(f"Error getting request body: {e}")
             raise HTTPException(
                 status_code=400, detail="There was an error parsing the body"
             ) from e
