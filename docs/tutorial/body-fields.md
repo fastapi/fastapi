@@ -5,7 +5,7 @@ The same way you can declare additional validation and metadata in path operatio
 First, you have to import it:
 
 ```Python hl_lines="2"
-{!./src/body_schema/tutorial001.py!}
+{!./src/body_fields/tutorial001.py!}
 ```
 
 !!! warning
@@ -17,7 +17,7 @@ First, you have to import it:
 You can then use `Field` with model attributes:
 
 ```Python hl_lines="9 10"
-{!./src/body_schema/tutorial001.py!}
+{!./src/body_fields/tutorial001.py!}
 ```
 
 `Field` works the same way as `Query`, `Path` and `Body`, it has all the same parameters, etc.
@@ -34,7 +34,7 @@ You can then use `Field` with model attributes:
 !!! tip
     Notice how each model's attribute with a type, default value and `Field` has the same structure as a path operation function's parameter, with `Field` instead of `Path`, `Query` and `Body`.
 
-## Schema extras
+## JSON Schema extras
 
 In `Field`, `Path`, `Query`, `Body` and others you'll see later, you can declare extra parameters apart from those described before.
 
@@ -48,12 +48,12 @@ If you know JSON Schema and want to add extra information apart from what we hav
 For example, you can use that functionality to pass a <a href="http://json-schema.org/latest/json-schema-validation.html#rfc.section.8.5" target="_blank">JSON Schema example</a> field to a body request JSON Schema:
 
 ```Python hl_lines="20 21 22 23 24 25"
-{!./src/body_schema/tutorial002.py!}
+{!./src/body_fields/tutorial002.py!}
 ```
 
 And it would look in the `/docs` like this:
 
-<img src="/img/tutorial/body-schema/image01.png">
+<img src="/img/tutorial/body-fields/image01.png">
 
 ## Recap
 

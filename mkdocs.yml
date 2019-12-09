@@ -30,7 +30,7 @@ nav:
         - Query Parameters and String Validations: 'tutorial/query-params-str-validations.md'
         - Path Parameters and Numeric Validations: 'tutorial/path-params-numeric-validations.md'
         - Body - Multiple Parameters: 'tutorial/body-multiple-params.md'
-        - Body - Schema: 'tutorial/body-schema.md'
+        - Body - Fields: 'tutorial/body-fields.md'
         - Body - Nested Models: 'tutorial/body-nested-models.md'
         - Extra data types: 'tutorial/extra-data-types.md'
         - Cookie Parameters: 'tutorial/cookie-params.md'
