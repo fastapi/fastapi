@@ -1,5 +1,7 @@
 ## Latest changes
 
+* Rename docs and references to `body-schema` to `body-fields` to keep in line with Pydantic. PR [#746](https://github.com/tiangolo/fastapi/pull/746) by [@prostomarkeloff](https://github.com/prostomarkeloff).
+
 ## 0.44.1
 
 * Add GitHub social preview images to git. PR [#752](https://github.com/tiangolo/fastapi/pull/752).
