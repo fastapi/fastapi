@@ -4,9 +4,9 @@ This client could be a browser with a frontend, the code from someone else, an I
 
 You could need to tell that client that:
 
-* He doesn't have enough privileges for that operation.
-* He doesn't have access to that resource.
-* The item he was trying to access doesn't exist.
+* The client doesn't have enough privileges for that operation.
+* The client doesn't have access to that resource.
+* The item the client was trying to access doesn't exist.
 * etc.
 
 In these cases, you would normally return an **HTTP status code** in the range of **400** (from 400 to 499).
