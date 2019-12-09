@@ -63,6 +63,8 @@ Here's an incomplete list of some of them.
 
 * <a href="https://habr.com/ru/post/454440/" target="_blank">Мелкая питонячая радость #2: Starlette - Солидная примочка – FastAPI</a> by <a href="https://habr.com/ru/users/57uff3r/" target="_blank">Andrey Korchak</a>.
 
+* <a href="https://habr.com/ru/post/478620/" target="_blank">Почему Вы должны попробовать FastAPI?</a> by <a href="https://github.com/prostomarkeloff" target="_blank">prostomarkeloff</a>.
+
 ## Podcasts
 
 * <a href="https://pythonbytes.fm/episodes/show/123/time-to-right-the-py-wrongs?time_in_sec=855" target="_blank">FastAPI on PythonBytes</a> by <a href="https://pythonbytes.fm/" target="_blank">Python Bytes FM</a>.
