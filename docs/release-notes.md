@@ -1,5 +1,10 @@
 ## Latest changes
 
+* Add support for OpenAPI Callbacks:
+    * New docs: [OpenAPI Callbacks](https://fastapi.tiangolo.com/tutorial/openapi-callbacks/).
+    * Refactor generation of `operationId`s to be valid Python names (also valid variables in most languages).
+    * Add `default_response_class` parameter to `APIRouter`.
+    * Original PR [#722](https://github.com/tiangolo/fastapi/pull/722) by [@booooh](https://github.com/booooh).
 * Refactor logging to use the same logger everywhere, update log strings and levels. PR [#781](https://github.com/tiangolo/fastapi/pull/781).
 * Add article to [External Links](https://fastapi.tiangolo.com/external-links/): [Почему Вы должны попробовать FastAPI?](https://habr.com/ru/post/478620/). PR [#766](https://github.com/tiangolo/fastapi/pull/766) by [@prostomarkeloff](https://github.com/prostomarkeloff).
 * Remove gender bias in docs for handling errors. PR [#780](https://github.com/tiangolo/fastapi/pull/780). Original idea in PR [#761](https://github.com/tiangolo/fastapi/pull/761) by [@classywhetten](https://github.com/classywhetten).
