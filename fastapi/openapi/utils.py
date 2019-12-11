@@ -1,5 +1,4 @@
 import http.client
-import logging
 from typing import Any, Dict, List, Optional, Sequence, Tuple, Type, cast
 
 from fastapi import routing
@@ -162,7 +161,6 @@ def get_openapi_path(
     path = {}
     security_schemes: Dict[str, Any] = {}
     definitions: Dict[str, Any] = {}
-
     assert route.methods is not None, "Methods must be a list"
     assert route.response_class, "A response class is needed to generate OpenAPI"
     route_response_media_type: Optional[str] = route.response_class.media_type
@@ -189,18 +187,13 @@ def get_openapi_path(
                 )
                 if request_body_oai:
                     operation["requestBody"] = request_body_oai
-            # Add logic for callbacks that are under this operation
             if route.callbacks:
                 callbacks = {}
                 for callback in route.callbacks:
                     cb_path, cb_security_schemes, cb_definitions, = get_openapi_path(
                         route=callback, model_name_map=model_name_map
                     )
-                    logging.error(cb_definitions)
-                    logging.error(cb_path)
                     callbacks[callback.name] = {callback.path: cb_path}
-                    # TODO: - do we need to add these definitions here?
-                    # definitions.update(cb_definitions)
                 operation["callbacks"] = callbacks
             if route.responses:
                 for (additional_status_code, response) in route.responses.items():
