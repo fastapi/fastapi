@@ -1,43 +1,53 @@
-import json
-
 from fastapi import APIRouter, FastAPI
-from pydantic import UUID4, BaseModel, UrlStr
+from pydantic import BaseModel, HttpUrl
 from starlette.responses import JSONResponse
 
 app = FastAPI()
 
-# Model definitions
-class HealthResponse(BaseModel):
-    status: str
+
+class Invoice(BaseModel):
+    id: str
+    title: str = None
+    customer: str
+    total: float
 
 
-class HealthRequest(BaseModel):
-    endpoint_name: str
+class InvoiceEvent(BaseModel):
+    description: str
+    paid: bool
 
 
-class ClientInfo(BaseModel):
-    name: str
-    health: UrlStr = None
+class InvoiceEventReceived(BaseModel):
+    ok: bool
 
 
-class ClientAddedResponse(BaseModel):
-    id: UUID4
+invoices_callback_router = APIRouter(default_response_class=JSONResponse)
 
 
-cb_router = APIRouter()
-
-
-@callback_router.get(
-    "{$request.body.health}",
-    name="health",
-    response_model=HealthResponse,
-    response_class=JSONResponse,
+@invoices_callback_router.post(
+    "$callback_url/invoices/{$request.body.id}",
+    response_model=InvoiceEventReceived,
 )
-async def health(endpoint: str):
-    return {"status": f"{endpoint} ok"}
-
-
-@app.post("/clients/", response_model=ClientAddedResponse, callbacks=cb_router.routes)
-async def register_client(client_info: ClientInfo):
+def invoice_notification(body: InvoiceEvent):
     pass
 
+
+@app.post("/invoices/", callbacks=invoices_callback_router.routes)
+def create_invoice(invoice: Invoice, callback_url: HttpUrl = None):
+    """
+    Create an invoice.
+
+    This will (let's imagine) let the API user (some external developer) create an
+    invoice.
+
+    And this path operation will:
+
+    * Send the invoice to the client.
+    * Collect the money from the client.
+    * Send a notification back to the API user (the external developer), as a callback.
+        * At this point is that the API will somehow send a POST request to the
+            external API with the notification of the invoice event
+            (e.g. "payment successful").
+    """
+    # Send the invoice, collect the money, send the notification (the callback)
+    return {"msg": "Invoice received"}
