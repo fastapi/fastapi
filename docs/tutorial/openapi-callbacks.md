@@ -1,8 +1,8 @@
-You could create an API with a *path operation* that could trigger a request to an *external API* created by someone else, probably the same developer that would be *using* your API.
+You could create an API with a *path operation* that could trigger a request to an *external API* created by someone else (probably the same developer that would be *using* your API).
 
-When your API app calls the *external API*, that is named a "callback". Because the software that the external developer wrote sends a request to your API and then your API *calls back*, sending a request to an *external API* (that was probably created by the same developer).
+The process that happens when your API app calls the *external API* is named a "callback". Because the software that the external developer wrote sends a request to your API and then your API *calls back*, sending a request to an *external API* (that was probably created by the same developer).
 
-In this case, you could want to document how that external API *should* look like. What *path operation* should it have, what body it should expect, what response it should return, etc.
+In this case, you could want to document how that external API *should* look like. What *path operation* it should have, what body it should expect, what response it should return, etc.
 
 ## An app with callbacks
 
@@ -25,7 +25,7 @@ Then your API will (let's imagine):
 
 Let's first see how the normal API app would look like before adding the callback.
 
-It will have a *path operation* that will receive an `Invoice` body, and a query parameter `callback_url` that will contain the URL to "call back".
+It will have a *path operation* that will receive an `Invoice` body, and a query parameter `callback_url` that will contain the URL for the callback.
 
 This part is pretty normal, most of the code is probably already familiar to you:
 
@@ -68,7 +68,7 @@ This example doesn't implement the callback itself (that could be just a line of
 
 This code won't be executed in your app, we only need it to *document* how that *external API* should look like.
 
-But you already know how to easily create automatic documentation for an API with **FastAPI**.
+But, you already know how to easily create automatic documentation for an API with **FastAPI**.
 
 So we are going to use that same knowledge to document how the *external API* should look like... by creating the *path operation(s)* that the external API should implement (the ones your API will call).
 
@@ -100,7 +100,7 @@ To create the callback *path operation* use the same `APIRouter` you created abo
 
 It should look just like a normal FastAPI *path operation*:
 
-* It probably should have a declaration of the body it should receive, e.g. `body: InvoiceEvent`.
+* It should probably have a declaration of the body it should receive, e.g. `body: InvoiceEvent`.
 * And it could also have a declaration of the response it should return, e.g. `response_model=InvoiceEventReceived`.
 
 ```Python hl_lines="15 16 17  20 21  27 28 29 30 31 32"
@@ -175,7 +175,7 @@ Now use the parameter `callbacks` in *your API's path operation decorator* to pa
 ```
 
 !!! tip
-    Notice that you are not passing the router itself to `callback=`, but the attribute `.routes`, as in `invoices_callback_router.routes`.
+    Notice that you are not passing the router itself (`invoices_callback_router`) to `callback=`, but the attribute `.routes`, as in `invoices_callback_router.routes`.
 
 ### Check the docs
 
