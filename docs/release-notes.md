@@ -1,5 +1,7 @@
 ## Latest changes
 
+## 0.45.0
+
 * Add support for OpenAPI Callbacks:
     * New docs: [OpenAPI Callbacks](https://fastapi.tiangolo.com/tutorial/openapi-callbacks/).
     * Refactor generation of `operationId`s to be valid Python names (also valid variables in most languages).
