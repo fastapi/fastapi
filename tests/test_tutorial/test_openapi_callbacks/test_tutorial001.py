@@ -53,10 +53,10 @@ openapi_schema = {
                 },
                 "callbacks": {
                     "invoice_notification": {
-                        "$callback_url/invoices/{$request.body.id}": {
+                        "{$callback_url}/invoices/{$request.body.id}": {
                             "post": {
                                 "summary": "Invoice Notification",
-                                "operationId": "invoice_notification_callback_url_invoices___request_body_id__post",
+                                "operationId": "invoice_notification__callback_url__invoices___request_body_id__post",
                                 "requestBody": {
                                     "required": True,
                                     "content": {
