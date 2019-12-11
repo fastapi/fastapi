@@ -27,7 +27,7 @@ openapi_schema = {
                     },
                 },
                 "summary": "Create Index Weights",
-                "operationId": "create_index_weights_index-weights__post",
+                "operationId": "create_index_weights_index_weights__post",
                 "requestBody": {
                     "content": {
                         "application/json": {
