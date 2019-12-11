@@ -80,7 +80,7 @@ openapi_schema = {
                     },
                 },
                 "summary": "Create Item",
-                "operationId": "create_item_starlette-items__item_id__get",
+                "operationId": "create_item_starlette_items__item_id__get",
                 "parameters": [
                     {
                         "required": True,

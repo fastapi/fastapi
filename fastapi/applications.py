@@ -303,6 +303,7 @@ class FastAPI(Starlette):
         include_in_schema: bool = True,
         response_class: Type[Response] = None,
         name: str = None,
+        callbacks: List[routing.APIRoute] = None,
     ) -> Callable:
         if response_model_skip_defaults is not None:
             warning_response_model_skip_defaults_deprecated()  # pragma: nocover
@@ -327,6 +328,7 @@ class FastAPI(Starlette):
             include_in_schema=include_in_schema,
             response_class=response_class or self.default_response_class,
             name=name,
+            callbacks=callbacks,
         )
 
     def put(
@@ -351,6 +353,7 @@ class FastAPI(Starlette):
         include_in_schema: bool = True,
         response_class: Type[Response] = None,
         name: str = None,
+        callbacks: List[routing.APIRoute] = None,
     ) -> Callable:
         if response_model_skip_defaults is not None:
             warning_response_model_skip_defaults_deprecated()  # pragma: nocover
@@ -375,6 +378,7 @@ class FastAPI(Starlette):
             include_in_schema=include_in_schema,
             response_class=response_class or self.default_response_class,
             name=name,
+            callbacks=callbacks,
         )
 
     def post(
@@ -399,6 +403,7 @@ class FastAPI(Starlette):
         include_in_schema: bool = True,
         response_class: Type[Response] = None,
         name: str = None,
+        callbacks: List[routing.APIRoute] = None,
     ) -> Callable:
         if response_model_skip_defaults is not None:
             warning_response_model_skip_defaults_deprecated()  # pragma: nocover
@@ -423,6 +428,7 @@ class FastAPI(Starlette):
             include_in_schema=include_in_schema,
             response_class=response_class or self.default_response_class,
             name=name,
+            callbacks=callbacks,
         )
 
     def delete(
@@ -447,6 +453,7 @@ class FastAPI(Starlette):
         include_in_schema: bool = True,
         response_class: Type[Response] = None,
         name: str = None,
+        callbacks: List[routing.APIRoute] = None,
     ) -> Callable:
         if response_model_skip_defaults is not None:
             warning_response_model_skip_defaults_deprecated()  # pragma: nocover
@@ -471,6 +478,7 @@ class FastAPI(Starlette):
             include_in_schema=include_in_schema,
             response_class=response_class or self.default_response_class,
             name=name,
+            callbacks=callbacks,
         )
 
     def options(
@@ -495,6 +503,7 @@ class FastAPI(Starlette):
         include_in_schema: bool = True,
         response_class: Type[Response] = None,
         name: str = None,
+        callbacks: List[routing.APIRoute] = None,
     ) -> Callable:
         if response_model_skip_defaults is not None:
             warning_response_model_skip_defaults_deprecated()  # pragma: nocover
@@ -519,6 +528,7 @@ class FastAPI(Starlette):
             include_in_schema=include_in_schema,
             response_class=response_class or self.default_response_class,
             name=name,
+            callbacks=callbacks,
         )
 
     def head(
@@ -543,6 +553,7 @@ class FastAPI(Starlette):
         include_in_schema: bool = True,
         response_class: Type[Response] = None,
         name: str = None,
+        callbacks: List[routing.APIRoute] = None,
     ) -> Callable:
         if response_model_skip_defaults is not None:
             warning_response_model_skip_defaults_deprecated()  # pragma: nocover
@@ -567,6 +578,7 @@ class FastAPI(Starlette):
             include_in_schema=include_in_schema,
             response_class=response_class or self.default_response_class,
             name=name,
+            callbacks=callbacks,
         )
 
     def patch(
@@ -591,6 +603,7 @@ class FastAPI(Starlette):
         include_in_schema: bool = True,
         response_class: Type[Response] = None,
         name: str = None,
+        callbacks: List[routing.APIRoute] = None,
     ) -> Callable:
         if response_model_skip_defaults is not None:
             warning_response_model_skip_defaults_deprecated()  # pragma: nocover
@@ -615,6 +628,7 @@ class FastAPI(Starlette):
             include_in_schema=include_in_schema,
             response_class=response_class or self.default_response_class,
             name=name,
+            callbacks=callbacks,
         )
 
     def trace(
@@ -639,6 +653,7 @@ class FastAPI(Starlette):
         include_in_schema: bool = True,
         response_class: Type[Response] = None,
         name: str = None,
+        callbacks: List[routing.APIRoute] = None,
     ) -> Callable:
         if response_model_skip_defaults is not None:
             warning_response_model_skip_defaults_deprecated()  # pragma: nocover
@@ -663,4 +678,5 @@ class FastAPI(Starlette):
             include_in_schema=include_in_schema,
             response_class=response_class or self.default_response_class,
             name=name,
+            callbacks=callbacks,
         )

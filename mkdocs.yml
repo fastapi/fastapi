@@ -88,6 +88,7 @@ nav:
         - Testing Dependencies with Overrides: 'tutorial/testing-dependencies.md'
         - Debugging: 'tutorial/debugging.md'
         - Extending OpenAPI: 'tutorial/extending-openapi.md'
+        - OpenAPI Callbacks: 'tutorial/openapi-callbacks.md'
     - Concurrency and async / await: 'async.md'
     - Deployment: 'deployment.md'
     - Project Generation - Template: 'project-generation.md'

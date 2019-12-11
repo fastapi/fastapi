@@ -16,7 +16,7 @@ openapi_schema = {
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "title": "Response Read Keyword Weights Keyword-Weights  Get",
+                                    "title": "Response Read Keyword Weights Keyword Weights  Get",
                                     "type": "object",
                                     "additionalProperties": {"type": "number"},
                                 }
@@ -25,7 +25,7 @@ openapi_schema = {
                     }
                 },
                 "summary": "Read Keyword Weights",
-                "operationId": "read_keyword_weights_keyword-weights__get",
+                "operationId": "read_keyword_weights_keyword_weights__get",
             }
         }
     },
