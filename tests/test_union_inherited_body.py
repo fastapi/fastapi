@@ -1,17 +1,16 @@
-import sys
 from typing import Optional, Union
 
-import pytest
 from fastapi import FastAPI
 from pydantic import BaseModel
 from starlette.testclient import TestClient
+
+from .utils import skip_py36
 
 # In Python 3.6:
 # u = Union[ExtendedItem, Item] == __main__.Item
 
 # But in Python 3.7:
 # u = Union[ExtendedItem, Item] == typing.Union[__main__.ExtendedItem, __main__.Item]
-skip_py36 = pytest.mark.skipif(sys.version_info < (3, 7), reason="skip python3.6")
 
 app = FastAPI()
 
