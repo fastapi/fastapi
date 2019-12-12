@@ -72,6 +72,7 @@ nav:
         - CORS (Cross-Origin Resource Sharing): 'tutorial/cors.md'    
         - Using the Request Directly: 'tutorial/using-request-directly.md'    
         - SQL (Relational) Databases: 'tutorial/sql-databases.md'
+        - SQL (Relational) Databases with Peewee: 'tutorial/sql-databases-peewee.md'
         - Async SQL (Relational) Databases: 'tutorial/async-sql-databases.md'
         - NoSQL (Distributed / Big Data) Databases: 'tutorial/nosql-databases.md'
         - Bigger Applications - Multiple Files: 'tutorial/bigger-applications.md'
