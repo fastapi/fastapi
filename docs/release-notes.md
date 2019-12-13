@@ -1,5 +1,7 @@
 ## Latest changes
 
+* Add docs for correctly [using FastAPI with Peewee ORM](https://fastapi.tiangolo.com/tutorial/sql-databases-peewee/). Including how to overwrite parts of Peewee to correctly handle async threads. PR [#789](https://github.com/tiangolo/fastapi/pull/789).
+
 ## 0.45.0
 
 * Add support for OpenAPI Callbacks:
