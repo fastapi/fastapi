@@ -51,6 +51,7 @@ test = [
     "requests",
     "email_validator",
     "sqlalchemy",
+    "peewee",
     "databases[sqlite]",
     "orjson",
     "async_exit_stack",
