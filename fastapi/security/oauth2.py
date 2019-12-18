@@ -188,7 +188,6 @@ class OAuth2AuthorizationCodeBearer(OAuth2):
 
     async def __call__(self, request: Request) -> Optional[str]:
         authorization: str = request.headers.get("Authorization")
-        print(authorization)
         scheme, param = get_authorization_scheme_param(authorization)
         if not authorization or scheme.lower() != "bearer":
             if self.auto_error:
