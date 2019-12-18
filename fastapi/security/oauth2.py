@@ -166,18 +166,20 @@ class OAuth2PasswordBearer(OAuth2):
 class OAuth2AuthorizationCodeBearer(OAuth2):
     def __init__(
         self,
-        authorization_url: str,
-        token_url: str,
-        refresh_url: str = None,
-        scopes: dict = {},
+        authorizationUrl: str,
+        tokenUrl: str,
+        refreshUrl: str = None,
+        scopes: dict = None,
         scheme_name: str = None,
         auto_error: bool = True,
     ):
+        if not scopes:
+            scopes = {}
         flows = OAuthFlowsModel(
             authorizationCode={
-                "authorizationUrl": authorization_url,
-                "tokenUrl": token_url,
-                "refreshUrl": refresh_url,
+                "authorizationUrl": authorizationUrl,
+                "tokenUrl": tokenUrl,
+                "refreshUrl": refreshUrl,
                 "scopes": scopes,
             })
         super().__init__(
