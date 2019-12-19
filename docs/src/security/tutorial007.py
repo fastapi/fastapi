@@ -1,3 +1,5 @@
+import hmac
+
 from fastapi import Depends, FastAPI, HTTPException
 from fastapi.security import HTTPBasic, HTTPBasicCredentials
 from starlette.status import HTTP_401_UNAUTHORIZED
@@ -8,7 +10,9 @@ security = HTTPBasic()
 
 
 def get_current_username(credentials: HTTPBasicCredentials = Depends(security)):
-    if credentials.username != "foo" or credentials.password != "password":
+    # Be careful to use constant time comparison to prevent timing attacks
+    if (!hmac.compare_digest(credentials.username, "foo") or
+        !hmac.compare_digest(credentials.password, "password")):
         raise HTTPException(
             status_code=HTTP_401_UNAUTHORIZED,
             detail="Incorrect email or password",
