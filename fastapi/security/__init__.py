@@ -10,6 +10,7 @@ from .oauth2 import (
     OAuth2,
     OAuth2PasswordBearer,
     OAuth2PasswordRequestForm,
+    OAuth2AuthorizationCodeBearer,
     SecurityScopes,
 )
 from .open_id_connect_url import OpenIdConnect
