@@ -11,8 +11,8 @@ security = HTTPBasic()
 
 def get_current_username(credentials: HTTPBasicCredentials = Depends(security)):
     # Be careful to use constant time comparison to prevent timing attacks
-    if (!hmac.compare_digest(credentials.username, "foo") or
-        !hmac.compare_digest(credentials.password, "password")):
+    if (not hmac.compare_digest(credentials.username, "foo") or
+        not hmac.compare_digest(credentials.password, "password")):
         raise HTTPException(
             status_code=HTTP_401_UNAUTHORIZED,
             detail="Incorrect email or password",
