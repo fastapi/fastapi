@@ -169,8 +169,8 @@ class OAuth2AuthorizationCodeBearer(OAuth2):
         authorizationUrl: str,
         tokenUrl: str,
         refreshUrl: str = None,
-        scopes: dict = None,
         scheme_name: str = None,
+        scopes: dict = None,
         auto_error: bool = True,
     ):
         if not scopes:
