@@ -193,7 +193,7 @@ class OAuth2AuthorizationCodeBearer(OAuth2):
             if self.auto_error:
                 raise HTTPException(
                     status_code=HTTP_401_UNAUTHORIZED,
-                    detail="Unauthorized",
+                    detail="Not authenticated",
                     headers={"WWW-Authenticate": "Bearer"},
                 )
             else:
