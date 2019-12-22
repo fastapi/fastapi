@@ -55,20 +55,24 @@ Common ORMs are for example: Django-ORM (part of the Django framework), SQLAlche
 
 Here we will see how to work with **SQLAlchemy ORM**.
 
-The same way, you could use Peewee or any other.
+In a similar way you could use any other ORM.
+
+!!! tip
+    There's an equivalent article using Peewee here in the docs.
 
 ## File structure
 
 For these examples, let's say you have a directory named `my_super_project` that contains a sub-directory called `sql_app` with a structure like this:
 
 ```
-├── sql_app
-│   ├── __init__.py
-│   ├── crud.py
-│   ├── database.py
-│   ├── main.py
-│   ├── models.py
-│   ├── schemas.py
+.
+└── sql_app
+    ├── __init__.py
+    ├── crud.py
+    ├── database.py
+    ├── main.py
+    ├── models.py
+    └── schemas.py
 ```
 
 The file `__init__.py` is just an empty file, but it tells Python that `sql_app` with all its modules (Python files) is a package.
@@ -131,12 +135,17 @@ connect_args={"check_same_thread": False}
 
 !!! info "Technical Details"
 
-    That argument `check_same_thread` is there mainly to be able to run the tests that cover this example.
-    
+    By default SQLite will only allow one thread to communicate with it, assuming that each thread would handle an independent request.
+
+    This is to prevent accidentally sharing the same connection for different things (for different requests).
+
+    But in FastAPI, using normal functions (`def`) more than one thread could interact with the database for the same request, so we need to make SQLite know that it should allow that with `connect_args={"check_same_thread": False}`.
+
+    Also, we will make sure each request gets its own database connection session in a dependency, so there's no need for that default mechanism.
 
 ### Create a `SessionLocal` class
 
-Each instance of the `SessionLocal` class will be a database session. The class itself is not a database session yet. 
+Each instance of the `SessionLocal` class will be a database session. The class itself is not a database session yet.
 
 But once we create an instance of the `SessionLocal` class, this instance will be the actual database session.
 
@@ -413,9 +422,9 @@ And now in the file `sql_app/main.py` let's integrate and use all the other part
 
 ### Create the database tables
 
-In a very simplistic way, create the database tables:
+In a very simplistic way create the database tables:
 
-```Python hl_lines="11"
+```Python hl_lines="9"
 {!./src/sql_databases/sql_app/main.py!}
 ```
 

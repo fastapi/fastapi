@@ -2,7 +2,8 @@ from enum import Enum
 from types import GeneratorType
 from typing import Any, Dict, List, Set, Union
 
-from fastapi.utils import PYDANTIC_1, logger
+from fastapi.logger import logger
+from fastapi.utils import PYDANTIC_1
 from pydantic import BaseModel
 from pydantic.json import ENCODERS_BY_TYPE
 
@@ -23,9 +24,9 @@ def jsonable_encoder(
 ) -> Any:
     if skip_defaults is not None:
         logger.warning(  # pragma: nocover
-            "skip_defaults in jsonable_encoder has been deprecated in \
-            favor of exclude_unset to keep in line with Pydantic v1, support for it \
-                will be removed soon."
+            "skip_defaults in jsonable_encoder has been deprecated in favor of "
+            "exclude_unset to keep in line with Pydantic v1, support for it will be "
+            "removed soon."
         )
     if include is not None and not isinstance(include, set):
         include = set(include)

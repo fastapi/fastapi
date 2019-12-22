@@ -259,7 +259,7 @@ openapi_schema = {
                     },
                 },
                 "summary": "Get Not Decorated",
-                "operationId": "get_not_decorated_items-not-decorated__item_id__get",
+                "operationId": "get_not_decorated_items_not_decorated__item_id__get",
                 "parameters": [
                     {
                         "required": True,

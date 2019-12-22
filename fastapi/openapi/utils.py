@@ -187,6 +187,14 @@ def get_openapi_path(
                 )
                 if request_body_oai:
                     operation["requestBody"] = request_body_oai
+            if route.callbacks:
+                callbacks = {}
+                for callback in route.callbacks:
+                    cb_path, cb_security_schemes, cb_definitions, = get_openapi_path(
+                        route=callback, model_name_map=model_name_map
+                    )
+                    callbacks[callback.name] = {callback.path: cb_path}
+                operation["callbacks"] = callbacks
             if route.responses:
                 for (additional_status_code, response) in route.responses.items():
                     assert isinstance(

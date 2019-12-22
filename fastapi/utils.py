@@ -1,16 +1,14 @@
-import logging
 import re
 from dataclasses import is_dataclass
 from typing import Any, Dict, List, Sequence, Set, Type, cast
 
 from fastapi import routing
+from fastapi.logger import logger
 from fastapi.openapi.constants import REF_PREFIX
 from pydantic import BaseConfig, BaseModel, create_model
 from pydantic.schema import get_flat_models_from_fields, model_process_schema
 from pydantic.utils import lenient_issubclass
 from starlette.routing import BaseRoute
-
-logger = logging.getLogger("fastapi")
 
 try:
     from pydantic.fields import FieldInfo, ModelField
@@ -22,8 +20,8 @@ except ImportError:  # pragma: nocover
     from pydantic import Schema as FieldInfo  # type: ignore
 
     logger.warning(
-        "Pydantic versions < 1.0.0 are deprecated in FastAPI and support will be \
-            removed soon"
+        "Pydantic versions < 1.0.0 are deprecated in FastAPI and support will be "
+        "removed soon."
     )
     PYDANTIC_1 = False
 
@@ -39,15 +37,16 @@ def get_field_info(field: ModelField) -> FieldInfo:
 # TODO: remove when removing support for Pydantic < 1.0.0
 def warning_response_model_skip_defaults_deprecated() -> None:
     logger.warning(  # pragma: nocover
-        "response_model_skip_defaults has been deprecated in favor \
-                of response_model_exclude_unset to keep in line with Pydantic v1, \
-                support for it will be removed soon."
+        "response_model_skip_defaults has been deprecated in favor of "
+        "response_model_exclude_unset to keep in line with Pydantic v1, support for "
+        "it will be removed soon."
     )
 
 
 def get_flat_models_from_routes(routes: Sequence[BaseRoute]) -> Set[Type[BaseModel]]:
     body_fields_from_routes: List[ModelField] = []
     responses_from_routes: List[ModelField] = []
+    callback_flat_models: Set[Type[BaseModel]] = set()
     for route in routes:
         if getattr(route, "include_in_schema", None) and isinstance(
             route, routing.APIRoute
@@ -61,7 +60,9 @@ def get_flat_models_from_routes(routes: Sequence[BaseRoute]) -> Set[Type[BaseMod
                 responses_from_routes.append(route.response_field)
             if route.response_fields:
                 responses_from_routes.extend(route.response_fields.values())
-    flat_models = get_flat_models_from_fields(
+            if route.callbacks:
+                callback_flat_models |= get_flat_models_from_routes(route.callbacks)
+    flat_models = callback_flat_models | get_flat_models_from_fields(
         body_fields_from_routes + responses_from_routes, known_models=set()
     )
     return flat_models
@@ -155,6 +156,6 @@ def create_cloned_field(field: ModelField) -> ModelField:
 
 def generate_operation_id_for_path(*, name: str, path: str, method: str) -> str:
     operation_id = name + path
-    operation_id = operation_id.replace("{", "_").replace("}", "_").replace("/", "_")
+    operation_id = re.sub("[^0-9a-zA-Z_]", "_", operation_id)
     operation_id = operation_id + "_" + method.lower()
     return operation_id
