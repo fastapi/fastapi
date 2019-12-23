@@ -7,7 +7,7 @@ from starlette.testclient import TestClient
 app = FastAPI()
 
 oauth2_scheme = OAuth2AuthorizationCodeBearer(
-    authorizationUrl="/authorize", tokenUrl="/token", auto_error=False
+    authorizationUrl="/authorize", tokenUrl="/token", auto_error=True
 )
 
 
