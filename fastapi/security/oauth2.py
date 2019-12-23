@@ -181,10 +181,9 @@ class OAuth2AuthorizationCodeBearer(OAuth2):
                 "tokenUrl": tokenUrl,
                 "refreshUrl": refreshUrl,
                 "scopes": scopes,
-            })
-        super().__init__(
-            flows=flows, scheme_name=scheme_name, auto_error=auto_error
+            }
         )
+        super().__init__(flows=flows, scheme_name=scheme_name, auto_error=auto_error)
 
     async def __call__(self, request: Request) -> Optional[str]:
         authorization: str = request.headers.get("Authorization")
