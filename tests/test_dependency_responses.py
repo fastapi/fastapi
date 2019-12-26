@@ -28,7 +28,7 @@ get_user = GetUser()
 
 @app.get("/", response_model=User)
 def get_user(user: User = Depends(get_user)):
-    return user
+    return user  # pragma: nocover
 
 
 client = TestClient(app)
