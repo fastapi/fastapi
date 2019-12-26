@@ -1,7 +1,6 @@
+from fastapi import Depends, FastAPI, HTTPException
 from pydantic import BaseModel
 from starlette.testclient import TestClient
-
-from fastapi import Depends, FastAPI, HTTPException
 
 app = FastAPI()
 
