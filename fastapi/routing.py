@@ -281,7 +281,26 @@ class APIRoute(routing.Route):
         # truncate description text to the content preceding the first "form feed"
         self.description = self.description.split("\f")[0]
         self.response_description = response_description
-        self.responses = responses or {}
+
+        assert inspect.isfunction(endpoint) or inspect.ismethod(
+            endpoint
+        ), f"An endpoint must be a function or method"
+        self.dependant = get_dependant(path=self.path_format, call=self.endpoint)
+        for depends in self.dependencies[::-1]:
+            self.dependant.dependencies.insert(
+                0,
+                get_parameterless_sub_dependant(depends=depends, path=self.path_format),
+            )
+
+        dependencies_response: Dict[Union[int, str], Dict[str, Any]] = {}
+        for depend in self.dependant.dependencies:
+            depend_response = getattr(depend.call, "__responses__", None)
+            if depend_response:
+                dependencies_response.update(depend_response)
+
+        dependencies_response.update(responses or {})
+        self.responses = dependencies_response
+
         response_fields = {}
         for additional_status_code, response in self.responses.items():
             assert isinstance(response, dict), "An additional response must be a dict"
@@ -328,15 +347,6 @@ class APIRoute(routing.Route):
         self.include_in_schema = include_in_schema
         self.response_class = response_class
 
-        assert inspect.isfunction(endpoint) or inspect.ismethod(
-            endpoint
-        ), f"An endpoint must be a function or method"
-        self.dependant = get_dependant(path=self.path_format, call=self.endpoint)
-        for depends in self.dependencies[::-1]:
-            self.dependant.dependencies.insert(
-                0,
-                get_parameterless_sub_dependant(depends=depends, path=self.path_format),
-            )
         self.body_field = get_body_field(dependant=self.dependant, name=self.unique_id)
         self.dependency_overrides_provider = dependency_overrides_provider
         self.callbacks = callbacks
