@@ -1,8 +1,7 @@
-from typing import Dict
-
-from fastapi import FastAPI, Depends, HTTPException
 from pydantic import BaseModel
 from starlette.testclient import TestClient
+
+from fastapi import Depends, FastAPI, HTTPException
 
 app = FastAPI()
 
