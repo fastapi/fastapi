@@ -196,7 +196,7 @@ class OAuth2AuthorizationCodeBearer(OAuth2):
                     headers={"WWW-Authenticate": "Bearer"},
                 )
             else:
-                return None
+                return None  # pragma: nocover
         return param
 
 
