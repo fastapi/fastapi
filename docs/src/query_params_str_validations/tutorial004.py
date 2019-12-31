@@ -8,6 +8,6 @@ async def read_items(
     q: str = Query(None, min_length=3, max_length=50, regex="^fixedquery$")
 ):
     results = {"items": [{"item_id": "Foo"}, {"item_id": "Bar"}]}
-    if q is not None and len(q) > 0:
+    if q is not None:
         results.update({"q": q})
     return results
