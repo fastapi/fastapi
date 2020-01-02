@@ -105,12 +105,21 @@ def jsonable_encoder(
                 )
             )
         return encoded_list
-    for encoder_type, encoder in custom_encoder.items():
-        if isinstance(obj, encoder_type):
-            return encoder(obj)
+
+    if custom_encoder:
+        if type(obj) in custom_encoder:
+            return custom_encoder[type(obj)](obj)
+        else:
+            for encoder_type, encoder in custom_encoder.items():
+                if isinstance(obj, encoder_type):
+                    return encoder(obj)
+
+    if type(obj) in ENCODERS_BY_TYPE:
+        return ENCODERS_BY_TYPE[type(obj)](obj)
     for encoder_type, encoder in ENCODERS_BY_TYPE.items():
         if isinstance(obj, encoder_type):
             return encoder(obj)
+
     errors: List[Exception] = []
     try:
         data = dict(obj)
