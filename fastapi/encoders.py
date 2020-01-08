@@ -1,6 +1,6 @@
 from enum import Enum
 from types import GeneratorType
-from typing import Any, Dict, List, Set, Union
+from typing import Any, Callable, Dict, List, Set, Tuple, Union
 
 from fastapi.logger import logger
 from fastapi.utils import PYDANTIC_1
@@ -9,6 +9,21 @@ from pydantic.json import ENCODERS_BY_TYPE
 
 SetIntStr = Set[Union[int, str]]
 DictIntStrAny = Dict[Union[int, str], Any]
+
+
+def generate_encoders_by_class_tuples(
+    type_encoder_map: Dict[Any, Callable]
+) -> Dict[Callable, Tuple]:
+    encoders_by_classes: Dict[Callable, List] = {}
+    for type_, encoder in type_encoder_map.items():
+        encoders_by_classes.setdefault(encoder, []).append(type_)
+    encoders_by_class_tuples: Dict[Callable, Tuple] = {}
+    for encoder, classes in encoders_by_classes.items():
+        encoders_by_class_tuples[encoder] = tuple(classes)
+    return encoders_by_class_tuples
+
+
+encoders_by_class_tuples = generate_encoders_by_class_tuples(ENCODERS_BY_TYPE)
 
 
 def jsonable_encoder(
@@ -106,24 +121,31 @@ def jsonable_encoder(
                 )
             )
         return encoded_list
+
+    if custom_encoder:
+        if type(obj) in custom_encoder:
+            return custom_encoder[type(obj)](obj)
+        else:
+            for encoder_type, encoder in custom_encoder.items():
+                if isinstance(obj, encoder_type):
+                    return encoder(obj)
+
+    if type(obj) in ENCODERS_BY_TYPE:
+        return ENCODERS_BY_TYPE[type(obj)](obj)
+    for encoder, classes_tuple in encoders_by_class_tuples.items():
+        if isinstance(obj, classes_tuple):
+            return encoder(obj)
+
     errors: List[Exception] = []
     try:
-        if custom_encoder and type(obj) in custom_encoder:
-            encoder = custom_encoder[type(obj)]
-        else:
-            encoder = ENCODERS_BY_TYPE[type(obj)]
-        return encoder(obj)
-    except KeyError as e:
+        data = dict(obj)
+    except Exception as e:
         errors.append(e)
         try:
-            data = dict(obj)
+            data = vars(obj)
         except Exception as e:
             errors.append(e)
-            try:
-                data = vars(obj)
-            except Exception as e:
-                errors.append(e)
-                raise ValueError(errors)
+            raise ValueError(errors)
     return jsonable_encoder(
         data,
         by_alias=by_alias,
