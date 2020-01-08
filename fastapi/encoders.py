@@ -1,6 +1,6 @@
 from enum import Enum
 from types import GeneratorType
-from typing import Any, Dict, List, Set, Union
+from typing import Any, Callable, Dict, List, Set, Tuple, Union
 
 from fastapi.utils import PYDANTIC_1, logger
 from pydantic import BaseModel
@@ -8,6 +8,21 @@ from pydantic.json import ENCODERS_BY_TYPE
 
 SetIntStr = Set[Union[int, str]]
 DictIntStrAny = Dict[Union[int, str], Any]
+
+
+def generate_encoders_by_class_tuples(
+    type_encoder_map: Dict[Any, Callable]
+) -> Dict[Callable, Tuple]:
+    encoders_by_classes: Dict[Callable, List] = {}
+    for type_, encoder in type_encoder_map.items():
+        encoders_by_classes.setdefault(encoder, []).append(type_)
+    encoders_by_class_tuples: Dict[Callable, Tuple] = {}
+    for encoder, classes in encoders_by_classes.items():
+        encoders_by_class_tuples[encoder] = tuple(classes)
+    return encoders_by_class_tuples
+
+
+encoders_by_class_tuples = generate_encoders_by_class_tuples(ENCODERS_BY_TYPE)
 
 
 def jsonable_encoder(
@@ -116,8 +131,8 @@ def jsonable_encoder(
 
     if type(obj) in ENCODERS_BY_TYPE:
         return ENCODERS_BY_TYPE[type(obj)](obj)
-    for encoder_type, encoder in ENCODERS_BY_TYPE.items():
-        if isinstance(obj, encoder_type):
+    for encoder, classes_tuple in encoders_by_class_tuples.items():
+        if isinstance(obj, classes_tuple):
             return encoder(obj)
 
     errors: List[Exception] = []
