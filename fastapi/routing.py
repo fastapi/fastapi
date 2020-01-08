@@ -554,6 +554,7 @@ class APIRouter(routing.Router):
                     response_class=route.response_class or default_response_class,
                     name=route.name,
                     route_class_override=type(route),
+                    callbacks=route.callbacks,
                 )
             elif isinstance(route, routing.Route):
                 self.add_route(

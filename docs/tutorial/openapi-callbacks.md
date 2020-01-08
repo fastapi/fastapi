@@ -29,7 +29,7 @@ It will have a *path operation* that will receive an `Invoice` body, and a query
 
 This part is pretty normal, most of the code is probably already familiar to you:
 
-```Python hl_lines="8 9 10 11 12  35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54"
+```Python hl_lines="8 9 10 11 12  34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53"
 {!./src/openapi_callbacks/tutorial001.py!}
 ```
 
@@ -103,7 +103,7 @@ It should look just like a normal FastAPI *path operation*:
 * It should probably have a declaration of the body it should receive, e.g. `body: InvoiceEvent`.
 * And it could also have a declaration of the response it should return, e.g. `response_model=InvoiceEventReceived`.
 
-```Python hl_lines="15 16 17  20 21  27 28 29 30 31 32"
+```Python hl_lines="15 16 17  20 21  27 28 29 30 31"
 {!./src/openapi_callbacks/tutorial001.py!}
 ```
 
@@ -170,7 +170,7 @@ At this point you have the *callback path operation(s)* needed (the one(s) that 
 
 Now use the parameter `callbacks` in *your API's path operation decorator* to pass the attribute `.routes` (that's actually just a `list` of routes/*path operations*) from that callback router:
 
-```Python hl_lines="35"
+```Python hl_lines="34"
 {!./src/openapi_callbacks/tutorial001.py!}
 ```
 
