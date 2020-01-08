@@ -5,8 +5,8 @@
     <em>FastAPI framework, high performance, easy to learn, fast to code, ready for production</em>
 </p>
 <p align="center">
-<a href="https://travis-ci.org/tiangolo/fastapi" target="_blank">
-    <img src="https://travis-ci.org/tiangolo/fastapi.svg?branch=master" alt="Build Status">
+<a href="https://travis-ci.com/tiangolo/fastapi" target="_blank">
+    <img src="https://travis-ci.com/tiangolo/fastapi.svg?branch=master" alt="Build Status">
 </a>
 <a href="https://codecov.io/gh/tiangolo/fastapi" target="_blank">
     <img src="https://codecov.io/gh/tiangolo/fastapi/branch/master/graph/badge.svg" alt="Coverage">
@@ -406,7 +406,7 @@ Used by FastAPI / Starlette:
 
 * <a href="http://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - for the server that loads and serves your application.
 
-You can install all of these with `pip3 install fastapi[all]`.
+You can install all of these with `pip install fastapi[all]`.
 
 ## License
 
