@@ -8,6 +8,7 @@ from .http import (
 )
 from .oauth2 import (
     OAuth2,
+    OAuth2AuthorizationCodeBearer,
     OAuth2PasswordBearer,
     OAuth2PasswordRequestForm,
     SecurityScopes,

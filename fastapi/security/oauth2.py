@@ -163,6 +163,43 @@ class OAuth2PasswordBearer(OAuth2):
         return param
 
 
+class OAuth2AuthorizationCodeBearer(OAuth2):
+    def __init__(
+        self,
+        authorizationUrl: str,
+        tokenUrl: str,
+        refreshUrl: str = None,
+        scheme_name: str = None,
+        scopes: dict = None,
+        auto_error: bool = True,
+    ):
+        if not scopes:
+            scopes = {}
+        flows = OAuthFlowsModel(
+            authorizationCode={
+                "authorizationUrl": authorizationUrl,
+                "tokenUrl": tokenUrl,
+                "refreshUrl": refreshUrl,
+                "scopes": scopes,
+            }
+        )
+        super().__init__(flows=flows, scheme_name=scheme_name, auto_error=auto_error)
+
+    async def __call__(self, request: Request) -> Optional[str]:
+        authorization: str = request.headers.get("Authorization")
+        scheme, param = get_authorization_scheme_param(authorization)
+        if not authorization or scheme.lower() != "bearer":
+            if self.auto_error:
+                raise HTTPException(
+                    status_code=HTTP_401_UNAUTHORIZED,
+                    detail="Not authenticated",
+                    headers={"WWW-Authenticate": "Bearer"},
+                )
+            else:
+                return None  # pragma: nocover
+        return param
+
+
 class SecurityScopes:
     def __init__(self, scopes: List[str] = None):
         self.scopes = scopes or []
