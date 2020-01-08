@@ -25,8 +25,8 @@ after_script:
     - bash <(curl -s https://codecov.io/bash)
 
 deploy:
-  provider: script
-  script: bash scripts/deploy.sh
-  on:
-    tags: true
-    python: "3.6"
+    provider: script
+    script: bash scripts/deploy.sh
+    on:
+        tags: true
+        python: "3.6"

@@ -5,8 +5,8 @@ site_url: https://fastapi.tiangolo.com/
 theme:
     name: 'material'
     palette:
-      primary: 'teal'
-      accent: 'amber'
+        primary: 'teal'
+        accent: 'amber'
     logo: 'img/icon-white.svg'
     favicon: 'img/favicon.png'
 
@@ -102,10 +102,27 @@ nav:
     - Release Notes: release-notes.md
 
 markdown_extensions:
-  - markdown.extensions.codehilite:
-      guess_lang: false
-  - markdown_include.include:
-      base_path: docs
-  - admonition
-  - codehilite
-  - extra
+    - toc:
+        permalink: true
+    - markdown.extensions.codehilite:
+        guess_lang: false
+    - markdown_include.include:
+        base_path: docs
+    - admonition
+    - codehilite
+    - extra
+
+extra:
+    social:
+        - type: 'github'
+          link: 'https://github.com/tiangolo/typer'
+        - type: 'twitter'
+          link: 'https://twitter.com/tiangolo'
+        - type: 'linkedin'
+          link: 'https://www.linkedin.com/in/tiangolo'
+        - type: 'rss'
+          link: 'https://dev.to/tiangolo'
+        - type: 'medium'
+          link: 'https://medium.com/@tiangolo'
+        - type: 'globe'
+          link: 'https://tiangolo.com'
