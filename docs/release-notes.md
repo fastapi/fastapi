@@ -1,5 +1,7 @@
 ## Latest changes
 
+## 0.46.0
+
 * Fix typos and tweak configs. PR [#837](https://github.com/tiangolo/fastapi/pull/837).
 * Add link to Chinese article in [External Links](https://fastapi.tiangolo.com/external-links/). PR [810](https://github.com/tiangolo/fastapi/pull/810) by [@wxq0309](https://github.com/wxq0309).
 * Implement `OAuth2AuthorizationCodeBearer` class. PR [#797](https://github.com/tiangolo/fastapi/pull/797) by [@kuwv](https://github.com/kuwv).
