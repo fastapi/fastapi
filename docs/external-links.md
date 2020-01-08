@@ -51,6 +51,14 @@ Here's an incomplete list of some of them.
 
 * <a href="https://qiita.com/hikarut/items/b178af2e2440c67c6ac4" target="_blank">フロントエンド開発者向けのDockerによるPython開発環境構築</a> by <a href="https://qiita.com/hikarut" target="_blank">Hikaru Takahashi</a>.
 
+* <a href="https://rightcode.co.jp/blog/information-technology/fastapi-tutorial-todo-apps-environment" target="_blank">【第1回】FastAPIチュートリアル: ToDoアプリを作ってみよう【環境構築編】</a> by <a href="https://rightcode.co.jp/author/jun" target="_blank">ライトコードメディア編集部</a>
+
+* <a href="https://rightcode.co.jp/blog/information-technology/fastapi-tutorial-todo-apps-model-building" target="_blank">【第2回】FastAPIチュートリアル: ToDoアプリを作ってみよう【モデル構築編】</a> by <a href="https://rightcode.co.jp/author/jun" target="_blank">ライトコードメディア編集部</a>
+
+* <a href="https://rightcode.co.jp/blog/information-technology/fastapi-tutorial-todo-apps-authentication-user-registration" target="_blank">【第3回】FastAPIチュートリアル: toDoアプリを作ってみよう【認証・ユーザ登録編】</a> by <a href="https://rightcode.co.jp/author/jun" target="_blank">ライトコードメディア編集部</a>
+
+* <a href="https://rightcode.co.jp/blog/information-technology/fastapi-tutorial-todo-apps-admin-page-improvement" target="_blank">【第4回】FastAPIチュートリアル: toDoアプリを作ってみよう【管理者ページ改良編】</a> by <a href="https://rightcode.co.jp/author/jun" target="_blank">ライトコードメディア編集部</a>
+
 ### Chinese
 
 * <a href="https://cloud.tencent.com/developer/article/1431448" target="_blank">使用FastAPI框架快速构建高性能的api服务</a> by <a href="https://cloud.tencent.com/developer/user/5471722" target="_blank">逍遥散人</a>.
