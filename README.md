@@ -206,8 +206,7 @@ Now modify the file `main.py` to receive a body from a `PUT` request.
 
 Declare the body using standard Python types, thanks to Pydantic.
 
-
-```Python hl_lines="2 7 8 9 10 24"
+```Python hl_lines="2  7 8 9 10  23 24 25"
 from fastapi import FastAPI
 from pydantic import BaseModel
 
