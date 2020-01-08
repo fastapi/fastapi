@@ -118,7 +118,7 @@ Apart from normal singular types like `str`, `int`, `float`, etc. You can use mo
 
 To see all the options you have, checkout the docs for <a href="https://pydantic-docs.helpmanual.io/#exotic-types" target="_blank">Pydantic's exotic types</a>. You will see some examples in the next chapter.
 
-For example, as in the `Image` model we have a `url` field, we can declare it to be instead of a `str`, a Pydantic's `UrlStr`:
+For example, as in the `Image` model we have a `url` field, we can declare it to be instead of a `str`, a Pydantic's `HttpUrl`:
 
 ```Python hl_lines="4 10"
 {!./src/body_nested_models/tutorial005.py!}
