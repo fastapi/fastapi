@@ -1,5 +1,7 @@
 ## Latest changes
 
+* Update docs for [HTTP Basic Auth](https://fastapi.tiangolo.com/tutorial/security/http-basic-auth/) to improve security against timing attacks. Initial PR [#807](https://github.com/tiangolo/fastapi/pull/807) by [@zwass](https://github.com/zwass).
+
 ## 0.46.0
 
 * Fix typos and tweak configs. PR [#837](https://github.com/tiangolo/fastapi/pull/837).
