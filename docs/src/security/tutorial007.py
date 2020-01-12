@@ -1,4 +1,4 @@
-import hmac
+import secrets
 
 from fastapi import Depends, FastAPI, HTTPException
 from fastapi.security import HTTPBasic, HTTPBasicCredentials
@@ -10,9 +10,9 @@ security = HTTPBasic()
 
 
 def get_current_username(credentials: HTTPBasicCredentials = Depends(security)):
-    # Be careful to use constant time comparison to prevent timing attacks
-    if (not hmac.compare_digest(credentials.username, "foo") or
-        not hmac.compare_digest(credentials.password, "password")):
+    correct_username = secrets.compare_digest(credentials.username, "stanleyjobson")
+    correct_password = secrets.compare_digest(credentials.password, "swordfish")
+    if not correct_username and correct_password:
         raise HTTPException(
             status_code=HTTP_401_UNAUTHORIZED,
             detail="Incorrect email or password",
