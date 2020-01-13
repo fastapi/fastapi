@@ -126,3 +126,9 @@ extra:
           link: 'https://medium.com/@tiangolo'
         - type: 'globe'
           link: 'https://tiangolo.com'
+
+extra_css:
+    - 'css/custom.css'
+
+extra_javascript:
+    - 'js/custom.js'
