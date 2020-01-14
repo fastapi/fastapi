@@ -49,7 +49,9 @@ Here's an incomplete list of some of them.
 
 * [Towards Data Science: Deploying Iris Classifications with FastAPI and Docker](https://towardsdatascience.com/deploying-iris-classifications-with-fastapi-and-docker-7c9b83fdec3a){.external-link target=_blank} by [Mandy Gu](https://towardsdatascience.com/@mandygu){.external-link target=_blank}.
 
-[Deploy Machine Learning Models with Keras, FastAPI, Redis and Docker](https://medium.com/analytics-vidhya/deploy-machine-learning-models-with-keras-fastapi-redis-and-docker-4940df614ece){.external-link target=_blank} by [Shane Soh](https://medium.com/@shane.soh){.external-link target=_blank}.
+* [Deploy Machine Learning Models with Keras, FastAPI, Redis and Docker](https://medium.com/analytics-vidhya/deploy-machine-learning-models-with-keras-fastapi-redis-and-docker-4940df614ece){.external-link target=_blank} by [Shane Soh](https://medium.com/@shane.soh){.external-link target=_blank}.
+
+* [Another Boilerplate to FastAPI: Azure Pipeline CI + Pytest](https://medium.com/@arthur393/another-boilerplate-to-fastapi-azure-pipeline-ci-pytest-3c8d9a4be0bb){target=_blank} by [Arthur Henrique](https://twitter.com/arthurheinrique){target=_blank}.
 
 ### Japanese
 
