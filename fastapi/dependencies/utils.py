@@ -629,9 +629,9 @@ async def request_body_to_args(
         for field in required_params:
             value: Any = None
             if received_body is not None:
-                if field.shape in sequence_shapes and isinstance(
-                    received_body, FormData
-                ):
+                if (
+                    field.shape in sequence_shapes or field.type_ in sequence_types
+                ) and isinstance(received_body, FormData):
                     value = received_body.getlist(field.alias)
                 else:
                     value = received_body.get(field.alias)
