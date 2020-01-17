@@ -1,7 +1,14 @@
 #!/usr/bin/env bash
-# Install pipenv to be able to install from Pipfile
-pip install pipenv
-# Install Pipfile including --dev, to install mkdocs and plugins
-pipenv install --dev
+set -x
+set -e
+# Install pip
+cd /tmp
+curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+python3.6 get-pip.py --user
+cd -
+# Install Flit to be able to install all
+python3.6 -m pip install --user flit
+# Install with Flit
+python3.6 -m flit install --user --extras doc
 # Finally, run mkdocs
-mkdocs build
+python3.6 -m mkdocs build
