@@ -218,7 +218,7 @@ That kind of asynchronicity is what made NodeJS popular (even though NodeJS is n
 
 And that's the same level of performance</a> you get with **FastAPI**.
 
-And as you can have parallelism and asynchronicity at the same time, you get higher performance than most of the tested NodeJS frameworks and on par with Go, which is a compiled language closer to C <a href="https://www.techempower.com/benchmarks/#section=data-r17&hw=ph&test=query&l=zijmkf-1" target="_blank">(all thanks to Starlette)</a>.
+And as you can have parallelism and asynchronicity at the same time, you get higher performance than most of the tested NodeJS frameworks and on par with Go, which is a compiled language closer to C <a href="https://www.techempower.com/benchmarks/#section=data-r17&hw=ph&test=query&l=zijmkf-1" class="external-link" target="_blank">(all thanks to Starlette)</a>.
 
 
 ### Is concurrency better than parallelism?
@@ -329,7 +329,7 @@ So, about the egg and the chicken, how do you call the first `async` function?
 
 If you are working with **FastAPI** you don't have to worry about that, because that "first" function will be your path operation function, and FastAPI will know how to do the right thing.
 
-But if you want to use `async` / `await` without FastAPI, <a href="https://docs.python.org/3/library/asyncio-task.html#coroutine" target="_blank">check the official Python docs</a>.
+But if you want to use `async` / `await` without FastAPI, <a href="https://docs.python.org/3/library/asyncio-task.html#coroutine" class="external-link" target="_blank">check the official Python docs</a>.
 
 
 ### Other forms of asynchronous code
@@ -342,9 +342,9 @@ This same syntax (or almost identical) was also included recently in modern vers
 
 But before that, handling asynchronous code was quite more complex and difficult.
 
-In previous versions of Python, you could have used threads or <a href="http://www.gevent.org/" target="_blank">Gevent</a>. But the code is way more complex to understand, debug, and think about.
+In previous versions of Python, you could have used threads or <a href="http://www.gevent.org/" class="external-link" target="_blank">Gevent</a>. But the code is way more complex to understand, debug, and think about.
 
-In previous versions of NodeJS / Browser JavaScript, you would have used "callbacks". Which lead to <a href="http://callbackhell.com/" target="_blank">callback hell</a>.
+In previous versions of NodeJS / Browser JavaScript, you would have used "callbacks". Which lead to <a href="http://callbackhell.com/" class="external-link" target="_blank">callback hell</a>.
 
 
 ## Coroutines

@@ -120,7 +120,7 @@ So, if you send a request to that *path operation* for the item with ID `foo`, t
 ```
 
 !!! info
-    FastAPI uses Pydantic model's `.dict()` with <a href="https://pydantic-docs.helpmanual.io/usage/exporting_models/#modeldict" target="_blank">its `exclude_unset` parameter</a> to achieve this.
+    FastAPI uses Pydantic model's `.dict()` with <a href="https://pydantic-docs.helpmanual.io/usage/exporting_models/#modeldict" class="external-link" target="_blank">its `exclude_unset` parameter</a> to achieve this.
 
 #### Data with values for fields with defaults
 

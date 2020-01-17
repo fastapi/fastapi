@@ -19,10 +19,10 @@ And you will still have the same features as seen up to now:
 
 Here are some of the additional data types you can use:
 
-* `UUID`: 
+* `UUID`:
     * A standard "Universally Unique Identifier", common as an ID in many databases and systems.
     * In requests and responses will be represented as a `str`.
-* `datetime.datetime`: 
+* `datetime.datetime`:
     * A Python `datetime.datetime`.
     * In requests and responses will be represented as a `str` in ISO 8601 format, like: `2008-09-15T15:53:00+05:00`.
 * `datetime.date`:
@@ -34,7 +34,7 @@ Here are some of the additional data types you can use:
 * `datetime.timedelta`:
     * A Python `datetime.timedelta`.
     * In requests and responses will be represented as a `float` of total seconds.
-    * Pydantic also allows representing it as a "ISO 8601 time diff encoding", <a href="https://pydantic-docs.helpmanual.io/#json-serialisation" target="_blank">see the docs for more info</a>.
+    * Pydantic also allows representing it as a "ISO 8601 time diff encoding", <a href="https://pydantic-docs.helpmanual.io/#json-serialisation" class="external-link" target="_blank">see the docs for more info</a>.
 * `frozenset`:
     * In requests and responses, treated the same as a `set`:
         * In requests, a list will be read, eliminating duplicates and converting it to a `set`.
@@ -47,7 +47,6 @@ Here are some of the additional data types you can use:
 * `Decimal`:
     * Standard Python `Decimal`.
     * In requests and responses, handled the same as a `float`.
-
 
 ## Example
 

@@ -5,8 +5,8 @@
 
 ### Based on open standards
 
-* <a href="https://github.com/OAI/OpenAPI-Specification" target="_blank"><strong>OpenAPI</strong></a> for API creation, including declarations of <abbr title="also known as: endpoints, routes">path</abbr> <abbr title="also known as HTTP methods, as POST, GET, PUT, DELETE">operations</abbr>, parameters, body requests, security, etc.
-* Automatic data model documentation with <a href="http://json-schema.org/" target="_blank"><strong>JSON Schema</strong></a> (as OpenAPI itself is based on JSON Schema).
+* <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a> for API creation, including declarations of <abbr title="also known as: endpoints, routes">path</abbr> <abbr title="also known as HTTP methods, as POST, GET, PUT, DELETE">operations</abbr>, parameters, body requests, security, etc.
+* Automatic data model documentation with <a href="http://json-schema.org/" class="external-link" target="_blank"><strong>JSON Schema</strong></a> (as OpenAPI itself is based on JSON Schema).
 * Designed around these standards, after a meticulous study. Instead of an afterthought layer on top.
 * This also allows using automatic **client code generation** in many languages.
 
@@ -14,14 +14,13 @@
 
 Interactive API documentation and exploration web user interfaces. As the framework is based on OpenAPI, there are multiple options, 2 included by default.
 
-* <a href="https://github.com/swagger-api/swagger-ui" target="_blank"><strong>Swagger UI</strong></a>, with interactive exploration, call and test your API directly from the browser.
+* <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank"><strong>Swagger UI</strong></a>, with interactive exploration, call and test your API directly from the browser.
 
 ![Swagger UI interaction](img/index/index-03-swagger-02.png)
 
-* Alternative API documentation with <a href="https://github.com/Rebilly/ReDoc" target="_blank"><strong>ReDoc</strong></a>.
+* Alternative API documentation with <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank"><strong>ReDoc</strong></a>.
 
 ![ReDoc](img/index/index-06-redoc-02.png)
-
 
 ### Just Modern Python
 
@@ -66,14 +65,14 @@ my_second_user: User = User(**second_user_data)
 
 !!! info
     `**second_user_data` means:
-    
+
     Pass the keys and values of the `second_user_data` dict directly as key-value arguments, equivalent to: `User(id=4, name="Mary", joined="2018-11-30")`
 
 ### Editor support
 
 All the framework was designed to be easy and intuitive to use, all the decisions where tested on multiple editors even before starting development, to ensure the best development experience.
 
-In the last Python developer survey it was clear <a href="https://www.jetbrains.com/research/python-developers-survey-2017/#tools-and-features" target="_blank">that the most used feature is "autocompletion"</a>. 
+In the last Python developer survey it was clear <a href="https://www.jetbrains.com/research/python-developers-survey-2017/#tools-and-features" class="external-link" target="_blank">that the most used feature is "autocompletion"</a>.
 
 The whole **FastAPI** framework is based to satisfy that. Autocompletion works everywhere.
 
@@ -81,11 +80,11 @@ You will rarely need to come back to the docs.
 
 Here's how your editor might help you:
 
-* in <a href="https://code.visualstudio.com/" target="_blank">Visual Studio Code</a>:
+* in <a href="https://code.visualstudio.com/" class="external-link" target="_blank">Visual Studio Code</a>:
 
 ![editor support](img/vscode-completion.png)
 
-* in <a href="https://www.jetbrains.com/pycharm/" target="_blank">PyCharm</a>:
+* in <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a>:
 
 ![editor support](img/pycharm-completion.png)
 
@@ -128,7 +127,7 @@ All the security schemes defined in OpenAPI, including:
     * Query parameters.
     * Cookies, etc.
 
-Plus all the security features from Starlette (including **session cookies**). 
+Plus all the security features from Starlette (including **session cookies**).
 
 All built as reusable tools and components that are easy to integrate with your systems, data stores, relational and NoSQL databases, etc.
 
@@ -143,13 +142,11 @@ FastAPI includes an extremely easy to use, but extremely powerful <abbr title='a
 * Support for complex user authentication systems, **database connections**, etc.
 * **No compromise** with databases, frontends, etc. But easy integration with all of them.
 
-
 ### Unlimited "plug-ins"
 
-Or in other way, no need for them, import and use the code you need. 
+Or in other way, no need for them, import and use the code you need.
 
 Any integration is designed to be so simple to use (with dependencies) that you can create a "plug-in" for your application in 2 lines of code using the same structure and syntax used for your path operations.
-
 
 ### Tested
 
@@ -159,13 +156,13 @@ Any integration is designed to be so simple to use (with dependencies) that you 
 
 ## Starlette features
 
-**FastAPI** is fully compatible with (and based on) <a href="https://www.starlette.io/" target="_blank"><strong>Starlette</strong></a>. So, any additional Starlette code you have, will also work.
+**FastAPI** is fully compatible with (and based on) <a href="https://www.starlette.io/" class="external-link" target="_blank"><strong>Starlette</strong></a>. So, any additional Starlette code you have, will also work.
 
 `FastAPI` is actually a sub-class of `Starlette`. So, if you already know or use Starlette, most of the functionality will work the same way.
 
 With **FastAPI** you get all of **Starlette**'s features (as FastAPI is just Starlette on steroids):
 
-* Seriously impressive performance. It is <a href="https://github.com/encode/starlette#performance" target="_blank">one of the fastest Python frameworks available, on par with **NodeJS** and **Go**</a>.
+* Seriously impressive performance. It is <a href="https://github.com/encode/starlette#performance" class="external-link" target="_blank">one of the fastest Python frameworks available, on par with **NodeJS** and **Go**</a>.
 * **WebSocket** support.
 * **GraphQL** support.
 * In-process background tasks.
@@ -178,7 +175,7 @@ With **FastAPI** you get all of **Starlette**'s features (as FastAPI is just Sta
 
 ## Pydantic features
 
-**FastAPI** is fully compatible with (and based on) <a href="https://pydantic-docs.helpmanual.io" target="_blank"><strong>Pydantic</strong></a>. So, any additional Pydantic code you have, will also work.
+**FastAPI** is fully compatible with (and based on) <a href="https://pydantic-docs.helpmanual.io" class="external-link" target="_blank"><strong>Pydantic</strong></a>. So, any additional Pydantic code you have, will also work.
 
 Including external libraries also based on Pydantic, as <abbr title="Object-Relational Mapper">ORM</abbr>s, <abbr title="Object-Document Mapper">ODM</abbr>s for databases.
 
@@ -188,13 +185,13 @@ The same applies the other way around, in many cases you can just pass the objec
 
 With **FastAPI** you get all of **Pydantic**'s features (as FastAPI is based on Pydantic for all the data handling):
 
-* **No brainfuck**: 
+* **No brainfuck**:
     * No new schema definition micro-language to learn.
     * If you know Python types you know how to use Pydantic.
 * Plays nicely with your **<abbr title="Integrated Development Environment, similar to a code editor">IDE</abbr>/<abbr title="A program that checks for code errors">linter</abbr>/brain**:
     * Because pydantic data structures are just instances of classes you define; auto-completion, linting, mypy and your intuition should all work properly with your validated data.
 * **Fast**:
-    * in <a href="https://pydantic-docs.helpmanual.io/#benchmarks-tag" target="_blank">benchmarks</a> Pydantic is faster than all other tested libraries.
+    * in <a href="https://pydantic-docs.helpmanual.io/#benchmarks-tag" class="external-link" target="_blank">benchmarks</a> Pydantic is faster than all other tested libraries.
 * Validate **complex structures**:
     * Use of hierarchical Pydantic models, Python `typing`’s `List` and `Dict`, etc.
     * And validators allow complex data schemas to be clearly and easily defined, checked and documented as JSON Schema.

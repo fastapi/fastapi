@@ -1,4 +1,4 @@
-You can also use <a href="https://github.com/encode/databases" target="_blank">`encode/databases`</a> with **FastAPI** to connect to databases using `async` and `await`.
+You can also use <a href="https://github.com/encode/databases" class="external-link" target="_blank">`encode/databases`</a> with **FastAPI** to connect to databases using `async` and `await`.
 
 It is compatible with:
 
@@ -13,7 +13,7 @@ Later, for your production application, you might want to use a database server 
 !!! tip
     You could adopt ideas from the previous section about <a href="/tutorial/sql-databases/" target="_blank">SQLAlchemy ORM</a>, like using utility functions to perform operations in the database, independent of your **FastAPI** code.
 
-    This section doesn't apply those ideas, to be equivalent to the counterpart in <a href="https://www.starlette.io/database/" target="_blank">Starlette</a>.
+    This section doesn't apply those ideas, to be equivalent to the counterpart in <a href="https://www.starlette.io/database/" class="external-link" target="_blank">Starlette</a>.
 
 ## Import and set up `SQLAlchemy`
 
@@ -149,7 +149,7 @@ So, the final result returned would be something like:
 
 ## Check it
 
-You can copy this code as is, and see the docs at <a href="http://127.0.0.1:8000/docs" target="_blank">http://127.0.0.1:8000/docs</a>.
+You can copy this code as is, and see the docs at <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 
 There you can see all your API documented and interact with it:
 
@@ -157,4 +157,4 @@ There you can see all your API documented and interact with it:
 
 ## More info
 
-You can read more about <a href="https://github.com/encode/databases" target="_blank">`encode/databases` at its GitHub page</a>.
+You can read more about <a href="https://github.com/encode/databases" class="external-link" target="_blank">`encode/databases` at its GitHub page</a>.

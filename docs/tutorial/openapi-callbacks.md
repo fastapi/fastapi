@@ -34,7 +34,7 @@ This part is pretty normal, most of the code is probably already familiar to you
 ```
 
 !!! tip
-    The `callback_url` query parameter uses a Pydantic <a href="https://pydantic-docs.helpmanual.io/usage/types/#urls" target="_blank">URL</a> type.
+    The `callback_url` query parameter uses a Pydantic <a href="https://pydantic-docs.helpmanual.io/usage/types/#urls" class="external-link" target="_blank">URL</a> type.
 
 The only new thing is the `callbacks=messages_callback_router.routes` as an argument to the *path operation decorator*. We'll see what that is next.
 
@@ -62,7 +62,7 @@ This example doesn't implement the callback itself (that could be just a line of
 !!! tip
     The actual callback is just an HTTP request.
 
-    When implementing the callback yourself, you could use something like <a href="https://www.encode.io/httpx/" target="_blank">HTTPX</a> or <a href="https://requests.readthedocs.io/" target="_blank">Requests</a>.
+    When implementing the callback yourself, you could use something like <a href="https://www.encode.io/httpx/" target="_blank">HTTPX</a> or <a href="https://requests.readthedocs.io/" class="external-link" target="_blank">Requests</a>.
 
 ## Write the callback documentation code
 
@@ -110,11 +110,11 @@ It should look just like a normal FastAPI *path operation*:
 There are 2 main differences from a normal *path operation*:
 
 * It doesn't need to have any actual code, because your app will never call this code. It's only used to document the *external API*. So, the function could just have `pass`.
-* The *path* can contain an <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#key-expression" target="_blank">OpenAPI 3 expression</a> (see more below) where it can use variables with parameters and parts of the original request sent to *your API*.
+* The *path* can contain an <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#key-expression" class="external-link" target="_blank">OpenAPI 3 expression</a> (see more below) where it can use variables with parameters and parts of the original request sent to *your API*.
 
 ### The callback path expression
 
-The callback *path* can have an <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#key-expression" target="_blank">OpenAPI 3 expression</a> that can contain parts of the original request sent to *your API*.
+The callback *path* can have an <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#key-expression" class="external-link" target="_blank">OpenAPI 3 expression</a> that can contain parts of the original request sent to *your API*.
 
 In this case, it's the `str`:
 
@@ -179,7 +179,7 @@ Now use the parameter `callbacks` in *your API's path operation decorator* to pa
 
 ### Check the docs
 
-Now you can start your app with Uvicorn and go to <a href="http://127.0.0.1:8000/docs" target="_blank">http://127.0.0.1:8000/docs</a>.
+Now you can start your app with Uvicorn and go to <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 
 You will see your docs including a "Callback" section for your *path operation* that shows how the *external API* should look like:
 

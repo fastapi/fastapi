@@ -44,7 +44,6 @@ Let's say you have a file structure like this:
 * The file `app/routers/users.py` is beside the `app/routers/__init__.py`.
     * So, it's a submodule: `app.routers.users`.
 
-
 ## `APIRouter`
 
 Let's say the file dedicated to handling just users is the submodule at `/app/routers/users.py`.
@@ -55,7 +54,6 @@ But it's still part of the same **FastAPI** application/web API (it's part of th
 
 You can create the *path operations* for that module using `APIRouter`.
 
-
 ### Import `APIRouter`
 
 You import it and create an "instance" the same way you would with the class `FastAPI`:
@@ -63,7 +61,6 @@ You import it and create an "instance" the same way you would with the class `Fa
 ```Python hl_lines="1 3"
 {!./src/bigger_applications/app/routers/users.py!}
 ```
-
 
 ### Path operations with `APIRouter`
 
@@ -85,7 +82,6 @@ All the same parameters, responses, dependencies, tags, etc.
     In this example, the variable is called `router`, but you can name it however you want.
 
 We are going to include this `APIrouter` in the main `FastAPI` app, but first, let's add another `APIRouter`.
-
 
 ## Another module with `APIRouter`
 
@@ -144,7 +140,6 @@ We import the other submodules that have `APIRouter`s:
 
 As the file `app/routers/items.py` is part of the same Python package, we can import it using "dot notation".
 
-
 ### How the importing works
 
 The section:
@@ -172,7 +167,7 @@ from app.routers import items, users
 
     The second version is an "absolute import".
 
-    To learn more about Python Packages and Modules, read <a href="https://docs.python.org/3/tutorial/modules.html" target="_blank">the official Python documentation about Modules</a>.
+    To learn more about Python Packages and Modules, read <a href="https://docs.python.org/3/tutorial/modules.html" class="external-link" target="_blank">the official Python documentation about Modules</a>.
 
 ### Avoid name collisions
 
@@ -301,7 +296,7 @@ Now, run `uvicorn`, using the module `app.main` and the variable `app`:
 uvicorn app.main:app --reload
 ```
 
-And open the docs at <a href="http://127.0.0.1:8000/docs" target="_blank">http://127.0.0.1:8000/docs</a>.
+And open the docs at <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 
 You will see the automatic API docs, including the paths from all the submodules, using the correct paths (and prefixes) and the correct tags:
 

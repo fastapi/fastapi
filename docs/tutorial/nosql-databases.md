@@ -1,6 +1,6 @@
 **FastAPI** can also be integrated with any <abbr title="Distributed database (Big Data), also 'Not Only SQL'">NoSQL</abbr>.
 
-Here we'll see an example using **<a href="https://www.couchbase.com/" target="_blank">Couchbase</a>**, a <abbr title="Document here refers to a JSON object (a dict), with keys and values, and those values can also be other JSON objects, arrays (lists), numbers, strings, booleans, etc.">document</abbr> based NoSQL database.
+Here we'll see an example using **<a href="https://www.couchbase.com/" class="external-link" target="_blank">Couchbase</a>**, a <abbr title="Document here refers to a JSON object (a dict), with keys and values, and those values can also be other JSON objects, arrays (lists), numbers, strings, booleans, etc.">document</abbr> based NoSQL database.
 
 You can adapt it to any other NoSQL database like:
 
@@ -11,7 +11,7 @@ You can adapt it to any other NoSQL database like:
 * **ElasticSearch**, etc.
 
 !!! tip
-    There is an official project generator with **FastAPI** and **Couchbase**, all based on **Docker**, including a frontend and more tools: <a href="https://github.com/tiangolo/full-stack-fastapi-couchbase" target="_blank">https://github.com/tiangolo/full-stack-fastapi-couchbase</a>
+    There is an official project generator with **FastAPI** and **Couchbase**, all based on **Docker**, including a frontend and more tools: <a href="https://github.com/tiangolo/full-stack-fastapi-couchbase" class="external-link" target="_blank">https://github.com/tiangolo/full-stack-fastapi-couchbase</a>
 
 ## Import Couchbase components
 
@@ -84,9 +84,8 @@ We don't create it as a subclass of Pydantic's `BaseModel` but as a subclass of 
 
 !!! note
     Notice that we have a `hashed_password` and a `type` field that will be stored in the database.
-    
-    But it is not part of the general `User` model (the one we will return in the path operation).
 
+    But it is not part of the general `User` model (the one we will return in the path operation).
 
 ## Get the user
 
@@ -104,14 +103,14 @@ By creating a function that is only dedicated to getting your user from a `usern
 ```
 
 ### f-strings
-    
-If you are not familiar with the `f"userprofile::{username}"`, it is a Python "<a href="https://docs.python.org/3/glossary.html#term-f-string" target="_blank">f-string</a>".
+
+If you are not familiar with the `f"userprofile::{username}"`, it is a Python "<a href="https://docs.python.org/3/glossary.html#term-f-string" class="external-link" target="_blank">f-string</a>".
 
 Any variable that is put inside of `{}` in an f-string will be expanded / injected in the string.
 
 ### `dict` unpacking
 
-If you are not familiar with the `UserInDB(**result.value)`, <a href="https://docs.python.org/3/glossary.html#term-argument" target="_blank">it is using `dict` "unpacking"</a>.
+If you are not familiar with the `UserInDB(**result.value)`, <a href="https://docs.python.org/3/glossary.html#term-argument" class="external-link" target="_blank">it is using `dict` "unpacking"</a>.
 
 It will take the `dict` at `result.value`, and take each of its keys and values and pass them as key-values to `UserInDB` as keyword arguments.
 
@@ -140,7 +139,7 @@ UserInDB(username="johndoe", hashed_password="some_hash")
 
 ### Create the path operation function
 
-As our code is calling Couchbase and we are not using the <a href="https://docs.couchbase.com/python-sdk/2.5/async-programming.html#asyncio-python-3-5" target="_blank">experimental Python <code>await</code> support</a>, we should declare our function with normal `def` instead of `async def`.
+As our code is calling Couchbase and we are not using the <a href="https://docs.couchbase.com/python-sdk/2.5/async-programming.html#asyncio-python-3-5" class="external-link" target="_blank">experimental Python <code>await</code> support</a>, we should declare our function with normal `def` instead of `async def`.
 
 Also, Couchbase recommends not using a single `Bucket` object in multiple "<abbr title="A sequence of code being executed by the program, while at the same time, or at intervals, there can be others being executed too.">thread</abbr>s", so, we can get just get the bucket directly and pass it to our utility functions:
 

@@ -1,4 +1,4 @@
-<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS" target="_blank">CORS or "Cross-Origin Resource Sharing"</a> refers to the situations when a frontend running in a browser has JavaScript code that communicates with a backend, and the backend is in a different "origin" than the frontend.
+<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS" class="external-link" target="_blank">CORS or "Cross-Origin Resource Sharing"</a> refers to the situations when a frontend running in a browser has JavaScript code that communicates with a backend, and the backend is in a different "origin" than the frontend.
 
 ## Origin
 
@@ -32,7 +32,7 @@ So, for everything to work correctly, it's better to specify explicitly the allo
 
 ## Use `CORSMiddleware`
 
-You can configure it in your **FastAPI** application using Starlette's <a href="https://www.starlette.io/middleware/#corsmiddleware" target="_blank">`CORSMiddleware`</a>.
+You can configure it in your **FastAPI** application using Starlette's <a href="https://www.starlette.io/middleware/#corsmiddleware" class="external-link" target="_blank">`CORSMiddleware`</a>.
 
 * Import it from Starlette.
 * Create a list of allowed origins (as strings).
@@ -50,6 +50,6 @@ You can also specify if your backend allows:
 
 ## More info
 
-For more details of what you can specify in `CORSMiddleware`, check <a href="https://www.starlette.io/middleware/#corsmiddleware" target="_blank">Starlette's `CORSMiddleware` docs</a>.
+For more details of what you can specify in `CORSMiddleware`, check <a href="https://www.starlette.io/middleware/#corsmiddleware" class="external-link" target="_blank">Starlette's `CORSMiddleware` docs</a>.
 
-For more info about <abbr title="Cross-Origin Resource Sharing">CORS</abbr>, check the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS" target="_blank">Mozilla CORS documentation</a>.
+For more info about <abbr title="Cross-Origin Resource Sharing">CORS</abbr>, check the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS" class="external-link" target="_blank">Mozilla CORS documentation</a>.

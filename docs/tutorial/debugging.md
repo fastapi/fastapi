@@ -65,7 +65,7 @@ So, the line:
 will not be executed.
 
 !!! info
-    For more information, check <a href="https://docs.python.org/3/library/__main__.html" target="_blank">the official Python docs</a>.
+    For more information, check <a href="https://docs.python.org/3/library/__main__.html" class="external-link" target="_blank">the official Python docs</a>.
 
 ## Run your code with your debugger
 

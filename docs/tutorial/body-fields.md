@@ -11,7 +11,6 @@ First, you have to import it:
 !!! warning
     Notice that `Field` is imported directly from `pydantic`, not from `fastapi` as are all the rest (`Query`, `Path`, `Body`, etc).
 
-
 ## Declare model attributes
 
 You can then use `Field` with model attributes:
@@ -45,7 +44,7 @@ If you know JSON Schema and want to add extra information apart from what we hav
 !!! warning
     Have in mind that extra parameters passed won't add any validation, only annotation, for documentation purposes.
 
-For example, you can use that functionality to pass a <a href="http://json-schema.org/latest/json-schema-validation.html#rfc.section.8.5" target="_blank">JSON Schema example</a> field to a body request JSON Schema:
+For example, you can use that functionality to pass a <a href="http://json-schema.org/latest/json-schema-validation.html#rfc.section.8.5" class="external-link" target="_blank">JSON Schema example</a> field to a body request JSON Schema:
 
 ```Python hl_lines="20 21 22 23 24 25"
 {!./src/body_fields/tutorial002.py!}

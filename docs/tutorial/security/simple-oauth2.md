@@ -39,7 +39,6 @@ They are normally used to declare specific security permissions, for example:
 
     For OAuth2 they are just strings.
 
-
 ## Code to get the `username` and `password`
 
 Now let's use the utilities provided by **FastAPI** to handle this.
@@ -69,11 +68,11 @@ First, import `OAuth2PasswordRequestForm`, and use it as a dependency with `Depe
 
 !!! info
     The `OAuth2PasswordRequestForm` is not a special class for **FastAPI** as is `OAuth2PasswordBearer`.
-    
+
     `OAuth2PasswordBearer` makes **FastAPI** know that it is a security scheme. So it is added that way to OpenAPI.
-    
+
     But `OAuth2PasswordRequestForm` is just a class dependency that you could have written yourself, or you could have declared `Form` parameters directly.
-    
+
     But as it's a common use case, it is provided by **FastAPI** directly, just to make it easier.
 
 ### Use the form data
@@ -111,7 +110,7 @@ Whenever you pass exactly the same content (exactly the same password) you get e
 
 But you cannot convert from the gibberish back to the password.
 
-##### What for?
+##### Why use password hashing
 
 If your database is stolen, the thief won't have your users' plaintext passwords, only the hashes.
 
@@ -124,7 +123,7 @@ So, the thief won't be able to try to use that password in another system (as ma
 #### About `**user_dict`
 
 `UserInDB(**user_dict)` means:
-    
+
 *Pass the keys and values of the `user_dict` directly as key-value arguments, equivalent to:*
 
 ```Python
@@ -201,7 +200,7 @@ So, in our endpoint, we will only get a user if the user exists, was correctly a
 
 ## See it in action
 
-Open the interactive docs: <a href="http://127.0.0.1:8000/docs" target="_blank">http://127.0.0.1:8000/docs</a>.
+Open the interactive docs: <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 
 ### Authenticate
 

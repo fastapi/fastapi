@@ -64,4 +64,4 @@ And because you are using `StaticFiles`, that CSS file would be served automatic
 
 ## More details
 
-For more details, including how to test templates, check <a href="https://www.starlette.io/templates/" target="_blank">Starlette's docs on templates</a>.
+For more details, including how to test templates, check <a href="https://www.starlette.io/templates/" class="external-link" target="_blank">Starlette's docs on templates</a>.

@@ -1,4 +1,4 @@
-You can use <a href="https://www.docker.com/" target="_blank">**Docker**</a> for deployment. It has several advantages like security, replicability, development simplicity, etc.
+You can use <a href="https://www.docker.com/" class="external-link" target="_blank">**Docker**</a> for deployment. It has several advantages like security, replicability, development simplicity, etc.
 
 In this section you'll see instructions and links to guides to know how to:
 
@@ -11,20 +11,18 @@ In this section you'll see instructions and links to guides to know how to:
 
 You can also easily use **FastAPI** in a standard server directly too (without Docker).
 
-
 ## Docker
 
 If you are using Docker, you can use the official Docker image:
 
-### <a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker" target="_blank">tiangolo/uvicorn-gunicorn-fastapi</a>
+### <a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker" class="external-link" target="_blank">tiangolo/uvicorn-gunicorn-fastapi</a>
 
 This image has an "auto-tuning" mechanism included, so that you can just add your code and get very high performance automatically. And without making sacrifices.
 
 But you can still change and update all the configurations with environment variables or configuration files.
 
 !!! tip
-    To see all the configurations and options, go to the Docker image page: <a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker" target="_blank">tiangolo/uvicorn-gunicorn-fastapi</a>.
-
+    To see all the configurations and options, go to the Docker image page: <a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker" class="external-link" target="_blank">tiangolo/uvicorn-gunicorn-fastapi</a>.
 
 ### Create a `Dockerfile`
 
@@ -115,10 +113,9 @@ docker run -d --name mycontainer -p 80:80 myimage
 
 Now you have an optimized FastAPI server in a Docker container. Auto-tuned for your current server (and number of CPU cores).
 
-
 ### Check it
 
-You should be able to check it in your Docker container's URL, for example: <a href="http://192.168.99.100/items/5?q=somequery" target="_blank">http://192.168.99.100/items/5?q=somequery</a> or <a href="http://127.0.0.1/items/5?q=somequery" target="_blank">http://127.0.0.1/items/5?q=somequery</a> (or equivalent, using your Docker host).
+You should be able to check it in your Docker container's URL, for example: <a href="http://192.168.99.100/items/5?q=somequery" class="external-link" target="_blank">http://192.168.99.100/items/5?q=somequery</a> or <a href="http://127.0.0.1/items/5?q=somequery" class="external-link" target="_blank">http://127.0.0.1/items/5?q=somequery</a> (or equivalent, using your Docker host).
 
 You will see something like:
 
@@ -126,24 +123,21 @@ You will see something like:
 {"item_id": 5, "q": "somequery"}
 ```
 
-
 ### Interactive API docs
 
-Now you can go to <a href="http://192.168.99.100/docs" target="_blank">http://192.168.99.100/docs</a> or <a href="http://127.0.0.1/docs" target="_blank">http://127.0.0.1/docs</a> (or equivalent, using your Docker host).
+Now you can go to <a href="http://192.168.99.100/docs" class="external-link" target="_blank">http://192.168.99.100/docs</a> or <a href="http://127.0.0.1/docs" class="external-link" target="_blank">http://127.0.0.1/docs</a> (or equivalent, using your Docker host).
 
-You will see the automatic interactive API documentation (provided by <a href="https://github.com/swagger-api/swagger-ui" target="_blank">Swagger UI</a>):
+You will see the automatic interactive API documentation (provided by <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a>):
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-01-swagger-ui-simple.png)
 
-
 ### Alternative API docs
 
-And you can also go to <a href="http://192.168.99.100/redoc" target="_blank">http://192.168.99.100/redoc</a> or <a href="http://127.0.0.1/redoc" target="_blank">http://127.0.0.1/redoc</a> (or equivalent, using your Docker host).
+And you can also go to <a href="http://192.168.99.100/redoc" class="external-link" target="_blank">http://192.168.99.100/redoc</a> or <a href="http://127.0.0.1/redoc" class="external-link" target="_blank">http://127.0.0.1/redoc</a> (or equivalent, using your Docker host).
 
-You will see the alternative automatic documentation (provided by <a href="https://github.com/Rebilly/ReDoc" target="_blank">ReDoc</a>):
+You will see the alternative automatic documentation (provided by <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a>):
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
-
 
 ## HTTPS
 
@@ -156,7 +150,7 @@ But it is way more complex than that.
 !!! tip
     If you are in a hurry or don't care, continue with the next section for step by step instructions to set everything up.
 
-To learn the basics of HTTPS, from a consumer perspective, check <a href="https://howhttps.works/" target="_blank">https://howhttps.works/</a>.
+To learn the basics of HTTPS, from a consumer perspective, check <a href="https://howhttps.works/" class="external-link" target="_blank">https://howhttps.works/</a>.
 
 Now, from a developer's perspective, here are several things to have in mind while thinking about HTTPS:
 
@@ -174,15 +168,13 @@ Now, from a developer's perspective, here are several things to have in mind whi
 * By default, that would mean that you can only have one HTTPS certificate per IP address.
     * No matter how big your server is or how small each application you have on it might be.
     * There is a solution to this, however.
-* There's an extension to the TLS protocol (the one handling the encryption at the TCP level, before HTTP) called <a href="https://en.wikipedia.org/wiki/Server_Name_Indication" target="_blank"><abbr title="Server Name Indication">SNI</abbr></a>.
+* There's an extension to the TLS protocol (the one handling the encryption at the TCP level, before HTTP) called <a href="https://en.wikipedia.org/wiki/Server_Name_Indication" class="external-link" target="_blank"><abbr title="Server Name Indication">SNI</abbr></a>.
     * This SNI extension allows one single server (with a single IP address) to have several HTTPS certificates and serve multiple HTTPS domains/applications.
     * For this to work, a single component (program) running on the server, listening on the public IP address, must have all the HTTPS certificates in the server.
 * After obtaining a secure connection, the communication protocol is still HTTP.
     * The contents are encrypted, even though they are being sent with the HTTP protocol.
 
-
-It is a common practice to have one program/HTTP server running on the server (the machine, host, etc.) and managing all the HTTPS parts : sending the decrypted HTTP requests to the actual HTTP application running in the same server (the **FastAPI** application, in this case), take the HTTP response from the application, encrypt it using the appropriate certificate and sending it back to the client using HTTPS. This server is often called a <a href="https://en.wikipedia.org/wiki/TLS_termination_proxy" target="_blank">TLS Termination Proxy</a>.
-
+It is a common practice to have one program/HTTP server running on the server (the machine, host, etc.) and managing all the HTTPS parts : sending the decrypted HTTP requests to the actual HTTP application running in the same server (the **FastAPI** application, in this case), take the HTTP response from the application, encrypt it using the appropriate certificate and sending it back to the client using HTTPS. This server is often called a <a href="https://en.wikipedia.org/wiki/TLS_termination_proxy" class="external-link" target="_blank">TLS Termination Proxy</a>.
 
 ### Let's Encrypt
 
@@ -190,7 +182,7 @@ Before Let's Encrypt, these HTTPS certificates were sold by trusted third-partie
 
 The process to acquire one of these certificates used to be cumbersome, require quite some paperwork and the certificates were quite expensive.
 
-But then <a href="https://letsencrypt.org/" target="_blank">Let's Encrypt</a> was created.
+But then <a href="https://letsencrypt.org/" class="external-link" target="_blank">Let's Encrypt</a> was created.
 
 It is a project from the Linux Foundation. It provides HTTPS certificates for free. In an automated way. These certificates use all the standard cryptographic security, and are short lived (about 3 months), so the security is actually better because of their reduced lifespan.
 
@@ -198,10 +190,9 @@ The domains are securely verified and the certificates are generated automatical
 
 The idea is to automate the acquisition and renewal of these certificates, so that you can have secure HTTPS, for free, forever.
 
-
 ### Traefik
 
-<a href="https://traefik.io/" target="_blank">Traefik</a> is a high performance reverse proxy / load balancer. It can do the "TLS Termination Proxy" job (apart from other features).
+<a href="https://traefik.io/" class="external-link" target="_blank">Traefik</a> is a high performance reverse proxy / load balancer. It can do the "TLS Termination Proxy" job (apart from other features).
 
 It has integration with Let's Encrypt. So, it can handle all the HTTPS parts, including certificate acquisition and renewal.
 
@@ -211,7 +202,6 @@ It also has integrations with Docker. So, you can declare your domains in each a
 
 With this information and tools, continue with the next section to combine everything.
 
-
 ## Docker Swarm mode cluster with Traefik and HTTPS
 
 You can have a Docker Swarm mode cluster set up in minutes (about 20 min) with a main Traefik handling HTTPS (including certificate acquisition and renewal).
@@ -220,8 +210,7 @@ By using Docker Swarm mode, you can start with a "cluster" of a single machine (
 
 To set up a Docker Swarm Mode cluster with Traefik and HTTPS handling, follow this guide:
 
-### <a href="https://medium.com/@tiangolo/docker-swarm-mode-and-traefik-for-a-https-cluster-20328dba6232" target="_blank">Docker Swarm Mode and Traefik for an HTTPS cluster</a>.
-
+### <a href="https://medium.com/@tiangolo/docker-swarm-mode-and-traefik-for-a-https-cluster-20328dba6232" class="external-link" target="_blank">Docker Swarm Mode and Traefik for an HTTPS cluster</a>
 
 ### Deploy a FastAPI application
 
@@ -233,20 +222,19 @@ You can generate a project in about 2 min.
 
 The generated project has instructions to deploy it, doing it takes another 2 min.
 
-
 ## Alternatively, deploy **FastAPI** without Docker
 
 You can deploy **FastAPI** directly without Docker too.
 
 You just need to install an ASGI compatible server like:
 
-* <a href="https://www.uvicorn.org/" target="_blank">Uvicorn</a>, a lightning-fast ASGI server, built on uvloop and httptools.
+* <a href="https://www.uvicorn.org/" class="external-link" target="_blank">Uvicorn</a>, a lightning-fast ASGI server, built on uvloop and httptools.
 
 ```bash
 pip install uvicorn
 ```
 
-* <a href="https://gitlab.com/pgjones/hypercorn" target="_blank">Hypercorn</a>, an ASGI server also compatible with HTTP/2.
+* <a href="https://gitlab.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>, an ASGI server also compatible with HTTP/2.
 
 ```bash
 pip install hypercorn
@@ -268,7 +256,7 @@ hypercorn main:app --bind 0.0.0.0:80
 
 You might want to set up some tooling to make sure it is restarted automatically if it stops.
 
-You might also want to install <a href="https://gunicorn.org/" target="_blank">Gunicorn</a> and <a href="https://www.uvicorn.org/#running-with-gunicorn" target="_blank">use it as a manager for Uvicorn</a>, or use Hypercorn with multiple workers.
+You might also want to install <a href="https://gunicorn.org/" class="external-link" target="_blank">Gunicorn</a> and <a href="https://www.uvicorn.org/#running-with-gunicorn" class="external-link" target="_blank">use it as a manager for Uvicorn</a>, or use Hypercorn with multiple workers.
 
 Making sure to fine-tune the number of workers, etc.
 

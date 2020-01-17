@@ -10,7 +10,7 @@ Let's imagine that you have a database `fake_db` that only receives JSON compati
 
 For example, it doesn't receive `datetime` objects, as those are not compatible with JSON.
 
-So, a `datetime` object would have to be converted to a `str` containing the data in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO format</a>.
+So, a `datetime` object would have to be converted to a `str` containing the data in <a href="https://en.wikipedia.org/wiki/ISO_8601" class="external-link" target="_blank">ISO format</a>.
 
 The same way, this database wouldn't receive a Pydantic model (an object with attributes), only a `dict`.
 
@@ -24,7 +24,7 @@ It receives an object, like a Pydantic model, and returns a JSON compatible vers
 
 In this example, it would convert the Pydantic model to a `dict`, and the `datetime` to a `str`.
 
-The result of calling it is something that can be encoded with the Python standard <a href="https://docs.python.org/3/library/json.html#json.dumps" target="_blank">`json.dumps()`</a>.
+The result of calling it is something that can be encoded with the Python standard <a href="https://docs.python.org/3/library/json.html#json.dumps" class="external-link" target="_blank">`json.dumps()`</a>.
 
 It doesn't return a large `str` containing the data in JSON format (as a string). It returns a Python standard data structure (e.g. a `dict`) with values and sub-values that are all compatible with JSON.
 

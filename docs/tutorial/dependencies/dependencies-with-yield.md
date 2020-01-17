@@ -14,13 +14,13 @@ To do this, use `yield` instead of `return`, and write the extra steps after.
     pip install async-exit-stack async-generator
     ```
 
-    This installs <a href="https://github.com/sorcio/async_exit_stack" target="_blank">async-exit-stack</a> and <a href="https://github.com/python-trio/async_generator" target="_blank">async-generator</a>.
+    This installs <a href="https://github.com/sorcio/async_exit_stack" class="external-link" target="_blank">async-exit-stack</a> and <a href="https://github.com/python-trio/async_generator" target="_blank">async-generator</a>.
 
 !!! note "Technical Details"
     Any function that is valid to use with:
 
-    * <a href="https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager" target="_blank">`@contextlib.contextmanager`</a> or 
-    * <a href="https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager" target="_blank">`@contextlib.asynccontextmanager`</a>
+    * <a href="https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager" class="external-link" target="_blank">`@contextlib.contextmanager`</a> or 
+    * <a href="https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager" class="external-link" target="_blank">`@contextlib.asynccontextmanager`</a>
 
     would be valid to use as a **FastAPI** dependency.
 
@@ -98,7 +98,7 @@ You can have any combinations of dependencies that you want.
 **FastAPI** will make sure everything is run in the correct order.
 
 !!! note "Technical Details"
-    This works thanks to Python's <a href="https://docs.python.org/3/library/contextlib.html" target="_blank">Context Managers</a>.
+    This works thanks to Python's <a href="https://docs.python.org/3/library/contextlib.html" class="external-link" target="_blank">Context Managers</a>.
 
     **FastAPI** uses them internally to achieve this.
 
@@ -108,7 +108,7 @@ You can have any combinations of dependencies that you want.
 
 "Context Managers" are any of those Python objects that you can use in a `with` statement.
 
-For example, <a href="https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files" target="_blank">you can use `with` to read a file</a>:
+For example, <a href="https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files" class="external-link" target="_blank">you can use `with` to read a file</a>:
 
 ```Python
 with open("./somefile.txt") as f:
@@ -129,7 +129,7 @@ When you create a dependency with `yield`, **FastAPI** will internally convert i
 
     If you are just starting with **FastAPI** you might want to skip it for now.
 
-In Python, you can create context managers by <a href="https://docs.python.org/3/reference/datamodel.html#context-managers" target="_blank">creating a class with two methods: `__enter__()` and `__exit__()`</a>.
+In Python, you can create context managers by <a href="https://docs.python.org/3/reference/datamodel.html#context-managers" class="external-link" target="_blank">creating a class with two methods: `__enter__()` and `__exit__()`</a>.
 
 You can also use them with **FastAPI** dependencies with `yield` by using
 `with` or `async with` statements inside of the dependency function:
@@ -141,8 +141,8 @@ You can also use them with **FastAPI** dependencies with `yield` by using
 !!! tip
     Another way to create a context manager is with:
 
-    * <a href="https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager" target="_blank">`@contextlib.contextmanager`</a> or 
-    * <a href="https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager" target="_blank">`@contextlib.asynccontextmanager`</a>
+    * <a href="https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager" class="external-link" target="_blank">`@contextlib.contextmanager`</a> or 
+    * <a href="https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager" class="external-link" target="_blank">`@contextlib.asynccontextmanager`</a>
 
     using them to decorate a function with a single `yield`.
 

@@ -32,12 +32,12 @@ Here, the `shutdown` event handler function will write a text line `"Application
 
 !!! tip
     Notice that in this case we are using a standard Python `open()` function that interacts with a file.
-    
+
     So, it involves I/O (input/output), that requires "waiting" for things to be written to disk.
-    
+
     But `open()` doesn't use `async` and `await`.
-    
+
     So, we declare the event handler function with standard `def` instead of `async def`.
 
 !!! info
-    You can read more about these event handlers in <a href="https://www.starlette.io/events/" target="_blank">Starlette's  Events' docs</a>.
+    You can read more about these event handlers in <a href="https://www.starlette.io/events/" class="external-link" target="_blank">Starlette's  Events' docs</a>.

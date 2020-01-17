@@ -10,7 +10,7 @@ It might be useful, for example, to return custom headers or cookies.
 
 ## Starlette `Response`
 
-In fact, you can return any <a href="https://www.starlette.io/responses/" target="_blank">Starlette `Response`</a> or any sub-class of it.
+In fact, you can return any <a href="https://www.starlette.io/responses/" class="external-link" target="_blank">Starlette `Response`</a> or any sub-class of it.
 
 !!! tip
     `JSONResponse` itself is a sub-class of `Response`.
@@ -42,9 +42,9 @@ The example above shows all the parts you need, but it's not very useful yet, as
 
 Now, let's see how you could use that to return a custom response.
 
-Let's say you want to return a response that is not available in the default <a href="https://www.starlette.io/responses/" target="_blank">Starlette `Response`s</a>.
+Let's say you want to return a response that is not available in the default <a href="https://www.starlette.io/responses/" class="external-link" target="_blank">Starlette `Response`s</a>.
 
-Let's say that you want to return <a href="https://en.wikipedia.org/wiki/XML" target="_blank">XML</a>.
+Let's say that you want to return <a href="https://en.wikipedia.org/wiki/XML" class="external-link" target="_blank">XML</a>.
 
 You could put your XML content in a string, put it in a Starlette Response, and return it:
 

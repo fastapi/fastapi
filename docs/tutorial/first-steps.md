@@ -32,7 +32,7 @@ That last line shows the URL where your app is being served, in your local machi
 
 ### Check it
 
-Open your browser at <a href="http://127.0.0.1:8000" target="_blank">http://127.0.0.1:8000</a>. 
+Open your browser at <a href="http://127.0.0.1:8000" class="external-link" target="_blank">http://127.0.0.1:8000</a>.
 
 You will see the JSON response as:
 
@@ -42,18 +42,17 @@ You will see the JSON response as:
 
 ### Interactive API docs
 
-Now go to <a href="http://127.0.0.1:8000/docs" target="_blank">http://127.0.0.1:8000/docs</a>. 
+Now go to <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 
-You will see the automatic interactive API documentation (provided by <a href="https://github.com/swagger-api/swagger-ui" target="_blank">Swagger UI</a>):
+You will see the automatic interactive API documentation (provided by <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a>):
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-01-swagger-ui-simple.png)
 
-
 ### Alternative API docs
 
-And now, go to <a href="http://127.0.0.1:8000/redoc" target="_blank">http://127.0.0.1:8000/redoc</a>.
+And now, go to <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>.
 
-You will see the alternative automatic documentation (provided by <a href="https://github.com/Rebilly/ReDoc" target="_blank">ReDoc</a>):
+You will see the alternative automatic documentation (provided by <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a>):
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
@@ -81,11 +80,11 @@ In that case, it would mean the JSON attributes, and data types they have, etc.
 
 OpenAPI defines an API schema for your API. And that schema includes definitions (or "schemas") of the data sent and received by your API using **JSON Schema**, the standard for JSON data schemas.
 
-#### Check it
+#### Check the `openapi.json`
 
 If you are curious about how the raw OpenAPI schema looks like, it is just an automatically generated JSON with the descriptions of all your API.
 
-You can see it directly at: <a href="http://127.0.0.1:8000/openapi.json" target="_blank">http://127.0.0.1:8000/openapi.json</a>.
+You can see it directly at: <a href="http://127.0.0.1:8000/openapi.json" class="external-link" target="_blank">http://127.0.0.1:8000/openapi.json</a>.
 
 It will show a JSON starting with something like:
 
@@ -110,7 +109,7 @@ It will show a JSON starting with something like:
 ...
 ```
 
-#### What for?
+#### What is OpenAPI for
 
 This OpenAPI schema is what powers the 2 interactive documentation systems included.
 
@@ -256,7 +255,7 @@ And the more exotic ones:
 
 !!! tip
     You are free to use each operation (HTTP method) as you wish.
-    
+
     **FastAPI** doesn't enforce any specific meaning.
 
     The information here is presented as a guideline, not a requirement.
@@ -275,7 +274,7 @@ This is our "**path operation function**":
 {!./src/first_steps/tutorial001.py!}
 ```
 
-This is a Python function. 
+This is a Python function.
 
 It will be called by **FastAPI** whenever it receives a request to the URL "`/`" using `GET`.
 
@@ -303,7 +302,6 @@ You can return a `dict`, `list`, singular values as `str`, `int`, etc.
 You can also return Pydantic models (you'll see more about that later).
 
 There are many other objects and models that will be automatically converted to JSON (including ORMs, etc). Try using your favorite ones, it's highly probable that they are already supported.
-
 
 ## Recap
 

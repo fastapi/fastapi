@@ -5,7 +5,6 @@
 
     If you already know that you need to modify the generated OpenAPI schema, continue reading.
 
-
 There are some cases where you might need to modify the generated OpenAPI schema.
 
 In this section you will see how.
@@ -37,7 +36,7 @@ And that function `get_openapi()` receives as parameters:
 
 Using the information above, you can use the same utility function to generate the OpenAPI schema and override each part that you need.
 
-For example, let's add <a href="https://github.com/Rebilly/ReDoc/blob/master/docs/redoc-vendor-extensions.md#x-logo" target="_blank">ReDoc's OpenAPI extension to include a custom logo</a>.
+For example, let's add <a href="https://github.com/Rebilly/ReDoc/blob/master/docs/redoc-vendor-extensions.md#x-logo" class="external-link" target="_blank">ReDoc's OpenAPI extension to include a custom logo</a>.
 
 ### Normal **FastAPI**
 
@@ -85,7 +84,7 @@ Now you can replace the `.openapi()` method with your new function.
 
 ### Check it
 
-Once you go to <a href="http://127.0.0.1:8000/redoc" target="_blank">http://127.0.0.1:8000/redoc</a> you will see that you are using your custom logo (in this example, **FastAPI**'s logo):
+Once you go to <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a> you will see that you are using your custom logo (in this example, **FastAPI**'s logo):
 
 <img src="/img/tutorial/extending-openapi/image01.png">
 
@@ -132,12 +131,12 @@ You can probably right-click each link and select an option similar to `Save lin
 
 **Swagger UI** uses the files:
 
-* <a href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@3/swagger-ui-bundle.js">`swagger-ui-bundle.js`</a>
-* <a href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@3/swagger-ui.css" target="_blank">`swagger-ui.css`</a>
+* <a href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@3/swagger-ui-bundle.js" class="external-link" target="_blank">`swagger-ui-bundle.js`</a>
+* <a href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@3/swagger-ui.css" class="external-link" target="_blank">`swagger-ui.css`</a>
 
 And **ReDoc** uses the file:
 
-* <a href="https://cdn.jsdelivr.net/npm/redoc@next/bundles/redoc.standalone.js" target="_blank">`redoc.standalone.js`</a>
+* <a href="https://cdn.jsdelivr.net/npm/redoc@next/bundles/redoc.standalone.js" class="external-link" target="_blank">`redoc.standalone.js`</a>
 
 After that, your file structure could look like:
 
@@ -171,7 +170,7 @@ pip install aiofiles
 
 ### Test the static files
 
-Start your application and go to <a href="http://127.0.0.1:8000/static/redoc.standalone.js" target="_blank">http://127.0.0.1:8000/static/redoc.standalone.js</a>.
+Start your application and go to <a href="http://127.0.0.1:8000/static/redoc.standalone.js" class="external-link" target="_blank">http://127.0.0.1:8000/static/redoc.standalone.js</a>.
 
 You should see a very long JavaScript file for **ReDoc**.
 
@@ -238,6 +237,6 @@ Now, to be able to test that everything works, create a path operation:
 
 ### Test it
 
-Now, you should be able to disconnect your WiFi, go to your docs at <a href="http://127.0.0.1:8000/docs" target="_blank">http://127.0.0.1:8000/docs</a>, and reload the page.
+Now, you should be able to disconnect your WiFi, go to your docs at <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>, and reload the page.
 
 And even without Internet, you would be able to see the docs for your API and interact with it.

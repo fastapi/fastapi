@@ -1,4 +1,4 @@
-You can serve static files automatically from a directory using <a href="https://www.starlette.io/staticfiles/" target="_blank">Starlette's Static Files</a>.
+You can serve static files automatically from a directory using <a href="https://www.starlette.io/staticfiles/" class="external-link" target="_blank">Starlette's Static Files</a>.
 
 ## Install `aiofiles`
 
@@ -31,4 +31,4 @@ All these parameters can be different than "`static`", adjust them with the need
 
 ## More info
 
-For more details and options check <a href="https://www.starlette.io/staticfiles/" target="_blank">Starlette's docs about Static Files</a>.
+For more details and options check <a href="https://www.starlette.io/staticfiles/" class="external-link" target="_blank">Starlette's docs about Static Files</a>.

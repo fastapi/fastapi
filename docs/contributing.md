@@ -28,7 +28,7 @@ Or in Windows' PowerShell:
 $ .\env\Scripts\Activate.ps1
 ```
 
-Or if you use Bash for Windows (e.g. [Git Bash](https://gitforwindows.org/){.external-link target=_blank}):
+Or if you use Bash for Windows (e.g. <a href="https://gitforwindows.org/" class="external-link" target="_blank">Git Bash</a>):
 
 ```console
 $ source ./env/Scripts/activate
@@ -58,7 +58,7 @@ some/directory/fastapi/env/bin/pip
 
 ### Flit
 
-**FastAPI** uses <a href="https://flit.readthedocs.io/en/latest/index.html" target="_blank">Flit</a> to build, package and publish the project.
+**FastAPI** uses <a href="https://flit.readthedocs.io/en/latest/index.html" class="external-link" target="_blank">Flit</a> to build, package and publish the project.
 
 After activating the environment  as described above, install `flit`:
 
@@ -112,7 +112,7 @@ As it runs one command after the other and modifies and reverts many files, it t
 
 ## Docs
 
-The documentation uses <a href="https://www.mkdocs.org/" target="_blank">MkDocs</a>.
+The documentation uses <a href="https://www.mkdocs.org/" class="external-link" target="_blank">MkDocs</a>.
 
 All the documentation is in Markdown format in the directory `./docs`.
 

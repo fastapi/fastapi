@@ -82,7 +82,7 @@ But in case you needed it for an advanced scenario, you can add custom headers:
 
 ## Install custom exception handlers
 
-You can add custom exception handlers with <a href="https://www.starlette.io/exceptions/" target="_blank">the same exception utilities from Starlette</a>.
+You can add custom exception handlers with <a href="https://www.starlette.io/exceptions/" class="external-link" target="_blank">the same exception utilities from Starlette</a>.
 
 Let's say you have a custom exception `UnicornException` that you (or a library you use) might `raise`.
 
@@ -156,7 +156,7 @@ path -> item_id
 !!! warning
     These are technical details that you might skip if it's not important for you now.
 
-`RequestValidationError` is a sub-class of Pydantic's <a href="https://pydantic-docs.helpmanual.io/#error-handling" target="_blank">`ValidationError`</a>.
+`RequestValidationError` is a sub-class of Pydantic's <a href="https://pydantic-docs.helpmanual.io/#error-handling" class="external-link" target="_blank">`ValidationError`</a>.
 
 **FastAPI** uses it so that, if you use a Pydantic model in `response_model`, and your data has an error, you will see the error in your log.
 
