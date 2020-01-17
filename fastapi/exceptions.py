@@ -21,7 +21,7 @@ WebSocketErrorModel = create_model("WebSocket")
 
 
 class RequestValidationError(ValidationError):
-    def __init__(self, errors: Sequence[ErrorList], body: Any) -> None:
+    def __init__(self, errors: Sequence[ErrorList], *, body: Any = None) -> None:
         self.body = body
         if PYDANTIC_1:
             super().__init__(errors, RequestErrorModel)
