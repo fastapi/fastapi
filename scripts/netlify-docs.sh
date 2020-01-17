@@ -9,6 +9,6 @@ cd -
 # Install Flit to be able to install all
 python3.6 -m pip install --user flit
 # Install with Flit
-python3.6 -m flit install --user --deps develop
+python3.6 -m flit install --user --extras doc
 # Finally, run mkdocs
 python3.6 -m mkdocs build
