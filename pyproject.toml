@@ -64,7 +64,11 @@ doc = [
 ]
 dev = [
     "pyjwt",
-    "passlib[bcrypt]"
+    "passlib[bcrypt]",
+    "autoflake",
+    "flake8",
+    "uvicorn",
+    "graphene"
 ]
 all = [
     "requests",
