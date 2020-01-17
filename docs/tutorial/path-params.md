@@ -130,7 +130,7 @@ And create class attributes with fixed values, those fixed values will be the av
 ```
 
 !!! info
-    <a href="https://docs.python.org/3/library/enum.html" <a href="https://docs.python.org/3/library/enum.html" target="_blank">Enumerations (or enums) are available in Python</a> since version 3.4. target="_blank">Enumerations (or enums) are available in Python</a> since version 3.4.
+    <a href="https://docs.python.org/3/library/enum.html" class="external-link" target="_blank">Enumerations (or enums) are available in Python</a> since version 3.4.
 
 !!! tip
     If you are wondering, "AlexNet", "ResNet", and "LeNet" are just names of Machine Learning <abbr title="Technically, Deep Learning model architectures">models</abbr>.
