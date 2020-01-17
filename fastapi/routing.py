@@ -171,6 +171,12 @@ def get_websocket_app(
     return app
 
 
+def get_callable_return_type(func: Callable) -> Optional[Type[Any]]:
+    sig = inspect.signature(func)
+    has_return_annotation = sig.return_annotation is not inspect.Signature.empty
+    return sig.return_annotation if has_return_annotation else None
+
+
 class APIWebSocketRoute(routing.WebSocketRoute):
     def __init__(
         self,
@@ -230,6 +236,9 @@ class APIRoute(routing.Route):
         self.unique_id = generate_operation_id_for_path(
             name=self.name, path=self.path_format, method=list(methods)[0]
         )
+        if response_model is None:
+            # We try to fallback to the response annotation in case response model not defined
+            response_model = get_callable_response_type(endpoint)
         self.response_model = response_model
         if self.response_model:
             assert (
