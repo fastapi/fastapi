@@ -2,8 +2,10 @@ import time
 from typing import List
 
 from fastapi import Depends, FastAPI, HTTPException
+from starlette.requests import Request
 
 from . import crud, database, models, schemas
+from .database import db_state_default
 
 database.db.connect()
 database.db.create_tables([models.User, models.Item])
@@ -11,8 +13,9 @@ database.db.close()
 
 app = FastAPI()
 
+sleep_time = 10
 
-# Dependency
+
 def get_db():
     try:
         database.db.connect()
@@ -20,6 +23,14 @@ def get_db():
     finally:
         if not database.db.is_closed():
             database.db.close()
+
+
+@app.middleware("http")
+async def reset_db_middleware(request: Request, call_next):
+    database.db._state._state.set(db_state_default.copy())
+    database.db._state.reset()
+    response = await call_next(request)
+    return response
 
 
 @app.post("/users/", response_model=schemas.User, dependencies=[Depends(get_db)])
@@ -65,6 +76,8 @@ def read_items(skip: int = 0, limit: int = 100):
     "/slowusers/", response_model=List[schemas.User], dependencies=[Depends(get_db)]
 )
 def read_slow_users(skip: int = 0, limit: int = 100):
-    time.sleep(15)  # Fake long processing request
+    global sleep_time
+    sleep_time = max(0, sleep_time - 1)
+    time.sleep(sleep_time)  # Fake long processing request
     users = crud.get_users(skip=skip, limit=limit)
     return users
