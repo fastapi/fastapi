@@ -13,3 +13,4 @@ coverage.xml
 test.db
 log.txt
 Pipfile.lock
+env3.*
