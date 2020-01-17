@@ -176,6 +176,47 @@ For example, you could want to return a plain text response instead of JSON for 
 {!./src/handling_errors/tutorial004.py!}
 ```
 
+### Use the `RequestValidationError` body
+
+The `RequestValidationError` contains the `body` it received with invalid data.
+
+You could use it while developing your app to log the body and debug it, return it to the user, etc.
+
+```Python hl_lines="16"
+{!./src/handling_errors/tutorial005.py!}
+```
+
+Now try sending an invalid item like:
+
+```JSON
+{
+  "title": "towel",
+  "size": "XL"
+}
+```
+
+You will receive a response telling you that the data is invalid containing the received body:
+
+```JSON hl_lines="13 14 15 16"
+{
+  "detail": [
+    {
+      "loc": [
+        "body",
+        "item",
+        "size"
+      ],
+      "msg": "value is not a valid integer",
+      "type": "type_error.integer"
+    }
+  ],
+  "body": {
+    "title": "towel",
+    "size": "XL"
+  }
+}
+```
+
 #### FastAPI's `HTTPException` vs Starlette's `HTTPException`
 
 **FastAPI** has its own `HTTPException`.

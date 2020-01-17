@@ -16,7 +16,6 @@ Some use cases include:
 * Converting non-JSON request bodies to JSON (e.g. [`msgpack`](https://msgpack.org/index.html)).
 * Decompressing gzip-compressed request bodies.
 * Automatically logging all request bodies.
-* Accessing the request body in an exception handler.
 
 ## Handling custom request body encodings
 
@@ -71,6 +70,11 @@ But because of our changes in `GzipRequest.body`, the request body will be autom
 
 ## Accessing the request body in an exception handler
 
+!!! tip
+    To solve this same problem, it's probably a lot easier to [use the `body` in a custom handler for `RequestValidationError`](https://fastapi.tiangolo.com/tutorial/handling-errors/#use-the-requestvalidationerror-body).
+
+    But this example is still valid and it shows how to interact with the internal components.
+
 We can also use this same approach to access the request body in an exception handler.
 
 All we need to do is handle the request inside a `try`/`except` block:
@@ -89,12 +93,12 @@ If an exception occurs, the`Request` instance will still be in scope, so we can 
 
 You can also set the `route_class` parameter of an `APIRouter`:
 
-```Python hl_lines="25"
+```Python hl_lines="28"
 {!./src/custom_request_and_route/tutorial003.py!}
 ```
 
 In this example, the *path operations* under the `router` will use the custom `TimedRoute` class, and will have an extra `X-Response-Time` header in the response with the time it took to generate the response:
 
-```Python hl_lines="15 16 17 18 19"
+```Python hl_lines="15 16 17 18 19 20 21 22"
 {!./src/custom_request_and_route/tutorial003.py!}
 ```

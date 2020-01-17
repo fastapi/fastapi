@@ -120,7 +120,7 @@ def get_request_handler(
         )
         values, errors, background_tasks, sub_response, _ = solved_result
         if errors:
-            raise RequestValidationError(errors)
+            raise RequestValidationError(errors, body=body)
         else:
             assert dependant.call is not None, "dependant.call must be a function"
             if is_coroutine:
