@@ -4,7 +4,7 @@ A **request** body is data sent by the client to your API. A **response** body i
 
 Your API almost always has to send a **response** body. But clients don't necessarily need to send **request** bodies all the time.
 
-To declare a **request** body, you use <a href="https://pydantic-docs.helpmanual.io/" target="_blank">Pydantic</a> models with all their power and benefits.
+To declare a **request** body, you use <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> models with all their power and benefits.
 
 !!! info
     You cannot send a request body using a `GET` operation (HTTP method).
@@ -71,7 +71,7 @@ With just that Python type declaration, **FastAPI** will:
     * If the data is invalid, it will return a nice and clear error, indicating exactly where and what was the incorrect data.
 * Give you the received data in the parameter `item`.
     * As you declared it in the function to be of type `Item`, you will also have all the editor support (completion, etc) for all of the attributes and their types.
-* Generate <a href="http://json-schema.org" target="_blank">JSON Schema</a> definitions for your model, you can also use them anywhere else you like if it makes sense for your project.
+* Generate <a href="http://json-schema.org" class="external-link" target="_blank">JSON Schema</a> definitions for your model, you can also use them anywhere else you like if it makes sense for your project.
 * Those schemas will be part of the generated OpenAPI schema, and used by the automatic documentation <abbr title="User Interfaces">UIs</abbr>.
 
 ## Automatic docs
@@ -100,12 +100,11 @@ And it was thoroughly tested at the design phase, before any implementation, to 
 
 There were even some changes to Pydantic itself to support this.
 
-The previous screenshots were taken with <a href="https://code.visualstudio.com" target="_blank">Visual Studio Code</a>.
+The previous screenshots were taken with <a href="https://code.visualstudio.com" class="external-link" target="_blank">Visual Studio Code</a>.
 
-But you would get the same editor support with <a href="https://www.jetbrains.com/pycharm/" target="_blank">PyCharm</a> and most of the other Python editors:
+But you would get the same editor support with <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a> and most of the other Python editors:
 
 <img src="/img/tutorial/body/image05.png">
-
 
 ## Use the model
 

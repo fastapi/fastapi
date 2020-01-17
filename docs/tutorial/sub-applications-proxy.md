@@ -33,7 +33,6 @@ For these cases, you can declare an `openapi_prefix` parameter in your `FastAPI`
 
 See the section below, about "mounting", for an example.
 
-
 ## Mounting a **FastAPI** application
 
 "Mounting" means adding a complete "independent" application in a specific path, that then takes care of handling all the sub-paths.
@@ -78,18 +77,16 @@ Now, run `uvicorn`, if your file is at `main.py`, it would be:
 uvicorn main:app --reload
 ```
 
-And open the docs at <a href="http://127.0.0.1:8000/docs" target="_blank">http://127.0.0.1:8000/docs</a>.
+And open the docs at <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 
 You will see the automatic API docs for the main app, including only its own paths:
 
 <img src="/img/tutorial/sub-applications/image01.png">
 
-
-And then, open the docs for the sub-application, at <a href="http://127.0.0.1:8000/subapi/docs" target="_blank">http://127.0.0.1:8000/subapi/docs</a>.
+And then, open the docs for the sub-application, at <a href="http://127.0.0.1:8000/subapi/docs" class="external-link" target="_blank">http://127.0.0.1:8000/subapi/docs</a>.
 
 You will see the automatic API docs for the sub-application, including only its own sub-paths, with their correct prefix:
 
 <img src="/img/tutorial/sub-applications/image02.png">
-
 
 If you try interacting with any of the two user interfaces, they will work, because the browser will be able to talk to the correct path (or sub-path).

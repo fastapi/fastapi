@@ -25,7 +25,7 @@ Copy the example in a file `main.py`:
 ## Run it
 
 !!! info
-    First install [`python-multipart`](https://andrew-d.github.io/python-multipart/).
+    First install <a href="https://andrew-d.github.io/python-multipart/" class="external-link" target="_blank">`python-multipart`</a>.
 
     E.g. `pip install python-multipart`.
 
@@ -39,7 +39,7 @@ uvicorn main:app --reload
 
 ## Check it
 
-Go to the interactive docs at: <a href="http://127.0.0.1:8000/docs" target="_blank">http://127.0.0.1:8000/docs</a>.
+Go to the interactive docs at: <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 
 You will see something like this:
 
@@ -49,7 +49,6 @@ You will see something like this:
     You already have a shinny new "Authorize" button.
 
     And your path operation has a little lock in the top-right corner that you can click.
-
 
 And if you click it, you have a little authorization form to type a `username` and `password` (and other optional fields):
 
@@ -65,7 +64,6 @@ It can be used by the frontend team (that can also be yourself).
 It can be used by third party applications and systems.
 
 And it can also be used by yourself, to debug, check and test the same application.
-
 
 ## The `password` flow
 
@@ -99,10 +97,9 @@ So, let's review it from that simplified point of view:
 
 In this example we are going to use **OAuth2**, with the **Password** flow, using a **Bearer** token.
 
-
 !!! info
     A "bearer" token is not the only option.
-    
+
     But it's the best one for our use case.
 
     And it might be the best for most use cases, unless you are an OAuth2 expert and know exactly why there's another option that suits better your needs.

@@ -22,7 +22,7 @@ That way, you can create a token with an expiration of, let's say, 1 week, and t
 
 And after a week, the token will be expired. And if the user (or a third party) tried to modify the token to change the expiration, you would be able to discover it, because the signatures would not match.
 
-If you want to play with JWT tokens and see how they work, check <a href="https://jwt.io/" target="_blank">https://jwt.io</a>.
+If you want to play with JWT tokens and see how they work, check <a href="https://jwt.io/" class="external-link" target="_blank">https://jwt.io</a>.
 
 ## Install `PyJWT`
 
@@ -40,7 +40,7 @@ Whenever you pass exactly the same content (exactly the same password) you get e
 
 But you cannot convert from the gibberish back to the password.
 
-### What for?
+### Why use password hashing
 
 If your database is stolen, the thief won't have your users' plaintext passwords, only the hashes.
 
@@ -141,7 +141,6 @@ Create a real JWT access token and return it.
 {!./src/security/tutorial004.py!}
 ```
 
-
 ### Technical details about the JWT "subject" `sub`
 
 The JWT specification says that there's a key `sub`, with the subject of the token.
@@ -166,7 +165,7 @@ The important thing to have in mind is that the `sub` key should have a unique i
 
 ## Check it
 
-Run the server and go to the docs: <a href="http://127.0.0.1:8000/docs" target="_blank">http://127.0.0.1:8000/docs</a>.
+Run the server and go to the docs: <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 
 You'll see the user interface like:
 

@@ -1,6 +1,6 @@
 ## Update replacing with `PUT`
 
-To update an item you can use the [HTTP `PUT`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PUT) operation.
+To update an item you can use the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PUT" class="external-link" target="_blank">HTTP `PUT`</a> operation.
 
 You can use the `jsonable_encoder` to convert the input data to data that can be stored as JSON (e.g. with a NoSQL database). For example, converting `datetime` to `str`.
 
@@ -28,7 +28,7 @@ And the data would be saved with that "new" `tax` of `10.5`.
 
 ## Partial updates with `PATCH`
 
-You can also use the [HTTP `PATCH`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PATCH) operation to *partially* update data.
+You can also use the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PATCH" class="external-link" target="_blank">HTTP `PATCH`</a> operation to *partially* update data.
 
 This means that you can send only the data that you want to update, leaving the rest intact.
 

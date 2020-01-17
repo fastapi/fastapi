@@ -17,7 +17,6 @@ But if you don't remember what each number code is for, you can use the shortcut
 
 That status code will be used in the response and will be added to the OpenAPI schema.
 
-
 ## Tags
 
 You can add tags to your path operation, pass the parameter `tags` with a `list` of `str` (commonly just one `str`):
@@ -42,7 +41,7 @@ You can add a `summary` and `description`:
 
 As descriptions tend to be long and cover multiple lines, you can declare the path operation description in the function <abbr title="a multi-line string as the first expression inside a function (not assigned to any variable) used for documentation">docstring</abbr> and **FastAPI** will read it from there.
 
-You can write <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank">Markdown</a> in the docstring, it will be interpreted and displayed correctly (taking into account docstring indentation).
+You can write <a href="https://en.wikipedia.org/wiki/Markdown" class="target-blank" target="_blank">Markdown</a> in the docstring, it will be interpreted and displayed correctly (taking into account docstring indentation).
 
 ```Python hl_lines="19 20 21 22 23 24 25 26 27"
 {!./src/path_operation_configuration/tutorial004.py!}
@@ -65,7 +64,7 @@ You can specify the response description with the parameter `response_descriptio
 
 !!! info
     OpenAPI specifies that each path operation requires a response description.
-    
+
     So, if you don't provide one, **FastAPI** will automatically generate one of "Successful response".
 
 <img src="/img/tutorial/path-operation-configuration/image03.png">
@@ -73,7 +72,6 @@ You can specify the response description with the parameter `response_descriptio
 ## Deprecate a path operation
 
 If you need to mark a path operation as <abbr title="obsolete, recommended not to use it">deprecated</abbr>, but without removing it, pass the parameter `deprecated`:
-
 
 ```Python hl_lines="16"
 {!./src/path_operation_configuration/tutorial006.py!}

@@ -1,7 +1,7 @@
 When you need to receive form fields instead of JSON, you can use `Form`.
 
 !!! info
-    To use forms, first install [`python-multipart`](https://andrew-d.github.io/python-multipart/).
+    To use forms, first install <a href="https://andrew-d.github.io/python-multipart/" class="external-link" target="_blank">`python-multipart`</a>.
 
     E.g. `pip install python-multipart`.
 
@@ -33,7 +33,7 @@ With `Form` you can declare the same metadata and validation as with `Body` (and
 !!! info
     To declare form bodies, you need to use `Form` explicitly, because without it the parameters would be interpreted as query parameters or body (JSON) parameters.
 
-## "Form Fields"? 
+## About "Form Fields"
 
 The way HTML forms (`<form></form>`) sends the data to the server normally uses a "special" encoding for that data, it's different from JSON.
 
@@ -44,8 +44,7 @@ The way HTML forms (`<form></form>`) sends the data to the server normally uses 
 
     But when the form includes files, it is encoded as `multipart/form-data`. You'll read about handling files in the next chapter.
     
-    If you want to read more about these encodings and form fields, head to the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST" target="_blank"><abbr title="Mozilla Developer Network">MDN</abbr> web docs for <code>POST</code></a>.
-
+    If you want to read more about these encodings and form fields, head to the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST" class="external-link" target="_blank"><abbr title="Mozilla Developer Network">MDN</abbr> web docs for <code>POST</code></a>.
 
 !!! warning
     You can declare multiple `Form` parameters in a path operation, but you can't also declare `Body` fields that you expect to receive as JSON, as the request will have the body encoded using `application/x-www-form-urlencoded` instead of `application/json`.

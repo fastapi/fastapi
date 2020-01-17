@@ -2,7 +2,7 @@
 
 But you can use any relational database that you want.
 
-Here we'll see an example using <a href="https://www.sqlalchemy.org/" target="_blank">SQLAlchemy</a>.
+Here we'll see an example using <a href="https://www.sqlalchemy.org/" class="external-link" target="_blank">SQLAlchemy</a>.
 
 You can easily adapt it to any database supported by SQLAlchemy, like:
 
@@ -17,8 +17,7 @@ In this example, we'll use **SQLite**, because it uses a single file and Python 
 Later, for your production application, you might want to use a database server like **PostgreSQL**.
 
 !!! tip
-    There is an official project generator with **FastAPI** and **PostgreSQL**, all based on **Docker**, including a frontend and more tools: <a href="https://github.com/tiangolo/full-stack-fastapi-postgresql" target="_blank">https://github.com/tiangolo/full-stack-fastapi-postgresql</a>
-
+    There is an official project generator with **FastAPI** and **PostgreSQL**, all based on **Docker**, including a frontend and more tools: <a href="https://github.com/tiangolo/full-stack-fastapi-postgresql" class="external-link" target="_blank">https://github.com/tiangolo/full-stack-fastapi-postgresql</a>
 
 !!! note
     Notice that most of the code is the standard `SQLAlchemy` code you would use with any framework.
@@ -288,7 +287,7 @@ Not only the IDs of those items, but all the data that we defined in the Pydanti
 
 Now, in the Pydantic *models* for reading, `Item` and `User`, add an internal `Config` class.
 
-This <a href="https://pydantic-docs.helpmanual.io/#config" target="_blank">`Config`</a> class is used to provide configurations to Pydantic.
+This <a href="https://pydantic-docs.helpmanual.io/#config" class="external-link" target="_blank">`Config`</a> class is used to provide configurations to Pydantic.
 
 In the `Config` class, set the attribute `orm_mode = True`.
 
@@ -324,7 +323,7 @@ And with this, the Pydantic *model* is compatible with ORMs, and you can just de
 You will be able to return a database model and it will read the data from it.
 
 #### Technical Details about ORM mode
-    
+
 SQLAlchemy and many others are by default "lazy loading".
 
 That means, for example, that they don't fetch the data for relationships from the database unless you try to access the attribute that would contain that data.
@@ -430,7 +429,7 @@ In a very simplistic way create the database tables:
 
 #### Alembic Note
 
-Normally you would probably initialize your database (create tables, etc) with <a href="https://alembic.sqlalchemy.org/en/latest/" target="_blank">Alembic</a>.
+Normally you would probably initialize your database (create tables, etc) with <a href="https://alembic.sqlalchemy.org/en/latest/" class="external-link" target="_blank">Alembic</a>.
 
 And you would also use Alembic for "migrations" (that's its main job).
 
@@ -445,7 +444,7 @@ A "migration" is the set of steps needed whenever you change the structure of yo
     pip install async-exit-stack async-generator
     ```
 
-    This installs <a href="https://github.com/sorcio/async_exit_stack" target="_blank">async-exit-stack</a> and <a href="https://github.com/python-trio/async_generator" target="_blank">async-generator</a>.
+    This installs <a href="https://github.com/sorcio/async_exit_stack" target="_blank">async-exit-stack</a> and <a href="https://github.com/python-trio/async_generator" class="external-link" target="_blank">async-generator</a>.
 
     You can also use the alternative method with a "middleware" explained at the end.
 
@@ -539,13 +538,13 @@ def read_user(user_id: int, db: Session = Depends(get_db)):
 
 ## Migrations
 
-Because we are using SQLAlchemy directly and we don't require any kind of plug-in for it to work with **FastAPI**, we could integrate database <abbr title="Automatically updating the database to have any new column we define in our models.">migrations</abbr> with <a href="https://alembic.sqlalchemy.org" target="_blank">Alembic</a> directly.
+Because we are using SQLAlchemy directly and we don't require any kind of plug-in for it to work with **FastAPI**, we could integrate database <abbr title="Automatically updating the database to have any new column we define in our models.">migrations</abbr> with <a href="https://alembic.sqlalchemy.org" class="external-link" target="_blank">Alembic</a> directly.
 
 And as the code related to SQLAlchemy and the SQLAlchemy models lives in separate independent files, you would even be able to perform the migrations with Alembic without having to install FastAPI, Pydantic, or anything else.
 
 The same way, you would be able to use the same SQLAlchemy models and utilities in other parts of your code that are not related to **FastAPI**.
 
-For example, in a background task worker with <a href="http://www.celeryproject.org/" target="_blank">Celery</a>, <a href="https://python-rq.org/" target="_blank">RQ</a>, or <a href="https://arq-docs.helpmanual.io/" target="_blank">ARQ</a>.
+For example, in a background task worker with <a href="http://www.celeryproject.org/" class="external-link" target="_blank">Celery</a>, <a href="https://python-rq.org/" class="external-link" target="_blank">RQ</a>, or <a href="https://arq-docs.helpmanual.io/" class="external-link" target="_blank">ARQ</a>.
 
 ## Review all the files
 
@@ -599,7 +598,7 @@ Then you can run it with Uvicorn:
 uvicorn sql_app.main:app --reload
 ```
 
-And then, you can open your browser at <a href="http://127.0.0.1:8000/docs" target="_blank">http://127.0.0.1:8000/docs</a>.
+And then, you can open your browser at <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 
 And you will be able to interact with your **FastAPI** application, reading data from a real database:
 
@@ -607,13 +606,13 @@ And you will be able to interact with your **FastAPI** application, reading data
 
 ## Interact with the database directly
 
-If you want to explore the SQLite database (file) directly, independently of FastAPI, to debug its contents, add tables, columns, records, modify data, etc. you can use <a href="https://sqlitebrowser.org/" target="_blank">DB Browser for SQLite</a>.
+If you want to explore the SQLite database (file) directly, independently of FastAPI, to debug its contents, add tables, columns, records, modify data, etc. you can use <a href="https://sqlitebrowser.org/" class="external-link" target="_blank">DB Browser for SQLite</a>.
 
 It will look like this:
 
 <img src="/img/tutorial/sql-databases/image02.png">
 
-You can also use an online SQLite browser like <a href="https://inloop.github.io/sqlite-viewer/" target="_blank">SQLite Viewer</a> or <a href="https://extendsclass.com/sqlite-browser.html" target="_blank">ExtendsClass</a>.
+You can also use an online SQLite browser like <a href="https://inloop.github.io/sqlite-viewer/" target="_blank">SQLite Viewer</a> or <a href="https://extendsclass.com/sqlite-browser.html" class="external-link" target="_blank">ExtendsClass</a>.
 
 ## Alternative DB session with middleware
 
@@ -638,7 +637,7 @@ The middleware we'll add (just a function) will create a new SQLAlchemy `Session
 
 ### About `request.state`
 
-<a href="https://www.starlette.io/requests/#other-state" target="_blank">`request.state` is a property of each Starlette `Request` object</a>. It is there to store arbitrary objects attached to the request itself, like the database session in this case.
+<a href="https://www.starlette.io/requests/#other-state" class="external-link" target="_blank">`request.state` is a property of each Starlette `Request` object</a>. It is there to store arbitrary objects attached to the request itself, like the database session in this case.
 
 For us in this case, it helps us ensure a single database session is used through all the request, and then closed afterwards (in the middleware).
 

@@ -18,7 +18,6 @@ Then, when you type that username and password, the browser sends them in the he
 * It returns an object of type `HTTPBasicCredentials`:
     * It contains the `username` and `password` sent.
 
-
 ```Python hl_lines="2 6 10"
 {!./src/security/tutorial006.py!}
 ```
@@ -33,7 +32,7 @@ Here's a more complete example.
 
 Use a dependency to check if the username and password are correct.
 
-For this, use the Python standard module <a href="https://docs.python.org/3/library/secrets.html" target="_blank">`secrets`</a> to check the username and password:
+For this, use the Python standard module <a href="https://docs.python.org/3/library/secrets.html" class="external-link" target="_blank">`secrets`</a> to check the username and password:
 
 ```Python hl_lines="1  13 14 15"
 {!./src/security/tutorial007.py!}

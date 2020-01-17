@@ -1,8 +1,8 @@
-Thanks to <a href="https://www.starlette.io/testclient/" target="_blank">Starlette's TestClient</a>, testing **FastAPI** applications is easy and enjoyable.
+Thanks to <a href="https://www.starlette.io/testclient/" class="external-link" target="_blank">Starlette's TestClient</a>, testing **FastAPI** applications is easy and enjoyable.
 
-It is based on <a href="http://docs.python-requests.org" target="_blank">Requests</a>, so it's very familiar and intuitive.
+It is based on <a href="http://docs.python-requests.org" class="external-link" target="_blank">Requests</a>, so it's very familiar and intuitive.
 
-With it, you can use <a href="https://docs.pytest.org/" target="_blank">pytest</a> directly with **FastAPI**.
+With it, you can use <a href="https://docs.pytest.org/" class="external-link" target="_blank">pytest</a> directly with **FastAPI**.
 
 ## Using `TestClient`
 
@@ -21,7 +21,7 @@ Write simple `assert` statements with the standard Python expressions that you n
 ```
 
 !!! tip
-    Notice that the testing functions are normal `def`, not `async def`. 
+    Notice that the testing functions are normal `def`, not `async def`.
 
     And the calls to the client are also normal calls, not using `await`.
 
@@ -87,7 +87,7 @@ E.g.:
 * To pass *headers*, use a `dict` in the `headers` parameter.
 * For *cookies*, a `dict` in the `cookies` parameter.
 
-For more information about how to pass data to the backend (using `requests` or the `TestClient`) check the <a href="http://docs.python-requests.org" target="_blank">Requests documentation</a>.
+For more information about how to pass data to the backend (using `requests` or the `TestClient`) check the <a href="http://docs.python-requests.org" class="external-link" target="_blank">Requests documentation</a>.
 
 !!! info
     Note that the `TestClient` receives data that can be converted to JSON, not Pydantic models.

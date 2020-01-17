@@ -1,5 +1,5 @@
 
-You can use <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API" target="_blank">WebSockets</a> with **FastAPI**.
+You can use <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API" class="external-link" target="_blank">WebSockets</a> with **FastAPI**.
 
 ## WebSockets client
 
@@ -68,18 +68,17 @@ They work the same way as for other FastAPI endpoints/*path operations*:
 !!! info
     In a WebSocket it doesn't really make sense to raise an `HTTPException`. So it's better to close the WebSocket connection directly.
 
-    You can use a closing code from the <a href="https://tools.ietf.org/html/rfc6455#section-7.4.1" target="_blank">valid codes defined in the specification</a>.
+    You can use a closing code from the <a href="https://tools.ietf.org/html/rfc6455#section-7.4.1" class="external-link" target="_blank">valid codes defined in the specification</a>.
 
-    In the future, there will be a `WebSocketException` that you will be able to `raise` from anywhere, and add exception handlers for it. It depends on the <a href="https://github.com/encode/starlette/pull/527" target="_blank">PR #527</a> in Starlette.
+    In the future, there will be a `WebSocketException` that you will be able to `raise` from anywhere, and add exception handlers for it. It depends on the <a href="https://github.com/encode/starlette/pull/527" class="external-link" target="_blank">PR #527</a> in Starlette.
 
 ## More info
 
 To learn more about the options, check Starlette's documentation for:
 
-* <a href="https://www.starlette.io/applications/" target="_blank">Applications (`websocket_route`)</a>.
-* <a href="https://www.starlette.io/websockets/" target="_blank">The `WebSocket` class</a>.
-* <a href="https://www.starlette.io/endpoints/#websocketendpoint" target="_blank">Class-based WebSocket handling</a>.
-
+* <a href="https://www.starlette.io/applications/" class="external-link" target="_blank">Applications (`websocket_route`)</a>.
+* <a href="https://www.starlette.io/websockets/" class="external-link" target="_blank">The `WebSocket` class</a>.
+* <a href="https://www.starlette.io/endpoints/#websocketendpoint" class="external-link" target="_blank">Class-based WebSocket handling</a>.
 
 ## Test it
 
@@ -89,7 +88,7 @@ If your file is named `main.py`, run your application with:
 uvicorn main:app --reload
 ```
 
-Open your browser at <a href="http://127.0.0.1:8000" target="_blank">http://127.0.0.1:8000</a>.
+Open your browser at <a href="http://127.0.0.1:8000" class="external-link" target="_blank">http://127.0.0.1:8000</a>.
 
 You will see a simple page like:
 

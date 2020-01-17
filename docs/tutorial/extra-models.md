@@ -158,7 +158,7 @@ You can declare a response to be the `Union` of two types, that means, that the 
 
 It will be defined in OpenAPI with `anyOf`.
 
-To do that, use the standard Python type hint <a href="https://docs.python.org/3/library/typing.html#typing.Union" target="_blank">`typing.Union`</a>:
+To do that, use the standard Python type hint <a href="https://docs.python.org/3/library/typing.html#typing.Union" class="external-link" target="_blank">`typing.Union`</a>:
 
 ```Python hl_lines="1 14 15 18 19 20 33"
 {!./src/extra_models/tutorial003.py!}

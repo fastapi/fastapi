@@ -29,7 +29,7 @@ Then set Cookies in it, and then return it:
 ```
 
 !!! tip
-    Have in mind that if you return a response directly instead of using the `Response` parameter, FastAPI will return it directly. 
+    Have in mind that if you return a response directly instead of using the `Response` parameter, FastAPI will return it directly.
 
     So, you will have to make sure your data is of the correct type. E.g. it is compatible with JSON, if you are returning a `JSONResponse`.
 
@@ -37,4 +37,4 @@ Then set Cookies in it, and then return it:
 
 ### More info
 
-To see all the available parameters and options, check the <a href="https://www.starlette.io/responses/#set-cookie" target="_blank">documentation in Starlette</a>.
+To see all the available parameters and options, check the <a href="https://www.starlette.io/responses/#set-cookie" class="external-link" target="_blank">documentation in Starlette</a>.

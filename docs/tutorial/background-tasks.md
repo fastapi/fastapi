@@ -22,7 +22,6 @@ First, import `BackgroundTasks` and define a parameter in your *path operation f
 !!! tip
     You declare a parameter of `BackgroundTasks` and use it in a very similar way as to when <a href="/tutorial/using-request-directly/" target="_blank">using the `Request` directly</a>.
 
-
 ## Create a task function
 
 Create a function to be run as the background task.
@@ -31,7 +30,7 @@ It is just a standard function that can receive parameters.
 
 It can be an `async def` or normal `def` function, **FastAPI** will know how to handle it correctly.
 
-In this case, the task function will write to a file (simulating sending an email). 
+In this case, the task function will write to a file (simulating sending an email).
 
 And as the write operation doesn't use `async` and `await`, we define the function with normal `def`:
 
@@ -71,7 +70,7 @@ And then another background task generated at the *path operation function* will
 
 ## Technical Details
 
-The class `BackgroundTasks` comes directly from <a href="https://www.starlette.io/background/" target="_blank">`starlette.background`</a>.
+The class `BackgroundTasks` comes directly from <a href="https://www.starlette.io/background/" class="external-link" target="_blank">`starlette.background`</a>.
 
 It is imported/included directly into FastAPI so that you can import it from `fastapi` and avoid accidentally importing the alternative `BackgroundTask` (without the `s` at the end) from `starlette.background`.
 
@@ -79,11 +78,11 @@ By only using `BackgroundTasks` (and not `BackgroundTask`), it's then possible t
 
 It's still possible to use `BackgroundTask` alone in FastAPI, but you have to create the object in your code and return a Starlette `Response` including it.
 
-You can see more details in <a href="https://www.starlette.io/background/" target="_blank">Starlette's official docs for Background Tasks</a>.
+You can see more details in <a href="https://www.starlette.io/background/" class="external-link" target="_blank">Starlette's official docs for Background Tasks</a>.
 
 ## Caveat
 
-If you need to perform heavy background computation and you don't necessarily need it to be run by the same process (for example, you don't need to share memory, variables, etc), you might benefit from using other bigger tools like <a href="http://www.celeryproject.org/" target="_blank">Celery</a>.
+If you need to perform heavy background computation and you don't necessarily need it to be run by the same process (for example, you don't need to share memory, variables, etc), you might benefit from using other bigger tools like <a href="http://www.celeryproject.org/" class="external-link" target="_blank">Celery</a>.
 
 They tend to require more complex configurations, a message/job queue manager, like RabbitMQ or Redis, but they allow you to run background tasks in multiple processes, and especially, in multiple servers.
 

@@ -238,7 +238,7 @@ And then, again, you get all the editor support:
 
 ## Pydantic models
 
-<a href="https://pydantic-docs.helpmanual.io/" target="_blank">Pydantic</a> is a Python library to perform data validation.
+<a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> is a Python library to perform data validation.
 
 You declare the "shape" of the data as classes with attributes.
 
@@ -255,7 +255,7 @@ Taken from the official Pydantic docs:
 ```
 
 !!! info
-    To learn more about <a href="https://pydantic-docs.helpmanual.io/" target="_blank">Pydantic, check its docs</a>.
+    To learn more about <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic, check its docs</a>.
 
 **FastAPI** is all based on Pydantic.
 
@@ -285,4 +285,4 @@ This might all sound abstract. Don't worry. You'll see all this in action in the
 The important thing is that by using standard Python types, in a single place (instead of adding more classes, decorators, etc), **FastAPI** will do a lot of the work for you.
 
 !!! info
-    If you already went through all the tutorial and came back to see more about types, a good resource is <a href="https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html" target="_blank">the "cheat sheet" from `mypy`</a>.
+    If you already went through all the tutorial and came back to see more about types, a good resource is <a href="https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html" class="external-link" target="_blank">the "cheat sheet" from `mypy`</a>.

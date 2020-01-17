@@ -50,7 +50,7 @@ In short:
 * `500` and above are for server errors. You almost never use them directly. When something goes wrong at some part in your application code, or server, it will automatically return one of these status codes.
 
 !!! tip
-    To know more about each status code and which code is for what, check the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status" target="_blank"><abbr title="Mozilla Developer Network">MDN</abbr> documentation about HTTP status codes</a>.
+    To know more about each status code and which code is for what, check the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status" class="external-link" target="_blank"><abbr title="Mozilla Developer Network">MDN</abbr> documentation about HTTP status codes</a>.
 
 ## Shortcut to remember the names
 

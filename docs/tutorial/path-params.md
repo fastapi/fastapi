@@ -6,7 +6,7 @@ You can declare path "parameters" or "variables" with the same syntax used by Py
 
 The value of the path parameter `item_id` will be passed to your function as the argument `item_id`.
 
-So, if you run this example and go to <a href="http://127.0.0.1:8000/items/foo" target="_blank">http://127.0.0.1:8000/items/foo</a>, you will see a response of:
+So, if you run this example and go to <a href="http://127.0.0.1:8000/items/foo" class="external-link" target="_blank">http://127.0.0.1:8000/items/foo</a>, you will see a response of:
 
 ```JSON
 {"item_id":"foo"}
@@ -27,7 +27,7 @@ In this case, `item_id` is declared to be an `int`.
 
 ## Data <abbr title="also known as: serialization, parsing, marshalling">conversion</abbr>
 
-If you run this example and open your browser at <a href="http://127.0.0.1:8000/items/3" target="_blank">http://127.0.0.1:8000/items/3</a>, you will see a response of:
+If you run this example and open your browser at <a href="http://127.0.0.1:8000/items/3" class="external-link" target="_blank">http://127.0.0.1:8000/items/3</a>, you will see a response of:
 
 ```JSON
 {"item_id":3}
@@ -40,7 +40,7 @@ If you run this example and open your browser at <a href="http://127.0.0.1:8000/
 
 ## Data validation
 
-But if you go to the browser at <a href="http://127.0.0.1:8000/items/foo" target="_blank">http://127.0.0.1:8000/items/foo</a>, you will see a nice HTTP error of:
+But if you go to the browser at <a href="http://127.0.0.1:8000/items/foo" class="external-link" target="_blank">http://127.0.0.1:8000/items/foo</a>, you will see a nice HTTP error of:
 
 ```JSON
 {
@@ -59,7 +59,7 @@ But if you go to the browser at <a href="http://127.0.0.1:8000/items/foo" target
 
 because the path parameter `item_id` had a value of `"foo"`, which is not an `int`.
 
-The same error would appear if you provided a `float` instead of an int, as in: <a href="http://127.0.0.1:8000/items/4.2" target="_blank">http://127.0.0.1:8000/items/4.2</a>
+The same error would appear if you provided a `float` instead of an int, as in: <a href="http://127.0.0.1:8000/items/4.2" class="external-link" target="_blank">http://127.0.0.1:8000/items/4.2</a>
 
 !!! check
     So, with the same Python type declaration, **FastAPI** gives you data validation.
@@ -70,7 +70,7 @@ The same error would appear if you provided a `float` instead of an int, as in: 
 
 ## Documentation
 
-And when you open your browser at <a href="http://127.0.0.1:8000/docs" target="_blank">http://127.0.0.1:8000/docs</a>, you will see an automatic, interactive, API documentation like:
+And when you open your browser at <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>, you will see an automatic, interactive, API documentation like:
 
 <img src="/img/tutorial/path-params/image01.png">
 
@@ -81,7 +81,7 @@ And when you open your browser at <a href="http://127.0.0.1:8000/docs" target="_
 
 ## Standards-based benefits, alternative documentation
 
-And because the generated schema is from the <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md" target="_blank">OpenAPI</a> standard, there are many compatible tools.
+And because the generated schema is from the <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md" class="external-link" target="_blank">OpenAPI</a> standard, there are many compatible tools.
 
 Because of this, **FastAPI** itself provides an alternative API documentation (using ReDoc):
 
@@ -91,7 +91,7 @@ The same way, there are many compatible tools. Including code generation tools f
 
 ## Pydantic
 
-All the data validation is performed under the hood by <a href="https://pydantic-docs.helpmanual.io/" target="_blank">Pydantic</a>, so you get all the benefits from it. And you know you are in good hands.
+All the data validation is performed under the hood by <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a>, so you get all the benefits from it. And you know you are in good hands.
 
 You can use the same type declarations with `str`, `float`, `bool` and many other complex data types.
 
@@ -130,7 +130,7 @@ And create class attributes with fixed values, those fixed values will be the av
 ```
 
 !!! info
-    <a href="https://docs.python.org/3/library/enum.html" target="_blank">Enumerations (or enums) are available in Python</a> since version 3.4.
+    <a href="https://docs.python.org/3/library/enum.html" class="external-link" target="_blank">Enumerations (or enums) are available in Python</a> since version 3.4.
 
 !!! tip
     If you are wondering, "AlexNet", "ResNet", and "LeNet" are just names of Machine Learning <abbr title="Technically, Deep Learning model architectures">models</abbr>.

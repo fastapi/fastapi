@@ -39,7 +39,7 @@ The key features are:
 * **Easy**: Designed to be easy to use and learn. Less time reading docs.
 * **Short**: Minimize code duplication. Multiple features from each parameter declaration. Fewer bugs.
 * **Robust**: Get production-ready code. With automatic interactive documentation.
-* **Standards-based**: Based on (and fully compatible with) the open standards for APIs: <a href="https://github.com/OAI/OpenAPI-Specification" target="_blank">OpenAPI</a> (previously known as Swagger) and <a href="http://json-schema.org/" target="_blank">JSON Schema</a>.
+* **Standards-based**: Based on (and fully compatible with) the open standards for APIs: <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (previously known as Swagger) and <a href="http://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>.
 
 <small>* estimation based on tests on an internal development team, building production applications.</small>
 
@@ -83,9 +83,8 @@ Python 3.6+
 
 FastAPI stands on the shoulders of giants:
 
-* <a href="https://www.starlette.io/" target="_blank">Starlette</a> for the web parts.
-* <a href="https://pydantic-docs.helpmanual.io/" target="_blank">Pydantic</a> for the data parts.
-
+* <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> for the web parts.
+* <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> for the data parts.
 
 ## Installation
 
@@ -93,7 +92,7 @@ FastAPI stands on the shoulders of giants:
 pip install fastapi
 ```
 
-You will also need an ASGI server, for production such as <a href="http://www.uvicorn.org" target="_blank">Uvicorn</a> or <a href="https://gitlab.com/pgjones/hypercorn" target="_blank">Hypercorn</a>.
+You will also need an ASGI server, for production such as <a href="http://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a> or <a href="https://gitlab.com/pgjones/hypercorn" target="_blank">Hypercorn</a>.
 
 ```bash
 pip install uvicorn
@@ -120,6 +119,7 @@ def read_root():
 def read_item(item_id: int, q: str = None):
     return {"item_id": item_id, "q": q}
 ```
+
 <details markdown="1">
 <summary>Or use <code>async def</code>...</summary>
 
@@ -142,7 +142,7 @@ async def read_item(item_id: int, q: str = None):
 ```
 
 **Note**:
-    
+
 If you don't know, check the _"In a hurry?"_ section about <a href="https://fastapi.tiangolo.com/async/#in-a-hurry" target="_blank">`async` and `await` in the docs</a>.
 
 </details>
@@ -168,7 +168,7 @@ The command `uvicorn main:app` refers to:
 
 ### Check it
 
-Open your browser at <a href="http://127.0.0.1:8000/items/5?q=somequery" target="_blank">http://127.0.0.1:8000/items/5?q=somequery</a>. 
+Open your browser at <a href="http://127.0.0.1:8000/items/5?q=somequery" class="external-link" target="_blank">http://127.0.0.1:8000/items/5?q=somequery</a>.
 
 You will see the JSON response as:
 
@@ -185,18 +185,17 @@ You already created an API that:
 
 ### Interactive API docs
 
-Now go to <a href="http://127.0.0.1:8000/docs" target="_blank">http://127.0.0.1:8000/docs</a>. 
+Now go to <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 
-You will see the automatic interactive API documentation (provided by <a href="https://github.com/swagger-api/swagger-ui" target="_blank">Swagger UI</a>):
+You will see the automatic interactive API documentation (provided by <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a>):
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-01-swagger-ui-simple.png)
 
-
 ### Alternative API docs
 
-And now, go to <a href="http://127.0.0.1:8000/redoc" target="_blank">http://127.0.0.1:8000/redoc</a>.
+And now, go to <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>.
 
-You will see the alternative automatic documentation (provided by <a href="https://github.com/Rebilly/ReDoc" target="_blank">ReDoc</a>):
+You will see the alternative automatic documentation (provided by <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a>):
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
@@ -238,7 +237,7 @@ The server should reload automatically (because you added `--reload` to the `uvi
 
 ### Interactive API docs upgrade
 
-Now go to <a href="http://127.0.0.1:8000/docs" target="_blank">http://127.0.0.1:8000/docs</a>.
+Now go to <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 
 * The interactive API documentation will be automatically updated, including the new body:
 
@@ -252,15 +251,13 @@ Now go to <a href="http://127.0.0.1:8000/docs" target="_blank">http://127.0.0.1:
 
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-05-swagger-04.png)
 
-
 ### Alternative API docs upgrade
 
-And now, go to <a href="http://127.0.0.1:8000/redoc" target="_blank">http://127.0.0.1:8000/redoc</a>.
+And now, go to <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>.
 
 * The alternative documentation will also reflect the new query parameter and body:
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-06-redoc-02.png)
-
 
 ### Recap
 
@@ -331,7 +328,6 @@ Coming back to the previous code example, **FastAPI** will:
     * Automatic client code generation systems, for many languages.
 * Provide 2 interactive documentation web interfaces directly.
 
-
 ---
 
 We just scratched the surface, but you already get the idea of how it all works.
@@ -358,7 +354,6 @@ Try changing the line with:
 
 ![editor support](https://fastapi.tiangolo.com/img/vscode-completion.png)
 
-
 For a more complete example including more features, see the <a href="https://fastapi.tiangolo.com/tutorial/intro/">Tutorial - User Guide</a>.
 
 **Spoiler alert**: the tutorial - user guide includes:
@@ -376,10 +371,9 @@ For a more complete example including more features, see the <a href="https://fa
     * **Cookie Sessions**
     * ...and more.
 
-
 ## Performance
 
-Independent TechEmpower benchmarks show **FastAPI** applications running under Uvicorn as <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" target="_blank">one of the fastest Python frameworks available</a>, only below Starlette and Uvicorn themselves (used internally by FastAPI). (*)
+Independent TechEmpower benchmarks show **FastAPI** applications running under Uvicorn as <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">one of the fastest Python frameworks available</a>, only below Starlette and Uvicorn themselves (used internally by FastAPI). (*)
 
 To understand more about it, see the section <a href="https://fastapi.tiangolo.com/benchmarks/" target="_blank">Benchmarks</a>.
 
@@ -390,7 +384,6 @@ Used by Pydantic:
 * <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - for faster JSON <abbr title="converting the string that comes from an HTTP request into Python data">"parsing"</abbr>.
 * <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - for email validation.
 
-
 Used by Starlette:
 
 * <a href="http://docs.python-requests.org" target="_blank"><code>requests</code></a> - Required if you want to use the `TestClient`.
@@ -398,7 +391,7 @@ Used by Starlette:
 * <a href="http://jinja.pocoo.org" target="_blank"><code>jinja2</code></a> - Required if you want to use the default template configuration.
 * <a href="https://andrew-d.github.io/python-multipart/" target="_blank"><code>python-multipart</code></a> - Required if you want to support form <abbr title="converting the string that comes from an HTTP request into Python data">"parsing"</abbr>, with `request.form()`.
 * <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - Required for `SessionMiddleware` support.
-* <a href="https://pyyaml.org/wiki/PyYAMLDocumentation" target="_blank"><code>pyyaml</code></a> - Required for `SchemaGenerator` support.
+* <a href="https://pyyaml.org/wiki/PyYAMLDocumentation" target="_blank"><code>pyyaml</code></a> - Required for Starlette's `SchemaGenerator` support (you probably don't need it with FastAPI).
 * <a href="https://graphene-python.org/" target="_blank"><code>graphene</code></a> - Required for `GraphQLApp` support.
 * <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - Required if you want to use `UJSONResponse`.
 

@@ -28,11 +28,10 @@ The middleware function receives:
 !!! tip
     This technique is used in the tutorial about <a href="https://fastapi.tiangolo.com/tutorial/sql-databases/" target="_blank">SQL (Relational) Databases</a>.
 
-
 !!! tip
-    Have in mind that custom proprietary headers can be added <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers" target="_blank">using the 'X-' prefix</a>.
+    Have in mind that custom proprietary headers can be added <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers" class="external-link" target="_blank">using the 'X-' prefix</a>.
 
-    But if you have custom headers that you want a client in a browser to be able to see, you need to add them to your <a href="https://fastapi.tiangolo.com/tutorial/cors/" target="_blank">CORS configurations</a>, using the parameter `expose_headers` documented in <a href="https://www.starlette.io/middleware/#corsmiddleware" target="_blank">Starlette's CORS docs</a>.
+    But if you have custom headers that you want a client in a browser to be able to see, you need to add them to your <a href="https://fastapi.tiangolo.com/tutorial/cors/" target="_blank">CORS configurations</a>, using the parameter `expose_headers` documented in <a href="https://www.starlette.io/middleware/#corsmiddleware" class="external-link" target="_blank">Starlette's CORS docs</a>.
 
 ### Before and after the `response`
 
@@ -48,7 +47,7 @@ For example, you could add a custom header `X-Process-Time` containing the time 
 
 ## Starlette's Middleware
 
-You can also add any other <a href="https://www.starlette.io/middleware/" target="_blank">Starlette Middleware</a>.
+You can also add any other <a href="https://www.starlette.io/middleware/" class="external-link" target="_blank">Starlette Middleware</a>.
 
 These are classes instead of plain functions.
 

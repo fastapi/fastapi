@@ -13,7 +13,7 @@ For example, if you want to read or manipulate the request body before it is pro
 
 Some use cases include:
 
-* Converting non-JSON request bodies to JSON (e.g. [`msgpack`](https://msgpack.org/index.html)).
+* Converting non-JSON request bodies to JSON (e.g. <a href="https://msgpack.org/index.html" class="external-link" target="_blank">`msgpack`</a>).
 * Decompressing gzip-compressed request bodies.
 * Automatically logging all request bodies.
 
@@ -58,7 +58,7 @@ Here we use it to create a `GzipRequest` from the original request.
 
     And those two things, `scope` and `receive`, are what is needed to create a new `Request` instance.
 
-    To learn more about the `Request` check <a href="https://www.starlette.io/requests/" target="_blank">Starlette's docs about Requests</a>.
+    To learn more about the `Request` check <a href="https://www.starlette.io/requests/" class="external-link" target="_blank">Starlette's docs about Requests</a>.
 
 The only thing the function returned by `GzipRequest.get_route_handler` does differently is convert the `Request` to a `GzipRequest`.
 

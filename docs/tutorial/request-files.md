@@ -1,7 +1,7 @@
 You can define files to be uploaded by the client using `File`.
 
 !!! info
-    To receive uploaded files, first install [`python-multipart`](https://andrew-d.github.io/python-multipart/).
+    To receive uploaded files, first install <a href="https://andrew-d.github.io/python-multipart/" class="external-link" target="_blank">`python-multipart`</a>.
 
     E.g. `pip install python-multipart`.
 
@@ -39,7 +39,6 @@ Have in mind that this means that the whole contents will be stored in memory. T
 
 But there are several cases in where you might benefit from using `UploadFile`.
 
-
 ## `File` parameters with `UploadFile`
 
 Define a `File` parameter with a type of `UploadFile`:
@@ -54,9 +53,8 @@ Using `UploadFile` has several advantages over `bytes`:
     * A file stored in memory up to a maximum size limit, and after passing this limit it will be stored in disk.
 * This means that it will work well for large files like images, videos, large binaries, etc. without consuming all the memory.
 * You can get metadata from the uploaded file.
-* It has a <a href="https://docs.python.org/3/glossary.html#term-file-like-object" target="_blank">file-like</a> `async` interface.
-* It exposes an actual Python <a href="https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile" target="_blank">`SpooledTemporaryFile`</a> object that you can pass directly to other libraries that expect a file-like object.
-
+* It has a <a href="https://docs.python.org/3/glossary.html#term-file-like-object" class="external-link" target="_blank">file-like</a> `async` interface.
+* It exposes an actual Python <a href="https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile" class="external-link" target="_blank">`SpooledTemporaryFile`</a> object that you can pass directly to other libraries that expect a file-like object.
 
 ### `UploadFile`
 
@@ -65,7 +63,6 @@ Using `UploadFile` has several advantages over `bytes`:
 * `filename`: A `str` with the original file name that was uploaded (e.g. `myimage.jpg`).
 * `content_type`: A `str` with the content type (MIME type / media type) (e.g. `image/jpeg`).
 * `file`: A <a href="https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile" target="_blank">`SpooledTemporaryFile`</a> (a <a href="https://docs.python.org/3/glossary.html#term-file-like-object" target="_blank">file-like</a> object). This is the actual Python file that you can pass directly to other functions or libraries that expect a "file-like" object.
-
 
 `UploadFile` has the following `async` methods. They all call the corresponding file methods underneath (using the internal `SpooledTemporaryFile`).
 
@@ -93,11 +90,10 @@ contents = myfile.file.read()
 !!! note "`async` Technical Details"
     When you use the `async` methods, **FastAPI** runs the file methods in a threadpool and awaits for them.
 
-
 !!! note "Starlette Technical Details"
     **FastAPI**'s `UploadFile` inherits directly from **Starlette**'s `UploadFile`, but adds some necessary parts to make it compatible with **Pydantic** and the other parts of FastAPI.
 
-## "Form Data"? 
+## What is "Form Data"
 
 The way HTML forms (`<form></form>`) sends the data to the server normally uses a "special" encoding for that data, it's different from JSON.
 
@@ -108,8 +104,7 @@ The way HTML forms (`<form></form>`) sends the data to the server normally uses 
 
     But when the form includes files, it is encoded as `multipart/form-data`. If you use `File`, **FastAPI** will know it has to get the files from the correct part of the body.
     
-    If you want to read more about these encodings and form fields, head to the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST" target="_blank"><abbr title="Mozilla Developer Network">MDN</abbr> web docs for <code>POST</code></a>.
-
+    If you want to read more about these encodings and form fields, head to the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST" class="external-link" target="_blank"><abbr title="Mozilla Developer Network">MDN</abbr> web docs for <code>POST</code></a>.
 
 !!! warning
     You can declare multiple `File` and `Form` parameters in a path operation, but you can't also declare `Body` fields that you expect to receive as JSON, as the request will have the body encoded using `multipart/form-data` instead of `application/json`.
@@ -131,7 +126,7 @@ To use that, declare a `List` of `bytes` or `UploadFile`:
 You will receive, as declared, a `list` of `bytes` or `UploadFile`s.
 
 !!! note
-    Notice that, as of 2019-04-14, Swagger UI doesn't support multiple file uploads in the same form field. For more information, check <a href="https://github.com/swagger-api/swagger-ui/issues/4276" target="_blank">#4276</a> and <a href="https://github.com/swagger-api/swagger-ui/issues/3641" target="_blank">#3641</a>.
+    Notice that, as of 2019-04-14, Swagger UI doesn't support multiple file uploads in the same form field. For more information, check <a href="https://github.com/swagger-api/swagger-ui/issues/4276" target="_blank">#4276</a> and <a href="https://github.com/swagger-api/swagger-ui/issues/3641" class="external-link" target="_blank">#3641</a>.
 
     Nevertheless, **FastAPI** is already compatible with it, using the standard OpenAPI.
     

@@ -5,7 +5,7 @@
 
 If you are starting a project from scratch, you are probably better off with <a href="https://fastapi.tiangolo.com/tutorial/sql-databases/" target="_blank">SQLAlchemy ORM</a>, or any other async ORM.
 
-If you already have a code base that uses <a href="http://docs.peewee-orm.com/en/latest/" target="_blank">Peewee ORM</a>, you can check here how to use it with **FastAPI**.
+If you already have a code base that uses <a href="http://docs.peewee-orm.com/en/latest/" class="external-link" target="_blank">Peewee ORM</a>, you can check here how to use it with **FastAPI**.
 
 !!! warning "Python 3.7+ required"
     You will need Python 3.7 or above to safely use Peewee with FastAPI.
@@ -23,7 +23,7 @@ But if you need to change some of the defaults, support more than one predefined
 Nevertheless, it's possible to do it, and here you'll see exactly what code you have to add to be able to use Peewee with FastAPI.
 
 !!! note "Technical Details"
-    You can read more about Peewee's stand about async in Python <a href="http://docs.peewee-orm.com/en/latest/peewee/database.html#async-with-gevent" target="_blank">in the docs</a>, <a href="https://github.com/coleifer/peewee/issues/263#issuecomment-517347032" target="_blank">an issue</a>, <a href="https://github.com/coleifer/peewee/pull/2072#issuecomment-563215132" target="_blank">a PR</a>.
+    You can read more about Peewee's stand about async in Python <a href="http://docs.peewee-orm.com/en/latest/peewee/database.html#async-with-gevent" target="_blank">in the docs</a>, <a href="https://github.com/coleifer/peewee/issues/263#issuecomment-517347032" target="_blank">an issue</a>, <a href="https://github.com/coleifer/peewee/pull/2072#issuecomment-563215132" class="external-link" target="_blank">a PR</a>.
 
 ## The same app
 
@@ -88,7 +88,7 @@ connect_args={"check_same_thread": False}
 
 ### Make Peewee async-compatible `PeeweeConnectionState`
 
-The main issue with Peewee and FastAPI is that Peewee relies heavily on <a href="https://docs.python.org/3/library/threading.html#thread-local-data" target="_blank">Python's `threading.local`</a>, and it doesn't have a direct way to override it or let you handle connections/sessions directly (as is done in the SQLAlchemy tutorial).
+The main issue with Peewee and FastAPI is that Peewee relies heavily on <a href="https://docs.python.org/3/library/threading.html#thread-local-data" class="external-link" target="_blank">Python's `threading.local`</a>, and it doesn't have a direct way to override it or let you handle connections/sessions directly (as is done in the SQLAlchemy tutorial).
 
 And `threading.local` is not compatible with the new async features of modern Python.
 
@@ -103,7 +103,7 @@ And `threading.local` is not compatible with the new async features of modern Py
 
 But Python 3.7 and above provide a more advanced alternative to `threading.local`, that can also be used in the places where `threading.local` would be used, but is compatible with the new async features.
 
-We are going to use that. It's called <a href="https://docs.python.org/3/library/contextvars.html" target="_blank">`contextvars`</a>.
+We are going to use that. It's called <a href="https://docs.python.org/3/library/contextvars.html" class="external-link" target="_blank">`contextvars`</a>.
 
 We are going to override the internal parts of Peewee that use `threading.local` and replace them with `contextvars`, with the corresponding updates.
 
@@ -206,7 +206,7 @@ It provides a special custom object of class `ModelSelect`.
 
 It's possible to create a `list` of its items with `list(some_user.items)`.
 
-But the object itself is not a `list`. And it's also not an actual Python <a href="https://docs.python.org/3/glossary.html#term-generator" target="_blank">generator</a>. Because of this, Pydantic doesn't know by default how to convert it to a `list` of Pydantic *models* / schemas.
+But the object itself is not a `list`. And it's also not an actual Python <a href="https://docs.python.org/3/glossary.html#term-generator" class="external-link" target="_blank">generator</a>. Because of this, Pydantic doesn't know by default how to convert it to a `list` of Pydantic *models* / schemas.
 
 But recent versions of Pydantic allow providing a custom class that inherits from `pydantic.utils.GetterDict`, to provide the functionality used when using the `orm_mode = True` to retrieve the values for ORM model attributes.
 
@@ -307,7 +307,7 @@ For the **next request**, as we will reset that context variable again in the mi
 #### Peewee Proxy
 
 
-If you are using a [Peewee Proxy](http://docs.peewee-orm.com/en/latest/peewee/database.html#dynamically-defining-a-database){.external-link target=_blank}, the actual database is at `db.obj`.
+If you are using a <a href="http://docs.peewee-orm.com/en/latest/peewee/database.html#dynamically-defining-a-database" class="external-link" target="_blank">Peewee Proxy</a>, the actual database is at `db.obj`.
 
 So, you would reset it with:
 
@@ -381,9 +381,9 @@ Then run your app with Uvicorn:
 uvicorn sql_app.main:app --reload
 ```
 
-Open your browser at <a href="http://127.0.0.1:8000/docs" target="_blank">http://127.0.0.1:8000/docs</a>  and create a couple of users.
+Open your browser at <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>  and create a couple of users.
 
-Then open 10 tabs at <a href="http://127.0.0.1:8000/docs#/default/read_slow_users_slowusers__get" target="_blank">http://127.0.0.1:8000/docs#/default/read_slow_users_slowusers__get</a> at the same time.
+Then open 10 tabs at <a href="http://127.0.0.1:8000/docs#/default/read_slow_users_slowusers__get" class="external-link" target="_blank">http://127.0.0.1:8000/docs#/default/read_slow_users_slowusers__get</a> at the same time.
 
 Go to the *path operation* "Get `/slowusers/`" in all of the tabs. Use the "Try it out" button and execute the request in each tab, one right after the other.
 
@@ -475,7 +475,7 @@ Repeat the same process with the 10 tabs. This time all of them will wait and yo
 
 ### The problem
 
-Peewee uses [`threading.local`](https://docs.python.org/3/library/threading.html#thread-local-data){.external-link target=_blank} by default to store it's database "state" data (connection, transactions, etc).
+Peewee uses <a href="https://docs.python.org/3/library/threading.html#thread-local-data" class="external-link" target="_blank">`threading.local`</a> by default to store it's database "state" data (connection, transactions, etc).
 
 `threading.local` creates a value exclusive to the current thread, but an async framework would run all the "tasks" (e.g. requests) in the same thread, and possibly not in order.
 
@@ -485,7 +485,7 @@ This means that, with Peewee's current implementation, multiple tasks could be u
 
 ### Context variables
 
-Python 3.7 has [`contextvars`](https://docs.python.org/3/library/contextvars.html){.external-link target=_blank} that can create a local variable very similar to `threading.local`, but also supporting these async features.
+Python 3.7 has <a href="https://docs.python.org/3/library/contextvars.html" class="external-link" target="_blank">`contextvars`</a> that can create a local variable very similar to `threading.local`, but also supporting these async features.
 
 There are several things to have in mind.
 
