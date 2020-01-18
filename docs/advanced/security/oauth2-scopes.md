@@ -29,13 +29,30 @@ The content of each of these strings can have any format, but should not contain
 
 These scopes represent "permissions".
 
-In OpenAPI (e.g. the API docs), you can define "security schemes", the same as you saw in the previous sections.
+In OpenAPI (e.g. the API docs), you can define "security schemes".
 
 When one of these security schemes uses OAuth2, you can also declare and use scopes.
 
+Each "scope" is just a string (without spaces).
+
+They are normally used to declare specific security permissions, for example:
+
+* `users:read` or `users:write` are common examples.
+* `instagram_basic` is used by Facebook / Instagram.
+* `https://www.googleapis.com/auth/drive` is used by Google.
+
+!!! info
+    In OAuth2 a "scope" is just a string that declares a specific permission required.
+
+    It doesn't matter if it has other characters like `:` or if it is a URL.
+    
+    Those details are implementation specific.
+
+    For OAuth2 they are just strings.
+
 ## Global view
 
-First, let's quickly see the parts that change from the previous section about OAuth2 and JWT. Now using OAuth2 scopes:
+First, let's quickly see the parts that change from the examples in the main **Tutorial - User Guide** for [OAuth2 with Password (and hashing), Bearer with JWT tokens](../../tutorial/security/oauth2-jwt.md){.internal-link target=_blank}. Now using OAuth2 scopes:
 
 ```Python hl_lines="2 5 9 13 48 66 107 109 110 111 112 113 114 115 116 117 123 124 125 126 130 131 132 133 134 135 136 141 155"
 {!./src/security/tutorial005.py!}
@@ -108,7 +125,7 @@ In this case, it requires the scope `me` (it could require more than one scope).
 
     But by using `Security` instead of `Depends`, **FastAPI** will know that it can declare security scopes, use them internally, and document the API with OpenAPI.
 
-    But when you import `Query`, `Path`, `Depends`, `Security` and others from `fastapi`, <a href="https://fastapi.tiangolo.com/tutorial/path-params-numeric-validations/#recap" target="_blank">those are actually functions that return classes of the same name</a>.
+    But when you import `Query`, `Path`, `Depends`, `Security` and others from `fastapi`, those are actually functions that return special classes.
 
 ## Use `SecurityScopes`
 
@@ -200,7 +217,7 @@ Here's how the hierarchy of dependencies and scopes looks like:
 !!! tip
     The important and "magic" thing here is that `get_current_user` will have a different list of `scopes` to check for each *path operation*.
 
-    All depending on the `scopes` declared in each *path operation* and each dependency in the dependency tree for that specific path operation.
+    All depending on the `scopes` declared in each *path operation* and each dependency in the dependency tree for that specific *path operation*.
 
 ## More details about `SecurityScopes`
 
@@ -210,7 +227,7 @@ It will always have the security scopes declared in the current `Security` depen
 
 Because the `SecurityScopes` will have all the scopes declared by dependants, you can use it to verify that a token has the required scopes in a central dependency function, and then declare different scope requirements in different *path operations*.
 
-They will be checked independently for each path operation.
+They will be checked independently for each *path operation*.
 
 ## Check it
 
@@ -247,4 +264,4 @@ The most secure is the code flow, but is more complex to implement as it require
 
 ## `Security` in decorator `dependencies`
 
-The same way you can define a `list` of <a href="https://fastapi.tiangolo.com/tutorial/dependencies/dependencies-in-path-operation-decorators/" target="_blank">`Depends` in the decorator's `dependencies` parameter</a>, you could also use `Security` with `scopes` there.
+The same way you can define a `list` of `Depends` in the decorator's `dependencies` parameter (as explained in [Dependencies in path operation decorators](../../tutorial/dependencies/dependencies-in-path-operation-decorators.md){.internal-link target=_blank}), you could also use `Security` with `scopes` there.

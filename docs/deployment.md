@@ -37,8 +37,7 @@ COPY ./app /app
 
 #### Bigger Applications
 
-If you followed the section about creating <a href="https://fastapi.tiangolo.com/tutorial/bigger-applications/" target="_blank">Bigger Applications with Multiple Files
-</a>, your `Dockerfile` might instead look like:
+If you followed the section about creating [Bigger Applications with Multiple Files](tutorial/bigger-applications.md){.internal-link target=_blank}, your `Dockerfile` might instead look like:
 
 ```Dockerfile
 FROM tiangolo/uvicorn-gunicorn-fastapi:python3.7
@@ -214,7 +213,7 @@ To set up a Docker Swarm Mode cluster with Traefik and HTTPS handling, follow th
 
 ### Deploy a FastAPI application
 
-The easiest way to set everything up, would be using the <a href="/project-generation/" target="_blank">FastAPI project generator</a>.
+The easiest way to set everything up, would be using the [**FastAPI** Project Generators](project-generation.md){.internal-link target=_blank}.
 
 It is designed to be integrated with this Docker Swarm cluster with Traefik and HTTPS described above.
 

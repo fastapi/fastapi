@@ -1,4 +1,4 @@
-The same way you can specify a response model, you can also declare the HTTP status code used for the response with the parameter `status_code` in any of the path operations:
+The same way you can specify a response model, you can also declare the HTTP status code used for the response with the parameter `status_code` in any of the *path operations*:
 
 * `@app.get()`
 * `@app.post()`
@@ -11,7 +11,7 @@ The same way you can specify a response model, you can also declare the HTTP sta
 ```
 
 !!! note
-    Notice that `status_code` is a parameter of the "decorator" method (`get`, `post`, etc). Not of your path operation function, like all the parameters and body.
+    Notice that `status_code` is a parameter of the "decorator" method (`get`, `post`, etc). Not of your *path operation function*, like all the parameters and body.
 
 The `status_code` parameter receives a number with the HTTP status code.
 
@@ -76,4 +76,4 @@ They are just a convenience, they hold the same number, but that way you can use
 
 ## Changing the default
 
-Later, in a more advanced part of the tutorial/user guide, you will see how to <a href="https://fastapi.tiangolo.com/tutorial/response-change-status-code/" target="_blank">return a different status code than the default</a> you are declaring here.
+Later, in the **Advanced User Guide**, you will see how to return a different status code than the default you are declaring here.

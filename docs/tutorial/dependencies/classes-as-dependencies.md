@@ -2,13 +2,13 @@ Before diving deeper into the **Dependency Injection** system, let's upgrade the
 
 ## A `dict` from the previous example
 
-In the previous example, we are returning a `dict` from our dependency ("dependable"):
+In the previous example, we were returning a `dict` from our dependency ("dependable"):
 
 ```Python hl_lines="7"
 {!./src/dependencies/tutorial001.py!}
 ```
 
-But then we get a `dict` in the parameter `commons` of the path operation function.
+But then we get a `dict` in the parameter `commons` of the *path operation function*.
 
 And we know that editors can't provide a lot of support (like completion) for `dict`s, because they can't know their keys and value types.
 
@@ -63,9 +63,9 @@ Then, in **FastAPI**, you could use a Python class as a dependency.
 
 What FastAPI actually checks is that it is a "callable" (function, class or anything else) and the parameters defined.
 
-If you pass a "callable" as a dependency in **FastAPI**, it will analyze the parameters for that "callable", and process them in the same way as the parameters for a path operation function. Including sub-dependencies.
+If you pass a "callable" as a dependency in **FastAPI**, it will analyze the parameters for that "callable", and process them in the same way as the parameters for a *path operation function*. Including sub-dependencies.
 
-That also applies to callables with no parameters at all. The same as it would be for path operation functions with no parameters.
+That also applies to callables with no parameters at all. The same as it would be for *path operation functions* with no parameters.
 
 Then, we can change the dependency "dependable" `common_parameters` from above to the class `CommonQueryParameters`:
 
@@ -173,7 +173,7 @@ commons: CommonQueryParams = Depends(CommonQueryParams)
 commons: CommonQueryParams = Depends()
 ```
 
-So, you can declare the dependency as the type of the variable, and use `Depends()` as the "default" value, without any parameter, instead of having to write the full class *again* inside of `Depends(CommonQueryParams)`.
+So, you can declare the dependency as the type of the variable, and use `Depends()` as the "default" value (the value after the `=`) for that function's parameter, without any parameter, instead of having to write the full class *again* inside of `Depends(CommonQueryParams)`.
 
 So, the same example would look like:
 

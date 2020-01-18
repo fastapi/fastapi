@@ -1,4 +1,4 @@
-This tutorial shows you how to use **FastAPI** with all its features, step by step.
+This tutorial shows you how to use **FastAPI** with most of its features, step by step.
 
 Each section gradually builds on the previous ones, but it's structured to separate topics, so that you can go directly to any specific one to solve your specific API needs.
 
@@ -36,7 +36,7 @@ pip install fastapi[all]
 
 !!! note
     You can also install it part by part.
-    
+
     This is what you would probably do once you want to deploy your application to production:
 
     ```
@@ -50,3 +50,13 @@ pip install fastapi[all]
     ```
 
     And the same for each of the optional dependencies that you want to use.
+
+## Advanced User Guide
+
+There is also an **Advanced User Guide** that you can read later after this **Tutorial - User guide**.
+
+The **Advanced User Guide**, builds on this, uses the same concepts, and teaches you some extra features.
+
+But you should first read the **Tutorial - User guide** (what you are reading right now).
+
+It's designed so that you can build a complete application with just the **Tutorial - User guide**, and then extend it in different ways, depending on your needs, using some of the additional ideas from the **Advanced User Guide**.

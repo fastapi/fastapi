@@ -26,7 +26,7 @@ Interactive API documentation and exploration web user interfaces. As the framew
 
 It's all based on standard **Python 3.6 type** declarations (thanks to Pydantic). No new syntax to learn. Just standard modern Python.
 
-If you need a 2 minute refresher of how to use Python types (even if you don't use FastAPI), check the tutorial section: [Python types](python-types.md).
+If you need a 2 minute refresher of how to use Python types (even if you don't use FastAPI), check the short tutorial: [Python Types](python-types.md){.internal-link target=_blank}.
 
 You write standard Python with types:
 
@@ -121,7 +121,7 @@ Security and authentication integrated. Without any compromise with databases or
 All the security schemes defined in OpenAPI, including:
 
 * HTTP Basic.
-* **OAuth2** (also with **JWT tokens**). Check the [tutorial on OAuth2 with JWT](tutorial/security/oauth2-jwt.md).
+* **OAuth2** (also with **JWT tokens**). Check the tutorial on [OAuth2 with JWT](tutorial/security/oauth2-jwt.md){.internal-link target=_blank}.
 * API keys in:
     * Headers.
     * Query parameters.
@@ -136,9 +136,9 @@ All built as reusable tools and components that are easy to integrate with your 
 FastAPI includes an extremely easy to use, but extremely powerful <abbr title='also known as "components", "resources", "services", "providers"'><strong>Dependency Injection</strong></abbr> system.
 
 * Even dependencies can have dependencies, creating a hierarchy or **"graph" of dependencies**.
-* All **automatically handled** by the framework. 
+* All **automatically handled** by the framework.
 * All the dependencies can require data from requests and **augment the path operation** constraints and automatic documentation.
-* **Automatic validation** even for path operation parameters defined in dependencies.
+* **Automatic validation** even for *path operation* parameters defined in dependencies.
 * Support for complex user authentication systems, **database connections**, etc.
 * **No compromise** with databases, frontends, etc. But easy integration with all of them.
 
@@ -146,7 +146,7 @@ FastAPI includes an extremely easy to use, but extremely powerful <abbr title='a
 
 Or in other way, no need for them, import and use the code you need.
 
-Any integration is designed to be so simple to use (with dependencies) that you can create a "plug-in" for your application in 2 lines of code using the same structure and syntax used for your path operations.
+Any integration is designed to be so simple to use (with dependencies) that you can create a "plug-in" for your application in 2 lines of code using the same structure and syntax used for your *path operations*.
 
 ### Tested
 

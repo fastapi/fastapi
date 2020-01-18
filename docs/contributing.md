@@ -1,4 +1,4 @@
-First, you might want to see the basic ways to <a href="https://fastapi.tiangolo.com/help-fastapi/" target="_blank">help FastAPI and get help</a>.
+First, you might want to see the basic ways to [help FastAPI and get help](help-fastapi.md){.internal-link target=_blank}.
 
 ## Developing
 

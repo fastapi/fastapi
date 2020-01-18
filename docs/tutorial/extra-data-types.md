@@ -50,7 +50,7 @@ Here are some of the additional data types you can use:
 
 ## Example
 
-Here's an example path operation with parameters using some of the above types.
+Here's an example *path operation* with parameters using some of the above types.
 
 ```Python hl_lines="1 2 11 12 13 14 15"
 {!./src/extra_data_types/tutorial001.py!}

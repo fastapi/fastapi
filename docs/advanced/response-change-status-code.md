@@ -1,4 +1,4 @@
-You probably read before that you can set a <a href="https://fastapi.tiangolo.com/tutorial/response-status-code/" target="_blank">default Response Status Code</a>.
+You probably read before that you can set a default [Response Status Code](../tutorial/response-status-code.md){.internal-link target=_blank}.
 
 But in some cases you need to return a different status code than the default.
 

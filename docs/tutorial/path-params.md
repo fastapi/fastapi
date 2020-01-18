@@ -105,7 +105,7 @@ Like `/users/me`, let's say that it's to get data about the current user.
 
 And then you can also have a path `/users/{user_id}` to get data about a specific user by some user ID.
 
-Because path operations are evaluated in order, you need to make sure that the path for `/users/me` is declared before the one for `/users/{user_id}`:
+Because *path operations* are evaluated in order, you need to make sure that the path for `/users/me` is declared before the one for `/users/{user_id}`:
 
 ```Python hl_lines="6 11"
 {!./src/path_params/tutorial003.py!}

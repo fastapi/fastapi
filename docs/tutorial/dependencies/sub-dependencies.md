@@ -1,6 +1,6 @@
-You can create dependencies that have sub-dependencies.
+You can create dependencies that have **sub-dependencies**.
 
-They can be as "deep" as you need them to be.
+They can be as **deep** as you need them to be.
 
 **FastAPI** will take care of solving them.
 
@@ -40,7 +40,7 @@ Then we can use the dependency with:
 ```
 
 !!! info
-    Notice that we are only declaring one dependency in the path operation function, the `query_or_cookie_extractor`.
+    Notice that we are only declaring one dependency in the *path operation function*, the `query_or_cookie_extractor`.
 
     But **FastAPI** will know that it has to solve `query_extractor` first, to pass the results of that to `query_or_cookie_extractor` while calling it.
 
@@ -61,7 +61,7 @@ async def needy_dependency(fresh_value: str = Depends(get_value, use_cache=False
 
 Apart from all the fancy words used here, the **Dependency Injection** system is quite simple.
 
-Just functions that look the same as the path operation functions.
+Just functions that look the same as the *path operation functions*.
 
 But still, it is very powerful, and allows you to declare arbitrarily deeply nested dependency "graphs" (trees).
 

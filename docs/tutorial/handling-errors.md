@@ -33,7 +33,7 @@ To return HTTP responses with errors to the client you use `HTTPException`.
 
 Because it's a Python exception, you don't `return` it, you `raise` it.
 
-This also means that if you are inside a utility function that you are calling inside of your path operation function, and you raise the `HTTPException` from inside of that utility function, it won't run the rest of the code in the path operation function, it will terminate that request right away and send the HTTP error from the `HTTPException` to the client.
+This also means that if you are inside a utility function that you are calling inside of your *path operation function*, and you raise the `HTTPException` from inside of that utility function, it won't run the rest of the code in the *path operation function*, it will terminate that request right away and send the HTTP error from the `HTTPException` to the client.
 
 The benefit of raising an exception over `return`ing a value will be more evident in the section about Dependencies and Security.
 
@@ -231,7 +231,7 @@ So, you can keep raising **FastAPI**'s `HTTPException` as normally in your code.
 
 But when you register an exception handler, you should register it for Starlette's `HTTPException`.
 
-This way, if any part of Starlette's internal code, or a Starlette extension or plug-in, raises an `HTTPException`, your handler will be able to catch handle it.
+This way, if any part of Starlette's internal code, or a Starlette extension or plug-in, raises an `HTTPException`, your handler will be able to catch and handle it.
 
 In this example, to be able to have both `HTTPException`s in the same code, Starlette's exceptions is renamed to `StarletteHTTPException`:
 
@@ -246,9 +246,9 @@ You could also just want to use the exception somehow, but then use the same def
 You can import and re-use the default exception handlers from `fastapi.exception_handlers`:
 
 ```Python hl_lines="2 3 4 5 15 21"
-{!./src/handling_errors/tutorial005.py!}
+{!./src/handling_errors/tutorial006.py!}
 ```
 
-In this example, you are just `print`ing the error with a very expressive notification.
+In this example, you are just `print`ing the error with a very expressive message.
 
 But you get the idea, you can use the exception and then just re-use the default exception handlers.

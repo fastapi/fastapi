@@ -19,9 +19,6 @@ First, import `BackgroundTasks` and define a parameter in your *path operation f
 
 **FastAPI** will create the object of type `BackgroundTasks` for you and pass it as that parameter.
 
-!!! tip
-    You declare a parameter of `BackgroundTasks` and use it in a very similar way as to when <a href="/tutorial/using-request-directly/" target="_blank">using the `Request` directly</a>.
-
 ## Create a task function
 
 Create a function to be run as the background task.
@@ -86,7 +83,7 @@ If you need to perform heavy background computation and you don't necessarily ne
 
 They tend to require more complex configurations, a message/job queue manager, like RabbitMQ or Redis, but they allow you to run background tasks in multiple processes, and especially, in multiple servers.
 
-To see an example, check the <a href="https://fastapi.tiangolo.com/project-generation/" target="_blank">Project Generators</a>, they all include Celery already configured.
+To see an example, check the [Project Generators](../project-generation.md){.internal-link target=_blank}, they all include Celery already configured.
 
 But if you need to access variables and objects from the same **FastAPI** app, or you need to perform small background tasks (like sending an email notification), you can simply just use `BackgroundTasks`.
 

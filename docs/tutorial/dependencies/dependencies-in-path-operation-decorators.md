@@ -57,4 +57,4 @@ So, you can re-use a normal dependency (that returns a value) you already use so
 
 ## Dependencies for a group of *path operations*
 
-Later, when reading about how to <a href="https://fastapi.tiangolo.com/tutorial/bigger-applications/" target="_blank">structure bigger applications</a>, possibly with multiple files, you will learn how to declare a single `dependencies` parameter for a group of *path operations*.
+Later, when reading about how to structure bigger applications ([Bigger Applications - Multiple Files](../../tutorial/bigger-applications.md){.internal-link target=_blank}), possibly with multiple files, you will learn how to declare a single `dependencies` parameter for a group of *path operations*.

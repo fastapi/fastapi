@@ -62,7 +62,7 @@ This example doesn't implement the callback itself (that could be just a line of
 !!! tip
     The actual callback is just an HTTP request.
 
-    When implementing the callback yourself, you could use something like <a href="https://www.encode.io/httpx/" target="_blank">HTTPX</a> or <a href="https://requests.readthedocs.io/" class="external-link" target="_blank">Requests</a>.
+    When implementing the callback yourself, you could use something like <a href="https://www.encode.io/httpx/" class="external-link" target="_blank">HTTPX</a> or <a href="https://requests.readthedocs.io/" class="external-link" target="_blank">Requests</a>.
 
 ## Write the callback documentation code
 

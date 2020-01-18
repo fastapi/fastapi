@@ -5,7 +5,7 @@
 
 By default, **FastAPI** will return the responses using Starlette's `JSONResponse`.
 
-You can override it by returning a `Response` directly, <a href="https://fastapi.tiangolo.com/tutorial/response-directly/" target="_blank">as seen in a previous section</a>.
+You can override it by returning a `Response` directly as seen in [Return a Response directly](response-directly.md){.internal-link target=_blank}.
 
 But if you return a `Response` directly, the data won't be automatically converted, and the documentation won't be automatically generated (for example, including the specific "media type", in the HTTP header `Content-Type`).
 
@@ -43,7 +43,7 @@ Import the `Response` class (sub-class) you want to use and declare it in the *p
 To return a response with HTML directly from **FastAPI**, use `HTMLResponse`.
 
 * Import `HTMLResponse`.
-* Pass `HTMLResponse` as the parameter `content_type` of your path operation.
+* Pass `HTMLResponse` as the parameter `content_type` of your *path operation*.
 
 ```Python hl_lines="2 7"
 {!./src/custom_response/tutorial002.py!}
@@ -61,7 +61,7 @@ To return a response with HTML directly from **FastAPI**, use `HTMLResponse`.
 
 ### Return a Starlette `Response`
 
-As seen in <a href="https://fastapi.tiangolo.com/tutorial/response-directly/" target="_blank">another section</a>, you can also override the response directly in your path operation, by returning it.
+As seen in [Return a Response directly](response-directly.md){.internal-link target=_blank}, you can also override the response directly in your *path operation*, by returning it.
 
 The same example from above, returning an `HTMLResponse`, could look like:
 
@@ -70,7 +70,7 @@ The same example from above, returning an `HTMLResponse`, could look like:
 ```
 
 !!! warning
-    A `Response` returned directly by your path operation function won't be documented in OpenAPI (for example, the `Content-Type` won't be documented) and won't be visible in the automatic interactive docs.
+    A `Response` returned directly by your *path operation function* won't be documented in OpenAPI (for example, the `Content-Type` won't be documented) and won't be visible in the automatic interactive docs.
 
 !!! info
     Of course, the actual `Content-Type` header, status code, etc, will come from the `Response` object your returned.
@@ -79,7 +79,7 @@ The same example from above, returning an `HTMLResponse`, could look like:
 
 If you want to override the response from inside of the function but at the same time document the "media type" in OpenAPI, you can use the `response_class` parameter AND return a `Response` object.
 
-The `response_class` will then be used only to document the OpenAPI path operation, but your `Response` will be used as is.
+The `response_class` will then be used only to document the OpenAPI *path operation*, but your `Response` will be used as is.
 
 #### Return an `HTMLResponse` directly
 
@@ -99,4 +99,4 @@ But as you passed the `HTMLResponse` in the `response_class`, **FastAPI** will k
 
 ## Additional documentation
 
-You can also declare the media type and many other details in OpenAPI using `responses`: <a href="https://fastapi.tiangolo.com/tutorial/additional-responses/" target="_blank">Additional Responses in OpenAPI</a>.
+You can also declare the media type and many other details in OpenAPI using `responses`: [Additional Responses in OpenAPI](additional-responses.md){.internal-link target=_blank}.

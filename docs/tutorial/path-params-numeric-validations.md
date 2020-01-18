@@ -66,6 +66,7 @@ Here, with `ge=1`, `item_id` will need to be an integer number "`g`reater than o
 ```Python hl_lines="8"
 {!./src/path_params_numeric_validations/tutorial004.py!}
 ```
+
 ## Number validations: greater than and less than or equal
 
 The same applies for:
@@ -93,7 +94,7 @@ And the same for <abbr title="less than"><code>lt</code></abbr>.
 
 ## Recap
 
-With `Query`, `Path` (and others you haven't seen yet) you can declare [metadata and string validations (the previous chapter)](/tutorial/query-params-str-validations).
+With `Query`, `Path` (and others you haven't seen yet) you can declare metadata and string validations in the same ways as with [Query Parameters and String Validations](query-params-str-validations.md){.internal-link target=_blank}.
 
 And you can also declare numeric validations:
 

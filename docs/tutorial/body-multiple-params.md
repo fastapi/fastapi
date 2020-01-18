@@ -13,10 +13,9 @@ And you can also declare body parameters as optional, by setting the default to 
 !!! note
     Notice that, in this case, the `item` that would be taken from the body is optional. As it has a `None` default value.
 
-
 ## Multiple body parameters
 
-In the previous example, the path operations would expect a JSON body with the attributes of an `Item`, like:
+In the previous example, the *path operations* would expect a JSON body with the attributes of an `Item`, like:
 
 ```JSON
 {
@@ -160,9 +159,9 @@ instead of:
 
 ## Recap
 
-You can add multiple body parameters to your path operation function, even though a request can only have a single body.
+You can add multiple body parameters to your *path operation function*, even though a request can only have a single body.
 
-But **FastAPI** will handle it, give you the correct data in your function, and validate and document the correct schema in the path operation.
+But **FastAPI** will handle it, give you the correct data in your function, and validate and document the correct schema in the *path operation*.
 
 You can also declare singular values to be received as part of the body.
 

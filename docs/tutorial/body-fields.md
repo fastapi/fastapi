@@ -1,4 +1,4 @@
-The same way you can declare additional validation and metadata in path operation function parameters with `Query`, `Path` and `Body`, you can declare validation and metadata inside of Pydantic models using Pydantic's `Field`.
+The same way you can declare additional validation and metadata in *path operation function* parameters with `Query`, `Path` and `Body`, you can declare validation and metadata inside of Pydantic models using Pydantic's `Field`.
 
 ## Import `Field`
 
@@ -28,10 +28,10 @@ You can then use `Field` with model attributes:
 
     `Body` also returns objects of a subclass of `FieldInfo` directly. And there are others you will see later that are subclasses of the `Body` class.
 
-    Remember that when you import `Query`, `Path`, and others from `fastapi`, <a href="https://fastapi.tiangolo.com/tutorial/path-params-numeric-validations/#recap" target="_blank">those are actually functions that return classes of the same name</a>.
+    Remember that when you import `Query`, `Path`, and others from `fastapi`, those are actually functions that return special classes.
 
 !!! tip
-    Notice how each model's attribute with a type, default value and `Field` has the same structure as a path operation function's parameter, with `Field` instead of `Path`, `Query` and `Body`.
+    Notice how each model's attribute with a type, default value and `Field` has the same structure as a *path operation function's* parameter, with `Field` instead of `Path`, `Query` and `Body`.
 
 ## JSON Schema extras
 

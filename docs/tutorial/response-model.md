@@ -1,4 +1,4 @@
-You can declare the model used for the response with the parameter `response_model` in any of the path operations:
+You can declare the model used for the response with the parameter `response_model` in any of the *path operations*:
 
 * `@app.get()`
 * `@app.post()`
@@ -11,7 +11,7 @@ You can declare the model used for the response with the parameter `response_mod
 ```
 
 !!! note
-    Notice that `response_model` is a parameter of the "decorator" method (`get`, `post`, etc). Not of your path operation function, like all the parameters and body.
+    Notice that `response_model` is a parameter of the "decorator" method (`get`, `post`, etc). Not of your *path operation function*, like all the parameters and body.
 
 It receives the same type you would declare for a Pydantic model attribute, so, it can be a Pydantic model, but it can also be, e.g. a `list` of Pydantic models, like `List[Item]`.
 
@@ -19,7 +19,7 @@ FastAPI will use this `response_model` to:
 
 * Convert the output data to its type declaration.
 * Validate the data.
-* Add a JSON Schema for the response, in the OpenAPI path operation.
+* Add a JSON Schema for the response, in the OpenAPI *path operation*.
 * Will be used by the automatic documentation systems.
 
 But most importantly:
@@ -47,7 +47,7 @@ Now, whenever a browser is creating a user with a password, the API will return 
 
 In this case, it might not be a problem, because the user himself is sending the password.
 
-But if we use the same model for another path operation, we could be sending our user's passwords to every client.
+But if we use the same model for another *path operation*, we could be sending our user's passwords to every client.
 
 !!! danger
     Never send the plain password of a user in a response.
@@ -60,7 +60,7 @@ We can instead create an input model with the plaintext password and an output m
 {!./src/response_model/tutorial003.py!}
 ```
 
-Here, even though our path operation function is returning the same input user that contains the password:
+Here, even though our *path operation function* is returning the same input user that contains the password:
 
 ```Python hl_lines="22"
 {!./src/response_model/tutorial003.py!}
@@ -192,6 +192,6 @@ If you forget to use a `set` and use a `list` or `tuple` instead, FastAPI will s
 
 ## Recap
 
-Use the path operation decorator's parameter `response_model` to define response models and especially to ensure private data is filtered out.
+Use the *path operation decorator's* parameter `response_model` to define response models and especially to ensure private data is filtered out.
 
 Use `response_model_exclude_unset` to return only the values explicitly set.

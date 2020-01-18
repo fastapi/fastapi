@@ -48,7 +48,7 @@ You will see something like this:
 !!! check "Authorize button!"
     You already have a shinny new "Authorize" button.
 
-    And your path operation has a little lock in the top-right corner that you can click.
+    And your *path operation* has a little lock in the top-right corner that you can click.
 
 And if you click it, you have a little authorization form to type a `username` and `password` (and other optional fields):
 
@@ -112,7 +112,7 @@ In this example we are going to use **OAuth2**, with the **Password** flow, usin
 {!./src/security/tutorial001.py!}
 ```
 
-It doesn't create that endpoint / path operation, but declares that that URL is the one that the client should use to get the token. That information is used in OpenAPI, and then in the interactive API documentation systems.
+It doesn't create that endpoint / *path operation*, but declares that that URL is the one that the client should use to get the token. That information is used in OpenAPI, and then in the interactive API documentation systems.
 
 !!! info
     If you are a very strict "Pythonista" you might dislike the style of the parameter name `tokenUrl` instead of `token_url`.

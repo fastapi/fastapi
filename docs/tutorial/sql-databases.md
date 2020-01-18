@@ -369,7 +369,7 @@ Create utility functions to:
 ```
 
 !!! tip
-    By creating functions that are only dedicated to interacting with the database (get a user or an item) independent of your path operation function, you can more easily reuse them in multiple parts and also add <abbr title="Automated tests, written in code, that check if another piece of code is working correctly.">unit tests</abbr> for them.
+    By creating functions that are only dedicated to interacting with the database (get a user or an item) independent of your *path operation function*, you can more easily reuse them in multiple parts and also add <abbr title="Automated tests, written in code, that check if another piece of code is working correctly.">unit tests</abbr> for them.
 
 ### Create data
 
@@ -444,7 +444,7 @@ A "migration" is the set of steps needed whenever you change the structure of yo
     pip install async-exit-stack async-generator
     ```
 
-    This installs <a href="https://github.com/sorcio/async_exit_stack" target="_blank">async-exit-stack</a> and <a href="https://github.com/python-trio/async_generator" class="external-link" target="_blank">async-generator</a>.
+    This installs <a href="https://github.com/sorcio/async_exit_stack" class="external-link" target="_blank">async-exit-stack</a> and <a href="https://github.com/python-trio/async_generator" class="external-link" target="_blank">async-generator</a>.
 
     You can also use the alternative method with a "middleware" explained at the end.
 
@@ -454,7 +454,7 @@ We need to have an independent database session/connection (`SessionLocal`) per 
 
 And then a new session will be created for the next request.
 
-For that, we will create a new dependency with `yield`, as explained before in the section about <a href="https://fastapi.tiangolo.com/tutorial/dependencies/dependencies-with-yield/" target="_blank">Dependencies with `yield`</a>.
+For that, we will create a new dependency with `yield`, as explained before in the section about [Dependencies with `yield`](dependencies/dependencies-with-yield.md){.internal-link target=_blank}.
 
 Our dependency will create a new SQLAlchemy `SessionLocal` that will be used in a single request, and then close it once the request is finished.
 
@@ -492,9 +492,9 @@ Now, finally, here's the standard **FastAPI** *path operations* code.
 
 We are creating the database session before each request in the dependency with `yield`, and then closing it afterwards.
 
-And then we can create the required dependency in the path operation function, to get that session directly.
+And then we can create the required dependency in the *path operation function*, to get that session directly.
 
-With that, we can just call `crud.get_user` directly from inside of the path operation function and use that session.
+With that, we can just call `crud.get_user` directly from inside of the *path operation function* and use that session.
 
 !!! tip
     Notice that the values you return are SQLAlchemy models, or lists of SQLAlchemy models.
@@ -508,7 +508,7 @@ With that, we can just call `crud.get_user` directly from inside of the path ope
 
 ### About `def` vs `async def`
 
-Here we are using SQLAlchemy code inside of the path operation function and in the dependency, and, in turn, it will go and communicate with an external database.
+Here we are using SQLAlchemy code inside of the *path operation function* and in the dependency, and, in turn, it will go and communicate with an external database.
 
 That could potentially require some "waiting".
 
@@ -534,7 +534,7 @@ def read_user(user_id: int, db: Session = Depends(get_db)):
 ```
 
 !!! note "Very Technical Details"
-    If you are curious and have a deep technical knowledge, you can check <a href="https://fastapi.tiangolo.com/async/#very-technical-details" target="_blank">the very technical details of how this `async def` vs `def` is handled</a>.
+    If you are curious and have a deep technical knowledge, you can check the very technical details of how this `async def` vs `def` is handled in the [Async](../async.md#very-technical-details){.internal-link target=_blank} docs.
 
 ## Migrations
 
@@ -612,7 +612,7 @@ It will look like this:
 
 <img src="/img/tutorial/sql-databases/image02.png">
 
-You can also use an online SQLite browser like <a href="https://inloop.github.io/sqlite-viewer/" target="_blank">SQLite Viewer</a> or <a href="https://extendsclass.com/sqlite-browser.html" class="external-link" target="_blank">ExtendsClass</a>.
+You can also use an online SQLite browser like <a href="https://inloop.github.io/sqlite-viewer/" class="external-link" target="_blank">SQLite Viewer</a> or <a href="https://extendsclass.com/sqlite-browser.html" class="external-link" target="_blank">ExtendsClass</a>.
 
 ## Alternative DB session with middleware
 
