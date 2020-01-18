@@ -47,7 +47,7 @@ except ImportError:  # pragma: nocover
     from pydantic.fields import Field as ModelField  # type: ignore
 
 
-def serialize_response(
+async def serialize_response(
     *,
     field: ModelField = None,
     response: Response,
@@ -55,6 +55,7 @@ def serialize_response(
     exclude: Union[SetIntStr, DictIntStrAny] = set(),
     by_alias: bool = True,
     exclude_unset: bool = False,
+    is_coroutine: bool = True,
 ) -> Any:
     if field:
         errors = []
@@ -63,7 +64,12 @@ def serialize_response(
                 response = response.dict(exclude_unset=exclude_unset)
             else:
                 response = response.dict(skip_defaults=exclude_unset)  # pragma: nocover
-        value, errors_ = field.validate(response, {}, loc=("response",))
+        if is_coroutine:
+            value, errors_ = field.validate(response, {}, loc=("response",))
+        else:
+            value, errors_ = await run_in_threadpool(
+                field.validate, response, {}, loc=("response",)
+            )
         if isinstance(errors_, ErrorWrapper):
             errors.append(errors_)
         elif isinstance(errors_, list):
@@ -131,13 +137,14 @@ def get_request_handler(
                 if raw_response.background is None:
                     raw_response.background = background_tasks
                 return raw_response
-            response_data = serialize_response(
+            response_data = await serialize_response(
                 field=response_field,
                 response=raw_response,
                 include=response_model_include,
                 exclude=response_model_exclude,
                 by_alias=response_model_by_alias,
                 exclude_unset=response_model_exclude_unset,
+                is_coroutine=is_coroutine,
             )
             response = response_class(
                 content=response_data,
