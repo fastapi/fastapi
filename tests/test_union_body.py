@@ -24,7 +24,7 @@ client = TestClient(app)
 
 item_openapi_schema = {
     "openapi": "3.0.2",
-    "info": {"title": "Fast API", "version": "0.1.0"},
+    "info": {"title": "FastAPI", "version": "0.1.0"},
     "paths": {
         "/items/": {
             "post": {

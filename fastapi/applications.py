@@ -32,7 +32,7 @@ class FastAPI(Starlette):
         debug: bool = False,
         routes: List[BaseRoute] = None,
         template_directory: str = None,
-        title: str = "Fast API",
+        title: str = "FastAPI",
         description: str = "",
         version: str = "0.1.0",
         openapi_url: Optional[str] = "/openapi.json",

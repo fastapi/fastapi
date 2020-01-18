@@ -92,7 +92,7 @@ It will show a JSON starting with something like:
 {
     "openapi": "3.0.2",
     "info": {
-        "title": "Fast API",
+        "title": "FastAPI",
         "version": "0.1.0"
     },
     "paths": {

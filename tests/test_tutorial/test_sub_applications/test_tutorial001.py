@@ -6,7 +6,7 @@ client = TestClient(app)
 
 openapi_schema_main = {
     "openapi": "3.0.2",
-    "info": {"title": "Fast API", "version": "0.1.0"},
+    "info": {"title": "FastAPI", "version": "0.1.0"},
     "paths": {
         "/app": {
             "get": {
@@ -24,7 +24,7 @@ openapi_schema_main = {
 }
 openapi_schema_sub = {
     "openapi": "3.0.2",
-    "info": {"title": "Fast API", "version": "0.1.0"},
+    "info": {"title": "FastAPI", "version": "0.1.0"},
     "paths": {
         "/subapi/sub": {
             "get": {
