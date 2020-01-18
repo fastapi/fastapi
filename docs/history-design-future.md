@@ -12,7 +12,7 @@ As part of that, I needed to investigate, test and use many alternatives.
 
 The history of **FastAPI** is in great part the history of its predecessors.
 
-As said in the section <a href="https://fastapi.tiangolo.com/alternatives/" target="_blank">Alternatives</a>:
+As said in the section [Alternatives](alternatives.md){.internal-link target=_blank}:
 
 <blockquote markdown="1">
 
@@ -74,4 +74,4 @@ But still, there are many improvements and features to come.
 
 **FastAPI** has a great future ahead.
 
-And <a href="https://fastapi.tiangolo.com/help-fastapi/" target="_blank">your help</a> is greatly appreciated.
+And [your help](help-fastapi.md){.internal-link target=_blank} is greatly appreciated.

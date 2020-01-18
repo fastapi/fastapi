@@ -57,7 +57,7 @@ And when solving the dependency, **FastAPI** will call this `checker` like:
 checker(q="somequery")
 ```
 
-...and pass whatever that returns as the value of the dependency in our path operation function as the parameter `fixed_content_included`:
+...and pass whatever that returns as the value of the dependency in our *path operation function* as the parameter `fixed_content_included`:
 
 ```Python hl_lines="20"
 {!./src/dependencies/tutorial011.py!}
@@ -68,6 +68,6 @@ checker(q="somequery")
 
     These examples are intentionally simple, but show how it all works.
 
-    In the chapters about security, you will be using utility functions that are implemented in this same way.
+    In the chapters about security, there are utility functions that are implemented in this same way.
 
     If you understood all this, you already know how those utility tools for security work underneath.

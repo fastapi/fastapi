@@ -1,6 +1,6 @@
 ## Use a `Response` parameter
 
-You can declare a parameter of type `Response` in your *path operation function*, the same way you can declare a `Request` parameter.
+You can declare a parameter of type `Response` in your *path operation function*.
 
 And then you can set headers in that *temporal* response object.
 
@@ -20,7 +20,7 @@ You can also declare the `Response` parameter in dependencies, and set cookies (
 
 You can also create cookies when returning a `Response` directly in your code.
 
-To do that, you can create a response as described in <a href="https://fastapi.tiangolo.com/tutorial/response-directly/" target="_blank">Return a Response directly</a>.
+To do that, you can create a response as described in [Return a Response Directly](response-directly.md){.internal-link target=_blank}.
 
 Then set Cookies in it, and then return it:
 

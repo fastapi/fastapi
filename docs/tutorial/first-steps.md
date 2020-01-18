@@ -160,7 +160,7 @@ And put it in a file `main.py`, then you would call `uvicorn` like:
 uvicorn main:my_awesome_api --reload
 ```
 
-### Step 3: create a path operation
+### Step 3: create a *path operation*
 
 #### Path
 
@@ -218,7 +218,7 @@ So, in OpenAPI, each of the HTTP methods is called an "operation".
 
 We are going to call them "**operations**" too.
 
-#### Define a path operation function
+#### Define a *path operation function*
 
 ```Python hl_lines="6"
 {!./src/first_steps/tutorial001.py!}
@@ -289,7 +289,7 @@ You could also define it as a normal function instead of `async def`:
 ```
 
 !!! note
-    If you don't know the difference, check the _"In a hurry?"_ section about <a href="https://fastapi.tiangolo.com/async/#in-a-hurry" target="_blank">`async` and `await` in the docs</a>.
+    If you don't know the difference, check the [Async: *"In a hurry?"*](../async.md#in-a-hurry){.internal-link target=_blank}.
 
 ### Step 5: return the content
 

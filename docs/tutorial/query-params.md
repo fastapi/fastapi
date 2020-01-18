@@ -188,7 +188,7 @@ In this case, there are 3 query parameters:
 * `limit`, an optional `int`.
 
 !!! tip
-    You could also use `Enum`s <a href="https://fastapi.tiangolo.com/tutorial/path-params/#predefined-values" target="_blank">the same way as with *path parameters*</a>.
+    You could also use `Enum`s the same way as with [Path Parameters](path-params.md#predefined-values){.internal-link target=_blank}.
 
 ## Optional type declarations
 

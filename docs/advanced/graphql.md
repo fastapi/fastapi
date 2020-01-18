@@ -1,7 +1,7 @@
 
 **FastAPI** has optional support for GraphQL (provided by Starlette directly), using the `graphene` library.
 
-You can combine normal FastAPI path operations with GraphQL on the same application.
+You can combine normal FastAPI *path operations* with GraphQL on the same application.
 
 ## Import and use `graphene`
 

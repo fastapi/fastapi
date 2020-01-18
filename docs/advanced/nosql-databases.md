@@ -68,7 +68,7 @@ First, let's create a `User` model:
 {!./src/nosql_databases/tutorial001.py!}
 ```
 
-We will use this model in our path operation function, so, we don't include in it the `hashed_password`.
+We will use this model in our *path operation function*, so, we don't include in it the `hashed_password`.
 
 ### `UserInDB` model
 
@@ -85,7 +85,7 @@ We don't create it as a subclass of Pydantic's `BaseModel` but as a subclass of 
 !!! note
     Notice that we have a `hashed_password` and a `type` field that will be stored in the database.
 
-    But it is not part of the general `User` model (the one we will return in the path operation).
+    But it is not part of the general `User` model (the one we will return in the *path operation*).
 
 ## Get the user
 
@@ -96,7 +96,7 @@ Now create a function that will:
 * Get the document with that ID.
 * Put the contents of the document in a `UserInDB` model.
 
-By creating a function that is only dedicated to getting your user from a `username` (or any other parameter) independent of your path operation function, you can more easily re-use it in multiple parts and also add <abbr title="Automated test, written in code, that checks if another piece of code is working correctly.">unit tests</abbr> for it:
+By creating a function that is only dedicated to getting your user from a `username` (or any other parameter) independent of your *path operation function*, you can more easily re-use it in multiple parts and also add <abbr title="Automated test, written in code, that checks if another piece of code is working correctly.">unit tests</abbr> for it:
 
 ```Python hl_lines="37 38 39 40 41 42 43"
 {!./src/nosql_databases/tutorial001.py!}
@@ -137,7 +137,7 @@ UserInDB(username="johndoe", hashed_password="some_hash")
 {!./src/nosql_databases/tutorial001.py!}
 ```
 
-### Create the path operation function
+### Create the *path operation function*
 
 As our code is calling Couchbase and we are not using the <a href="https://docs.couchbase.com/python-sdk/2.5/async-programming.html#asyncio-python-3-5" class="external-link" target="_blank">experimental Python <code>await</code> support</a>, we should declare our function with normal `def` instead of `async def`.
 

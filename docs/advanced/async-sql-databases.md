@@ -11,7 +11,7 @@ In this example, we'll use **SQLite**, because it uses a single file and Python 
 Later, for your production application, you might want to use a database server like **PostgreSQL**.
 
 !!! tip
-    You could adopt ideas from the previous section about <a href="/tutorial/sql-databases/" target="_blank">SQLAlchemy ORM</a>, like using utility functions to perform operations in the database, independent of your **FastAPI** code.
+    You could adopt ideas from the section about SQLAlchemy ORM ([SQL (Relational) Databases](../tutorial/sql-databases.md){.internal-link target=_blank}), like using utility functions to perform operations in the database, independent of your **FastAPI** code.
 
     This section doesn't apply those ideas, to be equivalent to the counterpart in <a href="https://www.starlette.io/database/" class="external-link" target="_blank">Starlette</a>.
 

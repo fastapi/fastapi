@@ -92,25 +92,7 @@ For more information about how to pass data to the backend (using `requests` or 
 !!! info
     Note that the `TestClient` receives data that can be converted to JSON, not Pydantic models.
 
-    If you have a Pydantic model in your test and you want to send its data to the application during testing, you can use the <a href="https://fastapi.tiangolo.com/tutorial/encoder/" target="_blank">JSON compatible encoder: `jsonable_encoder`</a>.
-
-## Testing WebSockets
-
-You can use the same `TestClient` to test WebSockets.
-
-For this, you use the `TestClient` in a `with` statement, connecting to the WebSocket:
-
-```Python hl_lines="27 28 29 30 31"
-{!./src/app_testing/tutorial002.py!}
-```
-
-## Testing Events, `startup` and `shutdown`
-
-When you need your event handlers (`startup` and `shutdown`) to run in your tests, you can use the `TestClient` with a `with` statement:
-
-```Python hl_lines="9 10 11 12 20 21 22 23 24"
-{!./src/app_testing/tutorial003.py!}
-```
+    If you have a Pydantic model in your test and you want to send its data to the application during testing, you can use the `jsonable_encoder` descibed in [JSON Compatible Encoder](encoder.md){.internal-link target=_blank}.
 
 ## Run it
 

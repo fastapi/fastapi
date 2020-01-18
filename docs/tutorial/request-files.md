@@ -26,9 +26,9 @@ Create file parameters the same way you would for `Body` or `Form`:
 !!! info
     `File` is a class that inherits directly from `Form`.
 
-    But remember that when you import `Query`, `Path`, `File` and others from `fastapi`, <a href="https://fastapi.tiangolo.com/tutorial/path-params-numeric-validations/#recap" target="_blank">those are actually functions that return classes of the same name</a>.
+    But remember that when you import `Query`, `Path`, `File` and others from `fastapi`, those are actually functions that return special classes.
 
-!!! info
+!!! tip
     To declare File bodies, you need to use `File`, because otherwise the parameters would be interpreted as query parameters or body (JSON) parameters.
 
 The files will be uploaded as "form data".
@@ -62,7 +62,7 @@ Using `UploadFile` has several advantages over `bytes`:
 
 * `filename`: A `str` with the original file name that was uploaded (e.g. `myimage.jpg`).
 * `content_type`: A `str` with the content type (MIME type / media type) (e.g. `image/jpeg`).
-* `file`: A <a href="https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile" target="_blank">`SpooledTemporaryFile`</a> (a <a href="https://docs.python.org/3/glossary.html#term-file-like-object" target="_blank">file-like</a> object). This is the actual Python file that you can pass directly to other functions or libraries that expect a "file-like" object.
+* `file`: A <a href="https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile" class="external-link" target="_blank">`SpooledTemporaryFile`</a> (a <a href="https://docs.python.org/3/glossary.html#term-file-like-object" class="external-link" target="_blank">file-like</a> object). This is the actual Python file that you can pass directly to other functions or libraries that expect a "file-like" object.
 
 `UploadFile` has the following `async` methods. They all call the corresponding file methods underneath (using the internal `SpooledTemporaryFile`).
 
@@ -107,7 +107,7 @@ The way HTML forms (`<form></form>`) sends the data to the server normally uses 
     If you want to read more about these encodings and form fields, head to the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST" class="external-link" target="_blank"><abbr title="Mozilla Developer Network">MDN</abbr> web docs for <code>POST</code></a>.
 
 !!! warning
-    You can declare multiple `File` and `Form` parameters in a path operation, but you can't also declare `Body` fields that you expect to receive as JSON, as the request will have the body encoded using `multipart/form-data` instead of `application/json`.
+    You can declare multiple `File` and `Form` parameters in a *path operation*, but you can't also declare `Body` fields that you expect to receive as JSON, as the request will have the body encoded using `multipart/form-data` instead of `application/json`.
 
     This is not a limitation of **FastAPI**, it's part of the HTTP protocol.
 
@@ -126,7 +126,7 @@ To use that, declare a `List` of `bytes` or `UploadFile`:
 You will receive, as declared, a `list` of `bytes` or `UploadFile`s.
 
 !!! note
-    Notice that, as of 2019-04-14, Swagger UI doesn't support multiple file uploads in the same form field. For more information, check <a href="https://github.com/swagger-api/swagger-ui/issues/4276" target="_blank">#4276</a> and <a href="https://github.com/swagger-api/swagger-ui/issues/3641" class="external-link" target="_blank">#3641</a>.
+    Notice that, as of 2019-04-14, Swagger UI doesn't support multiple file uploads in the same form field. For more information, check <a href="https://github.com/swagger-api/swagger-ui/issues/4276" class="external-link" target="_blank">#4276</a> and <a href="https://github.com/swagger-api/swagger-ui/issues/3641" class="external-link" target="_blank">#3641</a>.
 
     Nevertheless, **FastAPI** is already compatible with it, using the standard OpenAPI.
     

@@ -9,7 +9,7 @@ This is especially the case for user models, because:
 !!! danger
     Never store user's plaintext passwords. Always store a "secure hash" that you can then verify.
 
-    If you don't know, you will learn what a "password hash" is in the <a href="/tutorial/security/simple-oauth2/#password-hashing" target="_blank">security chapters</a>.
+    If you don't know, you will learn what a "password hash" is in the [security chapters](security/simple-oauth2.md#password-hashing){.internal-link target=_blank}.
 
 ## Multiple models
 

@@ -1,9 +1,9 @@
 !!! warning
-    If you are just starting, the <a href="https://fastapi.tiangolo.com/tutorial/sql-databases/" target="_blank">SQLAlchemy tutorial</a> should be enough.
+    If you are just starting, the tutorial [SQL (Relational) Databases](../tutorial/sql-databases.md){.internal-link target=_blank} that uses SQLAlchemy should be enough.
 
     Feel free to skip this.
 
-If you are starting a project from scratch, you are probably better off with <a href="https://fastapi.tiangolo.com/tutorial/sql-databases/" target="_blank">SQLAlchemy ORM</a>, or any other async ORM.
+If you are starting a project from scratch, you are probably better off with SQLAlchemy ORM ([SQL (Relational) Databases](../tutorial/sql-databases.md){.internal-link target=_blank}), or any other async ORM.
 
 If you already have a code base that uses <a href="http://docs.peewee-orm.com/en/latest/" class="external-link" target="_blank">Peewee ORM</a>, you can check here how to use it with **FastAPI**.
 
@@ -23,11 +23,11 @@ But if you need to change some of the defaults, support more than one predefined
 Nevertheless, it's possible to do it, and here you'll see exactly what code you have to add to be able to use Peewee with FastAPI.
 
 !!! note "Technical Details"
-    You can read more about Peewee's stand about async in Python <a href="http://docs.peewee-orm.com/en/latest/peewee/database.html#async-with-gevent" target="_blank">in the docs</a>, <a href="https://github.com/coleifer/peewee/issues/263#issuecomment-517347032" target="_blank">an issue</a>, <a href="https://github.com/coleifer/peewee/pull/2072#issuecomment-563215132" class="external-link" target="_blank">a PR</a>.
+    You can read more about Peewee's stand about async in Python <a href="http://docs.peewee-orm.com/en/latest/peewee/database.html#async-with-gevent" class="external-link" target="_blank">in the docs</a>, <a href="https://github.com/coleifer/peewee/issues/263#issuecomment-517347032" class="external-link" target="_blank">an issue</a>, <a href="https://github.com/coleifer/peewee/pull/2072#issuecomment-563215132" class="external-link" target="_blank">a PR</a>.
 
 ## The same app
 
-We are going to create the same application as in the <a href="https://fastapi.tiangolo.com/tutorial/sql-databases/" target="_blank">SQLAlchemy tutorial</a>.
+We are going to create the same application as in the SQLAlchemy tutorial ([SQL (Relational) Databases](../tutorial/sql-databases.md){.internal-link target=_blank}).
 
 Most of the code is actually the same.
 
@@ -84,7 +84,7 @@ connect_args={"check_same_thread": False}
 
 !!! info "Technical Details"
 
-    Exactly the same technical details as in the <a href="https://fastapi.tiangolo.com/tutorial/sql-databases/#note" target="_blank">SQLAlchemy tutorial</a> apply.
+    Exactly the same technical details as in [SQL (Relational) Databases](../tutorial/sql-databases.md#note){.internal-link target=_blank} apply.
 
 ### Make Peewee async-compatible `PeeweeConnectionState`
 
@@ -247,7 +247,7 @@ Aso, when returning several objects, like in `get_users`, we directly call `list
 list(models.User.select())
 ```
 
-This is for the same reason that we had to create a custom `PeeweeGetterDict`. But by returning something that is already a `list` instead of the `peewee.ModelSelect` the `response_model` in the path operation with `List[models.User]` (that we'll see later) will work correctly.
+This is for the same reason that we had to create a custom `PeeweeGetterDict`. But by returning something that is already a `list` instead of the `peewee.ModelSelect` the `response_model` in the *path operation* with `List[models.User]` (that we'll see later) will work correctly.
 
 ## Main **FastAPI** app
 

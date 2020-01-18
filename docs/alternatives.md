@@ -79,7 +79,7 @@ The way you use it is very simple. For example, to do a `GET` request, you would
 response = requests.get("http://example.com/some/url")
 ```
 
-The FastAPI counterpart API path operation could look like:
+The FastAPI counterpart API *path operation* could look like:
 
 ```Python hl_lines="1"
 @app.get("/some/url")
@@ -195,7 +195,7 @@ Using it led to the creation of several Flask full-stack generators. These are t
 * <a href="https://github.com/tiangolo/full-stack-flask-couchbase" class="external-link" target="_blank">https://github.com/tiangolo/full-stack-flask-couchbase</a>
 * <a href="https://github.com/tiangolo/full-stack-flask-couchdb" class="external-link" target="_blank">https://github.com/tiangolo/full-stack-flask-couchdb</a>
 
-And these same full-stack generators were the base of the <a href="/project-generation/" target="_blank">**FastAPI** project generator</a>.
+And these same full-stack generators were the base of the [**FastAPI** Project Generators](project-generation.md){.internal-link target=_blank}.
 
 !!! info
     Flask-apispec was created by the same Marshmallow developers.
@@ -408,8 +408,8 @@ It is the recommended server for Starlette and **FastAPI**.
 
     You can combine it with Gunicorn, to have an asynchronous multi-process server.
 
-    Check more details in the <a href="/deployment/" target="_blank">Deployment</a> section.
+    Check more details in the [Deployment](deployment.md){.internal-link target=_blank} section.
 
 ## Benchmarks and speed
 
-To understand, compare, and see the difference between Uvicorn, Starlette and FastAPI, check the section about [Benchmarks](/benchmarks/).
+To understand, compare, and see the difference between Uvicorn, Starlette and FastAPI, check the section about [Benchmarks](benchmarks.md){.internal-link target=_blank}.

@@ -162,7 +162,7 @@ pip install aiofiles
 ### Serve the static files
 
 * Import `StaticFiles` from Starlette.
-* "Mount" it the same way you would <a href="https://fastapi.tiangolo.com/tutorial/sub-applications-proxy/" target="_blank">mount a Sub-Application</a>.
+* "Mount" a `StaticFiles()` instance in a specific path.
 
 ```Python hl_lines="7 11"
 {!./src/extending_openapi/tutorial002.py!}
@@ -229,7 +229,7 @@ And similarly for ReDoc...
 
 ### Create a *path operation* to test it
 
-Now, to be able to test that everything works, create a path operation:
+Now, to be able to test that everything works, create a *path operation*:
 
 ```Python hl_lines="39 40 41"
 {!./src/extending_openapi/tutorial002.py!}

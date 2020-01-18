@@ -41,7 +41,7 @@ You could want to do this if you have several "independent" applications that yo
 
 ### Top-level application
 
-First, create the main, top-level, **FastAPI** application, and its path operations:
+First, create the main, top-level, **FastAPI** application, and its *path operations*:
 
 ```Python hl_lines="3 6 7 8"
 {!./src/sub_applications/tutorial001.py!}
@@ -49,7 +49,7 @@ First, create the main, top-level, **FastAPI** application, and its path operati
 
 ### Sub-application
 
-Then, create your sub-application, and its path operations.
+Then, create your sub-application, and its *path operations*.
 
 This sub-application is just another standard FastAPI application, but this is the one that will be "mounted".
 

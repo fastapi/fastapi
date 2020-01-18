@@ -121,7 +121,6 @@ Now you know that you have to fix it, convert `age` to a string with `str(age)`:
 {!./src/python_types/tutorial004.py!}
 ```
 
-
 ## Declaring types
 
 You just saw the main place to declare type hints. As function parameters.
@@ -214,7 +213,6 @@ This means:
     * The keys of this `dict` are of type `str` (let's say, the name of each item).
     * The values of this `dict` are of type `float` (let's say, the price of each item).
 
-
 ### Classes as types
 
 You can also declare a class as the type of a variable.
@@ -234,7 +232,6 @@ Then you can declare a variable to be of type `Person`:
 And then, again, you get all the editor support:
 
 <img src="/img/python-types/image06.png">
-
 
 ## Pydantic models
 
@@ -259,8 +256,7 @@ Taken from the official Pydantic docs:
 
 **FastAPI** is all based on Pydantic.
 
-You will see a lot more of all this in practice in the <a href="/tutorial/intro/" target="_blank">Tutorial - User Guide</a> (the next section).
-
+You will see a lot more of all this in practice in the [Tutorial - User Guide](tutorial/){.internal-link target=_blank}.
 
 ## Type hints in **FastAPI**
 
@@ -280,7 +276,7 @@ With **FastAPI** you declare parameters with type hints and you get:
 * **Document** the API using OpenAPI:
     * which is then used by the automatic interactive documentation user interfaces.
 
-This might all sound abstract. Don't worry. You'll see all this in action in the <a href="/tutorial/intro/" target="_blank">Tutorial - User Guide</a> (the next section).
+This might all sound abstract. Don't worry. You'll see all this in action in the [Tutorial - User Guide](tutorial/){.internal-link target=_blank}.
 
 The important thing is that by using standard Python types, in a single place (instead of adding more classes, decorators, etc), **FastAPI** will do a lot of the work for you.
 

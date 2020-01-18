@@ -30,7 +30,7 @@ With `Form` you can declare the same metadata and validation as with `Body` (and
 !!! info
     `Form` is a class that inherits directly from `Body`.
 
-!!! info
+!!! tip
     To declare form bodies, you need to use `Form` explicitly, because without it the parameters would be interpreted as query parameters or body (JSON) parameters.
 
 ## About "Form Fields"
@@ -47,7 +47,7 @@ The way HTML forms (`<form></form>`) sends the data to the server normally uses 
     If you want to read more about these encodings and form fields, head to the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST" class="external-link" target="_blank"><abbr title="Mozilla Developer Network">MDN</abbr> web docs for <code>POST</code></a>.
 
 !!! warning
-    You can declare multiple `Form` parameters in a path operation, but you can't also declare `Body` fields that you expect to receive as JSON, as the request will have the body encoded using `application/x-www-form-urlencoded` instead of `application/json`.
+    You can declare multiple `Form` parameters in a *path operation*, but you can't also declare `Body` fields that you expect to receive as JSON, as the request will have the body encoded using `application/x-www-form-urlencoded` instead of `application/json`.
 
     This is not a limitation of **FastAPI**, it's part of the HTTP protocol.
 

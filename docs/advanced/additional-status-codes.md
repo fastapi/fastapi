@@ -27,4 +27,4 @@ To achieve that, import `JSONResponse`, and return your content there directly, 
 
 If you return additional status codes and responses directly, they won't be included in the OpenAPI schema (the API docs), because FastAPI doesn't have a way to know before hand what you are going to return.
 
-But you can document that in your code, using: <a href="https://fastapi.tiangolo.com/tutorial/additional-responses/" target="_blank">Additional Responses</a>.
+But you can document that in your code, using: [Additional Responses](additional-responses.md){.internal-link target=_blank}.

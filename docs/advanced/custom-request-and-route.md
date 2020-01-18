@@ -71,7 +71,7 @@ But because of our changes in `GzipRequest.body`, the request body will be autom
 ## Accessing the request body in an exception handler
 
 !!! tip
-    To solve this same problem, it's probably a lot easier to [use the `body` in a custom handler for `RequestValidationError`](https://fastapi.tiangolo.com/tutorial/handling-errors/#use-the-requestvalidationerror-body).
+    To solve this same problem, it's probably a lot easier to use the `body` in a custom handler for `RequestValidationError` ([Handling Errors](../tutorial/handling-errors.md#use-the-requestvalidationerror-body){.internal-link target=_blank}).
 
     But this example is still valid and it shows how to interact with the internal components.
 

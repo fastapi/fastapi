@@ -1,6 +1,6 @@
 When you create a **FastAPI** *path operation* you can normally return any data from it: a `dict`, a `list`, a Pydantic model, a database model, etc.
 
-By default, **FastAPI** would automatically convert that return value to JSON using the <a href="https://fastapi.tiangolo.com/tutorial/encoder/" target="_blank">`jsonable_encoder`</a>.
+By default, **FastAPI** would automatically convert that return value to JSON using the `jsonable_encoder` explained in [JSON Compatible Encoder](../tutorial/encoder.md){.internal-link target=_blank}.
 
 Then, behind the scenes, it would put that JSON-compatible data (e.g. a `dict`) inside of a Starlette `JSONResponse` that would be used to send the response to the client.
 
@@ -56,8 +56,6 @@ You could put your XML content in a string, put it in a Starlette Response, and 
 
 When you return a `Response` directly its data is not validated, converted (serialized), nor documented automatically.
 
-But you can still <a href="https://fastapi.tiangolo.com/tutorial/additional-responses/" target="_blank">document it</a>.
+But you can still document it as described in [Additional Responses in OpenAPI](additional-responses.md){.internal-link target=_blank}.
 
-In the next sections you will see how to use/declare these custom `Response`s while still having automatic data conversion, documentation, etc.
-
-You will also see how to use them to set response Headers and Cookies.
+You can see in later sections how to use/declare these custom `Response`s while still having automatic data conversion, documentation, etc.

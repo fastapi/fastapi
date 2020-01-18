@@ -10,11 +10,11 @@ To do this, use `yield` instead of `return`, and write the extra steps after.
 !!! info
     For this to work, you need to use **Python 3.7** or above, or in **Python 3.6**, install the "backports":
 
-    ```bash
+    ```
     pip install async-exit-stack async-generator
     ```
 
-    This installs <a href="https://github.com/sorcio/async_exit_stack" class="external-link" target="_blank">async-exit-stack</a> and <a href="https://github.com/python-trio/async_generator" target="_blank">async-generator</a>.
+    This installs <a href="https://github.com/sorcio/async_exit_stack" class="external-link" target="_blank">async-exit-stack</a> and <a href="https://github.com/python-trio/async_generator" class="external-link" target="_blank">async-generator</a>.
 
 !!! note "Technical Details"
     Any function that is valid to use with:
@@ -116,7 +116,7 @@ with open("./somefile.txt") as f:
     print(contents)
 ```
 
-Underneath, the `open("./somefile.txt")` returns an object that is a called a "Context Manager".
+Underneath, the `open("./somefile.txt")` creates an object that is a called a "Context Manager".
 
 When the `with` block finishes, it makes sure to close the file, even if there were exceptions.
 
@@ -129,9 +129,9 @@ When you create a dependency with `yield`, **FastAPI** will internally convert i
 
     If you are just starting with **FastAPI** you might want to skip it for now.
 
-In Python, you can create context managers by <a href="https://docs.python.org/3/reference/datamodel.html#context-managers" class="external-link" target="_blank">creating a class with two methods: `__enter__()` and `__exit__()`</a>.
+In Python, you can create Context Managers by <a href="https://docs.python.org/3/reference/datamodel.html#context-managers" class="external-link" target="_blank">creating a class with two methods: `__enter__()` and `__exit__()`</a>.
 
-You can also use them with **FastAPI** dependencies with `yield` by using
+You can also use them inside of **FastAPI** dependencies with `yield` by using
 `with` or `async with` statements inside of the dependency function:
 
 ```Python hl_lines="1 2 3 4 5 6 7 8 9 13"
