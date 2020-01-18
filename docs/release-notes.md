@@ -1,5 +1,7 @@
 ## Latest changes
 
+* Rename default API title from "Fast API" to "FastAPI" for consistency. PR [#890](https://github.com/tiangolo/fastapi/pull/890).
+
 ## 0.47.1
 
 * Fix model filtering in `response_model`, cloning sub-models. PR [#889](https://github.com/tiangolo/fastapi/pull/889).
