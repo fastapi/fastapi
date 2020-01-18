@@ -97,7 +97,7 @@ def create_cloned_field(field: ModelField) -> ModelField:
             original_type.__name__, __config__=original_type.__config__
         )
         for f in original_type.__fields__.values():
-            use_type.__fields__[f.name] = f
+            use_type.__fields__[f.name] = create_cloned_field(f)
         use_type.__validators__ = original_type.__validators__
     if PYDANTIC_1:
         new_field = ModelField(
