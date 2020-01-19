@@ -10,10 +10,10 @@ from app.api.utils.security import get_current_user
 from app.core import config
 from app.core.jwt import create_access_token
 from app.core.security import get_password_hash
-from app.db_models.user import User as DBUser
-from app.models.msg import Msg
-from app.models.token import Token
-from app.models.user import User
+from app.models.user import User as DBUser
+from app.schemas.msg import Msg
+from app.schemas.token import Token
+from app.schemas.user import User
 from app.utils import (
     generate_password_reset_token,
     send_reset_password_email,

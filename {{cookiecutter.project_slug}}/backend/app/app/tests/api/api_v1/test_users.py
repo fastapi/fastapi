@@ -3,8 +3,7 @@ import requests
 from app import crud
 from app.core import config
 from app.db.session import db_session
-from app.models.user import UserCreate
-from app.tests.utils.user import user_authentication_headers
+from app.schemas.user import UserCreate
 from app.tests.utils.utils import get_server_api, random_lower_string
 
 
@@ -53,7 +52,7 @@ def test_get_existing_user(superuser_token_headers):
     username = random_lower_string()
     password = random_lower_string()
     user_in = UserCreate(email=username, password=password)
-    user = crud.user.create(db_session, user_in=user_in)
+    user = crud.user.create(db_session, obj_in=user_in)
     user_id = user.id
     r = requests.get(
         f"{server_api}{config.API_V1_STR}/users/{user_id}",
@@ -71,7 +70,7 @@ def test_create_user_existing_username(superuser_token_headers):
     # username = email
     password = random_lower_string()
     user_in = UserCreate(email=username, password=password)
-    user = crud.user.create(db_session, user_in=user_in)
+    crud.user.create(db_session, obj_in=user_in)
     data = {"email": username, "password": password}
     r = requests.post(
         f"{server_api}{config.API_V1_STR}/users/",
@@ -89,7 +88,9 @@ def test_create_user_by_normal_user(normal_user_token_headers):
     password = random_lower_string()
     data = {"email": username, "password": password}
     r = requests.post(
-        f"{server_api}{config.API_V1_STR}/users/", headers=normal_user_token_headers, json=data
+        f"{server_api}{config.API_V1_STR}/users/",
+        headers=normal_user_token_headers,
+        json=data,
     )
     assert r.status_code == 400
 
@@ -99,12 +100,12 @@ def test_retrieve_users(superuser_token_headers):
     username = random_lower_string()
     password = random_lower_string()
     user_in = UserCreate(email=username, password=password)
-    user = crud.user.create(db_session, user_in=user_in)
+    user = crud.user.create(db_session, obj_in=user_in)
 
     username2 = random_lower_string()
     password2 = random_lower_string()
     user_in2 = UserCreate(email=username2, password=password2)
-    user2 = crud.user.create(db_session, user_in=user_in2)
+    crud.user.create(db_session, obj_in=user_in2)
 
     r = requests.get(
         f"{server_api}{config.API_V1_STR}/users/", headers=superuser_token_headers

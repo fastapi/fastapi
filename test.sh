@@ -9,6 +9,6 @@ cookiecutter --config-file ./testing-config.yml --no-input -f ./
 
 cd ./testing-project
 
-bash ./scripts/test.sh
+bash ./scripts/test.sh "$@"
 
 cd ../

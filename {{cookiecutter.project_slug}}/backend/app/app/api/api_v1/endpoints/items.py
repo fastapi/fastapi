@@ -6,8 +6,8 @@ from sqlalchemy.orm import Session
 from app import crud
 from app.api.utils.db import get_db
 from app.api.utils.security import get_current_active_user
-from app.db_models.user import User as DBUser
-from app.models.item import Item, ItemCreate, ItemUpdate
+from app.models.user import User as DBUser
+from app.schemas.item import Item, ItemCreate, ItemUpdate
 
 router = APIRouter()
 
@@ -41,7 +41,9 @@ def create_item(
     """
     Create new item.
     """
-    item = crud.item.create(db_session=db, item_in=item_in, owner_id=current_user.id)
+    item = crud.item.create_with_owner(
+        db_session=db, obj_in=item_in, owner_id=current_user.id
+    )
     return item
 
 
@@ -61,7 +63,7 @@ def update_item(
         raise HTTPException(status_code=404, detail="Item not found")
     if not crud.user.is_superuser(current_user) and (item.owner_id != current_user.id):
         raise HTTPException(status_code=400, detail="Not enough permissions")
-    item = crud.item.update(db_session=db, item=item, item_in=item_in)
+    item = crud.item.update(db_session=db, db_obj=item, obj_in=item_in)
     return item
 
 
