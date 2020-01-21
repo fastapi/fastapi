@@ -18,9 +18,9 @@ class ModelA(BaseModel):
     description: str = None
     model_b: ModelB
 
-    @validator('model_b')
+    @validator("model_b")
     def check_model_b(cls, model_b, values):
-        assert(isinstance(model_b, ModelB))
+        assert isinstance(model_b, ModelB)
         return model_b
 
 
