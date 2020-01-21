@@ -6,6 +6,8 @@ Your API almost always has to send a **response** body. But clients don't necess
 
 To declare a **request** body, you use <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> models with all their power and benefits.
 
+If you don't want to use Pydantic models, you can also use **Body** parameters: see the [Body documentation page](/tutorial/body-multiple-params/#singular-values-in-body).
+
 !!! info
     You cannot send a request body using a `GET` operation (HTTP method).
 
