@@ -1,5 +1,5 @@
 from fastapi import Depends, FastAPI
-from pydantic import BaseModel
+from pydantic import BaseModel, validator
 from starlette.testclient import TestClient
 
 app = FastAPI()
@@ -17,6 +17,11 @@ class ModelA(BaseModel):
     name: str
     description: str = None
     model_b: ModelB
+
+    @validator("model_b")
+    def check_model_b(cls, model_b, values):
+        assert isinstance(model_b, ModelB)
+        return model_b
 
 
 async def get_model_c() -> ModelC:
