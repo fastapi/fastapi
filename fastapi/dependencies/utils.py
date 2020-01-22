@@ -277,7 +277,7 @@ def get_dependant(
         param_field = get_param_field(
             param=param, default_field_info=params.Query, param_name=param_name
         )
-        if param_name in path_param_names:
+        if param_name in path_param_names and not issubclass(param.annotation, JsonWrapper):
             assert is_scalar_field(
                 field=param_field
             ), f"Path params must be of one of the supported types"
@@ -302,7 +302,7 @@ def get_dependant(
         elif isinstance(
             param.default, (params.Query, params.Header, params.Path)
         ) and issubclass(param_field.outer_type_, JsonWrapper):  # maybe `param.annotation` instead of `param_field.outer_type_`?
-            # handle (accept) `foobar: Json[Model] = Query(…)
+            # handle `foobar: Json[Model] = Query(…)
             add_param_to_fields(field=param_field, dependant=dependant)
         else:
             field_info = get_field_info(param_field)
