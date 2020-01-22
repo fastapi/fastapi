@@ -32,6 +32,7 @@ from pydantic import BaseConfig, BaseModel, create_model
 from pydantic.error_wrappers import ErrorWrapper
 from pydantic.errors import MissingError
 from pydantic.utils import lenient_issubclass
+from pydantic.types import JsonWrapper
 from starlette.background import BackgroundTasks
 from starlette.concurrency import run_in_threadpool
 from starlette.datastructures import FormData, Headers, QueryParams, UploadFile
@@ -297,6 +298,11 @@ def get_dependant(
         elif isinstance(
             param.default, (params.Query, params.Header)
         ) and is_scalar_sequence_field(param_field):
+            add_param_to_fields(field=param_field, dependant=dependant)
+        elif isinstance(
+            param.default, (params.Query, params.Header, params.Path)
+        ) and issubclass(param_field.outer_type_, JsonWrapper):  # maybe `param.annotation` instead of `param_field.outer_type_`?
+            # handle (accept) `foobar: Json[Model] = Query(…)
             add_param_to_fields(field=param_field, dependant=dependant)
         else:
             field_info = get_field_info(param_field)
