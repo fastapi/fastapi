@@ -316,6 +316,12 @@ def get_dependant(
 def add_non_field_param_to_dependency(
     *, param: inspect.Parameter, dependant: Dependant
 ) -> Optional[bool]:
+    """
+    Checks if the annotated class is subclass of `Request`, `WebSocket`, `Response`, `BackgroundTasks` or `SecurityScopes`,
+    and sets one of the `dependant.*_param_name` fields to `param.name` accordingly.
+
+    :returns: `True` or `None`.
+    """
     if lenient_issubclass(param.annotation, Request):
         dependant.request_param_name = param.name
         return True
