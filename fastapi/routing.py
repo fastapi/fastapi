@@ -183,14 +183,8 @@ def get_websocket_app(
 
 
 class APIWebSocketRoute(routing.WebSocketRoute):
-    def __init__(
-        self,
-        path: str,
-        endpoint: Callable,
-        *,
-        name: str = None,
-        dependency_overrides_provider: Any = None,
-    ) -> None:
+    def __init__(self, path: str, endpoint: Callable, *, name: str = None, dependency_overrides_provider: Any = None) -> None:
+        super().__init__(path, endpoint, name=name)
         self.path = path
         self.endpoint = endpoint
         self.name = get_name(endpoint) if name is None else name
@@ -205,32 +199,16 @@ class APIWebSocketRoute(routing.WebSocketRoute):
 
 
 class APIRoute(routing.Route):
-    def __init__(
-        self,
-        path: str,
-        endpoint: Callable,
-        *,
-        response_model: Type[Any] = None,
-        status_code: int = 200,
-        tags: List[str] = None,
-        dependencies: Sequence[params.Depends] = None,
-        summary: str = None,
-        description: str = None,
-        response_description: str = "Successful Response",
-        responses: Dict[Union[int, str], Dict[str, Any]] = None,
-        deprecated: bool = None,
-        name: str = None,
-        methods: Optional[Union[Set[str], List[str]]] = None,
-        operation_id: str = None,
-        response_model_include: Union[SetIntStr, DictIntStrAny] = None,
-            response_model_exclude=None,
-        response_model_by_alias: bool = True,
-        response_model_exclude_unset: bool = False,
-        include_in_schema: bool = True,
-        response_class: Optional[Type[Response]] = None,
-        dependency_overrides_provider: Any = None,
-        callbacks: Optional[List["APIRoute"]] = None,
-    ) -> None:
+    def __init__(self, path: str, endpoint: Callable, *, response_model: Type[Any] = None, status_code: int = 200,
+                 tags: List[str] = None, dependencies: Sequence[params.Depends] = None, summary: str = None,
+                 description: str = None, response_description: str = "Successful Response",
+                 responses: Dict[Union[int, str], Dict[str, Any]] = None, deprecated: bool = None, name: str = None,
+                 methods: Optional[Union[Set[str], List[str]]] = None, operation_id: str = None,
+                 response_model_include: Union[SetIntStr, DictIntStrAny] = None, response_model_exclude=None,
+                 response_model_by_alias: bool = True, response_model_exclude_unset: bool = False,
+                 include_in_schema: bool = True, response_class: Optional[Type[Response]] = None,
+                 dependency_overrides_provider: Any = None, callbacks: Optional[List["APIRoute"]] = None) -> None:
+        super().__init__(path, endpoint, methods=methods, name=name, include_in_schema=include_in_schema)
         if response_model_exclude is None:
             response_model_exclude = set()
         self.path = path
