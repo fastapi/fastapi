@@ -29,14 +29,18 @@ encoders_by_class_tuples = generate_encoders_by_class_tuples(ENCODERS_BY_TYPE)
 def jsonable_encoder(
     obj: Any,
     include: Union[SetIntStr, DictIntStrAny] = None,
-    exclude: Union[SetIntStr, DictIntStrAny] = set(),
+        exclude=None,
     by_alias: bool = True,
     skip_defaults: bool = None,
     exclude_unset: bool = False,
     include_none: bool = True,
-    custom_encoder: dict = {},
+        custom_encoder=None,
     sqlalchemy_safe: bool = True,
 ) -> Any:
+    if exclude is None:
+        exclude = set()
+    if custom_encoder is None:
+        custom_encoder = {}
     if skip_defaults is not None:
         logger.warning(  # pragma: nocover
             "skip_defaults in jsonable_encoder has been deprecated in favor of "

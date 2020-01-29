@@ -27,8 +27,8 @@ from starlette.types import Receive, Scope, Send
 
 
 class FastAPI(Starlette):
-    def __init__(self, debug: bool = False, routes: List[BaseRoute] = None, template_directory: str = None,
-                 title: str = "FastAPI", description: str = "", version: str = "0.1.0",
+    def __init__(self, debug: bool = False, routes: List[BaseRoute] = None, title: str = "FastAPI",
+                 description: str = "", version: str = "0.1.0",
                  openapi_url: Optional[str] = "/openapi.json", openapi_prefix: str = "",
                  default_response_class: Type[Response] = JSONResponse, docs_url: Optional[str] = "/docs",
                  redoc_url: Optional[str] = "/redoc",
@@ -90,7 +90,7 @@ class FastAPI(Starlette):
             openapi_url = self.openapi_prefix + self.openapi_url
         if self.openapi_url and self.docs_url:
 
-            async def swagger_ui_html(req: Request) -> HTMLResponse:
+            async def swagger_ui_html() -> HTMLResponse:
                 return get_swagger_ui_html(
                     openapi_url=openapi_url,
                     title=self.title + " - Swagger UI",
