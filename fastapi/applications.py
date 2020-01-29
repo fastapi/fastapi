@@ -27,23 +27,14 @@ from starlette.types import Receive, Scope, Send
 
 
 class FastAPI(Starlette):
-    def __init__(
-        self,
-        debug: bool = False,
-        routes: List[BaseRoute] = None,
-        template_directory: str = None,
-        title: str = "FastAPI",
-        description: str = "",
-        version: str = "0.1.0",
-        openapi_url: Optional[str] = "/openapi.json",
-        openapi_prefix: str = "",
-        default_response_class: Type[Response] = JSONResponse,
-        docs_url: Optional[str] = "/docs",
-        redoc_url: Optional[str] = "/redoc",
-        swagger_ui_oauth2_redirect_url: Optional[str] = "/docs/oauth2-redirect",
-        swagger_ui_init_oauth: Optional[dict] = None,
-        **extra: Dict[str, Any],
-    ) -> None:
+    def __init__(self, debug: bool = False, routes: List[BaseRoute] = None, template_directory: str = None,
+                 title: str = "FastAPI", description: str = "", version: str = "0.1.0",
+                 openapi_url: Optional[str] = "/openapi.json", openapi_prefix: str = "",
+                 default_response_class: Type[Response] = JSONResponse, docs_url: Optional[str] = "/docs",
+                 redoc_url: Optional[str] = "/redoc",
+                 swagger_ui_oauth2_redirect_url: Optional[str] = "/docs/oauth2-redirect",
+                 swagger_ui_init_oauth: Optional[dict] = None, **extra: Dict[str, Any]) -> None:
+        super().__init__(debug, routes)
         self.default_response_class = default_response_class
         self._debug = debug
         self.state = State()
