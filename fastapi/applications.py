@@ -27,23 +27,14 @@ from starlette.types import Receive, Scope, Send
 
 
 class FastAPI(Starlette):
-    def __init__(
-        self,
-        debug: bool = False,
-        routes: List[BaseRoute] = None,
-        template_directory: str = None,
-        title: str = "FastAPI",
-        description: str = "",
-        version: str = "0.1.0",
-        openapi_url: Optional[str] = "/openapi.json",
-        openapi_prefix: str = "",
-        default_response_class: Type[Response] = JSONResponse,
-        docs_url: Optional[str] = "/docs",
-        redoc_url: Optional[str] = "/redoc",
-        swagger_ui_oauth2_redirect_url: Optional[str] = "/docs/oauth2-redirect",
-        swagger_ui_init_oauth: Optional[dict] = None,
-        **extra: Dict[str, Any],
-    ) -> None:
+    def __init__(self, debug: bool = False, routes: List[BaseRoute] = None, template_directory: str = None,
+                 title: str = "FastAPI", description: str = "", version: str = "0.1.0",
+                 openapi_url: Optional[str] = "/openapi.json", openapi_prefix: str = "",
+                 default_response_class: Type[Response] = JSONResponse, docs_url: Optional[str] = "/docs",
+                 redoc_url: Optional[str] = "/redoc",
+                 swagger_ui_oauth2_redirect_url: Optional[str] = "/docs/oauth2-redirect",
+                 swagger_ui_init_oauth: Optional[dict] = None, **extra: Dict[str, Any]) -> None:
+        super().__init__(debug, routes)
         self.default_response_class = default_response_class
         self._debug = debug
         self.state = State()
@@ -92,7 +83,6 @@ class FastAPI(Starlette):
 
     def setup(self) -> None:
         if self.openapi_url:
-
             async def openapi(req: Request) -> JSONResponse:
                 return JSONResponse(self.openapi())
 
@@ -111,7 +101,6 @@ class FastAPI(Starlette):
             self.add_route(self.docs_url, swagger_ui_html, include_in_schema=False)
 
             if self.swagger_ui_oauth2_redirect_url:
-
                 async def swagger_ui_redirect(req: Request) -> HTMLResponse:
                     return get_swagger_ui_oauth2_redirect_html()
 
@@ -121,7 +110,6 @@ class FastAPI(Starlette):
                     include_in_schema=False,
                 )
         if self.openapi_url and self.redoc_url:
-
             async def redoc_html(req: Request) -> HTMLResponse:
                 return get_redoc_html(
                     openapi_url=openapi_url, title=self.title + " - ReDoc"
@@ -142,30 +130,32 @@ class FastAPI(Starlette):
             await super().__call__(scope, receive, send)  # pragma: no cover
 
     def add_api_route(
-        self,
-        path: str,
-        endpoint: Callable,
-        *,
-        response_model: Type[Any] = None,
-        status_code: int = 200,
-        tags: List[str] = None,
-        dependencies: Sequence[Depends] = None,
-        summary: str = None,
-        description: str = None,
-        response_description: str = "Successful Response",
-        responses: Dict[Union[int, str], Dict[str, Any]] = None,
-        deprecated: bool = None,
-        methods: List[str] = None,
-        operation_id: str = None,
-        response_model_include: Union[SetIntStr, DictIntStrAny] = None,
-        response_model_exclude: Union[SetIntStr, DictIntStrAny] = set(),
-        response_model_by_alias: bool = True,
-        response_model_skip_defaults: bool = None,
-        response_model_exclude_unset: bool = False,
-        include_in_schema: bool = True,
-        response_class: Type[Response] = None,
-        name: str = None,
+            self,
+            path: str,
+            endpoint: Callable,
+            *,
+            response_model: Type[Any] = None,
+            status_code: int = 200,
+            tags: List[str] = None,
+            dependencies: Sequence[Depends] = None,
+            summary: str = None,
+            description: str = None,
+            response_description: str = "Successful Response",
+            responses: Dict[Union[int, str], Dict[str, Any]] = None,
+            deprecated: bool = None,
+            methods: List[str] = None,
+            operation_id: str = None,
+            response_model_include: Union[SetIntStr, DictIntStrAny] = None,
+            response_model_exclude=None,
+            response_model_by_alias: bool = True,
+            response_model_skip_defaults: bool = None,
+            response_model_exclude_unset: bool = False,
+            include_in_schema: bool = True,
+            response_class: Type[Response] = None,
+            name: str = None,
     ) -> None:
+        if response_model_exclude is None:
+            response_model_exclude = set()
         if response_model_skip_defaults is not None:
             warning_response_model_skip_defaults_deprecated()  # pragma: nocover
         self.router.add_api_route(
@@ -194,29 +184,31 @@ class FastAPI(Starlette):
         )
 
     def api_route(
-        self,
-        path: str,
-        *,
-        response_model: Type[Any] = None,
-        status_code: int = 200,
-        tags: List[str] = None,
-        dependencies: Sequence[Depends] = None,
-        summary: str = None,
-        description: str = None,
-        response_description: str = "Successful Response",
-        responses: Dict[Union[int, str], Dict[str, Any]] = None,
-        deprecated: bool = None,
-        methods: List[str] = None,
-        operation_id: str = None,
-        response_model_include: Union[SetIntStr, DictIntStrAny] = None,
-        response_model_exclude: Union[SetIntStr, DictIntStrAny] = set(),
-        response_model_by_alias: bool = True,
-        response_model_skip_defaults: bool = None,
-        response_model_exclude_unset: bool = False,
-        include_in_schema: bool = True,
-        response_class: Type[Response] = None,
-        name: str = None,
+            self,
+            path: str,
+            *,
+            response_model: Type[Any] = None,
+            status_code: int = 200,
+            tags: List[str] = None,
+            dependencies: Sequence[Depends] = None,
+            summary: str = None,
+            description: str = None,
+            response_description: str = "Successful Response",
+            responses: Dict[Union[int, str], Dict[str, Any]] = None,
+            deprecated: bool = None,
+            methods: List[str] = None,
+            operation_id: str = None,
+            response_model_include: Union[SetIntStr, DictIntStrAny] = None,
+            response_model_exclude=None,
+            response_model_by_alias: bool = True,
+            response_model_skip_defaults: bool = None,
+            response_model_exclude_unset: bool = False,
+            include_in_schema: bool = True,
+            response_class: Type[Response] = None,
+            name: str = None,
     ) -> Callable:
+        if response_model_exclude is None:
+            response_model_exclude = set()
         if response_model_skip_defaults is not None:
             warning_response_model_skip_defaults_deprecated()  # pragma: nocover
 
@@ -250,7 +242,7 @@ class FastAPI(Starlette):
         return decorator
 
     def add_api_websocket_route(
-        self, path: str, endpoint: Callable, name: str = None
+            self, path: str, endpoint: Callable, name: str = None
     ) -> None:
         self.router.add_api_websocket_route(path, endpoint, name=name)
 
@@ -262,14 +254,14 @@ class FastAPI(Starlette):
         return decorator
 
     def include_router(
-        self,
-        router: routing.APIRouter,
-        *,
-        prefix: str = "",
-        tags: List[str] = None,
-        dependencies: Sequence[Depends] = None,
-        responses: Dict[Union[int, str], Dict[str, Any]] = None,
-        default_response_class: Optional[Type[Response]] = None,
+            self,
+            router: routing.APIRouter,
+            *,
+            prefix: str = "",
+            tags: List[str] = None,
+            dependencies: Sequence[Depends] = None,
+            responses: Dict[Union[int, str], Dict[str, Any]] = None,
+            default_response_class: Optional[Type[Response]] = None,
     ) -> None:
         self.router.include_router(
             router,
@@ -277,34 +269,35 @@ class FastAPI(Starlette):
             tags=tags,
             dependencies=dependencies,
             responses=responses or {},
-            default_response_class=default_response_class
-            or self.default_response_class,
+            default_response_class=default_response_class or self.default_response_class,
         )
 
     def get(
-        self,
-        path: str,
-        *,
-        response_model: Type[Any] = None,
-        status_code: int = 200,
-        tags: List[str] = None,
-        dependencies: Sequence[Depends] = None,
-        summary: str = None,
-        description: str = None,
-        response_description: str = "Successful Response",
-        responses: Dict[Union[int, str], Dict[str, Any]] = None,
-        deprecated: bool = None,
-        operation_id: str = None,
-        response_model_include: Union[SetIntStr, DictIntStrAny] = None,
-        response_model_exclude: Union[SetIntStr, DictIntStrAny] = set(),
-        response_model_by_alias: bool = True,
-        response_model_skip_defaults: bool = None,
-        response_model_exclude_unset: bool = False,
-        include_in_schema: bool = True,
-        response_class: Type[Response] = None,
-        name: str = None,
-        callbacks: List[routing.APIRoute] = None,
+            self,
+            path: str,
+            *,
+            response_model: Type[Any] = None,
+            status_code: int = 200,
+            tags: List[str] = None,
+            dependencies: Sequence[Depends] = None,
+            summary: str = None,
+            description: str = None,
+            response_description: str = "Successful Response",
+            responses: Dict[Union[int, str], Dict[str, Any]] = None,
+            deprecated: bool = None,
+            operation_id: str = None,
+            response_model_include: Union[SetIntStr, DictIntStrAny] = None,
+            response_model_exclude=None,
+            response_model_by_alias: bool = True,
+            response_model_skip_defaults: bool = None,
+            response_model_exclude_unset: bool = False,
+            include_in_schema: bool = True,
+            response_class: Type[Response] = None,
+            name: str = None,
+            callbacks: List[routing.APIRoute] = None,
     ) -> Callable:
+        if response_model_exclude is None:
+            response_model_exclude = set()
         if response_model_skip_defaults is not None:
             warning_response_model_skip_defaults_deprecated()  # pragma: nocover
         return self.router.get(
@@ -332,29 +325,31 @@ class FastAPI(Starlette):
         )
 
     def put(
-        self,
-        path: str,
-        *,
-        response_model: Type[Any] = None,
-        status_code: int = 200,
-        tags: List[str] = None,
-        dependencies: Sequence[Depends] = None,
-        summary: str = None,
-        description: str = None,
-        response_description: str = "Successful Response",
-        responses: Dict[Union[int, str], Dict[str, Any]] = None,
-        deprecated: bool = None,
-        operation_id: str = None,
-        response_model_include: Union[SetIntStr, DictIntStrAny] = None,
-        response_model_exclude: Union[SetIntStr, DictIntStrAny] = set(),
-        response_model_by_alias: bool = True,
-        response_model_skip_defaults: bool = None,
-        response_model_exclude_unset: bool = False,
-        include_in_schema: bool = True,
-        response_class: Type[Response] = None,
-        name: str = None,
-        callbacks: List[routing.APIRoute] = None,
+            self,
+            path: str,
+            *,
+            response_model: Type[Any] = None,
+            status_code: int = 200,
+            tags: List[str] = None,
+            dependencies: Sequence[Depends] = None,
+            summary: str = None,
+            description: str = None,
+            response_description: str = "Successful Response",
+            responses: Dict[Union[int, str], Dict[str, Any]] = None,
+            deprecated: bool = None,
+            operation_id: str = None,
+            response_model_include: Union[SetIntStr, DictIntStrAny] = None,
+            response_model_exclude=None,
+            response_model_by_alias: bool = True,
+            response_model_skip_defaults: bool = None,
+            response_model_exclude_unset: bool = False,
+            include_in_schema: bool = True,
+            response_class: Type[Response] = None,
+            name: str = None,
+            callbacks: List[routing.APIRoute] = None,
     ) -> Callable:
+        if response_model_exclude is None:
+            response_model_exclude = set()
         if response_model_skip_defaults is not None:
             warning_response_model_skip_defaults_deprecated()  # pragma: nocover
         return self.router.put(
@@ -382,29 +377,31 @@ class FastAPI(Starlette):
         )
 
     def post(
-        self,
-        path: str,
-        *,
-        response_model: Type[Any] = None,
-        status_code: int = 200,
-        tags: List[str] = None,
-        dependencies: Sequence[Depends] = None,
-        summary: str = None,
-        description: str = None,
-        response_description: str = "Successful Response",
-        responses: Dict[Union[int, str], Dict[str, Any]] = None,
-        deprecated: bool = None,
-        operation_id: str = None,
-        response_model_include: Union[SetIntStr, DictIntStrAny] = None,
-        response_model_exclude: Union[SetIntStr, DictIntStrAny] = set(),
-        response_model_by_alias: bool = True,
-        response_model_skip_defaults: bool = None,
-        response_model_exclude_unset: bool = False,
-        include_in_schema: bool = True,
-        response_class: Type[Response] = None,
-        name: str = None,
-        callbacks: List[routing.APIRoute] = None,
+            self,
+            path: str,
+            *,
+            response_model: Type[Any] = None,
+            status_code: int = 200,
+            tags: List[str] = None,
+            dependencies: Sequence[Depends] = None,
+            summary: str = None,
+            description: str = None,
+            response_description: str = "Successful Response",
+            responses: Dict[Union[int, str], Dict[str, Any]] = None,
+            deprecated: bool = None,
+            operation_id: str = None,
+            response_model_include: Union[SetIntStr, DictIntStrAny] = None,
+            response_model_exclude=None,
+            response_model_by_alias: bool = True,
+            response_model_skip_defaults: bool = None,
+            response_model_exclude_unset: bool = False,
+            include_in_schema: bool = True,
+            response_class: Type[Response] = None,
+            name: str = None,
+            callbacks: List[routing.APIRoute] = None,
     ) -> Callable:
+        if response_model_exclude is None:
+            response_model_exclude = set()
         if response_model_skip_defaults is not None:
             warning_response_model_skip_defaults_deprecated()  # pragma: nocover
         return self.router.post(
@@ -432,29 +429,31 @@ class FastAPI(Starlette):
         )
 
     def delete(
-        self,
-        path: str,
-        *,
-        response_model: Type[Any] = None,
-        status_code: int = 200,
-        tags: List[str] = None,
-        dependencies: Sequence[Depends] = None,
-        summary: str = None,
-        description: str = None,
-        response_description: str = "Successful Response",
-        responses: Dict[Union[int, str], Dict[str, Any]] = None,
-        deprecated: bool = None,
-        operation_id: str = None,
-        response_model_include: Union[SetIntStr, DictIntStrAny] = None,
-        response_model_exclude: Union[SetIntStr, DictIntStrAny] = set(),
-        response_model_by_alias: bool = True,
-        response_model_skip_defaults: bool = None,
-        response_model_exclude_unset: bool = False,
-        include_in_schema: bool = True,
-        response_class: Type[Response] = None,
-        name: str = None,
-        callbacks: List[routing.APIRoute] = None,
+            self,
+            path: str,
+            *,
+            response_model: Type[Any] = None,
+            status_code: int = 200,
+            tags: List[str] = None,
+            dependencies: Sequence[Depends] = None,
+            summary: str = None,
+            description: str = None,
+            response_description: str = "Successful Response",
+            responses: Dict[Union[int, str], Dict[str, Any]] = None,
+            deprecated: bool = None,
+            operation_id: str = None,
+            response_model_include: Union[SetIntStr, DictIntStrAny] = None,
+            response_model_exclude=None,
+            response_model_by_alias: bool = True,
+            response_model_skip_defaults: bool = None,
+            response_model_exclude_unset: bool = False,
+            include_in_schema: bool = True,
+            response_class: Type[Response] = None,
+            name: str = None,
+            callbacks: List[routing.APIRoute] = None,
     ) -> Callable:
+        if response_model_exclude is None:
+            response_model_exclude = set()
         if response_model_skip_defaults is not None:
             warning_response_model_skip_defaults_deprecated()  # pragma: nocover
         return self.router.delete(
@@ -482,29 +481,31 @@ class FastAPI(Starlette):
         )
 
     def options(
-        self,
-        path: str,
-        *,
-        response_model: Type[Any] = None,
-        status_code: int = 200,
-        tags: List[str] = None,
-        dependencies: Sequence[Depends] = None,
-        summary: str = None,
-        description: str = None,
-        response_description: str = "Successful Response",
-        responses: Dict[Union[int, str], Dict[str, Any]] = None,
-        deprecated: bool = None,
-        operation_id: str = None,
-        response_model_include: Union[SetIntStr, DictIntStrAny] = None,
-        response_model_exclude: Union[SetIntStr, DictIntStrAny] = set(),
-        response_model_by_alias: bool = True,
-        response_model_skip_defaults: bool = None,
-        response_model_exclude_unset: bool = False,
-        include_in_schema: bool = True,
-        response_class: Type[Response] = None,
-        name: str = None,
-        callbacks: List[routing.APIRoute] = None,
+            self,
+            path: str,
+            *,
+            response_model: Type[Any] = None,
+            status_code: int = 200,
+            tags: List[str] = None,
+            dependencies: Sequence[Depends] = None,
+            summary: str = None,
+            description: str = None,
+            response_description: str = "Successful Response",
+            responses: Dict[Union[int, str], Dict[str, Any]] = None,
+            deprecated: bool = None,
+            operation_id: str = None,
+            response_model_include: Union[SetIntStr, DictIntStrAny] = None,
+            response_model_exclude=None,
+            response_model_by_alias: bool = True,
+            response_model_skip_defaults: bool = None,
+            response_model_exclude_unset: bool = False,
+            include_in_schema: bool = True,
+            response_class: Type[Response] = None,
+            name: str = None,
+            callbacks: List[routing.APIRoute] = None,
     ) -> Callable:
+        if response_model_exclude is None:
+            response_model_exclude = set()
         if response_model_skip_defaults is not None:
             warning_response_model_skip_defaults_deprecated()  # pragma: nocover
         return self.router.options(
@@ -532,29 +533,31 @@ class FastAPI(Starlette):
         )
 
     def head(
-        self,
-        path: str,
-        *,
-        response_model: Type[Any] = None,
-        status_code: int = 200,
-        tags: List[str] = None,
-        dependencies: Sequence[Depends] = None,
-        summary: str = None,
-        description: str = None,
-        response_description: str = "Successful Response",
-        responses: Dict[Union[int, str], Dict[str, Any]] = None,
-        deprecated: bool = None,
-        operation_id: str = None,
-        response_model_include: Union[SetIntStr, DictIntStrAny] = None,
-        response_model_exclude: Union[SetIntStr, DictIntStrAny] = set(),
-        response_model_by_alias: bool = True,
-        response_model_skip_defaults: bool = None,
-        response_model_exclude_unset: bool = False,
-        include_in_schema: bool = True,
-        response_class: Type[Response] = None,
-        name: str = None,
-        callbacks: List[routing.APIRoute] = None,
+            self,
+            path: str,
+            *,
+            response_model: Type[Any] = None,
+            status_code: int = 200,
+            tags: List[str] = None,
+            dependencies: Sequence[Depends] = None,
+            summary: str = None,
+            description: str = None,
+            response_description: str = "Successful Response",
+            responses: Dict[Union[int, str], Dict[str, Any]] = None,
+            deprecated: bool = None,
+            operation_id: str = None,
+            response_model_include: Union[SetIntStr, DictIntStrAny] = None,
+            response_model_exclude=None,
+            response_model_by_alias: bool = True,
+            response_model_skip_defaults: bool = None,
+            response_model_exclude_unset: bool = False,
+            include_in_schema: bool = True,
+            response_class: Type[Response] = None,
+            name: str = None,
+            callbacks: List[routing.APIRoute] = None,
     ) -> Callable:
+        if response_model_exclude is None:
+            response_model_exclude = set()
         if response_model_skip_defaults is not None:
             warning_response_model_skip_defaults_deprecated()  # pragma: nocover
         return self.router.head(
@@ -582,29 +585,31 @@ class FastAPI(Starlette):
         )
 
     def patch(
-        self,
-        path: str,
-        *,
-        response_model: Type[Any] = None,
-        status_code: int = 200,
-        tags: List[str] = None,
-        dependencies: Sequence[Depends] = None,
-        summary: str = None,
-        description: str = None,
-        response_description: str = "Successful Response",
-        responses: Dict[Union[int, str], Dict[str, Any]] = None,
-        deprecated: bool = None,
-        operation_id: str = None,
-        response_model_include: Union[SetIntStr, DictIntStrAny] = None,
-        response_model_exclude: Union[SetIntStr, DictIntStrAny] = set(),
-        response_model_by_alias: bool = True,
-        response_model_skip_defaults: bool = None,
-        response_model_exclude_unset: bool = False,
-        include_in_schema: bool = True,
-        response_class: Type[Response] = None,
-        name: str = None,
-        callbacks: List[routing.APIRoute] = None,
+            self,
+            path: str,
+            *,
+            response_model: Type[Any] = None,
+            status_code: int = 200,
+            tags: List[str] = None,
+            dependencies: Sequence[Depends] = None,
+            summary: str = None,
+            description: str = None,
+            response_description: str = "Successful Response",
+            responses: Dict[Union[int, str], Dict[str, Any]] = None,
+            deprecated: bool = None,
+            operation_id: str = None,
+            response_model_include: Union[SetIntStr, DictIntStrAny] = None,
+            response_model_exclude=None,
+            response_model_by_alias: bool = True,
+            response_model_skip_defaults: bool = None,
+            response_model_exclude_unset: bool = False,
+            include_in_schema: bool = True,
+            response_class: Type[Response] = None,
+            name: str = None,
+            callbacks: List[routing.APIRoute] = None,
     ) -> Callable:
+        if response_model_exclude is None:
+            response_model_exclude = set()
         if response_model_skip_defaults is not None:
             warning_response_model_skip_defaults_deprecated()  # pragma: nocover
         return self.router.patch(
@@ -632,29 +637,31 @@ class FastAPI(Starlette):
         )
 
     def trace(
-        self,
-        path: str,
-        *,
-        response_model: Type[Any] = None,
-        status_code: int = 200,
-        tags: List[str] = None,
-        dependencies: Sequence[Depends] = None,
-        summary: str = None,
-        description: str = None,
-        response_description: str = "Successful Response",
-        responses: Dict[Union[int, str], Dict[str, Any]] = None,
-        deprecated: bool = None,
-        operation_id: str = None,
-        response_model_include: Union[SetIntStr, DictIntStrAny] = None,
-        response_model_exclude: Union[SetIntStr, DictIntStrAny] = set(),
-        response_model_by_alias: bool = True,
-        response_model_skip_defaults: bool = None,
-        response_model_exclude_unset: bool = False,
-        include_in_schema: bool = True,
-        response_class: Type[Response] = None,
-        name: str = None,
-        callbacks: List[routing.APIRoute] = None,
+            self,
+            path: str,
+            *,
+            response_model: Type[Any] = None,
+            status_code: int = 200,
+            tags: List[str] = None,
+            dependencies: Sequence[Depends] = None,
+            summary: str = None,
+            description: str = None,
+            response_description: str = "Successful Response",
+            responses: Dict[Union[int, str], Dict[str, Any]] = None,
+            deprecated: bool = None,
+            operation_id: str = None,
+            response_model_include: Union[SetIntStr, DictIntStrAny] = None,
+            response_model_exclude=None,
+            response_model_by_alias: bool = True,
+            response_model_skip_defaults: bool = None,
+            response_model_exclude_unset: bool = False,
+            include_in_schema: bool = True,
+            response_class: Type[Response] = None,
+            name: str = None,
+            callbacks: List[routing.APIRoute] = None,
     ) -> Callable:
+        if response_model_exclude is None:
+            response_model_exclude = set()
         if response_model_skip_defaults is not None:
             warning_response_model_skip_defaults_deprecated()  # pragma: nocover
         return self.router.trace(
