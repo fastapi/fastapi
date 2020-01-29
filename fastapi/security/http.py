@@ -48,9 +48,8 @@ class HTTPBase(SecurityBase):
 
 
 class HTTPBasic(HTTPBase):
-    def __init__(
-        self, *, scheme_name: str = None, realm: str = None, auto_error: bool = True
-    ):
+    def __init__(self, *, scheme: str, scheme_name: str = None, realm: str = None, auto_error: bool = True):
+        super().__init__(scheme=scheme, scheme_name=scheme_name, auto_error=auto_error)
         self.model = HTTPBaseModel(scheme="basic")
         self.scheme_name = scheme_name or self.__class__.__name__
         self.realm = realm
@@ -90,13 +89,8 @@ class HTTPBasic(HTTPBase):
 
 
 class HTTPBearer(HTTPBase):
-    def __init__(
-        self,
-        *,
-        bearerFormat: str = None,
-        scheme_name: str = None,
-        auto_error: bool = True,
-    ):
+    def __init__(self, *, scheme: str, bearerFormat: str = None, scheme_name: str = None, auto_error: bool = True):
+        super().__init__(scheme=scheme, scheme_name=scheme_name, auto_error=auto_error)
         self.model = HTTPBearerModel(bearerFormat=bearerFormat)
         self.scheme_name = scheme_name or self.__class__.__name__
         self.auto_error = auto_error
@@ -125,7 +119,8 @@ class HTTPBearer(HTTPBase):
 
 
 class HTTPDigest(HTTPBase):
-    def __init__(self, *, scheme_name: str = None, auto_error: bool = True):
+    def __init__(self, *, scheme: str, scheme_name: str = None, auto_error: bool = True):
+        super().__init__(scheme=scheme, scheme_name=scheme_name, auto_error=auto_error)
         self.model = HTTPBaseModel(scheme="digest")
         self.scheme_name = scheme_name or self.__class__.__name__
         self.auto_error = auto_error
