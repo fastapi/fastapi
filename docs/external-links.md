@@ -11,6 +11,8 @@ Here's an incomplete list of some of them.
 
 ### English
 
+* <a href="https://www.tutlinks.com/create-and-deploy-fastapi-app-to-heroku/" class="external-link" target="_blank">Create and Deploy FastAPI app to Heroku without using Docker</a> by <a href="https://www.linkedin.com/in/navule/" class="external-link" target="_blank">Navule Pavan Kumar Rao</a>
+
 * <a href="https://medium.com/@williamhayes/fastapi-starlette-debug-vs-prod-5f7561db3a59" class="external-link" target="_blank">FastAPI/Starlette debug vs prod</a> by <a href="https://medium.com/@williamhayes" class="external-link" target="_blank">William Hayes</a>.
 
 * <a href="https://medium.com/data-rebels/fastapi-google-as-an-external-authentication-provider-3a527672cf33" class="external-link" target="_blank">FastAPI — Google as an external authentication provider</a> by <a href="https://medium.com/@nils_29588" class="external-link" target="_blank">Nils de Bruin</a>.
