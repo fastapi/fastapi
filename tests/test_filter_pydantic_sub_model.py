@@ -8,9 +8,19 @@ app = FastAPI()
 class ModelB(BaseModel):
     username: str
 
+    @validator("username")
+    def check_username(cls, username, values):
+        assert username == username.lower()
+        return username
+
 
 class ModelC(ModelB):
     password: str
+
+    @validator("password")
+    def check_password(cls, password, values):
+        assert len(password) >= 8
+        return password
 
 
 class ModelA(BaseModel):
