@@ -634,7 +634,11 @@ async def request_body_to_args(
                 ) and isinstance(received_body, FormData):
                     value = received_body.getlist(field.alias)
                 else:
-                    value = received_body.get(field.alias)
+                    try:
+                        value = received_body.get(field.alias)
+                    except AttributeError:
+                        errors.append(get_missing_field_error(field.alias))
+                        continue
             if (
                 value is None
                 or (isinstance(field_info, params.Form) and value == "")
@@ -645,18 +649,7 @@ async def request_body_to_args(
                 )
             ):
                 if field.required:
-                    if PYDANTIC_1:
-                        errors.append(
-                            ErrorWrapper(MissingError(), loc=("body", field.alias))
-                        )
-                    else:  # pragma: nocover
-                        errors.append(
-                            ErrorWrapper(  # type: ignore
-                                MissingError(),
-                                loc=("body", field.alias),
-                                config=BaseConfig,
-                            )
-                        )
+                    errors.append(get_missing_field_error(field.alias))
                 else:
                     values[field.name] = deepcopy(field.default)
                 continue
@@ -683,6 +676,16 @@ async def request_body_to_args(
             else:
                 values[field.name] = v_
     return values, errors
+
+
+def get_missing_field_error(field_alias: str) -> ErrorWrapper:
+    if PYDANTIC_1:
+        missing_field_error = ErrorWrapper(MissingError(), loc=("body", field_alias))
+    else:  # pragma: no cover
+        missing_field_error = ErrorWrapper(  # type: ignore
+            MissingError(), loc=("body", field_alias), config=BaseConfig,
+        )
+    return missing_field_error
 
 
 def get_schema_compatible_field(*, field: ModelField) -> ModelField:

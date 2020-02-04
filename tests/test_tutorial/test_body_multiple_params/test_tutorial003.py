@@ -166,6 +166,30 @@ def test_openapi_schema():
                 ]
             },
         ),
+        (
+            "/items/5",
+            [],
+            422,
+            {
+                "detail": [
+                    {
+                        "loc": ["body", "item"],
+                        "msg": "field required",
+                        "type": "value_error.missing",
+                    },
+                    {
+                        "loc": ["body", "user"],
+                        "msg": "field required",
+                        "type": "value_error.missing",
+                    },
+                    {
+                        "loc": ["body", "importance"],
+                        "msg": "field required",
+                        "type": "value_error.missing",
+                    },
+                ]
+            },
+        ),
     ],
 )
 def test_post_body(path, body, expected_status, expected_response):
