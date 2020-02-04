@@ -144,7 +144,7 @@ You go with your crush to get parallel fast food.
 
 You stand in line while several (let's say 8) cashiers take the orders from the people in front of you.
 
-Everyone before you is waiting for their burgers to be ready before leaving the counter because each of the 8 cashiers goes himself and preparers the burger right away before getting the next order.
+Everyone before you is waiting for their burgers to be ready before leaving the counter because each of the 8 cashiers goes himself and prepares the burger right away before getting the next order.
 
 Then it's finally your turn, you place your order of 2 very fancy burgers for your crush and you.
 

@@ -101,7 +101,7 @@ class SchemaBase(BaseModel):
     maxProperties: Optional[int] = Field(None, gte=0)
     minProperties: Optional[int] = Field(None, gte=0)
     required: Optional[List[str]] = None
-    enum: Optional[List[str]] = None
+    enum: Optional[List[Any]] = None
     type: Optional[str] = None
     allOf: Optional[List[Any]] = None
     oneOf: Optional[List[Any]] = None
