@@ -319,7 +319,7 @@ Coming back to the previous code example, **FastAPI** will:
     * Without the `None` it would be required (as is the body in the case with `PUT`).
 * For `PUT` requests to `/items/{item_id}`, Read the body as JSON:
     * Check that it has a required attribute `name` that should be a `str`. 
-    * Check that is has a required attribute `price` that has to be a `float`.
+    * Check that it has a required attribute `price` that has to be a `float`.
     * Check that it has an optional attribute `is_offer`, that should be a `bool`, if present.
     * All this would also work for deeply nested JSON objects.
 * Convert from and to JSON automatically.
