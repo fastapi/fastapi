@@ -6,8 +6,6 @@ Your API almost always has to send a **response** body. But clients don't necess
 
 To declare a **request** body, you use <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> models with all their power and benefits.
 
-If you don't want to use Pydantic models, you can also use **Body** parameters: see the [Body documentation page](/tutorial/body-multiple-params/#singular-values-in-body).
-
 !!! info
     You cannot send a request body using a `GET` operation (HTTP method).
 
@@ -141,3 +139,7 @@ The function parameters will be recognized as follows:
 * If the parameter is also declared in the **path**, it will be used as a path parameter.
 * If the parameter is of a **singular type** (like `int`, `float`, `str`, `bool`, etc) it will be interpreted as a **query** parameter.
 * If the parameter is declared to be of the type of a **Pydantic model**, it will be interpreted as a request **body**.
+
+## Without Pydantic
+
+If you don't want to use Pydantic models, you can also use **Body** parameters. See the docs for [Body - Multiple Parameters: Singular values in body](body-multiple-params.md#singular-values-in-body){.internal-link target=_blank}.
