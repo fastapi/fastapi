@@ -1,5 +1,5 @@
 from enum import Enum
-from typing import Any, Dict, List, Optional, Union, Callable, Iterable
+from typing import Any, Callable, Dict, Iterable, List, Optional, Union
 
 from fastapi.logger import logger
 from pydantic import BaseModel
