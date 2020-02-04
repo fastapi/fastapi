@@ -11,8 +11,6 @@ Here's an incomplete list of some of them.
 
 ### English
 
-* <a href="https://www.tutlinks.com/create-and-deploy-fastapi-app-to-heroku/" class="external-link" target="_blank">Create and Deploy FastAPI app to Heroku without using Docker</a> by <a href="https://www.linkedin.com/in/navule/" class="external-link" target="_blank">Navule Pavan Kumar Rao</a>
-
 * <a href="https://medium.com/@williamhayes/fastapi-starlette-debug-vs-prod-5f7561db3a59" class="external-link" target="_blank">FastAPI/Starlette debug vs prod</a> by <a href="https://medium.com/@williamhayes" class="external-link" target="_blank">William Hayes</a>.
 
 * <a href="https://medium.com/data-rebels/fastapi-google-as-an-external-authentication-provider-3a527672cf33" class="external-link" target="_blank">FastAPI — Google as an external authentication provider</a> by <a href="https://medium.com/@nils_29588" class="external-link" target="_blank">Nils de Bruin</a>.
@@ -54,6 +52,8 @@ Here's an incomplete list of some of them.
 * <a href="https://medium.com/analytics-vidhya/deploy-machine-learning-models-with-keras-fastapi-redis-and-docker-4940df614ece" class="external-link" target="_blank">Deploy Machine Learning Models with Keras, FastAPI, Redis and Docker</a> by <a href="https://medium.com/@shane.soh" class="external-link" target="_blank">Shane Soh</a>.
 
 * <a href="https://medium.com/@arthur393/another-boilerplate-to-fastapi-azure-pipeline-ci-pytest-3c8d9a4be0bb" class="external-link" target="_blank">Another Boilerplate to FastAPI: Azure Pipeline CI + Pytest</a> by <a href="https://twitter.com/arthurheinrique" class="external-link" target="_blank">Arthur Henrique</a>.
+
+* <a href="https://www.tutlinks.com/create-and-deploy-fastapi-app-to-heroku/" class="external-link" target="_blank">Create and Deploy FastAPI app to Heroku without using Docker</a> by <a href="https://www.linkedin.com/in/navule/" class="external-link" target="_blank">Navule Pavan Kumar Rao</a>.
 
 ### Japanese
 
