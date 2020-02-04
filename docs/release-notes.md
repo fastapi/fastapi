@@ -1,5 +1,7 @@
 ## Latest changes
 
+## 0.48.0
+
 * Run linters first in tests to error out faster. PR [#948](https://github.com/tiangolo/fastapi/pull/948).
 * Log warning about `email-validator` only when used. PR [#946](https://github.com/tiangolo/fastapi/pull/946).
 * Simplify [Peewee docs](https://fastapi.tiangolo.com/advanced/sql-databases-peewee/) with double dependency with `yield`. PR [#947](https://github.com/tiangolo/fastapi/pull/947).
