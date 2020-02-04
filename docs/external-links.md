@@ -53,7 +53,7 @@ Here's an incomplete list of some of them.
 
 * <a href="https://medium.com/@arthur393/another-boilerplate-to-fastapi-azure-pipeline-ci-pytest-3c8d9a4be0bb" class="external-link" target="_blank">Another Boilerplate to FastAPI: Azure Pipeline CI + Pytest</a> by <a href="https://twitter.com/arthurheinrique" class="external-link" target="_blank">Arthur Henrique</a>.
 
-* <a href="https://iwpnd.pw/articles/2020-01/deploy-fastapi-to-aws-lambda" class="external-link" target="_blank">How to continuously deploy a fastAPI to AWS Lambda with AWS SAM</a> by <a href="https://iwpnd.pw" class="external-link" target="_blank">Benjamin Ramser</a>.
+* <a href="https://iwpnd.pw/articles/2020-01/deploy-fastapi-to-aws-lambda" class="external-link" target="_blank">How to continuously deploy a FastAPI to AWS Lambda with AWS SAM</a> by <a href="https://iwpnd.pw" class="external-link" target="_blank">Benjamin Ramser</a>.
 
 ### Japanese
 
