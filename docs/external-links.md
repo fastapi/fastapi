@@ -55,6 +55,8 @@ Here's an incomplete list of some of them.
 
 * <a href="https://iwpnd.pw/articles/2020-01/deploy-fastapi-to-aws-lambda" class="external-link" target="_blank">How to continuously deploy a FastAPI to AWS Lambda with AWS SAM</a> by <a href="https://iwpnd.pw" class="external-link" target="_blank">Benjamin Ramser</a>.
 
+* <a href="https://www.tutlinks.com/create-and-deploy-fastapi-app-to-heroku/" class="external-link" target="_blank">Create and Deploy FastAPI app to Heroku without using Docker</a> by <a href="https://www.linkedin.com/in/navule/" class="external-link" target="_blank">Navule Pavan Kumar Rao</a>.
+
 ### Japanese
 
 * <a href="https://qiita.com/mtitg/items/47770e9a562dd150631d" class="external-link" target="_blank">FastAPI｜DB接続してCRUDするPython製APIサーバーを構築</a> by <a href="https://qiita.com/mtitg" class="external-link" target="_blank">@mtitg</a>.
