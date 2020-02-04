@@ -257,7 +257,7 @@ And now in the file `sql_app/main.py` let's integrate and use all the other part
 
 In a very simplistic way create the database tables:
 
-```Python hl_lines="10 11 12"
+```Python hl_lines="9 10 11"
 {!./src/sql_databases_peewee/sql_app/main.py!}
 ```
 
@@ -265,7 +265,7 @@ In a very simplistic way create the database tables:
 
 Create a dependency that will connect the database right at the beginning of a request and disconnect it at the end:
 
-```Python hl_lines="19 20 21 22 23 24 25"
+```Python hl_lines="23 24 25 26 27 28 29"
 {!./src/sql_databases_peewee/sql_app/main.py!}
 ```
 
@@ -273,58 +273,52 @@ Here we have an empty `yield` because we are actually not using the database obj
 
 It is connecting to the database and storing the connection data in an internal variable that is independent for each request (using the `contextvars` tricks from above).
 
+Because the database connection is potentially I/O blocking, this dependency is created with a normal `def` function.
+
 And then, in each *path operation function* that needs to access the database we add it as a dependency.
 
 But we are not using the value given by this dependency (it actually doesn't give any value, as it has an empty `yield`). So, we don't add it to the *path operation function* but to the *path operation decorator* in the `dependencies` parameter:
 
-```Python hl_lines="36  44  51  63  69  76"
+```Python hl_lines="32  40  47  59  65  72"
 {!./src/sql_databases_peewee/sql_app/main.py!}
 ```
 
-### Context Variable Middleware
+### Context variable sub-dependency
 
-For all the `contextvars` parts to work, we need to make sure there's a new "context" each time there's a new request, so that we have a specific context variable Peewee can use to save its state (database connection, transactions, etc).
+For all the `contextvars` parts to work, we need to make sure we have an independent value in the `ContextVar` for each request that uses the database, and that value will be used as the database state (connection, transactions, etc) for the whole request.
 
-For that, we need to create a middleware.
+For that, we need to create another `async` dependency `reset_db_state()` that is used as a sub-dependency in `get_db()`. It will set the value for the context variable (with just a default `dict`) that will be used as the database state for the whole request. And then the dependency `get_db()` will store in it the database state (connection, transactions, etc).
 
-Right before the request, we are going to reset the database state. We will "set" a value to the context variable and then we will ask the Peewee database state to "reset" (this will create the default values it uses).
-
-And then the rest of the request is processed with that new context variable we just set, all automatically and more or less "magically".
-
-For the **next request**, as we will reset that context variable again in the middleware, that new request will have its own database state (connection, transactions, etc).
-
-```Python hl_lines="28 29 30 31 32 33"
+```Python hl_lines="18 19 20"
 {!./src/sql_databases_peewee/sql_app/main.py!}
 ```
+
+For the **next request**, as we will reset that context variable again in the `async` dependency `reset_db_state()` and then create a new connection in the `get_db()` dependency, that new request will have its own database state (connection, transactions, etc).
 
 !!! tip
     As FastAPI is an async framework, one request could start being processed, and before finishing, another request could be received and start processing as well, and it all could be processed in the same thread.
 
-    But context variables are aware of these async features, so, a Peewee database state set in the middleware will keep its own data throughout the entire request.
+    But context variables are aware of these async features, so, a Peewee database state set in the `async` dependency `reset_db_state()` will keep its own data throughout the entire request.
 
     And at the same time, the other concurrent request will have its own database state that will be independent for the whole request.
 
 #### Peewee Proxy
-
 
 If you are using a <a href="http://docs.peewee-orm.com/en/latest/peewee/database.html#dynamically-defining-a-database" class="external-link" target="_blank">Peewee Proxy</a>, the actual database is at `db.obj`.
 
 So, you would reset it with:
 
 ```Python hl_lines="3 4"
-@app.middleware("http")
-async def reset_db_middleware(request: Request, call_next):
+async def reset_db_state():
     database.db.obj._state._state.set(db_state_default.copy())
     database.db.obj._state.reset()
-    response = await call_next(request)
-    return response
 ```
 
 ### Create your **FastAPI** *path operations*
 
 Now, finally, here's the standard **FastAPI** *path operations* code.
 
-```Python hl_lines="36 37 38 39 40 41  44 45 46 47  50 51 52 53 54 55 56 57  60 61 62 63 64 65 66  69 70 71 72  75 76 77 78 79 80 81 82 83"
+```Python hl_lines="32 33 34 35 36 37  40 41 42 43  46 47 48 49 50 51 52 53  56 57 58 59 60 61 62  65 66 67 68  71 72 73 74 75 76 77 78 79"
 {!./src/sql_databases_peewee/sql_app/main.py!}
 ```
 
@@ -364,15 +358,13 @@ If you want to check how Peewee would break your app if used without modificatio
 # db._state = PeeweeConnectionState()
 ```
 
-And in the file `sql_app/main.py` file, comment the middleware:
+And in the file `sql_app/main.py` file, comment the body of the `async` dependency `reset_db_state()` and replace it with a `pass`:
 
 ```Python
-# @app.middleware("http")
-# async def reset_db_middleware(request: Request, call_next):
+async def reset_db_state():
 #     database.db._state._state.set(db_state_default.copy())
 #     database.db._state.reset()
-#     response = await call_next(request)
-#     return response
+    pass
 ```
 
 Then run your app with Uvicorn:
@@ -391,11 +383,11 @@ The tabs will wait for a bit and then some of them will show `Internal Server Er
 
 ### What happens
 
-The first tab will make your app create a connection to the database and wait for some seconds before replying back and closing the connection.
+The first tab will make your app create a connection to the database and wait for some seconds before replying back and closing the database connection.
 
 Then, for the request in the next tab, your app will wait for one second less, and so on.
 
-This means that it will end up finishing some of the last tabs' requests than some of the previous ones.
+This means that it will end up finishing some of the last tabs' requests earlier than some of the previous ones.
 
 Then one the last requests that wait less seconds will try to open a database connection, but as one of those previous requests for the other tabs will probably be handled in the same thread as the first one, it will have the same database connection that is already open, and Peewee will throw an error and you will see it in the terminal, and the response will have an `Internal Server Error`.
 
@@ -413,15 +405,12 @@ Now go back to the file `sql_app/database.py`, and uncomment the line:
 db._state = PeeweeConnectionState()
 ```
 
-And in the file `sql_app/main.py` file, uncomment the middleware:
+And in the file `sql_app/main.py` file, uncomment the body of the `async` dependency `reset_db_state()`:
 
 ```Python
-@app.middleware("http")
-async def reset_db_middleware(request: Request, call_next):
+async def reset_db_state():
     database.db._state._state.set(db_state_default.copy())
     database.db._state.reset()
-    response = await call_next(request)
-    return response
 ```
 
 Terminate your running app and start it again.
@@ -477,11 +466,11 @@ Repeat the same process with the 10 tabs. This time all of them will wait and yo
 
 Peewee uses <a href="https://docs.python.org/3/library/threading.html#thread-local-data" class="external-link" target="_blank">`threading.local`</a> by default to store it's database "state" data (connection, transactions, etc).
 
-`threading.local` creates a value exclusive to the current thread, but an async framework would run all the "tasks" (e.g. requests) in the same thread, and possibly not in order.
+`threading.local` creates a value exclusive to the current thread, but an async framework would run all the code (e.g. for each request) in the same thread, and possibly not in order.
 
-On top of that, an async framework could run some sync code in a threadpool (using `asyncio.run_in_executor`), but belonging to the same "task" (e.g. to the same request).
+On top of that, an async framework could run some sync code in a threadpool (using `asyncio.run_in_executor`), but belonging to the same request.
 
-This means that, with Peewee's current implementation, multiple tasks could be using the same `threading.local` variable and end up sharing the same connection and data, and at the same time, if they execute sync IO-blocking code in a threadpool (as with normal `def` functions in FastAPI, in *path operations*  and dependencies), that code won't have access to the database state variables, even while it's part of the same "task" (request) and it should be able to get access to that.
+This means that, with Peewee's current implementation, multiple tasks could be using the same `threading.local` variable and end up sharing the same connection and data (that they shouldn't), and at the same time, if they execute sync I/O-blocking code in a threadpool (as with normal `def` functions in FastAPI, in *path operations*  and dependencies), that code won't have access to the database state variables, even while it's part of the same request and it should be able to get access to the same database state.
 
 ### Context variables
 
@@ -489,46 +478,44 @@ Python 3.7 has <a href="https://docs.python.org/3/library/contextvars.html" clas
 
 There are several things to have in mind.
 
-The `ContextVar` has to be created at the top of the module, like `some_var = ContextVar("some_var", default="default value")`.
+The `ContextVar` has to be created at the top of the module, like:
 
-To set a value used in the current "context" (e.g. for the current request) use `some_var.set("new value")`.
+```Python
+some_var = ContextVar("some_var", default="default value")
+```
 
-To get a value anywhere inside of the context (e.g. in any part handling the current request) use `some_var.get()`.
+To set a value used in the current "context" (e.g. for the current request) use:
 
-### Set context variables in middleware
+```Python
+some_var.set("new value")
+```
 
-If some part of the async code sets the value with `some_var.set("updated in function")` (e.g. the middleware), the rest of the code in it will see that new value.
+To get a value anywhere inside of the context (e.g. in any part handling the current request) use:
 
-And if it calls any other function with `await some_function()` (e.g. `response = await call_next(request)` in our middleware) that internal `some_function()` (or `response = await call_next(request)` in our example) and everything it calls inside, will see that same new value `"updated in function"`.
+```Python
+some_var.get()
+```
 
-So, in our case, if we set the Peewee state variable in the middleware and then call `response = await call_next(request)` all the rest of the internal code in our app (that is called by `call_next()`) will see this value we set in the middleware and will be able to reuse it.
+### Set context variables in the `async` dependency `reset_db_state()`
 
-But if the value is set in an internal function (e.g. in `get_db()`) that value will be seen only by that internal function and any code it calls, not by the parent function nor by any sibling function. So, we can't set the Peewee database state in `get_db()`, or the *path operation functions* wouldn't see the new Peewee database state for that "context".
+If some part of the async code sets the value with `some_var.set("updated in function")` (e.g. like the `async` dependency), the rest of the code in it and the code that goes after (including code inside of `async` functions called with `await`) will see that new value.
 
-### But `get_db` is an async context manager
+So, in our case, if we set the Peewee state variable (with a default `dict`) in the `async` dependency, all the rest of the internal code in our app will see this value and will be able to reuse it for the whole request.
 
-You might be thinking that `get_db()` is actually not used as a function, it's converted to a context manager.
+And the context variable would be set again for the next request, even if they are concurrent.
 
-So the *path operation function* is part of it.
+### Set database state in the dependency `get_db()`
 
-But the code after the `yield`, in the `finally` is not executed in the same "context".
+As `get_db()` is a normal `def` function, **FastAPI** will make it run in a threadpool, with a *copy* of the "context", holding the same value for the context variable (the `dict` with the reset database state). Then it can add database state to that `dict`, like the connection, etc.
 
-So, if you reset the state in `get_db()`, the *path operation function* would see the database connection set there. But the `finally` block would not see the same context variable value, and so, as the database object would not have the same context variable for its state, it would not have the same connection, so you couldn't close it in the `finally` in `get_db()` after the request is done.
+But if the value of the context variable (the default `dict`) was set in that normal `def` function, it would create a new value that would stay only in that thread of the threadpool, and the rest of the code (like the *path operation functions*) wouldn't have access to it. In `get_db()` we can only set values in the `dict`, but not the entire `dict` itself.
 
-In the middleware we are setting the Peewee state to a context variable that holds a `dict`. So, it's set for every new request.
+So, we need to have the `async` dependency `reset_db_state()` to set the `dict` in the context variable. That way, all the code has access to the same `dict` for the database state for a single request.
 
-And as the database state variables are stored inside of that `dict` instead of new context variables, when Peewee sets the new database state (connection, transactions, etc) in any part of the internal code, underneath, all that will be set as keys in that `dict`. But the `dict` would still be the same we set in the middleware. That's what allows the `get_db()` dependency to make Peewee create a new connection (that is stored in that `dict`) and allows the `finally` block to still have access to the same connection.
+### Connect and disconnect in the dependency `get_db()`
 
-Because the context variable is set outside all that, in the middleware.
+Then the next question would be, why not just connect and disconnect the database in the `async` dependency itself, instead of in `get_db()`?
 
-### Connect and disconnect in dependency
+The `async` dependency has to be `async` for the context variable to be preserved for the rest of the request, but creating and closing the database connection is potentially blocking, so it could degrade performance if it was there.
 
-Then the next question would be, why not just connect and disconnect the database in the middleware itself, instead of `get_db()`?
-
-First, the middleware has to be `async`, and creating and closing the database connection is potentially blocking, so it could degrade performance.
-
-But more importantly, the middleware returns a `response`, and this `response` is actually an awaitable function that will do all the work in your code, including background tasks.
-
-If you closed the connection in the middleware right before returning the `response`, some of your code would not have the chance to use the database connection set in the context variable.
-
-Because some other code will call that `response` with `await response(...)`. And inside of that `await response(...)` is that, for example, background tasks are run. But if the connection was already closed before `response` is awaited, then it won't be able to access it.
+So we also need the normal `def` dependency `get_db()`.
