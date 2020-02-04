@@ -139,3 +139,7 @@ The function parameters will be recognized as follows:
 * If the parameter is also declared in the **path**, it will be used as a path parameter.
 * If the parameter is of a **singular type** (like `int`, `float`, `str`, `bool`, etc) it will be interpreted as a **query** parameter.
 * If the parameter is declared to be of the type of a **Pydantic model**, it will be interpreted as a request **body**.
+
+## Without Pydantic
+
+If you don't want to use Pydantic models, you can also use **Body** parameters. See the docs for [Body - Multiple Parameters: Singular values in body](body-multiple-params.md#singular-values-in-body){.internal-link target=_blank}.
