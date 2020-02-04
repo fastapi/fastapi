@@ -1,5 +1,5 @@
 from enum import Enum
-from typing import Any, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, Iterable, List, Optional, Union
 
 from fastapi.logger import logger
 from pydantic import BaseModel
@@ -21,13 +21,19 @@ try:
         # TODO: remove when removing support for Pydantic < 1.0.0
         from pydantic.types import EmailStr  # type: ignore
 except ImportError:  # pragma: no cover
-    logger.info(
-        "email-validator not installed, email fields will be treated as str.\n"
-        "To install, run: pip install email-validator"
-    )
 
     class EmailStr(str):  # type: ignore
-        pass
+        @classmethod
+        def __get_validators__(cls) -> Iterable[Callable]:
+            yield cls.validate
+
+        @classmethod
+        def validate(cls, v: Any) -> str:
+            logger.warning(
+                "email-validator not installed, email fields will be treated as str.\n"
+                "To install, run: pip install email-validator"
+            )
+            return str(v)
 
 
 class Contact(BaseModel):
