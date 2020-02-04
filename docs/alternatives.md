@@ -229,7 +229,7 @@ It was one of the first extremely fast Python frameworks based on `asyncio`. It 
 !!! note "Technical Details"
     It used <a href="https://github.com/MagicStack/uvloop" class="external-link" target="_blank">`uvloop`</a> instead of the default Python `asyncio` loop. That's what made it so fast.
 
-    It <a href="https://github.com/huge-success/sanic/issues/761" class="external-link" target="_blank">still doesn't implement the ASGI spec for Python asynchronous web development</a>, but it clearly inspired Uvicorn and Starlette, that are currently faster than Sanic in open benchmarks.
+    It clearly inspired Uvicorn and Starlette, that are currently faster than Sanic in open benchmarks.
 
 !!! check "Inspired **FastAPI** to"
     Find a way to have a crazy performance.
