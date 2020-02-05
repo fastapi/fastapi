@@ -256,7 +256,7 @@ Taken from the official Pydantic docs:
 
 **FastAPI** is all based on Pydantic.
 
-You will see a lot more of all this in practice in the [Tutorial - User Guide](tutorial/){.internal-link target=_blank}.
+You will see a lot more of all this in practice in the [Tutorial - User Guide](tutorial/index.md){.internal-link target=_blank}.
 
 ## Type hints in **FastAPI**
 
@@ -276,7 +276,7 @@ With **FastAPI** you declare parameters with type hints and you get:
 * **Document** the API using OpenAPI:
     * which is then used by the automatic interactive documentation user interfaces.
 
-This might all sound abstract. Don't worry. You'll see all this in action in the [Tutorial - User Guide](tutorial/){.internal-link target=_blank}.
+This might all sound abstract. Don't worry. You'll see all this in action in the [Tutorial - User Guide](tutorial/index.md){.internal-link target=_blank}.
 
 The important thing is that by using standard Python types, in a single place (instead of adding more classes, decorators, etc), **FastAPI** will do a lot of the work for you.
 
