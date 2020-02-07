@@ -68,7 +68,7 @@ def update_item(
 
 
 @router.get("/{id}", response_model=Item)
-def read_user_me(
+def read_item(
     *,
     db: Session = Depends(get_db),
     id: int,
@@ -79,7 +79,7 @@ def read_user_me(
     """
     item = crud.item.get(db_session=db, id=id)
     if not item:
-        raise HTTPException(status_code=400, detail="Item not found")
+        raise HTTPException(status_code=404, detail="Item not found")
     if not crud.user.is_superuser(current_user) and (item.owner_id != current_user.id):
         raise HTTPException(status_code=400, detail="Not enough permissions")
     return item
