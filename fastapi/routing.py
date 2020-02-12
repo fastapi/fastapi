@@ -335,9 +335,7 @@ class APIRoute(routing.Route):
         self.include_in_schema = include_in_schema
         self.response_class = response_class
 
-        assert inspect.isfunction(endpoint) or inspect.ismethod(
-            endpoint
-        ), f"An endpoint must be a function or method"
+        assert callable(endpoint), f"An endpoint must be a callable"
         self.dependant = get_dependant(path=self.path_format, call=self.endpoint)
         for depends in self.dependencies[::-1]:
             self.dependant.dependencies.insert(
