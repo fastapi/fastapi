@@ -1,5 +1,7 @@
 ## Latest changes
 
+* Allow `callable`s in *path operation functions*, like functions modified with `functools.partial`. PR [#977](https://github.com/tiangolo/fastapi/pull/977).
+
 ## 0.48.0
 
 * Run linters first in tests to error out faster. PR [#948](https://github.com/tiangolo/fastapi/pull/948).
