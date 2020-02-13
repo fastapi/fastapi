@@ -70,12 +70,16 @@ class ModelWithAlias(BaseModel):
     foo: str = Field(..., alias="Foo")
 
 
-@pytest.fixture(name="model_with_path", params=[PurePath, PurePosixPath, PureWindowsPath])
+@pytest.fixture(
+    name="model_with_path", params=[PurePath, PurePosixPath, PureWindowsPath]
+)
 def fixture_model_with_path(request):
     class Config:
         arbitrary_types_allowed = True
 
-    ModelWithPath = create_model("ModelWithPath", path=(request.param, ...), __config__=Config)
+    ModelWithPath = create_model(
+        "ModelWithPath", path=(request.param, ...), __config__=Config
+    )
     return ModelWithPath(path=request.param("/foo", "bar"))
 
 
@@ -133,5 +137,8 @@ def test_custom_encoders():
 
 
 def test_encode_model_with_path(model_with_path):
-    expected = "\\foo\\bar" if isinstance(model_with_path.path, PureWindowsPath) else "/foo/bar"
+    if isinstance(model_with_path.path, PureWindowsPath):
+        expected = "\\foo\\bar"
+    else:
+        expected = "/foo/bar"
     assert jsonable_encoder(model_with_path) == {"path": expected}
