@@ -1,4 +1,5 @@
 from enum import Enum
+from pathlib import PurePath
 from types import GeneratorType
 from typing import Any, Callable, Dict, List, Set, Tuple, Union
 
@@ -73,6 +74,8 @@ def jsonable_encoder(
         )
     if isinstance(obj, Enum):
         return obj.value
+    if isinstance(obj, PurePath):
+        return str(obj)
     if isinstance(obj, (str, int, float, type(None))):
         return obj
     if isinstance(obj, dict):
