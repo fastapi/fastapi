@@ -1,5 +1,6 @@
 from datetime import datetime, timezone
 from enum import Enum
+from pathlib import Path, PosixPath, WindowsPath
 
 import pytest
 from fastapi.encoders import jsonable_encoder
@@ -69,6 +70,10 @@ class ModelWithAlias(BaseModel):
     foo: str = Field(..., alias="Foo")
 
 
+class ModelWithPath(BaseModel):
+    path: Path
+
+
 def test_encode_class():
     person = Person(name="Foo")
     pet = Pet(owner=person, name="Firulais")
@@ -120,3 +125,8 @@ def test_custom_encoders():
         instance, custom_encoder={safe_datetime: lambda o: o.isoformat()}
     )
     assert encoded_instance["dt_field"] == instance.dt_field.isoformat()
+
+
+def test_encode_model_with_path():
+    model = ModelWithPath(path="/foo/bar")
+    assert jsonable_encoder(model) == {"path": "/foo/bar"}
