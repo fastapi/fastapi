@@ -1,10 +1,10 @@
 from datetime import datetime, timezone
 from enum import Enum
-from pathlib import Path, PosixPath, WindowsPath
+from pathlib import PurePath, PurePosixPath, PureWindowsPath
 
 import pytest
 from fastapi.encoders import jsonable_encoder
-from pydantic import BaseModel, ValidationError
+from pydantic import BaseModel, ValidationError, create_model
 
 try:
     from pydantic import Field
@@ -70,8 +70,13 @@ class ModelWithAlias(BaseModel):
     foo: str = Field(..., alias="Foo")
 
 
-class ModelWithPath(BaseModel):
-    path: Path
+@pytest.fixture(name="model_with_path", params=[PurePath, PurePosixPath, PureWindowsPath])
+def fixture_model_with_path(request):
+    class Config:
+        arbitrary_types_allowed = True
+
+    ModelWithPath = create_model("ModelWithPath", path=(request.param, ...), __config__=Config)
+    return ModelWithPath(path=request.param("/foo", "bar"))
 
 
 def test_encode_class():
@@ -127,6 +132,6 @@ def test_custom_encoders():
     assert encoded_instance["dt_field"] == instance.dt_field.isoformat()
 
 
-def test_encode_model_with_path():
-    model = ModelWithPath(path="/foo/bar")
-    assert jsonable_encoder(model) == {"path": "/foo/bar"}
+def test_encode_model_with_path(model_with_path):
+    expected = "\\foo\\bar" if isinstance(model_with_path.path, PureWindowsPath) else "/foo/bar"
+    assert jsonable_encoder(model_with_path) == {"path": expected}
