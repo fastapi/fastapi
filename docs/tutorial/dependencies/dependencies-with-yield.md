@@ -125,7 +125,7 @@ If you have custom exceptions that you would like to handle *before* returning t
 !!! tip
     You can still raise exceptions including `HTTPException` *before* the `yield`. But not after.
 
-The sequence of execution is more or less like this:
+The sequence of execution is more or less like this diagram. Time flows from top to bottom. And each column is one of the parts interacting or executing code.
 
 ```mermaid
 sequenceDiagram
@@ -139,7 +139,7 @@ participant tasks as Background tasks
     Note over client,tasks: Can raise exception for dependency, handled after response is sent
     Note over client,operation: Can raise HTTPException and can change the response
     client ->> dep: Start request
-    Note over dep: Code up to yield
+    Note over dep: Run code up to yield
     opt raise
         dep -->> handler: Raise HTTPException
         handler -->> client: HTTP error response
@@ -165,8 +165,13 @@ participant tasks as Background tasks
     end
 ```
 
+!!! info
+    Only **one response** will be sent to the client. It might be one of the error responses or it will be the response from the *path operation*.
+
+    After one of those responses is sent, no other response can be sent.
+
 !!! tip
-    This diagram shows `HTTPException`, but you could also raise any other exception that you create a [Custom Exception Handler](../handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank} for. And that exception would be handled by that custom exception handler instead of the dependency exit code.
+    This diagram shows `HTTPException`, but you could also raise any other exception for which you create a [Custom Exception Handler](../handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank}. And that exception would be handled by that custom exception handler instead of the dependency exit code.
 
     But if you raise an exception that is not handled by the exception handlers, it will be handled by the exit code of the dependency.
 
