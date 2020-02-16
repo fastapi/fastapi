@@ -82,6 +82,19 @@ Whenever a new request arrives, **FastAPI** will take care of:
 * Get the result from your function.
 * Assign that result to the parameter in your *path operation function*.
 
+```mermaid
+graph TB
+
+common_parameters(["common_parameters"])
+read_items["/items/"]
+read_users["/users/"]
+
+common_parameters --> read_items
+common_parameters --> read_users
+```
+
+This way you write shared code once and **FastAPI** takes care of calling it for your *path operations*.
+
 !!! check
     Notice that you don't have to create a special class and pass it somewhere to **FastAPI** to "register" it or anything similar.
 
@@ -154,7 +167,39 @@ Although the hierarchical dependency injection system is very simple to define a
 
 You can define dependencies that in turn can define dependencies themselves.
 
-In the end, a hierarchical tree of dependencies is built, and the **Dependency Injection** system takes care of solving all these dependencies for you (and your dependencies) and providing (injecting) the results at each step.
+In the end, a hierarchical tree of dependencies is built, and the **Dependency Injection** system takes care of solving all these dependencies for you (and their sub-dependencies) and providing (injecting) the results at each step.
+
+For example, let's say you have 4 API endpoints (*path operations*):
+
+* `/items/public/`
+* `/items/private/`
+* `/users/{user_id}/activate`
+* `/items/pro/`
+
+then you could add different permission requirements for each of them just with dependencies and sub-dependencies:
+
+```mermaid
+graph TB
+
+current_user(["current_user"])
+active_user(["active_user"])
+admin_user(["admin_user"])
+paying_user(["paying_user"])
+
+public["/items/public/"]
+private["/items/private/"]
+activate_user["/users/{user_id}/activate"]
+pro_items["/items/pro/"]
+
+current_user --> active_user
+active_user --> admin_user
+active_user --> paying_user
+
+current_user --> public
+active_user --> private
+admin_user --> activate_user
+paying_user --> pro_items
+```
 
 ## Integrated with **OpenAPI**
 
