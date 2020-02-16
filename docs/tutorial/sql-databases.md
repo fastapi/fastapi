@@ -469,6 +469,8 @@ Our dependency will create a new SQLAlchemy `SessionLocal` that will be used in 
     
     This way we make sure the database session is always closed after the request. Even if there was an exception while processing the request.
 
+    But you can't raise another exception from the exit code (after `yield`). See more in [Dependencies with `yield` and `HTTPException`](./dependencies/dependencies-with-yield.md#dependencies-with-yield-and-httpexception){.internal-link target=_blank}
+
 And then, when using the dependency in a *path operation function*, we declare it with the type `Session` we imported directly from SQLAlchemy.
 
 This will then give us better editor support inside the *path operation function*, because the editor will know that the `db` parameter is of type `Session`:
