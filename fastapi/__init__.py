@@ -1,6 +1,6 @@
 """FastAPI framework, high performance, easy to learn, fast to code, ready for production"""
 
-__version__ = "0.48.0"
+__version__ = "0.49.0"
 
 from starlette.background import BackgroundTasks
 
