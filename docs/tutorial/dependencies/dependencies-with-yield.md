@@ -125,7 +125,7 @@ If you have custom exceptions that you would like to handle *before* returning t
 !!! tip
     You can still raise exceptions including `HTTPException` *before* the `yield`. But not after.
 
-The sequence of execution is more or less like this diagram. Time flows from top to bottom. And each column is one of the parts that can be executing code.
+The sequence of execution is more or less like this diagram. Time flows from top to bottom. And each column is one of the parts interacting or executing code.
 
 ```mermaid
 sequenceDiagram
