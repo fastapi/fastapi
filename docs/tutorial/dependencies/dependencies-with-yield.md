@@ -108,7 +108,7 @@ You saw that you can use dependencies with `yield` and have `try` blocks that ca
 
 It might be tempting to raise an `HTTPException` or similar in the exit code, after the `yield`. But **it won't work**.
 
-The exit code in dependencies with `yield` is executed *after* [Exception Handlers](http://0.0.0.0:8008/tutorial/handling-errors/#install-custom-exception-handlers){.internal-link target=_blank}. There's nothing catching exceptions thrown by your dependencies in the exit code (after the `yield`).
+The exit code in dependencies with `yield` is executed *after* [Exception Handlers](../handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank}. There's nothing catching exceptions thrown by your dependencies in the exit code (after the `yield`).
 
 So, if you raise an `HTTPException` after the `yield`, the default (or any custom) exception handler that catches `HTTPException`s and returns an HTTP 400 response won't be there to catch that exception anymore.
 
@@ -120,7 +120,7 @@ But if a background task creates a DB error, at least you can rollback or cleanl
 
 If you have some code that you know could raise an exception, do the most normal/"Pythonic" thing and add a `try` block in that section of the code.
 
-If you have custom exceptions that you would like to handle *before* returning the response and possibly modifying the response, maybe even raising an `HTTPException`, create a [Custom Exception Handler](http://0.0.0.0:8008/tutorial/handling-errors/#install-custom-exception-handlers){.internal-link target=_blank}.
+If you have custom exceptions that you would like to handle *before* returning the response and possibly modifying the response, maybe even raising an `HTTPException`, create a [Custom Exception Handler](../handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank}.
 
 !!! tip
     You can still raise exceptions including `HTTPException` *before* the `yield`. But not after.
@@ -132,38 +132,43 @@ sequenceDiagram
 
 participant client as Client
 participant handler as Exception handler
-participant dep_before as Dep up to yield
+participant dep as Dep with yield
 participant operation as Path Operation
-participant dep_after as Dep after yield
 participant tasks as Background tasks
 
     Note over client,tasks: Can raise exception for dependency, handled after response is sent
     Note over client,operation: Can raise HTTPException and can change the response
-    client ->> dep_before: Start request
+    client ->> dep: Start request
+    Note over dep: Code up to yield
     opt raise
-        dep_before -->> handler: Raise HTTPException
+        dep -->> handler: Raise HTTPException
         handler -->> client: HTTP error response
-        dep_before -->> dep_after: Raise other exception
+        dep -->> dep: Raise other exception
     end
-    dep_before ->> operation: Run dependency, e.g. DB session
+    dep ->> operation: Run dependency, e.g. DB session
     opt raise
         operation -->> handler: Raise HTTPException
         handler -->> client: HTTP error response
-        operation -->> dep_after: Raise other exception
+        operation -->> dep: Raise other exception
     end
     operation ->> client: Return response to client
-    Note over client,operation: Response is already sent, can't change the response anymore
-    operation -->> tasks: Send background tasks
-    opt Background tasks
-        tasks -->> dep_after: Raise other exception
+    Note over client,operation: Response is already sent, can't change it anymore
+    opt Tasks
+        operation -->> tasks: Send background tasks
     end
+    opt Raise other exception
+        tasks -->> dep: Raise other exception
+    end
+    Note over dep: After yield
     opt Handle other exception
-        dep_after -->> dep_after: Handle exception, can't change response. E.g. close DB session.
+        dep -->> dep: Handle exception, can't change response. E.g. close DB session.
     end
 ```
 
 !!! tip
-    This diagram shows `HTTPException`, but you could also raise any other exception that you create a [Custom Exception Handler](http://0.0.0.0:8008/tutorial/handling-errors/#install-custom-exception-handlers){.internal-link target=_blank} and the exception will be handled by it instead of the dependency exit code.
+    This diagram shows `HTTPException`, but you could also raise any other exception that you create a [Custom Exception Handler](../handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank} for. And that exception would be handled by that custom exception handler instead of the dependency exit code.
+
+    But if you raise an exception that is not handled by the exception handlers, it will be handled by the exit code of the dependency.
 
 ## Context Managers
 
