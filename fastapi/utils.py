@@ -29,7 +29,7 @@ except ImportError:  # pragma: nocover
 # TODO: remove when removing support for Pydantic < 1.0.0
 def get_field_info(field: ModelField) -> FieldInfo:
     if PYDANTIC_1:
-        return field.field_info  # type: ignore
+        return field.field_info
     else:
         return field.schema  # type: ignore  # pragma: nocover
 
@@ -89,7 +89,7 @@ def get_path_param_names(path: str) -> Set[str]:
 def create_cloned_field(field: ModelField) -> ModelField:
     original_type = field.type_
     if is_dataclass(original_type) and hasattr(original_type, "__pydantic_model__"):
-        original_type = original_type.__pydantic_model__  # type: ignore
+        original_type = original_type.__pydantic_model__
     use_type = original_type
     if lenient_issubclass(original_type, BaseModel):
         original_type = cast(Type[BaseModel], original_type)
