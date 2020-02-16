@@ -142,5 +142,5 @@ extra_css:
     - 'css/custom.css'
 
 extra_javascript:
+    - 'https://unpkg.com/mermaid@8.4.6/dist/mermaid.min.js'
     - 'js/custom.js'
-    - 'https://unpkg.com/mermaid@7.1.0/dist/mermaid.min.js'
