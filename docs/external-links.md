@@ -79,6 +79,10 @@ Here's an incomplete list of some of them.
 
 * <a href="https://rightcode.co.jp/blog/information-technology/fastapi-tutorial-todo-apps-admin-page-improvement" class="external-link" target="_blank">【第4回】FastAPIチュートリアル: toDoアプリを作ってみよう【管理者ページ改良編】</a> by <a href="https://rightcode.co.jp/author/jun" class="external-link" target="_blank">ライトコードメディア編集部</a>
 
+* <a href="https://qiita.com/bee2/items/0ad260ab9835a2087dae" class="external-link" target="_blank">PythonのWeb frameworkのパフォーマンス比較 (Django, Flask, responder, FastAPI, japronto)</a> by <a href="https://qiita.com/bee2" class="external-link" target="_blank">@bee2</a>.
+
+* <a href="https://qiita.com/bee2/items/75d9c0d7ba20e7a4a0e9" class="external-link" target="_blank">[FastAPI] Python製のASGI Web フレームワーク FastAPIに入門する</a> by <a href="https://qiita.com/bee2" class="external-link" target="_blank">@bee2</a>.
+
 ### Chinese
 
 * <a href="https://cloud.tencent.com/developer/article/1431448" class="external-link" target="_blank">使用FastAPI框架快速构建高性能的api服务</a> by <a href="https://cloud.tencent.com/developer/user/5471722" class="external-link" target="_blank">逍遥散人</a>.
