@@ -44,6 +44,17 @@ Then we can use the dependency with:
 
     But **FastAPI** will know that it has to solve `query_extractor` first, to pass the results of that to `query_or_cookie_extractor` while calling it.
 
+```mermaid
+graph TB
+
+query_extractor(["query_extractor"])
+query_or_cookie_extractor(["query_or_cookie_extractor"])
+
+read_query["/items/"]
+
+query_extractor --> query_or_cookie_extractor --> read_query
+```
+
 ## Using the same dependency multiple times
 
 If one of your dependencies is declared multiple times for the same *path operation*, for example, multiple dependencies have a common sub-dependency, **FastAPI** will know to call that sub-dependency only once per request.
