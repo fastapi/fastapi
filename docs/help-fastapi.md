@@ -1,4 +1,4 @@
-Are you liking **FastAPI**?
+Do you like **FastAPI**?
 
 Would you like to help FastAPI, other users, and the author?
 
