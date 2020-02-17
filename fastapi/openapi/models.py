@@ -8,7 +8,7 @@ try:
     from pydantic import AnyUrl, Field
 except ImportError:  # pragma: nocover
     # TODO: remove when removing support for Pydantic < 1.0.0
-    from pydantic import Schema as Field
+    from pydantic import Schema as Field  # type: ignore
     from pydantic import UrlStr as AnyUrl  # type: ignore
 
 try:
