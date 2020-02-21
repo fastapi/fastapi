@@ -24,7 +24,6 @@ from fastapi.utils import (
 )
 from pydantic import BaseModel
 from pydantic.error_wrappers import ErrorWrapper, ValidationError
-from pydantic.utils import lenient_issubclass
 from starlette import routing
 from starlette.concurrency import run_in_threadpool
 from starlette.exceptions import HTTPException
@@ -281,9 +280,6 @@ class APIRoute(routing.Route):
                 assert (
                     additional_status_code not in STATUS_CODES_WITH_NO_BODY
                 ), f"Status code {additional_status_code} must not have a response body"
-                assert lenient_issubclass(
-                    model, BaseModel
-                ), "A response model must be a Pydantic model"
                 response_name = f"Response_{additional_status_code}_{self.unique_id}"
                 response_field = create_response_field(name=response_name, type_=model)
                 response_fields[additional_status_code] = response_field
