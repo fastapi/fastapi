@@ -691,7 +691,7 @@ def get_schema_compatible_field(*, field: ModelField) -> ModelField:
             default=field.default,
             required=field.required,
             alias=field.alias,
-            field_info=field.field_info if PYDANTIC_1 else field.schema
+            field_info=field.field_info if PYDANTIC_1 else field.schema  # type: ignore
         )
 
     return out_field

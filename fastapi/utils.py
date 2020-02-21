@@ -1,25 +1,30 @@
 import functools
 import re
 from dataclasses import is_dataclass
-from typing import Any, Dict, List, Sequence, Set, Type, cast
+from typing import Any, Dict, List, Optional, Sequence, Set, Type, Union, cast
 
 import fastapi
 from fastapi import routing
 from fastapi.logger import logger
 from fastapi.openapi.constants import REF_PREFIX
 from pydantic import BaseConfig, BaseModel, create_model
+from pydantic.class_validators import Validator
 from pydantic.schema import get_flat_models_from_fields, model_process_schema
 from pydantic.utils import lenient_issubclass
 from starlette.routing import BaseRoute
 
 try:
-    from pydantic.fields import FieldInfo, ModelField
+    from pydantic.fields import FieldInfo, ModelField, UndefinedType
 
     PYDANTIC_1 = True
 except ImportError:  # pragma: nocover
     # TODO: remove when removing support for Pydantic < 1.0.0
     from pydantic.fields import Field as ModelField  # type: ignore
     from pydantic import Schema as FieldInfo  # type: ignore
+
+    class UndefinedType:    # type: ignore
+        def __repr__(self) -> str:
+            return 'PydanticUndefined'
 
     logger.warning(
         "Pydantic versions < 1.0.0 are deprecated in FastAPI and support will be "
@@ -90,13 +95,14 @@ def get_path_param_names(path: str) -> Set[str]:
 
 def create_response_field(
         name: str,
-        type_: Any,
-        class_validators=None,
-        default=None,
-        required=False,
-        model_config=BaseConfig,
-        field_info=None,
-        **kwargs) -> ModelField:
+        type_: Type[Any],
+        class_validators: Optional[Dict[str, Validator]] = None,
+        default: Optional[Any] = None,
+        required: Union[bool, UndefinedType] = False,
+        model_config: Type[BaseConfig] = BaseConfig,
+        field_info: Optional[FieldInfo] = None,
+        alias: Optional[str] = None
+    ) -> ModelField:
     """
     Create a new response field. Raises if type_ is invalid.
     """
@@ -111,7 +117,7 @@ def create_response_field(
         default=default,
         required=required,
         model_config=model_config,
-        **kwargs,
+        alias=alias
     )
 
     try:

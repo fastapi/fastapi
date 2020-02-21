@@ -258,7 +258,7 @@ class APIRoute(routing.Route):
                 ModelField
             ] = create_cloned_field(self.response_field)
         else:
-            self.response_field = None
+            self.response_field = None  # type: ignore
             self.secure_cloned_response_field = None
         self.status_code = status_code
         self.tags = tags or []
