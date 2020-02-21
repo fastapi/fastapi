@@ -22,9 +22,9 @@ except ImportError:  # pragma: nocover
     from pydantic.fields import Field as ModelField  # type: ignore
     from pydantic import Schema as FieldInfo  # type: ignore
 
-    class UndefinedType:    # type: ignore
+    class UndefinedType:  # type: ignore
         def __repr__(self) -> str:
-            return 'PydanticUndefined'
+            return "PydanticUndefined"
 
     logger.warning(
         "Pydantic versions < 1.0.0 are deprecated in FastAPI and support will be "
@@ -94,15 +94,15 @@ def get_path_param_names(path: str) -> Set[str]:
 
 
 def create_response_field(
-        name: str,
-        type_: Type[Any],
-        class_validators: Optional[Dict[str, Validator]] = None,
-        default: Optional[Any] = None,
-        required: Union[bool, UndefinedType] = False,
-        model_config: Type[BaseConfig] = BaseConfig,
-        field_info: Optional[FieldInfo] = None,
-        alias: Optional[str] = None
-    ) -> ModelField:
+    name: str,
+    type_: Type[Any],
+    class_validators: Optional[Dict[str, Validator]] = None,
+    default: Optional[Any] = None,
+    required: Union[bool, UndefinedType] = False,
+    model_config: Type[BaseConfig] = BaseConfig,
+    field_info: Optional[FieldInfo] = None,
+    alias: Optional[str] = None,
+) -> ModelField:
     """
     Create a new response field. Raises if type_ is invalid.
     """
@@ -117,7 +117,7 @@ def create_response_field(
         default=default,
         required=required,
         model_config=model_config,
-        alias=alias
+        alias=alias,
     )
 
     try:
