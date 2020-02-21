@@ -558,31 +558,31 @@ For example, in a background task worker with <a href="http://www.celeryproject.
 
 * `sql_app/database.py`:
 
-```Python hl_lines=""
+```Python
 {!./src/sql_databases/sql_app/database.py!}
 ```
 
 * `sql_app/models.py`:
 
-```Python hl_lines=""
+```Python
 {!./src/sql_databases/sql_app/models.py!}
 ```
 
 * `sql_app/schemas.py`:
 
-```Python hl_lines=""
+```Python
 {!./src/sql_databases/sql_app/schemas.py!}
 ```
 
 * `sql_app/crud.py`:
 
-```Python hl_lines=""
+```Python
 {!./src/sql_databases/sql_app/crud.py!}
 ```
 
 * `sql_app/main.py`:
 
-```Python hl_lines=""
+```Python
 {!./src/sql_databases/sql_app/main.py!}
 ```
 
