@@ -17,6 +17,7 @@ from fastapi.openapi.constants import STATUS_CODES_WITH_NO_BODY
 from fastapi.utils import (
     PYDANTIC_1,
     create_cloned_field,
+    create_response_field,
     generate_operation_id_for_path,
     get_field_info,
     warning_response_model_skip_defaults_deprecated,
@@ -243,26 +244,7 @@ class APIRoute(routing.Route):
                 status_code not in STATUS_CODES_WITH_NO_BODY
             ), f"Status code {status_code} must not have a response body"
             response_name = "Response_" + self.unique_id
-            if PYDANTIC_1:
-                self.response_field: Optional[ModelField] = ModelField(
-                    name=response_name,
-                    type_=self.response_model,
-                    class_validators={},
-                    default=None,
-                    required=False,
-                    model_config=BaseConfig,
-                    field_info=FieldInfo(None),
-                )
-            else:
-                self.response_field: Optional[ModelField] = ModelField(  # type: ignore  # pragma: nocover
-                    name=response_name,
-                    type_=self.response_model,
-                    class_validators={},
-                    default=None,
-                    required=False,
-                    model_config=BaseConfig,
-                    schema=FieldInfo(None),
-                )
+            self.response_field = create_response_field(name=response_name, type_=self.response_model)
             # Create a clone of the field, so that a Pydantic submodel is not returned
             # as is just because it's an instance of a subclass of a more limited class
             # e.g. UserInDB (containing hashed_password) could be a subclass of User
@@ -301,26 +283,7 @@ class APIRoute(routing.Route):
                     model, BaseModel
                 ), "A response model must be a Pydantic model"
                 response_name = f"Response_{additional_status_code}_{self.unique_id}"
-                if PYDANTIC_1:
-                    response_field = ModelField(
-                        name=response_name,
-                        type_=model,
-                        class_validators=None,
-                        default=None,
-                        required=False,
-                        model_config=BaseConfig,
-                        field_info=FieldInfo(None),
-                    )
-                else:
-                    response_field = ModelField(  # type: ignore  # pragma: nocover
-                        name=response_name,
-                        type_=model,
-                        class_validators=None,
-                        default=None,
-                        required=False,
-                        model_config=BaseConfig,
-                        schema=FieldInfo(None),
-                    )
+                response_field = create_response_field(name=response_name, type_=model)
                 response_fields[additional_status_code] = response_field
         if response_fields:
             self.response_fields: Dict[Union[int, str], ModelField] = response_fields
