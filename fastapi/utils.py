@@ -1,7 +1,9 @@
+import functools
 import re
 from dataclasses import is_dataclass
 from typing import Any, Dict, List, Sequence, Set, Type, cast
 
+import fastapi
 from fastapi import routing
 from fastapi.logger import logger
 from fastapi.openapi.constants import REF_PREFIX
@@ -86,6 +88,28 @@ def get_path_param_names(path: str) -> Set[str]:
     return {item.strip("{}") for item in re.findall("{[^}]*}", path)}
 
 
+def create_response_field(name: str, type_: Any) -> ModelField:
+    """
+    Create a new response field. Raises if type_ is invalid.
+    """
+    response_field = functools.partial(
+        ModelField,
+        name=name,
+        type_=type_,
+        class_validators={},
+        default=None,
+        required=False,
+        model_config=BaseConfig)
+
+    try:
+        if PYDANTIC_1:
+            return response_field(field_info=FieldInfo(None))
+        else:
+            return response_field(schema=FieldInfo(None))
+    except RuntimeError as ex:
+        raise fastapi.exceptions.FastAPIError(f"Invalid args for response field! type: {type_}, name: {name}")
+
+
 def create_cloned_field(field: ModelField) -> ModelField:
     original_type = field.type_
     if is_dataclass(original_type) and hasattr(original_type, "__pydantic_model__"):
@@ -96,26 +120,8 @@ def create_cloned_field(field: ModelField) -> ModelField:
         use_type = create_model(original_type.__name__, __base__=original_type)
         for f in original_type.__fields__.values():
             use_type.__fields__[f.name] = create_cloned_field(f)
-    if PYDANTIC_1:
-        new_field = ModelField(
-            name=field.name,
-            type_=use_type,
-            class_validators={},
-            default=None,
-            required=False,
-            model_config=BaseConfig,
-            field_info=FieldInfo(None),
-        )
-    else:  # pragma: nocover
-        new_field = ModelField(  # type: ignore
-            name=field.name,
-            type_=use_type,
-            class_validators={},
-            default=None,
-            required=False,
-            model_config=BaseConfig,
-            schema=FieldInfo(None),
-        )
+
+    new_field = create_response_field(name=field.name, type_=use_type)
     new_field.has_alias = field.has_alias
     new_field.alias = field.alias
     new_field.class_validators = field.class_validators
