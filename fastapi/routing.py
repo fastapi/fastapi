@@ -22,7 +22,7 @@ from fastapi.utils import (
     get_field_info,
     warning_response_model_skip_defaults_deprecated,
 )
-from pydantic import BaseConfig, BaseModel
+from pydantic import BaseModel
 from pydantic.error_wrappers import ErrorWrapper, ValidationError
 from pydantic.utils import lenient_issubclass
 from starlette import routing
@@ -244,7 +244,9 @@ class APIRoute(routing.Route):
                 status_code not in STATUS_CODES_WITH_NO_BODY
             ), f"Status code {status_code} must not have a response body"
             response_name = "Response_" + self.unique_id
-            self.response_field = create_response_field(name=response_name, type_=self.response_model)
+            self.response_field = create_response_field(
+                name=response_name, type_=self.response_model
+            )
             # Create a clone of the field, so that a Pydantic submodel is not returned
             # as is just because it's an instance of a subclass of a more limited class
             # e.g. UserInDB (containing hashed_password) could be a subclass of User

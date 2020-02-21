@@ -88,7 +88,15 @@ def get_path_param_names(path: str) -> Set[str]:
     return {item.strip("{}") for item in re.findall("{[^}]*}", path)}
 
 
-def create_response_field(name: str, type_: Any, class_validators=None, default=None, required=False, model_config=BaseConfig, field_info=None, **kwargs) -> ModelField:
+def create_response_field(
+        name: str,
+        type_: Any,
+        class_validators=None,
+        default=None,
+        required=False,
+        model_config=BaseConfig,
+        field_info=None,
+        **kwargs) -> ModelField:
     """
     Create a new response field. Raises if type_ is invalid.
     """
@@ -103,15 +111,18 @@ def create_response_field(name: str, type_: Any, class_validators=None, default=
         default=default,
         required=required,
         model_config=model_config,
-        **kwargs)
+        **kwargs,
+    )
 
     try:
         if PYDANTIC_1:
             return response_field(field_info=field_info)
         else:
             return response_field(schema=field_info)
-    except RuntimeError as ex:
-        raise fastapi.exceptions.FastAPIError(f"Invalid args for response field! Hint: check that {type_} is a valid pydantic field type")
+    except RuntimeError:
+        raise fastapi.exceptions.FastAPIError(
+            f"Invalid args for response field! Hint: check that {type_} is a valid pydantic field type"
+        )
 
 
 def create_cloned_field(field: ModelField) -> ModelField:

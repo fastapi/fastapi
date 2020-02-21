@@ -27,7 +27,12 @@ from fastapi.dependencies.models import Dependant, SecurityRequirement
 from fastapi.security.base import SecurityBase
 from fastapi.security.oauth2 import OAuth2, SecurityScopes
 from fastapi.security.open_id_connect_url import OpenIdConnect
-from fastapi.utils import PYDANTIC_1, create_response_field, get_field_info, get_path_param_names
+from fastapi.utils import (
+    PYDANTIC_1,
+    create_response_field,
+    get_field_info,
+    get_path_param_names,
+)
 from pydantic import BaseConfig, BaseModel, create_model
 from pydantic.error_wrappers import ErrorWrapper
 from pydantic.errors import MissingError
@@ -678,7 +683,6 @@ def get_schema_compatible_field(*, field: ModelField) -> ModelField:
         use_type: type = bytes
         if field.shape in sequence_shapes:
             use_type = List[bytes]
-        field_info = field.field_info if PYDANTIC_1 else field.schema
         out_field = create_response_field(
             name=field.name,
             type_=use_type,
@@ -687,7 +691,7 @@ def get_schema_compatible_field(*, field: ModelField) -> ModelField:
             default=field.default,
             required=field.required,
             alias=field.alias,
-            field_info=field.field_info,
+            field_info=field.field_info if PYDANTIC_1 else field.schema
         )
 
     return out_field
