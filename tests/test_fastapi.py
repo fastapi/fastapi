@@ -5,11 +5,6 @@ import pydantic
 import pytest
 import starlette.testclient
 
-
-class NonPydanticModel:
-    pass
-
-
 PATH = "/"
 ROUTE = {"path": PATH, "endpoint": lambda: {}}
 
@@ -29,20 +24,6 @@ def fixture_valid_responses(request):
     return {"500": {"model": request.param}}
 
 
-@pytest.fixture(
-    name="invalid_response_type",
-    params=[NonPydanticModel, List[NonPydanticModel]],
-    ids=["NonPydanticModel", "List[NonPydanticModel]"],
-)
-def fixture_invalid_response_type(request):
-    return request.param
-
-
-@pytest.fixture(name="invalid_responses")
-def fixture_invalid_responses(invalid_response_type):
-    return {"500": {"model": invalid_response_type}}
-
-
 def test_additional_responses_documented_in_openapi_schema(client, valid_responses):
     """
     The only stated guarantee w/ additional responses is that they'll be included in the
@@ -54,17 +35,3 @@ def test_additional_responses_documented_in_openapi_schema(client, valid_respons
 
     assert valid_responses.keys() <= responses.keys()
     assert all(s is not None for s in schemas)
-
-
-def test_apiroute_raises_for_invalid_response_model_type(invalid_response_type):
-    with pytest.raises(fastapi.exceptions.FastAPIError) as ex_info:
-        fastapi.routing.APIRoute(**ROUTE, response_model=invalid_response_type)
-
-    assert ex_info.type is fastapi.exceptions.FastAPIError
-
-
-def test_apiroute_raises_for_invalid_model_type_in_responses_arg(invalid_responses):
-    with pytest.raises(fastapi.exceptions.FastAPIError) as ex_info:
-        fastapi.routing.APIRoute(**ROUTE, responses=invalid_responses)
-
-    assert ex_info.type is fastapi.exceptions.FastAPIError
