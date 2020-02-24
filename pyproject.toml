@@ -55,7 +55,10 @@ test = [
     "databases[sqlite]",
     "orjson",
     "async_exit_stack",
-    "async_generator"
+    "async_generator",
+    "python-multipart",
+    "aiofiles",
+    "ujson"
 ]
 doc = [
     "mkdocs",
