@@ -63,7 +63,9 @@ async def serialize_response(
             if PYDANTIC_1:
                 response_content = response_content.dict(exclude_unset=exclude_unset)
             else:
-                response_content = response_content.dict(skip_defaults=exclude_unset)  # pragma: nocover
+                response_content = response_content.dict(
+                    skip_defaults=exclude_unset
+                )  # pragma: nocover
         if is_coroutine:
             value, errors_ = field.validate(response_content, {}, loc=("response",))
         else:
