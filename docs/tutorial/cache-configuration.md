@@ -22,7 +22,7 @@ Configure cache by using [aiocache](https://github.com/argaen/aiocache)
 {!./src/cache/tutorial001.py!}
 ```
 
-Set the defined **cache alias** and the **ttl**, if no ttl is provided, cache will never expire.
+Set the defined **cache alias** and the **ttl**, if no ttl is provided cache will never expire.
 
 
 ### Using cache to set values
