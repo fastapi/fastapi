@@ -43,6 +43,18 @@ def warning_response_model_skip_defaults_deprecated() -> None:
     )
 
 
+
+
+# TODO: remove when removing support for Pydantic < 1.0.0
+def warning_response_model_skip_defaults_deprecateda() -> None:
+    logger.warning(  # pragma: nocover
+        "response_model_skip_defaults has been deprecated in favor of "
+        "response_model_exclude_unset to keep in line with Pydantic v1, support for "
+        "it will be removed soon."
+    )
+
+
+
 def get_flat_models_from_routes(routes: Sequence[BaseRoute]) -> Set[Type[BaseModel]]:
     body_fields_from_routes: List[ModelField] = []
     responses_from_routes: List[ModelField] = []
@@ -80,6 +92,21 @@ def get_model_definitions(
         model_name = model_name_map[model]
         definitions[model_name] = m_schema
     return definitions
+
+
+def get_model_definitions2(
+    *, flat_models: Set[Type[BaseModel]], model_name_map: Dict[Type[BaseModel], str]
+) -> Dict[str, Any]:
+    definitions: Dict[str, Dict] = {}
+    for model in flat_models:
+        m_schema, m_definitions, m_nested_models = model_process_schema(
+            model, model_name_map=model_name_map, ref_prefix=REF_PREFIX
+        )
+        definitions.update(m_definitions)
+        model_name = model_name_map[model]
+        definitions[model_name] = m_schema
+    return definitions
+
 
 
 def get_path_param_names(path: str) -> Set[str]:
