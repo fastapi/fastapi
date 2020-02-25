@@ -14,7 +14,7 @@ Configure cache by using [aiocache](https://github.com/argaen/aiocache)
 ```
 
 !!! tip
-    aiochache supports other backends such as **Memcached**, it also supports other serializers. Please check its [documentation](https://aiocache.readthedocs.io/en/latest/) to get more information.
+    aiocache supports other backends such as **Memcached**, it also supports other serializers. Please check its [documentation](https://aiocache.readthedocs.io/en/latest/) to get more information.
 
 ### Using cached decorator
 
