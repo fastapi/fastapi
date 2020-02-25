@@ -50,7 +50,7 @@ except ImportError:  # pragma: nocover
 async def serialize_response(
     *,
     field: ModelField = None,
-    response: Response,
+    response: Any,
     include: Union[SetIntStr, DictIntStrAny] = None,
     exclude: Union[SetIntStr, DictIntStrAny] = set(),
     by_alias: bool = True,
