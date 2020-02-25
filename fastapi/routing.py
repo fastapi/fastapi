@@ -159,6 +159,57 @@ def get_request_handler(
     return app
 
 
+
+async def app(request: Request) -> Response:
+        try:
+            body = None
+            if body_field:
+                if is_body_form:
+                    body = await request.form()
+                else:
+                    body_bytes = await request.body()
+                    if body_bytes:
+                        body = await request.json()
+        except Exception as e:
+            logger.error(f"Error getting request body: {e}")
+            raise HTTPException(
+                status_code=400, detail="There was an error parsing the body"
+            ) from e
+        solved_result = await solve_dependencies(
+            request=request,
+            dependant=dependant,
+            body=body,
+            dependency_overrides_provider=dependency_overrides_provider,
+        )
+        values, errors, background_tasks, sub_response, _ = solved_result
+        if errors:
+            raise RequestValidationError(errors, body=body)
+        else:
+            assert dependant.call is not None, "dependant.call must be a function"
+            if is_coroutine:
+                raw_response = await dependant.call(**values)
+            else:
+                raw_response = await run_in_threadpool(dependant.call, **values)
+            if isinstance(raw_response, Response):
+                if raw_response.background is None:
+                    raw_response.background = background_tasks
+                return raw_response
+            
+            )
+            response = response_class(
+                content=response_data,
+                status_code=status_code,
+                background=background_tasks,
+            )
+            response.headers.raw.extend(sub_response.headers.raw)
+            if sub_response.status_code:
+                response.status_code = sub_response.status_code
+            return response
+
+    return app1
+
+
+
 def get_websocket_app(
     dependant: Dependant, dependency_overrides_provider: Any = None
 ) -> Callable:
