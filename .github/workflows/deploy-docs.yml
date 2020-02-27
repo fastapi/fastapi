@@ -1,6 +1,8 @@
 name: Build and Deploy to Netlify
 on:
   push:
+  pull_request:
+    types: [opened, synchronize]
 jobs:
   build:
     runs-on: ubuntu-18.04
@@ -17,7 +19,7 @@ jobs:
       - name: Build MkDocs
         run: python3.7 -m mkdocs build
       - name: Deploy to Netlify
-        uses: nwtgck/actions-netlify@v1.0
+        uses: tiangolo/actions-netlify@no-auth-no-error
         with:
           publish-dir: './site'
           production-branch: master
