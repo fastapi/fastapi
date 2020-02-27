@@ -1,8 +1,6 @@
 name: Build and Deploy to Netlify
 on:
   push:
-  pull_request:
-    types: [opened, synchronize]
 jobs:
   build:
     runs-on: ubuntu-18.04
