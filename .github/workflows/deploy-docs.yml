@@ -1,6 +1,5 @@
 name: Build and Deploy to Netlify
-on:
-  push:
+on: [push]
 jobs:
   build:
     runs-on: ubuntu-18.04
