@@ -19,7 +19,7 @@ jobs:
       - name: Build MkDocs
         run: python3.7 -m mkdocs build
       - name: Deploy to Netlify
-        uses: tiangolo/actions-netlify@no-auth-no-error
+        uses: nwtgck/actions-netlify@v1.0.3
         with:
           publish-dir: './site'
           production-branch: master
