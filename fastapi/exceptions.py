@@ -20,6 +20,12 @@ RequestErrorModel = create_model("Request")
 WebSocketErrorModel = create_model("WebSocket")
 
 
+class FastAPIError(RuntimeError):
+    """
+    A generic, FastAPI-specific error.
+    """
+
+
 class RequestValidationError(ValidationError):
     def __init__(self, errors: Sequence[ErrorList], *, body: Any = None) -> None:
         self.body = body
