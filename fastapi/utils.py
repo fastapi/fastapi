@@ -123,7 +123,7 @@ def create_response_field(
     try:
         if PYDANTIC_1:
             return response_field(field_info=field_info)
-        else:
+        else:  # pragma: nocover
             return response_field(schema=field_info)
     except RuntimeError:
         raise fastapi.exceptions.FastAPIError(

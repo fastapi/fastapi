@@ -15,7 +15,7 @@ def test_invalid_response_model_raises():
 
         @app.get("/", response_model=NonPydanticModel)
         def read_root():
-            pass
+            pass  # pragma: nocover
 
 
 def test_invalid_response_model_sub_type_raises():
@@ -24,7 +24,7 @@ def test_invalid_response_model_sub_type_raises():
 
         @app.get("/", response_model=List[NonPydanticModel])
         def read_root():
-            pass
+            pass  # pragma: nocover
 
 
 def test_invalid_response_model_in_responses_raises():
@@ -33,7 +33,7 @@ def test_invalid_response_model_in_responses_raises():
 
         @app.get("/", responses={"500": {"model": NonPydanticModel}})
         def read_root():
-            pass
+            pass  # pragma: nocover
 
 
 def test_invalid_response_model_sub_type_in_responses_raises():
@@ -42,4 +42,4 @@ def test_invalid_response_model_sub_type_in_responses_raises():
 
         @app.get("/", responses={"500": {"model": List[NonPydanticModel]}})
         def read_root():
-            pass
+            pass  # pragma: nocover
