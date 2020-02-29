@@ -18,8 +18,8 @@ from fastapi.params import Depends
 from fastapi.utils import warning_response_model_skip_defaults_deprecated
 from starlette.applications import Starlette
 from starlette.datastructures import State
-from starlette.exceptions import ExceptionMiddleware, HTTPException
-from starlette.middleware.errors import ServerErrorMiddleware
+from starlette.exceptions import HTTPException
+from starlette.middleware import Middleware
 from starlette.requests import Request
 from starlette.responses import HTMLResponse, JSONResponse, Response
 from starlette.routing import BaseRoute
@@ -29,9 +29,9 @@ from starlette.types import Receive, Scope, Send
 class FastAPI(Starlette):
     def __init__(
         self,
+        *,
         debug: bool = False,
         routes: List[BaseRoute] = None,
-        template_directory: str = None,
         title: str = "FastAPI",
         description: str = "",
         version: str = "0.1.0",
@@ -42,18 +42,27 @@ class FastAPI(Starlette):
         redoc_url: Optional[str] = "/redoc",
         swagger_ui_oauth2_redirect_url: Optional[str] = "/docs/oauth2-redirect",
         swagger_ui_init_oauth: Optional[dict] = None,
+        middleware: Sequence[Middleware] = None,
+        exception_handlers: Dict[Union[int, Type[Exception]], Callable] = None,
+        on_startup: Sequence[Callable] = None,
+        on_shutdown: Sequence[Callable] = None,
         **extra: Dict[str, Any],
     ) -> None:
         self.default_response_class = default_response_class
         self._debug = debug
         self.state = State()
         self.router: routing.APIRouter = routing.APIRouter(
-            routes, dependency_overrides_provider=self
+            routes,
+            dependency_overrides_provider=self,
+            on_startup=on_startup,
+            on_shutdown=on_shutdown,
         )
-        self.exception_middleware = ExceptionMiddleware(self.router, debug=debug)
-        self.error_middleware = ServerErrorMiddleware(
-            self.exception_middleware, debug=debug
+        self.exception_handlers = (
+            {} if exception_handlers is None else dict(exception_handlers)
         )
+
+        self.user_middleware = [] if middleware is None else list(middleware)
+        self.middleware_stack = self.build_middleware_stack()
 
         self.title = title
         self.description = description
