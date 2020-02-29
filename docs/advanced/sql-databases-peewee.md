@@ -429,31 +429,31 @@ Repeat the same process with the 10 tabs. This time all of them will wait and yo
 
 * `sql_app/database.py`:
 
-```Python hl_lines=""
+```Python
 {!./src/sql_databases_peewee/sql_app/database.py!}
 ```
 
 * `sql_app/models.py`:
 
-```Python hl_lines=""
+```Python
 {!./src/sql_databases_peewee/sql_app/models.py!}
 ```
 
 * `sql_app/schemas.py`:
 
-```Python hl_lines=""
+```Python
 {!./src/sql_databases_peewee/sql_app/schemas.py!}
 ```
 
 * `sql_app/crud.py`:
 
-```Python hl_lines=""
+```Python
 {!./src/sql_databases_peewee/sql_app/crud.py!}
 ```
 
 * `sql_app/main.py`:
 
-```Python hl_lines=""
+```Python
 {!./src/sql_databases_peewee/sql_app/main.py!}
 ```
 
