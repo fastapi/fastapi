@@ -14,7 +14,9 @@ That's why the current versions are still `0.x.x`, this reflects that each versi
 
 You can create production applications with **FastAPI** right now (and you have probably been doing it for some time), you just have to make sure that you use a version that works correctly with the rest of your code.
 
-The first thing you should do is to "pin" the version of FastAPI you are using to the specific latest version that you know works correctly for your application.
+### Pin your `fastapi` version
+
+The first thing you should do is to "pin" the version of **FastAPI** you are using to the specific latest version that you know works correctly for your application.
 
 For example, let's say you are using version `0.45.0` in your app.
 
@@ -35,6 +37,10 @@ fastapi>=0.45.0,<0.46.0
 that would mean that you would use the versions `0.45.0` or above, but less than `0.46.0`, for example, a version `0.45.2` would still be accepted.
 
 If you use any other tool to manage your installations, like Poetry, Pipenv, or others, they all have a way that you can use to define specific versions for your packages.
+
+### Available versions
+
+You can see the available versions (e.g. to check what is the current latest) in the [Release Notes](release-notes.md){.internal-link target=_blank}.
 
 ### About versions
 
