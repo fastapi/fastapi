@@ -346,9 +346,15 @@ class APIRouter(routing.Router):
         dependency_overrides_provider: Any = None,
         route_class: Type[APIRoute] = APIRoute,
         default_response_class: Type[Response] = None,
+        on_startup: Sequence[Callable] = None,
+        on_shutdown: Sequence[Callable] = None,
     ) -> None:
         super().__init__(
-            routes=routes, redirect_slashes=redirect_slashes, default=default
+            routes=routes,
+            redirect_slashes=redirect_slashes,
+            default=default,
+            on_startup=on_startup,
+            on_shutdown=on_shutdown,
         )
         self.dependency_overrides_provider = dependency_overrides_provider
         self.route_class = route_class
@@ -552,6 +558,10 @@ class APIRouter(routing.Router):
                 self.add_websocket_route(
                     prefix + route.path, route.endpoint, name=route.name
                 )
+        for handler in router.on_startup:
+            self.add_event_handler("startup", handler)
+        for handler in router.on_shutdown:
+            self.add_event_handler("shutdown", handler)
 
     def get(
         self,
