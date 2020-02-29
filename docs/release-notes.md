@@ -52,9 +52,9 @@
 * Fix handling form *path operation* parameters declared with pure classes like `list`, `tuple`, etc. PR [#856](https://github.com/tiangolo/fastapi/pull/856) by [@nsidnev](https://github.com/nsidnev).
 * Add request `body` to `RequestValidationError`, new docs: [Use the `RequestValidationError` body](https://fastapi.tiangolo.com/tutorial/handling-errors/#use-the-requestvalidationerror-body). Initial PR [#853](https://github.com/tiangolo/fastapi/pull/853) by [@aviramha](https://github.com/aviramha).
 * Update [External Links](https://fastapi.tiangolo.com/external-links/) with new links and dynamic GitHub projects with `fastapi` topic. PR [#850](https://github.com/tiangolo/fastapi/pull/850).
-* Fix Peewee `contextvars` handling in docs: [SQL (Relational) Databases with Peewee](https://fastapi.tiangolo.com/tutorial/sql-databases-peewee/). PR [#879](https://github.com/tiangolo/fastapi/pull/879).
+* Fix Peewee `contextvars` handling in docs: [SQL (Relational) Databases with Peewee](https://fastapi.tiangolo.com/advanced/sql-databases-peewee/). PR [#879](https://github.com/tiangolo/fastapi/pull/879).
 * Setup development environment with Python's Venv and Flit, instead of requiring the extra Pipenv duplicating dependencies. Updated docs: [Development - Contributing](https://fastapi.tiangolo.com/contributing/). PR [#877](https://github.com/tiangolo/fastapi/pull/877).
-* Update docs for [HTTP Basic Auth](https://fastapi.tiangolo.com/tutorial/security/http-basic-auth/) to improve security against timing attacks. Initial PR [#807](https://github.com/tiangolo/fastapi/pull/807) by [@zwass](https://github.com/zwass).
+* Update docs for [HTTP Basic Auth](https://fastapi.tiangolo.com/advanced/security/http-basic-auth/) to improve security against timing attacks. Initial PR [#807](https://github.com/tiangolo/fastapi/pull/807) by [@zwass](https://github.com/zwass).
 
 ## 0.46.0
 
@@ -68,12 +68,12 @@
 * Add support for subtypes of main types in `jsonable_encoder`, e.g. asyncpg's UUIDs. PR [#756](https://github.com/tiangolo/fastapi/pull/756) by [@RmStorm](https://github.com/RmStorm).
 * Fix usage of Pydantic's `HttpUrl` in docs. PR [#832](https://github.com/tiangolo/fastapi/pull/832) by [@Dustyposa](https://github.com/Dustyposa).
 * Fix Twitter links in docs. PR [#813](https://github.com/tiangolo/fastapi/pull/813) by [@justindujardin](https://github.com/justindujardin).
-* Add docs for correctly [using FastAPI with Peewee ORM](https://fastapi.tiangolo.com/tutorial/sql-databases-peewee/). Including how to overwrite parts of Peewee to correctly handle async threads. PR [#789](https://github.com/tiangolo/fastapi/pull/789).
+* Add docs for correctly [using FastAPI with Peewee ORM](https://fastapi.tiangolo.com/advanced/sql-databases-peewee/). Including how to overwrite parts of Peewee to correctly handle async threads. PR [#789](https://github.com/tiangolo/fastapi/pull/789).
 
 ## 0.45.0
 
 * Add support for OpenAPI Callbacks:
-    * New docs: [OpenAPI Callbacks](https://fastapi.tiangolo.com/tutorial/openapi-callbacks/).
+    * New docs: [OpenAPI Callbacks](https://fastapi.tiangolo.com/advanced/openapi-callbacks/).
     * Refactor generation of `operationId`s to be valid Python names (also valid variables in most languages).
     * Add `default_response_class` parameter to `APIRouter`.
     * Original PR [#722](https://github.com/tiangolo/fastapi/pull/722) by [@booooh](https://github.com/booooh).
@@ -106,11 +106,11 @@
 ## 0.43.0
 
 * Update docs to reduce gender bias. PR [#645](https://github.com/tiangolo/fastapi/pull/645) by [@ticosax](https://github.com/ticosax).
-* Add docs about [overriding the `operationId` for all the *path operations*](https://fastapi.tiangolo.com/tutorial/path-operation-advanced-configuration/#using-the-path-operation-function-name-as-the-operationid) based on their function name. PR [#642](https://github.com/tiangolo/fastapi/pull/642) by [@SKalt](https://github.com/SKalt).
+* Add docs about [overriding the `operationId` for all the *path operations*](https://fastapi.tiangolo.com/advanced/path-operation-advanced-configuration/#using-the-path-operation-function-name-as-the-operationid) based on their function name. PR [#642](https://github.com/tiangolo/fastapi/pull/642) by [@SKalt](https://github.com/SKalt).
 * Fix validators in models generating an incorrect key order. PR [#637](https://github.com/tiangolo/fastapi/pull/637) by [@jaddison](https://github.com/jaddison).
 * Generate correct OpenAPI docs for responses with no content. PR [#621](https://github.com/tiangolo/fastapi/pull/621) by [@brotskydotcom](https://github.com/brotskydotcom).
 * Remove `$` from Bash code blocks in docs for consistency. PR [#613](https://github.com/tiangolo/fastapi/pull/613) by [@nstapelbroek](https://github.com/nstapelbroek).
-* Add docs for [self-serving docs' (Swagger UI) static assets](https://fastapi.tiangolo.com/tutorial/extending-openapi/#self-hosting-javascript-and-css-for-docs), e.g. to use the docs offline, or without Internet. Initial PR [#557](https://github.com/tiangolo/fastapi/pull/557) by [@svalouch](https://github.com/svalouch).
+* Add docs for [self-serving docs' (Swagger UI) static assets](https://fastapi.tiangolo.com/advanced/extending-openapi/#self-hosting-javascript-and-css-for-docs), e.g. to use the docs offline, or without Internet. Initial PR [#557](https://github.com/tiangolo/fastapi/pull/557) by [@svalouch](https://github.com/svalouch).
 * Fix `black` linting after upgrade. PR [#682](https://github.com/tiangolo/fastapi/pull/682) by [@frankie567](https://github.com/frankie567).
 
 ## 0.42.0
@@ -139,7 +139,7 @@
         * Run middleware-like code only for a subset of *path operations*.
         * Process a request before passing it to a *path operation function*. E.g. decompressing, deserializing, etc.
         * Processing a response after being generated by *path operation functions* but before returning it. E.g. adding custom headers, logging, adding extra metadata.
-    * New docs section: [Custom Request and APIRoute class](https://fastapi.tiangolo.com/tutorial/custom-request-and-route/).
+    * New docs section: [Custom Request and APIRoute class](https://fastapi.tiangolo.com/advanced/custom-request-and-route/).
     * PR [#589](https://github.com/tiangolo/fastapi/pull/589) by [@dmontagu](https://github.com/dmontagu).
 * Fix preserving custom route class in routers when including other sub-routers. PR [#538](https://github.com/tiangolo/fastapi/pull/538) by [@dmontagu](https://github.com/dmontagu).
 
@@ -148,11 +148,11 @@
 * Add notes to docs about installing `python-multipart` when using forms. PR [#574](https://github.com/tiangolo/fastapi/pull/574) by [@sliptonic](https://github.com/sliptonic).
 * Generate OpenAPI schemas in alphabetical order. PR [#554](https://github.com/tiangolo/fastapi/pull/554) by [@dmontagu](https://github.com/dmontagu).
 * Add support for truncating docstrings from *path operation functions*.
-    * New docs at [Advanced description from docstring](https://fastapi.tiangolo.com/tutorial/path-operation-advanced-configuration/#advanced-description-from-docstring).
+    * New docs at [Advanced description from docstring](https://fastapi.tiangolo.com/advanced/path-operation-advanced-configuration/#advanced-description-from-docstring).
     * PR [#556](https://github.com/tiangolo/fastapi/pull/556) by [@svalouch](https://github.com/svalouch).
 * Fix `DOCTYPE` in HTML files generated for Swagger UI and ReDoc. PR [#537](https://github.com/tiangolo/fastapi/pull/537) by [@Trim21](https://github.com/Trim21).
 * Fix handling `4XX` responses overriding default `422` validation error responses. PR [#517](https://github.com/tiangolo/fastapi/pull/517) by [@tsouvarev](https://github.com/tsouvarev).
-* Fix typo in documentation for [Simple HTTP Basic Auth](https://fastapi.tiangolo.com/tutorial/security/http-basic-auth/#simple-http-basic-auth). PR [#514](https://github.com/tiangolo/fastapi/pull/514) by [@prostomarkeloff](https://github.com/prostomarkeloff).
+* Fix typo in documentation for [Simple HTTP Basic Auth](https://fastapi.tiangolo.com/advanced/security/http-basic-auth/#simple-http-basic-auth). PR [#514](https://github.com/tiangolo/fastapi/pull/514) by [@prostomarkeloff](https://github.com/prostomarkeloff).
 * Fix incorrect documentation example in [first steps](https://fastapi.tiangolo.com/tutorial/first-steps/). PR [#511](https://github.com/tiangolo/fastapi/pull/511) by [@IgnatovFedor](https://github.com/IgnatovFedor).
 * Add support for Swagger UI [initOauth](https://github.com/swagger-api/swagger-ui/blob/master/docs/usage/oauth2.md) settings with the parameter `swagger_ui_init_oauth`. PR [#499](https://github.com/tiangolo/fastapi/pull/499) by [@zamiramir](https://github.com/zamiramir).
 
@@ -223,7 +223,7 @@
 
 * Fix source code `limit` for example in [Query Parameters](https://fastapi.tiangolo.com/tutorial/query-params/). PR [#366](https://github.com/tiangolo/fastapi/pull/366) by [@Smashman](https://github.com/Smashman).
 
-* Update wording in docs about [OAuth2 scopes](https://fastapi.tiangolo.com/tutorial/security/oauth2-scopes/). PR [#371](https://github.com/tiangolo/fastapi/pull/371) by [@cjw296](https://github.com/cjw296).
+* Update wording in docs about [OAuth2 scopes](https://fastapi.tiangolo.com/advanced/security/oauth2-scopes/). PR [#371](https://github.com/tiangolo/fastapi/pull/371) by [@cjw296](https://github.com/cjw296).
 
 * Update docs for `Enum`s to inherit from `str` and improve Swagger UI rendering. PR [#351](https://github.com/tiangolo/fastapi/pull/351).
 
@@ -289,7 +289,7 @@
 
 * Fix handling an empty-body request with a required body param. PR [#311](https://github.com/tiangolo/fastapi/pull/311).
 
-* Fix broken link in docs: [Return a Response directly](https://fastapi.tiangolo.com/tutorial/response-directly/). PR [#306](https://github.com/tiangolo/fastapi/pull/306) by [@dmontagu](https://github.com/dmontagu).
+* Fix broken link in docs: [Return a Response directly](https://fastapi.tiangolo.com/advanced/response-directly/). PR [#306](https://github.com/tiangolo/fastapi/pull/306) by [@dmontagu](https://github.com/dmontagu).
 
 * Fix docs discrepancy in docs for [Response Model](https://fastapi.tiangolo.com/tutorial/response-model/). PR [#288](https://github.com/tiangolo/fastapi/pull/288) by [@awiddersheim](https://github.com/awiddersheim).
 
@@ -297,9 +297,9 @@
 
 * Add support for declaring a `Response` parameter:
     * This allows declaring:
-        * [Response Cookies](https://fastapi.tiangolo.com/tutorial/response-cookies/).
-        * [Response Headers](https://fastapi.tiangolo.com/tutorial/response-headers/).
-        * An HTTP Status Code different than the default: [Response - Change Status Code](https://fastapi.tiangolo.com/tutorial/response-change-status-code/).
+        * [Response Cookies](https://fastapi.tiangolo.com/advanced/response-cookies/).
+        * [Response Headers](https://fastapi.tiangolo.com/advanced/response-headers/).
+        * An HTTP Status Code different than the default: [Response - Change Status Code](https://fastapi.tiangolo.com/advanced/response-change-status-code/).
     * All of this while still being able to return arbitrary objects (`dict`, DB model, etc).
     * Update attribution to Hug, for inspiring the `response` parameter pattern.
     * PR [#294](https://github.com/tiangolo/fastapi/pull/294).
@@ -316,7 +316,7 @@
 
 * Implement dependency overrides for testing.
     * This allows using overrides/mocks of dependencies during tests.
-    * New docs: [Testing Dependencies with Overrides](https://fastapi.tiangolo.com/tutorial/testing-dependencies/).
+    * New docs: [Testing Dependencies with Overrides](https://fastapi.tiangolo.com/advanced/testing-dependencies/).
     * PR [#291](https://github.com/tiangolo/fastapi/pull/291).
 
 ## 0.27.2
@@ -388,7 +388,7 @@
         * `Path`
         * `Query`
         * ...as these are compatible with the WebSockets protocol (e.g. `Body` is not).
-    * [Updated documentation for WebSockets](https://fastapi.tiangolo.com/tutorial/websockets/).
+    * [Updated documentation for WebSockets](https://fastapi.tiangolo.com/advanced/websockets/).
     * PR [#178](https://github.com/tiangolo/fastapi/pull/178) by [@jekirl](https://github.com/jekirl).
 
 * Upgrade the compatible version of Pydantic to `0.26.0`.
@@ -455,16 +455,16 @@
 
 * Upgrade OAuth2:
     * Upgrade Password flow using Bearer tokens to use the correct HTTP status code 401 `UNAUTHORIZED`, with `WWW-Authenticate` headers.
-    * Update, simplify, and improve all the [security docs](https://fastapi.tiangolo.com/tutorial/security/intro/).
-    * Add new `scope_str` to `SecurityScopes` and update docs: [OAuth2 scopes](https://fastapi.tiangolo.com/tutorial/security/oauth2-scopes/).
+    * Update, simplify, and improve all the [security docs](https://fastapi.tiangolo.com/advanced/security/).
+    * Add new `scope_str` to `SecurityScopes` and update docs: [OAuth2 scopes](https://fastapi.tiangolo.com/advanced/security/oauth2-scopes/).
     * Update docs, images, tests.
     * PR [#188](https://github.com/tiangolo/fastapi/pull/188).
 
 * Include [Hypercorn](https://gitlab.com/pgjones/hypercorn) as an alternative ASGI server in the docs. PR [#187](https://github.com/tiangolo/fastapi/pull/187).
 
-* Add docs for [Static Files](https://fastapi.tiangolo.com/tutorial/static-files/) and [Templates](https://fastapi.tiangolo.com/tutorial/templates/). PR [#186](https://github.com/tiangolo/fastapi/pull/186).
+* Add docs for [Static Files](https://fastapi.tiangolo.com/tutorial/static-files/) and [Templates](https://fastapi.tiangolo.com/advanced/templates/). PR [#186](https://github.com/tiangolo/fastapi/pull/186).
 
-* Add docs for handling [Response Cookies](https://fastapi.tiangolo.com/tutorial/response-cookies/) and [Response Headers](https://fastapi.tiangolo.com/tutorial/response-headers/). PR [#185](https://github.com/tiangolo/fastapi/pull/185).
+* Add docs for handling [Response Cookies](https://fastapi.tiangolo.com/advanced/response-cookies/) and [Response Headers](https://fastapi.tiangolo.com/advanced/response-headers/). PR [#185](https://github.com/tiangolo/fastapi/pull/185).
 
 * Fix typos in docs. PR [#176](https://github.com/tiangolo/fastapi/pull/176) by [@chdsbd](https://github.com/chdsbd).
 
@@ -474,13 +474,13 @@
 
 * Add docs:
     * How to use the `jsonable_encoder` in [JSON compatible encoder](https://fastapi.tiangolo.com/tutorial/encoder/).
-    * How to [Return a Response directly](https://fastapi.tiangolo.com/tutorial/response-directly/).
-    * Update how to use a [Custom Response Class](https://fastapi.tiangolo.com/tutorial/custom-response/).
+    * How to [Return a Response directly](https://fastapi.tiangolo.com/advanced/response-directly/).
+    * Update how to use a [Custom Response Class](https://fastapi.tiangolo.com/advanced/custom-response/).
     * PR [#184](https://github.com/tiangolo/fastapi/pull/184).
 
 ## 0.18.0
 
-* Add docs for [HTTP Basic Auth](https://fastapi.tiangolo.com/tutorial/custom-response/). PR [#177](https://github.com/tiangolo/fastapi/pull/177).
+* Add docs for [HTTP Basic Auth](https://fastapi.tiangolo.com/advanced/custom-response/). PR [#177](https://github.com/tiangolo/fastapi/pull/177).
 
 * Upgrade HTTP Basic Auth handling with automatic headers (automatic browser login prompt). PR [#175](https://github.com/tiangolo/fastapi/pull/175).
 
@@ -512,7 +512,7 @@
 
 * Add support for multiple file uploads (as a single form field). New docs at: [Multiple file uploads](https://fastapi.tiangolo.com/tutorial/request-files/#multiple-file-uploads). PR [#158](https://github.com/tiangolo/fastapi/pull/158).
 
-* Add docs for: [Additional Status Codes](https://fastapi.tiangolo.com/tutorial/additional-status-codes/). PR [#156](https://github.com/tiangolo/fastapi/pull/156).
+* Add docs for: [Additional Status Codes](https://fastapi.tiangolo.com/advanced/additional-status-codes/). PR [#156](https://github.com/tiangolo/fastapi/pull/156).
 
 ## 0.14.0
 
@@ -533,7 +533,7 @@
     * Improve `Security` handling, merging scopes when declaring `SecurityScopes`.
     * Allow using `SecurityBase` (like `OAuth2`) classes with `Depends` and still document them. `Security` now is needed only to declare `scopes`.
     * Updated docs about: [OAuth2 with Password (and hashing), Bearer with JWT tokens](https://fastapi.tiangolo.com/tutorial/security/oauth2-jwt/).
-    * New docs about: [OAuth2 scopes](https://fastapi.tiangolo.com/tutorial/security/oauth2-scopes/).
+    * New docs about: [OAuth2 scopes](https://fastapi.tiangolo.com/advanced/security/oauth2-scopes/).
     * PR [#141](https://github.com/tiangolo/fastapi/pull/141).
 
 ## 0.12.1
@@ -548,7 +548,7 @@
 
 * Add additional `responses` parameter to *path operation decorators* to extend responses in OpenAPI (and API docs).
     * It also allows extending existing responses generated from `response_model`, declare other media types (like images), etc.
-    * The new documentation is here: [Additional Responses](https://fastapi.tiangolo.com/tutorial/additional-responses/).
+    * The new documentation is here: [Additional Responses](https://fastapi.tiangolo.com/advanced/additional-responses/).
     * `responses` can also be added to `.include_router()`, the updated docs are here: [Bigger Applications](https://fastapi.tiangolo.com/tutorial/bigger-applications/#add-some-custom-tags-and-responses).
     * PR [#97](https://github.com/tiangolo/fastapi/pull/97) originally initiated by [@barsi](https://github.com/barsi).
 * Update `scripts/test-cov-html.sh` to allow passing extra parameters like `-vv`, for development.
@@ -565,7 +565,7 @@
 
 * Add Gitter chat, badge, links, etc. [https://gitter.im/tiangolo/fastapi](https://gitter.im/tiangolo/fastapi) . PR [#117](https://github.com/tiangolo/fastapi/pull/117).
 
-* Add docs about [Extending OpenAPI](https://fastapi.tiangolo.com/tutorial/extending-openapi/). PR [#126](https://github.com/tiangolo/fastapi/pull/126).
+* Add docs about [Extending OpenAPI](https://fastapi.tiangolo.com/advanced/extending-openapi/). PR [#126](https://github.com/tiangolo/fastapi/pull/126).
 
 * Make Travis run Ubuntu Xenial (newer version) and Python 3.7 instead of Python 3.7-dev. PR [#92](https://github.com/tiangolo/fastapi/pull/92) by [@blueyed](https://github.com/blueyed).
 
@@ -585,7 +585,7 @@
 
 ## 0.10.1
 
-* Add docs and tests for [encode/databases](https://github.com/encode/databases). New docs at: [Async SQL (Relational) Databases](https://fastapi.tiangolo.com/tutorial/async-sql-databases/). PR [#107](https://github.com/tiangolo/fastapi/pull/107).
+* Add docs and tests for [encode/databases](https://github.com/encode/databases). New docs at: [Async SQL (Relational) Databases](https://fastapi.tiangolo.com/advanced/async-sql-databases/). PR [#107](https://github.com/tiangolo/fastapi/pull/107).
 
 ## 0.10.0
 
@@ -593,7 +593,7 @@
 
 * Add support for `.websocket_route()` in `APIRouter`. PR [#100](https://github.com/tiangolo/fastapi/pull/100) by [@euri10](https://github.com/euri10).
 
-* New docs section about [Events: startup - shutdown](https://fastapi.tiangolo.com/tutorial/events/). PR [#99](https://github.com/tiangolo/fastapi/pull/99).
+* New docs section about [Events: startup - shutdown](https://fastapi.tiangolo.com/advanced/events/). PR [#99](https://github.com/tiangolo/fastapi/pull/99).
 
 ## 0.9.1
 
@@ -647,7 +647,7 @@
 
 * Add section about [History, Design and Future](https://fastapi.tiangolo.com/history-design-future/).
 
-* Add docs for using [WebSockets with **FastAPI**](https://fastapi.tiangolo.com/tutorial/websockets/). PR [#62](https://github.com/tiangolo/fastapi/pull/62).
+* Add docs for using [WebSockets with **FastAPI**](https://fastapi.tiangolo.com/advanced/websockets/). PR [#62](https://github.com/tiangolo/fastapi/pull/62).
 
 ## 0.6.3
 
@@ -663,7 +663,7 @@
 
 ## 0.6.1
 
-* Add docs for GraphQL: [https://fastapi.tiangolo.com/tutorial/graphql/](https://fastapi.tiangolo.com/tutorial/graphql/). PR [#48](https://github.com/tiangolo/fastapi/pull/48).
+* Add docs for GraphQL: [https://fastapi.tiangolo.com/advanced/graphql/](https://fastapi.tiangolo.com/advanced/graphql/). PR [#48](https://github.com/tiangolo/fastapi/pull/48).
 
 ## 0.6.0
 
@@ -685,7 +685,7 @@
 
 * Add new `HTTPException` with support for custom headers. With new documentation for handling errors at: [https://fastapi.tiangolo.com/tutorial/handling-errors/](https://fastapi.tiangolo.com/tutorial/handling-errors/). PR [#35](https://github.com/tiangolo/fastapi/pull/35).
 
-* Add [documentation to use Starlette `Request` object](https://fastapi.tiangolo.com/tutorial/using-request-directly/) directly. Check [#25](https://github.com/tiangolo/fastapi/pull/25) by [@euri10](https://github.com/euri10).
+* Add [documentation to use Starlette `Request` object](https://fastapi.tiangolo.com/advanced/using-request-directly/) directly. Check [#25](https://github.com/tiangolo/fastapi/pull/25) by [@euri10](https://github.com/euri10).
 
 * Add issue templates to simplify reporting bugs, getting help, etc: [#34](https://github.com/tiangolo/fastapi/pull/34).
 
@@ -693,7 +693,7 @@
 
 ## 0.4.0
 
-* Add `openapi_prefix`, support for reverse proxy and mounting sub-applications. See the docs at [https://fastapi.tiangolo.com/tutorial/sub-applications-proxy/](https://fastapi.tiangolo.com/tutorial/sub-applications-proxy/): [#26](https://github.com/tiangolo/fastapi/pull/26) by [@kabirkhan](https://github.com/kabirkhan).
+* Add `openapi_prefix`, support for reverse proxy and mounting sub-applications. See the docs at [https://fastapi.tiangolo.com/advanced/sub-applications-proxy/](https://fastapi.tiangolo.com/advanced/sub-applications-proxy/): [#26](https://github.com/tiangolo/fastapi/pull/26) by [@kabirkhan](https://github.com/kabirkhan).
 
 * Update [docs/tutorial for SQLAlchemy](https://fastapi.tiangolo.com/tutorial/sql-databases/) including note about _DB Browser for SQLite_.
 
