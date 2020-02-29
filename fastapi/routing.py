@@ -50,7 +50,7 @@ except ImportError:  # pragma: nocover
 async def serialize_response(
     *,
     field: ModelField = None,
-    response: Response,
+    response_content: Any,
     include: Union[SetIntStr, DictIntStrAny] = None,
     exclude: Union[SetIntStr, DictIntStrAny] = set(),
     by_alias: bool = True,
@@ -59,16 +59,18 @@ async def serialize_response(
 ) -> Any:
     if field:
         errors = []
-        if exclude_unset and isinstance(response, BaseModel):
+        if exclude_unset and isinstance(response_content, BaseModel):
             if PYDANTIC_1:
-                response = response.dict(exclude_unset=exclude_unset)
+                response_content = response_content.dict(exclude_unset=exclude_unset)
             else:
-                response = response.dict(skip_defaults=exclude_unset)  # pragma: nocover
+                response_content = response_content.dict(
+                    skip_defaults=exclude_unset
+                )  # pragma: nocover
         if is_coroutine:
-            value, errors_ = field.validate(response, {}, loc=("response",))
+            value, errors_ = field.validate(response_content, {}, loc=("response",))
         else:
             value, errors_ = await run_in_threadpool(
-                field.validate, response, {}, loc=("response",)
+                field.validate, response_content, {}, loc=("response",)
             )
         if isinstance(errors_, ErrorWrapper):
             errors.append(errors_)
@@ -84,7 +86,7 @@ async def serialize_response(
             exclude_unset=exclude_unset,
         )
     else:
-        return jsonable_encoder(response)
+        return jsonable_encoder(response_content)
 
 
 async def run_endpoint_function(
@@ -151,7 +153,7 @@ def get_request_handler(
                 return raw_response
             response_data = await serialize_response(
                 field=response_field,
-                response=raw_response,
+                response_content=raw_response,
                 include=response_model_include,
                 exclude=response_model_exclude,
                 by_alias=response_model_by_alias,
