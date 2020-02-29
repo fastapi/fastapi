@@ -1,5 +1,7 @@
 ## Latest changes
 
+## 0.50.0
+
 * Add link to Release Notes from docs about pinning versions for deployment. PR [#1058](https://github.com/tiangolo/fastapi/pull/1058).
 * Upgrade code to use the latest version of Starlette, including:
     * Several bug fixes.
