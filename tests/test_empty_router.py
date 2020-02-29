@@ -21,10 +21,12 @@ client = TestClient(app)
 def test_use_empty():
     with client:
         response = client.get("/prefix")
+        assert response.status_code == 200
         assert response.json() == ["OK"]
 
         response = client.get("/prefix/")
-        assert response.status_code == 404
+        assert response.status_code == 200
+        assert response.json() == ["OK"]
 
 
 def test_include_empty():
