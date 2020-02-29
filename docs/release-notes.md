@@ -1,5 +1,11 @@
 ## Latest changes
 
+* Add link to Release Notes from docs about pinning versions for deployment. PR [#1058](https://github.com/tiangolo/fastapi/pull/1058).
+* Upgrade code to use the latest version of Starlette, including:
+    * Several bug fixes.
+    * Optional redirects of slashes, with or without ending in `/`.
+    * Events for routers, `"startup"`, and `"shutdown"`.
+    * PR [#1057](https://github.com/tiangolo/fastapi/pull/1057).
 * Add docs about pinning FastAPI versions for deployment: [Deployment: FastAPI versions](https://fastapi.tiangolo.com/deployment/#fastapi-versions). PR [#1056](https://github.com/tiangolo/fastapi/pull/1056).
 
 ## 0.49.2
