@@ -87,6 +87,19 @@ async def serialize_response(
         return jsonable_encoder(response)
 
 
+async def run_endpoint_function(
+    *, dependant: Dependant, values: Dict[str, Any], is_coroutine: bool
+) -> Any:
+    # Only called by get_request_handler. Has been split into its own function to
+    # facilitate profiling endpoints, since inner functions are harder to profile.
+    assert dependant.call is not None, "dependant.call must be a function"
+
+    if is_coroutine:
+        return await dependant.call(**values)
+    else:
+        return await run_in_threadpool(dependant.call, **values)
+
+
 def get_request_handler(
     dependant: Dependant,
     body_field: ModelField = None,
@@ -128,11 +141,10 @@ def get_request_handler(
         if errors:
             raise RequestValidationError(errors, body=body)
         else:
-            assert dependant.call is not None, "dependant.call must be a function"
-            if is_coroutine:
-                raw_response = await dependant.call(**values)
-            else:
-                raw_response = await run_in_threadpool(dependant.call, **values)
+            raw_response = await run_endpoint_function(
+                dependant=dependant, values=values, is_coroutine=is_coroutine
+            )
+
             if isinstance(raw_response, Response):
                 if raw_response.background is None:
                     raw_response.background = background_tasks
