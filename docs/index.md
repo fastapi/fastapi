@@ -1,110 +1,91 @@
-<p align="center">
-  <a href="https://fastapi.tiangolo.com"><img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI"></a>
-</p>
-<p align="center">
-    <em>FastAPI framework, high performance, easy to learn, fast to code, ready for production</em>
-</p>
-<p align="center">
-<a href="https://travis-ci.com/tiangolo/fastapi" target="_blank">
-    <img src="https://travis-ci.com/tiangolo/fastapi.svg?branch=master" alt="Build Status">
-</a>
-<a href="https://codecov.io/gh/tiangolo/fastapi" target="_blank">
-    <img src="https://codecov.io/gh/tiangolo/fastapi/branch/master/graph/badge.svg" alt="Coverage">
-</a>
-<a href="https://pypi.org/project/fastapi" target="_blank">
-    <img src="https://badge.fury.io/py/fastapi.svg" alt="Package version">
-</a>
-<a href="https://gitter.im/tiangolo/fastapi?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge" target="_blank">
-    <img src="https://badges.gitter.im/tiangolo/fastapi.svg" alt="Join the chat at https://gitter.im/tiangolo/fastapi">
-</a>
-</p>
+![FastAPI](http://linupyoos.oss-cn-beijing.aliyuncs.com/blogs/2020-02-29-114916.png)
+
+<center>FastAPI框架，高性能，易于学习，快速编码，为生产环境而准备</center>
+
+
+
+![Build Status](https://travis-ci.com/tiangolo/fastapi.svg?branch=master)![Coverage](https://codecov.io/gh/tiangolo/fastapi/branch/master/graph/badge.svg)![Join the chat at https://gitter.im/tiangolo/fastapi](https://badges.gitter.im/tiangolo/fastapi.svg)![Package version](https://badge.fury.io/py/fastapi.svg)
 
 ---
 
-**Documentation**: <a href="https://fastapi.tiangolo.com" target="_blank">https://fastapi.tiangolo.com</a>
+**官方文档地址：**[https://fastapi.tiangolo.com](https://fastapi.tiangolo.com/)
 
-**Source Code**: <a href="https://github.com/tiangolo/fastapi" target="_blank">https://github.com/tiangolo/fastapi</a>
-
----
-
-FastAPI is a modern, fast (high-performance), web framework for building APIs with Python 3.6+ based on standard Python type hints.
-
-The key features are:
-
-* **Fast**: Very high performance, on par with **NodeJS** and **Go** (thanks to Starlette and Pydantic). [One of the fastest Python frameworks available](#performance).
-
-* **Fast to code**: Increase the speed to develop features by about 200% to 300% *.
-* **Fewer bugs**: Reduce about 40% of human (developer) induced errors. *
-* **Intuitive**: Great editor support. <abbr title="also known as auto-complete, autocompletion, IntelliSense">Completion</abbr> everywhere. Less time debugging.
-* **Easy**: Designed to be easy to use and learn. Less time reading docs.
-* **Short**: Minimize code duplication. Multiple features from each parameter declaration. Fewer bugs.
-* **Robust**: Get production-ready code. With automatic interactive documentation.
-* **Standards-based**: Based on (and fully compatible with) the open standards for APIs: <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (previously known as Swagger) and <a href="http://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>.
-
-<small>* estimation based on tests on an internal development team, building production applications.</small>
-
-## Opinions
-
-"*[...] I'm using **FastAPI** a ton these days. [...] I'm actually planning to use it for all of my team's **ML services at Microsoft**. Some of them are getting integrated into the core **Windows** product and some **Office** products.*"
-
-<div style="text-align: right; margin-right: 10%;">Kabir Khan - <strong>Microsoft</strong> <a href="https://github.com/tiangolo/fastapi/pull/26" target="_blank"><small>(ref)</small></a></div>
+**源码地址：**https://github.com/tiangolo/fastapi
 
 ---
 
-"*I’m over the moon excited about **FastAPI**. It’s so fun!*"
+FastAPI是一种现代的，快速的（高性能）的Web框架，基于标准Python类型提示构建的API，使用的Python的版本应该3.6+。
 
-<div style="text-align: right; margin-right: 10%;">Brian Okken - <strong><a href="https://pythonbytes.fm/episodes/show/123/time-to-right-the-py-wrongs?time_in_sec=855" target="_blank">Python Bytes</a> podcast host</strong> <a href="https://twitter.com/brianokken/status/1112220079972728832" target="_blank"><small>(ref)</small></a></div>
+主要有以下几个功能：
 
----
+-   **快：**与NodeJS和Go相当的高性能（感谢Starlette和Pydantic）。 [最快的Python框架之一](https://github.com/tiangolo/fastapi/blob/master/docs/index.md#performance)
+-   **快速编码：**开发速度提升2到3倍
+-   **更少的bug：**减少约40％的人为原因导致的bug
+-   **直观：**强大的编辑器支持，更快完成，调试时间更少
+-   **简单：**易于使用和学习，减少阅读文档的时间
+-   **简短：**减少代码重复。每个参数代表多个功能。 更少的错误
+-   **健壮：**获得可用于生产的代码。具有自动交互式文档
+-   **基于标准：**基于（并且完全兼容）API的开放标准：OpenAPI（以前称为Swagger）和JSON模式
 
-"*Honestly, what you've built looks super solid and polished. In many ways, it's what I wanted **Hug** to be - it's really inspiring to see someone build that.*"
+## 关于FastAPI的评价
 
-<div style="text-align: right; margin-right: 10%;">Timothy Crosley - <strong><a href="http://www.hug.rest/" target="_blank">Hug</a> creator</strong> <a href="https://news.ycombinator.com/item?id=19455465" target="_blank"><small>(ref)</small></a></div>
+这些天，我大量使用FastAPI。...我实际上正在计划将其用于Microsoft团队的所有ML服务。 其中一些已集成到核心Windows产品和某些Office产品中。
 
----
-
-"*If you're looking to learn one **modern framework** for building REST APIs, check out **FastAPI** [...] It's fast, easy to use and easy to learn [...]*"
-
-"*We've switched over to **FastAPI** for our **APIs** [...] I think you'll like it [...]*"
-
-<div style="text-align: right; margin-right: 10%;">Ines Montani - Matthew Honnibal - <strong><a href="https://explosion.ai" target="_blank">Explosion AI</a> founders - <a href="https://spacy.io" target="_blank">spaCy</a> creators</strong> <a href="https://twitter.com/_inesmontani/status/1144173225322143744" target="_blank"><small>(ref)</small></a> - <a href="https://twitter.com/honnibal/status/1144031421859655680" target="_blank"><small>(ref)</small></a></div>
-
----
-
-"*We adopted the **FastAPI** library to spawn a **REST** server that can be queried to obtain **predictions**. [for Ludwig]*"
-
-<div style="text-align: right; margin-right: 10%;">Piero Molino, Yaroslav Dudin, and Sai Sumanth Miryala - <strong>Uber</strong> <a href="https://eng.uber.com/ludwig-v0-2/" target="_blank"><small>(ref)</small></a></div>
+<p align='right'>——Kabir Khan - Microsoft</p>
 
 ---
 
-## Requirements
+我对FastAPI感到欣喜若狂。太有趣了！
 
-Python 3.6+
+<p align='right'>——Brian Okken - Python Bytes podcast host</p>
 
-FastAPI stands on the shoulders of giants:
+---
 
-* <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> for the web parts.
-* <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> for the data parts.
+老实说，你做的东西看起来很可靠和漂亮。从很多方面来说，这就是我希望**Hug**成为的样子。看到有人这么做，真的很鼓舞人心。
 
-## Installation
+<p align='right'>Timothy Crosley - Hug creator</p>
 
-```bash
+---
+
+如果您想学习一种构建REST API的现代框架，请查看FastAPI，它既快速，易于使用又易于学习。
+
+我们已将我们的API切换到为FastAPI了，我认为您也会喜欢它。
+
+<p align='right'>Ines Montani - Matthew Honnibal - Explosion AIfounders - spaCycreators</p>
+
+---
+
+我们采用了FastAPI库来生成一个REST服务器，可以查询该服务器以获得预期效果。（对于Ludwig）
+
+<p align='right'>——Piero Molino, Yaroslav Dudin, and Sai Sumanth Miryala - Uber</p>
+
+## 基本要求
+
+1.  Python 3.6+
+
+2.  FastAPI 基于：
+    -   web部分：[Starlette](https://www.starlette.io/)
+    -   data部分：[Pydantic](https://pydantic-docs.helpmanual.io/)
+
+## 安装方式
+
+```shell
 pip install fastapi
 ```
 
-You will also need an ASGI server, for production such as <a href="http://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a> or <a href="https://gitlab.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>.
+您还需要一个ASGI服务器，用于[Uvicorn](http://www.uvicorn.org/)或[Hypercorn](https://gitlab.com/pgjones/hypercorn)等都可以
 
-```bash
+```shell
 pip install uvicorn
 ```
 
-## Example
+## 简单示例
 
-### Create it
+### 创建
 
-* Create a file `main.py` with:
+-   创建文件 `main.py`
 
-```Python
+```python
 from fastapi import FastAPI
 
 app = FastAPI()
@@ -120,12 +101,9 @@ def read_item(item_id: int, q: str = None):
     return {"item_id": item_id, "q": q}
 ```
 
-<details markdown="1">
-<summary>Or use <code>async def</code>...</summary>
+如果您的代码使用了`async` / `await`，请使用 `async def` ：
 
-If your code uses `async` / `await`, use `async def`:
-
-```Python hl_lines="7 12"
+```shell
 from fastapi import FastAPI
 
 app = FastAPI()
@@ -141,71 +119,54 @@ async def read_item(item_id: int, q: str = None):
     return {"item_id": item_id, "q": q}
 ```
 
-**Note**:
+### 运行服务
 
-If you don't know, check the _"In a hurry?"_ section about <a href="https://fastapi.tiangolo.com/async/#in-a-hurry" target="_blank">`async` and `await` in the docs</a>.
+使用以下命令运行服务
 
-</details>
-
-### Run it
-
-Run the server with:
-
-```bash
+```shell
 uvicorn main:app --reload
 ```
 
-<details markdown="1">
-<summary>About the command <code>uvicorn main:app --reload</code>...</summary>
+关于这条命令的说明：
 
-The command `uvicorn main:app` refers to:
+-   `main` : 指文件 `main.py` 
+-   `app` ：在 `main.py` 文件内部创建的对象，其中包含 `app = FastAPI()`
+-   `--reload` ：重新加载，指在代码更改后重新启动服务（仅在开发时使用）
 
-* `main`: the file `main.py` (the Python "module").
-* `app`: the object created inside of `main.py` with the line `app = FastAPI()`.
-* `--reload`: make the server restart after code changes. Only do this for development.
+### 检查运行效果
 
-</details>
+在浏览器中输入[http://127.0.0.1:8000/items/5?q=somequery](http://127.0.0.1:8000/items/5?q=somequery)，您将看到JSON响应
 
-### Check it
-
-Open your browser at <a href="http://127.0.0.1:8000/items/5?q=somequery" class="external-link" target="_blank">http://127.0.0.1:8000/items/5?q=somequery</a>.
-
-You will see the JSON response as:
-
-```JSON
+```json
 {"item_id": 5, "q": "somequery"}
 ```
 
-You already created an API that:
+现在，您已经创建好了一个API：
 
-* Receives HTTP requests in the _paths_ `/` and `/items/{item_id}`.
-* Both _paths_ take `GET` <em>operations</em> (also known as HTTP _methods_).
-* The _path_ `/items/{item_id}` has a _path parameter_ `item_id` that should be an `int`.
-* The _path_ `/items/{item_id}` has an optional `str` _query parameter_ `q`.
+-   在路径 `/` 和`/items/{item_id}` 接收HTTP请求
+-   这两个路径都是`GET`请求方式
+-   在路径`/items/{item_id}`有一个参数`item_id`，并且这个参数应该是`int`类型的
+-   路径`/items/{item_id}`有一个可选的`str`类型参数`q`
 
-### Interactive API docs
+### 交互式API文档
 
-Now go to <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+现在进入到[http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)路径，您将看到自动交互式API文档（由[Swagger UI](https://github.com/swagger-api/swagger-ui)提供）：
 
-You will see the automatic interactive API documentation (provided by <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a>):
+![Swagger UI](http://linupyoos.oss-cn-beijing.aliyuncs.com/blogs/2020-02-29-134300.png)
 
-![Swagger UI](https://fastapi.tiangolo.com/img/index/index-01-swagger-ui-simple.png)
+### 另一个API文档
 
-### Alternative API docs
+现在，切换到[http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc)路径，您将看到另一个自动文档(由[ReDoc](https://github.com/Rebilly/ReDoc)提供)
 
-And now, go to <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>.
+![ReDoc](http://linupyoos.oss-cn-beijing.aliyuncs.com/blogs/2020-02-29-135552.png)
 
-You will see the alternative automatic documentation (provided by <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a>):
+## 升级示例
 
-![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
+现在，修改文件`main.py`，用来接收来自`PUT`请求的`body`
 
-## Example upgrade
+使用标准的Python类型声明`body`，得益于Pydantic
 
-Now modify the file `main.py` to receive a body from a `PUT` request.
-
-Declare the body using standard Python types, thanks to Pydantic.
-
-```Python hl_lines="2  7 8 9 10  23 24 25"
+```python
 from fastapi import FastAPI
 from pydantic import BaseModel
 
@@ -233,174 +194,170 @@ def update_item(item_id: int, item: Item):
     return {"item_name": item.name, "item_id": item_id}
 ```
 
-The server should reload automatically (because you added `--reload` to the `uvicorn` command above).
+此时，服务应该进行了自动重新加载（因为前边的 `uvicorn`命令，添加了`--reload`参数）
 
-### Interactive API docs upgrade
+### 升级示例的交互式API文档
 
-Now go to <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+现在进入到[http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)路径
 
-* The interactive API documentation will be automatically updated, including the new body:
+-   交互式API文档也会自动更新，包括新的`body`：
 
-![Swagger UI](https://fastapi.tiangolo.com/img/index/index-03-swagger-02.png)
+![Swagger UI](http://linupyoos.oss-cn-beijing.aliyuncs.com/blogs/2020-02-29-140325.png)
 
-* Click on the button "Try it out", it allows you to fill the parameters and directly interact with the API:
+-   单击`Try it out`按钮 ，它允许您填充参数并直接与API交互：
 
-![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-04-swagger-03.png)
+![Swagger UI interaction](http://linupyoos.oss-cn-beijing.aliyuncs.com/blogs/2020-02-29-140712.png)
 
-* Then click on the "Execute" button, the user interface will communicate with your API, send the parameters, get the results and show them on the screen:
+-   然后单击`Execute`按钮，将与您的API通信，发送参数，获取结果并将其显示在屏幕上：
 
-![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-05-swagger-04.png)
+![Swagger UI interaction](http://linupyoos.oss-cn-beijing.aliyuncs.com/blogs/2020-02-29-142225.png)
 
-### Alternative API docs upgrade
+### 升级示例的另一个API文档
 
-And now, go to <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>.
+现在切换到[http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc) 路径
 
-* The alternative documentation will also reflect the new query parameter and body:
+-   另一个文档将展示新的查询参数和正文，如下：
 
-![ReDoc](https://fastapi.tiangolo.com/img/index/index-06-redoc-02.png)
+![ReDoc](http://linupyoos.oss-cn-beijing.aliyuncs.com/blogs/2020-02-29-143634.png)
 
-### Recap
+### 总结
 
-In summary, you declare **once** the types of parameters, body, etc. as function parameters. 
+综上所述，您可以**一次性**将`params`、`body`等的类型，声明为函数的参数，并且使用标准的Python类型就可以做到这一点。
 
-You do that with standard modern Python types.
+您不必学习新的语法，特定库的方法或类等，而只是标准的**Python 3.6+**。
 
-You don't have to learn a new syntax, the methods or classes of a specific library, etc.
+例如，对于一个`int 类型：`
 
-Just standard **Python 3.6+**.
-
-For example, for an `int`:
-
-```Python
+```python
 item_id: int
 ```
 
-or for a more complex `Item` model:
+或者更复杂的`Item`：
 
-```Python
+```python
 item: Item
 ```
 
-...and with that single declaration you get:
+你还可以得到：
 
-* Editor support, including:
-    * Completion.
-    * Type checks.
-* Validation of data:
-    * Automatic and clear errors when the data is invalid.
-    * Validation even for deeply nested JSON objects.
-* <abbr title="also known as: serialization, parsing, marshalling">Conversion</abbr> of input data: coming from the network to Python data and types. Reading from:
-    * JSON.
-    * Path parameters.
-    * Query parameters.
-    * Cookies.
-    * Headers.
-    * Forms.
-    * Files.
-* <abbr title="also known as: serialization, parsing, marshalling">Conversion</abbr> of output data: converting from Python data and types to network data (as JSON):
-    * Convert Python types (`str`, `int`, `float`, `bool`, `list`, etc).
-    * `datetime` objects.
-    * `UUID` objects.
-    * Database models.
-    * ...and many more.
-* Automatic interactive API documentation, including 2 alternative user interfaces:
-    * Swagger UI.
-    * ReDoc.
-
----
-
-Coming back to the previous code example, **FastAPI** will:
-
-* Validate that there is an `item_id` in the path for `GET` and `PUT` requests.
-* Validate that the `item_id` is of type `int` for `GET` and `PUT` requests.
-    * If it is not, the client will see a useful, clear error.
-* Check if there is an optional query parameter named `q` (as in `http://127.0.0.1:8000/items/foo?q=somequery`) for `GET` requests.
-    * As the `q` parameter is declared with `= None`, it is optional.
-    * Without the `None` it would be required (as is the body in the case with `PUT`).
-* For `PUT` requests to `/items/{item_id}`, Read the body as JSON:
-    * Check that it has a required attribute `name` that should be a `str`. 
-    * Check that it has a required attribute `price` that has to be a `float`.
-    * Check that it has an optional attribute `is_offer`, that should be a `bool`, if present.
-    * All this would also work for deeply nested JSON objects.
-* Convert from and to JSON automatically.
-* Document everything with OpenAPI, that can be used by:
-    * Interactive documentation systems.
-    * Automatic client code generation systems, for many languages.
-* Provide 2 interactive documentation web interfaces directly.
+-   编译器的支持，比如：
+    -   代码提示
+    -   类型检查
+-   数据验证
+    -   数据无效时自动清除错误
+    -   甚至对深度嵌套的JSON对象也能进行验证
+-   输入数据转换：来自网络的以下数据类型到Python数据类型的转换
+    -   JSON
+    -   路径参数
+    -   查询参数
+    -   Cookies
+    -   Headers
+    -   Forms
+    -   Files
+-   输出数据的转换：从Python数据类型转换为网络数据（比如JSON）：
+    -   转换Python数据类型（`str`,`int`,`float`,`bool`,`list`等）
+    -   `datetime`对象
+    -   `UUID`对象
+    -   Database models
+    -   ...
+-   自动交互API文档，包括两个备选的用户界面:
+    -   Swagger UI
+    -   ReDoc。
 
 ---
 
-We just scratched the surface, but you already get the idea of how it all works.
+现在回到前面的代码，示例中，**FastAPI** 将完成：
 
-Try changing the line with:
+-   验证`GET`和`PUT`请求的路径中是否有`item_id`
+-   验证`GET`和`PUT`请求中`item_id`是否为`int`类型
+    -   如果不是，客户端将清楚看到一个有用的错误提示
+-   检查`GET`请求中是否有一个名为`q`的可选查询参数（如：`http://127.0.0.1:8000/items/foo?q=somequery`）
+    -   由于`q`参数用`= None`声明，因此它是可选的
+    -   如果没有`None`，则`q`参数是必需的（与PUT的情况一样）
+-   对`/items/{item_id}`的`PUT`请求，将以JSON格式读取`body`：
+    -   检查它是否具有必需的参数`name`，类型应该是`str`
+    -   检查它是否具有必需的参数`price`，类型必须是`float`
+    -   检查它是否具有非必需的参数`is_offer`，如果这个参数存在，类应该是`bool`
+    -   以上对深度嵌套的JSON对象也适用
+-   自动将其转换为JSON
+-   使用OpenAPI记录所有可以被下面使用的内容：
+    -   交互式文档系统
+    -   适用于多种语言的客户端代码自动生成系统
+-   直接提供2个交互式文档Web界面
 
-```Python
+---
+
+虽然文档才刚刚开始，但是您已经了解了FastAPI究竟能够干些什么
+
+试着按照下面的内容更改代码：
+
+```python
     return {"item_name": item.name, "item_id": item_id}
 ```
 
-...from:
+原来是：
 
-```Python
+```python
         ... "item_name": item.name ...
 ```
 
-...to:
+修改成：
 
-```Python
+```python
         ... "item_price": item.price ...
 ```
 
-...and see how your editor will auto-complete the attributes and know their types:
+查看编辑器如何自动提示它们的属性名称和类型：
 
-![editor support](https://fastapi.tiangolo.com/img/vscode-completion.png)
+![editor support](http://linupyoos.oss-cn-beijing.aliyuncs.com/blogs/2020-02-29-151804.png)
 
-For a more complete example including more features, see the <a href="https://fastapi.tiangolo.com/tutorial/">Tutorial - User Guide</a>.
+有关包含更多特性的完整示例，请参见[Tutorial - User Guide](https://fastapi.tiangolo.com/tutorial/)
 
-**Spoiler alert**: the tutorial - user guide includes:
+**提前剧透：** `tutorial - user guide` 包括以下内容：
 
-* Declaration of **parameters** from other different places as: **headers**, **cookies**, **form fields** and **files**.
-* How to set **validation constraints** as `maximum_length` or `regex`.
-* A very powerful and easy to use **<abbr title="also known as components, resources, providers, services, injectables">Dependency Injection</abbr>** system.
-* Security and authentication, including support for **OAuth2** with **JWT tokens** and **HTTP Basic** auth.
-* More advanced (but equally easy) techniques for declaring **deeply nested JSON models** (thanks to Pydantic).
-* Many extra features (thanks to Starlette) as:
-    * **WebSockets**
-    * **GraphQL**
-    * extremely easy tests based on `requests` and `pytest`
-    * **CORS**
-    * **Cookie Sessions**
-    * ...and more.
+-   来自不同地方的**参数**声明，比如： **headers**，**cookies**， **form 字段** ，**files**
+-   如何将**验证约束**设置为`最大长度`或`正则表达式`
+-   一个非常强大且易于使用的**依赖注入**系统
+-   安全性和身份验证，包括对具有**JWT tokens**和**HTTP Basic**身份验证的**OAuth2**的支持
+-   更高级（但同样简单）的声明 **深度嵌套JSON models**的方法（感谢Pydantic）
+-   许多额外的功能（多亏了Starlette），比如：
+    -   **WebSockets**
+    -   **GraphQL**
+    -   基于`requests`和`pytest`的极其简单的测试
+    -   **CORS**
+    -   **Cookie Sessions**
+    -   ...
 
-## Performance
+## 性能
 
-Independent TechEmpower benchmarks show **FastAPI** applications running under Uvicorn as <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">one of the fastest Python frameworks available</a>, only below Starlette and Uvicorn themselves (used internally by FastAPI). (*)
+独立的TechEmpower基准测试显示，在Uvicorn下运行的**FastAPI**应用程序是可用的[最快的Python框架之一](https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7)，仅低于Starlette和Uvicorn本身（由FastAPI内部使用）
 
-To understand more about it, see the section <a href="https://fastapi.tiangolo.com/benchmarks/" class="internal-link" target="_blank">Benchmarks</a>.
+要了解更多信息，请参阅[Benchmarks](https://fastapi.tiangolo.com/benchmarks/)部分。
 
-## Optional Dependencies
+## 可选依赖项
 
-Used by Pydantic:
+由Pydantic使用：
 
-* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - for faster JSON <abbr title="converting the string that comes from an HTTP request into Python data">"parsing"</abbr>.
-* <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - for email validation.
+-   [`ujson`](https://github.com/esnme/ultrajson) - 更快的JSON解析
+-   [`email_validator`](https://github.com/JoshData/python-email-validator) - 电子邮件验证
 
-Used by Starlette:
+由Starlette使用：
 
-* <a href="http://docs.python-requests.org" target="_blank"><code>requests</code></a> - Required if you want to use the `TestClient`.
-* <a href="https://github.com/Tinche/aiofiles" target="_blank"><code>aiofiles</code></a> - Required if you want to use `FileResponse` or `StaticFiles`.
-* <a href="http://jinja.pocoo.org" target="_blank"><code>jinja2</code></a> - Required if you want to use the default template configuration.
-* <a href="https://andrew-d.github.io/python-multipart/" target="_blank"><code>python-multipart</code></a> - Required if you want to support form <abbr title="converting the string that comes from an HTTP request into Python data">"parsing"</abbr>, with `request.form()`.
-* <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - Required for `SessionMiddleware` support.
-* <a href="https://pyyaml.org/wiki/PyYAMLDocumentation" target="_blank"><code>pyyaml</code></a> - Required for Starlette's `SchemaGenerator` support (you probably don't need it with FastAPI).
-* <a href="https://graphene-python.org/" target="_blank"><code>graphene</code></a> - Required for `GraphQLApp` support.
-* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - Required if you want to use `UJSONResponse`.
+-   [`requests`](http://docs.python-requests.org/) - 如果要使用`TestClient`，则需要`requests`
+-   [`aiofiles`](https://github.com/Tinche/aiofiles) - 如果要使用`FileResponse`或`StaticFiles`，需要`aiofiles`
+-   [`jinja2`](http://jinja.pocoo.org/) - 如果您想使用默认模板配置，则需要
+-   [`python-multipart`](https://andrew-d.github.io/python-multipart/) - 如果要使用`request.form()`支持form解析，则为必需
+-   [`itsdangerous`](https://pythonhosted.org/itsdangerous/) - 对于`SessionMiddleware`支持是必需的
+-   [`pyyaml`](https://pyyaml.org/wiki/PyYAMLDocumentation) - 对于`Starlette`的`SchemaGenerator`支持是必需的（`FastAPI`可能不需要它）
+-   [`graphene`](https://graphene-python.org/) - 对于`GraphQLApp`支持是必需的
+-   [`ujson`](https://github.com/esnme/ultrajson) - 如果您想使用`UJSONResponse`，则是必需的
 
-Used by FastAPI / Starlette:
+由FastAPI/Starlette使用：
 
-* <a href="http://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - for the server that loads and serves your application.
+-   [`uvicorn`](http://www.uvicorn.org/) - 用于加载和启动应用程序服务器
 
-You can install all of these with `pip install fastapi[all]`.
+您可以使用`pip install fastapi `安装以上所有工具
 
-## License
+## 许可
 
-This project is licensed under the terms of the MIT license.
+该项目根据MIT许可条款获得许可。
