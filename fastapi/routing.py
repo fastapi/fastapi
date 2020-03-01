@@ -35,6 +35,7 @@ from starlette.routing import (
     request_response,
     websocket_session,
 )
+from starlette.routing import Mount  # noqa
 from starlette.status import WS_1008_POLICY_VIOLATION
 from starlette.types import ASGIApp
 from starlette.websockets import WebSocket
