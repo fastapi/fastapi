@@ -2,7 +2,7 @@ from enum import Enum
 from typing import Any, Callable, Dict, Iterable, List, Optional, Union
 
 from fastapi.logger import logger
-from pydantic import BaseModel
+from pydantic import BaseModel, root_validator
 
 try:
     from pydantic import AnyUrl, Field
@@ -127,6 +127,19 @@ class SchemaBase(BaseModel):
     externalDocs: Optional[ExternalDocumentation] = None
     example: Optional[Any] = None
     deprecated: Optional[bool] = None
+
+    @root_validator(pre=True)
+    def convert_const_to_enum(cls, values: Dict[str, Any]) -> Dict[str, Any]:
+        """OpenAPI does not support `const`, but JSON schema output by pydantic
+        can include it. `const` is just syntactic sugar for a single element enum,
+        so let's convert it instead of just dropping it.
+
+        ref: https://json-schema.org/understanding-json-schema/reference/generic.html#constant-values
+        """
+        if "const" in values and "enum" not in values:
+            values["enum"] = [values["const"]]
+
+        return values
 
 
 class Schema(SchemaBase):
