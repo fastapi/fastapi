@@ -1,6 +1,6 @@
 import pytest
-from starlette.testclient import TestClient
-from starlette.websockets import WebSocketDisconnect
+from fastapi.testclient import TestClient
+from fastapi.websockets import WebSocketDisconnect
 from websockets.tutorial001 import app
 
 client = TestClient(app)

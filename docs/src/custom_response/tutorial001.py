@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from starlette.responses import UJSONResponse
+from fastapi.responses import UJSONResponse
 
 app = FastAPI()
 

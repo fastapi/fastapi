@@ -1,6 +1,5 @@
-from fastapi import Depends, FastAPI
-from starlette.responses import Response
-from starlette.testclient import TestClient
+from fastapi import Depends, FastAPI, Response
+from fastapi.testclient import TestClient
 
 app = FastAPI()
 

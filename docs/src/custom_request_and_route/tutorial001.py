@@ -1,10 +1,8 @@
 import gzip
 from typing import Callable, List
 
-from fastapi import Body, FastAPI
+from fastapi import Body, FastAPI, Request, Response
 from fastapi.routing import APIRoute
-from starlette.requests import Request
-from starlette.responses import Response
 
 
 class GzipRequest(Request):

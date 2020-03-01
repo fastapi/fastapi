@@ -64,15 +64,20 @@ Let's see the previous example again:
 
 But you don't have to memorize what each of these codes mean.
 
-You can use the convenience variables from `starlette.status`.
+You can use the convenience variables from `fastapi.status`.
 
-```Python hl_lines="2 7"
+```Python hl_lines="1 6"
 {!./src/response_status_code/tutorial002.py!}
 ```
 
 They are just a convenience, they hold the same number, but that way you can use the editor's autocomplete to find them:
 
 <img src="/img/tutorial/response-status-code/image02.png">
+
+!!! note "Technical Details"
+    You could also use `from starlette import status`.
+
+    **FastAPI** provides the same `starlette.status` as `fastapi.status` just as a convenience for you, the developer. But it comes directly from Starlette.
 
 ## Changing the default
 

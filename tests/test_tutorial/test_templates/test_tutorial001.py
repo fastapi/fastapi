@@ -1,6 +1,6 @@
 import shutil
 
-from starlette.testclient import TestClient
+from fastapi.testclient import TestClient
 
 
 def test_main():

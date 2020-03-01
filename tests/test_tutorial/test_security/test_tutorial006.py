@@ -1,7 +1,7 @@
 from base64 import b64encode
 
+from fastapi.testclient import TestClient
 from requests.auth import HTTPBasicAuth
-from starlette.testclient import TestClient
 
 from security.tutorial006 import app
 

@@ -1,4 +1,4 @@
-from starlette.testclient import TestClient
+from fastapi.testclient import TestClient
 
 from path_operation_advanced_configuration.tutorial002 import app
 

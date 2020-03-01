@@ -1,6 +1,6 @@
 from fastapi import FastAPI
-from starlette.testclient import TestClient
-from starlette.websockets import WebSocket
+from fastapi.testclient import TestClient
+from fastapi.websockets import WebSocket
 
 app = FastAPI()
 

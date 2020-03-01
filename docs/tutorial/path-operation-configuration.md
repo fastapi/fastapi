@@ -9,13 +9,18 @@ You can define the (HTTP) `status_code` to be used in the response of your *path
 
 You can pass directly the `int` code, like `404`.
 
-But if you don't remember what each number code is for, you can use the shortcut constants from `starlette`:
+But if you don't remember what each number code is for, you can use the shortcut constants in `status`:
 
-```Python hl_lines="5 18"
+```Python hl_lines="3  17"
 {!./src/path_operation_configuration/tutorial001.py!}
 ```
 
 That status code will be used in the response and will be added to the OpenAPI schema.
+
+!!! note "Technical Details"
+    You could also use `from starlette import status`.
+
+    **FastAPI** provides the same `starlette.status` as `fastapi.status` just as a convenience for you, the developer. But it comes directly from Starlette.
 
 ## Tags
 

@@ -1,6 +1,5 @@
-from fastapi import FastAPI
-from starlette.responses import HTMLResponse
-from starlette.websockets import WebSocket
+from fastapi import FastAPI, WebSocket
+from fastapi.responses import HTMLResponse
 
 app = FastAPI()
 

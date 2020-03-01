@@ -18,7 +18,7 @@ You can declare a parameter of type `Response` in your *path operation function*
 
 And then you can set the `status_code` in that *temporal* response object.
 
-```Python hl_lines="2 11 14"
+```Python hl_lines="1  9  12"
 {!./src/response_change_status_code/tutorial001.py!}
 ```
 

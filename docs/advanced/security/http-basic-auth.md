@@ -34,7 +34,7 @@ Use a dependency to check if the username and password are correct.
 
 For this, use the Python standard module <a href="https://docs.python.org/3/library/secrets.html" class="external-link" target="_blank">`secrets`</a> to check the username and password:
 
-```Python hl_lines="1  13 14 15"
+```Python hl_lines="1  11 12 13"
 {!./src/security/tutorial007.py!}
 ```
 
@@ -100,6 +100,6 @@ That way, using `secrets.compare_digest()` in your application code, it will be 
 
 After detecting that the credentials are incorrect, return an `HTTPException` with a status code 401 (the same returned when no credentials are provided) and add the header `WWW-Authenticate` to make the browser show the login prompt again:
 
-```Python hl_lines="16 17 18 19 20"
+```Python hl_lines="15 16 17 18 19"
 {!./src/security/tutorial007.py!}
 ```

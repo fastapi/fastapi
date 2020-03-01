@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from starlette.testclient import TestClient
+from fastapi.testclient import TestClient
 
 swagger_ui_oauth2_redirect_url = "/docs/redirect"
 

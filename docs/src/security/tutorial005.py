@@ -2,7 +2,7 @@ from datetime import datetime, timedelta
 from typing import List
 
 import jwt
-from fastapi import Depends, FastAPI, HTTPException, Security
+from fastapi import Depends, FastAPI, HTTPException, Security, status
 from fastapi.security import (
     OAuth2PasswordBearer,
     OAuth2PasswordRequestForm,
@@ -11,7 +11,6 @@ from fastapi.security import (
 from jwt import PyJWTError
 from passlib.context import CryptContext
 from pydantic import BaseModel, ValidationError
-from starlette.status import HTTP_401_UNAUTHORIZED
 
 # to get a string like this run:
 # openssl rand -hex 32
@@ -111,7 +110,7 @@ async def get_current_user(
     else:
         authenticate_value = f"Bearer"
     credentials_exception = HTTPException(
-        status_code=HTTP_401_UNAUTHORIZED,
+        status_code=status.HTTP_401_UNAUTHORIZED,
         detail="Could not validate credentials",
         headers={"WWW-Authenticate": authenticate_value},
     )
@@ -130,7 +129,7 @@ async def get_current_user(
     for scope in security_scopes.scopes:
         if scope not in token_data.scopes:
             raise HTTPException(
-                status_code=HTTP_401_UNAUTHORIZED,
+                status_code=status.HTTP_401_UNAUTHORIZED,
                 detail="Not enough permissions",
                 headers={"WWW-Authenticate": authenticate_value},
             )

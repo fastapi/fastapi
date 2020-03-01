@@ -51,14 +51,14 @@ nav:
             - Sub-dependencies: 'tutorial/dependencies/sub-dependencies.md'
             - Dependencies in path operation decorators: 'tutorial/dependencies/dependencies-in-path-operation-decorators.md'
             - Dependencies with yield: 'tutorial/dependencies/dependencies-with-yield.md'
-        - Security: 
+        - Security:
             - Security Intro: 'tutorial/security/index.md'
             - First Steps: 'tutorial/security/first-steps.md'
             - Get Current User: 'tutorial/security/get-current-user.md'
             - Simple OAuth2 with Password and Bearer: 'tutorial/security/simple-oauth2.md'
             - OAuth2 with Password (and hashing), Bearer with JWT tokens: 'tutorial/security/oauth2-jwt.md'
-        - Middleware: 'tutorial/middleware.md'    
-        - CORS (Cross-Origin Resource Sharing): 'tutorial/cors.md'    
+        - Middleware: 'tutorial/middleware.md'
+        - CORS (Cross-Origin Resource Sharing): 'tutorial/cors.md'
         - SQL (Relational) Databases: 'tutorial/sql-databases.md'
         - Bigger Applications - Multiple Files: 'tutorial/bigger-applications.md'
         - Background Tasks: 'tutorial/background-tasks.md'
@@ -71,21 +71,22 @@ nav:
         - Path Operation Advanced Configuration: 'advanced/path-operation-advanced-configuration.md'
         - Additional Status Codes: 'advanced/additional-status-codes.md'
         - Return a Response Directly: 'advanced/response-directly.md'
-        - Custom Response Class: 'advanced/custom-response.md'
+        - Custom Response - HTML, Stream, File, others: 'advanced/custom-response.md'
         - Additional Responses in OpenAPI: 'advanced/additional-responses.md'
         - Response Cookies: 'advanced/response-cookies.md'
         - Response Headers: 'advanced/response-headers.md'
         - Response - Change Status Code: 'advanced/response-change-status-code.md'
         - Advanced Dependencies: 'advanced/advanced-dependencies.md'
         - Advanced Security:
-            - Advanced Security - Intro: advanced/security/index.md
+            - Advanced Security - Intro: 'advanced/security/index.md'
             - OAuth2 scopes: 'advanced/security/oauth2-scopes.md'
             - HTTP Basic Auth: 'advanced/security/http-basic-auth.md'
         - Using the Request Directly: 'advanced/using-request-directly.md'
+        - Advanced Middleware: 'advanced/middleware.md'
         - SQL (Relational) Databases with Peewee: 'advanced/sql-databases-peewee.md'
         - Async SQL (Relational) Databases: 'advanced/async-sql-databases.md'
         - NoSQL (Distributed / Big Data) Databases: 'advanced/nosql-databases.md'
-        - Sub Applications - Behind a Proxy: 'advanced/sub-applications-proxy.md'
+        - Sub Applications - Behind a Proxy, Mounts: 'advanced/sub-applications-proxy.md'
         - Templates: 'advanced/templates.md'
         - GraphQL: 'advanced/graphql.md'
         - WebSockets: 'advanced/websockets.md'
@@ -96,6 +97,7 @@ nav:
         - Testing Dependencies with Overrides: 'advanced/testing-dependencies.md'
         - Extending OpenAPI: 'advanced/extending-openapi.md'
         - OpenAPI Callbacks: 'advanced/openapi-callbacks.md'
+        - Including WSGI - Flask, Django, others: 'advanced/wsgi.md'
     - Concurrency and async / await: 'async.md'
     - Deployment: 'deployment.md'
     - Project Generation - Template: 'project-generation.md'
@@ -105,7 +107,7 @@ nav:
     - Benchmarks: 'benchmarks.md'
     - Help FastAPI - Get Help: 'help-fastapi.md'
     - Development - Contributing: 'contributing.md'
-    - Release Notes: release-notes.md
+    - Release Notes: 'release-notes.md'
 
 markdown_extensions:
     - toc:

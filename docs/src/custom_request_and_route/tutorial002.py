@@ -1,10 +1,8 @@
 from typing import Callable, List
 
-from fastapi import Body, FastAPI, HTTPException
+from fastapi import Body, FastAPI, HTTPException, Request, Response
 from fastapi.exceptions import RequestValidationError
 from fastapi.routing import APIRoute
-from starlette.requests import Request
-from starlette.responses import Response
 
 
 class ValidationErrorLoggingRoute(APIRoute):

@@ -2,9 +2,9 @@ from typing import List
 
 import pytest
 from fastapi import FastAPI
+from fastapi.testclient import TestClient
 from pydantic import ValidationError
 from pydantic.dataclasses import dataclass
-from starlette.testclient import TestClient
 
 app = FastAPI()
 

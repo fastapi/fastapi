@@ -58,7 +58,8 @@ test = [
     "async_generator",
     "python-multipart",
     "aiofiles",
-    "ujson"
+    "ujson",
+    "flask"
 ]
 doc = [
     "mkdocs",
