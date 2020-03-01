@@ -1,5 +1,7 @@
 ## Latest changes
 
+## 0.51.0
+
 * Re-export utils from Starlette:
     * This allows using things like `from fastapi.responses import JSONResponse` instead of `from starlette.responses import JSONResponse`.
     * It's mainly syntax sugar, a convenience for developer experience.
