@@ -1,5 +1,15 @@
 ## Latest changes
 
+* Re-export utils from Starlette:
+    * This allows using things like `from fastapi.responses import JSONResponse` instead of `from starlette.responses import JSONResponse`.
+    * It's mainly syntax sugar, a convenience for developer experience.
+    * Now `Request`, `Response`, `WebSocket`, `status` can be imported directly from `fastapi` as in `from fastapi import Response`. This is because those are frequently used, to use the request directly, to set headers and cookies, to get status codes, etc.
+    * Documentation changes in many places, but new docs and noticeable improvements:
+        * [Custom Response - HTML, Stream, File, others](https://fastapi.tiangolo.com/advanced/custom-response/).
+        * [Advanced Middleware](https://fastapi.tiangolo.com/advanced/middleware/).
+        * [Including WSGI - Flask, Django, others](https://fastapi.tiangolo.com/advanced/wsgi/).
+    * PR [#1064](https://github.com/tiangolo/fastapi/pull/1064).
+
 ## 0.50.0
 
 * Add link to Release Notes from docs about pinning versions for deployment. PR [#1058](https://github.com/tiangolo/fastapi/pull/1058).
