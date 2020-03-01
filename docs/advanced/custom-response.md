@@ -13,14 +13,14 @@ And if that `Response` has a JSON media type (`application/json`), like is the c
 !!! note
     If you use a response class with no media type, FastAPI will expect your response to have no content, so it will not document the response format in its generated OpenAPI docs.
 
-## Use `UJSONResponse`
+## Use `ORJSONResponse`
 
-For example, if you are squeezing performance, you can install and use `ujson` and set the response to be `UJSONResponse`.
+For example, if you are squeezing performance, you can install and use <a href="https://github.com/ijl/orjson" class="external-link" target="_blank">`orjson`</a> and set the response to be `ORJSONResponse`.
 
 Import the `Response` class (sub-class) you want to use and declare it in the *path operation decorator*.
 
 ```Python hl_lines="2 7"
-{!./src/custom_response/tutorial001.py!}
+{!./src/custom_response/tutorial001b.py!}
 ```
 
 !!! info
@@ -29,6 +29,9 @@ Import the `Response` class (sub-class) you want to use and declare it in the *p
     In this case, the HTTP header `Content-Type` will be set to `application/json`.
 
     And it will be documented as such in OpenAPI.
+
+!!! tip
+    The `ORJSONResponse` is currently only available in FastAPI, not in Starlette.
 
 ## HTML Response
 
@@ -134,12 +137,23 @@ Takes some data and returns an `application/json` encoded response.
 
 This is the default response used in **FastAPI**, as you read above.
 
+### `ORJSONResponse`
+
+A fast alternative JSON response using <a href="https://github.com/ijl/orjson" class="external-link" target="_blank">`orjson`</a>, as you read above.
+
 ### `UJSONResponse`
 
-An alternative JSON response using `ujson` for faster serialization as you read above.
+An alternative JSON response using <a href="https://github.com/ultrajson/ultrajson" class="external-link" target="_blank">`ujson`</a>.
 
 !!! warning
     `ujson` is less careful than Python's built-in implementation in how it handles some edge-cases.
+
+```Python hl_lines="2 7"
+{!./src/custom_response/tutorial001.py!}
+```
+
+!!! tip
+    It's possible that `ORJSONResponse` might be a faster alternative.
 
 ### `RedirectResponse`
 
