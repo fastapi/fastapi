@@ -1,10 +1,8 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request, status
 from fastapi.encoders import jsonable_encoder
 from fastapi.exceptions import RequestValidationError
+from fastapi.responses import JSONResponse
 from pydantic import BaseModel
-from starlette import status
-from starlette.requests import Request
-from starlette.responses import JSONResponse
 
 app = FastAPI()
 

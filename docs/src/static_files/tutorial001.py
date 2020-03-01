@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from starlette.staticfiles import StaticFiles
+from fastapi.staticfiles import StaticFiles
 
 app = FastAPI()
 

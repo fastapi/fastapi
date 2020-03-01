@@ -1,8 +1,7 @@
 from typing import Set
 
-from fastapi import FastAPI
+from fastapi import FastAPI, status
 from pydantic import BaseModel
-from starlette.status import HTTP_201_CREATED
 
 app = FastAPI()
 
@@ -15,6 +14,6 @@ class Item(BaseModel):
     tags: Set[str] = []
 
 
-@app.post("/items/", response_model=Item, status_code=HTTP_201_CREATED)
+@app.post("/items/", response_model=Item, status_code=status.HTTP_201_CREATED)
 async def create_item(*, item: Item):
     return item

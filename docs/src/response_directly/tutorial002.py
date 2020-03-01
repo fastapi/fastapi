@@ -1,5 +1,4 @@
-from fastapi import FastAPI
-from starlette.responses import Response
+from fastapi import FastAPI, Response
 
 app = FastAPI()
 
