@@ -132,6 +132,11 @@ You will receive, as declared, a `list` of `bytes` or `UploadFile`s.
     
     So, whenever Swagger UI supports multi-file uploads, or any other tools that supports OpenAPI, they will be compatible with **FastAPI**.
 
+!!! note "Technical Details"
+    You could also use `from starlette.responses import HTMLResponse`.
+
+    **FastAPI** provides the same `starlette.responses` as `fastapi.responses` just as a convenience for you, the developer. But most of the available responses come directly from Starlette.
+
 ## Recap
 
 Use `File` to declare files to be uploaded as input parameters (as form data).

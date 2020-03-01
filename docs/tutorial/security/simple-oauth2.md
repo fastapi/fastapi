@@ -47,7 +47,7 @@ Now let's use the utilities provided by **FastAPI** to handle this.
 
 First, import `OAuth2PasswordRequestForm`, and use it as a dependency with `Depends` for the path `/token`:
 
-```Python hl_lines="2 75"
+```Python hl_lines="2  74"
 {!./src/security/tutorial003.py!}
 ```
 
@@ -88,7 +88,7 @@ If there is no such user, we return an error saying "incorrect username or passw
 
 For the error, we use the exception `HTTPException`:
 
-```Python hl_lines="1 76 77 78"
+```Python hl_lines="1  75 76 77"
 {!./src/security/tutorial003.py!}
 ```
 
@@ -116,7 +116,7 @@ If your database is stolen, the thief won't have your users' plaintext passwords
 
 So, the thief won't be able to try to use those same passwords in another system (as many users use the same password everywhere, this would be dangerous).
 
-```Python hl_lines="79 80 81 82"
+```Python hl_lines="78 79 80 81"
 {!./src/security/tutorial003.py!}
 ```
 
@@ -154,7 +154,7 @@ For this simple example, we are going to just be completely insecure and return 
 
     But for now, let's focus on the specific details we need.
 
-```Python hl_lines="84"
+```Python hl_lines="83"
 {!./src/security/tutorial003.py!}
 ```
 
@@ -179,7 +179,7 @@ Both of these dependencies will just return an HTTP error if the user doesn't ex
 
 So, in our endpoint, we will only get a user if the user exists, was correctly authenticated, and is active:
 
-```Python hl_lines="57 58 59 60 61 62 63 64 65 68 69 70 71 88"
+```Python hl_lines="56 57 58 59 60 61 62 63 64 65  67 68 69 70  88"
 {!./src/security/tutorial003.py!}
 ```
 

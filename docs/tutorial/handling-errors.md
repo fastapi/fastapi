@@ -90,7 +90,7 @@ And you want to handle this exception globally with FastAPI.
 
 You could add a custom exception handler with `@app.exception_handler()`:
 
-```Python hl_lines="6 7 8 14 15 16 17 18 24"
+```Python hl_lines="5 6 7  13 14 15 16 17 18  24"
 {!./src/handling_errors/tutorial003.py!}
 ```
 
@@ -103,6 +103,11 @@ So, you will receive a clean error, with an HTTP status code of `418` and a JSON
 ```JSON
 {"message": "Oops! yolo did something. There goes a rainbow..."}
 ```
+
+!!! note "Technical Details"
+    You could also use `from starlette.requests import Request` and `from starlette.responses import JSONResponse`.
+
+    **FastAPI** provides the same `starlette.responses` as `fastapi.responses` just as a convenience for you, the developer. But most of the available responses come directly from Starlette. The same with `Request`.
 
 ## Override the default exception handlers
 
@@ -172,9 +177,14 @@ The same way, you can override the `HTTPException` handler.
 
 For example, you could want to return a plain text response instead of JSON for these errors:
 
-```Python hl_lines="1 3 9 10 11 22"
+```Python hl_lines="3 4  9 10 11 22"
 {!./src/handling_errors/tutorial004.py!}
 ```
+
+!!! note "Technical Details"
+    You could also use `from starlette.responses import PlainTextResponse`.
+
+    **FastAPI** provides the same `starlette.responses` as `fastapi.responses` just as a convenience for you, the developer. But most of the available responses come directly from Starlette.
 
 ### Use the `RequestValidationError` body
 
@@ -182,7 +192,7 @@ The `RequestValidationError` contains the `body` it received with invalid data.
 
 You could use it while developing your app to log the body and debug it, return it to the user, etc.
 
-```Python hl_lines="16"
+```Python hl_lines="14"
 {!./src/handling_errors/tutorial005.py!}
 ```
 
@@ -231,7 +241,7 @@ So, you can keep raising **FastAPI**'s `HTTPException` as normally in your code.
 
 But when you register an exception handler, you should register it for Starlette's `HTTPException`.
 
-This way, if any part of Starlette's internal code, or a Starlette extension or plug-in, raises an `HTTPException`, your handler will be able to catch and handle it.
+This way, if any part of Starlette's internal code, or a Starlette extension or plug-in, raises a Starlette `HTTPException`, your handler will be able to catch and handle it.
 
 In this example, to be able to have both `HTTPException`s in the same code, Starlette's exceptions is renamed to `StarletteHTTPException`:
 

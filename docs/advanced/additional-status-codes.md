@@ -1,4 +1,4 @@
-By default, **FastAPI** will return the responses using Starlette's `JSONResponse`, putting the content you return from your *path operation* inside of that `JSONResponse`.
+By default, **FastAPI** will return the responses using a `JSONResponse`, putting the content you return from your *path operation* inside of that `JSONResponse`.
 
 It will use the default status code or the one you set in your *path operation*.
 
@@ -12,7 +12,7 @@ But you also want it to accept new items. And when the items didn't exist before
 
 To achieve that, import `JSONResponse`, and return your content there directly, setting the `status_code` that you want:
 
-```Python hl_lines="2 20"
+```Python hl_lines="2  19"
 {!./src/additional_status_codes/tutorial001.py!}
 ```
 
@@ -23,8 +23,13 @@ To achieve that, import `JSONResponse`, and return your content there directly, 
     
     Make sure it has the data you want it to have, and that the values are valid JSON (if you are using `JSONResponse`).
 
+!!! note "Technical Details"
+    You could also use `from starlette.responses import JSONResponse`.
+
+    **FastAPI** provides the same `starlette.responses` as `fastapi.responses` just as a convenience for you, the developer. But most of the available responses come directly from Starlette. The same with `status`.
+
 ## OpenAPI and API docs
 
-If you return additional status codes and responses directly, they won't be included in the OpenAPI schema (the API docs), because FastAPI doesn't have a way to know before hand what you are going to return.
+If you return additional status codes and responses directly, they won't be included in the OpenAPI schema (the API docs), because FastAPI doesn't have a way to know beforehand what you are going to return.
 
 But you can document that in your code, using: [Additional Responses](additional-responses.md){.internal-link target=_blank}.

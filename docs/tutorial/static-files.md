@@ -1,4 +1,4 @@
-You can serve static files automatically from a directory using <a href="https://www.starlette.io/staticfiles/" class="external-link" target="_blank">Starlette's Static Files</a>.
+You can serve static files automatically from a directory using `StaticFiles`.
 
 ## Install `aiofiles`
 
@@ -10,12 +10,17 @@ pip install aiofiles
 
 ## Use `StaticFiles`
 
-* Import `StaticFiles` from Starlette.
+* Import `StaticFiles`.
 * "Mount" a `StaticFiles()` instance in a specific path.
 
 ```Python hl_lines="2 6"
 {!./src/static_files/tutorial001.py!}
 ```
+
+!!! note "Technical Details"
+    You could also use `from starlette.staticfiles import StaticFiles`.
+
+    **FastAPI** provides the same `starlette.staticfiles` as `fastapi.staticfiles` just as a convenience for you, the developer. But it actually comes directly from Starlette.
 
 ### What is "Mounting"
 

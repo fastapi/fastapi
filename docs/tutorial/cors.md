@@ -32,9 +32,9 @@ So, for everything to work correctly, it's better to specify explicitly the allo
 
 ## Use `CORSMiddleware`
 
-You can configure it in your **FastAPI** application using Starlette's <a href="https://www.starlette.io/middleware/#corsmiddleware" class="external-link" target="_blank">`CORSMiddleware`</a>.
+You can configure it in your **FastAPI** application using the `CORSMiddleware`.
 
-* Import it from Starlette.
+* Import `CORSMiddleware`.
 * Create a list of allowed origins (as strings).
 * Add it as a "middleware" to your **FastAPI** application.
 
@@ -44,12 +44,39 @@ You can also specify if your backend allows:
 * Specific HTTP methods (`POST`, `PUT`) or all of them with the wildcard `"*"`.
 * Specific HTTP headers or all of them with the wildcard `"*"`.
 
-```Python hl_lines="2 6 7 8 9 10 11 13 14 15 16 17 18 19"
+```Python hl_lines="2  6 7 8 9 10 11  13 14 15 16 17 18 19"
 {!./src/cors/tutorial001.py!}
 ```
 
+The default parameters used by the `CORSMiddleware` implementation are restrictive by default, so you'll need to explicitly enable particular origins, methods, or headers, in order for browsers to be permitted to use them in a Cross-Domain context.
+
+The following arguments are supported:
+
+* `allow_origins` - A list of origins that should be permitted to make cross-origin requests. E.g. `['https://example.org', 'https://www.example.org']`. You can use `['*']` to allow any origin.
+* `allow_origin_regex` - A regex string to match against origins that should be permitted to make cross-origin requests. eg. `'https://.*\.example\.org'`.
+* `allow_methods` - A list of HTTP methods that should be allowed for cross-origin requests. Defaults to `['GET']`. You can use `['*']` to allow all standard methods.
+* `allow_headers` - A list of HTTP request headers that should be supported for cross-origin requests. Defaults to `[]`. You can use `['*']` to allow all headers. The `Accept`, `Accept-Language`, `Content-Language` and `Content-Type` headers are always allowed for CORS requests.
+* `allow_credentials` - Indicate that cookies should be supported for cross-origin requests. Defaults to `False`.
+* `expose_headers` - Indicate any response headers that should be made accessible to the browser. Defaults to `[]`.
+* `max_age` - Sets a maximum time in seconds for browsers to cache CORS responses. Defaults to `60`.
+
+The middleware responds to two particular types of HTTP request...
+
+### CORS preflight requests
+
+These are any `OPTIONS` request with `Origin` and `Access-Control-Request-Method` headers.
+
+In this case the middleware will intercept the incoming request and respond with appropriate CORS headers, and either a `200` or `400` response for informational purposes.
+
+### Simple requests
+
+Any request with an `Origin` header. In this case the middleware will pass the request through as normal, but will include appropriate CORS headers on the response.
+
 ## More info
 
-For more details of what you can specify in `CORSMiddleware`, check <a href="https://www.starlette.io/middleware/#corsmiddleware" class="external-link" target="_blank">Starlette's `CORSMiddleware` docs</a>.
-
 For more info about <abbr title="Cross-Origin Resource Sharing">CORS</abbr>, check the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS" class="external-link" target="_blank">Mozilla CORS documentation</a>.
+
+!!! note "Technical Details"
+    You could also use `from starlette.middleware.cors import CORSMiddleware`.
+
+    **FastAPI** provides several middlewares in `fastapi.middleware` just as a convenience for you, the developer. But most of the available middlewares come directly from Starlette.

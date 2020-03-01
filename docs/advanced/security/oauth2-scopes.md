@@ -54,7 +54,7 @@ They are normally used to declare specific security permissions, for example:
 
 First, let's quickly see the parts that change from the examples in the main **Tutorial - User Guide** for [OAuth2 with Password (and hashing), Bearer with JWT tokens](../../tutorial/security/oauth2-jwt.md){.internal-link target=_blank}. Now using OAuth2 scopes:
 
-```Python hl_lines="2 5 9 13 48 66 107 109 110 111 112 113 114 115 116 117 123 124 125 126 130 131 132 133 134 135 136 141 155"
+```Python hl_lines="2  5  9  13  47  65  106  108 109 110 111 112 113 114 115 116  122 123 124 125  129 130 131 132 133 134 135  140  154"
 {!./src/security/tutorial005.py!}
 ```
 
@@ -66,7 +66,7 @@ The first change is that now we are declaring the OAuth2 security scheme with tw
 
 The `scopes` parameter receives a `dict` with each scope as a key and the description as the value:
 
-```Python hl_lines="64 65 66 67"
+```Python hl_lines="63 64 65 66"
 {!./src/security/tutorial005.py!}
 ```
 
@@ -91,7 +91,7 @@ And we return the scopes as part of the JWT token.
 
     But in your application, for security, you should make sure you only add the scopes that the user is actually able to have, or the ones you have predefined.
 
-```Python hl_lines="156"
+```Python hl_lines="155"
 {!./src/security/tutorial005.py!}
 ```
 
@@ -116,7 +116,7 @@ In this case, it requires the scope `me` (it could require more than one scope).
     
     We are doing it here to demonstrate how **FastAPI** handles scopes declared at different levels.
 
-```Python hl_lines="5 141 168"
+```Python hl_lines="5  140  167"
 {!./src/security/tutorial005.py!}
 ```
 
@@ -141,7 +141,7 @@ We also declare a special parameter of type `SecurityScopes`, imported from `fas
 
 This `SecurityScopes` class is similar to `Request` (`Request` was used to get the request object directly).
 
-```Python hl_lines="9 107"
+```Python hl_lines="9  106"
 {!./src/security/tutorial005.py!}
 ```
 
@@ -157,7 +157,7 @@ We create an `HTTPException` that we can re-use (`raise`) later at several point
 
 In this exception, we include the scopes required (if any) as a string separated by spaces (using `scope_str`). We put that string containing the scopes in in the `WWW-Authenticate` header (this is part of the spec).
 
-```Python hl_lines="107 109 110 111 112 113 114 115 116 117"
+```Python hl_lines="106  108 109 110 111 112 113 114 115 116"
 {!./src/security/tutorial005.py!}
 ```
 
@@ -175,7 +175,7 @@ Instead of, for example, a `dict`, or something else, as it could break the appl
 
 We also verify that we have a user with that username, and if not, we raise that same exception we created before.
 
-```Python hl_lines="48 118 119 120 121 122 123 124 125 126 127 128 129"
+```Python hl_lines="47  117 118 119 120 121 122 123 124 125 126 127 128"
 {!./src/security/tutorial005.py!}
 ```
 
@@ -185,7 +185,7 @@ We now verify that all the scopes required, by this dependency and all the depen
 
 For this, we use `security_scopes.scopes`, that contains a `list` with all these scopes as `str`.
 
-```Python hl_lines="130 131 132 133 134 135 136"
+```Python hl_lines="129 130 131 132 133 134 135"
 {!./src/security/tutorial005.py!}
 ```
 
