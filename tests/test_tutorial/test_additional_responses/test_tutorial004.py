@@ -1,7 +1,7 @@
 import os
 import shutil
 
-from starlette.testclient import TestClient
+from fastapi.testclient import TestClient
 
 from additional_responses.tutorial004 import app
 

@@ -1,4 +1,4 @@
-from starlette.testclient import TestClient
+from fastapi.testclient import TestClient
 
 from additional_status_codes.tutorial001 import app
 

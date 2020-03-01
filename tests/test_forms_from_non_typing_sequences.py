@@ -1,5 +1,5 @@
 from fastapi import FastAPI, Form
-from starlette.testclient import TestClient
+from fastapi.testclient import TestClient
 
 app = FastAPI()
 

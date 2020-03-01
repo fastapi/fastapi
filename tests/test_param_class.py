@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.params import Param
-from starlette.testclient import TestClient
+from fastapi.testclient import TestClient
 
 app = FastAPI()
 

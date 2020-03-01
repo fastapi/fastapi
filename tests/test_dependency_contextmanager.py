@@ -2,7 +2,7 @@ from typing import Dict
 
 import pytest
 from fastapi import BackgroundTasks, Depends, FastAPI
-from starlette.testclient import TestClient
+from fastapi.testclient import TestClient
 
 app = FastAPI()
 state = {

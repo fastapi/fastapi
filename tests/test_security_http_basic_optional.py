@@ -3,8 +3,8 @@ from typing import Optional
 
 from fastapi import FastAPI, Security
 from fastapi.security import HTTPBasic, HTTPBasicCredentials
+from fastapi.testclient import TestClient
 from requests.auth import HTTPBasicAuth
-from starlette.testclient import TestClient
 
 app = FastAPI()
 

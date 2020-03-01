@@ -1,4 +1,4 @@
-from starlette.testclient import TestClient
+from fastapi.testclient import TestClient
 
 from openapi_callbacks.tutorial001 import app, invoice_notification
 

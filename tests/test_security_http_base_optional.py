@@ -2,7 +2,7 @@ from typing import Optional
 
 from fastapi import FastAPI, Security
 from fastapi.security.http import HTTPAuthorizationCredentials, HTTPBase
-from starlette.testclient import TestClient
+from fastapi.testclient import TestClient
 
 app = FastAPI()
 

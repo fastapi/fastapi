@@ -1,6 +1,6 @@
 from fastapi import APIRouter, FastAPI
-from starlette.responses import HTMLResponse, JSONResponse, PlainTextResponse
-from starlette.testclient import TestClient
+from fastapi.responses import HTMLResponse, JSONResponse, PlainTextResponse
+from fastapi.testclient import TestClient
 
 
 class OverrideResponse(JSONResponse):
