@@ -10,7 +10,7 @@
 
 **官方文档地址：**[https://fastapi.tiangolo.com](https://fastapi.tiangolo.com/)
 
-**源码地址：**https://github.com/tiangolo/fastapi
+**源码地址：**[https://github.com/tiangolo/fastapi](https://github.com/tiangolo/fastapi)
 
 ---
 
@@ -18,14 +18,14 @@ FastAPI是一种现代的，快速的（高性能）的Web框架，基于标准P
 
 主要有以下几个功能：
 
--   **快：**与NodeJS和Go相当的高性能（感谢Starlette和Pydantic）。 [最快的Python框架之一](https://github.com/tiangolo/fastapi/blob/master/docs/index.md#performance)
--   **快速编码：**开发速度提升2到3倍
--   **更少的bug：**减少约40％的人为原因导致的bug
--   **直观：**强大的编辑器支持，更快完成，调试时间更少
--   **简单：**易于使用和学习，减少阅读文档的时间
--   **简短：**减少代码重复。每个参数代表多个功能。 更少的错误
--   **健壮：**获得可用于生产的代码。具有自动交互式文档
--   **基于标准：**基于（并且完全兼容）API的开放标准：OpenAPI（以前称为Swagger）和JSON模式
+- **快：** 与NodeJS和Go相当的高性能（感谢Starlette和Pydantic）。 [最快的Python框架之一](https://github.com/tiangolo/fastapi/blob/master/docs/index.md#performance)
+- **快速编码：** 开发速度提升2到3倍
+- **更少的bug：** 减少约40％的人为原因导致的bug
+- **直观：** 强大的编辑器支持，更快完成，调试时间更少
+- **简单：** 易于使用和学习，减少阅读文档的时间
+- **简短：** 减少代码重复。每个参数代表多个功能。 更少的错误
+- **健壮：** 获得可用于生产的代码。具有自动交互式文档
+- **基于标准：** 基于（并且完全兼容）API的开放标准：OpenAPI（以前称为Swagger）和JSON模式
 
 ## 关于FastAPI的评价
 
