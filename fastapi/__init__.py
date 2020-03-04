@@ -3,7 +3,6 @@
 __version__ = "0.52.0"
 
 from starlette import status as starlette_status
-status = starlette_status
 
 from .applications import FastAPI
 from .background import BackgroundTasks
@@ -24,3 +23,5 @@ from .requests import Request
 from .responses import Response
 from .routing import APIRouter
 from .websockets import WebSocket
+
+status = starlette_status
