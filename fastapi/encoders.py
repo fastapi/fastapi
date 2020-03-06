@@ -126,15 +126,17 @@ def jsonable_encoder(
         return encoded_list
 
     if custom_encoder:
-        if type(obj) in custom_encoder:
-            return custom_encoder[type(obj)](obj)
+        for base in obj.__class__.__mro__:
+            if base in custom_encoder:
+                return custom_encoder[base](obj)
         else:
             for encoder_type, encoder in custom_encoder.items():
                 if isinstance(obj, encoder_type):
                     return encoder(obj)
 
-    if type(obj) in ENCODERS_BY_TYPE:
-        return ENCODERS_BY_TYPE[type(obj)](obj)
+    for base in obj.__class__.__mro__:
+        if base in ENCODERS_BY_TYPE:
+            return ENCODERS_BY_TYPE[base](obj)
     for encoder, classes_tuple in encoders_by_class_tuples.items():
         if isinstance(obj, classes_tuple):
             return encoder(obj)
