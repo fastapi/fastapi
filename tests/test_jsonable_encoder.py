@@ -43,6 +43,14 @@ class Unserializable:
         raise NotImplementedError()
 
 
+class Subclass(datetime):
+    pass
+
+
+class ModelWithSubclass(BaseModel):
+    dt_field: Subclass
+
+
 class ModelWithCustomEncoder(BaseModel):
     dt_field: datetime
 
@@ -89,6 +97,11 @@ def test_encode_class():
     assert jsonable_encoder(pet) == {"name": "Firulais", "owner": {"name": "Foo"}}
 
 
+def test_encode_subclass():
+    model = ModelWithSubclass(dt_field=Subclass(2020, 2, 2, 2, 2, 2))
+    assert jsonable_encoder(model) == {"dt_field": "2020-02-02T02:02:02"}
+
+
 def test_encode_dictable():
     person = DictablePerson(name="Foo")
     pet = DictablePet(owner=person, name="Firulais")
@@ -103,6 +116,11 @@ def test_encode_unsupported():
 
 def test_encode_custom_json_encoders_model():
     model = ModelWithCustomEncoder(dt_field=datetime(2019, 1, 1, 8))
+    assert jsonable_encoder(model) == {"dt_field": "2019-01-01T08:00:00+00:00"}
+
+
+def test_encode_custom_json_encoders_model_with_subclass():
+    model = ModelWithCustomEncoder(dt_field=Subclass(2019, 1, 1, 8))
     assert jsonable_encoder(model) == {"dt_field": "2019-01-01T08:00:00+00:00"}
 
 
