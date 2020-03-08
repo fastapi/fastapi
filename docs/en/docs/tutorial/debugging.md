@@ -95,3 +95,21 @@ It will then start the server with your **FastAPI** code, stop at your breakpoin
 Here's how it might look:
 
 <img src="/img/tutorial/debugging/image01.png">
+
+---
+
+For example, in Pycharm, you can:
+
+* Go to the "Run" panel.
+* "Edit Configurations...".
+* Click ➕ and choose "Python".
+* Name the configuration.
+* Select the script in "Script path".
+* Config the "Working directory".
+* Go to the "Run" panel again and "Debug xxx".
+
+It will then start the server with your **FastAPI** code, stop at your breakpoints, etc.
+
+Here's how it might look:
+
+<img src="/img/tutorial/debugging/image02.png">
