@@ -4,7 +4,7 @@ from fastapi.openapi.docs import (
     get_swagger_ui_html,
     get_swagger_ui_oauth2_redirect_html,
 )
-from starlette.staticfiles import StaticFiles
+from fastapi.staticfiles import StaticFiles
 
 app = FastAPI(docs_url=None, redoc_url=None)
 

@@ -1,7 +1,6 @@
-from fastapi import FastAPI
-from starlette.requests import Request
-from starlette.staticfiles import StaticFiles
-from starlette.templating import Jinja2Templates
+from fastapi import FastAPI, Request
+from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
 
 app = FastAPI()
 

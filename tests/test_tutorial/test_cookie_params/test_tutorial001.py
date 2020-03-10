@@ -1,5 +1,5 @@
 import pytest
-from starlette.testclient import TestClient
+from fastapi.testclient import TestClient
 
 from cookie_params.tutorial001 import app
 

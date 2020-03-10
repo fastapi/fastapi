@@ -1,10 +1,8 @@
 import time
 from typing import Callable
 
-from fastapi import APIRouter, FastAPI
+from fastapi import APIRouter, FastAPI, Request, Response
 from fastapi.routing import APIRoute
-from starlette.requests import Request
-from starlette.responses import Response
 
 
 class TimedRoute(APIRoute):

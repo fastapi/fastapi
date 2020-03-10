@@ -1,7 +1,7 @@
 import os
 from pathlib import Path
 
-from starlette.testclient import TestClient
+from fastapi.testclient import TestClient
 
 from background_tasks.tutorial002 import app
 

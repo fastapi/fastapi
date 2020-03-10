@@ -1,9 +1,9 @@
 import typing
 
-from fastapi import FastAPI
+from fastapi import FastAPI, Response
+from fastapi.responses import JSONResponse
+from fastapi.testclient import TestClient
 from pydantic import BaseModel
-from starlette.responses import JSONResponse, Response
-from starlette.testclient import TestClient
 
 app = FastAPI()
 

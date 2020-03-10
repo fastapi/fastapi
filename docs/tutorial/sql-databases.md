@@ -558,31 +558,31 @@ For example, in a background task worker with <a href="http://www.celeryproject.
 
 * `sql_app/database.py`:
 
-```Python hl_lines=""
+```Python
 {!./src/sql_databases/sql_app/database.py!}
 ```
 
 * `sql_app/models.py`:
 
-```Python hl_lines=""
+```Python
 {!./src/sql_databases/sql_app/models.py!}
 ```
 
 * `sql_app/schemas.py`:
 
-```Python hl_lines=""
+```Python
 {!./src/sql_databases/sql_app/schemas.py!}
 ```
 
 * `sql_app/crud.py`:
 
-```Python hl_lines=""
+```Python
 {!./src/sql_databases/sql_app/crud.py!}
 ```
 
 * `sql_app/main.py`:
 
-```Python hl_lines=""
+```Python
 {!./src/sql_databases/sql_app/main.py!}
 ```
 
@@ -626,7 +626,7 @@ A "middleware" is basically a function that is always executed for each request,
 
 The middleware we'll add (just a function) will create a new SQLAlchemy `SessionLocal` for each request, add it to the request and then close it once the request is finished.
 
-```Python hl_lines="16 17 18 19 20 21 22 23 24"
+```Python hl_lines="14 15 16 17 18 19 20 21 22"
 {!./src/sql_databases/sql_app/alt_main.py!}
 ```
 
@@ -639,7 +639,7 @@ The middleware we'll add (just a function) will create a new SQLAlchemy `Session
 
 ### About `request.state`
 
-<a href="https://www.starlette.io/requests/#other-state" class="external-link" target="_blank">`request.state` is a property of each Starlette `Request` object</a>. It is there to store arbitrary objects attached to the request itself, like the database session in this case.
+`request.state` is a property of each `Request` object. It is there to store arbitrary objects attached to the request itself, like the database session in this case. You can read more about it in <a href="https://www.starlette.io/requests/#other-state" class="external-link" target="_blank">Starlette's docs about `Request` state</a>.
 
 For us in this case, it helps us ensure a single database session is used through all the request, and then closed afterwards (in the middleware).
 

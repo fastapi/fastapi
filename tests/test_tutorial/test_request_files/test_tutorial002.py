@@ -1,6 +1,6 @@
 import os
 
-from starlette.testclient import TestClient
+from fastapi.testclient import TestClient
 
 from request_files.tutorial002 import app
 

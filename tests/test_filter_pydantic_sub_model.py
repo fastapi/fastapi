@@ -1,7 +1,7 @@
 import pytest
 from fastapi import Depends, FastAPI
+from fastapi.testclient import TestClient
 from pydantic import BaseModel, ValidationError, validator
-from starlette.testclient import TestClient
 
 app = FastAPI()
 

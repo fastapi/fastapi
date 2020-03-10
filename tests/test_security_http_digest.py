@@ -1,6 +1,6 @@
 from fastapi import FastAPI, Security
 from fastapi.security import HTTPAuthorizationCredentials, HTTPDigest
-from starlette.testclient import TestClient
+from fastapi.testclient import TestClient
 
 app = FastAPI()
 

@@ -1,7 +1,6 @@
-from fastapi import Depends, FastAPI, HTTPException
+from fastapi import Depends, FastAPI, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from pydantic import BaseModel
-from starlette.status import HTTP_401_UNAUTHORIZED
 
 fake_users_db = {
     "johndoe": {
@@ -58,7 +57,7 @@ async def get_current_user(token: str = Depends(oauth2_scheme)):
     user = fake_decode_token(token)
     if not user:
         raise HTTPException(
-            status_code=HTTP_401_UNAUTHORIZED,
+            status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Invalid authentication credentials",
             headers={"WWW-Authenticate": "Bearer"},
         )

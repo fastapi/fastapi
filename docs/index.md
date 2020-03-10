@@ -398,6 +398,7 @@ Used by Starlette:
 Used by FastAPI / Starlette:
 
 * <a href="http://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - for the server that loads and serves your application.
+* <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - Required if you want to use `ORJSONResponse`.
 
 You can install all of these with `pip install fastapi[all]`.
 

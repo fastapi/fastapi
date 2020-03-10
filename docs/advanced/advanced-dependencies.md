@@ -1,8 +1,3 @@
-!!! warning
-    This is, more or less, an "advanced" chapter.
-    
-    If you are just starting with **FastAPI** you might want to skip this chapter and come back to it later.
-
 ## Parameterized dependencies
 
 All the dependencies we have seen are a fixed function or class.

@@ -1,6 +1,6 @@
 from fastapi import APIRouter, FastAPI
+from fastapi.responses import JSONResponse
 from pydantic import BaseModel, HttpUrl
-from starlette.responses import JSONResponse
 
 app = FastAPI()
 

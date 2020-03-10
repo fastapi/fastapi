@@ -27,7 +27,12 @@ from fastapi.dependencies.models import Dependant, SecurityRequirement
 from fastapi.security.base import SecurityBase
 from fastapi.security.oauth2 import OAuth2, SecurityScopes
 from fastapi.security.open_id_connect_url import OpenIdConnect
-from fastapi.utils import PYDANTIC_1, get_field_info, get_path_param_names
+from fastapi.utils import (
+    PYDANTIC_1,
+    create_response_field,
+    get_field_info,
+    get_path_param_names,
+)
 from pydantic import BaseConfig, BaseModel, create_model
 from pydantic.error_wrappers import ErrorWrapper
 from pydantic.errors import MissingError
@@ -362,31 +367,15 @@ def get_param_field(
         alias = param.name.replace("_", "-")
     else:
         alias = field_info.alias or param.name
-    if PYDANTIC_1:
-        field = ModelField(
-            name=param.name,
-            type_=annotation,
-            default=None if required else default_value,
-            alias=alias,
-            required=required,
-            model_config=BaseConfig,
-            class_validators={},
-            field_info=field_info,
-        )
-        # TODO: remove when removing support for Pydantic < 1.2.0
-        field.required = required
-    else:  # pragma: nocover
-        field = ModelField(  # type: ignore
-            name=param.name,
-            type_=annotation,
-            default=None if required else default_value,
-            alias=alias,
-            required=required,
-            model_config=BaseConfig,
-            class_validators={},
-            schema=field_info,
-        )
-        field.required = required
+    field = create_response_field(
+        name=param.name,
+        type_=annotation,
+        default=None if required else default_value,
+        alias=alias,
+        required=required,
+        field_info=field_info,
+    )
+    field.required = required
     if not had_schema and not is_scalar_field(field=field):
         if PYDANTIC_1:
             field.field_info = params.Body(field_info.default)
@@ -694,28 +683,16 @@ def get_schema_compatible_field(*, field: ModelField) -> ModelField:
         use_type: type = bytes
         if field.shape in sequence_shapes:
             use_type = List[bytes]
-        if PYDANTIC_1:
-            out_field = ModelField(
-                name=field.name,
-                type_=use_type,
-                class_validators=field.class_validators,
-                model_config=field.model_config,
-                default=field.default,
-                required=field.required,
-                alias=field.alias,
-                field_info=field.field_info,
-            )
-        else:  # pragma: nocover
-            out_field = ModelField(  # type: ignore
-                name=field.name,
-                type_=use_type,
-                class_validators=field.class_validators,
-                model_config=field.model_config,
-                default=field.default,
-                required=field.required,
-                alias=field.alias,
-                schema=field.schema,  # type: ignore
-            )
+        out_field = create_response_field(
+            name=field.name,
+            type_=use_type,
+            class_validators=field.class_validators,
+            model_config=field.model_config,
+            default=field.default,
+            required=field.required,
+            alias=field.alias,
+            field_info=field.field_info if PYDANTIC_1 else field.schema,  # type: ignore
+        )
 
     return out_field
 
@@ -754,26 +731,10 @@ def get_body_field(*, dependant: Dependant, name: str) -> Optional[ModelField]:
         ]
         if len(set(body_param_media_types)) == 1:
             BodyFieldInfo_kwargs["media_type"] = body_param_media_types[0]
-    if PYDANTIC_1:
-        field = ModelField(
-            name="body",
-            type_=BodyModel,
-            default=None,
-            required=required,
-            model_config=BaseConfig,
-            class_validators={},
-            alias="body",
-            field_info=BodyFieldInfo(**BodyFieldInfo_kwargs),
-        )
-    else:  # pragma: nocover
-        field = ModelField(  # type: ignore
-            name="body",
-            type_=BodyModel,
-            default=None,
-            required=required,
-            model_config=BaseConfig,
-            class_validators={},
-            alias="body",
-            schema=BodyFieldInfo(**BodyFieldInfo_kwargs),
-        )
-    return field
+    return create_response_field(
+        name="body",
+        type_=BodyModel,
+        required=required,
+        alias="body",
+        field_info=BodyFieldInfo(**BodyFieldInfo_kwargs),
+    )

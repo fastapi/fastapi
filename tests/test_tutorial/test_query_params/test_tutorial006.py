@@ -1,5 +1,5 @@
 import pytest
-from starlette.testclient import TestClient
+from fastapi.testclient import TestClient
 
 from query_params.tutorial006 import app
 

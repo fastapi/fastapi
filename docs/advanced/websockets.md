@@ -23,7 +23,7 @@ In production you would have one of the options above.
 
 But it's the simplest way to focus on the server-side of WebSockets and have a working example:
 
-```Python hl_lines="2 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 42 43 44"
+```Python hl_lines="2  6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38  41 42 43"
 {!./src/websockets/tutorial001.py!}
 ```
 
@@ -31,18 +31,20 @@ But it's the simplest way to focus on the server-side of WebSockets and have a w
 
 In your **FastAPI** application, create a `websocket`:
 
-```Python hl_lines="3 47 48"
+```Python hl_lines="1 46 47"
 {!./src/websockets/tutorial001.py!}
 ```
 
-!!! tip
-    In this example we are importing `WebSocket` from `starlette.websockets` to use it in the type declaration in the WebSocket route function.
+!!! note "Technical Details"
+    You could also use `from starlette.websockets import WebSocket`.
+
+    **FastAPI** provides the same `WebSocket` directly just as a convenience for you, the developer. But it comes directly from Starlette.
 
 ## Await for messages and send messages
 
 In your WebSocket route you can `await` for messages and send messages.
 
-```Python hl_lines="49 50 51 52 53"
+```Python hl_lines="48 49 50 51 52"
 {!./src/websockets/tutorial001.py!}
 ```
 
@@ -61,7 +63,7 @@ In WebSocket endpoints you can import from `fastapi` and use:
 
 They work the same way as for other FastAPI endpoints/*path operations*:
 
-```Python hl_lines="55 56 57 58 59 60 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78"
+```Python hl_lines="53 54 55 56 57 58  61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76"
 {!./src/websockets/tutorial002.py!}
 ```
 
@@ -76,7 +78,6 @@ They work the same way as for other FastAPI endpoints/*path operations*:
 
 To learn more about the options, check Starlette's documentation for:
 
-* <a href="https://www.starlette.io/applications/" class="external-link" target="_blank">Applications (`websocket_route`)</a>.
 * <a href="https://www.starlette.io/websockets/" class="external-link" target="_blank">The `WebSocket` class</a>.
 * <a href="https://www.starlette.io/endpoints/#websocketendpoint" class="external-link" target="_blank">Class-based WebSocket handling</a>.
 

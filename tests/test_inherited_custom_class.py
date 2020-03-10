@@ -2,8 +2,8 @@ import uuid
 
 import pytest
 from fastapi import FastAPI
+from fastapi.testclient import TestClient
 from pydantic import BaseModel
-from starlette.testclient import TestClient
 
 app = FastAPI()
 

@@ -1,6 +1,5 @@
-from fastapi import Depends, FastAPI, Header
-from starlette.status import HTTP_200_OK
-from starlette.testclient import TestClient
+from fastapi import Depends, FastAPI, Header, status
+from fastapi.testclient import TestClient
 
 app = FastAPI()
 
@@ -89,7 +88,7 @@ schema = {
 
 def test_schema():
     response = client.get("/openapi.json")
-    assert response.status_code == HTTP_200_OK
+    assert response.status_code == status.HTTP_200_OK
     actual_schema = response.json()
     assert actual_schema == schema
     assert (
@@ -99,5 +98,5 @@ def test_schema():
 
 def test_response():
     response = client.get("/", headers={"someheader": "hello"})
-    assert response.status_code == HTTP_200_OK
+    assert response.status_code == status.HTTP_200_OK
     assert response.json() == {"dep1": "hello", "dep2": "hello123"}

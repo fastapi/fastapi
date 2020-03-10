@@ -17,18 +17,19 @@ from fastapi.openapi.constants import STATUS_CODES_WITH_NO_BODY
 from fastapi.utils import (
     PYDANTIC_1,
     create_cloned_field,
+    create_response_field,
     generate_operation_id_for_path,
     get_field_info,
     warning_response_model_skip_defaults_deprecated,
 )
-from pydantic import BaseConfig, BaseModel
+from pydantic import BaseModel
 from pydantic.error_wrappers import ErrorWrapper, ValidationError
-from pydantic.utils import lenient_issubclass
 from starlette import routing
 from starlette.concurrency import run_in_threadpool
 from starlette.exceptions import HTTPException
 from starlette.requests import Request
 from starlette.responses import JSONResponse, Response
+from starlette.routing import Mount  # noqa
 from starlette.routing import (
     compile_path,
     get_name,
@@ -50,7 +51,7 @@ except ImportError:  # pragma: nocover
 async def serialize_response(
     *,
     field: ModelField = None,
-    response: Response,
+    response_content: Any,
     include: Union[SetIntStr, DictIntStrAny] = None,
     exclude: Union[SetIntStr, DictIntStrAny] = set(),
     by_alias: bool = True,
@@ -59,16 +60,18 @@ async def serialize_response(
 ) -> Any:
     if field:
         errors = []
-        if exclude_unset and isinstance(response, BaseModel):
+        if exclude_unset and isinstance(response_content, BaseModel):
             if PYDANTIC_1:
-                response = response.dict(exclude_unset=exclude_unset)
+                response_content = response_content.dict(exclude_unset=exclude_unset)
             else:
-                response = response.dict(skip_defaults=exclude_unset)  # pragma: nocover
+                response_content = response_content.dict(
+                    skip_defaults=exclude_unset
+                )  # pragma: nocover
         if is_coroutine:
-            value, errors_ = field.validate(response, {}, loc=("response",))
+            value, errors_ = field.validate(response_content, {}, loc=("response",))
         else:
             value, errors_ = await run_in_threadpool(
-                field.validate, response, {}, loc=("response",)
+                field.validate, response_content, {}, loc=("response",)
             )
         if isinstance(errors_, ErrorWrapper):
             errors.append(errors_)
@@ -84,7 +87,20 @@ async def serialize_response(
             exclude_unset=exclude_unset,
         )
     else:
-        return jsonable_encoder(response)
+        return jsonable_encoder(response_content)
+
+
+async def run_endpoint_function(
+    *, dependant: Dependant, values: Dict[str, Any], is_coroutine: bool
+) -> Any:
+    # Only called by get_request_handler. Has been split into its own function to
+    # facilitate profiling endpoints, since inner functions are harder to profile.
+    assert dependant.call is not None, "dependant.call must be a function"
+
+    if is_coroutine:
+        return await dependant.call(**values)
+    else:
+        return await run_in_threadpool(dependant.call, **values)
 
 
 def get_request_handler(
@@ -128,18 +144,17 @@ def get_request_handler(
         if errors:
             raise RequestValidationError(errors, body=body)
         else:
-            assert dependant.call is not None, "dependant.call must be a function"
-            if is_coroutine:
-                raw_response = await dependant.call(**values)
-            else:
-                raw_response = await run_in_threadpool(dependant.call, **values)
+            raw_response = await run_endpoint_function(
+                dependant=dependant, values=values, is_coroutine=is_coroutine
+            )
+
             if isinstance(raw_response, Response):
                 if raw_response.background is None:
                     raw_response.background = background_tasks
                 return raw_response
             response_data = await serialize_response(
                 field=response_field,
-                response=raw_response,
+                response_content=raw_response,
                 include=response_model_include,
                 exclude=response_model_exclude,
                 by_alias=response_model_by_alias,
@@ -243,26 +258,9 @@ class APIRoute(routing.Route):
                 status_code not in STATUS_CODES_WITH_NO_BODY
             ), f"Status code {status_code} must not have a response body"
             response_name = "Response_" + self.unique_id
-            if PYDANTIC_1:
-                self.response_field: Optional[ModelField] = ModelField(
-                    name=response_name,
-                    type_=self.response_model,
-                    class_validators={},
-                    default=None,
-                    required=False,
-                    model_config=BaseConfig,
-                    field_info=FieldInfo(None),
-                )
-            else:
-                self.response_field: Optional[ModelField] = ModelField(  # type: ignore  # pragma: nocover
-                    name=response_name,
-                    type_=self.response_model,
-                    class_validators={},
-                    default=None,
-                    required=False,
-                    model_config=BaseConfig,
-                    schema=FieldInfo(None),
-                )
+            self.response_field = create_response_field(
+                name=response_name, type_=self.response_model
+            )
             # Create a clone of the field, so that a Pydantic submodel is not returned
             # as is just because it's an instance of a subclass of a more limited class
             # e.g. UserInDB (containing hashed_password) could be a subclass of User
@@ -274,7 +272,7 @@ class APIRoute(routing.Route):
                 ModelField
             ] = create_cloned_field(self.response_field)
         else:
-            self.response_field = None
+            self.response_field = None  # type: ignore
             self.secure_cloned_response_field = None
         self.status_code = status_code
         self.tags = tags or []
@@ -297,30 +295,8 @@ class APIRoute(routing.Route):
                 assert (
                     additional_status_code not in STATUS_CODES_WITH_NO_BODY
                 ), f"Status code {additional_status_code} must not have a response body"
-                assert lenient_issubclass(
-                    model, BaseModel
-                ), "A response model must be a Pydantic model"
                 response_name = f"Response_{additional_status_code}_{self.unique_id}"
-                if PYDANTIC_1:
-                    response_field = ModelField(
-                        name=response_name,
-                        type_=model,
-                        class_validators=None,
-                        default=None,
-                        required=False,
-                        model_config=BaseConfig,
-                        field_info=FieldInfo(None),
-                    )
-                else:
-                    response_field = ModelField(  # type: ignore  # pragma: nocover
-                        name=response_name,
-                        type_=model,
-                        class_validators=None,
-                        default=None,
-                        required=False,
-                        model_config=BaseConfig,
-                        schema=FieldInfo(None),
-                    )
+                response_field = create_response_field(name=response_name, type_=model)
                 response_fields[additional_status_code] = response_field
         if response_fields:
             self.response_fields: Dict[Union[int, str], ModelField] = response_fields
@@ -372,9 +348,15 @@ class APIRouter(routing.Router):
         route_class: Type[APIRoute] = APIRoute,
         default_response_class: Type[Response] = None,
         tags: List[str] = [],
+        on_startup: Sequence[Callable] = None,
+        on_shutdown: Sequence[Callable] = None,
     ) -> None:
         super().__init__(
-            routes=routes, redirect_slashes=redirect_slashes, default=default
+            routes=routes,
+            redirect_slashes=redirect_slashes,
+            default=default,
+            on_startup=on_startup,
+            on_shutdown=on_shutdown,
         )
         self.dependency_overrides_provider = dependency_overrides_provider
         self.route_class = route_class
@@ -579,6 +561,10 @@ class APIRouter(routing.Router):
                 self.add_websocket_route(
                     prefix + route.path, route.endpoint, name=route.name
                 )
+        for handler in router.on_startup:
+            self.add_event_handler("startup", handler)
+        for handler in router.on_shutdown:
+            self.add_event_handler("shutdown", handler)
 
     def get(
         self,

@@ -2,20 +2,20 @@ When you create a **FastAPI** *path operation* you can normally return any data 
 
 By default, **FastAPI** would automatically convert that return value to JSON using the `jsonable_encoder` explained in [JSON Compatible Encoder](../tutorial/encoder.md){.internal-link target=_blank}.
 
-Then, behind the scenes, it would put that JSON-compatible data (e.g. a `dict`) inside of a Starlette `JSONResponse` that would be used to send the response to the client.
+Then, behind the scenes, it would put that JSON-compatible data (e.g. a `dict`) inside of a `JSONResponse` that would be used to send the response to the client.
 
 But you can return a `JSONResponse` directly from your *path operations*.
 
 It might be useful, for example, to return custom headers or cookies.
 
-## Starlette `Response`
+## Return a `Response`
 
-In fact, you can return any <a href="https://www.starlette.io/responses/" class="external-link" target="_blank">Starlette `Response`</a> or any sub-class of it.
+In fact, you can return any `Response` or any sub-class of it.
 
 !!! tip
     `JSONResponse` itself is a sub-class of `Response`.
 
-And when you return a Starlette `Response`, **FastAPI** will pass it directly.
+And when you return a `Response`, **FastAPI** will pass it directly.
 
 It won't do any data conversion with Pydantic models, it won't convert the contents to any type, etc.
 
@@ -33,8 +33,10 @@ For those cases, you can use the `jsonable_encoder` to convert your data before 
 {!./src/response_directly/tutorial001.py!}
 ```
 
-!!! note
-    Notice that you import it directly from `starlette.responses`, not from `fastapi`.
+!!! note "Technical Details"
+    You could also use `from starlette.responses import JSONResponse`.
+
+    **FastAPI** provides the same `starlette.responses` as `fastapi.responses` just as a convenience for you, the developer. But most of the available responses come directly from Starlette.
 
 ## Returning a custom `Response`
 
@@ -42,13 +44,11 @@ The example above shows all the parts you need, but it's not very useful yet, as
 
 Now, let's see how you could use that to return a custom response.
 
-Let's say you want to return a response that is not available in the default <a href="https://www.starlette.io/responses/" class="external-link" target="_blank">Starlette `Response`s</a>.
+Let's say that you want to return an <a href="https://en.wikipedia.org/wiki/XML" class="external-link" target="_blank">XML</a> response.
 
-Let's say that you want to return <a href="https://en.wikipedia.org/wiki/XML" class="external-link" target="_blank">XML</a>.
+You could put your XML content in a string, put it in a `Response`, and return it:
 
-You could put your XML content in a string, put it in a Starlette Response, and return it:
-
-```Python hl_lines="2 20"
+```Python hl_lines="1  18"
 {!./src/response_directly/tutorial002.py!}
 ```
 

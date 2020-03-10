@@ -1,4 +1,4 @@
-Thanks to <a href="https://www.starlette.io/testclient/" class="external-link" target="_blank">Starlette's TestClient</a>, testing **FastAPI** applications is easy and enjoyable.
+Thanks to <a href="https://www.starlette.io/testclient/" class="external-link" target="_blank">Starlette</a>, testing **FastAPI** applications is easy and enjoyable.
 
 It is based on <a href="http://docs.python-requests.org" class="external-link" target="_blank">Requests</a>, so it's very familiar and intuitive.
 
@@ -6,7 +6,7 @@ With it, you can use <a href="https://docs.pytest.org/" class="external-link" ta
 
 ## Using `TestClient`
 
-Import `TestClient` from `starlette.testclient`.
+Import `TestClient`.
 
 Create a `TestClient` passing to it your **FastAPI**.
 
@@ -16,7 +16,7 @@ Use the `TestClient` object the same way as you do with `requests`.
 
 Write simple `assert` statements with the standard Python expressions that you need to check (again, standard `pytest`).
 
-```Python hl_lines="2 12 15 16 17 18"
+```Python hl_lines="2  12  15 16 17 18"
 {!./src/app_testing/tutorial001.py!}
 ```
 
@@ -26,6 +26,11 @@ Write simple `assert` statements with the standard Python expressions that you n
     And the calls to the client are also normal calls, not using `await`.
 
     This allows you to use `pytest` directly without complications.
+
+!!! note "Technical Details"
+    You could also use `from starlette.testclient import TestClient`.
+
+    **FastAPI** provides the same `starlette.testclient` as `fastapi.testclient` just as a convenience for you, the developer. But it comes directly from Starlette.
 
 ## Separating tests
 

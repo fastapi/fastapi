@@ -1,4 +1,4 @@
-from starlette.testclient import TestClient
+from fastapi.testclient import TestClient
 
 from response_change_status_code.tutorial001 import app
 

@@ -2,9 +2,9 @@
 
 You can declare a parameter of type `Response` in your *path operation function*.
 
-And then you can set headers in that *temporal* response object.
+And then you can set cookies in that *temporal* response object.
 
-```Python hl_lines="2 8 9"
+```Python hl_lines="1  8 9"
 {!./src/response_cookies/tutorial002.py!}
 ```
 
@@ -36,5 +36,12 @@ Then set Cookies in it, and then return it:
     And also that you are not sending any data that should have been filtered by a `response_model`.
 
 ### More info
+
+!!! note "Technical Details"
+    You could also use `from starlette.responses import Response` or `from starlette.responses import JSONResponse`.
+
+    **FastAPI** provides the same `starlette.responses` as `fastapi.responses` just as a convenience for you, the developer. But most of the available responses come directly from Starlette.
+
+    And as the `Response` can be used frequently to set headers and cookies, **FastAPI** also provides it at `fastapi.Response`.
 
 To see all the available parameters and options, check the <a href="https://www.starlette.io/responses/#set-cookie" class="external-link" target="_blank">documentation in Starlette</a>.

@@ -161,7 +161,7 @@ pip install aiofiles
 
 ### Serve the static files
 
-* Import `StaticFiles` from Starlette.
+* Import `StaticFiles`.
 * "Mount" a `StaticFiles()` instance in a specific path.
 
 ```Python hl_lines="7 11"

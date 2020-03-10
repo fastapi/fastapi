@@ -3,7 +3,7 @@ from pathlib import Path
 from unittest.mock import MagicMock
 
 import pytest
-from starlette.testclient import TestClient
+from fastapi.testclient import TestClient
 
 from ...utils import skip_py36
 

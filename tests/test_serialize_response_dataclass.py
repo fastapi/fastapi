@@ -1,8 +1,8 @@
 from typing import List
 
 from fastapi import FastAPI
+from fastapi.testclient import TestClient
 from pydantic.dataclasses import dataclass
-from starlette.testclient import TestClient
 
 app = FastAPI()
 

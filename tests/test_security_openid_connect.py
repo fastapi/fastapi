@@ -1,7 +1,7 @@
 from fastapi import Depends, FastAPI, Security
 from fastapi.security.open_id_connect_url import OpenIdConnect
+from fastapi.testclient import TestClient
 from pydantic import BaseModel
-from starlette.testclient import TestClient
 
 app = FastAPI()
 

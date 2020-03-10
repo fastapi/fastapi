@@ -2,8 +2,8 @@ from datetime import datetime
 
 from fastapi import FastAPI
 from fastapi.encoders import jsonable_encoder
+from fastapi.responses import JSONResponse
 from pydantic import BaseModel
-from starlette.responses import JSONResponse
 
 
 class Item(BaseModel):

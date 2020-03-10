@@ -1,7 +1,7 @@
 from typing import List
 
 from fastapi import FastAPI, File, UploadFile
-from starlette.responses import HTMLResponse
+from fastapi.responses import HTMLResponse
 
 app = FastAPI()
 

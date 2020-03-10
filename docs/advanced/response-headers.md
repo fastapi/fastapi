@@ -4,7 +4,7 @@ You can declare a parameter of type `Response` in your *path operation function*
 
 And then you can set headers in that *temporal* response object.
 
-```Python hl_lines="2 8 9"
+```Python hl_lines="1  7 8"
 {!./src/response_headers/tutorial002.py!}
 ```
 
@@ -25,6 +25,13 @@ Create a response as described in [Return a Response Directly](response-directly
 ```Python hl_lines="10 11 12"
 {!./src/response_headers/tutorial001.py!}
 ```
+
+!!! note "Technical Details"
+    You could also use `from starlette.responses import Response` or `from starlette.responses import JSONResponse`.
+
+    **FastAPI** provides the same `starlette.responses` as `fastapi.responses` just as a convenience for you, the developer. But most of the available responses come directly from Starlette.
+
+    And as the `Response` can be used frequently to set headers and cookies, **FastAPI** also provides it at `fastapi.Response`.
 
 ## Custom Headers
 

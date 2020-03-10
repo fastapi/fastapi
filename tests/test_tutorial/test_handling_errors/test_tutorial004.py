@@ -1,4 +1,4 @@
-from starlette.testclient import TestClient
+from fastapi.testclient import TestClient
 
 from handling_errors.tutorial004 import app
 
