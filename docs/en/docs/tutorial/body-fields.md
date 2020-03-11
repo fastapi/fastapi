@@ -52,7 +52,13 @@ For example, you can use that functionality to pass a <a href="http://json-schem
 {!../../../docs_src/body_fields/tutorial002.py!}
 ```
 
-And it would look in the `/docs` like this:
+Alternately, you can provide these extras on a per-field basis by using additional keyword arguments to `Field`:
+
+```Python hl_lines="2 8 9 10 11"
+{!./src/body_fields/tutorial003.py!}
+```
+
+Either way, in the `/docs` it would look like this:
 
 <img src="/img/tutorial/body-fields/image01.png">
 
