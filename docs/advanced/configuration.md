@@ -28,7 +28,7 @@ Then we declare variables with the same name we expect them to come from environ
 
 Our `.env` file would look like this:
 
-```
+```bash
 CLIENT_ID=test_id
 CLIENT_SECRET=5ad9caf4-328d-49a8-ab9a-429f571b3b22
 ```
