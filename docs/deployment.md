@@ -188,17 +188,27 @@ def read_item(item_id: int, q: str = None):
 * Go to the project directory (in where your `Dockerfile` is, containing your `app` directory).
 * Build your FastAPI image:
 
-```bash
-docker build -t myimage .
+<div class="termy">
+
+```console
+$ docker build -t myimage .
+
+---> 100%
 ```
+
+</div>
 
 ### Start the Docker container
 
 * Run a container based on your image:
 
-```bash
-docker run -d --name mycontainer -p 80:80 myimage
+<div class="termy">
+
+```console
+$ docker run -d --name mycontainer -p 80:80 myimage
 ```
+
+</div>
 
 Now you have an optimized FastAPI server in a Docker container. Auto-tuned for your current server (and number of CPU cores).
 
@@ -319,29 +329,53 @@ You just need to install an ASGI compatible server like:
 
 * <a href="https://www.uvicorn.org/" class="external-link" target="_blank">Uvicorn</a>, a lightning-fast ASGI server, built on uvloop and httptools.
 
-```bash
-pip install uvicorn
+<div class="termy">
+
+```console
+$ pip install uvicorn
+
+---> 100%
 ```
+
+</div>
 
 * <a href="https://gitlab.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>, an ASGI server also compatible with HTTP/2.
 
-```bash
-pip install hypercorn
+<div class="termy">
+
+```console
+$ pip install hypercorn
+
+---> 100%
 ```
+
+</div>
 
 ...or any other ASGI server.
 
 And run your application the same way you have done in the tutorials, but without the `--reload` option, e.g.:
 
-```bash
-uvicorn main:app --host 0.0.0.0 --port 80
+<div class="termy">
+
+```console
+$ uvicorn main:app --host 0.0.0.0 --port 80
+
+<span style="color: green;">INFO</span>:     Uvicorn running on http://0.0.0.0:80 (Press CTRL+C to quit)
 ```
+
+</div>
 
 or with Hypercorn:
 
-```bash
-hypercorn main:app --bind 0.0.0.0:80
+<div class="termy">
+
+```console
+$ hypercorn main:app --bind 0.0.0.0:80
+
+Running on 0.0.0.0:8080 over http (CTRL + C to quit)
 ```
+
+</div>
 
 You might want to set up some tooling to make sure it is restarted automatically if it stops.
 

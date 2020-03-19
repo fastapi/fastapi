@@ -51,6 +51,7 @@ $ Get-Command pip
 
 some/directory/fastapi/env/bin/pip
 ```
+
 !!! tip
     Every time you install a new package with `pip` under that environment, activate the environment again.
 
@@ -60,7 +61,7 @@ some/directory/fastapi/env/bin/pip
 
 **FastAPI** uses <a href="https://flit.readthedocs.io/en/latest/index.html" class="external-link" target="_blank">Flit</a> to build, package and publish the project.
 
-After activating the environment  as described above, install `flit`:
+After activating the environment as described above, install `flit`:
 
 ```console
 $ pip install flit

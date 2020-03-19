@@ -103,14 +103,36 @@ For more information about how to pass data to the backend (using `requests` or 
 
 After that, you just need to install `pytest`:
 
-```bash
-pip install pytest
+<div class="termy">
+
+```console
+$ pip install pytest
+
+---> 100%
 ```
+
+</div>
 
 It will detect the files and tests automatically, execute them, and report the results back to you.
 
 Run the tests with:
 
-```bash
-pytest
+<div class="termy">
+
+```console
+$ pytest
+
+================ test session starts ================
+platform linux -- Python 3.6.9, pytest-5.3.5, py-1.8.1, pluggy-0.13.1
+rootdir: /home/user/code/superawesome-cli/app
+plugins: forked-1.1.3, xdist-1.31.0, cov-2.8.1
+collected 6 items
+
+---> 100%
+
+test_main.py <span style="color: green; white-space: pre;">......                            [100%]</span>
+
+<span style="color: green;">================= 1 passed in 0.03s =================</span>
 ```
+
+</div>

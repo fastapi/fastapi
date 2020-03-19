@@ -440,8 +440,8 @@ A "migration" is the set of steps needed whenever you change the structure of yo
 !!! info
     For this to work, you need to use **Python 3.7** or above, or in **Python 3.6**, install the "backports":
 
-    ```bash
-    pip install async-exit-stack async-generator
+    ```console
+    $ pip install async-exit-stack async-generator
     ```
 
     This installs <a href="https://github.com/sorcio/async_exit_stack" class="external-link" target="_blank">async-exit-stack</a> and <a href="https://github.com/python-trio/async_generator" class="external-link" target="_blank">async-generator</a>.
@@ -596,9 +596,16 @@ You can copy this code and use it as is.
 
 Then you can run it with Uvicorn:
 
-```bash
-uvicorn sql_app.main:app --reload
+
+<div class="termy">
+
+```console
+$ uvicorn sql_app.main:app --reload
+
+<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
+
+</div>
 
 And then, you can open your browser at <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 

@@ -85,9 +85,15 @@ To learn more about the options, check Starlette's documentation for:
 
 If your file is named `main.py`, run your application with:
 
-```bash
-uvicorn main:app --reload
+<div class="termy">
+
+```console
+$ uvicorn main:app --reload
+
+<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
+
+</div>
 
 Open your browser at <a href="http://127.0.0.1:8000" class="external-link" target="_blank">http://127.0.0.1:8000</a>.
 

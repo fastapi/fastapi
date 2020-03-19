@@ -73,9 +73,15 @@ Here you need to make sure you use the same path that you used for the `openapi_
 
 Now, run `uvicorn`, if your file is at `main.py`, it would be:
 
-```bash
-uvicorn main:app --reload
+<div class="termy">
+
+```console
+$ uvicorn main:app --reload
+
+<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
+
+</div>
 
 And open the docs at <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 

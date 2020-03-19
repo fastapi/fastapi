@@ -12,9 +12,19 @@ All the code blocks can be copied and used directly (they are actually tested Py
 
 To run any of the examples, copy the code to a file `main.py`, and start `uvicorn` with:
 
-```bash
-uvicorn main:app --reload
+<div class="termy">
+
+```console
+$ uvicorn main:app --reload
+
+<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+<span style="color: green;">INFO</span>:     Started reloader process [28720]
+<span style="color: green;">INFO</span>:     Started server process [28722]
+<span style="color: green;">INFO</span>:     Waiting for application startup.
+<span style="color: green;">INFO</span>:     Application startup complete.
 ```
+
+</div>
 
 It is **HIGHLY encouraged** that you write or copy the code, edit it and run it locally.
 
@@ -28,9 +38,15 @@ The first step is to install FastAPI.
 
 For the tutorial, you might want to install it with all the optional dependencies and features:
 
-```bash
-pip install fastapi[all]
+<div class="termy">
+
+```console
+$ pip install fastapi[all]
+
+---> 100%
 ```
+
+</div>
 
 ...that also includes `uvicorn`, that you can use as the server that runs your code.
 
