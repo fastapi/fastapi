@@ -78,8 +78,8 @@ Handles GZip responses for any request that includes `"gzip"` in the `Accept-Enc
 
 The middleware will handle both standard and streaming responses.
 
-```Python hl_lines="2  6 7 8"
-{!../../../docs_src/advanced_middleware/tutorial002.py!}
+```Python hl_lines="2  6"
+{!../../../docs_src/advanced_middleware/tutorial003.py!}
 ```
 
 The following arguments are supported:
