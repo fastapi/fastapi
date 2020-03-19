@@ -141,8 +141,10 @@ extra:
           link: 'https://tiangolo.com'
 
 extra_css:
+    - 'css/termynal.css'
     - 'css/custom.css'
 
 extra_javascript:
     - 'https://unpkg.com/mermaid@8.4.6/dist/mermaid.min.js'
+    - 'js/termynal.js'
     - 'js/custom.js'
