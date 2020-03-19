@@ -8,15 +8,27 @@ There are utilities to configure it easily that you can use directly in your **F
 
 Install `jinja2`:
 
-```bash
-pip install jinja2
+<div class="termy">
+
+```console
+$ pip install jinja2
+
+---> 100%
 ```
+
+</div>
 
 If you need to also serve static files (as in this example), install `aiofiles`:
 
-```bash
-pip install aiofiles
+<div class="termy">
+
+```console
+$ pip install aiofiles
+
+---> 100%
 ```
+
+</div>
 
 ## Using `Jinja2Templates`
 

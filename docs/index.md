@@ -77,6 +77,14 @@ The key features are:
 
 ---
 
+## **Typer**, the FastAPI of CLIs
+
+<a href="https://typer.tiangolo.com" target="_blank"><img src="https://typer.tiangolo.com/img/logo-margin/logo-margin-vector.svg" style="width: 20%;"></a>
+
+If you are building a <abbr title="Command Line Interface">CLI</abbr> app to be used in the terminal instead of a web API, check out <a href="https://typer.tiangolo.com/" class="external-link" target="_blank">**Typer**</a>.
+
+**Typer** is FastAPI's little sibling. And it's intended to be the **FastAPI of CLIs**. ⌨️ 🚀
+
 ## Requirements
 
 Python 3.6+
@@ -88,15 +96,27 @@ FastAPI stands on the shoulders of giants:
 
 ## Installation
 
-```bash
-pip install fastapi
+<div class="termy">
+
+```console
+$ pip install fastapi
+
+---> 100%
 ```
+
+</div>
 
 You will also need an ASGI server, for production such as <a href="http://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a> or <a href="https://gitlab.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>.
 
-```bash
-pip install uvicorn
+<div class="termy">
+
+```console
+$ pip install uvicorn
+
+---> 100%
 ```
+
+</div>
 
 ## Example
 
@@ -151,9 +171,19 @@ If you don't know, check the _"In a hurry?"_ section about <a href="https://fast
 
 Run the server with:
 
-```bash
-uvicorn main:app --reload
+<div class="termy">
+
+```console
+$ uvicorn main:app --reload
+
+<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+<span style="color: green;">INFO</span>:     Started reloader process [28720]
+<span style="color: green;">INFO</span>:     Started server process [28722]
+<span style="color: green;">INFO</span>:     Waiting for application startup.
+<span style="color: green;">INFO</span>:     Application startup complete.
 ```
+
+</div>
 
 <details markdown="1">
 <summary>About the command <code>uvicorn main:app --reload</code>...</summary>

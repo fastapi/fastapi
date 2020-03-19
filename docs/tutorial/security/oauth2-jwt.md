@@ -28,9 +28,15 @@ If you want to play with JWT tokens and see how they work, check <a href="https:
 
 We need to install `PyJWT` to generate and verify the JWT tokens in Python:
 
-```bash
-pip install pyjwt
+<div class="termy">
+
+```console
+$ pip install pyjwt
+
+---> 100%
 ```
+
+</div>
 
 ## Password hashing
 
@@ -56,9 +62,15 @@ The recommended algorithm is "Bcrypt".
 
 So, install PassLib with Bcrypt:
 
-```bash
-pip install passlib[bcrypt]
+<div class="termy">
+
+```console
+$ pip install passlib[bcrypt]
+
+---> 100%
 ```
+
+</div>
 
 !!! tip
     With `passlib`, you could even configure it to be able to read passwords created by **Django**, a **Flask** security plug-in or many others.
@@ -101,9 +113,15 @@ Create a random secret key that will be used to sign the JWT tokens.
 
 To generate a secure random secret key use the command:
 
-```bash
-openssl rand -hex 32
+<div class="termy">
+
+```console
+$ openssl rand -hex 32
+
+09d25e094faa6ca2556c818166b7a9563b93f7099f6f0f4caa6cf63b88e8d3e7
 ```
+
+</div>
 
 And copy the output to the variable `SECRET_KEY` (don't use the one in the example).
 

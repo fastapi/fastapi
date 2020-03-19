@@ -12,9 +12,13 @@ In your FastAPI application, import and run `uvicorn` directly:
 
 The main purpose of the `__name__ == "__main__"` is to have some code that is executed when your file is called with:
 
-```bash
-python myapp.py
+<div class="termy">
+
+```console
+$ python myapp.py
 ```
+
+</div>
 
 but is not called when another file imports it, like in:
 
@@ -28,9 +32,13 @@ Let's say your file is named `myapp.py`.
 
 If you run it with:
 
-```bash
-python myapp.py
+<div class="termy">
+
+```console
+$ python myapp.py
 ```
+
+</div>
 
 then the internal variable `__name__` in your file, created automatically by Python, will have as value the string `"__main__"`.
 

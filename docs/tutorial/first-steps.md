@@ -8,9 +8,19 @@ Copy that to a file `main.py`.
 
 Run the live server:
 
-```bash
-uvicorn main:app --reload
+<div class="termy">
+
+```console
+$ uvicorn main:app --reload
+
+<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+<span style="color: green;">INFO</span>:     Started reloader process [28720]
+<span style="color: green;">INFO</span>:     Started server process [28722]
+<span style="color: green;">INFO</span>:     Waiting for application startup.
+<span style="color: green;">INFO</span>:     Application startup complete.
 ```
+
+</div>
 
 !!! note
     The command `uvicorn main:app` refers to:
@@ -19,16 +29,13 @@ uvicorn main:app --reload
     * `app`: the object created inside of `main.py` with the line `app = FastAPI()`.
     * `--reload`: make the server restart after code changes. Only use for development.
 
-You will see an output like:
+In the output, there's a line with something like:
 
 ```hl_lines="4"
-INFO: Started reloader process [17961]
-INFO: Started server process [17962]
-INFO: Waiting for application startup.
-INFO: Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
-That last line shows the URL where your app is being served, in your local machine.
+That line shows the URL where your app is being served, in your local machine.
 
 ### Check it
 
@@ -144,9 +151,15 @@ This will be the main point of interaction to create all your API.
 
 This `app` is the same one referred by `uvicorn` in the command:
 
-```bash
-uvicorn main:app --reload
+<div class="termy">
+
+```console
+$ uvicorn main:app --reload
+
+<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
+
+</div>
 
 If you create your app like:
 
@@ -156,9 +169,15 @@ If you create your app like:
 
 And put it in a file `main.py`, then you would call `uvicorn` like:
 
-```bash
-uvicorn main:my_awesome_api --reload
+<div class="termy">
+
+```console
+$ uvicorn main:my_awesome_api --reload
+
+<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
+
+</div>
 
 ### Step 3: create a *path operation*
 

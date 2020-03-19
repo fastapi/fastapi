@@ -369,9 +369,15 @@ async def reset_db_state():
 
 Then run your app with Uvicorn:
 
-```bash
-uvicorn sql_app.main:app --reload
+<div class="termy">
+
+```console
+$ uvicorn sql_app.main:app --reload
+
+<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
+
+</div>
 
 Open your browser at <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>  and create a couple of users.
 

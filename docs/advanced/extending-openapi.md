@@ -155,9 +155,16 @@ After that, your file structure could look like:
 
 Now you need to install `aiofiles`:
 
-```bash
-pip install aiofiles
+
+<div class="termy">
+
+```console
+$ pip install aiofiles
+
+---> 100%
 ```
+
+</div>
 
 ### Serve the static files
 

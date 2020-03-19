@@ -292,9 +292,15 @@ The end result is that the item paths are now:
 
 Now, run `uvicorn`, using the module `app.main` and the variable `app`:
 
-```bash
-uvicorn app.main:app --reload
+<div class="termy">
+
+```console
+$ uvicorn app.main:app --reload
+
+<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
+
+</div>
 
 And open the docs at <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 
