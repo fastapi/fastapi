@@ -54,7 +54,7 @@ You will see something like this:
 <img src="/img/tutorial/security/image01.png">
 
 !!! check "Authorize button!"
-    You already have a shinny new "Authorize" button.
+    You already have a shiny new "Authorize" button.
 
     And your *path operation* has a little lock in the top-right corner that you can click.
 
