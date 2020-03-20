@@ -32,6 +32,40 @@ Or you could want to alter the data before the tests run, etc.
 
 In this case, you could use a dependency override to return your *custom* database session instead of the one that would be used normally.
 
+A suite of integration tests, for example, might set up a temporary database that persists
+for the duration of the test suite:
+
+    from pathlib import Path
+    from tempfile import TemporaryDirectory
+
+    from fastapi import FastAPI
+    from sqlalchemy import create_engine
+    from sqlalchemy.orm import Session, sessionmaker
+
+    from .database import Base
+    from .main import get_db
+
+    app = FastAPI()
+
+    tempdir = TemporaryDirectory()
+    path = Path(tempdir.name) / "test.sqlite3"
+    uri = f"sqlite:///{path}"
+    engine = create_engine(uri, connect_args={"check_same_thread": False})
+    SessionLocal = sessionmaker(bind=engine)
+    Base.metadata.create_all(bind=engine)
+
+
+    def mock_get_db():
+
+        try:
+            db = SessionLocal()
+            yield db
+        finally:
+            db.close()
+
+
+    app.dependency_overrides[get_db] = mock_get_db
+
 ### Use the `app.dependency_overrides` attribute
 
 For these cases, your **FastAPI** application has an attribute `app.dependency_overrides`, it is a simple `dict`.
