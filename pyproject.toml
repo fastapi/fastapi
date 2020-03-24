@@ -83,6 +83,7 @@ all = [
     "pyyaml",
     "graphene",
     "ujson",
+    "orjson",
     "email_validator",
     "uvicorn",
     "async_exit_stack",
