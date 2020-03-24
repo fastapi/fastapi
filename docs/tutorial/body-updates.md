@@ -95,3 +95,5 @@ In summary, to apply partial updates you would:
     So, if you want to receive partial updates that can omit all the attributes, you need to have a model with all the attributes marked as optional (with default values or `None`).
 
     To distinguish from the models with all optional values for **updates** and models with required values for **creation**, you can use the ideas described in [Extra Models](extra-models.md){.internal-link target=_blank}.
+
+    Alternatively you can use a type annotation of `typing.Dict` in place of a Pydantic model.
