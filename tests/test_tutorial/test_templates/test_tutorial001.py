@@ -4,8 +4,8 @@ from fastapi.testclient import TestClient
 
 
 def test_main():
-    shutil.copytree("./docs/src/templates/templates/", "./templates")
-    shutil.copytree("./docs/src/templates/static/", "./static")
+    shutil.copytree("./docs_src/templates/templates/", "./templates")
+    shutil.copytree("./docs_src/templates/static/", "./static")
     from templates.tutorial001 import app
 
     client = TestClient(app)

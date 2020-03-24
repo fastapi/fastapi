@@ -107,7 +107,7 @@ def test_path_operation():
 
 
 def test_path_operation_img():
-    shutil.copy("./docs/img/favicon.png", "./image.png")
+    shutil.copy("./docs/en/docs/img/favicon.png", "./image.png")
     response = client.get("/items/foo?img=1")
     assert response.status_code == 200
     assert response.headers["Content-Type"] == "image/png"
