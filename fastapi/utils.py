@@ -140,12 +140,12 @@ def create_cloned_field(field: ModelField) -> ModelField:
         original_type = cast(Type[BaseModel], original_type)
         use_type = create_model(original_type.__name__, __base__=original_type)
 
-        if hasattr(use_type, 'cloned'):
+        if hasattr(use_type, "cloned"):
             if not use_type.cloned:
                 for f in original_type.__fields__.values():
                     use_type.__fields__[f.name] = create_cloned_field(f)
 
-        setattr(use_type, 'cloned', True)
+        setattr(use_type, "cloned", True)
 
     new_field = create_response_field(name=field.name, type_=use_type)
     new_field.has_alias = field.has_alias
