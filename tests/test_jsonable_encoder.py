@@ -70,6 +70,12 @@ class ModelWithAlias(BaseModel):
     foo: str = Field(..., alias="Foo")
 
 
+class ModelWithDefault(BaseModel):
+    foo: str = ...
+    bar: str = "bar"
+    bla: str = "bla"
+
+
 @pytest.fixture(
     name="model_with_path", params=[PurePath, PurePosixPath, PureWindowsPath]
 )
@@ -119,6 +125,16 @@ def test_encode_model_with_alias_raises():
 def test_encode_model_with_alias():
     model = ModelWithAlias(Foo="Bar")
     assert jsonable_encoder(model) == {"Foo": "Bar"}
+
+
+def test_encode_model_with_default():
+    model = ModelWithDefault(foo="foo", bar="bar")
+    assert jsonable_encoder(model) == {"foo": "foo", "bar": "bar", "bla": "bla"}
+    assert jsonable_encoder(model, exclude_unset=True) == {"foo": "foo", "bar": "bar"}
+    assert jsonable_encoder(model, exclude_defaults=True) == {"foo": "foo"}
+    assert jsonable_encoder(model, exclude_unset=True, exclude_defaults=True) == {
+        "foo": "foo"
+    }
 
 
 def test_custom_encoders():

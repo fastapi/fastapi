@@ -34,6 +34,7 @@ def jsonable_encoder(
     by_alias: bool = True,
     skip_defaults: bool = None,
     exclude_unset: bool = False,
+    exclude_defaults: bool = False,
     include_none: bool = True,
     custom_encoder: dict = {},
     sqlalchemy_safe: bool = True,
@@ -58,8 +59,12 @@ def jsonable_encoder(
                 exclude=exclude,
                 by_alias=by_alias,
                 exclude_unset=bool(exclude_unset or skip_defaults),
+                exclude_none=not include_none,
+                exclude_defaults=exclude_defaults,
             )
         else:  # pragma: nocover
+            if exclude_defaults:
+                raise ValueError("Cannot use exclude_defaults")
             obj_dict = obj.dict(
                 include=include,
                 exclude=exclude,
@@ -69,6 +74,7 @@ def jsonable_encoder(
         return jsonable_encoder(
             obj_dict,
             include_none=include_none,
+            exclude_defaults=exclude_defaults,
             custom_encoder=encoder,
             sqlalchemy_safe=sqlalchemy_safe,
         )
@@ -118,6 +124,7 @@ def jsonable_encoder(
                     exclude=exclude,
                     by_alias=by_alias,
                     exclude_unset=exclude_unset,
+                    exclude_defaults=exclude_defaults,
                     include_none=include_none,
                     custom_encoder=custom_encoder,
                     sqlalchemy_safe=sqlalchemy_safe,
@@ -153,6 +160,7 @@ def jsonable_encoder(
         data,
         by_alias=by_alias,
         exclude_unset=exclude_unset,
+        exclude_defaults=exclude_defaults,
         include_none=include_none,
         custom_encoder=custom_encoder,
         sqlalchemy_safe=sqlalchemy_safe,
