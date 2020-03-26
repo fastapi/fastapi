@@ -389,6 +389,33 @@ Start by translating the main page, `docs/ht/index.md`.
 
 Then you can continue with the previous instructions, for an "Existing Language".
 
+##### New Language not supported
+
+If when running the live server script you get an error about the language not being supported, something like:
+
+```
+ raise TemplateNotFound(template)
+jinja2.exceptions.TemplateNotFound: partials/language/xx.html
+```
+
+That means that the theme doesn't support that language (in this case, with a fake 2-letter code of `xx`).
+
+But don't worry, you can set the theme language to English and then translate the content of the docs.
+
+If you need to do that, edit the `mkdocs.yml` for your new language, it will have something like:
+
+```YAML hl_lines="5"
+site_name: FastAPI
+# More stuff
+theme:
+  # More stuff
+  language: xx
+```
+
+Change that language from `xx` (from your language code) to `en`.
+
+Then you can start the live server again.
+
 ## Tests
 
 There is a script that you can run locally to test all the code and generate coverage reports in HTML:
