@@ -16,8 +16,8 @@ jobs:
         run: python3.7 -m pip install flit
       - name: Install docs extras
         run: python3.7 -m flit install --extras doc
-      - name: Build MkDocs
-        run: python3.7 -m mkdocs build
+      - name: Build Docs
+        run: python3.7 ./scripts/docs.py build-all
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v1.0.3
         with:
