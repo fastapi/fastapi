@@ -201,14 +201,14 @@ During local development, there is a script that builds the site and checks for 
 ```console
 $ python ./scripts/docs.py live
 
-<span style="color: green;">[INFO]</span> Serving on http://0.0.0.0:8008
+<span style="color: green;">[INFO]</span> Serving on http://127.0.0.1:8008
 <span style="color: green;">[INFO]</span> Start watching changes
 <span style="color: green;">[INFO]</span> Start detecting changes
 ```
 
 </div>
 
-It will serve the documentation on `http://0.0.0.0:8008`.
+It will serve the documentation on `http://127.0.0.1:8008`.
 
 That way, you can edit the documentation/source files and see the changes live.
 
@@ -280,14 +280,14 @@ Now run the live server for the docs in Spanish:
 // Use the command "live" and pass the language code as a CLI argument
 $ python ./scripts/docs.py live es
 
-<span style="color: green;">[INFO]</span> Serving on http://0.0.0.0:8008
+<span style="color: green;">[INFO]</span> Serving on http://127.0.0.1:8008
 <span style="color: green;">[INFO]</span> Start watching changes
 <span style="color: green;">[INFO]</span> Start detecting changes
 ```
 
 </div>
 
-Now you can go to <a href="http://0.0.0.0:8008" class="external-link" target="_blank">http://0.0.0.0:8008</a> and see your changes live.
+Now you can go to <a href="http://127.0.0.1:8008" class="external-link" target="_blank">http://127.0.0.1:8008</a> and see your changes live.
 
 If you look at the FastAPI docs website, you will see that every language has all the pages. But some are not translated and have a notification about the the translation is missing.
 

@@ -245,7 +245,7 @@ def serve():
     os.chdir("site")
     server_address = ("", 8008)
     server = HTTPServer(server_address, SimpleHTTPRequestHandler)
-    typer.echo(f"Serving at: http://0.0.0.0:8008")
+    typer.echo(f"Serving at: http://127.0.0.1:8008")
     server.serve_forever()
 
 
@@ -268,7 +268,7 @@ def live(
         lang = "en"
     lang_path: Path = docs_path / lang
     os.chdir(lang_path)
-    mkdocs.commands.serve.serve(dev_addr="0.0.0.0:8008")
+    mkdocs.commands.serve.serve(dev_addr="127.0.0.1:8008")
 
 
 def update_config(lang: str):
