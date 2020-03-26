@@ -64,7 +64,10 @@ test = [
 doc = [
     "mkdocs",
     "mkdocs-material",
-    "markdown-include"
+    "markdown-include",
+    "typer",
+    "typer-cli",
+    "pyyaml"
 ]
 dev = [
     "pyjwt",

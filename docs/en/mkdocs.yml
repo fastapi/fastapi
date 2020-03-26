@@ -1,0 +1,147 @@
+site_name: FastAPI
+site_description: FastAPI framework, high performance, easy to learn, fast to code, ready for production
+site_url: https://fastapi.tiangolo.com/
+theme:
+  name: material
+  palette:
+    primary: teal
+    accent: amber
+  logo: img/icon-white.svg
+  favicon: img/favicon.png
+  language: en
+repo_name: tiangolo/fastapi
+repo_url: https://github.com/tiangolo/fastapi
+edit_uri: ''
+google_analytics:
+- UA-133183413-1
+- auto
+nav:
+- FastAPI: index.md
+- Languages:
+  - en: /
+  - es: /es/
+- features.md
+- python-types.md
+- Tutorial - User Guide:
+  - tutorial/index.md
+  - tutorial/first-steps.md
+  - tutorial/path-params.md
+  - tutorial/query-params.md
+  - tutorial/body.md
+  - tutorial/query-params-str-validations.md
+  - tutorial/path-params-numeric-validations.md
+  - tutorial/body-multiple-params.md
+  - tutorial/body-fields.md
+  - tutorial/body-nested-models.md
+  - tutorial/extra-data-types.md
+  - tutorial/cookie-params.md
+  - tutorial/header-params.md
+  - tutorial/response-model.md
+  - tutorial/extra-models.md
+  - tutorial/response-status-code.md
+  - tutorial/request-forms.md
+  - tutorial/request-files.md
+  - tutorial/request-forms-and-files.md
+  - tutorial/handling-errors.md
+  - tutorial/path-operation-configuration.md
+  - tutorial/encoder.md
+  - tutorial/body-updates.md
+  - Dependencies:
+    - tutorial/dependencies/index.md
+    - tutorial/dependencies/classes-as-dependencies.md
+    - tutorial/dependencies/sub-dependencies.md
+    - tutorial/dependencies/dependencies-in-path-operation-decorators.md
+    - tutorial/dependencies/dependencies-with-yield.md
+  - Security:
+    - tutorial/security/index.md
+    - tutorial/security/first-steps.md
+    - tutorial/security/get-current-user.md
+    - tutorial/security/simple-oauth2.md
+    - tutorial/security/oauth2-jwt.md
+  - tutorial/middleware.md
+  - tutorial/cors.md
+  - tutorial/sql-databases.md
+  - tutorial/bigger-applications.md
+  - tutorial/background-tasks.md
+  - tutorial/application-configuration.md
+  - tutorial/static-files.md
+  - tutorial/testing.md
+  - tutorial/debugging.md
+- Advanced User Guide:
+  - advanced/index.md
+  - advanced/path-operation-advanced-configuration.md
+  - advanced/additional-status-codes.md
+  - advanced/response-directly.md
+  - advanced/custom-response.md
+  - advanced/additional-responses.md
+  - advanced/response-cookies.md
+  - advanced/response-headers.md
+  - advanced/response-change-status-code.md
+  - advanced/advanced-dependencies.md
+  - Advanced Security:
+    - advanced/security/index.md
+    - advanced/security/oauth2-scopes.md
+    - advanced/security/http-basic-auth.md
+  - advanced/using-request-directly.md
+  - advanced/middleware.md
+  - advanced/sql-databases-peewee.md
+  - advanced/async-sql-databases.md
+  - advanced/nosql-databases.md
+  - advanced/sub-applications-proxy.md
+  - advanced/templates.md
+  - advanced/graphql.md
+  - advanced/websockets.md
+  - advanced/events.md
+  - advanced/custom-request-and-route.md
+  - advanced/testing-websockets.md
+  - advanced/testing-events.md
+  - advanced/testing-dependencies.md
+  - advanced/extending-openapi.md
+  - advanced/openapi-callbacks.md
+  - advanced/wsgi.md
+- async.md
+- deployment.md
+- project-generation.md
+- alternatives.md
+- history-design-future.md
+- external-links.md
+- benchmarks.md
+- help-fastapi.md
+- contributing.md
+- release-notes.md
+markdown_extensions:
+- toc:
+    permalink: true
+- markdown.extensions.codehilite:
+    guess_lang: false
+- markdown_include.include:
+    base_path: docs
+- admonition
+- codehilite
+- extra
+- pymdownx.superfences:
+    custom_fences:
+    - name: mermaid
+      class: mermaid
+      format: !!python/name:pymdownx.superfences.fence_div_format ''
+extra:
+  social:
+  - type: github
+    link: https://github.com/tiangolo/typer
+  - type: twitter
+    link: https://twitter.com/tiangolo
+  - type: linkedin
+    link: https://www.linkedin.com/in/tiangolo
+  - type: rss
+    link: https://dev.to/tiangolo
+  - type: medium
+    link: https://medium.com/@tiangolo
+  - type: globe
+    link: https://tiangolo.com
+extra_css:
+- css/termynal.css
+- css/custom.css
+extra_javascript:
+- https://unpkg.com/mermaid@8.4.6/dist/mermaid.min.js
+- js/termynal.js
+- js/custom.js

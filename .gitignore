@@ -14,3 +14,4 @@ test.db
 log.txt
 Pipfile.lock
 env3.*
+docs_build
