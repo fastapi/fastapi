@@ -114,6 +114,8 @@ class FastAPI(Starlette):
                     redirect_url_temp = self.openapi_prefix + str(
                         self.swagger_ui_oauth2_redirect_url
                     )
+                else:
+                    redirect_url_temp = self.swagger_ui_oauth2_redirect_url
 
                 return get_swagger_ui_html(
                     openapi_url=openapi_url,
