@@ -19,6 +19,7 @@ nav:
 - FastAPI: index.md
 - Languages:
   - en: /
+  - zh: /zh/
   - es: /es/
 - features.md
 - python-types.md
