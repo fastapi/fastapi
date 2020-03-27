@@ -236,10 +236,8 @@ def serve():
 
     Make sure you run the build-all command first.
     """
-    typer.echo(
-        "Warning: this is a very simple server."
-        + "For development, use mkdocs serve instead."
-    )
+    typer.echo("Warning: this is a very simple server.")
+    typer.echo("For development, use the command live instead.")
     typer.echo("This is here only to preview a site with translations already built.")
     typer.echo("Make sure you run the build-all command first.")
     os.chdir("site")
