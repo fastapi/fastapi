@@ -113,7 +113,8 @@ class FastAPI(Starlette):
                 return get_swagger_ui_html(
                     openapi_url=openapi_url,
                     title=self.title + " - Swagger UI",
-                    oauth2_redirect_url=self.openapi_prefix + self.swagger_ui_oauth2_redirect_url,
+                    oauth2_redirect_url=self.openapi_prefix
+                    + self.swagger_ui_oauth2_redirect_url,
                     init_oauth=self.swagger_ui_init_oauth,
                 )
 
