@@ -40,7 +40,7 @@ class FastAPI(Starlette):
         default_response_class: Type[Response] = JSONResponse,
         docs_url: Optional[str] = "/docs",
         redoc_url: Optional[str] = "/redoc",
-        swagger_ui_oauth2_redirect_url: str = "/docs/oauth2-redirect",
+        swagger_ui_oauth2_redirect_url: Optional[str] = "/docs/oauth2-redirect",
         swagger_ui_init_oauth: Optional[dict] = None,
         middleware: Sequence[Middleware] = None,
         exception_handlers: Dict[Union[int, Type[Exception]], Callable] = None,
