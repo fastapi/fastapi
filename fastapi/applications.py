@@ -111,14 +111,14 @@ class FastAPI(Starlette):
 
             async def swagger_ui_html(req: Request) -> HTMLResponse:
                 if self.swagger_ui_oauth2_redirect_url:
-                    redirect_url = self.openapi_prefix + str(
+                    redirect_url_temp = self.openapi_prefix + str(
                         self.swagger_ui_oauth2_redirect_url
                     )
 
                 return get_swagger_ui_html(
                     openapi_url=openapi_url,
                     title=self.title + " - Swagger UI",
-                    oauth2_redirect_url=redirect_url,
+                    oauth2_redirect_url=redirect_url_temp,
                     init_oauth=self.swagger_ui_init_oauth,
                 )
 
