@@ -253,15 +253,19 @@ Help with translations is VERY MUCH appreciated! And it can't be done without th
 
 Here are the steps to help with translations.
 
-#### Tips
+#### Tips and guidelines
 
-✨ Add a single Pull Request per page translated. That will make it much easier for others to review it.
+* Add a single Pull Request per page translated. That will make it much easier for others to review it.
 
 For the languages I don't speak, I'll wait for several others to review the translation before merging.
 
-✨ You can also check if there are translations for your language and add a review to them, that will help me know that the translation is correct and I can merge it.
+* You can also check if there are translations for your language and add a review to them, that will help me know that the translation is correct and I can merge it.
 
-✨ To check the 2-letter code for the language you want to translate you can use the table <a href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes" class="external-link" target="_blank">List of ISO 639-1 codes</a>.
+* Use the same Python examples and only translate the text in the docs. You don't have to change anything for this to work.
+
+* Use the same images, file names, and links. You don't have to change anything for it to work.
+
+* To check the 2-letter code for the language you want to translate you can use the table <a href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes" class="external-link" target="_blank">List of ISO 639-1 codes</a>.
 
 #### Existing language
 
@@ -293,42 +297,40 @@ If you look at the FastAPI docs website, you will see that every language has al
 
 But when you run it locally like this, you will only see the pages that are already translated.
 
-Now let's say that you want to add a translation for the section [Advanced User Guide: Extending OpenAPI](advanced/extending-openapi.md){.internal-link target=_blank}.
+Now let's say that you want to add a translation for the section [Features](features.md){.internal-link target=_blank}.
 
 * Copy the file at:
 
 ```
-docs/en/docs/advanced/extending-openapi.md
+docs/en/docs/features.md
 ```
 
 * Paste it in exactly the same location but for the language you want to translate, e.g.:
 
 ```
-docs/es/docs/advanced/extending-openapi.md
+docs/es/docs/features.md
 ```
 
 !!! tip
     Notice that the only change in the path and file name is the language code, from `en` to `es`.
 
-* Now open the MkDocs config file at:
+* Now open the MkDocs config file for English at:
 
 ```
 docs/en/docs/mkdocs.yml
 ```
 
-* Find the place where that `advanced/extending-openapi.md` is located in the config file. Somewhere like:
+* Find the place where that `docs/features.md` is located in the config file. Somewhere like:
 
-```YAML hl_lines="9"
+```YAML hl_lines="8"
 site_name: FastAPI
 # More stuff
 nav:
 - FastAPI: index.md
-# More stuff
-- Advanced User Guide:
-    # More stuff
-    - advanced/testing-dependencies.md
-    - advanced/extending-openapi.md
-    - advanced/openapi-callbacks.md
+- Languages:
+  - en: /
+  - es: /es/
+- features.md
 ```
 
 * Open the MkDocs config file for the language you are editing, e.g.:
@@ -337,24 +339,20 @@ nav:
 docs/es/docs/mkdocs.yml
 ```
 
-* Add the equivalent structure code and add it at the exact same location it would be, e.g.:
+* Add it there at the exact same location it was for English, e.g.:
 
-```YAML hl_lines="6  9"
+```YAML hl_lines="8"
 site_name: FastAPI
 # More stuff
 nav:
 - FastAPI: index.md
-# More stuff
-- Guía de Usuario Avanzada:
-    # More stuff
-    - advanced/testing-dependencies.md
-    - advanced/extending-openapi.md
-    - advanced/openapi-callbacks.md
+- Languages:
+  - en: /
+  - es: /es/
+- features.md
 ```
 
-Notice that the `Advanced User Guide` is translated to `Guía de Usuario Avanzada`.
-
-Also, make sure that if there are other entries, the new entry with your translation is in exactly in the same order as in the English version.
+Make sure that if there are other entries, the new entry with your translation is exactly in the same order as in the English version.
 
 If you go to your browser you will see that now the docs show your new section. 🎉
 
@@ -415,6 +413,50 @@ theme:
 Change that language from `xx` (from your language code) to `en`.
 
 Then you can start the live server again.
+
+#### Preview the result
+
+When you use the script at `./scripts/docs.py` with the `live` command it only shows the files and translations available for the current language.
+
+But once you are done, you can test it all as it would look online.
+
+To do that, first build all the docs:
+
+<div class="termy">
+
+```console
+// Use the command "build-all", this will take a bit
+$ python ./scripts/docs.py build-all
+
+Updating es
+Updating en
+Building docs for: en
+Building docs for: es
+Successfully built docs for: es
+Copying en index.md to README.md
+```
+
+</div>
+
+That generates all the docs at `./docs_build/` for each language. This includes adding any files with missing translations, with a note saying that "this file doesn't have a translation yet". But you don't have to do anything with that directory.
+
+Then it builds all those independent MkDocs sites for each language, combines them, and generates the final output at `./site/`.
+
+Then you can serve that with the command `serve`:
+
+<div class="termy">
+
+```console
+// Use the command "serve" after running "build-all"
+$ python ./scripts/docs.py serve
+
+Warning: this is a very simple server. For development, use mkdocs serve instead.
+This is here only to preview a site with translations already built.
+Make sure you run the build-all command first.
+Serving at: http://127.0.0.1:8008
+```
+
+</div>
 
 ## Tests
 
