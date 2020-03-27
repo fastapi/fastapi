@@ -48,6 +48,28 @@ except ImportError:  # pragma: nocover
     from pydantic.fields import Field as ModelField  # type: ignore
 
 
+def _prepare_response_content(
+    res: Any, *, by_alias: bool = True, exclude_unset: bool
+) -> Any:
+    if isinstance(res, BaseModel):
+        if PYDANTIC_1:
+            return res.dict(by_alias=by_alias, exclude_unset=exclude_unset)
+        else:
+            return res.dict(
+                by_alias=by_alias, skip_defaults=exclude_unset
+            )  # pragma: nocover
+    elif isinstance(res, list):
+        return [
+            _prepare_response_content(item, exclude_unset=exclude_unset) for item in res
+        ]
+    elif isinstance(res, dict):
+        return {
+            k: _prepare_response_content(v, exclude_unset=exclude_unset)
+            for k, v in res.items()
+        }
+    return res
+
+
 async def serialize_response(
     *,
     field: ModelField = None,
@@ -60,13 +82,9 @@ async def serialize_response(
 ) -> Any:
     if field:
         errors = []
-        if exclude_unset and isinstance(response_content, BaseModel):
-            if PYDANTIC_1:
-                response_content = response_content.dict(exclude_unset=exclude_unset)
-            else:
-                response_content = response_content.dict(
-                    skip_defaults=exclude_unset
-                )  # pragma: nocover
+        response_content = _prepare_response_content(
+            response_content, by_alias=by_alias, exclude_unset=exclude_unset
+        )
         if is_coroutine:
             value, errors_ = field.validate(response_content, {}, loc=("response",))
         else:
