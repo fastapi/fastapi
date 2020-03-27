@@ -2,6 +2,8 @@
 
 ## Latest changes
 
+## 0.53.0
+
 * Update test coverage badge. PR [#1175](https://github.com/tiangolo/fastapi/pull/1175).
 * Add `orjson` to `pip install fastapi[all]`. PR [#1161](https://github.com/tiangolo/fastapi/pull/1161) by [@michael0liver](https://github.com/michael0liver).
 * Fix included example for `GZipMiddleware`. PR [#1138](https://github.com/tiangolo/fastapi/pull/1138) by [@arimbr](https://github.com/arimbr).
