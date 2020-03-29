@@ -98,15 +98,12 @@ Here's how it might look:
 
 ---
 
-For example, in Pycharm, you can:
+If you use Pycharm, you can:
 
-* Go to the "Run" panel.
-* "Edit Configurations...".
-* Click ➕ and choose "Python".
-* Name the configuration.
-* Select the script in "Script path".
-* Config the "Working directory".
-* Go to the "Run" panel again and "Debug xxx".
+* Open the "Run" menu.
+* Select the option "Debug...".
+* Then a context menu shows up.
+* Select the file to debug (in this case, `main.py`).
 
 It will then start the server with your **FastAPI** code, stop at your breakpoints, etc.
 
