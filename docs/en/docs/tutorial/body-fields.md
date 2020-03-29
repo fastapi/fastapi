@@ -55,7 +55,7 @@ For example, you can use that functionality to pass an <a href="https://github.c
 Alternately, you can provide these extras on a per-field basis by using additional keyword arguments to `Field`:
 
 ```Python hl_lines="2 8 9 10 11"
-{!./src/body_fields/tutorial003.py!}
+{!../../../docs_src/body_fields/tutorial003.py!}
 ```
 
 Either way, in the `/docs` it would look like this:
