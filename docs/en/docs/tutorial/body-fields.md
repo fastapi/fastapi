@@ -46,15 +46,26 @@ If you know JSON Schema and want to add extra information apart from what we hav
 !!! warning
     Have in mind that extra parameters passed won't add any validation, only annotation, for documentation purposes.
 
-For example, you can use that functionality to pass a <a href="http://json-schema.org/latest/json-schema-validation.html#rfc.section.8.5" class="external-link" target="_blank">JSON Schema example</a> field to a body request JSON Schema:
+For example, you can use that functionality to pass an <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.3.md#fixed-fields-20" class="external-link" target="_blank">example</a> for a body request:
 
 ```Python hl_lines="20 21 22 23 24 25"
 {!../../../docs_src/body_fields/tutorial002.py!}
 ```
 
-And it would look in the `/docs` like this:
+Alternately, you can provide these extras on a per-field basis by using additional keyword arguments to `Field`:
+
+```Python hl_lines="2 8 9 10 11"
+{!./src/body_fields/tutorial003.py!}
+```
+
+Either way, in the `/docs` it would look like this:
 
 <img src="/img/tutorial/body-fields/image01.png">
+
+!!! note "Technical Details"
+    JSON Schema defines a field <a href="https://json-schema.org/draft/2019-09/json-schema-validation.html#rfc.section.9.5" class="external-link" target="_blank">`examples`</a> in the most recent versions, but OpenAPI is based on an older version of JSON Schema that didn't have `examples`.
+
+    So, OpenAPI defines its own <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.3.md#fixed-fields-20" class="external-link" target="_blank">`example`</a> for the same purpose (as `example`, not `examples`), and that's what is used by the docs UI (using Swagger UI).
 
 ## Recap
 
