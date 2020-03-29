@@ -2,6 +2,8 @@
 
 ## Latest changes
 
+* Update Windows development environment instructions. PR [#1179](https://github.com/tiangolo/fastapi/pull/1179).
+
 ## 0.53.0
 
 * Update test coverage badge. PR [#1175](https://github.com/tiangolo/fastapi/pull/1175).
