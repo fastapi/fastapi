@@ -2,6 +2,7 @@
 
 ## Latest changes
 
+* Fix typo in docs. PR [#1148](https://github.com/tiangolo/fastapi/pull/1148) by [@PLNech](https://github.com/PLNech).
 * Update Windows development environment instructions. PR [#1179](https://github.com/tiangolo/fastapi/pull/1179).
 
 ## 0.53.0
