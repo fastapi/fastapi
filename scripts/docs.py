@@ -53,7 +53,7 @@ def new_lang(lang: str = typer.Argument(..., callback=lang_callback)):
     new_path.mkdir()
     en_docs_path = Path("docs/en")
     en_config_path: Path = en_docs_path / mkdocs_name
-    en_config: dict = mkdocs.utils.yaml_load(en_config_path.read_text())
+    en_config: dict = mkdocs.utils.yaml_load(en_config_path.read_text(encoding="utf-8"))
     fastapi_url_base = "https://fastapi.tiangolo.com/"
     new_config = {}
     new_config["site_name"] = en_config["site_name"]
@@ -90,14 +90,16 @@ def new_lang(lang: str = typer.Argument(..., callback=lang_callback)):
             extra_js.append(fastapi_url_base + js)
     new_config["extra_javascript"] = extra_js
     new_config_path: Path = Path(new_path) / mkdocs_name
-    new_config_path.write_text(yaml.dump(new_config, sort_keys=False, width=200))
+    new_config_path.write_text(
+        yaml.dump(new_config, sort_keys=False, width=200), encoding="utf-8"
+    )
     new_config_docs_path: Path = new_path / "docs"
     new_config_docs_path.mkdir()
     en_index_path: Path = en_docs_path / "docs" / "index.md"
     new_index_path: Path = new_config_docs_path / "index.md"
-    en_index_content = en_index_path.read_text()
+    en_index_content = en_index_path.read_text(encoding="utf-8")
     new_index_content = f"{missing_translation_snippet}\n\n{en_index_content}"
-    new_index_path.write_text(new_index_content)
+    new_index_path.write_text(new_index_content, encoding="utf-8")
     typer.secho(f"Successfully initialized: {new_path}", color=typer.colors.GREEN)
     update_languages(lang=None)
 
@@ -128,10 +130,12 @@ def build_lang(
     shutil.rmtree(build_lang_path, ignore_errors=True)
     shutil.copytree(lang_path, build_lang_path)
     en_config_path: Path = en_lang_path / mkdocs_name
-    en_config: dict = mkdocs.utils.yaml_load(en_config_path.read_text())
+    en_config: dict = mkdocs.utils.yaml_load(en_config_path.read_text(encoding="utf-8"))
     nav = en_config["nav"]
     lang_config_path: Path = lang_path / mkdocs_name
-    lang_config: dict = mkdocs.utils.yaml_load(lang_config_path.read_text())
+    lang_config: dict = mkdocs.utils.yaml_load(
+        lang_config_path.read_text(encoding="utf-8")
+    )
     lang_nav = lang_config["nav"]
     # Exclude first 2 entries FastAPI and Languages, for custom handling
     use_nav = nav[2:]
@@ -146,9 +150,9 @@ def build_lang(
         en_file_path: Path = en_lang_path / "docs" / file_path
         lang_file_path.parent.mkdir(parents=True, exist_ok=True)
         if not lang_file_path.is_file():
-            en_text = en_file_path.read_text()
+            en_text = en_file_path.read_text(encoding="utf-8")
             lang_text = get_text_with_translate_missing(en_text)
-            lang_file_path.write_text(lang_text)
+            lang_file_path.write_text(lang_text, encoding="utf-8")
             file_key = file_to_nav[file]
             use_lang_file_to_nav[file] = file_key
             if file_key:
@@ -171,7 +175,7 @@ def build_lang(
     lang_config["nav"] = export_lang_nav
     build_lang_config_path: Path = build_lang_path / mkdocs_name
     build_lang_config_path.write_text(
-        yaml.dump(lang_config, sort_keys=False, width=200)
+        yaml.dump(lang_config, sort_keys=False, width=200), encoding="utf-8"
     )
     current_dir = os.getcwd()
     os.chdir(build_lang_path)
@@ -272,7 +276,7 @@ def live(
 def update_config(lang: str):
     lang_path: Path = docs_path / lang
     config_path = lang_path / mkdocs_name
-    config: dict = mkdocs.utils.yaml_load(config_path.read_text())
+    config: dict = mkdocs.utils.yaml_load(config_path.read_text(encoding="utf-8"))
     languages = [{"en": "/"}]
     for lang in docs_path.iterdir():
         if lang.name == "en" or not lang.is_dir():
@@ -280,7 +284,9 @@ def update_config(lang: str):
         name = lang.name
         languages.append({name: f"/{name}/"})
     config["nav"][1] = {"Languages": languages}
-    config_path.write_text(yaml.dump(config, sort_keys=False, width=200))
+    config_path.write_text(
+        yaml.dump(config, sort_keys=False, width=200), encoding="utf-8"
+    )
 
 
 def get_key_section(
