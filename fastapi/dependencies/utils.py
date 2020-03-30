@@ -704,8 +704,14 @@ def get_body_field(*, dependant: Dependant, name: str) -> Optional[ModelField]:
     first_param = flat_dependant.body_params[0]
     field_info = get_field_info(first_param)
     embed = getattr(field_info, "embed", None)
-    if len(flat_dependant.body_params) == 1 and not embed:
+    body_param_names_set = set([param.name for param in flat_dependant.body_params])
+    if len(body_param_names_set) == 1 and not embed:
         return get_schema_compatible_field(field=first_param)
+    # If one field requires to embed, all have to be embedded
+    # in case a sub-dependency is evaluated with a single unique body field
+    # That is combined (embedded) with other body fields
+    for param in flat_dependant.body_params:
+        setattr(get_field_info(param), "embed", True)
     model_name = "Body_" + name
     BodyModel = create_model(model_name)
     for f in flat_dependant.body_params:
