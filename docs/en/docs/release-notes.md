@@ -2,6 +2,8 @@
 
 ## Latest changes
 
+* Add docs for [Schema Extra - Example](https://fastapi.tiangolo.com/tutorial/schema-extra-example/). PR [#1185](https://github.com/tiangolo/fastapi/pull/1185).
+
 ## 0.53.1
 
 * Fix included example after translations refactor. PR [#1182](https://github.com/tiangolo/fastapi/pull/1182).
