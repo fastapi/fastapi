@@ -22,6 +22,10 @@ missing_translation_snippet = """
 docs_path = Path("docs")
 
 
+def get_lang_paths():
+    return sorted(docs_path.iterdir())
+
+
 def lang_callback(lang: Optional[str]):
     if lang is None:
         return
@@ -34,7 +38,7 @@ def lang_callback(lang: Optional[str]):
 
 def complete_existing_lang(incomplete: str):
     lang_path: Path
-    for lang_path in docs_path.iterdir():
+    for lang_path in get_lang_paths():
         if lang_path.is_dir() and lang_path.name.startswith(incomplete):
             yield lang_path.name
 
@@ -198,7 +202,7 @@ def build_all():
     typer.echo(f"Building docs for: en")
     mkdocs.commands.build.build(mkdocs.config.load_config(site_dir=str(site_path)))
     os.chdir(current_dir)
-    for lang in docs_path.iterdir():
+    for lang in get_lang_paths():
         if lang == en_build_path or not lang.is_dir():
             continue
         build_lang(lang.name)
@@ -220,7 +224,7 @@ def update_languages(
     mkdocs.yml files (for all the languages).
     """
     if lang is None:
-        for lang_path in docs_path.iterdir():
+        for lang_path in get_lang_paths():
             if lang_path.is_dir():
                 typer.echo(f"Updating {lang_path.name}")
                 update_config(lang_path.name)
@@ -278,7 +282,7 @@ def update_config(lang: str):
     config_path = lang_path / mkdocs_name
     config: dict = mkdocs.utils.yaml_load(config_path.read_text(encoding="utf-8"))
     languages = [{"en": "/"}]
-    for lang in docs_path.iterdir():
+    for lang in get_lang_paths():
         if lang.name == "en" or not lang.is_dir():
             continue
         name = lang.name
