@@ -1,6 +1,6 @@
 site_name: FastAPI
 site_description: FastAPI framework, high performance, easy to learn, fast to code, ready for production
-site_url: https://fastapi.tiangolo.com/es/
+site_url: https://fastapi.tiangolo.com/zh/
 theme:
   name: material
   palette:
@@ -8,7 +8,7 @@ theme:
     accent: amber
   logo: https://fastapi.tiangolo.com/img/icon-white.svg
   favicon: https://fastapi.tiangolo.com/img/favicon.png
-  language: es
+  language: zh
 repo_name: tiangolo/fastapi
 repo_url: https://github.com/tiangolo/fastapi
 edit_uri: ''
@@ -57,3 +57,5 @@ extra_javascript:
 - https://unpkg.com/mermaid@8.4.6/dist/mermaid.min.js
 - https://fastapi.tiangolo.com/js/termynal.js
 - https://fastapi.tiangolo.com/js/custom.js
+- https://fastapi.tiangolo.com/js/chat.js
+- https://sidecar.gitter.im/dist/sidecar.v1.js
