@@ -326,7 +326,7 @@ item: Item
     * Headers.
     * Formularios.
     * Archivos.
-* <abbr title="en inglés: serialization, parsing, marshalling">Conversión</abbr> de datos de output: convirtiendo de datos y tipos de Python a datos del network (como JSON):
+* <abbr title="en inglés: serialization, parsing, marshalling">Conversión</abbr> de datos de output: convirtiendo de datos y tipos de Python a datos para la red (como JSON):
     * Convertir tipos de Python (`str`, `int`, `float`, `bool`, `list`, etc).
     * Objetos `datetime`.
     * Objetos `UUID`.
