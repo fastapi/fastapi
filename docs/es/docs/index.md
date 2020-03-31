@@ -318,7 +318,7 @@ item: Item
 * Validación de datos:
     * Errores automáticos y claros cuándo los datos son inválidos.
     * Validación, incluso para objetos JSON profundamente anidados.
-* <abbr title="en inglés: serialization, parsing, marshalling">Conversión</abbr> de datos de input: viniendo del network a datos y tipos de Python. Leyendo desde:
+* <abbr title="en inglés: serialization, parsing, marshalling">Conversión</abbr> de datos de input: viniendo de la red a datos y tipos de Python. Leyendo desde:
     * JSON.
     * Path parameters.
     * Query parameters.
