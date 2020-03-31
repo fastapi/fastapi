@@ -343,7 +343,7 @@ Volviendo al ejemplo de código anterior, **FastAPI** va a:
 * Validar que existe un `item_id` en el path para requests usando `GET` y `PUT`.
 * Validar que el `item_id` es del tipo `int` para requests de tipo `GET` y `PUT`.
     * Si no lo es, el cliente verá un mensaje de error útil y claro.
-* Revisar si existe un query parameter opcional llamado `q` (cómo en `http://127.0.0.1:8000/items/foo?q=somequery`) para `GET` requests.
+* Revisar si existe un query parameter opcional llamado `q` (cómo en `http://127.0.0.1:8000/items/foo?q=somequery`) para requests de tipo `GET`.
     * Como el parámetro `q` fue declarado con `= None` es opcional.
     * Sin el `None` sería obligatorio (cómo lo es el body en el caso con `PUT`).
 * Para `PUT` requests a `/items/{item_id}` leer el body como JSON:
