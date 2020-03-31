@@ -317,7 +317,7 @@ item: Item
     * Anotaciones de tipos.
 * Validación de datos:
     * Errores automáticos y claros cuándo los datos son inválidos.
-    * Validación inclusiva para objetos JSON profundamente anidados.
+    * Validación, incluso para objetos JSON profundamente anidados.
 * <abbr title="en inglés: serialization, parsing, marshalling">Conversión</abbr> de datos de input: viniendo del network a datos y tipos de Python. Leyendo desde:
     * JSON.
     * Path parameters.
