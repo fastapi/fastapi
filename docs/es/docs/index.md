@@ -207,7 +207,7 @@ Verás la respuesta de JSON cómo:
 
 Ya creaste una API que:
 
-* Recibe HTTP requests en el _paths_ `/` y `/items/{item_id}`.
+* Recibe HTTP requests en los _paths_ `/` y `/items/{item_id}`.
 * Ambos _paths_ toman `GET` <em>operaciones</em> (también conocido como HTTP _methods_).
 * El _path_ `/items/{item_id}` tiene un _path parameter_ `item_id` que debería ser un `int`.
 * El _path_ `/items/{item_id}` tiene un `str` _query parameter_ `q` opcional.
