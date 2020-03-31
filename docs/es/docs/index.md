@@ -388,7 +388,7 @@ Para un ejemplo más completo que incluye más características ve el <a href="h
 **Spoiler alert**: el Tutorial - Guía de Usuario:
 
 * Declaración de **parámetros** en otros lugares diferentes cómo los: **headers**, **cookies**, **formularios fields** y **archivos**.
-* Cómo fijar **validation constraints** cómo `maximum_length` o `regex`.
+* Cómo agregar **requisitos de validación** cómo `maximum_length` o `regex`.
 * Un sistema de **<abbr title="también conocido en inglés cómo: components, resources, providers, services, injectables">Dependency Injection</abbr>** poderoso y fácil de usar.
 * Seguridad y autenticación incluyendo soporte para **OAuth2** con **JWT tokens** y **HTTP Basic** auth.
 * Técnicas más avanzadas, pero igual de fáciles, para declarar **modelos de JSON profundamente anidados** (gracias a Pydantic).
