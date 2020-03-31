@@ -34,6 +34,7 @@ nav:
   - tutorial/body-multiple-params.md
   - tutorial/body-fields.md
   - tutorial/body-nested-models.md
+  - tutorial/schema-extra-example.md
   - tutorial/extra-data-types.md
   - tutorial/cookie-params.md
   - tutorial/header-params.md
@@ -146,3 +147,5 @@ extra_javascript:
 - https://unpkg.com/mermaid@8.4.6/dist/mermaid.min.js
 - js/termynal.js
 - js/custom.js
+- js/chat.js
+- https://sidecar.gitter.im/dist/sidecar.v1.js

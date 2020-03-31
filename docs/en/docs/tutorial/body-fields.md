@@ -35,26 +35,11 @@ You can then use `Field` with model attributes:
 !!! tip
     Notice how each model's attribute with a type, default value and `Field` has the same structure as a *path operation function's* parameter, with `Field` instead of `Path`, `Query` and `Body`.
 
-## JSON Schema extras
+## Add extra information
 
-In `Field`, `Path`, `Query`, `Body` and others you'll see later, you can declare extra parameters apart from those described before.
+You can declare extra information in `Field`, `Query`, `Body`, etc. And it will be included in the generated JSON Schema.
 
-Those parameters will be added as-is to the output JSON Schema.
-
-If you know JSON Schema and want to add extra information apart from what we have discussed here, you can pass that as extra keyword arguments.
-
-!!! warning
-    Have in mind that extra parameters passed won't add any validation, only annotation, for documentation purposes.
-
-For example, you can use that functionality to pass a <a href="http://json-schema.org/latest/json-schema-validation.html#rfc.section.8.5" class="external-link" target="_blank">JSON Schema example</a> field to a body request JSON Schema:
-
-```Python hl_lines="20 21 22 23 24 25"
-{!../../../docs_src/body_fields/tutorial002.py!}
-```
-
-And it would look in the `/docs` like this:
-
-<img src="/img/tutorial/body-fields/image01.png">
+You will learn more about it later to declare examples examples.
 
 ## Recap
 
