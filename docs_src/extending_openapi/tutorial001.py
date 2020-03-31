@@ -9,7 +9,7 @@ async def read_items():
     return [{"name": "Foo"}]
 
 
-def custom_openapi():
+def custom_openapi(openapi_prefix: str):
     if app.openapi_schema:
         return app.openapi_schema
     openapi_schema = get_openapi(

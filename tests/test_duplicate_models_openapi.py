@@ -19,5 +19,5 @@ def test_get_openapi():
     def f():
         pass  # pragma: no cover
 
-    openapi = app.openapi()
+    openapi = app.openapi("")
     assert isinstance(openapi, dict)
