@@ -30,7 +30,7 @@ FastAPI es un web framework moderno y rápido (de alto rendimiento) para constru
 
 Sus características principales son:
 
-* **Rapidez**: Alto rendimiento, a la par con **NodeJS** y **Go** (gracias a Starlette y Pydantic). [Uno de los frameworks de Python más rápidos](#performance).
+* **Rapidez**: Alto rendimiento, a la par con **NodeJS** y **Go** (gracias a Starlette y Pydantic). [Uno de los frameworks de Python más rápidos](#rendimiento).
 
 * **Rápido de programar**: Incrementa la velocidad de desarrollo entre 200% y 300% *.
 * **Menos errores**: Reduce los errores humanos aproximadamente un 40% *.
