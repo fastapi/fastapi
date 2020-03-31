@@ -68,7 +68,7 @@ class FastAPI(Starlette):
         self.description = description
         self.version = version
         self.openapi_url = openapi_url
-        self.openapi_prefix = openapi_prefix.rstrip("/")
+        self._openapi_prefix = openapi_prefix.rstrip("/")
         self.docs_url = docs_url
         self.redoc_url = redoc_url
         self.swagger_ui_oauth2_redirect_url = swagger_ui_oauth2_redirect_url
@@ -87,7 +87,10 @@ class FastAPI(Starlette):
         self.openapi_schema: Optional[Dict[str, Any]] = None
         self.setup()
 
-    def openapi(self) -> Dict:
+    def get_openapi_prefixed(self, req: Request, path: str = "") -> str:
+        return (self._openapi_prefix or req.scope.get("root_path", "")) + path
+
+    def openapi(self, openapi_prefix: str) -> Dict:
         if not self.openapi_schema:
             self.openapi_schema = get_openapi(
                 title=self.title,
@@ -95,7 +98,7 @@ class FastAPI(Starlette):
                 openapi_version=self.openapi_version,
                 description=self.description,
                 routes=self.routes,
-                openapi_prefix=self.openapi_prefix,
+                openapi_prefix=openapi_prefix,
             )
         return self.openapi_schema
 
@@ -103,17 +106,23 @@ class FastAPI(Starlette):
         if self.openapi_url:
 
             async def openapi(req: Request) -> JSONResponse:
-                return JSONResponse(self.openapi())
+                openapi_prefix = self.get_openapi_prefixed(req)
+                return JSONResponse(self.openapi(openapi_prefix))
 
             self.add_route(self.openapi_url, openapi, include_in_schema=False)
-            openapi_url = self.openapi_prefix + self.openapi_url
         if self.openapi_url and self.docs_url:
 
             async def swagger_ui_html(req: Request) -> HTMLResponse:
+                openapi_url = self.get_openapi_prefixed(req, self.openapi_url)
+                oauth2_redirect_url = self.swagger_ui_oauth2_redirect_url
+                if oauth2_redirect_url:
+                    oauth2_redirect_url = self.get_openapi_prefixed(
+                        req, oauth2_redirect_url
+                    )
                 return get_swagger_ui_html(
                     openapi_url=openapi_url,
                     title=self.title + " - Swagger UI",
-                    oauth2_redirect_url=self.swagger_ui_oauth2_redirect_url,
+                    oauth2_redirect_url=oauth2_redirect_url,
                     init_oauth=self.swagger_ui_init_oauth,
                 )
 
@@ -132,6 +141,7 @@ class FastAPI(Starlette):
         if self.openapi_url and self.redoc_url:
 
             async def redoc_html(req: Request) -> HTMLResponse:
+                openapi_url = self.get_openapi_prefixed(req, self.openapi_url)
                 return get_redoc_html(
                     openapi_url=openapi_url, title=self.title + " - ReDoc"
                 )
