@@ -340,7 +340,7 @@ item: Item
 
 Volviendo al ejemplo de código anterior, **FastAPI** va a:
 
-* Validar que existe un `item_id` en el path para `GET` y `PUT` requests.
+* Validar que existe un `item_id` en el path para requests usando `GET` y `PUT`.
 * Validar que el `item_id` es del tipo `int` para `GET` y `PUT` requests.
     * Si no lo es, el cliente verá un mensaje de error útil y claro.
 * Revisar si existe un query parameter opcional llamado `q` (cómo en `http://127.0.0.1:8000/items/foo?q=somequery`) para `GET` requests.
