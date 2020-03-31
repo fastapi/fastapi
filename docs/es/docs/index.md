@@ -346,7 +346,7 @@ Volviendo al ejemplo de código anterior, **FastAPI** va a:
 * Revisar si existe un query parameter opcional llamado `q` (cómo en `http://127.0.0.1:8000/items/foo?q=somequery`) para requests de tipo `GET`.
     * Como el parámetro `q` fue declarado con `= None` es opcional.
     * Sin el `None` sería obligatorio (cómo lo es el body en el caso con `PUT`).
-* Para `PUT` requests a `/items/{item_id}` leer el body como JSON:
+* Para requests de tipo `PUT` a `/items/{item_id}` leer el body como JSON:
     * Revisar si tiene un atributo requerido `name` que debe ser un `str`.
     * Revisar si tiene un atributo requerido `price` que debe ser un `float`.
     * Revisar si tiene un atributo opcional `is_offer`, que debe ser un `bool`si está presente.
