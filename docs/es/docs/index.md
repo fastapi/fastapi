@@ -162,7 +162,7 @@ async def read_item(item_id: int, q: str = None):
 
 **Nota**:
 
-Si no lo sabes, revisa la sección _"¿Con prisa?"_ sobre <a href="https://fastapi.tiangolo.com/async/#in-a-hurry" target="_blank">`async` y `await` en la documentación</a>.
+Si no lo sabes, revisa la sección _"¿Con prisa?"_ sobre <a href="https://fastapi.tiangolo.com/es/async/#con-prisa" target="_blank">`async` y `await` en la documentación</a>.
 
 </details>
 
