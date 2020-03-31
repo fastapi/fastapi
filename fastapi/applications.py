@@ -88,7 +88,8 @@ class FastAPI(Starlette):
         self.setup()
 
     def get_openapi_prefixed(self, req: Request, path: str = "") -> str:
-        return (self._openapi_prefix or req.scope.get("root_path", "")) + path
+        prefix = self._openapi_prefix or req.scope.get("root_path", "").rstrip("/")
+        return prefix + path
 
     def openapi(self, openapi_prefix: str) -> Dict:
         if not self.openapi_schema:
