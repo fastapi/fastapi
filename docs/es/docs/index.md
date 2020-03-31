@@ -385,7 +385,7 @@ Intenta cambiando la línea a:
 
 Para un ejemplo más completo que incluye más características ve el <a href="https://fastapi.tiangolo.com/tutorial/">Tutorial - Guía de Usuario</a>.
 
-**Spoiler alert**: el Tutorial - Guía de Usuario:
+**Spoiler alert**: el Tutorial - Guía de Usuario incluye:
 
 * Declaración de **parámetros** en otros lugares diferentes cómo los: **headers**, **cookies**, **formularios** y **archivos**.
 * Cómo agregar **requisitos de validación** cómo `maximum_length` o `regex`.
