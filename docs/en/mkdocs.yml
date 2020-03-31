@@ -21,6 +21,7 @@ nav:
   - en: /
   - zh: /zh/
   - es: /es/
+  - zh: /zh/
 - features.md
 - python-types.md
 - Tutorial - User Guide:
@@ -34,6 +35,7 @@ nav:
   - tutorial/body-multiple-params.md
   - tutorial/body-fields.md
   - tutorial/body-nested-models.md
+  - tutorial/schema-extra-example.md
   - tutorial/extra-data-types.md
   - tutorial/cookie-params.md
   - tutorial/header-params.md

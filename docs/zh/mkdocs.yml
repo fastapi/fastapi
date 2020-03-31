@@ -19,8 +19,8 @@ nav:
 - FastAPI: index.md
 - Languages:
   - en: /
-  - zh: /zh/
   - es: /es/
+  - zh: /zh/
 - features.md
 markdown_extensions:
 - toc:

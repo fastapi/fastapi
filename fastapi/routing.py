@@ -498,7 +498,12 @@ class APIRouter(routing.Router):
     def add_api_websocket_route(
         self, path: str, endpoint: Callable, name: str = None
     ) -> None:
-        route = APIWebSocketRoute(path, endpoint=endpoint, name=name)
+        route = APIWebSocketRoute(
+            path,
+            endpoint=endpoint,
+            name=name,
+            dependency_overrides_provider=self.dependency_overrides_provider,
+        )
         self.routes.append(route)
 
     def websocket(self, path: str, name: str = None) -> Callable:

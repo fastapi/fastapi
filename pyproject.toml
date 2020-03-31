@@ -58,7 +58,6 @@ test = [
     "async_generator",
     "python-multipart",
     "aiofiles",
-    "ujson",
     "flask"
 ]
 doc = [
@@ -86,6 +85,7 @@ all = [
     "pyyaml",
     "graphene",
     "ujson",
+    "orjson",
     "email_validator",
     "uvicorn",
     "async_exit_stack",

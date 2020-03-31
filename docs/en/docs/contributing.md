@@ -113,13 +113,25 @@ $ flit install --deps develop --symlink
 
 </div>
 
+If you are on Windows, use `--pth-file` instead of `--symlink`:
+
+<div class="termy">
+
+```console
+$ flit install --deps develop --pth-file
+
+---> 100%
+```
+
+</div>
+
 It will install all the dependencies and your local FastAPI in your local environment.
 
 #### Using your local FastAPI
 
 If you create a Python file that imports and uses FastAPI, and run it with the Python from your local environment, it will use your local FastAPI source code.
 
-And if you update that local FastAPI source code, as it is installed with `--symlink`, when you run that Python file again, it will use the fresh version of FastAPI you just edited.
+And if you update that local FastAPI source code, as it is installed with `--symlink` (or `--pth-file` on Windows), when you run that Python file again, it will use the fresh version of FastAPI you just edited.
 
 That way, you don't have to "install" your local version to be able to test every change.
 
@@ -137,17 +149,7 @@ $ bash scripts/format.sh
 
 It will also auto-sort all your imports.
 
-For it to sort them correctly, you need to have FastAPI installed locally in your environment, with the command in the section above:
-
-<div class="termy">
-
-```console
-$ flit install --symlink
-
----> 100%
-```
-
-</div>
+For it to sort them correctly, you need to have FastAPI installed locally in your environment, with the command in the section above using `--symlink` (or `--pth-file` on Windows).
 
 ### Format imports
 
@@ -293,7 +295,7 @@ $ python ./scripts/docs.py live es
 
 Now you can go to <a href="http://127.0.0.1:8008" class="external-link" target="_blank">http://127.0.0.1:8008</a> and see your changes live.
 
-If you look at the FastAPI docs website, you will see that every language has all the pages. But some are not translated and have a notification about the the translation is missing.
+If you look at the FastAPI docs website, you will see that every language has all the pages. But some pages are not translated and have a notification about the missing translation.
 
 But when you run it locally like this, you will only see the pages that are already translated.
 
@@ -474,10 +476,10 @@ This command generates a directory `./htmlcov/`, if you open the file `./htmlcov
 
 ### Tests in your editor
 
-If you want to use the integrated tests in your editor add `./docs/src` to your `PYTHONPATH` variable.
+If you want to use the integrated tests in your editor add `./docs_src` to your `PYTHONPATH` variable.
 
 For example, in VS Code you can create a file `.env` with:
 
 ```env
-PYTHONPATH=./docs/src
+PYTHONPATH=./docs_src
 ```

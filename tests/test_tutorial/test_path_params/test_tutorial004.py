@@ -26,8 +26,8 @@ openapi_schema = {
                         },
                     },
                 },
-                "summary": "Read User Me",
-                "operationId": "read_user_me_files__file_path__get",
+                "summary": "Read File",
+                "operationId": "read_file_files__file_path__get",
                 "parameters": [
                     {
                         "required": True,

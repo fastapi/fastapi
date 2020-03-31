@@ -21,6 +21,7 @@ nav:
   - en: /
   - zh: /zh/
   - es: /es/
+  - zh: /zh/
 markdown_extensions:
 - toc:
     permalink: true

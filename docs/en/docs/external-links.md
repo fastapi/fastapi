@@ -59,6 +59,8 @@ Here's an incomplete list of some of them.
 
 * <a href="https://www.tutlinks.com/create-and-deploy-fastapi-app-to-heroku/" class="external-link" target="_blank">Create and Deploy FastAPI app to Heroku without using Docker</a> by <a href="https://www.linkedin.com/in/navule/" class="external-link" target="_blank">Navule Pavan Kumar Rao</a>.
 
+* <a href="https://iwpnd.pw/articles/2020-03/apache-kafka-fastapi-geostream" class="external-link" target="_blank">Apache Kafka producer and consumer with FastAPI and aiokafka</a> by <a href="https://iwpnd.pw" class="external-link" target="_blank">Benjamin Ramser</a>.
+
 ### Japanese
 
 * <a href="https://qiita.com/mtitg/items/47770e9a562dd150631d" class="external-link" target="_blank">FastAPI｜DB接続してCRUDするPython製APIサーバーを構築</a> by <a href="https://qiita.com/mtitg" class="external-link" target="_blank">@mtitg</a>.
