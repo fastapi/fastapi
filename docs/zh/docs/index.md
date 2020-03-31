@@ -31,21 +31,21 @@ FastAPI 是一个用于构建 API 的现代、快速（高性能）web 框架，
 
 关键特性:
 
-* **快速**： 可与 **NodeJS** 和 **Go** 比肩的极高性能（归功于 Starlette 和 Pydantic）。[最快的 Python web 框架之一](#_11)。
+* **快速**：可与 **NodeJS** 和 **Go** 比肩的极高性能（归功于 Starlette 和 Pydantic）。[最快的 Python web 框架之一](#_11)。
 
-* **快速编码**： 提高功能开发速度约200％至300％ *。
-* **更少 bug**： 减少约40％的人为（开发者）导致错误。 *
-* **智能**： 极佳的编辑器支持。处处皆可<abbr title="也被称为自动完成、智能感知">自动补全</abbr>，减少调试时间。
-* **简单**： 被设计为易于使用和学习，减少阅读文档时间。
-* **简短**： 减少代码重复。通过不同的参数声明实现丰富功能。bug 更少。
-* **健壮**： 生产可用级别的代码。以及自动生成的交互式文档。
-* **标准化**： 基于 API 的相关开放标准并完全兼容： <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (以前被称为 Swagger) 和 <a href="http://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>。
+* **高效编码**：提高功能开发速度约200％至300％ *。
+* **更少 bug**：减少约40％的人为（开发者）导致错误。*
+* **智能**：极佳的编辑器支持。处处皆可<abbr title="也被称为自动完成、智能感知">自动补全</abbr>，减少调试时间。
+* **简单**：被设计为易于使用和学习，减少阅读文档时间。
+* **简短**：减少代码重复。通过不同的参数声明实现丰富功能。bug 更少。
+* **健壮**：生产可用级别的代码。以及自动生成的交互式文档。
+* **标准化**：基于 API 的相关开放标准并完全兼容： <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (以前被称为 Swagger) 和 <a href="http://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>。
 
 <small>* 根据对某个构建线上应用的内部开发团队所进行的测试估算得出。</small>
 
 ## 评价
 
-"*[...] 最近我一直在使用 **FastAPI** 。 [...] 实际上我正在计划将其用于我所在的微软团队的所有 **机器学习服务** 。 其中一些服务正被集成进 **Windows** 核心产品和一些 **Office** 产品。*"
+"*[...] 最近我一直在使用 **FastAPI** 。[...] 实际上我正在计划将其用于我所在的微软团队的所有 **机器学习服务** 。其中一些服务正被集成进 **Windows** 核心产品和一些 **Office** 产品。*"
 
 <div style="text-align: right; margin-right: 10%;">Kabir Khan - <strong>微软</strong> <a href="https://github.com/tiangolo/fastapi/pull/26" target="_blank"><small>(ref)</small></a></div>
 
@@ -83,7 +83,7 @@ FastAPI 是一个用于构建 API 的现代、快速（高性能）web 框架，
 
 如果你正在开发一个在终端中运行的 <abbr title="Command Line Interface">命令行</abbr> 应用而不是 web API， 不妨试下 <a href="https://typer.tiangolo.com/" class="external-link" target="_blank">**Typer**</a>。
 
-**Typer** 是 FastAPI 的小伙伴。 它打算成为 **命令行中的 FastAPI**。 ⌨️ 🚀
+**Typer** 是 FastAPI 的小伙伴。它打算成为 **命令行中的 FastAPI**。 ⌨️ 🚀
 
 ## 依赖
 
