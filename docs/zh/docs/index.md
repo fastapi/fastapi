@@ -27,31 +27,31 @@
 
 ---
 
-FastAPI 是一个用于构建 API 的现代、快速（高性能）web 框架，使用基于类型提示的 Python 3.6及更高版本。
+FastAPI 是一个用于构建 API 的现代、快速（高性能）的 web 框架，使用基于类型提示的 Python 3.6 及更高版本。
 
 关键特性:
 
 * **快速**：可与 **NodeJS** 和 **Go** 比肩的极高性能（归功于 Starlette 和 Pydantic）。[最快的 Python web 框架之一](#_11)。
 
-* **高效编码**：提高功能开发速度约200％至300％ *。
-* **更少 bug**：减少约40％的人为（开发者）导致错误。*
+* **高效编码**：提高功能开发速度约 200％ 至 300％。*
+* **更少 bug**：减少约 40％ 的人为（开发者）导致错误。*
 * **智能**：极佳的编辑器支持。处处皆可<abbr title="也被称为自动完成、智能感知">自动补全</abbr>，减少调试时间。
-* **简单**：被设计为易于使用和学习，减少阅读文档时间。
+* **简单**：设计的易于使用和学习，减少阅读文档时间。
 * **简短**：减少代码重复。通过不同的参数声明实现丰富功能。bug 更少。
 * **健壮**：生产可用级别的代码。以及自动生成的交互式文档。
-* **标准化**：基于 API 的相关开放标准并完全兼容： <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (以前被称为 Swagger) 和 <a href="http://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>。
+* **标准化**：基于 API 的相关开放标准并完全兼容：<a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (以前被称为 Swagger) 和 <a href="http://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>。
 
 <small>* 根据对某个构建线上应用的内部开发团队所进行的测试估算得出。</small>
 
 ## 评价
 
-"*[...] 最近我一直在使用 **FastAPI** 。[...] 实际上我正在计划将其用于我所在的微软团队的所有 **机器学习服务** 。其中一些服务正被集成进 **Windows** 核心产品和一些 **Office** 产品。*"
+"*[...] 最近我一直在使用 **FastAPI**。[...] 实际上我正在计划将其用于我所在的微软团队的所有**机器学习服务**。其中一些服务正被集成进 **Windows** 核心产品和一些 **Office** 产品。*"
 
 <div style="text-align: right; margin-right: 10%;">Kabir Khan - <strong>微软</strong> <a href="https://github.com/tiangolo/fastapi/pull/26" target="_blank"><small>(ref)</small></a></div>
 
 ---
 
-"* **FastAPI**让我兴奋的欣喜若狂。它太棒了！*"
+"***FastAPI** 让我兴奋的欣喜若狂。它太棒了！*"
 
 <div style="text-align: right; margin-right: 10%;">Brian Okken - <strong><a href="https://pythonbytes.fm/episodes/show/123/time-to-right-the-py-wrongs?time_in_sec=855" target="_blank">Python Bytes</a> 播客主持人</strong> <a href="https://twitter.com/brianokken/status/1112220079972728832" target="_blank"><small>(ref)</small></a></div>
 
@@ -63,7 +63,7 @@ FastAPI 是一个用于构建 API 的现代、快速（高性能）web 框架，
 
 ---
 
-"*如果你正打算学习一个 **现代框架** 用来构建 REST API，来看下 **FastAPI** [...] 它快速、易用且易于学习 [...]*"
+"*如果你正打算学习一个**现代框架**用来构建 REST API，来看下 **FastAPI** [...] 它快速、易用且易于学习 [...]*"
 
 "*我们已经将 **API** 服务切换到了 **FastAPI** [...] 我认为你会喜欢它的 [...]*"
 
@@ -71,7 +71,7 @@ FastAPI 是一个用于构建 API 的现代、快速（高性能）web 框架，
 
 ---
 
-"*我们采用了 **FastAPI** 来创建用于获取 **预测结果** 的 **REST** 服务。 [用于 Ludwig]*"
+"*我们采用了 **FastAPI** 来创建用于获取**预测结果**的 **REST** 服务。[用于 Ludwig]*"
 
 <div style="text-align: right; margin-right: 10%;">Piero Molino， Yaroslav Dudin 和 Sai Sumanth Miryala - <strong>Uber</strong> <a href="https://eng.uber.com/ludwig-v0-2/" target="_blank"><small>(ref)</small></a></div>
 
@@ -81,13 +81,13 @@ FastAPI 是一个用于构建 API 的现代、快速（高性能）web 框架，
 
 <a href="https://typer.tiangolo.com" target="_blank"><img src="https://typer.tiangolo.com/img/logo-margin/logo-margin-vector.svg" style="width: 20%;"></a>
 
-如果你正在开发一个在终端中运行的 <abbr title="Command Line Interface">命令行</abbr> 应用而不是 web API， 不妨试下 <a href="https://typer.tiangolo.com/" class="external-link" target="_blank">**Typer**</a>。
+如果你正在开发一个在终端中运行的<abbr title="Command Line Interface">命令行</abbr>应用而不是 web API，不妨试下 <a href="https://typer.tiangolo.com/" class="external-link" target="_blank">**Typer**</a>。
 
-**Typer** 是 FastAPI 的小伙伴。它打算成为 **命令行中的 FastAPI**。 ⌨️ 🚀
+**Typer** 是 FastAPI 的小伙伴。它打算成为**命令行中的 FastAPI**。 ⌨️ 🚀
 
 ## 依赖
 
-Python 3.6及更高版本
+Python 3.6 及更高版本
 
 FastAPI 站在以下巨人的肩膀之上：
 
@@ -186,13 +186,13 @@ $ uvicorn main:app --reload
 </div>
 
 <details markdown="1">
-<summary>关于 <code>uvicorn main:app --reload</code> 命令...</summary>
+<summary>关于 <code>uvicorn main:app --reload</code> 命令......</summary>
 
  `uvicorn main:app` 命令含义如下:
 
-* `main`： `main.py` 文件（一个 Python “模块“）。
-* `app`： 在 `main.py` 文件中通过 `app = FastAPI()` 创建的对象。
-* `--reload`： 让服务器在更新代码后重新启动。仅在开发时使用该选项。
+* `main`：`main.py` 文件（一个 Python "模块"）。
+* `app`：在 `main.py` 文件中通过 `app = FastAPI()` 创建的对象。
+* `--reload`：让服务器在更新代码后重新启动。仅在开发时使用该选项。
 
 </details>
 
@@ -225,7 +225,7 @@ $ uvicorn main:app --reload
 
 访问 <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>。
 
-你会看到另一个自动生成的文档 （由 <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a>）生成：
+你会看到另一个自动生成的文档（由 <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a>）生成：
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
@@ -291,13 +291,13 @@ def update_item(item_id: int, item: Item):
 
 ### 回顾
 
-简单来说， 你声明了 **一次** 参数、请求体等的类型。就和声明函数的参数类型一样。
+总的来说，你就像声明函数的参数类型一样只声明了**一次**请求参数、请求体等的类型。
 
 你使用了标准的现代 Python 类型来完成声明。
 
 你不需要去学习新的语法、了解特定库的方法或类，等等。
 
-只需要使用标准的 **Python 3.6及更高版本**。
+只需要使用标准的 **Python 3.6 及更高版本**。
 
 举个例子，比如声明 `int` 类型：
 
@@ -313,7 +313,7 @@ item: Item
 
 ......在进行一次声明之后，你将获得：
 
-* 编辑器支持， 包括：
+* 编辑器支持，包括：
     * 自动补全
     * 类型检查
 * 数据校验：
@@ -339,7 +339,7 @@ item: Item
 
 ---
 
-回到前面的代码示例， **FastAPI** 将会：
+回到前面的代码示例，**FastAPI** 将会：
 
 * 校验 `GET` 和 `PUT` 请求的路径中是否含有 `item_id`。
 * 校验 `GET` 和 `PUT` 请求中的 `item_id` 是否为 `int` 类型。
@@ -356,7 +356,7 @@ item: Item
 * 通过 OpenAPI 文档来记录所有内容，可被用于：
     * 交互式文档系统
     * 许多编程语言的客户端代码自动生成系统
-* 直接提供２种交互式文档 web 界面。
+* 直接提供 2 种交互式文档 web 界面。
 
 ---
 
@@ -388,10 +388,10 @@ item: Item
 
 **剧透警告**： 教程 - 用户指南中的内容有：
 
-* 对来自不同地方的参数进行声明，如：**请求头**、**cookies**、**form表单** 以及 **上传的文件**。
-* 如何设置 **校验约束** 如 `maximum_length` 或者 `regex`。
+* 对来自不同地方的参数进行声明，如：**请求头**、**cookies**、**form 表单**以及**上传的文件**。
+* 如何设置**校验约束**如 `maximum_length` 或者 `regex`。
 * 一个强大并易于使用的 **<abbr title="也被称为 components, resources, providers, services, injectables">依赖注入</abbr>** 系统。
-* 安全性和身份验证，包括通过 **JWT 令牌** 和 **HTTP Basic** 身份认证来支持 **OAuth2**。
+* 安全性和身份验证，包括通过 **JWT 令牌**和 **HTTP 基本身份认证**来支持 **OAuth2**。
 * 更进阶（但同样简单）的技巧来声明 **多层嵌套 JSON 模型** （借助 Pydantic）。
 * 许多额外功能（归功于 Starlette）比如：
     * **WebSockets**
@@ -404,9 +404,9 @@ item: Item
 ## 性能
 
 
-独立机构 TechEmpower 所作的基准测试结果显示，基于 Uvicorn 运行的 **FastAPI** 程序是 <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">最快的 Python web 框架之一</a>， 仅次于 Starlette 和 Uvicorn 本身（FastAPI 内部使用了它们）。(*)
+独立机构 TechEmpower 所作的基准测试结果显示，基于 Uvicorn 运行的 **FastAPI** 程序是 <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">最快的 Python web 框架之一</a>，仅次于 Starlette 和 Uvicorn 本身（FastAPI 内部使用了它们）。(*)
 
-要了解更多，请查阅 <a href="https://fastapi.tiangolo.com/benchmarks/" class="internal-link" target="_blank">基准测试</a>章节。
+想了解更多，请查阅 <a href="https://fastapi.tiangolo.com/benchmarks/" class="internal-link" target="_blank">基准测试</a> 章节。
 
 ## 可选依赖
 
@@ -417,10 +417,10 @@ item: Item
 
 用于 Starlette：
 
-* <a href="http://docs.python-requests.org" target="_blank"><code>requests</code></a> - 使用 `TestClient`时安装。
-* <a href="https://github.com/Tinche/aiofiles" target="_blank"><code>aiofiles</code></a> - 使用 `FileResponse` 或 `StaticFiles`时安装。
+* <a href="http://docs.python-requests.org" target="_blank"><code>requests</code></a> - 使用 `TestClient` 时安装。
+* <a href="https://github.com/Tinche/aiofiles" target="_blank"><code>aiofiles</code></a> - 使用 `FileResponse` 或 `StaticFiles` 时安装。
 * <a href="http://jinja.pocoo.org" target="_blank"><code>jinja2</code></a> - 使用默认模板配置时安装。
-* <a href="https://andrew-d.github.io/python-multipart/" target="_blank"><code>python-multipart</code></a> - 需要通过 `request.form()` 对表单进行 <abbr title="将来自 HTTP 请求中的字符串转换为 Python 数据类型">"解析"</abbr>时安装。
+* <a href="https://andrew-d.github.io/python-multipart/" target="_blank"><code>python-multipart</code></a> - 需要通过 `request.form()` 对表单进行<abbr title="将来自 HTTP 请求中的字符串转换为 Python 数据类型">"解析"</abbr>时安装。
 * <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - 提供 `SessionMiddleware` 支持。
 * <a href="https://pyyaml.org/wiki/PyYAMLDocumentation" target="_blank"><code>pyyaml</code></a> - 使用 Starlette 提供的 `SchemaGenerator` 时安装（有 FastAPI 你可能并不需要它）。
 * <a href="https://graphene-python.org/" target="_blank"><code>graphene</code></a> - 需要 `GraphQLApp` 支持时安装。
