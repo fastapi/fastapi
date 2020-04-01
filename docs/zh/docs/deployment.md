@@ -385,6 +385,6 @@ Running on 0.0.0.0:8080 over http (CTRL + C to quit)
 
 或者安装 <a href="https://gunicorn.org/" class="external-link" target="_blank">Gunicorn</a> 并 <a href="https://www.uvicorn.org/#running-with-gunicorn" class="external-link" target="_blank">将其作为 Uvicorn 的管理器</a>
 
-保证精确调整 worker 的数量等等。
+或者保证精确调整 worker 的数量等等。
 
 但是如果你正做这些，你可能只需要使用 Docker 镜像就能够自动做到这些了。
