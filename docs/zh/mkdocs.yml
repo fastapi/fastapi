@@ -21,6 +21,7 @@ nav:
   - en: /
   - es: /es/
   - zh: /zh/
+- deployment.md
 markdown_extensions:
 - toc:
     permalink: true
