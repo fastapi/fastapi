@@ -1,6 +1,6 @@
 from fastapi.testclient import TestClient
 
-from application_configuration.tutorial001 import app
+from metadata.tutorial001 import app
 
 client = TestClient(app)
 
