@@ -65,7 +65,7 @@ nav:
   - tutorial/sql-databases.md
   - tutorial/bigger-applications.md
   - tutorial/background-tasks.md
-  - tutorial/application-configuration.md
+  - tutorial/metadata.md
   - tutorial/static-files.md
   - tutorial/testing.md
   - tutorial/debugging.md
@@ -98,6 +98,7 @@ nav:
   - advanced/testing-websockets.md
   - advanced/testing-events.md
   - advanced/testing-dependencies.md
+  - advanced/settings.md
   - advanced/extending-openapi.md
   - advanced/openapi-callbacks.md
   - advanced/wsgi.md
