@@ -98,6 +98,7 @@ nav:
   - advanced/testing-websockets.md
   - advanced/testing-events.md
   - advanced/testing-dependencies.md
+  - advanced/settings.md
   - advanced/extending-openapi.md
   - advanced/openapi-callbacks.md
   - advanced/wsgi.md
