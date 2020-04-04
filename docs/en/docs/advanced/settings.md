@@ -331,7 +331,7 @@ participant code as Code
 participant function as say_hi()
 participant execute as Execute function
 
-    rect rgba(0, 255, 255, .1)
+    rect rgba(0, 255, 0, .1)
         code ->> function: say_hi(name="Camila")
         function ->> execute: execute function code
         execute ->> code: return the result
@@ -342,13 +342,13 @@ participant execute as Execute function
         function ->> code: return stored result
     end
 
-    rect rgba(0, 255, 255, .1)
+    rect rgba(0, 255, 0, .1)
         code ->> function: say_hi(name="Rick")
         function ->> execute: execute function code
         execute ->> code: return the result
     end
 
-    rect rgba(0, 255, 255, .1)
+    rect rgba(0, 255, 0, .1)
         code ->> function: say_hi(name="Rick", salutation="Mr.")
         function ->> execute: execute function code
         execute ->> code: return the result
