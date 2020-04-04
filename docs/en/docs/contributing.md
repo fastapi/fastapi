@@ -257,7 +257,16 @@ Here are the steps to help with translations.
 
 #### Tips and guidelines
 
-* Add a single Pull Request per page translated. That will make it much easier for others to review it.
+* Check the currently <a href="https://github.com/tiangolo/fastapi/pulls" class="external-link" target="_blank">existing pull requests</a> for your language and add reviews requesting changes or approving them.
+
+!!! tip
+    You can <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/commenting-on-a-pull-request" class="external-link" target="_blank">add comments with change suggestions</a> to existing pull requests.
+
+    Check the docs about <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-request-reviews" class="external-link" target="_blank">adding a pull request review</a> to approve it or request changes.
+
+* Check in the <a href="https://github.com/tiangolo/fastapi/issues" class="external-link" target="_blank">issues</a> to see if there's one coordinating translations for your language.
+
+* Add a single pull request per page translated. That will make it much easier for others to review it.
 
 For the languages I don't speak, I'll wait for several others to review the translation before merging.
 
@@ -384,6 +393,11 @@ Updating en
 </div>
 
 Now you can check in your code editor the newly created directory `docs/ht/`.
+
+!!! tip
+    Create a first pull request with just this, to set up the configuration for the new language, before adding translations.
+
+    That way others can help with other pages while you work on the first one. 🚀
 
 Start by translating the main page, `docs/ht/index.md`.
 
