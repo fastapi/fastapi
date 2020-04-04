@@ -171,10 +171,10 @@ If you don't know, check the _"In a hurry?"_ section about <a href="https://fast
 
 Run the server with:
 
+<div class="termy">
 
 ```console
 $ uvicorn main:app --reload
-
 
 INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 INFO:     Started reloader process [28720]
@@ -183,6 +183,7 @@ INFO:     Waiting for application startup.
 INFO:     Application startup complete.
 ```
 
+</div>
 
 <details markdown="1">
 <summary>About the command <code>uvicorn main:app --reload</code>...</summary>
