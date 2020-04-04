@@ -119,7 +119,7 @@ Hello World from Python
 
 These environment variables can only handle text strings, as they are external to Python and have to be compatible with other programs and the rest of the system (and even with different operating systems, as Linux, Windows, macOS).
 
-That means that any value read in Python from an environment variable will be a `str`, and any conversion to a different type or validation has be done in code.
+That means that any value read in Python from an environment variable will be a `str`, and any conversion to a different type or validation has to be done in code.
 
 ## Pydantic `Settings`
 
@@ -137,6 +137,9 @@ You can use all the same validation features and tools you use for Pydantic mode
 {!../../../docs_src/settings/tutorial001.py!}
 ```
 
+!!! tip
+    If you want something quick to copy and paste, don't use this example, use the last one below.
+
 Then, when you create an instance of that `Settings` class (in this case, in the `settings` object), Pydantic will read the environment variables in a case-insensitive way, so, an upper-case variable `APP_NAME` will still be read for the attribute `app_name`.
 
 Next it will convert and validate the data. So, when you use that `settings` object, you will have data of the types you declared (e.g. `items_per_user` will be an `int`).
@@ -151,7 +154,7 @@ Then you can use the new `settings` object in your application:
 
 ### Run the server
 
-Then you would run the server passing the configurations as environment variables, for example you could set an `ADMIN_EMAIL` and `APP_NAME` with:
+Next, you would run the server passing the configurations as environment variables, for example you could set an `ADMIN_EMAIL` and `APP_NAME` with:
 
 <div class="termy">
 
@@ -174,7 +177,7 @@ And the `items_per_user` would keep its default value of `50`.
 
 ## Settings in another module
 
-You could put those settings in another module file as you saw in [Bigger Applications - Multiple Files](bigger-applications.md){.internal-link target=_blank}.
+You could put those settings in another module file as you saw in [Bigger Applications - Multiple Files](../tutorial/bigger-applications.md){.internal-link target=_blank}.
 
 For example, you could have a file `config.py` with:
 
@@ -189,7 +192,7 @@ And then use it in a file `main.py`:
 ```
 
 !!! tip
-    You would also need a file `__init__.py` as you saw on [Bigger Applications - Multiple Files](bigger-applications.md){.internal-link target=_blank}.
+    You would also need a file `__init__.py` as you saw on [Bigger Applications - Multiple Files](../tutorial/bigger-applications.md){.internal-link target=_blank}.
 
 ## Settings in a dependency
 
@@ -207,17 +210,18 @@ Coming from the previous example, your `config.py` file could look like:
 
 Notice that now we don't create a default instance `settings = Settings()`.
 
-Instead we declare its type as `Settings`, but the value as `None`.
-
 ### The main app file
 
-Now we create a dependency that returns the `settings` object if we already created it.
+Now we create a dependency that returns a new `config.Settings()`.
 
-Otherwise we create a new one, assign it to `config.settings` and then return it from the dependency.
-
-```Python hl_lines="8 9 10 11 12"
+```Python hl_lines="5  11 12"
 {!../../../docs_src/settings/app02/main.py!}
 ```
+
+!!! tip
+    We'll discuss the `@lru_cache()` in a bit.
+
+    For now you can assume `get_settings()` is a normal function.
 
 And then we can require it from the *path operation function* as a dependency and use it anywhere we need it.
 
@@ -275,15 +279,97 @@ Here we create a class `Config` inside of your Pydantic `Settings` class, and se
 !!! tip
     The `Config` class is used just for Pydantic configuration. You can read more at <a href="https://pydantic-docs.helpmanual.io/usage/model_config/" class="external-link" target="_blank">Pydantic Model Config</a>
 
-### Creating the settings object
+### Creating the `Settings` only once with `lru_cache`
 
-Reading a file from disk is normally a costly (slow) operation, so you probably want to do it only once and then re-use the same settings, instead of reading it for each request.
+Reading a file from disk is normally a costly (slow) operation, so you probably want to do it only once and then re-use the same settings object, instead of reading it for each request.
 
-Because of that, in the dependency function, we first check if we already have a `settings` object, and create a new one (that could read from disk) only if it's still `None`, so, it would happen only the first time:
+But every time we do:
 
-```Python hl_lines="9 10 11 12"
+```Python
+config.Settings()
+```
+
+a new `Settings` object would be created, and at creation it would read the `.env` file again.
+
+If the dependency function was just like:
+
+```Python
+def get_settings():
+    return config.Settings()
+```
+
+we would create that object for each request, and we would be reading the `.env` file for each request. ⚠️
+
+But as we are using the `@lru_cache()` decorator on top, the `Settings` object will be created only once, the first time it's called. ✔️
+
+```Python hl_lines="1  10"
 {!../../../docs_src/settings/app03/main.py!}
 ```
+
+Then for any subsequent calls of `get_settings()` in the dependencies for the next requests, instead of executing the internal code of `get_settings()` and creating a new `Settings` object, it will return the same object that was returned on the first call, again and again.
+
+#### `lru_cache` Technical Details
+
+`@lru_cache()` modifies the function it decorates to return the same value that was returned the first time, instead of computing it again, executing the code of the function every time.
+
+So, the function below it will be executed once for each combination of arguments. And then the values returned by each of those combinations of arguments will be used again and again whenever the function is called with exactly the same combination of arguments.
+
+For example, if you have a function:
+
+```Python
+@lru_cache()
+def say_hi(name: str, salutation: str = "Ms."):
+    return f"Hello {salutation} {name}"
+```
+
+your program could execute like this:
+
+```mermaid
+sequenceDiagram
+
+participant code as Code
+participant function as say_hi()
+participant execute as Execute function
+
+    rect rgba(0, 255, 0, .1)
+        code ->> function: say_hi(name="Camila")
+        function ->> execute: execute function code
+        execute ->> code: return the result
+    end
+
+    rect rgba(0, 255, 255, .1)
+        code ->> function: say_hi(name="Camila")
+        function ->> code: return stored result
+    end
+
+    rect rgba(0, 255, 0, .1)
+        code ->> function: say_hi(name="Rick")
+        function ->> execute: execute function code
+        execute ->> code: return the result
+    end
+
+    rect rgba(0, 255, 0, .1)
+        code ->> function: say_hi(name="Rick", salutation="Mr.")
+        function ->> execute: execute function code
+        execute ->> code: return the result
+    end
+
+    rect rgba(0, 255, 255, .1)
+        code ->> function: say_hi(name="Rick")
+        function ->> code: return stored result
+    end
+
+    rect rgba(0, 255, 255, .1)
+        code ->> function: say_hi(name="Camila")
+        function ->> code: return stored result
+    end
+```
+
+In the case of our dependency `get_settings()`, the function doesn't even take any arguments, so it always returns the same value.
+
+That way, it behaves almost as if it was just a global variable. But as it uses a dependency function, then we can override it easily for testing.
+
+`@lru_cache()` is part of `functools` which is part of Python's standard library, you can read more about it in the <a href="https://docs.python.org/3/library/functools.html#functools.lru_cache" class="external-link" target="_blank">Python docs for `@lru_cache()`</a>.
 
 ## Recap
 
@@ -291,4 +377,4 @@ You can use Pydantic Settings to handle the settings or configurations for your 
 
 * By using a dependency you can simplify testing.
 * You can use `.env` files with it.
-* Saving the settings in a variable lets you avoid reading the dotenv file again and again for each request.
+* Using `@lru_cache()` lets you avoid reading the dotenv file again and again for each request, while allowing you to override it during testing.
