@@ -174,7 +174,7 @@ And the `items_per_user` would keep its default value of `50`.
 
 ## Settings in another module
 
-You could put those settings in another module file as you saw in [Bigger Applications - Multiple Files](bigger-applications.md){.internal-link target=_blank}.
+You could put those settings in another module file as you saw in [Bigger Applications - Multiple Files](../tutorial/bigger-applications.md){.internal-link target=_blank}.
 
 For example, you could have a file `config.py` with:
 
@@ -189,7 +189,7 @@ And then use it in a file `main.py`:
 ```
 
 !!! tip
-    You would also need a file `__init__.py` as you saw on [Bigger Applications - Multiple Files](bigger-applications.md){.internal-link target=_blank}.
+    You would also need a file `__init__.py` as you saw on [Bigger Applications - Multiple Files](../tutorial/bigger-applications.md){.internal-link target=_blank}.
 
 ## Settings in a dependency
 
