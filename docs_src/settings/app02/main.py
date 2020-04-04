@@ -1,3 +1,5 @@
+from functools import lru_cache
+
 from fastapi import Depends, FastAPI
 
 from . import config
@@ -5,11 +7,9 @@ from . import config
 app = FastAPI()
 
 
+@lru_cache()
 def get_settings():
-    if config.settings:
-        return config.settings
-    config.settings = config.Settings()
-    return config.settings
+    return config.Settings()
 
 
 @app.get("/info")
