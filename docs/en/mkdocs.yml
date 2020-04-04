@@ -20,6 +20,7 @@ nav:
 - Languages:
   - en: /
   - es: /es/
+  - pt: /pt/
   - zh: /zh/
 - features.md
 - python-types.md
