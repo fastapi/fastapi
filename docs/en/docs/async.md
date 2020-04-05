@@ -63,13 +63,13 @@ Let's see that phrase by parts in the sections below, below:
 
 ## Asynchronous Code
 
-Asynchronous code just means that the language has a way to tell the computer / program that at some point in the code, it will have to wait for *something else* to finish somewhere else. Let's say that *something else* is called "slow-file". 
+Asynchronous code just means that the language 💬 has a way to tell the computer / program 🤖 that at some point in the code, it 🤖 will have to wait for *something else* to finish somewhere else. Let's say that *something else* is called "slow-file" 📝.
 
-So, during that time, the computer can go and do some other work, while "slow-file" finishes. 
+So, during that time, the computer can go and do some other work, while "slow-file" 📝 finishes.
 
-Then the computer / program will come back every time it has a chance because it's waiting again, or whenever it finished all the work it had at that point. And it will see if any of the tasks it was waiting for have already finished, doing whatever it had to do.
+Then the computer / program 🤖 will come back every time it has a chance because it's waiting again, or whenever it 🤖 finished all the work it had at that point. And it 🤖 will see if any of the tasks it was waiting for have already finished, doing whatever it had to do.
 
-Next, it takes the first task to finish (let's say, our "slow-file") and continues whatever it had to do with it.
+Next, it 🤖 takes the first task to finish (let's say, our "slow-file" 📝) and continues whatever it had to do with it.
 
 That "wait for something else" normally refers to <abbr title="Input and Output">I/O</abbr> operations that are relatively "slow" (compared to the speed of the processor and the RAM memory), like waiting for:
 
@@ -82,7 +82,7 @@ That "wait for something else" normally refers to <abbr title="Input and Output"
 * a database query to return the results
 * etc.
 
-As the execution time is consumed mostly by waiting for <abbr title="Input and Output">I/O</abbr> operations, also called "I/O bound".
+As the execution time is consumed mostly by waiting for <abbr title="Input and Output">I/O</abbr> operations, they call them "I/O bound" operations.
 
 It's called "asynchronous" because the computer / program doesn't have to be "synchronized" with the slow task, waiting for the exact moment that the task finishes, while doing nothing, to be able to take the task result and continue the work.
 
