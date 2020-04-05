@@ -9,5 +9,5 @@ def test_testing_dbs():
     app_db = Path("./sql_app.db")
     test_create_user()
     test_db.unlink()
-    if app_db.is_file():
+    if app_db.is_file():  # pragma: nocover
         app_db.unlink()
