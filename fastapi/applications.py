@@ -171,6 +171,8 @@ class FastAPI(Starlette):
         response_model_by_alias: bool = True,
         response_model_skip_defaults: bool = None,
         response_model_exclude_unset: bool = False,
+        response_model_exclude_defaults: bool = False,
+        response_model_exclude_none: bool = False,
         include_in_schema: bool = True,
         response_class: Type[Response] = None,
         name: str = None,
@@ -197,6 +199,8 @@ class FastAPI(Starlette):
             response_model_exclude_unset=bool(
                 response_model_exclude_unset or response_model_skip_defaults
             ),
+            response_model_exclude_defaults=response_model_exclude_defaults,
+            response_model_exclude_none=response_model_exclude_none,
             include_in_schema=include_in_schema,
             response_class=response_class or self.default_response_class,
             name=name,
@@ -222,6 +226,8 @@ class FastAPI(Starlette):
         response_model_by_alias: bool = True,
         response_model_skip_defaults: bool = None,
         response_model_exclude_unset: bool = False,
+        response_model_exclude_defaults: bool = False,
+        response_model_exclude_none: bool = False,
         include_in_schema: bool = True,
         response_class: Type[Response] = None,
         name: str = None,
@@ -250,6 +256,8 @@ class FastAPI(Starlette):
                 response_model_exclude_unset=bool(
                     response_model_exclude_unset or response_model_skip_defaults
                 ),
+                response_model_exclude_defaults=response_model_exclude_defaults,
+                response_model_exclude_none=response_model_exclude_none,
                 include_in_schema=include_in_schema,
                 response_class=response_class or self.default_response_class,
                 name=name,
@@ -309,6 +317,8 @@ class FastAPI(Starlette):
         response_model_by_alias: bool = True,
         response_model_skip_defaults: bool = None,
         response_model_exclude_unset: bool = False,
+        response_model_exclude_defaults: bool = False,
+        response_model_exclude_none: bool = False,
         include_in_schema: bool = True,
         response_class: Type[Response] = None,
         name: str = None,
@@ -334,6 +344,8 @@ class FastAPI(Starlette):
             response_model_exclude_unset=bool(
                 response_model_exclude_unset or response_model_skip_defaults
             ),
+            response_model_exclude_defaults=response_model_exclude_defaults,
+            response_model_exclude_none=response_model_exclude_none,
             include_in_schema=include_in_schema,
             response_class=response_class or self.default_response_class,
             name=name,
@@ -359,6 +371,8 @@ class FastAPI(Starlette):
         response_model_by_alias: bool = True,
         response_model_skip_defaults: bool = None,
         response_model_exclude_unset: bool = False,
+        response_model_exclude_defaults: bool = False,
+        response_model_exclude_none: bool = False,
         include_in_schema: bool = True,
         response_class: Type[Response] = None,
         name: str = None,
@@ -384,6 +398,8 @@ class FastAPI(Starlette):
             response_model_exclude_unset=bool(
                 response_model_exclude_unset or response_model_skip_defaults
             ),
+            response_model_exclude_defaults=response_model_exclude_defaults,
+            response_model_exclude_none=response_model_exclude_none,
             include_in_schema=include_in_schema,
             response_class=response_class or self.default_response_class,
             name=name,
@@ -409,6 +425,8 @@ class FastAPI(Starlette):
         response_model_by_alias: bool = True,
         response_model_skip_defaults: bool = None,
         response_model_exclude_unset: bool = False,
+        response_model_exclude_defaults: bool = False,
+        response_model_exclude_none: bool = False,
         include_in_schema: bool = True,
         response_class: Type[Response] = None,
         name: str = None,
@@ -434,6 +452,8 @@ class FastAPI(Starlette):
             response_model_exclude_unset=bool(
                 response_model_exclude_unset or response_model_skip_defaults
             ),
+            response_model_exclude_defaults=response_model_exclude_defaults,
+            response_model_exclude_none=response_model_exclude_none,
             include_in_schema=include_in_schema,
             response_class=response_class or self.default_response_class,
             name=name,
@@ -459,6 +479,8 @@ class FastAPI(Starlette):
         response_model_by_alias: bool = True,
         response_model_skip_defaults: bool = None,
         response_model_exclude_unset: bool = False,
+        response_model_exclude_defaults: bool = False,
+        response_model_exclude_none: bool = False,
         include_in_schema: bool = True,
         response_class: Type[Response] = None,
         name: str = None,
@@ -484,6 +506,8 @@ class FastAPI(Starlette):
             response_model_exclude_unset=bool(
                 response_model_exclude_unset or response_model_skip_defaults
             ),
+            response_model_exclude_defaults=response_model_exclude_defaults,
+            response_model_exclude_none=response_model_exclude_none,
             include_in_schema=include_in_schema,
             response_class=response_class or self.default_response_class,
             name=name,
@@ -509,6 +533,8 @@ class FastAPI(Starlette):
         response_model_by_alias: bool = True,
         response_model_skip_defaults: bool = None,
         response_model_exclude_unset: bool = False,
+        response_model_exclude_defaults: bool = False,
+        response_model_exclude_none: bool = False,
         include_in_schema: bool = True,
         response_class: Type[Response] = None,
         name: str = None,
@@ -534,6 +560,8 @@ class FastAPI(Starlette):
             response_model_exclude_unset=bool(
                 response_model_exclude_unset or response_model_skip_defaults
             ),
+            response_model_exclude_defaults=response_model_exclude_defaults,
+            response_model_exclude_none=response_model_exclude_none,
             include_in_schema=include_in_schema,
             response_class=response_class or self.default_response_class,
             name=name,
@@ -559,6 +587,8 @@ class FastAPI(Starlette):
         response_model_by_alias: bool = True,
         response_model_skip_defaults: bool = None,
         response_model_exclude_unset: bool = False,
+        response_model_exclude_defaults: bool = False,
+        response_model_exclude_none: bool = False,
         include_in_schema: bool = True,
         response_class: Type[Response] = None,
         name: str = None,
@@ -584,6 +614,8 @@ class FastAPI(Starlette):
             response_model_exclude_unset=bool(
                 response_model_exclude_unset or response_model_skip_defaults
             ),
+            response_model_exclude_defaults=response_model_exclude_defaults,
+            response_model_exclude_none=response_model_exclude_none,
             include_in_schema=include_in_schema,
             response_class=response_class or self.default_response_class,
             name=name,
@@ -609,6 +641,8 @@ class FastAPI(Starlette):
         response_model_by_alias: bool = True,
         response_model_skip_defaults: bool = None,
         response_model_exclude_unset: bool = False,
+        response_model_exclude_defaults: bool = False,
+        response_model_exclude_none: bool = False,
         include_in_schema: bool = True,
         response_class: Type[Response] = None,
         name: str = None,
@@ -634,6 +668,8 @@ class FastAPI(Starlette):
             response_model_exclude_unset=bool(
                 response_model_exclude_unset or response_model_skip_defaults
             ),
+            response_model_exclude_defaults=response_model_exclude_defaults,
+            response_model_exclude_none=response_model_exclude_none,
             include_in_schema=include_in_schema,
             response_class=response_class or self.default_response_class,
             name=name,
@@ -659,6 +695,8 @@ class FastAPI(Starlette):
         response_model_by_alias: bool = True,
         response_model_skip_defaults: bool = None,
         response_model_exclude_unset: bool = False,
+        response_model_exclude_defaults: bool = False,
+        response_model_exclude_none: bool = False,
         include_in_schema: bool = True,
         response_class: Type[Response] = None,
         name: str = None,
@@ -684,6 +722,8 @@ class FastAPI(Starlette):
             response_model_exclude_unset=bool(
                 response_model_exclude_unset or response_model_skip_defaults
             ),
+            response_model_exclude_defaults=response_model_exclude_defaults,
+            response_model_exclude_none=response_model_exclude_none,
             include_in_schema=include_in_schema,
             response_class=response_class or self.default_response_class,
             name=name,
