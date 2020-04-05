@@ -131,7 +131,7 @@ async def serialize_response(
             by_alias=by_alias,
             exclude_unset=exclude_unset,
             exclude_defaults=exclude_defaults,
-            include_none=not exclude_none,
+            exclude_none=exclude_none,
         )
     else:
         return jsonable_encoder(response_content)

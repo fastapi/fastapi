@@ -35,7 +35,7 @@ def jsonable_encoder(
     skip_defaults: bool = None,
     exclude_unset: bool = False,
     exclude_defaults: bool = False,
-    include_none: bool = True,
+    exclude_none: bool = False,
     custom_encoder: dict = {},
     sqlalchemy_safe: bool = True,
 ) -> Any:
@@ -59,7 +59,7 @@ def jsonable_encoder(
                 exclude=exclude,
                 by_alias=by_alias,
                 exclude_unset=bool(exclude_unset or skip_defaults),
-                exclude_none=not include_none,
+                exclude_none=exclude_none,
                 exclude_defaults=exclude_defaults,
             )
         else:  # pragma: nocover
@@ -73,7 +73,7 @@ def jsonable_encoder(
             )
         return jsonable_encoder(
             obj_dict,
-            include_none=include_none,
+            exclude_none=exclude_none,
             exclude_defaults=exclude_defaults,
             custom_encoder=encoder,
             sqlalchemy_safe=sqlalchemy_safe,
@@ -93,14 +93,14 @@ def jsonable_encoder(
                     or (not isinstance(key, str))
                     or (not key.startswith("_sa"))
                 )
-                and (value is not None or include_none)
+                and (value is not None or not exclude_none)
                 and ((include and key in include) or key not in exclude)
             ):
                 encoded_key = jsonable_encoder(
                     key,
                     by_alias=by_alias,
                     exclude_unset=exclude_unset,
-                    include_none=include_none,
+                    exclude_none=exclude_none,
                     custom_encoder=custom_encoder,
                     sqlalchemy_safe=sqlalchemy_safe,
                 )
@@ -108,7 +108,7 @@ def jsonable_encoder(
                     value,
                     by_alias=by_alias,
                     exclude_unset=exclude_unset,
-                    include_none=include_none,
+                    exclude_none=exclude_none,
                     custom_encoder=custom_encoder,
                     sqlalchemy_safe=sqlalchemy_safe,
                 )
@@ -125,7 +125,7 @@ def jsonable_encoder(
                     by_alias=by_alias,
                     exclude_unset=exclude_unset,
                     exclude_defaults=exclude_defaults,
-                    include_none=include_none,
+                    exclude_none=exclude_none,
                     custom_encoder=custom_encoder,
                     sqlalchemy_safe=sqlalchemy_safe,
                 )
@@ -161,7 +161,7 @@ def jsonable_encoder(
         by_alias=by_alias,
         exclude_unset=exclude_unset,
         exclude_defaults=exclude_defaults,
-        include_none=include_none,
+        exclude_none=exclude_none,
         custom_encoder=custom_encoder,
         sqlalchemy_safe=sqlalchemy_safe,
     )
