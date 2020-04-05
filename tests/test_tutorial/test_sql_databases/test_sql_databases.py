@@ -286,7 +286,7 @@ def client():
     # Import while creating the client to create the DB after starting the test session
     from sql_databases.sql_app.main import app
 
-    test_db = Path("./test.db")
+    test_db = Path("./sql_app.db")
     with TestClient(app) as c:
         yield c
     test_db.unlink()

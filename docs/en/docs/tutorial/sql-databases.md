@@ -98,9 +98,9 @@ Let's refer to the file `sql_app/database.py`.
 
 In this example, we are "connecting" to a SQLite database (opening a file with the SQLite database).
 
-The file will be located at the same directory in the file `test.db`.
+The file will be located at the same directory in the file `sql_app.db`.
 
-That's why the last part is `./test.db`.
+That's why the last part is `./sql_app.db`.
 
 If you were using a **PostgreSQL** database instead, you would just have to uncomment the line:
 
