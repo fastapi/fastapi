@@ -2,6 +2,8 @@
 
 ## Latest changes
 
+## 0.54.0
+
 * Fix grammatical mistakes in async docs. PR [#1188](https://github.com/tiangolo/fastapi/pull/1188) by [@mickeypash](https://github.com/mickeypash).
 * Add support for `response_model_exclude_defaults` and `response_model_exclude_none`:
     * Deprecate the parameter `include_none` in `jsonable_encoder` and add the inverted `exclude_none`, to keep in sync with Pydantic.
