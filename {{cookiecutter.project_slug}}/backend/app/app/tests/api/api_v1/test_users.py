@@ -4,7 +4,7 @@ from app import crud
 from app.core import config
 from app.db.session import db_session
 from app.schemas.user import UserCreate
-from app.tests.utils.utils import get_server_api, random_lower_string
+from app.tests.utils.utils import get_server_api, random_lower_string, random_email
 
 
 def test_get_users_superuser_me(superuser_token_headers):
@@ -33,7 +33,7 @@ def test_get_users_normal_user_me(normal_user_token_headers):
 
 def test_create_user_new_email(superuser_token_headers):
     server_api = get_server_api()
-    username = random_lower_string()
+    username = random_email()
     password = random_lower_string()
     data = {"email": username, "password": password}
     r = requests.post(
@@ -49,7 +49,7 @@ def test_create_user_new_email(superuser_token_headers):
 
 def test_get_existing_user(superuser_token_headers):
     server_api = get_server_api()
-    username = random_lower_string()
+    username = random_email()
     password = random_lower_string()
     user_in = UserCreate(email=username, password=password)
     user = crud.user.create(db_session, obj_in=user_in)
@@ -66,7 +66,7 @@ def test_get_existing_user(superuser_token_headers):
 
 def test_create_user_existing_username(superuser_token_headers):
     server_api = get_server_api()
-    username = random_lower_string()
+    username = random_email()
     # username = email
     password = random_lower_string()
     user_in = UserCreate(email=username, password=password)
@@ -84,7 +84,7 @@ def test_create_user_existing_username(superuser_token_headers):
 
 def test_create_user_by_normal_user(normal_user_token_headers):
     server_api = get_server_api()
-    username = random_lower_string()
+    username = random_email()
     password = random_lower_string()
     data = {"email": username, "password": password}
     r = requests.post(
@@ -97,12 +97,12 @@ def test_create_user_by_normal_user(normal_user_token_headers):
 
 def test_retrieve_users(superuser_token_headers):
     server_api = get_server_api()
-    username = random_lower_string()
+    username = random_email()
     password = random_lower_string()
     user_in = UserCreate(email=username, password=password)
     user = crud.user.create(db_session, obj_in=user_in)
 
-    username2 = random_lower_string()
+    username2 = random_email()
     password2 = random_lower_string()
     user_in2 = UserCreate(email=username2, password=password2)
     crud.user.create(db_session, obj_in=user_in2)

@@ -2,12 +2,15 @@ import random
 import string
 
 import requests
-
 from app.core import config
 
 
 def random_lower_string():
     return "".join(random.choices(string.ascii_lowercase, k=32))
+
+
+def random_email():
+    return f"{random_lower_string()}@{random_lower_string()}.com"
 
 
 def get_server_api():

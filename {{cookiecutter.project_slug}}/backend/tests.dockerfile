@@ -1,6 +1,6 @@
 FROM python:3.7
 
-RUN pip install requests pytest tenacity passlib[bcrypt] "fastapi>=0.16.0" psycopg2-binary SQLAlchemy
+RUN pip install requests pytest tenacity passlib[bcrypt] "fastapi>=0.16.0" psycopg2-binary SQLAlchemy email_validator
 
 # For development, Jupyter remote kernel, Hydrogen
 # Using inside the container:
