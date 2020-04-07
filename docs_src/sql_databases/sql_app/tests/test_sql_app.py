@@ -34,7 +34,7 @@ def test_create_user():
         "/users/",
         json={"email": "deadpool@example.com", "password": "chimichangas4life"},
     )
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     data = response.json()
     assert data["email"] == "deadpool@example.com"
     assert "id" in data
