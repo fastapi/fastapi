@@ -160,25 +160,25 @@ openapi_schema = {
 
 def test_openapi_schema():
     response = client.get("/openapi.json")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == openapi_schema
 
 
 def test_security_oauth2():
     response = client.get("/users/me", headers={"Authorization": "Bearer footokenbar"})
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == {"username": "Bearer footokenbar"}
 
 
 def test_security_oauth2_password_other_header():
     response = client.get("/users/me", headers={"Authorization": "Other footokenbar"})
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == {"username": "Other footokenbar"}
 
 
 def test_security_oauth2_password_bearer_no_header():
     response = client.get("/users/me")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == {"msg": "Create an account first"}
 
 

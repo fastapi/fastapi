@@ -35,25 +35,25 @@ openapi_schema = {
 
 def test_openapi_schema():
     response = client.get("/openapi.json")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == openapi_schema
 
 
 def test_no_token():
     response = client.get("/items")
-    assert response.status_code == 401
+    assert response.status_code == 401, response.text
     assert response.json() == {"detail": "Not authenticated"}
     assert response.headers["WWW-Authenticate"] == "Bearer"
 
 
 def test_token():
     response = client.get("/items", headers={"Authorization": "Bearer testtoken"})
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == {"token": "testtoken"}
 
 
 def test_incorrect_token():
     response = client.get("/items", headers={"Authorization": "Notexistent testtoken"})
-    assert response.status_code == 401
+    assert response.status_code == 401, response.text
     assert response.json() == {"detail": "Not authenticated"}
     assert response.headers["WWW-Authenticate"] == "Bearer"

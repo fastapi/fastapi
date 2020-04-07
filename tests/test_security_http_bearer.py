@@ -40,23 +40,23 @@ openapi_schema = {
 
 def test_openapi_schema():
     response = client.get("/openapi.json")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == openapi_schema
 
 
 def test_security_http_bearer():
     response = client.get("/users/me", headers={"Authorization": "Bearer foobar"})
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == {"scheme": "Bearer", "credentials": "foobar"}
 
 
 def test_security_http_bearer_no_credentials():
     response = client.get("/users/me")
-    assert response.status_code == 403
+    assert response.status_code == 403, response.text
     assert response.json() == {"detail": "Not authenticated"}
 
 
 def test_security_http_bearer_incorrect_scheme_credentials():
     response = client.get("/users/me", headers={"Authorization": "Basic notreally"})
-    assert response.status_code == 403
+    assert response.status_code == 403, response.text
     assert response.json() == {"detail": "Invalid authentication credentials"}

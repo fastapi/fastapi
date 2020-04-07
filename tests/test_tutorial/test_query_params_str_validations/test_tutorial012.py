@@ -78,19 +78,19 @@ openapi_schema = {
 
 def test_openapi_schema():
     response = client.get("/openapi.json")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == openapi_schema
 
 
 def test_default_query_values():
     url = "/items/"
     response = client.get(url)
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == {"q": ["foo", "bar"]}
 
 
 def test_multi_query_values():
     url = "/items/?q=baz&q=foobar"
     response = client.get(url)
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == {"q": ["baz", "foobar"]}

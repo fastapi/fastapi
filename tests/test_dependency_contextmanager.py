@@ -206,7 +206,7 @@ client = TestClient(app)
 def test_async_state():
     assert state["/async"] == f"asyncgen not started"
     response = client.get("/async")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == f"asyncgen started"
     assert state["/async"] == f"asyncgen completed"
 
@@ -214,7 +214,7 @@ def test_async_state():
 def test_sync_state():
     assert state["/sync"] == f"generator not started"
     response = client.get("/sync")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == f"generator started"
     assert state["/sync"] == f"generator completed"
 
@@ -237,7 +237,7 @@ def test_sync_raise_other():
 
 def test_async_raise():
     response = client.get("/async_raise")
-    assert response.status_code == 500
+    assert response.status_code == 500, response.text
     assert state["/async_raise"] == "asyncgen raise finalized"
     assert "/async_raise" in errors
     errors.clear()
@@ -272,7 +272,7 @@ def test_background_tasks():
 
 def test_sync_raise():
     response = client.get("/sync_raise")
-    assert response.status_code == 500
+    assert response.status_code == 500, response.text
     assert state["/sync_raise"] == "generator raise finalized"
     assert "/sync_raise" in errors
     errors.clear()
@@ -280,14 +280,14 @@ def test_sync_raise():
 
 def test_sync_async_state():
     response = client.get("/sync_async")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == f"asyncgen started"
     assert state["/async"] == f"asyncgen completed"
 
 
 def test_sync_sync_state():
     response = client.get("/sync_sync")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == f"generator started"
     assert state["/sync"] == f"generator completed"
 
@@ -308,7 +308,7 @@ def test_sync_sync_raise_other():
 
 def test_sync_async_raise():
     response = client.get("/sync_async_raise")
-    assert response.status_code == 500
+    assert response.status_code == 500, response.text
     assert state["/async_raise"] == "asyncgen raise finalized"
     assert "/async_raise" in errors
     errors.clear()
@@ -316,7 +316,7 @@ def test_sync_async_raise():
 
 def test_sync_sync_raise():
     response = client.get("/sync_sync_raise")
-    assert response.status_code == 500
+    assert response.status_code == 500, response.text
     assert state["/sync_raise"] == "generator raise finalized"
     assert "/sync_raise" in errors
     errors.clear()
