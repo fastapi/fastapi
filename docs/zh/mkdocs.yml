@@ -6,6 +6,8 @@ theme:
   palette:
     primary: teal
     accent: amber
+  icon:
+    repo: fontawesome/brands/github-alt
   logo: https://fastapi.tiangolo.com/img/icon-white.svg
   favicon: https://fastapi.tiangolo.com/img/favicon.png
   language: zh
@@ -37,19 +39,20 @@ markdown_extensions:
     - name: mermaid
       class: mermaid
       format: !!python/name:pymdownx.superfences.fence_div_format ''
+- pymdownx.tabbed
 extra:
   social:
-  - type: github
+  - icon: fontawesome/brands/github-alt
     link: https://github.com/tiangolo/typer
-  - type: twitter
+  - icon: fontawesome/brands/twitter
     link: https://twitter.com/tiangolo
-  - type: linkedin
+  - icon: fontawesome/brands/linkedin
     link: https://www.linkedin.com/in/tiangolo
-  - type: rss
+  - icon: fontawesome/brands/dev
     link: https://dev.to/tiangolo
-  - type: medium
+  - icon: fontawesome/brands/medium
     link: https://medium.com/@tiangolo
-  - type: globe
+  - icon: fontawesome/solid/globe
     link: https://tiangolo.com
 extra_css:
 - https://fastapi.tiangolo.com/css/termynal.css

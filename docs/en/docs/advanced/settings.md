@@ -15,35 +15,37 @@ An <a href="https://en.wikipedia.org/wiki/Environment_variable" class="external-
 
 You can create and use environment variables in the shell, without needing Python:
 
-<div class="termy">
+=== "Linux, macOS, Windows Bash"
 
-```console
-// You could create an env var MY_NAME with
-$ export MY_NAME="Wade Wilson"
+    <div class="termy">
 
-// Then you could use it with other programs, like
-$ echo "Hello $MY_NAME"
+    ```console
+    // You could create an env var MY_NAME with
+    $ export MY_NAME="Wade Wilson"
 
-Hello Wade Wilson
-```
+    // Then you could use it with other programs, like
+    $ echo "Hello $MY_NAME"
 
-</div>
+    Hello Wade Wilson
+    ```
 
-Or in PowerShell in Windows:
+    </div>
 
-<div class="termy">
+=== "Windows PowerShell"
 
-```console
-// Create an env var MY_NAME
-$ $Env:MY_NAME = "Wade Wilson"
+    <div class="termy">
 
-// Use it with other programs, like
-$ echo "Hello $Env:MY_NAME"
+    ```console
+    // Create an env var MY_NAME
+    $ $Env:MY_NAME = "Wade Wilson"
 
-Hello Wade Wilson
-```
+    // Use it with other programs, like
+    $ echo "Hello $Env:MY_NAME"
 
-</div>
+    Hello Wade Wilson
+    ```
+
+    </div>
 
 ### Read env vars in Python
 
