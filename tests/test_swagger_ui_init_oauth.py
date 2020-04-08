@@ -16,7 +16,7 @@ client = TestClient(app)
 
 def test_swagger_ui():
     response = client.get("/docs")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     print(response.text)
     assert f"ui.initOAuth" in response.text
     assert f'"appName": "The Predendapp"' in response.text

@@ -294,24 +294,24 @@ def client():
 
 def test_openapi_schema(client):
     response = client.get("/openapi.json")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == openapi_schema
 
 
 def test_create_user(client):
     test_user = {"email": "johndoe@example.com", "password": "secret"}
     response = client.post("/users/", json=test_user)
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     data = response.json()
     assert test_user["email"] == data["email"]
     assert "id" in data
     response = client.post("/users/", json=test_user)
-    assert response.status_code == 400
+    assert response.status_code == 400, response.text
 
 
 def test_get_user(client):
     response = client.get("/users/1")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     data = response.json()
     assert "email" in data
     assert "id" in data
@@ -319,12 +319,12 @@ def test_get_user(client):
 
 def test_inexistent_user(client):
     response = client.get("/users/999")
-    assert response.status_code == 404
+    assert response.status_code == 404, response.text
 
 
 def test_get_users(client):
     response = client.get("/users/")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     data = response.json()
     assert "email" in data[0]
     assert "id" in data[0]
@@ -333,20 +333,20 @@ def test_get_users(client):
 def test_create_item(client):
     item = {"title": "Foo", "description": "Something that fights"}
     response = client.post("/users/1/items/", json=item)
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     item_data = response.json()
     assert item["title"] == item_data["title"]
     assert item["description"] == item_data["description"]
     assert "id" in item_data
     assert "owner_id" in item_data
     response = client.get("/users/1")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     user_data = response.json()
     item_to_check = [it for it in user_data["items"] if it["id"] == item_data["id"]][0]
     assert item_to_check["title"] == item["title"]
     assert item_to_check["description"] == item["description"]
     response = client.get("/users/1")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     user_data = response.json()
     item_to_check = [it for it in user_data["items"] if it["id"] == item_data["id"]][0]
     assert item_to_check["title"] == item["title"]
@@ -355,7 +355,7 @@ def test_create_item(client):
 
 def test_read_items(client):
     response = client.get("/items/")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     data = response.json()
     assert data
     first_item = data[0]

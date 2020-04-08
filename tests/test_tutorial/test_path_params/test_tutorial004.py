@@ -73,19 +73,19 @@ openapi_schema = {
 
 def test_openapi():
     response = client.get("/openapi.json")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == openapi_schema
 
 
 def test_file_path():
     response = client.get("/files/home/johndoe/myfile.txt")
     print(response.content)
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == {"file_path": "home/johndoe/myfile.txt"}
 
 
 def test_root_file_path():
     response = client.get("/files//home/johndoe/myfile.txt")
     print(response.content)
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == {"file_path": "/home/johndoe/myfile.txt"}

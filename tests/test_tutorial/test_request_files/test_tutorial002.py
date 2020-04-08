@@ -145,7 +145,7 @@ openapi_schema = {
 
 def test_openapi_schema():
     response = client.get("/openapi.json")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == openapi_schema
 
 
@@ -162,13 +162,13 @@ file_required = {
 
 def test_post_form_no_body():
     response = client.post("/files/")
-    assert response.status_code == 422
+    assert response.status_code == 422, response.text
     assert response.json() == file_required
 
 
 def test_post_body_json():
     response = client.post("/files/", json={"file": "Foo"})
-    assert response.status_code == 422
+    assert response.status_code == 422, response.text
     assert response.json() == file_required
 
 
@@ -188,7 +188,7 @@ def test_post_files(tmpdir):
             ("files", ("test2.txt", open(path2, "rb"))),
         ),
     )
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == {"file_sizes": [14, 15]}
 
 
@@ -208,12 +208,12 @@ def test_post_upload_file(tmpdir):
             ("files", ("test2.txt", open(path2, "rb"))),
         ),
     )
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == {"filenames": ["test.txt", "test2.txt"]}
 
 
 def test_get_root():
     client = TestClient(app)
     response = client.get("/")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert b"<form" in response.content

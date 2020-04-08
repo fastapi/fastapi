@@ -73,13 +73,13 @@ openapi_schema = {
 
 def test_openapi_schema():
     response = client.get("/openapi.json")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == openapi_schema
 
 
 def test_get_validation_error():
     response = client.get("/items/foo")
-    assert response.status_code == 400
+    assert response.status_code == 400, response.text
     validation_error_str_lines = [
         b"1 validation error for Request",
         b"path -> item_id",
@@ -90,11 +90,11 @@ def test_get_validation_error():
 
 def test_get_http_error():
     response = client.get("/items/3")
-    assert response.status_code == 418
+    assert response.status_code == 418, response.text
     assert response.content == b"Nope! I don't like 3."
 
 
 def test_get():
     response = client.get("/items/2")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == {"item_id": 2}
