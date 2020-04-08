@@ -2,6 +2,8 @@
 
 ## Latest changes
 
+## 0.54.1
+
 * Update database test setup. PR [#1226](https://github.com/tiangolo/fastapi/pull/1226).
 * Improve test debugging by showing response text in failing tests. PR [#1222](https://github.com/tiangolo/fastapi/pull/1222) by [@samuelcolvin](https://github.com/samuelcolvin).
 
