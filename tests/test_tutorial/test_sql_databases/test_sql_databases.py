@@ -285,7 +285,7 @@ openapi_schema = {
 @pytest.fixture(scope="module")
 def client():
     test_db = Path("./sql_app.db")
-    if test_db.is_file():
+    if test_db.is_file():  # pragma: nocover
         test_db.unlink()
     # Import while creating the client to create the DB after starting the test session
     from sql_databases.sql_app import main
@@ -294,7 +294,7 @@ def client():
     importlib.reload(main)
     with TestClient(main.app) as c:
         yield c
-    if test_db.is_file():
+    if test_db.is_file():  # pragma: nocover
         test_db.unlink()
 
 
