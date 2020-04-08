@@ -39,6 +39,7 @@ markdown_extensions:
     - name: mermaid
       class: mermaid
       format: !!python/name:pymdownx.superfences.fence_div_format ''
+- pymdownx.tabbed
 extra:
   social:
   - icon: fontawesome/brands/github-alt
@@ -47,7 +48,7 @@ extra:
     link: https://twitter.com/tiangolo
   - icon: fontawesome/brands/linkedin
     link: https://www.linkedin.com/in/tiangolo
-  - icon: fontawesome/solid/rss
+  - icon: fontawesome/brands/dev
     link: https://dev.to/tiangolo
   - icon: fontawesome/brands/medium
     link: https://medium.com/@tiangolo
