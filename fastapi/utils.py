@@ -76,12 +76,13 @@ def get_flat_models_from_routes(routes: Sequence[BaseRoute]) -> Set[Type[BaseMod
 
 
 def get_model_definitions(
-    *, flat_models: Set[Type[BaseModel]], model_name_map: Dict[Type[BaseModel], str]
+    *, flat_models: Set[Type[BaseModel]], model_name_map: Dict[Type[BaseModel], str],
+        model_by_alias_map: Dict[Type[BaseModel], bool]
 ) -> Dict[str, Any]:
     definitions: Dict[str, Dict] = {}
     for model in flat_models:
         m_schema, m_definitions, m_nested_models = model_process_schema(
-            model, model_name_map=model_name_map, ref_prefix=REF_PREFIX
+            model, model_name_map=model_name_map, ref_prefix=REF_PREFIX, by_alias=model_by_alias_map[model]
         )
         definitions.update(m_definitions)
         model_name = model_name_map[model]

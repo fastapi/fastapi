@@ -1,5 +1,5 @@
 import http.client
-from typing import Any, Dict, List, Optional, Sequence, Tuple, Type, cast
+from typing import Any, Dict, List, Optional, Sequence, Tuple, Type, cast, Set
 
 from fastapi import routing
 from fastapi.dependencies.models import Dependant
@@ -270,6 +270,15 @@ def get_openapi_path(
     return path, security_schemes, definitions
 
 
+def get_model_by_alias_map(unique_models: Set[Type['BaseModel']], routes: Sequence[BaseRoute])\
+        -> Dict[Type['BaseModel'], bool]:
+    return {
+        route.response_model: route.response_model_by_alias
+        for route in routes
+        if isinstance(route, routing.APIRoute) and route.response_model in unique_models
+    }
+
+
 def get_openapi(
     *,
     title: str,
@@ -287,8 +296,9 @@ def get_openapi(
     paths: Dict[str, Dict] = {}
     flat_models = get_flat_models_from_routes(routes)
     model_name_map = get_model_name_map(flat_models)
+    model_by_alias_map = get_model_by_alias_map(flat_models, routes)
     definitions = get_model_definitions(
-        flat_models=flat_models, model_name_map=model_name_map
+        flat_models=flat_models, model_name_map=model_name_map, model_by_alias_map=model_by_alias_map,
     )
     for route in routes:
         if isinstance(route, routing.APIRoute):
