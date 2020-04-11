@@ -25,6 +25,7 @@ nav:
   - pt: /pt/
   - zh: /zh/
 - features.md
+- python-types.md
 markdown_extensions:
 - toc:
     permalink: true
