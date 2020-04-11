@@ -53,7 +53,7 @@ Era `upper`? O era `uppercase`? `first_uppercase`? `capitalize`?
 
 Luego lo intentas con el viejo amigo de los programadores, el autocompletado del editor.
 
-Escribes el primer parámetro de la función `first_name`,luego un punto (`.`) y luego presionas `Ctrl+Space` para iniciar el autocompletado.
+Escribes el primer parámetro de la función `first_name`, luego un punto (`.`) y luego presionas `Ctrl+Space` para iniciar el autocompletado.
 
 Tristemente, no obtienes nada útil:
 
@@ -112,7 +112,8 @@ Mira esta función que ya tiene type hints:
 ```Python hl_lines="1"
 {!../../../docs_src/python_types/tutorial003.py!}
 ```
-Cómo el editor conoce el tipo de las variables no solo obtienes autocompletado, si no que también obtienes chequeo de errores:
+
+Como el editor conoce el tipo de las variables no solo obtienes autocompletado, si no que también obtienes chequeo de errores:
 
 <img src="https://fastapi.tiangolo.com/img/python-types/image04.png">
 
@@ -193,7 +194,7 @@ Harías lo mismo para declarar `tuple`s y `set`s:
 
 Esto significa:
 
-* La variable `items_t` es un `tuple` y cada uno de sus ítems es un `int`.
+* La variable `items_t` es un `tuple` con 3 ítems, un `int`, otro `int`, y un `str`.
 * La variable `items_s` es un `set` y cada uno de sus ítems es de tipo `bytes`.
 
 #### Diccionarios (Dicts)
@@ -212,7 +213,7 @@ Esto significa:
 
 * La variable `prices` es un `dict`:
     * Los keys de este `dict` son de tipo `str` (Digamos que son el nombre de cada ítem).
-    * Los valores de este `dict` son de tipo `float` (Digamos que son el precio de cada ítem)).
+    * Los valores de este `dict` son de tipo `float` (Digamos que son el precio de cada ítem).
 
 ### Clases como tipos
 
@@ -224,7 +225,7 @@ Digamos que tienes una clase `Person`con un nombre:
 {!../../../docs_src/python_types/tutorial009.py!}
 ```
 
-Entonces puede declarar una variable que sea de tipo `Person`:
+Entonces puedes declarar una variable que sea de tipo `Person`:
 
 ```Python hl_lines="6"
 {!../../../docs_src/python_types/tutorial009.py!}
@@ -255,7 +256,7 @@ Tomado de la documentación oficial de Pydantic:
 !!! info "Información"
     Para aprender más sobre <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic mira su documentación</a>.
 
-**FastAPI** esté todo basado en Pydantic.
+**FastAPI** está todo basado en Pydantic.
 
 Vas a ver mucho más de esto en práctica en el [Tutorial - User Guide](tutorial/index.md){.internal-link target=_blank}.
 
@@ -275,9 +276,9 @@ Con **FastAPI** declaras los parámetros con type hints y obtienes:
 * **Validar datos**: viniendo de cada request:
     * Generando **errores automáticos** devueltos al cliente cuando los datos son inválidos.
 * **Documentar** la API usando OpenAPI:
-    * que en su caso es usado por las interfaces de usuario de la documentación automática e interactiva.
+    * que en su caso es usada por las interfaces de usuario de la documentación automática e interactiva.
 
-Puede que todo esto suene abstracto. Pero no te preocupes que todo lo verá en acción en el [Tutorial - User Guide](tutorial/index.md){.internal-link target=_blank}.
+Puede que todo esto suene abstracto. Pero no te preocupes que todo lo verás en acción en el [Tutorial - User Guide](tutorial/index.md){.internal-link target=_blank}.
 
 Lo importante es que usando los tipos de Python estándar en un único lugar (en vez de añadir más clases, decorator, etc.) **FastAPI** hará mucho del trabajo por ti.
 
