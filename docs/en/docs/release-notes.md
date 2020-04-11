@@ -2,6 +2,8 @@
 
 ## Latest changes
 
+* Add Spanish translation for [Características (Features)](https://fastapi.tiangolo.com/es/features/). PR [#1220](https://github.com/tiangolo/fastapi/pull/1220) by [@mariacamilagl](https://github.com/mariacamilagl).
+
 ## 0.54.1
 
 * Update database test setup. PR [#1226](https://github.com/tiangolo/fastapi/pull/1226).
