@@ -90,7 +90,7 @@ def get_model_definitions(
 
 
 def get_path_param_names(path: str) -> Set[str]:
-    return set(re.findall("{(.*?)}", path)})
+    return set(re.findall("{(.*?)}", path))
 
 
 def create_response_field(
