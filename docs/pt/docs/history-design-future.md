@@ -1,4 +1,4 @@
-# História, design and futuro
+# História, design e futuro
 
 Há algum tempo, <a href="https://github.com/tiangolo/fastapi/issues/3#issuecomment-454956920" class="external-link" target="_blank">um usuário **FastAPI** perguntou</a>:
 
