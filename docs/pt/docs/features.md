@@ -73,7 +73,7 @@ my_second_user: User = User(**second_user_data)
 
 Todo o _framework_ foi projetado para ser fácil e intuitivo de usar, todas as decisões foram testadas em vários editores antes do início do desenvolvimento, para garantir a melhor experiência de desenvolvimento.
 
-Na última pesquisa do desenvolvedor Python ficou claro <a href="https://www.jetbrains.com/research/python-developers-survey-2017/#tools-and-features" class="external-link" target="_blank">que o recurso mais utilizado é a "auto completação"</a>.
+Na última pesquisa do desenvolvedor Python ficou claro <a href="https://www.jetbrains.com/research/python-developers-survey-2017/#tools-and-features" class="external-link" target="_blank">que o recurso mais utilizado é o "auto completar"</a>.
 
 Todo o _framework_ **FastAPI** é feito para satisfazer isso. Auto completação funciona em todos os lugares.
 
