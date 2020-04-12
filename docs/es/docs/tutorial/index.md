@@ -2,7 +2,7 @@
 
 Este tutorial te muestra como usar **FastAPI** con la mayoría de sus características paso a paso.
 
-Cada sección se basa gradualmente en las anteriores, pero está estructurada por temas separados, así puedes ir directamente a cualquier tema en específico para resolver sus necesidades específicas sobre el API.
+Cada sección se basa gradualmente en las anteriores, pero está estructurada en temas separados, así puedes ir directamente a cualquier tema en concreto para resolver sus necesidades específicas sobre la API.
 
 También está diseñado para funcionar como una referencia futura.
 
@@ -34,7 +34,7 @@ Usarlo en tu editor de código es lo que realmente te muestra los beneficios de 
 
 ---
 
-## Instalando FastAPI
+## Instala FastAPI
 
 El primer paso es instalar FastAPI.
 
@@ -75,6 +75,6 @@ También hay una **Guía avanzada del usuario** que puede leer luego de este  **
 
 La **Guía avanzada del usuario**, se basa en este tutorial, utiliza los mismos conceptos y enseña algunas características adicionales.
 
-Pero primero debe leer el **Tutorial - Guía de usuario** (lo que está leyendo en este momento).
+Pero primero debería leer el **Tutorial - Guía de usuario** (lo que está leyendo ahora mismo).
 
 Está diseñado para que pueda crear una aplicación completa con solo el **Tutorial - Guía de usuario**, y luego extenderlo de diferentes maneras, según sus necesidades, utilizando algunas de las ideas adicionales de la **Guía avanzada del usuario**.
