@@ -26,6 +26,8 @@ nav:
   - zh: /zh/
 - features.md
 - python-types.md
+- "Tutorial - Gu\xEDa de usuario":
+  - tutorial/index.md
 markdown_extensions:
 - toc:
     permalink: true
