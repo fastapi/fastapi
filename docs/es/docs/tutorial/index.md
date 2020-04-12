@@ -12,7 +12,7 @@ Para que puedas volver y ver exactamente lo que necesitas.
 
 Todos los bloques de código se pueden copiar y usar directamente (en realidad son archivos Python probados).
 
-Para ejecutar cualquiera de los ejemplos, copie el código en un archivo llamado `main.py`, y ejecute `uvicorn` de la siguiente manera en su terminal:
+Para ejecutar cualquiera de los ejemplos, copia el código en un archivo llamado `main.py`, y ejecuta `uvicorn` de la siguiente manera en tu terminal:
 
 <div class="termy">
 
@@ -28,7 +28,7 @@ $ uvicorn main:app --reload
 
 </div>
 
-Se **RECOMIENDA** que escriba o copie el código, lo edite y lo ejecute localmente.
+Se **RECOMIENDA** que escribas o copies el código, lo edites y lo ejecutes localmente.
 
 Usarlo en tu editor de código es lo que realmente te muestra los beneficios de FastAPI, al ver la poca cantidad de código que tienes que escribir, todas las verificaciones de tipo, autocompletado, etc.
 
@@ -38,7 +38,7 @@ Usarlo en tu editor de código es lo que realmente te muestra los beneficios de 
 
 El primer paso es instalar FastAPI.
 
-Para el tutorial, es posible que desee instalarlo con todas las dependencias y características opcionales:
+Para el tutorial, es posible que quieras instalarlo con todas las dependencias y características opcionales:
 
 <div class="termy">
 
@@ -50,31 +50,31 @@ $ pip install fastapi[all]
 
 </div>
 
-...eso también incluye `uvicorn` que se usa como el servidor que ejecuta su código.
+...eso también incluye `uvicorn` que se usa como el servidor que ejecuta tu código.
 
 !!! nota
-    También puede instalarlo parte por parte.
+    También puedes instalarlo parte por parte.
 
-    Esto es lo que probablemente haría una vez que desee implementar su aplicación en producción:
+    Esto es lo que probablemente harías una vez que desees implementar tu aplicación en producción:
 
     ```
     pip install fastapi
     ```
 
-    También instale `uvicorn` para que funcione como servidor:
+    También debes instalar `uvicorn` para que funcione como tu servidor:
 
     ```
     pip install uvicorn
     ```
 
-    Y lo mismo para cada una de las dependencias opcionales que desea utilizar.
+    Y lo mismo para cada una de las dependencias opcionales que quieras utilizar.
 
 ## Guía avanzada del usuario 
 
-También hay una **Guía avanzada del usuario** que puede leer luego de este  **Tutorial - Guía de usuario**.
+También hay una **Guía avanzada del usuario** que puedes leer luego de este **Tutorial - Guía de usuario**.
 
 La **Guía avanzada del usuario**, se basa en este tutorial, utiliza los mismos conceptos y enseña algunas características adicionales.
 
-Pero primero debería leer el **Tutorial - Guía de usuario** (lo que está leyendo ahora mismo).
+Pero primero deberías leer el **Tutorial - Guía de usuario** (lo que estas leyendo ahora mismo).
 
-Está diseñado para que pueda crear una aplicación completa con solo el **Tutorial - Guía de usuario**, y luego extenderlo de diferentes maneras, según sus necesidades, utilizando algunas de las ideas adicionales de la **Guía avanzada del usuario**.
+La guía esa diseñada para que puedas crear una aplicación completa con solo el **Tutorial - Guía de usuario**, y luego extenderlo de diferentes maneras, según tus necesidades, utilizando algunas de las ideas adicionales de la **Guía avanzada del usuario**.
