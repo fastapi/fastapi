@@ -1182,9 +1182,9 @@ def test_custom_exception_handler_with_multiple_exception():
     def exception_handler(request: Request, exc: Type[Exception]):
         return JSONResponse({"message": "server error"}, status_code=500)
 
-    @app.get("/demo")
-    def demo():
+    @app.get("/demo1")
+    def demo1():
         raise Demo2Exception
 
-    response = client.get("/demo")
+    response = client.get("/demo1")
     assert response.status_code == 500
