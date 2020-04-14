@@ -1,3 +1,5 @@
+from typing import Type
+
 import pytest
 from fastapi.testclient import TestClient
 from starlette.requests import Request
@@ -1177,12 +1179,12 @@ def test_custom_exception_handler_with_multiple_exception():
         pass
 
     @app.add_custom_exception_handler(exceptions=[DemoException, Demo2Exception])
-    def exception_handler(request: Request, exc: DemoException):
+    def exception_handler(request: Request, exc: Type[Exception]):
         return JSONResponse({"message": "server error"}, status_code=500)
 
     @app.get("/demo")
     def demo():
-        raise DemoException
+        raise Demo2Exception
 
     response = client.get("/demo")
     assert response.status_code == 500
