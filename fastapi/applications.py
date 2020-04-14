@@ -1,4 +1,3 @@
-import os
 from typing import Any, Callable, Dict, List, Optional, Sequence, Type, Union
 
 from fastapi import routing
@@ -17,6 +16,7 @@ from fastapi.openapi.docs import (
 from fastapi.openapi.utils import get_openapi
 from fastapi.params import Depends
 from fastapi.utils import warning_response_model_skip_defaults_deprecated
+from pydantic import BaseSettings
 from starlette.applications import Starlette
 from starlette.datastructures import State
 from starlette.exceptions import HTTPException
@@ -25,6 +25,13 @@ from starlette.requests import Request
 from starlette.responses import HTMLResponse, JSONResponse, Response
 from starlette.routing import BaseRoute
 from starlette.types import Receive, Scope, Send
+
+
+class _DocsVisibilitySettings(BaseSettings):
+    fastapi_disable_all_docs: bool = False
+    fastapi_disable_openapi_docs = False
+    fastapi_disable_swagger_docs: bool = False
+    fastapi_disable_redocs: bool = False
 
 
 class FastAPI(Starlette):
@@ -39,7 +46,6 @@ class FastAPI(Starlette):
         openapi_url: Optional[str] = "/openapi.json",
         openapi_prefix: str = "",
         default_response_class: Type[Response] = JSONResponse,
-        disable_all_output_docs: bool = False,
         docs_url: Optional[str] = "/docs",
         redoc_url: Optional[str] = "/redoc",
         swagger_ui_oauth2_redirect_url: Optional[str] = "/docs/oauth2-redirect",
@@ -87,7 +93,7 @@ class FastAPI(Starlette):
         if self.docs_url or self.redoc_url:
             assert self.openapi_url, "The openapi_url is required for the docs"
         self.openapi_schema: Optional[Dict[str, Any]] = None
-        self.__disable_all_output_docs = disable_all_output_docs
+        self.__docs_visibility_settings = _DocsVisibilitySettings()
         self.setup()
 
     def openapi(self) -> Dict:
@@ -103,18 +109,23 @@ class FastAPI(Starlette):
         return self.openapi_schema
 
     def setup(self) -> None:
-        if (
-            not self.__disable_all_output_docs
-            and os.getenv("FASTAPT_ENVIRONMENT") != "PRODUCTION"
-        ):
-            if self.openapi_url:
+        if not self.__docs_visibility_settings.fastapi_disable_all_docs:
+            if (
+                self.openapi_url
+                and not self.__docs_visibility_settings.fastapi_disable_openapi_docs
+            ):
 
                 async def openapi(req: Request) -> JSONResponse:
                     return JSONResponse(self.openapi())
 
                 self.add_route(self.openapi_url, openapi, include_in_schema=False)
                 openapi_url = self.openapi_prefix + self.openapi_url
-            if self.openapi_url and self.docs_url:
+            if (
+                self.openapi_url
+                and self.docs_url
+                and not self.__docs_visibility_settings.fastapi_disable_swagger_docs
+                and not self.__docs_visibility_settings.fastapi_disable_openapi_docs
+            ):
 
                 async def swagger_ui_html(req: Request) -> HTMLResponse:
                     return get_swagger_ui_html(
@@ -136,7 +147,12 @@ class FastAPI(Starlette):
                         swagger_ui_redirect,
                         include_in_schema=False,
                     )
-            if self.openapi_url and self.redoc_url:
+            if (
+                self.openapi_url
+                and self.redoc_url
+                and not self.__docs_visibility_settings.fastapi_disable_redocs
+                and not self.__docs_visibility_settings.fastapi_disable_openapi_docs
+            ):
 
                 async def redoc_html(req: Request) -> HTMLResponse:
                     return get_redoc_html(

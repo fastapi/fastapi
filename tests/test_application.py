@@ -1140,20 +1140,31 @@ def test_swagger_ui():
     )
 
 
-def test_swagger_ui_disabled_by_environment_variable():
-    os.environ["FASTAPT_ENVIRONMENT"] = "PRODUCTION"
+def test_disabled_all_docs_by_environment_variable():
+    os.environ["FASTAPI_DISABLE_ALL_DOCS"] = "True"
     temp_app = FastAPI()
     temp_client = TestClient(temp_app)
     response = temp_client.get("/docs")
     assert response.status_code == 404
-    del os.environ["FASTAPT_ENVIRONMENT"]
+    del os.environ["FASTAPI_DISABLE_ALL_DOCS"]
 
 
-def test_swagger_ui_disabled_by_init_variable():
-    temp_app = FastAPI(disable_all_output_docs=True)
+def test_disabled_openapi_by_environment_variable():
+    os.environ["FASTAPI_DISABLE_OPENAPI_DOCS"] = "True"
+    temp_app = FastAPI()
     temp_client = TestClient(temp_app)
-    response = temp_client.get("/docs")
+    response = temp_client.get("/openapi.json")
     assert response.status_code == 404
+    del os.environ["FASTAPI_DISABLE_OPENAPI_DOCS"]
+
+
+def test_disabled_redocs_by_environment_variable():
+    os.environ["FASTAPI_DISABLE_REDOCS"] = "True"
+    temp_app = FastAPI()
+    temp_client = TestClient(temp_app)
+    response = temp_client.get("/redoc")
+    assert response.status_code == 404
+    del os.environ["FASTAPI_DISABLE_REDOCS"]
 
 
 def test_swagger_ui_oauth2_redirect():
