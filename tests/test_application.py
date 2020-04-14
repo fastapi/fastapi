@@ -1,5 +1,7 @@
 import pytest
 from fastapi.testclient import TestClient
+from starlette.requests import Request
+from starlette.responses import JSONResponse
 
 from .main import app
 
@@ -1149,3 +1151,38 @@ def test_redoc():
     assert response.status_code == 200, response.text
     assert response.headers["content-type"] == "text/html; charset=utf-8"
     assert "redoc@next" in response.text
+
+
+def test_custom_exception_handler_with_single_exception():
+    class DemoException(Exception):
+        pass
+
+    @app.add_custom_exception_handler(exceptions=[DemoException])
+    def exception_handler(request: Request, exc: DemoException):
+        return JSONResponse({"message": "server error"}, status_code=500)
+
+    @app.get("/demo")
+    def demo():
+        raise DemoException
+
+    response = client.get("/demo")
+    assert response.status_code == 500
+
+
+def test_custom_exception_handler_with_multiple_exception():
+    class DemoException(Exception):
+        pass
+
+    class Demo2Exception(Exception):
+        pass
+
+    @app.add_custom_exception_handler(exceptions=[DemoException, Demo2Exception])
+    def exception_handler(request: Request, exc: DemoException):
+        return JSONResponse({"message": "server error"}, status_code=500)
+
+    @app.get("/demo")
+    def demo():
+        raise DemoException
+
+    response = client.get("/demo")
+    assert response.status_code == 500

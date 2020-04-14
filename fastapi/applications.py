@@ -729,3 +729,13 @@ class FastAPI(Starlette):
             name=name,
             callbacks=callbacks,
         )
+
+    def add_custom_exception_handler(
+        self, exceptions: List[Type[Exception]]
+    ) -> Callable:
+        def decorator(func: Callable) -> Callable:
+            for item in exceptions:
+                self.add_exception_handler(item, func)
+            return func
+
+        return decorator
