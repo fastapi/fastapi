@@ -87,7 +87,7 @@ class FastAPI(Starlette):
         if self.docs_url or self.redoc_url:
             assert self.openapi_url, "The openapi_url is required for the docs"
         self.openapi_schema: Optional[Dict[str, Any]] = None
-        self.__disable_all_outpu_docs = disable_all_output_docs
+        self.__disable_all_output_docs = disable_all_output_docs
         self.setup()
 
     def openapi(self) -> Dict:
@@ -104,7 +104,7 @@ class FastAPI(Starlette):
 
     def setup(self) -> None:
         if (
-            not self.__disable_all_outpu_docs
+            not self.__disable_all_output_docs
             and os.getenv("FASTAPT_ENVIRONMENT") != "PRODUCTION"
         ):
             if self.openapi_url:
