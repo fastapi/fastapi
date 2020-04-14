@@ -1,4 +1,8 @@
+import os
+
 import pytest
+
+from fastapi import FastAPI
 from fastapi.testclient import TestClient
 
 from .main import app
@@ -1135,6 +1139,22 @@ def test_swagger_ui():
         f"oauth2RedirectUrl: window.location.origin + '/docs/oauth2-redirect'"
         in response.text
     )
+
+
+def test_swagger_ui_disabled_by_environment_variable():
+    os.environ["FASTAPT_ENVIRONMENT"] = "PRODUCTION"
+    temp_app = FastAPI()
+    temp_client = TestClient(temp_app)
+    response = temp_client.get("/docs")
+    assert response.status_code == 404
+    del os.environ["FASTAPT_ENVIRONMENT"]
+
+
+def test_swagger_ui_disabled_by_init_variable():
+    temp_app = FastAPI(disable_all_output_docs=True)
+    temp_client = TestClient(temp_app)
+    response = temp_client.get("/docs")
+    assert response.status_code == 404
 
 
 def test_swagger_ui_oauth2_redirect():

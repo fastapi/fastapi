@@ -1,3 +1,4 @@
+import os
 from typing import Any, Callable, Dict, List, Optional, Sequence, Type, Union
 
 from fastapi import routing
@@ -38,6 +39,7 @@ class FastAPI(Starlette):
         openapi_url: Optional[str] = "/openapi.json",
         openapi_prefix: str = "",
         default_response_class: Type[Response] = JSONResponse,
+        disable_all_output_docs: bool = False,
         docs_url: Optional[str] = "/docs",
         redoc_url: Optional[str] = "/redoc",
         swagger_ui_oauth2_redirect_url: Optional[str] = "/docs/oauth2-redirect",
@@ -85,6 +87,7 @@ class FastAPI(Starlette):
         if self.docs_url or self.redoc_url:
             assert self.openapi_url, "The openapi_url is required for the docs"
         self.openapi_schema: Optional[Dict[str, Any]] = None
+        self.__disable_all_outpu_docs = disable_all_output_docs
         self.setup()
 
     def openapi(self) -> Dict:
@@ -100,43 +103,47 @@ class FastAPI(Starlette):
         return self.openapi_schema
 
     def setup(self) -> None:
-        if self.openapi_url:
+        if (
+            not self.__disable_all_outpu_docs
+            and os.getenv("FASTAPT_ENVIRONMENT") != "PRODUCTION"
+        ):
+            if self.openapi_url:
 
-            async def openapi(req: Request) -> JSONResponse:
-                return JSONResponse(self.openapi())
+                async def openapi(req: Request) -> JSONResponse:
+                    return JSONResponse(self.openapi())
 
-            self.add_route(self.openapi_url, openapi, include_in_schema=False)
-            openapi_url = self.openapi_prefix + self.openapi_url
-        if self.openapi_url and self.docs_url:
+                self.add_route(self.openapi_url, openapi, include_in_schema=False)
+                openapi_url = self.openapi_prefix + self.openapi_url
+            if self.openapi_url and self.docs_url:
 
-            async def swagger_ui_html(req: Request) -> HTMLResponse:
-                return get_swagger_ui_html(
-                    openapi_url=openapi_url,
-                    title=self.title + " - Swagger UI",
-                    oauth2_redirect_url=self.swagger_ui_oauth2_redirect_url,
-                    init_oauth=self.swagger_ui_init_oauth,
-                )
+                async def swagger_ui_html(req: Request) -> HTMLResponse:
+                    return get_swagger_ui_html(
+                        openapi_url=openapi_url,
+                        title=self.title + " - Swagger UI",
+                        oauth2_redirect_url=self.swagger_ui_oauth2_redirect_url,
+                        init_oauth=self.swagger_ui_init_oauth,
+                    )
 
-            self.add_route(self.docs_url, swagger_ui_html, include_in_schema=False)
+                self.add_route(self.docs_url, swagger_ui_html, include_in_schema=False)
 
-            if self.swagger_ui_oauth2_redirect_url:
+                if self.swagger_ui_oauth2_redirect_url:
 
-                async def swagger_ui_redirect(req: Request) -> HTMLResponse:
-                    return get_swagger_ui_oauth2_redirect_html()
+                    async def swagger_ui_redirect(req: Request) -> HTMLResponse:
+                        return get_swagger_ui_oauth2_redirect_html()
 
-                self.add_route(
-                    self.swagger_ui_oauth2_redirect_url,
-                    swagger_ui_redirect,
-                    include_in_schema=False,
-                )
-        if self.openapi_url and self.redoc_url:
+                    self.add_route(
+                        self.swagger_ui_oauth2_redirect_url,
+                        swagger_ui_redirect,
+                        include_in_schema=False,
+                    )
+            if self.openapi_url and self.redoc_url:
 
-            async def redoc_html(req: Request) -> HTMLResponse:
-                return get_redoc_html(
-                    openapi_url=openapi_url, title=self.title + " - ReDoc"
-                )
+                async def redoc_html(req: Request) -> HTMLResponse:
+                    return get_redoc_html(
+                        openapi_url=openapi_url, title=self.title + " - ReDoc"
+                    )
 
-            self.add_route(self.redoc_url, redoc_html, include_in_schema=False)
+                self.add_route(self.redoc_url, redoc_html, include_in_schema=False)
         self.add_exception_handler(HTTPException, http_exception_handler)
         self.add_exception_handler(
             RequestValidationError, request_validation_exception_handler
