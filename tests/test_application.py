@@ -1167,6 +1167,15 @@ def test_disabled_redocs_by_environment_variable():
     del os.environ["FASTAPI_DISABLE_REDOCS"]
 
 
+def test_disabled_swagger_by_environment_variable():
+    os.environ["FASTAPI_DISABLE_SWAGGER_DOCS"] = "True"
+    temp_app = FastAPI()
+    temp_client = TestClient(temp_app)
+    response = temp_client.get("/docs")
+    assert response.status_code == 404
+    del os.environ["FASTAPI_DISABLE_SWAGGER_DOCS"]
+
+
 def test_swagger_ui_oauth2_redirect():
     response = client.get("/docs/oauth2-redirect")
     assert response.status_code == 200, response.text
