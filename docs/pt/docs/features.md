@@ -8,7 +8,7 @@
 
 * <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a> para criação de APIs, incluindo declarações de <abbr title="também conhecido como métodos HTTP, como POST, GET, PUT, DELETE">operações</abbr> de <abbr title="também conhecido como: endpoints, routes">caminho</abbr>, parâmetros, requisições de corpo, segurança etc.
 * Modelo de documentação automática com <a href="http://json-schema.org/" class="external-link" target="_blank"><strong>JSON Schema</strong></a> (já que o OpenAPI em si é baseado no JSON Schema).
-* Projetado em cima desses padrões, após um estudo meticuloso. Em vez de uma reflexão breve.
+* Projetado em cima desses padrões após um estudo meticuloso, em vez de uma reflexão breve.
 * Isso também permite o uso de **geração de código do cliente** automaticamente em muitas linguagens.
 
 ### Documentação automática
@@ -95,13 +95,13 @@ Sem a necessidade de digitar nomes de chaves erroneamente, ir e voltar entre doc
 
 ### Breve
 
-Há **padrões** sensíveis para tudo, com configurações adicionais em todos os lugares. Todos os parametros podem ser regulados para fazer o que você precisa e para definir a API que você precisa.
+Há **padrões** sensíveis para tudo, com configurações adicionais em todos os lugares. Todos os parâmetros podem ser regulados para fazer o que você precisa e para definir a API que você necessita.
 
 Por padrão, tudo **"simplesmente funciona"**.
 
 ### Validação
 
-* Validação para a maioria (ou todos?) dos **tipos de dados** do Python, incluindo:
+* Validação para a maioria dos (ou todos?) **tipos de dados** do Python, incluindo:
     * objetos JSON (`dict`).
     * arrays JSON (`list`), definindo tipos dos itens.
     * campos String (`str`), definindo tamanho mínimo e máximo.
@@ -125,12 +125,12 @@ Todos os esquemas de seguranças definidos no OpenAPI, incluindo:
 * **OAuth2** (também com **tokens JWT**). Confira o tutorial em [OAuth2 com JWT](tutorial/security/oauth2-jwt.md){.internal-link target=_blank}.
 * Chaves de API em:
     * Headers.
-    * paramêtros da Query.
+    * parâmetros da Query.
     * Cookies etc.
 
 Além disso, todos os recursos de seguranças do Starlette (incluindo **cookies de sessão**).
 
-Tudo construído como ferramentas e componentes reutilizáveis que são fáceis de integrar com seus sistemas, armazenamento de dados, banco de dados relacionais e NoSQL etc.
+Tudo construído como ferramentas e componentes reutilizáveis que são fáceis de integrar com seus sistemas, armazenamento de dados, banco de dados relacionais e não-relacionais etc.
 
 ### Injeção de dependência
 
@@ -159,13 +159,13 @@ Qualquer integração é projetada para ser tão simples de usar (com dependênc
 
 **FastAPI** é totalmente compatível com (e baseado no) <a href="https://www.starlette.io/" class="external-link" target="_blank"><strong>Starlette</strong></a>. Então, qualquer código adicional Starlette que você tiver, também funcionará.
 
-`FastAPI` é na verdade uma sub-classe do `Starlette`. Então, se você já conhece ou usa Starlette, a maioria das funcionalidades funcionará da mesma forma.
+`FastAPI` é na verdade uma sub-classe do `Starlette`. Então, se você já conhece ou usa Starlette, a maioria das funcionalidades se comportará da mesma forma.
 
 Com **FastAPI**, você terá todos os recursos do **Starlette** (já que FastAPI é apenas um Starlette com esteróides):
 
 * Desempenho realmente impressionante. É <a href="https://github.com/encode/starlette#performance" class="external-link" target="_blank">um dos _frameworks_ Python disponíveis mais rápidos, a par com o **NodeJS** e **Go**</a>.
 * Suporte a **WebSocket**.
-* Suport a **GraphQL**.
+* Suporte a **GraphQL**.
 * Tarefas em processo _background_.
 * Eventos na inicialização e encerramento.
 * Cliente de testes construído sobre `requests`.
@@ -194,7 +194,7 @@ Com **FastAPI** você terá todos os recursos do **Pydantic** (já que FastAPI u
 * **Rápido**:
     * em <a href="https://pydantic-docs.helpmanual.io/#benchmarks-tag" class="external-link" target="_blank">_benchmarks_</a>, o Pydantic é mais rápido que todas as outras bibliotecas testadas.
 * Valida **estruturas complexas**:
-    * Use modelos hierarquicos do Pydantic, `List` e `Dict` do `typing` do Python, etc.
+    * Use modelos hierárquicos do Pydantic, `List` e `Dict` do `typing` do Python, etc.
     * Validadores permitem que esquemas de dados complexos sejam limpos e facilmente definidos, conferidos e documentados como JSON Schema.
     * Você pode ter **JSONs aninhados** profundamente e tê-los todos validados e anotados.
 * **Extensível**:
