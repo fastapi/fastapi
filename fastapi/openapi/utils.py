@@ -125,6 +125,9 @@ def get_openapi_operation_request_body(
     if required:
         request_body_oai["required"] = required
     request_body_oai["content"] = {request_media_type: {"schema": body_schema}}
+    examples = body_schema.get("examples")
+    if examples:
+        request_body_oai["content"][request_media_type]["examples"] = examples
     return request_body_oai
 
 
