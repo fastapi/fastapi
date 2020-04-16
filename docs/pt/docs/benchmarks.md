@@ -6,7 +6,7 @@ Mas quando se checa _benchmarks_ e comparações você deveria ter o seguinte em
 
 ## Comparações e velocidade
 
-Quando você verifica os _benchmarks_, é comum observar algumas ferramentas de diferentes tipos, mas equivalentes.
+Ao verificar os _benchmarks_, é comum observar algumas ferramentas de diferentes tipos comparadas como equivalentes.
 
 Especificamente, observa-se Uvicorn, Starlette e FastAPI comparados juntos (entre muitas outras ferramentas).
 
