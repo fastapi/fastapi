@@ -20,7 +20,7 @@ A hierarquia segue assim:
 
 * **Uvicorn**:
     * Terá a melhor performance, já que ele não tem muito código extra além do servidor em si.
-    * Você não consegue escrever uma aplicação em Uvicorn diretamente. Isso significa que seu código deveria conter, mais ou menos, todo o código fornecido pelo Starlette (ou **FastAPI**). E se você fizesse isso, sua aplicação final poderia ter o mesmo peso do que utilizar um _framework_ que minimiza o código de sua aplicação e _bugs_.
+    * Você não conseguiria escrever uma aplicação em Uvicorn diretamente. Isso significa que seu código deveria conter, mais ou menos, todo o código fornecido pelo Starlette (ou **FastAPI**). E se você fizesse isso, sua aplicação final poderia ter a mesma sobrecarga que utilizar um _framework_ que minimiza o código e _bugs_ da sua aplicação.
     * Se você quer fazer comparações com o Uvicorn, compare com Daphne, Hypercorn, uWSGI, etc. Servidores de Aplicação.
 * **Starlette**:
     * Terá a melhor performance, depois do Uvicorn. De fato, Starlette utiliza Uvicorn para rodar. Então, ele provavelmente será "mais lento" que Uvicorn por ter que executar mais código.
