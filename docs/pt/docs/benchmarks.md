@@ -8,7 +8,7 @@ Mas quando se checa _benchmarks_ e comparações você deveria ter o seguinte em
 
 Quando você verifica os _benchmarks_, é comum observar algumas ferramentas de diferentes tipos, mas equivalentes.
 
-Especificamente para observar Uvicorn, Starlette e FastAPI comparados juntos (entre muitas outras ferramentas).
+Especificamente, observa-se Uvicorn, Starlette e FastAPI comparados juntos (entre muitas outras ferramentas).
 
 Quanto mais simples o problema resolvido pela ferramenta, melhor a performance que ela terá. E a maioria dos _benchmarks_ não testam as características adicionais fornecidas pela ferramenta.
 
