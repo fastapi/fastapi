@@ -1,4 +1,4 @@
-# Alternatives, Inspiration and Comparisons
+# Alternativas, Inspiración y Comparaciones
 
 Qué inspiró a **FastAPI**, cómo se compara con otras alternativas, y qué  aprendió de ellas.
 
