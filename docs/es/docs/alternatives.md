@@ -16,15 +16,15 @@ Por  muchos años estuve evitando crear  un nuevo framework. Primero, traté de 
 Pero en algín momento, no hubo más opción que crear algo que proveyese todas estas funcionalidades, tomando las mejores ideas de herramnientas anteriores, y combinándolas de la mejor manera posible, utilizando características del lenguagje que nisiquiera estaban disponibles antes (type hints en Python 3.6+).
 
 
-## Previous tools
+## Herramientas anteriores
 
 ### <a href="https://www.djangoproject.com/" class="external-link" target="_blank">Django</a>
 
-It's the most popular Python framework and is widely trusted. It is used to build systems like Instagram.
+Es el frameworks más popular de Python y es ampliamente conflable. Es utilizado para construir sistemas como Instagram.
 
-It's relatively tightly coupled with relational databases (like MySQL or PostgreSQL), so, having a NoSQL database (like Couchbase, MongoDB, Cassandra, etc) as the main store engine is not very easy.
+Está  muy  acoplado con bases de datos relacionales (como MySQL o PostgreSQL), por lo que no es fácil tener una base de datos NoSQL (como Couchbase, MongoDB, Cassandra, etc.) como motor principal de almacenamiento.
 
-It was created to generate the HTML in the backend, not to create APIs used by a modern frontend (like React, Vue.js and Angular) or by other systems (like <abbr title="Internet of Things">IoT</abbr> devices) communicating with it.
+Fue creado para generar el HTML del backend, no para crear API utilizadas por interfaces modernas (como React, Vue.js y Angular) o para que otros sistemas (como dispositivos de <abbr title = "Internet of Things"> IoT </ abbr > ) se comuniquen con él.
 
 ### <a href="https://www.django-rest-framework.org/" class="external-link" target="_blank">Django REST Framework</a>
 
