@@ -1,4 +1,3 @@
-import os
 import secrets
 from typing import List
 
@@ -88,5 +87,6 @@ class Settings(BaseSettings):
 
     class Config:
         case_sensitive = True
+
 
 settings = Settings()
