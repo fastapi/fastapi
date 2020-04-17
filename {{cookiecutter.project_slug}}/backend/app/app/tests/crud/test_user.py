@@ -1,8 +1,9 @@
 from fastapi.encoders import jsonable_encoder
 
 from app import crud
+from app.core.security import get_password_hash, verify_password
 from app.db.session import db_session
-from app.schemas.user import UserCreate
+from app.schemas.user import UserCreate, UserUpdate
 from app.tests.utils.utils import random_lower_string, random_email
 
 
@@ -78,3 +79,16 @@ def test_get_user():
     user_2 = crud.user.get(db_session, id=user.id)
     assert user.email == user_2.email
     assert jsonable_encoder(user) == jsonable_encoder(user_2)
+
+
+def test_update_user():
+    password = random_lower_string()
+    email = random_email()
+    user_in = UserCreate(email=email, password=password, is_superuser=True)
+    user = crud.user.create(db_session, obj_in=user_in)
+    new_password = random_lower_string()
+    user_in = UserUpdate(password=new_password, is_superuser=True)
+    crud.user.update(db_session, db_obj=user, obj_in=user_in)
+    user_2 = crud.user.get(db_session, id=user.id)
+    assert user.email == user_2.email
+    assert verify_password(new_password, user_2.hashed_password)

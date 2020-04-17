@@ -134,6 +134,20 @@ If you need to install any additional package for the tests, add it to the file 
 
 If you use GitLab CI the tests will run automatically.
 
+#### Local tests
+
+Start the stack with this command:
+
+```Bash
+DOMAIN=backend sh ./scripts/test-local.sh
+```
+The `./backend/app` directory is mounted as a "host volume" inside the docker container (set in the file `docker-compose.dev.volumes.yml`).
+You can rerun the test on live code:
+
+```Bash
+docker-compose exec backend-tests /tests-start.sh
+```
+
 #### Test running stack
 
 If your stack is already up and you just want to run the tests, you can use:

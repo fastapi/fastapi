@@ -38,6 +38,6 @@ def authentication_token_from_email(email):
         user = crud.user.create(db_session=db_session, obj_in=user_in)
     else:
         user_in = UserUpdate(password=password)
-        user = crud.user.update(db_session, obj_in=user, db_obj=user_in)
+        user = crud.user.update(db_session, db_obj=user, obj_in=user_in)
 
     return user_authentication_headers(get_server_api(), email, password)
