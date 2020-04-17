@@ -1,6 +1,6 @@
 FROM python:3.7
 
-RUN pip install raven celery~=4.3 passlib[bcrypt] tenacity requests "fastapi>=0.16.0" emails pyjwt email_validator jinja2 psycopg2-binary alembic SQLAlchemy email_validator
+RUN pip install raven celery~=4.3 passlib[bcrypt] tenacity requests "fastapi>=0.47.0" emails pyjwt email-validator jinja2 psycopg2-binary alembic SQLAlchemy
 
 # For development, Jupyter remote kernel, Hydrogen
 # Using inside the container:

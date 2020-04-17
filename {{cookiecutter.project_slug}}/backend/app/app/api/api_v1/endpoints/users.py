@@ -8,7 +8,7 @@ from sqlalchemy.orm import Session
 from app import crud
 from app.api.utils.db import get_db
 from app.api.utils.security import get_current_active_superuser, get_current_active_user
-from app.core import config
+from app.core.config import settings
 from app.models.user import User as DBUser
 from app.schemas.user import User, UserCreate, UserUpdate
 from app.utils import send_new_account_email
@@ -47,7 +47,7 @@ def create_user(
             detail="The user with this username already exists in the system.",
         )
     user = crud.user.create(db, obj_in=user_in)
-    if config.EMAILS_ENABLED and user_in.email:
+    if settings.EMAILS_ENABLED and user_in.email:
         send_new_account_email(
             email_to=user_in.email, username=user_in.email, password=user_in.password
         )
@@ -100,7 +100,7 @@ def create_user_open(
     """
     Create new user without the need to be logged in.
     """
-    if not config.USERS_OPEN_REGISTRATION:
+    if not settings.USERS_OPEN_REGISTRATION:
         raise HTTPException(
             status_code=403,
             detail="Open user registration is forbidden on this server",

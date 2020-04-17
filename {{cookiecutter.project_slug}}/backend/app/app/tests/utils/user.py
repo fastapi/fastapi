@@ -1,7 +1,7 @@
 import requests
 
 from app import crud
-from app.core import config
+from app.core.config import settings
 from app.db.session import db_session
 from app.schemas.user import UserCreate, UserUpdate
 from app.tests.utils.utils import get_server_api, random_lower_string, random_email
@@ -10,7 +10,7 @@ from app.tests.utils.utils import get_server_api, random_lower_string, random_em
 def user_authentication_headers(server_api, email, password):
     data = {"username": email, "password": password}
 
-    r = requests.post(f"{server_api}{config.API_V1_STR}/login/access-token", data=data)
+    r = requests.post(f"{server_api}{settings.API_V1_STR}/login/access-token", data=data)
     response = r.json()
     auth_token = response["access_token"]
     headers = {"Authorization": f"Bearer {auth_token}"}

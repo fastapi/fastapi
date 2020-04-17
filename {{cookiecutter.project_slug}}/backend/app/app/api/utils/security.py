@@ -7,19 +7,19 @@ from starlette.status import HTTP_403_FORBIDDEN
 
 from app import crud
 from app.api.utils.db import get_db
-from app.core import config
+from app.core.config import settings
 from app.core.jwt import ALGORITHM
 from app.models.user import User
 from app.schemas.token import TokenPayload
 
-reusable_oauth2 = OAuth2PasswordBearer(tokenUrl="/api/v1/login/access-token")
+reusable_oauth2 = OAuth2PasswordBearer(tokenUrl=f"{settings.API_V1_STR}/login/access-token")
 
 
 def get_current_user(
     db: Session = Depends(get_db), token: str = Security(reusable_oauth2)
 ):
     try:
-        payload = jwt.decode(token, config.SECRET_KEY, algorithms=[ALGORITHM])
+        payload = jwt.decode(token, settings.SECRET_KEY, algorithms=[ALGORITHM])
         token_data = TokenPayload(**payload)
     except PyJWTError:
         raise HTTPException(

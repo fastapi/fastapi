@@ -10,6 +10,7 @@ services:
       - env-postgres.env
     environment:
       - SERVER_NAME=backend
+      - SERVER_HOST=http://${DOMAIN}
   backend:
     environment:
       # Don't send emails during testing
