@@ -9,9 +9,9 @@ Qué inspiró a **FastAPI**, cómo se compara con otras alternativas, y qué  ap
 
 
 
-There have been many tools created before that have helped inspire its creation.
+Ha habido muchas herramientas creadas antes y que ayudaron a inspirar su creación.
 
-I have been avoiding the creation of a new framework for several years. First I tried to solve all the features covered by **FastAPI** using many different frameworks, plug-ins, and tools.
+Por  muchos años estuve evitando crear  un nuevo framework. Primero, traté de resolver todas las funcionalidades hoy cubiertas por **FastAPI** utilizando  diferentes frameworks, plugins y herramientas.
 
 But at some point, there was no other option than creating something that provided all these features, taking the best ideas from previous tools, and combining them in the best way possible, using language features that weren't even available before (Python 3.6+ type hints).
 
