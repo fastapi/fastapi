@@ -28,30 +28,33 @@ Fue creado para generar el HTML del backend, no para crear API utilizadas por in
 
 ### <a href="https://www.django-rest-framework.org/" class="external-link" target="_blank">Django REST Framework</a>
 
-Django REST framework was created to be a flexible toolkit for building Web APIs using Django underneath, to improve its API capabilities.
+Django REST framework fue creado para ser un kit flexible  de herramientas  para construir APIs web usando Django por debajo, y así mejorar sus capacidades API.
 
-It is used by many companies including Mozilla, Red Hat and Eventbrite.
+Es utilizado por muchas compañías, como Mozilla, Red Hat y Eventbrite.
 
-It was one of the first examples of **automatic API documentation**, and this was specifically one of the first ideas that inspired "the search for" **FastAPI**.
-
-!!! note
-    Django REST Framework was created by Tom Christie. The same creator of Starlette and Uvicorn, on which **FastAPI** is based.
+Fue uno de los primeros ejemplos de **documentación automática de API**, siendo ésta, en particular, unas de las primeras ideas que inspiraron  "la búsqueda" de **FastAPI**.
 
 
-!!! check "Inspired **FastAPI** to"
-    Have an automatic API documentation web user interface.
+!!! nota
+    Django REST Framework fue creado por Tom Christie. El mismo creador de Starlette y Uvicorn, sobre los que **FastAPI** se apoya.
+
+
+!!! mirar "Inspiraron a **FastAPI** en"
+   Tener una interfaz web con la documentación automática de la API.
 
 ### <a href="http://flask.pocoo.org/" class="external-link" target="_blank">Flask</a>
 
-Flask is a "microframework", it doesn't include database integrations nor many of the things that come by default in Django.
+Flask es un "microframework" que no incluye integraciones con bases de datos ni muchas cosas que vienen por defecto en Django.
 
-This simplicity and flexibility allow doing things like using NoSQL databases as the main data storage system.
+Esta simplicidad y flexibilidad nos permiten hacer cosas como utilizar bases de datos NoSQL como sistema de almacenamiento  principal de datos.
 
-As it is very simple, it's relatively intuitive to learn, although the documentation gets somewhat technical at some points.
+Por ser tan  simple, es relativamente intuitivo de aprender, aunque la documentación se vuelve algo técnica en algunos apartes.
 
-It is also commonly used for other applications that don't necessarily need a database, user management, or any of the many features that come pre-built in Django. Although many of these features can be added with plug-ins.
+También se utiliza comúnmente para otras aplicaciones que no necesariamente requieran  bases de datos, gestión de usuarios, o cualquiera de las tantas características que vienen por defecto en Django. Aunque, vale aclarar, muchas de estas características se pueden agregar con complementos.
 
-This decoupling of parts, and being a "microframework" that could be extended to cover exactly what is needed was a key feature that I wanted to keep.
+Este desacoplamiento de sus partes, y el hecho de ser un "microframework" que se puede  extender para cubrir exactamente lo que se requiere, era una característica clave que yo quería conservar.
+
+Dada la simplicidad de Flask, parecía una buena combinación para construir API. Ahora tenía que hallar un "Django REST Framework" para Flask.
 
 Given the simplicity of Flask, it seemed like a good match for building APIs. The next thing to find was a "Django REST Framework" for Flask.
 
