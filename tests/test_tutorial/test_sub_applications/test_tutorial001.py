@@ -55,7 +55,7 @@ def test_main():
 
 
 def test_openapi_schema_sub():
-    response = client.get("/subapi/openapi.json")
+    response = client.get("/subapi/subapi/openapi.json")
     assert response.status_code == 200, response.text
     assert response.json() == openapi_schema_sub
 
