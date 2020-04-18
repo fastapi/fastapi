@@ -104,9 +104,9 @@ class FastAPI(Starlette):
 
             async def openapi(req: Request) -> JSONResponse:
                 return JSONResponse(self.openapi())
-
-            self.add_route(self.openapi_url, openapi, include_in_schema=False)
             openapi_url = self.openapi_prefix + self.openapi_url
+            self.add_route(openapi_url, openapi, include_in_schema=False)
+
         if self.openapi_url and self.docs_url:
 
             async def swagger_ui_html(req: Request) -> HTMLResponse:
