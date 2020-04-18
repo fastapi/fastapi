@@ -1,5 +1,5 @@
 rm -rf \{\{cookiecutter.project_slug\}\}/.git
-rm -rf \{\{cookiecutter.project_slug\}\}/backend/app/Pipfile.lock
+rm -rf \{\{cookiecutter.project_slug\}\}/backend/app/poetry.lock
 rm -rf \{\{cookiecutter.project_slug\}\}/frontend/node_modules
 rm -rf \{\{cookiecutter.project_slug\}\}/frontend/dist
 git checkout \{\{cookiecutter.project_slug\}\}/README.md
