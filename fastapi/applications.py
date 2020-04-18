@@ -104,6 +104,7 @@ class FastAPI(Starlette):
 
             async def openapi(req: Request) -> JSONResponse:
                 return JSONResponse(self.openapi())
+
             openapi_url = self.openapi_prefix + self.openapi_url
             self.add_route(openapi_url, openapi, include_in_schema=False)
 

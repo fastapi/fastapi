@@ -2,9 +2,7 @@ from fastapi import FastAPI
 from fastapi.testclient import TestClient
 
 app = FastAPI(
-    docs_url="/my_docs_url",
-    redoc_url="/my_redoc_url",
-    openapi_prefix="/prefix",
+    docs_url="/my_docs_url", redoc_url="/my_redoc_url", openapi_prefix="/prefix"
 )
 
 client = TestClient(app)
