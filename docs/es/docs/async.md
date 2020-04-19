@@ -214,7 +214,7 @@ Ese tipo de asincronía es lo que hizo popular a NodeJS (aunque NodeJS no es par
 
 Y ese es el mismo nivel de rendimiento </a> que obtienes con **FastAPI**.
 
-Y como puede tener paralelismo y asincronía al mismo tiempo, obtiene un mayor rendimiento que la mayoría de los marcos NodeJS probados y está a la par con Go, que es un lenguaje compilado más cercano a C <a href = "https: //www.techempower .com / benchmarks / # section = data-r17 & hw = ph & test = query & l = zijmkf-1 "class =" external-link "target =" _ blank "> (todo gracias a Starlette) </a>.
+Y como puede tener paralelismo y asincronía al mismo tiempo, obtiene un mayor rendimiento que la mayoría de los marcos NodeJS probados y está a la par con Go, que es un lenguaje compilado más cercano a C <a href="https://www.techempower.com/benchmarks/#section=data-r17&hw=ph&test=query&l=zijmkf-1" class="external-link" target="_blank">(all thanks to Starlette)</a>.
 
 ### Es la concurrencia mejor que el paralelismo?
 
@@ -225,6 +225,8 @@ La concurrencia es diferente al paralelismo. Y es mejor en escenarios **específ
 Entonces, para explicar eso, imagine la siguiente historia corta:
 
 > Tienes que limpiar una casa grande y sucia.
+
+Sips, esa es toda la historia.
 
 ---
 
@@ -302,7 +304,7 @@ hamburguesas = get_burgers (2)
 
 ---
 
-Por lo tanto, si está utilizando una biblioteca que le dice que puede llamarla con `await`, debe crear las *funciones enrutado* que la usan con` async def`, como en:
+Por lo tanto, si está utilizando una biblioteca que le dice que puede llamarla con `await`, debe crear las *funciones de enrutado* que la usan con` async def`, como en:
 
 ```Python hl_lines="2 3"
 @app.get('/burgers')
@@ -317,7 +319,7 @@ Es posible que haya notado que 'esperar' solo se puede usar dentro de las funcio
 
 Pero al mismo tiempo, las funciones definidas con `async def` deben ser "esperadas". Por lo tanto, las funciones con `async def` solo se pueden invocar dentro de las funciones definidas con` async def` también.
 
-Entonces, relacionado con la paradoj del huevo y la gallina, ¿cómo se llama la primera función `async`?
+Entonces, relacionado con la paradoja del huevo y la gallina, ¿cómo se llama a la primera función `async`?
 
 Si está trabajando con **FastAPI** no tiene que preocuparse por eso, porque esa "primera" función será su *función de enrutados*, y FastAPI sabrá cómo hacer lo pertinente.
 
@@ -349,7 +351,7 @@ Veamos la misma frase de arriba:
 
 > Las versiones modernas de Python tienen soporte para **"código asíncrono"** usando algo llamado **"corutinas"**, con la sintaxis **`async` y` await`**.
 
-Eso debería tener más sentido ahora.
+Eso ya debería tener más sentido ahora.
 
 Todo eso es lo que impulsa FastAPI (a través de Starlette) y lo que lo hace tener un rendimiento tan impresionante.
 
@@ -357,10 +359,10 @@ Todo eso es lo que impulsa FastAPI (a través de Starlette) y lo que lo hace ten
 
 !!! advertencia
     Probablemente puedas saltarte esto.
-    
-    Estos son detalles muy técnicos de cómo **FastAPI** funciona a muy bajo nivel.
-    
-    Si tienes bastante conocimiento técnico (corutinas, hilos, bloqueos, etc.) y tiene curiosidad acerca de cómo FastAPI gestiona `async def` vs normal `def`, continúa.
+
+    Estos son detalles muy técnicos de cómo **FastAPI** funciona a muy bajo nivel.
+    
+    Si tienes bastante conocimiento técnico (corutinas, hilos, bloqueos, etc.) y tienes curiosidad acerca de cómo FastAPI gestiona `async def` vs normal `def`, continúa.
 
 ### Funciones de enrutado 
 
