@@ -6,6 +6,3 @@ services:
   celeryworker:
     volumes:
       - ./backend/app:/app
-  backend-tests:
-    volumes:
-      - ./backend/app:/app

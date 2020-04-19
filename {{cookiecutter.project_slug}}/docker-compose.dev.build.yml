@@ -12,12 +12,6 @@ services:
       dockerfile: celeryworker.dockerfile
       args: 
         env: dev
-  backend-tests:
-    build:
-      context: ./backend
-      dockerfile: tests.dockerfile
-      args: 
-        env: dev
   frontend:
     build: 
       context: ./frontend

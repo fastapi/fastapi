@@ -9,7 +9,6 @@ if [ $(uname -s) = "Linux" ]; then
 fi
 
 docker-compose \
-    -f docker-compose.test.yml \
     -f docker-compose.shared.admin.yml \
     -f docker-compose.shared.base-images.yml \
     -f docker-compose.shared.depends.yml \
