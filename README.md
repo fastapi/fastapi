@@ -1,6 +1,6 @@
 # Full Stack FastAPI and PostgreSQL - Base Project Generator
 
-[![Build Status](https://travis-ci.org/tiangolo/full-stack-fastapi-postgresql.svg?branch=master)](https://travis-ci.org/tiangolo/full-stack-fastapi-postgresql)
+[![Build Status](https://travis-ci.com/tiangolo/full-stack-fastapi-postgresql.svg?branch=master)](https://travis-ci.com/tiangolo/full-stack-fastapi-postgresql)
 
 Generate a backend and frontend stack using Python, including interactive API documentation.
 
