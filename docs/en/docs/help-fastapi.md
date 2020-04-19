@@ -69,7 +69,6 @@ You can let me know:
 
 ## Vote for FastAPI
 
-* <a href="https://github.com/vinta/awesome-python/pull/1209" class="external-link" target="_blank">Vote to include **FastAPI** in `awesome-python`</a>.
 * <a href="https://www.slant.co/options/34241/~fastapi-review" class="external-link" target="_blank">Vote for **FastAPI** in Slant</a>.
 
 ## Help others with issues in GitHub
