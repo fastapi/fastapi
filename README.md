@@ -118,7 +118,6 @@ The input variables, with their default values (some auto generated) are:
  
 * `traefik_constraint_tag`: The tag to be used by the internal Traefik load balancer (for example, to divide requests between backend and frontend) for production. Used to separate this stack from any other stack you might have. This should identify each stack in each environment (production, staging, etc).
 * `traefik_constraint_tag_staging`: The Traefik tag to be used while on staging. 
-* `traefik_public_network`: This assumes you have another separate publicly facing Traefik at the server / cluster level. This is the network that main Traefik lives in.
 * `traefik_public_constraint_tag`: The tag that should be used by stack services that should communicate with the public.
 
 * `flower_auth`: Basic HTTP authentication for flower, in the form`user:password`. By default: "`root:changethis`".

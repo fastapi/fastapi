@@ -19,7 +19,6 @@ default_context:
   pgadmin_default_user_password: '{{ cookiecutter.pgadmin_default_user_password }}'
   traefik_constraint_tag: '{{ cookiecutter.traefik_constraint_tag }}'
   traefik_constraint_tag_staging: '{{ cookiecutter.traefik_constraint_tag_staging }}'
-  traefik_public_network: '{{ cookiecutter.traefik_public_network }}'
   traefik_public_constraint_tag: '{{ cookiecutter.traefik_public_constraint_tag }}'
   flower_auth: '{{ cookiecutter.flower_auth }}'
   sentry_dsn: '{{ cookiecutter.sentry_dsn }}'

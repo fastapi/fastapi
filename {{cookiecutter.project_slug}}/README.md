@@ -394,6 +394,24 @@ And you can use CI (continuous integration) systems to do it automatically.
 
 But you have to configure a couple things first.
 
+### Traefik network
+
+This stack expects the public Traefik network to be named `traefik-public`, just as in the tutorial in <a href="https://dockerswarm.rocks" class="external-link" target="_blank">DockerSwarm.rocks</a>.
+
+If you need to use a different Traefik public network name, update it in the `docker-compose.yml` files, in the section:
+
+```YAML
+networks:
+  traefik-public:
+    external: true
+```
+
+Change `traefik-public` to the name of the used Traefik network. And then update it in the file `.env`:
+
+```bash
+TRAEFIK_PUBLIC_NETWORK=traefik-public
+```
+
 ### Persisting Docker named volumes
 
 You need to make sure that each service (Docker container) that uses a volume is always deployed to the same Docker "node" in the cluster, that way it will preserve the data. Otherwise, it could be deployed to a different node each time, and each time the volume would be created in that new node before starting the service. As a result, it would look like your service was starting from scratch every time, losing all the previous data.
@@ -401,7 +419,6 @@ You need to make sure that each service (Docker container) that uses a volume is
 That's specially important for a service running a database. But the same problem would apply if you were saving files in your main backend service (for example, if those files were uploaded by your users, or if they were created by your system).
 
 To solve that, you can put constraints in the services that use one or more data volumes (like databases) to make them be deployed to a Docker node with a specific label. And of course, you need to have that label assigned to one (only one) of your nodes.
-
 
 #### Adding services with volumes
 
