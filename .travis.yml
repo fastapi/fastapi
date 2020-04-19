@@ -9,4 +9,4 @@ services:
   - docker
 
 script:
-- bash ./test.sh
+- bash ./scripts/test.sh
