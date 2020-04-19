@@ -1,0 +1,76 @@
+version: "3.3"
+services:
+
+  proxy:
+    ports:
+      - "80:80"
+      - "8090:8080"
+    command: --docker \
+      --docker.watch \
+      --docker.exposedbydefault=false \
+      --constraints=tag==${TRAEFIK_TAG} \
+      --logLevel=DEBUG \
+      --accessLog \
+      --web
+    labels:
+      - traefik.frontend.rule=Host:${DOMAIN}
+      - traefik.enable=true
+      - traefik.port=80
+
+  pgadmin:
+    ports:
+      - "5050:5050"
+
+  flower:
+    ports:
+      - "5555:5555"
+
+  backend:
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./backend/app:/app
+    environment:
+      - JUPYTER=jupyter lab --ip=0.0.0.0 --allow-root --NotebookApp.custom_display_url=http://127.0.0.1:8888
+      - SERVER_HOST=http://${DOMAIN}
+    build:
+      context: ./backend
+      dockerfile: backend.dockerfile
+      args:
+        env: dev
+    # command: bash -c "while true; do sleep 1; done"  # Infinite loop to keep container live doing nothing
+    command: /start-reload.sh
+    labels:
+      - traefik.frontend.rule=PathPrefix:/api,/docs,/redoc
+      - traefik.enable=true
+      - traefik.port=80
+      - traefik.tags=${TRAEFIK_TAG}
+
+  celeryworker:
+    volumes:
+      - ./backend/app:/app
+    environment:
+      - RUN=celery worker -A app.worker -l info -Q main-queue -c 1
+      - JUPYTER=jupyter lab --ip=0.0.0.0 --allow-root --NotebookApp.custom_display_url=http://127.0.0.1:8888
+      - SERVER_HOST=http://${DOMAIN}
+    build:
+      context: ./backend
+      dockerfile: celeryworker.dockerfile
+      args:
+        env: dev
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        FRONTEND_ENV: dev
+    labels:
+      - traefik.frontend.rule=PathPrefix:/
+      - traefik.enable=true
+      - traefik.port=80
+      - traefik.tags=${TRAEFIK_TAG}
+
+networks:
+  traefik-public:
+    # For local dev, don't expect an external Traefik network
+    external: false

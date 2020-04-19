@@ -1,0 +1,160 @@
+version: "3.3"
+services:
+
+  proxy:
+    image: traefik:v1.7
+    networks:
+      - ${TRAEFIK_PUBLIC_NETWORK}
+      - default
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: --docker \
+      --docker.swarmmode \
+      --docker.watch \
+      --docker.exposedbydefault=false \
+      --constraints=tag==${TRAEFIK_TAG} \
+      --logLevel=INFO \
+      --accessLog \
+      --web
+    deploy:
+      placement:
+        constraints:
+          - node.role == manager
+      labels:
+        # For the configured domain
+        - traefik.frontend.rule=Host:${DOMAIN}
+        # For a domain with and without 'www'
+        # Comment the previous line above and un-comment the line below
+        # - "traefik.frontend.rule=Host:www.${DOMAIN},${DOMAIN}"
+        - traefik.enable=true
+        - traefik.port=80
+        - traefik.tags=${TRAEFIK_PUBLIC_TAG}
+        - traefik.docker.network=${TRAEFIK_PUBLIC_NETWORK}
+        - traefik.frontend.entryPoints=http,https
+        - traefik.frontend.redirect.entryPoint=https
+        # Uncomment the config line below to detect and redirect www to non-www (or the contrary)
+        # The lines above for traefik.frontend.rule are needed too
+        # - "traefik.frontend.redirect.regex=^https?://(www.)?(${DOMAIN})/(.*)"
+        # To redirect from non-www to www un-comment the line below
+        # - "traefik.frontend.redirect.replacement=https://www.${DOMAIN}/$$3"
+        # To redirect from www to non-www un-comment the line below
+        # - "traefik.frontend.redirect.replacement=https://${DOMAIN}/$$3"
+  
+  db:
+    image: postgres:12
+    volumes:
+      - app-db-data:/var/lib/postgresql/data/pgdata
+    env_file:
+      - .env
+    environment:
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    deploy:
+      placement:
+        constraints:
+          - node.labels.${STACK_NAME}.app-db-data == true
+
+  pgadmin:
+    image: dpage/pgadmin4
+    networks:
+      - ${TRAEFIK_PUBLIC_NETWORK}
+      - default
+    depends_on:
+      - db
+    env_file:
+      - .env
+    deploy:
+      labels:
+        - traefik.frontend.rule=Host:pgadmin.${DOMAIN}
+        - traefik.enable=true
+        - traefik.port=5050
+        - traefik.tags=${TRAEFIK_PUBLIC_TAG}
+        - traefik.docker.network=${TRAEFIK_PUBLIC_NETWORK}
+        - traefik.frontend.entryPoints=http,https
+        - traefik.frontend.redirect.entryPoint=https
+
+  queue:
+    image: rabbitmq:3
+    # Using the below image instead is required to enable the "Broker" tab in the flower UI:
+    # image: rabbitmq:3-management
+    #
+    # You also have to change the flower command
+  
+  flower:
+    image: mher/flower
+    networks:
+      - ${TRAEFIK_PUBLIC_NETWORK}
+      - default
+    env_file:
+      - .env
+    command:
+      - "--broker=amqp://guest@queue:5672//"
+      # For the "Broker" tab to work in the flower UI, uncomment the following command argument,
+      # and change the queue service's image as well
+      # - "--broker_api=http://guest:guest@queue:15672/api//"
+    deploy:
+      labels:
+        - traefik.frontend.rule=Host:flower.${DOMAIN}
+        - traefik.enable=true
+        - traefik.port=5555
+        - traefik.tags=${TRAEFIK_PUBLIC_TAG}
+        - traefik.docker.network=${TRAEFIK_PUBLIC_NETWORK}
+        - traefik.frontend.entryPoints=http,https
+        - traefik.frontend.redirect.entryPoint=https
+  
+  backend:
+    image: '${DOCKER_IMAGE_BACKEND}:${TAG-latest}'
+    depends_on:
+      - db
+    env_file:
+      - .env
+    environment:
+      - SERVER_NAME=${DOMAIN}
+      - SERVER_HOST=https://${DOMAIN}
+      # Allow explicit env var override for tests
+      - SMTP_HOST=${SMTP_HOST}
+    build:
+      context: ./backend
+      dockerfile: backend.dockerfile
+    deploy:
+      labels:
+        - traefik.frontend.rule=PathPrefix:/api,/docs,/redoc
+        - traefik.enable=true
+        - traefik.port=80
+        - traefik.tags=${TRAEFIK_TAG}
+  
+  celeryworker:
+    image: '${DOCKER_IMAGE_CELERYWORKER}:${TAG-latest}'
+    depends_on:
+      - db
+      - queue
+    env_file:
+      - .env
+    environment:
+      - SERVER_NAME=${DOMAIN}
+      - SERVER_HOST=https://${DOMAIN}
+      # Allow explicit env var override for tests
+      - SMTP_HOST=${SMTP_HOST}
+    build:
+      context: ./backend
+      dockerfile: celeryworker.dockerfile
+  
+  frontend:
+    image: '${DOCKER_IMAGE_FRONTEND}:${TAG-latest}'
+    build:
+      context: ./frontend
+      args:
+        FRONTEND_ENV: ${FRONTEND_ENV-production}
+    deploy:
+      labels:
+        - traefik.frontend.rule=PathPrefix:/
+        - traefik.enable=true
+        - traefik.port=80
+        - traefik.tags=${TRAEFIK_TAG}
+
+volumes:
+  app-db-data:
+
+networks:
+  traefik-public:
+    # Allow setting it to false for testing
+    external: ${TRAEFIK_PUBLIC_NETWORK_IS_EXTERNAL-true}

@@ -7,4 +7,4 @@ TAG=${TAG} \
 FRONTEND_ENV=${FRONTEND_ENV-production} \
 . ./scripts/build.sh
 
-docker-compose -f docker-stack.yml push
+docker-compose -f docker-compose.yml push

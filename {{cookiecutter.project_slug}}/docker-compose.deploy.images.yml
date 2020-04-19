@@ -1,8 +1,0 @@
-version: '3.3'
-services:
-  backend:
-    image: '${DOCKER_IMAGE_BACKEND}:${TAG-latest}'
-  celeryworker:
-    image: '${DOCKER_IMAGE_CELERYWORKER}:${TAG-latest}'
-  frontend:
-    image: '${DOCKER_IMAGE_FRONTEND}:${TAG-latest}'

@@ -1,9 +1,0 @@
-version: '3.3'
-services:
-  backend:
-    depends_on: 
-      - db
-  celeryworker:
-    depends_on: 
-      - db
-      - queue
