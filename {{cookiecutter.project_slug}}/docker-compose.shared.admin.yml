@@ -5,7 +5,7 @@ services:
     depends_on:
       - db
     env_file:
-      - env-pgadmin.env
+      - .env
   proxy:
     image: traefik:v1.7
     volumes:
@@ -13,7 +13,7 @@ services:
   flower:
     image: mher/flower
     env_file:
-      - env-flower.env
+      - .env
     command:
       - "--broker=amqp://guest@queue:5672//"
       # For the "Broker" tab to work in the flower UI, uncomment the following command argument,

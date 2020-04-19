@@ -6,8 +6,7 @@ services:
       dockerfile: tests.dockerfile
     command: bash -c "while true; do sleep 1; done"
     env_file:
-      - env-backend.env
-      - env-postgres.env
+      - .env
     environment:
       - SERVER_NAME=backend
       - SERVER_HOST=http://${DOMAIN}
