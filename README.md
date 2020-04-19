@@ -8,16 +8,13 @@ Generate a backend and frontend stack using Python, including interactive API do
 
 [![API docs](img/docs.png)](https://github.com/tiangolo/full-stack-fastapi-postgresql)
 
-
 ### Alternative API documentation
 
 [![API docs](img/redoc.png)](https://github.com/tiangolo/full-stack-fastapi-postgresql)
 
-
 ### Dashboard Login
 
 [![API docs](img/login.png)](https://github.com/tiangolo/full-stack-fastapi-postgresql)
-
 
 ### Dashboard - Create User
 
@@ -61,6 +58,7 @@ Generate a backend and frontend stack using Python, including interactive API do
     * Docker multi-stage building, so you don't need to save or commit compiled code.
     * Frontend tests ran at build time (can be disabled too).
     * Made as modular as possible, so it works out of the box, but you can re-generate with Vue CLI or create it as you need, and re-use what you want.
+    * It's also easy to remove it if you have an API-only app, check the instructions in the generated `README.md`.
 * **PGAdmin** for PostgreSQL database, you can modify it to use PHPMyAdmin and MySQL easily.
 * **Flower** for Celery jobs monitoring.
 * Load balancing between frontend and backend with **Traefik**, so you can have both under the same domain, separated by path, but served by different containers.

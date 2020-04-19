@@ -394,6 +394,26 @@ VUE_APP_ENV=development
 VUE_APP_ENV=staging
 ```
 
+### Removing the frontend
+
+If you are developing an API-only app and want to remove the frontend, you can do it easily:
+
+* Remove the `./frontend` directory.
+* In the `docker-compose.yml` file, remove the whole service / section `frontend`.
+* In the `docker-compose.override.yml` file, remove the whole service / section `frontend`.
+
+Done, you have a frontend-less (api-only) app. 🔥 🚀
+
+---
+
+If you want, you can also remove the `FRONTEND` environment variables from:
+
+* `.env`
+* `.gitlab-ci.yml`
+* `./scripts/*.sh`
+
+But it would be only to clean them up, leaving them won't really have any effect either way.
+
 ## Deployment
 
 You can deploy the stack to a Docker Swarm mode cluster with a main Traefik proxy, set up using the ideas from <a href="https://dockerswarm.rocks" target="_blank">DockerSwarm.rocks</a>, to get automatic HTTPS certificates, etc.
