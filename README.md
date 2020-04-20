@@ -145,6 +145,7 @@ After using this generator, your new project (the directory created) will contai
 
 ### Latest Changes
 
+* Add docs about reporting test coverage in HTML. PR [#161](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/161).
 * Run tests with `TestClient`. PR [#160](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/160).
 * Refactor backend:
     * Simplify configs for tools and format to better support editor integration.
