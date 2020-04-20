@@ -145,6 +145,17 @@ After using this generator, your new project (the directory created) will contai
 
 ### Latest Changes
 
+* Refactor backend:
+    * Simplify configs for tools and format to better support editor integration.
+    * Add mypy configurations and plugins.
+    * Add types to all the codebase.
+    * Update types for SQLAlchemy models with plugin.
+    * Update and refactor CRUD utils.
+    * Refactor DB sessions to use dependencies with `yield`.
+    * Refactor dependencies, security, CRUD, models, schemas, etc. To simplify code and improve autocompletion.
+    * Change from PyJWT to Python-JOSE as it supports additional use cases.
+    * Fix JWT tokens using user email/ID as the subject in `sub`.
+    * PR [#158](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/158).
 * Add docs about removing the frontend, for an API-only app. PR [#156](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/156).
 * Simplify scripts and development, update docs and configs. PR [#155](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/155).
 * Simplify `docker-compose.*.yml` files, refactor deployment to reduce config files. PR [#153](https://github.com/tiangolo/full-stack-fastapi-postgresql/pull/153).
