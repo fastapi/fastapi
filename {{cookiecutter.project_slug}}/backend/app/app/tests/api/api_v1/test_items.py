@@ -1,18 +1,16 @@
-import requests
+from fastapi.testclient import TestClient
 from sqlalchemy.orm import Session
 
 from app.core.config import settings
 from app.tests.utils.item import create_random_item
-from app.tests.utils.utils import get_server_api
 
 
-def test_create_item(superuser_token_headers: dict, db: Session) -> None:
-    server_api = get_server_api()
+def test_create_item(
+    client: TestClient, superuser_token_headers: dict, db: Session
+) -> None:
     data = {"title": "Foo", "description": "Fighters"}
-    response = requests.post(
-        f"{server_api}{settings.API_V1_STR}/items/",
-        headers=superuser_token_headers,
-        json=data,
+    response = client.post(
+        f"{settings.API_V1_STR}/items/", headers=superuser_token_headers, json=data,
     )
     assert response.status_code == 200
     content = response.json()
@@ -22,12 +20,12 @@ def test_create_item(superuser_token_headers: dict, db: Session) -> None:
     assert "owner_id" in content
 
 
-def test_read_item(superuser_token_headers: dict, db: Session) -> None:
+def test_read_item(
+    client: TestClient, superuser_token_headers: dict, db: Session
+) -> None:
     item = create_random_item(db)
-    server_api = get_server_api()
-    response = requests.get(
-        f"{server_api}{settings.API_V1_STR}/items/{item.id}",
-        headers=superuser_token_headers,
+    response = client.get(
+        f"{settings.API_V1_STR}/items/{item.id}", headers=superuser_token_headers,
     )
     assert response.status_code == 200
     content = response.json()

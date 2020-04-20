@@ -1,23 +1,21 @@
 from typing import Dict
 
-import requests
+from fastapi.testclient import TestClient
 from sqlalchemy.orm import Session
 
 from app import crud
 from app.core.config import settings
 from app.models.user import User
 from app.schemas.user import UserCreate, UserUpdate
-from app.tests.utils.utils import get_server_api, random_email, random_lower_string
+from app.tests.utils.utils import random_email, random_lower_string
 
 
 def user_authentication_headers(
-    server_api: str, email: str, password: str
+    *, client: TestClient, email: str, password: str
 ) -> Dict[str, str]:
     data = {"username": email, "password": password}
 
-    r = requests.post(
-        f"{server_api}{settings.API_V1_STR}/login/access-token", data=data
-    )
+    r = client.post(f"{settings.API_V1_STR}/login/access-token", data=data)
     response = r.json()
     auth_token = response["access_token"]
     headers = {"Authorization": f"Bearer {auth_token}"}
@@ -32,7 +30,9 @@ def create_random_user(db: Session) -> User:
     return user
 
 
-def authentication_token_from_email(*, email: str, db: Session) -> Dict[str, str]:
+def authentication_token_from_email(
+    *, client: TestClient, email: str, db: Session
+) -> Dict[str, str]:
     """
     Return a valid token for the user with given email.
 
@@ -47,4 +47,4 @@ def authentication_token_from_email(*, email: str, db: Session) -> Dict[str, str
         user_in_update = UserUpdate(password=password)
         user = crud.user.update(db, db_obj=user, obj_in=user_in_update)
 
-    return user_authentication_headers(get_server_api(), email, password)
+    return user_authentication_headers(client=client, email=email, password=password)
