@@ -3,7 +3,6 @@ from sqlalchemy.orm import Session
 
 from app.core.config import settings
 from app.tests.utils.item import create_random_item
-from app.tests.utils.user import create_random_user  # noqa: F401
 from app.tests.utils.utils import get_server_api
 
 
