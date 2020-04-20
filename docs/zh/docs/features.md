@@ -7,13 +7,13 @@
 ### 基于开放标准
 
 
-* 用于创建API的 <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a> 包含了<abbr title="也被叫做: endpoints, routes">路径</abbr><abbr title="也叫做HTTP方法, 例如POST, GET, PUT, DELETE">操作</abbr>，请求参数，请求体，安全性等说明。
+* 用于创建API的 <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a> 包含了<abbr title="也被叫做: endpoints, routes">路径</abbr><abbr title="也叫做HTTP方法, 例如POST, GET, PUT, DELETE">操作</abbr>，请求参数，请求体，安全性等的声明。
 * 使用 <a href="http://json-schema.org/" class="external-link" target="_blank"><strong>JSON Schema</strong></a> ( OpenAPI 本身就是基于 JSON Schema 的)自动生成数据模型文档。
-* 经过了缜密的研究，围绕这些标准被设计出来的。而不是想到什么就在顶层加上什么。
-* 这也允许在很多语言中使用自动**客户端代码生成**。
+* 经过了缜密的研究后围绕这些标准而设计。并非狗尾续貂。
+* 这也允许了在很多语言中自动**生成客户端代码**。
 ### 自动生成文档
 
-交互式 API 文档以及具探索性 web  界面。因为该框架是基于 OpenAPI ，所以有很多可选选项，默认情况下只设置了两个。
+交互式 API 文档以及具探索性 web 界面。因为该框架是基于 OpenAPI，所以有很多可选选项，默认情况下只设置了两个。
 
 * <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank"><strong>Swagger UI</strong></a>，可交互式操作，能在浏览器中直接调用和测试你的 API  。
 
@@ -72,13 +72,13 @@ my_second_user: User = User(**second_user_data)
 
 ### 编辑器支持
 
-所有的框架都被设计得易于使用且直观，所有的决定都在开发之前就在多个编辑器上进行了测试，来确保最佳的开发体验。
+整个框架都被设计得易于使用且直观，所有的决定都在开发之前就在多个编辑器上进行了测试，来确保最佳的开发体验。
 
 在最近的 Python 开发者调查中，我们能看到<a href="https://www.jetbrains.com/research/python-developers-survey-2017/#tools-and-features" class="external-link" target="_blank">被使用最多的功能是"自动补全"</a>。
 
 整个 **FastAPI** 框架就是基于这一点的。任何地方都可以进行自动补全。
 
-你就不需要经常再来看这个文档。
+你不会需要经常回来看文档。
 
 在这里可以看到你的编辑器是如何帮助你的：
 
@@ -90,48 +90,48 @@ my_second_user: User = User(**second_user_data)
 
 ![editor support](https://fastapi.tiangolo.com/img/pycharm-completion.png)
 
-你将在代码中完成你在之前可能曾认为不可能的事。例如，在来自请求 JSON 体（可能是嵌套的）中的键`price`。
+你将能进行代码补全，这是在之前你可能曾认为不可能的事。例如，在来自请求 JSON 体（可能是嵌套的）中的键`price`。
 
 不会再输错键名，来回翻看文档，或者来回滚动寻找你最后使用的`username`或者`user_name`。
 
 
 
-### 总结
+### 简洁
 
 任何类型都有合理的**默认值**，任何和地方都有可选配置。所有的参数被微调，来满足你的需求，定义成你需要的API。
 
-但是默认情况下，所有都是**“能够工作”**。
+但是默认情况下，一切都能**“顺利工作”**。
 
 ### 验证
 
-* 验证大部分（甚至所有？）的 Python **数据类型**，包括：
-    * JSON 对象 (`dict`)。
+* 校验大部分（甚至所有？）的 Python **数据类型**，包括：
+    * JSON 对象 (`dict`).
     * JSON 数组 (`list`) 定义成员类型。
     * 字符串 (`str`) 字段, 定义最小或最大长度。
     * 数字 (`int`, `float`) 有最大值和最小值， 等等。
 
-* 验证外来类型， 比如：
-    * URL。
-    * Email。
-    * UUID。
-    * ...及其他。
+* 校验外来类型， 比如:
+    * URL.
+    * Email.
+    * UUID.
+    * ...及其他.
 
-所有的验证都由完善且强大的 **Pydantic** 处理。
+所有的校验都由完善且强大的 **Pydantic** 处理。
 
 ### 安全性及身份验证
 
-集成了安全性和身份认证。不影响数据库或者数据模型。
+集成了安全性和身份认证。杜绝数据库或者数据模型的渗透风险。
 
 OpenAPI 中定义的安全模式，包括：
 
 * HTTP 基本认证。
 * **OAuth2** (也使用 **JWT tokens**)。在 [OAuth2 with JWT](tutorial/security/oauth2-jwt.md){.internal-link target=_blank}查看教程。
-* API 密钥，在：
+* API 密钥，在:
     * 请求头。
     * 查询参数。
     * Cookies, 等等。
 
-加上来自Starlette（包括 **session cookie**）的所有安全特性。
+加上来自 Starlette（包括 **session cookie**）的所有安全特性。
 
 所有的这些都是可复用的工具和组件，可以轻松与你的系统，数据仓库，关系型以及 NoSQL 数据库等等集成。
 
@@ -141,7 +141,7 @@ OpenAPI 中定义的安全模式，包括：
 
 FastAPI 有一个使用非常简单，但是非常强大的<abbr title='也叫做 "components", "resources", "services", "providers"'><strong>依赖注入</strong></abbr>系统。
 
-* 甚至依赖关系也可以有依赖关系，创建一个层级或者**“图”依赖关系**。
+* 甚至依赖也可以有依赖，创建一个层级或者**“图”依赖**。
 * 所有**自动化处理**都由框架完成。
 * 所有的依赖关系都可以从请求中获取数据，并且**增加了路径操作**约束和自动文档生成。
 * 即使在依赖项中被定义的*路径操作* 也会**自动验证**。
@@ -192,14 +192,14 @@ FastAPI 有一个使用非常简单，但是非常强大的<abbr title='也叫�
 * **更简单**：
     * 没有新的模式定义 micro-language 需要学习。
     * 如果你知道 Python types，你就知道如何使用 Pydantic。
-* 和你 **<abbr title="集成开发环境，和代码编辑器类似">IDE</abbr>/<abbr title="一个检查代码错误的程序">linter</abbr>/brain** 适配：
+* 和你 **<abbr title="集成开发环境，和代码编辑器类似">IDE</abbr>/<abbr title="一个检查代码错误的程序">linter</abbr>/brain** 适配:
     * 因为 pydantic 数据结构仅仅是你定义的类的实例；自动补全，linting，mypy 以及你的直觉应该可以和你验证的数据一起正常工作。 
 * **更快**：
-    * 在 <a href="https：//pydantic-docs.helpmanual.io/#benchmarks-tag" class="external-link" target="_blank">基准测试</a> 中，Pydantic 比其他被测试的库都要快。
-* 验证**复杂结构**：
+    * 在 <a href="https://pydantic-docs.helpmanual.io/#benchmarks-tag" class="external-link" target="_blank">基准测试</a> 中，Pydantic 比其他被测试的库都要快。
+* 验证**复杂结构**:
     * 使用分层的 Pydantic 模型, Python `typing`的 `List` 和 `Dict` 等等。
     * 验证器允许复杂的数据架构能被清晰简单地定义，检查并记录为 JSON Schema。
     * 你可以拥有深度**嵌套的 JSON** 对象并对它们进行验证和注释。
-* **可扩展**：
+* **可扩展**:
     * Pydantic 允许定义自定义数据类型或者你可以用验证器装饰器对被装饰的模型上的方法扩展验证。
 * 100% 测试覆盖率。
