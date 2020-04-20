@@ -73,18 +73,18 @@ openapi_schema = {
 
 def test_openapi_schema():
     response = client.get("/openapi.json")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == openapi_schema
 
 
 def test_get_item_header():
     response = client.get("/items-header/foo")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == {"item": "The Foo Wrestlers"}
 
 
 def test_get_item_not_found_header():
     response = client.get("/items-header/bar")
-    assert response.status_code == 404
+    assert response.status_code == 404, response.text
     assert response.headers.get("x-error") == "There goes my error"
     assert response.json() == {"detail": "Item not found"}

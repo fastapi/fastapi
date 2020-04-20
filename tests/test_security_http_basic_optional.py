@@ -46,20 +46,20 @@ openapi_schema = {
 
 def test_openapi_schema():
     response = client.get("/openapi.json")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == openapi_schema
 
 
 def test_security_http_basic():
     auth = HTTPBasicAuth(username="john", password="secret")
     response = client.get("/users/me", auth=auth)
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == {"username": "john", "password": "secret"}
 
 
 def test_security_http_basic_no_credentials():
     response = client.get("/users/me")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == {"msg": "Create an account first"}
 
 
@@ -67,7 +67,7 @@ def test_security_http_basic_invalid_credentials():
     response = client.get(
         "/users/me", headers={"Authorization": "Basic notabase64token"}
     )
-    assert response.status_code == 401
+    assert response.status_code == 401, response.text
     assert response.headers["WWW-Authenticate"] == "Basic"
     assert response.json() == {"detail": "Invalid authentication credentials"}
 
@@ -76,6 +76,6 @@ def test_security_http_basic_non_basic_credentials():
     payload = b64encode(b"johnsecret").decode("ascii")
     auth_header = f"Basic {payload}"
     response = client.get("/users/me", headers={"Authorization": auth_header})
-    assert response.status_code == 401
+    assert response.status_code == 401, response.text
     assert response.headers["WWW-Authenticate"] == "Basic"
     assert response.json() == {"detail": "Invalid authentication credentials"}

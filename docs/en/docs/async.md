@@ -63,13 +63,13 @@ Let's see that phrase by parts in the sections below, below:
 
 ## Asynchronous Code
 
-Asynchronous code just means that the language has a way to tell the computer / program that at some point in the code, he will have to wait for *something else* to finish somewhere else. Let's say that *something else* is called "slow-file". 
+Asynchronous code just means that the language 💬 has a way to tell the computer / program 🤖 that at some point in the code, it 🤖 will have to wait for *something else* to finish somewhere else. Let's say that *something else* is called "slow-file" 📝.
 
-So, during that time, the computer can go and do some other work, while "slow-file" finishes. 
+So, during that time, the computer can go and do some other work, while "slow-file" 📝 finishes.
 
-Then the computer / program will come back every time it has a chance because it's waiting again, or whenever he finished all the work he had at that point. And it will see if any of the tasks he was waiting for has already finished doing whatever it had to do.
+Then the computer / program 🤖 will come back every time it has a chance because it's waiting again, or whenever it 🤖 finished all the work it had at that point. And it 🤖 will see if any of the tasks it was waiting for have already finished, doing whatever it had to do.
 
-And then it takes the first task to finish (let's say, our "slow-file") and continues whatever it had to do with it.
+Next, it 🤖 takes the first task to finish (let's say, our "slow-file" 📝) and continues whatever it had to do with it.
 
 That "wait for something else" normally refers to <abbr title="Input and Output">I/O</abbr> operations that are relatively "slow" (compared to the speed of the processor and the RAM memory), like waiting for:
 
@@ -82,7 +82,7 @@ That "wait for something else" normally refers to <abbr title="Input and Output"
 * a database query to return the results
 * etc.
 
-As the execution time is consumed mostly by waiting for <abbr title="Input and Output">I/O</abbr> operations, so they call them "I/O bound".
+As the execution time is consumed mostly by waiting for <abbr title="Input and Output">I/O</abbr> operations, they call them "I/O bound" operations.
 
 It's called "asynchronous" because the computer / program doesn't have to be "synchronized" with the slow task, waiting for the exact moment that the task finishes, while doing nothing, to be able to take the task result and continue the work.
 
@@ -114,7 +114,7 @@ The cashier gives you the number of your turn.
 
 While you are waiting, you go with your crush and pick a table, you sit and talk with your crush for a long time (as your burgers are very fancy and take some time to prepare).
 
-As you are seating on the table with your crush, while you wait for the burgers, you can spend that time admiring how awesome, cute and smart your crush is.
+As you are sitting on the table with your crush, while you wait for the burgers, you can spend that time admiring how awesome, cute and smart your crush is.
 
 While waiting and talking to your crush, from time to time, you check the number displayed on the counter to see if it's your turn already.
 
@@ -132,7 +132,7 @@ Then, when it's your turn, you do actual "productive" work, you process the menu
 
 But then, even though you still don't have your burgers, your work with the cashier is "on pause", because you have to wait for your burgers to be ready.
 
-But as you go away from the counter and seat on the table with a number for your turn, you can switch your attention to your crush, and "work" on that. Then you are again doing something very "productive", as is flirting with your crush.
+But as you go away from the counter and sit on the table with a number for your turn, you can switch your attention to your crush, and "work" on that. Then you are again doing something very "productive", as is flirting with your crush.
 
 Then the cashier says "I'm finished with doing the burgers" by putting your number on the counter display, but you don't jump like crazy immediately when the displayed number changes to your turn number. You know no one will steal your burgers because you have the number of your turn, and they have theirs. 
 
