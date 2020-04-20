@@ -1,12 +1,13 @@
 import requests
+from sqlalchemy.orm import Session
 
 from app.core.config import settings
 from app.tests.utils.item import create_random_item
-from app.tests.utils.utils import get_server_api
 from app.tests.utils.user import create_random_user  # noqa: F401
+from app.tests.utils.utils import get_server_api
 
 
-def test_create_item(superuser_token_headers):
+def test_create_item(superuser_token_headers: dict, db: Session) -> None:
     server_api = get_server_api()
     data = {"title": "Foo", "description": "Fighters"}
     response = requests.post(
@@ -22,8 +23,8 @@ def test_create_item(superuser_token_headers):
     assert "owner_id" in content
 
 
-def test_read_item(superuser_token_headers):
-    item = create_random_item()
+def test_read_item(superuser_token_headers: dict, db: Session) -> None:
+    item = create_random_item(db)
     server_api = get_server_api()
     response = requests.get(
         f"{server_api}{settings.API_V1_STR}/items/{item.id}",

@@ -1,24 +1,21 @@
-from typing import List
+from typing import Any, List
 
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
-from app import crud
-from app.api.utils.db import get_db
-from app.api.utils.security import get_current_active_user
-from app.models.user import User as DBUser
-from app.schemas.item import Item, ItemCreate, ItemUpdate
+from app import crud, models, schemas
+from app.api import deps
 
 router = APIRouter()
 
 
-@router.get("/", response_model=List[Item])
+@router.get("/", response_model=List[schemas.Item])
 def read_items(
-    db: Session = Depends(get_db),
+    db: Session = Depends(deps.get_db),
     skip: int = 0,
     limit: int = 100,
-    current_user: DBUser = Depends(get_current_active_user),
-):
+    current_user: models.User = Depends(deps.get_current_active_user),
+) -> Any:
     """
     Retrieve items.
     """
@@ -26,58 +23,56 @@ def read_items(
         items = crud.item.get_multi(db, skip=skip, limit=limit)
     else:
         items = crud.item.get_multi_by_owner(
-            db_session=db, owner_id=current_user.id, skip=skip, limit=limit
+            db=db, owner_id=current_user.id, skip=skip, limit=limit
         )
     return items
 
 
-@router.post("/", response_model=Item)
+@router.post("/", response_model=schemas.Item)
 def create_item(
     *,
-    db: Session = Depends(get_db),
-    item_in: ItemCreate,
-    current_user: DBUser = Depends(get_current_active_user),
-):
+    db: Session = Depends(deps.get_db),
+    item_in: schemas.ItemCreate,
+    current_user: models.User = Depends(deps.get_current_active_user),
+) -> Any:
     """
     Create new item.
     """
-    item = crud.item.create_with_owner(
-        db_session=db, obj_in=item_in, owner_id=current_user.id
-    )
+    item = crud.item.create_with_owner(db=db, obj_in=item_in, owner_id=current_user.id)
     return item
 
 
-@router.put("/{id}", response_model=Item)
+@router.put("/{id}", response_model=schemas.Item)
 def update_item(
     *,
-    db: Session = Depends(get_db),
+    db: Session = Depends(deps.get_db),
     id: int,
-    item_in: ItemUpdate,
-    current_user: DBUser = Depends(get_current_active_user),
-):
+    item_in: schemas.ItemUpdate,
+    current_user: models.User = Depends(deps.get_current_active_user),
+) -> Any:
     """
     Update an item.
     """
-    item = crud.item.get(db_session=db, id=id)
+    item = crud.item.get(db=db, id=id)
     if not item:
         raise HTTPException(status_code=404, detail="Item not found")
     if not crud.user.is_superuser(current_user) and (item.owner_id != current_user.id):
         raise HTTPException(status_code=400, detail="Not enough permissions")
-    item = crud.item.update(db_session=db, db_obj=item, obj_in=item_in)
+    item = crud.item.update(db=db, db_obj=item, obj_in=item_in)
     return item
 
 
-@router.get("/{id}", response_model=Item)
+@router.get("/{id}", response_model=schemas.Item)
 def read_item(
     *,
-    db: Session = Depends(get_db),
+    db: Session = Depends(deps.get_db),
     id: int,
-    current_user: DBUser = Depends(get_current_active_user),
-):
+    current_user: models.User = Depends(deps.get_current_active_user),
+) -> Any:
     """
     Get item by ID.
     """
-    item = crud.item.get(db_session=db, id=id)
+    item = crud.item.get(db=db, id=id)
     if not item:
         raise HTTPException(status_code=404, detail="Item not found")
     if not crud.user.is_superuser(current_user) and (item.owner_id != current_user.id):
@@ -85,20 +80,20 @@ def read_item(
     return item
 
 
-@router.delete("/{id}", response_model=Item)
+@router.delete("/{id}", response_model=schemas.Item)
 def delete_item(
     *,
-    db: Session = Depends(get_db),
+    db: Session = Depends(deps.get_db),
     id: int,
-    current_user: DBUser = Depends(get_current_active_user),
-):
+    current_user: models.User = Depends(deps.get_current_active_user),
+) -> Any:
     """
     Delete an item.
     """
-    item = crud.item.get(db_session=db, id=id)
+    item = crud.item.get(db=db, id=id)
     if not item:
         raise HTTPException(status_code=404, detail="Item not found")
     if not crud.user.is_superuser(current_user) and (item.owner_id != current_user.id):
         raise HTTPException(status_code=400, detail="Not enough permissions")
-    item = crud.item.remove(db_session=db, id=id)
+    item = crud.item.remove(db=db, id=id)
     return item

@@ -115,6 +115,8 @@ services:
     build:
       context: ./backend
       dockerfile: backend.dockerfile
+      args:
+        INSTALL_DEV: ${INSTALL_DEV-false}
     deploy:
       labels:
         - traefik.frontend.rule=PathPrefix:/api,/docs,/redoc
@@ -137,6 +139,8 @@ services:
     build:
       context: ./backend
       dockerfile: celeryworker.dockerfile
+      args:
+        INSTALL_DEV: ${INSTALL_DEV-false}
   
   frontend:
     image: '${DOCKER_IMAGE_FRONTEND}:${TAG-latest}'

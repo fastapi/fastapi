@@ -2,7 +2,7 @@ import logging
 
 from tenacity import after_log, before_log, retry, stop_after_attempt, wait_fixed
 
-from app.db.session import db_session
+from app.db.session import SessionLocal
 from app.tests.api.api_v1.test_login import test_get_access_token
 
 logging.basicConfig(level=logging.INFO)
@@ -18,10 +18,11 @@ wait_seconds = 1
     before=before_log(logger, logging.INFO),
     after=after_log(logger, logging.WARN),
 )
-def init():
+def init() -> None:
     try:
         # Try to create session to check if DB is awake
-        db_session.execute("SELECT 1")
+        db = SessionLocal()
+        db.execute("SELECT 1")
         # Wait for API to be awake, run one simple tests to authenticate
         test_get_access_token()
     except Exception as e:
@@ -29,7 +30,7 @@ def init():
         raise e
 
 
-def main():
+def main() -> None:
     logger.info("Initializing service")
     init()
     logger.info("Service finished initializing")

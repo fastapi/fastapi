@@ -1,19 +1,21 @@
 import logging
 from datetime import datetime, timedelta
 from pathlib import Path
-from typing import Optional
+from typing import Any, Dict, Optional
 
 import emails
-import jwt
 from emails.template import JinjaTemplate
-from jwt.exceptions import InvalidTokenError
+from jose import jwt
 
 from app.core.config import settings
 
-password_reset_jwt_subject = "preset"
 
-
-def send_email(email_to: str, subject_template="", html_template="", environment={}):
+def send_email(
+    email_to: str,
+    subject_template: str = "",
+    html_template: str = "",
+    environment: Dict[str, Any] = {},
+) -> None:
     assert settings.EMAILS_ENABLED, "no provided configuration for email variables"
     message = emails.Message(
         subject=JinjaTemplate(subject_template),
@@ -31,7 +33,7 @@ def send_email(email_to: str, subject_template="", html_template="", environment
     logging.info(f"send email result: {response}")
 
 
-def send_test_email(email_to: str):
+def send_test_email(email_to: str) -> None:
     project_name = settings.PROJECT_NAME
     subject = f"{project_name} - Test email"
     with open(Path(settings.EMAIL_TEMPLATES_DIR) / "test_email.html") as f:
@@ -44,17 +46,13 @@ def send_test_email(email_to: str):
     )
 
 
-def send_reset_password_email(email_to: str, email: str, token: str):
+def send_reset_password_email(email_to: str, email: str, token: str) -> None:
     project_name = settings.PROJECT_NAME
     subject = f"{project_name} - Password recovery for user {email}"
     with open(Path(settings.EMAIL_TEMPLATES_DIR) / "reset_password.html") as f:
         template_str = f.read()
-    if hasattr(token, "decode"):
-        use_token = token.decode()
-    else:
-        use_token = token
     server_host = settings.SERVER_HOST
-    link = f"{server_host}/reset-password?token={use_token}"
+    link = f"{server_host}/reset-password?token={token}"
     send_email(
         email_to=email_to,
         subject_template=subject,
@@ -69,7 +67,7 @@ def send_reset_password_email(email_to: str, email: str, token: str):
     )
 
 
-def send_new_account_email(email_to: str, username: str, password: str):
+def send_new_account_email(email_to: str, username: str, password: str) -> None:
     project_name = settings.PROJECT_NAME
     subject = f"{project_name} - New account for user {username}"
     with open(Path(settings.EMAIL_TEMPLATES_DIR) / "new_account.html") as f:
@@ -89,23 +87,20 @@ def send_new_account_email(email_to: str, username: str, password: str):
     )
 
 
-def generate_password_reset_token(email):
+def generate_password_reset_token(email: str) -> str:
     delta = timedelta(hours=settings.EMAIL_RESET_TOKEN_EXPIRE_HOURS)
     now = datetime.utcnow()
     expires = now + delta
     exp = expires.timestamp()
     encoded_jwt = jwt.encode(
-        {"exp": exp, "nbf": now, "sub": password_reset_jwt_subject, "email": email},
-        settings.SECRET_KEY,
-        algorithm="HS256",
+        {"exp": exp, "nbf": now, "sub": email}, settings.SECRET_KEY, algorithm="HS256",
     )
     return encoded_jwt
 
 
-def verify_password_reset_token(token) -> Optional[str]:
+def verify_password_reset_token(token: str) -> Optional[str]:
     try:
         decoded_token = jwt.decode(token, settings.SECRET_KEY, algorithms=["HS256"])
-        assert decoded_token["sub"] == password_reset_jwt_subject
         return decoded_token["email"]
-    except InvalidTokenError:
+    except jwt.JWTError:
         return None

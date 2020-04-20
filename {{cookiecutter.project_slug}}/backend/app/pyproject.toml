@@ -8,7 +8,6 @@ authors = ["Admin <admin@example.com>"]
 python = "^3.7"
 uvicorn = "^0.11.3"
 fastapi = "^0.54.1"
-pyjwt = "^1.7.1"
 python-multipart = "^0.0.5"
 email-validator = "^1.0.5"
 requests = "^2.23.0"
@@ -24,6 +23,7 @@ psycopg2-binary = "^2.8.5"
 alembic = "^1.4.2"
 sqlalchemy = "^1.3.16"
 pytest = "^5.4.1"
+python-jose = {extras = ["cryptography"], version = "^3.1.0"}
 
 [tool.poetry.dev-dependencies]
 mypy = "^0.770"
@@ -32,9 +32,15 @@ isort = "^4.3.21"
 autoflake = "^1.3.1"
 flake8 = "^3.7.9"
 pytest = "^5.4.1"
-jupyter = "^1.0.0"
-vulture = "^1.4"
+sqlalchemy-stubs = "^0.3"
+pytest-cov = "^2.8.1"
 
+[tool.isort]
+multi_line_output = 3
+include_trailing_comma = true
+force_grid_wrap = 0
+line_length = 88
 [build-system]
 requires = ["poetry>=0.12"]
 build-backend = "poetry.masonry.api"
+

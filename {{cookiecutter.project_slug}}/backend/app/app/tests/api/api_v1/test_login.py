@@ -1,10 +1,12 @@
+from typing import Dict
+
 import requests
 
 from app.core.config import settings
 from app.tests.utils.utils import get_server_api
 
 
-def test_get_access_token():
+def test_get_access_token() -> None:
     server_api = get_server_api()
     login_data = {
         "username": settings.FIRST_SUPERUSER,
@@ -19,7 +21,7 @@ def test_get_access_token():
     assert tokens["access_token"]
 
 
-def test_use_access_token(superuser_token_headers):
+def test_use_access_token(superuser_token_headers: Dict[str, str]) -> None:
     server_api = get_server_api()
     r = requests.post(
         f"{server_api}{settings.API_V1_STR}/login/test-token",
