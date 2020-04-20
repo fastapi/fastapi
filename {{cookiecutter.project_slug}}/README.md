@@ -174,6 +174,22 @@ For example, to stop on first error:
 docker-compose exec backend bash /app/tests-start.sh -x
 ```
 
+#### Test Coverage
+
+Because the test scripts forward arguments to `pytest`, you can enable test coverage HTML report generation by passing `--cov-report=html`.
+
+To run the local tests with coverage HTML reports:
+
+```Bash
+DOMAIN=backend sh ./scripts/test-local.sh --cov-report=html
+```
+
+To run the tests in a running stack with coverage HTML reports:
+
+```bash
+docker-compose exec backend bash /app/tests-start.sh --cov-report=html
+```
+
 ### Live development with Python Jupyter Notebooks
 
 If you know about Python [Jupyter Notebooks](http://jupyter.org/), you can take advantage of them during local development.
