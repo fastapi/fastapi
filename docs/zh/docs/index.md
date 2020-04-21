@@ -269,7 +269,7 @@ def update_item(item_id: int, item: Item):
 
 访问 <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>。
 
-* 交互式 API 文档将会自动更新，现在已经包括了新的请求体：
+* 交互式 API 文档将会自动更新，并加入新的请求体：
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-03-swagger-02.png)
 
