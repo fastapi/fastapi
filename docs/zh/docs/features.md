@@ -7,13 +7,14 @@
 ### 基于开放标准
 
 
-* 用于创建API的 <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a> 包含了<abbr title="也被叫做: endpoints, routes">路径</abbr><abbr title="也叫做HTTP方法, 例如POST, GET, PUT, DELETE">操作</abbr>，请求参数，请求体，安全性等的声明。
-* 使用 <a href="http://json-schema.org/" class="external-link" target="_blank"><strong>JSON Schema</strong></a> ( OpenAPI 本身就是基于 JSON Schema 的)自动生成数据模型文档。
+* 用于创建 API 的 <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a> 包含了<abbr title="也被叫做: endpoints, routes">路径</abbr><abbr title="也叫做HTTP方法, 例如 POST, GET, PUT, DELETE">操作</abbr>，请求参数，请求体，安全性等的声明。
+* 使用 <a href="http://json-schema.org/" class="external-link" target="_blank"><strong>JSON Schema</strong></a> (因为 OpenAPI 本身就是基于 JSON Schema 的)自动生成数据模型文档。
 * 经过了缜密的研究后围绕这些标准而设计。并非狗尾续貂。
 * 这也允许了在很多语言中自动**生成客户端代码**。
+
 ### 自动生成文档
 
-交互式 API 文档以及具探索性 web 界面。因为该框架是基于 OpenAPI，所以有很多可选选项，默认情况下只设置了两个。
+交互式 API 文档以及具探索性 web 界面。因为该框架是基于 OpenAPI，所以有很多可选项，FastAPI 默认自带两个交互式 API 文档。
 
 * <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank"><strong>Swagger UI</strong></a>，可交互式操作，能在浏览器中直接调用和测试你的 API  。
 
@@ -74,13 +75,13 @@ my_second_user: User = User(**second_user_data)
 
 整个框架都被设计得易于使用且直观，所有的决定都在开发之前就在多个编辑器上进行了测试，来确保最佳的开发体验。
 
-在最近的 Python 开发者调查中，我们能看到<a href="https://www.jetbrains.com/research/python-developers-survey-2017/#tools-and-features" class="external-link" target="_blank">被使用最多的功能是"自动补全"</a>。
+在最近的 Python 开发者调查中，我们能看到 <a href="https://www.jetbrains.com/research/python-developers-survey-2017/#tools-and-features" class="external-link" target="_blank"> 被使用最多的功能是"自动补全"</a>。
 
 整个 **FastAPI** 框架就是基于这一点的。任何地方都可以进行自动补全。
 
-你不会需要经常回来看文档。
+你几乎不需要经常回来看文档。
 
-在这里可以看到你的编辑器是如何帮助你的：
+在这里，你的编辑器可能会这样帮助你：
 
 * <a href="https://code.visualstudio.com/" class="external-link" target="_blank">Visual Studio Code</a> 中:
 
@@ -90,15 +91,15 @@ my_second_user: User = User(**second_user_data)
 
 ![editor support](https://fastapi.tiangolo.com/img/pycharm-completion.png)
 
-你将能进行代码补全，这是在之前你可能曾认为不可能的事。例如，在来自请求 JSON 体（可能是嵌套的）中的键`price`。
+你将能进行代码补全，这是在之前你可能曾认为不可能的事。例如，在来自请求 JSON 体（可能是嵌套的）中的键 `price`。
 
-不会再输错键名，来回翻看文档，或者来回滚动寻找你最后使用的`username`或者`user_name`。
+不会再输错键名，来回翻看文档，或者来回滚动寻找你最后使用的 `username` 或者 `user_name` 。
 
 
 
 ### 简洁
 
-任何类型都有合理的**默认值**，任何和地方都有可选配置。所有的参数被微调，来满足你的需求，定义成你需要的API。
+任何类型都有合理的**默认值**，任何和地方都有可选配置。所有的参数被微调，来满足你的需求，定义成你需要的 API。
 
 但是默认情况下，一切都能**“顺利工作”**。
 
@@ -171,7 +172,7 @@ FastAPI 有一个使用非常简单，但是非常强大的<abbr title='也叫�
 * **支持 GraphQL** 。
 * 后台任务处理。
 * Startup 和 shutdown 事件。
-* 测试客户端基于`requests`。
+* 测试客户端基于 `requests`。
 * **CORS**, GZip, 静态文件, 流响应。
 * 支持 **Session 和 Cookie** 。
 * 100% 测试覆盖率。
@@ -198,7 +199,7 @@ FastAPI 有一个使用非常简单，但是非常强大的<abbr title='也叫�
     * 在 <a href="https://pydantic-docs.helpmanual.io/#benchmarks-tag" class="external-link" target="_blank">基准测试</a> 中，Pydantic 比其他被测试的库都要快。
 * 验证**复杂结构**:
     * 使用分层的 Pydantic 模型, Python `typing`的 `List` 和 `Dict` 等等。
-    * 验证器允许复杂的数据架构能被清晰简单地定义，检查并记录为 JSON Schema。
+    * 验证器使我们能够简单清楚的将复杂的数据模式定义、检查并记录为 JSON Schema。
     * 你可以拥有深度**嵌套的 JSON** 对象并对它们进行验证和注释。
 * **可扩展**:
     * Pydantic 允许定义自定义数据类型或者你可以用验证器装饰器对被装饰的模型上的方法扩展验证。
