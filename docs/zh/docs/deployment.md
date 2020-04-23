@@ -2,7 +2,7 @@
 
 部署 **FastAPI** 应用相对比较简单。
 
-根据特定使用情况和使用工具有不同的部署方式。
+根据特定使用情况和使用工具有几种不同的部署方式。
 
 接下来的章节，你将了解到一些关于部署方式的内容。
 
@@ -20,7 +20,7 @@
 
 你应该做的第一件事情，是为你正在使用的 **FastAPI** 指定一个能够正确运行你的应用的最新版本。
 
-例如，应用中正在使用版本 `0.45.0`。
+例如，假设你的应用中正在使用版本 `0.45.0`。
 
 如果你使用 `requirements.txt` 文件，你可以这样指定版本：
 
@@ -28,9 +28,9 @@
 fastapi==0.45.0
 ```
 
-这表明您将使用 `0.45.0` 版本的 `FastAPI`。
+这表明你将使用 `0.45.0` 版本的 `FastAPI`。
 
-或者您也可以这样指定：
+或者你也可以这样指定：
 
 ```txt
 fastapi>=0.45.0,<0.46.0
@@ -87,7 +87,7 @@ fastapi>=0.45.0,<0.46.0
 
 Pydantic 自身的测试中已经包含了 **FastAPI** 的测试，所以最新版本的 Pydantic （`1.0.0` 以上版本）总是兼容 **FastAPI**。
 
-您可以指定 Pydantic 为任意一个高于 `1.0.0` 且低于的 `2.0.0` 的版本。
+你可以指定 Pydantic 为任意一个高于 `1.0.0` 且低于的 `2.0.0` 的版本。
 
 例如：
 
@@ -97,12 +97,12 @@ pydantic>=1.2.0,<2.0.0
 
 ## Docker
 
-这部分，您将通过指引和链接了解到：
+这部分，你将通过指引和链接了解到：
 
-* 如何将您的 **FastAPI** 应用制作成最高性能的 **Docker** 映像/容器。约需五分钟。
+* 如何将你的 **FastAPI** 应用制作成最高性能的 **Docker** 映像/容器。约需五分钟。
 * （可选）理解作为一个开发者需要知道的 HTTPS 相关知识。
 * 使用自动化 HTTPS 设置一个 Docker Swarm 模式的集群，即使是在一个简单的 $5 USD/month 的服务器上。约需要 20 分钟。
-* 使用 Docker Swarm 集群以及 HTTP等等，生成和部署一个完整的 **FastAPI** 应用。约需 10 分钟。
+* 使用 Docker Swarm 集群以及 HTTP 等等，生成和部署一个完整的 **FastAPI** 应用。约需 10 分钟。
 
 可以使用 <a href="https://www.docker.com/" class="external-link" target="_blank">**Docker**</a> 进行部署。它具有安全性、可复制性、开发简单性等优点。
 
@@ -203,7 +203,7 @@ $ docker build -t myimage .
 
 ### 启动 Docker 容器
 
-* 基于你的镜像运行容器：
+* 运行基于你的镜像容器：
 
 <div class="termy">
 
@@ -213,11 +213,11 @@ $ docker run -d --name mycontainer -p 80:80 myimage
 
 </div>
 
-现在 Docker 容器中有一个优化好的 FastAPI 服务器。Docker 会自动调整您当前的服务器（和CPU核心的数量）。
+现在你在 Docker 容器中有了一个根据当前服务器（和CPU核心的数量）自动优化好的 FastAPI 服务器。
 
 ### 检查一下
 
-您应该能够在 Docker 容器的 URL 中检查它。例如：<a href="http://192.168.99.100/items/5?q=somequery" class="external-link" target="_blank">http://192.168.99.100/items/5?q=somequery</a> 或者 <a href="http://127.0.0.1/items/5?q=somequery" class="external-link" target="_blank">http://127.0.0.1/items/5?q=somequery</a> （或者类似的，使用Docker主机）。
+你应该能够在 Docker 容器的 URL 中检查它。例如：<a href="http://192.168.99.100/items/5?q=somequery" class="external-link" target="_blank">http://192.168.99.100/items/5?q=somequery</a> 或者 <a href="http://127.0.0.1/items/5?q=somequery" class="external-link" target="_blank">http://127.0.0.1/items/5?q=somequery</a> （或者类似的，使用Docker主机）。
 
 得到类似的输出：
 
@@ -276,7 +276,7 @@ $ docker run -d --name mycontainer -p 80:80 myimage
 * 在获得一个安全连接之后，通讯协议仍然是 HTTP。
     * HTTP 内容是加密的，即使这些内容使用 HTTP 协议传输。
 
-常见的做法是在服务器（机器，主机等等）上运行一个程序或HTTP 服务来管理所有的 HTTPS 部分：将加密的 HTTP 请求发送给在同一服务器运行的真实 HTTP 应用（在这里是 **FastAPI** 应用），从应用获得 HTTP 响应，使用适当的证书加密响应然后使用 HTTPS 将其发回客户端。这个服务器常被称作 <a href="https://en.wikipedia.org/wiki/TLS_termination_proxy" class="external-link" target="_blank">TLS 终止代理</a>。
+常见的做法是在服务器（机器，主机等等）上运行一个程序或 HTTP 服务来管理所有的 HTTPS 部分：将解密后的 HTTP 请求发送给在同一服务器运行的真实 HTTP 应用（在这里是 **FastAPI** 应用），从应用获得 HTTP 响应，使用适当的证书加密响应然后使用 HTTPS 将其发回客户端。这个服务器常被称作 <a href="https://en.wikipedia.org/wiki/TLS_termination_proxy" class="external-link" target="_blank">TLS 终止代理</a>。
 
 
 ### Let's Encrypt
@@ -287,7 +287,7 @@ $ docker run -d --name mycontainer -p 80:80 myimage
 
 但是紧接着 <a href="https://letsencrypt.org/" class="external-link" target="_blank">Let's Encrypt</a> 被创造了。
 
-这是一个来自Linux基金会的项目。它以自动化的方式免费提供HTTPS证书。这些证书使用所有的标准加密措施，且证书生命周期很短（大约 3 个月），正是由于它们生命周期的减短，所以实际上安全性更高。
+这是一个来自 Linux 基金会的项目。它以自动化的方式免费提供 HTTPS 证书。这些证书使用所有的标准加密措施，且证书生命周期很短（大约 3 个月），正是由于它们生命周期的减短，所以实际上安全性更高。
 
 对域名进行安全验证并自动生成证书。同时也允许自动更新这些证书。
 
@@ -295,7 +295,7 @@ $ docker run -d --name mycontainer -p 80:80 myimage
 
 ### Traefik
 
-<a href="https://traefik.io/" class="external-link" target="_blank">Traefik</a> 是一个高性能的反向代理/负载均衡器。它能够完成「TLS 终止协议」的工作（其他特性除外）。
+<a href="https://traefik.io/" class="external-link" target="_blank">Traefik</a> 是一个高性能的反向代理/负载均衡器。它能够完成「TLS 终止代理」的工作（其他特性除外）。
 
 Traefik 集成了 Let's Encrypt，所以能够处理全部 HTTPS 的部分，包括证书获取与更新。
 
@@ -309,7 +309,7 @@ Traefik 也集成了 Docker，所以你也可以在每个应用的配置中声�
 
 通过一个主要的 Traefik 来处理 HTTPS （包括证书获取和更新），大约 20 分钟就可以搭建好一个 Docker Swarm mode 集群。
 
-借助 Docker Swarm mode，你可以从单个机器的集群开始（甚至可以是 $5 /月的服务器），然后您可以根据需要添加更多的服务器来进行扩展。
+借助 Docker Swarm mode，你可以从单个机器的集群开始（甚至可以是 $5 /月的服务器），然后你可以根据需要添加更多的服务器来进行扩展。
 
 要使用 Traefik 和 HTTPS 处理来构建 Docker Swarm Mode 集群，请遵循以下指南:
 
@@ -383,8 +383,8 @@ Running on 0.0.0.0:8080 over http (CTRL + C to quit)
 
 也许你想编写一些工具来确保它停止时会自动重启。
 
-或者安装 <a href="https://gunicorn.org/" class="external-link" target="_blank">Gunicorn</a> 并 <a href="https://www.uvicorn.org/#running-with-gunicorn" class="external-link" target="_blank">将其作为 Uvicorn 的管理器</a>
+或者安装 <a href="https://gunicorn.org/" class="external-link" target="_blank">Gunicorn</a> 并 <a href="https://www.uvicorn.org/#running-with-gunicorn" class="external-link" target="_blank">将其作为 Uvicorn 的管理器</a>，或者使用多职程（worker）的 Hypercorn。
 
-或者保证精确调整 worker 的数量等等。
+或者保证精确调整职程的数量等等。
 
 但是如果你正做这些，你可能只需要使用 Docker 镜像就能够自动做到这些了。
