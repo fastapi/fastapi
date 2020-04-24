@@ -28,10 +28,10 @@ from starlette.types import Receive, Scope, Send
 
 
 class _DocsVisibilitySettings(BaseSettings):
-    fastapi_disable_all_docs: bool = False
-    fastapi_disable_openapi_docs = False
-    fastapi_disable_swagger_docs: bool = False
-    fastapi_disable_redocs: bool = False
+    fastapi_enable_all_docs: bool = True
+    fastapi_enable_openapi_docs = True
+    fastapi_enable_swagger_docs: bool = True
+    fastapi_enable_redocs: bool = True
 
 
 class FastAPI(Starlette):
@@ -109,10 +109,10 @@ class FastAPI(Starlette):
         return self.openapi_schema
 
     def setup(self) -> None:
-        if not self.__docs_visibility_settings.fastapi_disable_all_docs:
+        if self.__docs_visibility_settings.fastapi_enable_all_docs:
             if (
                 self.openapi_url
-                and not self.__docs_visibility_settings.fastapi_disable_openapi_docs
+                and self.__docs_visibility_settings.fastapi_enable_openapi_docs
             ):
 
                 async def openapi(req: Request) -> JSONResponse:
@@ -123,8 +123,8 @@ class FastAPI(Starlette):
             if (
                 self.openapi_url
                 and self.docs_url
-                and not self.__docs_visibility_settings.fastapi_disable_swagger_docs
-                and not self.__docs_visibility_settings.fastapi_disable_openapi_docs
+                and self.__docs_visibility_settings.fastapi_enable_swagger_docs
+                and self.__docs_visibility_settings.fastapi_enable_openapi_docs
             ):
 
                 async def swagger_ui_html(req: Request) -> HTMLResponse:
@@ -150,8 +150,8 @@ class FastAPI(Starlette):
             if (
                 self.openapi_url
                 and self.redoc_url
-                and not self.__docs_visibility_settings.fastapi_disable_redocs
-                and not self.__docs_visibility_settings.fastapi_disable_openapi_docs
+                and self.__docs_visibility_settings.fastapi_enable_redocs
+                and self.__docs_visibility_settings.fastapi_enable_openapi_docs
             ):
 
                 async def redoc_html(req: Request) -> HTMLResponse:
