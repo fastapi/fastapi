@@ -110,11 +110,22 @@ class FastAPI(Starlette):
         if self.openapi_url and self.docs_url:
 
             async def swagger_ui_html(req: Request) -> HTMLResponse:
+                swagger_keys = [
+                    "swagger_js_url",
+                    "swagger_css_url",
+                    "swagger_favicon_url",
+                ]
+                swagger_args = {
+                    key: self.extra.get(key)
+                    for key in swagger_keys
+                    if self.extra.get(key) is not None
+                }
                 return get_swagger_ui_html(
                     openapi_url=openapi_url,
                     title=self.title + " - Swagger UI",
                     oauth2_redirect_url=self.swagger_ui_oauth2_redirect_url,
                     init_oauth=self.swagger_ui_init_oauth,
+                    **swagger_args,
                 )
 
             self.add_route(self.docs_url, swagger_ui_html, include_in_schema=False)
