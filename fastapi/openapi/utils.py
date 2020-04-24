@@ -219,6 +219,9 @@ def get_openapi_path(
                     status_code_key = str(additional_status_code).upper()
                     if status_code_key == "DEFAULT":
                         status_code_key = "default"
+
+                    response = response.copy()
+                    response.pop("model", None)
                     operation.setdefault("responses", {})[status_code_key] = response
             status_code = str(route.status_code)
             operation.setdefault("responses", {}).setdefault(status_code, {})[
