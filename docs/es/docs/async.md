@@ -104,7 +104,7 @@ Para entender las diferencias, imagina la siguiente historia sobre hamburguesas:
 
 Vas con tu pareja a pedir comida rápida, haces cola mientras el cajero recoge los pedidos de las personas de delante tuyo.
 
-Te llega tu turno, haces tu pedido de 2 hamburguesas impresionantes para tu pareja y para ti.
+Llega tu turno, haces tu pedido de 2 hamburguesas impresionantes para tu pareja y para ti.
 
 Pagas.
 
