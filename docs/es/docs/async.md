@@ -98,7 +98,7 @@ El concepto  de código **asíncrono** descrito anteriormente a veces también s
 
 Pero los detalles entre *concurrencia* y *paralelismo* son bastante diferentes.
 
-Para entender las diferencias, imagine la siguiente historia sobre hamburguesas:
+Para entender las diferencias, imagina la siguiente historia sobre hamburguesas:
 
 ### Hamburguesas Concurrentes
 
