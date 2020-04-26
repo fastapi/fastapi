@@ -222,7 +222,7 @@ No! Esa no es la moraleja de la historia.
 
 La concurrencia es diferente al paralelismo. Y es mejor en escenarios **específicos** que implican mucha espera. Debido a eso, generalmente es mucho mejor que el paralelismo para el desarrollo de aplicaciones web. Pero no para todo.
 
-Entonces, para explicar eso, imagine la siguiente historia corta:
+Entonces, para explicar eso, imagina la siguiente historia corta:
 
 > Tienes que limpiar una casa grande y sucia.
 
