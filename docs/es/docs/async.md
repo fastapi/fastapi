@@ -321,7 +321,7 @@ Pero al mismo tiempo, las funciones definidas con `async def` deben ser "esperad
 
 Entonces, relacionado con la paradoja del huevo y la gallina, ¿cómo se llama a la primera función `async`?
 
-Si está trabajando con **FastAPI** no tiene que preocuparse por eso, porque esa "primera" función será su *función de enrutados*, y FastAPI sabrá cómo hacer lo pertinente.
+Si estás trabajando con **FastAPI** no tienes que preocuparte por eso, porque esa "primera" función será tu *path operation function*, y FastAPI sabrá cómo hacer lo pertinente.
 
 En el caso de que desee usar `async` /` await` sin FastAPI, <a href="https://docs.python.org/3/library/asyncio-task.html#coroutine" class="external-link" target="_blank">check the official Python docs</a>.
 
