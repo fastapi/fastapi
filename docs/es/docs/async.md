@@ -392,4 +392,4 @@ Si tu utility function es una función normal con `def`, se llamará directament
 
 Nuevamente, estos son detalles muy técnicos que probablemente sólo son útiles si los busca expresamente.
 
-De lo contrario, la guía     de la sección anterior deberían ser suficientes: <a href="#in-a-hurry">In a hurry?</a>.
+De lo contrario, la guía de la sección anterior deberían ser suficientes: <a href="#in-a-hurry">In a hurry?</a>.
