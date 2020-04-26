@@ -1,6 +1,6 @@
 # Concurrencia y  asincronía / await
 
-Detalles sobre la sintaxis `async def` para *funciones relacionadas con la gestión de enrutamiento* y algún antecedente sobre código asíncrono, concurrencia y paralelismo.
+Detalles sobre la sintaxis `async def` para *path operation functions* y algún antecedente sobre código asíncrono, concurrencia y paralelismo.
 
 ## Tienes prisa?
 
@@ -393,5 +393,4 @@ Si su utility function es una función normal con `def`, se llamará directament
 Nuevamente, estos son detalles muy técnicos que probablemente sólo son útiles si los busca expresamente.
 
 De lo contrario, la guía     de la sección anterior deberían ser suficientes: <a href="#in-a-hurry">In a hurry?</a>.
-
 
