@@ -63,7 +63,7 @@ Veamos esa frase por partes en las secciones siguientes, a continuación:
 
 ## Código Asíncrono
 
-El código asíncrono sólo significa que el lenguaje 💬 tiene una manera de decirle al sistema / programa 🤖 que en algún momento del código,  🤖 tendrá que esperar a que  *algo más*  termine en otro sitio. Digamos que ese *algo más* se llama, por ejemplo, "archivo lento" 📝.
+El código asíncrono sólo significa que el lenguaje 💬 tiene una manera de decirle al sistema / programa 🤖 que en algún momento del código 🤖 tendrá que esperar a que *algo más*  termine en otro sitio. Digamos que ese *algo más* se llama, por ejemplo, "archivo lento" 📝.
 
 Mientras tanto  el sistema puede  hacer otras cosas, mientras  "archivo lento" termina.
 
