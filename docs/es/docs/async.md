@@ -120,7 +120,7 @@ Mientras esperas y hablas con tu pareja, de vez en cuando, verificas el número 
 
 Al final, en algún momento, llega tu turno. Vas al mostrador, coges tus hamburguesas y vuelves a la mesa.
 
-Tú y tu pareja os coméis las hamburguesas y os divertís.
+Tú y tu pareja se comen las hamburguesas y se divierten.
 
 ---
 
