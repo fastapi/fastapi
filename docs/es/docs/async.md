@@ -386,7 +386,7 @@ Cualquier otra función de utilidad que llame directamente se puede crear con `d
 
 Esto contrasta con las funciones que FastAPI llama por ti: *path operation functions* y dependencias.
 
-Si su utility function es una función normal con `def`, se llamará directamente (tal cual la escribes en su código), no en un conjunto de hilos, si la función se crea con` async def`, entonces debes usar await en  esa función cuando la llamas en tu código.
+Si tu utility function es una función normal con `def`, se llamará directamente (tal cual la escribes en tu código), no en un threadpool, si la función se crea con `async def`, entonces debes usar await en esa función cuando la llamas en tu código.
 
 ---
 
