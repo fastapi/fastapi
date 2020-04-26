@@ -159,7 +159,7 @@ Esperas, parado frente al mostrador, para que nadie más recoja tus hamburguesas
 
 Como tu y tu pareja estáis ocupados en impedir que alguien se ponga delante y recoja tus hamburguesas cada vez que llegan, tampoco puedes prestarle atención a tu pareja.
 
-Este es un trabajo "síncrono",  estás "sincronizado" con el cajero / cocinero. Tienes que esperar y estar allí en el momento exacto en que el cajero / cocinero termina las hamburguesas y te las da, o de lo contrario, alguien más podría cogerlas.
+Este es un trabajo "síncrono", estás "sincronizado" con el cajero / cocinero. Tienes que esperar y estar allí en el momento exacto en que el cajero / cocinero termina las hamburguesas y te las da, o de lo contrario, alguien más podría cogerlas.
 
 Luego, el cajero / cocinero finalmente regresa con sus hamburguesas, después de mucho tiempo esperando allí frente al mostrador.
 
