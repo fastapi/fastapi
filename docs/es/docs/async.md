@@ -149,7 +149,7 @@ Haces la cola mientras varios cajeros (digamos 8) toman los pedidos de las perso
 
 Todos los que están antes de ti están esperando que sus hamburguesas estén listas antes de dejar el mostrador porque cada uno de los 8 cajeros prepara la hamburguesa de inmediato antes de recibir el siguiente pedido.
 
-Entonces finalmente es tu turno, haces tu pedido de 2 hamburguesas  impresionantes para tu pareja y para ti.
+Entonces finalmente es tu turno, haces tu pedido de 2 hamburguesas impresionantes para tu pareja y para ti.
 
 Pagas.
 
