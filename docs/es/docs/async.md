@@ -214,7 +214,7 @@ Ese tipo de asincronía es lo que hizo popular a NodeJS (aunque NodeJS no es par
 
 Y ese es el mismo nivel de rendimiento </a> que obtienes con **FastAPI**.
 
-Y como puede tener paralelismo y asincronía al mismo tiempo, obtiene un mayor rendimiento que la mayoría de los marcos NodeJS probados y está a la par con Go, que es un lenguaje compilado más cercano a C <a href="https://www.techempower.com/benchmarks/#section=data-r17&hw=ph&test=query&l=zijmkf-1" class="external-link" target="_blank">(all thanks to Starlette)</a>.
+Y como puede tener paralelismo y asincronía al mismo tiempo, obtienes un mayor rendimiento que la mayoría de los frameworks de NodeJS probados y está a la par con Go, que es un lenguaje compilado más cercano a C <a href="https://www.techempower.com/benchmarks/#section=data-r17&hw=ph&test=query&l=zijmkf-1" class="external-link" target="_blank">(all thanks to Starlette)</a>.
 
 ### Es la concurrencia mejor que el paralelismo?
 
