@@ -384,7 +384,7 @@ Puedes tener múltiples dependencias y subdependencias que se requieren entre s�
 
 Cualquier otra función de utilidad que llame directamente se puede crear con `def` o` async def` normales y FastAPI no afectará la manera en que la llama.
 
-Esto choca con las funciones que FastAPI le solicita: *funciones de enrutado* y dependencias.
+Esto contrasta con las funciones que FastAPI llama por ti: *path operation functions* y dependencias.
 
 Si su utility function es una función normal con `def`, se llamará directamente (tal cual la escribes en su código), no en un conjunto de hilos, si la función se crea con` async def`, entonces debes usar await en  esa función cuando la llamas en tu código.
 
