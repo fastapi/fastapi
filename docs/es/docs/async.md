@@ -78,7 +78,7 @@ Esa "espera de otra cosa" normalmente se refiere a operaciones <abbr title = "In
 * el contenido de un archivo en  disco para ser leído por el sistema y entregado al programa
 * los contenidos que tu programa  da al sistema para ser escritos en  disco
 * una operación relacionada con una API remota
-* espera de una operación de base de datos
+* una operación de base de datos
 * espera al retorno de resultados de una consulta de base de datos 
 * etc.
 
