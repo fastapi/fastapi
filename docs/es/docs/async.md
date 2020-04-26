@@ -267,7 +267,7 @@ Para ver cómo lograr este paralelismo en producción, consulta la sección sobr
 
 Las versiones modernas de python tienen una forma muy intuitiva de definir código asíncrono. Esto hace que se vea como un código "secuencial" normal y que haga la "espera" por ti en los momentos correctos.
 
-Cuando hay una operación que requerirá esperar antes de dar los resultados y tiene soporte para estas nuevas características de Python, puede codificarlo como:
+Cuando hay una operación que requerirá esperar antes de dar los resultados y tiene soporte para estas nuevas características de Python, puedes codificarlo como:
 
 ```Python
 burgers = await get_burgers(2)
