@@ -378,7 +378,7 @@ Lo mismo se aplica para las dependencias. Si una dependencia es una función est
 
 ### Subdependencias
 
-Puede tener múltiples dependencias y subdependencias que se requieren entre sí (como parámetros de las definiciones de función), algunas de ellas pueden crearse con `async def` y otras con` def` normal. Seguiría funcionando correctamente, y los creados con `def` normal se llamarían en un hilo externo en lugar de ser " awaited ".
+Puedes tener múltiples dependencias y subdependencias que se requieren entre sí (como parámetros de las definiciones de función), algunas de ellas pueden crearse con `async def` y otras con `def` normal. Seguiría funcionando correctamente, y los creados con `def` normal se llamarían en un thread externo en lugar de ser "awaited".
 
 ### Otras "utility functions"
 
