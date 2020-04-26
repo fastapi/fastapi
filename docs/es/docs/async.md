@@ -276,7 +276,7 @@ burgers = await get_burgers(2)
 
 La clave aquí es la 'espera'. Le dice a Python que tiene que esperar a que `get_burgers (2)` termine de hacer lo suyo antes de almacenar los resultados en `hamburguesas`. Con eso, Python sabrá que puede ir y hacer otra cosa mientras tanto (como recibir otra solicitud).
 
-Para que `await` funcione, tiene que estar dentro de una función que admita esta asincronía. Para hacer eso, simplemente lo declara con `async def`:
+Para que `await` funcione, tiene que estar dentro de una función que admita esta asincronía. Para hacer eso, simplemente lo declaras con `async def`:
 
 ```Python hl_lines="1"
 async def get_burgers(number: int):
