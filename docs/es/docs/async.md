@@ -132,7 +132,7 @@ Luego, cuando llega tu turno, haces un trabajo "productivo" real, procesas el me
 
 Pero entonces, aunque aún no tienes tus hamburguesas, el trabajo hecho con el cajero está "en pausa", porque debes esperar a que tus hamburguesas estén listas.
 
-Pero a medida que te alejas del mostrador y te sientas en la mesa con un número para tu turno, puedes cambiar tu atención a tu  pareja y "trabajar" en eso. Entonces nuevamente estás haciendo algo muy "productivo", como coquetear con tu  pareja.
+Pero a medida que te alejas del mostrador y te sientas en la mesa con un número para tu turno, puedes cambiar tu atención a tu pareja y "trabajar" en eso. Entonces nuevamente estás haciendo algo muy "productivo", como coquetear con tu pareja.
 
 Después, el cajero dice "He terminado de hacer las hamburguesas" poniendo tu  número en la pantalla del mostrador, pero no saltas como un loco al momento cuando el número que se muestra es el tuyo. Sabes que nadie robará tus hamburguesas porque tienes el número de tu turno y ellos tienen el suyo.
 
