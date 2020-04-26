@@ -261,7 +261,7 @@ Pero también puedes aprovechar los beneficios del paralelismo y el multiprocesa
 
 Eso, más el simple hecho de que Python es el lenguaje principal para **Data Science**, Machine Learning y especialmente Deep Learning, hacen de FastAPI una muy buena combinación para las API y aplicaciones web de Data Science / Machine Learning (entre muchas otras).
 
-Para ver cómo lograr este paralelismo en producción, consulte la sección sobre [Implementación] (deployment.md) {. Internal-link target = _blank}.
+Para ver cómo lograr este paralelismo en producción, consulta la sección sobre [Implementación] (deployment.md) {. Internal-link target = _blank}.
 
 ## `async` y` await`
 
