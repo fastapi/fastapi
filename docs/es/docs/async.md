@@ -175,7 +175,7 @@ En este escenario de las hamburguesas paralelas, tú eres un sistema / programa 
 
 La tienda de comida rápida tiene 8 procesadores (cajeros / cocineros). Mientras que la tienda de hamburguesas concurrentes podría haber tenido solo 2 (un cajero y un cocinero).
 
-Pero todo y eso , la experiencia del usuario no es la mejor.
+Pero todo y eso, la experiencia del usuario no es la mejor.
 
 ---
 
