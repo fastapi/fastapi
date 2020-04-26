@@ -114,7 +114,7 @@ El cajero te da el número de tu turno.
 
 Mientras esperas, vas con tu pareja y eliges una mesa, os sentáis y habláis durante un rato largo  (ya que las hamburguesas son muy impresionantes y llevan un rato prepararse).
 
-Mientras estás  sentado en la mesa con tu  pareja, esperando las hamburguesas, puedes disfrutar ese tiempo admirando lo increíble, guap@ e inteligente que es tu pareja.
+Mientras estás sentado en la mesa con tu pareja, esperando las hamburguesas, puedes disfrutar ese tiempo admirando lo increíble, guap@ e inteligente que es tu pareja.
 
 Mientras esperas y hablas con tu pareja, de vez en cuando, verificas el número del mostrador para ver si ya es tu turno.
 
