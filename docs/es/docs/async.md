@@ -382,7 +382,7 @@ Puedes tener múltiples dependencias y subdependencias que se requieren entre s�
 
 ### Otras "utility functions"
 
-Cualquier otra función de utilidad que llame directamente se puede crear con `def` o` async def` normales y FastAPI no afectará la manera en que la llama.
+Cualquier otra función de utilidad que llame directamente se puede crear con `def` o `async def` normales y FastAPI no afectará la manera en que la llamas.
 
 Esto contrasta con las funciones que FastAPI llama por ti: *path operation functions* y dependencias.
 
