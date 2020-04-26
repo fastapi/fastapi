@@ -189,7 +189,7 @@ Todos los cajeros haciendo todo el trabajo con un cliente tras otro.
 
 Y tienes que esperar en la fila durante mucho tiempo o perderás tu turno.
 
-Probablemente no querrás llevarte contigo a tu pareja  a hacer recados en el banco.
+Probablemente no querrás llevarte contigo a tu pareja a hacer recados en el banco.
 
 
 ###  Conclusión de la hamburguesa
