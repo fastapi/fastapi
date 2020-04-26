@@ -145,7 +145,7 @@ Luego vas al mostrador, a la tarea inicial que ya está terminada, recoges las h
 
 Vas con tu pareja para obtener comida rápida paralela.
 
-Haces la  cola mientras varios cajeros (digamos 8) toman los pedios de las personas que están delante de ti.
+Haces la cola mientras varios cajeros (digamos 8) toman los pedidos de las personas que están delante de ti.
 
 Todos los que están antes de ti están esperando que sus hamburguesas estén listas antes de dejar el mostrador porque cada uno de los 8 cajeros prepara la hamburguesa de inmediato antes de recibir el siguiente pedido.
 
