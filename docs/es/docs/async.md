@@ -130,7 +130,7 @@ Mientras estás en la cola, estás quieto, esperando tu turno, sin hacer nada mu
 
 Luego, cuando llega tu turno, haces un trabajo "productivo" real, procesas el menú, decides lo que quieres, lo que quiere tu pareja, pagas, verificas que das la factura o tarjeta correctas, verificas que te cobren correctamente, que el pedido tiene los artículos correctos, etc.
 
-Pero entonces, aunque aún no tienes  tus hamburguesas, el trabajo hecho con el cajero está "en pausa", porque debes esperar a que tus hamburguesas estén listas.
+Pero entonces, aunque aún no tienes tus hamburguesas, el trabajo hecho con el cajero está "en pausa", porque debes esperar a que tus hamburguesas estén listas.
 
 Pero a medida que te alejas del mostrador y te sientas en la mesa con un número para tu turno, puedes cambiar tu atención a tu  pareja y "trabajar" en eso. Entonces nuevamente estás haciendo algo muy "productivo", como coquetear con tu  pareja.
 
