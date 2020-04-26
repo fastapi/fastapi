@@ -250,7 +250,7 @@ Por ejemplo:
 
 * **Audio** o **procesamiento de imágenes**
 * **Visión por computadora**: una imagen está compuesta de millones de píxeles, cada píxel tiene 3 valores / colores, procesamiento que normalmente requiere calcular algo en esos píxeles, todo al mismo tiempo.
-* **Machine Learning**: normalmente requiere muchas multiplicaciones de "matriz" y "vector". Piensa en una enorme hoja de cálculo con números y multiplíquelos todos al mismo tiempo.
+* **Machine Learning**: normalmente requiere muchas multiplicaciones de "matriz" y "vector". Piensa en una enorme hoja de cálculo con números y multiplícalos todos al mismo tiempo.
 * **Deep Learning**: este es un subcampo de Machine Learning, por lo tanto, aplica lo mismo. Es solo que no hay una sola hoja de cálculo de números para multiplicar, sino un gran conjunto de ellos, y en muchos casos, usa un procesador especial para construir y / o usar esos modelos.
 
 ### Concurrencia + Paralelismo: Web + Machine Learning 
