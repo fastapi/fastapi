@@ -67,7 +67,7 @@ El código asíncrono sólo significa que el lenguaje 💬 tiene una manera de d
 
 Durante ese tiempo, el sistema puede hacer otras cosas, mientras "archivo lento" termina.
 
-Entonces el sistema / programa 🤖 volverá cada vez que pueda , sea  porque está esperando otra vez , porque  🤖 ha terminado todo el trabajo que tenía en ese momento. Y 🤖 verá si alguna de las tareas por las que estaba esperando han terminado, haciendo lo que tenían que hacer.
+Entonces el sistema / programa 🤖 volverá cada vez que pueda, sea porque está esperando otra vez, porque 🤖 ha terminado todo el trabajo que tenía en ese momento. Y 🤖 verá si alguna de las tareas por las que estaba esperando han terminado, haciendo lo que tenían que hacer.
 
 Luego, 🤖 cogerá la primera tarea finalizada  (digamos, nuestro "archivo lento" 📝) y continuará con lo que tenía que hacer con esa tarea.
 
