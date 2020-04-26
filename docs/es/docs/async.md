@@ -339,7 +339,7 @@ En versiones anteriores de Python, podrías haber utilizado hilos o <a href="htt
 
 En versiones anteriores de NodeJS / Browser JavaScript, habrías utilizado "callbacks". Lo que conduce a <a href="http://callbackhell.com/" class="external-link" target="_blank">callback hell</a>.
 
-## Corutinas
+## Coroutines
 
 **Coroutine** es el término guay para la cosa devuelta por una función `async def`. Python sabe que es algo así como una función que puede iniciar y que terminará en algún momento, pero que también podría pausarse internamente, siempre que haya una `await` dentro de ella.
 
