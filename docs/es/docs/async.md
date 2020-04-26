@@ -374,7 +374,7 @@ Aún así, en ambas situaciones, es probable que **FastAPI** sea [aún más ráp
 
 ### Dependencias
 
-Lo mismo se aplica para las dependencias. Si una dependencia es una función estándar `def` en lugar de` async def`, se ejecuta en el conjunto de hilos externo.
+Lo mismo se aplica para las dependencias. Si una dependencia es una función estándar `def` en lugar de `async def`, se ejecuta en el threadpool externo.
 
 ### Subdependencias
 
