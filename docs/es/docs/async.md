@@ -171,7 +171,7 @@ No has hablado ni coqueteado mucho, ya que has pasado la mayor parte del tiempo 
 
 ---
 
-En este escenario de las hamburguesas paralelas, tú eres un sistema / programa con dos procesadores (usted y tu pareja), ambos esperando y dedicando su atención a estar "esperando en el mostrador" durante mucho tiempo.
+En este escenario de las hamburguesas paralelas, tú eres un sistema / programa con dos procesadores (tú y tu pareja), ambos esperando y dedicando su atención a estar "esperando en el mostrador" durante mucho tiempo.
 
 La tienda de comida rápida tiene 8 procesadores (cajeros / cocineros). Mientras que la tienda de hamburguesas concurrentes podría haber tenido solo 2 (un cajero y un cocinero).
 
