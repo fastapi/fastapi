@@ -47,7 +47,7 @@ Si simplemente no lo sabes, usa el `def` normal.
 
 **Nota**: puedes mezclar `def` y` async def` en tus *path operation functions* tanto como lo necesites y definir cada una utilizando la mejor opción para ti. FastAPI hará lo correcto con ellos.
 
-De todos modos, en cualquiera de los casos anteriores, FastAPI seguirá funcionando de forma asincróna y será extremadamente rápido.
+De todos modos, en cualquiera de los casos anteriores, FastAPI seguirá funcionando de forma asíncrona y será extremadamente rápido.
 
 Pero siguiendo los pasos anteriores, FastAPI podrá hacer algunas optimizaciones de rendimiento.
 
