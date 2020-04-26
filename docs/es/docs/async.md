@@ -136,7 +136,7 @@ Pero a medida que te alejas del mostrador y te sientas en la mesa con un número
 
 Después, el cajero dice "He terminado de hacer las hamburguesas" poniendo tu número en la pantalla del mostrador, pero no saltas como un loco al momento cuando el número que se muestra es el tuyo. Sabes que nadie robará tus hamburguesas porque tienes el número de tu turno y ellos tienen el suyo.
 
-Así que esperas a que tu pareja termine la historia (termina el trabajo actual  / tarea actual que se está procesando), sonríes gentilmente y le dices que vas por las hamburguesas.
+Así que esperas a que tu pareja termine la historia (termina el trabajo actual / tarea actual que se está procesando), sonríes gentilmente y le dices que vas por las hamburguesas.
 
 Luego vas al mostrador, a la tarea inicial que ya está terminada, recoges las hamburguesas, les dices gracias y las llévas a la mesa. Eso termina esa fase / tarea de interacción con el mostrador. Eso a su vez, crea una nueva tarea, "comer hamburguesas", pero la anterior de "conseguir hamburguesas" está terminada.
 
