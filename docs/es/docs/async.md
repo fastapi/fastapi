@@ -138,7 +138,7 @@ Después, el cajero dice "He terminado de hacer las hamburguesas" poniendo tu n�
 
 Así que esperas a que tu pareja termine la historia (termina el trabajo actual / tarea actual que se está procesando), sonríes gentilmente y le dices que vas por las hamburguesas.
 
-Luego vas al mostrador, a la tarea inicial que ya está terminada, recoges las hamburguesas, les dices gracias y las llévas a la mesa. Eso termina esa fase / tarea de interacción con el mostrador. Eso a su vez, crea una nueva tarea, "comer hamburguesas", pero la anterior de "conseguir hamburguesas" está terminada.
+Luego vas al mostrador, a la tarea inicial que ya está terminada, recoges las hamburguesas, les dices gracias y las llevas a la mesa. Eso termina esa fase / tarea de interacción con el mostrador. Eso a su vez, crea una nueva tarea, "comer hamburguesas", pero la anterior de "conseguir hamburguesas" está terminada.
 
 
 ### Hamburguesas Paralelas
