@@ -82,7 +82,7 @@ Esa "espera de otra cosa" normalmente se refiere a operaciones <abbr title = "In
 * el retorno de resultados de una consulta de base de datos 
 * etc.
 
-Como el tiempo de ejecución se consume principalmente al esperar a operaciones  de <abbr title = "Input and Output">I/O</abbr>, las llaman operaciones "I/O bound".
+Como el tiempo de ejecución se consume principalmente al esperar a operaciones de <abbr title = "Input and Output">I/O</abbr>, las llaman operaciones "I/O bound".
 
 Se llama "asíncrono" porque el sistema / programa no tiene que estar "sincronizado" con la tarea lenta, esperando el momento exacto en que finaliza la tarea, sin hacer nada, para poder recoger el resultado de la tarea y continuar el trabajo.
 
