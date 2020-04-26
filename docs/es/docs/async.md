@@ -341,7 +341,7 @@ En versiones anteriores de NodeJS / Browser JavaScript, habrías utilizado "call
 
 ## Coroutines
 
-**Coroutine** es el término guay para la cosa devuelta por una función `async def`. Python sabe que es algo así como una función que puede iniciar y que terminará en algún momento, pero que también podría pausarse internamente, siempre que haya una `await` dentro de ella.
+**Coroutine** es un término sofisticado para referirse a la cosa devuelta por una función `async def`. Python sabe que es algo así como una función que puede iniciar y que terminará en algún momento, pero que también podría pausarse internamente, siempre que haya una `await` dentro de ella.
 
 Pero toda esta funcionalidad de usar código asincrónico con `async` y` await` se resume muchas veces como el uso de "corutinas". Es comparable a la característica principal de Go, las "Goroutines".
 
