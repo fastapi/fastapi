@@ -41,7 +41,7 @@ Si tu aplicación (de alguna manera) no tiene que comunicarse con nada más y en
 
 ---
 
-Si simplemente no lo sabe, use el `def` normal.
+Si simplemente no lo sabes, usa el `def` normal.
 
 ---
 
