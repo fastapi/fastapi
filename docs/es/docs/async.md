@@ -304,7 +304,7 @@ hamburguesas = get_burgers (2)
 
 ---
 
-Por lo tanto, si está utilizando una biblioteca que le dice que puede llamarla con `await`, debe crear las *funciones de enrutado* que la usan con` async def`, como en:
+Por lo tanto, si estás utilizando una biblioteca que te dice que puedes llamarla con `await`, debes crear las *path operation functions* que la usan con `async def`, como en:
 
 ```Python hl_lines="2 3"
 @app.get('/burgers')
