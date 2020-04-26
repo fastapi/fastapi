@@ -155,7 +155,7 @@ Pagas.
 
 El cajero va a la cocina.
 
-Esperas, parado frente al mostrador, para que nadie más recoja tus  hamburguesas , ya que no hay números para los turnos.
+Esperas, parado frente al mostrador, para que nadie más recoja tus hamburguesas, ya que no hay números para los turnos.
 
 Como tu y tu pareja estáis ocupados en impedir que alguien se os ponga delante  y recoja tus hamburguesas cada vez que llegan, tampoco  puede prestarle atención a tu pareja.
 
