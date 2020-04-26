@@ -234,7 +234,7 @@ No hay esperas, solo hay mucho trabajo por hacer, en varios lugares de la casa.
 
 Podría tener turnos como en el ejemplo de las hamburguesas, primero la sala de estar, luego la cocina, pero como no está esperando nada, solo limpiar y limpiar, los turnos no afectarían nada.
 
-Tomaría la misma cantidad de tiempo terminar con o sin turnos (concurrencia) y usted habría hecho la misma cantidad de trabajo.
+Tomaría la misma cantidad de tiempo terminar con o sin turnos (concurrencia) y habrías hecho la misma cantidad de trabajo.
 
 Pero en este caso, si pudieras traer a los 8 ex cajeros / cocineros / ahora limpiadores, y cada uno de ellos (y tú ) podría tomar una zona de la casa para limpiarla, podría hacer todo el trabajo en **paralelo**, con la ayuda adicional, y terminar mucho antes.
 
