@@ -79,7 +79,7 @@ Esa "espera de otra cosa" normalmente se refiere a operaciones <abbr title = "In
 * los contenidos que tu programa  da al sistema para ser escritos en  disco
 * una operación relacionada con una API remota
 * una operación de base de datos
-* espera al retorno de resultados de una consulta de base de datos 
+* el retorno de resultados de una consulta de base de datos 
 * etc.
 
 Como el tiempo de ejecución se consume principalmente al esperar a operaciones  de <abbr title = "Input and Output">I/O</abbr>, las llaman operaciones "I/O bound".
