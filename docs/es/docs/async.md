@@ -295,7 +295,7 @@ def get_sequential_burgers(number: int):
 
 Con `async def`, Python sabe que, dentro de esa función, debe tener en cuenta las expresiones `wait` y que puede "pausar" la ejecución de esa función e ir a hacer otra cosa antes de regresar.
 
-Cuando desee llamar a una función `async def`, debe" esperarla ". Entonces, esto no funcionará:
+Cuando desees llamar a una función `async def`, debes" esperarla ". Entonces, esto no funcionará:
 
 ```Python
 # Esto no funcionará, porque get_burgers se definió con: async def
