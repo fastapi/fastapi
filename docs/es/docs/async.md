@@ -69,7 +69,7 @@ Durante ese tiempo, el sistema puede hacer otras cosas, mientras "archivo lento"
 
 Entonces el sistema / programa 🤖 volverá cada vez que pueda, sea porque está esperando otra vez, porque 🤖 ha terminado todo el trabajo que tenía en ese momento. Y 🤖 verá si alguna de las tareas por las que estaba esperando han terminado, haciendo lo que tenían que hacer.
 
-Luego, 🤖 cogerá la primera tarea finalizada  (digamos, nuestro "archivo lento" 📝) y continuará con lo que tenía que hacer con esa tarea.
+Luego, 🤖 cogerá la primera tarea finalizada (digamos, nuestro "archivo lento" 📝) y continuará con lo que tenía que hacer con esa tarea.
 
 Esa "espera de otra cosa" normalmente se refiere a <abbr title = "Input and Output">I/O</abbr> operaciones que son relativamente "lentas" (en relación a la velocidad del procesador y  memoria RAM), como por ejemplo esperar por:
 
