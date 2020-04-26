@@ -74,7 +74,7 @@ Luego, 🤖 cogerá la primera tarea finalizada (digamos, nuestro "archivo lento
 Esa "espera de otra cosa" normalmente se refiere a operaciones <abbr title = "Input and Output">I/O</abbr> que son relativamente "lentas" (en relación a la velocidad del procesador y memoria RAM), como por ejemplo esperar por:
 
 * los datos de cliente que se envían a través de la red
-* los datos enviados por tu  programa para ser recibidos por el cliente a través de la red
+* los datos enviados por tu programa para ser recibidos por el cliente a través de la red
 * el contenido de un archivo en  disco para ser leído por el sistema y entregado al programa
 * los contenidos que tu programa  da al sistema para ser escritos en  disco
 * una operación relacionada con una API remota
