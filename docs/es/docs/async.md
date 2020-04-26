@@ -368,7 +368,7 @@ Todo eso es lo que impulsa FastAPI (a través de Starlette) y lo que lo hace ten
 
 Cuando declaras una *path operation function* con `def` normal en lugar de `async def`, se ejecuta en un threadpool externo que luego espera, en lugar de ser llamado directamente (ya que bloquearía el servidor).
 
-Si vienes de otro framework asíncrono que no funciona de la manera descrita anteriormente y estás acostumbrado a definir funciones de enrutado *del tipo sólo cálculo* con `def` simple para una pequeña ganancia de rendimiento (aproximadamente 100 nanosegundos), tenga en cuenta que en **FastAPI** el efecto sería bastante opuesto. En estos casos, es mejor usar `async def` a menos que sus *funciones de enrutado* usen un código que realice el bloqueo <abbr title="Input/Output: disk reading or writing, network communications.">IO</abbr>.
+Si vienes de otro framework asíncrono que no funciona de la manera descrita anteriormente y estás acostumbrado a definir *path operation functions* del tipo sólo cálculo con `def` simple para una pequeña ganancia de rendimiento (aproximadamente 100 nanosegundos), ten en cuenta que en **FastAPI** el efecto sería bastante opuesto. En estos casos, es mejor usar `async def` a menos que tus *path operation functions* usen un código que realice el bloqueo <abbr title="Input/Output: disk reading or writing, network communications.">IO</abbr>.
 
 Aún así, en ambas situaciones, es probable que **FastAPI** sea [aún más rápido](/#rendimiento){.Internal-link target=_blank} que (o al menos comparable) a tu framework anterior.
 
