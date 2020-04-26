@@ -59,7 +59,7 @@ Veamos esa frase por partes en las secciones siguientes, a continuación:
 
 * **Código Asíncrono**
 * **`async` y `await`**
-* **Corutinas**
+* **Coroutines**
 
 ## Código Asíncrono
 
