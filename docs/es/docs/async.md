@@ -71,7 +71,7 @@ Entonces el sistema / programa 🤖 volverá cada vez que pueda, sea porque est�
 
 Luego, 🤖 cogerá la primera tarea finalizada (digamos, nuestro "archivo lento" 📝) y continuará con lo que tenía que hacer con esa tarea.
 
-Esa "espera de otra cosa" normalmente se refiere a <abbr title = "Input and Output">I/O</abbr> operaciones que son relativamente "lentas" (en relación a la velocidad del procesador y  memoria RAM), como por ejemplo esperar por:
+Esa "espera de otra cosa" normalmente se refiere a operaciones <abbr title = "Input and Output">I/O</abbr> que son relativamente "lentas" (en relación a la velocidad del procesador y memoria RAM), como por ejemplo esperar por:
 
 * los datos de cliente que se envían a través de la red
 * los datos enviados por tu  programa para ser recibidos por el cliente a través de la red
