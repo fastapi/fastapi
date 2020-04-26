@@ -349,7 +349,7 @@ Pero toda esta funcionalidad de usar código asincrónico con `async` y `await` 
 
 Veamos la misma frase de arriba:
 
-> Las versiones modernas de Python tienen soporte para **"código asíncrono"** usando algo llamado **"corutinas"**, con la sintaxis **`async` y` await`**.
+> Las versiones modernas de Python tienen soporte para **"código asíncrono"** usando algo llamado **"coroutines"**, con la sintaxis **`async` y `await`**.
 
 Eso ya debería tener más sentido ahora.
 
