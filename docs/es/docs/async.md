@@ -26,7 +26,7 @@ async def read_results():
 
 ---
 
-Si está utilizando una biblioteca de terceros que se comunica con algo (una base de datos, una API, el sistema de ficheros, etc.) y no tiene soporte para `await` (este es el caso para la mayoría de las librerías de bases de datos), declare sus *funciones de enrutado*  de forma habitual , con solo `def`, de la siguiente manera:
+Si estás utilizando una biblioteca de terceros que se comunica con algo (una base de datos, una API, el sistema de ficheros, etc.) y no tienes soporte para `await` (este es el caso para la mayoría de las librerías de bases de datos), declara tus *path operation functions* de forma habitual, con solo `def`, de la siguiente manera:
 
 ```Python hl_lines="2"
 @app.get('/')
