@@ -364,7 +364,7 @@ Todo eso es lo que impulsa FastAPI (a través de Starlette) y lo que lo hace ten
     
     Si tienes bastante conocimiento técnico (coroutines, threads, bloqueos, etc.) y tienes curiosidad acerca de cómo FastAPI gestiona `async def` vs `def` normal, continúa.
 
-### Funciones de enrutado 
+### Path operation functions 
 
 Cuando declara una *función de enrutado* con `def` normal en lugar de `async def`, se ejecuta en un conjunto de subprocesos externo que luego  espera, en lugar de ser llamado directamente (ya que bloquearía el servidor).
 
