@@ -362,7 +362,7 @@ Todo eso es lo que impulsa FastAPI (a través de Starlette) y lo que lo hace ten
 
     Estos son detalles muy técnicos de cómo **FastAPI** funciona a muy bajo nivel.
     
-    Si tienes bastante conocimiento técnico (corutinas, hilos, bloqueos, etc.) y tienes curiosidad acerca de cómo FastAPI gestiona `async def` vs normal `def`, continúa.
+    Si tienes bastante conocimiento técnico (coroutines, threads, bloqueos, etc.) y tienes curiosidad acerca de cómo FastAPI gestiona `async def` vs `def` normal, continúa.
 
 ### Funciones de enrutado 
 
