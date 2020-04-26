@@ -12,7 +12,7 @@ Si estás utilizando bibliotecas de terceros que te dicen que las llames con `aw
 results = await some_library()
 ```
 
-Después, declare sus *funciones de enrutado* con `async def` de la siguiente manera:
+Después, declara tus *path operation functions* con `async def` de la siguiente manera:
 
 ```Python hl_lines="2"
 @app.get('/')
