@@ -317,7 +317,7 @@ async def read_burgers():
 
 Es posible que haya notado que 'esperar' solo se puede usar dentro de las funciones definidas con 'async def'.
 
-Pero al mismo tiempo, las funciones definidas con `async def` deben ser "esperadas". Por lo tanto, las funciones con `async def` solo se pueden invocar dentro de las funciones definidas con` async def` también.
+Pero al mismo tiempo, las funciones definidas con `async def` deben ser "esperadas". Por lo tanto, las funciones con `async def` solo se pueden invocar dentro de las funciones definidas con `async def` también.
 
 Entonces, relacionado con la paradoja del huevo y la gallina, ¿cómo se llama a la primera función `async`?
 
