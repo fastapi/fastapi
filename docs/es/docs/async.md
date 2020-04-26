@@ -206,7 +206,7 @@ Esta "espera" se mide en microsegundos, pero aun así, sumando todo, al final es
 
 Es por eso que tiene mucho sentido usar código asíncrono para las API web.
 
-La mayoría de los framework populares de Python  existentes (incluidos Flask y Django) se crearon antes de que existieran las nuevas funciones asincrónas en Python. Por lo tanto, las formas en que pueden implementarse admiten la ejecución paralela y una forma más antigua de ejecución asíncrona que no es tan potente como la actual.
+La mayoría de los framework populares de Python existentes (incluidos Flask y Django) se crearon antes de que existieran las nuevas funciones asíncronas en Python. Por lo tanto, las formas en que pueden implementarse admiten la ejecución paralela y una forma más antigua de ejecución asíncrona que no es tan potente como la actual.
 
 A pesar de que la especificación principal para Python web asíncrono (ASGI) se desarrolló en Django, para agregar soporte para WebSockets.
 
