@@ -226,7 +226,7 @@ Entonces, para explicar eso, imagine la siguiente historia corta:
 
 > Tienes que limpiar una casa grande y sucia.
 
-Sips, esa es toda la historia.
+Sí, esa es toda la historia.
 
 ---
 
