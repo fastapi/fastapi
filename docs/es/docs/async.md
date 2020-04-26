@@ -167,7 +167,7 @@ Cojes tus hamburguesas y vas a la mesa con tu pareja.
 
 Sólo las comes y listo.
 
-No has  hablado ni coqueteado mucho, ya que has pasado la mayor parte del tiempo esperando frente al mostrador.
+No has hablado ni coqueteado mucho, ya que has pasado la mayor parte del tiempo esperando frente al mostrador.
 
 ---
 
