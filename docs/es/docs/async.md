@@ -315,7 +315,7 @@ async def read_burgers():
 
 ### Más detalles técnicos
 
-Es posible que haya notado que 'esperar' solo se puede usar dentro de las funciones definidas con 'async def'.
+Es posible que hayas notado que `await` solo se puede usar dentro de las funciones definidas con `async def`.
 
 Pero al mismo tiempo, las funciones definidas con `async def` deben ser "esperadas". Por lo tanto, las funciones con `async def` solo se pueden invocar dentro de las funciones definidas con `async def` también.
 
