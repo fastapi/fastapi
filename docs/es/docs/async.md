@@ -112,7 +112,7 @@ El cajero le dice algo al chico de la cocina para que sepa que tiene que prepara
 
 El cajero te da el número de tu turno.
 
-Mientras esperas, vas con tu pareja y eliges una mesa, os sentáis y habláis durante un rato largo  (ya que las hamburguesas son muy impresionantes y llevan un rato prepararse).
+Mientras esperas, vas con tu pareja y eliges una mesa, se sientan y hablan durante un rato largo (ya que las hamburguesas son muy impresionantes y necesitan un rato para prepararse).
 
 Mientras estás sentado en la mesa con tu pareja, esperando las hamburguesas, puedes disfrutar ese tiempo admirando lo increíble, guap@ e inteligente que es tu pareja.
 
