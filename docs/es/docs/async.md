@@ -327,7 +327,7 @@ En el caso de que desees usar `async` / `await` sin FastAPI, <a href="https://do
 
 ### Otras formas de código asíncrono
 
-Este estilo de usar `async` y` await` es relativamente nuevo en el lenguaje.
+Este estilo de usar `async` y `await` es relativamente nuevo en el lenguaje.
 
 Pero hace que trabajar con código asíncrono sea mucho más fácil.
 
