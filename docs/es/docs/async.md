@@ -53,7 +53,7 @@ Pero siguiendo los pasos anteriores, FastAPI podrá hacer algunas optimizaciones
 
 ## Detalles Técnicos
 
-Las versiones modernas de Python tienen soporte para **"código asíncrono"** usando algo llamado **"corutinas"**, usando la sintaxis **`async` y` await`**.
+Las versiones modernas de Python tienen soporte para **"código asíncrono"** usando algo llamado **"coroutines"**, usando la sintaxis **`async` y` await`**.
 
 Veamos esa frase por partes en las secciones siguientes, a continuación:
 
