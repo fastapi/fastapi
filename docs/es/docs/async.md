@@ -22,7 +22,7 @@ async def read_results():
 ```
 
 !!! nota
-    Solo puede usar `await` dentro de  funciones creadas con` async def`.
+    Solo puedes usar `await` dentro de funciones creadas con` async def`.
 
 ---
 
