@@ -293,7 +293,7 @@ def get_sequential_burgers(number: int):
     return burgers
 ```
 
-Con `async def`, Python sabe que, dentro de esa función, debe tener en cuenta las expresiones` wait ', y que puede "pausar" la ejecución de esa función e ir a hacer otra cosa antes de regresar.
+Con `async def`, Python sabe que, dentro de esa función, debe tener en cuenta las expresiones `wait` y que puede "pausar" la ejecución de esa función e ir a hacer otra cosa antes de regresar.
 
 Cuando desee llamar a una función `async def`, debe" esperarla ". Entonces, esto no funcionará:
 
