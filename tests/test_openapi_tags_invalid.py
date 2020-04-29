@@ -14,12 +14,13 @@ client = TestClient(app)
 
 
 def test_openapi_schema():
+    result = ""
     try:
         client.get("/openapi.json")
     except ValidationError as e:
-        assert (
-            str(e)
-            == "1 validation error for OpenAPI\ntags -> 0 -> name\n  field required (type=value_error.missing)"
-        )
-    else:
-        raise AssertionError("This test should assert an exception, but didn't")
+        result = str(e)
+
+    assert (
+        result
+        == "1 validation error for OpenAPI\ntags -> 0 -> name\n  field required (type=value_error.missing)"
+    )
