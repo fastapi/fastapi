@@ -10,7 +10,7 @@ from fastapi.openapi.constants import (
     REF_PREFIX,
     STATUS_CODES_WITH_NO_BODY,
 )
-from fastapi.openapi.models import OpenAPI
+from fastapi.openapi.models import OpenAPI, Tag
 from fastapi.params import Body, Param
 from fastapi.utils import (
     generate_operation_id_for_path,
@@ -277,7 +277,8 @@ def get_openapi(
     openapi_version: str = "3.0.2",
     description: str = None,
     routes: Sequence[BaseRoute],
-    openapi_prefix: str = ""
+    openapi_prefix: str = "",
+    tags: Optional[List[Tag]] = None
 ) -> Dict:
     info = {"title": title, "version": version}
     if description:
@@ -310,4 +311,6 @@ def get_openapi(
     if components:
         output["components"] = components
     output["paths"] = paths
+    if tags:
+        output["tags"] = tags
     return jsonable_encoder(OpenAPI(**output), by_alias=True, exclude_none=True)

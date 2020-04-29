@@ -21,6 +21,39 @@ With this configuration, the automatic API docs would look like:
 
 <img src="/img/tutorial/metadata/image01.png">
 
+## Tag description
+
+You can also add a description for different tags used to group your path operations.
+
+First define your tag descriptions as a list of tags. Tags are represented as dictonaries with three key/value pairs:
+* **name**: The tag value
+* **description**: A description of the tag in OpenAPI and the automatic API docs UIs.
+* **externalDocs**: 
+  * **description**: Link text
+  * **url**: The URL to the external documentation
+
+```Python hl_lines="3 4 5 6 7 8 9 10 11 12 13"
+{!../../../docs_src/metadata/tutorial004.py!}
+```
+
+Then add your tag description to your app using the parameter `openapi_tag`:
+
+
+```Python hl_lines="15"
+{!../../../docs_src/metadata/tutorial004.py!}
+```
+
+Use the `tags` parameter with your path operations to assign them to different tags. 
+Read more about tags in [Path Operation Configuration](../path-operation-configuration/#tags).
+
+```Python hl_lines="18 23"
+{!../../../docs_src/metadata/tutorial004.py!}
+```
+
+With this configuration, the automatic API docs would look like:
+
+<img src="/img/tutorial/metadata/image02.png">
+
 ## OpenAPI URL
 
 By default, the OpenAPI schema is served at `/openapi.json`.

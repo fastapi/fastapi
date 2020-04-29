@@ -37,6 +37,9 @@ class FastAPI(Starlette):
         version: str = "0.1.0",
         openapi_url: Optional[str] = "/openapi.json",
         openapi_prefix: str = "",
+        openapi_tags: Optional[
+            List[Dict[str, Any]]
+        ] = None,  # Optional[List[Tag]] = None,
         default_response_class: Type[Response] = JSONResponse,
         docs_url: Optional[str] = "/docs",
         redoc_url: Optional[str] = "/redoc",
@@ -69,6 +72,7 @@ class FastAPI(Starlette):
         self.version = version
         self.openapi_url = openapi_url
         self.openapi_prefix = openapi_prefix.rstrip("/")
+        self.openapi_tags = openapi_tags
         self.docs_url = docs_url
         self.redoc_url = redoc_url
         self.swagger_ui_oauth2_redirect_url = swagger_ui_oauth2_redirect_url
@@ -84,6 +88,7 @@ class FastAPI(Starlette):
 
         if self.docs_url or self.redoc_url:
             assert self.openapi_url, "The openapi_url is required for the docs"
+
         self.openapi_schema: Optional[Dict[str, Any]] = None
         self.setup()
 
@@ -96,6 +101,7 @@ class FastAPI(Starlette):
                 description=self.description,
                 routes=self.routes,
                 openapi_prefix=self.openapi_prefix,
+                tags=self.openapi_tags,
             )
         return self.openapi_schema
 
