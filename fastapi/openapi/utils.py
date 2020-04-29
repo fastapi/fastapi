@@ -283,7 +283,7 @@ def get_openapi(
     info = {"title": title, "version": version}
     if description:
         info["description"] = description
-    output = {"openapi": openapi_version, "info": info}
+    output: Dict[str, Any] = {"openapi": openapi_version, "info": info}
     components: Dict[str, Dict] = {}
     paths: Dict[str, Dict] = {}
     flat_models = get_flat_models_from_routes(routes)
