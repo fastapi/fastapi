@@ -10,7 +10,7 @@ from fastapi.openapi.constants import (
     REF_PREFIX,
     STATUS_CODES_WITH_NO_BODY,
 )
-from fastapi.openapi.models import OpenAPI, Tag
+from fastapi.openapi.models import OpenAPI
 from fastapi.params import Body, Param
 from fastapi.utils import (
     generate_operation_id_for_path,
@@ -278,7 +278,7 @@ def get_openapi(
     description: str = None,
     routes: Sequence[BaseRoute],
     openapi_prefix: str = "",
-    tags: Optional[List[Tag]] = None
+    tags: Optional[List[Dict[str, Any]]] = None
 ) -> Dict:
     info = {"title": title, "version": version}
     if description:

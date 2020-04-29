@@ -37,9 +37,7 @@ class FastAPI(Starlette):
         version: str = "0.1.0",
         openapi_url: Optional[str] = "/openapi.json",
         openapi_prefix: str = "",
-        openapi_tags: Optional[
-            List[Dict[str, Any]]
-        ] = None,  # Optional[List[Tag]] = None,
+        openapi_tags: Optional[List[Dict[str, Any]]] = None,
         default_response_class: Type[Response] = JSONResponse,
         docs_url: Optional[str] = "/docs",
         redoc_url: Optional[str] = "/redoc",
