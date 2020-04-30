@@ -194,7 +194,7 @@ You would do the same to declare `tuple`s and `set`s:
 
 This means:
 
-* The variable `items_t` is a `tuple`, and each of its items is an `int`.
+* The variable `items_t` is a `tuple` with 3 items, an `int`, another `int`, and a `str`.
 * The variable `items_s` is a `set`, and each of its items is of type `bytes`.
 
 #### Dicts

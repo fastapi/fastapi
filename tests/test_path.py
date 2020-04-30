@@ -8,13 +8,13 @@ client = TestClient(app)
 
 def test_text_get():
     response = client.get("/text")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == "Hello World"
 
 
 def test_nonexistent():
     response = client.get("/nonexistent")
-    assert response.status_code == 404
+    assert response.status_code == 404, response.text
     assert response.json() == {"detail": "Not Found"}
 
 

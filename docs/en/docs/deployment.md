@@ -329,55 +329,61 @@ You can deploy **FastAPI** directly without Docker too.
 
 You just need to install an ASGI compatible server like:
 
-* <a href="https://www.uvicorn.org/" class="external-link" target="_blank">Uvicorn</a>, a lightning-fast ASGI server, built on uvloop and httptools.
+=== "Uvicorn"
 
-<div class="termy">
+    * <a href="https://www.uvicorn.org/" class="external-link" target="_blank">Uvicorn</a>, a lightning-fast ASGI server, built on uvloop and httptools.
 
-```console
-$ pip install uvicorn
+    <div class="termy">
 
----> 100%
-```
+    ```console
+    $ pip install uvicorn
 
-</div>
+    ---> 100%
+    ```
 
-* <a href="https://gitlab.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>, an ASGI server also compatible with HTTP/2.
+    </div>
 
-<div class="termy">
+=== "Hypercorn"
 
-```console
-$ pip install hypercorn
+    * <a href="https://gitlab.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>, an ASGI server also compatible with HTTP/2.
 
----> 100%
-```
+    <div class="termy">
 
-</div>
+    ```console
+    $ pip install hypercorn
 
-...or any other ASGI server.
+    ---> 100%
+    ```
+
+    </div>
+
+    ...or any other ASGI server.
 
 And run your application the same way you have done in the tutorials, but without the `--reload` option, e.g.:
 
-<div class="termy">
+=== "Uvicorn"
 
-```console
-$ uvicorn main:app --host 0.0.0.0 --port 80
+    <div class="termy">
 
-<span style="color: green;">INFO</span>:     Uvicorn running on http://0.0.0.0:80 (Press CTRL+C to quit)
-```
+    ```console
+    $ uvicorn main:app --host 0.0.0.0 --port 80
 
-</div>
+    <span style="color: green;">INFO</span>:     Uvicorn running on http://0.0.0.0:80 (Press CTRL+C to quit)
+    ```
 
-or with Hypercorn:
+    </div>
 
-<div class="termy">
+=== "Hypercorn"
 
-```console
-$ hypercorn main:app --bind 0.0.0.0:80
+    <div class="termy">
 
-Running on 0.0.0.0:8080 over http (CTRL + C to quit)
-```
+    ```console
+    $ hypercorn main:app --bind 0.0.0.0:80
 
-</div>
+    Running on 0.0.0.0:8080 over http (CTRL + C to quit)
+    ```
+
+    </div>
 
 You might want to set up some tooling to make sure it is restarted automatically if it stops.
 

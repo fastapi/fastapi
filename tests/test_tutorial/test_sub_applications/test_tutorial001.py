@@ -44,23 +44,23 @@ openapi_schema_sub = {
 
 def test_openapi_schema_main():
     response = client.get("/openapi.json")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == openapi_schema_main
 
 
 def test_main():
     response = client.get("/app")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == {"message": "Hello World from main app"}
 
 
 def test_openapi_schema_sub():
     response = client.get("/subapi/openapi.json")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == openapi_schema_sub
 
 
 def test_sub():
     response = client.get("/subapi/sub")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == {"message": "Hello World from sub API"}

@@ -79,13 +79,13 @@ openapi_schema = {
 
 def test_openapi_schema():
     response = client.get("/openapi.json")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == openapi_schema
 
 
 def test_get_no_headers():
     response = client.get("/items/")
-    assert response.status_code == 422
+    assert response.status_code == 422, response.text
     assert response.json() == {
         "detail": [
             {
@@ -104,7 +104,7 @@ def test_get_no_headers():
 
 def test_get_invalid_one_header():
     response = client.get("/items/", headers={"X-Token": "invalid"})
-    assert response.status_code == 400
+    assert response.status_code == 400, response.text
     assert response.json() == {"detail": "X-Token header invalid"}
 
 
@@ -112,7 +112,7 @@ def test_get_invalid_second_header():
     response = client.get(
         "/items/", headers={"X-Token": "fake-super-secret-token", "X-Key": "invalid"}
     )
-    assert response.status_code == 400
+    assert response.status_code == 400, response.text
     assert response.json() == {"detail": "X-Key header invalid"}
 
 
@@ -124,5 +124,5 @@ def test_get_valid_headers():
             "X-Key": "fake-super-secret-key",
         },
     )
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == [{"item": "Foo"}, {"item": "Bar"}]

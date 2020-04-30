@@ -179,7 +179,7 @@ openapi_schema = {
 
 def test_openapi_schema():
     response = client.get("/openapi.json")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == openapi_schema
 
 
@@ -195,7 +195,7 @@ def get_access_token(username="johndoe", password="secret", scope=None):
 
 def test_login():
     response = client.post("/token", data={"username": "johndoe", "password": "secret"})
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     content = response.json()
     assert "access_token" in content
     assert content["token_type"] == "bearer"
@@ -205,19 +205,19 @@ def test_login_incorrect_password():
     response = client.post(
         "/token", data={"username": "johndoe", "password": "incorrect"}
     )
-    assert response.status_code == 400
+    assert response.status_code == 400, response.text
     assert response.json() == {"detail": "Incorrect username or password"}
 
 
 def test_login_incorrect_username():
     response = client.post("/token", data={"username": "foo", "password": "secret"})
-    assert response.status_code == 400
+    assert response.status_code == 400, response.text
     assert response.json() == {"detail": "Incorrect username or password"}
 
 
 def test_no_token():
     response = client.get("/users/me")
-    assert response.status_code == 401
+    assert response.status_code == 401, response.text
     assert response.json() == {"detail": "Not authenticated"}
     assert response.headers["WWW-Authenticate"] == "Bearer"
 
@@ -227,7 +227,7 @@ def test_token():
     response = client.get(
         "/users/me", headers={"Authorization": f"Bearer {access_token}"}
     )
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == {
         "username": "johndoe",
         "full_name": "John Doe",
@@ -238,7 +238,7 @@ def test_token():
 
 def test_incorrect_token():
     response = client.get("/users/me", headers={"Authorization": "Bearer nonexistent"})
-    assert response.status_code == 401
+    assert response.status_code == 401, response.text
     assert response.json() == {"detail": "Could not validate credentials"}
     assert response.headers["WWW-Authenticate"] == 'Bearer scope="me"'
 
@@ -247,7 +247,7 @@ def test_incorrect_token_type():
     response = client.get(
         "/users/me", headers={"Authorization": "Notexistent testtoken"}
     )
-    assert response.status_code == 401
+    assert response.status_code == 401, response.text
     assert response.json() == {"detail": "Not authenticated"}
     assert response.headers["WWW-Authenticate"] == "Bearer"
 
@@ -272,7 +272,7 @@ def test_token_no_sub():
             "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiZm9vIn0.9ynBhuYb4e6aW3oJr_K_TBgwcMTDpRToQIE25L57rOE"
         },
     )
-    assert response.status_code == 401
+    assert response.status_code == 401, response.text
     assert response.json() == {"detail": "Could not validate credentials"}
     assert response.headers["WWW-Authenticate"] == 'Bearer scope="me"'
 
@@ -284,7 +284,7 @@ def test_token_no_username():
             "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJmb28ifQ.NnExK_dlNAYyzACrXtXDrcWOgGY2JuPbI4eDaHdfK5Y"
         },
     )
-    assert response.status_code == 401
+    assert response.status_code == 401, response.text
     assert response.json() == {"detail": "Could not validate credentials"}
     assert response.headers["WWW-Authenticate"] == 'Bearer scope="me"'
 
@@ -294,7 +294,7 @@ def test_token_no_scope():
     response = client.get(
         "/users/me", headers={"Authorization": f"Bearer {access_token}"}
     )
-    assert response.status_code == 401
+    assert response.status_code == 401, response.text
     assert response.json() == {"detail": "Not enough permissions"}
     assert response.headers["WWW-Authenticate"] == 'Bearer scope="me"'
 
@@ -306,7 +306,7 @@ def test_token_inexistent_user():
             "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VybmFtZTpib2IifQ.HcfCW67Uda-0gz54ZWTqmtgJnZeNem0Q757eTa9EZuw"
         },
     )
-    assert response.status_code == 401
+    assert response.status_code == 401, response.text
     assert response.json() == {"detail": "Could not validate credentials"}
     assert response.headers["WWW-Authenticate"] == 'Bearer scope="me"'
 
@@ -318,7 +318,7 @@ def test_token_inactive_user():
     response = client.get(
         "/users/me", headers={"Authorization": f"Bearer {access_token}"}
     )
-    assert response.status_code == 400
+    assert response.status_code == 400, response.text
     assert response.json() == {"detail": "Inactive user"}
 
 
@@ -327,7 +327,7 @@ def test_read_items():
     response = client.get(
         "/users/me/items/", headers={"Authorization": f"Bearer {access_token}"}
     )
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == [{"item_id": "Foo", "owner": "johndoe"}]
 
 
@@ -336,12 +336,12 @@ def test_read_system_status():
     response = client.get(
         "/status/", headers={"Authorization": f"Bearer {access_token}"}
     )
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == {"status": "ok"}
 
 
 def test_read_system_status_no_token():
     response = client.get("/status/")
-    assert response.status_code == 401
+    assert response.status_code == 401, response.text
     assert response.json() == {"detail": "Not authenticated"}
     assert response.headers["WWW-Authenticate"] == "Bearer"

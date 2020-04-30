@@ -85,7 +85,7 @@ openapi_schema = {
 
 def test_openapi_schema():
     response = client.get("/openapi.json")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == openapi_schema
 
 
@@ -176,7 +176,7 @@ def test_post_body(path, body, expected_status, expected_response):
 
 def test_post_broken_body():
     response = client.post("/items/", data={"name": "Foo", "price": 50.5})
-    assert response.status_code == 422
+    assert response.status_code == 422, response.text
     assert response.json() == {
         "detail": [
             {
