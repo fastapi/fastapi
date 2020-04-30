@@ -1,5 +1,6 @@
 import asyncio
 import inspect
+import json
 from typing import Any, Callable, Dict, List, Optional, Sequence, Set, Type, Union
 
 from fastapi import params
@@ -147,6 +148,8 @@ def get_request_handler(
                     body_bytes = await request.body()
                     if body_bytes:
                         body = await request.json()
+        except json.JSONDecodeError as e:
+            raise RequestValidationError([ErrorWrapper(e, ("body", e.pos))], body=e.doc)
         except Exception as e:
             logger.error(f"Error getting request body: {e}")
             raise HTTPException(
