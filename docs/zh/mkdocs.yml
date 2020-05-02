@@ -23,6 +23,7 @@ nav:
   - en: /
   - es: /es/
   - pt: /pt/
+  - ru: /ru/
   - zh: /zh/
 markdown_extensions:
 - toc:
