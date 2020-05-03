@@ -429,6 +429,14 @@ async def solve_generator(
     if is_gen_callable(call):
         cm = contextmanager_in_threadpool(contextmanager(call)(**sub_values))
     elif is_async_gen_callable(call):
+        if not inspect.isasyncgenfunction(call):
+            # asynccontextmanager from the async_generator backfill pre python3.7
+            # does not support callables that are not functions or methods.
+            # See https://github.com/python-trio/async_generator/issues/32
+            #
+            # Expand the callable class into its __call__ method before decorating it.
+            # This approach will work on newer python versions as well.
+            call = getattr(call, "__call__", None)
         cm = asynccontextmanager(call)(**sub_values)
     return await stack.enter_async_context(cm)
 
