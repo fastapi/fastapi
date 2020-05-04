@@ -125,13 +125,13 @@ def test_login_incorrect_password():
     response = client.post(
         "/token", data={"username": "johndoe", "password": "incorrect"}
     )
-    assert response.status_code == 400, response.text
+    assert response.status_code == 401, response.text
     assert response.json() == {"detail": "Incorrect username or password"}
 
 
 def test_login_incorrect_username():
     response = client.post("/token", data={"username": "foo", "password": "secret"})
-    assert response.status_code == 400, response.text
+    assert response.status_code == 401, response.text
     assert response.json() == {"detail": "Incorrect username or password"}
 
 
@@ -172,5 +172,5 @@ def test_incorrect_token_type():
 
 def test_inactive_user():
     response = client.get("/users/me", headers={"Authorization": "Bearer alice"})
-    assert response.status_code == 400, response.text
+    assert response.status_code == 401, response.text
     assert response.json() == {"detail": "Inactive user"}
