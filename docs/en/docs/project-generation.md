@@ -69,3 +69,16 @@ You can read more about it in the docs for the repo.
 ## Full Stack FastAPI MongoDB
 
 ...might come later, depending on my time availability and other factors. 😅 🎉
+
+## Machine Learning models with spaCy and FastAPI
+
+GitHub: <a href="https://github.com/microsoft/cookiecutter-spacy-fastapi" class="external-link" target="_blank">https://github.com/microsoft/cookiecutter-spacy-fastapi</a>
+
+### Machine Learning models with spaCy and FastAPI - Features
+
+* **spaCy** NER model integration.
+* **Azure Cognitive Search** request format built in.
+* **Production ready** Python web server using Uvicorn and Gunicorn.
+* **Azure DevOps** Kubernetes (AKS) CI/CD deployment built in.
+* **Multilingual** Easily choose one of spaCy's built in languages during project setup.
+* **Easily extensible** to other model frameworks (Pytorch, Tensorflow), not just spaCy.
