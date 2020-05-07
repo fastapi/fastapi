@@ -1,12 +1,11 @@
-from fastapi import Depends, FastAPI, Cookie, status, Response
+from fastapi import Depends, FastAPI, Response
 from fastapi.testclient import TestClient
-
 
 app = FastAPI()
 
 
 def set_cookie(*, response: Response):
-    response.set_cookie('cookie-name', 'cookie-value')
+    response.set_cookie("cookie-name", "cookie-value")
     return {}
 
 
@@ -30,4 +29,6 @@ client = TestClient(app)
 def test_cookie_is_set_once():
     direct_response = client.get("/directCookie")
     indirect_response = client.get("/indirectCookie")
-    assert direct_response.headers['set-cookie'] == indirect_response.headers['set-cookie']
+    assert (
+        direct_response.headers["set-cookie"] == indirect_response.headers["set-cookie"]
+    )
