@@ -16,7 +16,7 @@ Você pode "star" FastAPI no GitHub (clicando no botão com a estrela no canto s
 
 Ao adicionar uma estrela, outros usuários serão capazes de encontrá-lo mais facilmente e ver que o framework foi útil à outros usuários.
 
-## Watch por releases o repository no GitHub
+## Aguarde por releases no repositório do GitHub
 
 Você pode "watch" o FastAPI no GitHub (clicando no botão escrito 'Watch' no canto superior direito): <a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">https://github.com/tiangolo/fastapi</a>.
 
