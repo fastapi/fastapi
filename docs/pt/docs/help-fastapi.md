@@ -76,7 +76,7 @@ Você pode me falar:
 
 Você pode ver <a href="https://github.com/tiangolo/fastapi/issues" class="external-link" target="_blank">as issues existentes</a> e tentar ajudar os outros.
 
-## Watch o repository no GitHub
+## Observe o repositório no GitHub
 
 Você pode "watch" o FastAPI no GitHub (clicando no botão escrito 'Watch' no canto superior direito): <a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">https://github.com/tiangolo/fastapi</a>.
 
