@@ -12,7 +12,7 @@ Há várias maneiras de buscar ajuda também.
 
 ## Star **FastAPI** no Github
 
-Você pode "star" FastAPI no GitHub (clicando no botão com a estrela no canto superior direito): <a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">https://github.com/tiangolo/fastapi</a>.
+Você pode "favoritar" o FastAPI no GitHub (clicando no botão com a estrela no canto superior direito): <a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">https://github.com/tiangolo/fastapi</a>.
 
 Ao adicionar uma estrela, outros usuários serão capazes de encontrá-lo mais facilmente e ver que o framework foi útil à outros usuários.
 
