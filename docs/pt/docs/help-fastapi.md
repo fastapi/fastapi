@@ -20,7 +20,7 @@ Ao adicionar uma estrela, outros usuários serão capazes de encontrá-lo mais f
 
 Você pode "watch" o FastAPI no GitHub (clicando no botão escrito 'Watch' no canto superior direito): <a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">https://github.com/tiangolo/fastapi</a>.
 
-Depois de clicar o botão e so selecionar "Releases only"
+Depois de clicar o botão é só selecionar _"Releases only"_
 
 Fazendo isso, você vai receber notificações (no seu e-mail) todas as vezes que tiver uma nova release (uma nova versão) do **FastAPI** com correções de bugs e novos recursos.
 
@@ -104,4 +104,3 @@ Você pode <a href="https://github.com/tiangolo/fastapi" class="external-link" t
 ---
 
 Obrigado!
-
