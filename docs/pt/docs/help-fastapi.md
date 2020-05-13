@@ -82,7 +82,7 @@ Você pode "watch" o FastAPI no GitHub (clicando no botão escrito 'Watch' no ca
 
 Se você selecionar "Watching" ao invés de "Releases only" você receberá notificações quando alguém criar uma _issue_.
 
-Ai você pode tentar ajudar ele/ela a resolver suas issues.
+Ai você pode tentar ajudar ele/ela a resolver suas _issues_.
 
 ## Criar issues
 
