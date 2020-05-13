@@ -74,7 +74,7 @@ Você pode me falar:
 
 ## Ajude outros com as _issues_ no GitHub
 
-Você pode ver <a href="https://github.com/tiangolo/fastapi/issues" class="external-link" target="_blank">as issues existentes</a> e tentar ajudar os outros.
+Você pode ver <a href="https://github.com/tiangolo/fastapi/issues" class="external-link" target="_blank">as _issues_ existentes</a> e tentar ajudar os outros.
 
 ## Observe o repositório no GitHub
 
