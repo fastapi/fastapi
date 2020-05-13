@@ -92,13 +92,13 @@ Você pode <a href="https://github.com/tiangolo/fastapi/issues/new/choose" class
 * Sugerir um novo recurso.
 * Fazer uma pergunta.
 
-## Criar um Pull Request
+## Criar um _Pull Request_
 
-Você pode <a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">criar um Pull Request</a>, por exemplo para:
+Você pode <a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">criar um _Pull Request_</a> para, por exemplo:
 
 * Corrigir um erro na documentação.
 * Sugerir novas seções na documentação.
-* Corrigir uma issue/bug existente.
+* Corrigir um _bug/issue_ existente.
 * Adicionar um novo recurso.
 
 ---
