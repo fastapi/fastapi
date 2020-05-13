@@ -49,7 +49,7 @@ Você pode:
 * <a href="https://www.linkedin.com/in/tiangolo/" class="external-link" target="_blank">conecte-se comigo no **Linkedin**</a>.
     * Falar comigo.
     * Me recomende ou me endosse :)
-* <a href="https://medium.com/@tiangolo" class="external-link" target="_blank">Ler oque escrevo (ou me seguir) no **Medium**</a>.
+* <a href="https://medium.com/@tiangolo" class="external-link" target="_blank">Ler o que escrevo (ou me seguir) no **Medium**</a>.
     * Ler outras ideias, artigos e ferramentas que eu criei.
     * Me seguir para ver quando eu publico algo novo.
 
