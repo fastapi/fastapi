@@ -67,7 +67,7 @@ Você pode me falar:
 * <a href="https://www.linkedin.com/in/tiangolo/" class="external-link" target="_blank">No **Linkedin**</a>.
 * <a href="https://medium.com/@tiangolo" class="external-link" target="_blank">No **Medium**</a>.
 
-## Vote pelo FastAPI
+## Vote no FastAPI
 
 * <a href="https://github.com/vinta/awesome-python/pull/1209" class="external-link" target="_blank">Vote pare incluir o **FastAPI** no _`awesome-python`_</a>.
 * <a href="https://www.slant.co/options/34241/~fastapi-review" class="external-link" target="_blank">Vote pelo **FastAPI** no Slant</a>.
@@ -84,11 +84,11 @@ Se você selecionar "Watching" ao invés de "Releases only" você receberá noti
 
 Ai você pode tentar ajudar ele/ela a resolver suas _issues_.
 
-## Criar issues
+## Criar _issues_
 
 Você pode <a href="https://github.com/tiangolo/fastapi/issues/new/choose" class="external-link" target="_blank">criar uma nova _issue_</a> no repositório do GitHub, por exemplo para:
 
-* Reportar uma bug/issue.
+* Reportar um _bug/issue_.
 * Sugerir um novo recurso.
 * Fazer uma pergunta.
 
