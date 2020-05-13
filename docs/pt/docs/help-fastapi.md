@@ -55,7 +55,7 @@ Você pode:
 
 ## Tweet sobre **FastAPI**
 
-<a href="https://twitter.com/compose/tweet?text=Estou amando o FastAPI porque... https://github.com/tiangolo/fastapi cc @tiangolo" class="external-link" target="_blank">Tweet sobre **FastAPI**</a> e deixe eu e os outros saberem porque você gosta do **FastAPI**.
+<a href="https://twitter.com/compose/tweet?text=Estou amando o FastAPI porque... https://github.com/tiangolo/fastapi cc @tiangolo" class="external-link" target="_blank">Tweet sobre **FastAPI**</a> e deixe eu e outros saberem porque você gosta do **FastAPI**.
 
 ## Me fale como esta usando o **FastAPI**
 
