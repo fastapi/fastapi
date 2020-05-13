@@ -24,7 +24,7 @@ Depois de clicar o botão é só selecionar _"Releases only"_
 
 Fazendo isso, você vai receber notificações (no seu e-mail) todas as vezes que tiver um novo lançamento (uma nova versão) do **FastAPI** com correções de _bugs_ e novos recursos.
 
-## Entre no chat
+## Entre no _chat_
 
 <a href="https://gitter.im/tiangolo/fastapi?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge" target="_blank">
     <img src="https://badges.gitter.im/tiangolo/fastapi.svg" alt="Participe do chat em https://gitter.im/tiangolo/fastapi">
