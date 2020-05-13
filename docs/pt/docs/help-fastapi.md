@@ -10,15 +10,15 @@ Há maneiras muito simples de ajudar (algumas envolvem somente um ou dois clique
 
 Há várias maneiras de buscar ajuda também.
 
-## Star **FastAPI** no Github
+## Favorite **FastAPI** no Github
 
-Você pode "favoritar" o FastAPI no GitHub (clicando no botão com a estrela no canto superior direito): <a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">https://github.com/tiangolo/fastapi</a>.
+Você pode "_star_" o FastAPI no GitHub (clicando no botão com a estrela no canto superior direito): <a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">https://github.com/tiangolo/fastapi</a>.
 
-Ao adicionar uma estrela, outros usuários serão capazes de encontrá-lo mais facilmente e ver que o framework foi útil à outros usuários.
+Ao favoritar o repositório, outros usuários serão capazes de encontrá-lo mais facilmente e ver que o framework foi útil à outros usuários.
 
-## Aguarde por releases no repositório do GitHub
+## Fique de olho nos lançamentos de novos recursos
 
-Você pode "watch" o FastAPI no GitHub (clicando no botão escrito 'Watch' no canto superior direito): <a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">https://github.com/tiangolo/fastapi</a>.
+Você pode "_watch_" o FastAPI no GitHub (clicando no botão escrito 'Watch' no canto superior direito): <a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">https://github.com/tiangolo/fastapi</a>.
 
 Depois de clicar o botão é só selecionar _"Releases only"_
 
@@ -76,7 +76,7 @@ Você pode me falar:
 
 Você pode ver <a href="https://github.com/tiangolo/fastapi/issues" class="external-link" target="_blank">as _issues_ existentes</a> e tentar ajudar os outros.
 
-## Observe o repositório no GitHub
+## Fique de olho nos lançamentos no repositório no GitHub
 
 Você pode "watch" o FastAPI no GitHub (clicando no botão escrito 'Watch' no canto superior direito): <a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">https://github.com/tiangolo/fastapi</a>.
 
