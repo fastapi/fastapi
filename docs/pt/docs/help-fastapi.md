@@ -42,7 +42,7 @@ Você pode:
 
 * <a href="https://github.com/tiangolo" class="external-link" target="_blank">Me seguir no **GitHub**</a>.
     * Ver outros projetos _Open Source_ que eu criei que pode lhe ajudar.
-    * Me seguir e ver quando eu criar um novo projeto Open Source.
+    * Me seguir e ver quando eu criar um novo projeto _Open Source_.
 * <a href="https://twitter.com/tiangolo" class="external-link" target="_blank">Me seguir no **Twitter**</a>.
     * Me falar como você usa o FastAPI (Eu gostaria muito de saber).
     * Fazer perguntas.
