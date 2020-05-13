@@ -80,7 +80,7 @@ Você pode ver <a href="https://github.com/tiangolo/fastapi/issues" class="exter
 
 Você pode "watch" o FastAPI no GitHub (clicando no botão escrito 'Watch' no canto superior direito): <a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">https://github.com/tiangolo/fastapi</a>.
 
-Se você selecionar "Watching" ao invés de "Releases only" você ira receber notificações quando alguém criar uma issue.
+Se você selecionar "Watching" ao invés de "Releases only" você receberá notificações quando alguém criar uma _issue_.
 
 Ai você pode tentar ajudar ele/ela a resolver suas issues.
 
