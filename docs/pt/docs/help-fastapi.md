@@ -86,7 +86,7 @@ Ai você pode tentar ajudar ele/ela a resolver suas _issues_.
 
 ## Criar issues
 
-Você pode <a href="https://github.com/tiangolo/fastapi/issues/new/choose" class="external-link" target="_blank">criar uma nova issue</a> no repositório do GitHub, por exemplo para:
+Você pode <a href="https://github.com/tiangolo/fastapi/issues/new/choose" class="external-link" target="_blank">criar uma nova _issue_</a> no repositório do GitHub, por exemplo para:
 
 * Reportar uma bug/issue.
 * Sugerir um novo recurso.
