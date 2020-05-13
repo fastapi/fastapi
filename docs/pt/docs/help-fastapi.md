@@ -22,7 +22,7 @@ Você pode "watch" o FastAPI no GitHub (clicando no botão escrito 'Watch' no ca
 
 Depois de clicar o botão é só selecionar _"Releases only"_
 
-Fazendo isso, você vai receber notificações (no seu e-mail) todas as vezes que tiver uma nova release (uma nova versão) do **FastAPI** com correções de bugs e novos recursos.
+Fazendo isso, você vai receber notificações (no seu e-mail) todas as vezes que tiver um novo lançamento (uma nova versão) do **FastAPI** com correções de _bugs_ e novos recursos.
 
 ## Entre no chat
 
