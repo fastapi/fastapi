@@ -72,7 +72,7 @@ Você pode me falar:
 * <a href="https://github.com/vinta/awesome-python/pull/1209" class="external-link" target="_blank">Vote pare incluir o **FastAPI** no _`awesome-python`_</a>.
 * <a href="https://www.slant.co/options/34241/~fastapi-review" class="external-link" target="_blank">Vote pelo **FastAPI** no Slant</a>.
 
-## Ajude outros com issues no GitHub
+## Ajude outros com as _issues_ no GitHub
 
 Você pode ver <a href="https://github.com/tiangolo/fastapi/issues" class="external-link" target="_blank">as issues existentes</a> e tentar ajudar os outros.
 
