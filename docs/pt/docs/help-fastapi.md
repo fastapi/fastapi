@@ -59,7 +59,7 @@ Você pode:
 
 ## Me fale como está usando o **FastAPI**
 
-Eu amaria saber como o **FastAPI** esta sendo usado, oque você gostou nele, e em qual projeto/empresa esta sendo usado, etc.
+Eu adoraria saber como o **FastAPI** está sendo usado, o que você gostou dele, e em qual projeto/empresa está sendo utilizado etc.
 
 Você pode me falar:
 
