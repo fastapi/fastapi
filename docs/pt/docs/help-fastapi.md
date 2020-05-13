@@ -30,7 +30,7 @@ Fazendo isso, você vai receber notificações (no seu e-mail) todas as vezes qu
     <img src="https://badges.gitter.im/tiangolo/fastapi.svg" alt="Participe do chat em https://gitter.im/tiangolo/fastapi">
 </a>
 
-Participe do chat no Gitter: <a href="https://gitter.im/tiangolo/fastapi" class="external-link" target="_blank">https://gitter.im/tiangolo/fastapi</a>.
+Participe do _chat_ no Gitter: <a href="https://gitter.im/tiangolo/fastapi" class="external-link" target="_blank">https://gitter.im/tiangolo/fastapi</a>.
 
 La você pode fazer perguntas rápidas, ajudar outros, dividir ideias, etc.
 
