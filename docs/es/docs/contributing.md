@@ -1,8 +1,8 @@
-# Desarollo - Aportando
+# Desarrollo - Aportando
 
 Si te interesa formar parte del proyecto, empezar por revisar las maneras de [apoyar al proyecto FastAPI y de conseguir apoyo.](help-fastapi.md){.internal-link target=_blank}.
 
-## Desarollo
+## Desarrollo
 
 Si ya has copiado el repositorio y sabes con certeza que necesitas indagar a fondo el código fuente,
 aquí encontrarás unas pautas a seguir con respecto a cómo desplegar tu entorno.
@@ -116,7 +116,7 @@ $ pip install flit
 Vuelve a activar el entorno para asegurar que estás utilizando ese`flit` recién instalado,
  y no algún otro del entorno global.
 
-Y ahora utilzas `flit` para installar las dependencias para el desarollo:
+Y ahora utilzas `flit` para installar las dependencias para el desarrollo:
 
 === "Linux, macOS"
 
@@ -219,7 +219,7 @@ De esta forma se compreuba que:
 * Los ejemplos se pueden ejectuar tál como están.
 * La mayoria de las prestaciones se describen en los documentos, comprobado por cobertura.
 
-Durante el desarollo local, se utiliza un script que construye el sitio y detecta cambios, recargando sobre la marcha.
+Durante el desarrollo local, se utiliza un script que construye el sitio y detecta cambios, recargando sobre la marcha.
 
 <div class="termy">
 
