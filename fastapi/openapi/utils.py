@@ -285,13 +285,18 @@ def get_openapi(
     output = {"openapi": openapi_version, "info": info}
     components: Dict[str, Dict] = {}
     paths: Dict[str, Dict] = {}
-    flat_models = get_flat_models_from_routes(routes)
-    model_name_map = get_model_name_map(flat_models)
-    definitions = get_model_definitions(
-        flat_models=flat_models, model_name_map=model_name_map
-    )
+    definitions: Dict[str, Any] = {}
     for route in routes:
         if isinstance(route, routing.APIRoute):
+            flat_models = get_flat_models_from_routes([route])
+            model_name_map = get_model_name_map(flat_models)
+            definitions.update(
+                get_model_definitions(
+                    by_alias=route.response_model_by_alias,
+                    flat_models=flat_models,
+                    model_name_map=model_name_map,
+                )
+            )
             result = get_openapi_path(route=route, model_name_map=model_name_map)
             if result:
                 path, security_schemes, path_definitions = result
