@@ -219,7 +219,7 @@ De esta forma se compreuba que:
 * Los ejemplos se pueden ejectuar tál como están.
 * La mayoria de las prestaciones se describen en los documentos, comprobado por cobertura.
 
-Durante el desarollo local, se utiliza un script que construye el sitio y detecta cambios, recargando sobre la marcha.
+Durante el desarrollo local, se utiliza un script que construye el sitio y detecta cambios, recargando sobre la marcha.
 
 <div class="termy">
 
