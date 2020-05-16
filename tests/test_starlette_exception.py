@@ -126,31 +126,31 @@ openapi_schema = {
 
 def test_openapi_schema():
     response = client.get("/openapi.json")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == openapi_schema
 
 
 def test_get_item():
     response = client.get("/items/foo")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == {"item": "The Foo Wrestlers"}
 
 
 def test_get_item_not_found():
     response = client.get("/items/bar")
-    assert response.status_code == 404
+    assert response.status_code == 404, response.text
     assert response.headers.get("x-error") == "Some custom header"
     assert response.json() == {"detail": "Item not found"}
 
 
 def test_get_starlette_item():
     response = client.get("/starlette-items/foo")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == {"item": "The Foo Wrestlers"}
 
 
 def test_get_starlette_item_not_found():
     response = client.get("/starlette-items/bar")
-    assert response.status_code == 404
+    assert response.status_code == 404, response.text
     assert response.headers.get("x-error") is None
     assert response.json() == {"detail": "Item not found"}

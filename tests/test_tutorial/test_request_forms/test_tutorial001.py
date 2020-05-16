@@ -85,7 +85,7 @@ openapi_schema = {
 
 def test_openapi_schema():
     response = client.get("/openapi.json")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == openapi_schema
 
 
@@ -145,5 +145,5 @@ def test_post_body_form(path, body, expected_status, expected_response):
 
 def test_post_body_json():
     response = client.post("/login/", json={"username": "Foo", "password": "secret"})
-    assert response.status_code == 422
+    assert response.status_code == 422, response.text
     assert response.json() == username_and_password_required

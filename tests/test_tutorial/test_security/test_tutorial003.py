@@ -111,13 +111,13 @@ openapi_schema = {
 
 def test_openapi_schema():
     response = client.get("/openapi.json")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == openapi_schema
 
 
 def test_login():
     response = client.post("/token", data={"username": "johndoe", "password": "secret"})
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == {"access_token": "johndoe", "token_type": "bearer"}
 
 
@@ -125,26 +125,26 @@ def test_login_incorrect_password():
     response = client.post(
         "/token", data={"username": "johndoe", "password": "incorrect"}
     )
-    assert response.status_code == 400
+    assert response.status_code == 400, response.text
     assert response.json() == {"detail": "Incorrect username or password"}
 
 
 def test_login_incorrect_username():
     response = client.post("/token", data={"username": "foo", "password": "secret"})
-    assert response.status_code == 400
+    assert response.status_code == 400, response.text
     assert response.json() == {"detail": "Incorrect username or password"}
 
 
 def test_no_token():
     response = client.get("/users/me")
-    assert response.status_code == 401
+    assert response.status_code == 401, response.text
     assert response.json() == {"detail": "Not authenticated"}
     assert response.headers["WWW-Authenticate"] == "Bearer"
 
 
 def test_token():
     response = client.get("/users/me", headers={"Authorization": "Bearer johndoe"})
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == {
         "username": "johndoe",
         "full_name": "John Doe",
@@ -156,7 +156,7 @@ def test_token():
 
 def test_incorrect_token():
     response = client.get("/users/me", headers={"Authorization": "Bearer nonexistent"})
-    assert response.status_code == 401
+    assert response.status_code == 401, response.text
     assert response.json() == {"detail": "Invalid authentication credentials"}
     assert response.headers["WWW-Authenticate"] == "Bearer"
 
@@ -165,12 +165,12 @@ def test_incorrect_token_type():
     response = client.get(
         "/users/me", headers={"Authorization": "Notexistent testtoken"}
     )
-    assert response.status_code == 401
+    assert response.status_code == 401, response.text
     assert response.json() == {"detail": "Not authenticated"}
     assert response.headers["WWW-Authenticate"] == "Bearer"
 
 
 def test_inactive_user():
     response = client.get("/users/me", headers={"Authorization": "Bearer alice"})
-    assert response.status_code == 400
+    assert response.status_code == 400, response.text
     assert response.json() == {"detail": "Inactive user"}
