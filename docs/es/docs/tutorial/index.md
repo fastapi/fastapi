@@ -1,8 +1,8 @@
-# Tutorial - Guía de usuario - Introducción
+# Tutorial - Guía de Usuario - Introducción
 
-Este tutorial te muestra como usar **FastAPI** con la mayoría de sus características paso a paso.
+Este tutorial te muestra cómo usar **FastAPI** con la mayoría de sus características paso a paso.
 
-Cada sección se basa gradualmente en las anteriores, pero está estructurada en temas separados, así puedes ir directamente a cualquier tema en concreto para resolver sus necesidades específicas sobre la API.
+Cada sección se basa gradualmente en las anteriores, pero está estructurada en temas separados, así puedes ir directamente a cualquier tema en concreto para resolver tus necesidades específicas sobre la API.
 
 También está diseñado para funcionar como una referencia futura.
 
@@ -50,7 +50,7 @@ $ pip install fastapi[all]
 
 </div>
 
-...eso también incluye `uvicorn` que se usa como el servidor que ejecuta tu código.
+...eso también incluye `uvicorn` que puedes usar como el servidor que ejecuta tu código.
 
 !!! nota
     También puedes instalarlo parte por parte.
@@ -69,12 +69,12 @@ $ pip install fastapi[all]
 
     Y lo mismo para cada una de las dependencias opcionales que quieras utilizar.
 
-## Guía avanzada del usuario 
+## Guía Avanzada de Usuario
 
-También hay una **Guía avanzada del usuario** que puedes leer luego de este **Tutorial - Guía de usuario**.
+También hay una **Guía Avanzada de Usuario** que puedes leer luego de este **Tutorial - Guía de Usuario**.
 
-La **Guía avanzada del usuario**, se basa en este tutorial, utiliza los mismos conceptos y enseña algunas características adicionales.
+La **Guía Avanzada de Usuario**, se basa en este tutorial, utiliza los mismos conceptos y enseña algunas características adicionales.
 
-Pero primero deberías leer el **Tutorial - Guía de usuario** (lo que estas leyendo ahora mismo).
+Pero primero deberías leer el **Tutorial - Guía de Gsuario** (lo que estas leyendo ahora mismo).
 
-La guía esa diseñada para que puedas crear una aplicación completa con solo el **Tutorial - Guía de usuario**, y luego extenderlo de diferentes maneras, según tus necesidades, utilizando algunas de las ideas adicionales de la **Guía avanzada del usuario**.
+La guía esa diseñada para que puedas crear una aplicación completa con solo el **Tutorial - Guía de Usuario**, y luego extenderlo de diferentes maneras, según tus necesidades, utilizando algunas de las ideas adicionales de la **Guía Avanzada de Usuario**.
