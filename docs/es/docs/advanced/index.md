@@ -1,4 +1,4 @@
-# Guía de usuario avanzada - Introducción
+# Guía de Usuario Avanzada - Introducción
 
 ## Características Adicionales
 
