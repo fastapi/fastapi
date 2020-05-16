@@ -33,7 +33,7 @@ For example, to set it to be served at `/api/v1/openapi.json`:
 {!../../../docs_src/metadata/tutorial002.py!}
 ```
 
-If you want to disable the OpenAPI schema completely you can set `openapi_url=None`.
+If you want to disable the OpenAPI schema completely you can set `openapi_url=None`, that will also disable the documentation user interfaces that use it.
 
 ## Docs URLs
 
