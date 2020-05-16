@@ -28,6 +28,7 @@ nav:
 - Tutorial - Guia de Usuário:
   - tutorial/index.md
 - history-design-future.md
+- benchmarks.md
 markdown_extensions:
 - toc:
     permalink: true
