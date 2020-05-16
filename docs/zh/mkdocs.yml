@@ -25,6 +25,8 @@ nav:
   - pt: /pt/
   - zh: /zh/
 - features.md
+- 教程 - 用户指南:
+  - tutorial/index.md
 markdown_extensions:
 - toc:
     permalink: true
