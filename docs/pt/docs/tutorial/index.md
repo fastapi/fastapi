@@ -1,4 +1,4 @@
-# Tutorial - Guia de usuário - Introdução
+# Tutorial - Guia de Usuário - Introdução
 
 Esse tutorial mostra como usar o **FastAPI** com a maior parte de seus recursos, passo a passo.
 
@@ -69,12 +69,12 @@ $ pip install fastapi[all]
 
     E o mesmo para cada dependência opcional que você quiser usar.
 
-## Guia avançado de usuário
+## Guia Avançado de Usuário
 
-Há também um **Guia avançado de usuário** que você pode ler após esse **Tutorial - Guia de usuário**.
+Há também um **Guia Avançado de Usuário** que você pode ler após esse **Tutorial - Guia de Usuário**.
 
-O **Guia avançado de usuário** constrói sobre esse, usa os mesmos conceitos e te ensina alguns recursos extras.
+O **Guia Avançado de Usuário** constrói sobre esse, usa os mesmos conceitos e te ensina alguns recursos extras.
 
-Mas você deveria ler primeiro o **Tutorial - Guia de usuário** (que você está lendo agora).
+Mas você deveria ler primeiro o **Tutorial - Guia de Usuário** (que você está lendo agora).
 
-Ele foi projetado para que você possa construir uma aplicação completa com apenas o **Tutorial - Guia de usuário**, e então estendê-la de diferentes formas, dependendo das suas necessidades, usando algumas ideias adicionais do **Guia avançado de usuário**.
+Ele foi projetado para que você possa construir uma aplicação completa com apenas o **Tutorial - Guia de Usuário**, e então estendê-la de diferentes formas, dependendo das suas necessidades, usando algumas ideias adicionais do **Guia Avançado de Usuário**.
