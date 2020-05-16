@@ -103,6 +103,7 @@ nav:
   - advanced/testing-dependencies.md
   - advanced/testing-database.md
   - advanced/settings.md
+  - advanced/conditional-openapi.md
   - advanced/extending-openapi.md
   - advanced/openapi-callbacks.md
   - advanced/wsgi.md
