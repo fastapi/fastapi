@@ -26,6 +26,8 @@ nav:
   - zh: /zh/
 - features.md
 - python-types.md
+- Guía de Usuario Avanzada:
+  - advanced/index.md
 markdown_extensions:
 - toc:
     permalink: true
