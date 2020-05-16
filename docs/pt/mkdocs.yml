@@ -24,8 +24,10 @@ nav:
   - es: /es/
   - pt: /pt/
   - zh: /zh/
+- features.md
 - Tutorial - Guia de Usuário:
   - tutorial/index.md
+- history-design-future.md
 markdown_extensions:
 - toc:
     permalink: true
