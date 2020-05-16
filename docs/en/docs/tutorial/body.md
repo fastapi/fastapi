@@ -108,6 +108,8 @@ But you would get the same editor support with <a href="https://www.jetbrains.co
 
 <img src="/img/tutorial/body/image05.png">
 
+In PyCharm, There is <a href="https://github.com/koxudaxi/pydantic-pycharm-plugin/" class="external-link" target="_blank">Pydantic PyCharm Plugin</a>. It improves features that are auto-completion, type-checking, refactoring, searching, inspections for Pydantic.
+
 ## Use the model
 
 Inside of the function, you can access all the attributes of the model object directly:
