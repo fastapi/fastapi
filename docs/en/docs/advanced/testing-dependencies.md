@@ -20,18 +20,6 @@ You probably want to test the external provider once, but not necessarily call i
 
 In this case, you can override the dependency that calls that provider, and use a custom dependency that returns a mock user, only for your tests.
 
-### Use case: testing database
-
-Other example could be that you are using a specific database only for testing.
-
-Your normal dependency would return a database session.
-
-But then, after each test, you could want to rollback all the operations or remove data.
-
-Or you could want to alter the data before the tests run, etc.
-
-In this case, you could use a dependency override to return your *custom* database session instead of the one that would be used normally.
-
 ### Use the `app.dependency_overrides` attribute
 
 For these cases, your **FastAPI** application has an attribute `app.dependency_overrides`, it is a simple `dict`.

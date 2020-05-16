@@ -81,7 +81,7 @@ def get_openapi_security_definitions(flat_dependant: Dependant) -> Tuple[Dict, L
         security_definition = jsonable_encoder(
             security_requirement.security_scheme.model,
             by_alias=True,
-            include_none=False,
+            exclude_none=True,
         )
         security_name = security_requirement.security_scheme.scheme_name
         security_definitions[security_name] = security_definition
@@ -310,4 +310,4 @@ def get_openapi(
     if components:
         output["components"] = components
     output["paths"] = paths
-    return jsonable_encoder(OpenAPI(**output), by_alias=True, include_none=False)
+    return jsonable_encoder(OpenAPI(**output), by_alias=True, exclude_none=True)

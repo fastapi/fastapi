@@ -82,13 +82,13 @@ openapi_schema = {
 
 def test_openapi_schema():
     response = client.get("/openapi.json")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == openapi_schema
 
 
 def test_post_validation_error():
     response = client.post("/items/", json={"title": "towel", "size": "XL"})
-    assert response.status_code == 422
+    assert response.status_code == 422, response.text
     assert response.json() == {
         "detail": [
             {
@@ -104,5 +104,5 @@ def test_post_validation_error():
 def test_post():
     data = {"title": "towel", "size": 5}
     response = client.post("/items/", json=data)
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == data

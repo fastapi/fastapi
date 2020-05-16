@@ -16,7 +16,7 @@ client = TestClient(app)
 
 def test_swagger_ui():
     response = client.get("/docs")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.headers["content-type"] == "text/html; charset=utf-8"
     assert "swagger-ui-dist" in response.text
     print(client.base_url)
@@ -28,7 +28,7 @@ def test_swagger_ui():
 
 def test_swagger_ui_oauth2_redirect():
     response = client.get(swagger_ui_oauth2_redirect_url)
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.headers["content-type"] == "text/html; charset=utf-8"
     assert "window.opener.swaggerUIRedirectOauth2" in response.text
 
