@@ -55,7 +55,7 @@ But by following the steps above, it will be able to do some performance optimiz
 
 Modern versions of Python have support for **"asynchronous code"** using something called **"coroutines"**, with **`async` and `await`** syntax.
 
-Let's see that phrase by parts in the sections below, below:
+Let's see that phrase by parts in the sections below:
 
 * **Asynchronous Code**
 * **`async` and `await`**
@@ -94,7 +94,7 @@ For "synchronous" (contrary to "asynchronous") they commonly also use the term "
 
 This idea of **asynchronous** code described above is also sometimes called **"concurrency"**. It is different from **"parallelism"**.
 
-**Concurrency** and **parallelism** both relate to "different things happening more or less at the same time". 
+**Concurrency** and **parallelism** both relate to "different things happening more or less at the same time".
 
 But the details between *concurrency* and *parallelism* are quite different.
 
@@ -102,107 +102,109 @@ To see the difference, imagine the following story about burgers:
 
 ### Concurrent Burgers
 
-You go with your crush to get fast food, you stand in line while the cashier takes the orders from the people in front of you.
+You go with your crush 😍 to get fast food 🍔, you stand in line while the cashier 💁 takes the orders from the people in front of you.
 
-Then it's your turn, you place your order of 2 very fancy burgers for your crush and you.
+Then it's your turn, you place your order of 2 very fancy burgers 🍔 for your crush 😍 and you.
 
-You pay.
+You pay 💸.
 
-The cashier says something to the guy in the kitchen so he knows he has to prepare your burgers (even though he is currently preparing the ones for the previous clients).
+The cashier 💁 says something to the guy in the kitchen 👨‍🍳 so he knows he has to prepare your burgers 🍔 (even though he is currently preparing the ones for the previous clients).
 
-The cashier gives you the number of your turn.
+The cashier 💁 gives you the number of your turn.
 
-While you are waiting, you go with your crush and pick a table, you sit and talk with your crush for a long time (as your burgers are very fancy and take some time to prepare).
+While you are waiting, you go with your crush 😍 and pick a table, you sit and talk with your crush 😍 for a long time (as your burgers are very fancy and take some time to prepare ✨🍔✨).
 
-As you are sitting on the table with your crush, while you wait for the burgers, you can spend that time admiring how awesome, cute and smart your crush is.
+As you are sitting on the table with your crush 😍, while you wait for the burgers 🍔, you can spend that time admiring how awesome, cute and smart your crush is ✨😍✨.
 
-While waiting and talking to your crush, from time to time, you check the number displayed on the counter to see if it's your turn already.
+While waiting and talking to your crush 😍, from time to time, you check the number displayed on the counter to see if it's your turn already.
 
-Then at some point, it finally is your turn. You go to the counter, get your burgers and come back to the table.
+Then at some point, it finally is your turn. You go to the counter, get your burgers 🍔 and come back to the table.
 
-You and your crush eat the burgers and have a nice time.
+You and your crush 😍 eat the burgers 🍔 and have a nice time ✨.
 
 ---
 
-Imagine you are the computer / program in that story.
+Imagine you are the computer / program 🤖 in that story.
 
-While you are at the line, you are just idle, waiting for your turn, not doing anything very "productive". But the line is fast because the cashier is only taking the orders, so that's fine.
+While you are at the line, you are just idle 😴, waiting for your turn, not doing anything very "productive". But the line is fast because the cashier 💁 is only taking the orders (not preparing them), so that's fine.
 
-Then, when it's your turn, you do actual "productive" work, you process the menu, decide what you want, get your crush's choice, pay, check that you give the correct bill or card, check that you are charged correctly, check that the order has the correct items, etc.
+Then, when it's your turn, you do actual "productive" work 🤓, you process the menu, decide what you want, get your crush's 😍 choice, pay 💸, check that you give the correct bill or card, check that you are charged correctly, check that the order has the correct items, etc.
 
-But then, even though you still don't have your burgers, your work with the cashier is "on pause", because you have to wait for your burgers to be ready.
+But then, even though you still don't have your burgers 🍔, your work with the cashier 💁 is "on pause" ⏸, because you have to wait 🕙 for your burgers to be ready.
 
-But as you go away from the counter and sit on the table with a number for your turn, you can switch your attention to your crush, and "work" on that. Then you are again doing something very "productive", as is flirting with your crush.
+But as you go away from the counter and sit on the table with a number for your turn, you can switch 🔀 your attention to your crush 😍, and "work" ⏯ 🤓 on that. Then you are again doing something very "productive" 🤓, as is flirting with your crush 😍.
 
-Then the cashier says "I'm finished with doing the burgers" by putting your number on the counter display, but you don't jump like crazy immediately when the displayed number changes to your turn number. You know no one will steal your burgers because you have the number of your turn, and they have theirs. 
+Then the cashier 💁 says "I'm finished with doing the burgers" 🍔 by putting your number on the counter's display, but you don't jump like crazy immediately when the displayed number changes to your turn number. You know no one will steal your burgers 🍔 because you have the number of your turn, and they have theirs.
 
-So you wait for your crush to finish the story (finish the current work / task being processed), smile gently and say that you are going for the burgers.
+So you wait for your crush 😍 to finish the story (finish the current work ⏯ / task being processed 🤓), smile gently and say that you are going for the burgers ⏸.
 
-Then you go to the counter, to the initial task that is now finished, pick the burgers, say thanks and take them to the table. That finishes that step / task of interaction with the counter. That in turn, creates a new task, of "eating burgers", but the previous one of "getting burgers" is finished.
+Then you go to the counter 🔀, to the initial task that is now finished ⏯, pick the burgers 🍔, say thanks and take them to the table. That finishes that step / task of interaction with the counter ⏹. That in turn, creates a new task, of "eating burgers" 🔀 ⏯, but the previous one of "getting burgers" is finished ⏹.
 
 ### Parallel Burgers
 
-You go with your crush to get parallel fast food.
+Now let's imagine these aren't "Concurrent Burgers", but "Parallel Burgers".
 
-You stand in line while several (let's say 8) cashiers take the orders from the people in front of you.
+You go with your crush 😍 to get parallel fast food 🍔.
 
-Everyone before you is waiting for their burgers to be ready before leaving the counter because each of the 8 cashiers goes himself and prepares the burger right away before getting the next order.
+You stand in line while several (let's say 8) cashiers that at the same time are cooks 👨‍🍳👨‍🍳👨‍🍳👨‍🍳👨‍🍳👨‍🍳👨‍🍳👨‍🍳 take the orders from the people in front of you.
 
-Then it's finally your turn, you place your order of 2 very fancy burgers for your crush and you.
+Everyone before you is waiting 🕙 for their burgers 🍔 to be ready before leaving the counter because each of the 8 cashiers goes himself and prepares the burger right away before getting the next order.
 
-You pay.
+Then it's finally your turn, you place your order of 2 very fancy burgers 🍔 for your crush 😍 and you.
 
-The cashier goes to the kitchen.
+You pay 💸.
 
-You wait, standing in front of the counter, so that no one else takes your burgers before you, as there are no numbers for turns.
+The cashier goes to the kitchen 👨‍🍳.
 
-As you and your crush are busy not letting anyone get in front of you and take your burgers whenever they arrive, you cannot pay attention to your crush.
+You wait, standing in front of the counter 🕙, so that no one else takes your burgers 🍔 before you do, as there are no numbers for turns.
 
-This is "synchronous" work, you are "synchronized" with the cashier/cook. You have to wait and be there at the exact moment that the cashier/cook finishes the burgers and gives them to you, or otherwise, someone else might take them.
+As you and your crush 😍 are busy not letting anyone get in front of you and take your burgers whenever they arrive 🕙, you cannot pay attention to your crush 😞.
 
-Then your cashier/cook finally comes back with your burgers, after a long time waiting there in front of the counter.
+This is "synchronous" work, you are "synchronized" with the cashier/cook 👨‍🍳. You have to wait 🕙 and be there at the exact moment that the cashier/cook 👨‍🍳 finishes the burgers 🍔 and gives them to you, or otherwise, someone else might take them.
 
-You take your burgers and go to the table with your crush.
+Then your cashier/cook 👨‍🍳 finally comes back with your burgers 🍔, after a long time waiting 🕙 there in front of the counter.
 
-You just eat them, and you are done.
+You take your burgers 🍔 and go to the table with your crush 😍.
 
-There was not much talk or flirting as most of the time was spent waiting in front of the counter.
+You just eat them, and you are done 🍔 ⏹.
 
----
-
-In this scenario of the parallel burgers, you are a computer / program with two processors (you and your crush), both waiting and dedicating their attention to be "waiting on the counter" for a long time.
-
-The fast food store has 8 processors (cashiers/cooks). While the concurrent burgers store might have had only 2 (one cashier and one cook).
-
-But still, the final experience is not the best.
+There was not much talk or flirting as most of the time was spent waiting 🕙 in front of the counter 😞.
 
 ---
 
-This would be the parallel equivalent story for burgers.
+In this scenario of the parallel burgers, you are a computer / program 🤖 with two processors (you and your crush 😍), both waiting 🕙 and dedicating their attention ⏯ to be "waiting on the counter" 🕙 for a long time.
+
+The fast food store has 8 processors (cashiers/cooks) 👨‍🍳👨‍🍳👨‍🍳👨‍🍳👨‍🍳👨‍🍳👨‍🍳👨‍🍳. While the concurrent burgers store might have had only 2 (one cashier and one cook) 💁 👨‍🍳.
+
+But still, the final experience is not the best 😞.
+
+---
+
+This would be the parallel equivalent story for burgers 🍔.
 
 For a more "real life" example of this, imagine a bank.
 
-Up to recently, most of the banks had multiple cashiers and a big line.
+Up to recently, most of the banks had multiple cashiers 👨‍💼👨‍💼👨‍💼👨‍💼 and a big line 🕙🕙🕙🕙🕙🕙🕙🕙.
 
-All of the cashiers doing all the work with one client after the other.
+All of the cashiers doing all the work with one client after the other 👨‍💼⏯.
 
-And you have to wait in the line for a long time or you lose your turn.
+And you have to wait 🕙 in the line for a long time or you lose your turn.
 
-You probably wouldn't want to take your crush with you to do errands at the bank.
+You probably wouldn't want to take your crush 😍 with you to do errands at the bank 🏦.
 
 ### Burger Conclusion
 
-In this scenario of "fast food burgers with your crush", as there is a lot of waiting, it makes a lot more sense to have a concurrent system.
+In this scenario of "fast food burgers with your crush", as there is a lot of waiting 🕙, it makes a lot more sense to have a concurrent system ⏸🔀⏯.
 
 This is the case for most of the web applications.
 
-Many, many users, but your server is waiting for their not-so-good connection to send their requests.
+Many, many users, but your server is waiting 🕙 for their not-so-good connection to send their requests.
 
-And then waiting again for the responses to come back.
+And then waiting 🕙 again for the responses to come back.
 
-This "waiting" is measured in microseconds, but still, summing it all, it's a lot of waiting in the end.
+This "waiting" 🕙 is measured in microseconds, but still, summing it all, it's a lot of waiting in the end.
 
-That's why it makes a lot of sense to use asynchronous code for web APIs.
+That's why it makes a lot of sense to use asynchronous ⏸🔀⏯ code for web APIs.
 
 Most of the existing popular Python frameworks (including Flask and Django) were created before the new asynchronous features in Python existed. So, the ways they can be deployed support parallel execution and an older form of asynchronous execution that is not as powerful as the new capabilities.
 
@@ -210,7 +212,7 @@ Even though the main specification for asynchronous web Python (ASGI) was develo
 
 That kind of asynchronicity is what made NodeJS popular (even though NodeJS is not parallel) and that's the strength of Go as a programing language.
 
-And that's the same level of performance</a> you get with **FastAPI**.
+And that's the same level of performance you get with **FastAPI**.
 
 And as you can have parallelism and asynchronicity at the same time, you get higher performance than most of the tested NodeJS frameworks and on par with Go, which is a compiled language closer to C <a href="https://www.techempower.com/benchmarks/#section=data-r17&hw=ph&test=query&l=zijmkf-1" class="external-link" target="_blank">(all thanks to Starlette)</a>.
 
@@ -228,15 +230,15 @@ So, to balance that out, imagine the following short story:
 
 ---
 
-There's no waiting anywhere, just a lot of work to be done, on multiple places of the house.
+There's no waiting 🕙 anywhere, just a lot of work to be done, on multiple places of the house.
 
-You could have turns as in the burgers example, first the living room, then the kitchen, but as you are not waiting for anything, just cleaning and cleaning, the turns wouldn't affect anything.
+You could have turns as in the burgers example, first the living room, then the kitchen, but as you are not waiting 🕙 for anything, just cleaning and cleaning, the turns wouldn't affect anything.
 
 It would take the same amount of time to finish with or without turns (concurrency) and you would have done the same amount of work.
 
-But in this case, if you could bring the 8 ex-cashier/cooks/now-cleaners, and each one of them (plus you) could take a zone of the house to clean it, you could do all the work in **parallel**, with the extra help, and finish much sooner.
+But in this case, if you could bring the 8 ex-cashier/cooks/now-cleaners 👨‍🍳👨‍🍳👨‍🍳👨‍🍳👨‍🍳👨‍🍳👨‍🍳👨‍🍳, and each one of them (plus you) could take a zone of the house to clean it, you could do all the work in **parallel**, with the extra help, and finish much sooner.
 
-In this scenario, each one of the cleaners (including you) would be a processor, doing their part of the job. 
+In this scenario, each one of the cleaners (including you) would be a processor, doing their part of the job.
 
 And as most of the execution time is taken by actual work (instead of waiting), and the work in a computer is done by a <abbr title="Central Processing Unit">CPU</abbr>, they call these problems "CPU bound".
 
@@ -246,8 +248,8 @@ Common examples of CPU bound operations are things that require complex math pro
 
 For example:
 
-* **Audio** or **image processing**
-* **Computer vision**: an image is composed of millions of pixels, each pixel has 3 values / colors, processing that normally requires computing something on those pixels, all at the same time)
+* **Audio** or **image processing**.
+* **Computer vision**: an image is composed of millions of pixels, each pixel has 3 values / colors, processing that normally requires computing something on those pixels, all at the same time.
 * **Machine Learning**: it normally requires lots of "matrix" and "vector" multiplications. Think of a huge spreadsheet with numbers and multiplying all of them together at the same time.
 * **Deep Learning**: this is a sub-field of Machine Learning, so, the same applies. It's just that there is not a single spreadsheet of numbers to multiply, but a huge set of them, and in many cases, you use a special processor to build and / or use those models.
 
@@ -271,7 +273,7 @@ When there is an operation that will require waiting before giving the results a
 burgers = await get_burgers(2)
 ```
 
-The key here is the `await`. It tells Python that it has to wait for `get_burgers(2)` to finish doing its thing before storing the results in `burgers`. With that, Python will know that it can go and do something else in the meanwhile (like receiving another request).
+The key here is the `await`. It tells Python that it has to wait ⏸ for `get_burgers(2)` to finish doing its thing 🕙 before storing the results in `burgers`. With that, Python will know that it can go and do something else 🔀 ⏯ in the meanwhile (like receiving another request).
 
 For `await` to work, it has to be inside a function that supports this asynchronicity. To do that, you just declare it with `async def`:
 
@@ -290,7 +292,7 @@ def get_sequential_burgers(number: int):
     return burgers
 ```
 
-With `async def`, Python knows that, inside that function, it has to be aware of `await` expressions, and that it can "pause" the execution of that function and go do something else before coming back.
+With `async def`, Python knows that, inside that function, it has to be aware of `await` expressions, and that it can "pause" ⏸ the execution of that function and go do something else 🔀 before coming back.
 
 When you want to call an `async def` function, you have to "await" it. So, this won't work:
 
@@ -338,7 +340,7 @@ In previous versions of NodeJS / Browser JavaScript, you would have used "callba
 
 ## Coroutines
 
-**Coroutine** is just the very fancy term for the thing returned by an `async def` function. Python knows that it is something like a function that it can start and that it will end at some point, but that it might be paused internally too, whenever there is an `await` inside of it.
+**Coroutine** is just the very fancy term for the thing returned by an `async def` function. Python knows that it is something like a function that it can start and that it will end at some point, but that it might be paused ⏸ internally too, whenever there is an `await` inside of it.
 
 But all this functionality of using asynchronous code with `async` and `await` is many times summarized as using "coroutines". It is comparable to the main key feature of Go, the "Goroutines".
 
@@ -348,7 +350,7 @@ Let's see the same phrase from above:
 
 > Modern versions of Python have support for **"asynchronous code"** using something called **"coroutines"**, with **`async` and `await`** syntax.
 
-That should make more sense now.
+That should make more sense now. ✨
 
 All that is what powers FastAPI (through Starlette) and what makes it have such an impressive performance.
 
@@ -356,16 +358,16 @@ All that is what powers FastAPI (through Starlette) and what makes it have such 
 
 !!! warning
     You can probably skip this.
-    
+
     These are very technical details of how **FastAPI** works underneath.
-    
+
     If you have quite some technical knowledge (co-routines, threads, blocking, etc) and are curious about how FastAPI handles `async def` vs normal `def`, go ahead.
 
 ### Path operation functions
 
 When you declare a *path operation function* with normal `def` instead of `async def`, it is run in an external threadpool that is then awaited, instead of being called directly (as it would block the server).
 
-If you are coming from another async framework that does not work in the way described above and you are used to define trivial compute-only *path operation functions* with plain `def` for a tiny performance gain (about 100 nanoseconds), please note that in **FastAPI** the effect would be quite opposite. In these cases, it's better to use `async def` unless your *path operation functions* use code that performs blocking <abbr title="Input/Output: disk reading or writing, network communications.">IO</abbr>.
+If you are coming from another async framework that does not work in the way described above and you are used to define trivial compute-only *path operation functions* with plain `def` for a tiny performance gain (about 100 nanoseconds), please note that in **FastAPI** the effect would be quite opposite. In these cases, it's better to use `async def` unless your *path operation functions* use code that performs blocking <abbr title="Input/Output: disk reading or writing, network communications.">I/O</abbr>.
 
 Still, in both situations, chances are that **FastAPI** will [still be faster](/#performance){.internal-link target=_blank} than (or at least comparable to) your previous framework.
 
@@ -375,7 +377,7 @@ The same applies for dependencies. If a dependency is a standard `def` function 
 
 ### Sub-dependencies
 
-You can have multiple dependencies and sub-dependencies requiring each other (as parameters of the function definitions), some of them might be created with `async def` and some with normal `def`. It would still work, and the ones created with normal `def` would be called on an external thread instead of being "awaited".
+You can have multiple dependencies and sub-dependencies requiring each other (as parameters of the function definitions), some of them might be created with `async def` and some with normal `def`. It would still work, and the ones created with normal `def` would be called on an external thread (from the threadpool) instead of being "awaited".
 
 ### Other utility functions
 
@@ -383,7 +385,7 @@ Any other utility function that you call directly can be created with normal `de
 
 This is in contrast to the functions that FastAPI calls for you: *path operation functions* and dependencies.
 
-If your utility function is a normal function with `def`, it will be called directly (as you write it in your code), not in a threadpool, if the function is created with `async def` then you should await for that function when you call it in your code.
+If your utility function is a normal function with `def`, it will be called directly (as you write it in your code), not in a threadpool, if the function is created with `async def` then you should `await` for that function when you call it in your code.
 
 ---
 
