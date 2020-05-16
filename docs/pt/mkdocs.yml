@@ -24,7 +24,7 @@ nav:
   - es: /es/
   - pt: /pt/
   - zh: /zh/
-- Tutorial - User Guide:
+- Tutorial - Guia de Usuário:
   - tutorial/index.md
 markdown_extensions:
 - toc:
