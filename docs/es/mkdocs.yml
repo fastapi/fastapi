@@ -28,6 +28,8 @@ nav:
 - python-types.md
 - Tutorial - Guía de Usuario:
   - tutorial/index.md
+- Guía de Usuario Avanzada:
+  - advanced/index.md
 markdown_extensions:
 - toc:
     permalink: true
