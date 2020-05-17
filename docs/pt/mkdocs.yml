@@ -27,6 +27,7 @@ nav:
 - features.md
 - Tutorial - Guia de Usuário:
   - tutorial/index.md
+- alternatives.md
 - history-design-future.md
 - benchmarks.md
 markdown_extensions:
