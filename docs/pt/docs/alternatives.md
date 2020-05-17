@@ -1,6 +1,6 @@
 # Alternativas, Inspiração e Comparações
 
-O que inspirou **FastAPI**, como ele se compara a outras alternativas e o que aprendi delas.
+O que inspirou **FastAPI**, como ele se compara a outras alternativas e o que FastAPI aprendeu delas.
 
 ## Introdução
 
@@ -30,9 +30,8 @@ Ele é utilizado por muitas companhias incluindo Mozilla, Red Hat e Eventbrite.
 
 Ele foi um dos primeiros exemplos de **documentação automática de API**, e essa foi especificamente uma das primeiras idéias que inspirou "a busca por" **FastAPI**.
 
-!!! note
+!!! note "Nota"
     Django REST Framework foi criado por Tom Christie. O mesmo criador de Starlette e Uvicorn, nos quais **FastAPI** é baseado.
-
 
 !!! check "**FastAPI** inspirado para"
     Ter uma documentação automática da API em interface web.
@@ -55,7 +54,6 @@ Dada a simplicidade do Flask, parecia uma ótima opção para construção de AP
     Ser um microframework. Fazer ele fácil para misturar e combinar com ferramentas e partes necessárias.
 
     Ser simples e com sistema de roteamento fácil de usar.
-
 
 ### <a href="http://docs.python-requests.org" class="external-link" target="_blank">Requests</a>
 
@@ -95,7 +93,6 @@ Veja as similaridades em `requests.get(...)` e `@app.get(...)`.
     * Ter uma API simples e intuitiva.
     * Utilizar nomes de métodos HTTP (operações) diretamente, de um jeito direto e intuitivo.
     * Ter padrões sensíveis, mas customizações poderosas.
-
 
 ### <a href="https://swagger.io/" class="external-link" target="_blank">Swagger</a> / <a href="https://github.com/OAI/OpenAPI-Specification/" class="external-link" target="_blank">OpenAPI</a>
 
@@ -175,7 +172,6 @@ O editor não poderá ajudar muito com isso. E se nós modificarmos os parâmetr
 !!! info
     APISpec foi criado pelos mesmos desenvolvedores do Marshmallow.
 
-
 !!! check "**FastAPI** inspirado para"
     Dar suporte a padrões abertos para APIs, OpenAPI.
 
@@ -197,7 +193,7 @@ Usando essa combinação levou a criação de vários geradores Flask _full-stac
 * <a href="https://github.com/tiangolo/full-stack-flask-couchbase" class="external-link" target="_blank">https://github.com/tiangolo/full-stack-flask-couchbase</a>
 * <a href="https://github.com/tiangolo/full-stack-flask-couchdb" class="external-link" target="_blank">https://github.com/tiangolo/full-stack-flask-couchdb</a>
 
-E esses mesmos geradores _full-stack_ foram a base do [ Projeto de Geradores **FastAPI**](project-generation.md){.internal-link target=_blank}.
+E esses mesmos geradores _full-stack_ foram a base dos [Geradores de Projetos **FastAPI**](project-generation.md){.internal-link target=_blank}.
 
 !!! info
     Flask-apispec foi criado pelos mesmos desenvolvedores do Marshmallow.
@@ -235,7 +231,7 @@ Ele foi um dos primeiros frameworks Python extremamente rápido baseado em `asyn
 
 !!! check "**FastAPI** inspirado para"
     Achar um jeito de ter uma performance insana.
-    
+
     É por isso que o **FastAPI** é baseado em Starlette, para que ele seja o framework mais rápido disponível (performance testada por terceiros).
 
 ### <a href="https://falconframework.org/" class="external-link" target="_blank">Falcon</a>
@@ -383,7 +379,7 @@ Starlette fornece toda a funcionalidade básica de um microframework web.
 
 Mas ele não fornece validação de dados automática, serialização e documentação.
 
-Essa é uma das principais coisas que **FastAPI** adiciona no topo, tudo baseado em Python _type hints_ (usando Pydantic). Isso, mais o sistema de injeção de dependência, utilidades de segurança, geração de _schema_ OpenAPI etc.
+Essa é uma das principais coisas que **FastAPI** adiciona no topo, tudo baseado em Python _type hints_ (usando Pydantic). Isso, mais o sistema de injeção de dependência, utilidades de segurança, geração de _schema_ OpenAPI, etc.
 
 !!! note "Detalhes Técnicos"
     ASGI é um novo "padrão" sendo desenvolvido pelos membros do time central do Django. Ele ainda não está como "Padrão Python" (PEP), embora eles estejam em processo de fazer isso.
