@@ -26,6 +26,11 @@ nav:
   - zh: /zh/
 - features.md
 - python-types.md
+- Tutorial - Guía de Usuario:
+  - tutorial/index.md
+- Guía de Usuario Avanzada:
+  - advanced/index.md
+- async.md
 markdown_extensions:
 - toc:
     permalink: true
