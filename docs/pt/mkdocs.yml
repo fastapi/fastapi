@@ -24,6 +24,7 @@ nav:
   - es: /es/
   - pt: /pt/
   - zh: /zh/
+- alternatives.md
 markdown_extensions:
 - toc:
     permalink: true
