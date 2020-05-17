@@ -2,6 +2,7 @@
 
 ## Latest changes
 
+* Update order of execution for `get_db` in SQLAlchemy tutorial. PR [#1293](https://github.com/tiangolo/fastapi/pull/1293) by [@bcb](https://github.com/bcb).
 * Fix typos in Async docs. PR [#1423](https://github.com/tiangolo/fastapi/pull/1423).
 
 ## 0.54.2
