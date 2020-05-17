@@ -265,7 +265,7 @@ To see how to achieve this parallelism in production see the section about [Depl
 
 ## `async` and `await`
 
-Modern versions of python have a very intuitive way to define asynchronous code. This makes it look just like normal "sequential" code and do the "awaiting" for you at the right moments.
+Modern versions of Python have a very intuitive way to define asynchronous code. This makes it look just like normal "sequential" code and do the "awaiting" for you at the right moments.
 
 When there is an operation that will require waiting before giving the results and has support for these new Python features, you can code it like:
 
@@ -336,7 +336,7 @@ But before that, handling asynchronous code was quite more complex and difficult
 
 In previous versions of Python, you could have used threads or <a href="http://www.gevent.org/" class="external-link" target="_blank">Gevent</a>. But the code is way more complex to understand, debug, and think about.
 
-In previous versions of NodeJS / Browser JavaScript, you would have used "callbacks". Which lead to <a href="http://callbackhell.com/" class="external-link" target="_blank">callback hell</a>.
+In previous versions of NodeJS / Browser JavaScript, you would have used "callbacks". Which leads to <a href="http://callbackhell.com/" class="external-link" target="_blank">callback hell</a>.
 
 ## Coroutines
 
