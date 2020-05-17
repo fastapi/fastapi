@@ -32,8 +32,8 @@ Sus características principales son:
 
 * **Rapidez**: Alto rendimiento, a la par con **NodeJS** y **Go** (gracias a Starlette y Pydantic). [Uno de los frameworks de Python más rápidos](#rendimiento).
 
-* **Rápido de programar**: Incrementa la velocidad de desarrollo entre 200% y 300% *.
-* **Menos errores**: Reduce los errores humanos (de programador) aproximadamente un 40% *.
+* **Rápido de programar**: Incrementa la velocidad de desarrollo entre 200% y 300%. *
+* **Menos errores**: Reduce los errores humanos (de programador) aproximadamente un 40%. *
 * **Intuitivo**: Gran soporte en los editores con <abbr title="conocido en inglés como auto-complete, autocompletion, IntelliSense, completion">auto completado</abbr> en todas partes. Gasta menos tiempo <abbr title="buscando y corrigiendo errores">debugging</abbr>.
 * **Fácil**: Está diseñado para ser fácil de usar y aprender. Gastando menos tiempo leyendo documentación.
 * **Corto**: Minimiza la duplicación de código. Múltiples funcionalidades con cada declaración de parámetros. Menos errores.
