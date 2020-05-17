@@ -239,7 +239,7 @@ So, in OpenAPI, each of the HTTP methods is called an "operation".
 
 We are going to call them "**operations**" too.
 
-#### Define a *path operation function*
+#### Define a *path operation decorator*
 
 ```Python hl_lines="6"
 {!../../../docs_src/first_steps/tutorial001.py!}
