@@ -2,6 +2,8 @@
 
 ## Latest changes
 
+* Fix typos in Async docs. PR [#1423](https://github.com/tiangolo/fastapi/pull/1423).
+
 ## 0.54.2
 
 * Add translation to Spanish for [Concurrency and async / await - Concurrencia y async / await](https://fastapi.tiangolo.com/es/async/). PR [#1290](https://github.com/tiangolo/fastapi/pull/1290) by [@alvaropernas](https://github.com/alvaropernas).
