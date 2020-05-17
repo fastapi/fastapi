@@ -102,7 +102,7 @@ You can <a href="https://github.com/tiangolo/fastapi" class="external-link" targ
 
 ## Sponsor the author
 
-You can also financially support the author (me) through <a href="" class="external-link" target="_blank">GitHub sponsors</a>.
+You can also financially support the author (me) through <a href="https://github.com/sponsors/tiangolo" class="external-link" target="_blank">GitHub sponsors</a>.
 
 There you could buy me a coffee ☕️ to say thanks 😄.
 
