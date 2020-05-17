@@ -93,7 +93,8 @@ def new_lang(lang: str = typer.Argument(..., callback=lang_callback)):
     new_config = get_base_lang_config(lang)
     new_config_path: Path = Path(new_path) / mkdocs_name
     new_config_path.write_text(
-        yaml.dump(new_config, sort_keys=False, width=200), encoding="utf-8"
+        yaml.dump(new_config, sort_keys=False, width=200, allow_unicode=True),
+        encoding="utf-8",
     )
     new_config_docs_path: Path = new_path / "docs"
     new_config_docs_path.mkdir()
@@ -177,7 +178,8 @@ def build_lang(
     lang_config["nav"] = export_lang_nav
     build_lang_config_path: Path = build_lang_path / mkdocs_name
     build_lang_config_path.write_text(
-        yaml.dump(lang_config, sort_keys=False, width=200), encoding="utf-8"
+        yaml.dump(lang_config, sort_keys=False, width=200, allow_unicode=True),
+        encoding="utf-8",
     )
     current_dir = os.getcwd()
     os.chdir(build_lang_path)
@@ -295,7 +297,8 @@ def update_config(lang: str):
         languages.append({name: f"/{name}/"})
     config["nav"][1] = {"Languages": languages}
     config_path.write_text(
-        yaml.dump(config, sort_keys=False, width=200), encoding="utf-8"
+        yaml.dump(config, sort_keys=False, width=200, allow_unicode=True),
+        encoding="utf-8",
     )
 
 

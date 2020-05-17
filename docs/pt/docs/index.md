@@ -32,7 +32,6 @@ FastAPI é um moderno e rápido (alta performance) _framework web_ para constru�
 Os recursos chave são:
 
 * **Rápido**: alta performance, equivalente a **NodeJS** e **Go** (graças ao Starlette e Pydantic). [Um dos frameworks mais rápidos disponíveis](#performance).
-
 * **Rápido para codar**: Aumenta a velocidade para desenvolver recursos entre 200% a 300%. *
 * **Poucos bugs**: Reduz cerca de 40% de erros iduzidos por humanos (desenvolvedores). *
 * **Intuitivo**: Grande suporte a _IDEs_. <abbr title="também conhecido como _auto-complete_, _autocompletion_, _IntelliSense_">_Auto-Complete_</abbr> em todos os lugares. Menos tempo debugando.
