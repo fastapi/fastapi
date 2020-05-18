@@ -1,12 +1,12 @@
 # Python 类型提示简介
 
-**Python 3.6及更高版本** 加入了对"类型提示"的支持。
+**Python 3.6+ 版本**加入了对"类型提示"的支持。
 
-这些 **"类型提示"** 是一种新的语法（在 Python 3.6版本加入）用来声明一个变量的<abbr title="例如：str、int、float、bool">类型</abbr>。
+这些**"类型提示"**是一种新的语法（在 Python 3.6 版本加入）用来声明一个变量的<abbr title="例如：str、int、float、bool">类型</abbr>。
 
 通过声明变量的类型，编辑器和一些工具能给你提供更好的支持。
 
-这只是一个关于 Python 类型提示的 **快速入门 / 复习** 。它仅涵盖与 **FastAPI** 一起使用所需的最少部分......实际上只有很少一点。
+这只是一个关于 Python 类型提示的**快速入门 / 复习**。它仅涵盖与 **FastAPI** 一起使用所需的最少部分...实际上只有很少一点。
 
 整个 **FastAPI** 都基于这些类型提示构建，它们带来了许多优点和好处。
 
@@ -45,15 +45,15 @@ John Doe
 
 现在假设你将从头开始编写这段程序。
 
-在某个时候，你开始定义函数，并且准备好了参数......。
+在某一时刻，你开始定义函数，并且准备好了参数...。
 
 现在你需要调用一个"将第一个字母转换为大写形式的方法"。
 
-等等，那个方法是什么来着？ `upper`？ 还是 `uppercase`？ `first_uppercase`？ `capitalize`？
+等等，那个方法是什么来着？`upper`？还是 `uppercase`？`first_uppercase`？`capitalize`？
 
 然后你尝试向程序员老手的朋友——编辑器自动补全寻求帮助。
 
-输入函数的第一个参数 `first_name`，输入点号 （`.`） 然后敲下 `Ctrl+Space` 来触发代码补全。
+输入函数的第一个参数 `first_name`，输入点号（`.`）然后敲下 `Ctrl+Space` 来触发代码补全。
 
 但遗憾的是并没有起什么作用：
 
@@ -77,7 +77,7 @@ John Doe
 
 就是这样。
 
-这些就是 "类型提示"：
+这些就是"类型提示"：
 
 ```Python hl_lines="1"
 {!../../../docs_src/python_types/tutorial002.py!}
@@ -91,17 +91,17 @@ John Doe
 
 这两者不一样。
 
-我们用的是冒号 （`:`），不是等号 （`=`）。
+我们用的是冒号（`:`），不是等号（`=`）。
 
 而且添加类型提示一般不会改变原来的运行结果。
 
 现在假设我们又一次正在创建这个函数，这次添加了类型提示。
 
-在同样的地方，你通过 `Ctrl+Space` 触发自动补全，发现：
+在同样的地方，通过 `Ctrl+Space` 触发自动补全，你会发现：
 
 <img src="https://fastapi.tiangolo.com/img/python-types/image02.png">
 
-这样，你可以滚动查看选项，直到找到正确的"就是它"选项：
+这样，你可以滚动查看选项，直到你找到看起来眼熟的那个：
 
 <img src="https://fastapi.tiangolo.com/img/python-types/image03.png">
 
@@ -124,7 +124,6 @@ John Doe
 ```
 
 ## 声明类型
-
 
 你刚刚看到的就是声明类型提示的主要场景。用于函数的参数。
 
@@ -157,7 +156,7 @@ John Doe
 
 例如，让我们来定义一个由 `str` 组成的 `list` 变量。
 
-从 `typing` 模块导入 `List` （注意是大写的 `L`）
+从 `typing` 模块导入 `List`（注意是大写的 `L`）：
 
 ```Python hl_lines="1"
 {!../../../docs_src/python_types/tutorial006.py!}
@@ -173,7 +172,7 @@ John Doe
 {!../../../docs_src/python_types/tutorial006.py!}
 ```
 
-这表示： "变量 `items` 是一个 `list`，并且这个列表里的每一个元素都是 `str`"。
+这表示："变量 `items` 是一个 `list`，并且这个列表里的每一个元素都是 `str`"。
 
 这样，即使在处理列表中的元素时，你的编辑器也可以提供支持。
 
@@ -226,7 +225,7 @@ John Doe
 {!../../../docs_src/python_types/tutorial009.py!}
 ```
 
-然后，你可以将一个变量声明为 `Person` 类型：
+接下来，你可以将一个变量声明为 `Person` 类型：
 
 ```Python hl_lines="6"
 {!../../../docs_src/python_types/tutorial009.py!}
@@ -240,11 +239,11 @@ John Doe
 
 <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> 是一个用来用来执行数据校验的 Python 库。
 
-你可以将数据的 "结构" 声明为具有属性的类。
+你可以将数据的"结构"声明为具有属性的类。
 
 每个属性都拥有类型。
 
-然后你用一些值来创建这个类的实例，这些值会被校验，并被转换为适当的类型（在需要的情况下），返回一个包含所有数据的对象。
+接着你用一些值来创建这个类的实例，这些值会被校验，并被转换为适当的类型（在需要的情况下），返回一个包含所有数据的对象。
 
 然后，你将获得这个对象的所有编辑器支持。
 
@@ -255,11 +254,11 @@ John Doe
 ```
 
 !!! info
-    想进一步了解<a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic，请阅读文档</a>.
+    想进一步了解 <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic，请阅读其文档</a>.
 
 整个 **FastAPI** 建立在 Pydantic 的基础之上。
 
-实际上你将在 [教程 - 用户指南](tutorial/index.md){.internal-link target=_blank}看到很多这种情况。
+实际上你将在 [教程 - 用户指南](tutorial/index.md){.internal-link target=_blank} 看到很多这种情况。
 
 ## **FastAPI** 中的类型提示
 
@@ -270,16 +269,16 @@ John Doe
 * **编辑器支持**。
 * **类型检查**。
 
-......并且 **FastAPI** 还会用这些类型声明来：
+...并且 **FastAPI** 还会用这些类型声明来：
 
 * **定义参数要求**：声明对请求路径参数、查询参数、请求头、请求体、依赖等的要求。
 * **转换数据**：将来自请求的数据转换为需要的类型。
 * **校验数据**： 对于每一个请求：
-    * 当数据校验失败时自动生成 **错误信息** 返回给客户端。
+    * 当数据校验失败时自动生成**错误信息**返回给客户端。
 * 使用 OpenAPI **记录** API：
     * 然后用于自动生成交互式文档的用户界面。
 
-听上去有点抽象。不过不用担心。你将在 [教程 - 用户指南](tutorial/index.md){.internal-link target=_blank}中看到所有的实战。
+听上去有点抽象。不过不用担心。你将在 [教程 - 用户指南](tutorial/index.md){.internal-link target=_blank} 中看到所有的实战。
 
 最重要的是，通过使用标准的 Python 类型，只需要在一个地方声明（而不是添加更多的类、装饰器等），**FastAPI** 会为你完成很多的工作。
 
