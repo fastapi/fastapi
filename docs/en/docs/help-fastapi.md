@@ -69,7 +69,6 @@ You can let me know:
 
 ## Vote for FastAPI
 
-* <a href="https://github.com/vinta/awesome-python/pull/1209" class="external-link" target="_blank">Vote to include **FastAPI** in `awesome-python`</a>.
 * <a href="https://www.slant.co/options/34241/~fastapi-review" class="external-link" target="_blank">Vote for **FastAPI** in Slant</a>.
 
 ## Help others with issues in GitHub
@@ -100,6 +99,12 @@ You can <a href="https://github.com/tiangolo/fastapi" class="external-link" targ
 * To propose new documentation sections.
 * To fix an existing issue/bug.
 * To add a new feature.
+
+## Sponsor the author
+
+You can also financially support the author (me) through <a href="https://github.com/sponsors/tiangolo" class="external-link" target="_blank">GitHub sponsors</a>.
+
+There you could buy me a coffee ☕️ to say thanks 😄.
 
 ---
 

@@ -26,7 +26,7 @@ def test_python_list_param_as_form():
     response = client.post(
         "/form/python-list", data={"items": ["first", "second", "third"]}
     )
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == ["first", "second", "third"]
 
 
@@ -34,7 +34,7 @@ def test_python_set_param_as_form():
     response = client.post(
         "/form/python-set", data={"items": ["first", "second", "third"]}
     )
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert set(response.json()) == {"first", "second", "third"}
 
 
@@ -42,5 +42,5 @@ def test_python_tuple_param_as_form():
     response = client.post(
         "/form/python-tuple", data={"items": ["first", "second", "third"]}
     )
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == ["first", "second", "third"]

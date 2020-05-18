@@ -72,8 +72,8 @@ openapi_schema = {
 def test_events():
     with TestClient(app) as client:
         response = client.get("/openapi.json")
-        assert response.status_code == 200
+        assert response.status_code == 200, response.text
         assert response.json() == openapi_schema
         response = client.get("/items/foo")
-        assert response.status_code == 200
+        assert response.status_code == 200, response.text
         assert response.json() == {"name": "Fighters"}

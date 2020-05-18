@@ -20,6 +20,12 @@ missing_translation_snippet = """
 """
 
 docs_path = Path("docs")
+en_docs_path = Path("docs/en")
+en_config_path: Path = en_docs_path / mkdocs_name
+
+
+def get_en_config() -> dict:
+    return mkdocs.utils.yaml_load(en_config_path.read_text(encoding="utf-8"))
 
 
 def get_lang_paths():
@@ -43,39 +49,15 @@ def complete_existing_lang(incomplete: str):
             yield lang_path.name
 
 
-@app.command()
-def new_lang(lang: str = typer.Argument(..., callback=lang_callback)):
-    """
-    Generate a new docs translation directory for the language LANG.
-
-    LANG should be a 2-letter language code, like: en, es, de, pt, etc.
-    """
-    new_path: Path = Path("docs") / lang
-    if new_path.exists():
-        typer.echo(f"The language was already created: {lang}")
-        raise typer.Abort()
-    new_path.mkdir()
-    en_docs_path = Path("docs/en")
-    en_config_path: Path = en_docs_path / mkdocs_name
-    en_config: dict = mkdocs.utils.yaml_load(en_config_path.read_text(encoding="utf-8"))
+def get_base_lang_config(lang: str):
+    en_config = get_en_config()
     fastapi_url_base = "https://fastapi.tiangolo.com/"
-    new_config = {}
-    new_config["site_name"] = en_config["site_name"]
-    new_config["site_description"] = en_config["site_description"]
+    new_config = en_config.copy()
     new_config["site_url"] = en_config["site_url"] + f"{lang}/"
-    new_config["theme"] = en_config["theme"]
     new_config["theme"]["logo"] = fastapi_url_base + en_config["theme"]["logo"]
     new_config["theme"]["favicon"] = fastapi_url_base + en_config["theme"]["favicon"]
     new_config["theme"]["language"] = lang
-    new_config["repo_name"] = en_config["repo_name"]
-    new_config["repo_url"] = en_config["repo_url"]
-    new_config["edit_uri"] = en_config["edit_uri"]
-    new_config["google_analytics"] = en_config["google_analytics"]
     new_config["nav"] = en_config["nav"][:2]
-
-    new_config["markdown_extensions"] = en_config["markdown_extensions"]
-    new_config["extra"] = en_config["extra"]
-
     extra_css = []
     css: str
     for css in en_config["extra_css"]:
@@ -93,9 +75,26 @@ def new_lang(lang: str = typer.Argument(..., callback=lang_callback)):
         else:
             extra_js.append(fastapi_url_base + js)
     new_config["extra_javascript"] = extra_js
+    return new_config
+
+
+@app.command()
+def new_lang(lang: str = typer.Argument(..., callback=lang_callback)):
+    """
+    Generate a new docs translation directory for the language LANG.
+
+    LANG should be a 2-letter language code, like: en, es, de, pt, etc.
+    """
+    new_path: Path = Path("docs") / lang
+    if new_path.exists():
+        typer.echo(f"The language was already created: {lang}")
+        raise typer.Abort()
+    new_path.mkdir()
+    new_config = get_base_lang_config(lang)
     new_config_path: Path = Path(new_path) / mkdocs_name
     new_config_path.write_text(
-        yaml.dump(new_config, sort_keys=False, width=200), encoding="utf-8"
+        yaml.dump(new_config, sort_keys=False, width=200, allow_unicode=True),
+        encoding="utf-8",
     )
     new_config_docs_path: Path = new_path / "docs"
     new_config_docs_path.mkdir()
@@ -179,7 +178,8 @@ def build_lang(
     lang_config["nav"] = export_lang_nav
     build_lang_config_path: Path = build_lang_path / mkdocs_name
     build_lang_config_path.write_text(
-        yaml.dump(lang_config, sort_keys=False, width=200), encoding="utf-8"
+        yaml.dump(lang_config, sort_keys=False, width=200, allow_unicode=True),
+        encoding="utf-8",
     )
     current_dir = os.getcwd()
     os.chdir(build_lang_path)
@@ -280,7 +280,15 @@ def live(
 def update_config(lang: str):
     lang_path: Path = docs_path / lang
     config_path = lang_path / mkdocs_name
-    config: dict = mkdocs.utils.yaml_load(config_path.read_text(encoding="utf-8"))
+    current_config: dict = mkdocs.utils.yaml_load(
+        config_path.read_text(encoding="utf-8")
+    )
+    if lang == "en":
+        config = get_en_config()
+    else:
+        config = get_base_lang_config(lang)
+        config["nav"] = current_config["nav"]
+        config["theme"]["language"] = current_config["theme"]["language"]
     languages = [{"en": "/"}]
     for lang in get_lang_paths():
         if lang.name == "en" or not lang.is_dir():
@@ -289,7 +297,8 @@ def update_config(lang: str):
         languages.append({name: f"/{name}/"})
     config["nav"][1] = {"Languages": languages}
     config_path.write_text(
-        yaml.dump(config, sort_keys=False, width=200), encoding="utf-8"
+        yaml.dump(config, sort_keys=False, width=200, allow_unicode=True),
+        encoding="utf-8",
     )
 
 

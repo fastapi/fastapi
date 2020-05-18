@@ -115,7 +115,7 @@ So, you will receive a clean error, with an HTTP status code of `418` and a JSON
 
 **FastAPI** has some default exception handlers.
 
-These handlers are in charge or returning the default JSON responses when you `raise` an `HTTPException` and when the request has invalid data.
+These handlers are in charge of returning the default JSON responses when you `raise` an `HTTPException` and when the request has invalid data.
 
 You can override these exception handlers with your own.
 

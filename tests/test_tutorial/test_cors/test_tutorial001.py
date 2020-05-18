@@ -12,7 +12,7 @@ def test_cors():
         "Access-Control-Request-Headers": "X-Example",
     }
     response = client.options("/", headers=headers)
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.text == "OK"
     assert (
         response.headers["access-control-allow-origin"]
@@ -23,7 +23,7 @@ def test_cors():
     # Test standard response
     headers = {"Origin": "https://localhost.tiangolo.com"}
     response = client.get("/", headers=headers)
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == {"message": "Hello World"}
     assert (
         response.headers["access-control-allow-origin"]
@@ -32,6 +32,6 @@ def test_cors():
 
     # Test non-CORS response
     response = client.get("/")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == {"message": "Hello World"}
     assert "access-control-allow-origin" not in response.headers
