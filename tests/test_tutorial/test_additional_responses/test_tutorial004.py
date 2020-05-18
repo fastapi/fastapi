@@ -99,20 +99,20 @@ openapi_schema = {
 
 def test_openapi_schema():
     response = client.get("/openapi.json")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == openapi_schema
 
 
 def test_path_operation():
     response = client.get("/items/foo")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == {"id": "foo", "value": "there goes my hero"}
 
 
 def test_path_operation_img():
     shutil.copy("./docs/en/docs/img/favicon.png", "./image.png")
     response = client.get("/items/foo?img=1")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.headers["Content-Type"] == "image/png"
     assert len(response.content)
     os.remove("./image.png")

@@ -113,7 +113,7 @@ openapi_schema = {
 
 def test_openapi_schema():
     response = client.get("/openapi.json")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == openapi_schema
 
 
@@ -134,5 +134,5 @@ def test_extra_types():
         }
     )
     response = client.put(f"/items/{item_id}", json=data)
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == expected_response

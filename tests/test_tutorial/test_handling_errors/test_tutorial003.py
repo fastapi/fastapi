@@ -73,19 +73,19 @@ openapi_schema = {
 
 def test_openapi_schema():
     response = client.get("/openapi.json")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == openapi_schema
 
 
 def test_get():
     response = client.get("/unicorns/shinny")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == {"unicorn_name": "shinny"}
 
 
 def test_get_exception():
     response = client.get("/unicorns/yolo")
-    assert response.status_code == 418
+    assert response.status_code == 418, response.text
     assert response.json() == {
         "message": "Oops! yolo did something. There goes a rainbow..."
     }

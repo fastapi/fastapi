@@ -190,13 +190,13 @@ openapi_schema = {
 
 def test_openapi_schema():
     response = client.get("/openapi.json")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == openapi_schema
 
 
 def test_no_duplicates_invalid():
     response = client.post("/no-duplicates", json={"item": {"data": "myitem"}})
-    assert response.status_code == 422
+    assert response.status_code == 422, response.text
     assert response.json() == {
         "detail": [
             {
@@ -213,19 +213,19 @@ def test_no_duplicates():
         "/no-duplicates",
         json={"item": {"data": "myitem"}, "item2": {"data": "myitem2"}},
     )
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == [{"data": "myitem"}, {"data": "myitem2"}]
 
 
 def test_duplicates():
     response = client.post("/with-duplicates", json={"data": "myitem"})
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == [{"data": "myitem"}, {"data": "myitem"}]
 
 
 def test_sub_duplicates():
     response = client.post("/with-duplicates-sub", json={"data": "myitem"})
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == [
         {"data": "myitem"},
         [{"data": "myitem"}, {"data": "myitem"}],

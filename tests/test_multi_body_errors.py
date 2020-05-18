@@ -139,23 +139,23 @@ multiple_errors = {
 
 def test_openapi_schema():
     response = client.get("/openapi.json")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == openapi_schema
 
 
 def test_put_correct_body():
     response = client.post("/items/", json=[{"name": "Foo", "age": 5}])
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == {"item": [{"name": "Foo", "age": 5}]}
 
 
 def test_jsonable_encoder_requiring_error():
     response = client.post("/items/", json=[{"name": "Foo", "age": -1.0}])
-    assert response.status_code == 422
+    assert response.status_code == 422, response.text
     assert response.json() == single_error
 
 
 def test_put_incorrect_body_multiple():
     response = client.post("/items/", json=[{"age": "five"}, {"age": "six"}])
-    assert response.status_code == 422
+    assert response.status_code == 422, response.text
     assert response.json() == multiple_errors

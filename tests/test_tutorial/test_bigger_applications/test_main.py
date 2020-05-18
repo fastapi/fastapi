@@ -270,7 +270,7 @@ def test_get_path(path, expected_status, expected_response, headers):
 
 def test_put_no_header():
     response = client.put("/items/foo")
-    assert response.status_code == 422
+    assert response.status_code == 422, response.text
     assert response.json() == {
         "detail": [
             {
@@ -284,17 +284,17 @@ def test_put_no_header():
 
 def test_put_invalid_header():
     response = client.put("/items/foo", headers={"X-Token": "invalid"})
-    assert response.status_code == 400
+    assert response.status_code == 400, response.text
     assert response.json() == {"detail": "X-Token header invalid"}
 
 
 def test_put():
     response = client.put("/items/foo", headers={"X-Token": "fake-super-secret-token"})
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == {"item_id": "foo", "name": "The Fighters"}
 
 
 def test_put_forbidden():
     response = client.put("/items/bar", headers={"X-Token": "fake-super-secret-token"})
-    assert response.status_code == 403
+    assert response.status_code == 403, response.text
     assert response.json() == {"detail": "You can only update the item: foo"}

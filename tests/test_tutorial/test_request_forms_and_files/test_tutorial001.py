@@ -88,7 +88,7 @@ openapi_schema = {
 
 def test_openapi_schema():
     response = client.get("/openapi.json")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == openapi_schema
 
 
@@ -147,19 +147,19 @@ file_and_token_required = {
 
 def test_post_form_no_body():
     response = client.post("/files/")
-    assert response.status_code == 422
+    assert response.status_code == 422, response.text
     assert response.json() == file_and_token_required
 
 
 def test_post_form_no_file():
     response = client.post("/files/", data={"token": "foo"})
-    assert response.status_code == 422
+    assert response.status_code == 422, response.text
     assert response.json() == file_required
 
 
 def test_post_body_json():
     response = client.post("/files/", json={"file": "Foo", "token": "Bar"})
-    assert response.status_code == 422
+    assert response.status_code == 422, response.text
     assert response.json() == file_and_token_required
 
 
@@ -170,7 +170,7 @@ def test_post_file_no_token(tmpdir):
 
     client = TestClient(app)
     response = client.post("/files/", files={"file": open(path, "rb")})
-    assert response.status_code == 422
+    assert response.status_code == 422, response.text
     assert response.json() == token_required
 
 
@@ -189,7 +189,7 @@ def test_post_files_and_token(tmpdir):
             "fileb": ("testb.txt", pathb.open("rb"), "text/plain"),
         },
     )
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == {
         "file_size": 14,
         "token": "foo",

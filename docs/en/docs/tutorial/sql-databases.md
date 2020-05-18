@@ -98,9 +98,9 @@ Let's refer to the file `sql_app/database.py`.
 
 In this example, we are "connecting" to a SQLite database (opening a file with the SQLite database).
 
-The file will be located at the same directory in the file `test.db`.
+The file will be located at the same directory in the file `sql_app.db`.
 
-That's why the last part is `./test.db`.
+That's why the last part is `./sql_app.db`.
 
 If you were using a **PostgreSQL** database instead, you would just have to uncomment the line:
 
@@ -436,6 +436,8 @@ Normally you would probably initialize your database (create tables, etc) with <
 And you would also use Alembic for "migrations" (that's its main job).
 
 A "migration" is the set of steps needed whenever you change the structure of your SQLAlchemy models, add a new attribute, etc. to replicate those changes in the database, add a new column, a new table, etc.
+
+You can find an example of Alembic in a FastAPI project in the templates from [Project Generation - Template](../project-generation.md){.internal-link target=_blank}. Specifically in <a href="https://github.com/tiangolo/full-stack-fastapi-postgresql/tree/master/%7B%7Bcookiecutter.project_slug%7D%7D/backend/app/alembic/" class="external-link" target="_blank">the `alembic` directory in the source code</a>.
 
 ### Create a dependency
 

@@ -102,17 +102,17 @@ multiple_errors = {
 
 def test_openapi_schema():
     response = client.get("/openapi.json")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == openapi_schema
 
 
 def test_multi_query():
     response = client.get("/items/?q=5&q=6")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == {"q": [5, 6]}
 
 
 def test_multi_query_incorrect():
     response = client.get("/items/?q=five&q=six")
-    assert response.status_code == 422
+    assert response.status_code == 422, response.text
     assert response.json() == multiple_errors
