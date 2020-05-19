@@ -20,6 +20,13 @@ def get_no_response_model():
     return {"name": "valid", "price": Decimal("1.0")}
 
 
+@app.get(
+    "/items/skip_validation", response_model=Item, response_model_skip_validation=True
+)
+def get_skip_validation():
+    return {"name": "valid", "price": 1.0}
+
+
 @app.get("/items/valid", response_model=Item)
 def get_valid():
     return {"name": "valid", "price": 1.0}
@@ -58,6 +65,12 @@ client = TestClient(app)
 
 def test_no_response_model():
     response = client.get("/items/no_response_model")
+    response.raise_for_status()
+    assert response.json() == {"name": "valid", "price": 1.0}
+
+
+def test_skip_validation():
+    response = client.get("/items/skip_validation")
     response.raise_for_status()
     assert response.json() == {"name": "valid", "price": 1.0}
 

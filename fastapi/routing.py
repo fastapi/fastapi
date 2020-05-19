@@ -184,6 +184,7 @@ def get_request_handler(
     response_model_exclude_unset: bool = False,
     response_model_exclude_defaults: bool = False,
     response_model_exclude_none: bool = False,
+    response_model_skip_validation: bool = False,
     dependency_overrides_provider: Any = None,
 ) -> Callable:
     assert dependant.call is not None, "dependant.call must be a function"
@@ -236,6 +237,7 @@ def get_request_handler(
                 skip_jsonable_encoder=getattr(
                     response_class, "skip_jsonable_encoder", False
                 ),
+                skip_validation=response_model_skip_validation,
             )
             response = response_class(
                 content=response_data,
@@ -315,6 +317,7 @@ class APIRoute(routing.Route):
         response_model_exclude_unset: bool = False,
         response_model_exclude_defaults: bool = False,
         response_model_exclude_none: bool = False,
+        response_model_skip_validation: bool = False,
         include_in_schema: bool = True,
         response_class: Optional[Type[Response]] = None,
         dependency_overrides_provider: Any = None,
@@ -388,6 +391,7 @@ class APIRoute(routing.Route):
         self.response_model_exclude_unset = response_model_exclude_unset
         self.response_model_exclude_defaults = response_model_exclude_defaults
         self.response_model_exclude_none = response_model_exclude_none
+        self.response_model_skip_validation = response_model_skip_validation
         self.include_in_schema = include_in_schema
         self.response_class = response_class
 
@@ -416,6 +420,7 @@ class APIRoute(routing.Route):
             response_model_exclude_unset=self.response_model_exclude_unset,
             response_model_exclude_defaults=self.response_model_exclude_defaults,
             response_model_exclude_none=self.response_model_exclude_none,
+            response_model_skip_validation=self.response_model_skip_validation,
             dependency_overrides_provider=self.dependency_overrides_provider,
         )
 
@@ -466,6 +471,7 @@ class APIRouter(routing.Router):
         response_model_exclude_unset: bool = False,
         response_model_exclude_defaults: bool = False,
         response_model_exclude_none: bool = False,
+        response_model_skip_validation: bool = False,
         include_in_schema: bool = True,
         response_class: Type[Response] = None,
         name: str = None,
@@ -497,6 +503,7 @@ class APIRouter(routing.Router):
             ),
             response_model_exclude_defaults=response_model_exclude_defaults,
             response_model_exclude_none=response_model_exclude_none,
+            response_model_skip_validation=response_model_skip_validation,
             include_in_schema=include_in_schema,
             response_class=response_class or self.default_response_class,
             name=name,
@@ -527,6 +534,7 @@ class APIRouter(routing.Router):
         response_model_exclude_unset: bool = False,
         response_model_exclude_defaults: bool = False,
         response_model_exclude_none: bool = False,
+        response_model_skip_validation: bool = False,
         include_in_schema: bool = True,
         response_class: Type[Response] = None,
         name: str = None,
@@ -558,6 +566,7 @@ class APIRouter(routing.Router):
                 ),
                 response_model_exclude_defaults=response_model_exclude_defaults,
                 response_model_exclude_none=response_model_exclude_none,
+                response_model_skip_validation=response_model_skip_validation,
                 include_in_schema=include_in_schema,
                 response_class=response_class or self.default_response_class,
                 name=name,
@@ -634,6 +643,7 @@ class APIRouter(routing.Router):
                     response_model_exclude_unset=route.response_model_exclude_unset,
                     response_model_exclude_defaults=route.response_model_exclude_defaults,
                     response_model_exclude_none=route.response_model_exclude_none,
+                    response_model_skip_validation=route.response_model_skip_validation,
                     include_in_schema=route.include_in_schema,
                     response_class=route.response_class or default_response_class,
                     name=route.name,
@@ -682,6 +692,7 @@ class APIRouter(routing.Router):
         response_model_exclude_unset: bool = False,
         response_model_exclude_defaults: bool = False,
         response_model_exclude_none: bool = False,
+        response_model_skip_validation: bool = False,
         include_in_schema: bool = True,
         response_class: Type[Response] = None,
         name: str = None,
@@ -710,6 +721,7 @@ class APIRouter(routing.Router):
             ),
             response_model_exclude_defaults=response_model_exclude_defaults,
             response_model_exclude_none=response_model_exclude_none,
+            response_model_skip_validation=response_model_skip_validation,
             include_in_schema=include_in_schema,
             response_class=response_class or self.default_response_class,
             name=name,
@@ -737,6 +749,7 @@ class APIRouter(routing.Router):
         response_model_exclude_unset: bool = False,
         response_model_exclude_defaults: bool = False,
         response_model_exclude_none: bool = False,
+        response_model_skip_validation: bool = False,
         include_in_schema: bool = True,
         response_class: Type[Response] = None,
         name: str = None,
@@ -765,6 +778,7 @@ class APIRouter(routing.Router):
             ),
             response_model_exclude_defaults=response_model_exclude_defaults,
             response_model_exclude_none=response_model_exclude_none,
+            response_model_skip_validation=response_model_skip_validation,
             include_in_schema=include_in_schema,
             response_class=response_class or self.default_response_class,
             name=name,
@@ -792,6 +806,7 @@ class APIRouter(routing.Router):
         response_model_exclude_unset: bool = False,
         response_model_exclude_defaults: bool = False,
         response_model_exclude_none: bool = False,
+        response_model_skip_validation: bool = False,
         include_in_schema: bool = True,
         response_class: Type[Response] = None,
         name: str = None,
@@ -820,6 +835,7 @@ class APIRouter(routing.Router):
             ),
             response_model_exclude_defaults=response_model_exclude_defaults,
             response_model_exclude_none=response_model_exclude_none,
+            response_model_skip_validation=response_model_skip_validation,
             include_in_schema=include_in_schema,
             response_class=response_class or self.default_response_class,
             name=name,
@@ -847,6 +863,7 @@ class APIRouter(routing.Router):
         response_model_exclude_unset: bool = False,
         response_model_exclude_defaults: bool = False,
         response_model_exclude_none: bool = False,
+        response_model_skip_validation: bool = False,
         include_in_schema: bool = True,
         response_class: Type[Response] = None,
         name: str = None,
@@ -875,6 +892,7 @@ class APIRouter(routing.Router):
             ),
             response_model_exclude_defaults=response_model_exclude_defaults,
             response_model_exclude_none=response_model_exclude_none,
+            response_model_skip_validation=response_model_skip_validation,
             include_in_schema=include_in_schema,
             response_class=response_class or self.default_response_class,
             name=name,
@@ -902,6 +920,7 @@ class APIRouter(routing.Router):
         response_model_exclude_unset: bool = False,
         response_model_exclude_defaults: bool = False,
         response_model_exclude_none: bool = False,
+        response_model_skip_validation: bool = False,
         include_in_schema: bool = True,
         response_class: Type[Response] = None,
         name: str = None,
@@ -930,6 +949,7 @@ class APIRouter(routing.Router):
             ),
             response_model_exclude_defaults=response_model_exclude_defaults,
             response_model_exclude_none=response_model_exclude_none,
+            response_model_skip_validation=response_model_skip_validation,
             include_in_schema=include_in_schema,
             response_class=response_class or self.default_response_class,
             name=name,
@@ -957,6 +977,7 @@ class APIRouter(routing.Router):
         response_model_exclude_unset: bool = False,
         response_model_exclude_defaults: bool = False,
         response_model_exclude_none: bool = False,
+        response_model_skip_validation: bool = False,
         include_in_schema: bool = True,
         response_class: Type[Response] = None,
         name: str = None,
@@ -985,6 +1006,7 @@ class APIRouter(routing.Router):
             ),
             response_model_exclude_defaults=response_model_exclude_defaults,
             response_model_exclude_none=response_model_exclude_none,
+            response_model_skip_validation=response_model_skip_validation,
             include_in_schema=include_in_schema,
             response_class=response_class or self.default_response_class,
             name=name,
@@ -1012,6 +1034,7 @@ class APIRouter(routing.Router):
         response_model_exclude_unset: bool = False,
         response_model_exclude_defaults: bool = False,
         response_model_exclude_none: bool = False,
+        response_model_skip_validation: bool = False,
         include_in_schema: bool = True,
         response_class: Type[Response] = None,
         name: str = None,
@@ -1040,6 +1063,7 @@ class APIRouter(routing.Router):
             ),
             response_model_exclude_defaults=response_model_exclude_defaults,
             response_model_exclude_none=response_model_exclude_none,
+            response_model_skip_validation=response_model_skip_validation,
             include_in_schema=include_in_schema,
             response_class=response_class or self.default_response_class,
             name=name,
@@ -1067,6 +1091,7 @@ class APIRouter(routing.Router):
         response_model_exclude_unset: bool = False,
         response_model_exclude_defaults: bool = False,
         response_model_exclude_none: bool = False,
+        response_model_skip_validation: bool = False,
         include_in_schema: bool = True,
         response_class: Type[Response] = None,
         name: str = None,
@@ -1095,6 +1120,7 @@ class APIRouter(routing.Router):
             ),
             response_model_exclude_defaults=response_model_exclude_defaults,
             response_model_exclude_none=response_model_exclude_none,
+            response_model_skip_validation=response_model_skip_validation,
             include_in_schema=include_in_schema,
             response_class=response_class or self.default_response_class,
             name=name,
