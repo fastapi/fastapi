@@ -1,3 +1,4 @@
+from decimal import Decimal
 from typing import List
 
 from fastapi import FastAPI
@@ -11,6 +12,11 @@ class Item(BaseModel):
     name: str
     price: float = None
     owner_ids: List[int] = None
+
+
+@app.get("/items/no_response_model")
+def get_no_response_model():
+    return {"name": "valid", "price": Decimal("1.0")}
 
 
 @app.get("/items/valid", response_model=Item)
@@ -47,6 +53,12 @@ def get_itemlist():
 
 
 client = TestClient(app)
+
+
+def test_no_response_model():
+    response = client.get("/items/no_response_model")
+    response.raise_for_status()
+    assert response.json() == {"name": "valid", "price": 1.0}
 
 
 def test_valid():

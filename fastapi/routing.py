@@ -103,6 +103,7 @@ async def serialize_response(
     exclude_none: bool = False,
     is_coroutine: bool = True,
     skip_jsonable_encoder: bool = False,
+    skip_validation: bool = False,
 ) -> Any:
     if field:
         errors = []
@@ -113,27 +114,32 @@ async def serialize_response(
             exclude_defaults=exclude_defaults,
             exclude_none=exclude_none,
         )
-        if is_coroutine:
-            value, errors_ = field.validate(response_content, {}, loc=("response",))
-        else:
-            value, errors_ = await run_in_threadpool(
-                field.validate, response_content, {}, loc=("response",)
-            )
-        if isinstance(errors_, ErrorWrapper):
-            errors.append(errors_)
-        elif isinstance(errors_, list):
-            errors.extend(errors_)
-        if errors:
-            raise ValidationError(errors, field.type_)
-        if include is None and skip_jsonable_encoder is True:
+        if skip_validation:
             # If include is explicitly set, then never skip jsonable_encoder
             #
-            # _prepare_response_content emits a decoded dict/list python datastructure
-            # The validator creates Pydantic objects from provided python datastructure
+            # _prepare_response_content emits a decoded dict/list python datastructure.
+            # It however doesn't complete or coerce any types, so can only be used when
+            #  explicitly specifying that one knows what one is doing, and disabling validation
             #
             # If you trust the encoder to handle all your types then we can just return
             #  the output of _prepare_response_content here
-            return response_content
+            if include is None and skip_jsonable_encoder is True:
+                return response_content
+
+            value = response_content
+        else:
+            if is_coroutine:
+                value, errors_ = field.validate(response_content, {}, loc=("response",))
+            else:
+                value, errors_ = await run_in_threadpool(
+                    field.validate, response_content, {}, loc=("response",)
+                )
+            if isinstance(errors_, ErrorWrapper):
+                errors.append(errors_)
+            elif isinstance(errors_, list):
+                errors.extend(errors_)
+            if errors:
+                raise ValidationError(errors, field.type_)
         return jsonable_encoder(
             value,
             include=include,
@@ -144,7 +150,13 @@ async def serialize_response(
             exclude_none=exclude_none,
         )
     else:
-        return jsonable_encoder(response_content)
+        # If you trust the encoder to handle all your types then we can just return
+        #  the output of _prepare_response_content here
+        return (
+            response_content
+            if skip_jsonable_encoder
+            else jsonable_encoder(response_content)
+        )
 
 
 async def run_endpoint_function(

@@ -1,3 +1,4 @@
+from decimal import Decimal
 from typing import Any
 
 from starlette.responses import FileResponse  # noqa
@@ -15,10 +16,16 @@ except ImportError:  # pragma: nocover
     orjson = None  # type: ignore
 
 
+def _ordefault(obj: Any) -> Any:
+    if isinstance(obj, Decimal):
+        return float(obj)
+    raise TypeError  # pragma: nocoverage
+
+
 class ORJSONResponse(JSONResponse):
     media_type = "application/json"
     skip_jsonable_encoder = True
 
     def render(self, content: Any) -> bytes:
         assert orjson is not None, "orjson must be installed to use ORJSONResponse"
-        return orjson.dumps(content)
+        return orjson.dumps(content, default=_ordefault)
