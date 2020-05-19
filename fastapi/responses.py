@@ -17,6 +17,7 @@ except ImportError:  # pragma: nocover
 
 class ORJSONResponse(JSONResponse):
     media_type = "application/json"
+    skip_jsonable_encoder = True
 
     def render(self, content: Any) -> bytes:
         assert orjson is not None, "orjson must be installed to use ORJSONResponse"

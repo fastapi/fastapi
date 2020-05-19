@@ -102,6 +102,7 @@ async def serialize_response(
     exclude_defaults: bool = False,
     exclude_none: bool = False,
     is_coroutine: bool = True,
+    skip_jsonable_encoder: bool = False,
 ) -> Any:
     if field:
         errors = []
@@ -124,6 +125,15 @@ async def serialize_response(
             errors.extend(errors_)
         if errors:
             raise ValidationError(errors, field.type_)
+        if include is None and skip_jsonable_encoder is True:
+            # If include is explicitly set, then never skip jsonable_encoder
+            #
+            # _prepare_response_content emits a decoded dict/list python datastructure
+            # The validator creates Pydantic objects from provided python datastructure
+            #
+            # If you trust the encoder to handle all your types then we can just return
+            #  the output of _prepare_response_content here
+            return response_content
         return jsonable_encoder(
             value,
             include=include,
@@ -211,6 +221,7 @@ def get_request_handler(
                 exclude_defaults=response_model_exclude_defaults,
                 exclude_none=response_model_exclude_none,
                 is_coroutine=is_coroutine,
+                skip_jsonable_encoder=getattr(response_class, "skip_jsonable_encoder", False)
             )
             response = response_class(
                 content=response_data,
