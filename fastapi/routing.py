@@ -221,7 +221,9 @@ def get_request_handler(
                 exclude_defaults=response_model_exclude_defaults,
                 exclude_none=response_model_exclude_none,
                 is_coroutine=is_coroutine,
-                skip_jsonable_encoder=getattr(response_class, "skip_jsonable_encoder", False)
+                skip_jsonable_encoder=getattr(
+                    response_class, "skip_jsonable_encoder", False
+                ),
             )
             response = response_class(
                 content=response_data,
