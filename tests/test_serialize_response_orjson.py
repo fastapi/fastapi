@@ -1,10 +1,11 @@
 from typing import List
 
 from fastapi import FastAPI
+from fastapi.responses import ORJSONResponse
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
 
-app = FastAPI()
+app = FastAPI(default_response_class=ORJSONResponse)
 
 
 class Item(BaseModel):
