@@ -91,6 +91,13 @@ def _prepare_response_content(
     return res
 
 
+def _get_return_annotation(func: Callable) -> Optional[Type[Any]]:
+    try:
+        return func.__annotations__["return"]
+    except (AttributeError, KeyError):
+        return None
+
+
 async def serialize_response(
     *,
     field: ModelField = None,
@@ -305,7 +312,11 @@ class APIRoute(routing.Route):
         self.unique_id = generate_operation_id_for_path(
             name=self.name, path=self.path_format, method=list(methods)[0]
         )
-        self.response_model = response_model
+        self.response_model = (
+            _get_return_annotation(endpoint)
+            if response_model is None
+            else response_model
+        )
         if self.response_model:
             assert (
                 status_code not in STATUS_CODES_WITH_NO_BODY
