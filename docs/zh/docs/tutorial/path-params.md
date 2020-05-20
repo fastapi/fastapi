@@ -27,7 +27,7 @@
 !!! check
     这将为你的函数提供编辑器支持，包括错误检查、代码补全等等。
 
-## 数据<abbr title="也被称为：序列化、解析和 marshalling">转换</abbr>
+## 数据<abbr title="也被称为：序列化、解析">转换</abbr>
 
 如果你运行示例并打开浏览器访问 <a href="http://127.0.0.1:8000/items/3" class="external-link" target="_blank">http://127.0.0.1:8000/items/3</a>，将得到如下响应：
 
