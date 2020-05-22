@@ -207,11 +207,14 @@ File responses will include appropriate `Content-Length`, `Last-Modified` and `E
 
 When creating a **FastAPI** class instance, you can specify a Response class type using `default_response_class`.
 
-In the example below, **FastAPI** will use `ORJSONResponse` by default instead of `JSONResponse`.
+In the example below, **FastAPI** in all routes will use `ORJSONResponse` by default instead of `JSONResponse`.
 
 ```Python hl_lines="2 4"
 {!../../../docs_src/custom_response/tutorial010.py!}
 ```
+
+!!! tip
+    You can still override response_class in routes as before.
 
 ## Additional documentation
 
