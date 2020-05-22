@@ -214,7 +214,7 @@ In the example below, **FastAPI** in all routes will use `ORJSONResponse` by def
 ```
 
 !!! tip
-    You can still override response_class in routes as before.
+    You can still override `response_class` in routes as before.
 
 ## Additional documentation
 
