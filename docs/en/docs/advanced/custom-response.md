@@ -205,7 +205,9 @@ File responses will include appropriate `Content-Length`, `Last-Modified` and `E
 
 ## Default response class
 
-When creating a **FastAPI** class instance, you can specify a Response class type using `default_response_class`.
+When creating a **FastAPI** class instance, you can specify which response type to use by default. 
+
+The parameter that defines this is `default_response_class`.
 
 In the example below, **FastAPI** in all routes will use `ORJSONResponse` by default instead of `JSONResponse`.
 
