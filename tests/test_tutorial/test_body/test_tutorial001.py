@@ -1,3 +1,5 @@
+from unittest.mock import patch
+
 import pytest
 from fastapi.testclient import TestClient
 
@@ -193,3 +195,7 @@ def test_post_broken_body():
             }
         ]
     }
+    with patch("json.loads", side_effect=Exception):
+        response = client.post("/items/", json={"test": "test2"})
+        assert response.status_code == 400, response.text
+    assert response.json() == {"detail": "There was an error parsing the body"}
