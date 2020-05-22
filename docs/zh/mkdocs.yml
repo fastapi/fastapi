@@ -27,6 +27,8 @@ nav:
 - features.md
 - 教程 - 用户指南:
   - tutorial/index.md
+- 高级用户指南:
+  - advanced/additional-status-codes.md
 - deployment.md
 markdown_extensions:
 - toc:
