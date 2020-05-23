@@ -1,6 +1,7 @@
 import functools
 import re
 from dataclasses import is_dataclass
+from enum import Enum
 from typing import Any, Dict, Optional, Set, Type, Union, cast
 
 import fastapi
@@ -49,7 +50,9 @@ def warning_response_model_skip_defaults_deprecated() -> None:
 
 
 def get_model_definitions(
-    *, flat_models: Set[Type[BaseModel]], model_name_map: Dict[Type[BaseModel], str]
+    *,
+    flat_models: Set[Union[Type[BaseModel], Type[Enum]]],
+    model_name_map: Dict[Union[Type[BaseModel], Type[Enum]], str],
 ) -> Dict[str, Any]:
     definitions: Dict[str, Dict] = {}
     for model in flat_models:

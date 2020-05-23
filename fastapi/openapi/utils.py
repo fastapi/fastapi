@@ -1,5 +1,6 @@
 import http.client
-from typing import Any, Dict, List, Optional, Sequence, Set, Tuple, Type, cast
+from enum import Enum
+from typing import Any, Dict, List, Optional, Sequence, Set, Tuple, Type, Union, cast
 
 from fastapi import routing
 from fastapi.dependencies.models import Dependant
@@ -85,7 +86,7 @@ def get_openapi_security_definitions(flat_dependant: Dependant) -> Tuple[Dict, L
 def get_openapi_operation_parameters(
     *,
     all_route_params: Sequence[ModelField],
-    model_name_map: Dict[Type[BaseModel], str]
+    model_name_map: Dict[Union[Type[BaseModel], Type[Enum]], str]
 ) -> List[Dict[str, Any]]:
     parameters = []
     for param in all_route_params:
@@ -108,7 +109,9 @@ def get_openapi_operation_parameters(
 
 
 def get_openapi_operation_request_body(
-    *, body_field: Optional[ModelField], model_name_map: Dict[Type[BaseModel], str]
+    *,
+    body_field: Optional[ModelField],
+    model_name_map: Dict[Union[Type[BaseModel], Type[Enum]], str]
 ) -> Optional[Dict]:
     if not body_field:
         return None
@@ -269,11 +272,13 @@ def get_openapi_path(
     return path, security_schemes, definitions
 
 
-def get_flat_models_from_routes(routes: Sequence[BaseRoute]) -> Set[Type[BaseModel]]:
+def get_flat_models_from_routes(
+    routes: Sequence[BaseRoute],
+) -> Set[Union[Type[BaseModel], Type[Enum]]]:
     body_fields_from_routes: List[ModelField] = []
     responses_from_routes: List[ModelField] = []
     request_fields_from_routes: List[ModelField] = []
-    callback_flat_models: Set[Type[BaseModel]] = set()
+    callback_flat_models: Set[Union[Type[BaseModel], Type[Enum]]] = set()
     for route in routes:
         if getattr(route, "include_in_schema", None) and isinstance(
             route, routing.APIRoute
