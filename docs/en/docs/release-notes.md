@@ -2,6 +2,8 @@
 
 ## Latest changes
 
+* Fix handling of enums with their own schema in path parameters. To support [samuelcolvin/pydantic#1432](https://github.com/samuelcolvin/pydantic/pull/1432) in FastAPI. PR [#1463](https://github.com/tiangolo/fastapi/pull/1463).
+
 ## 0.55.0
 
 * Allow enums to allow them to have their own schemas in OpenAPI. To support [samuelcolvin/pydantic#1432](https://github.com/samuelcolvin/pydantic/pull/1432) in FastAPI. PR [#1461](https://github.com/tiangolo/fastapi/pull/1461).
