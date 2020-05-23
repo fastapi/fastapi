@@ -87,7 +87,7 @@ openapi_schema2 = {
                 "parameters": [
                     {
                         "required": True,
-                        "schema": {"$ref": "#/definitions/ModelName"},
+                        "schema": {"$ref": "#/components/schemas/ModelName"},
                         "name": "model_name",
                         "in": "path",
                     }
@@ -123,6 +123,12 @@ openapi_schema2 = {
                         "items": {"$ref": "#/components/schemas/ValidationError"},
                     }
                 },
+            },
+            "ModelName": {
+                "title": "ModelName",
+                "enum": ["alexnet", "resnet", "lenet"],
+                "type": "string",
+                "description": "An enumeration.",
             },
             "ValidationError": {
                 "title": "ValidationError",
