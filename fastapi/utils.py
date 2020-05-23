@@ -56,8 +56,9 @@ def get_model_definitions(
 ) -> Dict[str, Any]:
     definitions: Dict[str, Dict] = {}
     for model in flat_models:
+        # ignore mypy error until enum schemas are released
         m_schema, m_definitions, m_nested_models = model_process_schema(
-            model, model_name_map=model_name_map, ref_prefix=REF_PREFIX
+            model, model_name_map=model_name_map, ref_prefix=REF_PREFIX  # type: ignore
         )
         definitions.update(m_definitions)
         model_name = model_name_map[model]

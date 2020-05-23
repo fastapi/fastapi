@@ -92,12 +92,13 @@ def get_openapi_operation_parameters(
     for param in all_route_params:
         field_info = get_field_info(param)
         field_info = cast(Param, field_info)
+        # ignore mypy error until enum schemas are released
         parameter = {
             "name": param.alias,
             "in": field_info.in_.value,
             "required": param.required,
             "schema": field_schema(
-                param, model_name_map=model_name_map, ref_prefix=REF_PREFIX
+                param, model_name_map=model_name_map, ref_prefix=REF_PREFIX  # type: ignore
             )[0],
         }
         if field_info.description:
@@ -116,8 +117,9 @@ def get_openapi_operation_request_body(
     if not body_field:
         return None
     assert isinstance(body_field, ModelField)
+    # ignore mypy error until enum schemas are released
     body_schema, _, _ = field_schema(
-        body_field, model_name_map=model_name_map, ref_prefix=REF_PREFIX
+        body_field, model_name_map=model_name_map, ref_prefix=REF_PREFIX  # type: ignore
     )
     field_info = cast(Body, get_field_info(body_field))
     request_media_type = field_info.media_type
@@ -320,9 +322,11 @@ def get_openapi(
     components: Dict[str, Dict] = {}
     paths: Dict[str, Dict] = {}
     flat_models = get_flat_models_from_routes(routes)
-    model_name_map = get_model_name_map(flat_models)
+    # ignore mypy error until enum schemas are released
+    model_name_map = get_model_name_map(flat_models)  # type: ignore
+    # ignore mypy error until enum schemas are released
     definitions = get_model_definitions(
-        flat_models=flat_models, model_name_map=model_name_map
+        flat_models=flat_models, model_name_map=model_name_map  # type: ignore
     )
     for route in routes:
         if isinstance(route, routing.APIRoute):
