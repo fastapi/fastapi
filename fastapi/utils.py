@@ -1,17 +1,15 @@
 import functools
 import re
 from dataclasses import is_dataclass
-from typing import Any, Dict, List, Optional, Sequence, Set, Type, Union, cast
+from typing import Any, Dict, Optional, Set, Type, Union, cast
 
 import fastapi
-from fastapi import routing
 from fastapi.logger import logger
 from fastapi.openapi.constants import REF_PREFIX
 from pydantic import BaseConfig, BaseModel, create_model
 from pydantic.class_validators import Validator
-from pydantic.schema import get_flat_models_from_fields, model_process_schema
+from pydantic.schema import model_process_schema
 from pydantic.utils import lenient_issubclass
-from starlette.routing import BaseRoute
 
 try:
     from pydantic.fields import FieldInfo, ModelField, UndefinedType
@@ -48,31 +46,6 @@ def warning_response_model_skip_defaults_deprecated() -> None:
         "response_model_exclude_unset to keep in line with Pydantic v1, support for "
         "it will be removed soon."
     )
-
-
-def get_flat_models_from_routes(routes: Sequence[BaseRoute]) -> Set[Type[BaseModel]]:
-    body_fields_from_routes: List[ModelField] = []
-    responses_from_routes: List[ModelField] = []
-    callback_flat_models: Set[Type[BaseModel]] = set()
-    for route in routes:
-        if getattr(route, "include_in_schema", None) and isinstance(
-            route, routing.APIRoute
-        ):
-            if route.body_field:
-                assert isinstance(
-                    route.body_field, ModelField
-                ), "A request body must be a Pydantic Field"
-                body_fields_from_routes.append(route.body_field)
-            if route.response_field:
-                responses_from_routes.append(route.response_field)
-            if route.response_fields:
-                responses_from_routes.extend(route.response_fields.values())
-            if route.callbacks:
-                callback_flat_models |= get_flat_models_from_routes(route.callbacks)
-    flat_models = callback_flat_models | get_flat_models_from_fields(
-        body_fields_from_routes + responses_from_routes, known_models=set()
-    )
-    return flat_models
 
 
 def get_model_definitions(
