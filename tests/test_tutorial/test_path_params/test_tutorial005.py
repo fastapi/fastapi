@@ -76,10 +76,78 @@ openapi_schema = {
 }
 
 
+openapi_schema2 = {
+    "openapi": "3.0.2",
+    "info": {"title": "FastAPI", "version": "0.1.0"},
+    "paths": {
+        "/model/{model_name}": {
+            "get": {
+                "summary": "Get Model",
+                "operationId": "get_model_model__model_name__get",
+                "parameters": [
+                    {
+                        "required": True,
+                        "schema": {"$ref": "#/definitions/ModelName"},
+                        "name": "model_name",
+                        "in": "path",
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {"application/json": {"schema": {}}},
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        },
+                    },
+                },
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "HTTPValidationError": {
+                "title": "HTTPValidationError",
+                "type": "object",
+                "properties": {
+                    "detail": {
+                        "title": "Detail",
+                        "type": "array",
+                        "items": {"$ref": "#/components/schemas/ValidationError"},
+                    }
+                },
+            },
+            "ValidationError": {
+                "title": "ValidationError",
+                "required": ["loc", "msg", "type"],
+                "type": "object",
+                "properties": {
+                    "loc": {
+                        "title": "Location",
+                        "type": "array",
+                        "items": {"type": "string"},
+                    },
+                    "msg": {"title": "Message", "type": "string"},
+                    "type": {"title": "Error Type", "type": "string"},
+                },
+            },
+        }
+    },
+}
+
+
 def test_openapi():
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
-    assert response.json() == openapi_schema
+    data = response.json()
+    assert data == openapi_schema or data == openapi_schema2
 
 
 @pytest.mark.parametrize(
