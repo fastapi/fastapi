@@ -28,6 +28,7 @@ nav:
 - 教程 - 用户指南:
   - tutorial/index.md
 - deployment.md
+- help-fastapi.md
 markdown_extensions:
 - toc:
     permalink: true
