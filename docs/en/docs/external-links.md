@@ -61,6 +61,23 @@ Here's an incomplete list of some of them.
 
 * <a href="https://iwpnd.pw/articles/2020-03/apache-kafka-fastapi-geostream" class="external-link" target="_blank">Apache Kafka producer and consumer with FastAPI and aiokafka</a> by <a href="https://iwpnd.pw" class="external-link" target="_blank">Benjamin Ramser</a>.
 
+* <a href="https://wuilly.com/2019/10/real-time-notifications-with-python-and-postgres/" class="external-link" target="_blank">Real-time Notifications with Python and Postgres</a> by <a href="https://wuilly.com/" class="external-link" target="_blank">Guillermo Cruz</a>.
+
+* <a href="https://dev.to/paurakhsharma/microservice-in-python-using-fastapi-24cc" class="external-link" target="_blank">Microservice in Python using FastAPI</a> by <a href="https://twitter.com/PaurakhSharma" class="external-link" target="_blank">Paurakh Sharma Humagain</a>.
+
+* <a href="https://dev.to/cuongld2/build-simple-api-service-with-python-fastapi-part-1-581o" class="external-link" target="_blank">Build simple API service with Python FastAPI — Part 1</a> by <a href="https://dev.to/cuongld2" class="external-link" target="_blank">cuongld2</a>.
+
+* <a href="https://paulsec.github.io/posts/fastapi_plus_zeit_serverless_fu/" class="external-link" target="_blank">FastAPI + Zeit.co = 🚀
+</a> by <a href="https://twitter.com/PaulWebSec" class="external-link" target="_blank">Paul Sec</a>.
+
+* <a href="https://dev.to/tiangolo/build-a-web-api-from-scratch-with-fastapi-the-workshop-2ehe" class="external-link" target="_blank">Build a web API from scratch with FastAPI - the workshop</a> by <a href="https://twitter.com/tiangolo" class="external-link" target="_blank">Sebastián Ramírez (tiangolo)</a>.
+
+* <a href="https://www.twilio.com/blog/build-secure-twilio-webhook-python-fastapi" class="external-link" target="_blank">Build a Secure Twilio Webhook with Python and FastAPI</a> by <a href="https://www.twilio.com" class="external-link" target="_blank">Twilio</a>.
+
+* <a href="https://www.stavros.io/posts/fastapi-with-django/" class="external-link" target="_blank">Using FastAPI with Django</a> by <a href="https://twitter.com/Stavros" class="external-link" target="_blank">Stavros Korokithakis</a>.
+
+* <a href="https://netflixtechblog.com/introducing-dispatch-da4b8a2a8072" class="external-link" target="_blank">Introducing Dispatch</a> by <a href="https://netflixtechblog.com/" class="external-link" target="_blank">Netflix</a>.
+
 ### Japanese
 
 * <a href="https://qiita.com/mtitg/items/47770e9a562dd150631d" class="external-link" target="_blank">FastAPI｜DB接続してCRUDするPython製APIサーバーを構築</a> by <a href="https://qiita.com/mtitg" class="external-link" target="_blank">@mtitg</a>.
@@ -110,10 +127,15 @@ Here's an incomplete list of some of them.
 ## Podcasts
 
 * <a href="https://pythonbytes.fm/episodes/show/123/time-to-right-the-py-wrongs?time_in_sec=855" class="external-link" target="_blank">FastAPI on PythonBytes</a> by <a href="https://pythonbytes.fm/" class="external-link" target="_blank">Python Bytes FM</a>.
+* <a href="https://www.pythonpodcast.com/fastapi-web-application-framework-episode-259/" class="external-link" target="_blank">Build The Next Generation Of Python Web Applications With FastAPI - Episode 259 - interview to Sebastían Ramírez (tiangolo)</a> by <a href="https://www.pythonpodcast.com/" class="external-link" target="_blank">Podcast.`__init__`</a>.
 
 ## Talks
 
 * <a href="https://www.youtube.com/watch?v=3DLwPcrE5mA" class="external-link" target="_blank">PyCon UK 2019: FastAPI from the ground up</a> by <a href="https://twitter.com/chriswithers13" class="external-link" target="_blank">Chris Withers</a>.
+
+* <a href="https://www.youtube.com/watch?v=z9K5pwb0rt8" class="external-link" target="_blank">PyConBY 2020: Serve ML models easily with FastAPI</a> by <a href="https://twitter.com/tiangolo" class="external-link" target="_blank">Sebastián Ramírez (tiangolo)</a>.
+
+* <a href="https://www.youtube.com/watch?v=PnpTY1f4k2U" class="external-link" target="_blank">[VIRTUAL] Py.Amsterdam's flying Software Circus: Intro to FastAPI</a> by <a href="https://twitter.com/tiangolo" class="external-link" target="_blank">Sebastián Ramírez (tiangolo)</a>.
 
 ## Projects
 
