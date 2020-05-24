@@ -2,6 +2,8 @@
 
 ## Latest changes
 
+* Add translation to Chinese for [Python Types Intro - Python 类型提示简介](https://fastapi.tiangolo.com/zh/python-types/). PR [#1197](https://github.com/tiangolo/fastapi/pull/1197) by [@waynerv](https://github.com/waynerv).
+
 ## 0.55.1
 
 * Fix handling of enums with their own schema in path parameters. To support [samuelcolvin/pydantic#1432](https://github.com/samuelcolvin/pydantic/pull/1432) in FastAPI. PR [#1463](https://github.com/tiangolo/fastapi/pull/1463).
