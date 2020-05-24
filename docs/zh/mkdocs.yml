@@ -25,6 +25,7 @@ nav:
   - pt: /pt/
   - zh: /zh/
 - features.md
+- python-types.md
 - 教程 - 用户指南:
   - tutorial/index.md
 - deployment.md
