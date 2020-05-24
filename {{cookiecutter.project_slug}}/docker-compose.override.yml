@@ -5,17 +5,28 @@ services:
     ports:
       - "80:80"
       - "8090:8080"
-    command: --docker \
-      --docker.watch \
-      --docker.exposedbydefault=false \
-      --constraints=tag==${TRAEFIK_TAG} \
-      --logLevel=DEBUG \
-      --accessLog \
-      --web
+    command:
+      # Enable Docker in Traefik, so that it reads labels from Docker services
+      - --providers.docker
+      # Add a constraint to only use services with the label for this stack
+      # from the env var TRAEFIK_TAG
+      - --providers.docker.constraints=Label(`traefik.constraint-label-stack`, `${TRAEFIK_TAG}`)
+      # Do not expose all Docker services, only the ones explicitly exposed
+      - --providers.docker.exposedbydefault=false
+      # Disable Docker Swarm mode for local development
+      # - --providers.docker.swarmmode
+      # Enable the access log, with HTTP requests
+      - --accesslog
+      # Enable the Traefik log, for configurations and errors
+      - --log
+      # Enable the Dashboard and API
+      - --api
+      # Enable the Dashboard and API in insecure mode for local development
+      - --api.insecure=true
     labels:
-      - traefik.frontend.rule=Host:${DOMAIN}
       - traefik.enable=true
-      - traefik.port=80
+      - traefik.http.routers.${STACK_NAME}-traefik-public-http.rule=Host(`${DOMAIN}`)
+      - traefik.http.services.${STACK_NAME}-traefik-public.loadbalancer.server.port=80
 
   pgadmin:
     ports:
@@ -42,10 +53,10 @@ services:
     # command: bash -c "while true; do sleep 1; done"  # Infinite loop to keep container live doing nothing
     command: /start-reload.sh
     labels:
-      - traefik.frontend.rule=PathPrefix:/api,/docs,/redoc
       - traefik.enable=true
-      - traefik.port=80
-      - traefik.tags=${TRAEFIK_TAG}
+      - traefik.constraint-label-stack=${TRAEFIK_TAG}
+      - traefik.http.routers.${STACK_NAME}-backend-http.rule=PathPrefix(`/api`) || PathPrefix(`/docs`) || PathPrefix(`/redoc`)
+      - traefik.http.services.${STACK_NAME}-backend.loadbalancer.server.port=80
 
   celeryworker:
     volumes:
@@ -67,10 +78,10 @@ services:
       args:
         FRONTEND_ENV: dev
     labels:
-      - traefik.frontend.rule=PathPrefix:/
       - traefik.enable=true
-      - traefik.port=80
-      - traefik.tags=${TRAEFIK_TAG}
+      - traefik.constraint-label-stack=${TRAEFIK_TAG}
+      - traefik.http.routers.${STACK_NAME}-frontend-http.rule=PathPrefix(`/`)
+      - traefik.http.services.${STACK_NAME}-frontend.loadbalancer.server.port=80
 
 networks:
   traefik-public:
