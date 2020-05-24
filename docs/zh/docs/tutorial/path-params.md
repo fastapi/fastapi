@@ -16,7 +16,7 @@
 
 ## 有类型的路径参数
 
-你可以使用标准 Python 类型注解为函数中的路径参数声明类型。
+你可以使用标准的 Python 类型标注为函数中的路径参数声明类型。
 
 ```Python hl_lines="7"
 {!../../../docs_src/path_params/tutorial002.py!}
@@ -138,7 +138,7 @@
 
 ### 声明*路径参数*
 
-然后使用你定义的枚举类（`ModelName`）创建一个带有类型注解的 *路径参数*：
+然后使用你定义的枚举类（`ModelName`）创建一个带有类型标注的*路径参数*：
 
 ```Python hl_lines="16"
 {!../../../docs_src/path_params/tutorial005.py!}
@@ -146,7 +146,7 @@
 
 ### 查看文档
 
-因为*路径参数*的可用值已经指定，所以交互式文档可以恰当地展示它们：
+因为已经指定了*路径参数*的可用值，所以交互式文档可以恰当地展示它们：
 
 <img src="https://fastapi.tiangolo.com/img/tutorial/path-params/image03.png">
 
@@ -222,7 +222,7 @@ OpenAPI 不支持任何方式去声明*路径参数*以在其内部包含*路径
 
 ## 总结
 
-使用 **FastAPI**，通过简短，直观和标准的 Python 类型声明，你将获得：
+使用 **FastAPI**，通过简短、直观和标准的 Python 类型声明，你将获得：
 
 * 编辑器支持：错误检查，代码补全等
 * 数据 "<abbr title="将来自 HTTP 请求中的字符串转换为 Python 数据类型">解析</abbr>"
