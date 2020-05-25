@@ -24,30 +24,7 @@ class HTTPAuthorizationCredentials(BaseModel):
     credentials: str
 
 
-class HTTPBase(SecurityBase):
-    def __init__(
-        self, *, scheme: str, scheme_name: str = None, auto_error: bool = True
-    ):
-        self.model = HTTPBaseModel(scheme=scheme)
-        self.scheme_name = scheme_name or self.__class__.__name__
-        self.auto_error = auto_error
-
-    async def __call__(
-        self, request: Request
-    ) -> Optional[HTTPAuthorizationCredentials]:
-        authorization: str = request.headers.get("Authorization")
-        scheme, credentials = get_authorization_scheme_param(authorization)
-        if not (authorization and scheme and credentials):
-            if self.auto_error:
-                raise HTTPException(
-                    status_code=HTTP_403_FORBIDDEN, detail="Not authenticated"
-                )
-            else:
-                return None
-        return HTTPAuthorizationCredentials(scheme=scheme, credentials=credentials)
-
-
-class HTTPBasic(HTTPBase):
+class HTTPBasic(SecurityBase):
     def __init__(
         self, *, scheme_name: str = None, realm: str = None, auto_error: bool = True
     ):
@@ -56,9 +33,7 @@ class HTTPBasic(HTTPBase):
         self.realm = realm
         self.auto_error = auto_error
 
-    async def __call__(  # type: ignore
-        self, request: Request
-    ) -> Optional[HTTPBasicCredentials]:
+    async def __call__(self, request: Request) -> Optional[HTTPBasicCredentials]:
         authorization: str = request.headers.get("Authorization")
         scheme, param = get_authorization_scheme_param(authorization)
         if self.realm:
@@ -89,7 +64,7 @@ class HTTPBasic(HTTPBase):
         return HTTPBasicCredentials(username=username, password=password)
 
 
-class HTTPBearer(HTTPBase):
+class HTTPBearer(SecurityBase):
     def __init__(
         self,
         *,
@@ -124,7 +99,7 @@ class HTTPBearer(HTTPBase):
         return HTTPAuthorizationCredentials(scheme=scheme, credentials=credentials)
 
 
-class HTTPDigest(HTTPBase):
+class HTTPDigest(SecurityBase):
     def __init__(self, *, scheme_name: str = None, auto_error: bool = True):
         self.model = HTTPBaseModel(scheme="digest")
         self.scheme_name = scheme_name or self.__class__.__name__
