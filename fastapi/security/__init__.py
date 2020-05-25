@@ -4,7 +4,6 @@ from .http import (
     HTTPBasic,
     HTTPBasicCredentials,
     HTTPBearer,
-    HTTPDigest,
 )
 from .oauth2 import (
     OAuth2,
