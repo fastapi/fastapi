@@ -10,7 +10,7 @@ services:
       - --providers.docker
       # Add a constraint to only use services with the label for this stack
       # from the env var TRAEFIK_TAG
-      - --providers.docker.constraints=Label(`traefik.constraint-label-stack`, `${TRAEFIK_TAG}`)
+      - --providers.docker.constraints=Label(`traefik.constraint-label-stack`, `${TRAEFIK_TAG?Variable not set}`)
       # Do not expose all Docker services, only the ones explicitly exposed
       - --providers.docker.exposedbydefault=false
       # Disable Docker Swarm mode for local development
@@ -25,8 +25,8 @@ services:
       - --api.insecure=true
     labels:
       - traefik.enable=true
-      - traefik.http.routers.${STACK_NAME}-traefik-public-http.rule=Host(`${DOMAIN}`)
-      - traefik.http.services.${STACK_NAME}-traefik-public.loadbalancer.server.port=80
+      - traefik.http.routers.${STACK_NAME?Variable not set}-traefik-public-http.rule=Host(`${DOMAIN?Variable not set}`)
+      - traefik.http.services.${STACK_NAME?Variable not set}-traefik-public.loadbalancer.server.port=80
 
   pgadmin:
     ports:
@@ -43,7 +43,7 @@ services:
       - ./backend/app:/app
     environment:
       - JUPYTER=jupyter lab --ip=0.0.0.0 --allow-root --NotebookApp.custom_display_url=http://127.0.0.1:8888
-      - SERVER_HOST=http://${DOMAIN}
+      - SERVER_HOST=http://${DOMAIN?Variable not set}
     build:
       context: ./backend
       dockerfile: backend.dockerfile
@@ -54,9 +54,9 @@ services:
     command: /start-reload.sh
     labels:
       - traefik.enable=true
-      - traefik.constraint-label-stack=${TRAEFIK_TAG}
-      - traefik.http.routers.${STACK_NAME}-backend-http.rule=PathPrefix(`/api`) || PathPrefix(`/docs`) || PathPrefix(`/redoc`)
-      - traefik.http.services.${STACK_NAME}-backend.loadbalancer.server.port=80
+      - traefik.constraint-label-stack=${TRAEFIK_TAG?Variable not set}
+      - traefik.http.routers.${STACK_NAME?Variable not set}-backend-http.rule=PathPrefix(`/api`) || PathPrefix(`/docs`) || PathPrefix(`/redoc`)
+      - traefik.http.services.${STACK_NAME?Variable not set}-backend.loadbalancer.server.port=80
 
   celeryworker:
     volumes:
@@ -64,7 +64,7 @@ services:
     environment:
       - RUN=celery worker -A app.worker -l info -Q main-queue -c 1
       - JUPYTER=jupyter lab --ip=0.0.0.0 --allow-root --NotebookApp.custom_display_url=http://127.0.0.1:8888
-      - SERVER_HOST=http://${DOMAIN}
+      - SERVER_HOST=http://${DOMAIN?Variable not set}
     build:
       context: ./backend
       dockerfile: celeryworker.dockerfile
@@ -79,9 +79,9 @@ services:
         FRONTEND_ENV: dev
     labels:
       - traefik.enable=true
-      - traefik.constraint-label-stack=${TRAEFIK_TAG}
-      - traefik.http.routers.${STACK_NAME}-frontend-http.rule=PathPrefix(`/`)
-      - traefik.http.services.${STACK_NAME}-frontend.loadbalancer.server.port=80
+      - traefik.constraint-label-stack=${TRAEFIK_TAG?Variable not set}
+      - traefik.http.routers.${STACK_NAME?Variable not set}-frontend-http.rule=PathPrefix(`/`)
+      - traefik.http.services.${STACK_NAME?Variable not set}-frontend.loadbalancer.server.port=80
 
 networks:
   traefik-public:

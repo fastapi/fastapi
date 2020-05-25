@@ -489,10 +489,10 @@ services:
     deploy:
       placement:
         constraints:
-          - node.labels.${STACK_NAME}.app-db-data == true
+          - node.labels.${STACK_NAME?Variable not set}.app-db-data == true
 ```
 
-note the `${STACK_NAME}`. In the script `./scripts/deploy.sh`, the `docker-compose.yml` would be converted, and saved to a file `docker-stack.yml` containing:
+note the `${STACK_NAME?Variable not set}`. In the script `./scripts/deploy.sh`, the `docker-compose.yml` would be converted, and saved to a file `docker-stack.yml` containing:
 
 ```yaml
 version: '3'
@@ -505,6 +505,8 @@ services:
         constraints:
           - node.labels.{{cookiecutter.docker_swarm_stack_name_main}}.app-db-data == true
 ```
+
+**Note**: The `${STACK_NAME?Variable not set}` means "use the environment variable `STACK_NAME`, but if it is not set, show an error `Variable not set`".
 
 If you add more volumes to your stack, you need to make sure you add the corresponding constraints to the services that use that named volume.
 
@@ -632,10 +634,10 @@ You can do the process by hand based on those same scripts if you wanted. The ge
 ```bash
 # Use the environment variables passed to this script, as TAG and FRONTEND_ENV
 # And re-create those variables as environment variables for the next command
-TAG=${TAG} \
+TAG=${TAG?Variable not set} \
 # Set the environment variable FRONTEND_ENV to the same value passed to this script with
 # a default value of "production" if nothing else was passed
-FRONTEND_ENV=${FRONTEND_ENV-production} \
+FRONTEND_ENV=${FRONTEND_ENV-production?Variable not set} \
 # The actual comand that does the work: docker-compose
 docker-compose \
 # Pass the file that should be used, setting explicitly docker-compose.yml avoids the
@@ -653,7 +655,7 @@ config > docker-stack.yml
 docker-auto-labels docker-stack.yml
 
 # Now this command uses that same file to deploy it
-docker stack deploy -c docker-stack.yml --with-registry-auth "${STACK_NAME}"
+docker stack deploy -c docker-stack.yml --with-registry-auth "${STACK_NAME?Variable not set}"
 ```
 
 ### Continuous Integration / Continuous Delivery

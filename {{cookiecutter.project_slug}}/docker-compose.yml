@@ -4,7 +4,7 @@ services:
   proxy:
     image: traefik:v2.2
     networks:
-      - ${TRAEFIK_PUBLIC_NETWORK}
+      - ${TRAEFIK_PUBLIC_NETWORK?Variable not set}
       - default
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
@@ -13,7 +13,7 @@ services:
       - --providers.docker
       # Add a constraint to only use services with the label for this stack
       # from the env var TRAEFIK_TAG
-      - --providers.docker.constraints=Label(`traefik.constraint-label-stack`, `${TRAEFIK_TAG}`)
+      - --providers.docker.constraints=Label(`traefik.constraint-label-stack`, `${TRAEFIK_TAG?Variable not set}`)
       # Do not expose all Docker services, only the ones explicitly exposed
       - --providers.docker.exposedbydefault=false
       # Enable Docker Swarm mode
@@ -32,41 +32,41 @@ services:
         # Enable Traefik for this service, to make it available in the public network
         - traefik.enable=true
         # Use the traefik-public network (declared below)
-        - traefik.docker.network=${TRAEFIK_PUBLIC_NETWORK}
+        - traefik.docker.network=${TRAEFIK_PUBLIC_NETWORK?Variable not set}
         # Use the custom label "traefik.constraint-label=traefik-public"
         # This public Traefik will only use services with this label
-        - traefik.constraint-label=${TRAEFIK_PUBLIC_TAG}
+        - traefik.constraint-label=${TRAEFIK_PUBLIC_TAG?Variable not set}
         # traefik-http set up only to use the middleware to redirect to https
-        - traefik.http.middlewares.${STACK_NAME}-https-redirect.redirectscheme.scheme=https
-        - traefik.http.middlewares.${STACK_NAME}-https-redirect.redirectscheme.permanent=true
+        - traefik.http.middlewares.${STACK_NAME?Variable not set}-https-redirect.redirectscheme.scheme=https
+        - traefik.http.middlewares.${STACK_NAME?Variable not set}-https-redirect.redirectscheme.permanent=true
         # Handle host with and without "www" to redirect to only one of them
         # Uses environment variable DOMAIN
         # To disable www redirection remove the Host() you want to discard, here and
         # below for HTTPS
-        - traefik.http.routers.${STACK_NAME}-proxy-http.rule=Host(`${DOMAIN}`) || Host(`www.${DOMAIN}`)
-        - traefik.http.routers.${STACK_NAME}-proxy-http.entrypoints=http
+        - traefik.http.routers.${STACK_NAME?Variable not set}-proxy-http.rule=Host(`${DOMAIN?Variable not set}`) || Host(`www.${DOMAIN?Variable not set}`)
+        - traefik.http.routers.${STACK_NAME?Variable not set}-proxy-http.entrypoints=http
         # traefik-https the actual router using HTTPS
-        - traefik.http.routers.${STACK_NAME}-proxy-https.rule=Host(`${DOMAIN}`) || Host(`www.${DOMAIN}`)
-        - traefik.http.routers.${STACK_NAME}-proxy-https.entrypoints=https
-        - traefik.http.routers.${STACK_NAME}-proxy-https.tls=true
+        - traefik.http.routers.${STACK_NAME?Variable not set}-proxy-https.rule=Host(`${DOMAIN?Variable not set}`) || Host(`www.${DOMAIN?Variable not set}`)
+        - traefik.http.routers.${STACK_NAME?Variable not set}-proxy-https.entrypoints=https
+        - traefik.http.routers.${STACK_NAME?Variable not set}-proxy-https.tls=true
         # Use the "le" (Let's Encrypt) resolver created below
-        - traefik.http.routers.${STACK_NAME}-proxy-https.tls.certresolver=le
+        - traefik.http.routers.${STACK_NAME?Variable not set}-proxy-https.tls.certresolver=le
         # Define the port inside of the Docker service to use
-        - traefik.http.services.${STACK_NAME}-proxy.loadbalancer.server.port=80
+        - traefik.http.services.${STACK_NAME?Variable not set}-proxy.loadbalancer.server.port=80
         # Handle domain with and without "www" to redirect to only one
         # To disable www redirection remove the next line
-        - traefik.http.middlewares.${STACK_NAME}-www-redirect.redirectregex.regex=^https?://(www.)?(${DOMAIN})/(.*)
+        - traefik.http.middlewares.${STACK_NAME?Variable not set}-www-redirect.redirectregex.regex=^https?://(www.)?(${DOMAIN?Variable not set})/(.*)
         # Redirect a domain with www to non-www
         # To disable it remove the next line
-        - traefik.http.middlewares.${STACK_NAME}-www-redirect.redirectregex.replacement=https://${DOMAIN}/$${3}
+        - traefik.http.middlewares.${STACK_NAME?Variable not set}-www-redirect.redirectregex.replacement=https://${DOMAIN?Variable not set}/$${3}
         # Redirect a domain without www to www
         # To enable it remove the previous line and uncomment the next
         # - traefik.http.middlewares.${STACK_NAME}-www-redirect.redirectregex.replacement=https://www.${DOMAIN}/$${3}
         # Middleware to redirect www, to disable it remove the next line 
-        - traefik.http.routers.${STACK_NAME}-proxy-https.middlewares=${STACK_NAME}-www-redirect
+        - traefik.http.routers.${STACK_NAME?Variable not set}-proxy-https.middlewares=${STACK_NAME?Variable not set}-www-redirect
         # Middleware to redirect www, and redirect HTTP to HTTPS
-        # to disable www redirection remove the section: ${STACK_NAME}-www-redirect,
-        - traefik.http.routers.${STACK_NAME}-proxy-http.middlewares=${STACK_NAME}-www-redirect,${STACK_NAME}-https-redirect
+        # to disable www redirection remove the section: ${STACK_NAME?Variable not set}-www-redirect,
+        - traefik.http.routers.${STACK_NAME?Variable not set}-proxy-http.middlewares=${STACK_NAME?Variable not set}-www-redirect,${STACK_NAME?Variable not set}-https-redirect
 
   db:
     image: postgres:12
@@ -79,12 +79,12 @@ services:
     deploy:
       placement:
         constraints:
-          - node.labels.${STACK_NAME}.app-db-data == true
+          - node.labels.${STACK_NAME?Variable not set}.app-db-data == true
 
   pgadmin:
     image: dpage/pgadmin4
     networks:
-      - ${TRAEFIK_PUBLIC_NETWORK}
+      - ${TRAEFIK_PUBLIC_NETWORK?Variable not set}
       - default
     depends_on:
       - db
@@ -93,16 +93,16 @@ services:
     deploy:
       labels:
         - traefik.enable=true
-        - traefik.docker.network=${TRAEFIK_PUBLIC_NETWORK}
-        - traefik.constraint-label=${TRAEFIK_PUBLIC_TAG}
-        - traefik.http.routers.${STACK_NAME}-pgadmin-http.rule=Host(`pgadmin.${DOMAIN}`)
-        - traefik.http.routers.${STACK_NAME}-pgadmin-http.entrypoints=http
-        - traefik.http.routers.${STACK_NAME}-pgadmin-http.middlewares=${STACK_NAME}-https-redirect
-        - traefik.http.routers.${STACK_NAME}-pgadmin-https.rule=Host(`pgadmin.${DOMAIN}`)
-        - traefik.http.routers.${STACK_NAME}-pgadmin-https.entrypoints=https
-        - traefik.http.routers.${STACK_NAME}-pgadmin-https.tls=true
-        - traefik.http.routers.${STACK_NAME}-pgadmin-https.tls.certresolver=le
-        - traefik.http.services.${STACK_NAME}-pgadmin.loadbalancer.server.port=5050
+        - traefik.docker.network=${TRAEFIK_PUBLIC_NETWORK?Variable not set}
+        - traefik.constraint-label=${TRAEFIK_PUBLIC_TAG?Variable not set}
+        - traefik.http.routers.${STACK_NAME?Variable not set}-pgadmin-http.rule=Host(`pgadmin.${DOMAIN?Variable not set}`)
+        - traefik.http.routers.${STACK_NAME?Variable not set}-pgadmin-http.entrypoints=http
+        - traefik.http.routers.${STACK_NAME?Variable not set}-pgadmin-http.middlewares=${STACK_NAME?Variable not set}-https-redirect
+        - traefik.http.routers.${STACK_NAME?Variable not set}-pgadmin-https.rule=Host(`pgadmin.${DOMAIN?Variable not set}`)
+        - traefik.http.routers.${STACK_NAME?Variable not set}-pgadmin-https.entrypoints=https
+        - traefik.http.routers.${STACK_NAME?Variable not set}-pgadmin-https.tls=true
+        - traefik.http.routers.${STACK_NAME?Variable not set}-pgadmin-https.tls.certresolver=le
+        - traefik.http.services.${STACK_NAME?Variable not set}-pgadmin.loadbalancer.server.port=5050
 
   queue:
     image: rabbitmq:3
@@ -114,7 +114,7 @@ services:
   flower:
     image: mher/flower
     networks:
-      - ${TRAEFIK_PUBLIC_NETWORK}
+      - ${TRAEFIK_PUBLIC_NETWORK?Variable not set}
       - default
     env_file:
       - .env
@@ -126,26 +126,26 @@ services:
     deploy:
       labels:
         - traefik.enable=true
-        - traefik.docker.network=${TRAEFIK_PUBLIC_NETWORK}
-        - traefik.constraint-label=${TRAEFIK_PUBLIC_TAG}
-        - traefik.http.routers.${STACK_NAME}-flower-http.rule=Host(`flower.${DOMAIN}`)
-        - traefik.http.routers.${STACK_NAME}-flower-http.entrypoints=http
-        - traefik.http.routers.${STACK_NAME}-flower-http.middlewares=${STACK_NAME}-https-redirect
-        - traefik.http.routers.${STACK_NAME}-flower-https.rule=Host(`flower.${DOMAIN}`)
-        - traefik.http.routers.${STACK_NAME}-flower-https.entrypoints=https
-        - traefik.http.routers.${STACK_NAME}-flower-https.tls=true
-        - traefik.http.routers.${STACK_NAME}-flower-https.tls.certresolver=le
-        - traefik.http.services.${STACK_NAME}-flower.loadbalancer.server.port=5555
+        - traefik.docker.network=${TRAEFIK_PUBLIC_NETWORK?Variable not set}
+        - traefik.constraint-label=${TRAEFIK_PUBLIC_TAG?Variable not set}
+        - traefik.http.routers.${STACK_NAME?Variable not set}-flower-http.rule=Host(`flower.${DOMAIN?Variable not set}`)
+        - traefik.http.routers.${STACK_NAME?Variable not set}-flower-http.entrypoints=http
+        - traefik.http.routers.${STACK_NAME?Variable not set}-flower-http.middlewares=${STACK_NAME?Variable not set}-https-redirect
+        - traefik.http.routers.${STACK_NAME?Variable not set}-flower-https.rule=Host(`flower.${DOMAIN?Variable not set}`)
+        - traefik.http.routers.${STACK_NAME?Variable not set}-flower-https.entrypoints=https
+        - traefik.http.routers.${STACK_NAME?Variable not set}-flower-https.tls=true
+        - traefik.http.routers.${STACK_NAME?Variable not set}-flower-https.tls.certresolver=le
+        - traefik.http.services.${STACK_NAME?Variable not set}-flower.loadbalancer.server.port=5555
   
   backend:
-    image: '${DOCKER_IMAGE_BACKEND}:${TAG-latest}'
+    image: '${DOCKER_IMAGE_BACKEND?Variable not set}:${TAG-latest}'
     depends_on:
       - db
     env_file:
       - .env
     environment:
-      - SERVER_NAME=${DOMAIN}
-      - SERVER_HOST=https://${DOMAIN}
+      - SERVER_NAME=${DOMAIN?Variable not set}
+      - SERVER_HOST=https://${DOMAIN?Variable not set}
       # Allow explicit env var override for tests
       - SMTP_HOST=${SMTP_HOST}
     build:
@@ -156,22 +156,22 @@ services:
     deploy:
       labels:
         - traefik.enable=true
-        - traefik.constraint-label-stack=${TRAEFIK_TAG}
-        - traefik.http.routers.${STACK_NAME}-backend-http.rule=PathPrefix(`/api`) || PathPrefix(`/docs`) || PathPrefix(`/redoc`)
-        - traefik.http.services.${STACK_NAME}-backend.loadbalancer.server.port=80
+        - traefik.constraint-label-stack=${TRAEFIK_TAG?Variable not set}
+        - traefik.http.routers.${STACK_NAME?Variable not set}-backend-http.rule=PathPrefix(`/api`) || PathPrefix(`/docs`) || PathPrefix(`/redoc`)
+        - traefik.http.services.${STACK_NAME?Variable not set}-backend.loadbalancer.server.port=80
   
   celeryworker:
-    image: '${DOCKER_IMAGE_CELERYWORKER}:${TAG-latest}'
+    image: '${DOCKER_IMAGE_CELERYWORKER?Variable not set}:${TAG-latest}'
     depends_on:
       - db
       - queue
     env_file:
       - .env
     environment:
-      - SERVER_NAME=${DOMAIN}
-      - SERVER_HOST=https://${DOMAIN}
+      - SERVER_NAME=${DOMAIN?Variable not set}
+      - SERVER_HOST=https://${DOMAIN?Variable not set}
       # Allow explicit env var override for tests
-      - SMTP_HOST=${SMTP_HOST}
+      - SMTP_HOST=${SMTP_HOST?Variable not set}
     build:
       context: ./backend
       dockerfile: celeryworker.dockerfile
@@ -179,7 +179,7 @@ services:
         INSTALL_DEV: ${INSTALL_DEV-false}
   
   frontend:
-    image: '${DOCKER_IMAGE_FRONTEND}:${TAG-latest}'
+    image: '${DOCKER_IMAGE_FRONTEND?Variable not set}:${TAG-latest}'
     build:
       context: ./frontend
       args:
@@ -187,9 +187,9 @@ services:
     deploy:
       labels:
         - traefik.enable=true
-        - traefik.constraint-label-stack=${TRAEFIK_TAG}
-        - traefik.http.routers.${STACK_NAME}-frontend-http.rule=PathPrefix(`/`)
-        - traefik.http.services.${STACK_NAME}-frontend.loadbalancer.server.port=80
+        - traefik.constraint-label-stack=${TRAEFIK_TAG?Variable not set}
+        - traefik.http.routers.${STACK_NAME?Variable not set}-frontend-http.rule=PathPrefix(`/`)
+        - traefik.http.services.${STACK_NAME?Variable not set}-frontend.loadbalancer.server.port=80
 
 volumes:
   app-db-data:
