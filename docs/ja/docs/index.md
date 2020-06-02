@@ -1,5 +1,3 @@
-{!../../../docs/missing-translation.md!}
-
 <p align="center">
   <a href="https://fastapi.tiangolo.com"><img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI"></a>
 </p>
@@ -45,43 +43,43 @@ FastAPI は、モダンで、速い(高いパフォーマンスな)、標準の 
 
 <small>\* 社内開発チームでのテストに基づき見積もってから、本番アプリケーションの構築します。</small>
 
-## Opinions
+## 評価
 
-"_[...] I'm using **FastAPI** a ton these days. [...] I'm actually planning to use it for all of my team's **ML services at Microsoft**. Some of them are getting integrated into the core **Windows** product and some **Office** products._"
+"_[...] 最近 **FastAPI** を使っています。 [...] 実際に私のチームの全ての **Microsoftの機械学習サービス** で使用する予定です。 そのうちのいくつかのコアな**Windows**製品と**Office**製品に統合されつつあります。_"
 
-<div style="text-align: right; margin-right: 10%;">Kabir Khan - <strong>Microsoft</strong> <a href="https://github.com/tiangolo/fastapi/pull/26" target="_blank"><small>(ref)</small></a></div>
-
----
-
-"_We adopted the **FastAPI** library to spawn a **REST** server that can be queried to obtain **predictions**. [for Ludwig]_"
-
-<div style="text-align: right; margin-right: 10%;">Piero Molino, Yaroslav Dudin, and Sai Sumanth Miryala - <strong>Uber</strong> <a href="https://eng.uber.com/ludwig-v0-2/" target="_blank"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Kabir Khan - <strong>Microsoft</strong> <a href="https://github.com/tiangolo/fastapi/pull/26" target="_blank"><small>(参照)</small></a></div>
 
 ---
 
-"_**Netflix** is pleased to announce the open-source release of our **crisis management** orchestration framework: **Dispatch**! [built with **FastAPI**]_"
+"_FastAPIライブラリを採用して**REST**サーバを構築し、それをクエリして**予測**を取得しています。 [for Ludwig]_"
 
-<div style="text-align: right; margin-right: 10%;">Kevin Glisson, Marc Vilanova, Forest Monsen - <strong>Netflix</strong> <a href="https://netflixtechblog.com/introducing-dispatch-da4b8a2a8072" target="_blank"><small>(ref)</small></a></div>
-
----
-
-"_I’m over the moon excited about **FastAPI**. It’s so fun!_"
-
-<div style="text-align: right; margin-right: 10%;">Brian Okken - <strong><a href="https://pythonbytes.fm/episodes/show/123/time-to-right-the-py-wrongs?time_in_sec=855" target="_blank">Python Bytes</a> podcast host</strong> <a href="https://twitter.com/brianokken/status/1112220079972728832" target="_blank"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Piero Molino, Yaroslav Dudin, and Sai Sumanth Miryala - <strong>Uber</strong> <a href="https://eng.uber.com/ludwig-v0-2/" target="_blank"><small>(参照)</small></a></div>
 
 ---
 
-"_Honestly, what you've built looks super solid and polished. In many ways, it's what I wanted **Hug** to be - it's really inspiring to see someone build that._"
+"_**Netflix** Netflixは、**危機管理**オーケストレーションフレームワーク、**Dispatch**のオープンソースリリースを発表できることをうれしく思います。 [built with **FastAPI**]_"
 
-<div style="text-align: right; margin-right: 10%;">Timothy Crosley - <strong><a href="http://www.hug.rest/" target="_blank">Hug</a> creator</strong> <a href="https://news.ycombinator.com/item?id=19455465" target="_blank"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Kevin Glisson, Marc Vilanova, Forest Monsen - <strong>Netflix</strong> <a href="https://netflixtechblog.com/introducing-dispatch-da4b8a2a8072" target="_blank"><small>(参照)</small></a></div>
 
 ---
 
-"_If you're looking to learn one **modern framework** for building REST APIs, check out **FastAPI** [...] It's fast, easy to use and easy to learn [...]_"
+"_私は**FastAPI**にワクワクしています。 めちゃくちゃ楽しいです！_"
 
-"_We've switched over to **FastAPI** for our **APIs** [...] I think you'll like it [...]_"
+<div style="text-align: right; margin-right: 10%;">Brian Okken - <strong><a href="https://pythonbytes.fm/episodes/show/123/time-to-right-the-py-wrongs?time_in_sec=855" target="_blank">Python Bytes</a> podcast host</strong> <a href="https://twitter.com/brianokken/status/1112220079972728832" target="_blank"><small>(参照)</small></a></div>
 
-<div style="text-align: right; margin-right: 10%;">Ines Montani - Matthew Honnibal - <strong><a href="https://explosion.ai" target="_blank">Explosion AI</a> founders - <a href="https://spacy.io" target="_blank">spaCy</a> creators</strong> <a href="https://twitter.com/_inesmontani/status/1144173225322143744" target="_blank"><small>(ref)</small></a> - <a href="https://twitter.com/honnibal/status/1144031421859655680" target="_blank"><small>(ref)</small></a></div>
+---
+
+"_正直、超堅実で洗練されているように見えます。いろんな意味で、それは私がハグしたかったものです。_"
+
+<div style="text-align: right; margin-right: 10%;">Timothy Crosley - <strong><a href="http://www.hug.rest/" target="_blank">Hug</a> creator</strong> <a href="https://news.ycombinator.com/item?id=19455465" target="_blank"><small>(参照)</small></a></div>
+
+---
+
+"_REST APIを構築するための**モダンなフレームワーク**を学びたい方は、**FastAPI＊＊をチェックしてみてください。 [...] 高速で, 使用、習得が簡単です。[...]_"
+
+"_私たちの**API**は**FastAPI**に切り替えました。[...] きっと気に入ると思います。 [...]_"
+
+<div style="text-align: right; margin-right: 10%;">Ines Montani - Matthew Honnibal - <strong><a href="https://explosion.ai" target="_blank">Explosion AI</a> founders - <a href="https://spacy.io" target="_blank">spaCy</a> creators</strong> <a href="https://twitter.com/_inesmontani/status/1144173225322143744" target="_blank"><small>(参照)</small></a> - <a href="https://twitter.com/honnibal/status/1144031421859655680" target="_blank"><small>(参照)</small></a></div>
 
 ---
 
