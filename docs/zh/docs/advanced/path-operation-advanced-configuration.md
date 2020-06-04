@@ -5,9 +5,9 @@
 !!! warning
     如果你并非 OpenAPI 的「专家」，你可能不需要这部分内容。
 
-你可以通过参数 `operation_id` 将 OpenAPI 的 `operationId` 设置为在路径操作中使用。
+你可以在路径操作中通过参数 `operation_id` 设置要使用的 OpenAPI `operationId`。
 
-务必确保每次操作的 `operation_id` 都是唯一的。
+务必确保每个操作路径的 `operation_id` 都是唯一的。
 
 ```Python hl_lines="6"
 {!../../../docs_src/path_operation_advanced_configuration/tutorial001.py!}
@@ -17,14 +17,14 @@
 
 如果你想用你的 API 的函数名作为 `operationId` 的名字，你可以遍历一遍 API 的函数名，然后使用他们的 `APIRoute.name` 重写每个 *路径操作* 的 `operation_id`。
 
-在此之前你要给所有函数添加 *路径操作*。
+你应该在添加了所有 *路径操作* 之后执行此操作。
 
 ```Python hl_lines="2 12 13 14 15 16 17 18 19 20 21 24"
 {!../../../docs_src/path_operation_advanced_configuration/tutorial002.py!}
 ```
 
 !!! tip
-    如果你手动调动 `app.openapi()`，你应该在此之前更新 `operationId`。
+    如果你手动调用 `app.openapi()`，你应该在此之前更新 `operationId`。
 
 !!! warning
     如果你这样做，务必确保你的每个 *路径操作函数* 的名字唯一。
