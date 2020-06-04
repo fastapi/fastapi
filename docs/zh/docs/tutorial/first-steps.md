@@ -27,19 +27,19 @@ $ uvicorn main:app --reload
 !!! note
     `uvicorn main:app` 命令含义如下:
 
-    * `main`：`main.py` 文件（一个 Python "模块"）。
+    * `main`：`main.py` 文件（一个 Python「模块」）。
     * `app`：在 `main.py` 文件中通过 `app = FastAPI()` 创建的对象。
     * `--reload`：让服务器在更新代码后重新启动。仅在开发时使用该选项。
     
 
-在输出中，有一行的信息会像下面这样：
+在输出中，会有一行信息像下面这样：
 
 ```hl_lines="4"
 INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 
-该行显示了你的应用在本机所运行于的 URL 地址。
+该行显示了你的应用在本机所提供服务的 URL 地址。
 
 ### 查看
 
@@ -69,33 +69,33 @@ INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 
 ### OpenAPI
 
-**FastAPI** 使用定义 API 的 **OpenAPI** 标准将你的所有 API 转换成"模式"。
+**FastAPI** 使用定义 API 的 **OpenAPI** 标准将你的所有 API 转换成「模式」。
 
-#### "模式"
+#### 「模式」
 
-"模式"是对事物的一种定义或描述。它并非具体的实现代码，而只是抽象的描述。
+「模式」是对事物的一种定义或描述。它并非具体的实现代码，而只是抽象的描述。
 
-#### API "模式"
+#### API「模式」
 
 在这种场景下，OpenAPI 是一种规定如何定义 API 模式的规范。
 
 定义的 OpenAPI 模式将包括你的 API 路径，以及它们可能使用的参数等等。
 
-#### 数据 "模式"
+#### 数据「模式」
 
-"模式"这个术语也可能指的是某些数据比如 JSON 的结构。
+「模式」这个术语也可能指的是某些数据比如 JSON 的结构。
 
 在这种情况下，它可以表示 JSON 的属性及其具有的数据类型，等等。
 
 #### OpenAPI 和 JSON Schema
 
-OpenAPI 为你的 API 定义 API 模式。并且该模式还包括使用 JSON 数据模式标准 **JSON Schema** 所生成的 API 发送接收数据的定义（或"模式"）。
+OpenAPI 为你的 API 定义 API 模式。该模式中包含了你的 API 发送和接收的数据的定义（或称为「模式」），这些定义通过 JSON 数据模式标准 **JSON Schema** 所生成。
 
 #### 查看 `openapi.json`
 
 如果你对原始的 OpenAPI 模式长什么样子感到好奇，其实它只是一个自动生成的包含了所有 API 描述的 JSON。
 
-你可以直接在: <a href="http://127.0.0.1:8000/openapi.json" class="external-link" target="_blank">http://127.0.0.1:8000/openapi.json</a> 看到它。
+你可以直接在：<a href="http://127.0.0.1:8000/openapi.json" class="external-link" target="_blank">http://127.0.0.1:8000/openapi.json</a> 看到它。
 
 它将显示以如下内容开头的 JSON：
 
@@ -143,13 +143,13 @@ OpenAPI 为你的 API 定义 API 模式。并且该模式还包括使用 JSON �
 
     你可以通过 `FastAPI` 使用所有的 Starlette 的功能。
 
-### 步骤 2：创建一个 `FastAPI` "实例"
+### 步骤 2：创建一个 `FastAPI`「实例」
 
 ```Python hl_lines="3"
 {!../../../docs_src/first_steps/tutorial001.py!}
 ```
 
-这里的变量 `app` 会是 `FastAPI` 类的一个"实例"。
+这里的变量 `app` 会是 `FastAPI` 类的一个「实例」。
 
 这个实例将是创建你所有 API 的主要交互对象。
 
@@ -187,7 +187,7 @@ $ uvicorn main:my_awesome_api --reload
 
 #### 路径
 
-这里的"路径"指的是 URL 中从第一个 `/` 起的后半部分。
+这里的「路径」指的是 URL 中从第一个 `/` 起的后半部分。
 
 所以，在一个这样的 URL 中：
 
@@ -202,15 +202,15 @@ https://example.com/items/foo
 ```
 
 !!! info
-    "路径" 也通常被称为"端点"或"路由"。
+    「路径」也通常被称为「端点」或「路由」。
 
-开发 API 时，"路径"是用来分离"关注点"和"资源"的主要手段。
+开发 API 时，「路径」是用来分离「关注点」和「资源」的主要手段。
 
 #### 操作
 
-这里的"操作"指的是一种 HTTP "方法"。
+这里的「操作」指的是一种 HTTP「方法」。
 
-其中之一:
+下列之一：
 
 * `POST`
 * `GET`
@@ -224,7 +224,7 @@ https://example.com/items/foo
 * `PATCH`
 * `TRACE`
 
-在 HTTP 协议中，你可以使用以上的其中一种（或多种）"方法"与每个路径进行通信。
+在 HTTP 协议中，你可以使用以上的其中一种（或多种）「方法」与每个路径进行通信。
 
 ---
 
@@ -237,9 +237,9 @@ https://example.com/items/foo
 * `PUT`：更新数据。
 * `DELETE`：删除数据。
 
-因此，在 OpenAPI 中，每一个 HTTP 方法都被称为"操作"。
+因此，在 OpenAPI 中，每一个 HTTP 方法都被称为「操作」。
 
-我们也打算称呼它们为"操作"。
+我们也打算称呼它们为「操作」。
 
 #### 定义一个*路径操作装饰器*
 
@@ -253,7 +253,7 @@ https://example.com/items/foo
 * 使用 <abbr title="HTTP GET 方法"><code>get</code> 操作</abbr>
 
 !!! info "`@decorator` Info"
-    `@something` 语法在 Python 中被称为"装饰器"。
+    `@something` 语法在 Python 中被称为「装饰器」。
 
     像一顶漂亮的装饰帽一样，将它放在一个函数的上方（我猜测这个术语的命名就是这么来的）。
 
@@ -261,7 +261,7 @@ https://example.com/items/foo
 
     在我们的例子中，这个装饰器告诉 **FastAPI** 位于其下方的函数对应着**路径** `/` 加上 `get` **操作**。
 
-    它是一个"**路径操作装饰器**"。
+    它是一个「**路径操作装饰器**」。
 
 你也可以使用其他的操作：
 
@@ -287,11 +287,11 @@ https://example.com/items/foo
 
 ### 步骤 4：定义**路径操作函数**
 
-这是我们的"**路径操作函数**"：
+这是我们的「**路径操作函数**」：
 
 * **路径**：是 `/`。
 * **操作**：是 `get`。
-* **函数**：是位于"装饰器"下方的函数（位于 `@app.get("/")` 下方）。
+* **函数**：是位于「装饰器」下方的函数（位于 `@app.get("/")` 下方）。
 
 ```Python hl_lines="7"
 {!../../../docs_src/first_steps/tutorial001.py!}
@@ -299,13 +299,13 @@ https://example.com/items/foo
 
 这是一个 Python 函数。
 
-每当 **FastAPI** 接收一个使用 `GET` 方法访问 URL "`/`" 的请求时这个函数会被调用。
+每当 **FastAPI** 接收一个使用 `GET` 方法访问 URL「`/`」的请求时这个函数会被调用。
 
 在这个例子中，它是一个 `async` 函数。
 
 ---
 
-你也可以将其定义为常规函数而不是用 `async def`:
+你也可以将其定义为常规函数而不使用 `async def`:
 
 ```Python hl_lines="7"
 {!../../../docs_src/first_steps/tutorial003.py!}
@@ -324,12 +324,12 @@ https://example.com/items/foo
 
 你还可以返回 Pydantic 模型（稍后你将了解更多）。
 
-还有许多其他将会自动转换为 JSON 的对象和模型（包括 ORM 对象等）。尝试下使用你最喜欢的，它很有可能已经被支持。
+还有许多其他将会自动转换为 JSON 的对象和模型（包括 ORM 对象等）。尝试下使用你最喜欢的一种，它很有可能已经被支持。
 
 ## 总结
 
 * 导入 `FastAPI`。
 * 创建一个 `app` 实例。
-* 写一个**路径操作装饰器**（如 `@app.get("/")`）。
-* 写一个**路径操作函数** (如上面的 `def root(): ...`)。
-* 运行开发服务器 （如 `uvicorn main:app --reload`）。
+* 编写一个**路径操作装饰器**（如 `@app.get("/")`）。
+* 编写一个**路径操作函数**（如上面的 `def root(): ...`）。
+* 运行开发服务器（如 `uvicorn main:app --reload`）。
