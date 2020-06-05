@@ -85,7 +85,7 @@ And when you open your browser at <a href="http://127.0.0.1:8000/docs" class="ex
 
 And because the generated schema is from the <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md" class="external-link" target="_blank">OpenAPI</a> standard, there are many compatible tools.
 
-Because of this, **FastAPI** itself provides an alternative API documentation (using ReDoc), which you can be access from <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>:
+Because of this, **FastAPI** itself provides an alternative API documentation (using ReDoc), which you can be access from <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>:
 
 <img src="/img/tutorial/path-params/image02.png">
 
