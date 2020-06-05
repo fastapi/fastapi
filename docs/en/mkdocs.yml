@@ -105,6 +105,7 @@ nav:
   - advanced/settings.md
   - advanced/extending-openapi.md
   - advanced/openapi-callbacks.md
+  - advanced/openapi-full-documentation.md
   - advanced/wsgi.md
 - async.md
 - deployment.md
