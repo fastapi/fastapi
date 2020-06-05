@@ -85,7 +85,7 @@ And when you open your browser at <a href="http://127.0.0.1:8000/docs" class="ex
 
 And because the generated schema is from the <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md" class="external-link" target="_blank">OpenAPI</a> standard, there are many compatible tools.
 
-Because of this, **FastAPI** itself provides an alternative API documentation (using ReDoc):
+Because of this, **FastAPI** itself provides an alternative API documentation (using ReDoc), which you can be access from <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>:
 
 <img src="/img/tutorial/path-params/image02.png">
 
@@ -125,7 +125,7 @@ Import `Enum` and create a sub-class that inherits from `str` and from `Enum`.
 
 By inheriting from `str` the API docs will be able to know that the values must be of type `string` and will be able to render correctly.
 
-And create class attributes with fixed values, those fixed values will be the available valid values:
+And create class attributes with fixed values, which will be the available valid values:
 
 ```Python hl_lines="1 6 7 8 9"
 {!../../../docs_src/path_params/tutorial005.py!}
@@ -147,7 +147,7 @@ Then create a *path parameter* with a type annotation using the enum class you c
 
 ### Check the docs
 
-Because the available values for the *path parameter* are specified, the interactive docs can show them nicely:
+Because the available values for the *path parameter* are predefined, the interactive docs can show them nicely:
 
 <img src="/img/tutorial/path-params/image03.png">
 
@@ -183,7 +183,14 @@ They will be converted to their corresponding values before returning them to th
 ```Python hl_lines="18 20 21"
 {!../../../docs_src/path_params/tutorial005.py!}
 ```
+In your client you will get a JSON response of:
 
+```JSON
+{
+  "model_name": "alexnet",
+  "message": "Deep Learning FTW!"
+}
+```
 ## Path parameters containing paths
 
 Let's say you have a *path operation* with a path `/files/{file_path}`.
@@ -196,7 +203,7 @@ So, the URL for that file would be something like: `/files/home/johndoe/myfile.t
 
 OpenAPI doesn't support a way to declare a *path parameter* to contain a *path* inside, as that could lead to scenarios that are difficult to test and define.
 
-Nevertheless, you can still do it in **FastAPI**, using one of the internal tools from Starlette.
+Nevertheless, you can still do it in **FastAPI**, using one of the internal tools from <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a>.
 
 And the docs would still work, although not adding any documentation telling that the parameter should contain a path.
 
