@@ -2,6 +2,7 @@
 
 ## Latest changes
 
+* Update new issue templates and docs: [Help FastAPI - Get Help](https://fastapi.tiangolo.com/help-fastapi/). PR [#1531](https://github.com/tiangolo/fastapi/pull/1531).
 * Update GitHub action issue-manager. PR [#1520](https://github.com/tiangolo/fastapi/pull/1520).
 * Add new links:
     * **English articles**:
