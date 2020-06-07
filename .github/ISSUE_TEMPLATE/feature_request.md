@@ -22,6 +22,16 @@ assignees: ''
     * Or, I already hit the "watch" button in this repository to receive notifications and I commit to help at least 2 people that ask questions in the future.
     * Implement a Pull Request for a confirmed bug.
 
+<!-- 
+
+I'm asking all this because answering questions and solving problems in GitHub issues consumes a lot of time. I end up not being able to add new features, fix bugs, review Pull Requests, etc. as fast as I wish because I have to spend too much time handling issues.
+
+All that, on top of all the incredible help provided by a bunch of community members that give a lot of their time to come here and help others.
+
+That's a lot of work they are doing, but if more FastAPI users came to help others like them just a little bit more, it would be much less effort for them (and you and me 😅).
+
+-->
+
 ### Example
 
 Here's a self-contained [minimal, reproducible, example](https://stackoverflow.com/help/minimal-reproducible-example) with my use case:
