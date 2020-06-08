@@ -27,6 +27,7 @@ nav:
 - features.md
 - 教程 - 用户指南:
   - tutorial/index.md
+  - tutorial/body-multiple-params.md
 - deployment.md
 markdown_extensions:
 - toc:
