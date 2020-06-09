@@ -319,8 +319,9 @@ class Depends:
     def __repr__(self):
         attr = getattr(self.dependency, "__name__",
                        type(self.dependency).__name__)
-        return '{}(dependency={}, use_cache={})'.format(self.__class__.__name__, attr, self.use_cache)
 
+        cache = '' if self.use_cache else ',use_cache=False'
+        return '{}({}{})'.format(self.__class__.__name__, attr, cache)
 
 class Security(Depends):
     def __init__(
@@ -332,9 +333,3 @@ class Security(Depends):
     ):
         super().__init__(dependency=dependency, use_cache=use_cache)
         self.scopes = scopes or []
-
-    def __repr__(self):
-        ''' Overrides __repr__ function of superclass to include additional params'''
-        attr = getattr(self.dependency, "__name__",
-                       type(self.dependency).__name__)
-        return '{}(dependency={}, use_cache={}, scopes={})'.format(self.__class__.__name__, attr, self.use_cache, self.scopes)
