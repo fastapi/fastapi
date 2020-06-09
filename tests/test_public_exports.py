@@ -1,7 +1,6 @@
 import fastapi
 
 
-
 def test_fastapi_module_exports():
     """
     Test the publicly exported module set.

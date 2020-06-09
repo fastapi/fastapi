@@ -27,7 +27,6 @@ from .templating import Jinja2Templates
 from .testclient import TestClient
 from .websockets import WebSocket
 
-
 __all__ = [
     "status",
     "FastAPI",
