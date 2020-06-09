@@ -321,7 +321,7 @@ class Depends:
                        type(self.dependency).__name__)
 
         cache = '' if self.use_cache else ',use_cache=False'
-        return '{}({}{})'.format(self.__class__.__name__, attr, cache)
+        return f"{self.__class__.__name__}({attr}{cache})"
 
 class Security(Depends):
     def __init__(
