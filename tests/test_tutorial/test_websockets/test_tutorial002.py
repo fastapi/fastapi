@@ -75,7 +75,7 @@ def test_websocket_with_header_and_query():
 
 def test_websocket_no_credentials():
     with pytest.raises(WebSocketDisconnect):
-        client.websocket_connect("/items/2/ws")
+        client.websocket_connect("/items/2/ws", cookies={"session": None })
 
 
 def test_websocket_invalid_data():

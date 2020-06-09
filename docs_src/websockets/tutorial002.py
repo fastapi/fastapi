@@ -12,7 +12,7 @@ html = """
     <body>
         <h1>WebSocket Chat</h1>
         <form action="" onsubmit="sendMessage(event)">
-            <label>Item ID: <input type="text" id="itemId" autocomplete="off" value="foo"/></label>
+            <label>Item ID: <input type="text" id="itemId" autocomplete="off" value="1"/></label>
             <button onclick="connect(event)">Connect</button>
             <br>
             <label>Message: <input type="text" id="messageText" autocomplete="off"/></label>
@@ -46,15 +46,18 @@ html = """
 """
 
 
+
 @app.get("/")
-async def get():
-    return HTMLResponse(html)
+async def get(*, session: str = Cookie(None)):
+    response = HTMLResponse(html)
+    response.set_cookie(key="session", value="fake-cookie-session-value")
+    return response
 
 
 async def get_cookie_or_client(
     websocket: WebSocket, session: str = Cookie(None), x_client: str = Header(None)
 ):
-    if session is not None or x_client is not None:
+    if session is None and x_client is None:
         await websocket.close(code=status.WS_1008_POLICY_VIOLATION)
     return session or x_client
 
@@ -62,7 +65,7 @@ async def get_cookie_or_client(
 @app.websocket("/items/{item_id}/ws")
 async def websocket_endpoint(
     websocket: WebSocket,
-    item_id: str,
+    item_id: int,
     q: str = None,
     cookie_or_client: str = Depends(get_cookie_or_client),
 ):
