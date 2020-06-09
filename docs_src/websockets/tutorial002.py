@@ -46,7 +46,6 @@ html = """
 """
 
 
-
 @app.get("/")
 async def get(*, session: str = Cookie(None)):
     response = HTMLResponse(html)
