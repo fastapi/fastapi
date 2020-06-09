@@ -32,6 +32,7 @@ html = """
                     message.appendChild(content)
                     messages.appendChild(message)
                 };
+                event.preventDefault()
             }
             function sendMessage(event) {
                 var input = document.getElementById("messageText")
@@ -53,7 +54,7 @@ async def get():
 async def get_cookie_or_client(
     websocket: WebSocket, session: str = Cookie(None), x_client: str = Header(None)
 ):
-    if session is None and x_client is None:
+    if session is not None or x_client is not None:
         await websocket.close(code=status.WS_1008_POLICY_VIOLATION)
     return session or x_client
 
@@ -61,7 +62,7 @@ async def get_cookie_or_client(
 @app.websocket("/items/{item_id}/ws")
 async def websocket_endpoint(
     websocket: WebSocket,
-    item_id: int,
+    item_id: str,
     q: str = None,
     cookie_or_client: str = Depends(get_cookie_or_client),
 ):
