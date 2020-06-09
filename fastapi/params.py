@@ -50,8 +50,8 @@ class Param(FieldInfo):
             regex=regex,
             **extra,
         )
-
-
+    
+    
 class Path(Param):
     in_ = ParamTypes.path
 
@@ -238,8 +238,9 @@ class Body(FieldInfo):
             regex=regex,
             **extra,
         )
-
-
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}({self.default})"
+   
 class Form(Body):
     def __init__(
         self,
@@ -316,7 +317,7 @@ class Depends:
         self.dependency = dependency
         self.use_cache = use_cache
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         attr = getattr(self.dependency, "__name__",
                        type(self.dependency).__name__)
 
