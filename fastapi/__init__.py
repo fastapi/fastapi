@@ -22,7 +22,11 @@ from .param_functions import (
 from .requests import Request
 from .responses import Response
 from .routing import APIRouter
+from .staticfiles import StaticFiles
+from .templating import Jinja2Templates
+from .testclient import TestClient
 from .websockets import WebSocket
+
 
 __all__ = [
     "status",
@@ -42,5 +46,8 @@ __all__ = [
     "Request",
     "Response",
     "APIRouter",
+    "StaticFiles",
+    "Jinja2Templates",
+    "TestClient",
     "WebSocket",
 ]
