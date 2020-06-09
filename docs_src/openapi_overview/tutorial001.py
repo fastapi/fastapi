@@ -12,10 +12,15 @@ newlines and `formating`
 )
 
 
+class CustomError(BaseModel):
+    cause: str
+
+
 class Item(BaseModel):
     id: str = Field(
         title="Short title of the field",
         description="Looooooooonger description what the filed is used for etc.",
+        example="what this is",
     )
     q: int = Field(
         0,
@@ -33,7 +38,33 @@ class Item(BaseModel):
     summary="Short description shown when accordion is closed",
     tags=["Endpoint group1", "Endpoint group 2"],
     name="is only used in the operation id of the swagger spec",
+    # Response model is used as 200 response
     response_model=Item,
+    responses={
+        201: {
+            "description": "Custom description of the status code",
+            "content": {
+                "application/json": {
+                    "example": {
+                        "my_field_1": "my_value_1",
+                        "my_field_2": "my_value_2",
+                        "my_field_3": [
+                            {"more_json_contents": 0.9842327805523402, "lang": "fra"}
+                        ],
+                    }
+                }
+            },
+        },
+        401: {
+            "description": "Access denied",
+            "content": {
+                "application/json": {
+                    "example": {"details": "User X does not have permission Y"}
+                }
+            },
+        },
+        500: {"model": CustomError},
+    },
 )
 async def read_items(
     *,
@@ -44,6 +75,7 @@ async def read_items(
         description="numeric comparators are also rendered in swagger",
         title="used for links and redoc",
         ge=0,
+        example=42,
     )
 ):
     """
