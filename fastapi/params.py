@@ -316,6 +316,11 @@ class Depends:
         self.dependency = dependency
         self.use_cache = use_cache
 
+    def __repr__(self):
+        attr = getattr(self.dependency, "__name__",
+                       type(self.dependency).__name__)
+        return '{}({}, use_cache={})'.format(self.__class__.__name__, attr, self.use_cache)
+
 
 class Security(Depends):
     def __init__(
