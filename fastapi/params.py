@@ -51,7 +51,6 @@ class Param(FieldInfo):
             **extra,
         )
     
-    
 class Path(Param):
     in_ = ParamTypes.path
 
