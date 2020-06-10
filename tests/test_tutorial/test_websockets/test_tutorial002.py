@@ -10,6 +10,9 @@ def test_main():
     response = client.get("/")
     assert response.status_code == 200, response.text
     assert b"<!DOCTYPE html>" in response.content
+    assert response.cookies["session"] == "fake-cookie-session-value"
+    # need to clean cookies, because we have to test headers later.
+    del client.cookies["session"]
 
 
 def test_websocket_with_cookie():
@@ -63,6 +66,7 @@ def test_websocket_with_header_and_query():
             assert data == "Query parameter q is: baz"
             data = websocket.receive_text()
             assert data == f"Message text was: {message}, for item ID: 2"
+            print("here")
             message = "Message two"
             websocket.send_text(message)
             data = websocket.receive_text()
@@ -71,11 +75,12 @@ def test_websocket_with_header_and_query():
             assert data == "Query parameter q is: baz"
             data = websocket.receive_text()
             assert data == f"Message text was: {message}, for item ID: 2"
+            assert True == False
 
 
 def test_websocket_no_credentials():
     with pytest.raises(WebSocketDisconnect):
-        client.websocket_connect("/items/2/ws", cookies={"session": None})
+        client.websocket_connect("/items/2/ws")
 
 
 def test_websocket_invalid_data():
