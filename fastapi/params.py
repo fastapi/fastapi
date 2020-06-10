@@ -14,6 +14,9 @@ class ParamTypes(Enum):
     path = "path"
     cookie = "cookie"
 
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}({self.name})"
+
 
 class Param(FieldInfo):
     in_: ParamTypes
@@ -50,6 +53,9 @@ class Param(FieldInfo):
             regex=regex,
             **extra,
         )
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}({self.default})"
 
 
 class Path(Param):
