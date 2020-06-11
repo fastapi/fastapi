@@ -4,6 +4,10 @@ You can define event handlers (functions) that need to be executed before the ap
 
 These functions can be declared with `async def` or normal `def`.
 
+!!! warning
+    If `app` is an instance of `FastAPI` then
+    sub-applications registered with `app.mount` do not fire these events.
+
 ## `startup` event
 
 To add a function that should be run before the application starts, declare it with the event `"startup"`:
