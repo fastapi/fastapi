@@ -112,7 +112,7 @@ class SchemaBase(BaseModel):
     allOf: Optional[List[Any]] = None
     oneOf: Optional[List[Any]] = None
     anyOf: Optional[List[Any]] = None
-    not_: Optional[List[Any]] = Field(None, alias="not")
+    not_: Optional[Any] = Field(None, alias="not")
     items: Optional[Any] = None
     properties: Optional[Dict[str, Any]] = None
     additionalProperties: Optional[Union[Dict[str, Any], bool]] = None
@@ -133,7 +133,7 @@ class Schema(SchemaBase):
     allOf: Optional[List[SchemaBase]] = None
     oneOf: Optional[List[SchemaBase]] = None
     anyOf: Optional[List[SchemaBase]] = None
-    not_: Optional[List[SchemaBase]] = Field(None, alias="not")
+    not_: Optional[SchemaBase] = Field(None, alias="not")
     items: Optional[SchemaBase] = None
     properties: Optional[Dict[str, SchemaBase]] = None
     additionalProperties: Optional[Union[Dict[str, Any], bool]] = None
