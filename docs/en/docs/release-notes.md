@@ -2,6 +2,8 @@
 
 ## Latest changes
 
+## 0.56.0
+
 * Add support for ASGI `root_path`:
     * Use `root_path` internally for mounted applications, so that OpenAPI and the docs UI works automatically without extra configurations and parameters.
     * Add new `root_path` parameter for `FastAPI` applications to provide it in cases where it can be set with the command line (e.g. for Uvicorn and Hypercorn, with the parameter `--root-path`).
