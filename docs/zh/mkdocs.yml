@@ -32,6 +32,7 @@ nav:
   - tutorial/first-steps.md
   - tutorial/path-params.md
 - deployment.md
+- contributing.md
 markdown_extensions:
 - toc:
     permalink: true
