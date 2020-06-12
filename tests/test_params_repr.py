@@ -1,45 +1,46 @@
 import pytest
-from fastapi import FastAPI
-from fastapi.params import Body, Depends, Param, ParamTypes
+from fastapi.params import Body, Cookie, Depends, Header, Param, Path, Query
+
+test_data = ["teststr", None, ..., 1, []]
 
 
-@pytest.fixture(scope="class")
-def depends():
-    return Depends()
+def get_user():
+    return {}  # pragma: no cover
 
 
-@pytest.fixture(scope="class")
-def depends_args():
-    return Depends(False, use_cache=False)
+@pytest.fixture(scope="function", params=test_data)
+def params(request):
+    return request.param
 
 
-@pytest.fixture(scope="class")
-def body():
-    return Body(1)
+def test_param_repr(params):
+    assert repr(Param(params)) == "Param(" + str(params) + ")"
 
 
-@pytest.fixture(scope="class")
-def param():
-    return Param(1)
+def test_path_repr(params):
+    assert repr(Path(params)) == "Path(Ellipsis)"
 
 
-@pytest.fixture(scope="class", params=["query", "header", "path", "cookie"])
-def param_type(request):
-    return ParamTypes(request.param), request.param
+def test_query_repr(params):
+    assert repr(Query(params)) == "Query(" + str(params) + ")"
 
 
-class TestParams:
-    def test_depends_repr_empty(self, depends):
-        assert repr(depends) == "Depends(NoneType)"
+def test_header_repr(params):
+    assert repr(Header(params)) == "Header(" + str(params) + ")"
 
-    def test_depends_repr_args(self, depends_args):
-        assert repr(depends_args) == "Depends(bool, use_cache=False)"
 
-    def test_body_repr(self, body):
-        assert repr(body) == "Body(1)"
+def test_cookie_repr(params):
+    assert repr(Cookie(params)) == "Cookie(" + str(params) + ")"
 
-    def test_param_repr(self, param):
-        assert repr(param) == "Param(1)"
 
-    def test_paramtype_repr(self, param_type):
-        assert repr(param_type[0]) == "ParamTypes(" + param_type[1] + ")"
+def test_body_repr(params):
+    assert repr(Body(params)) == "Body(" + str(params) + ")"
+
+
+def test_depends_repr():
+    assert repr(Depends()) == "Depends(NoneType)"
+    assert repr(Depends(get_user)) == "Depends(get_user)"
+    assert repr(Depends(use_cache=False)) == "Depends(NoneType, use_cache=False)"
+    assert (
+        repr(Depends(get_user, use_cache=False)) == "Depends(get_user, use_cache=False)"
+    )
