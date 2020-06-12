@@ -34,6 +34,7 @@ nav:
   - tutorial/query-params.md
 - deployment.md
 - contributing.md
+- help-fastapi.md
 markdown_extensions:
 - toc:
     permalink: true
