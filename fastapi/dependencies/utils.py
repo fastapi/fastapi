@@ -294,7 +294,7 @@ def get_dependant(
         if param_name in path_param_names:
             assert is_scalar_field(
                 field=param_field
-            ), f"Path params must be of one of the supported types"
+            ), "Path params must be of one of the supported types"
             if isinstance(param.default, params.Path):
                 ignore_default = False
             else:
