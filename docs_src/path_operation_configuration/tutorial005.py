@@ -20,7 +20,7 @@ class Item(BaseModel):
     summary="Create an item",
     response_description="The created item",
 )
-async def create_item(*, item: Item):
+async def create_item(item: Item):
     """
     Create an item with all the information:
 

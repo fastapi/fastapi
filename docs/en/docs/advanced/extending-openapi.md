@@ -52,15 +52,22 @@ First, write all your **FastAPI** application as normally:
 
 Then, use the same utility function to generate the OpenAPI schema, inside a `custom_openapi()` function:
 
-```Python hl_lines="2 15 16 17 18 19 20"
+```Python hl_lines="2  15 16 17 18 19 20 21"
 {!../../../docs_src/extending_openapi/tutorial001.py!}
 ```
+
+!!! tip
+    The `openapi_prefix` will contain any prefix needed for the generated OpenAPI *path operations*.
+
+    FastAPI will automatically use the `root_path` to pass it in the `openapi_prefix`.
+
+    But the important thing is that your function should receive that parameter `openapi_prefix` and pass it along.
 
 ### Modify the OpenAPI schema
 
 Now you can add the ReDoc extension, adding a custom `x-logo` to the `info` "object" in the OpenAPI schema:
 
-```Python hl_lines="21 22 23"
+```Python hl_lines="22 23 24"
 {!../../../docs_src/extending_openapi/tutorial001.py!}
 ```
 
@@ -72,7 +79,7 @@ That way, your application won't have to generate the schema every time a user o
 
 It will be generated only once, and then the same cached schema will be used for the next requests.
 
-```Python hl_lines="13 14 24 25"
+```Python hl_lines="13 14  25 26"
 {!../../../docs_src/extending_openapi/tutorial001.py!}
 ```
 
@@ -80,7 +87,7 @@ It will be generated only once, and then the same cached schema will be used for
 
 Now you can replace the `.openapi()` method with your new function.
 
-```Python hl_lines="28"
+```Python hl_lines="29"
 {!../../../docs_src/extending_openapi/tutorial001.py!}
 ```
 

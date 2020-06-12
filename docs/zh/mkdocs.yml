@@ -22,12 +22,18 @@ nav:
 - Languages:
   - en: /
   - es: /es/
+  - it: /it/
   - pt: /pt/
   - zh: /zh/
 - features.md
+- python-types.md
 - 教程 - 用户指南:
   - tutorial/index.md
+  - tutorial/first-steps.md
+  - tutorial/path-params.md
+  - tutorial/query-params.md
 - deployment.md
+- contributing.md
 - help-fastapi.md
 markdown_extensions:
 - toc:

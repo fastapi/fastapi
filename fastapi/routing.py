@@ -179,7 +179,6 @@ def get_request_handler(
                     if body_bytes:
                         body = await request.json()
         except Exception as e:
-            logger.error(f"Error getting request body: {e}")
             raise HTTPException(
                 status_code=400, detail="There was an error parsing the body"
             ) from e
