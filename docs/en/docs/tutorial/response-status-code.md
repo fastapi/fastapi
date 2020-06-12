@@ -83,4 +83,4 @@ They are just a convenience, they hold the same number, but that way you can use
 
 ## Changing the default
 
-Later, in the **Advanced User Guide**, you will see how to return a different status code than the default you are declaring here.
+Later, in the [Advanced User Guide](../advanced/response-change-status-code.md){.internal-link target=_blank}, you will see how to return a different status code than the default you are declaring here.
