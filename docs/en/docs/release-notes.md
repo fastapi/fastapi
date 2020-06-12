@@ -2,6 +2,8 @@
 
 ## Latest changes
 
+* Start translations for Italian. PR [#1557](https://github.com/tiangolo/fastapi/pull/1557) by [@csr](https://github.com/csr).
+
 ## 0.56.0
 
 * Add support for ASGI `root_path`:
