@@ -30,6 +30,7 @@ nav:
 - 教程 - 用户指南:
   - tutorial/index.md
   - tutorial/first-steps.md
+  - tutorial/path-params.md
 - deployment.md
 markdown_extensions:
 - toc:
