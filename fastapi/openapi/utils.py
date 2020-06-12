@@ -225,9 +225,19 @@ def get_openapi_path(
                         status_code_key = "default"
                     operation.setdefault("responses", {})[status_code_key] = response
             status_code = str(route.status_code)
+            description = route.response_description
+            try:
+                success = operation["responses"][status_code]
+            except KeyError:
+                pass
+            else:
+                success_desc = success["description"]
+                if not success_desc == "OK":
+                    description = success_desc
+
             operation.setdefault("responses", {}).setdefault(status_code, {})[
                 "description"
-            ] = route.response_description
+            ] = description
             if (
                 route_response_media_type
                 and route.status_code not in STATUS_CODES_WITH_NO_BODY

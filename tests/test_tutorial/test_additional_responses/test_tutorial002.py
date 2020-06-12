@@ -15,7 +15,7 @@ openapi_schema = {
             "get": {
                 "responses": {
                     "200": {
-                        "description": "Successful Response",
+                        "description": "Return the JSON item or an image.",
                         "content": {
                             "image/png": {},
                             "application/json": {
