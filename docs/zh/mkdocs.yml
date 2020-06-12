@@ -31,6 +31,7 @@ nav:
   - tutorial/index.md
   - tutorial/first-steps.md
   - tutorial/path-params.md
+  - tutorial/query-params.md
 - deployment.md
 - contributing.md
 markdown_extensions:
