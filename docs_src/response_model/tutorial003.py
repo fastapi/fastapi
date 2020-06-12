@@ -18,5 +18,5 @@ class UserOut(BaseModel):
 
 
 @app.post("/user/", response_model=UserOut)
-async def create_user(*, user: UserIn):
+async def create_user(user: UserIn):
     return user

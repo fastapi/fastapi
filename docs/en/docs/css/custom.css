@@ -11,3 +11,8 @@ a.internal-link::after {
     */
     content: "\00A0↪";
 }
+
+/* Give space to lower icons so Gitter chat doesn't get on top of them */
+.md-footer-meta {
+    padding-bottom: 2em;
+}
