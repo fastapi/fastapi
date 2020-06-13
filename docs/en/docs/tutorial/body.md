@@ -108,7 +108,16 @@ But you would get the same editor support with <a href="https://www.jetbrains.co
 
 <img src="/img/tutorial/body/image05.png">
 
-In PyCharm, There is <a href="https://github.com/koxudaxi/pydantic-pycharm-plugin/" class="external-link" target="_blank">Pydantic PyCharm Plugin</a>. It improves features that are auto-completion, type-checking, refactoring, searching, inspections for Pydantic.
+!!! tip
+    If you use <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a> as your editor, you can use the <a href="https://github.com/koxudaxi/pydantic-pycharm-plugin/" class="external-link" target="_blank">Pydantic PyCharm Plugin</a>.
+
+    It improves editor support for Pydantic models, with:
+    
+    * auto-completion
+    * type checks
+    * refactoring
+    * searching
+    * inspections
 
 ## Use the model
 
