@@ -39,7 +39,7 @@ You can then use `Field` with model attributes:
 
 You can declare extra information in `Field`, `Query`, `Body`, etc. And it will be included in the generated JSON Schema.
 
-You will learn more about it later to declare examples examples.
+You will learn more about adding extra information later in the docs, when learning to declare examples.
 
 ## Recap
 

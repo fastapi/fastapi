@@ -179,7 +179,6 @@ def get_request_handler(
                     if body_bytes:
                         body = await request.json()
         except Exception as e:
-            logger.error(f"Error getting request body: {e}")
             raise HTTPException(
                 status_code=400, detail="There was an error parsing the body"
             ) from e
@@ -366,7 +365,7 @@ class APIRoute(routing.Route):
         self.include_in_schema = include_in_schema
         self.response_class = response_class
 
-        assert callable(endpoint), f"An endpoint must be a callable"
+        assert callable(endpoint), "An endpoint must be a callable"
         self.dependant = get_dependant(path=self.path_format, call=self.endpoint)
         for depends in self.dependencies[::-1]:
             self.dependant.dependencies.insert(

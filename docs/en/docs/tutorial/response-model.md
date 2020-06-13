@@ -52,7 +52,7 @@ In this case, it might not be a problem, because the user himself is sending the
 But if we use the same model for another *path operation*, we could be sending our user's passwords to every client.
 
 !!! danger
-    Never send the plain password of a user in a response.
+    Never store the plain password of a user or send it in a response.
 
 ## Add an output model
 
