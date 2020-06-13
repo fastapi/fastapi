@@ -71,13 +71,13 @@ You will see the alternative automatic documentation (provided by <a href="https
 
 #### "Schema"
 
-A "schema" is a definition or description of something. Not the code that implements it, but just an abstract.
+A "schema" is a definition or description of something. Not the code that implements it, but just an abstract description.
 
 #### API "schema"
 
-In this case, <a href="https://swagger.io/specification/" class="external-link" target="_blank">OpenAPI</a> is a specification that dictates how to define a schema of your API.
+In this case, <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> is a specification that dictates how to define a schema of your API.
 
-The schema definition includes your API paths, the possible parameters they take, etc.
+This schema definition includes your API paths, the possible parameters they take, etc.
 
 #### Data "schema"
 
@@ -281,7 +281,7 @@ And the more exotic ones:
 
     The information here is presented as a guideline, not a requirement.
 
-    For example, when using GraphQL you normally perform all the actions using only `POST` operation.
+    For example, when using GraphQL you normally perform all the actions using only `POST` operations.
 
 ### Step 4: define the **path operation function**
 
@@ -297,7 +297,7 @@ This is our "**path operation function**":
 
 This is a Python function.
 
-It will be called by **FastAPI** whenever it receives a request to the URL "`/`" using `GET` operation.
+It will be called by **FastAPI** whenever it receives a request to the URL "`/`" using a `GET` operation.
 
 In this case, it is an `async` function.
 
