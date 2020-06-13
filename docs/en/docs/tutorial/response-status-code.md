@@ -15,7 +15,10 @@ The same way you can specify a response model, you can also declare the HTTP sta
 !!! note
     Notice that `status_code` is a parameter of the "decorator" method (`get`, `post`, etc). Not of your *path operation function*, like all the parameters and body.
 
-The `status_code` parameter receives a number with the HTTP status code, (or an IntEnum, such as [`http.HTTPStatus`](https://docs.python.org/3/library/http.html#http.HTTPStatus))
+The `status_code` parameter receives a number with the HTTP status code.
+
+!!! info
+    `status_code` can alternatively also receive an `IntEnum`, such as Python's <a href="https://docs.python.org/3/library/http.html#http.HTTPStatus" class="external-link" target="_blank">`http.HTTPStatus`</a>.
 
 It will:
 
