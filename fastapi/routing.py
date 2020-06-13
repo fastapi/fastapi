@@ -12,7 +12,6 @@ from fastapi.dependencies.utils import (
 )
 from fastapi.encoders import DictIntStrAny, SetIntStr, jsonable_encoder
 from fastapi.exceptions import RequestValidationError, WebSocketRequestValidationError
-from fastapi.logger import logger
 from fastapi.openapi.constants import STATUS_CODES_WITH_NO_BODY
 from fastapi.utils import (
     PYDANTIC_1,

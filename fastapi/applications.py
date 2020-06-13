@@ -105,7 +105,7 @@ class FastAPI(Starlette):
                 description=self.description,
                 routes=self.routes,
                 openapi_prefix=openapi_prefix,
-              tags=self.openapi_tags,
+                tags=self.openapi_tags,
             )
         return self.openapi_schema
 
