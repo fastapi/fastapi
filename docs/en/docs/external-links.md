@@ -104,12 +104,6 @@ Here's an incomplete list of some of them.
 
 * <a href="https://qiita.com/bee2/items/75d9c0d7ba20e7a4a0e9" class="external-link" target="_blank">[FastAPI] Python製のASGI Web フレームワーク FastAPIに入門する</a> by <a href="https://qiita.com/bee2" class="external-link" target="_blank">@bee2</a>.
 
-### Chinese
-
-* <a href="https://cloud.tencent.com/developer/article/1431448" class="external-link" target="_blank">使用FastAPI框架快速构建高性能的api服务</a> by <a href="https://cloud.tencent.com/developer/user/5471722" class="external-link" target="_blank">逍遥散人</a>.
-
-* <a href="https://wxq0309.github.io/" class="external-link" target="_blank">FastAPI框架中文文档</a> by <a href="https://wxq0309.github.io/" class="external-link" target="_blank">何大仙</a>.
-
 ### Vietnamese
 
 * <a href="https://fullstackstation.com/fastapi-trien-khai-bang-docker/" class="external-link" target="_blank">FASTAPI: TRIỂN KHAI BẰNG DOCKER</a> by <a href="https://fullstackstation.com/author/figonking/" class="external-link" target="_blank">Nguyễn Nhân</a>.
