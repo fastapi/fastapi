@@ -86,7 +86,6 @@ class FastAPI(Starlette):
 
         if self.docs_url or self.redoc_url:
             assert self.openapi_url, "The openapi_url is required for the docs"
-
         self.openapi_schema: Optional[Dict[str, Any]] = None
         self.setup()
 
