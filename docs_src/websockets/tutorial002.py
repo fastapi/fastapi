@@ -1,4 +1,4 @@
-from fastapi import Cookie, Depends, FastAPI, WebSocket, status, Query
+from fastapi import Cookie, Depends, FastAPI, Query, WebSocket, status
 from fastapi.responses import HTMLResponse
 
 app = FastAPI()
@@ -65,7 +65,7 @@ async def get_cookie_or_token(
 async def websocket_endpoint(
     websocket: WebSocket,
     item_id: str,
-    q: str = None,
+    q: int = None,
     cookie_or_token: str = Depends(get_cookie_or_token),
 ):
     await websocket.accept()
