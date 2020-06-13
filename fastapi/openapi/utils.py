@@ -317,12 +317,13 @@ def get_openapi(
     openapi_version: str = "3.0.2",
     description: str = None,
     routes: Sequence[BaseRoute],
-    openapi_prefix: str = ""
+    openapi_prefix: str = "",
+    tags: Optional[List[Dict[str, Any]]] = None
 ) -> Dict:
     info = {"title": title, "version": version}
     if description:
         info["description"] = description
-    output = {"openapi": openapi_version, "info": info}
+    output: Dict[str, Any] = {"openapi": openapi_version, "info": info}
     components: Dict[str, Dict] = {}
     paths: Dict[str, Dict] = {}
     flat_models = get_flat_models_from_routes(routes)
@@ -352,4 +353,6 @@ def get_openapi(
     if components:
         output["components"] = components
     output["paths"] = paths
+    if tags:
+        output["tags"] = tags
     return jsonable_encoder(OpenAPI(**output), by_alias=True, exclude_none=True)

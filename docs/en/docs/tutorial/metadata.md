@@ -21,6 +21,58 @@ With this configuration, the automatic API docs would look like:
 
 <img src="/img/tutorial/metadata/image01.png">
 
+## Tag descriptions
+
+You can also add additional metadata for the different tags used to group your path operations with the parameter `openapi_tags`.
+
+It takes a list containing one dictionary for each tag.
+
+Each dictionary can contain:
+
+* `name` (**required**): a `str` with the same tag name you use in the `tags` parameter in your *path operations* and `APIRouter`s.
+* `description`: a `str` with a short description for the tag. It can have Markdown and will be shown in the docs UI.
+* `externalDocs`: a `dict` describing external documentation with:
+    * `description`: a `str` with a short description for the external docs.
+    * `url` (**required**): a `str` with the URL for the external documentation.
+
+### Create metadata for tags
+
+Let's try that in an example with tags for `users` and `items`.
+
+Create metadata for your tags and pass it to the `openapi_tags` parameter:
+
+```Python hl_lines="3 4 5 6 7 8 9 10 11 12 13 14 15 16  18"
+{!../../../docs_src/metadata/tutorial004.py!}
+```
+
+Notice that you can use Markdown inside of the descriptions, for example "login" will be shown in bold (**login**) and "fancy" will be shown in italics (_fancy_).
+
+!!! tip
+    You don't have to add metadata for all the tags that you use.
+
+### Use your tags
+
+Use the `tags` parameter with your *path operations* (and `APIRouter`s) to assign them to different tags:
+
+```Python hl_lines="21  26"
+{!../../../docs_src/metadata/tutorial004.py!}
+```
+
+!!! info
+    Read more about tags in [Path Operation Configuration](../path-operation-configuration/#tags){.internal-link target=_blank}.
+
+### Check the docs
+
+Now, if you check the docs, they will show all the additional metadata:
+
+<img src="/img/tutorial/metadata/image02.png">
+
+### Order of tags
+
+The order of each tag metadata dictionary also defines the order shown in the docs UI.
+
+For example, even though `users` would go after `items` in alphabetical order, it is shown before them, because we added their metadata as the first dictionary in the list.
+
 ## OpenAPI URL
 
 By default, the OpenAPI schema is served at `/openapi.json`.
