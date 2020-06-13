@@ -21,7 +21,7 @@ With this configuration, the automatic API docs would look like:
 
 <img src="/img/tutorial/metadata/image01.png">
 
-## Tag descriptions
+## Metadata for tags
 
 You can also add additional metadata for the different tags used to group your path operations with the parameter `openapi_tags`.
 
