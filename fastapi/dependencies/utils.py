@@ -514,13 +514,9 @@ async def solve_dependencies(
             sub_values,
             sub_errors,
             background_tasks,
-            sub_response,
+            _,  # the subdependency returns the same response we have
             sub_dependency_cache,
         ) = solved_result
-        sub_response = cast(Response, sub_response)
-        response.headers.raw.extend(sub_response.headers.raw)
-        if sub_response.status_code:
-            response.status_code = sub_response.status_code
         dependency_cache.update(sub_dependency_cache)
         if sub_errors:
             errors.extend(sub_errors)
