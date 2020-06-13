@@ -1,25 +1,28 @@
 from fastapi import FastAPI
 
-tag_description = [
-    {"name": "foo", "description": "This is the description for tag FOO"},
+tags_metadata = [
     {
-        "name": "bar",
-        "description": "This is the description for tag BAR",
+        "name": "users",
+        "description": "Operations with users. The **login** logic is also here.",
+    },
+    {
+        "name": "items",
+        "description": "Manage items. So _fancy_ they have their own docs.",
         "externalDocs": {
-            "description": "External documentation",
+            "description": "Items external docs",
             "url": "https://fastapi.tiangolo.com/",
         },
     },
 ]
 
-app = FastAPI(openapi_tags=tag_description)
+app = FastAPI(openapi_tags=tags_metadata)
 
 
-@app.get("/foo", tags=["foo"])
-async def get_foo():
-    return {"id": "foo"}
+@app.get("/users/", tags=["users"])
+async def get_users():
+    return [{"name": "Harry"}, {"name": "Ron"}]
 
 
-@app.get("/bar", tags=["bar"])
-async def get_bar():
-    return {"id": "bar"}
+@app.get("/items/", tags=["items"])
+async def get_items():
+    return [{"name": "wand"}, {"name": "flying broom"}]
