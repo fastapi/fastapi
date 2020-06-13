@@ -10,79 +10,67 @@ def test_main():
     response = client.get("/")
     assert response.status_code == 200, response.text
     assert b"<!DOCTYPE html>" in response.content
-    assert response.cookies["session"] == "fake-cookie-session-value"
-    # need to clean cookies, because we have to test headers later.
-    del client.cookies["session"]
 
 
 def test_websocket_with_cookie():
     with pytest.raises(WebSocketDisconnect):
         with client.websocket_connect(
-            "/items/1/ws", cookies={"session": "fakesession"}
+            "/items/foo/ws", cookies={"session": "fakesession"}
         ) as websocket:
             message = "Message one"
             websocket.send_text(message)
             data = websocket.receive_text()
-            assert data == "Session Cookie or X-Client Header value is: fakesession"
+            assert data == "Session cookie or query token value is: fakesession"
             data = websocket.receive_text()
-            assert data == f"Message text was: {message}, for item ID: 1"
+            assert data == f"Message text was: {message}, for item ID: foo"
             message = "Message two"
             websocket.send_text(message)
             data = websocket.receive_text()
-            assert data == "Session Cookie or X-Client Header value is: fakesession"
+            assert data == "Session cookie or query token value is: fakesession"
             data = websocket.receive_text()
-            assert data == f"Message text was: {message}, for item ID: 1"
+            assert data == f"Message text was: {message}, for item ID: foo"
 
 
 def test_websocket_with_header():
     with pytest.raises(WebSocketDisconnect):
-        with client.websocket_connect(
-            "/items/2/ws", headers={"X-Client": "xmen"}
-        ) as websocket:
+        with client.websocket_connect("/items/bar/ws?token=some-token") as websocket:
             message = "Message one"
             websocket.send_text(message)
             data = websocket.receive_text()
-            assert data == "Session Cookie or X-Client Header value is: xmen"
+            assert data == "Session cookie or query token value is: some-token"
             data = websocket.receive_text()
-            assert data == f"Message text was: {message}, for item ID: 2"
+            assert data == f"Message text was: {message}, for item ID: bar"
             message = "Message two"
             websocket.send_text(message)
             data = websocket.receive_text()
-            assert data == "Session Cookie or X-Client Header value is: xmen"
+            assert data == "Session cookie or query token value is: some-token"
             data = websocket.receive_text()
-            assert data == f"Message text was: {message}, for item ID: 2"
+            assert data == f"Message text was: {message}, for item ID: bar"
 
 
 def test_websocket_with_header_and_query():
     with pytest.raises(WebSocketDisconnect):
         with client.websocket_connect(
-            "/items/2/ws?q=baz", headers={"X-Client": "xmen"}
+            "/items/2/ws?q=baz&token=some-token"
         ) as websocket:
             message = "Message one"
             websocket.send_text(message)
             data = websocket.receive_text()
-            assert data == "Session Cookie or X-Client Header value is: xmen"
+            assert data == "Session cookie or query token value is: some-token"
             data = websocket.receive_text()
             assert data == "Query parameter q is: baz"
             data = websocket.receive_text()
             assert data == f"Message text was: {message}, for item ID: 2"
-            print("here")
             message = "Message two"
             websocket.send_text(message)
             data = websocket.receive_text()
-            assert data == "Session Cookie or X-Client Header value is: xmen"
+            assert data == "Session cookie or query token value is: some-tokens"
             data = websocket.receive_text()
             assert data == "Query parameter q is: baz"
             data = websocket.receive_text()
             assert data == f"Message text was: {message}, for item ID: 2"
-            assert True == False
 
 
 def test_websocket_no_credentials():
     with pytest.raises(WebSocketDisconnect):
-        client.websocket_connect("/items/2/ws")
-
-
-def test_websocket_invalid_data():
-    with pytest.raises(WebSocketDisconnect):
-        client.websocket_connect("/items/foo/ws", headers={"X-Client": "xmen"})
+        client.websocket_connect("/items/foo/ws")
