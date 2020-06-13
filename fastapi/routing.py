@@ -1,4 +1,5 @@
 import asyncio
+import enum
 import inspect
 import json
 from typing import Any, Callable, Dict, List, Optional, Sequence, Set, Type, Union
@@ -296,6 +297,9 @@ class APIRoute(routing.Route):
         dependency_overrides_provider: Any = None,
         callbacks: Optional[List["APIRoute"]] = None,
     ) -> None:
+        # normalise enums e.g. http.HTTPStatus
+        if isinstance(status_code, enum.IntEnum):
+            status_code = int(status_code)
         self.path = path
         self.endpoint = endpoint
         self.name = get_name(endpoint) if name is None else name
