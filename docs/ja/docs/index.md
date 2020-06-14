@@ -392,20 +392,20 @@ item: Item
 
 より多くの機能を含む、より完全な例については、<a href="https://fastapi.tiangolo.com/tutorial/">チュートリアル - ユーザーガイド</a>をご覧ください。
 
-**Spoiler alert**: チュートリアル - ユーザーガイドは以下の情報が含まれています:
+**ネタバレ注意**: チュートリアル - ユーザーガイドは以下の情報が含まれています:
 
-- Declaration of **parameters** from other different places as: **headers**, **cookies**, **form fields** and **files**.
-- How to set **validation constraints** as `maximum_length` or `regex`.
-- A very powerful and easy to use **<abbr title="also known as components, resources, providers, services, injectables">Dependency Injection</abbr>** system.
-- Security and authentication, including support for **OAuth2** with **JWT tokens** and **HTTP Basic** auth.
-- More advanced (but equally easy) techniques for declaring **deeply nested JSON models** (thanks to Pydantic).
+- **ヘッダー**、**クッキー**、**フォームフィールド**、**ファイル**などの他の場所からの **パラメータ** 宣言。
+- `maximum_length`や`regex`のような**検証や制約**を設定する方法。
+- 非常に強力で使いやすい依存性 <abbr title="also known as components, resources, providers, services, injectables">**インジェクション**</abbr>システム。
+- **JWT トークン**と **HTTP Basic認証** による **OAuth2** のサポートを含む、セキュリティと認証。
+- **深くネストされたJSONモデル**を宣言するためのより高度な（しかし同様に簡単な）技術（Pydanticのおかげです）。
 - 以下のようなたくさんのおまけ機能(Starlette のおかげです):
   - **WebSockets**
   - **GraphQL**
-  - extremely easy tests based on `requests` and `pytest`
+  - `requests` や `pytest`をもとにした極限に簡単なテスト
   - **CORS**
-  - **Cookie Sessions**
-  - ...and more.
+  - **クッキーセッション**
+  - ...などなど。
 
 ## パフォーマンス
 
