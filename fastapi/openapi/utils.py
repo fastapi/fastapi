@@ -314,12 +314,12 @@ def get_openapi(
     *,
     title: str,
     version: str,
-    servers: Optional[List[Dict[str, Union[str, Any]]]] = None,
     openapi_version: str = "3.0.2",
     description: str = None,
     routes: Sequence[BaseRoute],
     openapi_prefix: str = "",
-    tags: Optional[List[Dict[str, Any]]] = None
+    tags: Optional[List[Dict[str, Any]]] = None,
+    servers: Optional[List[Dict[str, Union[str, Any]]]] = None,
 ) -> Dict:
     info = {"title": title, "version": version}
     if description:
