@@ -75,7 +75,7 @@ FastAPI は、モダンで、速い(高いパフォーマンスな)、標準の 
 
 ---
 
-"_REST API を構築するための**モダンなフレームワーク**を学びたい方は、\*\*FastAPI＊＊をチェックしてみてください。 [...] 高速で, 使用、習得が簡単です。[...]_"
+"_REST API を構築するための**モダンなフレームワーク**を学びたい方は、**FastAPI** [...] をチェックしてみてください。 [...] 高速で, 使用、習得が簡単です。[...]_"
 
 "_私たちの**API**は**FastAPI**に切り替えました。[...] きっと気に入ると思います。 [...]_"
 
@@ -347,8 +347,8 @@ item: Item
 
 コード例に戻りましょう、**FastAPI** は次のようになります:
 
-- GET`および`PUT`リクエストのパスに`item_id` があることを検証します。
-- item_id`が`GET`および`PUT`リクエストに対して`int` 型であることを検証します。
+- `GET`および`PUT`リクエストのパスに`item_id` があることを検証します。
+- `item_id`が`GET`および`PUT`リクエストに対して`int` 型であることを検証します。
   - そうでない場合は、クライアントは有用で明確なエラーが表示されます。
 - `GET` リクエストに対してオプションのクエリパラメータ `q` (`http://127.0.0.1:8000/items/foo?q=somequery` のように) が存在するかどうかを調べます。
   - パラメータ `q` は `= None` で宣言されているので、オプションです。
@@ -407,7 +407,7 @@ item: Item
   - **Cookie Sessions**
   - ...and more.
 
-## Performance
+## パフォーマンス
 
 独立した TechEmpower のベンチマークでは、Uvicorn で動作する**FastAPI**アプリケーションのうち、<a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">Starlette と Ubicorn の下でのみ利用可能な Python フレームワークの中で最も高速なものの 1 つ</a>であることが示されており、Starlette と Uvicorn 自身の下にのみ（FastAPI で内部的に使用されています）(\*)
 
