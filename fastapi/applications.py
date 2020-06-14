@@ -38,6 +38,7 @@ class FastAPI(Starlette):
         version: str = "0.1.0",
         openapi_url: Optional[str] = "/openapi.json",
         openapi_tags: Optional[List[Dict[str, Any]]] = None,
+        servers: Optional[List[Dict[str, Union[str, Any]]]] = None,
         default_response_class: Type[Response] = JSONResponse,
         docs_url: Optional[str] = "/docs",
         redoc_url: Optional[str] = "/redoc",
@@ -70,6 +71,7 @@ class FastAPI(Starlette):
         self.title = title
         self.description = description
         self.version = version
+        self.servers = servers
         self.openapi_url = openapi_url
         self.openapi_tags = openapi_tags
         # TODO: remove when discarding the openapi_prefix parameter
@@ -106,6 +108,7 @@ class FastAPI(Starlette):
                 routes=self.routes,
                 openapi_prefix=openapi_prefix,
                 tags=self.openapi_tags,
+                servers=self.servers,
             )
         return self.openapi_schema
 

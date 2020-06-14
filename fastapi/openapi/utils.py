@@ -86,7 +86,7 @@ def get_openapi_security_definitions(flat_dependant: Dependant) -> Tuple[Dict, L
 def get_openapi_operation_parameters(
     *,
     all_route_params: Sequence[ModelField],
-    model_name_map: Dict[Union[Type[BaseModel], Type[Enum]], str]
+    model_name_map: Dict[Union[Type[BaseModel], Type[Enum]], str],
 ) -> List[Dict[str, Any]]:
     parameters = []
     for param in all_route_params:
@@ -112,7 +112,7 @@ def get_openapi_operation_parameters(
 def get_openapi_operation_request_body(
     *,
     body_field: Optional[ModelField],
-    model_name_map: Dict[Union[Type[BaseModel], Type[Enum]], str]
+    model_name_map: Dict[Union[Type[BaseModel], Type[Enum]], str],
 ) -> Optional[Dict]:
     if not body_field:
         return None
@@ -318,12 +318,15 @@ def get_openapi(
     description: str = None,
     routes: Sequence[BaseRoute],
     openapi_prefix: str = "",
-    tags: Optional[List[Dict[str, Any]]] = None
+    tags: Optional[List[Dict[str, Any]]] = None,
+    servers: Optional[List[Dict[str, Union[str, Any]]]] = None,
 ) -> Dict:
     info = {"title": title, "version": version}
     if description:
         info["description"] = description
     output: Dict[str, Any] = {"openapi": openapi_version, "info": info}
+    if servers:
+        output["servers"] = servers
     components: Dict[str, Dict] = {}
     paths: Dict[str, Dict] = {}
     flat_models = get_flat_models_from_routes(routes)
