@@ -45,41 +45,41 @@ FastAPI は、モダンで、速い(高いパフォーマンスな)、標準の 
 
 ## 評価
 
-"_[...] 最近 **FastAPI** を使っています。 [...] 実際に私のチームの全ての **Microsoftの機械学習サービス** で使用する予定です。 そのうちのいくつかのコアな**Windows**製品と**Office**製品に統合されつつあります。_"
+"_[...] 最近 **FastAPI** を使っています。 [...] 実際に私のチームの全ての **Microsoft の機械学習サービス** で使用する予定です。 そのうちのいくつかのコアな**Windows**製品と**Office**製品に統合されつつあります。_"
 
-<div style="text-align: right; margin-right: 10%;">Kabir Khan - <strong>Microsoft</strong> <a href="https://github.com/tiangolo/fastapi/pull/26" target="_blank"><small>(参照)</small></a></div>
-
----
-
-"_FastAPIライブラリを採用して**REST**サーバを構築し、それをクエリして**予測**を取得しています。 [for Ludwig]_"
-
-<div style="text-align: right; margin-right: 10%;">Piero Molino, Yaroslav Dudin, and Sai Sumanth Miryala - <strong>Uber</strong> <a href="https://eng.uber.com/ludwig-v0-2/" target="_blank"><small>(参照)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Kabir Khan - <strong>Microsoft</strong> <a href="https://github.com/tiangolo/fastapi/pull/26" target="_blank"><small>(ref)</small></a></div>
 
 ---
 
-"_**Netflix** Netflixは、**危機管理**オーケストレーションフレームワーク、**Dispatch**のオープンソースリリースを発表できることをうれしく思います。 [built with **FastAPI**]_"
+"_FastAPI ライブラリを採用して**REST**サーバを構築し、それをクエリして**予測**を取得しています。 [for Ludwig]_"
 
-<div style="text-align: right; margin-right: 10%;">Kevin Glisson, Marc Vilanova, Forest Monsen - <strong>Netflix</strong> <a href="https://netflixtechblog.com/introducing-dispatch-da4b8a2a8072" target="_blank"><small>(参照)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Piero Molino, Yaroslav Dudin, and Sai Sumanth Miryala - <strong>Uber</strong> <a href="https://eng.uber.com/ludwig-v0-2/" target="_blank"><small>(ref)</small></a></div>
+
+---
+
+"_**Netflix** Netflix は、**危機管理**オーケストレーションフレームワーク、**Dispatch**のオープンソースリリースを発表できることをうれしく思います。 [built with **FastAPI**]_"
+
+<div style="text-align: right; margin-right: 10%;">Kevin Glisson, Marc Vilanova, Forest Monsen - <strong>Netflix</strong> <a href="https://netflixtechblog.com/introducing-dispatch-da4b8a2a8072" target="_blank"><small>(ref)</small></a></div>
 
 ---
 
 "_私は**FastAPI**にワクワクしています。 めちゃくちゃ楽しいです！_"
 
-<div style="text-align: right; margin-right: 10%;">Brian Okken - <strong><a href="https://pythonbytes.fm/episodes/show/123/time-to-right-the-py-wrongs?time_in_sec=855" target="_blank">Python Bytes</a> podcast host</strong> <a href="https://twitter.com/brianokken/status/1112220079972728832" target="_blank"><small>(参照)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Brian Okken - <strong><a href="https://pythonbytes.fm/episodes/show/123/time-to-right-the-py-wrongs?time_in_sec=855" target="_blank">Python Bytes</a> podcast host</strong> <a href="https://twitter.com/brianokken/status/1112220079972728832" target="_blank"><small>(ref)</small></a></div>
 
 ---
 
 "_正直、超堅実で洗練されているように見えます。いろんな意味で、それは私がハグしたかったものです。_"
 
-<div style="text-align: right; margin-right: 10%;">Timothy Crosley - <strong><a href="http://www.hug.rest/" target="_blank">Hug</a> creator</strong> <a href="https://news.ycombinator.com/item?id=19455465" target="_blank"><small>(参照)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Timothy Crosley - <strong><a href="http://www.hug.rest/" target="_blank">Hug</a> creator</strong> <a href="https://news.ycombinator.com/item?id=19455465" target="_blank"><small>(ref)</small></a></div>
 
 ---
 
-"_REST APIを構築するための**モダンなフレームワーク**を学びたい方は、**FastAPI＊＊をチェックしてみてください。 [...] 高速で, 使用、習得が簡単です。[...]_"
+"_REST API を構築するための**モダンなフレームワーク**を学びたい方は、\*\*FastAPI＊＊をチェックしてみてください。 [...] 高速で, 使用、習得が簡単です。[...]_"
 
 "_私たちの**API**は**FastAPI**に切り替えました。[...] きっと気に入ると思います。 [...]_"
 
-<div style="text-align: right; margin-right: 10%;">Ines Montani - Matthew Honnibal - <strong><a href="https://explosion.ai" target="_blank">Explosion AI</a> founders - <a href="https://spacy.io" target="_blank">spaCy</a> creators</strong> <a href="https://twitter.com/_inesmontani/status/1144173225322143744" target="_blank"><small>(参照)</small></a> - <a href="https://twitter.com/honnibal/status/1144031421859655680" target="_blank"><small>(参照)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Ines Montani - Matthew Honnibal - <strong><a href="https://explosion.ai" target="_blank">Explosion AI</a> founders - <a href="https://spacy.io" target="_blank">spaCy</a> creators</strong> <a href="https://twitter.com/_inesmontani/status/1144173225322143744" target="_blank"><small>(ref)</small></a> - <a href="https://twitter.com/honnibal/status/1144031421859655680" target="_blank"><small>(ref)</small></a></div>
 
 ---
 
@@ -87,20 +87,20 @@ FastAPI は、モダンで、速い(高いパフォーマンスな)、標準の 
 
 <a href="https://typer.tiangolo.com" target="_blank"><img src="https://typer.tiangolo.com/img/logo-margin/logo-margin-vector.svg" style="width: 20%;"></a>
 
-If you are building a <abbr title="Command Line Interface">CLI</abbr> app to be used in the terminal instead of a web API, check out <a href="https://typer.tiangolo.com/" class="external-link" target="_blank">**Typer**</a>.
+もし Web API の代わりにターミナルで使用する<abbr title="Command Line Interface">CLI</abbr>アプリを構築する場合は、<a href="https://typer.tiangolo.com/" class="external-link" target="_blank">**Typer**</a>を確認してください。
 
-**Typer** is FastAPI's little sibling. And it's intended to be the **FastAPI of CLIs**. ⌨️ 🚀
+**Typer**は FastAPI の兄弟です。そして、**CLI の FastAPI**を意図しています。
 
-## Requirements
+## 必要条件
 
 Python 3.6+
 
-FastAPI stands on the shoulders of giants:
+FastAPI は巨人の肩の上に立っています。
 
-- <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> for the web parts.
-- <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> for the data parts.
+- Web の部分のための<a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a>
+- データの部分のための<a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a>
 
-## Installation
+## インストール
 
 <div class="termy">
 
@@ -112,7 +112,7 @@ $ pip install fastapi
 
 </div>
 
-You will also need an ASGI server, for production such as <a href="http://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a> or <a href="https://gitlab.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>.
+<a href="http://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a> または、 <a href="https://gitlab.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>のように、本番環境では ASGI サーバーが必要になります。
 
 <div class="termy">
 
@@ -124,11 +124,11 @@ $ pip install uvicorn
 
 </div>
 
-## Example
+## アプリケーション例
 
-### Create it
+### アプリケーションの作成
 
-- Create a file `main.py` with:
+- `main.py` を作成し、以下のコードを入力します:
 
 ```Python
 from fastapi import FastAPI
@@ -147,9 +147,9 @@ def read_item(item_id: int, q: str = None):
 ```
 
 <details markdown="1">
-<summary>Or use <code>async def</code>...</summary>
+<summary>または<code>async def</code>を使います...</summary>
 
-If your code uses `async` / `await`, use `async def`:
+`async` / `await`を使用するときは、 `async def`を使います:
 
 ```Python hl_lines="7 12"
 from fastapi import FastAPI
@@ -167,15 +167,15 @@ async def read_item(item_id: int, q: str = None):
     return {"item_id": item_id, "q": q}
 ```
 
-**Note**:
+**注**:
 
-If you don't know, check the _"In a hurry?"_ section about <a href="https://fastapi.tiangolo.com/async/#in-a-hurry" target="_blank">`async` and `await` in the docs</a>.
+<a href="https://fastapi.tiangolo.com/async/#in-a-hurry" target="_blank">ドキュメントの`async` と `await`</a>についてわからない場合は、"In a hurry?"セクションをチェックしてください。
 
 </details>
 
-### Run it
+### 実行
 
-Run the server with:
+以下のコマンドでサーバーを起動します:
 
 <div class="termy">
 
@@ -192,27 +192,27 @@ INFO:     Application startup complete.
 </div>
 
 <details markdown="1">
-<summary>About the command <code>uvicorn main:app --reload</code>...</summary>
+<summary><code>uvicorn main:app --reload</code>コマンドについて</summary>
 
-The command `uvicorn main:app` refers to:
+`uvicorn main:app`コマンドは以下の項目を参照します:
 
-- `main`: the file `main.py` (the Python "module").
-- `app`: the object created inside of `main.py` with the line `app = FastAPI()`.
-- `--reload`: make the server restart after code changes. Only do this for development.
+- `main`: `main.py`ファイル (Python "モジュール")
+- `app`: `main.py` の`app = FastAPI()`の行で生成されたオブジェクト
+- `--reload`: コードを変更したらサーバーを再起動します。このオプションは開発環境でのみ使用します
 
 </details>
 
-### Check it
+### 動作確認
 
-Open your browser at <a href="http://127.0.0.1:8000/items/5?q=somequery" class="external-link" target="_blank">http://127.0.0.1:8000/items/5?q=somequery</a>.
+ブラウザから<a href="http://127.0.0.1:8000/items/5?q=somequery" class="external-link" target="_blank">http://127.0.0.1:8000/items/5?q=somequery</a>を開きます。
 
-You will see the JSON response as:
+以下の JSON のレスポンスが確認できます:
 
 ```JSON
 {"item_id": 5, "q": "somequery"}
 ```
 
-You already created an API that:
+もうすでに以下の API が作成されています:
 
 - Receives HTTP requests in the _paths_ `/` and `/items/{item_id}`.
 - Both _paths_ take `GET` <em>operations</em> (also known as HTTP _methods_).
