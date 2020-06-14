@@ -214,32 +214,32 @@ INFO:     Application startup complete.
 
 もうすでに以下の API が作成されています:
 
-- Receives HTTP requests in the _paths_ `/` and `/items/{item_id}`.
-- Both _paths_ take `GET` <em>operations</em> (also known as HTTP _methods_).
-- The _path_ `/items/{item_id}` has a _path parameter_ `item_id` that should be an `int`.
-- The _path_ `/items/{item_id}` has an optional `str` _query parameter_ `q`.
+- `/` と `/items/{item_id}`のパスで HTTP リクエストを受けます。
+- どちらのパスも `GET` <em>演算子</em> を取ります。(HTTP メソッドとしても知られています。)
+- `/items/{item_id}` パスのパスパラメータ `item_id` は `int` でなければなりません。
+- パス `/items/{item_id}` はオプションの `str` クエリパラメータ `q` を持ちます。
 
-### Interactive API docs
+### 自動対話型の API ドキュメント
 
-Now go to <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+<a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>にアクセスしてみてください。
 
-You will see the automatic interactive API documentation (provided by <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a>):
+自動対話型の API ドキュメントが表示されます。 (<a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a>が提供しています。):
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-01-swagger-ui-simple.png)
 
-### Alternative API docs
+### 代替の API ドキュメント
 
-And now, go to <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>.
+<a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>にアクセスしてみてください。
 
-You will see the alternative automatic documentation (provided by <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a>):
+代替の自動ドキュメントが表示されます。(<a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a>が提供しています。):
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
-## Example upgrade
+## アップグレード例
 
-Now modify the file `main.py` to receive a body from a `PUT` request.
+`PUT`リクエストからボディを受け取るために`main.py`を修正しましょう。
 
-Declare the body using standard Python types, thanks to Pydantic.
+Pydantic によって、Python の標準的な型を使ってボディを宣言します。
 
 ```Python hl_lines="2  7 8 9 10  23 24 25"
 from fastapi import FastAPI
@@ -269,137 +269,137 @@ def update_item(item_id: int, item: Item):
     return {"item_name": item.name, "item_id": item_id}
 ```
 
-The server should reload automatically (because you added `--reload` to the `uvicorn` command above).
+サーバーは自動でリロードされます。(上述の`uvicorn`コマンドで`--reload`オプションを追加しているからです。)
 
-### Interactive API docs upgrade
+### 自動対話型の API ドキュメントのアップグレード
 
-Now go to <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+<a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>にアクセスしましょう。
 
-- The interactive API documentation will be automatically updated, including the new body:
+- 自動対話型の API ドキュメントが新しいボディも含めて自動でアップデートされます:
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-03-swagger-02.png)
 
-- Click on the button "Try it out", it allows you to fill the parameters and directly interact with the API:
+- "Try it out"ボタンをクリックしてください。パラメータを入力して API と直接やりとりすることができます:
 
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-04-swagger-03.png)
 
-- Then click on the "Execute" button, the user interface will communicate with your API, send the parameters, get the results and show them on the screen:
+- それから、"Execute" ボタンをクリックしてください。 ユーザーインターフェースは API と通信し、パラメータを送信し、結果を取得して画面に表示します:
 
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-05-swagger-04.png)
 
-### Alternative API docs upgrade
+### 代替の API ドキュメントのアップグレード
 
-And now, go to <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>.
+<a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>にアクセスしましょう。
 
-- The alternative documentation will also reflect the new query parameter and body:
+- 代替の API ドキュメントに新しいクエリパラメータやボディが反映されます。
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-06-redoc-02.png)
 
-### Recap
+### リキャップ
 
-In summary, you declare **once** the types of parameters, body, etc. as function parameters.
+要約すると、関数のパラメータ、body などの種類を**一度だけ**宣言します。
 
-You do that with standard modern Python types.
+標準的な最新の Python の型を使っています。
 
-You don't have to learn a new syntax, the methods or classes of a specific library, etc.
+新しい構文や特定のライブラリのメソッドやクラスなどを覚える必要はありません。
 
-Just standard **Python 3.6+**.
+単なる標準的な**3.6 以降の Python**です
 
-For example, for an `int`:
+例えば、`int`の場合:
 
 ```Python
 item_id: int
 ```
 
-or for a more complex `Item` model:
+または、より複雑な`Item`モデルの場合:
 
 ```Python
 item: Item
 ```
 
-...and with that single declaration you get:
+...そして、その単一の宣言で、以下のようになります:
 
-- Editor support, including:
-  - Completion.
-  - Type checks.
-- Validation of data:
-  - Automatic and clear errors when the data is invalid.
-  - Validation even for deeply nested JSON objects.
-- <abbr title="also known as: serialization, parsing, marshalling">Conversion</abbr> of input data: coming from the network to Python data and types. Reading from:
+- 以下を含むエディタサポート:
+  - 補完
+  - タイプチェック
+- データの検証:
+  - データが無効な場合に自動でエラーをクリアします。
+  - 深い入れ子になった JSON オブジェクトでも検証が可能です。
+- 入力データの<abbr title="also known as: serialization, parsing, marshalling">変換</abbr>: ネットワークから Python のデータや型に変換してから読み取ります:
   - JSON.
-  - Path parameters.
-  - Query parameters.
-  - Cookies.
-  - Headers.
-  - Forms.
-  - Files.
-- <abbr title="also known as: serialization, parsing, marshalling">Conversion</abbr> of output data: converting from Python data and types to network data (as JSON):
+  - パスパラメータ
+  - クエリパラメータ
+  - クッキー
+  - ヘッダー
+  - フォーム
+  - ファイル
+- 出力データの<abbr title="also known as: serialization, parsing, marshalling">変換</abbr>: Python のデータや型からネットワークデータへ変換します (JSON として):
   - Convert Python types (`str`, `int`, `float`, `bool`, `list`, etc).
-  - `datetime` objects.
-  - `UUID` objects.
-  - Database models.
-  - ...and many more.
-- Automatic interactive API documentation, including 2 alternative user interfaces:
+  - `datetime` オブジェクト
+  - `UUID` オブジェクト
+  - データベースモデル
+  - ...などなど
+- 2 つの代替ユーザーインターフェースを含む自動インタラクティブ API ドキュメント:
   - Swagger UI.
   - ReDoc.
 
 ---
 
-Coming back to the previous code example, **FastAPI** will:
+コード例に戻りましょう、**FastAPI** は次のようになります:
 
-- Validate that there is an `item_id` in the path for `GET` and `PUT` requests.
-- Validate that the `item_id` is of type `int` for `GET` and `PUT` requests.
-  - If it is not, the client will see a useful, clear error.
-- Check if there is an optional query parameter named `q` (as in `http://127.0.0.1:8000/items/foo?q=somequery`) for `GET` requests.
-  - As the `q` parameter is declared with `= None`, it is optional.
-  - Without the `None` it would be required (as is the body in the case with `PUT`).
-- For `PUT` requests to `/items/{item_id}`, Read the body as JSON:
-  - Check that it has a required attribute `name` that should be a `str`.
-  - Check that it has a required attribute `price` that has to be a `float`.
-  - Check that it has an optional attribute `is_offer`, that should be a `bool`, if present.
-  - All this would also work for deeply nested JSON objects.
-- Convert from and to JSON automatically.
-- Document everything with OpenAPI, that can be used by:
-  - Interactive documentation systems.
-  - Automatic client code generation systems, for many languages.
-- Provide 2 interactive documentation web interfaces directly.
+- GET`および`PUT`リクエストのパスに`item_id` があることを検証します。
+- item_id`が`GET`および`PUT`リクエストに対して`int` 型であることを検証します。
+  - そうでない場合は、クライアントは有用で明確なエラーが表示されます。
+- `GET` リクエストに対してオプションのクエリパラメータ `q` (`http://127.0.0.1:8000/items/foo?q=somequery` のように) が存在するかどうかを調べます。
+  - パラメータ `q` は `= None` で宣言されているので、オプションです。
+  - `None`がなければ必須になります（`PUT`の場合のボディと同様です）。
+- `PUT` リクエストを `/items/{item_id}` に送信する場合は、本文を JSON として読み込みます:
+  - 必須の属性 `name` が `str` であることを確認してください。
+  - 必須の属性 `price` が `float` でなければならないことを確認してください。
+  - オプションの属性 `is_offer` がある場合は、`bool`であることを確認してください。
+  - これらはすべて、深くネストされた JSON オブジェクトに対しても動作します。
+- JSON から JSON に自動的に変換します。
+- 使用できるものは OpenAPI を使用して文書化します:
+  - 対話的ななドキュメントシステム。
+  - 多くの言語に対応した自動クライアントコード生成システム。
+- 2 つの対話的なドキュメント Web インターフェイスを直接提供します。
 
 ---
 
-We just scratched the surface, but you already get the idea of how it all works.
+まだ表面的な部分に触れただけですが、もう全ての仕組みは分かっているはずです。
 
-Try changing the line with:
+以下の行を変更してみてください:
 
 ```Python
     return {"item_name": item.name, "item_id": item_id}
 ```
 
-...from:
+...から:
 
 ```Python
         ... "item_name": item.name ...
 ```
 
-...to:
+...まで:
 
 ```Python
         ... "item_price": item.price ...
 ```
 
-...and see how your editor will auto-complete the attributes and know their types:
+...そして、エディタが属性を自動補完し、そのタイプを知る方法をご覧ください。:
 
 ![editor support](https://fastapi.tiangolo.com/img/vscode-completion.png)
 
-For a more complete example including more features, see the <a href="https://fastapi.tiangolo.com/tutorial/">Tutorial - User Guide</a>.
+より多くの機能を含む、より完全な例については、<a href="https://fastapi.tiangolo.com/tutorial/">チュートリアル - ユーザーガイド</a>をご覧ください。
 
-**Spoiler alert**: the tutorial - user guide includes:
+**Spoiler alert**: チュートリアル - ユーザーガイドは以下の情報が含まれています:
 
 - Declaration of **parameters** from other different places as: **headers**, **cookies**, **form fields** and **files**.
 - How to set **validation constraints** as `maximum_length` or `regex`.
 - A very powerful and easy to use **<abbr title="also known as components, resources, providers, services, injectables">Dependency Injection</abbr>** system.
 - Security and authentication, including support for **OAuth2** with **JWT tokens** and **HTTP Basic** auth.
 - More advanced (but equally easy) techniques for declaring **deeply nested JSON models** (thanks to Pydantic).
-- Many extra features (thanks to Starlette) as:
+- 以下のようなたくさんのおまけ機能(Starlette のおかげです):
   - **WebSockets**
   - **GraphQL**
   - extremely easy tests based on `requests` and `pytest`
@@ -409,35 +409,35 @@ For a more complete example including more features, see the <a href="https://fa
 
 ## Performance
 
-Independent TechEmpower benchmarks show **FastAPI** applications running under Uvicorn as <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">one of the fastest Python frameworks available</a>, only below Starlette and Uvicorn themselves (used internally by FastAPI). (\*)
+独立した TechEmpower のベンチマークでは、Uvicorn で動作する**FastAPI**アプリケーションのうち、<a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">Starlette と Ubicorn の下でのみ利用可能な Python フレームワークの中で最も高速なものの 1 つ</a>であることが示されており、Starlette と Uvicorn 自身の下にのみ（FastAPI で内部的に使用されています）(\*)
 
-To understand more about it, see the section <a href="https://fastapi.tiangolo.com/benchmarks/" class="internal-link" target="_blank">Benchmarks</a>.
+詳細は<a href="https://fastapi.tiangolo.com/benchmarks/" class="internal-link" target="_blank">ベンチマーク</a>セクションをご覧ください。
 
-## Optional Dependencies
+## オプションの依存関係
 
-Used by Pydantic:
+Pydantic によって使用されています:
 
-- <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - for faster JSON <abbr title="converting the string that comes from an HTTP request into Python data">"parsing"</abbr>.
-- <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - for email validation.
+- <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - より速い JSON への<abbr title="converting the string that comes from an HTTP request into Python data">"変換"</abbr>.
+- <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - E メールの検証
 
-Used by Starlette:
+Starlette によって使用されています:
 
-- <a href="http://docs.python-requests.org" target="_blank"><code>requests</code></a> - Required if you want to use the `TestClient`.
-- <a href="https://github.com/Tinche/aiofiles" target="_blank"><code>aiofiles</code></a> - Required if you want to use `FileResponse` or `StaticFiles`.
-- <a href="http://jinja.pocoo.org" target="_blank"><code>jinja2</code></a> - Required if you want to use the default template configuration.
-- <a href="https://andrew-d.github.io/python-multipart/" target="_blank"><code>python-multipart</code></a> - Required if you want to support form <abbr title="converting the string that comes from an HTTP request into Python data">"parsing"</abbr>, with `request.form()`.
-- <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - Required for `SessionMiddleware` support.
-- <a href="https://pyyaml.org/wiki/PyYAMLDocumentation" target="_blank"><code>pyyaml</code></a> - Required for Starlette's `SchemaGenerator` support (you probably don't need it with FastAPI).
-- <a href="https://graphene-python.org/" target="_blank"><code>graphene</code></a> - Required for `GraphQLApp` support.
-- <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - Required if you want to use `UJSONResponse`.
+- <a href="http://docs.python-requests.org" target="_blank"><code>requests</code></a> - `TestClient`を使用するために必要です。
+- <a href="https://github.com/Tinche/aiofiles" target="_blank"><code>aiofiles</code></a> - `FileResponse` または `StaticFiles`を使用したい場合は必要です。
+- <a href="http://jinja.pocoo.org" target="_blank"><code>jinja2</code></a> - デフォルトのテンプレート設定を使用する場合は必要です。
+- <a href="https://andrew-d.github.io/python-multipart/" target="_blank"><code>python-multipart</code></a> - <abbr title="converting the string that comes from an HTTP request into Python data">"parsing"</abbr>`request.form()`からの変換をサポートしたい場合は必要です。
+- <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - `SessionMiddleware` サポートのためには必要です。
+- <a href="https://pyyaml.org/wiki/PyYAMLDocumentation" target="_blank"><code>pyyaml</code></a> - Starlette の `SchemaGenerator` サポートのために必要です。 (FastAPI では必要ないでしょう。)
+- <a href="https://graphene-python.org/" target="_blank"><code>graphene</code></a> - `GraphQLApp` サポートのためには必要です。
+- <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - `UJSONResponse`を使用する場合は必須です。
 
-Used by FastAPI / Starlette:
+FastAPI / Starlette によって使用されています:
 
-- <a href="http://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - for the server that loads and serves your application.
-- <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - Required if you want to use `ORJSONResponse`.
+- <a href="http://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - アプリケーションをロードしてサービスを提供するサーバーを指定します。
+- <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - `ORJSONResponse`を使用したい場合は必要です。
 
-You can install all of these with `pip install fastapi[all]`.
+これらは全て `pip install fastapi[all]`でインストールできます。
 
-## License
+## ライセンス
 
-This project is licensed under the terms of the MIT license.
+このプロジェクトは MIT ライセンスです。
