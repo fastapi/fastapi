@@ -94,7 +94,7 @@ def test_openapi_schema():
 price_missing = {
     "detail": [
         {
-            "loc": ["body", "item", "price"],
+            "loc": ["body", "price"],
             "msg": "field required",
             "type": "value_error.missing",
         }
@@ -104,7 +104,7 @@ price_missing = {
 price_not_float = {
     "detail": [
         {
-            "loc": ["body", "item", "price"],
+            "loc": ["body", "price"],
             "msg": "value is not a valid float",
             "type": "type_error.float",
         }
@@ -114,12 +114,12 @@ price_not_float = {
 name_price_missing = {
     "detail": [
         {
-            "loc": ["body", "item", "name"],
+            "loc": ["body", "name"],
             "msg": "field required",
             "type": "value_error.missing",
         },
         {
-            "loc": ["body", "item", "price"],
+            "loc": ["body", "price"],
             "msg": "field required",
             "type": "value_error.missing",
         },
@@ -128,11 +128,7 @@ name_price_missing = {
 
 body_missing = {
     "detail": [
-        {
-            "loc": ["body", "item"],
-            "msg": "field required",
-            "type": "value_error.missing",
-        }
+        {"loc": ["body"], "msg": "field required", "type": "value_error.missing",}
     ]
 }
 

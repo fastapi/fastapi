@@ -642,9 +642,17 @@ async def request_body_to_args(
         field = required_params[0]
         field_info = get_field_info(field)
         embed = getattr(field_info, "embed", None)
-        if len(required_params) == 1 and not embed:
+        field_alias_omitted = len(required_params) == 1 and not embed
+        if field_alias_omitted:
             received_body = {field.alias: received_body}
+
         for field in required_params:
+            loc: Tuple[str, ...]
+            if field_alias_omitted:
+                loc = ("body",)
+            else:
+                loc = ("body", field.alias)
+
             value: Any = None
             if received_body is not None:
                 if (
@@ -655,7 +663,7 @@ async def request_body_to_args(
                     try:
                         value = received_body.get(field.alias)
                     except AttributeError:
-                        errors.append(get_missing_field_error(field.alias))
+                        errors.append(get_missing_field_error(loc))
                         continue
             if (
                 value is None
@@ -667,7 +675,7 @@ async def request_body_to_args(
                 )
             ):
                 if field.required:
-                    errors.append(get_missing_field_error(field.alias))
+                    errors.append(get_missing_field_error(loc))
                 else:
                     values[field.name] = deepcopy(field.default)
                 continue
@@ -686,7 +694,9 @@ async def request_body_to_args(
                 awaitables = [sub_value.read() for sub_value in value]
                 contents = await asyncio.gather(*awaitables)
                 value = sequence_shape_to_type[field.shape](contents)
-            v_, errors_ = field.validate(value, values, loc=("body", field.alias))
+
+            v_, errors_ = field.validate(value, values, loc=loc)
+
             if isinstance(errors_, ErrorWrapper):
                 errors.append(errors_)
             elif isinstance(errors_, list):
@@ -696,12 +706,12 @@ async def request_body_to_args(
     return values, errors
 
 
-def get_missing_field_error(field_alias: str) -> ErrorWrapper:
+def get_missing_field_error(loc: Tuple[str, ...]) -> ErrorWrapper:
     if PYDANTIC_1:
-        missing_field_error = ErrorWrapper(MissingError(), loc=("body", field_alias))
+        missing_field_error = ErrorWrapper(MissingError(), loc=loc)
     else:  # pragma: no cover
         missing_field_error = ErrorWrapper(  # type: ignore
-            MissingError(), loc=("body", field_alias), config=BaseConfig,
+            MissingError(), loc=loc, config=BaseConfig,
         )
     return missing_field_error
 

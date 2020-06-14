@@ -95,7 +95,7 @@ def test_post_invalid_body():
     assert response.json() == {
         "detail": [
             {
-                "loc": ["body", "weights", "__key__"],
+                "loc": ["body", "__key__"],
                 "msg": "value is not a valid integer",
                 "type": "type_error.integer",
             }
