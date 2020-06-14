@@ -13,7 +13,6 @@ from fastapi.openapi.docs import (
     get_swagger_ui_html,
     get_swagger_ui_oauth2_redirect_html,
 )
-from fastapi.openapi.models import Server
 from fastapi.openapi.utils import get_openapi
 from fastapi.params import Depends
 from fastapi.utils import warning_response_model_skip_defaults_deprecated
@@ -36,7 +35,7 @@ class FastAPI(Starlette):
         title: str = "FastAPI",
         description: str = "",
         version: str = "0.1.0",
-        servers: Optional[List[Server]] = None,
+        servers: Optional[List[Dict[str, Union[str, Any]]]] = None,
         openapi_url: Optional[str] = "/openapi.json",
         openapi_prefix: str = "",
         default_response_class: Type[Response] = JSONResponse,

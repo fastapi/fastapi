@@ -11,7 +11,7 @@ from fastapi.openapi.constants import (
     REF_PREFIX,
     STATUS_CODES_WITH_NO_BODY,
 )
-from fastapi.openapi.models import OpenAPI, Server
+from fastapi.openapi.models import OpenAPI
 from fastapi.params import Body, Param
 from fastapi.utils import (
     generate_operation_id_for_path,
@@ -310,7 +310,7 @@ def get_openapi(
     *,
     title: str,
     version: str,
-    servers: Optional[List[Server]] = None,
+    servers: Optional[List[Dict[str, Union[str, Any]]]] = None,
     openapi_version: str = "3.0.2",
     description: str = None,
     routes: Sequence[BaseRoute],
@@ -319,7 +319,9 @@ def get_openapi(
     info = {"title": title, "version": version}
     if description:
         info["description"] = description
-    output = {"openapi": openapi_version, "info": info, "servers": servers}
+    output: Dict[str, Any] = {"openapi": openapi_version, "info": info}
+    if servers:
+        output["servers"] = servers
     components: Dict[str, Dict] = {}
     paths: Dict[str, Dict] = {}
     flat_models = get_flat_models_from_routes(routes)
