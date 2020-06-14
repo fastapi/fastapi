@@ -63,7 +63,7 @@ class ServerVariable(BaseModel):
 
 
 class Server(BaseModel):
-    url: AnyUrl
+    url: Union[AnyUrl, str]
     description: Optional[str] = None
     variables: Optional[Dict[str, ServerVariable]] = None
 
