@@ -76,6 +76,10 @@ class ModelWithDefault(BaseModel):
     bla: str = "bla"
 
 
+class ModelWithRoot(BaseModel):
+    __root__: str
+
+
 @pytest.fixture(
     name="model_with_path", params=[PurePath, PurePosixPath, PureWindowsPath]
 )
@@ -158,3 +162,8 @@ def test_encode_model_with_path(model_with_path):
     else:
         expected = "/foo/bar"
     assert jsonable_encoder(model_with_path) == {"path": expected}
+
+
+def test_encode_root():
+    model = ModelWithRoot(__root__="Foo")
+    assert jsonable_encoder(model) == "Foo"
