@@ -6,7 +6,7 @@ With **FastAPI**, you can define, validate, document, and use arbitrarily deeply
 
 You can define an attribute to be a subtype. For example, a Python `list`:
 
-```Python hl_lines="12"
+```Python hl_lines="14"
 {!../../../docs_src/body_nested_models/tutorial001.py!}
 ```
 

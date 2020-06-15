@@ -35,13 +35,13 @@ But most importantly:
 
 Here we are declaring a `UserIn` model, it will contain a plaintext password:
 
-```Python hl_lines="7 9"
+```Python hl_lines="9 11"
 {!../../../docs_src/response_model/tutorial002.py!}
 ```
 
 And we are using this model to declare our input and the same model to declare our output:
 
-```Python hl_lines="15 16"
+```Python hl_lines="17 18"
 {!../../../docs_src/response_model/tutorial002.py!}
 ```
 
@@ -58,19 +58,19 @@ But if we use the same model for another *path operation*, we could be sending o
 
 We can instead create an input model with the plaintext password and an output model without it:
 
-```Python hl_lines="7 9 14"
+```Python hl_lines="9 11 16"
 {!../../../docs_src/response_model/tutorial003.py!}
 ```
 
 Here, even though our *path operation function* is returning the same input user that contains the password:
 
-```Python hl_lines="22"
+```Python hl_lines="24"
 {!../../../docs_src/response_model/tutorial003.py!}
 ```
 
 ...we declared the `response_model` to be our model `UserOut`, that doesn't include the password:
 
-```Python hl_lines="20"
+```Python hl_lines="22"
 {!../../../docs_src/response_model/tutorial003.py!}
 ```
 
@@ -183,7 +183,7 @@ This can be used as a quick shortcut if you have only one Pydantic model and wan
 
     This is because the JSON Schema generated in your app's OpenAPI (and the docs) will still be the one for the complete model, even if you use `response_model_include` or `response_model_exclude` to omit some attributes.
 
-```Python hl_lines="29 35"
+```Python hl_lines="31 37"
 {!../../../docs_src/response_model/tutorial005.py!}
 ```
 
@@ -196,7 +196,7 @@ This can be used as a quick shortcut if you have only one Pydantic model and wan
 
 If you forget to use a `set` and use a `list` or `tuple` instead, FastAPI will still convert it to a `set` and it will work correctly:
 
-```Python hl_lines="29 35"
+```Python hl_lines="31 37"
 {!../../../docs_src/response_model/tutorial006.py!}
 ```
 
