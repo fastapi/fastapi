@@ -4,13 +4,13 @@
 
 你可以通过直接返回 `Response` 来重载它，参见 [直接返回响应](response-directly.md){.internal-link target=_blank}。
 
-但你可以直接返回 `Response`，返回数据不会自动转换，也不会自动生成文档（例如，在 HTTP 头 `Content-Type` 中包含特定的「媒体类型」作为生成的 OpenAPI 的一部分）。
+但如果你直接返回 `Response`，返回数据不会自动转换，也不会自动生成文档（例如，在 HTTP 头 `Content-Type` 中包含特定的「媒体类型」作为生成的 OpenAPI 的一部分）。
 
 你还可以在 *路径操作装饰器* 中声明你想用的 `Response`。
 
 你从 *路径操作函数* 中返回的内容将被放在该 `Response` 中。
 
-并且如果该 `Response` 有一个 JSON 媒体类型（`application/json`），比如使用 `JSONResponse` 或者 `UJSONResponse` 的时候，你返回的数据会自动转换成任何你在 *路径操作装饰器* 中声明的 Pydantic 的 `response_model` 类型。
+并且如果该 `Response` 有一个 JSON 媒体类型（`application/json`），比如使用 `JSONResponse` 或者 `UJSONResponse` 的时候，返回的数据将使用你在路径操作装饰器中声明的任何 Pydantic 的 `response_model` 自动转换（和过滤）。
 
 !!! note "说明"
     如果你使用不带有任何媒体类型的响应类，FastAPI 认为你的响应没有任何内容，所以不会在生成的OpenAPI文档中记录响应格式。
@@ -42,7 +42,7 @@
 使用 `HTMLResponse` 来从 **FastAPI** 中直接返回一个 HTML 响应。
 
 * 导入 `HTMLResponse`。
-* 将 `HTMLResponse` 作为你的 *路径操作* 的 `content_type` 参数传入。
+* 将 `HTMLResponse` 作为你的 *路径操作* 的 `response_class` 参数传入。
 
 ```Python hl_lines="2 7"
 {!../../../docs_src/custom_response/tutorial002.py!}
@@ -73,9 +73,9 @@
 
 ### OpenAPI 中的文档和重载 `Response`
 
-如果你想要在函数内容重载响应，但是同时在 OpenAPI 中文档化「媒体类型」，你可以使用 `response_class` 参数并返回一个 `Response` 对象。
+如果你想要在函数内重载响应，但是同时在 OpenAPI 中文档化「媒体类型」，你可以使用 `response_class` 参数并返回一个 `Response` 对象。
 
-接着`response_class` 参数只会被用来文档化 OpenAPI 的 *路径操作*，你的 `Response` 也是如此。
+接着 `response_class` 参数只会被用来文档化 OpenAPI 的 *路径操作*，你的 `Response` 用来返回响应。
 
 ### 直接返回 `HTMLResponse`
 
