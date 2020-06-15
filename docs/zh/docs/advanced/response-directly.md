@@ -2,7 +2,7 @@
 
 当你创建一个 **FastAPI** *路径操作* 时，你可以正常返回以下任意一种数据：`dict`，`list`，Pydantic 模型，数据库模型等等。
 
-**FastAPI** 默认会使用 `jsonable_encoder` 将这些类型的返回值转换成 JSON 格式，`jsonable_encoder` 在 [JSON 编码器兼容](../tutorial/encoder.md){.internal-link target=_blank} 中有阐述。
+**FastAPI** 默认会使用 `jsonable_encoder` 将这些类型的返回值转换成 JSON 格式，`jsonable_encoder` 在 [JSON 兼容编码器](../tutorial/encoder.md){.internal-link target=_blank} 中有阐述。
 
 然后，**FastAPI** 会在后台将这些兼容 JSON 的数据（比如字典）放到一个 `JSONResponse` 中，该 `JSONResponse` 会用来发送响应给客户端。
 
@@ -17,7 +17,7 @@
 !!! tip "小贴士"
     `JSONResponse` 本身是一个 `Response` 的子类。
 
-当你返回一个 `Response` 时，**FastAPI** 会自动忽略它。
+当你返回一个 `Response` 时，**FastAPI** 会直接传递它。
 
 **FastAPI** 不会用 Pydantic 模型做任何数据转换，不会将响应内容转换成任何类型，等等。
 
@@ -43,8 +43,6 @@
 
 ## 返回自定义 `Response`
 
-The example above shows all the parts you need, but it's not very useful yet, as you could have just returned the `item` directly, and **FastAPI** would put it in a `JSONResponse` for you, converting it to a `dict`, etc. All that by default.
-
 上面的例子展示了需要的所有部分，但还不够实用，因为你本可以只是直接返回 `item`，而**FastAPI** 默认帮你把这个 `item` 放到 `JSONResponse` 中，又默认将其转换成了 `dict`等等。
 
 现在，让我们看看你如何才能返回一个自定义的响应。
@@ -59,7 +57,7 @@ The example above shows all the parts you need, but it's not very useful yet, as
 
 ## 说明
 
-当你直接返回 `Response` 时，它的数据既没有校验，又不会进行转换（序列化），也不会进行自动化文档。
+当你直接返回 `Response` 时，它的数据既没有校验，又不会进行转换（序列化），也不会自动生成文档。
 
 但是你仍可以参考 [OpenApI 中的额外响应](additional-responses.md){.internal-link target=_blank} 给响应编写文档。
 
