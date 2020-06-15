@@ -60,6 +60,6 @@ Here's an example *path operation* with parameters using some of the above types
 
 Note that the parameters inside the function have their natural data type, and you can, for example, perform normal date manipulations, like:
 
-```Python hl_lines="17 18"
+```Python hl_lines="18 19"
 {!../../../docs_src/extra_data_types/tutorial001.py!}
 ```
