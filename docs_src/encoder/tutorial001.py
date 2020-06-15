@@ -1,3 +1,4 @@
+from typing import Optional
 from datetime import datetime
 
 from fastapi import FastAPI
@@ -10,7 +11,7 @@ fake_db = {}
 class Item(BaseModel):
     title: str
     timestamp: datetime
-    description: str = None
+    description: Optional[str] = None
 
 
 app = FastAPI()

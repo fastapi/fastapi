@@ -1,3 +1,5 @@
+from typing import Optional
+
 from fastapi import APIRouter, FastAPI
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel, HttpUrl
@@ -7,7 +9,7 @@ app = FastAPI()
 
 class Invoice(BaseModel):
     id: str
-    title: str = None
+    title: Optional[str] = None
     customer: str
     total: float
 
