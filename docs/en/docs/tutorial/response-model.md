@@ -94,9 +94,9 @@ Your response model could have default values, like:
 {!../../../docs_src/response_model/tutorial004.py!}
 ```
 
-* `description: str = None` has a default of `None`.
+* `description: Optional[str] = None` has a default of `None`.
 * `tax: float = 10.5` has a default of `10.5`.
-* `tags: List[str] = []` has a default of an empty list: `[]`.
+* `tags: List[str] = []` as a default of an empty list: `[]`.
 
 but you might want to omit them from the result if they were not actually stored.
 
