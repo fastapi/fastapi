@@ -14,6 +14,7 @@ from fastapi.openapi.constants import (
 from fastapi.openapi.models import OpenAPI
 from fastapi.params import Body, Param
 from fastapi.utils import (
+    deep_dict_update,
     generate_operation_id_for_path,
     get_field_info,
     get_model_definitions,
@@ -201,33 +202,6 @@ def get_openapi_path(
                     )
                     callbacks[callback.name] = {callback.path: cb_path}
                 operation["callbacks"] = callbacks
-            if route.responses:
-                for (additional_status_code, response) in route.responses.items():
-                    process_response = response.copy()
-                    assert isinstance(
-                        process_response, dict
-                    ), "An additional response must be a dict"
-                    field = route.response_fields.get(additional_status_code)
-                    if field:
-                        response_schema, _, _ = field_schema(
-                            field, model_name_map=model_name_map, ref_prefix=REF_PREFIX
-                        )
-                        process_response.setdefault("content", {}).setdefault(
-                            route_response_media_type or "application/json", {}
-                        )["schema"] = response_schema
-                    status_text: Optional[str] = status_code_ranges.get(
-                        str(additional_status_code).upper()
-                    ) or http.client.responses.get(int(additional_status_code))
-                    process_response.setdefault(
-                        "description", status_text or "Additional Response"
-                    )
-                    status_code_key = str(additional_status_code).upper()
-                    if status_code_key == "DEFAULT":
-                        status_code_key = "default"
-                    process_response.pop("model", None)
-                    operation.setdefault("responses", {})[
-                        status_code_key
-                    ] = process_response
             status_code = str(route.status_code)
             operation.setdefault("responses", {}).setdefault(status_code, {})[
                 "description"
@@ -251,7 +225,47 @@ def get_openapi_path(
                 ).setdefault("content", {}).setdefault(route_response_media_type, {})[
                     "schema"
                 ] = response_schema
-
+            if route.responses:
+                operation_responses = operation.setdefault("responses", {})
+                for (
+                    additional_status_code,
+                    additional_response,
+                ) in route.responses.items():
+                    process_response = additional_response.copy()
+                    process_response.pop("model", None)
+                    status_code_key = str(additional_status_code).upper()
+                    if status_code_key == "DEFAULT":
+                        status_code_key = "default"
+                    openapi_response = operation_responses.setdefault(
+                        status_code_key, {}
+                    )
+                    assert isinstance(
+                        process_response, dict
+                    ), "An additional response must be a dict"
+                    field = route.response_fields.get(additional_status_code)
+                    additional_field_schema: Optional[Dict[str, Any]] = None
+                    if field:
+                        additional_field_schema, _, _ = field_schema(
+                            field, model_name_map=model_name_map, ref_prefix=REF_PREFIX
+                        )
+                        media_type = route_response_media_type or "application/json"
+                        additional_schema = (
+                            process_response.setdefault("content", {})
+                            .setdefault(media_type, {})
+                            .setdefault("schema", {})
+                        )
+                        deep_dict_update(additional_schema, additional_field_schema)
+                    status_text: Optional[str] = status_code_ranges.get(
+                        str(additional_status_code).upper()
+                    ) or http.client.responses.get(int(additional_status_code))
+                    description = (
+                        process_response.get("description")
+                        or openapi_response.get("description")
+                        or status_text
+                        or "Additional Response"
+                    )
+                    deep_dict_update(openapi_response, process_response)
+                    openapi_response["description"] = description
             http422 = str(HTTP_422_UNPROCESSABLE_ENTITY)
             if (all_route_params or route.body_field) and not any(
                 [
