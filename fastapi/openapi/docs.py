@@ -44,7 +44,9 @@ def get_swagger_ui_html(
         SwaggerUIBundle.SwaggerUIStandalonePreset
         ],
         layout: "BaseLayout",
-        deepLinking: true
+        deepLinking: true,
+        showExtensions: true,
+        showCommonExtensions: true
     })"""
 
     if init_oauth:

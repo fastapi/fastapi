@@ -92,7 +92,7 @@ def test_post_validation_error():
     assert response.json() == {
         "detail": [
             {
-                "loc": ["body", "item", "size"],
+                "loc": ["body", "size"],
                 "msg": "value is not a valid integer",
                 "type": "type_error.integer",
             }

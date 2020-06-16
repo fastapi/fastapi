@@ -17,6 +17,9 @@ The same way you can specify a response model, you can also declare the HTTP sta
 
 The `status_code` parameter receives a number with the HTTP status code.
 
+!!! info
+    `status_code` can alternatively also receive an `IntEnum`, such as Python's <a href="https://docs.python.org/3/library/http.html#http.HTTPStatus" class="external-link" target="_blank">`http.HTTPStatus`</a>.
+
 It will:
 
 * Return that status code in the response.
@@ -83,4 +86,4 @@ They are just a convenience, they hold the same number, but that way you can use
 
 ## Changing the default
 
-Later, in the **Advanced User Guide**, you will see how to return a different status code than the default you are declaring here.
+Later, in the [Advanced User Guide](../advanced/response-change-status-code.md){.internal-link target=_blank}, you will see how to return a different status code than the default you are declaring here.

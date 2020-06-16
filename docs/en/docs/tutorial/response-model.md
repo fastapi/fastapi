@@ -124,6 +124,14 @@ So, if you send a request to that *path operation* for the item with ID `foo`, t
 !!! info
     FastAPI uses Pydantic model's `.dict()` with <a href="https://pydantic-docs.helpmanual.io/usage/exporting_models/#modeldict" class="external-link" target="_blank">its `exclude_unset` parameter</a> to achieve this.
 
+!!! info
+    You can also use:
+
+    * `response_model_exclude_defaults=True`
+    * `response_model_exclude_none=True`
+
+    as described in <a href="https://pydantic-docs.helpmanual.io/usage/exporting_models/#modeldict" class="external-link" target="_blank">the Pydantic docs</a> for `exclude_defaults` and `exclude_none`.
+
 #### Data with values for fields with defaults
 
 But if your data has values for the model's fields with default values, like the item with ID `bar`:

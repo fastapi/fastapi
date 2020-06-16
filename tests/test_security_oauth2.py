@@ -1,7 +1,6 @@
 import pytest
 from fastapi import Depends, FastAPI, Security
-from fastapi.security import OAuth2
-from fastapi.security.oauth2 import OAuth2PasswordRequestFormStrict
+from fastapi.security import OAuth2, OAuth2PasswordRequestFormStrict
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
 
