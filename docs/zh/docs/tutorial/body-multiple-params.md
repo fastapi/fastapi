@@ -54,10 +54,10 @@
 ```
 
 !!! note
-    请注意，即使 `item` 的声明方式与之前相同，但现在它被期望于通过 `item` 键内嵌在请求体中。
+    请注意，即使 `item` 的声明方式与之前相同，但现在它被期望通过 `item` 键内嵌在请求体中。
 
 
-**FastAPI** 将自动对请求中的数据进行转换，因此`item` 参数将接收指定的内容，`user` 参数也是如此。
+**FastAPI** 将自动对请求中的数据进行转换，因此 `item` 参数将接收指定的内容，`user` 参数也是如此。
 
 它将执行对复合数据的校验，并且像现在这样为 OpenAPI 模式和自动化文档对其进行记录。
 
@@ -95,7 +95,7 @@
 }
 ```
 
-同样的，它将转换数据类型，校验，记录文档等。
+同样的，它将转换数据类型，校验，生成文档等。
 
 ## 多个请求体参数和查询参数
 
@@ -107,7 +107,7 @@
 q: str = None
 ```
 
-像在：
+比如：
 
 ```Python hl_lines="25"
 {!../../../docs_src/body_multiple_params/tutorial004.py!}
@@ -129,7 +129,7 @@ q: str = None
 item: Item = Body(..., embed=True)
 ```
 
-像在：
+比如：
 
 ```Python hl_lines="15"
 {!../../../docs_src/body_multiple_params/tutorial005.py!}
