@@ -1,14 +1,14 @@
 # Primi Passi
 
-The simplest FastAPI file could look like this:
+Il più semplice script con FastAPI potrebbe essere questo:
 
 ```Python
 {!../../../docs_src/first_steps/tutorial001.py!}
 ```
 
-Copy that to a file `main.py`.
+Copialo in un file chiamato `main.py`.
 
-Run the live server:
+Carica il programma su un server:
 
 <div class="termy">
 
@@ -24,78 +24,78 @@ $ uvicorn main:app --reload
 
 </div>
 
-!!! note
-    The command `uvicorn main:app` refers to:
+!!! nota
+    Vediamo in dettaglio il comando `uvicorn main:app`:
 
-    * `main`: the file `main.py` (the Python "module").
-    * `app`: the object created inside of `main.py` with the line `app = FastAPI()`.
-    * `--reload`: make the server restart after code changes. Only use for development.
+    * `main`: il file `main.py` (il "modulo" Python).
+    * `app`: l'oggetto creato all'interno di `main.py` con la riga `app = FastAPI()`.
+    * `--reload`: riavvia il server automaticamente ad ogni modifica del codice. Usalo solo durante il sviluppo.
 
-In the output, there's a line with something like:
+Nell'output c'è questa riga:
 
 ```hl_lines="4"
 INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
-That line shows the URL where your app is being served, in your local machine.
+La riga mostra l'URL dove è disponibile la tua app sulla tua macchina.
 
-### Check it
+### Testalo
 
-Open your browser at <a href="http://127.0.0.1:8000" class="external-link" target="_blank">http://127.0.0.1:8000</a>.
+Apri il browser all'indirizzo <a href="http://127.0.0.1:8000" class="external-link" target="_blank">http://127.0.0.1:8000</a>.
 
-You will see the JSON response as:
+Vedrai la seguente risposta JSON:
 
 ```JSON
 {"message": "Hello World"}
 ```
 
-### Interactive API docs
+### Documentazione API interattiva
 
-Now go to <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+Adesso vai su <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 
-You will see the automatic interactive API documentation (provided by <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a>):
+Vedrai la documentazione dell'API interattiva generata automaticamente (offerta da <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a>):
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-01-swagger-ui-simple.png)
 
-### Alternative API docs
+### Documentazione API interattiva alternativa
 
-And now, go to <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>.
+Adesso vai su <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>.
 
-You will see the alternative automatic documentation (provided by <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a>):
+Vedrai una documentazione dell'API alternativa (offerta da <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a>):
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
 ### OpenAPI
 
-**FastAPI** generates a "schema" with all your API using the **OpenAPI** standard for defining APIs.
+**FastAPI** genera uno "schema" con la tua API usando lo standard **OpenAPI** standard per definire le API.
 
 #### "Schema"
 
-A "schema" is a definition or description of something. Not the code that implements it, but just an abstract description.
+Uno "schema" è la definizione o descrizione di qualcosa. Non si tratta della descrizione del codice, è qualcosa di più astratto.
 
-#### API "schema"
+####"Schema" dell'API
 
-In this case, <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> is a specification that dictates how to define a schema of your API.
+In questo caso, <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> è la specifica che stabilisce come definire lo schema della tua API.
 
-This schema definition includes your API paths, the possible parameters they take, etc.
+La definizione di questo schema riguarda anche i percorsi dell'API, i possibili parametri che possono accettare, e così via.
 
-#### Data "schema"
+#### Lo "schema" dei dati
 
-The term "schema" might also refer to the shape of some data, like a JSON content.
+Il termine "schema" potrebbe anche riguardare la struttura di certi dati, come i contenuti JSON.
 
-In that case, it would mean the JSON attributes, and data types they have, etc.
+In quel caso, potrebbe riguardare gli attributi JSON, e i loro tipi di valori, ecc.
 
-#### OpenAPI and JSON Schema
+#### Schema OpenAPI e JSON
 
-OpenAPI defines an API schema for your API. And that schema includes definitions (or "schemas") of the data sent and received by your API using **JSON Schema**, the standard for JSON data schemas.
+OpenAPI definisce uno schema per la tua API. E quello schema include le definizioni (o "schemas") dei dati inviati e ricevuti dalla tua API usando lo **Schema JSON**, lo standard per gli schemi JSON.
 
-#### Check the `openapi.json`
+#### Controlla `openapi.json`
 
-If you are curious about how the raw OpenAPI schema looks like, FastAPI automatically generates a JSON (schema) with the descriptions of all your API.
+Se sei curioso dello schema OpenAPI, FastAPI genera automaticamente un file JSON (lo "schema") con una descrizione di tutte le tue API.
 
-You can see it directly at: <a href="http://127.0.0.1:8000/openapi.json" class="external-link" target="_blank">http://127.0.0.1:8000/openapi.json</a>.
+Lo puoi vedere al seguente indirizzo: <a href="http://127.0.0.1:8000/openapi.json" class="external-link" target="_blank">http://127.0.0.1:8000/openapi.json</a>.
 
-It will show a JSON starting with something like:
+Vedrai un file JSON che inizia circa così:
 
 ```JSON
 {
@@ -118,40 +118,40 @@ It will show a JSON starting with something like:
 ...
 ```
 
-#### What is OpenAPI for
+#### A cosa serve OpenAPI
 
-The OpenAPI schema is what powers the two interactive documentation systems included.
+Lo schema OpenAPI è ciò su cui sono basati i due sistemi di documentazione interattiva inclusi.
 
-And there are dozens of alternatives, all based on OpenAPI. You could easily add any of those alternatives to your application built with **FastAPI**.
+E ci sono dozzine di alternative, tutte basate su OpenAPI. È facile adattare una qualsiasi alternativa alla tua applicazione con **FastAPI**.
 
-You could also use it to generate code automatically, for clients that communicate with your API. For example, frontend, mobile or IoT applications.
+Puoi anche usare lo schema OpenAPI per generare il codice automaticamente per i client che comunicano con la tua API. Per esempio, le applicazioni web, mobile o IoT.
 
-## Recap, step by step
+## Riassumendo, passo a passo
 
-### Step 1: import `FastAPI`
+### Passo 1: import `FastAPI`
 
 ```Python hl_lines="1"
 {!../../../docs_src/first_steps/tutorial001.py!}
 ```
 
-`FastAPI` is a Python class that provides all the functionality for your API.
+`FastAPI` è una classe in Python che ti fornisce tutto quello che serve per progettare la tua API.
 
-!!! note "Technical Details"
-    `FastAPI` is a class that inherits directly from `Starlette`.
+!!! note "Dettagli Tecnici"
+    `FastAPI` è una classe che eredita direttamente da `Starlette`.
 
-    You can use all the <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> functionality with `FastAPI` too.
+    Puoi usare tutte le funzionalità di <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> anche con `FastAPI`.
 
-### Step 2: create a `FastAPI` "instance"
+### Passo 2: crea una "istanza" di `FastAPI`
 
 ```Python hl_lines="3"
 {!../../../docs_src/first_steps/tutorial001.py!}
 ```
 
-Here the `app` variable will be an "instance" of the class `FastAPI`.
+Qui la variabile `app` è una "istanza" della classe `FastAPI`.
 
-This will be the main point of interaction to create all your API.
+Useremo questa variabile per creare l'API.
 
-This `app` is the same one referred by `uvicorn` in the command:
+Questa `app` è la stessa che abbiamo specificato con il comando `uvicorn`:
 
 <div class="termy">
 
@@ -163,13 +163,13 @@ $ uvicorn main:app --reload
 
 </div>
 
-If you create your app like:
+Se crei un'app in questo modo:
 
 ```Python hl_lines="3"
 {!../../../docs_src/first_steps/tutorial002.py!}
 ```
 
-And put it in a file `main.py`, then you would call `uvicorn` like:
+E aggiori il file `main.py`, allora dovresti chiamare `uvicorn` così:
 
 <div class="termy">
 
@@ -181,73 +181,73 @@ $ uvicorn main:my_awesome_api --reload
 
 </div>
 
-### Step 3: create a *path operation*
+### Passo 3: crea un *path operation*
 
 #### Path
 
-"Path" here refers to the last part of the URL starting from the first `/`.
+Qui <abbr title="in italiano: percorso">"path"</abbr> si riferisce all'ultima parte di un URL che inizia con `/`.
 
-So, in a URL like:
+Quindi, in questo URL:
 
 ```
 https://example.com/items/foo
 ```
 
-...the path would be:
+...il path è:
 
 ```
 /items/foo
 ```
 
 !!! info
-    A "path" is also commonly called an "endpoint" or a "route".
+    Un "path" è anche comunemente chiamato "endpoint" o "route".
 
-While building an API, the "path" is the main way to separate "concerns" and "resources".
+Quando progetti una API, il "path" è il modo principale per separare "concerns" e "resources".
 
 #### Operation
 
-"Operation" here refers to one of the HTTP "methods".
+Qui "operation" si riferisce a uno dei <abbr title="in italiano: metodi HTTP">"HTTP methods"</abbr>.
 
-One of:
+Per esempio:
 
 * `POST`
 * `GET`
 * `PUT`
 * `DELETE`
 
-...and the more exotic ones:
+...ma anche:
 
 * `OPTIONS`
 * `HEAD`
 * `PATCH`
 * `TRACE`
 
-In the HTTP protocol, you can communicate to each path using one (or more) of these "methods".
+Con il protocollo HTTP, puoi comunicare a ogni path usando uno (o più) di questi "methods".
 
 ---
 
-When building APIs, you normally use these specific HTTP methods to perform a specific action.
+Quando progetti API, normalmente puoi usare uno dei HTTP methods per compiere una certa azione.
 
-Normally you use:
+Normalmente si usa:
 
-* `POST`: to create data.
-* `GET`: to read data.
-* `PUT`: to update data.
-* `DELETE`: to delete data.
+* `POST`: per creare dati.
+* `GET`: per leggere dati.
+* `PUT`: per aggiornare dati.
+* `DELETE`: per eliminare dati.
 
-So, in OpenAPI, each of the HTTP methods is called an "operation".
+Quindi, in OpenAPI, ogni metodo HTTP è chiamato "operation".
 
-We are going to call them "**operations**" too.
+Li andremo a chiamare "**operations**".
 
-#### Define a *path operation decorator*
+#### Definisci un *path operation decorator*
 
 ```Python hl_lines="6"
 {!../../../docs_src/first_steps/tutorial001.py!}
 ```
 
-The `@app.get("/")` tells **FastAPI** that the function right below is in charge of handling requests that go to:
+`@app.get("/")` dice a **FastAPI** that the function right below is in charge of handling requests that go to:
 
-* the path `/`
+* il percorso `/`
 * using a <abbr title="an HTTP GET method"><code>get</code> operation</abbr>
 
 !!! info "`@decorator` Info"
@@ -295,11 +295,11 @@ This is our "**path operation function**":
 {!../../../docs_src/first_steps/tutorial001.py!}
 ```
 
-This is a Python function.
+Questa è una funzione Python.
 
 It will be called by **FastAPI** whenever it receives a request to the URL "`/`" using a `GET` operation.
 
-In this case, it is an `async` function.
+In questo caso, è una funzione `async`.
 
 ---
 
@@ -309,10 +309,10 @@ You could also define it as a normal function instead of `async def`:
 {!../../../docs_src/first_steps/tutorial003.py!}
 ```
 
-!!! note
-    If you don't know the difference, check the [Async: *"In a hurry?"*](../async.md#in-a-hurry){.internal-link target=_blank}.
+!!! Suggerimento
+    Se non sai quale sia la differenza, consulta [Async: *"In a hurry?"*](../async.md#in-a-hurry){.internal-link target=_blank}.
 
-### Step 5: return the content
+### Passo 5: return the content
 
 ```Python hl_lines="8"
 {!../../../docs_src/first_steps/tutorial001.py!}
@@ -324,10 +324,10 @@ You can also return Pydantic models (you'll see more about that later).
 
 There are many other objects and models that will be automatically converted to JSON (including ORMs, etc). Try using your favorite ones, it's highly probable that they are already supported.
 
-## Recap
+## Riassumendo
 
-* Import `FastAPI`.
-* Create an `app` instance.
-* Write a **path operation decorator** (like `@app.get("/")`).
-* Write a **path operation function** (like `def root(): ...` above).
-* Run the development server (like `uvicorn main:app --reload`).
+* Importa `FastAPI`.
+* Crea un'istanza `app`.
+* Scrivi un **path operation decorator** (come `@app.get("/")`).
+* Scrivi una **path operation function** (come `def root(): ...` sopra).
+* Esegui il server di sviluppo (per esempio con `uvicorn main:app --reload`).
