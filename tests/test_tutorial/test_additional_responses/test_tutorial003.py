@@ -20,7 +20,7 @@ openapi_schema = {
                         },
                     },
                     "200": {
-                        "description": "Successful Response",
+                        "description": "Item requested by ID",
                         "content": {
                             "application/json": {
                                 "schema": {"$ref": "#/components/schemas/Item"},

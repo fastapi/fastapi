@@ -22,7 +22,9 @@ nav:
 - Languages:
   - en: /
   - es: /es/
+  - it: /it/
   - pt: /pt/
+  - ru: /ru/
   - zh: /zh/
 - features.md
 - python-types.md
@@ -92,7 +94,8 @@ nav:
   - advanced/sql-databases-peewee.md
   - advanced/async-sql-databases.md
   - advanced/nosql-databases.md
-  - advanced/sub-applications-proxy.md
+  - advanced/sub-applications.md
+  - advanced/behind-a-proxy.md
   - advanced/templates.md
   - advanced/graphql.md
   - advanced/websockets.md
