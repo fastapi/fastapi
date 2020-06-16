@@ -1,11 +1,12 @@
-from fastapi import FastAPI, Path
+from fastapi import FastAPI, Path, Query
 
 app = FastAPI()
 
 
 @app.get("/items/{item_id}")
 async def read_items(
-    q: str, item_id: int = Path(..., title="The ID of the item to get")
+    item_id: int = Path(..., title="The ID of the item to get"),
+    q: str = Query(None, alias="item-query"),
 ):
     results = {"item_id": item_id}
     if q:
