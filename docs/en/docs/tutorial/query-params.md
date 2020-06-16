@@ -63,7 +63,7 @@ The parameter values in your function will be:
 
 The same way, you can declare optional query parameters, by setting their default to `None`:
 
-```Python hl_lines="7"
+```Python hl_lines="9"
 {!../../../docs_src/query_params/tutorial002.py!}
 ```
 
@@ -76,7 +76,7 @@ In this case, the function parameter `q` will be optional, and will be `None` by
 
 You can also declare `bool` types, and they will be converted:
 
-```Python hl_lines="7"
+```Python hl_lines="9"
 {!../../../docs_src/query_params/tutorial003.py!}
 ```
 
@@ -121,7 +121,7 @@ And you don't have to declare them in any specific order.
 
 They will be detected by name:
 
-```Python hl_lines="6 8"
+```Python hl_lines="8 10"
 {!../../../docs_src/query_params/tutorial004.py!}
 ```
 
@@ -179,7 +179,7 @@ http://127.0.0.1:8000/items/foo-item?needy=sooooneedy
 
 And of course, you can define some parameters as required, some as having a default value, and some entirely optional:
 
-```Python hl_lines="7"
+```Python hl_lines="9"
 {!../../../docs_src/query_params/tutorial006.py!}
 ```
 
