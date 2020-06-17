@@ -279,11 +279,11 @@ def update_item(item_id: int, item: Item):
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-03-swagger-02.png)
 
-* 点击 "Try it out" 按钮，之后你可以填写参数并直接调用 API：
+* 点击「Try it out」按钮，之后你可以填写参数并直接调用 API：
 
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-04-swagger-03.png)
 
-* 然后点击 "Execute" 按钮，用户界面将会和 API 进行通信，发送参数，获取结果并在屏幕上展示：
+* 然后点击「Execute」按钮，用户界面将会和 API 进行通信，发送参数，获取结果并在屏幕上展示：
 
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-05-swagger-04.png)
 
