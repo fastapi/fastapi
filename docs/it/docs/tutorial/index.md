@@ -1,8 +1,8 @@
 # Tutorial - Guida Utente - Introduzione
 
-Questo tutorial ti spiega come usare **FastAPI** e le sue funzionalità, passo per passo.
+Questo tutorial ti spiega come usare **FastAPI** e le sue funzionalità, passo dopo passo.
 
-Ogni sezione sviluppa sugli argomenti trattati nella sezione precedente, ma la guida è strutturata in modo tale ciascuna sezione possa essere consultata singolarmente.
+Ogni sezione sviluppa gli argomenti trattati nella sezione precedente, ma la guida è strutturata in modo tale che ciascuna sezione possa essere consultata singolarmente.
 
 In questo modo potrai usare il tutorial anche come referenza.
 
@@ -10,7 +10,7 @@ Così potrai tornare indietro e rivedere solo i concetti che ti servono.
 
 ## Esegui il codice
 
-Tutti i blocchi di codice che vedrai nella guida possono essere copiati e usati direttamente (fanno parte dei test interni).
+Tutti i blocchi di codice che vedrai nella guida possono essere copiati e usati direttamente (fanno parte della suite di test del framework).
 
 Per provare gli esempi, copia il codice in un file chiamato `main.py`, e avvia `uvicorn` con il seguente comando:
 
@@ -30,7 +30,7 @@ $ uvicorn main:app --reload
 
 È **ALTAMENTE consigliato** scrivere o copiare il codice, modificarlo ed eseguirlo localmente.
 
-Quando proverai gli esempi direttamente all'interno dell'editor di testo noterai immediatamente i vantaggi di FastAPI, quanto poco codice serva, i controlli sulle annotazioni di tipo, l'autocompletamento, ecc.
+Quando proverai gli esempi direttamente all'interno dell'editor di testo ti accorgerai subito dei vantaggi di FastAPI, quanto poco codice serva scrivere, i controlli sulle annotazioni di tipo, l'autocompletamento, ecc.
 
 ---
 
@@ -38,7 +38,7 @@ Quando proverai gli esempi direttamente all'interno dell'editor di testo noterai
 
 Il primo passo è quello di installare FastAPI.
 
-Per questo tutorial è consigliato installarlo insieme alle dipendenze e funzionalità opzionali:
+Per questo tutorial è consigliato installarlo insieme alle dipendenze e funzionalità opzionali con il seguente comando:
 
 <div class="termy">
 
@@ -61,7 +61,7 @@ $ pip install fastapi[all]
     pip install fastapi
     ```
 
-    Puoi installare `uvicorn`, il server che esegue il codice:
+    Per installare `uvicorn`, il server che esegue il codice, usa:
 
     ```
     pip install uvicorn
@@ -73,8 +73,8 @@ $ pip install fastapi[all]
 
 È disponibile anche una **Guida Utente Avanzata** che potrai consultare dopo il **Tutorial - Guida Utente**.
 
-La **Guida Utente Avanzata**, che è la successione e che usa gli stessi concetti di questo Tutorial, ti mostra alcune funzionalità aggiuntive.
+La **Guida Utente Avanzata**, che usa gli stessi concetti di questo Tutorial e ne è il suo proseguimento, ti mostra alcune funzionalità aggiuntive.
 
-Ti consigliamo però di completare il **Tutorial - Guida Utente** (che stai leggendo in questo momento).
+Ti consigliamo però di completare prima il **Tutorial - Guida Utente** (che stai leggendo in questo momento).
 
 Il **Tutorial - Guida Utente** ti mostra come sviluppare un'applicazione completa, che potrai migliorare a seconda delle tue esigenze usando alcuni dei concetti più avanzati della **Guida Avanzata Utente**.

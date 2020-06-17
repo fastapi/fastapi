@@ -1,6 +1,6 @@
 # Primi Passi
 
-Il più semplice script con FastAPI potrebbe essere questo:
+Il più semplice file con FastAPI potrebbe essere questo:
 
 ```Python
 {!../../../docs_src/first_steps/tutorial001.py!}
@@ -29,7 +29,7 @@ $ uvicorn main:app --reload
 
     * `main`: il file `main.py` (il "modulo" Python).
     * `app`: l'oggetto creato all'interno di `main.py` con la riga `app = FastAPI()`.
-    * `--reload`: riavvia il server automaticamente ad ogni modifica del codice. Usalo solo durante il sviluppo.
+    * `--reload`: riavvia il server automaticamente ad ogni modifica del codice. Usalo solo durante la fase di sviluppo.
 
 Nell'output c'è questa riga:
 
@@ -37,7 +37,7 @@ Nell'output c'è questa riga:
 INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
-La riga mostra l'URL dove è disponibile la tua app sulla tua macchina.
+La riga mostra l'URL dove è ospitata localmente la tua app sulla tua macchina.
 
 ### Testalo
 
@@ -67,7 +67,7 @@ Vedrai una documentazione dell'API alternativa (offerta da <a href="https://gith
 
 ### OpenAPI
 
-**FastAPI** genera uno "schema" con la tua API usando lo standard **OpenAPI** standard per definire le API.
+**FastAPI** genera uno "schema" della tua API usando **OpenAPI**, standard per definire le API.
 
 #### "Schema"
 
@@ -83,17 +83,17 @@ La definizione di questo schema riguarda anche i percorsi dell'API, i possibili 
 
 Il termine "schema" potrebbe anche riguardare la struttura di certi dati, come i contenuti JSON.
 
-In quel caso, potrebbe riguardare gli attributi JSON, e i loro tipi di valori, ecc.
+In quel caso, potrebbe riguardare gli attributi JSON, e i tipi dei loro valori, ecc.
 
 #### Schema OpenAPI e JSON
 
-OpenAPI definisce uno schema per la tua API. E quello schema include le definizioni (o "schemas") dei dati inviati e ricevuti dalla tua API usando lo **Schema JSON**, lo standard per gli schemi JSON.
+OpenAPI definisce uno schema per la tua API. E questo schema include le definizioni (o "schemas") dei dati inviati e ricevuti dalla tua API usando lo **Schema JSON**, lo standard per gli schemi JSON.
 
 #### Controlla `openapi.json`
 
 Se sei curioso dello schema OpenAPI, FastAPI genera automaticamente un file JSON (lo "schema") con una descrizione di tutte le tue API.
 
-Lo puoi vedere al seguente indirizzo: <a href="http://127.0.0.1:8000/openapi.json" class="external-link" target="_blank">http://127.0.0.1:8000/openapi.json</a>.
+Lo puoi trovare al seguente indirizzo: <a href="http://127.0.0.1:8000/openapi.json" class="external-link" target="_blank">http://127.0.0.1:8000/openapi.json</a>.
 
 Vedrai un file JSON che inizia circa così:
 
@@ -120,13 +120,13 @@ Vedrai un file JSON che inizia circa così:
 
 #### A cosa serve OpenAPI
 
-Lo schema OpenAPI è ciò su cui sono basati i due sistemi di documentazione interattiva inclusi.
+Lo schema OpenAPI è ciò su cui sono basati i due sistemi di documentazione interattiva adottati dal framework.
 
 E ci sono dozzine di alternative, tutte basate su OpenAPI. È facile adattare una qualsiasi alternativa alla tua applicazione con **FastAPI**.
 
 Puoi anche usare lo schema OpenAPI per generare il codice automaticamente per i client che comunicano con la tua API. Per esempio, le applicazioni web, mobile o IoT.
 
-## Riassumendo, passo a passo
+## Ricapitolando, passo dopo passo
 
 ### Passo 1: import `FastAPI`
 
@@ -139,7 +139,7 @@ Puoi anche usare lo schema OpenAPI per generare il codice automaticamente per i 
 !!! note "Dettagli Tecnici"
     `FastAPI` è una classe che eredita direttamente da `Starlette`.
 
-    Puoi usare tutte le funzionalità di <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> anche con `FastAPI`.
+    Puoi quindi usare tutte le funzionalità di <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> anche con `FastAPI`.
 
 ### Passo 2: crea una "istanza" di `FastAPI`
 
@@ -163,13 +163,13 @@ $ uvicorn main:app --reload
 
 </div>
 
-Se crei un'app in questo modo:
+Quindi, se crei un'app così:
 
 ```Python hl_lines="3"
 {!../../../docs_src/first_steps/tutorial002.py!}
 ```
 
-E aggiori il file `main.py`, allora dovresti chiamare `uvicorn` così:
+E aggiori il file `main.py`, allora dovresti chiamare `uvicorn` in questo modo:
 
 <div class="termy">
 
@@ -222,11 +222,11 @@ Per esempio:
 * `PATCH`
 * `TRACE`
 
-Con il protocollo HTTP, puoi comunicare a ogni path usando uno (o più) di questi "methods".
+Con il protocollo HTTP puoi comunicare con ogni path usando uno (o più) di questi "methods".
 
 ---
 
-Quando progetti API, normalmente puoi usare uno dei HTTP methods per compiere una certa azione.
+Quando progetti API, normalmente puoi usare uno dei metodi HTTP per portare a termine una determinata azione.
 
 Normalmente si usa:
 
@@ -235,7 +235,7 @@ Normalmente si usa:
 * `PUT`: per aggiornare dati.
 * `DELETE`: per eliminare dati.
 
-Quindi, in OpenAPI, ogni metodo HTTP è chiamato "operation".
+Quindi, all'interno di OpenAPI, ogni metodo HTTP è chiamato "operation".
 
 Li andremo a chiamare "**operations**".
 
@@ -245,29 +245,29 @@ Li andremo a chiamare "**operations**".
 {!../../../docs_src/first_steps/tutorial001.py!}
 ```
 
-`@app.get("/")` dice a **FastAPI** that the function right below is in charge of handling requests that go to:
+`@app.get("/")` dice a **FastAPI** che la funzione sottostante è resposabile delle richieste che:
 
-* il percorso `/`
-* using a <abbr title="an HTTP GET method"><code>get</code> operation</abbr>
+* specificano il percorso `/`
+* usano una <abbr title="un metodo HTTP GET"><code>get</code> operation</abbr>
 
 !!! info "`@decorator` Info"
-    That `@something` syntax in Python is called a "decorator".
+    La sintassi `@something` in Python è chiamata <abbr title="in italiano: decoratore">"decorator"</abbr>.
 
-    You put it on top of a function. Like a pretty decorative hat (I guess that's where the term came from).
+    La metti sopra una funzione. Come se fosse un bel cappellino di decorazione (forse è da lì che proviene il nome).
 
-    A "decorator" takes the function below and does something with it.
+    Un "decorator" prende la funzione sottostante e la usa per farci qualcosa.
 
-    In our case, this decorator tells **FastAPI** that the function below corresponds to the **path** `/` with an **operation** `get`.
+    Nel nostor caso, questo decoratore dice a **FastAPI** che la funzione sottostante corrisponde al path **path** `/` con una **operation** `get`.
 
-    It is the "**path operation decorator**".
+    È quindi il "**path operation decorator**".
 
-You can also use the other operations:
+Puoi anche usare altre operazioni:
 
 * `@app.post()`
 * `@app.put()`
 * `@app.delete()`
 
-And the more exotic ones:
+E anche queste meno comuni:
 
 * `@app.options()`
 * `@app.head()`
@@ -275,17 +275,17 @@ And the more exotic ones:
 * `@app.trace()`
 
 !!! tip
-    You are free to use each operation (HTTP method) as you wish.
+    Sei libero di una usare qualsiasi operazione (metodo HTTP).
 
     **FastAPI** doesn't enforce any specific meaning.
 
-    The information here is presented as a guideline, not a requirement.
+    Le informazioni qui sono presentate come linee guida, non come requisiti specifici.
 
-    For example, when using GraphQL you normally perform all the actions using only `POST` operations.
+    Per esempio, quando usi GraphQL normalmente esegue tutte le azioni usando solo operazioni `POST`.
 
-### Step 4: define the **path operation function**
+### Passo 4: definisci la **path operation function**
 
-This is our "**path operation function**":
+Questa è la nostra "**path operation function**":
 
 * **path**: is `/`.
 * **operation**: is `get`.
@@ -297,13 +297,13 @@ This is our "**path operation function**":
 
 Questa è una funzione Python.
 
-It will be called by **FastAPI** whenever it receives a request to the URL "`/`" using a `GET` operation.
+Sarà chiamata da **FastAPI** ogni volta che riceverà la richiesta all'URL "`/`" usando un'operazione `GET`.
 
 In questo caso, è una funzione `async`.
 
 ---
 
-You could also define it as a normal function instead of `async def`:
+Puoi anche definirla come una funzione normale usando `async def`:
 
 ```Python hl_lines="7"
 {!../../../docs_src/first_steps/tutorial003.py!}
@@ -318,13 +318,13 @@ You could also define it as a normal function instead of `async def`:
 {!../../../docs_src/first_steps/tutorial001.py!}
 ```
 
-You can return a `dict`, `list`, singular values as `str`, `int`, etc.
+Puoi restituire un `dict`, `list`, valori singoli come `str`, `int`, ecc.
 
-You can also return Pydantic models (you'll see more about that later).
+Puoi anche restituire i modelli Pydantic (li vedremo tra poco).
 
-There are many other objects and models that will be automatically converted to JSON (including ORMs, etc). Try using your favorite ones, it's highly probable that they are already supported.
+Ci sono anche tanti altri oggetti e modelli che saranno automaticamente convertiti in JSON (inclusi gli ORM, ecc). Prova a usare i tuoi oggetti preferiti, è molto probabile che saranno supportati.
 
-## Riassumendo
+## Ricapitolando
 
 * Importa `FastAPI`.
 * Crea un'istanza `app`.
