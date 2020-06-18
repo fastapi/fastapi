@@ -14,6 +14,8 @@ test.db
 log.txt
 Pipfile.lock
 env3.*
+env
+docs_build
 venv
 
 # vim stuff

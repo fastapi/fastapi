@@ -1,6 +1,5 @@
-from fastapi import Depends, FastAPI
-from starlette.responses import Response
-from starlette.testclient import TestClient
+from fastapi import Depends, FastAPI, Response
+from fastapi.testclient import TestClient
 
 app = FastAPI()
 
@@ -23,5 +22,5 @@ client = TestClient(app)
 
 def test_dependency_set_status_code():
     response = client.get("/")
-    assert response.status_code == 201
+    assert response.status_code == 201, response.text
     assert response.json() == {"msg": "Hello World"}

@@ -1,4 +1,4 @@
-from starlette.testclient import TestClient
+from fastapi.testclient import TestClient
 
 from path_operation_configuration.tutorial005 import app
 
@@ -96,13 +96,13 @@ openapi_schema = {
 
 def test_openapi_schema():
     response = client.get("/openapi.json")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == openapi_schema
 
 
 def test_query_params_str_validations():
     response = client.post("/items/", json={"name": "Foo", "price": 42})
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == {
         "name": "Foo",
         "price": 42,

@@ -1,4 +1,4 @@
-from starlette.testclient import TestClient
+from fastapi.testclient import TestClient
 
 from custom_request_and_route.tutorial002 import app
 
@@ -18,7 +18,7 @@ def test_exception_handler_body_access():
             "body": '{"numbers": [1, 2, 3]}',
             "errors": [
                 {
-                    "loc": ["body", "numbers"],
+                    "loc": ["body"],
                     "msg": "value is not a valid list",
                     "type": "type_error.list",
                 }

@@ -1,8 +1,8 @@
 import typing
 
 from fastapi import Body, FastAPI
+from fastapi.testclient import TestClient
 from pydantic import BaseModel
-from starlette.testclient import TestClient
 
 app = FastAPI()
 
@@ -55,7 +55,7 @@ client = TestClient(app)
 
 def test_openapi_schema():
     response = client.get("/openapi.json")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     openapi_schema = response.json()
     assert (
         openapi_schema["paths"]["/products"]["post"]["requestBody"]

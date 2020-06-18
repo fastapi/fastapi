@@ -1,4 +1,4 @@
-from starlette.testclient import TestClient
+from fastapi.testclient import TestClient
 
 from additional_responses.tutorial003 import app
 
@@ -20,7 +20,7 @@ openapi_schema = {
                         },
                     },
                     "200": {
-                        "description": "Successful Response",
+                        "description": "Item requested by ID",
                         "content": {
                             "application/json": {
                                 "schema": {"$ref": "#/components/schemas/Item"},
@@ -101,17 +101,17 @@ openapi_schema = {
 
 def test_openapi_schema():
     response = client.get("/openapi.json")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == openapi_schema
 
 
 def test_path_operation():
     response = client.get("/items/foo")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == {"id": "foo", "value": "there goes my hero"}
 
 
 def test_path_operation_not_found():
     response = client.get("/items/bar")
-    assert response.status_code == 404
+    assert response.status_code == 404, response.text
     assert response.json() == {"message": "Item not found"}

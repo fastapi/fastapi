@@ -1,7 +1,7 @@
 import pytest
 from fastapi import APIRouter, FastAPI
 from fastapi.routing import APIRoute
-from starlette.testclient import TestClient
+from fastapi.testclient import TestClient
 
 app = FastAPI()
 

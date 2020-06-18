@@ -1,7 +1,6 @@
-from fastapi import APIRouter, FastAPI
-from starlette.requests import Request
-from starlette.responses import JSONResponse
-from starlette.testclient import TestClient
+from fastapi import APIRouter, FastAPI, Request
+from fastapi.responses import JSONResponse
+from fastapi.testclient import TestClient
 
 app = FastAPI()
 router = APIRouter()
@@ -19,5 +18,5 @@ client = TestClient(app)
 
 def test_sub_router():
     response = client.get("/items/")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == {"hello": "world"}

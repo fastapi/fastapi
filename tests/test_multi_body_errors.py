@@ -2,8 +2,8 @@ from decimal import Decimal
 from typing import List
 
 from fastapi import FastAPI
+from fastapi.testclient import TestClient
 from pydantic import BaseModel, condecimal
-from starlette.testclient import TestClient
 
 app = FastAPI()
 
@@ -104,7 +104,7 @@ single_error = {
     "detail": [
         {
             "ctx": {"limit_value": 0.0},
-            "loc": ["body", "item", 0, "age"],
+            "loc": ["body", 0, "age"],
             "msg": "ensure this value is greater than 0",
             "type": "value_error.number.not_gt",
         }
@@ -114,22 +114,22 @@ single_error = {
 multiple_errors = {
     "detail": [
         {
-            "loc": ["body", "item", 0, "name"],
+            "loc": ["body", 0, "name"],
             "msg": "field required",
             "type": "value_error.missing",
         },
         {
-            "loc": ["body", "item", 0, "age"],
+            "loc": ["body", 0, "age"],
             "msg": "value is not a valid decimal",
             "type": "type_error.decimal",
         },
         {
-            "loc": ["body", "item", 1, "name"],
+            "loc": ["body", 1, "name"],
             "msg": "field required",
             "type": "value_error.missing",
         },
         {
-            "loc": ["body", "item", 1, "age"],
+            "loc": ["body", 1, "age"],
             "msg": "value is not a valid decimal",
             "type": "type_error.decimal",
         },
@@ -139,23 +139,23 @@ multiple_errors = {
 
 def test_openapi_schema():
     response = client.get("/openapi.json")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == openapi_schema
 
 
 def test_put_correct_body():
     response = client.post("/items/", json=[{"name": "Foo", "age": 5}])
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == {"item": [{"name": "Foo", "age": 5}]}
 
 
 def test_jsonable_encoder_requiring_error():
     response = client.post("/items/", json=[{"name": "Foo", "age": -1.0}])
-    assert response.status_code == 422
+    assert response.status_code == 422, response.text
     assert response.json() == single_error
 
 
 def test_put_incorrect_body_multiple():
     response = client.post("/items/", json=[{"age": "five"}, {"age": "six"}])
-    assert response.status_code == 422
+    assert response.status_code == 422, response.text
     assert response.json() == multiple_errors

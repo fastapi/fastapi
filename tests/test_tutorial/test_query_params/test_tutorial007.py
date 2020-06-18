@@ -1,4 +1,4 @@
-from starlette.testclient import TestClient
+from fastapi.testclient import TestClient
 
 from query_params.tutorial007 import app
 
@@ -79,17 +79,17 @@ openapi_schema = {
 
 def test_openapi():
     response = client.get("/openapi.json")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == openapi_schema
 
 
 def test_read_item():
     response = client.get("/items/foo")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == {"item_id": "foo", "limit": None}
 
 
 def test_read_item_query():
     response = client.get("/items/foo?limit=5")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == {"item_id": "foo", "limit": 5}

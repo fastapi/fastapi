@@ -32,7 +32,7 @@ classifiers = [
     "Topic :: Internet :: WWW/HTTP",
 ]
 requires = [
-    "starlette >=0.12.9,<=0.12.9",
+    "starlette ==0.13.4",
     "pydantic >=0.32.2,<2.0.0"
 ]
 description-file = "README.md"
@@ -43,7 +43,7 @@ Documentation = "https://fastapi.tiangolo.com/"
 
 [tool.flit.metadata.requires-extra]
 test = [
-    "pytest >=4.0.0",
+    "pytest >=5.4.3",
     "pytest-cov",
     "mypy",
     "black",
@@ -55,12 +55,18 @@ test = [
     "databases[sqlite]",
     "orjson",
     "async_exit_stack",
-    "async_generator"
+    "async_generator",
+    "python-multipart",
+    "aiofiles",
+    "flask"
 ]
 doc = [
     "mkdocs",
     "mkdocs-material",
-    "markdown-include"
+    "markdown-include",
+    "typer",
+    "typer-cli",
+    "pyyaml"
 ]
 dev = [
     "pyjwt",
@@ -79,6 +85,7 @@ all = [
     "pyyaml",
     "graphene",
     "ujson",
+    "orjson",
     "email_validator",
     "uvicorn",
     "async_exit_stack",

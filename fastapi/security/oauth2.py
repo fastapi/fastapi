@@ -81,7 +81,7 @@ class OAuth2PasswordRequestFormStrict(OAuth2PasswordRequestForm):
 
     grant_type: the OAuth2 spec says it is required and MUST be the fixed string "password".
         This dependency is strict about it. If you want to be permissive, use instead the
-        OAuth2PasswordRequestFormStrict dependency class.
+        OAuth2PasswordRequestForm dependency class.
     username: username string. The OAuth2 spec requires the exact field name "username".
     password: password string. The OAuth2 spec requires the exact field name "password".
     scope: Optional string. Several scopes (each one a string) separated by spaces. E.g.

@@ -1,4 +1,4 @@
-from starlette.testclient import TestClient
+from fastapi.testclient import TestClient
 
 from response_model.tutorial006 import app
 
@@ -122,19 +122,19 @@ openapi_schema = {
 
 def test_openapi_schema():
     response = client.get("/openapi.json")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == openapi_schema
 
 
 def test_read_item_name():
     response = client.get("/items/bar/name")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == {"name": "Bar", "description": "The Bar fighters"}
 
 
 def test_read_item_public_data():
     response = client.get("/items/bar/public")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == {
         "name": "Bar",
         "description": "The Bar fighters",

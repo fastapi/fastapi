@@ -8,6 +8,7 @@ from fastapi.exception_handlers import (
     request_validation_exception_handler,
 )
 from fastapi.exceptions import RequestValidationError
+from fastapi.logger import logger
 from fastapi.openapi.docs import (
     get_redoc_html,
     get_swagger_ui_html,
@@ -18,8 +19,8 @@ from fastapi.params import Depends
 from fastapi.utils import warning_response_model_skip_defaults_deprecated
 from starlette.applications import Starlette
 from starlette.datastructures import State
-from starlette.exceptions import ExceptionMiddleware, HTTPException
-from starlette.middleware.errors import ServerErrorMiddleware
+from starlette.exceptions import HTTPException
+from starlette.middleware import Middleware
 from starlette.requests import Request
 from starlette.responses import HTMLResponse, JSONResponse, Response
 from starlette.routing import BaseRoute
@@ -29,37 +30,59 @@ from starlette.types import Receive, Scope, Send
 class FastAPI(Starlette):
     def __init__(
         self,
+        *,
         debug: bool = False,
         routes: List[BaseRoute] = None,
-        template_directory: str = None,
         title: str = "FastAPI",
         description: str = "",
         version: str = "0.1.0",
         openapi_url: Optional[str] = "/openapi.json",
-        openapi_prefix: str = "",
+        openapi_tags: Optional[List[Dict[str, Any]]] = None,
+        servers: Optional[List[Dict[str, Union[str, Any]]]] = None,
         default_response_class: Type[Response] = JSONResponse,
         docs_url: Optional[str] = "/docs",
         redoc_url: Optional[str] = "/redoc",
         swagger_ui_oauth2_redirect_url: Optional[str] = "/docs/oauth2-redirect",
         swagger_ui_init_oauth: Optional[dict] = None,
+        middleware: Sequence[Middleware] = None,
+        exception_handlers: Dict[Union[int, Type[Exception]], Callable] = None,
+        on_startup: Sequence[Callable] = None,
+        on_shutdown: Sequence[Callable] = None,
+        openapi_prefix: str = "",
+        root_path: str = "",
         **extra: Dict[str, Any],
     ) -> None:
         self.default_response_class = default_response_class
         self._debug = debug
         self.state = State()
         self.router: routing.APIRouter = routing.APIRouter(
-            routes, dependency_overrides_provider=self
+            routes,
+            dependency_overrides_provider=self,
+            on_startup=on_startup,
+            on_shutdown=on_shutdown,
         )
-        self.exception_middleware = ExceptionMiddleware(self.router, debug=debug)
-        self.error_middleware = ServerErrorMiddleware(
-            self.exception_middleware, debug=debug
+        self.exception_handlers = (
+            {} if exception_handlers is None else dict(exception_handlers)
         )
+
+        self.user_middleware = [] if middleware is None else list(middleware)
+        self.middleware_stack = self.build_middleware_stack()
 
         self.title = title
         self.description = description
         self.version = version
+        self.servers = servers
         self.openapi_url = openapi_url
-        self.openapi_prefix = openapi_prefix.rstrip("/")
+        self.openapi_tags = openapi_tags
+        # TODO: remove when discarding the openapi_prefix parameter
+        if openapi_prefix:
+            logger.warning(
+                '"openapi_prefix" has been deprecated in favor of "root_path", which '
+                "follows more closely the ASGI standard, is simpler, and more "
+                "automatic. Check the docs at "
+                "https://fastapi.tiangolo.com/advanced/sub-applications-proxy/"
+            )
+        self.root_path = root_path or openapi_prefix
         self.docs_url = docs_url
         self.redoc_url = redoc_url
         self.swagger_ui_oauth2_redirect_url = swagger_ui_oauth2_redirect_url
@@ -72,13 +95,10 @@ class FastAPI(Starlette):
         if self.openapi_url:
             assert self.title, "A title must be provided for OpenAPI, e.g.: 'My API'"
             assert self.version, "A version must be provided for OpenAPI, e.g.: '2.1.0'"
-
-        if self.docs_url or self.redoc_url:
-            assert self.openapi_url, "The openapi_url is required for the docs"
         self.openapi_schema: Optional[Dict[str, Any]] = None
         self.setup()
 
-    def openapi(self) -> Dict:
+    def openapi(self, openapi_prefix: str = "") -> Dict:
         if not self.openapi_schema:
             self.openapi_schema = get_openapi(
                 title=self.title,
@@ -86,7 +106,9 @@ class FastAPI(Starlette):
                 openapi_version=self.openapi_version,
                 description=self.description,
                 routes=self.routes,
-                openapi_prefix=self.openapi_prefix,
+                openapi_prefix=openapi_prefix,
+                tags=self.openapi_tags,
+                servers=self.servers,
             )
         return self.openapi_schema
 
@@ -94,17 +116,22 @@ class FastAPI(Starlette):
         if self.openapi_url:
 
             async def openapi(req: Request) -> JSONResponse:
-                return JSONResponse(self.openapi())
+                root_path = req.scope.get("root_path", "").rstrip("/")
+                return JSONResponse(self.openapi(root_path))
 
             self.add_route(self.openapi_url, openapi, include_in_schema=False)
-            openapi_url = self.openapi_prefix + self.openapi_url
         if self.openapi_url and self.docs_url:
 
             async def swagger_ui_html(req: Request) -> HTMLResponse:
+                root_path = req.scope.get("root_path", "").rstrip("/")
+                openapi_url = root_path + self.openapi_url
+                oauth2_redirect_url = self.swagger_ui_oauth2_redirect_url
+                if oauth2_redirect_url:
+                    oauth2_redirect_url = root_path + oauth2_redirect_url
                 return get_swagger_ui_html(
                     openapi_url=openapi_url,
                     title=self.title + " - Swagger UI",
-                    oauth2_redirect_url=self.swagger_ui_oauth2_redirect_url,
+                    oauth2_redirect_url=oauth2_redirect_url,
                     init_oauth=self.swagger_ui_init_oauth,
                 )
 
@@ -123,6 +150,8 @@ class FastAPI(Starlette):
         if self.openapi_url and self.redoc_url:
 
             async def redoc_html(req: Request) -> HTMLResponse:
+                root_path = req.scope.get("root_path", "").rstrip("/")
+                openapi_url = root_path + self.openapi_url
                 return get_redoc_html(
                     openapi_url=openapi_url, title=self.title + " - ReDoc"
                 )
@@ -134,6 +163,8 @@ class FastAPI(Starlette):
         )
 
     async def __call__(self, scope: Scope, receive: Receive, send: Send) -> None:
+        if self.root_path:
+            scope["root_path"] = self.root_path
         if AsyncExitStack:
             async with AsyncExitStack() as stack:
                 scope["fastapi_astack"] = stack
@@ -162,6 +193,8 @@ class FastAPI(Starlette):
         response_model_by_alias: bool = True,
         response_model_skip_defaults: bool = None,
         response_model_exclude_unset: bool = False,
+        response_model_exclude_defaults: bool = False,
+        response_model_exclude_none: bool = False,
         include_in_schema: bool = True,
         response_class: Type[Response] = None,
         name: str = None,
@@ -188,6 +221,8 @@ class FastAPI(Starlette):
             response_model_exclude_unset=bool(
                 response_model_exclude_unset or response_model_skip_defaults
             ),
+            response_model_exclude_defaults=response_model_exclude_defaults,
+            response_model_exclude_none=response_model_exclude_none,
             include_in_schema=include_in_schema,
             response_class=response_class or self.default_response_class,
             name=name,
@@ -213,6 +248,8 @@ class FastAPI(Starlette):
         response_model_by_alias: bool = True,
         response_model_skip_defaults: bool = None,
         response_model_exclude_unset: bool = False,
+        response_model_exclude_defaults: bool = False,
+        response_model_exclude_none: bool = False,
         include_in_schema: bool = True,
         response_class: Type[Response] = None,
         name: str = None,
@@ -241,6 +278,8 @@ class FastAPI(Starlette):
                 response_model_exclude_unset=bool(
                     response_model_exclude_unset or response_model_skip_defaults
                 ),
+                response_model_exclude_defaults=response_model_exclude_defaults,
+                response_model_exclude_none=response_model_exclude_none,
                 include_in_schema=include_in_schema,
                 response_class=response_class or self.default_response_class,
                 name=name,
@@ -300,6 +339,8 @@ class FastAPI(Starlette):
         response_model_by_alias: bool = True,
         response_model_skip_defaults: bool = None,
         response_model_exclude_unset: bool = False,
+        response_model_exclude_defaults: bool = False,
+        response_model_exclude_none: bool = False,
         include_in_schema: bool = True,
         response_class: Type[Response] = None,
         name: str = None,
@@ -325,6 +366,8 @@ class FastAPI(Starlette):
             response_model_exclude_unset=bool(
                 response_model_exclude_unset or response_model_skip_defaults
             ),
+            response_model_exclude_defaults=response_model_exclude_defaults,
+            response_model_exclude_none=response_model_exclude_none,
             include_in_schema=include_in_schema,
             response_class=response_class or self.default_response_class,
             name=name,
@@ -350,6 +393,8 @@ class FastAPI(Starlette):
         response_model_by_alias: bool = True,
         response_model_skip_defaults: bool = None,
         response_model_exclude_unset: bool = False,
+        response_model_exclude_defaults: bool = False,
+        response_model_exclude_none: bool = False,
         include_in_schema: bool = True,
         response_class: Type[Response] = None,
         name: str = None,
@@ -375,6 +420,8 @@ class FastAPI(Starlette):
             response_model_exclude_unset=bool(
                 response_model_exclude_unset or response_model_skip_defaults
             ),
+            response_model_exclude_defaults=response_model_exclude_defaults,
+            response_model_exclude_none=response_model_exclude_none,
             include_in_schema=include_in_schema,
             response_class=response_class or self.default_response_class,
             name=name,
@@ -400,6 +447,8 @@ class FastAPI(Starlette):
         response_model_by_alias: bool = True,
         response_model_skip_defaults: bool = None,
         response_model_exclude_unset: bool = False,
+        response_model_exclude_defaults: bool = False,
+        response_model_exclude_none: bool = False,
         include_in_schema: bool = True,
         response_class: Type[Response] = None,
         name: str = None,
@@ -425,6 +474,8 @@ class FastAPI(Starlette):
             response_model_exclude_unset=bool(
                 response_model_exclude_unset or response_model_skip_defaults
             ),
+            response_model_exclude_defaults=response_model_exclude_defaults,
+            response_model_exclude_none=response_model_exclude_none,
             include_in_schema=include_in_schema,
             response_class=response_class or self.default_response_class,
             name=name,
@@ -450,6 +501,8 @@ class FastAPI(Starlette):
         response_model_by_alias: bool = True,
         response_model_skip_defaults: bool = None,
         response_model_exclude_unset: bool = False,
+        response_model_exclude_defaults: bool = False,
+        response_model_exclude_none: bool = False,
         include_in_schema: bool = True,
         response_class: Type[Response] = None,
         name: str = None,
@@ -475,6 +528,8 @@ class FastAPI(Starlette):
             response_model_exclude_unset=bool(
                 response_model_exclude_unset or response_model_skip_defaults
             ),
+            response_model_exclude_defaults=response_model_exclude_defaults,
+            response_model_exclude_none=response_model_exclude_none,
             include_in_schema=include_in_schema,
             response_class=response_class or self.default_response_class,
             name=name,
@@ -500,6 +555,8 @@ class FastAPI(Starlette):
         response_model_by_alias: bool = True,
         response_model_skip_defaults: bool = None,
         response_model_exclude_unset: bool = False,
+        response_model_exclude_defaults: bool = False,
+        response_model_exclude_none: bool = False,
         include_in_schema: bool = True,
         response_class: Type[Response] = None,
         name: str = None,
@@ -525,6 +582,8 @@ class FastAPI(Starlette):
             response_model_exclude_unset=bool(
                 response_model_exclude_unset or response_model_skip_defaults
             ),
+            response_model_exclude_defaults=response_model_exclude_defaults,
+            response_model_exclude_none=response_model_exclude_none,
             include_in_schema=include_in_schema,
             response_class=response_class or self.default_response_class,
             name=name,
@@ -550,6 +609,8 @@ class FastAPI(Starlette):
         response_model_by_alias: bool = True,
         response_model_skip_defaults: bool = None,
         response_model_exclude_unset: bool = False,
+        response_model_exclude_defaults: bool = False,
+        response_model_exclude_none: bool = False,
         include_in_schema: bool = True,
         response_class: Type[Response] = None,
         name: str = None,
@@ -575,6 +636,8 @@ class FastAPI(Starlette):
             response_model_exclude_unset=bool(
                 response_model_exclude_unset or response_model_skip_defaults
             ),
+            response_model_exclude_defaults=response_model_exclude_defaults,
+            response_model_exclude_none=response_model_exclude_none,
             include_in_schema=include_in_schema,
             response_class=response_class or self.default_response_class,
             name=name,
@@ -600,6 +663,8 @@ class FastAPI(Starlette):
         response_model_by_alias: bool = True,
         response_model_skip_defaults: bool = None,
         response_model_exclude_unset: bool = False,
+        response_model_exclude_defaults: bool = False,
+        response_model_exclude_none: bool = False,
         include_in_schema: bool = True,
         response_class: Type[Response] = None,
         name: str = None,
@@ -625,6 +690,8 @@ class FastAPI(Starlette):
             response_model_exclude_unset=bool(
                 response_model_exclude_unset or response_model_skip_defaults
             ),
+            response_model_exclude_defaults=response_model_exclude_defaults,
+            response_model_exclude_none=response_model_exclude_none,
             include_in_schema=include_in_schema,
             response_class=response_class or self.default_response_class,
             name=name,
@@ -650,6 +717,8 @@ class FastAPI(Starlette):
         response_model_by_alias: bool = True,
         response_model_skip_defaults: bool = None,
         response_model_exclude_unset: bool = False,
+        response_model_exclude_defaults: bool = False,
+        response_model_exclude_none: bool = False,
         include_in_schema: bool = True,
         response_class: Type[Response] = None,
         name: str = None,
@@ -675,6 +744,8 @@ class FastAPI(Starlette):
             response_model_exclude_unset=bool(
                 response_model_exclude_unset or response_model_skip_defaults
             ),
+            response_model_exclude_defaults=response_model_exclude_defaults,
+            response_model_exclude_none=response_model_exclude_none,
             include_in_schema=include_in_schema,
             response_class=response_class or self.default_response_class,
             name=name,

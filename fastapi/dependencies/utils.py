@@ -27,7 +27,12 @@ from fastapi.dependencies.models import Dependant, SecurityRequirement
 from fastapi.security.base import SecurityBase
 from fastapi.security.oauth2 import OAuth2, SecurityScopes
 from fastapi.security.open_id_connect_url import OpenIdConnect
-from fastapi.utils import PYDANTIC_1, get_field_info, get_path_param_names
+from fastapi.utils import (
+    PYDANTIC_1,
+    create_response_field,
+    get_field_info,
+    get_path_param_names,
+)
 from pydantic import BaseConfig, BaseModel, create_model
 from pydantic.error_wrappers import ErrorWrapper
 from pydantic.errors import MissingError
@@ -183,6 +188,16 @@ def get_flat_dependant(
     return flat_dependant
 
 
+def get_flat_params(dependant: Dependant) -> List[ModelField]:
+    flat_dependant = get_flat_dependant(dependant, skip_repeats=True)
+    return (
+        flat_dependant.path_params
+        + flat_dependant.query_params
+        + flat_dependant.header_params
+        + flat_dependant.cookie_params
+    )
+
+
 def is_scalar_field(field: ModelField) -> bool:
     field_info = get_field_info(field)
     if not (
@@ -259,7 +274,7 @@ def get_dependant(
     path_param_names = get_path_param_names(path)
     endpoint_signature = get_typed_signature(call)
     signature_params = endpoint_signature.parameters
-    if inspect.isgeneratorfunction(call) or inspect.isasyncgenfunction(call):
+    if is_gen_callable(call) or is_async_gen_callable(call):
         check_dependency_contextmanagers()
     dependant = Dependant(call=call, name=name, path=path, use_cache=use_cache)
     for param_name, param in signature_params.items():
@@ -279,7 +294,7 @@ def get_dependant(
         if param_name in path_param_names:
             assert is_scalar_field(
                 field=param_field
-            ), f"Path params must be of one of the supported types"
+            ), "Path params must be of one of the supported types"
             if isinstance(param.default, params.Path):
                 ignore_default = False
             else:
@@ -362,31 +377,15 @@ def get_param_field(
         alias = param.name.replace("_", "-")
     else:
         alias = field_info.alias or param.name
-    if PYDANTIC_1:
-        field = ModelField(
-            name=param.name,
-            type_=annotation,
-            default=None if required else default_value,
-            alias=alias,
-            required=required,
-            model_config=BaseConfig,
-            class_validators={},
-            field_info=field_info,
-        )
-        # TODO: remove when removing support for Pydantic < 1.2.0
-        field.required = required
-    else:  # pragma: nocover
-        field = ModelField(  # type: ignore
-            name=param.name,
-            type_=annotation,
-            default=None if required else default_value,
-            alias=alias,
-            required=required,
-            model_config=BaseConfig,
-            class_validators={},
-            schema=field_info,
-        )
-        field.required = required
+    field = create_response_field(
+        name=param.name,
+        type_=annotation,
+        default=None if required else default_value,
+        alias=alias,
+        required=required,
+        field_info=field_info,
+    )
+    field.required = required
     if not had_schema and not is_scalar_field(field=field):
         if PYDANTIC_1:
             field.field_info = params.Body(field_info.default)
@@ -413,19 +412,41 @@ def add_param_to_fields(*, field: ModelField, dependant: Dependant) -> None:
 
 def is_coroutine_callable(call: Callable) -> bool:
     if inspect.isroutine(call):
-        return asyncio.iscoroutinefunction(call)
+        return inspect.iscoroutinefunction(call)
     if inspect.isclass(call):
         return False
     call = getattr(call, "__call__", None)
-    return asyncio.iscoroutinefunction(call)
+    return inspect.iscoroutinefunction(call)
+
+
+def is_async_gen_callable(call: Callable) -> bool:
+    if inspect.isasyncgenfunction(call):
+        return True
+    call = getattr(call, "__call__", None)
+    return inspect.isasyncgenfunction(call)
+
+
+def is_gen_callable(call: Callable) -> bool:
+    if inspect.isgeneratorfunction(call):
+        return True
+    call = getattr(call, "__call__", None)
+    return inspect.isgeneratorfunction(call)
 
 
 async def solve_generator(
     *, call: Callable, stack: AsyncExitStack, sub_values: Dict[str, Any]
 ) -> Any:
-    if inspect.isgeneratorfunction(call):
+    if is_gen_callable(call):
         cm = contextmanager_in_threadpool(contextmanager(call)(**sub_values))
-    elif inspect.isasyncgenfunction(call):
+    elif is_async_gen_callable(call):
+        if not inspect.isasyncgenfunction(call):
+            # asynccontextmanager from the async_generator backfill pre python3.7
+            # does not support callables that are not functions or methods.
+            # See https://github.com/python-trio/async_generator/issues/32
+            #
+            # Expand the callable class into its __call__ method before decorating it.
+            # This approach will work on newer python versions as well.
+            call = getattr(call, "__call__", None)
         cm = asynccontextmanager(call)(**sub_values)
     return await stack.enter_async_context(cm)
 
@@ -479,6 +500,7 @@ async def solve_dependencies(
                 name=sub_dependant.name,
                 security_scopes=sub_dependant.security_scopes,
             )
+            use_sub_dependant.security_scopes = sub_dependant.security_scopes
 
         solved_result = await solve_dependencies(
             request=request,
@@ -493,20 +515,16 @@ async def solve_dependencies(
             sub_values,
             sub_errors,
             background_tasks,
-            sub_response,
+            _,  # the subdependency returns the same response we have
             sub_dependency_cache,
         ) = solved_result
-        sub_response = cast(Response, sub_response)
-        response.headers.raw.extend(sub_response.headers.raw)
-        if sub_response.status_code:
-            response.status_code = sub_response.status_code
         dependency_cache.update(sub_dependency_cache)
         if sub_errors:
             errors.extend(sub_errors)
             continue
         if sub_dependant.use_cache and sub_dependant.cache_key in dependency_cache:
             solved = dependency_cache[sub_dependant.cache_key]
-        elif inspect.isgeneratorfunction(call) or inspect.isasyncgenfunction(call):
+        elif is_gen_callable(call) or is_async_gen_callable(call):
             stack = request.scope.get("fastapi_astack")
             if stack is None:
                 raise RuntimeError(
@@ -624,9 +642,17 @@ async def request_body_to_args(
         field = required_params[0]
         field_info = get_field_info(field)
         embed = getattr(field_info, "embed", None)
-        if len(required_params) == 1 and not embed:
+        field_alias_omitted = len(required_params) == 1 and not embed
+        if field_alias_omitted:
             received_body = {field.alias: received_body}
+
         for field in required_params:
+            loc: Tuple[str, ...]
+            if field_alias_omitted:
+                loc = ("body",)
+            else:
+                loc = ("body", field.alias)
+
             value: Any = None
             if received_body is not None:
                 if (
@@ -637,7 +663,7 @@ async def request_body_to_args(
                     try:
                         value = received_body.get(field.alias)
                     except AttributeError:
-                        errors.append(get_missing_field_error(field.alias))
+                        errors.append(get_missing_field_error(loc))
                         continue
             if (
                 value is None
@@ -649,7 +675,7 @@ async def request_body_to_args(
                 )
             ):
                 if field.required:
-                    errors.append(get_missing_field_error(field.alias))
+                    errors.append(get_missing_field_error(loc))
                 else:
                     values[field.name] = deepcopy(field.default)
                 continue
@@ -668,7 +694,9 @@ async def request_body_to_args(
                 awaitables = [sub_value.read() for sub_value in value]
                 contents = await asyncio.gather(*awaitables)
                 value = sequence_shape_to_type[field.shape](contents)
-            v_, errors_ = field.validate(value, values, loc=("body", field.alias))
+
+            v_, errors_ = field.validate(value, values, loc=loc)
+
             if isinstance(errors_, ErrorWrapper):
                 errors.append(errors_)
             elif isinstance(errors_, list):
@@ -678,12 +706,12 @@ async def request_body_to_args(
     return values, errors
 
 
-def get_missing_field_error(field_alias: str) -> ErrorWrapper:
+def get_missing_field_error(loc: Tuple[str, ...]) -> ErrorWrapper:
     if PYDANTIC_1:
-        missing_field_error = ErrorWrapper(MissingError(), loc=("body", field_alias))
+        missing_field_error = ErrorWrapper(MissingError(), loc=loc)
     else:  # pragma: no cover
         missing_field_error = ErrorWrapper(  # type: ignore
-            MissingError(), loc=("body", field_alias), config=BaseConfig,
+            MissingError(), loc=loc, config=BaseConfig,
         )
     return missing_field_error
 
@@ -694,28 +722,16 @@ def get_schema_compatible_field(*, field: ModelField) -> ModelField:
         use_type: type = bytes
         if field.shape in sequence_shapes:
             use_type = List[bytes]
-        if PYDANTIC_1:
-            out_field = ModelField(
-                name=field.name,
-                type_=use_type,
-                class_validators=field.class_validators,
-                model_config=field.model_config,
-                default=field.default,
-                required=field.required,
-                alias=field.alias,
-                field_info=field.field_info,
-            )
-        else:  # pragma: nocover
-            out_field = ModelField(  # type: ignore
-                name=field.name,
-                type_=use_type,
-                class_validators=field.class_validators,
-                model_config=field.model_config,
-                default=field.default,
-                required=field.required,
-                alias=field.alias,
-                schema=field.schema,  # type: ignore
-            )
+        out_field = create_response_field(
+            name=field.name,
+            type_=use_type,
+            class_validators=field.class_validators,
+            model_config=field.model_config,
+            default=field.default,
+            required=field.required,
+            alias=field.alias,
+            field_info=field.field_info if PYDANTIC_1 else field.schema,  # type: ignore
+        )
 
     return out_field
 
@@ -727,8 +743,14 @@ def get_body_field(*, dependant: Dependant, name: str) -> Optional[ModelField]:
     first_param = flat_dependant.body_params[0]
     field_info = get_field_info(first_param)
     embed = getattr(field_info, "embed", None)
-    if len(flat_dependant.body_params) == 1 and not embed:
+    body_param_names_set = set([param.name for param in flat_dependant.body_params])
+    if len(body_param_names_set) == 1 and not embed:
         return get_schema_compatible_field(field=first_param)
+    # If one field requires to embed, all have to be embedded
+    # in case a sub-dependency is evaluated with a single unique body field
+    # That is combined (embedded) with other body fields
+    for param in flat_dependant.body_params:
+        setattr(get_field_info(param), "embed", True)
     model_name = "Body_" + name
     BodyModel = create_model(model_name)
     for f in flat_dependant.body_params:
@@ -754,26 +776,10 @@ def get_body_field(*, dependant: Dependant, name: str) -> Optional[ModelField]:
         ]
         if len(set(body_param_media_types)) == 1:
             BodyFieldInfo_kwargs["media_type"] = body_param_media_types[0]
-    if PYDANTIC_1:
-        field = ModelField(
-            name="body",
-            type_=BodyModel,
-            default=None,
-            required=required,
-            model_config=BaseConfig,
-            class_validators={},
-            alias="body",
-            field_info=BodyFieldInfo(**BodyFieldInfo_kwargs),
-        )
-    else:  # pragma: nocover
-        field = ModelField(  # type: ignore
-            name="body",
-            type_=BodyModel,
-            default=None,
-            required=required,
-            model_config=BaseConfig,
-            class_validators={},
-            alias="body",
-            schema=BodyFieldInfo(**BodyFieldInfo_kwargs),
-        )
-    return field
+    return create_response_field(
+        name="body",
+        type_=BodyModel,
+        required=required,
+        alias="body",
+        field_info=BodyFieldInfo(**BodyFieldInfo_kwargs),
+    )
