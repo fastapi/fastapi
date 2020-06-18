@@ -38,6 +38,13 @@ def read_current_user(current_user: "User" = Depends(get_current_user)):
     return current_user
 
 
+@app.get("/users/")
+def list_users(
+    current_user: "User" = Security(get_current_user, scopes=["read:users"])
+):
+    return [User(username="first"), User(username="second")]
+
+
 client = TestClient(app)
 
 openapi_schema = {
@@ -87,6 +94,19 @@ openapi_schema = {
                 "summary": "Read Current User",
                 "operationId": "read_current_user_users_me_get",
                 "security": [{"OAuth2": []}],
+            }
+        },
+        "/users/": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {"application/json": {"schema": {}}},
+                    }
+                },
+                "summary": "List Users",
+                "operationId": "list_users_users__get",
+                "security": [{"OAuth2": ["read:users"]}],
             }
         },
     },

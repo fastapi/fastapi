@@ -170,6 +170,7 @@ def get_flat_dependant(
         cookie_params=dependant.cookie_params.copy(),
         body_params=dependant.body_params.copy(),
         security_schemes=dependant.security_requirements.copy(),
+        security_scopes=dependant.security_scopes.copy(),
         use_cache=dependant.use_cache,
         path=dependant.path,
     )
@@ -185,6 +186,7 @@ def get_flat_dependant(
         flat_dependant.cookie_params.extend(flat_sub.cookie_params)
         flat_dependant.body_params.extend(flat_sub.body_params)
         flat_dependant.security_requirements.extend(flat_sub.security_requirements)
+        flat_dependant.security_scopes.extend(flat_sub.security_scopes)
     return flat_dependant
 
 

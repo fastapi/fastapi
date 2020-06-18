@@ -50,7 +50,7 @@ class Dependant:
         self.websocket_param_name = websocket_param_name
         self.response_param_name = response_param_name
         self.background_tasks_param_name = background_tasks_param_name
-        self.security_scopes = security_scopes
+        self.security_scopes = security_scopes or []
         self.security_scopes_param_name = security_scopes_param_name
         self.name = name
         self.call = call
