@@ -16,3 +16,8 @@ Pipfile.lock
 env3.*
 env
 docs_build
+venv
+
+# vim temporary files
+*~
+.*.sw?
