@@ -14,3 +14,8 @@ test.db
 log.txt
 Pipfile.lock
 env3.*
+venv
+
+# vim stuff
+*~
+.*.sw?
