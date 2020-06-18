@@ -71,7 +71,7 @@ class FastAPI(Starlette):
         self.title = title
         self.description = description
         self.version = version
-        self.servers = servers
+        self.servers = servers or []
         self.openapi_url = openapi_url
         self.openapi_tags = openapi_tags
         # TODO: remove when discarding the openapi_prefix parameter
@@ -117,6 +117,10 @@ class FastAPI(Starlette):
 
             async def openapi(req: Request) -> JSONResponse:
                 root_path = req.scope.get("root_path", "").rstrip("/")
+                if root_path:
+                    server: Dict[str, Union[str, Any]] = dict(url=root_path)
+                    self.servers.append(server)
+                    root_path = ""
                 return JSONResponse(self.openapi(root_path))
 
             self.add_route(self.openapi_url, openapi, include_in_schema=False)
