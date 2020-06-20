@@ -42,7 +42,7 @@ GitHub: <a href="https://github.com/tiangolo/full-stack-fastapi-postgresql" clas
     * **Vue-router**.
     * **Vuetify** para belos componentes _material design_.
     * **TypeScript**.
-    * Servidor Docker baseado em **Nginx** (configurado para rodar lindamente com Vue-router).
+    * Servidor Docker baseado em **Nginx** (configurado para rodar "lindamente" com Vue-router).
     * Construção multi-estágio Docker, então você não precisa salvar ou _commitar_ código compilado.
     * Testes _frontend_ rodados na hora da construção (pode ser desabilitado também).
     * Feito tão modular quanto possível, então ele funciona fora da caixa, mas você pode gerar novamente com Vue CLI ou criar conforme você queira, e reutilizar o que quiser.
