@@ -29,7 +29,7 @@ GitHub: <a href="https://github.com/tiangolo/full-stack-fastapi-postgresql" clas
 * Migrações **Alembic**.
 * **CORS** (_Cross Origin Resource Sharing_ - Compartilhamento de Recursos Entre Origens).
 * _Worker_ **Celery** que pode importar e usar modelos e códigos do resto do _backend_ seletivamente.
-* Testes _backend_ _REST_ baseados no **Pytest**, integrados com Docker, então você pode testar a interação completa da API, independente do banco de dados. Como roda no Docker, ele pode construir um novo repositório de dados do zero toda vez (assim você pode usar ElasticSearch, MongoDB, CouchDB, ou o que quiser, e apenas teste que a API esteja funcionando).
+* Testes _backend_ _REST_ baseados no **Pytest**, integrados com Docker, então você pode testar a interação completa da API, independente do banco de dados. Como roda no Docker, ele pode construir um novo repositório de dados do zero toda vez (assim você pode usar ElasticSearch, MongoDB, CouchDB, ou o que quiser, e apenas testar que a API esteja funcionando).
 * Fácil integração com Python através dos **Kernels Jupyter** para desenvolvimento remoto ou no Docker com extensões como Atom Hydrogen ou Visual Studio Code Jupyter.
 * _Frontend_ **Vue**:
     * Gerado com Vue CLI.
