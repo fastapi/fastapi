@@ -45,7 +45,7 @@ GitHub: <a href="https://github.com/tiangolo/full-stack-fastapi-postgresql" clas
     * Servidor Docker baseado em **Nginx** (configurado para rodar lindamente com Vue-router).
     * Construção multi-estágio Docker, então você não precisa salvar ou _commitar_ código compilado.
     * Testes _frontend_ rodados na hora da construção (pode ser desabilitado também).
-    * Feito tão modular quanto possível, então ele funciona fora da caixa, mas você pode re-gerar com Vue CLI ou criar conforme você queira, e reutilizar o que quiser.
+    * Feito tão modular quanto possível, então ele funciona fora da caixa, mas você pode gerar novamente com Vue CLI ou criar conforme você queira, e reutilizar o que quiser.
 * **PGAdmin** para banco de dados PostgreSQL, você pode modificar para usar PHPMyAdmin e MySQL facilmente.
 * **Flower** para monitoração de tarefas Celery.
 * Balanceamento de carga entre _frontend_ e _backend_ com **Traefik**, então você pode ter ambos sob o mesmo domínio, separados por rota, mas servidos por diferentes containers.
