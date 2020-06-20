@@ -62,7 +62,7 @@ Se você está iniciando um novo projeto do zero, verifique as alternativas aqui
 
 Por exemplo, o gerador de projetos <a href="https://github.com/tiangolo/full-stack-fastapi-postgresql" class="external-link" target="_blank">Full Stack FastAPI PostgreSQL</a> pode ser uma alternativa melhor, como ele é ativamente mantido e utilizado. E ele inclui todos os novos recursos e melhorias.
 
-Você ainda é livre para utilizar o gerador baseado em Couchbase se quiser, ele provavelmente ainda trabalha bem, e você já tem um projeto gerado com ele que rola bem também (e você provavelmente já atualizou ele para encaixar nas suas necessidades).
+Você ainda é livre para utilizar o gerador baseado em Couchbase se quiser, ele provavelmente ainda funciona bem, e você já tem um projeto gerado com ele que roda bem também (e você provavelmente já atualizou ele para encaixar nas suas necessidades).
 
 Você pode ler mais sobre nas documentaçãoes do repositório.
 
