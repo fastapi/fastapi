@@ -16,3 +16,10 @@ a.internal-link::after {
 .md-footer-meta {
     padding-bottom: 2em;
 }
+
+/* Increase the width for menu nav-item that displays github repo contents 
+ * (number of forks and stars) 
+ * */
+.md-source {
+    width: 250px;
+}
