@@ -16,7 +16,7 @@ GitHub: <a href="https://github.com/tiangolo/full-stack-fastapi-postgresql" clas
 * **Pronto para Produção** com servidor _web_ usando Uvicorn e Gunicorn.
 * _Backend_ <a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">**FastAPI**</a> Python:
     * **Rápido**: Performance muito alta, no nível de **NodeJS** e **Go** (graças ao Starlette e Pydantic).
-    * **Intuitivo**: Grande suporte de editor. <abbr title="também conhecido como auto-complete, auto completação, IntelliSense">_Auto-Complete_</abbr> em todo lugar. Menos tempo _debugando_.
+    * **Intuitivo**: Ótimo suporte de editor. <abbr title="também conhecido como auto-complete, auto completação, IntelliSense">_Auto-Complete_</abbr> em todo lugar. Menos tempo _debugando_.
     * **Fácil**: Projetado para ser fácil de usar e aprender. Menos tempo lendo documentações.
     * **Curto**: Minimize duplicação de código. Múltiplos recursos para cada declaração de parâmetro.
     * **Robusto**: Tenha código pronto para produção.Com documentação interativa automática.
