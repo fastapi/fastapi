@@ -1,6 +1,6 @@
 # Geração de Projetos - Modelo
 
-Você pode usar um gerador de projetos para começar, por já incluir muitas coisas de configuração inicial, segurança, banco de dados e os primeiros _endpoints_ API já feitos para você.
+Você pode usar um gerador de projetos para começar, por já incluir configurações iniciais, segurança, banco de dados e os primeiros _endpoints_ API já feitos para você.
 
 Um gerador de projetos sempre terá uma pré-configuração e que você pode atualizar e adaptar para suas próprias necessidades, mas pode ser um bom ponto de partida para seu projeto.
 
