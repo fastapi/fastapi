@@ -20,7 +20,7 @@ GitHub: <a href="https://github.com/tiangolo/full-stack-fastapi-postgresql" clas
     * **Fácil**: Projetado para ser fácil de usar e aprender. Menos tempo lendo documentações.
     * **Curto**: Minimize duplicação de código. Múltiplos recursos para cada declaração de parâmetro.
     * **Robusto**: Tenha código pronto para produção.Com documentação interativa automática.
-    * **Baseado em Padrões**: Baseado em (e completamente compatível com os) padrões abertos para APIs: <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> e <a href="http://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>.
+    * **Baseado em Padrões**: Baseado em (e completamente compatível com) padrões abertos para APIs: <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> e <a href="http://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>.
     * <a href="https://fastapi.tiangolo.com/features/" class="external-link" target="_blank">**Muitos outros recursos**</a> incluindo validação automática, serialização, documentação interativa, autenticação com _tokens_ OAuth2 JWT etc.
 * **Senha segura** _hashing_ por padrão.
 * Autenticação **Token JWT**.
