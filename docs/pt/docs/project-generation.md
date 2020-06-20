@@ -25,7 +25,7 @@ GitHub: <a href="https://github.com/tiangolo/full-stack-fastapi-postgresql" clas
 * **Senha segura** _hashing_ por padrão.
 * Autenticação **Token JWT**.
 * Modelos **SQLAlchemy** (independente de extensões Flask, para que eles possam ser usados com _workers_ Celery diretamente).
-* Modelos de início básicos para usuários (modifique e remova conforme suas necessidades).
+* Modelos básicos para usuários (modifique e remova conforme suas necessidades).
 * Migrações **Alembic**.
 * **CORS** (_Cross Origin Resource Sharing_ - Compartilhamento de Recursos Entre Origens).
 * _Worker_ **Celery** que pode importar e usar modelos e códigos do resto do _backend_ seletivamente.
