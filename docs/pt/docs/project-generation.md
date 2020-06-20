@@ -68,7 +68,7 @@ Você pode ler mais sobre nas documentaçãoes do repositório.
 
 ## Full Stack FastAPI MongoDB
 
-...pode chegar tarde, dependendo do meu tempo disponível e outros fatores. 😅 🎉
+...pode demorar, dependendo do meu tempo disponível e outros fatores. 😅 🎉
 
 ## Modelos de Aprendizado de Máquina com spaCy e FastAPI
 
