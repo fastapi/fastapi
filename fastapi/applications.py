@@ -80,7 +80,7 @@ class FastAPI(Starlette):
                 '"openapi_prefix" has been deprecated in favor of "root_path", which '
                 "follows more closely the ASGI standard, is simpler, and more "
                 "automatic. Check the docs at "
-                "https://fastapi.tiangolo.com/advanced/sub-applications-proxy/"
+                "https://fastapi.tiangolo.com/advanced/sub-applications/"
             )
         self.root_path = root_path or openapi_prefix
         self.docs_url = docs_url
