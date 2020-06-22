@@ -26,17 +26,19 @@ And after a week, the token will be expired and the user will not be authorized 
 
 If you want to play with JWT tokens and see how they work, check <a href="https://jwt.io/" class="external-link" target="_blank">https://jwt.io</a>.
 
-## Install `PyJWT`
+## Install `python-jose`
 
-We need to install `PyJWT` to generate and verify the JWT tokens in Python:
+We need to install `python-jose` to generate and verify the JWT tokens in Python:
 
 <div class="termy">
 
 ```console
-$ pip install pyjwt
+$ pip install python-jose[cryptography]
 
 ---> 100%
 ```
+Python-jose suggests cryptographic backends as an extra. In our case we have specified [pyca/cryptography](http://cryptography.io/) as the backend to use but you can use any, as per python-jose docs suggestion. 
+For more information on these backends, refer to [python-jose](https://github.com/mpdavis/python-jose#installation)
 
 </div>
 
@@ -167,13 +169,13 @@ The JWT specification says that there's a key `sub`, with the subject of the tok
 
 It's optional to use it, but that's where you would put the user's identification, so we are using it here.
 
-JWT might be used for other things apart from identifying a user and allowing him to perform operations directly on your API.
+JWT might be used for other things apart from identifying a user and allowing them to perform operations directly on your API.
 
 For example, you could identify a "car" or a "blog post".
 
 Then you could add permissions about that entity, like "drive" (for the car) or "edit" (for the blog).
 
-And then, you could give that JWT token to a user (or bot), and he could use it to perform those actions (drive the car, or edit the blog post) without even needing to have an account, just with the JWT token your API generated for that.
+And then, you could give that JWT token to a user (or bot), and they could use it to perform those actions (drive the car, or edit the blog post) without even needing to have an account, just with the JWT token your API generated for that.
 
 Using these ideas, JWT can be used for way more sophisticated scenarios.
 
@@ -247,7 +249,7 @@ Many packages that simplify it a lot have to make many compromises with the data
 
 It gives you all the flexibility to choose the ones that fit your project the best.
 
-And you can use directly many well maintained and widely used packages like `passlib` and `pyjwt`, because **FastAPI** doesn't require any complex mechanisms to integrate external packages.
+And you can use directly many well maintained and widely used packages like `passlib` and `python-jose`, because **FastAPI** doesn't require any complex mechanisms to integrate external packages.
 
 But it provides you the tools to simplify the process as much as possible without compromising flexibility, robustness, or security.
 
