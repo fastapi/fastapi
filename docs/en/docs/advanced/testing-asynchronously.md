@@ -23,32 +23,31 @@ Luckily there's a nice alternative, called <a href="https://www.python-httpx.org
 For a simple example, let's consider the following `main.py` module:
 
 ```Python
-from fastapi import FastAPI
-
-
-app = FastAPI()
-
-
-@app.get('/')
-async def root():
-    return {'message': 'tomato'}
+{!../../../docs_src/testing_asynchronously/main.py!}
 ```
 
 The `test_main.py` module that contains the tests for `main.py` could look like this now:
 
 ```Python
-import pytest
-
-from httpx import AsyncClient
-
-import main
-
-
-@pytest.mark.asyncio
-async def test_root():
-    async with AsyncClient(app=main.app, base_url='http://test') as ac:
-        response = await ac.get('/')
-    assert response.status_code == 200
-    assert response.json() == {'message': 'tomato'}
+{!../../../docs_src/testing_asynchronously/test_main.py!}
 ```
 
+## In Detail
+
+```Python hl_lines="8"
+{!../../../docs_src/testing_asynchronously/test_main.py!}
+```
+
+This marker tells pytest that this test function should be called asynchronously. Note that the test function is now `async def` instead of just `def`.
+
+```Python hl_lines="10 11"
+{!../../../docs_src/testing_asynchronously/test_main.py!}
+```
+
+This is the equivalent to:
+
+```Python
+response = client.get('/')
+```
+
+that we used to make our requests with the `TestClient`. Note that we're using async/await here — the request is asynchronous.
