@@ -16,5 +16,39 @@ You can install it via `python3 -m pip install pytest-asyncio`
 
 By running our tests asynchronously, we can no longer use the `TestClient` inside our test functions. The `TestClient` does some magic inside to abstract from the fact that it calls the asynchronous routes, and that magic doesn't work anymore when we're using it inside asynchronous functions.
 
-Luckily there's a nice alternative, called <a href="https://www.python-httpx.org/" class="external-link" target="_blank">HTTPX</a>. HTTPX is a HTTP client for Python 3 that allows us to query our routes similarly to how we did it with the `TestClient`. If you're familiar with the <a href="https://requests.readthedocs.io/en/master/" class="external-link" target="_blank">Requests</a> library, you'll find that the API of HTTPX is almost identical, the important difference for us is that with HTTPX we are not limited to synchronous, but can also make asynchronous requests.
+Luckily there's a nice alternative, called <a href="https://www.python-httpx.org/" class="external-link" target="_blank">HTTPX</a>. HTTPX is a HTTP client for Python 3 that allows us to query our routes similarly to how we did it with the `TestClient`. If you're familiar with the <a href="https://requests.readthedocs.io/en/master/" class="external-link" target="_blank">Requests</a> library, you'll find that the API of HTTPX is almost identical. The important difference for us is that with HTTPX we are not limited to synchronous, but can also make asynchronous requests.
+
+## Example
+
+For a simple example, let's consider the following `main.py` module:
+
+```Python
+from fastapi import FastAPI
+
+
+app = FastAPI()
+
+
+@app.get('/')
+async def root():
+    return {'message': 'tomato'}
+```
+
+The `test_main.py` module that contains the tests for `main.py` could look like this now:
+
+```Python
+import pytest
+
+from httpx import AsyncClient
+
+import main
+
+
+@pytest.mark.asyncio
+async def test_root():
+    async with AsyncClient(app=main.app, base_url='http://test') as ac:
+        response = await ac.get('/')
+    assert response.status_code == 200
+    assert response.json() == {'message': 'tomato'}
+```
 
