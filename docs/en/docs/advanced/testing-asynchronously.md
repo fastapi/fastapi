@@ -32,7 +32,8 @@ The `test_main.py` module that contains the tests for `main.py` could look like 
 {!../../../docs_src/testing_asynchronously/test_main.py!}
 ```
 
-You can run your tests as usual via `python3 -m pytest`.
+!!! note
+    You can run your tests as usual via `python3 -m pytest`.
 
 ## In Detail
 
@@ -40,7 +41,7 @@ You can run your tests as usual via `python3 -m pytest`.
 {!../../../docs_src/testing_asynchronously/test_main.py!}
 ```
 
-This marker tells pytest that this test function should be called asynchronously. Note that the test function is now `async def` instead of just `def`.
+This marker tells pytest that this test function should be called asynchronously. Note that the test function is now `async def` instead of just `def` as before when using the `TestClient`.
 
 ```Python hl_lines="10 11"
 {!../../../docs_src/testing_asynchronously/test_main.py!}
