@@ -29,6 +29,8 @@ Write simple `assert` statements with the standard Python expressions that you n
 
     This allows you to use `pytest` directly without complications.
 
+    If you want to call asynchronous functions other than the fastapi routes in your tests (e.g. asynchronous database functions), have a look at the [testing asynchronously with HTTPX section](../advanced/testing-with-httpx.md){.internal-link target=_blank} in the advanced tutorial.
+
 !!! note "Technical Details"
     You could also use `from starlette.testclient import TestClient`.
 
