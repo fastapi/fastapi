@@ -32,6 +32,8 @@ The `test_main.py` module that contains the tests for `main.py` could look like 
 {!../../../docs_src/testing_asynchronously/test_main.py!}
 ```
 
+You can run your tests as usual via `python3 -m pytest`.
+
 ## In Detail
 
 ```Python hl_lines="8"
@@ -51,3 +53,10 @@ response = client.get('/')
 ```
 
 that we used to make our requests with the `TestClient`. Note that we're using async/await here — the request is asynchronous.
+
+## Other Asynchronous Function Calls
+
+As the testing function is now asynchronous, you can now also call asynchronous functions that are not FastAPI routes in your tests, exactly as you would call them anywhere else in your code.
+
+!!! tip
+    If you encounter a `RuntimeError: Task attached to a different loop` when integrating asynchronous function calls in your tests (e.g. when using <a href="https://stackoverflow.com/questions/41584243/runtimeerror-task-attached-to-a-different-loop" class="external-link" target="_blank">MongoDB's MotorClient</a>) check out <a href="https://github.com/pytest-dev/pytest-asyncio/issues/38#issuecomment-264418154" class="external-link" target="_blank">this issue</a> in the pytest-asyncio repository.
