@@ -740,7 +740,7 @@ def get_schema_compatible_field(*, field: ModelField) -> ModelField:
 
 
 def is_form_data(BodyFieldInfo):
-    return BodyFieldInfo == params.Form or BodyFieldInfo == params.UploadFile or BodyFieldInfo == bytes
+    return BodyFieldInfo == params.Form or BodyFieldInfo == params.File or BodyFieldInfo == bytes
 
 
 def get_body_field(*, dependant: Dependant, name: str) -> Optional[ModelField]:
@@ -783,9 +783,18 @@ def get_body_field(*, dependant: Dependant, name: str) -> Optional[ModelField]:
         ]
         if len(set(body_param_media_types)) == 1:
             BodyFieldInfo_kwargs["media_type"] = body_param_media_types[0]
-
-    if is_form_data(BodyFieldInfo) and importlib.util.find_spec("multipart") is None:
-        logging.error("Must import python-multipart.")
+    
+    if is_form_data(BodyFieldInfo):
+            if importlib.util.find_spec("multipart") is None:
+                logging.error("Import python-multipart.")
+                return
+            else:
+                import multipart as mp
+                if len(mp.__package__) == 0:
+                    logging.error("Wrong multipart import. pip3 uninstall multipart --> pip3 install python-multipart.")
+                    return
+                else:
+                    print('You have the right multipart!')
 
     return create_response_field(
         name="body",
