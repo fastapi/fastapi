@@ -786,13 +786,19 @@ def get_body_field(*, dependant: Dependant, name: str) -> Optional[ModelField]:
     
     if is_form_data(BodyFieldInfo):
         if importlib.util.find_spec("multipart") is None:
-            logging.error("Import python-multipart.")
+            error = """Form data requires [python-multipart] to be installed."""
+            logging.error(error)
+            raise ImportError(error)
             return
         try:
             import multipart
             multipart.QuerystringParser({})
-        except ImportError:
-            logging.error("kys")
+        except AttributeError:
+            error = """Form data requires [python-multipart] to be installed.
+            [multipart] is installed, and not compatible with [python-multipart]. 
+            Uninstall [multipart] and install [python-multipart]."""
+            logging.error(error)
+            raise ImportError(error)
 
     return create_response_field(
         name="body",
