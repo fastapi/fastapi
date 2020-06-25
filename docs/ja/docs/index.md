@@ -27,7 +27,7 @@
 
 ---
 
-FastAPI は、モダンで、速い(高いパフォーマンスな)、標準の Python 型ヒントに基づいて、Python 3.6 以降のバージョンで API をビルドするための Web フレームワークです。
+FastAPI は、Python 3.6 以降で標準である型ヒントに基づいて API を構築するための、モダンで、高速(高パフォーマンス)な、Web フレームワークです。
 
 主な特徴:
 
@@ -41,7 +41,7 @@ FastAPI は、モダンで、速い(高いパフォーマンスな)、標準の 
 - **堅牢性**: 自動対話ドキュメントを使用して、本番環境で使用できるコードを取得します。
 - **Standards-based**: API のオープンスタンダードに基づいており、完全に互換性があります: <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (以前は Swagger として知られていました) や <a href="http://json-schema.org/" class="external-link" target="_blank">JSON スキーマ</a>.
 
-<small>\* 社内開発チームでのテストに基づき見積もってから、本番アプリケーションの構築します。</small>
+<small>\* 本番アプリケーションを構築している開発チームのテストによる見積もり。</small>
 
 ## 評価
 
@@ -57,7 +57,7 @@ FastAPI は、モダンで、速い(高いパフォーマンスな)、標準の 
 
 ---
 
-"_**Netflix** Netflix は、**危機管理**オーケストレーションフレームワーク、**Dispatch**のオープンソースリリースを発表できることをうれしく思います。 [built with **FastAPI**]_"
+"_**Netflix** は、**危機管理**オーケストレーションフレームワーク、**Dispatch**のオープンソースリリースを発表できることをうれしく思います。 [built with **FastAPI**]_"
 
 <div style="text-align: right; margin-right: 10%;">Kevin Glisson, Marc Vilanova, Forest Monsen - <strong>Netflix</strong> <a href="https://netflixtechblog.com/introducing-dispatch-da4b8a2a8072" target="_blank"><small>(ref)</small></a></div>
 
@@ -89,7 +89,7 @@ FastAPI は、モダンで、速い(高いパフォーマンスな)、標準の 
 
 もし Web API の代わりにターミナルで使用する<abbr title="Command Line Interface">CLI</abbr>アプリを構築する場合は、<a href="https://typer.tiangolo.com/" class="external-link" target="_blank">**Typer**</a>を確認してください。
 
-**Typer**は FastAPI の兄弟です。そして、**CLI の FastAPI**を意図しています。
+**Typer**は FastAPI の兄弟です。そして、**CLI 版 の FastAPI**を意図しています。
 
 ## 必要条件
 
@@ -303,7 +303,7 @@ def update_item(item_id: int, item: Item):
 
 新しい構文や特定のライブラリのメソッドやクラスなどを覚える必要はありません。
 
-単なる標準的な**3.6 以降の Python**です
+単なる標準的な**3.6 以降の Python**です。
 
 例えば、`int`の場合:
 
@@ -397,8 +397,8 @@ item: Item
 - **ヘッダー**、**クッキー**、**フォームフィールド**、**ファイル**などの他の場所からの **パラメータ** 宣言。
 - `maximum_length`や`regex`のような**検証や制約**を設定する方法。
 - 非常に強力で使いやすい依存性 <abbr title="also known as components, resources, providers, services, injectables">**インジェクション**</abbr>システム。
-- **JWT トークン**と **HTTP Basic認証** による **OAuth2** のサポートを含む、セキュリティと認証。
-- **深くネストされたJSONモデル**を宣言するためのより高度な（しかし同様に簡単な）技術（Pydanticのおかげです）。
+- **JWT トークン**と **HTTP Basic 認証** による **OAuth2** のサポートを含む、セキュリティと認証。
+- **深くネストされた JSON モデル**を宣言するためのより高度な（しかし同様に簡単な）技術（Pydantic のおかげです）。
 - 以下のようなたくさんのおまけ機能(Starlette のおかげです):
   - **WebSockets**
   - **GraphQL**
@@ -409,18 +409,18 @@ item: Item
 
 ## パフォーマンス
 
-独立した TechEmpower のベンチマークでは、Uvicorn で動作する**FastAPI**アプリケーションのうち、<a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">Starlette と Ubicorn の下でのみ利用可能な Python フレームワークの中で最も高速なものの 1 つ</a>であることが示されており、Starlette と Uvicorn 自身の下にのみ（FastAPI で内部的に使用されています）(\*)
+独立した TechEmpower のベンチマークでは、Uvicorn で動作する**FastAPI**アプリケーションが、<a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">Python フレームワークの中で最も高速なものの 1 つ</a>であることが示されてます、Starlette と Uvicorn（FastAPI で内部的に使用されています）のみ下回っています。(\*)
 
 詳細は<a href="https://fastapi.tiangolo.com/benchmarks/" class="internal-link" target="_blank">ベンチマーク</a>セクションをご覧ください。
 
 ## オプションの依存関係
 
-Pydantic によって使用されています:
+Pydantic によって使用されるもの:
 
 - <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - より速い JSON への<abbr title="converting the string that comes from an HTTP request into Python data">"変換"</abbr>.
 - <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - E メールの検証
 
-Starlette によって使用されています:
+Starlette によって使用されるもの:
 
 - <a href="http://docs.python-requests.org" target="_blank"><code>requests</code></a> - `TestClient`を使用するために必要です。
 - <a href="https://github.com/Tinche/aiofiles" target="_blank"><code>aiofiles</code></a> - `FileResponse` または `StaticFiles`を使用したい場合は必要です。
@@ -431,7 +431,7 @@ Starlette によって使用されています:
 - <a href="https://graphene-python.org/" target="_blank"><code>graphene</code></a> - `GraphQLApp` サポートのためには必要です。
 - <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - `UJSONResponse`を使用する場合は必須です。
 
-FastAPI / Starlette によって使用されています:
+FastAPI / Starlette に使用されるもの:
 
 - <a href="http://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - アプリケーションをロードしてサービスを提供するサーバーを指定します。
 - <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - `ORJSONResponse`を使用したい場合は必要です。
