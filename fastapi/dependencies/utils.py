@@ -2,7 +2,6 @@ import asyncio
 import importlib
 import inspect
 import logging
-import pkgutil
 
 from contextlib import contextmanager
 from copy import deepcopy
