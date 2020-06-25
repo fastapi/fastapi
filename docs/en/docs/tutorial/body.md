@@ -9,7 +9,7 @@ Your API almost always has to send a **response** body. But clients don't necess
 To declare a **request** body, you use <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> models with all their power and benefits.
 
 !!! info
-    You cannot send a request body using a `GET` operation (HTTP method).
+    Swagger does not allow sending a request body using a `GET` operation (HTTP method).
 
     To send data, you have to use one of: `POST` (the more common), `PUT`, `DELETE` or `PATCH`.
 
