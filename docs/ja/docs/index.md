@@ -317,7 +317,7 @@ item_id: int
 item: Item
 ```
 
-...そして、その単一の宣言で、以下のようになります:
+...そして、この一度の宣言で、以下のようになります:
 
 - 以下を含むエディタサポート:
   - 補完
@@ -354,13 +354,13 @@ item: Item
   - パラメータ `q` は `= None` で宣言されているので、オプションです。
   - `None`がなければ必須になります（`PUT`の場合のボディと同様です）。
 - `PUT` リクエストを `/items/{item_id}` に送信する場合は、本文を JSON として読み込みます:
-  - 必須の属性 `name` が `str` であることを確認してください。
-  - 必須の属性 `price` が `float` でなければならないことを確認してください。
-  - オプションの属性 `is_offer` がある場合は、`bool`であることを確認してください。
+  - 必須の属性 `name` を確認してください。 それは `str` であるべきです。
+  - 必須の属性 `price` を確認してください。それは `float` でなければならないです。
+  - オプションの属性 `is_offer` を確認してください。値がある場合は、`bool` であるべきです。
   - これらはすべて、深くネストされた JSON オブジェクトに対しても動作します。
 - JSON から JSON に自動的に変換します。
 - 使用できるものは OpenAPI を使用して文書化します:
-  - 対話的ななドキュメントシステム。
+  - 対話的なドキュメントシステム。
   - 多くの言語に対応した自動クライアントコード生成システム。
 - 2 つの対話的なドキュメント Web インターフェイスを直接提供します。
 
@@ -386,7 +386,7 @@ item: Item
         ... "item_price": item.price ...
 ```
 
-...そして、エディタが属性を自動補完し、そのタイプを知る方法をご覧ください。:
+...そして、エディタが属性を自動補完し、そのタイプを知る方法を確認してください。:
 
 ![editor support](https://fastapi.tiangolo.com/img/vscode-completion.png)
 
@@ -433,7 +433,7 @@ Starlette によって使用されるもの:
 
 FastAPI / Starlette に使用されるもの:
 
-- <a href="http://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - アプリケーションをロードしてサービスを提供するサーバーを指定します。
+- <a href="http://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - アプリケーションをロードしてサーブするサーバーのため。
 - <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - `ORJSONResponse`を使用したい場合は必要です。
 
 これらは全て `pip install fastapi[all]`でインストールできます。
