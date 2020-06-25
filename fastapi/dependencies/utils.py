@@ -740,7 +740,7 @@ def get_schema_compatible_field(*, field: ModelField) -> ModelField:
 
 
 def is_form_data(BodyFieldInfo):
-    return BodyFieldInfo == params.Form or BodyFieldInfo == params.UploadFile or BodyFieldInfo == bytes
+    return BodyFieldInfo == params.Form or BodyFieldInfo == params.File or BodyFieldInfo == bytes
 
 
 def get_body_field(*, dependant: Dependant, name: str) -> Optional[ModelField]:
