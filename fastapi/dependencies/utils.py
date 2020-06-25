@@ -1,5 +1,4 @@
 import asyncio
-import importlib
 import inspect
 import logging
 
@@ -785,16 +784,17 @@ def get_body_field(*, dependant: Dependant, name: str) -> Optional[ModelField]:
             BodyFieldInfo_kwargs["media_type"] = body_param_media_types[0]
     
     if is_form_data(BodyFieldInfo):
-            if importlib.util.find_spec("multipart") is None:
-                logging.error("Import python-multipart.")
-                return
-            else:
-                import multipart as mp
-                if len(mp.__package__) == 0:
-                    logging.error("Wrong multipart import. pip3 uninstall multipart --> pip3 install python-multipart.")
-                    return
-                else:
-                    print('You have the right multipart!')
+        try:
+            import multipart
+            multipart.QuerystringParser({})
+        except AttributeError:  # raised if multipart.QuerystringParser({}) errors out
+            error = """Form data requires [python-multipart] to be installed. Currently
+            [multipart] is installed and not compatible with [python-multipart]. 
+            Uninstall [multipart] and then install [python-multipart]."""
+            logging.error(error)
+            raise ImportError(error)
+        except ModuleNotFoundError:
+            logging.error("multipart not installed")
 
     return create_response_field(
         name="body",
