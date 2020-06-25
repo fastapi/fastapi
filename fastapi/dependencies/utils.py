@@ -785,11 +785,6 @@ def get_body_field(*, dependant: Dependant, name: str) -> Optional[ModelField]:
             BodyFieldInfo_kwargs["media_type"] = body_param_media_types[0]
     
     if is_form_data(BodyFieldInfo):
-        if importlib.util.find_spec("multipart") is None:
-            error = """Form data requires [python-multipart] to be installed."""
-            logging.error(error)
-            raise ImportError(error)
-            return
         try:
             import multipart
             multipart.QuerystringParser({})
@@ -797,6 +792,10 @@ def get_body_field(*, dependant: Dependant, name: str) -> Optional[ModelField]:
             error = """Form data requires [python-multipart] to be installed.
             [multipart] is installed, and not compatible with [python-multipart]. 
             Uninstall [multipart] and install [python-multipart]."""
+            logging.error(error)
+            raise ImportError(error)
+        except ModuleNotFoundError:
+            error = "Form data requires [python-multipart] to be installed."
             logging.error(error)
             raise ImportError(error)
 
