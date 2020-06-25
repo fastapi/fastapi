@@ -13,5 +13,5 @@ class UserIn(BaseModel):
 
 # Don't do this in production!
 @app.post("/user/", response_model=UserIn)
-async def create_user(*, user: UserIn):
+async def create_user(user: UserIn):
     return user

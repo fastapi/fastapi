@@ -51,38 +51,7 @@ In your WebSocket route you can `await` for messages and send messages.
 
 You can receive and send binary, text, and JSON data.
 
-## Using `Depends` and others
-
-In WebSocket endpoints you can import from `fastapi` and use:
-
-* `Depends`
-* `Security`
-* `Cookie`
-* `Header`
-* `Path`
-* `Query`
-
-They work the same way as for other FastAPI endpoints/*path operations*:
-
-```Python hl_lines="53 54 55 56 57 58  61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76"
-{!../../../docs_src/websockets/tutorial002.py!}
-```
-
-!!! info
-    In a WebSocket it doesn't really make sense to raise an `HTTPException`. So it's better to close the WebSocket connection directly.
-
-    You can use a closing code from the <a href="https://tools.ietf.org/html/rfc6455#section-7.4.1" class="external-link" target="_blank">valid codes defined in the specification</a>.
-
-    In the future, there will be a `WebSocketException` that you will be able to `raise` from anywhere, and add exception handlers for it. It depends on the <a href="https://github.com/encode/starlette/pull/527" class="external-link" target="_blank">PR #527</a> in Starlette.
-
-## More info
-
-To learn more about the options, check Starlette's documentation for:
-
-* <a href="https://www.starlette.io/websockets/" class="external-link" target="_blank">The `WebSocket` class</a>.
-* <a href="https://www.starlette.io/endpoints/#websocketendpoint" class="external-link" target="_blank">Class-based WebSocket handling</a>.
-
-## Test it
+## Try it
 
 If your file is named `main.py`, run your application with:
 
@@ -115,3 +84,62 @@ You can send (and receive) many messages:
 <img src="/img/tutorial/websockets/image04.png">
 
 And all of them will use the same WebSocket connection.
+
+## Using `Depends` and others
+
+In WebSocket endpoints you can import from `fastapi` and use:
+
+* `Depends`
+* `Security`
+* `Cookie`
+* `Header`
+* `Path`
+* `Query`
+
+They work the same way as for other FastAPI endpoints/*path operations*:
+
+```Python hl_lines="56 57 58 59 60 61  64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79"
+{!../../../docs_src/websockets/tutorial002.py!}
+```
+
+!!! info
+    In a WebSocket it doesn't really make sense to raise an `HTTPException`. So it's better to close the WebSocket connection directly.
+
+    You can use a closing code from the <a href="https://tools.ietf.org/html/rfc6455#section-7.4.1" class="external-link" target="_blank">valid codes defined in the specification</a>.
+
+    In the future, there will be a `WebSocketException` that you will be able to `raise` from anywhere, and add exception handlers for it. It depends on the <a href="https://github.com/encode/starlette/pull/527" class="external-link" target="_blank">PR #527</a> in Starlette.
+
+### Try the WebSockets with dependencies
+
+If your file is named `main.py`, run your application with:
+
+<div class="termy">
+
+```console
+$ uvicorn main:app --reload
+
+<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+```
+
+</div>
+
+Open your browser at <a href="http://127.0.0.1:8000" class="external-link" target="_blank">http://127.0.0.1:8000</a>.
+
+There you can set:
+
+* The "Item ID", used in the path.
+* The "Token" used as a query parameter.
+
+!!! tip
+    Notice that the query `token` will be handled by a dependency.
+
+With that you can connect the WebSocket and then send and receive messages:
+
+<img src="/img/tutorial/websockets/image05.png">
+
+## More info
+
+To learn more about the options, check Starlette's documentation for:
+
+* <a href="https://www.starlette.io/websockets/" class="external-link" target="_blank">The `WebSocket` class</a>.
+* <a href="https://www.starlette.io/endpoints/#websocketendpoint" class="external-link" target="_blank">Class-based WebSocket handling</a>.

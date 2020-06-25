@@ -203,27 +203,31 @@ def get_openapi_path(
                 operation["callbacks"] = callbacks
             if route.responses:
                 for (additional_status_code, response) in route.responses.items():
+                    process_response = response.copy()
                     assert isinstance(
-                        response, dict
+                        process_response, dict
                     ), "An additional response must be a dict"
                     field = route.response_fields.get(additional_status_code)
                     if field:
                         response_schema, _, _ = field_schema(
                             field, model_name_map=model_name_map, ref_prefix=REF_PREFIX
                         )
-                        response.setdefault("content", {}).setdefault(
+                        process_response.setdefault("content", {}).setdefault(
                             route_response_media_type or "application/json", {}
                         )["schema"] = response_schema
                     status_text: Optional[str] = status_code_ranges.get(
                         str(additional_status_code).upper()
                     ) or http.client.responses.get(int(additional_status_code))
-                    response.setdefault(
+                    process_response.setdefault(
                         "description", status_text or "Additional Response"
                     )
                     status_code_key = str(additional_status_code).upper()
                     if status_code_key == "DEFAULT":
                         status_code_key = "default"
-                    operation.setdefault("responses", {})[status_code_key] = response
+                    process_response.pop("model", None)
+                    operation.setdefault("responses", {})[
+                        status_code_key
+                    ] = process_response
             status_code = str(route.status_code)
             operation.setdefault("responses", {}).setdefault(status_code, {})[
                 "description"
@@ -313,12 +317,13 @@ def get_openapi(
     openapi_version: str = "3.0.2",
     description: str = None,
     routes: Sequence[BaseRoute],
-    openapi_prefix: str = ""
+    openapi_prefix: str = "",
+    tags: Optional[List[Dict[str, Any]]] = None
 ) -> Dict:
     info = {"title": title, "version": version}
     if description:
         info["description"] = description
-    output = {"openapi": openapi_version, "info": info}
+    output: Dict[str, Any] = {"openapi": openapi_version, "info": info}
     components: Dict[str, Dict] = {}
     paths: Dict[str, Dict] = {}
     flat_models = get_flat_models_from_routes(routes)
@@ -348,4 +353,6 @@ def get_openapi(
     if components:
         output["components"] = components
     output["paths"] = paths
+    if tags:
+        output["tags"] = tags
     return jsonable_encoder(OpenAPI(**output), by_alias=True, exclude_none=True)
