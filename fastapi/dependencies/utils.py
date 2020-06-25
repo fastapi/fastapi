@@ -1,5 +1,8 @@
 import asyncio
+import importlib
 import inspect
+import logging
+
 from contextlib import contextmanager
 from copy import deepcopy
 from typing import (
@@ -776,6 +779,10 @@ def get_body_field(*, dependant: Dependant, name: str) -> Optional[ModelField]:
         ]
         if len(set(body_param_media_types)) == 1:
             BodyFieldInfo_kwargs["media_type"] = body_param_media_types[0]
+
+    if BodyFieldInfo == params.Form and importlib.util.find_spec("multipart") is None:
+        logging.error("Must import python-multipart.")
+
     return create_response_field(
         name="body",
         type_=BodyModel,
