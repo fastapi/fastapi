@@ -79,6 +79,8 @@ That way, your application won't have to generate the schema every time a user o
 
 It will be generated only once, and then the same cached schema will be used for the next requests.
 
+Please note we specify a default prefix as a blank string. This can be changed.
+
 ```Python hl_lines="13 14  25 26"
 {!../../../docs_src/extending_openapi/tutorial001.py!}
 ```
