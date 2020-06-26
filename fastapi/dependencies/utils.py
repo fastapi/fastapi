@@ -1,7 +1,6 @@
 import asyncio
 import inspect
 import logging
-
 from contextlib import contextmanager
 from copy import deepcopy
 from typing import (
@@ -738,8 +737,8 @@ def get_schema_compatible_field(*, field: ModelField) -> ModelField:
     return out_field
 
 
-def is_form_data(BodyFieldInfo):
-    return BodyFieldInfo == params.Form or BodyFieldInfo == params.File or BodyFieldInfo == bytes
+def is_form_data(field: Type[params.Body]) -> bool:
+    return field == params.Form or field == params.File or field == bytes
 
 
 def get_body_field(*, dependant: Dependant, name: str) -> Optional[ModelField]:
@@ -782,11 +781,14 @@ def get_body_field(*, dependant: Dependant, name: str) -> Optional[ModelField]:
         ]
         if len(set(body_param_media_types)) == 1:
             BodyFieldInfo_kwargs["media_type"] = body_param_media_types[0]
-    
+
     if is_form_data(BodyFieldInfo):
         try:
             import multipart  # check to see if there's an import
-            multipart.QuerystringParser({})  # check to see if correct import using a python-multipart function
+
+            multipart.QuerystringParser(
+                {}
+            )  # check to see if correct import using a python-multipart function
         except AttributeError:
             error = """Form data requires [python-multipart] to be installed. Currently 
             [multipart] is installed and not compatible with [python-multipart]. 
