@@ -784,9 +784,9 @@ def get_body_field(*, dependant: Dependant, name: str) -> Optional[ModelField]:
 
     if is_form_data(BodyFieldInfo):
         try:
-            import multipart  # check to see if there's an import
+            from multipart import QuerystringParser  # check to see if there's an import
 
-            multipart.QuerystringParser(
+            QuerystringParser(
                 {}
             )  # check to see if correct import using a python-multipart function
         except AttributeError:
