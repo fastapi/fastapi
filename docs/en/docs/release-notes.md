@@ -2,6 +2,8 @@
 
 ## Latest changes
 
+* Add GitHub action to auto-label approved PRs (mainly for translations). PR [#1638](https://github.com/tiangolo/fastapi/pull/1638).
+
 ## 0.58.0
 
 * Deep merge OpenAPI responses to preserve all the additional metadata. PR [#1577](https://github.com/tiangolo/fastapi/pull/1577).
