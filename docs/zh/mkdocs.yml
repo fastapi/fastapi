@@ -36,6 +36,7 @@ nav:
   - tutorial/body.md
   - tutorial/query-params-str-validations.md
   - tutorial/body-multiple-params.md
+  - tutorial/path-params-numeric-validations.md
 - deployment.md
 - contributing.md
 - help-fastapi.md
