@@ -215,7 +215,6 @@ You will receive a response telling you that the data is invalid containing the 
     {
       "loc": [
         "body",
-        "item",
         "size"
       ],
       "msg": "value is not a valid integer",

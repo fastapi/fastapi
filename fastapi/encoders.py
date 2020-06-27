@@ -71,6 +71,8 @@ def jsonable_encoder(
                 by_alias=by_alias,
                 skip_defaults=bool(exclude_unset or skip_defaults),
             )
+        if "__root__" in obj_dict:
+            obj_dict = obj_dict["__root__"]
         return jsonable_encoder(
             obj_dict,
             exclude_none=exclude_none,

@@ -1,5 +1,7 @@
 import asyncio
+import enum
 import inspect
+import json
 from typing import Any, Callable, Dict, List, Optional, Sequence, Set, Type, Union
 
 from fastapi import params
@@ -12,7 +14,6 @@ from fastapi.dependencies.utils import (
 )
 from fastapi.encoders import DictIntStrAny, SetIntStr, jsonable_encoder
 from fastapi.exceptions import RequestValidationError, WebSocketRequestValidationError
-from fastapi.logger import logger
 from fastapi.openapi.constants import STATUS_CODES_WITH_NO_BODY
 from fastapi.utils import (
     PYDANTIC_1,
@@ -178,6 +179,8 @@ def get_request_handler(
                     body_bytes = await request.body()
                     if body_bytes:
                         body = await request.json()
+        except json.JSONDecodeError as e:
+            raise RequestValidationError([ErrorWrapper(e, ("body", e.pos))], body=e.doc)
         except Exception as e:
             raise HTTPException(
                 status_code=400, detail="There was an error parsing the body"
@@ -294,6 +297,9 @@ class APIRoute(routing.Route):
         dependency_overrides_provider: Any = None,
         callbacks: Optional[List["APIRoute"]] = None,
     ) -> None:
+        # normalise enums e.g. http.HTTPStatus
+        if isinstance(status_code, enum.IntEnum):
+            status_code = int(status_code)
         self.path = path
         self.endpoint = endpoint
         self.name = get_name(endpoint) if name is None else name

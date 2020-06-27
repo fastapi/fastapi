@@ -25,8 +25,6 @@ Here's an incomplete list of some of them.
 
 * <a href="https://medium.com/data-rebels/fastapi-authentication-revisited-enabling-api-key-authentication-122dc5975680" class="external-link" target="_blank">FastAPI authentication revisited: Enabling API key authentication</a> by <a href="https://medium.com/@nils_29588" class="external-link" target="_blank">Nils de Bruin</a>.
 
-* <a href="https://blog.bartab.fr/fastapi-logging-on-the-fly/" class="external-link" target="_blank">FastAPI, a simple use case on logging</a> by <a href="https://blog.bartab.fr/" class="external-link" target="_blank">@euri10</a>.
-
 * <a href="https://medium.com/@nico.axtmann95/deploying-a-scikit-learn-model-with-onnx-und-fastapi-1af398268915" class="external-link" target="_blank">Deploying a scikit-learn model with ONNX and FastAPI</a> by <a href="https://www.linkedin.com/in/nico-axtmann" class="external-link" target="_blank">Nico Axtmann</a>.
 
 * <a href="https://geekflare.com/python-asynchronous-web-frameworks/" class="external-link" target="_blank">Top 5 Asynchronous Web Frameworks for Python</a> by <a href="https://geekflare.com/author/ankush/" class="external-link" target="_blank">Ankush Thakur</a> on <a href="https://geekflare.com" class="external-link" target="_blank">GeekFlare</a>.
@@ -103,12 +101,6 @@ Here's an incomplete list of some of them.
 * <a href="https://qiita.com/bee2/items/0ad260ab9835a2087dae" class="external-link" target="_blank">PythonのWeb frameworkのパフォーマンス比較 (Django, Flask, responder, FastAPI, japronto)</a> by <a href="https://qiita.com/bee2" class="external-link" target="_blank">@bee2</a>.
 
 * <a href="https://qiita.com/bee2/items/75d9c0d7ba20e7a4a0e9" class="external-link" target="_blank">[FastAPI] Python製のASGI Web フレームワーク FastAPIに入門する</a> by <a href="https://qiita.com/bee2" class="external-link" target="_blank">@bee2</a>.
-
-### Chinese
-
-* <a href="https://cloud.tencent.com/developer/article/1431448" class="external-link" target="_blank">使用FastAPI框架快速构建高性能的api服务</a> by <a href="https://cloud.tencent.com/developer/user/5471722" class="external-link" target="_blank">逍遥散人</a>.
-
-* <a href="https://wxq0309.github.io/" class="external-link" target="_blank">FastAPI框架中文文档</a> by <a href="https://wxq0309.github.io/" class="external-link" target="_blank">何大仙</a>.
 
 ### Vietnamese
 
