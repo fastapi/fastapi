@@ -209,7 +209,7 @@ Now try sending an invalid item like:
 
 You will receive a response telling you that the data is invalid containing the received body:
 
-```JSON hl_lines="13 14 15 16"
+```JSON hl_lines="12 13 14 15"
 {
   "detail": [
     {

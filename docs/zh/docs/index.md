@@ -131,6 +131,8 @@ $ pip install uvicorn
 * 创建一个 `main.py` 文件并写入以下内容:
 
 ```Python
+from typing import Optional
+
 from fastapi import FastAPI
 
 app = FastAPI()
@@ -142,7 +144,7 @@ def read_root():
 
 
 @app.get("/items/{item_id}")
-def read_item(item_id: int, q: str = None):
+def read_item(item_id: int, q: Optional[str] = None):
     return {"item_id": item_id, "q": q}
 ```
 
@@ -151,7 +153,9 @@ def read_item(item_id: int, q: str = None):
 
 如果你的代码里会出现 `async` / `await`，请使用 `async def`：
 
-```Python hl_lines="7 12"
+```Python hl_lines="9 14"
+from typing import Optional
+
 from fastapi import FastAPI
 
 app = FastAPI()
@@ -163,7 +167,7 @@ async def read_root():
 
 
 @app.get("/items/{item_id}")
-async def read_item(item_id: int, q: str = None):
+async def read_item(item_id: int, q: Optional[str] = None):
     return {"item_id": item_id, "q": q}
 ```
 
@@ -241,7 +245,9 @@ INFO:     Application startup complete.
 
 我们借助 Pydantic 来使用标准的 Python 类型声明请求体。
 
-```Python hl_lines="2  7 8 9 10  23 24 25"
+```Python hl_lines="4  9 10 11 12  25 26 27"
+from typing import Optional
+
 from fastapi import FastAPI
 from pydantic import BaseModel
 
@@ -251,7 +257,7 @@ app = FastAPI()
 class Item(BaseModel):
     name: str
     price: float
-    is_offer: bool = None
+    is_offer: Optional[bool] = None
 
 
 @app.get("/")
@@ -260,7 +266,7 @@ def read_root():
 
 
 @app.get("/items/{item_id}")
-def read_item(item_id: int, q: str = None):
+def read_item(item_id: int, q: Optional[str] = None):
     return {"item_id": item_id, "q": q}
 
 

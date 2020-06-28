@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Optional
 
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
@@ -10,7 +10,7 @@ app = FastAPI()
 @dataclass
 class Item:
     name: str
-    price: float = None
+    price: Optional[float] = None
     owner_ids: List[int] = None
 
 
