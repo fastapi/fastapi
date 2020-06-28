@@ -104,8 +104,6 @@ Of course, you can also declare additional query parameters whenever you need, a
 As, by default, singular values are interpreted as query parameters, you don't have to explicitly add a `Query`, you can just do:
 
 ```Python
-from typing import Optional
-
 q: Optional[str] = None
 ```
 
