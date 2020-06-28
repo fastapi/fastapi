@@ -72,6 +72,11 @@ In this case, the function parameter `q` will be optional, and will be `None` by
 !!! check
     Also notice that **FastAPI** is smart enough to notice that the path parameter `item_id` is a path parameter and `q` is not, so, it's a query parameter.
 
+!!! note
+    FastAPI will know that `q` is optional because of the `= None`.
+
+    The `Optional` in `Optional[str]` is not used by FastAPI (FastAPI will only use the `str` part), but the `Optional[str]` will let your editor help you finding errors in your code.
+
 ## Query parameter type conversion
 
 You can also declare `bool` types, and they will be converted:
@@ -191,36 +196,3 @@ In this case, there are 3 query parameters:
 
 !!! tip
     You could also use `Enum`s the same way as with [Path Parameters](path-params.md#predefined-values){.internal-link target=_blank}.
-
-## Optional type declarations
-
-!!! warning
-    This might be an advanced use case.
-
-    You might want to skip it.
-
-If you are using `mypy` it could complain with type declarations like:
-
-```Python
-limit: int = None
-```
-
-With an error like:
-
-```
-Incompatible types in assignment (expression has type "None", variable has type "int")
-```
-
-In those cases you can use `Optional` to tell `mypy` that the value could be `None`, like:
-
-```Python
-from typing import Optional
-
-limit: Optional[int] = None
-```
-
-In a *path operation* that could look like:
-
-```Python hl_lines="9"
-{!../../../docs_src/query_params/tutorial007.py!}
-```
