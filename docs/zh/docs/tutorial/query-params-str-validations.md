@@ -35,17 +35,13 @@
 所以：
 
 ```Python
-from typing import Optional
-
-q: Optional[str] = Query(None)
+q: str = Query(None)
 ```
 
 ...使得参数可选，等同于：
 
 ```Python
-from typing import Optional
-
-q: Optional[str] = None
+q: str = None
 ```
 
 但是 `Query` 显式地将其声明为查询参数。
@@ -53,9 +49,7 @@ q: Optional[str] = None
 然后，我们可以将更多的参数传递给 `Query`。在本例中，适用于字符串的 `max_length` 参数：
 
 ```Python
-from typing import Optional
-
-q: Optional[str] = Query(None, max_length=50)
+q: str = Query(None, max_length=50)
 ```
 
 将会校验数据，在数据无效时展示清晰的错误信息，并在 OpenAPI 模式的*路径操作*中记录该参​​数。
@@ -110,17 +104,13 @@ q: str
 代替：
 
 ```Python
-from typing import Optional
-
-q: Optional[str] = None
+q: str = None
 ```
 
 但是现在我们正在用 `Query` 声明它，例如：
 
 ```Python
-from typing import Optional
-
-q: Optional[str] = Query(None, min_length=3)
+q: str = Query(None, min_length=3)
 ```
 
 因此，当你在使用 `Query` 且需要声明一个值是必需的时，可以将 `...` 用作第一个参数值：
