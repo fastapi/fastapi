@@ -34,7 +34,7 @@ def invoice_notification(body: InvoiceEvent):
 
 
 @app.post("/invoices/", callbacks=invoices_callback_router.routes)
-def create_invoice(invoice: Invoice, callback_url: HttpUrl = None):
+def create_invoice(invoice: Invoice, callback_url: Optional[HttpUrl] = None):
     """
     Create an invoice.
 
