@@ -7,7 +7,7 @@ app = FastAPI()
 
 @app.get("/items/")
 async def read_items(
-    q: Optional[str] = Query( # can someone check if this is correct?
+    q: Optional[str] = Query(
         None,
         alias="item-query",
         title="Query string",

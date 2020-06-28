@@ -1,5 +1,5 @@
-from typing import Optional
 from datetime import datetime, time, timedelta
+from typing import Optional
 from uuid import UUID
 
 from fastapi import Body, FastAPI

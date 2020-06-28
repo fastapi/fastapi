@@ -1,5 +1,5 @@
-from typing import Optional
 from datetime import datetime
+from typing import Optional
 
 from fastapi import FastAPI
 from fastapi.encoders import jsonable_encoder
