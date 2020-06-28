@@ -4,11 +4,16 @@
 
 Let's take this application as example:
 
-```Python hl_lines="7"
+```Python hl_lines="9"
 {!../../../docs_src/query_params_str_validations/tutorial001.py!}
 ```
 
-The query parameter `q` is of type `str`, and by default is `None`, so it is optional.
+The query parameter `q` is of type `Optional[str]`, that means that it's of type `str` but could also be `None`, and indeed, the default value is `None`, so FastAPI will know it's not required.
+
+!!! note
+    FastAPI will know that the value of `q` is not required because of the default value `= None`.
+
+    The `Optional` in `Optional[str]` is not used by FastAPI, but will allow your editor to give you better support and detect errors.
 
 ## Additional validation
 
@@ -18,7 +23,7 @@ We are going to enforce that even though `q` is optional, whenever it is provide
 
 To achieve that, first import `Query` from `fastapi`:
 
-```Python hl_lines="1"
+```Python hl_lines="3"
 {!../../../docs_src/query_params_str_validations/tutorial002.py!}
 ```
 
@@ -26,7 +31,7 @@ To achieve that, first import `Query` from `fastapi`:
 
 And now use it as the default value of your parameter, setting the parameter `max_length` to 50:
 
-```Python hl_lines="7"
+```Python hl_lines="9"
 {!../../../docs_src/query_params_str_validations/tutorial002.py!}
 ```
 
@@ -35,18 +40,35 @@ As we have to replace the default value `None` with `Query(None)`, the first par
 So:
 
 ```Python
-q: str = Query(None)
+q: Optional[str] = Query(None)
 ```
 
 ...makes the parameter optional, the same as:
 
 ```Python
-q: str = None
+q: Optional[str] = None
 ```
 
 But it declares it explicitly as being a query parameter.
 
-And then, we can pass more parameters to `Query`. In this case, the `max_length` parameter that applies to strings:
+!!! info
+    Have in mind that FastAPI cares about the part:
+
+    ```Python
+    = None
+    ```
+
+    or the:
+
+    ```Python
+    = Query(None)
+    ```
+
+    and will use that `None` to detect that the query parameter is not required.
+
+    The `Optional` part is only to allow your editor to provide better support.
+
+Then, we can pass more parameters to `Query`. In this case, the `max_length` parameter that applies to strings:
 
 ```Python
 q: str = Query(None, max_length=50)
@@ -58,7 +80,7 @@ This will validate the data, show a clear error when the data is not valid, and 
 
 You can also add a parameter `min_length`:
 
-```Python hl_lines="7"
+```Python hl_lines="9"
 {!../../../docs_src/query_params_str_validations/tutorial003.py!}
 ```
 
@@ -66,7 +88,7 @@ You can also add a parameter `min_length`:
 
 You can define a <abbr title="A regular expression, regex or regexp is a sequence of characters that define a search pattern for strings.">regular expression</abbr> that the parameter should match:
 
-```Python hl_lines="8"
+```Python hl_lines="10"
 {!../../../docs_src/query_params_str_validations/tutorial004.py!}
 ```
 
@@ -104,13 +126,13 @@ q: str
 instead of:
 
 ```Python
-q: str = None
+q: Optional[str] = None
 ```
 
 But we are now declaring it with `Query`, for example like:
 
 ```Python
-q: str = Query(None, min_length=3)
+q: Optional[str] = Query(None, min_length=3)
 ```
 
 So, when you need to declare a value as required while using `Query`, you can use `...` as the first argument:
@@ -211,13 +233,13 @@ That information will be included in the generated OpenAPI and used by the docum
 
 You can add a `title`:
 
-```Python hl_lines="7"
+```Python hl_lines="10"
 {!../../../docs_src/query_params_str_validations/tutorial007.py!}
 ```
 
 And a `description`:
 
-```Python hl_lines="11"
+```Python hl_lines="13"
 {!../../../docs_src/query_params_str_validations/tutorial008.py!}
 ```
 
@@ -239,7 +261,7 @@ But you still need it to be exactly `item-query`...
 
 Then you can declare an `alias`, and that alias is what will be used to find the parameter value:
 
-```Python hl_lines="7"
+```Python hl_lines="9"
 {!../../../docs_src/query_params_str_validations/tutorial009.py!}
 ```
 
@@ -251,7 +273,7 @@ You have to leave it there a while because there are clients using it, but you w
 
 Then pass the parameter `deprecated=True` to `Query`:
 
-```Python hl_lines="16"
+```Python hl_lines="18"
 {!../../../docs_src/query_params_str_validations/tutorial010.py!}
 ```
 
