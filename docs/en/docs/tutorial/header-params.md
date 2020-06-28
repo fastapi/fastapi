@@ -44,7 +44,7 @@ So, you can use `user_agent` as you normally would in Python code, instead of ne
 
 If for some reason you need to disable automatic conversion of underscores to hyphens, set the parameter `convert_underscores` of `Header` to `False`:
 
-```Python hl_lines="9"
+```Python hl_lines="10"
 {!../../../docs_src/header_params/tutorial002.py!}
 ```
 

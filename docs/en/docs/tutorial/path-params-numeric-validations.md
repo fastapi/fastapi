@@ -43,7 +43,7 @@ It doesn't matter for **FastAPI**. It will detect the parameters by their names,
 
 So, you can declare your function as:
 
-```Python hl_lines="10"
+```Python hl_lines="8"
 {!../../../docs_src/path_params_numeric_validations/tutorial002.py!}
 ```
 

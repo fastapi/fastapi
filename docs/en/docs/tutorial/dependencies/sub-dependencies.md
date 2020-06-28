@@ -10,7 +10,7 @@ They can be as **deep** as you need them to be.
 
 You could create a first dependency ("dependable") like:
 
-```Python hl_lines="6 7"
+```Python hl_lines="8 9"
 {!../../../docs_src/dependencies/tutorial005.py!}
 ```
 
@@ -22,7 +22,7 @@ This is quite simple (not very useful), but will help us focus on how the sub-de
 
 Then you can create another dependency function (a "dependable") that at the same time declares a dependency of its own (so it is a "dependant" too):
 
-```Python hl_lines="11"
+```Python hl_lines="13"
 {!../../../docs_src/dependencies/tutorial005.py!}
 ```
 
@@ -37,7 +37,7 @@ Let's focus on the parameters declared:
 
 Then we can use the dependency with:
 
-```Python hl_lines="19"
+```Python hl_lines="21"
 {!../../../docs_src/dependencies/tutorial005.py!}
 ```
 

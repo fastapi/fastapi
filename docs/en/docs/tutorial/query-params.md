@@ -184,7 +184,7 @@ http://127.0.0.1:8000/items/foo-item?needy=sooooneedy
 
 And of course, you can define some parameters as required, some as having a default value, and some entirely optional:
 
-```Python hl_lines="9"
+```Python hl_lines="10"
 {!../../../docs_src/query_params/tutorial006.py!}
 ```
 

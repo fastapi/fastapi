@@ -31,7 +31,7 @@ It will have a *path operation* that will receive an `Invoice` body, and a query
 
 This part is pretty normal, most of the code is probably already familiar to you:
 
-```Python hl_lines="12 13 14 15 16  38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57"
+```Python hl_lines="10 11 12 13 14  37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54"
 {!../../../docs_src/openapi_callbacks/tutorial001.py!}
 ```
 
