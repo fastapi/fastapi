@@ -52,7 +52,6 @@ except ImportError:  # pragma: nocover
 def _prepare_response_content(
     res: Any,
     *,
-    by_alias: bool = True,
     exclude_unset: bool,
     exclude_defaults: bool = False,
     exclude_none: bool = False,
@@ -60,14 +59,14 @@ def _prepare_response_content(
     if isinstance(res, BaseModel):
         if PYDANTIC_1:
             return res.dict(
-                by_alias=by_alias,
+                by_alias=True,
                 exclude_unset=exclude_unset,
                 exclude_defaults=exclude_defaults,
                 exclude_none=exclude_none,
             )
         else:
             return res.dict(
-                by_alias=by_alias, skip_defaults=exclude_unset,
+                by_alias=True, skip_defaults=exclude_unset,
             )  # pragma: nocover
     elif isinstance(res, list):
         return [
@@ -108,7 +107,6 @@ async def serialize_response(
         errors = []
         response_content = _prepare_response_content(
             response_content,
-            by_alias=by_alias,
             exclude_unset=exclude_unset,
             exclude_defaults=exclude_defaults,
             exclude_none=exclude_none,
