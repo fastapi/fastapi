@@ -183,6 +183,8 @@ This can be used as a quick shortcut if you have only one Pydantic model and wan
 
     This is because the JSON Schema generated in your app's OpenAPI (and the docs) will still be the one for the complete model, even if you use `response_model_include` or `response_model_exclude` to omit some attributes.
 
+    This also applies to `response_model_by_alias` that works similarly.
+
 ```Python hl_lines="31 37"
 {!../../../docs_src/response_model/tutorial005.py!}
 ```
