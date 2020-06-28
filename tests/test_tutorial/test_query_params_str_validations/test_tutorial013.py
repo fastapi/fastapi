@@ -31,7 +31,12 @@ openapi_schema = {
                 "parameters": [
                     {
                         "required": False,
-                        "schema": {"title": "Q", "type": "array", "items": {}},
+                        "schema": {
+                            "title": "Q",
+                            "type": "array",
+                            "items": {},
+                            "default": [],
+                        },
                         "name": "q",
                         "in": "query",
                     }
@@ -88,4 +93,4 @@ def test_query_no_values():
     url = "/items/"
     response = client.get(url)
     assert response.status_code == 200, response.text
-    assert response.json() == {"q": None}
+    assert response.json() == {"q": []}
