@@ -33,7 +33,7 @@ The same way you can pass extra info to `Field`, you can do the same with `Path`
 
 For example, you can pass an `example` for a body request to `Body`:
 
-```Python hl_lines="20 21 22 23 24 25"
+```Python hl_lines="19 20 21 22 23 24"
 {!../../../docs_src/schema_extra_example/tutorial003.py!}
 ```
 

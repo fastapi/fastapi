@@ -52,7 +52,7 @@ In this case, it might not be a problem, because the user himself is sending the
 But if we use the same model for another *path operation*, we could be sending our user's passwords to every client.
 
 !!! danger
-    Never send the plain password of a user in a response.
+    Never store the plain password of a user or send it in a response.
 
 ## Add an output model
 
@@ -123,6 +123,14 @@ So, if you send a request to that *path operation* for the item with ID `foo`, t
 
 !!! info
     FastAPI uses Pydantic model's `.dict()` with <a href="https://pydantic-docs.helpmanual.io/usage/exporting_models/#modeldict" class="external-link" target="_blank">its `exclude_unset` parameter</a> to achieve this.
+
+!!! info
+    You can also use:
+
+    * `response_model_exclude_defaults=True`
+    * `response_model_exclude_none=True`
+
+    as described in <a href="https://pydantic-docs.helpmanual.io/usage/exporting_models/#modeldict" class="external-link" target="_blank">the Pydantic docs</a> for `exclude_defaults` and `exclude_none`.
 
 #### Data with values for fields with defaults
 

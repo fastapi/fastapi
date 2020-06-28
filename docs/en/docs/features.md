@@ -71,7 +71,7 @@ my_second_user: User = User(**second_user_data)
 
 ### Editor support
 
-All the framework was designed to be easy and intuitive to use, all the decisions where tested on multiple editors even before starting development, to ensure the best development experience.
+All the framework was designed to be easy and intuitive to use, all the decisions were tested on multiple editors even before starting development, to ensure the best development experience.
 
 In the last Python developer survey it was clear <a href="https://www.jetbrains.com/research/python-developers-survey-2017/#tools-and-features" class="external-link" target="_blank">that the most used feature is "autocompletion"</a>.
 

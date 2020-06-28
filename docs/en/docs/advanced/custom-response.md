@@ -203,6 +203,21 @@ File responses will include appropriate `Content-Length`, `Last-Modified` and `E
 {!../../../docs_src/custom_response/tutorial009.py!}
 ```
 
+## Default response class
+
+When creating a **FastAPI** class instance or an `APIRouter` you can specify which response class to use by default.
+
+The parameter that defines this is `default_response_class`.
+
+In the example below, **FastAPI** will use `ORJSONResponse` by default, in all *path operations*, instead of `JSONResponse`.
+
+```Python hl_lines="2 4"
+{!../../../docs_src/custom_response/tutorial010.py!}
+```
+
+!!! tip
+    You can still override `response_class` in *path operations* as before.
+
 ## Additional documentation
 
 You can also declare the media type and many other details in OpenAPI using `responses`: [Additional Responses in OpenAPI](additional-responses.md){.internal-link target=_blank}.

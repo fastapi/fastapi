@@ -22,8 +22,16 @@ nav:
 - Languages:
   - en: /
   - es: /es/
+  - it: /it/
   - pt: /pt/
+  - ru: /ru/
   - zh: /zh/
+- features.md
+- Tutorial - Guia de Usuário:
+  - tutorial/index.md
+- alternatives.md
+- history-design-future.md
+- benchmarks.md
 markdown_extensions:
 - toc:
     permalink: true

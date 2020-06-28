@@ -75,6 +75,6 @@ There is also an **Advanced User Guide** that you can read later after this **Tu
 
 The **Advanced User Guide**, builds on this, uses the same concepts, and teaches you some extra features.
 
-But you should first read the **Tutorial - User guide** (what you are reading right now).
+But you should first read the **Tutorial - User Guide** (what you are reading right now).
 
-It's designed so that you can build a complete application with just the **Tutorial - User guide**, and then extend it in different ways, depending on your needs, using some of the additional ideas from the **Advanced User Guide**.
+It's designed so that you can build a complete application with just the **Tutorial - User Guide**, and then extend it in different ways, depending on your needs, using some of the additional ideas from the **Advanced User Guide**.

@@ -188,6 +188,16 @@ def get_flat_dependant(
     return flat_dependant
 
 
+def get_flat_params(dependant: Dependant) -> List[ModelField]:
+    flat_dependant = get_flat_dependant(dependant, skip_repeats=True)
+    return (
+        flat_dependant.path_params
+        + flat_dependant.query_params
+        + flat_dependant.header_params
+        + flat_dependant.cookie_params
+    )
+
+
 def is_scalar_field(field: ModelField) -> bool:
     field_info = get_field_info(field)
     if not (
@@ -264,7 +274,7 @@ def get_dependant(
     path_param_names = get_path_param_names(path)
     endpoint_signature = get_typed_signature(call)
     signature_params = endpoint_signature.parameters
-    if inspect.isgeneratorfunction(call) or inspect.isasyncgenfunction(call):
+    if is_gen_callable(call) or is_async_gen_callable(call):
         check_dependency_contextmanagers()
     dependant = Dependant(call=call, name=name, path=path, use_cache=use_cache)
     for param_name, param in signature_params.items():
@@ -284,7 +294,7 @@ def get_dependant(
         if param_name in path_param_names:
             assert is_scalar_field(
                 field=param_field
-            ), f"Path params must be of one of the supported types"
+            ), "Path params must be of one of the supported types"
             if isinstance(param.default, params.Path):
                 ignore_default = False
             else:
@@ -402,19 +412,41 @@ def add_param_to_fields(*, field: ModelField, dependant: Dependant) -> None:
 
 def is_coroutine_callable(call: Callable) -> bool:
     if inspect.isroutine(call):
-        return asyncio.iscoroutinefunction(call)
+        return inspect.iscoroutinefunction(call)
     if inspect.isclass(call):
         return False
     call = getattr(call, "__call__", None)
-    return asyncio.iscoroutinefunction(call)
+    return inspect.iscoroutinefunction(call)
+
+
+def is_async_gen_callable(call: Callable) -> bool:
+    if inspect.isasyncgenfunction(call):
+        return True
+    call = getattr(call, "__call__", None)
+    return inspect.isasyncgenfunction(call)
+
+
+def is_gen_callable(call: Callable) -> bool:
+    if inspect.isgeneratorfunction(call):
+        return True
+    call = getattr(call, "__call__", None)
+    return inspect.isgeneratorfunction(call)
 
 
 async def solve_generator(
     *, call: Callable, stack: AsyncExitStack, sub_values: Dict[str, Any]
 ) -> Any:
-    if inspect.isgeneratorfunction(call):
+    if is_gen_callable(call):
         cm = contextmanager_in_threadpool(contextmanager(call)(**sub_values))
-    elif inspect.isasyncgenfunction(call):
+    elif is_async_gen_callable(call):
+        if not inspect.isasyncgenfunction(call):
+            # asynccontextmanager from the async_generator backfill pre python3.7
+            # does not support callables that are not functions or methods.
+            # See https://github.com/python-trio/async_generator/issues/32
+            #
+            # Expand the callable class into its __call__ method before decorating it.
+            # This approach will work on newer python versions as well.
+            call = getattr(call, "__call__", None)
         cm = asynccontextmanager(call)(**sub_values)
     return await stack.enter_async_context(cm)
 
@@ -468,6 +500,7 @@ async def solve_dependencies(
                 name=sub_dependant.name,
                 security_scopes=sub_dependant.security_scopes,
             )
+            use_sub_dependant.security_scopes = sub_dependant.security_scopes
 
         solved_result = await solve_dependencies(
             request=request,
@@ -482,20 +515,16 @@ async def solve_dependencies(
             sub_values,
             sub_errors,
             background_tasks,
-            sub_response,
+            _,  # the subdependency returns the same response we have
             sub_dependency_cache,
         ) = solved_result
-        sub_response = cast(Response, sub_response)
-        response.headers.raw.extend(sub_response.headers.raw)
-        if sub_response.status_code:
-            response.status_code = sub_response.status_code
         dependency_cache.update(sub_dependency_cache)
         if sub_errors:
             errors.extend(sub_errors)
             continue
         if sub_dependant.use_cache and sub_dependant.cache_key in dependency_cache:
             solved = dependency_cache[sub_dependant.cache_key]
-        elif inspect.isgeneratorfunction(call) or inspect.isasyncgenfunction(call):
+        elif is_gen_callable(call) or is_async_gen_callable(call):
             stack = request.scope.get("fastapi_astack")
             if stack is None:
                 raise RuntimeError(
@@ -613,9 +642,17 @@ async def request_body_to_args(
         field = required_params[0]
         field_info = get_field_info(field)
         embed = getattr(field_info, "embed", None)
-        if len(required_params) == 1 and not embed:
+        field_alias_omitted = len(required_params) == 1 and not embed
+        if field_alias_omitted:
             received_body = {field.alias: received_body}
+
         for field in required_params:
+            loc: Tuple[str, ...]
+            if field_alias_omitted:
+                loc = ("body",)
+            else:
+                loc = ("body", field.alias)
+
             value: Any = None
             if received_body is not None:
                 if (
@@ -626,7 +663,7 @@ async def request_body_to_args(
                     try:
                         value = received_body.get(field.alias)
                     except AttributeError:
-                        errors.append(get_missing_field_error(field.alias))
+                        errors.append(get_missing_field_error(loc))
                         continue
             if (
                 value is None
@@ -638,7 +675,7 @@ async def request_body_to_args(
                 )
             ):
                 if field.required:
-                    errors.append(get_missing_field_error(field.alias))
+                    errors.append(get_missing_field_error(loc))
                 else:
                     values[field.name] = deepcopy(field.default)
                 continue
@@ -657,7 +694,9 @@ async def request_body_to_args(
                 awaitables = [sub_value.read() for sub_value in value]
                 contents = await asyncio.gather(*awaitables)
                 value = sequence_shape_to_type[field.shape](contents)
-            v_, errors_ = field.validate(value, values, loc=("body", field.alias))
+
+            v_, errors_ = field.validate(value, values, loc=loc)
+
             if isinstance(errors_, ErrorWrapper):
                 errors.append(errors_)
             elif isinstance(errors_, list):
@@ -667,12 +706,12 @@ async def request_body_to_args(
     return values, errors
 
 
-def get_missing_field_error(field_alias: str) -> ErrorWrapper:
+def get_missing_field_error(loc: Tuple[str, ...]) -> ErrorWrapper:
     if PYDANTIC_1:
-        missing_field_error = ErrorWrapper(MissingError(), loc=("body", field_alias))
+        missing_field_error = ErrorWrapper(MissingError(), loc=loc)
     else:  # pragma: no cover
         missing_field_error = ErrorWrapper(  # type: ignore
-            MissingError(), loc=("body", field_alias), config=BaseConfig,
+            MissingError(), loc=loc, config=BaseConfig,
         )
     return missing_field_error
 
