@@ -1,6 +1,7 @@
 from datetime import datetime, timezone
 from enum import Enum
 from pathlib import PurePath, PurePosixPath, PureWindowsPath
+from typing import Optional
 
 import pytest
 from fastapi.encoders import jsonable_encoder
@@ -60,7 +61,7 @@ class RoleEnum(Enum):
 
 
 class ModelWithConfig(BaseModel):
-    role: RoleEnum = None
+    role: Optional[RoleEnum] = None
 
     class Config:
         use_enum_values = True

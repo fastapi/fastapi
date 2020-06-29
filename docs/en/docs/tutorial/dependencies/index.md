@@ -31,7 +31,7 @@ Let's first focus on the dependency.
 
 It is just a function that can take all the same parameters that a *path operation function* can take:
 
-```Python hl_lines="6 7"
+```Python hl_lines="8 9"
 {!../../../docs_src/dependencies/tutorial001.py!}
 ```
 
@@ -55,7 +55,7 @@ And then it just returns a `dict` containing those values.
 
 ### Import `Depends`
 
-```Python hl_lines="1"
+```Python hl_lines="3"
 {!../../../docs_src/dependencies/tutorial001.py!}
 ```
 
@@ -63,7 +63,7 @@ And then it just returns a `dict` containing those values.
 
 The same way you use `Body`, `Query`, etc. with your *path operation function* parameters, use `Depends` with a new parameter:
 
-```Python hl_lines="11 16"
+```Python hl_lines="13  18"
 {!../../../docs_src/dependencies/tutorial001.py!}
 ```
 

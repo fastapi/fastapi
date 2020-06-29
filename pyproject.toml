@@ -43,8 +43,8 @@ Documentation = "https://fastapi.tiangolo.com/"
 
 [tool.flit.metadata.requires-extra]
 test = [
-    "pytest >=5.4.3",
-    "pytest-cov",
+    "pytest==5.4.3",
+    "pytest-cov==2.10.0",
     "mypy",
     "black",
     "isort",

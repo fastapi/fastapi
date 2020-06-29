@@ -1,4 +1,5 @@
 from datetime import datetime, timedelta
+from typing import Optional
 
 import jwt
 from fastapi import Depends, FastAPI, HTTPException, status
@@ -31,14 +32,14 @@ class Token(BaseModel):
 
 
 class TokenData(BaseModel):
-    username: str = None
+    username: Optional[str] = None
 
 
 class User(BaseModel):
     username: str
-    email: str = None
-    full_name: str = None
-    disabled: bool = None
+    email: Optional[str] = None
+    full_name: Optional[str] = None
+    disabled: Optional[bool] = None
 
 
 class UserInDB(User):
@@ -75,7 +76,7 @@ def authenticate_user(fake_db, username: str, password: str):
     return user
 
 
-def create_access_token(data: dict, expires_delta: timedelta = None):
+def create_access_token(data: dict, expires_delta: Optional[timedelta] = None):
     to_encode = data.copy()
     if expires_delta:
         expire = datetime.utcnow() + expires_delta

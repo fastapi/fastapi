@@ -6,7 +6,7 @@ Before diving deeper into the **Dependency Injection** system, let's upgrade the
 
 In the previous example, we were returning a `dict` from our dependency ("dependable"):
 
-```Python hl_lines="7"
+```Python hl_lines="9"
 {!../../../docs_src/dependencies/tutorial001.py!}
 ```
 
@@ -71,19 +71,19 @@ That also applies to callables with no parameters at all. The same as it would b
 
 Then, we can change the dependency "dependable" `common_parameters` from above to the class `CommonQueryParameters`:
 
-```Python hl_lines="9 10 11 12 13"
+```Python hl_lines="11 12 13 14 15"
 {!../../../docs_src/dependencies/tutorial002.py!}
 ```
 
 Pay attention to the `__init__` method used to create the instance of the class:
 
-```Python hl_lines="10"
+```Python hl_lines="12"
 {!../../../docs_src/dependencies/tutorial002.py!}
 ```
 
 ...it has the same parameters as our previous `common_parameters`:
 
-```Python hl_lines="6"
+```Python hl_lines="8"
 {!../../../docs_src/dependencies/tutorial001.py!}
 ```
 
@@ -103,7 +103,7 @@ Now you can declare your dependency using this class.
 
 And as when **FastAPI** calls that class the value that will be passed as `commons` to your function will be an "instance" of the class, you can declare that parameter `commons` to be of type of the class, `CommonQueryParams`.
 
-```Python hl_lines="17"
+```Python hl_lines="19"
 {!../../../docs_src/dependencies/tutorial002.py!}
 ```
 
@@ -143,7 +143,7 @@ commons = Depends(CommonQueryParams)
 
 ..as in:
 
-```Python hl_lines="17"
+```Python hl_lines="19"
 {!../../../docs_src/dependencies/tutorial003.py!}
 ```
 
@@ -179,7 +179,7 @@ So, you can declare the dependency as the type of the variable, and use `Depends
 
 So, the same example would look like:
 
-```Python hl_lines="17"
+```Python hl_lines="19"
 {!../../../docs_src/dependencies/tutorial004.py!}
 ```
 

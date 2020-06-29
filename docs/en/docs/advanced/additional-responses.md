@@ -168,7 +168,7 @@ You can use this same `responses` parameter to add different media types for the
 
 For example, you can add an additional media type of `image/png`, declaring that your *path operation* can return a JSON object (with media type `application/json`) or a PNG image:
 
-```Python hl_lines="17 18 19 20 21 22 23 24 28"
+```Python hl_lines="19 20 21 22 23 24  28"
 {!../../../docs_src/additional_responses/tutorial002.py!}
 ```
 
@@ -228,7 +228,7 @@ You can use that technique to re-use some predefined responses in your *path ope
 
 For example:
 
-```Python hl_lines="11 12 13 14 15 24"
+```Python hl_lines="13 14 15 16 17 26"
 {!../../../docs_src/additional_responses/tutorial004.py!}
 ```
 
