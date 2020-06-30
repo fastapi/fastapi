@@ -97,6 +97,7 @@ sequence_shape_to_type = {
 
 _sentinel = object()
 
+
 def get_param_sub_dependant(
     *, param: inspect.Parameter, path: str, security_scopes: List[str] = None
 ) -> Dependant:
