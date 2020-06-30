@@ -95,6 +95,7 @@ sequence_shape_to_type = {
     SHAPE_TUPLE_ELLIPSIS: list,
 }
 
+_sentinel = object()
 
 def get_param_sub_dependant(
     *, param: inspect.Parameter, path: str, security_scopes: List[str] = None
@@ -596,12 +597,12 @@ def request_params_to_args(
         ):
             value = received_params.getlist(field.alias) or field.default
         else:
-            value = received_params.get(field.alias)
+            value = received_params.get(field.alias, _sentinel)
         field_info = get_field_info(field)
         assert isinstance(
             field_info, params.Param
         ), "Params must be subclasses of Param"
-        if value is None:
+        if value is _sentinel:
             if field.required:
                 if PYDANTIC_1:
                     errors.append(
@@ -653,7 +654,7 @@ async def request_body_to_args(
             else:
                 loc = ("body", field.alias)
 
-            value: Any = None
+            value: Any = _sentinel
             if received_body is not None:
                 if (
                     field.shape in sequence_shapes or field.type_ in sequence_types
@@ -666,7 +667,7 @@ async def request_body_to_args(
                         errors.append(get_missing_field_error(loc))
                         continue
             if (
-                value is None
+                value is _sentinel
                 or (isinstance(field_info, params.Form) and value == "")
                 or (
                     isinstance(field_info, params.Form)
