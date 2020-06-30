@@ -409,6 +409,7 @@ class APIRouter(routing.Router):
         default_response_class: Type[Response] = None,
         on_startup: Sequence[Callable] = None,
         on_shutdown: Sequence[Callable] = None,
+        include_in_schema: bool = True,
     ) -> None:
         super().__init__(
             routes=routes,
@@ -420,6 +421,7 @@ class APIRouter(routing.Router):
         self.dependency_overrides_provider = dependency_overrides_provider
         self.route_class = route_class
         self.default_response_class = default_response_class
+        self.include_in_schema = include_in_schema
 
     def add_api_route(
         self,
@@ -475,7 +477,7 @@ class APIRouter(routing.Router):
             ),
             response_model_exclude_defaults=response_model_exclude_defaults,
             response_model_exclude_none=response_model_exclude_none,
-            include_in_schema=include_in_schema,
+            include_in_schema=include_in_schema if self.include_in_schema else self.include_in_schema
             response_class=response_class or self.default_response_class,
             name=name,
             dependency_overrides_provider=self.dependency_overrides_provider,
