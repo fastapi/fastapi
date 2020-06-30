@@ -477,7 +477,7 @@ class APIRouter(routing.Router):
             ),
             response_model_exclude_defaults=response_model_exclude_defaults,
             response_model_exclude_none=response_model_exclude_none,
-            include_in_schema=include_in_schema if self.include_in_schema else False
+            include_in_schema=include_in_schema if self.include_in_schema else False,
             response_class=response_class or self.default_response_class,
             name=name,
             dependency_overrides_provider=self.dependency_overrides_provider,
