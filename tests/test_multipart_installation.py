@@ -13,7 +13,7 @@ def test_incorrect_multipart_installed(monkeypatch):
         app = FastAPI()
 
         @app.post("/login")
-        async def login(username: str = Form(...), password: str = Form(...)):
+        async def login(username: str = Form(...)):
             return {"username": username}  # pragma: nocover
 
 
@@ -28,5 +28,5 @@ def test_no_multipart_installed(monkeypatch):
         app = FastAPI()
 
         @app.post("/login")
-        async def login(username: str = Form(...), password: str = Form(...)):
+        async def login(username: str = Form(...)):
             return {"username": username}  # pragma: nocover
