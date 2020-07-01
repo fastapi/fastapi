@@ -798,8 +798,6 @@ def get_body_field(*, dependant: Dependant, name: str) -> Optional[ModelField]:
                 "[multipart] is installed and not compatible with [python-multipart]. "
                 "Uninstall [multipart] and then install [python-multipart]."
             )
-            [multipart] is installed and not compatible with [python-multipart]. 
-            Uninstall [multipart] and then install [python-multipart]."""
             logger.error(error)
             raise RuntimeError(error)
     return create_response_field(
