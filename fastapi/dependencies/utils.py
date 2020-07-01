@@ -1,6 +1,5 @@
 import asyncio
 import inspect
-import logging
 from contextlib import contextmanager
 from copy import deepcopy
 from typing import (
@@ -25,6 +24,7 @@ from fastapi.concurrency import (
     contextmanager_in_threadpool,
 )
 from fastapi.dependencies.models import Dependant, SecurityRequirement
+from fastapi.logger import logger
 from fastapi.security.base import SecurityBase
 from fastapi.security.oauth2 import OAuth2, SecurityScopes
 from fastapi.security.open_id_connect_url import OpenIdConnect
@@ -792,11 +792,11 @@ def get_body_field(*, dependant: Dependant, name: str) -> Optional[ModelField]:
             error = """Form data requires [python-multipart] to be installed. Currently 
             [multipart] is installed and not compatible with [python-multipart]. 
             Uninstall [multipart] and then install [python-multipart]."""
-            logging.error(error)
+            logger.error(error)
             raise RuntimeError(error)
         except ModuleNotFoundError:
             error = "Form data requires [python-multipart] to be installed."
-            logging.error(error)
+            logger.error(error)
             raise RuntimeError(error)
     return create_response_field(
         name="body",
