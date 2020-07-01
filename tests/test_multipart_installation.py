@@ -19,7 +19,7 @@ def test_incorrect_multipart_installed(monkeypatch):
 
 def test_no_multipart_installed(monkeypatch):
     def raise_attribute_error(*args):
-        raise AttributeError
+        raise ImportError
 
     monkeypatch.setattr(
         "multipart.QuerystringParser", raise_attribute_error, raising=False
