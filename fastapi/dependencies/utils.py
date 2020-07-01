@@ -738,7 +738,7 @@ def get_schema_compatible_field(*, field: ModelField) -> ModelField:
 
 
 def is_form_data(field: Type[params.Body]) -> bool:
-    return field == params.Form or field == params.File or field == bytes
+    return field in (params.Form, params.File, bytes)
 
 
 def get_body_field(*, dependant: Dependant, name: str) -> Optional[ModelField]:
