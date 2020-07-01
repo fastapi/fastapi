@@ -788,7 +788,7 @@ def get_body_field(*, dependant: Dependant, name: str) -> Optional[ModelField]:
             QuerystringParser(  # check if correct import using python-multipart function
                 {}
             )
-        except AttributeError:
+        except ImportError:
             error = """Form data requires [python-multipart] to be installed. Currently 
             [multipart] is installed and not compatible with [python-multipart]. 
             Uninstall [multipart] and then install [python-multipart]."""
