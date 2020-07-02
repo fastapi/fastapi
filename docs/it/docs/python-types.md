@@ -6,14 +6,14 @@ I **"type hints"** sono una nuova sintassi (introdotta in Python 3.6+) che perme
 
 Dichiarando i tipi delle tue variabili, gli editor di testo e altri strumenti possono darti una mano con il tuo lavoro di sviluppo.
 
-Questo è solo un **breve tutorial / ripasso** sui type hints di Python. Copre solamente il minimo necessario per imparare ad usarli con **FastAPI**... quindi molto poco.
+Questo è solo un **breve tutorial / ripasso** sui *type hints* di Python. Copre solamente il minimo necessario per imparare ad usarli con **FastAPI**... Quindi molto poco.
 
-**FastAPI** è interamente basato sui type hints per i numerosi vantaggi che essi offrono.
+**FastAPI** è interamente basato sui *type hints* per i numerosi vantaggi che essi offrono.
 
 Ma anche se non hai mai usato o mai userai **FastAPI**, ti sarà utile capire cosa siano.
 
 !!! nota
-    Se sei un esperto di Python, e quindi saprai tutto sui type hints, puoi passare al capitolo successivo.
+    Se sei un esperto di Python, e quindi saprai tutto sui *type hints*, puoi passare al capitolo successivo.
 
 ## Motivazione
 
@@ -33,7 +33,7 @@ La funzione fa questo:
 
 * Prende `first_name` e `last_name`.
 * Converte la prima lettera di entrambi in maiuscolo con `title()`.
-* Li <abbr title="Li unisce in una singola entità. Inserisce prima i contenuti della prima, poi dell'altra. In inglese: concatenate">concatena</abbr> inserendo uno spazio in mezzo.
+* Li <abbr title="Li unisce in una singola entità. Inserisce prima i contenuti della prima, poi dell'altra. In inglese: *concatenate*">concatena</abbr> inserendo uno spazio in mezzo.
 
 ```Python hl_lines="2"
 {!../../../docs_src/python_types/tutorial001.py!}
@@ -95,7 +95,7 @@ Usiamo i due puntini (`:`), non l'uguale (`=`).
 
 E aggiungere le annotazioni di tipo normalmente non cambia il comportamento di un programma.
 
-Adesso immagina che stai ancora creando quella funzione, ma ora con i type hints.
+Adesso immagina che stai ancora creando quella funzione, ma ora con i *type hints*.
 
 Allo stesso punto di prima, provi ad attivare l'autocompletamento con `Ctrl+Spazio` e vedi:
 
@@ -107,7 +107,7 @@ In questo modo puoi vedere la lista delle opzioni fino a quando trovi quella che
 
 ## Altri vantaggi
 
-Osserva questa funzione, ha già le annotazioni di tipo:
+Osserva questa funzione, puoi vedere che ha già le annotazioni di tipo:
 
 ```Python hl_lines="1"
 {!../../../docs_src/python_types/tutorial003.py!}
@@ -131,7 +131,7 @@ Questo è anche l'utilizzo principale delle annotazioni di tipo in **FastAPI**.
 
 ### Tipi semplici
 
-Puoi dichiarare tutti i tipi standard di Python, non solo `str`.
+Puoi dichiarare tutti i tipi *standard* di Python, non solo `str`.
 
 Puoi usare, per esempio:
 
@@ -150,7 +150,7 @@ Ci sono alcune strutture dati che contengono altri valori, come `dict`, `list`, 
 
 Per dichiarare questi tipi e i tipi interni, puoi usare il modulo standard di Python chiamato `typing`.
 
-Esiste specificamente per supportare questi type hints.
+Esiste specificamente per supportare questi *type hints*.
 
 #### `List`
 
