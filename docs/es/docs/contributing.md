@@ -388,7 +388,7 @@ Si existieran otras referencias, asegurate de conservar la misma secuencia que e
 
 Si consultas tu buscador, verás que los documentos incluyen tu nueva sección. 🎉
 
-Ahora podrás traducir el resto ye verás cómo aparece segun vayas progresando.
+Ahora podrás traducir el resto, ya verás cómo aparece según vayas progresando.
 
 #### Un idioma nuevo: partiendo de zero
 
