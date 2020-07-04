@@ -273,7 +273,7 @@ como Uvicorn utiliza el puerto `8000` por defecto, los documentos en `8008` no c
 
 ### Traducciones
 
-Se agradecen muchísimo cualquier ayuda con los documententos, puesto que es imposible sin el apoyo de la comunidad. 🌎 🚀
+Se agradece muchísimo cualquier ayuda con las traducciones, puesto que es imposible hacerlas sin el apoyo de la comunidad. 🌎 🚀
 
 Para ayuda con las traducciones, estos son los pasos a seguir.
 
