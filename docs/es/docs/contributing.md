@@ -26,7 +26,7 @@ módulos y paquetes aislados del entorno global.
 
 ### Activa el entorno
 
-Activa el entorono virtual, utilizando los comandos pertinentes al sistema operativo local:
+Activa el entorno virtual, utilizando los comandos pertinentes a tu sistema operativo local:
 
 === "Linux, macOS"
 
