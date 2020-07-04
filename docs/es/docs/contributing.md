@@ -11,7 +11,7 @@ aquí encontrarás unas pautas a seguir con respecto a cómo desplegar tu entorn
 
 ### Entorno virtual con `venv`
 
-Puedes crear un entorno virtual utilizando `venv` :
+Puedes crear un entorno virtual utilizando el módulo de Python `venv` :
 
 <div class="termy">
 
