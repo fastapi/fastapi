@@ -236,7 +236,7 @@ $ python ./scripts/docs.py live
 Sirve los documentos desde `http://127.0.0.1:8008`.
 Así podras editar documentos y código fuente y ver los resultados en vivo.
 
-#### Typer CLI (optional)
+#### Typer CLI (opcional)
 
 Las siguentes instrucciones muestran cómo utilizar `./scripts/docs.py` con el programa `python` directamente.
 
