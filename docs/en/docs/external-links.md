@@ -7,7 +7,7 @@ There are many posts, articles, tools, and projects, related to **FastAPI**.
 Here's an incomplete list of some of them.
 
 !!! tip
-    If you have an article, project, tool, or anything related to **FastAPI** that is not yet listed here, create a <a href="https://github.com/tiangolo/fastapi/edit/master/docs/external-links.md" class="external-link" target="_blank">Pull Request adding it</a>.
+    If you have an article, project, tool, or anything related to **FastAPI** that is not yet listed here, create a <a href="https://github.com/tiangolo/fastapi/edit/master/docs/en/docs/external-links.md" class="external-link" target="_blank">Pull Request adding it</a>.
 
 ## Articles
 
@@ -75,6 +75,8 @@ Here's an incomplete list of some of them.
 * <a href="https://www.stavros.io/posts/fastapi-with-django/" class="external-link" target="_blank">Using FastAPI with Django</a> by <a href="https://twitter.com/Stavros" class="external-link" target="_blank">Stavros Korokithakis</a>.
 
 * <a href="https://netflixtechblog.com/introducing-dispatch-da4b8a2a8072" class="external-link" target="_blank">Introducing Dispatch</a> by <a href="https://netflixtechblog.com/" class="external-link" target="_blank">Netflix</a>.
+
+* <a href="https://davidefiocco.github.io/2020/06/27/streamlit-fastapi-ml-serving.html" class="external-link" target="_blank">Machine learning model serving in Python using FastAPI and streamlit</a> by <a href="https://github.com/davidefiocco" class="external-link" target="_blank">Davide Fiocco</a>.
 
 ### Japanese
 
