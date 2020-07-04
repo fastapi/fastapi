@@ -271,7 +271,7 @@ $ uvicorn tutorial001:app --reload
 
 como Uvicorn utiliza el puerto `8000` por defecto, los documentos en `8008` no confligen.
 
-### Translations
+### Traducciones
 
 Se agradecen muchísimo cualquier ayuda con los documententos, puesto que es imposible sin el apoyo de la comunidad. 🌎 🚀
 
