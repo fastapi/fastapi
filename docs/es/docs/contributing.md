@@ -240,9 +240,9 @@ Así podras editar documentos y código fuente y ver los resultados en vivo.
 
 Las siguentes instrucciones muestran cómo utilizar `./scripts/docs.py` con el programa `python` directamente.
 
-Tambien puedes aprovechar <a href="https://typer.tiangolo.com/typer-cli/" class="external-link" target="_blank">Typer CLI</a>, para obtener auto-completamiento ¿? .
+Tambien puedes aprovechar <a href="https://typer.tiangolo.com/typer-cli/" class="external-link" target="_blank">Typer CLI</a>, para obtener auto-completado.
 
-Si instalas Typer CLI, puedes obtener auto-completamiento:
+Si instalas Typer CLI, puedes obtener auto-completado:
 
 <div class="termy">
 
