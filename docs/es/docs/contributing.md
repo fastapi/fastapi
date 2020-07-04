@@ -21,7 +21,7 @@ $ python -m venv env
 
 </div>
 
-crear un directorio de nombre `./env/` con los archivos de Python y a partir de ese momento podrás instalar
+Eso creará un directorio con el nombre `./env/` con los archivos binarios de Python y a partir de ese momento podrás instalar
 módulos y paquetes aislados del entorno global.
 
 ### Activa el entorno
