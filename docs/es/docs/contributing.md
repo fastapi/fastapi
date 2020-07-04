@@ -1,4 +1,4 @@
-# Desarrollo - Aportando
+# Desarrollo - Contribuciones
 
 Si te interesa formar parte del proyecto, empieza por revisar las maneras de [apoyar a FastAPI y conseguir apoyo.](help-fastapi.md){.internal-link target=_blank}.
 
