@@ -141,7 +141,7 @@ You could actually write just:
 commons = Depends(CommonQueryParams)
 ```
 
-..as in:
+...as in:
 
 ```Python hl_lines="19"
 {!../../../docs_src/dependencies/tutorial003.py!}
