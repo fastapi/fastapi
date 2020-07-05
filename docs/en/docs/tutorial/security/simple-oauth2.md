@@ -36,7 +36,7 @@ They are normally used to declare specific security permissions, for example:
     In OAuth2 a "scope" is just a string that declares a specific permission required.
 
     It doesn't matter if it has other characters like `:` or if it is a URL.
-    
+
     Those details are implementation specific.
 
     For OAuth2 they are just strings.
@@ -166,7 +166,7 @@ For this simple example, we are going to just be completely insecure and return 
     This is something that you have to do yourself in your code, and make sure you use those JSON keys.
 
     It's almost the only thing that you have to remember to do correctly yourself, to be compliant with the specifications.
-    
+
     For the rest, **FastAPI** handles it for you.
 
 ## Update the dependencies
