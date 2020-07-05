@@ -39,7 +39,7 @@ That's it.
 
 **2 lines**.
 
-And it has the same shape and structure that all your *path operation functions*.
+And it has the same shape and structure that all your *path operation functions* have.
 
 You can think of it as a *path operation function* without the "decorator" (without the `@app.get("/some-path")`).
 
