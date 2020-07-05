@@ -105,6 +105,8 @@ So, let's review it from that simplified point of view:
 
 In this example we are going to use **OAuth2**, with the **Password** flow, using a **Bearer** token.
 
+We do that using the `OAuth2PasswordBearer` class.
+
 !!! info
     A "bearer" token is not the only option.
 
@@ -114,7 +116,7 @@ In this example we are going to use **OAuth2**, with the **Password** flow, usin
 
     In that case, **FastAPI** also provides you with the tools to build it.
 
-`OAuth2PasswordBearer` is a class that we create passing a parameter with the URL the client (the frontend running in the user's browser) can use to send the `username` and `password` and get a token.
+When we create an instance of the `OAuth2PasswordBearer` class we pass in the `tokenUrl` parameter. This parameter contains the URL from which the client (the frontend running in the user's browser) sends the `username` and `password` in order to get a token.
 
 ```Python hl_lines="6"
 {!../../../docs_src/security/tutorial001.py!}
@@ -127,7 +129,9 @@ In this example we are going to use **OAuth2**, with the **Password** flow, usin
 
     Using a relative URL is important to make sure your application keeps working even in an advanced use case like [Behind a Proxy](../../advanced/behind-a-proxy.md){.internal-link target=_blank}.
 
-It doesn't create that endpoint / *path operation* for `./token`, but declares that that URL `./token` is the one that the client should use to get the token. That information is used in OpenAPI, and then in the interactive API documentation systems.
+This parameter doesn't create that endpoint / *path operation*, but declares that the URL `/token` will be the one that the client should use to get the token. That information is used in OpenAPI, and then in the interactive API documentation systems.
+
+We will soon also create the actual path operation.
 
 !!! info
     If you are a very strict "Pythonista" you might dislike the style of the parameter name `tokenUrl` instead of `token_url`.
