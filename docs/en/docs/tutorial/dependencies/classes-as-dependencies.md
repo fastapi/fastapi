@@ -101,7 +101,7 @@ In both cases the data will be converted, validated, documented on the OpenAPI s
 
 Now you can declare your dependency using this class.
 
-And as when **FastAPI** calls that class the value that will be passed as `commons` to your function will be an "instance" of the class, you can declare that parameter `commons` to be of type of the class, `CommonQueryParams`.
+**FastAPI** calls that class. This creates an "instance" of that class. The instance will be passed as `commons` to your function. You can declare that parameter `commons` to be of type of the class, `CommonQueryParams`.
 
 ```Python hl_lines="19"
 {!../../../docs_src/dependencies/tutorial002.py!}
