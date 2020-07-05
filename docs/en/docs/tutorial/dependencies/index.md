@@ -126,7 +126,7 @@ So, the interactive docs will have all the information from these dependencies t
 
 ## Simple usage
 
-If you look at it, *path operation functions* are declared to be used whenever a *path* and *operation* matches, and then **FastAPI** takes care of calling the function with the correct parameters and use the response.
+If you look at it, *path operation functions* are declared to be used whenever a *path* and *operation* matches, and then **FastAPI** takes care of calling the function with the correct parameters and uses the response.
 
 Actually, all (or most) of the web frameworks work in this same way.
 
