@@ -103,9 +103,7 @@ So, let's review it from that simplified point of view:
 
 **FastAPI** provides several tools, at different levels of abstraction, to implement these security features.
 
-In this example we are going to use **OAuth2**, with the **Password** flow, using a **Bearer** token.
-
-We do that using the `OAuth2PasswordBearer` class.
+In this example we are going to use **OAuth2**, with the **Password** flow, using a **Bearer** token. We do that using the `OAuth2PasswordBearer` class.
 
 !!! info
     A "bearer" token is not the only option.
