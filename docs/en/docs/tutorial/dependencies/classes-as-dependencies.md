@@ -159,7 +159,7 @@ But you see that we are having some code repetition here, writing `CommonQueryPa
 commons: CommonQueryParams = Depends(CommonQueryParams)
 ```
 
-**FastAPI** provides a shortcut for these cases, in where the dependency is *specifically* a class that **FastAPI** will "call" to create an instance of the class itself.
+**FastAPI** provides a shortcut for these cases, where the dependency is *specifically* a class that **FastAPI** will "call" to create an instance of the class itself.
 
 For those specific cases, you can do the following:
 
