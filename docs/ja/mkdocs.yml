@@ -26,7 +26,7 @@ nav:
   - pt: /pt/
   - zh: /zh/
 - チュートリアル - ユーザーガイド:
-  tutorial/query-params.md
+  - tutorial/query-params.md
 markdown_extensions:
 - toc:
     permalink: true
