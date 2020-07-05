@@ -123,7 +123,7 @@ The last `CommonQueryParams`, in:
 
 ...is what **FastAPI** will actually use to know what is the dependency.
 
-From it is that FastAPI will extract the declared parameters and that is what FastAPI will actually call.
+From it FastAPI will extract the declared parameters and that is what FastAPI will actually call.
 
 ---
 
