@@ -88,7 +88,7 @@ Die Hauptfeatures sind:
 
 Wenn Sie eine <abbr title="Kommandozeileninterface">CLI</abbr> Anwendung erstellen, probieren Sie <a href="https://typer.tiangolo.com/" class="external-link" target="_blank">**Typer**</a> aus.
 
-**Typer** ist soetwas wie FastAPI's kleiner Bruder und soll das **FastAPI der CLIs** sein. ⌨️ 🚀
+**Typer** ist so etwas wie FastAPI's kleiner Bruder und soll das **FastAPI der CLIs** sein. ⌨️ 🚀
 
 ## Vorraussetungen
 
@@ -235,7 +235,7 @@ Wenn Sie jetzt die URL <a href="http://127.0.0.1:8000/redoc" class="external-lin
 
 ## Bespiel Aktualisierung
 
-Verändern Sie nun die Datei `main.py` um den Body von einer `PUT` Anfrage zu empfangen.
+Verändern Sie nun die Datei `main.py` um den Body einer `PUT` Anfrage zu empfangen.
 
 Sie deklarieren den Body dazu mit standard Python Typen, Pydantic sei dank.
 
