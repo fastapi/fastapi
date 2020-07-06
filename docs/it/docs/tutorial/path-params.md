@@ -1,12 +1,12 @@
-# Parametri di percorso
+# Path parameters
 
-È possibile dichiarare i <abbr title="path parameters">"parametri di percorso"</abbr> o le "variabili" con la stessa sintassi usata nelle <abbr title="format strings">*stringhe formattatrici*</abbr> di Python:
+È possibile dichiarare i <abbr title="parametri di percorso">"path parameters"</abbr> o le "variabili" con la stessa sintassi usata nelle <abbr title="format strings">*stringhe formattatrici*</abbr> di Python:
 
 ```Python hl_lines="6 7"
 {!../../../docs_src/path_params/tutorial001.py!}
 ```
 
-Il valore del parametro di percorso `item_id` verrà passato alla tua funzione sotto forma dell'argomento `item_id`.
+Il valore del *path parameter* `item_id` verrà passato alla tua funzione sotto forma dell'argomento `item_id`.
 
 Quindi, se esegui questo esempio e vai su <a href="http://127.0.0.1:8000/items/foo" class="external-link" target="_blank">http://127.0.0.1:8000/items/foo</a>, vedrai la seguente risposta:
 
@@ -16,18 +16,18 @@ Quindi, se esegui questo esempio e vai su <a href="http://127.0.0.1:8000/items/f
 
 ## Path parameters con tipi
 
-Puoi dichiarare il tipo di un parametro di percorso nella funzione usando le annotazioni di tipo *standard* di Python:
+Puoi dichiarare il tipo di un *path parameter* nella funzione usando le annotazioni di tipo *standard* di Python:
 
 ```Python hl_lines="7"
 {!../../../docs_src/path_params/tutorial002.py!}
 ```
 
-In questo caso, `item_id` è dichiarato come un <abbr title="numero intero">`int`</abbr>.
+In questo caso, `item_id` è dichiarato come <abbr title="numero intero">`int`</abbr>.
 
 !!! check
-    Questo permetterà all'editor di testo di aiutarti dentro la tua funzione, con di eventuali errori, autocompletamento, ecc.
+    Questo permetterà all'editor di testo di aiutarti dentro la tua funzione, con il controllo di eventuali errori, autocompletamento, ecc.
 
-## <abbr title="anche nota come: serializzazione, parsing, marshalling">Conversione</abbr> dei dati
+## <abbr title="anche noto come: serializzazione, parsing, marshalling">Conversione</abbr> dei dati
 
 Se esegui questo esempio e apri il browser su <a href="http://127.0.0.1:8000/items/3" class="external-link" target="_blank">http://127.0.0.1:8000/items/3</a>, vedrai la seguente risposta:
 
@@ -38,7 +38,7 @@ Se esegui questo esempio e apri il browser su <a href="http://127.0.0.1:8000/ite
 !!! check
     Nota che il valore ricevuto (e restituito) dalla tua funzione è `3`, un `int`, non una stringa `"3"`.
 
-    Di conseguenza, con quella dichiarazione di tipo, **FastAPI** ti dà *automatic request <abbr title="convertire la stringa che proviene da una richiesta HTTP in dati Python">"parsing"</abbr>*.
+    Di conseguenza, con quella dichiarazione di tipo, **FastAPI** ti offre l'*automatic request <abbr title="convertire la stringa che proviene da una richiesta HTTP in dati Python">"parsing"</abbr>*.
 
 ## Validazione dei dati
 
@@ -59,9 +59,9 @@ Se vai con il tuo browser su <a href="http://127.0.0.1:8000/items/foo" class="ex
 }
 ```
 
-perché il parametro di percorso `item_id` ha il valore `"foo"`, che non è un `int`.
+perché il parametro di percorso `item_id` ha valore `"foo"`, che non è un `int`.
 
-Lo stesso errore si sarebbe presentato se avessi passato un `float` invece che un int, per esempio con: <a href="http://127.0.0.1:8000/items/4.2" class="external-link" target="_blank">http://127.0.0.1:8000/items/4.2</a>
+Lo stesso errore si sarebbe presentato se avessi passato un `float` invece che un `int`, per esempio con: <a href="http://127.0.0.1:8000/items/4.2" class="external-link" target="_blank">http://127.0.0.1:8000/items/4.2</a>
 
 !!! check
     Abbiamo visto che con la semplice dichiarazione di tipo in Python, **FastAPI** è in grado di validare i dati.
@@ -72,14 +72,14 @@ Lo stesso errore si sarebbe presentato se avessi passato un `float` invece che u
 
 ## Documentazione
 
-E quando si apre il browser a <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>, vedrai una documentazione dell'API automatica e interattiva come questa:
+E quando apri il browser all'indirizzo <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>, vedrai una documentazione dell'API automatica e interattiva come questa:
 
 <img src="https://fastapi.tiangolo.com/img/tutorial/path-params/image01.png">
 
 !!! check
     Anche in questo caso, proprio con la stessa dichiarazione di tipo Python, **FastAPI** fornisce una documentazione automatica e interattiva (integrando Swagger UI).
 
-    Si noti che il parametro di percorso è dichiarato come un numero intero.
+    Nota che il parametro di percorso è dichiarato come un numero intero.
 
 ## Vantaggi basati sugli standard, documentazione alternativa
 
@@ -97,7 +97,7 @@ La convalida di tutti i dati viene eseguita dietro le quinte da <a href="https:/
 
 È possibile utilizzare lo stesso tipo di dichiarazione con `str`, `float`, `bool` e molti altri tipi di dati complessi.
 
-Molti di questi sono esaminati nei prossimi capitoli del tutorial.
+Molti di questi verranno esaminati nei prossimi capitoli del tutorial.
 
 ## L'ordine ha importanza
 
@@ -107,17 +107,17 @@ Supponiamo che il percorso `/users/me` serva per ottenere dati sull'utente corre
 
 E poi abbiamo anche un percorso `/users/{user_id}` per ottenere i dati di un utente dato il suo ID.
 
-Poiché le *path operations* sono valutate in ordine, è necessario assicurarsi che il percorso `/users/me` sia dichiarato prima di `/users/{user_id}`:
+Poiché le *path operations* sono valutate in ordine, dalla prima nel file all'ultima, è necessario assicurarsi che il percorso `/users/me` sia dichiarato prima di `/users/{user_id}`:
 
 ```Python hl_lines="6 11"
 {!../../../docs_src/path_params/tutorial003.py!}
 ```
 
-Altrimenti, il percorso `/users/{user_id}`, che è simile a quello `/users/me`, "penserebbe" di ricevere un parametro `user_id` con valore `"me"`.
+Altrimenti, il percorso `/users/{user_id}`, che combacia con quello `/users/me`, "penserebbe" di ricevere un parametro `user_id` con valore `"me"`.
 
 ## Valori predefiniti
 
-Se hai una *path operation* che riceve un parametro di percorso, e vorresti definire i possibili valori che il parametro di percorso può accettare, puoi usare un <abbr title="Enumerazione, in inglese enumeration">`Enum`</abbr>.
+Se hai una *path operation* che riceve un *path parameter*, e vorresti definire i possibili valori che il *path parameter* può accettare, puoi usare un <abbr title="Enumerazione, in inglese enumeration">`Enum`</abbr>.
 
 ### Crea una classe `Enum`
 
@@ -132,14 +132,14 @@ Poi, definisci degli attributi di classe con valori fissi, che saranno i valori 
 ```
 
 !!! info
-    Gli <a href="https://docs.python.org/3/library/enum.html" class="external-link" target="_blank">enumeratori (o enums) sono disponibili in Python</a> dalla versione 3.4.
+    Gli <a href="https://docs.python.org/3/library/enum.html" class="external-link" target="_blank">enumeratori (o enum) sono disponibili in Python</a> dalla versione 3.4.
 
 !!! tip
     Se te lo stai chiedendo, "AlexNet", "ResNet", e "LeNet" sono semplicemente i nomi di <abbr title="Technically, Deep Learning model architectures">modelli</abbr> di Machine Learning.
 
-### Dichiara un parametro di percorso
+### Dichiara un path parameter
 
-Successivamente, crea un parametro di percorso con un'annotazione di tipo usando la classe enum che hai creato (`ModelName`):
+Successivamente, crea un *path parameter* con un'annotazione di tipo usando la classe enum che hai creato (`ModelName`):
 
 ```Python hl_lines="16"
 {!../../../docs_src/path_params/tutorial005.py!}
@@ -147,13 +147,13 @@ Successivamente, crea un parametro di percorso con un'annotazione di tipo usando
 
 ### Controlla la documentazione
 
-Poiché i valori disponibili per il parametro di percorso sono predefiniti, la documentazione interattiva è in grado di mostrarli bene:
+Poiché i valori disponibili per il *path parameter* sono predefiniti, la documentazione interattiva è in grado di mostrarli bene:
 
 <img src="https://fastapi.tiangolo.com/img/tutorial/path-params/image03.png">
 
 ### Lavorare con le *enumerazioni* di Python
 
-Il valore del parametro di percorso sarà un <abbr title="In inglese: enumeration member">*membro dell'enumerazione*</abbr>.
+Il valore del *path parameter* sarà un <abbr title="In inglese: enumeration member">*membro dell'enumerazione*</abbr>.
 
 #### Compara i *membri dell'enumerazione*
 
@@ -165,7 +165,7 @@ Puoi compararlo con i membri dell'enumerazione definiti all'interno di `ModelNam
 
 #### Ottieni il *valore dell'enumerazione*
 
-Puoi ottenere il valore dell'enumerazione (una `str` in questo caso) usando `model_name.value`, o in generale, `your_enum_member.value`:
+Puoi ottenere il valore dell'enumerazione (una `str` in questo caso) usando `model_name.value` o, in generale, `your_enum_member.value`:
 
 ```Python hl_lines="20"
 {!../../../docs_src/path_params/tutorial005.py!}
@@ -176,7 +176,7 @@ Puoi ottenere il valore dell'enumerazione (una `str` in questo caso) usando `mod
 
 #### Restituisci i *membri dell'enumerazione*
 
-Puoi restituire i membri dell'enumerazione dal tuo *path operation*, persino nidificati in una struttura JSON (per esempio un `dict`).
+Puoi restituire i membri dell'enumerazione dalla tua *path operation*, persino nidificati in un corpo JSON (per esempio un `dict`).
 
 Saranno convertiti nei loro valori corrispondenti (stringhe in questo caso) prima di essere restituiti al client:
 
@@ -184,7 +184,7 @@ Saranno convertiti nei loro valori corrispondenti (stringhe in questo caso) prim
 {!../../../docs_src/path_params/tutorial005.py!}
 ```
 
-Nel tuo client riceverai una risposta JSON come questa:
+Il tuo client riceverà una risposta JSON come questa:
 
 ```JSON
 {
@@ -193,52 +193,52 @@ Nel tuo client riceverai una risposta JSON come questa:
 }
 ```
 
-## Path parameters containing paths
+## Path parameters con path
 
-Let's say you have a *path operation* with a path `/files/{file_path}`.
+Supponiamo che hai una *path operation* con un <abbr title="percorso">*path*</abbr> `/files/{file_path}`.
 
-But you need `file_path` itself to contain a *path*, like `home/johndoe/myfile.txt`.
+Ma hai bisogno che `file_path` contenga un <abbr title="percorso">*path*</abbr>, come `home/johndoe/myfile.txt`.
 
-So, the URL for that file would be something like: `/files/home/johndoe/myfile.txt`.
+Quindi, l'URL di quel file sarebbe qualcosa di simile a questo: `/files/home/johndoe/myfile.txt`.
 
-### OpenAPI support
+### Suppporto OpenAI
 
-OpenAPI doesn't support a way to declare a *path parameter* to contain a *path* inside, as that could lead to scenarios that are difficult to test and define.
+OpenAPI non supporta la dichiarazione di un *path parameter* che contiene un <abbr title="percorso">*path*</abbr> al suo interno, in quanto ciò potrebbe portare a scenari difficili da testare e da definire.
 
-Nevertheless, you can still do it in **FastAPI**, using one of the internal tools from Starlette.
+Tuttavia, **FastAPI** lo consente grazie a uno degli strumenti interni di Starlette.
 
-And the docs would still work, although not adding any documentation telling that the parameter should contain a path.
+E la documentazione funzionerebbe ancora, anche se non specificherebbe che il parametro deve contenere un percorso.
 
 ### Path convertor
 
-Using an option directly from Starlette you can declare a *path parameter* containing a *path* using a URL like:
+Usando un'opzione specifica di Starlette puoi dichiarare un *path parameter* che contiene un *path* specificando un URL come il seguente:
 
 ```
 /files/{file_path:path}
 ```
 
-In this case, the name of the parameter is `file_path`, and the last part, `:path`, tells it that the parameter should match any *path*.
+In questo caso, il nome del parametro è `file_path`, e l'ultima parte, `:path`, gli dice che il parametro deve corrispondere a un *path*.
 
-So, you can use it with:
+Quindi, puoi usarlo in questo modo:
 
 ```Python hl_lines="6"
 {!../../../docs_src/path_params/tutorial004.py!}
 ```
 
 !!! tip
-    You could need the parameter to contain `/home/johndoe/myfile.txt`, with a leading slash (`/`).
+    Potrebbe essere necessario che il parametro contenga `/home/johndoe/myfile.txt`, con una barra iniziale (`/`).
 
-    In that case, the URL would be: `/files//home/johndoe/myfile.txt`, with a double slash (`//`) between `files` and `home`.
+    In quel caso, l'URL sarebbe: `/files//home/johndoe/myfile.txt`, con una doppia barra obliqua (`//`) tra `files` e `home`.
 
-## Recap
+## Ricapitolando
 
-With **FastAPI**, by using short, intuitive and standard Python type declarations, you get:
+Con **FastAPI**, dichiarando le annotazioni di tipo di Python, brevi e intuitive, ottieni:
 
-* Editor support: error checks, autocompletion, etc.
-* Data "<abbr title="converting the string that comes from an HTTP request into Python data">parsing</abbr>"
-* Data validation
-* API annotation and automatic documentation
+* Supporto dell'editor di testo: controllo errori, autocompletamento, ecc.
+* *Data "<abbr title="convertire la stringa che proviene da una richiesta HTTP in dati Python">parsing</abbr>"*
+* Validazione dei dati
+* Annotazione e documentazione automatica dell'API
 
-And you only have to declare them once.
+Ed è sufficiente dichiararli una sola volta.
 
-That's probably the main visible advantage of **FastAPI** compared to alternative frameworks (apart from the raw performance).
+Questo è probabilmente uno dei punti di forza di **FastAPI** rispetto a framework alternativi (oltre che alle prestazioni).
