@@ -101,11 +101,12 @@ In both cases the data will be converted, validated, documented on the OpenAPI s
 
 Now you can declare your dependency using this class.
 
-**FastAPI** calls that class. This creates an "instance" of that class. The instance will be passed as `commons` to your function. You can declare that parameter `commons` to be of type of the class, `CommonQueryParams`.
-
 ```Python hl_lines="19"
 {!../../../docs_src/dependencies/tutorial002.py!}
 ```
+
+**FastAPI** calls the `CommonQueryParams` class. This creates an "instance" of that class and
+the instance will be passed as `commons` to your function.
 
 ## Type annotation vs `Depends`
 
@@ -123,11 +124,9 @@ The last `CommonQueryParams`, in:
 
 ...is what **FastAPI** will actually use to know what is the dependency.
 
-From it FastAPI will extract the declared parameters and that is what FastAPI will actually call.
+From it FastAPI will extract the declared parameters and it is what FastAPI will actually call.
 
----
-
-In this case, the first `CommonQueryParams`, in:
+But the first `CommonQueryParams`, in:
 
 ```Python
 commons: CommonQueryParams ...
@@ -187,5 +186,5 @@ So, the same example would look like:
 
 !!! tip
     If all that seems more confusing than helpful, disregard it, you don't *need* it.
-    
+
     It is just a shortcut. Because **FastAPI** cares about helping you minimize code repetition.
