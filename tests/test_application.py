@@ -1129,13 +1129,19 @@ openapi_schema = {
         ("/api_route", 200, {"message": "Hello World"}),
         ("/non_decorated_route", 200, {"message": "Hello World"}),
         ("/nonexistent", 404, {"detail": "Not Found"}),
-        ("/openapi.json", 200, openapi_schema),
     ],
 )
 def test_get_path(path, expected_status, expected_response):
     response = client.get(path)
     assert response.status_code == expected_status
     assert response.json() == expected_response
+
+
+def test_get_openapi():
+    response = client.get("/openapi.json")
+    assert response.status_code == 200
+    assert response.headers["Content-Type"] == "application/vnd.oai.openapi+json"
+    assert response.json() == openapi_schema
 
 
 def test_swagger_ui():

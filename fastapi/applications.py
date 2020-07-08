@@ -117,7 +117,10 @@ class FastAPI(Starlette):
 
             async def openapi(req: Request) -> JSONResponse:
                 root_path = req.scope.get("root_path", "").rstrip("/")
-                return JSONResponse(self.openapi(root_path))
+                return JSONResponse(
+                    self.openapi(root_path),
+                    media_type="application/vnd.oai.openapi+json",
+                )
 
             self.add_route(self.openapi_url, openapi, include_in_schema=False)
         if self.openapi_url and self.docs_url:
