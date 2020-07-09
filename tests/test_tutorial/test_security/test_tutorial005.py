@@ -1,6 +1,6 @@
 from fastapi.testclient import TestClient
 
-from security.tutorial005 import (
+from docs_src.security.tutorial005 import (
     app,
     create_access_token,
     fake_users_db,

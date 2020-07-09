@@ -1,7 +1,7 @@
 import pytest
 from fastapi.testclient import TestClient
 
-from body_fields.tutorial001 import app
+from docs_src.body_fields.tutorial001 import app
 
 # TODO: remove when removing support for Pydantic < 1.0.0
 try:
