@@ -61,7 +61,8 @@ try:
 except ImportError:  # pragma: nocover
     # TODO: remove when removing support for Pydantic < 1.0.0
     from pydantic import Schema as FieldInfo  # type: ignore
-    from pydantic.fields import Field as ModelField, Required, Shape  # type: ignore
+    from pydantic.fields import Field as ModelField  # type: ignore
+    from pydantic.fields import Required, Shape  # type: ignore
     from pydantic.schema import get_annotation_from_schema  # type: ignore
     from pydantic.utils import ForwardRef, evaluate_forwardref  # type: ignore
 
