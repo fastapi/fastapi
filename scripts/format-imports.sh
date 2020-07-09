@@ -2,5 +2,5 @@
 set -x
 
 # Sort imports one per line, so autoflake can remove unused imports
-isort . --force-single-line-imports
+isort fastapi tests docs_src scripts --force-single-line-imports
 sh ./scripts/format.sh
