@@ -1,6 +1,6 @@
 from fastapi.testclient import TestClient
 
-from async_sql_databases.tutorial001 import app
+from docs_src.async_sql_databases.tutorial001 import app
 
 openapi_schema = {
     "openapi": "3.0.2",

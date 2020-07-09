@@ -5,4 +5,4 @@ set -x
 
 mypy fastapi
 black fastapi tests --check
-isort --multi-line=3 --trailing-comma --force-grid-wrap=0 --combine-as --line-width 88 --recursive --check-only --thirdparty fastapi --thirdparty fastapi --thirdparty pydantic --thirdparty starlette fastapi tests
+isort fastapi tests docs_src scripts --check-only 

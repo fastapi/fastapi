@@ -3,7 +3,7 @@ from unittest.mock import patch
 import pytest
 from fastapi.testclient import TestClient
 
-from body.tutorial001 import app
+from docs_src.body.tutorial001 import app
 
 client = TestClient(app)
 
