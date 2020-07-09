@@ -43,53 +43,53 @@ Documentation = "https://fastapi.tiangolo.com/"
 
 [tool.flit.metadata.requires-extra]
 test = [
-    "pytest==5.4.3",
-    "pytest-cov==2.10.0",
-    "mypy",
-    "black",
-    "isort",
-    "requests",
-    "email_validator",
-    "sqlalchemy",
-    "peewee",
-    "databases[sqlite]",
-    "orjson",
-    "async_exit_stack",
-    "async_generator",
-    "python-multipart",
-    "aiofiles",
-    "flask"
+    "pytest ==5.4.3",
+    "pytest-cov ==2.10.0",
+    "mypy ==0.782",
+    "black ==19.10b0",
+    "isort >=5.0.6,<6.0.0",
+    "requests >=2.24.0,<3.0.0",
+    "email_validator >=1.1.1,<2.0.0",
+    "sqlalchemy >=1.3.18,<2.0.0",
+    "peewee >=3.13.3,<4.0.0",
+    "databases[sqlite] >=0.3.2,<0.4.0",
+    "orjson >=3.2.1,<4.0.0",
+    "async_exit_stack >=1.0.1,<2.0.0",
+    "async_generator >=1.10,<2.0.0",
+    "python-multipart >=0.0.5,<0.0.6",
+    "aiofiles >=0.5.0,<0.6.0",
+    "flask >=1.1.2,<2.0.0"
 ]
 doc = [
-    "mkdocs",
-    "mkdocs-material",
-    "markdown-include",
-    "typer",
-    "typer-cli",
-    "pyyaml"
+    "mkdocs >=1.1.2,<2.0.0",
+    "mkdocs-material >=5.4.0,<6.0.0",
+    "markdown-include >=0.5.1,<0.6.0",
+    "typer >=0.3.0,<0.4.0",
+    "typer-cli >=0.0.9,<0.0.10",
+    "pyyaml >=5.3.1,<6.0.0"
 ]
 dev = [
-    "pyjwt",
-    "passlib[bcrypt]",
-    "autoflake",
-    "flake8",
-    "uvicorn",
-    "graphene"
+    "pyjwt >=1.7.1,<2.0.0",
+    "passlib[bcrypt] >=1.7.2,<2.0.0",
+    "autoflake >=1.3.1,<2.0.0",
+    "flake8 >=3.8.3,<4.0.0",
+    "uvicorn >=0.11.5,<0.12.0",
+    "graphene >=2.1.8,<3.0.0"
 ]
 all = [
-    "requests",
-    "aiofiles",
-    "jinja2",
-    "python-multipart",
-    "itsdangerous",
-    "pyyaml",
-    "graphene",
-    "ujson",
-    "orjson",
-    "email_validator",
-    "uvicorn",
-    "async_exit_stack",
-    "async_generator"
+    "requests >=2.24.0,<3.0.0",
+    "aiofiles >=0.5.0,<0.6.0",
+    "jinja2 >=2.11.2,<3.0.0",
+    "python-multipart >=0.0.5,<0.0.6",
+    "itsdangerous >=1.1.0,<2.0.0",
+    "pyyaml >=5.3.1,<6.0.0",
+    "graphene >=2.1.8,<3.0.0",
+    "ujson >=3.0.0,<4.0.0",
+    "orjson >=3.2.1,<4.0.0",
+    "email_validator >=1.1.1,<2.0.0",
+    "uvicorn >=0.11.5,<0.12.0",
+    "async_exit_stack >=1.0.1,<2.0.0",
+    "async_generator >=1.10,<2.0.0"
 ]
 
 [tool.isort]
