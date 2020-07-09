@@ -55,7 +55,7 @@ test = [
     "databases[sqlite] >=0.3.2,<0.4.0",
     "orjson >=3.2.1,<4.0.0",
     "async_exit_stack >=1.0.1,<2.0.0",
-    "async_generator >=1.10,2.0.0",
+    "async_generator >=1.10,<2.0.0",
     "python-multipart >=0.0.5,<0.0.6",
     "aiofiles >=0.5.0,<0.6.0",
     "flask >=1.1.2,<2.0.0"
@@ -82,14 +82,14 @@ all = [
     "jinja2 >=2.11.2,<3.0.0",
     "python-multipart >=0.0.5,<0.0.6",
     "itsdangerous >=1.1.0,<2.0.0",
-    "pyyaml >=5.3.1,<6.0.0"
-    "graphene >=2.1.8,<3.0.0"
+    "pyyaml >=5.3.1,<6.0.0",
+    "graphene >=2.1.8,<3.0.0",
     "ujson >=3.0.0,<4.0.0",
     "orjson >=3.2.1,<4.0.0",
     "email_validator >=1.1.1,<2.0.0",
     "uvicorn >=0.11.5,<0.12.0",
     "async_exit_stack >=1.0.1,<2.0.0",
-    "async_generator >=1.10,2.0.0",
+    "async_generator >=1.10,<2.0.0"
 ]
 
 [tool.isort]
