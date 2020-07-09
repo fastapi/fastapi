@@ -63,8 +63,7 @@ except ImportError:  # pragma: nocover
     from pydantic import Schema as FieldInfo  # type: ignore
     from pydantic.fields import Field as ModelField, Required, Shape  # type: ignore
     from pydantic.schema import get_annotation_from_schema  # type: ignore
-    from pydantic.utils import ForwardRef  # type: ignore
-    from pydantic.utils import evaluate_forwardref  # type: ignore
+    from pydantic.utils import ForwardRef, evaluate_forwardref  # type: ignore
 
     SHAPE_LIST = Shape.LIST
     SHAPE_SEQUENCE = Shape.SEQUENCE
