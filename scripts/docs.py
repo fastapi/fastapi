@@ -132,6 +132,7 @@ def build_lang(
         dist_path: Path = site_path / lang
     shutil.rmtree(build_lang_path, ignore_errors=True)
     shutil.copytree(lang_path, build_lang_path)
+    shutil.copytree(en_docs_path / "data", build_lang_path / "data")
     en_config_path: Path = en_lang_path / mkdocs_name
     en_config: dict = mkdocs.utils.yaml_load(en_config_path.read_text(encoding="utf-8"))
     nav = en_config["nav"]
@@ -215,10 +216,6 @@ def update_single_lang(lang: str):
     lang_path = docs_path / lang
     typer.echo(f"Updating {lang_path.name}")
     update_config(lang_path.name)
-    if lang != "en":
-        typer.echo(f"Updating data files for {lang_path}")
-        shutil.rmtree(lang_path / "data", ignore_errors=True)
-        shutil.copytree(en_docs_path / "data", lang_path / "data")
 
 
 @app.command()

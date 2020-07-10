@@ -13,52 +13,66 @@ Here's an incomplete list of some of them.
 
 ### English
 
+{% if external_links %}
 {% for article in external_links.articles.english %}
 
 * <a href="{{ article.link }}" class="external-link" target="_blank">{{ article.title }}</a> by <a href="{{ article.author_link }}" class="external-link" target="_blank">{{ article.author }}</a>.
 {% endfor %}
+{% endif %}
 
 ### Japanese
 
+{% if external_links %}
 {% for article in external_links.articles.japanese %}
 
 * <a href="{{ article.link }}" class="external-link" target="_blank">{{ article.title }}</a> by <a href="{{ article.author_link }}" class="external-link" target="_blank">{{ article.author }}</a>.
 {% endfor %}
+{% endif %}
 
 ### Vietnamese
 
+{% if external_links %}
 {% for article in external_links.articles.vietnamese %}
 
 * <a href="{{ article.link }}" class="external-link" target="_blank">{{ article.title }}</a> by <a href="{{ article.author_link }}" class="external-link" target="_blank">{{ article.author }}</a>.
 {% endfor %}
+{% endif %}
 
 ### Russian
 
+{% if external_links %}
 {% for article in external_links.articles.russian %}
 
 * <a href="{{ article.link }}" class="external-link" target="_blank">{{ article.title }}</a> by <a href="{{ article.author_link }}" class="external-link" target="_blank">{{ article.author }}</a>.
 {% endfor %}
+{% endif %}
 
 ### German
 
+{% if external_links %}
 {% for article in external_links.articles.german %}
 
 * <a href="{{ article.link }}" class="external-link" target="_blank">{{ article.title }}</a> by <a href="{{ article.author_link }}" class="external-link" target="_blank">{{ article.author }}</a>.
 {% endfor %}
+{% endif %}
 
 ## Podcasts
 
+{% if external_links %}
 {% for article in external_links.podcasts.english %}
 
 * <a href="{{ article.link }}" class="external-link" target="_blank">{{ article.title }}</a> by <a href="{{ article.author_link }}" class="external-link" target="_blank">{{ article.author }}</a>.
 {% endfor %}
+{% endif %}
 
 ## Talks
 
+{% if external_links %}
 {% for article in external_links.talks.english %}
 
 * <a href="{{ article.link }}" class="external-link" target="_blank">{{ article.title }}</a> by <a href="{{ article.author_link }}" class="external-link" target="_blank">{{ article.author }}</a>.
 {% endfor %}
+{% endif %}
 
 ## Projects
 
