@@ -2,6 +2,7 @@
 
 ## Latest changes
 
+* Improve support for tests in editor. PR [#1699](https://github.com/tiangolo/fastapi/pull/1699).
 * Pin dependencies. PR [#1697](https://github.com/tiangolo/fastapi/pull/1697).
 * Update isort to version 5.x.x. PR [#1670](https://github.com/tiangolo/fastapi/pull/1670) by [@asheux](https://github.com/asheux).
 
