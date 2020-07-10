@@ -102,7 +102,7 @@ openapi_schema = {
         "securitySchemes": {
             "OAuth2PasswordBearer": {
                 "type": "oauth2",
-                "flows": {"password": {"scopes": {}, "tokenUrl": "/token"}},
+                "flows": {"password": {"scopes": {}, "tokenUrl": "token"}},
             }
         },
     },

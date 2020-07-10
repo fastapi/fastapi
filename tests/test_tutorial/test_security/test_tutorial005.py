@@ -168,7 +168,7 @@ openapi_schema = {
                             "me": "Read information about the current user.",
                             "items": "Read items.",
                         },
-                        "tokenUrl": "/token",
+                        "tokenUrl": "token",
                     }
                 },
             }
