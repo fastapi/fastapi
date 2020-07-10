@@ -18,6 +18,7 @@ google_analytics:
 - UA-133183413-1
 - auto
 plugins:
+- search
 - markdownextradata:
     data: data
 nav:
