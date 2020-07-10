@@ -162,6 +162,9 @@ It will be defined in OpenAPI with `anyOf`.
 
 To do that, use the standard Python type hint <a href="https://docs.python.org/3/library/typing.html#typing.Union" class="external-link" target="_blank">`typing.Union`</a>:
 
+!!! note
+    When defining a <a href="https://pydantic-docs.helpmanual.io/usage/types/#unions" class="external-link" target="_blank">`Union`</a>, include the most specific type first, followed by the less specific type. In the example below, the more specific `PlaneItem` comes before `CarItem` in `Union[PlaneItem, CarItem]`.
+
 ```Python hl_lines="1 14 15 18 19 20 33"
 {!../../../docs_src/extra_models/tutorial003.py!}
 ```
