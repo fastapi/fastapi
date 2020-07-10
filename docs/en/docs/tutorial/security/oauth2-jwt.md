@@ -37,10 +37,17 @@ $ pip install python-jose[cryptography]
 
 ---> 100%
 ```
-Python-jose suggests cryptographic backends as an extra. In our case we have specified [pyca/cryptography](http://cryptography.io/) as the backend to use but you can use any, as per python-jose docs suggestion. 
-For more information on these backends, refer to [python-jose](https://github.com/mpdavis/python-jose#installation)
 
 </div>
+
+<a href="https://github.com/mpdavis/python-jose" class="external-link" target="_blank">Python-jose</a> requires a cryptographic backend as an extra.
+
+Here we are using the recommended one: <a href="http://cryptography.io/" class="external-link" target="_blank">pyca/cryptography</a>.
+
+!!! tip
+    This tutorial previously used <a href="https://pyjwt.readthedocs.io/" class="external-link" target="_blank">PyJWT</a>.
+
+    But it was updated to use Python-jose instead as it provides all the features from PyJWT plus some extras that you might need later when building integrations with other tools.
 
 ## Password hashing
 
@@ -102,7 +109,7 @@ And another utility to verify if a received password matches the hash stored.
 
 And another one to authenticate and return a user.
 
-```Python hl_lines="8  49  56 57  60 61  70 71 72 73 74 75 76"
+```Python hl_lines="7  48  55 56  59 60  69 70 71 72 73 74 75"
 {!../../../docs_src/security/tutorial004.py!}
 ```
 
@@ -137,7 +144,7 @@ Define a Pydantic Model that will be used in the token endpoint for the response
 
 Create a utility function to generate a new access token.
 
-```Python hl_lines="4  7  13 14 15  29 30 31  79 80 81 82 83 84 85 86 87"
+```Python hl_lines="6  12 13 14  28 29 30  78 79 80 81 82 83 84 85 86"
 {!../../../docs_src/security/tutorial004.py!}
 ```
 
@@ -149,7 +156,7 @@ Decode the received token, verify it, and return the current user.
 
 If the token is invalid, return an HTTP error right away.
 
-```Python hl_lines="90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107"
+```Python hl_lines="89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106"
 {!../../../docs_src/security/tutorial004.py!}
 ```
 
@@ -159,7 +166,7 @@ Create a `timedelta` with the expiration time of the token.
 
 Create a real JWT access token and return it.
 
-```Python hl_lines="116 117 118 119 120 121 122 123 124 125 126 127 128 129"
+```Python hl_lines="115 116 117 118 119 120 121 122 123 124 125 126 127 128"
 {!../../../docs_src/security/tutorial004.py!}
 ```
 
