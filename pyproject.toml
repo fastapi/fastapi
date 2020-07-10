@@ -70,7 +70,7 @@ doc = [
     "pyyaml >=5.3.1,<6.0.0"
 ]
 dev = [
-    "pyjwt >=1.7.1,<2.0.0",
+    "python-jose[cryptography] >=3.1.0,<4.0.0",
     "passlib[bcrypt] >=1.7.2,<2.0.0",
     "autoflake >=1.3.1,<2.0.0",
     "flake8 >=3.8.3,<4.0.0",

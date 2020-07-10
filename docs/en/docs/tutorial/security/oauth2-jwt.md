@@ -26,19 +26,28 @@ And after a week, the token will be expired and the user will not be authorized 
 
 If you want to play with JWT tokens and see how they work, check <a href="https://jwt.io/" class="external-link" target="_blank">https://jwt.io</a>.
 
-## Install `PyJWT`
+## Install `python-jose`
 
-We need to install `PyJWT` to generate and verify the JWT tokens in Python:
+We need to install `python-jose` to generate and verify the JWT tokens in Python:
 
 <div class="termy">
 
 ```console
-$ pip install pyjwt
+$ pip install python-jose[cryptography]
 
 ---> 100%
 ```
 
 </div>
+
+<a href="https://github.com/mpdavis/python-jose" class="external-link" target="_blank">Python-jose</a> requires a cryptographic backend as an extra.
+
+Here we are using the recommended one: <a href="http://cryptography.io/" class="external-link" target="_blank">pyca/cryptography</a>.
+
+!!! tip
+    This tutorial previously used <a href="https://pyjwt.readthedocs.io/" class="external-link" target="_blank">PyJWT</a>.
+
+    But it was updated to use Python-jose instead as it provides all the features from PyJWT plus some extras that you might need later when building integrations with other tools.
 
 ## Password hashing
 
@@ -100,7 +109,7 @@ And another utility to verify if a received password matches the hash stored.
 
 And another one to authenticate and return a user.
 
-```Python hl_lines="8  49  56 57  60 61  70 71 72 73 74 75 76"
+```Python hl_lines="7  48  55 56  59 60  69 70 71 72 73 74 75"
 {!../../../docs_src/security/tutorial004.py!}
 ```
 
@@ -135,7 +144,7 @@ Define a Pydantic Model that will be used in the token endpoint for the response
 
 Create a utility function to generate a new access token.
 
-```Python hl_lines="4  7  13 14 15  29 30 31  79 80 81 82 83 84 85 86 87"
+```Python hl_lines="6  12 13 14  28 29 30  78 79 80 81 82 83 84 85 86"
 {!../../../docs_src/security/tutorial004.py!}
 ```
 
@@ -147,7 +156,7 @@ Decode the received token, verify it, and return the current user.
 
 If the token is invalid, return an HTTP error right away.
 
-```Python hl_lines="90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107"
+```Python hl_lines="89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106"
 {!../../../docs_src/security/tutorial004.py!}
 ```
 
@@ -157,7 +166,7 @@ Create a `timedelta` with the expiration time of the token.
 
 Create a real JWT access token and return it.
 
-```Python hl_lines="116 117 118 119 120 121 122 123 124 125 126 127 128 129"
+```Python hl_lines="115 116 117 118 119 120 121 122 123 124 125 126 127 128"
 {!../../../docs_src/security/tutorial004.py!}
 ```
 
@@ -167,13 +176,13 @@ The JWT specification says that there's a key `sub`, with the subject of the tok
 
 It's optional to use it, but that's where you would put the user's identification, so we are using it here.
 
-JWT might be used for other things apart from identifying a user and allowing him to perform operations directly on your API.
+JWT might be used for other things apart from identifying a user and allowing them to perform operations directly on your API.
 
 For example, you could identify a "car" or a "blog post".
 
 Then you could add permissions about that entity, like "drive" (for the car) or "edit" (for the blog).
 
-And then, you could give that JWT token to a user (or bot), and he could use it to perform those actions (drive the car, or edit the blog post) without even needing to have an account, just with the JWT token your API generated for that.
+And then, you could give that JWT token to a user (or bot), and they could use it to perform those actions (drive the car, or edit the blog post) without even needing to have an account, just with the JWT token your API generated for that.
 
 Using these ideas, JWT can be used for way more sophisticated scenarios.
 
@@ -247,7 +256,7 @@ Many packages that simplify it a lot have to make many compromises with the data
 
 It gives you all the flexibility to choose the ones that fit your project the best.
 
-And you can use directly many well maintained and widely used packages like `passlib` and `pyjwt`, because **FastAPI** doesn't require any complex mechanisms to integrate external packages.
+And you can use directly many well maintained and widely used packages like `passlib` and `python-jose`, because **FastAPI** doesn't require any complex mechanisms to integrate external packages.
 
 But it provides you the tools to simplify the process as much as possible without compromising flexibility, robustness, or security.
 
