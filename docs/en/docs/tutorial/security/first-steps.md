@@ -86,8 +86,8 @@ But in this case, the same **FastAPI** application will handle the API and the a
 So, let's review it from that simplified point of view:
 
 * The user types his `username` and `password` in the frontend, and hits `Enter`.
-* The frontend (running in the user's browser) sends that `username` and `password` to a specific URL in our API.
-* The API checks that `username` and `password`, and responds with a "token".
+* The frontend (running in the user's browser) sends that `username` and `password` to a specific URL in our API (declared with `tokenUrl="token"`).
+* The API checks that `username` and `password`, and responds with a "token" (we haven't implemented any of this yet).
     * A "token" is just a string with some content that we can use later to verify this user.
     * Normally, a token is set to expire after some time.
         * So, the user will have to login again at some point later.
@@ -114,13 +114,20 @@ In this example we are going to use **OAuth2**, with the **Password** flow, usin
 
     In that case, **FastAPI** also provides you with the tools to build it.
 
-`OAuth2PasswordBearer` is a class that we create passing a parameter of the URL in where the client (the frontend running in the user's browser) can use to send the `username` and `password` and get a token.
+`OAuth2PasswordBearer` is a class that we create passing a parameter with the URL the client (the frontend running in the user's browser) can use to send the `username` and `password` and get a token.
 
 ```Python hl_lines="6"
 {!../../../docs_src/security/tutorial001.py!}
 ```
 
-It doesn't create that endpoint / *path operation*, but declares that that URL is the one that the client should use to get the token. That information is used in OpenAPI, and then in the interactive API documentation systems.
+!!! tip
+    here `tokenUrl="token"` refers to a relative URL `token` that we haven't created yet. As it's a relative URL, it's equivalent to `./token`.
+
+    Because we are using a relative URL, if your API was located at `https://example.com/`, then it would refer to `https://example.com/token`. But if your API was located at `https://example.com/api/v1/`, then it would refer to `https://example.com/api/v1/token`.
+
+    Using a relative URL is important to make sure your application keeps working even in an advanced use case like [Behind a Proxy](../../advanced/behind-a-proxy.md){.internal-link target=_blank}.
+
+It doesn't create that endpoint / *path operation* for `./token`, but declares that that URL `./token` is the one that the client should use to get the token. That information is used in OpenAPI, and then in the interactive API documentation systems.
 
 !!! info
     If you are a very strict "Pythonista" you might dislike the style of the parameter name `tokenUrl` instead of `token_url`.
