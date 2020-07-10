@@ -5,4 +5,4 @@ set -x
 
 mypy fastapi
 black fastapi tests --check
-isort fastapi tests docs_src scripts --check-only 
+isort fastapi tests docs_src scripts --check-only
