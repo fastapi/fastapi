@@ -1,12 +1,17 @@
+import os
 import shutil
 
 from fastapi.testclient import TestClient
 
 
 def test_main():
+    if os.path.isdir("./static"):
+        shutil.rmtree("./static")
+    if os.path.isdir("./templates"):
+        shutil.rmtree("./templates")
     shutil.copytree("./docs_src/templates/templates/", "./templates")
     shutil.copytree("./docs_src/templates/static/", "./static")
-    from templates.tutorial001 import app
+    from docs_src.templates.tutorial001 import app
 
     client = TestClient(app)
     response = client.get("/items/foo")
