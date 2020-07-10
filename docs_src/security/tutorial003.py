@@ -28,7 +28,7 @@ def fake_hash_password(password: str):
     return "fakehashed" + password
 
 
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/token")
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 
 class User(BaseModel):

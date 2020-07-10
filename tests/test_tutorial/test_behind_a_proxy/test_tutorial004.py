@@ -1,19 +1,16 @@
-from fastapi import FastAPI, Request
 from fastapi.testclient import TestClient
 
-app = FastAPI(openapi_prefix="/api/v1")
-
-
-@app.get("/app")
-def read_main(request: Request):
-    return {"message": "Hello World", "root_path": request.scope.get("root_path")}
-
+from docs_src.behind_a_proxy.tutorial004 import app
 
 client = TestClient(app)
 
 openapi_schema = {
     "openapi": "3.0.2",
     "info": {"title": "FastAPI", "version": "0.1.0"},
+    "servers": [
+        {"url": "https://stag.example.com", "description": "Staging environment"},
+        {"url": "https://prod.example.com", "description": "Production environment"},
+    ],
     "paths": {
         "/app": {
             "get": {
@@ -28,7 +25,6 @@ openapi_schema = {
             }
         }
     },
-    "servers": [{"url": "/api/v1"}],
 }
 
 

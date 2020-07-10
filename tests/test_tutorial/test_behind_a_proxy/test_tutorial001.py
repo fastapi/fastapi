@@ -8,7 +8,7 @@ openapi_schema = {
     "openapi": "3.0.2",
     "info": {"title": "FastAPI", "version": "0.1.0"},
     "paths": {
-        "/api/v1/app": {
+        "/app": {
             "get": {
                 "summary": "Read Main",
                 "operationId": "read_main_app_get",
@@ -21,6 +21,7 @@ openapi_schema = {
             }
         }
     },
+    "servers": [{"url": "/api/v1"}],
 }
 
 
