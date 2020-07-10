@@ -2,6 +2,7 @@
 
 ## Latest changes
 
+* Add external link [Machine learning model serving in Python using FastAPI and Streamlit](https://davidefiocco.github.io/2020/06/27/streamlit-fastapi-ml-serving.html) to docs. PR [#1669](https://github.com/tiangolo/fastapi/pull/1669) by [@davidefiocco](https://github.com/davidefiocco).
 * Add note in docs on order in Pydantic Unions. PR [#1591](https://github.com/tiangolo/fastapi/pull/1591) by [@kbanc](https://github.com/kbanc).
 * Improve support for tests in editor. PR [#1699](https://github.com/tiangolo/fastapi/pull/1699).
 * Pin dependencies. PR [#1697](https://github.com/tiangolo/fastapi/pull/1697).
