@@ -15,7 +15,7 @@ class OAuth2PasswordRequestForm:
     This is a dependency class, use it like:
 
         @app.post("/login")
-        def login(form_data: Oauth2PasswordRequestForm = Depends()):
+        def login(form_data: OAuth2PasswordRequestForm = Depends()):
             data = form_data.parse()
             print(data.username)
             print(data.password)
@@ -65,7 +65,7 @@ class OAuth2PasswordRequestFormStrict(OAuth2PasswordRequestForm):
     This is a dependency class, use it like:
 
         @app.post("/login")
-        def login(form_data: Oauth2PasswordRequestFormStrict = Depends()):
+        def login(form_data: OAuth2PasswordRequestFormStrict = Depends()):
             data = form_data.parse()
             print(data.username)
             print(data.password)
