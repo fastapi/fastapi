@@ -50,6 +50,7 @@ class FastAPI(Starlette):
         on_shutdown: Sequence[Callable] = None,
         openapi_prefix: str = "",
         root_path: str = "",
+        root_path_in_servers: bool = True,
         **extra: Dict[str, Any],
     ) -> None:
         self.default_response_class = default_response_class
@@ -83,6 +84,7 @@ class FastAPI(Starlette):
                 "https://fastapi.tiangolo.com/advanced/sub-applications-proxy/"
             )
         self.root_path = root_path or openapi_prefix
+        self.root_path_in_servers = root_path_in_servers
         self.docs_url = docs_url
         self.redoc_url = redoc_url
         self.swagger_ui_oauth2_redirect_url = swagger_ui_oauth2_redirect_url
@@ -98,7 +100,7 @@ class FastAPI(Starlette):
         self.openapi_schema: Optional[Dict[str, Any]] = None
         self.setup()
 
-    def openapi(self, openapi_prefix: str = "") -> Dict:
+    def openapi(self) -> Dict:
         if not self.openapi_schema:
             self.openapi_schema = get_openapi(
                 title=self.title,
@@ -106,7 +108,6 @@ class FastAPI(Starlette):
                 openapi_version=self.openapi_version,
                 description=self.description,
                 routes=self.routes,
-                openapi_prefix=openapi_prefix,
                 tags=self.openapi_tags,
                 servers=self.servers,
             )
@@ -114,14 +115,19 @@ class FastAPI(Starlette):
 
     def setup(self) -> None:
         if self.openapi_url:
+            server_urls = set()
+            for server_data in self.servers:
+                url = server_data.get("url")
+                if url:
+                    server_urls.add(url)
 
             async def openapi(req: Request) -> JSONResponse:
                 root_path = req.scope.get("root_path", "").rstrip("/")
-                if root_path:
-                    server: Dict[str, Union[str, Any]] = dict(url=root_path)
-                    self.servers.append(server)
-                    root_path = ""
-                return JSONResponse(self.openapi(root_path))
+                if root_path not in server_urls:
+                    if root_path and self.root_path_in_servers:
+                        self.servers.insert(0, {"url": root_path})
+                        server_urls.add(root_path)
+                return JSONResponse(self.openapi())
 
             self.add_route(self.openapi_url, openapi, include_in_schema=False)
         if self.openapi_url and self.docs_url:
