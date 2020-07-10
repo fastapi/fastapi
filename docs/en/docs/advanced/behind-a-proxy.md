@@ -42,16 +42,19 @@ proxy --> server
 !!! tip
     The IP `0.0.0.0` is commonly used to mean that the program listens on all the IPs available in that machine/server.
 
-The docs UI would also need that the JSON payload with the OpenAPI schema has the path defined as `/api/v1/app` (behind the proxy) instead of `/app`. For example, something like:
+The docs UI would also need the OpenAPI schema to declare that this API `server` is located at `/api/v1` (behind the proxy). For example:
 
-```JSON hl_lines="5"
+```JSON hl_lines="4 5 6 7 8"
 {
     "openapi": "3.0.2",
     // More stuff here
-    "paths": {
-        "/api/v1/app": {
-            // More stuff here
+    "servers": [
+        {
+            "url": "/api/v1"
         }
+    ],
+    "paths": {
+            // More stuff here
     }
 }
 ```
@@ -264,15 +267,77 @@ You can check it at <a href="http://127.0.0.1:8000/docs" class="external-link" t
 
 <img src="/img/tutorial/behind-a-proxy/image01.png">
 
-But if we access the docs UI at the "official" URL using the proxy, at `/api/v1/docs`, it works correctly! 🎉
-
-Right as we wanted it. ✔️
-
-This is because FastAPI uses this `root_path` internally to tell the docs UI to use the URL for OpenAPI with the path prefix provided by `root_path`.
+But if we access the docs UI at the "official" URL using the proxy with port `9999`, at `/api/v1/docs`, it works correctly! 🎉
 
 You can check it at <a href="http://127.0.0.1:9999/api/v1/docs" class="external-link" target="_blank">http://127.0.0.1:9999/api/v1/docs</a>:
 
 <img src="/img/tutorial/behind-a-proxy/image02.png">
+
+Right as we wanted it. ✔️
+
+This is because FastAPI uses this `root_path` to create the default `server` in OpenAPI with the URL provided by `root_path`.
+
+## Additional servers
+
+!!! warning
+    This is a more advanced use case. Feel free to skip it.
+
+By default, **FastAPI** will create a `server` in the OpenAPI schema with the URL for the `root_path`.
+
+But you can also provide other alternative `servers`, for example if you want *the same* docs UI to interact with a staging and production environments.
+
+If you pass a custom list of `servers` and there's a `root_path` (because your API lives behind a proxy), **FastAPI** will insert a "server" with this `root_path` at the beginning of the list.
+
+For example:
+
+```Python hl_lines="4 5 6 7"
+{!../../../docs_src/behind_a_proxy/tutorial003.py!}
+```
+
+Will generate an OpenAPI schema like:
+
+```JSON hl_lines="5 6 7"
+{
+    "openapi": "3.0.2",
+    // More stuff here
+    "servers": [
+        {
+            "url": "/api/v1"
+        },
+        {
+            "url": "https://stag.example.com",
+            "description": "Staging environment"
+        },
+        {
+            "url": "https://prod.example.com",
+            "description": "Production environment"
+        }
+    ],
+    "paths": {
+            // More stuff here
+    }
+}
+```
+
+!!! tip
+    Notice the auto-generated server with a `url` value of `/api/v1`, taken from the `root_path`.
+
+In the docs UI at <a href="http://127.0.0.1:9999/api/v1/docs" class="external-link" target="_blank">http://127.0.0.1:9999/api/v1/docs</a> it would look like:
+
+<img src="/img/tutorial/behind-a-proxy/image03.png">
+
+!!! tip
+    The docs UI will interact with the server that you select.
+
+### Disable automatic server from `root_path`
+
+If you don't want **FastAPI** to include an automatic server using the `root_path`, you can use the parameter `root_path_in_servers=False`:
+
+```Python hl_lines="9"
+{!../../../docs_src/behind_a_proxy/tutorial004.py!}
+```
+
+and then it won't include it in the OpenAPI schema.
 
 ## Mounting a sub-application
 
