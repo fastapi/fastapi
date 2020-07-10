@@ -17,6 +17,9 @@ edit_uri: ''
 google_analytics:
 - UA-133183413-1
 - auto
+plugins:
+- markdownextradata:
+    data: data
 nav:
 - FastAPI: index.md
 - Languages:

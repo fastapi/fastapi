@@ -1,0 +1,222 @@
+articles:
+  english:
+    - link: https://medium.com/@williamhayes/fastapi-starlette-debug-vs-prod-5f7561db3a59
+      title: FastAPI/Starlette debug vs prod
+      author_link: https://medium.com/@williamhayes
+      author: William Hayes
+    - link: https://medium.com/data-rebels/fastapi-google-as-an-external-authentication-provider-3a527672cf33
+      title: FastAPI — Google as an external authentication provider
+      author_link: https://medium.com/@nilsdebruin
+      author: Nils de Bruin
+    - link: https://medium.com/data-rebels/fastapi-how-to-add-basic-and-cookie-authentication-a45c85ef47d3
+      title: FastAPI — How to add basic and cookie authentication
+      author_link: https://medium.com/@nilsdebruin
+      author: Nils de Bruin
+    - link: https://dev.to/errietta/introduction-to-the-fastapi-python-framework-2n10
+      title: Introduction to the fastapi python framework
+      author_link: https://dev.to/errietta
+      author: Errieta Kostala
+    - link: http://nickc1.github.io/api,/scikit-learn/2019/01/10/scikit-fastapi.html
+      title: "FastAPI and Scikit-Learn: Easily Deploy Models"
+      author_link: http://nickc1.github.io/
+      author: Nick Cortale
+    - link: https://medium.com/data-rebels/fastapi-authentication-revisited-enabling-api-key-authentication-122dc5975680
+      title: "FastAPI authentication revisited: Enabling API key authentication"
+      author_link: https://medium.com/@nilsdebruin
+      author: Nils de Bruin
+    - link: https://medium.com/@nico.axtmann95/deploying-a-scikit-learn-model-with-onnx-und-fastapi-1af398268915
+      title: Deploying a scikit-learn model with ONNX and FastAPI
+      author_link: https://www.linkedin.com/in/nico-axtmann
+      author: Nico Axtmann
+    - link: https://geekflare.com/python-asynchronous-web-frameworks/
+      title: Top 5 Asynchronous Web Frameworks for Python
+      author_link: https://geekflare.com/author/ankush/
+      author: Ankush Thakur
+    - link: https://medium.com/@gntrm/jwt-authentication-with-fastapi-and-aws-cognito-1333f7f2729e
+      title: JWT Authentication with FastAPI and AWS Cognito
+      author_link: https://twitter.com/gntrm
+      author: Johannes Gontrum
+    - link: https://towardsdatascience.com/how-to-deploy-a-machine-learning-model-dc51200fe8cf
+      title: How to Deploy a Machine Learning Model
+      author_link: https://www.linkedin.com/in/mgrootendorst/
+      author: Maarten Grootendorst
+    - link: https://eng.uber.com/ludwig-v0-2/
+      title: "Uber: Ludwig v0.2 Adds New Features and Other Improvements to its Deep Learning Toolbox [including a FastAPI server]"
+      author_link: https://eng.uber.com
+      author: Uber Engineering
+    - link: https://gitlab.com/euri10/fastapi_cheatsheet
+      title: A FastAPI and Swagger UI visual cheatsheet
+      author_link: https://gitlab.com/euri10
+      author: "@euri10"
+    - link: https://medium.com/@mike.p.moritz/using-docker-compose-to-deploy-a-lightweight-python-rest-api-with-a-job-queue-37e6072a209b
+      title: Using Docker Compose to deploy a lightweight Python REST API with a job queue
+      author_link: https://medium.com/@mike.p.moritz
+      author: Mike Moritz
+    - link: https://robwagner.dev/tortoise-fastapi-setup/
+      title: Setting up Tortoise ORM with FastAPI
+      author_link: https://robwagner.dev/
+      author: Rob Wagner
+    - link: https://dev.to/dbanty/why-i-m-leaving-flask-3ki6
+      title: Why I'm Leaving Flask
+      author_link: https://dev.to/dbanty
+      author: Dylan Anthony
+    - link: https://medium.com/python-data/how-to-deploy-tensorflow-2-0-models-as-an-api-service-with-fastapi-docker-128b177e81f3
+      title: How To Deploy Tensorflow 2.0 Models As An API Service With FastAPI & Docker
+      author_link: https://medium.com/@bbrenyah
+      author: Bernard Brenyah
+    - link: https://testdriven.io/blog/fastapi-crud/
+      title: "TestDriven.io: Developing and Testing an Asynchronous API with FastAPI and Pytest"
+      author_link: https://testdriven.io/authors/herman
+      author: Michael Herman
+    - link: https://towardsdatascience.com/deploying-iris-classifications-with-fastapi-and-docker-7c9b83fdec3a
+      title: "Towards Data Science: Deploying Iris Classifications with FastAPI and Docker"
+      author_link: https://towardsdatascience.com/@mandygu
+      author: Mandy Gu
+    - link: https://medium.com/analytics-vidhya/deploy-machine-learning-models-with-keras-fastapi-redis-and-docker-4940df614ece
+      title: Deploy Machine Learning Models with Keras, FastAPI, Redis and Docker
+      author_link: https://medium.com/@shane.soh
+      author: Shane Soh
+    - link: https://medium.com/@arthur393/another-boilerplate-to-fastapi-azure-pipeline-ci-pytest-3c8d9a4be0bb
+      title: "Another Boilerplate to FastAPI: Azure Pipeline CI + Pytest"
+      author_link: https://twitter.com/arthurheinrique
+      author: Arthur Henrique
+    - link: https://iwpnd.pw/articles/2020-01/deploy-fastapi-to-aws-lambda
+      title: How to continuously deploy a FastAPI to AWS Lambda with AWS SAM
+      author_link: https://iwpnd.pw
+      author: Benjamin Ramser
+    - link: https://www.tutlinks.com/create-and-deploy-fastapi-app-to-heroku/
+      title: Create and Deploy FastAPI app to Heroku without using Docker
+      author_link: https://www.linkedin.com/in/navule/
+      author: Navule Pavan Kumar Rao
+    - link: https://iwpnd.pw/articles/2020-03/apache-kafka-fastapi-geostream
+      title: Apache Kafka producer and consumer with FastAPI and aiokafka
+      author_link: https://iwpnd.pw
+      author: Benjamin Ramser
+    - link: https://wuilly.com/2019/10/real-time-notifications-with-python-and-postgres/
+      title: Real-time Notifications with Python and Postgres
+      author_link: https://wuilly.com/
+      author: Guillermo Cruz
+    - link: https://dev.to/paurakhsharma/microservice-in-python-using-fastapi-24cc
+      title: Microservice in Python using FastAPI
+      author_link: https://twitter.com/PaurakhSharma
+      author: Paurakh Sharma Humagain
+    - link: https://dev.to/cuongld2/build-simple-api-service-with-python-fastapi-part-1-581o
+      title: Build simple API service with Python FastAPI — Part 1
+      author_link: https://dev.to/cuongld2
+      author: cuongld2
+    - link: https://paulsec.github.io/posts/fastapi_plus_zeit_serverless_fu/
+      title: FastAPI + Zeit.co = 🚀
+      author_link: https://twitter.com/PaulWebSec
+      author: Paul Sec
+    - link: https://dev.to/tiangolo/build-a-web-api-from-scratch-with-fastapi-the-workshop-2ehe
+      title: Build a web API from scratch with FastAPI - the workshop
+      author_link: https://twitter.com/tiangolo
+      author: Sebastián Ramírez (tiangolo)
+    - link: https://www.twilio.com/blog/build-secure-twilio-webhook-python-fastapi
+      title: Build a Secure Twilio Webhook with Python and FastAPI
+      author_link: https://www.twilio.com
+      author: Twilio
+    - link: https://www.stavros.io/posts/fastapi-with-django/
+      title: Using FastAPI with Django
+      author_link: https://twitter.com/Stavros
+      author: Stavros Korokithakis
+    - link: https://netflixtechblog.com/introducing-dispatch-da4b8a2a8072
+      title: Introducing Dispatch
+      author_link: https://netflixtechblog.com/
+      author: Netflix
+    - link: https://davidefiocco.github.io/2020/06/27/streamlit-fastapi-ml-serving.html
+      title: Machine learning model serving in Python using FastAPI and streamlit
+      author_link: https://github.com/davidefiocco
+      author: Davide Fiocco
+  japanese:
+    - link: https://qiita.com/mtitg/items/47770e9a562dd150631d
+      title: FastAPI｜DB接続してCRUDするPython製APIサーバーを構築
+      author_link: https://qiita.com/mtitg
+      author: "@mtitg"
+    - link: https://qiita.com/ryoryomaru/items/59958ed385b3571d50de
+      title: python製の最新APIフレームワーク FastAPI を触ってみた
+      author_link: https://qiita.com/ryoryomaru
+      author: "@ryoryomaru"
+    - link: https://qiita.com/angel_katayoku/items/0e1f5dbbe62efc612a78
+      title: FastAPIでCORSを回避
+      author_link: https://qiita.com/angel_katayoku
+      author: "@angel_katayoku"
+    - link: https://qiita.com/angel_katayoku/items/4fbc1a4e2b33fa2237d2
+      title: FastAPIをMySQLと接続してDockerで管理してみる
+      author_link: https://qiita.com/angel_katayoku
+      author: "@angel_katayoku"
+    - link: https://qiita.com/angel_katayoku/items/8a458a8952f50b73f420
+      title: FastAPIでPOSTされたJSONのレスポンスbodyを受け取る
+      author_link: https://qiita.com/angel_katayoku
+      author: "@angel_katayoku"
+    - link: https://qiita.com/hikarut/items/b178af2e2440c67c6ac4
+      title: フロントエンド開発者向けのDockerによるPython開発環境構築
+      author_link: https://qiita.com/hikarut
+      author: Hikaru Takahashi
+    - link: https://rightcode.co.jp/blog/information-technology/fastapi-tutorial-todo-apps-environment
+      title: "【第1回】FastAPIチュートリアル: ToDoアプリを作ってみよう【環境構築編】"
+      author_link: https://rightcode.co.jp/author/jun
+      author: ライトコードメディア編集部
+    - link: https://rightcode.co.jp/blog/information-technology/fastapi-tutorial-todo-apps-model-building
+      title: "【第2回】FastAPIチュートリアル: ToDoアプリを作ってみよう【モデル構築編】"
+      author_link: https://rightcode.co.jp/author/jun
+      author: ライトコードメディア編集部
+    - link: https://rightcode.co.jp/blog/information-technology/fastapi-tutorial-todo-apps-authentication-user-registration
+      title: "【第3回】FastAPIチュートリアル: toDoアプリを作ってみよう【認証・ユーザ登録編】"
+      author_link: https://rightcode.co.jp/author/jun
+      author: ライトコードメディア編集部
+    - link: https://rightcode.co.jp/blog/information-technology/fastapi-tutorial-todo-apps-admin-page-improvement
+      title: "【第4回】FastAPIチュートリアル: toDoアプリを作ってみよう【管理者ページ改良編】"
+      author_link: https://rightcode.co.jp/author/jun
+      author: ライトコードメディア編集部
+    - link: https://qiita.com/bee2/items/0ad260ab9835a2087dae
+      title: PythonのWeb frameworkのパフォーマンス比較 (Django, Flask, responder, FastAPI, japronto)
+      author_link: https://qiita.com/bee2
+      author: "@bee2"
+    - link: https://qiita.com/bee2/items/75d9c0d7ba20e7a4a0e9
+      title: "[FastAPI] Python製のASGI Web フレームワーク FastAPIに入門する"
+      author_link: https://qiita.com/bee2
+      author: "@bee2"
+  vietnamese:
+    - link: https://fullstackstation.com/fastapi-trien-khai-bang-docker/
+      title: "FASTAPI: TRIỂN KHAI BẰNG DOCKER"
+      author_link: https://fullstackstation.com/author/figonking/
+      author: Nguyễn Nhân
+  russian:
+    - link: https://habr.com/ru/post/454440/
+      title: "Мелкая питонячая радость #2: Starlette - Солидная примочка – FastAPI"
+      author_link: https://habr.com/ru/users/57uff3r/
+      author: Andrey Korchak
+    - link: https://habr.com/ru/post/478620/
+      title: Почему Вы должны попробовать FastAPI?
+      author_link: https://github.com/prostomarkeloff
+      author: prostomarkeloff
+  german:
+    - link: https://blog.codecentric.de/2019/08/inbetriebnahme-eines-scikit-learn-modells-mit-onnx-und-fastapi/
+      title: Inbetriebnahme eines scikit-learn-Modells mit ONNX und FastAPI
+      author_link: https://twitter.com/_nicoax
+      author: Nico Axtmann
+podcasts:
+  english:
+    - link: https://pythonbytes.fm/episodes/show/123/time-to-right-the-py-wrongs?time_in_sec=855
+      title: FastAPI on PythonBytes
+      author_link: https://pythonbytes.fm/
+      author: Python Bytes FM
+    - link: https://www.pythonpodcast.com/fastapi-web-application-framework-episode-259/
+      title: "Build The Next Generation Of Python Web Applications With FastAPI - Episode 259 - interview to Sebastían Ramírez (tiangolo)"
+      author_link: https://www.pythonpodcast.com/
+      author: Podcast.`__init__`
+talks:
+  english:
+    - link: https://www.youtube.com/watch?v=3DLwPcrE5mA
+      title: "PyCon UK 2019: FastAPI from the ground up"
+      author_link: https://twitter.com/chriswithers13
+      author: Chris Withers
+    - link: https://www.youtube.com/watch?v=z9K5pwb0rt8
+      title: "PyConBY 2020: Serve ML models easily with FastAPI"
+      author_link: https://twitter.com/tiangolo
+      author: "Sebastián Ramírez (tiangolo)"
+    - link: https://www.youtube.com/watch?v=PnpTY1f4k2U
+      title: "[VIRTUAL] Py.Amsterdam's flying Software Circus: Intro to FastAPI"
+      author_link: https://twitter.com/tiangolo
+      author: "Sebastián Ramírez (tiangolo)"
