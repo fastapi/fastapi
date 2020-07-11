@@ -47,7 +47,7 @@ Now let's use the utilities provided by **FastAPI** to handle this.
 
 ### `OAuth2PasswordRequestForm`
 
-First, import `OAuth2PasswordRequestForm`, and use it as a dependency with `Depends` for the path `/token`:
+First, import `OAuth2PasswordRequestForm`, and use it as a dependency with `Depends` in the *path operation* for `/token`:
 
 ```Python hl_lines="4  76"
 {!../../../docs_src/security/tutorial003.py!}

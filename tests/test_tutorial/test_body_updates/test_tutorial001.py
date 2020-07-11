@@ -1,6 +1,6 @@
 from fastapi.testclient import TestClient
 
-from body_updates.tutorial001 import app
+from docs_src.body_updates.tutorial001 import app
 
 client = TestClient(app)
 
