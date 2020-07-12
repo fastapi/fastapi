@@ -128,8 +128,7 @@ class FastAPI(Starlette):
                         self.servers.insert(0, {"url": root_path})
                         server_urls.add(root_path)
                 return JSONResponse(
-                    self.openapi(),
-                    media_type="application/vnd.oai.openapi+json",
+                    self.openapi(), media_type="application/vnd.oai.openapi+json",
                 )
 
             self.add_route(self.openapi_url, openapi, include_in_schema=False)
