@@ -283,9 +283,8 @@ def get_dependant(
                 param=param, path=path, security_scopes=security_scopes
             )
             dependant.dependencies.append(sub_dependant)
-    for param_name, param in signature_params.items():
-        if isinstance(param.default, params.Depends):
             continue
+
         if add_non_field_param_to_dependency(param=param, dependant=dependant):
             continue
         param_field = get_param_field(
