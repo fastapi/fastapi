@@ -3,7 +3,7 @@
 ## OpenAPI operationId
 
 !!! warning
-    你要不是 OpenAPI "专家"，估计也用不着这个。
+    如果你不是 OpenAPI "专家"，估计用不到这个。
 
 你可以使用参数 `operation_id` 设置要在路径操作中使用的 OpenAPI `operationId`。
 
