@@ -27,10 +27,9 @@ To achieve that, import `JSONResponse`, and return your content there directly, 
 	所以确保里面有所需的数据，并且值是有效的 JSON（如果你用的是 `JSONResponse`）。
 
 !!! note "技术细节"
-    You could also use `from starlette.responses import JSONResponse`.
 	你也能这么写 `from starlette.responses import JSONResponse`。
 
-    **FastAPI** 提供了和 `starlette.responses` 一样的 `fastapi.responses`，主要是为了方便你们开发者。不过大多数的可用响应类型都是直接从 Starlette 里来的， `status` 也一样。
+    **FastAPI** 提供了和 `starlette.responses` 一样的 `fastapi.responses`，主要是为了方便开发者。不过大多数的可用响应类型都是直接从 Starlette 里来的， `status` 也一样。
 
 ## OpenAPI 和 API 文档
 
