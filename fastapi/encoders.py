@@ -96,7 +96,7 @@ def jsonable_encoder(
                     or (not key.startswith("_sa"))
                 )
                 and (value is not None or not exclude_none)
-                and ((include and key in include) or (exclude and key not in exclude))
+                and ((include and key in include) or not exclude or key not in exclude)
             ):
                 encoded_key = jsonable_encoder(
                     key,
