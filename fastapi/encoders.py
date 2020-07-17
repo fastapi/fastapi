@@ -30,7 +30,7 @@ encoders_by_class_tuples = generate_encoders_by_class_tuples(ENCODERS_BY_TYPE)
 def jsonable_encoder(
     obj: Any,
     include: Union[SetIntStr, DictIntStrAny] = None,
-    exclude: Union[SetIntStr, DictIntStrAny] = set(),
+    exclude: Union[SetIntStr, DictIntStrAny] = None,
     by_alias: bool = True,
     skip_defaults: bool = None,
     exclude_unset: bool = False,
@@ -45,10 +45,6 @@ def jsonable_encoder(
             "exclude_unset to keep in line with Pydantic v1, support for it will be "
             "removed soon."
         )
-    if include is not None and not isinstance(include, set):
-        include = set(include)
-    if exclude is not None and not isinstance(exclude, set):
-        exclude = set(exclude)
     if isinstance(obj, BaseModel):
         encoder = getattr(obj.Config, "json_encoders", {})
         if custom_encoder:
