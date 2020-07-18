@@ -1,5 +1,4 @@
 import inspect
-from typing import Optional
 
 from fastapi import APIRouter, FastAPI
 
