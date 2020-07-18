@@ -45,7 +45,9 @@ class FastAPI(Starlette):
         swagger_ui_oauth2_redirect_url: Optional[str] = "/docs/oauth2-redirect",
         swagger_ui_init_oauth: Optional[dict] = None,
         middleware: Optional[Sequence[Middleware]] = None,
-        exception_handlers: Optional[Dict[Union[int, Type[Exception]], Callable]] = None,
+        exception_handlers: Optional[
+            Dict[Union[int, Type[Exception]], Callable]
+        ] = None,
         on_startup: Optional[Sequence[Callable]] = None,
         on_shutdown: Optional[Sequence[Callable]] = None,
         openapi_prefix: str = "",
