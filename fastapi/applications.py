@@ -32,7 +32,7 @@ class FastAPI(Starlette):
         self,
         *,
         debug: bool = False,
-        routes: List[BaseRoute] = None,
+        routes: Optional[List[BaseRoute]] = None,
         title: str = "FastAPI",
         description: str = "",
         version: str = "0.1.0",
