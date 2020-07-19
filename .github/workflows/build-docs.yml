@@ -11,6 +11,10 @@ jobs:
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
+      - name: Debug PR
+        env:
+          PR: "${{ github.event.number }}"
+        run: echo "$PR"
       - uses: actions/checkout@v2
       - name: Set up Python
         uses: actions/setup-python@v1
@@ -29,9 +33,9 @@ jobs:
       - name: Trigger Docs Preview
         run: bash ./scripts/trigger-docs-preview.sh
         env:
-          PR1: "${{ github.event.issue.pull_request }}"
-          PR2: "${{ github.event.pull_request }}"
-          PR3: "${{ github.event.issue.number }}"
+          # PR1: "${{ github.event.issue.pull_request }}"
+          # PR2: "${{ github.event.pull_request }}"
+          # PR3: "${{ github.event.issue.number }}"
           PR4: "${{ github.event.number }}"
           NAME: "docs-zip-${{ github.sha }}"
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
