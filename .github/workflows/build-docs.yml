@@ -33,7 +33,6 @@ jobs:
           PR2: "${{ github.event.pull_request }}"
           PR3: "${{ github.event.issue.number }}"
           PR4: "${{ github.event.number }}"
-          EVENT: '${{ github.event }}'
           NAME: "docs-zip-${{ github.sha }}"
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
       - name: Deploy to Netlify
