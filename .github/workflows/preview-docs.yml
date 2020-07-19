@@ -1,0 +1,37 @@
+name: Deploy Docs
+on:
+  workflow_dispatch:
+    inputs:
+      pr:
+        description: Pull Request number
+        required: true
+      name:
+        description: Artifact name for zip file with docs
+        required: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/download-artifact@v2
+        with:
+          name: ${{ github.event.inputs.name }}
+          path: ./docs.zip
+      - name: Unzip docs
+        run: bash ./scripts/unzip-docs.sh
+      - name: Deploy to Netlify
+        id: netlify
+        uses: nwtgck/actions-netlify@v1.0.3
+        with:
+          publish-dir: './site'
+          production-deploy: false
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+      - name: Comment Deploy
+        run: bash ./scripts/docs-comment-deploy.sh
+        env:
+          PR: "${{ github.event.inputs.pr }}"
+          DEPLOY_URL: "${{ steps.netlify.outputs.deploy-url }}"
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
