@@ -17,6 +17,7 @@ env3.*
 env
 docs_build
 venv
+docs.zip
 
 # vim temporary files
 *~
