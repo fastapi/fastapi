@@ -23,7 +23,7 @@ jobs:
         run: bash ./scripts/unzip-docs.sh
       - name: Deploy to Netlify
         id: netlify
-        uses: nwtgck/actions-netlify@v1.0.3
+        uses: nwtgck/actions-netlify@v1.1.5
         with:
           publish-dir: './site'
           production-deploy: false
