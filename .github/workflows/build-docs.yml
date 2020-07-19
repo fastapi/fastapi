@@ -18,12 +18,10 @@ jobs:
         run: python3.7 -m flit install --extras doc
       - name: Build Docs
         run: python3.7 ./scripts/docs.py build-all
-      - name: Zip docs
-        run: bash ./scripts/zip-docs.sh
       - uses: actions/upload-artifact@v2
         with:
           name: docs-zip-${{ github.sha }}
-          path: ./docs.zip
+          path: ./site/
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v1.0.3
         with:
