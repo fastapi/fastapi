@@ -20,11 +20,9 @@ jobs:
         run: python3.7 ./scripts/docs.py build-all
       - name: Zip docs
         run: bash ./scripts/zip-docs.sh
-      - name: Zip docs
-        run: bash ./scripts/zip-docs.sh
       - uses: actions/upload-artifact@v2
         with:
-          name: docs-zip-${{ github.head_ref }}
+          name: docs-zip-${{ github.sha }}
           path: ./docs.zip
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v1.0.3
