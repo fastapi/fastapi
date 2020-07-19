@@ -7,14 +7,6 @@ jobs:
   build:
     runs-on: ubuntu-18.04
     steps:
-      - name: Dump GitHub context
-        env:
-          GITHUB_CONTEXT: ${{ toJson(github) }}
-        run: echo "$GITHUB_CONTEXT"
-      - name: Debug PR
-        env:
-          PR: "${{ github.event.number }}"
-        run: echo "$PR"
       - uses: actions/checkout@v2
       - name: Set up Python
         uses: actions/setup-python@v1
@@ -26,10 +18,12 @@ jobs:
         run: python3.7 -m flit install --extras doc
       - name: Build Docs
         run: python3.7 ./scripts/docs.py build-all
+      - name: Zip docs
+        run: bash ./scripts/zip-docs.sh
       - uses: actions/upload-artifact@v2
         with:
           name: docs-zip-${{ github.sha }}
-          path: ./site/
+          path: ./docs.zip
       - name: Trigger Docs Preview
         env:
           PR: "${{ github.event.number }}"
