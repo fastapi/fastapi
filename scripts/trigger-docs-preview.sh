@@ -13,7 +13,7 @@ fi
 NAME=${NAME:?Variable not set}
 GITHUB_TOKEN=${GITHUB_TOKEN:?Variable not set}
 
-curl \
+curl -v \
   -X POST \
   -H "Authorization: token ${GITHUB_TOKEN}" \
   -H "Accept: application/vnd.github.v3+json" \
