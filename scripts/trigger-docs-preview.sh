@@ -3,14 +3,14 @@
 set -x
 set -e
 
-INPUT_PR1=${INPUT_PR1:?Variable not set}
-INPUT_PR2=${INPUT_PR2:?Variable not set}
-INPUT_PR3=${INPUT_PR3:?Variable not set}
-echo "$INPUT_PR1"
-echo "$INPUT_PR2"
-echo "$INPUT_PR3"
-INPUT_NAME=${INPUT_NAME:?Variable not set}
-INPUT_GITHUB_TOKEN=${INPUT_GITHUB_TOKEN:?Variable not set}
+PR1=${PR1:?Variable not set}
+PR2=${PR2:?Variable not set}
+PR3=${PR3:?Variable not set}
+echo "$PR1"
+echo "$PR2"
+echo "$PR3"
+NAME=${NAME:?Variable not set}
+GITHUB_TOKEN=${GITHUB_TOKEN:?Variable not set}
 
 # curl \
 #   -X POST \
