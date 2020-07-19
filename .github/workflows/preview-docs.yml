@@ -1,4 +1,4 @@
-name: Deploy Docs
+name: Preview Docs
 on:
   workflow_dispatch:
     inputs:
@@ -13,6 +13,7 @@ jobs:
   deploy:
     runs-on: ubuntu-18.04
     steps:
+      - uses: actions/checkout@v2
       - uses: ./.github/actions/get-artifact
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
