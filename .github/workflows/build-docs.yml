@@ -7,6 +7,8 @@ jobs:
   build:
     runs-on: ubuntu-18.04
     steps:
+      - name: Debug Event
+        run: echo '${{ github.event }}'
       - uses: actions/checkout@v2
       - name: Set up Python
         uses: actions/setup-python@v1
