@@ -13,10 +13,11 @@ jobs:
   deploy:
     runs-on: ubuntu-18.04
     steps:
-      - uses: actions/download-artifact@v2
+      - uses: ./.github/actions/get-artifact
         with:
+          token: ${{ secrets.GITHUB_TOKEN }}
           name: ${{ github.event.inputs.name }}
-          path: ./docs.zip
+          path: ./archive.zip
       - name: Unzip docs
         run: bash ./scripts/unzip-docs.sh
       - name: Deploy to Netlify
