@@ -7,8 +7,10 @@ jobs:
   build:
     runs-on: ubuntu-18.04
     steps:
-      - name: Debug Event
-        run: echo '${{ github.event }}'
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
       - uses: actions/checkout@v2
       - name: Set up Python
         uses: actions/setup-python@v1
