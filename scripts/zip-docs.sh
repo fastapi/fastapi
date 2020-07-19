@@ -3,6 +3,7 @@
 set -x
 set -e
 
-cd ./site/ || exit 1
-zip -r docs.zip ./*
-mv ./docs.zip ../
+if [ -f docs.zip ]; then
+    rm -rf docs.zip
+fi
+zip -r docs.zip ./site
