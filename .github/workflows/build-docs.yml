@@ -32,11 +32,8 @@ jobs:
           path: ./site/
       - name: Trigger Docs Preview
         env:
-          # PR1: "${{ github.event.issue.pull_request }}"
-          # PR2: "${{ github.event.pull_request }}"
-          # PR3: "${{ github.event.issue.number }}"
-          # PR4: "${{ github.event.number }}"
-          # NAME: "docs-zip-${{ github.sha }}"
+          PR: "${{ github.event.number }}"
+          NAME: "docs-zip-${{ github.sha }}"
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
         run: bash ./scripts/trigger-docs-preview.sh
       - name: Deploy to Netlify
