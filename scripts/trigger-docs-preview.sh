@@ -15,7 +15,7 @@ GITHUB_TOKEN=${GITHUB_TOKEN:?Variable not set}
 
 curl \
   -X POST \
-  -H "Authorization: token ${INPUT_GITHUB_TOKEN}" \
+  -H "Authorization: token ${GITHUB_TOKEN}" \
   -H "Accept: application/vnd.github.v3+json" \
   https://api.github.com/repos/tiangolo/fastapi/actions/workflows/preview-docs.yml/dispatches \
-  -d '{"ref":"master", "inputs": {"pr": "'"${INPUT_PR}"'", "name": "'"${INPUT_NAME}"'"}}'
+  -d '{"ref":"master", "inputs": {"pr": "'"${PR}"'", "name": "'"${NAME}"'"}}'
