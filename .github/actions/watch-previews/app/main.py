@@ -79,14 +79,20 @@ if __name__ == "__main__":
                 if artifact.name == artifact_name:
                     use_artifact = artifact
                     break
-            if use_artifact:
+            if not use_artifact:
+                logging.info(f"Artifact not available")
+            else:
                 logging.info(f"Existing artifact: {use_artifact.name}")
                 response = httpx.post(
                     "https://api.github.com/repos/tiangolo/fastapi/actions/workflows/preview-docs.yml/dispatches",
                     headers=headers,
                     json={
                         "ref": "master",
-                        "inputs": {"pr": f"{pr.number}", "name": artifact_name, "commit": commit},
+                        "inputs": {
+                            "pr": f"{pr.number}",
+                            "name": artifact_name,
+                            "commit": commit,
+                        },
                     },
                 )
                 logging.info(
