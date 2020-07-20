@@ -5,14 +5,17 @@
     <em>Framework FastAPI, alta performance, fácil de aprender, fácil de codar, pronto para produção</em>
 </p>
 <p align="center">
-<a href="https://travis-ci.com/tiangolo/fastapi" target="_blank">
-    <img src="https://travis-ci.com/tiangolo/fastapi.svg?branch=master" alt="Build Status">
+<a href="https://github.com/tiangolo/fastapi/actions?query=workflow%3ATest" target="_blank">
+    <img src="https://github.com/tiangolo/fastapi/workflows/Test/badge.svg" alt="Test">
+</a>
+<a href="https://github.com/tiangolo/fastapi/actions?query=workflow%3APublish" target="_blank">
+    <img src="https://github.com/tiangolo/fastapi/workflows/Publish/badge.svg" alt="Publish">
 </a>
 <a href="https://codecov.io/gh/tiangolo/fastapi" target="_blank">
-    <img src="https://img.shields.io/codecov/c/github/tiangolo/fastapi" alt="Coverage">
+    <img src="https://img.shields.io/codecov/c/github/tiangolo/fastapi?color=%2334D058" alt="Coverage">
 </a>
 <a href="https://pypi.org/project/fastapi" target="_blank">
-    <img src="https://badge.fury.io/py/fastapi.svg" alt="Package version">
+    <img src="https://img.shields.io/pypi/v/fastapi?color=%2334D058&label=pypi%20package" alt="Package version">
 </a>
 <a href="https://gitter.im/tiangolo/fastapi?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge" target="_blank">
     <img src="https://badges.gitter.im/tiangolo/fastapi.svg" alt="Join the chat at https://gitter.im/tiangolo/fastapi">

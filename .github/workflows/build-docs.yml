@@ -1,4 +1,4 @@
-name: Build and Deploy to Netlify
+name: Build Docs
 on:
   push:
   pull_request:
@@ -18,6 +18,18 @@ jobs:
         run: python3.7 -m flit install --extras doc
       - name: Build Docs
         run: python3.7 ./scripts/docs.py build-all
+      - name: Zip docs
+        run: bash ./scripts/zip-docs.sh
+      - uses: actions/upload-artifact@v2
+        with:
+          name: docs-zip-${{ github.sha }}
+          path: ./docs.zip
+      - name: Trigger Docs Preview
+        env:
+          PR: "${{ github.event.number }}"
+          NAME: "docs-zip-${{ github.sha }}"
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+        run: bash ./scripts/trigger-docs-preview.sh
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v1.0.3
         with:

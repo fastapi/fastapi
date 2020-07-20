@@ -1,0 +1,16 @@
+name: "Deploy Artifact to Netlify"
+description: "Get artifact, possibly uploaded by a PR, useful to deploy docs previews"
+author: "Sebastián Ramírez <tiangolo@gmail.com>"
+inputs:
+  token:
+    description: 'Token for the repo. Can be passed in using {{ secrets.GITHUB_TOKEN }}'
+    required: true
+  name:
+    description: 'Artifact name'
+    required: true
+  path:
+    description: 'Where to store the artifact'
+    required: true
+runs:
+  using: 'docker'
+  image: 'Dockerfile'

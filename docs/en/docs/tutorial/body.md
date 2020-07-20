@@ -9,9 +9,11 @@ Your API almost always has to send a **response** body. But clients don't necess
 To declare a **request** body, you use <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> models with all their power and benefits.
 
 !!! info
-    You cannot send a request body using a `GET` operation (HTTP method).
+    To send data, you should use one of: `POST` (the more common), `PUT`, `DELETE` or `PATCH`.
 
-    To send data, you have to use one of: `POST` (the more common), `PUT`, `DELETE` or `PATCH`.
+    Sending a body with a `GET` request has an undefined behavior in the specifications, nevertheless, it is supported by FastAPI, only for very complex/extreme use cases.
+
+    As it is discouraged, the interactive docs with Swagger UI won't show the documentation for the body when using `GET`, and proxies in the middle might not support it.
 
 ## Import Pydantic's `BaseModel`
 
