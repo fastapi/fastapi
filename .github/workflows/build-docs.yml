@@ -24,12 +24,6 @@ jobs:
         with:
           name: docs-zip-${{ github.sha }}
           path: ./docs.zip
-      - name: Trigger Docs Preview
-        env:
-          PR: "${{ github.event.number }}"
-          NAME: "docs-zip-${{ github.sha }}"
-          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-        run: bash ./scripts/trigger-docs-preview.sh
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v1.1.5
         with:
