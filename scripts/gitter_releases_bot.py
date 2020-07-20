@@ -3,14 +3,14 @@ import os
 
 import requests
 
-room_id = "5c9c9540d73408ce4fbc1403"  # FastAPI
-# room_id = "5cc46398d73408ce4fbed233"  # Gitter development
+# room_id = "5c9c9540d73408ce4fbc1403"  # FastAPI
+room_id = "5cc46398d73408ce4fbed233"  # Gitter development
 
 gitter_token = os.getenv("GITTER_TOKEN")
 assert gitter_token
 github_token = os.getenv("GITHUB_TOKEN")
 assert github_token
-tag_name = os.getenv("TRAVIS_TAG")
+tag_name = os.getenv("TAG")
 assert tag_name
 
 

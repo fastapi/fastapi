@@ -26,4 +26,6 @@ jobs:
       - name: Notify
         env:
           GITTER_TOKEN: ${{ secrets.GITTER_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG: ${{ github.ref }}
         run: bash scripts/notify.sh
