@@ -10,4 +10,4 @@ jobs:
       - uses: actions/checkout@v2
       - uses: ./.github/actions/watch-previews
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.ACTIONS_TOKEN }}
