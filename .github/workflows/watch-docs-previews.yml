@@ -1,7 +1,7 @@
-name: Deploy Docs
+name: Watch Docs Previews
 on:
   schedule:
-    - cron: "0 * * * *"
+    - cron: "* * * * *"
 
 jobs:
   deploy:
