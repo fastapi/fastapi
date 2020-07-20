@@ -49,6 +49,12 @@ if __name__ == "__main__":
     owner: NamedUser = repo.owner
     headers = {"Authorization": f"token {settings.input_token.get_secret_value()}"}
     prs = list(repo.get_pulls(state="open"))
+    response = httpx.get(
+        f"{github_api}/repos/{settings.github_repository}/actions/artifacts",
+        headers=headers,
+    )
+    data = response.json()
+    artifacts_response = ArtifactResponse.parse_obj(data)
     for pr in prs:
         logging.info("-----")
         logging.info(f"Processing PR #{pr.number}: {pr.title}")
@@ -68,19 +74,13 @@ if __name__ == "__main__":
         logging.info(f"Docs preview was notified: {notified}")
         if not notified:
             artifact_name = f"docs-zip-{commit}"
-            response = httpx.get(
-                f"{github_api}/repos/{settings.github_repository}/actions/artifacts",
-                headers=headers,
-            )
-            data = response.json()
-            artifacts_response = ArtifactResponse.parse_obj(data)
             use_artifact: Optional[Artifact] = None
             for artifact in artifacts_response.artifacts:
                 if artifact.name == artifact_name:
                     use_artifact = artifact
                     break
             if not use_artifact:
-                logging.info(f"Artifact not available")
+                logging.info("Artifact not available")
             else:
                 logging.info(f"Existing artifact: {use_artifact.name}")
                 response = httpx.post(
