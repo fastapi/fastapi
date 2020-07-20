@@ -1,4 +1,4 @@
-name: "Deploy Artifact to Netlify"
+name: "Get Artifact"
 description: "Get artifact, possibly uploaded by a PR, useful to deploy docs previews"
 author: "Sebastián Ramírez <tiangolo@gmail.com>"
 inputs:

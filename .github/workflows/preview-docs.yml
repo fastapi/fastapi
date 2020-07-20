@@ -8,6 +8,9 @@ on:
       name:
         description: Artifact name for zip file with docs
         required: true
+      commit:
+        description: Commit SHA hash
+        required: true
 
 jobs:
   deploy:
@@ -32,8 +35,9 @@ jobs:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
       - name: Comment Deploy
-        run: bash ./scripts/docs-comment-deploy.sh
         env:
           PR: "${{ github.event.inputs.pr }}"
           DEPLOY_URL: "${{ steps.netlify.outputs.deploy-url }}"
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          COMMIT: "${{ github.event.inputs.commit }}"
+        run: bash ./scripts/docs-comment-deploy.sh

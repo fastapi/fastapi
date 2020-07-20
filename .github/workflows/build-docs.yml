@@ -31,7 +31,7 @@ jobs:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
         run: bash ./scripts/trigger-docs-preview.sh
       - name: Deploy to Netlify
-        uses: nwtgck/actions-netlify@v1.0.3
+        uses: nwtgck/actions-netlify@v1.1.5
         with:
           publish-dir: './site'
           production-branch: master
