@@ -67,6 +67,7 @@ if __name__ == "__main__":
                 notified = True
         logging.info(f"Docs preview was notified: {notified}")
         if not notified:
+            artifact_name = f"docs-zip-{commit}"
             response = httpx.get(
                 f"{github_api}/repos/{settings.github_repository}/actions/artifacts",
                 headers=headers,
@@ -75,7 +76,7 @@ if __name__ == "__main__":
             artifacts_response = ArtifactResponse.parse_obj(data)
             use_artifact: Optional[Artifact] = None
             for artifact in artifacts_response.artifacts:
-                if artifact.name == settings.input_name:
+                if artifact.name == artifact_name:
                     use_artifact = artifact
                     break
             if use_artifact:
@@ -85,7 +86,7 @@ if __name__ == "__main__":
                     headers=headers,
                     json={
                         "ref": "master",
-                        "inputs": {"pr": f"{pr.number}", "name": f"docs-zip-{commit}"},
+                        "inputs": {"pr": f"{pr.number}", "name": artifact_name},
                     },
                 )
                 logging.info(
