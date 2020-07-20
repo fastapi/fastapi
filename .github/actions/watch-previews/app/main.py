@@ -86,7 +86,7 @@ if __name__ == "__main__":
                     headers=headers,
                     json={
                         "ref": "master",
-                        "inputs": {"pr": f"{pr.number}", "name": artifact_name},
+                        "inputs": {"pr": f"{pr.number}", "name": artifact_name, "commit": commit},
                     },
                 )
                 logging.info(
