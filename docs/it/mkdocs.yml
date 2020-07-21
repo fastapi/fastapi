@@ -4,6 +4,7 @@ site_url: https://fastapi.tiangolo.com/it/
 theme:
   name: material
   palette:
+    scheme: preference
     primary: teal
     accent: amber
   icon:
