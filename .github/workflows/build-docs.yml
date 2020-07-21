@@ -22,7 +22,7 @@ jobs:
         run: bash ./scripts/zip-docs.sh
       - uses: actions/upload-artifact@v2
         with:
-          name: docs-zip-${{ github.sha }}
+          name: docs-zip-${{ github.event.pull_request.head.sha }}
           path: ./docs.zip
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v1.1.5
