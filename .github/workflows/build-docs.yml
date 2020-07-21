@@ -19,10 +19,12 @@ jobs:
       - name: Build Docs
         run: python3.7 ./scripts/docs.py build-all
       - name: Zip docs
+        if: github.event_name == 'pull_request'
         run: bash ./scripts/zip-docs.sh
       - uses: actions/upload-artifact@v2
+        if: github.event_name == 'pull_request'
         with:
-          name: docs-zip-${{ github.sha }}
+          name: docs-zip-${{ github.event.pull_request.head.sha }}
           path: ./docs.zip
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v1.1.5
