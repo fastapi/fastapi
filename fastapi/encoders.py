@@ -1,3 +1,4 @@
+from collections import defaultdict
 from enum import Enum
 from pathlib import PurePath
 from types import GeneratorType
@@ -15,13 +16,11 @@ DictIntStrAny = Dict[Union[int, str], Any]
 def generate_encoders_by_class_tuples(
     type_encoder_map: Dict[Any, Callable]
 ) -> Dict[Callable, Tuple]:
-    encoders_by_classes: Dict[Callable, List] = {}
+    encoders_by_classes: Dict[Callable, List] = defaultdict(list)
     for type_, encoder in type_encoder_map.items():
-        encoders_by_classes.setdefault(encoder, []).append(type_)
-    encoders_by_class_tuples: Dict[Callable, Tuple] = {}
-    for encoder, classes in encoders_by_classes.items():
-        encoders_by_class_tuples[encoder] = tuple(classes)
-    return encoders_by_class_tuples
+        encoders_by_classes[encoder].append(type_)
+
+    return {encoder: tuple(classes) for encoder, classes in encoders_by_classes.items()}
 
 
 encoders_by_class_tuples = generate_encoders_by_class_tuples(ENCODERS_BY_TYPE)
@@ -117,22 +116,20 @@ def jsonable_encoder(
                 encoded_dict[encoded_key] = encoded_value
         return encoded_dict
     if isinstance(obj, (list, set, frozenset, GeneratorType, tuple)):
-        encoded_list = []
-        for item in obj:
-            encoded_list.append(
-                jsonable_encoder(
-                    item,
-                    include=include,
-                    exclude=exclude,
-                    by_alias=by_alias,
-                    exclude_unset=exclude_unset,
-                    exclude_defaults=exclude_defaults,
-                    exclude_none=exclude_none,
-                    custom_encoder=custom_encoder,
-                    sqlalchemy_safe=sqlalchemy_safe,
-                )
+        return [
+            jsonable_encoder(
+                item,
+                include=include,
+                exclude=exclude,
+                by_alias=by_alias,
+                exclude_unset=exclude_unset,
+                exclude_defaults=exclude_defaults,
+                exclude_none=exclude_none,
+                custom_encoder=custom_encoder,
+                sqlalchemy_safe=sqlalchemy_safe,
             )
-        return encoded_list
+            for item in obj
+        ]
 
     if custom_encoder:
         if type(obj) in custom_encoder:

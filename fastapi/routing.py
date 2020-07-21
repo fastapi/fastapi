@@ -253,9 +253,9 @@ class APIWebSocketRoute(routing.WebSocketRoute):
         name: Optional[str] = None,
         dependency_overrides_provider: Optional[Any] = None,
     ) -> None:
-        self.path = path
-        self.endpoint = endpoint
-        self.name = get_name(endpoint) if name is None else name
+        super().__init__(
+            path=path, endpoint=endpoint, name=name,
+        )
         self.dependant = get_dependant(path=path, call=self.endpoint)
         self.app = websocket_session(
             get_websocket_app(
@@ -263,7 +263,6 @@ class APIWebSocketRoute(routing.WebSocketRoute):
                 dependency_overrides_provider=dependency_overrides_provider,
             )
         )
-        self.path_regex, self.path_format, self.param_convertors = compile_path(path)
 
 
 class APIRoute(routing.Route):

@@ -53,10 +53,8 @@ class HTTPBasic(HTTPBase):
         realm: Optional[str] = None,
         auto_error: bool = True,
     ):
-        self.model = HTTPBaseModel(scheme="basic")
-        self.scheme_name = scheme_name or self.__class__.__name__
+        super().__init__(scheme="basic", scheme_name=scheme_name, auto_error=auto_error)
         self.realm = realm
-        self.auto_error = auto_error
 
     async def __call__(  # type: ignore
         self, request: Request
@@ -86,7 +84,7 @@ class HTTPBasic(HTTPBase):
         except (ValueError, UnicodeDecodeError, binascii.Error):
             raise invalid_user_credentials_exc
         username, separator, password = data.partition(":")
-        if not (separator):
+        if not separator:
             raise invalid_user_credentials_exc
         return HTTPBasicCredentials(username=username, password=password)
 
@@ -99,9 +97,8 @@ class HTTPBearer(HTTPBase):
         scheme_name: Optional[str] = None,
         auto_error: bool = True,
     ):
+        super().__init__(scheme="", scheme_name=scheme_name, auto_error=auto_error)
         self.model = HTTPBearerModel(bearerFormat=bearerFormat)
-        self.scheme_name = scheme_name or self.__class__.__name__
-        self.auto_error = auto_error
 
     async def __call__(
         self, request: Request
