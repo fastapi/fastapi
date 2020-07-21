@@ -42,6 +42,11 @@ nav:
   - tutorial/path-params-numeric-validations.md
   - tutorial/body-multiple-params.md
   - tutorial/body-fields.md
+- 进阶用户指南:
+  - advanced/index.md
+  - advanced/path-operation-advanced-configuration.md
+  - advanced/additional-status-codes.md 
+  - advanced/response-directly.md
 - deployment.md
 - contributing.md
 - help-fastapi.md
