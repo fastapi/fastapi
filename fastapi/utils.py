@@ -103,7 +103,7 @@ def create_response_field(
         else:  # pragma: nocover
             return response_field(schema=field_info)
     except RuntimeError:
-        raise fastapi.exceptions.FastAPIError(
+        raise RuntimeError(
             f"Invalid args for response field! Hint: check that {type_} is a valid pydantic field type"
         )
 
