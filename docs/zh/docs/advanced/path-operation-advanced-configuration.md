@@ -24,7 +24,7 @@
 ```
 
 !!! tip
-    如果你是手动调用 `app.openapi()`，你得在调用前更新`openationId`。
+    如果你是手动调用 `app.openapi()`，你得在调用前更新 `openationId`。
 
 !!! warning
 	如果你这样做的话，你必须确保每个 *路径操作函数* 的名字是唯一的。
