@@ -16,12 +16,10 @@ DictIntStrAny = Dict[Union[int, str], Any]
 def generate_encoders_by_class_tuples(
     type_encoder_map: Dict[Any, Callable]
 ) -> Dict[Callable, Tuple]:
-    encoders_by_classes: Dict[Callable, List] = defaultdict(list)
-    for type_, encoder in type_encoder_map.items():
-        encoders_by_classes[encoder].append(type_)
     encoders_by_class_tuples: Dict[Callable, Tuple] = {}
-    for encoder, classes in encoders_by_classes.items():
-        encoders_by_class_tuples[encoder] = tuple(classes)
+    for type_, encoder in type_encoder_map.items():
+        encoders_by_class_tuples.setdefault(encoder, ())
+        encoders_by_class_tuples[encoder] += (type_,)
     return encoders_by_class_tuples
 
 
