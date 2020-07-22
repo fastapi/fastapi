@@ -124,7 +124,6 @@ def test_encode_model_with_config():
 
 def test_encode_model_with_alias_raises():
     with pytest.raises(ValidationError):
-        # model = ModelWithAlias(foo="Bar")
         ModelWithAlias(foo="Bar")
 
 
