@@ -87,7 +87,10 @@ openapi_schema2 = {
                 "parameters": [
                     {
                         "required": True,
-                        "schema": {"$ref": "#/components/schemas/ModelName"},
+                        "schema": {
+                            "$ref": "#/components/schemas/ModelName",
+                            "title": "Model Name",
+                        },
                         "name": "model_name",
                         "in": "path",
                     }
