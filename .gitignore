@@ -13,6 +13,7 @@ coverage.xml
 test.db
 log.txt
 Pipfile.lock
+.python-version
 env3.*
 env
 docs_build
