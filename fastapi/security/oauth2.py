@@ -27,7 +27,7 @@ class OAuth2PasswordRequestForm:
                 print(data.client_secret)
             return data
 
-    
+
     It creates the following Form request parameters in your endpoint:
 
     grant_type: the OAuth2 spec says it is required and MUST be the fixed string "password".
@@ -77,7 +77,7 @@ class OAuth2PasswordRequestFormStrict(OAuth2PasswordRequestForm):
                 print(data.client_secret)
             return data
 
-    
+
     It creates the following Form request parameters in your endpoint:
 
     grant_type: the OAuth2 spec says it is required and MUST be the fixed string "password".

@@ -1144,7 +1144,7 @@ def test_swagger_ui():
     assert response.headers["content-type"] == "text/html; charset=utf-8"
     assert "swagger-ui-dist" in response.text
     assert (
-        f"oauth2RedirectUrl: window.location.origin + '/docs/oauth2-redirect'"
+        "oauth2RedirectUrl: window.location.origin + '/docs/oauth2-redirect'"
         in response.text
     )
 
