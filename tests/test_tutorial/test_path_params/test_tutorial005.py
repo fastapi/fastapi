@@ -88,7 +88,7 @@ openapi_schema2 = {
                     {
                         "required": True,
                         "schema": {
-                            "$ref": "#/components/schemas/ModelName",
+                            "allOf": [{"$ref": "#/components/schemas/ModelName"}],
                             "title": "Model Name",
                         },
                         "name": "model_name",
