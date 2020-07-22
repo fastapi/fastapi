@@ -35,5 +35,5 @@ jobs:
         env:
           GITTER_TOKEN: ${{ secrets.GITTER_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          TAG: ${{ github.ref }}
+          TAG: ${{ github.event.release.name }}
         run: bash scripts/notify.sh
