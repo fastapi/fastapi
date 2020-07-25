@@ -2,105 +2,114 @@
   <a href="https://fastapi.tiangolo.com"><img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI"></a>
 </p>
 <p align="center">
-    <em>FastAPI framework, high performance, easy to learn, fast to code, ready for production</em>
+    <em>FastAPI - швидкісний фреймворк який легко вивчити, швидкісний в написанні, готовий для реальний проектів</em>
 </p>
 <p align="center">
 <a href="https://github.com/tiangolo/fastapi/actions?query=workflow%3ATest" target="_blank">
-    <img src="https://github.com/tiangolo/fastapi/workflows/Test/badge.svg" alt="Test">
+    <img src="https://github.com/tiangolo/fastapi/workflows/Test/badge.svg" alt="Статус тестів">
+</a>
+<a href="https://github.com/tiangolo/fastapi/actions?query=workflow%3APublish" target="_blank">
+    <img src="https://github.com/tiangolo/fastapi/workflows/Publish/badge.svg" alt="Статус білда">
 </a>
 <a href="https://codecov.io/gh/tiangolo/fastapi" target="_blank">
-    <img src="https://img.shields.io/codecov/c/github/tiangolo/fastapi?color=%2334D058" alt="Coverage">
+    <img src="https://img.shields.io/codecov/c/github/tiangolo/fastapi?color=%2334D058" alt="Покриття коду">
 </a>
 <a href="https://pypi.org/project/fastapi" target="_blank">
-    <img src="https://img.shields.io/pypi/v/fastapi?color=%2334D058&label=pypi%20package" alt="Package version">
+    <img src="https://img.shields.io/pypi/v/fastapi?color=%2334D058&label=pypi%20package" alt="Версія пекеджу">
 </a>
 <a href="https://gitter.im/tiangolo/fastapi?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge" target="_blank">
-    <img src="https://badges.gitter.im/tiangolo/fastapi.svg" alt="Join the chat at https://gitter.im/tiangolo/fastapi">
+    <img src="https://badges.gitter.im/tiangolo/fastapi.svg" alt="Заходьте в наш чат https://gitter.im/tiangolo/fastapi">
 </a>
 </p>
 
 ---
 
-**Documentation**: <a href="https://fastapi.tiangolo.com" target="_blank">https://fastapi.tiangolo.com</a>
+**Документація**: <a href="https://fastapi.tiangolo.com" target="_blank">https://fastapi.tiangolo.com</a>
 
-**Source Code**: <a href="https://github.com/tiangolo/fastapi" target="_blank">https://github.com/tiangolo/fastapi</a>
+**Вихідний код**: <a href="https://github.com/tiangolo/fastapi" target="_blank">https://github.com/tiangolo/fastapi</a>
+
+---
+FastAPI це сучаний, швидкий фреймворк для будування API з Python 3.6+ з базування на стандартні типи Python.
+
+Ключові особливості:
+
+* **Швидкий**: Джуе велика швидкість, нарівні з **NodeJS** або **Go** (завдяки Starlette та Pydantic). [Одна з найшвидших фреймворків в Python](#performance).
+
+* **Шкидкий в написанні**: Збільши швидкість девелопмента функціональності на 200% до 300%. *
+* **Менша кількість багів**: Зменши можливість зробити людські помилки на 40%. *
+* **Інтуітивний**: Відмінна підтримка редакторів. <abbr title="також відомий як auto-complete, autocompletion, IntelliSense">Заповнення</abbr> коду. Менше часу для дебагування.
+* **Легкий**: Розроблений, щоб бути простим у використанні та навчанні. Менше часу для читання документів.
+* **Стислий**: Мінімізуйте дуплікацію коду. Декілька функцій для кожного оголошення параметрів. Менше багів.
+* **Міцний**: Отримайте код який готовий до продакшена. З автоматичною інтерактивною документацією.
+* **На основі стандартів**: Базовані на (і повністю сумісні з) відкритими стандартами для APIs: <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (раніше відомий як Swagger) і <a href="http://json-schema.org/" class="external-link" target="_blank">JSON Схема</a>.
+
+<small>* оцінка базується на тестах у внутрішній команді, будуючи продакш аплікації.</small>
+
+
+## Думки
+
+"_[...] Цими днями я дуже часто використовую **FastAPI**. [...] Насправді я планую використовувати її для моєї команди для **ML сервісів в Microsoft**. Деякі з них інтегруються в ядро **Windows** продуктів і декілька **Office** продуктів._"
+
+
+<div style="text-align: right; margin-right: 10%;">Kabir Khan - <strong>Microsoft</strong> <a href="https://github.com/tiangolo/fastapi/pull/26" target="_blank"><small>(реф)</small></a></div>
 
 ---
 
-FastAPI is a modern, fast (high-performance), web framework for building APIs with Python 3.6+ based on standard Python type hints.
+"_Ми використали **FastAPI** бібліотеку щоб створити **REST** сервер який можна кверіти щоб отримати **прогнози**. [for Ludwig]_"
 
-The key features are:
 
-* **Fast**: Very high performance, on par with **NodeJS** and **Go** (thanks to Starlette and Pydantic). [One of the fastest Python frameworks available](#performance).
-
-* **Fast to code**: Increase the speed to develop features by about 200% to 300%. *
-* **Fewer bugs**: Reduce about 40% of human (developer) induced errors. *
-* **Intuitive**: Great editor support. <abbr title="also known as auto-complete, autocompletion, IntelliSense">Completion</abbr> everywhere. Less time debugging.
-* **Easy**: Designed to be easy to use and learn. Less time reading docs.
-* **Short**: Minimize code duplication. Multiple features from each parameter declaration. Fewer bugs.
-* **Robust**: Get production-ready code. With automatic interactive documentation.
-* **Standards-based**: Based on (and fully compatible with) the open standards for APIs: <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (previously known as Swagger) and <a href="http://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>.
-
-<small>* estimation based on tests on an internal development team, building production applications.</small>
-
-## Opinions
-
-"_[...] I'm using **FastAPI** a ton these days. [...] I'm actually planning to use it for all of my team's **ML services at Microsoft**. Some of them are getting integrated into the core **Windows** product and some **Office** products._"
-
-<div style="text-align: right; margin-right: 10%;">Kabir Khan - <strong>Microsoft</strong> <a href="https://github.com/tiangolo/fastapi/pull/26" target="_blank"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Piero Molino, Yaroslav Dudin, and Sai Sumanth Miryala - <strong>Uber</strong> <a href="https://eng.uber.com/ludwig-v0-2/" target="_blank"><small>(реф)</small></a></div>
 
 ---
 
-"_We adopted the **FastAPI** library to spawn a **REST** server that can be queried to obtain **predictions**. [for Ludwig]_"
+"_**Netflix** із задоволенням повідомляє опен-сорс реліз фрейворку для оркестрації **кризової ситуацій**: **Dispatch**! [built with **FastAPI**]_"
 
-<div style="text-align: right; margin-right: 10%;">Piero Molino, Yaroslav Dudin, and Sai Sumanth Miryala - <strong>Uber</strong> <a href="https://eng.uber.com/ludwig-v0-2/" target="_blank"><small>(ref)</small></a></div>
 
----
-
-"_**Netflix** is pleased to announce the open-source release of our **crisis management** orchestration framework: **Dispatch**! [built with **FastAPI**]_"
-
-<div style="text-align: right; margin-right: 10%;">Kevin Glisson, Marc Vilanova, Forest Monsen - <strong>Netflix</strong> <a href="https://netflixtechblog.com/introducing-dispatch-da4b8a2a8072" target="_blank"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Kevin Glisson, Marc Vilanova, Forest Monsen - <strong>Netflix</strong> <a href="https://netflixtechblog.com/introducing-dispatch-da4b8a2a8072" target="_blank"><small>(реф)</small></a></div>
 
 ---
 
-"_I’m over the moon excited about **FastAPI**. It’s so fun!_"
+"_Я на сьомому небі від **FastAPI**. Він такий приємний!_"
 
-<div style="text-align: right; margin-right: 10%;">Brian Okken - <strong><a href="https://pythonbytes.fm/episodes/show/123/time-to-right-the-py-wrongs?time_in_sec=855" target="_blank">Python Bytes</a> podcast host</strong> <a href="https://twitter.com/brianokken/status/1112220079972728832" target="_blank"><small>(ref)</small></a></div>
-
----
-
-"_Honestly, what you've built looks super solid and polished. In many ways, it's what I wanted **Hug** to be - it's really inspiring to see someone build that._"
-
-<div style="text-align: right; margin-right: 10%;">Timothy Crosley - <strong><a href="http://www.hug.rest/" target="_blank">Hug</a> creator</strong> <a href="https://news.ycombinator.com/item?id=19455465" target="_blank"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Brian Okken - <strong><a href="https://pythonbytes.fm/episodes/show/123/time-to-right-the-py-wrongs?time_in_sec=855" target="_blank">Python Bytes</a> хост подкастів</strong> <a href="https://twitter.com/brianokken/status/1112220079972728832" target="_blank"><small>(реф)</small></a></div>
 
 ---
 
-"_If you're looking to learn one **modern framework** for building REST APIs, check out **FastAPI** [...] It's fast, easy to use and easy to learn [...]_"
+"_Чесно кажучи, те, що ви створили, виглядає надзвичайно міцно і відшліфовано. У багатьох відношеннях це то що я хотів **Hug** бути - це насправді надихає що таке було зроблено._"
 
-"_We've switched over to **FastAPI** for our **APIs** [...] I think you'll like it [...]_"
 
-<div style="text-align: right; margin-right: 10%;">Ines Montani - Matthew Honnibal - <strong><a href="https://explosion.ai" target="_blank">Explosion AI</a> founders - <a href="https://spacy.io" target="_blank">spaCy</a> creators</strong> <a href="https://twitter.com/_inesmontani/status/1144173225322143744" target="_blank"><small>(ref)</small></a> - <a href="https://twitter.com/honnibal/status/1144031421859655680" target="_blank"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Timothy Crosley - <strong><a href="http://www.hug.rest/" target="_blank">Hug</a> творець</strong> <a href="https://news.ycombinator.com/item?id=19455465" target="_blank"><small>(реф)</small></a></div>
 
 ---
 
-## **Typer**, the FastAPI of CLIs
+"_Якщо ти хочеш вивчити одну **сучасну бібліотеку** для будування REST APIs, подивись на **FastAPI** [...] Він швидкий, легкий в використанні та легкий в вивченні [...]_"
+
+
+"_Ми перейшли на **FastAPI** для наших **APIs** [...] Я думаю що тобі він сподобається [...]_"
+
+
+<div style="text-align: right; margin-right: 10%;">Ines Montani - Matthew Honnibal - <strong><a href="https://explosion.ai" target="_blank">Explosion AI</a> засновники - <a href="https://spacy.io" target="_blank">spaCy</a> творці</strong> <a href="https://twitter.com/_inesmontani/status/1144173225322143744" target="_blank"><small>(реф)</small></a> - <a href="https://twitter.com/honnibal/status/1144031421859655680" target="_blank"><small>(реф)</small></a></div>
+
+---
+
+## **Typer**, це FastAPI для CLIs
 
 <a href="https://typer.tiangolo.com" target="_blank"><img src="https://typer.tiangolo.com/img/logo-margin/logo-margin-vector.svg" style="width: 20%;"></a>
 
-If you are building a <abbr title="Command Line Interface">CLI</abbr> app to be used in the terminal instead of a web API, check out <a href="https://typer.tiangolo.com/" class="external-link" target="_blank">**Typer**</a>.
+Якщо ти будуєш <abbr title="Command Line Interface">CLI</abbr> додаток для використання в терміналі замість web API, подивись на <a href="https://typer.tiangolo.com/" class="external-link" target="_blank">**Typer**</a>.
 
-**Typer** is FastAPI's little sibling. And it's intended to be the **FastAPI of CLIs**. ⌨️ 🚀
+**Typer** це FastAPI's маленький брат. І його призначення це бути **FastAPI для CLIs**. ⌨️ 🚀
 
-## Requirements
+## Вимоги
 
 Python 3.6+
 
-FastAPI stands on the shoulders of giants:
+FastAPI стоїть на плечах гігантів:
 
-* <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> for the web parts.
-* <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> for the data parts.
+* <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> для веб-частин.
+* <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> для даних.
 
-## Installation
+## Установка
 
 <div class="termy">
 
@@ -112,7 +121,7 @@ $ pip install fastapi
 
 </div>
 
-You will also need an ASGI server, for production such as <a href="http://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a> or <a href="https://gitlab.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>.
+Вам також знадобиться ASGI сервер для Search Results продакшена, такий як <a href="http://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a> або <a href="https://gitlab.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>.
 
 <div class="termy">
 
@@ -124,11 +133,11 @@ $ pip install uvicorn
 
 </div>
 
-## Example
+## Приклад
 
-### Create it
+### Створити аплікацію
 
-* Create a file `main.py` with:
+* Створіть файл з назвою `main.py` який в собі має:
 
 ```Python
 from typing import Optional
@@ -149,9 +158,9 @@ def read_item(item_id: int, q: Optional[str] = None):
 ```
 
 <details markdown="1">
-<summary>Or use <code>async def</code>...</summary>
+<summary>Або використовуй <code>async def</code>...</summary>
 
-If your code uses `async` / `await`, use `async def`:
+Якщо твій код використовує `async` / `await`, тоді використовуй `async def`:
 
 ```Python hl_lines="9 14"
 from typing import Optional
@@ -171,15 +180,15 @@ async def read_item(item_id: int, q: Optional[str] = None):
     return {"item_id": item_id, "q": q}
 ```
 
-**Note**:
+**Примітка**:
 
-If you don't know, check the _"In a hurry?"_ section about <a href="https://fastapi.tiangolo.com/async/#in-a-hurry" target="_blank">`async` and `await` in the docs</a>.
+Якщо ти не знаєш, подивись на _"In a hurry?"_ секцію про <a href="https://fastapi.tiangolo.com/async/#in-a-hurry" target="_blank">`async` і `await` в документації</a>.
 
 </details>
 
-### Run it
+### Запусти програму
 
-Run the server with:
+Запусти сервер з:
 
 <div class="termy">
 
@@ -196,54 +205,54 @@ INFO:     Application startup complete.
 </div>
 
 <details markdown="1">
-<summary>About the command <code>uvicorn main:app --reload</code>...</summary>
+<summary>Про команду <code>uvicorn main:app --reload</code>...</summary>
 
-The command `uvicorn main:app` refers to:
+Команда `uvicorn main:app` має наувазі:
 
-* `main`: the file `main.py` (the Python "module").
-* `app`: the object created inside of `main.py` with the line `app = FastAPI()`.
-* `--reload`: make the server restart after code changes. Only do this for development.
+* `main`: файл `main.py` (пітонівський модуль).
+* `app`: об'єкт який створений в `main.py` з лінією `app = FastAPI()`.
+* `--reload`: робить щоб сервер перезапускався після зміни коду. Роби це тільки для девелопмента.
 
 </details>
 
-### Check it
+### Перевірь програму
 
-Open your browser at <a href="http://127.0.0.1:8000/items/5?q=somequery" class="external-link" target="_blank">http://127.0.0.1:8000/items/5?q=somequery</a>.
+Відкрий свій браузер на <a href="http://127.0.0.1:8000/items/5?q=somequery" class="external-link" target="_blank">http://127.0.0.1:8000/items/5?q=somequery</a>.
 
-You will see the JSON response as:
+Ти побачиш такий JSON відповідь:
 
 ```JSON
 {"item_id": 5, "q": "somequery"}
 ```
 
-You already created an API that:
+Ти уже створив API який:
 
-* Receives HTTP requests in the _paths_ `/` and `/items/{item_id}`.
-* Both _paths_ take `GET` <em>operations</em> (also known as HTTP _methods_).
-* The _path_ `/items/{item_id}` has a _path parameter_ `item_id` that should be an `int`.
-* The _path_ `/items/{item_id}` has an optional `str` _query parameter_ `q`.
+* Отримує HTTP реквести в _шлях_ `/` і `/items/{item_id}`.
+* Обоє _шляхи_ беруть `GET` <em>операції</em> (також відомі як HTTP _методи_).
+* _Шлях_ `/items/{item_id}` має _параметер в шляху_ `item_id` який має бути `int`.
+* _Шлях_ `/items/{item_id}` має необов’язковий `str` _квері параметер_ `q`.
 
-### Interactive API docs
+### Інтерактивна API документація
 
-Now go to <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+А тепер піди до <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 
-You will see the automatic interactive API documentation (provided by <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a>):
+Ти побачиш автоматичну інтерактивну API документацію (завдяки <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a>):
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-01-swagger-ui-simple.png)
 
-### Alternative API docs
+### Алтернативна API документація
 
-And now, go to <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>.
+А тепер піди до <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>.
 
-You will see the alternative automatic documentation (provided by <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a>):
+Ти побачиш альтернативну документацію (завдяки <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a>):
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
-## Example upgrade
+## Приклад оновлення
 
-Now modify the file `main.py` to receive a body from a `PUT` request.
+А тепер онови `main.py` щоб він отримав 'body' з `PUT` реквеста.
 
-Declare the body using standard Python types, thanks to Pydantic.
+Декларуй 'body' використовуючи стандартні Python типи, завдяки Pydantic.
 
 ```Python hl_lines="4  9 10 11 12  25 26 27"
 from typing import Optional
@@ -275,63 +284,64 @@ def update_item(item_id: int, item: Item):
     return {"item_name": item.name, "item_id": item_id}
 ```
 
-The server should reload automatically (because you added `--reload` to the `uvicorn` command above).
+Сервер має сам перезавантажитись автоматично (через те що ти добавив `--reload` до `uvicorn` команди швидше)
 
-### Interactive API docs upgrade
+### Обновлення інтерекатривного API документації
 
-Now go to <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+А тепер піди до <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 
-* The interactive API documentation will be automatically updated, including the new body:
+* Інтерактивне API докементація буде автоматично обновлена, включаючи новий 'body':
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-03-swagger-02.png)
 
-* Click on the button "Try it out", it allows you to fill the parameters and directly interact with the API:
+* Нажми на кнопку "Try it out", він дозволяє тобі заповнити параметри і безпосередньо взаємодіяти з API:
 
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-04-swagger-03.png)
 
-* Then click on the "Execute" button, the user interface will communicate with your API, send the parameters, get the results and show them on the screen:
+* Тепер нажми на кнопку "Execute", інтерфейс буде комінукувати з твоїм API, відпрявляти параметри, получати результат і показувати його на екрані:
 
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-05-swagger-04.png)
 
-### Alternative API docs upgrade
+### Обновлення альтернативного API документації
 
-And now, go to <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>.
+А тепер піди до <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>.
 
 * The alternative documentation will also reflect the new query parameter and body:
+* Альтернативна документація також покаже нові 'query parameter' і 'body':
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-06-redoc-02.png)
 
-### Recap
+### Коротке повторення
 
-In summary, you declare **once** the types of parameters, body, etc. as function parameters. 
+Підсумовуючи, ви оголошуєте **один раз** типи параметрів, 'body', тощо як параметри функції.
 
-You do that with standard modern Python types.
+Ви це робити з стандартними типами Python.
 
-You don't have to learn a new syntax, the methods or classes of a specific library, etc.
+Вам не потрібно вчити новий синтакс, методи або класи специфічної бібліотеки, тощо.
 
-Just standard **Python 3.6+**.
+Просто стандартний **Python 3.6+**.
 
-For example, for an `int`:
+На приклад, для `int`:
 
 ```Python
 item_id: int
 ```
 
-or for a more complex `Item` model:
+або бля більш складної `Item` моделі:
 
 ```Python
 item: Item
 ```
 
-...and with that single declaration you get:
+...і з цією єдиною декларацією ви отримаєте:
 
-* Editor support, including:
-    * Completion.
-    * Type checks.
-* Validation of data:
-    * Automatic and clear errors when the data is invalid.
-    * Validation even for deeply nested JSON objects.
-* <abbr title="also known as: serialization, parsing, marshalling">Conversion</abbr> of input data: coming from the network to Python data and types. Reading from:
+* Підтримка редактора, включаючи:
+    * Завершення коду.
+    * Перевірка типів.
+* Валідація даних:
+    * Автоматичні і понятні помилки коли дані не правильні.
+    * Валідація навіть для глибоко вкладених об'єктів JSON
+* <abbr title="також відомі як: serialization, parsing, marshalling">Перетворення</abbr> вхідних даних: які приходять з інтернету до Пітонивських даних і типів. Читаючи з:
     * JSON.
     * Path parameters.
     * Query parameters.
@@ -339,111 +349,112 @@ item: Item
     * Headers.
     * Forms.
     * Files.
-* <abbr title="also known as: serialization, parsing, marshalling">Conversion</abbr> of output data: converting from Python data and types to network data (as JSON):
-    * Convert Python types (`str`, `int`, `float`, `bool`, `list`, etc).
-    * `datetime` objects.
-    * `UUID` objects.
-    * Database models.
-    * ...and many more.
-* Automatic interactive API documentation, including 2 alternative user interfaces:
+* <abbr title="also known as: serialization, parsing, marshalling">Conversion</abbr> вихідних даних: перетворення з Пітонивських даних і типів. До інтернет даних (таких як JSON):
+    * Перетвори Пітонівські типи (`str`, `int`, `float`, `bool`, `list`, тощо).
+    * `datetime` об'єкти.
+    * `UUID` об'єкти.
+    * Моделі датабази.
+    * ...і багато іншого.
+* Автоматичні інтерективні API документації, включаючи 2 альтернативні інтерфейси:
     * Swagger UI.
     * ReDoc.
 
 ---
 
-Coming back to the previous code example, **FastAPI** will:
+Coming back to the previous code example, **FastAPI** зробить:
 
-* Validate that there is an `item_id` in the path for `GET` and `PUT` requests.
-* Validate that the `item_id` is of type `int` for `GET` and `PUT` requests.
-    * If it is not, the client will see a useful, clear error.
-* Check if there is an optional query parameter named `q` (as in `http://127.0.0.1:8000/items/foo?q=somequery`) for `GET` requests.
-    * As the `q` parameter is declared with `= None`, it is optional.
-    * Without the `None` it would be required (as is the body in the case with `PUT`).
-* For `PUT` requests to `/items/{item_id}`, Read the body as JSON:
-    * Check that it has a required attribute `name` that should be a `str`. 
-    * Check that it has a required attribute `price` that has to be a `float`.
-    * Check that it has an optional attribute `is_offer`, that should be a `bool`, if present.
-    * All this would also work for deeply nested JSON objects.
-* Convert from and to JSON automatically.
-* Document everything with OpenAPI, that can be used by:
-    * Interactive documentation systems.
-    * Automatic client code generation systems, for many languages.
-* Provide 2 interactive documentation web interfaces directly.
+* Провалідує що `item_id` існує в 'path' для `GET` і `PUT` реквестах.
+* Провалідує що `item_id` має тип `int` для `GET` і `PUT` реквестах.
+    * Якщо це не так, клієнт побачить корисну, явну помилку.
+* Перевіре чи існує необов'язковий 'query parameter' який називається `q` (as in `http://127.0.0.1:8000/items/foo?q=somequery`) для `GET` реквестів.
+    * Томущо `q` параметер був задекларований з `= None`, він є необов'язковий.
+    * Якщо `None` не було тобі цей параметр був би потрібний (так як 'body' в екземплярі з `PUT`).
+* Для `PUT` реквестів до `/items/{item_id}`, Читайте 'body' як JSON:
+    * Перевірь чи він має потрібний атрибув `name` який має бути `str`.
+    * Перевірь чи він має потрібний атрибув `price` який має бути `float`.
+    * Перевірь чи він має необов’язковий атрибув `is_offer` який має бути `bool`, якщо він існує.
+    * Все це би також пряцювло для глибоко вкладених JSON об'єктах.
+* Автоматично перетворюй з і в JSON.
+* Документуйте все з OpenAPI, якими можуть користуватися: 
+    * Інтерактивні системи документації.
+    * Системи автоматичного генерування коду клієнта для багатьох мов.
+* Надає 2 інтерактивних веб інтерфейсів для документації.
 
 ---
 
-We just scratched the surface, but you already get the idea of how it all works.
+Ми тільки пройшли по поверхності, але ти вже маєш їдею як це все працює.
 
-Try changing the line with:
+Попробуй поміняти з:
 
 ```Python
     return {"item_name": item.name, "item_id": item_id}
 ```
 
-...from:
+...від:
 
 ```Python
         ... "item_name": item.name ...
 ```
 
-...to:
+...до:
 
 ```Python
         ... "item_price": item.price ...
 ```
 
-...and see how your editor will auto-complete the attributes and know their types:
+...і подивись як твій редактор автоматично заповнить атрибути і буде знати їх типи:
 
 ![editor support](https://fastapi.tiangolo.com/img/vscode-completion.png)
 
-For a more complete example including more features, see the <a href="https://fastapi.tiangolo.com/tutorial/">Tutorial - User Guide</a>.
+Для більш повного прикладу, що включає більше функцій, подивись на <a href="https://fastapi.tiangolo.com/tutorial/">Посібник</a>.
 
-**Spoiler alert**: the tutorial - user guide includes:
+**Спойлер попередження**: посібник - включає в себе:
 
-* Declaration of **parameters** from other different places as: **headers**, **cookies**, **form fields** and **files**.
-* How to set **validation constraints** as `maximum_length` or `regex`.
-* A very powerful and easy to use **<abbr title="also known as components, resources, providers, services, injectables">Dependency Injection</abbr>** system.
-* Security and authentication, including support for **OAuth2** with **JWT tokens** and **HTTP Basic** auth.
-* More advanced (but equally easy) techniques for declaring **deeply nested JSON models** (thanks to Pydantic).
-* Many extra features (thanks to Starlette) as:
+* Декларація **parameters** з інших місць таких як: **headers**, **cookies**, **form fields** і **files**.
+* Як встановити **validation constraints** як `maximum_length` або `regex`.
+* Дуже потужний і легкий в використанні **<abbr title="також відомий як component, resources, providers, services, injectables">Dependency Injection</abbr>** система.
+* Безпека і автентифікація, включаючи підтримку для **OAuth2** з **JWT tokens** і **HTTP Basic** автенфікації.
+* Вищий рівень функціональності (але однаково лекго) для декларації **глибоко вкладених JSON моделей** (завдяки Pydantic).
+    
+* Багато додаткових фіч (завдяки Starlette):
     * **WebSockets**
     * **GraphQL**
-    * extremely easy tests based on `requests` and `pytest`
+    * нереально легкі тести базовані на `requests` і `pytest`
     * **CORS**
     * **Cookie Sessions**
-    * ...and more.
+    * ...і більше.
 
-## Performance
+## Швидкість
 
-Independent TechEmpower benchmarks show **FastAPI** applications running under Uvicorn as <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">one of the fastest Python frameworks available</a>, only below Starlette and Uvicorn themselves (used internally by FastAPI). (*)
+Незалежні бенчмарки від TechEmpower показують що програми написані на **FastAPI** які працюють під Uvicorn є <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">одні з найшвидших фреймворків в Python</a>, тільки поступаючись Starlette та Uvicorn (які внутрішньо використовуються в FastAPI). (*)
 
-To understand more about it, see the section <a href="https://fastapi.tiangolo.com/benchmarks/" class="internal-link" target="_blank">Benchmarks</a>.
+Щоб зрозуміти більше про це, подивись на ось цю секцію <a href="https://fastapi.tiangolo.com/benchmarks/" class="internal-link" target="_blank">Бенчмарки</a>.
 
-## Optional Dependencies
+## Необов’язкові бібліотеки
 
-Used by Pydantic:
+Pydantic використовує:
 
-* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - for faster JSON <abbr title="converting the string that comes from an HTTP request into Python data">"parsing"</abbr>.
-* <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - for email validation.
+* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - для швидшого JSON <abbr title="converting the string that comes from an HTTP request into Python data">"парсування"</abbr>.
+* <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - для веріфікації імейлів.
 
-Used by Starlette:
+Starlette використовує:
 
-* <a href="http://docs.python-requests.org" target="_blank"><code>requests</code></a> - Required if you want to use the `TestClient`.
-* <a href="https://github.com/Tinche/aiofiles" target="_blank"><code>aiofiles</code></a> - Required if you want to use `FileResponse` or `StaticFiles`.
-* <a href="http://jinja.pocoo.org" target="_blank"><code>jinja2</code></a> - Required if you want to use the default template configuration.
-* <a href="https://andrew-d.github.io/python-multipart/" target="_blank"><code>python-multipart</code></a> - Required if you want to support form <abbr title="converting the string that comes from an HTTP request into Python data">"parsing"</abbr>, with `request.form()`.
-* <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - Required for `SessionMiddleware` support.
-* <a href="https://pyyaml.org/wiki/PyYAMLDocumentation" target="_blank"><code>pyyaml</code></a> - Required for Starlette's `SchemaGenerator` support (you probably don't need it with FastAPI).
-* <a href="https://graphene-python.org/" target="_blank"><code>graphene</code></a> - Required for `GraphQLApp` support.
-* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - Required if you want to use `UJSONResponse`.
+* <a href="http://docs.python-requests.org" target="_blank"><code>requests</code></a> - Потрібен якщо ти хочеш використовувати `TestClient`.
+* <a href="https://github.com/Tinche/aiofiles" target="_blank"><code>aiofiles</code></a> - Потрібен якщо ти хочеш використовувати `FileResponse` або `StaticFiles`.
+* <a href="http://jinja.pocoo.org" target="_blank"><code>jinja2</code></a> - Потрібен якщо ти хочеш використовувати дефолтну конфігурацію темплейтів.
+* <a href="https://andrew-d.github.io/python-multipart/" target="_blank"><code>python-multipart</code></a> - Потрібен якщо ти хочеш підтримувати форму <abbr title="converting the string that comes from an HTTP request into Python data">"parsing"</abbr>, разом з `request.form()`.
+* <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - Потрібен для підтримки `SessionMiddleware`.
+* <a href="https://pyyaml.org/wiki/PyYAMLDocumentation" target="_blank"><code>pyyaml</code></a> - Потрібен для Starlette`SchemaGenerator` (тобі це напевно не потрібно).
+* <a href="https://graphene-python.org/" target="_blank"><code>graphene</code></a> - Потрібен для підтримки `GraphQLApp`.
+* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - Потрібен якщо ви використовуєте `UJSONResponse`.
 
-Used by FastAPI / Starlette:
+FastAPI / Starlette використовують:
 
-* <a href="http://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - for the server that loads and serves your application.
-* <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - Required if you want to use `ORJSONResponse`.
+* <a href="http://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - Для сервера який загружає і публікує вашу аплікацію.
+* <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - Потрібен якщо ви використовуєте `ORJSONResponse`.
 
-You can install all of these with `pip install fastapi[all]`.
+Ти можеш встановити всі ці бібліотеки з `pip install fastapi[all]`.
 
-## License
+## Ліцензія
 
-This project is licensed under the terms of the MIT license.
+Цей проект ліцензований на умовах MIT ліцензії.
