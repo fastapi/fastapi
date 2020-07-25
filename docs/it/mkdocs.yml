@@ -30,6 +30,7 @@ nav:
   - pt: /pt/
   - ru: /ru/
   - zh: /zh/
+  - uk: /uk/
 markdown_extensions:
 - toc:
     permalink: true
