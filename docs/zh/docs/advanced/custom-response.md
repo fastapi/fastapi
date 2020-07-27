@@ -84,39 +84,39 @@
 {!../../../docs_src/custom_response/tutorial004.py!}
 ```
 
-在这个例子里，函数 `generate_html_response()` 已经生成并返回 `Response` 来代替返回在 `str` 里的HTML。
+在这个例子里，函数 `generate_html_response()` 已经生成并返回 `Response` 来代替返回在 `str` 内的HTML。
 
-By returning the result of calling `generate_html_response()`, you are already returning a `Response` that will override the default **FastAPI** behavior.
+通过调用 `generate_html_response` 返回的结果，就是已经是一个 `Response`了，它会覆盖 **FastAPI** 的默认行为。
 
-But as you passed the `HTMLResponse` in the `response_class` too, **FastAPI** will know how to document it in OpenAPI and the interactive docs as HTML with `text/html`:
+不过当你在 `response_class` 也传了 `HTMLResponse`时，**FastAPI** 会知道怎么在 OpenAPI 及交互式文档里将 HTML 以 `text/html` 文档化。
 
 <img src="/img/tutorial/custom-response/image01.png">
 
-## Available responses
+## 可用响应类型 
 
-Here are some of the available responses.
+下面是一些可用的响应类型。
 
-Have in mind that you can use `Response` to return anything else, or even create a custom sub-class.
+记住，你可以用 `Response` 来返回任何东西，或甚至创建一个自定义的子类。
 
-!!! note "Technical Details"
-    You could also use `from starlette.responses import HTMLResponse`.
+!!! note “技术细节” 
+	你也可以用 `from starlette.responses import JSONResponse`。
 
-    **FastAPI** provides the same `starlette.responses` as `fastapi.responses` just as a convenience for you, the developer. But most of the available responses come directly from Starlette.
+    **FastAPI** 提供了和 `starlette.responses` 一样的 `fastapi.responses`，主要是为了方便开发者。不过大多数的可用响应类型都是直接从 Starlette 里来的，`status` 也一样。
 
 ### `Response`
 
-The main `Response` class, all the other responses inherit from it.
+`Response` 基类， 所有其他的响应类都继承自它。
 
-You can return it directly.
+你可以直接返回它。
 
-It accepts the following parameters:
+它接受以下参数：
 
-* `content` - A `str` or `bytes`.
-* `status_code` - An `int` HTTP status code.
-* `headers` - A `dict` of strings.
-* `media_type` - A `str` giving the media type. E.g. `"text/html"`.
+* `content` - `str` 或 `bytes`。
+* `status_code` - `int` HTTP 状态码。
+* `headers` - `dict` 字符串。
+* `media_type` - `str` 媒体类型， 比如 `"text/html"`。
 
-FastAPI (actually Starlette) will automatically include a Content-Length header. It will also include a Content-Type header, based on the media_type and appending a charset for text types.
+FastAPI (实际是 Starlette) 会自动包含一个 Content-Length 响应头，还会包含一个基于媒体类型的 Content-Type 响应头，并为文本类型附加字符集。
 
 ```Python hl_lines="1  18"
 {!../../../docs_src/response_directly/tutorial002.py!}
@@ -124,11 +124,11 @@ FastAPI (actually Starlette) will automatically include a Content-Length header.
 
 ### `HTMLResponse`
 
-Takes some text or bytes and returns an HTML response, as you read above.
+接收一些文本或字节并返回 HTML 响应，如上所述。
 
 ### `PlainTextResponse`
 
-Takes some text or bytes and returns an plain text response.
+接收一些文本或字节并返回一个纯文本响应。
 
 ```Python hl_lines="2  7  9"
 {!../../../docs_src/custom_response/tutorial005.py!}
@@ -136,31 +136,33 @@ Takes some text or bytes and returns an plain text response.
 
 ### `JSONResponse`
 
-Takes some data and returns an `application/json` encoded response.
+接收一些数据并返回 `application/json` 编码的响应。
 
-This is the default response used in **FastAPI**, as you read above.
+这是 **FastAPI** 默认使用的，如上所述。
 
 ### `ORJSONResponse`
 
-A fast alternative JSON response using <a href="https://github.com/ijl/orjson" class="external-link" target="_blank">`orjson`</a>, as you read above.
+一个快速的 JSON 响应替代方案，用的是<a href="https://github.com/ijl/orjson" class="external-link" target="_blank">`orjson`</a>，如上所述。
 
 ### `UJSONResponse`
 
-An alternative JSON response using <a href="https://github.com/ultrajson/ultrajson" class="external-link" target="_blank">`ujson`</a>.
+一个 JSON 响应替代方案，用的是<a href="https://github.com/ultrajson/ultrajson" class="external-link" target="_blank">`ujson`</a>。
+
 
 !!! warning
-    `ujson` is less careful than Python's built-in implementation in how it handles some edge-cases.
+	在处理某些边界情况时，`ujson` 没有 Python 的内置实现那么谨慎。
 
 ```Python hl_lines="2 7"
 {!../../../docs_src/custom_response/tutorial001.py!}
 ```
 
 !!! tip
-    It's possible that `ORJSONResponse` might be a faster alternative.
+    `ORJSONResponse` 可能是个比较快的方案。
 
 ### `RedirectResponse`
 
 Returns an HTTP redirect. Uses a 307 status code (Temporary Redirect) by default.
+返回 HTTP 重定向。默认会用 307 状态码（临时性重定向）。
 
 ```Python hl_lines="2  9"
 {!../../../docs_src/custom_response/tutorial006.py!}
@@ -169,56 +171,57 @@ Returns an HTTP redirect. Uses a 307 status code (Temporary Redirect) by default
 ### `StreamingResponse`
 
 Takes an async generator or a normal generator/iterator and streams the response body.
+接收异步生成器或者普通生成器/迭代器并流式输出响应体。
 
 ```Python hl_lines="2  14"
 {!../../../docs_src/custom_response/tutorial007.py!}
 ```
 
-#### Using `StreamingResponse` with file-like objects
+#### `StreamingResponse` 和类文件（file-like）对象一起使用
 
-If you have a file-like object (e.g. the object returned by `open()`), you can return it in a `StreamingResponse`.
+如果是类文件对象（比如说 `open()` 返回的对象），你可以在 `StreamingResponse` 里返回它。
 
-This includes many libraries to interact with cloud storage, video processing, and others.
+这包括很多和云存储，视频处理等交互的库。
 
 ```Python hl_lines="2  10 11"
 {!../../../docs_src/custom_response/tutorial008.py!}
 ```
 
 !!! tip
-    Notice that here as we are using standard `open()` that doesn't support `async` and `await`, we declare the path operation with normal `def`.
+	注意，由于这里用的标准 `open()` 不支持 `async` 和 `await`，所以我们用普通的 `def` 定义路径操作。
 
 ### `FileResponse`
 
-Asynchronously streams a file as the response.
+异步流式输出文件作为响应。
 
-Takes a different set of arguments to instantiate than the other response types:
+相比其他响应类型，它接受不同的参数集来初始化。
 
-* `path` - The filepath to the file to stream.
-* `headers` - Any custom headers to include, as a dictionary.
-* `media_type` - A string giving the media type. If unset, the filename or path will be used to infer a media type.
-* `filename` - If set, this will be included in the response `Content-Disposition`.
+* `path` - 要流式输出的文件的路径。
+* `headers` - 任何要包含的自定义头部，字典形式。
+* `media_type` - 提供媒体类型的字符串。如果不设置，会用文件名或者路径来推断媒体类型。
+* `filename` - 如果设置了，会被包含在响应的 `Content-Disposition` 里。
 
-File responses will include appropriate `Content-Length`, `Last-Modified` and `ETag` headers.
+文件响应会包含正确的 `Content-Length`，`Last-Modified` 和 `ETag` 头部。 
 
 ```Python hl_lines="2  10"
 {!../../../docs_src/custom_response/tutorial009.py!}
 ```
 
-## Default response class
+## 默认响应类
 
-When creating a **FastAPI** class instance or an `APIRouter` you can specify which response class to use by default.
+在创建 **FastAPI** 类实例或 **APIRouter** 时，可以指定默认使用哪个响应类。
 
-The parameter that defines this is `default_response_class`.
+定义它的参数是 `default_response_class`。
 
-In the example below, **FastAPI** will use `ORJSONResponse` by default, in all *path operations*, instead of `JSONResponse`.
+在下面的例子里， **FastAPI** 会用 `ORJSONResponse` 作为默认类，在所有 *路径操作* 里代替 `JSONResponse`。
 
 ```Python hl_lines="2 4"
 {!../../../docs_src/custom_response/tutorial010.py!}
 ```
 
 !!! tip
-    You can still override `response_class` in *path operations* as before.
+	你仍可以像之前一样在 *路径操作* 里用 `response_class` 重写。
 
-## Additional documentation
+## 附加文档
 
-You can also declare the media type and many other details in OpenAPI using `responses`: [Additional Responses in OpenAPI](additional-responses.md){.internal-link target=_blank}.
+你也可以用 `responses` 来定义 OpenAPI 里的媒体类型等其他细节：[Additional Responses in OpenAPI](additional-responses.md){.internal-link target=_blank}。
