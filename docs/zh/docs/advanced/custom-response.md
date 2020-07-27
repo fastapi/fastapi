@@ -1,4 +1,4 @@
-# 自定义响应 - HTML, Stream, File, 其他
+# 自定义响应 - HTML，Stream，File 或其他
 
 默认情况下， **FastAPI** 会用 `JSONResponse` 来返回响应。
 
