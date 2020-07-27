@@ -6,14 +6,13 @@
 
 ## 附加状态码
 
-如果要返回主返回码之外的其他状态代码，可以通过直接返回一个 `Response`（例如 `JSONResponse` ），并设置成其他状态代码来实现。
+如果要返回主状态码之外的其他状态码，可以通过直接返回一个 `Response`（例如 `JSONResponse` ），并设置成其他状态码来实现。
 
 例如，假设你有一个 *路径操作* 要能更新项目，然后在成功时要返回 200 "OK" 的 HTTP 状态代码。
 
 但你也想要它能接收新项目，如果这些新项目之前不存在就创建，并且返回 201 "Created" 的 HTTP 状态码。
 
-为此可以引入 `JSONResponse` ，然后用它直接返回内容，把 `status_code` 设置成想要的。
-To achieve that, import `JSONResponse`, and return your content there directly, setting the `status_code` that you want:
+为此可以引入 `JSONResponse` ，然后用它直接返回内容，并把 `status_code` 设置成你想要的：
 
 ```Python hl_lines="4  23"
 {!../../../docs_src/additional_status_codes/tutorial001.py!}
@@ -35,4 +34,4 @@ To achieve that, import `JSONResponse`, and return your content there directly, 
 
 如果你直接返回其他状态码和响应，它们不会被包含在 OpenAPI 结构（API文档）中，因为 FastAPI 事先不知道你要返回什么。
 
-不过你可以自己在代码里标注: [Additional Responses](additional-responses.md){.internal-link target=_blank}.
+不过你可以自己在代码里标注: [附加响应](additional-responses.md){.internal-link target=_blank}.
