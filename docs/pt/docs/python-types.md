@@ -1,19 +1,20 @@
 # Introdução aos tipos Python
 
-**Python 3.6 +** tem suporte para "dicas de tipo" opcionais.
+**Python 3.6 +** tem suporte para "type hints" opcionais.
 
-Essas **"dicas de tipo"** são uma nova sintaxe (desde Python 3.6+) que permite declarar o <abbr title = "por exemplo: str, int, float, bool"> tipo </abbr> de uma variável.
+Esses **"type hints"** são uma nova sintaxe (desde Python 3.6+) que permite declarar o <abbr title = "por exemplo: str, int, float, bool"> tipo </abbr> de uma variável.
 
 Ao declarar tipos para suas variáveis, editores e ferramentas podem oferecer um melhor suporte.
 
-Este é apenas um **tutorial rápido / atualização** sobre dicas do tipo Python. Ele cobre apenas o mínimo necessário para usá-los com o **FastAPI** ... que é realmente muito pouco.
+Este é apenas um **tutorial rápido / atualização** sobre type hints Python. Ele cobre apenas o mínimo necessário para usá-los com o **FastAPI** ... que é realmente muito pouco.
 
-O **FastAPI** é baseado nessas dicas de tipo, elas oferecem muitas vantagens e benefícios.
+O **FastAPI** é baseado nesses type hints, eles oferecem muitas vantagens e benefícios.
 
 Mas mesmo que você nunca use o **FastAPI**, você se beneficiaria de aprender um pouco sobre eles.
 
-!!! Nota
-     Se você é um especialista em Python e já sabe tudo sobre dicas de tipo, pule para o próximo capítulo.
+!!! note "Nota"
+     Se você é um especialista em Python e já sabe tudo sobre type hints, pule para o próximo capítulo.
+
 
 ## Motivação
 
@@ -77,7 +78,7 @@ para:
 
 É isso aí.
 
-Essas são as "dicas de tipo":
+Esses são os "type hints":
 
 ```Python hl_lines="1"
 {!../../../docs_src/python_types/tutorial002.py!}
@@ -93,9 +94,9 @@ Isso não é o mesmo que declarar valores padrão como seria com:
 
 Estamos usando dois pontos (`:`), não é igual a (`=`).
 
-E adicionar dicas de tipo normalmente não muda o que acontece do que aconteceria sem elas.
+E adicionar type hints normalmente não muda o que acontece do que aconteceria sem elas.
 
-Mas agora, imagine que você está novamente no meio da criação dessa função, mas com dicas de tipo.
+Mas agora, imagine que você está novamente no meio da criação dessa função, mas com type hints.
 
 No mesmo ponto, você tenta acionar o preenchimento automático com o `Ctrl Space` e vê:
 
@@ -107,7 +108,7 @@ Com isso, você pode rolar, vendo as opções, até encontrar o que "toca uma ca
 
 ## Mais motivação
 
-Marque esta função, ela já possui dicas de tipo:
+Marque esta função, ela já possui type hints:
 
 ```Python hl_lines="1"
 {!../../../docs_src/python_types/tutorial003.py!}
@@ -125,7 +126,7 @@ Agora você sabe que precisa corrigí-lo, converta `age` em uma string com `str 
 
 ## Tipos de declaração
 
-Você acabou de ver o local principal para declarar dicas de tipo. Como parâmetros de função.
+Você acabou de ver o local principal para declarar type hints. Como parâmetros de função.
 
 Este também é o principal local em que você os usaria com o **FastAPI**.
 
@@ -150,7 +151,7 @@ Existem algumas estruturas de dados que podem conter outros valores, como `dict`
 
 Para declarar esses tipos e os tipos internos, você pode usar o módulo Python padrão `typing`.
 
-Ele existe especificamente para suportar essas dicas de tipo.
+Ele existe especificamente para suportar esses type hints.
 
 #### `List`
 
@@ -172,7 +173,7 @@ Como a lista é um tipo que contém alguns tipos internos, você os coloca entre
 {!../../../docs_src/python_types/tutorial006.py!}
 ```
 
-!!! dica
+!!! tip "Dica"
     Esses tipos internos entre colchetes são chamados de "parâmetros de tipo".
 
     Nesse caso, `str` é o parâmetro de tipo passado para `List`.
@@ -281,18 +282,18 @@ Retirado dos documentos oficiais dos Pydantic:
 {!../../../docs_src/python_types/tutorial011.py!}
 ```
 
-!!! informação
+!!! info "Informação"
     Para saber mais sobre o <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank"> Pydantic, verifique seus documentos </a>.
 
 **FastAPI** é todo baseado em Pydantic.
 
 Você verá muito mais disso na prática no [Tutorial - Guia do usuário](tutorial/index.md){.internal-link target=_blank}.
 
-## Dicas de tipo em **FastAPI**
+## Type hints em **FastAPI**
 
-O **FastAPI** aproveita essas dicas de tipo para fazer várias coisas.
+O **FastAPI** aproveita esses type hints para fazer várias coisas.
 
-Com o **FastAPI**, você declara parâmetros com dicas de tipo e obtém:
+Com o **FastAPI**, você declara parâmetros com type hints e obtém:
 
 * **Suporte ao editor**.
 * **Verificações de tipo**.
@@ -310,5 +311,6 @@ Tudo isso pode parecer abstrato. Não se preocupe. Você verá tudo isso em aç�
 
 O importante é que, usando tipos padrão de Python, em um único local (em vez de adicionar mais classes, decoradores, etc.), o **FastAPI** fará muito trabalho para você.
 
-!!! informação
+!!! info "Informação"
     Se você já passou por todo o tutorial e voltou para ver mais sobre os tipos, um bom recurso é <a href = "https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html" class = "external-link "target =" _ blank "> a "cheat sheet" do `mypy` </a>.
+
