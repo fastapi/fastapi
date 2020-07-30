@@ -2,18 +2,22 @@
 
 You can customize several metadata configurations in your **FastAPI** application.
 
-## Title, description, and version
+## Metadata for API
 
-You can set the:
+You can set the following fields that are used in the OpenAPI specification and the automatic API docs UIs.
 
-* **Title**: used as your API's title/name, in OpenAPI and the automatic API docs UIs.
-* **Description**: the description of your API, in OpenAPI and the automatic API docs UIs.
-* **Version**: the version of your API, e.g. `v2` or `2.5.0`.
-    * Useful for example if you had a previous version of the application, also using OpenAPI.
+| Parameter | Type | Description |
+|------------|------|-------------|
+| `title` | `string` | title/name of API |
+| `description` | `string` | description of API |
+| `version` | `string` | version of API, e.g. `v2` or `2.5.0` |
+| `terms_of_service` | `string` | URL to Terms of Service of API |
+| `contact` | `dict` | contact information of API, can contain the following *optional* fields: <table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td>name</td><td><code>string</code></td><td>name of contact person/organization</td></tr><tr><td>url</td><td><code>string</code></td><td>URL to contact information</td></tr><tr><td>email</td><td><code>string</code></td><td>email address of contact person/organisation</td></tr></tbody></table> |
+| `license_info` | `dict` | license information of API, can contain the following fields: <table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td>name</td><td><code>string</code></td><td>name of license (<b>required</b>)</td></tr><tr><td>url</td><td><code>string</code></td><td>URL to license</td></tr></tbody></table> |
 
-To set them, use the parameters `title`, `description`, and `version`:
+You can set them as follows.
 
-```Python hl_lines="4 5 6"
+```Python hl_lines="4 5 6 7 8 9 10 11 12 13 14 15 16"
 {!../../../docs_src/metadata/tutorial001.py!}
 ```
 

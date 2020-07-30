@@ -7,9 +7,19 @@ client = TestClient(app)
 openapi_schema = {
     "openapi": "3.0.2",
     "info": {
-        "title": "My Super Project",
-        "version": "2.5.0",
-        "description": "This is a very fancy project, with auto docs for the API and everything",
+        "title": "My API",
+        "version": "0.0.1",
+        "description": "This is my API, with auto docs for the API and everything",
+        "termsOfService": "http://example.com/terms/",
+        "contact": {
+            "name": "John Doe",
+            "url": "http://example.com/contact/",
+            "email": "johndoe@example.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
+        },
     },
     "paths": {
         "/items/": {
