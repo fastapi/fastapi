@@ -14,11 +14,11 @@ openapi_schema = {
         "contact": {
             "name": "John Doe",
             "url": "http://example.com/contact/",
-            "email": "johndoe@example.com"
+            "email": "johndoe@example.com",
         },
         "license": {
             "name": "Apache 2.0",
-            "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
+            "url": "https://www.apache.org/licenses/LICENSE-2.0.html",
         },
     },
     "paths": {
