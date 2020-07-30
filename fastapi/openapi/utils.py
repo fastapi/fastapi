@@ -330,7 +330,7 @@ def get_openapi(
     version: str,
     openapi_version: str = "3.0.2",
     description: str = None,
-    terms_of_service: str = None,
+    terms_of_service: Optional[str] = None,
     contact: Optional[Dict[str, Union[str, Any]]] = None,
     license_info: Optional[Dict[str, Optional[str]]] = None,
     routes: Sequence[BaseRoute],
