@@ -337,7 +337,7 @@ def get_openapi(
     tags: Optional[List[Dict[str, Any]]] = None,
     servers: Optional[List[Dict[str, Union[str, Any]]]] = None,
 ) -> Dict:
-    info = {"title": title, "version": version}
+    info: Dict[str, Any] = {"title": title, "version": version}
     if description:
         info["description"] = description
     if terms_of_service:
