@@ -139,7 +139,7 @@ With that you can connect the WebSocket and then send and receive messages:
 
 ## Handling Multiple Clients
 
-```Python hl_lines="23 24 76 77 78"
+```Python hl_lines="23 24 44 45 46 47 48 49 50-63 78-80"
 {!../../../docs_src/websockets/tutorial003.py!}
 ```
 

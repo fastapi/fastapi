@@ -12,6 +12,5 @@ def test_websocket_handle_disconnection():
         "/ws/5678"
     ) as connection_two:
         connection_two.close()
-        response = client.get("/")
-        assert response.status_code == 200, response.text
-        assert b"<!DOCTYPE html>" in response.content
+        data = connection.receive_text()
+        assert data == f"Client #5678 left the chat."
