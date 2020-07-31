@@ -137,6 +137,15 @@ With that you can connect the WebSocket and then send and receive messages:
 
 <img src="/img/tutorial/websockets/image05.png">
 
+## Handling Multiple Clients
+
+```Python hl_lines="23 24 76 77 78"
+{!../../../docs_src/websockets/tutorial003.py!}
+```
+
+!!! info
+    When a WebSocket connection is closed, the `await websocket.receive_text()` will raise a `starlette.websockets.WebSocketDisconnect` exception, which you can then catch and handle like in the example above. 
+
 ## More info
 
 To learn more about the options, check Starlette's documentation for:
