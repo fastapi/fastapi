@@ -80,13 +80,13 @@ Python will have to compare the whole `stanleyjobso` in both `stanleyjobsox` and
 
 #### The time to answer helps the attacker
 
-At that point, by noticing that the server took some microseconds longer to send the "incorrect user or password" response, the attacker will know that she/he got _something_ right, some of the initial letters were right.
+At that point, by noticing that the server took some microseconds longer to send the "incorrect user or password" response, the attacker will know that they got _something_ right, some of the initial letters were right.
 
-And then she/he can try again knowing that it's probably something more similar to `stanleyjobsox` than to `johndoe`.
+And then they can try again knowing that it's probably something more similar to `stanleyjobsox` than to `johndoe`.
 
 #### A "professional" attack
 
-Of course, the attacker would not try all this by hand, she/he would write a program to do it, possibly with thousands or millions of tests per second. And would get just one extra correct letter at a time.
+Of course, the attacker would not try all this by hand, they would write a program to do it, possibly with thousands or millions of tests per second. And would get just one extra correct letter at a time.
 
 But doing that, in some minutes or hours the attacker would have guessed the correct username and password, with the "help" of our application, just using the time taken to answer.
 
