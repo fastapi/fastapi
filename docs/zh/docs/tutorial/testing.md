@@ -8,13 +8,13 @@
 
 ## 使用 `测试客户端`
 
-导入 `TestClient`.
+导入 `TestClient`。
 
-创建一个 `TestClient` 并传递给你的 **FastAPI**.
+创建一个 `TestClient` 并传递给你的 **FastAPI**。
 
-创建一个名称以 `test_` 开头的函数 (这是 `pytest` 的约定).
+创建一个名称以 `test_` 开头的函数 (这是 `pytest` 的约定)。
 
-`TestClient` 对象使用方式与`requests`相同 .
+`TestClient` 对象使用方式与`requests`相同。
 
 使用标准的Python表达式编写assert断言来帮助你检查代码（类似于 `pytest`）。
 
@@ -23,22 +23,22 @@
 ```
 
 !!! tip
-    注意测试函数是使用 `def`, 而不是 `async def`.
+    注意测试函数是使用 `def`, 而不是 `async def`。
 
-    并且调用客户端也不使用 `await`.
+    并且调用客户端也不使用 `await`。
 
-    这让你无障碍地直接使用 `pytest` .
+    这让你无障碍地直接使用 `pytest` 。
 
 !!! note "Technical Details"
-    你也可以使用 `from starlette.testclient import TestClient`.
+    你也可以使用 `from starlette.testclient import TestClient`。
 
-    **FastAPI** 提供的`fastapi.testclient`和 `starlette.testclient` 相同，仅仅是为了开发方便. 但它直接来自于 Starlette.
+    **FastAPI** 提供的`fastapi.testclient`和 `starlette.testclient` 相同，仅仅是为了开发方便. 但它直接来自于 Starlette。
 
 ## 分离测试
 
-在实际的开发中, 你可以会让你的测试放在不同的文件中.
+在实际的开发中, 你可以会让你的测试放在不同的文件中。
 
-并且你的 **FastAPI** 程序可能由许多文件/模块组成.
+并且你的 **FastAPI** 程序可能由许多文件/模块组成。
 
 ### **FastAPI** 应用程序文件
 
@@ -58,7 +58,7 @@
 
 ## 测试: 扩展示例
 
-现在我们扩展这个示例并添加更多细节以查看如何测试不同的部分.
+现在我们扩展这个示例并添加更多细节以查看如何测试不同的部分。
 
 ### 扩展 **FastAPI** 应用程序文件
 
@@ -94,12 +94,12 @@
 * 要传请求头，改用headers参数 。
 * 对于*cookies*，改用cookies参数 。
 
-关于更多如何将数据传递给后端 (使用 `requests` 或者 `TestClient`) 请参阅 <a href="http://docs.python-requests.org" class="external-link" target="_blank">Requests documentation</a>.
+关于更多如何将数据传递给后端 (使用 `requests` 或者 `TestClient`) 请参阅 <a href="http://docs.python-requests.org" class="external-link" target="_blank">Requests documentation</a>。
 
 !!! info
     注意`TestClient`获取的数据可以转换成JSON,而不是Pydantic模型
 
-    如果在你的测试中有一个 Pydantic 模型 并且你想要在测试中发送这个数据到应用程序, 你可以使用 `jsonable_encoder`  [JSON Compatible Encoder](encoder.md){.internal-link target=_blank}.
+    如果在你的测试中有一个 Pydantic 模型 并且你想要在测试中发送这个数据到应用程序, 你可以使用 `jsonable_encoder`  [JSON Compatible Encoder](encoder.md){.internal-link target=_blank}。
 
 ## 运行代码
 
