@@ -1,10 +1,10 @@
 # 测试
 
-归因于 <a href="https://www.starlette.io/testclient/" class="external-link" target="_blank">Starlette</a>, 测试 **FastAPI** 应用变得简单而且愉快.
+归因于 <a href="https://www.starlette.io/testclient/" class="external-link" target="_blank">Starlette</a>, 测试 **FastAPI** 应用变得简单而且愉快。
 
-它基于 <a href="http://docs.python-requests.org" class="external-link" target="_blank">Requests</a>, 因此会让你感到非常的熟悉和简便.
+它基于 <a href="http://docs.python-requests.org" class="external-link" target="_blank">Requests</a>, 因此会让你感到非常的熟悉和简便。
 
-有了它， 你可以把 <a href="https://docs.pytest.org/" class="external-link" target="_blank">pytest</a> 直接用于 **FastAPI**.
+有了它， 你可以把 <a href="https://docs.pytest.org/" class="external-link" target="_blank">pytest</a> 直接用于 **FastAPI**。
 
 ## 使用 `测试客户端`
 
@@ -27,7 +27,7 @@
 
     并且调用客户端也不使用 `await`。
 
-    这让你无障碍地直接使用 `pytest` 。
+    这让你无障碍地直接使用 `pytest`。
 
 !!! note "Technical Details"
     你也可以使用 `from starlette.testclient import TestClient`。
@@ -64,11 +64,11 @@
 
 假设你的**FastAPI** 应用程序有一个 `main_b.py` 文件:
 
-它有一个能够返回错误信息的`GET`操作
+它有一个能够返回错误信息的`GET`操作。
 
-它有一个能够返回一些错误信息的`POST`操作
+它有一个能够返回一些错误信息的`POST`操作。
 
-这两个路径操作都需要一个`X-Token`请求头
+这两个路径操作都需要一个`X-Token`请求头。
 
 ```Python
 {!../../../docs_src/app_testing/main_b.py!}
@@ -82,9 +82,9 @@
 {!../../../docs_src/app_testing/test_main_b.py!}
 ```
 
-当你不知道如何在请求中使用客户端传递参数，均可以上网搜索`requests`的使用方式
+当你不知道如何在请求中使用客户端传递参数，均可以上网搜索`requests`的使用方式。
 
-然后，你可以以同样方式在你的测试中使用
+然后，你可以以同样方式在你的测试中使用。
 
 例如：
 
