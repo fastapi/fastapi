@@ -284,7 +284,6 @@ def get_dependant(
             )
             dependant.dependencies.append(sub_dependant)
             continue
-
         if add_non_field_param_to_dependency(param=param, dependant=dependant):
             continue
         param_field = get_param_field(
