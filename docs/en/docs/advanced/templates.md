@@ -39,12 +39,15 @@ $ pip install aiofiles
 * Declare a `Request` parameter in the *path operation* that will return a template.
 * Use the `templates` you created to render and return a `TemplateResponse`, passing the `request` as one of the key-value pairs in the Jinja2 "context".
 
-```Python hl_lines="3  10  14 15"
+```Python hl_lines="4  11  15 16"
 {!../../../docs_src/templates/tutorial001.py!}
 ```
 
 !!! note
     Notice that you have to pass the `request` as part of the key-value pairs in the context for Jinja2. So, you also have to declare it in your *path operation*.
+
+!!! tip
+    By declaring `response_class=HTMLResponse` the docs UI will be able to know that the response will be HTML.
 
 !!! note "Technical Details"
     You could also use `from starlette.templating import Jinja2Templates`.

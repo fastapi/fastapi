@@ -62,7 +62,7 @@ test = [
 ]
 doc = [
     "mkdocs >=1.1.2,<2.0.0",
-    "mkdocs-material >=5.4.0,<6.0.0",
+    "mkdocs-material >=5.5.0,<6.0.0",
     "markdown-include >=0.5.1,<0.6.0",
     "mkdocs-markdownextradata-plugin >=0.1.7,<0.2.0",
     "typer >=0.3.0,<0.4.0",
