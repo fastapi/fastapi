@@ -123,10 +123,9 @@ So, the interactive docs will have all the information from these dependencies t
 
 <img src="/img/tutorial/dependencies/image01.png">
 
-
 ## Simple usage
 
-If you look at it, *path operation functions* are declared to be used whenever a *path* and *operation* matches, and then **FastAPI** takes care of calling the function with the correct parameters and uses the response.
+If you look at it, *path operation functions* are declared to be used whenever a *path* and *operation* matches, and then **FastAPI** takes care of calling the function with the correct parameters, extracting the data from the request.
 
 Actually, all (or most) of the web frameworks work in this same way.
 

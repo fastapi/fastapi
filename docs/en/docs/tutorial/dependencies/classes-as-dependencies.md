@@ -105,7 +105,7 @@ Now you can declare your dependency using this class.
 {!../../../docs_src/dependencies/tutorial002.py!}
 ```
 
-**FastAPI** calls the `CommonQueryParams` class. This creates an "instance" of that class and the instance will be passed as parameter `commons` to your function.
+**FastAPI** calls the `CommonQueryParams` class. This creates an "instance" of that class and the instance will be passed as the parameter `commons` to your function.
 
 ## Type annotation vs `Depends`
 
@@ -115,29 +115,67 @@ Notice how we write `CommonQueryParams` twice in the above code:
 commons: CommonQueryParams = Depends(CommonQueryParams)
 ```
 
-The first `CommonQueryParams` is a type definition. It does not have any special meaning for **FastAPI**, but gives you autocompletion, type checks, etc. in your editor:
+The last `CommonQueryParams`, in:
+
+```Python
+... = Depends(CommonQueryParams)
+```
+
+...is what **FastAPI** will actually use to know what is the dependency.
+
+From it is that FastAPI will extract the declared parameters and that is what FastAPI will actually call.
+
+---
+
+In this case, the first `CommonQueryParams`, in:
+
+```Python
+commons: CommonQueryParams ...
+```
+
+...doesn't have any special meaning for **FastAPI**. FastAPI won't use it for data conversion, validation, etc. (as it is using the `= Depends(CommonQueryParams)` for that).
+
+You could actually write just:
+
+```Python
+commons = Depends(CommonQueryParams)
+```
+
+..as in:
+
+```Python hl_lines="19"
+{!../../../docs_src/dependencies/tutorial003.py!}
+```
+
+But declaring the type is encouraged as that way your editor will know what will be passed as the parameter `commons`, and then it can help you with code completion, type checks, etc:
 
 <img src="/img/tutorial/dependencies/image02.png">
 
-The second `CommonQueryParams` is what **FastAPI** actually requires, to know what is the dependency. From it FastAPI will extract the declared parameters and it is what FastAPI will call. FastAPI uses it for data conversion, validation, etc.
-
 ## Shortcut
 
-But the duplication is ugly. So, in order to prevent you having to write `CommonQueryParams` twice, **FastAPI** provides a shortcut.
-
-When the dependency is a class, **and only then**, instead of writing:
+But you see that we are having some code repetition here, writing `CommonQueryParams` twice:
 
 ```Python
 commons: CommonQueryParams = Depends(CommonQueryParams)
 ```
 
-...you can write:
+**FastAPI** provides a shortcut for these cases, in where the dependency is *specifically* a class that **FastAPI** will "call" to create an instance of the class itself.
+
+For those specific cases, you can do the following:
+
+Instead of writing:
+
+```Python
+commons: CommonQueryParams = Depends(CommonQueryParams)
+```
+
+...you write:
 
 ```Python
 commons: CommonQueryParams = Depends()
 ```
 
-You declare the dependency as the type of the parameter, and you use `Depends()` as its default value (that after the `=`)
+You declare the dependency as the type of the parameter, and you use `Depends()` as its "default" value (that after the `=`) for that function's parameter, without any parameter in `Depends()`, instead of having to write the full class *again* inside of `Depends(CommonQueryParams)`.
 
 The same example would then look like:
 
