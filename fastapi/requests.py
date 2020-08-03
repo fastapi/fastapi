@@ -1,1 +1,1 @@
-from starlette.requests import Request  # noqa
+from starlette.requests import HTTPConnection, Request  # noqa
