@@ -132,6 +132,10 @@ articles:
       title: Deploy FastAPI on Azure App Service
       author_link: https://www.linkedin.com/in/navule/
       author: Navule Pavan Kumar Rao
+    - link: https://towardsdatascience.com/build-and-host-fast-data-science-applications-using-fastapi-823be8a1d6a0
+      title: Build And Host Fast Data Science Applications Using FastAPI
+      author_link: https://medium.com/@farhadmalik
+      author: Farhad Malik
   japanese:
     - link: https://qiita.com/mtitg/items/47770e9a562dd150631d
       title: FastAPI｜DB接続してCRUDするPython製APIサーバーを構築
