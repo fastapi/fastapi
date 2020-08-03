@@ -128,6 +128,10 @@ articles:
       title: Machine learning model serving in Python using FastAPI and streamlit
       author_link: https://github.com/davidefiocco
       author: Davide Fiocco
+    - link: https://www.tutlinks.com/deploy-fastapi-on-azure/
+      title: Deploy FastAPI on Azure App Service
+      author_link: https://www.linkedin.com/in/navule/
+      author: Navule Pavan Kumar Rao
   japanese:
     - link: https://qiita.com/mtitg/items/47770e9a562dd150631d
       title: FastAPI｜DB接続してCRUDするPython製APIサーバーを構築
