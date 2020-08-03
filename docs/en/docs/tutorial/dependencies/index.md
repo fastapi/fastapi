@@ -39,7 +39,7 @@ That's it.
 
 **2 lines**.
 
-And it has the same shape and structure that all your *path operation functions*.
+And it has the same shape and structure that all your *path operation functions* have.
 
 You can think of it as a *path operation function* without the "decorator" (without the `@app.get("/some-path")`).
 
@@ -123,10 +123,9 @@ So, the interactive docs will have all the information from these dependencies t
 
 <img src="/img/tutorial/dependencies/image01.png">
 
-
 ## Simple usage
 
-If you look at it, *path operation functions* are declared to be used whenever a *path* and *operation* matches, and then **FastAPI** takes care of calling the function with the correct parameters and use the response.
+If you look at it, *path operation functions* are declared to be used whenever a *path* and *operation* matches, and then **FastAPI** takes care of calling the function with the correct parameters, extracting the data from the request.
 
 Actually, all (or most) of the web frameworks work in this same way.
 

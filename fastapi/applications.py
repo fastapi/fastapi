@@ -51,7 +51,7 @@ class FastAPI(Starlette):
         openapi_prefix: str = "",
         root_path: str = "",
         root_path_in_servers: bool = True,
-        **extra: Dict[str, Any],
+        **extra: Any,
     ) -> None:
         self.default_response_class = default_response_class
         self._debug = debug
