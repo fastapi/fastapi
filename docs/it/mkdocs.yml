@@ -31,6 +31,7 @@ nav:
   - pt: /pt/
   - ru: /ru/
   - zh: /zh/
+- contributing.md
 markdown_extensions:
 - toc:
     permalink: true
