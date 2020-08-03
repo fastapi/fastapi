@@ -117,11 +117,8 @@ class FastAPI(Starlette):
 
     def setup(self) -> None:
         if self.openapi_url:
-            server_urls = set()
-            for server_data in self.servers:
-                url = server_data.get("url")
-                if url:
-                    server_urls.add(url)
+            urls = (server_data.get("url") for server_data in self.servers)
+            server_urls = {url for url in urls if url}
 
             async def openapi(req: Request) -> JSONResponse:
                 root_path = req.scope.get("root_path", "").rstrip("/")

@@ -86,7 +86,7 @@ class HTTPBasic(HTTPBase):
         except (ValueError, UnicodeDecodeError, binascii.Error):
             raise invalid_user_credentials_exc
         username, separator, password = data.partition(":")
-        if not (separator):
+        if not separator:
             raise invalid_user_credentials_exc
         return HTTPBasicCredentials(username=username, password=password)
 
