@@ -53,8 +53,10 @@ class HTTPBasic(HTTPBase):
         realm: Optional[str] = None,
         auto_error: bool = True,
     ):
-        super().__init__(scheme="basic", scheme_name=scheme_name, auto_error=auto_error)
+        self.model = HTTPBaseModel(scheme="basic")
+        self.scheme_name = scheme_name or self.__class__.__name__
         self.realm = realm
+        self.auto_error = auto_error
 
     async def __call__(  # type: ignore
         self, request: Request
@@ -97,8 +99,9 @@ class HTTPBearer(HTTPBase):
         scheme_name: Optional[str] = None,
         auto_error: bool = True,
     ):
-        super().__init__(scheme="", scheme_name=scheme_name, auto_error=auto_error)
         self.model = HTTPBearerModel(bearerFormat=bearerFormat)
+        self.scheme_name = scheme_name or self.__class__.__name__
+        self.auto_error = auto_error
 
     async def __call__(
         self, request: Request
