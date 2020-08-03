@@ -117,8 +117,8 @@ class OAuth2(SecurityBase):
         self,
         *,
         flows: OAuthFlowsModel = OAuthFlowsModel(),
-        scheme_name: str = None,
-        auto_error: bool = True
+        scheme_name: Optional[str] = None,
+        auto_error: Optional[bool] = True
     ):
         self.model = OAuth2Model(flows=flows)
         self.scheme_name = scheme_name or self.__class__.__name__
@@ -140,8 +140,8 @@ class OAuth2PasswordBearer(OAuth2):
     def __init__(
         self,
         tokenUrl: str,
-        scheme_name: str = None,
-        scopes: dict = None,
+        scheme_name: Optional[str] = None,
+        scopes: Optional[dict] = None,
         auto_error: bool = True,
     ):
         if not scopes:
@@ -169,9 +169,9 @@ class OAuth2AuthorizationCodeBearer(OAuth2):
         self,
         authorizationUrl: str,
         tokenUrl: str,
-        refreshUrl: str = None,
-        scheme_name: str = None,
-        scopes: dict = None,
+        refreshUrl: Optional[str] = None,
+        scheme_name: Optional[str] = None,
+        scopes: Optional[dict] = None,
         auto_error: bool = True,
     ):
         if not scopes:
@@ -202,6 +202,6 @@ class OAuth2AuthorizationCodeBearer(OAuth2):
 
 
 class SecurityScopes:
-    def __init__(self, scopes: List[str] = None):
+    def __init__(self, scopes: Optional[List[str]] = None):
         self.scopes = scopes or []
         self.scope_str = " ".join(self.scopes)

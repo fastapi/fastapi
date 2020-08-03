@@ -97,7 +97,7 @@ sequence_shape_to_type = {
 
 
 def get_param_sub_dependant(
-    *, param: inspect.Parameter, path: str, security_scopes: List[str] = None
+    *, param: inspect.Parameter, path: str, security_scopes: Optional[List[str]] = None
 ) -> Dependant:
     depends: params.Depends = param.default
     if depends.dependency:
@@ -125,8 +125,8 @@ def get_sub_dependant(
     depends: params.Depends,
     dependency: Callable,
     path: str,
-    name: str = None,
-    security_scopes: List[str] = None,
+    name: Optional[str] = None,
+    security_scopes: Optional[List[str]] = None,
 ) -> Dependant:
     security_requirement = None
     security_scopes = security_scopes or []
@@ -157,7 +157,10 @@ CacheKey = Tuple[Optional[Callable], Tuple[str, ...]]
 
 
 def get_flat_dependant(
-    dependant: Dependant, *, skip_repeats: bool = False, visited: List[CacheKey] = None
+    dependant: Dependant,
+    *,
+    skip_repeats: bool = False,
+    visited: Optional[List[CacheKey]] = None,
 ) -> Dependant:
     if visited is None:
         visited = []
@@ -269,8 +272,8 @@ def get_dependant(
     *,
     path: str,
     call: Callable,
-    name: str = None,
-    security_scopes: List[str] = None,
+    name: Optional[str] = None,
+    security_scopes: Optional[List[str]] = None,
     use_cache: bool = True,
 ) -> Dependant:
     path_param_names = get_path_param_names(path)
@@ -348,7 +351,7 @@ def get_param_field(
     param: inspect.Parameter,
     param_name: str,
     default_field_info: Type[params.Param] = params.Param,
-    force_type: params.ParamTypes = None,
+    force_type: Optional[params.ParamTypes] = None,
     ignore_default: bool = False,
 ) -> ModelField:
     default_value = Required
@@ -456,10 +459,10 @@ async def solve_dependencies(
     request: Union[Request, WebSocket],
     dependant: Dependant,
     body: Optional[Union[Dict[str, Any], FormData]] = None,
-    background_tasks: BackgroundTasks = None,
-    response: Response = None,
-    dependency_overrides_provider: Any = None,
-    dependency_cache: Dict[Tuple[Callable, Tuple[str]], Any] = None,
+    background_tasks: Optional[BackgroundTasks] = None,
+    response: Optional[Response] = None,
+    dependency_overrides_provider: Optional[Any] = None,
+    dependency_cache: Optional[Dict[Tuple[Callable, Tuple[str]], Any]] = None,
 ) -> Tuple[
     Dict[str, Any],
     List[ErrorWrapper],
@@ -653,7 +656,7 @@ async def request_body_to_args(
             else:
                 loc = ("body", field.alias)
 
-            value: Any = None
+            value: Optional[Any] = None
             if received_body is not None:
                 if (
                     field.shape in sequence_shapes or field.type_ in sequence_types

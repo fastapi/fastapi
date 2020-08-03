@@ -1,7 +1,7 @@
 from enum import Enum
 from pathlib import PurePath
 from types import GeneratorType
-from typing import Any, Callable, Dict, List, Set, Tuple, Union
+from typing import Any, Callable, Dict, List, Optional, Set, Tuple, Union
 
 from fastapi.logger import logger
 from fastapi.utils import PYDANTIC_1
@@ -29,10 +29,10 @@ encoders_by_class_tuples = generate_encoders_by_class_tuples(ENCODERS_BY_TYPE)
 
 def jsonable_encoder(
     obj: Any,
-    include: Union[SetIntStr, DictIntStrAny] = None,
+    include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
     exclude: Union[SetIntStr, DictIntStrAny] = set(),
     by_alias: bool = True,
-    skip_defaults: bool = None,
+    skip_defaults: Optional[bool] = None,
     exclude_unset: bool = False,
     exclude_defaults: bool = False,
     exclude_none: bool = False,

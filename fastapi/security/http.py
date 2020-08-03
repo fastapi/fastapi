@@ -24,7 +24,7 @@ class HTTPAuthorizationCredentials(BaseModel):
 
 class HTTPBase(SecurityBase):
     def __init__(
-        self, *, scheme: str, scheme_name: str = None, auto_error: bool = True
+        self, *, scheme: str, scheme_name: Optional[str] = None, auto_error: bool = True
     ):
         self.model = HTTPBaseModel(scheme=scheme)
         self.scheme_name = scheme_name or self.__class__.__name__
@@ -47,7 +47,11 @@ class HTTPBase(SecurityBase):
 
 class HTTPBasic(HTTPBase):
     def __init__(
-        self, *, scheme_name: str = None, realm: str = None, auto_error: bool = True
+        self,
+        *,
+        scheme_name: Optional[str] = None,
+        realm: Optional[str] = None,
+        auto_error: bool = True,
     ):
         self.model = HTTPBaseModel(scheme="basic")
         self.scheme_name = scheme_name or self.__class__.__name__
@@ -91,8 +95,8 @@ class HTTPBearer(HTTPBase):
     def __init__(
         self,
         *,
-        bearerFormat: str = None,
-        scheme_name: str = None,
+        bearerFormat: Optional[str] = None,
+        scheme_name: Optional[str] = None,
         auto_error: bool = True,
     ):
         self.model = HTTPBearerModel(bearerFormat=bearerFormat)
@@ -123,7 +127,7 @@ class HTTPBearer(HTTPBase):
 
 
 class HTTPDigest(HTTPBase):
-    def __init__(self, *, scheme_name: str = None, auto_error: bool = True):
+    def __init__(self, *, scheme_name: Optional[str] = None, auto_error: bool = True):
         self.model = HTTPBaseModel(scheme="digest")
         self.scheme_name = scheme_name or self.__class__.__name__
         self.auto_error = auto_error
