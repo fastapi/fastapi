@@ -114,7 +114,7 @@ In this example we are going to use **OAuth2**, with the **Password** flow, usin
 
     In that case, **FastAPI** also provides you with the tools to build it.
 
-When we create an instance of the `OAuth2PasswordBearer` class we pass in the `tokenUrl` parameter. This parameter contains the URL from which the client (the frontend running in the user's browser) sends the `username` and `password` in order to get a token.
+When we create an instance of the `OAuth2PasswordBearer` class we pass in the `tokenUrl` parameter. This parameter contains the URL that the client (the frontend running in the user's browser) will use to send the `username` and `password` in order to get a token.
 
 ```Python hl_lines="6"
 {!../../../docs_src/security/tutorial001.py!}
