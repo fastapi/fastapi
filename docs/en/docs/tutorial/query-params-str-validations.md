@@ -142,7 +142,7 @@ So, when you need to declare a value as required while using `Query`, you can us
 ```
 
 !!! info
-    If you hadn't seen that `...` before: it is a a special single value, it is <a href="https://docs.python.org/3/library/constants.html#Ellipsis" class="external-link" target="_blank">part of Python and is called "Ellipsis"</a>.
+    If you hadn't seen that `...` before: it is a special single value, it is <a href="https://docs.python.org/3/library/constants.html#Ellipsis" class="external-link" target="_blank">part of Python and is called "Ellipsis"</a>.
 
 This will let **FastAPI** know that this parameter is required.
 
