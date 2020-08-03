@@ -2,6 +2,7 @@
 
 ## Latest changes
 
+* Remove docs preview comment from each commit. PR [#1826](https://github.com/tiangolo/fastapi/pull/1826).
 * Update GitHub context extraction for Gitter notification bot. PR [#1766](https://github.com/tiangolo/fastapi/pull/1766).
 
 ## 0.60.1
