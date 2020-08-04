@@ -90,11 +90,11 @@ Se viene mostrato il binario `pip` all'interno di `env/bin/pip`, allora ha funzi
 !!! tip
     Ogni volta che installi un nuovo pacchetto con `pip` in quell'ambiente, attiva nuovamente l'ambiente.
 
-    Questo fa sì che se si utilizza un programma terminale installato da quel pacchetto (come `flit`), si utilizzi quello del proprio ambiente locale e non qualsiasi altro che potrebbe essere stato installato a livello globale.
+    Questo fa sì che se si utilizza un programma terminale installato da quel pacchetto (come `flit`), verrà utilizzato quello del proprio ambiente locale e non qualsiasi altro che potrebbe essere stato installato a livello globale.
 
 ### Flit
 
-**FastAPI** usa <a href="https://flit.readthedocs.io/en/latest/index.html" class="external-link" target="_blank">Flit</a> per creare, impacchettare e pubblicare il progetto.
+**FastAPI** usa <a href="https://flit.readthedocs.io/en/latest/index.html" class="external-link" target="_blank">Flit</a> per assemblare, impacchettare e pubblicare il progetto.
 
 Dopo aver attivato l'ambiente come descritto sopra, installa `flit`:
 
@@ -108,7 +108,7 @@ $ pip install flit
 
 </div>
 
-Ora riattiva l'ambiente per essere sicuro che stai usando il `flit` che hai appena installato (e non quello globale).
+Ora riattiva l'ambiente virtuale per essere sicuro che stai usando il `flit` che hai appena installato (e non quello globale).
 
 E ora usa `flit` per installare le dipendenze del progetto:
 
@@ -142,13 +142,13 @@ Verranno installate tutte le dipendenze e FastAPI nell'ambiente locale.
 
 #### Usare il FastAPI locale
 
-Se crei un file Python che importa e utilizza FastAPI, e lo esegui con il Python dal proprio ambiente locale, esso utilizzerà il codice sorgente del FastAPI locale.
+Se crei un file Python che importa e utilizza FastAPI, e lo esegui con il Python dal tuo ambiente locale, verrà utilizzato il codice sorgente del FastAPI locale.
 
 E se aggiorni il codice sorgente locale di FastAPI, dato che è installato con `--symlink` (o `--pth-file` su Windows), quando esegui di nuovo quel file Python, esso userà la versione aggiornata di FastAPI appena modificata.
 
 In questo modo, non è necessario "installare" la versione locale per poter testare ogni modifica.
 
-### Format
+### Formattazione codice
 
 C'è uno script che puoi eseguire che formatterà e pulirà tutto il tuo codice:
 
@@ -162,9 +162,9 @@ $ bash scripts/format.sh
 
 Inoltre, ordinerà automaticamente tutti gli `import`.
 
-Per poterli ordinare correttamente, è necessario che FastAPI sia installato localmente nel proprio ambiente, con il comando nella sezione precedente usando `--symlink` (o `--pth-file` su Windows).
+Per poterli ordinare correttamente, è necessario che FastAPI sia installato localmente nel proprio ambiente, con il comando della sezione precedente usando `--symlink` (o `--pth-file` su Windows).
 
-### Formatta gli `import`
+### Formattazione degli `import`
 
 C'è un altro script che formatta tutti gli `import` e fa in modo di non avere `import` inutilizzati:
 
@@ -187,15 +187,15 @@ La documentazione utilizza <a href="https://www.mkdocs.org/" class="external-lin
 E ci sono strumenti/script extra per gestire le traduzioni in `./scripts/docs.py`.
 
 !!! tip
-    Non è necessario vedere il codice in `./scripts/docs.py`, basta usarlo nel terminale.
+    Non è necessario che guardi il codice in `./scripts/docs.py`, basta usarlo nel terminale.
 
 Tutta la documentazione è in formato Markdown nella directory `./docs/en/`.
 
-Molti dei tutorial hanno blocchi di codice.
+Molti tutorial contengono blocchi di codice.
 
 Nella maggior parte dei casi, questi blocchi di codice sono vere e proprie applicazioni complete che possono essere eseguite così come sono.
 
-Infatti, quei blocchi di codice non sono scritti all'interno del Markdown, sono file Python nella directory `./docs_src/`.
+Infatti, quei blocchi di codice non sono scritti all'interno del Markdown, ma sono file Python presenti nella directory `./docs_src/`.
 
 E quei file Python sono inclusi/iniettati nella documentazione durante la generazione del sito.
 
@@ -207,9 +207,9 @@ Questo assicura che:
 
 * La documentazione sia aggiornata.
 * Gli esempi di documentazione possano essere eseguiti così come sono.
-* La maggior parte delle funzionalità sono coperte dalla documentazione, garantito dalla copertura dei test.
+* La maggior parte delle funzionalità viene trattata nella documentazione e coperta dai test.
 
-Durante lo sviluppo locale, c'è uno script che costruisce il sito e controlla eventuali modifiche, live-reloading:
+Durante lo sviluppo locale, c'è uno script che genera il sito e che controlla eventuali modifiche in tempo reale:
 
 <div class="termy">
 
@@ -223,17 +223,17 @@ $ python ./scripts/docs.py live
 
 </div>
 
-Mostrerà la documentazione su `http://127.0.0.1:8008`.
+La documentazione verrà servita alla pagina web con indirizzo `http://127.0.0.1:8008`.
 
 In questo modo, puoi modificare la documentazione/file sorgente e vedere le modifiche in tempo reale.
 
 #### Typer CLI (optional)
 
-Le istruzioni qui mostrano come usare lo script a `./scripts/docs.py` con il programma `python` direttamente.
+Le seguenti istruzioni mostrano come usare lo script `./scripts/docs.py` con il programma `python` direttamente.
 
-Ma potete puoi anche usare <a href="https://typer.tiangolo.com/typer-cli/" class="external-link" target="_blank">Typer CLI</a>, e otterrai l'autocompletamento nel tuo terminale per i comandi dopo l'installazione dell'autocompletamento.
+Ma puoi puoi anche usare <a href="https://typer.tiangolo.com/typer-cli/" class="external-link" target="_blank">Typer CLI</a>, e otterrai l'autocompletamento nel tuo terminale per i comandi (dopo l'installazione dell'autocompletamento).
 
-Se si installa Typer CLI, è possibile installare il completamento con:
+Se si installa Typer CLI, è possibile installare l'autocompletamento con:
 
 <div class="termy">
 
@@ -246,9 +246,9 @@ Completion will take effect once you restart the terminal.
 
 </div>
 
-### Apps and docs allo stesso tempo
+### Eseguire app e la documentazione contemporaneamente
 
-Se si eseguono gli esempi con, ad es:
+Se si eseguono gli esempi con, ad esempio:
 
 <div class="termy">
 
@@ -260,11 +260,11 @@ $ uvicorn tutorial001:app --reload
 
 </div>
 
-poiché Uvicorn per default userà la porta `8000`, la documentazione sulla porta `8008` non si scontrerà.
+poiché Uvicorn di default usa la porta `8000`, la documentazione sulla porta `8008` non si scontrerà con l'applicazione appena eseguita perchè sono su due porte diverse.
 
 ### Traduzioni
 
-L'aiuto per le traduzioni è MOLTO apprezzato! E non può essere fatto senza l'aiuto della comunità. 🌎 🚀
+L'aiuto con le traduzioni è MOLTO apprezzato! E l'aiuto della community è fondamenntale. 🌎 🚀
 
 Ecco i passi per aiutare con le traduzioni.
 
@@ -277,23 +277,23 @@ Ecco i passi per aiutare con le traduzioni.
 
     Controlla la documentazione su <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-request-reviews" class="external-link" target="_blank">valutare una pull request</a> per approvarla o richiedere modifiche.
 
-* Controlla negli <a href="https://github.com/tiangolo/fastapi/issues" class="external-link" target="_blank">issues</a> per vedere se c'è una traduzione coordinata per la tua lingua.
+* Controlla negli <a href="https://github.com/tiangolo/fastapi/issues" class="external-link" target="_blank">issues</a> per vedere se c'è un thread esistente per coordinare le traduzioni nella tua lingua.
 
-* Aggiungi una singola pull request per ogni pagina tradotta. Questo renderà molto più facile per gli altri esaminarla.
+* Aggiungi una singola pull request per ogni pagina tradotta. Questo renderà molto più facile agli altri esaminarla.
 
-Per le lingue che non parlo, aspetterò che molti altri esaminino la traduzione prima di approvarla definitivamente per il merging.
+Per le lingue che non parlo, aspetterò che molti altri esaminino la traduzione prima di approvarla definitivamente per il merge.
 
-* Puoi anche controllare se ci sono traduzioni per la vostra lingua e aggiungere un commento, che mi aiuterà a sapere che la traduzione è corretta e posso fare il merge.
+* Puoi anche controllare se ci sono traduzioni nella tua lingua e aggiungere un commento, per farmi sapere che la traduzione è corretta e che potrò fare il merge.
 
-* Utilizza gli stessi esempi di Python e traduci solo il testo nei documenti. Non devi cambiare nulla perché questo funzioni.
+* Non modificare il codice Python o gli esempi e traduci solo il testo della documentazione.
 
-* Utilizzare le stesse immagini, gli stessi nomi di file e gli stessi link. Non devi cambiare nulla perché funzioni.
+* Utilizza le stesse immagini, gli stessi nomi dei file e gli stessi link. Non devi cambiare nulla perché funzioni.
 
-* Per recuperare il codice di 2 lettere per la lingua che si desidera tradurre puoi utilizzare la tabella <a href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes" class="external-link" target="_blank">Lista dei codici ISO 639-1</a>.
+* Per recuperare il codice di 2 lettere della lingua che si desidera tradurre puoi utilizzare la tabella <a href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes" class="external-link" target="_blank">Lista dei codici ISO 639-1</a>.
 
 #### Lingua esistente
 
-Supponiamo che vuoi tradurre una pagina per una lingua che ha già delle traduzioni per alcune pagine, come lo spagnolo.
+Supponiamo che tu voglia tradurre una pagina per una lingua che ha già delle traduzioni per alcune pagine, come lo spagnolo.
 
 Nel caso dello spagnolo, il codice di 2 lettere è `es`. Quindi, la directory per le traduzioni in spagnolo si trova a `docs/es/`.
 
@@ -317,34 +317,34 @@ $ python ./scripts/docs.py live es
 
 Ora puoi andare su <a href="http://127.0.0.1:8008" class="external-link" target="_blank">http://127.0.0.1:8008</a> e vedere le tue modifiche in diretta.
 
-Se guardi il sito web di FastAPI docs, vedrai che ogni lingua ha tutte le pagine. Ma alcune pagine non sono tradotte e hanno una notifica sulla traduzione mancante.
+Se guardi il sito web della documentazione di FastAPI, vedrai che ogni lingua ha tutte le pagine. Ma alcune pagine non sono tradotte e hanno una notifica che segnala che manca la traduzione.
 
-Ma quando lo si esegue localmente in questo modo, si vedranno solo le pagine già tradotte.
+Ma quando generi la documentazione localmente, vedrai solamente le pagina tradotte.
 
-Ora supponiamo che vuoi aggiungnere una traduzione per la sezione [Features](features.md){.internal-link target=_blank}.
+Ora supponiamo che tu voglia aggiungnere una traduzione per la sezione [Features](features.md){.internal-link target=_blank}.
 
-* Copia il file a:
+* Copia il seguente file:
 
 ```
 docs/en/docs/features.md
 ```
 
-* Incollalo esattamente nella stessa posizione ma per la lingua che volete tradurre, ad es:
+* Incollalo esattamente nella stessa posizione ma per la lingua che vuoi tradurre, ad esempio:
 
 ```
 docs/es/docs/features.md
 ```
 
 !!! tip
-    Si noti che l'unico cambiamento nel percorso e nel nome del file è il codice della lingua, da `en` a `es`.
+    Si noti che l'unico cambiamento nel percorso del file è il codice della lingua, da `en` a `es`.
 
-* Ora aprite il file di configurazione MkDocs per l'inglese a:
+* Ora apri il file di configurazione MkDocs per l'inglese:
 
 ```
 docs/en/docs/mkdocs.yml
 ```
 
-* Trova il luogo dove si trova quel `docs/features.md` nel file di configurazione. Da qualche parte come:
+* Trova dove si trova quel `docs/features.md` nel file di configurazione. Per esempio qui:
 
 ```YAML hl_lines="8"
 site_name: FastAPI
@@ -357,7 +357,7 @@ nav:
 - features.md
 ```
 
-* Apri il file di configurazione MkDocs per la lingua che si sta modificando, ad es:
+* Apri il file di configurazione MkDocs per la lingua stai modificando, ad esempio:
 
 ```
 docs/es/docs/mkdocs.yml
@@ -376,21 +376,21 @@ nav:
 - features.md
 ```
 
-Assicurati che se ci sono altre voci, la nuova voce con la tua traduzione sia esattamente nello stesso ordine della versione inglese.
+Assicurati che, se ci sono altre voci, la nuova voce con la tua traduzione sia esattamente nello stesso ordine della versione inglese.
 
-Se vai sul tuo browser vedrai che ora i documenti mostrano la tua nuova sezione. 🎉
+Se torni con il tuo browser alla documentazione generata localmente vedrai ora che i documenti mostrano la tua nuova sezione. 🎉
 
-Ora è possibile tradurre il tutto e vedere come appare mentre si salva il file.
+Ora puoi tradurre tutto il testo e vedere il risultato in tempo reale mentre salvi il file.
 
 #### Nuova Lingua
 
-Supponiamo che vuoi aggiungere la traduzione per una lingua che non è ancora tradotta, nemmeno alcune pagine.
+Supponiamo che tu voglia la traduzione per una lingua che non è ancora tradotta, nemmeno alcune pagine.
 
-Supponiamo che si vuoi aggiungere la traduzione per il creolo, e non è ancora presente nella documentazione.
+Supponiamo che si voglia aggiungere la traduzione per il creolo, e che non è ancora presente nella documentazione.
 
-Controllando il link riportato in alto, il codice per il "creolo" è `ht`.
+Usando il link con la lista dei codici riportato in alto, il codice per il "creolo" è `ht`.
 
-Il passo successivo è quello di eseguire lo script per generare una nuova directory di traduzione:
+Il passo successivo è quello di eseguire lo script per generare una nuova cartella con il file della traduzione:
 
 <div class="termy">
 
@@ -405,29 +405,29 @@ Updating en
 
 </div>
 
-Ora puoi controllare nel vostro editor di codice la directory appena creata `docs/ht/`.
+Ora puoi controllare nel tup editor di codice la directory appena creata `docs/ht/`.
 
 !!! tip
-    Crea una pull request con solo questo, per impostare la configurazione per la nuova lingua, prima di aggiungere le traduzioni.
+    Adesso crea una pull request con solo questo per condivididere i file di configurazione per la nuova lingua, prima di aggiungere le traduzioni.
 
-    In questo modo altri possono aiutare con altre pagine mentre tu lavori alla prima. 🚀
+    In questo modo gli altri possono aiutare a tradurre altre pagine mentre tu lavori sulla prima. 🚀
 
 Inizia traducendo la pagina principale, `docs/ht/index.md`.
 
-Poi si può continuare con le istruzioni precedenti, per una "Lingua esistente".
+Poi puoi continuare a seguire le istruzioni precedenti, consulta il paragrafo "Lingua esistente".
 
 ##### Nuova lingua non supportata
 
-Se durante l'esecuzione dello script del server live si ottiene un errore sulla lingua non supportata, qualcosa del genere:
+Se durante l'esecuzione dello script del server live si ottiene un errore che la lingua non è supportata, come questo:
 
 ```
  raise TemplateNotFound(template)
 jinja2.exceptions.TemplateNotFound: partials/language/xx.html
 ```
 
-Ciò significa che il tema non supporta quel linguaggio (in questo caso, con un falso codice di 2 lettere di `xx`).
+Ciò significa che il tema non supporta quella lingua (in questo caso, le abbiamo dato un falso codice di 2 lettere `xx`).
 
-Ma non preoccuparti, potete impostare la lingua del tema in inglese e poi tradurre il contenuto della documentazione.
+Ma non preoccuparti, puoi impostare la lingua del tema in inglese e poi tradurre il contenuto della documentazione.
 
 Se hai bisogno di farlo, modifica il `mkdocs.yml` per la tua nuova lingua, avrà qualcosa di simile:
 
@@ -447,7 +447,7 @@ Poi si può avviare di nuovo il server live.
 
 Quando usi lo script a `./scripts/docs.py` con il comando `live`, verranno mostrati solo i file e le traduzioni disponibili per la lingua corrente.
 
-Ma una volta che hai finito, puoi testare come la documentazione apparirebbe online.
+Ma una volta che hai finito, puoi vedere come la documentazione apparirebbe online.
 
 Per farlo, prima genera tutta la documentazione:
 
