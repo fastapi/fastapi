@@ -33,7 +33,7 @@ Os recursos chave são:
 
 * **Rápido**: alta performance, equivalente a **NodeJS** e **Go** (graças ao Starlette e Pydantic). [Um dos frameworks mais rápidos disponíveis](#performance).
 * **Rápido para codar**: Aumenta a velocidade para desenvolver recursos entre 200% a 300%. *
-* **Poucos bugs**: Reduz cerca de 40% de erros iduzidos por humanos (desenvolvedores). *
+* **Poucos bugs**: Reduz cerca de 40% de erros induzidos por humanos (desenvolvedores). *
 * **Intuitivo**: Grande suporte a _IDEs_. <abbr title="também conhecido como _auto-complete_, _autocompletion_, _IntelliSense_">_Auto-Complete_</abbr> em todos os lugares. Menos tempo debugando.
 * **Fácil**: Projetado para ser fácil de aprender e usar. Menos tempo lendo documentação.
 * **Enxuto**: Minimize duplicação de código. Múltiplos recursos para cada declaração de parâmetro. Menos bugs.
