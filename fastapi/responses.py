@@ -24,7 +24,7 @@ class ORJSONResponse(JSONResponse):
         return orjson.dumps(content, option=self.option)
 
 
-def create_or_json_class(options: int = 0) -> Type[ORJSONResponse]:
+def create_orjson_class(options: int = 0) -> Type[ORJSONResponse]:
     """
     Create a new ORJsonResponse class with additional options.
     """
