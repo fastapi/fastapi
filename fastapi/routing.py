@@ -305,7 +305,6 @@ class APIRoute(routing.Route):
         self.methods = (
             {"GET"} if methods is None else {method.upper() for method in methods}
         )
-
         self.unique_id = generate_operation_id_for_path(
             name=self.name,
             path=self.path_format,
