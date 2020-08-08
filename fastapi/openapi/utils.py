@@ -329,7 +329,7 @@ def get_openapi(
     title: str,
     version: str,
     openapi_version: str = "3.0.2",
-    description: str = None,
+    description: Optional[str] = None,
     routes: Sequence[BaseRoute],
     tags: Optional[List[Dict[str, Any]]] = None,
     servers: Optional[List[Dict[str, Union[str, Any]]]] = None,

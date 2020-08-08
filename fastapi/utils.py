@@ -109,7 +109,9 @@ def create_response_field(
 
 
 def create_cloned_field(
-    field: ModelField, *, cloned_types: Dict[Type[BaseModel], Type[BaseModel]] = None,
+    field: ModelField,
+    *,
+    cloned_types: Optional[Dict[Type[BaseModel], Type[BaseModel]]] = None,
 ) -> ModelField:
     # _cloned_types has already cloned types, to support recursive models
     if cloned_types is None:

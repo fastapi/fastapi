@@ -36,7 +36,7 @@ They are normally used to declare specific security permissions, for example:
     In OAuth2 a "scope" is just a string that declares a specific permission required.
 
     It doesn't matter if it has other characters like `:` or if it is a URL.
-    
+
     Those details are implementation specific.
 
     For OAuth2 they are just strings.
@@ -166,7 +166,7 @@ For this simple example, we are going to just be completely insecure and return 
     This is something that you have to do yourself in your code, and make sure you use those JSON keys.
 
     It's almost the only thing that you have to remember to do correctly yourself, to be compliant with the specifications.
-    
+
     For the rest, **FastAPI** handles it for you.
 
 ## Update the dependencies
@@ -177,7 +177,7 @@ We want to get the `current_user` *only* if this user is active.
 
 So, we create an additional dependency `get_current_active_user` that in turn uses `get_current_user` as a dependency.
 
-Both of these dependencies will just return an HTTP error if the user doesn't exists, or if is inactive.
+Both of these dependencies will just return an HTTP error if the user doesn't exist, or if is inactive.
 
 So, in our endpoint, we will only get a user if the user exists, was correctly authenticated, and is active:
 

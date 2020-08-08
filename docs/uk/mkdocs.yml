@@ -1,15 +1,16 @@
 site_name: FastAPI
 site_description: FastAPI framework, high performance, easy to learn, fast to code, ready for production
-site_url: https://fastapi.tiangolo.com/
+site_url: https://fastapi.tiangolo.com/uk/
 theme:
   name: material
   palette:
+    scheme: preference
     primary: teal
     accent: amber
   icon:
     repo: fontawesome/brands/github-alt
-  logo: img/icon-white.svg
-  favicon: img/favicon.png
+  logo: https://fastapi.tiangolo.com/img/icon-white.svg
+  favicon: https://fastapi.tiangolo.com/img/favicon.png
   language: uk
 repo_name: tiangolo/fastapi
 repo_url: https://github.com/tiangolo/fastapi
@@ -29,10 +30,8 @@ nav:
   - it: /it/
   - pt: /pt/
   - ru: /ru/
-  - zh: /zh/
   - uk: /uk/
-- features.md
-- python-types.md
+  - zh: /zh/
 markdown_extensions:
 - toc:
     permalink: true
@@ -64,11 +63,11 @@ extra:
   - icon: fontawesome/solid/globe
     link: https://tiangolo.com
 extra_css:
-- css/termynal.css
-- css/custom.css
+- https://fastapi.tiangolo.com/css/termynal.css
+- https://fastapi.tiangolo.com/css/custom.css
 extra_javascript:
 - https://unpkg.com/mermaid@8.4.6/dist/mermaid.min.js
-- js/termynal.js
-- js/custom.js
-- js/chat.js
+- https://fastapi.tiangolo.com/js/termynal.js
+- https://fastapi.tiangolo.com/js/custom.js
+- https://fastapi.tiangolo.com/js/chat.js
 - https://sidecar.gitter.im/dist/sidecar.v1.js
