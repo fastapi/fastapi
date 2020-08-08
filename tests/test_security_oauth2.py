@@ -9,7 +9,7 @@ app = FastAPI()
 reusable_oauth2 = OAuth2(
     flows={
         "password": {
-            "tokenUrl": "/token",
+            "tokenUrl": "token",
             "scopes": {"read:users": "Read the users", "write:users": "Create users"},
         }
     }
@@ -144,7 +144,7 @@ openapi_schema = {
                             "read:users": "Read the users",
                             "write:users": "Create users",
                         },
-                        "tokenUrl": "/token",
+                        "tokenUrl": "token",
                     }
                 },
             }

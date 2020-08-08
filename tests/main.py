@@ -1,4 +1,5 @@
 import http
+from typing import Optional
 
 from fastapi import FastAPI, Path, Query
 
@@ -48,7 +49,7 @@ def get_bool_id(item_id: bool):
 
 
 @app.get("/path/param/{item_id}")
-def get_path_param_id(item_id: str = Path(None)):
+def get_path_param_id(item_id: Optional[str] = Path(None)):
     return item_id
 
 
@@ -160,7 +161,7 @@ def get_query_type(query: int):
 
 
 @app.get("/query/int/optional")
-def get_query_type_optional(query: int = None):
+def get_query_type_optional(query: Optional[int] = None):
     if query is None:
         return "foo bar"
     return f"foo bar {query}"

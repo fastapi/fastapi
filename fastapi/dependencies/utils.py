@@ -24,6 +24,7 @@ from fastapi.concurrency import (
     contextmanager_in_threadpool,
 )
 from fastapi.dependencies.models import Dependant, SecurityRequirement
+from fastapi.logger import logger
 from fastapi.security.base import SecurityBase
 from fastapi.security.oauth2 import OAuth2, SecurityScopes
 from fastapi.security.open_id_connect_url import OpenIdConnect
@@ -60,9 +61,9 @@ try:
     from pydantic.typing import ForwardRef, evaluate_forwardref
 except ImportError:  # pragma: nocover
     # TODO: remove when removing support for Pydantic < 1.0.0
+    from pydantic import Schema as FieldInfo  # type: ignore
     from pydantic.fields import Field as ModelField  # type: ignore
     from pydantic.fields import Required, Shape  # type: ignore
-    from pydantic import Schema as FieldInfo  # type: ignore
     from pydantic.schema import get_annotation_from_schema  # type: ignore
     from pydantic.utils import ForwardRef, evaluate_forwardref  # type: ignore
 
@@ -96,8 +97,44 @@ sequence_shape_to_type = {
 }
 
 
+multipart_not_installed_error = (
+    'Form data requires "python-multipart" to be installed. \n'
+    'You can install "python-multipart" with: \n\n'
+    "pip install python-multipart\n"
+)
+multipart_incorrect_install_error = (
+    'Form data requires "python-multipart" to be installed. '
+    'It seems you installed "multipart" instead. \n'
+    'You can remove "multipart" with: \n\n'
+    "pip uninstall multipart\n\n"
+    'And then install "python-multipart" with: \n\n'
+    "pip install python-multipart\n"
+)
+
+
+def check_file_field(field: ModelField) -> None:
+    field_info = get_field_info(field)
+    if isinstance(field_info, params.Form):
+        try:
+            # __version__ is available in both multiparts, and can be mocked
+            from multipart import __version__
+
+            assert __version__
+            try:
+                # parse_options_header is only available in the right multlipart
+                from multipart.multipart import parse_options_header
+
+                assert parse_options_header
+            except ImportError:
+                logger.error(multipart_incorrect_install_error)
+                raise RuntimeError(multipart_incorrect_install_error)
+        except ImportError:
+            logger.error(multipart_not_installed_error)
+            raise RuntimeError(multipart_not_installed_error)
+
+
 def get_param_sub_dependant(
-    *, param: inspect.Parameter, path: str, security_scopes: List[str] = None
+    *, param: inspect.Parameter, path: str, security_scopes: Optional[List[str]] = None
 ) -> Dependant:
     depends: params.Depends = param.default
     if depends.dependency:
@@ -125,8 +162,8 @@ def get_sub_dependant(
     depends: params.Depends,
     dependency: Callable,
     path: str,
-    name: str = None,
-    security_scopes: List[str] = None,
+    name: Optional[str] = None,
+    security_scopes: Optional[List[str]] = None,
 ) -> Dependant:
     security_requirement = None
     security_scopes = security_scopes or []
@@ -157,7 +194,10 @@ CacheKey = Tuple[Optional[Callable], Tuple[str, ...]]
 
 
 def get_flat_dependant(
-    dependant: Dependant, *, skip_repeats: bool = False, visited: List[CacheKey] = None
+    dependant: Dependant,
+    *,
+    skip_repeats: bool = False,
+    visited: Optional[List[CacheKey]] = None,
 ) -> Dependant:
     if visited is None:
         visited = []
@@ -246,7 +286,9 @@ def get_typed_signature(call: Callable) -> inspect.Signature:
 def get_typed_annotation(param: inspect.Parameter, globalns: Dict[str, Any]) -> Any:
     annotation = param.annotation
     if isinstance(annotation, str):
-        annotation = ForwardRef(annotation)
+        # Temporary ignore type
+        # Ref: https://github.com/samuelcolvin/pydantic/issues/1738
+        annotation = ForwardRef(annotation)  # type: ignore
         annotation = evaluate_forwardref(annotation, globalns, globalns)
     return annotation
 
@@ -267,8 +309,8 @@ def get_dependant(
     *,
     path: str,
     call: Callable,
-    name: str = None,
-    security_scopes: List[str] = None,
+    name: Optional[str] = None,
+    security_scopes: Optional[List[str]] = None,
     use_cache: bool = True,
 ) -> Dependant:
     path_param_names = get_path_param_names(path)
@@ -283,8 +325,6 @@ def get_dependant(
                 param=param, path=path, security_scopes=security_scopes
             )
             dependant.dependencies.append(sub_dependant)
-    for param_name, param in signature_params.items():
-        if isinstance(param.default, params.Depends):
             continue
         if add_non_field_param_to_dependency(param=param, dependant=dependant):
             continue
@@ -348,7 +388,7 @@ def get_param_field(
     param: inspect.Parameter,
     param_name: str,
     default_field_info: Type[params.Param] = params.Param,
-    force_type: params.ParamTypes = None,
+    force_type: Optional[params.ParamTypes] = None,
     ignore_default: bool = False,
 ) -> ModelField:
     default_value = Required
@@ -456,10 +496,10 @@ async def solve_dependencies(
     request: Union[Request, WebSocket],
     dependant: Dependant,
     body: Optional[Union[Dict[str, Any], FormData]] = None,
-    background_tasks: BackgroundTasks = None,
-    response: Response = None,
-    dependency_overrides_provider: Any = None,
-    dependency_cache: Dict[Tuple[Callable, Tuple[str]], Any] = None,
+    background_tasks: Optional[BackgroundTasks] = None,
+    response: Optional[Response] = None,
+    dependency_overrides_provider: Optional[Any] = None,
+    dependency_cache: Optional[Dict[Tuple[Callable, Tuple[str]], Any]] = None,
 ) -> Tuple[
     Dict[str, Any],
     List[ErrorWrapper],
@@ -653,7 +693,7 @@ async def request_body_to_args(
             else:
                 loc = ("body", field.alias)
 
-            value: Any = None
+            value: Optional[Any] = None
             if received_body is not None:
                 if (
                     field.shape in sequence_shapes or field.type_ in sequence_types
@@ -730,9 +770,8 @@ def get_schema_compatible_field(*, field: ModelField) -> ModelField:
             default=field.default,
             required=field.required,
             alias=field.alias,
-            field_info=field.field_info if PYDANTIC_1 else field.schema,  # type: ignore
+            field_info=get_field_info(field),
         )
-
     return out_field
 
 
@@ -743,9 +782,11 @@ def get_body_field(*, dependant: Dependant, name: str) -> Optional[ModelField]:
     first_param = flat_dependant.body_params[0]
     field_info = get_field_info(first_param)
     embed = getattr(field_info, "embed", None)
-    body_param_names_set = set([param.name for param in flat_dependant.body_params])
+    body_param_names_set = {param.name for param in flat_dependant.body_params}
     if len(body_param_names_set) == 1 and not embed:
-        return get_schema_compatible_field(field=first_param)
+        final_field = get_schema_compatible_field(field=first_param)
+        check_file_field(final_field)
+        return final_field
     # If one field requires to embed, all have to be embedded
     # in case a sub-dependency is evaluated with a single unique body field
     # That is combined (embedded) with other body fields
@@ -776,10 +817,12 @@ def get_body_field(*, dependant: Dependant, name: str) -> Optional[ModelField]:
         ]
         if len(set(body_param_media_types)) == 1:
             BodyFieldInfo_kwargs["media_type"] = body_param_media_types[0]
-    return create_response_field(
+    final_field = create_response_field(
         name="body",
         type_=BodyModel,
         required=required,
         alias="body",
         field_info=BodyFieldInfo(**BodyFieldInfo_kwargs),
     )
+    check_file_field(final_field)
+    return final_field

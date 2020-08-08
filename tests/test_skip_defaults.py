@@ -19,7 +19,7 @@ class Model(BaseModel):
 class ModelSubclass(Model):
     y: int
     z: int = 0
-    w: int = None
+    w: Optional[int] = None
 
 
 class ModelDefaults(BaseModel):

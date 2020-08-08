@@ -18,8 +18,8 @@ try:
     PYDANTIC_1 = True
 except ImportError:  # pragma: nocover
     # TODO: remove when removing support for Pydantic < 1.0.0
-    from pydantic.fields import Field as ModelField  # type: ignore
     from pydantic import Schema as FieldInfo  # type: ignore
+    from pydantic.fields import Field as ModelField  # type: ignore
 
     class UndefinedType:  # type: ignore
         def __repr__(self) -> str:
@@ -109,7 +109,9 @@ def create_response_field(
 
 
 def create_cloned_field(
-    field: ModelField, *, cloned_types: Dict[Type[BaseModel], Type[BaseModel]] = None,
+    field: ModelField,
+    *,
+    cloned_types: Optional[Dict[Type[BaseModel], Type[BaseModel]]] = None,
 ) -> ModelField:
     # _cloned_types has already cloned types, to support recursive models
     if cloned_types is None:

@@ -98,7 +98,7 @@ In WebSocket endpoints you can import from `fastapi` and use:
 
 They work the same way as for other FastAPI endpoints/*path operations*:
 
-```Python hl_lines="56 57 58 59 60 61  64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79"
+```Python hl_lines="58 59 60 61 62 63 64 65  68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83"
 {!../../../docs_src/websockets/tutorial002.py!}
 ```
 

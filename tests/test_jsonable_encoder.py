@@ -1,6 +1,7 @@
 from datetime import datetime, timezone
 from enum import Enum
 from pathlib import PurePath, PurePosixPath, PureWindowsPath
+from typing import Optional
 
 import pytest
 from fastapi.encoders import jsonable_encoder
@@ -54,13 +55,18 @@ class ModelWithCustomEncoder(BaseModel):
         }
 
 
+class ModelWithCustomEncoderSubclass(ModelWithCustomEncoder):
+    class Config:
+        pass
+
+
 class RoleEnum(Enum):
     admin = "admin"
     normal = "normal"
 
 
 class ModelWithConfig(BaseModel):
-    role: RoleEnum = None
+    role: Optional[RoleEnum] = None
 
     class Config:
         use_enum_values = True
@@ -113,6 +119,11 @@ def test_encode_unsupported():
 
 def test_encode_custom_json_encoders_model():
     model = ModelWithCustomEncoder(dt_field=datetime(2019, 1, 1, 8))
+    assert jsonable_encoder(model) == {"dt_field": "2019-01-01T08:00:00+00:00"}
+
+
+def test_encode_custom_json_encoders_model_subclass():
+    model = ModelWithCustomEncoderSubclass(dt_field=datetime(2019, 1, 1, 8))
     assert jsonable_encoder(model) == {"dt_field": "2019-01-01T08:00:00+00:00"}
 
 
