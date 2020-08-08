@@ -31,9 +31,9 @@ jobs:
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
-      - name: Notify
-        env:
-          GITTER_TOKEN: ${{ secrets.GITTER_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          TAG: ${{ github.event.release.name }}
-        run: bash scripts/notify.sh
+      # - name: Notify
+      #   env:
+      #     GITTER_TOKEN: ${{ secrets.GITTER_TOKEN }}
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #     TAG: ${{ github.event.release.name }}
+      #   run: bash scripts/notify.sh
