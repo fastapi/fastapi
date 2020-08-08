@@ -68,7 +68,7 @@ $ pytest
 
 The marker `@pytest.mark.asyncio` tells pytest that this test function should be called asynchronously:
 
-```Python hl_lines="8"
+```Python hl_lines="7"
 {!../../../docs_src/async_tests/test_main.py!}
 ```
 
@@ -77,7 +77,7 @@ The marker `@pytest.mark.asyncio` tells pytest that this test function should be
 
 Then we can create an `AsyncClient` with the app, and send async requests to it, using `await`.
 
-```Python hl_lines="10 11"
+```Python hl_lines="9 10"
 {!../../../docs_src/async_tests/test_main.py!}
 ```
 
