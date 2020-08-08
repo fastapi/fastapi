@@ -111,6 +111,7 @@ nav:
   - advanced/testing-events.md
   - advanced/testing-dependencies.md
   - advanced/testing-database.md
+  - advanced/async-tests.md
   - advanced/settings.md
   - advanced/conditional-openapi.md
   - advanced/extending-openapi.md
