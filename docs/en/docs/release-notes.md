@@ -2,6 +2,8 @@
 
 ## Latest changes
 
+## 0.60.2
+
 * Fix typo in docs for query parameters. PR [#1832](https://github.com/tiangolo/fastapi/pull/1832) by [@ycd](https://github.com/ycd).
 * Add docs about [Async Tests](https://fastapi.tiangolo.com/advanced/async-tests/). PR [#1619](https://github.com/tiangolo/fastapi/pull/1619) by [@empicano](https://github.com/empicano).
 * Raise an exception when using form data (`Form`, `File`) without having `python-multipart` installed.
