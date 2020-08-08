@@ -302,11 +302,14 @@ class APIRoute(routing.Route):
         self.endpoint = endpoint
         self.name = get_name(endpoint) if name is None else name
         self.path_regex, self.path_format, self.param_convertors = compile_path(path)
-        if methods is None:
-            methods = ["GET"]
-        self.methods = set([method.upper() for method in methods])
+        self.methods = (
+            {"GET"} if methods is None else {method.upper() for method in methods}
+        )
+
         self.unique_id = generate_operation_id_for_path(
-            name=self.name, path=self.path_format, method=list(methods)[0]
+            name=self.name,
+            path=self.path_format,
+            method=("GET" if methods is None else list(methods)[0]),
         )
         self.response_model = response_model
         if self.response_model:
