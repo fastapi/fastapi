@@ -97,6 +97,42 @@ sequence_shape_to_type = {
 }
 
 
+multipart_not_installed_error = (
+    'Form data requires "python-multipart" to be installed. \n'
+    'You can install "python-multipart" with: \n\n'
+    "pip install python-multipart\n"
+)
+multipart_incorrect_install_error = (
+    'Form data requires "python-multipart" to be installed. '
+    'It seems you installed "multipart" instead. \n'
+    'You can remove "multipart" with: \n\n'
+    "pip uninstall multipart\n\n"
+    'And then install "python-multipart" with: \n\n'
+    "pip install python-multipart\n"
+)
+
+
+def check_file_field(field: ModelField) -> None:
+    field_info = get_field_info(field)
+    if isinstance(field_info, params.Form):
+        try:
+            # __version__ is available in both multiparts, and can be mocked
+            from multipart import __version__
+
+            assert __version__
+            try:
+                # parse_options_header is only available in the right multlipart
+                from multipart.multipart import parse_options_header
+
+                assert parse_options_header
+            except ImportError:
+                logger.error(multipart_incorrect_install_error)
+                raise RuntimeError(multipart_incorrect_install_error)
+        except ImportError:
+            logger.error(multipart_not_installed_error)
+            raise RuntimeError(multipart_not_installed_error)
+
+
 def get_param_sub_dependant(
     *, param: inspect.Parameter, path: str, security_scopes: List[str] = None
 ) -> Dependant:
@@ -731,14 +767,9 @@ def get_schema_compatible_field(*, field: ModelField) -> ModelField:
             default=field.default,
             required=field.required,
             alias=field.alias,
-            field_info=field.field_info if PYDANTIC_1 else field.schema,  # type: ignore
+            field_info=get_field_info(field),
         )
-
     return out_field
-
-
-def is_form_data(field: Type[params.Body]) -> bool:
-    return field in (params.Form, params.File, bytes)
 
 
 def get_body_field(*, dependant: Dependant, name: str) -> Optional[ModelField]:
@@ -750,7 +781,9 @@ def get_body_field(*, dependant: Dependant, name: str) -> Optional[ModelField]:
     embed = getattr(field_info, "embed", None)
     body_param_names_set = set([param.name for param in flat_dependant.body_params])
     if len(body_param_names_set) == 1 and not embed:
-        return get_schema_compatible_field(field=first_param)
+        final_field = get_schema_compatible_field(field=first_param)
+        check_file_field(final_field)
+        return final_field
     # If one field requires to embed, all have to be embedded
     # in case a sub-dependency is evaluated with a single unique body field
     # That is combined (embedded) with other body fields
@@ -781,29 +814,12 @@ def get_body_field(*, dependant: Dependant, name: str) -> Optional[ModelField]:
         ]
         if len(set(body_param_media_types)) == 1:
             BodyFieldInfo_kwargs["media_type"] = body_param_media_types[0]
-    if is_form_data(BodyFieldInfo):
-        try:
-            from multipart import QuerystringParser  # check if there's an import
-
-            QuerystringParser(  # check if correct import using python-multipart function
-                {}
-            )
-        except ModuleNotFoundError:
-            error = "Form data requires [python-multipart] to be installed."
-            logger.error(error)
-            raise RuntimeError(error)
-        except ImportError:
-            error = (
-                "Form data requires [python-multipart] to be installed. Currently "
-                "[multipart] is installed and not compatible with [python-multipart]. "
-                "Uninstall [multipart] and then install [python-multipart]."
-            )
-            logger.error(error)
-            raise RuntimeError(error)
-    return create_response_field(
+    final_field = create_response_field(
         name="body",
         type_=BodyModel,
         required=required,
         alias="body",
         field_info=BodyFieldInfo(**BodyFieldInfo_kwargs),
     )
+    check_file_field(final_field)
+    return final_field
