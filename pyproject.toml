@@ -45,10 +45,12 @@ Documentation = "https://fastapi.tiangolo.com/"
 test = [
     "pytest >=5.4.3",
     "pytest-cov",
+    "pytest-asyncio >=0.14.0,<0.15.0",
     "mypy",
     "black",
     "isort",
     "requests",
+    "httpx >=0.14.0,<0.15.0",
     "email_validator",
     "sqlalchemy",
     "peewee",
