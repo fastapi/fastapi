@@ -2,6 +2,8 @@
 
 ## Latest changes
 
+## 0.61.0
+
 ### Features
 
 * Add support for injecting `HTTPConnection` (as `Request` and `WebSocket`). Useful for sharing app state in dependencies. PR [#1827](https://github.com/tiangolo/fastapi/pull/1827) by [@nsidnev](https://github.com/nsidnev).
