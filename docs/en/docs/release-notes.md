@@ -7,6 +7,18 @@
 * Add support for injecting `HTTPConnection` (as `Request` and `WebSocket`). Useful for sharing app state in dependencies. PR [#1827](https://github.com/tiangolo/fastapi/pull/1827) by [@nsidnev](https://github.com/nsidnev).
 * Export `WebSocketDisconnect` and add example handling WebSocket disconnections to docs. PR [#1822](https://github.com/tiangolo/fastapi/pull/1822) by [@rkbeatss](https://github.com/rkbeatss).
 
+### Breaking Changes
+
+* Require Pydantic > `1.0.0`.
+    * Remove support for deprecated Pydantic `0.32.2`. This improves maintainability and allows new features.
+    * In `FastAPI` and `APIRouter`:
+        * Remove *path operation decorators* related/deprecated parameter `response_model_skip_defaults` (use `response_model_exclude_unset` instead).
+        * Change *path operation decorators* parameter default for `response_model_exclude` from `set()` to `None` (as is in Pydantic).
+    * In `encoders.jsonable_encoder`:
+        * Remove deprecated `skip_defaults`, use instead `exclude_unset`.
+        * Set default of `exclude` from `set()` to `None` (as is in Pydantic).
+    * PR [#1862](https://github.com/tiangolo/fastapi/pull/1862).
+
 ### Docs
 
 * Add link to the course by TestDriven.io: [Test-Driven Development with FastAPI and Docker](https://testdriven.io/courses/tdd-fastapi/). PR [#1860](https://github.com/tiangolo/fastapi/pull/1860).
