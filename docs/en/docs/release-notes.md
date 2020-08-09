@@ -18,6 +18,9 @@
         * Remove deprecated `skip_defaults`, use instead `exclude_unset`.
         * Set default of `exclude` from `set()` to `None` (as is in Pydantic).
     * PR [#1862](https://github.com/tiangolo/fastapi/pull/1862).
+* In `encoders.jsonable_encoder` remove parameter `sqlalchemy_safe`.
+    * It was an early hack to allow returning SQLAlchemy models, but it was never documented, and the recommended way is using Pydantic's `orm_mode` as described in the tutorial: [SQL (Relational) Databases](https://fastapi.tiangolo.com/tutorial/sql-databases/).
+    * PR [#1864](https://github.com/tiangolo/fastapi/pull/1864).
 
 ### Docs
 
