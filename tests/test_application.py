@@ -976,8 +976,8 @@ openapi_schema = {
                         },
                     },
                 },
-                "summary": "Get Query Type Optional",
-                "operationId": "get_query_type_optional_query_int_default_get",
+                "summary": "Get Query Type Int Default",
+                "operationId": "get_query_type_int_default_query_int_default_get",
                 "parameters": [
                     {
                         "required": False,

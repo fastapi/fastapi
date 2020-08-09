@@ -28,7 +28,7 @@ def get_current_user(oauth_header: "str" = Security(reusable_oauth2)):
 
 @app.post("/login")
 # Here we use string annotations to test them
-def read_current_user(form_data: "OAuth2PasswordRequestFormStrict" = Depends()):
+def login(form_data: "OAuth2PasswordRequestFormStrict" = Depends()):
     return form_data
 
 
@@ -62,13 +62,13 @@ openapi_schema = {
                         },
                     },
                 },
-                "summary": "Read Current User",
-                "operationId": "read_current_user_login_post",
+                "summary": "Login",
+                "operationId": "login_login_post",
                 "requestBody": {
                     "content": {
                         "application/x-www-form-urlencoded": {
                             "schema": {
-                                "$ref": "#/components/schemas/Body_read_current_user_login_post"
+                                "$ref": "#/components/schemas/Body_login_login_post"
                             }
                         }
                     },
@@ -92,8 +92,8 @@ openapi_schema = {
     },
     "components": {
         "schemas": {
-            "Body_read_current_user_login_post": {
-                "title": "Body_read_current_user_login_post",
+            "Body_login_login_post": {
+                "title": "Body_login_login_post",
                 "required": ["grant_type", "username", "password"],
                 "type": "object",
                 "properties": {
