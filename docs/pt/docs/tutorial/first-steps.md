@@ -67,31 +67,31 @@ Você verá a documentação alternativa automática (fornecida por <a href="htt
 
 ### OpenAPI
 
-O **FastAPI** gera um "schema" com toda a sua API usando o padrão **OpenAPI** para definir APIs.
+O **FastAPI** gera um "*schema*" com toda a sua API usando o padrão **OpenAPI** para definir APIs.
 
-#### "Schema"
+#### "*Schema*"
 
-Um "schema" é uma definição ou descrição de algo. Não o código que o implementa, mas apenas uma descrição abstrata.
+Um "*schema*" é uma definição ou descrição de algo. Não o código que o implementa, mas apenas uma descrição abstrata.
 
-#### API "schema"
+#### API "*schema*"
 
-Nesse caso, <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> é uma especificação que determina como definir um schema da sua API.
+Nesse caso, <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> é uma especificação que determina como definir um *schema* da sua API.
 
-Esta definição de schema inclui as rotas da sua API, os parâmetros possíveis que elas usam, etc.
+Esta definição de *schema* inclui as rotas da sua API, os parâmetros possíveis que elas usam, etc.
 
-#### "Schema" de dados
+#### "*Schema*" de dados
 
-O termo "schema" também pode se referir à forma de alguns dados, como um conteúdo JSON.
+O termo "*schema*" também pode se referir à forma de alguns dados, como um conteúdo JSON.
 
 Nesse caso, significaria os atributos JSON e os tipos de dados que eles possuem, etc.
 
-#### OpenAPI e JSON Schema
+#### OpenAPI e JSON *Schema*
 
-OpenAPI define um schema de API para sua API. E esse schema inclui definições (ou "schemas") dos dados enviados e recebidos por sua API usando **JSON Schema**, o padrão para schemas de dados JSON.
+OpenAPI define um *schema* de API para sua API. E esse *schema* inclui definições (ou "*schemas*") dos dados enviados e recebidos por sua API usando **JSON *Schema***, o padrão para *schemas* de dados JSON.
 
 #### Verifique o `openapi.json`
 
-Se você está curioso(a) sobre a aparência do schema bruto OpenAPI, o FastAPI gera automaticamente um JSON (schema) com as descrições de toda a sua API.
+Se você está curioso(a) sobre a aparência do *schema* bruto OpenAPI, o FastAPI gera automaticamente um JSON (*schema*) com as descrições de toda a sua API.
 
 Você pode ver isso diretamente em: <a href="http://127.0.0.1:8000/openapi.json" class="external-link" target="_blank">http://127.0.0.1:8000/openapi.json</a>.
 
@@ -120,7 +120,7 @@ Ele mostrará um JSON começando com algo como:
 
 #### Para que serve o OpenAPI
 
-O schema OpenAPI é o que possibilita os dois sistemas de documentação interativos mostrados.
+O *schema* OpenAPI é o que possibilita os dois sistemas de documentação interativos mostrados.
 
 E existem dezenas de alternativas, todas baseadas em OpenAPI. Você pode facilmente adicionar qualquer uma dessas alternativas à sua aplicação criada com **FastAPI**.
 
