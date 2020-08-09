@@ -8,7 +8,7 @@
 
 你还可以通过将默认值设置为 `None` 来将请求体参数声明为可选参数：
 
-```Python hl_lines="17 18 19"
+```Python hl_lines="17-19"
 {!../../../docs_src/body_multiple_params/tutorial001.py!}
 ```
 
