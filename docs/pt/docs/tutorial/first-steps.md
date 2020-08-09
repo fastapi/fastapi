@@ -31,13 +31,13 @@ $ uvicorn main:app --reload
     * `app`: o objeto criado no arquivo `main.py` com a linha `app = FastAPI()`.
     * `--reload`: faz o servidor reiniciar após mudanças de código. Use apenas para desenvolvimento.
 
-Na saída, há uma linha com algo como:
+Na saída, temos:
 
 ```hl_lines="4"
 INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
-Essa linha mostra a URL onda a sua aplicação está sendo servida, que nesse caso é a sua máquina local.
+Essa linha mostra a URL onde a sua aplicação está sendo servida, que nesse caso é a sua máquina local.
 
 ### Confira
 
