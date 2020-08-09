@@ -34,6 +34,7 @@ class Dependant:
         call: Optional[Callable] = None,
         request_param_name: Optional[str] = None,
         websocket_param_name: Optional[str] = None,
+        http_connection_param_name: Optional[str] = None,
         response_param_name: Optional[str] = None,
         background_tasks_param_name: Optional[str] = None,
         security_scopes_param_name: Optional[str] = None,
@@ -50,6 +51,7 @@ class Dependant:
         self.security_requirements = security_schemes or []
         self.request_param_name = request_param_name
         self.websocket_param_name = websocket_param_name
+        self.http_connection_param_name = http_connection_param_name
         self.response_param_name = response_param_name
         self.background_tasks_param_name = background_tasks_param_name
         self.security_scopes = security_scopes

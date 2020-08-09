@@ -41,7 +41,7 @@ from pydantic.utils import lenient_issubclass
 from starlette.background import BackgroundTasks
 from starlette.concurrency import run_in_threadpool
 from starlette.datastructures import FormData, Headers, QueryParams, UploadFile
-from starlette.requests import Request
+from starlette.requests import HTTPConnection, Request
 from starlette.responses import Response
 from starlette.websockets import WebSocket
 
@@ -371,6 +371,9 @@ def add_non_field_param_to_dependency(
     elif lenient_issubclass(param.annotation, WebSocket):
         dependant.websocket_param_name = param.name
         return True
+    elif lenient_issubclass(param.annotation, HTTPConnection):
+        dependant.http_connection_param_name = param.name
+        return True
     elif lenient_issubclass(param.annotation, Response):
         dependant.response_param_name = param.name
         return True
@@ -607,6 +610,8 @@ async def solve_dependencies(
         )
         values.update(body_values)
         errors.extend(body_errors)
+    if dependant.http_connection_param_name:
+        values[dependant.http_connection_param_name] = request
     if dependant.request_param_name and isinstance(request, Request):
         values[dependant.request_param_name] = request
     elif dependant.websocket_param_name and isinstance(request, WebSocket):
