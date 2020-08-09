@@ -5,13 +5,7 @@ from typing import Optional
 
 import pytest
 from fastapi.encoders import jsonable_encoder
-from pydantic import BaseModel, ValidationError, create_model
-
-try:
-    from pydantic import Field
-except ImportError:  # pragma: nocover
-    # TODO: remove when removing support for Pydantic < 1.0.0
-    from pydantic import Schema as Field
+from pydantic import BaseModel, Field, ValidationError, create_model
 
 
 class Person:

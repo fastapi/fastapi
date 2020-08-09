@@ -2,24 +2,13 @@ from enum import Enum
 from typing import Any, Callable, Dict, Iterable, List, Optional, Union
 
 from fastapi.logger import logger
-from pydantic import BaseModel
-
-try:
-    from pydantic import AnyUrl, Field
-except ImportError:  # pragma: nocover
-    # TODO: remove when removing support for Pydantic < 1.0.0
-    from pydantic import Schema as Field  # type: ignore
-    from pydantic import UrlStr as AnyUrl  # type: ignore
+from pydantic import AnyUrl, BaseModel, Field
 
 try:
     import email_validator
 
     assert email_validator  # make autoflake ignore the unused import
-    try:
-        from pydantic import EmailStr
-    except ImportError:  # pragma: nocover
-        # TODO: remove when removing support for Pydantic < 1.0.0
-        from pydantic.types import EmailStr  # type: ignore
+    from pydantic import EmailStr
 except ImportError:  # pragma: no cover
 
     class EmailStr(str):  # type: ignore

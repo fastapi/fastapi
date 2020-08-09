@@ -16,10 +16,10 @@ from fastapi.params import Body, Param
 from fastapi.utils import (
     deep_dict_update,
     generate_operation_id_for_path,
-    get_field_info,
     get_model_definitions,
 )
 from pydantic import BaseModel
+from pydantic.fields import ModelField
 from pydantic.schema import (
     field_schema,
     get_flat_models_from_fields,
@@ -29,12 +29,6 @@ from pydantic.utils import lenient_issubclass
 from starlette.responses import JSONResponse
 from starlette.routing import BaseRoute
 from starlette.status import HTTP_422_UNPROCESSABLE_ENTITY
-
-try:
-    from pydantic.fields import ModelField
-except ImportError:  # pragma: nocover
-    # TODO: remove when removing support for Pydantic < 1.0.0
-    from pydantic.fields import Field as ModelField  # type: ignore
 
 validation_error_definition = {
     "title": "ValidationError",
@@ -91,7 +85,7 @@ def get_openapi_operation_parameters(
 ) -> List[Dict[str, Any]]:
     parameters = []
     for param in all_route_params:
-        field_info = get_field_info(param)
+        field_info = param.field_info
         field_info = cast(Param, field_info)
         # ignore mypy error until enum schemas are released
         parameter = {
@@ -122,7 +116,7 @@ def get_openapi_operation_request_body(
     body_schema, _, _ = field_schema(
         body_field, model_name_map=model_name_map, ref_prefix=REF_PREFIX  # type: ignore
     )
-    field_info = cast(Body, get_field_info(body_field))
+    field_info = cast(Body, body_field.field_info)
     request_media_type = field_info.media_type
     required = body_field.required
     request_body_oai: Dict[str, Any] = {}
