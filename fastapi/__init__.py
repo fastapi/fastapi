@@ -22,4 +22,4 @@ from .param_functions import (
 from .requests import Request
 from .responses import Response
 from .routing import APIRouter
-from .websockets import WebSocket
+from .websockets import WebSocket, WebSocketDisconnect
