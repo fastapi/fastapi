@@ -126,6 +126,6 @@ def test_create_read():
         assert data["text"] == note["text"]
         assert data["completed"] == note["completed"]
         assert "id" in data
-        response = client.get(f"/notes/")
+        response = client.get("/notes/")
         assert response.status_code == 200, response.text
         assert data in response.json()

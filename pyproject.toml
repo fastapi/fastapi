@@ -47,6 +47,7 @@ test = [
     "pytest-cov ==2.10.0",
     "pytest-asyncio >=0.14.0,<0.15.0",
     "mypy ==0.782",
+    "flake8 >=3.8.3,<4.0.0",
     "black ==19.10b0",
     "isort >=5.0.6,<6.0.0",
     "requests >=2.24.0,<3.0.0",
