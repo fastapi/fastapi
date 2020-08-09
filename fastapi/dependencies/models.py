@@ -1,12 +1,7 @@
 from typing import Callable, List, Optional, Sequence
 
 from fastapi.security.base import SecurityBase
-
-try:
-    from pydantic.fields import ModelField
-except ImportError:  # pragma: nocover
-    # TODO: remove when removing support for Pydantic < 1.0.0
-    from pydantic.fields import Field as ModelField  # type: ignore
+from pydantic.fields import ModelField
 
 param_supported_types = (str, int, float, bool)
 

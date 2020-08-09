@@ -5,48 +5,12 @@ from enum import Enum
 from typing import Any, Dict, Optional, Set, Type, Union, cast
 
 import fastapi
-from fastapi.logger import logger
 from fastapi.openapi.constants import REF_PREFIX
 from pydantic import BaseConfig, BaseModel, create_model
 from pydantic.class_validators import Validator
+from pydantic.fields import FieldInfo, ModelField, UndefinedType
 from pydantic.schema import model_process_schema
 from pydantic.utils import lenient_issubclass
-
-try:
-    from pydantic.fields import FieldInfo, ModelField, UndefinedType
-
-    PYDANTIC_1 = True
-except ImportError:  # pragma: nocover
-    # TODO: remove when removing support for Pydantic < 1.0.0
-    from pydantic import Schema as FieldInfo  # type: ignore
-    from pydantic.fields import Field as ModelField  # type: ignore
-
-    class UndefinedType:  # type: ignore
-        def __repr__(self) -> str:
-            return "PydanticUndefined"
-
-    logger.warning(
-        "Pydantic versions < 1.0.0 are deprecated in FastAPI and support will be "
-        "removed soon."
-    )
-    PYDANTIC_1 = False
-
-
-# TODO: remove when removing support for Pydantic < 1.0.0
-def get_field_info(field: ModelField) -> FieldInfo:
-    if PYDANTIC_1:
-        return field.field_info  # type: ignore
-    else:
-        return field.schema  # type: ignore  # pragma: nocover
-
-
-# TODO: remove when removing support for Pydantic < 1.0.0
-def warning_response_model_skip_defaults_deprecated() -> None:
-    logger.warning(  # pragma: nocover
-        "response_model_skip_defaults has been deprecated in favor of "
-        "response_model_exclude_unset to keep in line with Pydantic v1, support for "
-        "it will be removed soon."
-    )
 
 
 def get_model_definitions(
@@ -98,10 +62,7 @@ def create_response_field(
     )
 
     try:
-        if PYDANTIC_1:
-            return response_field(field_info=field_info)
-        else:  # pragma: nocover
-            return response_field(schema=field_info)
+        return response_field(field_info=field_info)
     except RuntimeError:
         raise fastapi.exceptions.FastAPIError(
             f"Invalid args for response field! Hint: check that {type_} is a valid pydantic field type"
@@ -137,10 +98,7 @@ def create_cloned_field(
     new_field.default = field.default
     new_field.required = field.required
     new_field.model_config = field.model_config
-    if PYDANTIC_1:
-        new_field.field_info = field.field_info
-    else:  # pragma: nocover
-        new_field.schema = field.schema  # type: ignore
+    new_field.field_info = field.field_info
     new_field.allow_none = field.allow_none
     new_field.validate_always = field.validate_always
     if field.sub_fields:
@@ -153,19 +111,11 @@ def create_cloned_field(
             field.key_field, cloned_types=cloned_types
         )
     new_field.validators = field.validators
-    if PYDANTIC_1:
-        new_field.pre_validators = field.pre_validators
-        new_field.post_validators = field.post_validators
-    else:  # pragma: nocover
-        new_field.whole_pre_validators = field.whole_pre_validators  # type: ignore
-        new_field.whole_post_validators = field.whole_post_validators  # type: ignore
+    new_field.pre_validators = field.pre_validators
+    new_field.post_validators = field.post_validators
     new_field.parse_json = field.parse_json
     new_field.shape = field.shape
-    try:
-        new_field.populate_validators()
-    except AttributeError:  # pragma: nocover
-        # TODO: remove when removing support for Pydantic < 1.0.0
-        new_field._populate_validators()  # type: ignore
+    new_field.populate_validators()
     return new_field
 
 

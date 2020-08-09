@@ -1,11 +1,7 @@
 from enum import Enum
 from typing import Any, Callable, Optional, Sequence
 
-try:
-    from pydantic.fields import FieldInfo
-except ImportError:  # pragma: nocover
-    # TODO: remove when removing support for Pydantic < 1.0.0
-    from pydantic import Schema as FieldInfo  # type: ignore
+from pydantic.fields import FieldInfo
 
 
 class ParamTypes(Enum):

@@ -5,7 +5,6 @@ from types import GeneratorType
 from typing import Any, Callable, Dict, List, Optional, Set, Tuple, Union
 
 from fastapi.logger import logger
-from fastapi.utils import PYDANTIC_1
 from pydantic import BaseModel
 from pydantic.json import ENCODERS_BY_TYPE
 
@@ -51,24 +50,14 @@ def jsonable_encoder(
         encoder = getattr(obj.__config__, "json_encoders", {})
         if custom_encoder:
             encoder.update(custom_encoder)
-        if PYDANTIC_1:
-            obj_dict = obj.dict(
-                include=include,
-                exclude=exclude,
-                by_alias=by_alias,
-                exclude_unset=bool(exclude_unset or skip_defaults),
-                exclude_none=exclude_none,
-                exclude_defaults=exclude_defaults,
-            )
-        else:  # pragma: nocover
-            if exclude_defaults:
-                raise ValueError("Cannot use exclude_defaults")
-            obj_dict = obj.dict(
-                include=include,
-                exclude=exclude,
-                by_alias=by_alias,
-                skip_defaults=bool(exclude_unset or skip_defaults),
-            )
+        obj_dict = obj.dict(
+            include=include,
+            exclude=exclude,
+            by_alias=by_alias,
+            exclude_unset=bool(exclude_unset or skip_defaults),
+            exclude_none=exclude_none,
+            exclude_defaults=exclude_defaults,
+        )
         if "__root__" in obj_dict:
             obj_dict = obj_dict["__root__"]
         return jsonable_encoder(
