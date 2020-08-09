@@ -4,7 +4,6 @@ from pathlib import PurePath
 from types import GeneratorType
 from typing import Any, Callable, Dict, List, Optional, Set, Tuple, Union
 
-from fastapi.logger import logger
 from pydantic import BaseModel
 from pydantic.json import ENCODERS_BY_TYPE
 
@@ -27,21 +26,14 @@ encoders_by_class_tuples = generate_encoders_by_class_tuples(ENCODERS_BY_TYPE)
 def jsonable_encoder(
     obj: Any,
     include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-    exclude: Union[SetIntStr, DictIntStrAny] = set(),
+    exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
     by_alias: bool = True,
-    skip_defaults: Optional[bool] = None,
     exclude_unset: bool = False,
     exclude_defaults: bool = False,
     exclude_none: bool = False,
     custom_encoder: dict = {},
     sqlalchemy_safe: bool = True,
 ) -> Any:
-    if skip_defaults is not None:
-        logger.warning(  # pragma: nocover
-            "skip_defaults in jsonable_encoder has been deprecated in favor of "
-            "exclude_unset to keep in line with Pydantic v1, support for it will be "
-            "removed soon."
-        )
     if include is not None and not isinstance(include, set):
         include = set(include)
     if exclude is not None and not isinstance(exclude, set):
@@ -54,7 +46,7 @@ def jsonable_encoder(
             include=include,
             exclude=exclude,
             by_alias=by_alias,
-            exclude_unset=bool(exclude_unset or skip_defaults),
+            exclude_unset=exclude_unset,
             exclude_none=exclude_none,
             exclude_defaults=exclude_defaults,
         )
@@ -83,7 +75,7 @@ def jsonable_encoder(
                     or (not key.startswith("_sa"))
                 )
                 and (value is not None or not exclude_none)
-                and ((include and key in include) or key not in exclude)
+                and ((include and key in include) or not exclude or key not in exclude)
             ):
                 encoded_key = jsonable_encoder(
                     key,
