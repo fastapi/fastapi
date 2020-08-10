@@ -102,7 +102,7 @@ To see the difference, imagine the following story about burgers:
 
 ### Concurrent Burgers
 
-<!-- The gender neutral cook emoji "🧑‍🍳" does not render well in browsers. In the mean time, I'm using a mix of male "👨‍🍳" and female "👩‍🍳" cooks. -->
+<!-- The gender neutral cook emoji "🧑‍🍳" does not render well in browsers. In the meantime, I'm using a mix of male "👨‍🍳" and female "👩‍🍳" cooks. -->
 
 You go with your crush 😍 to get fast food 🍔, you stand in line while the cashier 💁 takes the orders from the people in front of you.
 
