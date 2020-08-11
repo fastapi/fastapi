@@ -128,7 +128,7 @@ name_price_missing = {
 
 body_missing = {
     "detail": [
-        {"loc": ["body"], "msg": "field required", "type": "value_error.missing",}
+        {"loc": ["body"], "msg": "field required", "type": "value_error.missing"}
     ]
 }
 

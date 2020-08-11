@@ -5,13 +5,7 @@ from typing import Optional
 
 import pytest
 from fastapi.encoders import jsonable_encoder
-from pydantic import BaseModel, ValidationError, create_model
-
-try:
-    from pydantic import Field
-except ImportError:  # pragma: nocover
-    # TODO: remove when removing support for Pydantic < 1.0.0
-    from pydantic import Schema as Field
+from pydantic import BaseModel, Field, ValidationError, create_model
 
 
 class Person:
@@ -53,6 +47,11 @@ class ModelWithCustomEncoder(BaseModel):
                 microsecond=0, tzinfo=timezone.utc
             ).isoformat()
         }
+
+
+class ModelWithCustomEncoderSubclass(ModelWithCustomEncoder):
+    class Config:
+        pass
 
 
 class RoleEnum(Enum):
@@ -117,6 +116,11 @@ def test_encode_custom_json_encoders_model():
     assert jsonable_encoder(model) == {"dt_field": "2019-01-01T08:00:00+00:00"}
 
 
+def test_encode_custom_json_encoders_model_subclass():
+    model = ModelWithCustomEncoderSubclass(dt_field=datetime(2019, 1, 1, 8))
+    assert jsonable_encoder(model) == {"dt_field": "2019-01-01T08:00:00+00:00"}
+
+
 def test_encode_model_with_config():
     model = ModelWithConfig(role=RoleEnum.admin)
     assert jsonable_encoder(model) == {"role": "admin"}
@@ -124,7 +128,7 @@ def test_encode_model_with_config():
 
 def test_encode_model_with_alias_raises():
     with pytest.raises(ValidationError):
-        model = ModelWithAlias(foo="Bar")
+        ModelWithAlias(foo="Bar")
 
 
 def test_encode_model_with_alias():

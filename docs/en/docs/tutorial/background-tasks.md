@@ -2,7 +2,7 @@
 
 You can define background tasks to be run *after* returning a response.
 
-This is useful for operations that need to happen after a request, but that the client doesn't really have to be waiting for the operation to complete before receiving his response.
+This is useful for operations that need to happen after a request, but that the client doesn't really have to be waiting for the operation to complete before receiving the response.
 
 This includes, for example:
 

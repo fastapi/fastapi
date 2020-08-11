@@ -24,60 +24,34 @@ from fastapi.concurrency import (
     contextmanager_in_threadpool,
 )
 from fastapi.dependencies.models import Dependant, SecurityRequirement
+from fastapi.logger import logger
 from fastapi.security.base import SecurityBase
 from fastapi.security.oauth2 import OAuth2, SecurityScopes
 from fastapi.security.open_id_connect_url import OpenIdConnect
-from fastapi.utils import (
-    PYDANTIC_1,
-    create_response_field,
-    get_field_info,
-    get_path_param_names,
-)
-from pydantic import BaseConfig, BaseModel, create_model
+from fastapi.utils import create_response_field, get_path_param_names
+from pydantic import BaseModel, create_model
 from pydantic.error_wrappers import ErrorWrapper
 from pydantic.errors import MissingError
+from pydantic.fields import (
+    SHAPE_LIST,
+    SHAPE_SEQUENCE,
+    SHAPE_SET,
+    SHAPE_SINGLETON,
+    SHAPE_TUPLE,
+    SHAPE_TUPLE_ELLIPSIS,
+    FieldInfo,
+    ModelField,
+    Required,
+)
+from pydantic.schema import get_annotation_from_field_info
+from pydantic.typing import ForwardRef, evaluate_forwardref
 from pydantic.utils import lenient_issubclass
 from starlette.background import BackgroundTasks
 from starlette.concurrency import run_in_threadpool
 from starlette.datastructures import FormData, Headers, QueryParams, UploadFile
-from starlette.requests import Request
+from starlette.requests import HTTPConnection, Request
 from starlette.responses import Response
 from starlette.websockets import WebSocket
-
-try:
-    from pydantic.fields import (
-        SHAPE_LIST,
-        SHAPE_SEQUENCE,
-        SHAPE_SET,
-        SHAPE_SINGLETON,
-        SHAPE_TUPLE,
-        SHAPE_TUPLE_ELLIPSIS,
-        FieldInfo,
-        ModelField,
-        Required,
-    )
-    from pydantic.schema import get_annotation_from_field_info
-    from pydantic.typing import ForwardRef, evaluate_forwardref
-except ImportError:  # pragma: nocover
-    # TODO: remove when removing support for Pydantic < 1.0.0
-    from pydantic import Schema as FieldInfo  # type: ignore
-    from pydantic.fields import Field as ModelField  # type: ignore
-    from pydantic.fields import Required, Shape  # type: ignore
-    from pydantic.schema import get_annotation_from_schema  # type: ignore
-    from pydantic.utils import ForwardRef, evaluate_forwardref  # type: ignore
-
-    SHAPE_LIST = Shape.LIST
-    SHAPE_SEQUENCE = Shape.SEQUENCE
-    SHAPE_SET = Shape.SET
-    SHAPE_SINGLETON = Shape.SINGLETON
-    SHAPE_TUPLE = Shape.TUPLE
-    SHAPE_TUPLE_ELLIPSIS = Shape.TUPLE_ELLIPS
-
-    def get_annotation_from_field_info(
-        annotation: Any, field_info: FieldInfo, field_name: str
-    ) -> Type[Any]:
-        return get_annotation_from_schema(annotation, field_info)
-
 
 sequence_shapes = {
     SHAPE_LIST,
@@ -96,8 +70,44 @@ sequence_shape_to_type = {
 }
 
 
+multipart_not_installed_error = (
+    'Form data requires "python-multipart" to be installed. \n'
+    'You can install "python-multipart" with: \n\n'
+    "pip install python-multipart\n"
+)
+multipart_incorrect_install_error = (
+    'Form data requires "python-multipart" to be installed. '
+    'It seems you installed "multipart" instead. \n'
+    'You can remove "multipart" with: \n\n'
+    "pip uninstall multipart\n\n"
+    'And then install "python-multipart" with: \n\n'
+    "pip install python-multipart\n"
+)
+
+
+def check_file_field(field: ModelField) -> None:
+    field_info = field.field_info
+    if isinstance(field_info, params.Form):
+        try:
+            # __version__ is available in both multiparts, and can be mocked
+            from multipart import __version__
+
+            assert __version__
+            try:
+                # parse_options_header is only available in the right multlipart
+                from multipart.multipart import parse_options_header
+
+                assert parse_options_header
+            except ImportError:
+                logger.error(multipart_incorrect_install_error)
+                raise RuntimeError(multipart_incorrect_install_error)
+        except ImportError:
+            logger.error(multipart_not_installed_error)
+            raise RuntimeError(multipart_not_installed_error)
+
+
 def get_param_sub_dependant(
-    *, param: inspect.Parameter, path: str, security_scopes: List[str] = None
+    *, param: inspect.Parameter, path: str, security_scopes: Optional[List[str]] = None
 ) -> Dependant:
     depends: params.Depends = param.default
     if depends.dependency:
@@ -125,8 +135,8 @@ def get_sub_dependant(
     depends: params.Depends,
     dependency: Callable,
     path: str,
-    name: str = None,
-    security_scopes: List[str] = None,
+    name: Optional[str] = None,
+    security_scopes: Optional[List[str]] = None,
 ) -> Dependant:
     security_requirement = None
     security_scopes = security_scopes or []
@@ -157,7 +167,10 @@ CacheKey = Tuple[Optional[Callable], Tuple[str, ...]]
 
 
 def get_flat_dependant(
-    dependant: Dependant, *, skip_repeats: bool = False, visited: List[CacheKey] = None
+    dependant: Dependant,
+    *,
+    skip_repeats: bool = False,
+    visited: Optional[List[CacheKey]] = None,
 ) -> Dependant:
     if visited is None:
         visited = []
@@ -199,7 +212,7 @@ def get_flat_params(dependant: Dependant) -> List[ModelField]:
 
 
 def is_scalar_field(field: ModelField) -> bool:
-    field_info = get_field_info(field)
+    field_info = field.field_info
     if not (
         field.shape == SHAPE_SINGLETON
         and not lenient_issubclass(field.type_, BaseModel)
@@ -269,8 +282,8 @@ def get_dependant(
     *,
     path: str,
     call: Callable,
-    name: str = None,
-    security_scopes: List[str] = None,
+    name: Optional[str] = None,
+    security_scopes: Optional[List[str]] = None,
     use_cache: bool = True,
 ) -> Dependant:
     path_param_names = get_path_param_names(path)
@@ -285,8 +298,6 @@ def get_dependant(
                 param=param, path=path, security_scopes=security_scopes
             )
             dependant.dependencies.append(sub_dependant)
-    for param_name, param in signature_params.items():
-        if isinstance(param.default, params.Depends):
             continue
         if add_non_field_param_to_dependency(param=param, dependant=dependant):
             continue
@@ -316,7 +327,7 @@ def get_dependant(
         ) and is_scalar_sequence_field(param_field):
             add_param_to_fields(field=param_field, dependant=dependant)
         else:
-            field_info = get_field_info(param_field)
+            field_info = param_field.field_info
             assert isinstance(
                 field_info, params.Body
             ), f"Param: {param_field.name} can only be a request body, using Body(...)"
@@ -332,6 +343,9 @@ def add_non_field_param_to_dependency(
         return True
     elif lenient_issubclass(param.annotation, WebSocket):
         dependant.websocket_param_name = param.name
+        return True
+    elif lenient_issubclass(param.annotation, HTTPConnection):
+        dependant.http_connection_param_name = param.name
         return True
     elif lenient_issubclass(param.annotation, Response):
         dependant.response_param_name = param.name
@@ -350,7 +364,7 @@ def get_param_field(
     param: inspect.Parameter,
     param_name: str,
     default_field_info: Type[params.Param] = params.Param,
-    force_type: params.ParamTypes = None,
+    force_type: Optional[params.ParamTypes] = None,
     ignore_default: bool = False,
 ) -> ModelField:
     default_value = Required
@@ -389,16 +403,13 @@ def get_param_field(
     )
     field.required = required
     if not had_schema and not is_scalar_field(field=field):
-        if PYDANTIC_1:
-            field.field_info = params.Body(field_info.default)
-        else:
-            field.schema = params.Body(field_info.default)  # type: ignore  # pragma: nocover
+        field.field_info = params.Body(field_info.default)
 
     return field
 
 
 def add_param_to_fields(*, field: ModelField, dependant: Dependant) -> None:
-    field_info = cast(params.Param, get_field_info(field))
+    field_info = cast(params.Param, field.field_info)
     if field_info.in_ == params.ParamTypes.path:
         dependant.path_params.append(field)
     elif field_info.in_ == params.ParamTypes.query:
@@ -458,10 +469,10 @@ async def solve_dependencies(
     request: Union[Request, WebSocket],
     dependant: Dependant,
     body: Optional[Union[Dict[str, Any], FormData]] = None,
-    background_tasks: BackgroundTasks = None,
-    response: Response = None,
-    dependency_overrides_provider: Any = None,
-    dependency_cache: Dict[Tuple[Callable, Tuple[str]], Any] = None,
+    background_tasks: Optional[BackgroundTasks] = None,
+    response: Optional[Response] = None,
+    dependency_overrides_provider: Optional[Any] = None,
+    dependency_cache: Optional[Dict[Tuple[Callable, Tuple[str]], Any]] = None,
 ) -> Tuple[
     Dict[str, Any],
     List[ErrorWrapper],
@@ -569,6 +580,8 @@ async def solve_dependencies(
         )
         values.update(body_values)
         errors.extend(body_errors)
+    if dependant.http_connection_param_name:
+        values[dependant.http_connection_param_name] = request
     if dependant.request_param_name and isinstance(request, Request):
         values[dependant.request_param_name] = request
     elif dependant.websocket_param_name and isinstance(request, WebSocket):
@@ -599,26 +612,17 @@ def request_params_to_args(
             value = received_params.getlist(field.alias) or field.default
         else:
             value = received_params.get(field.alias)
-        field_info = get_field_info(field)
+        field_info = field.field_info
         assert isinstance(
             field_info, params.Param
         ), "Params must be subclasses of Param"
         if value is None:
             if field.required:
-                if PYDANTIC_1:
-                    errors.append(
-                        ErrorWrapper(
-                            MissingError(), loc=(field_info.in_.value, field.alias)
-                        )
+                errors.append(
+                    ErrorWrapper(
+                        MissingError(), loc=(field_info.in_.value, field.alias)
                     )
-                else:  # pragma: nocover
-                    errors.append(
-                        ErrorWrapper(  # type: ignore
-                            MissingError(),
-                            loc=(field_info.in_.value, field.alias),
-                            config=BaseConfig,
-                        )
-                    )
+                )
             else:
                 values[field.name] = deepcopy(field.default)
             continue
@@ -642,7 +646,7 @@ async def request_body_to_args(
     errors = []
     if required_params:
         field = required_params[0]
-        field_info = get_field_info(field)
+        field_info = field.field_info
         embed = getattr(field_info, "embed", None)
         field_alias_omitted = len(required_params) == 1 and not embed
         if field_alias_omitted:
@@ -655,7 +659,7 @@ async def request_body_to_args(
             else:
                 loc = ("body", field.alias)
 
-            value: Any = None
+            value: Optional[Any] = None
             if received_body is not None:
                 if (
                     field.shape in sequence_shapes or field.type_ in sequence_types
@@ -709,12 +713,7 @@ async def request_body_to_args(
 
 
 def get_missing_field_error(loc: Tuple[str, ...]) -> ErrorWrapper:
-    if PYDANTIC_1:
-        missing_field_error = ErrorWrapper(MissingError(), loc=loc)
-    else:  # pragma: no cover
-        missing_field_error = ErrorWrapper(  # type: ignore
-            MissingError(), loc=loc, config=BaseConfig,
-        )
+    missing_field_error = ErrorWrapper(MissingError(), loc=loc)
     return missing_field_error
 
 
@@ -732,9 +731,8 @@ def get_schema_compatible_field(*, field: ModelField) -> ModelField:
             default=field.default,
             required=field.required,
             alias=field.alias,
-            field_info=field.field_info if PYDANTIC_1 else field.schema,  # type: ignore
+            field_info=field.field_info,
         )
-
     return out_field
 
 
@@ -743,16 +741,18 @@ def get_body_field(*, dependant: Dependant, name: str) -> Optional[ModelField]:
     if not flat_dependant.body_params:
         return None
     first_param = flat_dependant.body_params[0]
-    field_info = get_field_info(first_param)
+    field_info = first_param.field_info
     embed = getattr(field_info, "embed", None)
-    body_param_names_set = set([param.name for param in flat_dependant.body_params])
+    body_param_names_set = {param.name for param in flat_dependant.body_params}
     if len(body_param_names_set) == 1 and not embed:
-        return get_schema_compatible_field(field=first_param)
+        final_field = get_schema_compatible_field(field=first_param)
+        check_file_field(final_field)
+        return final_field
     # If one field requires to embed, all have to be embedded
     # in case a sub-dependency is evaluated with a single unique body field
     # That is combined (embedded) with other body fields
     for param in flat_dependant.body_params:
-        setattr(get_field_info(param), "embed", True)
+        setattr(param.field_info, "embed", True)
     model_name = "Body_" + name
     BodyModel = create_model(model_name)
     for f in flat_dependant.body_params:
@@ -760,28 +760,26 @@ def get_body_field(*, dependant: Dependant, name: str) -> Optional[ModelField]:
     required = any(True for f in flat_dependant.body_params if f.required)
 
     BodyFieldInfo_kwargs: Dict[str, Any] = dict(default=None)
-    if any(
-        isinstance(get_field_info(f), params.File) for f in flat_dependant.body_params
-    ):
+    if any(isinstance(f.field_info, params.File) for f in flat_dependant.body_params):
         BodyFieldInfo: Type[params.Body] = params.File
-    elif any(
-        isinstance(get_field_info(f), params.Form) for f in flat_dependant.body_params
-    ):
+    elif any(isinstance(f.field_info, params.Form) for f in flat_dependant.body_params):
         BodyFieldInfo = params.Form
     else:
         BodyFieldInfo = params.Body
 
         body_param_media_types = [
-            getattr(get_field_info(f), "media_type")
+            getattr(f.field_info, "media_type")
             for f in flat_dependant.body_params
-            if isinstance(get_field_info(f), params.Body)
+            if isinstance(f.field_info, params.Body)
         ]
         if len(set(body_param_media_types)) == 1:
             BodyFieldInfo_kwargs["media_type"] = body_param_media_types[0]
-    return create_response_field(
+    final_field = create_response_field(
         name="body",
         type_=BodyModel,
         required=required,
         alias="body",
         field_info=BodyFieldInfo(**BodyFieldInfo_kwargs),
     )
+    check_file_field(final_field)
+    return final_field
