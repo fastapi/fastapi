@@ -1,5 +1,5 @@
 import http
-from typing import Optional, Dict
+from typing import Dict, Optional
 
 from fastapi import FastAPI, Path, Query
 

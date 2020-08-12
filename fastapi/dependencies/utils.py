@@ -34,6 +34,7 @@ from pydantic.error_wrappers import ErrorWrapper
 from pydantic.errors import MissingError
 from pydantic.fields import (
     SHAPE_LIST,
+    SHAPE_MAPPING,
     SHAPE_SEQUENCE,
     SHAPE_SET,
     SHAPE_SINGLETON,
@@ -41,7 +42,7 @@ from pydantic.fields import (
     SHAPE_TUPLE_ELLIPSIS,
     FieldInfo,
     ModelField,
-    Required, SHAPE_MAPPING,
+    Required,
 )
 from pydantic.schema import get_annotation_from_field_info
 from pydantic.typing import ForwardRef, evaluate_forwardref
@@ -69,13 +70,9 @@ sequence_shape_to_type = {
     SHAPE_TUPLE_ELLIPSIS: list,
 }
 
-mapping_shapes = {
-    SHAPE_MAPPING
-}
-mapping_types = (dict)
-mapping_shapes_to_type = {
-    SHAPE_MAPPING: dict
-}
+mapping_shapes = {SHAPE_MAPPING}
+mapping_types = dict
+mapping_shapes_to_type = {SHAPE_MAPPING: dict}
 
 multipart_not_installed_error = (
     'Form data requires "python-multipart" to be installed. \n'
@@ -343,10 +340,10 @@ def get_dependant(
             add_param_to_fields(field=param_field, dependant=dependant)
         elif is_scalar_field(field=param_field):
             add_param_to_fields(field=param_field, dependant=dependant)
-        elif isinstance(
-            param.default, (params.Query, params.Header)
-        ) and (is_scalar_sequence_field(param_field)
-               or is_scalar_mapping_field(param_field)):
+        elif isinstance(param.default, (params.Query, params.Header)) and (
+            is_scalar_sequence_field(param_field)
+            or is_scalar_mapping_field(param_field)
+        ):
             add_param_to_fields(field=param_field, dependant=dependant)
         else:
             field_info = param_field.field_info
