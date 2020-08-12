@@ -1,5 +1,8 @@
 import pytest
 from fastapi.testclient import TestClient
+from fastapi import FastAPI
+from fastapi.exceptions import RequestValidationError
+from starlette.exceptions import HTTPException
 
 from .main import app
 
@@ -1167,3 +1170,21 @@ def test_enum_status_code_response():
     response = client.get("/enum-status-code")
     assert response.status_code == 201, response.text
     assert response.json() == "foo bar"
+
+
+def test_custom_exception_handlers():
+    def _custom_validaton_error_handler(request, exc):
+        pass
+
+    def _custom_exception_error_handler(request, exc):
+        pass
+
+    fastapi_app = FastAPI(
+        exception_handlers={
+            RequestValidationError: _custom_validaton_error_handler,
+            HTTPException: _custom_exception_error_handler
+        }
+    )
+
+    assert fastapi_app.exception_handlers.get(RequestValidationError, None) is _custom_validaton_error_handler
+    assert fastapi_app.exception_handlers.get(HTTPException, None) is _custom_exception_error_handler
