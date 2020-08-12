@@ -184,14 +184,14 @@ def get_query_param_required(query=Query(...)):
     return f"foo bar {query}"
 
 
-@app.get("/query/params")
-def get_query_params(queries: Dict[str, int] = Query({})):
-    return f"foo bar {queries}"
-
-
 @app.get("/query/param-required/int")
 def get_query_param_required_type(query: int = Query(...)):
     return f"foo bar {query}"
+
+
+@app.get("/query/params")
+def get_query_params(queries: Dict[str, int] = Query({})):
+    return f"foo bar {queries}"
 
 
 @app.get("/enum-status-code", status_code=http.HTTPStatus.CREATED)
