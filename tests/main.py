@@ -1,5 +1,5 @@
 import http
-from typing import Optional
+from typing import Optional, Dict
 
 from fastapi import FastAPI, Path, Query
 
@@ -182,6 +182,11 @@ def get_query_param(query=Query(None)):
 @app.get("/query/param-required")
 def get_query_param_required(query=Query(...)):
     return f"foo bar {query}"
+
+
+@app.get("/query/params")
+def get_query_params(queries: Dict[str, int] = Query({})):
+    return f"foo bar {queries}"
 
 
 @app.get("/query/param-required/int")
