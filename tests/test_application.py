@@ -1,5 +1,9 @@
 import pytest
 from fastapi import FastAPI
+from fastapi.exception_handlers import (
+    http_exception_handler,
+    request_validation_exception_handler,
+)
 from fastapi.exceptions import RequestValidationError
 from fastapi.testclient import TestClient
 from starlette.exceptions import HTTPException
@@ -1172,23 +1176,35 @@ def test_enum_status_code_response():
     assert response.json() == "foo bar"
 
 
-def test_custom_exception_handlers():
-    def _custom_validaton_error_handler(request, exc):
-        pass
-
-    def _custom_exception_error_handler(request, exc):
+def test_custom_exception_handlers__override_validation():
+    def _custom_validaton_error_handler(request, exc):  # pragma: no cover
         pass
 
     fastapi_app = FastAPI(
-        exception_handlers={
-            RequestValidationError: _custom_validaton_error_handler,
-            HTTPException: _custom_exception_error_handler,
-        }
+        exception_handlers={RequestValidationError: _custom_validaton_error_handler}
     )
 
     assert (
         fastapi_app.exception_handlers.get(RequestValidationError, None)
         is _custom_validaton_error_handler
+    )
+    assert (
+        fastapi_app.exception_handlers.get(HTTPException, None)
+        is http_exception_handler
+    )
+
+
+def test_custom_exception_handlers__override_httpexception():
+    def _custom_exception_error_handler(request, exc):  # pragma: no cover
+        pass
+
+    fastapi_app = FastAPI(
+        exception_handlers={HTTPException: _custom_exception_error_handler}
+    )
+
+    assert (
+        fastapi_app.exception_handlers.get(RequestValidationError, None)
+        is request_validation_exception_handler
     )
     assert (
         fastapi_app.exception_handlers.get(HTTPException, None)
@@ -1200,11 +1216,11 @@ def test_custom_exception_handlers_decorator():
     fastapi_app = FastAPI()
 
     @fastapi_app.exception_handler(RequestValidationError)
-    def _custom_validaton_error_handler(request, exc):
+    def _custom_validaton_error_handler(request, exc):  # pragma: no cover
         pass
 
     @fastapi_app.exception_handler(HTTPException)
-    def _custom_exception_error_handler(request, exc):
+    def _custom_exception_error_handler(request, exc):  # pragma: no cover
         pass
 
     assert (
