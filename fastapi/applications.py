@@ -165,10 +165,12 @@ class FastAPI(Starlette):
                 )
 
             self.add_route(self.redoc_url, redoc_html, include_in_schema=False)
-        self.add_exception_handler(HTTPException, http_exception_handler)
-        self.add_exception_handler(
-            RequestValidationError, request_validation_exception_handler
-        )
+        if HTTPException not in self.exception_handlers:
+            self.add_exception_handler(HTTPException, http_exception_handler)
+        if RequestValidationError not in self.exception_handlers:
+            self.add_exception_handler(
+                RequestValidationError, request_validation_exception_handler
+            )
 
     async def __call__(self, scope: Scope, receive: Receive, send: Send) -> None:
         if self.root_path:

@@ -1,7 +1,7 @@
 import pytest
-from fastapi.testclient import TestClient
 from fastapi import FastAPI
 from fastapi.exceptions import RequestValidationError
+from fastapi.testclient import TestClient
 from starlette.exceptions import HTTPException
 
 from .main import app
@@ -1182,9 +1182,36 @@ def test_custom_exception_handlers():
     fastapi_app = FastAPI(
         exception_handlers={
             RequestValidationError: _custom_validaton_error_handler,
-            HTTPException: _custom_exception_error_handler
+            HTTPException: _custom_exception_error_handler,
         }
     )
 
-    assert fastapi_app.exception_handlers.get(RequestValidationError, None) is _custom_validaton_error_handler
-    assert fastapi_app.exception_handlers.get(HTTPException, None) is _custom_exception_error_handler
+    assert (
+        fastapi_app.exception_handlers.get(RequestValidationError, None)
+        is _custom_validaton_error_handler
+    )
+    assert (
+        fastapi_app.exception_handlers.get(HTTPException, None)
+        is _custom_exception_error_handler
+    )
+
+
+def test_custom_exception_handlers_decorator():
+    fastapi_app = FastAPI()
+
+    @fastapi_app.exception_handler(RequestValidationError)
+    def _custom_validaton_error_handler(request, exc):
+        pass
+
+    @fastapi_app.exception_handler(HTTPException)
+    def _custom_exception_error_handler(request, exc):
+        pass
+
+    assert (
+        fastapi_app.exception_handlers.get(RequestValidationError, None)
+        is _custom_validaton_error_handler
+    )
+    assert (
+        fastapi_app.exception_handlers.get(HTTPException, None)
+        is _custom_exception_error_handler
+    )
