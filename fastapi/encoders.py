@@ -64,43 +64,40 @@ def jsonable_encoder(
     if isinstance(obj, (str, int, float, type(None))):
         return obj
     if isinstance(obj, dict):
-        encoded_dict = {}
-        for key, value in obj.items():
-            if (value is not None or not exclude_none) and (
-                (include and key in include) or not exclude or key not in exclude
-            ):
-                encoded_key = jsonable_encoder(
-                    key,
-                    by_alias=by_alias,
-                    exclude_unset=exclude_unset,
-                    exclude_none=exclude_none,
-                    custom_encoder=custom_encoder,
-                )
-                encoded_value = jsonable_encoder(
+        return {
+            jsonable_encoder(
+                key,
+                by_alias=by_alias,
+                exclude_unset=exclude_unset,
+                exclude_none=exclude_none,
+                custom_encoder=custom_encoder,
+            ): jsonable_encoder(
                     value,
                     by_alias=by_alias,
                     exclude_unset=exclude_unset,
                     exclude_none=exclude_none,
                     custom_encoder=custom_encoder,
                 )
-                encoded_dict[encoded_key] = encoded_value
-        return encoded_dict
-    if isinstance(obj, (list, set, frozenset, GeneratorType, tuple)):
-        encoded_list = []
-        for item in obj:
-            encoded_list.append(
-                jsonable_encoder(
-                    item,
-                    include=include,
-                    exclude=exclude,
-                    by_alias=by_alias,
-                    exclude_unset=exclude_unset,
-                    exclude_defaults=exclude_defaults,
-                    exclude_none=exclude_none,
-                    custom_encoder=custom_encoder,
-                )
+            for key, value in obj.items()
+            if (value is not None or not exclude_none) and (
+                    (include and key in include) or not exclude or key not in exclude
             )
-        return encoded_list
+        }
+
+    if isinstance(obj, (list, set, frozenset, GeneratorType, tuple)):
+        return [
+            jsonable_encoder(
+                item,
+                include=include,
+                exclude=exclude,
+                by_alias=by_alias,
+                exclude_unset=exclude_unset,
+                exclude_defaults=exclude_defaults,
+                exclude_none=exclude_none,
+                custom_encoder=custom_encoder,
+            )
+            for item in obj
+        ]
 
     if custom_encoder:
         if type(obj) in custom_encoder:
