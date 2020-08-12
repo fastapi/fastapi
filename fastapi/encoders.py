@@ -77,7 +77,8 @@ def jsonable_encoder(
                 exclude_unset=exclude_unset,
                 exclude_none=exclude_none,
                 custom_encoder=custom_encoder,
-            ) for key, value in obj.items()
+            )
+            for key, value in obj.items()
             if (value is not None or not exclude_none)
             and ((include and key in include) or not exclude or key not in exclude)
         }
