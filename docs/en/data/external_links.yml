@@ -1,5 +1,9 @@
 articles:
   english:
+    - link: https://dev.to/factorlive/python-facebook-messenger-webhook-with-fastapi-on-glitch-4n90
+      title: Python Facebook messenger webhook with FastAPI on Glitch
+      author_link: https://dev.to/factorlive
+      author: Patrick Ladon
     - link: https://medium.com/@williamhayes/fastapi-starlette-debug-vs-prod-5f7561db3a59
       title: FastAPI/Starlette debug vs prod
       author_link: https://medium.com/@williamhayes
