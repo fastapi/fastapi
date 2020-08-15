@@ -24,7 +24,7 @@ $ uvicorn main:app --reload
 
 </div>
 
-!!! 注意
+!!! note "注意"
     `uvicorn main:app`は以下を示します:
 
     * `main`: `main.py`ファイル (Python "module")。
@@ -136,7 +136,7 @@ OpenAPIスキーマは、FastAPIに含まれている2つのインタラクテ�
 
 `FastAPI`は、APIのすべての機能を提供するPythonクラスです。
 
-!!! 注意 「技術詳細」
+!!! note "技術詳細"
     `FastAPI`は`Starlette`を直接継承するクラスです。
 
     `FastAPI`でも<a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a>のすべての機能を利用可能です。
@@ -198,7 +198,7 @@ https://example.com/items/foo
 /items/foo
 ```
 
-!!! 情報
+!!! info "情報"
     「パス」は一般に「エンドポイント」または「ルート」とも呼ばれます。
 
 APIを構築する際、「パス」は「懸念」と「リソース」を分離するための主要な方法です。
@@ -248,7 +248,7 @@ APIを構築するときは、通常、これらの特定のHTTPメソッドを�
 * パス `/`
 * <abbr title="an HTTP GET method"><code>get</code> オペレーション</abbr>
 
-!!! 情報 "`@decorator` Info"
+!!! info "`@decorator` Info"
     Pythonにおける`@something`シンタックスはデコレータと呼ばれます。
 
     「デコレータ」は関数の上に置きます。かわいらしい装飾的な帽子のようです（この用語の由来はそこにあると思います）。
@@ -272,7 +272,7 @@ APIを構築するときは、通常、これらの特定のHTTPメソッドを�
 * `@app.patch()`
 * `@app.trace()`
 
-!!! tip
+!!! tip "豆知識"
     各オペレーション (HTTPメソッド)は自由に使用できます。
 
     **FastAPI**は特定の意味づけを強制しません。
@@ -309,7 +309,7 @@ It will be called by **FastAPI** whenever it receives a request to the URL "`/`"
 {!../../../docs_src/first_steps/tutorial003.py!}
 ```
 
-!!! 注意
+!!! note "注意"
     違いが分からない場合は、[Async: *"In a hurry?"*](../async.md#in-a-hurry){.internal-link target=_blank}を確認してください。
 
 ### Step 5: コンテンツの返信
