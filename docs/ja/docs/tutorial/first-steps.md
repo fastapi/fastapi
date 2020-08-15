@@ -24,7 +24,7 @@ $ uvicorn main:app --reload
 
 </div>
 
-!!! note "注意"
+!!! note "備考"
     `uvicorn main:app`は以下を示します:
 
     * `main`: `main.py`ファイル (Python "module")。
@@ -67,7 +67,7 @@ INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 
 ### OpenAPI
 
-**FastAPI**は、APIを定義するための**OpenAPI**標準を使用して、すべてのAPIの「スキーマ」を生成します。
+**FastAPI**は、APIを定義するための**OpenAPI**標準規格を使用して、すべてのAPIの「スキーマ」を生成します。
 
 #### 「スキーマ」
 
@@ -120,11 +120,11 @@ OpenAPIはAPIのためのAPIスキーマを定義します。そして、その�
 
 #### OpenAPIの目的
 
-OpenAPIスキーマは、FastAPIに含まれている2つのインタラクティブなドキュメントシステムを強化するものです。
+OpenAPIスキーマは、FastAPIに含まれている2つのインタラクティブなドキュメントシステムの動力源です。
 
 そして、OpenAPIに基づいた代替案が数十通りあります。 **FastAPI**で構築されたアプリケーションに、これらの選択肢を簡単に追加できます。
 
-また、APIと通信するクライアント用のコードを自動的に生成するために使用することもできます。たとえば、フロントエンド、モバイル、またはIoTアプリケーション。
+また、APIと通信するクライアント用のコードを自動的に生成するために使用することもできます。たとえば、フロントエンド、モバイル、またはIoTアプリケーションです。
 
 ## ステップ毎の要約
 
@@ -148,7 +148,7 @@ OpenAPIスキーマは、FastAPIに含まれている2つのインタラクテ�
 ```
 ここで、`app`変数が`FastAPI`クラスの「インスタンス」になります。
 
-これが、すべてのAPIを作成するための対話の主要なポイントになります。
+これが、すべてのAPIを作成するための主要なポイントになります。
 
 この`app`はコマンドで`uvicorn`が参照するものと同じです:
 
@@ -201,7 +201,7 @@ https://example.com/items/foo
 !!! info "情報"
     「パス」は一般に「エンドポイント」または「ルート」とも呼ばれます。
 
-APIを構築する際、「パス」は「懸念」と「リソース」を分離するための主要な方法です。
+APIを構築する際、「パス」は「関心事」と「リソース」を分離するための主要な方法です。
 
 #### Operation
 
@@ -248,14 +248,14 @@ APIを構築するときは、通常、これらの特定のHTTPメソッドを�
 * パス `/`
 * <abbr title="an HTTP GET method"><code>get</code> オペレーション</abbr>
 
-!!! info "`@decorator` Info"
+!!! info "`@decorator` について"
     Pythonにおける`@something`シンタックスはデコレータと呼ばれます。
 
     「デコレータ」は関数の上に置きます。かわいらしい装飾的な帽子のようです（この用語の由来はそこにあると思います）。
 
     「デコレータ」は直下の関数を受け取り、それを使って何かを行います。
 
-    私たちの場合、このデコレーターは**FastAPI**に、直下の関数が**オペレーション** `get`を使用した**パス**` / `に対応することを通知します。
+    私たちの場合、このデコレーターは直下の関数が**オペレーション** `get`を使用した**パス**` / `に対応することを**FastAPI** に通知します。
 
     これが「*パスオペレーションデコレータ*」です。
 
@@ -287,15 +287,13 @@ APIを構築するときは、通常、これらの特定のHTTPメソッドを�
 
 * **パス**: は`/`です。
 * **オペレーション**: は`get`です。
-* **関数**: 「デコレータ」の直下にある関数is the function (`@app.get("/")`の直下).
+* **関数**: 「デコレータ」の直下にある関数 (`@app.get("/")`の直下) です。
 
 ```Python hl_lines="7"
 {!../../../docs_src/first_steps/tutorial001.py!}
 ```
 
-これは、Python関数です。
-
-It will be called by **FastAPI** whenever it receives a request to the URL "`/`" using a `GET` operation.
+これは、Pythonの関数です。
 
 この関数は、`GET`オペレーションを使ったURL「`/`」へのリクエストを受け取るたびに**FastAPI**によって呼び出されます。
 
@@ -309,7 +307,7 @@ It will be called by **FastAPI** whenever it receives a request to the URL "`/`"
 {!../../../docs_src/first_steps/tutorial003.py!}
 ```
 
-!!! note "注意"
+!!! note "備考"
     違いが分からない場合は、[Async: *"In a hurry?"*](../async.md#in-a-hurry){.internal-link target=_blank}を確認してください。
 
 ### Step 5: コンテンツの返信
@@ -328,6 +326,6 @@ JSONに自動的に変換されるオブジェクトやモデルは他にもた�
 
 * `FastAPI`をインポート
 * `app`インスタンスを生成
-* **パスオペレーションデコレータ**を記述します (`@app.get("/")`)
-* **パスオペレーション関数**を書く (上記の`def root(): ...`のように)
-* 開発サーバーを起動 (`uvicorn main:app --reload`).
+* **パスオペレーションデコレータ**を記述 (`@app.get("/")`)
+* **パスオペレーション関数**を定義 (上記の`def root(): ...`のように)
+* 開発サーバーを起動 (`uvicorn main:app --reload`)
