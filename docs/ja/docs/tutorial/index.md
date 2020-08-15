@@ -52,7 +52,7 @@ $ pip install fastapi[all]
 
 ...これには、コードを実行するサーバーとして使用できる `uvicorn`も含まれます。
 
-!!! 注意
+!!! note "注意"
     パーツ毎にインストールすることも可能です。
 
     This is what you would probably do once you want to deploy your application to production:
