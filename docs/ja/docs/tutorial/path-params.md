@@ -1,7 +1,6 @@
 # パスパラメータ
 
-パスを「パラメータ」または「変数」として宣言するには、Python形式の文字列で使用されるのと同じ構文を使用します。
-Pythonのformat文字列と同様のシンタックスで「パスパラメータ」や「パス変数」を宣言できます。
+Pythonのformat文字列と同様のシンタックスで「パスパラメータ」や「パス変数」を宣言できます:
 
 ```Python hl_lines="6 7"
 {!../../../docs_src/path_params/tutorial001.py!}
@@ -17,7 +16,7 @@ Pythonのformat文字列と同様のシンタックスで「パスパラメー�
 
 ## パスパラメータと型
 
-標準のPython型アノテーションを使用して、関数内のパスパラメータの型を宣言できます:
+標準のPythonの型アノテーションを使用して、関数内のパスパラメータの型を宣言できます:
 
 ```Python hl_lines="7"
 {!../../../docs_src/path_params/tutorial002.py!}
@@ -25,7 +24,7 @@ Pythonのformat文字列と同様のシンタックスで「パスパラメー�
 
 ここでは、 `item_id` は `int` として宣言されています。
 
-!!! check
+!!! check "確認"
     これにより、関数内でのエディターサポート (エラーチェックや補完など) が提供されます。
 
 ## データ<abbr title="別名: serialization, parsing, marshalling">変換</abbr>
@@ -94,7 +93,7 @@ Pythonのformat文字列と同様のシンタックスで「パスパラメー�
 
 ## Pydantic
 
-すべてのデータバリデーションは <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> によって内部で実行されるため、Pydanticの全てのメリットが得られます。
+すべてのデータバリデーションは <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> によって内部で実行されるため、Pydanticの全てのメリットが得られます。そして、安心して利用することができます。
 
 `str`、 `float` 、 `bool` および他の多くの複雑なデータ型を型宣言に使用できます。
 
@@ -140,7 +139,7 @@ Pythonのformat文字列と同様のシンタックスで「パスパラメー�
 
 ### *パスパラメータ*の宣言
 
-それから、enumクラスである (作成した) `ModelName`を使用した型アノテーションをもつ*パスパラメータ*を作成します: 
+次に、作成したenumクラスである`ModelName`を使用した型アノテーションをもつ*パスパラメータ*を作成します: 
 
 ```Python hl_lines="16"
 {!../../../docs_src/path_params/tutorial005.py!}
@@ -204,7 +203,7 @@ Pythonのformat文字列と同様のシンタックスで「パスパラメー�
 
 ### OpenAPIサポート
 
-OpenAPIは*パス*を内部に含んだ*パスパラメータ*の宣言をサポートしていません。したがって、テストと定義が困難です。
+OpenAPIはテストや定義が困難なシナリオにつながる可能性があるため、内部に*パス*を含む*パスパラメータ*の宣言をサポートしていません。
 
 それにも関わらず、Starletteの内部ツールのひとつを使用することで、**FastAPI**はそれが実現できます。
 
