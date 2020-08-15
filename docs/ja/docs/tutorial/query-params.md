@@ -7,7 +7,7 @@
 {!../../../docs_src/query_params/tutorial001.py!}
 ```
 
-クエリはURL内で `?` の後ろに書かれており、 `&` で分けられているキーとバリューの組の集合です。
+クエリはURL内で `?` の後に続くキーとバリューの組で、 `&` で区切られています。
 
 例えば、以下の様なURL内で:
 
@@ -35,7 +35,7 @@ http://127.0.0.1:8000/items/?skip=0&limit=10
 
 クエリパラメータはパスの固定部分ではないので、オプショナルとしたり、デフォルト値をもつことができます。
 
-以下の例では、`skip=0` と `limit=10` というデフォルト値を持っています。
+上述の例では、`skip=0` と `limit=10` というデフォルト値を持っています。
 
 したがって、以下のURLにアクセスすることは:
 
@@ -72,6 +72,11 @@ http://127.0.0.1:8000/items/?skip=20
 
 !!! check "確認"
     パスパラメータ `item_id` はパスパラメータであり、`q` はそれとは違ってクエリパラメータであると判別できるほど**FastAPI** が賢いということにも注意してください。
+
+!!! note "備考"
+    FastAPIは、`= None`があるおかげで、`q`がオプショナルだとわかります。
+    
+    `Optional[str]` の`Optional` はFastAPIでは使用されていません（FastAPIは`str`の部分のみ使用します）。しかし、`Optional[str]` はエディタがコードのエラーを見つけるのを助けてくれます。
 
 ## クエリパラメータの型変換
 
@@ -192,36 +197,3 @@ http://127.0.0.1:8000/items/foo-item?needy=sooooneedy
 !!! tip "豆知識"
 
     [パスパラメータ](path-params.md#predefined-values){.internal-link target=_blank}と同様に `Enum` を使用できます。
-
-## オプショナルな型宣言
-
-!!! 警告
-    これは発展的なユースケースかもしれません。
-
-    スキップしても構いません。
-
-`mypy` を使っている場合、次の様な型宣言には警告がでる可能性があります:
-
-```Python
-limit: int = None
-```
-
-次のようなエラーで:
-
-```
-Incompatible types in assignment (expression has type "None", variable has type "int")
-```
-
-このような場合では `Optional` を使用して、次のように `mypy` に `None` を取りうることを伝えられます:
-
-```Python
-from typing import Optional
-
-limit: Optional[int] = None
-```
-
-*path operation*では、これは次の様になります:
-
-```Python hl_lines="9"
-{!../../../docs_src/query_params/tutorial007.py!}
-```
