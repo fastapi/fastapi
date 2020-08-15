@@ -36,7 +36,7 @@ Pythonのformat文字列と同様のシンタックスで「パスパラメー�
 {"item_id":3}
 ```
 
-!!! check
+!!! check "確認"
     関数が受け取った（および返した）値は、文字列の `"3"` ではなく、Pythonの `int` としての `3` であることに注意してください。
 
     したがって、型宣言を使用すると、**FastAPI**は自動リクエスト <abbr title="HTTPリクエストで受け取った文字列をPythonデータへ変換する">"解析"</abbr> を行います。
@@ -64,7 +64,7 @@ Pythonのformat文字列と同様のシンタックスで「パスパラメー�
 
 <a href="http://127.0.0.1:8000/items/4.2" class="external-link" target="_blank">http://127.0.0.1:8000/items/4.2</a> で見られるように、intのかわりに `float` が与えられた場合にも同様なエラーが表示されます。
 
-!!! check
+!!! check "確認"
     したがって、Pythonの型宣言を使用することで、**FastAPI**はデータのバリデーションを行います。
 
     表示されたエラーには問題のある箇所が明確に指摘されていることに注意してください。
@@ -77,7 +77,7 @@ Pythonのformat文字列と同様のシンタックスで「パスパラメー�
 
 <img src="/img/tutorial/path-params/image01.png">
 
-!!! check
+!!! check "確認"
     繰り返しになりますが、Python型宣言を使用するだけで、**FastAPI**は対話的なAPIドキュメントを自動的に生成します（Swagger UIを統合）。
 
     パスパラメータが整数として宣言されていることに注意してください。
@@ -132,10 +132,10 @@ Pythonのformat文字列と同様のシンタックスで「パスパラメー�
 {!../../../docs_src/path_params/tutorial005.py!}
 ```
 
-!!! info
+!!! info "情報"
     <a href="https://docs.python.org/3/library/enum.html" class="external-link" target="_blank">Enumerations (もしくは、enums)はPython 3.4以降で利用できます</a>。
 
-!!! tip
+!!! tip "豆知識"
     "AlexNet"、"ResNet"そして"LeNet"は機械学習<abbr title="Technically, Deep Learning model architectures">モデル</abbr>の名前です。
 
 ### *パスパラメータ*の宣言
@@ -172,7 +172,7 @@ Pythonのformat文字列と同様のシンタックスで「パスパラメー�
 {!../../../docs_src/path_params/tutorial005.py!}
 ```
 
-!!! tip
+!!! tip "豆知識"
     `ModelName.lenet.value` でも `"lenet"` 値にアクセスできます。
 
 #### *列挙型メンバ*の返却
@@ -226,7 +226,7 @@ Starletteのオプションを直接使用することで、以下のURLの様�
 {!../../../docs_src/path_params/tutorial004.py!}
 ```
 
-!!! tip
+!!! tip "豆知識"
     最初のスラッシュ (`/`)が付いている `/home/johndoe/myfile.txt` をパラメータが含んでいる必要があります。
 
     この場合、URLは `files` と `home` の間にダブルスラッシュ (`//`) のある、 `/files//home/johndoe/myfile.txt` になります。
