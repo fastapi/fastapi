@@ -16,8 +16,6 @@ GitHubでFastAPIに「Star」をつけることができます (右上部のStar
 
 スターを増やすことで、他のユーザーの目につきやすくなり、多くの人にとって便利なものであることを示せます。
 
-## Watch the GitHub repository for releases
-
 ## GitHubレポジトリのリリースをWatch
 
 GitHubでFastAPIを「Watch」できます (右上部のWatchボタンをクリック): <a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">https://github.com/tiangolo/fastapi</a>. 👀
@@ -42,15 +40,11 @@ GitHubでFastAPIを「Watch」できます (右上部のWatchボタンをクリ�
     * アイデアや作成ツールについての記事が読めます。
     * 新規記事の執筆を通知してくれます。
 
-## Tweet about **FastAPI**
-
 ## **FastAPI** に関するツイート
 
 <a href="https://twitter.com/compose/tweet?text=I'm loving FastAPI because... https://github.com/tiangolo/fastapi cc @tiangolo" class="external-link" target="_blank">**FastAPI** についてツイート</a>し、開発者や他の人にどこが気に入ったのか教えてください。🎉
 
 **FastAPI** がどのように使われ、どこが気に入られ、どんなプロジェクト/会社で使われているかなどについて知りたいです。
-
-## Vote for FastAPI
 
 ## FastAPIに投票
 
@@ -83,7 +77,7 @@ GitHubレポジトリで<a href="https://github.com/tiangolo/fastapi/issues/new/
 
 以下の様な<a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">プルリクエストを作成</a>できます:
 
-* ドキュメントのタイポを訂正。
+* ドキュメントのタイプミスを修正。
 * 新たなドキュメントセクションを提案。
 * 既存のissue/バグを修正。
 * 新機能を追加。
