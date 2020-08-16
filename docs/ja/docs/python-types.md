@@ -12,7 +12,7 @@
 
 しかしたとえまったく **FastAPI** を使用しない場合でも、それらについて少し学ぶことで利点を得ることができるでしょう。
 
-!!! 備考
+!!! note "備考"
     もしあなたがPythonの専門家で、すでに型ヒントについてすべて知っているのであれば、次の章まで読み飛ばしてください。
 
 ## 動機
@@ -172,7 +172,7 @@ John Doe
 {!../../../docs_src/python_types/tutorial006.py!}
 ```
 
-!!! 豆知識
+!!! tip "豆知識"
     角括弧内の内部の型は「型パラメータ」と呼ばれています。
 
     この場合、`str`は`List`に渡される型パラメータです。
@@ -283,7 +283,7 @@ Pydanticの公式ドキュメントから引用:
 {!../../../docs_src/python_types/tutorial011.py!}
 ```
 
-!!! 情報
+!!! info "情報"
     Pydanticについてより学びたい方は<a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">ドキュメントを参照してください</a>.
 
 **FastAPI** はすべてPydanticをベースにしています。
@@ -312,5 +312,5 @@ Pydanticの公式ドキュメントから引用:
 
 重要なのは、Pythonの標準的な型を使うことで、（クラスやデコレータなどを追加するのではなく）１つの場所で **FastAPI** が多くの作業を代わりにやってくれているということです。
 
-!!! 情報
+!!! info "情報"
     すでにすべてのチュートリアルを終えて、型についての詳細を見るためにこのページに戻ってきた場合は、<a href="https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html" class="external-link" target="_blank">`mypy`のチートシートを参照してください</a>
