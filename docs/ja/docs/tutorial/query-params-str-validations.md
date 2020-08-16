@@ -90,7 +90,7 @@ q: str = Query(None, max_length=50)
 {!../../../docs_src/query_params_str_validations/tutorial005.py!}
 ```
 
-!!! 備考
+!!! note "備考"
     デフォルト値を指定すると、パラメータはオプションになります。
 
 ## 必須にする
@@ -119,7 +119,7 @@ q: str = Query(None, min_length=3)
 {!../../../docs_src/query_params_str_validations/tutorial006.py!}
 ```
 
-!!! 情報
+!!! info "情報"
     これまで`...`を見たことがない方へ: これは特殊な単一値です。<a href="https://docs.python.org/3/library/constants.html#Ellipsis" class="external-link" target="_blank">Pythonの一部であり、"Ellipsis"と呼ばれています</a>。
 
 これは **FastAPI** にこのパラメータが必要であることを知らせます。
@@ -153,7 +153,7 @@ http://localhost:8000/items/?q=foo&q=bar
 }
 ```
 
-!!! 豆知識
+!!! tip "豆知識"
     上述の例のように、`list`型のクエリパラメータを宣言するには明示的に`Query`を使用する必要があります。そうしない場合、リクエストボディと解釈されます。
 
 対話的APIドキュメントは複数の値を許可するために自動的に更新されます。
@@ -193,7 +193,7 @@ http://localhost:8000/items/
 {!../../../docs_src/query_params_str_validations/tutorial013.py!}
 ```
 
-!!! 備考
+!!! note "備考"
     この場合、FastAPIはリストの内容をチェックしないことを覚えておいてください。
 
     例えば`List[int]`はリストの内容が整数であるかどうかをチェックします(そして、文書化します)。しかし`list`だけではそうしません。
@@ -204,7 +204,7 @@ http://localhost:8000/items/
 
 その情報は、生成されたOpenAPIに含まれ、ドキュメントのユーザーインターフェースや外部のツールで使用されます。
 
-!!! 備考
+!!! note "備考"
     ツールによってOpenAPIのサポートのレベルが異なる可能性があることを覚えておいてください。
 
     その中には、宣言されたすべての追加情報が表示されていないものもあるかもしれませんが、ほとんどの場合、不足している機能はすでに開発の計画がされています。
