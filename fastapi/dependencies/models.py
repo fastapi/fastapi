@@ -3,8 +3,6 @@ from typing import Callable, List, Optional, Sequence
 from fastapi.security.base import SecurityBase
 from pydantic.fields import ModelField
 
-param_supported_types = (str, int, float, bool)
-
 
 class SecurityRequirement:
     def __init__(
