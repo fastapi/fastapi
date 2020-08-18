@@ -6,7 +6,7 @@
   <a href="https://fastapi.tiangolo.com"><img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI"></a>
 </p>
 <p align="center">
-    <em>FastAPI framework, yüksek performanslı, öğrenmesi kolay, kodlaması hızlı, kullanıma hazır.</em>
+    <em>FastAPI framework, yüksek performanslı, öğrenmesi kolay, geliştirmesi hızlı, kullanıma sunulmaya hazır.</em>
 </p>
 <p align="center">
 <a href="https://github.com/tiangolo/fastapi/actions?query=workflow%3ATest" target="_blank">
@@ -35,15 +35,13 @@ FastAPI, Python 3.6+'nın standard type hintlerine dayanan modern ve hızlı (y�
 
 Ana özellikleri:
 
-* **Hızlı**: çok yüksek performanslı, **NodeJS** ve **Go** seviyesinde performans sağlıyor, (Starlette ve Pydantic sayesinde.) [Python'un en hızlı frameworklerinden bir tanesi.](#performance).
-* **Kodlaması hızlı**: Yeni özellikler geliştirmek neredeyse %200 - %300 kat hızlı. *
+* **Hızlı**: çok yüksek performanslı, **NodeJS** ve **Go** ile eşdeğer seviyede performans sağlıyor, (Starlette ve Pydantic sayesinde.) [Python'un en hızlı frameworklerinden bir tanesi.](#performance).
+* **Kodlaması hızlı**: Yeni özellikler geliştirmek neredeyse %200 - %300 kat daha hızlı. *
 * **Daha az bug**: Geliştirici (insan) kaynaklı hatalar neredeyse %40 azaltıldı. *
 * **Sezgileri güçlü**: Editor (otomatik-tamamlama) desteği harika. <abbr title="Otomatik tamamlama-IntelliSense">Otomatik tamamlama</abbr> her yerde. Debuglamak ile daha az zaman harcayacaksınız.
-* **Kolay**: Öğrenmesi ve kullanması kolay olmak üzere tasarlandı. Döküman okumak süreleri azaltıldı.
-* **Kısa**: Kod tekrarını minimale indir. Yeni parametre tanımalamak için birden fazla seçenek sunuyoruz. Daha az bug ile karşılaşırsınız.
+* **Kolay**: Öğrenmesi ve kullanması kolay olmak üzere tasarlandı. Döküman okumak için harcayacağınız süre azaltıldı.
+* **Kısa**: Kod tekrarını minimale indir. Yeni parametre tanımlamak için birden fazla seçenek sunuyoruz. Daha az bug ile karşılaşırsınız.
 * **Güçlü**: Otomatik dökümantasyon ile beraber, kullanıma hazır kod yaz.
-
-* **Standartlar belirli**: Based on (and fully compatible with) the open standards for APIs: (previously known as Swagger) and 
 
 * **Standartlar belirli**: Tamamiyle API'ların açık standartlara bağlı ve (tam uyumlululuk içerisinde); <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (eski adıyla Swagger) ve <a href="http://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>.
 
@@ -232,9 +230,9 @@ Bir JSON yanıtı görüceksin:
 {"item_id": 5, "q": "somequery"}
 ```
 
-Az önce olutşurduğun API:
+Az önce oluşturduğun API:
 
-* `/` ve `/items/{item_id}` adreslerine HTTP isteği alabilir hale geldi.
+* `/` ve `/items/{item_id}` adreslerine HTTP talebi alabilir hale geldi.
 * İki _adresde_ `GET` <em>operasyonlarını</em> (HTTP  _metodları_ olarakta bilinen) yapabilir hale geldi.
 * `/items/{item_id}` _adresi_ ayrıca bir `item_id` _adres parametresine_  sahip ve bu bir `int` olmak zorunda.
 * `/items/{item_id}` _adresi_ opsiyonel bir `str` _sorgu paramtersine_ sahip bu da `q`.
@@ -257,7 +255,7 @@ Senin için alternatif olarak (<a href="https://github.com/Rebilly/ReDoc" class=
 
 ## Örnek değiştirme yapmak
 
-Şimdi `main.py` dosyasını değiştirelim ve body ile `PUT` isteği alabilir hale getirelim.
+Şimdi `main.py` dosyasını değiştirelim ve body ile `PUT` talebi alabilir hale getirelim.
 
 Şimdi Pydantic sayesinde, Python'un standart tiplerini kullanarak bir body tanımlayacağız.
 
@@ -369,13 +367,13 @@ item: Item
 
 Az önceki kod örneğine geri dönelim, **FastAPI**'ın yapacaklarına bir bakış atalım:
 
-* `item_id`'nin `GET` ve `PUT` istekleri içinde olup olmadığının doğruluğunu kontol edecek.
-* `item_id`'nin tipinin `int` olduğunu `GET` ve `PUT` istekleri içinde olup olmadığının doğruluğunu kontol edecek.
+* `item_id`'nin `GET` ve `PUT` talepleri içinde olup olmadığının doğruluğunu kontol edecek.
+* `item_id`'nin tipinin `int` olduğunu `GET` ve `PUT` talepleri içinde olup olmadığının doğruluğunu kontol edecek.
     * Eğer `GET` ve `PUT` içinde yok ise ve `int` değil ise, sebebini belirten bir hata mesajı gösterecek 
-* Opsiyonel bir `q` parametresinin `GET` isteği için (`http://127.0.0.1:8000/items/foo?q=somequery` içinde) olup olmadığını kontrol edecek
+* Opsiyonel bir `q` parametresinin `GET` talebi için (`http://127.0.0.1:8000/items/foo?q=somequery` içinde) olup olmadığını kontrol edecek
     * `q` parametresini `= None` ile oluşturduğumuz için, opsiyonel bir parametre olacak.
     * Eğer `None` olmasa zorunlu bir parametre olacak idi (bu yüzden body'de `PUT` parametresi var).
-* `PUT` istekleri için `/items/{item_id}`'nin body'sini, JSON olarak okuyor:
+* `PUT` talebi için `/items/{item_id}`'nin body'sini, JSON olarak okuyor:
     * `name` adında bir parametetre olup olmadığını ve var ise onun `str` olup olmadığını kontol ediyor. 
     * `price` adında bir parametetre olup olmadığını ve var ise onun `float` olup olmadığını kontol ediyor. 
     * `is_offer` adında bir parametetre olup olmadığını ve var ise onun `bool` olup olmadığını kontol ediyor. 
@@ -416,7 +414,7 @@ Daha fazla örnek ve özellik için <a href="https://fastapi.tiangolo.com/tutori
 
 **Spoiler**: Öğretici - Kullanıcı rehberi şunları içeriyor:
 
-* **Parameterlerin** nasıl **headers**, **cookies**, **form fields** ve **files** gibi yerlerden deklare edildiğini.
+* **Parameterlerini** nasıl **headers**, **cookies**, **form fields** ve **files** olarak deklare edebileceğini.
 * `maximum_length` ya da `regex` gibi şeylerle nasıl **doğrulama** yapabileceğini.
 * Çok güçlü ve kullanımı kolay **<abbr title="also known as components, resources, providers, services, injectables">Zorunluluk Entegrasyonu</abbr>** oluşturmayı.
 * Güvenlik ve kimlik doğrulama, **JWT tokenleri**'yle beraber **OAuth2** desteği, ve **HTTP Basic** doğrulaması.
@@ -442,7 +440,7 @@ Pydantic tarafında kullanılan:
 * <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - daha hızlı JSON <abbr title="HTTP bağlantısından gelen stringi Python objesine çevirmek için">"dönüşümü"</abbr> için.
 * <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - email doğrulaması için.
 
-Used by Starlette:
+Starlette tarafında kullanılan:
 
 * <a href="http://docs.python-requests.org" target="_blank"><code>requests</code></a> - Eğer `TestClient` kullanmak istiyorsan gerekli.
 * <a href="https://github.com/Tinche/aiofiles" target="_blank"><code>aiofiles</code></a> - `FileResponse` ya da `StaticFiles` kullanmak istiyorsan gerekli.
