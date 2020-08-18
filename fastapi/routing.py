@@ -280,6 +280,7 @@ class APIRoute(routing.Route):
         response_class: Optional[Type[Response]] = None,
         dependency_overrides_provider: Optional[Any] = None,
         callbacks: Optional[List["APIRoute"]] = None,
+        **kwargs: dict,
     ) -> None:
         # normalise enums e.g. http.HTTPStatus
         if isinstance(status_code, enum.IntEnum):
@@ -365,6 +366,8 @@ class APIRoute(routing.Route):
         self.body_field = get_body_field(dependant=self.dependant, name=self.unique_id)
         self.dependency_overrides_provider = dependency_overrides_provider
         self.callbacks = callbacks
+        for attr, value in kwargs.items():
+            setattr(self, attr, value)
         self.app = request_response(self.get_route_handler())
 
     def get_route_handler(self) -> Callable:
@@ -434,6 +437,7 @@ class APIRouter(routing.Router):
         name: Optional[str] = None,
         route_class_override: Optional[Type[APIRoute]] = None,
         callbacks: Optional[List[APIRoute]] = None,
+        **kwargs: dict,
     ) -> None:
         route_class = route_class_override or self.route_class
         route = route_class(
@@ -461,6 +465,7 @@ class APIRouter(routing.Router):
             name=name,
             dependency_overrides_provider=self.dependency_overrides_provider,
             callbacks=callbacks,
+            **kwargs,
         )
         self.routes.append(route)
 
@@ -563,7 +568,13 @@ class APIRouter(routing.Router):
                     )
         if responses is None:
             responses = {}
+        print(len(router.routes))
         for route in router.routes:
+            print("permissions" in dir(route))
+            print(dir(route))
+            print()
+            print(dir(APIRoute(path="/", endpoint=lambda x: x)))
+            print()
             if isinstance(route, APIRoute):
                 combined_responses = {**responses, **route.responses}
                 self.add_api_route(
@@ -592,6 +603,11 @@ class APIRouter(routing.Router):
                     name=route.name,
                     route_class_override=type(route),
                     callbacks=route.callbacks,
+                    **{
+                        attr: getattr(route, attr)
+                        for attr in set(dir(route))
+                        - set(dir(APIRoute(path="/", endpoint=lambda x: x)))
+                    },
                 )
             elif isinstance(route, routing.Route):
                 self.add_route(
