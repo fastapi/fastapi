@@ -35,7 +35,7 @@ FastAPI, Python 3.6+'nın standard type hintlerine dayanan modern ve hızlı (y�
 
 Ana özellikleri:
 
-* **Hızlı**: çok yüksek performanslı, **NodeJS** ve **Go** ile eşdeğer seviyede performans sağlıyor, (Starlette ve Pydantic sayesinde.) [Python'un en hızlı frameworklerinden bir tanesi.](#performance).
+* **Hızlı**: çok yüksek performanslı, **NodeJS** ve **Go** ile eşdeğer seviyede performans sağlıyor, (Starlette ve Pydantic sayesinde.) [Python'un en hızlı frameworklerinden bir tanesi.](#performans).
 * **Kodlaması hızlı**: Yeni özellikler geliştirmek neredeyse %200 - %300 kat daha hızlı. *
 * **Daha az bug**: Geliştirici (insan) kaynaklı hatalar neredeyse %40 azaltıldı. *
 * **Sezgileri güçlü**: Editor (otomatik-tamamlama) desteği harika. <abbr title="Otomatik tamamlama-IntelliSense">Otomatik tamamlama</abbr> her yerde. Debuglamak ile daha az zaman harcayacaksınız.
