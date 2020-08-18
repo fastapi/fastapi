@@ -280,7 +280,7 @@ class APIRoute(routing.Route):
         response_class: Optional[Type[Response]] = None,
         dependency_overrides_provider: Optional[Any] = None,
         callbacks: Optional[List["APIRoute"]] = None,
-        **kwargs: dict,
+        **kwargs: Dict[str, Any],
     ) -> None:
         # normalise enums e.g. http.HTTPStatus
         if isinstance(status_code, enum.IntEnum):
@@ -437,7 +437,7 @@ class APIRouter(routing.Router):
         name: Optional[str] = None,
         route_class_override: Optional[Type[APIRoute]] = None,
         callbacks: Optional[List[APIRoute]] = None,
-        **kwargs: dict,
+        **kwargs: Dict[str, Any],
     ) -> None:
         route_class = route_class_override or self.route_class
         route = route_class(
@@ -570,11 +570,6 @@ class APIRouter(routing.Router):
             responses = {}
         print(len(router.routes))
         for route in router.routes:
-            print("permissions" in dir(route))
-            print(dir(route))
-            print()
-            print(dir(APIRoute(path="/", endpoint=lambda x: x)))
-            print()
             if isinstance(route, APIRoute):
                 combined_responses = {**responses, **route.responses}
                 self.add_api_route(
