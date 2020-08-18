@@ -568,7 +568,6 @@ class APIRouter(routing.Router):
                     )
         if responses is None:
             responses = {}
-        print(len(router.routes))
         for route in router.routes:
             if isinstance(route, APIRoute):
                 combined_responses = {**responses, **route.responses}
