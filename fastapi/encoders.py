@@ -118,7 +118,10 @@ def jsonable_encoder(
 
     errors: List[Exception] = []
     try:
-        data = dict(obj)
+        try:
+            data = dict(obj)
+        except TypeError:
+            raise TypeError(f"'{type(obj).__name__}' object has no json encoder")
     except Exception as e:
         errors.append(e)
         try:
