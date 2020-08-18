@@ -27,7 +27,7 @@
 
 使用标准的 Python 类型来声明所有属性：
 
-```Python hl_lines="5 6 7 8 9"
+```Python hl_lines="5-9"
 {!../../../docs_src/body/tutorial001.py!}
 ```
 
