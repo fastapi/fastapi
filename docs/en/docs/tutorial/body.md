@@ -29,7 +29,7 @@ Then you declare your data model as a class that inherits from `BaseModel`.
 
 Use standard Python types for all the attributes:
 
-```Python hl_lines="7 8 9 10 11"
+```Python hl_lines="7-11"
 {!../../../docs_src/body/tutorial001.py!}
 ```
 
