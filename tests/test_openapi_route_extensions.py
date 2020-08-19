@@ -37,3 +37,9 @@ def test_openapi():
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
     assert response.json() == openapi_schema
+
+
+def test_get_route():
+    response = client.get("/")
+    assert response.status_code == 200, response.text
+    assert response.json() == {}
