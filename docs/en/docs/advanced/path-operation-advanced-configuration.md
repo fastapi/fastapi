@@ -50,3 +50,11 @@ It won't show up in the documentation, but other tools (such as Sphinx) will be 
 ```Python hl_lines="19 20 21 22 23 24 25 26 27 28 29"
 {!../../../docs_src/path_operation_advanced_configuration/tutorial004.py!}
 ```
+
+## OpenAPI Extensions
+
+To use custom [OpenAPI extensions](https://swagger.io/docs/specification/openapi-extensions/), simply pass any other arbitrary arguments to the route function, which will be included in the JSON Schema.
+
+```Python hl_lines="6"
+{!../../../docs_src/path_operation_advanced_configuration/tutorial005.py!}
+```
