@@ -494,6 +494,7 @@ class APIRouter(routing.Router):
         response_class: Optional[Type[Response]] = None,
         name: Optional[str] = None,
         callbacks: Optional[List[APIRoute]] = None,
+        **kwargs: Dict[str, Any],
     ) -> Callable:
         def decorator(func: Callable) -> Callable:
             self.add_api_route(
@@ -520,6 +521,8 @@ class APIRouter(routing.Router):
                 response_class=response_class or self.default_response_class,
                 name=name,
                 callbacks=callbacks,
+                # Below ignore is a MyPY issue: https://github.com/python/mypy/issues/1969
+                **kwargs,  # type: ignore
             )
             return func
 
@@ -648,6 +651,7 @@ class APIRouter(routing.Router):
         response_class: Optional[Type[Response]] = None,
         name: Optional[str] = None,
         callbacks: Optional[List[APIRoute]] = None,
+        **kwargs: Dict[str, Any],
     ) -> Callable:
         return self.api_route(
             path=path,
@@ -672,6 +676,7 @@ class APIRouter(routing.Router):
             response_class=response_class or self.default_response_class,
             name=name,
             callbacks=callbacks,
+            **kwargs,
         )
 
     def put(
@@ -698,6 +703,7 @@ class APIRouter(routing.Router):
         response_class: Optional[Type[Response]] = None,
         name: Optional[str] = None,
         callbacks: Optional[List[APIRoute]] = None,
+        **kwargs: Dict[str, Any],
     ) -> Callable:
         return self.api_route(
             path=path,
@@ -722,6 +728,7 @@ class APIRouter(routing.Router):
             response_class=response_class or self.default_response_class,
             name=name,
             callbacks=callbacks,
+            **kwargs,
         )
 
     def post(
@@ -748,6 +755,7 @@ class APIRouter(routing.Router):
         response_class: Optional[Type[Response]] = None,
         name: Optional[str] = None,
         callbacks: Optional[List[APIRoute]] = None,
+        **kwargs: Dict[str, Any],
     ) -> Callable:
         return self.api_route(
             path=path,
@@ -772,6 +780,7 @@ class APIRouter(routing.Router):
             response_class=response_class or self.default_response_class,
             name=name,
             callbacks=callbacks,
+            **kwargs,
         )
 
     def delete(
@@ -798,6 +807,7 @@ class APIRouter(routing.Router):
         response_class: Optional[Type[Response]] = None,
         name: Optional[str] = None,
         callbacks: Optional[List[APIRoute]] = None,
+        **kwargs: Dict[str, Any],
     ) -> Callable:
         return self.api_route(
             path=path,
@@ -822,6 +832,7 @@ class APIRouter(routing.Router):
             response_class=response_class or self.default_response_class,
             name=name,
             callbacks=callbacks,
+            **kwargs,
         )
 
     def options(
@@ -848,6 +859,7 @@ class APIRouter(routing.Router):
         response_class: Optional[Type[Response]] = None,
         name: Optional[str] = None,
         callbacks: Optional[List[APIRoute]] = None,
+        **kwargs: Dict[str, Any],
     ) -> Callable:
         return self.api_route(
             path=path,
@@ -872,6 +884,7 @@ class APIRouter(routing.Router):
             response_class=response_class or self.default_response_class,
             name=name,
             callbacks=callbacks,
+            **kwargs,
         )
 
     def head(
@@ -898,6 +911,7 @@ class APIRouter(routing.Router):
         response_class: Optional[Type[Response]] = None,
         name: Optional[str] = None,
         callbacks: Optional[List[APIRoute]] = None,
+        **kwargs: Dict[str, Any],
     ) -> Callable:
         return self.api_route(
             path=path,
@@ -922,6 +936,7 @@ class APIRouter(routing.Router):
             response_class=response_class or self.default_response_class,
             name=name,
             callbacks=callbacks,
+            **kwargs,
         )
 
     def patch(
@@ -948,6 +963,7 @@ class APIRouter(routing.Router):
         response_class: Optional[Type[Response]] = None,
         name: Optional[str] = None,
         callbacks: Optional[List[APIRoute]] = None,
+        **kwargs: Dict[str, Any],
     ) -> Callable:
         return self.api_route(
             path=path,
@@ -972,6 +988,7 @@ class APIRouter(routing.Router):
             response_class=response_class or self.default_response_class,
             name=name,
             callbacks=callbacks,
+            **kwargs,
         )
 
     def trace(
@@ -998,8 +1015,8 @@ class APIRouter(routing.Router):
         response_class: Optional[Type[Response]] = None,
         name: Optional[str] = None,
         callbacks: Optional[List[APIRoute]] = None,
+        **kwargs: Dict[str, Any],
     ) -> Callable:
-
         return self.api_route(
             path=path,
             response_model=response_model,
@@ -1023,4 +1040,5 @@ class APIRouter(routing.Router):
             response_class=response_class or self.default_response_class,
             name=name,
             callbacks=callbacks,
+            **kwargs,
         )

@@ -30,41 +30,7 @@ class CustomAPIRoute(APIRoute):
         return custom_route_handler
 
 
-class CustomAPIRouter(APIRouter):
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-        self.route_class = CustomAPIRoute
-
-    def add_api_route(
-        self,
-        path: str,
-        endpoint: Callable,
-        *,
-        permissions: Optional[Iterable[str]] = None,
-        **kwargs
-    ) -> None:
-        route = self.route_class(
-            path=path, endpoint=endpoint, permissions=permissions, **kwargs
-        )
-        print("permissions" in dir(route))
-        self.routes.append(route)
-
-    def api_route(
-        self, path: str, *, permissions: Optional[Iterable[str]] = None, **kwargs
-    ) -> Callable:
-        def decorator(func: Callable) -> Callable:
-            self.add_api_route(path, func, permissions=permissions, **kwargs)
-            return func
-
-        return decorator
-
-    def get(
-        self, path: str, *, permissions: Optional[Iterable[str]] = None, **kwargs
-    ) -> Callable:
-        return self.api_route(path, permissions=permissions, **kwargs)
-
-
-router = CustomAPIRouter()
+router = APIRouter(route_class=CustomAPIRoute)
 
 _permissions = ["Foo", "Bar"]
 
