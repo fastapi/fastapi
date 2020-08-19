@@ -521,7 +521,6 @@ class APIRouter(routing.Router):
                 response_class=response_class or self.default_response_class,
                 name=name,
                 callbacks=callbacks,
-                # Below ignore is a MyPY issue: https://github.com/python/mypy/issues/1969
                 **kwargs,  # type: ignore
             )
             return func
@@ -603,7 +602,7 @@ class APIRouter(routing.Router):
                     **{
                         attr: getattr(route, attr)
                         for attr in set(dir(route))
-                        - set(dir(APIRoute(path="/", endpoint=lambda x: x)))
+                        - set(dir(self.route_class(path="/", endpoint=lambda x: x)))
                     },
                 )
             elif isinstance(route, routing.Route):
