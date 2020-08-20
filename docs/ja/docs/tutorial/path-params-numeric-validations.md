@@ -12,7 +12,7 @@
 
 ## メタデータの宣言
 
-パラメータは`Query`と同じ者を宣言することができます。
+パラメータは`Query`と同じものを宣言することができます。
 
 例えば、パスパラメータ`item_id`に対して`title`のメタデータを宣言するには以下のようにします:
 
@@ -53,7 +53,6 @@ Pythonは「デフォルト」を持たない値の前に「デフォルト」�
 
 関数の最初のパラメータとして`*`を渡します。
 
-Python won't do anything with that `*`, but it will know that all the following parameters should be called as keyword arguments (key-value pairs), also known as <abbr title="From: K-ey W-ord Arg-uments"><code>kwargs</code></abbr>. Even if they don't have a default value.
 Pythonはその`*`で何かをすることはありませんが、それ以降のすべてのパラメータがキーワード引数（キーと値のペア）として呼ばれるべきものであると知っているでしょう。それは<abbr title="From: K-ey W-ord Arg-uments"><code>kwargs</code></abbr>としても知られています。たとえデフォルト値がなくても。
 
 ```Python hl_lines="8"
@@ -64,7 +63,6 @@ Pythonはその`*`で何かをすることはありませんが、それ以降�
 
 `Query`と`Path`（、そして後述する他のもの）を用いて、文字列の制約を宣言することができますが、数値の制約も同様に宣言できます。
 
-Here, with `ge=1`, `item_id` will need to be an integer number "`g`reater than or `e`qual" to `1`.
 ここで、`ge=1`の場合、`item_id`は`1`「より大きい`g`か、同じ`e`」整数でなれけばなりません。
 
 ```Python hl_lines="8"
