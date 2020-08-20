@@ -280,6 +280,7 @@ class APIRoute(routing.Route):
         response_class: Optional[Type[Response]] = None,
         dependency_overrides_provider: Optional[Any] = None,
         callbacks: Optional[List["APIRoute"]] = None,
+        metadata: Optional[Sequence[str]] = None,
         **kwargs: Dict[str, Any],
     ) -> None:
         # normalise enums e.g. http.HTTPStatus
@@ -366,8 +367,13 @@ class APIRoute(routing.Route):
         self.body_field = get_body_field(dependant=self.dependant, name=self.unique_id)
         self.dependency_overrides_provider = dependency_overrides_provider
         self.callbacks = callbacks
-        for attr, value in kwargs.items():
-            setattr(self, attr, value)
+        self.metadata = metadata or []
+        # TODO: Assert should give information about which arguments are wrong, and maybe raising a TypeError.
+        assert set(self.metadata) >= set(
+            kwargs.keys()
+        ), "Router decorator got an unexpected keyword argument"
+        for attr in self.metadata:
+            setattr(self, attr, kwargs.get(attr))
         self.app = request_response(self.get_route_handler())
 
     def get_route_handler(self) -> Callable:
@@ -398,6 +404,7 @@ class APIRouter(routing.Router):
         default_response_class: Optional[Type[Response]] = None,
         on_startup: Optional[Sequence[Callable]] = None,
         on_shutdown: Optional[Sequence[Callable]] = None,
+        metadata: Optional[Sequence[str]] = None,
     ) -> None:
         super().__init__(
             routes=routes,
@@ -409,6 +416,7 @@ class APIRouter(routing.Router):
         self.dependency_overrides_provider = dependency_overrides_provider
         self.route_class = route_class
         self.default_response_class = default_response_class
+        self.metadata = metadata
 
     def add_api_route(
         self,
@@ -437,6 +445,7 @@ class APIRouter(routing.Router):
         name: Optional[str] = None,
         route_class_override: Optional[Type[APIRoute]] = None,
         callbacks: Optional[List[APIRoute]] = None,
+        metadata: Optional[Sequence[str]] = None,
         **kwargs: Dict[str, Any],
     ) -> None:
         route_class = route_class_override or self.route_class
@@ -465,6 +474,7 @@ class APIRouter(routing.Router):
             name=name,
             dependency_overrides_provider=self.dependency_overrides_provider,
             callbacks=callbacks,
+            metadata=metadata or self.metadata,
             **kwargs,
         )
         self.routes.append(route)
@@ -599,6 +609,8 @@ class APIRouter(routing.Router):
                     name=route.name,
                     route_class_override=type(route),
                     callbacks=route.callbacks,
+                    metadata=router.metadata,
+                    # TODO: Can this be improved?
                     **{
                         attr: getattr(route, attr)
                         for attr in set(dir(route))
