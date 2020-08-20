@@ -390,6 +390,7 @@ class APIRouter(routing.Router):
         routes: Optional[List[routing.BaseRoute]] = None,
         redirect_slashes: bool = True,
         default: Optional[ASGIApp] = None,
+        default_path: str = "",
         dependency_overrides_provider: Optional[Any] = None,
         route_class: Type[APIRoute] = APIRoute,
         default_response_class: Optional[Type[Response]] = None,
@@ -403,6 +404,7 @@ class APIRouter(routing.Router):
             on_startup=on_startup,
             on_shutdown=on_shutdown,
         )
+        self.default_path = default_path
         self.dependency_overrides_provider = dependency_overrides_provider
         self.route_class = route_class
         self.default_response_class = default_response_class
@@ -466,7 +468,7 @@ class APIRouter(routing.Router):
 
     def api_route(
         self,
-        path: str,
+        path: Optional[str] = None,
         *,
         response_model: Optional[Type[Any]] = None,
         status_code: int = 200,
@@ -492,7 +494,7 @@ class APIRouter(routing.Router):
     ) -> Callable:
         def decorator(func: Callable) -> Callable:
             self.add_api_route(
-                path,
+                path if path is not None else self.default_path,
                 func,
                 response_model=response_model,
                 status_code=status_code,
@@ -517,6 +519,11 @@ class APIRouter(routing.Router):
                 callbacks=callbacks,
             )
             return func
+
+        # Add route was called as decorator without parameters
+        if callable(path):
+            func, path = path, self.default_path
+            return decorator(func)
 
         return decorator
 
@@ -616,7 +623,7 @@ class APIRouter(routing.Router):
 
     def get(
         self,
-        path: str,
+        path: Optional[str] = None,
         *,
         response_model: Optional[Type[Any]] = None,
         status_code: int = 200,
@@ -666,7 +673,7 @@ class APIRouter(routing.Router):
 
     def put(
         self,
-        path: str,
+        path: Optional[str] = None,
         *,
         response_model: Optional[Type[Any]] = None,
         status_code: int = 200,
@@ -716,7 +723,7 @@ class APIRouter(routing.Router):
 
     def post(
         self,
-        path: str,
+        path: Optional[str] = None,
         *,
         response_model: Optional[Type[Any]] = None,
         status_code: int = 200,
@@ -766,7 +773,7 @@ class APIRouter(routing.Router):
 
     def delete(
         self,
-        path: str,
+        path: Optional[str] = None,
         *,
         response_model: Optional[Type[Any]] = None,
         status_code: int = 200,
@@ -816,7 +823,7 @@ class APIRouter(routing.Router):
 
     def options(
         self,
-        path: str,
+        path: Optional[str] = None,
         *,
         response_model: Optional[Type[Any]] = None,
         status_code: int = 200,
@@ -866,7 +873,7 @@ class APIRouter(routing.Router):
 
     def head(
         self,
-        path: str,
+        path: Optional[str] = None,
         *,
         response_model: Optional[Type[Any]] = None,
         status_code: int = 200,
@@ -916,7 +923,7 @@ class APIRouter(routing.Router):
 
     def patch(
         self,
-        path: str,
+        path: Optional[str] = None,
         *,
         response_model: Optional[Type[Any]] = None,
         status_code: int = 200,
@@ -966,7 +973,7 @@ class APIRouter(routing.Router):
 
     def trace(
         self,
-        path: str,
+        path: Optional[str] = None,
         *,
         response_model: Optional[Type[Any]] = None,
         status_code: int = 200,

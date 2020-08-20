@@ -62,6 +62,7 @@ class FastAPI(Starlette):
             dependency_overrides_provider=self,
             on_startup=on_startup,
             on_shutdown=on_shutdown,
+            default_path="/",
         )
         self.exception_handlers = (
             {} if exception_handlers is None else dict(exception_handlers)
@@ -319,7 +320,7 @@ class FastAPI(Starlette):
 
     def get(
         self,
-        path: str,
+        path: Optional[str] = None,
         *,
         response_model: Optional[Type[Any]] = None,
         status_code: int = 200,
@@ -368,7 +369,7 @@ class FastAPI(Starlette):
 
     def put(
         self,
-        path: str,
+        path: Optional[str] = None,
         *,
         response_model: Optional[Type[Any]] = None,
         status_code: int = 200,
@@ -417,7 +418,7 @@ class FastAPI(Starlette):
 
     def post(
         self,
-        path: str,
+        path: Optional[str] = None,
         *,
         response_model: Optional[Type[Any]] = None,
         status_code: int = 200,
@@ -466,7 +467,7 @@ class FastAPI(Starlette):
 
     def delete(
         self,
-        path: str,
+        path: Optional[str] = None,
         *,
         response_model: Optional[Type[Any]] = None,
         status_code: int = 200,
@@ -515,7 +516,7 @@ class FastAPI(Starlette):
 
     def options(
         self,
-        path: str,
+        path: Optional[str] = None,
         *,
         response_model: Optional[Type[Any]] = None,
         status_code: int = 200,
@@ -564,7 +565,7 @@ class FastAPI(Starlette):
 
     def head(
         self,
-        path: str,
+        path: Optional[str] = None,
         *,
         response_model: Optional[Type[Any]] = None,
         status_code: int = 200,
@@ -613,7 +614,7 @@ class FastAPI(Starlette):
 
     def patch(
         self,
-        path: str,
+        path: Optional[str] = None,
         *,
         response_model: Optional[Type[Any]] = None,
         status_code: int = 200,
@@ -662,7 +663,7 @@ class FastAPI(Starlette):
 
     def trace(
         self,
-        path: str,
+        path: Optional[str] = None,
         *,
         response_model: Optional[Type[Any]] = None,
         status_code: int = 200,
