@@ -9,6 +9,8 @@ app = FastAPI()
 
 
 class CustomAPIRoute(APIRoute):
+    x_type = "A"
+
     def get_route_handler(self) -> Callable:
         original_route_handler = super().get_route_handler()
 

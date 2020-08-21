@@ -52,6 +52,7 @@ class FastAPI(Starlette):
         openapi_prefix: str = "",
         root_path: str = "",
         root_path_in_servers: bool = True,
+        metadata: Optional[Sequence[str]] = None,
         **extra: Any,
     ) -> None:
         self.default_response_class = default_response_class
@@ -62,6 +63,7 @@ class FastAPI(Starlette):
             dependency_overrides_provider=self,
             on_startup=on_startup,
             on_shutdown=on_shutdown,
+            metadata=metadata,
         )
         self.exception_handlers = (
             {} if exception_handlers is None else dict(exception_handlers)

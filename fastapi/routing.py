@@ -368,10 +368,10 @@ class APIRoute(routing.Route):
         self.dependency_overrides_provider = dependency_overrides_provider
         self.callbacks = callbacks
         self.metadata = metadata or []
-        # TODO: Assert should give information about which arguments are wrong, and maybe raising a TypeError.
-        assert set(self.metadata) >= set(
-            kwargs.keys()
-        ), "Router decorator got an unexpected keyword argument"
+        invalid_arguments = set(kwargs) - set(list(self.metadata) + dir(self))
+        assert (
+            not invalid_arguments
+        ), f"Router decorator got an unexpected keyword arguments: {invalid_arguments}"
         for attr in self.metadata:
             setattr(self, attr, kwargs.get(attr))
         self.app = request_response(self.get_route_handler())
