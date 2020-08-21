@@ -59,4 +59,4 @@ def test_invalid_custom_api_route():
 
         @router.get("/unused_params", not_used_param=None)
         def get_unused_params():
-            return None
+            return None  # pragma: no cover
