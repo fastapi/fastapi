@@ -19,7 +19,7 @@
 
 ## `File`パラメータを定義
 
-ファイルパラメータは`Body`や`Form`と同じように作成します:
+ファイルパラメータは`Body`や`Form`と同じように作成します:
 
 ```Python hl_lines="7"
 {!../../../docs_src/request_files/tutorial001.py!}
