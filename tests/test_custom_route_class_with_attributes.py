@@ -44,11 +44,7 @@ client = TestClient(app)
 
 @pytest.mark.parametrize(
     "endpoint,status_code,expected",
-    [
-        ("/use_params", 200, params),
-        ("/without_params", 200, None),
-        # ("/unused_params", 200, None),
-    ],
+    [("/use_params", 200, params), ("/without_params", 200, None),],
 )
 def test_valid_custom_api_route(endpoint, status_code, expected):
     response = client.get(endpoint)
