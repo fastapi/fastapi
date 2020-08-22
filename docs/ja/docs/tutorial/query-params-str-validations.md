@@ -4,7 +4,7 @@
 
 以下のアプリケーションを例にしてみましょう:
 
-```Python hl_lines="7"
+```Python hl_lines="9"
 {!../../../docs_src/query_params_str_validations/tutorial001.py!}
 ```
 
@@ -18,7 +18,7 @@
 
 そのために、まずは`fastapi`から`Query`をインポートします:
 
-```Python hl_lines="1"
+```Python hl_lines="3"
 {!../../../docs_src/query_params_str_validations/tutorial002.py!}
 ```
 
@@ -26,7 +26,7 @@
 
 パラメータのデフォルト値として使用し、パラメータ`max_length`を50に設定します:
 
-```Python hl_lines="7"
+```Python hl_lines="9"
 {!../../../docs_src/query_params_str_validations/tutorial002.py!}
 ```
 
@@ -58,7 +58,7 @@ q: str = Query(None, max_length=50)
 
 パラメータ`min_length`も追加することができます:
 
-```Python hl_lines="7"
+```Python hl_lines="9"
 {!../../../docs_src/query_params_str_validations/tutorial003.py!}
 ```
 
@@ -66,7 +66,7 @@ q: str = Query(None, max_length=50)
 
 パラメータが一致するべき<abbr title="正規表現とは、文字列の検索パターンを定義する文字列です。">正規表現</abbr>を定義することができます:
 
-```Python hl_lines="8"
+```Python hl_lines="10"
 {!../../../docs_src/query_params_str_validations/tutorial004.py!}
 ```
 
@@ -211,13 +211,13 @@ http://localhost:8000/items/
 
 `title`を追加できます:
 
-```Python hl_lines="7"
+```Python hl_lines="9"
 {!../../../docs_src/query_params_str_validations/tutorial007.py!}
 ```
 
 `description`を追加できます:
 
-```Python hl_lines="11"
+```Python hl_lines="13"
 {!../../../docs_src/query_params_str_validations/tutorial008.py!}
 ```
 
@@ -239,7 +239,7 @@ http://127.0.0.1:8000/items/?item-query=foobaritems
 
 その時、`alias`を宣言することができます。エイリアスはパラメータの値を見つけるのに使用されます:
 
-```Python hl_lines="7"
+```Python hl_lines="9"
 {!../../../docs_src/query_params_str_validations/tutorial009.py!}
 ```
 
@@ -251,7 +251,7 @@ http://127.0.0.1:8000/items/?item-query=foobaritems
 
 その場合、`Query`にパラメータ`deprecated=True`を渡します:
 
-```Python hl_lines="16"
+```Python hl_lines="18"
 {!../../../docs_src/query_params_str_validations/tutorial010.py!}
 ```
 
