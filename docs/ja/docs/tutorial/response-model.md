@@ -35,13 +35,13 @@ FastAPIは`response_model`を使って以下のことをします:
 
 ここでは`UserIn`モデルを宣言しています。それは平文のパスワードが含まれています:
 
-```Python hl_lines="7 9"
+```Python hl_lines="9 11"
 {!../../../docs_src/response_model/tutorial002.py!}
 ```
 
 そして、このモデルを使用して入力を宣言し、同じモデルを使って出力を宣言しています:
 
-```Python hl_lines="15 16"
+```Python hl_lines="17 18"
 {!../../../docs_src/response_model/tutorial002.py!}
 ```
 
@@ -58,19 +58,19 @@ FastAPIは`response_model`を使って以下のことをします:
 
 代わりに、平文のパスワードを持つ入力モデルと、パスワードを持たない出力モデルを作成することができます:
 
-```Python hl_lines="7 9 14"
+```Python hl_lines="9 11 16"
 {!../../../docs_src/response_model/tutorial003.py!}
 ```
 
 ここでは、*path operation関数*がパスワードを含む同じ入力ユーザーを返しているにもかかわらず:
 
-```Python hl_lines="22"
+```Python hl_lines="24"
 {!../../../docs_src/response_model/tutorial003.py!}
 ```
 
 ...`response_model`を`UserOut`と宣言したことで、パスワードが含まれていません:
 
-```Python hl_lines="20"
+```Python hl_lines="22"
 {!../../../docs_src/response_model/tutorial003.py!}
 ```
 
@@ -182,7 +182,7 @@ FastAPIは十分に賢いので（実際には、Pydanticが十分に賢い）`d
 
     これは`response_model_include`や`response_mode_exclude`を使用していくつかの属性を省略しても、アプリケーションのOpenAPI（とドキュメント）で生成されたJSON Schemaが完全なモデルになるからです。
 
-```Python hl_lines="29 35"
+```Python hl_lines="31 37"
 {!../../../docs_src/response_model/tutorial005.py!}
 ```
 
@@ -195,12 +195,12 @@ FastAPIは十分に賢いので（実際には、Pydanticが十分に賢い）`d
 
 もし`set`を使用することを忘れて、代わりに`list`や`tuple`を使用しても、FastAPIはそれを`set`に変換して正しく動作します:
 
-```Python hl_lines="29 35"
+```Python hl_lines="31 37"
 {!../../../docs_src/response_model/tutorial006.py!}
 ```
 
 ## まとめ
 
-*path operationデコレータの*`response_model`パラメータを使用して、レスポンスモデルを定義し、特にプライベートデータがフィルタリングされていることを確認します。
+*path operationデコレータの*`response_model`パラメータを使用して、レスポンスモデルを定義し、特にプライベートデータがフィルタリングされていることを確認します。
 
 明示的に設定された値のみを返すには、`response_model_exclude_unset`を使用します。
