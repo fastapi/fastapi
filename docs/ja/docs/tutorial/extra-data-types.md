@@ -49,17 +49,18 @@
 * `Decimal`:
     * Pythonの標準的な`Decimal`です。
     * リクエストやレスポンスでは`float`と同じように扱います。
-
+    
+* Pydanticの全ての有効な型はこちらで確認できます: <a href="https://pydantic-docs.helpmanual.io/usage/types" class="external-link" target="_blank">Pydantic data types</a>。
 ## 例
 
 ここでは、上記の型のいくつかを使用したパラメータを持つ*path operation*の例を示します。
 
-```Python hl_lines="1 2 11 12 13 14 15"
+```Python hl_lines="1 2 12 13 14 15 16"
 {!../../../docs_src/extra_data_types/tutorial001.py!}
 ```
 
 関数内のパラメータは自然なデータ型を持っていることに注意してください。そして、以下のように通常の日付操作を行うことができます:
 
-```Python hl_lines="17 18"
+```Python hl_lines="18 19"
 {!../../../docs_src/extra_data_types/tutorial001.py!}
 ```
