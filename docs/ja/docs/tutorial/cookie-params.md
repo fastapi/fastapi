@@ -6,7 +6,7 @@
 
 まず、`Cookie`をインポートします:
 
-```Python hl_lines="1"
+```Python hl_lines="3"
 {!../../../docs_src/cookie_params/tutorial001.py!}
 ```
 
@@ -16,7 +16,7 @@
 
 最初の値がデフォルト値で、追加の検証パラメータや注釈パラメータをすべて渡すことができます:
 
-```Python hl_lines="7"
+```Python hl_lines="9"
 {!../../../docs_src/cookie_params/tutorial001.py!}
 ```
 
