@@ -8,7 +8,7 @@
 
 また、デフォルトの`None`を設定することで、ボディパラメータをオプションとして宣言することもできます:
 
-```Python hl_lines="17 18 19"
+```Python hl_lines="19 20 21"
 {!../../../docs_src/body_multiple_params/tutorial001.py!}
 ```
 
@@ -30,7 +30,7 @@
 
 しかし、`item`と`user`のように複数のボディパラメータを宣言することもできます:
 
-```Python hl_lines="20"
+```Python hl_lines="22"
 {!../../../docs_src/body_multiple_params/tutorial002.py!}
 ```
 
@@ -71,7 +71,7 @@
 しかし、`Body`を使用して、**FastAPI** に別のボディキーとして扱うように指示することができます:
 
 
-```Python hl_lines="21"
+```Python hl_lines="23"
 {!../../../docs_src/body_multiple_params/tutorial003.py!}
 ```
 
@@ -108,7 +108,7 @@ q: str = None
 
 以下において:
 
-```Python hl_lines="25"
+```Python hl_lines="27"
 {!../../../docs_src/body_multiple_params/tutorial004.py!}
 ```
 
