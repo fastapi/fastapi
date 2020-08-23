@@ -98,7 +98,7 @@ In WebSocket endpoints you can import from `fastapi` and use:
 
 They work the same way as for other FastAPI endpoints/*path operations*:
 
-```Python hl_lines="56 57 58 59 60 61  64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79"
+```Python hl_lines="58 59 60 61 62 63 64 65  68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83"
 {!../../../docs_src/websockets/tutorial002.py!}
 ```
 
@@ -136,6 +136,33 @@ There you can set:
 With that you can connect the WebSocket and then send and receive messages:
 
 <img src="/img/tutorial/websockets/image05.png">
+
+## Handling disconnections and multiple clients
+
+When a WebSocket connection is closed, the `await websocket.receive_text()` will raise a `WebSocketDisconnect` exception, which you can then catch and handle like in this example.
+
+```Python hl_lines="81-83"
+{!../../../docs_src/websockets/tutorial003.py!}
+```
+
+To try it out:
+
+* Open the app with several browser tabs.
+* Write messages from them.
+* Then close one of the tabs.
+
+That will raise the `WebSocketDisconnect` exception, and all the other clients will receive a message like:
+
+```
+Client #1596980209979 left the chat
+```
+
+!!! tip
+    The app above is a minimal and simple example to demonstrate how to handle and broadcast messages to several WebSocket connections.
+
+    But have in mind that, as everything is handled in memory, in a single list, it will only work while the process is running, and will only work with a single process.
+
+    If you need something easy to integrate with FastAPI but that is more robust, supported by Redis, PostgreSQL or others, check <a href="https://github.com/encode/broadcaster" class="external-link" target="_blank">encode/broadcaster</a>.
 
 ## More info
 
