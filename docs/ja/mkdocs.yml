@@ -27,6 +27,7 @@ nav:
   - zh: /zh/
 - チュートリアル - ユーザーガイド:
   - tutorial/index.md
+  - tutorial/handling-errors.md
 markdown_extensions:
 - toc:
     permalink: true
