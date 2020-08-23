@@ -25,7 +25,7 @@ These dependencies will be executed/solved the same way normal dependencies. But
 
     Using these `dependencies` in the *path operation decorator* you can make sure they are executed while avoiding editor/tooling errors.
 
-    It might also help avoiding confusion for new developers that see an un-used parameter in your code and could think it's unnecessary.
+    It might also help avoid confusion for new developers that see an unused parameter in your code and could think it's unnecessary.
 
 ## Dependencies errors and return values
 
