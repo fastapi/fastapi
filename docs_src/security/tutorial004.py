@@ -1,9 +1,9 @@
 from datetime import datetime, timedelta
+from typing import Optional
 
-import jwt
 from fastapi import Depends, FastAPI, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
-from jwt import PyJWTError
+from jose import JWTError, jwt
 from passlib.context import CryptContext
 from pydantic import BaseModel
 
@@ -31,14 +31,14 @@ class Token(BaseModel):
 
 
 class TokenData(BaseModel):
-    username: str = None
+    username: Optional[str] = None
 
 
 class User(BaseModel):
     username: str
-    email: str = None
-    full_name: str = None
-    disabled: bool = None
+    email: Optional[str] = None
+    full_name: Optional[str] = None
+    disabled: Optional[bool] = None
 
 
 class UserInDB(User):
@@ -47,7 +47,7 @@ class UserInDB(User):
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/token")
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 app = FastAPI()
 
@@ -75,7 +75,7 @@ def authenticate_user(fake_db, username: str, password: str):
     return user
 
 
-def create_access_token(data: dict, expires_delta: timedelta = None):
+def create_access_token(data: dict, expires_delta: Optional[timedelta] = None):
     to_encode = data.copy()
     if expires_delta:
         expire = datetime.utcnow() + expires_delta
@@ -98,7 +98,7 @@ async def get_current_user(token: str = Depends(oauth2_scheme)):
         if username is None:
             raise credentials_exception
         token_data = TokenData(username=username)
-    except PyJWTError:
+    except JWTError:
         raise credentials_exception
     user = get_user(fake_users_db, username=token_data.username)
     if user is None:
