@@ -161,6 +161,8 @@ CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
 * Create a `main.py` file with:
 
 ```Python
+from typing import Optional
+
 from fastapi import FastAPI
 
 app = FastAPI()
@@ -172,7 +174,7 @@ def read_root():
 
 
 @app.get("/items/{item_id}")
-def read_item(item_id: int, q: str = None):
+def read_item(item_id: int, q: Optional[str] = None):
     return {"item_id": item_id, "q": q}
 ```
 
