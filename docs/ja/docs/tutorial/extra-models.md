@@ -17,7 +17,7 @@
 
 ここでは、モデルのパスワードフィールドと使用場所でモデルがどのように見えるのか、大まかなイメージを紹介します:
 
-```Python hl_lines="7 9  14   20 22  27 28  31 32 33  38 39"
+```Python hl_lines="9 11 16 22 24  29 30  33 34 35  40 41"
 {!../../../docs_src/extra_models/tutorial001.py!}
 ```
 
@@ -150,7 +150,7 @@ UserInDB(
 
 このようにして、モデル間の違いだけを宣言することができます:
 
-```Python hl_lines="7  13 14  17 18  21 22"
+```Python hl_lines="9  15 16  19 20  23 24"
 {!../../../docs_src/extra_models/tutorial002.py!}
 ```
 
