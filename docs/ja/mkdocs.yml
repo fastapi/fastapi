@@ -29,6 +29,7 @@ nav:
   - tutorial/index.md
   - 依存関係:
     - tutorial/dependencies/index.md
+    - tutorial/dependencies/sub-dependencies.md
 markdown_extensions:
 - toc:
     permalink: true
