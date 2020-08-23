@@ -498,13 +498,3 @@ $ bash scripts/test-cov-html.sh
 </div>
 
 该命令生成了一个 `./htmlcov/` 目录，如果你在浏览器中打开 `./htmlcov/index.html` 文件，你可以交互式地浏览被测试所覆盖的代码区块，并注意是否缺少了任何区块。 
-
-### 在编辑器中测试
-
-如果你想要在编辑器中运行集成测试，请将 `./docs_src` 加入到你的 `PYTHONPATH` 变量中。
-
-例如，在 VS Code 中你可以创建一个包含以下内容的 `.env` 文件：
-
-```env
-PYTHONPATH=./docs_src
-```
