@@ -2,7 +2,7 @@
 
 You can define background tasks to be run *after* returning a response.
 
-This is useful for operations that need to happen after a request, but that the client doesn't really have to be waiting for the operation to complete before receiving his response.
+This is useful for operations that need to happen after a request, but that the client doesn't really have to be waiting for the operation to complete before receiving the response.
 
 This includes, for example:
 
@@ -57,7 +57,7 @@ Using `BackgroundTasks` also works with the dependency injection system, you can
 
 **FastAPI** knows what to do in each case and how to re-use the same object, so that all the background tasks are merged together and are run in the background afterwards:
 
-```Python hl_lines="11 14 20 23"
+```Python hl_lines="13 15 22 25"
 {!../../../docs_src/background_tasks/tutorial002.py!}
 ```
 

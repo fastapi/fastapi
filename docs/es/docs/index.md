@@ -5,14 +5,14 @@
     <em>FastAPI framework, alto desempeño, fácil de aprender, rápido de programar, listo para producción</em>
 </p>
 <p align="center">
-<a href="https://travis-ci.com/tiangolo/fastapi" target="_blank">
-    <img src="https://travis-ci.com/tiangolo/fastapi.svg?branch=master" alt="Build Status">
+<a href="https://github.com/tiangolo/fastapi/actions?query=workflow%3ATest" target="_blank">
+    <img src="https://github.com/tiangolo/fastapi/workflows/Test/badge.svg" alt="Test">
 </a>
 <a href="https://codecov.io/gh/tiangolo/fastapi" target="_blank">
-    <img src="https://img.shields.io/codecov/c/github/tiangolo/fastapi" alt="Coverage">
+    <img src="https://img.shields.io/codecov/c/github/tiangolo/fastapi?color=%2334D058" alt="Coverage">
 </a>
 <a href="https://pypi.org/project/fastapi" target="_blank">
-    <img src="https://badge.fury.io/py/fastapi.svg" alt="Package version">
+    <img src="https://img.shields.io/pypi/v/fastapi?color=%2334D058&label=pypi%20package" alt="Package version">
 </a>
 <a href="https://gitter.im/tiangolo/fastapi?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge" target="_blank">
     <img src="https://badges.gitter.im/tiangolo/fastapi.svg" alt="Join the chat at https://gitter.im/tiangolo/fastapi">
@@ -131,6 +131,7 @@ $ pip install uvicorn
 
 ```Python
 from fastapi import FastAPI
+from typing import Optional
 
 app = FastAPI()
 
@@ -141,7 +142,7 @@ def read_root():
 
 
 @app.get("/items/{item_id}")
-def read_item(item_id: int, q: str = None):
+def read_item(item_id: int, q: Optional[str] = None):
     return {"item_id": item_id, "q": q}
 ```
 
@@ -152,6 +153,7 @@ Si tu código usa `async` / `await`, usa `async def`:
 
 ```Python hl_lines="7 12"
 from fastapi import FastAPI
+from typing import Optional
 
 app = FastAPI()
 
@@ -162,7 +164,7 @@ async def read_root():
 
 
 @app.get("/items/{item_id}")
-async def read_item(item_id: int, q: str = None):
+async def read_item(item_id: int, q: Optional[str] = None):
     return {"item_id": item_id, "q": q}
 ```
 
@@ -243,6 +245,7 @@ Declara el body usando las declaraciones de tipo estándares de Python gracias a
 ```Python hl_lines="2  7 8 9 10  23 24 25"
 from fastapi import FastAPI
 from pydantic import BaseModel
+from typing import Optional
 
 app = FastAPI()
 
@@ -250,7 +253,7 @@ app = FastAPI()
 class Item(BaseModel):
     name: str
     price: float
-    is_offer: bool = None
+    is_offer: Optional[bool] = None
 
 
 @app.get("/")
@@ -259,7 +262,7 @@ def read_root():
 
 
 @app.get("/items/{item_id}")
-def read_item(item_id: int, q: str = None):
+def read_item(item_id: int, q: Optional[str] = None):
     return {"item_id": item_id, "q": q}
 
 

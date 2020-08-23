@@ -1,7 +1,7 @@
 import pytest
 from fastapi.testclient import TestClient
 
-from request_forms.tutorial001 import app
+from docs_src.request_forms.tutorial001 import app
 
 client = TestClient(app)
 
