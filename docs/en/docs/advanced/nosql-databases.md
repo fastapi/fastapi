@@ -143,7 +143,7 @@ UserInDB(username="johndoe", hashed_password="some_hash")
 
 As our code is calling Couchbase and we are not using the <a href="https://docs.couchbase.com/python-sdk/2.5/async-programming.html#asyncio-python-3-5" class="external-link" target="_blank">experimental Python <code>await</code> support</a>, we should declare our function with normal `def` instead of `async def`.
 
-Also, Couchbase recommends not using a single `Bucket` object in multiple "<abbr title="A sequence of code being executed by the program, while at the same time, or at intervals, there can be others being executed too.">thread</abbr>s", so, we can get just get the bucket directly and pass it to our utility functions:
+Also, Couchbase recommends not using a single `Bucket` object in multiple "<abbr title="A sequence of code being executed by the program, while at the same time, or at intervals, there can be others being executed too.">thread</abbr>s", so, we can just get the bucket directly and pass it to our utility functions:
 
 ```Python hl_lines="49 50 51 52 53"
 {!../../../docs_src/nosql_databases/tutorial001.py!}
