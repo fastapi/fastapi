@@ -12,7 +12,7 @@
 
 高頻度で新機能が追加され、定期的にバグが修正され、実装は継続的に改善されています。
 
-これが現在のバージョンがいまだに `0.x.x` な理由であり、それぞれのバージョンは破壊的な変更がなされる可能性があります。<a href="https://semver.org/" class="external-link" target="_blank">Semantic Versioning</a>の規則に則っています。
+これが現在のバージョンがいまだに `0.x.x` な理由であり、それぞれのバージョンは破壊的な変更がなされる可能性があります。<a href="https://semver.org/" class="external-link" target="_blank">セマンティック バージョニング</a>の規則に則っています。
 
 **FastAPI** で本番用アプリケーションを今すぐに作成したら (すでに何度も経験しているかもしれませんが)、残りのコードが正しく動作するバージョンなのか確認しなければいけません。
 
@@ -68,7 +68,7 @@ fastapi>=0.45.0,<0.46.0
 
 アプリケーションにテストを加えるべきです。
 
-**FastAPI** では非常に簡単に実現できます (Starletteのおかげで)。ドキュメントを確認して下さい: [Testing](tutorial/testing.md){.internal-link target=_blank}
+**FastAPI** では非常に簡単に実現できます (Starletteのおかげで)。ドキュメントを確認して下さい: [テスト](tutorial/testing.md){.internal-link target=_blank}
 
 テストを加えた後で、**FastAPI** のバージョンをより最新のものにアップグレードし、テストを実行することで全てのコードが正常に動作するか確認できます。
 
@@ -139,7 +139,7 @@ COPY ./app /app/app
 
 #### Raspberry Piなどのアーキテクチャ
 
-Raspberry Pi (ARMプロセッサ搭載)やそれ以外のアーキテクチャでDockerが作動している場合、(マルチアーキテクチャである) Pythonベースイメージを使って一から`Dockerfile`を作成し、Uvicornを使用できます。
+Raspberry Pi (ARMプロセッサ搭載)やそれ以外のアーキテクチャでDockerが作動している場合、(マルチアーキテクチャである) Pythonベースイメージを使って、一から`Dockerfile`を作成し、Uvicornを使用できます。
 
 この場合、`Dockerfile` は以下の様になるかもしれません:
 
@@ -214,11 +214,11 @@ $ docker run -d --name mycontainer -p 80:80 myimage
 
 </div>
 
-ここで、Dockerコンテナ内に最適化されたFastAPIサーバが動作しています。使用しているサーバ (そしてCPUコア数) に沿った自動チューニングが行われています。
+これで、Dockerコンテナ内に最適化されたFastAPIサーバが動作しています。使用しているサーバ (そしてCPUコア数) に沿った自動チューニングが行われています。
 
 ### 確認
 
-DockerコンテナのURLで確認すべきです。例えば: <a href="http://192.168.99.100/items/5?q=somequery" class="external-link" target="_blank">http://192.168.99.100/items/5?q=somequery</a> や <a href="http://127.0.0.1/items/5?q=somequery" class="external-link" target="_blank">http://127.0.0.1/items/5?q=somequery</a> (もしくはDockerホストを使用したこれらと同等のもの)。
+DockerコンテナのURLで確認できるはずです。例えば: <a href="http://192.168.99.100/items/5?q=somequery" class="external-link" target="_blank">http://192.168.99.100/items/5?q=somequery</a> や <a href="http://127.0.0.1/items/5?q=somequery" class="external-link" target="_blank">http://127.0.0.1/items/5?q=somequery</a> (もしくはDockerホストを使用したこれらと同等のもの)。
 
 以下の様なものが返されます:
 
@@ -323,7 +323,7 @@ TraefikおよびHTTPS処理を備えたDocker Swarm Modeクラスターをセッ
 
 2分程度でプロジェクトが生成されます。
 
-生成されたプロジェクトはデプロイするための説明がありますが、それにはさらに2分かかります。
+生成されたプロジェクトはデプロイの指示がありますが、それを実行するとさらに2分かかります。
 
 ## Dockerを使用しない**FastAPI**のデプロイ
 
@@ -394,4 +394,4 @@ Dockerを使用せずに**FastAPI** を直接デプロイすることもでき�
 
 ワーカー数などの微調整も行いたいかもしれません。
 
-しかしこれら全てをやろうとすると、自動的にこれらを行うDockerイメージを使うことになってしまうかも知れません。
+しかしこれら全てをやろうとすると、自動的にこれらを行うDockerイメージを使えばよいだけかも知れません。
