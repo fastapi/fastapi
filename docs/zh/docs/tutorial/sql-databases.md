@@ -30,40 +30,45 @@
 
 **FastAPI** 可以与任何数据库和任何形式的库一起使用，以便与数据库进行通信。
 
-A common pattern is to use an "ORM": an "object-relational mapping" library.
+一种常见的模式是使用 "ORM": “对象关系映射”库。
 
-An ORM has tools to convert ("*map*") between *objects* in code and database tables ("*relations*").
+ORM 具有在代码和数据库表中的对象之间转换（"映射"）与（"关系"） 的工具。
+对象-关系映射（Object/Relation Mapping，简称ORM），是随着面向对象的软件开发方法发展而产生的。面向对象的开发方法是当今企业级应用开发环境中的主流开发方法，关系数据库是企业级应用环境中永久存放数据的主流数据存储系统。对象和关系数据是业务实体的两种表现形式，业务实体在内存中表现为对象，在数据库中表现为关系数据。内存中的对象之间存在关联和继承关系，而在数据库中，关系数据无法直接表达多对多关联和继承关系。因此，对象-关系映射(ORM)系统一般以中间件的形式存在，主要实现程序对象到关系数据库数据的映射。
 
-With an ORM, you normally create a class that represents a table in a SQL database, each attribute of the class represents a column, with a name and a type.
+使用 ORM，通常创建一个表示 SQL 数据库中的表的类，该类的每个属性表示一个列，具有名称和类型。
 
-For example a class `Pet` could represent a SQL table `pets`.
+例如，`Pet`类可以表示 SQL中的 `pets`表。
 
-And each *instance* object of that class represents a row in the database.
+该类的每个*实例对象*都表示数据库中的一行。
 
-For example an object `orion_cat` (an instance of `Pet`) could have an attribute `orion_cat.type`, for the column `type`. And the value of that attribute could be, e.g. `"cat"`.
+例如，对象`orion_cat`（`Pet`的实例）可以为`type`列具有属性 `orion_cat.type`。 该属性的值可以是 `"cat"`。
 
-These ORMs also have tools to make the connections or relations between tables or entities.
+这些ORM还具有在表或实体之间建立连接或关系的工具。
 
-This way, you could also have an attribute `orion_cat.owner` and the owner would contain the data for this pet's owner, taken from the table *owners*.
+这样，您还可以拥有一个属性`orion_cat.owner`，所有者将包含该宠物所有者的数据，该数据取自表*owners*。
 
-So, `orion_cat.owner.name` could be the name (from the `name` column in the `owners` table) of this pet's owner.
+因此，`orion_cat.owner.name`可能是该宠物所有者的名字（来自`owners` 表中的`name`列）。
 
 It could have a value like `"Arquilian"`.
+它可以有一个值，如`"Arquilian"`
 
-And the ORM will do all the work to get the information from the corresponding table *owners* when you try to access it from your pet object.
 
-Common ORMs are for example: Django-ORM (part of the Django framework), SQLAlchemy ORM (part of SQLAlchemy, independent of framework) and Peewee (independent of framework), among others.
+当您尝试从宠物对象访问ORM时，ORM将完成所有工作以从相应的表*owners*中获取信息。
 
-Here we will see how to work with **SQLAlchemy ORM**.
 
-In a similar way you could use any other ORM.
+常见的ORM例如：Django-ORM（Django框架的一部分），SQLAlchemy ORM（SQLAlchemy的一部分，独立于框架）和Peewee（独立于框架），等等。
+
+在这里，我们将看到如何使用**SQLAlchemy ORM**。
+
+以类似的方式，您可以使用任何其他 ORM。
 
 !!! tip
     There's an equivalent article using Peewee here in the docs.
+    在文档中有一篇使用 Peewee 的文章。
 
-## File structure
+## 文件结构
 
-For these examples, let's say you have a directory named `my_super_project` that contains a sub-directory called `sql_app` with a structure like this:
+对于这些示例，假设您有一个名为`my_super_project`的目录，其中包含一个名为`sql_app`的子目录，其结构如下：
 
 ```
 .
