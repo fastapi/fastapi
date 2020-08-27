@@ -48,7 +48,7 @@ For the tests we'll use a file `test.db` instead of `sql_app.db`.
 
 But the rest of the session code is more or less the same, we just copy it.
 
-```Python hl_lines="8  9  10-13"
+```Python hl_lines="8-13"
 {!../../../docs_src/sql_databases/sql_app/tests/test_sql_app.py!}
 ```
 
