@@ -6,7 +6,7 @@ The same way you can declare additional validation and metadata in *path operati
 
 First, you have to import it:
 
-```Python hl_lines="2"
+```Python hl_lines="4"
 {!../../../docs_src/body_fields/tutorial001.py!}
 ```
 
@@ -17,7 +17,7 @@ First, you have to import it:
 
 You can then use `Field` with model attributes:
 
-```Python hl_lines="9 10"
+```Python hl_lines="11 12 13 14"
 {!../../../docs_src/body_fields/tutorial001.py!}
 ```
 

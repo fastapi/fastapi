@@ -1,7 +1,8 @@
 import pytest
 from fastapi.testclient import TestClient
 from fastapi.websockets import WebSocketDisconnect
-from websockets.tutorial002 import app
+
+from docs_src.websockets.tutorial002 import app
 
 client = TestClient(app)
 
