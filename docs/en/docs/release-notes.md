@@ -6,6 +6,10 @@
 
 * Fix issues using `jsonable_encoder` with SQLAlchemy models directly. PR [#1987](https://github.com/tiangolo/fastapi/pull/1987).
 
+### Docs
+
+* Fix typo in NoSQL docs. PR [#1980](https://github.com/tiangolo/fastapi/pull/1980) by [@facundojmaero](https://github.com/facundojmaero).
+
 ### Translations
 
 * Initialize French translations. PR [#1975](https://github.com/tiangolo/fastapi/pull/1975) by [@JulianMaurin-BM](https://github.com/JulianMaurin-BM).
