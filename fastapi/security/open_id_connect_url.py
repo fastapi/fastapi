@@ -9,7 +9,11 @@ from starlette.status import HTTP_403_FORBIDDEN
 
 class OpenIdConnect(SecurityBase):
     def __init__(
-        self, *, openIdConnectUrl: str, scheme_name: str = None, auto_error: bool = True
+        self,
+        *,
+        openIdConnectUrl: str,
+        scheme_name: Optional[str] = None,
+        auto_error: bool = True
     ):
         self.model = OpenIdConnectModel(openIdConnectUrl=openIdConnectUrl)
         self.scheme_name = scheme_name or self.__class__.__name__

@@ -47,7 +47,7 @@ In this example, when the client request an item by an ID that doesn't exist, ra
 
 ### The resulting response
 
-If the client requests `http://example.com/items/foo` (an `item_id` `"foo"`), he will receive an HTTP status code of 200, and a JSON response of:
+If the client requests `http://example.com/items/foo` (an `item_id` `"foo"`), that client will receive an HTTP status code of 200, and a JSON response of:
 
 ```JSON
 {
@@ -55,7 +55,7 @@ If the client requests `http://example.com/items/foo` (an `item_id` `"foo"`), he
 }
 ```
 
-But if the client requests `http://example.com/items/bar` (a non-existent `item_id` `"bar"`), he will receive an HTTP status code of 404 (the "not found" error), and a JSON response of:
+But if the client requests `http://example.com/items/bar` (a non-existent `item_id` `"bar"`), that client will receive an HTTP status code of 404 (the "not found" error), and a JSON response of:
 
 ```JSON
 {
@@ -209,13 +209,12 @@ Now try sending an invalid item like:
 
 You will receive a response telling you that the data is invalid containing the received body:
 
-```JSON hl_lines="13 14 15 16"
+```JSON hl_lines="12 13 14 15"
 {
   "detail": [
     {
       "loc": [
         "body",
-        "item",
         "size"
       ],
       "msg": "value is not a valid integer",

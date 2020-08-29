@@ -1,18 +1,15 @@
-from typing import Callable, List, Sequence
+from typing import Callable, List, Optional, Sequence
 
 from fastapi.security.base import SecurityBase
-
-try:
-    from pydantic.fields import ModelField
-except ImportError:  # pragma: nocover
-    # TODO: remove when removing support for Pydantic < 1.0.0
-    from pydantic.fields import Field as ModelField  # type: ignore
+from pydantic.fields import ModelField
 
 param_supported_types = (str, int, float, bool)
 
 
 class SecurityRequirement:
-    def __init__(self, security_scheme: SecurityBase, scopes: Sequence[str] = None):
+    def __init__(
+        self, security_scheme: SecurityBase, scopes: Optional[Sequence[str]] = None
+    ):
         self.security_scheme = security_scheme
         self.scopes = scopes
 
@@ -21,23 +18,24 @@ class Dependant:
     def __init__(
         self,
         *,
-        path_params: List[ModelField] = None,
-        query_params: List[ModelField] = None,
-        header_params: List[ModelField] = None,
-        cookie_params: List[ModelField] = None,
-        body_params: List[ModelField] = None,
-        dependencies: List["Dependant"] = None,
-        security_schemes: List[SecurityRequirement] = None,
-        name: str = None,
-        call: Callable = None,
-        request_param_name: str = None,
-        websocket_param_name: str = None,
-        response_param_name: str = None,
-        background_tasks_param_name: str = None,
-        security_scopes_param_name: str = None,
-        security_scopes: List[str] = None,
+        path_params: Optional[List[ModelField]] = None,
+        query_params: Optional[List[ModelField]] = None,
+        header_params: Optional[List[ModelField]] = None,
+        cookie_params: Optional[List[ModelField]] = None,
+        body_params: Optional[List[ModelField]] = None,
+        dependencies: Optional[List["Dependant"]] = None,
+        security_schemes: Optional[List[SecurityRequirement]] = None,
+        name: Optional[str] = None,
+        call: Optional[Callable] = None,
+        request_param_name: Optional[str] = None,
+        websocket_param_name: Optional[str] = None,
+        http_connection_param_name: Optional[str] = None,
+        response_param_name: Optional[str] = None,
+        background_tasks_param_name: Optional[str] = None,
+        security_scopes_param_name: Optional[str] = None,
+        security_scopes: Optional[List[str]] = None,
         use_cache: bool = True,
-        path: str = None,
+        path: Optional[str] = None,
     ) -> None:
         self.path_params = path_params or []
         self.query_params = query_params or []
@@ -48,6 +46,7 @@ class Dependant:
         self.security_requirements = security_schemes or []
         self.request_param_name = request_param_name
         self.websocket_param_name = websocket_param_name
+        self.http_connection_param_name = http_connection_param_name
         self.response_param_name = response_param_name
         self.background_tasks_param_name = background_tasks_param_name
         self.security_scopes = security_scopes

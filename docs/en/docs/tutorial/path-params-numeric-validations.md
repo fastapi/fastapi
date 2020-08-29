@@ -6,7 +6,7 @@ The same way you can declare more validations and metadata for query parameters 
 
 First, import `Path` from `fastapi`:
 
-```Python hl_lines="1"
+```Python hl_lines="3"
 {!../../../docs_src/path_params_numeric_validations/tutorial001.py!}
 ```
 
@@ -16,7 +16,7 @@ You can declare all the same parameters as for `Query`.
 
 For example, to declare a `title` metadata value for the path parameter `item_id` you can type:
 
-```Python hl_lines="8"
+```Python hl_lines="10"
 {!../../../docs_src/path_params_numeric_validations/tutorial001.py!}
 ```
 
