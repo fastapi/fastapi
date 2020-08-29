@@ -2,17 +2,17 @@
   <a href="https://fastapi.tiangolo.com"><img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI"></a>
 </p>
 <p align="center">
-    <em>FastAPI framework, high performance, easy to learn, fast to code, ready for production</em>
+    <em>FastAPI 框架，高性能，易于学习，高效编码，生产可用</em>
 </p>
 <p align="center">
-<a href="https://travis-ci.com/tiangolo/fastapi" target="_blank">
-    <img src="https://travis-ci.com/tiangolo/fastapi.svg?branch=master" alt="Build Status">
+<a href="https://github.com/tiangolo/fastapi/actions?query=workflow%3ATest" target="_blank">
+    <img src="https://github.com/tiangolo/fastapi/workflows/Test/badge.svg" alt="Test">
 </a>
 <a href="https://codecov.io/gh/tiangolo/fastapi" target="_blank">
-    <img src="https://img.shields.io/codecov/c/github/tiangolo/fastapi" alt="Coverage">
+    <img src="https://img.shields.io/codecov/c/github/tiangolo/fastapi?color=%2334D058" alt="Coverage">
 </a>
 <a href="https://pypi.org/project/fastapi" target="_blank">
-    <img src="https://badge.fury.io/py/fastapi.svg" alt="Package version">
+    <img src="https://img.shields.io/pypi/v/fastapi?color=%2334D058&label=pypi%20package" alt="Package version">
 </a>
 <a href="https://gitter.im/tiangolo/fastapi?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge" target="_blank">
     <img src="https://badges.gitter.im/tiangolo/fastapi.svg" alt="Join the chat at https://gitter.im/tiangolo/fastapi">
@@ -27,7 +27,7 @@
 
 ---
 
-FastAPI 是一个用于构建 API 的现代、快速（高性能）的 web 框架，使用基于类型提示的 Python 3.6 及更高版本。
+FastAPI 是一个用于构建 API 的现代、快速（高性能）的 web 框架，使用 Python 3.6+ 并基于标准的 Python 类型提示。
 
 关键特性:
 
@@ -36,54 +36,60 @@ FastAPI 是一个用于构建 API 的现代、快速（高性能）的 web 框�
 * **高效编码**：提高功能开发速度约 200％ 至 300％。*
 * **更少 bug**：减少约 40％ 的人为（开发者）导致错误。*
 * **智能**：极佳的编辑器支持。处处皆可<abbr title="也被称为自动完成、智能感知">自动补全</abbr>，减少调试时间。
-* **简单**：设计的易于使用和学习，减少阅读文档时间。
-* **简短**：减少代码重复。通过不同的参数声明实现丰富功能。bug 更少。
-* **健壮**：生产可用级别的代码。以及自动生成的交互式文档。
-* **标准化**：基于 API 的相关开放标准并完全兼容：<a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (以前被称为 Swagger) 和 <a href="http://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>。
+* **简单**：设计的易于使用和学习，阅读文档的时间更短。
+* **简短**：使代码重复最小化。通过不同的参数声明实现丰富功能。bug 更少。
+* **健壮**：生产可用级别的代码。还有自动生成的交互式文档。
+* **标准化**：基于（并完全兼容）API 的相关开放标准：<a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (以前被称为 Swagger) 和 <a href="http://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>。
 
 <small>* 根据对某个构建线上应用的内部开发团队所进行的测试估算得出。</small>
 
 ## 评价
 
-"*[...] 最近我一直在使用 **FastAPI**。[...] 实际上我正在计划将其用于我所在的微软团队的所有**机器学习服务**。其中一些服务正被集成进 **Windows** 核心产品和一些 **Office** 产品。*"
+「_[...] 最近我一直在使用 **FastAPI**。[...] 实际上我正在计划将其用于我所在的**微软**团队的所有**机器学习服务**。其中一些服务正被集成进核心 **Windows** 产品和一些 **Office** 产品。_」
 
 <div style="text-align: right; margin-right: 10%;">Kabir Khan - <strong>微软</strong> <a href="https://github.com/tiangolo/fastapi/pull/26" target="_blank"><small>(ref)</small></a></div>
 
 ---
 
-"***FastAPI** 让我兴奋的欣喜若狂。它太棒了！*"
+「_我们选择了 **FastAPI** 来创建用于获取**预测结果**的 **REST** 服务。[用于 Ludwig]_」
+
+<div style="text-align: right; margin-right: 10%;">Piero Molino，Yaroslav Dudin 和 Sai Sumanth Miryala - <strong>Uber</strong> <a href="https://eng.uber.com/ludwig-v0-2/" target="_blank"><small>(ref)</small></a></div>
+
+---
+
+「_**Netflix** 非常高兴地宣布，正式开源我们的**危机管理**编排框架：**Dispatch**！[使用 **FastAPI** 构建]_」
+
+<div style="text-align: right; margin-right: 10%;">Kevin Glisson，Marc Vilanova，Forest Monsen - <strong>Netflix</strong> <a href="https://netflixtechblog.com/introducing-dispatch-da4b8a2a8072" target="_blank"><small>(ref)</small></a></div>
+
+---
+
+「_**FastAPI** 让我兴奋的欣喜若狂。它太棒了！_」
 
 <div style="text-align: right; margin-right: 10%;">Brian Okken - <strong><a href="https://pythonbytes.fm/episodes/show/123/time-to-right-the-py-wrongs?time_in_sec=855" target="_blank">Python Bytes</a> 播客主持人</strong> <a href="https://twitter.com/brianokken/status/1112220079972728832" target="_blank"><small>(ref)</small></a></div>
 
 ---
 
-"*老实说，你的作品看起来非常可靠和优美。在很多方面，这就是我想让 **Hug** 成为的样子 - 看到有人实现了它真的很鼓舞人心。*"
+「_老实说，你的作品看起来非常可靠和优美。在很多方面，这就是我想让 **Hug** 成为的样子 - 看到有人实现了它真的很鼓舞人心。_」
 
 <div style="text-align: right; margin-right: 10%;">Timothy Crosley - <strong><a href="http://www.hug.rest/" target="_blank">Hug</a> 作者</strong> <a href="https://news.ycombinator.com/item?id=19455465" target="_blank"><small>(ref)</small></a></div>
 
 ---
 
-"*如果你正打算学习一个**现代框架**用来构建 REST API，来看下 **FastAPI** [...] 它快速、易用且易于学习 [...]*"
+「_如果你正打算学习一个**现代框架**用来构建 REST API，来看下 **FastAPI** [...] 它快速、易用且易于学习 [...]_」
 
-"*我们已经将 **API** 服务切换到了 **FastAPI** [...] 我认为你会喜欢它的 [...]*"
+「_我们已经将 **API** 服务切换到了 **FastAPI** [...] 我认为你会喜欢它的 [...]_」
 
 <div style="text-align: right; margin-right: 10%;">Ines Montani - Matthew Honnibal - <strong><a href="https://explosion.ai" target="_blank">Explosion AI</a> 创始人 - <a href="https://spacy.io" target="_blank">spaCy</a> 作者</strong> <a href="https://twitter.com/_inesmontani/status/1144173225322143744" target="_blank"><small>(ref)</small></a> - <a href="https://twitter.com/honnibal/status/1144031421859655680" target="_blank"><small>(ref)</small></a></div>
 
 ---
 
-"*我们采用了 **FastAPI** 来创建用于获取**预测结果**的 **REST** 服务。[用于 Ludwig]*"
-
-<div style="text-align: right; margin-right: 10%;">Piero Molino， Yaroslav Dudin 和 Sai Sumanth Miryala - <strong>Uber</strong> <a href="https://eng.uber.com/ludwig-v0-2/" target="_blank"><small>(ref)</small></a></div>
-
----
-
-## **Typer**，命令行中的 Fast API
+## **Typer**，命令行中的 FastAPI
 
 <a href="https://typer.tiangolo.com" target="_blank"><img src="https://typer.tiangolo.com/img/logo-margin/logo-margin-vector.svg" style="width: 20%;"></a>
 
 如果你正在开发一个在终端中运行的<abbr title="Command Line Interface">命令行</abbr>应用而不是 web API，不妨试下 <a href="https://typer.tiangolo.com/" class="external-link" target="_blank">**Typer**</a>。
 
-**Typer** 是 FastAPI 的小伙伴。它打算成为**命令行中的 FastAPI**。 ⌨️ 🚀
+**Typer** 是 FastAPI 的小同胞。它想要成为**命令行中的 FastAPI**。 ⌨️ 🚀
 
 ## 依赖
 
@@ -91,8 +97,8 @@ Python 3.6 及更高版本
 
 FastAPI 站在以下巨人的肩膀之上：
 
-* <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a>负责 web 部分。
-* <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a>负责数据部分。
+* <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> 负责 web 部分。
+* <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> 负责数据部分。
 
 ## 安装
 
@@ -106,7 +112,7 @@ $ pip install fastapi
 
 </div>
 
-你还需要一个 ASGI 服务器，生产环境可以使用 <a href="http://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a> 或者 <a href="https://gitlab.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>。
+你还会需要一个 ASGI 服务器，生产环境可以使用 <a href="http://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a> 或者 <a href="https://gitlab.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>。
 
 <div class="termy">
 
@@ -125,6 +131,8 @@ $ pip install uvicorn
 * 创建一个 `main.py` 文件并写入以下内容:
 
 ```Python
+from typing import Optional
+
 from fastapi import FastAPI
 
 app = FastAPI()
@@ -136,16 +144,18 @@ def read_root():
 
 
 @app.get("/items/{item_id}")
-def read_item(item_id: int, q: str = None):
+def read_item(item_id: int, q: Optional[str] = None):
     return {"item_id": item_id, "q": q}
 ```
 
 <details markdown="1">
 <summary>或者使用 <code>async def</code>...</summary>
 
-如果你的代码里会出现 `async` / `await`，应使用 `async def`：
+如果你的代码里会出现 `async` / `await`，请使用 `async def`：
 
-```Python hl_lines="7 12"
+```Python hl_lines="9 14"
+from typing import Optional
+
 from fastapi import FastAPI
 
 app = FastAPI()
@@ -157,7 +167,7 @@ async def read_root():
 
 
 @app.get("/items/{item_id}")
-async def read_item(item_id: int, q: str = None):
+async def read_item(item_id: int, q: Optional[str] = None):
     return {"item_id": item_id, "q": q}
 ```
 
@@ -176,11 +186,11 @@ async def read_item(item_id: int, q: str = None):
 ```console
 $ uvicorn main:app --reload
 
-<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
-<span style="color: green;">INFO</span>:     Started reloader process [28720]
-<span style="color: green;">INFO</span>:     Started server process [28722]
-<span style="color: green;">INFO</span>:     Waiting for application startup.
-<span style="color: green;">INFO</span>:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+INFO:     Started reloader process [28720]
+INFO:     Started server process [28722]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
 ```
 
 </div>
@@ -221,21 +231,23 @@ $ uvicorn main:app --reload
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-01-swagger-ui-simple.png)
 
-### 备选 API 文档
+### 可选的 API 文档
 
 访问 <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>。
 
-你会看到另一个自动生成的文档（由 <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a>）生成：
+你会看到另一个自动生成的文档（由 <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a> 生成）：
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
-## 升级示例
+## 示例升级
 
-修改 `main.py` 文件来从 `PUT` 请求中接收请求体。
+现在修改 `main.py` 文件来从 `PUT` 请求中接收请求体。
 
 我们借助 Pydantic 来使用标准的 Python 类型声明请求体。
 
-```Python hl_lines="2  7 8 9 10  23 24 25"
+```Python hl_lines="4  9 10 11 12  25 26 27"
+from typing import Optional
+
 from fastapi import FastAPI
 from pydantic import BaseModel
 
@@ -245,7 +257,7 @@ app = FastAPI()
 class Item(BaseModel):
     name: str
     price: float
-    is_offer: bool = None
+    is_offer: Optional[bool] = None
 
 
 @app.get("/")
@@ -254,7 +266,7 @@ def read_root():
 
 
 @app.get("/items/{item_id}")
-def read_item(item_id: int, q: str = None):
+def read_item(item_id: int, q: Optional[str] = None):
     return {"item_id": item_id, "q": q}
 
 
@@ -265,7 +277,7 @@ def update_item(item_id: int, item: Item):
 
 服务器将会自动重载（因为在上面的步骤中你向 `uvicorn` 命令添加了 `--reload` 选项）。
 
-### 升级交互式 API 文档
+### 交互式 API 文档升级
 
 访问 <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>。
 
@@ -273,23 +285,23 @@ def update_item(item_id: int, item: Item):
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-03-swagger-02.png)
 
-* 点击 "Try it out" 按钮，之后你可以填写参数并直接调用 API：
+* 点击「Try it out」按钮，之后你可以填写参数并直接调用 API：
 
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-04-swagger-03.png)
 
-* 然后点击 "Execute" 按钮，用户界面将会和 API 进行通信，发送参数，获取结果并在屏幕上展示：
+* 然后点击「Execute」按钮，用户界面将会和 API 进行通信，发送参数，获取结果并在屏幕上展示：
 
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-05-swagger-04.png)
 
-### 升级备选文档
+### 可选文档升级
 
 访问 <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>。
 
-* 备选文档同样会体现新加入的请求参数和请求体：
+* 可选文档同样会体现新加入的请求参数和请求体：
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-06-redoc-02.png)
 
-### 回顾
+### 总结
 
 总的来说，你就像声明函数的参数类型一样只声明了**一次**请求参数、请求体等的类型。
 
@@ -403,7 +415,6 @@ item: Item
 
 ## 性能
 
-
 独立机构 TechEmpower 所作的基准测试结果显示，基于 Uvicorn 运行的 **FastAPI** 程序是 <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">最快的 Python web 框架之一</a>，仅次于 Starlette 和 Uvicorn 本身（FastAPI 内部使用了它们）。(*)
 
 想了解更多，请查阅 <a href="https://fastapi.tiangolo.com/benchmarks/" class="internal-link" target="_blank">基准测试</a> 章节。
@@ -412,7 +423,7 @@ item: Item
 
 用于 Pydantic：
 
-* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - 更快的 JSON <abbr title="将来自 HTTP 请求中的字符串转换为 Python 数据类型">"解析"</abbr>。
+* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - 更快的 JSON <abbr title="将来自 HTTP 请求中的字符串转换为 Python 数据类型">「解析」</abbr>。
 * <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - 用于 email 校验。
 
 用于 Starlette：
@@ -420,15 +431,15 @@ item: Item
 * <a href="http://docs.python-requests.org" target="_blank"><code>requests</code></a> - 使用 `TestClient` 时安装。
 * <a href="https://github.com/Tinche/aiofiles" target="_blank"><code>aiofiles</code></a> - 使用 `FileResponse` 或 `StaticFiles` 时安装。
 * <a href="http://jinja.pocoo.org" target="_blank"><code>jinja2</code></a> - 使用默认模板配置时安装。
-* <a href="https://andrew-d.github.io/python-multipart/" target="_blank"><code>python-multipart</code></a> - 需要通过 `request.form()` 对表单进行<abbr title="将来自 HTTP 请求中的字符串转换为 Python 数据类型">"解析"</abbr>时安装。
-* <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - 提供 `SessionMiddleware` 支持。
+* <a href="https://andrew-d.github.io/python-multipart/" target="_blank"><code>python-multipart</code></a> - 需要通过 `request.form()` 对表单进行<abbr title="将来自 HTTP 请求中的字符串转换为 Python 数据类型">「解析」</abbr>时安装。
+* <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - 需要 `SessionMiddleware` 支持时安装。
 * <a href="https://pyyaml.org/wiki/PyYAMLDocumentation" target="_blank"><code>pyyaml</code></a> - 使用 Starlette 提供的 `SchemaGenerator` 时安装（有 FastAPI 你可能并不需要它）。
 * <a href="https://graphene-python.org/" target="_blank"><code>graphene</code></a> - 需要 `GraphQLApp` 支持时安装。
 * <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - 使用 `UJSONResponse` 时安装。
 
 用于 FastAPI / Starlette：
 
-* <a href="http://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - 用于加载和服务你的应用程序的服务器。
+* <a href="http://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - 用于加载和运行你的应用程序的服务器。
 * <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - 使用 `ORJSONResponse` 时安装。
 
 你可以通过 `pip install fastapi[all]` 命令来安装以上所有依赖。
