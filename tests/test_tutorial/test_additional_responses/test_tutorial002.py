@@ -3,7 +3,7 @@ import shutil
 
 from fastapi.testclient import TestClient
 
-from additional_responses.tutorial002 import app
+from docs_src.additional_responses.tutorial002 import app
 
 client = TestClient(app)
 
@@ -15,7 +15,7 @@ openapi_schema = {
             "get": {
                 "responses": {
                     "200": {
-                        "description": "Successful Response",
+                        "description": "Return the JSON item or an image.",
                         "content": {
                             "image/png": {},
                             "application/json": {
