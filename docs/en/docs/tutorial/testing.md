@@ -34,6 +34,9 @@ Write simple `assert` statements with the standard Python expressions that you n
 
     **FastAPI** provides the same `starlette.testclient` as `fastapi.testclient` just as a convenience for you, the developer. But it comes directly from Starlette.
 
+!!! tip
+    If you want to call `async` functions in your tests apart from sending requests to your FastAPI application (e.g. asynchronous database functions), have a look at the [Async Tests](../advanced/async-tests.md){.internal-link target=_blank} in the advanced tutorial.
+
 ## Separating tests
 
 In a real application, you probably would have your tests in a different file.

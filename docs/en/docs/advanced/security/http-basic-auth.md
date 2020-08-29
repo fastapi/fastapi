@@ -54,9 +54,9 @@ But by using the `secrets.compare_digest()` it will be secure against a type of 
 
 But what's a "timing attack"?
 
-Let's imagine an attacker is trying to guess the username and password.
+Let's imagine some attackers are trying to guess the username and password.
 
-And that attacker sends a request with a username `johndoe` and a password `love123`.
+And they send a request with a username `johndoe` and a password `love123`.
 
 Then the Python code in your application would be equivalent to something like:
 
@@ -67,7 +67,7 @@ if "johndoe" == "stanleyjobson" and "love123" == "swordfish":
 
 But right at the moment Python compares the first `j` in `johndoe` to the first `s` in `stanleyjobson`, it will return `False`, because it already knows that those two strings are not the same, thinking that "there's no need to waste more computation comparing the rest of the letters". And your application will say "incorrect user or password".
 
-But then the attacker tries with username `stanleyjobsox` and password `love123`.
+But then the attackers try with username `stanleyjobsox` and password `love123`.
 
 And your application code does something like:
 
@@ -78,17 +78,17 @@ if "stanleyjobsox" == "stanleyjobson" and "love123" == "swordfish":
 
 Python will have to compare the whole `stanleyjobso` in both `stanleyjobsox` and `stanleyjobson` before realizing that both strings are not the same. So it will take some extra microseconds to reply back "incorrect user or password".
 
-#### The time to answer helps the attacker
+#### The time to answer helps the attackers
 
-At that point, by noticing that the server took some microseconds longer to send the "incorrect user or password" response, the attacker will know that she/he got _something_ right, some of the initial letters were right.
+At that point, by noticing that the server took some microseconds longer to send the "incorrect user or password" response, the attackers will know that they got _something_ right, some of the initial letters were right.
 
-And then she/he can try again knowing that it's probably something more similar to `stanleyjobsox` than to `johndoe`.
+And then they can try again knowing that it's probably something more similar to `stanleyjobsox` than to `johndoe`.
 
 #### A "professional" attack
 
-Of course, the attacker would not try all this by hand, she/he would write a program to do it, possibly with thousands or millions of tests per second. And would get just one extra correct letter at a time.
+Of course, the attackers would not try all this by hand, they would write a program to do it, possibly with thousands or millions of tests per second. And would get just one extra correct letter at a time.
 
-But doing that, in some minutes or hours the attacker would have guessed the correct username and password, with the "help" of our application, just using the time taken to answer.
+But doing that, in some minutes or hours the attackers would have guessed the correct username and password, with the "help" of our application, just using the time taken to answer.
 
 #### Fix it with `secrets.compare_digest()`
 
