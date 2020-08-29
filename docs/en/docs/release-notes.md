@@ -2,6 +2,10 @@
 
 ## Latest changes
 
+### Translations
+
+* Initialize Turkish translations. PR [#1905](https://github.com/tiangolo/fastapi/pull/1905) by [@ycd](https://github.com/ycd).
+
 ## 0.61.0
 
 ### Features
