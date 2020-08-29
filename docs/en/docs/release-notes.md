@@ -2,6 +2,8 @@
 
 ## Latest changes
 
+## 0.61.1
+
 ### Fixes
 
 * Fix issues using `jsonable_encoder` with SQLAlchemy models directly. PR [#1987](https://github.com/tiangolo/fastapi/pull/1987).
