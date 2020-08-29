@@ -12,6 +12,7 @@
 
 ### Translations
 
+* Add translation for [main page to Japanese](https://fastapi.tiangolo.com/ja/) PR [#1571](https://github.com/tiangolo/fastapi/pull/1571) by [@ryuckel](https://github.com/ryuckel).
 * Initialize French translations. PR [#1975](https://github.com/tiangolo/fastapi/pull/1975) by [@JulianMaurin-BM](https://github.com/JulianMaurin-BM).
 * Initialize Turkish translations. PR [#1905](https://github.com/tiangolo/fastapi/pull/1905) by [@ycd](https://github.com/ycd).
 
