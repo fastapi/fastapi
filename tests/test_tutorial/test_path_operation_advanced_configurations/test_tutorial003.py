@@ -1,6 +1,6 @@
 from fastapi.testclient import TestClient
 
-from path_operation_advanced_configuration.tutorial003 import app
+from docs_src.path_operation_advanced_configuration.tutorial003 import app
 
 client = TestClient(app)
 

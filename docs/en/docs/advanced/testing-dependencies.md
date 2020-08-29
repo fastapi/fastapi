@@ -28,7 +28,7 @@ To override a dependency for testing, you put as a key the original dependency (
 
 And then **FastAPI** will call that override instead of the original dependency.
 
-```Python hl_lines="24 25 28"
+```Python hl_lines="26 27 30"
 {!../../../docs_src/dependency_testing/tutorial001.py!}
 ```
 
