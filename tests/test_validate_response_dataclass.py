@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Optional
 
 import pytest
 from fastapi import FastAPI
@@ -12,8 +12,8 @@ app = FastAPI()
 @dataclass
 class Item:
     name: str
-    price: float = None
-    owner_ids: List[int] = None
+    price: Optional[float] = None
+    owner_ids: Optional[List[int]] = None
 
 
 @app.get("/items/invalid", response_model=Item)

@@ -136,6 +136,7 @@ $ pip install uvicorn
 
 ```Python
 from fastapi import FastAPI
+from typing import Optional
 
 app = FastAPI()
 
@@ -146,7 +147,7 @@ def read_root():
 
 
 @app.get("/items/{item_id}")
-def read_item(item_id: int, q: str = None):
+def read_item(item_id: int, q: str = Optional[None]):
     return {"item_id": item_id, "q": q}
 ```
 
@@ -157,6 +158,7 @@ If your code uses `async` / `await`, use `async def`:
 
 ```Python hl_lines="7 12"
 from fastapi import FastAPI
+from typing import Optional
 
 app = FastAPI()
 
@@ -167,7 +169,7 @@ async def read_root():
 
 
 @app.get("/items/{item_id}")
-async def read_item(item_id: int, q: str = None):
+async def read_item(item_id: int, q: Optional[str] = None):
     return {"item_id": item_id, "q": q}
 ```
 
@@ -248,6 +250,7 @@ Declare the body using standard Python types, thanks to Pydantic.
 ```Python hl_lines="2  7 8 9 10  23 24 25"
 from fastapi import FastAPI
 from pydantic import BaseModel
+from typing import Optional
 
 app = FastAPI()
 
@@ -255,7 +258,7 @@ app = FastAPI()
 class Item(BaseModel):
     name: str
     price: float
-    is_offer: bool = None
+    is_offer: bool = Optional[None]
 
 
 @app.get("/")
@@ -264,7 +267,7 @@ def read_root():
 
 
 @app.get("/items/{item_id}")
-def read_item(item_id: int, q: str = None):
+def read_item(item_id: int, q: Optional[str] = None):
     return {"item_id": item_id, "q": q}
 
 
