@@ -2,6 +2,10 @@
 
 ## Latest changes
 
+### Fixes
+
+* Fix issues using `jsonable_encoder` with SQLAlchemy models directly. PR [#1987](https://github.com/tiangolo/fastapi/pull/1987).
+
 ### Translations
 
 * Initialize Turkish translations. PR [#1905](https://github.com/tiangolo/fastapi/pull/1905) by [@ycd](https://github.com/ycd).
