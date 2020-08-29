@@ -4,7 +4,7 @@ If you need to have two independent FastAPI applications, with their own indepen
 
 ## Mounting a **FastAPI** application
 
-"Mounting" means adding a completely "independent" application in a specific path, that then takes care of handling all everything under that path, with the _path operations_ declared in that sub-application.
+"Mounting" means adding a completely "independent" application in a specific path, that then takes care of handling everything under that path, with the _path operations_ declared in that sub-application.
 
 ### Top-level application
 

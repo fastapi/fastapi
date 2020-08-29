@@ -1,4 +1,4 @@
-name: Build and Deploy to Netlify
+name: Build Docs
 on:
   push:
   pull_request:
@@ -7,6 +7,10 @@ jobs:
   build:
     runs-on: ubuntu-18.04
     steps:
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
       - uses: actions/checkout@v2
       - name: Set up Python
         uses: actions/setup-python@v1
@@ -18,12 +22,21 @@ jobs:
         run: python3.7 -m flit install --extras doc
       - name: Build Docs
         run: python3.7 ./scripts/docs.py build-all
+      - name: Zip docs
+        if: github.event_name == 'pull_request'
+        run: bash ./scripts/zip-docs.sh
+      - uses: actions/upload-artifact@v2
+        if: github.event_name == 'pull_request'
+        with:
+          name: docs-zip-${{ github.event.pull_request.head.sha }}
+          path: ./docs.zip
       - name: Deploy to Netlify
-        uses: nwtgck/actions-netlify@v1.0.3
+        uses: nwtgck/actions-netlify@v1.1.5
         with:
           publish-dir: './site'
           production-branch: master
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          enable-commit-comment: false
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}

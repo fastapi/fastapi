@@ -8,7 +8,7 @@ First, of course, you can mix `Path`, `Query` and request body parameter declara
 
 And you can also declare body parameters as optional, by setting the default to `None`:
 
-```Python hl_lines="17 18 19"
+```Python hl_lines="19 20 21"
 {!../../../docs_src/body_multiple_params/tutorial001.py!}
 ```
 
@@ -30,7 +30,7 @@ In the previous example, the *path operations* would expect a JSON body with the
 
 But you can also declare multiple body parameters, e.g. `item` and `user`:
 
-```Python hl_lines="20"
+```Python hl_lines="22"
 {!../../../docs_src/body_multiple_params/tutorial002.py!}
 ```
 
@@ -72,7 +72,7 @@ If you declare it as is, because it is a singular value, **FastAPI** will assume
 But you can instruct **FastAPI** to treat it as another body key using `Body`:
 
 
-```Python hl_lines="21"
+```Python hl_lines="23"
 {!../../../docs_src/body_multiple_params/tutorial003.py!}
 ```
 
@@ -104,12 +104,12 @@ Of course, you can also declare additional query parameters whenever you need, a
 As, by default, singular values are interpreted as query parameters, you don't have to explicitly add a `Query`, you can just do:
 
 ```Python
-q: str = None
+q: Optional[str] = None
 ```
 
 as in:
 
-```Python hl_lines="25"
+```Python hl_lines="27"
 {!../../../docs_src/body_multiple_params/tutorial004.py!}
 ```
 
@@ -131,7 +131,7 @@ item: Item = Body(..., embed=True)
 
 as in:
 
-```Python hl_lines="15"
+```Python hl_lines="17"
 {!../../../docs_src/body_multiple_params/tutorial005.py!}
 ```
 

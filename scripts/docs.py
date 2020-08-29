@@ -132,6 +132,7 @@ def build_lang(
         dist_path: Path = site_path / lang
     shutil.rmtree(build_lang_path, ignore_errors=True)
     shutil.copytree(lang_path, build_lang_path)
+    shutil.copytree(en_docs_path / "data", build_lang_path / "data")
     en_config_path: Path = en_lang_path / mkdocs_name
     en_config: dict = mkdocs.utils.yaml_load(en_config_path.read_text(encoding="utf-8"))
     nav = en_config["nav"]
@@ -211,6 +212,12 @@ def build_all():
     shutil.copyfile(en_index, "README.md")
 
 
+def update_single_lang(lang: str):
+    lang_path = docs_path / lang
+    typer.echo(f"Updating {lang_path.name}")
+    update_config(lang_path.name)
+
+
 @app.command()
 def update_languages(
     lang: str = typer.Argument(
@@ -226,11 +233,9 @@ def update_languages(
     if lang is None:
         for lang_path in get_lang_paths():
             if lang_path.is_dir():
-                typer.echo(f"Updating {lang_path.name}")
-                update_config(lang_path.name)
+                update_single_lang(lang_path.name)
     else:
-        typer.echo(f"Updating {lang}")
-        update_config(lang)
+        update_single_lang(lang)
 
 
 @app.command()
