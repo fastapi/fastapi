@@ -31,7 +31,7 @@ For example, you cannot put a Pydantic model in a `JSONResponse` without first c
 
 For those cases, you can use the `jsonable_encoder` to convert your data before passing it to a response:
 
-```Python hl_lines="6 7  21 22"
+```Python hl_lines="6-7  21-22"
 {!../../../docs_src/response_directly/tutorial001.py!}
 ```
 
