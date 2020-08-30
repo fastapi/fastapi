@@ -32,6 +32,7 @@ def jsonable_encoder(
     exclude_defaults: bool = False,
     exclude_none: bool = False,
     custom_encoder: dict = {},
+    sqlalchemy_safe: bool = True,
 ) -> Any:
     if include is not None and not isinstance(include, set):
         include = set(include)
@@ -56,6 +57,7 @@ def jsonable_encoder(
             exclude_none=exclude_none,
             exclude_defaults=exclude_defaults,
             custom_encoder=encoder,
+            sqlalchemy_safe=sqlalchemy_safe,
         )
     if isinstance(obj, Enum):
         return obj.value
@@ -71,18 +73,26 @@ def jsonable_encoder(
                 exclude_unset=exclude_unset,
                 exclude_none=exclude_none,
                 custom_encoder=custom_encoder,
+                sqlalchemy_safe=sqlalchemy_safe,
             ): jsonable_encoder(
                 value,
                 by_alias=by_alias,
                 exclude_unset=exclude_unset,
                 exclude_none=exclude_none,
                 custom_encoder=custom_encoder,
+                sqlalchemy_safe=sqlalchemy_safe,
             )
             for key, value in obj.items()
-            if (value is not None or not exclude_none)
-            and ((include and key in include) or not exclude or key not in exclude)
+            if (
+                (
+                    not sqlalchemy_safe
+                    or (not isinstance(key, str))
+                    or (not key.startswith("_sa"))
+                )
+                and (value is not None or not exclude_none)
+                and ((include and key in include) or not exclude or key not in exclude)
+            )
         }
-
     if isinstance(obj, (list, set, frozenset, GeneratorType, tuple)):
         return [
             jsonable_encoder(
@@ -94,6 +104,7 @@ def jsonable_encoder(
                 exclude_defaults=exclude_defaults,
                 exclude_none=exclude_none,
                 custom_encoder=custom_encoder,
+                sqlalchemy_safe=sqlalchemy_safe,
             )
             for item in obj
         ]
@@ -129,4 +140,5 @@ def jsonable_encoder(
         exclude_defaults=exclude_defaults,
         exclude_none=exclude_none,
         custom_encoder=custom_encoder,
+        sqlalchemy_safe=sqlalchemy_safe,
     )
