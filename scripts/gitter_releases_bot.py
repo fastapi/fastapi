@@ -10,7 +10,7 @@ gitter_token = os.getenv("GITTER_TOKEN")
 assert gitter_token
 github_token = os.getenv("GITHUB_TOKEN")
 assert github_token
-tag_name = os.getenv("TRAVIS_TAG")
+tag_name = os.getenv("TAG")
 assert tag_name
 
 

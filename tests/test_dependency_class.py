@@ -59,12 +59,14 @@ async def get_callable_gen_dependency(value: str = Depends(callable_gen_dependen
 
 
 @app.get("/async-callable-dependency")
-async def get_callable_dependency(value: str = Depends(async_callable_dependency)):
+async def get_async_callable_dependency(
+    value: str = Depends(async_callable_dependency),
+):
     return value
 
 
 @app.get("/async-callable-gen-dependency")
-async def get_callable_gen_dependency(
+async def get_async_callable_gen_dependency(
     value: str = Depends(async_callable_gen_dependency),
 ):
     return value
