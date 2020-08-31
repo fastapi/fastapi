@@ -1,4 +1,4 @@
-from typing import List, Set
+from typing import List, Optional, Set
 
 from fastapi import FastAPI
 from pydantic import BaseModel, HttpUrl
@@ -13,11 +13,11 @@ class Image(BaseModel):
 
 class Item(BaseModel):
     name: str
-    description: str = None
+    description: Optional[str] = None
     price: float
-    tax: float = None
+    tax: Optional[float] = None
     tags: Set[str] = []
-    images: List[Image] = None
+    images: Optional[List[Image]] = None
 
 
 @app.put("/items/{item_id}")
