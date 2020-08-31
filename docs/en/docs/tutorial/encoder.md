@@ -20,7 +20,7 @@ You can use `jsonable_encoder` for that.
 
 It receives an object, like a Pydantic model, and returns a JSON compatible version:
 
-```Python hl_lines="5 22"
+```Python hl_lines="5  22"
 {!../../../docs_src/encoder/tutorial001.py!}
 ```
 
