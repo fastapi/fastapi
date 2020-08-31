@@ -113,7 +113,7 @@ This might seem a bit complex (and it actually is), you don't really need to com
 
 We will create a `PeeweeConnectionState`:
 
-```Python hl_lines="10 11 12 13 14 15 16 17 18 19"
+```Python hl_lines="10-19"
 {!../../../docs_src/sql_databases_peewee/sql_app/database.py!}
 ```
 
@@ -161,7 +161,7 @@ This is the same you would do if you followed the Peewee tutorial and updated th
 
 Import `db` from `database` (the file `database.py` from above) and use it here.
 
-```Python hl_lines="3  6 7 8 9 10 11 12  15 16 17 18 19 20 21"
+```Python hl_lines="3  6-12  15-21"
 {!../../../docs_src/sql_databases_peewee/sql_app/models.py!}
 ```
 
@@ -189,7 +189,7 @@ Now let's check the file `sql_app/schemas.py`.
 
 Create all the same Pydantic models as in the SQLAlchemy tutorial:
 
-```Python hl_lines="16 17 18  21 22  25 26 27 28 29 30  34 35  38 39  42 43 44 45 46 47 48"
+```Python hl_lines="16-18  21-22  25-30  34-35  38-39  42-48"
 {!../../../docs_src/sql_databases_peewee/sql_app/schemas.py!}
 ```
 
@@ -214,7 +214,7 @@ But recent versions of Pydantic allow providing a custom class that inherits fro
 
 We are going to create a custom `PeeweeGetterDict` class and use it in all the same Pydantic *models* / schemas that use `orm_mode`:
 
-```Python hl_lines="3 8 9 10 11 12 13  31  49"
+```Python hl_lines="3  8-13  31  49"
 {!../../../docs_src/sql_databases_peewee/sql_app/schemas.py!}
 ```
 
@@ -235,7 +235,7 @@ Now let's see the file `sql_app/crud.py`.
 
 Create all the same CRUD utils as in the SQLAlchemy tutorial, all the code is very similar:
 
-```Python hl_lines="1  4 5  8 9  12 13  16 17 18 19 20  23 24  27 28 29 30"
+```Python hl_lines="1  4-5  8-9  12-13  16-20  23-24  27-30"
 {!../../../docs_src/sql_databases_peewee/sql_app/crud.py!}
 ```
 
@@ -259,7 +259,7 @@ And now in the file `sql_app/main.py` let's integrate and use all the other part
 
 In a very simplistic way create the database tables:
 
-```Python hl_lines="9 10 11"
+```Python hl_lines="9-11"
 {!../../../docs_src/sql_databases_peewee/sql_app/main.py!}
 ```
 
@@ -267,7 +267,7 @@ In a very simplistic way create the database tables:
 
 Create a dependency that will connect the database right at the beginning of a request and disconnect it at the end:
 
-```Python hl_lines="23 24 25 26 27 28 29"
+```Python hl_lines="23-29"
 {!../../../docs_src/sql_databases_peewee/sql_app/main.py!}
 ```
 
@@ -291,7 +291,7 @@ For all the `contextvars` parts to work, we need to make sure we have an indepen
 
 For that, we need to create another `async` dependency `reset_db_state()` that is used as a sub-dependency in `get_db()`. It will set the value for the context variable (with just a default `dict`) that will be used as the database state for the whole request. And then the dependency `get_db()` will store in it the database state (connection, transactions, etc).
 
-```Python hl_lines="18 19 20"
+```Python hl_lines="18-20"
 {!../../../docs_src/sql_databases_peewee/sql_app/main.py!}
 ```
 
@@ -310,7 +310,7 @@ If you are using a <a href="http://docs.peewee-orm.com/en/latest/peewee/database
 
 So, you would reset it with:
 
-```Python hl_lines="3 4"
+```Python hl_lines="3-4"
 async def reset_db_state():
     database.db.obj._state._state.set(db_state_default.copy())
     database.db.obj._state.reset()
@@ -320,7 +320,7 @@ async def reset_db_state():
 
 Now, finally, here's the standard **FastAPI** *path operations* code.
 
-```Python hl_lines="32 33 34 35 36 37  40 41 42 43  46 47 48 49 50 51 52 53  56 57 58 59 60 61 62  65 66 67 68  71 72 73 74 75 76 77 78 79"
+```Python hl_lines="32-37  40-43  46-53  56-62  65-68  71-79"
 {!../../../docs_src/sql_databases_peewee/sql_app/main.py!}
 ```
 
