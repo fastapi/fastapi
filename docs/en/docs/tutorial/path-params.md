@@ -2,7 +2,7 @@
 
 You can declare path "parameters" or "variables" with the same syntax used by Python format strings:
 
-```Python hl_lines="6 7"
+```Python hl_lines="6-7"
 {!../../../docs_src/path_params/tutorial001.py!}
 ```
 
@@ -109,7 +109,7 @@ And then you can also have a path `/users/{user_id}` to get data about a specifi
 
 Because *path operations* are evaluated in order, you need to make sure that the path for `/users/me` is declared before the one for `/users/{user_id}`:
 
-```Python hl_lines="6 11"
+```Python hl_lines="6  11"
 {!../../../docs_src/path_params/tutorial003.py!}
 ```
 
@@ -127,7 +127,7 @@ By inheriting from `str` the API docs will be able to know that the values must 
 
 Then create class attributes with fixed values, which will be the available valid values:
 
-```Python hl_lines="1 6 7 8 9"
+```Python hl_lines="1  6-9"
 {!../../../docs_src/path_params/tutorial005.py!}
 ```
 

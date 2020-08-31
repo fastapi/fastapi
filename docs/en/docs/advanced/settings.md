@@ -135,7 +135,7 @@ The same way as with Pydantic models, you declare class attributes with type ann
 
 You can use all the same validation features and tools you use for Pydantic models, like different data types and additional validations with `Field()`.
 
-```Python hl_lines="2  5 6 7 8  11"
+```Python hl_lines="2  5-8  11"
 {!../../../docs_src/settings/tutorial001.py!}
 ```
 
@@ -150,7 +150,7 @@ Next it will convert and validate the data. So, when you use that `settings` obj
 
 Then you can use the new `settings` object in your application:
 
-```Python hl_lines="18 19 20"
+```Python hl_lines="18-20"
 {!../../../docs_src/settings/tutorial001.py!}
 ```
 
@@ -189,7 +189,7 @@ For example, you could have a file `config.py` with:
 
 And then use it in a file `main.py`:
 
-```Python hl_lines="3  11 12 13"
+```Python hl_lines="3  11-13"
 {!../../../docs_src/settings/app01/main.py!}
 ```
 
@@ -216,7 +216,7 @@ Notice that now we don't create a default instance `settings = Settings()`.
 
 Now we create a dependency that returns a new `config.Settings()`.
 
-```Python hl_lines="5  11 12"
+```Python hl_lines="5  11-12"
 {!../../../docs_src/settings/app02/main.py!}
 ```
 
@@ -227,7 +227,7 @@ Now we create a dependency that returns a new `config.Settings()`.
 
 And then we can require it from the *path operation function* as a dependency and use it anywhere we need it.
 
-```Python hl_lines="16  18 19 20"
+```Python hl_lines="16  18-20"
 {!../../../docs_src/settings/app02/main.py!}
 ```
 
@@ -235,7 +235,7 @@ And then we can require it from the *path operation function* as a dependency an
 
 Then it would be very easy to provide a different settings object during testing by creating a dependency override for `get_settings`:
 
-```Python hl_lines="8 9  12  21"
+```Python hl_lines="8-9  12  21"
 {!../../../docs_src/settings/app02/test_main.py!}
 ```
 
@@ -272,7 +272,7 @@ APP_NAME="ChimichangApp"
 
 And then update your `config.py` with:
 
-```Python hl_lines="9 10"
+```Python hl_lines="9-10"
 {!../../../docs_src/settings/app03/config.py!}
 ```
 
