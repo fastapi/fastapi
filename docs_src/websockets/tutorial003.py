@@ -46,7 +46,7 @@ html = """
 
 _T = TypeVar("_T")
 
-@attr.s(frozen=True, slots=True, auto_attribs=True, hash=False, eq=False)
+@attr.s(frozen=True, auto_attribs=True, hash=False, eq=False)
 class _IdEq(Generic[_T]):
     v: _T
     def __eq__(self, other: object):
