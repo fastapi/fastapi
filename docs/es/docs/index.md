@@ -151,7 +151,7 @@ def read_item(item_id: int, q: Optional[str] = None):
 
 Si tu código usa `async` / `await`, usa `async def`:
 
-```Python hl_lines="7 12"
+```Python hl_lines="7  12"
 from fastapi import FastAPI
 from typing import Optional
 
@@ -242,7 +242,7 @@ Ahora modifica el archivo `main.py` para recibir un <abbr title="cuerpo del mens
 
 Declara el body usando las declaraciones de tipo estándares de Python gracias a Pydantic.
 
-```Python hl_lines="2  7 8 9 10  23 24 25"
+```Python hl_lines="2  7-10  23-25"
 from fastapi import FastAPI
 from pydantic import BaseModel
 from typing import Optional
