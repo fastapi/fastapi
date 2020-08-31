@@ -1,5 +1,5 @@
 import asyncio
-from typing import MutableMapping, Generic, TypeVar
+from typing import Generic, MutableMapping, TypeVar
 
 import attr
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
