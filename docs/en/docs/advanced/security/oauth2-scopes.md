@@ -56,7 +56,7 @@ They are normally used to declare specific security permissions, for example:
 
 First, let's quickly see the parts that change from the examples in the main **Tutorial - User Guide** for [OAuth2 with Password (and hashing), Bearer with JWT tokens](../../tutorial/security/oauth2-jwt.md){.internal-link target=_blank}. Now using OAuth2 scopes:
 
-```Python hl_lines="2  4  8  12  46  64  105  107 108 109 110 111 112 113 114 115  121 122 123 124  128 129 130 131 132 133 134  139  153"
+```Python hl_lines="2  4  8  12  46  64  105  107-115  121-124  128-134  139  153"
 {!../../../docs_src/security/tutorial005.py!}
 ```
 
@@ -68,7 +68,7 @@ The first change is that now we are declaring the OAuth2 security scheme with tw
 
 The `scopes` parameter receives a `dict` with each scope as a key and the description as the value:
 
-```Python hl_lines="62 63 64 65"
+```Python hl_lines="62-65"
 {!../../../docs_src/security/tutorial005.py!}
 ```
 
@@ -159,7 +159,7 @@ We create an `HTTPException` that we can re-use (`raise`) later at several point
 
 In this exception, we include the scopes required (if any) as a string separated by spaces (using `scope_str`). We put that string containing the scopes in in the `WWW-Authenticate` header (this is part of the spec).
 
-```Python hl_lines="105  107 108 109 110 111 112 113 114 115"
+```Python hl_lines="105  107-115"
 {!../../../docs_src/security/tutorial005.py!}
 ```
 
@@ -177,7 +177,7 @@ Instead of, for example, a `dict`, or something else, as it could break the appl
 
 We also verify that we have a user with that username, and if not, we raise that same exception we created before.
 
-```Python hl_lines="46  116 117 118 119 120 121 122 123 124 125 126 127"
+```Python hl_lines="46  116-127"
 {!../../../docs_src/security/tutorial005.py!}
 ```
 
@@ -187,7 +187,7 @@ We now verify that all the scopes required, by this dependency and all the depen
 
 For this, we use `security_scopes.scopes`, that contains a `list` with all these scopes as `str`.
 
-```Python hl_lines="128 129 130 131 132 133 134"
+```Python hl_lines="128-134"
 {!../../../docs_src/security/tutorial005.py!}
 ```
 

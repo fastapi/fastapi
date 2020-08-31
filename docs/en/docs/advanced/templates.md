@@ -39,7 +39,7 @@ $ pip install aiofiles
 * Declare a `Request` parameter in the *path operation* that will return a template.
 * Use the `templates` you created to render and return a `TemplateResponse`, passing the `request` as one of the key-value pairs in the Jinja2 "context".
 
-```Python hl_lines="4  11  15 16"
+```Python hl_lines="4  11  15-16"
 {!../../../docs_src/templates/tutorial001.py!}
 ```
 
