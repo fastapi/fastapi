@@ -1,4 +1,4 @@
-from typing import Dict, List, Tuple
+from typing import Dict, List, Optional, Tuple
 
 import pytest
 from fastapi import FastAPI, Query
@@ -49,5 +49,5 @@ def test_invalid_simple_dict():
             title: str
 
         @app.get("/items/")
-        def read_items(q: dict = Query(None)):
+        def read_items(q: Optional[dict] = Query(None)):
             pass  # pragma: no cover

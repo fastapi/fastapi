@@ -62,7 +62,7 @@ Any incoming requests to `http` or `ws` will be redirected to the secure scheme 
 
 Enforces that all incoming requests have a correctly set `Host` header, in order to guard against HTTP Host Header attacks.
 
-```Python hl_lines="2  6 7 8"
+```Python hl_lines="2  6-8"
 {!../../../docs_src/advanced_middleware/tutorial002.py!}
 ```
 
