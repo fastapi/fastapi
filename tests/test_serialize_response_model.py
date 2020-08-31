@@ -1,4 +1,4 @@
-from typing import Dict, List
+from typing import Dict, List, Optional
 
 from fastapi import FastAPI
 from pydantic import BaseModel, Field
@@ -9,8 +9,8 @@ app = FastAPI()
 
 class Item(BaseModel):
     name: str = Field(..., alias="aliased_name")
-    price: float = None
-    owner_ids: List[int] = None
+    price: Optional[float] = None
+    owner_ids: Optional[List[int]] = None
 
 
 @app.get("/items/valid", response_model=Item)
