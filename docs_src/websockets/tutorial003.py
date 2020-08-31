@@ -58,7 +58,7 @@ class _IdEq(Generic[_T]):
 
 class ConnectionManager:
     def __init__(self):
-        self.active_connections: MutableSet[_IdEq(WebSocket)] = set()
+        self.active_connections: MutableSet[_IdEq[WebSocket]] = set()
 
     async def connect(self, websocket: WebSocket):
         await websocket.accept()
