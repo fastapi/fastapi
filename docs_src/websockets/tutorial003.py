@@ -1,5 +1,5 @@
 import asyncio
-from typing import List
+from typing import MutableSet
 
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from fastapi.responses import HTMLResponse
@@ -46,7 +46,7 @@ html = """
 
 class ConnectionManager:
     def __init__(self):
-        self.active_connections: set[WebSocket] = set()
+        self.active_connections: MutableSet[WebSocket] = set()
 
     async def connect(self, websocket: WebSocket):
         await websocket.accept()
