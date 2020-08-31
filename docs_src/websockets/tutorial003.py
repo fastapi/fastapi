@@ -61,10 +61,7 @@ class ConnectionManager:
     async def broadcast(self, message: str):
         return await (
             asyncio.gather(
-                *(
-                    connection.send_text(message)
-                    for connection in self.active_connections
-                ),
+                *(conn.send_text(message) for conn in self.active_connections),
                 return_exceptions=True
             )
         )
