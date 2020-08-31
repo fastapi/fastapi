@@ -121,7 +121,7 @@ http://127.0.0.1:8000/items/foo?short=yes
 
 它们将通过名称被检测到：
 
-```Python hl_lines="6 8"
+```Python hl_lines="6  8"
 {!../../../docs_src/query_params/tutorial004.py!}
 ```
 
@@ -133,7 +133,7 @@ http://127.0.0.1:8000/items/foo?short=yes
 
 但当你想让一个查询参数成为必需的，不声明任何默认值就可以：
 
-```Python hl_lines="6 7"
+```Python hl_lines="6-7"
 {!../../../docs_src/query_params/tutorial005.py!}
 ```
 
