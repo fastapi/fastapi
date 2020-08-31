@@ -1,3 +1,4 @@
+import asyncio
 from typing import List
 
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
@@ -58,9 +59,15 @@ class ConnectionManager:
         await websocket.send_text(message)
 
     async def broadcast(self, message: str):
-        for connection in self.active_connections.copy():
-            await connection.send_text(message)
-
+        return await (
+            asyncio.gather(
+                *(
+                    connection.send_text(message)
+                    for connection in self.active_connections
+                ),
+                return_exceptions=True
+            )
+        )
 
 manager = ConnectionManager()
 
