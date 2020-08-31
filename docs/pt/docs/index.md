@@ -5,14 +5,14 @@
     <em>Framework FastAPI, alta performance, fácil de aprender, fácil de codar, pronto para produção</em>
 </p>
 <p align="center">
-<a href="https://travis-ci.com/tiangolo/fastapi" target="_blank">
-    <img src="https://travis-ci.com/tiangolo/fastapi.svg?branch=master" alt="Build Status">
+<a href="https://github.com/tiangolo/fastapi/actions?query=workflow%3ATest" target="_blank">
+    <img src="https://github.com/tiangolo/fastapi/workflows/Test/badge.svg" alt="Test">
 </a>
 <a href="https://codecov.io/gh/tiangolo/fastapi" target="_blank">
-    <img src="https://img.shields.io/codecov/c/github/tiangolo/fastapi" alt="Coverage">
+    <img src="https://img.shields.io/codecov/c/github/tiangolo/fastapi?color=%2334D058" alt="Coverage">
 </a>
 <a href="https://pypi.org/project/fastapi" target="_blank">
-    <img src="https://badge.fury.io/py/fastapi.svg" alt="Package version">
+    <img src="https://img.shields.io/pypi/v/fastapi?color=%2334D058&label=pypi%20package" alt="Package version">
 </a>
 <a href="https://gitter.im/tiangolo/fastapi?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge" target="_blank">
     <img src="https://badges.gitter.im/tiangolo/fastapi.svg" alt="Join the chat at https://gitter.im/tiangolo/fastapi">
@@ -33,7 +33,7 @@ Os recursos chave são:
 
 * **Rápido**: alta performance, equivalente a **NodeJS** e **Go** (graças ao Starlette e Pydantic). [Um dos frameworks mais rápidos disponíveis](#performance).
 * **Rápido para codar**: Aumenta a velocidade para desenvolver recursos entre 200% a 300%. *
-* **Poucos bugs**: Reduz cerca de 40% de erros iduzidos por humanos (desenvolvedores). *
+* **Poucos bugs**: Reduz cerca de 40% de erros induzidos por humanos (desenvolvedores). *
 * **Intuitivo**: Grande suporte a _IDEs_. <abbr title="também conhecido como _auto-complete_, _autocompletion_, _IntelliSense_">_Auto-Complete_</abbr> em todos os lugares. Menos tempo debugando.
 * **Fácil**: Projetado para ser fácil de aprender e usar. Menos tempo lendo documentação.
 * **Enxuto**: Minimize duplicação de código. Múltiplos recursos para cada declaração de parâmetro. Menos bugs.
@@ -124,6 +124,8 @@ $ pip install uvicorn
 * Crie um arquivo `main.py` com:
 
 ```Python
+from typing import Optional
+
 from fastapi import FastAPI
 
 app = FastAPI()
@@ -135,7 +137,7 @@ def read_root():
 
 
 @app.get("/items/{item_id}")
-def read_item(item_id: int, q: str = None):
+def read_item(item_id: int, q: Optional[str] = None):
     return {"item_id": item_id, "q": q}
 ```
 
@@ -144,7 +146,9 @@ def read_item(item_id: int, q: str = None):
 
 Se seu código utiliza `async` / `await`, use `async def`:
 
-```Python hl_lines="7 12"
+```Python hl_lines="9  14"
+from typing import Optional
+
 from fastapi import FastAPI
 
 app = FastAPI()
@@ -156,7 +160,7 @@ async def read_root():
 
 
 @app.get("/items/{item_id}")
-async def read_item(item_id: int, q: str = None):
+async def read_item(item_id: int, q: Optional[str] = None):
     return {"item_id": item_id, "q": q}
 ```
 
@@ -234,7 +238,7 @@ Agora modifique o arquivo `main.py` para receber um corpo para uma requisição 
 
 Declare o corpo utilizando tipos padrão Python, graças ao Pydantic.
 
-```Python hl_lines="2  7 8 9 10  23 24 25"
+```Python hl_lines="4  9-12  25-27"
 from fastapi import FastAPI
 from pydantic import BaseModel
 
@@ -244,7 +248,7 @@ app = FastAPI()
 class Item(BaseModel):
     name: str
     price: float
-    is_offer: bool = None
+    is_offer: Optional[bool] = None
 
 
 @app.get("/")
@@ -253,7 +257,7 @@ def read_root():
 
 
 @app.get("/items/{item_id}")
-def read_item(item_id: int, q: str = None):
+def read_item(item_id: int, q: Optional[str] = None):
     return {"item_id": item_id, "q": q}
 
 

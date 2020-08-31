@@ -36,7 +36,7 @@ They are normally used to declare specific security permissions, for example:
     In OAuth2 a "scope" is just a string that declares a specific permission required.
 
     It doesn't matter if it has other characters like `:` or if it is a URL.
-    
+
     Those details are implementation specific.
 
     For OAuth2 they are just strings.
@@ -47,9 +47,9 @@ Now let's use the utilities provided by **FastAPI** to handle this.
 
 ### `OAuth2PasswordRequestForm`
 
-First, import `OAuth2PasswordRequestForm`, and use it as a dependency with `Depends` for the path `/token`:
+First, import `OAuth2PasswordRequestForm`, and use it as a dependency with `Depends` in the *path operation* for `/token`:
 
-```Python hl_lines="2  74"
+```Python hl_lines="4  76"
 {!../../../docs_src/security/tutorial003.py!}
 ```
 
@@ -90,7 +90,7 @@ If there is no such user, we return an error saying "incorrect username or passw
 
 For the error, we use the exception `HTTPException`:
 
-```Python hl_lines="1  75 76 77"
+```Python hl_lines="3  77-79"
 {!../../../docs_src/security/tutorial003.py!}
 ```
 
@@ -118,7 +118,7 @@ If your database is stolen, the thief won't have your users' plaintext passwords
 
 So, the thief won't be able to try to use those same passwords in another system (as many users use the same password everywhere, this would be dangerous).
 
-```Python hl_lines="78 79 80 81"
+```Python hl_lines="80-83"
 {!../../../docs_src/security/tutorial003.py!}
 ```
 
@@ -156,7 +156,7 @@ For this simple example, we are going to just be completely insecure and return 
 
     But for now, let's focus on the specific details we need.
 
-```Python hl_lines="83"
+```Python hl_lines="85"
 {!../../../docs_src/security/tutorial003.py!}
 ```
 
@@ -166,7 +166,7 @@ For this simple example, we are going to just be completely insecure and return 
     This is something that you have to do yourself in your code, and make sure you use those JSON keys.
 
     It's almost the only thing that you have to remember to do correctly yourself, to be compliant with the specifications.
-    
+
     For the rest, **FastAPI** handles it for you.
 
 ## Update the dependencies
@@ -177,11 +177,11 @@ We want to get the `current_user` *only* if this user is active.
 
 So, we create an additional dependency `get_current_active_user` that in turn uses `get_current_user` as a dependency.
 
-Both of these dependencies will just return an HTTP error if the user doesn't exists, or if is inactive.
+Both of these dependencies will just return an HTTP error if the user doesn't exist, or if is inactive.
 
 So, in our endpoint, we will only get a user if the user exists, was correctly authenticated, and is active:
 
-```Python hl_lines="56 57 58 59 60 61 62 63 64 65  67 68 69 70  88"
+```Python hl_lines="58-67  69-72  90"
 {!../../../docs_src/security/tutorial003.py!}
 ```
 

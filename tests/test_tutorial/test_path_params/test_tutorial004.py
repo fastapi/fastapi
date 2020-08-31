@@ -1,6 +1,6 @@
 from fastapi.testclient import TestClient
 
-from path_params.tutorial004 import app
+from docs_src.path_params.tutorial004 import app
 
 client = TestClient(app)
 

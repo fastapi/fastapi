@@ -1,4 +1,4 @@
-from typing import Any, List
+from typing import Any, List, Optional
 
 import peewee
 from pydantic import BaseModel
@@ -15,7 +15,7 @@ class PeeweeGetterDict(GetterDict):
 
 class ItemBase(BaseModel):
     title: str
-    description: str = None
+    description: Optional[str] = None
 
 
 class ItemCreate(ItemBase):
