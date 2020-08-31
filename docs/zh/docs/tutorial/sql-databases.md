@@ -81,15 +81,15 @@ It could have a value like `"Arquilian"`.
     └── schemas.py
 ```
 
-The file `__init__.py` is just an empty file, but it tells Python that `sql_app` with all its modules (Python files) is a package.
+此文件名为 `__init__.py` 的只是一个空文件，但它告诉Python带有所有模块的sql_app是一个python包。
 
-Now let's see what each file/module does.
+现在，让我们看看每个文件/模块的功能。
 
-## Create the SQLAlchemy parts
+## 创建SQLAlchemy的部分
 
-Let's refer to the file `sql_app/database.py`.
+让我们参考一下 `sql_app/database.py`文件。
 
-### Import the SQLAlchemy parts
+### 导入SQLAlchemy的部分
 
 ```Python hl_lines="1 2 3"
 {!../../../docs_src/sql_databases/sql_app/database.py!}
@@ -101,29 +101,37 @@ Let's refer to the file `sql_app/database.py`.
 {!../../../docs_src/sql_databases/sql_app/database.py!}
 ```
 
-In this example, we are "connecting" to a SQLite database (opening a file with the SQLite database).
+在此示例中，我们将“连接”到SQLite数据库（使用SQLite数据库打开文件）。
 
 The file will be located at the same directory in the file `sql_app.db`.
+该文件将位于文件中的同一目录中，文件名为 `sql_app.db`。
 
-That's why the last part is `./sql_app.db`.
+
+这就是为什么最后一部分是 `./sql_app.db`.
 
 If you were using a **PostgreSQL** database instead, you would just have to uncomment the line:
+如果你需要使用的是**PostgreSQL**数据库，那么只需要取消这行的注释即可：
 
 ```Python
 SQLALCHEMY_DATABASE_URL = "postgresql://user:password@postgresserver/db"
 ```
 
-...and adapt it with your database data and credentials (equivalently for MySQL, MariaDB or any other).
+...并要修改你的数据库的凭据和你要使用的数据库(相对的你也可以使用 MySQL、MariaDB 或者其他数据库).
 
 !!! tip
 
     This is the main line that you would have to modify if you wanted to use a different database.
+    如果你想使用其他数据库必须修改次行。
+    ```python
+    SQLALCHEMY_DATABASE_URL = "数据库软件名://用户名:密码@postgresserver/db"
 
-### Create the SQLAlchemy `engine`
+    ```
 
-The first step is to create a SQLAlchemy "engine".
+### 创建这个SQLAlchemy的`engine`
 
-We will later use this `engine` in other places.
+第一步是创建一个SQLAlchemy的 "engine".
+
+稍后我们将在其他地方使用此 `engine`。
 
 ```Python hl_lines="8 9 10"
 {!../../../docs_src/sql_databases/sql_app/database.py!}
@@ -131,35 +139,42 @@ We will later use this `engine` in other places.
 
 #### Note
 
-The argument:
+参数:
 
 ```Python
 connect_args={"check_same_thread": False}
 ```
 
-...is needed only for `SQLite`. It's not needed for other databases.
+...仅对于`SQLite`是必需的。其他数据库不需要它。
 
-!!! info "Technical Details"
+!!! 信息 "技术细节"
 
     By default SQLite will only allow one thread to communicate with it, assuming that each thread would handle an independent request.
+    默认情况下，假定每个线程将处理一个独立的请求，SQLite将仅允许一个线程与其通信。
 
     This is to prevent accidentally sharing the same connection for different things (for different requests).
+    这是为了防止为不同的事务（针对不同的请求）意外共享同一连接。
 
     But in FastAPI, using normal functions (`def`) more than one thread could interact with the database for the same request, so we need to make SQLite know that it should allow that with `connect_args={"check_same_thread": False}`.
+    但是在FastAPI中，使用普通函数(`def`)，一个以上的线程可以与同一请求的数据库进行交互，因此我们需要使SQLite知道它应该允许使用 `connect_args={"check_same_thread": False}`。
 
     Also, we will make sure each request gets its own database connection session in a dependency, so there's no need for that default mechanism.
+    另外，我们将确保每个请求都以依赖关系获取其自己的数据库连接会话，因此不需要该默认机制。
 
-### Create a `SessionLocal` class
+### 创建一个`SessionLocal`类
 
-Each instance of the `SessionLocal` class will be a database session. The class itself is not a database session yet.
+`SessionLocal` 类的每个实例将是一个数据库会话，该类本身还不是。
 
 But once we create an instance of the `SessionLocal` class, this instance will be the actual database session.
+但是，一旦我们创建了`SessionLocal`类的实例，该实例将成为实际的数据库会话。
 
 We name it `SessionLocal` to distinguish it from the `Session` we are importing from SQLAlchemy.
+我们将其命名为 `SessionLocal`，以区别于我们从SQLAlchemy导入的`Session`。
 
 We will use `Session` (the one imported from SQLAlchemy) later.
+稍后我们将使用`Session`（从SQLAlchemy导入的）
 
-To create the `SessionLocal` class, use the function `sessionmaker`:
+要创建`SessionLocal`类，请使用`sessionmaker`函数:
 
 ```Python hl_lines="11"
 {!../../../docs_src/sql_databases/sql_app/database.py!}
