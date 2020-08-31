@@ -146,7 +146,7 @@ def read_item(item_id: int, q: Optional[str] = None):
 
 Se seu código utiliza `async` / `await`, use `async def`:
 
-```Python hl_lines="9 14"
+```Python hl_lines="9  14"
 from typing import Optional
 
 from fastapi import FastAPI
@@ -238,7 +238,7 @@ Agora modifique o arquivo `main.py` para receber um corpo para uma requisição 
 
 Declare o corpo utilizando tipos padrão Python, graças ao Pydantic.
 
-```Python hl_lines="4  9 10 11 12  25 26 27"
+```Python hl_lines="4  9-12  25-27"
 from fastapi import FastAPI
 from pydantic import BaseModel
 
