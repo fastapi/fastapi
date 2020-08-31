@@ -188,7 +188,7 @@ John Doe
 
 声明 `tuple` 和 `set` 的方法也是一样的：
 
-```Python hl_lines="1 4"
+```Python hl_lines="1  4"
 {!../../../docs_src/python_types/tutorial007.py!}
 ```
 
@@ -205,7 +205,7 @@ John Doe
 
 第二个子类型声明 `dict` 的所有值：
 
-```Python hl_lines="1 4"
+```Python hl_lines="1  4"
 {!../../../docs_src/python_types/tutorial008.py!}
 ```
 
@@ -221,7 +221,7 @@ John Doe
 
 假设你有一个名为 `Person` 的类，拥有 name 属性：
 
-```Python hl_lines="1 2 3"
+```Python hl_lines="1-3"
 {!../../../docs_src/python_types/tutorial009.py!}
 ```
 

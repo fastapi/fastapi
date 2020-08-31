@@ -10,7 +10,7 @@ They can be as **deep** as you need them to be.
 
 You could create a first dependency ("dependable") like:
 
-```Python hl_lines="8 9"
+```Python hl_lines="8-9"
 {!../../../docs_src/dependencies/tutorial005.py!}
 ```
 
