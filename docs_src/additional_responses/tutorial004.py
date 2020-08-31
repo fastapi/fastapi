@@ -1,3 +1,5 @@
+from typing import Optional
+
 from fastapi import FastAPI
 from fastapi.responses import FileResponse
 from pydantic import BaseModel
@@ -23,7 +25,7 @@ app = FastAPI()
     response_model=Item,
     responses={**responses, 200: {"content": {"image/png": {}}}},
 )
-async def read_item(item_id: str, img: bool = None):
+async def read_item(item_id: str, img: Optional[bool] = None):
     if img:
         return FileResponse("image.png", media_type="image/png")
     else:

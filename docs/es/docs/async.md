@@ -305,7 +305,7 @@ hamburguesas = get_burgers (2)
 
 Por lo tanto, si estás utilizando una library que te dice que puedes llamarla con `await`, debes crear las *path operation functions* que la usan con `async def`, como en:
 
-```Python hl_lines="2 3"
+```Python hl_lines="2-3"
 @app.get('/burgers')
 async def read_burgers():
     burgers = await get_burgers(2)
