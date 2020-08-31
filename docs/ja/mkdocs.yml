@@ -25,6 +25,7 @@ nav:
   - ja: /ja/
   - pt: /pt/
   - zh: /zh/
+- benchmarks.md
 markdown_extensions:
 - toc:
     permalink: true
