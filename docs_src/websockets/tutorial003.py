@@ -1,6 +1,7 @@
 import asyncio
-from typing import MutableSet
+from typing import MutableMapping, Generic, TypeVar
 
+import attr
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from fastapi.responses import HTMLResponse
 
@@ -43,17 +44,28 @@ html = """
 </html>
 """
 
+_T = TypeVar("_T")
+
+@attr.s(frozen=True, slots=True, auto_attribs=True)
+class _IdEq(Generic[_T]):
+    v: _T
+    def __eq__(self, other: object):
+        return isinstance(other, _IdEq) and self.v is other.v
+
+    def __hash__(self):
+        return hash(id(self.v))
+
 
 class ConnectionManager:
     def __init__(self):
-        self.active_connections: MutableSet[WebSocket] = set()
+        self.active_connections: MutableSet[_IdEq(WebSocket)] = set()
 
     async def connect(self, websocket: WebSocket):
         await websocket.accept()
-        self.active_connections.add(websocket)
+        self.active_connections.add(_IdEq(websocket))
 
     def disconnect(self, websocket: WebSocket):
-        self.active_connections.remove(websocket)
+        self.active_connections.remove(_IdEq(websocket))
 
     async def send_personal_message(self, message: str, websocket: WebSocket):
         await websocket.send_text(message)
@@ -61,7 +73,7 @@ class ConnectionManager:
     async def broadcast(self, message: str):
         return await (
             asyncio.gather(
-                *(conn.send_text(message) for conn in self.active_connections),
+                *(conn.v.send_text(message) for conn in self.active_connections),
                 return_exceptions=True
             )
         )
