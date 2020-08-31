@@ -60,7 +60,7 @@ You can create the *path operations* for that module using `APIRouter`.
 
 You import it and create an "instance" the same way you would with the class `FastAPI`:
 
-```Python hl_lines="1 3"
+```Python hl_lines="1  3"
 {!../../../docs_src/bigger_applications/app/routers/users.py!}
 ```
 
@@ -70,7 +70,7 @@ And then you use it to declare your *path operations*.
 
 Use it the same way you would use the `FastAPI` class:
 
-```Python hl_lines="6 11 16"
+```Python hl_lines="6  11  16"
 {!../../../docs_src/bigger_applications/app/routers/users.py!}
 ```
 
@@ -100,7 +100,7 @@ But let's say that this time we are more lazy.
 
 And we don't want to have to explicitly type `/items/` and `tags=["items"]` in every *path operation* (we will be able to do it later):
 
-```Python hl_lines="6 11"
+```Python hl_lines="6  11"
 {!../../../docs_src/bigger_applications/app/routers/items.py!}
 ```
 
@@ -110,7 +110,7 @@ We are not adding the prefix `/items/` nor the `tags=["items"]` to add them late
 
 But we can add custom `tags` and `responses` that will be applied to a specific *path operation*:
 
-```Python hl_lines="18 19"
+```Python hl_lines="18-19"
 {!../../../docs_src/bigger_applications/app/routers/items.py!}
 ```
 
@@ -126,7 +126,7 @@ This will be the main file in your application that ties everything together.
 
 You import and create a `FastAPI` class as normally:
 
-```Python hl_lines="1 5"
+```Python hl_lines="1  5"
 {!../../../docs_src/bigger_applications/app/main.py!}
 ```
 
@@ -245,7 +245,7 @@ And we can add predefined `responses` that will be included in all the *path ope
 
 And we can add a list of `dependencies` that will be added to all the *path operations* in the router and will be executed/solved for each request made to them. Note that, much like dependencies in *path operation decorators*, no value will be passed to your *path operation function*.
 
-```Python hl_lines="8 9 10 14 15 16 17 18 19 20"
+```Python hl_lines="8-10  14-20"
 {!../../../docs_src/bigger_applications/app/main.py!}
 ```
 

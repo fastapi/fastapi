@@ -27,7 +27,11 @@
 
 ---
 
+<<<<<<< HEAD
 FastAPI は、Python 3.6 以降で標準である型ヒントに基づいて API を構築するための、モダンで、高速(高パフォーマンス)な、Web フレームワークです。
+=======
+FastAPI は、Pythonの標準である型ヒントに基づいてPython 3.6 以降でAPI を構築するための、モダンで、高速(高パフォーマンス)な、Web フレームワークです。
+>>>>>>> master
 
 主な特徴:
 
@@ -51,7 +55,11 @@ FastAPI は、Python 3.6 以降で標準である型ヒントに基づいて API
 
 ---
 
+<<<<<<< HEAD
 "_FastAPI ライブラリを採用して**REST**サーバを構築し、それをクエリして**予測**を取得しています。 [for Ludwig]_"
+=======
+"_FastAPIライブラリを採用し、クエリで**予測値**を取得できる**REST**サーバを構築しました。 [for Ludwig]_"
+>>>>>>> master
 
 <div style="text-align: right; margin-right: 10%;">Piero Molino, Yaroslav Dudin, and Sai Sumanth Miryala - <strong>Uber</strong> <a href="https://eng.uber.com/ludwig-v0-2/" target="_blank"><small>(ref)</small></a></div>
 
@@ -89,7 +97,11 @@ FastAPI は、Python 3.6 以降で標準である型ヒントに基づいて API
 
 もし Web API の代わりにターミナルで使用する<abbr title="Command Line Interface">CLI</abbr>アプリを構築する場合は、<a href="https://typer.tiangolo.com/" class="external-link" target="_blank">**Typer**</a>を確認してください。
 
+<<<<<<< HEAD
 **Typer**は FastAPI の兄弟です。そして、**CLI 版 の FastAPI**を意図しています。
+=======
+**Typer**は FastAPI の弟分です。そして、**CLI 版 の FastAPI**を意味しています。
+>>>>>>> master
 
 ## 必要条件
 
@@ -97,8 +109,13 @@ Python 3.6+
 
 FastAPI は巨人の肩の上に立っています。
 
+<<<<<<< HEAD
 - Web の部分のための<a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a>
 - データの部分のための<a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a>
+=======
+- Web の部分は<a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a>
+- データの部分は<a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a>
+>>>>>>> master
 
 ## インストール
 
@@ -112,7 +129,11 @@ $ pip install fastapi
 
 </div>
 
+<<<<<<< HEAD
 <a href="http://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a> または、 <a href="https://gitlab.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>のように、本番環境では ASGI サーバーが必要になります。
+=======
+本番環境では、<a href="http://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a> または、 <a href="https://gitlab.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>のような、 ASGI サーバーが必要になります。
+>>>>>>> master
 
 <div class="termy">
 
@@ -169,7 +190,11 @@ async def read_item(item_id: int, q: str = None):
 
 **注**:
 
+<<<<<<< HEAD
 <a href="https://fastapi.tiangolo.com/async/#in-a-hurry" target="_blank">ドキュメントの`async` と `await`</a>についてわからない場合は、"In a hurry?"セクションをチェックしてください。
+=======
+わからない場合は、<a href="https://fastapi.tiangolo.com/async/#in-a-hurry" target="_blank">ドキュメントの`async` と `await`にある</a>"In a hurry?"セクションをチェックしてください。
+>>>>>>> master
 
 </details>
 
@@ -215,7 +240,11 @@ INFO:     Application startup complete.
 もうすでに以下の API が作成されています:
 
 - `/` と `/items/{item_id}`のパスで HTTP リクエストを受けます。
+<<<<<<< HEAD
 - どちらのパスも `GET` <em>演算子</em> を取ります。(HTTP メソッドとしても知られています。)
+=======
+- どちらのパスも `GET` <em>操作</em> を取ります。(HTTP メソッドとしても知られています。)
+>>>>>>> master
 - `/items/{item_id}` パスのパスパラメータ `item_id` は `int` でなければなりません。
 - パス `/items/{item_id}` はオプションの `str` クエリパラメータ `q` を持ちます。
 
@@ -291,13 +320,13 @@ def update_item(item_id: int, item: Item):
 
 <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>にアクセスしましょう。
 
-- 代替の API ドキュメントに新しいクエリパラメータやボディが反映されます。
+- 代替の API ドキュメントにも新しいクエリパラメータやボディが反映されます。
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-06-redoc-02.png)
 
-### リキャップ
+### まとめ
 
-要約すると、関数のパラメータ、body などの種類を**一度だけ**宣言します。
+要約すると、関数のパラメータとして、パラメータやボディ などの型を**一度だけ**宣言します。
 
 標準的な最新の Python の型を使っています。
 
@@ -353,16 +382,16 @@ item: Item
 - `GET` リクエストに対してオプションのクエリパラメータ `q` (`http://127.0.0.1:8000/items/foo?q=somequery` のように) が存在するかどうかを調べます。
   - パラメータ `q` は `= None` で宣言されているので、オプションです。
   - `None`がなければ必須になります（`PUT`の場合のボディと同様です）。
-- `PUT` リクエストを `/items/{item_id}` に送信する場合は、本文を JSON として読み込みます:
+- `PUT` リクエストを `/items/{item_id}` に送信する場合は、ボディを JSON として読み込みます:
   - 必須の属性 `name` を確認してください。 それは `str` であるべきです。
   - 必須の属性 `price` を確認してください。それは `float` でなければならないです。
   - オプションの属性 `is_offer` を確認してください。値がある場合は、`bool` であるべきです。
   - これらはすべて、深くネストされた JSON オブジェクトに対しても動作します。
 - JSON から JSON に自動的に変換します。
-- 使用できるものは OpenAPI を使用して文書化します:
+- OpenAPIですべてを文書化し、以下を使用することができます:
   - 対話的なドキュメントシステム。
   - 多くの言語に対応した自動クライアントコード生成システム。
-- 2 つの対話的なドキュメント Web インターフェイスを直接提供します。
+- 2 つの対話的なドキュメントのWebインターフェイスを直接提供します。
 
 ---
 
@@ -374,13 +403,13 @@ item: Item
     return {"item_name": item.name, "item_id": item_id}
 ```
 
-...から:
+...以下を:
 
 ```Python
         ... "item_name": item.name ...
 ```
 
-...まで:
+...以下のように:
 
 ```Python
         ... "item_price": item.price ...
@@ -396,8 +425,8 @@ item: Item
 
 - **ヘッダー**、**クッキー**、**フォームフィールド**、**ファイル**などの他の場所からの **パラメータ** 宣言。
 - `maximum_length`や`regex`のような**検証や制約**を設定する方法。
-- 非常に強力で使いやすい依存性 <abbr title="also known as components, resources, providers, services, injectables">**インジェクション**</abbr>システム。
-- **JWT トークン**と **HTTP Basic 認証** による **OAuth2** のサポートを含む、セキュリティと認証。
+- 非常に強力で使いやすい <abbr title="also known as components, resources, providers, services, injectables">**依存性注入**</abbr>システム。
+- **JWT トークン**を用いた **OAuth2** や **HTTP Basic 認証** のサポートを含む、セキュリティと認証。
 - **深くネストされた JSON モデル**を宣言するためのより高度な（しかし同様に簡単な）技術（Pydantic のおかげです）。
 - 以下のようなたくさんのおまけ機能(Starlette のおかげです):
   - **WebSockets**
@@ -409,7 +438,7 @@ item: Item
 
 ## パフォーマンス
 
-独立した TechEmpower のベンチマークでは、Uvicorn で動作する**FastAPI**アプリケーションが、<a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">Python フレームワークの中で最も高速なものの 1 つ</a>であることが示されてます、Starlette と Uvicorn（FastAPI で内部的に使用されています）のみ下回っています。(\*)
+独立した TechEmpower のベンチマークでは、Uvicorn で動作する**FastAPI**アプリケーションが、<a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">Python フレームワークの中で最も高速なものの 1 つ</a>であり、Starlette と Uvicorn（FastAPI で内部的に使用されています）にのみ下回っていると示されています。
 
 詳細は<a href="https://fastapi.tiangolo.com/benchmarks/" class="internal-link" target="_blank">ベンチマーク</a>セクションをご覧ください。
 
