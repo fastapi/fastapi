@@ -70,12 +70,12 @@ def jsonable_encoder(
         for key, value in obj.items():
             if (
                 (
-                    not sqlalchemy_safe or
-                    (not isinstance(key, str)) or
-                    (not key.startswith("_sa"))
-                ) and
-                (value is not None or not exclude_none) and
-                ((include and key in include) or not exclude or key not in exclude)
+                    not sqlalchemy_safe
+                    or (not isinstance(key, str))
+                    or (not key.startswith("_sa"))
+                )
+                and (value is not None or not exclude_none)
+                and ((include and key in include) or not exclude or key not in exclude)
             ):
                 encoded_key = jsonable_encoder(
                     key,

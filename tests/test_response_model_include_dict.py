@@ -1,4 +1,4 @@
-from fastapi import Depends, FastAPI, Response
+from fastapi import FastAPI
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
 
@@ -12,8 +12,6 @@ class Test2(BaseModel):
     test: Test
     baz: str
 
-
-app = FastAPI()
 
 app = FastAPI()
 
