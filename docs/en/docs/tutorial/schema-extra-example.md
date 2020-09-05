@@ -43,6 +43,23 @@ With any of the methods above it would look like this in the `/docs`:
 
 <img src="/img/tutorial/body-fields/image01.png">
 
+## `Body` with multiple examples
+
+For simple routes which accept only a single `Body` request, the `Body` constuctor will also accept an `examples` keyword (plural) to which you can attach a series of examples. 
+
+This can be useful when you need to communicate with the users of your API about how the FastAPI application will handle specific user input situations, and what they can expect to receive in return in your responses.
+
+As a simple example, if you wish to show users that the API will elegantly handle numbers passed as strings or as numbers you might pass a few examples to `Body` like so:
+
+```Python hl_lines="20-48"
+{!../../../docs_src/schema_extra_example/tutorial004.py!}
+```
+
+With `examples` added to `Body` it would look like this in the `/docs`:
+
+<img src="/img/tutorial/body-fields/image02.png">
+
+
 ## Technical Details
 
 About `example` vs `examples`...
