@@ -19,11 +19,13 @@ app = FastAPI()
 @app.get(
     "/",
     response_model=Test2,
-    response_model_include={'baz': ..., 'test': {'foo'}},
-    response_model_exclude={'test': {'bar'}}
+    response_model_include={"baz": ..., "test": {"foo"}},
+    response_model_exclude={"test": {"bar"}},
 )
 def index():
-    return Test2(test=Test(foo="visible field", bar="invisible field"), baz="also visible field")
+    return Test2(
+        test=Test(foo="visible field", bar="invisible field"), baz="also visible field"
+    )
 
 
 client = TestClient(app)
