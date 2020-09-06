@@ -4,6 +4,7 @@ site_url: https://fastapi.tiangolo.com/ja/
 theme:
   name: material
   palette:
+    scheme: preference
     primary: teal
     accent: amber
   icon:
@@ -17,13 +18,23 @@ edit_uri: ''
 google_analytics:
 - UA-133183413-1
 - auto
+plugins:
+- search
+- markdownextradata:
+    data: data
 nav:
 - FastAPI: index.md
 - Languages:
   - en: /
   - es: /es/
+  - fr: /fr/
+  - it: /it/
   - ja: /ja/
+  - ko: /ko/
   - pt: /pt/
+  - ru: /ru/
+  - tr: /tr/
+  - uk: /uk/
   - zh: /zh/
 markdown_extensions:
 - toc:
