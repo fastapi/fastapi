@@ -24,7 +24,7 @@ La jerarquia es algo como:
   * No escribirías una aplicación en Uvicorn directamente. Eso significaría que tu código tendría que incluir más o menos, al menos, todo el código proporcionado por Starlette (o ** FastAPI **). Y si hiciera eso, su aplicación final tendría la misma sobrecarga que haber usado un framework y minimizando el código y los errores de su aplicación.
   * Si estas comparando Uvicorn, compáralo con Daphne, Hypercorn, uWSGI, etc. Servidores de aplicaciones.
 * **Starlette**:
-  * Tendrá el siguiente mejor desempeño, después de Uvicorn. De hecho, Starlette usa Uvicorn para ejecutarse. Por lo tanto, probablemente solo podria volverse "más lento" que Uvicorn al tener que ejecutar más código.
+  * Tendrá el siguiente mejor desempeño, después de Uvicorn. De hecho, Starlette usa Uvicorn para ejecutarse. Por lo tanto, probablemente solo se volvería "más lento" que Uvicorn cuando tenga que ejecutar más código.
   * Pero este provee las herramientos para contruir aplicaciones web simples, con direccionamiento basadao en rutas, etc.
   * Si esta comparando Starlette, compare este con Sanic, Flask, Django, etc. frameworks web (o microframeworks).
 * **FastAPI**:
