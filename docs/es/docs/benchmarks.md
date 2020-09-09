@@ -4,7 +4,7 @@ Los puntos de referencia  independientes, TechEmpower, colocan a las apliaciones
 
 Pero cuando verificas los puntos de referencia y las comparaciones, deberias tener en mente lo siguiente.
 
-## Puntos de referencia y velocidad
+## Puntos de referencia y rapidez
 
 Cuando verificas las referencias,  
 When you check the benchmarks, es común ver varias herramientas de diferentes tipos comparadas como equivalentes.
