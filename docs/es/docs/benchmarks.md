@@ -1,6 +1,6 @@
 # Puntos de referencia
 
-Independientemente de los puntos de referencia TechEmpower muestra apliaciones **FastAPI** que se ejecutan bajo Uvicorn como <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank"> uno de los frameworks de python mas rapidos disponibles</a>, solo por debajo de Starlette y Uvicorn (utilizados internamente por FastAPI). (*)
+Los puntos de referencia  independientes, TechEmpower, colocan a las apliaciones **FastAPI** que se ejecutan bajo Uvicorn como <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank"> uno de los frameworks de python mas rapidos disponibles</a>, solo por debajo de Starlette y Uvicorn (utilizados internamente por FastAPI). (*)
 
 Pero cuando verificas los puntos de referencia y las comparaciones, deberias tener en mente lo siguiente.
 
