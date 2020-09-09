@@ -17,7 +17,7 @@ La jerarquia es algo como:
 
 * **Uvicorn**: un servidor ASGI (Asynchronous Server Gateway Interface)
   * **Starlette**: (usa Uvicorn) un microframework web
-    * **FastAPI**: (usa Starlette) un API microframework con varias funcionaldades adicionales para la creación de API, con validación de datos, etc.
+    * **FastAPI**: (usa Starlette) un API microframework con varias funcionaldades adicionales para la creación de APIs, con validación de datos, etc.
 
 * **Uvicorn**:
   * Tendrá el mejor rendimiento, ya que no tiene mucho código adicional aparte del servidor en sí.
