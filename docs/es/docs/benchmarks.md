@@ -11,7 +11,7 @@ When you check the benchmarks, es común ver varias herramientas de diferentes t
 
 Específicamente, al ver Uvicorn, Starlette y FastAPI comparados juntos (entre muchas otras herramientas).
 
-Cuanto más simple sea el problema resuelto por la herramienta, mejor rendimiento obtendrá. Y la mayoría de los puntos de referencia no prueban las funciones adicionales proporcionadas por la herramienta.
+Cuanto más simple sea la solucion a un problema por parte de la herramienta, mejor rendimiento obtendrá. Y la mayoría de los puntos de referencia no prueban las funciones adicionales proporcionadas por la herramienta.
 
 La jerarquia es algo como:
 
