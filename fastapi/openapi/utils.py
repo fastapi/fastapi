@@ -324,7 +324,7 @@ def get_openapi(
     version: str,
     openapi_version: str = "3.0.2",
     description: Optional[str] = None,
-    terms_of_service: str = "",
+    terms_of_service: Optional[str] = None,
     routes: Sequence[BaseRoute],
     tags: Optional[List[Dict[str, Any]]] = None,
     servers: Optional[List[Dict[str, Union[str, Any]]]] = None,
