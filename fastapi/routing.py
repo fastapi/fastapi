@@ -15,6 +15,7 @@ from fastapi.dependencies.utils import (
 from fastapi.encoders import DictIntStrAny, SetIntStr, jsonable_encoder
 from fastapi.exceptions import RequestValidationError, WebSocketRequestValidationError
 from fastapi.openapi.constants import STATUS_CODES_WITH_NO_BODY
+from fastapi.pagination import get_pagination, handle_error_struct, page_split, PaginationParam
 from fastapi.utils import (
     create_cloned_field,
     create_response_field,
@@ -148,6 +149,8 @@ def get_request_handler(
     response_model_exclude_defaults: bool = False,
     response_model_exclude_none: bool = False,
     dependency_overrides_provider: Optional[Any] = None,
+    page_field: Optional[PaginationParam] = None,
+    with_page_split: bool = False,
 ) -> Callable:
     assert dependant.call is not None, "dependant.call must be a function"
     is_coroutine = asyncio.iscoroutinefunction(dependant.call)
@@ -187,6 +190,11 @@ def get_request_handler(
                 if raw_response.background is None:
                     raw_response.background = background_tasks
                 return raw_response
+            if with_page_split:
+                if isinstance(raw_response, list) or isinstance(raw_response, set) or isinstance(raw_response, tuple):
+                    raw_response = page_split(request, page_field, raw_response)
+                else:
+                    raw_response = handle_error_struct(raw_response)
             response_data = await serialize_response(
                 field=response_field,
                 response_content=raw_response,
@@ -280,6 +288,8 @@ class APIRoute(routing.Route):
         response_class: Optional[Type[Response]] = None,
         dependency_overrides_provider: Optional[Any] = None,
         callbacks: Optional[List["APIRoute"]] = None,
+        page_model: Optional[PaginationParam] = None,
+        with_page_split: bool = False,
     ) -> None:
         # normalise enums e.g. http.HTTPStatus
         if isinstance(status_code, enum.IntEnum):
@@ -294,7 +304,17 @@ class APIRoute(routing.Route):
         self.unique_id = generate_operation_id_for_path(
             name=self.name, path=self.path_format, method=list(methods)[0]
         )
-        self.response_model = response_model
+        if with_page_split:
+            self.with_page_split = with_page_split
+            self.response_model = get_pagination(response_model)
+            if page_model is None:
+                self.page_model = page_model
+            elif issubclass(page_model, PaginationParam):
+                self.page_model = page_model
+            else:
+                self.page_model = PaginationParam
+        else:
+            self.response_model = response_model
         if self.response_model:
             assert (
                 status_code not in STATUS_CODES_WITH_NO_BODY
@@ -381,6 +401,8 @@ class APIRoute(routing.Route):
             response_model_exclude_defaults=self.response_model_exclude_defaults,
             response_model_exclude_none=self.response_model_exclude_none,
             dependency_overrides_provider=self.dependency_overrides_provider,
+            page_field=self.page_model or PaginationParam,
+            with_page_split=self.with_page_split,
         )
 
 
@@ -434,6 +456,8 @@ class APIRouter(routing.Router):
         name: Optional[str] = None,
         route_class_override: Optional[Type[APIRoute]] = None,
         callbacks: Optional[List[APIRoute]] = None,
+        page_model: Optional[Type[Any]] = None,
+        with_page_split: bool = False,
     ) -> None:
         route_class = route_class_override or self.route_class
         route = route_class(
@@ -461,6 +485,8 @@ class APIRouter(routing.Router):
             name=name,
             dependency_overrides_provider=self.dependency_overrides_provider,
             callbacks=callbacks,
+            page_model=page_model or PaginationParam,
+            with_page_split=with_page_split,
         )
         self.routes.append(route)
 
@@ -489,6 +515,8 @@ class APIRouter(routing.Router):
         response_class: Optional[Type[Response]] = None,
         name: Optional[str] = None,
         callbacks: Optional[List[APIRoute]] = None,
+        page_model: Optional[BaseModel] = None,
+        with_page_split: bool = False,
     ) -> Callable:
         def decorator(func: Callable) -> Callable:
             self.add_api_route(
@@ -515,6 +543,8 @@ class APIRouter(routing.Router):
                 response_class=response_class or self.default_response_class,
                 name=name,
                 callbacks=callbacks,
+                page_model=page_model or PaginationParam,
+                with_page_split=with_page_split,
             )
             return func
 
@@ -592,6 +622,8 @@ class APIRouter(routing.Router):
                     name=route.name,
                     route_class_override=type(route),
                     callbacks=route.callbacks,
+                    page_model=route.page_model or PaginationParam,
+                    with_page_split=route.with_page_split,
                 )
             elif isinstance(route, routing.Route):
                 self.add_route(
@@ -638,6 +670,8 @@ class APIRouter(routing.Router):
         response_class: Optional[Type[Response]] = None,
         name: Optional[str] = None,
         callbacks: Optional[List[APIRoute]] = None,
+        page_model: Optional[Type[Any]] = None,
+        with_page_split: bool = False,
     ) -> Callable:
         return self.api_route(
             path=path,
@@ -662,6 +696,8 @@ class APIRouter(routing.Router):
             response_class=response_class or self.default_response_class,
             name=name,
             callbacks=callbacks,
+            page_model=page_model or PaginationParam,
+            with_page_split=with_page_split,
         )
 
     def put(

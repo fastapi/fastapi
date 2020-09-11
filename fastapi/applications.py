@@ -341,6 +341,8 @@ class FastAPI(Starlette):
         response_class: Optional[Type[Response]] = None,
         name: Optional[str] = None,
         callbacks: Optional[List[routing.APIRoute]] = None,
+        page_model: Optional[Type[Any]] = None,
+        with_page_split: bool = False,
     ) -> Callable:
         return self.router.get(
             path,
@@ -364,6 +366,8 @@ class FastAPI(Starlette):
             response_class=response_class or self.default_response_class,
             name=name,
             callbacks=callbacks,
+            page_model=page_model,
+            with_page_split=with_page_split,
         )
 
     def put(
