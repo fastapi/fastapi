@@ -1,139 +1,139 @@
-# Python Types Intro
+# Python Types Introduction
 
-**Python 3.6+** has support for optional "type hints".
+**Python 3.6+** intègre le support des "type hints" optionnels.
 
-These **"type hints"** are a new syntax (since Python 3.6+) that allow declaring the <abbr title="for example: str, int, float, bool">type</abbr> of a variable.
+Ces **"type hints"** correspondent à une nouvelle syntaxe (depuis Python 3.6+) qui permet de déclarer le <abbr title="par exemple: str, int, float, bool">type</abbr> d'une variable.
 
-By declaring types for your variables, editors and tools can give you better support.
+En déclarant les types de vos variables, les éditeurs de code et outils vous offrent un meilleur support.
 
-This is just a **quick tutorial / refresher** about Python type hints. It covers only the minimum necessary to use them with **FastAPI**... which is actually very little.
+Il s'agit juste d'un **rapide tutoriel / rafraîchissement** au sujet des type hints de Python. Il couvre seulement le minimum nécessaire pour les utiliser avec **FastAPI**... ce qui correspond à très peu de choses.
 
-**FastAPI** is all based on these type hints, they give it many advantages and benefits.
+**FastAPI** est entièrement basé sur les Python type qui lui offrent beaucoup d'avantages et de bénéfices.
 
-But even if you never use **FastAPI**, you would benefit from learning a bit about them.
+Et même si vous n'utilisez jamais **FastAPI**, vous devriez en tirer quelques avantages en en apprenant un peu à leur sujet.
 
 !!! note
-    If you are a Python expert, and you already know everything about type hints, skip to the next chapter.
+    Si vous êtes un expert Python, et que vous connaissez déjà tout à propos des Python type, passez au prochain chapitre.
 
 ## Motivation
 
-Let's start with a simple example:
+Commençons avec un exemple simple :
 
 ```Python
 {!../../../docs_src/python_types/tutorial001.py!}
 ```
 
-Calling this program outputs:
+En appelant ce programme, on obtient la sortie suivante :
 
 ```
 John Doe
 ```
 
-The function does the following: 
+La fonction effectue les points suivants :
 
-* Takes a `first_name` and `last_name`.
-* Converts the first letter of each one to upper case with `title()`.
-* <abbr title="Puts them together, as one. With the contents of one after the other.">Concatenates</abbr> them with a space in the middle.
+* Prend un `first_name` et un `last_name`.
+* Convertit la première lettre des contenus de chaque variable et les passe en majuscule à l'aide de `title()`.
+* <abbr title="Mets des contenus de variables dans un seul et même ensemble. Utilise les contenus les uns après les autres.">Concatène</abbr> les contenus des 2 variables avec un espace entre les 2.
 
 ```Python hl_lines="2"
 {!../../../docs_src/python_types/tutorial001.py!}
 ```
 
-### Edit it
+### Modifions le programme
 
-It's a very simple program.
+Il s'agit d'un programme très simple.
 
-But now imagine that you were writing it from scratch.
+Mais maintenant, imaginez que vous deviez l'écrire en partant du début.
 
-At some point you would have started the definition of the function, you had the parameters ready...
+A un certain moment vous aimeriez commencer la définition de la fonction, vous avez déjà les paramètres prêts... 
 
-But then you have to call "that method that converts the first letter to upper case".
+Mais, vous devez appeler "la méthode qui convertit la première lettre en majuscule".
 
-Was it `upper`? Was it `uppercase`? `first_uppercase`? `capitalize`?
+Est-ce que c'est `upper` ? Ou alors `uppercase` ? A moins que cela soit `first_uppercase`? Ou qui sait `capitalize`?
 
-Then, you try with the old programmer's friend, editor autocompletion.
+Puis, vous essayez avec un autre outil : un éditeur de code avec autocompletion.
 
-You type the first parameter of the function, `first_name`, then a dot (`.`) and then hit `Ctrl+Space` to trigger the completion.
+Vous tapez le premier paramètre de la fonction, `first_name`, puis un point (`.`) et appuyez ensuite sur `Ctrl+Espace` pour déclencher la completion.
 
-But, sadly, you get nothing useful:
+Mais, malheureusement, vous n'obtenez rien d'utile :
 
 <img src="/img/python-types/image01.png">
 
-### Add types
+### Ajouter des types
 
-Let's modify a single line from the previous version.
+Modifions une ligne de la précédente version.
 
-We will change exactly this fragment, the parameters of the function, from:
+Nous allons en modifier un morceau, les paramètres de la fonction, de :
 
 ```Python
     first_name, last_name
 ```
 
-to:
+à :
 
 ```Python
     first_name: str, last_name: str
 ```
 
-That's it.
+C'est tout !
 
-Those are the "type hints":
+Ce sont eux les "type hints" :
 
 ```Python hl_lines="1"
 {!../../../docs_src/python_types/tutorial002.py!}
 ```
 
-That is not the same as declaring default values like would be with:
+Ceci n'est pas la même chose que de déclarer des valeurs par défaut comme cela pourrait l'être avec :
 
 ```Python
     first_name="john", last_name="doe"
 ```
 
-It's a different thing.
+C'est une chose différente.
 
-We are using colons (`:`), not equals (`=`).
+Nous utilisons les 2 points (`:`), mais pas le signe d'égalité (`=`).
 
-And adding type hints normally doesn't change what happens from what would happen without them.
+Et ajouter des type hints ne change rien à ce qui doit arriver par rapport à ce qui devrait arriver sans eux. C'est transparent.
 
-But now, imagine you are again in the middle of creating that function, but with type hints.
+Maintenant, imaginez que vous êtes encore au milieu de la création de cette fonction, mais avec des type hints.
 
-At the same point, you try to trigger the autocomplete with `Ctrl+Space` and you see:
+Au même endroit, vous essayez de déclencher l'autocompletion avec `Ctrl+Espace` et vous voyez :
 
 <img src="/img/python-types/image02.png">
 
-With that, you can scroll, seeing the options, until you find the one that "rings a bell":
+Avec cela, vous pouvez scroller, en regardant les options, jusqu'à ce que vous trouviez la bonne méthode qui fait 'tilt' :
 
 <img src="/img/python-types/image03.png">
 
-## More motivation
+## Encore plus de motivation
 
-Check this function, it already has type hints:
+Analysez cette fonction, elle a déjà des type hints :
 
 ```Python hl_lines="1"
 {!../../../docs_src/python_types/tutorial003.py!}
 ```
 
-Because the editor knows the types of the variables, you don't only get completion, you also get error checks:
+Parce que l'éditeur connait les types des variables, vous n'obtenez pas seulement l'autocompletion, vous obtenez également les analyses d'erreurs :
 
 <img src="/img/python-types/image04.png">
 
-Now you know that you have to fix it, convert `age` to a string with `str(age)`:
+Maintenant vous savez que vous devez corriger quelque chose : convertir `age` en chaîne de caractères avec `str(age)` :
 
 ```Python hl_lines="2"
 {!../../../docs_src/python_types/tutorial004.py!}
 ```
 
-## Declaring types
+## Déclarer les types
 
-You just saw the main place to declare type hints. As function parameters.
+Vous venez juste de voir l'emplacement principal pour déclarer des type hints : les paramètres de fonction.
 
-This is also the main place you would use them with **FastAPI**.
+C'est également l'emplacement principal que vous devriez utiliser pour les définir avec **FastAPI**.
 
-### Simple types
+### Des types simple
 
-You can declare all the standard Python types, not only `str`.
+Vous pouvez déclarer tous les types standard de Python, et pas seulement les `str`.
 
-You can use, for example:
+Par exemple, vous pouvez utiliser :
 
 * `int`
 * `float`
@@ -144,171 +144,172 @@ You can use, for example:
 {!../../../docs_src/python_types/tutorial005.py!}
 ```
 
-### Generic types with type parameters
+### Des types génériques avec des types paramètres
 
-There are some data structures that can contain other values, like `dict`, `list`, `set` and `tuple`. And the internal values can have their own type too.
+Il existe des structures de données qui contiennent d'autres valeurs, comme les `dict`, `list`, `set` et les `tuple`.
+Et les valeurs internes peuvent avoir leur propre type également.
 
-To declare those types and the internal types, you can use the standard Python module `typing`.
+Pour déclarer ces types et les types internes, vous pouvez utiliser le module Python standard `typing`.
 
-It exists specifically to support these type hints.
+Ce module existe tout spécialement pour offrir le support relatif aux type hints.
 
 #### `List`
 
-For example, let's define a variable to be a `list` of `str`.
+Définissons une variable qui sera une `list` de `str`.
 
-From `typing`, import `List` (with a capital `L`):
+A partir de `typing`, importez `List` (avec un `L` majuscule) :
 
 ```Python hl_lines="1"
 {!../../../docs_src/python_types/tutorial006.py!}
 ```
 
-Declare the variable, with the same colon (`:`) syntax.
+Déclarez la variable avec la même syntaxe utilisant les 2 points (`:`).
 
-As the type, put the `List`.
+Comme type, saisissez `List`.
 
-As the list is a type that contains some internal types, you put them in square brackets:
+Comme `List` est un type qui contient d'autres types internes, vous devez les mettre entre crochets :
 
 ```Python hl_lines="4"
 {!../../../docs_src/python_types/tutorial006.py!}
 ```
 
-!!! tip
-    Those internal types in the square brackets are called "type parameters".
+!!! astuce
+    Les types internes placés entre crochets sont appelés "type parameters".
 
-    In this case, `str` is the type parameter passed to `List`.
+    Dans ce cas, `str` est le "type parameter" passé à la `List`.
 
-That means: "the variable `items` is a `list`, and each of the items in this list is a `str`".
+Traduction : "la variable `items` est une `list`, et chacun des éléments de cette liste est un `str`".
 
-By doing that, your editor can provide support even while processing items from the list:
+Grâce à cela, votre éditeur de code vous fournira de l'aide même sur les éléments contenus dans la liste :
 
 <img src="/img/python-types/image05.png">
 
-Without types, that's almost impossible to achieve.
+Sans les types, c'est presque impossible à faire.
 
-Notice that the variable `item` is one of the elements in the list `items`.
+Notez que la variable `item` est un des éléments contenus dans la liste `items`.
 
-And still, the editor knows it is a `str`, and provides support for that.
+Encore plus fort : l'éditeur de code sait que `item` est de type `str` et fournit donc du support pour cela.
 
-#### `Tuple` and `Set`
+#### `Tuple` et `Set`
 
-You would do the same to declare `tuple`s and `set`s:
+Vous pourriez en faire de même pour déclarer des `tuple`s et des `set`s :
 
 ```Python hl_lines="1  4"
 {!../../../docs_src/python_types/tutorial007.py!}
 ```
 
-This means:
+Traduction :
 
-* The variable `items_t` is a `tuple` with 3 items, an `int`, another `int`, and a `str`.
-* The variable `items_s` is a `set`, and each of its items is of type `bytes`.
+* La variable `items_t` est un `tuple` avec 3 éléments, un `int`, un autre `int`, et un `str`.
+* La variable `items_s` est un `set`, et chacun de ces éléments est de type `bytes`.
 
 #### `Dict`
 
-To define a `dict`, you pass 2 type parameters, separated by commas.
+Pour définir un `dict`, vous devez passer 2 "type parameters", séparés par des virgules.
 
-The first type parameter is for the keys of the `dict`.
+Le premier "type parameter" est utilisé pour les 'keys' du `dict`.
 
-The second type parameter is for the values of the `dict`:
+Le second "type parameter" est utilisé pour les 'values' du `dict` :
 
 ```Python hl_lines="1  4"
 {!../../../docs_src/python_types/tutorial008.py!}
 ```
 
-This means:
+Traduction :
 
-* The variable `prices` is a `dict`:
-    * The keys of this `dict` are of type `str` (let's say, the name of each item).
-    * The values of this `dict` are of type `float` (let's say, the price of each item).
+* La variable `prices` est un `dict`:
+    * Les 'keys' de ce `dict` sont de type `str` (par exemple, le nom de chaque élément).
+    * Les 'values' de ce `dict` sont de type `float` (par exemple, le prix de chaque élément).
 
 #### `Optional`
 
-You can also use `Optional` to declare that a variable has a type, like `str`, but that it is "optional", which means that it could also be `None`:
+Vous pouvez utiliser `Optional` pour déclarer qu'une variable a un type, comme `str`, mais qu'il est "optional", ce qui signifie qu'il peut également être `None` :
 
 ```Python hl_lines="1  4"
 {!../../../docs_src/python_types/tutorial009.py!}
 ```
 
-Using `Optional[str]` instead of just `str` will let the editor help you detecting errors where you could be assuming that a value is always a `str`, when it could actually be `None` too.
+En utilisant `Optional[str]` à la place de `str`, votre éditeur de code pourra détecter les erreurs ou vous pourriez croire qu'une valeur est toujours un `str`, alors que la valeur pourrait être `None`.
 
-#### Generic types
+#### Types génériques
 
-These types that take type parameters in square brackets, like:
+Ces types qui prennent des "types parameters" entre crochets, comme :
 
 * `List`
 * `Tuple`
 * `Set`
 * `Dict`
 * `Optional`
-* ...and others.
+* ...et d'autres.
 
-are called **Generic types** or **Generics**.
+sont appelés des **Generic types** or **Generics**.
 
-### Classes as types
+### Des classes comme types
 
-You can also declare a class as the type of a variable.
+Vous pouvez également déclarer une classe comme étant un type de variable.
 
-Let's say you have a class `Person`, with a name:
+Imaginons que vous avez une classe `Person`, avec un nom :
 
 ```Python hl_lines="1-3"
 {!../../../docs_src/python_types/tutorial010.py!}
 ```
 
-Then you can declare a variable to be of type `Person`:
+Vous pouvez alors déclarer une variable comme étant de type `Person` :
 
 ```Python hl_lines="6"
 {!../../../docs_src/python_types/tutorial010.py!}
 ```
 
-And then, again, you get all the editor support:
+Et une fois de plus, vous bénéficiez de tout le support de votre éditeur de code :
 
 <img src="/img/python-types/image06.png">
 
-## Pydantic models
+## Modèles Pydantic
 
-<a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> is a Python library to perform data validation.
+<a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> est une librarie Python library qui effectue la validation de données.
 
-You declare the "shape" of the data as classes with attributes.
+Vous déclarez la "forme" de la donnée via des classes avec des attributs.
 
-And each attribute has a type.
+Et chaque attribut a un type.
 
-Then you create an instance of that class with some values and it will validate the values, convert them to the appropriate type (if that's the case) and give you an object with all the data.
+Vous créerez ensuite une instance de cette classe avec quelques valeurs et Pydantic validera les valeurs, les convertira en type approprié (si c'est le cas) et vous rendra un objet avec toutes les données.
 
-And you get all the editor support with that resulting object.
+Et vous obtiendrez tout le support de votre éditeur de code sur votre objet retourné. 
 
-Taken from the official Pydantic docs:
+Source en provenance des documentations officielles Pydantic :
 
 ```Python
 {!../../../docs_src/python_types/tutorial011.py!}
 ```
 
-!!! info
-    To learn more about <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic, check its docs</a>.
+!!! Info
+    Pour en apprendre plus sur <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic, vérifiez ces documentations</a>.
 
-**FastAPI** is all based on Pydantic.
+**FastAPI** est basé sur Pydantic.
 
-You will see a lot more of all this in practice in the [Tutorial - User Guide](tutorial/index.md){.internal-link target=_blank}.
+Vous obtiendrez plus de détails à partir du [Tutorial - User Guide](tutorial/index.md){.internal-link target=_blank}.
 
-## Type hints in **FastAPI**
+## Utilisation des Type hints dans **FastAPI**
 
-**FastAPI** takes advantage of these type hints to do several things.
+**FastAPI** tire parti des ces type hints pour faire plusieurs choses.
 
-With **FastAPI** you declare parameters with type hints and you get:
+Avec **FastAPI** vous déclarez les paramètres avec des type hints et vous obtenez :
 
-* **Editor support**.
-* **Type checks**.
+* **Du support de la part de votre éditeur de code**.
+* **Une analyse des Type**.
 
-...and **FastAPI** uses the same declarations to:
+...et **FastAPI** utilise les mêmes déclarations pour :
 
-* **Define requirements**: from request path parameters, query parameters, headers, bodies, dependencies, etc.
-* **Convert data**: from the request to the required type.
-* **Validate data**: coming from each request:
-    * Generating **automatic errors** returned to the client when the data is invalid.
-* **Document** the API using OpenAPI:
-    * which is then used by the automatic interactive documentation user interfaces.
+* **Definir des pré-requis** : à partir des 'path parameters' en provenance de requêtes, 'query parameters', headers, bodies, dépendances, etc.
+* **Convertir les données** : à partir de la requête jusqu'au type requis.
+* **Validation de données** : en provenance de chaque requête :
+    * Génération **automatique d'erreurs** retournées au client quand la données est invalide.
+* **Documenter** l'API en utilisant OpenAPI :
+    * Qui est alors utilisée via les interfaces utilisateur de documentation automatique interactive.
 
-This might all sound abstract. Don't worry. You'll see all this in action in the [Tutorial - User Guide](tutorial/index.md){.internal-link target=_blank}.
+Ceci peut vous sembler abstrait. Mais ne vous inquiétez pas, vous verrez tout ceci en action dans le [Tutorial - User Guide](tutorial/index.md){.internal-link target=_blank}.
 
-The important thing is that by using standard Python types, in a single place (instead of adding more classes, decorators, etc), **FastAPI** will do a lot of the work for you.
+La chose importante à retenir est qu'en utilisant les Python types, à un seul endroit (au lieu d'ajouter plus de classes, des décorateurs, etc), **FastAPI** fera plein de choses pour vous.
 
-!!! info
-    If you already went through all the tutorial and came back to see more about types, a good resource is <a href="https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html" class="external-link" target="_blank">the "cheat sheet" from `mypy`</a>.
+!!! Info
+    Si vous avez déjà parcouru l'ensemble du tutoriel et revenez pour en savoir plus au sujet des Python types, une bonne ressource est <a href="https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html" class="external-link" target="_blank">La "cheat sheet" de `mypy`</a>.
