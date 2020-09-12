@@ -20,16 +20,16 @@ def _fake_asynccontextmanager(func: Callable) -> Callable:
 
 try:
     from contextlib import asynccontextmanager  # type: ignore
-except ImportError:
-    try:
+except ImportError:  # pragma: no cover
+    try:  # pragma: no cover
         from async_generator import asynccontextmanager  # type: ignore
     except ImportError:  # pragma: no cover
         asynccontextmanager = _fake_asynccontextmanager
 
 try:
     from contextlib import AsyncExitStack  # type: ignore
-except ImportError:
-    try:
+except ImportError:  # pragma: no cover
+    try:  # pragma: no cover
         from async_exit_stack import AsyncExitStack  # type: ignore
     except ImportError:  # pragma: no cover
         AsyncExitStack = None  # type: ignore
