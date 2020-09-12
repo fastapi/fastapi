@@ -1,5 +1,6 @@
 import asyncio
 import inspect
+import json
 from contextlib import contextmanager
 from copy import deepcopy
 from typing import (
@@ -24,6 +25,7 @@ from fastapi.concurrency import (
     contextmanager_in_threadpool,
 )
 from fastapi.dependencies.models import Dependant, SecurityRequirement
+from fastapi.exceptions import RequestValidationError
 from fastapi.logger import logger
 from fastapi.security.base import SecurityBase
 from fastapi.security.oauth2 import OAuth2, SecurityScopes
@@ -700,6 +702,14 @@ async def request_body_to_args(
                 awaitables = [sub_value.read() for sub_value in value]
                 contents = await asyncio.gather(*awaitables)
                 value = sequence_shape_to_type[field.shape](contents)
+
+            if lenient_issubclass(field.type_, BaseModel) and isinstance(value, str):
+                try:
+                    value = json.loads(value.strip())
+                except json.JSONDecodeError as e:
+                    raise RequestValidationError(
+                        [ErrorWrapper(e, ("body", e.pos))], body=e.doc
+                    )
 
             v_, errors_ = field.validate(value, values, loc=loc)
 
