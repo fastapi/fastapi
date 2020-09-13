@@ -1,7 +1,7 @@
-# 歴史、設計、そして未来
+# 歴史、設計、そしてこれから
 
 少し前に、<a href="https://github.com/tiangolo/fastapi/issues/3#issuecomment-454956920" class="external-link" target="_blank">**FastAPI**
-のユーザーが尋ねました。</a>:
+のユーザーに以下の様に尋ねられました</a>:
 
 > このプロジェクトの歴史は？何もないところから、数週間ですごいものができているようです。 [...]
 
@@ -25,7 +25,7 @@
 
 数年間、私は新しいフレームワークを作ることを避けていました。最初は**FastAPI**でカバーされているすべての機能を解決するために、さまざまなフレームワーク、プラグイン、ツールを試しました。
 
-しかし、あの時点で、これらすべての機能を提供するものを作り、既存のツールから最高のアイデアを取り出し、今までなかった言語機能（Python 3.6+タイプヒント）を使って、可能な限り最高の方法で組み合わせる以外の選択肢はありませんでした。
+しかし、あの時点でこれらすべての機能を提供するものを作るには、既存のツールから最高のアイデアを取り出し、可能な限り最高の方法で組み合わせて、今までなかった言語機能（Python 3.6以降のタイプヒント）を使う以外の選択肢はありませんでした。
 
 </blockquote>
 
@@ -45,7 +45,7 @@
 
 もっとも人気のあるPythonエディターでいくつかのアイデアをテストしました。PyCharm、VS Code、Jediベースのエディターです。
 
-最終的に <a href="https://www.jetbrains.com/research/python-developers-survey-2018/#development-tools" class="external-link" target="_blank">Python開発者調査</a>で、それらのエディターがユーザーの80%をカバーしていました。
+最新の <a href="https://www.jetbrains.com/research/python-developers-survey-2018/#development-tools" class="external-link" target="_blank">Python開発者調査</a>で、それらのエディターがユーザーの80%をカバーしていました。
 
 これは、**FastAPI**がPython開発者の80%が使用しているエディターで特別にテストされたことを意味します。また、ほとんどの他のエディターも同様に動作する傾向があるため、この恩恵は事実上すべてのエディターでうけられるはずです。
 
@@ -53,7 +53,7 @@
 
 すべての箇所で、すべての開発者に最高の開発体験を提供しました。
 
-## 必要な条件
+## 要件
 
 いくつかの代替手法を試したあと、私は<a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">**Pydantic**</a>の強みを利用することを決めました。
 
@@ -65,7 +65,7 @@
 
 私が**FastAPI**自体の作成を開始した時には、ほとんどの部分がすでに準備されており、設計が定義され、必要な条件とツールの準備ができていました。そして規格や仕様に関する知識が、明確になり、更新されていました。
 
-## 未来
+## これから
 
 この時点ですでに、これらのアイデアを持った**FastAPI**が多くの人の役に立っていることは明らかです。
 
@@ -77,4 +77,4 @@
 
 **FastAPI**には大きな未来が待っています。
 
-そして、[あなたの貢献](help-fastapi.md){.internal-link target=_blank}に非常に感謝しています。
+そして、[あなたの助け](help-fastapi.md){.internal-link target=_blank}を大いに歓迎します。
