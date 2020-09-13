@@ -1,22 +1,22 @@
 # ベンチマーク
 
-TechEmpowerの独立ベンチマークが、Uvicorn下で稼働する**FastAPI** アプリケーションを<a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">利用可能な最速のPythonフレームワークの1つ</a>と示しています。 (FastAPIによって内部で使用される) StarletteとUvicornで稼働する場合のみ。(*)
+TechEmpowerの独立したベンチマークでは、Uvicornの下で動作する**FastAPI**アプリケーションは、<a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">利用可能な最速のPythonフレームワークの1つ</a>であり、下回っているのはStarletteとUvicorn自体 (FastAPIによって内部で使用される) のみだと示されています。
 
 ただし、ベンチマークを確認し、比較する際には下記の内容に気を付けてください。
 
 ## ベンチマークと速度
 
-ベンチマークを確認する時、いくつかの異なるツールを同じものとして比較するのが一般的です。
+ベンチマークを確認する時、異なるツールを同等なものと比較するのが一般的です。
 
 具体的には、Uvicorn、Starlette、FastAPIを (他の多くのツールと) 比較しました。
 
-このツールで解決する問題がよりシンプルなほど、パフォーマンスが向上します。また、ほとんどのベンチマークは、提供された追加機能をテストしていません。
+ツールで解決する問題がシンプルなほど、パフォーマンスが向上します。また、ほとんどのベンチマークは、ツールから提供される追加機能をテストしていません。
 
 階層関係はこのようになります。
 
 * **Uvicorn**: ASGIサーバー
-    * **Starlette**: (Uvicorn使用) WEBマイクロフレームワーク
-        * **FastAPI**: (Starlette使用) データバリデーションなどの、APIを構築する追加機能を備えたAPIマイクロフレームワーク
+    * **Starlette**: (Uvicornを使用) WEBマイクロフレームワーク
+        * **FastAPI**: (Starletteを使用) データバリデーションなどの、APIを構築する追加機能を備えたAPIマイクロフレームワーク
 
 * **Uvicorn**:
     * サーバー自体に余分なコードが少ないので、最高のパフォーマンスが得られます。
