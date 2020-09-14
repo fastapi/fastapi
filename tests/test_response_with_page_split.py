@@ -57,9 +57,9 @@ async def get_model():
 
 @router.get('/sqlalchemy', response_model=User, with_page_split=True)
 async def get_sqlalchemy():
-    return [UserInfo(id=1, name='Alpha'), UserInfo(id=2, name='Bravo'), UserInfo(id=3, name='Charlie'),
-            UserInfo(id=4, name='Delta'), UserInfo(id=5, name='Echo'), UserInfo(id=6, name='Foxtrot'),
-            UserInfo(id=7, name='Golf'), UserInfo(id=7, name='Hotel'), UserInfo(id=8, name='India'),
+    return [UserInfo(id=0, name='Alpha'), UserInfo(id=1, name='Bravo'), UserInfo(id=2, name='Charlie'),
+            UserInfo(id=3, name='Delta'), UserInfo(id=4, name='Echo'), UserInfo(id=5, name='Foxtrot'),
+            UserInfo(id=6, name='Golf'), UserInfo(id=7, name='Hotel'), UserInfo(id=8, name='India'),
             UserInfo(id=9, name='Juliet'), UserInfo(id=0, name='Kilo'), UserInfo(id=10, name='Lima'),
             UserInfo(id=11, name='Mike'), UserInfo(id=12, name='November'), UserInfo(id=13, name='Oscar')]
 
@@ -111,8 +111,8 @@ def test_dependency_set_status_code():
     response = client.get("/sqlalchemy")
     assert response.status_code == 200, response.text
     assert response.json() == {'count': 15, 'next': 'http://testserver/sqlalchemy?page_num=2', 'previous': None,
-                               'results': [{'id': 1, 'name': 'Alpha'}, {'id': 2, 'name': 'Bravo'},
-                                           {'id': 3, 'name': 'Charlie'}, {'id': 4, 'name': 'Delta'},
-                                           {'id': 5, 'name': 'Echo'}, {'id': 6, 'name': 'Foxtrot'},
-                                           {'id': 7, 'name': 'Golf'}, {'id': 7, 'name': 'Hotel'},
+                               'results': [{'id': 0, 'name': 'Alpha'}, {'id': 1, 'name': 'Bravo'},
+                                           {'id': 2, 'name': 'Charlie'}, {'id': 3, 'name': 'Delta'},
+                                           {'id': 4, 'name': 'Echo'}, {'id': 5, 'name': 'Foxtrot'},
+                                           {'id': 6, 'name': 'Golf'}, {'id': 7, 'name': 'Hotel'},
                                            {'id': 8, 'name': 'India'}, {'id': 9, 'name': 'Juliet'}]}
