@@ -1,10 +1,11 @@
 import pytest
 from pydantic import BaseModel
-from fastapi import Depends, FastAPI, Response, APIRouter
-from fastapi.testclient import TestClient
-from fastapi.pagination import PaginationParam
-from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import String, Integer, Column
+from sqlalchemy.ext.declarative import declarative_base
+
+from fastapi import Depends, FastAPI, Response, APIRouter
+from fastapi.pagination import PaginationParam
+from fastapi.testclient import TestClient
 
 app = FastAPI()
 router = APIRouter()
