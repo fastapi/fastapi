@@ -1,7 +1,7 @@
 import collections
 import itertools
 from math import ceil
-from typing import List, Any, Iterable, Type, Optional
+from typing import Any, Iterable, List, Optional, Type
 
 from pydantic import BaseModel, Field
 from starlette.requests import Request

@@ -16,10 +16,10 @@ from fastapi.encoders import DictIntStrAny, SetIntStr, jsonable_encoder
 from fastapi.exceptions import RequestValidationError, WebSocketRequestValidationError
 from fastapi.openapi.constants import STATUS_CODES_WITH_NO_BODY
 from fastapi.pagination import (
+    PaginationParam,
     get_pagination,
     handle_error_struct,
     page_split,
-    PaginationParam,
 )
 from fastapi.utils import (
     create_cloned_field,
