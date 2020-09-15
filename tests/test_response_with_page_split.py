@@ -43,7 +43,7 @@ async def get_main():
 
 
 @router.get('/router/with-page-model', with_page_split=True, page_model=TmpPagination)
-async def get_main():
+async def get_with_model():
     return [i for i in range(20)]
 
 

@@ -38,7 +38,7 @@ def get_pagination(response_model: Optional[Type[Any]]) -> Optional[Type[Any]]:
         return response_model
 
     class _Pagination(Pagination):
-        results: List[response_model] = []    # type: ignore
+        results: List[response_model] = []  # type: ignore
 
     return _Pagination
 
@@ -70,7 +70,6 @@ def between(start: int, end: int, iterable: Iterable) -> list:
 
     items = [_item for _item in itertools.islice(iter(iterable), start, end)]
     try:
-        from sqlalchemy.ext.declarative.api import DeclarativeMeta
         return [model_to_dict(_item) for _item in items]
     except ModuleNotFoundError:
         return [_item for _item in items]
@@ -101,7 +100,7 @@ def page_split(request: Request, raw_response: Iterable,
         # get the pagination info
         page_num = int(request.query_params.get(page_field.page_query_param, 1))
         page_size = int(request.query_params.get(page_field.page_size_query_param, page_field.page_size))
-    except ValueError as e:
+    except ValueError:
         raise ValueError(f'{page_field.page_query_param} and {page_field.page_size_query_param} requires integer type')
     # check the values
     if page_size > page_field.max_page_size or page_size < page_field.min_page_size or page_size <= 0:

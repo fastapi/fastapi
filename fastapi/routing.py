@@ -317,7 +317,7 @@ class APIRoute(routing.Route):
             self.response_model = response_model
         if self.response_model:
             assert (
-                    status_code not in STATUS_CODES_WITH_NO_BODY
+                status_code not in STATUS_CODES_WITH_NO_BODY
             ), f"Status code {status_code} must not have a response body"
             response_name = "Response_" + self.unique_id
             self.response_field = create_response_field(
@@ -355,7 +355,7 @@ class APIRoute(routing.Route):
             model = response.get("model")
             if model:
                 assert (
-                        additional_status_code not in STATUS_CODES_WITH_NO_BODY
+                    additional_status_code not in STATUS_CODES_WITH_NO_BODY
                 ), f"Status code {additional_status_code} must not have a response body"
                 response_name = f"Response_{additional_status_code}_{self.unique_id}"
                 response_field = create_response_field(name=response_name, type_=model)
@@ -602,8 +602,7 @@ class APIRouter(routing.Router):
                     response_model=route.response_model,
                     status_code=route.status_code,
                     tags=(route.tags or []) + (tags or []),
-                    dependencies=list(dependencies or [])
-                                 + list(route.dependencies or []),
+                    dependencies=list(dependencies or []) + list(route.dependencies or []),
                     summary=route.summary,
                     description=route.description,
                     response_description=route.response_description,
