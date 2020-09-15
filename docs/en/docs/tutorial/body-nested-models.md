@@ -99,7 +99,7 @@ This would mean that **FastAPI** would expect a body similar to:
     "description": "The pretender",
     "price": 42.0,
     "tax": 3.2,
-    "tags": ["rock", "metal", "bar"],
+    "tags": {"rock", "metal", "bar"},
     "image": {
         "url": "http://example.com/baz.jpg",
         "name": "The Foo live"
@@ -144,11 +144,11 @@ This will expect (convert, validate, document, etc) a JSON body like:
     "description": "The pretender",
     "price": 42.0,
     "tax": 3.2,
-    "tags": [
+    "tags": {
         "rock",
         "metal",
         "bar"
-    ],
+    },
     "images": [
         {
             "url": "http://example.com/baz.jpg",
