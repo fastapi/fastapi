@@ -12,17 +12,19 @@ class PaginationParam(object):
     base pagination param
     every page_mode that used have to inherit this class
     """
+
     page_size = 10
     max_page_size = 100
     min_page_size = 5
-    page_size_query_param: str = 'page_size'
-    page_query_param: str = 'page_num'
+    page_size_query_param: str = "page_size"
+    page_query_param: str = "page_num"
 
 
 class Pagination(BaseModel):
     """
     pagination model
     """
+
     count: int = Field(0, ge=0)
     next: str = Field(None)
     previous: str = Field(None)
@@ -51,7 +53,7 @@ def count(iterable: Any) -> int:
         d = collections.deque(enumerate(_iterable, 1), maxlen=1)
         return d[0][0] if d else 0
 
-    if hasattr(iterable, '__len__'):
+    if hasattr(iterable, "__len__"):
         return _count_iter(iterable)
     elif isinstance(iterable, Iterable):
         return _count_deque(iterable)
@@ -89,33 +91,47 @@ def model_to_dict(model: Any) -> dict:
 def handle_error_struct(data: Any) -> dict:
     # handle the data format when it's illegal
     try:
-        return {'results': [dict(data)], 'count': 1, 'next': None, 'previous': None}
+        return {"results": [dict(data)], "count": 1, "next": None, "previous": None}
     except ValueError:
-        return {'results': [data], 'count': 1, 'next': None, 'previous': None}
+        return {"results": [data], "count": 1, "next": None, "previous": None}
 
 
-def page_split(request: Request, raw_response: Iterable,
-               page_field: Type[PaginationParam] = PaginationParam) -> dict:
+def page_split(
+    request: Request,
+    raw_response: Iterable,
+    page_field: Type[PaginationParam] = PaginationParam,
+) -> dict:
     try:
         # get the pagination info
         page_num = int(request.query_params.get(page_field.page_query_param, 1))
-        page_size = int(request.query_params.get(page_field.page_size_query_param, page_field.page_size))
+        page_size = int(
+            request.query_params.get(
+                page_field.page_size_query_param, page_field.page_size
+            )
+        )
     except ValueError:
-        raise ValueError(f'{page_field.page_query_param} and {page_field.page_size_query_param} requires integer type')
-    # check the values
-    if page_size > page_field.max_page_size or page_size < page_field.min_page_size or page_size <= 0:
         raise ValueError(
-            f'{page_field.page_size_query_param} should between {page_field.max_page_size} and {page_field.min_page_size} and bigger than 0')
+            f"{page_field.page_query_param} and {page_field.page_size_query_param} requires integer type"
+        )
+    # check the values
+    if (
+        page_size > page_field.max_page_size
+        or page_size < page_field.min_page_size
+        or page_size <= 0
+    ):
+        raise ValueError(
+            f"{page_field.page_size_query_param} should between {page_field.max_page_size} and {page_field.min_page_size} and bigger than 0"
+        )
     if page_num <= 0:
-        raise ValueError(f'{page_field.page_size_query_param} should bigger than 0!')
+        raise ValueError(f"{page_field.page_size_query_param} should bigger than 0!")
     # produce url
-    base_url = f'{request.url.scheme}://{request.url.netloc}{request.url.path}'
+    base_url = f"{request.url.scheme}://{request.url.netloc}{request.url.path}"
     query_params = dict(request.query_params.items())
     length = count(raw_response)
     if length == 0:
-        return {'results': [], 'count': 0, 'next': None, 'previous': None}
+        return {"results": [], "count": 0, "next": None, "previous": None}
     if length <= (page_num - 1) * page_size:
-        raise ValueError(f'length should less or equal than {ceil(length / page_size)}')
+        raise ValueError(f"length should less or equal than {ceil(length / page_size)}")
     if page_num == 1:
         previous_url = None
     else:
@@ -128,5 +144,11 @@ def page_split(request: Request, raw_response: Iterable,
         query_params[page_field.page_query_param] = page_num + 1
         next_url = f'{base_url}?{"&".join([f"{key}={value}" for key, value in query_params.items()])}'
     # format the data
-    return {'count': length, 'next': next_url, 'previous': previous_url,
-            'results': between((page_num - 1) * page_size, page_num * page_size, raw_response)}
+    return {
+        "count": length,
+        "next": next_url,
+        "previous": previous_url,
+        "results": between(
+            (page_num - 1) * page_size, page_num * page_size, raw_response
+        ),
+    }

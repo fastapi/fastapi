@@ -15,7 +15,12 @@ from fastapi.dependencies.utils import (
 from fastapi.encoders import DictIntStrAny, SetIntStr, jsonable_encoder
 from fastapi.exceptions import RequestValidationError, WebSocketRequestValidationError
 from fastapi.openapi.constants import STATUS_CODES_WITH_NO_BODY
-from fastapi.pagination import get_pagination, handle_error_struct, page_split, PaginationParam
+from fastapi.pagination import (
+    get_pagination,
+    handle_error_struct,
+    page_split,
+    PaginationParam,
+)
 from fastapi.utils import (
     create_cloned_field,
     create_response_field,
@@ -191,7 +196,11 @@ def get_request_handler(
                     raw_response.background = background_tasks
                 return raw_response
             if with_page_split:
-                if isinstance(raw_response, list) or isinstance(raw_response, set) or isinstance(raw_response, tuple):
+                if (
+                    isinstance(raw_response, list)
+                    or isinstance(raw_response, set)
+                    or isinstance(raw_response, tuple)
+                ):
                     raw_response = page_split(request, raw_response, page_field)
                 else:
                     raw_response = handle_error_struct(raw_response)
@@ -602,7 +611,8 @@ class APIRouter(routing.Router):
                     response_model=route.response_model,
                     status_code=route.status_code,
                     tags=(route.tags or []) + (tags or []),
-                    dependencies=list(dependencies or []) + list(route.dependencies or []),
+                    dependencies=list(dependencies or [])
+                    + list(route.dependencies or []),
                     summary=route.summary,
                     description=route.description,
                     response_description=route.response_description,
