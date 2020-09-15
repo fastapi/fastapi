@@ -1,5 +1,5 @@
 import pytest
-from fastapi import APIRouter, Depends, FastAPI, Response
+from fastapi import APIRouter, FastAPI
 from fastapi.pagination import PaginationParam
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
@@ -14,12 +14,8 @@ class TmpPagination(PaginationParam):
     page_query_param = "page"
 
 
-async def response_status_setter(response: Response):
-    response.status_code = 200
-
-
-async def parent_dep(result=Depends(response_status_setter)):
-    return result
+class ErrorObj(object):
+    pass
 
 
 class User(BaseModel):
@@ -43,6 +39,11 @@ async def get_main():
 
 @router.get("/router/with-page-model", with_page_split=True, page_model=TmpPagination)
 async def get_with_model():
+    return [i for i in range(20)]
+
+
+@router.get("/router/with-page-error-model", with_page_split=True, page_model=ErrorObj)
+async def get_witt_error_model():
     return [i for i in range(20)]
 
 
@@ -88,12 +89,27 @@ async def get_sqlalchemy():
     ]
 
 
+@router.get("/zero", with_page_split=True)
+async def get_zero():
+    return []
+
+
+@router.get("/single-model", with_page_split=True)
+async def get_single_model():
+    return UserInfo(id=0, name="Alpha")
+
+
+@router.get("/single-object", with_page_split=True)
+async def get_single_obj():
+    return User(id=0, name="Alpha")
+
+
 app.include_router(router)
 
 client = TestClient(app)
 
 
-def test_dependency_set_status_code():
+def test_pagination():
     response = client.get("/")
     assert response.status_code == 200, response.text
     assert response.json() == {
@@ -133,11 +149,26 @@ def test_dependency_set_status_code():
     with pytest.raises(ValueError):
         client.get("/?page_size=-1")
 
+    with pytest.raises(ValueError):
+        client.get("/?page_size=a")
+
+    with pytest.raises(ValueError):
+        client.get("/?page_num=-1")
+
     response = client.get("/router/with-page-model")
     assert response.status_code == 200, response.text
     assert response.json() == {
         "count": 20,
         "next": "http://testserver/router/with-page-model?page=2",
+        "previous": None,
+        "results": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+    }
+
+    response = client.get("/router/with-page-error-model")
+    assert response.status_code == 200, response.text
+    assert response.json() == {
+        "count": 20,
+        "next": "http://testserver/router/with-page-error-model?page_num=2",
         "previous": None,
         "results": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
     }
@@ -180,4 +211,31 @@ def test_dependency_set_status_code():
             {"id": 8, "name": "India"},
             {"id": 9, "name": "Juliet"},
         ],
+    }
+
+    response = client.get("/zero")
+    assert response.status_code == 200, response.text
+    assert response.json() == {
+        "count": 0,
+        "next": None,
+        "previous": None,
+        "results": [],
+    }
+
+    response = client.get("/single-model")
+    assert response.status_code == 200, response.text
+    assert response.json() == {
+        "count": 1,
+        "next": None,
+        "previous": None,
+        "results": [{"id": 0, "name": "Alpha"}],
+    }
+
+    response = client.get("/single-object")
+    assert response.status_code == 200, response.text
+    assert response.json() == {
+        "count": 1,
+        "next": None,
+        "previous": None,
+        "results": [{"id": 0, "name": "Alpha"}],
     }

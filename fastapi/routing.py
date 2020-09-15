@@ -316,9 +316,7 @@ class APIRoute(routing.Route):
         if with_page_split:
             self.with_page_split = with_page_split
             self.response_model = get_pagination(response_model)
-            if page_model is None:
-                self.page_model = page_model
-            elif issubclass(page_model, PaginationParam):
+            if issubclass(page_model, PaginationParam):  # type: ignore
                 self.page_model = page_model
             else:
                 self.page_model = PaginationParam

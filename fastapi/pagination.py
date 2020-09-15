@@ -1,6 +1,4 @@
-import collections
 import itertools
-from math import ceil
 from typing import Any, Iterable, List, Optional, Type
 
 from pydantic import BaseModel, Field
@@ -49,33 +47,22 @@ def count(iterable: Any) -> int:
     def _count_iter(_iterable: Any) -> int:
         return len(_iterable)
 
-    def _count_deque(_iterable: Iterable) -> int:
-        d = collections.deque(enumerate(_iterable, 1), maxlen=1)
-        return d[0][0] if d else 0
-
+    """
     if hasattr(iterable, "__len__"):
         return _count_iter(iterable)
-    elif isinstance(iterable, Iterable):
-        return _count_deque(iterable)
     else:
         return 0
+    """
+    return _count_iter(iterable)
 
 
 def between(start: int, end: int, iterable: Iterable) -> list:
     # return the object of iterable between start and end
-    if start < 0:
-        raise ValueError("'start' must be positive (or zero)")
-    if end < 0:
-        raise ValueError("'end' must be positive (or zero)")
-    if start > end:
-        raise ValueError("'end' must be greater or equal than 'start'")
 
     items = [_item for _item in itertools.islice(iter(iterable), start, end)]
     try:
         return [model_to_dict(_item) for _item in items]
-    except ModuleNotFoundError:
-        return [_item for _item in items]
-    except AttributeError:
+    except Exception:
         return [_item for _item in items]
 
 
@@ -92,7 +79,7 @@ def handle_error_struct(data: Any) -> dict:
     # handle the data format when it's illegal
     try:
         return {"results": [dict(data)], "count": 1, "next": None, "previous": None}
-    except ValueError:
+    except TypeError:
         return {"results": [data], "count": 1, "next": None, "previous": None}
 
 
@@ -130,8 +117,6 @@ def page_split(
     length = count(raw_response)
     if length == 0:
         return {"results": [], "count": 0, "next": None, "previous": None}
-    if length <= (page_num - 1) * page_size:
-        raise ValueError(f"length should less or equal than {ceil(length / page_size)}")
     if page_num == 1:
         previous_url = None
     else:
