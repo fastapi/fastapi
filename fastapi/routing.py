@@ -149,7 +149,7 @@ def get_request_handler(
     response_model_exclude_defaults: bool = False,
     response_model_exclude_none: bool = False,
     dependency_overrides_provider: Optional[Any] = None,
-    page_field: Optional[PaginationParam] = None,
+    page_field: Optional[Any] = None,
     with_page_split: bool = False,
 ) -> Callable:
     assert dependant.call is not None, "dependant.call must be a function"
@@ -288,7 +288,7 @@ class APIRoute(routing.Route):
         response_class: Optional[Type[Response]] = None,
         dependency_overrides_provider: Optional[Any] = None,
         callbacks: Optional[List["APIRoute"]] = None,
-        page_model: Optional[PaginationParam] = None,
+        page_model: Optional[Type[Any]] = None,
         with_page_split: bool = False,
     ) -> None:
         # normalise enums e.g. http.HTTPStatus
@@ -456,7 +456,7 @@ class APIRouter(routing.Router):
         name: Optional[str] = None,
         route_class_override: Optional[Type[APIRoute]] = None,
         callbacks: Optional[List[APIRoute]] = None,
-        page_model: Optional[Type[Any]] = None,
+        page_model: Optional[Any] = None,
         with_page_split: bool = False,
     ) -> None:
         route_class = route_class_override or self.route_class
@@ -515,7 +515,7 @@ class APIRouter(routing.Router):
         response_class: Optional[Type[Response]] = None,
         name: Optional[str] = None,
         callbacks: Optional[List[APIRoute]] = None,
-        page_model: Optional[BaseModel] = None,
+        page_model: Optional[Any] = None,
         with_page_split: bool = False,
     ) -> Callable:
         def decorator(func: Callable) -> Callable:
