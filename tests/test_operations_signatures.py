@@ -6,7 +6,7 @@ method_names = ["get", "put", "post", "delete", "options", "head", "patch", "tra
 
 
 def test_signatures_consistency():
-    base_sig = inspect.signature(APIRouter.get)
+    base_sig = inspect.signature(APIRouter.head)
     for method_name in method_names:
         router_method = getattr(APIRouter, method_name)
         app_method = getattr(FastAPI, method_name)

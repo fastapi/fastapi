@@ -324,6 +324,8 @@ class APIRoute(routing.Route):
                 self.page_model = PaginationParam
         else:
             self.response_model = response_model
+            self.page_model = None
+            self.with_page_split = with_page_split
         if self.response_model:
             assert (
                 status_code not in STATUS_CODES_WITH_NO_BODY
