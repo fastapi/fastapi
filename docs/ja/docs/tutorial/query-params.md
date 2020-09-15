@@ -126,7 +126,7 @@ http://127.0.0.1:8000/items/foo?short=yes
 
 名前で判別されます:
 
-```Python hl_lines="6 8"
+```Python hl_lines="6  8"
 {!../../../docs_src/query_params/tutorial004.py!}
 ```
 
@@ -138,7 +138,7 @@ http://127.0.0.1:8000/items/foo?short=yes
 
 しかしクエリパラメータを必須にしたい場合は、ただデフォルト値を宣言しなければよいです:
 
-```Python hl_lines="6 7"
+```Python hl_lines="6-7"
 {!../../../docs_src/query_params/tutorial005.py!}
 ```
 
