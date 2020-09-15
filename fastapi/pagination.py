@@ -29,7 +29,7 @@ class Pagination(BaseModel):
     results: list = []
 
 
-def get_pagination(response_model: Optional[Type[Any]]) -> Type[Pagination]:
+def get_pagination(response_model: Optional[Type[Any]]) -> Optional[Type[Any]]:
     # produce the pagination model
 
     if response_model is None:
@@ -38,20 +38,28 @@ def get_pagination(response_model: Optional[Type[Any]]) -> Type[Pagination]:
         return response_model
 
     class _Pagination(Pagination):
-        results: List[response_model] = []
+        results: List[response_model] = []    # type: ignore
 
     return _Pagination
 
 
-def count(iterable: Iterable or iter) -> int:
+def count(iterable: Any) -> int:
+    def _count_iter(_iterable: Any) -> int:
+        return len(_iterable)
+
+    def _count_deque(_iterable: Iterable) -> int:
+        d = collections.deque(enumerate(_iterable, 1), maxlen=1)
+        return d[0][0] if d else 0
+
     if hasattr(iterable, '__len__'):
-        return len(iterable)
+        return _count_iter(iterable)
+    elif isinstance(iterable, Iterable):
+        return _count_deque(iterable)
+    else:
+        return 0
 
-    d = collections.deque(enumerate(iterable, 1), maxlen=1)
-    return d[0][0] if d else 0
 
-
-def between(start: int, end: int, iterable: Iterable or iter) -> list:
+def between(start: int, end: int, iterable: Iterable) -> list:
     # return the object of iterable between start and end
     if start < 0:
         raise ValueError("'start' must be positive (or zero)")
@@ -60,20 +68,19 @@ def between(start: int, end: int, iterable: Iterable or iter) -> list:
     if start > end:
         raise ValueError("'end' must be greater or equal than 'start'")
 
-    it = iter(iterable)
+    items = [_item for _item in itertools.islice(iter(iterable), start, end)]
     try:
         from sqlalchemy.ext.declarative.api import DeclarativeMeta
-        if isinstance(type(iterable[0]), DeclarativeMeta):
-            return [model_to_dict(_item) for _item in itertools.islice(it, start, end)]
-        else:
-            return [_item for _item in itertools.islice(it, start, end)]
+        return [model_to_dict(_item) for _item in items]
     except ModuleNotFoundError:
-        return [_item for _item in itertools.islice(it, start, end)]
+        return [_item for _item in items]
+    except AttributeError:
+        return [_item for _item in items]
 
 
 def model_to_dict(model: Any) -> dict:
     # trans model type to dict
-    def _model_to_dict(_model: Any) -> iter:
+    def _model_to_dict(_model: Any) -> Iterable:
         for col in _model.__table__.columns:
             yield getattr(_model, col.name), col.name
 
@@ -88,7 +95,8 @@ def handle_error_struct(data: Any) -> dict:
         return {'results': [data], 'count': 1, 'next': None, 'previous': None}
 
 
-def page_split(request: Request, page_field: Optional[PaginationParam], raw_response: Iterable) -> dict:
+def page_split(request: Request, raw_response: Iterable,
+               page_field: Type[PaginationParam] = PaginationParam) -> dict:
     try:
         # get the pagination info
         page_num = int(request.query_params.get(page_field.page_query_param, 1))

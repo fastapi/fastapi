@@ -42,11 +42,11 @@ from starlette.websockets import WebSocket
 
 
 def _prepare_response_content(
-    res: Any,
-    *,
-    exclude_unset: bool,
-    exclude_defaults: bool = False,
-    exclude_none: bool = False,
+        res: Any,
+        *,
+        exclude_unset: bool,
+        exclude_defaults: bool = False,
+        exclude_none: bool = False,
 ) -> Any:
     if isinstance(res, BaseModel):
         return res.dict(
@@ -79,16 +79,16 @@ def _prepare_response_content(
 
 
 async def serialize_response(
-    *,
-    field: Optional[ModelField] = None,
-    response_content: Any,
-    include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-    exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-    by_alias: bool = True,
-    exclude_unset: bool = False,
-    exclude_defaults: bool = False,
-    exclude_none: bool = False,
-    is_coroutine: bool = True,
+        *,
+        field: Optional[ModelField] = None,
+        response_content: Any,
+        include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
+        exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
+        by_alias: bool = True,
+        exclude_unset: bool = False,
+        exclude_defaults: bool = False,
+        exclude_none: bool = False,
+        is_coroutine: bool = True,
 ) -> Any:
     if field:
         errors = []
@@ -124,7 +124,7 @@ async def serialize_response(
 
 
 async def run_endpoint_function(
-    *, dependant: Dependant, values: Dict[str, Any], is_coroutine: bool
+        *, dependant: Dependant, values: Dict[str, Any], is_coroutine: bool
 ) -> Any:
     # Only called by get_request_handler. Has been split into its own function to
     # facilitate profiling endpoints, since inner functions are harder to profile.
@@ -137,20 +137,20 @@ async def run_endpoint_function(
 
 
 def get_request_handler(
-    dependant: Dependant,
-    body_field: Optional[ModelField] = None,
-    status_code: int = 200,
-    response_class: Type[Response] = JSONResponse,
-    response_field: Optional[ModelField] = None,
-    response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-    response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-    response_model_by_alias: bool = True,
-    response_model_exclude_unset: bool = False,
-    response_model_exclude_defaults: bool = False,
-    response_model_exclude_none: bool = False,
-    dependency_overrides_provider: Optional[Any] = None,
-    page_field: Optional[Any] = None,
-    with_page_split: bool = False,
+        dependant: Dependant,
+        body_field: Optional[ModelField] = None,
+        status_code: int = 200,
+        response_class: Type[Response] = JSONResponse,
+        response_field: Optional[ModelField] = None,
+        response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
+        response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
+        response_model_by_alias: bool = True,
+        response_model_exclude_unset: bool = False,
+        response_model_exclude_defaults: bool = False,
+        response_model_exclude_none: bool = False,
+        dependency_overrides_provider: Optional[Any] = None,
+        page_field: Type[PaginationParam] = PaginationParam,
+        with_page_split: bool = False,
 ) -> Callable:
     assert dependant.call is not None, "dependant.call must be a function"
     is_coroutine = asyncio.iscoroutinefunction(dependant.call)
@@ -192,7 +192,7 @@ def get_request_handler(
                 return raw_response
             if with_page_split:
                 if isinstance(raw_response, list) or isinstance(raw_response, set) or isinstance(raw_response, tuple):
-                    raw_response = page_split(request, page_field, raw_response)
+                    raw_response = page_split(request, raw_response, page_field)
                 else:
                     raw_response = handle_error_struct(raw_response)
             response_data = await serialize_response(
@@ -220,7 +220,7 @@ def get_request_handler(
 
 
 def get_websocket_app(
-    dependant: Dependant, dependency_overrides_provider: Optional[Any] = None
+        dependant: Dependant, dependency_overrides_provider: Optional[Any] = None
 ) -> Callable:
     async def app(websocket: WebSocket) -> None:
         solved_result = await solve_dependencies(
@@ -240,12 +240,12 @@ def get_websocket_app(
 
 class APIWebSocketRoute(routing.WebSocketRoute):
     def __init__(
-        self,
-        path: str,
-        endpoint: Callable,
-        *,
-        name: Optional[str] = None,
-        dependency_overrides_provider: Optional[Any] = None,
+            self,
+            path: str,
+            endpoint: Callable,
+            *,
+            name: Optional[str] = None,
+            dependency_overrides_provider: Optional[Any] = None,
     ) -> None:
         self.path = path
         self.endpoint = endpoint
@@ -262,34 +262,34 @@ class APIWebSocketRoute(routing.WebSocketRoute):
 
 class APIRoute(routing.Route):
     def __init__(
-        self,
-        path: str,
-        endpoint: Callable,
-        *,
-        response_model: Optional[Type[Any]] = None,
-        status_code: int = 200,
-        tags: Optional[List[str]] = None,
-        dependencies: Optional[Sequence[params.Depends]] = None,
-        summary: Optional[str] = None,
-        description: Optional[str] = None,
-        response_description: str = "Successful Response",
-        responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
-        deprecated: Optional[bool] = None,
-        name: Optional[str] = None,
-        methods: Optional[Union[Set[str], List[str]]] = None,
-        operation_id: Optional[str] = None,
-        response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-        response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-        response_model_by_alias: bool = True,
-        response_model_exclude_unset: bool = False,
-        response_model_exclude_defaults: bool = False,
-        response_model_exclude_none: bool = False,
-        include_in_schema: bool = True,
-        response_class: Optional[Type[Response]] = None,
-        dependency_overrides_provider: Optional[Any] = None,
-        callbacks: Optional[List["APIRoute"]] = None,
-        page_model: Optional[Type[Any]] = None,
-        with_page_split: bool = False,
+            self,
+            path: str,
+            endpoint: Callable,
+            *,
+            response_model: Optional[Type[Any]] = None,
+            status_code: int = 200,
+            tags: Optional[List[str]] = None,
+            dependencies: Optional[Sequence[params.Depends]] = None,
+            summary: Optional[str] = None,
+            description: Optional[str] = None,
+            response_description: str = "Successful Response",
+            responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
+            deprecated: Optional[bool] = None,
+            name: Optional[str] = None,
+            methods: Optional[Union[Set[str], List[str]]] = None,
+            operation_id: Optional[str] = None,
+            response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
+            response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
+            response_model_by_alias: bool = True,
+            response_model_exclude_unset: bool = False,
+            response_model_exclude_defaults: bool = False,
+            response_model_exclude_none: bool = False,
+            include_in_schema: bool = True,
+            response_class: Optional[Type[Response]] = None,
+            dependency_overrides_provider: Optional[Any] = None,
+            callbacks: Optional[List["APIRoute"]] = None,
+            page_model: Optional[Type[Any]] = None,
+            with_page_split: bool = False,
     ) -> None:
         # normalise enums e.g. http.HTTPStatus
         if isinstance(status_code, enum.IntEnum):
@@ -317,7 +317,7 @@ class APIRoute(routing.Route):
             self.response_model = response_model
         if self.response_model:
             assert (
-                status_code not in STATUS_CODES_WITH_NO_BODY
+                    status_code not in STATUS_CODES_WITH_NO_BODY
             ), f"Status code {status_code} must not have a response body"
             response_name = "Response_" + self.unique_id
             self.response_field = create_response_field(
@@ -355,7 +355,7 @@ class APIRoute(routing.Route):
             model = response.get("model")
             if model:
                 assert (
-                    additional_status_code not in STATUS_CODES_WITH_NO_BODY
+                        additional_status_code not in STATUS_CODES_WITH_NO_BODY
                 ), f"Status code {additional_status_code} must not have a response body"
                 response_name = f"Response_{additional_status_code}_{self.unique_id}"
                 response_field = create_response_field(name=response_name, type_=model)
@@ -408,15 +408,15 @@ class APIRoute(routing.Route):
 
 class APIRouter(routing.Router):
     def __init__(
-        self,
-        routes: Optional[List[routing.BaseRoute]] = None,
-        redirect_slashes: bool = True,
-        default: Optional[ASGIApp] = None,
-        dependency_overrides_provider: Optional[Any] = None,
-        route_class: Type[APIRoute] = APIRoute,
-        default_response_class: Optional[Type[Response]] = None,
-        on_startup: Optional[Sequence[Callable]] = None,
-        on_shutdown: Optional[Sequence[Callable]] = None,
+            self,
+            routes: Optional[List[routing.BaseRoute]] = None,
+            redirect_slashes: bool = True,
+            default: Optional[ASGIApp] = None,
+            dependency_overrides_provider: Optional[Any] = None,
+            route_class: Type[APIRoute] = APIRoute,
+            default_response_class: Optional[Type[Response]] = None,
+            on_startup: Optional[Sequence[Callable]] = None,
+            on_shutdown: Optional[Sequence[Callable]] = None,
     ) -> None:
         super().__init__(
             routes=routes,
@@ -430,34 +430,34 @@ class APIRouter(routing.Router):
         self.default_response_class = default_response_class
 
     def add_api_route(
-        self,
-        path: str,
-        endpoint: Callable,
-        *,
-        response_model: Optional[Type[Any]] = None,
-        status_code: int = 200,
-        tags: Optional[List[str]] = None,
-        dependencies: Optional[Sequence[params.Depends]] = None,
-        summary: Optional[str] = None,
-        description: Optional[str] = None,
-        response_description: str = "Successful Response",
-        responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
-        deprecated: Optional[bool] = None,
-        methods: Optional[Union[Set[str], List[str]]] = None,
-        operation_id: Optional[str] = None,
-        response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-        response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-        response_model_by_alias: bool = True,
-        response_model_exclude_unset: bool = False,
-        response_model_exclude_defaults: bool = False,
-        response_model_exclude_none: bool = False,
-        include_in_schema: bool = True,
-        response_class: Optional[Type[Response]] = None,
-        name: Optional[str] = None,
-        route_class_override: Optional[Type[APIRoute]] = None,
-        callbacks: Optional[List[APIRoute]] = None,
-        page_model: Optional[Any] = None,
-        with_page_split: bool = False,
+            self,
+            path: str,
+            endpoint: Callable,
+            *,
+            response_model: Optional[Type[Any]] = None,
+            status_code: int = 200,
+            tags: Optional[List[str]] = None,
+            dependencies: Optional[Sequence[params.Depends]] = None,
+            summary: Optional[str] = None,
+            description: Optional[str] = None,
+            response_description: str = "Successful Response",
+            responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
+            deprecated: Optional[bool] = None,
+            methods: Optional[Union[Set[str], List[str]]] = None,
+            operation_id: Optional[str] = None,
+            response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
+            response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
+            response_model_by_alias: bool = True,
+            response_model_exclude_unset: bool = False,
+            response_model_exclude_defaults: bool = False,
+            response_model_exclude_none: bool = False,
+            include_in_schema: bool = True,
+            response_class: Optional[Type[Response]] = None,
+            name: Optional[str] = None,
+            route_class_override: Optional[Type[APIRoute]] = None,
+            callbacks: Optional[List[APIRoute]] = None,
+            page_model: Optional[Any] = None,
+            with_page_split: bool = False,
     ) -> None:
         route_class = route_class_override or self.route_class
         route = route_class(
@@ -491,32 +491,32 @@ class APIRouter(routing.Router):
         self.routes.append(route)
 
     def api_route(
-        self,
-        path: str,
-        *,
-        response_model: Optional[Type[Any]] = None,
-        status_code: int = 200,
-        tags: Optional[List[str]] = None,
-        dependencies: Optional[Sequence[params.Depends]] = None,
-        summary: Optional[str] = None,
-        description: Optional[str] = None,
-        response_description: str = "Successful Response",
-        responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
-        deprecated: Optional[bool] = None,
-        methods: Optional[List[str]] = None,
-        operation_id: Optional[str] = None,
-        response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-        response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-        response_model_by_alias: bool = True,
-        response_model_exclude_unset: bool = False,
-        response_model_exclude_defaults: bool = False,
-        response_model_exclude_none: bool = False,
-        include_in_schema: bool = True,
-        response_class: Optional[Type[Response]] = None,
-        name: Optional[str] = None,
-        callbacks: Optional[List[APIRoute]] = None,
-        page_model: Optional[Any] = None,
-        with_page_split: bool = False,
+            self,
+            path: str,
+            *,
+            response_model: Optional[Type[Any]] = None,
+            status_code: int = 200,
+            tags: Optional[List[str]] = None,
+            dependencies: Optional[Sequence[params.Depends]] = None,
+            summary: Optional[str] = None,
+            description: Optional[str] = None,
+            response_description: str = "Successful Response",
+            responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
+            deprecated: Optional[bool] = None,
+            methods: Optional[List[str]] = None,
+            operation_id: Optional[str] = None,
+            response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
+            response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
+            response_model_by_alias: bool = True,
+            response_model_exclude_unset: bool = False,
+            response_model_exclude_defaults: bool = False,
+            response_model_exclude_none: bool = False,
+            include_in_schema: bool = True,
+            response_class: Optional[Type[Response]] = None,
+            name: Optional[str] = None,
+            callbacks: Optional[List[APIRoute]] = None,
+            page_model: Optional[Any] = None,
+            with_page_split: bool = False,
     ) -> Callable:
         def decorator(func: Callable) -> Callable:
             self.add_api_route(
@@ -551,7 +551,7 @@ class APIRouter(routing.Router):
         return decorator
 
     def add_api_websocket_route(
-        self, path: str, endpoint: Callable, name: Optional[str] = None
+            self, path: str, endpoint: Callable, name: Optional[str] = None
     ) -> None:
         route = APIWebSocketRoute(
             path,
@@ -569,14 +569,14 @@ class APIRouter(routing.Router):
         return decorator
 
     def include_router(
-        self,
-        router: "APIRouter",
-        *,
-        prefix: str = "",
-        tags: Optional[List[str]] = None,
-        dependencies: Optional[Sequence[params.Depends]] = None,
-        responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
-        default_response_class: Optional[Type[Response]] = None,
+            self,
+            router: "APIRouter",
+            *,
+            prefix: str = "",
+            tags: Optional[List[str]] = None,
+            dependencies: Optional[Sequence[params.Depends]] = None,
+            responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
+            default_response_class: Optional[Type[Response]] = None,
     ) -> None:
         if prefix:
             assert prefix.startswith("/"), "A path prefix must start with '/'"
@@ -603,7 +603,7 @@ class APIRouter(routing.Router):
                     status_code=route.status_code,
                     tags=(route.tags or []) + (tags or []),
                     dependencies=list(dependencies or [])
-                    + list(route.dependencies or []),
+                                 + list(route.dependencies or []),
                     summary=route.summary,
                     description=route.description,
                     response_description=route.response_description,
@@ -647,31 +647,31 @@ class APIRouter(routing.Router):
             self.add_event_handler("shutdown", handler)
 
     def get(
-        self,
-        path: str,
-        *,
-        response_model: Optional[Type[Any]] = None,
-        status_code: int = 200,
-        tags: Optional[List[str]] = None,
-        dependencies: Optional[Sequence[params.Depends]] = None,
-        summary: Optional[str] = None,
-        description: Optional[str] = None,
-        response_description: str = "Successful Response",
-        responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
-        deprecated: Optional[bool] = None,
-        operation_id: Optional[str] = None,
-        response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-        response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-        response_model_by_alias: bool = True,
-        response_model_exclude_unset: bool = False,
-        response_model_exclude_defaults: bool = False,
-        response_model_exclude_none: bool = False,
-        include_in_schema: bool = True,
-        response_class: Optional[Type[Response]] = None,
-        name: Optional[str] = None,
-        callbacks: Optional[List[APIRoute]] = None,
-        page_model: Optional[Type[Any]] = None,
-        with_page_split: bool = False,
+            self,
+            path: str,
+            *,
+            response_model: Optional[Type[Any]] = None,
+            status_code: int = 200,
+            tags: Optional[List[str]] = None,
+            dependencies: Optional[Sequence[params.Depends]] = None,
+            summary: Optional[str] = None,
+            description: Optional[str] = None,
+            response_description: str = "Successful Response",
+            responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
+            deprecated: Optional[bool] = None,
+            operation_id: Optional[str] = None,
+            response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
+            response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
+            response_model_by_alias: bool = True,
+            response_model_exclude_unset: bool = False,
+            response_model_exclude_defaults: bool = False,
+            response_model_exclude_none: bool = False,
+            include_in_schema: bool = True,
+            response_class: Optional[Type[Response]] = None,
+            name: Optional[str] = None,
+            callbacks: Optional[List[APIRoute]] = None,
+            page_model: Optional[Type[Any]] = None,
+            with_page_split: bool = False,
     ) -> Callable:
         return self.api_route(
             path=path,
@@ -701,29 +701,29 @@ class APIRouter(routing.Router):
         )
 
     def put(
-        self,
-        path: str,
-        *,
-        response_model: Optional[Type[Any]] = None,
-        status_code: int = 200,
-        tags: Optional[List[str]] = None,
-        dependencies: Optional[Sequence[params.Depends]] = None,
-        summary: Optional[str] = None,
-        description: Optional[str] = None,
-        response_description: str = "Successful Response",
-        responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
-        deprecated: Optional[bool] = None,
-        operation_id: Optional[str] = None,
-        response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-        response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-        response_model_by_alias: bool = True,
-        response_model_exclude_unset: bool = False,
-        response_model_exclude_defaults: bool = False,
-        response_model_exclude_none: bool = False,
-        include_in_schema: bool = True,
-        response_class: Optional[Type[Response]] = None,
-        name: Optional[str] = None,
-        callbacks: Optional[List[APIRoute]] = None,
+            self,
+            path: str,
+            *,
+            response_model: Optional[Type[Any]] = None,
+            status_code: int = 200,
+            tags: Optional[List[str]] = None,
+            dependencies: Optional[Sequence[params.Depends]] = None,
+            summary: Optional[str] = None,
+            description: Optional[str] = None,
+            response_description: str = "Successful Response",
+            responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
+            deprecated: Optional[bool] = None,
+            operation_id: Optional[str] = None,
+            response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
+            response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
+            response_model_by_alias: bool = True,
+            response_model_exclude_unset: bool = False,
+            response_model_exclude_defaults: bool = False,
+            response_model_exclude_none: bool = False,
+            include_in_schema: bool = True,
+            response_class: Optional[Type[Response]] = None,
+            name: Optional[str] = None,
+            callbacks: Optional[List[APIRoute]] = None,
     ) -> Callable:
         return self.api_route(
             path=path,
@@ -751,29 +751,29 @@ class APIRouter(routing.Router):
         )
 
     def post(
-        self,
-        path: str,
-        *,
-        response_model: Optional[Type[Any]] = None,
-        status_code: int = 200,
-        tags: Optional[List[str]] = None,
-        dependencies: Optional[Sequence[params.Depends]] = None,
-        summary: Optional[str] = None,
-        description: Optional[str] = None,
-        response_description: str = "Successful Response",
-        responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
-        deprecated: Optional[bool] = None,
-        operation_id: Optional[str] = None,
-        response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-        response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-        response_model_by_alias: bool = True,
-        response_model_exclude_unset: bool = False,
-        response_model_exclude_defaults: bool = False,
-        response_model_exclude_none: bool = False,
-        include_in_schema: bool = True,
-        response_class: Optional[Type[Response]] = None,
-        name: Optional[str] = None,
-        callbacks: Optional[List[APIRoute]] = None,
+            self,
+            path: str,
+            *,
+            response_model: Optional[Type[Any]] = None,
+            status_code: int = 200,
+            tags: Optional[List[str]] = None,
+            dependencies: Optional[Sequence[params.Depends]] = None,
+            summary: Optional[str] = None,
+            description: Optional[str] = None,
+            response_description: str = "Successful Response",
+            responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
+            deprecated: Optional[bool] = None,
+            operation_id: Optional[str] = None,
+            response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
+            response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
+            response_model_by_alias: bool = True,
+            response_model_exclude_unset: bool = False,
+            response_model_exclude_defaults: bool = False,
+            response_model_exclude_none: bool = False,
+            include_in_schema: bool = True,
+            response_class: Optional[Type[Response]] = None,
+            name: Optional[str] = None,
+            callbacks: Optional[List[APIRoute]] = None,
     ) -> Callable:
         return self.api_route(
             path=path,
@@ -801,29 +801,29 @@ class APIRouter(routing.Router):
         )
 
     def delete(
-        self,
-        path: str,
-        *,
-        response_model: Optional[Type[Any]] = None,
-        status_code: int = 200,
-        tags: Optional[List[str]] = None,
-        dependencies: Optional[Sequence[params.Depends]] = None,
-        summary: Optional[str] = None,
-        description: Optional[str] = None,
-        response_description: str = "Successful Response",
-        responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
-        deprecated: Optional[bool] = None,
-        operation_id: Optional[str] = None,
-        response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-        response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-        response_model_by_alias: bool = True,
-        response_model_exclude_unset: bool = False,
-        response_model_exclude_defaults: bool = False,
-        response_model_exclude_none: bool = False,
-        include_in_schema: bool = True,
-        response_class: Optional[Type[Response]] = None,
-        name: Optional[str] = None,
-        callbacks: Optional[List[APIRoute]] = None,
+            self,
+            path: str,
+            *,
+            response_model: Optional[Type[Any]] = None,
+            status_code: int = 200,
+            tags: Optional[List[str]] = None,
+            dependencies: Optional[Sequence[params.Depends]] = None,
+            summary: Optional[str] = None,
+            description: Optional[str] = None,
+            response_description: str = "Successful Response",
+            responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
+            deprecated: Optional[bool] = None,
+            operation_id: Optional[str] = None,
+            response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
+            response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
+            response_model_by_alias: bool = True,
+            response_model_exclude_unset: bool = False,
+            response_model_exclude_defaults: bool = False,
+            response_model_exclude_none: bool = False,
+            include_in_schema: bool = True,
+            response_class: Optional[Type[Response]] = None,
+            name: Optional[str] = None,
+            callbacks: Optional[List[APIRoute]] = None,
     ) -> Callable:
         return self.api_route(
             path=path,
@@ -851,29 +851,29 @@ class APIRouter(routing.Router):
         )
 
     def options(
-        self,
-        path: str,
-        *,
-        response_model: Optional[Type[Any]] = None,
-        status_code: int = 200,
-        tags: Optional[List[str]] = None,
-        dependencies: Optional[Sequence[params.Depends]] = None,
-        summary: Optional[str] = None,
-        description: Optional[str] = None,
-        response_description: str = "Successful Response",
-        responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
-        deprecated: Optional[bool] = None,
-        operation_id: Optional[str] = None,
-        response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-        response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-        response_model_by_alias: bool = True,
-        response_model_exclude_unset: bool = False,
-        response_model_exclude_defaults: bool = False,
-        response_model_exclude_none: bool = False,
-        include_in_schema: bool = True,
-        response_class: Optional[Type[Response]] = None,
-        name: Optional[str] = None,
-        callbacks: Optional[List[APIRoute]] = None,
+            self,
+            path: str,
+            *,
+            response_model: Optional[Type[Any]] = None,
+            status_code: int = 200,
+            tags: Optional[List[str]] = None,
+            dependencies: Optional[Sequence[params.Depends]] = None,
+            summary: Optional[str] = None,
+            description: Optional[str] = None,
+            response_description: str = "Successful Response",
+            responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
+            deprecated: Optional[bool] = None,
+            operation_id: Optional[str] = None,
+            response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
+            response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
+            response_model_by_alias: bool = True,
+            response_model_exclude_unset: bool = False,
+            response_model_exclude_defaults: bool = False,
+            response_model_exclude_none: bool = False,
+            include_in_schema: bool = True,
+            response_class: Optional[Type[Response]] = None,
+            name: Optional[str] = None,
+            callbacks: Optional[List[APIRoute]] = None,
     ) -> Callable:
         return self.api_route(
             path=path,
@@ -901,29 +901,29 @@ class APIRouter(routing.Router):
         )
 
     def head(
-        self,
-        path: str,
-        *,
-        response_model: Optional[Type[Any]] = None,
-        status_code: int = 200,
-        tags: Optional[List[str]] = None,
-        dependencies: Optional[Sequence[params.Depends]] = None,
-        summary: Optional[str] = None,
-        description: Optional[str] = None,
-        response_description: str = "Successful Response",
-        responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
-        deprecated: Optional[bool] = None,
-        operation_id: Optional[str] = None,
-        response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-        response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-        response_model_by_alias: bool = True,
-        response_model_exclude_unset: bool = False,
-        response_model_exclude_defaults: bool = False,
-        response_model_exclude_none: bool = False,
-        include_in_schema: bool = True,
-        response_class: Optional[Type[Response]] = None,
-        name: Optional[str] = None,
-        callbacks: Optional[List[APIRoute]] = None,
+            self,
+            path: str,
+            *,
+            response_model: Optional[Type[Any]] = None,
+            status_code: int = 200,
+            tags: Optional[List[str]] = None,
+            dependencies: Optional[Sequence[params.Depends]] = None,
+            summary: Optional[str] = None,
+            description: Optional[str] = None,
+            response_description: str = "Successful Response",
+            responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
+            deprecated: Optional[bool] = None,
+            operation_id: Optional[str] = None,
+            response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
+            response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
+            response_model_by_alias: bool = True,
+            response_model_exclude_unset: bool = False,
+            response_model_exclude_defaults: bool = False,
+            response_model_exclude_none: bool = False,
+            include_in_schema: bool = True,
+            response_class: Optional[Type[Response]] = None,
+            name: Optional[str] = None,
+            callbacks: Optional[List[APIRoute]] = None,
     ) -> Callable:
         return self.api_route(
             path=path,
@@ -951,29 +951,29 @@ class APIRouter(routing.Router):
         )
 
     def patch(
-        self,
-        path: str,
-        *,
-        response_model: Optional[Type[Any]] = None,
-        status_code: int = 200,
-        tags: Optional[List[str]] = None,
-        dependencies: Optional[Sequence[params.Depends]] = None,
-        summary: Optional[str] = None,
-        description: Optional[str] = None,
-        response_description: str = "Successful Response",
-        responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
-        deprecated: Optional[bool] = None,
-        operation_id: Optional[str] = None,
-        response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-        response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-        response_model_by_alias: bool = True,
-        response_model_exclude_unset: bool = False,
-        response_model_exclude_defaults: bool = False,
-        response_model_exclude_none: bool = False,
-        include_in_schema: bool = True,
-        response_class: Optional[Type[Response]] = None,
-        name: Optional[str] = None,
-        callbacks: Optional[List[APIRoute]] = None,
+            self,
+            path: str,
+            *,
+            response_model: Optional[Type[Any]] = None,
+            status_code: int = 200,
+            tags: Optional[List[str]] = None,
+            dependencies: Optional[Sequence[params.Depends]] = None,
+            summary: Optional[str] = None,
+            description: Optional[str] = None,
+            response_description: str = "Successful Response",
+            responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
+            deprecated: Optional[bool] = None,
+            operation_id: Optional[str] = None,
+            response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
+            response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
+            response_model_by_alias: bool = True,
+            response_model_exclude_unset: bool = False,
+            response_model_exclude_defaults: bool = False,
+            response_model_exclude_none: bool = False,
+            include_in_schema: bool = True,
+            response_class: Optional[Type[Response]] = None,
+            name: Optional[str] = None,
+            callbacks: Optional[List[APIRoute]] = None,
     ) -> Callable:
         return self.api_route(
             path=path,
@@ -1001,29 +1001,29 @@ class APIRouter(routing.Router):
         )
 
     def trace(
-        self,
-        path: str,
-        *,
-        response_model: Optional[Type[Any]] = None,
-        status_code: int = 200,
-        tags: Optional[List[str]] = None,
-        dependencies: Optional[Sequence[params.Depends]] = None,
-        summary: Optional[str] = None,
-        description: Optional[str] = None,
-        response_description: str = "Successful Response",
-        responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
-        deprecated: Optional[bool] = None,
-        operation_id: Optional[str] = None,
-        response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-        response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-        response_model_by_alias: bool = True,
-        response_model_exclude_unset: bool = False,
-        response_model_exclude_defaults: bool = False,
-        response_model_exclude_none: bool = False,
-        include_in_schema: bool = True,
-        response_class: Optional[Type[Response]] = None,
-        name: Optional[str] = None,
-        callbacks: Optional[List[APIRoute]] = None,
+            self,
+            path: str,
+            *,
+            response_model: Optional[Type[Any]] = None,
+            status_code: int = 200,
+            tags: Optional[List[str]] = None,
+            dependencies: Optional[Sequence[params.Depends]] = None,
+            summary: Optional[str] = None,
+            description: Optional[str] = None,
+            response_description: str = "Successful Response",
+            responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
+            deprecated: Optional[bool] = None,
+            operation_id: Optional[str] = None,
+            response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
+            response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
+            response_model_by_alias: bool = True,
+            response_model_exclude_unset: bool = False,
+            response_model_exclude_defaults: bool = False,
+            response_model_exclude_none: bool = False,
+            include_in_schema: bool = True,
+            response_class: Optional[Type[Response]] = None,
+            name: Optional[str] = None,
+            callbacks: Optional[List[APIRoute]] = None,
     ) -> Callable:
 
         return self.api_route(
