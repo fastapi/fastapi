@@ -124,7 +124,7 @@ async def serialize_response(
 
 
 async def run_endpoint_function(
-        *, dependant: Dependant, values: Dict[str, Any], is_coroutine: bool
+    *, dependant: Dependant, values: Dict[str, Any], is_coroutine: bool
 ) -> Any:
     # Only called by get_request_handler. Has been split into its own function to
     # facilitate profiling endpoints, since inner functions are harder to profile.
@@ -220,7 +220,7 @@ def get_request_handler(
 
 
 def get_websocket_app(
-        dependant: Dependant, dependency_overrides_provider: Optional[Any] = None
+    dependant: Dependant, dependency_overrides_provider: Optional[Any] = None
 ) -> Callable:
     async def app(websocket: WebSocket) -> None:
         solved_result = await solve_dependencies(
@@ -551,7 +551,7 @@ class APIRouter(routing.Router):
         return decorator
 
     def add_api_websocket_route(
-            self, path: str, endpoint: Callable, name: Optional[str] = None
+        self, path: str, endpoint: Callable, name: Optional[str] = None
     ) -> None:
         route = APIWebSocketRoute(
             path,
