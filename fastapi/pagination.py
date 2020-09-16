@@ -1,5 +1,5 @@
 import itertools
-from typing import Any, Iterable, List, Optional, Type
+from typing import Any, Dict, Iterable, List, Optional, Type
 
 from pydantic import BaseModel, Field
 from starlette.requests import Request
@@ -56,7 +56,7 @@ def count(iterable: Any) -> int:
     return _count_iter(iterable)
 
 
-def between(start: int, end: int, iterable: Iterable) -> list:
+def between(start: int, end: int, iterable: Iterable) -> List:
     # return the object of iterable between start and end
 
     items = [_item for _item in itertools.islice(iter(iterable), start, end)]
@@ -66,7 +66,7 @@ def between(start: int, end: int, iterable: Iterable) -> list:
         return [_item for _item in items]
 
 
-def model_to_dict(model: Any) -> dict:
+def model_to_dict(model: Any) -> Dict:
     # trans model type to dict
     def _model_to_dict(_model: Any) -> Iterable:
         for col in _model.__table__.columns:
@@ -75,7 +75,7 @@ def model_to_dict(model: Any) -> dict:
     return dict((g[1], g[0]) for g in _model_to_dict(model))
 
 
-def handle_error_struct(data: Any) -> dict:
+def handle_error_struct(data: Any) -> Dict:
     # handle the data format when it's illegal
     try:
         return {"results": [dict(data)], "count": 1, "next": None, "previous": None}
@@ -87,7 +87,7 @@ def page_split(
     request: Request,
     raw_response: Iterable,
     page_field: Type[PaginationParam] = PaginationParam,
-) -> dict:
+) -> Dict:
     try:
         # get the pagination info
         page_num = int(request.query_params.get(page_field.page_query_param, 1))
