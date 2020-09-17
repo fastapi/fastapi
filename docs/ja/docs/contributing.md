@@ -4,11 +4,11 @@
 
 ## 開発
 
-すでにリポジトリのクローンを行い、コードを詳しく調べる必要があるとわかっている場合に、環境構築のためのガイドラインをいくつか紹介します。
+すでにリポジトリをクローンし、コードを詳しく調べる必要があるとわかっている場合に、環境構築のためのガイドラインをいくつか紹介します。
 
 ### `venv`を使用した仮想環境
 
-Pythonの `venv`モジュールを使用して、ディレクトリに仮想環境を作成します:
+Pythonの`venv`モジュールを使用して、ディレクトリに仮想環境を作成します:
 
 <div class="termy">
 
@@ -46,7 +46,7 @@ $ python -m venv env
 
 === "Windows Bash"
 
-    もしwindows用のBash (例えば、 <a href="https://gitforwindows.org/" class="external-link" target="_blank">Git Bash</a>)を使っているなら:
+    もしwindows用のBash (例えば、<a href="https://gitforwindows.org/" class="external-link" target="_blank">Git Bash</a>)を使っているなら:
 
     <div class="termy">
 
@@ -86,15 +86,15 @@ $ python -m venv env
 
 
 !!! tip "豆知識"
-    この環境で `pip`を使って新しいパッケージをインストールするたびに、仮想環境を再度有効化します。
+    この環境で`pip`を使って新しいパッケージをインストールするたびに、仮想環境を再度有効化します。
 
-    これにより、そのパッケージによってインストールされたターミナルのプログラム（`flit`など）を使用する場合、ローカル環境のものを使用し、グローバルにインストールされたものは使用されなくなります。
+    これにより、そのパッケージによってインストールされたターミナルのプログラム (`flit`など) を使用する場合、ローカル環境のものを使用し、グローバルにインストールされたものは使用されなくなります。
 
 ### Flit
 
-**FastAPI**は<a href="https://flit.readthedocs.io/en/latest/index.html" class="external-link" target="_blank">Flit</a> を使って、ビルド、パッケージ化、公開を行います。
+**FastAPI**は<a href="https://flit.readthedocs.io/en/latest/index.html" class="external-link" target="_blank">Flit</a> を使って、ビルド、パッケージ化、公開します。
 
-上記のように環境を有効化した後、 `flit`をインストールします:
+上記のように環境を有効化した後、`flit`をインストールします:
 
 <div class="termy">
 
@@ -107,7 +107,7 @@ $ pip install flit
 </div>
 
 
-次に、環境を再び有効化して、インストールしたばかりの `flit`（グローバルではない）を使用していることを確認します。
+次に、環境を再び有効化して、インストールしたばかりの`flit` (グローバルではない) を使用していることを確認します。
 
 そして、`flit`を使用して開発のための依存関係をインストールします:
 
@@ -125,7 +125,7 @@ $ pip install flit
 
 === "Windows"
 
-    Windowsユーザーは、 `--symlink`のかわりに`--pth-file`を使用します:
+    Windowsユーザーは、`--symlink`のかわりに`--pth-file`を使用します:
 
     <div class="termy">
 
@@ -143,7 +143,7 @@ $ pip install flit
 
 FastAPIをインポートして使用するPythonファイルを作成し、ローカル環境で実行すると、ローカルのFastAPIソースコードが使用されます。
 
-そして、 `--symlink`（Windowsでは` --pth-file`）でインストールされているローカルのFastAPIソースコードを更新した場合、そのPythonファイルを再度実行すると、更新したばかりのFastAPIの新しいバージョンが使用されます。
+そして、`--symlink` (Windowsでは` --pth-file`) でインストールされているローカルのFastAPIソースコードを更新した場合、そのPythonファイルを再度実行すると、更新したばかりの新しいバージョンのFastAPIが使用されます。
 
 これにより、ローカルバージョンを「インストール」しなくても、すべての変更をテストできます。
 
@@ -161,7 +161,7 @@ $ bash scripts/format.sh
 
 また、すべてのインポートを自動でソートします。
 
-正しく並べ替えるには、上記セクションのコマンドで `--symlink`（Windowsの場合は` --pth-file`）を使い、FastAPIをローカル環境にインストールしている必要があります。
+正しく並べ替えるには、上記セクションのコマンドで `--symlink` (Windowsの場合は` --pth-file`) を使い、FastAPIをローカル環境にインストールしている必要があります。
 
 ### インポートの整形
 
@@ -181,18 +181,18 @@ $ bash scripts/format-imports.sh
 
 まず、上記のように環境をセットアップしてください。すべての必要なパッケージがインストールされます。
 
-ドキュメントでは、 <a href="https://www.mkdocs.org/" class="external-link" target="_blank">MkDocs</a>を使っています。
+ドキュメントは、<a href="https://www.mkdocs.org/" class="external-link" target="_blank">MkDocs</a>を使っています。
 
 そして、翻訳を処理するためのツール/スクリプトが、`./scripts/docs.py`に用意されています。
 
 !!! tip "豆知識"
     `./scripts/docs.py`のコードを見る必要はなく、コマンドラインからただ使うだけです。
 
-すべてのドキュメントが、マークダウン形式で`./docs/en/`ディレクトリにあります。
+すべてのドキュメントが、Markdown形式で`./docs/en/`ディレクトリにあります。
 
 多くのチュートリアルには、コードブロックがあります。
 
-ほとんどの場合、これらのコードブロックは、そのまま実行できる実際の完全なアプリケーションです。
+ほとんどの場合、これらのコードブロックは、実際にそのまま実行できる完全なアプリケーションです。
 
 実際、これらのコードブロックはMarkdown内には記述されておらず、`./docs_src/`ディレクトリのPythonファイルです。
 
@@ -228,7 +228,7 @@ $ python ./scripts/docs.py live
 
 #### Typer CLI (任意)
 
-ここでは、 `./scripts/docs.py`のスクリプトを`python`プログラムで直接使う方法を説明します。
+ここでは、`./scripts/docs.py`のスクリプトを`python`プログラムで直接使う方法を説明します。
 
 ですが<a href="https://typer.tiangolo.com/typer-cli/" class="external-link" target="_blank">Typer CLI</a>を使用して、インストール完了後にターミナルでの自動補完もできます。
 
@@ -247,7 +247,7 @@ Completion will take effect once you restart the terminal.
 
 ### アプリとドキュメントを同時に
 
-例を使って実行した場合:
+以下の様にサンプルを実行すると:
 
 <div class="termy">
 
@@ -263,7 +263,7 @@ Uvicornはデフォルトでポート`8000`を使用するため、ポート`800
 
 ### 翻訳
 
-翻訳のヘルプにとても感謝しています！これはコミュニティの助けなしでは成し遂げられません。 🌎🚀
+翻訳のヘルプをとても歓迎しています！これはコミュニティの助けなしでは成し遂げられません。 🌎🚀
 
 翻訳を支援するための手順は次のとおりです。
 
@@ -276,11 +276,11 @@ Uvicornはデフォルトでポート`8000`を使用するため、ポート`800
 
     修正提案の承認のために<a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-request-reviews" class="external-link" target="_blank">プルリクエストのレビューの追加</a>のドキュメントを確認してください。
 
-* <a href="https://github.com/tiangolo/fastapi/issues" class="external-link" target="_blank">課題</a>をチェックして、あなたの言語に関連する翻訳があるかどうかを確認してください言語。
+* <a href="https://github.com/tiangolo/fastapi/issues" class="external-link" target="_blank">issues</a>をチェックして、あなたの言語に対応する翻訳があるかどうかを確認してください。
 
 * 翻訳したページごとに1つのプルリクエストを追加します。これにより、他のユーザーがレビューしやすくなります。
 
-自分が話さない言語については、他の何人かが翻訳をレビューするのを待って、マージします。
+私が話さない言語については、他の何人かが翻訳をレビューするのを待って、マージします。
 
 * 自分の言語の翻訳があるかどうか確認し、レビューを追加できます。これにより、翻訳が正しく、マージできることがわかります。
 
@@ -292,12 +292,12 @@ Uvicornはデフォルトでポート`8000`を使用するため、ポート`800
 
 #### すでにある言語
 
-スペイン語など、一部のページの翻訳がすでにある言語のページを翻訳するとします。
+スペイン語の様に、既に一部のページが翻訳されている言語の翻訳を追加したいとしましょう。
 
-スペイン語の場合、2文字のコードは `es`です。したがって、スペイン語のディレクトリは `docs/es/`です。
+スペイン語の場合、2文字のコードは`es`です。したがって、スペイン語のディレクトリは`docs/es/`です。
 
 !!! tip "豆知識"
-    メイン（「公式」）言語は英語で、`docs/en/`にあります。
+    メイン (「公式」) 言語は英語で、`docs/en/`にあります。
 
 次に、ドキュメントのライブサーバーをスペイン語で実行します:
 
@@ -314,7 +314,7 @@ $ python ./scripts/docs.py live es
 
 </div>
 
-これで <a href="http://127.0.0.1:8008" class="external-link" target="_blank">http://127.0.0.1:8008</a> を開いて、変更を確認できます。
+これで<a href="http://127.0.0.1:8008" class="external-link" target="_blank">http://127.0.0.1:8008</a> を開いて、変更を確認できます。
 
 FastAPI docs Webサイトを見ると、すべての言語にすべてのページがあります。しかし、一部のページは翻訳されておらず、翻訳の欠落ページについて通知があります。
 
@@ -334,7 +334,7 @@ docs/en/docs/features.md
 docs/es/docs/features.md
 ```
 
-!!! tip 豆七機
+!!! tip "豆知識"
     パスとファイル名の変更は、`en`から`es`への言語コードだけであることに注意してください。
 
 * ここで、英語のMkDocs構成ファイルを開きます:
@@ -387,7 +387,7 @@ nav:
 
 クレオール語の翻訳を追加したいのですが、それはまだドキュメントにありません。
 
-上からリンクを確認すると、「クレオール語」のコードは `ht`です。
+上記のリンクを確認すると、「クレオール語」のコードは`ht`です。
 
 次のステップは、スクリプトを実行して新しい翻訳ディレクトリを生成することです:
 
@@ -411,9 +411,9 @@ Updating en
 
     そうすることで、最初のページで作業している間、誰かの他のページの作業を助けることができます。 🚀
 
-まず、メインページの `docs/ht/index.md`を翻訳します。
+まず、メインページの`docs/ht/index.md`を翻訳します。
 
-その後、「既存の言語」で、さきほどの手順がを続行してください。
+その後、「既存の言語」で、さきほどの手順を続行してください。
 
 ##### まだサポートされていない新しい言語
 
@@ -424,11 +424,11 @@ Updating en
 jinja2.exceptions.TemplateNotFound: partials/language/xx.html
 ```
 
-これは、テーマがその言語をサポートしていないことを意味します（この場合は、`xx`の2文字の偽のコード）。
+これは、テーマがその言語をサポートしていないことを意味します (この場合は、`xx`の2文字の偽のコード) 。
 
 ただし、心配しないでください。テーマ言語を英語に設定して、ドキュメントの内容を翻訳できます。
 
-その必要がある場合は、新しい言語の `mkdocs.yml`を次のように編集してください:
+その必要がある場合は、新しい言語の`mkdocs.yml`を次のように編集してください:
 
 ```YAML hl_lines="5"
 site_name: FastAPI
@@ -438,13 +438,13 @@ theme:
   language: xx
 ```
 
-その言語を`xx`（あなたの言語コード）から `en`に変更します。
+その言語を`xx` (あなたの言語コード) から`en`に変更します。
 
 その後、ライブサーバーを再起動します。
 
 #### 結果のプレビュー
 
-`./scripts/docs.py`のスクリプトを `live`コマンドで使用すると、現在の言語で利用可能なファイルと翻訳のみが表示されます。
+`./scripts/docs.py`のスクリプトを`live`コマンドで使用すると、現在の言語で利用可能なファイルと翻訳のみが表示されます。
 
 しかし一度実行したら、オンラインで表示されるのと同じように、すべてをテストできます。
 
@@ -478,11 +478,11 @@ Copying en index.md to README.md
 
 ```console
 // 「build-all」コマンドの実行の後に、「serve」コマンドを使います
-$ python ./scripts/docs.py
+$ python ./scripts/docs.py serve
 
-警告: これは非常にシンプルなサーバーです。開発中には、代わりにmkdocs serveを使用してください。
-既にビルドされている翻訳を、サイトでプレビューするだけのものです。
-確認するには、最初にbuild-allコマンドを実行してください。
+Warning: this is a very simple server. For development, use mkdocs serve instead.
+This is here only to preview a site with translations already built.
+Make sure you run the build-all command first.
 Serving at: http://127.0.0.1:8008
 ```
 
@@ -500,4 +500,4 @@ $ bash scripts/test-cov-html.sh
 
 </div>
 
-このコマンドは`./htmlcov/`ディレクトリを生成します。ブラウザーでファイル `./htmlcov/index.html`を開くと、テストでカバーされているコードの領域をインタラクティブに探索できます。それによりテストが不足しているかどうか気付くことができます。
+このコマンドは`./htmlcov/`ディレクトリを生成します。ブラウザーでファイル`./htmlcov/index.html`を開くと、テストでカバーされているコードの領域をインタラクティブに探索できます。それによりテストが不足しているかどうか気付くことができます。
