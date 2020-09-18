@@ -30,7 +30,7 @@ Mozilla、Red Hat、Eventbrite など多くの企業で利用されています�
 
 これは**自動的なAPIドキュメント生成**の最初の例であり、これは**FastAPI**に向けた「調査」を触発した最初のアイデアの一つでした。
 
-!!! 備考
+!!! note "備考"
     Django REST Framework は Tom Christie によって作成されました。StarletteとUvicornの生みの親であり、**FastAPI**のベースとなっています。
 
 !!! check "**FastAPI**へ与えたインスピレーション"
@@ -52,6 +52,8 @@ Flaskのシンプルさを考えると、APIを構築するのに適している
 
 !!! check "**FastAPI**へ与えたインスピレーション"
     マイクロフレームワークであること。ツールやパーツを目的に合うように簡単に組み合わせられる点。
+
+    シンプルで簡単なルーティングの仕組みを持っている点。
 
 
 ### <a href="http://docs.python-requests.org" class="external-link" target="_blank">Requests</a>
@@ -90,8 +92,8 @@ def read_url():
 
 !!! check "**FastAPI**へ与えたインスピレーション"
     * シンプルで直感的なAPIを持っている点。
-        * HTTPメソッド名を直接利用し、単純で直感的である。
-        * 適切なデフォルト値を持ちつつ、強力なカスタマイズ性を持っている。
+    * HTTPメソッド名を直接利用し、単純で直感的である。
+    * 適切なデフォルト値を持ちつつ、強力なカスタマイズ性を持っている。
 
 
 ### <a href="https://swagger.io/" class="external-link" target="_blank">Swagger</a> / <a href="https://github.com/OAI/OpenAPI-Specification/" class="external-link" target="_blank">OpenAPI</a>
@@ -112,7 +114,6 @@ def read_url():
     そして、標準に基づくユーザーインターフェースツールを統合しています。
 
     * <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a>
-
     * <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a>
 
     この二つは人気で安定したものとして選択されましたが、少し検索してみると、 (**FastAPI**と同時に使用できる) OpenAPIのための多くの代替となるツールを見つけることができます。
@@ -146,7 +147,7 @@ WebargsはFlaskをはじめとするいくつかのフレームワークの上�
 
 素晴らしいツールで、私も**FastAPI**を持つ前はよく使っていました。
 
-!!! 情報
+!!! info "情報"
     Webargsは、Marshmallowと同じ開発者により作られました。
 
 !!! check "**FastAPI**へ与えたインスピレーション"
@@ -170,7 +171,7 @@ Flask, Starlette, Responderなどにおいてはそのように動作します�
 
 エディタでは、この問題を解決することはできません。また、パラメータやMarshmallowスキーマを変更したときに、YAMLのdocstringを変更するのを忘れてしまうと、生成されたスキーマが古くなってしまいます。
 
-!!! 情報
+!!! info "情報"
     APISpecは、Marshmallowと同じ開発者により作成されました。
 
 !!! check "**FastAPI**へ与えたインスピレーション"
@@ -196,10 +197,10 @@ Flask、Flask-apispec、Marshmallow、Webargsの組み合わせは、**FastAPI**
 
 そして、これらのフルスタックジェネレーターは、[**FastAPI** Project Generators](project-generation.md){.internal-link target=_blank}の元となっていました。
 
-!!! info
+!!! info "情報"
     Flask-apispecはMarshmallowと同じ開発者により作成されました。
 
-!!! check " **FastAPI**へ与えたインスピレーション"
+!!! check "**FastAPI**へ与えたインスピレーション"
     シリアライゼーションとバリデーションを定義したコードから、OpenAPIスキーマを自動的に生成する点。
 
 ### <a href="https://nestjs.com/" class="external-link" target="_blank">NestJS</a> (と<a href="https://angular.io/" class="external-link" target="_blank">Angular</a>)
@@ -225,7 +226,7 @@ Angular 2にインスピレーションを受けた、統合された依存性�
 
 `asyncio`に基づいた、Pythonのフレームワークの中でも非常に高速なものの一つです。Flaskと非常に似た作りになっています。
 
-!!! 備考 "技術的な詳細"
+!!! note "技術詳細"
     Pythonの`asyncio`ループの代わりに、`uvloop`が利用されています。それにより、非常に高速です。
 
     `Uvicorn`と`Starlette`に明らかなインスピレーションを与えており、それらは現在オープンなベンチマークにおいてSanicより高速です。
@@ -287,7 +288,7 @@ OpenAPIやJSON Schemaのような標準に基づいたものではありませ�
 
 以前のPythonの同期型Webフレームワーク標準 (WSGI) をベースにしているため、Websocketなどは扱えませんが、それでも高性能です。
 
-!!! 情報
+!!! info "情報"
     HugはTimothy Crosleyにより作成されました。彼は<a href="https://github.com/timothycrosley/isort" class="external-link" target="_blank">`isort`</a>など、Pythonのファイル内のインポートの並び替えを自動的におこうなう素晴らしいツールの開発者です。
 
 !!! check "**FastAPI**へ与えたインスピレーション"
@@ -321,7 +322,7 @@ OpenAPIやJSON Schemaのような標準に基づいたものではありませ�
 
 今ではAPIStarはOpenAPI仕様を検証するためのツールセットであり、ウェブフレームワークではありません。
 
-!!! 情報
+!!! info "情報"
     APIStarはTom Christieにより開発されました。以下の開発者でもあります:
 
     * Django REST Framework
@@ -382,7 +383,7 @@ Starletteは基本的なWebマイクロフレームワークの機能をすべ�
 
 これは **FastAPI** が追加する主な機能の一つで、すべての機能は Pythonの型ヒントに基づいています (Pydanticを使用しています) 。これに加えて、依存性注入の仕組み、セキュリティユーティリティ、OpenAPIスキーマ生成などがあります。
 
-!!! 備考 "技術的な詳細"
+!!! note "技術詳細"
     ASGIはDjangoのコアチームメンバーにより開発された新しい「標準」です。まだ「Pythonの標準 (PEP) 」ではありませんが、現在そうなるように進めています。
 
     しかしながら、いくつかのツールにおいてすでに「標準」として利用されています。このことは互換性を大きく改善するもので、Uvicornから他のASGIサーバー (DaphneやHypercorn) に乗り換えることができたり、あなたが`python-socketio`のようなASGI互換のツールを追加することもできます。
