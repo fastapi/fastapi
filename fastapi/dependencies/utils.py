@@ -1,3 +1,4 @@
+import csv
 import dataclasses
 import inspect
 from contextlib import contextmanager
@@ -68,6 +69,13 @@ sequence_shape_to_type = {
     SHAPE_TUPLE: tuple,
     SHAPE_SEQUENCE: list,
     SHAPE_TUPLE_ELLIPSIS: list,
+}
+
+
+query_style_to_delimiter = {
+    params.QueryStyle.form: ",",
+    params.QueryStyle.space_delimited: " ",
+    params.QueryStyle.pipe_delimited: "|",
 }
 
 
@@ -583,16 +591,24 @@ def request_params_to_args(
     values = {}
     errors = []
     for field in required_params:
-        if is_scalar_sequence_field(field) and isinstance(
-            received_params, (QueryParams, Headers)
-        ):
-            value = received_params.getlist(field.alias) or field.default
-        else:
-            value = received_params.get(field.alias)
         field_info = field.field_info
         assert isinstance(
             field_info, params.Param
         ), "Params must be subclasses of Param"
+
+        if is_scalar_sequence_field(field) and isinstance(
+            received_params, (QueryParams, Headers)
+        ):
+            if isinstance(field_info, params.Query) and not field_info.explode:
+                value = received_params.get(field.alias)
+                if value is not None:
+                    delimiter = query_style_to_delimiter.get(field_info.style)
+                    value = list(csv.reader([value], delimiter=delimiter))[0]
+            else:
+                value = received_params.getlist(field.alias) or field.default
+        else:
+            value = received_params.get(field.alias)
+
         if value is None:
             if field.required:
                 errors.append(

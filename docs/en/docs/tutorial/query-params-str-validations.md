@@ -281,6 +281,37 @@ the default of `q` will be: `["foo", "bar"]` and your response will be:
 }
 ```
 
+#### Parameter serialization
+
+If you don't like the default parameter serialization, pass 
+the parameter `explode=False` and appropriate `style` to `Query`.
+
+FastAPI supports the following style values:
+
+* `form` -  (default) comma-separated values
+* `space_delimited` - space-separated values
+* `pipe_delimited` - pipeline-separated values
+
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="12 13"
+    {!> ../../../docs_src/query_params_str_validations/tutorial015.py!}
+    ```
+
+=== "Python 3.9 and above"
+
+    ```Python hl_lines="12 13"
+    {!> ../../../docs_src/query_params_str_validations/tutorial015_py39.py!}
+    ```
+
+Then, with a URL like:
+
+```
+http://localhost:8000/items/?q=foo|bar
+```
+
+query string will be properly parsed as a list and `q` will be: `["foo", "bar"]`.
+
 #### Using `list`
 
 You can also use `list` directly instead of `List[str]` (or `list[str]` in Python 3.9+):

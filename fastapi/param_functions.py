@@ -60,6 +60,8 @@ def Query(  # noqa: N802
     examples: Optional[Dict[str, Any]] = None,
     deprecated: Optional[bool] = None,
     include_in_schema: bool = True,
+    style: params.QueryStyle = params.QueryStyle.form,
+    explode: bool = True,
     **extra: Any,
 ) -> Any:
     return params.Query(
@@ -78,6 +80,8 @@ def Query(  # noqa: N802
         examples=examples,
         deprecated=deprecated,
         include_in_schema=include_in_schema,
+        style=style,
+        explode=explode,
         **extra,
     )
 

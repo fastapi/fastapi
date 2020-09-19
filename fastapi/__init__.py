@@ -17,6 +17,7 @@ from .param_functions import Header as Header
 from .param_functions import Path as Path
 from .param_functions import Query as Query
 from .param_functions import Security as Security
+from .params import QueryStyle
 from .requests import Request as Request
 from .responses import Response as Response
 from .routing import APIRouter as APIRouter

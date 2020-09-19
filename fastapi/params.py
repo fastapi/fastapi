@@ -101,6 +101,13 @@ class Path(Param):
         )
 
 
+class QueryStyle(Enum):
+    form = "form"
+    space_delimited = "spaceDelimited"
+    pipe_delimited = "pipeDelimited"
+    # deep_object = "deepObject"  # NOT SUPPORTED YET
+
+
 class Query(Param):
     in_ = ParamTypes.query
 
@@ -122,8 +129,12 @@ class Query(Param):
         examples: Optional[Dict[str, Any]] = None,
         deprecated: Optional[bool] = None,
         include_in_schema: bool = True,
+        style: QueryStyle = QueryStyle.form,
+        explode: bool = True,
         **extra: Any,
     ):
+        self.style = style
+        self.explode = explode
         super().__init__(
             default,
             alias=alias,
