@@ -29,9 +29,11 @@ class Param(FieldInfo):
         max_length: Optional[int] = None,
         regex: Optional[str] = None,
         deprecated: Optional[bool] = None,
+        validator: Optional[Callable] = None,
         **extra: Any,
     ):
         self.deprecated = deprecated
+        self.validator = validator
         super().__init__(
             default,
             alias=alias,

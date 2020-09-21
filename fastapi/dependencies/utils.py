@@ -30,6 +30,7 @@ from fastapi.security.oauth2 import OAuth2, SecurityScopes
 from fastapi.security.open_id_connect_url import OpenIdConnect
 from fastapi.utils import create_response_field, get_path_param_names
 from pydantic import BaseModel, create_model
+from pydantic.class_validators import Validator
 from pydantic.error_wrappers import ErrorWrapper
 from pydantic.errors import MissingError
 from pydantic.fields import (
@@ -369,17 +370,19 @@ def get_param_field(
 ) -> ModelField:
     default_value = Required
     had_schema = False
+    class_validators = {}
     if not param.default == param.empty and ignore_default is False:
         default_value = param.default
     if isinstance(default_value, FieldInfo):
         had_schema = True
         field_info = default_value
         default_value = field_info.default
-        if (
-            isinstance(field_info, params.Param)
-            and getattr(field_info, "in_", None) is None
-        ):
-            field_info.in_ = default_field_info.in_
+        if isinstance(field_info, params.Param):
+            if getattr(field_info, "in_", None) is None:
+                field_info.in_ = default_field_info.in_
+            validator = getattr(field_info, "validator", None)
+            if validator:
+                class_validators[param_name] = Validator(validator)
         if force_type:
             field_info.in_ = force_type  # type: ignore
     else:
@@ -393,6 +396,7 @@ def get_param_field(
         alias = param.name.replace("_", "-")
     else:
         alias = field_info.alias or param.name
+
     field = create_response_field(
         name=param.name,
         type_=annotation,
@@ -400,6 +404,7 @@ def get_param_field(
         alias=alias,
         required=required,
         field_info=field_info,
+        class_validators=class_validators,
     )
     field.required = required
     if not had_schema and not is_scalar_field(field=field):

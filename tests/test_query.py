@@ -25,6 +25,10 @@ response_not_valid_int = {
     ]
 }
 
+response_value_error = {
+    "detail": [{"loc": ["query", "query"], "msg": "not_good", "type": "value_error"}]
+}
+
 
 @pytest.mark.parametrize(
     "path,expected_status,expected_response",
@@ -53,6 +57,8 @@ response_not_valid_int = {
         ("/query/param-required/int", 422, response_missing),
         ("/query/param-required/int?query=50", 200, "foo bar 50"),
         ("/query/param-required/int?query=foo", 422, response_not_valid_int),
+        ("/query/param-validator/str?query=not_good", 422, response_value_error),
+        ("/query/param-validator/str?query=good_query", 200, "foo bar good_query"),
     ],
 )
 def test_get_path(path, expected_status, expected_response):

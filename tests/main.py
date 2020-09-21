@@ -189,6 +189,17 @@ def get_query_param_required_type(query: int = Query(...)):
     return f"foo bar {query}"
 
 
+def query_validator(v, **kwargs):
+    if "good_query" not in v:
+        raise ValueError(v)
+    return v
+
+
+@app.get("/query/param-validator/str")
+def get_query_param_validator(query: str = Query(..., validator=query_validator)):
+    return f"foo bar {query}"
+
+
 @app.get("/enum-status-code", status_code=http.HTTPStatus.CREATED)
 def get_enum_status_code():
     return "foo bar"
