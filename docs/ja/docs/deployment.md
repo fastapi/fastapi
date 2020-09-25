@@ -2,7 +2,7 @@
 
 **FastAPI** 製のアプリケーションは比較的容易にデプロイできます。
 
-ユースケースや使用しているツールに依っていくつかの方法に分かれます。
+ユースケースや使用しているツールによっていくつかの方法に分かれます。
 
 次のセクションでいくつかの方法についてより詳しく説明します。
 
@@ -291,7 +291,7 @@ Let's Encryptがない頃、HTTPS証明書は信頼できるサードパーテ�
 
 ドメインは安全に検証され、証明書は自動的に生成されます。証明書の更新を自動化することもできます。
 
-このアイデアは、証明書の取得と更新を自動化して、安全なHTTPSを無料で永久に使用できるようにするためのものです。
+このアイデアは、証明書の取得と更新を自動化して、安全なHTTPSを無料で永久に使用可能にするためのものです。
 
 ### Traefik
 
@@ -388,10 +388,10 @@ Dockerを使用せずに**FastAPI** を直接デプロイすることもでき�
     </div>
 
 
-停止した場合に自動的に再起動させるツールを設定したいかも知れません。
+停止した場合に自動的に再起動させるツールを設定したいかもしれません。
 
-さらに、<a href="https://gunicorn.org/" class="external-link" target="_blank">Gunicorn</a>をインストールして<a href="https://www.uvicorn.org/#running-with-gunicorn" class="external-link" target="_blank">Uvicornのマネージャーとして使用したり</a>、複数のワーカーでHypercornを使用したいかも知れません。
+さらに、<a href="https://gunicorn.org/" class="external-link" target="_blank">Gunicorn</a>をインストールして<a href="https://www.uvicorn.org/#running-with-gunicorn" class="external-link" target="_blank">Uvicornのマネージャーとして使用したり</a>、複数のワーカーでHypercornを使用したいかもしれません。
 
 ワーカー数などの微調整も行いたいかもしれません。
 
-しかしこれら全てをやろうとすると、自動的にこれらを行うDockerイメージを使えばよいだけかも知れません。
+しかしこれら全てをやろうとすると、自動的にこれらを行うDockerイメージを使う方が楽かもしれません。
