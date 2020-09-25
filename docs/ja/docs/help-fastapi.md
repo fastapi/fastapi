@@ -54,7 +54,7 @@ GitHubでFastAPIを「Watch」できます (右上部のWatchボタンをクリ�
 
 ## GitHub issuesで他の人を助ける
 
-<a href="https://github.com/tiangolo/fastapi/issues" class="external-link" target="_blank">既存のissues</a>を確認して、他の人を助けて見てください。皆さんが回答を知っているかもしれないような質問がほとんどです。🤓
+<a href="https://github.com/tiangolo/fastapi/issues" class="external-link" target="_blank">既存のissues</a>を確認して、他の人を助けてみてください。皆さんが回答を知っているかもしれない質問がほとんどです。🤓
 
 ## GitHubレポジトリをWatch
 
@@ -94,7 +94,7 @@ Gitterでチャットに参加: <a href="https://gitter.im/tiangolo/fastapi" cla
 
 しかし、「自由な会話」が許容されているので一般的すぎて回答が難しい質問もしやすくなります。そのせいで回答を得られないかもしれません。
 
-GitHub issuesではテンプレートが良い回答を得やすいような質問ができるように、もしくは、質問する前に自身で解決できるようにガイドしてくれます。そして、GitHubではたとえ時間がかかっても全てに答えているか確認できます。個人的にはGitterチャットでは同じことはできないです。😅
+GitHub issuesでは良い回答を得やすい質問ができるように、もしくは、質問する前に自身で解決できるようにテンプレートがガイドしてくれます。そして、GitHubではたとえ時間がかかっても全てに答えているか確認できます。個人的にはGitterチャットでは同じことはできないです。😅
 
 Gitterでの会話はGitHubほど簡単に検索できないので、質問と回答が会話の中に埋もれてしまいます。
 
@@ -110,7 +110,7 @@ Gitterでの会話はGitHubほど簡単に検索できないので、質問と�
 
 ドキュメントで見たように、FastAPIはStarletteとPydanticという巨人の肩に乗っています。
 
-以下のスポンサーなることもできます:
+以下のスポンサーになることもできます:
 
 * <a href="https://github.com/sponsors/samuelcolvin" class="external-link" target="_blank">Samuel Colvin (Pydantic)</a>
 * <a href="https://github.com/sponsors/encode" class="external-link" target="_blank">Encode (Starlette, Uvicorn)</a>
