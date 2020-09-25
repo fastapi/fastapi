@@ -1,6 +1,6 @@
 # プロジェクト生成 - テンプレート
 
-プロジェクトジェネレーターは、初期設定、セキュリティ、データベース、初期APIエンドポイントなどの多くが含まれているため、プロジェクトを開始するために利用できます。
+プロジェクトジェネレーターは、初期設定、セキュリティ、データベース、初期APIエンドポイントなどの多くが含まれているため、プロジェクトの開始に利用できます。
 
 プロジェクトジェネレーターは常に非常に意見が分かれる設定がされており、ニーズに合わせて更新および調整する必要があります。しかしきっと、プロジェクトの良い出発点となるでしょう。
 
@@ -42,7 +42,7 @@ GitHub: <a href="https://github.com/tiangolo/full-stack-fastapi-postgresql" clas
     * **Vue-router**。
     * 美しいマテリアルデザインコンポーネントのための**Vuetify**。
     * **TypeScript**。
-    * **Nginx**ベースのDockerサーバ (Vue-routerとうまく協調するような構成)。
+    * **Nginx**ベースのDockerサーバ (Vue-routerとうまく協調する構成)。
     * Dockerマルチステージビルド。コンパイルされたコードの保存やコミットが不要。
     * ビルド時にフロントエンドテスト実行 (無効化も可能)。
     * 可能な限りモジュール化されているのでそのまま使用できますが、Vue CLIで再生成したり、必要に応じて作成したりして、必要なものを再利用可能。
@@ -60,7 +60,7 @@ GitHub: <a href="https://github.com/tiangolo/full-stack-fastapi-couchbase" class
 
 ゼロから新規プロジェクトを始める場合は、ここで代替案を確認してください。
 
-例えば、<a href="https://github.com/tiangolo/full-stack-fastapi-postgresql" class="external-link" target="_blank">フルスタック FastAPI PostgreSQL</a>のプロジェクトジェネレーターは、積極的にメンテナンスされ、利用さされているのでより良い代替案かもしれません。また、すべての新機能と改善点が含まれています。
+例えば、<a href="https://github.com/tiangolo/full-stack-fastapi-postgresql" class="external-link" target="_blank">フルスタック FastAPI PostgreSQL</a>のプロジェクトジェネレーターは、積極的にメンテナンスされ、利用されているのでより良い代替案かもしれません。また、すべての新機能と改善点が含まれています。
 
 Couchbaseベースのジェネレーターは今も無償提供されています。恐らく正常に動作するでしょう。また、すでにそのジェネレーターで生成されたプロジェクトが存在する場合でも (ニーズに合わせてアップデートしているかもしれません)、同様に正常に動作するはずです。
 
@@ -78,7 +78,7 @@ GitHub: <a href="https://github.com/microsoft/cookiecutter-spacy-fastapi" class=
 
 * **spaCy** のNERモデルの統合。
 * **Azure Cognitive Search** のリクエストフォーマットを搭載。
-* **Production ready** なUvicornとGunicornを使用したPythonウェブサーバ。
+* **リリース可能な** UvicornとGunicornを使用したPythonウェブサーバ。
 * **Azure DevOps** のKubernetes (AKS) CI/CD デプロイを搭載。
 * **多言語** プロジェクトのために、セットアップ時に言語を容易に選択可能 (spaCyに組み込まれている言語の中から)。
 * **簡単に拡張可能**。spaCyだけでなく、他のモデルフレームワーク (Pytorch、Tensorflow) へ。
