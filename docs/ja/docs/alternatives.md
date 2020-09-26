@@ -20,11 +20,11 @@ Pythonのフレームワークの中で最もポピュラーで、広く信頼�
 
 リレーショナルデータベース (MySQLやPostgreSQLなど) と比較的強固に結合されているので、NoSQLデータベース (Couchbase、MongoDB、Cassandraなど) をメインに利用することは簡単ではありません。
 
-バックエンドでHTMLを生成するために作られたものであり、現代的なフロントエンド (ReactやVue.js、Angularなど) や、他のシステム (IoTデバイスなど) と通信するためのAPIを構築するために作られたものではありません。
+バックエンドでHTMLを生成するために作られたものであり、現代的なフロントエンド (ReactやVue.js、Angularなど) や、他のシステム (IoTデバイスなど) と通信するAPIを構築するために作られたものではありません。
 
 ### <a href="https://www.django-rest-framework.org/" class="external-link" target="_blank">Django REST Framework</a>
 
-Django REST Frameworkは、Djangoを下敷きにしてWeb APIを構築するための柔軟なツールキットとして、APIの機能を向上させるために作られました。
+Django REST Frameworkは、Djangoを下敷きにしてWeb APIを構築する柔軟なツールキットとして、APIの機能を向上させるために作られました。
 
 Mozilla、Red Hat、Eventbrite など多くの企業で利用されています。
 
@@ -124,7 +124,7 @@ def read_url():
 
 ### <a href="https://marshmallow.readthedocs.io/en/3.0/" class="external-link" target="_blank">Marshmallow</a>
 
-APIシステムで必要とされる主な機能の一つに、コード (Python) からデータを取り出して、ネットワークを介して送れるものに変換するという、データの「<abbr title="marshalling, conversion">シリアライゼーション</abbr>」があります。例えば、データベースのデータを含むオブジェクトをJSONオブジェクトに変換したり、`datetime` オブジェクトを文字列に変換するなどです。
+APIシステムで必要とされる主な機能の一つに、コード (Python) からデータを取り出して、ネットワークを介して送れるものに変換するデータの「<abbr title="marshalling, conversion">シリアライゼーション</abbr>」があります。例えば、データベースのデータを含むオブジェクトをJSONオブジェクトに変換したり、`datetime` オブジェクトを文字列に変換するなどです。
 
 APIが必要とするもう一つの大きな機能はデータのバリデーションであり、特定のパラメータが与えられた場合にデータが有効であることを確認することです。例えば、あるフィールドがランダムな文字列ではなく `int` であることなどです。これは特に受信するデータに対して便利です。
 
@@ -284,7 +284,7 @@ Hugは標準のPython型の代わりにカスタム型を宣言に使用して�
 
 OpenAPIやJSON Schemaのような標準に基づいたものではありませんでした。そのため、Swagger UIのような他のツールと統合するのは簡単ではありませんでした。しかし、繰り返しになりますが、これは非常に革新的なアイデアでした。
 
-同じフレームワークを使ってAPIとCLIを作成できるという、面白く珍しい機能を持っています。
+同じフレームワークを使ってAPIとCLIを作成できる、面白く珍しい機能を持っています。
 
 以前のPythonの同期型Webフレームワーク標準 (WSGI) をベースにしているため、Websocketなどは扱えませんが、それでも高性能です。
 
