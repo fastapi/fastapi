@@ -210,7 +210,7 @@ Most of the existing popular Python frameworks (including Flask and Django) were
 
 Even though the main specification for asynchronous web Python (ASGI) was developed at Django, to add support for WebSockets.
 
-That kind of asynchronicity is what made NodeJS popular (even though NodeJS is not parallel) and that's the strength of Go as a programing language.
+That kind of asynchronicity is what made NodeJS popular (even though NodeJS is not parallel) and that's the strength of Go as a programming language.
 
 And that's the same level of performance you get with **FastAPI**.
 
