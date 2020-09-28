@@ -18,7 +18,7 @@ GitHub: <a href="https://github.com/tiangolo/full-stack-fastapi-postgresql" clas
     * **高速**: **NodeJS** や **Go** 並みのとても高いパフォーマンス (Starlette と Pydantic のおかげ)。
     * **直感的**: 素晴らしいエディタのサポートや <abbr title="自動補完、インテリセンスとも呼ばれる">補完。</abbr> デバッグ時間の短縮。
     * **簡単**: 簡単に利用、習得できるようなデザイン。ドキュメントを読む時間を削減。
-    * **短い**: コードの重複を最小限に。パラメータ宣言による複数の機能。少ないバグ。
+    * **短い**: コードの重複を最小限に。パラメータ宣言による複数の機能。
     * **堅牢性**: 自動対話ドキュメントを使用した、本番環境で使用できるコード。
     * **標準規格準拠**: API のオープンスタンダードに基く、完全な互換性: <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a>や <a href="http://json-schema.org/" class="external-link" target="_blank">JSON スキーマ</a>。
     * 自動バリデーション、シリアライゼーション、対話的なドキュメント、OAuth2 JWTトークンを用いた認証などを含む、<a href="https://fastapi.tiangolo.com/features/" class="external-link" target="_blank">**その他多くの機能**</a>。
