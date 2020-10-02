@@ -178,16 +178,9 @@ def test_post_broken_body():
     assert response.json() == {
         "detail": [
             {
-                "ctx": {
-                    "colno": 1,
-                    "doc": "name=Foo&price=50.5",
-                    "lineno": 1,
-                    "msg": "Expecting value",
-                    "pos": 0,
-                },
-                "loc": ["body", 0],
-                "msg": "Expecting value: line 1 column 1 (char 0)",
-                "type": "value_error.jsondecode",
+                "loc": ["body"],
+                "msg": "value is not a valid dict",
+                "type": "type_error.dict",
             }
         ]
     }
