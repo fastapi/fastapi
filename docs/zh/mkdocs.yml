@@ -50,6 +50,7 @@ nav:
 - deployment.md
 - contributing.md
 - help-fastapi.md
+- benchmarks.md
 markdown_extensions:
 - toc:
     permalink: true
