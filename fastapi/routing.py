@@ -181,7 +181,9 @@ def get_request_handler(
                     body_bytes = await request.body()
                     if body_bytes:
                         if (
-                            request.headers.get("Content-Type", "application/json")
+                            request.headers.get(
+                                "Content-Type", "application/octet-stream"
+                            )
                             == "application/json"
                         ):
                             body = await request.json()
