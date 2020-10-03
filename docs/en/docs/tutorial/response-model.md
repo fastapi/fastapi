@@ -39,6 +39,12 @@ Here we are declaring a `UserIn` model, it will contain a plaintext password:
 {!../../../docs_src/response_model/tutorial002.py!}
 ```
 
+!!! info
+    To use `EmailStr`, first install <a href="https://github.com/JoshData/python-email-validator" class="external-link" target="_blank">`email_validator`</a>.
+
+    E.g. `pip install email-validator`
+    or `pip install pydantic[email]`.
+
 And we are using this model to declare our input and the same model to declare our output:
 
 ```Python hl_lines="17-18"
