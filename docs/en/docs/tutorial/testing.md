@@ -102,7 +102,7 @@ For more information about how to pass data to the backend (using `requests` or 
 !!! info
     Note that the `TestClient` receives data that can be converted to JSON, not Pydantic models.
 
-    If you have a Pydantic model in your test and you want to send its data to the application during testing, you can use the `jsonable_encoder` descibed in [JSON Compatible Encoder](encoder.md){.internal-link target=_blank}.
+    If you have a Pydantic model in your test and you want to send its data to the application during testing, you can use the `jsonable_encoder` described in [JSON Compatible Encoder](encoder.md){.internal-link target=_blank}.
 
 ## Run it
 
