@@ -25,6 +25,8 @@ nav:
   - ja: /ja/
   - pt: /pt/
   - zh: /zh/
+- チュートリアル - ユーザーガイド:
+  - tutorial/cors.md
 markdown_extensions:
 - toc:
     permalink: true
