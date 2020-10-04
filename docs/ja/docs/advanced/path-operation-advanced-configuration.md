@@ -3,7 +3,7 @@
 ## OpenAPI operationId
 
 !!! warning "注意"
-    あなたがOpenAPIの「エキスパート」でなければ、これは必要ありません。
+    あなたがOpenAPIの「エキスパート」でなければ、これは必要ないかもしれません。
 
 *path operation* で `operationId` パラメータを利用することで、OpenAPIの `operationId` を設定できます。
 
@@ -15,7 +15,7 @@
 
 ### *path operation関数* の名前をoperationIdとして使用する
 
-APIの関数名を `operationId` として利用したい場合、それらをイテレーションし各 *path operation* の `operationId` を `APIRoute.name` で上書きすれば可能です。
+APIの関数名を `operationId` として利用したい場合、すべてのAPIの関数をイテレーションし、各 *path operation* の `operationId` を `APIRoute.name` で上書きすれば可能です。
 
 そうする場合は、すべての *path operation* を追加した後に行う必要があります。
 
@@ -33,19 +33,19 @@ APIの関数名を `operationId` として利用したい場合、それらを�
 
 ## OpenAPIから除外する
 
-*path operation* を、生成されるOpenAPIスキーマ (つまり、自動ドキュメント生成の仕組み) から除外するには、 `include_in_schema` パラメータを `False` にします。
+生成されるOpenAPIスキーマ (つまり、自動ドキュメント生成の仕組み) から *path operation* を除外するには、 `include_in_schema` パラメータを `False` にします。
 
 ```Python hl_lines="6"
 {!../../../docs_src/path_operation_advanced_configuration/tutorial003.py!}
 ```
 
-## docstringによる高度な説明
+## docstringによる説明の高度な設定
 
 *path operation関数* のdocstringからOpenAPIに使用する行を制限することができます。
 
-`\f` (「フォームフィード」から除外する記号) を付与することで、**FastAPI** はこの時点でOpenAPIに使用される出力を切り捨てます。
+`\f` (「書式送り (Form Feed)」のエスケープ文字) を付与することで、**FastAPI** はOpenAPIに使用される出力をその箇所までに制限します。
 
-ドキュメントには表示されませんが、他のツール (例えばSphinx) では残りの部分を利用することができるでしょう。
+ドキュメントには表示されませんが、他のツール (例えばSphinx) では残りの部分を利用できるでしょう。
 
 ```Python hl_lines="19-29"
 {!../../../docs_src/path_operation_advanced_configuration/tutorial004.py!}
