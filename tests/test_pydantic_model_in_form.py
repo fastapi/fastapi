@@ -24,3 +24,9 @@ def test_new_entry():
 
     assert resp.status_code == 201, resp.json()
     assert resp.json() == new_message.dict()
+
+
+def test_new_entry_bad_data():
+    resp = client.post("/new_message", data={"message": "{"})
+
+    assert resp.status_code == 422, resp.json()
