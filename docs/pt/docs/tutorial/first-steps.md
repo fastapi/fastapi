@@ -169,7 +169,7 @@ Se você criar a sua aplicação como:
 {!../../../docs_src/first_steps/tutorial002.py!}
 ```
 
-E colocar em um arquivo `main.py`, você iria chamar o `uvicorn` como:
+E colocar em um arquivo `main.py`, você iria chamar o `uvicorn` assim:
 
 <div class="termy">
 
@@ -328,6 +328,6 @@ Existem muitos outros objetos e modelos que serão convertidos automaticamente p
 
 * Importe `FastAPI`.
 * Crie uma instância do `app`.
-* Escreva um **decorador de rota** (como `@app.get("/")`).
-* Escreva uma **função de rota** (como `def root(): ...` acima).
+* Coloque o **decorador que define a operação** (como `@app.get("/")`).
+* Escreva uma **função para a operação da rota** (como `def root(): ...`) abaixo.
 * Execute o servidor de desenvolvimento (como `uvicorn main:app --reload`).
