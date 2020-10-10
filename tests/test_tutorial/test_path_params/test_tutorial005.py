@@ -28,7 +28,7 @@ openapi_schema = {
                     },
                 },
                 "summary": "Get Model",
-                "operationId": "get_model_model__model_name__get",
+                "operationId": "get_model_models__model_name__get",
                 "parameters": [
                     {
                         "required": True,
@@ -83,7 +83,7 @@ openapi_schema2 = {
         "/models/{model_name}": {
             "get": {
                 "summary": "Get Model",
-                "operationId": "get_model_model__model_name__get",
+                "operationId": "get_model_models__model_name__get",
                 "parameters": [
                     {
                         "required": True,
