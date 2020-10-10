@@ -4,6 +4,8 @@ from typing import Any, Dict, Iterable, List, Optional, Type
 from pydantic import BaseModel, Field
 from starlette.requests import Request
 
+pagination = {}
+
 
 class PaginationParam(object):
     """
@@ -26,7 +28,7 @@ class Pagination(BaseModel):
     count: int = Field(0, ge=0)
     next: str = Field(None)
     previous: str = Field(None)
-    results: list = []
+    results: List[Any] = []
 
 
 def get_pagination(response_model: Optional[Type[Any]]) -> Optional[Type[Any]]:
@@ -37,10 +39,13 @@ def get_pagination(response_model: Optional[Type[Any]]) -> Optional[Type[Any]]:
     elif issubclass(response_model, Pagination):
         return response_model
 
-    class _Pagination(Pagination):
-        results: List[response_model] = []  # type: ignore
+    if response_model not in pagination:
 
-    return _Pagination
+        class _Pagination(Pagination):
+            results: List[response_model] = []  # type: ignore
+
+        pagination[response_model] = _Pagination
+    return pagination[response_model]
 
 
 def count(iterable: Any) -> int:
