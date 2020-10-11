@@ -163,7 +163,7 @@ oauth2_scheme(some, parameters)
 
     OpenAPIと統合するセキュリティユーティリティ (および自動APIドキュメント) はすべて`SecurityBase`を継承しています。それにより、**FastAPI**はそれらをOpenAPIに統合する方法を知ることができます。
 
-## 機能
+## どのように動作するか
 
 リクエストの中に`Authorization`ヘッダーを探しに行き、その値が`Bearer`と何らかのトークンを含んでいるかどうかをチェックし、そのトークンを`str`として返します。
 
