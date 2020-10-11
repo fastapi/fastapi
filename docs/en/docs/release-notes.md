@@ -2,6 +2,7 @@
 
 ## Latest Changes
 
+* 🔥 Remove pr-approvals GitHub Action as it's not compatible with forks. Use the new one. PR [#2162](https://github.com/tiangolo/fastapi/pull/2162) by [@tiangolo](https://github.com/tiangolo).
 * 👷 Add GitHub Action Label Approved. PR [#2160](https://github.com/tiangolo/fastapi/pull/2160).
 
 ## 0.61.1
