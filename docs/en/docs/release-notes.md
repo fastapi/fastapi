@@ -2,6 +2,7 @@
 
 ## Latest Changes
 
+* 👷 Add GitHub Action Label Approved. PR [#2160](https://github.com/tiangolo/fastapi/pull/2160).
 
 ## 0.61.1
 
