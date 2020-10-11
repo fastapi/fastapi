@@ -1,6 +1,6 @@
 # 追加のステータスコード
 
-デフォルでは、 **FastAPI** は `JSONResponse` を使ってレスポンスを返します。その `JSONResponse` の中には、 *path operation* が返した内容が入ります。
+デフォルトでは、 **FastAPI** は `JSONResponse` を使ってレスポンスを返します。その `JSONResponse` の中には、 *path operation* が返した内容が入ります。
 
 それは、デフォルトのステータスコードか、 *path operation* でセットしたものを利用します。
 
@@ -10,7 +10,7 @@
 
 例えば、itemを更新し、成功した場合は200 "OK"のHTTPステータスコードを返す *path operation* を作りたいとします。
 
-しかし、新しいitemも許可したいとします。itemが存在しない場合は、それらを作成して201 "Created"を返すとします。
+しかし、新しいitemも許可したいです。itemが存在しない場合は、それらを作成して201 "Created"を返します。
 
 これを達成するには、 `JSONResponse` をインポートし、 `status_code` を設定して直接内容を返します。
 
@@ -24,7 +24,6 @@
     モデルなどはシリアライズされません。
 
     必要なデータが含まれていることや、値が有効なJSONであること (`JSONResponse` を使う場合) を確認してください。
-
 
 !!! note "技術詳細"
     `from starlette.responses import JSONResponse` を利用することもできます。
