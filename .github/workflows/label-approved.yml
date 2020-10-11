@@ -1,0 +1,13 @@
+name: Label Approved
+
+on:
+  schedule:
+    - cron: "* * * * *"
+
+jobs:
+  label-approved:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: docker://tiangolo/label-approved:0.0.1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
