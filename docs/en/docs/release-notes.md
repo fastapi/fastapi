@@ -1,6 +1,7 @@
 # Release Notes
 
-## Latest changes
+## Latest Changes
+
 
 ## 0.61.1
 

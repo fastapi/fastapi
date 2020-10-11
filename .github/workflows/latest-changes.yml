@@ -1,0 +1,20 @@
+name: Latest Changes
+
+on:
+  pull_request_target:
+    branches:
+      - master
+    types:
+      - closed
+
+jobs:
+  latest-changes:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: docker://tiangolo/latest-changes:0.0.1
+        with:
+          latest_changes_file: docs/en/docs/release-notes.md
+          latest_changes_header: '## Latest Changes\n\n'
+          debug_logs: true
