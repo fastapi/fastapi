@@ -16,9 +16,9 @@ articles:
       title: Introduction to the fastapi python framework
       author_link: https://dev.to/errietta
       author: Errieta Kostala
-    - link: http://nickc1.github.io/api,/scikit-learn/2019/01/10/scikit-fastapi.html
+    - link: https://nickc1.github.io/api,/scikit-learn/2019/01/10/scikit-fastapi.html
       title: "FastAPI and Scikit-Learn: Easily Deploy Models"
-      author_link: http://nickc1.github.io/
+      author_link: https://nickc1.github.io/
       author: Nick Cortale
     - link: https://medium.com/data-rebels/fastapi-authentication-revisited-enabling-api-key-authentication-122dc5975680
       title: "FastAPI authentication revisited: Enabling API key authentication"

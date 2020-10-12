@@ -272,7 +272,7 @@ Rotas são declaradas em um único lugar, usando funções declaradas em outros 
 
     Isso na verdade inspirou a atualização de partes do Pydantic, para dar suporte ao mesmo estilo de declaração da validação (toda essa funcionalidade já está disponível no Pydantic).
 
-### <a href="http://www.hug.rest/" class="external-link" target="_blank">Hug</a>
+### <a href="https://www.hug.rest/" class="external-link" target="_blank">Hug</a>
 
 Hug foi um dos primeiros frameworks a implementar a declaração de tipos de parâmetros usando Python _type hints_. Isso foi uma ótima idéia que inspirou outras ferramentas a fazer o mesmo.
 

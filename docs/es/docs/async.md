@@ -334,7 +334,7 @@ Esta misma sintaxis (o casi idéntica) también se incluyó recientemente en las
 
 Pero antes de eso, manejar código asíncrono era bastante más complejo y difícil.
 
-En versiones anteriores de Python, podrías haber utilizado <abbr title="En español: hilos.">threads</abbr> o <a href="http://www.gevent.org/" class="external-link" target="_blank">Gevent</a>. Pero el código es mucho más complejo de entender, depurar y desarrollar.
+En versiones anteriores de Python, podrías haber utilizado <abbr title="En español: hilos.">threads</abbr> o <a href="https://www.gevent.org/" class="external-link" target="_blank">Gevent</a>. Pero el código es mucho más complejo de entender, depurar y desarrollar.
 
 En versiones anteriores de NodeJS / Browser JavaScript, habrías utilizado "callbacks". Lo que conduce a <a href="http://callbackhell.com/" class="external-link" target="_blank">callback hell</a>.
 
