@@ -2,7 +2,7 @@
 
 Thanks to <a href="https://www.starlette.io/testclient/" class="external-link" target="_blank">Starlette</a>, testing **FastAPI** applications is easy and enjoyable.
 
-It is based on <a href="http://docs.python-requests.org" class="external-link" target="_blank">Requests</a>, so it's very familiar and intuitive.
+It is based on <a href="https://requests.readthedocs.io" class="external-link" target="_blank">Requests</a>, so it's very familiar and intuitive.
 
 With it, you can use <a href="https://docs.pytest.org/" class="external-link" target="_blank">pytest</a> directly with **FastAPI**.
 
@@ -97,7 +97,7 @@ E.g.:
 * To pass *headers*, use a `dict` in the `headers` parameter.
 * For *cookies*, a `dict` in the `cookies` parameter.
 
-For more information about how to pass data to the backend (using `requests` or the `TestClient`) check the <a href="http://docs.python-requests.org" class="external-link" target="_blank">Requests documentation</a>.
+For more information about how to pass data to the backend (using `requests` or the `TestClient`) check the <a href="https://requests.readthedocs.io" class="external-link" target="_blank">Requests documentation</a>.
 
 !!! info
     Note that the `TestClient` receives data that can be converted to JSON, not Pydantic models.

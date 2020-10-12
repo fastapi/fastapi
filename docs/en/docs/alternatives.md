@@ -37,7 +37,7 @@ It was one of the first examples of **automatic API documentation**, and this wa
 !!! check "Inspired **FastAPI** to"
     Have an automatic API documentation web user interface.
 
-### <a href="http://flask.pocoo.org/" class="external-link" target="_blank">Flask</a>
+### <a href="https://flask.palletsprojects.com" class="external-link" target="_blank">Flask</a>
 
 Flask is a "microframework", it doesn't include database integrations nor many of the things that come by default in Django.
 
@@ -57,7 +57,7 @@ Given the simplicity of Flask, it seemed like a good match for building APIs. Th
     Have a simple and easy to use routing system.
 
 
-### <a href="http://docs.python-requests.org" class="external-link" target="_blank">Requests</a>
+### <a href="https://requests.readthedocs.io" class="external-link" target="_blank">Requests</a>
 
 **FastAPI** is not actually an alternative to **Requests**. Their scope is very different.
 
