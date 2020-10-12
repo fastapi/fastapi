@@ -39,7 +39,7 @@ FastAPI 是一个用于构建 API 的现代、快速（高性能）的 web 框�
 * **简单**：设计的易于使用和学习，阅读文档的时间更短。
 * **简短**：使代码重复最小化。通过不同的参数声明实现丰富功能。bug 更少。
 * **健壮**：生产可用级别的代码。还有自动生成的交互式文档。
-* **标准化**：基于（并完全兼容）API 的相关开放标准：<a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (以前被称为 Swagger) 和 <a href="http://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>。
+* **标准化**：基于（并完全兼容）API 的相关开放标准：<a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (以前被称为 Swagger) 和 <a href="https://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>。
 
 <small>* 根据对某个构建线上应用的内部开发团队所进行的测试估算得出。</small>
 

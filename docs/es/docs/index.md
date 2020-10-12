@@ -38,7 +38,7 @@ Sus características principales son:
 * **Fácil**: Está diseñado para ser fácil de usar y aprender. Gastando menos tiempo leyendo documentación.
 * **Corto**: Minimiza la duplicación de código. Múltiples funcionalidades con cada declaración de parámetros. Menos errores.
 * **Robusto**: Crea código listo para producción con documentación automática interactiva.
-* **Basado en estándares**: Basado y totalmente compatible con los estándares abiertos para APIs: <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (conocido previamente como Swagger) y <a href="http://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>.
+* **Basado en estándares**: Basado y totalmente compatible con los estándares abiertos para APIs: <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (conocido previamente como Swagger) y <a href="https://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>.
 
 <small>* Esta estimación está basada en pruebas con un equipo de desarrollo interno contruyendo aplicaciones listas para producción.</small>
 

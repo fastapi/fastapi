@@ -39,7 +39,7 @@ FastAPI は、Pythonの標準である型ヒントに基づいてPython 3.6 以�
 - **簡単**: 簡単に利用、習得できるようにデザインされています。ドキュメントを読む時間を削減します。
 - **短い**: コードの重複を最小限にしています。各パラメータからの複数の機能。少ないバグ。
 - **堅牢性**: 自動対話ドキュメントを使用して、本番環境で使用できるコードを取得します。
-- **Standards-based**: API のオープンスタンダードに基づいており、完全に互換性があります: <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (以前は Swagger として知られていました) や <a href="http://json-schema.org/" class="external-link" target="_blank">JSON スキーマ</a>.
+- **Standards-based**: API のオープンスタンダードに基づいており、完全に互換性があります: <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (以前は Swagger として知られていました) や <a href="https://json-schema.org/" class="external-link" target="_blank">JSON スキーマ</a>.
 
 <small>\* 本番アプリケーションを構築している開発チームのテストによる見積もり。</small>
 

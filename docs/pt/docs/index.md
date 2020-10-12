@@ -38,7 +38,7 @@ Os recursos chave são:
 * **Fácil**: Projetado para ser fácil de aprender e usar. Menos tempo lendo documentação.
 * **Enxuto**: Minimize duplicação de código. Múltiplos recursos para cada declaração de parâmetro. Menos bugs.
 * **Robusto**: Tenha código pronto para produção. E com documentação interativa automática.
-* **Baseado em padrões**: Baseado em (e totalmente compatível com) os padrões abertos para APIs: <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (anteriormente conhecido como Swagger) e <a href="http://json-schema.org/" class="external-link" target="_blank">_JSON Schema_</a>.
+* **Baseado em padrões**: Baseado em (e totalmente compatível com) os padrões abertos para APIs: <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (anteriormente conhecido como Swagger) e <a href="https://json-schema.org/" class="external-link" target="_blank">_JSON Schema_</a>.
 
 <small>* estimativas baseadas em testes realizados com equipe interna de desenvolvimento, construindo aplicações em produção.</small>
 
