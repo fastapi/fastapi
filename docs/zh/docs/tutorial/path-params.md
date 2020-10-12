@@ -179,8 +179,17 @@
 
 在返回给客户端之前，它们将被转换为对应的值：
 
-```Python hl_lines="18-21"
+```Python hl_lines="18  21  23"
 {!../../../docs_src/path_params/tutorial005.py!}
+```
+
+在你的客户端会得到这样的 JSON 响应：
+
+```JSON
+{
+  "model_name": "alexnet",
+  "message": "Deep Learning FTW!"
+}
 ```
 
 ## 包含路径的路径参数
