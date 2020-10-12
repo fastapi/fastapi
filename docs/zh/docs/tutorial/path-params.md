@@ -166,7 +166,7 @@
 
 你可以使用 `model_name.value` 或通常来说 `your_enum_member.value` 来获取实际的值（在这个例子中为 `str`）：
 
-```Python hl_lines="19"
+```Python hl_lines="20"
 {!../../../docs_src/path_params/tutorial005.py!}
 ```
 
