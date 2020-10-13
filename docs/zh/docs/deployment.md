@@ -272,7 +272,7 @@ $ docker run -d --name mycontainer -p 80:80 myimage
 * 默认情况下，一个 IP 地址仅有一个 HTTPS 证书。
     * 无论你的服务器大小，都是如此。
     * 但是对此有解决办法。
-* TSL 协议（在 TCP 层处理加密的协议，发生在 HTTP 之前）有一个扩展，叫 <a href="https://en.wikipedia.org/wiki/Server_Name_Indication" class="external-link" target="_blank"><abbr title="Server Name Indication">SNI</abbr></a>。
+* TLS 协议（在 TCP 层处理加密的协议，发生在 HTTP 之前）有一个扩展，叫 <a href="https://en.wikipedia.org/wiki/Server_Name_Indication" class="external-link" target="_blank"><abbr title="Server Name Indication">SNI</abbr></a>。
     * SNI 扩展允许一个服务器（一个 IP 地址）有多个 HTTPS 证书，为多个 HTTPS 域名/应用 提供服务。
     * 要使其工作，服务器运行的单一组件（程序）监听公网 IP 地址，所有 HTTPS 证书必须都在该服务器上。
 * 在获得一个安全连接之后，通讯协议仍然是 HTTP。
