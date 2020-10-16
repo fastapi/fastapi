@@ -6,15 +6,20 @@ on:
       - master
     types:
       - closed
+  workflow_dispatch:
+    inputs:
+      number:
+        description: PR number
+        required: true
 
 jobs:
   latest-changes:
-    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: docker://tiangolo/latest-changes:0.0.1
+      - uses: docker://tiangolo/latest-changes:0.0.2
         with:
+          token: ${{ secrets.GITHUB_TOKEN }}
           latest_changes_file: docs/en/docs/release-notes.md
           latest_changes_header: '## Latest Changes\n\n'
           debug_logs: true
