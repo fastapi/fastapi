@@ -276,7 +276,7 @@ Routes are declared in a single place, using functions declared in other places 
 
     This actually inspired updating parts of Pydantic, to support the same validation declaration style (all this functionality is now already available in Pydantic).
 
-### <a href="http://www.hug.rest/" class="external-link" target="_blank">Hug</a>
+### <a href="https://www.hug.rest/" class="external-link" target="_blank">Hug</a>
 
 Hug was one of the first frameworks to implement the declaration of API parameter types using Python type hints. This was a great idea that inspired other tools to do the same.
 

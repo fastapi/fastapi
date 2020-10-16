@@ -7,7 +7,7 @@
 ### オープンスタンダード準拠
 
 * API作成のための<a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a>。これは、<abbr title="also known as: endpoints, routes">path</abbr> <abbr title="also known as HTTP methods, as POST, GET, PUT, DELETE">operations</abbr>の宣言、パラメータ、ボディリクエスト、セキュリティなどを含んでいます。
-* <a href="http://json-schema.org/" class="external-link" target="_blank"><strong>JSONスキーマ</strong></a>を使用したデータモデルのドキュメント自動生成（OpenAPIはJSONスキーマに基づいている）。
+* <a href="https://json-schema.org/" class="external-link" target="_blank"><strong>JSONスキーマ</strong></a>を使用したデータモデルのドキュメント自動生成（OpenAPIはJSONスキーマに基づいている）。
 * 綿密な調査の結果、上層に後付けするのではなく、これらの基準に基づいて設計されました。
 * これにより、多くの言語で自動 **クライアントコード生成** が可能です。
 

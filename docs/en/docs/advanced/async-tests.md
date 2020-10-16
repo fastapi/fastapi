@@ -32,7 +32,7 @@ Luckily there's a nice alternative, called <a href="https://www.python-httpx.org
 
 HTTPX is an HTTP client for Python 3 that allows us to query our FastAPI application similarly to how we did it with the `TestClient`.
 
-If you're familiar with the <a href="https://requests.readthedocs.io/en/master/" class="external-link" target="_blank">Requests</a> library, you'll find that the API of HTTPX is almost identical.
+If you're familiar with the <a href="http://docs.python-requests.org" class="external-link" target="_blank">Requests</a> library, you'll find that the API of HTTPX is almost identical.
 
 The important difference for us is that with HTTPX we are not limited to synchronous, but can also make asynchronous requests.
 
