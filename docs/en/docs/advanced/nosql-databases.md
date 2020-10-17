@@ -19,7 +19,7 @@ You can adapt it to any other NoSQL database like:
 
 For now, don't pay attention to the rest, only the imports:
 
-```Python hl_lines="3 4 5"
+```Python hl_lines="3-5"
 {!../../../docs_src/nosql_databases/tutorial001.py!}
 ```
 
@@ -54,7 +54,7 @@ This utility function will:
     * Set defaults for timeouts.
 * Return it.
 
-```Python hl_lines="12 13 14 15 16 17 18 19 20 21"
+```Python hl_lines="12-21"
 {!../../../docs_src/nosql_databases/tutorial001.py!}
 ```
 
@@ -66,7 +66,7 @@ As **Couchbase** "documents" are actually just "JSON objects", we can model them
 
 First, let's create a `User` model:
 
-```Python hl_lines="24 25 26 27 28"
+```Python hl_lines="24-28"
 {!../../../docs_src/nosql_databases/tutorial001.py!}
 ```
 
@@ -80,7 +80,7 @@ This will have the data that is actually stored in the database.
 
 We don't create it as a subclass of Pydantic's `BaseModel` but as a subclass of our own `User`, because it will have all the attributes in `User` plus a couple more:
 
-```Python hl_lines="31 32 33"
+```Python hl_lines="31-33"
 {!../../../docs_src/nosql_databases/tutorial001.py!}
 ```
 
@@ -100,7 +100,7 @@ Now create a function that will:
 
 By creating a function that is only dedicated to getting your user from a `username` (or any other parameter) independent of your *path operation function*, you can more easily re-use it in multiple parts and also add <abbr title="Automated test, written in code, that checks if another piece of code is working correctly.">unit tests</abbr> for it:
 
-```Python hl_lines="36 37 38 39 40 41 42"
+```Python hl_lines="36-42"
 {!../../../docs_src/nosql_databases/tutorial001.py!}
 ```
 
@@ -145,7 +145,7 @@ As our code is calling Couchbase and we are not using the <a href="https://docs.
 
 Also, Couchbase recommends not using a single `Bucket` object in multiple "<abbr title="A sequence of code being executed by the program, while at the same time, or at intervals, there can be others being executed too.">thread</abbr>s", so, we can just get the bucket directly and pass it to our utility functions:
 
-```Python hl_lines="49 50 51 52 53"
+```Python hl_lines="49-53"
 {!../../../docs_src/nosql_databases/tutorial001.py!}
 ```
 

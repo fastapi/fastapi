@@ -126,7 +126,7 @@ And you don't have to declare them in any specific order.
 
 They will be detected by name:
 
-```Python hl_lines="8 10"
+```Python hl_lines="8  10"
 {!../../../docs_src/query_params/tutorial004.py!}
 ```
 
@@ -138,7 +138,7 @@ If you don't want to add a specific value but just make it optional, set the def
 
 But when you want to make a query parameter required, you can just not declare any default value:
 
-```Python hl_lines="6 7"
+```Python hl_lines="6-7"
 {!../../../docs_src/query_params/tutorial005.py!}
 ```
 
