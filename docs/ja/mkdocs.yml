@@ -39,6 +39,7 @@ nav:
 - features.md
 - チュートリアル - ユーザーガイド:
   - tutorial/index.md
+  - tutorial/first-steps.md
 markdown_extensions:
 - toc:
     permalink: true
