@@ -8,6 +8,6 @@ jobs:
   label-approved:
     runs-on: ubuntu-latest
     steps:
-    - uses: docker://tiangolo/label-approved:0.0.1
+    - uses: docker://tiangolo/label-approved:0.0.2
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
