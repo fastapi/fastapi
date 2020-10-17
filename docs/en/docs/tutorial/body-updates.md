@@ -6,7 +6,7 @@ To update an item you can use the <a href="https://developer.mozilla.org/en-US/d
 
 You can use the `jsonable_encoder` to convert the input data to data that can be stored as JSON (e.g. with a NoSQL database). For example, converting `datetime` to `str`.
 
-```Python hl_lines="30 31 32 33 34 35"
+```Python hl_lines="30-35"
 {!../../../docs_src/body_updates/tutorial001.py!}
 ```
 
@@ -82,7 +82,7 @@ In summary, to apply partial updates you would:
 * Save the data to your DB.
 * Return the updated model.
 
-```Python hl_lines="30 31 32 33 34 35 36 37"
+```Python hl_lines="30-37"
 {!../../../docs_src/body_updates/tutorial002.py!}
 ```
 

@@ -86,13 +86,13 @@ Let's refer to the file `sql_app/database.py`.
 
 ### Import the SQLAlchemy parts
 
-```Python hl_lines="1 2 3"
+```Python hl_lines="1-3"
 {!../../../docs_src/sql_databases/sql_app/database.py!}
 ```
 
 ### Create a database URL for SQLAlchemy
 
-```Python hl_lines="5 6"
+```Python hl_lines="5-6"
 {!../../../docs_src/sql_databases/sql_app/database.py!}
 ```
 
@@ -120,7 +120,7 @@ The first step is to create a SQLAlchemy "engine".
 
 We will later use this `engine` in other places.
 
-```Python hl_lines="8 9 10"
+```Python hl_lines="8-10"
 {!../../../docs_src/sql_databases/sql_app/database.py!}
 ```
 
@@ -189,7 +189,7 @@ Create classes that inherit from it.
 
 These classes are the SQLAlchemy models.
 
-```Python hl_lines="4 7 8 18 19"
+```Python hl_lines="4  7-8  18-19"
 {!../../../docs_src/sql_databases/sql_app/models.py!}
 ```
 
@@ -205,7 +205,7 @@ We use `Column` from SQLAlchemy as the default value.
 
 And we pass a SQLAlchemy class "type", as `Integer`, `String`, and `Boolean`, that defines the type in the database, as an argument.
 
-```Python hl_lines="1 10 11 12 13 21 22 23 24"
+```Python hl_lines="1  10-13  21-24"
 {!../../../docs_src/sql_databases/sql_app/models.py!}
 ```
 
@@ -217,7 +217,7 @@ For this, we use `relationship` provided by SQLAlchemy ORM.
 
 This will become, more or less, a "magic" attribute that will contain the values from other tables related to this one.
 
-```Python hl_lines="2 15 26"
+```Python hl_lines="2  15  26"
 {!../../../docs_src/sql_databases/sql_app/models.py!}
 ```
 
@@ -248,7 +248,7 @@ So, the user will also have a `password` when creating it.
 
 But for security, the `password` won't be in other Pydantic *models*, for example, it won't be sent from the API when reading a user.
 
-```Python hl_lines="3 6 7 8 11 12 23 24 27 28"
+```Python hl_lines="3  6-8  11-12  23-24  27-28"
 {!../../../docs_src/sql_databases/sql_app/schemas.py!}
 ```
 
@@ -278,7 +278,7 @@ The same way, when reading a user, we can now declare that `items` will contain 
 
 Not only the IDs of those items, but all the data that we defined in the Pydantic *model* for reading items: `Item`.
 
-```Python hl_lines="15 16 17 31 32 33 34"
+```Python hl_lines="15-17  31-34"
 {!../../../docs_src/sql_databases/sql_app/schemas.py!}
 ```
 
@@ -293,7 +293,7 @@ This <a href="https://pydantic-docs.helpmanual.io/#config" class="external-link"
 
 In the `Config` class, set the attribute `orm_mode = True`.
 
-```Python hl_lines="15 19 20 31 36 37"
+```Python hl_lines="15  19-20  31  36-37"
 {!../../../docs_src/sql_databases/sql_app/schemas.py!}
 ```
 
@@ -366,7 +366,7 @@ Create utility functions to:
 * Read multiple users.
 * Read a single item.
 
-```Python hl_lines="1 3 6 7 10 11 14 15 27 28"
+```Python hl_lines="1  3  6-7  10-11  14-15  27-28"
 {!../../../docs_src/sql_databases/sql_app/crud.py!}
 ```
 
@@ -384,7 +384,7 @@ The steps are:
 * `commit` the changes to the database (so that they are saved).
 * `refresh` your instance (so that it contains any new data from the database, like the generated ID).
 
-```Python hl_lines="18 19 20 21 22 23 24 31 32 33 34 35 36"
+```Python hl_lines="18-24  31-36"
 {!../../../docs_src/sql_databases/sql_app/crud.py!}
 ```
 
@@ -462,7 +462,7 @@ For that, we will create a new dependency with `yield`, as explained before in t
 
 Our dependency will create a new SQLAlchemy `SessionLocal` that will be used in a single request, and then close it once the request is finished.
 
-```Python hl_lines="15 16 17 18 19 20"
+```Python hl_lines="15-20"
 {!../../../docs_src/sql_databases/sql_app/main.py!}
 ```
 
@@ -492,7 +492,7 @@ This will then give us better editor support inside the *path operation function
 
 Now, finally, here's the standard **FastAPI** *path operations* code.
 
-```Python hl_lines="23 24 25 26 27 28  31 32 33 34  37 38 39 40 41 42  45 46 47 48 49  52 53 54 55"
+```Python hl_lines="23-28  31-34  37-42  45-49  52-55"
 {!../../../docs_src/sql_databases/sql_app/main.py!}
 ```
 
@@ -640,7 +640,7 @@ A "middleware" is basically a function that is always executed for each request,
 
 The middleware we'll add (just a function) will create a new SQLAlchemy `SessionLocal` for each request, add it to the request and then close it once the request is finished.
 
-```Python hl_lines="14 15 16 17 18 19 20 21 22"
+```Python hl_lines="14-22"
 {!../../../docs_src/sql_databases/sql_app/alt_main.py!}
 ```
 
