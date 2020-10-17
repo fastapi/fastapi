@@ -188,7 +188,7 @@ El editor aún sabe que es un `str` y provee soporte para ello.
 
 Harías lo mismo para declarar `tuple`s y `set`s:
 
-```Python hl_lines="1 4"
+```Python hl_lines="1  4"
 {!../../../docs_src/python_types/tutorial007.py!}
 ```
 
@@ -205,7 +205,7 @@ El primer sub-tipo es para los keys del `dict`.
 
 El segundo sub-tipo es para los valores del `dict`:
 
-```Python hl_lines="1 4"
+```Python hl_lines="1  4"
 {!../../../docs_src/python_types/tutorial008.py!}
 ```
 
@@ -221,7 +221,7 @@ También puedes declarar una clase como el tipo de una variable.
 
 Digamos que tienes una clase `Person`con un nombre:
 
-```Python hl_lines="1 2 3"
+```Python hl_lines="1-3"
 {!../../../docs_src/python_types/tutorial009.py!}
 ```
 
