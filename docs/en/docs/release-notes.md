@@ -2,6 +2,7 @@
 
 ## Latest Changes
 
+* ⬆️ Upgrade GitHub Action Latest Changes. PR [#2190](https://github.com/tiangolo/fastapi/pull/2190) by [@tiangolo](https://github.com/tiangolo).
 * ⬆️ Upgrade GitHub Action Label Approved. PR [#2189](https://github.com/tiangolo/fastapi/pull/2189) by [@tiangolo](https://github.com/tiangolo).
 * 🌐 Add Portuguese translation for Tutorial - First Steps. PR [#1861](https://github.com/tiangolo/fastapi/pull/1861) by [@jessicapaz](https://github.com/jessicapaz).
 * 🌐 Add Portuguese translation for Python Types. PR [#1796](https://github.com/tiangolo/fastapi/pull/1796) by [@izaguerreiro](https://github.com/izaguerreiro).
