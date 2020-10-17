@@ -39,6 +39,7 @@ nav:
 - features.md
 - Tutorial - Guia de Usuário:
   - tutorial/index.md
+  - tutorial/first-steps.md
 - alternatives.md
 - history-design-future.md
 - benchmarks.md
