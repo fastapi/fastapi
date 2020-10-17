@@ -37,6 +37,8 @@ nav:
   - uk: /uk/
   - zh: /zh/
 - features.md
+- チュートリアル - ユーザーガイド:
+  - tutorial/index.md
 markdown_extensions:
 - toc:
     permalink: true
