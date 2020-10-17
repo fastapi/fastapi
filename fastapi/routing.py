@@ -19,6 +19,7 @@ from fastapi.utils import (
     create_cloned_field,
     create_response_field,
     generate_operation_id_for_path,
+    opt_or_default,
 )
 from pydantic import BaseModel
 from pydantic.error_wrappers import ErrorWrapper, ValidationError
@@ -395,6 +396,10 @@ class APIRouter(routing.Router):
         default_response_class: Optional[Type[Response]] = None,
         on_startup: Optional[Sequence[Callable]] = None,
         on_shutdown: Optional[Sequence[Callable]] = None,
+        response_model_by_alias: bool = True,
+        response_model_exclude_unset: bool = False,
+        response_model_exclude_defaults: bool = False,
+        response_model_exclude_none: bool = False,
     ) -> None:
         super().__init__(
             routes=routes,
@@ -406,6 +411,10 @@ class APIRouter(routing.Router):
         self.dependency_overrides_provider = dependency_overrides_provider
         self.route_class = route_class
         self.default_response_class = default_response_class
+        self.response_model_by_alias = response_model_by_alias
+        self.response_model_exclude_unset = response_model_exclude_unset
+        self.response_model_exclude_defaults = response_model_exclude_defaults
+        self.response_model_exclude_none = response_model_exclude_none
 
     def add_api_route(
         self,
@@ -425,10 +434,10 @@ class APIRouter(routing.Router):
         operation_id: Optional[str] = None,
         response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
         response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-        response_model_by_alias: bool = True,
-        response_model_exclude_unset: bool = False,
-        response_model_exclude_defaults: bool = False,
-        response_model_exclude_none: bool = False,
+        response_model_by_alias: Optional[bool] = None,
+        response_model_exclude_unset: Optional[bool] = None,
+        response_model_exclude_defaults: Optional[bool] = None,
+        response_model_exclude_none: Optional[bool] = None,
         include_in_schema: bool = True,
         response_class: Optional[Type[Response]] = None,
         name: Optional[str] = None,
@@ -436,6 +445,18 @@ class APIRouter(routing.Router):
         callbacks: Optional[List[APIRoute]] = None,
     ) -> None:
         route_class = route_class_override or self.route_class
+
+        by_alias = opt_or_default(response_model_by_alias, self.response_model_by_alias)
+        exclude_defaults = opt_or_default(
+            response_model_exclude_defaults, self.response_model_exclude_defaults
+        )
+        exclude_unset = opt_or_default(
+            response_model_exclude_unset, self.response_model_exclude_unset
+        )
+        exclude_none = opt_or_default(
+            response_model_exclude_none, self.response_model_exclude_none
+        )
+
         route = route_class(
             path,
             endpoint=endpoint,
@@ -452,10 +473,10 @@ class APIRouter(routing.Router):
             operation_id=operation_id,
             response_model_include=response_model_include,
             response_model_exclude=response_model_exclude,
-            response_model_by_alias=response_model_by_alias,
-            response_model_exclude_unset=response_model_exclude_unset,
-            response_model_exclude_defaults=response_model_exclude_defaults,
-            response_model_exclude_none=response_model_exclude_none,
+            response_model_by_alias=by_alias,
+            response_model_exclude_unset=exclude_unset,
+            response_model_exclude_defaults=exclude_defaults,
+            response_model_exclude_none=exclude_none,
             include_in_schema=include_in_schema,
             response_class=response_class or self.default_response_class,
             name=name,
@@ -481,15 +502,27 @@ class APIRouter(routing.Router):
         operation_id: Optional[str] = None,
         response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
         response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-        response_model_by_alias: bool = True,
-        response_model_exclude_unset: bool = False,
-        response_model_exclude_defaults: bool = False,
-        response_model_exclude_none: bool = False,
+        response_model_by_alias: Optional[bool] = None,
+        response_model_exclude_unset: Optional[bool] = None,
+        response_model_exclude_defaults: Optional[bool] = None,
+        response_model_exclude_none: Optional[bool] = None,
         include_in_schema: bool = True,
         response_class: Optional[Type[Response]] = None,
         name: Optional[str] = None,
         callbacks: Optional[List[APIRoute]] = None,
     ) -> Callable:
+
+        by_alias = opt_or_default(response_model_by_alias, self.response_model_by_alias)
+        exclude_defaults = opt_or_default(
+            response_model_exclude_defaults, self.response_model_exclude_defaults
+        )
+        exclude_unset = opt_or_default(
+            response_model_exclude_unset, self.response_model_exclude_unset
+        )
+        exclude_none = opt_or_default(
+            response_model_exclude_none, self.response_model_exclude_none
+        )
+
         def decorator(func: Callable) -> Callable:
             self.add_api_route(
                 path,
@@ -507,10 +540,10 @@ class APIRouter(routing.Router):
                 operation_id=operation_id,
                 response_model_include=response_model_include,
                 response_model_exclude=response_model_exclude,
-                response_model_by_alias=response_model_by_alias,
-                response_model_exclude_unset=response_model_exclude_unset,
-                response_model_exclude_defaults=response_model_exclude_defaults,
-                response_model_exclude_none=response_model_exclude_none,
+                response_model_by_alias=by_alias,
+                response_model_exclude_unset=exclude_unset,
+                response_model_exclude_defaults=exclude_defaults,
+                response_model_exclude_none=exclude_none,
                 include_in_schema=include_in_schema,
                 response_class=response_class or self.default_response_class,
                 name=name,
@@ -563,8 +596,25 @@ class APIRouter(routing.Router):
                     )
         if responses is None:
             responses = {}
+
         for route in router.routes:
             if isinstance(route, APIRoute):
+
+                by_alias = opt_or_default(
+                    route.response_model_by_alias, self.response_model_by_alias
+                )
+                exclude_defaults = opt_or_default(
+                    route.response_model_exclude_defaults,
+                    self.response_model_exclude_defaults,
+                )
+                exclude_unset = opt_or_default(
+                    route.response_model_exclude_unset,
+                    self.response_model_exclude_unset,
+                )
+                exclude_none = opt_or_default(
+                    route.response_model_exclude_none, self.response_model_exclude_none
+                )
+
                 combined_responses = {**responses, **route.responses}
                 self.add_api_route(
                     prefix + route.path,
@@ -583,10 +633,10 @@ class APIRouter(routing.Router):
                     operation_id=route.operation_id,
                     response_model_include=route.response_model_include,
                     response_model_exclude=route.response_model_exclude,
-                    response_model_by_alias=route.response_model_by_alias,
-                    response_model_exclude_unset=route.response_model_exclude_unset,
-                    response_model_exclude_defaults=route.response_model_exclude_defaults,
-                    response_model_exclude_none=route.response_model_exclude_none,
+                    response_model_by_alias=by_alias,
+                    response_model_exclude_unset=exclude_unset,
+                    response_model_exclude_defaults=exclude_defaults,
+                    response_model_exclude_none=exclude_none,
                     include_in_schema=route.include_in_schema,
                     response_class=route.response_class or default_response_class,
                     name=route.name,
@@ -630,15 +680,27 @@ class APIRouter(routing.Router):
         operation_id: Optional[str] = None,
         response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
         response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-        response_model_by_alias: bool = True,
-        response_model_exclude_unset: bool = False,
-        response_model_exclude_defaults: bool = False,
-        response_model_exclude_none: bool = False,
+        response_model_by_alias: Optional[bool] = None,
+        response_model_exclude_unset: Optional[bool] = None,
+        response_model_exclude_defaults: Optional[bool] = None,
+        response_model_exclude_none: Optional[bool] = None,
         include_in_schema: bool = True,
         response_class: Optional[Type[Response]] = None,
         name: Optional[str] = None,
         callbacks: Optional[List[APIRoute]] = None,
     ) -> Callable:
+
+        by_alias = opt_or_default(response_model_by_alias, self.response_model_by_alias)
+        exclude_defaults = opt_or_default(
+            response_model_exclude_defaults, self.response_model_exclude_defaults,
+        )
+        exclude_unset = opt_or_default(
+            response_model_exclude_unset, self.response_model_exclude_unset,
+        )
+        exclude_none = opt_or_default(
+            response_model_exclude_none, self.response_model_exclude_none
+        )
+
         return self.api_route(
             path=path,
             response_model=response_model,
@@ -654,10 +716,10 @@ class APIRouter(routing.Router):
             operation_id=operation_id,
             response_model_include=response_model_include,
             response_model_exclude=response_model_exclude,
-            response_model_by_alias=response_model_by_alias,
-            response_model_exclude_unset=response_model_exclude_unset,
-            response_model_exclude_defaults=response_model_exclude_defaults,
-            response_model_exclude_none=response_model_exclude_none,
+            response_model_by_alias=by_alias,
+            response_model_exclude_unset=exclude_unset,
+            response_model_exclude_defaults=exclude_defaults,
+            response_model_exclude_none=exclude_none,
             include_in_schema=include_in_schema,
             response_class=response_class or self.default_response_class,
             name=name,
@@ -680,15 +742,27 @@ class APIRouter(routing.Router):
         operation_id: Optional[str] = None,
         response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
         response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-        response_model_by_alias: bool = True,
-        response_model_exclude_unset: bool = False,
-        response_model_exclude_defaults: bool = False,
-        response_model_exclude_none: bool = False,
+        response_model_by_alias: Optional[bool] = None,
+        response_model_exclude_unset: Optional[bool] = None,
+        response_model_exclude_defaults: Optional[bool] = None,
+        response_model_exclude_none: Optional[bool] = None,
         include_in_schema: bool = True,
         response_class: Optional[Type[Response]] = None,
         name: Optional[str] = None,
         callbacks: Optional[List[APIRoute]] = None,
     ) -> Callable:
+
+        by_alias = opt_or_default(response_model_by_alias, self.response_model_by_alias)
+        exclude_defaults = opt_or_default(
+            response_model_exclude_defaults, self.response_model_exclude_defaults,
+        )
+        exclude_unset = opt_or_default(
+            response_model_exclude_unset, self.response_model_exclude_unset,
+        )
+        exclude_none = opt_or_default(
+            response_model_exclude_none, self.response_model_exclude_none
+        )
+
         return self.api_route(
             path=path,
             response_model=response_model,
@@ -704,10 +778,10 @@ class APIRouter(routing.Router):
             operation_id=operation_id,
             response_model_include=response_model_include,
             response_model_exclude=response_model_exclude,
-            response_model_by_alias=response_model_by_alias,
-            response_model_exclude_unset=response_model_exclude_unset,
-            response_model_exclude_defaults=response_model_exclude_defaults,
-            response_model_exclude_none=response_model_exclude_none,
+            response_model_by_alias=by_alias,
+            response_model_exclude_unset=exclude_unset,
+            response_model_exclude_defaults=exclude_defaults,
+            response_model_exclude_none=exclude_none,
             include_in_schema=include_in_schema,
             response_class=response_class or self.default_response_class,
             name=name,
@@ -730,15 +804,27 @@ class APIRouter(routing.Router):
         operation_id: Optional[str] = None,
         response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
         response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-        response_model_by_alias: bool = True,
-        response_model_exclude_unset: bool = False,
-        response_model_exclude_defaults: bool = False,
-        response_model_exclude_none: bool = False,
+        response_model_by_alias: Optional[bool] = None,
+        response_model_exclude_unset: Optional[bool] = None,
+        response_model_exclude_defaults: Optional[bool] = None,
+        response_model_exclude_none: Optional[bool] = None,
         include_in_schema: bool = True,
         response_class: Optional[Type[Response]] = None,
         name: Optional[str] = None,
         callbacks: Optional[List[APIRoute]] = None,
     ) -> Callable:
+
+        by_alias = opt_or_default(response_model_by_alias, self.response_model_by_alias)
+        exclude_defaults = opt_or_default(
+            response_model_exclude_defaults, self.response_model_exclude_defaults,
+        )
+        exclude_unset = opt_or_default(
+            response_model_exclude_unset, self.response_model_exclude_unset,
+        )
+        exclude_none = opt_or_default(
+            response_model_exclude_none, self.response_model_exclude_none
+        )
+
         return self.api_route(
             path=path,
             response_model=response_model,
@@ -754,10 +840,10 @@ class APIRouter(routing.Router):
             operation_id=operation_id,
             response_model_include=response_model_include,
             response_model_exclude=response_model_exclude,
-            response_model_by_alias=response_model_by_alias,
-            response_model_exclude_unset=response_model_exclude_unset,
-            response_model_exclude_defaults=response_model_exclude_defaults,
-            response_model_exclude_none=response_model_exclude_none,
+            response_model_by_alias=by_alias,
+            response_model_exclude_unset=exclude_unset,
+            response_model_exclude_defaults=exclude_defaults,
+            response_model_exclude_none=exclude_none,
             include_in_schema=include_in_schema,
             response_class=response_class or self.default_response_class,
             name=name,
@@ -780,15 +866,27 @@ class APIRouter(routing.Router):
         operation_id: Optional[str] = None,
         response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
         response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-        response_model_by_alias: bool = True,
-        response_model_exclude_unset: bool = False,
-        response_model_exclude_defaults: bool = False,
-        response_model_exclude_none: bool = False,
+        response_model_by_alias: Optional[bool] = None,
+        response_model_exclude_unset: Optional[bool] = None,
+        response_model_exclude_defaults: Optional[bool] = None,
+        response_model_exclude_none: Optional[bool] = None,
         include_in_schema: bool = True,
         response_class: Optional[Type[Response]] = None,
         name: Optional[str] = None,
         callbacks: Optional[List[APIRoute]] = None,
     ) -> Callable:
+
+        by_alias = opt_or_default(response_model_by_alias, self.response_model_by_alias)
+        exclude_defaults = opt_or_default(
+            response_model_exclude_defaults, self.response_model_exclude_defaults,
+        )
+        exclude_unset = opt_or_default(
+            response_model_exclude_unset, self.response_model_exclude_unset,
+        )
+        exclude_none = opt_or_default(
+            response_model_exclude_none, self.response_model_exclude_none
+        )
+
         return self.api_route(
             path=path,
             response_model=response_model,
@@ -804,10 +902,10 @@ class APIRouter(routing.Router):
             operation_id=operation_id,
             response_model_include=response_model_include,
             response_model_exclude=response_model_exclude,
-            response_model_by_alias=response_model_by_alias,
-            response_model_exclude_unset=response_model_exclude_unset,
-            response_model_exclude_defaults=response_model_exclude_defaults,
-            response_model_exclude_none=response_model_exclude_none,
+            response_model_by_alias=by_alias,
+            response_model_exclude_unset=exclude_unset,
+            response_model_exclude_defaults=exclude_defaults,
+            response_model_exclude_none=exclude_none,
             include_in_schema=include_in_schema,
             response_class=response_class or self.default_response_class,
             name=name,
@@ -830,15 +928,27 @@ class APIRouter(routing.Router):
         operation_id: Optional[str] = None,
         response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
         response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-        response_model_by_alias: bool = True,
-        response_model_exclude_unset: bool = False,
-        response_model_exclude_defaults: bool = False,
-        response_model_exclude_none: bool = False,
+        response_model_by_alias: Optional[bool] = None,
+        response_model_exclude_unset: Optional[bool] = None,
+        response_model_exclude_defaults: Optional[bool] = None,
+        response_model_exclude_none: Optional[bool] = None,
         include_in_schema: bool = True,
         response_class: Optional[Type[Response]] = None,
         name: Optional[str] = None,
         callbacks: Optional[List[APIRoute]] = None,
     ) -> Callable:
+
+        by_alias = opt_or_default(response_model_by_alias, self.response_model_by_alias)
+        exclude_defaults = opt_or_default(
+            response_model_exclude_defaults, self.response_model_exclude_defaults,
+        )
+        exclude_unset = opt_or_default(
+            response_model_exclude_unset, self.response_model_exclude_unset,
+        )
+        exclude_none = opt_or_default(
+            response_model_exclude_none, self.response_model_exclude_none
+        )
+
         return self.api_route(
             path=path,
             response_model=response_model,
@@ -854,10 +964,10 @@ class APIRouter(routing.Router):
             operation_id=operation_id,
             response_model_include=response_model_include,
             response_model_exclude=response_model_exclude,
-            response_model_by_alias=response_model_by_alias,
-            response_model_exclude_unset=response_model_exclude_unset,
-            response_model_exclude_defaults=response_model_exclude_defaults,
-            response_model_exclude_none=response_model_exclude_none,
+            response_model_by_alias=by_alias,
+            response_model_exclude_unset=exclude_unset,
+            response_model_exclude_defaults=exclude_defaults,
+            response_model_exclude_none=exclude_none,
             include_in_schema=include_in_schema,
             response_class=response_class or self.default_response_class,
             name=name,
@@ -880,15 +990,27 @@ class APIRouter(routing.Router):
         operation_id: Optional[str] = None,
         response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
         response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-        response_model_by_alias: bool = True,
-        response_model_exclude_unset: bool = False,
-        response_model_exclude_defaults: bool = False,
-        response_model_exclude_none: bool = False,
+        response_model_by_alias: Optional[bool] = None,
+        response_model_exclude_unset: Optional[bool] = None,
+        response_model_exclude_defaults: Optional[bool] = None,
+        response_model_exclude_none: Optional[bool] = None,
         include_in_schema: bool = True,
         response_class: Optional[Type[Response]] = None,
         name: Optional[str] = None,
         callbacks: Optional[List[APIRoute]] = None,
     ) -> Callable:
+
+        by_alias = opt_or_default(response_model_by_alias, self.response_model_by_alias)
+        exclude_defaults = opt_or_default(
+            response_model_exclude_defaults, self.response_model_exclude_defaults,
+        )
+        exclude_unset = opt_or_default(
+            response_model_exclude_unset, self.response_model_exclude_unset,
+        )
+        exclude_none = opt_or_default(
+            response_model_exclude_none, self.response_model_exclude_none
+        )
+
         return self.api_route(
             path=path,
             response_model=response_model,
@@ -904,10 +1026,10 @@ class APIRouter(routing.Router):
             operation_id=operation_id,
             response_model_include=response_model_include,
             response_model_exclude=response_model_exclude,
-            response_model_by_alias=response_model_by_alias,
-            response_model_exclude_unset=response_model_exclude_unset,
-            response_model_exclude_defaults=response_model_exclude_defaults,
-            response_model_exclude_none=response_model_exclude_none,
+            response_model_by_alias=by_alias,
+            response_model_exclude_unset=exclude_unset,
+            response_model_exclude_defaults=exclude_defaults,
+            response_model_exclude_none=exclude_none,
             include_in_schema=include_in_schema,
             response_class=response_class or self.default_response_class,
             name=name,
@@ -930,15 +1052,27 @@ class APIRouter(routing.Router):
         operation_id: Optional[str] = None,
         response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
         response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-        response_model_by_alias: bool = True,
-        response_model_exclude_unset: bool = False,
-        response_model_exclude_defaults: bool = False,
-        response_model_exclude_none: bool = False,
+        response_model_by_alias: Optional[bool] = None,
+        response_model_exclude_unset: Optional[bool] = None,
+        response_model_exclude_defaults: Optional[bool] = None,
+        response_model_exclude_none: Optional[bool] = None,
         include_in_schema: bool = True,
         response_class: Optional[Type[Response]] = None,
         name: Optional[str] = None,
         callbacks: Optional[List[APIRoute]] = None,
     ) -> Callable:
+
+        by_alias = opt_or_default(response_model_by_alias, self.response_model_by_alias)
+        exclude_defaults = opt_or_default(
+            response_model_exclude_defaults, self.response_model_exclude_defaults,
+        )
+        exclude_unset = opt_or_default(
+            response_model_exclude_unset, self.response_model_exclude_unset,
+        )
+        exclude_none = opt_or_default(
+            response_model_exclude_none, self.response_model_exclude_none
+        )
+
         return self.api_route(
             path=path,
             response_model=response_model,
@@ -954,10 +1088,10 @@ class APIRouter(routing.Router):
             operation_id=operation_id,
             response_model_include=response_model_include,
             response_model_exclude=response_model_exclude,
-            response_model_by_alias=response_model_by_alias,
-            response_model_exclude_unset=response_model_exclude_unset,
-            response_model_exclude_defaults=response_model_exclude_defaults,
-            response_model_exclude_none=response_model_exclude_none,
+            response_model_by_alias=by_alias,
+            response_model_exclude_unset=exclude_unset,
+            response_model_exclude_defaults=exclude_defaults,
+            response_model_exclude_none=exclude_none,
             include_in_schema=include_in_schema,
             response_class=response_class or self.default_response_class,
             name=name,
@@ -980,15 +1114,26 @@ class APIRouter(routing.Router):
         operation_id: Optional[str] = None,
         response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
         response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-        response_model_by_alias: bool = True,
-        response_model_exclude_unset: bool = False,
-        response_model_exclude_defaults: bool = False,
-        response_model_exclude_none: bool = False,
+        response_model_by_alias: Optional[bool] = None,
+        response_model_exclude_unset: Optional[bool] = None,
+        response_model_exclude_defaults: Optional[bool] = None,
+        response_model_exclude_none: Optional[bool] = None,
         include_in_schema: bool = True,
         response_class: Optional[Type[Response]] = None,
         name: Optional[str] = None,
         callbacks: Optional[List[APIRoute]] = None,
     ) -> Callable:
+
+        by_alias = opt_or_default(response_model_by_alias, self.response_model_by_alias)
+        exclude_defaults = opt_or_default(
+            response_model_exclude_defaults, self.response_model_exclude_defaults,
+        )
+        exclude_unset = opt_or_default(
+            response_model_exclude_unset, self.response_model_exclude_unset,
+        )
+        exclude_none = opt_or_default(
+            response_model_exclude_none, self.response_model_exclude_none
+        )
 
         return self.api_route(
             path=path,
@@ -1005,10 +1150,10 @@ class APIRouter(routing.Router):
             operation_id=operation_id,
             response_model_include=response_model_include,
             response_model_exclude=response_model_exclude,
-            response_model_by_alias=response_model_by_alias,
-            response_model_exclude_unset=response_model_exclude_unset,
-            response_model_exclude_defaults=response_model_exclude_defaults,
-            response_model_exclude_none=response_model_exclude_none,
+            response_model_by_alias=by_alias,
+            response_model_exclude_unset=exclude_unset,
+            response_model_exclude_defaults=exclude_defaults,
+            response_model_exclude_none=exclude_none,
             include_in_schema=include_in_schema,
             response_class=response_class or self.default_response_class,
             name=name,
