@@ -43,6 +43,7 @@ nav:
   - tutorial/path-params.md
   - tutorial/query-params.md
   - tutorial/body.md
+- help-fastapi.md
 markdown_extensions:
 - toc:
     permalink: true
