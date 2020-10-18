@@ -46,6 +46,7 @@ nav:
   - tutorial/header-params.md
 - 高度なユーザーガイド:
   - advanced/response-directly.md
+- history-design-future.md
 - benchmarks.md
 - help-fastapi.md
 markdown_extensions:
