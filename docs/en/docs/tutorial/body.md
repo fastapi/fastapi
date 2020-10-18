@@ -9,15 +9,17 @@ Your API almost always has to send a **response** body. But clients don't necess
 To declare a **request** body, you use <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> models with all their power and benefits.
 
 !!! info
-    You cannot send a request body using a `GET` operation (HTTP method).
+    To send data, you should use one of: `POST` (the more common), `PUT`, `DELETE` or `PATCH`.
 
-    To send data, you have to use one of: `POST` (the more common), `PUT`, `DELETE` or `PATCH`.
+    Sending a body with a `GET` request has an undefined behavior in the specifications, nevertheless, it is supported by FastAPI, only for very complex/extreme use cases.
+
+    As it is discouraged, the interactive docs with Swagger UI won't show the documentation for the body when using `GET`, and proxies in the middle might not support it.
 
 ## Import Pydantic's `BaseModel`
 
 First, you need to import `BaseModel` from `pydantic`:
 
-```Python hl_lines="2"
+```Python hl_lines="4"
 {!../../../docs_src/body/tutorial001.py!}
 ```
 
@@ -27,7 +29,7 @@ Then you declare your data model as a class that inherits from `BaseModel`.
 
 Use standard Python types for all the attributes:
 
-```Python hl_lines="5 6 7 8 9"
+```Python hl_lines="7-11"
 {!../../../docs_src/body/tutorial001.py!}
 ```
 
@@ -57,7 +59,7 @@ For example, this model above declares a JSON "`object`" (or Python `dict`) like
 
 To add it to your *path operation*, declare it the same way you declared path and query parameters:
 
-```Python hl_lines="16"
+```Python hl_lines="18"
 {!../../../docs_src/body/tutorial001.py!}
 ```
 
@@ -108,11 +110,22 @@ But you would get the same editor support with <a href="https://www.jetbrains.co
 
 <img src="/img/tutorial/body/image05.png">
 
+!!! tip
+    If you use <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a> as your editor, you can use the <a href="https://github.com/koxudaxi/pydantic-pycharm-plugin/" class="external-link" target="_blank">Pydantic PyCharm Plugin</a>.
+
+    It improves editor support for Pydantic models, with:
+    
+    * auto-completion
+    * type checks
+    * refactoring
+    * searching
+    * inspections
+
 ## Use the model
 
 Inside of the function, you can access all the attributes of the model object directly:
 
-```Python hl_lines="19"
+```Python hl_lines="21"
 {!../../../docs_src/body/tutorial002.py!}
 ```
 
@@ -122,7 +135,7 @@ You can declare path parameters and body requests at the same time.
 
 **FastAPI** will recognize that the function parameters that match path parameters should be **taken from the path**, and that function parameters that are declared to be Pydantic models should be **taken from the request body**.
 
-```Python hl_lines="15 16"
+```Python hl_lines="17-18"
 {!../../../docs_src/body/tutorial003.py!}
 ```
 
@@ -132,7 +145,7 @@ You can also declare **body**, **path** and **query** parameters, all at the sam
 
 **FastAPI** will recognize each of them and take the data from the correct place.
 
-```Python hl_lines="16"
+```Python hl_lines="18"
 {!../../../docs_src/body/tutorial004.py!}
 ```
 
@@ -141,6 +154,11 @@ The function parameters will be recognized as follows:
 * If the parameter is also declared in the **path**, it will be used as a path parameter.
 * If the parameter is of a **singular type** (like `int`, `float`, `str`, `bool`, etc) it will be interpreted as a **query** parameter.
 * If the parameter is declared to be of the type of a **Pydantic model**, it will be interpreted as a request **body**.
+
+!!! note
+    FastAPI will know that the value of `q` is not required because of the default value `= None`.
+
+    The `Optional` in `Optional[str]` is not used by FastAPI, but will allow your editor to give you better support and detect errors.
 
 ## Without Pydantic
 

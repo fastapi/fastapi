@@ -1,6 +1,6 @@
 """FastAPI framework, high performance, easy to learn, fast to code, ready for production"""
 
-__version__ = "0.54.2"
+__version__ = "0.61.1"
 
 from starlette import status
 
@@ -22,4 +22,4 @@ from .param_functions import (
 from .requests import Request
 from .responses import Response
 from .routing import APIRouter
-from .websockets import WebSocket
+from .websockets import WebSocket, WebSocketDisconnect

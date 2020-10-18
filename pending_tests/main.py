@@ -31,7 +31,7 @@ def get_security(sec=Security(HTTPBasic())):
 reusable_oauth2 = OAuth2(
     flows={
         "password": {
-            "tokenUrl": "/token",
+            "tokenUrl": "token",
             "scopes": {"read:user": "Read a User", "write:user": "Create a user"},
         }
     }
