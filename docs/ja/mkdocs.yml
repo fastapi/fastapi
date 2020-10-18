@@ -30,13 +30,29 @@ nav:
   - fr: /fr/
   - it: /it/
   - ja: /ja/
+  - ko: /ko/
   - pt: /pt/
   - ru: /ru/
   - tr: /tr/
   - uk: /uk/
   - zh: /zh/
+- features.md
+- チュートリアル - ユーザーガイド:
+  - tutorial/index.md
+  - tutorial/first-steps.md
+  - tutorial/path-params.md
+  - tutorial/query-params.md
+  - tutorial/body.md
+  - tutorial/header-params.md
+  - tutorial/cors.md
 - 高度なユーザーガイド:
   - advanced/path-operation-advanced-configuration.md
+- project-generation.md
+- alternatives.md
+- history-design-future.md
+- benchmarks.md
+- help-fastapi.md
+- contributing.md
 markdown_extensions:
 - toc:
     permalink: true
