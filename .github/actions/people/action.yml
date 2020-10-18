@@ -3,7 +3,10 @@ description: "Generate the data for the FastAPI People page"
 author: "Sebastián Ramírez <tiangolo@gmail.com>"
 inputs:
   token:
-    description: 'Token for the repo. Can be passed in using {{ secrets.GITHUB_TOKEN }}'
+    description: 'User token, to read the GitHub API. Can be passed in using {{ secrets.ACTION_TOKEN }}'
+    required: true
+  standard_token:
+    description: 'Default GitHub Action token, used for the PR. Can be passed in using {{ secrets.GITHUB_TOKEN }}'
     required: true
 runs:
   using: 'docker'
