@@ -1,0 +1,10 @@
+name: "Generate FastAPI People"
+description: "Generate the data for the FastAPI People page"
+author: "Sebastián Ramírez <tiangolo@gmail.com>"
+inputs:
+  token:
+    description: 'Token for the repo. Can be passed in using {{ secrets.GITHUB_TOKEN }}'
+    required: true
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
