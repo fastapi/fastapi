@@ -45,6 +45,8 @@ nav:
   - tutorial/body.md
   - tutorial/header-params.md
   - tutorial/cors.md
+- 高度なユーザーガイド:
+  - advanced/custom-response.md
 - project-generation.md
 - alternatives.md
 - history-design-future.md
