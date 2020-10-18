@@ -49,6 +49,7 @@ nav:
 - history-design-future.md
 - benchmarks.md
 - help-fastapi.md
+- contributing.md
 markdown_extensions:
 - toc:
     permalink: true
