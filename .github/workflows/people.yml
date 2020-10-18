@@ -2,7 +2,7 @@ name: FastAPI People
 
 on:
   schedule:
-    - cron: "30 * * * *"
+    - cron: "0 14 1 * *"
   workflow_dispatch:
 
 jobs:
@@ -12,4 +12,4 @@ jobs:
       - uses: actions/checkout@v2
       - uses: ./.github/actions/people
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.ACTIONS_TOKEN }}
