@@ -1,13 +1,14 @@
 import logging
 import subprocess
+import sys
 from collections import Counter
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Container, Dict, List, Optional, Set
 
 import httpx
-from github import Github
 import yaml
+from github import Github
 from pydantic import BaseModel, BaseSettings, SecretStr
 
 github_graphql_url = "https://api.github.com/graphql"
@@ -487,13 +488,17 @@ if __name__ == "__main__":
         "sponsors": sponsors,
     }
     people_path = Path("./docs/en/data/people.yml")
-    people_path.write_text(
-        yaml.dump(people, sort_keys=False, width=200, allow_unicode=True),
-        encoding="utf-8",
-    )
+    people_old_content = people_path.read_text(encoding="utf-8")
+    new_content = yaml.dump(people, sort_keys=False, width=200, allow_unicode=True)
+    if people_old_content == new_content:
+        logging.info("The FastAPI People data hasn't changed, finishing.")
+        sys.exit(0)
+    people_path.write_text(new_content, encoding="utf-8")
     logging.info("Setting up GitHub Actions git user")
     subprocess.run(["git", "config", "user.name", "github-actions"], check=True)
-    subprocess.run(["git", "config", "user.email", "github-actions@github.com"], check=True)
+    subprocess.run(
+        ["git", "config", "user.email", "github-actions@github.com"], check=True
+    )
     branch_name = "fastapi-people"
     logging.info(f"Creating a new branch {branch_name}")
     subprocess.run(["git", "checkout", "-b", branch_name], check=True)
