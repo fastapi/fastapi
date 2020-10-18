@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  deploy:
+  fastapi-people:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
