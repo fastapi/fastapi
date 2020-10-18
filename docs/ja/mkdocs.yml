@@ -44,6 +44,7 @@ nav:
   - tutorial/query-params.md
   - tutorial/body.md
   - tutorial/header-params.md
+- alternatives.md
 - history-design-future.md
 - benchmarks.md
 - help-fastapi.md
