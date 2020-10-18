@@ -2,6 +2,7 @@
 
 ## Latest Changes
 
+* 🐛 Fix FastAPI People GitHub Action Docker dependency, strike 1 ⚾. PR [#2198](https://github.com/tiangolo/fastapi/pull/2198) by [@tiangolo](https://github.com/tiangolo).
 * 🐛 Fix FastAPI People GitHub Action Docker dependencies. PR [#2197](https://github.com/tiangolo/fastapi/pull/2197) by [@tiangolo](https://github.com/tiangolo).
 * 🐛 Fix FastAPI People GitHub Action when there's nothing to change. PR [#2196](https://github.com/tiangolo/fastapi/pull/2196) by [@tiangolo](https://github.com/tiangolo).
 * 👥 Add new section FastAPI People. PR [#2195](https://github.com/tiangolo/fastapi/pull/2195) by [@tiangolo](https://github.com/tiangolo).
