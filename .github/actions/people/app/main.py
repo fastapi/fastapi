@@ -258,6 +258,7 @@ class SponsorsResponse(BaseModel):
 
 class Settings(BaseSettings):
     input_token: SecretStr
+    input_standard_token: SecretStr
     github_repository: str
 
 
@@ -418,7 +419,7 @@ if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
     settings = Settings()
     logging.info(f"Using config: {settings.json()}")
-    g = Github(settings.input_token.get_secret_value())
+    g = Github(settings.input_standard_token.get_secret_value())
     repo = g.get_repo(settings.github_repository)
     issue_commentors, issue_last_month_commentors, issue_authors = get_experts(
         settings=settings
