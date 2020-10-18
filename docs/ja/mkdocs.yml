@@ -44,11 +44,15 @@ nav:
   - tutorial/query-params.md
   - tutorial/body.md
   - tutorial/header-params.md
+  - tutorial/cors.md
 - 高度なユーザーガイド:
   - advanced/response-directly.md
+- project-generation.md
+- alternatives.md
 - history-design-future.md
 - benchmarks.md
 - help-fastapi.md
+- contributing.md
 markdown_extensions:
 - toc:
     permalink: true
