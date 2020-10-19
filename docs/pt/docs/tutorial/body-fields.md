@@ -1,6 +1,6 @@
 # Body - Fields
 
-Da mesma forma que voĉe pode declarar uma validação adicional e metadata nas *funções de operação de caminho* com `Query`, `Path` e `Body`, você pode declarar validação e metadata dentro de modelos Pydantic usando `Field` do Pydantic.
+Da mesma forma que voĉe pode declarar uma validação adicional e metadados nas *funções de operação de rota* com `Query`, `Path` e `Body`, você também pode declarar validações e metadados dentro dos modelos Pydantic usando `Field` do Pydantic.
 
 ## Importe `Field`
 
