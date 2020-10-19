@@ -11,7 +11,7 @@ Primeiro, você tem que importar isso:
 ```
 
 !!! Atenção
-    Observe que `Field` é importado diretamente de `pydantic`, não de `fastapi` como todo o resto (`Query`, `Path`, `Body`, etc).
+    Observe que `Field` é importado diretamente de `pydantic`, não de `fastapi` como todo o resto (`Query`, `Path`, `Body`, etc.).
 
 ## Declarar atributos de modelo
 
