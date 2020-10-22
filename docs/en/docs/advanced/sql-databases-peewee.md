@@ -376,7 +376,7 @@ Then run your app with Uvicorn:
 ```console
 $ uvicorn sql_app.main:app --reload
 
-<span style="color: green;">INFO</span>:     Uvicorn running on https://127.0.0.1:8000 (Press CTRL+C to quit)
+<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
