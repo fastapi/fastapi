@@ -1,5 +1,5 @@
 from enum import Enum
-from typing import Any, Callable, Optional, Sequence
+from typing import Any, Callable, Optional, Sequence, Tuple
 
 from pydantic.fields import FieldInfo
 
@@ -19,6 +19,7 @@ class Param(FieldInfo):
         default: Any,
         *,
         alias: Optional[str] = None,
+        aliases: Optional[Tuple[str]] = None,
         title: Optional[str] = None,
         description: Optional[str] = None,
         gt: Optional[float] = None,
@@ -32,6 +33,7 @@ class Param(FieldInfo):
         **extra: Any,
     ):
         self.deprecated = deprecated
+        self.aliases = aliases
         super().__init__(
             default,
             alias=alias,
@@ -59,6 +61,7 @@ class Path(Param):
         default: Any,
         *,
         alias: Optional[str] = None,
+        aliases: Optional[Tuple[str]] = None,
         title: Optional[str] = None,
         description: Optional[str] = None,
         gt: Optional[float] = None,
@@ -72,6 +75,7 @@ class Path(Param):
         **extra: Any,
     ):
         self.in_ = self.in_
+        self.aliases = aliases
         super().__init__(
             ...,
             alias=alias,
@@ -97,6 +101,7 @@ class Query(Param):
         default: Any,
         *,
         alias: Optional[str] = None,
+        aliases: Optional[Tuple[str]] = None,
         title: Optional[str] = None,
         description: Optional[str] = None,
         gt: Optional[float] = None,
@@ -109,6 +114,7 @@ class Query(Param):
         deprecated: Optional[bool] = None,
         **extra: Any,
     ):
+        self.aliases = aliases
         super().__init__(
             default,
             alias=alias,
@@ -134,6 +140,7 @@ class Header(Param):
         default: Any,
         *,
         alias: Optional[str] = None,
+        aliases: Optional[Tuple[str]] = None,
         convert_underscores: bool = True,
         title: Optional[str] = None,
         description: Optional[str] = None,
@@ -148,6 +155,7 @@ class Header(Param):
         **extra: Any,
     ):
         self.convert_underscores = convert_underscores
+        self.aliases = aliases
         super().__init__(
             default,
             alias=alias,
@@ -173,6 +181,7 @@ class Cookie(Param):
         default: Any,
         *,
         alias: Optional[str] = None,
+        aliases: Optional[Tuple[str]] = None,
         title: Optional[str] = None,
         description: Optional[str] = None,
         gt: Optional[float] = None,
@@ -185,6 +194,7 @@ class Cookie(Param):
         deprecated: Optional[bool] = None,
         **extra: Any,
     ):
+        self.aliases = aliases
         super().__init__(
             default,
             alias=alias,
@@ -210,6 +220,7 @@ class Body(FieldInfo):
         embed: bool = False,
         media_type: str = "application/json",
         alias: Optional[str] = None,
+        aliases: Optional[Tuple[str]] = None,
         title: Optional[str] = None,
         description: Optional[str] = None,
         gt: Optional[float] = None,
@@ -223,6 +234,7 @@ class Body(FieldInfo):
     ):
         self.embed = embed
         self.media_type = media_type
+        self.aliases = aliases
         super().__init__(
             default,
             alias=alias,
@@ -249,6 +261,7 @@ class Form(Body):
         *,
         media_type: str = "application/x-www-form-urlencoded",
         alias: Optional[str] = None,
+        aliases: Optional[Tuple[str]] = None,
         title: Optional[str] = None,
         description: Optional[str] = None,
         gt: Optional[float] = None,
@@ -260,6 +273,7 @@ class Form(Body):
         regex: Optional[str] = None,
         **extra: Any,
     ):
+        self.aliases = aliases
         super().__init__(
             default,
             embed=True,
@@ -285,6 +299,7 @@ class File(Form):
         *,
         media_type: str = "multipart/form-data",
         alias: Optional[str] = None,
+        aliases: Optional[Tuple[str]] = None,
         title: Optional[str] = None,
         description: Optional[str] = None,
         gt: Optional[float] = None,
@@ -296,6 +311,7 @@ class File(Form):
         regex: Optional[str] = None,
         **extra: Any,
     ):
+        self.aliases = aliases
         super().__init__(
             default,
             media_type=media_type,

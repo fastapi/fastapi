@@ -1,4 +1,4 @@
-from typing import Any, Callable, Optional, Sequence
+from typing import Any, Callable, Optional, Sequence, Tuple
 
 from fastapi import params
 
@@ -7,6 +7,7 @@ def Path(  # noqa: N802
     default: Any,
     *,
     alias: Optional[str] = None,
+    aliases: Optional[Tuple[str]] = None,
     title: Optional[str] = None,
     description: Optional[str] = None,
     gt: Optional[float] = None,
@@ -22,6 +23,7 @@ def Path(  # noqa: N802
     return params.Path(
         default=default,
         alias=alias,
+        aliases=aliases,
         title=title,
         description=description,
         gt=gt,
@@ -40,6 +42,7 @@ def Query(  # noqa: N802
     default: Any,
     *,
     alias: Optional[str] = None,
+    aliases: Optional[Tuple[str]] = None,
     title: Optional[str] = None,
     description: Optional[str] = None,
     gt: Optional[float] = None,
@@ -55,6 +58,7 @@ def Query(  # noqa: N802
     return params.Query(
         default,
         alias=alias,
+        aliases=aliases,
         title=title,
         description=description,
         gt=gt,
@@ -73,6 +77,7 @@ def Header(  # noqa: N802
     default: Any,
     *,
     alias: Optional[str] = None,
+    aliases: Optional[Tuple[str]] = None,
     convert_underscores: bool = True,
     title: Optional[str] = None,
     description: Optional[str] = None,
@@ -89,6 +94,7 @@ def Header(  # noqa: N802
     return params.Header(
         default,
         alias=alias,
+        aliases=aliases,
         convert_underscores=convert_underscores,
         title=title,
         description=description,
@@ -108,6 +114,7 @@ def Cookie(  # noqa: N802
     default: Any,
     *,
     alias: Optional[str] = None,
+    aliases: Optional[Tuple[str]] = None,
     title: Optional[str] = None,
     description: Optional[str] = None,
     gt: Optional[float] = None,
@@ -123,6 +130,7 @@ def Cookie(  # noqa: N802
     return params.Cookie(
         default,
         alias=alias,
+        aliases=aliases,
         title=title,
         description=description,
         gt=gt,
@@ -143,6 +151,7 @@ def Body(  # noqa: N802
     embed: bool = False,
     media_type: str = "application/json",
     alias: Optional[str] = None,
+    aliases: Optional[Tuple[str]] = None,
     title: Optional[str] = None,
     description: Optional[str] = None,
     gt: Optional[float] = None,
@@ -159,6 +168,7 @@ def Body(  # noqa: N802
         embed=embed,
         media_type=media_type,
         alias=alias,
+        aliases=aliases,
         title=title,
         description=description,
         gt=gt,
@@ -177,6 +187,7 @@ def Form(  # noqa: N802
     *,
     media_type: str = "application/x-www-form-urlencoded",
     alias: Optional[str] = None,
+    aliases: Optional[Tuple[str]] = None,
     title: Optional[str] = None,
     description: Optional[str] = None,
     gt: Optional[float] = None,
@@ -192,6 +203,7 @@ def Form(  # noqa: N802
         default,
         media_type=media_type,
         alias=alias,
+        aliases=aliases,
         title=title,
         description=description,
         gt=gt,
@@ -210,6 +222,7 @@ def File(  # noqa: N802
     *,
     media_type: str = "multipart/form-data",
     alias: Optional[str] = None,
+    aliases: Optional[Tuple[str]] = None,
     title: Optional[str] = None,
     description: Optional[str] = None,
     gt: Optional[float] = None,
@@ -225,6 +238,7 @@ def File(  # noqa: N802
         default,
         media_type=media_type,
         alias=alias,
+        aliases=aliases,
         title=title,
         description=description,
         gt=gt,
