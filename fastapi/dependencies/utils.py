@@ -636,14 +636,15 @@ def request_params_to_args(
             if field.required:
                 errors.append(
                     ErrorWrapper(
-                        MissingError(), loc=(field_info.in_.value, field.alias)
+                        # TODO: not sure how to properly report aliased fields
+                        MissingError(), loc=(field_info.in_.value, aliases or field.alias) # type: ignore
                     )
                 )
             else:
                 values[field.name] = deepcopy(field.default)
             continue
         v_, errors_ = field.validate(
-            value, values, loc=(field_info.in_.value, field.alias)
+            value, values, loc=(field_info.in_.value, key)
         )
         if isinstance(errors_, ErrorWrapper):
             errors.append(errors_)
