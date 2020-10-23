@@ -5,10 +5,11 @@ from enum import Enum
 from typing import Any, Dict, Optional, Set, Type, Union, cast
 
 import fastapi
+from fastapi.datastructures import MultiAliasablModelField
 from fastapi.openapi.constants import REF_PREFIX
 from pydantic import BaseConfig, BaseModel, create_model
 from pydantic.class_validators import Validator
-from pydantic.fields import FieldInfo, ModelField, UndefinedType
+from pydantic.fields import FieldInfo, UndefinedType
 from pydantic.schema import model_process_schema
 from pydantic.utils import lenient_issubclass
 
@@ -43,7 +44,7 @@ def create_response_field(
     model_config: Type[BaseConfig] = BaseConfig,
     field_info: Optional[FieldInfo] = None,
     alias: Optional[str] = None,
-) -> ModelField:
+) -> MultiAliasablModelField:
     """
     Create a new response field. Raises if type_ is invalid.
     """
@@ -51,7 +52,7 @@ def create_response_field(
     field_info = field_info or FieldInfo(None)
 
     response_field = functools.partial(
-        ModelField,
+        MultiAliasablModelField,
         name=name,
         type_=type_,
         class_validators=class_validators,
@@ -70,10 +71,10 @@ def create_response_field(
 
 
 def create_cloned_field(
-    field: ModelField,
+    field: MultiAliasablModelField,
     *,
     cloned_types: Optional[Dict[Type[BaseModel], Type[BaseModel]]] = None,
-) -> ModelField:
+) -> MultiAliasablModelField:
     # _cloned_types has already cloned types, to support recursive models
     if cloned_types is None:
         cloned_types = dict()
