@@ -735,6 +735,7 @@ def get_schema_compatible_field(
             default=field.default,
             required=field.required,
             alias=field.alias,
+            aliases=field.aliases,
             field_info=field.field_info,
         )
     return out_field
