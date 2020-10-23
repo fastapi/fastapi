@@ -75,10 +75,10 @@ class Path(Param):
         **extra: Any,
     ):
         self.in_ = self.in_
-        self.aliases = aliases
         super().__init__(
             ...,
             alias=alias,
+            aliases=aliases,
             title=title,
             description=description,
             gt=gt,
@@ -114,10 +114,10 @@ class Query(Param):
         deprecated: Optional[bool] = None,
         **extra: Any,
     ):
-        self.aliases = aliases
         super().__init__(
             default,
             alias=alias,
+            aliases=aliases,
             title=title,
             description=description,
             gt=gt,
@@ -155,10 +155,10 @@ class Header(Param):
         **extra: Any,
     ):
         self.convert_underscores = convert_underscores
-        self.aliases = aliases
         super().__init__(
             default,
             alias=alias,
+            aliases=aliases,
             title=title,
             description=description,
             gt=gt,
@@ -194,10 +194,10 @@ class Cookie(Param):
         deprecated: Optional[bool] = None,
         **extra: Any,
     ):
-        self.aliases = aliases
         super().__init__(
             default,
             alias=alias,
+            aliases=aliases,
             title=title,
             description=description,
             gt=gt,
@@ -273,12 +273,12 @@ class Form(Body):
         regex: Optional[str] = None,
         **extra: Any,
     ):
-        self.aliases = aliases
         super().__init__(
             default,
             embed=True,
             media_type=media_type,
             alias=alias,
+            aliases=aliases,
             title=title,
             description=description,
             gt=gt,
@@ -311,11 +311,11 @@ class File(Form):
         regex: Optional[str] = None,
         **extra: Any,
     ):
-        self.aliases = aliases
         super().__init__(
             default,
             media_type=media_type,
             alias=alias,
+            aliases=aliases,
             title=title,
             description=description,
             gt=gt,
