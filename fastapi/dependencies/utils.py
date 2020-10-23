@@ -389,12 +389,15 @@ def get_param_field(
     if not param.annotation == param.empty:
         annotation = param.annotation
     annotation = get_annotation_from_field_info(annotation, field_info, param_name)
+
+    aliases = getattr(field_info, "aliases", [])
+
     if not field_info.alias and getattr(field_info, "convert_underscores", None):
         alias = param.name.replace("_", "-")
-        aliases = [a.replace("_", "-") for a in field_info.aliases]
+        aliases = tuple(a.replace("_", "-") for a in aliases)
     else:
         alias = field_info.alias or param.name
-        aliases = field_info.aliases
+
     field = create_response_field(
         name=param.name,
         type_=annotation,
