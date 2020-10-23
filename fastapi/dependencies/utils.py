@@ -637,7 +637,7 @@ def request_params_to_args(
                 errors.append(
                     ErrorWrapper(
                         # TODO: not sure how to properly report aliased fields
-                        MissingError(), loc=(field_info.in_.value, aliases or field.alias) # type: ignore
+                        MissingError(), loc=(field_info.in_.value, ' | '.join(aliases) or field.alias)
                     )
                 )
             else:
