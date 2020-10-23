@@ -44,7 +44,7 @@ def create_response_field(
     model_config: Type[BaseConfig] = BaseConfig,
     field_info: Optional[FieldInfo] = None,
     alias: Optional[str] = None,
-    aliases: Optional[Tuple[str]] = None,
+    aliases: Optional[Tuple[str, ...]] = None,
 ) -> MultiAliasablModelField:
     """
     Create a new response field. Raises if type_ is invalid.
