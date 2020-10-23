@@ -39,7 +39,7 @@ class MultiAliasablModelField(ModelField):
         default_factory: Optional[NoArgAnyCallable] = None,
         required: "BoolUndefined" = Undefined,
         alias: str = None,
-        aliases: Optional[Tuple[str]] = None,
+        aliases: Optional[Tuple[str, ...]] = None,
         field_info: Optional[FieldInfo] = None,
     ) -> None:
         self.aliases = aliases
