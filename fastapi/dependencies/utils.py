@@ -390,7 +390,8 @@ def get_param_field(
         annotation = param.annotation
     annotation = get_annotation_from_field_info(annotation, field_info, param_name)
 
-    aliases = getattr(field_info, "aliases", [])
+    aliases = getattr(field_info, "aliases", tuple())
+
 
     if not field_info.alias and getattr(field_info, "convert_underscores", None):
         alias = param.name.replace("_", "-")
@@ -614,12 +615,19 @@ def request_params_to_args(
     values = {}
     errors = []
     for field in required_params:
+        key = field.alias
+        aliases = getattr(field, 'aliases') or tuple()
+        for alias in aliases:
+            if alias in received_params:
+                key = alias
+                break
+
         if is_scalar_sequence_field(field) and isinstance(
             received_params, (QueryParams, Headers)
-        ):
-            value = received_params.getlist(field.alias) or field.default
+        ):  
+            value = received_params.getlist(key) or field.default
         else:
-            value = received_params.get(field.alias)
+            value = received_params.get(key)
         field_info = field.field_info
         assert isinstance(
             field_info, params.Param
