@@ -1,122 +1,122 @@
-# Help FastAPI - Get Help
+# Help FastAPI - Obtenir de l'aide
 
-Do you like **FastAPI**?
+Aimez-vous **FastAPI** ?
 
-Would you like to help FastAPI, other users, and the author?
+Vous souhaitez aider FastAPI, les autres utilisateurs et l'auteur ?
 
-Or would you like to get help with **FastAPI**?
+Ou souhaitez-vous obtenir de l'aide avec le **FastAPI** ?
 
-There are very simple ways to help (several involve just one or two clicks).
+Il existe des moyens très simples d'aider (plusieurs ne nécessitent qu'un ou deux clics).
 
-And there are several ways to get help too.
+Il existe également plusieurs façons d'obtenir de l'aide.
 
-## Star **FastAPI** in GitHub
+## Star **FastAPI** sur GitHub
 
-You can "star" FastAPI in GitHub (clicking the star button at the top right): <a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">https://github.com/tiangolo/fastapi</a>. ⭐️
+Vous pouvez "star" FastAPI dans GitHub (en cliquant sur le bouton étoile en haut à droite) : <a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">https://github.com/tiangolo/fastapi</a>. ⭐️
 
-By adding a star, other users will be able to find it more easily and see that it has been already useful for others.
+En ajoutant une étoile, les autres utilisateurs pourront la trouver plus facilement et constater qu'elle a déjà été utile à d'autres.
 
-## Watch the GitHub repository for releases
+## Watch le dépôt GitHub pour les releases
 
-You can "watch" FastAPI in GitHub (clicking the "watch" button at the top right): <a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">https://github.com/tiangolo/fastapi</a>. 👀
+Vous pouvez "watch" FastAPI dans GitHub (en cliquant sur le bouton "watch" en haut à droite) : <a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">https://github.com/tiangolo/fastapi</a>. 👀
 
-There you can select "Releases only".
+Vous pouvez y sélectionner "Releases only".
 
-Doing it, you will receive notifications (in your email) whenever there's a new release (a new version) of **FastAPI** with bug fixes and new features.
+Ainsi, vous recevrez des notifications (dans votre courrier électronique) chaque fois qu'il y aura une nouvelle version de **FastAPI** avec des corrections de bugs et de nouvelles fonctionnalités.
 
-## Connect with the author
+## Se rapprocher de l'auteur
 
-You can connect with <a href="https://tiangolo.com" class="external-link" target="_blank">me (Sebastián Ramírez / `tiangolo`)</a>, the author.
+Vous pouvez vous rapprocher de <a href="https://tiangolo.com" class="external-link" target="_blank">moi (Sebastián Ramírez / `tiangolo`)</a>, l'auteur.
 
-You can:
+Vous le pouvez :
 
-* <a href="https://github.com/tiangolo" class="external-link" target="_blank">Follow me on **GitHub**</a>.
-    * See other Open Source projects I have created that could help you.
-    * Follow me to see when I create a new Open Source project.
-* <a href="https://twitter.com/tiangolo" class="external-link" target="_blank">Follow me on **Twitter**</a>.
-    * Tell me how you use FastAPI (I love to hear that).
-    * Hear when I make announcements or release new tools.
-* <a href="https://www.linkedin.com/in/tiangolo/" class="external-link" target="_blank">Connect with me on **Linkedin**</a>.
-    * Hear when I make announcements or release new tools (although I use Twitter more often 🤷‍♂).
-* Read what I write (or follow me) on <a href="https://dev.to/tiangolo" class="external-link" target="_blank">**Dev.to**</a> or <a href="https://medium.com/@tiangolo" class="external-link" target="_blank">**Medium**</a>.
-    * Read other ideas, articles, and about tools I have created.
-    * Follow me to read when I publish something new.
+* <a href="https://github.com/tiangolo" class="external-link" target="_blank">Me suivre sur **GitHub**</a>.
+    * Voir d'autres projets Open Source que j'ai créés et qui pourraient vous aider.
+    * Suivez-moi pour voir quand je crée un nouveau projet Open Source.
+* <a href="https://twitter.com/tiangolo" class="external-link" target="_blank">Me suivre sur **Twitter**</a>.
+    * Dites-moi comment vous utilisez FastAPI (j'adore entendre ça).
+    * Entendre quand je fais des annonces ou que je lance de nouveaux outils.
+* <a href="https://www.linkedin.com/in/tiangolo/" class="external-link" target="_blank">Vous connectez à moi sur **Linkedin**</a>.
+    * Etre notifié quand je fais des annonces ou que je lance de nouveaux outils (bien que j'utilise plus souvent Twitte 🤷‍♂).
+* Lire ce que j’écris (ou me suivre) sur <a href="https://dev.to/tiangolo" class="external-link" target="_blank">**Dev.to**</a> ou <a href="https://medium.com/@tiangolo" class="external-link" target="_blank">**Medium**</a>.
+    * Lire d'autres idées, articles, et sur les outils que j'ai créés.
+    * Suivez-moi pour lire quand je publie quelque chose de nouveau.
 
-## Tweet about **FastAPI**
+## Tweeter sur **FastAPI**
 
-<a href="https://twitter.com/compose/tweet?text=I'm loving FastAPI because... https://github.com/tiangolo/fastapi cc @tiangolo" class="external-link" target="_blank">Tweet about **FastAPI**</a> and let me and others know why you like it. 🎉
+<a href="https://twitter.com/compose/tweet?text=I'm loving FastAPI because... https://github.com/tiangolo/fastapi cc @tiangolo" class="external-link" target="_blank">Tweetez à propos de **FastAPI**</a> et faites-moi savoir, ainsi qu'aux autres, pourquoi vous aimez ça. 🎉
 
-I love to hear about how **FastAPI** is being used, what have you liked in it, in which project/company are you using it, etc.
+J'aime entendre parler de l'utilisation du **FastAPI**, de ce que vous avez aimé dedans, dans quel projet/entreprise l'utilisez-vous, etc.
 
-## Vote for FastAPI
+## Voter pour FastAPI
 
-* <a href="https://www.slant.co/options/34241/~fastapi-review" class="external-link" target="_blank">Vote for **FastAPI** in Slant</a>.
-* <a href="https://alternativeto.net/software/fastapi/" class="external-link" target="_blank">Vote for **FastAPI** in AlternativeTo</a>.
-* <a href="https://github.com/marmelab/awesome-rest/pull/93" class="external-link" target="_blank">Vote for **FastAPI** on awesome-rest</a>.
+* <a href="https://www.slant.co/options/34241/~fastapi-review" class="external-link" target="_blank">Votez pour **FastAPI** sur Slant</a>.
+* <a href="https://alternativeto.net/software/fastapi/" class="external-link" target="_blank">Votez pour **FastAPI** sur AlternativeTo</a>.
+* <a href="https://github.com/marmelab/awesome-rest/pull/93" class="external-link" target="_blank">Votez pour **FastAPI** sur awesome-rest</a>.
 
-## Help others with issues in GitHub
+## Aider les autres à résoudre les problèmes dans GitHub
 
-You can see <a href="https://github.com/tiangolo/fastapi/issues" class="external-link" target="_blank">existing issues</a> and try and help others, most of the times they are questions that you might already know the answer for. 🤓
+Vous pouvez voir <a href="https://github.com/tiangolo/fastapi/issues" class="external-link" target="_blank">les problèmes existants</a> et essayer d'aider les autres, la plupart du temps il s'agit de questions dont vous connaissez peut-être déjà la réponse. 🤓
 
-## Watch the GitHub repository
+## Watch le dépôt GitHub
 
-You can "watch" FastAPI in GitHub (clicking the "watch" button at the top right): <a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">https://github.com/tiangolo/fastapi</a>. 👀
+Vous pouvez "watch" FastAPI dans GitHub (en cliquant sur le bouton "watch" en haut à droite) :<a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">https://github.com/tiangolo/fastapi</a>. 👀
 
-If you select "Watching" instead of "Releases only", you will receive notifications when someone creates a new issue.
+Si vous sélectionnez "Watching" au lieu de "Releases only", vous recevrez des notifications lorsque quelqu'un crée une nouvelle Issue.
 
-Then you can try and help them solving those issues.
+Vous pouvez alors essayer de les aider à résoudre ces problèmes.
 
-## Create issues
+## Créer une Issues
 
-You can <a href="https://github.com/tiangolo/fastapi/issues/new/choose" class="external-link" target="_blank">create a new issue</a> in the GitHub repository, for example to:
+Vous pouvez <a href="https://github.com/tiangolo/fastapi/issues/new/choose" class="external-link" target="_blank">créer une Issue</a> dans le dépôt GitHub, par exemple pour :
 
-* Ask a question or ask about a problem.
-* Suggest a new feature.
+* Poser une question ou s'informer sur un problème.
+* Suggérer une nouvelle fonctionnalité.
 
-**Note**: if you create an issue then I'm going to ask you to also help others. 😉
+**Note** : si vous créez un problème, alors je vais vous demander d'aider aussi les autres. 😉
 
-## Create a Pull Request
+## Créer une Pull Request
 
-You can <a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">create a Pull Request</a>, for example:
+Vous pouvez <a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">créer une Pull Request</a>, par exemple:
 
-* To fix a typo you found on the documentation.
-* To propose new documentation sections.
-* To fix an existing issue/bug.
-* To add a new feature.
+* Pour corriger une faute de frappe que vous avez trouvée sur la documentation.
+* Proposer de nouvelles sections de documentation.
+* Pour corriger une Issue/Bug existant.
+* Pour ajouter une nouvelle fonctionnalité.
 
-## Join the chat
+## Rejoindre le chat
 
 <a href="https://gitter.im/tiangolo/fastapi?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge" target="_blank">
-    <img src="https://badges.gitter.im/tiangolo/fastapi.svg" alt="Join the chat at https://gitter.im/tiangolo/fastapi">
+    <img src="https://badges.gitter.im/tiangolo/fastapi.svg" alt="Rejoindre le chat à https://gitter.im/tiangolo/fastapi">
 </a>
 
-Join the chat on Gitter: <a href="https://gitter.im/tiangolo/fastapi" class="external-link" target="_blank">https://gitter.im/tiangolo/fastapi</a>.
+Rejoignez le chat sur Gitter: <a href="https://gitter.im/tiangolo/fastapi" class="external-link" target="_blank">https://gitter.im/tiangolo/fastapi</a>.
 
-There you can have quick conversations with others, help others, share ideas, etc.
+Vous pouvez y avoir des conversations rapides avec d'autres personnes, aider les autres, partager des idées, etc.
 
-But have in mind that as it allows more "free conversation", it's easy to ask questions that are too general and more difficult to answer, so, you might not receive answers.
+Mais gardez à l'esprit que, comme il permet une "conversation plus libre", il est facile de poser des questions trop générales et plus difficiles à répondre, de sorte que vous risquez de ne pas recevoir de réponses.
 
-In GitHub issues the template will guide to to write the right question so that you can more easily get a good answer, or even solve the problem yourself even before asking. And in GitHub I can make sure I always answer everything, even if it takes some time. I can't personally do that with the Gitter chat. 😅
+Dans les Issues de GitHub, le modèle vous guidera pour écrire la bonne question afin que vous puissiez plus facilement obtenir une bonne réponse, ou même résoudre le problème vous-même avant même de le poser. Et dans GitHub, je peux m'assurer que je réponds toujours à tout, même si cela prend du temps. Je ne peux pas faire cela personnellement avec le chat Gitter. 😅
 
-Conversations in Gitter are also not as easily searchable as in GitHub, so questions and answers might get lost in the conversation.
+Les conversations dans Gitter ne sont pas non plus aussi facilement consultables que dans GitHub, de sorte que les questions et les réponses peuvent se perdre dans la conversation.
 
-On the other side, there's more than 1000 people in the chat, so there's a high chance you'll find someone to talk to there, almost all the time. 😄
+De l'autre côté, il y a plus de 1000 personnes dans le chat, il y a donc de fortes chances que vous y trouviez quelqu'un à qui parler, presque tout le temps. 😄
 
-## Sponsor the author
+## Parrainer l'auteur
 
-You can also financially support the author (me) through <a href="https://github.com/sponsors/tiangolo" class="external-link" target="_blank">GitHub sponsors</a>.
+Vous pouvez également soutenir financièrement l'auteur (moi) via <a href="https://github.com/sponsors/tiangolo" class="external-link" target="_blank">GitHub sponsors</a>.
 
-There you could buy me a coffee ☕️ to say thanks 😄.
+Là, vous pourriez m'offrir un café ☕️ pour me remercier 😄.
 
-## Sponsor the tools that power FastAPI
+## Sponsoriser les outils qui font fonctionner FastAPI
 
-As you have seen in the documentation, FastAPI stands on the shoulders of giants, Starlette and Pydantic.
+Comme vous l'avez vu dans la documentation, FastAPI se tient sur les épaules des géants, Starlette et Pydantic.
 
-You can also sponsor:
+Vous pouvez également parrainer :
 
 * <a href="https://github.com/sponsors/samuelcolvin" class="external-link" target="_blank">Samuel Colvin (Pydantic)</a>
 * <a href="https://github.com/sponsors/encode" class="external-link" target="_blank">Encode (Starlette, Uvicorn)</a>
 
 ---
 
-Thanks! 🚀
+Merci! 🚀
