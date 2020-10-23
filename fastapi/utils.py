@@ -2,7 +2,7 @@ import functools
 import re
 from dataclasses import is_dataclass
 from enum import Enum
-from typing import Any, Dict, Optional, Set, Type, Union, cast
+from typing import Any, Dict, List, Optional, Set, Type, Union, cast
 
 import fastapi
 from fastapi.datastructures import MultiAliasablModelField
@@ -44,6 +44,7 @@ def create_response_field(
     model_config: Type[BaseConfig] = BaseConfig,
     field_info: Optional[FieldInfo] = None,
     alias: Optional[str] = None,
+    aliases: Optional[List[str]] = None
 ) -> MultiAliasablModelField:
     """
     Create a new response field. Raises if type_ is invalid.
@@ -60,6 +61,7 @@ def create_response_field(
         required=required,
         model_config=model_config,
         alias=alias,
+        aliases=aliases,
     )
 
     try:
