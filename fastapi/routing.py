@@ -5,7 +5,7 @@ import json
 from typing import Any, Callable, Dict, List, Optional, Sequence, Set, Type, Union
 
 from fastapi import params
-from fastapi.datastructures import MultiAliasablModelField
+from fastapi.datastructures import MultiAliasableModelField
 from fastapi.dependencies.models import Dependant
 from fastapi.dependencies.utils import (
     get_body_field,
@@ -79,7 +79,7 @@ def _prepare_response_content(
 
 async def serialize_response(
     *,
-    field: Optional[MultiAliasablModelField] = None,
+    field: Optional[MultiAliasableModelField] = None,
     response_content: Any,
     include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
     exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
@@ -137,10 +137,10 @@ async def run_endpoint_function(
 
 def get_request_handler(
     dependant: Dependant,
-    body_field: Optional[MultiAliasablModelField] = None,
+    body_field: Optional[MultiAliasableModelField] = None,
     status_code: int = 200,
     response_class: Type[Response] = JSONResponse,
-    response_field: Optional[MultiAliasablModelField] = None,
+    response_field: Optional[MultiAliasableModelField] = None,
     response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
     response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
     response_model_by_alias: bool = True,
@@ -311,7 +311,7 @@ class APIRoute(routing.Route):
             # By being a new field, no inheritance will be passed as is. A new model
             # will be always created.
             self.secure_cloned_response_field: Optional[
-                MultiAliasablModelField
+                MultiAliasableModelField
             ] = create_cloned_field(self.response_field)
         else:
             self.response_field = None  # type: ignore
@@ -342,7 +342,7 @@ class APIRoute(routing.Route):
                 response_fields[additional_status_code] = response_field
         if response_fields:
             self.response_fields: Dict[
-                Union[int, str], MultiAliasablModelField
+                Union[int, str], MultiAliasableModelField
             ] = response_fields
         else:
             self.response_fields = {}

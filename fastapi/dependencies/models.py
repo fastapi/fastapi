@@ -1,6 +1,6 @@
 from typing import Callable, List, Optional, Sequence
 
-from fastapi.datastructures import MultiAliasablModelField
+from fastapi.datastructures import MultiAliasableModelField
 from fastapi.security.base import SecurityBase
 
 
@@ -16,11 +16,11 @@ class Dependant:
     def __init__(
         self,
         *,
-        path_params: Optional[List[MultiAliasablModelField]] = None,
-        query_params: Optional[List[MultiAliasablModelField]] = None,
-        header_params: Optional[List[MultiAliasablModelField]] = None,
-        cookie_params: Optional[List[MultiAliasablModelField]] = None,
-        body_params: Optional[List[MultiAliasablModelField]] = None,
+        path_params: Optional[List[MultiAliasableModelField]] = None,
+        query_params: Optional[List[MultiAliasableModelField]] = None,
+        header_params: Optional[List[MultiAliasableModelField]] = None,
+        cookie_params: Optional[List[MultiAliasableModelField]] = None,
+        body_params: Optional[List[MultiAliasableModelField]] = None,
         dependencies: Optional[List["Dependant"]] = None,
         security_schemes: Optional[List[SecurityRequirement]] = None,
         name: Optional[str] = None,

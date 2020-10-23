@@ -24,9 +24,9 @@ if TYPE_CHECKING:
     from pydantic.fields import BaseConfig, BoolUndefined, ReprArgs
 
 
-class MultiAliasablModelField(ModelField):
-    sub_fields: Optional[List["MultiAliasablModelField"]]  # type: ignore
-    key_field: Optional["MultiAliasablModelField"]  # type: ignore
+class MultiAliasableModelField(ModelField):
+    sub_fields: Optional[List["MultiAliasableModelField"]]  # type: ignore
+    key_field: Optional["MultiAliasableModelField"]  # type: ignore
 
     def __init__(
         self,
