@@ -616,7 +616,7 @@ def request_params_to_args(
     errors = []
     for field in required_params:
         key = field.alias
-        aliases = getattr(field, 'aliases') or tuple()
+        aliases: Tuple[str, ...] = getattr(field, 'aliases') or tuple()
         for alias in aliases:
             if alias in received_params:
                 key = alias
