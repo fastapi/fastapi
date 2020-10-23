@@ -36,6 +36,7 @@ nav:
   - tr: /tr/
   - uk: /uk/
   - zh: /zh/
+- fastapi-people.md
 markdown_extensions:
 - toc:
     permalink: true
