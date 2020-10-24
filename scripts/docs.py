@@ -171,7 +171,11 @@ def build_lang(
                         new_key += (key_part,)
                 use_lang_file_to_nav[file] = new_key
     key_to_section = {(): []}
-    for file, file_key in use_lang_file_to_nav.items():
+    for file, orig_file_key in file_to_nav.items():
+        if file in use_lang_file_to_nav:
+            file_key = use_lang_file_to_nav[file]
+        else:
+            file_key = orig_file_key
         section = get_key_section(key_to_section=key_to_section, key=file_key)
         section.append(file)
     new_nav = key_to_section[()]
