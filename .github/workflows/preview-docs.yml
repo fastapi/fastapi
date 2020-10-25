@@ -36,6 +36,11 @@ jobs:
           workflow: build-docs.yml
           run_id: ${{ github.event.workflow_run.id }}
           name: docs-zip
+      - name: Unzip docs
+        run: |
+          rm -rf ./site
+          unzip docs.zip
+          rm -f docs.zip
       - name: Deploy to Netlify
         id: netlify
         uses: nwtgck/actions-netlify@v1.1.5
