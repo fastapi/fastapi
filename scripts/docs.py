@@ -1,6 +1,7 @@
 import os
 import shutil
 from http.server import HTTPServer, SimpleHTTPRequestHandler
+from multiprocessing import Pool
 from pathlib import Path
 from typing import Dict, Optional, Tuple
 
@@ -207,10 +208,15 @@ def build_all():
     typer.echo(f"Building docs for: en")
     mkdocs.commands.build.build(mkdocs.config.load_config(site_dir=str(site_path)))
     os.chdir(current_dir)
+
+    langs = []
     for lang in get_lang_paths():
         if lang == en_build_path or not lang.is_dir():
             continue
-        build_lang(lang.name)
+        langs.append(lang.name)
+    cpu_count = os.cpu_count() or 1
+    with Pool(cpu_count * 2) as p:
+        p.map(build_lang, langs)
     typer.echo("Copying en index.md to README.md")
     en_index = en_build_path / "docs" / "index.md"
     shutil.copyfile(en_index, "README.md")
