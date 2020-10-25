@@ -5,30 +5,12 @@ on:
       - Build Docs
     types: 
       - completed
-  # workflow_dispatch:
-  #   inputs:
-  #     pr:
-  #       description: Pull Request number
-  #       required: true
-  #     name:
-  #       description: Artifact name for zip file with docs
-  #       required: true
-  #     commit:
-  #       description: Commit SHA hash
-  #       required: true
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      # - uses: ./.github/actions/get-artifact
-      #   with:
-      #     token: ${{ secrets.GITHUB_TOKEN }}
-      #     name: ${{ github.event.inputs.name }}
-      #     path: ./archive.zip
-      # - name: Unzip docs
-      #   run: bash ./scripts/unzip-docs.sh
       - name: Download Artifact Docs
         uses: dawidd6/action-download-artifact@v2.9.0
         with:
