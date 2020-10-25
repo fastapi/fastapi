@@ -28,7 +28,7 @@ jobs:
       - uses: actions/upload-artifact@v2
         if: github.event_name == 'pull_request'
         with:
-          name: docs-zip-${{ github.event.pull_request.head.sha }}
+          name: docs-zip
           path: ./docs.zip
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v1.1.5
