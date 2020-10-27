@@ -15,3 +15,20 @@ from .oauth2 import (
     SecurityScopes,
 )
 from .open_id_connect_url import OpenIdConnect
+
+__all__ = [
+    "APIKeyCookie",
+    "APIKeyHeader",
+    "APIKeyQuery",
+    "HTTPAuthorizationCredentials",
+    "HTTPBasic",
+    "HTTPBasicCredentials",
+    "HTTPBearer",
+    "HTTPDigest",
+    "OAuth2",
+    "OAuth2AuthorizationCodeBearer",
+    "OAuth2PasswordBearer",
+    "OAuth2PasswordRequestForm" "OAuth2PasswordRequestFormStrict",
+    "SecurityScopes",
+    "OpenIdConnect",
+]
