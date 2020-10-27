@@ -28,7 +28,8 @@ __all__ = [
     "OAuth2",
     "OAuth2AuthorizationCodeBearer",
     "OAuth2PasswordBearer",
-    "OAuth2PasswordRequestForm" "OAuth2PasswordRequestFormStrict",
+    "OAuth2PasswordRequestForm",
+    "OAuth2PasswordRequestFormStrict",
     "SecurityScopes",
     "OpenIdConnect",
 ]
