@@ -153,7 +153,7 @@ def read_item(item_id: int, q: Optional[str] = None):
 
 如果你的代码里会出现 `async` / `await`，请使用 `async def`：
 
-```Python hl_lines="9 14"
+```Python hl_lines="9  14"
 from typing import Optional
 
 from fastapi import FastAPI
@@ -245,7 +245,7 @@ INFO:     Application startup complete.
 
 我们借助 Pydantic 来使用标准的 Python 类型声明请求体。
 
-```Python hl_lines="4  9 10 11 12  25 26 27"
+```Python hl_lines="4  9-12  25-27"
 from typing import Optional
 
 from fastapi import FastAPI
