@@ -33,7 +33,7 @@ FastAPIは`response_model`を使って以下のことをします:
 
 ## 同じ入力データの返却
 
-ここでは`UserIn`モデルを宣言しています。それは平文のパスワードが含まれています:
+ここでは`UserIn`モデルを宣言しています。それには平文のパスワードが含まれています:
 
 ```Python hl_lines="9 11"
 {!../../../docs_src/response_model/tutorial002.py!}
