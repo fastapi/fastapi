@@ -181,7 +181,7 @@ http://localhost:8000/items/?q=foo&q=bar
 
 <img src="https://fastapi.tiangolo.com/img/tutorial/query-params-str-validations/image02.png">
 
-### デフォルト値を持つ、クエリパラメータのリスト/複数の値
+### デフォルト値を持つ、クエリパラメータのリスト / 複数の値
 
 また、値が指定されていない場合はデフォルトの`list`を定義することもできます。
 
