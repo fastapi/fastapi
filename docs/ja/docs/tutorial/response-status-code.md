@@ -27,7 +27,7 @@
 
 <img src="https://fastapi.tiangolo.com/img/tutorial/response-status-code/image01.png">
 
-!!! note "情報"
+!!! note "備考"
     いくつかのレスポンスコード（次のセクションを参照）は、レスポンスにボディがないことを示しています。
 
     FastAPIはこれを知っていて、レスポンスボディがないというOpenAPIドキュメントを生成します。
