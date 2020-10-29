@@ -22,7 +22,7 @@ OAuth2は、認証と認可を処理するための幾つかの方法を定義�
 
 それは「サードパーティ」を使用して認証する方法も含まれています。
 
-「Facebook、Google、Twitter、GitHubでログイン」のシステムはすべてその下で使っています。
+これは、「Facebook、Google、Twitter、GitHubでログイン」のある全てのシステムが使っているものです。
 
 ### OAuth 1
 
