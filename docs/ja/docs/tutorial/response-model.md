@@ -74,7 +74,7 @@ FastAPIは`response_model`を使って以下のことをします:
 {!../../../docs_src/response_model/tutorial003.py!}
 ```
 
-そのため、**FastAPI** は出力モデルで宣言されていない全てのデータをフィルタリングしてくれます（Pydantic使用）。
+そのため、**FastAPI** は出力モデルで宣言されていない全てのデータをフィルタリングしてくれます（Pydanticを使用）。
 
 ## ドキュメントを見る
 
