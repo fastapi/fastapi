@@ -131,7 +131,7 @@ q: Optional[str] = None
 現在は以下の例のように`Query`で宣言しています:
 
 ```Python
-q: str = Query(None, min_length=3)
+q: Optional[str] = Query(None, min_length=3)
 ```
 
 そのため、`Query`を使用して必須の値を宣言する必要がある場合は、第一引数に`...`を使用することができます:
