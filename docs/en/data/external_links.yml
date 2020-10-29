@@ -136,6 +136,14 @@ articles:
       title: Build And Host Fast Data Science Applications Using FastAPI
       author_link: https://medium.com/@farhadmalik
       author: Farhad Malik
+    - link: https://medium.com/@gabbyprecious2000/creating-a-crud-app-with-fastapi-part-one-7c049292ad37
+      title: Creating a CRUD App with FastAPI (Part one)
+      author_link: https://medium.com/@gabbyprecious2000
+      author: Precious Ndubueze
+    - link: https://julienharbulot.com/notification-server.html
+      title: HTTP server to display desktop notifications
+      author_link: https://julienharbulot.com/
+      author: Julien Harbulot
   japanese:
     - link: https://qiita.com/mtitg/items/47770e9a562dd150631d
       title: FastAPI｜DB接続してCRUDするPython製APIサーバーを構築
