@@ -23,7 +23,7 @@
 これは:
 
 * レスポンスでステータスコードを返します。
-* OpenAPIスキーマ（およびユーザーインターフェース）にそのように文書化します:
+* OpenAPIスキーマ（およびユーザーインターフェース）に以下のように文書化します:
 
 <img src="https://fastapi.tiangolo.com/img/tutorial/response-status-code/image01.png">
 
