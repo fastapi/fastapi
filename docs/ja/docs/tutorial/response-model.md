@@ -130,7 +130,7 @@ FastAPIは`response_model`を使って以下のことをします:
     * `response_model_exclude_defaults=True`
     * `response_model_exclude_none=True`
 
-    <a href="https://pydantic-docs.helpmanual.io/usage/exporting_models/#modeldict" class="external-link" target="_blank">Pydanticのドキュメント</a>で説明されているように`exclude_defaults`と`exclude_none`を使用しています。
+    `exclude_defaults`と`exclude_none`については、<a href="https://pydantic-docs.helpmanual.io/usage/exporting_models/#modeldict" class="external-link" target="_blank">Pydanticのドキュメント</a>で説明されている通りです。
 
 #### デフォルト値を持つフィールドの値を持つデータ
 
