@@ -125,7 +125,7 @@ q: str
 以下の代わりに:
 
 ```Python
-q: str = None
+q: Optional[str] = None
 ```
 
 現在は以下の例のように`Query`で宣言しています:
