@@ -100,7 +100,7 @@ Pythonの例外なので、`return`ではなく、`raise`です。
 
 しかし、これは`unicorn_exception_handler`で処理されます。
 
-そのため、HTTPステータスコードが`418`で、JSONの内容が以下のような明確なエラーを受け取ることになります:
+そのため、HTTPステータスコードが`418`で、JSONの内容が以下のような明確なエラーを受け取ることになります:
 
 ```JSON
 {"message": "Oops! yolo did something. There goes a rainbow..."}
@@ -177,7 +177,7 @@ path -> item_id
 
 同様に、`HTTPException`ハンドラをオーバーライドすることもできます。
 
-例えば、これらのエラーに対しては、JSONではなくプレーンテキストを返すようにすることができます:
+例えば、これらのエラーに対しては、JSONではなくプレーンテキストを返すようにすることができます:
 
 ```Python hl_lines="3 4  9 10 11 22"
 {!../../../docs_src/handling_errors/tutorial004.py!}
@@ -207,7 +207,7 @@ path -> item_id
 }
 ```
 
-受信したボディを含むデータが無効であることを示しレスポンスが表示されます:
+受信したボディを含むデータが無効であることを示すレスポンスが表示されます:
 
 ```JSON hl_lines="12 13 14 15"
 {
