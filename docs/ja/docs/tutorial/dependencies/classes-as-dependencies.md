@@ -12,7 +12,7 @@
 
 しかし、*path operation関数*のパラメータ`commons`に`dict`が含まれています。
 
-また、エディタは`dict`のキーと値の型を知ることができないため、多くのサポート（補完のような）を提供することができないことを知っています。
+また、エディタは`dict`のキーと値の型を知ることができないため、多くのサポート（補完のような）を提供することができません。
 
 もっとうまくやれるはずです...。
 
@@ -127,7 +127,7 @@ commons: CommonQueryParams = Depends(CommonQueryParams)
 
 ---
 
-この場合、以下にある最初の`CommonQueryParams`は:
+この場合、以下にある最初の`CommonQueryParams`:
 
 ```Python
 commons: CommonQueryParams ...
