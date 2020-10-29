@@ -12,7 +12,7 @@
 {!../../../docs_src/response_status_code/tutorial001.py!}
 ```
 
-!!! note "情報"
+!!! note "備考"
     `status_code`は「デコレータ」メソッド（`get`、`post`など）のパラメータであることに注意してください。すべてのパラメータやボディのように、*path operation関数*のものではありません。
 
 `status_code`パラメータはHTTPステータスコードを含む数値を受け取ります。
