@@ -62,7 +62,6 @@ $ pip install fastapi[all]
     ```
 
     また、サーバーとして動作するように`uvicorn` をインストールします:
-    Also install `uvicorn` to work as the server:
 
     ```
     pip install uvicorn
