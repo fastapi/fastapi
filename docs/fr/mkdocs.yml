@@ -29,8 +29,11 @@ nav:
   - es: /es/
   - fr: /fr/
   - it: /it/
+  - ja: /ja/
+  - ko: /ko/
   - pt: /pt/
   - ru: /ru/
+  - tr: /tr/
   - uk: /uk/
   - zh: /zh/
 markdown_extensions:
