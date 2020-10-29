@@ -50,7 +50,7 @@
 
 docstringに<a href="https://en.wikipedia.org/wiki/Markdown" class="external-link" target="_blank">Markdown</a>を記述すれば、正しく解釈されて表示されます。（docstringのインデントを考慮して）
 
-```Python hl_lines="19 20 21 22 23 24 25 26 27"
+```Python hl_lines="19-27"
 {!../../../docs_src/path_operation_configuration/tutorial004.py!}
 ```
 
