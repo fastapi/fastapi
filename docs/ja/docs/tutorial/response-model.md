@@ -102,7 +102,7 @@ FastAPIは`response_model`を使って以下のことをします:
 
 例えば、NoSQLデータベースに多くのオプション属性を持つモデルがあるが、デフォルト値でいっぱいの非常に長いJSONレスポンスを送信したくない場合です。
 
-### `response_model_exclude_unset`の使用
+### `response_model_exclude_unset`パラメータの使用
 
 *path operation デコレータ*に`response_model_exclude_unset=True`パラメータを設定することができます:
 
