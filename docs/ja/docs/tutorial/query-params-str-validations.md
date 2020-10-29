@@ -45,7 +45,7 @@ q: Optional[str] = Query(None)
 ...を以下と同じようにパラメータをオプションにします:
 
 ```Python
-q: str = None
+q: Optional[str] = None
 ```
 
 しかし、これはクエリパラメータとして明示的に宣言しています。
