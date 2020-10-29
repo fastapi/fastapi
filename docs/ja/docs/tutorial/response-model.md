@@ -203,6 +203,6 @@ FastAPIは十分に賢いので（実際には、Pydanticが十分に賢い）`d
 
 ## まとめ
 
-*path operationデコレータの*`response_model`パラメータを使用して、レスポンスモデルを定義し、特にプライベートデータがフィルタリングされていることを確認します。
+*path operationデコレータの*`response_model`パラメータを使用して、レスポンスモデルを定義し、特にプライベートデータがフィルタリングされていることを保証します。
 
 明示的に設定された値のみを返すには、`response_model_exclude_unset`を使用します。
