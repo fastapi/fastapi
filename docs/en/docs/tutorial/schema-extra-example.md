@@ -10,7 +10,7 @@ There are several ways you can declare extra JSON Schema information.
 
 You can declare an example for a Pydantic model using `Config` and `schema_extra`, as described in <a href="https://pydantic-docs.helpmanual.io/usage/schema/#schema-customization" class="external-link" target="_blank">Pydantic's docs: Schema customization</a>:
 
-```Python hl_lines="15 16 17 18 19 20 21 22 23"
+```Python hl_lines="15-23"
 {!../../../docs_src/schema_extra_example/tutorial001.py!}
 ```
 
@@ -20,7 +20,7 @@ That extra info will be added as-is to the output JSON Schema.
 
 In `Field`, `Path`, `Query`, `Body` and others you'll see later, you can also declare extra info for the JSON Schema by passing any other arbitrary arguments to the function, for example, to add an `example`:
 
-```Python hl_lines="4 10 11 12 13"
+```Python hl_lines="4  10-13"
 {!../../../docs_src/schema_extra_example/tutorial002.py!}
 ```
 
@@ -33,7 +33,7 @@ The same way you can pass extra info to `Field`, you can do the same with `Path`
 
 For example, you can pass an `example` for a body request to `Body`:
 
-```Python hl_lines="21 22 23 24 25 26"
+```Python hl_lines="21-26"
 {!../../../docs_src/schema_extra_example/tutorial003.py!}
 ```
 

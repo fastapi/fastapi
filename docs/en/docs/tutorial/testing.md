@@ -18,7 +18,7 @@ Use the `TestClient` object the same way as you do with `requests`.
 
 Write simple `assert` statements with the standard Python expressions that you need to check (again, standard `pytest`).
 
-```Python hl_lines="2  12  15 16 17 18"
+```Python hl_lines="2  12  15-18"
 {!../../../docs_src/app_testing/tutorial001.py!}
 ```
 

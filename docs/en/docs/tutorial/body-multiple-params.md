@@ -8,7 +8,7 @@ First, of course, you can mix `Path`, `Query` and request body parameter declara
 
 And you can also declare body parameters as optional, by setting the default to `None`:
 
-```Python hl_lines="19 20 21"
+```Python hl_lines="19-21"
 {!../../../docs_src/body_multiple_params/tutorial001.py!}
 ```
 

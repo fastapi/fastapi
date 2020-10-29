@@ -6,7 +6,7 @@ You can declare a parameter of type `Response` in your *path operation function*
 
 And then you can set cookies in that *temporal* response object.
 
-```Python hl_lines="1  8 9"
+```Python hl_lines="1  8-9"
 {!../../../docs_src/response_cookies/tutorial002.py!}
 ```
 
@@ -26,7 +26,7 @@ To do that, you can create a response as described in [Return a Response Directl
 
 Then set Cookies in it, and then return it:
 
-```Python hl_lines="10 11 12"
+```Python hl_lines="10-12"
 {!../../../docs_src/response_cookies/tutorial001.py!}
 ```
 

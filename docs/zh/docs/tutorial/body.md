@@ -27,7 +27,7 @@
 
 使用标准的 Python 类型来声明所有属性：
 
-```Python hl_lines="5 6 7 8 9"
+```Python hl_lines="5-9"
 {!../../../docs_src/body/tutorial001.py!}
 ```
 
@@ -122,7 +122,7 @@ Pydantic 本身甚至也进行了一些更改以支持此功能。
 
 **FastAPI** 将识别出与路径参数匹配的函数参数应**从路径中获取**，而声明为 Pydantic 模型的函数参数应**从请求体中获取**。
 
-```Python hl_lines="15 16"
+```Python hl_lines="15-16"
 {!../../../docs_src/body/tutorial003.py!}
 ```
 
