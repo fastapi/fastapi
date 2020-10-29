@@ -28,14 +28,16 @@ nav:
   - en: /
   - es: /es/
   - fr: /fr/
-  - ja: /ja/
   - it: /it/
+  - ja: /ja/
+  - ko: /ko/
   - pt: /pt/
   - ru: /ru/
   - tr: /tr/
   - uk: /uk/
   - zh: /zh/
 - features.md
+- fastapi-people.md
 - python-types.md
 - Tutorial - User Guide:
   - tutorial/index.md
