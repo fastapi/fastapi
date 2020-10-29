@@ -45,7 +45,7 @@ Pythonの例外なので、`return`ではなく、`raise`です。
 {!../../../docs_src/handling_errors/tutorial001.py!}
 ```
 
-### 結果のレスポンス
+### レスポンス結果
 
 クライアントが`http://example.com/items/foo`（`item_id` `"foo"`）をリクエストすると、HTTPステータスコードが200で、以下のJSONレスポンスが返されます:
 
