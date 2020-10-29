@@ -100,7 +100,7 @@ Pythonの例外なので、`return`ではなく、`raise`です。
 
 しかし、これは`unicorn_exception_handler`で処理されます。
 
-そのため、HTTPステータスコードが`418`で、JSONの内容が以下のような明確なエラーを受け取ることになります:
+そのため、HTTPステータスコードが`418`で、JSONの内容が以下のような明確なエラーを受け取ることになります:
 
 ```JSON
 {"message": "Oops! yolo did something. There goes a rainbow..."}
