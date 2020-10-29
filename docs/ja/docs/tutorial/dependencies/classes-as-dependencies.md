@@ -159,7 +159,7 @@ commons = Depends(CommonQueryParams)
 commons: CommonQueryParams = Depends(CommonQueryParams)
 ```
 
-**FastAPI** はこのような場合のためのショートカットを提供しています。依存関係が*特定の*クラスである場合、**FastAPI** がクラス自体のインスタンスを作成するために「呼び出しする」クラスを指定します。
+依存関係が、クラス自体のインスタンスを作成するために**FastAPI**が「呼び出す」*特定の*クラスである場合、**FastAPI** はこれらのケースのショートカットを提供しています。
 
 それらの具体的なケースについては以下のようにします:
 
