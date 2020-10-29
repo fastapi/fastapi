@@ -78,7 +78,7 @@ docstringに<a href="https://en.wikipedia.org/wiki/Markdown" class="external-lin
 
 ## 非推奨の*path operation*
 
-*path operation*を<abbr title="非推奨、使わない方がよい">deprecated</abbr>としてマークする必要があるが、それを削除しない場合は、`deprecated`パラメータを渡します:
+*path operation*を<abbr title="非推奨、使わない方がよい">deprecated</abbr>としてマークする必要があるが、それを削除しない場合は、`deprecated`パラメータを渡します:
 
 ```Python hl_lines="16"
 {!../../../docs_src/path_operation_configuration/tutorial006.py!}
