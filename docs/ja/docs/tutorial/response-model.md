@@ -182,6 +182,8 @@ FastAPIは十分に賢いので（実際には、Pydanticが十分に賢い）`d
 
     これは`response_model_include`や`response_mode_exclude`を使用していくつかの属性を省略しても、アプリケーションのOpenAPI（とドキュメント）で生成されたJSON Schemaが完全なモデルになるからです。
 
+    同様に動作する`response_model_by_alias`にも当てはまります。
+
 ```Python hl_lines="31 37"
 {!../../../docs_src/response_model/tutorial005.py!}
 ```
