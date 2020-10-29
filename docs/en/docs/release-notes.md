@@ -1,6 +1,50 @@
 # Release Notes
 
-## Latest changes
+## Latest Changes
+
+* ✏️ Fix uppercase in Tutorial - Query parameters. PR [#2245](https://github.com/tiangolo/fastapi/pull/2245) by [@mariacamilagl](https://github.com/mariacamilagl).
+* 🔥 Cleanup after upgrade for Docs Previews GitHub Action. PR [#2248](https://github.com/tiangolo/fastapi/pull/2248) by [@tiangolo](https://github.com/tiangolo).
+* 📝 Add articles to External Links. PR [#2247](https://github.com/tiangolo/fastapi/pull/2247) by [@tiangolo](https://github.com/tiangolo).
+* 🐛 Fix CI docs preview, unzip docs. PR [#2246](https://github.com/tiangolo/fastapi/pull/2246) by [@tiangolo](https://github.com/tiangolo).
+* ✨ Add instant docs deploy previews for PRs from forks. PR [#2244](https://github.com/tiangolo/fastapi/pull/2244) by [@tiangolo](https://github.com/tiangolo).
+* ⚡️ Build docs for languages in parallel in subprocesses to speed up CI. PR [#2242](https://github.com/tiangolo/fastapi/pull/2242) by [@tiangolo](https://github.com/tiangolo).
+* 🐛 Fix docs order generation for partial translations. PR [#2238](https://github.com/tiangolo/fastapi/pull/2238) by [@tiangolo](https://github.com/tiangolo).
+* 👥 Update FastAPI People. PR [#2202](https://github.com/tiangolo/fastapi/pull/2202) by [@github-actions[bot]](https://github.com/apps/github-actions).
+* ♻️ Update FastAPI People GitHub Action to send the PR as github-actions. PR [#2201](https://github.com/tiangolo/fastapi/pull/2201) by [@tiangolo](https://github.com/tiangolo).
+* 🔧 Update FastAPI People GitHub Action config, run monthly. PR [#2199](https://github.com/tiangolo/fastapi/pull/2199) by [@tiangolo](https://github.com/tiangolo).
+* 🐛 Fix FastAPI People GitHub Action Docker dependency, strike 1 ⚾. PR [#2198](https://github.com/tiangolo/fastapi/pull/2198) by [@tiangolo](https://github.com/tiangolo).
+* 🐛 Fix FastAPI People GitHub Action Docker dependencies. PR [#2197](https://github.com/tiangolo/fastapi/pull/2197) by [@tiangolo](https://github.com/tiangolo).
+* 🐛 Fix FastAPI People GitHub Action when there's nothing to change. PR [#2196](https://github.com/tiangolo/fastapi/pull/2196) by [@tiangolo](https://github.com/tiangolo).
+* 👥 Add new section FastAPI People. PR [#2195](https://github.com/tiangolo/fastapi/pull/2195) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Add Portuguese translation for External Links. PR [#1443](https://github.com/tiangolo/fastapi/pull/1443) by [@Serrones](https://github.com/Serrones).
+* 🌐 Add Japanese translation for Tutorial - CORS. PR [#2125](https://github.com/tiangolo/fastapi/pull/2125) by [@tokusumi](https://github.com/tokusumi).
+* 🌐 Add Japanese translation for Contributing. PR [#2067](https://github.com/tiangolo/fastapi/pull/2067) by [@komtaki](https://github.com/komtaki).
+* 🌐 Add Japanese translation for Project Generation. PR [#2050](https://github.com/tiangolo/fastapi/pull/2050) by [@tokusumi](https://github.com/tokusumi).
+* 🌐 Add Japanese translation for Alternatives. PR [#2043](https://github.com/tiangolo/fastapi/pull/2043) by [@Attsun1031](https://github.com/Attsun1031).
+* ✏ Fix typo in Spanish tutorial index. PR [#2020](https://github.com/tiangolo/fastapi/pull/2020) by [@aviloncho](https://github.com/aviloncho).
+* 🌐 Add Japanese translation for History Design and Future. PR [#2002](https://github.com/tiangolo/fastapi/pull/2002) by [@komtaki](https://github.com/komtaki).
+* 🌐 Add Japanese translation for Benchmarks. PR [#1992](https://github.com/tiangolo/fastapi/pull/1992) by [@komtaki](https://github.com/komtaki).
+* 🌐 Add Japanese translation for Tutorial - Header Parameters. PR [#1935](https://github.com/tiangolo/fastapi/pull/1935) by [@SwftAlpc](https://github.com/SwftAlpc).
+* ⬆️ Upgrade GitHub Action Latest Changes. PR [#2190](https://github.com/tiangolo/fastapi/pull/2190) by [@tiangolo](https://github.com/tiangolo).
+* ⬆️ Upgrade GitHub Action Label Approved. PR [#2189](https://github.com/tiangolo/fastapi/pull/2189) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Add Portuguese translation for Tutorial - First Steps. PR [#1861](https://github.com/tiangolo/fastapi/pull/1861) by [@jessicapaz](https://github.com/jessicapaz).
+* 🌐 Add Portuguese translation for Python Types. PR [#1796](https://github.com/tiangolo/fastapi/pull/1796) by [@izaguerreiro](https://github.com/izaguerreiro).
+* 🌐 Add Japanese translation for Help FastAPI. PR [#1692](https://github.com/tiangolo/fastapi/pull/1692) by [@tokusumi](https://github.com/tokusumi).
+* 🌐 Add Japanese translation for Tutorial - Body. PR [#1683](https://github.com/tiangolo/fastapi/pull/1683) by [@tokusumi](https://github.com/tokusumi).
+* 🌐 Add Japanese translation for Tutorial - Query Params. PR [#1674](https://github.com/tiangolo/fastapi/pull/1674) by [@tokusumi](https://github.com/tokusumi).
+* 🌐 Add Japanese translation for tutorial/path-params.md. PR [#1671](https://github.com/tiangolo/fastapi/pull/1671) by [@tokusumi](https://github.com/tokusumi).
+* 🌐 Add Japanese translation for tutorial/first-steps.md. PR [#1658](https://github.com/tiangolo/fastapi/pull/1658) by [@tokusumi](https://github.com/tokusumi).
+* 🌐 Add Japanese translation for tutorial/index.md. PR [#1656](https://github.com/tiangolo/fastapi/pull/1656) by [@tokusumi](https://github.com/tokusumi).
+* 🌐 Add translation to Portuguese for Project Generation. PR [#1602](https://github.com/tiangolo/fastapi/pull/1602) by [@Serrones](https://github.com/Serrones).
+* 🔧 Update GitHub Action Label Approved, run at 12:00. PR [#2185](https://github.com/tiangolo/fastapi/pull/2185) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Add Japanese translation for Features. PR [#1625](https://github.com/tiangolo/fastapi/pull/1625) by [@tokusumi](https://github.com/tokusumi).
+* 👷 Upgrade GitHub Action Latest Changes. PR [#2184](https://github.com/tiangolo/fastapi/pull/2184) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Initialize new language Korean for translations. PR [#2018](https://github.com/tiangolo/fastapi/pull/2018) by [@hard-coders](https://github.com/hard-coders).
+* 🌐 Add Portuguese translation of Deployment. PR [#1374](https://github.com/tiangolo/fastapi/pull/1374) by [@Serrones](https://github.com/Serrones).
+* 👷 Set GitHub Action Label Approved to run daily, not every minute. PR [#2163](https://github.com/tiangolo/fastapi/pull/2163) by [@tiangolo](https://github.com/tiangolo).
+* 🔥 Remove pr-approvals GitHub Action as it's not compatible with forks. Use the new one. PR [#2162](https://github.com/tiangolo/fastapi/pull/2162) by [@tiangolo](https://github.com/tiangolo).
+* 👷 Add GitHub Action Latest Changes. PR [#2160](https://github.com/tiangolo/fastapi/pull/2160).
+* 👷 Add GitHub Action Label Approved. PR [#2161](https://github.com/tiangolo/fastapi/pull/2161).
 
 ## 0.61.1
 
