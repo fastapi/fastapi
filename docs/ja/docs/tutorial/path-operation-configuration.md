@@ -28,7 +28,7 @@
 
 `tags`パラメータを`str`の`list`（通常は１つの`str`）と一緒に渡すと、*path operation*にタグを追加できます:
 
-```Python hl_lines="17 22 27"
+```Python hl_lines="17  22  27"
 {!../../../docs_src/path_operation_configuration/tutorial002.py!}
 ```
 
