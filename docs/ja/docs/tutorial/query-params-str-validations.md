@@ -143,7 +143,7 @@ q: Optional[str] = Query(None, min_length=3)
 !!! info "情報"
     これまで`...`を見たことがない方へ: これは特殊な単一値です。<a href="https://docs.python.org/3/library/constants.html#Ellipsis" class="external-link" target="_blank">Pythonの一部であり、"Ellipsis"と呼ばれています</a>。
 
-これは **FastAPI** にこのパラメータが必要であることを知らせます。
+これは **FastAPI** にこのパラメータが必須であることを知らせます。
 
 ## クエリパラメータのリスト/複数の値
 
