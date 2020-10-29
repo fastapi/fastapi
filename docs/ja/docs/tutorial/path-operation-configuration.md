@@ -1,6 +1,6 @@
 # Path Operationの設定
 
-*path operationデコレータ*を設定するために渡すことができるパラメータがいくつかあります。
+*path operationデコレータ*を設定するためのパラメータがいくつかあります。
 
 !!! warning "注意"
     これらのパラメータは*path operation関数*ではなく、*path operationデコレータ*に直接渡されることに注意してください。
@@ -46,7 +46,7 @@
 
 ## docstringを用いた説明
 
-説明文は長くて複数行におよぶ傾向があるので、関数<abbr title="ドキュメントに使用される関数内の最初の式（変数に代入されていない）としての複数行の文字列">docstring</abbr>で*path operation*の説明文を宣言すると、**FastAPI** はそれを読み取ることができます。
+説明文は長くて複数行におよぶ傾向があるので、関数<abbr title="ドキュメントに使用される関数内の最初の式（変数に代入されていない）としての複数行の文字列">docstring</abbr>内に*path operation*の説明文を宣言できます。すると、**FastAPI** は説明文を読み込んでくれます。
 
 docstringに<a href="https://en.wikipedia.org/wiki/Markdown" class="external-link" target="_blank">Markdown</a>を記述すれば、正しく解釈されて表示されます。（docstringのインデントを考慮して）
 
@@ -54,7 +54,7 @@ docstringに<a href="https://en.wikipedia.org/wiki/Markdown" class="external-lin
 {!../../../docs_src/path_operation_configuration/tutorial004.py!}
 ```
 
-それは対話的ドキュメントで使用されます:
+これは対話的ドキュメントで使用されます:
 
 <img src="https://fastapi.tiangolo.com/img/tutorial/path-operation-configuration/image02.png">
 
@@ -76,7 +76,7 @@ docstringに<a href="https://en.wikipedia.org/wiki/Markdown" class="external-lin
 
 <img src="https://fastapi.tiangolo.com/img/tutorial/path-operation-configuration/image03.png">
 
-## *path operation* の非推奨
+## 非推奨の*path operation*
 
 *path operation*を<abbr title="非推奨、使わない方がよい">deprecated</abbr>としてマークする必要があるが、それを削除しない場合は、`deprecated`パラメータを渡します:
 
@@ -88,7 +88,7 @@ docstringに<a href="https://en.wikipedia.org/wiki/Markdown" class="external-lin
 
 <img src="https://fastapi.tiangolo.com/img/tutorial/path-operation-configuration/image04.png">
 
-非推奨である場合とそうでない場合の*path operations*がどのように見えるかを確認してください:
+*path operations*が非推奨である場合とそうでない場合でどのように見えるかを確認してください:
 
 <img src="https://fastapi.tiangolo.com/img/tutorial/path-operation-configuration/image05.png">
 
