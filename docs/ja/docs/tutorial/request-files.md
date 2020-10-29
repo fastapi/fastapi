@@ -90,7 +90,7 @@ contents = myfile.file.read()
 ```
 
 !!! note "`async` 技術詳細"
-    `async`メソッドを使用すると、**FastAPI** はファイルメソッドをスレッドプールで実行し、それらのメソッドを持ちます。
+    `async`メソッドを使用すると、**FastAPI** はファイルメソッドをスレッドプールで実行し、それらを待機（`await`）します。
 
 !!! note "Starlette 技術詳細"
     **FastAPI** の`UploadFile`は **Starlette** の`UploadFile`を直接継承していますが、**Pydantic** やFastAPIの他の部分と互換性を持たせるために必要な部分を追加しています。
@@ -111,7 +111,7 @@ HTMLフォーム（`<form></form>`）がサーバにデータを送信する方�
 !!! warning "注意"
     *path operation*で複数の`Form`パラメータを宣言することができますが、JSONとして受け取ることを期待している`Body`フィールドを宣言することはできません。なぜなら、リクエストは`application/json`の代わりに`application/x-www-form-urlencoded`を使ってボディをエンコードするからです。
 
-    これは **FastAPI**の制限ではなく、HTTPプロトコルの一部です。
+    これは **FastAPI**の制限ではなく、HTTPプロトコルの制限の一部です。
 
 ## 複数ファイルのアップロード
 
@@ -119,7 +119,6 @@ HTMLフォーム（`<form></form>`）がサーバにデータを送信する方�
 
 これらは「フォームデータ」使用して送信された同じ「フォームフィールド」に関連づけられます。
 
-To use that, declare a `List` of `bytes` or `UploadFile`:
 これを利用するには、`bytes`の`List`または`UploadFile`を宣言します:
 
 ```Python hl_lines="10 15"
