@@ -39,7 +39,7 @@
 なので:
 
 ```Python
-q: str = Query(None)
+q: Optional[str] = Query(None)
 ```
 
 ...を以下と同じようにパラメータをオプションにします:
