@@ -42,7 +42,7 @@ OpenID Connectは、**OAuth2** をベースにした別の仕様です。
 
 これはOAuth2を拡張して、OAuth2の中で比較的曖昧なものをいくつか指定して、より相互運用性を高めようとしているだけです。
 
-例えば、GoogleログインはOpenID Connectを使用しています。（その下のOAuth2を使用しています）。
+例えば、GoogleログインはOpenID Connectを使用しています。（これはOAuth2を使用しています）。
 
 しかし、FacebookログインはOpenID Connectをサポートしていません。OAuth2の独自のフレーバーを使用しています。
 
