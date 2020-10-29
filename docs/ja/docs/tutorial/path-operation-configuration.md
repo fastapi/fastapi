@@ -32,7 +32,7 @@
 {!../../../docs_src/path_operation_configuration/tutorial002.py!}
 ```
 
-これらはOpenAPIスキーマに追加され、自動ドキュメントのインターフェースで使用されます:
+これらはOpenAPIスキーマに追加され、自動ドキュメントのインターフェースで使用されます:
 
 <img src="https://fastapi.tiangolo.com/img/tutorial/path-operation-configuration/image01.png">
 
