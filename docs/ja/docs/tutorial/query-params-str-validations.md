@@ -73,7 +73,7 @@ q: Optional[str] = None
 q: str = Query(None, max_length=50)
 ```
 
-これにより、データを検証し、データが有効でない場合は明確なエラーを表示し、OpenAPIスキーマの*path operation*でパラメータを文書化します。
+これにより、データを検証し、データが有効でない場合は明確なエラーを表示し、OpenAPIスキーマの　*path operation* にパラメータを記載します。
 
 ## バリデーションをさらに追加する
 
