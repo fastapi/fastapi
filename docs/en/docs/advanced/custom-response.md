@@ -21,7 +21,7 @@ For example, if you are squeezing performance, you can install and use <a href="
 
 Import the `Response` class (sub-class) you want to use and declare it in the *path operation decorator*.
 
-```Python hl_lines="2 7"
+```Python hl_lines="2  7"
 {!../../../docs_src/custom_response/tutorial001b.py!}
 ```
 
@@ -42,7 +42,7 @@ To return a response with HTML directly from **FastAPI**, use `HTMLResponse`.
 * Import `HTMLResponse`.
 * Pass `HTMLResponse` as the parameter `content_type` of your *path operation*.
 
-```Python hl_lines="2 7"
+```Python hl_lines="2  7"
 {!../../../docs_src/custom_response/tutorial002.py!}
 ```
 
@@ -59,7 +59,7 @@ As seen in [Return a Response directly](response-directly.md){.internal-link tar
 
 The same example from above, returning an `HTMLResponse`, could look like:
 
-```Python hl_lines="2 7 19"
+```Python hl_lines="2  7  19"
 {!../../../docs_src/custom_response/tutorial003.py!}
 ```
 
@@ -79,7 +79,7 @@ The `response_class` will then be used only to document the OpenAPI *path operat
 
 For example, it could be something like:
 
-```Python hl_lines="7 23 21"
+```Python hl_lines="7  21  23"
 {!../../../docs_src/custom_response/tutorial004.py!}
 ```
 
@@ -150,7 +150,7 @@ An alternative JSON response using <a href="https://github.com/ultrajson/ultrajs
 !!! warning
     `ujson` is less careful than Python's built-in implementation in how it handles some edge-cases.
 
-```Python hl_lines="2 7"
+```Python hl_lines="2  7"
 {!../../../docs_src/custom_response/tutorial001.py!}
 ```
 
@@ -179,7 +179,7 @@ If you have a file-like object (e.g. the object returned by `open()`), you can r
 
 This includes many libraries to interact with cloud storage, video processing, and others.
 
-```Python hl_lines="2  10 11"
+```Python hl_lines="2  10-11"
 {!../../../docs_src/custom_response/tutorial008.py!}
 ```
 
@@ -211,7 +211,7 @@ The parameter that defines this is `default_response_class`.
 
 In the example below, **FastAPI** will use `ORJSONResponse` by default, in all *path operations*, instead of `JSONResponse`.
 
-```Python hl_lines="2 4"
+```Python hl_lines="2  4"
 {!../../../docs_src/custom_response/tutorial010.py!}
 ```
 

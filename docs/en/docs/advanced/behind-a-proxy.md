@@ -44,7 +44,7 @@ proxy --> server
 
 The docs UI would also need the OpenAPI schema to declare that this API `server` is located at `/api/v1` (behind the proxy). For example:
 
-```JSON hl_lines="4 5 6 7 8"
+```JSON hl_lines="4-8"
 {
     "openapi": "3.0.2",
     // More stuff here
@@ -290,13 +290,13 @@ If you pass a custom list of `servers` and there's a `root_path` (because your A
 
 For example:
 
-```Python hl_lines="4 5 6 7"
+```Python hl_lines="4-7"
 {!../../../docs_src/behind_a_proxy/tutorial003.py!}
 ```
 
 Will generate an OpenAPI schema like:
 
-```JSON hl_lines="5 6 7"
+```JSON hl_lines="5-7"
 {
     "openapi": "3.0.2",
     // More stuff here

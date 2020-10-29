@@ -15,7 +15,7 @@ This includes, for example:
 
 First, import `BackgroundTasks` and define a parameter in your *path operation function* with a type declaration of `BackgroundTasks`:
 
-```Python hl_lines="1 13"
+```Python hl_lines="1  13"
 {!../../../docs_src/background_tasks/tutorial001.py!}
 ```
 
@@ -33,7 +33,7 @@ In this case, the task function will write to a file (simulating sending an emai
 
 And as the write operation doesn't use `async` and `await`, we define the function with normal `def`:
 
-```Python hl_lines="6 7 8 9"
+```Python hl_lines="6-9"
 {!../../../docs_src/background_tasks/tutorial001.py!}
 ```
 
@@ -57,7 +57,7 @@ Using `BackgroundTasks` also works with the dependency injection system, you can
 
 **FastAPI** knows what to do in each case and how to re-use the same object, so that all the background tasks are merged together and are run in the background afterwards:
 
-```Python hl_lines="13 15 22 25"
+```Python hl_lines="13  15  22  25"
 {!../../../docs_src/background_tasks/tutorial002.py!}
 ```
 

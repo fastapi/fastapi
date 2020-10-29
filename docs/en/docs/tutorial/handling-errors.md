@@ -92,7 +92,7 @@ And you want to handle this exception globally with FastAPI.
 
 You could add a custom exception handler with `@app.exception_handler()`:
 
-```Python hl_lines="5 6 7  13 14 15 16 17 18  24"
+```Python hl_lines="5-7  13-18  24"
 {!../../../docs_src/handling_errors/tutorial003.py!}
 ```
 
@@ -129,7 +129,7 @@ To override it, import the `RequestValidationError` and use it with `@app.except
 
 The exception handler will receive a `Request` and the exception.
 
-```Python hl_lines="2 14 15 16"
+```Python hl_lines="2  14-16"
 {!../../../docs_src/handling_errors/tutorial004.py!}
 ```
 
@@ -179,7 +179,7 @@ The same way, you can override the `HTTPException` handler.
 
 For example, you could want to return a plain text response instead of JSON for these errors:
 
-```Python hl_lines="3 4  9 10 11 22"
+```Python hl_lines="3-4  9-11  22"
 {!../../../docs_src/handling_errors/tutorial004.py!}
 ```
 
@@ -209,7 +209,7 @@ Now try sending an invalid item like:
 
 You will receive a response telling you that the data is invalid containing the received body:
 
-```JSON hl_lines="12 13 14 15"
+```JSON hl_lines="12-15"
 {
   "detail": [
     {
@@ -256,7 +256,7 @@ You could also just want to use the exception somehow, but then use the same def
 
 You can import and re-use the default exception handlers from `fastapi.exception_handlers`:
 
-```Python hl_lines="2 3 4 5 15 21"
+```Python hl_lines="2-5  15  21"
 {!../../../docs_src/handling_errors/tutorial006.py!}
 ```
 
