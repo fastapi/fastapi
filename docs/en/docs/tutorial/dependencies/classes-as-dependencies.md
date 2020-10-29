@@ -71,7 +71,7 @@ That also applies to callables with no parameters at all. The same as it would b
 
 Then, we can change the dependency "dependable" `common_parameters` from above to the class `CommonQueryParams`:
 
-```Python hl_lines="11 12 13 14 15"
+```Python hl_lines="11-15"
 {!../../../docs_src/dependencies/tutorial002.py!}
 ```
 
