@@ -258,7 +258,7 @@ http://127.0.0.1:8000/items/?item-query=foobaritems
 
 しかし、どうしても`item-query`と正確に一致している必要があるとします...
 
-その時、`alias`を宣言することができます。エイリアスはパラメータの値を見つけるのに使用されます:
+それならば、`alias`を宣言することができます。エイリアスはパラメータの値を見つけるのに使用されます:
 
 ```Python hl_lines="9"
 {!../../../docs_src/query_params_str_validations/tutorial009.py!}
