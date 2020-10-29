@@ -153,7 +153,7 @@ commons = Depends(CommonQueryParams)
 
 ## ショートカット
 
-しかし、ここでは`CommonQueryParams`を２回書くというコードの繰り返しが発生していることがわかります:
+しかし、ここでは`CommonQueryParams`を２回書くというコードの繰り返しが発生していることがわかります:
 
 ```Python
 commons: CommonQueryParams = Depends(CommonQueryParams)
