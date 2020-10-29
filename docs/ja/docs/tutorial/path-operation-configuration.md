@@ -40,7 +40,7 @@
 
 `summary`と`description`を追加できます:
 
-```Python hl_lines="20 21"
+```Python hl_lines="20-21"
 {!../../../docs_src/path_operation_configuration/tutorial003.py!}
 ```
 
