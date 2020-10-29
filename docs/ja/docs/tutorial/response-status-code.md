@@ -20,7 +20,7 @@
 !!! info "情報"
     `status_code`は代わりに、Pythonの<a href="https://docs.python.org/3/library/http.html#http.HTTPStatus" class="external-link" target="_blank">`http.HTTPStatus`</a>のように、`IntEnum`を受け取ることもできます。
 
-それは:
+これは:
 
 * レスポンスでステータスコードを返します。
 * OpenAPIスキーマ（およびユーザーインターフェース）にそのように文書化します:
