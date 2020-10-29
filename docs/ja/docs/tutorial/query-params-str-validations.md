@@ -8,7 +8,7 @@
 {!../../../docs_src/query_params_str_validations/tutorial001.py!}
 ```
 
-クエリパラメータ`q`は`str`型でデフォルトは`None`のため、オプショナルです。
+クエリパラメータ `q` は `Optional[str]` 型で、`None` を許容する `str` 型を意味しており、デフォルトは `None` です。そのため、FastAPIはそれが必須ではないと理解します。
 
 ## バリデーションの追加
 
