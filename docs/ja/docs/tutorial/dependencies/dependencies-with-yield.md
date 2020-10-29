@@ -123,7 +123,7 @@ FastAPIは、いくつかの<abbr title='時々"exit"、"cleanup"、"teardown"�
 レスポンスを返したり、レスポンスを変更したり、`HTTPException`を発生させたりする*前に*処理したいカスタム例外がある場合は、[カスタム例外ハンドラ](../handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank}を作成してください。
 
 !!! tip "豆知識"
-    `HTTPException`を含む例外は、`yield`の*前*にも発生させることができます。ただし、後ではありません。
+    `HTTPException`を含む例外は、`yield`の*前*でも発生させることができます。ただし、後ではできません。
 
 実行の順序は多かれ少なかれ以下の図のようになります。時間は上から下へと流れていきます。そして、各列はコードを相互作用させたり、実行したりしている部分の一つです。
 
