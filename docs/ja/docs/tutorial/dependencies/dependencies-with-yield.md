@@ -17,7 +17,7 @@ FastAPIは、いくつかの<abbr title='時々"exit"、"cleanup"、"teardown"�
     これにより<a href="https://github.com/sorcio/async_exit_stack" class="external-link" target="_blank">async-exit-stack</a>と<a href="https://github.com/python-trio/async_generator" class="external-link" target="_blank">async-generator</a>がインストールされます。
 
 !!! note "技術詳細"
-    以下と一緒に使用できる有効な関数なら何でも良いです:
+    以下と一緒に使用できる関数なら何でも有効です:
 
     * <a href="https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager" class="external-link" target="_blank">`@contextlib.contextmanager`</a>または
     * <a href="https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager" class="external-link" target="_blank">`@contextlib.asynccontextmanager`</a>
