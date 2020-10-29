@@ -10,7 +10,7 @@
 
 JSON互換のデータのみを受信するデータベース`fase_db`があるとしましょう。
 
-例えば、`datetime`オブジェクトはJSONと互換性がないので受け取りません。
+例えば、`datetime`オブジェクトはJSONと互換性がないので、このデーターベースには受け取られません。
 
 そのため、`datetime`オブジェクトは<a href="https://en.wikipedia.org/wiki/ISO_8601" class="external-link" target="_blank">ISO形式</a>のデータを含む`str`に変換されなければなりません。
 
