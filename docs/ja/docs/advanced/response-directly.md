@@ -2,7 +2,7 @@
 
 **FastAPI** の *path operation* では、通常は任意のデータを返すことができます: 例えば、 `dict`、`list`、Pydanticモデル、データベースモデルなどです。
 
-デフォルトでは、**FastAPI** は [JSON Compatible Encoder](../tutorial/encoder.md){.internal-link target=_blank} で説明されている `jsonable_encoder` により、返される値を自動的にJSONに変換します。
+デフォルトでは、**FastAPI** は [JSON互換エンコーダ](../tutorial/encoder.md){.internal-link target=_blank} で説明されている `jsonable_encoder` により、返す値を自動的にJSONに変換します。
 
 このとき背後では、JSON互換なデータ (例えば`dict`) を、クライアントへ送信されるレスポンスとして利用される `JSONResponse` の中に含めます。
 
@@ -21,7 +21,7 @@
 
 それは、Pydanticモデルのデータ変換や、コンテンツを任意の型に変換したりなどはしません。
 
-これは多くの柔軟性を提供します。任意のデータ型を返したり、任意のデータ宣言やバリデーションをオーバーライドしたりすることができます。
+これは多くの柔軟性を提供します。任意のデータ型を返したり、任意のデータ宣言やバリデーションをオーバーライドできます。
 
 ## `jsonable_encoder` を `Response` の中で使う
 
@@ -29,16 +29,16 @@
 
 例えば、Pydanticモデルを `JSONResponse` に含めるには、すべてのデータ型 (`datetime` や `UUID` など) がJSON互換の型に変換された `dict` に変換しなければなりません。
 
-このようなケースでは、レスポンスにデータを含める前に `jsonable_encoder` を使ってデータ変換をすることができます。
+このようなケースでは、レスポンスにデータを含める前に `jsonable_encoder` を使ってデータを変換できます。
 
 ```Python hl_lines="6-7  21-22"
 {!../../../docs_src/response_directly/tutorial001.py!}
 ```
 
 !!! note "技術詳細"
-    また、`from starlette.responses import JSONResponse` も利用することができます。
+    また、`from starlette.responses import JSONResponse` も利用できます。
 
-    **FastAPI** は開発者の利便性のために `starlette.responses` を `fastapi.responses` と同じものとして提供しています。しかし、利用可能なレスポンスのほとんどはStarletteから直接提供されます。
+    **FastAPI** は開発者の利便性のために `fastapi.responses` という `starlette.responses` と同じものを提供しています。しかし、利用可能なレスポンスのほとんどはStarletteから直接提供されます。
 
 ## カスタム `Response` を返す
 
@@ -48,7 +48,7 @@
 
 <a href="https://en.wikipedia.org/wiki/XML" class="external-link" target="_blank">XML</a>レスポンスを返したいとしましょう。
 
-XMLを文字列にし、 `Response` に含め、それを返します。
+XMLを文字列にし、`Response` に含め、それを返します。
 
 ```Python hl_lines="1  18"
 {!../../../docs_src/response_directly/tutorial002.py!}
