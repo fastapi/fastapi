@@ -2,7 +2,7 @@
 
 デフォルトでは、**FastAPI** は `JSONResponse` を使ってレスポンスを返します。
 
-[Return a Response directly](response-directly.md){.internal-link target=_blank}で見たように、 `Response` を直接返すことでこの挙動をオーバーライドできます。
+[レスポンスを直接返す](response-directly.md){.internal-link target=_blank}で見たように、 `Response` を直接返すことでこの挙動をオーバーライドできます。
 
 しかし、`Response` を直接返すと、データは自動的に変換されず、ドキュメントも自動生成されません (例えば、生成されるOpenAPIの一部としてHTTPヘッダー `Content-Type` に特定の「メディアタイプ」を含めるなど) 。
 
@@ -19,7 +19,7 @@
 
 例えば、パフォーマンスを出したい場合は、<a href="https://github.com/ijl/orjson" class="external-link" target="_blank">`orjson`</a>をインストールし、`ORJSONResponse`をレスポンスとしてセットすることができます。
 
-使いたい `Response` クラス (サブクラス)　をインポートし、 *path operationデコレータ* に宣言します。
+使いたい `Response` クラス (サブクラス) をインポートし、 *path operationデコレータ* に宣言します。
 
 ```Python hl_lines="2  7"
 {!../../../docs_src/custom_response/tutorial001b.py!}
@@ -55,7 +55,7 @@
 
 ### `Response` を返す
 
-[Return a Response directly](response-directly.md){.internal-link target=_blank}で見たように、レスポンスを直接返すことで、*path operation* の中でレスポンスをオーバーライドできます。
+[レスポンスを直接返す](response-directly.md){.internal-link target=_blank}で見たように、レスポンスを直接返すことで、*path operation* の中でレスポンスをオーバーライドできます。
 
 上記と同じ例において、 `HTMLResponse` を返すと、このようになります:
 
@@ -95,12 +95,12 @@
 
 以下が利用可能なレスポンスの一部です。
 
-`Response` を使って他の何かを返すこともできますし、カスタムのサブクラスを作ることもできることを覚えておいてください。
+`Response` を使って他の何かを返せますし、カスタムのサブクラスも作れることを覚えておいてください。
 
 !!! note "技術詳細"
     `from starlette.responses import HTMLResponse` も利用できます。
 
-    **FastAPI** は開発者の利便性のために `starlette.responses` を `fastapi.responses` と同じものとして提供しています。しかし、利用可能なレスポンスのほとんどはStarletteから直接提供されます。
+    **FastAPI** は開発者の利便性のために `fastapi.responses` として `starlette.responses` と同じものを提供しています。しかし、利用可能なレスポンスのほとんどはStarletteから直接提供されます。
 
 ### `Response`
 
@@ -218,6 +218,6 @@ HTTPリダイレクトを返します。デフォルトでは307ステータス�
 !!! tip "豆知識"
     前に見たように、依然として *path operation* の中で `response_class` をオーバーライドできます。
 
-## 追加のドキュメント
+## その他のドキュメント
 
 また、OpenAPIでは `responses` を使ってメディアタイプやその他の詳細を宣言することもできます: [Additional Responses in OpenAPI](additional-responses.md){.internal-link target=_blank}
