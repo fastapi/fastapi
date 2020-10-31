@@ -127,7 +127,7 @@ nav:
   # - documentation/index.md
   - documentation/application.md
   # - documentation/concurrency.md
-  # - documentation/datastructures.md
+  - documentation/datastructures.md
   # - documentation/dependencies.md
   # - documentation/encoders.md
   # - documentation/exception_handlers.md
