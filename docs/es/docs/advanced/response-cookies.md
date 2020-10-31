@@ -55,4 +55,4 @@ Posteriormente configurar las Cookies en él, y finalmente retornarlo, como expl
 
     Y como la `Response` puede ser usada frecuentemente para configurar headers y cookies, **FastAPI** también la provee en `fastapi.Response`.
 
-To see all the available parameters and options, check the <a href="https://www.starlette.io/responses/#set-cookie" class="external-link" target="_blank">documentation in Starlette</a>.
+Para ver todos los parámetros y opciones disponibles, revise la <a href="https://www.starlette.io/responses/#set-cookie" class="external-link" target="_blank">documentación de Starlette</a>. 
