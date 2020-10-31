@@ -42,7 +42,8 @@ nav:
   - tutorial/index.md
 - Guía de Usuario Avanzada:
   - advanced/index.md
-- async.md
+  - async.md
+  - advanced/response-headers.md
 markdown_extensions:
 - toc:
     permalink: true
