@@ -20,6 +20,7 @@ google_analytics:
 - auto
 plugins:
 - search
+- mkdocstrings
 - markdownextradata:
     data: data
 nav:
@@ -122,6 +123,30 @@ nav:
   - advanced/extending-openapi.md
   - advanced/openapi-callbacks.md
   - advanced/wsgi.md
+- API Documentation:
+  # - documentation/index.md
+  - documentation/application.md
+  - documentation/background.md
+  # - documentation/concurrency.md
+  # - documentation/datastructures.md
+  # - documentation/dependencies.md
+  # - documentation/encoders.md
+  # - documentation/exception_handlers.md
+  # - documentation/exceptions.md
+  # - documentation/logger.md
+  # - documentation/middleware.md
+  # - documentation/openapi.md
+  # - documentation/param_functions.md
+  # - documentation/params.md
+  # - documentation/requests.md
+  # - documentation/responses.md
+  # - documentation/routing.md
+  # - documentation/security.md
+  # - documentation/staticfiles.md
+  # - documentation/templating.md
+  # - documentation/testclient.md
+  # - documentation/utils.md
+  # - documentation/websockets.md
 - async.md
 - deployment.md
 - project-generation.md

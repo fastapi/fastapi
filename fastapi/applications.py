@@ -27,6 +27,37 @@ from starlette.types import Receive, Scope, Send
 
 
 class FastAPI(Starlette):
+    """Creates an application instance.
+
+    Attributes:
+        default_response_class (Type[Response]): [description]
+        dependency_overrides (Dict[Callable, Callable]): [description]
+        description (str): [description]
+        docs_url (Optional[str]): [description]
+        exception_handlers (Dict[Union[int, Type[Exception]], Callable]): A dictionary
+            mapping either integer status codes, or exception class types onto callables
+            which handle the exceptions. Exception handler callables should be of the
+            form `handler(request, exc) -> response` and may be be either standard
+            functions, or async functions.
+        extra (Any): [description]
+        middleware_stack (ASGIApp): [description]
+        openapi_url (str): [description]
+        openapi_tags (Optional[List[Dict[str, Any]]]): [description]
+        openapi_version (str): [description]
+        openapi_schema (Optional[Dict[str, Any]]) [description]
+        redoc_url (Optional[str]): [description]
+        root_path (str): [description]
+        root_path_in_servers (bool): [description]
+        router (routing.APIRouter): [description]
+        servers (List[Dict[str, Union[str, Any]]]): [description]
+        state (State): Store arbitrary state.
+        swagger_ui_oauth2_redirect_url (Optional[str]): [description]
+        swagger_ui_init_oauth (Optional[dict]): [description]
+        title (str): [description]
+        user_middleware (List[Middleware]): [description]
+        version (str): [description]
+    """
+
     def __init__(
         self,
         *,
@@ -102,6 +133,11 @@ class FastAPI(Starlette):
         self.setup()
 
     def openapi(self) -> Dict:
+        """[summary]
+
+        Returns:
+            Dict: [description]
+        """
         if not self.openapi_schema:
             self.openapi_schema = get_openapi(
                 title=self.title,
@@ -115,6 +151,7 @@ class FastAPI(Starlette):
         return self.openapi_schema
 
     def setup(self) -> None:
+        """[summary]"""
         if self.openapi_url:
             urls = (server_data.get("url") for server_data in self.servers)
             server_urls = {url for url in urls if url}
@@ -206,6 +243,32 @@ class FastAPI(Starlette):
         response_class: Optional[Type[Response]] = None,
         name: Optional[str] = None,
     ) -> None:
+        """[summary]
+
+        Args:
+            path (str): [description]
+            endpoint (Callable): [description]
+            response_model (Optional[Type[Any]], optional): [description]. Defaults to None.
+            status_code (int, optional): [description]. Defaults to 200.
+            tags (Optional[List[str]], optional): [description]. Defaults to None.
+            dependencies (Optional[Sequence[Depends]], optional): [description]. Defaults to None.
+            summary (Optional[str], optional): [description]. Defaults to None.
+            description (Optional[str], optional): [description]. Defaults to None.
+            response_description (str, optional): [description]. Defaults to "Successful Response".
+            responses (Optional[Dict[Union[int, str], Dict[str, Any]]], optional): [description]. Defaults to None.
+            deprecated (Optional[bool], optional): [description]. Defaults to None.
+            methods (Optional[List[str]], optional): [description]. Defaults to None.
+            operation_id (Optional[str], optional): [description]. Defaults to None.
+            response_model_include (Optional[Union[SetIntStr, DictIntStrAny]], optional): [description]. Defaults to None.
+            response_model_exclude (Optional[Union[SetIntStr, DictIntStrAny]], optional): [description]. Defaults to None.
+            response_model_by_alias (bool, optional): [description]. Defaults to True.
+            response_model_exclude_unset (bool, optional): [description]. Defaults to False.
+            response_model_exclude_defaults (bool, optional): [description]. Defaults to False.
+            response_model_exclude_none (bool, optional): [description]. Defaults to False.
+            include_in_schema (bool, optional): [description]. Defaults to True.
+            response_class (Optional[Type[Response]], optional): [description]. Defaults to None.
+            name (Optional[str], optional): [description]. Defaults to None.
+        """
         self.router.add_api_route(
             path,
             endpoint=endpoint,
@@ -256,6 +319,35 @@ class FastAPI(Starlette):
         response_class: Optional[Type[Response]] = None,
         name: Optional[str] = None,
     ) -> Callable:
+        """[summary]
+
+        Args:
+            path (str): [description]
+            response_model (Optional[Type[Any]], optional): [description]. Defaults to None.
+            status_code (int, optional): [description]. Defaults to 200.
+            tags (Optional[List[str]], optional): [description]. Defaults to None.
+            dependencies (Optional[Sequence[Depends]], optional): [description]. Defaults to None.
+            summary (Optional[str], optional): [description]. Defaults to None.
+            description (Optional[str], optional): [description]. Defaults to None.
+            response_description (str, optional): [description]. Defaults to "Successful Response".
+            responses (Optional[Dict[Union[int, str], Dict[str, Any]]], optional): [description]. Defaults to None.
+            deprecated (Optional[bool], optional): [description]. Defaults to None.
+            methods (Optional[List[str]], optional): [description]. Defaults to None.
+            operation_id (Optional[str], optional): [description]. Defaults to None.
+            response_model_include (Optional[Union[SetIntStr, DictIntStrAny]], optional): [description]. Defaults to None.
+            response_model_exclude (Optional[Union[SetIntStr, DictIntStrAny]], optional): [description]. Defaults to None.
+            response_model_by_alias (bool, optional): [description]. Defaults to True.
+            response_model_exclude_unset (bool, optional): [description]. Defaults to False.
+            response_model_exclude_defaults (bool, optional): [description]. Defaults to False.
+            response_model_exclude_none (bool, optional): [description]. Defaults to False.
+            include_in_schema (bool, optional): [description]. Defaults to True.
+            response_class (Optional[Type[Response]], optional): [description]. Defaults to None.
+            name (Optional[str], optional): [description]. Defaults to None.
+
+        Returns:
+            Callable: [description]
+        """
+
         def decorator(func: Callable) -> Callable:
             self.router.add_api_route(
                 path,
@@ -288,9 +380,26 @@ class FastAPI(Starlette):
     def add_api_websocket_route(
         self, path: str, endpoint: Callable, name: Optional[str] = None
     ) -> None:
+        """[summary]
+
+        Args:
+            path (str): [description]
+            endpoint (Callable): [description]
+            name (Optional[str], optional): [description]. Defaults to None.
+        """
         self.router.add_api_websocket_route(path, endpoint, name=name)
 
     def websocket(self, path: str, name: Optional[str] = None) -> Callable:
+        """[summary]
+
+        Args:
+            path (str): [description]
+            name (Optional[str], optional): [description]. Defaults to None.
+
+        Returns:
+            Callable: [description]
+        """
+
         def decorator(func: Callable) -> Callable:
             self.add_api_websocket_route(path, func, name=name)
             return func
@@ -307,6 +416,16 @@ class FastAPI(Starlette):
         responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
         default_response_class: Optional[Type[Response]] = None,
     ) -> None:
+        """[summary]
+
+        Args:
+            router (routing.APIRouter): [description]
+            prefix (str, optional): [description]. Defaults to "".
+            tags (Optional[List[str]], optional): [description]. Defaults to None.
+            dependencies (Optional[Sequence[Depends]], optional): [description]. Defaults to None.
+            responses (Optional[Dict[Union[int, str], Dict[str, Any]]], optional): [description]. Defaults to None.
+            default_response_class (Optional[Type[Response]], optional): [description]. Defaults to None.
+        """
         self.router.include_router(
             router,
             prefix=prefix,
@@ -342,6 +461,34 @@ class FastAPI(Starlette):
         name: Optional[str] = None,
         callbacks: Optional[List[routing.APIRoute]] = None,
     ) -> Callable:
+        """[summary]
+
+        Args:
+            path (str): [description]
+            response_model (Optional[Type[Any]], optional): [description]. Defaults to None.
+            status_code (int, optional): [description]. Defaults to 200.
+            tags (Optional[List[str]], optional): [description]. Defaults to None.
+            dependencies (Optional[Sequence[Depends]], optional): [description]. Defaults to None.
+            summary (Optional[str], optional): [description]. Defaults to None.
+            description (Optional[str], optional): [description]. Defaults to None.
+            response_description (str, optional): [description]. Defaults to "Successful Response".
+            responses (Optional[Dict[Union[int, str], Dict[str, Any]]], optional): [description]. Defaults to None.
+            deprecated (Optional[bool], optional): [description]. Defaults to None.
+            operation_id (Optional[str], optional): [description]. Defaults to None.
+            response_model_include (Optional[Union[SetIntStr, DictIntStrAny]], optional): [description]. Defaults to None.
+            response_model_exclude (Optional[Union[SetIntStr, DictIntStrAny]], optional): [description]. Defaults to None.
+            response_model_by_alias (bool, optional): [description]. Defaults to True.
+            response_model_exclude_unset (bool, optional): [description]. Defaults to False.
+            response_model_exclude_defaults (bool, optional): [description]. Defaults to False.
+            response_model_exclude_none (bool, optional): [description]. Defaults to False.
+            include_in_schema (bool, optional): [description]. Defaults to True.
+            response_class (Optional[Type[Response]], optional): [description]. Defaults to None.
+            name (Optional[str], optional): [description]. Defaults to None.
+            callbacks (Optional[List[routing.APIRoute]], optional): [description]. Defaults to None.
+
+        Returns:
+            Callable: [description]
+        """
         return self.router.get(
             path,
             response_model=response_model,
@@ -391,6 +538,34 @@ class FastAPI(Starlette):
         name: Optional[str] = None,
         callbacks: Optional[List[routing.APIRoute]] = None,
     ) -> Callable:
+        """[summary]
+
+        Args:
+            path (str): [description]
+            response_model (Optional[Type[Any]], optional): [description]. Defaults to None.
+            status_code (int, optional): [description]. Defaults to 200.
+            tags (Optional[List[str]], optional): [description]. Defaults to None.
+            dependencies (Optional[Sequence[Depends]], optional): [description]. Defaults to None.
+            summary (Optional[str], optional): [description]. Defaults to None.
+            description (Optional[str], optional): [description]. Defaults to None.
+            response_description (str, optional): [description]. Defaults to "Successful Response".
+            responses (Optional[Dict[Union[int, str], Dict[str, Any]]], optional): [description]. Defaults to None.
+            deprecated (Optional[bool], optional): [description]. Defaults to None.
+            operation_id (Optional[str], optional): [description]. Defaults to None.
+            response_model_include (Optional[Union[SetIntStr, DictIntStrAny]], optional): [description]. Defaults to None.
+            response_model_exclude (Optional[Union[SetIntStr, DictIntStrAny]], optional): [description]. Defaults to None.
+            response_model_by_alias (bool, optional): [description]. Defaults to True.
+            response_model_exclude_unset (bool, optional): [description]. Defaults to False.
+            response_model_exclude_defaults (bool, optional): [description]. Defaults to False.
+            response_model_exclude_none (bool, optional): [description]. Defaults to False.
+            include_in_schema (bool, optional): [description]. Defaults to True.
+            response_class (Optional[Type[Response]], optional): [description]. Defaults to None.
+            name (Optional[str], optional): [description]. Defaults to None.
+            callbacks (Optional[List[routing.APIRoute]], optional): [description]. Defaults to None.
+
+        Returns:
+            Callable: [description]
+        """
         return self.router.put(
             path,
             response_model=response_model,
@@ -440,6 +615,34 @@ class FastAPI(Starlette):
         name: Optional[str] = None,
         callbacks: Optional[List[routing.APIRoute]] = None,
     ) -> Callable:
+        """[summary]
+
+        Args:
+            path (str): [description]
+            response_model (Optional[Type[Any]], optional): [description]. Defaults to None.
+            status_code (int, optional): [description]. Defaults to 200.
+            tags (Optional[List[str]], optional): [description]. Defaults to None.
+            dependencies (Optional[Sequence[Depends]], optional): [description]. Defaults to None.
+            summary (Optional[str], optional): [description]. Defaults to None.
+            description (Optional[str], optional): [description]. Defaults to None.
+            response_description (str, optional): [description]. Defaults to "Successful Response".
+            responses (Optional[Dict[Union[int, str], Dict[str, Any]]], optional): [description]. Defaults to None.
+            deprecated (Optional[bool], optional): [description]. Defaults to None.
+            operation_id (Optional[str], optional): [description]. Defaults to None.
+            response_model_include (Optional[Union[SetIntStr, DictIntStrAny]], optional): [description]. Defaults to None.
+            response_model_exclude (Optional[Union[SetIntStr, DictIntStrAny]], optional): [description]. Defaults to None.
+            response_model_by_alias (bool, optional): [description]. Defaults to True.
+            response_model_exclude_unset (bool, optional): [description]. Defaults to False.
+            response_model_exclude_defaults (bool, optional): [description]. Defaults to False.
+            response_model_exclude_none (bool, optional): [description]. Defaults to False.
+            include_in_schema (bool, optional): [description]. Defaults to True.
+            response_class (Optional[Type[Response]], optional): [description]. Defaults to None.
+            name (Optional[str], optional): [description]. Defaults to None.
+            callbacks (Optional[List[routing.APIRoute]], optional): [description]. Defaults to None.
+
+        Returns:
+            Callable: [description]
+        """
         return self.router.post(
             path,
             response_model=response_model,
@@ -489,6 +692,34 @@ class FastAPI(Starlette):
         name: Optional[str] = None,
         callbacks: Optional[List[routing.APIRoute]] = None,
     ) -> Callable:
+        """[summary]
+
+        Args:
+            path (str): [description]
+            response_model (Optional[Type[Any]], optional): [description]. Defaults to None.
+            status_code (int, optional): [description]. Defaults to 200.
+            tags (Optional[List[str]], optional): [description]. Defaults to None.
+            dependencies (Optional[Sequence[Depends]], optional): [description]. Defaults to None.
+            summary (Optional[str], optional): [description]. Defaults to None.
+            description (Optional[str], optional): [description]. Defaults to None.
+            response_description (str, optional): [description]. Defaults to "Successful Response".
+            responses (Optional[Dict[Union[int, str], Dict[str, Any]]], optional): [description]. Defaults to None.
+            deprecated (Optional[bool], optional): [description]. Defaults to None.
+            operation_id (Optional[str], optional): [description]. Defaults to None.
+            response_model_include (Optional[Union[SetIntStr, DictIntStrAny]], optional): [description]. Defaults to None.
+            response_model_exclude (Optional[Union[SetIntStr, DictIntStrAny]], optional): [description]. Defaults to None.
+            response_model_by_alias (bool, optional): [description]. Defaults to True.
+            response_model_exclude_unset (bool, optional): [description]. Defaults to False.
+            response_model_exclude_defaults (bool, optional): [description]. Defaults to False.
+            response_model_exclude_none (bool, optional): [description]. Defaults to False.
+            include_in_schema (bool, optional): [description]. Defaults to True.
+            response_class (Optional[Type[Response]], optional): [description]. Defaults to None.
+            name (Optional[str], optional): [description]. Defaults to None.
+            callbacks (Optional[List[routing.APIRoute]], optional): [description]. Defaults to None.
+
+        Returns:
+            Callable: [description]
+        """
         return self.router.delete(
             path,
             response_model=response_model,
@@ -538,6 +769,34 @@ class FastAPI(Starlette):
         name: Optional[str] = None,
         callbacks: Optional[List[routing.APIRoute]] = None,
     ) -> Callable:
+        """[summary]
+
+        Args:
+            path (str): [description]
+            response_model (Optional[Type[Any]], optional): [description]. Defaults to None.
+            status_code (int, optional): [description]. Defaults to 200.
+            tags (Optional[List[str]], optional): [description]. Defaults to None.
+            dependencies (Optional[Sequence[Depends]], optional): [description]. Defaults to None.
+            summary (Optional[str], optional): [description]. Defaults to None.
+            description (Optional[str], optional): [description]. Defaults to None.
+            response_description (str, optional): [description]. Defaults to "Successful Response".
+            responses (Optional[Dict[Union[int, str], Dict[str, Any]]], optional): [description]. Defaults to None.
+            deprecated (Optional[bool], optional): [description]. Defaults to None.
+            operation_id (Optional[str], optional): [description]. Defaults to None.
+            response_model_include (Optional[Union[SetIntStr, DictIntStrAny]], optional): [description]. Defaults to None.
+            response_model_exclude (Optional[Union[SetIntStr, DictIntStrAny]], optional): [description]. Defaults to None.
+            response_model_by_alias (bool, optional): [description]. Defaults to True.
+            response_model_exclude_unset (bool, optional): [description]. Defaults to False.
+            response_model_exclude_defaults (bool, optional): [description]. Defaults to False.
+            response_model_exclude_none (bool, optional): [description]. Defaults to False.
+            include_in_schema (bool, optional): [description]. Defaults to True.
+            response_class (Optional[Type[Response]], optional): [description]. Defaults to None.
+            name (Optional[str], optional): [description]. Defaults to None.
+            callbacks (Optional[List[routing.APIRoute]], optional): [description]. Defaults to None.
+
+        Returns:
+            Callable: [description]
+        """
         return self.router.options(
             path,
             response_model=response_model,
@@ -587,6 +846,34 @@ class FastAPI(Starlette):
         name: Optional[str] = None,
         callbacks: Optional[List[routing.APIRoute]] = None,
     ) -> Callable:
+        """[summary]
+
+        Args:
+            path (str): [description]
+            response_model (Optional[Type[Any]], optional): [description]. Defaults to None.
+            status_code (int, optional): [description]. Defaults to 200.
+            tags (Optional[List[str]], optional): [description]. Defaults to None.
+            dependencies (Optional[Sequence[Depends]], optional): [description]. Defaults to None.
+            summary (Optional[str], optional): [description]. Defaults to None.
+            description (Optional[str], optional): [description]. Defaults to None.
+            response_description (str, optional): [description]. Defaults to "Successful Response".
+            responses (Optional[Dict[Union[int, str], Dict[str, Any]]], optional): [description]. Defaults to None.
+            deprecated (Optional[bool], optional): [description]. Defaults to None.
+            operation_id (Optional[str], optional): [description]. Defaults to None.
+            response_model_include (Optional[Union[SetIntStr, DictIntStrAny]], optional): [description]. Defaults to None.
+            response_model_exclude (Optional[Union[SetIntStr, DictIntStrAny]], optional): [description]. Defaults to None.
+            response_model_by_alias (bool, optional): [description]. Defaults to True.
+            response_model_exclude_unset (bool, optional): [description]. Defaults to False.
+            response_model_exclude_defaults (bool, optional): [description]. Defaults to False.
+            response_model_exclude_none (bool, optional): [description]. Defaults to False.
+            include_in_schema (bool, optional): [description]. Defaults to True.
+            response_class (Optional[Type[Response]], optional): [description]. Defaults to None.
+            name (Optional[str], optional): [description]. Defaults to None.
+            callbacks (Optional[List[routing.APIRoute]], optional): [description]. Defaults to None.
+
+        Returns:
+            Callable: [description]
+        """
         return self.router.head(
             path,
             response_model=response_model,
@@ -636,6 +923,34 @@ class FastAPI(Starlette):
         name: Optional[str] = None,
         callbacks: Optional[List[routing.APIRoute]] = None,
     ) -> Callable:
+        """[summary]
+
+        Args:
+            path (str): [description]
+            response_model (Optional[Type[Any]], optional): [description]. Defaults to None.
+            status_code (int, optional): [description]. Defaults to 200.
+            tags (Optional[List[str]], optional): [description]. Defaults to None.
+            dependencies (Optional[Sequence[Depends]], optional): [description]. Defaults to None.
+            summary (Optional[str], optional): [description]. Defaults to None.
+            description (Optional[str], optional): [description]. Defaults to None.
+            response_description (str, optional): [description]. Defaults to "Successful Response".
+            responses (Optional[Dict[Union[int, str], Dict[str, Any]]], optional): [description]. Defaults to None.
+            deprecated (Optional[bool], optional): [description]. Defaults to None.
+            operation_id (Optional[str], optional): [description]. Defaults to None.
+            response_model_include (Optional[Union[SetIntStr, DictIntStrAny]], optional): [description]. Defaults to None.
+            response_model_exclude (Optional[Union[SetIntStr, DictIntStrAny]], optional): [description]. Defaults to None.
+            response_model_by_alias (bool, optional): [description]. Defaults to True.
+            response_model_exclude_unset (bool, optional): [description]. Defaults to False.
+            response_model_exclude_defaults (bool, optional): [description]. Defaults to False.
+            response_model_exclude_none (bool, optional): [description]. Defaults to False.
+            include_in_schema (bool, optional): [description]. Defaults to True.
+            response_class (Optional[Type[Response]], optional): [description]. Defaults to None.
+            name (Optional[str], optional): [description]. Defaults to None.
+            callbacks (Optional[List[routing.APIRoute]], optional): [description]. Defaults to None.
+
+        Returns:
+            Callable: [description]
+        """
         return self.router.patch(
             path,
             response_model=response_model,
@@ -685,6 +1000,34 @@ class FastAPI(Starlette):
         name: Optional[str] = None,
         callbacks: Optional[List[routing.APIRoute]] = None,
     ) -> Callable:
+        """[summary]
+
+        Args:
+            path (str): [description]
+            response_model (Optional[Type[Any]], optional): [description]. Defaults to None.
+            status_code (int, optional): [description]. Defaults to 200.
+            tags (Optional[List[str]], optional): [description]. Defaults to None.
+            dependencies (Optional[Sequence[Depends]], optional): [description]. Defaults to None.
+            summary (Optional[str], optional): [description]. Defaults to None.
+            description (Optional[str], optional): [description]. Defaults to None.
+            response_description (str, optional): [description]. Defaults to "Successful Response".
+            responses (Optional[Dict[Union[int, str], Dict[str, Any]]], optional): [description]. Defaults to None.
+            deprecated (Optional[bool], optional): [description]. Defaults to None.
+            operation_id (Optional[str], optional): [description]. Defaults to None.
+            response_model_include (Optional[Union[SetIntStr, DictIntStrAny]], optional): [description]. Defaults to None.
+            response_model_exclude (Optional[Union[SetIntStr, DictIntStrAny]], optional): [description]. Defaults to None.
+            response_model_by_alias (bool, optional): [description]. Defaults to True.
+            response_model_exclude_unset (bool, optional): [description]. Defaults to False.
+            response_model_exclude_defaults (bool, optional): [description]. Defaults to False.
+            response_model_exclude_none (bool, optional): [description]. Defaults to False.
+            include_in_schema (bool, optional): [description]. Defaults to True.
+            response_class (Optional[Type[Response]], optional): [description]. Defaults to None.
+            name (Optional[str], optional): [description]. Defaults to None.
+            callbacks (Optional[List[routing.APIRoute]], optional): [description]. Defaults to None.
+
+        Returns:
+            Callable: [description]
+        """
         return self.router.trace(
             path,
             response_model=response_model,
