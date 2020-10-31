@@ -1,70 +1,86 @@
 # Dependencias Avanzadas
 
-## Parameterized dependencies
+## Dependencias parametrizadas
 
-All the dependencies we have seen are a fixed function or class.
+Todas las dependencias que hemos visto son una función o una clase fija.
 
-But there could be cases where you want to be able to set parameters on the dependency, without having to declare many different functions or classes.
 
-Let's imagine that we want to have a dependency that checks if the query parameter `q` contains some fixed content.
+Pero puede haber casos en los que desees poder establecer parámetros en la dependencia, sin tener que declarar muchas funciones o clases diferentes.
 
-But we want to be able to parameterize that fixed content.
+Imaginemos que queremos tener una dependencia que compruebe si el parámetro de consulta `q` contiene algún contenido fijo.
 
-## A "callable" instance
 
-In Python there's a way to make an instance of a class a "callable".
+Además queremos tener la posibilidad de parametrizar ese contenido fijo.
 
-Not the class itself (which is already a callable), but an instance of that class.
+## Una instancia "invocable" 
 
-To do that, we declare a method `__call__`:
+En Python hay una manera de crear una instancia en una clase "invocable".
+
+
+No en la clase misma (la cual ya es invocable), si no en una instancia de esa clase. 
+
+
+Para hacer esto, debemos declarar un método `__call__` como se podemos ver en el siguiente código:  
+
 
 ```Python hl_lines="10"
 {!../../../docs_src/dependencies/tutorial011.py!}
 ```
 
-In this case, this `__call__` is what **FastAPI** will use to check for additional parameters and sub-dependencies, and this is what will be called to pass a value to the parameter in your *path operation function* later.
+En este caso, `__call__` es el método que **FastAPI** usará para comprobar parámetros y subdependencias adicionales, y esto es lo que llamaremos para pasar un valor al parámetro en tu *path operation function* más adelante. 
 
-## Parameterize the instance
 
-And now, we can use `__init__` to declare the parameters of the instance that we can use to "parameterize" the dependency:
+## Parametrizar la instancia
+
+Ahora podemos usar el método `__init__` para declarar los parámetros de la instancia que usaremos para "parametrizar" la dependencia: 
+
 
 ```Python hl_lines="7"
 {!../../../docs_src/dependencies/tutorial011.py!}
 ```
 
-In this case, **FastAPI** won't ever touch or care about `__init__`, we will use it directly in our code.
+En este caso, ** FastAPI ** nunca tocará o se preocupará por el método `__init__`, lo usaremos directamente en nuestro código.
 
-## Create an instance
 
-We could create an instance of this class with:
+## Crear una instancia
+
+Podemos crear una instancia de esta clase con el siguiente código:
+
 
 ```Python hl_lines="16"
 {!../../../docs_src/dependencies/tutorial011.py!}
 ```
 
-And that way we are able to "parameterize" our dependency, that now has `"bar"` inside of it, as the attribute `checker.fixed_content`.
+De esta manera seremos capaces de "parametrizar" nuestra dependencia, `"bar"` dentro de él, como el atributo `checker.fixed_content`.
 
-## Use the instance as a dependency
 
-Then, we could use this `checker` in a `Depends(checker)`, instead of `Depends(FixedContentQueryChecker)`, because the dependency is the instance, `checker`, not the class itself.
+## Usar la instancia como una dependencia
 
-And when solving the dependency, **FastAPI** will call this `checker` like:
+De esta manera podemos usar este `checker` en un `Depends(checker)`, en lugar de `Depends(FixedContentQueryChecker)`, debido a que la dependecia es la instancia, `checker`, no la clase en sí.
+
+
+Finalmente, al resolver la dependencia, **FastAPI** llamará a este `checker` de la siguiente manera:
+
 
 ```Python
 checker(q="somequery")
 ```
 
-...and pass whatever that returns as the value of the dependency in our *path operation function* as the parameter `fixed_content_included`:
+
+...y pasará lo que sea que devuelva como el valor de la dependencia en nuestro path operation function* como el parámetro `fixed_content_included`:
+
 
 ```Python hl_lines="20"
 {!../../../docs_src/dependencies/tutorial011.py!}
 ```
 
 !!! tip
-    All this might seem contrived. And it might not be very clear how is it useful yet.
+    Todo esto puede parecer inventado. Y es posible que todavía no esté muy claro su utilidad.
+    
 
-    These examples are intentionally simple, but show how it all works.
-
-    In the chapters about security, there are utility functions that are implemented in this same way.
-
-    If you understood all this, you already know how those utility tools for security work underneath.
+    Sabemos que estos ejemplos son intencionalmente sencillos, pero muestran cómo funciona todo.
+    
+    Además en los capítulos acerca de la seguridad, hay funciones de utilidad que se implementan de esta misma forma. 
+    
+    Si entendiste todo lo anterior, ya sabes cómo funcionan esas herramientas de gran utilidad para la seguridad.
+    
