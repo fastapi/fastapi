@@ -126,7 +126,6 @@ nav:
 - API Documentation:
   # - documentation/index.md
   - documentation/application.md
-  - documentation/background.md
   # - documentation/concurrency.md
   # - documentation/datastructures.md
   # - documentation/dependencies.md
