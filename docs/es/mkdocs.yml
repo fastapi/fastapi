@@ -42,7 +42,9 @@ nav:
   - tutorial/index.md
 - Guía de Usuario Avanzada:
   - advanced/index.md
-- async.md
+  - async.md
+- Advanced Security:
+  - advanced/security/index.md
 markdown_extensions:
 - toc:
     permalink: true
