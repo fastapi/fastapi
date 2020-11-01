@@ -261,7 +261,7 @@ But you can also exploit the benefits of parallelism and multiprocessing (having
 
 That, plus the simple fact that Python is the main language for **Data Science**, Machine Learning and especially Deep Learning, make FastAPI a very good match for Data Science / Machine Learning web APIs and applications (among many others).
 
-To see how to achieve this parallelism in production see the section about [Deployment](deployment.md){.internal-link target=_blank}.
+To see how to achieve this parallelism in production see the section about [Deployment](deployment/index.md){.internal-link target=_blank}.
 
 ## `async` and `await`
 
