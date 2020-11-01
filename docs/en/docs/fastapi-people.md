@@ -112,7 +112,17 @@ The **Top Reviewers** 🕵️ have reviewed the most Pull Requests from others, 
 
 These are the **Sponsors**. 😎
 
-They are supporting my work with **FastAPI** (and others) through <a href="https://github.com/sponsors/tiangolo" class="external-link" target="_blank">GitHub Sponsors</a>.
+They are supporting my work with **FastAPI** (and others), mainly through <a href="https://github.com/sponsors/tiangolo" class="external-link" target="_blank">GitHub Sponsors</a>.
+
+### Gold Sponsors
+
+<a href="https://www.deta.sh/" target="_blank" title="The launchpad for all your (team's) ideas"><img src="https://fastapi.tiangolo.com/img/sponsors/deta.svg"></a>
+
+### Silver Sponsors
+
+<a href="https://testdriven.io/" target="_blank" title="Learn to build high-quality web apps with best practices"><img src="https://fastapi.tiangolo.com/img/sponsors/testdriven.svg"></a>
+
+### Individual Sponsors
 
 {% if people %}
 <div class="user-list user-list-center">
@@ -126,10 +136,12 @@ They are supporting my work with **FastAPI** (and others) through <a href="https
 
 ## About the data - technical details
 
-The intention of this page is to highlight the effort of the community to help others.
+The main intention of this page is to highlight the effort of the community to help others.
 
 Especially including efforts that are normally less visible, and in many cases more arduous, like helping others with issues and reviewing Pull Requests with translations.
 
 The data is calculated each month, you can read the <a href="https://github.com/tiangolo/fastapi/blob/master/.github/actions/people/app/main.py" class="external-link" target="_blank">source code here</a>.
+
+Here I'm also highlighting contributions from sponsors.
 
 I also reserve the right to update the algorithm, sections, thresholds, etc (just in case 🤷).
