@@ -54,7 +54,7 @@ Estes são os usuários que mais têm [ajudado outras pessoas com problemas (dú
 Aqui estão os especialistas **FastAPI**. 🤓
 
  
-Estes são os usuários que mais [ajudaram outras pessoas com problemas (perguntas) no GitHub](help-fastapi.md#help-others-with-issues-in-github){.internal-link target=_blank} through *all time*.
+Estes são os usuários que mais [ajudaram outras pessoas com problemas (perguntas) no GitHub](help-fastapi.md#help-others-with-issues-in-github){.internal-link target=_blank} desde *sempre*.
 
 They have proven to be experts by helping many others. ✨
 
