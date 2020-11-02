@@ -20,7 +20,7 @@ Esse sou eu:
 
 Eu sou o criador e mantenedor do **FastAPI**. Você pode ler mais sobre isso em [Ajuda FastAPI - Obtenha ajuda - Conecte-se com o autor](help-fastapi.md#connect-with-the-author){.internal-link target=_blank}.
 
-...Mas aqui eu quero mostrar a você a comunidade.
+...Mas aqui eu quero mostrar a nossa comunidade.
 
 ---
 
@@ -28,9 +28,9 @@ Eu sou o criador e mantenedor do **FastAPI**. Você pode ler mais sobre isso em 
 
 Estas são as pessoas que:
 
-* [Ajude outras pessoas com problemas (perguntas) no GitHub](help-fastapi.md#help-others-with-issues-in-github){.internal-link target=_blank}.
-* [Crie Pull Requests](help-fastapi.md#create-a-pull-request){.internal-link target=_blank}.
-* Revise Pull Requests, [especially important for translations](contributing.md#translations){.internal-link target=_blank}.
+* [Ajudam outras pessoas com problemas (perguntas) no GitHub](help-fastapi.md#help-others-with-issues-in-github){.internal-link target=_blank}.
+* [Criam Pull Requests](help-fastapi.md#create-a-pull-request){.internal-link target=_blank}.
+* Revisam Pull Requests, [importante especialmente para as traduções](contributing.md#translations){.internal-link target=_blank}.
 
 Uma salva de palmas para eles. 👏 🙇
 
@@ -53,7 +53,7 @@ Estes são os usuários que mais têm [ajudado outras pessoas com problemas (dú
 Aqui estão os especialistas **FastAPI**. 🤓
 
  
-Estes são os usuários que mais [ajudaram outras pessoas com problemas (perguntas) no GitHub](help-fastapi.md#help-others-with-issues-in-github){.internal-link target=_blank} through *all time*.
+Estes são os usuários que mais [ajudaram outras pessoas com problemas (perguntas) no GitHub](help-fastapi.md#help-others-with-issues-in-github){.internal-link target=_blank} desde *sempre*.
 
 They have proven to be experts by helping many others. ✨
 
