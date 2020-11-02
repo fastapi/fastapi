@@ -55,25 +55,25 @@ Aqui estão os especialistas **FastAPI**. 🤓
  
 Estes são os usuários que mais [ajudaram outras pessoas com problemas (perguntas) no GitHub](help-fastapi.md#help-others-with-issues-in-github){.internal-link target=_blank} desde *sempre*.
 
-They have proven to be experts by helping many others. ✨
+Eles provaram ser especialistas ao ajudar muitos outros. ✨
 
 {% if people %}
 <div class="user-list user-list-center">
 {% for user in people.experts %}
 
-<div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">Issues replied: {{ user.count }}</div></div>
+<div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">Problemas respondidos: {{ user.count }}</div></div>
 {% endfor %}
 
 </div>
 {% endif %}
 
-## Top Contributors
+## Principais contribuidores
 
-Here are the **Top Contributors**. 👷
+Aqui estão os **Principais Colaboradores**. 👷
 
-These users have [created the most Pull Requests](help-fastapi.md#create-a-pull-request){.internal-link target=_blank} that have been *merged*.
+Esses usuários [criaram a maioria dos Pull Requests](help-fastapi.md#create-a-pull-request){.internal-link target=_blank} que foram *mergiadas*.
 
-They have contributed source code, documentation, translations, etc. 📦
+Eles contribuíram com o código-fonte, documentação, traduções, etc. 📦
 
 {% if people %}
 <div class="user-list user-list-center">
@@ -85,35 +85,37 @@ They have contributed source code, documentation, translations, etc. 📦
 </div>
 {% endif %}
 
-There are many other contributors (more than a hundred), you can see them all in the <a href="https://github.com/tiangolo/fastapi/graphs/contributors" class="external-link" target="_blank">FastAPI GitHub Contributors page</a>. 👷
+Existem muitos outros contribuidores (mais de uma centena), você pode vê-los todos na 
 
-## Top Reviewers
+Existem muitos outros contribuidores (mais de cem), você pode vê-los todos na <a href="https://github.com/tiangolo/fastapi/graphs/contributors" class="external-link" target="_blank">página FastAPI GitHub Contributors</a>. 👷
 
-These users are the **Top Reviewers**. 🕵️
+## Principais Revisores
 
-### Reviews for Translations
+Esses usuários são os **Principais Revisores**. 🕵️
 
-I only speak a few languages (and not very well 😅). So, the reviewers are the ones that have the [**power to approve translations**](contributing.md#translations){.internal-link target=_blank} of the documentation. Without them, there wouldn't be documentation in several other languages.
+### Críticas para traduções
+
+Eu só falo algumas línguas (e não muito bem 😅). Portanto, os revisores são os que têm o [**poder de aprovar traduções**](contributing.md#translations){.internal-link target=_blank} da documentação. Sem eles, não haveria documentação em vários outros idiomas.
 
 ---
 
-The **Top Reviewers** 🕵️ have reviewed the most Pull Requests from others, ensuring the quality of the code, documentation, and especially, the **translations**.
+Os **Principais Revisores** revisaram a maioria dos Pull Requests de outros, garantindo a qualidade do código, da documentação e, principalmente, das **traduções**.
 
 {% if people %}
 <div class="user-list user-list-center">
 {% for user in people.top_reviewers %}
 
-<div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">Reviews: {{ user.count }}</div></div>
+<div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">Revisões: {{ user.count }}</div></div>
 {% endfor %}
 
 </div>
 {% endif %}
 
-## Sponsors
+## Patrocinadores
 
-These are the **Sponsors**. 😎
+Estes são os **patrocinadores**. 😎
 
-They are supporting my work with **FastAPI** (and others) through <a href="https://github.com/sponsors/tiangolo" class="external-link" target="_blank">GitHub Sponsors</a>.
+Eles estão apoiando meu trabalho com **FastAPI** (e outros) por meio do <a href="https://github.com/sponsors/tiangolo" class="external-link" target="_blank">GitHub Sponsors</a>.
 
 {% if people %}
 <div class="user-list user-list-center">
@@ -125,12 +127,12 @@ They are supporting my work with **FastAPI** (and others) through <a href="https
 </div>
 {% endif %}
 
-## About the data - technical details
+## Sobre os dados - detalhes técnicos
 
-The intention of this page is to highlight the effort of the community to help others.
+A intenção desta página é destacar o esforço da comunidade para ajudar os outros.
 
-Especially including efforts that are normally less visible, and in many cases more arduous, like helping others with issues and reviewing Pull Requests with translations.
+Especialmente incluindo esforços que normalmente são menos visíveis e, em muitos casos, mais árduos, como ajudar outras pessoas com problemas e revisar Pull Requests com traduções.
 
-The data is calculated each month, you can read the <a href="https://github.com/tiangolo/fastapi/blob/master/.github/actions/people/app/main.py" class="external-link" target="_blank">source code here</a>.
+Os dados são calculados a cada mês, você pode ler o <a href="https://github.com/tiangolo/fastapi/blob/master/.github/actions/people/app/main.py" class="external-link" target="_blank">código-fonte aqui</a>.
 
-I also reserve the right to update the algorithm, sections, thresholds, etc (just in case 🤷).
+Eu também me reservo o direito de atualizar o algoritmo, seções, limites, etc (apenas no caso 🤷).
