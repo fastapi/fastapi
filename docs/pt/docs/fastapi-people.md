@@ -1,6 +1,5 @@
 # FastAPI Pessoal
 
-FastAPI has an amazing community that welcomes people from all backgrounds.
 FastAPI tem uma comunidade incrível que recebe pessoas de todas as origens.
 
 ## Criador - Mantenedor
