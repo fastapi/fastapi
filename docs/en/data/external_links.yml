@@ -8,10 +8,6 @@ articles:
       title: FastAPI — Google as an external authentication provider
       author_link: https://medium.com/@nilsdebruin
       author: Nils de Bruin
-    - link: https://amitness.com/2020/06/fastapi-vs-flask/
-      title: FastAPI for Flask Users
-      author_link: https://twitter.com/amitness
-      author: Amit Chaudhary
     - link: https://medium.com/data-rebels/fastapi-how-to-add-basic-and-cookie-authentication-a45c85ef47d3
       title: FastAPI — How to add basic and cookie authentication
       author_link: https://medium.com/@nilsdebruin
@@ -148,6 +144,10 @@ articles:
       title: HTTP server to display desktop notifications
       author_link: https://julienharbulot.com/
       author: Julien Harbulot
+    - link: https://amitness.com/2020/06/fastapi-vs-flask/
+      title: FastAPI for Flask Users
+      author_link: https://twitter.com/amitness
+      author: Amit Chaudhary
   japanese:
     - link: https://qiita.com/mtitg/items/47770e9a562dd150631d
       title: FastAPI｜DB接続してCRUDするPython製APIサーバーを構築
