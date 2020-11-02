@@ -30,7 +30,7 @@ Eu sou o criador e mantenedor do **FastAPI**. Você pode ler mais sobre isso em 
 Estas são as pessoas que:
 
 * [Ajude outras pessoas com problemas (perguntas) no GitHub](help-fastapi.md#help-others-with-issues-in-github){.internal-link target=_blank}.
-* [Crie Pull Requests](help-fastapi.md#create-a-pull-request){.internal-link target=_blank}.
+* [Criam Pull Requests](help-fastapi.md#create-a-pull-request){.internal-link target=_blank}.
 * Revise Pull Requests, [especially important for translations](contributing.md#translations){.internal-link target=_blank}.
 
 Uma salva de palmas para eles. 👏 🙇
