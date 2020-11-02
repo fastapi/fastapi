@@ -2,6 +2,15 @@
 
 ## Latest Changes
 
+* 🌐 Add Japanese translation for Tutorial - Query Parameters and String Validations. PR [#1901](https://github.com/tiangolo/fastapi/pull/1901) by [@SwftAlpc](https://github.com/SwftAlpc).
+* 👥 Update FastAPI People. PR [#2282](https://github.com/tiangolo/fastapi/pull/2282) by [@github-actions[bot]](https://github.com/apps/github-actions).
+* ✏️ Fix uppercase in Tutorial - Query parameters. PR [#2245](https://github.com/tiangolo/fastapi/pull/2245) by [@mariacamilagl](https://github.com/mariacamilagl).
+* 🔥 Cleanup after upgrade for Docs Previews GitHub Action. PR [#2248](https://github.com/tiangolo/fastapi/pull/2248) by [@tiangolo](https://github.com/tiangolo).
+* 📝 Add articles to External Links. PR [#2247](https://github.com/tiangolo/fastapi/pull/2247) by [@tiangolo](https://github.com/tiangolo).
+* 🐛 Fix CI docs preview, unzip docs. PR [#2246](https://github.com/tiangolo/fastapi/pull/2246) by [@tiangolo](https://github.com/tiangolo).
+* ✨ Add instant docs deploy previews for PRs from forks. PR [#2244](https://github.com/tiangolo/fastapi/pull/2244) by [@tiangolo](https://github.com/tiangolo).
+* ⚡️ Build docs for languages in parallel in subprocesses to speed up CI. PR [#2242](https://github.com/tiangolo/fastapi/pull/2242) by [@tiangolo](https://github.com/tiangolo).
+* 🐛 Fix docs order generation for partial translations. PR [#2238](https://github.com/tiangolo/fastapi/pull/2238) by [@tiangolo](https://github.com/tiangolo).
 * 👥 Update FastAPI People. PR [#2202](https://github.com/tiangolo/fastapi/pull/2202) by [@github-actions[bot]](https://github.com/apps/github-actions).
 * ♻️ Update FastAPI People GitHub Action to send the PR as github-actions. PR [#2201](https://github.com/tiangolo/fastapi/pull/2201) by [@tiangolo](https://github.com/tiangolo).
 * 🔧 Update FastAPI People GitHub Action config, run monthly. PR [#2199](https://github.com/tiangolo/fastapi/pull/2199) by [@tiangolo](https://github.com/tiangolo).

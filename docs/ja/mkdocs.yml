@@ -43,6 +43,7 @@ nav:
   - tutorial/path-params.md
   - tutorial/query-params.md
   - tutorial/body.md
+  - tutorial/query-params-str-validations.md
   - tutorial/header-params.md
   - tutorial/cors.md
 - project-generation.md
