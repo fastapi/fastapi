@@ -21,7 +21,7 @@ Esse sou eu:
 
 Eu sou o criador e mantenedor do **FastAPI**. Você pode ler mais sobre isso em [Ajuda FastAPI - Obtenha ajuda - Conecte-se com o autor](help-fastapi.md#connect-with-the-author){.internal-link target=_blank}.
 
-...Mas aqui eu quero mostrar a você a comunidade.
+...Mas aqui eu quero mostrar a nossa comunidade.
 
 ---
 
