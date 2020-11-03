@@ -28,7 +28,7 @@ $ pip install aiofiles
 !!! note "技術詳細"
     `from starlette.staticfiles import StaticFiles` も使用できます。
 
-    **FastAPI**は、開発者の便利のために、`starlette.staticfiles` と同じ `fastapi.staticfiles` を提供します。しかし、実際にはStarletteから直接渡されています。
+    **FastAPI**は、開発者の利便性のために、`starlette.staticfiles` と同じ `fastapi.staticfiles` を提供します。しかし、実際にはStarletteから直接渡されています。
 
 ### 「マウント」とは
 
