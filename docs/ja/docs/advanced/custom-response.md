@@ -13,7 +13,7 @@
 そしてもし、`Response` が、`JSONResponse` や `UJSONResponse` の場合のようにJSONメディアタイプ (`application/json`) ならば、データは *path operationデコレータ* に宣言したPydantic `response_model` により自動的に変換 (もしくはフィルタ) されます。
 
 !!! note "備考"
-    メディアタイプを指定せずにレスポンスクラスを利用すると、FastAPIは何もコンテンツがないことを期待するので、生成されるOpenAPIドキュメントにレスポンスフォーマットが記載されません。
+    メディアタイプを指定せずにレスポンスクラスを利用すると、FastAPIは何もコンテンツがないことを期待します。そのため、生成されるOpenAPIドキュメントにレスポンスフォーマットが記載されません。
 
 ## `ORJSONResponse` を使う
 
@@ -47,11 +47,11 @@
 ```
 
 !!! info "情報"
-    パラメータ `response_class` は、レスポンスの「メディアタイプ」を定義するために利用することもできます。
+    パラメータ `response_class` は、レスポンスの「メディアタイプ」を定義するために利用されます。
 
     この場合、HTTPヘッダー `Content-Type` には `text/html` がセットされます。
 
-    そして、OpenAPIにはそのようにドキュメントされます。
+    そして、OpenAPIにはそのようにドキュメント化されます。
 
 ### `Response` を返す
 
@@ -71,7 +71,7 @@
 
 ### OpenAPIドキュメントと `Response` のオーバーライド
 
-関数の中でレスポンスをオーバーライドしつつも、OpenAPI に「メディアタイプ」をドキュメントしたいなら、 `response_class` パラメータを使い、 `Response` オブジェクトを返します。
+関数の中でレスポンスをオーバーライドしつつも、OpenAPI に「メディアタイプ」をドキュメント化したいなら、 `response_class` パラメータを使い、 `Response` オブジェクトを返します。
 
 `response_class` はOpenAPIの *path operation* ドキュメントにのみ使用されますが、 `Response` はそのまま使用されます。
 
@@ -87,7 +87,7 @@
 
 `generate_html_response()` を呼び出した結果を返すことにより、**FastAPI** の振る舞いを上書きする `Response` が既に返されています。
 
-しかし、一方では `response_class` に `HTMLResponse` を渡しているため、 **FastAPI** はOpenAPIや対話的ドキュメントでHTMLとして `text/html` でドキュメントする方法を知っています。
+しかし、一方では `response_class` に `HTMLResponse` を渡しているため、 **FastAPI** はOpenAPIや対話的ドキュメントでHTMLとして `text/html` でドキュメント化する方法を知っています。
 
 <img src="/img/tutorial/custom-response/image01.png">
 
@@ -148,7 +148,7 @@ FastAPI (実際にはStarlette) は自動的にContent-Lengthヘッダーを含�
 <a href="https://github.com/ultrajson/ultrajson" class="external-link" target="_blank">`ujson`</a>を使った、代替のJSONレスポンスです。
 
 !!! warning "注意"
-    `ujson` は、いくつかのエッジケースの取り扱いについて、Pythonにビルトインされた実装よりも注意深くありません。
+    `ujson` は、いくつかのエッジケースの取り扱いについて、Pythonにビルトインされた実装よりも作りこまれていません。
 
 ```Python hl_lines="2  7"
 {!../../../docs_src/custom_response/tutorial001.py!}
@@ -216,7 +216,7 @@ HTTPリダイレクトを返します。デフォルトでは307ステータス�
 ```
 
 !!! tip "豆知識"
-    前に見たように、依然として *path operation* の中で `response_class` をオーバーライドできます。
+    前に見たように、 *path operation* の中で `response_class` をオーバーライドできます。
 
 ## その他のドキュメント
 
