@@ -1,6 +1,7 @@
 from typing import Any, List, Optional
 
 import peewee
+from playhouse.shortcuts import model_to_dict
 from pydantic import BaseModel
 from pydantic.utils import GetterDict
 
@@ -10,6 +11,8 @@ class PeeweeGetterDict(GetterDict):
         res = getattr(self._obj, key, default)
         if isinstance(res, peewee.ModelSelect):
             return list(res)
+        elif isinstance(res, peewee.Model):
+            return model_to_dict(res)
         return res
 
 
