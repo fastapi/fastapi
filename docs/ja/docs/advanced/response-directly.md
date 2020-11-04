@@ -27,7 +27,7 @@
 
 **FastAPI** はあなたが返す `Response` に対して何も変更を加えないので、コンテンツが準備できていることを保証しなければなりません。
 
-例えば、Pydanticモデルを `JSONResponse` に含めるには、すべてのデータ型 (`datetime` や `UUID` など) がJSON互換の型に変換された `dict` に変換しなければなりません。
+例えば、Pydanticモデルを `JSONResponse` に含めるには、すべてのデータ型 (`datetime` や `UUID` など) をJSON互換の型に変換された `dict` に変換しなければなりません。
 
 このようなケースでは、レスポンスにデータを含める前に `jsonable_encoder` を使ってデータを変換できます。
 
@@ -60,4 +60,4 @@ XMLを文字列にし、`Response` に含め、それを返します。
 
 しかし、[Additional Responses in OpenAPI](additional-responses.md){.internal-link target=_blank}に記載されたようにドキュメントを書くこともできます。
 
-後のセクションで、カスタム `Response` を使用・宣言しながら、自動的なデータ変換やドキュメンテーションを行う方法を見ることができます。
+後のセクションで、カスタム `Response` を使用・宣言しながら、自動的なデータ変換やドキュメンテーションを行う方法を説明します。
