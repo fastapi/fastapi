@@ -25,7 +25,7 @@ These dependencies will be executed/solved the same way normal dependencies. But
 
     Using these `dependencies` in the *path operation decorator* you can make sure they are executed while avoiding editor/tooling errors.
 
-    It might also help avoiding confusion for new developers that see an un-used parameter in your code and could think it's unnecessary.
+    It might also help avoid confusion for new developers that see an unused parameter in your code and could think it's unnecessary.
 
 ## Dependencies errors and return values
 
@@ -35,7 +35,7 @@ You can use the same dependency *functions* you use normally.
 
 They can declare request requirements (like headers) or other sub-dependencies:
 
-```Python hl_lines="6 11"
+```Python hl_lines="6  11"
 {!../../../docs_src/dependencies/tutorial006.py!}
 ```
 
@@ -43,7 +43,7 @@ They can declare request requirements (like headers) or other sub-dependencies:
 
 These dependencies can `raise` exceptions, the same as normal dependencies:
 
-```Python hl_lines="8 13"
+```Python hl_lines="8  13"
 {!../../../docs_src/dependencies/tutorial006.py!}
 ```
 
@@ -53,7 +53,7 @@ And they can return values or not, the values won't be used.
 
 So, you can re-use a normal dependency (that returns a value) you already use somewhere else, and even though the value won't be used, the dependency will be executed:
 
-```Python hl_lines="9 14"
+```Python hl_lines="9  14"
 {!../../../docs_src/dependencies/tutorial006.py!}
 ```
 

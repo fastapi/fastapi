@@ -1,6 +1,7 @@
 import os
 import shutil
 from http.server import HTTPServer, SimpleHTTPRequestHandler
+from multiprocessing import Pool
 from pathlib import Path
 from typing import Dict, Optional, Tuple
 
@@ -93,7 +94,8 @@ def new_lang(lang: str = typer.Argument(..., callback=lang_callback)):
     new_config = get_base_lang_config(lang)
     new_config_path: Path = Path(new_path) / mkdocs_name
     new_config_path.write_text(
-        yaml.dump(new_config, sort_keys=False, width=200), encoding="utf-8"
+        yaml.dump(new_config, sort_keys=False, width=200, allow_unicode=True),
+        encoding="utf-8",
     )
     new_config_docs_path: Path = new_path / "docs"
     new_config_docs_path.mkdir()
@@ -131,6 +133,7 @@ def build_lang(
         dist_path: Path = site_path / lang
     shutil.rmtree(build_lang_path, ignore_errors=True)
     shutil.copytree(lang_path, build_lang_path)
+    shutil.copytree(en_docs_path / "data", build_lang_path / "data")
     en_config_path: Path = en_lang_path / mkdocs_name
     en_config: dict = mkdocs.utils.yaml_load(en_config_path.read_text(encoding="utf-8"))
     nav = en_config["nav"]
@@ -169,7 +172,11 @@ def build_lang(
                         new_key += (key_part,)
                 use_lang_file_to_nav[file] = new_key
     key_to_section = {(): []}
-    for file, file_key in use_lang_file_to_nav.items():
+    for file, orig_file_key in file_to_nav.items():
+        if file in use_lang_file_to_nav:
+            file_key = use_lang_file_to_nav[file]
+        else:
+            file_key = orig_file_key
         section = get_key_section(key_to_section=key_to_section, key=file_key)
         section.append(file)
     new_nav = key_to_section[()]
@@ -177,7 +184,8 @@ def build_lang(
     lang_config["nav"] = export_lang_nav
     build_lang_config_path: Path = build_lang_path / mkdocs_name
     build_lang_config_path.write_text(
-        yaml.dump(lang_config, sort_keys=False, width=200), encoding="utf-8"
+        yaml.dump(lang_config, sort_keys=False, width=200, allow_unicode=True),
+        encoding="utf-8",
     )
     current_dir = os.getcwd()
     os.chdir(build_lang_path)
@@ -200,13 +208,24 @@ def build_all():
     typer.echo(f"Building docs for: en")
     mkdocs.commands.build.build(mkdocs.config.load_config(site_dir=str(site_path)))
     os.chdir(current_dir)
+
+    langs = []
     for lang in get_lang_paths():
         if lang == en_build_path or not lang.is_dir():
             continue
-        build_lang(lang.name)
+        langs.append(lang.name)
+    cpu_count = os.cpu_count() or 1
+    with Pool(cpu_count * 2) as p:
+        p.map(build_lang, langs)
     typer.echo("Copying en index.md to README.md")
     en_index = en_build_path / "docs" / "index.md"
     shutil.copyfile(en_index, "README.md")
+
+
+def update_single_lang(lang: str):
+    lang_path = docs_path / lang
+    typer.echo(f"Updating {lang_path.name}")
+    update_config(lang_path.name)
 
 
 @app.command()
@@ -224,11 +243,9 @@ def update_languages(
     if lang is None:
         for lang_path in get_lang_paths():
             if lang_path.is_dir():
-                typer.echo(f"Updating {lang_path.name}")
-                update_config(lang_path.name)
+                update_single_lang(lang_path.name)
     else:
-        typer.echo(f"Updating {lang}")
-        update_config(lang)
+        update_single_lang(lang)
 
 
 @app.command()
@@ -295,7 +312,8 @@ def update_config(lang: str):
         languages.append({name: f"/{name}/"})
     config["nav"][1] = {"Languages": languages}
     config_path.write_text(
-        yaml.dump(config, sort_keys=False, width=200), encoding="utf-8"
+        yaml.dump(config, sort_keys=False, width=200, allow_unicode=True),
+        encoding="utf-8",
     )
 
 

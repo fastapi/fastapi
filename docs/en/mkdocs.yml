@@ -4,6 +4,7 @@ site_url: https://fastapi.tiangolo.com/
 theme:
   name: material
   palette:
+    scheme: preference
     primary: teal
     accent: amber
   icon:
@@ -17,14 +18,26 @@ edit_uri: ''
 google_analytics:
 - UA-133183413-1
 - auto
+plugins:
+- search
+- markdownextradata:
+    data: data
 nav:
 - FastAPI: index.md
 - Languages:
   - en: /
   - es: /es/
+  - fr: /fr/
+  - it: /it/
+  - ja: /ja/
+  - ko: /ko/
   - pt: /pt/
+  - ru: /ru/
+  - tr: /tr/
+  - uk: /uk/
   - zh: /zh/
 - features.md
+- fastapi-people.md
 - python-types.md
 - Tutorial - User Guide:
   - tutorial/index.md
@@ -92,7 +105,8 @@ nav:
   - advanced/sql-databases-peewee.md
   - advanced/async-sql-databases.md
   - advanced/nosql-databases.md
-  - advanced/sub-applications-proxy.md
+  - advanced/sub-applications.md
+  - advanced/behind-a-proxy.md
   - advanced/templates.md
   - advanced/graphql.md
   - advanced/websockets.md
@@ -102,7 +116,9 @@ nav:
   - advanced/testing-events.md
   - advanced/testing-dependencies.md
   - advanced/testing-database.md
+  - advanced/async-tests.md
   - advanced/settings.md
+  - advanced/conditional-openapi.md
   - advanced/extending-openapi.md
   - advanced/openapi-callbacks.md
   - advanced/wsgi.md

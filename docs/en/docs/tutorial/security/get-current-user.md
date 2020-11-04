@@ -16,7 +16,7 @@ First, let's create a Pydantic user model.
 
 The same way we use Pydantic to declare bodies, we can use it anywhere else:
 
-```Python hl_lines="5 12 13 14 15 16"
+```Python hl_lines="5  12-16"
 {!../../../docs_src/security/tutorial002.py!}
 ```
 
@@ -38,7 +38,7 @@ The same as we were doing before in the *path operation* directly, our new depen
 
 `get_current_user` will use a (fake) utility function we created, that takes a token as a `str` and returns our Pydantic `User` model:
 
-```Python hl_lines="19 20 21 22 26 27"
+```Python hl_lines="19-22  26-27"
 {!../../../docs_src/security/tutorial002.py!}
 ```
 
@@ -98,7 +98,7 @@ And all of them (or any portion of them that you want) can take the advantage of
 
 And all these thousands of *path operations* can be as small as 3 lines:
 
-```Python hl_lines="30 31 32"
+```Python hl_lines="30-32"
 {!../../../docs_src/security/tutorial002.py!}
 ```
 

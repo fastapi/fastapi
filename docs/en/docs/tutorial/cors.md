@@ -46,7 +46,7 @@ You can also specify if your backend allows:
 * Specific HTTP methods (`POST`, `PUT`) or all of them with the wildcard `"*"`.
 * Specific HTTP headers or all of them with the wildcard `"*"`.
 
-```Python hl_lines="2  6 7 8 9 10 11  13 14 15 16 17 18 19"
+```Python hl_lines="2  6-11  13-19"
 {!../../../docs_src/cors/tutorial001.py!}
 ```
 
@@ -60,7 +60,7 @@ The following arguments are supported:
 * `allow_headers` - A list of HTTP request headers that should be supported for cross-origin requests. Defaults to `[]`. You can use `['*']` to allow all headers. The `Accept`, `Accept-Language`, `Content-Language` and `Content-Type` headers are always allowed for CORS requests.
 * `allow_credentials` - Indicate that cookies should be supported for cross-origin requests. Defaults to `False`.
 * `expose_headers` - Indicate any response headers that should be made accessible to the browser. Defaults to `[]`.
-* `max_age` - Sets a maximum time in seconds for browsers to cache CORS responses. Defaults to `60`.
+* `max_age` - Sets a maximum time in seconds for browsers to cache CORS responses. Defaults to `600`.
 
 The middleware responds to two particular types of HTTP request...
 
