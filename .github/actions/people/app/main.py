@@ -375,7 +375,7 @@ def get_contributors(settings: Settings):
     return contributors, commentors, reviewers, authors
 
 
-def get_sponsors(settings: Settings):
+def get_individual_sponsors(settings: Settings, max_individual_sponsor: int = 5):
     nodes: List[SponsorshipAsMaintainerNode] = []
     edges = get_graphql_sponsor_edges(settings=settings)
 
@@ -387,6 +387,8 @@ def get_sponsors(settings: Settings):
 
     entities: Dict[str, SponsorEntity] = {}
     for node in nodes:
+        if node.tier.monthlyPriceInDollars > max_individual_sponsor:
+            continue
         entities[node.sponsorEntity.login] = node.sponsorEntity
     return entities
 
@@ -473,7 +475,7 @@ if __name__ == "__main__":
         skip_users=skip_users,
     )
 
-    sponsors_by_login = get_sponsors(settings=settings)
+    sponsors_by_login = get_individual_sponsors(settings=settings)
     sponsors = []
     for login, sponsor in sponsors_by_login.items():
         sponsors.append(
