@@ -2,6 +2,7 @@
 
 ## Latest Changes
 
+* 📝 Fix example code with sets in Tutorial - Body - Nested Models 3. PR [#2054](https://github.com/tiangolo/fastapi/pull/2054) by [@hitrust](https://github.com/hitrust).
 * 📝 Fix example code with sets in Tutorial - Body - Nested Models 2. PR [#2053](https://github.com/tiangolo/fastapi/pull/2053) by [@hitrust](https://github.com/hitrust).
 * 📝 Fix example code with sets in Tutorial - Body - Nested Models. PR [#2052](https://github.com/tiangolo/fastapi/pull/2052) by [@hitrust](https://github.com/hitrust).
 * ✏ Fix typo in Benchmarks. PR [#1995](https://github.com/tiangolo/fastapi/pull/1995) by [@AlejoAsd](https://github.com/AlejoAsd).
