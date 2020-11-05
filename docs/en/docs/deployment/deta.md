@@ -1,11 +1,11 @@
 # Deploy on Deta
 
-In this section you will learn see how to easily deploy a **FastAPI** application on <a href="https://www.deta.sh/" class="external-link" target="_blank">Deta</a> using the free plan. 🎁
+In this section you will learn see how to easily deploy a **FastAPI** application on <a href="https://www.deta.sh/?ref=fastapi" class="external-link" target="_blank">Deta</a> using the free plan. 🎁
 
 It will take you about **10 minutes**.
 
 !!! info
-    <a href="https://www.deta.sh/" class="external-link" target="_blank">Deta</a> is a **FastAPI** sponsor. 🎉
+    <a href="https://www.deta.sh/?ref=fastapi" class="external-link" target="_blank">Deta</a> is a **FastAPI** sponsor. 🎉
 
 ## A basic **FastAPI** app
 
@@ -54,7 +54,7 @@ You will now have one directory `./fastapideta/` with two files:
 
 ## Create a free Deta account
 
-Now create a <a href="https://www.deta.sh/" class="external-link" target="_blank">free account on Deta</a>, you just need an email and password.
+Now create a <a href="https://www.deta.sh/?ref=fastapi" class="external-link" target="_blank">free account on Deta</a>, you just need an email and password.
 
 You don't even need a credit card.
 
@@ -107,7 +107,7 @@ Available Commands:
 </div>
 
 !!! tip
-    If you have problems installing the CLI, check the <a href="https://docs.deta.sh/docs/micros/getting_started" class="external-link" target="_blank">official Deta docs</a>.
+    If you have problems installing the CLI, check the <a href="https://docs.deta.sh/docs/micros/getting_started?ref=fastapi" class="external-link" target="_blank">official Deta docs</a>.
 
 ## Login with the CLI
 
@@ -235,6 +235,6 @@ You can also edit them and re-play them.
 
 ## Learn more
 
-At some point you will probably want to store some data for your app in a way that persists through time. For that you can use <a href="https://docs.deta.sh/docs/base/py_tutorial" class="external-link" target="_blank">Deta Base</a>, it also has a generous **free tier**.
+At some point you will probably want to store some data for your app in a way that persists through time. For that you can use <a href="https://docs.deta.sh/docs/base/py_tutorial?ref=fastapi" class="external-link" target="_blank">Deta Base</a>, it also has a generous **free tier**.
 
-You can also read more in the <a href="https://docs.deta.sh" class="external-link" target="_blank">Deta Docs</a>.
+You can also read more in the <a href="https://docs.deta.sh?ref=fastapi" class="external-link" target="_blank">Deta Docs</a>.
