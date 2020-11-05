@@ -2,6 +2,7 @@
 
 ## Latest Changes
 
+* ✏️ Fix typo on dependencies utils and cleanup unused variable. PR [#1912](https://github.com/tiangolo/fastapi/pull/1912) by [@Kludex](https://github.com/Kludex).
 * 📝 Add note in CORS tutorial about allow_origins with ["*"] and allow_credentials. PR [#1895](https://github.com/tiangolo/fastapi/pull/1895) by [@dsmurrell](https://github.com/dsmurrell).
 * 📝 Add deployment to Deta, the first gold sponsor 🎉. PR [#2303](https://github.com/tiangolo/fastapi/pull/2303) by [@tiangolo](https://github.com/tiangolo).
 * 🌐 Add Japanese translation for Tutorial - Query Parameters and String Validations. PR [#1901](https://github.com/tiangolo/fastapi/pull/1901) by [@SwftAlpc](https://github.com/SwftAlpc).
