@@ -47,7 +47,7 @@ The key features are:
 
 <!-- sponsors -->
 
-<a href="https://www.deta.sh/?ref=fastapi" target="_blank" title="The launchpad for all your (team's) ideas"><img src="/img/sponsors/deta.svg"></a>
+<a href="https://www.deta.sh/?ref=fastapi" target="_blank" title="The launchpad for all your (team's) ideas"><img src="https://fastapi.tiangolo.com/img/sponsors/deta.svg"></a>
 
 <!-- /sponsors -->
 
