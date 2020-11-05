@@ -2,6 +2,7 @@
 
 ## Latest Changes
 
+* ✏ Fix incorrect Celery URLs in docs. PR [#2100](https://github.com/tiangolo/fastapi/pull/2100) by [@CircleOnCircles](https://github.com/CircleOnCircles).
 * 📌 Relax Swagger UI version pin. PR [#2089](https://github.com/tiangolo/fastapi/pull/2089) by [@jmriebold](https://github.com/jmriebold).
 * 📝 Simplify intro to Python Types, all currently supported Python versions include type hints 🎉. PR [#2085](https://github.com/tiangolo/fastapi/pull/2085) by [@ninjaaron](https://github.com/ninjaaron).
 * 📝 Fix example code with sets in Tutorial - Body - Nested Models 3. PR [#2054](https://github.com/tiangolo/fastapi/pull/2054) by [@hitrust](https://github.com/hitrust).
