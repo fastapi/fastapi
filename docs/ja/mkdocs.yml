@@ -46,6 +46,8 @@ nav:
   - tutorial/query-params-str-validations.md
   - tutorial/header-params.md
   - tutorial/cors.md
+  - セキュリティ:
+    - tutorial/security/first-steps.md
 - project-generation.md
 - alternatives.md
 - history-design-future.md
