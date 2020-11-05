@@ -5,9 +5,9 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
-   width="151.33417"
-   height="151.33417"
-   viewBox="0 0 151.33417 151.33417"
+   width="240"
+   height="100"
+   viewBox="0 0 240 100"
    fill="none"
    version="1.1"
    id="svg19">
@@ -25,6 +25,12 @@
   </metadata>
   <defs
      id="defs17">
+    <rect
+       x="-491.25317"
+       y="-261.21402"
+       width="476.65652"
+       height="212.95724"
+       id="rect1716" />
     <clipPath
        id="clip0">
       <rect
@@ -36,10 +42,39 @@
          y="0" />
     </clipPath>
   </defs>
+  <text
+     xml:space="preserve"
+     id="text1714"
+     style="font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect1716);"
+     transform="translate(44.332916,-25.667084)" />
+  <rect
+     style="fill:#ffffff;stroke:none;stroke-width:1.60003;stop-color:#000000"
+     id="rect1756"
+     width="240"
+     height="100"
+     x="0"
+     y="0" />
+  <rect
+     style="fill:#ffffff;stroke:none;stroke-width:1.52703;stop-color:#000000"
+     id="rect1758"
+     width="230"
+     height="90"
+     x="5"
+     y="5" />
+  <text
+     xml:space="preserve"
+     style="font-size:16px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;stroke-width:0.489974"
+     x="5.046875"
+     y="81.521378"
+     id="text1712"><tspan
+       id="tspan1710"
+       x="5.046875"
+       y="81.521378"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;font-family:Roboto;-inkscape-font-specification:Roboto;stroke-width:0.489974">Deploy your FastAPI app for free</tspan></text>
   <g
      clip-path="url(#clip0)"
      id="g12"
-     transform="matrix(0.1646844,0,0,0.1646844,12.26359,57.383822)">
+     transform="matrix(0.19133908,0,0,0.19133908,46.334454,11.992465)">
     <path
        d="m 111.14,0 c 61.38,0 111.139,49.7054 111.139,111.02 0,61.315 -49.759,111.02 -111.139,111.02 C 49.7589,222.04 0,172.335 0,111.02 0,49.7054 49.7589,0 111.14,0 Z"
        fill="#ef39a8"

@@ -7,9 +7,9 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="39.6875mm"
-   height="39.6875mm"
-   viewBox="0 0 39.6875 39.6875"
+   width="63.5mm"
+   height="26.458334mm"
+   viewBox="0 0 63.5 26.458334"
    version="1.1"
    id="svg975"
    inkscape:version="1.0.1 (1.0.1+r73)"
@@ -34,9 +34,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.979899"
-     inkscape:cx="-29.134504"
-     inkscape:cy="75.796629"
+     inkscape:zoom="2"
+     inkscape:cx="133.05705"
+     inkscape:cy="115.91792"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
@@ -62,17 +62,24 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-87.361389,-129.34682)">
+     transform="translate(-75.455132,-135.96141)">
     <rect
-       style="fill:#212529;fill-opacity:1;stroke:none;stroke-width:0.352999;stop-color:#000000"
+       style="fill:#212529;fill-opacity:1;stroke:none;stroke-width:0.364576;stop-color:#000000"
        id="rect901"
-       width="39.6875"
-       height="39.6875"
-       x="87.361389"
-       y="129.34682" />
+       width="63.5"
+       height="26.458334"
+       x="75.455132"
+       y="135.96141" />
+    <rect
+       style="fill:#212529;fill-opacity:1;stroke:none;stroke-width:0.404023;stop-color:#000000"
+       id="rect1758"
+       width="60.854168"
+       height="23.8125"
+       x="76.778053"
+       y="137.28433" />
     <g
        id="g1648"
-       transform="matrix(0.25872783,0,0,0.25872783,90.512297,143.95326)">
+       transform="matrix(0.40937885,0,0,0.40937885,80.597548,138.01872)">
       <path
          d="M 1.6,4.62 3.2,5.54 11.19,0.92 9.59,0 Z m 9.59,-3.7 1.6,-0.92 8,4.62 -1.6,0.92 z m 9.6,5.54 -1.6,-0.92 -8,4.61 1.6,0.93 z m -9.6,3.69 -1.6,0.93 L 1.6,6.46 3.2,5.54 Z"
          fill="#d2edf3"
@@ -208,5 +215,21 @@
            id="path1602" />
       </g>
     </g>
+    <text
+       xml:space="preserve"
+       style="font-size:4.23333px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;stroke-width:0.133861"
+       x="107.5555"
+       y="154.45795"
+       id="text1712"><tspan
+         sodipodi:role="line"
+         id="tspan1710"
+         x="107.5555"
+         y="154.45795"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333px;font-family:Roboto;-inkscape-font-specification:Roboto;text-align:center;text-anchor:middle;fill:#ffffff;stroke-width:0.133861">Learn Test-Driven Development </tspan><tspan
+         sodipodi:role="line"
+         x="107.5555"
+         y="159.79095"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333px;font-family:Roboto;-inkscape-font-specification:Roboto;text-align:center;text-anchor:middle;fill:#ffffff;stroke-width:0.133861"
+         id="tspan2004">with FastAPI</tspan></text>
   </g>
 </svg>
