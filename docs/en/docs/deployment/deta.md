@@ -111,9 +111,7 @@ Available Commands:
 
 ## Login with the CLI
 
-Now login to Deta from the CLI with.
-
-This will open a web browser and authenticate automatically.
+Now login to Deta from the CLI with:
 
 <div class="termy">
 
@@ -126,9 +124,11 @@ Logged in successfully.
 
 </div>
 
+This will open a web browser and authenticate automatically.
+
 ## Deploy with Deta
 
-Now deploy your application with the Deta CLI:
+Next, deploy your application with the Deta CLI:
 
 <div class="termy">
 
@@ -200,7 +200,7 @@ But once you are ready, you can make it public with:
 <div class="termy">
 
 ```console
-deta auth disable
+$ deta auth disable
 
 Successfully disabled http auth
 ```
@@ -217,13 +217,13 @@ Also notice that Deta correctly handles HTTPS for you, so you don't have to take
 
 ## Check the Visor
 
-From your docs UI (they will be in a URL like `https://qltnci.deta.dev/docs`) send a request to your `/items/{item_id}` *path operation*.
+From your docs UI (they will be in a URL like `https://qltnci.deta.dev/docs`) send a request to your *path operation* `/items/{item_id}`.
 
 For example with ID `5`.
 
 Now go to <a href="https://web.deta.sh/" class="external-link" target="_blank">https://web.deta.sh</a>.
 
-You will see there's a section to the right called <abbr title="it comes from Micro(server)">"Micros"</abbr> with each of your apps.
+You will see there's a section to the left called <abbr title="it comes from Micro(server)">"Micros"</abbr> with each of your apps.
 
 You will see a tab with "Details", and also a tab "Visor", go to the tab "Visor".
 
