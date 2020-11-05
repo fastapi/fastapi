@@ -20,7 +20,7 @@ def _fake_asynccontextmanager(func: Callable) -> Callable:
 
 try:
     from contextlib import asynccontextmanager  # type: ignore
-except ImportError:  # pragma: no cover
+except ImportError:
     try:
         from async_generator import asynccontextmanager  # type: ignore
     except ImportError:  # pragma: no cover
