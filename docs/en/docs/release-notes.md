@@ -2,6 +2,7 @@
 
 ## Latest Changes
 
+* 📝 Add Japanese translation for Tutorial - Security - First Steps. PR [#2153](https://github.com/tiangolo/fastapi/pull/2153) by [@komtaki](https://github.com/komtaki).
 * ✏ Fix minor typos in docs. PR [#2122](https://github.com/tiangolo/fastapi/pull/2122) by [@TeoZosa](https://github.com/TeoZosa).
 * ✏ Fix typos in docs and source examples. PR [#2102](https://github.com/tiangolo/fastapi/pull/2102) by [@AdrianDeAnda](https://github.com/AdrianDeAnda).
 * ✏ Fix incorrect Celery URLs in docs. PR [#2100](https://github.com/tiangolo/fastapi/pull/2100) by [@CircleOnCircles](https://github.com/CircleOnCircles).
