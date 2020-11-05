@@ -66,6 +66,10 @@ class FastAPI(Starlette):
         self.exception_handlers = (
             {} if exception_handlers is None else dict(exception_handlers)
         )
+        self.exception_handlers.setdefault(HTTPException, http_exception_handler)
+        self.exception_handlers.setdefault(
+            RequestValidationError, request_validation_exception_handler
+        )
 
         self.user_middleware = [] if middleware is None else list(middleware)
         self.middleware_stack = self.build_middleware_stack()
@@ -165,10 +169,6 @@ class FastAPI(Starlette):
                 )
 
             self.add_route(self.redoc_url, redoc_html, include_in_schema=False)
-        self.add_exception_handler(HTTPException, http_exception_handler)
-        self.add_exception_handler(
-            RequestValidationError, request_validation_exception_handler
-        )
 
     async def __call__(self, scope: Scope, receive: Receive, send: Send) -> None:
         if self.root_path:

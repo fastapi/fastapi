@@ -43,8 +43,11 @@ nav:
   - tutorial/path-params.md
   - tutorial/query-params.md
   - tutorial/body.md
+  - tutorial/query-params-str-validations.md
   - tutorial/header-params.md
   - tutorial/cors.md
+  - セキュリティ:
+    - tutorial/security/first-steps.md
 - 高度なユーザーガイド:
   - advanced/response-directly.md
 - project-generation.md

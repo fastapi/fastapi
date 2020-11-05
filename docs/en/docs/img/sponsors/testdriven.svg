@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="63.5mm"
+   height="26.458334mm"
+   viewBox="0 0 63.5 26.458334"
+   version="1.1"
+   id="svg975"
+   inkscape:version="1.0.1 (1.0.1+r73)"
+   sodipodi:docname="testdriven.svg">
+  <defs
+     id="defs969">
+    <clipPath
+       id="clip0">
+      <rect
+         width="770"
+         height="222.03999"
+         fill="#ffffff"
+         id="rect14"
+         x="0"
+         y="0" />
+    </clipPath>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="2"
+     inkscape:cx="133.05705"
+     inkscape:cy="115.91792"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     inkscape:document-rotation="0"
+     showgrid="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1025"
+     inkscape:window-x="0"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata972">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-75.455132,-135.96141)">
+    <rect
+       style="fill:#212529;fill-opacity:1;stroke:none;stroke-width:0.364576;stop-color:#000000"
+       id="rect901"
+       width="63.5"
+       height="26.458334"
+       x="75.455132"
+       y="135.96141" />
+    <rect
+       style="fill:#212529;fill-opacity:1;stroke:none;stroke-width:0.404023;stop-color:#000000"
+       id="rect1758"
+       width="60.854168"
+       height="23.8125"
+       x="76.778053"
+       y="137.28433" />
+    <g
+       id="g1648"
+       transform="matrix(0.40937885,0,0,0.40937885,80.597548,138.01872)">
+      <path
+         d="M 1.6,4.62 3.2,5.54 11.19,0.92 9.59,0 Z m 9.59,-3.7 1.6,-0.92 8,4.62 -1.6,0.92 z m 9.6,5.54 -1.6,-0.92 -8,4.61 1.6,0.93 z m -9.6,3.69 -1.6,0.93 L 1.6,6.46 3.2,5.54 Z"
+         fill="#d2edf3"
+         id="path1538" />
+      <path
+         d="m 11.19,23.08 1.6,-0.93 v -9.23 l -1.6,0.93 z m 1.6,-10.16 v -1.84 l 8,-4.62 v 1.85 z m 9.59,-5.54 -1.59,0.93 -0.01,9.23 1.6,-0.93 z m -1.6,10.16 v 1.84 L 12.79,24 v -1.85 z"
+         fill="#76cede"
+         id="path1540" />
+      <path
+         d="m 11.19,23.08 -1.6,-0.93 v -9.23 l 1.6,0.93 z M 9.59,12.92 V 11.08 L 1.6,6.46 V 8.31 Z M 0,7.38 1.6,8.31 v 9.23 L 0,16.61 Z m 1.6,10.16 v 1.84 L 9.59,24 v -1.85 z"
+         fill="#339999"
+         id="path1542" />
+      <path
+         d="m 11.19,10.15 -1.6,0.93 v 1.84 L 11.19,12 Z"
+         fill="#76cede"
+         id="path1544" />
+      <path
+         d="m 9.59,12.92 1.6,0.93 1.6,-0.93 -1.6,-0.92 z"
+         fill="#d2edf3"
+         id="path1546" />
+      <path
+         d="M 11.19,10.15 V 12 l 1.6,0.92 v -1.84 z"
+         fill="#339999"
+         id="path1548" />
+      <path
+         d="m 20.78,17.54 -1.6,-0.92 -6.39,3.69 v 1.85 z m -19.18,0 1.6,-0.92 6.39,3.69 v 1.85 z"
+         fill="#d2edf3"
+         id="path1550" />
+      <path
+         d="m 1.6,8.31 1.6,0.92 v 7.38 l -1.6,0.93 z"
+         fill="#76cede"
+         id="path1552" />
+      <path
+         d="m 20.79,8.31 -1.6,0.92 v 7.38 l 1.59,0.93 z"
+         fill="#339999"
+         id="path1554" />
+      <path
+         d="M 11.19,0.92 V 2.77 L 4.8,6.46 3.2,5.54 Z"
+         fill="#76cede"
+         id="path1556" />
+      <path
+         d="m 11.19,0.92 v 1.85 l 6.39,3.69 1.61,-0.92 z"
+         fill="#339999"
+         id="path1558" />
+      <path
+         d="m 4.8,13.85 -1.6,0.92 v 1.84 l 1.6,-0.92 z"
+         fill="#d2edf3"
+         id="path1560" />
+      <path
+         d="M 3.2,16.61 4.8,17.54 6.4,16.61 4.8,15.69 Z"
+         fill="#76cede"
+         id="path1562" />
+      <path
+         d="m 4.8,13.85 v 1.84 l 1.6,0.92 v -1.84 z"
+         fill="#339999"
+         id="path1564" />
+      <path
+         d="m 9.59,5.54 1.6,0.92 1.6,-0.92 -1.6,-0.93 z"
+         fill="#d2edf3"
+         id="path1566" />
+      <path
+         d="M 12.79,5.54 V 3.69 l -1.6,-0.92 v 1.84 z"
+         fill="#76cede"
+         id="path1568" />
+      <path
+         d="m 9.59,5.54 1.6,-0.93 V 2.77 l -1.6,0.92 z"
+         fill="#339999"
+         id="path1570" />
+      <path
+         d="m 15.99,16.61 1.6,0.93 1.6,-0.93 -1.6,-0.92 z"
+         fill="#76cede"
+         id="path1572" />
+      <path
+         d="m 19.19,16.61 v -1.84 l -1.6,-0.92 v 1.84 z"
+         fill="#d2edf3"
+         id="path1574" />
+      <path
+         d="m 15.99,16.61 1.6,-0.92 v -1.84 l -1.6,0.92 z"
+         fill="#339999"
+         id="path1576" />
+      <path
+         d="M 9.59,12.92 6.4,14.77 v 1.84 l 3.19,-1.84 z"
+         fill="#76cede"
+         id="path1578" />
+      <path
+         d="M 9.59,12.92 6.4,14.77 4.8,13.85 8,12 Z"
+         fill="#d2edf3"
+         id="path1580" />
+      <path
+         d="M 11.19,10.15 V 6.46 L 9.59,5.54 v 3.69 z"
+         fill="#339999"
+         id="path1582" />
+      <path
+         d="M 11.19,10.15 V 6.46 l 1.6,-0.92 v 3.69 z m 1.6,2.77 3.2,1.85 v 1.84 l -3.2,-1.84 z"
+         fill="#76cede"
+         id="path1584" />
+      <path
+         d="m 12.79,12.92 3.2,1.85 1.6,-0.92 -3.2,-1.85 z"
+         fill="#d2edf3"
+         id="path1586" />
+      <path
+         d="M 11.19,23.07 12.79,24 V 22.15 M 3.2,5.54 1.6,4.62 v 1.84"
+         fill="#339999"
+         id="path1588" />
+      <path
+         d="M 11.19,23.07 9.59,24 v -1.85"
+         fill="#76cede"
+         id="path1590" />
+      <path
+         d="m 20.79,6.46 1.6,0.92 -1.6,0.92 M 1.6,8.3 0,7.38 1.6,6.46"
+         fill="#d2edf3"
+         id="path1592" />
+      <path
+         d="m 19.19,5.54 1.6,-0.92 v 1.84"
+         fill="#76cede"
+         id="path1594" />
+      <g
+         fill="#ffffff"
+         id="g1604">
+        <path
+           d="M 61.45,48.81 A 4.22,4.22 0 0 1 60.18,49 c -1.16,0 -1.5,-0.62 -1.5,-2.14 v -5.25 h 2.51 V 39.74 H 58.68 V 38.11 35 L 56,35.79 v 1.63 2.32 h -1.3 v 1.87 H 56 v 5.57 C 56,49.8 57.1,51 59.52,51 a 6.2,6.2 0 0 0 2.19,-0.34 z M 43.56,47.25 C 43.07,50.33 40.82,51 38.93,51 c -3.71,0 -5.17,-2.4 -5.17,-5.64 0,-3.62 2,-5.88 5.38,-5.88 3,0 4.55,1.87 4.55,5.08 0,0.36 0,0.82 -0.06,1.22 h -7.12 c 0,1.89 0.64,3.24 2.51,3.24 a 2.1,2.1 0 0 0 2.29,-2 z M 41.1,44 c 0.06,-1.72 -0.64,-2.7 -2.14,-2.7 -1.5,0 -2.36,1.27 -2.42,2.7 z M 71.58,35 V 51 H 70.26 V 49.16 A 3.77,3.77 0 0 1 66.88,51 c -2.64,0 -4.5,-1.54 -4.5,-5.55 0,-3.84 1.74,-5.92 4.65,-5.92 a 3.56,3.56 0 0 1 3.17,1.59 V 35 Z m -4.42,5.66 c -2.12,0 -3.32,1.57 -3.32,4.8 0,3.23 1.2,4.42 3.11,4.42 1.91,0 3.35,-1.16 3.35,-4.72 0,-3.56 -1.4,-4.5 -3.14,-4.5 z m 11.9,2.73 c 0.21,-2 -0.28,-2.42 -1.37,-2.42 -2,0 -2.72,1.87 -2.72,3.88 V 51 H 73.55 V 40 h 1.33 L 75,41.65 a 3.12,3.12 0 0 1 3,-1.87 c 1.69,0 2.77,1 2.38,3.54 z"
+           transform="translate(0,-31)"
+           id="path1596" />
+        <path
+           d="m 82.04,9.04 h 1.42 V 20 h -1.42 z m 0,-5.04 h 1.42 v 2.12 h -1.42 z"
+           id="path1598" />
+        <path
+           d="m 88.78,51 -3.9,-11 h 1.46 L 89.45,49.18 92.51,40 H 94 l -4,11 z m 14.3,-3.69 A 3.81,3.81 0 0 1 99,51 c -3.6,0 -4.74,-2.47 -4.74,-5.64 0,-3.47 1.67,-5.83 4.93,-5.83 2.9,0 4.33,2.19 3.92,6 H 95.7 c 0,2.3 0.75,4.29 3.28,4.29 a 2.7,2.7 0 0 0 2.94,-2.66 z m -1.22,-2.87 c 0.06,-2.14 -0.69,-3.77 -2.9,-3.77 -2.21,0 -3.22,1.87 -3.26,3.77 z M 113.33,51 h -1.42 v -6.37 c 0,-2.6 -0.86,-3.67 -2.66,-3.67 -2.55,0 -3.24,1.93 -3.24,3.73 V 51 H 104.6 V 40 h 1.33 l 0.09,1.67 a 3.63,3.63 0 0 1 3.41,-1.93 c 2.53,0 3.9,1.48 3.9,4.65 z M 51,43.09 a 1.76,1.76 0 0 0 -1.93,-1.76 c -1.09,0 -1.78,0.36 -1.78,1.22 0,2.4 6.18,0.39 6.18,4.85 0,2.34 -2.14,3.6 -4.63,3.6 -2.7,0 -4.25,-1.39 -4.62,-3.73 l 2.37,-0.19 a 2.13,2.13 0 0 0 2.29,2.07 c 1.35,0 2,-0.6 2,-1.39 0,-2.53 -6.11,-0.51 -6.11,-4.85 0,-2.25 1.93,-3.43 4.35,-3.43 2.42,0 3.84,1.07 4.23,3.11 z M 33.14,48.81 A 4.22,4.22 0 0 1 31.87,49 c -1.16,0 -1.5,-0.62 -1.5,-2.14 v -5.25 h 2.51 V 39.74 H 30.37 V 38.11 35 l -2.66,0.79 v 1.63 2.32 h -1.33 v 1.87 h 1.33 v 5.57 c 0,2.62 1.07,3.82 3.5,3.82 a 6.2,6.2 0 0 0 2.19,-0.34 z m 87.47,-3.43 c 0,-3.67 2.08,-5.6 4.88,-5.6 2.8,0 4.5,1.89 4.5,5.39 C 130,49 128.26,51 125.26,51 c -3.18,0 -4.65,-2 -4.65,-5.62 z m 8,-0.08 c 0,-2.47 -0.88,-4.36 -3.22,-4.36 -2.34,0 -3.32,2 -3.32,4.42 0,2.42 0.84,4.51 3.28,4.51 2.44,0 3.23,-2.04 3.23,-4.57 z"
+           transform="translate(0,-31)"
+           id="path1600" />
+        <path
+           d="m 114.88,17.88 h 1.42 V 20 h -1.42 z m 2.86,-8.84 h 1.42 V 20 h -1.42 z m 0,-5.04 h 1.42 v 2.12 h -1.42 z"
+           id="path1602" />
+      </g>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-size:4.23333px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;stroke-width:0.133861"
+       x="107.5555"
+       y="154.45795"
+       id="text1712"><tspan
+         sodipodi:role="line"
+         id="tspan1710"
+         x="107.5555"
+         y="154.45795"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333px;font-family:Roboto;-inkscape-font-specification:Roboto;text-align:center;text-anchor:middle;fill:#ffffff;stroke-width:0.133861">Learn Test-Driven Development </tspan><tspan
+         sodipodi:role="line"
+         x="107.5555"
+         y="159.79095"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333px;font-family:Roboto;-inkscape-font-specification:Roboto;text-align:center;text-anchor:middle;fill:#ffffff;stroke-width:0.133861"
+         id="tspan2004">with FastAPI</tspan></text>
+  </g>
+</svg>
