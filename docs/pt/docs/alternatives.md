@@ -36,7 +36,7 @@ Ele foi um dos primeiros exemplos de **documentação automática de API**, e es
 !!! check "**FastAPI** inspirado para"
     Ter uma documentação automática da API em interface web.
 
-### <a href="http://flask.pocoo.org/" class="external-link" target="_blank">Flask</a>
+### <a href="https://flask.palletsprojects.com" class="external-link" target="_blank">Flask</a>
 
 Flask é um "microframework", não inclui integração com banco de dados nem muitas das coisas que vêm por padrão no Django.
 
@@ -55,7 +55,7 @@ Dada a simplicidade do Flask, parecia uma ótima opção para construção de AP
 
     Ser simples e com sistema de roteamento fácil de usar.
 
-### <a href="http://docs.python-requests.org" class="external-link" target="_blank">Requests</a>
+### <a href="https://requests.readthedocs.io" class="external-link" target="_blank">Requests</a>
 
 **FastAPI** não é uma alternativa para **Requests**. O escopo deles é muito diferente.
 
@@ -272,7 +272,7 @@ Rotas são declaradas em um único lugar, usando funções declaradas em outros 
 
     Isso na verdade inspirou a atualização de partes do Pydantic, para dar suporte ao mesmo estilo de declaração da validação (toda essa funcionalidade já está disponível no Pydantic).
 
-### <a href="http://www.hug.rest/" class="external-link" target="_blank">Hug</a>
+### <a href="https://www.hug.rest/" class="external-link" target="_blank">Hug</a>
 
 Hug foi um dos primeiros frameworks a implementar a declaração de tipos de parâmetros usando Python _type hints_. Isso foi uma ótima idéia que inspirou outras ferramentas a fazer o mesmo.
 
