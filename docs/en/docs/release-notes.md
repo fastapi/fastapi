@@ -2,6 +2,7 @@
 
 ## Latest Changes
 
+* ✏ Fix minor typos in docs. PR [#2122](https://github.com/tiangolo/fastapi/pull/2122) by [@TeoZosa](https://github.com/TeoZosa).
 * ✏ Fix typos in docs and source examples. PR [#2102](https://github.com/tiangolo/fastapi/pull/2102) by [@AdrianDeAnda](https://github.com/AdrianDeAnda).
 * ✏ Fix incorrect Celery URLs in docs. PR [#2100](https://github.com/tiangolo/fastapi/pull/2100) by [@CircleOnCircles](https://github.com/CircleOnCircles).
 * 📌 Relax Swagger UI version pin. PR [#2089](https://github.com/tiangolo/fastapi/pull/2089) by [@jmriebold](https://github.com/jmriebold).
