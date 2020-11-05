@@ -2,6 +2,7 @@
 
 ## Latest Changes
 
+* 🐛 Fix bug overriding custom HTTPException and RequestValidationError from exception_handlers. PR [#1924](https://github.com/tiangolo/fastapi/pull/1924) by [@uriyyo](https://github.com/uriyyo).
 * ✏️ Fix typo on dependencies utils and cleanup unused variable. PR [#1912](https://github.com/tiangolo/fastapi/pull/1912) by [@Kludex](https://github.com/Kludex).
 * 📝 Add note in CORS tutorial about allow_origins with ["*"] and allow_credentials. PR [#1895](https://github.com/tiangolo/fastapi/pull/1895) by [@dsmurrell](https://github.com/dsmurrell).
 * 📝 Add deployment to Deta, the first gold sponsor 🎉. PR [#2303](https://github.com/tiangolo/fastapi/pull/2303) by [@tiangolo](https://github.com/tiangolo).
