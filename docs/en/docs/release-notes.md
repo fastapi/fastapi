@@ -2,6 +2,7 @@
 
 ## Latest Changes
 
+* 🌐 Add Japanese translation for Advanced Tutorial - Response Directly. PR [#2191](https://github.com/tiangolo/fastapi/pull/2191) by [@Attsun1031](https://github.com/Attsun1031).
 * ✏ Fix capitalizaiton typo in docs. PR [#2204](https://github.com/tiangolo/fastapi/pull/2204) by [@imba-tjd](https://github.com/imba-tjd).
 * ✏ Fix typo in docs. PR [#2179](https://github.com/tiangolo/fastapi/pull/2179) by [@ammarasmro](https://github.com/ammarasmro).
 * 📝 Update/fix links in docs to use HTTPS. PR [#2165](https://github.com/tiangolo/fastapi/pull/2165) by [@imba-tjd](https://github.com/imba-tjd).
