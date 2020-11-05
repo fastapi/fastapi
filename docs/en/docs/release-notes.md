@@ -2,6 +2,7 @@
 
 ## Latest Changes
 
+* 📝 Fix image links for sponsors. PR [#2304](https://github.com/tiangolo/fastapi/pull/2304) by [@tiangolo](https://github.com/tiangolo).
 ## 0.61.2
 
 ### Fixes
