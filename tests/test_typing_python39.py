@@ -1,4 +1,3 @@
-import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 
@@ -6,22 +5,20 @@ from .utils import skip_py38
 
 
 @skip_py38
-@pytest.mark.parametrize(
-    "test_type,expect",
-    [
-        (list[int], [1, 2, 3]),
-        (dict[str, list[int]], {"a": [1, 2, 3], "b": [4, 5, 6]}),
-        (set[int], {1, 2, 3}),
-        (tuple[int], (1, 2, 3)),
-    ],
-)
-def test_typing(test_type, expect):
-    app = FastAPI()
+def test_typing():
+    types = {
+        list[int]: [1, 2, 3],
+        dict[str, list[int]]: {"a": [1, 2, 3], "b": [4, 5, 6]},
+        set[int]: [1, 2, 3],  # `set` is converted to `list`
+        tuple[int, ...]: [1, 2, 3],  # `tuple` is converted to `list`
+    }
+    for test_type, expect in types.items():
+        app = FastAPI()
 
-    @app.get("/", response_model=test_type)
-    def get_endpoint():
-        return expect
+        @app.post("/", response_model=test_type)
+        def post_endpoint(input: test_type):
+            return input
 
-    res = TestClient(app).get("/")
-    assert res.status_code == 200
-    assert res.json() == expect
+        res = TestClient(app).post("/", json=expect)
+        assert res.status_code == 200, res.json()
+        assert res.json() == expect
