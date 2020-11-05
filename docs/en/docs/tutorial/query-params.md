@@ -8,7 +8,7 @@ When you declare other function parameters that are not part of the path paramet
 
 The query is the set of key-value pairs that go after the `?` in a URL, separated by `&` characters.
 
-For example, in the url:
+For example, in the URL:
 
 ```
 http://127.0.0.1:8000/items/?skip=0&limit=10

@@ -1,0 +1,8 @@
+gold:
+  - url: https://www.deta.sh/?ref=fastapi
+    title: The launchpad for all your (team's) ideas
+    img: /img/sponsors/deta.svg
+silver:
+  - url: https://testdriven.io/
+    title: Learn to build high-quality web apps with best practices
+    img: /img/sponsors/testdriven.svg
