@@ -43,6 +43,16 @@ The key features are:
 
 <small>* estimation based on tests on an internal development team, building production applications.</small>
 
+## Gold Sponsors
+
+<!-- sponsors -->
+
+<a href="https://www.deta.sh/?ref=fastapi" target="_blank" title="The launchpad for all your (team's) ideas"><img src="/img/sponsors/deta.svg"></a>
+
+<!-- /sponsors -->
+
+<a href="https://fastapi.tiangolo.com/fastapi-people/#sponsors" class="external-link" target="_blank">Other sponsors</a>
+
 ## Opinions
 
 "_[...] I'm using **FastAPI** a ton these days. [...] I'm actually planning to use it for all of my team's **ML services at Microsoft**. Some of them are getting integrated into the core **Windows** product and some **Office** products._"

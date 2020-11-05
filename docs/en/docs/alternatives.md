@@ -410,7 +410,7 @@ It is the recommended server for Starlette and **FastAPI**.
 
     You can combine it with Gunicorn, to have an asynchronous multi-process server.
 
-    Check more details in the [Deployment](deployment.md){.internal-link target=_blank} section.
+    Check more details in the [Deployment](deployment/index.md){.internal-link target=_blank} section.
 
 ## Benchmarks and speed
 

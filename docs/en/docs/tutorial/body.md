@@ -131,7 +131,7 @@ Inside of the function, you can access all the attributes of the model object di
 
 ## Request body + path parameters
 
-You can declare path parameters and body requests at the same time.
+You can declare path parameters and request body at the same time.
 
 **FastAPI** will recognize that the function parameters that match path parameters should be **taken from the path**, and that function parameters that are declared to be Pydantic models should be **taken from the request body**.
 

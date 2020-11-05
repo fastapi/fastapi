@@ -1,8 +1,8 @@
 # Python Types Intro
 
-**Python 3.6+** has support for optional "type hints".
+Python has support for optional "type hints".
 
-These **"type hints"** are a new syntax (since Python 3.6+) that allow declaring the <abbr title="for example: str, int, float, bool">type</abbr> of a variable.
+These **"type hints"** are a special syntax that allow declaring the <abbr title="for example: str, int, float, bool">type</abbr> of a variable.
 
 By declaring types for your variables, editors and tools can give you better support.
 

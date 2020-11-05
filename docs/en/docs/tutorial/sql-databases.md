@@ -235,7 +235,7 @@ Now let's check the file `sql_app/schemas.py`.
     To avoid confusion between the SQLAlchemy *models* and the Pydantic *models*, we will have the file `models.py` with the SQLAlchemy models, and the file `schemas.py` with the Pydantic models.
 
     These Pydantic models define more or less a "schema" (a valid data shape).
-    
+
     So this will help us avoiding confusion while using both.
 
 ### Create initial Pydantic *models* / schemas
@@ -470,7 +470,7 @@ Our dependency will create a new SQLAlchemy `SessionLocal` that will be used in 
     We put the creation of the `SessionLocal()` and handling of the requests in a `try` block.
 
     And then we close it in the `finally` block.
-    
+
     This way we make sure the database session is always closed after the request. Even if there was an exception while processing the request.
 
     But you can't raise another exception from the exit code (after `yield`). See more in [Dependencies with `yield` and `HTTPException`](./dependencies/dependencies-with-yield.md#dependencies-with-yield-and-httpexception){.internal-link target=_blank}
@@ -648,7 +648,7 @@ The middleware we'll add (just a function) will create a new SQLAlchemy `Session
     We put the creation of the `SessionLocal()` and handling of the requests in a `try` block.
 
     And then we close it in the `finally` block.
-    
+
     This way we make sure the database session is always closed after the request. Even if there was an exception while processing the request.
 
 ### About `request.state`
