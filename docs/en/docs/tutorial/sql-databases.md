@@ -553,7 +553,7 @@ And as the code related to SQLAlchemy and the SQLAlchemy models lives in separat
 
 The same way, you would be able to use the same SQLAlchemy models and utilities in other parts of your code that are not related to **FastAPI**.
 
-For example, in a background task worker with <a href="https://docs.celeryproject.org/" class="external-link" target="_blank">Celery</a>, <a href="https://python-rq.org/" class="external-link" target="_blank">RQ</a>, or <a href="https://arq-docs.helpmanual.io/" class="external-link" target="_blank">ARQ</a>.
+For example, in a background task worker with <a href="https://docs.celeryproject.org" class="external-link" target="_blank">Celery</a>, <a href="https://python-rq.org/" class="external-link" target="_blank">RQ</a>, or <a href="https://arq-docs.helpmanual.io/" class="external-link" target="_blank">ARQ</a>.
 
 ## Review all the files
 
