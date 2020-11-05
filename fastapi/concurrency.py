@@ -28,7 +28,7 @@ except ImportError:
 
 try:
     from contextlib import AsyncExitStack  # type: ignore
-except ImportError:  # pragma: no cover
+except ImportError:
     try:
         from async_exit_stack import AsyncExitStack  # type: ignore
     except ImportError:  # pragma: no cover
