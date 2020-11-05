@@ -2,6 +2,7 @@
 
 ## Latest Changes
 
+* 📝 Update/fix links in docs to use HTTPS. PR [#2165](https://github.com/tiangolo/fastapi/pull/2165) by [@imba-tjd](https://github.com/imba-tjd).
 * ✏ Fix typos and add rewording in docs. PR [#2159](https://github.com/tiangolo/fastapi/pull/2159) by [@nukopy](https://github.com/nukopy).
 * 📝 Fix code consistency in examples for Tutorial - User Guide - Path Parameters. PR [#2158](https://github.com/tiangolo/fastapi/pull/2158) by [@nukopy](https://github.com/nukopy).
 * 📝 Fix renamed parameter `content_type` typo. PR [#2135](https://github.com/tiangolo/fastapi/pull/2135) by [@TeoZosa](https://github.com/TeoZosa).
