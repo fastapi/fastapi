@@ -123,7 +123,13 @@ nav:
   - advanced/openapi-callbacks.md
   - advanced/wsgi.md
 - async.md
-- deployment.md
+- Deployment:
+  - deployment/index.md
+  - deployment/versions.md
+  - deployment/https.md
+  - deployment/deta.md
+  - deployment/docker.md
+  - deployment/manually.md
 - project-generation.md
 - alternatives.md
 - history-design-future.md
