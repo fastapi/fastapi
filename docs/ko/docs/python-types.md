@@ -49,7 +49,7 @@ John Doe
 
 그때 당신은 "첫 글자를 대문자로 바꾸는 함수"를 호출해야 합니다.
 
-하지만 함수 이름이 무엇이었는지 너무 헷갈리네요. `upper`? `uppercase`? `first_uppercase`? `capitalize`?
+`upper`였나? 아니면 `uppercase`? `first_uppercase`? `capitalize`?
 
 그때 개발자들의 오랜 친구, 에디터 자동완성을 시도해봅니다.
 
