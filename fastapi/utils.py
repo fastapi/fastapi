@@ -97,7 +97,8 @@ def create_cloned_field(
     new_field = create_response_field(name=field.name, type_=use_type)
     new_field.has_alias = field.has_alias
     new_field.alias = field.alias
-    new_field.aliases = field.aliases
+    if isinstance(field, MultiAliasableModelField):
+        new_field.aliases = field.aliases
     new_field.class_validators = field.class_validators
     new_field.default = field.default
     new_field.required = field.required

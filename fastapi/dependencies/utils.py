@@ -390,7 +390,7 @@ def get_param_field(
         annotation = param.annotation
     annotation = get_annotation_from_field_info(annotation, field_info, param_name)
 
-    aliases = getattr(field_info, "aliases", tuple())
+    aliases = getattr(field_info, "aliases") or tuple()
 
     if not field_info.alias and getattr(field_info, "convert_underscores", None):
         alias = param.name.replace("_", "-")
