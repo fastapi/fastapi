@@ -48,8 +48,8 @@ And it can return anything you want.
 In this case, this dependency expects:
 
 * An optional query parameter `q` that is a `str`.
-* An optional query parameter `skip` that is an `int`, and by default is `0`.
-* An optional query parameter `limit` that is an `int`, and by default is `100`.
+* A query parameter `skip` that is an `int`, and by default is `0`.
+* A query parameter `limit` that is an `int`, and by default is `100`.
 
 And then it just returns a `dict` containing those values.
 
