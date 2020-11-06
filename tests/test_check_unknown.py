@@ -14,10 +14,6 @@ class Item(BaseModel):
     data: str
 
 
-def duplicate_dependency(item: Item):
-    return item
-
-
 @app_check.post("/with-check-unknown")
 async def endpoint_check(item: Item, item2: Item):
     return [item, item2]
@@ -49,6 +45,14 @@ def test_unknown_with_check():
             },
         ]
     }
+
+def test_known_with_check():
+    response = client_ceck.post(
+        "/with-check-unknown",
+        json={"item": {"data": "myitem"}, "item2": {"data": "item2"}},
+    )
+    assert response.status_code == 200, response.text
+    assert response.json() == [{"data": "myitem"}, {"data": "item2"}]
 
 
 def test_unknown_without_check():
