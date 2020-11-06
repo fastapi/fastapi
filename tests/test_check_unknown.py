@@ -46,6 +46,7 @@ def test_unknown_with_check():
         ]
     }
 
+
 def test_known_with_check():
     response = client_ceck.post(
         "/with-check-unknown",
