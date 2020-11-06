@@ -213,15 +213,17 @@ def get_flat_params(dependant: Dependant) -> List[ModelField]:
 
 def is_scalar_field(field: ModelField) -> bool:
     field_info = field.field_info
-    if not (
-        field.shape == SHAPE_SINGLETON
-        and not lenient_issubclass(field.type_, BaseModel)
-        and not lenient_issubclass(field.type_, sequence_types + (dict,))
-        and not isinstance(field_info, params.Body)
+
+    if (
+        field.shape != SHAPE_SINGLETON
+        or lenient_issubclass(field.type_, BaseModel)
+        or lenient_issubclass(field.type_, sequence_types + (dict,))
+        or isinstance(field_info, params.Body)
     ):
         return False
+
     if field.sub_fields:
-        if not all(is_scalar_field(f) for f in field.sub_fields):
+        if not all(is_scalar_field(sub_field) for sub_field in field.sub_fields):
             return False
     return True
 
