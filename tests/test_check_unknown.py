@@ -1,6 +1,4 @@
-from typing import List
-
-from fastapi import Depends, FastAPI
+from fastapi import FastAPI
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
 
@@ -21,16 +19,21 @@ def duplicate_dependency(item: Item):
 
 
 @app_check.post("/with-check-unknown")
-async def endpoint(item: Item,item2: Item):
-    return [item,item2]
+async def endpoint_check(item: Item, item2: Item):
+    return [item, item2]
+
 
 @app_no_check.post("/without-check-unknown")
-async def endpoint(item: Item,item2: Item):
-    return [item,item2]
+async def endpoint_no_check(item: Item, item2: Item):
+    return [item, item2]
 
 
 def test_unknown_with_check():
-    response = client_ceck.post("/with-check-unknown", json={"item": {"data": "myitem"},"item2":{"data":"item2"},"data":"any"},params={'limit':12})
+    response = client_ceck.post(
+        "/with-check-unknown",
+        json={"item": {"data": "myitem"}, "item2": {"data": "item2"}, "data": "any"},
+        params={"limit": 12},
+    )
     assert response.status_code == 422, response.text
     assert response.json() == {
         "detail": [
@@ -43,12 +46,16 @@ def test_unknown_with_check():
                 "loc": ["body", "data"],
                 "msg": "extra fields not permitted",
                 "type": "value_error.extra",
-            }
+            },
         ]
     }
 
 
 def test_unknown_without_check():
-    response = client_no_check.post("/without-check-unknown", json={"item": {"data": "myitem"},"item2":{"data":"item2"},"data":"any"},params={'limit':12})
+    response = client_no_check.post(
+        "/without-check-unknown",
+        json={"item": {"data": "myitem"}, "item2": {"data": "item2"}, "data": "any"},
+        params={"limit": 12},
+    )
     assert response.status_code == 200, response.text
-    assert response.json() == [{'data':'myitem'},{'data':'item2'}]
+    assert response.json() == [{"data": "myitem"}, {"data": "item2"}]

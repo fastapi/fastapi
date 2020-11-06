@@ -593,9 +593,9 @@ async def solve_dependencies(
             body_values,
             body_errors,
         ) = await request_body_to_args(  # body_params checked above
-            required_params=dependant.body_params, 
-            received_body=body, 
-            check_unknown=check_unknown
+            required_params=dependant.body_params,
+            received_body=body,
+            check_unknown=check_unknown,
         )
         values.update(body_values)
         errors.extend(body_errors)
@@ -735,8 +735,8 @@ async def request_body_to_args(
             else:
                 values[field.name] = v_
     if check_unknown:
-        for field in left_body_params:
-            errors.append(ErrorWrapper(ExtraError(), loc=("body", field)))
+        for key in left_body_params:
+            errors.append(ErrorWrapper(ExtraError(), loc=("body", key)))
     return values, errors
 
 
