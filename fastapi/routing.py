@@ -148,6 +148,7 @@ def get_request_handler(
     response_model_exclude_defaults: bool = False,
     response_model_exclude_none: bool = False,
     dependency_overrides_provider: Optional[Any] = None,
+    check_unknown: bool = False,
 ) -> Callable:
     assert dependant.call is not None, "dependant.call must be a function"
     is_coroutine = asyncio.iscoroutinefunction(dependant.call)
@@ -174,6 +175,7 @@ def get_request_handler(
             dependant=dependant,
             body=body,
             dependency_overrides_provider=dependency_overrides_provider,
+            check_unknown=check_unknown,
         )
         values, errors, background_tasks, sub_response, _ = solved_result
         if errors:
@@ -280,10 +282,12 @@ class APIRoute(routing.Route):
         response_class: Optional[Type[Response]] = None,
         dependency_overrides_provider: Optional[Any] = None,
         callbacks: Optional[List["APIRoute"]] = None,
+        check_unknown: bool = False,
     ) -> None:
         # normalise enums e.g. http.HTTPStatus
         if isinstance(status_code, enum.IntEnum):
             status_code = int(status_code)
+        self.check_unknown = check_unknown
         self.path = path
         self.endpoint = endpoint
         self.name = get_name(endpoint) if name is None else name
@@ -381,6 +385,7 @@ class APIRoute(routing.Route):
             response_model_exclude_defaults=self.response_model_exclude_defaults,
             response_model_exclude_none=self.response_model_exclude_none,
             dependency_overrides_provider=self.dependency_overrides_provider,
+            check_unknown=self.check_unknown,
         )
 
 
@@ -395,6 +400,7 @@ class APIRouter(routing.Router):
         default_response_class: Optional[Type[Response]] = None,
         on_startup: Optional[Sequence[Callable]] = None,
         on_shutdown: Optional[Sequence[Callable]] = None,
+        check_unknown: bool = False,
     ) -> None:
         super().__init__(
             routes=routes,
@@ -406,6 +412,7 @@ class APIRouter(routing.Router):
         self.dependency_overrides_provider = dependency_overrides_provider
         self.route_class = route_class
         self.default_response_class = default_response_class
+        self.check_unknown = check_unknown
 
     def add_api_route(
         self,
@@ -461,6 +468,7 @@ class APIRouter(routing.Router):
             name=name,
             dependency_overrides_provider=self.dependency_overrides_provider,
             callbacks=callbacks,
+            check_unknown=self.check_unknown,
         )
         self.routes.append(route)
 

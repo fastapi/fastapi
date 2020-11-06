@@ -146,6 +146,12 @@ So, when you need to declare a value as required while using `Query`, you can us
 
 This will let **FastAPI** know that this parameter is required.
 
+## Check for unknowns
+
+By default FastAPI will ignore any unknown query or body parameters.
+If you would like to also validate for unknown query or body parameters you can
+pass the optional `check_unknown=True` parameter of the FastAPI application.
+
 ## Query parameter list / multiple values
 
 When you define a query parameter explicitly with `Query` you can also declare it to receive a list of values, or said in other way, to receive multiple values.

@@ -10,6 +10,7 @@ from typing import (
     Mapping,
     Optional,
     Sequence,
+    Set,
     Tuple,
     Type,
     Union,
@@ -31,7 +32,7 @@ from fastapi.security.open_id_connect_url import OpenIdConnect
 from fastapi.utils import create_response_field, get_path_param_names
 from pydantic import BaseModel, create_model
 from pydantic.error_wrappers import ErrorWrapper
-from pydantic.errors import MissingError
+from pydantic.errors import ExtraError, MissingError
 from pydantic.fields import (
     SHAPE_LIST,
     SHAPE_SEQUENCE,
@@ -473,6 +474,8 @@ async def solve_dependencies(
     response: Optional[Response] = None,
     dependency_overrides_provider: Optional[Any] = None,
     dependency_cache: Optional[Dict[Tuple[Callable, Tuple[str]], Any]] = None,
+    check_unknown: bool = False,
+    left_query_params: Optional[Set] = None,
 ) -> Tuple[
     Dict[str, Any],
     List[ErrorWrapper],
@@ -489,6 +492,10 @@ async def solve_dependencies(
         media_type=None,
         background=None,
     )
+    outer_level = False
+    if left_query_params is None:
+        left_query_params = set(request.query_params)
+        outer_level = True
     dependency_cache = dependency_cache or {}
     sub_dependant: Dependant
     for sub_dependant in dependant.dependencies:
@@ -523,6 +530,8 @@ async def solve_dependencies(
             response=response,
             dependency_overrides_provider=dependency_overrides_provider,
             dependency_cache=dependency_cache,
+            left_query_params=left_query_params,
+            check_unknown=check_unknown,
         )
         (
             sub_values,
@@ -571,12 +580,22 @@ async def solve_dependencies(
     values.update(header_values)
     values.update(cookie_values)
     errors += path_errors + query_errors + header_errors + cookie_errors
+
+    if check_unknown:
+        dependant_names = {param.name for param in dependant.query_params}
+        left_query_params.difference_update(dependant_names)
+        if outer_level:
+            for param in left_query_params:
+                errors.append(ErrorWrapper(ExtraError(), loc=("query", param)))
+
     if dependant.body_params:
         (
             body_values,
             body_errors,
         ) = await request_body_to_args(  # body_params checked above
-            required_params=dependant.body_params, received_body=body
+            required_params=dependant.body_params, 
+            received_body=body, 
+            check_unknown=check_unknown
         )
         values.update(body_values)
         errors.extend(body_errors)
@@ -641,9 +660,11 @@ def request_params_to_args(
 async def request_body_to_args(
     required_params: List[ModelField],
     received_body: Optional[Union[Dict[str, Any], FormData]],
+    check_unknown: bool = False,
 ) -> Tuple[Dict[str, Any], List[ErrorWrapper]]:
     values = {}
     errors = []
+    left_body_params = set(received_body)
     if required_params:
         field = required_params[0]
         field_info = field.field_info
@@ -653,6 +674,7 @@ async def request_body_to_args(
             received_body = {field.alias: received_body}
 
         for field in required_params:
+            left_body_params.discard(field.alias)
             loc: Tuple[str, ...]
             if field_alias_omitted:
                 loc = ("body",)
@@ -709,6 +731,9 @@ async def request_body_to_args(
                 errors.extend(errors_)
             else:
                 values[field.name] = v_
+    if check_unknown:
+        for field in left_body_params:
+            errors.append(ErrorWrapper(ExtraError(), loc=("body", field)))
     return values, errors
 
 
