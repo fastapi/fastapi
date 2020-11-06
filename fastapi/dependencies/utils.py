@@ -392,7 +392,6 @@ def get_param_field(
 
     aliases = getattr(field_info, "aliases", tuple())
 
-
     if not field_info.alias and getattr(field_info, "convert_underscores", None):
         alias = param.name.replace("_", "-")
         aliases = tuple(a.replace("_", "-") for a in aliases)
@@ -616,7 +615,7 @@ def request_params_to_args(
     errors = []
     for field in required_params:
         key = field.alias
-        aliases: Tuple[str, ...] = getattr(field, 'aliases') or tuple()
+        aliases: Tuple[str, ...] = getattr(field, "aliases") or tuple()
         for alias in aliases:
             if alias in received_params:
                 key = alias
@@ -624,7 +623,7 @@ def request_params_to_args(
 
         if is_scalar_sequence_field(field) and isinstance(
             received_params, (QueryParams, Headers)
-        ):  
+        ):
             value = received_params.getlist(key) or field.default
         else:
             value = received_params.get(key)
@@ -637,15 +636,14 @@ def request_params_to_args(
                 errors.append(
                     ErrorWrapper(
                         # TODO: not sure how to properly report aliased fields
-                        MissingError(), loc=(field_info.in_.value, ' | '.join(aliases) or field.alias)
+                        MissingError(),
+                        loc=(field_info.in_.value, " | ".join(aliases) or field.alias),
                     )
                 )
             else:
                 values[field.name] = deepcopy(field.default)
             continue
-        v_, errors_ = field.validate(
-            value, values, loc=(field_info.in_.value, key)
-        )
+        v_, errors_ = field.validate(value, values, loc=(field_info.in_.value, key))
         if isinstance(errors_, ErrorWrapper):
             errors.append(errors_)
         elif isinstance(errors_, list):
