@@ -475,7 +475,7 @@ async def solve_dependencies(
     dependency_overrides_provider: Optional[Any] = None,
     dependency_cache: Optional[Dict[Tuple[Callable, Tuple[str]], Any]] = None,
     check_unknown: bool = False,
-    left_query_params: Optional[Set] = None,
+    left_query_params: Optional[Set[str]] = None,
 ) -> Tuple[
     Dict[str, Any],
     List[ErrorWrapper],
@@ -664,7 +664,6 @@ async def request_body_to_args(
 ) -> Tuple[Dict[str, Any], List[ErrorWrapper]]:
     values = {}
     errors = []
-    left_body_params = set(received_body)
     if required_params:
         field = required_params[0]
         field_info = field.field_info
@@ -673,6 +672,10 @@ async def request_body_to_args(
         if field_alias_omitted:
             received_body = {field.alias: received_body}
 
+        if received_body is not None:
+            left_body_params = set(received_body)
+        else:
+            left_body_params = set()
         for field in required_params:
             left_body_params.discard(field.alias)
             loc: Tuple[str, ...]
