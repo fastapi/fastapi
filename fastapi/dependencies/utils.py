@@ -401,7 +401,7 @@ def get_param_field(
         required=required,
         field_info=field_info,
     )
-    field.required = required
+
     if not had_schema and not is_scalar_field(field=field):
         field.field_info = params.Body(field_info.default)
 
