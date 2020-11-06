@@ -17,7 +17,7 @@
 
 ## 동기 부여
 
-간단한 예시부터 시작해봅시다:
+간단한 예제부터 시작해봅시다:
 
 ```Python
 {!../../../docs_src/python_types/tutorial001.py!}
