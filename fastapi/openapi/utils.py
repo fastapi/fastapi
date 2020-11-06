@@ -20,6 +20,7 @@ from fastapi.utils import (
     get_model_definitions,
 )
 from pydantic import BaseModel
+from pydantic.fields import ModelField
 from pydantic.schema import (
     field_schema,
     get_flat_models_from_fields,
@@ -80,7 +81,7 @@ def get_openapi_security_definitions(flat_dependant: Dependant) -> Tuple[Dict, L
 
 def get_openapi_operation_parameters(
     *,
-    all_route_params: Sequence[MultiAliasableModelField],
+    all_route_params: Sequence[ModelField],
     model_name_map: Dict[Union[Type[BaseModel], Type[Enum]], str],
 ) -> List[Dict[str, Any]]:
     parameters = []
@@ -106,7 +107,7 @@ def get_openapi_operation_parameters(
 
 def get_openapi_operation_request_body(
     *,
-    body_field: Optional[MultiAliasableModelField],
+    body_field: Optional[ModelField],
     model_name_map: Dict[Union[Type[BaseModel], Type[Enum]], str],
 ) -> Optional[Dict]:
     if not body_field:
@@ -289,9 +290,9 @@ def get_openapi_path(
 def get_flat_models_from_routes(
     routes: Sequence[BaseRoute],
 ) -> Set[Union[Type[BaseModel], Type[Enum]]]:
-    body_fields_from_routes: List[MultiAliasableModelField] = []
-    responses_from_routes: List[MultiAliasableModelField] = []
-    request_fields_from_routes: List[MultiAliasableModelField] = []
+    body_fields_from_routes: List[ModelField] = []
+    responses_from_routes: List[ModelField] = []
+    request_fields_from_routes: List[ModelField] = []
     callback_flat_models: Set[Union[Type[BaseModel], Type[Enum]]] = set()
     for route in routes:
         if getattr(route, "include_in_schema", None) and isinstance(
@@ -299,7 +300,7 @@ def get_flat_models_from_routes(
         ):
             if route.body_field:
                 assert isinstance(
-                    route.body_field, MultiAliasableModelField
+                    route.body_field, ModelField
                 ), "A request body must be a Pydantic Field"
                 body_fields_from_routes.append(route.body_field)
             if route.response_field:

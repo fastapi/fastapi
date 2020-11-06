@@ -9,7 +9,7 @@ from fastapi.datastructures import MultiAliasableModelField
 from fastapi.openapi.constants import REF_PREFIX
 from pydantic import BaseConfig, BaseModel, create_model
 from pydantic.class_validators import Validator
-from pydantic.fields import FieldInfo, UndefinedType
+from pydantic.fields import FieldInfo, ModelField, UndefinedType
 from pydantic.schema import model_process_schema
 from pydantic.utils import lenient_issubclass
 
@@ -73,10 +73,10 @@ def create_response_field(
 
 
 def create_cloned_field(
-    field: MultiAliasableModelField,
+    field: ModelField,
     *,
     cloned_types: Optional[Dict[Type[BaseModel], Type[BaseModel]]] = None,
-) -> MultiAliasableModelField:
+) -> ModelField:
     # _cloned_types has already cloned types, to support recursive models
     if cloned_types is None:
         cloned_types = dict()

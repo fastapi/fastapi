@@ -4,7 +4,6 @@ from typing import (
     Callable,
     Dict,
     Iterable,
-    List,
     Optional,
     Tuple,
     Type,
@@ -25,9 +24,6 @@ if TYPE_CHECKING:
 
 
 class MultiAliasableModelField(ModelField):
-    sub_fields: Optional[List["MultiAliasableModelField"]]  # type: ignore
-    key_field: Optional["MultiAliasableModelField"]  # type: ignore
-
     def __init__(
         self,
         *,

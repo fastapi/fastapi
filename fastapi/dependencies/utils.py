@@ -41,6 +41,7 @@ from pydantic.fields import (
     SHAPE_TUPLE,
     SHAPE_TUPLE_ELLIPSIS,
     FieldInfo,
+    ModelField,
     Required,
 )
 from pydantic.schema import get_annotation_from_field_info
@@ -85,7 +86,7 @@ multipart_incorrect_install_error = (
 )
 
 
-def check_file_field(field: MultiAliasableModelField) -> None:
+def check_file_field(field: ModelField) -> None:
     field_info = field.field_info
     if isinstance(field_info, params.Form):
         try:
@@ -201,7 +202,7 @@ def get_flat_dependant(
     return flat_dependant
 
 
-def get_flat_params(dependant: Dependant) -> List[MultiAliasableModelField]:
+def get_flat_params(dependant: Dependant) -> List[ModelField]:
     flat_dependant = get_flat_dependant(dependant, skip_repeats=True)
     return (
         flat_dependant.path_params
@@ -211,7 +212,7 @@ def get_flat_params(dependant: Dependant) -> List[MultiAliasableModelField]:
     )
 
 
-def is_scalar_field(field: MultiAliasableModelField) -> bool:
+def is_scalar_field(field: ModelField) -> bool:
     field_info = field.field_info
     if not (
         field.shape == SHAPE_SINGLETON
@@ -226,7 +227,7 @@ def is_scalar_field(field: MultiAliasableModelField) -> bool:
     return True
 
 
-def is_scalar_sequence_field(field: MultiAliasableModelField) -> bool:
+def is_scalar_sequence_field(field: ModelField) -> bool:
     if (field.shape in sequence_shapes) and not lenient_issubclass(
         field.type_, BaseModel
     ):
@@ -366,7 +367,7 @@ def get_param_field(
     default_field_info: Type[params.Param] = params.Param,
     force_type: Optional[params.ParamTypes] = None,
     ignore_default: bool = False,
-) -> MultiAliasableModelField:
+) -> ModelField:
     default_value = Required
     had_schema = False
     if not param.default == param.empty and ignore_default is False:
@@ -414,9 +415,7 @@ def get_param_field(
     return field
 
 
-def add_param_to_fields(
-    *, field: MultiAliasableModelField, dependant: Dependant
-) -> None:
+def add_param_to_fields(*, field: ModelField, dependant: Dependant) -> None:
     field_info = cast(params.Param, field.field_info)
     if field_info.in_ == params.ParamTypes.path:
         dependant.path_params.append(field)
@@ -608,7 +607,7 @@ async def solve_dependencies(
 
 
 def request_params_to_args(
-    required_params: Sequence[MultiAliasableModelField],
+    required_params: Sequence[ModelField],
     received_params: Union[Mapping[str, Any], QueryParams, Headers],
 ) -> Tuple[Dict[str, Any], List[ErrorWrapper]]:
     values = {}
@@ -654,7 +653,7 @@ def request_params_to_args(
 
 
 async def request_body_to_args(
-    required_params: List[MultiAliasableModelField],
+    required_params: List[ModelField],
     received_body: Optional[Union[Dict[str, Any], FormData]],
 ) -> Tuple[Dict[str, Any], List[ErrorWrapper]]:
     values = {}
@@ -732,9 +731,7 @@ def get_missing_field_error(loc: Tuple[str, ...]) -> ErrorWrapper:
     return missing_field_error
 
 
-def get_schema_compatible_field(
-    *, field: MultiAliasableModelField
-) -> MultiAliasableModelField:
+def get_schema_compatible_field(*, field: ModelField) -> ModelField:
     out_field = field
     if lenient_issubclass(field.type_, UploadFile):
         use_type: type = bytes
@@ -748,15 +745,15 @@ def get_schema_compatible_field(
             default=field.default,
             required=field.required,
             alias=field.alias,
-            aliases=field.aliases,
+            aliases=field.aliases
+            if isinstance(field, MultiAliasableModelField)
+            else tuple(),
             field_info=field.field_info,
         )
     return out_field
 
 
-def get_body_field(
-    *, dependant: Dependant, name: str
-) -> Optional[MultiAliasableModelField]:
+def get_body_field(*, dependant: Dependant, name: str) -> Optional[ModelField]:
     flat_dependant = get_flat_dependant(dependant)
     if not flat_dependant.body_params:
         return None
