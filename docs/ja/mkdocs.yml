@@ -93,5 +93,3 @@ extra_javascript:
 - https://unpkg.com/mermaid@8.4.6/dist/mermaid.min.js
 - https://fastapi.tiangolo.com/js/termynal.js
 - https://fastapi.tiangolo.com/js/custom.js
-- https://fastapi.tiangolo.com/js/chat.js
-- https://sidecar.gitter.im/dist/sidecar.v1.js
