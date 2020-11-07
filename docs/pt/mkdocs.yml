@@ -42,6 +42,7 @@ nav:
   - tutorial/first-steps.md
 - alternatives.md
 - history-design-future.md
+- external-links.md
 - benchmarks.md
 markdown_extensions:
 - toc:

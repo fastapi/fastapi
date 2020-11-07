@@ -1,18 +1,57 @@
 a.external-link::after {
-    /* \00A0 is a non-breaking space
+  /* \00A0 is a non-breaking space
         to make the mark be on the same line as the link
     */
-    content: "\00A0[↪]";
+  content: "\00A0[↪]";
 }
 
 a.internal-link::after {
-    /* \00A0 is a non-breaking space
+  /* \00A0 is a non-breaking space
         to make the mark be on the same line as the link
     */
-    content: "\00A0↪";
+  content: "\00A0↪";
 }
 
 /* Give space to lower icons so Gitter chat doesn't get on top of them */
 .md-footer-meta {
-    padding-bottom: 2em;
+  padding-bottom: 2em;
+}
+
+.user-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.user-list-center {
+  justify-content: space-evenly;
+}
+
+.user {
+  margin: 1em;
+  min-width: 7em;
+}
+
+.user .avatar-wrapper {
+  width: 80px;
+  height: 80px;
+  margin: 10px auto;
+  overflow: hidden;
+  border-radius: 50%;
+  position: relative;
+}
+
+.user .avatar-wrapper img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.user .title {
+  text-align: center;
+}
+
+.user .count {
+  font-size: 80%;
+  text-align: center;
 }
