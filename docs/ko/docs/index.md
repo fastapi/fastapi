@@ -392,7 +392,7 @@ item: Item
         ... "item_price": item.price ...
 ```
 
-...그러고 나서 여러분의 에디터가 속성과 타입을 알고 자동 완성하는지 보세요:
+...그러고 나서 여러분의 편집기가 속성과 타입을 알고 자동 완성하는지 보세요:
 
 ![editor support](https://fastapi.tiangolo.com/img/vscode-completion.png)
 
