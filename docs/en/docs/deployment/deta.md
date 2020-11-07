@@ -1,6 +1,6 @@
 # Deploy on Deta
 
-In this section you will learn see how to easily deploy a **FastAPI** application on <a href="https://www.deta.sh/?ref=fastapi" class="external-link" target="_blank">Deta</a> using the free plan. 🎁
+In this section you will learn how to easily deploy a **FastAPI** application on <a href="https://www.deta.sh/?ref=fastapi" class="external-link" target="_blank">Deta</a> using the free plan. 🎁
 
 It will take you about **10 minutes**.
 
