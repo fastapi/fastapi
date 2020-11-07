@@ -35,7 +35,7 @@ FastAPI는 현대적이고, 빠르며(고성능), 파이썬 표준 타입 힌트
 
 * **빠른 코드 작성**: 약 200%에서 300%까지 기능 개발 속도 증가. *
 * **적은 버그**: 사람(개발자)에 의한 에러 약 40% 감소. *
-* **직관적**: 훌륭한 에디터 지원. 모든 곳에서 <abbr title="also known as auto-complete, autocompletion, IntelliSense">자동완성</abbr>. 적은 디버깅 시간.
+* **직관적**: 훌륭한 편집기 지원. 모든 곳에서 <abbr title="also known as auto-complete, autocompletion, IntelliSense">자동완성</abbr>. 적은 디버깅 시간.
 * **쉬움**: 쉽게 사용하고 배우도록 설계. 적은 문서 읽기 시간.
 * **짧음**: 코드 중복 최소화. 각 매개변수 선언의 여러 기능. 적은 버그.
 * **견고함**: 준비된 프로덕션 용 코드를 얻으세요. 자동 대화형 문서와 함께.
