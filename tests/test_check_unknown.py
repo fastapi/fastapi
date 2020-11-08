@@ -7,7 +7,7 @@ app_no_check = FastAPI(check_unknown=False)
 app_check = FastAPI(check_unknown=True)
 
 client_no_check = TestClient(app_no_check)
-client_ceck = TestClient(app_check)
+client_check = TestClient(app_check)
 
 
 class Item(BaseModel):
@@ -25,7 +25,7 @@ async def endpoint_no_check(item: Item, item2: Item):
 
 
 def test_unknown_with_check():
-    response = client_ceck.post(
+    response = client_check.post(
         "/with-check-unknown",
         json={"item": {"data": "myitem"}, "item2": {"data": "item2"}, "data": "any"},
         params={"limit": 12},
@@ -48,7 +48,7 @@ def test_unknown_with_check():
 
 
 def test_known_with_check():
-    response = client_ceck.post(
+    response = client_check.post(
         "/with-check-unknown",
         json={"item": {"data": "myitem"}, "item2": {"data": "item2"}},
     )
