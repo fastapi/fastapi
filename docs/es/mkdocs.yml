@@ -8,13 +8,13 @@ theme:
     primary: teal
     accent: amber
     toggle:
-      icon: material/toggle-switch
+      icon: material/lightbulb-outline
       name: Switch to light mode
   - scheme: slate
     primary: teal
     accent: amber
     toggle:
-      icon: material/toggle-switch-off-outline
+      icon: material/lightbulb
       name: Switch to dark mode
   features:
   - search.suggest
