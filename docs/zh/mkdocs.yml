@@ -4,9 +4,21 @@ site_url: https://fastapi.tiangolo.com/zh/
 theme:
   name: material
   palette:
-    scheme: preference
+  - scheme: default
     primary: teal
     accent: amber
+    toggle:
+      icon: material/lightbulb-outline
+      name: Switch to light mode
+  - scheme: slate
+    primary: teal
+    accent: amber
+    toggle:
+      icon: material/lightbulb
+      name: Switch to dark mode
+  features:
+  - search.suggest
+  - search.highlight
   icon:
     repo: fontawesome/brands/github-alt
   logo: https://fastapi.tiangolo.com/img/icon-white.svg
