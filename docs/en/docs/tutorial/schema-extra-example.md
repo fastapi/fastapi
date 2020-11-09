@@ -25,7 +25,7 @@ In `Field`, `Path`, `Query`, `Body` and others you'll see later, you can also de
 ```
 
 !!! warning
-    Have in mind that those extra arguments passed won't add any validation, only annotation, for documentation purposes.
+    Keep in mind that those extra arguments passed won't add any validation, only annotation, for documentation purposes.
 
 ## `Body` additional arguments
 

@@ -7,7 +7,7 @@
 
 If you are starting a project from scratch, you are probably better off with SQLAlchemy ORM ([SQL (Relational) Databases](../tutorial/sql-databases.md){.internal-link target=_blank}), or any other async ORM.
 
-If you already have a code base that uses <a href="http://docs.peewee-orm.com/en/latest/" class="external-link" target="_blank">Peewee ORM</a>, you can check here how to use it with **FastAPI**.
+If you already have a code base that uses <a href="https://docs.peewee-orm.com/en/latest/" class="external-link" target="_blank">Peewee ORM</a>, you can check here how to use it with **FastAPI**.
 
 !!! warning "Python 3.7+ required"
     You will need Python 3.7 or above to safely use Peewee with FastAPI.
@@ -25,7 +25,7 @@ But if you need to change some of the defaults, support more than one predefined
 Nevertheless, it's possible to do it, and here you'll see exactly what code you have to add to be able to use Peewee with FastAPI.
 
 !!! note "Technical Details"
-    You can read more about Peewee's stand about async in Python <a href="http://docs.peewee-orm.com/en/latest/peewee/database.html#async-with-gevent" class="external-link" target="_blank">in the docs</a>, <a href="https://github.com/coleifer/peewee/issues/263#issuecomment-517347032" class="external-link" target="_blank">an issue</a>, <a href="https://github.com/coleifer/peewee/pull/2072#issuecomment-563215132" class="external-link" target="_blank">a PR</a>.
+    You can read more about Peewee's stand about async in Python <a href="https://docs.peewee-orm.com/en/latest/peewee/database.html#async-with-gevent" class="external-link" target="_blank">in the docs</a>, <a href="https://github.com/coleifer/peewee/issues/263#issuecomment-517347032" class="external-link" target="_blank">an issue</a>, <a href="https://github.com/coleifer/peewee/pull/2072#issuecomment-563215132" class="external-link" target="_blank">a PR</a>.
 
 ## The same app
 
@@ -306,7 +306,7 @@ For the **next request**, as we will reset that context variable again in the `a
 
 #### Peewee Proxy
 
-If you are using a <a href="http://docs.peewee-orm.com/en/latest/peewee/database.html#dynamically-defining-a-database" class="external-link" target="_blank">Peewee Proxy</a>, the actual database is at `db.obj`.
+If you are using a <a href="https://docs.peewee-orm.com/en/latest/peewee/database.html#dynamically-defining-a-database" class="external-link" target="_blank">Peewee Proxy</a>, the actual database is at `db.obj`.
 
 So, you would reset it with:
 
