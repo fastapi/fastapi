@@ -216,6 +216,11 @@ articles:
       title: Inbetriebnahme eines scikit-learn-Modells mit ONNX und FastAPI
       author_link: https://twitter.com/_nicoax
       author: Nico Axtmann
+  spanish:
+    - link: https://coffeebytes.dev/python-fastapi-como-django-pero-mas-rapido-tutorial/
+      title: Python FastAPI, como Django pero más rápido, Tutorial
+      author_link: https://github.com/EduardoZepeda
+      author: Eduardo Zepeda
 podcasts:
   english:
     - link: https://pythonbytes.fm/episodes/show/123/time-to-right-the-py-wrongs?time_in_sec=855
