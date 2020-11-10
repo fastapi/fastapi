@@ -21,7 +21,7 @@ jobs:
       - name: Install docs extras
         run: python3.7 -m flit install --extras doc
       - name: Install Material for MkDocs Insiders
-        if: github.repository == 'tiangolo/fastapi'
+        if: github.event.repository.fork == false
         run: pip install git+https://${{ secrets.ACTIONS_TOKEN }}@github.com/squidfunk/mkdocs-material-insiders.git
       - name: Build Docs
         run: python3.7 ./scripts/docs.py build-all
