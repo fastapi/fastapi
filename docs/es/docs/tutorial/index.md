@@ -75,6 +75,6 @@ También hay una **Guía Avanzada de Usuario** que puedes leer luego de este **T
 
 La **Guía Avanzada de Usuario**, se basa en este tutorial, utiliza los mismos conceptos y enseña algunas características adicionales.
 
-Pero primero deberías leer el **Tutorial - Guía de Gsuario** (lo que estas leyendo ahora mismo).
+Pero primero deberías leer el **Tutorial - Guía de Usuario** (lo que estas leyendo ahora mismo).
 
 La guía esa diseñada para que puedas crear una aplicación completa con solo el **Tutorial - Guía de Usuario**, y luego extenderlo de diferentes maneras, según tus necesidades, utilizando algunas de las ideas adicionales de la **Guía Avanzada de Usuario**.
