@@ -10,6 +10,11 @@ But you can return a `JSONResponse` directly from your *path operations*.
 
 It might be useful, for example, to return custom headers or cookies.
 
+# Return a Model directly
+
+In case you're already initializing a `pydantic`'s `BaseModel`, you can return `ModelResponse` directly to increase performance by skipping validation and calls to `jsonable_encoder` by FastAPI.
+By using this option, the model will be encoded using the `json` method of the `BaseModel`, hence using it's custom encoders and settings.
+
 ## Return a `Response`
 
 In fact, you can return any `Response` or any sub-class of it.

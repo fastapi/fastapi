@@ -1,5 +1,6 @@
 from typing import Any
 
+from pydantic import BaseModel
 from starlette.responses import FileResponse  # noqa
 from starlette.responses import HTMLResponse  # noqa
 from starlette.responses import JSONResponse  # noqa
@@ -21,3 +22,15 @@ class ORJSONResponse(JSONResponse):
     def render(self, content: Any) -> bytes:
         assert orjson is not None, "orjson must be installed to use ORJSONResponse"
         return orjson.dumps(content)
+
+
+class ModelResponse(JSONResponse):
+    """
+    A Response that skips re-validation of Pydantic models and calls directly the json method of the pydantic model
+    using it's configured encoder.
+    """
+
+    media_type = "application/json"
+
+    def render(self, content: BaseModel) -> bytes:
+        return content.json().encode("utf-8")
