@@ -32,6 +32,12 @@ openapi_schema = {
                 "parameters": [
                     {
                         "required": False,
+                        "schema": {"title": "Limit", "type": "integer", "default": 100},
+                        "name": "limit",
+                        "in": "query",
+                    },
+                    {
+                        "required": False,
                         "schema": {"title": "Q", "type": "string"},
                         "name": "q",
                         "in": "query",
@@ -40,12 +46,6 @@ openapi_schema = {
                         "required": False,
                         "schema": {"title": "Skip", "type": "integer", "default": 0},
                         "name": "skip",
-                        "in": "query",
-                    },
-                    {
-                        "required": False,
-                        "schema": {"title": "Limit", "type": "integer", "default": 100},
-                        "name": "limit",
                         "in": "query",
                     },
                 ],

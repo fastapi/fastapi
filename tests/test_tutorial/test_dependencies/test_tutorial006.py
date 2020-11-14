@@ -31,14 +31,14 @@ openapi_schema = {
                 "parameters": [
                     {
                         "required": True,
-                        "schema": {"title": "X-Token", "type": "string"},
-                        "name": "x-token",
+                        "schema": {"title": "X-Key", "type": "string"},
+                        "name": "x-key",
                         "in": "header",
                     },
                     {
                         "required": True,
-                        "schema": {"title": "X-Key", "type": "string"},
-                        "name": "x-key",
+                        "schema": {"title": "X-Token", "type": "string"},
+                        "name": "x-token",
                         "in": "header",
                     },
                 ],
