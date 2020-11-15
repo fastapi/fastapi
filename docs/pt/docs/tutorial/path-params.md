@@ -37,7 +37,7 @@ Se você executar este exemplo e abrir o seu navegador em <a href="http://127.0.
 ```
 
 !!! check
-    Observe que o valor que sua função recebeu (e retornou) é `3`, como o tipo Python `int`, não uma string `"3"`.
+   Observe que o valor que sua função recebeu (e devolveu) é `3`, como o tipo Python `int`, não uma string `"3"`.
 
     Então, com essa declaração de tipo, **FastAPI** oferece a você uma <abbr title="convertendo a string que vem de uma requisição HTTP em dados Python">"conversão"</abbr> automática de requisição.
 
