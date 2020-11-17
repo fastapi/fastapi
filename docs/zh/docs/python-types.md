@@ -144,7 +144,7 @@ John Doe
 {!../../../docs_src/python_types/tutorial005.py!}
 ```
 
-### 嵌套类型
+### 带类型参数的泛型类型
 
 有些容器数据结构可以包含其他的值，比如 `dict`、`list`、`set` 和 `tuple`。它们内部的值也会拥有自己的类型。
 
@@ -171,6 +171,12 @@ John Doe
 ```Python hl_lines="4"
 {!../../../docs_src/python_types/tutorial006.py!}
 ```
+
+!!! tip
+    方括号中的内部类型称为“类型参数”。
+
+    在本例中，`str` 是传递给 `list` 的类型参数。
+
 
 这表示："变量 `items` 是一个 `list`，并且这个列表里的每一个元素都是 `str`"。
 
@@ -215,6 +221,29 @@ John Doe
     * 这个 `dict` 的所有键为 `str` 类型（可以看作是字典内每个元素的名称）。
     * 这个 `dict` 的所有值为 `float` 类型（可以看作是字典内每个元素的价格）。
 
+### `Optional`
+
+你也可以使用 `Optional` 来声明一个变量有一个类型，比如 `str`, 但是它是 "optional", 这意味着它也可以是 `None`:  
+
+```Python hl_lines="1  4"
+{!../../../docs_src/python_types/tutorial009.py!}
+```
+
+当你假设一个值总是 `str` 时，它实际上也可能是 `None` 时使用 `Optional[str]` 而不是 `str` 可以让编辑器帮助你检测错误 .
+
+#### 泛型类型
+
+这些类型采用方括号中的类型参数，如:
+
+* `List`
+* `Tuple`
+* `Set`
+* `Dict`
+* `Optional`
+* ...and others.
+
+称为**泛型类型**或**泛型**。  
+
 ### 类作为类型
 
 你也可以将类声明为变量的类型。
@@ -222,13 +251,13 @@ John Doe
 假设你有一个名为 `Person` 的类，拥有 name 属性：
 
 ```Python hl_lines="1-3"
-{!../../../docs_src/python_types/tutorial009.py!}
+{!../../../docs_src/python_types/tutorial010.py!}
 ```
 
 接下来，你可以将一个变量声明为 `Person` 类型：
 
 ```Python hl_lines="6"
-{!../../../docs_src/python_types/tutorial009.py!}
+{!../../../docs_src/python_types/tutorial010.py!}
 ```
 
 然后，你将再次获得所有的编辑器支持：
@@ -250,7 +279,7 @@ John Doe
 下面的例子来自 Pydantic 官方文档：
 
 ```Python
-{!../../../docs_src/python_types/tutorial010.py!}
+{!../../../docs_src/python_types/tutorial011.py!}
 ```
 
 !!! info
