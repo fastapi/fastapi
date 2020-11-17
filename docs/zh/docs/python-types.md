@@ -223,7 +223,7 @@ John Doe
 
 ### `Optional`
 
-你也可以使用 `Optional` 来声明一个变量有一个类型，比如 `str`, 但是它是 "optional", 这意味着它也可以是 `None`:  
+你也可以使用 `Optional` 来声明一个变量有一个类型，比如 `str`, 但是它是「可选的」, 这意味着它也可以是 `None`:  
 
 ```Python hl_lines="1  4"
 {!../../../docs_src/python_types/tutorial009.py!}
@@ -240,7 +240,7 @@ John Doe
 * `Set`
 * `Dict`
 * `Optional`
-* ...and others.
+* ...及其他。
 
 称为**泛型类型**或**泛型**。  
 
