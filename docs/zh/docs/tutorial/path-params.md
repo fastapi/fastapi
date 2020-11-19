@@ -2,7 +2,7 @@
 
 你可以使用与 Python 格式化字符串相同的语法来声明路径"参数"或"变量"：
 
-```Python hl_lines="6 7"
+```Python hl_lines="6-7"
 {!../../../docs_src/path_params/tutorial001.py!}
 ```
 
@@ -108,7 +108,7 @@
 然后，你还可以使用路径 `/users/{user_id}` 来通过用户 ID 获取关于特定用户的数据。
 
 由于*路径操作*是按顺序依次运行的，你需要确保路径 `/users/me` 声明在路径 `/users/{user_id}`之前：
-```Python hl_lines="6 11"
+```Python hl_lines="6  11"
 {!../../../docs_src/path_params/tutorial003.py!}
 ```
 
@@ -126,7 +126,7 @@
 
 然后创建具有固定值的类属性，这些固定值将是可用的有效值：
 
-```Python hl_lines="1 6 7 8 9"
+```Python hl_lines="1  6-9"
 {!../../../docs_src/path_params/tutorial005.py!}
 ```
 
@@ -179,7 +179,7 @@
 
 在返回给客户端之前，它们将被转换为对应的值：
 
-```Python hl_lines="18 20 21"
+```Python hl_lines="18-21"
 {!../../../docs_src/path_params/tutorial005.py!}
 ```
 

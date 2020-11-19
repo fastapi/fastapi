@@ -27,16 +27,22 @@ nav:
 - Languages:
   - en: /
   - es: /es/
+  - fr: /fr/
   - it: /it/
+  - ja: /ja/
+  - ko: /ko/
   - pt: /pt/
   - ru: /ru/
+  - tr: /tr/
   - uk: /uk/
   - zh: /zh/
 - features.md
 - Tutorial - Guia de Usuário:
   - tutorial/index.md
+  - tutorial/first-steps.md
 - alternatives.md
 - history-design-future.md
+- external-links.md
 - benchmarks.md
 markdown_extensions:
 - toc:

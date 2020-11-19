@@ -29,7 +29,7 @@ Then you declare your data model as a class that inherits from `BaseModel`.
 
 Use standard Python types for all the attributes:
 
-```Python hl_lines="7 8 9 10 11"
+```Python hl_lines="7-11"
 {!../../../docs_src/body/tutorial001.py!}
 ```
 
@@ -135,7 +135,7 @@ You can declare path parameters and body requests at the same time.
 
 **FastAPI** will recognize that the function parameters that match path parameters should be **taken from the path**, and that function parameters that are declared to be Pydantic models should be **taken from the request body**.
 
-```Python hl_lines="17 18"
+```Python hl_lines="17-18"
 {!../../../docs_src/body/tutorial003.py!}
 ```
 
