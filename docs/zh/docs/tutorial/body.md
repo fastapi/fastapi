@@ -17,7 +17,7 @@
 
 首先，你需要从 `pydantic` 中导入 `BaseModel`：
 
-```Python hl_lines="2"
+```Python hl_lines="4"
 {!../../../docs_src/body/tutorial001.py!}
 ```
 
@@ -27,7 +27,7 @@
 
 使用标准的 Python 类型来声明所有属性：
 
-```Python hl_lines="5-9"
+```Python hl_lines="7-11"
 {!../../../docs_src/body/tutorial001.py!}
 ```
 
@@ -57,7 +57,7 @@
 
 使用与声明路径和查询参数的相同方式声明请求体，即可将其添加到「路径操作」中：
 
-```Python hl_lines="16"
+```Python hl_lines="18"
 {!../../../docs_src/body/tutorial001.py!}
 ```
 
@@ -108,11 +108,22 @@ Pydantic 本身甚至也进行了一些更改以支持此功能。
 
 <img src="https://fastapi.tiangolo.com/img/tutorial/body/image05.png">
 
+!!! tip
+    如果你使用 <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a> 作为你的编辑器, 你可以使用 <a href="https://github.com/koxudaxi/pydantic-pycharm-plugin/" class="external-link" target="_blank">Pydantic PyCharm 插件</a>.
+
+    它可以在以下方面提升编辑器对Pydantic 模型的支持:
+    
+    * 自动补全
+    * 类型检查
+    * 重构
+    * 搜索
+    * 检查
+
 ## 使用模型
 
 在函数内部，你可以直接访问模型对象的所有属性：
 
-```Python hl_lines="19"
+```Python hl_lines="21"
 {!../../../docs_src/body/tutorial002.py!}
 ```
 
@@ -122,7 +133,7 @@ Pydantic 本身甚至也进行了一些更改以支持此功能。
 
 **FastAPI** 将识别出与路径参数匹配的函数参数应**从路径中获取**，而声明为 Pydantic 模型的函数参数应**从请求体中获取**。
 
-```Python hl_lines="15-16"
+```Python hl_lines="17-18"
 {!../../../docs_src/body/tutorial003.py!}
 ```
 
@@ -132,7 +143,7 @@ Pydantic 本身甚至也进行了一些更改以支持此功能。
 
 **FastAPI** 会识别它们中的每一个，并从正确的位置获取数据。
 
-```Python hl_lines="16"
+```Python hl_lines="18"
 {!../../../docs_src/body/tutorial004.py!}
 ```
 
@@ -141,6 +152,12 @@ Pydantic 本身甚至也进行了一些更改以支持此功能。
 * 如果在**路径**中也声明了该参数，它将被用作路径参数。
 * 如果参数属于**单一类型**（比如 `int`、`float`、`str`、`bool` 等）它将被解释为**查询**参数。
 * 如果参数的类型被声明为一个 **Pydantic 模型**，它将被解释为**请求体**。
+
+!!! note
+
+    FastAPI 将能够知道 `q` 的值是非必须的，因为其默认值是None。
+    
+     `Optional[str]` 中的 `Optional` 不是 FastAPI 使用的，它可以允许你的编辑器给你提供更多的支持及错误检查。
 
 ## 不使用 Pydantic
 
