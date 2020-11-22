@@ -106,7 +106,7 @@ API는 대부분 **응답** 본문을 보냅니다. 하지만 클라이언트는
 
 이전 스크린샷은 <a href="https://code.visualstudio.com" class="external-link" target="_blank">비주얼 스튜디오 코드</a>에서 찍은 것입니다.
 
-하지만 <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a> 및 대부분의 다른 Python 편집기에서 동일한 편집기 지원을 얻을 수 있습니다:
+하지만 <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a> 및 대부분의 다른 파이썬 편집기에서 동일한 편집기 지원을 얻을 수 있습니다:
 
 <img src="/img/tutorial/body/image05.png">
 
