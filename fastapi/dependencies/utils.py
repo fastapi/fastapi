@@ -94,7 +94,7 @@ def check_file_field(field: ModelField) -> None:
 
             assert __version__
             try:
-                # parse_options_header is only available in the right multlipart
+                # parse_options_header is only available in the right multipart
                 from multipart.multipart import parse_options_header
 
                 assert parse_options_header

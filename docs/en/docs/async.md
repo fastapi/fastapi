@@ -210,7 +210,7 @@ Most of the existing popular Python frameworks (including Flask and Django) were
 
 Even though the main specification for asynchronous web Python (ASGI) was developed at Django, to add support for WebSockets.
 
-That kind of asynchronicity is what made NodeJS popular (even though NodeJS is not parallel) and that's the strength of Go as a programing language.
+That kind of asynchronicity is what made NodeJS popular (even though NodeJS is not parallel) and that's the strength of Go as a programming language.
 
 And that's the same level of performance you get with **FastAPI**.
 
@@ -261,7 +261,7 @@ But you can also exploit the benefits of parallelism and multiprocessing (having
 
 That, plus the simple fact that Python is the main language for **Data Science**, Machine Learning and especially Deep Learning, make FastAPI a very good match for Data Science / Machine Learning web APIs and applications (among many others).
 
-To see how to achieve this parallelism in production see the section about [Deployment](deployment.md){.internal-link target=_blank}.
+To see how to achieve this parallelism in production see the section about [Deployment](deployment/index.md){.internal-link target=_blank}.
 
 ## `async` and `await`
 
@@ -334,7 +334,7 @@ This same syntax (or almost identical) was also included recently in modern vers
 
 But before that, handling asynchronous code was quite more complex and difficult.
 
-In previous versions of Python, you could have used threads or <a href="http://www.gevent.org/" class="external-link" target="_blank">Gevent</a>. But the code is way more complex to understand, debug, and think about.
+In previous versions of Python, you could have used threads or <a href="https://www.gevent.org/" class="external-link" target="_blank">Gevent</a>. But the code is way more complex to understand, debug, and think about.
 
 In previous versions of NodeJS / Browser JavaScript, you would have used "callbacks". Which leads to <a href="http://callbackhell.com/" class="external-link" target="_blank">callback hell</a>.
 
