@@ -82,6 +82,8 @@ extra:
 extra_css:
 - https://fastapi.tiangolo.com/css/termynal.css
 - https://fastapi.tiangolo.com/css/custom.css
+- https://fastapi.tiangolo.com/css/rtl.css
+
 extra_javascript:
 - https://unpkg.com/mermaid@8.4.6/dist/mermaid.min.js
 - https://fastapi.tiangolo.com/js/termynal.js
