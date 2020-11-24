@@ -34,7 +34,11 @@ validation_error_definition = {
     "title": "ValidationError",
     "type": "object",
     "properties": {
-        "loc": {"title": "Location", "type": "array", "items": {"type": "string"}},
+        "loc": {
+            "title": "Location",
+            "type": "array",
+            "items": {"oneOf": [{"type": "string"}, {"type": "integer"}]},
+        },
         "msg": {"title": "Message", "type": "string"},
         "type": {"title": "Error Type", "type": "string"},
     },
@@ -191,9 +195,11 @@ def get_openapi_path(
             if route.callbacks:
                 callbacks = {}
                 for callback in route.callbacks:
-                    cb_path, cb_security_schemes, cb_definitions, = get_openapi_path(
-                        route=callback, model_name_map=model_name_map
-                    )
+                    (
+                        cb_path,
+                        cb_security_schemes,
+                        cb_definitions,
+                    ) = get_openapi_path(route=callback, model_name_map=model_name_map)
                     callbacks[callback.name] = {callback.path: cb_path}
                 operation["callbacks"] = callbacks
             status_code = str(route.status_code)
