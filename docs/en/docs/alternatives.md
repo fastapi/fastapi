@@ -36,6 +36,17 @@ It was one of the first examples of **automatic API documentation**, and this wa
 
 !!! check "Inspired **FastAPI** to"
     Have an automatic API documentation web user interface.
+ 
+### <a href="http://django-ninja.rest-framework.com/" class="external-link" target="_blank">Django Ninja</a>
+
+**Django Ninja** is a project that was inspired by **FastAPI**. It has almost all the features from FastAPI and as well brings even more:
+
+ - Deep django integration
+ - ORM support in schemas output
+ - Async views
+ - Multiple API versions
+ - Multiple Response types
+ - High performance thanks to Pydantic (2x faster then Django Rest Framework on serialization/validation, and 100x in specific cases wehere async views do the profit)
 
 ### <a href="https://flask.palletsprojects.com" class="external-link" target="_blank">Flask</a>
 
