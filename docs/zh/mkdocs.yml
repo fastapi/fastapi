@@ -60,6 +60,7 @@ nav:
   - tutorial/path-params-numeric-validations.md
   - tutorial/body-multiple-params.md
   - tutorial/body-fields.md
+  - tutorial/body-nested-models.md
 - 高级用户指南:
   - advanced/index.md
   - advanced/path-operation-advanced-configuration.md
