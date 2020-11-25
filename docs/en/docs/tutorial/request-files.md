@@ -39,7 +39,7 @@ If you declare the type of your *path operation function* parameter as `bytes`, 
 
 Have in mind that this means that the whole contents will be stored in memory. This will work well for small files.
 
-But there are several cases in where you might benefit from using `UploadFile`.
+But there are several cases in which you might benefit from using `UploadFile`.
 
 ## `File` parameters with `UploadFile`
 
@@ -121,7 +121,7 @@ They would be associated to the same "form field" sent using "form data".
 
 To use that, declare a `List` of `bytes` or `UploadFile`:
 
-```Python hl_lines="10 15"
+```Python hl_lines="10  15"
 {!../../../docs_src/request_files/tutorial002.py!}
 ```
 

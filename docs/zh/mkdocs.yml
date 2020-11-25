@@ -4,8 +4,21 @@ site_url: https://fastapi.tiangolo.com/zh/
 theme:
   name: material
   palette:
+  - scheme: default
     primary: teal
     accent: amber
+    toggle:
+      icon: material/lightbulb-outline
+      name: Switch to light mode
+  - scheme: slate
+    primary: teal
+    accent: amber
+    toggle:
+      icon: material/lightbulb
+      name: Switch to dark mode
+  features:
+  - search.suggest
+  - search.highlight
   icon:
     repo: fontawesome/brands/github-alt
   logo: https://fastapi.tiangolo.com/img/icon-white.svg
@@ -17,14 +30,23 @@ edit_uri: ''
 google_analytics:
 - UA-133183413-1
 - auto
+plugins:
+- search
+- markdownextradata:
+    data: data
 nav:
 - FastAPI: index.md
 - Languages:
   - en: /
   - es: /es/
+  - fr: /fr/
   - it: /it/
+  - ja: /ja/
+  - ko: /ko/
   - pt: /pt/
   - ru: /ru/
+  - tr: /tr/
+  - uk: /uk/
   - zh: /zh/
 - features.md
 - python-types.md
@@ -39,6 +61,12 @@ nav:
   - tutorial/body-multiple-params.md
   - tutorial/body-fields.md
   - tutorial/body-nested-models.md
+- 高级用户指南:
+  - advanced/index.md
+  - advanced/path-operation-advanced-configuration.md
+  - advanced/additional-status-codes.md
+  - advanced/response-directly.md
+  - advanced/custom-response.md
 - deployment.md
 - contributing.md
 - help-fastapi.md
@@ -79,5 +107,3 @@ extra_javascript:
 - https://unpkg.com/mermaid@8.4.6/dist/mermaid.min.js
 - https://fastapi.tiangolo.com/js/termynal.js
 - https://fastapi.tiangolo.com/js/custom.js
-- https://fastapi.tiangolo.com/js/chat.js
-- https://sidecar.gitter.im/dist/sidecar.v1.js

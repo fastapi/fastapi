@@ -2,7 +2,7 @@
 
 You can declare path "parameters" or "variables" with the same syntax used by Python format strings:
 
-```Python hl_lines="6 7"
+```Python hl_lines="6-7"
 {!../../../docs_src/path_params/tutorial001.py!}
 ```
 
@@ -61,7 +61,7 @@ But if you go to the browser at <a href="http://127.0.0.1:8000/items/foo" class=
 
 because the path parameter `item_id` had a value of `"foo"`, which is not an `int`.
 
-The same error would appear if you provided a `float` instead of an int, as in: <a href="http://127.0.0.1:8000/items/4.2" class="external-link" target="_blank">http://127.0.0.1:8000/items/4.2</a>
+The same error would appear if you provided a `float` instead of an `int`, as in: <a href="http://127.0.0.1:8000/items/4.2" class="external-link" target="_blank">http://127.0.0.1:8000/items/4.2</a>
 
 !!! check
     So, with the same Python type declaration, **FastAPI** gives you data validation.
@@ -109,7 +109,7 @@ And then you can also have a path `/users/{user_id}` to get data about a specifi
 
 Because *path operations* are evaluated in order, you need to make sure that the path for `/users/me` is declared before the one for `/users/{user_id}`:
 
-```Python hl_lines="6 11"
+```Python hl_lines="6  11"
 {!../../../docs_src/path_params/tutorial003.py!}
 ```
 
@@ -127,7 +127,7 @@ By inheriting from `str` the API docs will be able to know that the values must 
 
 Then create class attributes with fixed values, which will be the available valid values:
 
-```Python hl_lines="1 6 7 8 9"
+```Python hl_lines="1  6-9"
 {!../../../docs_src/path_params/tutorial005.py!}
 ```
 

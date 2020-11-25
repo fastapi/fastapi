@@ -11,7 +11,7 @@ app = FastAPI()
 class Item:
     name: str
     price: Optional[float] = None
-    owner_ids: List[int] = None
+    owner_ids: Optional[List[int]] = None
 
 
 @app.get("/items/valid", response_model=Item)

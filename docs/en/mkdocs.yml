@@ -4,8 +4,21 @@ site_url: https://fastapi.tiangolo.com/
 theme:
   name: material
   palette:
+  - scheme: default
     primary: teal
     accent: amber
+    toggle:
+      icon: material/lightbulb-outline
+      name: Switch to light mode
+  - scheme: slate
+    primary: teal
+    accent: amber
+    toggle:
+      icon: material/lightbulb
+      name: Switch to dark mode
+  features:
+  - search.suggest
+  - search.highlight
   icon:
     repo: fontawesome/brands/github-alt
   logo: img/icon-white.svg
@@ -17,16 +30,26 @@ edit_uri: ''
 google_analytics:
 - UA-133183413-1
 - auto
+plugins:
+- search
+- markdownextradata:
+    data: data
 nav:
 - FastAPI: index.md
 - Languages:
   - en: /
   - es: /es/
+  - fr: /fr/
   - it: /it/
+  - ja: /ja/
+  - ko: /ko/
   - pt: /pt/
   - ru: /ru/
+  - tr: /tr/
+  - uk: /uk/
   - zh: /zh/
 - features.md
+- fastapi-people.md
 - python-types.md
 - Tutorial - User Guide:
   - tutorial/index.md
@@ -105,13 +128,20 @@ nav:
   - advanced/testing-events.md
   - advanced/testing-dependencies.md
   - advanced/testing-database.md
+  - advanced/async-tests.md
   - advanced/settings.md
   - advanced/conditional-openapi.md
   - advanced/extending-openapi.md
   - advanced/openapi-callbacks.md
   - advanced/wsgi.md
 - async.md
-- deployment.md
+- Deployment:
+  - deployment/index.md
+  - deployment/versions.md
+  - deployment/https.md
+  - deployment/deta.md
+  - deployment/docker.md
+  - deployment/manually.md
 - project-generation.md
 - alternatives.md
 - history-design-future.md
@@ -157,5 +187,3 @@ extra_javascript:
 - https://unpkg.com/mermaid@8.4.6/dist/mermaid.min.js
 - js/termynal.js
 - js/custom.js
-- js/chat.js
-- https://sidecar.gitter.im/dist/sidecar.v1.js
