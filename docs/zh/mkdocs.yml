@@ -60,6 +60,7 @@ nav:
   - tutorial/path-params-numeric-validations.md
   - tutorial/body-multiple-params.md
   - tutorial/body-fields.md
+  - tutorial/schema-extra-example.md
 - deployment.md
 - contributing.md
 - help-fastapi.md
