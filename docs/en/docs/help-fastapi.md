@@ -52,11 +52,12 @@ I love to hear about how **FastAPI** is being used, what have you liked in it, i
 
 * <a href="https://www.slant.co/options/34241/~fastapi-review" class="external-link" target="_blank">Vote for **FastAPI** in Slant</a>.
 * <a href="https://alternativeto.net/software/fastapi/" class="external-link" target="_blank">Vote for **FastAPI** in AlternativeTo</a>.
-* <a href="https://github.com/marmelab/awesome-rest/pull/93" class="external-link" target="_blank">Vote for **FastAPI** on awesome-rest</a>.
 
 ## Help others with issues in GitHub
 
 You can see <a href="https://github.com/tiangolo/fastapi/issues" class="external-link" target="_blank">existing issues</a> and try and help others, most of the times they are questions that you might already know the answer for. 🤓
+
+If you are helping a lot of people on issues you might become an official [FastAPI Expert](fastapi-people.md#experts){.internal-link target=_blank}. 🎉
 
 ## Watch the GitHub repository
 
@@ -70,43 +71,52 @@ Then you can try and help them solving those issues.
 
 You can <a href="https://github.com/tiangolo/fastapi/issues/new/choose" class="external-link" target="_blank">create a new issue</a> in the GitHub repository, for example to:
 
-* Ask a question or ask about a problem.
-* Suggest a new feature.
+* Ask a **question** or ask about a **problem**.
+* Suggest a new **feature**.
 
 **Note**: if you create an issue then I'm going to ask you to also help others. 😉
 
 ## Create a Pull Request
 
-You can <a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">create a Pull Request</a>, for example:
+You can [contribute](contributing.md){.internal-link target=_blank} to the source code with Pull Requests, for example:
 
 * To fix a typo you found on the documentation.
+* To share an article, video, or podcast you created or found about FastAPI by <a href="https://github.com/tiangolo/fastapi/edit/master/docs/en/data/external_links.yml" class="external-link" target="_blank">editing this file</a>.
+    * Make sure you add your link to the end of the corresponding section.
+* To help [translate the documentation](contributing.md#translations){.internal-link target=_blank} to your language.
+    * You can also help reviewing the translations created by others.
 * To propose new documentation sections.
 * To fix an existing issue/bug.
 * To add a new feature.
 
 ## Join the chat
 
-<a href="https://gitter.im/tiangolo/fastapi?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge" target="_blank">
-    <img src="https://badges.gitter.im/tiangolo/fastapi.svg" alt="Join the chat at https://gitter.im/tiangolo/fastapi">
-</a>
+Join the 👥 <a href="https://discord.gg/VQjSZaeJmf" class="external-link" target="_blank">Discord chat server</a> 👥 and hang out with others in the FastAPI community.
 
-Join the chat on Gitter: <a href="https://gitter.im/tiangolo/fastapi" class="external-link" target="_blank">https://gitter.im/tiangolo/fastapi</a>.
+!!! tip
+    For questions, ask them in <a href="https://github.com/tiangolo/fastapi/issues/new/choose" class="external-link" target="_blank">GitHub issues</a>, there's a much better chance you will receive help by the [FastAPI Experts](fastapi-people.md#experts){.internal-link target=_blank}.
 
-There you can have quick conversations with others, help others, share ideas, etc.
+    Use the chat only for other general conversations.
 
-But have in mind that as it allows more "free conversation", it's easy to ask questions that are too general and more difficult to answer, so, you might not receive answers.
+There is also the previous <a href="https://gitter.im/tiangolo/fastapi" class="external-link" target="_blank">Gitter chat</a>, but as it doesn't have channels and advanced features, conversations are more difficult, so Discord is now the recommended system.
 
-In GitHub issues the template will guide to to write the right question so that you can more easily get a good answer, or even solve the problem yourself even before asking. And in GitHub I can make sure I always answer everything, even if it takes some time. I can't personally do that with the Gitter chat. 😅
+### Don't use the chat for questions
 
-Conversations in Gitter are also not as easily searchable as in GitHub, so questions and answers might get lost in the conversation.
+Have in mind that as chats allow more "free conversation", it's easy to ask questions that are too general and more difficult to answer, so, you might not receive answers.
 
-On the other side, there's more than 1000 people in the chat, so there's a high chance you'll find someone to talk to there, almost all the time. 😄
+In GitHub issues the template will guide you to write the right question so that you can more easily get a good answer, or even solve the problem yourself even before asking. And in GitHub I can make sure I always answer everything, even if it takes some time. I can't personally do that with the chat systems. 😅
+
+Conversations in the chat systems are also not as easily searchable as in GitHub, so questions and answers might get lost in the conversation. And only the ones in GitHub issues count to become a [FastAPI Expert](fastapi-people.md#experts){.internal-link target=_blank}, so you will most probably receive more attention in GitHub isssues.
+
+On the other side, there are thousands of users in the chat systems, so there's a high chance you'll find someone to talk to there, almost all the time. 😄
 
 ## Sponsor the author
 
 You can also financially support the author (me) through <a href="https://github.com/sponsors/tiangolo" class="external-link" target="_blank">GitHub sponsors</a>.
 
-There you could buy me a coffee ☕️ to say thanks 😄.
+There you could buy me a coffee ☕️ to say thanks. 😄
+
+And you can also become a Silver or Gold sponsor for FastAPI. 🏅🎉
 
 ## Sponsor the tools that power FastAPI
 

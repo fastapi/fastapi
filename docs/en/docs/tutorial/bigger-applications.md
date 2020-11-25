@@ -83,7 +83,7 @@ All the same parameters, responses, dependencies, tags, etc.
 !!! tip
     In this example, the variable is called `router`, but you can name it however you want.
 
-We are going to include this `APIrouter` in the main `FastAPI` app, but first, let's add another `APIRouter`.
+We are going to include this `APIRouter` in the main `FastAPI` app, but first, let's add another `APIRouter`.
 
 ## Another module with `APIRouter`
 
