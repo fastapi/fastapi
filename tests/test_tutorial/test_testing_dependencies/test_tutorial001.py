@@ -1,4 +1,4 @@
-from dependency_testing.tutorial001 import (
+from docs_src.dependency_testing.tutorial001 import (
     app,
     client,
     test_override_in_items,

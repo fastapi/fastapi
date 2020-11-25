@@ -1,0 +1,16 @@
+name: FastAPI People
+
+on:
+  schedule:
+    - cron: "0 14 1 * *"
+  workflow_dispatch:
+
+jobs:
+  fastapi-people:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ./.github/actions/people
+        with:
+          token: ${{ secrets.ACTIONS_TOKEN }}
+          standard_token: ${{ secrets.GITHUB_TOKEN }}

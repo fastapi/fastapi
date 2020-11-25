@@ -51,7 +51,7 @@ def test_create_item_bad_token():
     assert response.json() == {"detail": "Invalid X-Token header"}
 
 
-def test_create_existing_token():
+def test_create_existing_item():
     response = client.post(
         "/items/",
         headers={"X-Token": "coneofsilence"},
