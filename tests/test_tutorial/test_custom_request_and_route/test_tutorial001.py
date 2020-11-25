@@ -5,7 +5,7 @@ import pytest
 from fastapi import Request
 from fastapi.testclient import TestClient
 
-from custom_request_and_route.tutorial001 import app
+from docs_src.custom_request_and_route.tutorial001 import app
 
 
 @app.get("/check-class")

@@ -1,6 +1,8 @@
 import os
+import re
 import shutil
 from http.server import HTTPServer, SimpleHTTPRequestHandler
+from multiprocessing import Pool
 from pathlib import Path
 from typing import Dict, Optional, Tuple
 
@@ -10,6 +12,7 @@ import mkdocs.config
 import mkdocs.utils
 import typer
 import yaml
+from jinja2 import Template
 
 app = typer.Typer()
 
@@ -132,6 +135,7 @@ def build_lang(
         dist_path: Path = site_path / lang
     shutil.rmtree(build_lang_path, ignore_errors=True)
     shutil.copytree(lang_path, build_lang_path)
+    shutil.copytree(en_docs_path / "data", build_lang_path / "data")
     en_config_path: Path = en_lang_path / mkdocs_name
     en_config: dict = mkdocs.utils.yaml_load(en_config_path.read_text(encoding="utf-8"))
     nav = en_config["nav"]
@@ -170,7 +174,11 @@ def build_lang(
                         new_key += (key_part,)
                 use_lang_file_to_nav[file] = new_key
     key_to_section = {(): []}
-    for file, file_key in use_lang_file_to_nav.items():
+    for file, orig_file_key in file_to_nav.items():
+        if file in use_lang_file_to_nav:
+            file_key = use_lang_file_to_nav[file]
+        else:
+            file_key = orig_file_key
         section = get_key_section(key_to_section=key_to_section, key=file_key)
         section.append(file)
     new_nav = key_to_section[()]
@@ -188,6 +196,62 @@ def build_lang(
     typer.secho(f"Successfully built docs for: {lang}", color=typer.colors.GREEN)
 
 
+index_sponsors_template = """
+{% if sponsors %}
+{% for sponsor in sponsors.gold -%}
+<a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}"></a>
+{% endfor %}
+{% endif %}
+"""
+
+
+def generate_readme_content():
+    en_index = en_docs_path / "docs" / "index.md"
+    content = en_index.read_text("utf-8")
+    match_start = re.search(r"<!-- sponsors -->", content)
+    match_end = re.search(r"<!-- /sponsors -->", content)
+    sponsors_data_path = en_docs_path / "data" / "sponsors.yml"
+    sponsors = mkdocs.utils.yaml_load(sponsors_data_path.read_text(encoding="utf-8"))
+    if not (match_start and match_end):
+        raise RuntimeError("Couldn't auto-generate sponsors section")
+    pre_end = match_start.end()
+    post_start = match_end.start()
+    template = Template(index_sponsors_template)
+    message = template.render(sponsors=sponsors)
+    pre_content = content[:pre_end]
+    post_content = content[post_start:]
+    new_content = pre_content + message + post_content
+    return new_content
+
+
+@app.command()
+def generate_readme():
+    """
+    Generate README.md content from main index.md
+    """
+    typer.echo("Generating README")
+    readme_path = Path("README.md")
+    new_content = generate_readme_content()
+    readme_path.write_text(new_content, encoding="utf-8")
+
+
+@app.command()
+def verify_readme():
+    """
+    Verify README.md content from main index.md
+    """
+    typer.echo("Verifying README")
+    readme_path = Path("README.md")
+    generated_content = generate_readme_content()
+    readme_content = readme_path.read_text("utf-8")
+    if generated_content != readme_content:
+        typer.secho(
+            "README.md outdated from the latest index.md", color=typer.colors.RED
+        )
+        raise typer.Abort()
+    typer.echo("Valid README ✅")
+
+
 @app.command()
 def build_all():
     """
@@ -196,19 +260,25 @@ def build_all():
     """
     site_path = Path("site").absolute()
     update_languages(lang=None)
-    en_build_path: Path = docs_path / "en"
     current_dir = os.getcwd()
-    os.chdir(en_build_path)
-    typer.echo(f"Building docs for: en")
+    os.chdir(en_docs_path)
+    typer.echo("Building docs for: en")
     mkdocs.commands.build.build(mkdocs.config.load_config(site_dir=str(site_path)))
     os.chdir(current_dir)
+    langs = []
     for lang in get_lang_paths():
-        if lang == en_build_path or not lang.is_dir():
+        if lang == en_docs_path or not lang.is_dir():
             continue
-        build_lang(lang.name)
-    typer.echo("Copying en index.md to README.md")
-    en_index = en_build_path / "docs" / "index.md"
-    shutil.copyfile(en_index, "README.md")
+        langs.append(lang.name)
+    cpu_count = os.cpu_count() or 1
+    with Pool(cpu_count * 2) as p:
+        p.map(build_lang, langs)
+
+
+def update_single_lang(lang: str):
+    lang_path = docs_path / lang
+    typer.echo(f"Updating {lang_path.name}")
+    update_config(lang_path.name)
 
 
 @app.command()
@@ -226,11 +296,9 @@ def update_languages(
     if lang is None:
         for lang_path in get_lang_paths():
             if lang_path.is_dir():
-                typer.echo(f"Updating {lang_path.name}")
-                update_config(lang_path.name)
+                update_single_lang(lang_path.name)
     else:
-        typer.echo(f"Updating {lang}")
-        update_config(lang)
+        update_single_lang(lang)
 
 
 @app.command()
