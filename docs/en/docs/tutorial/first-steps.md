@@ -71,13 +71,13 @@ You will see the alternative automatic documentation (provided by <a href="https
 
 #### "Schema"
 
-A "schema" is a definition or description of something. Not the code that implements it, but just the abstract description.
+A "schema" is a definition or description of something. Not the code that implements it, but just an abstract description.
 
 #### API "schema"
 
-In this case, OpenAPI is a specification that dictates how to define a schema of your API.
+In this case, <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> is a specification that dictates how to define a schema of your API.
 
-This OpenAPI schema would include your API paths, the possible parameters they take, etc.
+This schema definition includes your API paths, the possible parameters they take, etc.
 
 #### Data "schema"
 
@@ -91,7 +91,7 @@ OpenAPI defines an API schema for your API. And that schema includes definitions
 
 #### Check the `openapi.json`
 
-If you are curious about how the raw OpenAPI schema looks like, it is just an automatically generated JSON with the descriptions of all your API.
+If you are curious about how the raw OpenAPI schema looks like, FastAPI automatically generates a JSON (schema) with the descriptions of all your API.
 
 You can see it directly at: <a href="http://127.0.0.1:8000/openapi.json" class="external-link" target="_blank">http://127.0.0.1:8000/openapi.json</a>.
 
@@ -120,7 +120,7 @@ It will show a JSON starting with something like:
 
 #### What is OpenAPI for
 
-This OpenAPI schema is what powers the 2 interactive documentation systems included.
+The OpenAPI schema is what powers the two interactive documentation systems included.
 
 And there are dozens of alternatives, all based on OpenAPI. You could easily add any of those alternatives to your application built with **FastAPI**.
 
@@ -139,7 +139,7 @@ You could also use it to generate code automatically, for clients that communica
 !!! note "Technical Details"
     `FastAPI` is a class that inherits directly from `Starlette`.
 
-    You can use all the Starlette functionality with `FastAPI` too.
+    You can use all the <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> functionality with `FastAPI` too.
 
 ### Step 2: create a `FastAPI` "instance"
 
@@ -202,7 +202,7 @@ https://example.com/items/foo
 !!! info
     A "path" is also commonly called an "endpoint" or a "route".
 
-Building an API, the "path" is the main way to separate "concerns" and "resources".
+While building an API, the "path" is the main way to separate "concerns" and "resources".
 
 #### Operation
 
@@ -281,7 +281,7 @@ And the more exotic ones:
 
     The information here is presented as a guideline, not a requirement.
 
-    For example, when using GraphQL you normally perform all the actions using only `post`.
+    For example, when using GraphQL you normally perform all the actions using only `POST` operations.
 
 ### Step 4: define the **path operation function**
 
@@ -297,7 +297,7 @@ This is our "**path operation function**":
 
 This is a Python function.
 
-It will be called by **FastAPI** whenever it receives a request to the URL "`/`" using `GET`.
+It will be called by **FastAPI** whenever it receives a request to the URL "`/`" using a `GET` operation.
 
 In this case, it is an `async` function.
 

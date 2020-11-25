@@ -104,7 +104,7 @@ single_error = {
     "detail": [
         {
             "ctx": {"limit_value": 0.0},
-            "loc": ["body", "item", 0, "age"],
+            "loc": ["body", 0, "age"],
             "msg": "ensure this value is greater than 0",
             "type": "value_error.number.not_gt",
         }
@@ -114,22 +114,22 @@ single_error = {
 multiple_errors = {
     "detail": [
         {
-            "loc": ["body", "item", 0, "name"],
+            "loc": ["body", 0, "name"],
             "msg": "field required",
             "type": "value_error.missing",
         },
         {
-            "loc": ["body", "item", 0, "age"],
+            "loc": ["body", 0, "age"],
             "msg": "value is not a valid decimal",
             "type": "type_error.decimal",
         },
         {
-            "loc": ["body", "item", 1, "name"],
+            "loc": ["body", 1, "name"],
             "msg": "field required",
             "type": "value_error.missing",
         },
         {
-            "loc": ["body", "item", 1, "age"],
+            "loc": ["body", 1, "age"],
             "msg": "value is not a valid decimal",
             "type": "type_error.decimal",
         },
