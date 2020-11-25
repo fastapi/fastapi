@@ -8,6 +8,7 @@ app = FastAPI()
 
 media_type = "application/vnd.api+json"
 
+
 # NOTE: These are not valid JSON:API resources
 # but they are fine for testing requestBody with custom media_type
 class Product(BaseModel):

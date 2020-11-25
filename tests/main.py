@@ -1,3 +1,6 @@
+import http
+from typing import Optional
+
 from fastapi import FastAPI, Path, Query
 
 app = FastAPI()
@@ -46,7 +49,7 @@ def get_bool_id(item_id: bool):
 
 
 @app.get("/path/param/{item_id}")
-def get_path_param_id(item_id: str = Path(None)):
+def get_path_param_id(item_id: Optional[str] = Path(None)):
     return item_id
 
 
@@ -158,14 +161,14 @@ def get_query_type(query: int):
 
 
 @app.get("/query/int/optional")
-def get_query_type_optional(query: int = None):
+def get_query_type_optional(query: Optional[int] = None):
     if query is None:
         return "foo bar"
     return f"foo bar {query}"
 
 
 @app.get("/query/int/default")
-def get_query_type_optional(query: int = 10):
+def get_query_type_int_default(query: int = 10):
     return f"foo bar {query}"
 
 
@@ -184,3 +187,8 @@ def get_query_param_required(query=Query(...)):
 @app.get("/query/param-required/int")
 def get_query_param_required_type(query: int = Query(...)):
     return f"foo bar {query}"
+
+
+@app.get("/enum-status-code", status_code=http.HTTPStatus.CREATED)
+def get_enum_status_code():
+    return "foo bar"
