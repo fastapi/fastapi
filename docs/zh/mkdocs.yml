@@ -62,6 +62,7 @@ nav:
   - tutorial/body-fields.md
 - 高级用户指南:
   - advanced/index.md
+  - advanced/path-operation-advanced-configuration.md
 - deployment.md
 - contributing.md
 - help-fastapi.md
