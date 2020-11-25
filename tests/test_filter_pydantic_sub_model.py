@@ -1,3 +1,5 @@
+from typing import Optional
+
 import pytest
 from fastapi import Depends, FastAPI
 from fastapi.testclient import TestClient
@@ -16,7 +18,7 @@ class ModelC(ModelB):
 
 class ModelA(BaseModel):
     name: str
-    description: str = None
+    description: Optional[str] = None
     model_b: ModelB
 
     @validator("name")

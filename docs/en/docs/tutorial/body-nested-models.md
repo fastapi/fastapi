@@ -6,15 +6,15 @@ With **FastAPI**, you can define, validate, document, and use arbitrarily deeply
 
 You can define an attribute to be a subtype. For example, a Python `list`:
 
-```Python hl_lines="12"
+```Python hl_lines="14"
 {!../../../docs_src/body_nested_models/tutorial001.py!}
 ```
 
 This will make `tags` be a list of items. Although it doesn't declare the type of each of the items.
 
-## List fields with subtype
+## List fields with type parameter
 
-But Python has a specific way to declare lists with subtypes:
+But Python has a specific way to declare lists with internal types, or "type parameters":
 
 ### Import typing's `List`
 
@@ -24,12 +24,12 @@ First, import `List` from standard Python's `typing` module:
 {!../../../docs_src/body_nested_models/tutorial002.py!}
 ```
 
-### Declare a `List` with a subtype
+### Declare a `List` with a type parameter
 
-To declare types that have subtypes, like `list`, `dict`, `tuple`:
+To declare types that have type parameters (internal types), like `list`, `dict`, `tuple`:
 
 * Import them from the `typing` module
-* Pass the subtype(s) as "type arguments" using square brackets: `[` and `]`
+* Pass the internal type(s) as "type parameters" using square brackets: `[` and `]`
 
 ```Python
 from typing import List
@@ -39,7 +39,7 @@ my_list: List[str]
 
 That's all standard Python syntax for type declarations.
 
-Use that same standard syntax for model attributes with subtypes.
+Use that same standard syntax for model attributes with internal types.
 
 So, in our example, we can make `tags` be specifically a "list of strings":
 
@@ -55,7 +55,7 @@ And Python has a special data type for sets of unique items, the `set`.
 
 Then we can import `Set` and declare `tags` as a `set` of `str`:
 
-```Python hl_lines="1 14"
+```Python hl_lines="1  14"
 {!../../../docs_src/body_nested_models/tutorial003.py!}
 ```
 
@@ -71,7 +71,7 @@ Each attribute of a Pydantic model has a type.
 
 But that type can itself be another Pydantic model.
 
-So, you can declare deeply nested JSON `object`s with specific attribute names, types and validations.
+So, you can declare deeply nested JSON "objects" with specific attribute names, types and validations.
 
 All that, arbitrarily nested.
 
@@ -79,7 +79,7 @@ All that, arbitrarily nested.
 
 For example, we can define an `Image` model:
 
-```Python hl_lines="9 10 11"
+```Python hl_lines="9-11"
 {!../../../docs_src/body_nested_models/tutorial004.py!}
 ```
 
@@ -122,7 +122,7 @@ To see all the options you have, checkout the docs for <a href="https://pydantic
 
 For example, as in the `Image` model we have a `url` field, we can declare it to be instead of a `str`, a Pydantic's `HttpUrl`:
 
-```Python hl_lines="4 10"
+```Python hl_lines="4  10"
 {!../../../docs_src/body_nested_models/tutorial005.py!}
 ```
 
@@ -169,12 +169,12 @@ This will expect (convert, validate, document, etc) a JSON body like:
 
 You can define arbitrarily deeply nested models:
 
-```Python hl_lines="9 14 20 23 27"
+```Python hl_lines="9  14  20  23  27"
 {!../../../docs_src/body_nested_models/tutorial007.py!}
 ```
 
 !!! info
-    Notice how `Offer` as a list of `Item`s, which in turn have an optional list of `Image`s
+    Notice how `Offer` has a list of `Item`s, which in turn have an optional list of `Image`s
 
 ## Bodies of pure lists
 
