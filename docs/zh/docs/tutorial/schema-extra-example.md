@@ -2,7 +2,7 @@
 
 您可以在JSON模式中定义额外的信息。
 
-一个常见的用例是添加一个将在文档中显示的 `示例`。
+一个常见的用例是添加一个将在文档中显示的`示例`。
 
 有几种方法可以声明额外的JSON模式信息。
 
@@ -18,14 +18,14 @@
 
 ## `Field` 的附加参数
 
-在 `Field`, `Path`, `Query`, `Body` 和其他你之后将会看到的工厂函数，你可以为JSON 模式声明额外信息，你也可以通过给工厂函数传递其他的任意参数来给JSON 模式生命额外信息，比如增加 `example`:
+在 `Field`, `Path`, `Query`, `Body` 和其他你之后将会看到的工厂函数，你可以为JSON 模式声明额外信息，你也可以通过给工厂函数传递其他的任意参数来给JSON 模式声明额外信息，比如增加 `example`:
 
 ```Python hl_lines="4  10-13"
 {!../../../docs_src/schema_extra_example/tutorial002.py!}
 ```
 
 !!! warning
-    请记住，传递的那些额外参数不会添加任何验证，只会添加注释，用于文档目。
+    请记住，传递的那些额外参数不会添加任何验证，只会添加注释，用于文档的目的。
 
 ## `Body` 额外参数
 
@@ -47,7 +47,7 @@
 
 关于 `example` 和 `examples`...
 
-JSON Schema在最近的一个版本中定义了一个字段 <a href="https://json-schema.org/draft/2019-09/json-schema-validation.html#rfc.section.9.5" class="external-link" target="_blank">`examples`</a> ，但是 OpenAPI 基于之前的一个旧版JSON Schema，并没有 `examples`.
+JSON Schema在最新的一个版本中定义了一个字段 <a href="https://json-schema.org/draft/2019-09/json-schema-validation.html#rfc.section.9.5" class="external-link" target="_blank">`examples`</a> ，但是 OpenAPI 基于之前的一个旧版JSON Schema，并没有 `examples`.
 
 所以 OpenAPI为了相似的目的定义了自己的 <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.3.md#fixed-fields-20" class="external-link" target="_blank">`example`</a> (使用 `example`, 而不是 `examples`), 这也是文档 UI 所使用的 (使用 Swagger UI).
 
