@@ -259,9 +259,7 @@ def get_typed_signature(call: Callable) -> inspect.Signature:
 def get_typed_annotation(param: inspect.Parameter, globalns: Dict[str, Any]) -> Any:
     annotation = param.annotation
     if isinstance(annotation, str):
-        # Temporary ignore type
-        # Ref: https://github.com/samuelcolvin/pydantic/issues/1738
-        annotation = ForwardRef(annotation)  # type: ignore
+        annotation = ForwardRef(annotation)
         annotation = evaluate_forwardref(annotation, globalns, globalns)
     return annotation
 
