@@ -132,7 +132,7 @@ FastAPI 将使用此 `response_model` 来：
 
     参考 <a href="https://pydantic-docs.helpmanual.io/usage/exporting_models/#modeldict" class="external-link" target="_blank">Pydantic 文档</a> 中对 `exclude_defaults` 和 `exclude_none` 的描述。
 
-#### 默认值字段具有实际值的数据
+#### 默认值字段有实际值的数据
 
 但是，如果你的数据在具有默认值的模型字段中有实际的值，例如 ID 为 `bar` 的项：
 
@@ -174,7 +174,7 @@ FastAPI 将使用此 `response_model` 来：
 
 你还可以使用*路径操作装饰器*的 `response_model_include` 和 `response_model_exclude` 参数。
 
-它们接收一个由属性名称组成的 `set` 或者 `list` 来包括（但忽略其余的）或者排除（但包括其余的）指定属性。
+它们接收一个由属性名称 `str` 组成的 `set` 来包含（忽略其他的）或者排除（包含其他的）这些属性。
 
 如果你只有一个 Pydantic 模型，并且想要从输出中移除一些数据，则可以使用这种快捷方法。
 
