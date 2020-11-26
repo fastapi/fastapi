@@ -2,7 +2,7 @@ import functools
 import re
 from dataclasses import is_dataclass
 from enum import Enum
-from typing import Any, Dict, Optional, Set, Type, Union, cast
+from typing import Any, Dict, Optional, Set, Type, TypeVar, Union, cast
 
 import fastapi
 from fastapi.openapi.constants import REF_PREFIX
@@ -117,6 +117,13 @@ def create_cloned_field(
     new_field.shape = field.shape
     new_field.populate_validators()
     return new_field
+
+
+T = TypeVar("T")
+
+
+def opt_or_default(opt: Optional[T], default: T) -> T:
+    return opt if opt is not None else default
 
 
 def generate_operation_id_for_path(*, name: str, path: str, method: str) -> str:
