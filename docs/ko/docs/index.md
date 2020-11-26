@@ -315,7 +315,7 @@ def update_item(item_id: int, item: Item):
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-06-redoc-02.png)
 
-### 톺아보기
+### 요약
 
 요약하면, 여러분은 매개변수의 타입, 본문 등을 함수 매개변수로써 **한번에** 선언했습니다.
 
