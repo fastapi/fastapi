@@ -60,10 +60,18 @@ nav:
   - tutorial/path-params-numeric-validations.md
   - tutorial/body-multiple-params.md
   - tutorial/body-fields.md
+  - tutorial/body-nested-models.md
   - tutorial/extra-models.md
+- 高级用户指南:
+  - advanced/index.md
+  - advanced/path-operation-advanced-configuration.md
+  - advanced/additional-status-codes.md
+  - advanced/response-directly.md
+  - advanced/custom-response.md
 - deployment.md
 - contributing.md
 - help-fastapi.md
+- benchmarks.md
 markdown_extensions:
 - toc:
     permalink: true
