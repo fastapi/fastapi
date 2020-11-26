@@ -9,8 +9,7 @@
 
 但是您也可以使用更复杂的数据类型。
 
-And you will still have the same features as seen up to now:
-你仍然会拥有现在已经看到的相同的特性:
+您仍然会拥有现在已经看到的相同的特性:
 
 * 很棒的编辑器支持。
 * 传入请求的数据转换。
