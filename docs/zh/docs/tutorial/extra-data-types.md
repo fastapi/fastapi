@@ -31,10 +31,10 @@
     * Python `datetime.date`.
     * 在请求和响应中将表示为 ISO 8601 格式的 `str` ，比如: `2008-09-15`.
 * `datetime.time`:
-    * A Python `datetime.time`.
+    * 一个 Python `datetime.time`.
     * 在请求和响应中将表示为 ISO 8601 格式的 `str` ，比如:  `14:23:55.003`.
 * `datetime.timedelta`:
-    * A Python `datetime.timedelta`.
+    * 一个 Python `datetime.timedelta`.
     * 在请求和响应中将表示为 `float` 代表总秒数。
     * Pydantic 也允许将其表示为 "ISO 8601 时间差异编码", <a href="https://pydantic-docs.helpmanual.io/#json-serialisation" class="external-link" target="_blank">查看文档了解更多信息</a>。
 * `frozenset`:
