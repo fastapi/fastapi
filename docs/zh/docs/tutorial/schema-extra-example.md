@@ -1,14 +1,14 @@
-# 额外的模式 - 例子
+# 模式的额外信息 - 例子
 
 您可以在JSON模式中定义额外的信息。
 
-一个常见的用例是添加一个将在文档中显示的`示例`。
+一个常见的用例是添加一个将在文档中显示的`example`。
 
-有几种方法可以声明额外的JSON模式信息。
+有几种方法可以声明额外的 JSON 模式信息。
 
 ## Pydantic `schema_extra`
 
-您可以使用 `Config` 和 `schema_extra` 为Pydantic模型声明一个示例，如<a href="https://pydantic-docs.helpmanual.io/usage/schema/#schema-customization" class="external-link" target="_blank">Pydantic's docs: Schema customization</a>中所述:
+您可以使用 `Config` 和 `schema_extra` 为Pydantic模型声明一个示例，如<a href="https://pydantic-docs.helpmanual.io/usage/schema/#schema-customization" class="external-link" target="_blank">Pydantic 文档：定制 Schema </a>中所述:
 
 ```Python hl_lines="15-23"
 {!../../../docs_src/schema_extra_example/tutorial001.py!}
@@ -29,7 +29,7 @@
 
 ## `Body` 额外参数
 
-你可以通过传递额外信息给`Field` 同样的方式操作`Path`, `Query`, `Body`等。
+你可以通过传递额外信息给 `Field` 同样的方式操作`Path`, `Query`, `Body`等。
 
 比如，你可以将请求体的一个 `example` 传递给 `Body`: 
 
