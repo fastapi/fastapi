@@ -84,10 +84,6 @@ GitHubレポジトリで<a href="https://github.com/tiangolo/fastapi/issues/new/
 
 ## チャットに参加
 
-<a href="https://gitter.im/tiangolo/fastapi?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge" target="_blank">
-    <img src="https://badges.gitter.im/tiangolo/fastapi.svg" alt="Join the chat at https://gitter.im/tiangolo/fastapi">
-</a>
-
 Gitterでチャットに参加: <a href="https://gitter.im/tiangolo/fastapi" class="external-link" target="_blank">https://gitter.im/tiangolo/fastapi</a>.
 
 そこで、他の人と手早く会話したり、手助けやアイデアの共有などができます。
