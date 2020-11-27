@@ -151,24 +151,21 @@ all_required = {
 }
 
 
-def test_post_form_no_body():
-    response = client.post("/files/")
+@pytest.mark.parametrize(
+    "params,expected",
+    [
+        ({}, all_required),
+        ({"data": {"token": "foo", "user": test_user_string}}, files_required_detail),
+        (
+            {"json": {"file": "Foo", "token": "Bar", "user": test_user_string}},
+            all_required,
+        ),
+    ],
+)
+def test_post_form_body(params, expected):
+    response = client.post("/files/", **params)
     assert response.status_code == 422, response.text
-    assert response.json() == all_required
-
-
-def test_post_form_no_file():
-    response = client.post("/files/", data={"token": "foo", "user": test_user_string})
-    assert response.status_code == 422, response.text
-    assert response.json() == files_required_detail
-
-
-def test_post_body_json():
-    response = client.post(
-        "/files/", json={"file": "Foo", "token": "Bar", "user": test_user_string}
-    )
-    assert response.status_code == 422, response.text
-    assert response.json() == all_required
+    assert response.json() == expected
 
 
 def test_post_file_no_token(tmpdir):
