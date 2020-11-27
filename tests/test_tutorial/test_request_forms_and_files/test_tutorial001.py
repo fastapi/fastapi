@@ -217,6 +217,42 @@ def test_post_file_no_token(tmpdir):
                 ],
             },
         ),
+        (
+            ",",
+            422,
+            {
+                "detail": [
+                    {
+                        "loc": ["body", "user"],
+                        "msg": "Invalid JSON",
+                        "type": "value_error.json",
+                    },
+                    {
+                        "loc": ["body", "user"],
+                        "msg": "value is not a valid dict",
+                        "type": "type_error.dict",
+                    },
+                ],
+            },
+        ),
+        (
+            "",
+            422,
+            {
+                "detail": [
+                    {
+                        "loc": ["body", "user"],
+                        "msg": "Invalid JSON",
+                        "type": "value_error.json",
+                    },
+                    {
+                        "loc": ["body", "user"],
+                        "msg": "field required",
+                        "type": "value_error.missing",
+                    },
+                ],
+            },
+        ),
     ],
 )
 def test_post_files_and_token_user(tmpdir, user_string, status_code, expected):
