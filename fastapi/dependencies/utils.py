@@ -1,5 +1,6 @@
 import asyncio
 import inspect
+import json
 from contextlib import contextmanager
 from copy import deepcopy
 from typing import (
@@ -31,7 +32,7 @@ from fastapi.security.open_id_connect_url import OpenIdConnect
 from fastapi.utils import create_response_field, get_path_param_names
 from pydantic import BaseModel, create_model
 from pydantic.error_wrappers import ErrorWrapper
-from pydantic.errors import MissingError
+from pydantic.errors import JsonError, MissingError
 from pydantic.fields import (
     SHAPE_LIST,
     SHAPE_SEQUENCE,
@@ -671,6 +672,11 @@ async def request_body_to_args(
                     except AttributeError:
                         errors.append(get_missing_field_error(loc))
                         continue
+                    if isinstance(value, str) and issubclass(field.type_, BaseModel):
+                        try:
+                            value = json.loads(value)
+                        except json.JSONDecodeError:
+                            errors.append(ErrorWrapper(JsonError(), loc=loc))
             if (
                 value is None
                 or (isinstance(field_info, params.Form) and value == "")
