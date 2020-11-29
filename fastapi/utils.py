@@ -5,6 +5,7 @@ from enum import Enum
 from typing import Any, Dict, Optional, Set, Type, Union, cast
 
 import fastapi
+from fastapi.datastructures import DefaultPlaceholder, DefaultType
 from fastapi.openapi.constants import REF_PREFIX
 from pydantic import BaseConfig, BaseModel, create_model
 from pydantic.class_validators import Validator
@@ -136,3 +137,21 @@ def deep_dict_update(main_dict: dict, update_dict: dict) -> None:
             deep_dict_update(main_dict[key], update_dict[key])
         else:
             main_dict[key] = update_dict[key]
+
+
+def get_value_or_default(
+    first_item: Union[DefaultPlaceholder, DefaultType],
+    *extra_items: Union[DefaultPlaceholder, DefaultType],
+) -> Union[DefaultPlaceholder, DefaultType]:
+    """
+    Pass items or `DefaultPlaceholder`s by descending priority.
+
+    The first one to _not_ be a `DefaultPlaceholder` will be returned.
+
+    Otherwise, the first item (a `DefaultPlaceholder`) will be returned.
+    """
+    items = (first_item,) + extra_items
+    for item in items:
+        if not isinstance(item, DefaultPlaceholder):
+            return item
+    return first_item
