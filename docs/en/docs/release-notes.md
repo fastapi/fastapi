@@ -77,6 +77,12 @@ This PR allows setting the (mostly new) parameters (additionally to the already 
 
 Note: all the previous parameters are still there, so it's still possible to declare `dependencies` in `include_router`.
 
+### Breaking Changes
+
+* PR [#2434](https://github.com/tiangolo/fastapi/pull/2434) includes several improvements that shouldn't affect normal use cases, but could affect in advanced scenarios:
+    * If you are testing the generated OpenAPI (you shouldn't, FastAPI already tests it extensively for you): the order for `tags` in `include_router` and *path operations* was updated for consistency, but it's a simple order change.
+    * If you have advanced custom logic to access each route's `route.response_class`, or the `router.default_response_class`, or the `app.default_response_class`: the default value for `response_class` in `APIRoute` and for `default_response_class` in `APIRouter` and `FastAPI` is now a `DefaultPlaceholder` used internally to handle and solve default values and overrides. The actual response class inside the `DefaultPlaceholder` is available at `route.response_class.value`.
+
 ### Docs
 
 * PR [#2434](https://github.com/tiangolo/fastapi/pull/2434) (above) includes new or updated docs:
