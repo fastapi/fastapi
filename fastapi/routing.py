@@ -399,10 +399,8 @@ class APIRouter(routing.Router):
         prefix: str = "",
         tags: Optional[List[str]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
-        deprecated: bool = None,
-        include_in_schema: bool = True,
-        responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
         default_response_class: Type[Response] = Default(JSONResponse),
+        responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
         callbacks: Optional[List[APIRoute]] = None,
         routes: Optional[List[routing.BaseRoute]] = None,
         redirect_slashes: bool = True,
@@ -411,6 +409,8 @@ class APIRouter(routing.Router):
         route_class: Type[APIRoute] = APIRoute,
         on_startup: Optional[Sequence[Callable]] = None,
         on_shutdown: Optional[Sequence[Callable]] = None,
+        deprecated: bool = None,
+        include_in_schema: bool = True,
     ) -> None:
         super().__init__(
             routes=routes,
@@ -589,11 +589,11 @@ class APIRouter(routing.Router):
         prefix: str = "",
         tags: Optional[List[str]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
+        default_response_class: Type[Response] = Default(JSONResponse),
         responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
+        callbacks: Optional[List[APIRoute]] = None,
         deprecated: bool = None,
         include_in_schema: bool = True,
-        default_response_class: Type[Response] = Default(JSONResponse),
-        callbacks: Optional[List[APIRoute]] = None,
     ) -> None:
         if prefix:
             assert prefix.startswith("/"), "A path prefix must start with '/'"

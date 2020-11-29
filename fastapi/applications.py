@@ -39,8 +39,8 @@ class FastAPI(Starlette):
         openapi_url: Optional[str] = "/openapi.json",
         openapi_tags: Optional[List[Dict[str, Any]]] = None,
         servers: Optional[List[Dict[str, Union[str, Any]]]] = None,
-        default_response_class: Type[Response] = Default(JSONResponse),
         dependencies: Optional[Sequence[Depends]] = None,
+        default_response_class: Type[Response] = Default(JSONResponse),
         docs_url: Optional[str] = "/docs",
         redoc_url: Optional[str] = "/redoc",
         swagger_ui_oauth2_redirect_url: Optional[str] = "/docs/oauth2-redirect",
@@ -54,10 +54,10 @@ class FastAPI(Starlette):
         openapi_prefix: str = "",
         root_path: str = "",
         root_path_in_servers: bool = True,
+        responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
         callbacks: Optional[List[routing.APIRoute]] = None,
         deprecated: bool = None,
         include_in_schema: bool = True,
-        responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
         **extra: Any,
     ) -> None:
         self._debug = debug
