@@ -2,6 +2,8 @@
 
 ## Latest Changes
 
+## 0.62.0
+
 ### Features
 
 * ✨ Add support for shared/top-level parameters (dependencies, tags, etc). PR [#2434](https://github.com/tiangolo/fastapi/pull/2434) by [@tiangolo](https://github.com/tiangolo).
