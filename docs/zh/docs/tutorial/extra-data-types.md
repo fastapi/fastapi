@@ -59,7 +59,7 @@
 {!../../../docs_src/extra_data_types/tutorial001.py!}
 ```
 
-注意，函数内的参数有其天然的数据类型，你可以，例如，执行正常的日期操作，如:
+注意，函数内的参数有原生的数据类型，你可以，例如，执行正常的日期操作，如:
 
 ```Python hl_lines="18-19"
 {!../../../docs_src/extra_data_types/tutorial001.py!}
