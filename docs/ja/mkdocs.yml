@@ -62,6 +62,7 @@ nav:
     - tutorial/security/first-steps.md
 - 高度なユーザーガイド:
   - advanced/response-directly.md
+  - advanced/custom-response.md
 - project-generation.md
 - alternatives.md
 - history-design-future.md
