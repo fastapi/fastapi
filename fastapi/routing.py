@@ -5,6 +5,7 @@ import json
 from typing import Any, Callable, Dict, List, Optional, Sequence, Set, Type, Union
 
 from fastapi import params
+from fastapi.datastructures import Default, DefaultPlaceholder
 from fastapi.dependencies.models import Dependant
 from fastapi.dependencies.utils import (
     get_body_field,
@@ -19,6 +20,7 @@ from fastapi.utils import (
     create_cloned_field,
     create_response_field,
     generate_operation_id_for_path,
+    get_value_or_default,
 )
 from pydantic import BaseModel
 from pydantic.error_wrappers import ErrorWrapper, ValidationError
@@ -139,7 +141,7 @@ def get_request_handler(
     dependant: Dependant,
     body_field: Optional[ModelField] = None,
     status_code: int = 200,
-    response_class: Type[Response] = JSONResponse,
+    response_class: Union[Type[Response], DefaultPlaceholder] = Default(JSONResponse),
     response_field: Optional[ModelField] = None,
     response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
     response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
@@ -152,6 +154,10 @@ def get_request_handler(
     assert dependant.call is not None, "dependant.call must be a function"
     is_coroutine = asyncio.iscoroutinefunction(dependant.call)
     is_body_form = body_field and isinstance(body_field.field_info, params.Form)
+    if isinstance(response_class, DefaultPlaceholder):
+        actual_response_class: Type[Response] = response_class.value
+    else:
+        actual_response_class = response_class
 
     async def app(request: Request) -> Response:
         try:
@@ -198,7 +204,7 @@ def get_request_handler(
                 exclude_none=response_model_exclude_none,
                 is_coroutine=is_coroutine,
             )
-            response = response_class(
+            response = actual_response_class(
                 content=response_data,
                 status_code=status_code,
                 background=background_tasks,
@@ -277,7 +283,9 @@ class APIRoute(routing.Route):
         response_model_exclude_defaults: bool = False,
         response_model_exclude_none: bool = False,
         include_in_schema: bool = True,
-        response_class: Optional[Type[Response]] = None,
+        response_class: Union[Type[Response], DefaultPlaceholder] = Default(
+            JSONResponse
+        ),
         dependency_overrides_provider: Optional[Any] = None,
         callbacks: Optional[List["APIRoute"]] = None,
     ) -> None:
@@ -372,7 +380,7 @@ class APIRoute(routing.Route):
             dependant=self.dependant,
             body_field=self.body_field,
             status_code=self.status_code,
-            response_class=self.response_class or JSONResponse,
+            response_class=self.response_class,
             response_field=self.secure_cloned_response_field,
             response_model_include=self.response_model_include,
             response_model_exclude=self.response_model_exclude,
@@ -387,14 +395,22 @@ class APIRoute(routing.Route):
 class APIRouter(routing.Router):
     def __init__(
         self,
+        *,
+        prefix: str = "",
+        tags: Optional[List[str]] = None,
+        dependencies: Optional[Sequence[params.Depends]] = None,
+        default_response_class: Type[Response] = Default(JSONResponse),
+        responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
+        callbacks: Optional[List[APIRoute]] = None,
         routes: Optional[List[routing.BaseRoute]] = None,
         redirect_slashes: bool = True,
         default: Optional[ASGIApp] = None,
         dependency_overrides_provider: Optional[Any] = None,
         route_class: Type[APIRoute] = APIRoute,
-        default_response_class: Optional[Type[Response]] = None,
         on_startup: Optional[Sequence[Callable]] = None,
         on_shutdown: Optional[Sequence[Callable]] = None,
+        deprecated: bool = None,
+        include_in_schema: bool = True,
     ) -> None:
         super().__init__(
             routes=routes,
@@ -403,6 +419,18 @@ class APIRouter(routing.Router):
             on_startup=on_startup,
             on_shutdown=on_shutdown,
         )
+        if prefix:
+            assert prefix.startswith("/"), "A path prefix must start with '/'"
+            assert not prefix.endswith(
+                "/"
+            ), "A path prefix must not end with '/', as the routes will start with '/'"
+        self.prefix = prefix
+        self.tags: List[str] = tags or []
+        self.dependencies = list(dependencies or []) or []
+        self.deprecated = deprecated
+        self.include_in_schema = include_in_schema
+        self.responses = responses or {}
+        self.callbacks = callbacks or []
         self.dependency_overrides_provider = dependency_overrides_provider
         self.route_class = route_class
         self.default_response_class = default_response_class
@@ -430,24 +458,40 @@ class APIRouter(routing.Router):
         response_model_exclude_defaults: bool = False,
         response_model_exclude_none: bool = False,
         include_in_schema: bool = True,
-        response_class: Optional[Type[Response]] = None,
+        response_class: Union[Type[Response], DefaultPlaceholder] = Default(
+            JSONResponse
+        ),
         name: Optional[str] = None,
         route_class_override: Optional[Type[APIRoute]] = None,
         callbacks: Optional[List[APIRoute]] = None,
     ) -> None:
         route_class = route_class_override or self.route_class
+        responses = responses or {}
+        combined_responses = {**self.responses, **responses}
+        current_response_class = get_value_or_default(
+            response_class, self.default_response_class
+        )
+        current_tags = self.tags.copy()
+        if tags:
+            current_tags.extend(tags)
+        current_dependencies = self.dependencies.copy()
+        if dependencies:
+            current_dependencies.extend(dependencies)
+        current_callbacks = self.callbacks.copy()
+        if callbacks:
+            current_callbacks.extend(callbacks)
         route = route_class(
-            path,
+            self.prefix + path,
             endpoint=endpoint,
             response_model=response_model,
             status_code=status_code,
-            tags=tags or [],
-            dependencies=dependencies,
+            tags=current_tags,
+            dependencies=current_dependencies,
             summary=summary,
             description=description,
             response_description=response_description,
-            responses=responses or {},
-            deprecated=deprecated,
+            responses=combined_responses,
+            deprecated=deprecated or self.deprecated,
             methods=methods,
             operation_id=operation_id,
             response_model_include=response_model_include,
@@ -456,11 +500,11 @@ class APIRouter(routing.Router):
             response_model_exclude_unset=response_model_exclude_unset,
             response_model_exclude_defaults=response_model_exclude_defaults,
             response_model_exclude_none=response_model_exclude_none,
-            include_in_schema=include_in_schema,
-            response_class=response_class or self.default_response_class,
+            include_in_schema=include_in_schema and self.include_in_schema,
+            response_class=current_response_class,
             name=name,
             dependency_overrides_provider=self.dependency_overrides_provider,
-            callbacks=callbacks,
+            callbacks=current_callbacks,
         )
         self.routes.append(route)
 
@@ -486,7 +530,7 @@ class APIRouter(routing.Router):
         response_model_exclude_defaults: bool = False,
         response_model_exclude_none: bool = False,
         include_in_schema: bool = True,
-        response_class: Optional[Type[Response]] = None,
+        response_class: Type[Response] = Default(JSONResponse),
         name: Optional[str] = None,
         callbacks: Optional[List[APIRoute]] = None,
     ) -> Callable:
@@ -496,12 +540,12 @@ class APIRouter(routing.Router):
                 func,
                 response_model=response_model,
                 status_code=status_code,
-                tags=tags or [],
+                tags=tags,
                 dependencies=dependencies,
                 summary=summary,
                 description=description,
                 response_description=response_description,
-                responses=responses or {},
+                responses=responses,
                 deprecated=deprecated,
                 methods=methods,
                 operation_id=operation_id,
@@ -512,7 +556,7 @@ class APIRouter(routing.Router):
                 response_model_exclude_defaults=response_model_exclude_defaults,
                 response_model_exclude_none=response_model_exclude_none,
                 include_in_schema=include_in_schema,
-                response_class=response_class or self.default_response_class,
+                response_class=response_class,
                 name=name,
                 callbacks=callbacks,
             )
@@ -545,8 +589,11 @@ class APIRouter(routing.Router):
         prefix: str = "",
         tags: Optional[List[str]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
+        default_response_class: Type[Response] = Default(JSONResponse),
         responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
-        default_response_class: Optional[Type[Response]] = None,
+        callbacks: Optional[List[APIRoute]] = None,
+        deprecated: bool = None,
+        include_in_schema: bool = True,
     ) -> None:
         if prefix:
             assert prefix.startswith("/"), "A path prefix must start with '/'"
@@ -566,19 +613,39 @@ class APIRouter(routing.Router):
         for route in router.routes:
             if isinstance(route, APIRoute):
                 combined_responses = {**responses, **route.responses}
+                use_response_class = get_value_or_default(
+                    route.response_class,
+                    router.default_response_class,
+                    default_response_class,
+                    self.default_response_class,
+                )
+                current_tags = []
+                if tags:
+                    current_tags.extend(tags)
+                if route.tags:
+                    current_tags.extend(route.tags)
+                current_dependencies: List[params.Depends] = []
+                if dependencies:
+                    current_dependencies.extend(dependencies)
+                if route.dependencies:
+                    current_dependencies.extend(route.dependencies)
+                current_callbacks = []
+                if callbacks:
+                    current_callbacks.extend(callbacks)
+                if route.callbacks:
+                    current_callbacks.extend(route.callbacks)
                 self.add_api_route(
                     prefix + route.path,
                     route.endpoint,
                     response_model=route.response_model,
                     status_code=route.status_code,
-                    tags=(route.tags or []) + (tags or []),
-                    dependencies=list(dependencies or [])
-                    + list(route.dependencies or []),
+                    tags=current_tags,
+                    dependencies=current_dependencies,
                     summary=route.summary,
                     description=route.description,
                     response_description=route.response_description,
                     responses=combined_responses,
-                    deprecated=route.deprecated,
+                    deprecated=route.deprecated or deprecated or self.deprecated,
                     methods=route.methods,
                     operation_id=route.operation_id,
                     response_model_include=route.response_model_include,
@@ -587,11 +654,13 @@ class APIRouter(routing.Router):
                     response_model_exclude_unset=route.response_model_exclude_unset,
                     response_model_exclude_defaults=route.response_model_exclude_defaults,
                     response_model_exclude_none=route.response_model_exclude_none,
-                    include_in_schema=route.include_in_schema,
-                    response_class=route.response_class or default_response_class,
+                    include_in_schema=route.include_in_schema
+                    and self.include_in_schema
+                    and include_in_schema,
+                    response_class=use_response_class,
                     name=route.name,
                     route_class_override=type(route),
-                    callbacks=route.callbacks,
+                    callbacks=current_callbacks,
                 )
             elif isinstance(route, routing.Route):
                 self.add_route(
@@ -635,7 +704,7 @@ class APIRouter(routing.Router):
         response_model_exclude_defaults: bool = False,
         response_model_exclude_none: bool = False,
         include_in_schema: bool = True,
-        response_class: Optional[Type[Response]] = None,
+        response_class: Type[Response] = Default(JSONResponse),
         name: Optional[str] = None,
         callbacks: Optional[List[APIRoute]] = None,
     ) -> Callable:
@@ -643,12 +712,12 @@ class APIRouter(routing.Router):
             path=path,
             response_model=response_model,
             status_code=status_code,
-            tags=tags or [],
+            tags=tags,
             dependencies=dependencies,
             summary=summary,
             description=description,
             response_description=response_description,
-            responses=responses or {},
+            responses=responses,
             deprecated=deprecated,
             methods=["GET"],
             operation_id=operation_id,
@@ -659,7 +728,7 @@ class APIRouter(routing.Router):
             response_model_exclude_defaults=response_model_exclude_defaults,
             response_model_exclude_none=response_model_exclude_none,
             include_in_schema=include_in_schema,
-            response_class=response_class or self.default_response_class,
+            response_class=response_class,
             name=name,
             callbacks=callbacks,
         )
@@ -685,7 +754,7 @@ class APIRouter(routing.Router):
         response_model_exclude_defaults: bool = False,
         response_model_exclude_none: bool = False,
         include_in_schema: bool = True,
-        response_class: Optional[Type[Response]] = None,
+        response_class: Type[Response] = Default(JSONResponse),
         name: Optional[str] = None,
         callbacks: Optional[List[APIRoute]] = None,
     ) -> Callable:
@@ -693,12 +762,12 @@ class APIRouter(routing.Router):
             path=path,
             response_model=response_model,
             status_code=status_code,
-            tags=tags or [],
+            tags=tags,
             dependencies=dependencies,
             summary=summary,
             description=description,
             response_description=response_description,
-            responses=responses or {},
+            responses=responses,
             deprecated=deprecated,
             methods=["PUT"],
             operation_id=operation_id,
@@ -709,7 +778,7 @@ class APIRouter(routing.Router):
             response_model_exclude_defaults=response_model_exclude_defaults,
             response_model_exclude_none=response_model_exclude_none,
             include_in_schema=include_in_schema,
-            response_class=response_class or self.default_response_class,
+            response_class=response_class,
             name=name,
             callbacks=callbacks,
         )
@@ -735,7 +804,7 @@ class APIRouter(routing.Router):
         response_model_exclude_defaults: bool = False,
         response_model_exclude_none: bool = False,
         include_in_schema: bool = True,
-        response_class: Optional[Type[Response]] = None,
+        response_class: Type[Response] = Default(JSONResponse),
         name: Optional[str] = None,
         callbacks: Optional[List[APIRoute]] = None,
     ) -> Callable:
@@ -743,12 +812,12 @@ class APIRouter(routing.Router):
             path=path,
             response_model=response_model,
             status_code=status_code,
-            tags=tags or [],
+            tags=tags,
             dependencies=dependencies,
             summary=summary,
             description=description,
             response_description=response_description,
-            responses=responses or {},
+            responses=responses,
             deprecated=deprecated,
             methods=["POST"],
             operation_id=operation_id,
@@ -759,7 +828,7 @@ class APIRouter(routing.Router):
             response_model_exclude_defaults=response_model_exclude_defaults,
             response_model_exclude_none=response_model_exclude_none,
             include_in_schema=include_in_schema,
-            response_class=response_class or self.default_response_class,
+            response_class=response_class,
             name=name,
             callbacks=callbacks,
         )
@@ -785,7 +854,7 @@ class APIRouter(routing.Router):
         response_model_exclude_defaults: bool = False,
         response_model_exclude_none: bool = False,
         include_in_schema: bool = True,
-        response_class: Optional[Type[Response]] = None,
+        response_class: Type[Response] = Default(JSONResponse),
         name: Optional[str] = None,
         callbacks: Optional[List[APIRoute]] = None,
     ) -> Callable:
@@ -793,12 +862,12 @@ class APIRouter(routing.Router):
             path=path,
             response_model=response_model,
             status_code=status_code,
-            tags=tags or [],
+            tags=tags,
             dependencies=dependencies,
             summary=summary,
             description=description,
             response_description=response_description,
-            responses=responses or {},
+            responses=responses,
             deprecated=deprecated,
             methods=["DELETE"],
             operation_id=operation_id,
@@ -809,7 +878,7 @@ class APIRouter(routing.Router):
             response_model_exclude_defaults=response_model_exclude_defaults,
             response_model_exclude_none=response_model_exclude_none,
             include_in_schema=include_in_schema,
-            response_class=response_class or self.default_response_class,
+            response_class=response_class,
             name=name,
             callbacks=callbacks,
         )
@@ -835,7 +904,7 @@ class APIRouter(routing.Router):
         response_model_exclude_defaults: bool = False,
         response_model_exclude_none: bool = False,
         include_in_schema: bool = True,
-        response_class: Optional[Type[Response]] = None,
+        response_class: Type[Response] = Default(JSONResponse),
         name: Optional[str] = None,
         callbacks: Optional[List[APIRoute]] = None,
     ) -> Callable:
@@ -843,12 +912,12 @@ class APIRouter(routing.Router):
             path=path,
             response_model=response_model,
             status_code=status_code,
-            tags=tags or [],
+            tags=tags,
             dependencies=dependencies,
             summary=summary,
             description=description,
             response_description=response_description,
-            responses=responses or {},
+            responses=responses,
             deprecated=deprecated,
             methods=["OPTIONS"],
             operation_id=operation_id,
@@ -859,7 +928,7 @@ class APIRouter(routing.Router):
             response_model_exclude_defaults=response_model_exclude_defaults,
             response_model_exclude_none=response_model_exclude_none,
             include_in_schema=include_in_schema,
-            response_class=response_class or self.default_response_class,
+            response_class=response_class,
             name=name,
             callbacks=callbacks,
         )
@@ -885,7 +954,7 @@ class APIRouter(routing.Router):
         response_model_exclude_defaults: bool = False,
         response_model_exclude_none: bool = False,
         include_in_schema: bool = True,
-        response_class: Optional[Type[Response]] = None,
+        response_class: Type[Response] = Default(JSONResponse),
         name: Optional[str] = None,
         callbacks: Optional[List[APIRoute]] = None,
     ) -> Callable:
@@ -893,12 +962,12 @@ class APIRouter(routing.Router):
             path=path,
             response_model=response_model,
             status_code=status_code,
-            tags=tags or [],
+            tags=tags,
             dependencies=dependencies,
             summary=summary,
             description=description,
             response_description=response_description,
-            responses=responses or {},
+            responses=responses,
             deprecated=deprecated,
             methods=["HEAD"],
             operation_id=operation_id,
@@ -909,7 +978,7 @@ class APIRouter(routing.Router):
             response_model_exclude_defaults=response_model_exclude_defaults,
             response_model_exclude_none=response_model_exclude_none,
             include_in_schema=include_in_schema,
-            response_class=response_class or self.default_response_class,
+            response_class=response_class,
             name=name,
             callbacks=callbacks,
         )
@@ -935,7 +1004,7 @@ class APIRouter(routing.Router):
         response_model_exclude_defaults: bool = False,
         response_model_exclude_none: bool = False,
         include_in_schema: bool = True,
-        response_class: Optional[Type[Response]] = None,
+        response_class: Type[Response] = Default(JSONResponse),
         name: Optional[str] = None,
         callbacks: Optional[List[APIRoute]] = None,
     ) -> Callable:
@@ -943,12 +1012,12 @@ class APIRouter(routing.Router):
             path=path,
             response_model=response_model,
             status_code=status_code,
-            tags=tags or [],
+            tags=tags,
             dependencies=dependencies,
             summary=summary,
             description=description,
             response_description=response_description,
-            responses=responses or {},
+            responses=responses,
             deprecated=deprecated,
             methods=["PATCH"],
             operation_id=operation_id,
@@ -959,7 +1028,7 @@ class APIRouter(routing.Router):
             response_model_exclude_defaults=response_model_exclude_defaults,
             response_model_exclude_none=response_model_exclude_none,
             include_in_schema=include_in_schema,
-            response_class=response_class or self.default_response_class,
+            response_class=response_class,
             name=name,
             callbacks=callbacks,
         )
@@ -985,7 +1054,7 @@ class APIRouter(routing.Router):
         response_model_exclude_defaults: bool = False,
         response_model_exclude_none: bool = False,
         include_in_schema: bool = True,
-        response_class: Optional[Type[Response]] = None,
+        response_class: Type[Response] = Default(JSONResponse),
         name: Optional[str] = None,
         callbacks: Optional[List[APIRoute]] = None,
     ) -> Callable:
@@ -994,12 +1063,12 @@ class APIRouter(routing.Router):
             path=path,
             response_model=response_model,
             status_code=status_code,
-            tags=tags or [],
+            tags=tags,
             dependencies=dependencies,
             summary=summary,
             description=description,
             response_description=response_description,
-            responses=responses or {},
+            responses=responses,
             deprecated=deprecated,
             methods=["TRACE"],
             operation_id=operation_id,
@@ -1010,7 +1079,7 @@ class APIRouter(routing.Router):
             response_model_exclude_defaults=response_model_exclude_defaults,
             response_model_exclude_none=response_model_exclude_none,
             include_in_schema=include_in_schema,
-            response_class=response_class or self.default_response_class,
+            response_class=response_class,
             name=name,
             callbacks=callbacks,
         )

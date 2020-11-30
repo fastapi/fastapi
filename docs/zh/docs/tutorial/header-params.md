@@ -12,7 +12,7 @@
 
 ## 声明 `Header` 参数
 
-然后使用和`Path`, `Query` and `Cookie` 一样的结构定义header 参
+然后使用和`Path`, `Query` and `Cookie` 一样的结构定义 header 参数
 
 第一个值是默认值，你可以传递所有的额外验证或注释参数：
 
@@ -21,7 +21,7 @@
 ```
 
 !!! note "技术细节"
-    `Header` 是 `Path`, `Query` 和 `Cookie` 的兄弟类型。她也继承自通用的 `Param` 类.
+    `Header` 是 `Path`, `Query` 和 `Cookie` 的兄弟类型。它也继承自通用的 `Param` 类.
 
     但是请记得，当你从`fastapi`导入 `Query`, `Path`, `Header`, 或其他时，实际上导入的是返回特定类型的函数。
 
