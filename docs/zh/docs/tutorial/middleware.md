@@ -48,7 +48,7 @@
 
 也可以在*响应*生成但是返回之前添加代码.
 
-例如你可以添加自定义请求头 `X-Process-Time` 包含以秒为单位的接收请求和生成相应的时间:
+例如你可以添加自定义请求头 `X-Process-Time` 包含以秒为单位的接收请求和生成响应的时间:
 
 ```Python hl_lines="10  12-13"
 {!../../../docs_src/middleware/tutorial001.py!}
@@ -56,6 +56,6 @@
 
 ## 其他中间件
 
-你可以稍后再 [Advanced User Guide: Advanced Middleware](../advanced/middleware.md){.internal-link target=_blank}阅读更多关于中间件的教程.
+你可以稍后在 [Advanced User Guide: Advanced Middleware](../advanced/middleware.md){.internal-link target=_blank}阅读更多关于中间件的教程.
 
 你将在下一节中学习如何使用中间件处理 <abbr title="Cross-Origin Resource Sharing">CORS</abbr> .
