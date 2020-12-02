@@ -259,7 +259,7 @@ $ uvicorn tutorial001:app --reload
 
 </div>
 
-as Uvicorn by default will use the port `8000`, the documentation on port `8008` won't clash.
+as Uvicorn by default will use the port `8000`, the documentation on port `8008` won't crash.
 
 ### Translations
 
