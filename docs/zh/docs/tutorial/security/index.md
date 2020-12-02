@@ -70,18 +70,18 @@ OpenAPI 定义了以下安全方案：
 
 * `apiKey`：一个特定于应用程序的密钥，可以来自：
     * 查询参数。
-    * 请求首部。
-    * 请求 cookie。
+    * 请求头。
+    * cookie。
 * `http`：标准的 HTTP 身份认证系统，包括：
-    * `bearer`: 一个值为 `Bearer` 加令牌字符串的 `Authorization` 请求首部。这是从 OAuth2 继承的。
+    * `bearer`: 一个值为 `Bearer` 加令牌字符串的 `Authorization` 请求头。这是从 OAuth2 继承的。
     * HTTP Basic 认证方式。
     * HTTP Digest，等等。
-* `oauth2`：所有的 OAuth2 处理安全性的方式（称为「流」）。
-    *以下几种流适合构建 OAuth 2.0 身份认证的提供者（例如 Google，Facebook，Twitter，GitHub 等）：
+* `oauth2`：所有的 OAuth2 处理安全性的方式（称为「流程」）。
+    *以下几种流程适合构建 OAuth 2.0 身份认证的提供者（例如 Google，Facebook，Twitter，GitHub 等）：
         * `implicit`
         * `clientCredentials`
         * `authorizationCode`
-    * 但是有一个特定的「流」可以完美地用于直接在同一应用程序中处理身份认证：
+    * 但是有一个特定的「流程」可以完美地用于直接在同一应用程序中处理身份认证：
         * `password`：接下来的几章将介绍它的示例。
 * `openIdConnect`：提供了一种定义如何自动发现 OAuth2 身份认证数据的方法。
     * 此自动发现机制是 OpenID Connect 规范中定义的内容。
@@ -90,11 +90,11 @@ OpenAPI 定义了以下安全方案：
 !!! tip
     集成其他身份认证/授权提供者（例如Google，Facebook，Twitter，GitHub等）也是可能的，而且较为容易。
 
-    最复杂的问题是创建一个像这样的身份认证/授权提供程序，但是 **FastAPI** 为你提供了轻松完成任务的工具，同时为你完成了重活。
+    最复杂的问题是创建一个像这样的身份认证/授权提供程序，但是 **FastAPI** 为你提供了轻松完成任务的工具，同时为你解决了重活。
 
 ## **FastAPI** 实用工具
 
-FastAPI 为 `fastapi.security` 模块中的每个安全方案提供了几种工具，这些工具简化了这些安全机制的使用方法。
+FastAPI 在 `fastapi.security` 模块中为每个安全方案提供了几种工具，这些工具简化了这些安全机制的使用方法。
 
 在下一章中，你将看到如何使用 **FastAPI** 所提供的这些工具为你的 API 增加安全性。
 
