@@ -3,6 +3,7 @@ from enum import Enum
 from typing import Any, Dict, List, Optional, Sequence, Set, Tuple, Type, Union, cast
 
 from fastapi import routing
+from fastapi.datastructures import DefaultPlaceholder
 from fastapi.dependencies.models import Dependant
 from fastapi.dependencies.utils import get_flat_dependant, get_flat_params
 from fastapi.encoders import jsonable_encoder
@@ -159,8 +160,12 @@ def get_openapi_path(
     security_schemes: Dict[str, Any] = {}
     definitions: Dict[str, Any] = {}
     assert route.methods is not None, "Methods must be a list"
-    assert route.response_class, "A response class is needed to generate OpenAPI"
-    route_response_media_type: Optional[str] = route.response_class.media_type
+    if isinstance(route.response_class, DefaultPlaceholder):
+        current_response_class: Type[routing.Response] = route.response_class.value
+    else:
+        current_response_class = route.response_class
+    assert current_response_class, "A response class is needed to generate OpenAPI"
+    route_response_media_type: Optional[str] = current_response_class.media_type
     if route.include_in_schema:
         for method in route.methods:
             operation = get_openapi_operation_metadata(route=route, method=method)
@@ -205,7 +210,7 @@ def get_openapi_path(
                 and route.status_code not in STATUS_CODES_WITH_NO_BODY
             ):
                 response_schema = {"type": "string"}
-                if lenient_issubclass(route.response_class, JSONResponse):
+                if lenient_issubclass(current_response_class, JSONResponse):
                     if route.response_field:
                         response_schema, _, _ = field_schema(
                             route.response_field,
