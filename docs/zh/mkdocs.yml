@@ -62,6 +62,7 @@ nav:
   - tutorial/body-fields.md
   - tutorial/body-nested-models.md
   - tutorial/response-model.md
+  - tutorial/extra-models.md
   - tutorial/schema-extra-example.md
 - 高级用户指南:
   - advanced/index.md
