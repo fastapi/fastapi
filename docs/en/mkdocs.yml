@@ -81,6 +81,7 @@ nav:
     - tutorial/dependencies/classes-as-dependencies.md
     - tutorial/dependencies/sub-dependencies.md
     - tutorial/dependencies/dependencies-in-path-operation-decorators.md
+    - tutorial/dependencies/global-dependencies.md
     - tutorial/dependencies/dependencies-with-yield.md
   - Security:
     - tutorial/security/index.md
