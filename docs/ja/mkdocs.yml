@@ -57,10 +57,11 @@ nav:
   - tutorial/body.md
   - tutorial/query-params-str-validations.md
   - tutorial/header-params.md
-  - tutorial/cors.md
   - セキュリティ:
     - tutorial/security/first-steps.md
+  - tutorial/cors.md
 - 高度なユーザーガイド:
+  - advanced/additional-status-codes.md
   - advanced/response-directly.md
   - advanced/custom-response.md
 - project-generation.md
