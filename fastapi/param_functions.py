@@ -244,7 +244,7 @@ def File(  # noqa: N802
 def Depends(  # noqa: N802
     dependency: Optional[Callable[..., _T]] = None, *, use_cache: bool = True
 ) -> _T:
-    return params.Depends(dependency=dependency, use_cache=use_cache)
+    return params.Depends(dependency=dependency, use_cache=use_cache)  # type: ignore
 
 
 def Security(  # noqa: N802
@@ -253,4 +253,8 @@ def Security(  # noqa: N802
     scopes: Optional[Sequence[str]] = None,
     use_cache: bool = True,
 ) -> _T:
-    return params.Security(dependency=dependency, scopes=scopes, use_cache=use_cache)
+    return params.Security(  # type: ignore
+        dependency=dependency, 
+        scopes=scopes,
+        use_cache=use_cache
+    )
