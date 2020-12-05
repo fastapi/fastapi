@@ -1,6 +1,9 @@
-from typing import Any, Callable, Optional, Sequence
+from typing import Any, Callable, Optional, Sequence, TypeVar
 
 from fastapi import params
+
+
+_T = TypeVar('T')
 
 
 def Path(  # noqa: N802
@@ -239,15 +242,15 @@ def File(  # noqa: N802
 
 
 def Depends(  # noqa: N802
-    dependency: Optional[Callable] = None, *, use_cache: bool = True
-) -> Any:
+    dependency: Optional[Callable[..., _T]] = None, *, use_cache: bool = True
+) -> _T:
     return params.Depends(dependency=dependency, use_cache=use_cache)
 
 
 def Security(  # noqa: N802
-    dependency: Optional[Callable] = None,
+    dependency: Optional[Callable[..., _T]] = None,
     *,
     scopes: Optional[Sequence[str]] = None,
     use_cache: bool = True,
-) -> Any:
+) -> _T:
     return params.Security(dependency=dependency, scopes=scopes, use_cache=use_cache)
