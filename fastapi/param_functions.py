@@ -2,7 +2,6 @@ from typing import Any, Callable, Optional, Sequence, TypeVar
 
 from fastapi import params
 
-
 _T = TypeVar("_T")
 
 
