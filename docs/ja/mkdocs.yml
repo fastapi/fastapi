@@ -4,8 +4,21 @@ site_url: https://fastapi.tiangolo.com/ja/
 theme:
   name: material
   palette:
+  - scheme: default
     primary: teal
     accent: amber
+    toggle:
+      icon: material/lightbulb-outline
+      name: Switch to light mode
+  - scheme: slate
+    primary: teal
+    accent: amber
+    toggle:
+      icon: material/lightbulb
+      name: Switch to dark mode
+  features:
+  - search.suggest
+  - search.highlight
   icon:
     repo: fontawesome/brands/github-alt
   logo: https://fastapi.tiangolo.com/img/icon-white.svg
@@ -17,14 +30,46 @@ edit_uri: ''
 google_analytics:
 - UA-133183413-1
 - auto
+plugins:
+- search
+- markdownextradata:
+    data: data
 nav:
 - FastAPI: index.md
 - Languages:
   - en: /
   - es: /es/
+  - fr: /fr/
+  - it: /it/
   - ja: /ja/
+  - ko: /ko/
   - pt: /pt/
+  - ru: /ru/
+  - tr: /tr/
+  - uk: /uk/
   - zh: /zh/
+- features.md
+- チュートリアル - ユーザーガイド:
+  - tutorial/index.md
+  - tutorial/first-steps.md
+  - tutorial/path-params.md
+  - tutorial/query-params.md
+  - tutorial/body.md
+  - tutorial/query-params-str-validations.md
+  - tutorial/header-params.md
+  - セキュリティ:
+    - tutorial/security/first-steps.md
+  - tutorial/cors.md
+- 高度なユーザーガイド:
+  - advanced/additional-status-codes.md
+  - advanced/response-directly.md
+  - advanced/custom-response.md
+- project-generation.md
+- alternatives.md
+- history-design-future.md
+- benchmarks.md
+- help-fastapi.md
+- contributing.md
 markdown_extensions:
 - toc:
     permalink: true
@@ -62,5 +107,3 @@ extra_javascript:
 - https://unpkg.com/mermaid@8.4.6/dist/mermaid.min.js
 - https://fastapi.tiangolo.com/js/termynal.js
 - https://fastapi.tiangolo.com/js/custom.js
-- https://fastapi.tiangolo.com/js/chat.js
-- https://sidecar.gitter.im/dist/sidecar.v1.js
