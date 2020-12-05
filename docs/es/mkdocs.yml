@@ -32,6 +32,7 @@ nav:
   - ru: /ru/
   - uk: /uk/
   - zh: /zh/
+- benchmarks.md
 - features.md
 - python-types.md
 - Tutorial - Guía de Usuario:
