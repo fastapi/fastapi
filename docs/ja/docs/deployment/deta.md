@@ -1,6 +1,6 @@
 # Deta にデプロイ
 
-このセクションでは、**FastAPI** アプリケーションを <a href="https://www.deta.sh/?ref=fastapi" class="external-link" target="_blank">Deta</a> に簡単にデプロイして無料プランを利用する方法を学習します。🎁
+このセクションでは、**FastAPI** アプリケーションを <a href="https://www.deta.sh/?ref=fastapi" class="external-link" target="_blank">Deta</a> の無料プランを利用して、簡単にデプロイする方法を学習します。🎁
 
 所要時間は約**10分**です。
 
@@ -33,7 +33,7 @@ def read_item(item_id: int):
 
 ### Requirements
 
-では、同じディレクトリに 以下の `requirements.txt` ファイルを作成してください:
+では、同じディレクトリに以下の `requirements.txt` ファイルを作成してください:
 
 ```text
 fastapi
@@ -84,7 +84,7 @@ fastapi
 
 インストールしたら、インストールした CLI を有効にするために新たなターミナルを開いてください。
 
-新たなターミナル上で、正確にインストールされたか確認します:
+新たなターミナル上で、正しくインストールされたか確認します:
 
 <div class="termy">
 
@@ -223,7 +223,7 @@ ID `5` の例を示します。
 
 まず、<a href="https://web.deta.sh/" class="external-link" target="_blank">https://web.deta.sh</a> へアクセスします。
 
-左側に各アプリの <abbr title="it comes from Micro(server)">「Micros」</abbr> というセクションが表示されます 。
+左側に各アプリの <abbr title="it comes from Micro(server)">「Micros」</abbr> というセクションが表示されます。
 
 また、「Details」や「Visor」タブが表示されています。「Visor」タブへ移動してください。
 
