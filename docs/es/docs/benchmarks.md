@@ -6,8 +6,7 @@ Pero cuando verificas los puntos de referencia y las comparaciones, deberias ten
 
 ## Puntos de referencia y rapidez
 
-Cuando verificas las referencias,  
-When you check the benchmarks, es común ver varias herramientas de diferentes tipos comparadas como equivalentes.
+Cuando verificas las referencias, es común ver varias herramientas de diferentes tipos comparadas como equivalentes.
 
 Específicamente, al ver Uvicorn, Starlette y FastAPI comparados juntos (entre muchas otras herramientas).
 
