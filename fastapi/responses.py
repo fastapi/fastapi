@@ -26,7 +26,7 @@ class ORJSONResponse(JSONResponse):
 
 class ModelResponse(JSONResponse):
     """
-    A Response that skips re-validation of Pydantic models and calls directly the json method of the pydantic model
+    A Response that skips validation of Pydantic models and calls directly the json method of the pydantic model
     using it's configured encoder.
     """
 
