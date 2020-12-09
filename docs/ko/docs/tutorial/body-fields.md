@@ -15,7 +15,7 @@
 
 ##모델 어트리뷰트 선언
 
-모델 어트리뷰트꽈 함께 `Field`를 사용할 수 있습니다:
+모델 어트리뷰트와 함께 `Field`를 사용할 수 있습니다:
 
 ```Python hl_lines="11-14"
 {!../../../docs_src/body_fields/tutorial001.py!}
