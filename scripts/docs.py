@@ -136,6 +136,7 @@ def build_lang(
     shutil.rmtree(build_lang_path, ignore_errors=True)
     shutil.copytree(lang_path, build_lang_path)
     shutil.copytree(en_docs_path / "data", build_lang_path / "data")
+    shutil.copytree(en_docs_path / "overrides", build_lang_path / "overrides")
     en_config_path: Path = en_lang_path / mkdocs_name
     en_config: dict = mkdocs.utils.yaml_load(en_config_path.read_text(encoding="utf-8"))
     nav = en_config["nav"]
