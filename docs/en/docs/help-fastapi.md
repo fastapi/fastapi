@@ -10,6 +10,16 @@ There are very simple ways to help (several involve just one or two clicks).
 
 And there are several ways to get help too.
 
+## Subscribe to the newsletter
+
+You can subscribe to the (infrequent) [**FastAPI and friends** newsletter](/newsletter/){.internal-link target=_blank} to stay updated about:
+
+* News about FastAPI and friends 🚀
+* Guides 📝
+* Features ✨
+* Breaking changes 🚨
+* Tips and tricks ✅
+
 ## Star **FastAPI** in GitHub
 
 You can "star" FastAPI in GitHub (clicking the star button at the top right): <a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">https://github.com/tiangolo/fastapi</a>. ⭐️
