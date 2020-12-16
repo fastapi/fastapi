@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends, FastAPI, WebSocket
 from fastapi.testclient import TestClient
 
 router = APIRouter()
-prefix_router = APIRouter()
+prefix_router = APIRouter(prefix="/router-prefix")
 app = FastAPI()
 
 
@@ -20,7 +20,7 @@ async def routerindex(websocket: WebSocket):
     await websocket.close()
 
 
-@prefix_router.websocket_route("/")
+@prefix_router.websocket("/index-prefix")
 async def routerprefixindex(websocket: WebSocket):
     await websocket.accept()
     await websocket.send_text("Hello, router with prefix!")
@@ -48,7 +48,7 @@ async def router_ws_decorator_depends(
 
 
 app.include_router(router)
-app.include_router(prefix_router, prefix="/prefix")
+app.include_router(prefix_router, prefix="/include-prefix")
 
 
 def test_app():
@@ -67,7 +67,9 @@ def test_router():
 
 def test_prefix_router():
     client = TestClient(app)
-    with client.websocket_connect("/prefix/") as websocket:
+    with client.websocket_connect(
+        "/include-prefix/router-prefix/index-prefix"
+    ) as websocket:
         data = websocket.receive_text()
         assert data == "Hello, router with prefix!"
 
