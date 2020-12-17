@@ -65,6 +65,7 @@ nav:
   - tutorial/response-model.md
   - tutorial/extra-models.md
   - tutorial/schema-extra-example.md
+  - tutorial/cors.md  
 - 高级用户指南:
   - advanced/index.md
   - advanced/path-operation-advanced-configuration.md
