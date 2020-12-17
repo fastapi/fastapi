@@ -84,7 +84,7 @@ def get_user(db, username: str):
 def authenticate_user(fake_db, username: str, password: str):
     user = get_user(fake_db, username)
     if not user:
-        pwd_context.dummy_verify()  # Prevent timing based attacks
+        pwd_context.dummy_verify()  # Prevent Timing Attacks
         return False
     if not verify_password(password, user.hashed_password):
         return False
@@ -102,7 +102,9 @@ def create_access_token(data: dict, expires_delta: Union[timedelta, None] = None
     return encoded_jwt
 
 
-async def get_current_user(security_scopes: SecurityScopes, token: str = Depends(oauth2_scheme)):
+async def get_current_user(
+    security_scopes: SecurityScopes, token: str = Depends(oauth2_scheme)
+):
     if security_scopes.scopes:
         authenticate_value = f'Bearer scope="{security_scopes.scope_str}"'
     else:
@@ -134,7 +136,9 @@ async def get_current_user(security_scopes: SecurityScopes, token: str = Depends
     return user
 
 
-async def get_current_active_user(current_user: User = Security(get_current_user, scopes=["me"])):
+async def get_current_active_user(
+    current_user: User = Security(get_current_user, scopes=["me"])
+):
     if current_user.disabled:
         raise HTTPException(status_code=400, detail="Inactive user")
     return current_user
@@ -159,7 +163,9 @@ async def read_users_me(current_user: User = Depends(get_current_active_user)):
 
 
 @app.get("/users/me/items/")
-async def read_own_items(current_user: User = Security(get_current_active_user, scopes=["items"])):
+async def read_own_items(
+    current_user: User = Security(get_current_active_user, scopes=["items"])
+):
     return [{"item_id": "Foo", "owner": current_user.username}]
 
 
