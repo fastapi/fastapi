@@ -44,7 +44,7 @@
 
 * 凭证（授权 headers，Cookies 等）。
 * 特定的 HTTP 方法（`POST`，`PUT`）或者使用通配符 `"*"` 允许所有方法。
-* 特定的 HTTP headers 或者使用通配符 `"*"`。
+* 特定的 HTTP headers 或者使用通配符 `"*"` 允许所有 headers。
 
 ```Python hl_lines="2  6-11  13-19"
 {!../../../docs_src/cors/tutorial001.py!}
