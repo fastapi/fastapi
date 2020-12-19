@@ -3,6 +3,7 @@ site_description: FastAPI framework, high performance, easy to learn, fast to co
 site_url: https://fastapi.tiangolo.com/ja/
 theme:
   name: material
+  custom_dir: overrides
   palette:
   - scheme: default
     primary: teal
@@ -57,10 +58,11 @@ nav:
   - tutorial/body.md
   - tutorial/query-params-str-validations.md
   - tutorial/header-params.md
-  - tutorial/cors.md
   - セキュリティ:
     - tutorial/security/first-steps.md
+  - tutorial/cors.md
 - 高度なユーザーガイド:
+  - advanced/additional-status-codes.md
   - advanced/response-directly.md
   - advanced/custom-response.md
 - project-generation.md
