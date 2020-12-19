@@ -4,7 +4,7 @@ import shutil
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 from multiprocessing import Pool
 from pathlib import Path
-from typing import Dict, Optional, Tuple
+from typing import Dict, List, Optional, Tuple
 
 import mkdocs.commands.build
 import mkdocs.commands.serve
@@ -364,12 +364,24 @@ def update_config(lang: str):
         config["nav"] = current_config["nav"]
         config["theme"]["language"] = current_config["theme"]["language"]
     languages = [{"en": "/"}]
-    for lang in get_lang_paths():
-        if lang.name == "en" or not lang.is_dir():
+    alternate: List[Dict[str, str]] = config["extra"].get("alternate", [])
+    alternate_dict = {alt["link"]: alt["name"] for alt in alternate}
+    new_alternate: List[Dict[str, str]] = []
+    for lang_path in get_lang_paths():
+        if lang_path.name == "en" or not lang_path.is_dir():
             continue
-        name = lang.name
+        name = lang_path.name
         languages.append({name: f"/{name}/"})
+    for lang_dict in languages:
+        name = list(lang_dict.keys())[0]
+        url = lang_dict[name]
+        if url not in alternate_dict:
+            new_alternate.append({"link": url, "name": name})
+        else:
+            use_name = alternate_dict[url]
+            new_alternate.append({"link": url, "name": use_name})
     config["nav"][1] = {"Languages": languages}
+    config["extra"]["alternate"] = new_alternate
     config_path.write_text(
         yaml.dump(config, sort_keys=False, width=200, allow_unicode=True),
         encoding="utf-8",
