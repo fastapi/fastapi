@@ -1,5 +1,6 @@
 from typing import Any, Callable, Iterable, Type, TypeVar
 
+from starlette.datastructures import State as State  # noqa: F401
 from starlette.datastructures import UploadFile as StarletteUploadFile
 
 

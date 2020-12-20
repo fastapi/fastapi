@@ -1,4 +1,4 @@
-from typing import Dict, List, Optional
+from typing import Any, Dict, List, Optional, Union
 
 from fastapi.exceptions import HTTPException
 from fastapi.openapi.models import OAuth2 as OAuth2Model
@@ -116,7 +116,7 @@ class OAuth2(SecurityBase):
     def __init__(
         self,
         *,
-        flows: OAuthFlowsModel = OAuthFlowsModel(),
+        flows: Union[OAuthFlowsModel, Dict[str, Dict[str, Any]]] = OAuthFlowsModel(),
         scheme_name: Optional[str] = None,
         auto_error: Optional[bool] = True
     ):

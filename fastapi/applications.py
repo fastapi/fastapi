@@ -59,7 +59,7 @@ class FastAPI(Starlette):
         root_path: str = "",
         root_path_in_servers: bool = True,
         responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
-        callbacks: Optional[List[routing.APIRoute]] = None,
+        callbacks: Optional[List[BaseRoute]] = None,
         deprecated: Optional[bool] = None,
         include_in_schema: bool = True,
         **extra: Any,
@@ -332,7 +332,7 @@ class FastAPI(Starlette):
         deprecated: Optional[bool] = None,
         include_in_schema: bool = True,
         default_response_class: Type[Response] = Default(JSONResponse),
-        callbacks: Optional[List[routing.APIRoute]] = None,
+        callbacks: Optional[List[BaseRoute]] = None,
     ) -> None:
         self.router.include_router(
             router,
@@ -369,7 +369,7 @@ class FastAPI(Starlette):
         include_in_schema: bool = True,
         response_class: Type[Response] = Default(JSONResponse),
         name: Optional[str] = None,
-        callbacks: Optional[List[routing.APIRoute]] = None,
+        callbacks: Optional[List[BaseRoute]] = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.router.get(
             path,
@@ -418,7 +418,7 @@ class FastAPI(Starlette):
         include_in_schema: bool = True,
         response_class: Type[Response] = Default(JSONResponse),
         name: Optional[str] = None,
-        callbacks: Optional[List[routing.APIRoute]] = None,
+        callbacks: Optional[List[BaseRoute]] = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.router.put(
             path,
@@ -467,7 +467,7 @@ class FastAPI(Starlette):
         include_in_schema: bool = True,
         response_class: Type[Response] = Default(JSONResponse),
         name: Optional[str] = None,
-        callbacks: Optional[List[routing.APIRoute]] = None,
+        callbacks: Optional[List[BaseRoute]] = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.router.post(
             path,
@@ -516,7 +516,7 @@ class FastAPI(Starlette):
         include_in_schema: bool = True,
         response_class: Type[Response] = Default(JSONResponse),
         name: Optional[str] = None,
-        callbacks: Optional[List[routing.APIRoute]] = None,
+        callbacks: Optional[List[BaseRoute]] = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.router.delete(
             path,
@@ -565,7 +565,7 @@ class FastAPI(Starlette):
         include_in_schema: bool = True,
         response_class: Type[Response] = Default(JSONResponse),
         name: Optional[str] = None,
-        callbacks: Optional[List[routing.APIRoute]] = None,
+        callbacks: Optional[List[BaseRoute]] = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.router.options(
             path,
@@ -614,7 +614,7 @@ class FastAPI(Starlette):
         include_in_schema: bool = True,
         response_class: Type[Response] = Default(JSONResponse),
         name: Optional[str] = None,
-        callbacks: Optional[List[routing.APIRoute]] = None,
+        callbacks: Optional[List[BaseRoute]] = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.router.head(
             path,
@@ -663,7 +663,7 @@ class FastAPI(Starlette):
         include_in_schema: bool = True,
         response_class: Type[Response] = Default(JSONResponse),
         name: Optional[str] = None,
-        callbacks: Optional[List[routing.APIRoute]] = None,
+        callbacks: Optional[List[BaseRoute]] = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.router.patch(
             path,
@@ -712,7 +712,7 @@ class FastAPI(Starlette):
         include_in_schema: bool = True,
         response_class: Type[Response] = Default(JSONResponse),
         name: Optional[str] = None,
-        callbacks: Optional[List[routing.APIRoute]] = None,
+        callbacks: Optional[List[BaseRoute]] = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.router.trace(
             path,

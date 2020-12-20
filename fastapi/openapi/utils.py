@@ -199,12 +199,15 @@ def get_openapi_path(
             if route.callbacks:
                 callbacks = {}
                 for callback in route.callbacks:
-                    (
-                        cb_path,
-                        cb_security_schemes,
-                        cb_definitions,
-                    ) = get_openapi_path(route=callback, model_name_map=model_name_map)
-                    callbacks[callback.name] = {callback.path: cb_path}
+                    if isinstance(callback, routing.APIRoute):
+                        (
+                            cb_path,
+                            cb_security_schemes,
+                            cb_definitions,
+                        ) = get_openapi_path(
+                            route=callback, model_name_map=model_name_map
+                        )
+                        callbacks[callback.name] = {callback.path: cb_path}
                 operation["callbacks"] = callbacks
             status_code = str(route.status_code)
             operation.setdefault("responses", {}).setdefault(status_code, {})[
