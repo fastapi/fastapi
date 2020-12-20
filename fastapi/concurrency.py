@@ -2,7 +2,9 @@ from typing import Any, Callable
 
 from starlette.concurrency import iterate_in_threadpool as iterate_in_threadpool  # noqa
 from starlette.concurrency import run_in_threadpool as run_in_threadpool  # noqa
-from starlette.concurrency import run_until_first_complete as run_until_first_complete  # noqa
+from starlette.concurrency import (  # noqa
+    run_until_first_complete as run_until_first_complete,
+)
 
 asynccontextmanager_error_message = """
 FastAPI's contextmanager_in_threadpool require Python 3.7 or above,
