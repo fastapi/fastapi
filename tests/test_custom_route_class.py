@@ -106,8 +106,8 @@ def test_get_path(path, expected_status, expected_response):
 
 def test_route_classes():
     routes = {}
-    r: APIRoute
     for r in app.router.routes:
+        assert isinstance(r, (APIRouteA, APIRouteB, APIRouteC))
         routes[r.path] = r
     assert routes["/a/"].x_type == "A"
     assert routes["/a/b/"].x_type == "B"
