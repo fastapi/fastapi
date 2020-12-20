@@ -76,7 +76,7 @@ dev = [
     "passlib[bcrypt] >=1.7.2,<2.0.0",
     "autoflake >=1.3.1,<2.0.0",
     "flake8 >=3.8.3,<4.0.0",
-    "uvicorn >=0.11.5,<0.12.0",
+    "uvicorn[standard] >=0.12.0,<0.14.0",
     "graphene >=2.1.8,<3.0.0"
 ]
 all = [
@@ -90,7 +90,7 @@ all = [
     "ujson >=3.0.0,<4.0.0",
     "orjson >=3.2.1,<4.0.0",
     "email_validator >=1.1.1,<2.0.0",
-    "uvicorn >=0.11.5,<0.12.0",
+    "uvicorn[standard] >=0.12.0,<0.14.0",
     "async_exit_stack >=1.0.1,<2.0.0",
     "async_generator >=1.10,<2.0.0"
 ]
