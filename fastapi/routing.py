@@ -2,7 +2,18 @@ import asyncio
 import enum
 import inspect
 import json
-from typing import Any, Callable, Dict, List, Optional, Sequence, Set, Type, Union
+from typing import (
+    Any,
+    Callable,
+    Coroutine,
+    Dict,
+    List,
+    Optional,
+    Sequence,
+    Set,
+    Type,
+    Union,
+)
 
 from fastapi import params
 from fastapi.datastructures import Default, DefaultPlaceholder
@@ -16,6 +27,7 @@ from fastapi.dependencies.utils import (
 from fastapi.encoders import DictIntStrAny, SetIntStr, jsonable_encoder
 from fastapi.exceptions import RequestValidationError, WebSocketRequestValidationError
 from fastapi.openapi.constants import STATUS_CODES_WITH_NO_BODY
+from fastapi.types import DecoratedCallable
 from fastapi.utils import (
     create_cloned_field,
     create_response_field,
@@ -150,7 +162,7 @@ def get_request_handler(
     response_model_exclude_defaults: bool = False,
     response_model_exclude_none: bool = False,
     dependency_overrides_provider: Optional[Any] = None,
-) -> Callable:
+) -> Callable[[Request], Coroutine[Any, Any, Response]]:
     assert dependant.call is not None, "dependant.call must be a function"
     is_coroutine = asyncio.iscoroutinefunction(dependant.call)
     is_body_form = body_field and isinstance(body_field.field_info, params.Form)
@@ -207,7 +219,7 @@ def get_request_handler(
             response = actual_response_class(
                 content=response_data,
                 status_code=status_code,
-                background=background_tasks,
+                background=background_tasks,  # type: ignore # in Starlette
             )
             response.headers.raw.extend(sub_response.headers.raw)
             if sub_response.status_code:
@@ -219,7 +231,7 @@ def get_request_handler(
 
 def get_websocket_app(
     dependant: Dependant, dependency_overrides_provider: Optional[Any] = None
-) -> Callable:
+) -> Callable[[WebSocket], Coroutine[Any, Any, Any]]:
     async def app(websocket: WebSocket) -> None:
         solved_result = await solve_dependencies(
             request=websocket,
@@ -240,7 +252,7 @@ class APIWebSocketRoute(routing.WebSocketRoute):
     def __init__(
         self,
         path: str,
-        endpoint: Callable,
+        endpoint: Callable[..., Any],
         *,
         name: Optional[str] = None,
         dependency_overrides_provider: Optional[Any] = None,
@@ -262,7 +274,7 @@ class APIRoute(routing.Route):
     def __init__(
         self,
         path: str,
-        endpoint: Callable,
+        endpoint: Callable[..., Any],
         *,
         response_model: Optional[Type[Any]] = None,
         status_code: int = 200,
@@ -298,7 +310,7 @@ class APIRoute(routing.Route):
         self.path_regex, self.path_format, self.param_convertors = compile_path(path)
         if methods is None:
             methods = ["GET"]
-        self.methods = set([method.upper() for method in methods])
+        self.methods: Set[str] = set([method.upper() for method in methods])
         self.unique_id = generate_operation_id_for_path(
             name=self.name, path=self.path_format, method=list(methods)[0]
         )
@@ -375,7 +387,7 @@ class APIRoute(routing.Route):
         self.callbacks = callbacks
         self.app = request_response(self.get_route_handler())
 
-    def get_route_handler(self) -> Callable:
+    def get_route_handler(self) -> Callable[[Request], Coroutine[Any, Any, Response]]:
         return get_request_handler(
             dependant=self.dependant,
             body_field=self.body_field,
@@ -407,17 +419,17 @@ class APIRouter(routing.Router):
         default: Optional[ASGIApp] = None,
         dependency_overrides_provider: Optional[Any] = None,
         route_class: Type[APIRoute] = APIRoute,
-        on_startup: Optional[Sequence[Callable]] = None,
-        on_shutdown: Optional[Sequence[Callable]] = None,
-        deprecated: bool = None,
+        on_startup: Optional[Sequence[Callable[[], Any]]] = None,
+        on_shutdown: Optional[Sequence[Callable[[], Any]]] = None,
+        deprecated: Optional[bool] = None,
         include_in_schema: bool = True,
     ) -> None:
         super().__init__(
-            routes=routes,
+            routes=routes,  # type: ignore # in Starlette
             redirect_slashes=redirect_slashes,
-            default=default,
-            on_startup=on_startup,
-            on_shutdown=on_shutdown,
+            default=default,  # type: ignore # in Starlette
+            on_startup=on_startup,  # type: ignore # in Starlette
+            on_shutdown=on_shutdown,  # type: ignore # in Starlette
         )
         if prefix:
             assert prefix.startswith("/"), "A path prefix must start with '/'"
@@ -438,7 +450,7 @@ class APIRouter(routing.Router):
     def add_api_route(
         self,
         path: str,
-        endpoint: Callable,
+        endpoint: Callable[..., Any],
         *,
         response_model: Optional[Type[Any]] = None,
         status_code: int = 200,
@@ -533,8 +545,8 @@ class APIRouter(routing.Router):
         response_class: Type[Response] = Default(JSONResponse),
         name: Optional[str] = None,
         callbacks: Optional[List[APIRoute]] = None,
-    ) -> Callable:
-        def decorator(func: Callable) -> Callable:
+    ) -> Callable[[DecoratedCallable], DecoratedCallable]:
+        def decorator(func: DecoratedCallable) -> DecoratedCallable:
             self.add_api_route(
                 path,
                 func,
@@ -565,7 +577,7 @@ class APIRouter(routing.Router):
         return decorator
 
     def add_api_websocket_route(
-        self, path: str, endpoint: Callable, name: Optional[str] = None
+        self, path: str, endpoint: Callable[..., Any], name: Optional[str] = None
     ) -> None:
         route = APIWebSocketRoute(
             path,
@@ -575,8 +587,10 @@ class APIRouter(routing.Router):
         )
         self.routes.append(route)
 
-    def websocket(self, path: str, name: Optional[str] = None) -> Callable:
-        def decorator(func: Callable) -> Callable:
+    def websocket(
+        self, path: str, name: Optional[str] = None
+    ) -> Callable[[DecoratedCallable], DecoratedCallable]:
+        def decorator(func: DecoratedCallable) -> DecoratedCallable:
             self.add_api_websocket_route(path, func, name=name)
             return func
 
@@ -592,7 +606,7 @@ class APIRouter(routing.Router):
         default_response_class: Type[Response] = Default(JSONResponse),
         responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
         callbacks: Optional[List[APIRoute]] = None,
-        deprecated: bool = None,
+        deprecated: Optional[bool] = None,
         include_in_schema: bool = True,
     ) -> None:
         if prefix:
@@ -663,10 +677,11 @@ class APIRouter(routing.Router):
                     callbacks=current_callbacks,
                 )
             elif isinstance(route, routing.Route):
+                methods = list(route.methods or [])  # type: ignore # in Starlette
                 self.add_route(
                     prefix + route.path,
                     route.endpoint,
-                    methods=list(route.methods or []),
+                    methods=methods,
                     include_in_schema=route.include_in_schema,
                     name=route.name,
                 )
@@ -707,7 +722,7 @@ class APIRouter(routing.Router):
         response_class: Type[Response] = Default(JSONResponse),
         name: Optional[str] = None,
         callbacks: Optional[List[APIRoute]] = None,
-    ) -> Callable:
+    ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.api_route(
             path=path,
             response_model=response_model,
@@ -757,7 +772,7 @@ class APIRouter(routing.Router):
         response_class: Type[Response] = Default(JSONResponse),
         name: Optional[str] = None,
         callbacks: Optional[List[APIRoute]] = None,
-    ) -> Callable:
+    ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.api_route(
             path=path,
             response_model=response_model,
@@ -807,7 +822,7 @@ class APIRouter(routing.Router):
         response_class: Type[Response] = Default(JSONResponse),
         name: Optional[str] = None,
         callbacks: Optional[List[APIRoute]] = None,
-    ) -> Callable:
+    ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.api_route(
             path=path,
             response_model=response_model,
@@ -857,7 +872,7 @@ class APIRouter(routing.Router):
         response_class: Type[Response] = Default(JSONResponse),
         name: Optional[str] = None,
         callbacks: Optional[List[APIRoute]] = None,
-    ) -> Callable:
+    ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.api_route(
             path=path,
             response_model=response_model,
@@ -907,7 +922,7 @@ class APIRouter(routing.Router):
         response_class: Type[Response] = Default(JSONResponse),
         name: Optional[str] = None,
         callbacks: Optional[List[APIRoute]] = None,
-    ) -> Callable:
+    ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.api_route(
             path=path,
             response_model=response_model,
@@ -957,7 +972,7 @@ class APIRouter(routing.Router):
         response_class: Type[Response] = Default(JSONResponse),
         name: Optional[str] = None,
         callbacks: Optional[List[APIRoute]] = None,
-    ) -> Callable:
+    ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.api_route(
             path=path,
             response_model=response_model,
@@ -1007,7 +1022,7 @@ class APIRouter(routing.Router):
         response_class: Type[Response] = Default(JSONResponse),
         name: Optional[str] = None,
         callbacks: Optional[List[APIRoute]] = None,
-    ) -> Callable:
+    ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.api_route(
             path=path,
             response_model=response_model,
@@ -1057,7 +1072,7 @@ class APIRouter(routing.Router):
         response_class: Type[Response] = Default(JSONResponse),
         name: Optional[str] = None,
         callbacks: Optional[List[APIRoute]] = None,
-    ) -> Callable:
+    ) -> Callable[[DecoratedCallable], DecoratedCallable]:
 
         return self.api_route(
             path=path,

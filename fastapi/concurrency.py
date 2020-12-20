@@ -11,7 +11,7 @@ or the backport for Python 3.6, installed with:
 """
 
 
-def _fake_asynccontextmanager(func: Callable) -> Callable:
+def _fake_asynccontextmanager(func: Callable[..., Any]) -> Callable[..., Any]:
     def raiser(*args: Any, **kwargs: Any) -> Any:
         raise RuntimeError(asynccontextmanager_error_message)
 
@@ -19,23 +19,25 @@ def _fake_asynccontextmanager(func: Callable) -> Callable:
 
 
 try:
-    from contextlib import asynccontextmanager  # type: ignore
+    from contextlib import asynccontextmanager as asynccontextmanager  # type: ignore
 except ImportError:
     try:
-        from async_generator import asynccontextmanager  # type: ignore
+        from async_generator import (  # type: ignore  # isort: skip
+            asynccontextmanager as asynccontextmanager,
+        )
     except ImportError:  # pragma: no cover
         asynccontextmanager = _fake_asynccontextmanager
 
 try:
-    from contextlib import AsyncExitStack  # type: ignore
+    from contextlib import AsyncExitStack as AsyncExitStack  # type: ignore
 except ImportError:
     try:
-        from async_exit_stack import AsyncExitStack  # type: ignore
+        from async_exit_stack import AsyncExitStack as AsyncExitStack  # type: ignore
     except ImportError:  # pragma: no cover
         AsyncExitStack = None  # type: ignore
 
 
-@asynccontextmanager
+@asynccontextmanager  # type: ignore
 async def contextmanager_in_threadpool(cm: Any) -> Any:
     try:
         yield await run_in_threadpool(cm.__enter__)

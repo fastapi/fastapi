@@ -1,4 +1,4 @@
-from typing import List, Optional
+from typing import Dict, List, Optional
 
 from fastapi.exceptions import HTTPException
 from fastapi.openapi.models import OAuth2 as OAuth2Model
@@ -141,7 +141,7 @@ class OAuth2PasswordBearer(OAuth2):
         self,
         tokenUrl: str,
         scheme_name: Optional[str] = None,
-        scopes: Optional[dict] = None,
+        scopes: Optional[Dict[str, str]] = None,
         auto_error: bool = True,
     ):
         if not scopes:
@@ -171,7 +171,7 @@ class OAuth2AuthorizationCodeBearer(OAuth2):
         tokenUrl: str,
         refreshUrl: Optional[str] = None,
         scheme_name: Optional[str] = None,
-        scopes: Optional[dict] = None,
+        scopes: Optional[Dict[str, str]] = None,
         auto_error: bool = True,
     ):
         if not scopes:
