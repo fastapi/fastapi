@@ -67,6 +67,7 @@ nav:
   - tutorial/extra-models.md
   - tutorial/response-status-code.md
   - tutorial/schema-extra-example.md
+  - tutorial/metadata.md
 - 高级用户指南:
   - advanced/index.md
   - advanced/path-operation-advanced-configuration.md
