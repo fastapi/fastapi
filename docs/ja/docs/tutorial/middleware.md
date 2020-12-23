@@ -2,11 +2,11 @@
 
 **FastAPI** アプリケーションにミドルウェアを追加できます。
 
-「ミドルウェア」は、特定の*path operation*によって処理される前に、すべての**リクエスト**に機能する関数です。また、それを返す前に、すべての**レスポンス**に機能します。
+「ミドルウェア」は、すべての**リクエスト**に対して、それが特定の*path operation*によって処理される前に、機能する関数です。また、すべての**レスポンス**に対して、それを返す前に、機能します。
 
 * ミドルウェアはアプリケーションに届いたそれぞれの**リクエスト**を受け取ります。
 * その後、その**リクエスト**に対して何かを実行したり、必要なコードを実行したりできます。
-* 次に、アプリケーションの残りの部分**リクエスト**を渡して (*path operation* によって) 処理させます。
+* 次に、アプリケーションの残りの部分に**リクエスト**を渡して (*path operation* によって) 処理させます。
 * 次に、ミドルウェアはアプリケーションによって生成された**レスポンス**を受け取ります (*path operation* によって)。
 * その**レスポンス**に対して何かを実行したり、必要なコードを実行したりできます。
 * そして、**レスポンス**を返します。
@@ -35,7 +35,7 @@
 !!! tip "豆知識"
     <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers" class="external-link" target="_blank">'X-'プレフィックスを使用</a>してカスタムの独自ヘッダーを追加できます。
 
-    ただし、ブラウザのクライアントに表示させたいカスタムヘッダーがある場合は、<a href="https://www.starlette.io/middleware/#corsmiddleware" class="external-link" target="_blank">StarletteのCORSドキュメント</a>に記載されているパラメータ `expose_headers` を使用して、それらをCORSに追加する必要があります ([CORS (オリジン間リソース共有)](cors.md){.internal-link target=_blank}) 
+    ただし、ブラウザのクライアントに表示させたいカスタムヘッダーがある場合は、<a href="https://www.starlette.io/middleware/#corsmiddleware" class="external-link" target="_blank">StarletteのCORSドキュメント</a>に記載されているパラメータ `expose_headers` を使用して、それらをCORS設定に追加する必要があります ([CORS (オリジン間リソース共有)](cors.md){.internal-link target=_blank}) 
 
 !!! note "技術詳細"
     `from starlette.requests import Request` を使用することもできます。
@@ -44,7 +44,7 @@
 
 ### `response` の前後
 
-*path operation* が `request` を受け取る前に、 `request` と実行されるコードを追加できます。
+*path operation* が `request` を受け取る前に、 `request` とともに実行されるコードを追加できます。
 
 また `response` が生成された後、それを返す前にも追加できます。
 
