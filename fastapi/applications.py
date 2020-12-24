@@ -62,6 +62,7 @@ class FastAPI(Starlette):
         callbacks: Optional[List[BaseRoute]] = None,
         deprecated: Optional[bool] = None,
         include_in_schema: bool = True,
+        swagger_ui_parameters: Optional[Dict[str, Any]] = None,
         **extra: Any,
     ) -> None:
         self._debug: bool = debug
@@ -114,6 +115,7 @@ class FastAPI(Starlette):
         self.redoc_url = redoc_url
         self.swagger_ui_oauth2_redirect_url = swagger_ui_oauth2_redirect_url
         self.swagger_ui_init_oauth = swagger_ui_init_oauth
+        self.swagger_ui_parameters = swagger_ui_parameters
         self.extra = extra
         self.dependency_overrides: Dict[Callable[..., Any], Callable[..., Any]] = {}
 
@@ -165,6 +167,7 @@ class FastAPI(Starlette):
                     title=self.title + " - Swagger UI",
                     oauth2_redirect_url=oauth2_redirect_url,
                     init_oauth=self.swagger_ui_init_oauth,
+                    swagger_ui_parameters=self.swagger_ui_parameters,
                 )
 
             self.add_route(self.docs_url, swagger_ui_html, include_in_schema=False)
