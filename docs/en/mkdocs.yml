@@ -33,7 +33,11 @@ google_analytics:
 - auto
 plugins:
 - search
-- mkdocstrings
+- mkdocstrings:
+    handlers:
+      python:
+        rendering:
+          show_root_heading: true
 - markdownextradata:
     data: data
 nav:
@@ -147,8 +151,8 @@ nav:
   # - documentation/encoders.md
   # - documentation/exception_handlers.md
   # - documentation/exceptions.md
-  # - documentation/logger.md
-  # - documentation/middleware.md
+  # - documentation/logger.md # Is it needed?
+  - documentation/middleware.md
   # - documentation/openapi.md
   # - documentation/param_functions.md
   # - documentation/params.md
@@ -160,7 +164,7 @@ nav:
   # - documentation/templating.md
   # - documentation/testclient.md
   # - documentation/utils.md
-  # - documentation/websockets.md
+  - documentation/websockets.md
 - async.md
 - Deployment:
   - deployment/index.md

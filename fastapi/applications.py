@@ -29,38 +29,6 @@ from starlette.types import ASGIApp, Receive, Scope, Send
 
 
 class FastAPI(Starlette):
-    """Creates an application instance.
-
-    Attributes:
-        default_response_class (Type[Response]): Response class used for endpoint responses.
-        dependency_overrides (Dict[Callable, Callable]): Dictionary mapping original
-            dependency callables to overriding ones.
-        description (str): API description, used on OpenAPI and the automatic API docs UIs.
-        docs_url (Optional[str]): Swagger UI URL.
-        exception_handlers (Dict[Union[int, Type[Exception]], Callable]): Dictionary
-            mapping either integer status codes, or exception class types onto callables
-            which handle the exceptions. Exception handler callables should be of the
-            form `handler(request, exc) -> response` and may be be either standard
-            functions, or async functions.
-        extra (Any): [description]
-        middleware_stack (ASGIApp): [description]
-        openapi_url (str): URL where OpenAPI schema is served.
-        openapi_tags (Optional[List[Dict[str, Any]]]): [description]
-        openapi_version (str): OpenAPI version.
-        openapi_schema (Optional[Dict[str, Any]]): [description]
-        redoc_url (Optional[str]): ReDoc URL.
-        root_path (str): [description]
-        root_path_in_servers (bool): [description]
-        router (routing.APIRouter): [description]
-        servers (List[Dict[str, Union[str, Any]]]): [description]
-        state (State): Store arbitrary state.
-        swagger_ui_oauth2_redirect_url (Optional[str]): [description]
-        swagger_ui_init_oauth (Optional[dict]): [description]
-        title (str): API title/name, used on OpenAPI and the automatic API docs UIs.
-        user_middleware (List[Middleware]): [description]
-        version (str): API version.
-    """
-
     def __init__(
         self,
         *,
@@ -113,9 +81,7 @@ class FastAPI(Starlette):
         self.exception_handlers: Dict[
             Union[int, Type[Exception]],
             Callable[[Request, Any], Coroutine[Any, Any, Response]],
-        ] = (
-            {} if exception_handlers is None else dict(exception_handlers)
-        )
+        ] = ({} if exception_handlers is None else dict(exception_handlers))
         self.exception_handlers.setdefault(HTTPException, http_exception_handler)
         self.exception_handlers.setdefault(
             RequestValidationError, request_validation_exception_handler
