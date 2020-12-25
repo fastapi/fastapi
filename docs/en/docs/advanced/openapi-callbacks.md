@@ -83,15 +83,6 @@ So we are going to use that same knowledge to document how the *external API* sh
 
 First create a new `APIRouter` that will contain one or more callbacks.
 
-This router will never be added to an actual `FastAPI` app (i.e. it will never be passed to `app.include_router(...)`).
-
-Because of that, you need to declare what will be the `default_response_class`, and set it to `JSONResponse`.
-
-!!! Note "Technical Details"
-    The `response_class` is normally set by the `FastAPI` app during the call to `app.include_router(some_router)`.
-
-    But as we are never calling `app.include_router(some_router)`, we need to set the `default_response_class` during creation of the `APIRouter`.
-
 ```Python hl_lines="5  26"
 {!../../../docs_src/openapi_callbacks/tutorial001.py!}
 ```

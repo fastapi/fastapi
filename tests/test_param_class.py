@@ -8,7 +8,7 @@ app = FastAPI()
 
 
 @app.get("/items/")
-def read_items(q: Optional[str] = Param(None)):
+def read_items(q: Optional[str] = Param(None)):  # type: ignore
     return {"q": q}
 
 
