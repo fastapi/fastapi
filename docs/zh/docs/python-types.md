@@ -222,13 +222,13 @@ John Doe
 假设你有一个名为 `Person` 的类，拥有 name 属性：
 
 ```Python hl_lines="1-3"
-{!../../../docs_src/python_types/tutorial009.py!}
+{!../../../docs_src/python_types/tutorial010.py!}
 ```
 
 接下来，你可以将一个变量声明为 `Person` 类型：
 
 ```Python hl_lines="6"
-{!../../../docs_src/python_types/tutorial009.py!}
+{!../../../docs_src/python_types/tutorial010.py!}
 ```
 
 然后，你将再次获得所有的编辑器支持：
