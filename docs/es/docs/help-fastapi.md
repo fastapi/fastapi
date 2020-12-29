@@ -104,7 +104,7 @@ Puedes [contribuir](contributing.md){.internal-link target=_blank} al código fu
 Unete al 👥 <a href="https://discord.gg/VQjSZaeJmf" class="external-link" target="_blank">chat en Discord</a> 👥 y convive con otros dentro de la comunidad FastAPI.
 
 !!! Consejo
-    Para preguntas, hazlas en los<a href="https://github.com/tiangolo/fastapi/issues/new/choose" class="external-link" target="_blank">issues de GitHub</a>,hay una mayor posibilidad de recibir ayuda por [Expertos en FastAPI](fastapi-people.md#experts){.internal-link target=_blank}.
+    Para preguntas, hazlas en los <a href="https://github.com/tiangolo/fastapi/issues/new/choose" class="external-link" target="_blank">issues de GitHub</a>, hay una mayor posibilidad de recibir ayuda por [Expertos en FastAPI](fastapi-people.md#experts){.internal-link target=_blank}.
 
     Trata de mantener el chat solo para otras conversaciones generales.
 
