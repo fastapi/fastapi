@@ -49,13 +49,13 @@ FastAPIには、様々なバックグラウンドの人々を歓迎する素晴�
 </div>
 {% endif %}
 
-## Exparts
+## Experts
 
-**FastAPI exparts** を紹介します。🤓
+**FastAPI experts** を紹介します。🤓
 
 彼らは、*これまでに* [GitHub issuesで最も多くの人を助けた](help-fastapi.md#help-others-with-issues-in-github){.internal-link target=_blank}ユーザーです。
 
-多くの人を助けることでexpartsであると示されています。✨
+多くの人を助けることでexpertsであると示されています。✨
 
 {% if people %}
 <div class="user-list user-list-center">
@@ -93,7 +93,7 @@ FastAPIには、様々なバックグラウンドの人々を歓迎する素晴�
 
 ### 翻訳のレビュー
 
-私は少しの言語しか話せません (もしくはあまり上手ではありません😅)。したがって、reviewers は、ドキュメントの[**翻訳を承認する権限**](contributing.md#translations){.internal-link target=_blank}を持っています。それらがなければ、いくつかの言語のドキュメントはありません。
+私は少しの言語しか話せません (もしくはあまり上手ではありません😅)。したがって、reviewers は、ドキュメントの[**翻訳を承認する権限**](contributing.md#translations){.internal-link target=_blank}を持っています。それらがなければ、いくつかの言語のドキュメントはなかったでしょう。
 
 ---
 
@@ -132,5 +132,7 @@ FastAPIには、様々なバックグラウンドの人々を歓迎する素晴�
 特に、他の人の issues を支援したり、翻訳のプルリクエストを確認したりするなど、通常は目立たず、多くの場合、より困難な作業を含みます。
 
 データは毎月集計されます。<a href="https://github.com/tiangolo/fastapi/blob/master/.github/actions/people/app/main.py" class="external-link" target="_blank">ソースコードはこちら</a>で確認できます。
+
+ここでは、スポンサーの貢献も強調しています。
 
 アルゴリズム、セクション、閾値などは更新されるかもしれません (念のために 🤷)。
