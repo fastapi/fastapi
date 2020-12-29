@@ -57,6 +57,7 @@ nav:
 - Guía de Usuario Avanzada:
   - advanced/index.md
 - async.md
+- help-fastapi.md
 markdown_extensions:
 - toc:
     permalink: true
