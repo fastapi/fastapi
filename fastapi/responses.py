@@ -1,4 +1,4 @@
-from typing import Any
+from typing import Any, Optional
 
 from starlette.responses import FileResponse as FileResponse  # noqa
 from starlette.responses import HTMLResponse as HTMLResponse  # noqa
@@ -18,6 +18,13 @@ except ImportError:  # pragma: nocover
 class ORJSONResponse(JSONResponse):
     media_type = "application/json"
 
+    def __init__(self, *args, option: Optional[int] = None, **kwargs) -> None:  # type: ignore
+        self.option = option
+        super().__init__(*args, **kwargs)
+
     def render(self, content: Any) -> bytes:
         assert orjson is not None, "orjson must be installed to use ORJSONResponse"
-        return orjson.dumps(content)
+        if self.option is not None:
+            return orjson.dumps(content, option=self.option)
+        else:
+            return orjson.dumps(content)
