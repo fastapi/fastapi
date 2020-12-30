@@ -11,12 +11,17 @@
     <div class="termy">
 
     ```console
-    $ pip install uvicorn
+    $ pip install uvicorn[standard]
 
     ---> 100%
     ```
 
     </div>
+
+!!! tip "豆知識"
+    `standard` を加えることで、Uvicornがインストールされ、いくつかの推奨される依存関係を利用するようになります。
+    
+    これには、`asyncio` の高性能な完全互換品である `uvloop` が含まれ、並行処理のパフォーマンスが大幅に向上します。
 
 === "Hypercorn"
 
