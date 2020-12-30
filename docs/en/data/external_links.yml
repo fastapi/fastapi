@@ -148,6 +148,10 @@ articles:
       title: How to monitor your FastAPI service
       author_link: https://twitter.com/louis_guitton
       author: Louis Guitton
+    - link: https://www.tutlinks.com/deploy-fastapi-on-ubuntu-gunicorn-caddy-2/
+      title: Deploy FastAPI on Ubuntu and Serve using Caddy 2 Web Server
+      author_link: https://www.linkedin.com/in/navule/
+      author: Navule Pavan Kumar Rao
   japanese:
     - link: https://qiita.com/mtitg/items/47770e9a562dd150631d
       title: FastAPI｜DB接続してCRUDするPython製APIサーバーを構築
