@@ -1,4 +1,4 @@
-# Ayuda FastAPI - Consigue Ayuda
+# Apoyar a FastAPI - Consigue apoyo
 
 Te gusta **FastAPI**?
 
