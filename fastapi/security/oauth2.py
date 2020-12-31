@@ -3,10 +3,9 @@ from typing import Any, Dict, List, Optional, Union
 from fastapi.exceptions import HTTPException
 from fastapi.openapi.models import OAuth2 as OAuth2Model
 from fastapi.openapi.models import OAuthFlows as OAuthFlowsModel
-from fastapi.param_functions import Form
+from fastapi.param_functions import Form, Header
 from fastapi.security.base import SecurityBase
 from fastapi.security.utils import get_authorization_scheme_param
-from starlette.requests import Request
 from starlette.status import HTTP_401_UNAUTHORIZED, HTTP_403_FORBIDDEN
 
 
@@ -124,8 +123,9 @@ class OAuth2(SecurityBase):
         self.scheme_name = scheme_name or self.__class__.__name__
         self.auto_error = auto_error
 
-    async def __call__(self, request: Request) -> Optional[str]:
-        authorization: str = request.headers.get("Authorization")
+    async def __call__(
+        self, authorization: Optional[str] = Header(None)
+    ) -> Optional[str]:
         if not authorization:
             if self.auto_error:
                 raise HTTPException(
@@ -149,8 +149,9 @@ class OAuth2PasswordBearer(OAuth2):
         flows = OAuthFlowsModel(password={"tokenUrl": tokenUrl, "scopes": scopes})
         super().__init__(flows=flows, scheme_name=scheme_name, auto_error=auto_error)
 
-    async def __call__(self, request: Request) -> Optional[str]:
-        authorization: str = request.headers.get("Authorization")
+    async def __call__(
+        self, authorization: Optional[str] = Header(None)
+    ) -> Optional[str]:
         scheme, param = get_authorization_scheme_param(authorization)
         if not authorization or scheme.lower() != "bearer":
             if self.auto_error:
@@ -186,8 +187,9 @@ class OAuth2AuthorizationCodeBearer(OAuth2):
         )
         super().__init__(flows=flows, scheme_name=scheme_name, auto_error=auto_error)
 
-    async def __call__(self, request: Request) -> Optional[str]:
-        authorization: str = request.headers.get("Authorization")
+    async def __call__(
+        self, authorization: Optional[str] = Header(None)
+    ) -> Optional[str]:
         scheme, param = get_authorization_scheme_param(authorization)
         if not authorization or scheme.lower() != "bearer":
             if self.auto_error:

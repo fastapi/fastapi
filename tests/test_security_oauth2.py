@@ -82,8 +82,26 @@ openapi_schema = {
                     "200": {
                         "description": "Successful Response",
                         "content": {"application/json": {"schema": {}}},
-                    }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        },
+                    },
                 },
+                "parameters": [
+                    {
+                        "required": False,
+                        "schema": {"title": "Authorization", "type": "string"},
+                        "name": "authorization",
+                        "in": "header",
+                    }
+                ],
                 "summary": "Read Current User",
                 "operationId": "read_current_user_users_me_get",
                 "security": [{"OAuth2": []}],

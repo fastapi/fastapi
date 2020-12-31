@@ -60,8 +60,26 @@ openapi_schema = {
                                 "schema": {"$ref": "#/components/schemas/User"}
                             }
                         },
-                    }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        },
+                    },
                 },
+                "parameters": [
+                    {
+                        "required": False,
+                        "schema": {"title": "Authorization", "type": "string"},
+                        "name": "authorization",
+                        "in": "header",
+                    }
+                ],
                 "summary": "Read Users Me",
                 "operationId": "read_users_me_users_me__get",
                 "security": [{"OAuth2PasswordBearer": ["me"]}],
@@ -73,8 +91,26 @@ openapi_schema = {
                     "200": {
                         "description": "Successful Response",
                         "content": {"application/json": {"schema": {}}},
-                    }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        },
+                    },
                 },
+                "parameters": [
+                    {
+                        "required": False,
+                        "schema": {"title": "Authorization", "type": "string"},
+                        "name": "authorization",
+                        "in": "header",
+                    }
+                ],
                 "summary": "Read Own Items",
                 "operationId": "read_own_items_users_me_items__get",
                 "security": [{"OAuth2PasswordBearer": ["items", "me"]}],
@@ -86,8 +122,26 @@ openapi_schema = {
                     "200": {
                         "description": "Successful Response",
                         "content": {"application/json": {"schema": {}}},
-                    }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        },
+                    },
                 },
+                "parameters": [
+                    {
+                        "required": False,
+                        "schema": {"title": "Authorization", "type": "string"},
+                        "name": "authorization",
+                        "in": "header",
+                    }
+                ],
                 "summary": "Read System Status",
                 "operationId": "read_system_status_status__get",
                 "security": [{"OAuth2PasswordBearer": []}],
