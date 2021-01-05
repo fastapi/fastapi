@@ -45,7 +45,7 @@ The key features are:
 <!-- sponsors -->
 
 <a href="https://www.deta.sh/?ref=fastapi" target="_blank" title="The launchpad for all your (team's) ideas"><img src="https://fastapi.tiangolo.com/img/sponsors/deta.svg"></a>
-<a href="https://www.investsuite.com/" target="_blank" title="Wealthtech as a service"><img src="https://fastapi.tiangolo.com/img/sponsors/investsuite.svg"></a>
+<a href="https://www.investsuite.com/jobs" target="_blank" title="Wealthtech jobs with FastAPI"><img src="https://fastapi.tiangolo.com/img/sponsors/investsuite.svg"></a>
 
 <!-- /sponsors -->
 
