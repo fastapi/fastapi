@@ -1,84 +1,84 @@
-# Project Generation - Template
+# Project Generation - Plantilla
 
-You can use a project generator to get started, as it includes a lot of the initial set up, security, database and first API endpoints already done for you.
+Para comenzar puedes utilizar un project generator, pues incluye una configuración inicial bastante amplia, seguridad, bases de datos y los primeros API endpoints ya están hechos por ti.
 
-A project generator will always have a very opinionated setup that you should update and adapt for your own needs, but it might be a good starting point for your project.
+Siempre habra un extenso debate en que debe de llevar la configuración de un project generator, por lo cual la debes de actualizar y adaptar de acuerdo a tus necesidades, sin embargo puede ser un buen punto de partida para tu proyecto.
 
 ## Full Stack FastAPI PostgreSQL
 
 GitHub: <a href="https://github.com/tiangolo/full-stack-fastapi-postgresql" class="external-link" target="_blank">https://github.com/tiangolo/full-stack-fastapi-postgresql</a>
 
-### Full Stack FastAPI PostgreSQL - Features
+### Full Stack FastAPI PostgreSQL - Características
 
-* Full **Docker** integration (Docker based).
+* Completa integración con **Docker** (Docker based).
 * Docker Swarm Mode deployment.
-* **Docker Compose** integration and optimization for local development.
-* **Production ready** Python web server using Uvicorn and Gunicorn.
+* **Docker Compose** integración y optimización para desarrollo local.
+* **Production ready** Servidor web de Python usando Uvicorn y Gunicorn.
 * Python <a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">**FastAPI**</a> backend:
-    * **Fast**: Very high performance, on par with **NodeJS** and **Go** (thanks to Starlette and Pydantic).
-    * **Intuitive**: Great editor support. <abbr title="also known as auto-complete, autocompletion, IntelliSense">Completion</abbr> everywhere. Less time debugging.
-    * **Easy**: Designed to be easy to use and learn. Less time reading docs.
-    * **Short**: Minimize code duplication. Multiple features from each parameter declaration.
-    * **Robust**: Get production-ready code. With automatic interactive documentation.
-    * **Standards-based**: Based on (and fully compatible with) the open standards for APIs: <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> and <a href="https://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>.
-    * <a href="https://fastapi.tiangolo.com/features/" class="external-link" target="_blank">**Many other features**</a> including automatic validation, serialization, interactive documentation, authentication with OAuth2 JWT tokens, etc.
-* **Secure password** hashing by default.
-* **JWT token** authentication.
-* **SQLAlchemy** models (independent of Flask extensions, so they can be used with Celery workers directly).
-* Basic starting models for users (modify and remove as you need).
-* **Alembic** migrations.
+    * **Rápido**: Muy alto rendimiento, a la par de **NodeJS** y **Go** (debido a Starlette y Pydantic).
+    * **Intuitivo**: Buen soporte de editores. <abbr title="también conocido como auto-complete, autocompletion, IntelliSense">Completación</abbr> dondequiera. Menos tiempo resolviendo errores.
+    * **Fácil**: Diseñado para ser fácil de usar y aprender. Menos tiempo leyendo documentación.
+    * **Corto**: Reduce el código duplicado. Multiples características de cada parámetro declarado.
+    * **Robusto**: Consigue código listo para producción. Con documentación interactiva automática.
+    * **Basado en estándares**: Basado en (y totalmente compatible con) los open standards para APIs: <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> y <a href="https://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>.
+    * <a href="https://fastapi.tiangolo.com/features/" class="external-link" target="_blank">**Muchas otras características**</a> incluyendo validación automática, serialización, autenticación con OAuth2 JWT tokens, etc.
+* **Contraseñas seguras** hashing por defecto.
+* **JWT token** autenticación.
+* **SQLAlchemy** modelos (independientes de las extensiones de Flask, para que puedan ser usadas con Celery workers directamente).
+* Modelos básicos para usuarios (modifica y elimina conforme vayas necesitando).
+* **Alembic** migraciones.
 * **CORS** (Cross Origin Resource Sharing).
-* **Celery** worker that can import and use models and code from the rest of the backend selectively.
-* REST backend tests based on **Pytest**, integrated with Docker, so you can test the full API interaction, independent on the database. As it runs in Docker, it can build a new data store from scratch each time (so you can use ElasticSearch, MongoDB, CouchDB, or whatever you want, and just test that the API works).
-* Easy Python integration with **Jupyter Kernels** for remote or in-Docker development with extensions like Atom Hydrogen or Visual Studio Code Jupyter.
-* **Vue** frontend:
-    * Generated with Vue CLI.
-    * **JWT Authentication** handling.
-    * Login view.
-    * After login, main dashboard view.
-    * Main dashboard with user creation and edition.
-    * Self user edition.
+* **Celery** importa, usa modelos, y programa desde el resto del backend selectivamente.
+* Pruebas de backends REST basadas en **Pytest**, integradas con Docker, para puedas probar la interacción completa de la API, independientemente de la base de datos. Mientras corre en Docker, puede construir un nuevo almacenamiento desde 0 cada vez (así, puedes usar ElasticSearch, MongoDB, CouchDB, o cualquiera que quieras, y solamente probar que la API funciona).
+* Integración sencilla de Python con **Jupyter Kernels** para desarrollo remoto o en Docker con extensiones como Atom Hydrogen o Visual Studio Code Jupyter.
+* Frontend en **Vue**:
+    * Generado con el CLI de Vue.
+    * Manejo de **JWT Authentication**.
+    * Vista de Login.
+    * Después de login, vista del dashboard principal.
+    * Dashboard principal con creación y edición de usurarios.
+    * Edición del mismo usuario.
     * **Vuex**.
     * **Vue-router**.
-    * **Vuetify** for beautiful material design components.
+    * **Vuetify** para hermosos componentes de material design.
     * **TypeScript**.
-    * Docker server based on **Nginx** (configured to play nicely with Vue-router).
-    * Docker multi-stage building, so you don't need to save or commit compiled code.
-    * Frontend tests ran at build time (can be disabled too).
-    * Made as modular as possible, so it works out of the box, but you can re-generate with Vue CLI or create it as you need, and re-use what you want.
-* **PGAdmin** for PostgreSQL database, you can modify it to use PHPMyAdmin and MySQL easily.
-* **Flower** for Celery jobs monitoring.
-* Load balancing between frontend and backend with **Traefik**, so you can have both under the same domain, separated by path, but served by different containers.
-* Traefik integration, including Let's Encrypt **HTTPS** certificates automatic generation.
-* GitLab **CI** (continuous integration), including frontend and backend testing.
+    * Servidor de Docker basado en **Nginx** (configurado para hacer buen juego con Vue-router).
+    * Docker multi-stage building, para que no necesites guardar o hacer commit a código compilado.
+    * Pruebas del Frontend corren en tiempo de construcción (también pueden desactivarse).
+    * Hecho lo mas modular posible, para que funcione recién sacado del horno, pero puedes regenerarlo con el CLI de Vue o crearlo mientras lo necesitas, y reusar lo que quieras.
+* **PGAdmin** para una base de datos de PostgreSQL, puedes modificarla fácilmente usando PHPMyAdmin y MySQL.
+* **Flower** para monitoreo de tareas de Celery.
+* Balanceo de carga entre el frontend y el backend con **Traefik**, para que así puedas tener ambos bajo el mismo dominio, separados por un path, pero provenientes de diferentes contenedores.
+* Integración de Traefik, incluyendo generado automático de certificados Let's Encrypt **HTTPS**.
+* **CI** (integración continua) de GitLab, incluyendo pruebas de frontend y backend.
 
 ## Full Stack FastAPI Couchbase
 
 GitHub: <a href="https://github.com/tiangolo/full-stack-fastapi-couchbase" class="external-link" target="_blank">https://github.com/tiangolo/full-stack-fastapi-couchbase</a>
 
-⚠️ **WARNING** ⚠️
+⚠️ **Advertencia** ⚠️
 
-If you are starting a new project from scratch, check the alternatives here.
+Si estas comenzando un proyecto desde 0, revisa las alternativas aquí.
 
-For example, the project generator <a href="https://github.com/tiangolo/full-stack-fastapi-postgresql" class="external-link" target="_blank">Full Stack FastAPI PostgreSQL</a> might be a better alternative, as it is actively maintained and used. And it includes all the new features and improvements.
+Por ejemplo, el project generator, <a href="https://github.com/tiangolo/full-stack-fastapi-postgresql" class="external-link" target="_blank">Full Stack FastAPI PostgreSQL</a>, puede ser una mejor alternativa, puesto que se encuentra activo y en uso. Y incluye todas las novedades y mejoras.
 
-You are still free to use the Couchbase-based generator if you want to, it should probably still work fine, and if you already have a project generated with it that's fine as well (and you probably already updated it to suit your needs).
+Eres libre de seguir usando el Couchbase-based generator si tu quieres, debería de continuar funcionando correctamente, y si ya tienes un proyecto generado con este, también esta bien (y es probable que ya lo hayas adecuado a tus necesidades)
 
-You can read more about it in the docs for the repo.
+Puedes leer más acerca de él en la documentación del repositorio.
 
 ## Full Stack FastAPI MongoDB
 
-...might come later, depending on my time availability and other factors. 😅 🎉
+...vendrá después, dependiendo en mi tiempo disponible y otros factores. 😅 🎉
 
-## Machine Learning models with spaCy and FastAPI
+## Modelos de Machine Learning con spaCy y FastAPI
 
 GitHub: <a href="https://github.com/microsoft/cookiecutter-spacy-fastapi" class="external-link" target="_blank">https://github.com/microsoft/cookiecutter-spacy-fastapi</a>
 
-### Machine Learning models with spaCy and FastAPI - Features
+### Modelos de Machine Learning con spaCy y FastAPI - Características
 
-* **spaCy** NER model integration.
-* **Azure Cognitive Search** request format built in.
-* **Production ready** Python web server using Uvicorn and Gunicorn.
-* **Azure DevOps** Kubernetes (AKS) CI/CD deployment built in.
-* **Multilingual** Easily choose one of spaCy's built in languages during project setup.
-* **Easily extensible** to other model frameworks (Pytorch, Tensorflow), not just spaCy.
+* **spaCy** Integración de modelo NER.
+* **Azure Cognitive Search** formato de <abbr title="peticiones">request</abbr> incorporadas.
+* **Listo para producción** Servidor web de Python usando Uvicorn y Gunicorn.
+* **Azure DevOps** Desplegado incorporado de Kubernetes (AKS) CI/CD.
+* **Multi-lenguaje** Fácilmente escoge entre uno de los lenguajes incorporados en spaCy's durante la configuración del proyecto.
+* **Fácilmente extendible** a otros frameworks de modelado (Pytorch, Tensorflow), no solo spaCy.
