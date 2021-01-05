@@ -93,16 +93,42 @@ def fixture_model_with_path(request):
     return ModelWithPath(path=request.param("/foo", "bar"))
 
 
+def test_encode_dict():
+    pet = {"name": "Firulais", "owner": {"name": "Foo"}}
+    assert jsonable_encoder(pet) == {"name": "Firulais", "owner": {"name": "Foo"}}
+    assert jsonable_encoder(pet, include={"name"}) == {"name": "Firulais"}
+    assert jsonable_encoder(pet, exclude={"owner"}) == {"name": "Firulais"}
+    assert jsonable_encoder(pet, include={}) == {}
+    assert jsonable_encoder(pet, exclude={}) == {
+        "name": "Firulais",
+        "owner": {"name": "Foo"},
+    }
+
+
 def test_encode_class():
     person = Person(name="Foo")
     pet = Pet(owner=person, name="Firulais")
     assert jsonable_encoder(pet) == {"name": "Firulais", "owner": {"name": "Foo"}}
+    assert jsonable_encoder(pet, include={"name"}) == {"name": "Firulais"}
+    assert jsonable_encoder(pet, exclude={"owner"}) == {"name": "Firulais"}
+    assert jsonable_encoder(pet, include={}) == {}
+    assert jsonable_encoder(pet, exclude={}) == {
+        "name": "Firulais",
+        "owner": {"name": "Foo"},
+    }
 
 
 def test_encode_dictable():
     person = DictablePerson(name="Foo")
     pet = DictablePet(owner=person, name="Firulais")
     assert jsonable_encoder(pet) == {"name": "Firulais", "owner": {"name": "Foo"}}
+    assert jsonable_encoder(pet, include={"name"}) == {"name": "Firulais"}
+    assert jsonable_encoder(pet, exclude={"owner"}) == {"name": "Firulais"}
+    assert jsonable_encoder(pet, include={}) == {}
+    assert jsonable_encoder(pet, exclude={}) == {
+        "name": "Firulais",
+        "owner": {"name": "Foo"},
+    }
 
 
 def test_encode_unsupported():
@@ -143,6 +169,14 @@ def test_encode_model_with_default():
     assert jsonable_encoder(model, exclude_defaults=True) == {"foo": "foo"}
     assert jsonable_encoder(model, exclude_unset=True, exclude_defaults=True) == {
         "foo": "foo"
+    }
+    assert jsonable_encoder(model, include={"foo"}) == {"foo": "foo"}
+    assert jsonable_encoder(model, exclude={"bla"}) == {"foo": "foo", "bar": "bar"}
+    assert jsonable_encoder(model, include={}) == {}
+    assert jsonable_encoder(model, exclude={}) == {
+        "foo": "foo",
+        "bar": "bar",
+        "bla": "bla",
     }
 
 
