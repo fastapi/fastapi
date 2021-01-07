@@ -21,6 +21,8 @@ For example, if you are squeezing performance, you can install and use <a href="
 
 Import the `Response` class (sub-class) you want to use and declare it in the *path operation decorator*.
 
+For large responses, returning a `Response` directly is much faster than returning a dictionary and having FastAPI inspect every item inside. However, you be certain that the dictionary you pass to the Response is json serializable (or subclass the JSONResponse class and add your own custom serialization).
+
 ```Python hl_lines="2  7"
 {!../../../docs_src/custom_response/tutorial001b.py!}
 ```
