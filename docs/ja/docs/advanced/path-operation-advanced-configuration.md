@@ -5,9 +5,9 @@
 !!! warning "注意"
     あなたがOpenAPIの「エキスパート」でなければ、これは必要ないかもしれません。
 
-*path operation* で `operationId` パラメータを利用することで、OpenAPIの `operationId` を設定できます。
+*path operation* で `operation_id` パラメータを利用することで、OpenAPIの `operationId` を設定できます。
 
-各オペレーションで一意にする必要があります。
+`operation_id` は各オペレーションで一意にする必要があります。
 
 ```Python hl_lines="6"
 {!../../../docs_src/path_operation_advanced_configuration/tutorial001.py!}
