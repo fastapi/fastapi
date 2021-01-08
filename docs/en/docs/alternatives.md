@@ -37,7 +37,7 @@ It was one of the first examples of **automatic API documentation**, and this wa
 !!! check "Inspired **FastAPI** to"
     Have an automatic API documentation web user interface.
 
-### <a href="http://flask.pocoo.org/" class="external-link" target="_blank">Flask</a>
+### <a href="https://flask.palletsprojects.com" class="external-link" target="_blank">Flask</a>
 
 Flask is a "microframework", it doesn't include database integrations nor many of the things that come by default in Django.
 
@@ -57,7 +57,7 @@ Given the simplicity of Flask, it seemed like a good match for building APIs. Th
     Have a simple and easy to use routing system.
 
 
-### <a href="http://docs.python-requests.org" class="external-link" target="_blank">Requests</a>
+### <a href="https://requests.readthedocs.io" class="external-link" target="_blank">Requests</a>
 
 **FastAPI** is not actually an alternative to **Requests**. Their scope is very different.
 
@@ -276,7 +276,7 @@ Routes are declared in a single place, using functions declared in other places 
 
     This actually inspired updating parts of Pydantic, to support the same validation declaration style (all this functionality is now already available in Pydantic).
 
-### <a href="http://www.hug.rest/" class="external-link" target="_blank">Hug</a>
+### <a href="https://www.hug.rest/" class="external-link" target="_blank">Hug</a>
 
 Hug was one of the first frameworks to implement the declaration of API parameter types using Python type hints. This was a great idea that inspired other tools to do the same.
 
@@ -410,7 +410,7 @@ It is the recommended server for Starlette and **FastAPI**.
 
     You can combine it with Gunicorn, to have an asynchronous multi-process server.
 
-    Check more details in the [Deployment](deployment.md){.internal-link target=_blank} section.
+    Check more details in the [Deployment](deployment/index.md){.internal-link target=_blank} section.
 
 ## Benchmarks and speed
 
