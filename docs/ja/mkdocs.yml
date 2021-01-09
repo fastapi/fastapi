@@ -71,6 +71,8 @@ nav:
   - advanced/additional-status-codes.md
   - advanced/response-directly.md
   - advanced/custom-response.md
+- デプロイ:
+  - deployment/index.md
 - project-generation.md
 - alternatives.md
 - history-design-future.md
