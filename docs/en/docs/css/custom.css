@@ -55,3 +55,11 @@ a.internal-link::after {
   font-size: 80%;
   text-align: center;
 }
+
+a.announce:link, a.announce:visited {
+  color: #fff;
+}
+
+a.announce:hover {
+  color: var(--md-accent-fg-color);
+}
