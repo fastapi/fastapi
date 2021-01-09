@@ -1,13 +1,13 @@
 from typing import Any
 
-from starlette.responses import FileResponse  # noqa
-from starlette.responses import HTMLResponse  # noqa
-from starlette.responses import JSONResponse  # noqa
-from starlette.responses import PlainTextResponse  # noqa
-from starlette.responses import RedirectResponse  # noqa
-from starlette.responses import Response  # noqa
-from starlette.responses import StreamingResponse  # noqa
-from starlette.responses import UJSONResponse  # noqa
+from starlette.responses import FileResponse as FileResponse  # noqa
+from starlette.responses import HTMLResponse as HTMLResponse  # noqa
+from starlette.responses import JSONResponse as JSONResponse  # noqa
+from starlette.responses import PlainTextResponse as PlainTextResponse  # noqa
+from starlette.responses import RedirectResponse as RedirectResponse  # noqa
+from starlette.responses import Response as Response  # noqa
+from starlette.responses import StreamingResponse as StreamingResponse  # noqa
+from starlette.responses import UJSONResponse as UJSONResponse  # noqa
 
 try:
     import orjson
