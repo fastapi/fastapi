@@ -51,6 +51,7 @@ nav:
   - uk: /uk/
   - zh: /zh/
 - features.md
+- fastapi-people.md
 - チュートリアル - ユーザーガイド:
   - tutorial/index.md
   - tutorial/first-steps.md
