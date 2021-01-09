@@ -58,6 +58,7 @@ nav:
   - tutorial/query-params.md
   - tutorial/body.md
   - tutorial/query-params-str-validations.md
+  - tutorial/cookie-params.md
   - tutorial/header-params.md
   - セキュリティ:
     - tutorial/security/first-steps.md
