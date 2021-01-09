@@ -115,6 +115,40 @@ FastAPIには、様々なバックグラウンドの人々を歓迎する素晴�
 
 彼らは、<a href="https://github.com/sponsors/tiangolo" class="external-link" target="_blank">GitHub Sponsors</a> を介して私の **FastAPI** などに関する活動を支援してくれています。
 
+### Gold Sponsors
+
+{% if sponsors %}
+{% for sponsor in sponsors.gold -%}
+<a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}"></a>
+{% endfor %}
+{% endif %}
+
+### Silver Sponsors
+
+{% if sponsors %}
+{% for sponsor in sponsors.silver -%}
+<a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}"></a>
+{% endfor %}
+{% endif %}
+
+{% if people %}
+{% if people.sponsors_50 %}
+
+### Bronze Sponsors
+
+<div class="user-list user-list-center">
+{% for user in people.sponsors_50 %}
+
+<div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a></div>
+{% endfor %}
+
+</div>
+
+{% endif %}
+{% endif %}
+
+### Individual Sponsors
+
 {% if people %}
 <div class="user-list user-list-center">
 {% for user in people.sponsors %}
