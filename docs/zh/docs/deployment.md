@@ -338,7 +338,7 @@ Traefik 也集成了 Docker，所以你也可以在每个应用的配置中声�
 <div class="termy">
 
 ```console
-$ pip install uvicorn
+$ pip install uvicorn[standard]
 
 ---> 100%
 ```
