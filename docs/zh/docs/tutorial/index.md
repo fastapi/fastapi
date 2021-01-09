@@ -64,7 +64,7 @@ $ pip install fastapi[all]
     并且安装`uvicorn`来作为服务器：
 
     ```
-    pip install uvicorn
+    pip install uvicorn[standard]
     ```
 
     然后对你想使用的每个可选依赖项也执行相同的操作。
