@@ -99,7 +99,9 @@ markdown_extensions:
 extra:
   social:
   - icon: fontawesome/brands/github-alt
-    link: https://github.com/tiangolo/typer
+    link: https://github.com/tiangolo/fastapi
+  - icon: fontawesome/brands/discord
+    link: https://discord.gg/VQjSZaeJmf
   - icon: fontawesome/brands/twitter
     link: https://twitter.com/tiangolo
   - icon: fontawesome/brands/linkedin
