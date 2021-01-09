@@ -73,6 +73,7 @@ nav:
   - advanced/custom-response.md
 - デプロイ:
   - deployment/index.md
+  - deployment/deta.md
   - deployment/manually.md
 - project-generation.md
 - alternatives.md
