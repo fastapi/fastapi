@@ -1,5 +1,6 @@
 import asyncio
 import enum
+import functools
 import inspect
 import json
 from typing import (
@@ -163,6 +164,7 @@ def get_request_handler(
     response_model_exclude_defaults: bool = False,
     response_model_exclude_none: bool = False,
     dependency_overrides_provider: Optional[Any] = None,
+    is_late_bound: bool = False,
 ) -> Callable[[Request], Coroutine[Any, Any, Response]]:
     assert dependant.call is not None, "dependant.call must be a function"
     is_coroutine = asyncio.iscoroutinefunction(dependant.call)
@@ -193,6 +195,7 @@ def get_request_handler(
             dependant=dependant,
             body=body,
             dependency_overrides_provider=dependency_overrides_provider,
+            is_late_bound=is_late_bound,
         )
         values, errors, background_tasks, sub_response, _ = solved_result
         if errors:
@@ -300,6 +303,7 @@ class APIRoute(routing.Route):
             JSONResponse
         ),
         dependency_overrides_provider: Optional[Any] = None,
+        is_late_bound: bool = False,
         callbacks: Optional[List[BaseRoute]] = None,
     ) -> None:
         # normalise enums e.g. http.HTTPStatus
@@ -377,7 +381,9 @@ class APIRoute(routing.Route):
         self.response_class = response_class
 
         assert callable(endpoint), "An endpoint must be a callable"
-        self.dependant = get_dependant(path=self.path_format, call=self.endpoint)
+        self.dependant = get_dependant(
+            path=self.path_format, call=self.endpoint, is_late_bound=is_late_bound
+        )
         for depends in self.dependencies[::-1]:
             self.dependant.dependencies.insert(
                 0,
@@ -385,6 +391,7 @@ class APIRoute(routing.Route):
             )
         self.body_field = get_body_field(dependant=self.dependant, name=self.unique_id)
         self.dependency_overrides_provider = dependency_overrides_provider
+        self.is_late_bound = is_late_bound
         self.callbacks = callbacks
         self.app = request_response(self.get_route_handler())
 
@@ -402,6 +409,7 @@ class APIRoute(routing.Route):
             response_model_exclude_defaults=self.response_model_exclude_defaults,
             response_model_exclude_none=self.response_model_exclude_none,
             dependency_overrides_provider=self.dependency_overrides_provider,
+            is_late_bound=self.is_late_bound,
         )
 
 
@@ -476,6 +484,7 @@ class APIRouter(routing.Router):
         ),
         name: Optional[str] = None,
         route_class_override: Optional[Type[APIRoute]] = None,
+        is_late_bound: bool = False,
         callbacks: Optional[List[BaseRoute]] = None,
     ) -> None:
         route_class = route_class_override or self.route_class
@@ -517,6 +526,7 @@ class APIRouter(routing.Router):
             response_class=current_response_class,
             name=name,
             dependency_overrides_provider=self.dependency_overrides_provider,
+            is_late_bound=is_late_bound,
             callbacks=current_callbacks,
         )
         self.routes.append(route)
@@ -608,6 +618,7 @@ class APIRouter(routing.Router):
         responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
         callbacks: Optional[List[BaseRoute]] = None,
         deprecated: Optional[bool] = None,
+        is_late_bound: bool = False,
         include_in_schema: bool = True,
     ) -> None:
         if prefix:
@@ -675,6 +686,7 @@ class APIRouter(routing.Router):
                     response_class=use_response_class,
                     name=route.name,
                     route_class_override=type(route),
+                    is_late_bound=is_late_bound,
                     callbacks=current_callbacks,
                 )
             elif isinstance(route, routing.Route):
@@ -1099,3 +1111,20 @@ class APIRouter(routing.Router):
             name=name,
             callbacks=callbacks,
         )
+
+
+class LateBoundAPIRouter(APIRouter):
+    def __init__(
+        self, instance_delegate: Callable[..., Any], *args: Any, **kwargs: Any
+    ):
+        super(LateBoundAPIRouter, self).__init__(*args, **kwargs)
+        self.instance_delegate = instance_delegate
+
+    def add_api_route(
+        self, path: str, endpoint: Callable[..., Any], **kwargs: Any
+    ) -> None:
+        @functools.wraps(endpoint)
+        def endpoint_wrapper(*args: Any, **kwargs: Any) -> Any:
+            return endpoint(self.instance_delegate(), *args, **kwargs)
+
+        super().add_api_route(path, endpoint_wrapper, is_late_bound=True, **kwargs)

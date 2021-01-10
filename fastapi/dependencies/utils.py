@@ -107,7 +107,11 @@ def check_file_field(field: ModelField) -> None:
 
 
 def get_param_sub_dependant(
-    *, param: inspect.Parameter, path: str, security_scopes: Optional[List[str]] = None
+    *,
+    param: inspect.Parameter,
+    path: str,
+    security_scopes: Optional[List[str]] = None,
+    is_late_bound: bool = False,
 ) -> Dependant:
     depends: params.Depends = param.default
     if depends.dependency:
@@ -120,6 +124,7 @@ def get_param_sub_dependant(
         path=path,
         name=param.name,
         security_scopes=security_scopes,
+        is_late_bound=is_late_bound,
     )
 
 
@@ -137,6 +142,7 @@ def get_sub_dependant(
     path: str,
     name: Optional[str] = None,
     security_scopes: Optional[List[str]] = None,
+    is_late_bound: bool = False,
 ) -> Dependant:
     security_requirement = None
     security_scopes = security_scopes or []
@@ -156,6 +162,7 @@ def get_sub_dependant(
         name=name,
         security_scopes=security_scopes,
         use_cache=depends.use_cache,
+        is_late_bound=False,
     )
     if security_requirement:
         sub_dependant.security_requirements.append(security_requirement)
@@ -283,6 +290,7 @@ def get_dependant(
     name: Optional[str] = None,
     security_scopes: Optional[List[str]] = None,
     use_cache: bool = True,
+    is_late_bound: bool = False,
 ) -> Dependant:
     path_param_names = get_path_param_names(path)
     endpoint_signature = get_typed_signature(call)
@@ -291,9 +299,15 @@ def get_dependant(
         check_dependency_contextmanagers()
     dependant = Dependant(call=call, name=name, path=path, use_cache=use_cache)
     for param_name, param in signature_params.items():
+        if is_late_bound:
+            is_late_bound = False
+            continue
         if isinstance(param.default, params.Depends):
             sub_dependant = get_param_sub_dependant(
-                param=param, path=path, security_scopes=security_scopes
+                param=param,
+                path=path,
+                security_scopes=security_scopes,
+                is_late_bound=is_late_bound,
             )
             dependant.dependencies.append(sub_dependant)
             continue
@@ -471,6 +485,7 @@ async def solve_dependencies(
     response: Optional[Response] = None,
     dependency_overrides_provider: Optional[Any] = None,
     dependency_cache: Optional[Dict[Tuple[Callable[..., Any], Tuple[str]], Any]] = None,
+    is_late_bound: bool = False,
 ) -> Tuple[
     Dict[str, Any],
     List[ErrorWrapper],
@@ -510,6 +525,7 @@ async def solve_dependencies(
                 call=call,
                 name=sub_dependant.name,
                 security_scopes=sub_dependant.security_scopes,
+                is_late_bound=is_late_bound,
             )
             use_sub_dependant.security_scopes = sub_dependant.security_scopes
 
@@ -521,6 +537,7 @@ async def solve_dependencies(
             response=response,
             dependency_overrides_provider=dependency_overrides_provider,
             dependency_cache=dependency_cache,
+            is_late_bound=is_late_bound,
         )
         (
             sub_values,
