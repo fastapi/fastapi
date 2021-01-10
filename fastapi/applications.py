@@ -332,7 +332,6 @@ class FastAPI(Starlette):
         deprecated: Optional[bool] = None,
         include_in_schema: bool = True,
         default_response_class: Type[Response] = Default(JSONResponse),
-        is_late_bound: bool = False,
         callbacks: Optional[List[BaseRoute]] = None,
     ) -> None:
         self.router.include_router(
@@ -344,7 +343,6 @@ class FastAPI(Starlette):
             deprecated=deprecated,
             include_in_schema=include_in_schema,
             default_response_class=default_response_class,
-            is_late_bound=is_late_bound,
             callbacks=callbacks,
         )
 

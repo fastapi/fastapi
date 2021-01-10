@@ -164,7 +164,7 @@ def get_request_handler(
     response_model_exclude_defaults: bool = False,
     response_model_exclude_none: bool = False,
     dependency_overrides_provider: Optional[Any] = None,
-    is_late_bound: bool = False,
+    is_instance_bound: bool = False,
 ) -> Callable[[Request], Coroutine[Any, Any, Response]]:
     assert dependant.call is not None, "dependant.call must be a function"
     is_coroutine = asyncio.iscoroutinefunction(dependant.call)
@@ -195,7 +195,7 @@ def get_request_handler(
             dependant=dependant,
             body=body,
             dependency_overrides_provider=dependency_overrides_provider,
-            is_late_bound=is_late_bound,
+            is_instance_bound=is_instance_bound,
         )
         values, errors, background_tasks, sub_response, _ = solved_result
         if errors:
@@ -303,7 +303,7 @@ class APIRoute(routing.Route):
             JSONResponse
         ),
         dependency_overrides_provider: Optional[Any] = None,
-        is_late_bound: bool = False,
+        is_class_based_route: bool = False,
         callbacks: Optional[List[BaseRoute]] = None,
     ) -> None:
         # normalise enums e.g. http.HTTPStatus
@@ -382,7 +382,9 @@ class APIRoute(routing.Route):
 
         assert callable(endpoint), "An endpoint must be a callable"
         self.dependant = get_dependant(
-            path=self.path_format, call=self.endpoint, is_late_bound=is_late_bound
+            path=self.path_format,
+            call=self.endpoint,
+            is_instance_bound=is_class_based_route,
         )
         for depends in self.dependencies[::-1]:
             self.dependant.dependencies.insert(
@@ -391,7 +393,7 @@ class APIRoute(routing.Route):
             )
         self.body_field = get_body_field(dependant=self.dependant, name=self.unique_id)
         self.dependency_overrides_provider = dependency_overrides_provider
-        self.is_late_bound = is_late_bound
+        self.is_class_based_route = is_class_based_route
         self.callbacks = callbacks
         self.app = request_response(self.get_route_handler())
 
@@ -409,7 +411,7 @@ class APIRoute(routing.Route):
             response_model_exclude_defaults=self.response_model_exclude_defaults,
             response_model_exclude_none=self.response_model_exclude_none,
             dependency_overrides_provider=self.dependency_overrides_provider,
-            is_late_bound=self.is_late_bound,
+            is_instance_bound=self.is_class_based_route,
         )
 
 
@@ -484,7 +486,7 @@ class APIRouter(routing.Router):
         ),
         name: Optional[str] = None,
         route_class_override: Optional[Type[APIRoute]] = None,
-        is_late_bound: bool = False,
+        is_class_based_route: bool = False,
         callbacks: Optional[List[BaseRoute]] = None,
     ) -> None:
         route_class = route_class_override or self.route_class
@@ -526,7 +528,7 @@ class APIRouter(routing.Router):
             response_class=current_response_class,
             name=name,
             dependency_overrides_provider=self.dependency_overrides_provider,
-            is_late_bound=is_late_bound,
+            is_class_based_route=is_class_based_route,
             callbacks=current_callbacks,
         )
         self.routes.append(route)
@@ -555,6 +557,7 @@ class APIRouter(routing.Router):
         include_in_schema: bool = True,
         response_class: Type[Response] = Default(JSONResponse),
         name: Optional[str] = None,
+        is_class_based_route: bool = False,
         callbacks: Optional[List[BaseRoute]] = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         def decorator(func: DecoratedCallable) -> DecoratedCallable:
@@ -581,6 +584,7 @@ class APIRouter(routing.Router):
                 include_in_schema=include_in_schema,
                 response_class=response_class,
                 name=name,
+                is_class_based_route=is_class_based_route,
                 callbacks=callbacks,
             )
             return func
@@ -618,7 +622,6 @@ class APIRouter(routing.Router):
         responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
         callbacks: Optional[List[BaseRoute]] = None,
         deprecated: Optional[bool] = None,
-        is_late_bound: bool = False,
         include_in_schema: bool = True,
     ) -> None:
         if prefix:
@@ -636,6 +639,9 @@ class APIRouter(routing.Router):
                     )
         if responses is None:
             responses = {}
+        if isinstance(router, ViewAPIRouter):
+            if not router._view_instance:
+                raise Exception("ViewAPIRouter was not be bound to a view instance")
         for route in router.routes:
             if isinstance(route, APIRoute):
                 combined_responses = {**responses, **route.responses}
@@ -686,7 +692,7 @@ class APIRouter(routing.Router):
                     response_class=use_response_class,
                     name=route.name,
                     route_class_override=type(route),
-                    is_late_bound=is_late_bound,
+                    is_class_based_route=isinstance(router, ViewAPIRouter),
                     callbacks=current_callbacks,
                 )
             elif isinstance(route, routing.Route):
@@ -1113,18 +1119,55 @@ class APIRouter(routing.Router):
         )
 
 
-class LateBoundAPIRouter(APIRouter):
-    def __init__(
-        self, instance_delegate: Callable[..., Any], *args: Any, **kwargs: Any
-    ):
-        super(LateBoundAPIRouter, self).__init__(*args, **kwargs)
-        self.instance_delegate = instance_delegate
+class ViewAPIRouter(APIRouter):
+    _view_instance: Optional["ViewAPIRouter.View"] = None
+
+    def __init__(self, *args: Any, **kwargs: Any):
+        super(ViewAPIRouter, self).__init__(*args, **kwargs)
+        #  , route_class=ViewAPIRouter
+        self._has_view_binding = False
+
+    def view(
+        self,
+    ) -> Callable[[Type["ViewAPIRouter.View"]], Callable[..., "ViewAPIRouter.View"]]:
+        def decorator(
+            view_class: Type["ViewAPIRouter.View"],
+        ) -> Callable[..., "ViewAPIRouter.View"]:
+            if self._has_view_binding:
+                raise Exception(
+                    "ViewAPIRouter.view decorator must be applied to exactly one class"
+                )
+            if not inspect.isclass(view_class):
+                raise Exception(
+                    "ViewAPIRouter.view decorator must be applied to a class"
+                )
+            if not issubclass(view_class, ViewAPIRouter.View):
+                raise Exception(
+                    "ViewAPIRouter.view decorator must be applied to a subclass of ViewAPIRouter.View"
+                )
+            self._has_view_binding = True
+
+            @functools.wraps(view_class.__init__)
+            def initializer(*args: Any, **kwargs: Any) -> ViewAPIRouter.View:
+                self._view_instance = view_class(*args, **kwargs)
+                self._view_instance._router = self
+                return self._view_instance
+
+            return initializer
+
+        return decorator
 
     def add_api_route(
         self, path: str, endpoint: Callable[..., Any], **kwargs: Any
     ) -> None:
         @functools.wraps(endpoint)
         def endpoint_wrapper(*args: Any, **kwargs: Any) -> Any:
-            return endpoint(self.instance_delegate(), *args, **kwargs)
+            return endpoint(self._view_instance, *args, **kwargs)
 
-        super().add_api_route(path, endpoint_wrapper, is_late_bound=True, **kwargs)
+        super().add_api_route(path, endpoint_wrapper, **kwargs)
+
+    class View:
+        _router: Optional["ViewAPIRouter"] = None
+
+        def __init__(*args: Any, **kwargs: Any) -> None:
+            pass  # pragma: no cover
