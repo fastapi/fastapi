@@ -2,14 +2,14 @@
 
 このセクションでは以下の使い方の紹介とガイドへのリンクが確認できます:
 
-* **5分**程度で、**FastAPI** のアプリケーションを、パフォーマンスを最大限に発揮するDokcerイメージ (コンテナ)にする。
+* **5分**程度で、**FastAPI** のアプリケーションを、パフォーマンスを最大限に発揮するDockerイメージ (コンテナ)にする。
 * (オプション) 開発者として必要な範囲でHTTPSを理解する。
 * **20分**程度で、自動的なHTTPS生成とともにDockerのSwarmモード クラスタをセットアップする (月5ドルのシンプルなサーバー上で)。
 * **10分**程度で、DockerのSwarmモード クラスタを使って、HTTPSなどを使用した完全な**FastAPI** アプリケーションの作成とデプロイ。
 
 デプロイのために、<a href="https://www.docker.com/" class="external-link" target="_blank">**Docker**</a> を利用できます。セキュリティ、再現性、開発のシンプルさなどに利点があります。
 
-Dockerを使う場合、公式のDokcerイメージが利用できます:
+Dockerを使う場合、公式のDockerイメージが利用できます:
 
 ## <a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker" class="external-link" target="_blank">tiangolo/uvicorn-gunicorn-fastapi</a>
 
@@ -33,7 +33,7 @@ COPY ./app /app
 
 ### より大きなアプリケーション
 
-[Bigger Applications with Multiple Files](tutorial/bigger-applications.md){.internal-link target=_blank} セクションを倣う場合は、`Dockerfile` は以下の様になるかもしれません:
+[Bigger Applications with Multiple Files](tutorial/bigger-applications.md){.internal-link target=_blank} セクションに倣う場合は、`Dockerfile` は上記の代わりに、以下の様になるかもしれません:
 
 ```Dockerfile
 FROM tiangolo/uvicorn-gunicorn-fastapi:python3.7
@@ -43,7 +43,7 @@ COPY ./app /app/app
 
 ### Raspberry Piなどのアーキテクチャ
 
-Raspberry Pi (ARMプロセッサ搭載)やそれ以外のアーキテクチャでDockerが作動している場合、(マルチアーキテクチャである) Pythonベースイメージを使って、一から`Dockerfile`を作成し、Uvicornを使用できます。
+Raspberry Pi (ARMプロセッサ搭載)やそれ以外のアーキテクチャでDockerが作動している場合、(マルチアーキテクチャである) Pythonベースイメージを使って、一から`Dockerfile`を作成し、Uvicornを単体で使用できます。
 
 この場合、`Dockerfile` は以下の様になるかもしれません:
 
@@ -82,7 +82,7 @@ def read_item(item_id: int, q: Optional[str] = None):
     return {"item_id": item_id, "q": q}
 ```
 
-* ここでは、以下の様なディレクトリ構造になっているべきです:
+* ここでは、以下の様なディレクトリ構造になっているはずです:
 
 ```
 .
@@ -130,19 +130,19 @@ DockerコンテナのURLで確認できるはずです。例えば: <a href="htt
 {"item_id": 5, "q": "somequery"}
 ```
 
-### 対話的APIドキュメント
+## 対話的APIドキュメント
 
 ここで、<a href="http://192.168.99.100/docs" class="external-link" target="_blank">http://192.168.99.100/docs</a> や <a href="http://127.0.0.1/docs" class="external-link" target="_blank">http://127.0.0.1/docs</a> (もしくはDockerホストを使用したこれらと同等のもの) を開いて下さい。
 
-自動生成された対話的APIドキュメントが確認できます (<a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a>によって提供される):
+自動生成された対話的APIドキュメントが確認できます (<a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a>によって提供されます):
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-01-swagger-ui-simple.png)
 
-### その他のAPIドキュメント
+## その他のAPIドキュメント
 
 また同様に、<a href="http://192.168.99.100/redoc" class="external-link" target="_blank">http://192.168.99.100/redoc</a> や <a href="http://127.0.0.1/redoc" class="external-link" target="_blank">http://127.0.0.1/redoc</a> (もしくはDockerホストを使用したこれらと同等のもの) を開いて下さい。
 
-他の自動生成された対話的なAPIドキュメントが確認できます (<a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a>によって提供される):
+他の自動生成された対話的なAPIドキュメントが確認できます (<a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a>によって提供されます):
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
