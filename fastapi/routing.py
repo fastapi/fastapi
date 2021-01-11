@@ -12,7 +12,9 @@ from typing import (
     Optional,
     Sequence,
     Set,
+    Tuple,
     Type,
+    TypeVar,
     Union,
 )
 
@@ -54,6 +56,8 @@ from starlette.routing import (
 from starlette.status import WS_1008_POLICY_VIOLATION
 from starlette.types import ASGIApp
 from starlette.websockets import WebSocket
+
+T = TypeVar("T")
 
 
 def _prepare_response_content(
@@ -640,8 +644,9 @@ class APIRouter(routing.Router):
         if responses is None:
             responses = {}
         if isinstance(router, ViewAPIRouter):
-            if not router._view_instance:
-                raise Exception("ViewAPIRouter was not be bound to a view instance")
+            raise Exception(
+                "ViewAPIRouter cannot be used directly, it must be bound to a class"
+            )
         for route in router.routes:
             if isinstance(route, APIRoute):
                 combined_responses = {**responses, **route.responses}
@@ -692,7 +697,7 @@ class APIRouter(routing.Router):
                     response_class=use_response_class,
                     name=route.name,
                     route_class_override=type(route),
-                    is_class_based_route=isinstance(router, ViewAPIRouter),
+                    is_class_based_route=isinstance(router, ViewAPIRouter._Instance),
                     callbacks=current_callbacks,
                 )
             elif isinstance(route, routing.Route):
@@ -1120,54 +1125,66 @@ class APIRouter(routing.Router):
 
 
 class ViewAPIRouter(APIRouter):
-    _view_instance: Optional["ViewAPIRouter.View"] = None
+    class View:
+        router: "ViewAPIRouter._Instance"
+
+    class _Instance(APIRouter):
+        _view_instance: "ViewAPIRouter.View"
+
+        def __init__(
+            self, base_router: "ViewAPIRouter", view_instance: "ViewAPIRouter.View"
+        ):
+            args, kwargs = base_router._initializer_args
+            super(ViewAPIRouter._Instance, self).__init__(*args, **kwargs)
+            self._view_instance = view_instance
+
+            # apply route plans collected from base ViewAPIRouter router decorators
+            for path, endpoint, kwargs in base_router._route_plans:
+                self._add_api_route(path, endpoint, **kwargs)
+
+        def _add_api_route(
+            self, path: str, endpoint: Callable[..., Any], **kwargs: Any
+        ) -> None:
+            @functools.wraps(endpoint)
+            def endpoint_wrapper(*args: Any, **kwargs: Any) -> Any:
+                return endpoint(self._view_instance, *args, **kwargs)
+
+            # inject instance parameter to endpoint methods
+            super().add_api_route(path, endpoint_wrapper, **kwargs)
 
     def __init__(self, *args: Any, **kwargs: Any):
         super(ViewAPIRouter, self).__init__(*args, **kwargs)
-        #  , route_class=ViewAPIRouter
-        self._has_view_binding = False
-
-    def view(
-        self,
-    ) -> Callable[[Type["ViewAPIRouter.View"]], Callable[..., "ViewAPIRouter.View"]]:
-        def decorator(
-            view_class: Type["ViewAPIRouter.View"],
-        ) -> Callable[..., "ViewAPIRouter.View"]:
-            if self._has_view_binding:
-                raise Exception(
-                    "ViewAPIRouter.view decorator must be applied to exactly one class"
-                )
-            if not inspect.isclass(view_class):
-                raise Exception(
-                    "ViewAPIRouter.view decorator must be applied to a class"
-                )
-            if not issubclass(view_class, ViewAPIRouter.View):
-                raise Exception(
-                    "ViewAPIRouter.view decorator must be applied to a subclass of ViewAPIRouter.View"
-                )
-            self._has_view_binding = True
-
-            @functools.wraps(view_class.__init__)
-            def initializer(*args: Any, **kwargs: Any) -> ViewAPIRouter.View:
-                self._view_instance = view_class(*args, **kwargs)
-                self._view_instance._router = self
-                return self._view_instance
-
-            return initializer
-
-        return decorator
+        self._initializer_args = (args, kwargs)
+        self._route_plans: List[Tuple[str, Callable[..., Any], Any]] = []
+        self.is_bound = False
+        self.is_fully_defined = False
 
     def add_api_route(
         self, path: str, endpoint: Callable[..., Any], **kwargs: Any
     ) -> None:
-        @functools.wraps(endpoint)
-        def endpoint_wrapper(*args: Any, **kwargs: Any) -> Any:
-            return endpoint(self._view_instance, *args, **kwargs)
+        if not self.is_bound:
+            raise Exception("decorator cannot be applied before binding to a class")
+        if self.is_fully_defined:
+            raise Exception("decorator cannot be applied outside its bound class")
 
-        super().add_api_route(path, endpoint_wrapper, **kwargs)
+        # keep track of all methods decorated
+        self._route_plans.append((path, endpoint, kwargs))
 
-    class View:
-        _router: Optional["ViewAPIRouter"] = None
+    def bind_to_class(self) -> Callable[[Type[T]], Type[T]]:
+        self.is_bound = True
 
-        def __init__(*args: Any, **kwargs: Any) -> None:
-            pass  # pragma: no cover
+        def decorator(view_class: Type[T]) -> Type[T]:
+            if self.is_fully_defined:
+                raise Exception("decorator can only be applied once")
+            if not inspect.isclass(view_class):
+                raise Exception("decorator must be applied to a class")
+            self.is_fully_defined = True
+
+            class _BoundView(view_class):  # type: ignore
+                def __init__(view, *args: Any, **kwargs: Any):
+                    super(_BoundView, view).__init__(*args, **kwargs)
+                    view.router = ViewAPIRouter._Instance(self, view)
+
+            return _BoundView
+
+        return decorator
