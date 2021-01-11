@@ -90,12 +90,12 @@ def check_file_field(field: ModelField) -> None:
     if isinstance(field_info, params.Form):
         try:
             # __version__ is available in both multiparts, and can be mocked
-            from multipart import __version__
+            from multipart import __version__  # type: ignore
 
             assert __version__
             try:
                 # parse_options_header is only available in the right multipart
-                from multipart.multipart import parse_options_header
+                from multipart.multipart import parse_options_header  # type: ignore
 
                 assert parse_options_header
             except ImportError:
@@ -133,7 +133,7 @@ def get_parameterless_sub_dependant(*, depends: params.Depends, path: str) -> De
 def get_sub_dependant(
     *,
     depends: params.Depends,
-    dependency: Callable,
+    dependency: Callable[..., Any],
     path: str,
     name: Optional[str] = None,
     security_scopes: Optional[List[str]] = None,
@@ -163,7 +163,7 @@ def get_sub_dependant(
     return sub_dependant
 
 
-CacheKey = Tuple[Optional[Callable], Tuple[str, ...]]
+CacheKey = Tuple[Optional[Callable[..., Any]], Tuple[str, ...]]
 
 
 def get_flat_dependant(
@@ -240,7 +240,7 @@ def is_scalar_sequence_field(field: ModelField) -> bool:
     return False
 
 
-def get_typed_signature(call: Callable) -> inspect.Signature:
+def get_typed_signature(call: Callable[..., Any]) -> inspect.Signature:
     signature = inspect.signature(call)
     globalns = getattr(call, "__globals__", {})
     typed_params = [
@@ -259,9 +259,7 @@ def get_typed_signature(call: Callable) -> inspect.Signature:
 def get_typed_annotation(param: inspect.Parameter, globalns: Dict[str, Any]) -> Any:
     annotation = param.annotation
     if isinstance(annotation, str):
-        # Temporary ignore type
-        # Ref: https://github.com/samuelcolvin/pydantic/issues/1738
-        annotation = ForwardRef(annotation)  # type: ignore
+        annotation = ForwardRef(annotation)
         annotation = evaluate_forwardref(annotation, globalns, globalns)
     return annotation
 
@@ -281,7 +279,7 @@ def check_dependency_contextmanagers() -> None:
 def get_dependant(
     *,
     path: str,
-    call: Callable,
+    call: Callable[..., Any],
     name: Optional[str] = None,
     security_scopes: Optional[List[str]] = None,
     use_cache: bool = True,
@@ -423,7 +421,7 @@ def add_param_to_fields(*, field: ModelField, dependant: Dependant) -> None:
         dependant.cookie_params.append(field)
 
 
-def is_coroutine_callable(call: Callable) -> bool:
+def is_coroutine_callable(call: Callable[..., Any]) -> bool:
     if inspect.isroutine(call):
         return inspect.iscoroutinefunction(call)
     if inspect.isclass(call):
@@ -432,14 +430,14 @@ def is_coroutine_callable(call: Callable) -> bool:
     return inspect.iscoroutinefunction(call)
 
 
-def is_async_gen_callable(call: Callable) -> bool:
+def is_async_gen_callable(call: Callable[..., Any]) -> bool:
     if inspect.isasyncgenfunction(call):
         return True
     call = getattr(call, "__call__", None)
     return inspect.isasyncgenfunction(call)
 
 
-def is_gen_callable(call: Callable) -> bool:
+def is_gen_callable(call: Callable[..., Any]) -> bool:
     if inspect.isgeneratorfunction(call):
         return True
     call = getattr(call, "__call__", None)
@@ -447,7 +445,7 @@ def is_gen_callable(call: Callable) -> bool:
 
 
 async def solve_generator(
-    *, call: Callable, stack: AsyncExitStack, sub_values: Dict[str, Any]
+    *, call: Callable[..., Any], stack: AsyncExitStack, sub_values: Dict[str, Any]
 ) -> Any:
     if is_gen_callable(call):
         cm = contextmanager_in_threadpool(contextmanager(call)(**sub_values))
@@ -472,29 +470,29 @@ async def solve_dependencies(
     background_tasks: Optional[BackgroundTasks] = None,
     response: Optional[Response] = None,
     dependency_overrides_provider: Optional[Any] = None,
-    dependency_cache: Optional[Dict[Tuple[Callable, Tuple[str]], Any]] = None,
+    dependency_cache: Optional[Dict[Tuple[Callable[..., Any], Tuple[str]], Any]] = None,
 ) -> Tuple[
     Dict[str, Any],
     List[ErrorWrapper],
     Optional[BackgroundTasks],
     Response,
-    Dict[Tuple[Callable, Tuple[str]], Any],
+    Dict[Tuple[Callable[..., Any], Tuple[str]], Any],
 ]:
     values: Dict[str, Any] = {}
     errors: List[ErrorWrapper] = []
     response = response or Response(
         content=None,
         status_code=None,  # type: ignore
-        headers=None,
-        media_type=None,
-        background=None,
+        headers=None,  # type: ignore # in Starlette
+        media_type=None,  # type: ignore # in Starlette
+        background=None,  # type: ignore # in Starlette
     )
     dependency_cache = dependency_cache or {}
     sub_dependant: Dependant
     for sub_dependant in dependant.dependencies:
-        sub_dependant.call = cast(Callable, sub_dependant.call)
+        sub_dependant.call = cast(Callable[..., Any], sub_dependant.call)
         sub_dependant.cache_key = cast(
-            Tuple[Callable, Tuple[str]], sub_dependant.cache_key
+            Tuple[Callable[..., Any], Tuple[str]], sub_dependant.cache_key
         )
         call = sub_dependant.call
         use_sub_dependant = sub_dependant
