@@ -32,7 +32,7 @@
 !!! note "技術詳細"
     `from starlette.testclient import TestClient` も使用できます。
 
-    **FastAPI** は開発者の利便性のために `fastapi.testclient` という `starlette.testclient` と同様なものを提供しています。ただし、Startletteから直接わたされます。
+    **FastAPI** は開発者の利便性のために `fastapi.testclient` と同じ `starlette.testclient` を提供します。しかし、実際にはStarletteから直接渡されています。
 
 !!! tip "豆知識"
     FastAPIアプリケーションへのリクエストの送信とは別に、テストで `async` 関数 (非同期データベース関数など) を呼び出したい場合は、高度なチュートリアルの[Async Tests](../advanced/async-tests.md){.internal-link target=_blank} を参照してください。
