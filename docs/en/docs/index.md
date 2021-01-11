@@ -128,7 +128,7 @@ You will also need an ASGI server, for production such as <a href="https://www.u
 <div class="termy">
 
 ```console
-$ pip install uvicorn
+$ pip install uvicorn[standard]
 
 ---> 100%
 ```

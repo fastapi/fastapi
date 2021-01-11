@@ -2,8 +2,11 @@ gold:
   - url: https://www.deta.sh/?ref=fastapi
     title: The launchpad for all your (team's) ideas
     img: https://fastapi.tiangolo.com/img/sponsors/deta.svg
+  - url: https://www.investsuite.com/jobs
+    title: Wealthtech jobs with FastAPI
+    img: https://fastapi.tiangolo.com/img/sponsors/investsuite.svg
 silver:
-  - url: https://testdriven.io/
+  - url: https://testdriven.io/courses/tdd-fastapi/
     title: Learn to build high-quality web apps with best practices
     img: https://fastapi.tiangolo.com/img/sponsors/testdriven.svg
   - url: https://jobs.bywetransfer.com/
