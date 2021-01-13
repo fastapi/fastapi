@@ -1,58 +1,58 @@
-# External Links and Articles
+# Links Adicionales y Artículos
 
-**FastAPI** has a great community constantly growing.
+**FastAPI** tiene una gran comunidad que esta en constante crecimiento.
 
-There are many posts, articles, tools, and projects, related to **FastAPI**.
+Existen muchas publicaciones, artículos, herramientas y proyectos, relacionados con **FastAPI**.
 
-Here's an incomplete list of some of them.
+Aquí tenemos una lista, incompleta, de algunos de ellos.
 
 !!! tip
-    If you have an article, project, tool, or anything related to **FastAPI** that is not yet listed here, create a <a href="https://github.com/tiangolo/fastapi/edit/master/docs/en/data/external_links.yml" class="external-link" target="_blank">Pull Request adding it</a>.
+    Si tienes un artículo, proyecto, herramienta, o cualquier otra cosa relacionada con **FastAPI**, que no este listado aquí, no dudes en añadirla creando un <a href="https://github.com/tiangolo/fastapi/edit/master/docs/en/data/external_links.yml" class="external-link" target="_blank">Pull Request</a>.
 
-## Articles
+## Artículos
 
-### English
+### Ingles
 
 {% if external_links %}
 {% for article in external_links.articles.english %}
 
-* <a href="{{ article.link }}" class="external-link" target="_blank">{{ article.title }}</a> by <a href="{{ article.author_link }}" class="external-link" target="_blank">{{ article.author }}</a>.
+* <a href="{{ article.link }}" class="external-link" target="_blank">{{ article.title }}</a> por <a href="{{ article.author_link }}" class="external-link" target="_blank">{{ article.author }}</a>.
 {% endfor %}
 {% endif %}
 
-### Japanese
+### Japones
 
 {% if external_links %}
 {% for article in external_links.articles.japanese %}
 
-* <a href="{{ article.link }}" class="external-link" target="_blank">{{ article.title }}</a> by <a href="{{ article.author_link }}" class="external-link" target="_blank">{{ article.author }}</a>.
+* <a href="{{ article.link }}" class="external-link" target="_blank">{{ article.title }}</a> por <a href="{{ article.author_link }}" class="external-link" target="_blank">{{ article.author }}</a>.
 {% endfor %}
 {% endif %}
 
-### Vietnamese
+### Vietnamita
 
 {% if external_links %}
 {% for article in external_links.articles.vietnamese %}
 
-* <a href="{{ article.link }}" class="external-link" target="_blank">{{ article.title }}</a> by <a href="{{ article.author_link }}" class="external-link" target="_blank">{{ article.author }}</a>.
+* <a href="{{ article.link }}" class="external-link" target="_blank">{{ article.title }}</a> por <a href="{{ article.author_link }}" class="external-link" target="_blank">{{ article.author }}</a>.
 {% endfor %}
 {% endif %}
 
-### Russian
+### Ruso
 
 {% if external_links %}
 {% for article in external_links.articles.russian %}
 
-* <a href="{{ article.link }}" class="external-link" target="_blank">{{ article.title }}</a> by <a href="{{ article.author_link }}" class="external-link" target="_blank">{{ article.author }}</a>.
+* <a href="{{ article.link }}" class="external-link" target="_blank">{{ article.title }}</a> por <a href="{{ article.author_link }}" class="external-link" target="_blank">{{ article.author }}</a>.
 {% endfor %}
 {% endif %}
 
-### German
+### Aleman
 
 {% if external_links %}
 {% for article in external_links.articles.german %}
 
-* <a href="{{ article.link }}" class="external-link" target="_blank">{{ article.title }}</a> by <a href="{{ article.author_link }}" class="external-link" target="_blank">{{ article.author }}</a>.
+* <a href="{{ article.link }}" class="external-link" target="_blank">{{ article.title }}</a> por <a href="{{ article.author_link }}" class="external-link" target="_blank">{{ article.author }}</a>.
 {% endfor %}
 {% endif %}
 
@@ -61,22 +61,22 @@ Here's an incomplete list of some of them.
 {% if external_links %}
 {% for article in external_links.podcasts.english %}
 
-* <a href="{{ article.link }}" class="external-link" target="_blank">{{ article.title }}</a> by <a href="{{ article.author_link }}" class="external-link" target="_blank">{{ article.author }}</a>.
+* <a href="{{ article.link }}" class="external-link" target="_blank">{{ article.title }}</a> por <a href="{{ article.author_link }}" class="external-link" target="_blank">{{ article.author }}</a>.
 {% endfor %}
 {% endif %}
 
-## Talks
+## Charlas
 
 {% if external_links %}
 {% for article in external_links.talks.english %}
 
-* <a href="{{ article.link }}" class="external-link" target="_blank">{{ article.title }}</a> by <a href="{{ article.author_link }}" class="external-link" target="_blank">{{ article.author }}</a>.
+* <a href="{{ article.link }}" class="external-link" target="_blank">{{ article.title }}</a> por <a href="{{ article.author_link }}" class="external-link" target="_blank">{{ article.author }}</a>.
 {% endfor %}
 {% endif %}
 
-## Projects
+## Proyectos
 
-Latest GitHub projects with the topic `fastapi`:
+Ultimos proyectos en GitHub con el tema `fastapi`:
 
 <div class="github-topic-projects">
 </div>
