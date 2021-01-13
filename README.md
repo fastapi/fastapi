@@ -45,6 +45,7 @@ The key features are:
 <!-- sponsors -->
 
 <a href="https://www.deta.sh/?ref=fastapi" target="_blank" title="The launchpad for all your (team's) ideas"><img src="https://fastapi.tiangolo.com/img/sponsors/deta.svg"></a>
+<a href="https://www.investsuite.com/jobs" target="_blank" title="Wealthtech jobs with FastAPI"><img src="https://fastapi.tiangolo.com/img/sponsors/investsuite.svg"></a>
 
 <!-- /sponsors -->
 
@@ -124,7 +125,7 @@ You will also need an ASGI server, for production such as <a href="https://www.u
 <div class="termy">
 
 ```console
-$ pip install uvicorn
+$ pip install uvicorn[standard]
 
 ---> 100%
 ```

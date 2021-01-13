@@ -2,6 +2,62 @@
 
 ## Latest Changes
 
+* 🔧 Add FastAPI user survey banner. PR [#2623](https://github.com/tiangolo/fastapi/pull/2623) by [@tiangolo](https://github.com/tiangolo).
+* 🔧 Add new Bronze Sponsor(s) 🥉🎉. PR [#2622](https://github.com/tiangolo/fastapi/pull/2622) by [@tiangolo](https://github.com/tiangolo).
+* 📝 Update social links: add Discord, fix GitHub. PR [#2621](https://github.com/tiangolo/fastapi/pull/2621) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Add Chinese translation for Tutorial - Security - Simple OAuth2 with Password and Bearer. PR [#2514](https://github.com/tiangolo/fastapi/pull/2514) by [@waynerv](https://github.com/waynerv).
+* 🌐 Add Japanese translation for Deployment - Deta. PR [#2314](https://github.com/tiangolo/fastapi/pull/2314) by [@tokusumi](https://github.com/tokusumi).
+* 🌐 Add Chinese translation for Tutorial - Security - Get Current User. PR [#2474](https://github.com/tiangolo/fastapi/pull/2474) by [@waynerv](https://github.com/waynerv).
+* 🌐 Add Japanese translation for Deployment - Manually. PR [#2313](https://github.com/tiangolo/fastapi/pull/2313) by [@tokusumi](https://github.com/tokusumi).
+* 🌐 Add Japanese translation for Deployment - Intro. PR [#2309](https://github.com/tiangolo/fastapi/pull/2309) by [@tokusumi](https://github.com/tokusumi).
+* 🌐 Add Japanese translation for FastAPI People. PR [#2254](https://github.com/tiangolo/fastapi/pull/2254) by [@tokusumi](https://github.com/tokusumi).
+* 🌐 Add Japanese translation for Advanced - Path Operation Advanced Configuration. PR [#2124](https://github.com/tiangolo/fastapi/pull/2124) by [@Attsun1031](https://github.com/Attsun1031).
+* 🌐 Add Japanese translation for External Links. PR [#2070](https://github.com/tiangolo/fastapi/pull/2070) by [@tokusumi](https://github.com/tokusumi).
+* 🌐 Add Japanese translation for Tutorial - Body - Updates. PR [#1956](https://github.com/tiangolo/fastapi/pull/1956) by [@SwftAlpc](https://github.com/SwftAlpc).
+* 🌐 Add Japanese translation for Tutorial - Form Data. PR [#1943](https://github.com/tiangolo/fastapi/pull/1943) by [@SwftAlpc](https://github.com/SwftAlpc).
+* 🌐 Add Japanese translation for Tutorial - Cookie Parameters. PR [#1933](https://github.com/tiangolo/fastapi/pull/1933) by [@SwftAlpc](https://github.com/SwftAlpc).
+* 🔧 Update FastAPI People GitHub Sponsors order. PR [#2620](https://github.com/tiangolo/fastapi/pull/2620) by [@tiangolo](https://github.com/tiangolo).
+* 🔧 Update InvestSuite sponsor data. PR [#2608](https://github.com/tiangolo/fastapi/pull/2608) by [@tiangolo](https://github.com/tiangolo).
+* 👥 Update FastAPI People. PR [#2590](https://github.com/tiangolo/fastapi/pull/2590) by [@github-actions[bot]](https://github.com/apps/github-actions).
+## 0.63.0
+
+### Features
+
+* ✨ Improve type annotations, add support for mypy --strict, internally and for external packages. PR [#2547](https://github.com/tiangolo/fastapi/pull/2547) by [@tiangolo](https://github.com/tiangolo).
+
+### Breaking changes
+
+* ⬆️ Upgrade Uvicorn when installing `fastapi[all]` to the latest version including `uvloop`, the new range is `uvicorn[standard] >=0.12.0,<0.14.0`. PR [#2548](https://github.com/tiangolo/fastapi/pull/2548) by [@tiangolo](https://github.com/tiangolo).
+
+### Fixes
+
+* 🐛 PR [#2547](https://github.com/tiangolo/fastapi/pull/2547) (read above) also fixes some false-positive mypy errors with `callbacks` parameters and when using the `OAuth2` class.
+
+### Docs
+
+* 📝 Update Uvicorn installation instructions to use uvicorn[standard] (includes uvloop). PR [#2543](https://github.com/tiangolo/fastapi/pull/2543) by [@tiangolo](https://github.com/tiangolo).
+* 📝 Update title for Deta tutorial. PR [#2466](https://github.com/tiangolo/fastapi/pull/2466) by [@tiangolo](https://github.com/tiangolo).
+* 👥 Update FastAPI People. PR [#2454](https://github.com/tiangolo/fastapi/pull/2454) by [@github-actions[bot]](https://github.com/apps/github-actions).
+
+### Translations
+
+* 🌐 Add docs lang selector widget. PR [#2542](https://github.com/tiangolo/fastapi/pull/2542) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Add Chinese translation for Tutorial - Response Status Code. PR [#2442](https://github.com/tiangolo/fastapi/pull/2442) by [@waynerv](https://github.com/waynerv).
+* 🌐 Start translation of the documentation for the Albanian language. PR [#2516](https://github.com/tiangolo/fastapi/pull/2516) by [@vjanz](https://github.com/vjanz).
+* 🌐 Add Chinese translation for Tutorial - Extra Models. PR [#2416](https://github.com/tiangolo/fastapi/pull/2416) by [@waynerv](https://github.com/waynerv).
+* 🌐 Add Chinese translation for Tutorial - Response Model. PR [#2414](https://github.com/tiangolo/fastapi/pull/2414) by [@waynerv](https://github.com/waynerv).
+* 🌐 Add Chinese translation for Tutorial - Schema Extra Example. PR [#2411](https://github.com/tiangolo/fastapi/pull/2411) by [@maoyibo](https://github.com/maoyibo).
+* 🌐 Add Korean translation for Index. PR [#2192](https://github.com/tiangolo/fastapi/pull/2192) by [@hard-coders](https://github.com/hard-coders).
+* 🌐 Add Japanese translation for Advanced User Guide - Additional Status Codes. PR [#2145](https://github.com/tiangolo/fastapi/pull/2145) by [@Attsun1031](https://github.com/Attsun1031).
+
+### Internal
+
+* 🐛 Fix docs overrides directory for translations. PR [#2541](https://github.com/tiangolo/fastapi/pull/2541) by [@tiangolo](https://github.com/tiangolo).
+* ➖ Remove Typer as a docs building dependency (covered by typer-cli) to fix pip resolver conflicts. PR [#2539](https://github.com/tiangolo/fastapi/pull/2539) by [@tiangolo](https://github.com/tiangolo).
+* ✨ Add newsletter: FastAPI and friends. PR [#2509](https://github.com/tiangolo/fastapi/pull/2509) by [@tiangolo](https://github.com/tiangolo).
+* ✨ Add new Gold Sponsor: InvestSuite 🎉. PR [#2508](https://github.com/tiangolo/fastapi/pull/2508) by [@tiangolo](https://github.com/tiangolo).
+* 🔧 Add issue template configs. PR [#2476](https://github.com/tiangolo/fastapi/pull/2476) by [@tiangolo](https://github.com/tiangolo).
+
 ## 0.62.0
 
 ### Features

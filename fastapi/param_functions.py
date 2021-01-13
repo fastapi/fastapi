@@ -239,13 +239,13 @@ def File(  # noqa: N802
 
 
 def Depends(  # noqa: N802
-    dependency: Optional[Callable] = None, *, use_cache: bool = True
+    dependency: Optional[Callable[..., Any]] = None, *, use_cache: bool = True
 ) -> Any:
     return params.Depends(dependency=dependency, use_cache=use_cache)
 
 
 def Security(  # noqa: N802
-    dependency: Optional[Callable] = None,
+    dependency: Optional[Callable[..., Any]] = None,
     *,
     scopes: Optional[Sequence[str]] = None,
     use_cache: bool = True,
