@@ -71,7 +71,7 @@
 
 你希望将与用户相关的*路径操作*与其他代码分开，以使其井井有条。
 
-但它仍然是同一 **FastAPI** 应用程序/web API的一部分（它是同一「Python 包」的一部分）。
+但它仍然是同一 **FastAPI** 应用程序/web API 的一部分（它是同一「Python 包」的一部分）。
 
 你可以使用 `APIRouter` 为该模块创建*路径操作*。
 
@@ -117,7 +117,7 @@
 ```
 
 !!! tip
-    我们正在使用自创的请求首部来简化此示例。
+    我们正在使用虚构的请求首部来简化此示例。
 
     但在实际情况下，使用集成的[安全性实用工具](./security/index.md){.internal-link target=_blank}会得到更好的效果。
 
@@ -173,16 +173,16 @@ async def read_item(item_id: str):
 
 ...如我们所愿。
 
-* 它们将被仅包含单个字符串 `items` 的一组标签所标记。
+* 它们将被标记为仅包含单个字符串 `"items"` 的标签列表。
     * 这些「标签」对于自动化交互式文档系统（使用 OpenAPI）特别有用。
 * 所有的路径操作都将包含预定义的 `responses`。
-* 所有的这些*路径操作*都将有一组在它们之前计算/执行的 `dependencies`。
+* 所有的这些*路径操作*都将在自身之前计算/执行 `dependencies` 列表。
     * 如果你还在一个具体的*路径操作*中声明了依赖项，**它们也会被执行**。
     * 路由器的依赖项最先执行，然后是[装饰器中的 `dependencies`](dependencies/dependencies-in-path-operation-decorators.md){.internal-link target=_blank}，再然后是普通的参数依赖项。
     * 你还可以添加[具有 `scopes` 的 `Security` 依赖项](../advanced/security/oauth2-scopes.md){.internal-link target=_blank}。
 
 !!! tip
-    在 `APIRouter`中具有 `dependencies` 可以用来，例如，要求对一整组的*路径操作*进行身份认证。即使这些依赖项并没有被单独地添加到每个路径操作中。
+    在 `APIRouter`中具有 `dependencies` 可以用来，例如，对一整组的*路径操作*要求身份认证。即使这些依赖项并没有分别添加到每个路径操作中。
 
 !!! check
     `prefix`、`tags`、`responses` 以及 `dependencies` 参数只是（和其他很多情况一样）**FastAPI** 的一个用于帮助你避免代码重复的功能。
@@ -282,13 +282,13 @@ from ...dependencies import get_token_header
 
 这将是你的应用程序中将所有内容联结在一起的主文件。
 
-并且由于你的大多数逻辑现在都将工作在其自己的特定模块中，因此主文件的内容将非常简单。
+并且由于你的大部分逻辑现在都存在于其自己的特定模块中，因此主文件的内容将非常简单。
 
 ### 导入 `FastAPI`
 
 你可以像平常一样导入并创建一个 `FastAPI` 类。
 
-我们甚至可以声明将与每个 `APIRouter` 的依赖项组合在一起的[全局依赖项](dependencies/global-dependencies.md){.internal-link target=_blank}：
+我们甚至可以声明[全局依赖项](dependencies/global-dependencies.md){.internal-link target=_blank}，它会和每个 `APIRouter` 的依赖项组合在一起：
 
 ```Python hl_lines="1  3  7"
 {!../../../docs_src/bigger_applications/app/main.py!}
@@ -428,7 +428,7 @@ from .routers.users import router
 
 ### 包含一个*路径操作*
 
-我们还可以直接将*路径操作*添加到 FastAPI 应用中。
+我们还可以直接将*路径操作*添加到 `FastAPI` 应用中。
 
 这里我们这样做了...只是为了表明我们可以做到🤷：
 
