@@ -70,6 +70,7 @@ nav:
   - 安全性:
     - tutorial/security/get-current-user.md
     - tutorial/security/simple-oauth2.md
+    - tutorial/security/oauth2-jwt.md
 - 高级用户指南:
   - advanced/index.md
   - advanced/path-operation-advanced-configuration.md
