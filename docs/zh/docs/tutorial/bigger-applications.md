@@ -83,11 +83,11 @@
 {!../../../docs_src/bigger_applications/app/routers/users.py!}
 ```
 
-### *路径操作*和 `APIRouter`
+### 使用 `APIRouter` 的*路径操作* 
 
 然后你可以使用它来声明*路径操作*。
 
-通过与使用 `FastAPI` 类相同的方式使用它：
+使用方式与 `FastAPI` 类相同：
 
 ```Python hl_lines="6  11  16"
 {!../../../docs_src/bigger_applications/app/routers/users.py!}
@@ -121,7 +121,7 @@
 
     但在实际情况下，使用集成的[安全性实用工具](./security/index.md){.internal-link target=_blank}会得到更好的效果。
 
-## 另一个包含 `APIRouter` 的模块
+## 其他使用 `APIRouter` 的模块
 
 假设你在位于 `app/routers/items.py` 的模块中还有专门用于处理应用程序中「项目」的端点。
 
@@ -272,7 +272,7 @@ from ...dependencies import get_token_header
 !!! tip
     最后的这个路径操作将包含标签的组合：`["items"，"custom"]`。
 
-    并且在文档中也会有两个响应，一个为 `404`，一个为 `403`。
+    并且在文档中也会有两个响应，一个用于 `404`，一个用于 `403`。
 
 ## `FastAPI` 主体
 
