@@ -70,7 +70,7 @@ Para este punto, ya esta claro que **FastAPI** incluyendo sus ideas es útil par
 
 Está siendo escogido sobre las alternatives anteriores por cubrir muchos casos de uso de mejor manera.
 
-Muchos desarrolladores y equipos dependen de **FastAPI** para sus proyectos (incluyendo a mi equipo y a mi)
+Muchos desarrolladores y equipos dependen de **FastAPI** para sus proyectos (incluyendo a mi equipo y a mí)
 
 Pero aun, hay muchas mejoras y funciones que están por venir.
 
