@@ -1,79 +1,79 @@
-# History, Design and Future
+# Historia, Diseño y Futuro
 
-Some time ago, <a href="https://github.com/tiangolo/fastapi/issues/3#issuecomment-454956920" class="external-link" target="_blank">a **FastAPI** user asked</a>:
+Hace un tiempo, <a href="https://github.com/tiangolo/fastapi/issues/3#issuecomment-454956920" class="external-link" target="_blank">un usuario de **FastAPI** pregunto</a>:
 
-> What’s the history of this project? It seems to have come from nowhere to awesome in a few weeks [...]
+> Cuál es la historia de este proyecto? Parece ser que vino de ningún lado a increíble en pocas semanas [...]
 
-Here's a little bit of that history.
+Aquí esta un breve fragmento de esa historia.
 
-## Alternatives
+## Alternativas
 
-I have been creating APIs with complex requirements for several years (Machine Learning, distributed systems, asynchronous jobs, NoSQL databases, etc), leading several teams of developers.
+He creado APIs con requerimientos complejos por algunos años (Machine Learning, sistemas distribuidos, tareas asíncronas, bases de datos NoSQL, etc), dirigiendo varios equipos de desarrolladores.
 
-As part of that, I needed to investigate, test and use many alternatives.
+Como parte de eso, necesite investigarlo, hacer pruebas y usar muchas alternativas.
 
-The history of **FastAPI** is in great part the history of its predecessors.
+La historia de **FastAPI** es en gran parte la historia de sus predecesores.
 
-As said in the section [Alternatives](alternatives.md){.internal-link target=_blank}:
+Como mencione en la sección de [Alternativas](alternatives.md){.internal-link target=_blank}:
 
 <blockquote markdown="1">
 
-**FastAPI** wouldn't exist if not for the previous work of others.
+**FastAPI** no existiría si no fuera por el trabajo que otros hicieron previamente.
 
-There have been many tools created before that have helped inspire its creation.
+Han habido muchas herramientas, anteriormente creadas, que han ayudado a inspirar su creación.
 
-I have been avoiding the creation of a new framework for several years. First I tried to solve all the features covered by **FastAPI** using many different frameworks, plug-ins, and tools.
+Había estado evitando la creación de nuevos frameworks por algunos años. Primeramente trate de resolver todas las funciones cubiertas por **FastAPI** usando diferentes frameworks, plug-ins, y herramientas.
 
-But at some point, there was no other option than creating something that provided all these features, taking the best ideas from previous tools, and combining them in the best way possible, using language features that weren't even available before (Python 3.6+ type hints).
+Pero llego un punto, donde no había otra opción mas que crear algo que pudiera tener todas estas funciones, tomando las mejores ideas de las herramientas previas, y combinarlas de la mejor manera posible, usando funciones del lenguaje que no estaban disponibles anteriormente (Python 3.6+ type hints).
 
 </blockquote>
 
-## Investigation
+## Investigación
 
-By using all the previous alternatives I had the chance to learn from all of them, take ideas, and combine them in the best way I could find for myself and the teams of developers I have worked with.
+Al usar todas las herramientas anteriores, tuve la oportunidad de aprender de todas ellas, tomar ideas, y combinarlas de la mejor manera que pude encontrar por mi mismo, y los equipos de desarrolladores con los que he trabajado.
 
-For example, it was clear that ideally it should be based on standard Python type hints.
+Por ejemplo, fue muy claro que idealmente debería de estar basado en los type hints estándar de Python.
 
-Also, the best approach was to use already existing standards.
+Además, la mejor manera fue usar los estándares existentes.
 
-So, before even starting to code **FastAPI**, I spent several months studying the specs for OpenAPI, JSON Schema, OAuth2, etc. Understanding their relationship, overlap, and differences.
+Así que desde antes que comenzara a escribir una linea de código de **FastAPI**, pasé varios meses estudiando las especificaciones para OpenAPI, JSON Schema, OAuth2, etc. Entendiendo su relación, traslape y diferencias.
 
-## Design
+## Diseño
 
-Then I spent some time designing the developer "API" I wanted to have as a user (as a developer using FastAPI).
+Luego estuve un tiempo diseñando la "API" de desarrollo que quería tener como usuario (como desarrollador usando FastAPI)
 
-I tested several ideas in the most popular Python editors: PyCharm, VS Code, Jedi based editors.
+Probé muchas ideas en los editores de Python más populares: PyCharm, VS Code, y editores basados en Jedi.
 
-By the last <a href="https://www.jetbrains.com/research/python-developers-survey-2018/#development-tools" class="external-link" target="_blank">Python Developer Survey</a>, that covers about 80% of the users.
+Según la última <a href="https://www.jetbrains.com/research/python-developers-survey-2018/#development-tools" class="external-link" target="_blank">encuesta de desarrolladores de Python</a>, que cubre alrededor del 80% de los usuarios.
 
-It means that **FastAPI** was specifically tested with the editors used by 80% of the Python developers. And as most of the other editors tend to work similarly, all its benefits should work for virtually all editors.
+Eso quiere decir que **FastAPI** fue especialmente examinada con los editores que usan el 80% de los desarrolladores de Python. Y como la mayoría de los editores tienden a trabajar de forma similar, todos los beneficios deberían de funcionar prácticamente en todos los editores.
 
-That way I could find the best ways to reduce code duplication as much as possible, to have completion everywhere, type and error checks, etc.
+De esa manera, podía encontrar la mejor forma de reducir el código duplicado tanto como fue posible, tener completación en todos lados, revisión de tipos y errores, etc.
 
-All in a way that provided the best development experience for all the developers.
+Todo de una manara que produjera la mejor experiencia de desarrollo para todos los desarrolladores.
 
-## Requirements
+## Requerimientos
 
-After testing several alternatives, I decided that I was going to use <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">**Pydantic**</a> for its advantages.
+Después de revisar distintas alternativas, decidí que iba a usar <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">**Pydantic**</a> por sus ventajas.
 
-Then I contributed to it, to make it fully compliant with JSON Schema, to support different ways to define constraint declarations, and to improve editor support (type checks, autocompletion) based on the tests in several editors.
+Luego contribuí al proyecto, para hacerlo compatible con JSON Schema, soportar diferentes maneras de definir constraint declarations, y mejorar el soporte de editores (revision de tipos, autocompletación) basado en las pruebas con diferentes editores.
 
-During the development, I also contributed to <a href="https://www.starlette.io/" class="external-link" target="_blank">**Starlette**</a>, the other key requirement.
+Durante el desarrollo, también contribuí a <a href="https://www.starlette.io/" class="external-link" target="_blank">**Starlette**</a>, el otro requisito clave.
 
-## Development
+## Desarrollo
 
-By the time I started creating **FastAPI** itself, most of the pieces were already in place, the design was defined, the requirements and tools were ready, and the knowledge about the standards and specifications was clear and fresh.
+Para cuando llegó el día en que comencé a crear propiamente **FastAPI**, todas las piezas ya se encontraban en su lugar, el diseño estaba definido, los requerimientos y herramientas estaban listas, y el conocimiento sobre estándares y especificaciones era claro y freso.
 
-## Future
+## Futuro
 
-By this point, it's already clear that **FastAPI** with its ideas is being useful for many people.
+Para este punto, ya esta claro que **FastAPI** incluyendo sus ideas es útil para mucha gente.
 
-It is being chosen over previous alternatives for suiting many use cases better.
+Está siendo escogido sobre las alternatives anteriores por cubrir muchos casos de uso de mejor manera.
 
-Many developers and teams already depend on **FastAPI** for their projects (including me and my team).
+Muchos desarrolladores y equipos dependen de **FastAPI** para sus proyectos (incluyendo a mi equipo y a mi)
 
-But still, there are many improvements and features to come.
+Pero aun, hay muchas mejoras y funciones que están por venir.
 
-**FastAPI** has a great future ahead.
+**FastAPI** tiene un brillante futuro por delante.
 
-And [your help](help-fastapi.md){.internal-link target=_blank} is greatly appreciated.
+Y [tu ayuda](help-fastapi.md){.internal-link target=_blank} es muy bien recibida.
