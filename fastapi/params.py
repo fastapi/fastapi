@@ -315,7 +315,7 @@ class File(Form):
 
 class Depends:
     def __init__(
-        self, dependency: Optional[Callable] = None, *, use_cache: bool = True
+        self, dependency: Optional[Callable[..., Any]] = None, *, use_cache: bool = True
     ):
         self.dependency = dependency
         self.use_cache = use_cache
@@ -329,7 +329,7 @@ class Depends:
 class Security(Depends):
     def __init__(
         self,
-        dependency: Optional[Callable] = None,
+        dependency: Optional[Callable[..., Any]] = None,
         *,
         scopes: Optional[Sequence[str]] = None,
         use_cache: bool = True,
