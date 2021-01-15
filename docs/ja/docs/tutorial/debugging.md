@@ -87,7 +87,7 @@ from myapp import app
 
 * 「デバッグ」パネルに移動。
 * 「構成の追加...」
-* 「Python」を選択
+* 「Python」を選択。
 * オプション「`Python: Current File (Integrated Terminal)`」を指定してデバッガーを実行。
 
 すると、**FastAPI** コードでサーバーが起動され、ブレークポイントで停止したりするでしょう。
