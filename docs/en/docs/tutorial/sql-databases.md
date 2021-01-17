@@ -384,7 +384,7 @@ The steps are:
 * `commit` the changes to the database (so that they are saved).
 * `refresh` your instance (so that it contains any new data from the database, like the generated ID).
 
-```Python hl_lines="18-24  40-45"
+```Python hl_lines="18-24  48-53"
 {!../../../docs_src/sql_databases/sql_app/crud.py!}
 ```
 
