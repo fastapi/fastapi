@@ -366,7 +366,7 @@ Create utility functions to:
 * Read multiple users.
 * Read a single item.
 
-```Python hl_lines="1  3  6-7  10-11  14-15  36-37"
+```Python hl_lines="1  3  6-7  10-11  14-15  44-45"
 {!../../../docs_src/sql_databases/sql_app/crud.py!}
 ```
 
