@@ -366,7 +366,7 @@ Create utility functions to:
 * Read multiple users.
 * Read a single item.
 
-```Python hl_lines="1  3  6-7  10-11  14-15  27-28"
+```Python hl_lines="1  3  6-7  10-11  14-15  36-37"
 {!../../../docs_src/sql_databases/sql_app/crud.py!}
 ```
 
@@ -384,7 +384,7 @@ The steps are:
 * `commit` the changes to the database (so that they are saved).
 * `refresh` your instance (so that it contains any new data from the database, like the generated ID).
 
-```Python hl_lines="18-24  31-36"
+```Python hl_lines="18-24  40-45"
 {!../../../docs_src/sql_databases/sql_app/crud.py!}
 ```
 
@@ -416,6 +416,36 @@ The steps are:
     And then we pass the extra keyword argument `owner_id` that is not provided by the Pydantic *model*, with:
 
     `Item(**item.dict(), owner_id=user_id)`
+
+
+### Update data
+Now create utility functions to update the existing data.
+The steps are: 
+
+* Find the data entry from the database and retrieve it as  SQLAlchemy model *instance* 
+* Replace the parameter in the model with the input value
+* `add`  the updated instance object to your database session.
+* `commit` the changes to the database (so that they are saved).
+* `refresh` your instance (so that it contains any new data from the database, like the generated ID). 
+
+```Python hl_lines="27-33"
+{!../../../docs_src/sql_databases/sql_app/crud.py!}
+```
+
+
+### Delete data
+Now create utility functions to delete the existing data.
+The steps are: 
+
+* Find the data entry from the database and retrieve it as  SQLAlchemy model *instance* 
+* `delete` that instance object from your database.
+* `commit` the changes to the database (so that they are saved).
+* `refresh` your instance (so that it contains any new data from the database, like the generated ID). 
+
+```Python hl_lines="36-41"
+{!../../../docs_src/sql_databases/sql_app/crud.py!}
+```
+
 
 ## Main **FastAPI** app
 
@@ -479,7 +509,7 @@ And then, when using the dependency in a *path operation function*, we declare i
 
 This will then give us better editor support inside the *path operation function*, because the editor will know that the `db` parameter is of type `Session`:
 
-```Python hl_lines="24  32  38  47  53"
+```Python hl_lines="24  32  38  46  54  62  69"
 {!../../../docs_src/sql_databases/sql_app/main.py!}
 ```
 
@@ -492,7 +522,7 @@ This will then give us better editor support inside the *path operation function
 
 Now, finally, here's the standard **FastAPI** *path operations* code.
 
-```Python hl_lines="23-28  31-34  37-42  45-49  52-55"
+```Python hl_lines="23-28  31-34  37-42  45-50  53-58  61-65  68-71"
 {!../../../docs_src/sql_databases/sql_app/main.py!}
 ```
 

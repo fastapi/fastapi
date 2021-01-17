@@ -24,6 +24,23 @@ def create_user(db: Session, user: schemas.UserCreate):
     return db_user
 
 
+def update_user(db: Session, user_id: int, new_password: str):
+    db_user_to_update = db.query(models.User).filter(models.User.id == user_id).first()
+    db_user_to_update.password = new_password
+    db.add(db_user_to_update)
+    db.commit()
+    db.refresh(db_user_to_update)
+    return db_user_to_update
+
+
+def delete_user(db: Session, user_id: int):
+    db_user_to_delete = db.query(models.User).filter(models.User.id == user_id).first()
+    db.delete(db_user_to_delete)
+    db.commit()
+    db.refresh(db_user_to_delete)
+    return db_user_to_delete
+
+
 def get_items(db: Session, skip: int = 0, limit: int = 100):
     return db.query(models.Item).offset(skip).limit(limit).all()
 
