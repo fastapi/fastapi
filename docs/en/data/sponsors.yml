@@ -6,7 +6,7 @@ gold:
     title: Wealthtech jobs with FastAPI
     img: https://fastapi.tiangolo.com/img/sponsors/investsuite.svg
   - url: https://www.vim.so/?utm_source=FastAPI
-    title: we help you master vim with interactive exercises
+    title: We help you master vim with interactive exercises
     # img: https://fastapi.tiangolo.com/img/sponsors/vimso.png
     img: /img/sponsors/vimso.png
 silver:
