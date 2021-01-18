@@ -7,8 +7,7 @@ gold:
     img: https://fastapi.tiangolo.com/img/sponsors/investsuite.svg
   - url: https://www.vim.so/?utm_source=FastAPI
     title: We help you master vim with interactive exercises
-    # img: https://fastapi.tiangolo.com/img/sponsors/vimso.png
-    img: /img/sponsors/vimso.png
+    img: https://fastapi.tiangolo.com/img/sponsors/vimso.png
 silver:
   - url: https://testdriven.io/courses/tdd-fastapi/
     title: Learn to build high-quality web apps with best practices
