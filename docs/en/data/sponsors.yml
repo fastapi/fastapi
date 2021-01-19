@@ -8,6 +8,9 @@ gold:
   - url: https://www.vim.so/?utm_source=FastAPI
     title: We help you master vim with interactive exercises
     img: https://fastapi.tiangolo.com/img/sponsors/vimso.png
+  - url: https://talkpython.fm/fastapi-sponsor
+    title: FastAPI video courses on demand from people you trust
+    img: https://fastapi.tiangolo.com/img/sponsors/talkpython.png
 silver:
   - url: https://testdriven.io/courses/tdd-fastapi/
     title: Learn to build high-quality web apps with best practices

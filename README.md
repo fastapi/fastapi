@@ -47,6 +47,7 @@ The key features are:
 <a href="https://www.deta.sh/?ref=fastapi" target="_blank" title="The launchpad for all your (team's) ideas"><img src="https://fastapi.tiangolo.com/img/sponsors/deta.svg"></a>
 <a href="https://www.investsuite.com/jobs" target="_blank" title="Wealthtech jobs with FastAPI"><img src="https://fastapi.tiangolo.com/img/sponsors/investsuite.svg"></a>
 <a href="https://www.vim.so/?utm_source=FastAPI" target="_blank" title="We help you master vim with interactive exercises"><img src="https://fastapi.tiangolo.com/img/sponsors/vimso.png"></a>
+<a href="https://talkpython.fm/fastapi-sponsor" target="_blank" title="FastAPI video courses on demand from people you trust"><img src="https://fastapi.tiangolo.com/img/sponsors/talkpython.png"></a>
 
 <!-- /sponsors -->
 
