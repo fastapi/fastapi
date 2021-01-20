@@ -6,10 +6,7 @@ from fastapi.testclient import TestClient
 
 openapi_schema = {
     "openapi": "3.0.2",
-    "info": {
-        "title": "FastAPI",
-        "version": "0.1.0"
-    },
+    "info": {"title": "FastAPI", "version": "0.1.0"},
     "paths": {
         "/users/": {
             "get": {
@@ -18,24 +15,16 @@ openapi_schema = {
                 "parameters": [
                     {
                         "required": False,
-                        "schema": {
-                            "title": "Skip",
-                            "type": "integer",
-                            "default": 0
-                        },
+                        "schema": {"title": "Skip", "type": "integer", "default": 0},
                         "name": "skip",
-                        "in": "query"
+                        "in": "query",
                     },
                     {
                         "required": False,
-                        "schema": {
-                            "title": "Limit",
-                            "type": "integer",
-                            "default": 100
-                        },
+                        "schema": {"title": "Limit", "type": "integer", "default": 100},
                         "name": "limit",
-                        "in": "query"
-                    }
+                        "in": "query",
+                    },
                 ],
                 "responses": {
                     "200": {
@@ -45,12 +34,10 @@ openapi_schema = {
                                 "schema": {
                                     "title": "Response Read Users Users  Get",
                                     "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/User"
-                                    }
+                                    "items": {"$ref": "#/components/schemas/User"},
                                 }
                             }
-                        }
+                        },
                     },
                     "422": {
                         "description": "Validation Error",
@@ -60,9 +47,9 @@ openapi_schema = {
                                     "$ref": "#/components/schemas/HTTPValidationError"
                                 }
                             }
-                        }
-                    }
-                }
+                        },
+                    },
+                },
             },
             "post": {
                 "summary": "Create User",
@@ -70,23 +57,19 @@ openapi_schema = {
                 "requestBody": {
                     "content": {
                         "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/UserCreate"
-                            }
+                            "schema": {"$ref": "#/components/schemas/UserCreate"}
                         }
                     },
-                    "required": True
+                    "required": True,
                 },
                 "responses": {
                     "200": {
                         "description": "Successful Response",
                         "content": {
                             "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/User"
-                                }
+                                "schema": {"$ref": "#/components/schemas/User"}
                             }
-                        }
+                        },
                     },
                     "422": {
                         "description": "Validation Error",
@@ -96,10 +79,10 @@ openapi_schema = {
                                     "$ref": "#/components/schemas/HTTPValidationError"
                                 }
                             }
-                        }
-                    }
-                }
-            }
+                        },
+                    },
+                },
+            },
         },
         "/users/{user_id}": {
             "get": {
@@ -108,12 +91,9 @@ openapi_schema = {
                 "parameters": [
                     {
                         "required": True,
-                        "schema": {
-                            "title": "User Id",
-                            "type": "integer"
-                        },
+                        "schema": {"title": "User Id", "type": "integer"},
                         "name": "user_id",
-                        "in": "path"
+                        "in": "path",
                     }
                 ],
                 "responses": {
@@ -121,11 +101,9 @@ openapi_schema = {
                         "description": "Successful Response",
                         "content": {
                             "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/User"
-                                }
+                                "schema": {"$ref": "#/components/schemas/User"}
                             }
-                        }
+                        },
                     },
                     "422": {
                         "description": "Validation Error",
@@ -135,9 +113,9 @@ openapi_schema = {
                                     "$ref": "#/components/schemas/HTTPValidationError"
                                 }
                             }
-                        }
-                    }
-                }
+                        },
+                    },
+                },
             },
             "put": {
                 "summary": "Update User",
@@ -145,33 +123,25 @@ openapi_schema = {
                 "parameters": [
                     {
                         "required": True,
-                        "schema": {
-                            "title": "User Id",
-                            "type": "integer"
-                        },
+                        "schema": {"title": "User Id", "type": "integer"},
                         "name": "user_id",
-                        "in": "path"
+                        "in": "path",
                     },
                     {
                         "required": True,
-                        "schema": {
-                            "title": "New Password",
-                            "type": "string"
-                        },
+                        "schema": {"title": "New Password", "type": "string"},
                         "name": "new_password",
-                        "in": "query"
-                    }
+                        "in": "query",
+                    },
                 ],
                 "responses": {
                     "200": {
                         "description": "Successful Response",
                         "content": {
                             "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/User"
-                                }
+                                "schema": {"$ref": "#/components/schemas/User"}
                             }
-                        }
+                        },
                     },
                     "422": {
                         "description": "Validation Error",
@@ -181,9 +151,9 @@ openapi_schema = {
                                     "$ref": "#/components/schemas/HTTPValidationError"
                                 }
                             }
-                        }
-                    }
-                }
+                        },
+                    },
+                },
             },
             "delete": {
                 "summary": "Delete User",
@@ -191,12 +161,9 @@ openapi_schema = {
                 "parameters": [
                     {
                         "required": True,
-                        "schema": {
-                            "title": "User Id",
-                            "type": "integer"
-                        },
+                        "schema": {"title": "User Id", "type": "integer"},
                         "name": "user_id",
-                        "in": "path"
+                        "in": "path",
                     }
                 ],
                 "responses": {
@@ -204,11 +171,9 @@ openapi_schema = {
                         "description": "Successful Response",
                         "content": {
                             "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/User"
-                                }
+                                "schema": {"$ref": "#/components/schemas/User"}
                             }
-                        }
+                        },
                     },
                     "422": {
                         "description": "Validation Error",
@@ -218,10 +183,10 @@ openapi_schema = {
                                     "$ref": "#/components/schemas/HTTPValidationError"
                                 }
                             }
-                        }
-                    }
-                }
-            }
+                        },
+                    },
+                },
+            },
         },
         "/users/{user_id}/items/": {
             "post": {
@@ -230,34 +195,27 @@ openapi_schema = {
                 "parameters": [
                     {
                         "required": True,
-                        "schema": {
-                            "title": "User Id",
-                            "type": "integer"
-                        },
+                        "schema": {"title": "User Id", "type": "integer"},
                         "name": "user_id",
-                        "in": "path"
+                        "in": "path",
                     }
                 ],
                 "requestBody": {
                     "content": {
                         "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/ItemCreate"
-                            }
+                            "schema": {"$ref": "#/components/schemas/ItemCreate"}
                         }
                     },
-                    "required": True
+                    "required": True,
                 },
                 "responses": {
                     "200": {
                         "description": "Successful Response",
                         "content": {
                             "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Item"
-                                }
+                                "schema": {"$ref": "#/components/schemas/Item"}
                             }
-                        }
+                        },
                     },
                     "422": {
                         "description": "Validation Error",
@@ -267,9 +225,9 @@ openapi_schema = {
                                     "$ref": "#/components/schemas/HTTPValidationError"
                                 }
                             }
-                        }
-                    }
-                }
+                        },
+                    },
+                },
             }
         },
         "/items/": {
@@ -279,24 +237,16 @@ openapi_schema = {
                 "parameters": [
                     {
                         "required": False,
-                        "schema": {
-                            "title": "Skip",
-                            "type": "integer",
-                            "default": 0
-                        },
+                        "schema": {"title": "Skip", "type": "integer", "default": 0},
                         "name": "skip",
-                        "in": "query"
+                        "in": "query",
                     },
                     {
                         "required": False,
-                        "schema": {
-                            "title": "Limit",
-                            "type": "integer",
-                            "default": 100
-                        },
+                        "schema": {"title": "Limit", "type": "integer", "default": 100},
                         "name": "limit",
-                        "in": "query"
-                    }
+                        "in": "query",
+                    },
                 ],
                 "responses": {
                     "200": {
@@ -306,12 +256,10 @@ openapi_schema = {
                                 "schema": {
                                     "title": "Response Read Items Items  Get",
                                     "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/Item"
-                                    }
+                                    "items": {"$ref": "#/components/schemas/Item"},
                                 }
                             }
-                        }
+                        },
                     },
                     "422": {
                         "description": "Validation Error",
@@ -321,11 +269,11 @@ openapi_schema = {
                                     "$ref": "#/components/schemas/HTTPValidationError"
                                 }
                             }
-                        }
-                    }
-                }
+                        },
+                    },
+                },
             }
-        }
+        },
     },
     "components": {
         "schemas": {
@@ -336,133 +284,71 @@ openapi_schema = {
                     "detail": {
                         "title": "Detail",
                         "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/ValidationError"
-                        }
+                        "items": {"$ref": "#/components/schemas/ValidationError"},
                     }
-                }
+                },
             },
             "Item": {
                 "title": "Item",
-                "required": [
-                    "title",
-                    "id",
-                    "owner_id"
-                ],
+                "required": ["title", "id", "owner_id"],
                 "type": "object",
                 "properties": {
-                    "title": {
-                        "title": "Title",
-                        "type": "string"
-                    },
-                    "description": {
-                        "title": "Description",
-                        "type": "string"
-                    },
-                    "id": {
-                        "title": "Id",
-                        "type": "integer"
-                    },
-                    "owner_id": {
-                        "title": "Owner Id",
-                        "type": "integer"
-                    }
-                }
+                    "title": {"title": "Title", "type": "string"},
+                    "description": {"title": "Description", "type": "string"},
+                    "id": {"title": "Id", "type": "integer"},
+                    "owner_id": {"title": "Owner Id", "type": "integer"},
+                },
             },
             "ItemCreate": {
                 "title": "ItemCreate",
-                "required": [
-                    "title"
-                ],
+                "required": ["title"],
                 "type": "object",
                 "properties": {
-                    "title": {
-                        "title": "Title",
-                        "type": "string"
-                    },
-                    "description": {
-                        "title": "Description",
-                        "type": "string"
-                    }
-                }
+                    "title": {"title": "Title", "type": "string"},
+                    "description": {"title": "Description", "type": "string"},
+                },
             },
             "User": {
                 "title": "User",
-                "required": [
-                    "email",
-                    "id",
-                    "is_active"
-                ],
+                "required": ["email", "id", "is_active"],
                 "type": "object",
                 "properties": {
-                    "email": {
-                        "title": "Email",
-                        "type": "string"
-                    },
-                    "id": {
-                        "title": "Id",
-                        "type": "integer"
-                    },
-                    "is_active": {
-                        "title": "Is Active",
-                        "type": "boolean"
-                    },
+                    "email": {"title": "Email", "type": "string"},
+                    "id": {"title": "Id", "type": "integer"},
+                    "is_active": {"title": "Is Active", "type": "boolean"},
                     "items": {
                         "title": "Items",
                         "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/Item"
-                        },
-                        "default": []
-                    }
-                }
+                        "items": {"$ref": "#/components/schemas/Item"},
+                        "default": [],
+                    },
+                },
             },
             "UserCreate": {
                 "title": "UserCreate",
-                "required": [
-                    "email",
-                    "password"
-                ],
+                "required": ["email", "password"],
                 "type": "object",
                 "properties": {
-                    "email": {
-                        "title": "Email",
-                        "type": "string"
-                    },
-                    "password": {
-                        "title": "Password",
-                        "type": "string"
-                    }
-                }
+                    "email": {"title": "Email", "type": "string"},
+                    "password": {"title": "Password", "type": "string"},
+                },
             },
             "ValidationError": {
                 "title": "ValidationError",
-                "required": [
-                    "loc",
-                    "msg",
-                    "type"
-                ],
+                "required": ["loc", "msg", "type"],
                 "type": "object",
                 "properties": {
                     "loc": {
                         "title": "Location",
                         "type": "array",
-                        "items": {
-                            "type": "string"
-                        }
+                        "items": {"type": "string"},
                     },
-                    "msg": {
-                        "title": "Message",
-                        "type": "string"
-                    },
-                    "type": {
-                        "title": "Error Type",
-                        "type": "string"
-                    }
-                }
-            }
+                    "msg": {"title": "Message", "type": "string"},
+                    "type": {"title": "Error Type", "type": "string"},
+                },
+            },
         }
-    }
+    },
 }
 
 
