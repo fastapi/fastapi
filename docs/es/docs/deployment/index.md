@@ -1,7 +1,7 @@
-# Deployment - Intro
+# Deployment  - Introducción
 
-Deploying a **FastAPI** application is relatively easy.
+Hacer el deployment o desplegado de una aplicación con **FastAPI** es relativamente sencillo.
 
-There are several ways to do it depending on your specific use case and the tools that you use.
+Existen bastantes maneras de hacerlo dependiendo del caso de uso específico y de las herramientas que usas.
 
-You will see more details to have in mind and some of the techniques to do it in the next sections.
+Verás mas detalles a tener en cuenta y algunas de las técnicas para hacerlo en las siguientes secciones.
