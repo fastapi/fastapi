@@ -6,10 +6,37 @@ from fastapi.testclient import TestClient
 
 openapi_schema = {
     "openapi": "3.0.2",
-    "info": {"title": "FastAPI", "version": "0.1.0"},
+    "info": {
+        "title": "FastAPI",
+        "version": "0.1.0"
+    },
     "paths": {
         "/users/": {
             "get": {
+                "summary": "Read Users",
+                "operationId": "read_users_users__get",
+                "parameters": [
+                    {
+                        "required": False,
+                        "schema": {
+                            "title": "Skip",
+                            "type": "integer",
+                            "default": 0
+                        },
+                        "name": "skip",
+                        "in": "query"
+                    },
+                    {
+                        "required": False,
+                        "schema": {
+                            "title": "Limit",
+                            "type": "integer",
+                            "default": 100
+                        },
+                        "name": "limit",
+                        "in": "query"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Successful Response",
@@ -18,10 +45,12 @@ openapi_schema = {
                                 "schema": {
                                     "title": "Response Read Users Users  Get",
                                     "type": "array",
-                                    "items": {"$ref": "#/components/schemas/User"},
+                                    "items": {
+                                        "$ref": "#/components/schemas/User"
+                                    }
                                 }
                             }
-                        },
+                        }
                     },
                     "422": {
                         "description": "Validation Error",
@@ -31,69 +60,33 @@ openapi_schema = {
                                     "$ref": "#/components/schemas/HTTPValidationError"
                                 }
                             }
-                        },
-                    },
-                },
-                "summary": "Read Users",
-                "operationId": "read_users_users__get",
-                "parameters": [
-                    {
-                        "required": False,
-                        "schema": {"title": "Skip", "type": "integer", "default": 0},
-                        "name": "skip",
-                        "in": "query",
-                    },
-                    {
-                        "required": False,
-                        "schema": {"title": "Limit", "type": "integer", "default": 100},
-                        "name": "limit",
-                        "in": "query",
-                    },
-                ],
+                        }
+                    }
+                }
             },
             "post": {
-                "responses": {
-                    "200": {
-                        "description": "Successful Response",
-                        "content": {
-                            "application/json": {
-                                "schema": {"$ref": "#/components/schemas/User"}
-                            }
-                        },
-                    },
-                    "422": {
-                        "description": "Validation Error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
-                                }
-                            }
-                        },
-                    },
-                },
                 "summary": "Create User",
                 "operationId": "create_user_users__post",
                 "requestBody": {
                     "content": {
                         "application/json": {
-                            "schema": {"$ref": "#/components/schemas/UserCreate"}
+                            "schema": {
+                                "$ref": "#/components/schemas/UserCreate"
+                            }
                         }
                     },
-                    "required": True,
+                    "required": True
                 },
-            },
-        },
-        "/users/{user_id}": {
-            "get": {
                 "responses": {
                     "200": {
                         "description": "Successful Response",
                         "content": {
                             "application/json": {
-                                "schema": {"$ref": "#/components/schemas/User"}
+                                "schema": {
+                                    "$ref": "#/components/schemas/User"
+                                }
                             }
-                        },
+                        }
                     },
                     "422": {
                         "description": "Validation Error",
@@ -103,31 +96,36 @@ openapi_schema = {
                                     "$ref": "#/components/schemas/HTTPValidationError"
                                 }
                             }
-                        },
-                    },
-                },
+                        }
+                    }
+                }
+            }
+        },
+        "/users/{user_id}": {
+            "get": {
                 "summary": "Read User",
                 "operationId": "read_user_users__user_id__get",
                 "parameters": [
                     {
                         "required": True,
-                        "schema": {"title": "User Id", "type": "integer"},
+                        "schema": {
+                            "title": "User Id",
+                            "type": "integer"
+                        },
                         "name": "user_id",
-                        "in": "path",
+                        "in": "path"
                     }
                 ],
-            }
-        },
-        "/users/{user_id}/items/": {
-            "post": {
                 "responses": {
                     "200": {
                         "description": "Successful Response",
                         "content": {
                             "application/json": {
-                                "schema": {"$ref": "#/components/schemas/Item"}
+                                "schema": {
+                                    "$ref": "#/components/schemas/User"
+                                }
                             }
-                        },
+                        }
                     },
                     "422": {
                         "description": "Validation Error",
@@ -137,31 +135,169 @@ openapi_schema = {
                                     "$ref": "#/components/schemas/HTTPValidationError"
                                 }
                             }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "summary": "Update User",
+                "operationId": "update_user_users__user_id__put",
+                "parameters": [
+                    {
+                        "required": True,
+                        "schema": {
+                            "title": "User Id",
+                            "type": "integer"
                         },
+                        "name": "user_id",
+                        "in": "path"
                     },
-                },
+                    {
+                        "required": True,
+                        "schema": {
+                            "title": "New Password",
+                            "type": "string"
+                        },
+                        "name": "new_password",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/User"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete User",
+                "operationId": "delete_user_users__user_id__delete",
+                "parameters": [
+                    {
+                        "required": True,
+                        "schema": {
+                            "title": "User Id",
+                            "type": "integer"
+                        },
+                        "name": "user_id",
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/User"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/users/{user_id}/items/": {
+            "post": {
                 "summary": "Create Item For User",
                 "operationId": "create_item_for_user_users__user_id__items__post",
                 "parameters": [
                     {
                         "required": True,
-                        "schema": {"title": "User Id", "type": "integer"},
+                        "schema": {
+                            "title": "User Id",
+                            "type": "integer"
+                        },
                         "name": "user_id",
-                        "in": "path",
+                        "in": "path"
                     }
                 ],
                 "requestBody": {
                     "content": {
                         "application/json": {
-                            "schema": {"$ref": "#/components/schemas/ItemCreate"}
+                            "schema": {
+                                "$ref": "#/components/schemas/ItemCreate"
+                            }
                         }
                     },
-                    "required": True,
+                    "required": True
                 },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Item"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
             }
         },
         "/items/": {
             "get": {
+                "summary": "Read Items",
+                "operationId": "read_items_items__get",
+                "parameters": [
+                    {
+                        "required": False,
+                        "schema": {
+                            "title": "Skip",
+                            "type": "integer",
+                            "default": 0
+                        },
+                        "name": "skip",
+                        "in": "query"
+                    },
+                    {
+                        "required": False,
+                        "schema": {
+                            "title": "Limit",
+                            "type": "integer",
+                            "default": 100
+                        },
+                        "name": "limit",
+                        "in": "query"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Successful Response",
@@ -170,10 +306,12 @@ openapi_schema = {
                                 "schema": {
                                     "title": "Response Read Items Items  Get",
                                     "type": "array",
-                                    "items": {"$ref": "#/components/schemas/Item"},
+                                    "items": {
+                                        "$ref": "#/components/schemas/Item"
+                                    }
                                 }
                             }
-                        },
+                        }
                     },
                     "422": {
                         "description": "Validation Error",
@@ -183,89 +321,14 @@ openapi_schema = {
                                     "$ref": "#/components/schemas/HTTPValidationError"
                                 }
                             }
-                        },
-                    },
-                },
-                "summary": "Read Items",
-                "operationId": "read_items_items__get",
-                "parameters": [
-                    {
-                        "required": False,
-                        "schema": {"title": "Skip", "type": "integer", "default": 0},
-                        "name": "skip",
-                        "in": "query",
-                    },
-                    {
-                        "required": False,
-                        "schema": {"title": "Limit", "type": "integer", "default": 100},
-                        "name": "limit",
-                        "in": "query",
-                    },
-                ],
+                        }
+                    }
+                }
             }
-        },
+        }
     },
     "components": {
         "schemas": {
-            "ItemCreate": {
-                "title": "ItemCreate",
-                "required": ["title"],
-                "type": "object",
-                "properties": {
-                    "title": {"title": "Title", "type": "string"},
-                    "description": {"title": "Description", "type": "string"},
-                },
-            },
-            "Item": {
-                "title": "Item",
-                "required": ["title", "id", "owner_id"],
-                "type": "object",
-                "properties": {
-                    "title": {"title": "Title", "type": "string"},
-                    "description": {"title": "Description", "type": "string"},
-                    "id": {"title": "Id", "type": "integer"},
-                    "owner_id": {"title": "Owner Id", "type": "integer"},
-                },
-            },
-            "User": {
-                "title": "User",
-                "required": ["email", "id", "is_active"],
-                "type": "object",
-                "properties": {
-                    "email": {"title": "Email", "type": "string"},
-                    "id": {"title": "Id", "type": "integer"},
-                    "is_active": {"title": "Is Active", "type": "boolean"},
-                    "items": {
-                        "title": "Items",
-                        "type": "array",
-                        "items": {"$ref": "#/components/schemas/Item"},
-                        "default": [],
-                    },
-                },
-            },
-            "UserCreate": {
-                "title": "UserCreate",
-                "required": ["email", "password"],
-                "type": "object",
-                "properties": {
-                    "email": {"title": "Email", "type": "string"},
-                    "password": {"title": "Password", "type": "string"},
-                },
-            },
-            "ValidationError": {
-                "title": "ValidationError",
-                "required": ["loc", "msg", "type"],
-                "type": "object",
-                "properties": {
-                    "loc": {
-                        "title": "Location",
-                        "type": "array",
-                        "items": {"type": "string"},
-                    },
-                    "msg": {"title": "Message", "type": "string"},
-                    "type": {"title": "Error Type", "type": "string"},
-                },
-            },
             "HTTPValidationError": {
                 "title": "HTTPValidationError",
                 "type": "object",
@@ -273,12 +336,133 @@ openapi_schema = {
                     "detail": {
                         "title": "Detail",
                         "type": "array",
-                        "items": {"$ref": "#/components/schemas/ValidationError"},
+                        "items": {
+                            "$ref": "#/components/schemas/ValidationError"
+                        }
                     }
-                },
+                }
             },
+            "Item": {
+                "title": "Item",
+                "required": [
+                    "title",
+                    "id",
+                    "owner_id"
+                ],
+                "type": "object",
+                "properties": {
+                    "title": {
+                        "title": "Title",
+                        "type": "string"
+                    },
+                    "description": {
+                        "title": "Description",
+                        "type": "string"
+                    },
+                    "id": {
+                        "title": "Id",
+                        "type": "integer"
+                    },
+                    "owner_id": {
+                        "title": "Owner Id",
+                        "type": "integer"
+                    }
+                }
+            },
+            "ItemCreate": {
+                "title": "ItemCreate",
+                "required": [
+                    "title"
+                ],
+                "type": "object",
+                "properties": {
+                    "title": {
+                        "title": "Title",
+                        "type": "string"
+                    },
+                    "description": {
+                        "title": "Description",
+                        "type": "string"
+                    }
+                }
+            },
+            "User": {
+                "title": "User",
+                "required": [
+                    "email",
+                    "id",
+                    "is_active"
+                ],
+                "type": "object",
+                "properties": {
+                    "email": {
+                        "title": "Email",
+                        "type": "string"
+                    },
+                    "id": {
+                        "title": "Id",
+                        "type": "integer"
+                    },
+                    "is_active": {
+                        "title": "Is Active",
+                        "type": "boolean"
+                    },
+                    "items": {
+                        "title": "Items",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Item"
+                        },
+                        "default": []
+                    }
+                }
+            },
+            "UserCreate": {
+                "title": "UserCreate",
+                "required": [
+                    "email",
+                    "password"
+                ],
+                "type": "object",
+                "properties": {
+                    "email": {
+                        "title": "Email",
+                        "type": "string"
+                    },
+                    "password": {
+                        "title": "Password",
+                        "type": "string"
+                    }
+                }
+            },
+            "ValidationError": {
+                "title": "ValidationError",
+                "required": [
+                    "loc",
+                    "msg",
+                    "type"
+                ],
+                "type": "object",
+                "properties": {
+                    "loc": {
+                        "title": "Location",
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "msg": {
+                        "title": "Message",
+                        "type": "string"
+                    },
+                    "type": {
+                        "title": "Error Type",
+                        "type": "string"
+                    }
+                }
+            }
         }
-    },
+    }
 }
 
 
