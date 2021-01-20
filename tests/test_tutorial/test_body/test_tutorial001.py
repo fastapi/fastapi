@@ -188,3 +188,37 @@ def test_post_broken_body():
         response = client.post("/items/", json={"test": "test2"})
         assert response.status_code == 400, response.text
     assert response.json() == {"detail": "There was an error parsing the body"}
+
+
+def test_explicit_content_type():
+    data = '{"name": "Foo", "price": 50.5}'
+    response = client.post(
+        "/items/", data=data, headers={"Content-Type": "applications/json"}
+    )
+    assert response.status_code == 200, response.text
+
+    data = '{"name": "Foo", "price": 50.5}'
+    response = client.post(
+        "/items/", data=data, headers={"Content-Type": "applications/geo+json"}
+    )
+    assert response.status_code == 200, response.text
+
+    invalid_dict = {
+        "detail": [
+            {
+                "loc": ["body"],
+                "msg": "value is not a valid dict",
+                "type": "type_error.dict",
+            }
+        ]
+    }
+
+    response = client.post("/items/", data=data, headers={"Content-Type": "text/plain"})
+    assert response.status_code == 422, response.text
+    assert response.json() == invalid_dict
+
+    response = client.post(
+        "/items/", data=data, headers={"Content-Type": "application/geo+json-seq"}
+    )
+    assert response.status_code == 422, response.text
+    assert response.json() == invalid_dict
