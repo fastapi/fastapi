@@ -51,6 +51,7 @@ nav:
   - uk: /uk/
   - zh: /zh/
 - features.md
+- fastapi-people.md
 - チュートリアル - ユーザーガイド:
   - tutorial/index.md
   - tutorial/first-steps.md
@@ -58,17 +59,26 @@ nav:
   - tutorial/query-params.md
   - tutorial/body.md
   - tutorial/query-params-str-validations.md
+  - tutorial/cookie-params.md
   - tutorial/header-params.md
+  - tutorial/request-forms.md
+  - tutorial/body-updates.md
   - セキュリティ:
     - tutorial/security/first-steps.md
   - tutorial/cors.md
 - 高度なユーザーガイド:
+  - advanced/path-operation-advanced-configuration.md
   - advanced/additional-status-codes.md
   - advanced/response-directly.md
   - advanced/custom-response.md
+- デプロイ:
+  - deployment/index.md
+  - deployment/deta.md
+  - deployment/manually.md
 - project-generation.md
 - alternatives.md
 - history-design-future.md
+- external-links.md
 - benchmarks.md
 - help-fastapi.md
 - contributing.md
@@ -91,7 +101,9 @@ markdown_extensions:
 extra:
   social:
   - icon: fontawesome/brands/github-alt
-    link: https://github.com/tiangolo/typer
+    link: https://github.com/tiangolo/fastapi
+  - icon: fontawesome/brands/discord
+    link: https://discord.gg/VQjSZaeJmf
   - icon: fontawesome/brands/twitter
     link: https://twitter.com/tiangolo
   - icon: fontawesome/brands/linkedin
