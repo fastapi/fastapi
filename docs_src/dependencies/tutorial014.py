@@ -1,6 +1,5 @@
+from fastapi import Depends, FastAPI
 from starlette.responses import PlainTextResponse
-
-from fastapi import Depends, HTTPException, FastAPI
 
 app = FastAPI()
 

@@ -6,7 +6,8 @@ app = FastAPI()
 @app.exception_handler(DBSessionException)
 async def validation_exception_handler(request, exc):
     return HTTPException(
-        status_code=503, detail=f"Database not available: {exc}",
+        status_code=503,
+        detail=f"Database not available: {exc}",
     )
 
 
