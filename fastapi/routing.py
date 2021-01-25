@@ -218,30 +218,23 @@ def get_request_handler(
             raise HTTPException(
                 status_code=400, detail="There was an error parsing the body"
             ) from e
-        if AsyncExitStack:
-            exception: Optional[Exception] = None
-            async with AsyncExitStack() as end_before_response_stack:
-                request.scope[
-                    "fastapi_astack_before_response"
-                ] = end_before_response_stack
-                try:
-                    solved_endpoint = await handle_endpoint(
-                        request,
-                        dependant,
-                        body,
-                        dependency_overrides_provider,
-                        is_coroutine,
-                    )
-                except Exception as e:
-                    exception = e
-                    raise
-            # If exception was handled in dependency after yield - raise it again
-            if exception:
-                raise exception
-        else:
-            solved_endpoint = await handle_endpoint(
-                request, dependant, body, dependency_overrides_provider, is_coroutine
-            )
+        exception: Optional[Exception] = None
+        async with AsyncExitStack() as end_before_response_stack:
+            request.scope["fastapi_astack_before_response"] = end_before_response_stack
+            try:
+                solved_endpoint = await handle_endpoint(
+                    request,
+                    dependant,
+                    body,
+                    dependency_overrides_provider,
+                    is_coroutine,
+                )
+            except Exception as e:
+                exception = e
+                raise
+        # If exception was handled in dependency after yield - raise it again
+        if exception:
+            raise exception
         raw_response, background_tasks, sub_response = solved_endpoint
         if isinstance(raw_response, Response):
             if raw_response.background is None:
