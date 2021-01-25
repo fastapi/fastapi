@@ -156,6 +156,7 @@ def get_sub_dependant(
         name=name,
         security_scopes=security_scopes,
         use_cache=depends.use_cache,
+        exit_before_response=depends.exit_before_response,
     )
     if security_requirement:
         sub_dependant.security_requirements.append(security_requirement)
@@ -283,13 +284,20 @@ def get_dependant(
     name: Optional[str] = None,
     security_scopes: Optional[List[str]] = None,
     use_cache: bool = True,
+    exit_before_response: bool = False,
 ) -> Dependant:
     path_param_names = get_path_param_names(path)
     endpoint_signature = get_typed_signature(call)
     signature_params = endpoint_signature.parameters
     if is_gen_callable(call) or is_async_gen_callable(call):
         check_dependency_contextmanagers()
-    dependant = Dependant(call=call, name=name, path=path, use_cache=use_cache)
+    dependant = Dependant(
+        call=call,
+        name=name,
+        path=path,
+        use_cache=use_cache,
+        exit_before_response=exit_before_response,
+    )
     for param_name, param in signature_params.items():
         if isinstance(param.default, params.Depends):
             sub_dependant = get_param_sub_dependant(
@@ -536,7 +544,11 @@ async def solve_dependencies(
         if sub_dependant.use_cache and sub_dependant.cache_key in dependency_cache:
             solved = dependency_cache[sub_dependant.cache_key]
         elif is_gen_callable(call) or is_async_gen_callable(call):
-            stack = request.scope.get("fastapi_astack")
+            if sub_dependant.exit_before_response:
+                stack = request.scope.get("fastapi_astack_before_response")
+            else:
+                stack = request.scope.get("fastapi_astack")
+
             if stack is None:
                 raise RuntimeError(
                     async_contextmanager_dependencies_error

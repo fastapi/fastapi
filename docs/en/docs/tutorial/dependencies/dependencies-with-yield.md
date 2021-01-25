@@ -106,7 +106,14 @@ You can have any combinations of dependencies that you want.
 
 You saw that you can use dependencies with `yield` and have `try` blocks that catch exceptions.
 
-It might be tempting to raise an `HTTPException` or similar in the exit code, after the `yield`. But **it won't work**.
+It might be tempting to raise an `HTTPException` or similar in the exit code, after the `yield`. It will work only if you set your dependencies property `exit_before_response` to `True`.
+
+```Python hl_lines="11"
+{!../../../docs_src/dependencies/tutorial016.py!}
+```
+
+### Using `exit_before_response=False`
+This is the default setting, there is no need to set it explicitly.
 
 The exit code in dependencies with `yield` is executed *after* [Exception Handlers](../handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank}. There's nothing catching exceptions thrown by your dependencies in the exit code (after the `yield`).
 
@@ -174,6 +181,37 @@ participant tasks as Background tasks
     This diagram shows `HTTPException`, but you could also raise any other exception for which you create a [Custom Exception Handler](../handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank}. And that exception would be handled by that custom exception handler instead of the dependency exit code.
 
     But if you raise an exception that is not handled by the exception handlers, it will be handled by the exit code of the dependency.
+
+### Using `exit_before_response=True`
+This has to be set explicitly and it is possible to raise exception after `yield`.
+
+```Python hl_lines="8 12"
+{!../../../docs_src/dependencies/tutorial013.py!}
+```
+The exit code in dependencies with `yield` is executed *before* [Exception Handlers](../handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank}.
+
+So, if you raise an `HTTPException` after the `yield`, the default (or any custom) exception handler that catches `HTTPException`s and returns an HTTP 400 response will be there to catch it.
+
+Dependencies exit code that runs before response **can not change response**! They can only raise and handle exceptions.
+
+If you wrap your `yield` expression in dependency with `try/except` to catch exception that is raised in endpoints body it will be caught and processed as normal. 
+Exception will also be reraised, so you can also set [Exception Handlers](../handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank} to catch it further.
+
+```Python hl_lines="12 13 14 20 21 29"
+{!../../../docs_src/dependencies/tutorial014.py!}
+```
+
+!!! info
+    Both `except` part in `dependency` and exception handler of `MyCustomException` will be executed.
+
+Now, for example, you can use your `DBSession` to `commit` transaction and if it fails do the `rollback` and return proper response.
+
+```Python hl_lines="19 20 21 22 23"
+{!../../../docs_src/dependencies/tutorial015.py!}
+```
+
+!!! tip
+    You don't have to open and close transaction manually, dependency does it for you before response!
 
 ## Context Managers
 

@@ -239,9 +239,16 @@ def File(  # noqa: N802
 
 
 def Depends(  # noqa: N802
-    dependency: Optional[Callable[..., Any]] = None, *, use_cache: bool = True
+    dependency: Optional[Callable[..., Any]] = None,
+    *,
+    use_cache: bool = True,
+    exit_before_response: bool = False,
 ) -> Any:
-    return params.Depends(dependency=dependency, use_cache=use_cache)
+    return params.Depends(
+        dependency=dependency,
+        use_cache=use_cache,
+        exit_before_response=exit_before_response,
+    )
 
 
 def Security(  # noqa: N802

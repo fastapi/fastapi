@@ -46,3 +46,7 @@ def test_depends_repr():
     assert (
         repr(Depends(get_user, use_cache=False)) == "Depends(get_user, use_cache=False)"
     )
+    assert (
+        repr(Depends(get_user, use_cache=False, exit_before_response=True))
+        == "Depends(get_user, use_cache=False, exit_before_response=True)"
+    )
