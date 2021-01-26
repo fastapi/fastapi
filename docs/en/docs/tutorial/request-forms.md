@@ -35,6 +35,22 @@ With `Form` you can declare the same metadata and validation as with `Body` (and
 !!! tip
     To declare form bodies, you need to use `Form` explicitly, because without it the parameters would be interpreted as query parameters or body (JSON) parameters.
 
+## Alias parameters
+
+Imagine that you want the parameter to be `user-name`.
+
+But `user-name` is not a valid Python variable name.
+
+The closest would be `user_name`.
+
+But you still need it to be exactly `user-name`...
+
+Then you can declare an `alias`, and that alias is what will be used to find the parameter value:
+
+```Python hl_lines="8"
+{!../../../docs_src/request_forms/tutorial002.py!}
+```
+
 ## About "Form Fields"
 
 The way HTML forms (`<form></form>`) sends the data to the server normally uses a "special" encoding for that data, it's different from JSON.
