@@ -260,6 +260,4 @@ You can import and re-use the default exception handlers from `fastapi.exception
 {!../../../docs_src/handling_errors/tutorial006.py!}
 ```
 
-In this example, you are just `print`ing the error with a very expressive message.
-
-But you get the idea, you can use the exception and then just re-use the default exception handlers.
+In this example you are just `print`ing the error with a very expressive message, but you get the idea. You can use the exception and then just re-use the default exception handlers.
