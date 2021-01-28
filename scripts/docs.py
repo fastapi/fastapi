@@ -4,7 +4,7 @@ import shutil
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 from multiprocessing import Pool
 from pathlib import Path
-from typing import Dict, List, Optional, Tuple
+from typing import Dict, List, Optional, Set, Tuple
 
 import mkdocs.commands.build
 import mkdocs.commands.serve
@@ -154,9 +154,8 @@ def build_lang(
     use_nav = nav[2:]
     lang_use_nav = lang_nav[2:]
     file_to_nav = get_file_to_nav_map(use_nav)
-    sections = get_sections(use_nav)
-    lang_file_to_nav = get_file_to_nav_map(lang_use_nav)
     use_lang_file_to_nav = get_file_to_nav_map(lang_use_nav)
+    section_en_to_lang = get_section_en_to_lang(use_nav, lang_use_nav)
     for file in file_to_nav:
         file_path = Path(file)
         lang_file_path: Path = build_lang_path / "docs" / file_path
@@ -169,15 +168,7 @@ def build_lang(
             file_key = file_to_nav[file]
             use_lang_file_to_nav[file] = file_key
             if file_key:
-                composite_key = ()
-                new_key = ()
-                for key_part in file_key:
-                    composite_key += (key_part,)
-                    key_first_file = sections[composite_key]
-                    if key_first_file in lang_file_to_nav:
-                        new_key = lang_file_to_nav[key_first_file]
-                    else:
-                        new_key += (key_part,)
+                new_key = section_en_to_lang[file_key]
                 use_lang_file_to_nav[file] = new_key
     key_to_section = {(): []}
     for file, orig_file_key in file_to_nav.items():
@@ -437,6 +428,52 @@ def get_sections(nav: list) -> Dict[Tuple[str, ...], str]:
                 new_key = (item_key,) + k
                 sections[new_key] = v
     return sections
+
+
+def get_sections_all(nav: list) -> Dict[Tuple[str, ...], Set[str]]:
+    sections = {}
+    for item in nav:
+        if type(item) is str:
+            continue
+        elif type(item) is dict:
+            item_key = list(item.keys())[0]
+            sub_nav = item[item_key]
+            sections[(item_key,)] = set(
+                [sub for sub in sub_nav if isinstance(sub, str)]
+            )
+            sub_sections = get_sections_all(sub_nav)
+            for k, v in sub_sections.items():
+                new_key = (item_key,) + k
+                sections[new_key] = v
+    return sections
+
+
+def get_section_en_to_lang(
+    use_nav: list, lang_use_nav: list
+) -> Dict[Tuple[str, ...], Tuple[str, ...]]:
+    sections_set = get_sections_all(use_nav)
+    lang_sections_set = get_sections_all(lang_use_nav)
+    # Translate English section name, when translated section contains
+    # subset of files in original section.
+    section_en_to_lang = {section: section for section in sections_set.keys()}
+    for en_section, file_set in sections_set.items():
+        for lang_section, lang_file_set in lang_sections_set.items():
+            if lang_file_set.issubset(file_set):
+                section_en_to_lang[en_section] = lang_section
+
+    for en, lang in section_en_to_lang.items():
+        if len(en) >= 2 and en == lang:
+            # Replace parent section name for not translated subsection.
+            sub_part = ()
+            new_part = ()
+            for idx, en_part in enumerate(en[:-1]):
+                sub_part += (en_part,)
+                if section_en_to_lang.get(sub_part):
+                    new_part = section_en_to_lang.get(sub_part)
+                    new_part += en[idx + 1 :]
+            if new_part:
+                section_en_to_lang[en] = new_part
+    return section_en_to_lang
 
 
 if __name__ == "__main__":
