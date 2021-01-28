@@ -57,6 +57,8 @@ nav:
 - Guía de Usuario Avanzada:
   - advanced/index.md
 - async.md
+- Deployment:
+  - deployment/docker.md
 markdown_extensions:
 - toc:
     permalink: true
