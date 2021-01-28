@@ -1,29 +1,29 @@
-# Deploy with Docker
+# Deploy con Docker
 
-In this section you'll see instructions and links to guides to know how to:
+En esta sección verás instrucciones y enlaces a guías para saber como:
 
-* Make your **FastAPI** application a Docker image/container with maximum performance. In about **5 min**.
-* (Optionally) understand what you, as a developer, need to know about HTTPS.
-* Set up a Docker Swarm mode cluster with automatic HTTPS, even on a simple $5 USD/month server. In about **20 min**.
-* Generate and deploy a full **FastAPI** application, using your Docker Swarm cluster, with HTTPS, etc. In about **10 min**.
+* Hacer de tu app con **FastAPI**, una imagen/contenedor de Docker con un máximo rendimiento. En cerca de **5 min**.
+* (Opcionalmente) entender que, como desarrollador, necesitas conocer sobre HTTPS.
+* Configurar un cluster de Docker Swarm mode con HTTPS automatico, incluso en un simple servidor por $5 USD/mes. En cerca de **20 min**.
+* Generar y desplegar en toda su totalidad una aplicación con **FastAPI**, usando tu cluster de Docker Swarm, con HTTPS, etc. En cerca de **10 min**.
 
-You can use <a href="https://www.docker.com/" class="external-link" target="_blank">**Docker**</a> for deployment. It has several advantages like security, replicability, development simplicity, etc.
+Usar <a href="https://www.docker.com/" class="external-link" target="_blank">**Docker**</a> para el deployment, tiene algunas ventajas como seguridad, replicabilidad, simplicdad en el desarrollo, etc.
 
-If you are using Docker, you can use the official Docker image:
+Si estás usando Docket, puedes usar la documentación oficial de Docker en:
 
 ## <a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker" class="external-link" target="_blank">tiangolo/uvicorn-gunicorn-fastapi</a>
 
-This image has an "auto-tuning" mechanism included, so that you can just add your code and get very high performance automatically. And without making sacrifices.
+Esta imagen tiene un mecanismo de "auto-calibración" incluido, así que puedes solamente añadir tu código y obtener muy alto rendimiento de forma automática. Y sin necesidad de hacer sacrificios.
 
-But you can still change and update all the configurations with environment variables or configuration files.
+Pero aun puedes cambiar y actualizar todas las configuraciones con variables del environment o otros archivos de configuración.
 
 !!! tip
-    To see all the configurations and options, go to the Docker image page: <a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker" class="external-link" target="_blank">tiangolo/uvicorn-gunicorn-fastapi</a>.
+    Para ver toda la configuración y opciones, ve a la pagina de la imagen de Docker: <a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker" class="external-link" target="_blank">tiangolo/uvicorn-gunicorn-fastapi</a>.
 
-## Create a `Dockerfile`
+## Crea un `Dockerfile`
 
-* Go to your project directory.
-* Create a `Dockerfile` with:
+* Ve al directorio de tu proyecto.
+* Crea un `Dockerfile` con:
 
 ```Dockerfile
 FROM tiangolo/uvicorn-gunicorn-fastapi:python3.7
@@ -31,9 +31,9 @@ FROM tiangolo/uvicorn-gunicorn-fastapi:python3.7
 COPY ./app /app
 ```
 
-### Bigger Applications
+### Aplicaciones mas grandes
 
-If you followed the section about creating [Bigger Applications with Multiple Files](../tutorial/bigger-applications.md){.internal-link target=_blank}, your `Dockerfile` might instead look like:
+Si seguiste la sección sobre crear [Aplicaciones más Grandes con Multiples Archivos](../tutorial/bigger-applications.md){.internal-link target=_blank}, tu `Dockerfile` puede tal vez lucir así:
 
 ```Dockerfile
 FROM tiangolo/uvicorn-gunicorn-fastapi:python3.7
@@ -41,11 +41,11 @@ FROM tiangolo/uvicorn-gunicorn-fastapi:python3.7
 COPY ./app /app/app
 ```
 
-### Raspberry Pi and other architectures
+### Raspberry Pi y otras arquitecturas
 
-If you are running Docker in a Raspberry Pi (that has an ARM processor) or any other architecture, you can create a `Dockerfile` from scratch, based on a Python base image (that is multi-architecture) and use Uvicorn alone.
+Si estas corriendo Docker en una Raspberry Pi (la cual tiene un procesador ARM) o cualquier otra arquitectura, puedes crear un `Dockerfile` desde 0, basandote en una imagen de Python (la cual es de multi-arquitectura) y usar Uvicorn solamente.
 
-In this case, your `Dockerfile` could look like:
+Es este caso, tu `Dockerfile` podría lucir así:
 
 ```Dockerfile
 FROM python:3.7
@@ -59,10 +59,10 @@ COPY ./app /app
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
 ```
 
-## Create the **FastAPI** Code
+## Crea el código de **FastAPI**
 
-* Create an `app` directory and enter in it.
-* Create a `main.py` file with:
+* Crea un directorio para tu `app` e ingresa a el.
+* Crea un archivo `main.py` con:
 
 ```Python
 from typing import Optional
@@ -82,7 +82,7 @@ def read_item(item_id: int, q: Optional[str] = None):
     return {"item_id": item_id, "q": q}
 ```
 
-* You should now have a directory structure like:
+* Deberías de tener un directorio estructurado de esta manera:
 
 ```
 .
@@ -91,10 +91,10 @@ def read_item(item_id: int, q: Optional[str] = None):
 └── Dockerfile
 ```
 
-## Build the Docker image
+## Construye la imagen de Docker
 
-* Go to the project directory (in where your `Dockerfile` is, containing your `app` directory).
-* Build your FastAPI image:
+* Ve al directorio del proyecto (donde se encuentra tu `Dockerfile`, conteniendo el directorio de tu `app`).
+* Construye tu imagen de FastAPI:
 
 <div class="termy">
 
@@ -106,9 +106,9 @@ $ docker build -t myimage .
 
 </div>
 
-## Start the Docker container
+## Inicializa tu contenedor de Docker
 
-* Run a container based on your image:
+* Corre un contenedor basado en tu imagen:
 
 <div class="termy">
 
@@ -118,62 +118,62 @@ $ docker run -d --name mycontainer -p 80:80 myimage
 
 </div>
 
-Now you have an optimized FastAPI server in a Docker container. Auto-tuned for your current server (and number of CPU cores).
+Ahora tienes un servidor de FastAPI optimizado en un contenedor de Docker. Auto-ajustado para tu servidor actual (y un numero de CPU cores).
 
-## Check it
+## Revisalo
 
-You should be able to check it in your Docker container's URL, for example: <a href="http://192.168.99.100/items/5?q=somequery" class="external-link" target="_blank">http://192.168.99.100/items/5?q=somequery</a> or <a href="http://127.0.0.1/items/5?q=somequery" class="external-link" target="_blank">http://127.0.0.1/items/5?q=somequery</a> (or equivalent, using your Docker host).
+Deberías de poder revisarlo en el URL de tu contenedor de Docker, por ejemplo: <a href="http://192.168.99.100/items/5?q=somequery" class="external-link" target="_blank">http://192.168.99.100/items/5?q=somequery</a> or <a href="http://127.0.0.1/items/5?q=somequery" class="external-link" target="_blank">http://127.0.0.1/items/5?q=somequery</a> (o equivalente, usando tu Docker host)
 
-You will see something like:
+Verás algo como esto:
 
 ```JSON
 {"item_id": 5, "q": "somequery"}
 ```
 
-## Interactive API docs
+## Documentación Interactiva de la API
 
-Now you can go to <a href="http://192.168.99.100/docs" class="external-link" target="_blank">http://192.168.99.100/docs</a> or <a href="http://127.0.0.1/docs" class="external-link" target="_blank">http://127.0.0.1/docs</a> (or equivalent, using your Docker host).
+Ahora puedes ir a <a href="http://192.168.99.100/docs" class="external-link" target="_blank">http://192.168.99.100/docs</a> o <a href="http://127.0.0.1/docs" class="external-link" target="_blank">http://127.0.0.1/docs</a> (o equivalente, usando tu Docker host).
 
-You will see the automatic interactive API documentation (provided by <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a>):
+Veras la documentación interactiva automática de tu API (proveída por <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a>):
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-01-swagger-ui-simple.png)
 
-## Alternative API docs
+## Documentación Alternativa de la API
 
-And you can also go to <a href="http://192.168.99.100/redoc" class="external-link" target="_blank">http://192.168.99.100/redoc</a> or <a href="http://127.0.0.1/redoc" class="external-link" target="_blank">http://127.0.0.1/redoc</a> (or equivalent, using your Docker host).
+Ademas puedes ir a <a href="http://192.168.99.100/redoc" class="external-link" target="_blank">http://192.168.99.100/redoc</a> o <a href="http://127.0.0.1/redoc" class="external-link" target="_blank">http://127.0.0.1/redoc</a> (o equivalente, usando tu Docker host).
 
-You will see the alternative automatic documentation (provided by <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a>):
+Veras la documentación alternativa automática de tu API (proveída por <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a>):
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
 ## Traefik
 
-<a href="https://traefik.io/" class="external-link" target="_blank">Traefik</a> is a high performance reverse proxy / load balancer. It can do the "TLS Termination Proxy" job (apart from other features).
+<a href="https://traefik.io/" class="external-link" target="_blank">Traefik</a> es un balanceador de carga/proxy inverso de alto rendimiento. Puede hacer la tarea de "TLS Termination Proxy" (ademas de otras características).
 
-It has integration with Let's Encrypt. So, it can handle all the HTTPS parts, including certificate acquisition and renewal.
+Tiene una integración con Let's Encrypt. Por lo que, puede manejar todas las partes de HTTPS, incluyendo adquisición y renovación de certificados.
 
-It also has integrations with Docker. So, you can declare your domains in each application configurations and have it read those configurations, generate the HTTPS certificates and serve HTTPS to your application automatically, without requiring any change in its configuration.
+Ademas tiene integraciones con Docker. Por lo que, puedes declarar tus dominios en cada configuración de tu aplicación y poder leer esas configuraciones, generar el certificado HTTPS y servir HTTPS a tu aplicación de manera automática, sin requerir algún cambio en la configuración.
 
 ---
 
-With this information and tools, continue with the next section to combine everything.
+Con esta información y herramientas, continua con la siguiente sección para combinar todo.
 
-## Docker Swarm mode cluster with Traefik and HTTPS
+## Docker Swarm mode cluster con Traefik y HTTPS
 
-You can have a Docker Swarm mode cluster set up in minutes (about 20 min) with a main Traefik handling HTTPS (including certificate acquisition and renewal).
+Puedes configurar un cluster de Docker Swarn mode, en minutos (cerca de 20) con un manejador de HTTPS de Traefik.
 
-By using Docker Swarm mode, you can start with a "cluster" of a single machine (it can even be a $5 USD / month server) and then you can grow as much as you need adding more servers.
+Al usar Docker Swarm mode, puedes iniciar con un "cluster" de una sola maquina (incluso puede ser un servidor de  $5 USD/mes)
 
-To set up a Docker Swarm Mode cluster with Traefik and HTTPS handling, follow this guide:
+Para configurar un cluster de Docker Swarm Mode con Traefik y manejo de HTTPS, sigue esta guía:
 
-### <a href="https://medium.com/@tiangolo/docker-swarm-mode-and-traefik-for-a-https-cluster-20328dba6232" class="external-link" target="_blank">Docker Swarm Mode and Traefik for an HTTPS cluster</a>
+### <a href="https://medium.com/@tiangolo/docker-swarm-mode-and-traefik-for-a-https-cluster-20328dba6232" class="external-link" target="_blank">Docker Swarm Mode y Traefik para un HTTPS cluster</a>
 
-### Deploy a FastAPI application
+### Deploy una aplicación de FastAPI
 
-The easiest way to set everything up, would be using the [**FastAPI** Project Generators](../project-generation.md){.internal-link target=_blank}.
+La manera mas facil de configurar todo, sera usando los [Project Generators de **FastAPI**](../project-generation.md){.internal-link target=_blank}.
 
-It is designed to be integrated with this Docker Swarm cluster with Traefik and HTTPS described above.
+Esta diseñado para ser integrado con este cluster de Docker Swarm con Traefik y HTTPSS descrito arriba.
 
-You can generate a project in about 2 min.
+Puedes generar un proyecto en alrededor de 2 minutos.
 
-The generated project has instructions to deploy it, doing it takes another 2 min.
+El proyecto generado tiene instrucciones de desplegarlo, hacerlo toma otros 2 minutos.
