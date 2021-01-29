@@ -14,6 +14,7 @@ from typing import (
     Type,
     Union,
 )
+import dataclasses
 
 from fastapi import params
 from fastapi.datastructures import Default, DefaultPlaceholder
@@ -89,6 +90,8 @@ def _prepare_response_content(
             )
             for k, v in res.items()
         }
+    elif dataclasses.is_dataclass(res):
+        return dataclasses.asdict(res)
     return res
 
 
