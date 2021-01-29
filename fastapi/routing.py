@@ -1,4 +1,5 @@
 import asyncio
+import dataclasses
 import enum
 import inspect
 import json
@@ -14,7 +15,6 @@ from typing import (
     Type,
     Union,
 )
-import dataclasses
 
 from fastapi import params
 from fastapi.datastructures import Default, DefaultPlaceholder
