@@ -422,8 +422,8 @@ The steps are:
 Now create utility functions to update the existing data.
 The steps are: 
 
-* Find the data entry from the database and retrieve it as  SQLAlchemy model *instance* 
-* Replace the parameter in the model with the input value
+* Find the data entry from the database and retrieve it as  SQLAlchemy model *instance*.
+* Replace the parameter in the model with the input value.
 * `add`  the updated instance object to your database session.
 * `commit` the changes to the database (so that they are saved).
 * `refresh` your instance (so that it contains any new data from the database, like the generated ID). 
@@ -437,7 +437,7 @@ The steps are:
 Now create utility functions to delete the existing data.
 The steps are: 
 
-* Find the data entry from the database and retrieve it as  SQLAlchemy model *instance* 
+* Find the data entry from the database and retrieve it as  SQLAlchemy model *instance*.
 * `delete` that instance object from your database.
 * `commit` the changes to the database (so that they are saved).
 * `refresh` your instance (so that it contains any new data from the database, like the generated ID). 
