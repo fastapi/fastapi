@@ -25,20 +25,20 @@ def create_user(db: Session, user: schemas.UserCreate):
 
 
 def update_user(db: Session, user_id: int, new_password: str):
-    db_user_to_update = db.query(models.User).filter(models.User.id == user_id).first()
-    db_user_to_update.password = new_password
-    db.add(db_user_to_update)
+    db_user = db.query(models.User).filter(models.User.id == user_id).first()
+    db_user.password = new_password
+    db.add(db_user)
     db.commit()
-    db.refresh(db_user_to_update)
-    return db_user_to_update
+    db.refresh(db_user)
+    return db_user
 
 
 def delete_user(db: Session, user_id: int):
-    db_user_to_delete = db.query(models.User).filter(models.User.id == user_id).first()
-    db.delete(db_user_to_delete)
+    db_user = db.query(models.User).filter(models.User.id == user_id).first()
+    db.delete(db_user)
     db.commit()
-    db.refresh(db_user_to_delete)
-    return db_user_to_delete
+    db.refresh(db_user)
+    return db_user
 
 
 def get_items(db: Session, skip: int = 0, limit: int = 100):
