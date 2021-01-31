@@ -103,7 +103,7 @@ That documents (and validates, serializes, filters) the output data, as a `list`
 
 Create the *path operation function* to create notes:
 
-```Python hl_lines="61-65"
+```Python hl_lines="61-64"
 {!../../../docs_src/async_sql_databases/tutorial001.py!}
 ```
 
@@ -147,6 +147,22 @@ So, the final result returned would be something like:
     "text": "Some note",
     "completed": False,
 }
+```
+
+## Update notes
+
+Create the *path operation function* to update notes:
+
+```Python hl_lines="74-83"
+{!../../../docs_src/async_sql_databases/tutorial001.py!}
+```
+
+## Delete notes
+
+Create the *path operation function* to delete notes:
+
+```Python hl_lines="86-92"
+{!../../../docs_src/async_sql_databases/tutorial001.py!}
 ```
 
 ## Check it

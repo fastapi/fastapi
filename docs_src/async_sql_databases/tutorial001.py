@@ -58,8 +58,35 @@ async def read_notes():
     return await database.fetch_all(query)
 
 
+@app.get("/notes/{id}/", response_model=Note)
+async def read_one_note(id: int):
+    query = notes.select().where(notes.c.id == id)
+    return await database.fetch_one(query)
+
+
 @app.post("/notes/", response_model=Note)
 async def create_note(note: NoteIn):
-    query = notes.insert().values(text=note.text, completed=note.completed)
-    last_record_id = await database.execute(query)
+    stmt = notes.insert().values(text=note.text, completed=note.completed)
+    last_record_id = await database.execute(stmt)
     return {**note.dict(), "id": last_record_id}
+
+
+@app.put("/notes/{id}/", response_model=Note)
+async def update_note(id: int, note: NoteIn):
+    stmt = (
+        notes.update()
+        .values(text=note.text, completed=note.completed)
+        .where(notes.c.id == id)
+    )
+    await database.execute(stmt)
+    query = notes.select().where(notes.c.id == id)
+    return await database.fetch_one(query)
+
+
+@app.delete("/notes/{id}/")
+async def delete_note(id: int):
+    query = notes.select().where(notes.c.id == id)
+    note = await database.fetch_one(query)
+    stmt = notes.delete().where(notes.c.id == id)
+    await database.execute(stmt)
+    return note
