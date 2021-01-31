@@ -257,9 +257,6 @@ def test_read(client):
 
 def test_update(client):
     response = client.put("/notes/1/", json=completed_note)
-    print(
-        f"Response: {response}, Response status: {response.status_code}, Response text: {response.text}"
-    )
     assert response.status_code == 200, response.text
     data = response.json()
     assert "id" in data
