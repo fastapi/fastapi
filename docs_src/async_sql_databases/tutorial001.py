@@ -66,25 +66,25 @@ async def read_one_note(note_id: int):
 
 @app.post("/notes/", response_model=Note)
 async def create_note(note: NoteIn):
-    stmt = notes.insert().values(text=note.text, completed=note.completed)
-    last_record_id = await database.execute(stmt)
+    query = notes.insert().values(text=note.text, completed=note.completed)
+    last_record_id = await database.execute(query)
     return {**note.dict(), "id": last_record_id}
 
 
 @app.put("/notes/{note_id}/", response_model=Note)
 async def update_note(note_id: int, note: NoteIn):
-    stmt = (
+    query = (
         notes.update()
         .values(text=note.text, completed=note.completed)
         .where(notes.c.id == note_id)
     )
-    await database.execute(stmt)
+    await database.execute(query)
     query = notes.select().where(notes.c.id == note_id)
     return await database.fetch_one(query)
 
 
 @app.delete("/notes/{note_id}/", status_code=204)
 async def delete_note(note_id: int):
-    stmt = notes.delete().where(notes.c.id == note_id)
-    await database.execute(stmt)
+    query = notes.delete().where(notes.c.id == note_id)
+    await database.execute(query)
     return Response(status_code=204)
