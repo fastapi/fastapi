@@ -66,7 +66,7 @@ async def read_one_note(note_id: int):
 
 @app.post("/notes/", response_model=Note)
 async def create_note(note: NoteIn):
-    query = notes.insert().values(text=note.text, completed=note.completed)
+    query = notes.insert().values(**note.dict())
     last_record_id = await database.execute(query)
     return {**note.dict(), "id": last_record_id}
 
@@ -75,7 +75,7 @@ async def create_note(note: NoteIn):
 async def update_note(note_id: int, note: NoteIn):
     query = (
         notes.update()
-        .values(text=note.text, completed=note.completed)
+        .values(**note.dict())
         .where(notes.c.id == note_id)
     )
     await database.execute(query)
