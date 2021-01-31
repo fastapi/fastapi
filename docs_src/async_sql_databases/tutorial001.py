@@ -2,7 +2,7 @@ from typing import List
 
 import databases
 import sqlalchemy
-from fastapi import FastAPI
+from fastapi import FastAPI, Response
 from pydantic import BaseModel
 
 # SQLAlchemy specific code, as with any other app
@@ -83,10 +83,8 @@ async def update_note(note_id: int, note: NoteIn):
     return await database.fetch_one(query)
 
 
-@app.delete("/notes/{note_id}/")
+@app.delete("/notes/{note_id}/", status_code=204)
 async def delete_note(note_id: int):
-    query = notes.select().where(notes.c.id == note_id)
-    note = await database.fetch_one(query)
     stmt = notes.delete().where(notes.c.id == note_id)
     await database.execute(stmt)
-    return note
+    return Response(status_code=204)
