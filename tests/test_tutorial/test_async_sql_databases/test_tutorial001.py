@@ -61,15 +61,15 @@ openapi_schema = {
                 },
             },
         },
-        "/notes/{id}/": {
+        "/notes/{note_id}/": {
             "get": {
                 "summary": "Read One Note",
-                "operationId": "read_one_note_notes__id___get",
+                "operationId": "read_one_note_notes__note_id___get",
                 "parameters": [
                     {
                         "required": True,
-                        "schema": {"title": "Id", "type": "integer"},
-                        "name": "id",
+                        "schema": {"title": "Note Id", "type": "integer"},
+                        "name": "note_id",
                         "in": "path",
                     }
                 ],
@@ -96,12 +96,12 @@ openapi_schema = {
             },
             "put": {
                 "summary": "Update Note",
-                "operationId": "update_note_notes__id___put",
+                "operationId": "update_note_notes__note_id___put",
                 "parameters": [
                     {
                         "required": True,
-                        "schema": {"title": "Id", "type": "integer"},
-                        "name": "id",
+                        "schema": {"title": "Note Id", "type": "integer"},
+                        "name": "note_id",
                         "in": "path",
                     }
                 ],
@@ -136,12 +136,12 @@ openapi_schema = {
             },
             "delete": {
                 "summary": "Delete Note",
-                "operationId": "delete_note_notes__id___delete",
+                "operationId": "delete_note_notes__note_id___delete",
                 "parameters": [
                     {
                         "required": True,
-                        "schema": {"title": "Id", "type": "integer"},
-                        "name": "id",
+                        "schema": {"title": "Note Id", "type": "integer"},
+                        "name": "note_id",
                         "in": "path",
                     }
                 ],
@@ -267,10 +267,7 @@ def test_update(client):
 def test_delete(client):
     response = client.delete("/notes/1/")
     assert response.status_code == 200, response.text
-    data = response.json()
-    assert "id" in data
-    assert data["text"] == completed_note["text"]
-    assert data["completed"] == completed_note["completed"]
     response = client.get("/notes/")
     assert response.status_code == 200, response.text
+    data = {"id": 1, **completed_note}
     assert data not in response.json()
