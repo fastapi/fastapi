@@ -83,8 +83,7 @@ async def update_note(note_id: int, note: NoteIn):
     return await database.fetch_one(query)
 
 
-@app.delete("/notes/{note_id}/", status_code=204)
+@app.delete("/notes/{note_id}/")
 async def delete_note(note_id: int):
     query = notes.delete().where(notes.c.id == note_id)
     await database.execute(query)
-    return Response(status_code=204)
