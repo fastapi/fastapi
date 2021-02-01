@@ -68,6 +68,9 @@ nav:
   - tutorial/response-status-code.md
   - tutorial/schema-extra-example.md
   - tutorial/metadata.md
+  - 安全性:
+    - tutorial/security/get-current-user.md
+    - tutorial/security/simple-oauth2.md
 - 高级用户指南:
   - advanced/index.md
   - advanced/path-operation-advanced-configuration.md
@@ -97,7 +100,9 @@ markdown_extensions:
 extra:
   social:
   - icon: fontawesome/brands/github-alt
-    link: https://github.com/tiangolo/typer
+    link: https://github.com/tiangolo/fastapi
+  - icon: fontawesome/brands/discord
+    link: https://discord.gg/VQjSZaeJmf
   - icon: fontawesome/brands/twitter
     link: https://twitter.com/tiangolo
   - icon: fontawesome/brands/linkedin
