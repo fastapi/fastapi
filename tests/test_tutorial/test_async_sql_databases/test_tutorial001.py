@@ -271,3 +271,13 @@ def test_delete(client):
     assert response.status_code == 200, response.text
     data = {"id": 1, **completed_note}
     assert data not in response.json()
+
+
+def test_error_responses(client):
+    def check_response(response):
+        assert response.status_code == 404, response.text
+        assert response.json() == {"detail": "Note not found"}
+
+    check_response(client.get("/notes/100/"))
+    check_response(client.put("/notes/100/", json=completed_note))
+    check_response(client.delete("/notes/100/"))
