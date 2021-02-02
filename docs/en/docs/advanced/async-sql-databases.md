@@ -109,7 +109,7 @@ Create the *path operation function* to read one note.
 ### About `notes.c.id == note_id`
 
 `notes.c` refers to the columns of  `notes` table and `id` refers to the `id` column of the `notes` table.
-By using operator overloading on the `notes.c.id` object, `notes.c.id` == `note_id` actually creates a `<sqlalchemy.sql.elements.BinaryExpression object at 0x...>` to store that expression and passes it into the `where()` function. SQLAlchemy then is able to translate that into a SQL query.
+By using operator overloading on the `notes.c.id` object, `notes.c.id == note_id` actually creates a `<sqlalchemy.sql.elements.BinaryExpression object at 0x...>` to store that expression and passes it into the `where()` function. SQLAlchemy then is able to translate that into a SQL query.
 
 !!! Note
     Similar things happen when other operators are used like `>`, `<`, etc. for more info please read <a href="https://docs.sqlalchemy.org/en/14/core/tutorial.html#selecting-specific-columns" class="external-link" target="_blank">SQLAlchemy's explanation of it</a>
