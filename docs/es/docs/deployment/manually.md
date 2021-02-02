@@ -1,12 +1,12 @@
-# Deploy manually
+# Haz el Deploy manualmente
 
-You can deploy **FastAPI** manually as well.
+De igual forma puedes desplegar **FastAPI** de forma manual.
 
-You just need to install an ASGI compatible server like:
+Solo necesitas instalar un servidor ASGI compatible, como:
 
 === "Uvicorn"
 
-    * <a href="https://www.uvicorn.org/" class="external-link" target="_blank">Uvicorn</a>, a lightning-fast ASGI server, built on uvloop and httptools.
+    * <a href="https://www.uvicorn.org/" class="external-link" target="_blank">Uvicorn</a>, un super rápido servidor ASGI, construido en uvloop y httptools.
 
     <div class="termy">
 
@@ -19,13 +19,13 @@ You just need to install an ASGI compatible server like:
     </div>
 
     !!! tip
-        By adding the `standard`, Uvicorn will install and use some recommended extra dependencies.
+        Al añadir el `standard`, Uvicorn instalara y usara algunas dependencias extra recomendadas.
 
-        That including `uvloop`, the high-performance drop-in replacement for `asyncio`, that provides the big concurrency performance boost.
+        Eso incluyendo `uvloop`, el remplazo de alto rendimiento para `asyncio`, que provee el gran salto de rendimiento en concurrencia.
 
 === "Hypercorn"
 
-    * <a href="https://gitlab.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>, an ASGI server also compatible with HTTP/2.
+    * <a href="https://gitlab.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>, un servidor ASGI también compatible con HTTP/2.
 
     <div class="termy">
 
@@ -37,9 +37,9 @@ You just need to install an ASGI compatible server like:
 
     </div>
 
-    ...or any other ASGI server.
+    ...o cualquier servidor ASGI.
 
-And run your application the same way you have done in the tutorials, but without the `--reload` option, e.g.:
+Y corre tu aplicación de la misma forma que lo has hecho en los tutoriales, pero sin la opción `--reload`, ejemplo:
 
 === "Uvicorn"
 
@@ -65,10 +65,10 @@ And run your application the same way you have done in the tutorials, but withou
 
     </div>
 
-You might want to set up some tooling to make sure it is restarted automatically if it stops.
+Tal vez quedrás configurar algunas herramientas, para asegurarte que se reinicie automáticamente si llega a parar.
 
-You might also want to install <a href="https://gunicorn.org/" class="external-link" target="_blank">Gunicorn</a> and <a href="https://www.uvicorn.org/#running-with-gunicorn" class="external-link" target="_blank">use it as a manager for Uvicorn</a>, or use Hypercorn with multiple workers.
+También quedrás instalar <a href="https://gunicorn.org/" class="external-link" target="_blank">Gunicorn</a> y <a href="https://www.uvicorn.org/#running-with-gunicorn" class="external-link" target="_blank">usarlo como administrador de Uvicorn</a>, o usar Hypercorn con multiples workers.
 
-Making sure to fine-tune the number of workers, etc.
+Asegurándote de ajustar el numero de workers, etc.
 
-But if you are doing all that, you might just use the Docker image that does it automatically.
+Pero si estas haciendo todo eso, podrías solamente usar la imagen de Docker que hace todo automáticamente.
