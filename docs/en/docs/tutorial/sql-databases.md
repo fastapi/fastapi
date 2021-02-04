@@ -243,12 +243,12 @@ Now let's check the file `sql_app/schemas.py`.
 Create an `ItemBase` and `UserBase` Pydantic *models* (or let's say "schemas") to have common attributes while creating or reading data.
 
 And create an `ItemCreate` and `UserCreate` that inherit from them (so they will have the same attributes), plus any additional data (attributes) needed for creation.
-
+The same way, `UserUpdate` inherit the base User model and has the attributes that can be updated.  
 So, the user will also have a `password` when creating it.
 
 But for security, the `password` won't be in other Pydantic *models*, for example, it won't be sent from the API when reading a user.
 
-```Python hl_lines="3  6-8  11-12  23-24  27-28"
+```Python hl_lines="3  6-8  11-12  23-24  27-28 31-35"
 {!../../../docs_src/sql_databases/sql_app/schemas.py!}
 ```
 
@@ -278,7 +278,7 @@ The same way, when reading a user, we can now declare that `items` will contain 
 
 Not only the IDs of those items, but all the data that we defined in the Pydantic *model* for reading items: `Item`.
 
-```Python hl_lines="15-17  31-34"
+```Python hl_lines="15-17  38-44"
 {!../../../docs_src/sql_databases/sql_app/schemas.py!}
 ```
 
@@ -293,7 +293,7 @@ This <a href="https://pydantic-docs.helpmanual.io/#config" class="external-link"
 
 In the `Config` class, set the attribute `orm_mode = True`.
 
-```Python hl_lines="15  19-20  31  36-37"
+```Python hl_lines="15  19-20  38  43-44"
 {!../../../docs_src/sql_databases/sql_app/schemas.py!}
 ```
 
@@ -352,7 +352,6 @@ In this file we will have reusable functions to interact with the data in the da
 
 **CRUD** comes from: **C**reate, **R**ead, **U**pdate, and **D**elete.
 
-...although in this example we are only creating and reading.
 
 ### Read data
 
@@ -366,7 +365,7 @@ Create utility functions to:
 * Read multiple users.
 * Read a single item.
 
-```Python hl_lines="1  3  6-7  10-11  14-15  44-45"
+```Python hl_lines="1  3  6-7  10-11  14-15  46-47"
 {!../../../docs_src/sql_databases/sql_app/crud.py!}
 ```
 
@@ -384,7 +383,7 @@ The steps are:
 * `commit` the changes to the database (so that they are saved).
 * `refresh` your instance (so that it contains any new data from the database, like the generated ID).
 
-```Python hl_lines="18-24  48-53"
+```Python hl_lines="18-24  50-55"
 {!../../../docs_src/sql_databases/sql_app/crud.py!}
 ```
 
@@ -428,7 +427,7 @@ The steps are:
 * `commit` the changes to the database (so that they are saved).
 * `refresh` your instance (so that it contains any new data from the database, like the generated ID). 
 
-```Python hl_lines="27-33"
+```Python hl_lines="27-36"
 {!../../../docs_src/sql_databases/sql_app/crud.py!}
 ```
 
@@ -442,7 +441,7 @@ The steps are:
 * `commit` the changes to the database (so that they are saved).
 * `refresh` your instance (so that it contains any new data from the database, like the generated ID). 
 
-```Python hl_lines="36-41"
+```Python hl_lines="39-43"
 {!../../../docs_src/sql_databases/sql_app/crud.py!}
 ```
 
