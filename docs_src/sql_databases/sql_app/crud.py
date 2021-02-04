@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-
+import sqlalchemy
 from . import models, schemas
 
 
@@ -24,9 +24,12 @@ def create_user(db: Session, user: schemas.UserCreate):
     return db_user
 
 
-def update_user(db: Session, user_id: int, new_password: str):
-    db_user = db.query(models.User).filter(models.User.id == user_id).first()
-    db_user.password = new_password
+def update_user(db: Session, user: schemas.UserUpdate):
+    db_user = db.query(user).filter(user.id == user.id).one()
+
+    # Update model class variable from requested fields
+    for var, value in vars(db_user).items():
+        setattr(db_user, var, value) if value else None
     db.add(db_user)
     db.commit()
     db.refresh(db_user)
@@ -34,11 +37,10 @@ def update_user(db: Session, user_id: int, new_password: str):
 
 
 def delete_user(db: Session, user_id: int):
-    db_user = db.query(models.User).filter(models.User.id == user_id).first()
-    db.delete(db_user)
-    db.commit()
-    db.refresh(db_user)
-    return db_user
+    affected_rows = db.query(schemas.User).filter(schemas.User.id == user_id).delete()
+    if not affected_rows:
+        raise sqlalchemy.orm.exc.NoResultFound
+    return {"id": str(user_id)}
 
 
 def get_items(db: Session, skip: int = 0, limit: int = 100):
