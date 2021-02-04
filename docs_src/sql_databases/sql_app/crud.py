@@ -1,5 +1,5 @@
-from sqlalchemy.orm import Session
 import sqlalchemy
+from sqlalchemy.orm import Session
 from . import models, schemas
 
 
