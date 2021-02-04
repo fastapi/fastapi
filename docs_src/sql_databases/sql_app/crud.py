@@ -1,4 +1,4 @@
-from sqlalchemy.orm import Session, exc
+from sqlalchemy.orm import exc, Session
 from . import models, schemas
 
 
