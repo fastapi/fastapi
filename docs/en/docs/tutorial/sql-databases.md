@@ -365,7 +365,7 @@ Create utility functions to:
 * Read multiple users.
 * Read a single item.
 
-```Python hl_lines="1  3  6-7  10-11  14-15  46-47"
+```Python hl_lines="1  5-6  9-10  13-14  45-46"
 {!../../../docs_src/sql_databases/sql_app/crud.py!}
 ```
 
@@ -383,7 +383,7 @@ The steps are:
 * `commit` the changes to the database (so that they are saved).
 * `refresh` your instance (so that it contains any new data from the database, like the generated ID).
 
-```Python hl_lines="18-24  50-55"
+```Python hl_lines="17-23  49-54"
 {!../../../docs_src/sql_databases/sql_app/crud.py!}
 ```
 
@@ -427,7 +427,7 @@ The steps are:
 * `commit` the changes to the database (so that they are saved).
 * `refresh` your instance (so that it contains any new data from the database, like the generated ID). 
 
-```Python hl_lines="27-36"
+```Python hl_lines="26-35"
 {!../../../docs_src/sql_databases/sql_app/crud.py!}
 ```
 
@@ -441,7 +441,7 @@ The steps are:
 * `commit` the changes to the database (so that they are saved).
 * `refresh` your instance (so that it contains any new data from the database, like the generated ID). 
 
-```Python hl_lines="39-43"
+```Python hl_lines="38-42"
 {!../../../docs_src/sql_databases/sql_app/crud.py!}
 ```
 

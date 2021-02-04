@@ -1,5 +1,4 @@
-import sqlalchemy
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, exc
 from . import models, schemas
 
 
@@ -39,7 +38,7 @@ def update_user(db: Session, user: schemas.UserUpdate):
 def delete_user(db: Session, user_id: int):
     affected_rows = db.query(schemas.User).filter(schemas.User.id == user_id).delete()
     if not affected_rows:
-        raise sqlalchemy.orm.exc.NoResultFound
+        raise exc.NoResultFound
     return {"id": str(user_id)}
 
 
