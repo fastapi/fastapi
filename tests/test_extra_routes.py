@@ -13,6 +13,11 @@ class Item(BaseModel):
     price: Optional[float] = None
 
 
+@app.head("/items/{item_id}")
+def head_item(item_id: str):
+    return JSONResponse(headers={"x-fastapi-item-id": item_id})
+
+
 @app.api_route("/items/{item_id}", methods=["GET"])
 def get_items(item_id: str):
     return {"item_id": item_id}
@@ -28,11 +33,6 @@ app.add_api_route("/items-not-decorated/{item_id}", get_not_decorated)
 @app.delete("/items/{item_id}")
 def delete_item(item_id: str, item: Item):
     return {"item_id": item_id, "item": item}
-
-
-@app.head("/items/{item_id}")
-def head_item(item_id: str):
-    return JSONResponse(headers={"x-fastapi-item-id": item_id})
 
 
 @app.options("/items/{item_id}")

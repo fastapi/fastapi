@@ -171,6 +171,8 @@ def get_openapi_path(
     route_response_media_type: Optional[str] = current_response_class.media_type
     if route.include_in_schema:
         for method in route.methods:
+            if method == "HEAD" and "GET" in route.methods:
+                continue
             operation = get_openapi_operation_metadata(route=route, method=method)
             parameters: List[Dict[str, Any]] = []
             flat_dependant = get_flat_dependant(route.dependant, skip_repeats=True)
@@ -359,6 +361,7 @@ def get_openapi(
             result = get_openapi_path(route=route, model_name_map=model_name_map)
             if result:
                 path, security_schemes, path_definitions = result
+                print(path)
                 if path:
                     paths.setdefault(route.path_format, {}).update(path)
                 if security_schemes:
