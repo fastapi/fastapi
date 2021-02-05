@@ -361,7 +361,6 @@ def get_openapi(
             result = get_openapi_path(route=route, model_name_map=model_name_map)
             if result:
                 path, security_schemes, path_definitions = result
-                print(path)
                 if path:
                     paths.setdefault(route.path_format, {}).update(path)
                 if security_schemes:
