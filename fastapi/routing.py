@@ -1,6 +1,7 @@
 import asyncio
 import enum
 import inspect
+import itertools
 import json
 from typing import (
     Any,
@@ -627,6 +628,16 @@ class APIRouter(routing.Router):
             responses = {}
         for route in router.routes:
             if isinstance(route, APIRoute):
+                if "GET" in route.methods and "HEAD" not in route.methods:
+                    routes_in_path = [
+                        r
+                        for r in router.routes
+                        if isinstance(r, APIRoute) and r.path == route.path
+                    ]
+                    methods_in_path = [route.methods for route in routes_in_path]
+                    all_methods = set(itertools.chain.from_iterable(methods_in_path))
+                    if "HEAD" not in all_methods:
+                        route.methods.add("HEAD")
                 combined_responses = {**responses, **route.responses}
                 use_response_class = get_value_or_default(
                     route.response_class,
