@@ -40,7 +40,7 @@ Die Hauptfeatures sind:
 - **Robust**: Erhalten Sie produktionsreifen Code, mit einer automatischen interaktiven Dokumentation.
 - **Standards-based**: Basierend auf (und vollständig kompatibel zu) offenen Standards für APIs: <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (auch bekannt als Swagger) und <a href="http://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>.
 
-<small>\* basierend auf Tests mit einem internen Entwickler Team, welches Produktivanwengungen entwickelt.</small>
+<small>\* basierend auf Tests mit einem internen Entwickler Team, welches Produktivanwendungen entwickelt.</small>
 
 ## Meinungen
 
@@ -90,7 +90,7 @@ Wenn Sie eine <abbr title="Kommandozeileninterface">CLI</abbr> Anwendung erstell
 
 **Typer** ist so etwas wie FastAPI's kleiner Bruder und soll das **FastAPI der CLIs** sein. ⌨️ 🚀
 
-## Vorraussetungen
+## Voraussetzungen
 
 Python 3.6+
 
@@ -229,15 +229,15 @@ Sie werden eine automatisch erstellte interaktive API Dokumentation (bereitgeste
 
 ### Alternative API Dokumentation
 
-Wenn Sie jetzt die URL <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a> aufrufen, sehen Sie eine alternative Dokumentaion (bereitgestellt durch <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a>).
+Wenn Sie jetzt die URL <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a> aufrufen, sehen Sie eine alternative Dokumentation (bereitgestellt durch <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a>).
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
-## Bespiel Aktualisierung
+## Beispiel Aktualisierung
 
 Verändern Sie nun die Datei `main.py` um den Body einer `PUT` Anfrage zu empfangen.
 
-Sie deklarieren den Body dazu mit standard Python Typen, Pydantic sei dank.
+Sie deklarieren den Body dazu mit Standard Python Typen, Pydantic sei dank.
 
 ```Python hl_lines="2  7 8 9 10  23 24 25"
 from fastapi import FastAPI
@@ -269,7 +269,7 @@ def update_item(item_id: int, item: Item):
 
 Der Server sollte die Änderungen automatisch laden, weil wir `--reload` zum `uvicorn` Befehl hinzugefügt haben.
 
-### Aktualiserung der interaktiven Dokumentation
+### Aktualisierung der interaktiven Dokumentation
 
 Rufen Sie jetzt wieder <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a> auf.
 
@@ -285,7 +285,7 @@ Rufen Sie jetzt wieder <a href="http://127.0.0.1:8000/docs" class="external-link
 
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-05-swagger-04.png)
 
-### Aktualiserung der alternativen API Dokumentation
+### Aktualisierung der alternativen API Dokumentation
 
 Rufen Sie nun erneut <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a> auf.
 
@@ -357,9 +357,9 @@ Mit Bezug auf unser vorheriges Beispiel, wird **FastAPI**:
   - es wird überprüft ob das optionale Attribut `is_offer` vorhanden und vom Typ `bool` ist.
   - all dies funktioniert auch bei tief verschachtelten JSON Objekten,
 - automatische Konvertierung von und zu JSON
-- alles wird im OpenAPI Standard dokumentiert und kann so für verschwiedene Zwecke genutzt werden:
+- alles wird im OpenAPI Standard dokumentiert und kann so für verschiedene Zwecke genutzt werden:
   - interaktive Dokumentationen.
-  - Generierung von Client-Librarys für viele Programmiersprachen.
+  - Generierung von Client-Libraries für viele Programmiersprachen.
 - direktes bereitstellen von 2 interaktiven Dokumentationen per Web.
 
 ---
@@ -416,18 +416,18 @@ Mehr dazu erfahren Sie unter <a href="https://fastapi.tiangolo.com/benchmarks/" 
 
 Verwendet von Pydantic:
 
-- <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - für schnelleres JSON <abbr title="Konvertierung des, durch die Webanfrage erhaltenen, Strings in Python Daten">"parsen"</abbr>.
-- <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - für die Validierung von E-Mail Addressen.
+- <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - für schnelleres JSON <abbr title="Konvertierung des, durch die Web-Anfrage erhaltenen, Strings in Python Daten">"parsen"</abbr>.
+- <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - für die Validierung von E-Mail Adressen.
 
 Verwendet von Starlette:
 
 - <a href="http://docs.python-requests.org" target="_blank"><code>requests</code></a> - wird für den `TestClient` benötigt.
 - <a href="https://github.com/Tinche/aiofiles" target="_blank"><code>aiofiles</code></a> - wird benötigt falls Sie die `FileResponse` oder `StaticFiles` nutzen wollen.
-- <a href="http://jinja.pocoo.org" target="_blank"><code>jinja2</code></a> - wird benötigt falls die standard Template Konfiguration benutzen wollen.
+- <a href="http://jinja.pocoo.org" target="_blank"><code>jinja2</code></a> - wird benötigt falls die Standard Template Konfiguration benutzen wollen.
 - <a href="https://andrew-d.github.io/python-multipart/" target="_blank"><code>python-multipart</code></a> - wird für das <abbr title="converting the string that comes from an HTTP request into Python data">"Parsen"</abbr> von Form Daten verwendet mit `request.form()`.
 - <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - Wird für die `SessionMiddleware` Unterstützung verwendet.
 - <a href="https://pyyaml.org/wiki/PyYAMLDocumentation" target="_blank"><code>pyyaml</code></a> - wird für Starlette's `SchemaGenerator` verwendet (Sie benötigen es vielleicht nicht für FastAPI).
-- <a href="https://graphene-python.org/" target="_blank"><code>graphene</code></a> - wird für die `GraphQLApp` Unterstüzung benötigt.
+- <a href="https://graphene-python.org/" target="_blank"><code>graphene</code></a> - wird für die `GraphQLApp` Unterstützung benötigt.
 - <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - wird benötigt falls `UJSONResponse` verwendet werden soll.
 
 Verwendet von FastAPI / Starlette:
@@ -439,4 +439,4 @@ Sie können alle diese Pakete mit dem Befehl `pip install fastapi[all]` installi
 
 ## Lizenz
 
-Dieses Projekt ist unter den Bedingungen der MIT Lizenz lizensiert.
+Dieses Projekt ist unter den Bedingungen der MIT Lizenz lizenziert.
