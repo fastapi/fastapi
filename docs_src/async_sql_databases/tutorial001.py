@@ -86,8 +86,6 @@ async def update_note(note_id: int, note: NoteIn):
         .where(notes.c.id == note_id)
     )
     await database.execute(query)
-    query = notes.select().where(notes.c.id == note_id)
-    return await database.fetch_one(query)
 
 
 @app.delete("/notes/{note_id}/")

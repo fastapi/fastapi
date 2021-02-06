@@ -258,10 +258,10 @@ def test_read(client):
 def test_update(client):
     response = client.put("/notes/1/", json=completed_note)
     assert response.status_code == 200, response.text
-    data = response.json()
-    assert "id" in data
-    assert data["text"] == completed_note["text"]
-    assert data["completed"] == completed_note["completed"]
+    data = {"id": 1, **completed_note}
+    response = client.get("/notes/")
+    assert response.status_code == 200, response.text
+    assert data in response.json()
 
 
 def test_delete(client):
