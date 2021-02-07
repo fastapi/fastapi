@@ -80,6 +80,7 @@ nav:
   - deployment/index.md
   - deployment/versions.md
   - deployment/deta.md
+  - deployment/docker.md
   - deployment/manually.md
 - project-generation.md
 - alternatives.md
