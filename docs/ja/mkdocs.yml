@@ -78,6 +78,7 @@ nav:
 - async.md
 - デプロイ:
   - deployment/index.md
+  - deployment/versions.md
   - deployment/deta.md
   - deployment/manually.md
 - project-generation.md
