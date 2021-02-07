@@ -336,7 +336,7 @@ Você apenas precisa instalar um servidor ASGI compatível como:
     <div class="termy">
 
     ```console
-    $ pip install uvicorn
+    $ pip install uvicorn[standard]
 
     ---> 100%
     ```
