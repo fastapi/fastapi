@@ -148,6 +148,10 @@ articles:
       title: How to monitor your FastAPI service
       author_link: https://twitter.com/louis_guitton
       author: Louis Guitton
+    - link: https://amitness.com/2020/06/fastapi-vs-flask/
+      title: FastAPI for Flask Users
+      author_link: https://twitter.com/amitness
+      author: Amit Chaudhary
   japanese:
     - link: https://qiita.com/mtitg/items/47770e9a562dd150631d
       title: FastAPI｜DB接続してCRUDするPython製APIサーバーを構築
