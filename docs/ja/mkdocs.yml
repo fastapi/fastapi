@@ -67,6 +67,7 @@ nav:
     - tutorial/security/first-steps.md
   - tutorial/middleware.md
   - tutorial/cors.md
+  - tutorial/testing.md
   - tutorial/debugging.md
 - 高度なユーザーガイド:
   - advanced/path-operation-advanced-configuration.md
