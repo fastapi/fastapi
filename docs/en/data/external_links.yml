@@ -152,6 +152,10 @@ articles:
       title: FastAPI for Flask Users
       author_link: https://twitter.com/amitness
       author: Amit Chaudhary
+    - link: https://valonjanuzaj.medium.com/deploy-a-dockerized-fastapi-application-to-aws-cc757830ba1b
+      title: Deploy a dockerized FastAPI application to AWS
+      author_link: https://www.linkedin.com/in/valon-januzaj-b02692187/
+      author: Valon Januzaj
   japanese:
     - link: https://qiita.com/mtitg/items/47770e9a562dd150631d
       title: FastAPI｜DB接続してCRUDするPython製APIサーバーを構築
