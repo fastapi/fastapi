@@ -91,7 +91,7 @@ OpenAPI는 API에 대한 API 스키마를 정의합니다. 또한 이 스키마�
 
 #### `openapi.json` 확인
 
-날(raw) OpenAPI 스키마가 어떻게 생겼는지 궁금하다면, FastAPI는 자동으로 API의 설명과 함께 JSON (스키마)를 생성합니다.
+가공되지 않은 OpenAPI 스키마가 어떻게 생겼는지 궁금하다면, FastAPI는 자동으로 API의 설명과 함께 JSON (스키마)를 생성합니다.
 
 여기에서 직접 볼 수 있습니다: <a href="http://127.0.0.1:8000/openapi.json" class="external-link" target="_blank">http://127.0.0.1:8000/openapi.json</a>.
 
