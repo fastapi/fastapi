@@ -125,17 +125,21 @@ class FastAPI(Starlette):
         self.openapi_schema: Optional[Dict[str, Any]] = None
         self.setup()
 
+    def refresh_openapi(self) -> None:
+        self.openapi_schema = get_openapi(
+            title=self.title,
+            version=self.version,
+            openapi_version=self.openapi_version,
+            description=self.description,
+            routes=self.routes,
+            tags=self.openapi_tags,
+            servers=self.servers,
+        )
+
     def openapi(self) -> Dict[str, Any]:
         if not self.openapi_schema:
-            self.openapi_schema = get_openapi(
-                title=self.title,
-                version=self.version,
-                openapi_version=self.openapi_version,
-                description=self.description,
-                routes=self.routes,
-                tags=self.openapi_tags,
-                servers=self.servers,
-            )
+            self.refresh_openapi()
+            
         return self.openapi_schema
 
     def setup(self) -> None:
