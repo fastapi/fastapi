@@ -124,7 +124,7 @@ articles:
       title: Introducing Dispatch
       author_link: https://netflixtechblog.com/
       author: Netflix
-    - link: https://davidefiocco.github.io/2020/06/27/streamlit-fastapi-ml-serving.html
+    - link: https://davidefiocco.github.io/streamlit-fastapi-ml-serving/
       title: Machine learning model serving in Python using FastAPI and streamlit
       author_link: https://github.com/davidefiocco
       author: Davide Fiocco
