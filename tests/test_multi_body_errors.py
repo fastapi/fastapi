@@ -10,7 +10,7 @@ app = FastAPI()
 
 class Item(BaseModel):
     name: str
-    age: condecimal(gt=Decimal(0.0))
+    age: condecimal(gt=Decimal(0.0))  # type: ignore
 
 
 @app.post("/items/")

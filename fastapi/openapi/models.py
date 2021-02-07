@@ -5,7 +5,7 @@ from fastapi.logger import logger
 from pydantic import AnyUrl, BaseModel, Field
 
 try:
-    import email_validator
+    import email_validator  # type: ignore
 
     assert email_validator  # make autoflake ignore the unused import
     from pydantic import EmailStr
@@ -13,7 +13,7 @@ except ImportError:  # pragma: no cover
 
     class EmailStr(str):  # type: ignore
         @classmethod
-        def __get_validators__(cls) -> Iterable[Callable]:
+        def __get_validators__(cls) -> Iterable[Callable[..., Any]]:
             yield cls.validate
 
         @classmethod
