@@ -2,6 +2,7 @@ import pytest
 from fastapi import APIRouter, FastAPI
 from fastapi.routing import APIRoute
 from fastapi.testclient import TestClient
+from starlette.routing import Route
 
 app = FastAPI()
 
@@ -106,9 +107,9 @@ def test_get_path(path, expected_status, expected_response):
 
 def test_route_classes():
     routes = {}
-    r: APIRoute
     for r in app.router.routes:
+        assert isinstance(r, Route)
         routes[r.path] = r
-    assert routes["/a/"].x_type == "A"
-    assert routes["/a/b/"].x_type == "B"
-    assert routes["/a/b/c/"].x_type == "C"
+    assert getattr(routes["/a/"], "x_type") == "A"
+    assert getattr(routes["/a/b/"], "x_type") == "B"
+    assert getattr(routes["/a/b/c/"], "x_type") == "C"

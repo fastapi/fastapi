@@ -175,7 +175,7 @@ async def path3_override_router2_override(level3: str):
     return level3
 
 
-@router2_override.get("/default3",)
+@router2_override.get("/default3")
 async def path3_default_router2_override(level3: str):
     return level3
 
@@ -217,7 +217,9 @@ async def path5_override_router4_override(level5: str):
     return level5
 
 
-@router4_override.get("/default5",)
+@router4_override.get(
+    "/default5",
+)
 async def path5_default_router4_override(level5: str):
     return level5
 
@@ -238,7 +240,9 @@ async def path5_override_router4_default(level5: str):
     return level5
 
 
-@router4_default.get("/default5",)
+@router4_default.get(
+    "/default5",
+)
 async def path5_default_router4_default(level5: str):
     return level5
 
