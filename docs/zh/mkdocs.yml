@@ -67,6 +67,7 @@ nav:
   - tutorial/extra-models.md
   - tutorial/response-status-code.md
   - tutorial/schema-extra-example.md
+  - tutorial/extra-data-types.md
   - tutorial/cookie-params.md
   - 安全性:
     - tutorial/security/get-current-user.md
