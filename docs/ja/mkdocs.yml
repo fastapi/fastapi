@@ -65,6 +65,7 @@ nav:
   - tutorial/body-updates.md
   - セキュリティ:
     - tutorial/security/first-steps.md
+  - tutorial/middleware.md
   - tutorial/cors.md
 - 高度なユーザーガイド:
   - advanced/path-operation-advanced-configuration.md
