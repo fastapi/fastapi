@@ -63,6 +63,7 @@ nav:
   - tutorial/body-multiple-params.md
   - tutorial/body-fields.md
   - tutorial/body-nested-models.md
+  - tutorial/header-params.md
   - tutorial/response-model.md
   - tutorial/extra-models.md
   - tutorial/response-status-code.md
