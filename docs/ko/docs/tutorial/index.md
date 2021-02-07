@@ -67,7 +67,7 @@ $ pip install fastapi[all]
     pip install uvicorn
     ```
 
-    사용하려는 각 선택적 종속성에 대해서도 동일합니다.
+    사용하려는 각 선택적인 의존성에 대해서도 동일합니다.
 
 ## 고급 사용자 안내서
 
