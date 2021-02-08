@@ -462,6 +462,10 @@ async def solve_generator(
     return await stack.enter_async_context(cm)
 
 
+class _CachedError:
+    pass
+
+
 async def solve_dependencies(
     *,
     request: Union[Request, WebSocket],
@@ -530,11 +534,15 @@ async def solve_dependencies(
             sub_dependency_cache,
         ) = solved_result
         dependency_cache.update(sub_dependency_cache)
-        if sub_errors:
-            errors.extend(sub_errors)
-            continue
         if sub_dependant.use_cache and sub_dependant.cache_key in dependency_cache:
             solved = dependency_cache[sub_dependant.cache_key]
+            if solved is _CachedError:
+                continue
+        elif sub_errors:
+            errors.extend(sub_errors)
+            if sub_dependant.cache_key not in dependency_cache:
+                dependency_cache[sub_dependant.cache_key] = _CachedError
+            continue
         elif is_gen_callable(call) or is_async_gen_callable(call):
             stack = request.scope.get("fastapi_astack")
             if stack is None:

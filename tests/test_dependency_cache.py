@@ -1,9 +1,29 @@
 from fastapi import Depends, FastAPI
 from fastapi.testclient import TestClient
+from pydantic import BaseModel
 
 app = FastAPI()
 
 counter_holder = {"counter": 0}
+
+
+class Model(BaseModel):
+    name: str
+
+
+@Depends
+def get_user_model_data(model: Model):
+    return model
+
+
+@Depends
+def log_new_users(data: dict = get_user_model_data):
+    return data
+
+
+@app.post("/cached-errors/", dependencies=[log_new_users])
+def cached_errors(data: dict = get_user_model_data):
+    return data
 
 
 async def dep_counter():
@@ -66,3 +86,16 @@ def test_sub_counter_no_cache():
     response = client.get("/sub-counter-no-cache/")
     assert response.status_code == 200, response.text
     assert response.json() == {"counter": 4, "subcounter": 3}
+
+
+def test_caches_errors():
+    response = client.post("/cached-errors/")
+    assert response.json() == {
+        "detail": [
+            {
+                "loc": ["body"],
+                "msg": "field required",
+                "type": "value_error.missing",
+            }
+        ]
+    }
