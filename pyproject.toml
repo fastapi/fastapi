@@ -112,5 +112,4 @@ filterwarnings = [
     'ignore:The explicit passing of coroutine objects to asyncio\.wait\(\) is deprecated since Python 3\.8:DeprecationWarning',
     'ignore:int_from_bytes is deprecated, use int\.from_bytes instead:cryptography.utils.CryptographyDeprecationWarning',
     'ignore:Exception ignored in. <socket\.socket fd=-1:pytest.PytestUnraisableExceptionWarning',
-    'ignore:Exception ignored in. <_io\.FileIO \[closed\]>:pytest.PytestUnraisableExceptionWarning',
 ]
