@@ -253,5 +253,7 @@ def Security(  # noqa: N802
     use_cache: bool = True,
 ) -> _T:
     return params.Security(  # type: ignore
-        dependency=dependency, scopes=scopes, use_cache=use_cache,
+        dependency=dependency,
+        scopes=scopes,
+        use_cache=use_cache,
     )
