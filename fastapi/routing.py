@@ -347,7 +347,7 @@ class APIRoute(routing.Route):
         self.description = description or inspect.cleandoc(self.endpoint.__doc__ or "")
         # if a "form feed" character (page break) is found in the description text,
         # truncate description text to the content preceding the first "form feed"
-        self.description = self.description.split("\f")[0]
+        self.description = self.description.split("\f")[0].strip()
         self.response_description = response_description
         self.responses = responses or {}
         response_fields = {}
