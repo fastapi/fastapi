@@ -65,15 +65,22 @@ nav:
   - tutorial/body-updates.md
   - セキュリティ:
     - tutorial/security/first-steps.md
+  - tutorial/middleware.md
   - tutorial/cors.md
+  - tutorial/static-files.md
+  - tutorial/testing.md
+  - tutorial/debugging.md
 - 高度なユーザーガイド:
   - advanced/path-operation-advanced-configuration.md
   - advanced/additional-status-codes.md
   - advanced/response-directly.md
   - advanced/custom-response.md
+- async.md
 - デプロイ:
   - deployment/index.md
+  - deployment/versions.md
   - deployment/deta.md
+  - deployment/docker.md
   - deployment/manually.md
 - project-generation.md
 - alternatives.md
