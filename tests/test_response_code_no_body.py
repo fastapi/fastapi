@@ -37,7 +37,8 @@ async def b():
 
 
 @app.get(
-    "/c", status_code=204,
+    "/c",
+    status_code=204,
 )
 async def c():
     pass  # pragma: no cover
@@ -79,7 +80,9 @@ openapi_schema = {
         },
         "/c": {
             "get": {
-                "responses": {"204": {"description": "Successful Response"},},
+                "responses": {
+                    "204": {"description": "Successful Response"},
+                },
                 "summary": "C",
                 "operationId": "c_c_get",
             }
