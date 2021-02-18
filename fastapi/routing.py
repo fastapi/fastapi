@@ -50,7 +50,7 @@ from starlette.routing import (
     request_response,
     websocket_session,
 )
-from starlette.status import WS_1008_POLICY_VIOLATION, HTTP_204_NO_CONTENT
+from starlette.status import HTTP_204_NO_CONTENT, WS_1008_POLICY_VIOLATION
 from starlette.types import ASGIApp
 from starlette.websockets import WebSocket
 
