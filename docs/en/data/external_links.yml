@@ -1,5 +1,9 @@
 articles:
   english:
+    - link: https://pystar.substack.com/p/how-to-create-a-fake-certificate
+      title: How to Create A Fake Certificate Authority And Generate TLS Certs for FastAPI
+      author_link: https://pystar.substack.com/
+      author: Ehigie Aito
     - link: https://medium.com/@williamhayes/fastapi-starlette-debug-vs-prod-5f7561db3a59
       title: FastAPI/Starlette debug vs prod
       author_link: https://medium.com/@williamhayes
