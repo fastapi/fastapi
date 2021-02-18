@@ -156,6 +156,10 @@ articles:
       title: Deploy a dockerized FastAPI application to AWS
       author_link: https://www.linkedin.com/in/valon-januzaj-b02692187/
       author: Valon Januzaj
+    - link: https://pystar.substack.com/p/how-to-create-a-fake-certificate
+      title: How to Create A Fake Certificate Authority And Generate TLS Certs for FastAPI
+      author_link: https://pystar.substack.com/
+      author: @pystar
   japanese:
     - link: https://qiita.com/mtitg/items/47770e9a562dd150631d
       title: FastAPI｜DB接続してCRUDするPython製APIサーバーを構築
