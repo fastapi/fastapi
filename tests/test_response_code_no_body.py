@@ -79,7 +79,7 @@ openapi_schema = {
         },
         "/c": {
             "get": {
-                "responses": {"204": {"description": "Successful Response"},},
+                "responses": {"204": {"description": "Successful Response"}, },
                 "summary": "C",
                 "operationId": "c_c_get",
             }
