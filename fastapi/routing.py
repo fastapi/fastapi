@@ -50,7 +50,7 @@ from starlette.routing import (
     request_response,
     websocket_session,
 )
-from starlette.status import WS_1008_POLICY_VIOLATION
+from starlette.status import WS_1008_POLICY_VIOLATION, HTTP_204_NO_CONTENT
 from starlette.types import ASGIApp
 from starlette.websockets import WebSocket
 
@@ -168,7 +168,10 @@ def get_request_handler(
     is_coroutine = asyncio.iscoroutinefunction(dependant.call)
     is_body_form = body_field and isinstance(body_field.field_info, params.Form)
     if isinstance(response_class, DefaultPlaceholder):
-        actual_response_class: Type[Response] = response_class.value
+        if status_code == HTTP_204_NO_CONTENT:
+            actual_response_class: Type[Response] = Response
+        else:
+            actual_response_class = response_class.value
     else:
         actual_response_class = response_class
 

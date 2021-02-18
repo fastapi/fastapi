@@ -36,6 +36,13 @@ async def b():
     pass  # pragma: no cover
 
 
+@app.get(
+    "/c", status_code=204,
+)
+async def c():
+    pass  # pragma: no cover
+
+
 openapi_schema = {
     "openapi": "3.0.2",
     "info": {"title": "FastAPI", "version": "0.1.0"},
@@ -68,6 +75,13 @@ openapi_schema = {
                 },
                 "summary": "B",
                 "operationId": "b_b_get",
+            }
+        },
+        "/c": {
+            "get": {
+                "responses": {"204": {"description": "Successful Response"},},
+                "summary": "C",
+                "operationId": "c_c_get",
             }
         },
     },
@@ -106,3 +120,9 @@ def test_openapi_schema():
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
     assert response.json() == openapi_schema
+
+
+def test_no_content():
+    response = client.get("/c")
+    assert response.status_code == 204
+    assert response.content == b""
