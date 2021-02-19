@@ -174,6 +174,9 @@ So, they will be included in the JSON response.
 
 You can also use the *path operation decorator* parameters `response_model_include` and `response_model_exclude`.
 
+!!! info
+    FastAPI passes these parameters to Pydantic <a href="https://pydantic-docs.helpmanual.io/usage/exporting_models/#advanced-include-and-exclude" class="external-link" target="_blank">`include` and `exclude` parameters</a>.
+
 They take a `set` of `str` with the name of the attributes to include (omitting the rest) or to exclude (including the rest).
 
 This can be used as a quick shortcut if you have only one Pydantic model and want to remove some data from the output.
@@ -194,12 +197,24 @@ This can be used as a quick shortcut if you have only one Pydantic model and wan
 
     It is equivalent to `set(["name", "description"])`.
 
-#### Using `list`s instead of `set`s
+#### Nested models
 
-If you forget to use a `set` and use a `list` or `tuple` instead, FastAPI will still convert it to a `set` and it will work correctly:
+For nested models it is possible to use `dict` instead of `set`.
+
+Three dots (`...`) are used to include / exclude all keys of nested model.
+
+When dealing with lists of nested models you can define include / exclude for particular items. To apply rule for all items in collection special `__all__` key should be used. 
+
+```Python hl_lines="40  50  60  70"
+{!../../../docs_src/response_model/tutorial006.py!}
+```
+
+#### Using `list`s instead of `set`s and `dict`s
+
+If you forget to use a `set` or `dict` and use a `list` or `tuple` instead, FastAPI will still convert it to a `set` and it will work correctly:
 
 ```Python hl_lines="31  37"
-{!../../../docs_src/response_model/tutorial006.py!}
+{!../../../docs_src/response_model/tutorial007.py!}
 ```
 
 ## Recap
