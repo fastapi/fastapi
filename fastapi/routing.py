@@ -168,8 +168,9 @@ def get_request_handler(
     is_coroutine = asyncio.iscoroutinefunction(dependant.call)
     is_body_form = body_field and isinstance(body_field.field_info, params.Form)
     if isinstance(response_class, DefaultPlaceholder):
+        actual_response_class: Type[Response]
         if status_code == HTTP_204_NO_CONTENT:
-            actual_response_class: Type[Response] = Response
+            actual_response_class = Response
         else:
             actual_response_class = response_class.value
     else:
