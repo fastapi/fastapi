@@ -84,7 +84,7 @@ The same applies for:
 
 Number validations also work for `float` values.
 
-Here's where it becomes important to be able to declare <abbr title="greater than"><code>gt</code></abbr> and not just <abbr title="greater than or equal"><code>ge</code></abbr>. As with it you can require, for example, that a value must be greater than `0`, even if it is less than `1`.
+Here's where it becomes important to be able to declare <abbr title="greater than"><code>gt</code></abbr> and not just <abbr title="greater than or equal"><code>ge</code></abbr>. As with int you can require, for example, that a value must be greater than `0`, even if it is less than `1`.
 
 So, `0.5` would be a valid value. But `0.0` or `0` would not.
 
