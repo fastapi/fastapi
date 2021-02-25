@@ -33,10 +33,8 @@ class NoteIn(BaseModel):
     completed: bool
 
 
-class Note(BaseModel):
+class Note(NoteIn):
     id: int
-    text: str
-    completed: bool
 
 
 app = FastAPI()

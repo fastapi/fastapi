@@ -179,12 +179,12 @@ openapi_schema = {
             },
             "Note": {
                 "title": "Note",
-                "required": ["id", "text", "completed"],
+                "required": ["text", "completed", "id"],
                 "type": "object",
                 "properties": {
-                    "id": {"title": "Id", "type": "integer"},
                     "text": {"title": "Text", "type": "string"},
                     "completed": {"title": "Completed", "type": "boolean"},
+                    "id": {"title": "Id", "type": "integer"},
                 },
             },
             "NoteIn": {
