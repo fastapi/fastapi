@@ -42,6 +42,8 @@ class FastAPI(Starlette):
         servers: Optional[List[Dict[str, Union[str, Any]]]] = None,
         dependencies: Optional[Sequence[Depends]] = None,
         default_response_class: Type[Response] = Default(JSONResponse),
+        liveness_probe_url: Optional[str] = None,
+        readiness_probe_url: Optional[str] = None,
         docs_url: Optional[str] = "/docs",
         redoc_url: Optional[str] = "/redoc",
         swagger_ui_oauth2_redirect_url: Optional[str] = "/docs/oauth2-redirect",
@@ -117,6 +119,10 @@ class FastAPI(Starlette):
         self.extra = extra
         self.dependency_overrides: Dict[Callable[..., Any], Callable[..., Any]] = {}
 
+        self.liveness_probe_url = liveness_probe_url
+        self.readiness_probe_url = readiness_probe_url
+        self.probes_state: State = State({"alive": True, "ready": True})
+
         self.openapi_version = "3.0.2"
 
         if self.openapi_url:
@@ -189,6 +195,24 @@ class FastAPI(Starlette):
                 )
 
             self.add_route(self.redoc_url, redoc_html, include_in_schema=False)
+
+        if self.liveness_probe_url:
+
+            async def liveness(req: Request) -> JSONResponse:
+                if not self.probes_state.alive:
+                    return JSONResponse({"status": "DOWN"}, status_code=503)
+                return JSONResponse({"status": "OK"})
+
+            self.add_route(self.liveness_probe_url, liveness, include_in_schema=False)
+
+        if self.readiness_probe_url:
+
+            async def readiness(req: Request) -> JSONResponse:
+                if not self.probes_state.ready:
+                    return JSONResponse({"status": "OUT_OF_SERVICE"}, status_code=503)
+                return JSONResponse({"status": "UP"})
+
+            self.add_route(self.readiness_probe_url, readiness, include_in_schema=False)
 
     async def __call__(self, scope: Scope, receive: Receive, send: Send) -> None:
         if self.root_path:
