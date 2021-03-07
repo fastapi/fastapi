@@ -26,7 +26,6 @@ JSON 대신에 폼 데이터 필드를 받을 필요가 있을 때, `폼`을 사
   
 예를 들어, Oauth2 사양을 사용할 수 있는 ("비밀번호 흐름"이라고 불리는) 방법은 `username` 과 `password`를 폼데이터로 보내는 것이 필수입니다.
 
-The <abbr title="specification">spec</abbr> requires the fields to be exactly named `username` and `password`, and to be sent as form fields, not JSON.
   
 이 <abbr title="specification">사양</abbr>은 정확히 `username` 과 `password`라고 된 필드들이 필요하고 JSON이 아닌 폼 필드로 보내야 합니다.  
 
