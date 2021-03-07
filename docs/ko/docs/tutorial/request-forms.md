@@ -50,11 +50,10 @@ HTML 폼(`<form></form>`)이 서버로 데이터를 보내는 방법은 일반�
     
     폼이 파일을 포함하고 있을 때는 `multipart/form-data`로 암호화 됩니다. 다음 챕터에서 파일 다루기에 대해 읽을 수 있을 겁니다.
     
-    이런 암호화와 폼필드에 대해 더 읽고싶다면, <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST" class="external-link" target="_blank"><abbr title="Mozilla Developer Network">MDN</abbr> web docs for <code>POST</code></a>로 향합니다
+    이런 암호화와 폼필드에 대해 더 읽고싶다면, <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST" class="external-link" target="_blank"><abbr title="Mozilla Developer Network">MDN</abbr> web docs for <code>POST</code></a>을 참고하세요.
 
 !!! warning
     *경로 동작*에서 다양한 폼 파라미터를 선언할 수 있지만 요청은 `application/json` 대신에 `application/x-www-form-urlencoded`을 이용해 암호화 된 본문을 가지기 때문에 JSON으로 받기를 예상하는 `본문`필드 또한 선언할 수 없습니다.
-    This is not a limitation of **FastAPI**, it's part of the HTTP protocol.
     이는 **FastAPI**의 한계가 아니라 HTTP 통신의 일부입니다.
 
 ## 요약
