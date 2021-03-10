@@ -41,6 +41,7 @@ nav:
   - en: /
   - es: /es/
   - fr: /fr/
+  - in: /in/
   - it: /it/
   - ja: /ja/
   - ko: /ko/
@@ -192,6 +193,8 @@ extra:
     name: es - español
   - link: /fr/
     name: fr - français
+  - link: /in/
+    name: in
   - link: /it/
     name: it - italiano
   - link: /ja/
