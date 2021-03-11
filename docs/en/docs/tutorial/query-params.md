@@ -73,9 +73,10 @@ In this case, the function parameter `q` will be optional, and will be `None` by
     Also notice that **FastAPI** is smart enough to notice that the path parameter `item_id` is a path parameter and `q` is not, so, it's a query parameter.
 
 !!! note
-    FastAPI will know that `q` is optional because of the `= None`.
+    Note that the `Optional` type hint does not impact **FastAPI**, nor should it.
 
-    The `Optional` in `Optional[str]` is not used by FastAPI (FastAPI will only use the `str` part), but the `Optional[str]` will let your editor help you finding errors in your code.
+    **FastAPI** knows that `q` should be a string, due to the `str` in `Optional[str]`, and it knows it is not *required* because it has a default value set by `= None`. Including the `Optional` type hint allows your editor / type-checking software to know this variable can be `None`.
+
 
 ## Query parameter type conversion
 
