@@ -19,7 +19,7 @@ def test_include_nested():
     assert response.status_code == 200, response.text
     assert response.json() == {
         "name": "Foo",
-        "image": {"url": "http://test.com/img.jpg"},
+        "image": {"url": "https://example.com/img.jpg"},
     }
 
 
@@ -28,7 +28,7 @@ def test_include_nested_index():
     assert response.status_code == 200, response.text
     assert response.json() == {
         "name": "Foo",
-        "videos": [{"url": "http://test.com/video_1.mp4", "duration": 40}],
+        "videos": [{"url": "https://example.com/video_1.mp4", "duration": 40}],
     }
 
 
@@ -38,7 +38,7 @@ def test_include_nested_all():
     assert response.json() == {
         "name": "Foo",
         "videos": [
-            {"url": "http://test.com/video_1.mp4"},
-            {"url": "http://test.com/video_2.mp4"},
+            {"url": "https://example.com/video_1.mp4"},
+            {"url": "https://example.com/video_2.mp4"},
         ],
     }
