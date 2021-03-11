@@ -45,16 +45,16 @@ So:
 q: Optional[str] = Query(None)
 ```
 
-...makes the parameter optional, the same as:
+...sets the default value to None, the same as:
 
 ```Python
 q: Optional[str] = None
 ```
 
-But it declares it explicitly as being a query parameter.
+but it also declares it explicitly as being a query parameter.
 
 !!! info
-    Have in mind that FastAPI cares about the part:
+    Remember that FastAPI only cares about the part:
 
     ```Python
     = None
@@ -66,9 +66,9 @@ But it declares it explicitly as being a query parameter.
     = Query(None)
     ```
 
-    and will use that `None` to detect that the query parameter is not required.
+    In either case, the fact that the parameter is assigned a default value signals to FastAPI that it is not required.
 
-    The `Optional` part is only to allow your editor to provide better support.
+    The `Optional` type hint is only to allow your editor to provide better support.
 
 Then, we can pass more parameters to `Query`. In this case, the `max_length` parameter that applies to strings:
 
