@@ -156,9 +156,11 @@ The function parameters will be recognized as follows:
 * If the parameter is declared to be of the type of a **Pydantic model**, it will be interpreted as a request **body**.
 
 !!! note
-    FastAPI will know that the value of `q` is not required because of the default value `= None`.
+    The `Optional` type hint included above is purely for type-checking and editor support, it does not impact **FastAPI**.
 
-    The `Optional` in `Optional[str]` is not used by FastAPI, but will allow your editor to give you better support and detect errors.
+    **FastAPI** knows that `q` should be a string, due to the `str` in `Optional[str]`, and it knows it is not *required* because it has a default value set by `= None`.
+
+    See the [Required Query Parameters](query-params.md#required-query-parameters) section for more details.
 
 ## Without Pydantic
 
