@@ -11,9 +11,11 @@ Let's take this application as example:
 The query parameter `q` is of type `Optional[str]`, that means that it's of type `str` but could also be `None`, and indeed, the default value is `None`, so FastAPI will know it's not required.
 
 !!! note
-    FastAPI will know that the value of `q` is not required because of the default value `= None`.
+    The `Optional` type hint included above is purely for type-checking and editor support, it does not impact **FastAPI**.
 
-    The `Optional` in `Optional[str]` is not used by FastAPI, but will allow your editor to give you better support and detect errors.
+    **FastAPI** knows that `q` should be a string, due to the `str` in `Optional[str]`, and it knows it is not *required* because it has a default value set by `= None`.
+
+    See the [Required Query Parameters](query-params.md#required-query-parameters) section for more details.
 
 ## Additional validation
 
