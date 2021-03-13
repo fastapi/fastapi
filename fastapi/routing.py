@@ -493,7 +493,7 @@ class APIRouter(routing.Router):
         route_class: Type[APIRoute] = APIRoute,
         on_startup: Optional[Sequence[Callable[[], Any]]] = None,
         on_shutdown: Optional[Sequence[Callable[[], Any]]] = None,
-        lifespan: Optional[Callable[[Any], AsyncGenerator]] = None,
+        lifespan: Optional[Callable[[Any], AsyncGenerator[Any, Any]]] = None,
         deprecated: Optional[bool] = None,
         include_in_schema: bool = True,
         generate_unique_id_function: Callable[[APIRoute], str] = Default(

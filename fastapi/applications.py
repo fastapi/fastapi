@@ -74,7 +74,7 @@ class FastAPI(Starlette):
         terms_of_service: Optional[str] = None,
         contact: Optional[Dict[str, Union[str, Any]]] = None,
         license_info: Optional[Dict[str, Union[str, Any]]] = None,
-        lifespan: Optional[Callable[[Any], AsyncGenerator]] = None,
+        lifespan: Optional[Callable[[Any], AsyncGenerator[Any, Any]]] = None,
         openapi_prefix: str = "",
         root_path: str = "",
         root_path_in_servers: bool = True,
