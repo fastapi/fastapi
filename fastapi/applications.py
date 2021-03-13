@@ -1,6 +1,7 @@
 from enum import Enum
 from typing import (
     Any,
+    AsyncGenerator,
     Awaitable,
     Callable,
     Coroutine,
@@ -73,6 +74,7 @@ class FastAPI(Starlette):
         terms_of_service: Optional[str] = None,
         contact: Optional[Dict[str, Union[str, Any]]] = None,
         license_info: Optional[Dict[str, Union[str, Any]]] = None,
+        lifespan: Optional[Callable[[Any], AsyncGenerator]] = None,
         openapi_prefix: str = "",
         root_path: str = "",
         root_path_in_servers: bool = True,
@@ -124,6 +126,7 @@ class FastAPI(Starlette):
             dependency_overrides_provider=self,
             on_startup=on_startup,
             on_shutdown=on_shutdown,
+            lifespan=lifespan,
             default_response_class=default_response_class,
             dependencies=dependencies,
             callbacks=callbacks,
