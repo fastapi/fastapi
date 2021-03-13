@@ -1,7 +1,7 @@
+import pytest
 from fastapi import APIRouter, FastAPI
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
-import pytest
 
 
 class State(BaseModel):
