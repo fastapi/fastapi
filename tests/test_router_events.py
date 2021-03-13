@@ -53,10 +53,6 @@ def test_router_events(state):
     def sub_router_shutdown():
         state.sub_router_shutdown = True
 
-    @sub_router.get("/")
-    def main():
-        return {"message": "Hello World"}
-
     router.include_router(sub_router)
     app.include_router(router)
 
