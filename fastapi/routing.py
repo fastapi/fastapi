@@ -6,6 +6,7 @@ import inspect
 import json
 from typing import (
     Any,
+    AsyncGenerator,
     Callable,
     Coroutine,
     Dict,
@@ -450,6 +451,7 @@ class APIRouter(routing.Router):
         route_class: Type[APIRoute] = APIRoute,
         on_startup: Optional[Sequence[Callable[[], Any]]] = None,
         on_shutdown: Optional[Sequence[Callable[[], Any]]] = None,
+        lifespan: Optional[Callable[[Any], AsyncGenerator]] = None,
         deprecated: Optional[bool] = None,
         include_in_schema: bool = True,
     ) -> None:
@@ -459,6 +461,7 @@ class APIRouter(routing.Router):
             default=default,  # type: ignore # in Starlette
             on_startup=on_startup,  # type: ignore # in Starlette
             on_shutdown=on_shutdown,  # type: ignore # in Starlette
+            lifespan=lifespan,
         )
         if prefix:
             assert prefix.startswith("/"), "A path prefix must start with '/'"
