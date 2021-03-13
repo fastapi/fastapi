@@ -1,4 +1,15 @@
-from typing import Any, Callable, Coroutine, Dict, List, Optional, Sequence, Type, Union
+from typing import (
+    Any,
+    AsyncGenerator,
+    Callable,
+    Coroutine,
+    Dict,
+    List,
+    Optional,
+    Sequence,
+    Type,
+    Union,
+)
 
 from fastapi import routing
 from fastapi.concurrency import AsyncExitStack
@@ -55,6 +66,7 @@ class FastAPI(Starlette):
         ] = None,
         on_startup: Optional[Sequence[Callable[[], Any]]] = None,
         on_shutdown: Optional[Sequence[Callable[[], Any]]] = None,
+        lifespan: Optional[Callable[[Any], AsyncGenerator]] = None,
         openapi_prefix: str = "",
         root_path: str = "",
         root_path_in_servers: bool = True,
@@ -71,6 +83,7 @@ class FastAPI(Starlette):
             dependency_overrides_provider=self,
             on_startup=on_startup,
             on_shutdown=on_shutdown,
+            lifespan=lifespan,
             default_response_class=default_response_class,
             dependencies=dependencies,
             callbacks=callbacks,
