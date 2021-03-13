@@ -46,7 +46,7 @@ Here, the `shutdown` event handler function will write a text line `"Application
 !!! info
     You can read more about these event handlers in <a href="https://www.starlette.io/events/" class="external-link" target="_blank">Starlette's  Events' docs</a>.
 
-# lifespan
+# Lifespan
 
 You can also define a lifespan context as an async generator, instead of using startup and shutdown events.
 
@@ -54,6 +54,6 @@ This is useful when the startup and shutdown events of your application are enco
 
 This function must be declared with `async def` and contain one `yield` statement.
 
-```Python hl_lines="8"
+```Python hl_lines="4"
 {!../../../docs_src/events/tutorial003.py!}
 ```
