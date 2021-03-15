@@ -326,10 +326,10 @@ def get_dependant(
             add_param_to_fields(field=param_field, dependant=dependant)
         else:
             field_info = param_field.field_info
-            assert isinstance(
-                field_info, params.Body
-            ), f"Param: {param_field.name} can only be a request body, using Body(...)"
-            dependant.body_params.append(param_field)
+            if isinstance(field_info, params.Body):
+                dependant.body_params.append(param_field)
+            elif isinstance(field_info, params.Query):
+                dependant.query_params.append(param_field)
     return dependant
 
 
