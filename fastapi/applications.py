@@ -1,3 +1,4 @@
+import asyncio
 from typing import Any, Callable, Coroutine, Dict, List, Optional, Sequence, Type, Union
 
 from fastapi import routing
@@ -149,7 +150,11 @@ class FastAPI(Starlette):
                     if root_path and self.root_path_in_servers:
                         self.servers.insert(0, {"url": root_path})
                         server_urls.add(root_path)
-                return JSONResponse(self.openapi())
+                    if asyncio.iscoroutinefunction(self.openapi):
+                        openapi_schema = await self.openapi()
+                    else:
+                        openapi_schema = self.openapi()
+                return JSONResponse(openapi_schema)
 
             self.add_route(self.openapi_url, openapi, include_in_schema=False)
         if self.openapi_url and self.docs_url:
