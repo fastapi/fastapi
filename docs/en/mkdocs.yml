@@ -3,6 +3,7 @@ site_description: FastAPI framework, high performance, easy to learn, fast to co
 site_url: https://fastapi.tiangolo.com/
 theme:
   name: material
+  custom_dir: overrides
   palette:
   - scheme: default
     primary: teal
@@ -45,6 +46,7 @@ nav:
   - ko: /ko/
   - pt: /pt/
   - ru: /ru/
+  - sq: /sq/
   - tr: /tr/
   - uk: /uk/
   - zh: /zh/
@@ -81,6 +83,7 @@ nav:
     - tutorial/dependencies/classes-as-dependencies.md
     - tutorial/dependencies/sub-dependencies.md
     - tutorial/dependencies/dependencies-in-path-operation-decorators.md
+    - tutorial/dependencies/global-dependencies.md
     - tutorial/dependencies/dependencies-with-yield.md
   - Security:
     - tutorial/security/index.md
@@ -169,7 +172,9 @@ markdown_extensions:
 extra:
   social:
   - icon: fontawesome/brands/github-alt
-    link: https://github.com/tiangolo/typer
+    link: https://github.com/tiangolo/fastapi
+  - icon: fontawesome/brands/discord
+    link: https://discord.gg/VQjSZaeJmf
   - icon: fontawesome/brands/twitter
     link: https://twitter.com/tiangolo
   - icon: fontawesome/brands/linkedin
@@ -180,6 +185,31 @@ extra:
     link: https://medium.com/@tiangolo
   - icon: fontawesome/solid/globe
     link: https://tiangolo.com
+  alternate:
+  - link: /
+    name: en - English
+  - link: /es/
+    name: es - español
+  - link: /fr/
+    name: fr - français
+  - link: /it/
+    name: it - italiano
+  - link: /ja/
+    name: ja - 日本語
+  - link: /ko/
+    name: ko - 한국어
+  - link: /pt/
+    name: pt - português
+  - link: /ru/
+    name: ru - русский язык
+  - link: /sq/
+    name: sq - shqip
+  - link: /tr/
+    name: tr - Türkçe
+  - link: /uk/
+    name: uk - українська мова
+  - link: /zh/
+    name: zh - 汉语
 extra_css:
 - css/termynal.css
 - css/custom.css
