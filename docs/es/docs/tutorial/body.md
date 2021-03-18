@@ -109,7 +109,7 @@ Las capturas de pantalla anteriores fueron tomadas con <a href="https://code.vis
 !!! tip
     Si usas <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a> como editor, puedes usar el <a href="https://github.com/koxudaxi/pydantic-pycharm-plugin/" class="external-link" target="_blank">Plugin Pydantic PyCharm</a>.
 
-    Esto mejora el soporte del editor para modelos Pydantic, con:
+    Esto mejora el soporte del editor para modelos de Pydantic, con:
     
     * auto-completación
     * verificación de tipos
