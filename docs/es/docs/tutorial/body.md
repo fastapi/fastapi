@@ -129,7 +129,7 @@ Dentro de la función, puedes acceder a todos los atributos del objeto modelo di
 
 Puedes declarar parámetros de ruta y peticiones del body al mismo tiempo.
 
-**FastAPI** reconocerá que los parámetros de la función que coinciden con los parámetros de ruta deben ser **tomados de la ruta**, y que los parámetros de la función que son declarados para ser modelos Pydantic deben ser **tomados de la petición body**.
+**FastAPI** reconocerá que los parámetros de la función que coinciden con los parámetros de ruta deben ser **tomados de la ruta**, y que los parámetros de la función que son declarados para ser modelos de Pydantic deben ser **tomados de la petición body**.
 
 ```Python hl_lines="17-18"
 {!../../../docs_src/body/tutorial003.py!}
