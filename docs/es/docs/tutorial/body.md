@@ -149,7 +149,7 @@ Los parámetros de la función se reconocerán de la siguiente manera:
 
 * Si el parámetro también se declara en la **ruta**, se utilizará como parámetro de ruta.
 * Si el parámetro es de **tipo singular** (como `int`, `float`, `str`, `bool`, etc.) se interpretará como un parámetro de **consulta**.
-* Si se declara que el parámetro es del tipo **modelo Pydantic**, se interpretará como una petición **body**.
+* Si se declara que el parámetro es de un tipo de **modelo de Pydantic**, se interpretará como una petición **body**.
 
 !!! nota
     **FastAPI** sabrá que el valor de `q` no es necesario debido al valor predeterminado `= None`.
