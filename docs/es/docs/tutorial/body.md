@@ -158,4 +158,4 @@ Los parámetros de la función se reconocerán de la siguiente manera:
 
 ## Sin Pydantic
 
-Si no quieres usar modelos Pydantic, también puedes usar parámetros **Body**. Consulta la documentación para [Body - Parámetros Múltiples: Valores singulares en el cuerpo] (body-multiple-params.md#singular-values-in-body){.internal-link target=_blank}.
+Si no quieres usar los modelos de Pydantic, también puedes usar parámetros **Body**. Consulta la documentación para [Body - Parámetros Múltiples: Valores singulares en el cuerpo] (body-multiple-params.md#singular-values-in-body){.internal-link target=_blank}.
