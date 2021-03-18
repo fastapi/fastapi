@@ -6,7 +6,7 @@ Una **petición** body son datos enviados por el cliente a tu API. Una **respues
 
 Tu API casi siempre debe enviar una **respuesta** body, pero el cliente no necesariamente necesita enviar **peticiones** body todo el tiempo.
 
-Para declarar una **petición** body, usas modelos <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> con todo su poder y sus beneficios.
+Para declarar una **petición** body, usas modelos de <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> con todo su poder y sus beneficios.
 
 !!! info
     Para enviar datos, debes usar uno de estos: `POST` (el más común), `PUT`, `DELETE` o `PATCH`.
