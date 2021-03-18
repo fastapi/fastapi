@@ -15,7 +15,7 @@ Para declarar una **petición** body, usas modelos de <a href="https://pydantic-
 
     Como se desaconseja, la documentación interactiva con Swagger UI no mostrará la documentación del cuerpo cuando se use `GET`, y puede ser que los proxies en el medio no lo soporten.
 
-## Importrar `BaseModel` de Pydantic'
+## Importar `BaseModel` de Pydantic
 
 Primero, necesitas importar `BaseModel` de `pydantic`:
 
