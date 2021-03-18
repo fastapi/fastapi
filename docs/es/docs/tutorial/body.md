@@ -27,7 +27,7 @@ Primero, necesitas importar `BaseModel` de `pydantic`:
 
 Luego, declara tu modelo de datos como una clase que hereda de `BaseModel`.
 
-Usa tipos de Python estándar para todos los atributos:
+Usa tipos estándar de Python para todos los atributos:
 
 ```Python hl_lines="7-11"
 {!../../../docs_src/body/tutorial001.py!}
