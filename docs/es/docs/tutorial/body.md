@@ -67,7 +67,7 @@ Para agregarlo a tu *ruta de operación*, decláralo de la misma manera que decl
 
 ## Resultados
 
-Solo con esa declaración de tipo Python, **FastAPI**:
+Solo con esa declaración de tipo Python, **FastAPI** hará lo siguiente:
 
 * Leerá el cuerpo de la petición como JSON.
 * Convertirá los correspondientes tipos (si es necesario).
