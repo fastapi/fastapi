@@ -84,7 +84,7 @@ Los Esquemas JSON de tus modelos serán parte de tu esquema OpenAPI generado, y 
 
 <img src="/img/tutorial/body/image01.png">
 
-Y también serán usados en la documentación API dentro de cada *ruta de operaciones* que los necesite:
+Y también serán usados en la documentación de la API dentro de cada *ruta de operaciones* que los necesite:
 
 <img src="/img/tutorial/body/image02.png">
 
