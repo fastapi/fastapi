@@ -6,45 +6,45 @@
   <a href="https://fastapi.tiangolo.com"><img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI"></a>
 </p>
 <p align="center">
-    <em>FastAPI framework, high performance, easy to learn, fast to code, ready for production</em>
+    <em>Yüksek performanslı, öğrenmesi kolay, kodlama için hızlı, üretime hazır FastAPI çerçevesi</em>
 </p>
 <p align="center">
 <a href="https://github.com/tiangolo/fastapi/actions?query=workflow%3ATest" target="_blank">
     <img src="https://github.com/tiangolo/fastapi/workflows/Test/badge.svg" alt="Test">
 </a>
 <a href="https://codecov.io/gh/tiangolo/fastapi" target="_blank">
-    <img src="https://img.shields.io/codecov/c/github/tiangolo/fastapi?color=%2334D058" alt="Coverage">
+    <img src="https://img.shields.io/codecov/c/github/tiangolo/fastapi?color=%2334D058" alt="Kapsama">
 </a>
 <a href="https://pypi.org/project/fastapi" target="_blank">
-    <img src="https://img.shields.io/pypi/v/fastapi?color=%2334D058&label=pypi%20package" alt="Package version">
+    <img src="https://img.shields.io/pypi/v/fastapi?color=%2334D058&label=pypi%20package" alt="Paket sürümü">
 </a>
 </p>
 
 ---
 
-**Documentation**: <a href="https://fastapi.tiangolo.com" target="_blank">https://fastapi.tiangolo.com</a>
+**Dökümantasyon**: <a href="https://fastapi.tiangolo.com" target="_blank">https://fastapi.tiangolo.com</a>
 
-**Source Code**: <a href="https://github.com/tiangolo/fastapi" target="_blank">https://github.com/tiangolo/fastapi</a>
+**Kaynak Kodu**: <a href="https://github.com/tiangolo/fastapi" target="_blank">https://github.com/tiangolo/fastapi</a>
 
 ---
 
-FastAPI is a modern, fast (high-performance), web framework for building APIs with Python 3.6+ based on standard Python type hints.
+Fastapi, Standart Python kurallarına göre Python 3.6+ ile API'lar oluşturmak için modern, hızlı (yüksek performanslı) bir web çerçevesidir.
 
-The key features are:
+Temel özellikler:
 
-* **Fast**: Very high performance, on par with **NodeJS** and **Go** (thanks to Starlette and Pydantic). [One of the fastest Python frameworks available](#performance).
+* **Hızlı**: Very high performance, on par with **NodeJS** and **Go** (thanks to Starlette and Pydantic). [One of the fastest Python frameworks available](#performance).
 
-* **Fast to code**: Increase the speed to develop features by about 200% to 300%. *
-* **Fewer bugs**: Reduce about 40% of human (developer) induced errors. *
-* **Intuitive**: Great editor support. <abbr title="also known as auto-complete, autocompletion, IntelliSense">Completion</abbr> everywhere. Less time debugging.
-* **Easy**: Designed to be easy to use and learn. Less time reading docs.
-* **Short**: Minimize code duplication. Multiple features from each parameter declaration. Fewer bugs.
-* **Robust**: Get production-ready code. With automatic interactive documentation.
-* **Standards-based**: Based on (and fully compatible with) the open standards for APIs: <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (previously known as Swagger) and <a href="https://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>.
+* **Kodlama için hızlı**: Özellik geliştirmek için hızınızı %200 ilâ %300 arasında artırın. *
+* **Daha az hata**: İnsanlardan (geliştiriciler) kaynaklanan hataları yaklaşık %40 oranında azaltın. *
+* **Sezgisel**: Harika editör desteği. <abbr title="otomatik tamamlama ya da IntelliSense olarak bilinir">Tamamlama</abbr> her yerde. Hata ayıklama için daha az zaman.
+* **Kolay**: Kullanımı kolay ve öğrenmek için tasarlanmıştır. Dokümanları okumak daha az zaman alır.
+* **Kısa**: Kod kopyalarını minimize edin. Her parametre ile birden fazla özellik belirtin. Daha az hata.
+* **Güçlü**: Üretime hazır kodu alın. Üstelik interaktif dokümantasyon ile birlikte.
+* **Standartlara dayalı**: API'lar için açık standartları baz alır (ve tamamen uyumludur): <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (daha önce Swagger olarak bilinir) ve <a href="https://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>.
 
-<small>* estimation based on tests on an internal development team, building production applications.</small>
+<small>* üretim uygulamalarının oluşturulmasında kullanan ekibin testlerine dayalı tahmin.</small>
 
-## Gold Sponsors
+## Altın Sponsorlar
 
 <!-- sponsors -->
 
@@ -56,66 +56,66 @@ The key features are:
 
 <!-- /sponsors -->
 
-<a href="https://fastapi.tiangolo.com/fastapi-people/#sponsors" class="external-link" target="_blank">Other sponsors</a>
+<a href="https://fastapi.tiangolo.com/fastapi-people/#sponsors" class="external-link" target="_blank">Diğer sponsorlar</a>
 
-## Opinions
+## Görüşler
 
-"_[...] I'm using **FastAPI** a ton these days. [...] I'm actually planning to use it for all of my team's **ML services at Microsoft**. Some of them are getting integrated into the core **Windows** product and some **Office** products._"
+"_[...] Bugünlerde çokça **FastAPI** kullanıyorum. [...] Aslında **Microsoft'taki tüm ML servisleri** için kullanmayı planlıyorum. Bazıları temel **Windows** ürününe ve bazıları ise **Office** ürünlerine entegre ediliyor._"
 
-<div style="text-align: right; margin-right: 10%;">Kabir Khan - <strong>Microsoft</strong> <a href="https://github.com/tiangolo/fastapi/pull/26" target="_blank"><small>(ref)</small></a></div>
-
----
-
-"_We adopted the **FastAPI** library to spawn a **REST** server that can be queried to obtain **predictions**. [for Ludwig]_"
-
-<div style="text-align: right; margin-right: 10%;">Piero Molino, Yaroslav Dudin, and Sai Sumanth Miryala - <strong>Uber</strong> <a href="https://eng.uber.com/ludwig-v0-2/" target="_blank"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Kabir Khan - <strong>Microsoft</strong> <a href="https://github.com/tiangolo/fastapi/pull/26" target="_blank"><small>(kaynak)</small></a></div>
 
 ---
 
-"_**Netflix** is pleased to announce the open-source release of our **crisis management** orchestration framework: **Dispatch**! [built with **FastAPI**]_"
+"_**Tahminler** elde etmek için sorgulamalar yapılabilen bir **REST** sunucusunu ortaya çıkarmak amacıyla **FastAPI** kütüphanesini benimsedik. [Ludwig için]_"
 
-<div style="text-align: right; margin-right: 10%;">Kevin Glisson, Marc Vilanova, Forest Monsen - <strong>Netflix</strong> <a href="https://netflixtechblog.com/introducing-dispatch-da4b8a2a8072" target="_blank"><small>(ref)</small></a></div>
-
----
-
-"_I’m over the moon excited about **FastAPI**. It’s so fun!_"
-
-<div style="text-align: right; margin-right: 10%;">Brian Okken - <strong><a href="https://pythonbytes.fm/episodes/show/123/time-to-right-the-py-wrongs?time_in_sec=855" target="_blank">Python Bytes</a> podcast host</strong> <a href="https://twitter.com/brianokken/status/1112220079972728832" target="_blank"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Piero Molino, Yaroslav Dudin, and Sai Sumanth Miryala - <strong>Uber</strong> <a href="https://eng.uber.com/ludwig-v0-2/" target="_blank"><small>(kaynak)</small></a></div>
 
 ---
 
-"_Honestly, what you've built looks super solid and polished. In many ways, it's what I wanted **Hug** to be - it's really inspiring to see someone build that._"
+"_**Netflix kriz yönetimi** uyarlama çerçevemizin açık kaynaklı sürümü duyurmaktan memnuniyet duyar: **Dispatch**! [**FastAPI** ile oluşturuldu]_"
 
-<div style="text-align: right; margin-right: 10%;">Timothy Crosley - <strong><a href="https://www.hug.rest/" target="_blank">Hug</a> creator</strong> <a href="https://news.ycombinator.com/item?id=19455465" target="_blank"><small>(ref)</small></a></div>
-
----
-
-"_If you're looking to learn one **modern framework** for building REST APIs, check out **FastAPI** [...] It's fast, easy to use and easy to learn [...]_"
-
-"_We've switched over to **FastAPI** for our **APIs** [...] I think you'll like it [...]_"
-
-<div style="text-align: right; margin-right: 10%;">Ines Montani - Matthew Honnibal - <strong><a href="https://explosion.ai" target="_blank">Explosion AI</a> founders - <a href="https://spacy.io" target="_blank">spaCy</a> creators</strong> <a href="https://twitter.com/_inesmontani/status/1144173225322143744" target="_blank"><small>(ref)</small></a> - <a href="https://twitter.com/honnibal/status/1144031421859655680" target="_blank"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Kevin Glisson, Marc Vilanova, Forest Monsen - <strong>Netflix</strong> <a href="https://netflixtechblog.com/introducing-dispatch-da4b8a2a8072" target="_blank"><small>(kaynak)</small></a></div>
 
 ---
 
-## **Typer**, the FastAPI of CLIs
+"_Ben **FastAPI** ile ilgili heyecanlıyım. Çok eğlenceli!_"
+
+<div style="text-align: right; margin-right: 10%;">Brian Okken - <strong><a href="https://pythonbytes.fm/episodes/show/123/time-to-right-the-py-wrongs?time_in_sec=855" target="_blank">Python Bytes</a> podcast host</strong> <a href="https://twitter.com/brianokken/status/1112220079972728832" target="_blank"><small>(kaynak)</small></a></div>
+
+---
+
+"_Dürüst olmak gerekirse inşa ettiğiniz şey süper sağlam ve gösterişli gözüküyor. Birçok yönden **kucaklamak** istediğim şey bu - bunu oluşturmak gerçekten ilham verici._"
+
+<div style="text-align: right; margin-right: 10%;">Timothy Crosley - <strong><a href="https://www.hug.rest/" target="_blank">Hug</a> creator</strong> <a href="https://news.ycombinator.com/item?id=19455465" target="_blank"><small>(kaynak)</small></a></div>
+
+---
+
+"_Eğer REST API'ları öğrenmek için **modern bir çerçeveyi** öğrenmek istiyorsanız, **FastAPI**'yi kontrol edin [...] O hızlı, kullanımı ve öğrenmesi kolay [...]_"
+
+"_Biz **API'larımız** için **FastAPI**'ye geçtik  [...] Beğeneceğinizi düşünüyorum [...]_"
+
+<div style="text-align: right; margin-right: 10%;">Ines Montani - Matthew Honnibal - <strong><a href="https://explosion.ai" target="_blank">Explosion AI</a> founders - <a href="https://spacy.io" target="_blank">spaCy</a> creators</strong> <a href="https://twitter.com/_inesmontani/status/1144173225322143744" target="_blank"><small>(kaynak)</small></a> - <a href="https://twitter.com/honnibal/status/1144031421859655680" target="_blank"><small>(kaynak)</small></a></div>
+
+---
+
+## **Typer**, CLI FastAPI'ı
 
 <a href="https://typer.tiangolo.com" target="_blank"><img src="https://typer.tiangolo.com/img/logo-margin/logo-margin-vector.svg" style="width: 20%;"></a>
 
-If you are building a <abbr title="Command Line Interface">CLI</abbr> app to be used in the terminal instead of a web API, check out <a href="https://typer.tiangolo.com/" class="external-link" target="_blank">**Typer**</a>.
+Eğer bir web API yerine terminalde kullanılacak <abbr title="Komut Satırı Arayüzü">CLI</abbr> oluşturuyorsanız <a href="https://typer.tiangolo.com/" class="external-link" target="_blank">**Typer'ı**</a> kontrol edin.
 
-**Typer** is FastAPI's little sibling. And it's intended to be the **FastAPI of CLIs**. ⌨️ 🚀
+**Typer** FastAPI'ın küçük kardeşidir ve **CLI FastAPI** olması amaçlanmıştır. ⌨️ 🚀
 
-## Requirements
+## Gereksinimler
 
 Python 3.6+
 
-FastAPI stands on the shoulders of giants:
+Fastapi şu devlerin omuzlarında duruyor:
 
-* <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> for the web parts.
-* <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> for the data parts.
+* Web bölümleri için <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a>.
+* Veri bölümleri için <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a>.
 
-## Installation
+## Kurulum
 
 <div class="termy">
 
@@ -127,7 +127,7 @@ $ pip install fastapi
 
 </div>
 
-You will also need an ASGI server, for production such as <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a> or <a href="https://gitlab.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>.
+Ayrıca üretim için <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a> ya da <a href="https://gitlab.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a> gibi bir ASGI sunucusuna ihtiyacınız olacak.
 
 <div class="termy">
 
@@ -139,11 +139,10 @@ $ pip install uvicorn[standard]
 
 </div>
 
-## Example
+## Örnek
 
-### Create it
-
-* Create a file `main.py` with:
+### Oluşturun
+* `main.py` dosyasıyla birlikte oluşturun:
 
 ```Python
 from typing import Optional
@@ -155,7 +154,7 @@ app = FastAPI()
 
 @app.get("/")
 def read_root():
-    return {"Hello": "World"}
+    return {"Merhaba": "Dünya"}
 
 
 @app.get("/items/{item_id}")
@@ -164,9 +163,9 @@ def read_item(item_id: int, q: Optional[str] = None):
 ```
 
 <details markdown="1">
-<summary>Or use <code>async def</code>...</summary>
+<summary>Ya da <code>async def</code> kullanın...</summary>
 
-If your code uses `async` / `await`, use `async def`:
+Eğer kodunuz`async` / `await`, için hazırsa `async def` kullanın:
 
 ```Python hl_lines="9 14"
 from typing import Optional
@@ -178,7 +177,7 @@ app = FastAPI()
 
 @app.get("/")
 async def read_root():
-    return {"Hello": "World"}
+    return {"Merhaba": "Dünya"}
 
 
 @app.get("/items/{item_id}")
@@ -186,15 +185,15 @@ async def read_item(item_id: int, q: Optional[str] = None):
     return {"item_id": item_id, "q": q}
 ```
 
-**Note**:
+**Not**:
 
-If you don't know, check the _"In a hurry?"_ section about <a href="https://fastapi.tiangolo.com/async/#in-a-hurry" target="_blank">`async` and `await` in the docs</a>.
+Bunu bilmiyorsunuz ya da  _"aceleniz mi var?"_ Öyleyse <a href="https://fastapi.tiangolo.com/async/#in-a-hurry" target="_blank">`async` ve `await` ile ilgili dokümanlara geçin</a>.
 
 </details>
 
-### Run it
+### Koşturun
 
-Run the server with:
+Sunucuyu şunlarla çalıştırın:
 
 <div class="termy">
 
@@ -211,27 +210,27 @@ INFO:     Application startup complete.
 </div>
 
 <details markdown="1">
-<summary>About the command <code>uvicorn main:app --reload</code>...</summary>
+<summary><code>uvicorn main:app --reload</code>komutu hakkında ...</summary>
 
-The command `uvicorn main:app` refers to:
+Komut `uvicorn main:app` şunları ifade eder:
 
-* `main`: the file `main.py` (the Python "module").
-* `app`: the object created inside of `main.py` with the line `app = FastAPI()`.
-* `--reload`: make the server restart after code changes. Only do this for development.
+* `main`: `main.py` dosyası (Python "modülü").
+* `app`: `app = FastAPI()` ile `main.py` içinde oluşturulan nesne.
+* `--reload`: sunucunun kod değişikliklerinden sonra yeniden başlamasını sağlayın. Bu sadece geliştirme esnasında yapın.
 
 </details>
 
-### Check it
+### Kontrol edin
 
-Open your browser at <a href="http://127.0.0.1:8000/items/5?q=somequery" class="external-link" target="_blank">http://127.0.0.1:8000/items/5?q=somequery</a>.
+Tarayıcınızda <a href="http://127.0.0.1:8000/items/5?q=somequery" class="external-link" target="_blank">http://127.0.0.1:8000/items/5?q=somequery</a> adresini açın.
 
-You will see the JSON response as:
+Yanıtınızı JSON olarak göreceksiniz:
 
 ```JSON
 {"item_id": 5, "q": "somequery"}
 ```
 
-You already created an API that:
+Sen zaten bir API oluşturdun:
 
 * Receives HTTP requests in the _paths_ `/` and `/items/{item_id}`.
 * Both _paths_ take `GET` <em>operations</em> (also known as HTTP _methods_).
