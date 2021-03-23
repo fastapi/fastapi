@@ -6,7 +6,7 @@
   <a href="https://fastapi.tiangolo.com"><img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI"></a>
 </p>
 <p align="center">
-    <em>FastAPI framework, high performance, easy to learn, fast to code, ready for production</em>
+    <em>FastAPI фреймворк, лучшая производительность, низкий порог входа, высокая скорость разработки, production-ready решение</em>
 </p>
 <p align="center">
 <a href="https://travis-ci.com/tiangolo/fastapi" target="_blank">
@@ -22,9 +22,9 @@
 
 ---
 
-**Documentation**: <a href="https://fastapi.tiangolo.com" target="_blank">https://fastapi.tiangolo.com</a>
+**Документация**: <a href="https://fastapi.tiangolo.com" target="_blank">https://fastapi.tiangolo.com</a>
 
-**Source Code**: <a href="https://github.com/tiangolo/fastapi" target="_blank">https://github.com/tiangolo/fastapi</a>
+**Исходный код**: <a href="https://github.com/tiangolo/fastapi" target="_blank">https://github.com/tiangolo/fastapi</a>
 
 ---
 
@@ -34,8 +34,8 @@ FastAPI - это современный, высокопроизводитель�
 
 * **Эффективность**: Отличная производительность наравне с **NodeJS** и **Go** (благодаря Starlette и Pydantic). [Один из самых быстрых Python фреймворков](#performance).
 * **Скорость разработки**: Увеличьте свою скорость разработки на 200–300%. *
-* **Fewer bugs**: На 40% меньше багов при разработке. *
-* **Автодополнение**: Отличная поддержка IDE – тратье меньше времени на отладку.
+* **Меньше багов**: На 40% меньше багов при разработке. *
+* **Авто дополнение**: Отличная поддержка IDE – тратьте меньше времени на отладку.
 * **Простота**: Низкий порог вхождения. Простая и понятная документация.
 * **Лаконичность**: Минимальное дублирование кода. Большое количество готовых решений.
 * **Надёжность**: Получите production-ready код с генерацией интерактивной документации.
@@ -216,7 +216,7 @@ INFO:     Application startup complete.
 
 * `main`: файл `main.py` (Python модуль).
 * `app`: объект который мы создаём в `main.py` строчкой `app = FastAPI()`.
-* `--reload`: презапуск сервера при изменении в коде. Используте этот ключ только во время разработки.
+* `--reload`: перезапуск сервера при изменении в коде. Используйте этот ключ только во время разработки.
 
 </details>
 
@@ -241,15 +241,15 @@ INFO:     Application startup complete.
 
 Откройте в браузере <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 
-Перед вами атоматически сгенерированная документация нашего API (предоставленная <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a>):
+Перед вами автоматически сгенерированная документация нашего API (предоставленная <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a>):
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-01-swagger-ui-simple.png)
 
 ### Альтернативная API документация
 
-Откройте в бразуере <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>.
+Откройте в браузере <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>.
 
-Это документация предоставленна <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a>:
+Это документация предоставлена <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a>:
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
@@ -257,7 +257,7 @@ INFO:     Application startup complete.
 
 Изменим код `main.py`чтобы получить тело `PUT` запроса.
 
-Определем тело запроса стандартными аннотациями типов Python используя Pydantic.
+Определим тело запроса стандартными аннотациями типов Python используя Pydantic.
 
 ```Python hl_lines="4  9-12  25-27"
 from typing import Optional
@@ -331,7 +331,7 @@ def update_item(item_id: int, item: Item):
 item_id: int
 ```
 
-немного более сложная модель `Item`:
+Немного более сложная модель `Item`:
 
 ```Python
 item: Item
