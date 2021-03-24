@@ -25,7 +25,7 @@ def create_user(db: Session, user: schemas.UserCreate):
 
 
 def update_user(db: Session, user: schemas.UserUpdate):
-    db_user = db.query(user).filter(user.id == user.id).one()
+    db_user = db.query(models.User).filter(user.id == user.id).one()
 
     # Update model class variable from requested fields
     for var, value in vars(user).items():
