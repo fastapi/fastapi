@@ -28,7 +28,7 @@ def update_user(db: Session, user: schemas.UserUpdate):
     db_user = db.query(user).filter(user.id == user.id).one()
 
     # Update model class variable from requested fields
-    for var, value in vars(db_user).items():
+    for var, value in vars(user).items():
         setattr(db_user, var, value) if value else None
     db.add(db_user)
     db.commit()
