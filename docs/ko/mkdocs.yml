@@ -50,6 +50,8 @@ nav:
   - tr: /tr/
   - uk: /uk/
   - zh: /zh/
+- 자습서 - 사용자 안내서:
+  - tutorial/index.md
 markdown_extensions:
 - toc:
     permalink: true
