@@ -62,6 +62,7 @@ nav:
   - tutorial/path-params-numeric-validations.md
   - tutorial/body-multiple-params.md
   - tutorial/body-fields.md
+  - tutorial/middleware.md
   - tutorial/body-nested-models.md
   - tutorial/header-params.md
   - tutorial/response-model.md
