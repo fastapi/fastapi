@@ -52,6 +52,7 @@ nav:
   - zh: /zh/
 - 자습서 - 사용자 안내서:
   - tutorial/index.md
+  - tutorial/first-steps.md
 markdown_extensions:
 - toc:
     permalink: true
