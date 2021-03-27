@@ -62,6 +62,7 @@ nav:
   - tutorial/path-params-numeric-validations.md
   - tutorial/body-multiple-params.md
   - tutorial/body-fields.md
+  - tutorial/middleware.md
   - tutorial/body-nested-models.md
   - tutorial/header-params.md
   - tutorial/response-model.md
@@ -75,7 +76,9 @@ nav:
     - tutorial/security/get-current-user.md
     - tutorial/security/simple-oauth2.md
     - tutorial/security/oauth2-jwt.md
+  - tutorial/cors.md
   - tutorial/bigger-applications.md
+  - tutorial/metadata.md
 - 高级用户指南:
   - advanced/index.md
   - advanced/path-operation-advanced-configuration.md
