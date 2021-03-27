@@ -62,11 +62,22 @@ nav:
   - tutorial/path-params-numeric-validations.md
   - tutorial/body-multiple-params.md
   - tutorial/body-fields.md
+  - tutorial/middleware.md
   - tutorial/body-nested-models.md
+  - tutorial/header-params.md
   - tutorial/response-model.md
   - tutorial/extra-models.md
   - tutorial/response-status-code.md
   - tutorial/schema-extra-example.md
+  - tutorial/extra-data-types.md
+  - tutorial/cookie-params.md
+  - 安全性:
+    - tutorial/security/index.md
+    - tutorial/security/get-current-user.md
+    - tutorial/security/simple-oauth2.md
+  - tutorial/cors.md
+  - tutorial/bigger-applications.md
+  - tutorial/metadata.md
 - 高级用户指南:
   - advanced/index.md
   - advanced/path-operation-advanced-configuration.md
@@ -96,7 +107,9 @@ markdown_extensions:
 extra:
   social:
   - icon: fontawesome/brands/github-alt
-    link: https://github.com/tiangolo/typer
+    link: https://github.com/tiangolo/fastapi
+  - icon: fontawesome/brands/discord
+    link: https://discord.gg/VQjSZaeJmf
   - icon: fontawesome/brands/twitter
     link: https://twitter.com/tiangolo
   - icon: fontawesome/brands/linkedin
