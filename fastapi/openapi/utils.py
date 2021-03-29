@@ -93,7 +93,6 @@ def get_openapi_operation_parameters(
         field_info = cast(Param, field_info)
 
         if not getattr(field_info, "include_in_schema", True):
-            print(field_info.__dict__)
             continue
 
         parameter = {
