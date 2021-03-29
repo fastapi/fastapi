@@ -30,9 +30,9 @@ class UserCreate(UserBase):
 
 class UserUpdate(UserBase):
     id: str
-    is_active: bool
-    email: str
-    password: str
+    is_active: Optional[bool]
+    email: Optional[str]
+    password: Optional[str]
 
 
 class User(UserBase):
