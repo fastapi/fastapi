@@ -122,16 +122,22 @@ openapi_schema = {
                 "operationId": "update_user_users__user_id__put",
                 "parameters": [
                     {
-                        "required": True,
-                        "schema": {"title": "User Id", "type": "integer"},
-                        "name": "user_id",
+                        "required": False,
+                        "schema": {"title": "Is Active", "type": "boolean"},
+                        "name": "user_is_active",
                         "in": "path",
                     },
                     {
-                        "required": True,
-                        "schema": {"title": "New Password", "type": "string"},
-                        "name": "new_password",
-                        "in": "query",
+                        "required": False,
+                        "schema": {"title": "Email", "type": "string"},
+                        "name": "user_email",
+                        "in": "path",
+                    },
+                    {
+                        "required": False,
+                        "schema": {"title": "Password", "type": "string"},
+                        "name": "user_password",
+                        "in": "path",
                     },
                 ],
                 "responses": {
