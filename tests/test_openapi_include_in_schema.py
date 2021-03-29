@@ -112,8 +112,8 @@ def test_app():
     response = client.get(
         "/foo",
         headers={
-            "Visible-Header": "Visible-Header-Value",
             "Hidden-Header": "Hidden-Header-Value",
+            "Visible-Header": "Visible-Header-Value",
         },
     )
     assert response.status_code == 200, response.text
