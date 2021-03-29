@@ -43,8 +43,8 @@ def read_user(user_id: int, db: Session = Depends(get_db)):
 
 
 @app.put("/users/{user_id}", response_model=schemas.User)
-def update_user(user_id: int, new_password: str, db: Session = Depends(get_db)):
-    db_user = crud.update_user(db, user_id=user_id, new_password=new_password)
+def update_user(user: schemas.UserUpdate, db: Session = Depends(get_db)):
+    db_user = crud.update_user(db, user)
     if db_user is None:
         raise HTTPException(status_code=404, detail="User was not updated")
     return db_user
