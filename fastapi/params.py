@@ -135,6 +135,7 @@ class Header(Param):
         *,
         alias: Optional[str] = None,
         convert_underscores: bool = True,
+        include_in_schema: bool = True,
         title: Optional[str] = None,
         description: Optional[str] = None,
         gt: Optional[float] = None,
@@ -148,6 +149,7 @@ class Header(Param):
         **extra: Any,
     ):
         self.convert_underscores = convert_underscores
+        self.include_in_schema = include_in_schema
         super().__init__(
             default,
             alias=alias,
