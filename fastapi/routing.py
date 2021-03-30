@@ -145,7 +145,15 @@ async def serialize_response(
             exclude_none=exclude_none,
         )
     else:
-        return jsonable_encoder(response_content)
+        return jsonable_encoder(
+            response_content,
+            include=include,
+            exclude=exclude,
+            by_alias=by_alias,
+            exclude_unset=exclude_unset,
+            exclude_defaults=exclude_defaults,
+            exclude_none=exclude_none,
+        )
 
 
 async def run_endpoint_function(
