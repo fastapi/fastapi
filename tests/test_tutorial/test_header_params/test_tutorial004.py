@@ -1,28 +1,7 @@
-from fastapi import FastAPI, Header
+import pytest
 from fastapi.testclient import TestClient
 
-app = FastAPI(
-    servers=[
-        {"url": "/", "description": "Default, relative server"},
-        {
-            "url": "http://staging.localhost.tiangolo.com:8000",
-            "description": "Staging but actually localhost still",
-        },
-        {"url": "https://prod.example.com"},
-    ]
-)
-
-
-@app.get("/foo")
-def foo(
-    hidden_header=Header(None, include_in_schema=False),
-    visible_header=Header(None),
-):
-    return {
-        "hidden_header": hidden_header,
-        "visible_header": visible_header,
-    }
-
+from docs_src.header_params.tutorial004 import app
 
 client = TestClient(app)
 
@@ -30,27 +9,11 @@ client = TestClient(app)
 openapi_schema = {
     "openapi": "3.0.2",
     "info": {"title": "FastAPI", "version": "0.1.0"},
-    "servers": [
-        {"url": "/", "description": "Default, relative server"},
-        {
-            "url": "http://staging.localhost.tiangolo.com:8000",
-            "description": "Staging but actually localhost still",
-        },
-        {"url": "https://prod.example.com"},
-    ],
     "paths": {
-        "/foo": {
+        "/items/": {
             "get": {
-                "summary": "Foo",
-                "operationId": "foo_foo_get",
-                "parameters": [
-                    {
-                        "required": False,
-                        "schema": {"title": "Visible-Header"},
-                        "name": "visible-header",
-                        "in": "header",
-                    }
-                ],
+                "summary": "Read Items",
+                "operationId": "read_items_items__get",
                 "responses": {
                     "200": {
                         "description": "Successful Response",
@@ -102,22 +65,19 @@ openapi_schema = {
 }
 
 
-def test_openapi_servers():
-    response = client.get("/openapi.json")
-    assert response.status_code == 200, response.text
-    assert response.json() == openapi_schema
-
-
-def test_app():
-    response = client.get(
-        "/foo",
-        headers={
-            "Hidden-Header": "Hidden-Header-Value",
-            "Visible-Header": "Visible-Header-Value",
-        },
-    )
-    assert response.status_code == 200, response.text
-    assert response.json() == {
-        "hidden_header": "Hidden-Header-Value",
-        "visible_header": "Visible-Header-Value",
-    }
+@pytest.mark.parametrize(
+    "path,headers,expected_status,expected_response",
+    [
+        ("/openapi.json", None, 200, openapi_schema),
+        (
+            "/items",
+            {"Hidden-Header": "hidden_header"},
+            200,
+            {"hidden_header": "hidden_header"},
+        ),
+    ],
+)
+def test(path, headers, expected_status, expected_response):
+    response = client.get(path, headers=headers)
+    assert response.status_code == expected_status
+    assert response.json() == expected_response
