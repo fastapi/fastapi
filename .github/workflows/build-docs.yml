@@ -1,8 +1,14 @@
 name: Build Docs
 on:
   push:
+    paths:
+      - "docs/**"
+      - "docs_src/**"
   pull_request:
     types: [opened, synchronize]
+    paths:
+      - "docs/**"
+      - "docs_src/**"
 jobs:
   build:
     runs-on: ubuntu-18.04
@@ -34,7 +40,7 @@ jobs:
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v1.1.5
         with:
-          publish-dir: './site'
+          publish-dir: "./site"
           production-branch: master
           github-token: ${{ secrets.GITHUB_TOKEN }}
           enable-commit-comment: false
