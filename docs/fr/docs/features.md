@@ -13,7 +13,7 @@
 
 ### Documentation automatique
 
-Documentation d'API interactive et interface web d'exploration. Comme le framework est basé sur OpenAPI, de nombreuses options sont disponibles. Deux d'entre-elles sont inclus par défaut.
+Documentation d'API interactive et interface web d'exploration. Comme le framework est basé sur OpenAPI, de nombreuses options sont disponibles. Deux d'entre-elles sont incluses par défaut.
 
 * <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank"><strong>Swagger UI</strong></a>, propose une documentation interactive. Vous permet de directement tester l'API depuis votre navigateur.
 
@@ -70,11 +70,11 @@ my_second_user: User = User(**second_user_data)
 
 ### Support d'éditeurs
 
-Tout le framework a été conçus pour être facile et intuitif d'utilisation, toutes les décisions de design ont été testées sur de nombreux éditeurs avant même de commencer le développement final afin d'assurer la meilleure expérience de développement possible.
+Tout le framework a été conçu pour être facile et intuitif d'utilisation, toutes les décisions de design ont été testées sur de nombreux éditeurs avant même de commencer le développement final afin d'assurer la meilleure expérience de développement possible.
 
-Dans le dernier sondages effectués auprès de développeurs python il était claire que <a href="https://www.jetbrains.com/research/python-developers-survey-2017/#tools-and-features" class="external-link" target="_blank">la fonctionnalité la plus utilisée est "l'autocomplètion"</a>.
+Dans le dernier sondage effectué auprès de développeurs python il était clair que <a href="https://www.jetbrains.com/research/python-developers-survey-2017/#tools-and-features" class="external-link" target="_blank">la fonctionnalité la plus utilisée est "l'autocomplètion"</a>.
 
-Tout le framwork **FastAPI** a été conçus avec cela en tête. L'autocomplétion fonctionne partout.
+Tout le framwork **FastAPI** a été conçu avec cela en tête. L'autocomplétion fonctionne partout.
 
 Vous devrez rarement revenir à la documentation.
 
@@ -88,7 +88,7 @@ Voici comment votre éditeur peut vous aider:
 
 ![editor support](https://fastapi.tiangolo.com/img/pycharm-completion.png)
 
-Vous aurez des propositions de complétion que vous n'auriez jamais imaginé. Par exemple la clé `prix` dans le corps d'un document JSON (qui est peut-être imbriqué) venant d'une requête.
+Vous aurez des propositions de complétion que vous n'auriez jamais imaginées. Par exemple la clé `prix` dans le corps d'un document JSON (qui est peut-être imbriqué) venant d'une requête.
 
 Plus jamais vous ne vous tromperez en tapant le nom d'une clé, vous ne ferez des aller-retour entre votre code et la documentation ou vous ne scrollerez de haut en bas afin d'enfin savoir si vous devez taper `username` ou `user_name`.
 
@@ -129,7 +129,7 @@ Tous les protocoles de sécurités sont définis dans OpenAPI, incluant:
 
 Plus toutes les fonctionnalités de sécurités venant de Starlette (incluant les **cookies de sessions**).
 
-Le tout conçu en composant réutilisable facilement intégrable a vos systèmes, data stores, base de données relationnelle ou NoSQL, etc.
+Le tout conçu en composant réutilisable facilement intégrable à vos systèmes, data stores, base de données relationnelle ou NoSQL, etc.
 
 ### Injection de dépendances
 
@@ -179,7 +179,7 @@ Avec **FastAPI** vous aurez toutes les fonctionnalités de **Starlette** (FastAP
 
 Inclus des librairies externes basées, aussi, sur Pydantic, servent d'<abbr title="Object-Relational Mapper">ORM</abbr>s, <abbr title="Object-Document Mapper">ODM</abbr>s pour les bases de données.
 
-Cela signifie aussi que, dans la plupart des cas, vous pouvez fournir l'objet reçus d'une requête **directement à la base de données**, comme tout est validé automatiquement.
+Cela signifie aussi que, dans la plupart des cas, vous pouvez fournir l'objet reçu d'une requête **directement à la base de données**, comme tout est validé automatiquement.
 
 Inversément, dans la plupart des cas vous pourrez juste envoyer l'objet récupéré de la base de données **directement au client**
 
