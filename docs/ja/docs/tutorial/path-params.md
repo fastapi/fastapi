@@ -83,7 +83,7 @@ Pythonのformat文字列と同様のシンタックスで「パスパラメー�
 
 ## 標準であることのメリット、ドキュメンテーションの代替物
 
-また、生成されたスキーマが <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md" class="external-link" target="_blank">OpenAPI</a> 標準に従っているので、互換性のあるツールが多数あります。
+また、生成されたスキーマが <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md" class="external-link" target="_blank">OpenAPI</a> 標準に従っているので、互換性のあるツールが多数あります。
 
 このため、**FastAPI**自体が代替のAPIドキュメントを提供します（ReDocを使用）。これは、 <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a> にアクセスすると確認できます。
 
@@ -139,7 +139,7 @@ Pythonのformat文字列と同様のシンタックスで「パスパラメー�
 
 ### *パスパラメータ*の宣言
 
-次に、作成したenumクラスである`ModelName`を使用した型アノテーションをもつ*パスパラメータ*を作成します: 
+次に、作成したenumクラスである`ModelName`を使用した型アノテーションをもつ*パスパラメータ*を作成します:
 
 ```Python hl_lines="16"
 {!../../../docs_src/path_params/tutorial005.py!}

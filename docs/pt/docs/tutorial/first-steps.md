@@ -2,17 +2,17 @@
 
 O arquivo FastAPI mais simples pode se parecer com:
 
-```Python
+``` Python
 {!../../../docs_src/first_steps/tutorial001.py!}
 ```
 
-Copie o conteúdo para um arquivo `main.py`.
+Copie o conteúdo para um arquivo `main.py` .
 
 Execute o servidor:
 
 <div class="termy">
 
-```console
+``` console
 $ uvicorn main:app --reload
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
@@ -25,17 +25,19 @@ $ uvicorn main:app --reload
 </div>
 
 !!! nota
+
     O comando `uvicorn main:app` se refere a:
 
-    * `main`: o arquivo `main.py` (o "módulo" Python).
-    * `app`: o objeto criado no arquivo `main.py` com a linha `app = FastAPI()`.
-    * `--reload`: faz o servidor reiniciar após mudanças de código. Use apenas para desenvolvimento.
+    - `main`: o arquivo `main.py` (o "módulo" Python).
+    - `app`: o objeto criado no arquivo `main.py` com a linha `app = FastAPI()`.
+    - `--reload`: faz o servidor reiniciar após mudanças de código. Use apenas para desenvolvimento.
 
 Na saída, temos:
 
 ```hl_lines="4"
 INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
-```
+
+``` 
 
 Essa linha mostra a URL onde a sua aplicação está sendo servida, que nesse caso é a sua máquina local.
 
@@ -97,9 +99,9 @@ Você pode ver isso diretamente em: <a href="http://127.0.0.1:8000/openapi.json"
 
 Ele mostrará um JSON começando com algo como:
 
-```JSON
+``` JSON
 {
-    "openapi": "3.0.2",
+    "openapi": "3.1.0",
     "info": {
         "title": "FastAPI",
         "version": "0.1.0"
@@ -112,8 +114,6 @@ Ele mostrará um JSON começando com algo como:
                         "description": "Successful Response",
                         "content": {
                             "application/json": {
-
-
 
 ...
 ```
@@ -132,7 +132,8 @@ Você também pode usá-lo para gerar código automaticamente para clientes que 
 
 ```Python hl_lines="1"
 {!../../../docs_src/first_steps/tutorial001.py!}
-```
+
+``` 
 
 `FastAPI` é uma classe Python que fornece todas as funcionalidades para sua API.
 
@@ -147,7 +148,7 @@ Você também pode usá-lo para gerar código automaticamente para clientes que 
 {!../../../docs_src/first_steps/tutorial001.py!}
 ```
 
-Aqui, a variável `app` será uma "instância" da classe `FastAPI`.
+Aqui, a variável `app` será uma "instância" da classe `FastAPI` .
 
 Este será o principal ponto de interação para criar toda a sua API.
 
@@ -155,7 +156,7 @@ Este `app` é o mesmo referenciado por `uvicorn` no comando:
 
 <div class="termy">
 
-```console
+``` console
 $ uvicorn main:app --reload
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
@@ -167,7 +168,8 @@ Se você criar a sua aplicação como:
 
 ```Python hl_lines="3"
 {!../../../docs_src/first_steps/tutorial002.py!}
-```
+
+``` 
 
 E colocar em um arquivo `main.py`, você iria chamar o `uvicorn` assim:
 
@@ -185,21 +187,22 @@ $ uvicorn main:my_awesome_api --reload
 
 #### Rota
 
-"Rota" aqui se refere à última parte da URL, começando do primeiro `/`.
+"Rota" aqui se refere à última parte da URL, começando do primeiro `/` .
 
 Então, em uma URL como:
 
-```
+``` 
 https://example.com/items/foo
 ```
 
 ...a rota seria:
 
-```
+``` 
 /items/foo
 ```
 
 !!! info "Informação"
+
     Uma "rota" também é comumente chamada de "endpoint".
 
 Ao construir uma API, a "rota" é a principal forma de separar "preocupações" e "recursos".
@@ -243,7 +246,8 @@ Vamos chamá-los de "**operações**" também.
 
 ```Python hl_lines="6"
 {!../../../docs_src/first_steps/tutorial001.py!}
-```
+
+``` 
 
 O `@app.get("/")` diz ao **FastAPI** que a função logo abaixo é responsável por tratar as requisições que vão para:
 
@@ -297,17 +301,18 @@ Esta é a nossa "**função de rota**":
 
 Esta é uma função Python.
 
-Ela será chamada pelo **FastAPI** sempre que receber uma requisição para a URL "`/ `" usando uma operação `GET`.
+Ela será chamada pelo **FastAPI** sempre que receber uma requisição para a URL " `/ ` " usando uma operação `GET` .
 
-Neste caso, é uma função `assíncrona`.
+Neste caso, é uma função `assíncrona` .
 
 ---
 
-Você também pode defini-la como uma função normal em vez de `async def`:
+Você também pode defini-la como uma função normal em vez de `async def` :
 
 ```Python hl_lines="7"
 {!../../../docs_src/first_steps/tutorial003.py!}
-```
+
+``` 
 
 !!! nota
     Se você não sabe a diferença, verifique o [Async: *"Com pressa?"*](../async.md#com-pressa){.internal-link target=_blank}.
@@ -318,7 +323,7 @@ Você também pode defini-la como uma função normal em vez de `async def`:
 {!../../../docs_src/first_steps/tutorial001.py!}
 ```
 
-Você pode retornar um `dict`, `list` e valores singulares como `str`, `int`, etc.
+Você pode retornar um `dict` , `list` e valores singulares como `str` , `int` , etc.
 
 Você também pode devolver modelos Pydantic (você verá mais sobre isso mais tarde).
 

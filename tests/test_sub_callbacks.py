@@ -75,7 +75,7 @@ app.include_router(subrouter, callbacks=events_callback_router.routes)
 client = TestClient(app)
 
 openapi_schema = {
-    "openapi": "3.0.2",
+    "openapi": "3.1.0",
     "info": {"title": "FastAPI", "version": "0.1.0"},
     "paths": {
         "/invoices/": {

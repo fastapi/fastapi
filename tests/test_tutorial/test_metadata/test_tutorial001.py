@@ -5,7 +5,7 @@ from docs_src.metadata.tutorial001 import app
 client = TestClient(app)
 
 openapi_schema = {
-    "openapi": "3.0.2",
+    "openapi": "3.1.0",
     "info": {
         "title": "My Super Project",
         "version": "2.5.0",

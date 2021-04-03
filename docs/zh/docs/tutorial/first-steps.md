@@ -30,7 +30,7 @@ $ uvicorn main:app --reload
     * `main`：`main.py` 文件（一个 Python「模块」）。
     * `app`：在 `main.py` 文件中通过 `app = FastAPI()` 创建的对象。
     * `--reload`：让服务器在更新代码后重新启动。仅在开发时使用该选项。
-    
+
 
 在输出中，会有一行信息像下面这样：
 
@@ -101,7 +101,7 @@ OpenAPI 为你的 API 定义 API 模式。该模式中包含了你的 API 发送
 
 ```JSON
 {
-    "openapi": "3.0.2",
+    "openapi": "3.1.0",
     "info": {
         "title": "FastAPI",
         "version": "0.1.0"

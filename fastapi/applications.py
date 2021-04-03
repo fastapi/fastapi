@@ -117,7 +117,7 @@ class FastAPI(Starlette):
         self.extra = extra
         self.dependency_overrides: Dict[Callable[..., Any], Callable[..., Any]] = {}
 
-        self.openapi_version = "3.0.2"
+        self.openapi_version = "3.1.0"
 
         if self.openapi_url:
             assert self.title, "A title must be provided for OpenAPI, e.g.: 'My API'"

@@ -5,7 +5,7 @@ from docs_src.behind_a_proxy.tutorial001 import app
 client = TestClient(app, root_path="/api/v1")
 
 openapi_schema = {
-    "openapi": "3.0.2",
+    "openapi": "3.1.0",
     "info": {"title": "FastAPI", "version": "0.1.0"},
     "paths": {
         "/app": {

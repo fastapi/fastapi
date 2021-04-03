@@ -6,7 +6,7 @@ from docs_src.query_params.tutorial006 import app
 client = TestClient(app)
 
 openapi_schema = {
-    "openapi": "3.0.2",
+    "openapi": "3.1.0",
     "info": {"title": "FastAPI", "version": "0.1.0"},
     "paths": {
         "/items/{item_id}": {

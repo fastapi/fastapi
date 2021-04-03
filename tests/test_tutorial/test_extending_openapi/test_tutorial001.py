@@ -5,7 +5,7 @@ from docs_src.extending_openapi.tutorial001 import app
 client = TestClient(app)
 
 openapi_schema = {
-    "openapi": "3.0.2",
+    "openapi": "3.1.0",
     "info": {
         "title": "Custom title",
         "version": "2.5.0",

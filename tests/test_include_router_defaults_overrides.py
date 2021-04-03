@@ -440,7 +440,7 @@ def test_paths_level5(override1, override2, override3, override4, override5):
 
 
 openapi_schema = {
-    "openapi": "3.0.2",
+    "openapi": "3.1.0",
     "info": {"title": "FastAPI", "version": "0.1.0"},
     "paths": {
         "/override1": {

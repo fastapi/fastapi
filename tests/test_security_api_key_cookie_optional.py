@@ -32,7 +32,7 @@ def read_current_user(current_user: User = Depends(get_current_user)):
 client = TestClient(app)
 
 openapi_schema = {
-    "openapi": "3.0.2",
+    "openapi": "3.1.0",
     "info": {"title": "FastAPI", "version": "0.1.0"},
     "paths": {
         "/users/me": {

@@ -99,7 +99,7 @@ OpenAPIはAPIのためのAPIスキーマを定義します。そして、その�
 
 ```JSON
 {
-    "openapi": "3.0.2",
+    "openapi": "3.1.0",
     "info": {
         "title": "FastAPI",
         "version": "0.1.0"

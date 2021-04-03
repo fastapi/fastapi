@@ -6,7 +6,7 @@ from docs_src.path_params.tutorial005 import app
 client = TestClient(app)
 
 openapi_schema = {
-    "openapi": "3.0.2",
+    "openapi": "3.1.0",
     "info": {"title": "FastAPI", "version": "0.1.0"},
     "paths": {
         "/models/{model_name}": {
@@ -77,7 +77,7 @@ openapi_schema = {
 
 
 openapi_schema2 = {
-    "openapi": "3.0.2",
+    "openapi": "3.1.0",
     "info": {"title": "FastAPI", "version": "0.1.0"},
     "paths": {
         "/models/{model_name}": {

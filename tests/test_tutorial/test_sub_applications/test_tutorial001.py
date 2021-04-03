@@ -5,7 +5,7 @@ from docs_src.sub_applications.tutorial001 import app
 client = TestClient(app)
 
 openapi_schema_main = {
-    "openapi": "3.0.2",
+    "openapi": "3.1.0",
     "info": {"title": "FastAPI", "version": "0.1.0"},
     "paths": {
         "/app": {
@@ -23,7 +23,7 @@ openapi_schema_main = {
     },
 }
 openapi_schema_sub = {
-    "openapi": "3.0.2",
+    "openapi": "3.1.0",
     "info": {"title": "FastAPI", "version": "0.1.0"},
     "paths": {
         "/sub": {

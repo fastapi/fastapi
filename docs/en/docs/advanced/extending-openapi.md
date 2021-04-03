@@ -29,7 +29,7 @@ And that function `get_openapi()` receives as parameters:
 
 * `title`: The OpenAPI title, shown in the docs.
 * `version`: The version of your API, e.g. `2.5.0`.
-* `openapi_version`: The version of the OpenAPI specification used. By default, the latest: `3.0.2`.
+* `openapi_version`: The version of the OpenAPI specification used. By default, the latest: `3.1.0`.
 * `description`: The description of your API.
 * `routes`: A list of routes, these are each of the registered *path operations*. They are taken from `app.routes`.
 
