@@ -1,34 +1,36 @@
-# Benchmarks
+# Бенчмарки
 
-Independent TechEmpower benchmarks show **FastAPI** applications running under Uvicorn as <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">one of the fastest Python frameworks available</a>, only below Starlette and Uvicorn themselves (used internally by FastAPI). (*)
+Независимые бенчмарки TechEmpower показывают приложения на **FastAPI**, запущенные с использованием Uvicorn, <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">одними из самых быстрых среди доступных Python-фреймворков, только медленнее самих Starlette и Uvicorn (используемых внутри FastAPI). (*)
 
-But when checking benchmarks and comparisons you should have the following in mind.
+Но при проверке бенчмарков и срарвнений вам следует иметь в виду следующее.
 
-## Benchmarks and speed
+## Бенчмарки и скорость
 
-When you check the benchmarks, it is common to see several tools of different types compared as equivalent.
+Когда вы проверяете бенчмарки, часто можно наблюдать, что несколько инструментов разных типов сравниваются как эквивалентные.
 
-Specifically, to see Uvicorn, Starlette and FastAPI compared together (among many other tools).
+В частности, чтобы видеть, как Uvicorn, Starlette и FastAPI сравниваются вместе (среди многих других инструментов).
 
-The simpler the problem solved by the tool, the better performance it will get. And most of the benchmarks don't test the additional features provided by the tool.
+Чем проще инструмент решает проблему, тем выше его производительность. И большинство бенчмарков не тестируют дополнительные функции, предоставляемые инструментом.
 
-The hierarchy is like:
+Иерархия имеет следующий вид:
 
-* **Uvicorn**: an ASGI server
-    * **Starlette**: (uses Uvicorn) a web microframework
-        * **FastAPI**: (uses Starlette) an API microframework with several additional features for building APIs, with data validation, etc.
+* **Uvicorn**: ASGI-сервер
+    * **Starlette**: (использует Uvicorn) веб-микрофреймворк
+        * **FastAPI**: (использует Starlette) API-микрофреймворк с несколькими дополнительными функциями для построения API с валидацией данных и т.д.
 
 * **Uvicorn**:
-    * Will have the best performance, as it doesn't have much extra code apart from the server itself.
-    * You wouldn't write an application in Uvicorn directly. That would mean that your code would have to include more or less, at least, all the code provided by Starlette (or **FastAPI**). And if you did that, your final application would have the same overhead as having used a framework and minimizing your app code and bugs.
-    * If you are comparing Uvicorn, compare it against Daphne, Hypercorn, uWSGI, etc. Application servers.
+    * Будет иметь лучшую производительность, так как не имеет большого количества дополнительного кода, кроме самого сервера.
+    * Вы бы не написали приложение на Uvicorn напрямую. Это означало бы, что ваш код должен включать как минимум весь 
+    код, предоставляемый Starlette (или **FastAPI**). И если вы это сделаете, ваше окончательное приложение будет иметь 
+    те же накладные расходы, что и использование фреймворка, и минимизировать код вашего приложения и ошибки.
+    * Если вы сравниваете Uvicorn, сравнивайте его с Daphne, Hypercorn, uWSGI и другими серверами.
 * **Starlette**:
-    * Will have the next best performance, after Uvicorn. In fact, Starlette uses Uvicorn to run. So, it probably can only get "slower" than Uvicorn by having to execute more code.
-    * But it provides you the tools to build simple web applications, with routing based on paths, etc.
-    * If you are comparing Starlette, compare it against Sanic, Flask, Django, etc. Web frameworks (or microframeworks).
+    * Будет иметь лучшую производительность после Uvicorn. Фактически Starlette использует Uvicorn для запуска приложения. Таким образом, он, вероятно, может быть «медленнее», чем Uvicorn, только за счет выполнения большего количества кода.
+    * Но он предоставляет вам инструменты для создания простых веб-приложений с маршрутизацией на основе путей и т.д.
+    * Если вы сравниваете Starlette, сравнивайте его с Sanic, Flask, Django и другими веб-фреймворками (или микрофреймворками).
 * **FastAPI**:
-    * The same way that Starlette uses Uvicorn and cannot be faster than it, **FastAPI** uses Starlette, so it cannot be faster than it.
-    * FastAPI provides more features on top of Starlette. Features that you almost always need when building APIs, like data validation and serialization. And by using it, you get automatic documentation for free (the automatic documentation doesn't even add overhead to running applications, it is generated on startup).
-    * If you didn't use FastAPI and used Starlette directly (or another tool, like Sanic, Flask, Responder, etc) you would have to implement all the data validation and serialization yourself. So, your final application would still have the same overhead as if it was built using FastAPI. And in many cases, this data validation and serialization is the biggest amount of code written in applications.
-    * So, by using FastAPI you are saving development time, bugs, lines of code, and you would probably get the same performance (or better) you would if you didn't use it (as you would have to implement it all in your code).
-    * If you are comparing FastAPI, compare it against a web application framework (or set of tools) that provides data validation, serialization and documentation, like Flask-apispec, NestJS, Molten, etc. Frameworks with integrated automatic data validation, serialization and documentation.
+    * Таким образом как Starlette использует Uvicorn и не может быть быстрее него, **FastAPI** использует Starlette, то есть он не может быть быстрее.
+    * FastAPI предоставляет больше возможностей поверх Starlette. Функции, которые вам почти всегда нужны при создании API, такие как проверка данных и сериализация. Используя его, вы получаете автоматическую документацию бесплатно (автоматическая документация даже не увеличивает накладные расходы на запущенные приложения, она создается при запуске).
+    * Если вы не использовали FastAPI и использовали Starlette напрямую (или другой инструмент вроде Sanic, Flask, Responder и т.д.), вам пришлось бы самостоятельно реализовать всю валидацию и сериализацию данных. Таким образом, ваше итоговое приложение по-прежнему будет иметь такие же накладные расходы, как если бы оно было создано с использованием FastAPI. И во многих случаях валидация и сериализация данных представляют собой самый большой объем кода, написанного в приложениях.
+    * Таким образом, используя FastAPI, вы экономите время разработки, количество ошибок, количество строк кода, и вы, вероятно, получите такую же производительность (или лучше), которую получили бы, если бы его не использовали (поскольку вам пришлось бы реализовать все это самостоятельно).
+    * Если вы сравниваете FastAPI, сравните его с фреймворком веб-приложений (или набором инструментов), который обеспечивает валидацию данных, сериализацию и документацию, к примеру, Flask-apispec, NestJS, Molten и другими фреймворками.
