@@ -1,17 +1,17 @@
-# External Links and Articles
+# Внешние ссылки и статьи
 
-**FastAPI** has a great community constantly growing.
+**FastAPI** имеет отличное и постоянно растущее сообщество.
 
-There are many posts, articles, tools, and projects, related to **FastAPI**.
+Существует множество сообщений, статей, инструментов и проектов, связанных с **FastAPI**.
 
-Here's an incomplete list of some of them.
+Вот неполный список некоторых из них.
 
 !!! tip
-    If you have an article, project, tool, or anything related to **FastAPI** that is not yet listed here, create a <a href="https://github.com/tiangolo/fastapi/edit/master/docs/en/data/external_links.yml" class="external-link" target="_blank">Pull Request adding it</a>.
+    Если у вас есть статья, проект, инструмент или что-либо, связанные с **FastAPI**, которые еще не перечислены здесь, создайте <a href="https://github.com/tiangolo/fastapi/edit/master/docs/en/data/external_links.yml" class="external-link" target="_blank">Pull Request</a>.
 
-## Articles
+## Статьи
 
-### English
+### На английском
 
 {% if external_links %}
 {% for article in external_links.articles.english %}
@@ -20,7 +20,7 @@ Here's an incomplete list of some of them.
 {% endfor %}
 {% endif %}
 
-### Japanese
+### На японском
 
 {% if external_links %}
 {% for article in external_links.articles.japanese %}
@@ -29,7 +29,7 @@ Here's an incomplete list of some of them.
 {% endfor %}
 {% endif %}
 
-### Vietnamese
+### На вьетнамском
 
 {% if external_links %}
 {% for article in external_links.articles.vietnamese %}
@@ -38,7 +38,7 @@ Here's an incomplete list of some of them.
 {% endfor %}
 {% endif %}
 
-### Russian
+### На русском
 
 {% if external_links %}
 {% for article in external_links.articles.russian %}
@@ -47,7 +47,7 @@ Here's an incomplete list of some of them.
 {% endfor %}
 {% endif %}
 
-### German
+### На немецком
 
 {% if external_links %}
 {% for article in external_links.articles.german %}
@@ -56,7 +56,7 @@ Here's an incomplete list of some of them.
 {% endfor %}
 {% endif %}
 
-## Podcasts
+## Подкасты
 
 {% if external_links %}
 {% for article in external_links.podcasts.english %}
@@ -74,9 +74,9 @@ Here's an incomplete list of some of them.
 {% endfor %}
 {% endif %}
 
-## Projects
+## Проекты
 
-Latest GitHub projects with the topic `fastapi`:
+Последние GitHub-проекты с пометкой `fastapi`:
 
 <div class="github-topic-projects">
 </div>
