@@ -115,6 +115,7 @@ class SchemaBase(BaseModel):
     xml: Optional[XML] = None
     externalDocs: Optional[ExternalDocumentation] = None
     example: Optional[Any] = None
+    examples: Optional[List[Any]] = None
     deprecated: Optional[bool] = None
 
 
