@@ -1,139 +1,139 @@
-# Python Types Intro
+# Введение в Python-типы
 
-Python has support for optional "type hints".
+Python имеет поддержку необязательной аннотации типов. 
 
-These **"type hints"** are a special syntax that allow declaring the <abbr title="for example: str, int, float, bool">type</abbr> of a variable.
+**Аннотация типов** является специальным синтаксисом, который позволяет определять <abbr title="например: str, int, float, bool">тип</abbr> переменной.
 
-By declaring types for your variables, editors and tools can give you better support.
+При объявлении типов для ваших переменных редакторы и инструменты могут предоставить вам лучшую поддержку.
 
-This is just a **quick tutorial / refresher** about Python type hints. It covers only the minimum necessary to use them with **FastAPI**... which is actually very little.
+Это просто **краткое руководство / напоминание** об аннотациях типов в Python. Оно охватывает только минимум, необходимый для их использования с **FastAPI**... что на самом деле очень мало.
 
-**FastAPI** is all based on these type hints, they give it many advantages and benefits.
+**FastAPI** целиком основан на этих подсказках типов, они дают ему много преимуществ и выгод.
 
-But even if you never use **FastAPI**, you would benefit from learning a bit about them.
+Но даже если вы никогда не используете **FastAPI**, вам будет полезно немного узнать о них.
 
 !!! note
-    If you are a Python expert, and you already know everything about type hints, skip to the next chapter.
+    Если вы являетесь экспертом в Python и уже знаете всё об аннотации типов, переходите к следующему разделу.
 
-## Motivation
+## Мотивация
 
-Let's start with a simple example:
+Давайте начнем с простого примера:
 
 ```Python
 {!../../../docs_src/python_types/tutorial001.py!}
 ```
 
-Calling this program outputs:
+Вызов этой программы выводит:
 
 ```
 John Doe
 ```
 
-The function does the following: 
+Функция делает следующее:
 
-* Takes a `first_name` and `last_name`.
-* Converts the first letter of each one to upper case with `title()`.
-* <abbr title="Puts them together, as one. With the contents of one after the other.">Concatenates</abbr> them with a space in the middle.
+* Берёт `first_name` и `last_name`.
+* Преобразовывает первую букву содержимого каждой переменной в верхний регистр с `title()`.
+* <abbr title="Объединяет их как одно целое. С содержимым одно за другим.">Соединяет</abbr> их с пробелом посередине.
 
 ```Python hl_lines="2"
 {!../../../docs_src/python_types/tutorial001.py!}
 ```
 
-### Edit it
+### Отредактируем это
 
-It's a very simple program.
+Это очень простая программа.
 
-But now imagine that you were writing it from scratch.
+А теперь представьте, что вы пишете её с нуля.
 
-At some point you would have started the definition of the function, you had the parameters ready...
+В какой-то момент вы бы начали определение функции, у вас были бы готовы параметры...
 
-But then you have to call "that method that converts the first letter to upper case".
+Но затем вы должны вызвать «тот метод, который преобразует первую букву в верхний регистр».
 
-Was it `upper`? Was it `uppercase`? `first_uppercase`? `capitalize`?
+Было это `upper`? Или `uppercase`? `first_uppercase`? `capitalize`?
 
-Then, you try with the old programmer's friend, editor autocompletion.
+Тогда вы попробуете с давним другом программиста: автодополнением редактора.
 
-You type the first parameter of the function, `first_name`, then a dot (`.`) and then hit `Ctrl+Space` to trigger the completion.
+Вы вводите первый параметр функции, `first_name`, затем точку (`.`), а затем нажимаете `Ctrl+Space`, чтобы запустить дополнение.
 
-But, sadly, you get nothing useful:
+Но, к сожалению, ничего полезного не выходит:
 
 <img src="/img/python-types/image01.png">
 
-### Add types
+### Добавим типы
 
-Let's modify a single line from the previous version.
+Давайте изменим одну строчку в предыдущей версии.
 
-We will change exactly this fragment, the parameters of the function, from:
+Мы изменим именно этот фрагмент, параметры функции, с:
 
 ```Python
     first_name, last_name
 ```
 
-to:
+на:
 
 ```Python
     first_name: str, last_name: str
 ```
 
-That's it.
+Вот и все.
 
-Those are the "type hints":
+Это аннотация типов:
 
 ```Python hl_lines="1"
 {!../../../docs_src/python_types/tutorial002.py!}
 ```
 
-That is not the same as declaring default values like would be with:
+Это не то же самое, что объявление значений по умолчанию, например:
 
 ```Python
     first_name="john", last_name="doe"
 ```
 
-It's a different thing.
+Это другая вещь.
 
-We are using colons (`:`), not equals (`=`).
+Мы используем двоеточия (`:`), а не равно (`=`).
 
-And adding type hints normally doesn't change what happens from what would happen without them.
+И добавление аннотации типов обычно не меняет происходящего по сравнению с тем, что произошло бы без неё.
 
-But now, imagine you are again in the middle of creating that function, but with type hints.
+Но теперь представьте, что вы снова находитесь в процессе создания этой функции, но уже с подсказками типов.
 
-At the same point, you try to trigger the autocomplete with `Ctrl+Space` and you see:
+В тот же момент вы пытаетесь запустить автодополнение с помощью `Ctrl+Space` и вы видите:
 
 <img src="/img/python-types/image02.png">
 
-With that, you can scroll, seeing the options, until you find the one that "rings a bell":
+При этом вы можете просматривать варианты, пока не найдёте подходящий:
 
 <img src="/img/python-types/image03.png">
 
-## More motivation
+## Больше мотивации
 
-Check this function, it already has type hints:
+Проверьте эту функцию, она уже имеет подсказки типов:
 
 ```Python hl_lines="1"
 {!../../../docs_src/python_types/tutorial003.py!}
 ```
 
-Because the editor knows the types of the variables, you don't only get completion, you also get error checks:
+Поскольку редактор знает типы переменных, вы получаете не только дополнение, но и проверки ошибок:
 
 <img src="/img/python-types/image04.png">
 
-Now you know that you have to fix it, convert `age` to a string with `str(age)`:
+Теперь вы знаете, что вам нужно исправить, преобразовав `age` в строку с `str(age)`:
 
 ```Python hl_lines="2"
 {!../../../docs_src/python_types/tutorial004.py!}
 ```
 
-## Declaring types
+## Объявление типов
 
-You just saw the main place to declare type hints. As function parameters.
+Вы только что видели основное место для объявления подсказок типов. В качестве параметров функции.
 
-This is also the main place you would use them with **FastAPI**.
+Это также основное место, где вы можете использовать их с **FastAPI**.
 
-### Simple types
+### Простые типы
 
-You can declare all the standard Python types, not only `str`.
+Вы можете объявить все стандартные типы Python, а не только `str`.
 
-You can use, for example:
+Вы можете использовать, к примеру:
 
 * `int`
 * `float`
@@ -144,171 +144,171 @@ You can use, for example:
 {!../../../docs_src/python_types/tutorial005.py!}
 ```
 
-### Generic types with type parameters
+### Generic-типы с параметрами типов
 
-There are some data structures that can contain other values, like `dict`, `list`, `set` and `tuple`. And the internal values can have their own type too.
+Существуют некоторые структуры данных, которые могут содержать другие значения, например, `dict`, `list`, `set` и `tuple`. И внутренние значения тоже могут иметь свой тип.
 
-To declare those types and the internal types, you can use the standard Python module `typing`.
+Чтобы объявить эти типы и внутренние типы, вы можете использовать стандартный Python-модуль `typing`.
 
-It exists specifically to support these type hints.
+Он существует специально для поддержки подсказок этих типов.
 
 #### `List`
 
-For example, let's define a variable to be a `list` of `str`.
+Например, давайте определим переменную как `list`, состоящий из `str`.
 
-From `typing`, import `List` (with a capital `L`):
+Импортируйте `List` из `typing` (с заглавной `L`):
 
 ```Python hl_lines="1"
 {!../../../docs_src/python_types/tutorial006.py!}
 ```
 
-Declare the variable, with the same colon (`:`) syntax.
+Объявите переменную с тем же синтаксисом двоеточия (`:`).
 
-As the type, put the `List`.
+В качестве типа укажите `List`.
 
-As the list is a type that contains some internal types, you put them in square brackets:
+Поскольку список является типом, содержащим некоторые внутренние типы, вы помещаете их в квадратные скобки:
 
 ```Python hl_lines="4"
 {!../../../docs_src/python_types/tutorial006.py!}
 ```
 
 !!! tip
-    Those internal types in the square brackets are called "type parameters".
+    Эти внутренние типы в квадратных скобках называются «параметрами типов».
 
-    In this case, `str` is the type parameter passed to `List`.
+    В этом случае `str` является параметром типа, передаваемым в `List`.
 
-That means: "the variable `items` is a `list`, and each of the items in this list is a `str`".
+Это означает: "переменная `items` является `list`, и каждый из элементов этого списка является `str`".
 
-By doing that, your editor can provide support even while processing items from the list:
+Если вы будете так поступать, редактор может оказывать поддержку даже при обработке элементов списка:
 
 <img src="/img/python-types/image05.png">
 
-Without types, that's almost impossible to achieve.
+Без типов добиться этого практически невозможно.
 
-Notice that the variable `item` is one of the elements in the list `items`.
+Обратите внимание, что переменная `item` является одним из элементов списка `items`.
 
-And still, the editor knows it is a `str`, and provides support for that.
+И все же редактор знает, что это `str`, и поддерживает это.
 
-#### `Tuple` and `Set`
+#### `Tuple` и `Set`
 
-You would do the same to declare `tuple`s and `set`s:
+Вы бы сделали то же самое, чтобы объявить `tuple` и `set`:
 
 ```Python hl_lines="1  4"
 {!../../../docs_src/python_types/tutorial007.py!}
 ```
 
-This means:
+Это означает:
 
-* The variable `items_t` is a `tuple` with 3 items, an `int`, another `int`, and a `str`.
-* The variable `items_s` is a `set`, and each of its items is of type `bytes`.
+* Переменная `items_t` является `tuple` с 3 элементами: `int`, другим `int` и `str`.
+* Переменная `items_s` является `set` и каждый элемент имеет тип `bytes`.
 
 #### `Dict`
 
-To define a `dict`, you pass 2 type parameters, separated by commas.
+Чтобы определить `dict`, вы передаёте 2 параметра типов, разделённых запятыми.
 
-The first type parameter is for the keys of the `dict`.
+Первый параметр типа предназначен для ключей `dict`.
 
-The second type parameter is for the values of the `dict`:
+Второй параметр типа предназначен для значений `dict`:
 
 ```Python hl_lines="1  4"
 {!../../../docs_src/python_types/tutorial008.py!}
 ```
 
-This means:
+Это означает:
 
-* The variable `prices` is a `dict`:
-    * The keys of this `dict` are of type `str` (let's say, the name of each item).
-    * The values of this `dict` are of type `float` (let's say, the price of each item).
+* Переменная `prices` является `dict`:
+    * Ключи этого `dict` имеют тип `str` (скажем, название каждого элемента).
+    * Значения этого `dict` имеют тип `float` (скажем, цена каждой позиции).
 
 #### `Optional`
 
-You can also use `Optional` to declare that a variable has a type, like `str`, but that it is "optional", which means that it could also be `None`:
+Вы также можете использовать `Optional`, чтобы объявить, что переменная имеет тип, например, `str`, но это является «необязательным», что означает, что она также может быть `None`:
 
 ```Python hl_lines="1  4"
 {!../../../docs_src/python_types/tutorial009.py!}
 ```
 
-Using `Optional[str]` instead of just `str` will let the editor help you detecting errors where you could be assuming that a value is always a `str`, when it could actually be `None` too.
+Использование `Optional[str]` вместо просто `str` позволит редактору помочь вам в обнаружении ошибок, в которых вы могли бы предположить, что значение всегда является `str`, хотя на самом деле это может быть и `None`.
 
-#### Generic types
+#### Generic-типы
 
-These types that take type parameters in square brackets, like:
+Эти типы принимают параметры в квадратных скобках, например:
 
 * `List`
 * `Tuple`
 * `Set`
 * `Dict`
 * `Optional`
-* ...and others.
+* ...и др.
 
-are called **Generic types** or **Generics**.
+называются **Generic-типами** или **Generics**.
 
-### Classes as types
+### Классы как типы
 
-You can also declare a class as the type of a variable.
+Вы также можете объявить класс как тип переменной.
 
-Let's say you have a class `Person`, with a name:
+Допустим, у вас есть класс `Person` с именем:
 
 ```Python hl_lines="1-3"
 {!../../../docs_src/python_types/tutorial010.py!}
 ```
 
-Then you can declare a variable to be of type `Person`:
+Тогда вы можете объявить переменную типа `Person`:
 
 ```Python hl_lines="6"
 {!../../../docs_src/python_types/tutorial010.py!}
 ```
 
-And then, again, you get all the editor support:
+И снова вы получаете полную поддержку редактора:
 
 <img src="/img/python-types/image06.png">
 
-## Pydantic models
+## Pydantic-модели
 
-<a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> is a Python library to perform data validation.
+<a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> является Python-библиотекой для выполнения валидации данных.
 
-You declare the "shape" of the data as classes with attributes.
+Вы объявляете «форму» данных как классы с атрибутами.
 
-And each attribute has a type.
+И каждый атрибут имеет тип.
 
-Then you create an instance of that class with some values and it will validate the values, convert them to the appropriate type (if that's the case) and give you an object with all the data.
+Затем вы создаете экземпляр этого класса с некоторыми значениями, и он проверяет значения, преобразует их в соответствующий тип (если все верно) и предоставляет вам объект со всеми данными.
 
-And you get all the editor support with that resulting object.
+И вы получаете полную поддержку редактора для этого итогового объекта.
 
-Taken from the official Pydantic docs:
+Взято из официальной документации Pydantic:
 
 ```Python
 {!../../../docs_src/python_types/tutorial011.py!}
 ```
 
 !!! info
-    To learn more about <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic, check its docs</a>.
+    Чтобы узнать больше о <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic, проверьте его документацию</a>.
 
-**FastAPI** is all based on Pydantic.
+**FastAPI** целиком основан на Pydantic.
 
-You will see a lot more of all this in practice in the [Tutorial - User Guide](tutorial/index.md){.internal-link target=_blank}.
+Вы увидите намного больше всего этого на практике в [Руководстве пользователя](tutorial/index.md){.internal-link target=_blank}.
 
-## Type hints in **FastAPI**
+## Аннотация типов в **FastAPI**
 
-**FastAPI** takes advantage of these type hints to do several things.
+**FastAPI** получает преимущества аннотации типов, чтобы выполнять следующие задачи.
 
-With **FastAPI** you declare parameters with type hints and you get:
+С **FastAPI** вы объявляете параметры с подсказками типов и получаете:
 
-* **Editor support**.
-* **Type checks**.
+* **Поддержку редактора**.
+* **Проверки типов**.
 
-...and **FastAPI** uses the same declarations to:
+...и **FastAPI** использует тот же механизм для:
 
-* **Define requirements**: from request path parameters, query parameters, headers, bodies, dependencies, etc.
-* **Convert data**: from the request to the required type.
-* **Validate data**: coming from each request:
-    * Generating **automatic errors** returned to the client when the data is invalid.
-* **Document** the API using OpenAPI:
-    * which is then used by the automatic interactive documentation user interfaces.
+* **Определение требований**: из параметров пути запроса, параметров запроса, заголовков, зависимостей и т.д.
+* **Преобразование данных**: от запроса к нужному типу.
+* **Валидация данных**: исходя из каждого запроса:
+    * Генерация **автоматических ошибок**, возвращаемых клиенту, когда данные не являются корректными.
+* **Документирование** API с использованием OpenAPI:
+    * который затем используется пользовательскими интерфейсами автоматической интерактивной документации.
 
-This might all sound abstract. Don't worry. You'll see all this in action in the [Tutorial - User Guide](tutorial/index.md){.internal-link target=_blank}.
+Всё это может показаться абстрактным. Не волнуйтесь. Вы увидите всё это в действии в [Руководстве пользователя] (tutorial/index.md){.internal-link target=_blank}.
 
-The important thing is that by using standard Python types, in a single place (instead of adding more classes, decorators, etc), **FastAPI** will do a lot of the work for you.
+Важно то, что при использовании стандартных типов Python в одном месте (вместо добавления дополнительных классов, декораторов и т.д.) **FastAPI** сделает за вас большую часть работы.
 
 !!! info
-    If you already went through all the tutorial and came back to see more about types, a good resource is <a href="https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html" class="external-link" target="_blank">the "cheat sheet" from `mypy`</a>.
+    Если вы уже прошли всё руководство и вернулись, чтобы узнать больше о типах, хорошим ресурсом является <a href="https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html" class="external-link" target="_blank">«шпаргалка» от `mypy`</a>.
