@@ -16,9 +16,9 @@ articles:
       title: Introduction to the fastapi python framework
       author_link: https://dev.to/errietta
       author: Errieta Kostala
-    - link: http://nickc1.github.io/api,/scikit-learn/2019/01/10/scikit-fastapi.html
+    - link: https://nickc1.github.io/api,/scikit-learn/2019/01/10/scikit-fastapi.html
       title: "FastAPI and Scikit-Learn: Easily Deploy Models"
-      author_link: http://nickc1.github.io/
+      author_link: https://nickc1.github.io/
       author: Nick Cortale
     - link: https://medium.com/data-rebels/fastapi-authentication-revisited-enabling-api-key-authentication-122dc5975680
       title: "FastAPI authentication revisited: Enabling API key authentication"
@@ -124,7 +124,7 @@ articles:
       title: Introducing Dispatch
       author_link: https://netflixtechblog.com/
       author: Netflix
-    - link: https://davidefiocco.github.io/2020/06/27/streamlit-fastapi-ml-serving.html
+    - link: https://davidefiocco.github.io/streamlit-fastapi-ml-serving/
       title: Machine learning model serving in Python using FastAPI and streamlit
       author_link: https://github.com/davidefiocco
       author: Davide Fiocco
@@ -136,6 +136,26 @@ articles:
       title: Build And Host Fast Data Science Applications Using FastAPI
       author_link: https://medium.com/@farhadmalik
       author: Farhad Malik
+    - link: https://medium.com/@gabbyprecious2000/creating-a-crud-app-with-fastapi-part-one-7c049292ad37
+      title: Creating a CRUD App with FastAPI (Part one)
+      author_link: https://medium.com/@gabbyprecious2000
+      author: Precious Ndubueze
+    - link: https://julienharbulot.com/notification-server.html
+      title: HTTP server to display desktop notifications
+      author_link: https://julienharbulot.com/
+      author: Julien Harbulot
+    - link: https://guitton.co/posts/fastapi-monitoring/
+      title: How to monitor your FastAPI service
+      author_link: https://twitter.com/louis_guitton
+      author: Louis Guitton
+    - link: https://amitness.com/2020/06/fastapi-vs-flask/
+      title: FastAPI for Flask Users
+      author_link: https://twitter.com/amitness
+      author: Amit Chaudhary
+    - link: https://valonjanuzaj.medium.com/deploy-a-dockerized-fastapi-application-to-aws-cc757830ba1b
+      title: Deploy a dockerized FastAPI application to AWS
+      author_link: https://www.linkedin.com/in/valon-januzaj-b02692187/
+      author: Valon Januzaj
   japanese:
     - link: https://qiita.com/mtitg/items/47770e9a562dd150631d
       title: FastAPI｜DB接続してCRUDするPython製APIサーバーを構築

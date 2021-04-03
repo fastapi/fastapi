@@ -8,7 +8,7 @@
 
 
 * 用于创建 API 的 <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a> 包含了<abbr title="也被叫做: endpoints, routes">路径</abbr><abbr title="也叫做HTTP方法, 例如 POST, GET, PUT, DELETE">操作</abbr>，请求参数，请求体，安全性等的声明。
-* 使用 <a href="http://json-schema.org/" class="external-link" target="_blank"><strong>JSON Schema</strong></a> (因为 OpenAPI 本身就是基于 JSON Schema 的)自动生成数据模型文档。
+* 使用 <a href="https://json-schema.org/" class="external-link" target="_blank"><strong>JSON Schema</strong></a> (因为 OpenAPI 本身就是基于 JSON Schema 的)自动生成数据模型文档。
 * 经过了缜密的研究后围绕这些标准而设计。并非狗尾续貂。
 * 这也允许了在很多语言中自动**生成客户端代码**。
 
