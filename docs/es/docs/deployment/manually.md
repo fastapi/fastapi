@@ -1,4 +1,4 @@
-# Haz el Deploy manualmente
+# Despliegue manualmente
 
 De igual forma puedes desplegar **FastAPI** de forma manual.
 
@@ -19,7 +19,7 @@ Solo necesitas instalar un servidor ASGI compatible, como:
     </div>
 
     !!! tip
-        Al añadir el `standard`, Uvicorn instalara y usara algunas dependencias extra recomendadas.
+        Al añadir el `standard`, Uvicorn instalará y usará algunas dependencias extra recomendadas.
 
         Eso incluyendo `uvloop`, el remplazo de alto rendimiento para `asyncio`, que provee el gran salto de rendimiento en concurrencia.
 
@@ -65,10 +65,10 @@ Y corre tu aplicación de la misma forma que lo has hecho en los tutoriales, per
 
     </div>
 
-Tal vez quedrás configurar algunas herramientas, para asegurarte que se reinicie automáticamente si llega a parar.
+Tal vez desearás configurar algunas herramientas, para asegurarte que se reinicie automáticamente si llega a parar.
 
-También quedrás instalar <a href="https://gunicorn.org/" class="external-link" target="_blank">Gunicorn</a> y <a href="https://www.uvicorn.org/#running-with-gunicorn" class="external-link" target="_blank">usarlo como administrador de Uvicorn</a>, o usar Hypercorn con multiples workers.
+También desearás instalar <a href="https://gunicorn.org/" class="external-link" target="_blank">Gunicorn</a> y <a href="https://www.uvicorn.org/#running-with-gunicorn" class="external-link" target="_blank">usarlo como administrador de Uvicorn</a>, o usar Hypercorn con multiples workers.
 
-Asegurándote de ajustar el numero de workers, etc.
+Asegurándose de ajustar el numero de workers, etc.
 
-Pero si estas haciendo todo eso, podrías solamente usar la imagen de Docker que hace todo automáticamente.
+Pero si estás haciendo todo eso, podrías solamente usar la imagen de Docker que hace todo automáticamente.
