@@ -37,7 +37,7 @@ plugins:
     data: data
 nav:
 - FastAPI: index.md
-- Languages:
+- Sprachen:
   - en: /
   - de: /de/
   - es: /es/
@@ -51,6 +51,7 @@ nav:
   - tr: /tr/
   - uk: /uk/
   - zh: /zh/
+- features.md
 markdown_extensions:
 - toc:
     permalink: true
