@@ -395,7 +395,7 @@ basé sur les mêmes type hints Python, le support de l'éditeur est grand.
 
 ### <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a>
 
-Starlette est un léger framework/toolkit <abbr title="The new standard for building asynchronous Python web">ASGI</abbr>, qui est idéal pour construire des services asyncio performants.
+Starlette est un framework/toolkit léger <abbr title="Le nouveau standard pour construire des applications web assynchrones en Python">ASGI</abbr>, qui est idéal pour construire des services asyncio performants.
 
 Il est très simple et intuitif. Il est conçu pour être facilement extensible et avoir des composants modulaires.
 
