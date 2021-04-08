@@ -296,7 +296,7 @@ conçu pour profiter des hautes performances fournies par des outils comme Uvico
 Le système d'injection de dépendances exige le pré-enregistrement des dépendances et les dépendances sont résolues sur la base des types déclarés. Ainsi, il n'est pas possible de déclarer plus d'un "composant" qui fournit un certain type.
 
 Les routes sont déclarées à un seul endroit, en utilisant des fonctions déclarées à d'autres endroits (au lieu 
-d'utiliser des décorateurs qui peuvent être placés juste au-dessus de la fonction qui gère lendpoint). Cette 
+d'utiliser des décorateurs qui peuvent être placés juste au-dessus de la fonction qui gère l'endpoint). Cette 
 méthode est plus proche de celle de Django que de celle de Flask (et Starlette). Il sépare dans le code des choses 
 qui sont relativement fortement couplées.
 
