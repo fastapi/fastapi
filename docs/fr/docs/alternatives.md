@@ -108,7 +108,7 @@ Notez les similitudes entre `requests.get(...)` et `@app.get(...)`.
 
 ### <a href="https://swagger.io/" class="external-link" target="_blank">Swagger</a> / <a href="https://github.com/OAI/OpenAPI-Specification/" class="external-link" target="_blank">OpenAPI</a>
 
-La principale fonctionnalité que j'attendais de Django REST Framework était la documentation automatique des API.
+La principale fonctionnalité que j'ai emprunté à Django REST Framework était la documentation automatique des API.
 
 Puis j'ai découvert qu'il existait une norme pour documenter les API, en utilisant JSON (ou YAML, une extension de JSON) appelée Swagger. 
 
