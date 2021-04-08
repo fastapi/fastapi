@@ -98,7 +98,7 @@ def read_url():
     return {"message": "Hello World"}
 ```
 
-Voyez les similitudes dans `requests.get(...)` et `@app.get(...)`.
+Notez les similitudes entre `requests.get(...)` et `@app.get(...)`.
 
 !!! check "A inspiré **FastAPI** à"
     * Avoir une API simple et intuitive.
