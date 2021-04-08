@@ -12,7 +12,7 @@ J'ai évité la création d'un nouveau framework pendant plusieurs années. J'ai
 fonctionnalités couvertes par **FastAPI** en utilisant de nombreux frameworks, plug-ins et outils différents.
 
 Mais à un moment donné il n'y avait pas d'autre option que de créer quelque chose qui offrait toutes ces 
-fonctionnalités, en reprenant et em combinant de la meilleure façon possible les meilleures idées des outils 
+fonctionnalités, en reprenant et en combinant de la meilleure façon possible les meilleures idées des outils
 précédents, en utilisant des fonctionnalités du langage qui n'étaient même pas disponibles auparavant (type hints depuis Python 3.6+).
 
 ## Outils précédents
