@@ -160,18 +160,18 @@ Tout intégration est conçue pour être si simple à utiliser (avec des dépend
 
 En fait, `FastAPI` est un sous compposant de `Starlette`. Donc, si vous savez déjà comment utiliser Starlette, la plupart des fonctionnalités fonctionneront de la même manière.
 
-Avec **FastAPI** vous aurez toutes les fonctionnalités de **Starlette** (FastAPI est juste Starlette sous stéroïdes).
+Avec **FastAPI** vous aurez toutes les fonctionnalités de **Starlette** (FastAPI est juste Starlette sous stéroïdes):
 
-* Des performances vraiments imprèssionnantes. C'est l'<a href="https://github.com/encode/starlette#performance" class="external-link" target="_blank">un des framework Python les plus rapide, à égalité avec **NodeJS** et **GO**</a>.
-* Supporte **WebSocket**.
-* Supporte **GraphQL**.
-* <abbr title="En anglais: In-process background tasks">Tâches d'arrière-plan.</abbr>
-* Évènements de démarrages et d'arrêt.
-* Test client construits sur les `requêtes`
+* Des performances vraiments impressionnantes. C'est l'<a href="https://github.com/encode/starlette#performance" class="external-link" target="_blank">un des framework Python les plus rapide, à égalité avec **NodeJS** et **GO**</a>.
+* Le support des **WebSockets**.
+* Le support de **GraphQL**.
+* Les <abbr title="En anglais: In-process background tasks">tâches d'arrière-plan.</abbr>
+* Des évènements de démarrages et d'arrêt.
+* Un client de test basé sur `request`
 * **CORS**, GZip, Static Files, Streaming responses.
-* Supporte les **Sessions et Cookies**.
-* 100% de couverture de test.
-* 100% d'annotations de types dans le code.
+* Le support des **Sessions et Cookies**.
+* Une couverture de test à 100 %.
+* 100 % de la base de code avec des annotations de type.
 
 ## Fonctionnalités de Pydantic
 
