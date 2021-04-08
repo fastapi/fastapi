@@ -63,7 +63,7 @@ Compte tenu de la simplicité de Flask, il semblait bien adapté à la création
 !!! check "A inspiré **FastAPI** à"
     Être un micro-framework. Il est donc facile de combiner les outils et les pièces nécessaires.
 
-    Avoir d'un système de routage simple et facile à utiliser.
+Proposer un système de routage simple et facile à utiliser.
 
 
 ### <a href="https://requests.readthedocs.io" class="external-link" target="_blank">Requests</a>
