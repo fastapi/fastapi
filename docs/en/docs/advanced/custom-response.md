@@ -190,6 +190,13 @@ This includes many libraries to interact with cloud storage, video processing, a
 
 Asynchronously streams a file as the response.
 
+!!! info
+    To serve files, first install <a href="https://github.com/Tinche/aiofiles" class="external-link" target="_blank">`aiofiles`</a>.
+
+    E.g. `pip install aiofiles`.
+
+    This is because Starlette has an optional dependency on `aiofiles` and uses it in `FileResponse`.
+
 Takes a different set of arguments to instantiate than the other response types:
 
 * `path` - The filepath to the file to stream.
