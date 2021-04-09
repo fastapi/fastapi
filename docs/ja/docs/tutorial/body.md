@@ -162,4 +162,4 @@ APIはほとんどの場合 **レスポンス** ボディを送らなければ�
 
 ## Pydanticを使わない方法
 
-もしPydanticモデルを使用したくない場合は、**ボディ**パラメータが利用できます。[Body - Multiple Parameters: Singular values in body](body-multiple-params.md#singular-values-in-body){.internal-link target=_blank}を確認してください。
+もしPydanticモデルを使用したくない場合は、**Body**パラメータが利用できます。[Body - Multiple Parameters: Singular values in body](body-multiple-params.md#singular-values-in-body){.internal-link target=_blank}を確認してください。
