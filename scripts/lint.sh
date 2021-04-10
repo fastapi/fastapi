@@ -3,7 +3,7 @@
 set -e
 set -x
 
-mypy fastapi
-flake8 fastapi tests
-black fastapi tests --check
-isort fastapi tests docs_src scripts --check-only
+poetry run mypy fastapi
+poetry run flake8 fastapi tests
+poetry run black fastapi tests --check
+poetry run isort fastapi tests docs_src scripts --check-only
