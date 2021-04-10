@@ -3,4 +3,4 @@
 set -e
 set -x
 
-python ./scripts/docs.py build-all
+poetry run python ./scripts/docs.py build-all
