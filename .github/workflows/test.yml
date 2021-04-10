@@ -12,17 +12,17 @@ jobs:
       matrix:
         python-version: [3.6, 3.7, 3.8]
       fail-fast: false
-    
+
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python
         uses: actions/setup-python@v1
         with:
           python-version: ${{ matrix.python-version }}
-      - name: Install Flit
-        run: pip install flit
+      - name: Install Poetry
+        run: pip install poetry
       - name: Install Dependencies
-        run: flit install --symlink
+        run: poetry install
       - name: Test
         run: bash scripts/test.sh
       - name: Upload coverage

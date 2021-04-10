@@ -18,14 +18,15 @@ jobs:
         uses: actions/setup-python@v1
         with:
           python-version: "3.6"
-      - name: Install Flit
-        run: pip install flit
+      - name: Install Poetry
+        run: pip install poetry
       - name: Install Dependencies
-        run: flit install --symlink
+        run: poetry install
       - name: Publish
         env:
-          FLIT_USERNAME: ${{ secrets.FLIT_USERNAME }}
-          FLIT_PASSWORD: ${{ secrets.FLIT_PASSWORD }}
+          # Alternatively you can use "POETRY_PYPI_TOKEN_PYPI".
+          POETRY_HTTP_BASIC_PYPI_USERNAME: ${{ secrets.FLIT_USERNAME }}
+          POETRY_HTTP_BASIC_PYPI_PASSWORD: ${{ secrets.FLIT_PASSWORD }}
         run: bash scripts/publish.sh
       - name: Dump GitHub context
         env:

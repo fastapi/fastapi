@@ -1,12 +1,16 @@
 [build-system]
-requires = ["flit"]
-build-backend = "flit.buildapi"
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
 
-[tool.flit.metadata]
-module = "fastapi"
-author = "Sebastián Ramírez"
-author-email = "tiangolo@gmail.com"
-home-page = "https://github.com/tiangolo/fastapi"
+[tool.poetry]
+name = "fastapi"
+version = "0.63.0"
+description = "FastAPI framework, high performance, easy to learn, fast to code, ready for production"
+authors = ["Sebastián Ramírez <tiangolo@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/tiangolo/fastapi"
+documentation = "https://fastapi.tiangolo.com/"
 classifiers = [
     "Intended Audience :: Information Technology",
     "Intended Audience :: System Administrators",
@@ -31,68 +35,104 @@ classifiers = [
     "Topic :: Internet :: WWW/HTTP :: HTTP Servers",
     "Topic :: Internet :: WWW/HTTP",
 ]
-requires = [
-    "starlette ==0.13.6",
-    "pydantic >=1.0.0,<2.0.0"
-]
-description-file = "README.md"
-requires-python = ">=3.6"
 
-[tool.flit.metadata.urls]
-Documentation = "https://fastapi.tiangolo.com/"
+[tool.poetry.dependencies]
+python = "^3.6"
+starlette = "0.13.6"
+pydantic = "^1.0.0"
 
-[tool.flit.metadata.requires-extra]
+requests = { version = ">=2.24.0,<3.0.0", extras = ["all"] }
+aiofiles = { version = ">=0.5.0,<0.6.0", extras = ["all"] }
+Jinja2 = { version = ">=2.11.2,<3.0.0", extras = ["all"] }
+python-multipart = { version = ">=0.0.5,<0.0.6", extras = ["all"] }
+itsdangerous = { version = ">=1.1.0,<2.0.0", extras = ["all"] }
+PyYAML = { version = ">=5.3.1,<6.0.0", extras = ["all"] }
+graphene = { version = ">=2.1.8,<3.0.0", extras = ["all"] }
+ujson = { version = ">=3.0.0,<4.0.0", extras = ["all"] }
+orjson = { version = ">=3.2.1,<4.0.0", extras = ["all"] }
+email-validator = { version = ">=1.1.1,<2.0.0", extras = ["all"] }
+uvicorn = { version = ">=0.12.0,<0.14.0", extras = ["all"] }
+async-exit-stack = { version = ">=1.0.1,<2.0.0", extras = ["all"] }
+async_generator = { version = ">=1.10,<2.0.0", extras = ["all"] }
+
+[tool.poetry.dev-dependencies]
+python-jose = { version = ">=3.1.0,<4.0.0", extras = ["cryptography"] }
+passlib = { version = ">=1.7.2,<2.0.0", extras = ["bcrypt"] }
+autoflake = ">=1.3.1,<2.0.0"
+uvicorn = { version = ">=0.12.0,<0.14.0", extras = ["standard"] }
+graphene = ">=2.1.8,<3.0.0"
+
+pytest = { version = "5.4.3", extras = ["test"] }
+pytest-cov = { version = "2.10.0", extras = ["test"] }
+pytest-asyncio = { version = ">=0.14.0,<0.15.0", extras = ["test"] }
+mypy = { version = "==0.812", extras = ["test"] }
+flake8 = ">=3.8.3,<4.0.0"
+black = { version = "==20.8b1", extras = ["test"] }
+isort = { version = ">=5.0.6,<6.0.0", extras = ["test"] }
+requests = { version = ">=2.24.0,<3.0.0", extras = ["test"] }
+httpx = { version = ">=0.14.0,<0.15.0", extras = ["test"] }
+email-validator = { version = ">=1.1.1,<2.0.0", extras = ["test"] }
+SQLAlchemy = { version = ">=1.3.18,<1.4.0", extras = ["test"] }
+peewee = { version = ">=3.13.3,<4.0.0", extras = ["test"] }
+databases = { version = ">=0.3.2,<0.4.0", extras = ["test"] }
+orjson = { version = ">=3.2.1,<4.0.0", extras = ["test"] }
+async-exit-stack = { version = ">=1.0.1,<2.0.0", extras = ["test"] }
+async_generator = { version = ">=1.10,<2.0.0", extras = ["test"] }
+python-multipart = { version = ">=0.0.5,<0.0.6", extras = ["test"] }
+aiofiles = { version = ">=0.5.0,<0.6.0", extras = ["test"] }
+Flask = { version = ">=1.1.2,<2.0.0", extras = ["test"] }
+
+mkdocs = { version = ">=1.1.2,<2.0.0", extras = ["doc"] }
+mkdocs-material = { version = ">=6.1.4,<7.0.0", extras = ["doc"] }
+markdown-include = { version = ">=0.5.1,<0.6.0", extras = ["doc"] }
+mkdocs-markdownextradata-plugin = { version = ">=0.1.7,<0.2.0", extras = ["doc"] }
+typer-cli = { version = ">=0.0.9,<0.0.10", extras = ["doc"] }
+PyYAML = { version = ">=5.3.1,<6.0.0", extras = ["doc"] }
+
+[tool.poetry.extras]
 test = [
-    "pytest ==5.4.3",
-    "pytest-cov ==2.10.0",
-    "pytest-asyncio >=0.14.0,<0.15.0",
-    "mypy ==0.812",
-    "flake8 >=3.8.3,<4.0.0",
-    "black ==20.8b1",
-    "isort >=5.0.6,<6.0.0",
-    "requests >=2.24.0,<3.0.0",
-    "httpx >=0.14.0,<0.15.0",
-    "email_validator >=1.1.1,<2.0.0",
-    "sqlalchemy >=1.3.18,<1.4.0",
-    "peewee >=3.13.3,<4.0.0",
-    "databases[sqlite] >=0.3.2,<0.4.0",
-    "orjson >=3.2.1,<4.0.0",
-    "async_exit_stack >=1.0.1,<2.0.0",
-    "async_generator >=1.10,<2.0.0",
-    "python-multipart >=0.0.5,<0.0.6",
-    "aiofiles >=0.5.0,<0.6.0",
-    "flask >=1.1.2,<2.0.0"
+    "pytest",
+    "pytest-cov",
+    "pytest-asyncio",
+    "mypy",
+    "flake8",
+    "black",
+    "isort",
+    "requests",
+    "httpx",
+    "email-validator",
+    "SQLAlchemy",
+    "peewee",
+    "databases",
+    "orjson",
+    "async-exit-stack",
+    "async_generator",
+    "python-multipart",
+    "aiofiles",
+    "flask",
 ]
 doc = [
-    "mkdocs >=1.1.2,<2.0.0",
-    "mkdocs-material >=6.1.4,<7.0.0",
-    "markdown-include >=0.5.1,<0.6.0",
-    "mkdocs-markdownextradata-plugin >=0.1.7,<0.2.0",
-    "typer-cli >=0.0.9,<0.0.10",
-    "pyyaml >=5.3.1,<6.0.0"
-]
-dev = [
-    "python-jose[cryptography] >=3.1.0,<4.0.0",
-    "passlib[bcrypt] >=1.7.2,<2.0.0",
-    "autoflake >=1.3.1,<2.0.0",
-    "flake8 >=3.8.3,<4.0.0",
-    "uvicorn[standard] >=0.12.0,<0.14.0",
-    "graphene >=2.1.8,<3.0.0"
+    "mkdocs",
+    "mkdocs-material",
+    "markdown-include",
+    "mkdocs-markdownextradata-plugin",
+    "typer-cli",
+    "pyyaml",
 ]
 all = [
-    "requests >=2.24.0,<3.0.0",
-    "aiofiles >=0.5.0,<0.6.0",
-    "jinja2 >=2.11.2,<3.0.0",
-    "python-multipart >=0.0.5,<0.0.6",
-    "itsdangerous >=1.1.0,<2.0.0",
-    "pyyaml >=5.3.1,<6.0.0",
-    "graphene >=2.1.8,<3.0.0",
-    "ujson >=3.0.0,<4.0.0",
-    "orjson >=3.2.1,<4.0.0",
-    "email_validator >=1.1.1,<2.0.0",
-    "uvicorn[standard] >=0.12.0,<0.14.0",
-    "async_exit_stack >=1.0.1,<2.0.0",
-    "async_generator >=1.10,<2.0.0"
+    "requests",
+    "aiofiles",
+    "Jinja2",
+    "python-multipart",
+    "itsdangerous",
+    "PyYAML",
+    "graphene",
+    "ujson",
+    "orjson",
+    "email-validator",
+    "uvicorn",
+    "async",
+    "async_generator",
 ]
 
 [tool.isort]
