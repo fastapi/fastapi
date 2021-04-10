@@ -18,6 +18,17 @@ optional = false
 python-versions = "*"
 
 [[package]]
+name = "aiosqlite"
+version = "0.17.0"
+description = "asyncio bridge to the standard sqlite3 module"
+category = "dev"
+optional = false
+python-versions = ">=3.6"
+
+[package.dependencies]
+typing_extensions = ">=3.7.2"
+
+[[package]]
 name = "aniso8601"
 version = "7.0.0"
 description = "A library for parsing ISO 8601 strings."
@@ -160,7 +171,7 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 name = "colorama"
 version = "0.4.4"
 description = "Cross-platform colored terminal text."
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 
@@ -215,6 +226,7 @@ python-versions = ">=3.6"
 
 [package.dependencies]
 aiocontextvars = {version = "*", markers = "python_version < \"3.7\""}
+aiosqlite = {version = "*", optional = true, markers = "extra == \"sqlite\""}
 sqlalchemy = "*"
 
 [package.extras]
@@ -386,7 +398,7 @@ http2 = ["h2 (>=3.0.0,<4.0.0)"]
 name = "httptools"
 version = "0.1.1"
 description = "A collection of framework independent HTTP protocol utils."
-category = "dev"
+category = "main"
 optional = false
 python-versions = "*"
 
@@ -886,7 +898,7 @@ testing = ["fields", "hunter", "process-tests (==2.0.2)", "six", "pytest-xdist",
 name = "python-dotenv"
 version = "0.17.0"
 description = "Read key-value pairs from a .env file and set them as environment variables"
-category = "dev"
+category = "main"
 optional = false
 python-versions = "*"
 
@@ -1173,7 +1185,7 @@ standard = ["websockets (>=8.0.0,<9.0.0)", "watchgod (>=0.6)", "python-dotenv (>
 name = "uvloop"
 version = "0.14.0"
 description = "Fast implementation of asyncio event loop on top of libuv"
-category = "dev"
+category = "main"
 optional = false
 python-versions = "*"
 
@@ -1181,7 +1193,7 @@ python-versions = "*"
 name = "watchgod"
 version = "0.7"
 description = "Simple, modern file watching and code reload in python."
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.5"
 
@@ -1197,7 +1209,7 @@ python-versions = "*"
 name = "websockets"
 version = "8.0.2"
 description = "An implementation of the WebSocket Protocol (RFC 6455 & 7692)"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.6"
 
@@ -1226,14 +1238,14 @@ docs = ["sphinx", "jaraco.packaging (>=8.2)", "rst.linker (>=1.9)"]
 testing = ["pytest (>=4.6)", "pytest-checkdocs (>=1.2.3)", "pytest-flake8", "pytest-cov", "pytest-enabler", "jaraco.itertools", "func-timeout", "pytest-black (>=0.3.7)", "pytest-mypy"]
 
 [extras]
-all = ["requests", "aiofiles", "Jinja2", "python-multipart", "itsdangerous", "PyYAML", "graphene", "ujson", "orjson", "email-validator", "uvicorn", "async_generator"]
+all = ["requests", "aiofiles", "Jinja2", "python-multipart", "itsdangerous", "PyYAML", "graphene", "ujson", "orjson", "email-validator", "uvicorn", "async-exit-stack", "async_generator"]
 doc = ["PyYAML"]
 test = ["requests", "email-validator", "orjson", "async-exit-stack", "async_generator", "python-multipart", "aiofiles"]
 
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.6"
-content-hash = "3c3103fe5f1098fc68eb98f9e75b2aa12ff4bf8897528d31cce3aaee8e71897f"
+content-hash = "22cf2a328441ffd68757f076d7c7fb57d0275a2f9f2e92a03a4f0b141001c321"
 
 [metadata.files]
 aiocontextvars = [
@@ -1243,6 +1255,10 @@ aiocontextvars = [
 aiofiles = [
     {file = "aiofiles-0.5.0-py3-none-any.whl", hash = "sha256:377fdf7815cc611870c59cbd07b68b180841d2a2b79812d8c218be02448c2acb"},
     {file = "aiofiles-0.5.0.tar.gz", hash = "sha256:98e6bcfd1b50f97db4980e182ddd509b7cc35909e903a8fe50d8849e02d815af"},
+]
+aiosqlite = [
+    {file = "aiosqlite-0.17.0-py3-none-any.whl", hash = "sha256:6c49dc6d3405929b1d08eeccc72306d3677503cc5e5e43771efc1e00232e8231"},
+    {file = "aiosqlite-0.17.0.tar.gz", hash = "sha256:f0e6acc24bc4864149267ac82fb46dfb3be4455f99fe21df82609cc6e6baee51"},
 ]
 aniso8601 = [
     {file = "aniso8601-7.0.0-py2.py3-none-any.whl", hash = "sha256:d10a4bf949f619f719b227ef5386e31f49a2b6d453004b21f02661ccc8670c7b"},

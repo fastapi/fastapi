@@ -51,7 +51,7 @@ graphene = { version = ">=2.1.8,<3.0.0", extras = ["all"] }
 ujson = { version = ">=3.0.0,<4.0.0", extras = ["all"] }
 orjson = { version = ">=3.2.1,<4.0.0", extras = ["all"] }
 email-validator = { version = ">=1.1.1,<2.0.0", extras = ["all"] }
-uvicorn = { version = ">=0.12.0,<0.14.0", extras = ["all"] }
+uvicorn = { version = ">=0.12.0,<0.14.0", extras = ["standard", "all"] }
 async-exit-stack = { version = ">=1.0.1,<2.0.0", extras = ["all"] }
 async_generator = { version = ">=1.10,<2.0.0", extras = ["all"] }
 
@@ -74,7 +74,7 @@ httpx = { version = ">=0.14.0,<0.15.0", extras = ["test"] }
 email-validator = { version = ">=1.1.1,<2.0.0", extras = ["test"] }
 SQLAlchemy = { version = ">=1.3.18,<1.4.0", extras = ["test"] }
 peewee = { version = ">=3.13.3,<4.0.0", extras = ["test"] }
-databases = { version = ">=0.3.2,<0.4.0", extras = ["test"] }
+databases = { version = ">=0.3.2,<0.4.0", extras = ["sqlite", "test"] }
 orjson = { version = ">=3.2.1,<4.0.0", extras = ["test"] }
 async-exit-stack = { version = ">=1.0.1,<2.0.0", extras = ["test"] }
 async_generator = { version = ">=1.10,<2.0.0", extras = ["test"] }
@@ -117,7 +117,7 @@ doc = [
     "markdown-include",
     "mkdocs-markdownextradata-plugin",
     "typer-cli",
-    "pyyaml",
+    "PyYAML",
 ]
 all = [
     "requests",
@@ -131,7 +131,7 @@ all = [
     "orjson",
     "email-validator",
     "uvicorn",
-    "async",
+    "async-exit-stack",
     "async_generator",
 ]
 
