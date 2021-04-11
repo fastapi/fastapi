@@ -1,5 +1,9 @@
 articles:
   english:
+    - link: https://duarteocarmo.com/blog/how-to-build-a-newsletter-using-python-and-fastapi
+      title: How to build a newsletter using Python and FastAPI
+      author_link: https://duarteocarmo.com
+      author: Duarte O.Carmo
     - link: https://medium.com/@williamhayes/fastapi-starlette-debug-vs-prod-5f7561db3a59
       title: FastAPI/Starlette debug vs prod
       author_link: https://medium.com/@williamhayes
