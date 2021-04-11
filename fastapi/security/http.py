@@ -6,7 +6,7 @@ from fastapi.exceptions import HTTPException
 from fastapi.openapi.models import HTTPBase as HTTPBaseModel
 from fastapi.openapi.models import HTTPBearer as HTTPBearerModel
 from fastapi.security.base import SecurityBase
-from fastapi.security.utils import get_authorization_scheme_param
+from fastapi.security.utils import get_authorization_scheme_param, get_digest_algorithm
 from pydantic import BaseModel
 from starlette.requests import Request
 from starlette.status import HTTP_401_UNAUTHORIZED, HTTP_403_FORBIDDEN
@@ -143,18 +143,27 @@ class HTTPDigest(HTTPBase):
         self, request: Request
     ) -> Optional[HTTPAuthorizationCredentials]:
         authorization: str = request.headers.get("Authorization")
-        algorithm: str = request.headers.get("")
-        scheme, credentials = get_authorization_scheme_param(authorization)
-        if not (authorization and scheme and credentials):
+        scheme, param = get_authorization_scheme_param(authorization)
+        algorithm: str = request.headers.get("algorithm", "MD5")
+        if self.realm:
+            unauthorized_headers = {"WWW-Authenticate": f'Digest realm="{self.realm}"'}
+        else:
+            unauthorized_headers = {"WWW-Authenticate": "Digest"}
+        invalid_user_credentials_exc = HTTPException(
+            status_code=HTTP_401_UNAUTHORIZED,
+            detail="Invalid authentication credentials",
+            headers=unauthorized_headers,
+        )
+        if not authorization and scheme.lower() != "digest":
             if self.auto_error:
                 raise HTTPException(
-                    status_code=HTTP_403_FORBIDDEN, detail="Not authenticated"
+                    status_code=HTTP_403_FORBIDDEN,
+                    detail="Invalid authentication credentials",
+                    headers=unauthorized_headers,
                 )
-            else:
-                return None
-        if scheme.lower() != "digest":
-            raise HTTPException(
-                status_code=HTTP_403_FORBIDDEN,
-                detail="Invalid authentication credentials",
-            )
-        return HTTPAuthorizationCredentials(scheme=scheme, credentials=credentials)
+            return None
+        try:
+            algorithm_func = get_digest_algorithm(algorithm)
+            algorithm_func().hexdigest()
+        except ValueError:
+            ...
