@@ -127,15 +127,23 @@ class HTTPBearer(HTTPBase):
 
 
 class HTTPDigest(HTTPBase):
-    def __init__(self, *, scheme_name: Optional[str] = None, auto_error: bool = True):
+    def __init__(
+        self,
+        *,
+        scheme_name: Optional[str] = None,
+        realm: Optional[str] = None,
+        auto_error: bool = True,
+    ):
         self.model = HTTPBaseModel(scheme="digest")
         self.scheme_name = scheme_name or self.__class__.__name__
+        self.realm = realm
         self.auto_error = auto_error
 
     async def __call__(
         self, request: Request
     ) -> Optional[HTTPAuthorizationCredentials]:
         authorization: str = request.headers.get("Authorization")
+        algorithm: str = request.headers.get("")
         scheme, credentials = get_authorization_scheme_param(authorization)
         if not (authorization and scheme and credentials):
             if self.auto_error:
