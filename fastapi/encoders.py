@@ -56,6 +56,8 @@ def jsonable_encoder(
             obj_dict = obj_dict["__root__"]
         return jsonable_encoder(
             obj_dict,
+            include=include,
+            exclude=exclude,
             exclude_none=exclude_none,
             exclude_defaults=exclude_defaults,
             custom_encoder=encoder,
@@ -81,6 +83,8 @@ def jsonable_encoder(
             ):
                 encoded_key = jsonable_encoder(
                     key,
+                    include=include,
+                    exclude=exclude,
                     by_alias=by_alias,
                     exclude_unset=exclude_unset,
                     exclude_none=exclude_none,
@@ -89,6 +93,8 @@ def jsonable_encoder(
                 )
                 encoded_value = jsonable_encoder(
                     value,
+                    include=include,
+                    exclude=exclude,
                     by_alias=by_alias,
                     exclude_unset=exclude_unset,
                     exclude_none=exclude_none,
@@ -141,6 +147,8 @@ def jsonable_encoder(
             raise ValueError(errors)
     return jsonable_encoder(
         data,
+        include=include,
+        exclude=exclude,
         by_alias=by_alias,
         exclude_unset=exclude_unset,
         exclude_defaults=exclude_defaults,

@@ -172,3 +172,15 @@ def test_encode_model_with_path(model_with_path):
 def test_encode_root():
     model = ModelWithRoot(__root__="Foo")
     assert jsonable_encoder(model) == "Foo"
+
+
+def test_encode_model_with_include():
+    model = ModelWithDefault(foo="foo", bar="bar")
+    assert jsonable_encoder(model) == {"foo": "foo", "bar": "bar", "bla": "bla"}
+    assert jsonable_encoder(model, include={"foo"}) == {"foo": "foo"}
+
+
+def test_encode_model_with_exclude():
+    model = ModelWithDefault(foo="foo", bar="bar")
+    assert jsonable_encoder(model) == {"foo": "foo", "bar": "bar", "bla": "bla"}
+    assert jsonable_encoder(model, exclude={"foo"}) == {"bar": "bar", "bla": "bla"}
