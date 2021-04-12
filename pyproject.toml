@@ -60,7 +60,7 @@ test = [
     "async_exit_stack >=1.0.1,<2.0.0",
     "async_generator >=1.10,<2.0.0",
     "python-multipart >=0.0.5,<0.0.6",
-    "aiofiles >=0.5.0,<0.6.0",
+    "aiofiles >=0.5.0,<0.7.0",
     "flask >=1.1.2,<2.0.0"
 ]
 doc = [
