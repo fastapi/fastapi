@@ -242,8 +242,6 @@ It was one of the first extremely fast Python frameworks based on `asyncio`. It 
 
 Falcon is another high performance Python framework, it is designed to be minimal, and work as the foundation of other frameworks like Hug.
 
-It uses the previous standard for Python web frameworks (WSGI) which is synchronous, so it can't handle WebSockets and other use cases. Nevertheless, it also has a very good performance.
-
 It is designed to have functions that receive two parameters, one "request" and one "response". Then you "read" parts from the request, and "write" parts to the response. Because of this design, it is not possible to declare request parameters and bodies with standard Python type hints as function parameters.
 
 So, data validation, serialization, and documentation, have to be done in code, not automatically. Or they have to be implemented as a framework on top of Falcon, like Hug. This same distinction happens in other frameworks that are inspired by Falcon's design, of having one request object and one response object as parameters.
