@@ -41,53 +41,53 @@ python = "^3.6"
 starlette = "0.13.6"
 pydantic = "^1.0.0"
 
-requests = { version = ">=2.24.0,<3.0.0", extras = ["all"] }
-aiofiles = { version = ">=0.5.0,<0.6.0", extras = ["all"] }
-Jinja2 = { version = ">=2.11.2,<3.0.0", extras = ["all"] }
-python-multipart = { version = ">=0.0.5,<0.0.6", extras = ["all"] }
-itsdangerous = { version = ">=1.1.0,<2.0.0", extras = ["all"] }
-PyYAML = { version = ">=5.3.1,<6.0.0", extras = ["all"] }
-graphene = { version = ">=2.1.8,<3.0.0", extras = ["all"] }
-ujson = { version = ">=3.0.0,<4.0.0", extras = ["all"] }
-orjson = { version = ">=3.2.1,<4.0.0", extras = ["all"] }
-email-validator = { version = ">=1.1.1,<2.0.0", extras = ["all"] }
-uvicorn = { version = ">=0.12.0,<0.14.0", extras = ["standard", "all"] }
-async-exit-stack = { version = ">=1.0.1,<2.0.0", extras = ["all"] }
-async_generator = { version = ">=1.10,<2.0.0", extras = ["all"] }
+requests = { version = ">=2.24.0,<3.0.0", optional = true }
+aiofiles = { version = ">=0.5.0,<0.6.0", optional = true }
+Jinja2 = { version = ">=2.11.2,<3.0.0", optional = true }
+python-multipart = { version = ">=0.0.5,<0.0.6", optional = true }
+itsdangerous = { version = ">=1.1.0,<2.0.0", optional = true }
+PyYAML = { version = ">=5.3.1,<6.0.0", optional = true }
+graphene = { version = ">=2.1.8,<3.0.0", optional = true }
+ujson = { version = ">=3.0.0,<4.0.0", optional = true }
+orjson = { version = ">=3.2.1,<4.0.0", optional = true }
+email-validator = { version = ">=1.1.1,<2.0.0", optional = true }
+uvicorn = { version = ">=0.12.0,<0.14.0", extras = ["standard"], optional = true }
+async-exit-stack = { version = ">=1.0.1,<2.0.0", optional = true }
+async_generator = { version = ">=1.10,<2.0.0", optional = true }
 
 [tool.poetry.dev-dependencies]
 python-jose = { version = ">=3.1.0,<4.0.0", extras = ["cryptography"] }
 passlib = { version = ">=1.7.2,<2.0.0", extras = ["bcrypt"] }
 autoflake = ">=1.3.1,<2.0.0"
+flake8 = ">=3.8.3,<4.0.0"
 uvicorn = { version = ">=0.12.0,<0.14.0", extras = ["standard"] }
 graphene = ">=2.1.8,<3.0.0"
 
-pytest = { version = "5.4.3", extras = ["test"] }
-pytest-cov = { version = "2.10.0", extras = ["test"] }
-pytest-asyncio = { version = ">=0.14.0,<0.15.0", extras = ["test"] }
-mypy = { version = "==0.812", extras = ["test"] }
-flake8 = ">=3.8.3,<4.0.0"
-black = { version = "==20.8b1", extras = ["test"] }
-isort = { version = ">=5.0.6,<6.0.0", extras = ["test"] }
-requests = { version = ">=2.24.0,<3.0.0", extras = ["test"] }
-httpx = { version = ">=0.14.0,<0.15.0", extras = ["test"] }
-email-validator = { version = ">=1.1.1,<2.0.0", extras = ["test"] }
-SQLAlchemy = { version = ">=1.3.18,<1.4.0", extras = ["test"] }
-peewee = { version = ">=3.13.3,<4.0.0", extras = ["test"] }
-databases = { version = ">=0.3.2,<0.4.0", extras = ["sqlite", "test"] }
-orjson = { version = ">=3.2.1,<4.0.0", extras = ["test"] }
-async-exit-stack = { version = ">=1.0.1,<2.0.0", extras = ["test"] }
-async_generator = { version = ">=1.10,<2.0.0", extras = ["test"] }
-python-multipart = { version = ">=0.0.5,<0.0.6", extras = ["test"] }
-aiofiles = { version = ">=0.5.0,<0.6.0", extras = ["test"] }
-Flask = { version = ">=1.1.2,<2.0.0", extras = ["test"] }
+pytest = { version = "5.4.3", optional = true }
+pytest-cov = { version = "2.10.0", optional = true }
+pytest-asyncio = { version = ">=0.14.0,<0.15.0", optional = true }
+mypy = { version = "==0.812", optional = true }
+black = { version = "==20.8b1", optional = true }
+isort = { version = ">=5.0.6,<6.0.0", optional = true }
+requests = { version = ">=2.24.0,<3.0.0", optional = true }
+httpx = { version = ">=0.14.0,<0.15.0", optional = true }
+email-validator = { version = ">=1.1.1,<2.0.0", optional = true }
+SQLAlchemy = { version = ">=1.3.18,<1.4.0", optional = true }
+peewee = { version = ">=3.13.3,<4.0.0", optional = true }
+databases = { version = ">=0.3.2,<0.4.0", extras = ["sqlite"], optional = true }
+orjson = { version = ">=3.2.1,<4.0.0", optional = true }
+async-exit-stack = { version = ">=1.0.1,<2.0.0", optional = true }
+async_generator = { version = ">=1.10,<2.0.0", optional = true }
+python-multipart = { version = ">=0.0.5,<0.0.6", optional = true }
+aiofiles = { version = ">=0.5.0,<0.6.0", optional = true }
+Flask = { version = ">=1.1.2,<2.0.0", optional = true }
 
-mkdocs = { version = ">=1.1.2,<2.0.0", extras = ["doc"] }
-mkdocs-material = { version = ">=6.1.4,<7.0.0", extras = ["doc"] }
-markdown-include = { version = ">=0.5.1,<0.6.0", extras = ["doc"] }
-mkdocs-markdownextradata-plugin = { version = ">=0.1.7,<0.2.0", extras = ["doc"] }
-typer-cli = { version = ">=0.0.9,<0.0.10", extras = ["doc"] }
-PyYAML = { version = ">=5.3.1,<6.0.0", extras = ["doc"] }
+mkdocs = { version = ">=1.1.2,<2.0.0", optional = true }
+mkdocs-material = { version = ">=6.1.4,<7.0.0", optional = true }
+markdown-include = { version = ">=0.5.1,<0.6.0", optional = true }
+mkdocs-markdownextradata-plugin = { version = ">=0.1.7,<0.2.0", optional = true }
+typer-cli = { version = ">=0.0.9,<0.0.10", optional = true }
+PyYAML = { version = ">=5.3.1,<6.0.0", optional = true }
 
 [tool.poetry.extras]
 test = [
