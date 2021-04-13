@@ -1,6 +1,6 @@
-# Custom Request and APIRoute class
+# Custom Request, APIRoute, and APIRouter class
 
-In some cases, you may want to override the logic used by the `Request` and `APIRoute` classes.
+In some cases, you may want to override the logic used by the `Request`, `APIRoute`, and `APIRouter` classes.
 
 In particular, this may be a good alternative to logic in a middleware.
 
@@ -18,6 +18,7 @@ Some use cases include:
 * Converting non-JSON request bodies to JSON (e.g. <a href="https://msgpack.org/index.html" class="external-link" target="_blank">`msgpack`</a>).
 * Decompressing gzip-compressed request bodies.
 * Automatically logging all request bodies.
+* Automatically generating extra routes.
 
 ## Handling custom request body encodings
 
@@ -96,7 +97,7 @@ If an exception occurs, the`Request` instance will still be in scope, so we can 
 
 ## Custom `APIRoute` class in a router
 
-You can also set the `route_class` parameter of an `APIRouter`:
+You can set the `route_class` parameter of an `APIRouter`:
 
 ```Python hl_lines="26"
 {!../../../docs_src/custom_request_and_route/tutorial003.py!}
@@ -106,4 +107,38 @@ In this example, the *path operations* under the `router` will use the custom `T
 
 ```Python hl_lines="13-20"
 {!../../../docs_src/custom_request_and_route/tutorial003.py!}
+```
+
+## Custom `APIRouter` class in an application
+
+You can also set the `router_class` parameter of a `FastAPI` application:
+
+```Python hl_lines="15"
+{!../../../docs_src/custom_request_and_route/tutorial004.py!}
+```
+
+This allows you to set a custom router with special route generation logic at the top level of your application.
+
+In this example, we have defined a custom router to generate `HEAD` variants of all our `GET` request handlers automatically:
+
+```Python hl_lines="8-12"
+{!../../../docs_src/custom_request_and_route/tutorial004.py!}
+```
+
+This router applies to all routes directly added to our application. For example, our `via_router_class` handler:
+
+```Python hl_lines="18-20"
+{!../../../docs_src/custom_request_and_route/tutorial004.py!}
+```
+
+will now happily respond to requests such as:
+
+```sh
+curl -IHEAD localhost:8000/via-router-class
+```
+
+The alternative is instantiating and including a router instance directly, which is more verbose (but useful for adding custom route generation for just subsections of your application):
+
+```Python hl_lines="23-31"
+{!../../../docs_src/custom_request_and_route/tutorial004.py!}
 ```
