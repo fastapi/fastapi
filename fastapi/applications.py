@@ -58,6 +58,7 @@ class FastAPI(Starlette):
         openapi_prefix: str = "",
         root_path: str = "",
         root_path_in_servers: bool = True,
+        router_class: Type[routing.APIRouter] = routing.APIRouter,
         responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
         callbacks: Optional[List[BaseRoute]] = None,
         deprecated: Optional[bool] = None,
@@ -66,7 +67,7 @@ class FastAPI(Starlette):
     ) -> None:
         self._debug: bool = debug
         self.state: State = State()
-        self.router: routing.APIRouter = routing.APIRouter(
+        self.router: routing.APIRouter = router_class(
             routes=routes,
             dependency_overrides_provider=self,
             on_startup=on_startup,
