@@ -2,7 +2,7 @@ from enum import Enum
 from typing import Any, Callable, Dict, Iterable, List, Optional, Union
 
 from fastapi.logger import logger
-from pydantic import AnyUrl, BaseModel, Field
+from pydantic import AnyUrl, BaseModel, Extra, Field
 
 try:
     import email_validator  # type: ignore
@@ -126,6 +126,9 @@ class Schema(SchemaBase):
     items: Optional[SchemaBase] = None
     properties: Optional[Dict[str, SchemaBase]] = None
     additionalProperties: Optional[Union[Dict[str, Any], bool]] = None
+
+    class Config:
+        extra = Extra.allow
 
 
 class Example(BaseModel):
