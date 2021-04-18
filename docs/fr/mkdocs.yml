@@ -50,6 +50,8 @@ nav:
   - tr: /tr/
   - uk: /uk/
   - zh: /zh/
+- Tutoriel - Guide utilisateur:
+  - tutorial/background-tasks.md
 markdown_extensions:
 - toc:
     permalink: true
