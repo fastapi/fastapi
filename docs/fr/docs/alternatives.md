@@ -373,9 +373,7 @@ Maintenant, APIStar est un ensemble d'outils pour valider les spécifications Op
 
     Puis APIStar a cessé d'exister en tant que serveur et Starlette a été créé, et a constitué une meilleure base pour un tel système. Ce fut l'inspiration finale pour construire **FastAPI**.
 
-    Je considère **FastAPI** comme un "successeur spirituel" d'APIStar, tout en améliorant et en augmentant les 
-fonctionnalités, le système de typage et d'autres parties, sur la base des enseignements tirés de tous ces outils 
-précédents.
+    Je considère **FastAPI** comme un "successeur spirituel" d'APIStar, tout en améliorant et en augmentant les fonctionnalités, le système de typage et d'autres parties, sur la base des enseignements tirés de tous ces outils précédents.
 
 ## Utilisé par **FastAPI**
 
