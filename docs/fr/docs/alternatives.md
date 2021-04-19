@@ -404,7 +404,7 @@ Il offre :
 * Des performances vraiment impressionnantes.
 * Le support des WebSockets.
 * Le support de GraphQL.
-* Les tâches d'arrière-plan
+* Les tâches d'arrière-plan.
 * Les événements de démarrage et d'arrêt.
 * Un client de test basé sur request.
 * CORS, GZip, fichiers statiques, streaming des réponses.
