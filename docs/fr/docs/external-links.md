@@ -2,7 +2,7 @@
 
 **FastAPI** possède une grande communauté en constante extension.
 
-Il y a de nombreux articles, outils et projets liés à **FastAPI**.
+Il existe de nombreux articles, outils et projets liés à **FastAPI**.
 
 Voici une liste incomplète de certains d'entre eux.
 
