@@ -364,7 +364,7 @@ Maintenant, APIStar est un ensemble d'outils pour valider les spécifications Op
     * Starlette (sur lequel **FastAPI** est basé)
     * Uvicorn (utilisé par Starlette et **FastAPI**)
 
-!!! check "Inspired **FastAPI** to"
+!!! check "A inspiré **FastAPI** à"
     Exister.
 
     L'idée de déclarer plusieurs choses (validation des données, sérialisation et documentation) avec les mêmes types Python, tout en offrant un excellent support pour les éditeurs, était pour moi une idée brillante.
