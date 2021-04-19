@@ -12,7 +12,7 @@ J'ai évité la création d'un nouveau framework pendant plusieurs années. J'ai
 fonctionnalités couvertes par **FastAPI** en utilisant de nombreux frameworks, plug-ins et outils différents.
 
 Mais à un moment donné il n'y avait pas d'autre option que de créer quelque chose qui offrait toutes ces 
-fonctionnalités, en reprenant et em combinant de la meilleure façon possible les meilleures idées des outils 
+fonctionnalités, en reprenant et en combinant de la meilleure façon possible les meilleures idées des outils
 précédents, en utilisant des fonctionnalités du langage qui n'étaient même pas disponibles auparavant (type hints depuis Python 3.6+).
 
 ## Outils précédents
@@ -63,7 +63,7 @@ Compte tenu de la simplicité de Flask, il semblait bien adapté à la création
 !!! check "A inspiré **FastAPI** à"
     Être un micro-framework. Il est donc facile de combiner les outils et les pièces nécessaires.
 
-    Avoir d'un système de routage simple et facile à utiliser.
+Proposer un système de routage simple et facile à utiliser.
 
 
 ### <a href="https://requests.readthedocs.io" class="external-link" target="_blank">Requests</a>
@@ -98,7 +98,7 @@ def read_url():
     return {"message": "Hello World"}
 ```
 
-Voyez les similitudes dans `requests.get(...)` et `@app.get(...)`.
+Notez les similitudes entre `requests.get(...)` et `@app.get(...)`.
 
 !!! check "A inspiré **FastAPI** à"
     * Avoir une API simple et intuitive.
@@ -108,7 +108,7 @@ Voyez les similitudes dans `requests.get(...)` et `@app.get(...)`.
 
 ### <a href="https://swagger.io/" class="external-link" target="_blank">Swagger</a> / <a href="https://github.com/OAI/OpenAPI-Specification/" class="external-link" target="_blank">OpenAPI</a>
 
-La principale fonctionnalité que j'attendais de Django REST Framework était la documentation automatique des API.
+La principale fonctionnalité que j'ai emprunté à Django REST Framework était la documentation automatique des API.
 
 Puis j'ai découvert qu'il existait une norme pour documenter les API, en utilisant JSON (ou YAML, une extension de JSON) appelée Swagger. 
 
@@ -148,7 +148,7 @@ que les données sont valides, compte tenu de certains paramètres. Par exemple,
 string.
 Ceci est particulièrement utile pour les données entrantes.
 
-Sans un système de validation des données, vous devriez effectuer toutes les vérifications à la main, en code.
+Sans un système de validation des données, vous devriez effectuer toutes les vérifications à la main, dans le code.
 
 Ces fonctionnalités sont ce pourquoi Marshmallow a été construit. C'est une excellente bibliothèque, et je l'ai déjà beaucoup utilisée.
 
@@ -296,7 +296,7 @@ conçu pour profiter des hautes performances fournies par des outils comme Uvico
 Le système d'injection de dépendances exige le pré-enregistrement des dépendances et les dépendances sont résolues sur la base des types déclarés. Ainsi, il n'est pas possible de déclarer plus d'un "composant" qui fournit un certain type.
 
 Les routes sont déclarées à un seul endroit, en utilisant des fonctions déclarées à d'autres endroits (au lieu 
-d'utiliser des décorateurs qui peuvent être placés juste au-dessus de la fonction qui gère lendpoint). Cette 
+d'utiliser des décorateurs qui peuvent être placés juste au-dessus de la fonction qui gère l'endpoint). Cette 
 méthode est plus proche de celle de Django que de celle de Flask (et Starlette). Il sépare dans le code des choses 
 qui sont relativement fortement couplées.
 
@@ -364,7 +364,7 @@ Maintenant, APIStar est un ensemble d'outils pour valider les spécifications Op
     * Starlette (sur lequel **FastAPI** est basé)
     * Uvicorn (utilisé par Starlette et **FastAPI**)
 
-!!! check "Inspired **FastAPI** to"
+!!! check "A inspiré **FastAPI** à"
     Exister.
 
     L'idée de déclarer plusieurs choses (validation des données, sérialisation et documentation) avec les mêmes types Python, tout en offrant un excellent support pour les éditeurs, était pour moi une idée brillante.
@@ -375,11 +375,11 @@ Maintenant, APIStar est un ensemble d'outils pour valider les spécifications Op
 
     Je considère **FastAPI** comme un "successeur spirituel" d'APIStar, tout en améliorant et en augmentant les fonctionnalités, le système de typage et d'autres parties, sur la base des enseignements tirés de tous ces outils précédents.
 
-## Utilisé par **FastAPI**
+## Utilisés par **FastAPI**
 
 ### <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a>
 
-Pydantic est une bibliothèque permettant de définir la validation, la sérialisation et la documentation des données (à l'aide de JSON Schema) en se basant sur les indices de type Python.
+Pydantic est une bibliothèque permettant de définir la validation, la sérialisation et la documentation des données (à l'aide de JSON Schema) en se basant sur les Python type hints.
 
 Cela le rend extrêmement intuitif.
 
@@ -393,7 +393,7 @@ basé sur les mêmes type hints Python, le support de l'éditeur est grand.
 
 ### <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a>
 
-Starlette est un léger framework/toolkit <abbr title="The new standard for building asynchronous Python web">ASGI</abbr>, qui est idéal pour construire des services asyncio performants.
+Starlette est un framework/toolkit léger <abbr title="Le nouveau standard pour construire des applications web assynchrones en Python">ASGI</abbr>, qui est idéal pour construire des services asyncio performants.
 
 Il est très simple et intuitif. Il est conçu pour être facilement extensible et avoir des composants modulaires.
 
@@ -402,7 +402,7 @@ Il offre :
 * Des performances vraiment impressionnantes.
 * Le support des WebSockets.
 * Le support de GraphQL.
-* Les tâches d'arrière-plan en cours de traitement.
+* Les tâches d'arrière-plan.
 * Les événements de démarrage et d'arrêt.
 * Un client de test basé sur request.
 * CORS, GZip, fichiers statiques, streaming des réponses.
