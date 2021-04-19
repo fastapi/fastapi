@@ -148,7 +148,7 @@ que les données sont valides, compte tenu de certains paramètres. Par exemple,
 string.
 Ceci est particulièrement utile pour les données entrantes.
 
-Sans un système de validation des données, vous devriez effectuer toutes les vérifications à la main, en code.
+Sans un système de validation des données, vous devriez effectuer toutes les vérifications à la main, dans le code.
 
 Ces fonctionnalités sont ce pourquoi Marshmallow a été construit. C'est une excellente librairie, et je l'ai déjà beaucoup utilisée.
 
