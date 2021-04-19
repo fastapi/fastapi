@@ -377,7 +377,7 @@ Maintenant, APIStar est un ensemble d'outils pour valider les spécifications Op
 fonctionnalités, le système de typage et d'autres parties, sur la base des enseignements tirés de tous ces outils 
 précédents.
 
-## Utilisé par **FastAPI**
+## Utilisés par **FastAPI**
 
 ### <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a>
 
