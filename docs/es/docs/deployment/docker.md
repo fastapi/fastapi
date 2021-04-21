@@ -9,16 +9,16 @@ En esta sección verás instrucciones y enlaces a guías para saber como:
 
 Usar <a href="https://www.docker.com/" class="external-link" target="_blank">**Docker**</a> para el deployment, tiene algunas ventajas como seguridad, replicabilidad, simplicdad en el desarrollo, etc.
 
-Si estás usando Docket, puedes usar la documentación oficial de Docker en:
+Si estás usando Docker, puedes usar la imagen oficial de Docker en:
 
 ## <a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker" class="external-link" target="_blank">tiangolo/uvicorn-gunicorn-fastapi</a>
 
 Esta imagen tiene un mecanismo de "auto-calibración" incluido, así que puedes solamente añadir tu código y obtener muy alto rendimiento de forma automática. Y sin necesidad de hacer sacrificios.
 
-Pero aun puedes cambiar y actualizar todas las configuraciones con variables del environment o otros archivos de configuración.
+Pero aun puedes cambiar y actualizar todas las configuraciones con variables de environment o otros archivos de configuración.
 
 !!! tip
-    Para ver toda la configuración y opciones, ve a la pagina de la imagen de Docker: <a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker" class="external-link" target="_blank">tiangolo/uvicorn-gunicorn-fastapi</a>.
+    Para ver todas las configuraciones y opciones, ve a la pagina de la imagen de Docker: <a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker" class="external-link" target="_blank">tiangolo/uvicorn-gunicorn-fastapi</a>.
 
 ## Crea un `Dockerfile`
 
@@ -160,7 +160,7 @@ Con esta información y herramientas, continua con la siguiente sección para co
 
 ## Docker Swarm mode cluster con Traefik y HTTPS
 
-Puedes configurar un cluster de Docker Swarn mode, en minutos (cerca de 20) con un manejador de HTTPS de Traefik.
+Puedes configurar un cluster de Docker Swarm mode, en minutos (cerca de 20) con un manejador de HTTPS de Traefik.
 
 Al usar Docker Swarm mode, puedes iniciar con un "cluster" de una sola maquina (incluso puede ser un servidor de  $5 USD/mes)
 
@@ -172,7 +172,7 @@ Para configurar un cluster de Docker Swarm Mode con Traefik y manejo de HTTPS, s
 
 La manera mas facil de configurar todo, sera usando los [Project Generators de **FastAPI**](../project-generation.md){.internal-link target=_blank}.
 
-Esta diseñado para ser integrado con este cluster de Docker Swarm con Traefik y HTTPSS descrito arriba.
+Esta diseñado para ser integrado con este cluster de Docker Swarm con Traefik y HTTPS descrito arriba.
 
 Puedes generar un proyecto en alrededor de 2 minutos.
 
