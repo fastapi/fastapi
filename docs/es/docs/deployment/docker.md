@@ -7,7 +7,7 @@ En esta sección verás instrucciones y enlaces a guías para saber como:
 * Configurar un cluster de Docker Swarm mode con HTTPS automatico, incluso en un simple servidor por $5 USD/mes. En cerca de **20 min**.
 * Generar y desplegar en toda su totalidad una aplicación con **FastAPI**, usando tu cluster de Docker Swarm, con HTTPS, etc. En cerca de **10 min**.
 
-Usar <a href="https://www.docker.com/" class="external-link" target="_blank">**Docker**</a> para el deployment, tiene algunas ventajas como seguridad, replicabilidad, simplicdad en el desarrollo, etc.
+Puedes usar <a href="https://www.docker.com/" class="external-link" target="_blank">**Docker**</a> para el deployment. Tiene distintas ventajas como seguridad, replicabilidad, simplicdad en el desarrollo, etc.
 
 Si estás usando Docker, puedes usar la imagen oficial de Docker en:
 
