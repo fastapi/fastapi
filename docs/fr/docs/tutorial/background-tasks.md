@@ -38,7 +38,7 @@ L'opération d'écriture n'utilisant ni `async` ni `await`, on définit la fonct
 
 ## Ajouter une tâche d'arrière-plan
 
-Dans votre *fonction de chemin*, passer votre fonction de tâche à l'objet de type `BackgroundTasks` (`background_tasks` ici) grâce à la méthode `.add_task()` :
+Dans votre *fonction de chemin*, passez votre fonction de tâche à l'objet de type `BackgroundTasks` (`background_tasks` ici) grâce à la méthode `.add_task()` :
 
 
 ```Python hl_lines="14"
@@ -53,7 +53,7 @@ Dans votre *fonction de chemin*, passer votre fonction de tâche à l'objet de t
 
 ## Injection de dépendances
 
-Utiliser `BackgroundTasks` fonctionne aussi avec le système d'injection de dépendances, vous pouvez déclarer un paramètre de type `BackgroundTasks` à différents niveaux : dans une *fonction de chemin*, dans une dépendance, dans une sous-dépendance...
+Utiliser `BackgroundTasks` fonctionne aussi avec le système d'injection de dépendances. Vous pouvez déclarer un paramètre de type `BackgroundTasks` à différents niveaux : dans une *fonction de chemin*, dans une dépendance, dans une sous-dépendance...
 
 **FastAPI** sait quoi faire dans chaque cas et comment réutiliser le même objet, afin que tous les paramètres de type `BackgroundTasks` soient fusionnés et que les tâches soient exécutées en arrière-plan :
 
