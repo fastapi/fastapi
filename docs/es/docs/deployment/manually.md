@@ -1,12 +1,12 @@
 # Despliegue manualmente
 
-De igual forma puedes desplegar **FastAPI** de forma manual.
+También forma puedes desplegar **FastAPI** de forma manual.
 
 Solo necesitas instalar un servidor ASGI compatible, como:
 
 === "Uvicorn"
 
-    * <a href="https://www.uvicorn.org/" class="external-link" target="_blank">Uvicorn</a>, un super rápido servidor ASGI, construido en uvloop y httptools.
+    * <a href="https://www.uvicorn.org/" class="external-link" target="_blank">Uvicorn</a>, un super rápido servidor ASGI, construido sobre uvloop y httptools.
 
     <div class="termy">
 
@@ -65,7 +65,7 @@ Y corre tu aplicación de la misma forma que lo has hecho en los tutoriales, per
 
     </div>
 
-Tal vez desearás configurar algunas herramientas, para asegurarte que se reinicie automáticamente si llega a parar.
+Tal vez desearás configurar algunas herramientas, para asegurarte que se reinicie automáticamente si se llega a detener.
 
 También desearás instalar <a href="https://gunicorn.org/" class="external-link" target="_blank">Gunicorn</a> y <a href="https://www.uvicorn.org/#running-with-gunicorn" class="external-link" target="_blank">usarlo como administrador de Uvicorn</a>, o usar Hypercorn con multiples workers.
 
