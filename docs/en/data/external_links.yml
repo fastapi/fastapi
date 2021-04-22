@@ -1,9 +1,5 @@
 articles:
   english:
-    - link: https://duarteocarmo.com/blog/how-to-build-a-newsletter-using-python-and-fastapi
-      title: How to build a newsletter using Python and FastAPI
-      author_link: https://duarteocarmo.com
-      author: Duarte O.Carmo
     - link: https://medium.com/@williamhayes/fastapi-starlette-debug-vs-prod-5f7561db3a59
       title: FastAPI/Starlette debug vs prod
       author_link: https://medium.com/@williamhayes
@@ -160,6 +156,10 @@ articles:
       title: Deploy a dockerized FastAPI application to AWS
       author_link: https://www.linkedin.com/in/valon-januzaj-b02692187/
       author: Valon Januzaj
+    - link: https://duarteocarmo.com/blog/how-to-build-a-newsletter-using-python-and-fastapi
+      title: How to build a newsletter using Python and FastAPI
+      author_link: https://duarteocarmo.com
+      author: Duarte O.Carmo
   japanese:
     - link: https://qiita.com/mtitg/items/47770e9a562dd150631d
       title: FastAPI｜DB接続してCRUDするPython製APIサーバーを構築
