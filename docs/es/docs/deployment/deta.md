@@ -1,6 +1,6 @@
 # Deploy FastAPI en Deta
 
-En esta sección aprenderás a sencillamente desplegar, o hacer el deployment, de una aplicación con **FastAPI** en <a href="https://www.deta.sh/?ref=fastapi" class="external-link" target="_blank">Deta</a> usando el plan gratuito. 🎁
+En esta sección aprenderás a desplegar fácilmente una aplicación con **FastAPI** en <a href="https://www.deta.sh/?ref=fastapi" class="external-link" target="_blank">Deta</a> usando el plan gratuito. 🎁
 
 Te tomará alrededor de **10 minutos**.
 
