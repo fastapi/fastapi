@@ -1,170 +1,171 @@
-# Query Parameters and String Validations
+# Parámetros de consulta y validaciones para cadenas de texto
 
-**FastAPI** allows you to declare additional information and validation for your parameters.
+**FastAPI** te permite declarar información adicional y validación de tus parámetros.
 
-Let's take this application as example:
+Tomemos esta aplicación como ejemplo:
 
 ```Python hl_lines="9"
 {!../../../docs_src/query_params_str_validations/tutorial001.py!}
 ```
 
-The query parameter `q` is of type `Optional[str]`, that means that it's of type `str` but could also be `None`, and indeed, the default value is `None`, so FastAPI will know it's not required.
+El parámetro de consulta `q` es de tipo `Optional[str]`, eso significa que es de tipo `str` pero tambien podria ser `None`, y de hecho, el valor predeterminado es `None`, para que FastAPI sepa que no es necesario.
 
-!!! note
-    FastAPI will know that the value of `q` is not required because of the default value `= None`.
+!!! nota
+    FastAPI sabrá que el valor de `q` no es necesario debido al valor predeterminado `= None`.
 
-    The `Optional` in `Optional[str]` is not used by FastAPI, but will allow your editor to give you better support and detect errors.
+    El `Optional` en `Optional[str]` no es usado en FastAPI, pero le permitirá a tu editor de texto darte un mejor soporte y detectar errores.
 
-## Additional validation
+## Validación adicional
 
-We are going to enforce that even though `q` is optional, whenever it is provided, **its length doesn't exceed 50 characters**.
+Vamos a imponer que aunque  `q` es opcional, siempre que se proporcione, **su longitud no superé los 50 caracteres**.
 
-### Import `Query`
+### Importar `Query`
 
-To achieve that, first import `Query` from `fastapi`:
+Para lograr esto, primero debes importa `Query` desde `fastapi`:
 
 ```Python hl_lines="3"
 {!../../../docs_src/query_params_str_validations/tutorial002.py!}
 ```
 
-## Use `Query` as the default value
+## Usar `Query` con un valor predeterminado
 
-And now use it as the default value of your parameter, setting the parameter `max_length` to 50:
+Y ahora utilízalo como el valor predeterminado de su parámetro, configura el parámetro `max_length` a 50:
 
 ```Python hl_lines="9"
 {!../../../docs_src/query_params_str_validations/tutorial002.py!}
 ```
 
-As we have to replace the default value `None` with `Query(None)`, the first parameter to `Query` serves the same purpose of defining that default value.
+Como tenemos que reemplazar el valor predeterminado `None` con `Query(None)`, el primer parámetro para `Query` tiene el mismo propósito de definir el valor predeterminado.
 
-So:
+Entonces:
 
 ```Python
 q: Optional[str] = Query(None)
 ```
 
-...makes the parameter optional, the same as:
+...hace que el parámetro sea opcional, seria lo mismo que:
 
 ```Python
 q: Optional[str] = None
 ```
 
-But it declares it explicitly as being a query parameter.
+Pero se declara explícitamente como un parámetro de consulta.
 
-!!! info
-    Have in mind that FastAPI cares about the part:
+!!! información
+    Ten en mente que FastAPI se ocupa de la parte de:
 
     ```Python
     = None
     ```
 
-    or the:
+    o de:
 
     ```Python
     = Query(None)
     ```
 
-    and will use that `None` to detect that the query parameter is not required.
+    y usará `None` para detectar que el parámatro de consulta no es requerido.
 
-    The `Optional` part is only to allow your editor to provide better support.
+    La parte `Optional` es solo para permitirle a tu editor proveer un mejor soporte.
 
-Then, we can pass more parameters to `Query`. In this case, the `max_length` parameter that applies to strings:
+Entonces, podemos pasar más parámetros a `Query`. En este caso, el parámetro `max_length` que aplica para cadenas de texto:
 
 ```Python
 q: str = Query(None, max_length=50)
 ```
 
-This will validate the data, show a clear error when the data is not valid, and document the parameter in the OpenAPI schema *path operation*.
+Esto validará los datos, mostrará un error claro cuando los datos no sean válidos y documentará el parámetro en el esquema de OpenAPI *ruta de operación*.
 
-## Add more validations
+## Agrega más validaciones
 
-You can also add a parameter `min_length`:
+Tambien puedes agregar el parametro `min_length`:
 
 ```Python hl_lines="9"
 {!../../../docs_src/query_params_str_validations/tutorial003.py!}
 ```
 
-## Add regular expressions
+## Agrega una expresión regular
 
-You can define a <abbr title="A regular expression, regex or regexp is a sequence of characters that define a search pattern for strings.">regular expression</abbr> that the parameter should match:
+Puedes definir una <abbr title="Una expresión regular, regex o regexp es una secuencia de caracteres que define un patrón de búsqueda para cadenas de texto.">expresión regular</abbr> que el parámetro debería cumplir:
 
 ```Python hl_lines="10"
 {!../../../docs_src/query_params_str_validations/tutorial004.py!}
 ```
 
-This specific regular expression checks that the received parameter value:
+Esta expresión regular verifica que el valor del parámetro recibido:
 
-* `^`: starts with the following characters, doesn't have characters before.
-* `fixedquery`: has the exact value `fixedquery`.
-* `$`: ends there, doesn't have any more characters after `fixedquery`.
+* `^`: comienza con los siguientes caracteres, no tiene caracteres antes.
+* `fixedquery`: tiene el valor exacto de `fixedquery`.
+* `$`: termina allí, no tiene más letras después de `fixedquery`.
 
-If you feel lost with all these **"regular expression"** ideas, don't worry. They are a hard topic for many people. You can still do a lot of stuff without needing regular expressions yet.
+Si te sientes perdido con todo esto de **"expresiones regulares"**, no te preocupes. Son un tema difícil para muchas personas. Todavía puedes hacer muchas cosas sin necesidad de usar expresiones regulares todavía.
 
-But whenever you need them and go and learn them, know that you can already use them directly in **FastAPI**.
+Pero siempre que las necesites y vayas a aprenderlas, sabes que puedes usarlas directamente en **FastAPI**.
 
-## Default values
+## Valores predeterminados
 
-The same way that you can pass `None` as the first argument to be used as the default value, you can pass other values.
+De la misma manera que puedes pasar `None` como primer argumento que se utilizará como valor predeterminado, puedes pasar otros valores.
 
-Let's say that you want to declare the `q` query parameter to have a `min_length` of `3`, and to have a default value of `"fixedquery"`:
+Digamos qué quieres declarar el parámetro de consulta `q` que tendrá un `min_length` de `3`, y tendrá un valor predeterminado de `"fixedquery"`:
 
 ```Python hl_lines="7"
 {!../../../docs_src/query_params_str_validations/tutorial005.py!}
 ```
 
-!!! note
-    Having a default value also makes the parameter optional.
+!!! nota
+    Tener un valor predeterminado también hace que el parámetro sea opcional.
 
-## Make it required
+## Hazlo requerido
 
-When we don't need to declare more validations or metadata, we can make the `q` query parameter required just by not declaring a default value, like:
+Cuando no necesitemos declarar más validaciones o metadatos, podemos hacer el parámetro de consulta `q` requerido solo no declarando un valor predeterminado, como:
 
 ```Python
 q: str
 ```
 
-instead of:
+en vez de:
 
 ```Python
 q: Optional[str] = None
 ```
 
-But we are now declaring it with `Query`, for example like:
+Pero ahora lo estamos declarando con `Query`, por ejemplo como:
 
 ```Python
 q: Optional[str] = Query(None, min_length=3)
 ```
 
-So, when you need to declare a value as required while using `Query`, you can use `...` as the first argument:
+Entonces, cuando necesites declarar un valor según sea necesario mientras usas `Query`, puedes usar `...` como el primer argumento:
 
 ```Python hl_lines="7"
 {!../../../docs_src/query_params_str_validations/tutorial006.py!}
 ```
 
-!!! info
-    If you hadn't seen that `...` before: it is a special single value, it is <a href="https://docs.python.org/3/library/constants.html#Ellipsis" class="external-link" target="_blank">part of Python and is called "Ellipsis"</a>.
+!!! información
+    Si no has visto `...` antes: es un valor único especial, es <a href="https://docs.python.org/3/library/constants.html#Ellipsis" class="external-link" target="_blank">parte de Python y se llama "Elipsis"</a>.
 
-This will let **FastAPI** know that this parameter is required.
+Esto dejará a **FastAPI** saber cuando es un parámetro es requerido.
 
-## Query parameter list / multiple values
+## Consultar lista de parámetros / valores múltiples
 
-When you define a query parameter explicitly with `Query` you can also declare it to receive a list of values, or said in other way, to receive multiple values.
 
-For example, to declare a query parameter `q` that can appear multiple times in the URL, you can write:
+Cuando defines un parámetro de consulta explícitamente con `Query`, también puedes declararlo para recibir una lista de valores, o dicho de otra forma, para recibir varios valores.
+
+Por ejemplo, para declarar un parámetro de consulta `q` que puede aparecer varias veces en la URL, puedes escribir:
 
 ```Python hl_lines="9"
 {!../../../docs_src/query_params_str_validations/tutorial011.py!}
 ```
 
-Then, with a URL like:
+Entonces, con una URL como:
 
 ```
 http://localhost:8000/items/?q=foo&q=bar
 ```
 
-you would receive the multiple `q` *query parameters'* values (`foo` and `bar`) in a Python `list` inside your *path operation function*, in the *function parameter* `q`.
+recibirás los múltiples valores del parámetro de consulta `q` (`foo` y `bar`) en un `list` de Python dentro de tu *función de operación de ruta*, en el *parámetro de función* `q`.
 
-So, the response to that URL would be:
+Entonces, la respuesta de esa URL sería:
 
 ```JSON
 {
@@ -176,27 +177,27 @@ So, the response to that URL would be:
 ```
 
 !!! tip
-    To declare a query parameter with a type of `list`, like in the example above, you need to explicitly use `Query`, otherwise it would be interpreted as a request body.
+    Para declarar un parámetro de consulta de tipo `list`, como en el ejemplo anterior, necesitas usar explícitamente `Query`, de lo contrario, se interpretaría como el cuerpo de solicitud.
 
-The interactive API docs will update accordingly, to allow multiple values:
+Los documentos de la API interactiva se actualizarán en consecuencia para permitir múltiples valores:
 
-<img src="/img/tutorial/query-params-str-validations/image02.png">
+<img src="https://fastapi.tiangolo.com/img/tutorial/query-params-str-validations/image02.png">
 
-### Query parameter list / multiple values with defaults
+### Consultar lista de parámetros / valores múltiples con valores predeterminados
 
-And you can also define a default `list` of values if none are provided:
+Y también puedes definir un valor predeterminado de valores de tipo `list` si no se proporciona ninguno:
 
 ```Python hl_lines="9"
 {!../../../docs_src/query_params_str_validations/tutorial012.py!}
 ```
 
-If you go to:
+Si vas a:
 
 ```
 http://localhost:8000/items/
 ```
 
-the default of `q` will be: `["foo", "bar"]` and your response will be:
+el valor predeterminado de `q` sera: `["foo", "bar"]` y tu respuesta será:
 
 ```JSON
 {
@@ -207,97 +208,97 @@ the default of `q` will be: `["foo", "bar"]` and your response will be:
 }
 ```
 
-#### Using `list`
+#### Usando `list`
 
-You can also use `list` directly instead of `List[str]`:
+También puedes usar `list` directamente en lugar de `List[str]`:
 
 ```Python hl_lines="7"
 {!../../../docs_src/query_params_str_validations/tutorial013.py!}
 ```
 
-!!! note
-    Have in mind that in this case, FastAPI won't check the contents of the list.
+!!! nota
+    Ten en cuenta que, en este caso, FastAPI no comprobará el contenido de la lista
 
-    For example, `List[int]` would check (and document) that the contents of the list are integers. But `list` alone wouldn't.
+    Por ejemplo, `List[int]` comprobaría (y documentaria) que el contenido de la lista son números enteros. Pero la `list` sola no lo haría.
 
-## Declare more metadata
+## Declare más metadatos
 
-You can add more information about the parameter.
+Puede agregar más información sobre el parámetro.
 
-That information will be included in the generated OpenAPI and used by the documentation user interfaces and external tools.
+Esa información se incluirá en la documentación OpenAPI generada y la utilizarán las interfaces de usuario y las herramientas externas.
 
-!!! note
-    Have in mind that different tools might have different levels of OpenAPI support.
+!!! nota
+    Ten en cuenta que diferentes herramientas pueden tener diferentes niveles de compatibilidad con OpenAPI.
 
-    Some of them might not show all the extra information declared yet, although in most of the cases, the missing feature is already planned for development.
+      Es posible que algunos de ellos aún no muestran toda la información adicional declarada, aunque en la mayoría de los casos, la función que falta ya está planeada para su desarrollo.
 
-You can add a `title`:
+Puedes agregar un título `title`:
 
 ```Python hl_lines="10"
 {!../../../docs_src/query_params_str_validations/tutorial007.py!}
 ```
 
-And a `description`:
+y una descripción `description`:
 
 ```Python hl_lines="13"
 {!../../../docs_src/query_params_str_validations/tutorial008.py!}
 ```
 
-## Alias parameters
+## Parámetros de alias
 
-Imagine that you want the parameter to be `item-query`.
+Imagina que quieres que el parámetro sea `item-query`.
 
-Like in:
+Como en:
 
 ```
 http://127.0.0.1:8000/items/?item-query=foobaritems
 ```
 
-But `item-query` is not a valid Python variable name.
+Pero `item-query` no es un nombre de variable de Python válido.
 
-The closest would be `item_query`.
+La más cercana sería `item_query`.
 
-But you still need it to be exactly `item-query`...
+Pero aún necesitas que sea exactamente `item-query`...
 
-Then you can declare an `alias`, and that alias is what will be used to find the parameter value:
+Entonces puedes declarar un `alias`, y ese alias se utilizará para encontrar el valor del parámetro:
 
 ```Python hl_lines="9"
 {!../../../docs_src/query_params_str_validations/tutorial009.py!}
 ```
 
-## Deprecating parameters
+## Desactivación de parámetros
 
-Now let's say you don't like this parameter anymore.
+Ahora digamos que ya no te gusta un parámetro.
 
-You have to leave it there a while because there are clients using it, but you want the docs to clearly show it as <abbr title="obsolete, recommended not to use it">deprecated</abbr>.
+Tienes que dejarlo ahí un rato porque hay clientes usándolo, pero quieres que los documentos lo muestren claramente como <abbr title="obsoleto, se recomienda no usarlo">obsoleto</abbr>.
 
-Then pass the parameter `deprecated=True` to `Query`:
+Luego pasa el parámetro `deprecated=True` to `Query`:
 
 ```Python hl_lines="18"
 {!../../../docs_src/query_params_str_validations/tutorial010.py!}
 ```
 
-The docs will show it like this:
+Los documentos lo mostrarán así:
 
-<img src="/img/tutorial/query-params-str-validations/image01.png">
+<img src="https://fastapi.tiangolo.com/img/tutorial/query-params-str-validations/image01.png">
 
-## Recap
+## Resumen
 
-You can declare additional validations and metadata for your parameters.
+Puedes declarar validaciones y metadatos adicionales para sus parámetros.
 
-Generic validations and metadata:
+Validaciones genéricas y metadatos:
 
 * `alias`
 * `title`
 * `description`
 * `deprecated`
 
-Validations specific for strings:
+Validaciones específicas para cadenas:
 
 * `min_length`
 * `max_length`
 * `regex`
 
-In these examples you saw how to declare validations for `str` values.
+En estos ejemplos, vio cómo declarar validaciones para valores `str`.
 
-See the next chapters to see how to declare validations for other types, like numbers.
+Consulte los siguientes capítulos para ver cómo declarar validaciones para otros tipos, como números.
