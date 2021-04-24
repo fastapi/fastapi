@@ -55,6 +55,17 @@ class Cat:
 fluffy = Cat(name="Mr Fluffy")
 ```
 
+!!! tip
+    If you are using Python 3.7+ or install the PyPI backport of [`dataclasses`](https://pypi.org/project/dataclasses/) for Python 3.6, you can use a `dataclass` as a dependency to significantly reduce the boilerplate involved:
+    
+    ```Python
+    from dataclasses import dataclass
+    
+    @dataclass
+    class Cat:
+        name: str
+    ```
+
 In this case, `fluffy` is an instance of the class `Cat`.
 
 And to create `fluffy`, you are "calling" `Cat`.
