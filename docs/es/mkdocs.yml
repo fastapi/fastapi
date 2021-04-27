@@ -55,8 +55,8 @@ nav:
 - Tutorial - Guía de Usuario:
   - tutorial/index.md
 - Guía de Usuario Avanzada:
-  - advanced/index.md
-  - advanced/wsgi.md
+  - advanced/index.md 
+  - advanced/websockets.md
 - async.md
 markdown_extensions:
 - toc:
