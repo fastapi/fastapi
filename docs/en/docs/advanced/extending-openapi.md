@@ -91,6 +91,9 @@ Once you go to <a href="http://127.0.0.1:8000/redoc" class="external-link" targe
 
 ## Self-hosting JavaScript and CSS for docs
 
+!!! tip
+    To automate this process, see [`fastapi-offline`](https://github.com/turettn/fastapi_offline).
+
 The API docs use **Swagger UI** and **ReDoc**, and each of those need some JavaScript and CSS files.
 
 By default, those files are served from a <abbr title="Content Delivery Network: A service, normally composed of several servers, that provides static files, like JavaScript and CSS. It's commonly used to serve those files from the server closer to the client, improving performance.">CDN</abbr>.
