@@ -1,6 +1,6 @@
 # FastAPI 社区
 
-FastAPI 有一个非常棒的社区，它欢迎各方面的人。
+FastAPI 有一个非常棒的社区，它欢迎来自各个领域和背景的朋友。
 
 ## 创建者 & 维护者
 
@@ -24,7 +24,7 @@ FastAPI 有一个非常棒的社区，它欢迎各方面的人。
 
 ---
 
-**FastAPI** 得到了社区的大力支持。我想强调他们的贡献。
+**FastAPI** 得到了社区的大力支持。因此我想突出他们的贡献。
 
 这些人：
 
@@ -32,7 +32,7 @@ FastAPI 有一个非常棒的社区，它欢迎各方面的人。
 * [创建 Pull Requests](help-fastapi.md#create-a-pull-request){.internal-link target=_blank}。
 * 审核 Pull Requests， 对于 [翻译](contributing.md#translations){.internal-link target=_blank} 尤为重要。
 
-一阵热烈的掌声。 👏 🙇
+向他们致以掌声。 👏 🙇
 
 ## 上个月最活跃的用户
 
@@ -66,11 +66,11 @@ FastAPI 有一个非常棒的社区，它欢迎各方面的人。
 </div>
 {% endif %}
 
-## 杰出的贡献者
+## 杰出贡献者
 
 以下是 **杰出的贡献者**。 👷
 
-这些用户积极 [创建 Pull Requests](help-fastapi.md#create-a-pull-request){.internal-link target=_blank}。
+这些用户 [创建了最多已被合并的 Pull Requests](help-fastapi.md#create-a-pull-request){.internal-link target=_blank}。
 
 他们贡献了源代码，文档，翻译等。 📦
 
@@ -86,17 +86,17 @@ FastAPI 有一个非常棒的社区，它欢迎各方面的人。
 
 还有很多其他贡献者(超过100个)，你可以在 <a href="https://github.com/tiangolo/fastapi/graphs/contributors" class="external-link" target="_blank">FastAPI GitHub 贡献者页面</a> 中看到他们。👷
 
-## 杰出的审核者
+## 杰出审核者
 
-以下用户是「杰出的审核者」。 🕵️
+以下用户是「杰出的评审者」。 🕵️
 
 ### 翻译审核
 
-我只会说少数几种语言。所以这些审核者有权力批准 [文档翻译](contributing.md#translations){.internal-link target=_blank}。如果没有它们，就不会有多语言文档。
+我只会说少数几种语言（而且还不是很流利 😅）。所以，具备[能力去批准文档翻译](contributing.md#translations){.internal-link target=_blank} 是这些评审者们。如果没有它们，就不会有多语言文档。
 
 ---
 
-**杰出的审核者** 🕵️ 已评估大量的 Pull Requests，能保证了代码，文档，尤其是 **翻译** 的质量。
+**杰出的评审者** 🕵️ 评审了最多来自他人的 Pull Requests，他们保证了代码、文档尤其是 **翻译** 的质量。
 
 {% if people %}
 <div class="user-list user-list-center">
@@ -154,11 +154,11 @@ FastAPI 有一个非常棒的社区，它欢迎各方面的人。
 
 ## 关于数据 - 技术细节
 
-该页面的目的是强调社区为帮助他人而付出的努力。
+该页面的目的是突出社区为帮助他人而付出的努力。
 
-尤其是那些不引人注目且涉及更困难的任务，例如帮助他人解决问题或者审核翻译请求。
+尤其是那些不引人注目且涉及更困难的任务，例如帮助他人解决问题或者评审翻译 Pull Requests。
 
-该数据是每个月计算的，您可以阅读 <a href="https://github.com/tiangolo/fastapi/blob/master/.github/actions/people/app/main.py" class="external-link" target="_blank">源代码</a>。
+该数据每月计算一次，您可以阅读 <a href="https://github.com/tiangolo/fastapi/blob/master/.github/actions/people/app/main.py" class="external-link" target="_blank">源代码</a>。
 
 这里也强调了赞助商的贡献。
 
