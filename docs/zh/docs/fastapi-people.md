@@ -84,7 +84,7 @@ FastAPI 有一个非常棒的社区，它欢迎来自各个领域和背景的朋
 </div>
 {% endif %}
 
-还有很多其他贡献者(超过100个)，你可以在 <a href="https://github.com/tiangolo/fastapi/graphs/contributors" class="external-link" target="_blank">FastAPI GitHub 贡献者页面</a> 中看到他们。👷
+还有很多其他贡献者（超过100个），你可以在 <a href="https://github.com/tiangolo/fastapi/graphs/contributors" class="external-link" target="_blank">FastAPI GitHub 贡献者页面</a> 中看到他们。👷
 
 ## 杰出审核者
 
