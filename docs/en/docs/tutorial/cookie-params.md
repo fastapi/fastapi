@@ -28,7 +28,6 @@ The first value is the default value, you can pass all the extra validation or a
 !!! info
     To declare cookies, you need to use `Cookie`, because otherwise the parameters would be interpreted as query parameters.
 
-
 ## Recap
 
 Declare cookies with `Cookie`, using the same common pattern as `Query` and `Path`.

@@ -48,6 +48,12 @@ def test_openapi_schema():
         openapi_schema["paths"]["/hidden_header"]["get"].get("parameters", None) is None
     )
     assert (
+        openapi_schema["paths"]["/hidden_path/{hidden_path}"]["get"].get(
+            "parameters", None
+        )
+        is None
+    )
+    assert (
         openapi_schema["paths"]["/hidden_query"]["get"].get("parameters", None) is None
     )
 

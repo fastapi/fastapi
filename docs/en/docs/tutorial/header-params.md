@@ -84,7 +84,6 @@ The response would be like:
 }
 ```
 
-
 ## Recap
 
 Declare headers with `Header`, using the same common pattern as `Query`, `Path` and `Cookie`.
