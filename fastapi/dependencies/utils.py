@@ -303,10 +303,7 @@ def get_dependant(
             assert is_scalar_field(
                 field=param_field
             ), "Path params must be of one of the supported types"
-            if isinstance(param.default, params.Path):
-                ignore_default = False
-            else:
-                ignore_default = True
+            ignore_default = not isinstance(param.default, params.Path)
             param_field = get_param_field(
                 param=param,
                 param_name=param_name,
@@ -649,11 +646,7 @@ async def request_body_to_args(
 
         for field in required_params:
             loc: Tuple[str, ...]
-            if field_alias_omitted:
-                loc = ("body",)
-            else:
-                loc = ("body", field.alias)
-
+            loc = ("body", ) if field_alias_omitted else ("body", field.alias)
             value: Optional[Any] = None
             if received_body is not None:
                 if (
