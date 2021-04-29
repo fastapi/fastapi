@@ -110,10 +110,7 @@ def get_param_sub_dependant(
     *, param: inspect.Parameter, path: str, security_scopes: Optional[List[str]] = None
 ) -> Dependant:
     depends: params.Depends = param.default
-    if depends.dependency:
-        dependency = depends.dependency
-    else:
-        dependency = param.annotation
+    dependency = depends.dependency or param.annotation
     return get_sub_dependant(
         depends=depends,
         dependency=dependency,
