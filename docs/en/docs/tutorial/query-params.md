@@ -196,3 +196,11 @@ In this case, there are 3 query parameters:
 
 !!! tip
     You could also use `Enum`s the same way as with [Path Parameters](path-params.md#predefined-values){.internal-link target=_blank}.
+
+## Exclude from OpenAPI
+
+To exclude a query from the generated OpenAPI schema (and thus, from the automatic documentation systems), use the parameter `include_in_schema` and set it to `False`;
+
+```Python hl_lines="10"
+{!../../../docs_src/query_params/tutorial007.py!}
+```

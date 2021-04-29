@@ -40,6 +40,7 @@ def Query(  # noqa: N802
     default: Any,
     *,
     alias: Optional[str] = None,
+    include_in_schema: bool = True,
     title: Optional[str] = None,
     description: Optional[str] = None,
     gt: Optional[float] = None,
@@ -55,6 +56,7 @@ def Query(  # noqa: N802
     return params.Query(
         default,
         alias=alias,
+        include_in_schema=include_in_schema,
         title=title,
         description=description,
         gt=gt,
