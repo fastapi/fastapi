@@ -85,15 +85,6 @@ The response would be like:
 ```
 
 
-## Exclude from OpenAPI
-
-To exclude a header from the generated OpenAPI schema (and thus, from the automatic documentation systems), use the parameter `include_in_schema` and set it to `False`;
-
-```Python hl_lines="10"
-{!../../../docs_src/header_params/tutorial004.py!}
-```
-
-
 ## Recap
 
 Declare headers with `Header`, using the same common pattern as `Query`, `Path` and `Cookie`.

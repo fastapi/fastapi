@@ -281,6 +281,14 @@ The docs will show it like this:
 
 <img src="/img/tutorial/query-params-str-validations/image01.png">
 
+## Exclude from OpenAPI
+
+To exclude a query parameter from the generated OpenAPI schema (and thus, from the automatic documentation systems), set the parameter `include_in_schema` of `Query` to `False`:
+
+```Python hl_lines="7"
+{!../../../docs_src/query_params_str_validations/tutorial014.py!}
+```
+
 ## Recap
 
 You can declare additional validations and metadata for your parameters.

@@ -29,9 +29,11 @@ class Param(FieldInfo):
         max_length: Optional[int] = None,
         regex: Optional[str] = None,
         deprecated: Optional[bool] = None,
+        include_in_schema: bool = True,
         **extra: Any,
     ):
         self.deprecated = deprecated
+        self.include_in_schema = include_in_schema
         super().__init__(
             default,
             alias=alias,
@@ -69,6 +71,7 @@ class Path(Param):
         max_length: Optional[int] = None,
         regex: Optional[str] = None,
         deprecated: Optional[bool] = None,
+        include_in_schema: bool = True,
         **extra: Any,
     ):
         self.in_ = self.in_
@@ -85,6 +88,7 @@ class Path(Param):
             max_length=max_length,
             regex=regex,
             deprecated=deprecated,
+            include_in_schema=include_in_schema,
             **extra,
         )
 
@@ -97,7 +101,6 @@ class Query(Param):
         default: Any,
         *,
         alias: Optional[str] = None,
-        include_in_schema: bool = True,
         title: Optional[str] = None,
         description: Optional[str] = None,
         gt: Optional[float] = None,
@@ -108,9 +111,9 @@ class Query(Param):
         max_length: Optional[int] = None,
         regex: Optional[str] = None,
         deprecated: Optional[bool] = None,
+        include_in_schema: bool = True,
         **extra: Any,
     ):
-        self.include_in_schema = include_in_schema
         super().__init__(
             default,
             alias=alias,
@@ -124,6 +127,7 @@ class Query(Param):
             max_length=max_length,
             regex=regex,
             deprecated=deprecated,
+            include_in_schema=include_in_schema,
             **extra,
         )
 
@@ -137,7 +141,6 @@ class Header(Param):
         *,
         alias: Optional[str] = None,
         convert_underscores: bool = True,
-        include_in_schema: bool = True,
         title: Optional[str] = None,
         description: Optional[str] = None,
         gt: Optional[float] = None,
@@ -148,10 +151,10 @@ class Header(Param):
         max_length: Optional[int] = None,
         regex: Optional[str] = None,
         deprecated: Optional[bool] = None,
+        include_in_schema: bool = True,
         **extra: Any,
     ):
         self.convert_underscores = convert_underscores
-        self.include_in_schema = include_in_schema
         super().__init__(
             default,
             alias=alias,
@@ -165,6 +168,7 @@ class Header(Param):
             max_length=max_length,
             regex=regex,
             deprecated=deprecated,
+            include_in_schema=include_in_schema,
             **extra,
         )
 
@@ -187,6 +191,7 @@ class Cookie(Param):
         max_length: Optional[int] = None,
         regex: Optional[str] = None,
         deprecated: Optional[bool] = None,
+        include_in_schema: bool = True,
         **extra: Any,
     ):
         super().__init__(
@@ -202,6 +207,7 @@ class Cookie(Param):
             max_length=max_length,
             regex=regex,
             deprecated=deprecated,
+            include_in_schema=include_in_schema,
             **extra,
         )
 

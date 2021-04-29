@@ -1,7 +1,7 @@
 import pytest
 from fastapi.testclient import TestClient
 
-from docs_src.query_params.tutorial007 import app
+from docs_src.cookie_params.tutorial002 import app
 
 client = TestClient(app)
 
@@ -66,22 +66,18 @@ openapi_schema = {
 
 
 @pytest.mark.parametrize(
-    "path,expected_status,expected_response",
+    "path,cookies,expected_status,expected_response",
     [
-        ("/openapi.json", 200, openapi_schema),
-        (
-            "/items?hidden_query=hidden_query",
-            200,
-            {"hidden_query": "hidden_query"},
-        ),
+        ("/openapi.json", None, 200, openapi_schema),
         (
             "/items",
+            {"hidden_cookie": "hidden_cookie"},
             200,
-            {"hidden_query": "Not found"},
+            {"hidden_cookie": "hidden_cookie"},
         ),
     ],
 )
-def test(path, expected_status, expected_response):
-    response = client.get(path)
+def test(path, cookies, expected_status, expected_response):
+    response = client.get(path, cookies=cookies)
     assert response.status_code == expected_status
     assert response.json() == expected_response

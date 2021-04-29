@@ -17,6 +17,7 @@ def Path(  # noqa: N802
     max_length: Optional[int] = None,
     regex: Optional[str] = None,
     deprecated: Optional[bool] = None,
+    include_in_schema: bool = True,
     **extra: Any,
 ) -> Any:
     return params.Path(
@@ -32,6 +33,7 @@ def Path(  # noqa: N802
         max_length=max_length,
         regex=regex,
         deprecated=deprecated,
+        include_in_schema=include_in_schema,
         **extra,
     )
 
@@ -40,7 +42,6 @@ def Query(  # noqa: N802
     default: Any,
     *,
     alias: Optional[str] = None,
-    include_in_schema: bool = True,
     title: Optional[str] = None,
     description: Optional[str] = None,
     gt: Optional[float] = None,
@@ -51,12 +52,12 @@ def Query(  # noqa: N802
     max_length: Optional[int] = None,
     regex: Optional[str] = None,
     deprecated: Optional[bool] = None,
+    include_in_schema: bool = True,
     **extra: Any,
 ) -> Any:
     return params.Query(
         default,
         alias=alias,
-        include_in_schema=include_in_schema,
         title=title,
         description=description,
         gt=gt,
@@ -67,6 +68,7 @@ def Query(  # noqa: N802
         max_length=max_length,
         regex=regex,
         deprecated=deprecated,
+        include_in_schema=include_in_schema,
         **extra,
     )
 
@@ -76,7 +78,6 @@ def Header(  # noqa: N802
     *,
     alias: Optional[str] = None,
     convert_underscores: bool = True,
-    include_in_schema: bool = True,
     title: Optional[str] = None,
     description: Optional[str] = None,
     gt: Optional[float] = None,
@@ -87,13 +88,13 @@ def Header(  # noqa: N802
     max_length: Optional[int] = None,
     regex: Optional[str] = None,
     deprecated: Optional[bool] = None,
+    include_in_schema: bool = True,
     **extra: Any,
 ) -> Any:
     return params.Header(
         default,
         alias=alias,
         convert_underscores=convert_underscores,
-        include_in_schema=include_in_schema,
         title=title,
         description=description,
         gt=gt,
@@ -104,6 +105,7 @@ def Header(  # noqa: N802
         max_length=max_length,
         regex=regex,
         deprecated=deprecated,
+        include_in_schema=include_in_schema,
         **extra,
     )
 
@@ -122,6 +124,7 @@ def Cookie(  # noqa: N802
     max_length: Optional[int] = None,
     regex: Optional[str] = None,
     deprecated: Optional[bool] = None,
+    include_in_schema: bool = True,
     **extra: Any,
 ) -> Any:
     return params.Cookie(
@@ -137,6 +140,7 @@ def Cookie(  # noqa: N802
         max_length=max_length,
         regex=regex,
         deprecated=deprecated,
+        include_in_schema=include_in_schema,
         **extra,
     )
 

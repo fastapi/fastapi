@@ -91,7 +91,7 @@ def get_openapi_operation_parameters(
     for param in all_route_params:
         field_info = param.field_info
         field_info = cast(Param, field_info)
-        if getattr(field_info, "include_in_schema", True):
+        if field_info.include_in_schema:
             parameter = {
                 "name": param.alias,
                 "in": field_info.in_.value,
