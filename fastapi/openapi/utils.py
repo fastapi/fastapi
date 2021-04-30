@@ -340,6 +340,7 @@ def get_openapi(
     routes: Sequence[BaseRoute],
     tags: Optional[List[Dict[str, Any]]] = None,
     servers: Optional[List[Dict[str, Union[str, Any]]]] = None,
+    schema_by_alias: bool = True,
 ) -> Dict[str, Any]:
     info = {"title": title, "version": version}
     if description:
@@ -352,7 +353,9 @@ def get_openapi(
     flat_models = get_flat_models_from_routes(routes)
     model_name_map = get_model_name_map(flat_models)
     definitions = get_model_definitions(
-        flat_models=flat_models, model_name_map=model_name_map
+        flat_models=flat_models,
+        model_name_map=model_name_map,
+        schema_by_alias=schema_by_alias,
     )
     for route in routes:
         if isinstance(route, routing.APIRoute):

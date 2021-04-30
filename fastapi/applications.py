@@ -62,6 +62,7 @@ class FastAPI(Starlette):
         callbacks: Optional[List[BaseRoute]] = None,
         deprecated: Optional[bool] = None,
         include_in_schema: bool = True,
+        schema_by_alias: bool = True,
         **extra: Any,
     ) -> None:
         self._debug: bool = debug
@@ -116,6 +117,7 @@ class FastAPI(Starlette):
         self.swagger_ui_init_oauth = swagger_ui_init_oauth
         self.extra = extra
         self.dependency_overrides: Dict[Callable[..., Any], Callable[..., Any]] = {}
+        self.schema_by_alias = schema_by_alias
 
         self.openapi_version = "3.0.2"
 
@@ -135,6 +137,7 @@ class FastAPI(Starlette):
                 routes=self.routes,
                 tags=self.openapi_tags,
                 servers=self.servers,
+                schema_by_alias=self.schema_by_alias,
             )
         return self.openapi_schema
 
