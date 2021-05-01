@@ -56,7 +56,7 @@ nav:
   - tutorial/index.md
 - Guía de Usuario Avanzada:
   - advanced/index.md
-  - advanced/graphql.md
+  - advanced/templates.md
 
 - async.md
 markdown_extensions:
