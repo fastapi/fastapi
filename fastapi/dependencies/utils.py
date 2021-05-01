@@ -646,7 +646,7 @@ async def request_body_to_args(
 
         for field in required_params:
             loc: Tuple[str, ...]
-            loc = ("body", ) if field_alias_omitted else ("body", field.alias)
+            loc = ("body",) if field_alias_omitted else ("body", field.alias)
             value: Optional[Any] = None
             if received_body is not None:
                 if (
