@@ -24,9 +24,14 @@ class HTTPAuthorizationCredentials(BaseModel):
 
 class HTTPBase(SecurityBase):
     def __init__(
-        self, *, scheme: str, scheme_name: Optional[str] = None, auto_error: bool = True
+        self,
+        *,
+        scheme: str,
+        scheme_name: Optional[str] = None,
+        auto_error: bool = True,
+        description: Optional[str] = None,
     ):
-        self.model = HTTPBaseModel(scheme=scheme)
+        self.model = HTTPBaseModel(scheme=scheme, description=description)
         self.scheme_name = scheme_name or self.__class__.__name__
         self.auto_error = auto_error
 
@@ -52,8 +57,9 @@ class HTTPBasic(HTTPBase):
         scheme_name: Optional[str] = None,
         realm: Optional[str] = None,
         auto_error: bool = True,
+        description: Optional[str] = None,
     ):
-        self.model = HTTPBaseModel(scheme="basic")
+        self.model = HTTPBaseModel(scheme="basic", description=description)
         self.scheme_name = scheme_name or self.__class__.__name__
         self.realm = realm
         self.auto_error = auto_error
@@ -98,8 +104,9 @@ class HTTPBearer(HTTPBase):
         bearerFormat: Optional[str] = None,
         scheme_name: Optional[str] = None,
         auto_error: bool = True,
+        description: Optional[str] = None,
     ):
-        self.model = HTTPBearerModel(bearerFormat=bearerFormat)
+        self.model = HTTPBearerModel(bearerFormat=bearerFormat, description=description)
         self.scheme_name = scheme_name or self.__class__.__name__
         self.auto_error = auto_error
 
@@ -127,8 +134,14 @@ class HTTPBearer(HTTPBase):
 
 
 class HTTPDigest(HTTPBase):
-    def __init__(self, *, scheme_name: Optional[str] = None, auto_error: bool = True):
-        self.model = HTTPBaseModel(scheme="digest")
+    def __init__(
+        self,
+        *,
+        scheme_name: Optional[str] = None,
+        auto_error: bool = True,
+        description: Optional[str] = None,
+    ):
+        self.model = HTTPBaseModel(scheme="digest", description=description)
         self.scheme_name = scheme_name or self.__class__.__name__
         self.auto_error = auto_error
 
