@@ -8,9 +8,8 @@ from starlette.status import HTTP_403_FORBIDDEN
 
 
 class APIKeyBase(SecurityBase):
-
     @staticmethod
-    def check_api_key(api_key: str, auto_error: bool) -> Optional[str]:
+    def check_api_key(api_key: Optional[str], auto_error: bool) -> Optional[str]:
         if not api_key:
             if auto_error:
                 raise HTTPException(
@@ -56,5 +55,5 @@ class APIKeyCookie(APIKeyBase):
         self.auto_error = auto_error
 
     async def __call__(self, request: Request) -> Optional[str]:
-        api_key: str = request.cookies.get(self.model.name)
+        api_key = request.cookies.get(self.model.name)
         return self.check_api_key(api_key, self.auto_error)
