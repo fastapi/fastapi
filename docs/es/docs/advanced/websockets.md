@@ -6,13 +6,13 @@ Puedes utilizar <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebSoc
 
 ### En producción
 
-En tu sistema de producción , posiblemente tienes un <abbr>frontend</abbr> creado con algún <abbr>framework</abbr> moderno como lo puede ser React , Vue.js o Angular.
+En tu sistema de producción, posiblemente tienes un <abbr>frontend</abbr> creado con algún <abbr>framework</abbr> moderno como lo puede ser React , Vue.js o Angular.
 
-Y si utilizas <abbr>WebSockets</abbr> para comunicarte con tu <abbr>backend</abbr> muy probablemente utilices las <abbr>utilities</abbr> de tú <abbr>frontend</abbr>. 
+Y si utilizas <abbr>WebSockets</abbr> para comunicarte con tu <abbr>backend</abbr> muy probablemente utilices las funcionalidades de tú aplicación <abbr>frontend</abbr>. 
 
 O posiblemente cuentes con una aplicación móvil nativa que se comunique con el <abbr>WebSocket</abbr> de tu <abbr>backend</abbr> directamente , utilizando código nativo. 
 
-O posiblemente cuentes con otra manera de comunicarte con el <abbr>WebSocket</abbr> del <abbr>endpoint</abbr>.
+O tal vez tengas otra forma de comunicarte con el <abbr>endpoint</abbr> del <abbr>WebSocket</abbr>.
 
 ---
 
@@ -39,11 +39,11 @@ En tu aplicación de **FastAPI** , crea un <abbr>`websocket`</abbr> :
 !!! note "Detalles Técnicos"
     También puedes utilizar `from starlette.websockets import WebSocket`.
 
-    **FastAPI** proporciona el mismo <abbr>`WebSocket`</abbr> directamente solo como una conveniencia para ti , el desarrollador. Pero viene directamente de Starlette. 
+    **FastAPI** proporciona el mismo <abbr>`WebSocket`</abbr> directamente por comodidad para ti, el desarrollador. Pero viene directamente de Starlette. 
 
 ## Esperar por mensajes y enviar mensajes 
 
-En la ruta de tu <abbr>WebSocket</abbr> puedes `esperar` por mensajes y enviar mensajes.
+En la ruta de tu <abbr>WebSocket</abbr> puedes <abbr title="await">`esperar`</abbr> por mensajes y enviar mensajes.
 
 ```Python hl_lines="48-52"
 {!../../../docs_src/websockets/tutorial001.py!}
@@ -67,11 +67,11 @@ $ uvicorn main:app --reload
 
 Abre tu navegador en <a href="http://127.0.0.1:8000" class="external-link" target="_blank">http://127.0.0.1:8000</a>.
  
-Verás una simple pagina parecida a esto: 
+Verás una pagina simple parecida a esta: 
 
 <img src="https://fastapi.tiangolo.com/img/tutorial/websockets/image01.png">
 
-Puedes escribir mensajes en la caja de entrada , y luego enviarlos: 
+Puedes escribir mensajes en el cuadro de texto, y luego enviarlos: 
 
 <img src="https://fastapi.tiangolo.com/img/tutorial/websockets/image02.png">
 
@@ -96,14 +96,14 @@ En los <abbr>endpoints</abbr> del <abbr>WebSocket</abbr> puedes importar desde `
 * `Path`
 * `Query`
 
-Trabajan de las misma manera que otros <abbr>endpoints</abbr>/*operaciones de <abbr>path</abbr>* en FastAPI:
+Funcionan de las misma forma que otros <abbr>endpoints</abbr>/*operaciones de <abbr title="ruta">path</abbr>* en FastAPI:
 
 ```Python hl_lines="58-65  68-83"
 {!../../../docs_src/websockets/tutorial002.py!}
 ```
 
 !!! info
-    En un <abbr>WebSocket</abbr> realmente no vale la pena causar un <abbr>`HTTPException`</abbr>. Por lo tanto es mejor cerrar directamente la conexión al <abbr>WebSocket</abbr>.
+    Debido a que en un <abbr>WebSocket</abbr> no es necesario lanzar un <abbr>`HTTPException`</abbr>, lo mejor sería cerrar directamente la conexión al <abbr>WebSocket</abbr>.
 
     Puedes utilizar un código de cierre basado en <a href="https://tools.ietf.org/html/rfc6455#section-7.4.1" class="external-link" target="_blank">códigos válidos definidos en las especificaciones</a>.
 
