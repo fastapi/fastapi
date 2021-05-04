@@ -1,12 +1,12 @@
 # GraphQL
 
-**FastAPI** tiene soporte opcional para GraphQL (proveído por Starlette directamente), usando la librería de `graphene`.
+**FastAPI** cuenta con soporte para GraphQL, usando la librería de `graphene` de Starlette.
 
 Puedes combinar *operaciones de <abbr title="ruta">path</abbr>* normales de FastAPI con GraphQL en la misma aplicación.
 
 ## Importar y utilizar `graphene`
 
-GraphQL es implementado mediante Graphene, puedes mirar la <a href="https://docs.graphene-python.org/en/latest/quickstart/" class="external-link" target="_blank"> documentación de Graphene </a> para más detalles.
+GraphQL ha sido implementado mediante Graphene, puedes revisar la <a href="https://docs.graphene-python.org/en/latest/quickstart/" class="external-link" target="_blank"> documentación oficial de Graphene </a> para más detalles.
 
 Importa `graphene` y define la información de GraphQL :
 
@@ -35,7 +35,7 @@ Verás la interfaz web de usuarios de GraphQL :
 
 ## Más detalles
 
-Para más detalles , incluyendo :
+Para más detalles sobre:
 
 * Acceso a la información solicitada
 * Añadir tareas en segundo plano
