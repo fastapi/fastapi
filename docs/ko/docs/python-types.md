@@ -89,7 +89,7 @@ John Doe
     first_name="john", last_name="doe"
 ```
 
-여러 차이가 있습니다.
+이는 다른 것입니다.
 
 등호(`=`) 대신 콜론(`:`)을 쓰고 있습니다.
 
