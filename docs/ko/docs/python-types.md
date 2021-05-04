@@ -312,4 +312,4 @@ Pydantic 공식 문서 예시:
 가장 중요한 건, 표준 파이썬 타입을 한 곳에서(클래스를 더하거나, 데코레이터 사용하는 대신) 사용함으로써 **FastAPI**가 당신을 위해 많은 일을 해준다는 사실이죠.
 
 !!! info
-    만약 모든 튜토리얼을 다 보았음에도 타입에 대해서 더 보고자 방문한 경우에는 <a href="https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html" class="external-link" target="_blank">`mypy`에서 제공하는 "cheat sheet"</a>이 좋은 자료가 될 겁니다.
+    만약 모든 자습서를 다 보았음에도 타입에 대해서 더 보고자 방문한 경우에는 <a href="https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html" class="external-link" target="_blank">`mypy`에서 제공하는 "cheat sheet"</a>이 좋은 자료가 될 겁니다.
