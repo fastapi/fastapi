@@ -307,7 +307,7 @@ Pydantic 공식 문서 예시:
 * OpenAPI를 활용한 **API 문서화**:
     * 자동으로 상호작용하는 유저 인터페이스에 쓰이게 됩니다.
 
-위 내용이 다소 추상적일 수도 있지만, 걱정마세요. [Tutorial - User Guide](tutorial/index.md){.internal-link target=_blank}에서 전부 확인 가능합니다.
+위 내용이 다소 추상적일 수도 있지만, 걱정마세요. [자습서 - 사용자 안내서](tutorial/index.md){.internal-link target=_blank}에서 전부 확인 가능합니다.
 
 가장 중요한 건, 표준 파이썬 타입을 한 곳에서(클래스를 더하거나, 데코레이터 사용하는 대신) 사용함으로써 **FastAPI**가 당신을 위해 많은 일을 해준다는 사실이죠.
 
