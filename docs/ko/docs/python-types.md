@@ -287,7 +287,7 @@ Pydantic 공식 문서 예시:
 
 **FastAPI**는 모두 Pydantic을 기반으로 되어 있습니다.
 
-[Tutorial - User Guide](tutorial/index.md){.internal-link target=_blank}에서 이번 연습보다 더 많은 내용을 볼 수 있습니다.
+이 모든 것이 실제로 어떻게 사용되는지에 대해서는 [자습서 - 사용자 안내서](tutorial/index.md){.internal-link target=_blank} 에서 더 많이 확인하실 수 있습니다.
 
 ## **FastAPI**에서의 타입 힌트
 
