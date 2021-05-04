@@ -83,7 +83,7 @@ John Doe
 {!../../../docs_src/python_types/tutorial002.py!}
 ```
 
-타입힌트는 기본 값을 선언하는 것과는 다릅니다.
+타입힌트는 다음과 같이 기본 값을 선언하는 것과는 다릅니다:
 
 ```Python
     first_name="john", last_name="doe"
