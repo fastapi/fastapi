@@ -8,7 +8,7 @@
 * **출력 모델**은 비밀번호가 없어야 합니다.
 * **데이터베이스 모델**은 해시 된 비밀번호가 필요할 수 있습니다.
 
-!!! danger "경고"
+!!! danger "위험"
     사용자의 평문 비밀번호를 절대 저장하지 마십시오. 항상 검증할 수 있는 "안전한 해시"로 저장하십시오.
 
     만약 당신이 모른다면 [보안 챕터](security/simple-oauth2.md#password-hashing){.internal-link target=_blank}에서 "비밀번호 해시"가 무엇인지 배울 수 있습니다.
@@ -111,9 +111,9 @@ UserInDB(**user_in.dict())
 
 그래서, 우리는 또다른 Pydantic 모델에 있는 데이터에서 Pydantic 모델을 얻을 수 있습니다.
 
-#### `dict`를 풀기 그리고 추가적인 키워드들
+#### `dict`를 풀기 그리고 추가 키워드들
 
-그리고 추가적인 키워드 속성인 `hashed_password=hashed_password`을 추가하겠습니다. 아래와 같습니다:
+그리고 추가 키워드 속성인 `hashed_password=hashed_password`을 추가하겠습니다. 아래와 같습니다:
 
 ```Python
 UserInDB(**user_in.dict(), hashed_password=hashed_password)
@@ -131,20 +131,20 @@ UserInDB(
 )
 ```
 
-!!! 경고
-    추가적인 함수 지원은 가능한 데이터 플로우를 보여주는 데모일뿐이며, 당연히 그 어떤 실제 보안도 제공하지 않습니다.
+!!! warning "경고"
+    추가적인 함수 지원은 가능한 데이터 흐름을 보여주는 데모일 뿐이며, 당연히 그 어떤 실제 보안도 제공하지 않습니다.
 
-## 중복 제거
+## 중복 줄이기
 
-중복 코드 제거는 **FASTAPI**의 핵심 개념 중 하나입니다.
+중복 코드 줄이기는 **FASTAPI**의 핵심 개념 중 하나입니다.
 
 코드 중복은 버그의 가능성, 보안 이슈, 코드 비동기화 문제(한 장소에는 업데이트 하지만 다른 곳에서는 그렇지 못할때) 등을 증가시킵니다.
 
 그리고 이러한 모델들은 많은 데이터를 공유하고 타입과 인자 이름들을 반복적으로 사용하게 됩니다.
 
-우리는 더 잘할 수 있습니다.
+더 잘할 수 있습니다.
 
-우리는 다른 모델들의 기초가 되는 `UserBase` 모델을 선언할 수 있습니다. 그리고 우리는 이 인자들(타입 선언, 검증 등)을 상속받은 모델인 서브클래스를 만들 수 있습니다.
+다른 모델들의 기초가 되는 `UserBase` 모델을 선언할 수 있습니다. 그리고 우리는 이 인자들(타입 선언, 검증 등)을 상속받은 모델인 서브클래스를 만들 수 있습니다.
 
 모든 데이터의 변환, 검증, 문서화 등은 여전히 정상적으로 동작할 것입니다.
 
@@ -156,11 +156,11 @@ UserInDB(
 
 ## `Union` 또는 `anyOf`
 
-당신은 `Union`을 통해 두가지 타입의 응답을 선언할 수 있습니다. 그 말은, 응답은 그 두가지 중 아무거나 될 수 있다는 의미입니다.
+`Union`을 통해 두 가지 타입의 응답을 선언할 수 있습니다. 그 말은, 응답은 그 두 가지 중 아무거나 될 수 있다는 의미입니다.
 
-이것은 OpenAPI에서 `anyOf`와 함께 정의될 수 있습니다.
+이는 OpenAPI에서 `anyOf`로 정의할 수 있습니다.
 
-이렇게 하기 위해서는 표준 파이썬 타입 힌트  <a href="https://docs.python.org/3/library/typing.html#typing.Union" class="external-link" target="_blank">`typing.Union`</a>를 사용하세요:
+이렇게 하기 위해서는 표준 파이썬 타입 힌트  <a href="https://docs.python.org/3/library/typing.html#typing.Union" class="external-link" target="_blank">`typing.Union`</a>를 사용하십시오:
 
 !!! note "참고"
     <a href="https://pydantic-docs.helpmanual.io/usage/types/#unions" class="external-link" target="_blank">`Union`</a>을 선언할 때, 가장 특정한 타입을 첫 번째로 포함하고, 덜 특정한 타입을 뒤에 붙이십시오. 예를 들어, `Union[PlaneItem, CarItem]`에서 더 특정한 `PlaneItem`은 `CarItem`보다 더 앞에 옵니다.
