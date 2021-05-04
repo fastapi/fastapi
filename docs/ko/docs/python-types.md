@@ -59,7 +59,7 @@ John Doe
 
 <img src="/img/python-types/image01.png">
 
-### 타입을 추가하자
+### 타입 추가하기
 
 이전 버전에서 한 줄만 수정해봅시다.
 
