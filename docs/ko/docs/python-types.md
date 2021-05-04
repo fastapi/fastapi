@@ -75,9 +75,9 @@ John Doe
     first_name: str, last_name: str
 ```
 
-이게 다에요.
+이게 다입니다.
 
-이게 "타입 힌트"입니다.
+이게 "타입 힌트"입니다:
 
 ```Python hl_lines="1"
 {!../../../docs_src/python_types/tutorial002.py!}
