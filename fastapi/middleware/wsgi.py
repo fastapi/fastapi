@@ -1,1 +1,1 @@
-from starlette.middleware.wsgi import WSGIMiddleware  # noqa
+from starlette.middleware.wsgi import WSGIMiddleware as WSGIMiddleware  # noqa

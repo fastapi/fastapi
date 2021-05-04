@@ -7,7 +7,7 @@ app = FastAPI()
 
 class Product(BaseModel):
     name: str
-    description: str = None
+    description: str = None  # type: ignore
     price: float
 
 
