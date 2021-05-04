@@ -54,6 +54,7 @@ nav:
   - tutorial/index.md
   - tutorial/first-steps.md
   - tutorial/path-params.md
+  - tutorial/query-params.md
   - tutorial/header-params.md
 markdown_extensions:
 - toc:
