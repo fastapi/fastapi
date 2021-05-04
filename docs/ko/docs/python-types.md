@@ -63,7 +63,7 @@ John Doe
 
 이전 버전에서 한 줄만 수정해봅시다.
 
-저희는 이 함수의 파라미터 부분:
+저희는 이 함수의 매개변수 부분:
 
 ```Python
     first_name, last_name
