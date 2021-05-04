@@ -52,6 +52,8 @@ nav:
   - zh: /zh/
 - features.md
 - fastapi-people.md
+- Tutoriel - Guide utilisateur:
+  - tutorial/background-tasks.md
 markdown_extensions:
 - toc:
     permalink: true
