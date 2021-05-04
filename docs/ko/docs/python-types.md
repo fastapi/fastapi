@@ -113,7 +113,7 @@ John Doe
 {!../../../docs_src/python_types/tutorial003.py!}
 ```
 
-에디터는 변수의 타입을 알기 때문에, 자동완성 뿐 아니라 에러 내용도 확인할 수 있습니다:
+편집기가 변수의 타입을 알고 있기 때문에, 자동완성 뿐 아니라 에러도 확인할 수 있습니다:
 
 <img src="/img/python-types/image04.png">
 
