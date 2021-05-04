@@ -55,7 +55,7 @@ John Doe
 
 당신은 `first_name`를 입력한 뒤 점(`.`)을 입력하고 자동완성을 켜기 위해서 `Ctrl+Space`를 눌렀습니다.
 
-하지만 슬프게도.. 아무런 도움이 되지 않네요:
+하지만 슬프게도 아무런 도움이 되지 않습니다:
 
 <img src="/img/python-types/image01.png">
 
