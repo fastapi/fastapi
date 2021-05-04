@@ -1,15 +1,15 @@
-# 추가적인 모델
+# 추가 모델
 
-이전의 예제에 이어서 두가지 이상의 관계 모델을 가지는 것이 일반적일 것입니다.
+이전의 예제에 이어서, 일반적으로는 한 가지 이상의 관계 모델을 가질 것입니다.
 
-사용자모델의 경우가 특히 그렇습니다. 아래와 같은 이유때문입니다:
+사용자모델의 경우가 특히 그렇습니다. 왜냐하면:
 
 * **입력 모델**은 비밀번호를 가질 수 있어야 합니다.
 * **출력 모델**은 비밀번호가 없어야 합니다.
-* **데이터베이스 모델**은 아마도 해시된 패스워드가 있어야합니다.
+* **데이터베이스 모델**은 해시 된 비밀번호가 필요할 수 있습니다.
 
-!!! 위험
-    유저의 평문 비밀번호를 절대 저장하지 마십시오. 항상 당신이 검증할 수 있는 "안전한 해시"로 저장하십시오.
+!!! danger "경고"
+    사용자의 평문 비밀번호를 절대 저장하지 마십시오. 항상 검증할 수 있는 "안전한 해시"로 저장하십시오.
 
     만약 당신이 모른다면 [보안 챕터](security/simple-oauth2.md#password-hashing){.internal-link target=_blank}에서 "비밀번호 해시"가 무엇인지 배울 수 있습니다.
 
@@ -162,8 +162,8 @@ UserInDB(
 
 이렇게 하기 위해서는 표준 파이썬 타입 힌트  <a href="https://docs.python.org/3/library/typing.html#typing.Union" class="external-link" target="_blank">`typing.Union`</a>를 사용하세요:
 
-!!! 참고
-    <a href="https://pydantic-docs.helpmanual.io/usage/types/#unions" class="external-link" target="_blank">`Union`</a>을 선언할때, 가장 특정한 타입을 첫번째로 포함하고, 덜 특정한 타입을 뒤에 붙이세요. 예를 들어, `Union[PlaneItem, CarItem]`에서 더 특정한 `PlaneItem`은 `CarItem`보다 더 앞에 옵니다.
+!!! note "참고"
+    <a href="https://pydantic-docs.helpmanual.io/usage/types/#unions" class="external-link" target="_blank">`Union`</a>을 선언할 때, 가장 특정한 타입을 첫 번째로 포함하고, 덜 특정한 타입을 뒤에 붙이십시오. 예를 들어, `Union[PlaneItem, CarItem]`에서 더 특정한 `PlaneItem`은 `CarItem`보다 더 앞에 옵니다.
 
 ```Python hl_lines="1  14-15  18-20  33"
 {!../../../docs_src/extra_models/tutorial003.py!}
@@ -171,7 +171,7 @@ UserInDB(
 
 ## 모델들의 리스트
 
-같은 방법으로, 당신은 객체의 리스트를 응답으로 선언할 수 있습니다.
+같은 방법으로, 객체의 리스트를 응답으로 선언할 수 있습니다.
 
 이것을 위해서 표준 파이썬 `typing.List`를 사용하십시오:
 
@@ -181,11 +181,11 @@ UserInDB(
 
 ## 임의의 `dict`로 응답하기
 
-당신은 Pydantic 모델을 사용하지 않고 단순히 키와 값의 타입으로 선언하는 평범한 임의의 `dict`로 응답을 선언할 수 있습니다.
+Pydantic 모델을 사용하지 않고 단순히 키와 값의 타입으로 선언하는 평범한 임의의 `dict`로 응답을 선언할 수 있습니다.
 
-당신이 미리 유효한 필드와 속성의 이름(이것은 아마 Pydantic 모델에 필요할 것입니다)을 알지 못할때 유용합니다.
+미리 유효한 필드와 속성의 이름(이것은 아마 Pydantic 모델에 필요할 것입니다)을 알지 못할때 유용합니다.
 
-이 상황에서 당신은 `typing.Dict`를 사용할 수 있습니다.:
+이 상황에서 `typing.Dict`를 사용할 수 있습니다.:
 
 ```Python hl_lines="1  8"
 {!../../../docs_src/extra_models/tutorial005.py!}
@@ -193,6 +193,6 @@ UserInDB(
 
 ## 정리
 
-각각의 상황에서 다수의 Pydantic 모델들을 사용하고 자유롭게 상속합니다.
+각각의 상황에서 다수의 Pydantic 모델들을 사용하고 자유롭게 상속하십시오.
 
-만약 개체가 다른 "상태(states)"를 가질 수 밖에 없다면, 굳이 하나의 개체당 하나의 데이터 모델을 가질 필요가 없습니다. `password`, `password_hash`는 있으나 비밀번호는 없는 사용자 "entity" 상황이 그렇습니다.
+만약 개체가 다른 "상태"를 가질 수밖에 없다면, 굳이 하나의 개체당 하나의 데이터 모델을 가질 필요가 없습니다. `password`, `password_hash`는 있으나 비밀번호는 없는 사용자 "entity" 상황이 그렇습니다.
