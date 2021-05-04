@@ -152,7 +152,7 @@ Sans un système de validation des données, vous devriez effectuer toutes les v
 
 Ces fonctionnalités sont ce pourquoi Marshmallow a été construit. C'est une excellente bibliothèque, et je l'ai déjà beaucoup utilisée.
 
-Mais il a été créé avant que les type hints n'existent en Python. Ainsi, pour définir chaque <abbr title="la définition de 
+Mais elle a été créé avant que les type hints n'existent en Python. Ainsi, pour définir chaque <abbr title="la définition de
 la façon dont les données doivent être formées">schéma</abbr>, vous devez utiliser des utilitaires et des classes spécifiques fournis par Marshmallow.
 
 !!! check "A inspiré **FastAPI** à"
