@@ -30,7 +30,7 @@ You can use this to add `example` for each field:
 ```
 
 !!! warning
-    Have in mind that those extra arguments passed won't add any validation, only extra information, for documentation purposes.
+    Keep in mind that those extra arguments passed won't add any validation, only extra information, for documentation purposes.
 
 ## `example` and `examples` in OpenAPI
 
