@@ -191,36 +191,3 @@ http://127.0.0.1:8000/items/foo-item?needy=sooooneedy
 
 !!! tip
     你还可以像在 [路径参数](path-params.md#predefined-values){.internal-link target=_blank} 中那样使用 `Enum`。
-
-## Optional 类型声明
-
-!!! warning
-    这可能是一个比较高级的使用场景。
-
-    您也可以跳过它。
-
-如果你正在使用 `mypy`，它可能会对如下的类型声明进行警告：
-
-```Python
-limit: int = None
-```
-
-提示类似以下错误：
-
-```
-Incompatible types in assignment (expression has type "None", variable has type "int")
-```
-
-在这种情况下，你可以使用 `Optional` 来告诉 `mypy` 该值可以为 `None`，例如：
-
-```Python
-from typing import Optional
-
-limit: Optional[int] = None
-```
-
-在一个*路径操作*中，看起来会是：
-
-```Python hl_lines="9"
-{!../../../docs_src/query_params/tutorial007.py!}
-```

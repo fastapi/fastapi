@@ -51,6 +51,10 @@ nav:
   - uk: /uk/
   - zh: /zh/
 - external-links.md
+- features.md
+- fastapi-people.md
+- Tutoriel - Guide utilisateur:
+  - tutorial/background-tasks.md
 markdown_extensions:
 - toc:
     permalink: true
