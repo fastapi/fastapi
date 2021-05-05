@@ -1,4 +1,3 @@
-import pytest
 from fastapi.testclient import TestClient
 
 from docs_src.schema_extra_example.tutorial004 import app
@@ -27,10 +26,12 @@ openapi_schema = {
                             "schema": {
                                 "title": "Item",
                                 "allOf": [{"$ref": "#/components/schemas/Item"}],
+                                "example": {},
                             },
                             "examples": {
-                                "case1": {
-                                    "summary": "valid test case",
+                                "normal": {
+                                    "summary": "A normal example",
+                                    "description": "A **normal** item works correctly.",
                                     "value": {
                                         "name": "Foo",
                                         "description": "A very nice Item",
@@ -38,22 +39,16 @@ openapi_schema = {
                                         "tax": 3.2,
                                     },
                                 },
-                                "case2": {
-                                    "summary": "valid test case with type coersion",
-                                    "value": {
-                                        "name": "Bar",
-                                        "description": "Another very nice Item",
-                                        "price": "35.4",
-                                        "tax": 3.2,
-                                    },
+                                "converted": {
+                                    "summary": "An example with converted data",
+                                    "description": "FastAPI can convert price `strings` to actual `numbers` automatically",
+                                    "value": {"name": "Bar", "price": "35.4"},
                                 },
-                                "case3": {
-                                    "summary": "invalid test case with wrong type",
+                                "invalid": {
+                                    "summary": "Invalid data is rejected with an error",
                                     "value": {
                                         "name": "Baz",
-                                        "description": "One more very nice Item",
                                         "price": "thirty five point four",
-                                        "tax": 3.2,
                                     },
                                 },
                             },
@@ -130,64 +125,14 @@ def test_openapi_schema():
 
 
 # Test required and embedded body parameters with no bodies sent
-@pytest.mark.parametrize(
-    "path,body,expected_status,expected_response",
-    [
-        (
-            "/items/5",
-            {
-                "name": "Foo",
-                "description": "A very nice Item",
-                "price": 35.4,
-                "tax": 3.2,
-            },
-            200,
-            {
-                "item_id": 5,
-                "item": {
-                    "name": "Foo",
-                    "description": "A very nice Item",
-                    "price": 35.4,
-                    "tax": 3.2,
-                },
-            },
-        ),
-        (
-            "/items/5",
-            None,
-            422,
-            {
-                "detail": [
-                    {
-                        "loc": ["body"],
-                        "msg": "field required",
-                        "type": "value_error.missing",
-                    },
-                ]
-            },
-        ),
-        (
-            "/items/5",
-            [],
-            422,
-            {
-                "detail": [
-                    {
-                        "loc": ["body", "name"],
-                        "msg": "field required",
-                        "type": "value_error.missing",
-                    },
-                    {
-                        "loc": ["body", "price"],
-                        "msg": "field required",
-                        "type": "value_error.missing",
-                    },
-                ]
-            },
-        ),
-    ],
-)
-def test_post_body_example(path, body, expected_status, expected_response):
-    response = client.put(path, json=body)
-    assert response.status_code == expected_status
-    assert response.json() == expected_response
+def test_post_body_example():
+    response = client.put(
+        "/items/5",
+        json={
+            "name": "Foo",
+            "description": "A very nice Item",
+            "price": 35.4,
+            "tax": 3.2,
+        },
+    )
+    assert response.status_code == 200
