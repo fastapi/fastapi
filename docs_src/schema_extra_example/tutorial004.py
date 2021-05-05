@@ -1,3 +1,5 @@
+from typing import Optional
+
 from fastapi import Body, FastAPI
 from pydantic import BaseModel
 
@@ -6,9 +8,9 @@ app = FastAPI()
 
 class Item(BaseModel):
     name: str
-    description: str = None
+    description: Optional[str] = None
     price: float
-    tax: float = None
+    tax: Optional[float] = None
 
 
 @app.put("/items/{item_id}")
@@ -18,8 +20,9 @@ async def update_item(
     item: Item = Body(
         ...,
         examples={
-            "case1": {
-                "summary": "valid test case",
+            "normal": {
+                "summary": "A normal example",
+                "description": "A **normal** item works correctly.",
                 "value": {
                     "name": "Foo",
                     "description": "A very nice Item",
@@ -27,22 +30,19 @@ async def update_item(
                     "tax": 3.2,
                 },
             },
-            "case2": {
-                "summary": "valid test case with type coersion",
+            "converted": {
+                "summary": "An example with converted data",
+                "description": "FastAPI can convert price `strings` to actual `numbers` automatically",
                 "value": {
                     "name": "Bar",
-                    "description": "Another very nice Item",
                     "price": "35.4",
-                    "tax": 3.2,
                 },
             },
-            "case3": {
-                "summary": "invalid test case with wrong type",
+            "invalid": {
+                "summary": "Invalid data is rejected with an error",
                 "value": {
                     "name": "Baz",
-                    "description": "One more very nice Item",
                     "price": "thirty five point four",
-                    "tax": 3.2,
                 },
             },
         },
