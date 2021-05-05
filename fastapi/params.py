@@ -259,8 +259,6 @@ class Body(FieldInfo):
             min_length=min_length,
             max_length=max_length,
             regex=regex,
-            example=example,
-            examples=examples,
             **extra,
         )
 
