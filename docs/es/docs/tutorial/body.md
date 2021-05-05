@@ -6,7 +6,7 @@ Cuando hablamos del cuerpo de una petición (**request body**), nos referimos a 
 
 Si bien en la mayoría de los casos tu API requiere enviar peticiones con los datos en el cuerpo (**request body**), en el caso de los clientes, no tiene por qué ser así.
 
-Para declarar una petición datos en el cuerpo (**request body**), tienes que usar los modelos de <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a>, los cuales son muy podersos y de gran ayuda.
+Para declarar los datos del cuerpo de una petición (**request body**), tienes que usar los modelos de <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a>, los cuales son muy versatiles y de gran ayuda.
 
 !!! info
 Para enviar datos, deberás usar uno de los siguentes métodos:`POST` (el metódo más común), `PUT`, `DELETE` o `PATCH`.
@@ -57,7 +57,7 @@ Por ejemplo, este modelo declara un objeto JSON (JSON "`object`") o un diccionar
 
 ## Declaración de parámetros
 
-Para añadir como parámetro la ruta de operación (_path operation_) , puedes hacerlo de la misma forma en la que has declarado los parámetros de ruta (path) y consulta (query):
+Para añadir la ruta de operación (_path operation_) como parámetro, puedes hacerlo de la misma forma en la que has declarado los parámetros de ruta (path) y consulta (query):
 
 ```Python hl_lines="18"
 {!../../../docs_src/body/tutorial001.py!}
