@@ -156,6 +156,10 @@ articles:
       title: Deploy a dockerized FastAPI application to AWS
       author_link: https://www.linkedin.com/in/valon-januzaj-b02692187/
       author: Valon Januzaj
+    - link: https://dompatmore.com/blog/authenticate-your-fastapi-app-with-auth0
+      title: Authenticate Your FastAPI App with auth0
+      author_link: https://twitter.com/dompatmore
+      author: Dom Patmore
   japanese:
     - link: https://qiita.com/mtitg/items/47770e9a562dd150631d
       title: FastAPI｜DB接続してCRUDするPython製APIサーバーを構築
