@@ -32,7 +32,7 @@ Utilisez l'objet `TestClient` de la même manière que vous le feriez avec `requ
 !!! note "Détails techniques"
     Vous pouvez aussi utiliser `from starlette.testclient import TestClient`.
 
-    **FastAPI** fournit `starlette.testclient` derrière `fastapi.testclient`. `fastapi.testclient` a été créé juste pour votre comodité à vous développeur, mais il vient directement de Starlette.
+    **FastAPI** fournit `starlette.testclient` derrière `fastapi.testclient`. `fastapi.testclient` a été créé juste pour votre commodité à vous développeur, mais il vient directement de Starlette.
 
 !!! info
     Si vous voulez appeler les fonctions `async` dans vos tests en dehors de l'envoi de requêtes à votre application FastAPI (par exemple des fonctions asynchrones de base de données), regardez [Async Tests](../advanced/async-tests.md){.internal-link target=_blank} dans le tutoriel avancé.
@@ -53,7 +53,7 @@ Disons que vous avez un fichier `main.py` avec votre app **FastAPI** :
 
 ### Le fichier de test
 
-Ensuite, vous pourriez avoir un fichier `test_main.py` avec vos tests et importer votre `app` depuis le module `main` (`main.py`):
+Ensuite, vous pourriez avoir un fichier `test_main.py` avec vos tests et importer votre `app` depuis le module `main` (`main.py`) :
 
 ```Python
 {!../../../docs_src/app_testing/test_main.py!}
