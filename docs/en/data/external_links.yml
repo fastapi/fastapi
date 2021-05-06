@@ -223,6 +223,10 @@ articles:
       title: Почему Вы должны попробовать FastAPI?
       author_link: https://github.com/prostomarkeloff
       author: prostomarkeloff
+    - link: https://trkohler.com/fast-api-introduction-to-framework
+      title: "FastAPI: знакомимся с фреймворком"
+      author_link: https://www.linkedin.com/in/trkohler/
+      author: Troy Köhler
   german:
     - link: https://blog.codecentric.de/2019/08/inbetriebnahme-eines-scikit-learn-modells-mit-onnx-und-fastapi/
       title: Inbetriebnahme eines scikit-learn-Modells mit ONNX und FastAPI
