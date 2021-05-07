@@ -364,7 +364,7 @@ Create utility functions to:
 
 * Read a single user by ID and by email.
 * Read multiple users.
-* Read a single item.
+* Read multiple items.
 
 ```Python hl_lines="1  3  6-7  10-11  14-15  27-28"
 {!../../../docs_src/sql_databases/sql_app/crud.py!}
