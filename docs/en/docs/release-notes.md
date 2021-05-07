@@ -2,6 +2,7 @@
 
 ## Latest Changes
 
+* 🔊 Update FastAPI People to allow better debugging. PR [#3188](https://github.com/tiangolo/fastapi/pull/3188) by [@tiangolo](https://github.com/tiangolo).
 ## 0.64.0
 
 ### Features
