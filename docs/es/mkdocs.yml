@@ -56,7 +56,7 @@ nav:
   - tutorial/index.md
 - Guía de Usuario Avanzada:
   - advanced/index.md
-  - advanced/templates.md
+  - advanced/events.md
 
 - async.md
 markdown_extensions:
