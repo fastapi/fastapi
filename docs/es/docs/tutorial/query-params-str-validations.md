@@ -117,7 +117,7 @@ Digamos que quieres declarar el parámetro de consulta `q` que tendrá un `min_l
 
 ## Hazlo requerido
 
-Cuando no necesitemos declarar más validaciones o metadatos, podemos hacer el parámetro de consulta `q` requerido solo no declarar un valor predeterminado, como:
+Cuando no necesitemos declarar más validaciones o metadatos, podemos hacer el parámetro de consulta `q` sea requerido simplemente dejando de declarar un valor predeterminado, como:
 
 ```Python
 q: str
