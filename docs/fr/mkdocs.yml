@@ -54,6 +54,7 @@ nav:
 - fastapi-people.md
 - Tutoriel - Guide utilisateur:
   - tutorial/background-tasks.md
+  - tutorial/testing.md
 markdown_extensions:
 - toc:
     permalink: true
