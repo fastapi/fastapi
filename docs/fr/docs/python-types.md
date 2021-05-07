@@ -32,7 +32,7 @@ John Doe
 
 La fonction :
 
-* Prends un `first_name` et un `last_name`.
+* Prend un `first_name` et un `last_name`.
 * Convertit la première lettre de chaque paramètre en majuscules grâce à `title()`.
 * Concatène les résultats avec un espace entre les deux.
 
@@ -49,7 +49,7 @@ Mais maintenant imaginez que vous l'écriviez de zéro.
 À un certain point vous auriez commencé la définition de la fonction, vous aviez les paramètres prêts.
 
 Mais vous aviez besoin de "cette méthode qui convertit la première lettre en majuscule".
-q
+
 Était-ce `upper` ? `uppercase` ? `first_uppercase` ? `capitalize` ?
 
 Vous essayez donc d'utiliser le vieil ami du programmeur, l'auto-complétion de l'éditeur.
