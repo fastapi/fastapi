@@ -40,7 +40,7 @@ The key features are:
 
 <small>* estimation based on tests on an internal development team, building production applications.</small>
 
-## Gold Sponsors
+## Sponsors
 
 <!-- sponsors -->
 
