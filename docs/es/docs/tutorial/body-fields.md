@@ -33,7 +33,7 @@ Puedes usar `Field` con los atributos de un modelo:
     Recuerda que cuando importas `Query`, `Path`, y otros objetos desde `fastapi`, éstos son en realidad funciones que devuelven clases especiales.
 
 !!! tip
-Observa cómo el atributo de cada modelo con un tipo, valor por defecto y `Field`, tiene la misma estructura que el parámetro de una función de operación de ruta (_path operation_), con `Field` en lugar de `Path`, `Query` y `Body`.
+Observa cómo el atributo de cada modelo con un tipo, valor por defecto y `Field`, tiene la misma estructura que el parámetro de una función de <abbr title="path operation">operación de ruta</abbr>, con `Field` en lugar de `Path`, `Query` y `Body`.
 
 ## Información adicional
 
