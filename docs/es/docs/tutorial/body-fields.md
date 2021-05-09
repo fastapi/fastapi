@@ -1,6 +1,6 @@
 # Los Campos del Cuerpo (Body - Fields)
 
-De la misma forma que puedes declarar parámetros con `Query`, `Path` y `Body` para realizar validaciones adicionales y de metadatos en la ruta de operacion (_path operation_) de una función, es posible realizar dichas acciones desde los modelos de Pydantic usando `Field`.
+De la misma forma que puedes declarar parámetros con `Query`, `Path` y `Body` para realizar validaciones adicionales y de metadatos en la <abbr title="path operation">ruta de operacion</abbr> de una función, es posible realizar dichas acciones desde los modelos de Pydantic usando `Field`.
 
 ## Importa `Field`
 
