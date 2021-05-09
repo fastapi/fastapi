@@ -45,4 +45,4 @@ Aprendrás mas sobre cómo añadir información extra más adelante, cuando veas
 
 Puedes usar `Field` de Pydantic para declarar validaciones y metadatos adicionales para los atributos del modelo.
 
-También puedes usar los argumentos de palabras clave (_keyword arguments_) para pasar metadatos de esquema JSON adicionales.
+También puedes usar los argumentos de <abbr title="keyword arguments">palabras clave</abbr> para pasar metadatos de esquema JSON adicionales.
