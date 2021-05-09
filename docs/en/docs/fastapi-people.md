@@ -130,10 +130,18 @@ They are supporting my work with **FastAPI** (and others), mainly through <a hre
 {% endfor %}
 {% endif %}
 
+### Bronze Sponsors
+
+{% if sponsors %}
+{% for sponsor in sponsors.bronze -%}
+<a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}"></a>
+{% endfor %}
+{% endif %}
+
+### Individual Sponsors
+
 {% if people %}
 {% if people.sponsors_50 %}
-
-### Bronze Sponsors
 
 <div class="user-list user-list-center">
 {% for user in people.sponsors_50 %}
@@ -145,8 +153,6 @@ They are supporting my work with **FastAPI** (and others), mainly through <a hre
 
 {% endif %}
 {% endif %}
-
-### Individual Sponsors
 
 {% if people %}
 <div class="user-list user-list-center">
