@@ -106,6 +106,9 @@ def new_lang(lang: str = typer.Argument(..., callback=lang_callback)):
     en_index_content = en_index_path.read_text(encoding="utf-8")
     new_index_content = f"{missing_translation_snippet}\n\n{en_index_content}"
     new_index_path.write_text(new_index_content, encoding="utf-8")
+    new_overrides_gitignore_path = new_path / "overrides" / ".gitignore"
+    new_overrides_gitignore_path.parent.mkdir(parents=True, exist_ok=True)
+    new_overrides_gitignore_path.write_text("")
     typer.secho(f"Successfully initialized: {new_path}", color=typer.colors.GREEN)
     update_languages(lang=None)
 
