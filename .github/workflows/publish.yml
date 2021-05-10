@@ -15,7 +15,7 @@ jobs:
         run: echo "$GITHUB_CONTEXT"
       - uses: actions/checkout@v2
       - name: Set up Python
-        uses: actions/setup-python@v1
+        uses: actions/setup-python@v2
         with:
           python-version: "3.6"
       - name: Install Flit
