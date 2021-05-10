@@ -174,7 +174,7 @@ Disposer d'une validation automatique des données des requêtes entrantes.
 
 Marshmallow et Webargs fournissent la validation, l'analyse et la sérialisation en tant que plug-ins.
 
-Mais la documentation fait toujours défaut. C'est alors quAPISpec a été créé.
+Mais la documentation fait toujours défaut. C'est alors qu'APISpec a été créé.
 
 Il s'agit d'un plug-in pour de nombreux frameworks (et il existe également un plug-in pour Starlette).
 
@@ -184,9 +184,9 @@ Et il génère des schémas OpenAPI.
 
 C'est ainsi que cela fonctionne dans Flask, Starlette, Responder, etc.
 
-Mais alors, nous avons à nouveau le problème d'avoir une micro-syntaxe, dans une string Python (un grand fichier YAML).
+Mais alors, nous avons à nouveau le problème d'avoir une micro-syntaxe, dans une docstring Python (un gros morceau de YAML).
 
-L'éditeur ne peut guère aider en la matière. Et si nous modifions les paramètres ou les schémas Marshmallow et que nous oublions de modifier également cette docstring YAML, le schéma généré serait obsolète.
+L'éditeur ne peut guère aider en la matière. Et si nous modifions les paramètres ou les schémas Marshmallow et que nous oublions de modifier également cette docstring YAML, le schéma généré deviendrait obsolète.
 
 !!! info
 APISpec a été créé par les développeurs de Marshmallow.
@@ -223,7 +223,7 @@ Générer le schéma OpenAPI automatiquement, à partir du même code qui défin
 
 ### <a href="https://nestjs.com/" class="external-link" target="_blank">NestJS</a> (et <a href="https://angular.io/" class="external-link" target="_blank">Angular</a>)
 
-Ce n'est même pas Python, NestJS est un framework JavaScript (TypeScript) NodeJS inspiré d'Angular.
+Ce n'est même pas du Python, NestJS est un framework JavaScript (TypeScript) NodeJS inspiré d'Angular.
 
 Il réalise quelque chose de similaire à ce qui peut être fait avec Flask-apispec.
 
@@ -237,7 +237,7 @@ Mais comme les données TypeScript ne sont pas préservées après la compilatio
 Il ne peut pas très bien gérer les modèles imbriqués. Ainsi, si le corps JSON de la requête est un objet JSON comportant des champs internes qui sont à leur tour des objets JSON imbriqués, il ne peut pas être correctement documenté et validé.
 
 !!! check "A inspiré **FastAPI** à"
-Utilisez les types Python pour bénéficier d'un excellent support de l'éditeur.
+Utiliser les types Python pour bénéficier d'un excellent support de l'éditeur.
 
     Disposer d'un puissant système d'injection de dépendances. Trouver un moyen de minimiser la répétition du code.
 
@@ -257,7 +257,7 @@ Trouvez un moyen d'avoir une performance folle.
 
 ### <a href="https://falconframework.org/" class="external-link" target="_blank">Falcon</a>
 
-Falcon est un autre framework Python haute performance, il est conçu pour être minimal, et fonctionner comme fondation d'autres frameworks comme Hug.
+Falcon est un autre framework Python haute performance, il est conçu pour être minimal, et est utilisé comme fondation pour d'autres frameworks comme Hug.
 
 Il utilise le standard précédent pour les frameworks web Python (WSGI) qui est synchrone, donc il ne peut pas gérer les WebSockets et d'autres cas d'utilisation. Néanmoins, il offre de très bonnes performances.
 
@@ -268,7 +268,7 @@ pas possible de déclarer des paramètres de requête et des corps avec des indi
 Ainsi, la validation, la sérialisation et la documentation des données doivent être effectuées dans le code, et non pas automatiquement. Ou bien elles doivent être implémentées comme un framework au-dessus de Falcon, comme Hug. Cette même distinction se retrouve dans d'autres frameworks qui s'inspirent de la conception de Falcon, qui consiste à avoir un objet de requête et un objet de réponse comme paramètres.
 
 !!! check "A inspiré **FastAPI** à"
-Trouvez des moyens d'obtenir de bonnes performances.
+Trouver des moyens d'obtenir de bonnes performances.
 
     Avec Hug (puisque Hug est basé sur Falcon), **FastAPI** a inspiré la déclaration d'un paramètre `response` dans les fonctions.
 
@@ -279,10 +279,10 @@ Trouvez des moyens d'obtenir de bonnes performances.
 J'ai découvert Molten lors des premières étapes de développement de **FastAPI**. Et il a des idées assez similaires :
 
 - Basé sur les type hints Python.
-- Validation et documentation de ces types.
+- Validation et documentation via ces types.
 - Système d'injection de dépendances.
 
-Il n'utilise pas une package tiers de validation, sérialisation et de documentation tel que Pydantic, il a la sienne. Ainsi, ces définitions de types de données ne seraient pas réutilisables aussi facilement.
+Il n'utilise pas une librairie tiers de validation, sérialisation et de documentation tel que Pydantic, il utilise son propre système. Ainsi, ces définitions de types de données ne sont pas réutilisables aussi facilement.
 
 Il nécessite une configuration un peu plus verbeuse. Et comme il est basé sur WSGI (au lieu dASGI), il n'est pas
 conçu pour profiter des hautes performances fournies par des outils comme Uvicorn, Starlette et Sanic.
