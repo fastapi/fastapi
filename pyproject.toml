@@ -32,7 +32,7 @@ classifiers = [
     "Topic :: Internet :: WWW/HTTP",
 ]
 requires = [
-    "starlette ==0.13.6",
+    "starlette ==0.14.2",
     "pydantic >=1.0.0,<2.0.0"
 ]
 description-file = "README.md"
@@ -57,6 +57,7 @@ test = [
     "peewee >=3.13.3,<4.0.0",
     "databases[sqlite] >=0.3.2,<0.4.0",
     "orjson >=3.2.1,<4.0.0",
+    "ujson >=4.0.1,<5.0.0",
     "async_exit_stack >=1.0.1,<2.0.0",
     "async_generator >=1.10,<2.0.0",
     "python-multipart >=0.0.5,<0.0.6",
@@ -87,7 +88,7 @@ all = [
     "itsdangerous >=1.1.0,<2.0.0",
     "pyyaml >=5.3.1,<6.0.0",
     "graphene >=2.1.8,<3.0.0",
-    "ujson >=3.0.0,<4.0.0",
+    "ujson >=4.0.1,<5.0.0",
     "orjson >=3.2.1,<4.0.0",
     "email_validator >=1.1.1,<2.0.0",
     "uvicorn[standard] >=0.12.0,<0.14.0",
