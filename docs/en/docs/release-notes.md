@@ -2,6 +2,7 @@
 
 ## Latest Changes
 
+* 📌 Upgrade pydantic pin, to handle security vulnerability CVE-2021-29510. PR [#3213](https://github.com/tiangolo/fastapi/pull/3213) by [@tiangolo](https://github.com/tiangolo).
 
 ## 0.65.0
 
