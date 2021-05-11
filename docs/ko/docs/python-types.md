@@ -281,7 +281,7 @@ Pydantic 공식 문서 예시:
 {!../../../docs_src/python_types/tutorial011.py!}
 ```
 
-!!! info
+!!! info "정보"
     Pydantic<에 대해 더 배우고 싶다면 <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">공식 문서</a>를 참고하세요.</a>
     
 
