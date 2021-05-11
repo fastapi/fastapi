@@ -172,7 +172,7 @@ John Doe
 {!../../../docs_src/python_types/tutorial006.py!}
 ```
 
-!!! tip
+!!! tip "팁"
     대괄호 안의 내부 타입은 "타입 매개변수(type paramters)"라고 합니다.
 
     이번 예제에서는 `str`이 `List`에 들어간 타입 매개변수 입니다.
