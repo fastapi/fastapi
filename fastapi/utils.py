@@ -5,6 +5,7 @@ from enum import Enum
 from typing import Any, Dict, Optional, Set, Type, Union, cast
 
 import fastapi
+from fastapi.datastructures import DefaultPlaceholder, DefaultType
 from fastapi.openapi.constants import REF_PREFIX
 from pydantic import BaseConfig, BaseModel, create_model
 from pydantic.class_validators import Validator
@@ -18,11 +19,10 @@ def get_model_definitions(
     flat_models: Set[Union[Type[BaseModel], Type[Enum]]],
     model_name_map: Dict[Union[Type[BaseModel], Type[Enum]], str],
 ) -> Dict[str, Any]:
-    definitions: Dict[str, Dict] = {}
+    definitions: Dict[str, Dict[str, Any]] = {}
     for model in flat_models:
-        # ignore mypy error until enum schemas are released
         m_schema, m_definitions, m_nested_models = model_process_schema(
-            model, model_name_map=model_name_map, ref_prefix=REF_PREFIX  # type: ignore
+            model, model_name_map=model_name_map, ref_prefix=REF_PREFIX
         )
         definitions.update(m_definitions)
         model_name = model_name_map[model]
@@ -79,7 +79,7 @@ def create_cloned_field(
         cloned_types = dict()
     original_type = field.type_
     if is_dataclass(original_type) and hasattr(original_type, "__pydantic_model__"):
-        original_type = original_type.__pydantic_model__  # type: ignore
+        original_type = original_type.__pydantic_model__
     use_type = original_type
     if lenient_issubclass(original_type, BaseModel):
         original_type = cast(Type[BaseModel], original_type)
@@ -126,7 +126,7 @@ def generate_operation_id_for_path(*, name: str, path: str, method: str) -> str:
     return operation_id
 
 
-def deep_dict_update(main_dict: dict, update_dict: dict) -> None:
+def deep_dict_update(main_dict: Dict[Any, Any], update_dict: Dict[Any, Any]) -> None:
     for key in update_dict:
         if (
             key in main_dict
@@ -136,3 +136,21 @@ def deep_dict_update(main_dict: dict, update_dict: dict) -> None:
             deep_dict_update(main_dict[key], update_dict[key])
         else:
             main_dict[key] = update_dict[key]
+
+
+def get_value_or_default(
+    first_item: Union[DefaultPlaceholder, DefaultType],
+    *extra_items: Union[DefaultPlaceholder, DefaultType],
+) -> Union[DefaultPlaceholder, DefaultType]:
+    """
+    Pass items or `DefaultPlaceholder`s by descending priority.
+
+    The first one to _not_ be a `DefaultPlaceholder` will be returned.
+
+    Otherwise, the first item (a `DefaultPlaceholder`) will be returned.
+    """
+    items = (first_item,) + extra_items
+    for item in items:
+        if not isinstance(item, DefaultPlaceholder):
+            return item
+    return first_item
