@@ -4,7 +4,7 @@ De la misma forma que puedes declarar parámetros con `Query`, `Path` y `Body` p
 
 ## Importa `Field`
 
-Primero, importa Field:
+Primero se tiene que importar:
 
 ```Python hl_lines="4"
 {!../../../docs_src/body_fields/tutorial001.py!}
@@ -28,7 +28,7 @@ Puedes usar `Field` con los atributos de un modelo:
 
     De la misma forma, el objeto `Field` devolverá una instancia de `FieldInfo`.
 
-    Igual que otros que verás mas adelante, `Body` también devuelve objetos que son subclase de `FieldInfo`.
+    `Body` también devuelve objetos que son subclase de `FieldInfo`. Más adelante verás además otros objetos que son subclase de `Body`.
 
     Recuerda que cuando importas `Query`, `Path`, y otros objetos desde `fastapi`, éstos son en realidad funciones que devuelven clases especiales.
 
