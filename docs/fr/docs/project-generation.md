@@ -80,5 +80,5 @@ GitHub : <a href="https://github.com/microsoft/cookiecutter-spacy-fastapi" class
 * Formatage de requête pour **Azure Cognitive Search**.
 * Serveur Python web **prêt à utiliser en production** utilisant Uvicorn et Gunicorn.
 * Déploiement CI/CD Kubernetes pour **Azure DevOps** (AKS).
-* **Multilangages**. Choisissez facilement l'un des languages intégrés à spaCy durant la mise en place du projet.
+* **Multilangues**. Choisissez facilement l'une des langues intégrées à spaCy durant la mise en place du projet.
 * **Facilement généralisable** à d'autres bibliothèques similaires (Pytorch, Tensorflow), et non juste spaCy.
