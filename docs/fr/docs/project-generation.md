@@ -58,7 +58,7 @@ GitHub : <a href="https://github.com/tiangolo/full-stack-fastapi-couchbase" clas
 
 ⚠️ **ATTENTION** ⚠️
 
-Si vous démarrez un nouveau projet de zéro, allez voir les alternatives ici.
+Si vous démarrez un nouveau projet de zéro, allez voir les alternatives au début de cette page.
 
 Par exemple, le générateur de projet <a href="https://github.com/tiangolo/full-stack-fastapi-postgresql" class="external-link" target="_blank">Full Stack FastAPI PostgreSQL</a>  peut être une meilleure alternative, étant activement maintenu et utilisé et comprenant toutes les nouvelles fonctionnalités et améliorations.
 
@@ -80,5 +80,5 @@ GitHub : <a href="https://github.com/microsoft/cookiecutter-spacy-fastapi" class
 * Formatage de requête pour **Azure Cognitive Search**.
 * Serveur Python web **prêt à utiliser en production** utilisant Uvicorn et Gunicorn.
 * Déploiement CI/CD Kubernetes pour **Azure DevOps** (AKS).
-* **Multilangues**. Choisissez facilement l'un des languages intégrés à spaCy durant le mise en place du projet.
+* **Multilangages**. Choisissez facilement l'un des languages intégrés à spaCy durant la mise en place du projet.
 * **Facilement généralisable** à d'autres bibliothèques similaires (Pytorch, Tensorflow), et non juste spaCy.
