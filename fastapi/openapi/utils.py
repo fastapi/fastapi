@@ -21,7 +21,7 @@ from fastapi.utils import (
     get_model_definitions,
 )
 from pydantic import BaseModel
-from pydantic.fields import ModelField
+from pydantic.fields import ModelField, Undefined
 from pydantic.schema import (
     field_schema,
     get_flat_models_from_fields,
@@ -101,6 +101,10 @@ def get_openapi_operation_parameters(
         }
         if field_info.description:
             parameter["description"] = field_info.description
+        if field_info.examples:
+            parameter["examples"] = jsonable_encoder(field_info.examples)
+        elif field_info.example != Undefined:
+            parameter["example"] = jsonable_encoder(field_info.example)
         if field_info.deprecated:
             parameter["deprecated"] = field_info.deprecated
         parameters.append(parameter)
@@ -124,7 +128,12 @@ def get_openapi_operation_request_body(
     request_body_oai: Dict[str, Any] = {}
     if required:
         request_body_oai["required"] = required
-    request_body_oai["content"] = {request_media_type: {"schema": body_schema}}
+    request_media_content: Dict[str, Any] = {"schema": body_schema}
+    if field_info.examples:
+        request_media_content["examples"] = jsonable_encoder(field_info.examples)
+    elif field_info.example != Undefined:
+        request_media_content["example"] = jsonable_encoder(field_info.example)
+    request_body_oai["content"] = {request_media_type: request_media_content}
     return request_body_oai
 
 

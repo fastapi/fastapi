@@ -1,13 +1,26 @@
 {% extends "base.html" %}
 
 {% block announce %}
-<a class="announce" href="https://fastapi.tiangolo.com/newsletter/">
-    <span class="twemoji">
-        {% include ".icons/material/email.svg" %}
-      </span> Subscribe to the <strong>FastAPI and friends</strong> newsletter 🎉
-  </a>
-  <!-- <a class="announce" href="https://tripetto.app/run/RXZ6OLDBXX?s=dc" target="_blank">
-    <span class="twemoji">
-      </span>Fill the first-ever <strong>FastAPI user survey</strong> for a chance to win official <strong>FastAPI and Typer stickers</strong> 🎁
-  </a> -->
+<div class="announce-wrapper">
+  <div id="announce-left">
+    <div class="item">
+      <a class="announce-link" href="https://fastapi.tiangolo.com/newsletter/">
+        <span class="twemoji">
+          {% include ".icons/material/email.svg" %}
+        </span> Subscribe to the <strong>FastAPI and friends</strong> newsletter 🎉
+      </a>
+    </div>
+    <div class="item">
+      <iframe style="display: inline-block; vertical-align: middle; border: none; margin-right: 0.5rem;" src="https://github.com/sponsors/tiangolo/button" title="Sponsor tiangolo" height="35" width="116" style="border: 0;"></iframe> <a class="announce-link" target="_blank" href="https://github.com/sponsors/tiangolo">You can now sponsor <strong>FastAPI</strong> 🍰</a>
+    </div>
+  </div>
+  <div id="announce-right" style="position: relative;">
+    <div class="item">
+      <a title="The launchpad for all your (team's) ideas" style="display: block; position: relative;" href="https://www.deta.sh/?ref=fastapi">
+        <span class="sponsor-badge">sponsor</span>
+        <img style="display: block;" src="/img/sponsors/deta-banner.svg" />
+      </a>
+    </div>
+  </div>
+</div>
 {% endblock %}
