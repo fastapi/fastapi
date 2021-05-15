@@ -96,7 +96,7 @@ Nuevamente, los tipos de datos serán convertidos, validados, documentados, etc.
 
 ## Múltiples parámetros en el cuerpo y consulta
 
-Podrías también declarar parámetros adicionales de consulta en cualquier parte que lo necesites, además de los parámetros en el cuerpo.
+Puedes declarar parámetros adicionales de consulta en cualquier parte que lo necesites, además de los parámetros en el cuerpo.
 
 Ya que los valores singulares son interpretados como parámetros de consulta, no tienes que añadir `Query` de forma explícita, sino que solo tienes que hacer:
 
