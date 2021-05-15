@@ -89,6 +89,22 @@ To see an example, check the [Project Generators](../project-generation.md){.int
 
 But if you need to access variables and objects from the same **FastAPI** app, or you need to perform small background tasks (like sending an email notification), you can simply just use `BackgroundTasks`.
 
+## Overriding the BackgroundTasks class
+
+You may override the default BackgroundTasks class by setting
+
+    app.dependency_overrides[BackgroundTasks] = CustomBackgroundTasks
+
+Anywhere you ask for a `BackgroundTasks` object will receive an instance of your `CustomBackgroundTasks` class. This is useful when you would like to delegate your background tasks to other implementations, like Celery for instance.
+
+When defining a custom `BackgroundTasks` implementation, be sure to implement the `add_task(Callable, *args, **kwargs)` and `async def __call__()` methods.
+
+```Python hl_lines="14 23"
+{!../../../docs_src/background_tasks/tutorial003.py!}
+```
+
+In this example, the default `BackgroundTasks` class is being overridden with a class that will delay any task by 5 seconds.
+
 ## Recap
 
 Import and use `BackgroundTasks` with parameters in *path operation functions* and dependencies to add background tasks.

@@ -462,6 +462,15 @@ async def solve_generator(
     return await stack.enter_async_context(cm)
 
 
+def solve_dependency_override(
+    dependency_overrides_provider: Any, call: Callable[..., Any]
+) -> Callable[..., Any]:
+    resolved_call = getattr(
+        dependency_overrides_provider, "dependency_overrides", {}
+    ).get(call, call)
+    return cast(Callable[..., Any], resolved_call)
+
+
 async def solve_dependencies(
     *,
     request: Union[Request, WebSocket],
@@ -501,9 +510,9 @@ async def solve_dependencies(
             and dependency_overrides_provider.dependency_overrides
         ):
             original_call = sub_dependant.call
-            call = getattr(
-                dependency_overrides_provider, "dependency_overrides", {}
-            ).get(original_call, original_call)
+            call = solve_dependency_override(
+                dependency_overrides_provider, original_call
+            )
             use_path: str = sub_dependant.path  # type: ignore
             use_sub_dependant = get_dependant(
                 path=use_path,
@@ -586,7 +595,10 @@ async def solve_dependencies(
         values[dependant.websocket_param_name] = request
     if dependant.background_tasks_param_name:
         if background_tasks is None:
-            background_tasks = BackgroundTasks()
+            background_tasks_class = solve_dependency_override(
+                dependency_overrides_provider, BackgroundTasks
+            )
+            background_tasks = background_tasks_class()
         values[dependant.background_tasks_param_name] = background_tasks
     if dependant.response_param_name:
         values[dependant.response_param_name] = response
