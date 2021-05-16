@@ -2,6 +2,7 @@
 
 ## Latest Changes
 
+* 👷 Upgrade Issue Manager GitHub Action. PR [#3236](https://github.com/tiangolo/fastapi/pull/3236) by [@tiangolo](https://github.com/tiangolo).
 
 ## 0.65.1
 
