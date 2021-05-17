@@ -2,7 +2,7 @@
 
 ## 用 `PUT` 更新数据
 
-更新数据使用 <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PUT" class="external-link" target="_blank">HTTP `PUT`</a> 操作。
+更新数据请用 <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PUT" class="external-link" target="_blank">HTTP `PUT`</a> 操作。
 
 把输入数据转换为以 JSON 格式存储的数据（比如，使用 NoSQL 数据库时），可以使用 `jsonable_encoder`。例如，把 `datetime` 转换为 `str`。
 
@@ -34,7 +34,7 @@
 
 即，只发送要更新的数据，其余数据保持不变。
 
-!!! Note
+!!! Note "笔记"
 
     `PATCH` 没有 `PUT` 知名，也怎么不常用。
     
@@ -87,11 +87,11 @@
 {!../../../docs_src/body_updates/tutorial002.py!}
 ```
 
-!!! tip
+!!! tip "提示"
     实际上，HTTP `PUT` 也可以完成相同的操作。
     但本节以 `PATCH` 为例的原因是，该操作就是为了这种用例创建的。
 
-!!! note
+!!! note "笔记"
     注意，输入模型仍需验证。
 
     因此，如果希望接收的部分更新数据可以省略其他所有属性，则要把模型中所有（使用默认值或 `None`）的属性标记为可选。
