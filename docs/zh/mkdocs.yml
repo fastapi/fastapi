@@ -65,6 +65,7 @@ nav:
   - tutorial/body-fields.md
   - tutorial/middleware.md
   - tutorial/body-nested-models.md
+  - tutorial/body-updates.md
   - tutorial/header-params.md
   - tutorial/response-model.md
   - tutorial/extra-models.md
