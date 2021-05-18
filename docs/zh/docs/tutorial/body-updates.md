@@ -2,7 +2,7 @@
 
 ## 用 `PUT` 更新数据
 
-更新数据请用 <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PUT" class="external-link" target="_blank">HTTP `PUT`</a> 操作。
+更新数据请用 <a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Methods/PUT" class="external-link" target="_blank">HTTP `PUT`</a> 操作。
 
 把输入数据转换为以 JSON 格式存储的数据（比如，使用 NoSQL 数据库时），可以使用 `jsonable_encoder`。例如，把 `datetime` 转换为 `str`。
 
@@ -30,7 +30,7 @@
 
 ## 用 `PATCH` 进行部分更新
 
-<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PATCH" class="external-link" target="_blank">HTTP `PATCH`</a> 操作用于更新 *部分* 数据。
+<a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Methods/PATCH" class="external-link" target="_blank">HTTP `PATCH`</a> 操作用于更新 *部分* 数据。
 
 即，只发送要更新的数据，其余数据保持不变。
 
