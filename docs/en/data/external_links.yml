@@ -1,9 +1,5 @@
 articles:
   english:
-    - link: https://jarmos.netlify.app/posts/using-github-actions-to-deploy-a-fastapi-project-to-heroku/
-      title: Using GitHub Actions to Deploy a FastAPI Project to Heroku
-      author_link: https://jarmos.netlify.app/
-      author: Somraj Saha
     - link: https://medium.com/@williamhayes/fastapi-starlette-debug-vs-prod-5f7561db3a59
       title: FastAPI/Starlette debug vs prod
       author_link: https://medium.com/@williamhayes
@@ -164,6 +160,10 @@ articles:
       title: Authenticate Your FastAPI App with auth0
       author_link: https://twitter.com/dompatmore
       author: Dom Patmore
+    - link: https://jarmos.netlify.app/posts/using-github-actions-to-deploy-a-fastapi-project-to-heroku/
+      title: Using GitHub Actions to Deploy a FastAPI Project to Heroku
+      author_link: https://jarmos.netlify.app/
+      author: Somraj Saha
   japanese:
     - link: https://qiita.com/mtitg/items/47770e9a562dd150631d
       title: FastAPI｜DB接続してCRUDするPython製APIサーバーを構築
