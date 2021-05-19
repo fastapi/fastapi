@@ -58,8 +58,8 @@
     * 存储在内存的文件超出最大上限时，FastAPI 会把文件存入磁盘；
 * 这种方式更适于处理图像、视频、二进制文件等大型文件，好处是不会占用所有内存；
 * 可获取上传文件的元数据；
-* 自带<a href="https://docs.python.org/zh-cn/3/glossary.html#term-file-like-object" class="external-link" target="_blank">文件类</a> `async` 接口；
-* 暴露的 Python <a href="https://docs.python.org/zh-cn/3/library/tempfile.html#tempfile.SpooledTemporaryFile" class="external-link" target="_blank">`SpooledTemporaryFile`</a> 对象，可直接传递给其他预期「类文件」对象的库。
+* 自带 <a href="https://docs.python.org/zh-cn/3/glossary.html#term-file-like-object" class="external-link" target="_blank">file-like</a> `async` 接口；
+* 暴露的 Python <a href="https://docs.python.org/zh-cn/3/library/tempfile.html#tempfile.SpooledTemporaryFile" class="external-link" target="_blank">`SpooledTemporaryFile`</a> 对象，可直接传递给其他预期「file-like」对象的库。
 
 ### `UploadFile`
 
@@ -67,7 +67,7 @@
 
 * `filename`：上传文件名字符串（`str`），例如， `myimage.jpg`；
 * `content_type`：内容类型（MIME 类型 / 媒体类型）字符串（`str`），例如，`image/jpeg`；
-* `file`： <a href="https://docs.python.org/zh-cn/3/library/tempfile.html#tempfile.SpooledTemporaryFile" class="external-link" target="_blank">`SpooledTemporaryFile`</a>（ <a href="https://docs.python.org/zh-cn/3/glossary.html#term-file-like-object" class="external-link" target="_blank">文件类</a>对象）。其实就是 Python文件，可直接传递给其他预期 `file-like` 对象的函数或支持库。
+* `file`： <a href="https://docs.python.org/zh-cn/3/library/tempfile.html#tempfile.SpooledTemporaryFile" class="external-link" target="_blank">`SpooledTemporaryFile`</a>（ <a href="https://docs.python.org/zh-cn/3/glossary.html#term-file-like-object" class="external-link" target="_blank">file-like</a> 对象）。其实就是 Python文件，可直接传递给其他预期 `file-like` 对象的函数或支持库。
 
 `UploadFile` 支持以下 `async` 方法，（使用内部 `SpooledTemporaryFile`）可调用相应的文件方法。
 
