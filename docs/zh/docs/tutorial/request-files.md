@@ -38,7 +38,7 @@
 
 文件作为「表单数据」上传。
 
-如果把 *路径操作函数*  参数的类型声明为 `bytes`，**FastAPI** 将以 `bytes` 形式读取和接收文件内容。
+如果把*路径操作函数*参数的类型声明为 `bytes`，**FastAPI** 将以 `bytes` 形式读取和接收文件内容。
 
 这种方式把文件的所有内容都存储在内存里，适用于小型文件。
 
@@ -67,7 +67,7 @@
 
 * `filename`：上传文件名字符串（`str`），例如， `myimage.jpg`；
 * `content_type`：内容类型（MIME 类型 / 媒体类型）字符串（`str`），例如，`image/jpeg`；
-* `file`： <a href="https://docs.python.org/zh-cn/3/library/tempfile.html#tempfile.SpooledTemporaryFile" class="external-link" target="_blank">`SpooledTemporaryFile`</a>（ <a href="https://docs.python.org/zh-cn/3/glossary.html#term-file-like-object" class="external-link" target="_blank">文件类</a>对象）。其实就是 Python文件，可直接传递给其他预期 「类文件」对象的函数或支持库。
+* `file`： <a href="https://docs.python.org/zh-cn/3/library/tempfile.html#tempfile.SpooledTemporaryFile" class="external-link" target="_blank">`SpooledTemporaryFile`</a>（ <a href="https://docs.python.org/zh-cn/3/glossary.html#term-file-like-object" class="external-link" target="_blank">文件类</a>对象）。其实就是 Python文件，可直接传递给其他预期 `file-like` 对象的函数或支持库。
 
 `UploadFile` 支持以下 `async` 方法，（使用内部 `SpooledTemporaryFile`）可调用相应的文件方法。
 
@@ -116,7 +116,7 @@ contents = myfile.file.read()
 
 !!! warning "警告"
 
-    可在一个 *路径操作* 中声明多个 `File` 和 `Form` 参数，但不能同时声明要接收 JSON 的 `Body` 字段。因为此时请求体的编码是 `multipart/form-data`，不是 `application/json`。
+    可在一个*路径操作*中声明多个 `File` 和 `Form` 参数，但不能同时声明要接收 JSON 的 `Body` 字段。因为此时请求体的编码是 `multipart/form-data`，不是 `application/json`。
     
     这不是 **FastAPI** 的问题，而是 HTTP 协议的规定。
 
