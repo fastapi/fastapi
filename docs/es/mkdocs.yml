@@ -54,9 +54,9 @@ nav:
 - python-types.md
 - Tutorial - Guía de Usuario:
   - tutorial/index.md
+  - tutorial/middleware.md
 - Guía de Usuario Avanzada:
   - advanced/index.md
-  - advanced/sub-applications.md
 - async.md
 markdown_extensions:
 - toc:
