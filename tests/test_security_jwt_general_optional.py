@@ -1,15 +1,15 @@
+import datetime
 from typing import Optional
 
 from fastapi import FastAPI, Security
 from fastapi.security.jwt import JwtAuth, JwtAuthCredentials, JwtAuthRefresh
 from fastapi.testclient import TestClient
+from pytest_mock import MockerFixture
 
 app = FastAPI()
 
-access_security = JwtAuth(secret_key="secret_key", places={"header"}, auto_error=False)
-refresh_security = JwtAuthRefresh(
-    secret_key="secret_key", places={"header"}, auto_error=False
-)
+access_security = JwtAuth(secret_key="secret_key", auto_error=False)
+refresh_security = JwtAuthRefresh(secret_key="secret_key", auto_error=False)
 
 
 @app.post("/auth")
@@ -40,6 +40,16 @@ def read_current_user(
     if credentials is None:
         return {"msg": "Create an account first"}
     return {"username": credentials["username"], "role": credentials["role"]}
+
+
+class _FakeDateTime(datetime.datetime):  # pragma: no cover
+    @staticmethod
+    def now(**kwargs):
+        return datetime.datetime.now() + datetime.timedelta(days=42)
+
+    @staticmethod
+    def utcnow(**kwargs):
+        return datetime.datetime.utcnow() + datetime.timedelta(days=42)
 
 
 client = TestClient(app)
@@ -112,12 +122,7 @@ def test_openapi_schema():
     assert response.json() == openapi_schema
 
 
-def test_security_jwt_auth():
-    response = client.post("/auth")
-    assert response.status_code == 200, response.text
-
-
-def test_security_jwt_access_bearer():
+def test_security_jwt_access_token():
     access_token = client.post("/auth").json()["access_token"]
 
     response = client.get(
@@ -127,27 +132,45 @@ def test_security_jwt_access_bearer():
     assert response.json() == {"username": "username", "role": "user"}
 
 
-def test_security_jwt_access_bearer_wrong():
+def test_security_jwt_access_token_wrong():
     response = client.get(
         "/users/me", headers={"Authorization": "Bearer wrong_access_token"}
     )
     assert response.status_code == 200, response.text
     assert response.json() == {"msg": "Create an account first"}
 
-
-def test_security_jwt_access_bearer_no_credentials():
-    response = client.get("/users/me")
+    response = client.get(
+        "/users/me", headers={"Authorization": "Bearer wrong.access.token"}
+    )
     assert response.status_code == 200, response.text
     assert response.json() == {"msg": "Create an account first"}
 
 
-def test_security_jwt_access_bearer_incorrect_scheme_credentials():
-    response = client.get("/users/me", headers={"Authorization": "Basic notreally"})
+def test_security_jwt_access_token_changed():
+    access_token = client.post("/auth").json()["access_token"]
+
+    access_token = access_token.split(".")[0] + ".wrong." + access_token.split(".")[-1]
+
+    response = client.get(
+        "/users/me", headers={"Authorization": f"Bearer {access_token}"}
+    )
     assert response.status_code == 200, response.text
     assert response.json() == {"msg": "Create an account first"}
 
 
-def test_security_jwt_refresh_bearer():
+def test_security_jwt_access_token_timeout(mocker: MockerFixture):
+    access_token = client.post("/auth").json()["access_token"]
+
+    mocker.patch("jwt.api_jwt.datetime", _FakeDateTime)  # 42 days left
+
+    response = client.get(
+        "/users/me", headers={"Authorization": f"Bearer {access_token}"}
+    )
+    assert response.status_code == 200, response.text
+    assert response.json() == {"msg": "Create an account first"}
+
+
+def test_security_jwt_refresh_token():
     refresh_token = client.post("/auth").json()["refresh_token"]
 
     response = client.post(
@@ -156,21 +179,53 @@ def test_security_jwt_refresh_bearer():
     assert response.status_code == 200, response.text
 
 
-def test_security_jwt_refresh_bearer_wrong():
+def test_security_jwt_refresh_token_wrong():
     response = client.post(
         "/refresh", headers={"Authorization": "Bearer wrong_refresh_token"}
     )
     assert response.status_code == 200, response.text
     assert response.json() == {"msg": "Create an account first"}
 
-
-def test_security_jwt_refresh_bearer_no_credentials():
-    response = client.post("/refresh")
+    response = client.post(
+        "/refresh", headers={"Authorization": "Bearer wrong.refresh.token"}
+    )
     assert response.status_code == 200, response.text
     assert response.json() == {"msg": "Create an account first"}
 
 
-def test_security_jwt_refresh_bearer_incorrect_scheme_credentials():
-    response = client.post("/refresh", headers={"Authorization": "Basic notreally"})
+def test_security_jwt_refresh_token_using_access_token():
+    tokens = client.post("/auth").json()
+    access_token, refresh_token = tokens["access_token"], tokens["refresh_token"]
+    assert access_token != refresh_token
+
+    response = client.post(
+        "/refresh", headers={"Authorization": f"Bearer {access_token}"}
+    )
+    assert response.status_code == 200, response.text
+    assert response.json() == {"msg": "Create an account first"}
+
+
+def test_security_jwt_refresh_token_changed():
+    refresh_token = client.post("/auth").json()["refresh_token"]
+
+    refresh_token = (
+        refresh_token.split(".")[0] + ".wrong." + refresh_token.split(".")[-1]
+    )
+
+    response = client.post(
+        "/refresh", headers={"Authorization": f"Bearer {refresh_token}"}
+    )
+    assert response.status_code == 200, response.text
+    assert response.json() == {"msg": "Create an account first"}
+
+
+def test_security_jwt_refresh_token_timeout(mocker: MockerFixture):
+    refresh_token = client.post("/auth").json()["refresh_token"]
+
+    mocker.patch("jwt.api_jwt.datetime", _FakeDateTime)  # 42 days left
+
+    response = client.post(
+        "/refresh", headers={"Authorization": f"Bearer {refresh_token}"}
+    )
     assert response.status_code == 200, response.text
     assert response.json() == {"msg": "Create an account first"}

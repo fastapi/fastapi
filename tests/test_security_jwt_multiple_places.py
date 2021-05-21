@@ -167,12 +167,6 @@ def test_security_jwt_refresh_only_cookie():
     response = client.post("/refresh", cookies={"refresh_token_cookie": refresh_token})
     assert response.status_code == 200, response.text
 
-    response_json = response.json()
-    assert "access_token" in response_json
-    assert response_json["access_token"]
-    assert "refresh_token" in response_json
-    assert response_json["refresh_token"]
-
 
 def test_security_jwt_refresh_bearer_correct_cookie_wrong():
     refresh_token = client.post("/auth").json()["refresh_token"]
@@ -183,12 +177,6 @@ def test_security_jwt_refresh_bearer_correct_cookie_wrong():
         cookies={"refresh_token_cookie": "wrong_refresh_token_cookie"},
     )
     assert response.status_code == 200, response.text
-
-    response_json = response.json()
-    assert "access_token" in response_json
-    assert response_json["access_token"]
-    assert "refresh_token" in response_json
-    assert response_json["refresh_token"]
 
 
 def test_security_jwt_refresh_bearer_wrong_cookie_correct():

@@ -76,7 +76,7 @@ class JwtAuthBase(ABC):
         except jwt.ExpiredSignatureError as e:
             if not self.auto_error:
                 return None
-            raise HTTPException(status_code=419, detail=f"Token time expired: {e}")
+            raise HTTPException(status_code=401, detail=f"Token time expired: {e}")
         except jwt.InvalidTokenError as e:
             if not self.auto_error:
                 return None
@@ -139,9 +139,7 @@ class JwtAuthBase(ABC):
         response: Response, access_token: str, expires_delta: Optional[timedelta] = None
     ) -> None:
         seconds_expires: Optional[int] = (
-            int(expires_delta.total_seconds() - 5)
-            if expires_delta is not None
-            else None
+            int(expires_delta.total_seconds()) if expires_delta is not None else None
         )
         response.set_cookie(
             key="access_token_cookie",
@@ -157,9 +155,7 @@ class JwtAuthBase(ABC):
         expires_delta: Optional[timedelta] = None,
     ) -> None:
         seconds_expires: Optional[int] = (
-            int(expires_delta.total_seconds() - 5)
-            if expires_delta is not None
-            else None
+            int(expires_delta.total_seconds()) if expires_delta is not None else None
         )
         response.set_cookie(
             key="refresh_token_cookie",
