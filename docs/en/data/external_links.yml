@@ -1,6 +1,6 @@
 articles:
   english:
-    - link: https://www.azepug.az/posts/fastapi/
+    - link: https://www.azepug.az/posts/fastapi/#building-simple-e-commerce-with-nuxtjs-and-fastapi-series
       title: Building simple E-Commerce with NuxtJS and FastAPI
       author_link: https://www.linkedin.com/in/shahriyar-rzayev/
       author: Shahriyar(Shako) Rzayev
