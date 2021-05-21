@@ -1,15 +1,19 @@
-from fastapi import FastAPI, Response, Security
-from fastapi.security.jwt import JwtAuth, JwtAuthCredentials, JwtAuthRefresh
+from fastapi import FastAPI, Security
+from fastapi.security.jwt import (
+    JwtAccessBearerCookie,
+    JwtAuthorizationCredentials,
+    JwtRefreshBearerCookie,
+)
 from fastapi.testclient import TestClient
 
 app = FastAPI()
 
-access_security = JwtAuth(secret_key="secret_key", places={"cookie", "header"})
-refresh_security = JwtAuthRefresh(secret_key="secret_key", places={"cookie", "header"})
+access_security = JwtAccessBearerCookie(secret_key="secret_key")
+refresh_security = JwtRefreshBearerCookie(secret_key="secret_key")
 
 
 @app.post("/auth")
-def auth(response: Response):
+def auth():
     subject = {"username": "username", "role": "user"}
 
     access_token = access_security.create_access_token(subject=subject)
@@ -19,7 +23,7 @@ def auth(response: Response):
 
 
 @app.post("/refresh")
-def refresh(credentials: JwtAuthCredentials = Security(refresh_security)):
+def refresh(credentials: JwtAuthorizationCredentials = Security(refresh_security)):
     access_token = refresh_security.create_access_token(subject=credentials.subject)
     refresh_token = refresh_security.create_refresh_token(subject=credentials.subject)
 
@@ -27,7 +31,9 @@ def refresh(credentials: JwtAuthCredentials = Security(refresh_security)):
 
 
 @app.get("/users/me")
-def read_current_user(credentials: JwtAuthCredentials = Security(access_security)):
+def read_current_user(
+    credentials: JwtAuthorizationCredentials = Security(access_security),
+):
     return {"username": credentials["username"], "role": credentials["role"]}
 
 

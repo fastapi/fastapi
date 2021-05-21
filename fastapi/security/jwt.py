@@ -3,8 +3,9 @@ from abc import ABC
 from datetime import datetime, timedelta
 from typing import Any, Dict, Optional, Set
 
-from fastapi import Response, Security
 from fastapi.exceptions import HTTPException
+from fastapi.param_functions import Security
+from fastapi.responses import Response
 from fastapi.security import APIKeyCookie, HTTPBearer
 from starlette.status import HTTP_401_UNAUTHORIZED
 
@@ -14,8 +15,8 @@ except ImportError:  # pragma: nocover
     jwt = None  # type: ignore
 
 
-class JwtAuthCredentials:
-    def __init__(self, subject: Dict[str, Any], jti: str):
+class JwtAuthorizationCredentials:
+    def __init__(self, subject: Dict[str, Any], jti: Optional[str] = None):
         self.subject = subject
         self.jti = jti
 
@@ -52,12 +53,9 @@ class JwtAuthBase(ABC):
         algorithm: str = "HS256",
     ):
         assert jwt is not None, "pyjwt must be installed to use JwtAuth"
-        assert (
-            places is None
-            or places == {"header"}
-            or places == {"cookie"}
-            or places == {"header", "cookie"}
-        ), "only 'header', 'cookie' or both supported as token place"
+        if places:
+            for i in places:
+                assert i in {"header", "cookie"}, "only 'header'/'cookie' are supported"
         assert (
             algorithm in jwt.algorithms.get_default_algorithms().keys()  # type: ignore
         ), f"{algorithm} algorithm is not supported by pyjwt library"
@@ -95,17 +93,50 @@ class JwtAuthBase(ABC):
         return payload
 
     @staticmethod
-    def _get_payload(
+    def _generate_payload(
         subject: Dict[str, Any], expires_delta: timedelta
     ) -> Dict[str, Any]:
+        now = datetime.utcnow()
+
         to_encode: Dict[str, Any] = {
             "subject": subject.copy(),  # main subject
-            "exp": datetime.utcnow() + expires_delta,  # expire time
-            "iat": datetime.utcnow(),  # creation time
+            "exp": now + expires_delta,  # expire time
+            "iat": now,  # creation time
             "jti": str(uuid.uuid1()),  # uuid
         }
 
         return to_encode
+
+    def _get_token(
+        self,
+        bearer: Optional[HTTPBearer],
+        cookie: Optional[APIKeyCookie],
+    ) -> Optional[str]:
+        token = None
+
+        if cookie is not None:
+            token = str(cookie)
+        if bearer is not None:
+            token = str(bearer.credentials)  # type: ignore
+
+        return token
+
+    def _get_payload(
+        self, bearer: Optional[HTTPBearer], cookie: Optional[APIKeyCookie]
+    ) -> Optional[Dict[str, Any]]:
+        refresh_token = self._get_token(bearer, cookie)  # TODO: del function
+
+        # Check token exist
+        if refresh_token is None:
+            if not self.auto_error:
+                return None
+            raise HTTPException(
+                status_code=HTTP_401_UNAUTHORIZED, detail="Credentials are not provided"
+            )
+
+        # Try to decode jwt token. auto_error on error
+        payload = self._decode(refresh_token)
+        return payload
 
     def create_access_token(
         self, subject: Dict[str, Any], expires_delta: Optional[timedelta] = None
@@ -113,10 +144,9 @@ class JwtAuthBase(ABC):
         expires_delta = (
             expires_delta if expires_delta is not None else timedelta(minutes=15)
         )
-        to_encode = self._get_payload(subject, expires_delta)
+        to_encode = self._generate_payload(subject, expires_delta)
 
         jwt_encoded = jwt.encode(to_encode, self.secret_key, algorithm=self.algorithm)
-        # jwt_encoded = jwt_encoded.decode('utf-8')
         return jwt_encoded
 
     def create_refresh_token(
@@ -125,13 +155,12 @@ class JwtAuthBase(ABC):
         expires_delta = (
             expires_delta if expires_delta is not None else timedelta(days=31)
         )
-        to_encode = self._get_payload(subject, expires_delta)
+        to_encode = self._generate_payload(subject, expires_delta)
 
         # Adding creating refresh token mark
         to_encode["type"] = "refresh"
 
         jwt_encoded = jwt.encode(to_encode, self.secret_key, algorithm=self.algorithm)
-        # jwt_encoded = jwt_encoded.decode('utf-8')
         return jwt_encoded
 
     @staticmethod
@@ -177,9 +206,9 @@ class JwtAuthBase(ABC):
         )
 
 
-class JwtAuth(JwtAuthBase):
-    _access_cookie = JwtAuthBase.JwtAccessCookie()
+class JwtAccess(JwtAuthBase):
     _bearer = JwtAuthBase.JwtAccessBearer()
+    _cookie = JwtAuthBase.JwtAccessCookie()
 
     def __init__(
         self,
@@ -192,48 +221,85 @@ class JwtAuth(JwtAuthBase):
             secret_key, places=places, auto_error=auto_error, algorithm=algorithm
         )
 
-    def _get_access_token(
+    def _get_credentials(
         self,
-        bearer: JwtAuthBase.JwtAccessBearer,
-        access_cookie: JwtAuthBase.JwtAccessCookie,
-    ) -> Optional[str]:
-        access_token = None
-        if "cookie" in self.places:
-            if access_cookie is not None:
-                access_token = str(access_cookie)
-        if "header" in self.places:
-            if bearer is not None:
-                access_token = str(bearer.credentials)  # type: ignore
+        bearer: Optional[JwtAuthBase.JwtAccessBearer],
+        cookie: Optional[JwtAuthBase.JwtAccessCookie],
+    ) -> Optional[JwtAuthorizationCredentials]:
+        payload = self._get_payload(bearer, cookie)
 
-        return access_token
-
-    def __call__(
-        self,
-        bearer: JwtAuthBase.JwtAccessBearer = Security(_bearer),
-        access_cookie: JwtAuthBase.JwtAccessCookie = Security(_access_cookie),
-    ) -> Optional[JwtAuthCredentials]:
-        access_token = self._get_access_token(bearer, access_cookie)
-
-        # Check token exist
-        if access_token is None:
-            if not self.auto_error:
-                return None
-            raise HTTPException(
-                status_code=HTTP_401_UNAUTHORIZED, detail="Credentials are not provided"
-            )
-
-        # Try to decode jwt token. auto_error on error
-        payload = self._decode(access_token)
         if payload is None:
             return None
 
-        # Return JWT token to interact
-        return JwtAuthCredentials(payload["subject"], payload["jti"])
+        return JwtAuthorizationCredentials(payload["subject"], payload["jti"])
 
 
-class JwtAuthRefresh(JwtAuthBase):
-    _refresh_cookie = JwtAuthBase.JwtRefreshCookie()
+class JwtAccessBearer(JwtAccess):
+    def __init__(
+        self,
+        secret_key: str,
+        auto_error: bool = True,
+        algorithm: str = "HS256",
+    ):
+        super().__init__(
+            secret_key=secret_key,
+            places={"header"},
+            auto_error=auto_error,
+            algorithm=algorithm,
+        )
+
+    def __call__(
+        self, bearer: JwtAuthBase.JwtAccessBearer = Security(JwtAccess._bearer)
+    ) -> Optional[JwtAuthorizationCredentials]:
+        return self._get_credentials(bearer=bearer, cookie=None)
+
+
+class JwtAccessCookie(JwtAccess):
+    def __init__(
+        self,
+        secret_key: str,
+        auto_error: bool = True,
+        algorithm: str = "HS256",
+    ):
+        super().__init__(
+            secret_key=secret_key,
+            places={"cookie"},
+            auto_error=auto_error,
+            algorithm=algorithm,
+        )
+
+    def __call__(
+        self,
+        cookie: JwtAuthBase.JwtAccessCookie = Security(JwtAccess._cookie),
+    ) -> Optional[JwtAuthorizationCredentials]:
+        return self._get_credentials(bearer=None, cookie=cookie)
+
+
+class JwtAccessBearerCookie(JwtAccess):
+    def __init__(
+        self,
+        secret_key: str,
+        auto_error: bool = True,
+        algorithm: str = "HS256",
+    ):
+        super().__init__(
+            secret_key=secret_key,
+            places={"header", "cookie"},
+            auto_error=auto_error,
+            algorithm=algorithm,
+        )
+
+    def __call__(
+        self,
+        bearer: JwtAuthBase.JwtAccessBearer = Security(JwtAccess._bearer),
+        cookie: JwtAuthBase.JwtAccessCookie = Security(JwtAccess._cookie),
+    ) -> Optional[JwtAuthorizationCredentials]:
+        return self._get_credentials(bearer=bearer, cookie=cookie)
+
+
+class JwtRefresh(JwtAuthBase):
     _bearer = JwtAuthBase.JwtRefreshBearer()
+    _cookie = JwtAuthBase.JwtRefreshCookie()
 
     def __init__(
         self,
@@ -246,38 +312,13 @@ class JwtAuthRefresh(JwtAuthBase):
             secret_key, places=places, auto_error=auto_error, algorithm=algorithm
         )
 
-    def _get_refresh_token(
+    def _get_credentials(
         self,
-        bearer: JwtAuthBase.JwtRefreshBearer,
-        refresh_cookie: JwtAuthBase.JwtRefreshCookie,
-    ) -> Optional[str]:
-        refresh_token = None
-        if "cookie" in self.places:
-            if refresh_cookie is not None:
-                refresh_token = str(refresh_cookie)
-        if "header" in self.places:
-            if bearer is not None:
-                refresh_token = str(bearer.credentials)  # type: ignore
+        bearer: Optional[JwtAuthBase.JwtRefreshBearer],
+        cookie: Optional[JwtAuthBase.JwtRefreshCookie],
+    ) -> Optional[JwtAuthorizationCredentials]:
+        payload = self._get_payload(bearer, cookie)
 
-        return refresh_token
-
-    def __call__(
-        self,
-        bearer: JwtAuthBase.JwtRefreshBearer = Security(_bearer),
-        refresh_cookie: JwtAuthBase.JwtRefreshCookie = Security(_refresh_cookie),
-    ) -> Optional[JwtAuthCredentials]:
-        refresh_token = self._get_refresh_token(bearer, refresh_cookie)
-
-        # Check token exist
-        if refresh_token is None:
-            if not self.auto_error:
-                return None
-            raise HTTPException(
-                status_code=HTTP_401_UNAUTHORIZED, detail="Credentials are not provided"
-            )
-
-        # Try to decode jwt token. auto_error on error
-        payload = self._decode(refresh_token)
         if payload is None:
             return None
 
@@ -289,8 +330,67 @@ class JwtAuthRefresh(JwtAuthBase):
                 detail="Wrong token: 'type' is not 'refresh'",
             )
 
-        # Return JWT token to interact
-        return JwtAuthCredentials(payload["subject"], payload["jti"])
+        return JwtAuthorizationCredentials(payload["subject"], payload["jti"])
 
 
-# class JwtAuthRefreshCookie(JwtAuthRefresh):
+class JwtRefreshBearer(JwtRefresh):
+    def __init__(
+        self,
+        secret_key: str,
+        auto_error: bool = True,
+        algorithm: str = "HS256",
+    ):
+        super().__init__(
+            secret_key=secret_key,
+            places={"header"},
+            auto_error=auto_error,
+            algorithm=algorithm,
+        )
+
+    def __call__(
+        self, bearer: JwtAuthBase.JwtRefreshBearer = Security(JwtRefresh._bearer)
+    ) -> Optional[JwtAuthorizationCredentials]:
+        return self._get_credentials(bearer=bearer, cookie=None)
+
+
+class JwtRefreshCookie(JwtRefresh):
+    def __init__(
+        self,
+        secret_key: str,
+        auto_error: bool = True,
+        algorithm: str = "HS256",
+    ):
+        super().__init__(
+            secret_key=secret_key,
+            places={"cookie"},
+            auto_error=auto_error,
+            algorithm=algorithm,
+        )
+
+    def __call__(
+        self,
+        cookie: JwtAuthBase.JwtRefreshCookie = Security(JwtRefresh._cookie),
+    ) -> Optional[JwtAuthorizationCredentials]:
+        return self._get_credentials(bearer=None, cookie=cookie)
+
+
+class JwtRefreshBearerCookie(JwtRefresh):
+    def __init__(
+        self,
+        secret_key: str,
+        auto_error: bool = True,
+        algorithm: str = "HS256",
+    ):
+        super().__init__(
+            secret_key=secret_key,
+            places={"header", "cookie"},
+            auto_error=auto_error,
+            algorithm=algorithm,
+        )
+
+    def __call__(
+        self,
+        bearer: JwtAuthBase.JwtRefreshBearer = Security(JwtRefresh._bearer),
+        cookie: JwtAuthBase.JwtRefreshCookie = Security(JwtRefresh._cookie),
+    ) -> Optional[JwtAuthorizationCredentials]:
+        return self._get_credentials(bearer=bearer, cookie=cookie)

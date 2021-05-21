@@ -1,11 +1,11 @@
 from fastapi import FastAPI, Response
-from fastapi.security.jwt import JwtAuth, JwtAuthRefresh
+from fastapi.security.jwt import JwtAccessCookie, JwtRefreshCookie
 from fastapi.testclient import TestClient
 
 app = FastAPI()
 
-access_security = JwtAuth(secret_key="secret_key", places={"cookie"})
-refresh_security = JwtAuthRefresh(secret_key="secret_key", places={"cookie"})
+access_security = JwtAccessCookie(secret_key="secret_key")
+refresh_security = JwtRefreshCookie(secret_key="secret_key")
 
 
 @app.post("/auth")

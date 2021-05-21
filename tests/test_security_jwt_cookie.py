@@ -1,11 +1,15 @@
 from fastapi import FastAPI, Security
-from fastapi.security.jwt import JwtAuth, JwtAuthCredentials, JwtAuthRefresh
+from fastapi.security.jwt import (
+    JwtAccessCookie,
+    JwtAuthorizationCredentials,
+    JwtRefreshCookie,
+)
 from fastapi.testclient import TestClient
 
 app = FastAPI()
 
-access_security = JwtAuth(secret_key="secret_key", places={"cookie"})
-refresh_security = JwtAuthRefresh(secret_key="secret_key", places={"cookie"})
+access_security = JwtAccessCookie(secret_key="secret_key")
+refresh_security = JwtRefreshCookie(secret_key="secret_key")
 
 
 @app.post("/auth")
@@ -19,7 +23,7 @@ def auth():
 
 
 @app.post("/refresh")
-def refresh(credentials: JwtAuthCredentials = Security(refresh_security)):
+def refresh(credentials: JwtAuthorizationCredentials = Security(refresh_security)):
     access_token = refresh_security.create_access_token(subject=credentials.subject)
     refresh_token = refresh_security.create_refresh_token(subject=credentials.subject)
 
@@ -27,7 +31,9 @@ def refresh(credentials: JwtAuthCredentials = Security(refresh_security)):
 
 
 @app.get("/users/me")
-def read_current_user(credentials: JwtAuthCredentials = Security(access_security)):
+def read_current_user(
+    credentials: JwtAuthorizationCredentials = Security(access_security),
+):
     return {"username": credentials["username"], "role": credentials["role"]}
 
 
@@ -59,7 +65,7 @@ openapi_schema = {
                 },
                 "summary": "Refresh",
                 "operationId": "refresh_refresh_post",
-                "security": [{"JwtRefreshBearer": []}, {"JwtRefreshCookie": []}],
+                "security": [{"JwtRefreshCookie": []}],
             }
         },
         "/users/me": {
@@ -72,19 +78,17 @@ openapi_schema = {
                 },
                 "summary": "Read Current User",
                 "operationId": "read_current_user_users_me_get",
-                "security": [{"JwtAccessBearer": []}, {"JwtAccessCookie": []}],
+                "security": [{"JwtAccessCookie": []}],
             }
         },
     },
     "components": {
         "securitySchemes": {
-            "JwtAccessBearer": {"type": "http", "scheme": "bearer"},
             "JwtAccessCookie": {
                 "type": "apiKey",
                 "name": "access_token_cookie",
                 "in": "cookie",
             },
-            "JwtRefreshBearer": {"type": "http", "scheme": "bearer"},
             "JwtRefreshCookie": {
                 "type": "apiKey",
                 "name": "refresh_token_cookie",

@@ -1,15 +1,17 @@
 from typing import Optional
 
 from fastapi import FastAPI, Security
-from fastapi.security.jwt import JwtAuth, JwtAuthCredentials, JwtAuthRefresh
+from fastapi.security.jwt import (
+    JwtAccessCookie,
+    JwtAuthorizationCredentials,
+    JwtRefreshCookie,
+)
 from fastapi.testclient import TestClient
 
 app = FastAPI()
 
-access_security = JwtAuth(secret_key="secret_key", places={"cookie"}, auto_error=False)
-refresh_security = JwtAuthRefresh(
-    secret_key="secret_key", places={"cookie"}, auto_error=False
-)
+access_security = JwtAccessCookie(secret_key="secret_key", auto_error=False)
+refresh_security = JwtRefreshCookie(secret_key="secret_key", auto_error=False)
 
 
 @app.post("/auth")
@@ -23,7 +25,9 @@ def auth():
 
 
 @app.post("/refresh")
-def refresh(credentials: Optional[JwtAuthCredentials] = Security(refresh_security)):
+def refresh(
+    credentials: Optional[JwtAuthorizationCredentials] = Security(refresh_security),
+):
     if credentials is None:
         return {"msg": "Create an account first"}
 
@@ -35,7 +39,7 @@ def refresh(credentials: Optional[JwtAuthCredentials] = Security(refresh_securit
 
 @app.get("/users/me")
 def read_current_user(
-    credentials: Optional[JwtAuthCredentials] = Security(access_security),
+    credentials: Optional[JwtAuthorizationCredentials] = Security(access_security),
 ):
     if credentials is None:
         return {"msg": "Create an account first"}
@@ -59,7 +63,7 @@ openapi_schema = {
                 },
                 "summary": "Auth",
                 "operationId": "auth_auth_post",
-            }
+            },
         },
         "/refresh": {
             "post": {
@@ -71,7 +75,7 @@ openapi_schema = {
                 },
                 "summary": "Refresh",
                 "operationId": "refresh_refresh_post",
-                "security": [{"JwtRefreshBearer": []}, {"JwtRefreshCookie": []}],
+                "security": [{"JwtRefreshCookie": []}],
             }
         },
         "/users/me": {
@@ -84,19 +88,17 @@ openapi_schema = {
                 },
                 "summary": "Read Current User",
                 "operationId": "read_current_user_users_me_get",
-                "security": [{"JwtAccessBearer": []}, {"JwtAccessCookie": []}],
+                "security": [{"JwtAccessCookie": []}],
             }
         },
     },
     "components": {
         "securitySchemes": {
-            "JwtAccessBearer": {"type": "http", "scheme": "bearer"},
             "JwtAccessCookie": {
                 "type": "apiKey",
                 "name": "access_token_cookie",
                 "in": "cookie",
             },
-            "JwtRefreshBearer": {"type": "http", "scheme": "bearer"},
             "JwtRefreshCookie": {
                 "type": "apiKey",
                 "name": "refresh_token_cookie",
