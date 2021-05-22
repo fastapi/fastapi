@@ -454,6 +454,10 @@ Used by FastAPI / Starlette:
 
 You can install all of these with `pip install fastapi[all]`.
 
+## Contributor over time
+
+[![Contributor over time](https://contributor-graph-api.apiseven.com/contributors-svg?chart=contributorOverTime&repo=tiangolo/fastapi)](https://www.apiseven.com/en/contributor-graph?chart=contributorOverTime&repo=tiangolo/fastapi)
+
 ## License
 
 This project is licensed under the terms of the MIT license.
