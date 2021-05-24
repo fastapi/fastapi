@@ -49,6 +49,7 @@ from starlette.routing import (
     get_name,
     request_response,
     websocket_session,
+    WebSocketRoute,
 )
 from starlette.status import WS_1008_POLICY_VIOLATION
 from starlette.types import ASGIApp
@@ -586,6 +587,12 @@ class APIRouter(routing.Router):
             name=name,
             dependency_overrides_provider=self.dependency_overrides_provider,
         )
+        self.routes.append(route)
+
+    def add_websocket_route(
+        self, path: str, endpoint: Callable, name: str = None
+    ) -> None:
+        route = WebSocketRoute(self.prefix + path, endpoint=endpoint, name=name)
         self.routes.append(route)
 
     def websocket(

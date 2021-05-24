@@ -40,7 +40,7 @@ async def ws_dependency():
 
 @router.websocket("/router-ws-depends/")
 async def router_ws_decorator_depends(
-    websocket: WebSocket, data=Depends(ws_dependency)
+        websocket: WebSocket, data=Depends(ws_dependency)
 ):
     await websocket.accept()
     await websocket.send_text(data)
@@ -90,3 +90,20 @@ def test_router_ws_depends_with_override():
     app.dependency_overrides[ws_dependency] = lambda: "Override"
     with client.websocket_connect("/router-ws-depends/") as websocket:
         assert websocket.receive_text() == "Override"
+
+
+def test_router_path():
+    t_router = APIRouter(prefix='/t')
+
+    @t_router.websocket_route("/router")
+    async def router_hello(ws: WebSocket):
+        await ws.accept()
+        await ws.send_text("Hello, router!")
+        await ws.close()
+
+    app.include_router(t_router)
+    client = TestClient(app)
+
+    with client.websocket_connect("/t/router") as websocket:
+        data = websocket.receive_text()
+        assert data == "Hello, router!"
