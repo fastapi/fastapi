@@ -56,10 +56,41 @@ a.internal-link::after {
   text-align: center;
 }
 
-a.announce:link, a.announce:visited {
+a.announce-link:link,
+a.announce-link:visited {
   color: #fff;
 }
 
-a.announce:hover {
+a.announce-link:hover {
   color: var(--md-accent-fg-color);
+}
+
+.announce-wrapper {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.announce-wrapper div.item {
+  display: none;
+}
+
+.announce-wrapper .sponsor-badge {
+  display: block;
+  position: absolute;
+  top: -5px;
+  right: 0;
+  font-size: 0.5rem;
+  color: #999;
+  background-color: #666;
+  border-radius: 10px;
+  padding: 0 10px;
+  z-index: 10;
+}
+
+.announce-wrapper>div {
+  min-height: 40px;
+  display: flex;
+  align-items: center;
 }
