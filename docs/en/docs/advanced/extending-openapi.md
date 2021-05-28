@@ -250,25 +250,22 @@ Now, you should be able to disconnect your WiFi, go to your docs at <a href="htt
 And even without Internet, you would be able to see the docs for your API and interact with it.
 
 
-### Add Tags
-
-You can group path by tags in both docs and redoc by using tags, tags also allows you to put descriptions and links. Tags description suppports markdown.
-
-```Python hl_lines="9-22 56"
-{!../../../docs_src/extending_openapi/tutorial003.py!}
-```
-
 ### Change the *path operation* order
 
 It is good to have a documentation, but a sorted one is better, you can use tags_sorter and operations_sorter to sort your docs.
-See this thread for the underlying logic (Swagger UI 3.17.6 required, Redoc not affected) :
-<a href="https://github.com/swagger-api/swagger-ui/issues/2990" class="external-link" target="_blank">https://github.com/swagger-api/swagger-ui/issues/2990</a>
 
+Possible values are "aplha" or a custom build *sort* function for the tags, and "alpha", "method" or a custom build *sort* function for the operations as defined in the <a href="https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration/" class="external-link" target="_blank">Swagger UI doc</a>.
 
-```Python hl_lines="37-38"
+!!! note "Technical Details"
+    Swagger UI 3.17.6 required, Redoc not affected
+    See this thread for the underlying logic
+    <a href="https://github.com/swagger-api/swagger-ui/issues/2990" class="external-link" target="_blank">https://github.com/swagger-api/swagger-ui/issues/2990</a>
+
+The custom function provided in this exemple create a length order, more examples can be found in the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort" class="external-link" target="_blank">MDN Array.prototype.sort() documentation</a>
+
+```Python hl_lines="37-42"
 {!../../../docs_src/extending_openapi/tutorial003.py!}
 ```
 
 !!! tip
-    Possible values are "aplha" or a custom build *sort* function for the tags,
-    and "alpha", "method" or a custom build *sort* function for the operations.
+    Follow <a href="https://fastapi.tiangolo.com/tutorial/metadata/#metadata-for-tags" target="_blank">https://fastapi.tiangolo.com/tutorial/metadata/#metadata-for-tags</a> to see how to define tags.

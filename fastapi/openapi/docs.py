@@ -40,10 +40,10 @@ def get_swagger_ui_html(
         html += f"oauth2RedirectUrl: window.location.origin + '{oauth2_redirect_url}',"
 
     if tags_sorter:
-        html += (f"tagsSorter: '{tags_sorter}',",)
+        html += (f"tagsSorter: {tags_sorter},",)
 
     if operations_sorter:
-        html += (f"operationsSorter : '{operations_sorter}',",)
+        html += (f"operationsSorter : {operations_sorter},",)
 
     html += """
         dom_id: '#swagger-ui',

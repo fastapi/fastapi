@@ -34,8 +34,12 @@ async def custom_swagger_ui_html():
         oauth2_redirect_url=app.swagger_ui_oauth2_redirect_url,
         swagger_js_url="/static/swagger-ui-bundle.js",
         swagger_css_url="/static/swagger-ui.css",
-        tags_sorter="alpha",
-        operations_sorter="method",
+        tags_sorter='"alpha"',
+        operations_sorter='function(e,t) {\
+            if (e.get("path").length < t.get("path").length) {return -1;}\
+            if (e.get("path").length > t.get("path").length) {return 1;}\
+            return 0;\
+            }',
     )
 
 
