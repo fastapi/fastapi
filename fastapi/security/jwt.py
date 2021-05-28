@@ -52,13 +52,13 @@ class JwtAuthBase(ABC):
         auto_error: bool = True,
         algorithm: str = "HS256",
     ):
-        assert jwt is not None, "pyjwt must be installed to use JwtAuth"
+        assert jwt is not None, "PyJWT must be installed to use JwtAuth"
         if places:
             for i in places:
                 assert i in {"header", "cookie"}, "only 'header'/'cookie' are supported"
         assert (
             algorithm in jwt.algorithms.get_default_algorithms().keys()  # type: ignore
-        ), f"{algorithm} algorithm is not supported by pyjwt library"
+        ), f"{algorithm} algorithm is not supported by PyJWT library"
 
         self.secret_key = secret_key
 
