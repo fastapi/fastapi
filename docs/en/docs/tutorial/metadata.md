@@ -73,6 +73,8 @@ The order of each tag metadata dictionary also defines the order shown in the do
 
 For example, even though `users` would go after `items` in alphabetical order, it is shown before them, because we added their metadata as the first dictionary in the list.
 
+If you use SwaggerUI, you can also modify the display order by using the "tags_sorter" option, see <a href="https://fastapi.tiangolo.com/advanced/extending-openapi/?h=exten#Change-the-path-operation-order" target="_blank">extending OpenAPi</a> for the details.
+
 ## OpenAPI URL
 
 By default, the OpenAPI schema is served at `/openapi.json`.
