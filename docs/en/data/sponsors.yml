@@ -2,6 +2,9 @@ gold:
   - url: https://www.deta.sh/?ref=fastapi
     title: The launchpad for all your (team's) ideas
     img: https://fastapi.tiangolo.com/img/sponsors/deta.svg
+  - url: https://bit.ly/2QSouzH
+    title: "Jina: build neural search-as-a-service for any kind of data in just minutes."
+    img: https://fastapi.tiangolo.com/img/sponsors/jina.svg
 silver:
   - url: https://www.investsuite.com/jobs
     title: Wealthtech jobs with FastAPI
