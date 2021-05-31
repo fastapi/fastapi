@@ -1,6 +1,6 @@
 # JSON 编码器
 
-有时，需要把 Pydantic 模型等数据类型转换为 `dict`、`list` 等与 JSON 兼容的格式。
+有时，我们需要把 Pydantic 模型等数据类型转换为 `dict`、`list` 等与 JSON 兼容的格式。
 
 例如， 把 Pydantic 模型存入数据库时就需要进行转换。
 
