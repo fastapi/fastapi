@@ -85,8 +85,6 @@ Eles contribuíram com o código-fonte, documentação, traduções, etc. 📦
 </div>
 {% endif %}
 
-Existem muitos outros contribuidores (mais de uma centena), você pode vê-los todos na 
-
 Existem muitos outros contribuidores (mais de cem), você pode vê-los todos na <a href="https://github.com/tiangolo/fastapi/graphs/contributors" class="external-link" target="_blank">página FastAPI GitHub Contributors</a>. 👷
 
 ## Principais Revisores
