@@ -133,4 +133,4 @@ Especialmente incluindo esforços que normalmente são menos visíveis e, em mui
 
 Os dados são calculados a cada mês, você pode ler o <a href="https://github.com/tiangolo/fastapi/blob/master/.github/actions/people/app/main.py" class="external-link" target="_blank">código-fonte aqui</a>.
 
-Eu também me reservo o direito de atualizar o algoritmo, seções, limites, etc (apenas no caso 🤷).
+Eu também me reservo o direito de atualizar o algoritmo, seções, limites, etc (só por garantia 🤷).
