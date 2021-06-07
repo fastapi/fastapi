@@ -1,6 +1,8 @@
 import asyncio
+import email.message
 import enum
 import inspect
+import json
 from typing import (
     Any,
     Callable,
@@ -35,7 +37,7 @@ from fastapi.utils import (
 )
 from pydantic import BaseModel
 from pydantic.error_wrappers import ErrorWrapper, ValidationError
-from pydantic.fields import ModelField
+from pydantic.fields import ModelField, Undefined
 from starlette import routing
 from starlette.concurrency import run_in_threadpool
 from starlette.exceptions import HTTPException
@@ -180,16 +182,21 @@ def get_request_handler(
                 else:
                     body_bytes = await request.body()
                     if body_bytes:
-                        if (
-                            request.headers.get(
-                                "Content-Type", "application/octet-stream"
-                            )
-                            .split(";")[0]
-                            .endswith("json")
-                        ):
-                            body = await request.json()
+                        json_body: Any = Undefined
+                        content_type_value = request.headers.get("content-type")
+                        if content_type_value:
+                            message = email.message.Message()
+                            message["content-type"] = content_type_value
+                            if message.get_content_maintype() == "application":
+                                subtype = message.get_content_subtype()
+                                if subtype == "json" or subtype.endswith("+json"):
+                                    json_body = await request.json()
+                        if json_body != Undefined:
+                            body = json_body
                         else:
                             body = body_bytes
+        except json.JSONDecodeError as e:
+            raise RequestValidationError([ErrorWrapper(e, ("body", e.pos))], body=e.doc)
         except Exception as e:
             raise HTTPException(
                 status_code=400, detail="There was an error parsing the body"
