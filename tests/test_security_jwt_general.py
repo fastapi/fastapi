@@ -149,7 +149,7 @@ def test_security_jwt_access_token_changed():
 def test_security_jwt_access_token_timeout(mocker: MockerFixture):
     access_token = client.post("/auth").json()["access_token"]
 
-    mocker.patch("jwt.api_jwt.datetime", _FakeDateTime)  # 42 days left
+    mocker.patch("jose.jwt.datetime", _FakeDateTime)  # 42 days left
 
     response = client.get(
         "/users/me", headers={"Authorization": f"Bearer {access_token}"}
@@ -212,7 +212,7 @@ def test_security_jwt_refresh_token_changed():
 def test_security_jwt_refresh_token_timeout(mocker: MockerFixture):
     refresh_token = client.post("/auth").json()["refresh_token"]
 
-    mocker.patch("jwt.api_jwt.datetime", _FakeDateTime)  # 42 days left
+    mocker.patch("jose.jwt.datetime", _FakeDateTime)  # 42 days left
 
     response = client.post(
         "/refresh", headers={"Authorization": f"Bearer {refresh_token}"}
