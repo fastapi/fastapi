@@ -455,7 +455,7 @@ Used by FastAPI / Starlette:
 
 * <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - for the server that loads and serves your application.
 * <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - Required if you want to use `ORJSONResponse`.
-* <a href="https://github.com/mpdavis/python-jose" target="_blank"><code>python-jose[cryptography]</code></a> - Required if you want to use `JwtAuth` or `JwtAuthRefresh`.
+* <a href="https://github.com/mpdavis/python-jose" target="_blank"><code>python-jose[cryptography]</code></a> - Required if you want to use `JwtAccess` or `JwtRefresh`.
 
 You can install all of these with `pip install fastapi[all]`.
 

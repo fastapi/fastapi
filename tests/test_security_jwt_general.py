@@ -40,7 +40,17 @@ def read_current_user(
     return {"username": credentials["username"], "role": credentials["role"]}
 
 
-class _FakeDateTime(datetime.datetime):  # pragma: no cover
+class _FakeDateTimeShort(datetime.datetime):  # pragma: no cover
+    @staticmethod
+    def now(**kwargs):
+        return datetime.datetime.now() + datetime.timedelta(minutes=3)
+
+    @staticmethod
+    def utcnow(**kwargs):
+        return datetime.datetime.utcnow() + datetime.timedelta(minutes=3)
+
+
+class _FakeDateTimeLong(datetime.datetime):  # pragma: no cover
     @staticmethod
     def now(**kwargs):
         return datetime.datetime.now() + datetime.timedelta(days=42)
@@ -146,10 +156,17 @@ def test_security_jwt_access_token_changed():
     assert response.json()["detail"].startswith("Wrong token:")
 
 
-def test_security_jwt_access_token_timeout(mocker: MockerFixture):
+def test_security_jwt_access_token_expiration(mocker: MockerFixture):
     access_token = client.post("/auth").json()["access_token"]
 
-    mocker.patch("jose.jwt.datetime", _FakeDateTime)  # 42 days left
+    mocker.patch("jose.jwt.datetime", _FakeDateTimeShort)  # 3 min left
+
+    response = client.get(
+        "/users/me", headers={"Authorization": f"Bearer {access_token}"}
+    )
+    assert response.status_code == 200, response.text
+
+    mocker.patch("jose.jwt.datetime", _FakeDateTimeLong)  # 42 days left
 
     response = client.get(
         "/users/me", headers={"Authorization": f"Bearer {access_token}"}
@@ -209,10 +226,10 @@ def test_security_jwt_refresh_token_changed():
     assert response.json()["detail"].startswith("Wrong token:")
 
 
-def test_security_jwt_refresh_token_timeout(mocker: MockerFixture):
+def test_security_jwt_refresh_token_expired(mocker: MockerFixture):
     refresh_token = client.post("/auth").json()["refresh_token"]
 
-    mocker.patch("jose.jwt.datetime", _FakeDateTime)  # 42 days left
+    mocker.patch("jose.jwt.datetime", _FakeDateTimeLong)  # 42 days left
 
     response = client.post(
         "/refresh", headers={"Authorization": f"Bearer {refresh_token}"}

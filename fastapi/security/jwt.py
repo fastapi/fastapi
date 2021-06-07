@@ -51,6 +51,8 @@ class JwtAuthBase(ABC):
         places: Optional[Set[str]] = None,
         auto_error: bool = True,
         algorithm: str = jwt.ALGORITHMS.HS256,
+        access_expires_delta: Optional[timedelta] = None,
+        refresh_expires_delta: Optional[timedelta] = None,
     ):
         assert jwt is not None, "python-jose must be installed to use JwtAuth"
         if places:
@@ -67,6 +69,16 @@ class JwtAuthBase(ABC):
         self.places = {"header"} if places is None else places
         self.auto_error = auto_error
         self.algorithm = algorithm
+        self.access_expires_delta = (
+            timedelta(minutes=15)
+            if access_expires_delta is None
+            else access_expires_delta
+        )
+        self.refresh_expires_delta = (
+            timedelta(days=31)
+            if refresh_expires_delta is None
+            else refresh_expires_delta
+        )
 
     def _decode(self, token: str) -> Optional[Dict[str, Any]]:
         try:
@@ -112,10 +124,9 @@ class JwtAuthBase(ABC):
     ) -> Optional[str]:
         if bearer:
             return str(bearer.credentials)  # type: ignore
-        else:
-            if cookie:
-                return str(cookie)
-            return None
+        if cookie:
+            return str(cookie)
+        return None
 
     def _get_payload(
         self, bearer: Optional[HTTPBearer], cookie: Optional[APIKeyCookie]
@@ -137,7 +148,9 @@ class JwtAuthBase(ABC):
     def create_access_token(
         self, subject: Dict[str, Any], expires_delta: Optional[timedelta] = None
     ) -> str:
-        expires_delta = expires_delta if expires_delta else timedelta(minutes=15)
+        expires_delta = (
+            expires_delta if expires_delta is not None else self.access_expires_delta
+        )
         to_encode = self._generate_payload(subject, expires_delta)
 
         jwt_encoded: str = jwt.encode(
@@ -148,7 +161,9 @@ class JwtAuthBase(ABC):
     def create_refresh_token(
         self, subject: Dict[str, Any], expires_delta: Optional[timedelta] = None
     ) -> str:
-        expires_delta = expires_delta if expires_delta else timedelta(days=31)
+        expires_delta = (
+            expires_delta if expires_delta is not None else self.refresh_expires_delta
+        )
         to_encode = self._generate_payload(subject, expires_delta)
 
         # Adding creating refresh token mark
@@ -212,9 +227,16 @@ class JwtAccess(JwtAuthBase):
         places: Optional[Set[str]] = None,
         auto_error: bool = True,
         algorithm: str = jwt.ALGORITHMS.HS256,
+        access_expires_delta: Optional[timedelta] = None,
+        refresh_expires_delta: Optional[timedelta] = None,
     ):
         super().__init__(
-            secret_key, places=places, auto_error=auto_error, algorithm=algorithm
+            secret_key,
+            places=places,
+            auto_error=auto_error,
+            algorithm=algorithm,
+            access_expires_delta=access_expires_delta,
+            refresh_expires_delta=refresh_expires_delta,
         )
 
     def _get_credentials(
@@ -235,12 +257,16 @@ class JwtAccessBearer(JwtAccess):
         secret_key: str,
         auto_error: bool = True,
         algorithm: str = jwt.ALGORITHMS.HS256,
+        access_expires_delta: Optional[timedelta] = None,
+        refresh_expires_delta: Optional[timedelta] = None,
     ):
         super().__init__(
             secret_key=secret_key,
             places={"header"},
             auto_error=auto_error,
             algorithm=algorithm,
+            access_expires_delta=access_expires_delta,
+            refresh_expires_delta=refresh_expires_delta,
         )
 
     def __call__(
@@ -255,12 +281,16 @@ class JwtAccessCookie(JwtAccess):
         secret_key: str,
         auto_error: bool = True,
         algorithm: str = jwt.ALGORITHMS.HS256,
+        access_expires_delta: Optional[timedelta] = None,
+        refresh_expires_delta: Optional[timedelta] = None,
     ):
         super().__init__(
             secret_key=secret_key,
             places={"cookie"},
             auto_error=auto_error,
             algorithm=algorithm,
+            access_expires_delta=access_expires_delta,
+            refresh_expires_delta=refresh_expires_delta,
         )
 
     def __call__(
@@ -276,12 +306,16 @@ class JwtAccessBearerCookie(JwtAccess):
         secret_key: str,
         auto_error: bool = True,
         algorithm: str = jwt.ALGORITHMS.HS256,
+        access_expires_delta: Optional[timedelta] = None,
+        refresh_expires_delta: Optional[timedelta] = None,
     ):
         super().__init__(
             secret_key=secret_key,
             places={"header", "cookie"},
             auto_error=auto_error,
             algorithm=algorithm,
+            access_expires_delta=access_expires_delta,
+            refresh_expires_delta=refresh_expires_delta,
         )
 
     def __call__(
@@ -302,9 +336,16 @@ class JwtRefresh(JwtAuthBase):
         places: Optional[Set[str]] = None,
         auto_error: bool = True,
         algorithm: str = jwt.ALGORITHMS.HS256,
+        access_expires_delta: Optional[timedelta] = None,
+        refresh_expires_delta: Optional[timedelta] = None,
     ):
         super().__init__(
-            secret_key, places=places, auto_error=auto_error, algorithm=algorithm
+            secret_key,
+            places=places,
+            auto_error=auto_error,
+            algorithm=algorithm,
+            access_expires_delta=access_expires_delta,
+            refresh_expires_delta=refresh_expires_delta,
         )
 
     def _get_credentials(
@@ -334,12 +375,16 @@ class JwtRefreshBearer(JwtRefresh):
         secret_key: str,
         auto_error: bool = True,
         algorithm: str = jwt.ALGORITHMS.HS256,
+        access_expires_delta: Optional[timedelta] = None,
+        refresh_expires_delta: Optional[timedelta] = None,
     ):
         super().__init__(
             secret_key=secret_key,
             places={"header"},
             auto_error=auto_error,
             algorithm=algorithm,
+            access_expires_delta=access_expires_delta,
+            refresh_expires_delta=refresh_expires_delta,
         )
 
     def __call__(
@@ -354,12 +399,16 @@ class JwtRefreshCookie(JwtRefresh):
         secret_key: str,
         auto_error: bool = True,
         algorithm: str = jwt.ALGORITHMS.HS256,
+        access_expires_delta: Optional[timedelta] = None,
+        refresh_expires_delta: Optional[timedelta] = None,
     ):
         super().__init__(
             secret_key=secret_key,
             places={"cookie"},
             auto_error=auto_error,
             algorithm=algorithm,
+            access_expires_delta=access_expires_delta,
+            refresh_expires_delta=refresh_expires_delta,
         )
 
     def __call__(
@@ -375,12 +424,16 @@ class JwtRefreshBearerCookie(JwtRefresh):
         secret_key: str,
         auto_error: bool = True,
         algorithm: str = jwt.ALGORITHMS.HS256,
+        access_expires_delta: Optional[timedelta] = None,
+        refresh_expires_delta: Optional[timedelta] = None,
     ):
         super().__init__(
             secret_key=secret_key,
             places={"header", "cookie"},
             auto_error=auto_error,
             algorithm=algorithm,
+            access_expires_delta=access_expires_delta,
+            refresh_expires_delta=refresh_expires_delta,
         )
 
     def __call__(
