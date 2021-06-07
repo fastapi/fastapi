@@ -52,7 +52,7 @@ class JwtAuthBase(ABC):
         auto_error: bool = True,
         algorithm: str = "HS256",
     ):
-        assert jwt is not None, "PyJWT must be installed to use JwtAuth"
+        assert jwt, "PyJWT must be installed to use JwtAuth"
         if places:
             assert places.issubset(
                 {"header", "cookie"}
@@ -107,9 +107,9 @@ class JwtAuthBase(ABC):
     ) -> Optional[str]:
         token = None
 
-        if cookie is not None:
+        if cookie:
             token = str(cookie)
-        if bearer is not None:
+        if bearer:
             token = str(bearer.credentials)  # type: ignore
 
         return token
@@ -134,9 +134,7 @@ class JwtAuthBase(ABC):
     def create_access_token(
         self, subject: Dict[str, Any], expires_delta: Optional[timedelta] = None
     ) -> str:
-        expires_delta = (
-            expires_delta if expires_delta is not None else timedelta(minutes=15)
-        )
+        expires_delta = expires_delta if expires_delta else timedelta(minutes=15)
         to_encode = self._generate_payload(subject, expires_delta)
 
         jwt_encoded = jwt.encode(to_encode, self.secret_key, algorithm=self.algorithm)
@@ -145,9 +143,7 @@ class JwtAuthBase(ABC):
     def create_refresh_token(
         self, subject: Dict[str, Any], expires_delta: Optional[timedelta] = None
     ) -> str:
-        expires_delta = (
-            expires_delta if expires_delta is not None else timedelta(days=31)
-        )
+        expires_delta = expires_delta if expires_delta else timedelta(days=31)
         to_encode = self._generate_payload(subject, expires_delta)
 
         # Adding creating refresh token mark
@@ -161,7 +157,7 @@ class JwtAuthBase(ABC):
         response: Response, access_token: str, expires_delta: Optional[timedelta] = None
     ) -> None:
         seconds_expires: Optional[int] = (
-            int(expires_delta.total_seconds()) if expires_delta is not None else None
+            int(expires_delta.total_seconds()) if expires_delta else None
         )
         response.set_cookie(
             key="access_token_cookie",
@@ -177,7 +173,7 @@ class JwtAuthBase(ABC):
         expires_delta: Optional[timedelta] = None,
     ) -> None:
         seconds_expires: Optional[int] = (
-            int(expires_delta.total_seconds()) if expires_delta is not None else None
+            int(expires_delta.total_seconds()) if expires_delta else None
         )
         response.set_cookie(
             key="refresh_token_cookie",
