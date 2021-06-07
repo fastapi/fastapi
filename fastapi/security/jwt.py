@@ -1,4 +1,4 @@
-import uuid
+from uuid import uuid1
 from abc import ABC
 from datetime import datetime, timedelta
 from typing import Any, Dict, Optional, Set
@@ -54,8 +54,9 @@ class JwtAuthBase(ABC):
     ):
         assert jwt is not None, "PyJWT must be installed to use JwtAuth"
         if places:
-            for i in places:
-                assert i in {"header", "cookie"}, "only 'header'/'cookie' are supported"
+            assert places.issubset(
+                {"header", "cookie"}
+            ), "only 'header'/'cookie' are supported"
         assert (
             algorithm in jwt.algorithms.get_default_algorithms().keys()  # type: ignore
         ), f"{algorithm} algorithm is not supported by PyJWT library"
@@ -82,14 +83,6 @@ class JwtAuthBase(ABC):
                 status_code=HTTP_401_UNAUTHORIZED, detail=f"Wrong token: {e}"
             )
 
-        # if "subject" not in payload:
-        #     if not self.auto_error:
-        #         return None
-        #     raise HTTPException(
-        #         status_code=HTTP_401_UNAUTHORIZED,
-        #         detail="Wrong token: 'subject' not in payload",
-        #     )
-
         return payload
 
     @staticmethod
@@ -102,7 +95,7 @@ class JwtAuthBase(ABC):
             "subject": subject.copy(),  # main subject
             "exp": now + expires_delta,  # expire time
             "iat": now,  # creation time
-            "jti": str(uuid.uuid1()),  # uuid
+            "jti": str(uuid1()),  # uuid
         }
 
         return to_encode
