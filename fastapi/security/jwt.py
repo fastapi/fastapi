@@ -12,7 +12,7 @@ from starlette.status import HTTP_401_UNAUTHORIZED
 try:
     from jose import jwt
 except ImportError:  # pragma: nocover
-    jwt = None  # type: ignore
+    jwt = None
 
 
 class JwtAuthorizationCredentials:
@@ -70,12 +70,13 @@ class JwtAuthBase(ABC):
 
     def _decode(self, token: str) -> Optional[Dict[str, Any]]:
         try:
-            payload = jwt.decode(
+            payload: Dict[str, Any] = jwt.decode(
                 token,
                 self.secret_key,
                 algorithms=[self.algorithm],
                 options={"leeway": 10},
             )
+            return payload
         except jwt.ExpiredSignatureError as e:
             if not self.auto_error:
                 return None
@@ -88,8 +89,6 @@ class JwtAuthBase(ABC):
             raise HTTPException(
                 status_code=HTTP_401_UNAUTHORIZED, detail=f"Wrong token: {e}"
             )
-
-        return payload
 
     @staticmethod
     def _generate_payload(
@@ -141,7 +140,9 @@ class JwtAuthBase(ABC):
         expires_delta = expires_delta if expires_delta else timedelta(minutes=15)
         to_encode = self._generate_payload(subject, expires_delta)
 
-        jwt_encoded = jwt.encode(to_encode, self.secret_key, algorithm=self.algorithm)
+        jwt_encoded: str = jwt.encode(
+            to_encode, self.secret_key, algorithm=self.algorithm
+        )
         return jwt_encoded
 
     def create_refresh_token(
@@ -153,7 +154,9 @@ class JwtAuthBase(ABC):
         # Adding creating refresh token mark
         to_encode["type"] = "refresh"
 
-        jwt_encoded = jwt.encode(to_encode, self.secret_key, algorithm=self.algorithm)
+        jwt_encoded: str = jwt.encode(
+            to_encode, self.secret_key, algorithm=self.algorithm
+        )
         return jwt_encoded
 
     @staticmethod
@@ -223,6 +226,7 @@ class JwtAccess(JwtAuthBase):
 
         if payload:
             return JwtAuthorizationCredentials(payload["subject"], payload["jti"])
+        return None
 
 
 class JwtAccessBearer(JwtAccess):
