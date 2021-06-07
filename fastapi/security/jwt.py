@@ -1,7 +1,7 @@
-from uuid import uuid1
 from abc import ABC
 from datetime import datetime, timedelta
 from typing import Any, Dict, Optional, Set
+from uuid import uuid1
 
 from fastapi.exceptions import HTTPException
 from fastapi.param_functions import Security
