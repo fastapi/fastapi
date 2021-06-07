@@ -1,5 +1,3 @@
-from unittest.mock import patch
-
 import pytest
 from fastapi.testclient import TestClient
 
@@ -173,6 +171,31 @@ def test_post_body(path, body, expected_status, expected_response):
 
 
 def test_post_broken_body():
+    response = client.post(
+        "/items/",
+        headers={"content-type": "application/json"},
+        data="{some broken json}",
+    )
+    assert response.status_code == 422, response.text
+    assert response.json() == {
+        "detail": [
+            {
+                "loc": ["body", 1],
+                "msg": "Expecting property name enclosed in double quotes: line 1 column 2 (char 1)",
+                "type": "value_error.jsondecode",
+                "ctx": {
+                    "msg": "Expecting property name enclosed in double quotes",
+                    "doc": "{some broken json}",
+                    "pos": 1,
+                    "lineno": 1,
+                    "colno": 2,
+                },
+            }
+        ]
+    }
+
+
+def test_post_form_for_json():
     response = client.post("/items/", data={"name": "Foo", "price": 50.5})
     assert response.status_code == 422, response.text
     assert response.json() == {
@@ -184,25 +207,28 @@ def test_post_broken_body():
             }
         ]
     }
-    with patch("json.loads", side_effect=Exception):
-        response = client.post("/items/", json={"test": "test2"})
-        assert response.status_code == 400, response.text
-    assert response.json() == {"detail": "There was an error parsing the body"}
 
 
 def test_explicit_content_type():
-    data = '{"name": "Foo", "price": 50.5}'
     response = client.post(
-        "/items/", data=data, headers={"Content-Type": "applications/json"}
+        "/items/",
+        data='{"name": "Foo", "price": 50.5}',
+        headers={"Content-Type": "application/json"},
     )
     assert response.status_code == 200, response.text
 
-    data = '{"name": "Foo", "price": 50.5}'
+
+def test_geo_json():
     response = client.post(
-        "/items/", data=data, headers={"Content-Type": "applications/geo+json"}
+        "/items/",
+        data='{"name": "Foo", "price": 50.5}',
+        headers={"Content-Type": "application/geo+json"},
     )
     assert response.status_code == 200, response.text
 
+
+def test_wrong_headers():
+    data = '{"name": "Foo", "price": 50.5}'
     invalid_dict = {
         "detail": [
             {
@@ -219,6 +245,11 @@ def test_explicit_content_type():
 
     response = client.post(
         "/items/", data=data, headers={"Content-Type": "application/geo+json-seq"}
+    )
+    assert response.status_code == 422, response.text
+    assert response.json() == invalid_dict
+    response = client.post(
+        "/items/", data=data, headers={"Content-Type": "application/not-really-json"}
     )
     assert response.status_code == 422, response.text
     assert response.json() == invalid_dict
