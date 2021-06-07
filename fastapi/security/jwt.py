@@ -52,7 +52,7 @@ class JwtAuthBase(ABC):
         auto_error: bool = True,
         algorithm: str = "HS256",
     ):
-        assert jwt, "PyJWT must be installed to use JwtAuth"
+        assert jwt is not None, "PyJWT must be installed to use JwtAuth"
         if places:
             assert places.issubset(
                 {"header", "cookie"}
@@ -75,7 +75,9 @@ class JwtAuthBase(ABC):
         except jwt.ExpiredSignatureError as e:
             if not self.auto_error:
                 return None
-            raise HTTPException(status_code=401, detail=f"Token time expired: {e}")
+            raise HTTPException(
+                status_code=HTTP_401_UNAUTHORIZED, detail=f"Token time expired: {e}"
+            )
         except jwt.InvalidTokenError as e:
             if not self.auto_error:
                 return None
@@ -102,15 +104,15 @@ class JwtAuthBase(ABC):
 
     def _get_token(
         self,
-        bearer: Optional[HTTPBearer],
-        cookie: Optional[APIKeyCookie],
+        bearer: Optional[HTTPBearer] = None,
+        cookie: Optional[APIKeyCookie] = None,
     ) -> Optional[str]:
-        token = None
-
-        if cookie:
-            token = str(cookie)
         if bearer:
             token = str(bearer.credentials)  # type: ignore
+        else:
+            if cookie:
+                cookie = str(cookie)
+            token = cookie
 
         return token
 
@@ -217,10 +219,8 @@ class JwtAccess(JwtAuthBase):
     ) -> Optional[JwtAuthorizationCredentials]:
         payload = self._get_payload(bearer, cookie)
 
-        if payload is None:
-            return None
-
-        return JwtAuthorizationCredentials(payload["subject"], payload["jti"])
+        if payload:
+            return JwtAuthorizationCredentials(payload["subject"], payload["jti"])
 
 
 class JwtAccessBearer(JwtAccess):
