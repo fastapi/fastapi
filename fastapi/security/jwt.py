@@ -10,7 +10,7 @@ from fastapi.security import APIKeyCookie, HTTPBearer
 from starlette.status import HTTP_401_UNAUTHORIZED
 
 try:
-    import jwt
+    from jose import jwt
 except ImportError:  # pragma: nocover
     jwt = None  # type: ignore
 
@@ -50,16 +50,17 @@ class JwtAuthBase(ABC):
         secret_key: str,
         places: Optional[Set[str]] = None,
         auto_error: bool = True,
-        algorithm: str = "HS256",
+        algorithm: str = jwt.ALGORITHMS.HS256,
     ):
-        assert jwt is not None, "PyJWT must be installed to use JwtAuth"
+        assert jwt is not None, "python-jose must be installed to use JwtAuth"
         if places:
             assert places.issubset(
                 {"header", "cookie"}
             ), "only 'header'/'cookie' are supported"
+        algorithm = algorithm.upper()
         assert (
-            algorithm in jwt.algorithms.get_default_algorithms().keys()  # type: ignore
-        ), f"{algorithm} algorithm is not supported by PyJWT library"
+            hasattr(jwt.ALGORITHMS, algorithm) is True
+        ), f"{algorithm} algorithm is not supported by python-jose library"
 
         self.secret_key = secret_key
 
@@ -70,7 +71,7 @@ class JwtAuthBase(ABC):
     def _decode(self, token: str) -> Optional[Dict[str, Any]]:
         try:
             payload = jwt.decode(
-                token, self.secret_key, algorithms=[self.algorithm], leeway=10
+                token, self.secret_key, algorithms=[self.algorithm], options={"leeway": 10}
             )
         except jwt.ExpiredSignatureError as e:
             if not self.auto_error:
@@ -78,7 +79,7 @@ class JwtAuthBase(ABC):
             raise HTTPException(
                 status_code=HTTP_401_UNAUTHORIZED, detail=f"Token time expired: {e}"
             )
-        except jwt.InvalidTokenError as e:
+        except jwt.JWTError as e:
             if not self.auto_error:
                 return None
             raise HTTPException(
@@ -206,7 +207,7 @@ class JwtAccess(JwtAuthBase):
         secret_key: str,
         places: Optional[Set[str]] = None,
         auto_error: bool = True,
-        algorithm: str = "HS256",
+        algorithm: str = jwt.ALGORITHMS.HS256,
     ):
         super().__init__(
             secret_key, places=places, auto_error=auto_error, algorithm=algorithm
@@ -228,7 +229,7 @@ class JwtAccessBearer(JwtAccess):
         self,
         secret_key: str,
         auto_error: bool = True,
-        algorithm: str = "HS256",
+        algorithm: str = jwt.ALGORITHMS.HS256,
     ):
         super().__init__(
             secret_key=secret_key,
@@ -248,7 +249,7 @@ class JwtAccessCookie(JwtAccess):
         self,
         secret_key: str,
         auto_error: bool = True,
-        algorithm: str = "HS256",
+        algorithm: str = jwt.ALGORITHMS.HS256,
     ):
         super().__init__(
             secret_key=secret_key,
@@ -269,7 +270,7 @@ class JwtAccessBearerCookie(JwtAccess):
         self,
         secret_key: str,
         auto_error: bool = True,
-        algorithm: str = "HS256",
+        algorithm: str = jwt.ALGORITHMS.HS256,
     ):
         super().__init__(
             secret_key=secret_key,
@@ -295,7 +296,7 @@ class JwtRefresh(JwtAuthBase):
         secret_key: str,
         places: Optional[Set[str]] = None,
         auto_error: bool = True,
-        algorithm: str = "HS256",
+        algorithm: str = jwt.ALGORITHMS.HS256,
     ):
         super().__init__(
             secret_key, places=places, auto_error=auto_error, algorithm=algorithm
@@ -327,7 +328,7 @@ class JwtRefreshBearer(JwtRefresh):
         self,
         secret_key: str,
         auto_error: bool = True,
-        algorithm: str = "HS256",
+        algorithm: str = jwt.ALGORITHMS.HS256,
     ):
         super().__init__(
             secret_key=secret_key,
@@ -347,7 +348,7 @@ class JwtRefreshCookie(JwtRefresh):
         self,
         secret_key: str,
         auto_error: bool = True,
-        algorithm: str = "HS256",
+        algorithm: str = jwt.ALGORITHMS.HS256,
     ):
         super().__init__(
             secret_key=secret_key,
@@ -368,7 +369,7 @@ class JwtRefreshBearerCookie(JwtRefresh):
         self,
         secret_key: str,
         auto_error: bool = True,
-        algorithm: str = "HS256",
+        algorithm: str = jwt.ALGORITHMS.HS256,
     ):
         super().__init__(
             secret_key=secret_key,
