@@ -71,7 +71,10 @@ class JwtAuthBase(ABC):
     def _decode(self, token: str) -> Optional[Dict[str, Any]]:
         try:
             payload = jwt.decode(
-                token, self.secret_key, algorithms=[self.algorithm], options={"leeway": 10}
+                token,
+                self.secret_key,
+                algorithms=[self.algorithm],
+                options={"leeway": 10},
             )
         except jwt.ExpiredSignatureError as e:
             if not self.auto_error:
@@ -109,13 +112,11 @@ class JwtAuthBase(ABC):
         cookie: Optional[APIKeyCookie] = None,
     ) -> Optional[str]:
         if bearer:
-            token = str(bearer.credentials)  # type: ignore
+            return str(bearer.credentials)  # type: ignore
         else:
             if cookie:
-                cookie = str(cookie)
-            token = cookie
-
-        return token
+                return str(cookie)
+            return None
 
     def _get_payload(
         self, bearer: Optional[HTTPBearer], cookie: Optional[APIKeyCookie]
