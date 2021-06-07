@@ -1,3 +1,5 @@
+from unittest.mock import patch
+
 import pytest
 from fastapi.testclient import TestClient
 
@@ -253,3 +255,9 @@ def test_wrong_headers():
     )
     assert response.status_code == 422, response.text
     assert response.json() == invalid_dict
+
+
+def test_other_exceptions():
+    with patch("json.loads", side_effect=Exception):
+        response = client.post("/items/", json={"test": "test2"})
+        assert response.status_code == 400, response.text
