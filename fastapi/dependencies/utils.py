@@ -546,6 +546,8 @@ async def solve_dependencies(
             )
         elif is_coroutine_callable(call):
             solved = await call(**sub_values)
+        elif asyncio.iscoroutinefunction(call):
+            solved = await call(**sub_values)
         else:
             solved = await run_in_threadpool(call, **sub_values)
         if sub_dependant.name is not None:
