@@ -3,6 +3,8 @@
 ## Latest Changes
 
 
+## 0.65.2
+
 ### Security fixes
 
 * 🔒 Check Content-Type request header before assuming JSON. Initial PR [#2118](https://github.com/tiangolo/fastapi/pull/2118) by [@patrickkwang](https://github.com/patrickkwang).
