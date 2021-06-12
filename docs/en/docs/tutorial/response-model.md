@@ -31,6 +31,20 @@ But most importantly:
 !!! note "Technical Details"
     The response model is declared in this parameter instead of as a function return type annotation, because the path function may not actually return that response model but rather return a `dict`, database object or some other model, and then use the `response_model` to perform the field limiting and serialization.
 
+## Install `email-validator`
+
+First you need to install `email-validator`:
+
+<div class="termy">
+
+```console
+$ pip install email-validator
+
+---> 100%
+```
+
+</div>
+
 ## Return the same input data
 
 Here we are declaring a `UserIn` model, it will contain a plaintext password:
