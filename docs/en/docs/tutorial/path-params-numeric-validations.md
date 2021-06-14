@@ -12,19 +12,15 @@ First, import `Path` from `fastapi`:
 
 ## Declare metadata
 
-You can declare all the same parameters as for `Query`.
+You can declare all the same parameters as for `Query` except for the default. A path parameter is always required as it has to be part of the path. You should declare it with `...` to correctly mark it as required, for convenience FastAPI already does this if you leave it out.
 
-For example, to declare a `title` metadata value for the path parameter `item_id` you can type:
+As an example of what you can pass to `Path`, to declare a `title` metadata value for the path parameter `item_id` you can type:
 
 ```Python hl_lines="10"
 {!../../../docs_src/path_params_numeric_validations/tutorial001.py!}
 ```
 
 !!! note
-    A path parameter is always required as it has to be part of the path.
-    
-    So, you should declare it with `...` to mark it as required.
-
     Nevertheless, even if you declared it with `None` or set a default value, it would not affect anything, it would still be always required.
 
 ## Order the parameters as you need

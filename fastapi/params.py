@@ -60,7 +60,7 @@ class Path(Param):
 
     def __init__(
         self,
-        default: Any,
+        default: Any = ...,
         *,
         alias: Optional[str] = None,
         title: Optional[str] = None,

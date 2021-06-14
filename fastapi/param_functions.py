@@ -5,7 +5,7 @@ from pydantic.fields import Undefined
 
 
 def Path(  # noqa: N802
-    default: Any,
+    default: Any = ...,
     *,
     alias: Optional[str] = None,
     title: Optional[str] = None,
