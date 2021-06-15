@@ -752,7 +752,7 @@ def get_body_field(*, dependant: Dependant, name: str) -> Optional[ModelField]:
     for param in flat_dependant.body_params:
         setattr(param.field_info, "embed", True)
     model_name = "Body_" + name
-    BodyModel = create_model(model_name)
+    BodyModel: Type[BaseModel] = create_model(model_name)
     for f in flat_dependant.body_params:
         BodyModel.__fields__[f.name] = get_schema_compatible_field(field=f)
     required = any(True for f in flat_dependant.body_params if f.required)
