@@ -137,6 +137,8 @@ class Schema(BaseModel):
     externalDocs: Optional[ExternalDocumentation] = None
     example: Optional[Any] = None
     deprecated: Optional[bool] = None
+    x_enum_varnames: Optional[List[str]] = Field(None, alias="x-enum-varnames")
+    x_enum_descriptions: Optional[List[str]] = Field(None, alias="x-enum-descriptions")
 
     class Config:
         extra: str = "allow"
