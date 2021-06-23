@@ -45,7 +45,6 @@ Documentation = "https://fastapi.tiangolo.com/"
 test = [
     "pytest ==5.4.3",
     "pytest-cov ==2.10.0",
-    "pytest-asyncio >=0.14.0,<0.15.0",
     "mypy ==0.812",
     "flake8 >=3.8.3,<4.0.0",
     "black ==20.8b1",
@@ -63,7 +62,7 @@ test = [
     "python-multipart >=0.0.5,<0.0.6",
     "aiofiles >=0.5.0,<0.6.0",
     "flask >=1.1.2,<2.0.0",
-    "anyio >=3.1.0,<4",
+    "anyio[trio] >=3.1.0,<4",
 ]
 doc = [
     "mkdocs >=1.1.2,<2.0.0",
