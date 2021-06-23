@@ -7,5 +7,8 @@ app = FastAPI()
 
 @app.get("/")
 def main():
-    file_like = open(some_file_path, mode="rb")
-    return StreamingResponse(file_like, media_type="video/mp4")
+    def iterfile():
+        with open(some_file_path, mode="rb") as file_like:
+            yield from file_like
+
+    return StreamingResponse(iterfile(), media_type="video/mp4")
