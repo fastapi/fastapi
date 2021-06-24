@@ -63,7 +63,7 @@ Here we use it to create a `GzipRequest` from the original request.
 
     And those two things, `scope` and `receive`, are what is needed to create a new `Request` instance.
 
-    To learn more about the `Request` check <a href="https://www.starlette.io/requests/" class="external-link" target="_blank">Starlette's docs about Requests</a>.
+    To learn more about the `Request` check <a href="https://www.starlette.io/requests.html" class="external-link" target="_blank">Starlette's docs about Requests</a>.
 
 The only thing the function returned by `GzipRequest.get_route_handler` does differently is convert the `Request` to a `GzipRequest`.
 

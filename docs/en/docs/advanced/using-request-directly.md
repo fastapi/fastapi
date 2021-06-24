@@ -15,7 +15,7 @@ But there are situations where you might need to access the `Request` object dir
 
 ## Details about the `Request` object
 
-As **FastAPI** is actually **Starlette** underneath, with a layer of several tools on top, you can use Starlette's <a href="https://www.starlette.io/requests/" class="external-link" target="_blank">`Request`</a> object directly when you need to.
+As **FastAPI** is actually **Starlette** underneath, with a layer of several tools on top, you can use Starlette's <a href="https://www.starlette.io/requests.html" class="external-link" target="_blank">`Request`</a> object directly when you need to.
 
 It would also mean that if you get data from the `Request` object directly (for example, read the body) it won't be validated, converted or documented (with OpenAPI, for the automatic API user interface) by FastAPI.
 
@@ -44,7 +44,7 @@ By declaring a *path operation function* parameter with the type being the `Requ
 
 ## `Request` documentation
 
-You can read more details about the <a href="https://www.starlette.io/requests/" class="external-link" target="_blank">`Request` object in the official Starlette documentation site</a>.
+You can read more details about the <a href="https://www.starlette.io/requests.html" class="external-link" target="_blank">`Request` object in the official Starlette documentation site</a>.
 
 !!! note "Technical Details"
     You could also use `from starlette.requests import Request`.
