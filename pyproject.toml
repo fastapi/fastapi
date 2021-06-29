@@ -69,7 +69,7 @@ doc = [
     "mkdocs-material >=7.1.9,<8.0.0",
     "markdown-include >=0.6.0,<0.7.0",
     "mkdocs-markdownextradata-plugin >=0.1.7,<0.2.0",
-    "typer-cli >=0.0.9,<0.0.10",
+    "typer-cli >=0.0.12,<0.0.13",
     "pyyaml >=5.3.1,<6.0.0"
 ]
 dev = [
