@@ -1,8 +1,8 @@
 # Corpo - Campos
 
-Da mesma forma que você pode declarar validações adicionais e metadados nos parâmetros de *função de operações de caminho* com `Query`, `Path` e `Body`, você pode declarar validações e metadados dentro de modelos do Pydantic usando `Field` do Pydantic.
+Da mesma forma que você pode declarar validações adicionais e metadados nos parâmetros de *funções de operações de rota* com `Query`, `Path` e `Body`, você pode declarar validações e metadados dentro de modelos do Pydantic usando `Field` do Pydantic.
 
-## Importar `Field`
+## Importe `Field`
 
 Primeiro, você tem que importá-lo:
 
@@ -15,7 +15,7 @@ Primeiro, você tem que importá-lo:
 
 ## Declare atributos do modelo
 
-Você pode utilizar `Field` com atributos do modelo:
+Você pode então utilizar `Field` com atributos do modelo:
 
 ```Python hl_lines="11-14"
 {!../../../docs_src/body_fields/tutorial001.py!}
@@ -28,12 +28,12 @@ Você pode utilizar `Field` com atributos do modelo:
 
     E `Field` do Pydantic retorna uma instância de `FieldInfo` também.
 
-    `Body` também retorna um objeto de uma subclasse de `FieldInfo` diretamente. E tem outras que você verá mais tarde que são subclasses da classe `Body`.
+    `Body` também retorna objetos de uma subclasse de `FieldInfo` diretamente. E tem outras que você verá mais tarde que são subclasses da classe `Body`.
 
     Lembre-se que quando você importa `Query`, `Path`, e outros de `fastapi`, esse são na realidade funções que retornam classes especiais.
 
 !!! tip "Dica"
-    Note como cada atributo do modelo com um tipo, valor padrão e `Field` possuem a mesma estrutura que parâmetros de *função de operações de caminho*, com `Field` ao invés de `Path`, `Query` e `Body`.
+    Note como cada atributo do modelo com um tipo, valor padrão e `Field` possuem a mesma estrutura que parâmetros de *funções de operações de rota*, com `Field` ao invés de `Path`, `Query` e `Body`.
 
 ## Adicione informações extras
 
