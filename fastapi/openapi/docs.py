@@ -105,12 +105,14 @@ def get_redoc_html(
 
 
 def get_swagger_ui_oauth2_redirect_html() -> HTMLResponse:
+    # copied from https://github.com/swagger-api/swagger-ui/blob/v3.51.1/dist/oauth2-redirect.html
     html = """
-    <!DOCTYPE html>
+    <!doctype html>
     <html lang="en-US">
-    <body onload="run()">
-    </body>
-    </html>
+    <head>
+        <title>Swagger UI: OAuth2 Redirect</title>
+    </head>
+    <body>
     <script>
         'use strict';
         function run () {
@@ -125,19 +127,20 @@ def get_swagger_ui_oauth2_redirect_html() -> HTMLResponse:
                 qp = location.search.substring(1);
             }
 
-            arr = qp.split("&")
-            arr.forEach(function (v,i,_arr) { _arr[i] = '"' + v.replace('=', '":"') + '"';})
+            arr = qp.split("&");
+            arr.forEach(function (v,i,_arr) { _arr[i] = '"' + v.replace('=', '":"') + '"';});
             qp = qp ? JSON.parse('{' + arr.join() + '}',
                     function (key, value) {
-                        return key === "" ? value : decodeURIComponent(value)
+                        return key === "" ? value : decodeURIComponent(value);
                     }
-            ) : {}
+            ) : {};
 
-            isValid = qp.state === sentState
+            isValid = qp.state === sentState;
 
             if ((
-            oauth2.auth.schema.get("flow") === "accessCode"||
-            oauth2.auth.schema.get("flow") === "authorizationCode"
+              oauth2.auth.schema.get("flow") === "accessCode" ||
+              oauth2.auth.schema.get("flow") === "authorizationCode" ||
+              oauth2.auth.schema.get("flow") === "authorization_code"
             ) && !oauth2.auth.code) {
                 if (!isValid) {
                     oauth2.errCb({
@@ -153,7 +156,7 @@ def get_swagger_ui_oauth2_redirect_html() -> HTMLResponse:
                     oauth2.auth.code = qp.code;
                     oauth2.callback({auth: oauth2.auth, redirectUrl: redirectUrl});
                 } else {
-                    let oauthErrorMsg
+                    let oauthErrorMsg;
                     if (qp.error) {
                         oauthErrorMsg = "["+qp.error+"]: " +
                             (qp.error_description ? qp.error_description+ ". " : "no accessCode received from the server. ") +
@@ -172,6 +175,12 @@ def get_swagger_ui_oauth2_redirect_html() -> HTMLResponse:
             }
             window.close();
         }
+
+        window.addEventListener('DOMContentLoaded', function () {
+          run();
+        });
     </script>
+    </body>
+    </html>
         """
     return HTMLResponse(content=html)
