@@ -69,6 +69,7 @@ sequence_shape_to_type = {
     SHAPE_TUPLE_ELLIPSIS: list,
 }
 
+EmptyString = ""
 
 multipart_not_installed_error = (
     'Form data requires "python-multipart" to be installed. \n'
@@ -614,7 +615,7 @@ def request_params_to_args(
         assert isinstance(
             field_info, params.Param
         ), "Params must be subclasses of Param"
-        if value is None:
+        if value is None or value == EmptyString:
             if field.required:
                 errors.append(
                     ErrorWrapper(
