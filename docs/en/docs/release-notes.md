@@ -2,6 +2,22 @@
 
 ## Latest Changes
 
+* 👥 Update FastAPI People. PR [#3450](https://github.com/tiangolo/fastapi/pull/3450) by [@github-actions[bot]](https://github.com/apps/github-actions).
+* 🌐 Portuguese translation of Tutorial - Body - Fields. PR [#3420](https://github.com/tiangolo/fastapi/pull/3420) by [@ComicShrimp](https://github.com/ComicShrimp).
+* 🌐 Add Chinese translation for Tutorial - Request - Forms - and - Files. PR [#3249](https://github.com/tiangolo/fastapi/pull/3249) by [@jaystone776](https://github.com/jaystone776).
+* 🌐 Add Chinese translation for Tutorial - Handling - Errors. PR [#3299](https://github.com/tiangolo/fastapi/pull/3299) by [@jaystone776](https://github.com/jaystone776).
+* 🌐 Add Chinese translation for Tutorial - Form - Data. PR [#3248](https://github.com/tiangolo/fastapi/pull/3248) by [@jaystone776](https://github.com/jaystone776).
+* 👥 Update FastAPI People. PR [#3319](https://github.com/tiangolo/fastapi/pull/3319) by [@github-actions[bot]](https://github.com/apps/github-actions).
+* 🌐 Add Chinese translation for Tutorial - Body - Updates. PR [#3237](https://github.com/tiangolo/fastapi/pull/3237) by [@jaystone776](https://github.com/jaystone776).
+* 🌐 Add Chinese translation for FastAPI People. PR [#3112](https://github.com/tiangolo/fastapi/pull/3112) by [@hareru](https://github.com/hareru).
+* 🌐 Add French translation for Project Generation. PR [#3197](https://github.com/tiangolo/fastapi/pull/3197) by [@Smlep](https://github.com/Smlep).
+* 🌐 Add French translation for Python Types Intro. PR [#3185](https://github.com/tiangolo/fastapi/pull/3185) by [@Smlep](https://github.com/Smlep).
+* 🌐 Add French translation for External Links. PR [#3103](https://github.com/tiangolo/fastapi/pull/3103) by [@Smlep](https://github.com/Smlep).
+* 🌐 Add French translation for Alternatives, Inspiration and Comparisons. PR [#3020](https://github.com/tiangolo/fastapi/pull/3020) by [@rjNemo](https://github.com/rjNemo).
+* 🌐 Fix Chinese translation code snippet mismatch in Tutorial - Python Types Intro. PR [#2573](https://github.com/tiangolo/fastapi/pull/2573) by [@BoYanZh](https://github.com/BoYanZh).
+* 🌐 Add Portuguese translation for Development Contributing. PR [#1364](https://github.com/tiangolo/fastapi/pull/1364) by [@Serrones](https://github.com/Serrones).
+* ⬆ Upgrade docs development dependency on `typer-cli` to >=0.0.12 to fix conflicts. PR [#3429](https://github.com/tiangolo/fastapi/pull/3429) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Add Chinese translation for Tutorial - Request - Files. PR [#3244](https://github.com/tiangolo/fastapi/pull/3244) by [@jaystone776](https://github.com/jaystone776).
 
 ## 0.65.2
 
