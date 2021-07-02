@@ -6,7 +6,7 @@ Cette page vise à fournir des détails sur la syntaxe `async def` pour les *fon
 
 <abbr title="'too long; didn't read' en anglais, ou 'trop long ; j'ai pas lu'"><strong>TL;DR :</strong></abbr>
 
-Si vous utilisez des fonctions ant d'autres bibliothèques qui nécessitent d'être appelées avec `await`, telles que :
+Si vous utilisez des fonctions et d'autres bibliothèques qui nécessitent d'être appelées avec `await`, telles que :
 
 ```Python
 results = await some_library()
@@ -85,7 +85,7 @@ Le temps d'exécution étant consommé majoritairement par l'attente d'opératio
 
 Ce concept se nomme l'"asynchronisme" car l'ordinateur / le programme n'a pas besoin d'être "synchronisé" avec la tâche, attendant le moment exact où cette dernière se terminera en ne faisant rien, pour être capable de récupérer le résultat de la tâche et l'utiliser dans la suite des opérations.
 
-À la place, en étant "asynchrone", une fois terminée, une tâche peut légèrement attendre (quelques microseconds) que l'ordinateur / le programme finisse ce qu'il était en train de faire, et revienne récupérer le résultat.
+À la place, en étant "asynchrone", une fois terminée, une tâche peut légèrement attendre (quelques microsecondes) que l'ordinateur / le programme finisse ce qu'il était en train de faire, et revienne récupérer le résultat.
 
 Pour parler de tâches "synchrones" (en opposition à "asynchrones"), on utilise souvent le terme "séquentiel", car l'ordinateur / le programme va effectuer toutes les étapes d'une tâche séquentiellement avant de passer à une autre tâche, même si ces étapes impliquent de l'attente.
 
@@ -133,9 +133,9 @@ Mais ensuite, même si vous n'avez pas encore vos burgers 🍔, votre travail av
 
 Après vous être écarté du comptoir et vous être assis à votre table avec le numéro de votre commande, vous pouvez tourner 🔀 votre attention vers votre crush 😍, et "travailler" ⏯ 🤓 là-dessus. Vous êtes donc à nouveau en train de faire quelque chose de "productif" 🤓, vous flirtez avec votre crush 😍.
 
-Puis le seveur 💁 dit "J'ai fini de préparer les burgers" 🍔 en mettant votre numéro sur l'affichage du comptoir, mais vous ne courrez pas immédiatement au moment où votre numéro s'affiche. Vous savez que personne ne volera vos burgers 🍔 car vous avez votre numéro et les autres clients ont le leur.
+Puis le serveur 💁 dit "J'ai fini de préparer les burgers" 🍔 en mettant votre numéro sur l'affichage du comptoir, mais vous ne courrez pas immédiatement au moment où votre numéro s'affiche. Vous savez que personne ne volera vos burgers 🍔 car vous avez votre numéro et les autres clients ont le leur.
 
-Vous attendez donc que votre crush 😍 finisse son histoire, souriez gentillement et dites que vous allez chercher les burgers ⏸.
+Vous attendez donc que votre crush 😍 finisse son histoire, souriez gentiment et dites que vous allez chercher les burgers ⏸.
 
 Pour finir vous allez au comptoir 🔀, vers la tâche initiale qui est désormais terminée ⏯, récupérez les burgers 🍔, remerciez le serveur et ramenez les burgers 🍔 à votre table. Ceci termine l'étape / la tâche d'interaction avec le comptoir ⏹. Ce qui ensuite, crée une nouvelle tâche de "manger les burgers"  🔀 ⏯, mais la précédente, "récupérer les burgers" est terminée ⏹.
 
@@ -179,7 +179,7 @@ Et pourtant l'expérience finale n'est pas meilleure 😞.
 
 ---
 
-C'est donc l'histoire équivalente parrallèle pour les burgers 🍔.
+C'est donc l'histoire équivalente parallèle pour les burgers 🍔.
 
 Pour un exemple plus courant dans la "vie réelle", imaginez une banque.
 
@@ -235,7 +235,7 @@ Vous pourriez diviser en différentes sections comme avec les burgers, d'abord l
 
 Cela prendrait autant de temps pour finir avec ou sans sections (concurrence) et vous auriez effectué la même quantité de travail.
 
-Mais dans ce cas, si pouviez amener 8 ex-serveurs/cuisiners/devenus-nettoyeurs 👨‍🍳👨‍🍳👨‍🍳👨‍🍳👨‍🍳👨‍🍳👨‍🍳👨‍🍳, et que chacun d'eux (plus vous) pouvait prendre une zone de la maison pour la nettoyer, vous pourriez faire tout le travail en parrallèle, et finir plus tôt.
+Mais dans ce cas, si pouviez amener 8 ex-serveurs/cuisiniers/devenus-nettoyeurs 👨‍🍳👨‍🍳👨‍🍳👨‍🍳👨‍🍳👨‍🍳👨‍🍳👨‍🍳, et que chacun d'eux (plus vous) pouvait prendre une zone de la maison pour la nettoyer, vous pourriez faire tout le travail en parallèle, et finir plus tôt.
 
 Dans ce scénario, chacun des nettoyeurs (vous y compris) serait un processeur, faisant sa partie du travail.
 
@@ -254,9 +254,9 @@ Par exemple :
 
 ### Concurrence + Parallélisme : Web + Machine Learning
 
-Avec **FastAPI** vous pouvez bénéficier de la concurrence mais vous pouvez aussi profiter du parallélisme et mutliprocessing afin de gérer des charges **CPU bound** qui sont récurrentes dans les systèmes de *Machine Learning*.
+Avec **FastAPI** vous pouvez bénéficier de la concurrence mais vous pouvez aussi profiter du parallélisme et multiprocessing afin de gérer des charges **CPU bound** qui sont récurrentes dans les systèmes de *Machine Learning*.
 
-Ça, ajouté au fait que Python soit le langage le plus populaire pour la **Data Science**, le **Machine Learning** et surtout le **Deep Leaning**, font de **FastAPI** un très bon choix pour les APIs de **Data Science** / **Machine Learning**.
+Ça, ajouté au fait que Python soit le langage le plus populaire pour la **Data Science**, le **Machine Learning** et surtout le **Deep Learning**, font de **FastAPI** un très bon choix pour les APIs de **Data Science** / **Machine Learning**.
 
 Pour comprendre comment mettre en place ce parallélisme en production, allez lire la section [Déploiement](deployment/index.md){.internal-link target=_blank}.
 
