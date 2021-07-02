@@ -52,6 +52,7 @@ nav:
   - uk: /uk/
   - zh: /zh/
 - features.md
+- fastapi-people.md
 - python-types.md
 - 教程 - 用户指南:
   - tutorial/index.md
