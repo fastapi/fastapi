@@ -53,8 +53,12 @@ nav:
   - zh: /zh/
 - features.md
 - fastapi-people.md
+- python-types.md
 - Tutoriel - Guide utilisateur:
   - tutorial/background-tasks.md
+- project-generation.md
+- alternatives.md
+- external-links.md
 markdown_extensions:
 - toc:
     permalink: true

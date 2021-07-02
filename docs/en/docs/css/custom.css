@@ -89,6 +89,11 @@ a.announce-link:hover {
   z-index: 10;
 }
 
+.announce-wrapper .sponsor-image {
+  display: block;
+  border-radius: 20px;
+}
+
 .announce-wrapper>div {
   min-height: 40px;
   display: flex;
