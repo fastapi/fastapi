@@ -4,7 +4,7 @@ Il y a quelque temps, <a href="https://github.com/tiangolo/fastapi/issues/3#issu
 
 > Quelle est l'histoire de ce projet ? Il semble être sorti de nulle part et est devenu génial en quelques semaines [...].
 
-Voici un peu bout de cette histoire.
+Voici un petit bout de cette histoire.
 
 ## Alternatives
 
@@ -68,7 +68,7 @@ Au moment où j'ai commencé à créer **FastAPI** lui-même, la plupart des pi�
 
 À ce stade, il est déjà clair que **FastAPI** et ses idées sont utiles pour de nombreuses personnes.
 
-Elle a été préférée aux autres solutions précédentes parce qu'elle convient mieux à de nombreux cas d'utilisation.
+Elle a été préférée aux solutions précédentes parce qu'elle convient mieux à de nombreux cas d'utilisation.
 
 De nombreux développeurs et équipes dépendent déjà de **FastAPI** pour leurs projets (y compris moi et mon équipe).
 
