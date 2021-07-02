@@ -53,9 +53,13 @@ nav:
   - zh: /zh/
 - features.md
 - fastapi-people.md
+- python-types.md
 - history-design-future.md
 - Tutoriel - Guide utilisateur:
   - tutorial/background-tasks.md
+- project-generation.md
+- alternatives.md
+- external-links.md
 markdown_extensions:
 - toc:
     permalink: true
@@ -122,4 +126,3 @@ extra_javascript:
 - https://unpkg.com/mermaid@8.4.6/dist/mermaid.min.js
 - https://fastapi.tiangolo.com/js/termynal.js
 - https://fastapi.tiangolo.com/js/custom.js
-
