@@ -53,9 +53,9 @@ nav:
   - zh: /zh/
 - features.md
 - fastapi-people.md
-- history-design-future.md
 - Tutoriel - Guide utilisateur:
   - tutorial/background-tasks.md
+- history-design-future.md
 markdown_extensions:
 - toc:
     permalink: true

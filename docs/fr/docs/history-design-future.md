@@ -24,7 +24,7 @@ Il y a eu de nombreux outils créés auparavant qui ont contribué à inspirer s
 
 J'ai évité la création d'un nouveau framework pendant plusieurs années. J'ai d'abord essayé de résoudre toutes les fonctionnalités couvertes par **FastAPI** en utilisant de nombreux frameworks, plug-ins et outils différents.
 
-Mais à un moment donné, il n'y avait pas d'autre option que de créer quelque chose qui offre toutes ces fonctionnalités, en prenant les meilleures idées des outils précédents, et en les combinant de la meilleure façon possible, en utilisant des fonctionnalités du langage qui n'étaient même pas disponibles auparavant (indices de type pour Python 3.6+).
+Mais à un moment donné, il n'y avait pas d'autre option que de créer quelque chose qui offre toutes ces fonctionnalités, en prenant les meilleures idées des outils précédents, et en les combinant de la meilleure façon possible, en utilisant des fonctionnalités du langage qui n'étaient même pas disponibles auparavant (annotations de type pour Python 3.6+).
 
 </blockquote>
 
@@ -32,7 +32,7 @@ Mais à un moment donné, il n'y avait pas d'autre option que de créer quelque 
 
 En utilisant toutes les alternatives précédentes, j'ai eu la chance d'apprendre de toutes, de prendre des idées, et de les combiner de la meilleure façon que j'ai pu trouver pour moi-même et les équipes de développeurs avec lesquelles j'ai travaillé.
 
-Par exemple, il était clair que l'idéal était de se baser sur les indices de type Python standard.
+Par exemple, il était clair que l'idéal était de se baser sur les annotations de type Python standard.
 
 De plus, la meilleure approche était d'utiliser des normes déjà existantes.
 
