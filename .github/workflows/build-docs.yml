@@ -26,7 +26,7 @@ jobs:
         run: python3.7 -m pip install flit
       - name: Install docs extras
         if: steps.cache.outputs.cache-hit != 'true'
-        run: python3.7 -m flit install --extras doc
+        run: python3.7 -m flit install --deps production --extras doc
       - name: Install Material for MkDocs Insiders
         if: github.event.pull_request.head.repo.fork == false && steps.cache.outputs.cache-hit != 'true'
         run: pip install git+https://${{ secrets.ACTIONS_TOKEN }}@github.com/squidfunk/mkdocs-material-insiders.git
