@@ -73,6 +73,7 @@ nav:
   - tutorial/schema-extra-example.md
   - tutorial/extra-data-types.md
   - tutorial/cookie-params.md
+  - tutorial/request-forms.md
   - tutorial/request-files.md
   - tutorial/body-updates.md
   - 安全性:
