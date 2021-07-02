@@ -56,6 +56,7 @@ nav:
 - Tutoriel - Guide utilisateur:
   - tutorial/background-tasks.md
 - alternatives.md
+- external-links.md
 markdown_extensions:
 - toc:
     permalink: true
