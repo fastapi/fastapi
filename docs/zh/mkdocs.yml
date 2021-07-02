@@ -75,6 +75,7 @@ nav:
   - tutorial/cookie-params.md
   - tutorial/request-forms.md
   - tutorial/request-files.md
+  - tutorial/request-forms-and-files.md
   - tutorial/handling-errors.md
   - tutorial/body-updates.md
   - 安全性:
