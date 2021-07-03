@@ -2,6 +2,7 @@
 
 ## Latest Changes
 
+* ✨ Allow setting the `response_class` to `RedirectResponse` and returning the URL from the function. PR [#3457](https://github.com/tiangolo/fastapi/pull/3457) by [@tiangolo](https://github.com/tiangolo).
 * 🐛 Support custom OpenAPI / JSON Schema fields in the generated output OpenAPI. PR [#1429](https://github.com/tiangolo/fastapi/pull/1429) by [@jmagnusson](https://github.com/jmagnusson).
 
 ## 0.65.3
