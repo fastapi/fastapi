@@ -26,8 +26,15 @@ item_schema = {
     "title": "Item",
     "required": ["name"],
     "type": "object",
-    "x-something-internal": {"level": 4,},
-    "properties": {"name": {"title": "Name", "type": "string",}},
+    "x-something-internal": {
+        "level": 4,
+    },
+    "properties": {
+        "name": {
+            "title": "Name",
+            "type": "string",
+        }
+    },
 }
 
 
