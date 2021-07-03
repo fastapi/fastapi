@@ -64,7 +64,7 @@ $ pip install fastapi[all]
     また、サーバーとして動作するように`uvicorn` をインストールします:
 
     ```
-    pip install uvicorn
+    pip install uvicorn[standard]
     ```
 
     そして、使用したい依存関係をそれぞれ同様にインストールします。

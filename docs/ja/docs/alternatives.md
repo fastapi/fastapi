@@ -408,7 +408,7 @@ Starletteや**FastAPI**のサーバーとして推奨されています。
 
     Gunicornと組み合わせることで、非同期でマルチプロセスなサーバーを持つことがきます。
 
-    詳細は[デプロイ](deployment.md){.internal-link target=_blank}の項目で確認してください。
+    詳細は[デプロイ](deployment/index.md){.internal-link target=_blank}の項目で確認してください。
 
 ## ベンチマーク と スピード
 

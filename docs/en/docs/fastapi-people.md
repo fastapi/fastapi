@@ -112,7 +112,47 @@ The **Top Reviewers** 🕵️ have reviewed the most Pull Requests from others, 
 
 These are the **Sponsors**. 😎
 
-They are supporting my work with **FastAPI** (and others) through <a href="https://github.com/sponsors/tiangolo" class="external-link" target="_blank">GitHub Sponsors</a>.
+They are supporting my work with **FastAPI** (and others), mainly through <a href="https://github.com/sponsors/tiangolo" class="external-link" target="_blank">GitHub Sponsors</a>.
+
+### Gold Sponsors
+
+{% if sponsors %}
+{% for sponsor in sponsors.gold -%}
+<a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}"></a>
+{% endfor %}
+{% endif %}
+
+### Silver Sponsors
+
+{% if sponsors %}
+{% for sponsor in sponsors.silver -%}
+<a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}"></a>
+{% endfor %}
+{% endif %}
+
+### Bronze Sponsors
+
+{% if sponsors %}
+{% for sponsor in sponsors.bronze -%}
+<a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}"></a>
+{% endfor %}
+{% endif %}
+
+### Individual Sponsors
+
+{% if people %}
+{% if people.sponsors_50 %}
+
+<div class="user-list user-list-center">
+{% for user in people.sponsors_50 %}
+
+<div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a></div>
+{% endfor %}
+
+</div>
+
+{% endif %}
+{% endif %}
 
 {% if people %}
 <div class="user-list user-list-center">
@@ -126,10 +166,12 @@ They are supporting my work with **FastAPI** (and others) through <a href="https
 
 ## About the data - technical details
 
-The intention of this page is to highlight the effort of the community to help others.
+The main intention of this page is to highlight the effort of the community to help others.
 
 Especially including efforts that are normally less visible, and in many cases more arduous, like helping others with issues and reviewing Pull Requests with translations.
 
 The data is calculated each month, you can read the <a href="https://github.com/tiangolo/fastapi/blob/master/.github/actions/people/app/main.py" class="external-link" target="_blank">source code here</a>.
+
+Here I'm also highlighting contributions from sponsors.
 
 I also reserve the right to update the algorithm, sections, thresholds, etc (just in case 🤷).

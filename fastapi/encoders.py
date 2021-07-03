@@ -12,9 +12,11 @@ DictIntStrAny = Dict[Union[int, str], Any]
 
 
 def generate_encoders_by_class_tuples(
-    type_encoder_map: Dict[Any, Callable]
-) -> Dict[Callable, Tuple]:
-    encoders_by_class_tuples: Dict[Callable, Tuple] = defaultdict(tuple)
+    type_encoder_map: Dict[Any, Callable[[Any], Any]]
+) -> Dict[Callable[[Any], Any], Tuple[Any, ...]]:
+    encoders_by_class_tuples: Dict[Callable[[Any], Any], Tuple[Any, ...]] = defaultdict(
+        tuple
+    )
     for type_, encoder in type_encoder_map.items():
         encoders_by_class_tuples[encoder] += (type_,)
     return encoders_by_class_tuples
@@ -31,7 +33,7 @@ def jsonable_encoder(
     exclude_unset: bool = False,
     exclude_defaults: bool = False,
     exclude_none: bool = False,
-    custom_encoder: dict = {},
+    custom_encoder: Dict[Any, Callable[[Any], Any]] = {},
     sqlalchemy_safe: bool = True,
 ) -> Any:
     if include is not None and not isinstance(include, set):
@@ -43,8 +45,8 @@ def jsonable_encoder(
         if custom_encoder:
             encoder.update(custom_encoder)
         obj_dict = obj.dict(
-            include=include,
-            exclude=exclude,
+            include=include,  # type: ignore # in Pydantic
+            exclude=exclude,  # type: ignore # in Pydantic
             by_alias=by_alias,
             exclude_unset=exclude_unset,
             exclude_none=exclude_none,

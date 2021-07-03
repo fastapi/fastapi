@@ -40,7 +40,7 @@ Import the `Response` class (sub-class) you want to use and declare it in the *p
 To return a response with HTML directly from **FastAPI**, use `HTMLResponse`.
 
 * Import `HTMLResponse`.
-* Pass `HTMLResponse` as the parameter `content_type` of your *path operation*.
+* Pass `HTMLResponse` as the parameter `response_class` of your *path operation decorator*.
 
 ```Python hl_lines="2  7"
 {!../../../docs_src/custom_response/tutorial002.py!}

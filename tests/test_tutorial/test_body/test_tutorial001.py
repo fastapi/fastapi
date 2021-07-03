@@ -173,25 +173,91 @@ def test_post_body(path, body, expected_status, expected_response):
 
 
 def test_post_broken_body():
+    response = client.post(
+        "/items/",
+        headers={"content-type": "application/json"},
+        data="{some broken json}",
+    )
+    assert response.status_code == 422, response.text
+    assert response.json() == {
+        "detail": [
+            {
+                "loc": ["body", 1],
+                "msg": "Expecting property name enclosed in double quotes: line 1 column 2 (char 1)",
+                "type": "value_error.jsondecode",
+                "ctx": {
+                    "msg": "Expecting property name enclosed in double quotes",
+                    "doc": "{some broken json}",
+                    "pos": 1,
+                    "lineno": 1,
+                    "colno": 2,
+                },
+            }
+        ]
+    }
+
+
+def test_post_form_for_json():
     response = client.post("/items/", data={"name": "Foo", "price": 50.5})
     assert response.status_code == 422, response.text
     assert response.json() == {
         "detail": [
             {
-                "ctx": {
-                    "colno": 1,
-                    "doc": "name=Foo&price=50.5",
-                    "lineno": 1,
-                    "msg": "Expecting value",
-                    "pos": 0,
-                },
-                "loc": ["body", 0],
-                "msg": "Expecting value: line 1 column 1 (char 0)",
-                "type": "value_error.jsondecode",
+                "loc": ["body"],
+                "msg": "value is not a valid dict",
+                "type": "type_error.dict",
             }
         ]
     }
+
+
+def test_explicit_content_type():
+    response = client.post(
+        "/items/",
+        data='{"name": "Foo", "price": 50.5}',
+        headers={"Content-Type": "application/json"},
+    )
+    assert response.status_code == 200, response.text
+
+
+def test_geo_json():
+    response = client.post(
+        "/items/",
+        data='{"name": "Foo", "price": 50.5}',
+        headers={"Content-Type": "application/geo+json"},
+    )
+    assert response.status_code == 200, response.text
+
+
+def test_wrong_headers():
+    data = '{"name": "Foo", "price": 50.5}'
+    invalid_dict = {
+        "detail": [
+            {
+                "loc": ["body"],
+                "msg": "value is not a valid dict",
+                "type": "type_error.dict",
+            }
+        ]
+    }
+
+    response = client.post("/items/", data=data, headers={"Content-Type": "text/plain"})
+    assert response.status_code == 422, response.text
+    assert response.json() == invalid_dict
+
+    response = client.post(
+        "/items/", data=data, headers={"Content-Type": "application/geo+json-seq"}
+    )
+    assert response.status_code == 422, response.text
+    assert response.json() == invalid_dict
+    response = client.post(
+        "/items/", data=data, headers={"Content-Type": "application/not-really-json"}
+    )
+    assert response.status_code == 422, response.text
+    assert response.json() == invalid_dict
+
+
+def test_other_exceptions():
     with patch("json.loads", side_effect=Exception):
         response = client.post("/items/", json={"test": "test2"})
         assert response.status_code == 400, response.text
-    assert response.json() == {"detail": "There was an error parsing the body"}
