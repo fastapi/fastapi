@@ -55,6 +55,7 @@ nav:
 - python-types.md
 - Tutorial - Guía de Usuario:
   - tutorial/index.md
+  - tutorial/first-steps.md
 - Guía de Usuario Avanzada:
   - advanced/index.md
 - async.md
