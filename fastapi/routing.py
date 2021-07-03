@@ -233,7 +233,7 @@ def get_request_handler(
                 is_coroutine=is_coroutine,
             )
             response = actual_response_class(
-                content=response_data,
+                response_data,
                 status_code=status_code,
                 background=background_tasks,  # type: ignore # in Starlette
             )
