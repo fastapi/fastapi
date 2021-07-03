@@ -97,7 +97,7 @@ Toda la validación de datos es realizada tras bastidores por <a href="https://p
 
 Puedes usar las mismas declaraciones de tipos con `str`, `float`, `bool` y otros tipos de datos más complejos.
 
-Exploraremos varios de estos tipoes en los próximos capítulos del tutorial.
+Exploraremos varios de estos tipos en los próximos capítulos del tutorial.
 
 ## El orden importa
 
@@ -105,9 +105,9 @@ Cuando creas *operaciones de path* puedes encontrarte con situaciones en las que
 
 Digamos algo como `/users/me` que sea para obtener datos del usuario actual.
 
-... y luego puedes tener el path `/users/{user_id}` para obtener los datos sobre un usuario específico sobre un ID de usuario.
+... y luego puedes tener el path `/users/{user_id}` para obtener los datos sobre un usuario específico asociados a un ID de usuario.
 
-Porque las *operaciones de path* son evaluadas en orden, tienes que asegurarte que el path para `/users/me` sea declarado antes que el path para `/users/{user_id}`:
+Porque las *operaciones de path* son evaluadas en orden, tienes que asegurarte de que el path para `/users/me` sea declarado antes que el path para `/users/{user_id}`:
 
 ```Python hl_lines="6  11"
 {!../../../docs_src/path_params/tutorial003.py!}
@@ -197,27 +197,27 @@ En tu cliente obtendrás una respuesta en JSON como:
 
 Digamos que tienes una *operación de path* con un path `/files/{file_path}`.
 
-Pero necesitas que el mismo `file_path` contenga un *path* como `home/johndoe/myfile.txt`.
+Pero necesitas que el mismo `file_path` contenga un path como `home/johndoe/myfile.txt`.
 
 Entonces, la URL para ese archivo sería algo como: `/files/home/johndoe/myfile.txt`.
 
 ### Soporte de OpenAPI
 
-OpenAPI no soporta una manera de declarar un *parámetro de path* que contenga un *path*, dado que esto podría llevar a escenarios que son difíciles de probar y definir.
+OpenAPI no soporta una manera de declarar un *parámetro de path* que contenga un path, dado que esto podría llevar a escenarios que son difíciles de probar y definir.
 
 Sin embargo, lo puedes hacer en **FastAPI** usando una de las herramientas internas de Starlette.
 
-La documentación seguirá funcionando, aunque no añadirá ninguna documentación diciendo que el parámetro debería contener un path.
+La documentación seguirá funcionando, aunque no añadirá ninguna información diciendo que el parámetro debería contener un path.
 
 ### Convertidor de path
 
-Usando una opción directamente desde Starlette puedes declarar un *parámetro de path* que contenga un *path* usando una URL como:
+Usando una opción directamente desde Starlette puedes declarar un *parámetro de path* que contenga un path usando una URL como:
 
 ```
 /files/{file_path:path}
 ```
 
-En este caso el nombre del parámetro es `file_path` y la última parte, `:path`, le dice que el parámetro debería coincidir con cualquier *path*.
+En este caso el nombre del parámetro es `file_path` y la última parte, `:path`, le dice que el parámetro debería coincidir con cualquier path.
 
 Entonces lo puedes usar con:
 
