@@ -184,7 +184,9 @@ def get_request_handler(
                     if body_bytes:
                         json_body: Any = Undefined
                         content_type_value = request.headers.get("content-type")
-                        if content_type_value:
+                        if not content_type_value:
+                            json_body = await request.json()
+                        else:
                             message = email.message.Message()
                             message["content-type"] = content_type_value
                             if message.get_content_maintype() == "application":
