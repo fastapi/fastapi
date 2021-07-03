@@ -42,3 +42,10 @@ def test_custom_response_schema():
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
     assert response.json()["components"]["schemas"]["Item"] == item_schema
+
+
+def test_response():
+    # For coverage
+    response = client.get("/foo")
+    assert response.status_code == 200, response.text
+    assert response.json() == {"name": "Foo item"}
