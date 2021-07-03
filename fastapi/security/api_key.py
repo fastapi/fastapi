@@ -12,7 +12,9 @@ class APIKeyBase(SecurityBase):
 
 
 class APIKeyQuery(APIKeyBase):
-    def __init__(self, *, name: str, scheme_name: str = None, auto_error: bool = True):
+    def __init__(
+        self, *, name: str, scheme_name: Optional[str] = None, auto_error: bool = True
+    ):
         self.model: APIKey = APIKey(**{"in": APIKeyIn.query}, name=name)
         self.scheme_name = scheme_name or self.__class__.__name__
         self.auto_error = auto_error
@@ -30,7 +32,9 @@ class APIKeyQuery(APIKeyBase):
 
 
 class APIKeyHeader(APIKeyBase):
-    def __init__(self, *, name: str, scheme_name: str = None, auto_error: bool = True):
+    def __init__(
+        self, *, name: str, scheme_name: Optional[str] = None, auto_error: bool = True
+    ):
         self.model: APIKey = APIKey(**{"in": APIKeyIn.header}, name=name)
         self.scheme_name = scheme_name or self.__class__.__name__
         self.auto_error = auto_error
@@ -48,7 +52,9 @@ class APIKeyHeader(APIKeyBase):
 
 
 class APIKeyCookie(APIKeyBase):
-    def __init__(self, *, name: str, scheme_name: str = None, auto_error: bool = True):
+    def __init__(
+        self, *, name: str, scheme_name: Optional[str] = None, auto_error: bool = True
+    ):
         self.model: APIKey = APIKey(**{"in": APIKeyIn.cookie}, name=name)
         self.scheme_name = scheme_name or self.__class__.__name__
         self.auto_error = auto_error

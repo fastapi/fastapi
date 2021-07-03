@@ -1,3 +1,5 @@
+from typing import Optional
+
 from fastapi import FastAPI, Header, HTTPException
 from pydantic import BaseModel
 
@@ -14,7 +16,7 @@ app = FastAPI()
 class Item(BaseModel):
     id: str
     title: str
-    description: str = None
+    description: Optional[str] = None
 
 
 @app.get("/items/{item_id}", response_model=Item)

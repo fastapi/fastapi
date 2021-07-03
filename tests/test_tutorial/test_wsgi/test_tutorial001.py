@@ -1,6 +1,6 @@
 from fastapi.testclient import TestClient
 
-from wsgi.tutorial001 import app
+from docs_src.wsgi.tutorial001 import app
 
 client = TestClient(app)
 

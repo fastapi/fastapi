@@ -1,7 +1,7 @@
 import pytest
 from fastapi.testclient import TestClient
 
-from query_params.tutorial005 import app
+from docs_src.query_params.tutorial005 import app
 
 client = TestClient(app)
 

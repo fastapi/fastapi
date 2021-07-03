@@ -2,29 +2,18 @@ from enum import Enum
 from typing import Any, Callable, Dict, Iterable, List, Optional, Union
 
 from fastapi.logger import logger
-from pydantic import BaseModel
+from pydantic import AnyUrl, BaseModel, Field
 
 try:
-    from pydantic import AnyUrl, Field
-except ImportError:  # pragma: nocover
-    # TODO: remove when removing support for Pydantic < 1.0.0
-    from pydantic import Schema as Field  # type: ignore
-    from pydantic import UrlStr as AnyUrl  # type: ignore
-
-try:
-    import email_validator
+    import email_validator  # type: ignore
 
     assert email_validator  # make autoflake ignore the unused import
-    try:
-        from pydantic import EmailStr
-    except ImportError:  # pragma: nocover
-        # TODO: remove when removing support for Pydantic < 1.0.0
-        from pydantic.types import EmailStr  # type: ignore
+    from pydantic import EmailStr
 except ImportError:  # pragma: no cover
 
     class EmailStr(str):  # type: ignore
         @classmethod
-        def __get_validators__(cls) -> Iterable[Callable]:
+        def __get_validators__(cls) -> Iterable[Callable[..., Any]]:
             yield cls.validate
 
         @classmethod
@@ -63,7 +52,7 @@ class ServerVariable(BaseModel):
 
 
 class Server(BaseModel):
-    url: AnyUrl
+    url: Union[AnyUrl, str]
     description: Optional[str] = None
     variables: Optional[Dict[str, ServerVariable]] = None
 
@@ -112,7 +101,7 @@ class SchemaBase(BaseModel):
     allOf: Optional[List[Any]] = None
     oneOf: Optional[List[Any]] = None
     anyOf: Optional[List[Any]] = None
-    not_: Optional[List[Any]] = Field(None, alias="not")
+    not_: Optional[Any] = Field(None, alias="not")
     items: Optional[Any] = None
     properties: Optional[Dict[str, Any]] = None
     additionalProperties: Optional[Union[Dict[str, Any], bool]] = None
@@ -136,7 +125,7 @@ class Schema(SchemaBase):
     allOf: Optional[List[SchemaBase]] = None
     oneOf: Optional[List[SchemaBase]] = None
     anyOf: Optional[List[SchemaBase]] = None
-    not_: Optional[List[SchemaBase]] = Field(None, alias="not")
+    not_: Optional[SchemaBase] = Field(None, alias="not")
     items: Optional[SchemaBase] = None
     properties: Optional[Dict[str, SchemaBase]] = None
     additionalProperties: Optional[Union[Dict[str, Any], bool]] = None

@@ -332,7 +332,7 @@ openapi_schema = {
 @pytest.fixture(scope="module")
 def client():
     # Import while creating the client to create the DB after starting the test session
-    from sql_databases_peewee.sql_app.main import app
+    from docs_src.sql_databases_peewee.sql_app.main import app
 
     test_db = Path("./test.db")
     with TestClient(app) as c:

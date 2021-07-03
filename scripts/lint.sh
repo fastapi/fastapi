@@ -4,5 +4,6 @@ set -e
 set -x
 
 mypy fastapi
+flake8 fastapi tests
 black fastapi tests --check
-isort --multi-line=3 --trailing-comma --force-grid-wrap=0 --combine-as --line-width 88 --recursive --check-only --thirdparty fastapi fastapi tests
+isort fastapi tests docs_src scripts --check-only

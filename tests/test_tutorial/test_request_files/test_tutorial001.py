@@ -2,7 +2,7 @@ import os
 
 from fastapi.testclient import TestClient
 
-from request_files.tutorial001 import app
+from docs_src.request_files.tutorial001 import app
 
 client = TestClient(app)
 

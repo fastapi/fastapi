@@ -1,0 +1,30 @@
+name: Issue Manager
+
+on:
+  schedule:
+    - cron: "0 0 * * *"
+  issue_comment:
+    types:
+      - created
+  issues:
+    types:
+      - labeled
+  pull_request_target:
+    types:
+      - labeled
+  workflow_dispatch:
+
+jobs:
+  issue-manager:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: tiangolo/issue-manager@0.4.0
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          config: >
+            {
+              "answered": {
+                "delay": 864000,
+                "message": "Assuming the original need was handled, this will be automatically closed now. But feel free to add more comments or create new issues or PRs."
+              }
+            }

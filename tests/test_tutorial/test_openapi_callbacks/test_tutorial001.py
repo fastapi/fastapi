@@ -1,6 +1,6 @@
 from fastapi.testclient import TestClient
 
-from openapi_callbacks.tutorial001 import app, invoice_notification
+from docs_src.openapi_callbacks.tutorial001 import app, invoice_notification
 
 client = TestClient(app)
 

@@ -1,8 +1,8 @@
 # Python Types Intro
 
-**Python 3.6+** has support for optional "type hints".
+Python has support for optional "type hints".
 
-These **"type hints"** are a new syntax (since Python 3.6+) that allow declaring the <abbr title="for example: str, int, float, bool">type</abbr> of a variable.
+These **"type hints"** are a special syntax that allow declaring the <abbr title="for example: str, int, float, bool">type</abbr> of a variable.
 
 By declaring types for your variables, editors and tools can give you better support.
 
@@ -144,15 +144,15 @@ You can use, for example:
 {!../../../docs_src/python_types/tutorial005.py!}
 ```
 
-### Types with subtypes
+### Generic types with type parameters
 
 There are some data structures that can contain other values, like `dict`, `list`, `set` and `tuple`. And the internal values can have their own type too.
 
-To declare those types and the subtypes, you can use the standard Python module `typing`.
+To declare those types and the internal types, you can use the standard Python module `typing`.
 
 It exists specifically to support these type hints.
 
-#### Lists
+#### `List`
 
 For example, let's define a variable to be a `list` of `str`.
 
@@ -166,29 +166,34 @@ Declare the variable, with the same colon (`:`) syntax.
 
 As the type, put the `List`.
 
-As the list is a type that takes a "subtype", you put the subtype in square brackets:
+As the list is a type that contains some internal types, you put them in square brackets:
 
 ```Python hl_lines="4"
 {!../../../docs_src/python_types/tutorial006.py!}
 ```
 
+!!! tip
+    Those internal types in the square brackets are called "type parameters".
+
+    In this case, `str` is the type parameter passed to `List`.
+
 That means: "the variable `items` is a `list`, and each of the items in this list is a `str`".
 
-By doing that, your editor can provide support even while processing items from the list.
-
-Without types, that's almost impossible to achieve:
+By doing that, your editor can provide support even while processing items from the list:
 
 <img src="/img/python-types/image05.png">
+
+Without types, that's almost impossible to achieve.
 
 Notice that the variable `item` is one of the elements in the list `items`.
 
 And still, the editor knows it is a `str`, and provides support for that.
 
-#### Tuples and Sets
+#### `Tuple` and `Set`
 
 You would do the same to declare `tuple`s and `set`s:
 
-```Python hl_lines="1 4"
+```Python hl_lines="1  4"
 {!../../../docs_src/python_types/tutorial007.py!}
 ```
 
@@ -197,15 +202,15 @@ This means:
 * The variable `items_t` is a `tuple` with 3 items, an `int`, another `int`, and a `str`.
 * The variable `items_s` is a `set`, and each of its items is of type `bytes`.
 
-#### Dicts
+#### `Dict`
 
-To define a `dict`, you pass 2 subtypes, separated by commas.
+To define a `dict`, you pass 2 type parameters, separated by commas.
 
-The first subtype is for the keys of the `dict`.
+The first type parameter is for the keys of the `dict`.
 
-The second subtype is for the values of the `dict`:
+The second type parameter is for the values of the `dict`:
 
-```Python hl_lines="1 4"
+```Python hl_lines="1  4"
 {!../../../docs_src/python_types/tutorial008.py!}
 ```
 
@@ -215,20 +220,43 @@ This means:
     * The keys of this `dict` are of type `str` (let's say, the name of each item).
     * The values of this `dict` are of type `float` (let's say, the price of each item).
 
+#### `Optional`
+
+You can also use `Optional` to declare that a variable has a type, like `str`, but that it is "optional", which means that it could also be `None`:
+
+```Python hl_lines="1  4"
+{!../../../docs_src/python_types/tutorial009.py!}
+```
+
+Using `Optional[str]` instead of just `str` will let the editor help you detecting errors where you could be assuming that a value is always a `str`, when it could actually be `None` too.
+
+#### Generic types
+
+These types that take type parameters in square brackets, like:
+
+* `List`
+* `Tuple`
+* `Set`
+* `Dict`
+* `Optional`
+* ...and others.
+
+are called **Generic types** or **Generics**.
+
 ### Classes as types
 
 You can also declare a class as the type of a variable.
 
 Let's say you have a class `Person`, with a name:
 
-```Python hl_lines="1 2 3"
-{!../../../docs_src/python_types/tutorial009.py!}
+```Python hl_lines="1-3"
+{!../../../docs_src/python_types/tutorial010.py!}
 ```
 
 Then you can declare a variable to be of type `Person`:
 
 ```Python hl_lines="6"
-{!../../../docs_src/python_types/tutorial009.py!}
+{!../../../docs_src/python_types/tutorial010.py!}
 ```
 
 And then, again, you get all the editor support:
@@ -250,7 +278,7 @@ And you get all the editor support with that resulting object.
 Taken from the official Pydantic docs:
 
 ```Python
-{!../../../docs_src/python_types/tutorial010.py!}
+{!../../../docs_src/python_types/tutorial011.py!}
 ```
 
 !!! info

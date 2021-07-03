@@ -1,4 +1,5 @@
 from datetime import datetime, time, timedelta
+from typing import Optional
 from uuid import UUID
 
 from fastapi import Body, FastAPI
@@ -9,10 +10,10 @@ app = FastAPI()
 @app.put("/items/{item_id}")
 async def read_items(
     item_id: UUID,
-    start_datetime: datetime = Body(None),
-    end_datetime: datetime = Body(None),
-    repeat_at: time = Body(None),
-    process_after: timedelta = Body(None),
+    start_datetime: Optional[datetime] = Body(None),
+    end_datetime: Optional[datetime] = Body(None),
+    repeat_at: Optional[time] = Body(None),
+    process_after: Optional[timedelta] = Body(None),
 ):
     start_process = start_datetime + process_after
     duration = end_datetime - start_process

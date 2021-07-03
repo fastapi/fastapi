@@ -976,8 +976,8 @@ openapi_schema = {
                         },
                     },
                 },
-                "summary": "Get Query Type Optional",
-                "operationId": "get_query_type_optional_query_int_default_get",
+                "summary": "Get Query Type Int Default",
+                "operationId": "get_query_type_int_default_query_int_default_get",
                 "parameters": [
                     {
                         "required": False,
@@ -1078,6 +1078,18 @@ openapi_schema = {
                 ],
             }
         },
+        "/enum-status-code": {
+            "get": {
+                "responses": {
+                    "201": {
+                        "description": "Successful Response",
+                        "content": {"application/json": {"schema": {}}},
+                    },
+                },
+                "summary": "Get Enum Status Code",
+                "operationId": "get_enum_status_code_enum_status_code_get",
+            }
+        },
     },
     "components": {
         "schemas": {
@@ -1132,7 +1144,7 @@ def test_swagger_ui():
     assert response.headers["content-type"] == "text/html; charset=utf-8"
     assert "swagger-ui-dist" in response.text
     assert (
-        f"oauth2RedirectUrl: window.location.origin + '/docs/oauth2-redirect'"
+        "oauth2RedirectUrl: window.location.origin + '/docs/oauth2-redirect'"
         in response.text
     )
 
@@ -1149,3 +1161,9 @@ def test_redoc():
     assert response.status_code == 200, response.text
     assert response.headers["content-type"] == "text/html; charset=utf-8"
     assert "redoc@next" in response.text
+
+
+def test_enum_status_code_response():
+    response = client.get("/enum-status-code")
+    assert response.status_code == 201, response.text
+    assert response.json() == "foo bar"

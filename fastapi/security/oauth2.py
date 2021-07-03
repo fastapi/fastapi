@@ -1,7 +1,8 @@
-from typing import List, Optional
+from typing import Any, Dict, List, Optional, Union
 
 from fastapi.exceptions import HTTPException
-from fastapi.openapi.models import OAuth2 as OAuth2Model, OAuthFlows as OAuthFlowsModel
+from fastapi.openapi.models import OAuth2 as OAuth2Model
+from fastapi.openapi.models import OAuthFlows as OAuthFlowsModel
 from fastapi.param_functions import Form
 from fastapi.security.base import SecurityBase
 from fastapi.security.utils import get_authorization_scheme_param
@@ -14,7 +15,7 @@ class OAuth2PasswordRequestForm:
     This is a dependency class, use it like:
 
         @app.post("/login")
-        def login(form_data: Oauth2PasswordRequestForm = Depends()):
+        def login(form_data: OAuth2PasswordRequestForm = Depends()):
             data = form_data.parse()
             print(data.username)
             print(data.password)
@@ -26,7 +27,7 @@ class OAuth2PasswordRequestForm:
                 print(data.client_secret)
             return data
 
-    
+
     It creates the following Form request parameters in your endpoint:
 
     grant_type: the OAuth2 spec says it is required and MUST be the fixed string "password".
@@ -64,7 +65,7 @@ class OAuth2PasswordRequestFormStrict(OAuth2PasswordRequestForm):
     This is a dependency class, use it like:
 
         @app.post("/login")
-        def login(form_data: Oauth2PasswordRequestFormStrict = Depends()):
+        def login(form_data: OAuth2PasswordRequestFormStrict = Depends()):
             data = form_data.parse()
             print(data.username)
             print(data.password)
@@ -76,7 +77,7 @@ class OAuth2PasswordRequestFormStrict(OAuth2PasswordRequestForm):
                 print(data.client_secret)
             return data
 
-    
+
     It creates the following Form request parameters in your endpoint:
 
     grant_type: the OAuth2 spec says it is required and MUST be the fixed string "password".
@@ -115,9 +116,9 @@ class OAuth2(SecurityBase):
     def __init__(
         self,
         *,
-        flows: OAuthFlowsModel = OAuthFlowsModel(),
-        scheme_name: str = None,
-        auto_error: bool = True
+        flows: Union[OAuthFlowsModel, Dict[str, Dict[str, Any]]] = OAuthFlowsModel(),
+        scheme_name: Optional[str] = None,
+        auto_error: Optional[bool] = True
     ):
         self.model = OAuth2Model(flows=flows)
         self.scheme_name = scheme_name or self.__class__.__name__
@@ -139,8 +140,8 @@ class OAuth2PasswordBearer(OAuth2):
     def __init__(
         self,
         tokenUrl: str,
-        scheme_name: str = None,
-        scopes: dict = None,
+        scheme_name: Optional[str] = None,
+        scopes: Optional[Dict[str, str]] = None,
         auto_error: bool = True,
     ):
         if not scopes:
@@ -168,9 +169,9 @@ class OAuth2AuthorizationCodeBearer(OAuth2):
         self,
         authorizationUrl: str,
         tokenUrl: str,
-        refreshUrl: str = None,
-        scheme_name: str = None,
-        scopes: dict = None,
+        refreshUrl: Optional[str] = None,
+        scheme_name: Optional[str] = None,
+        scopes: Optional[Dict[str, str]] = None,
         auto_error: bool = True,
     ):
         if not scopes:
@@ -201,6 +202,6 @@ class OAuth2AuthorizationCodeBearer(OAuth2):
 
 
 class SecurityScopes:
-    def __init__(self, scopes: List[str] = None):
+    def __init__(self, scopes: Optional[List[str]] = None):
         self.scopes = scopes or []
         self.scope_str = " ".join(self.scopes)

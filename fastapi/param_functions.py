@@ -1,22 +1,25 @@
-from typing import Any, Callable, Sequence
+from typing import Any, Callable, Dict, Optional, Sequence
 
 from fastapi import params
+from pydantic.fields import Undefined
 
 
 def Path(  # noqa: N802
     default: Any,
     *,
-    alias: str = None,
-    title: str = None,
-    description: str = None,
-    gt: float = None,
-    ge: float = None,
-    lt: float = None,
-    le: float = None,
-    min_length: int = None,
-    max_length: int = None,
-    regex: str = None,
-    deprecated: bool = None,
+    alias: Optional[str] = None,
+    title: Optional[str] = None,
+    description: Optional[str] = None,
+    gt: Optional[float] = None,
+    ge: Optional[float] = None,
+    lt: Optional[float] = None,
+    le: Optional[float] = None,
+    min_length: Optional[int] = None,
+    max_length: Optional[int] = None,
+    regex: Optional[str] = None,
+    example: Any = Undefined,
+    examples: Optional[Dict[str, Any]] = None,
+    deprecated: Optional[bool] = None,
     **extra: Any,
 ) -> Any:
     return params.Path(
@@ -31,6 +34,8 @@ def Path(  # noqa: N802
         min_length=min_length,
         max_length=max_length,
         regex=regex,
+        example=example,
+        examples=examples,
         deprecated=deprecated,
         **extra,
     )
@@ -39,17 +44,19 @@ def Path(  # noqa: N802
 def Query(  # noqa: N802
     default: Any,
     *,
-    alias: str = None,
-    title: str = None,
-    description: str = None,
-    gt: float = None,
-    ge: float = None,
-    lt: float = None,
-    le: float = None,
-    min_length: int = None,
-    max_length: int = None,
-    regex: str = None,
-    deprecated: bool = None,
+    alias: Optional[str] = None,
+    title: Optional[str] = None,
+    description: Optional[str] = None,
+    gt: Optional[float] = None,
+    ge: Optional[float] = None,
+    lt: Optional[float] = None,
+    le: Optional[float] = None,
+    min_length: Optional[int] = None,
+    max_length: Optional[int] = None,
+    regex: Optional[str] = None,
+    example: Any = Undefined,
+    examples: Optional[Dict[str, Any]] = None,
+    deprecated: Optional[bool] = None,
     **extra: Any,
 ) -> Any:
     return params.Query(
@@ -64,6 +71,8 @@ def Query(  # noqa: N802
         min_length=min_length,
         max_length=max_length,
         regex=regex,
+        example=example,
+        examples=examples,
         deprecated=deprecated,
         **extra,
     )
@@ -72,18 +81,20 @@ def Query(  # noqa: N802
 def Header(  # noqa: N802
     default: Any,
     *,
-    alias: str = None,
+    alias: Optional[str] = None,
     convert_underscores: bool = True,
-    title: str = None,
-    description: str = None,
-    gt: float = None,
-    ge: float = None,
-    lt: float = None,
-    le: float = None,
-    min_length: int = None,
-    max_length: int = None,
-    regex: str = None,
-    deprecated: bool = None,
+    title: Optional[str] = None,
+    description: Optional[str] = None,
+    gt: Optional[float] = None,
+    ge: Optional[float] = None,
+    lt: Optional[float] = None,
+    le: Optional[float] = None,
+    min_length: Optional[int] = None,
+    max_length: Optional[int] = None,
+    regex: Optional[str] = None,
+    example: Any = Undefined,
+    examples: Optional[Dict[str, Any]] = None,
+    deprecated: Optional[bool] = None,
     **extra: Any,
 ) -> Any:
     return params.Header(
@@ -99,6 +110,8 @@ def Header(  # noqa: N802
         min_length=min_length,
         max_length=max_length,
         regex=regex,
+        example=example,
+        examples=examples,
         deprecated=deprecated,
         **extra,
     )
@@ -107,17 +120,19 @@ def Header(  # noqa: N802
 def Cookie(  # noqa: N802
     default: Any,
     *,
-    alias: str = None,
-    title: str = None,
-    description: str = None,
-    gt: float = None,
-    ge: float = None,
-    lt: float = None,
-    le: float = None,
-    min_length: int = None,
-    max_length: int = None,
-    regex: str = None,
-    deprecated: bool = None,
+    alias: Optional[str] = None,
+    title: Optional[str] = None,
+    description: Optional[str] = None,
+    gt: Optional[float] = None,
+    ge: Optional[float] = None,
+    lt: Optional[float] = None,
+    le: Optional[float] = None,
+    min_length: Optional[int] = None,
+    max_length: Optional[int] = None,
+    regex: Optional[str] = None,
+    example: Any = Undefined,
+    examples: Optional[Dict[str, Any]] = None,
+    deprecated: Optional[bool] = None,
     **extra: Any,
 ) -> Any:
     return params.Cookie(
@@ -132,6 +147,8 @@ def Cookie(  # noqa: N802
         min_length=min_length,
         max_length=max_length,
         regex=regex,
+        example=example,
+        examples=examples,
         deprecated=deprecated,
         **extra,
     )
@@ -142,16 +159,18 @@ def Body(  # noqa: N802
     *,
     embed: bool = False,
     media_type: str = "application/json",
-    alias: str = None,
-    title: str = None,
-    description: str = None,
-    gt: float = None,
-    ge: float = None,
-    lt: float = None,
-    le: float = None,
-    min_length: int = None,
-    max_length: int = None,
-    regex: str = None,
+    alias: Optional[str] = None,
+    title: Optional[str] = None,
+    description: Optional[str] = None,
+    gt: Optional[float] = None,
+    ge: Optional[float] = None,
+    lt: Optional[float] = None,
+    le: Optional[float] = None,
+    min_length: Optional[int] = None,
+    max_length: Optional[int] = None,
+    regex: Optional[str] = None,
+    example: Any = Undefined,
+    examples: Optional[Dict[str, Any]] = None,
     **extra: Any,
 ) -> Any:
     return params.Body(
@@ -168,6 +187,8 @@ def Body(  # noqa: N802
         min_length=min_length,
         max_length=max_length,
         regex=regex,
+        example=example,
+        examples=examples,
         **extra,
     )
 
@@ -176,16 +197,18 @@ def Form(  # noqa: N802
     default: Any,
     *,
     media_type: str = "application/x-www-form-urlencoded",
-    alias: str = None,
-    title: str = None,
-    description: str = None,
-    gt: float = None,
-    ge: float = None,
-    lt: float = None,
-    le: float = None,
-    min_length: int = None,
-    max_length: int = None,
-    regex: str = None,
+    alias: Optional[str] = None,
+    title: Optional[str] = None,
+    description: Optional[str] = None,
+    gt: Optional[float] = None,
+    ge: Optional[float] = None,
+    lt: Optional[float] = None,
+    le: Optional[float] = None,
+    min_length: Optional[int] = None,
+    max_length: Optional[int] = None,
+    regex: Optional[str] = None,
+    example: Any = Undefined,
+    examples: Optional[Dict[str, Any]] = None,
     **extra: Any,
 ) -> Any:
     return params.Form(
@@ -201,6 +224,8 @@ def Form(  # noqa: N802
         min_length=min_length,
         max_length=max_length,
         regex=regex,
+        example=example,
+        examples=examples,
         **extra,
     )
 
@@ -209,16 +234,18 @@ def File(  # noqa: N802
     default: Any,
     *,
     media_type: str = "multipart/form-data",
-    alias: str = None,
-    title: str = None,
-    description: str = None,
-    gt: float = None,
-    ge: float = None,
-    lt: float = None,
-    le: float = None,
-    min_length: int = None,
-    max_length: int = None,
-    regex: str = None,
+    alias: Optional[str] = None,
+    title: Optional[str] = None,
+    description: Optional[str] = None,
+    gt: Optional[float] = None,
+    ge: Optional[float] = None,
+    lt: Optional[float] = None,
+    le: Optional[float] = None,
+    min_length: Optional[int] = None,
+    max_length: Optional[int] = None,
+    regex: Optional[str] = None,
+    example: Any = Undefined,
+    examples: Optional[Dict[str, Any]] = None,
     **extra: Any,
 ) -> Any:
     return params.File(
@@ -234,17 +261,22 @@ def File(  # noqa: N802
         min_length=min_length,
         max_length=max_length,
         regex=regex,
+        example=example,
+        examples=examples,
         **extra,
     )
 
 
 def Depends(  # noqa: N802
-    dependency: Callable = None, *, use_cache: bool = True
+    dependency: Optional[Callable[..., Any]] = None, *, use_cache: bool = True
 ) -> Any:
     return params.Depends(dependency=dependency, use_cache=use_cache)
 
 
 def Security(  # noqa: N802
-    dependency: Callable = None, *, scopes: Sequence[str] = None, use_cache: bool = True
+    dependency: Optional[Callable[..., Any]] = None,
+    *,
+    scopes: Optional[Sequence[str]] = None,
+    use_cache: bool = True,
 ) -> Any:
     return params.Security(dependency=dependency, scopes=scopes, use_cache=use_cache)

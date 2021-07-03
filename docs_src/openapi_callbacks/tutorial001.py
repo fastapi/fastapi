@@ -1,5 +1,6 @@
+from typing import Optional
+
 from fastapi import APIRouter, FastAPI
-from fastapi.responses import JSONResponse
 from pydantic import BaseModel, HttpUrl
 
 app = FastAPI()
@@ -7,7 +8,7 @@ app = FastAPI()
 
 class Invoice(BaseModel):
     id: str
-    title: str = None
+    title: Optional[str] = None
     customer: str
     total: float
 
@@ -21,18 +22,18 @@ class InvoiceEventReceived(BaseModel):
     ok: bool
 
 
-invoices_callback_router = APIRouter(default_response_class=JSONResponse)
+invoices_callback_router = APIRouter()
 
 
 @invoices_callback_router.post(
-    "{$callback_url}/invoices/{$request.body.id}", response_model=InvoiceEventReceived,
+    "{$callback_url}/invoices/{$request.body.id}", response_model=InvoiceEventReceived
 )
 def invoice_notification(body: InvoiceEvent):
     pass
 
 
 @app.post("/invoices/", callbacks=invoices_callback_router.routes)
-def create_invoice(invoice: Invoice, callback_url: HttpUrl = None):
+def create_invoice(invoice: Invoice, callback_url: Optional[HttpUrl] = None):
     """
     Create an invoice.
 

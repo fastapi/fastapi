@@ -288,7 +288,7 @@ def client():
     if test_db.is_file():  # pragma: nocover
         test_db.unlink()
     # Import while creating the client to create the DB after starting the test session
-    from sql_databases.sql_app import main
+    from docs_src.sql_databases.sql_app import main
 
     # Ensure import side effects are re-executed
     importlib.reload(main)

@@ -21,7 +21,7 @@ $ pip install aiofiles
 * Import `StaticFiles`.
 * "Mount" a `StaticFiles()` instance in a specific path.
 
-```Python hl_lines="2 6"
+```Python hl_lines="2  6"
 {!../../../docs_src/static_files/tutorial001.py!}
 ```
 

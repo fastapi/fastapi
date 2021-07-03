@@ -23,7 +23,7 @@ Later, for your production application, you might want to use a database server 
 * Create a `metadata` object.
 * Create a table `notes` using the `metadata` object.
 
-```Python hl_lines="4 14 16 17 18 19 20 21 22"
+```Python hl_lines="4  14  16-22"
 {!../../../docs_src/async_sql_databases/tutorial001.py!}
 ```
 
@@ -38,7 +38,7 @@ Later, for your production application, you might want to use a database server 
 * Create a `DATABASE_URL`.
 * Create a `database` object.
 
-```Python hl_lines="3 9 12"
+```Python hl_lines="3  9  12"
 {!../../../docs_src/async_sql_databases/tutorial001.py!}
 ```
 
@@ -54,7 +54,7 @@ Here, this section would run directly, right before starting your **FastAPI** ap
 * Create an `engine`.
 * Create all the tables from the `metadata` object.
 
-```Python hl_lines="25 26 27 28"
+```Python hl_lines="25-28"
 {!../../../docs_src/async_sql_databases/tutorial001.py!}
 ```
 
@@ -65,7 +65,7 @@ Create Pydantic models for:
 * Notes to be created (`NoteIn`).
 * Notes to be returned (`Note`).
 
-```Python hl_lines="31 32 33 36 37 38 39"
+```Python hl_lines="31-33  36-39"
 {!../../../docs_src/async_sql_databases/tutorial001.py!}
 ```
 
@@ -78,7 +78,7 @@ So, you will be able to see it all in the interactive API docs.
 * Create your `FastAPI` application.
 * Create event handlers to connect and disconnect from the database.
 
-```Python hl_lines="42 45 46 47 50 51 52"
+```Python hl_lines="42  45-47  50-52"
 {!../../../docs_src/async_sql_databases/tutorial001.py!}
 ```
 
@@ -86,7 +86,7 @@ So, you will be able to see it all in the interactive API docs.
 
 Create the *path operation function* to read notes:
 
-```Python hl_lines="55 56 57 58"
+```Python hl_lines="55-58"
 {!../../../docs_src/async_sql_databases/tutorial001.py!}
 ```
 
@@ -103,7 +103,7 @@ That documents (and validates, serializes, filters) the output data, as a `list`
 
 Create the *path operation function* to create notes:
 
-```Python hl_lines="61 62 63 64 65"
+```Python hl_lines="61-65"
 {!../../../docs_src/async_sql_databases/tutorial001.py!}
 ```
 

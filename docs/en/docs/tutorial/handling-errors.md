@@ -39,7 +39,7 @@ This also means that if you are inside a utility function that you are calling i
 
 The benefit of raising an exception over `return`ing a value will be more evident in the section about Dependencies and Security.
 
-In this example, when the client request an item by an ID that doesn't exist, raise an exception with a status code of `404`:
+In this example, when the client requests an item by an ID that doesn't exist, raise an exception with a status code of `404`:
 
 ```Python hl_lines="11"
 {!../../../docs_src/handling_errors/tutorial001.py!}
@@ -47,7 +47,7 @@ In this example, when the client request an item by an ID that doesn't exist, ra
 
 ### The resulting response
 
-If the client requests `http://example.com/items/foo` (an `item_id` `"foo"`), he will receive an HTTP status code of 200, and a JSON response of:
+If the client requests `http://example.com/items/foo` (an `item_id` `"foo"`), that client will receive an HTTP status code of 200, and a JSON response of:
 
 ```JSON
 {
@@ -55,7 +55,7 @@ If the client requests `http://example.com/items/foo` (an `item_id` `"foo"`), he
 }
 ```
 
-But if the client requests `http://example.com/items/bar` (a non-existent `item_id` `"bar"`), he will receive an HTTP status code of 404 (the "not found" error), and a JSON response of:
+But if the client requests `http://example.com/items/bar` (a non-existent `item_id` `"bar"`), that client will receive an HTTP status code of 404 (the "not found" error), and a JSON response of:
 
 ```JSON
 {
@@ -92,7 +92,7 @@ And you want to handle this exception globally with FastAPI.
 
 You could add a custom exception handler with `@app.exception_handler()`:
 
-```Python hl_lines="5 6 7  13 14 15 16 17 18  24"
+```Python hl_lines="5-7  13-18  24"
 {!../../../docs_src/handling_errors/tutorial003.py!}
 ```
 
@@ -115,7 +115,7 @@ So, you will receive a clean error, with an HTTP status code of `418` and a JSON
 
 **FastAPI** has some default exception handlers.
 
-These handlers are in charge or returning the default JSON responses when you `raise` an `HTTPException` and when the request has invalid data.
+These handlers are in charge of returning the default JSON responses when you `raise` an `HTTPException` and when the request has invalid data.
 
 You can override these exception handlers with your own.
 
@@ -129,7 +129,7 @@ To override it, import the `RequestValidationError` and use it with `@app.except
 
 The exception handler will receive a `Request` and the exception.
 
-```Python hl_lines="2 14 15 16"
+```Python hl_lines="2  14-16"
 {!../../../docs_src/handling_errors/tutorial004.py!}
 ```
 
@@ -179,7 +179,7 @@ The same way, you can override the `HTTPException` handler.
 
 For example, you could want to return a plain text response instead of JSON for these errors:
 
-```Python hl_lines="3 4  9 10 11 22"
+```Python hl_lines="3-4  9-11  22"
 {!../../../docs_src/handling_errors/tutorial004.py!}
 ```
 
@@ -209,13 +209,12 @@ Now try sending an invalid item like:
 
 You will receive a response telling you that the data is invalid containing the received body:
 
-```JSON hl_lines="13 14 15 16"
+```JSON hl_lines="12-15"
 {
   "detail": [
     {
       "loc": [
         "body",
-        "item",
         "size"
       ],
       "msg": "value is not a valid integer",
@@ -257,7 +256,7 @@ You could also just want to use the exception somehow, but then use the same def
 
 You can import and re-use the default exception handlers from `fastapi.exception_handlers`:
 
-```Python hl_lines="2 3 4 5 15 21"
+```Python hl_lines="2-5  15  21"
 {!../../../docs_src/handling_errors/tutorial006.py!}
 ```
 

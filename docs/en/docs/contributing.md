@@ -499,13 +499,3 @@ $ bash scripts/test-cov-html.sh
 </div>
 
 This command generates a directory `./htmlcov/`, if you open the file `./htmlcov/index.html` in your browser, you can explore interactively the regions of code that are covered by the tests, and notice if there is any region missing.
-
-### Tests in your editor
-
-If you want to use the integrated tests in your editor add `./docs_src` to your `PYTHONPATH` variable.
-
-For example, in VS Code you can create a file `.env` with:
-
-```env
-PYTHONPATH=./docs_src
-```

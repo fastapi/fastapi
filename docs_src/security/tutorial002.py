@@ -6,7 +6,7 @@ from pydantic import BaseModel
 
 app = FastAPI()
 
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/token")
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 
 class User(BaseModel):

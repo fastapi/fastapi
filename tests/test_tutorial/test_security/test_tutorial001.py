@@ -1,6 +1,6 @@
 from fastapi.testclient import TestClient
 
-from security.tutorial001 import app
+from docs_src.security.tutorial001 import app
 
 client = TestClient(app)
 
@@ -26,7 +26,7 @@ openapi_schema = {
         "securitySchemes": {
             "OAuth2PasswordBearer": {
                 "type": "oauth2",
-                "flows": {"password": {"scopes": {}, "tokenUrl": "/token"}},
+                "flows": {"password": {"scopes": {}, "tokenUrl": "token"}},
             }
         }
     },

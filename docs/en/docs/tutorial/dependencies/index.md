@@ -31,7 +31,7 @@ Let's first focus on the dependency.
 
 It is just a function that can take all the same parameters that a *path operation function* can take:
 
-```Python hl_lines="6 7"
+```Python hl_lines="8-9"
 {!../../../docs_src/dependencies/tutorial001.py!}
 ```
 
@@ -39,7 +39,7 @@ That's it.
 
 **2 lines**.
 
-And it has the same shape and structure that all your *path operation functions*.
+And it has the same shape and structure that all your *path operation functions* have.
 
 You can think of it as a *path operation function* without the "decorator" (without the `@app.get("/some-path")`).
 
@@ -55,7 +55,7 @@ And then it just returns a `dict` containing those values.
 
 ### Import `Depends`
 
-```Python hl_lines="1"
+```Python hl_lines="3"
 {!../../../docs_src/dependencies/tutorial001.py!}
 ```
 
@@ -63,7 +63,7 @@ And then it just returns a `dict` containing those values.
 
 The same way you use `Body`, `Query`, etc. with your *path operation function* parameters, use `Depends` with a new parameter:
 
-```Python hl_lines="11 16"
+```Python hl_lines="13  18"
 {!../../../docs_src/dependencies/tutorial001.py!}
 ```
 
@@ -123,10 +123,9 @@ So, the interactive docs will have all the information from these dependencies t
 
 <img src="/img/tutorial/dependencies/image01.png">
 
-
 ## Simple usage
 
-If you look at it, *path operation functions* are declared to be used whenever a *path* and *operation* matches, and then **FastAPI** takes care of calling the function with the correct parameters and use the response.
+If you look at it, *path operation functions* are declared to be used whenever a *path* and *operation* matches, and then **FastAPI** takes care of calling the function with the correct parameters, extracting the data from the request.
 
 Actually, all (or most) of the web frameworks work in this same way.
 
