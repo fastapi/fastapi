@@ -126,7 +126,7 @@ También hay docenas de alternativas, todas basadas en OpenAPI. Podrías añadir
 
 También podrías usarlo para generar código automáticamente, para los clientes que se comunican con tu API. Por ejemplo, frontend, móvil o aplicaciones de IoT.
 
-## Repaso, paso por paso
+## Repaso, paso a paso
 
 ### Paso 1: importa `FastAPI`
 
@@ -139,7 +139,7 @@ También podrías usarlo para generar código automáticamente, para los cliente
 !!! note "Detalles Técnicos"
     `FastAPI` es una clase que hereda directamente de `Starlette`.
 
-    También puedes usar toda la funcionnalidad de <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a>.
+    También puedes usar toda la funcionalidad de <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a>.
 
 ### Paso 2: crea un "instance" de `FastAPI`
 
@@ -169,7 +169,7 @@ Si creas un app como:
 {!../../../docs_src/first_steps/tutorial002.py!}
 ```
 
-y lo guardas en un archivo `main.py`, entonces llamarías a `uvicorn` así:
+y lo guardas en un archivo `main.py`, entonces ejecutarías `uvicorn` así:
 
 <div class="termy">
 
@@ -200,7 +200,7 @@ https://example.com/items/foo
 ```
 
 !!! info "Información"
-    Un "path" también se conoce habitualmente como "endpoint" o una "route".
+    Un "path" también se conoce habitualmente como "endpoint", "route" o "ruta".
 
 Cuando construyes una API, el "path" es la manera principal de separar los <abbr title="en inglés: separation of concerns">"intereses"</abbr> y los "recursos".
 
@@ -250,14 +250,14 @@ El `@app.get("/")` le dice a **FastAPI** que la función que tiene justo debajo 
 * el path `/`
 * usando una <abbr title="an HTTP GET method">operación <code>get</code></abbr>
 
-!!! info "Información sobre`@decorator`"
-    Esa sintaxis `@something` se llama un "decorador" en Python.
+!!! info "Información sobre `@decorator`"
+    Esa sintaxis `@algo` se llama un "decorador" en Python.
 
     Lo pones encima de una función. Es como un lindo sombrero decorado (creo que de ahí salió el concepto).
     
     Un "decorador" toma la función que tiene debajo y hace algo con ella.
 
-    En nuestro caso, este decorador le dice a **FastAPI** que la función que está debajo corresponde al **path** `/` con una **operation** `get`.
+    En nuestro caso, este decorador le dice a **FastAPI** que la función que está debajo corresponde al **path** `/` con una **operación** `get`.
 
     Es el "**decorador de operaciones de path**".
 
