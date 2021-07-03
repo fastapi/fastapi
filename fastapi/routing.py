@@ -154,7 +154,7 @@ async def run_endpoint_function(
 def get_request_handler(
     dependant: Dependant,
     body_field: Optional[ModelField] = None,
-    status_code: int = 200,
+    status_code: Optional[int] = None,
     response_class: Union[Type[Response], DefaultPlaceholder] = Default(JSONResponse),
     response_field: Optional[ModelField] = None,
     response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
@@ -232,11 +232,12 @@ def get_request_handler(
                 exclude_none=response_model_exclude_none,
                 is_coroutine=is_coroutine,
             )
-            response = actual_response_class(
-                content=response_data,
-                status_code=status_code,
-                background=background_tasks,  # type: ignore # in Starlette
-            )
+            response_args: Dict[str, Any] = {"background": background_tasks}
+            # If status_code was set, use it, otherwise use the default from the
+            # response class, in the case of redirect it's 307
+            if status_code is not None:
+                response_args["status_code"] = status_code
+            response = actual_response_class(response_data, **response_args)
             response.headers.raw.extend(sub_response.headers.raw)
             if sub_response.status_code:
                 response.status_code = sub_response.status_code
@@ -293,7 +294,7 @@ class APIRoute(routing.Route):
         endpoint: Callable[..., Any],
         *,
         response_model: Optional[Type[Any]] = None,
-        status_code: int = 200,
+        status_code: Optional[int] = None,
         tags: Optional[List[str]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
         summary: Optional[str] = None,
@@ -469,7 +470,7 @@ class APIRouter(routing.Router):
         endpoint: Callable[..., Any],
         *,
         response_model: Optional[Type[Any]] = None,
-        status_code: int = 200,
+        status_code: Optional[int] = None,
         tags: Optional[List[str]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
         summary: Optional[str] = None,
@@ -541,7 +542,7 @@ class APIRouter(routing.Router):
         path: str,
         *,
         response_model: Optional[Type[Any]] = None,
-        status_code: int = 200,
+        status_code: Optional[int] = None,
         tags: Optional[List[str]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
         summary: Optional[str] = None,
@@ -719,7 +720,7 @@ class APIRouter(routing.Router):
         path: str,
         *,
         response_model: Optional[Type[Any]] = None,
-        status_code: int = 200,
+        status_code: Optional[int] = None,
         tags: Optional[List[str]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
         summary: Optional[str] = None,
@@ -769,7 +770,7 @@ class APIRouter(routing.Router):
         path: str,
         *,
         response_model: Optional[Type[Any]] = None,
-        status_code: int = 200,
+        status_code: Optional[int] = None,
         tags: Optional[List[str]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
         summary: Optional[str] = None,
@@ -819,7 +820,7 @@ class APIRouter(routing.Router):
         path: str,
         *,
         response_model: Optional[Type[Any]] = None,
-        status_code: int = 200,
+        status_code: Optional[int] = None,
         tags: Optional[List[str]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
         summary: Optional[str] = None,
@@ -869,7 +870,7 @@ class APIRouter(routing.Router):
         path: str,
         *,
         response_model: Optional[Type[Any]] = None,
-        status_code: int = 200,
+        status_code: Optional[int] = None,
         tags: Optional[List[str]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
         summary: Optional[str] = None,
@@ -919,7 +920,7 @@ class APIRouter(routing.Router):
         path: str,
         *,
         response_model: Optional[Type[Any]] = None,
-        status_code: int = 200,
+        status_code: Optional[int] = None,
         tags: Optional[List[str]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
         summary: Optional[str] = None,
@@ -969,7 +970,7 @@ class APIRouter(routing.Router):
         path: str,
         *,
         response_model: Optional[Type[Any]] = None,
-        status_code: int = 200,
+        status_code: Optional[int] = None,
         tags: Optional[List[str]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
         summary: Optional[str] = None,
@@ -1019,7 +1020,7 @@ class APIRouter(routing.Router):
         path: str,
         *,
         response_model: Optional[Type[Any]] = None,
-        status_code: int = 200,
+        status_code: Optional[int] = None,
         tags: Optional[List[str]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
         summary: Optional[str] = None,
@@ -1069,7 +1070,7 @@ class APIRouter(routing.Router):
         path: str,
         *,
         response_model: Optional[Type[Any]] = None,
-        status_code: int = 200,
+        status_code: Optional[int] = None,
         tags: Optional[List[str]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
         summary: Optional[str] = None,
