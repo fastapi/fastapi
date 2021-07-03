@@ -2,6 +2,7 @@
 
 ## Latest Changes
 
+* 🐛 Support custom OpenAPI / JSON Schema fields in the generated output OpenAPI. PR [#1429](https://github.com/tiangolo/fastapi/pull/1429) by [@jmagnusson](https://github.com/jmagnusson).
 
 ## 0.65.3
 
