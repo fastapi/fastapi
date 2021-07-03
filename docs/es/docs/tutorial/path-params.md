@@ -83,7 +83,7 @@ Cuando abras tu navegador en <a href="http://127.0.0.1:8000/docs" class="externa
 
 ## Beneficios basados en estándares, documentación alternativa
 
-Debido a que el schema generado es del estándar <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md" class="external-link" target="_blank">OpenAPI</a> hay muchas herramienta compatibles.
+Debido a que el schema generado es del estándar <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md" class="external-link" target="_blank">OpenAPI</a> hay muchas herramientas compatibles.
 
 Es por esto que **FastAPI** mismo provee una documentación alternativa de la API (usando ReDoc), a la que puedes acceder en <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>:
 
