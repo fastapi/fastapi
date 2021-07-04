@@ -33,7 +33,7 @@ Deberías hacerlo después de adicionar todas tus *path operations*.
 
 ## Excluir de OpenAPI
 
-Para excluir una *operación de camino* del esquema OpenAPI generado (y por tanto del la documentación generada automáticamente), use el parámetro `include_in_schema` y asigne el valor como `False`;
+Para excluir una *path operation* del esquema OpenAPI generado (y por tanto del la documentación generada automáticamente), usa el parámetro `include_in_schema` y asigna el valor como `False`;
 
 ```Python hl_lines="6"
 {!../../../docs_src/path_operation_advanced_configuration/tutorial003.py!}
