@@ -24,7 +24,7 @@ Deberías hacerlo después de adicionar todas tus *path operations*.
 ```
 
 !!! tip
-    Si llama manualmente a `app.openapi()`, debe actualizar el `operationId`s antes de eso.
+    Si llamas manualmente a `app.openapi()`, debes actualizar el `operationId`s antes de hacerlo.
 
 !!! warning
     Si hace esto, debes asegurarte de que cada una de tus *funciones de operación de camino* tenga un nombre único.
