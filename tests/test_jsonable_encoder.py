@@ -71,7 +71,7 @@ class ModelWithAlias(BaseModel):
 
 
 class ModelWithDefault(BaseModel):
-    foo: str = ...
+    foo: str = ...  # type: ignore
     bar: str = "bar"
     bla: str = "bla"
 
@@ -88,7 +88,7 @@ def fixture_model_with_path(request):
         arbitrary_types_allowed = True
 
     ModelWithPath = create_model(
-        "ModelWithPath", path=(request.param, ...), __config__=Config
+        "ModelWithPath", path=(request.param, ...), __config__=Config  # type: ignore
     )
     return ModelWithPath(path=request.param("/foo", "bar"))
 

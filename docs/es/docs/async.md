@@ -261,7 +261,7 @@ Pero también puedes aprovechar los beneficios del paralelismo y el multiprocesa
 
 Eso, más el simple hecho de que Python es el lenguaje principal para **Data Science**, Machine Learning y especialmente Deep Learning, hacen de FastAPI una muy buena combinación para las API y aplicaciones web de Data Science / Machine Learning (entre muchas otras).
 
-Para ver cómo lograr este paralelismo en producción, consulta la sección sobre [Despliegue](deployment.md){.internal-link target=_blank}.
+Para ver cómo lograr este paralelismo en producción, consulta la sección sobre [Despliegue](deployment/index.md){.internal-link target=_blank}.
 
 ## `async` y `await`
 
@@ -334,7 +334,7 @@ Esta misma sintaxis (o casi idéntica) también se incluyó recientemente en las
 
 Pero antes de eso, manejar código asíncrono era bastante más complejo y difícil.
 
-En versiones anteriores de Python, podrías haber utilizado <abbr title="En español: hilos.">threads</abbr> o <a href="http://www.gevent.org/" class="external-link" target="_blank">Gevent</a>. Pero el código es mucho más complejo de entender, depurar y desarrollar.
+En versiones anteriores de Python, podrías haber utilizado <abbr title="En español: hilos.">threads</abbr> o <a href="https://www.gevent.org/" class="external-link" target="_blank">Gevent</a>. Pero el código es mucho más complejo de entender, depurar y desarrollar.
 
 En versiones anteriores de NodeJS / Browser JavaScript, habrías utilizado "callbacks". Lo que conduce a <a href="http://callbackhell.com/" class="external-link" target="_blank">callback hell</a>.
 

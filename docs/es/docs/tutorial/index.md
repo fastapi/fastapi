@@ -64,7 +64,7 @@ $ pip install fastapi[all]
     También debes instalar `uvicorn` para que funcione como tu servidor:
 
     ```
-    pip install uvicorn
+    pip install uvicorn[standard]
     ```
 
     Y lo mismo para cada una de las dependencias opcionales que quieras utilizar.

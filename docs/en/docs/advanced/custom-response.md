@@ -40,7 +40,7 @@ Import the `Response` class (sub-class) you want to use and declare it in the *p
 To return a response with HTML directly from **FastAPI**, use `HTMLResponse`.
 
 * Import `HTMLResponse`.
-* Pass `HTMLResponse` as the parameter `content_type` of your *path operation*.
+* Pass `HTMLResponse` as the parameter `response_class` of your *path operation decorator*.
 
 ```Python hl_lines="2  7"
 {!../../../docs_src/custom_response/tutorial002.py!}
@@ -161,8 +161,31 @@ An alternative JSON response using <a href="https://github.com/ultrajson/ultrajs
 
 Returns an HTTP redirect. Uses a 307 status code (Temporary Redirect) by default.
 
+You can return a `RedirectResponse` directly:
+
 ```Python hl_lines="2  9"
 {!../../../docs_src/custom_response/tutorial006.py!}
+```
+
+---
+
+Or you can use it in the `response_class` parameter:
+
+
+```Python hl_lines="2  7  9"
+{!../../../docs_src/custom_response/tutorial006b.py!}
+```
+
+If you do that, then you can return the URL directly from your *path operation* function.
+
+In this case, the `status_code` used will be the default one for the `RedirectResponse`, which is `307`.
+
+---
+
+You can also use the `status_code` parameter combined with the `response_class` parameter:
+
+```Python hl_lines="2  7  9"
+{!../../../docs_src/custom_response/tutorial006c.py!}
 ```
 
 ### `StreamingResponse`
@@ -202,6 +225,14 @@ File responses will include appropriate `Content-Length`, `Last-Modified` and `E
 ```Python hl_lines="2  10"
 {!../../../docs_src/custom_response/tutorial009.py!}
 ```
+
+You can also use the `response_class` parameter:
+
+```Python hl_lines="2  8  10"
+{!../../../docs_src/custom_response/tutorial009b.py!}
+```
+
+In this case, you can return the file path directly from your *path operation* function.
 
 ## Default response class
 
