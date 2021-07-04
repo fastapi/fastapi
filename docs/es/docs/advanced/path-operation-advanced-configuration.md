@@ -5,7 +5,7 @@
 !!! warning
     Si no eres una persona "experta" en OpenAPI, probablemente no necesitas leer esto.
 
-Puedes asignar el `operationId` de la OpenAPI para ser usado en tu *operación de camino* con el parámetro `operation_id`.
+Puedes asignar el `operationId` de la OpenAPI para ser usado en tu *path operation* con el parámetro `operation_id`.
 
 Deberías asegurarte de que sea único para cada operación.
 
