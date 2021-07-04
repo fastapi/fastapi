@@ -1,4 +1,4 @@
-# Configuración Avanzada de la Operación de Camino
+# Configuración Avanzada de la Path Operation
 
 ## OpenAPI operationId
 
