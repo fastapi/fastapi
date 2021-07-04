@@ -41,7 +41,7 @@ Para excluir una *path operation* del esquema OpenAPI generado (y por tanto del 
 
 ## Descripción Avanzada desde docstring
 
-Puedes limitar las líneas usadas desde la docstring de una *operación de camino* para OpenAPI.
+Puedes limitar las líneas usadas desde la docstring de una *path operation* para OpenAPI.
 
 Adding an `\f` (an escaped "form feed" character) causes **FastAPI** to truncate the output used for OpenAPI at this point.
 
