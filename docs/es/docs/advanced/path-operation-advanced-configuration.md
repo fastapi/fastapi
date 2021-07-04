@@ -17,7 +17,7 @@ Deberías asegurarte de que sea único para cada operación.
 
 Si quieres usar tus nombres de funciones de API como `operationId`s, puedes iterar sobre todos ellos y sobrescribir `operation_id` de cada *path operation* usando su `APIRoute.name`.
 
-Deberías hacerlo después de adicionar todas tus *operaciones de camino*.
+Deberías hacerlo después de adicionar todas tus *path operations*.
 
 ```Python hl_lines="2 12 13 14 15 16 17 18 19 20 21 24"
 {!../../../docs_src/path_operation_advanced_configuration/tutorial002.py!}
