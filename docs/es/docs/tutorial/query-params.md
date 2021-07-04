@@ -6,7 +6,7 @@ Cuando declaras otros parámetros de la función que no hacen parte de los pará
 {!../../../docs_src/query_params/tutorial001.py!}
 ```
 
-El query es el set de pares de key-value que van después del `?` en la URL, separados por caracteres `&`.
+El query es el conjunto de pares de key-value que van después del `?` en la URL, separados por caracteres `&`.
 
 Por ejemplo, en la URL:
 
@@ -14,16 +14,16 @@ Por ejemplo, en la URL:
 http://127.0.0.1:8000/items/?skip=0&limit=10
 ```
 
-... los parámetros de query son:
+...los parámetros de query son:
 
 * `skip`: con un valor de `0`
 * `limit`: con un valor de `10`
 
 Dado que son parte de la URL son strings "naturalmente".
 
-Pero cuando los declaras con tipos de Python (en el ejemplo arriba, como `int`) son convertidos a ese tipo y son validados teniéndolo en cuenta.
+Pero cuando los declaras con tipos de Python (en el ejemplo arriba, como `int`) son convertidos a ese tipo y son validados con él.
 
-Todo el proceso que aplicaba a los parámetros de path también aplican a los parámetros de query:
+Todo el proceso que aplicaba a los parámetros de path también aplica a los parámetros de query:
 
 * Soporte del editor (obviamente)
 * <abbr title="convertir el string que viene de un HTTP request a datos de Python">"Parsing"</abbr> de datos
@@ -34,7 +34,7 @@ Todo el proceso que aplicaba a los parámetros de path también aplican a los pa
 
 Como los parámetros de query no están fijos en una parte del path pueden ser opcionales y pueden tener valores por defecto.
 
-En el ejemplo arriba, tienen `skip=0` y `limit=10` como los valores por defecto.
+El ejemplo arriba tiene `skip=0` y `limit=10` como los valores por defecto.
 
 Entonces, si vas a la URL:
 
@@ -70,10 +70,10 @@ Del mismo modo puedes declarar parámetros de query opcionales definiendo el val
 En este caso el parámetro de la función `q` será opcional y será `None` por defecto.
 
 !!! check "Revisa"
-    También puedes notar que **FastAPI** es lo suficientemente inteligente para darse cuenta que el parámetro de path `item_id` es un parámetro de path y que `q` no lo es, y por lo tanto es un parámetro de query.
+    También puedes notar que **FastAPI** es lo suficientemente inteligente para darse cuenta de que el parámetro de path `item_id` es un parámetro de path y que `q` no lo es, y por lo tanto es un parámetro de query.
 
 !!! note "Nota"
-    FastAPI sabrá `q` es opcional por el `= None`.
+    FastAPI sabrá que `q` es opcional por el `= None`.
 
     El `Optional` en `Optional[str]` no es usado por FastAPI (FastAPI solo usará la parte `str`), pero el `Optional[str]` le permitirá a tu editor ayudarte a encontrar errores en tu código.
 
@@ -133,15 +133,15 @@ Serán detectados por nombre:
 
 Cuando declaras un valor por defecto para los parámetros que no son de path (por ahora solo hemos visto parámetros de query), entonces no es requerido.
 
-Si no quieres añadir un valor específico pero solo lo quieres hacer opcional, pon el valor por defecto como `None`.
+Si no quieres añadir un valor específico sino solo hacerlo opcional, pon el valor por defecto como `None`.
 
-Pero cuando quieres hacer que un parámetro de query sea requerido , simplemente no le declaras un valor por defecto:
+Pero cuando quieres hacer que un parámetro de query sea requerido, puedes simplemente no declararle un valor por defecto:
 
 ```Python hl_lines="6-7"
 {!../../../docs_src/query_params/tutorial005.py!}
 ```
 
-Aquí el parámetro de query `needy` es es un parámetro de query requerido, del tipo `str`.
+Aquí el parámetro de query `needy` es un parámetro de query requerido, del tipo `str`.
 
 Si abres tu navegador en una URL como:
 
@@ -181,7 +181,7 @@ http://127.0.0.1:8000/items/foo-item?needy=sooooneedy
 }
 ```
 
-Por supuesto que puedes definir algunos parámetros como requeridos, con un valor por defecto y otros completamente opcionales:
+Por supuesto que también puedes definir algunos parámetros como requeridos, con un valor por defecto y otros completamente opcionales:
 
 ```Python hl_lines="10"
 {!../../../docs_src/query_params/tutorial006.py!}
