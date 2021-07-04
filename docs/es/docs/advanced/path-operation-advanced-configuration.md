@@ -3,7 +3,7 @@
 ## OpenAPI operationId
 
 !!! warning
-    Si tu no eres una persona "experta" en OpenAPI, probablemente no necesitas leer esto.
+    Si no eres una persona "experta" en OpenAPI, probablemente no necesitas leer esto.
 
 Puedes asignar el `operationId` de la OpenAPI para ser usado en tu *operación de camino* con el parámetro `operation_id`.
 
