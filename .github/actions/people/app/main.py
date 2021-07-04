@@ -1,10 +1,10 @@
 import logging
 import subprocess
 import sys
-from collections import Counter
+from collections import Counter, defaultdict
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
-from typing import Container, Dict, List, Optional, Set
+from typing import Container, DefaultDict, Dict, List, Optional, Set
 
 import httpx
 import yaml
@@ -375,7 +375,7 @@ def get_contributors(settings: Settings):
     return contributors, commentors, reviewers, authors
 
 
-def get_individual_sponsors(settings: Settings, max_individual_sponsor: int = 5):
+def get_individual_sponsors(settings: Settings):
     nodes: List[SponsorshipAsMaintainerNode] = []
     edges = get_graphql_sponsor_edges(settings=settings)
 
@@ -385,12 +385,12 @@ def get_individual_sponsors(settings: Settings, max_individual_sponsor: int = 5)
         last_edge = edges[-1]
         edges = get_graphql_sponsor_edges(settings=settings, after=last_edge.cursor)
 
-    entities: Dict[str, SponsorEntity] = {}
+    tiers: DefaultDict[float, Dict[str, SponsorEntity]] = defaultdict(dict)
     for node in nodes:
-        if node.tier.monthlyPriceInDollars > max_individual_sponsor:
-            continue
-        entities[node.sponsorEntity.login] = node.sponsorEntity
-    return entities
+        tiers[node.tier.monthlyPriceInDollars][
+            node.sponsorEntity.login
+        ] = node.sponsorEntity
+    return tiers
 
 
 def get_top_users(
@@ -475,12 +475,22 @@ if __name__ == "__main__":
         skip_users=skip_users,
     )
 
-    sponsors_by_login = get_individual_sponsors(settings=settings)
-    sponsors = []
-    for login, sponsor in sponsors_by_login.items():
-        sponsors.append(
+    tiers = get_individual_sponsors(settings=settings)
+    sponsors_50 = []
+    for login, sponsor in tiers[50].items():
+        sponsors_50.append(
             {"login": login, "avatarUrl": sponsor.avatarUrl, "url": sponsor.url}
         )
+    keys = list(tiers.keys())
+    keys.sort(reverse=True)
+    sponsors = []
+    for key in keys:
+        if key >= 50:
+            continue
+        for login, sponsor in tiers[key].items():
+            sponsors.append(
+                {"login": login, "avatarUrl": sponsor.avatarUrl, "url": sponsor.url}
+            )
 
     people = {
         "maintainers": maintainers,
@@ -488,6 +498,7 @@ if __name__ == "__main__":
         "last_month_active": last_month_active,
         "top_contributors": top_contributors,
         "top_reviewers": top_reviewers,
+        "sponsors_50": sponsors_50,
         "sponsors": sponsors,
     }
     people_path = Path("./docs/en/data/people.yml")

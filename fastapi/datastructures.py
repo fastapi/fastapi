@@ -1,11 +1,12 @@
 from typing import Any, Callable, Iterable, Type, TypeVar
 
+from starlette.datastructures import State as State  # noqa: F401
 from starlette.datastructures import UploadFile as StarletteUploadFile
 
 
 class UploadFile(StarletteUploadFile):
     @classmethod
-    def __get_validators__(cls: Type["UploadFile"]) -> Iterable[Callable]:
+    def __get_validators__(cls: Type["UploadFile"]) -> Iterable[Callable[..., Any]]:
         yield cls.validate
 
     @classmethod
