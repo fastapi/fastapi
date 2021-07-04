@@ -15,7 +15,7 @@ Deberías asegurarte de que sea único para cada operación.
 
 ### Usando el nombre de la *path operation function* en el operationId
 
-Si tu quieres usar tus nombres de funciones de API como `operationId`s, puedes iterar sobre todos ellos y sobrescribir `operation_id` de cada *operación de camino* usando su `APIRoute.name`.
+Si quieres usar tus nombres de funciones de API como `operationId`s, puedes iterar sobre todos ellos y sobrescribir `operation_id` de cada *path operation* usando su `APIRoute.name`.
 
 Deberías hacerlo después de adicionar todas tus *operaciones de camino*.
 
