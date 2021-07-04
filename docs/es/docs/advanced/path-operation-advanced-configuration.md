@@ -27,7 +27,7 @@ Deberías hacerlo después de adicionar todas tus *path operations*.
     Si llamas manualmente a `app.openapi()`, debes actualizar el `operationId`s antes de hacerlo.
 
 !!! warning
-    Si hace esto, debes asegurarte de que cada una de tus *funciones de operación de camino* tenga un nombre único.
+    Si haces esto, debes asegurarte de que cada una de tus *path operation  functions* tenga un nombre único.
 
     Incluso si están en diferentes módulos (archivos Python).
 
