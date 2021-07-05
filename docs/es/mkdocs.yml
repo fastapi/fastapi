@@ -58,6 +58,7 @@ nav:
   - tutorial/index.md
   - tutorial/first-steps.md
   - tutorial/path-params.md
+  - tutorial/query-params.md
 - Guía de Usuario Avanzada:
   - advanced/index.md
 - async.md
