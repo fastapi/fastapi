@@ -218,7 +218,7 @@ That's what we are going to see here.
 
 In this case, you would accept any `dict` as long as it has `int` keys with `float` values:
 
-```Python hl_lines="15"
+```Python hl_lines="9"
 {!../../../docs_src/body_nested_models/tutorial009.py!}
 ```
 
