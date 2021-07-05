@@ -2,6 +2,7 @@
 
 ## Latest Changes
 
+* ⬆️ Upgrade python-jose dependency for tests. PR [#3468](https://github.com/tiangolo/fastapi/pull/3468) by [@tiangolo](https://github.com/tiangolo).
 
 ## 0.66.0
 
