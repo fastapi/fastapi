@@ -39,7 +39,7 @@ Os recursos chave são:
 
 <small>* estimativas baseadas em testes realizados com equipe interna de desenvolvimento, construindo aplicações em produção.</small>
 
-## Gold Sponsors
+## Patrocinadores Ouro
 
 <!-- sponsors -->
 
@@ -51,7 +51,7 @@ Os recursos chave são:
 
 <!-- /sponsors -->
 
-<a href="https://fastapi.tiangolo.com/fastapi-people/#sponsors" class="external-link" target="_blank">Other sponsors</a>
+<a href="https://fastapi.tiangolo.com/pt/fastapi-people/#patrocinadores" class="external-link" target="_blank">Outros patrocinadores</a>
 
 ## Opiniões
 
