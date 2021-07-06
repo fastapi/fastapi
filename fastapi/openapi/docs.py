@@ -14,6 +14,7 @@ def get_swagger_ui_html(
     swagger_favicon_url: str = "https://fastapi.tiangolo.com/img/favicon.png",
     oauth2_redirect_url: Optional[str] = None,
     init_oauth: Optional[Dict[str, Any]] = None,
+    doc_expansion: str = "list",
 ) -> HTMLResponse:
 
     html = f"""
@@ -37,7 +38,7 @@ def get_swagger_ui_html(
     if oauth2_redirect_url:
         html += f"oauth2RedirectUrl: window.location.origin + '{oauth2_redirect_url}',"
 
-    html += """
+    html += f"""
         dom_id: '#swagger-ui',
         presets: [
         SwaggerUIBundle.presets.apis,
@@ -46,8 +47,9 @@ def get_swagger_ui_html(
         layout: "BaseLayout",
         deepLinking: true,
         showExtensions: true,
-        showCommonExtensions: true
-    })"""
+        showCommonExtensions: true,
+        docExpansion: '{doc_expansion}'
+    }})"""
 
     if init_oauth:
         html += f"""

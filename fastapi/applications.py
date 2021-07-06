@@ -46,6 +46,7 @@ class FastAPI(Starlette):
         redoc_url: Optional[str] = "/redoc",
         swagger_ui_oauth2_redirect_url: Optional[str] = "/docs/oauth2-redirect",
         swagger_ui_init_oauth: Optional[Dict[str, Any]] = None,
+        swagger_ui_expansion: str = "list",
         middleware: Optional[Sequence[Middleware]] = None,
         exception_handlers: Optional[
             Dict[
@@ -114,6 +115,13 @@ class FastAPI(Starlette):
         self.redoc_url = redoc_url
         self.swagger_ui_oauth2_redirect_url = swagger_ui_oauth2_redirect_url
         self.swagger_ui_init_oauth = swagger_ui_init_oauth
+        assert swagger_ui_expansion in (
+            "none",
+            "list",
+            "full",
+        ), f"'swagger_ui_expansion' option must be in: none, list or full, not {swagger_ui_expansion}"
+        self.swagger_ui_expansion = swagger_ui_expansion
+
         self.extra = extra
         self.dependency_overrides: Dict[Callable[..., Any], Callable[..., Any]] = {}
 
@@ -165,6 +173,7 @@ class FastAPI(Starlette):
                     title=self.title + " - Swagger UI",
                     oauth2_redirect_url=oauth2_redirect_url,
                     init_oauth=self.swagger_ui_init_oauth,
+                    doc_expansion=self.swagger_ui_expansion,
                 )
 
             self.add_route(self.docs_url, swagger_ui_html, include_in_schema=False)
