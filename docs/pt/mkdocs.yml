@@ -41,6 +41,7 @@ nav:
   - en: /
   - es: /es/
   - fr: /fr/
+  - id: /id/
   - it: /it/
   - ja: /ja/
   - ko: /ko/
@@ -55,6 +56,7 @@ nav:
 - Tutorial - Guia de Usuário:
   - tutorial/index.md
   - tutorial/first-steps.md
+  - tutorial/body-fields.md
 - alternatives.md
 - history-design-future.md
 - external-links.md
@@ -98,6 +100,8 @@ extra:
     name: es - español
   - link: /fr/
     name: fr - français
+  - link: /id/
+    name: id
   - link: /it/
     name: it - italiano
   - link: /ja/
