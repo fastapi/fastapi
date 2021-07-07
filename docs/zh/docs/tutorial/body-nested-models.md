@@ -1,35 +1,35 @@
 # 请求体 - 嵌套模型
 
-使用 **FastAPI**，你可以定义、校验、记录文档并使用任意深度嵌套的模型（归功于Pydantic）。
+基于 Pydantic，**FastAPI** 可以定义、校验、存档，并使用任意深度的嵌套模型。
 
 ## List 字段
 
-你可以将一个属性定义为拥有子元素的类型。例如 Python `list`：
+模型属性可以定义为子类型。例如，Python 的 `list`：
 
-```Python hl_lines="12"
+```Python hl_lines="14"
 {!../../../docs_src/body_nested_models/tutorial001.py!}
 ```
 
-这将使 `tags` 成为一个由元素组成的列表。不过它没有声明每个元素的类型。
+`tags` 是由多个元素组成的列表。不过，上例并未声明列表内元素的类型。
 
 ## 具有子类型的 List 字段
 
-但是 Python 有一种特定的方法来声明具有子类型的列表：
+Python 可以声明包含内部类型（也叫作「类型参数」）的列表：
 
 ### 从 typing 导入 `List`
 
-首先，从 Python 的标准库 `typing` 模块中导入 `List`：
+首先，从 Python 标准库的 `typing` 模块中导入 `List`：
 
 ```Python hl_lines="1"
 {!../../../docs_src/body_nested_models/tutorial002.py!}
 ```
 
-### 声明具有子类型的 List
+### 声明包含子类型的 `List`
 
-要声明具有子类型的类型，例如 `list`、`dict`、`tuple`：
+声明包含 `list`、`dict`、`tuple` 等类型参数（内部类型）的类型：
 
-* 从 `typing` 模块导入它们
-* 使用方括号 `[` 和 `]` 将子类型作为「类型参数」传入
+* 从 `typing` 模块导入所需子类型
+* 使用方括号 `[` 和 `]` 传入「类型参数」
 
 ```Python
 from typing import List
@@ -37,11 +37,11 @@ from typing import List
 my_list: List[str]
 ```
 
-这完全是用于类型声明的标准 Python 语法。
+这些都是 Python 进行类型声明的标准语法。
 
-对具有子类型的模型属性也使用相同的标准语法。
+包含内部类型的模型属性也使用相同的标准语法。
 
-因此，在我们的示例中，我们可以将 `tags` 明确地指定为一个「字符串列表」：
+本例中，把 `tags` 指定为「字符串列表」：
 
 ```Python hl_lines="14"
 {!../../../docs_src/body_nested_models/tutorial002.py!}
@@ -49,49 +49,49 @@ my_list: List[str]
 
 ## Set 类型
 
-但是随后我们考虑了一下，意识到标签不应该重复，它们很大可能会是唯一的字符串。
+但标签（tag）不能重复，标签字符串应该是唯一的。
 
-Python 具有一种特殊的数据类型来保存一组唯一的元素，即 `set`。
+Python 提供了专门用于保存一组唯一元素的数据类型，`set`。
 
-然后我们可以导入 `Set` 并将 `tag` 声明为一个由 `str` 组成的 `set`：
+导入 `Set`，并把 `tags` 声明为由 `str` 组成的 `set`：
 
 ```Python hl_lines="1 14"
 {!../../../docs_src/body_nested_models/tutorial003.py!}
 ```
 
-这样，即使你收到带有重复数据的请求，这些数据也会被转换为一组唯一项。
+如果收到的请求中包含重复数据，就会被转换为一组唯一项。
 
-而且，每当你输出该数据时，即使源数据有重复，它们也将作为一组唯一项输出。
+而且，每次输出数据时，即使源数据中有重复项，输出的也是一组唯一项。
 
-并且还会被相应地标注 / 记录文档。
+并且还会在文档中进行相应地注释 / 存档。
 
 ## 嵌套模型
 
-Pydantic 模型的每个属性都具有类型。
+Pydantic 模型的每个属性都有其类型。
 
-但是这个类型本身可以是另一个 Pydantic 模型。
+模型属性的类型也可以是另一个 Pydantic 模型。
 
-因此，你可以声明拥有特定属性名称、类型和校验的深度嵌套的 JSON 对象。
+因此，可以声明拥有特定属性名、类型和校验的深度嵌套 JSON 对象。
 
-上述这些都可以任意的嵌套。
+上述模型都可以实现任意嵌套。
 
 ### 定义子模型
 
-例如，我们可以定义一个 `Image` 模型：
+例如，定义一个 `Image` 模型：
 
-```Python hl_lines="9 10 11"
+```Python hl_lines="9-11"
 {!../../../docs_src/body_nested_models/tutorial004.py!}
 ```
 
-### 将子模型用作类型
+### 子模型当作类型
 
-然后我们可以将其用作一个属性的类型：
+然后，把 `Image` 模型当作属性的类型：
 
 ```Python hl_lines="20"
 {!../../../docs_src/body_nested_models/tutorial004.py!}
 ```
 
-这意味着 **FastAPI** 将期望类似于以下内容的请求体：
+**FastAPI** 返回如下请求体：
 
 ```JSON
 {
@@ -107,36 +107,36 @@ Pydantic 模型的每个属性都具有类型。
 }
 ```
 
-再一次，仅仅进行这样的声明，你将通过 **FastAPI** 获得：
+只进行这样的声明，就可以再次通过 **FastAPI** 获得：
 
-* 对被嵌入的模型也适用的编辑器支持（自动补全等）
+* 编辑器对嵌套模型的自动补全等支持
 * 数据转换
 * 数据校验
-* 自动生成文档
+* 自动文档
 
-## 特殊的类型和校验
+## 特殊类型与校验
 
-除了普通的单一值类型（如 `str`、`int`、`float` 等）外，你还可以使用从 `str` 继承的更复杂的单一值类型。
+除了 `str`、`int`、`float` 等普通单值类型外，还可以使用从 `str` 继承的复杂单值类型。
 
-要了解所有的可用选项，请查看关于 <a href="https://pydantic-docs.helpmanual.io/usage/types/" class="external-link" target="_blank">来自 Pydantic 的外部类型</a> 的文档。你将在下一章节中看到一些示例。
+要了解所有可用选项，请参阅 <a href="https://pydantic-docs.helpmanual.io/usage/types/" class="external-link" target="_blank">Pydantic 外部类型</a>文档。下一章会介绍一些示例。
 
-例如，在 `Image` 模型中我们有一个 `url` 字段，我们可以把它声明为 Pydantic 的 `HttpUrl`，而不是 `str`：
+例如，`Image` 模型中包含的 `url` 字段，可以声明为 Pydantic 的 `HttpUrl`，而不是 `str`：
 
 ```Python hl_lines="4 10"
 {!../../../docs_src/body_nested_models/tutorial005.py!}
 ```
 
-该字符串将被检查是否为有效的 URL，并在 JSON Schema / OpenAPI 文档中进行记录。
+FastAPI 校验该字符串是否为有效的 URL，并在 JSON Schema / OpenAPI 中存档。
 
-## 带有一组子模型的属性
+## 包含子模型列表的属性
 
-你还可以将 Pydantic 模型用作 `list`、`set` 等的子类型：
+`list`、`set` 等类型的子类型也可以是 Pydantic 模型：
 
 ```Python hl_lines="20"
 {!../../../docs_src/body_nested_models/tutorial006.py!}
 ```
 
-这将期望（转换，校验，记录文档等）下面这样的 JSON 请求体：
+ JSON 请求体以如下方式转换、校验并存档：
 
 ```JSON hl_lines="11"
 {
@@ -162,23 +162,25 @@ Pydantic 模型的每个属性都具有类型。
 }
 ```
 
-!!! info
-    请注意 `images` 键现在具有一组 image 对象是如何发生的。
+!!! info "说明"
+
+    注意，`images` 键中包含了一组 image 对象列表。
 
 ## 深度嵌套模型
 
-你可以定义任意深度的嵌套模型：
+可以定义任意深度的嵌套模型：
 
 ```Python hl_lines="9 14 20 23 27"
 {!../../../docs_src/body_nested_models/tutorial007.py!}
 ```
 
-!!! info
-    请注意 `Offer` 拥有一组 `Item` 而反过来 `Item` 又是一个可选的 `Image` 列表是如何发生的。
+!!! info "说明"
+
+    注意，`Offer` 由 `Item` 列表组成，而 `Item` 又是由可选的 `Image` 列表组成。
 
 ## 纯列表请求体
 
-如果你期望的 JSON 请求体的最外层是一个 JSON `array`（即 Python `list`），则可以在路径操作函数的参数中声明此类型，就像声明 Pydantic 模型一样：
+如果 JSON 请求体的最外层是 JSON `array`（即 Python `list`），则可以在路径操作函数的参数中，以与 Pydantic 模型一样的方式声明此类型：
 
 ```Python
 images: List[Image]
@@ -192,53 +194,54 @@ images: List[Image]
 
 ## 无处不在的编辑器支持
 
-你可以随处获得编辑器支持。
+编辑器的支持无处不在。
 
 即使是列表中的元素：
 
-<img src="https://fastapi.tiangolo.com/img/tutorial/body-nested-models/image01.png">
+<img src="/img/tutorial/body-nested-models/image01.png">
 
-如果你直接使用 `dict` 而不是 Pydantic 模型，那你将无法获得这种编辑器支持。
+如果不使用 Pydantic 模型，而是直接使用 `dict`，就无法获得这种编辑器支持。
 
-但是你根本不必担心这两者，传入的字典会自动被转换，你的输出也会自动被转换为 JSON。
+但不必担心，传入的字典会被自动转换，输出数据也会被自动转换为 JSON。
 
-## 任意 `dict` 构成的请求体
+## 由 `dict` 构成的请求体
 
-你也可以将请求体声明为使用某类型的键和其他类型值的 `dict`。
+请求体可以声明为 `dict`，并且可以把字典的键声明某种类型，把值声明为另一种类型。
 
-无需事先知道有效的字段/属性（在使用 Pydantic 模型的场景）名称是什么。
+而且，（因为使用了 Pydantic 模型），不必事先知道可用的字段 / 属性名。
 
-如果你想接收一些尚且未知的键，这将很有用。
+需要接收未知的键时，这种方式很有用。
 
 ---
 
-其他有用的场景是当你想要接收其他类型的键时，例如 `int`。
+接收 `int` 等其他类型的键也是常见的用例。
 
-这也是我们在接下来将看到的。
+下面介绍这种用例。
 
-在下面的例子中，你将接受任意键为 `int` 类型并且值为 `float` 类型的 `dict`：
+本例中，路径操作函数可以接收键的类型是 `int`，值的类型是 `float` 的 `dict`：
 
-```Python hl_lines="15"
+```Python hl_lines="9"
 {!../../../docs_src/body_nested_models/tutorial009.py!}
 ```
 
-!!! tip
-    请记住 JSON 仅支持将 `str` 作为键。
+!!! tip "提示"
 
-    但是 Pydantic 具有自动转换数据的功能。
-
-    这意味着，即使你的 API 客户端只能将字符串作为键发送，只要这些字符串内容仅包含整数，Pydantic 就会对其进行转换并校验。
+    注意，JSON 的键仅支持 `str`。
     
-    然后你接收的名为 `weights` 的 `dict` 实际上将具有 `int` 类型的键和 `float` 类型的值。
+    但 Pydantic 可以自动转换数据类型。
+    
+    也就是说，即使 API 客户端只能发送字符串类型的键，只要这些字符串仅包含整数，Pydantic 就会对其进行转换并校验。
+    
+    这样一来，接收的字典 `weights` 的键的类型就是 `int`，而值的类型则为 `float` 。
 
-## 总结
+## 小结
 
-使用 **FastAPI** 你可以拥有 Pydantic 模型提供的极高灵活性，同时保持代码的简单、简短和优雅。
+**FastAPI** 拥有 Pydantic 模型的极高灵活性，还能让代码更加简短、优雅。
 
-而且还具有下列好处：
+并且支持以下功能：
 
-* 编辑器支持（处处皆可自动补全！）
-* 数据转换（也被称为解析/序列化）
+* 编辑器支持（无处不在的自动补全！）
+* 数据转换（亦称为解析/序列化）
 * 数据校验
-* 模式文档
-* 自动生成的文档
+* 概图存档
+* 自动文档
