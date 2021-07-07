@@ -1,59 +1,60 @@
 # 路径参数和数值校验
 
-与使用 `Query` 为查询参数声明更多的校验和元数据的方式相同，你也可以使用 `Path` 为路径参数声明相同类型的校验和元数据。
+除了可以为 `Query` 查询参数声明校验和元数据，还可以为 `Path` 路径参数声明相同类型的校验和元数据。
 
 ## 导入 Path
 
 首先，从 `fastapi` 导入 `Path`：
 
-```Python hl_lines="1"
+```Python hl_lines="3"
 {!../../../docs_src/path_params_numeric_validations/tutorial001.py!}
 ```
 
 ## 声明元数据
 
-你可以声明与 `Query` 相同的所有参数。
+可以声明与 `Query` 相同的所有参数。
 
-例如，要声明路径参数 `item_id`的 `title` 元数据值，你可以输入：
+例如，为路径参数 `item_id` 声明 `title` 元数据的值时，可以输入：
 
-```Python hl_lines="8"
+```Python hl_lines="10"
 {!../../../docs_src/path_params_numeric_validations/tutorial001.py!}
 ```
 
-!!! note
-    路径参数总是必需的，因为它必须是路径的一部分。
+!!! note "笔记"
+
+    因为路径参数必须是路径的一部分，所以路径参数总是必选的。
     
-    所以，你应该在声明时使用 `...` 将其标记为必需参数。
+    因此，声明路径参数时要使用 `...`，把它标记为必选参数。
+    
+    不过，就算使用 `None` 声明路径参数，或设置其他默认值也不会有任何影响，路径参数依然是必选参数。
 
-    然而，即使你使用 `None` 声明路径参数或设置一个其他默认值也不会有任何影响，它依然会是必需参数。
+## 按需排序参数
 
-## 按需对参数排序
+假设要把查询参数 `q` 声明为必选的 `str` 类型。
 
-假设你想要声明一个必需的 `str` 类型查询参数 `q`。
+而且，因为不用为该参数声明任何其他内容，因此无需使用 `Query`。
 
-而且你不需要为该参数声明任何其他内容，所以实际上你并不需要使用 `Query`。
+但仍需使用 `Path` 声明路径参数 `item_id`。
 
-但是你仍然需要使用 `Path` 来声明路径参数 `item_id`。
+如果把有「默认值」的参数置于无「默认值」的参数前，Python 会报错。
 
-如果你将带有「默认值」的参数放在没有「默认值」的参数之前，Python 将会报错。
+但可以重新排序，把无默认值的查询参数 `q` 放到最前面。
 
-但是你可以对其重新排序，并将不带默认值的值（查询参数 `q`）放到最前面。
+**FastAPI** 不关注参数排序。只是通过声明的参数名称、类型和默认值（`Query`、`Path` 等）来检测参数，不关注参数的顺序。
 
-对 **FastAPI** 来说这无关紧要。它将通过参数的名称、类型和默认值声明（`Query`、`Path` 等）来检测参数，而不在乎参数的顺序。
-
-因此，你可以将函数声明为：
+因此，可以把函数声明为：
 
 ```Python hl_lines="8"
 {!../../../docs_src/path_params_numeric_validations/tutorial002.py!}
 ```
 
-## 按需对参数排序的技巧
+## 按需排序参数的技巧
 
-如果你想不使用 `Query` 声明没有默认值的查询参数 `q`，同时使用 `Path` 声明路径参数 `item_id`，并使它们的顺序与上面不同，Python 对此有一些特殊的语法。
+如果不想使用 `Query` 声明没有默认值的查询参数 `q`，但同时还要使用 `Path` 声明路径参数 `item_id`，并使用不同的排序方式，可以使用 Python 的特殊语法。
 
-传递 `*` 作为函数的第一个参数。
+把 `*` 作为函数的第一个参数。
 
-Python 不会对该 `*` 做任何事情，但是它将知道之后的所有参数都应作为关键字参数（键值对），也被称为 <abbr title="来自：K-ey W-ord Arg-uments"><code>kwargs</code></abbr>，来调用。即使它们没有默认值。
+Python 不对 `*` 执行任何操作，但会把 `*` 之后的所有参数都当作关键字参数（键值对），也叫 <abbr title="来自：K-ey W-ord Arg-uments"><code>kwargs</code></abbr>。即便这些参数并没有默认值。
 
 ```Python hl_lines="8"
 {!../../../docs_src/path_params_numeric_validations/tutorial003.py!}
@@ -61,20 +62,20 @@ Python 不会对该 `*` 做任何事情，但是它将知道之后的所有参�
 
 ## 数值校验：大于等于
 
-使用 `Query` 和 `Path`（以及你将在后面看到的其他类）可以声明字符串约束，但也可以声明数值约束。
+使用 `Query` 和 `Path`（以及后文中的其他类）时，既可以声明字符串约束，也可以声明数值约束。
 
-像下面这样，添加 `ge=1` 后，`item_id` 将必须是一个大于（`g`reater than）或等于（`e`qual）`1` 的整数。
+此处，添加 `ge=1` 后，`item_id` 就必须是大于（`g`reater than）等于（`e`qual）`1` 的整数。
 
 ```Python hl_lines="8"
 {!../../../docs_src/path_params_numeric_validations/tutorial004.py!}
 ```
 
-## 数值校验：大于和小于等于
+## 数值校验：大于、小于等于
 
-同样的规则适用于：
+同样：
 
-* `gt`：大于（`g`reater `t`han）
-* `le`：小于等于（`l`ess than or `e`qual）
+- `gt`：大于（`g`reater `t`han）
+- `le`：小于等于（`l`ess than or `e`qual）
 
 ```Python hl_lines="9"
 {!../../../docs_src/path_params_numeric_validations/tutorial005.py!}
@@ -84,39 +85,41 @@ Python 不会对该 `*` 做任何事情，但是它将知道之后的所有参�
 
 数值校验同样适用于 `float` 值。
 
-能够声明 <abbr title="大于"><code>gt</code></abbr> 而不仅仅是 <abbr title="大于等于"><code>ge</code></abbr> 在这个前提下变得重要起来。例如，你可以要求一个值必须大于 `0`，即使它小于 `1`。
+此处，重要的是声明 <abbr title="大于"><code>gt</code></abbr>，而不仅是 <abbr title="大于等于"><code>ge</code></abbr>。例如，值必须大于 `0`，即使该值小于 `1`。
 
-因此，`0.5` 将是有效值。但是 `0.0`或 `0` 不是。
+因此，`0.5` 是有效的，但 `0.0`或 `0` 则无效。
 
-对于 <abbr title="less than"><code>lt</code></abbr> 也是一样的。
+对于小于（<abbr title="less than"><code>lt</code></abbr>）也是一样的。
 
 ```Python hl_lines="11"
 {!../../../docs_src/path_params_numeric_validations/tutorial006.py!}
 ```
 
-## 总结
+## 小结
 
-你能够以与 [查询参数和字符串校验](query-params-str-validations.md){.internal-link target=_blank} 相同的方式使用 `Query`、`Path`（以及其他你还没见过的类）声明元数据和字符串校验。
+`Query`、`Path`（及其他尚未介绍的类）可以使用[查询参数和字符串校验](query-params-str-validations.md){.internal-link target=\_blank} 中的方式声明元数据和字符串校验。
 
-而且你还可以声明数值校验：
+同样，也可以声明数值校验：
 
-* `gt`：大于（`g`reater `t`han）
-* `ge`：大于等于（`g`reater than or `e`qual）
-* `lt`：小于（`l`ess `t`han）
-* `le`：小于等于（`l`ess than or `e`qual）
+- `gt`：大于（`g`reater `t`han）
+- `ge`：大于等于（`g`reater than or `e`qual）
+- `lt`：小于（`l`ess `t`han）
+- `le`：小于等于（`l`ess than or `e`qual）
 
-!!! info
-    `Query`、`Path` 以及你后面会看到的其他类继承自一个共同的 `Param` 类（不需要直接使用它）。
+!!! info "说明"
 
-    而且它们都共享相同的所有你已看到并用于添加额外校验和元数据的参数。
+    `Query`、`Path` 及后文中要介绍的其他类都继承自同一个 `Param` 类（无需直接使用）。
+    
+    而且，它们共享使用所有前文中介绍过的，用于添加更多校验和元数据的参数。
 
 !!! note "技术细节"
-    当你从 `fastapi` 导入 `Query`、`Path` 和其他同类对象时，它们实际上是函数。
 
-    当被调用时，它们返回同名类的实例。
-
-    如此，你导入 `Query` 这个函数。当你调用它时，它将返回一个同样命名为 `Query` 的类的实例。
-
-    因为使用了这些函数（而不是直接使用类），所以你的编辑器不会标记有关其类型的错误。
-
-    这样，你可以使用常规的编辑器和编码工具，而不必添加自定义配置来忽略这些错误。
+    实际上，从 `fastapi` 导入的 `Query`、`Path` 等对象都是函数。
+    
+    调用它们时会返回同名的类实例。
+    
+    因此，调用导入的 `Query` 函数时，它返回的类实例也命名为 `Query` 。
+    
+    使用函数（而不是直接使用类）的原因是为了不让编辑器显示类型错误。
+    
+    这样，在使用编辑器和开发工具时，不用添加自定义配置来忽略这些错误。
