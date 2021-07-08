@@ -1,7 +1,7 @@
 from enum import Enum
-from typing import Any, Callable, Optional, Sequence
+from typing import Any, Callable, Dict, Optional, Sequence
 
-from pydantic.fields import FieldInfo
+from pydantic.fields import FieldInfo, Undefined
 
 
 class ParamTypes(Enum):
@@ -28,10 +28,14 @@ class Param(FieldInfo):
         min_length: Optional[int] = None,
         max_length: Optional[int] = None,
         regex: Optional[str] = None,
+        example: Any = Undefined,
+        examples: Optional[Dict[str, Any]] = None,
         deprecated: Optional[bool] = None,
         **extra: Any,
     ):
         self.deprecated = deprecated
+        self.example = example
+        self.examples = examples
         super().__init__(
             default,
             alias=alias,
@@ -68,6 +72,8 @@ class Path(Param):
         min_length: Optional[int] = None,
         max_length: Optional[int] = None,
         regex: Optional[str] = None,
+        example: Any = Undefined,
+        examples: Optional[Dict[str, Any]] = None,
         deprecated: Optional[bool] = None,
         **extra: Any,
     ):
@@ -85,6 +91,8 @@ class Path(Param):
             max_length=max_length,
             regex=regex,
             deprecated=deprecated,
+            example=example,
+            examples=examples,
             **extra,
         )
 
@@ -106,6 +114,8 @@ class Query(Param):
         min_length: Optional[int] = None,
         max_length: Optional[int] = None,
         regex: Optional[str] = None,
+        example: Any = Undefined,
+        examples: Optional[Dict[str, Any]] = None,
         deprecated: Optional[bool] = None,
         **extra: Any,
     ):
@@ -122,6 +132,8 @@ class Query(Param):
             max_length=max_length,
             regex=regex,
             deprecated=deprecated,
+            example=example,
+            examples=examples,
             **extra,
         )
 
@@ -144,6 +156,8 @@ class Header(Param):
         min_length: Optional[int] = None,
         max_length: Optional[int] = None,
         regex: Optional[str] = None,
+        example: Any = Undefined,
+        examples: Optional[Dict[str, Any]] = None,
         deprecated: Optional[bool] = None,
         **extra: Any,
     ):
@@ -161,6 +175,8 @@ class Header(Param):
             max_length=max_length,
             regex=regex,
             deprecated=deprecated,
+            example=example,
+            examples=examples,
             **extra,
         )
 
@@ -182,6 +198,8 @@ class Cookie(Param):
         min_length: Optional[int] = None,
         max_length: Optional[int] = None,
         regex: Optional[str] = None,
+        example: Any = Undefined,
+        examples: Optional[Dict[str, Any]] = None,
         deprecated: Optional[bool] = None,
         **extra: Any,
     ):
@@ -198,6 +216,8 @@ class Cookie(Param):
             max_length=max_length,
             regex=regex,
             deprecated=deprecated,
+            example=example,
+            examples=examples,
             **extra,
         )
 
@@ -219,10 +239,14 @@ class Body(FieldInfo):
         min_length: Optional[int] = None,
         max_length: Optional[int] = None,
         regex: Optional[str] = None,
+        example: Any = Undefined,
+        examples: Optional[Dict[str, Any]] = None,
         **extra: Any,
     ):
         self.embed = embed
         self.media_type = media_type
+        self.example = example
+        self.examples = examples
         super().__init__(
             default,
             alias=alias,
@@ -258,6 +282,8 @@ class Form(Body):
         min_length: Optional[int] = None,
         max_length: Optional[int] = None,
         regex: Optional[str] = None,
+        example: Any = Undefined,
+        examples: Optional[Dict[str, Any]] = None,
         **extra: Any,
     ):
         super().__init__(
@@ -274,6 +300,8 @@ class Form(Body):
             min_length=min_length,
             max_length=max_length,
             regex=regex,
+            example=example,
+            examples=examples,
             **extra,
         )
 
@@ -294,6 +322,8 @@ class File(Form):
         min_length: Optional[int] = None,
         max_length: Optional[int] = None,
         regex: Optional[str] = None,
+        example: Any = Undefined,
+        examples: Optional[Dict[str, Any]] = None,
         **extra: Any,
     ):
         super().__init__(
@@ -309,6 +339,8 @@ class File(Form):
             min_length=min_length,
             max_length=max_length,
             regex=regex,
+            example=example,
+            examples=examples,
             **extra,
         )
 
