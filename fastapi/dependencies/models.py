@@ -33,6 +33,7 @@ class Dependant:
         security_scopes_param_name: Optional[str] = None,
         security_scopes: Optional[List[str]] = None,
         use_cache: bool = True,
+        lifetime: str = "request",
         path: Optional[str] = None,
     ) -> None:
         self.path_params = path_params or []
@@ -52,6 +53,7 @@ class Dependant:
         self.name = name
         self.call = call
         self.use_cache = use_cache
+        self.lifetime = lifetime
         # Store the path to be able to re-generate a dependable from it in overrides
         self.path = path
         # Save the cache key at creation to optimize performance

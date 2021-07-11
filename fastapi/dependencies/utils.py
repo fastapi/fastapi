@@ -156,6 +156,7 @@ def get_sub_dependant(
         name=name,
         security_scopes=security_scopes,
         use_cache=depends.use_cache,
+        lifetime=depends.lifetime
     )
     if security_requirement:
         sub_dependant.security_requirements.append(security_requirement)
@@ -184,6 +185,7 @@ def get_flat_dependant(
         body_params=dependant.body_params.copy(),
         security_schemes=dependant.security_requirements.copy(),
         use_cache=dependant.use_cache,
+        lifetime=dependant.lifetime,
         path=dependant.path,
     )
     for sub_dependant in dependant.dependencies:
@@ -283,13 +285,14 @@ def get_dependant(
     name: Optional[str] = None,
     security_scopes: Optional[List[str]] = None,
     use_cache: bool = True,
+    lifetime: bool = "request"
 ) -> Dependant:
     path_param_names = get_path_param_names(path)
     endpoint_signature = get_typed_signature(call)
     signature_params = endpoint_signature.parameters
     if is_gen_callable(call) or is_async_gen_callable(call):
         check_dependency_contextmanagers()
-    dependant = Dependant(call=call, name=name, path=path, use_cache=use_cache)
+    dependant = Dependant(call=call, name=name, path=path, use_cache=use_cache, lifetime=lifetime)
     for param_name, param in signature_params.items():
         if isinstance(param.default, params.Depends):
             sub_dependant = get_param_sub_dependant(
@@ -466,6 +469,7 @@ async def solve_dependencies(
     *,
     request: Union[Request, WebSocket],
     dependant: Dependant,
+    lifetime_dependencies: Optional[Dict[Tuple[Callable[..., Any], Tuple[str]], Any]],
     body: Optional[Union[Dict[str, Any], FormData]] = None,
     background_tasks: Optional[BackgroundTasks] = None,
     response: Optional[Response] = None,
@@ -487,7 +491,7 @@ async def solve_dependencies(
         media_type=None,  # type: ignore # in Starlette
         background=None,  # type: ignore # in Starlette
     )
-    dependency_cache = dependency_cache or {}
+    dependency_cache = dependency_cache or lifetime_dependencies.copy()
     sub_dependant: Dependant
     for sub_dependant in dependant.dependencies:
         sub_dependant.call = cast(Callable[..., Any], sub_dependant.call)
@@ -521,6 +525,7 @@ async def solve_dependencies(
             response=response,
             dependency_overrides_provider=dependency_overrides_provider,
             dependency_cache=dependency_cache,
+            lifetime_dependencies=lifetime_dependencies
         )
         (
             sub_values,
@@ -552,6 +557,8 @@ async def solve_dependencies(
             values[sub_dependant.name] = solved
         if sub_dependant.cache_key not in dependency_cache:
             dependency_cache[sub_dependant.cache_key] = solved
+        if sub_dependant.lifetime == "app" and sub_dependant.cache_key not in lifetime_dependencies:
+            lifetime_dependencies[sub_dependant.cache_key] = solved
     path_values, path_errors = request_params_to_args(
         dependant.path_params, request.path_params
     )

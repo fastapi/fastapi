@@ -1,4 +1,4 @@
-from typing import Any, Callable, Coroutine, Dict, List, Optional, Sequence, Type, Union
+from typing import Any, Callable, Coroutine, Dict, List, Optional, Sequence, Tuple, Type, Union
 
 from fastapi import routing
 from fastapi.concurrency import AsyncExitStack
@@ -29,6 +29,7 @@ from starlette.types import ASGIApp, Receive, Scope, Send
 
 
 class FastAPI(Starlette):
+
     def __init__(
         self,
         *,
@@ -93,6 +94,11 @@ class FastAPI(Starlette):
             [] if middleware is None else list(middleware)
         )
         self.middleware_stack: ASGIApp = self.build_middleware_stack()
+        
+        def clear_lifetime_dependencies():
+            self.lifetime_dependencies = {}
+
+        self.on_event("shutdown")(clear_lifetime_dependencies)
 
         self.title = title
         self.description = description
@@ -124,6 +130,16 @@ class FastAPI(Starlette):
             assert self.version, "A version must be provided for OpenAPI, e.g.: '2.1.0'"
         self.openapi_schema: Optional[Dict[str, Any]] = None
         self.setup()
+
+    @property
+    def lifetime_dependencies(self) -> Dict[Tuple[Callable[..., Any], Tuple[str]], Any]:
+        if not hasattr(self, "_lifetime_dependencies"):
+            self._lifetime_dependencies = {}
+        return self._lifetime_dependencies
+
+    @lifetime_dependencies.setter
+    def lifetime_dependencies(self, value: Dict[Tuple[Callable[..., Any], Tuple[str]], Any]) -> None:
+        self._lifetime_dependencies = value
 
     def openapi(self) -> Dict[str, Any]:
         if not self.openapi_schema:

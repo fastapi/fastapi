@@ -87,6 +87,7 @@ nav:
     - tutorial/dependencies/dependencies-in-path-operation-decorators.md
     - tutorial/dependencies/global-dependencies.md
     - tutorial/dependencies/dependencies-with-yield.md
+    - tutorial/dependencies/lifetime-dependencies.md
   - Security:
     - tutorial/security/index.md
     - tutorial/security/first-steps.md
