@@ -54,9 +54,9 @@ class AsyncGenerator(BaseDependency):
     ]
 )
 @pytest.mark.parametrize(
-    "dependency_cls", [SyncCallable, AsyncCallable, SyncGenerator, AsyncGenerator]
+    "dependency_cls", [SyncCallable, AsyncCallable]
 )
-def test_dependency_lifetimes(lifetime: str, expected_calls: int, n_requests: int, dependency_cls: Callable[[], BaseDependency]):
+def test_dependency_lifetimes_callable(lifetime: str, expected_calls: int, n_requests: int, dependency_cls: Callable[[], BaseDependency]):
     """Lifetime dependencies should only be called/created once"""
 
     dependency = dependency_cls()
@@ -71,6 +71,39 @@ def test_dependency_lifetimes(lifetime: str, expected_calls: int, n_requests: in
         for req in range(n_requests):
             assert client.get("/").status_code == 200
             assert dependency.constructed
+            assert dependency.destructed
+        assert dependency.counter == expected_calls
+    assert dependency.destructed
+
+
+@pytest.mark.parametrize(
+    "lifetime,expected_calls,n_requests", [
+        ("app", 1, 1),
+        ("app", 1, 5),
+        ("request", 1, 1),
+        ("request", 2, 2),
+        ("request", 5, 5),
+    ]
+)
+@pytest.mark.parametrize(
+    "dependency_cls", [SyncGenerator, AsyncGenerator]
+)
+def test_dependency_lifetimes_generator(lifetime: str, expected_calls: int, n_requests: int, dependency_cls: Callable[[], BaseDependency]):
+    """Lifetime dependencies should only be called/created once"""
+
+    dependency = dependency_cls()
+
+    app = FastAPI()
+
+    @app.get("/")
+    def root(placeholder: dependency = Depends(lifetime=lifetime)):
+        ...
+
+    with TestClient(app) as client:
+        for req in range(n_requests):
+            assert client.get("/").status_code == 200
+            assert dependency.constructed
+            assert not dependency.destructed
         assert dependency.counter == expected_calls
     assert dependency.destructed
 
