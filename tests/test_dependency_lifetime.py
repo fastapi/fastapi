@@ -123,3 +123,30 @@ def test_nested_dependencies():
     with TestClient(app) as client:
         assert client.get("/").status_code == 200
         assert client.get("/").status_code == 200
+
+
+def test_overrides():
+    """Dependency overrides set BEFORE startup should be honored"""
+
+    def real() -> int:
+        return 1
+
+    def fake() -> int:
+        return 2
+
+    app = FastAPI()
+
+    @app.get("/")
+    def root(v: int = Depends(real, lifetime="app")) -> int:
+        return v
+
+    with TestClient(app) as client:
+        res = client.get("/")
+        assert res.status_code == 200
+        assert res.json() == 1
+    
+    app.dependency_overrides[real] = fake
+    with TestClient(app) as client:
+        res = client.get("/")
+        assert res.status_code == 200
+        assert res.json() == 2  # from fake
