@@ -95,10 +95,10 @@ class FastAPI(Starlette):
         )
         self.middleware_stack: ASGIApp = self.build_middleware_stack()
         
-        def clear_lifetime_dependencies():
-            self.lifetime_dependencies = {}
+        def clear_lifespan_dependencies():
+            self.lifespan_dependencies = {}
 
-        self.on_event("shutdown")(clear_lifetime_dependencies)
+        self.on_event("shutdown")(clear_lifespan_dependencies)
 
         self.title = title
         self.description = description
@@ -132,14 +132,14 @@ class FastAPI(Starlette):
         self.setup()
 
     @property
-    def lifetime_dependencies(self) -> Dict[Tuple[Callable[..., Any], Tuple[str]], Any]:
-        if not hasattr(self, "_lifetime_dependencies"):
-            self._lifetime_dependencies = {}
-        return self._lifetime_dependencies
+    def lifespan_dependencies(self) -> Dict[Tuple[Callable[..., Any], Tuple[str]], Any]:
+        if not hasattr(self, "_lifespan_dependencies"):
+            self._lifespan_dependencies = {}
+        return self._lifespan_dependencies
 
-    @lifetime_dependencies.setter
-    def lifetime_dependencies(self, value: Dict[Tuple[Callable[..., Any], Tuple[str]], Any]) -> None:
-        self._lifetime_dependencies = value
+    @lifespan_dependencies.setter
+    def lifespan_dependencies(self, value: Dict[Tuple[Callable[..., Any], Tuple[str]], Any]) -> None:
+        self._lifespan_dependencies = value
 
     def openapi(self) -> Dict[str, Any]:
         if not self.openapi_schema:

@@ -208,7 +208,7 @@ def get_request_handler(
             dependant=dependant,
             body=body,
             dependency_overrides_provider=dependency_overrides_provider,
-            lifetime_dependencies=request.app.lifetime_dependencies
+            lifespan_dependencies=request.app.lifespan_dependencies
         )
         values, errors, background_tasks, sub_response, _ = solved_result
         if errors:
@@ -255,7 +255,7 @@ def get_websocket_app(
             request=websocket,
             dependant=dependant,
             dependency_overrides_provider=dependency_overrides_provider,
-            lifetime_dependencies=websocket.app.lifetime_dependencies
+            lifespan_dependencies=websocket.app.lifespan_dependencies
         )
         values, errors, _, _2, _3 = solved_result
         if errors:

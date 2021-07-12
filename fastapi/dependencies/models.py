@@ -1,7 +1,14 @@
-from typing import Any, Callable, List, Optional, Sequence
+from typing import Any, Callable, List, Literal, Optional, Sequence, Tuple
 
 from fastapi.security.base import SecurityBase
 from pydantic.fields import ModelField
+
+
+Dependency = Callable[..., Any]
+
+DependencyCacheKey = Tuple[Dependency, Tuple[str]]
+
+DependencyLifespan = Literal["app", "request"]
 
 
 class SecurityRequirement:
@@ -33,7 +40,7 @@ class Dependant:
         security_scopes_param_name: Optional[str] = None,
         security_scopes: Optional[List[str]] = None,
         use_cache: bool = True,
-        lifetime: str = "request",
+        lifespan: DependencyLifespan = "request",
         path: Optional[str] = None,
     ) -> None:
         self.path_params = path_params or []
@@ -53,8 +60,8 @@ class Dependant:
         self.name = name
         self.call = call
         self.use_cache = use_cache
-        self.lifetime = lifetime
+        self.lifespan = lifespan
         # Store the path to be able to re-generate a dependable from it in overrides
         self.path = path
         # Save the cache key at creation to optimize performance
-        self.cache_key = (self.call, tuple(sorted(set(self.security_scopes or []))))
+        self.cache_key: DependencyCacheKey = (self.call, tuple(sorted(set(self.security_scopes or []))))
