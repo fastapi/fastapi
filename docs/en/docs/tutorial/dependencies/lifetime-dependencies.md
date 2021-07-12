@@ -1,6 +1,6 @@
 # Lifetime dependencies
 
-FastAPI supports dependencies that get creted once, when the app starts, and are cached thereafter.
+FastAPI supports dependencies that get created once, when the app starts, and are cached thereafter.
 This can be used, for example, to load your config from enviroment variables or initialize database connections.
 
 Let's say we have a `DataBase` object which usees a `.connect` context manager to establish a connection.
