@@ -17,7 +17,7 @@ which we define using Pydantic's `BaseSettings` Model (see [Settings and Environ
 {!../../../docs_src/dependencies/tutorial013.py!}
 ```
 
-In order to get `DataBase` wired up with the config and connected, we create a couple of dependencies:
+In order to get `Database` wired up with the config and connected, we create a couple of dependencies:
 
 ```Python hl_lines="22-30"
 {!../../../docs_src/dependencies/tutorial013.py!}
