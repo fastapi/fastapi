@@ -541,7 +541,10 @@ async def solve_dependencies(
         if sub_dependant.use_cache and sub_dependant.cache_key in dependency_cache:
             solved = dependency_cache[sub_dependant.cache_key]
         elif is_gen_callable(call) or is_async_gen_callable(call):
-            stack = request.scope.get("fastapi_astack")
+            if sub_dependant.lifespan == "request":
+                stack = request.scope.get("fastapi_astack")
+            else:  # lifespan == "app"
+                stack = getattr(request.app, "app_lifespan_astack")
             if stack is None:
                 raise RuntimeError(
                     async_contextmanager_dependencies_error

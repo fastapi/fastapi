@@ -3,6 +3,7 @@ from typing import Any, Callable, Coroutine, Dict, List, Optional, Sequence, Tup
 from fastapi import routing
 from fastapi.concurrency import AsyncExitStack
 from fastapi.datastructures import Default, DefaultPlaceholder
+from fastapi.dependencies.models import DependencyCacheKey
 from fastapi.encoders import DictIntStrAny, SetIntStr
 from fastapi.exception_handlers import (
     http_exception_handler,
@@ -29,6 +30,8 @@ from starlette.types import ASGIApp, Receive, Scope, Send
 
 
 class FastAPI(Starlette):
+
+    app_lifespan_astack: Union[AsyncExitStack, None]
 
     def __init__(
         self,
@@ -67,6 +70,26 @@ class FastAPI(Starlette):
     ) -> None:
         self._debug: bool = debug
         self.state: State = State()
+
+        on_startup = [] if on_startup is None else list(on_startup)
+        on_shutdown = [] if on_shutdown is None else list(on_shutdown)
+
+        if AsyncExitStack:
+            async def initialize_app_lifespan_dependency_stack():
+                self.app_lifespan_astack = AsyncExitStack()
+                await self.app_lifespan_astack.__aenter__()
+            on_startup.append(initialize_app_lifespan_dependency_stack)
+            async def shutdown_app_lifespan_dependency_stack():
+                await self.app_lifespan_astack.__aexit__(None, None, None)
+            on_shutdown.append(shutdown_app_lifespan_dependency_stack)
+        else:
+            self.app_lifespan_astack = None
+
+        self.lifespan_dependencies: Dict[DependencyCacheKey, Any] = {}
+        def clear_app_lifespan_dependencies():
+            self.lifespan_dependencies = {}
+        on_shutdown.append(clear_app_lifespan_dependencies)
+
         self.router: routing.APIRouter = routing.APIRouter(
             routes=routes,
             dependency_overrides_provider=self,
@@ -94,12 +117,6 @@ class FastAPI(Starlette):
             [] if middleware is None else list(middleware)
         )
         self.middleware_stack: ASGIApp = self.build_middleware_stack()
-        
-        def clear_lifespan_dependencies():
-            self.lifespan_dependencies = {}
-
-        self.on_event("shutdown")(clear_lifespan_dependencies)
-
         self.title = title
         self.description = description
         self.version = version
@@ -130,16 +147,6 @@ class FastAPI(Starlette):
             assert self.version, "A version must be provided for OpenAPI, e.g.: '2.1.0'"
         self.openapi_schema: Optional[Dict[str, Any]] = None
         self.setup()
-
-    @property
-    def lifespan_dependencies(self) -> Dict[Tuple[Callable[..., Any], Tuple[str]], Any]:
-        if not hasattr(self, "_lifespan_dependencies"):
-            self._lifespan_dependencies = {}
-        return self._lifespan_dependencies
-
-    @lifespan_dependencies.setter
-    def lifespan_dependencies(self, value: Dict[Tuple[Callable[..., Any], Tuple[str]], Any]) -> None:
-        self._lifespan_dependencies = value
 
     def openapi(self) -> Dict[str, Any]:
         if not self.openapi_schema:
