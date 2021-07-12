@@ -1,7 +1,7 @@
 # Lifetime dependencies
 
 FastAPI supports dependencies that get created once, when the app starts, and are cached thereafter.
-This can be used, for example, to load your config from enviroment variables or initialize database connections.
+This can be used, for example, to load your config from environment variables or initialize database connections.
 
 Let's say we have a `DataBase` object which usees a `.connect` context manager to establish a connection.
 Our goal is to create the connection _once_, and keep it alive for the lifetime of the app.
