@@ -4,7 +4,7 @@ from fastapi import Depends, FastAPI
 from pydantic import BaseSettings
 
 
-class DataBase:
+class Database:
 
     def __init__(self, hostname: str) -> None:
         ...
@@ -23,9 +23,9 @@ def Config() -> AppConfig:
     return AppConfig()
 
 
-def DBConnection(config: AppConfig = Depends(Config)) -> DataBase:
+def DBConnection(config: AppConfig = Depends(Config)) -> Database:
     print("Creating DB connection!")
-    db = DataBase(hostname=config.database_hostname)
+    db = Database(hostname=config.database_hostname)
     with db.connect():
         yield db
 
@@ -34,5 +34,5 @@ app = FastAPI()
 
 
 @app.get("/")
-def root(conn: DataBase = Depends(DBConnection, lifespan="app")):
+def root(conn: Database = Depends(DBConnection, lifespan="app")):
     ...
