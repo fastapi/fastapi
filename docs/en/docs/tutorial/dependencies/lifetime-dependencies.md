@@ -3,7 +3,7 @@
 FastAPI supports dependencies that get created once, when the app starts, and are cached thereafter.
 This can be used, for example, to load your config from environment variables or initialize database connections.
 
-Let's say we have a `DataBase` object which usees a `.connect` context manager to establish a connection.
+Let's say we have a `DataBase` object which uses a `.connect` context manager to establish a connection.
 Our goal is to create the connection _once_, and keep it alive for the lifespan of the app.
 
 ```Python hl_lines="7-14"
