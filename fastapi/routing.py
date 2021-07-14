@@ -393,16 +393,20 @@ class APIRoute(routing.Route):
         self.response_class = response_class
 
         assert callable(endpoint), "An endpoint must be a callable"
-        self.dependant = get_dependant(path=self.path_format, call=self.endpoint)
-        for depends in self.dependencies[::-1]:
-            self.dependant.dependencies.insert(
-                0,
-                get_parameterless_sub_dependant(depends=depends, path=self.path_format),
-            )
+        self.dependant = self.gen_dependant()
         self.body_field = get_body_field(dependant=self.dependant, name=self.unique_id)
         self.dependency_overrides_provider = dependency_overrides_provider
         self.callbacks = callbacks
         self.app = request_response(self.get_route_handler())
+
+    def gen_dependant(self):
+        dependant = get_dependant(path=self.path_format, call=self.endpoint)
+        for depends in self.dependencies[::-1]:
+            dependant.dependencies.insert(
+                0,
+                get_parameterless_sub_dependant(depends=depends, path=self.path_format),
+            )
+        return dependant
 
     def get_route_handler(self) -> Callable[[Request], Coroutine[Any, Any, Response]]:
         return get_request_handler(

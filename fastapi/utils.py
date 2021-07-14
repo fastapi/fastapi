@@ -2,9 +2,10 @@ import functools
 import re
 from dataclasses import is_dataclass
 from enum import Enum
-from typing import Any, Dict, Optional, Set, Type, Union, cast
+from typing import Any, Dict, Optional, Set, Type, Union, cast, List
 
 import fastapi
+from fastapi.dependencies import utils
 from fastapi.datastructures import DefaultPlaceholder, DefaultType
 from fastapi.openapi.constants import REF_PREFIX
 from pydantic import BaseConfig, BaseModel, create_model
@@ -154,3 +155,19 @@ def get_value_or_default(
         if not isinstance(item, DefaultPlaceholder):
             return item
     return first_item
+
+
+def reload_schemas(app: fastapi.FastAPI):
+    """
+    Reload enum schema in router function to re-generate openapi.json and
+    re-fresh dependant for validating data.
+    """
+    # Set openapi_schema to None to evoke to regenerate openapi.json
+    app.openapi_schema = None
+
+    # reload APIRoute dependant
+    route_class_list = app.routes
+    for route in route_class_list:
+        if isinstance(route, fastapi.routing.APIRoute):
+            # use code in fastapi: fastapi/routing.py line 393-398
+            route.dependant = route.gen_dependant()
