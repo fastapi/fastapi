@@ -737,3 +737,10 @@ class FastAPI(Starlette):
             name=name,
             callbacks=callbacks,
         )
+    def run(**kwargs):
+        try:
+            import uvicorn
+            uvicorn.run(self, **kwargs)
+        except:
+            raise ("Uvicorn needs to be installed to use the run function")
+        
