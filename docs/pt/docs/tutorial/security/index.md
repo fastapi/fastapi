@@ -4,23 +4,23 @@ Há várias formas de lidar segurança, autenticação e autorização.
 
 E isso normalmente é um tópico “difícil” e complexo.
 
-Em vários frameworks e sistemas só implementam segurança e autenticação com muito esforço e código (em muitos casos isso pode ser 50% ou mais de todo o código escrito).
+Em muitos frameworks e sistemas, apenas lidar com segurança e autenticação exige muito esforço e código (em muitos casos isso pode ser 50% ou mais de todo o código escrito).
 
-**FastAPI** tem muitas ferramentas para ajudar você com a parte de **Segurança** facilmente, rapidamente, em um caminho padrão, sem ter que estudar e aprender tudo sobre especificações de segurança.
+**FastAPI** tem muitas ferramentas para ajudar você com a parte de **Segurança** facilmente, rapidamente, de uma forma padrão, sem ter que estudar e aprender tudo sobre especificações de segurança.
 
 Mas primeiro, vamos verificar alguns pequenos conceitos.
 
 ## Está com pressa?
 
-Se você não se importa com qualquer um dos termos e só precisa adicionar segurança com autenticação baseada em usuário e senha AGORA, pule para o próximo capítulo.
+Se você não se importa com qualquer um desses termos e só precisa adicionar segurança com autenticação baseada em usuário e senha _agora_, pule para os próximos capítulos.
 
 ## OAuth2
 
-OAuth2 é uma especificação que define vários caminhos para lidar com autenticação e autorização.
+OAuth2 é uma especificação que define várias formas para lidar com autenticação e autorização.
 
 Ela é bastante extensiva na especificação e cobre casos de uso muito complexos.
 
-Ela inclui um caminho para autenticação usando “third party”/aplicações de terceiros.
+Ela inclui uma forma para autenticação usando “third party”/aplicações de terceiros.
 
 Isso é o que todos os sistemas com “Login with Facebook, Google, Twitter, GitHub” usam por baixo.
 
@@ -62,13 +62,13 @@ OpenAPI (anteriormente conhecido como Swagger) é a especificação aberta para 
 
 Isso é o que torna possível ter múltiplas automações interativas de interfaces de documentação, geração de código, etc.
 
-OpenAPI tem um caminho para definir múltiplos “esquemas” de segurança.
+OpenAPI tem uma forma para definir múltiplos “esquemas” de segurança.
 
-Por usá-los, você pode ter vantagens de todas as ferramentas baseadas no padrão, incluindo os sistemas de documentação interativa.
+Por usá-los, você pode ter vantagens de todas essas ferramentas baseadas nos padrões, incluindo os sistemas de documentação interativa.
 
 OpenAPI define os seguintes esquemas de segurança:
 
-* `apiKey`: uma chave de aplicação específica que pode vir de:
+* `apiKey`: uma chave específica de aplicação que pode vir de:
     * Um parâmetro query.
     * Um header.
     * Um cookie.
@@ -76,14 +76,14 @@ OpenAPI define os seguintes esquemas de segurança:
     * `bearer`: um header de `Authorization` com valor de `Bearer` adicionado de um token. Isso é herança do OAuth2.
     * HTTP Basic authentication.
     * HTTP Digest, etc.
-* `oauth2`: todos os caminhos do OAuth2 para lidar com segurança (chamados “flows”/fluxos).
+* `oauth2`: todas as formas do OAuth2 para lidar com segurança (chamados "fluxos").
     * Vários desses flows são apropriados para construir um provedor de autenticação OAuth2 (como Google, Facebook, Twitter, GitHub, etc):
         * `implicit`
         * `clientCredentials`
         * `authorizationCode`
-    * Mas esse é um “flow” específico que pode ser perfeitamente usado para resolver autenticação diretamente na mesma aplicação:
+    * Mas existe um “fluxo” específico que pode ser perfeitamente usado para resolver autenticação diretamente na mesma aplicação:
         * `password`: alguns dos próximos capítulos tratarão disso.
-* `openIdConnect`: tem um caminho para definir como descobrir automaticamente o dado da autenticação OAuth2.
+* `openIdConnect`: tem uma forma para definir como descobrir automaticamente o dado da autenticação OAuth2.
     * Essa descoberta automática é o que é definido na especificação OpenID Connect.
 
 
@@ -92,10 +92,10 @@ OpenAPI define os seguintes esquemas de segurança:
 
     O problema mais complexo é criar um provedor de autenticação/autorização como eles, mas o FastAPI dá a você ferramentas para fazer isso facilmente, enquanto faz o trabalho pesado para você.
 
-## **FastAPI** utilities
+## **FastAPI** utilitários
 
-**FastAPI** tem várias ferramentas para cada um dos esquemas de segurança no módulo `fastapi.security` que simplesmente usa esses mecanismos de segurança.
+**FastAPI** fornece várias ferramentas para cada um desses esquemas de segurança no módulo `fastapi.security` que simplesmente usa esses mecanismos de segurança.
 
-No próximo capítulo você ira ver como adicionar segurança à sua API usando essas ferramentas disponibilizadas por **FastAPI**.
+Nos próximos capítulos você ira ver como adicionar segurança à sua API usando essas ferramentas disponibilizadas pelo **FastAPI**.
 
-E você irá ver também como pegar isso integrado automaticamente dentro do sistema de documentação interativo.
+E você irá ver também como isso é automaticamente integrado dentro do sistema de documentação interativo.
