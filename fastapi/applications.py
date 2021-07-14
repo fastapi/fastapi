@@ -737,10 +737,10 @@ class FastAPI(Starlette):
             name=name,
             callbacks=callbacks,
         )
-    def run(**kwargs):
+    def run(self, **args):
         try:
             import uvicorn
-            uvicorn.run(self, **kwargs)
-        except:
-            raise ("Uvicorn needs to be installed to use the run function")
+            uvicorn.run(self, **args)
+        except Exception as err:
+            raise AssertionError("Uvicorn must be installed to use run functionality"
         
