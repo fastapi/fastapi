@@ -77,7 +77,7 @@ OpenAPI define os seguintes esquemas de segurança:
     * HTTP Basic authentication.
     * HTTP Digest, etc.
 * `oauth2`: todas as formas do OAuth2 para lidar com segurança (chamados "fluxos").
-    * Vários desses flows são apropriados para construir um provedor de autenticação OAuth2 (como Google, Facebook, Twitter, GitHub, etc):
+    * Vários desses fluxos são apropriados para construir um provedor de autenticação OAuth2 (como Google, Facebook, Twitter, GitHub, etc):
         * `implicit`
         * `clientCredentials`
         * `authorizationCode`
