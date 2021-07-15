@@ -24,7 +24,7 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4
 
 1週間後、トークンが期限切れとなるとどうなるでしょうか？ユーザーは認可されず、新しいトークンを得るために再びサインインしなければなりません。また、ユーザー（または第三者）がトークンを修正して有効期限を変更しようとした場合、署名が一致しないため、トークンの修正を検知できます。
 
-JWT トークンを使って遊んでみたいという方は、こちらをチェック <a href="https://jwt.io/" class="external-link" target="_blank">https://jwt.io</a>。
+JWT トークンを使って遊んでみたいという方は、<a href="https://jwt.io/" class="external-link" target="_blank">https://jwt.io</a> をチェックしてください。
 
 ## `python-jose` のインストール
 
