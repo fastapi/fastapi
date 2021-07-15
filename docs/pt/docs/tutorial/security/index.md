@@ -40,7 +40,7 @@ OAuth2 não especifica como criptografar a comunicação, ele espera que você t
 
 OpenID Connect é outra especificação, baseada em **OAuth2**.
 
-Ela é apenas uma extensão do OAuth2 especificando algumas coisas que são relativamente ambíguas no OAuth2, tentar fazer mais interoperável.
+Ela é apenas uma extensão do OAuth2 especificando algumas coisas que são relativamente ambíguas no OAuth2, para tentar torná-lo mais interoperável.
 
 Por exemplo, o login do Google usa OpenID Connect (que por baixo dos panos usa OAuth2).
 
