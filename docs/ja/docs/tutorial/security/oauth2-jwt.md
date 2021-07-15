@@ -95,7 +95,7 @@ $ pip install passlib[bcrypt]
 
 必要なツールを `passlib`からインポートします。
 
-PassLib の"context"を作成します。これは、パスワードのハッシュと検証に使用されるものです。
+PassLib の「context」を作成します。これは、パスワードのハッシュと検証に使用されるものです。
 
 !!! tip "豆知識"
     PassLibのcontext には、非推奨の古いものだけを含む様々なハッシュアルゴリズムを使用した検証機能もあります。
