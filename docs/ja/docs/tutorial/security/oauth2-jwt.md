@@ -139,7 +139,7 @@ $ openssl rand -hex 32
 
 JWTトークンの署名に使用するアルゴリズム`"HS256"`を指定した変数`ALGORITHM`を作成します。
 
-トークンの有効期限を指定した変数`ACCESS_TOKEN_EXPIRE_MINUTES `を作成します。
+トークンの有効期限を指定した変数`ACCESS_TOKEN_EXPIRE_MINUTES`を作成します。
 
 レスポンスのトークンエンドポイントで使用するPydanticモデルを定義します。
 
