@@ -96,6 +96,6 @@ OpenAPI define os seguintes esquemas de segurança:
 
 **FastAPI** fornece várias ferramentas para cada um desses esquemas de segurança no módulo `fastapi.security` que simplesmente usa esses mecanismos de segurança.
 
-Nos próximos capítulos você ira ver como adicionar segurança à sua API usando essas ferramentas disponibilizadas pelo **FastAPI**.
+Nos próximos capítulos você irá ver como adicionar segurança à sua API usando essas ferramentas disponibilizadas pelo **FastAPI**.
 
 E você irá ver também como isso é automaticamente integrado dentro do sistema de documentação interativo.
