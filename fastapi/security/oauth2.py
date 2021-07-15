@@ -16,7 +16,6 @@ class OAuth2PasswordRequestForm:
 
         @app.post("/login")
         def login(form_data: OAuth2PasswordRequestForm = Depends()):
-            data = form_data.parse()
             print(data.username)
             print(data.password)
             for scope in data.scopes:
@@ -66,7 +65,6 @@ class OAuth2PasswordRequestFormStrict(OAuth2PasswordRequestForm):
 
         @app.post("/login")
         def login(form_data: OAuth2PasswordRequestFormStrict = Depends()):
-            data = form_data.parse()
             print(data.username)
             print(data.password)
             for scope in data.scopes:

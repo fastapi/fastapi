@@ -50,6 +50,9 @@ if not (credentials.username == "stanleyjobson") or not (credentials.password ==
 
 But by using the `secrets.compare_digest()` it will be secure against a type of attacks called "timing attacks".
 
+!!! tip
+    We are comparing `bytes` (`encode("idna")`) instead of `str` with `compare_digest` because it cannot handle strings with non-ascii characters.
+
 ### Timing Attacks
 
 But what's a "timing attack"?
