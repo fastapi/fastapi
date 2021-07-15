@@ -28,7 +28,7 @@ JWT トークンを使って遊んでみたいという方は、<a href="https:/
 
 ## `python-jose` のインストール
 
-PythonでJWTトークンを生成して検証するには、`python-jose`をインストールする必要があります：
+PythonでJWTトークンの生成と検証を行うために、`python-jose`をインストールする必要があります：
 
 <div class="termy">
 
