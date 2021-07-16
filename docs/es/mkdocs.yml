@@ -59,6 +59,7 @@ nav:
   - tutorial/first-steps.md
   - tutorial/path-params.md
   - tutorial/query-params.md
+  - tutorial/path-params-numeric-validations.md
 - Guía de Usuario Avanzada:
   - advanced/index.md
 - async.md
