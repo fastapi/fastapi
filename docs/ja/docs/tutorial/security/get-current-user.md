@@ -20,11 +20,11 @@
 {!../../../docs_src/security/tutorial002.py!}
 ```
 
-## `get_current_user` への依存を作成
+## 依存関係 `get_current_user` を作成
 
-`get_current_user` への依存を作ってみましょう。
+依存関係 `get_current_user` を作ってみましょう。
 
-依存はサブ依存を持つことができるのを覚えていますか？
+依存関係はサブ依存関係を持つことができるのを覚えていますか？
 
 `get_current_user` は前に作成した `oauth2_scheme` と同じ依存関係を持ちます。
 
@@ -44,7 +44,7 @@
 
 ## 現在のユーザーの注入
 
-ですので、ここで *path operation* の中で先ほどの `get_current_user` とともに全く同様に `Depends` を利用できます。
+ですので、 `get_current_user` に対して同様に *path operation* の中で `Depends` を利用できます。
 
 ```Python hl_lines="31"
 {!../../../docs_src/security/tutorial002.py!}
@@ -52,7 +52,7 @@
 
 Pydanticモデルの `User` として、 `current_user` の型を宣言することに注意してください。
 
-こうするのは、その関数の中ですべての入力補完や型チェックを行う際に役に立ちます。
+その関数の中ですべての入力補完や型チェックを行う際に役に立ちます。
 
 !!! tip "豆知識"
     リクエストボディはPydanticモデルでも宣言できることを覚えているかもしれません。
@@ -105,7 +105,7 @@ Pydanticモデルの `User` として、 `current_user` の型を宣言するこ
 
 ## まとめ
 
-これで、 *path operatio関数* の中で直接現在のユーザーを取得できるようになりました。
+これで、 *path operation関数* の中で直接現在のユーザーを取得できるようになりました。
 
 既に半分のところまで来ています。
 
