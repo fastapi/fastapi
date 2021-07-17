@@ -36,7 +36,7 @@ def results():
 
 ---
 
-Si votre application n'a à attendre la réponse d'aucune bibliothèque extérieure, utilisez `async def`.
+Si votre application n'a pas à communiquer avec une bibliothèque externe et pas à attendre de réponse, utilisez `async def`.
 
 ---
 
