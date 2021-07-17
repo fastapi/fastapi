@@ -363,7 +363,7 @@ Tout ceci est donc ce qui donne sa force à **FastAPI** (à travers Starlette) e
 
 ### Fonctions de chemin
 
-Quand vous déclarez une *fonction de chemin* avec un `def` normal et non `async def`, elle est exécutée dans une threadpool externe qui est ensuite attendue, plutôt que d'être appelée directement (car cela bloquerait le serveur).
+Quand vous déclarez une *fonction de chemin* avec un `def` normal et non `async def`, elle est exécutée dans un groupe de threads (threadpool) externe qui est ensuite attendu, plutôt que d'être appelée directement (car cela bloquerait le serveur).
 
 Si vous venez d'un autre framework asynchrone qui ne fonctionne pas comme de la façon décrite ci-dessus et que vous êtes habitués à définir des *fonctions de chemin* basiques avec un simple `def` pour un faible gain de performance (environ 100 nanosecondes), veuillez noter que dans **FastAPI**, l'effet serait plutôt contraire. Dans ces cas-là, il vaut mieux utiliser `async def` à moins que votre *fonction de chemin* utilise du code qui effectue des opérations <abbr title="Input/Output ou Entrées et Sorties ">I/O</abbr> bloquantes.
 
