@@ -73,7 +73,7 @@ Ensuite, il 🤖 prendra la première tâche à finir (disons, notre "fichier-le
 Ce "attendre quelque chose d'autre" fait généralement référence à des opérations <abbr title="Input/Output ou Entrées et Sorties ">I/O</abbr> qui sont relativement "lentes" (comparées à la vitesse du processeur et de la mémoire RAM) telles qu'attendre que :
 
 * de la donnée soit envoyée par le client à travers le réseau
-* de la donnée envoyée depuis votre programme soit reçue par le client
+* de la donnée envoyée depuis votre programme soit reçue par le client à travers le réseau
 * le contenu d'un fichier sur le disque soit lu par le système et passé à votre programme
 * le contenu que votre programme a passé au système soit écrit sur le disque
 * une opération effectuée à distance par une API se termine
