@@ -44,7 +44,7 @@ Si vous ne savez pas, utilisez seulement `def` comme vous le feriez habituelleme
 
 ---
 
-**Note** : vous pouvez mélanger `def` et `async def` dans vos *fonctions de chemin* autant que voulu, **FastAPI** saura faire ce qu'il faut avec.
+**Note** : vous pouvez mélanger `def` et `async def` dans vos *fonctions de chemin* autant que nécessaire, **FastAPI** saura faire ce qu'il faut avec.
 
 Au final, peu importe le cas parmi ceux ci-dessus, **FastAPI** fonctionnera de manière asynchrone et extrêmement rapide.
 
