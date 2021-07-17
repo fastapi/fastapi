@@ -6,7 +6,7 @@ Cette page vise à fournir des détails sur la syntaxe `async def` pour les *fon
 
 <abbr title="'too long; didn't read' en anglais, ou 'trop long ; j'ai pas lu'"><strong>TL;DR :</strong></abbr>
 
-Si vous utilisez des fonctions et d'autres bibliothèques qui nécessitent d'être appelées avec `await`, telles que :
+Si vous utilisez des bibliothèques tierces qui nécessitent d'être appelées avec `await`, telles que :
 
 ```Python
 results = await some_library()
