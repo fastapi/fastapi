@@ -254,7 +254,9 @@ Par exemple :
 
 ### Concurrence + Parallélisme : Web + Machine Learning
 
-Avec **FastAPI** vous pouvez bénéficier de la concurrence mais vous pouvez aussi profiter du parallélisme et multiprocessing afin de gérer des charges **CPU bound** qui sont récurrentes dans les systèmes de *Machine Learning*.
+Avec **FastAPI** vous pouvez bénéficier de la concurrence qui est très courante en developement web (c'est l'attrait principale de NodeJS).
+
+Mais vous pouvez aussi profiter du parallélisme et multiprocessing afin de gérer des charges **CPU bound** qui sont récurrentes dans les systèmes de *Machine Learning*.
 
 Ça, ajouté au fait que Python soit le langage le plus populaire pour la **Data Science**, le **Machine Learning** et surtout le **Deep Learning**, font de **FastAPI** un très bon choix pour les APIs et applications de **Data Science** / **Machine Learning**.
 
