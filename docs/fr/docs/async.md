@@ -350,7 +350,7 @@ Reprenons la phrase du début de la page :
 
 Ceci devrait être plus compréhensible désormais. ✨
 
-Tout ceci est donc ce qui donne sa force à **FastAPI** (à travers Starlette) et lui permet d'avoir d'aussi impressionnantes performances.
+Tout ceci est donc ce qui donne sa force à **FastAPI** (à travers Starlette) et lui permet d'avoir des performances aussi impressionnantes.
 
 ## Détails très techniques
 
