@@ -56,6 +56,7 @@ nav:
 - fastapi-people.md
 - python-types.md
 - Tutoriel - Guide utilisateur:
+  - tutorial/path-params.md
   - tutorial/background-tasks.md
 - project-generation.md
 - alternatives.md
