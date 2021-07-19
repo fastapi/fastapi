@@ -741,6 +741,6 @@ class FastAPI(Starlette):
         try:
             import uvicorn
             uvicorn.run(self, **args)
-        except Exception as err:
+        except:
             raise AssertionError("Uvicorn must be installed to use run functionality")
 
