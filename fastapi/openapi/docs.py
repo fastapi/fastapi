@@ -37,7 +37,7 @@ def get_swagger_ui_html(
 
     if swagger_ui_parameters:
         for key, value in swagger_ui_parameters.items():
-            html += f"{key}: {value},"
+            html += f"{str(key)}: {json.dumps(value)},\n"
 
     if oauth2_redirect_url:
         html += f"oauth2RedirectUrl: window.location.origin + '{oauth2_redirect_url}',"
