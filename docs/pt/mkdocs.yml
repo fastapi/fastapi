@@ -39,6 +39,7 @@ nav:
 - FastAPI: index.md
 - Languages:
   - en: /
+  - de: /de/
   - es: /es/
   - fr: /fr/
   - id: /id/
@@ -57,6 +58,8 @@ nav:
   - tutorial/index.md
   - tutorial/first-steps.md
   - tutorial/body-fields.md
+  - Segurança:
+    - tutorial/security/index.md
 - Implantação:
   - deployment/index.md
 - alternatives.md
@@ -98,6 +101,8 @@ extra:
   alternate:
   - link: /
     name: en - English
+  - link: /de/
+    name: de
   - link: /es/
     name: es - español
   - link: /fr/
