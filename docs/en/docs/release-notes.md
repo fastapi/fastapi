@@ -2,6 +2,8 @@
 
 ## Latest Changes
 
+## 0.66.1
+
 ### Translations
 
 * 🌐 Add basic setup for German translations. PR [#3522](https://github.com/tiangolo/fastapi/pull/3522) by [@0x4Dark](https://github.com/0x4Dark).
