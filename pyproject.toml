@@ -62,7 +62,7 @@ test = [
     "python-multipart >=0.0.5,<0.0.6",
     "aiofiles >=0.5.0,<0.6.0",
     "flask >=1.1.2,<2.0.0",
-    "anyio[trio] >=3.1.0,<4",
+    "anyio[trio] >=3.2.1,<4",
 ]
 doc = [
     "mkdocs >=1.1.2,<2.0.0",
