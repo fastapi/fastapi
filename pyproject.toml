@@ -109,6 +109,7 @@ junit_family = "xunit2"
 filterwarnings = [
     "error",
     'ignore:"@coroutine" decorator is deprecated since Python 3\.8, use "async def" instead:DeprecationWarning',
-    'ignore:The explicit passing of coroutine objects to asyncio\.wait\(\) is deprecated since Python 3\.8:DeprecationWarning',
-    'ignore:Exception ignored in. <socket\.socket fd=-1:pytest.PytestUnraisableExceptionWarning',
+    # TODO: if these ignores are needed, enable them, otherwise remove them
+    # 'ignore:The explicit passing of coroutine objects to asyncio\.wait\(\) is deprecated since Python 3\.8:DeprecationWarning',
+    # 'ignore:Exception ignored in. <socket\.socket fd=-1:pytest.PytestUnraisableExceptionWarning',
 ]
