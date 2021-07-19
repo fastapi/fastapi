@@ -229,6 +229,20 @@ def test_geo_json():
     assert response.status_code == 200, response.text
 
 
+def test_no_content_type_is_json():
+    response = client.post(
+        "/items/",
+        data='{"name": "Foo", "price": 50.5}',
+    )
+    assert response.status_code == 200, response.text
+    assert response.json() == {
+        "name": "Foo",
+        "description": None,
+        "price": 50.5,
+        "tax": None,
+    }
+
+
 def test_wrong_headers():
     data = '{"name": "Foo", "price": 50.5}'
     invalid_dict = {
