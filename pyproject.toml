@@ -43,8 +43,12 @@ Documentation = "https://fastapi.tiangolo.com/"
 
 [tool.flit.metadata.requires-extra]
 test = [
-    "pytest ==6.2.2",
-    "pytest-cov ==2.11.1",
+    # TODO: remove this
+    # "pytest ==6.2.2",
+    "pytest >=6.2.4,<7.0.0",
+    # TODO: remove this
+    # "pytest-cov ==2.11.1",
+    "pytest-cov >=2.12.0,<3.0.0",
     "pytest-asyncio >=0.14.0,<0.15.0",
     "mypy ==0.812",
     "flake8 >=3.8.3,<4.0.0",
