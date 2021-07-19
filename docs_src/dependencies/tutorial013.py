@@ -23,7 +23,8 @@ def Config() -> AppConfig:
     return AppConfig()
 
 
-def DBConnection(config: AppConfig = Depends(Config)) -> Database:
+@contextlib.asynccontextmanager
+def DBConnection(config: AppConfig = Depends(Config)) -> Generator[Database, None, None]:
     print("Creating DB connection!")
     db = Database(hostname=config.database_hostname)
     with db.connect():
