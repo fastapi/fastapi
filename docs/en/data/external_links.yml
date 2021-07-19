@@ -156,6 +156,10 @@ articles:
       title: Deploy a dockerized FastAPI application to AWS
       author_link: https://www.linkedin.com/in/valon-januzaj-b02692187/
       author: Valon Januzaj
+    - link: https://dompatmore.com/blog/authenticate-your-fastapi-app-with-auth0
+      title: Authenticate Your FastAPI App with auth0
+      author_link: https://twitter.com/dompatmore
+      author: Dom Patmore
   japanese:
     - link: https://qiita.com/mtitg/items/47770e9a562dd150631d
       title: FastAPI｜DB接続してCRUDするPython製APIサーバーを構築
@@ -219,6 +223,10 @@ articles:
       title: Почему Вы должны попробовать FastAPI?
       author_link: https://github.com/prostomarkeloff
       author: prostomarkeloff
+    - link: https://trkohler.com/fast-api-introduction-to-framework
+      title: "FastAPI: знакомимся с фреймворком"
+      author_link: https://www.linkedin.com/in/trkohler/
+      author: Troy Köhler
   german:
     - link: https://blog.codecentric.de/2019/08/inbetriebnahme-eines-scikit-learn-modells-mit-onnx-und-fastapi/
       title: Inbetriebnahme eines scikit-learn-Modells mit ONNX und FastAPI

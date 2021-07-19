@@ -39,17 +39,26 @@ nav:
 - FastAPI: index.md
 - Languages:
   - en: /
+  - de: /de/
   - es: /es/
   - fr: /fr/
+  - id: /id/
   - it: /it/
   - ja: /ja/
   - ko: /ko/
+  - pl: /pl/
   - pt: /pt/
   - ru: /ru/
   - sq: /sq/
   - tr: /tr/
   - uk: /uk/
   - zh: /zh/
+- 자습서 - 사용자 안내서:
+  - tutorial/index.md
+  - tutorial/first-steps.md
+  - tutorial/path-params.md
+  - tutorial/query-params.md
+  - tutorial/header-params.md
 markdown_extensions:
 - toc:
     permalink: true
@@ -85,16 +94,22 @@ extra:
   alternate:
   - link: /
     name: en - English
+  - link: /de/
+    name: de
   - link: /es/
     name: es - español
   - link: /fr/
     name: fr - français
+  - link: /id/
+    name: id
   - link: /it/
     name: it - italiano
   - link: /ja/
     name: ja - 日本語
   - link: /ko/
     name: ko - 한국어
+  - link: /pl/
+    name: pl
   - link: /pt/
     name: pt - português
   - link: /ru/
