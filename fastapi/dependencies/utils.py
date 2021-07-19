@@ -544,7 +544,7 @@ async def solve_dependencies(
             if sub_dependant.lifespan == "request":
                 stack = request.scope.get("fastapi_astack")
             else:  # lifespan == "app"
-                stack = getattr(request.app, "app_lifespan_astack")
+                stack = getattr(request.app.router, "lifespan_astack")  # type: ignore
             if stack is None:
                 raise RuntimeError(
                     async_contextmanager_dependencies_error

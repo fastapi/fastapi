@@ -1,10 +1,12 @@
 import asyncio
+import contextlib
 import email.message
 import enum
 import inspect
 import json
 from typing import (
     Any,
+    AsyncGenerator,
     Callable,
     Coroutine,
     Dict,
@@ -17,8 +19,9 @@ from typing import (
 )
 
 from fastapi import params
+from fastapi.concurrency import AsyncExitStack
 from fastapi.datastructures import Default, DefaultPlaceholder
-from fastapi.dependencies.models import Dependant
+from fastapi.dependencies.models import Dependant, DependencyCacheKey
 from fastapi.dependencies.utils import (
     get_body_field,
     get_dependant,
@@ -208,7 +211,7 @@ def get_request_handler(
             dependant=dependant,
             body=body,
             dependency_overrides_provider=dependency_overrides_provider,
-            lifespan_dependencies=request.app.lifespan_dependencies
+            lifespan_dependencies=request.app.router.lifespan_dependencies
         )
         values, errors, background_tasks, sub_response, _ = solved_result
         if errors:
@@ -255,7 +258,7 @@ def get_websocket_app(
             request=websocket,
             dependant=dependant,
             dependency_overrides_provider=dependency_overrides_provider,
-            lifespan_dependencies=websocket.app.lifespan_dependencies
+            lifespan_dependencies=websocket.app.router.lifespan_dependencies
         )
         values, errors, _, _2, _3 = solved_result
         if errors:
@@ -424,6 +427,10 @@ class APIRoute(routing.Route):
 
 
 class APIRouter(routing.Router):
+
+    lifespan_astack: Union[AsyncExitStack, None]
+    lifespan_dependencies: Dict[DependencyCacheKey, Any]
+
     def __init__(
         self,
         *,
@@ -440,16 +447,37 @@ class APIRouter(routing.Router):
         route_class: Type[APIRoute] = APIRoute,
         on_startup: Optional[Sequence[Callable[[], Any]]] = None,
         on_shutdown: Optional[Sequence[Callable[[], Any]]] = None,
+        lifespan: Callable[[Any], AsyncGenerator] = None,
         deprecated: Optional[bool] = None,
         include_in_schema: bool = True,
     ) -> None:
+        self.lifespan_dependencies = {}
+        
+        @contextlib.asynccontextmanager
+        async def dep_stack_cm() -> AsyncGenerator:
+            if AsyncExitStack:
+                async with AsyncExitStack() as self.lifespan_astack:
+                    yield
+            else:
+                self.lifespan_astack = None
+                yield
+            self.lifespan_dependencies = {}
+
+        async def lifespan_context(app: Any) -> AsyncGenerator:
+            async with dep_stack_cm():
+                await self.startup()
+                yield
+                await self.shutdown()
+
         super().__init__(
             routes=routes,  # type: ignore # in Starlette
             redirect_slashes=redirect_slashes,
             default=default,  # type: ignore # in Starlette
             on_startup=on_startup,  # type: ignore # in Starlette
             on_shutdown=on_shutdown,  # type: ignore # in Starlette
+            lifespan=lifespan_context,
         )
+
         if prefix:
             assert prefix.startswith("/"), "A path prefix must start with '/'"
             assert not prefix.endswith(
