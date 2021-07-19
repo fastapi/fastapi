@@ -59,6 +59,8 @@ nav:
   - tutorial/body-fields.md
   - Segurança:
     - tutorial/security/index.md
+- Implantação:
+  - deployment/index.md
 - alternatives.md
 - history-design-future.md
 - external-links.md
