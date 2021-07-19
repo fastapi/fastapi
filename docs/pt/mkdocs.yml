@@ -57,6 +57,8 @@ nav:
   - tutorial/index.md
   - tutorial/first-steps.md
   - tutorial/body-fields.md
+  - Segurança:
+    - tutorial/security/index.md
 - Implantação:
   - deployment/index.md
 - alternatives.md
