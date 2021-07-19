@@ -1,4 +1,5 @@
 from contextlib import contextmanager
+from typing import Generator
 
 from fastapi import Depends, FastAPI
 from pydantic import BaseSettings
@@ -23,7 +24,7 @@ def Config() -> AppConfig:
     return AppConfig()
 
 
-@contextlib.asynccontextmanager
+@contextmanager
 def DBConnection(config: AppConfig = Depends(Config)) -> Generator[Database, None, None]:
     print("Creating DB connection!")
     db = Database(hostname=config.database_hostname)
