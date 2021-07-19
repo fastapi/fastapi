@@ -73,10 +73,14 @@ def test_websocket_with_header_and_query():
 def test_websocket_no_credentials():
     with pytest.raises(WebSocketDisconnect):
         with client.websocket_connect("/items/foo/ws"):
-            pass
+            pytest.fail(
+                "did not raise WebSocketDisconnect on __enter__"
+            )  # pragma: no cover
 
 
 def test_websocket_invalid_data():
     with pytest.raises(WebSocketDisconnect):
         with client.websocket_connect("/items/foo/ws?q=bar&token=some-token"):
-            pass
+            pytest.fail(
+                "did not raise WebSocketDisconnect on __enter__"
+            )  # pragma: no cover
