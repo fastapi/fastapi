@@ -118,7 +118,7 @@ http://127.0.0.1:8000/items/foo?short=yes
 
 ou n'importe quelle autre variation de casse (tout en majuscules, uniquement la première lettre en majuscule, etc.), votre fonction considérera le paramètre `short` comme ayant une valeur booléenne à `True`. Sinon la valeur sera à `False`.
 
-## Multiples chemins et paramètres de requête
+## Multiples paramètres de chemin et de requête
 
 Vous pouvez déclarer plusieurs paramètres de chemin et paramètres de requête dans la même fonction, **FastAPI** saura comment les gérer. 
 
