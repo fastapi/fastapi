@@ -114,3 +114,8 @@ filterwarnings = [
     # 'ignore:The explicit passing of coroutine objects to asyncio\.wait\(\) is deprecated since Python 3\.8:DeprecationWarning',
     # 'ignore:Exception ignored in. <socket\.socket fd=-1:pytest.PytestUnraisableExceptionWarning',
 ]
+
+[tool.coverage.run]
+branch = true
+source_pkgs = ["fastapi"]
+source = ["tests", "docs/src"]
