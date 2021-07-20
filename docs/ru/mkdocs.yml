@@ -54,6 +54,7 @@ nav:
   - zh: /zh/
 - Руководство пользователя:
   - tutorial/index.md
+  - tutorial/first-steps.md
 markdown_extensions:
 - toc:
     permalink: true
