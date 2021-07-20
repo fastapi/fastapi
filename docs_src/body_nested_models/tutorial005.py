@@ -16,7 +16,7 @@ class Item(BaseModel):
     description: Optional[str] = None
     price: float
     tax: Optional[float] = None
-    tags: Set[str] = []
+    tags: Set[str] = set()
     image: Optional[Image] = None
 
 

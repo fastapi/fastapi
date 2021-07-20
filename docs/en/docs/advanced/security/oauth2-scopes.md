@@ -157,7 +157,7 @@ The `security_scopes` object (of class `SecurityScopes`) also provides a `scope_
 
 We create an `HTTPException` that we can re-use (`raise`) later at several points.
 
-In this exception, we include the scopes required (if any) as a string separated by spaces (using `scope_str`). We put that string containing the scopes in in the `WWW-Authenticate` header (this is part of the spec).
+In this exception, we include the scopes required (if any) as a string separated by spaces (using `scope_str`). We put that string containing the scopes in the `WWW-Authenticate` header (this is part of the spec).
 
 ```Python hl_lines="105  107-115"
 {!../../../docs_src/security/tutorial005.py!}
