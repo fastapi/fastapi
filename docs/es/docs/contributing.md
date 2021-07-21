@@ -216,7 +216,7 @@ La mayor parte de las pruebas se llevan a cabo contra los ejemplos de código en
 De esta forma se compreuba que:
 
 * Los documentos están al día.
-* Los ejemplos se pueden ejectuar tál como están.
+* Los ejemplos se pueden ejecutar tál como están.
 * La mayoría de las prestaciones se describen en los documentos, aseguradas por pruebas de cobertura.
 
 Durante el desarrollo local, se utiliza un script que construye el sitio y detecta cambios, recargando sobre la marcha.
