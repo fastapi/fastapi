@@ -1,32 +1,32 @@
-# Classes as Dependencies
+# 依赖文件的分类
 
-Before diving deeper into the **Dependency Injection** system, let's upgrade the previous example.
+在我们更深入了解 **依赖文件注入** 系统之前, 让我们先升级一下先前的例子。
 
-## A `dict` from the previous example
+## 来自于前一个例子的`dict`
 
-In the previous example, we were returning a `dict` from our dependency ("dependable"):
+在之前的例子里, 我们从依赖文件（“可依赖文件”）中得到了`dict`文件:
 
 ```Python hl_lines="9"
 {!../../../docs_src/dependencies/tutorial001.py!}
 ```
 
-But then we get a `dict` in the parameter `commons` of the *path operation function*.
+但这次我们从*路径操作函数*的`commons`参数中得到了一个`dict`
 
-And we know that editors can't provide a lot of support (like completion) for `dict`s, because they can't know their keys and value types.
+而且我们知道编辑器无法为`dict`提供很多帮助(如完善), 因它们不知道它们的密钥与数据类型.
 
-We can do better...
+我们可以做的更好...
 
-## What makes a dependency
+## 依赖文件的构成
 
-Up to now you have seen dependencies declared as functions.
+目前你已经见识过了定义成函数的依赖文件.
 
-But that's not the only way to declare dependencies (although it would probably be the more common).
+但那并不是定义依赖文件的唯一方式 (即使这一定义方式十分普遍).
 
-The key factor is that a dependency should be a "callable".
+关键的要素是：依赖项应该是「可调用项」.
 
-A "**callable**" in Python is anything that Python can "call" like a function.
+Python中的“**可调用项**”是所有Python可像函数一样调用的项
 
-So, if you have an object `something` (that might _not_ be a function) and you can "call" it (execute it) like:
+所有，如果你有一个项目`something` (那可能 _不是_ 一个函数) 然后你可以像这样“调用”（执行）它:
 
 ```Python
 something()
@@ -38,13 +38,13 @@ or
 something(some_argument, some_keyword_argument="foo")
 ```
 
-then it is a "callable".
+那么这就是一个“可调用项”.
 
-## Classes as dependencies
+## 依赖项的分类
 
-You might notice that to create an instance of a Python class, you use that same syntax.
+您也许会注意到当你创建一个Python实例时语法与调用函数相同.
 
-For example:
+举个例子:
 
 ```Python
 class Cat:
@@ -55,7 +55,7 @@ class Cat:
 fluffy = Cat(name="Mr Fluffy")
 ```
 
-In this case, `fluffy` is an instance of the class `Cat`.
+在这个例子里, `fluffy` is an instance of the class `Cat`.
 
 And to create `fluffy`, you are "calling" `Cat`.
 
