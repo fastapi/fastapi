@@ -39,17 +39,28 @@ nav:
 - FastAPI: index.md
 - Languages:
   - en: /
+  - de: /de/
   - es: /es/
   - fr: /fr/
+  - id: /id/
   - it: /it/
   - ja: /ja/
   - ko: /ko/
+  - pl: /pl/
   - pt: /pt/
   - ru: /ru/
   - sq: /sq/
   - tr: /tr/
   - uk: /uk/
   - zh: /zh/
+- features.md
+- fastapi-people.md
+- python-types.md
+- Tutoriel - Guide utilisateur:
+  - tutorial/background-tasks.md
+- project-generation.md
+- alternatives.md
+- external-links.md
 markdown_extensions:
 - toc:
     permalink: true
@@ -85,16 +96,22 @@ extra:
   alternate:
   - link: /
     name: en - English
+  - link: /de/
+    name: de
   - link: /es/
     name: es - español
   - link: /fr/
     name: fr - français
+  - link: /id/
+    name: id
   - link: /it/
     name: it - italiano
   - link: /ja/
     name: ja - 日本語
   - link: /ko/
     name: ko - 한국어
+  - link: /pl/
+    name: pl
   - link: /pt/
     name: pt - português
   - link: /ru/
