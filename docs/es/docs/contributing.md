@@ -4,7 +4,7 @@ Si te interesa formar parte del proyecto, empieza por revisar las maneras de [ap
 
 ## Desarrollo
 
-Si ya has copiado el repositorio y sabes con certeza que necesitas indagar a fondo el código fuente,
+Si ya has copiado el repositorio y sabes con certeza que necesitas indagar a fondo del código fuente,
 aquí encontrarás unas pautas a seguir con respecto a cómo desplegar tu entorno.
 
 
