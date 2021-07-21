@@ -23,7 +23,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           # To allow latest-changes to commit to master
-          token: ${{ secrets.ACTION_TOKEN }}
+          token: ${{ secrets.ACTIONS_TOKEN }}
       # Allow debugging with tmate
       - name: Setup tmate session
         uses: mxschmitt/action-tmate@v3
@@ -34,7 +34,7 @@ jobs:
           standard_token: ${{ secrets.GITHUB_TOKEN }}
       - uses: docker://tiangolo/latest-changes:0.0.3
         with:
-          token: ${{ secrets.ACTION_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           latest_changes_file: docs/en/docs/release-notes.md
           latest_changes_header: '## Latest Changes\n\n'
           debug_logs: true
