@@ -64,7 +64,7 @@ def test_dependency_lifespans_callable(lifespan: str, expected_calls: int, n_req
     app = FastAPI()
 
     @app.get("/")
-    def root(placeholder: dependency = Depends(lifespan=lifespan)):
+    def root(placeholder: dependency = Depends(cache_lifespan=lifespan)):
         ...
 
     with TestClient(app) as client:
@@ -96,7 +96,7 @@ def test_dependency_lifespans_generator(lifespan: str, expected_calls: int, n_re
     app = FastAPI()
 
     @app.get("/")
-    def root(placeholder: dependency = Depends(lifespan=lifespan)):
+    def root(placeholder: dependency = Depends(cache_lifespan=lifespan)):
         ...
 
     with TestClient(app) as client:
@@ -111,7 +111,7 @@ def test_dependency_lifespans_generator(lifespan: str, expected_calls: int, n_re
 def test_invalid_lifespan():
     """The only valid lifespans are "app" and "request\""""
     with pytest.raises(AssertionError):
-        Depends(lifespan="invalid")
+        Depends(cache_lifespan="invalid")
 
 
 
@@ -122,9 +122,9 @@ def test_lifespan_dependency_reset_on_shutdown():
     app = FastAPI()
 
     @app.get("/")
-    def root(placeholder: dependency = Depends(lifespan="app")):
+    def root(placeholder: dependency = Depends(cache_lifespan="app")):
         ...
-    
+
     for lifecycle in range(2):
         with TestClient(app) as client:
             for req in range(3):
@@ -150,7 +150,7 @@ def test_nested_dependencies():
     app = FastAPI()
 
     @app.get("/")
-    def root(v: int = Depends(dep, lifespan="app")):
+    def root(v: int = Depends(dep, cache_lifespan="app")):
         assert v == 1
 
     with TestClient(app) as client:
@@ -170,7 +170,7 @@ def test_overrides():
     app = FastAPI()
 
     @app.get("/")
-    def root(v: int = Depends(real, lifespan="app")) -> int:
+    def root(v: int = Depends(real, cache_lifespan="app")) -> int:
         return v
 
     with TestClient(app) as client:
@@ -183,3 +183,29 @@ def test_overrides():
         res = client.get("/")
         assert res.status_code == 200
         assert res.json() == 2  # from fake
+
+
+def test_app_lifespan_dependency_sharing():
+    """Startup dependencies marked with cache_lifespan="app" are cached for endpoints as well"""
+    dependency = SyncGenerator()
+
+    def startup(placeholder: SyncGenerator = Depends(dependency, cache_lifespan="app")):
+        ...
+
+    app = FastAPI(on_startup=[startup])
+
+    @app.get("/")
+    def root(placeholder: SyncGenerator = Depends(dependency)):
+        ...
+    
+    with TestClient(app) as client:
+        assert dependency.constructed
+        assert dependency.counter == 1
+        assert not dependency.destructed
+        assert client.get("/").status_code == 200
+        assert dependency.constructed
+        assert dependency.counter == 1
+        assert not dependency.destructed
+    assert dependency.constructed
+    assert dependency.counter == 1
+    assert dependency.destructed

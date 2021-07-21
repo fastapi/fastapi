@@ -2,7 +2,7 @@ from typing import Any, Dict, Optional, Sequence, TYPE_CHECKING
 
 from fastapi import params
 if TYPE_CHECKING:
-    from fastapi.dependencies.models import Dependency, DependencyLifespan
+    from fastapi.dependencies.models import Dependency, DependencyCacheLifespan
 from pydantic.fields import Undefined
 
 
@@ -273,9 +273,9 @@ def Depends(  # noqa: N802
     dependency: Optional["Dependency"] = None,
     *,
     use_cache: bool = True,
-    lifespan: "DependencyLifespan" = "request"
+    cache_lifespan: "DependencyCacheLifespan" = "request",
 ) -> Any:
-    return params.Depends(dependency=dependency, use_cache=use_cache, lifespan=lifespan)
+    return params.Depends(dependency=dependency, use_cache=use_cache, cache_lifespan=cache_lifespan)
 
 
 def Security(  # noqa: N802
@@ -283,5 +283,6 @@ def Security(  # noqa: N802
     *,
     scopes: Optional[Sequence[str]] = None,
     use_cache: bool = True,
+    cache_lifespan: "DependencyCacheLifespan" = "request",
 ) -> Any:
-    return params.Security(dependency=dependency, scopes=scopes, use_cache=use_cache)
+    return params.Security(dependency=dependency, scopes=scopes, use_cache=use_cache, cache_lifespan=cache_lifespan)

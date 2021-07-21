@@ -8,7 +8,7 @@ Dependency = Callable[..., Any]
 
 DependencyCacheKey = Tuple[Dependency, Tuple[str]]
 
-DependencyLifespan = Literal["app", "request"]
+DependencyCacheLifespan = Literal["app", "request"]
 
 
 class SecurityRequirement:
@@ -40,7 +40,7 @@ class Dependant:
         security_scopes_param_name: Optional[str] = None,
         security_scopes: Optional[List[str]] = None,
         use_cache: bool = True,
-        lifespan: DependencyLifespan = "request",
+        cache_lifespan: DependencyCacheLifespan = "request",
         path: Optional[str] = None,
     ) -> None:
         self.path_params = path_params or []
@@ -60,7 +60,7 @@ class Dependant:
         self.name = name
         self.call = call
         self.use_cache = use_cache
-        self.lifespan = lifespan
+        self.cache_lifespan = cache_lifespan
         # Store the path to be able to re-generate a dependable from it in overrides
         self.path = path
         # Save the cache key at creation to optimize performance

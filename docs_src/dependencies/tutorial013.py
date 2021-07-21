@@ -36,5 +36,5 @@ app = FastAPI()
 
 
 @app.get("/")
-def root(conn: Database = Depends(DBConnection, lifespan="app")):
+def root(conn: Database = Depends(DBConnection, cache_lifespan="app")):
     ...

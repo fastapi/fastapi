@@ -23,7 +23,7 @@ from fastapi.concurrency import (
     asynccontextmanager,
     contextmanager_in_threadpool,
 )
-from fastapi.dependencies.models import Dependant, DependencyLifespan, SecurityRequirement
+from fastapi.dependencies.models import Dependant, DependencyCacheLifespan, SecurityRequirement
 from fastapi.logger import logger
 from fastapi.security.base import SecurityBase
 from fastapi.security.oauth2 import OAuth2, SecurityScopes
@@ -156,7 +156,7 @@ def get_sub_dependant(
         name=name,
         security_scopes=security_scopes,
         use_cache=depends.use_cache,
-        lifespan=depends.lifespan
+        cache_lifespan=depends.cache_lifespan
     )
     if security_requirement:
         sub_dependant.security_requirements.append(security_requirement)
@@ -185,7 +185,7 @@ def get_flat_dependant(
         body_params=dependant.body_params.copy(),
         security_schemes=dependant.security_requirements.copy(),
         use_cache=dependant.use_cache,
-        lifespan=dependant.lifespan,
+        cache_lifespan=dependant.cache_lifespan,
         path=dependant.path,
     )
     for sub_dependant in dependant.dependencies:
@@ -280,19 +280,22 @@ def check_dependency_contextmanagers() -> None:
 
 def get_dependant(
     *,
-    path: str,
     call: Callable[..., Any],
+    path: Optional[str] = None,
     name: Optional[str] = None,
     security_scopes: Optional[List[str]] = None,
     use_cache: bool = True,
-    lifespan: DependencyLifespan = "request"
+    cache_lifespan: DependencyCacheLifespan = "request"
 ) -> Dependant:
-    path_param_names = get_path_param_names(path)
+    if path is not None:
+        path_param_names = get_path_param_names(path)
+    else:
+        path_param_names = set()
     endpoint_signature = get_typed_signature(call)
     signature_params = endpoint_signature.parameters
     if is_gen_callable(call) or is_async_gen_callable(call):
         check_dependency_contextmanagers()
-    dependant = Dependant(call=call, name=name, path=path, use_cache=use_cache, lifespan=lifespan)
+    dependant = Dependant(call=call, name=name, path=path, use_cache=use_cache, cache_lifespan=cache_lifespan)
     for param_name, param in signature_params.items():
         if isinstance(param.default, params.Depends):
             sub_dependant = get_param_sub_dependant(
@@ -465,11 +468,76 @@ async def solve_generator(
     return await stack.enter_async_context(cm)
 
 
+async def solve_lifespan_dependencies(
+    *,
+    dependant: Dependant,
+    lifespan_dependency_cache: Optional[Dict[Tuple[Callable[..., Any], Tuple[str]], Any]],
+    dependency_overrides_provider: Optional[Any] = None,
+    dependency_cache: Optional[Dict[Tuple[Callable[..., Any], Tuple[str]], Any]] = None,
+    stack: Union[None, AsyncExitStack]
+) -> Tuple[
+    Dict[str, Any],
+    Dict[Tuple[Callable[..., Any], Tuple[str]], Any],
+]:
+    values: Dict[str, Any] = {}
+    sub_dependant: Dependant
+    dependency_cache = dependency_cache or lifespan_dependency_cache.copy()
+    for sub_dependant in dependant.dependencies:
+        sub_dependant.call = cast(Callable[..., Any], sub_dependant.call)
+        sub_dependant.cache_key = cast(
+            Tuple[Callable[..., Any], Tuple[str]], sub_dependant.cache_key
+        )
+        call = sub_dependant.call
+        use_sub_dependant = sub_dependant
+        if (
+            dependency_overrides_provider
+            and dependency_overrides_provider.dependency_overrides
+        ):
+            original_call = sub_dependant.call
+            call = getattr(
+                dependency_overrides_provider, "dependency_overrides", {}
+            ).get(original_call, original_call)
+            use_sub_dependant = get_dependant(
+                call=call,
+                name=sub_dependant.name,
+            )
+        solved_result = await solve_lifespan_dependencies(
+            dependant=use_sub_dependant,
+            dependency_overrides_provider=dependency_overrides_provider,
+            lifespan_dependency_cache=lifespan_dependency_cache,
+            dependency_cache=dependency_cache,
+            stack=stack
+        )
+        sub_values, sub_dependency_cache = solved_result
+        dependency_cache.update(sub_dependency_cache)
+        if sub_dependant.use_cache and sub_dependant.cache_key in dependency_cache:
+            solved = dependency_cache[sub_dependant.cache_key]
+        elif is_gen_callable(call) or is_async_gen_callable(call):
+            if stack is None:
+                raise RuntimeError(
+                    async_contextmanager_dependencies_error
+                )  # pragma: no cover
+            solved = await solve_generator(
+                call=call, stack=stack, sub_values=sub_values
+            )
+        elif is_coroutine_callable(call):
+            solved = await call(**sub_values)
+        else:
+            solved = await run_in_threadpool(call, **sub_values)
+        if sub_dependant.name is not None:
+            values[sub_dependant.name] = solved
+        if sub_dependant.cache_key not in dependency_cache:
+            dependency_cache[sub_dependant.cache_key] = solved
+        if sub_dependant.cache_lifespan == "app" and sub_dependant.cache_key not in lifespan_dependency_cache:
+            lifespan_dependency_cache[sub_dependant.cache_key] = solved
+    return values, dependency_cache
+
+
 async def solve_dependencies(
     *,
     request: Union[Request, WebSocket],
     dependant: Dependant,
-    lifespan_dependencies: Optional[Dict[Tuple[Callable[..., Any], Tuple[str]], Any]],
+    lifespan_dependency_cache: Optional[Dict[Tuple[Callable[..., Any], Tuple[str]], Any]],
     body: Optional[Union[Dict[str, Any], FormData]] = None,
     background_tasks: Optional[BackgroundTasks] = None,
     response: Optional[Response] = None,
@@ -491,7 +559,7 @@ async def solve_dependencies(
         media_type=None,  # type: ignore # in Starlette
         background=None,  # type: ignore # in Starlette
     )
-    dependency_cache = dependency_cache or lifespan_dependencies.copy()
+    dependency_cache = dependency_cache or lifespan_dependency_cache.copy()
     sub_dependant: Dependant
     for sub_dependant in dependant.dependencies:
         sub_dependant.call = cast(Callable[..., Any], sub_dependant.call)
@@ -525,7 +593,7 @@ async def solve_dependencies(
             response=response,
             dependency_overrides_provider=dependency_overrides_provider,
             dependency_cache=dependency_cache,
-            lifespan_dependencies=lifespan_dependencies
+            lifespan_dependency_cache=lifespan_dependency_cache
         )
         (
             sub_values,
@@ -541,7 +609,7 @@ async def solve_dependencies(
         if sub_dependant.use_cache and sub_dependant.cache_key in dependency_cache:
             solved = dependency_cache[sub_dependant.cache_key]
         elif is_gen_callable(call) or is_async_gen_callable(call):
-            if sub_dependant.lifespan == "request":
+            if sub_dependant.cache_lifespan == "request":
                 stack = request.scope.get("fastapi_astack")
             else:  # lifespan == "app"
                 stack = getattr(request.app.router, "lifespan_astack")  # type: ignore
@@ -560,8 +628,8 @@ async def solve_dependencies(
             values[sub_dependant.name] = solved
         if sub_dependant.cache_key not in dependency_cache:
             dependency_cache[sub_dependant.cache_key] = solved
-        if sub_dependant.lifespan == "app" and sub_dependant.cache_key not in lifespan_dependencies:
-            lifespan_dependencies[sub_dependant.cache_key] = solved
+        if sub_dependant.cache_lifespan == "app" and sub_dependant.cache_key not in lifespan_dependency_cache:
+            lifespan_dependency_cache[sub_dependant.cache_key] = solved
     path_values, path_errors = request_params_to_args(
         dependant.path_params, request.path_params
     )

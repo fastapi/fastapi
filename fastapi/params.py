@@ -2,7 +2,7 @@ from enum import Enum
 from typing import Any, Callable, Dict, Optional, Sequence, TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from fastapi.dependencies.models import DependencyLifespan
+    from fastapi.dependencies.models import DependencyCacheLifespan
 
 from pydantic.fields import FieldInfo, Undefined
 
@@ -353,18 +353,21 @@ class Depends:
         self, dependency: Optional[Callable[..., Any]] = None,
         *,
         use_cache: bool = True,
-        lifespan: "DependencyLifespan" = "request"
+        cache_lifespan: "DependencyCacheLifespan" = "request"
     ):
         self.dependency = dependency
         self.use_cache = use_cache
-        self.lifespan = lifespan
-        assert lifespan in ("app", "request")
+        self.cache_lifespan = cache_lifespan
+        assert cache_lifespan in ("app", "request")
 
     def __repr__(self) -> str:
         attr = getattr(self.dependency, "__name__", type(self.dependency).__name__)
         cache = "" if self.use_cache else ", use_cache=False"
-        lifespan = "" if self.lifespan == "request" else f", lifespan=\"{self.lifespan}\""
-        return f"{self.__class__.__name__}({attr}{cache}{lifespan})"
+        if self.cache_lifespan == "request":
+            cache_lifespan = ""
+        else:
+            cache_lifespan = f", cache_lifespan=\"{self.cache_lifespan}\""
+        return f"{self.__class__.__name__}({attr}{cache}{cache_lifespan})"
 
 
 class Security(Depends):
@@ -374,6 +377,7 @@ class Security(Depends):
         *,
         scopes: Optional[Sequence[str]] = None,
         use_cache: bool = True,
+        cache_lifespan: "DependencyCacheLifespan" = "request"
     ):
-        super().__init__(dependency=dependency, use_cache=use_cache)
+        super().__init__(dependency=dependency, use_cache=use_cache, cache_lifespan=cache_lifespan)
         self.scopes = scopes or []

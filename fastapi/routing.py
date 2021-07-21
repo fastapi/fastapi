@@ -27,6 +27,7 @@ from fastapi.dependencies.utils import (
     get_dependant,
     get_parameterless_sub_dependant,
     solve_dependencies,
+    solve_lifespan_dependencies,
 )
 from fastapi.encoders import DictIntStrAny, SetIntStr, jsonable_encoder
 from fastapi.exceptions import RequestValidationError, WebSocketRequestValidationError
@@ -211,7 +212,7 @@ def get_request_handler(
             dependant=dependant,
             body=body,
             dependency_overrides_provider=dependency_overrides_provider,
-            lifespan_dependencies=request.app.router.lifespan_dependencies
+            lifespan_dependency_cache=request.app.router.lifespan_dependency_cache
         )
         values, errors, background_tasks, sub_response, _ = solved_result
         if errors:
@@ -258,7 +259,7 @@ def get_websocket_app(
             request=websocket,
             dependant=dependant,
             dependency_overrides_provider=dependency_overrides_provider,
-            lifespan_dependencies=websocket.app.router.lifespan_dependencies
+            lifespan_dependency_cache=websocket.app.router.lifespan_dependency_cache
         )
         values, errors, _, _2, _3 = solved_result
         if errors:
@@ -429,7 +430,7 @@ class APIRoute(routing.Route):
 class APIRouter(routing.Router):
 
     lifespan_astack: Union[AsyncExitStack, None]
-    lifespan_dependencies: Dict[DependencyCacheKey, Any]
+    lifespan_dependency_cache: Dict[DependencyCacheKey, Any]
 
     def __init__(
         self,
@@ -447,11 +448,10 @@ class APIRouter(routing.Router):
         route_class: Type[APIRoute] = APIRoute,
         on_startup: Optional[Sequence[Callable[[], Any]]] = None,
         on_shutdown: Optional[Sequence[Callable[[], Any]]] = None,
-        lifespan: Callable[[Any], AsyncGenerator] = None,
         deprecated: Optional[bool] = None,
         include_in_schema: bool = True,
     ) -> None:
-        self.lifespan_dependencies = {}
+        self.lifespan_dependency_cache = {}
         
         @contextlib.asynccontextmanager
         async def dep_stack_cm() -> AsyncGenerator:
@@ -461,7 +461,7 @@ class APIRouter(routing.Router):
             else:
                 self.lifespan_astack = None
                 yield
-            self.lifespan_dependencies = {}
+            self.lifespan_dependency_cache = {}
 
         async def lifespan_context(app: Any) -> AsyncGenerator:
             async with dep_stack_cm():
@@ -493,6 +493,40 @@ class APIRouter(routing.Router):
         self.dependency_overrides_provider = dependency_overrides_provider
         self.route_class = route_class
         self.default_response_class = default_response_class
+
+    async def startup(self) -> None:
+        """
+        Run any `.on_startup` event handlers.
+        """
+        for handler in self.on_startup:
+            dependant = get_dependant(call=handler)
+            values, _ = await solve_lifespan_dependencies(
+                dependant=dependant,
+                lifespan_dependency_cache=self.lifespan_dependency_cache,
+                dependency_overrides_provider=self.dependency_overrides_provider,
+                stack=self.lifespan_astack
+            )
+            is_coroutine = asyncio.iscoroutinefunction(dependant.call)
+            await run_endpoint_function(
+                dependant=dependant, values=values, is_coroutine=is_coroutine
+            )
+
+    async def shutdown(self) -> None:
+        """
+        Run any `.on_shutdown` event handlers.
+        """
+        for handler in self.on_shutdown:
+            dependant = get_dependant(call=handler)
+            values, _ = await solve_lifespan_dependencies(
+                dependant=dependant,
+                lifespan_dependency_cache=self.lifespan_dependency_cache,
+                dependency_overrides_provider=self.dependency_overrides_provider,
+                stack=self.lifespan_astack
+            )
+            is_coroutine = asyncio.iscoroutinefunction(dependant.call)
+            await run_endpoint_function(
+                dependant=dependant, values=values, is_coroutine=is_coroutine
+            )
 
     def add_api_route(
         self,
