@@ -1,4 +1,5 @@
 import asyncio
+import email.message
 import enum
 import inspect
 import json
@@ -36,7 +37,7 @@ from fastapi.utils import (
 )
 from pydantic import BaseModel
 from pydantic.error_wrappers import ErrorWrapper, ValidationError
-from pydantic.fields import ModelField
+from pydantic.fields import ModelField, Undefined
 from starlette import routing
 from starlette.concurrency import run_in_threadpool
 from starlette.exceptions import HTTPException
@@ -153,7 +154,7 @@ async def run_endpoint_function(
 def get_request_handler(
     dependant: Dependant,
     body_field: Optional[ModelField] = None,
-    status_code: int = 200,
+    status_code: Optional[int] = None,
     response_class: Union[Type[Response], DefaultPlaceholder] = Default(JSONResponse),
     response_field: Optional[ModelField] = None,
     response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
@@ -174,14 +175,28 @@ def get_request_handler(
 
     async def app(request: Request) -> Response:
         try:
-            body = None
+            body: Any = None
             if body_field:
                 if is_body_form:
                     body = await request.form()
                 else:
                     body_bytes = await request.body()
                     if body_bytes:
-                        body = await request.json()
+                        json_body: Any = Undefined
+                        content_type_value = request.headers.get("content-type")
+                        if not content_type_value:
+                            json_body = await request.json()
+                        else:
+                            message = email.message.Message()
+                            message["content-type"] = content_type_value
+                            if message.get_content_maintype() == "application":
+                                subtype = message.get_content_subtype()
+                                if subtype == "json" or subtype.endswith("+json"):
+                                    json_body = await request.json()
+                        if json_body != Undefined:
+                            body = json_body
+                        else:
+                            body = body_bytes
         except json.JSONDecodeError as e:
             raise RequestValidationError([ErrorWrapper(e, ("body", e.pos))], body=e.doc)
         except Exception as e:
@@ -217,11 +232,12 @@ def get_request_handler(
                 exclude_none=response_model_exclude_none,
                 is_coroutine=is_coroutine,
             )
-            response = actual_response_class(
-                content=response_data,
-                status_code=status_code,
-                background=background_tasks,  # type: ignore # in Starlette
-            )
+            response_args: Dict[str, Any] = {"background": background_tasks}
+            # If status_code was set, use it, otherwise use the default from the
+            # response class, in the case of redirect it's 307
+            if status_code is not None:
+                response_args["status_code"] = status_code
+            response = actual_response_class(response_data, **response_args)
             response.headers.raw.extend(sub_response.headers.raw)
             if sub_response.status_code:
                 response.status_code = sub_response.status_code
@@ -278,7 +294,7 @@ class APIRoute(routing.Route):
         endpoint: Callable[..., Any],
         *,
         response_model: Optional[Type[Any]] = None,
-        status_code: int = 200,
+        status_code: Optional[int] = None,
         tags: Optional[List[str]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
         summary: Optional[str] = None,
@@ -454,7 +470,7 @@ class APIRouter(routing.Router):
         endpoint: Callable[..., Any],
         *,
         response_model: Optional[Type[Any]] = None,
-        status_code: int = 200,
+        status_code: Optional[int] = None,
         tags: Optional[List[str]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
         summary: Optional[str] = None,
@@ -526,7 +542,7 @@ class APIRouter(routing.Router):
         path: str,
         *,
         response_model: Optional[Type[Any]] = None,
-        status_code: int = 200,
+        status_code: Optional[int] = None,
         tags: Optional[List[str]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
         summary: Optional[str] = None,
@@ -704,7 +720,7 @@ class APIRouter(routing.Router):
         path: str,
         *,
         response_model: Optional[Type[Any]] = None,
-        status_code: int = 200,
+        status_code: Optional[int] = None,
         tags: Optional[List[str]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
         summary: Optional[str] = None,
@@ -754,7 +770,7 @@ class APIRouter(routing.Router):
         path: str,
         *,
         response_model: Optional[Type[Any]] = None,
-        status_code: int = 200,
+        status_code: Optional[int] = None,
         tags: Optional[List[str]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
         summary: Optional[str] = None,
@@ -804,7 +820,7 @@ class APIRouter(routing.Router):
         path: str,
         *,
         response_model: Optional[Type[Any]] = None,
-        status_code: int = 200,
+        status_code: Optional[int] = None,
         tags: Optional[List[str]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
         summary: Optional[str] = None,
@@ -854,7 +870,7 @@ class APIRouter(routing.Router):
         path: str,
         *,
         response_model: Optional[Type[Any]] = None,
-        status_code: int = 200,
+        status_code: Optional[int] = None,
         tags: Optional[List[str]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
         summary: Optional[str] = None,
@@ -904,7 +920,7 @@ class APIRouter(routing.Router):
         path: str,
         *,
         response_model: Optional[Type[Any]] = None,
-        status_code: int = 200,
+        status_code: Optional[int] = None,
         tags: Optional[List[str]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
         summary: Optional[str] = None,
@@ -954,7 +970,7 @@ class APIRouter(routing.Router):
         path: str,
         *,
         response_model: Optional[Type[Any]] = None,
-        status_code: int = 200,
+        status_code: Optional[int] = None,
         tags: Optional[List[str]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
         summary: Optional[str] = None,
@@ -1004,7 +1020,7 @@ class APIRouter(routing.Router):
         path: str,
         *,
         response_model: Optional[Type[Any]] = None,
-        status_code: int = 200,
+        status_code: Optional[int] = None,
         tags: Optional[List[str]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
         summary: Optional[str] = None,
@@ -1054,7 +1070,7 @@ class APIRouter(routing.Router):
         path: str,
         *,
         response_model: Optional[Type[Any]] = None,
-        status_code: int = 200,
+        status_code: Optional[int] = None,
         tags: Optional[List[str]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
         summary: Optional[str] = None,

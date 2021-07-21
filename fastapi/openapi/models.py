@@ -117,6 +117,9 @@ class SchemaBase(BaseModel):
     example: Optional[Any] = None
     deprecated: Optional[bool] = None
 
+    class Config:
+        extra: str = "allow"
+
 
 class Schema(SchemaBase):
     allOf: Optional[List[SchemaBase]] = None
