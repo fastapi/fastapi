@@ -1,5 +1,9 @@
 articles:
   english:
+  - author: Patrick Ladon
+    author_link: https://dev.to/factorlive
+    link: https://dev.to/factorlive/python-facebook-messenger-webhook-with-fastapi-on-glitch-4n90
+    title: Python Facebook messenger webhook with FastAPI on Glitch  
   - author: Dom Patmore
     author_link: https://twitter.com/dompatmore
     link: https://dompatmore.com/blog/authenticate-your-fastapi-app-with-auth0
