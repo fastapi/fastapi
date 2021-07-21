@@ -11,12 +11,17 @@ You just need to install an ASGI compatible server like:
     <div class="termy">
 
     ```console
-    $ pip install uvicorn
+    $ pip install uvicorn[standard]
 
     ---> 100%
     ```
 
     </div>
+
+    !!! tip
+        By adding the `standard`, Uvicorn will install and use some recommended extra dependencies.
+        
+        That including `uvloop`, the high-performance drop-in replacement for `asyncio`, that provides the big concurrency performance boost.
 
 === "Hypercorn"
 

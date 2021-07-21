@@ -16,14 +16,18 @@ Let's say you have a file structure like this:
 ├── app
 │   ├── __init__.py
 │   ├── main.py
+│   ├── dependencies.py
 │   └── routers
+│   │   ├── __init__.py
+│   │   ├── items.py
+│   │   └── users.py
+│   └── internal
 │       ├── __init__.py
-│       ├── items.py
-│       └── users.py
+│       └── admin.py
 ```
 
 !!! tip
-    There are two `__init__.py` files: one in each directory or subdirectory.
+    There are several `__init__.py` files: one in each directory or subdirectory.
 
     This is what allows importing code from one file into another.
 
@@ -33,18 +37,33 @@ Let's say you have a file structure like this:
     from app.routers import items
     ```
 
-* The `app` directory contains everything.
-* This `app` directory has an empty file `app/__init__.py`.
-    * So, the `app` directory is a "Python package" (a collection of "Python modules").
-* The `app` directory also has a `app/main.py` file.
-    * As it is inside a Python package directory (because there's a file `__init__.py`), it is a "module" of that package: `app.main`.
-* There's a subdirectory `app/routers/`.
-* The subdirectory `app/routers` also has an empty file `__init__.py`.
-    * So, it is a "Python subpackage".
-* The file `app/routers/items.py` is beside the `app/routers/__init__.py`.
-    * So, it's a submodule: `app.routers.items`.
-* The file `app/routers/users.py` is beside the `app/routers/__init__.py`.
-    * So, it's a submodule: `app.routers.users`.
+* The `app` directory contains everything. And it has an empty file `app/__init__.py`, so it is a "Python package" (a collection of "Python modules"): `app`.
+* It contains an `app/main.py` file. As it is inside a Python package (a directory with a file `__init__.py`), it is a "module" of that package: `app.main`.
+* There's also an `app/dependencies.py` file, just like `app/main.py`, it is a "module": `app.dependencies`.
+* There's a subdirectory `app/routers/` with another file `__init__.py`, so it's a "Python subpackage": `app.routers`.
+* The file `app/routers/items.py` is inside a package, `app/routers/`, so, it's a submodule: `app.routers.items`.
+* The same with `app/routers/users.py`, it's another submodule: `app.routers.users`.
+* There's also a subdirectory `app/internal/` with another file `__init__.py`, so it's another "Python subpackage": `app.internal`.
+* And the file `app/internal/admin.py` is another submodule: `app.internal.admin`.
+
+<img src="/img/tutorial/bigger-applications/package.svg">
+
+The same file structure with comments:
+
+```
+.
+├── app                  # "app" is a Python package
+│   ├── __init__.py      # this file makes "app" a "Python package"
+│   ├── main.py          # "main" module, e.g. import app.main
+│   ├── dependencies.py  # "dependencies" module, e.g. import app.dependencies
+│   └── routers          # "routers" is a "Python subpackage"
+│   │   ├── __init__.py  # makes "routers" a "Python subpackage"
+│   │   ├── items.py     # "items" submodule, e.g. import app.routers.items
+│   │   └── users.py     # "users" submodule, e.g. import app.routers.users
+│   └── internal         # "internal" is a "Python subpackage"
+│       ├── __init__.py  # makes "internal" a "Python subpackage"
+│       └── admin.py     # "admin" submodule, e.g. import app.internal.admin
+```
 
 ## `APIRouter`
 
@@ -78,16 +97,33 @@ You can think of `APIRouter` as a "mini `FastAPI`" class.
 
 All the same options are supported.
 
-All the same parameters, responses, dependencies, tags, etc.
+All the same `parameters`, `responses`, `dependencies`, `tags`, etc.
 
 !!! tip
     In this example, the variable is called `router`, but you can name it however you want.
 
-We are going to include this `APIRouter` in the main `FastAPI` app, but first, let's add another `APIRouter`.
+We are going to include this `APIRouter` in the main `FastAPI` app, but first, let's check the dependencies and another `APIRouter`.
+
+## Dependencies
+
+We see that we are going to need some dependencies used in several places of the application.
+
+So we put them in their own `dependencies` module (`app/dependencies.py`).
+
+We will now use a simple dependency to read a custom `X-Token` header:
+
+```Python hl_lines="1  4-6"
+{!../../../docs_src/bigger_applications/app/dependencies.py!}
+```
+
+!!! tip
+    We are using an invented header to simplify this example.
+
+    But in real cases you will get better results using the integrated [Security utilities](./security/index.md){.internal-link target=_blank}.
 
 ## Another module with `APIRouter`
 
-Let's say you also have the endpoints dedicated to handling "Items" from your application in the module at `app/routers/items.py`.
+Let's say you also have the endpoints dedicated to handling "items" from your application in the module at `app/routers/items.py`.
 
 You have *path operations* for:
 
@@ -96,23 +132,147 @@ You have *path operations* for:
 
 It's all the same structure as with `app/routers/users.py`.
 
-But let's say that this time we are more lazy.
+But we want to be smarter and simplify the code a bit.
 
-And we don't want to have to explicitly type `/items/` and `tags=["items"]` in every *path operation* (we will be able to do it later):
+We know all the *path operations* in this module have the same:
 
-```Python hl_lines="6  11"
+* Path `prefix`: `/items`.
+* `tags`: (just one tag: `items`).
+* Extra `responses`.
+* `dependencies`: they all need that `X-Token` dependency we created.
+
+So, instead of adding all that to each *path operation*, we can add it to the `APIRouter`.
+
+```Python hl_lines="5-10  16  21"
 {!../../../docs_src/bigger_applications/app/routers/items.py!}
 ```
+
+As the path of each *path operation* has to start with `/`, like in:
+
+```Python hl_lines="1"
+@router.get("/{item_id}")
+async def read_item(item_id: str):
+    ...
+```
+
+...the prefix must not include a final `/`.
+
+So, the prefix in this case is `/items`.
+
+We can also add a list of `tags` and extra `responses` that will be applied to all the *path operations* included in this router.
+
+And we can add a list of `dependencies` that will be added to all the *path operations* in the router and will be executed/solved for each request made to them.
+
+!!! tip
+    Note that, much like [dependencies in *path operation decorators*](dependencies/dependencies-in-path-operation-decorators.md){.internal-link target=_blank}, no value will be passed to your *path operation function*.
+
+The end result is that the item paths are now:
+
+* `/items/`
+* `/items/{item_id}`
+
+...as we intended.
+
+* They will be marked with a list of tags that contain a single string `"items"`.
+    * These "tags" are especially useful for the automatic interactive documentation systems (using OpenAPI).
+* All of them will include the predefined `responses`.
+* All these *path operations* will have the list of `dependencies` evaluated/executed before them.
+    * If you also declare dependencies in a specific *path operation*, **they will be executed too**.
+    * The router dependencies are executed first, then the [`dependencies` in the decorator](dependencies/dependencies-in-path-operation-decorators.md){.internal-link target=_blank}, and then the normal parameter dependencies.
+    * You can also add [`Security` dependencies with `scopes`](../advanced/security/oauth2-scopes.md){.internal-link target=_blank}.
+
+!!! tip
+    Having `dependencies` in the `APIRouter` can be used, for example, to require authentication for a whole group of *path operations*. Even if the dependencies are not added individually to each one of them.
+
+!!! check
+    The `prefix`, `tags`, `responses`, and `dependencies` parameters are (as in many other cases) just a feature from **FastAPI** to help you avoid code duplication.
+
+### Import the dependencies
+
+This codes lives in the module `app.routers.items`, the file `app/routers/items.py`.
+
+And we need to get the dependency function from the module `app.dependencies`, the file `app/dependencies.py`.
+
+So we use a relative import with `..` for the dependencies:
+
+```Python hl_lines="3"
+{!../../../docs_src/bigger_applications/app/routers/items.py!}
+```
+
+#### How relative imports work
+
+!!! tip
+    If you know perfectly how imports work, continue to the next section below.
+
+A single dot `.`, like in:
+
+```Python
+from .dependencies import get_token_header
+```
+
+would mean:
+
+* Starting in the same package that this module (the file `app/routers/items.py`) lives in (the directory `app/routers/`)...
+* find the module `dependencies` (an imaginary file at `app/routers/dependencies.py`)...
+* and from it, import the function `get_token_header`.
+
+But that file doesn't exist, our dependencies are in a file at `app/dependencies.py`.
+
+Remember how our app/file structure looks like:
+
+<img src="/img/tutorial/bigger-applications/package.svg">
+
+---
+
+The two dots `..`, like in:
+
+```Python
+from ..dependencies import get_token_header
+```
+
+mean:
+
+* Starting in the same package that this module (the file `app/routers/items.py`) lives in (the directory `app/routers/`)...
+* go to the parent package (the directory `app/`)...
+* and in there, find the module `dependencies` (the file at `app/routers/dependencies.py`)...
+* and from it, import the function `get_token_header`.
+
+That works correctly! 🎉
+
+---
+
+The same way, if we had used three dots `...`, like in:
+
+```Python
+from ...dependencies import get_token_header
+```
+
+that would mean:
+
+* Starting in the same package that this module (the file `app/routers/items.py`) lives in (the directory `app/routers/`)...
+* go to the parent package (the directory `app/`)...
+* then go to the parent of that package (there's no parent package, `app` is the top level 😱)...
+* and in there, find the module `dependencies` (the file at `app/routers/dependencies.py`)...
+* and from it, import the function `get_token_header`.
+
+That would refer to some package above `app/`, with its own file `__init__.py`, etc. But we don't have that. So, that would throw an error in our example. 🚨
+
+But now you know how it works, so you can use relative imports in your own apps no matter how complex they are. 🤓
 
 ### Add some custom `tags`, `responses`, and `dependencies`
 
-We are not adding the prefix `/items/` nor the `tags=["items"]` to add them later.
+We are not adding the prefix `/items` nor the `tags=["items"]` to each *path operation* because we added them to the `APIRouter`.
 
-But we can add custom `tags` and `responses` that will be applied to a specific *path operation*:
+But we can still add _more_ `tags` that will be applied to a specific *path operation*, and also some extra `responses` specific to that *path operation*:
 
-```Python hl_lines="18-19"
+```Python hl_lines="30-31"
 {!../../../docs_src/bigger_applications/app/routers/items.py!}
 ```
+
+!!! tip
+    This last path operation will have the combination of tags: `["items", "custom"]`.
+
+    And it will also have both responses in the documentation, one for `404` and one for `403`.
 
 ## The main `FastAPI`
 
@@ -122,25 +282,27 @@ Here's where you import and use the class `FastAPI`.
 
 This will be the main file in your application that ties everything together.
 
+And as most of your logic will now live in its own specific module, the main file will be quite simple.
+
 ### Import `FastAPI`
 
-You import and create a `FastAPI` class as normally:
+You import and create a `FastAPI` class as normally.
 
-```Python hl_lines="1  5"
+And we can even declare [global dependencies](dependencies/global-dependencies.md){.internal-link target=_blank} that will be combined with the dependencies for each `APIRouter`:
+
+```Python hl_lines="1  3  7"
 {!../../../docs_src/bigger_applications/app/main.py!}
 ```
 
 ### Import the `APIRouter`
 
-But this time we are not adding *path operations* directly with the `FastAPI` `app`.
+Now we import the other submodules that have `APIRouter`s:
 
-We import the other submodules that have `APIRouter`s:
-
-```Python hl_lines="3"
+```Python hl_lines="5"
 {!../../../docs_src/bigger_applications/app/main.py!}
 ```
 
-As the file `app/routers/items.py` is part of the same Python package, we can import it using "dot notation".
+As the files `app/routers/users.py` and `app/routers/items.py` are submodules that are part of the same Python package `app`, we can use a single dot `.` to import them using "relative imports".
 
 ### How the importing works
 
@@ -156,7 +318,9 @@ Means:
 * look for the subpackage `routers` (the directory at `app/routers/`)...
 * and from it, import the submodule `items` (the file at `app/routers/items.py`) and `users` (the file at `app/routers/users.py`)...
 
-The module `items` will have a variable `router` (`items.router`). This is the same one we created in the file `app/routers/items.py`. It's an `APIRouter`. The same for the module `users`.
+The module `items` will have a variable `router` (`items.router`). This is the same one we created in the file `app/routers/items.py`, it's an `APIRouter` object.
+
+And then we do the same for the module `users`.
 
 We could also import them like:
 
@@ -165,9 +329,17 @@ from app.routers import items, users
 ```
 
 !!! info
-    The first version is a "relative import".
+    The first version is a "relative import":
 
-    The second version is an "absolute import".
+    ```Python
+    from .routers import items, users
+    ```
+    
+    The second version is an "absolute import":
+
+    ```Python
+    from app.routers import items, users
+    ```
 
     To learn more about Python Packages and Modules, read <a href="https://docs.python.org/3/tutorial/modules.html" class="external-link" target="_blank">the official Python documentation about Modules</a>.
 
@@ -188,22 +360,24 @@ The `router` from `users` would overwrite the one from `items` and we wouldn't b
 
 So, to be able to use both of them in the same file, we import the submodules directly:
 
-```Python hl_lines="3"
+```Python hl_lines="4"
 {!../../../docs_src/bigger_applications/app/main.py!}
 ```
 
-### Include an `APIRouter`
+### Include the `APIRouter`s for `users` and `items`
 
-Now, let's include the `router` from the submodule `users`:
+Now, let's include the `router`s from the submodules `users` and `items`:
 
-```Python hl_lines="13"
+```Python hl_lines="10-11"
 {!../../../docs_src/bigger_applications/app/main.py!}
 ```
 
 !!! info
     `users.router` contains the `APIRouter` inside of the file `app/routers/users.py`.
 
-With `app.include_router()` we can add an `APIRouter` to the main `FastAPI` application.
+    And `items.router` contains the `APIRouter` inside of the file `app/routers/items.py`.
+
+With `app.include_router()` we can add each `APIRouter` to the main `FastAPI` application.
 
 It will include all the routes from that router as part of it.
 
@@ -217,67 +391,52 @@ It will include all the routes from that router as part of it.
 
     This will take microseconds and will only happen at startup.
 
-    So it won't affect performance.
+    So it won't affect performance. ⚡
 
-### Include an `APIRouter` with a `prefix`, `tags`, `responses`, and `dependencies`
+### Include an `APIRouter` with a custom `prefix`, `tags`, `responses`, and `dependencies`
 
-Now, let's include the router from the `items` submodule.
+Now, let's imagine your organization gave you the `app/internal/admin.py` file.
 
-But, remember that we were lazy and didn't add `/items/` nor `tags` to all the *path operations*?
+It contains an `APIRouter` with some admin *path operations* that your organization shares between several projects.
 
-We can add a prefix to all the *path operations* using the parameter `prefix` of `app.include_router()`.
+For this example it will be super simple. But let's say that because it is shared with other projects in the organization, we cannot modify it and add a `prefix`, `dependencies`, `tags`, etc. directly to the `APIRouter`:
 
-As the path of each *path operation* has to start with `/`, like in:
-
-```Python hl_lines="1"
-@router.get("/{item_id}")
-async def read_item(item_id: str):
-    ...
+```Python hl_lines="3"
+{!../../../docs_src/bigger_applications/app/internal/admin.py!}
 ```
 
-...the prefix must not include a final `/`.
+But we still want to set a custom `prefix` when including the `APIRouter` so that all its *path operations* start with `/admin`, we want to secure it with the `dependencies` we already have for this project, and we want to include `tags` and `responses`.
 
-So, the prefix in this case would be `/items`.
+We can declare all that without having to modify the original `APIRouter` by passing those parameters to `app.include_router()`:
 
-We can also add a list of `tags` that will be applied to all the *path operations* included in this router.
-
-And we can add predefined `responses` that will be included in all the *path operations* too.
-
-And we can add a list of `dependencies` that will be added to all the *path operations* in the router and will be executed/solved for each request made to them. Note that, much like dependencies in *path operation decorators*, no value will be passed to your *path operation function*.
-
-```Python hl_lines="8-10  14-20"
+```Python hl_lines="14-17"
 {!../../../docs_src/bigger_applications/app/main.py!}
 ```
 
-The end result is that the item paths are now:
+That way, the original `APIRouter` will keep unmodified, so we can still share that same `app/internal/admin.py` file with other projects in the organization.
 
-* `/items/`
-* `/items/{item_id}`
+The result is that in our app, each of the *path operations* from the `admin` module will have:
 
-...as we intended.
+* The prefix `/admin`.
+* The tag `admin`.
+* The dependency `get_token_header`.
+* The response `418`. 🍵
 
-* They will be marked with a list of tags that contain a single string `"items"`.
-* The *path operation* that declared a `"custom"` tag will have both tags, `items` and `custom`.
-    * These "tags" are especially useful for the automatic interactive documentation systems (using OpenAPI).
-* All of them will include the predefined `responses`.
-* The *path operation* that declared a custom `403` response will have both the predefined responses (`404`) and the `403` declared in it directly.
-* All these *path operations* will have the list of `dependencies` evaluated/executed before them.
-    * If you also declare dependencies in a specific *path operation*, **they will be executed too**.
-    * The router dependencies are executed first, then the [`dependencies` in the decorator](dependencies/dependencies-in-path-operation-decorators.md){.internal-link target=_blank}, and then the normal parameter dependencies.
-    * You can also add [`Security` dependencies with `scopes`](../advanced/security/oauth2-scopes.md){.internal-link target=_blank}.
+But that will only affect that `APIRouter` in our app, not in any other code that uses it.
 
-!!! tip
-    Having `dependencies` in a decorator can be used, for example, to require authentication for a whole group of *path operations*. Even if the dependencies are not added individually to each one of them.
+So, for example, other projects could use the same `APIRouter` with a different authentication method.
 
-!!! check
-    The `prefix`, `tags`, `responses` and `dependencies` parameters are (as in many other cases) just a feature from **FastAPI** to help you avoid code duplication.
+### Include a *path operation*
 
-!!! tip
-    You could also add *path operations* directly, for example with: `@app.get(...)`.
+We can also add *path operations* directly to the `FastAPI` app.
 
-    Apart from `app.include_router()`, in the same **FastAPI** app.
+Here we do it... just to show that we can 🤷:
 
-    It would still work the same.
+```Python hl_lines="21-23"
+{!../../../docs_src/bigger_applications/app/main.py!}
+```
+
+and it will work correctly, together with all the other *path operations* added with `app.include_router()`.
 
 !!! info "Very Technical Details"
     **Note**: this is a very technical detail that you probably can **just skip**.
@@ -317,3 +476,13 @@ You can also use `.include_router()` multiple times with the *same* router using
 This could be useful, for example, to expose the same API under different prefixes, e.g. `/api/v1` and `/api/latest`.
 
 This is an advanced usage that you might not really need, but it's there in case you do.
+
+## Include an `APIRouter` in another
+
+The same way you can include an `APIRouter` in a `FastAPI` application, you can include an `APIRouter` in another `APIRouter` using:
+
+```Python
+router.include_router(other_router)
+```
+
+Make sure you do it before including `router` in the `FastAPI` app, so that the *path operations* from `other_router` are also included.

@@ -128,7 +128,7 @@ $ pip install fastapi
 <div class="termy">
 
 ```console
-$ pip install uvicorn
+$ pip install uvicorn[standard]
 
 ---> 100%
 ```
