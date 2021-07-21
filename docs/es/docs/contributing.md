@@ -190,7 +190,7 @@ frecuentemente y solamente `scripts/format-imports.sh` antes de someter.
 
 ## Docs
 
-Lo primero es comprobar que tienes tu entorno tal como hemos descrito, as se instalarán todos los requisitos.
+Lo primero es comprobar que tienes tu entorno tal como hemos descrito, así se instalarán todos los requisitos.
 
 Los documentos se desarollan con <a href="https://www.mkdocs.org/" class="external-link" target="_blank">MkDocs</a>.
 También se encuentran utlidades para facilitar las traducciones en `./scripts/docs.py`.
