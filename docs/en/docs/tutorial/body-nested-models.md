@@ -198,7 +198,7 @@ Even for items inside of lists:
 
 <img src="/img/tutorial/body-nested-models/image01.png">
 
-You couldn't get this kind of editor support if you where working directly with `dict` instead of Pydantic models.
+You couldn't get this kind of editor support if you were working directly with `dict` instead of Pydantic models.
 
 But you don't have to worry about them either, incoming dicts are converted automatically and your output is converted automatically to JSON too.
 
