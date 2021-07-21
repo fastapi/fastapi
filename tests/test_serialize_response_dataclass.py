@@ -47,6 +47,20 @@ def get_objectlist():
     ]
 
 
+@app.get("/items/no-response-model/object")
+def get_no_response_model_object():
+    return Item(name="object", price=1.0, owner_ids=[1, 2, 3])
+
+
+@app.get("/items/no-response-model/objectlist")
+def get_no_response_model_objectlist():
+    return [
+        Item(name="foo"),
+        Item(name="bar", price=1.0),
+        Item(name="baz", price=2.0, owner_ids=[1, 2, 3]),
+    ]
+
+
 client = TestClient(app)
 
 
@@ -80,6 +94,22 @@ def test_validlist():
 
 def test_objectlist():
     response = client.get("/items/objectlist")
+    response.raise_for_status()
+    assert response.json() == [
+        {"name": "foo", "price": None, "owner_ids": None},
+        {"name": "bar", "price": 1.0, "owner_ids": None},
+        {"name": "baz", "price": 2.0, "owner_ids": [1, 2, 3]},
+    ]
+
+
+def test_no_response_model_object():
+    response = client.get("/items/no-response-model/object")
+    response.raise_for_status()
+    assert response.json() == {"name": "object", "price": 1.0, "owner_ids": [1, 2, 3]}
+
+
+def test_no_response_model_objectlist():
+    response = client.get("/items/no-response-model/objectlist")
     response.raise_for_status()
     assert response.json() == [
         {"name": "foo", "price": None, "owner_ids": None},
