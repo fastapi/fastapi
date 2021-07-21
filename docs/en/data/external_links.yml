@@ -1,5 +1,9 @@
 articles:
   english:
+  - author: Navule Pavan Kumar Rao
+    author_link: https://www.linkedin.com/in/navule/
+    link: https://www.tutlinks.com/deploy-fastapi-on-ubuntu-gunicorn-caddy-2/
+    title: Deploy FastAPI on Ubuntu and Serve using Caddy 2 Web Server
   - author: Patrick Ladon
     author_link: https://dev.to/factorlive
     link: https://dev.to/factorlive/python-facebook-messenger-webhook-with-fastapi-on-glitch-4n90
