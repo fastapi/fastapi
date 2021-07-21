@@ -269,7 +269,7 @@ $ uvicorn tutorial001:app --reload
 
 </div>
 
-como Uvicorn utiliza el puerto `8000` por defecto, los documentos en `8008` no confligen.
+como Uvicorn utiliza el puerto `8000` por defecto, los documentos en el puerto `8008` no chocarán.
 
 ### Traducciones
 
