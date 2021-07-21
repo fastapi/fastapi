@@ -2,7 +2,7 @@
 
 ## Latest Changes
 
-* 📝 Add official FastAPI Twitter to docs. PR [#3578](https://github.com/tiangolo/fastapi/pull/3578) by [@tiangolo](https://github.com/tiangolo).
+* 📝 Add official FastAPI Twitter to docs: [@fastapi](https://twitter.com/fastapi). PR [#3578](https://github.com/tiangolo/fastapi/pull/3578) by [@tiangolo](https://github.com/tiangolo).
 
 ## 0.67.0
 
