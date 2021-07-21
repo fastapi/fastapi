@@ -2,6 +2,7 @@
 
 ## Latest Changes
 
+* 🔧 Sort external links in docs to have the most recent at the top. PR [#3568](https://github.com/tiangolo/fastapi/pull/3568) by [@tiangolo](https://github.com/tiangolo).
 ## 0.66.1
 
 ### Translations
