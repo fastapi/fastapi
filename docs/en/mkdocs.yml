@@ -119,6 +119,7 @@ nav:
     - advanced/security/oauth2-scopes.md
     - advanced/security/http-basic-auth.md
   - advanced/using-request-directly.md
+  - advanced/dataclasses.md
   - advanced/middleware.md
   - advanced/sql-databases-peewee.md
   - advanced/async-sql-databases.md
