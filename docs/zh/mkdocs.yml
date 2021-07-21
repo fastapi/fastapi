@@ -39,11 +39,14 @@ nav:
 - FastAPI: index.md
 - Languages:
   - en: /
+  - de: /de/
   - es: /es/
   - fr: /fr/
+  - id: /id/
   - it: /it/
   - ja: /ja/
   - ko: /ko/
+  - pl: /pl/
   - pt: /pt/
   - ru: /ru/
   - sq: /sq/
@@ -51,6 +54,7 @@ nav:
   - uk: /uk/
   - zh: /zh/
 - features.md
+- fastapi-people.md
 - python-types.md
 - 教程 - 用户指南:
   - tutorial/index.md
@@ -71,6 +75,11 @@ nav:
   - tutorial/schema-extra-example.md
   - tutorial/extra-data-types.md
   - tutorial/cookie-params.md
+  - tutorial/request-forms.md
+  - tutorial/request-files.md
+  - tutorial/request-forms-and-files.md
+  - tutorial/handling-errors.md
+  - tutorial/body-updates.md
   - 安全性:
     - tutorial/security/index.md
     - tutorial/security/get-current-user.md
@@ -125,16 +134,22 @@ extra:
   alternate:
   - link: /
     name: en - English
+  - link: /de/
+    name: de
   - link: /es/
     name: es - español
   - link: /fr/
     name: fr - français
+  - link: /id/
+    name: id
   - link: /it/
     name: it - italiano
   - link: /ja/
     name: ja - 日本語
   - link: /ko/
     name: ko - 한국어
+  - link: /pl/
+    name: pl
   - link: /pt/
     name: pt - português
   - link: /ru/
