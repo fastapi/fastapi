@@ -1,6 +1,6 @@
 # Бенчмарки
 
-Независимые бенчмарки TechEmpower показывают приложения на **FastAPI**, запущенные с использованием Uvicorn, <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">одними из самых быстрых среди доступных Python-фреймворков</a>, только медленнее самих Starlette и Uvicorn (используемых внутри FastAPI). (*)
+Независимые бенчмарки TechEmpower показывают, что приложения на **FastAPI**, запущенные под Uvicorn, <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">, являются одними из самых быстрых среди доступных Python-фреймворков</a>, медленнее только самих Starlette и Uvicorn (используемых внутри FastAPI). (*)
 
 Но при проверке бенчмарков и срарвнений вам следует иметь в виду следующее.
 
