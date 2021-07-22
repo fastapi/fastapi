@@ -1,9 +1,8 @@
 from enum import Enum
-from typing import Any, Callable, Dict, Optional, Sequence, TYPE_CHECKING
+from typing import Any, Callable, Dict, Optional, Sequence
 
-if TYPE_CHECKING:
-    from fastapi.dependencies.models import DependencyCacheLifespan
-
+from fastapi.dependencies.cache import DependencyCacheScope
+from fastapi.dependencies.lifetime import DependencyLifetime
 from pydantic.fields import FieldInfo, Undefined
 
 
@@ -352,21 +351,20 @@ class Depends:
     def __init__(
         self, dependency: Optional[Callable[..., Any]] = None,
         *,
-        use_cache: bool = True,
-        lifetime: "DependencyCacheLifespan" = "request"
+        use_cache: DependencyCacheScope = DependencyCacheScope.request,
+        lifetime: DependencyLifetime = DependencyLifetime.request
     ):
         self.dependency = dependency
-        self.use_cache = use_cache
-        self.lifetime = lifetime
-        assert lifetime in ("app", "request")
+        self.use_cache = use_cache if isinstance(use_cache, DependencyCacheScope) else DependencyCacheScope(use_cache)
+        self.lifetime = lifetime if isinstance(use_cache, DependencyLifetime) else DependencyLifetime(lifetime)
 
     def __repr__(self) -> str:
         attr = getattr(self.dependency, "__name__", type(self.dependency).__name__)
         cache = "" if self.use_cache else ", use_cache=False"
-        if self.lifetime == "request":
+        if self.lifetime == DependencyCacheScope.request:
             lifetime = ""
         else:
-            lifetime = f", lifetime=\"{self.lifetime}\""
+            lifetime = f", lifetime={self.lifetime}"
         return f"{self.__class__.__name__}({attr}{cache}{lifetime})"
 
 
@@ -376,8 +374,8 @@ class Security(Depends):
         dependency: Optional[Callable[..., Any]] = None,
         *,
         scopes: Optional[Sequence[str]] = None,
-        use_cache: bool = True,
-        lifetime: "DependencyCacheLifespan" = "request"
+        use_cache: DependencyCacheScope = DependencyCacheScope.request,
+        lifetime: DependencyLifetime = DependencyLifetime.request
     ):
         super().__init__(dependency=dependency, use_cache=use_cache, lifetime=lifetime)
         self.scopes = scopes or []

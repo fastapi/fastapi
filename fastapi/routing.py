@@ -15,6 +15,7 @@ from typing import (
     Optional,
     Sequence,
     Set,
+    Tuple,
     Type,
     Union,
 )
@@ -44,7 +45,9 @@ from pydantic import BaseModel
 from pydantic.error_wrappers import ErrorWrapper, ValidationError
 from pydantic.fields import ModelField, Undefined
 from starlette import routing
+from starlette.background import BackgroundTasks
 from starlette.concurrency import run_in_threadpool
+from starlette.datastructures import FormData
 from starlette.exceptions import HTTPException
 from starlette.requests import Request
 from starlette.responses import JSONResponse, Response
@@ -157,6 +160,33 @@ async def run_endpoint_function(
     else:
         return await run_in_threadpool(dependant.call, **values)
 
+async def handle_endpoint(
+    request: Request,
+    dependant: Dependant,
+    body: Optional[Union[Dict[str, Any], FormData]],
+    dependency_overrides_provider: Optional[Any],
+    app_dependency_cache: Dict[DependencyCacheKey, Any],
+    is_coroutine: bool,
+) -> Tuple[Any, Optional[BackgroundTasks], Response]:
+
+    solved_result = await solve_dependencies(
+        request=request,
+        dependant=dependant,
+        body=body,
+        dependency_overrides_provider=dependency_overrides_provider,
+        app_dependency_cache=app_dependency_cache
+    )
+    values, errors, background_tasks, sub_response, _ = solved_result
+    if errors:
+        raise RequestValidationError(errors, body=body)
+    else:
+        raw_response = await run_endpoint_function(
+            dependant=dependant,
+            values=values,
+            is_coroutine=is_coroutine,
+        )
+    return raw_response, background_tasks, sub_response
+
 
 def get_request_handler(
     dependant: Dependant,
@@ -210,46 +240,55 @@ def get_request_handler(
             raise HTTPException(
                 status_code=400, detail="There was an error parsing the body"
             ) from e
-        solved_result = await solve_dependencies(
+        solve_coro = handle_endpoint(
             request=request,
             dependant=dependant,
             body=body,
+            is_coroutine=is_coroutine,
             dependency_overrides_provider=dependency_overrides_provider,
-            lifespan_dependency_cache=request.app.router.lifespan_dependency_cache
+            app_dependency_cache=request.app.router.app_dependency_cache
         )
-        values, errors, background_tasks, sub_response, _ = solved_result
-        if errors:
-            raise RequestValidationError(errors, body=body)
+        exception: Optional[Exception] = None
+        if AsyncExitStack is not None:
+            async with AsyncExitStack() as endpoint_astack:
+                request.scope["fastapi_endpoint_astack"] = endpoint_astack
+                try:
+                    solved_endpoint = await solve_coro
+                except Exception as e:
+                    exception = e
+                    raise e
         else:
-            raw_response = await run_endpoint_function(
-                dependant=dependant, values=values, is_coroutine=is_coroutine
-            )
-
-            if isinstance(raw_response, Response):
-                if raw_response.background is None:
-                    raw_response.background = background_tasks
-                return raw_response
-            response_data = await serialize_response(
-                field=response_field,
-                response_content=raw_response,
-                include=response_model_include,
-                exclude=response_model_exclude,
-                by_alias=response_model_by_alias,
-                exclude_unset=response_model_exclude_unset,
-                exclude_defaults=response_model_exclude_defaults,
-                exclude_none=response_model_exclude_none,
-                is_coroutine=is_coroutine,
-            )
-            response_args: Dict[str, Any] = {"background": background_tasks}
-            # If status_code was set, use it, otherwise use the default from the
-            # response class, in the case of redirect it's 307
-            if status_code is not None:
-                response_args["status_code"] = status_code
-            response = actual_response_class(response_data, **response_args)
-            response.headers.raw.extend(sub_response.headers.raw)
-            if sub_response.status_code:
-                response.status_code = sub_response.status_code
-            return response
+            request.scope["fastapi_endpoint_astack"] = None
+            solved_endpoint = await solve_coro
+        # If exception was handled in dependency after yield - raise it again
+        if exception:
+            raise exception
+        raw_response, background_tasks, sub_response = solved_endpoint
+        if isinstance(raw_response, Response):
+            if raw_response.background is None:
+                raw_response.background = background_tasks
+            return raw_response
+        response_data = await serialize_response(
+            field=response_field,
+            response_content=raw_response,
+            include=response_model_include,
+            exclude=response_model_exclude,
+            by_alias=response_model_by_alias,
+            exclude_unset=response_model_exclude_unset,
+            exclude_defaults=response_model_exclude_defaults,
+            exclude_none=response_model_exclude_none,
+            is_coroutine=is_coroutine,
+        )
+        response_args: Dict[str, Any] = {"background": background_tasks}
+        # If status_code was set, use it, otherwise use the default from the
+        # response class, in the case of redirect it's 307
+        if status_code is not None:
+            response_args["status_code"] = status_code
+        response = actual_response_class(response_data, **response_args)
+        response.headers.raw.extend(sub_response.headers.raw)
+        if sub_response.status_code:
+            response.status_code = sub_response.status_code
+        return response
 
     return app
 
@@ -262,7 +301,7 @@ def get_websocket_app(
             request=websocket,
             dependant=dependant,
             dependency_overrides_provider=dependency_overrides_provider,
-            lifespan_dependency_cache=websocket.app.router.lifespan_dependency_cache
+            app_dependency_cache=websocket.app.router.app_dependency_cache
         )
         values, errors, _, _2, _3 = solved_result
         if errors:
@@ -432,8 +471,8 @@ class APIRoute(routing.Route):
 
 class APIRouter(routing.Router):
 
-    lifespan_astack: Union[AsyncExitStack, None]
-    lifespan_dependency_cache: Dict[DependencyCacheKey, Any]
+    fastapi_app_astack: Union[AsyncExitStack, None]
+    app_dependency_cache: Dict[DependencyCacheKey, Any]
 
     def __init__(
         self,
@@ -454,17 +493,17 @@ class APIRouter(routing.Router):
         deprecated: Optional[bool] = None,
         include_in_schema: bool = True,
     ) -> None:
-        self.lifespan_dependency_cache = {}
+        self.app_dependency_cache = {}
         
         @contextlib.asynccontextmanager
         async def dep_stack_cm() -> AsyncGenerator:
             if AsyncExitStack:
-                async with AsyncExitStack() as self.lifespan_astack:
+                async with AsyncExitStack() as self.fastapi_app_astack:
                     yield
             else:
-                self.lifespan_astack = None
+                self.fastapi_app_astack = None
                 yield
-            self.lifespan_dependency_cache = {}
+            self.app_dependency_cache = {}
 
         async def lifespan_context(app: Any) -> AsyncGenerator:
             async with dep_stack_cm():
@@ -505,9 +544,9 @@ class APIRouter(routing.Router):
             dependant = get_dependant(call=handler)
             values, _ = await solve_lifespan_dependencies(
                 dependant=dependant,
-                lifespan_dependency_cache=self.lifespan_dependency_cache,
+                app_dependency_cache=self.app_dependency_cache,
                 dependency_overrides_provider=self.dependency_overrides_provider,
-                stack=self.lifespan_astack
+                stack=self.fastapi_app_astack
             )
             is_coroutine = asyncio.iscoroutinefunction(dependant.call)
             await run_endpoint_function(
@@ -522,9 +561,9 @@ class APIRouter(routing.Router):
             dependant = get_dependant(call=handler)
             values, _ = await solve_lifespan_dependencies(
                 dependant=dependant,
-                lifespan_dependency_cache=self.lifespan_dependency_cache,
+                app_dependency_cache=self.app_dependency_cache,
                 dependency_overrides_provider=self.dependency_overrides_provider,
-                stack=self.lifespan_astack
+                stack=self.fastapi_app_astack
             )
             is_coroutine = asyncio.iscoroutinefunction(dependant.call)
             await run_endpoint_function(

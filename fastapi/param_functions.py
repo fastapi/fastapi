@@ -1,8 +1,8 @@
-from typing import Any, Dict, Optional, Sequence, TYPE_CHECKING
+from typing import Any, Callable, Dict, Optional, Sequence
 
 from fastapi import params
-if TYPE_CHECKING:
-    from fastapi.dependencies.models import Dependency, DependencyCacheLifespan
+from fastapi.dependencies.cache import DependencyCacheScope
+from fastapi.dependencies.lifetime import DependencyLifetime
 from pydantic.fields import Undefined
 
 
@@ -270,19 +270,19 @@ def File(  # noqa: N802
 
 
 def Depends(  # noqa: N802
-    dependency: Optional["Dependency"] = None,
+    dependency: Optional[Callable[..., Any]] = None,
     *,
-    use_cache: bool = True,
-    lifetime: "DependencyCacheLifespan" = "request",
+    use_cache: DependencyCacheScope = DependencyCacheScope.request,
+    lifetime: DependencyLifetime = DependencyLifetime.request,
 ) -> Any:
     return params.Depends(dependency=dependency, use_cache=use_cache, lifetime=lifetime)
 
 
 def Security(  # noqa: N802
-    dependency: Optional["Dependency"] = None,
+    dependency: Optional[Callable[..., Any]] = None,
     *,
     scopes: Optional[Sequence[str]] = None,
-    use_cache: bool = True,
-    lifetime: "DependencyCacheLifespan" = "request",
+    use_cache: DependencyCacheScope = DependencyCacheScope.request,
+    lifetime: DependencyLifetime = DependencyLifetime.request,
 ) -> Any:
     return params.Security(dependency=dependency, scopes=scopes, use_cache=use_cache, lifetime=lifetime)

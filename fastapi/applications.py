@@ -195,7 +195,7 @@ class FastAPI(Starlette):
             scope["root_path"] = self.root_path
         if AsyncExitStack:
             async with AsyncExitStack() as stack:
-                scope["fastapi_astack"] = stack
+                scope["fastapi_request_astack"] = stack
                 await super().__call__(scope, receive, send)
         else:
             await super().__call__(scope, receive, send)  # pragma: no cover
