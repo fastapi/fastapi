@@ -273,9 +273,9 @@ def Depends(  # noqa: N802
     dependency: Optional["Dependency"] = None,
     *,
     use_cache: bool = True,
-    cache_lifespan: "DependencyCacheLifespan" = "request",
+    lifetime: "DependencyCacheLifespan" = "request",
 ) -> Any:
-    return params.Depends(dependency=dependency, use_cache=use_cache, cache_lifespan=cache_lifespan)
+    return params.Depends(dependency=dependency, use_cache=use_cache, lifetime=lifetime)
 
 
 def Security(  # noqa: N802
@@ -283,6 +283,6 @@ def Security(  # noqa: N802
     *,
     scopes: Optional[Sequence[str]] = None,
     use_cache: bool = True,
-    cache_lifespan: "DependencyCacheLifespan" = "request",
+    lifetime: "DependencyCacheLifespan" = "request",
 ) -> Any:
-    return params.Security(dependency=dependency, scopes=scopes, use_cache=use_cache, cache_lifespan=cache_lifespan)
+    return params.Security(dependency=dependency, scopes=scopes, use_cache=use_cache, lifetime=lifetime)

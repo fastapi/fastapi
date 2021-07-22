@@ -13,7 +13,7 @@ app = FastAPI()
 
 
 @app.on_event("startup")
-async def startup(db: Database = Depends(get_db, cache_lifespan="app")):
+async def startup(db: Database = Depends(get_db, lifetime="app")):
     db.execute("SELECT 1")  # checks that we are properly connected to the database
 
 

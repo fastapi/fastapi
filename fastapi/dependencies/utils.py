@@ -156,7 +156,7 @@ def get_sub_dependant(
         name=name,
         security_scopes=security_scopes,
         use_cache=depends.use_cache,
-        cache_lifespan=depends.cache_lifespan
+        lifetime=depends.lifetime
     )
     if security_requirement:
         sub_dependant.security_requirements.append(security_requirement)
@@ -185,7 +185,7 @@ def get_flat_dependant(
         body_params=dependant.body_params.copy(),
         security_schemes=dependant.security_requirements.copy(),
         use_cache=dependant.use_cache,
-        cache_lifespan=dependant.cache_lifespan,
+        lifetime=dependant.lifetime,
         path=dependant.path,
     )
     for sub_dependant in dependant.dependencies:
@@ -285,7 +285,7 @@ def get_dependant(
     name: Optional[str] = None,
     security_scopes: Optional[List[str]] = None,
     use_cache: bool = True,
-    cache_lifespan: DependencyCacheLifespan = "request"
+    lifetime: DependencyCacheLifespan = "request"
 ) -> Dependant:
     if path is not None:
         path_param_names = get_path_param_names(path)
@@ -295,7 +295,7 @@ def get_dependant(
     signature_params = endpoint_signature.parameters
     if is_gen_callable(call) or is_async_gen_callable(call):
         check_dependency_contextmanagers()
-    dependant = Dependant(call=call, name=name, path=path, use_cache=use_cache, cache_lifespan=cache_lifespan)
+    dependant = Dependant(call=call, name=name, path=path, use_cache=use_cache, lifetime=lifetime)
     for param_name, param in signature_params.items():
         if isinstance(param.default, params.Depends):
             sub_dependant = get_param_sub_dependant(
@@ -528,7 +528,7 @@ async def solve_lifespan_dependencies(
             values[sub_dependant.name] = solved
         if sub_dependant.cache_key not in dependency_cache:
             dependency_cache[sub_dependant.cache_key] = solved
-        if sub_dependant.cache_lifespan == "app" and sub_dependant.cache_key not in lifespan_dependency_cache:
+        if sub_dependant.lifetime == "app" and sub_dependant.cache_key not in lifespan_dependency_cache:
             lifespan_dependency_cache[sub_dependant.cache_key] = solved
     return values, dependency_cache
 
@@ -609,7 +609,7 @@ async def solve_dependencies(
         if sub_dependant.use_cache and sub_dependant.cache_key in dependency_cache:
             solved = dependency_cache[sub_dependant.cache_key]
         elif is_gen_callable(call) or is_async_gen_callable(call):
-            if sub_dependant.cache_lifespan == "request":
+            if sub_dependant.lifetime == "request":
                 stack = request.scope.get("fastapi_astack")
             else:  # lifespan == "app"
                 stack = getattr(request.app.router, "lifespan_astack")  # type: ignore
@@ -628,7 +628,7 @@ async def solve_dependencies(
             values[sub_dependant.name] = solved
         if sub_dependant.cache_key not in dependency_cache:
             dependency_cache[sub_dependant.cache_key] = solved
-        if sub_dependant.cache_lifespan == "app" and sub_dependant.cache_key not in lifespan_dependency_cache:
+        if sub_dependant.lifetime == "app" and sub_dependant.cache_key not in lifespan_dependency_cache:
             lifespan_dependency_cache[sub_dependant.cache_key] = solved
     path_values, path_errors = request_params_to_args(
         dependant.path_params, request.path_params
