@@ -35,3 +35,8 @@ class RequestValidationError(ValidationError):
 class WebSocketRequestValidationError(ValidationError):
     def __init__(self, errors: Sequence[ErrorList]) -> None:
         super().__init__(errors, WebSocketErrorModel)
+
+
+class DependencyResolutionError(FastAPIError):
+    """An error during dependency resolution
+    """

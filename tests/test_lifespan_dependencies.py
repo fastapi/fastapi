@@ -2,7 +2,8 @@ from typing import Callable
 
 import pytest
 
-from fastapi import FastAPI, Depends
+from fastapi import Depends, FastAPI, Request
+from fastapi.exceptions import DependencyResolutionError
 from fastapi.testclient import TestClient
 
 
@@ -160,3 +161,23 @@ def test_overrides():
     app.dependency_overrides[real] = fake
     with TestClient(app):
         assert startup.v == 2  # from fake
+
+
+def test_startup_requests_request():
+    """Startup events cannot depend on Request, even indirectly"""
+
+    def dep(placeholder: Request):
+        ...
+
+    def startup_direct(placeholder: Request):
+        ...
+
+    def startup_indirect(placeholder: None = Depends(dep)):
+        ...
+
+    for startup in (startup_direct, startup_indirect):
+        app = FastAPI(on_startup=[startup])
+
+        with pytest.raises(DependencyResolutionError, match="cannot depend on connection parameters"):
+            with TestClient(app):
+                ...

@@ -26,6 +26,7 @@ from fastapi.concurrency import (
 from fastapi.dependencies.models import Dependant, SecurityRequirement
 from fastapi.dependencies.cache import DependencyCacheKey, DependencyCacheScope
 from fastapi.dependencies.lifetime import DependencyLifetime
+from fastapi.exceptions import DependencyResolutionError
 from fastapi.logger import logger
 from fastapi.security.base import SecurityBase
 from fastapi.security.oauth2 import OAuth2, SecurityScopes
@@ -529,6 +530,21 @@ async def solve_lifespan_dependencies(
             dependency_cache[sub_dependant.cache_key] = solved
         if sub_dependant.use_cache == DependencyCacheScope.app and sub_dependant.cache_key not in app_dependency_cache:
             app_dependency_cache[sub_dependant.cache_key] = solved
+    if any((
+        dependant.request_param_name,
+        dependant.query_params,
+        dependant.header_params,
+        dependant.cookie_params,
+        dependant.body_params,
+        dependant.request_param_name,
+        dependant.websocket_param_name,
+        dependant.http_connection_param_name,
+        dependant.response_param_name,
+        dependant.path
+    )):
+        raise DependencyResolutionError(
+            "Lifespan Dependencies cannot depend on connection parameters"
+        )
     return values, dependency_cache
 
 
