@@ -14,3 +14,5 @@ FastAPI offers **3** lifetimes for dependencies:
 - `"app"`: the dependencies teardown is run when the app shuts down. This is useful for things like database connections which you want to persist between requests.
 - `"request"`: this is the default. Teardown is run *in the background after a response is sent*. You can't raise any HTTPExceptions from your teardown.
 - `"endpoint"`: this is similar to `"request"`, except that teardown is run in the foreground *before* [Exception Handlers](../handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank} and so you *can* raise an `HTTPException`.
+
+To see this in action, see the [Async SQL Databases](../../advanced/async-sql-databases.md){.internal-link target=_blank} tutorial.
