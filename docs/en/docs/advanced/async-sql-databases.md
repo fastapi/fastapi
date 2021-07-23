@@ -17,13 +17,42 @@ Later, for your production application, you might want to use a database server 
 
     This section doesn't apply those ideas, to be equivalent to the counterpart in <a href="https://www.starlette.io/database/" class="external-link" target="_blank">Starlette</a>.
 
+## Create a configuration for our database
+
+We start by creating [Pydantic Settings](../../advanced/settings.md#pydantic-settings){.internal-link target=_blank} for our app:
+
+```Python hl_lines="6  9-10  13-14"
+{!../../../docs_src/async_sql_databases/tutorial001.py!}
+```
+
+!!! tip
+    You'll see that in our demo and tests we use **SQLite**, because it uses a single file and Python has integrated support.
+    For your production application, you might want to use a database server like **PostgreSQL**.
+
+!!! tip
+    Since we are loading our config using dependency injection, we can use [Dependency overrides](testing-dependencies.md){.internal-link target=_blank} in our tests to set the database URL, without touching enviroment variables!
+
 ## Import and set up `SQLAlchemy`
 
 * Import `SQLAlchemy`.
 * Create a `metadata` object.
 * Create a table `notes` using the `metadata` object.
 
-```Python hl_lines="4  14  16-22"
+```Python hl_lines="4  17  19-25"
+{!../../../docs_src/async_sql_databases/tutorial001.py!}
+```
+
+## Create the tables
+
+In this case, we are creating the tables in the same Python file, but in production, you would probably want to create them with Alembic, integrated with migrations, etc.
+
+Here, this section will run directly, right before starting your **FastAPI** application.
+
+* Create a **FastAPI** dependency that depends on our app's settings.
+* Create an `engine`.
+* Create all the tables from the `metadata` object.
+
+```Python hl_lines="28 29-31 32"
 {!../../../docs_src/async_sql_databases/tutorial001.py!}
 ```
 
@@ -35,26 +64,9 @@ Later, for your production application, you might want to use a database server 
 ## Import and set up `databases`
 
 * Import `databases`.
-* Create a `DATABASE_URL`.
-* Create a `database` object.
+* Create a `database` dependency called `get_db` that depends on our `setup_schema` dependency.
 
-```Python hl_lines="3  9  12"
-{!../../../docs_src/async_sql_databases/tutorial001.py!}
-```
-
-!!! tip
-    If you were connecting to a different database (e.g. PostgreSQL), you would need to change the `DATABASE_URL`.
-
-## Create the tables
-
-In this case, we are creating the tables in the same Python file, but in production, you would probably want to create them with Alembic, integrated with migrations, etc.
-
-Here, this section would run directly, right before starting your **FastAPI** application.
-
-* Create an `engine`.
-* Create all the tables from the `metadata` object.
-
-```Python hl_lines="25-28"
+```Python hl_lines="3  35-39"
 {!../../../docs_src/async_sql_databases/tutorial001.py!}
 ```
 
@@ -65,7 +77,7 @@ Create Pydantic models for:
 * Notes to be created (`NoteIn`).
 * Notes to be returned (`Note`).
 
-```Python hl_lines="31-33  36-39"
+```Python hl_lines="42-44  47-50"
 {!../../../docs_src/async_sql_databases/tutorial001.py!}
 ```
 
@@ -73,12 +85,12 @@ By creating these Pydantic models, the input data will be validated, serialized 
 
 So, you will be able to see it all in the interactive API docs.
 
-## Connect and disconnect
+## Create a startup handler
 
-* Create your `FastAPI` application.
-* Create event handlers to connect and disconnect from the database.
+* Create a startup event handler that connects to the database, applies the migrations and checks the connection.
+* Create your `FastAPI` application and bind the startup event handler.
 
-```Python hl_lines="42  45-47  50-52"
+```Python hl_lines="53-54  57"
 {!../../../docs_src/async_sql_databases/tutorial001.py!}
 ```
 
@@ -86,7 +98,7 @@ So, you will be able to see it all in the interactive API docs.
 
 Create the *path operation function* to read notes:
 
-```Python hl_lines="55-58"
+```Python hl_lines="60-63"
 {!../../../docs_src/async_sql_databases/tutorial001.py!}
 ```
 
@@ -103,7 +115,7 @@ That documents (and validates, serializes, filters) the output data, as a `list`
 
 Create the *path operation function* to create notes:
 
-```Python hl_lines="61-65"
+```Python hl_lines="66-70"
 {!../../../docs_src/async_sql_databases/tutorial001.py!}
 ```
 
@@ -151,11 +163,45 @@ So, the final result returned would be something like:
 
 ## Check it
 
-You can copy this code as is, and see the docs at <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+To run this code, set an enviroment variable named `DB_URL` to point to your database.
+If you are running PostgreSQL locally, you might do: `export DB_URL=postgresql://user:password@postgresserver/db`.
+To test with SQLite, you can set `export DB_URL=sqlite:///./test.db`.
+
+For more information on enviroment variables, see [Environment Variables](settings#environment-variables.md){.internal-link target=_blank}.
+
+Then you can copy this code as is, run it using Uvicorn and see the docs at <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 
 There you can see all your API documented and interact with it:
 
 <img src="/img/tutorial/async-sql-databases/image01.png">
+
+## Testing
+
+To test this app, we'll first import the app and it's dependencies into a test file:
+
+```Python hl_lines="6"
+{!../../../docs_src/async_sql_databases/test_tutorial_001.py!}
+```
+
+Then create a dependency override for our config that points to a local SQLite database:
+
+```Python hl_lines="2 9-10"
+{!../../../docs_src/async_sql_databases/test_tutorial_001.py!}
+```
+
+!!! tip
+    We create a new database for every test run by using `uuid4()` instead of a fixed name for our test database.
+    This saves us from worrying about side effects between tests.
+
+Finally, in our tests we use `app.dependency_overrides` to inject our test config:
+
+```Python hl_lines="1 14"
+{!../../../docs_src/async_sql_databases/test_tutorial_001.py!}
+```
+
+!!! tip
+    We use `unittest.mock.patch` to *patch* the dictionary instead of assigning to it directly.
+    This saves us the trouble of having to clean up our dependency override, even if our test fails, which otherwise might have created a confusing cascade of failing tests.
 
 ## More info
 
