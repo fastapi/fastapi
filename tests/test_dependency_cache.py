@@ -1,5 +1,5 @@
-from fastapi.dependencies.cache import DependencyCacheScope
 from fastapi import Depends, FastAPI
+from fastapi.dependencies.cache import DependencyCacheScope
 from fastapi.testclient import TestClient
 
 app = FastAPI()
@@ -13,6 +13,10 @@ async def dep_counter():
 
 
 async def super_dep(count: int = Depends(dep_counter)):
+    return count
+
+
+async def super_dep_app_cache(count: int = Depends(dep_counter, use_cache=DependencyCacheScope.app)):
     return count
 
 
@@ -36,10 +40,18 @@ async def get_sub_counter_no_cache(
     return {"counter": count, "subcounter": subcount}
 
 
-@app.get("/sub-counter-app-cache/")
-async def get_sub_counter_app_cache(
+@app.get("/sub-counter-app-cache-top-level/")
+async def get_sub_counter_app_cache_direct(
     subcount: int = Depends(super_dep),
     count: int = Depends(dep_counter, use_cache=DependencyCacheScope.app),
+):
+    return {"counter": count, "subcounter": subcount}
+
+
+@app.get("/sub-counter-app-cache-indirect/")
+async def get_counter_app_cache_indirect(
+    subcount: int = Depends(super_dep_app_cache),
+    count: int = Depends(dep_counter),
 ):
     return {"counter": count, "subcounter": subcount}
 
@@ -85,13 +97,24 @@ def test_sub_counter_no_cache():
     assert response.json() == {"counter": 4, "subcounter": 3}
 
 
-def test_sub_counter_app_cache():
+def test_sub_counter_app_cache_top_level():
     counter_holder["counter"] = 0
     with TestClient(app) as client:
-        response = client.get("/sub-counter-app-cache/")
+        response = client.get("/sub-counter-app-cache-top-level/")
         assert response.status_code == 200, response.text
         assert response.json() == {"counter": 1, "subcounter": 1}
-        response = client.get("/sub-counter-app-cache/")
+        response = client.get("/sub-counter-app-cache-top-level/")
+        assert response.status_code == 200, response.text
+        assert response.json() == {"counter": 1, "subcounter": 1}
+
+
+def test_sub_counter_app_cache_indirect():
+    counter_holder["counter"] = 0
+    with TestClient(app) as client:
+        response = client.get("/sub-counter-app-cache-indirect/")
+        assert response.status_code == 200, response.text
+        assert response.json() == {"counter": 1, "subcounter": 1}
+        response = client.get("/sub-counter-app-cache-indirect/")
         assert response.status_code == 200, response.text
         assert response.json() == {"counter": 1, "subcounter": 1}
 

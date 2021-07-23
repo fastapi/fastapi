@@ -167,13 +167,13 @@ def test_startup_requests_request():
     """Startup events cannot depend on Request, even indirectly"""
 
     def dep(placeholder: Request):
-        ...
+        ...  # pragma: no cover
 
     def startup_direct(placeholder: Request):
-        ...
+        ...  # pragma: no cover
 
     def startup_indirect(placeholder: None = Depends(dep)):
-        ...
+        ...  # pragma: no cover
 
     for startup in (startup_direct, startup_indirect):
         app = FastAPI(on_startup=[startup])
@@ -182,4 +182,4 @@ def test_startup_requests_request():
             DependencyResolutionError, match="cannot depend on connection parameters"
         ):
             with TestClient(app):
-                ...
+                ...  # pragma: no cover
