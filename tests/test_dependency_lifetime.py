@@ -6,7 +6,6 @@ from typing import AsyncGenerator, Callable, Generator, List
 import pytest
 
 from fastapi import Depends, FastAPI, HTTPException
-from fastapi.dependencies.cache import DependencyCacheScope
 from fastapi.dependencies.lifetime import DependencyLifetime
 from fastapi.testclient import TestClient
 
@@ -236,61 +235,3 @@ def test_endpoint_lifetime_callable(dep_cls: Callable[[], CallableDependency]):
         assert dep.counter == 1
         assert client.get("/").status_code == 200
         assert dep.counter == 2
-
-
-class NonblockingDep:
-    def __init__(self) -> None:
-        self.destroying = asyncio.Event()
-
-
-class NonblockingSyncGeneratorDep(NonblockingDep):
-    def __call__(self):
-        self.destroying.clear()
-        yield
-        self.destroying.set()
-
-
-class NonblockingAsyncGeneratorDep(NonblockingDep):
-    async def __call__(self):
-        self.destroying.clear()
-        yield
-        self.destroying.set()
-
-
-# @pytest.mark.parametrize(
-#     "dep_cls", (NonblockingSyncGeneratorDep, NonblockingAsyncGeneratorDep)
-# )
-# def test_background_lifetime_context_manager(dep_cls: Callable[[], NonblockingDep]):
-
-#     app = FastAPI()
-
-#     dep = dep_cls()
-
-#     @app.get("/", dependencies=[Depends(dep, lifetime=None)])
-#     async def root():
-#         wait = dep.destroying.wait()
-#         assert (await asyncio.wait_for(wait, timeout=0.01))  # let the background task start
-
-#     with TestClient(app) as client:
-#         assert client.get("/").status_code == 200
-#         assert client.get("/").status_code == 200
-
-
-# @pytest.mark.parametrize(
-#     "dep_cls", (SyncCallableDep, AsyncCallableDep)
-# )
-# def test_background_lifetime_callable(dep_cls: Callable[[], CallableDependency]):
-
-#     dep = dep_cls()
-
-#     app = FastAPI()
-
-#     @app.get("/", dependencies=[Depends(dep, lifetime=None)])
-#     def root():
-#         ...
-
-#     with TestClient(app) as client:
-#         assert client.get("/").status_code == 200
-#         assert dep.counter == 1
-#         assert client.get("/").status_code == 200
-#         assert dep.counter == 2

@@ -509,7 +509,7 @@ async def solve_lifespan_dependencies(
         )
         sub_values, sub_dependency_cache = solved_result
         dependency_cache.update(sub_dependency_cache)
-        if sub_dependant.use_cache and sub_dependant.cache_key in dependency_cache:
+        if sub_dependant.use_cache != DependencyCacheScope.nocache and sub_dependant.cache_key in dependency_cache:
             solved = dependency_cache[sub_dependant.cache_key]
         elif is_gen_callable(call) or is_async_gen_callable(call):
             if stack is None:
@@ -527,7 +527,7 @@ async def solve_lifespan_dependencies(
             values[sub_dependant.name] = solved
         if sub_dependant.cache_key not in dependency_cache:
             dependency_cache[sub_dependant.cache_key] = solved
-        if sub_dependant.use_cache == "app" and sub_dependant.cache_key not in app_dependency_cache:
+        if sub_dependant.use_cache == DependencyCacheScope.app and sub_dependant.cache_key not in app_dependency_cache:
             app_dependency_cache[sub_dependant.cache_key] = solved
     return values, dependency_cache
 
@@ -605,33 +605,22 @@ async def solve_dependencies(
         if sub_errors:
             errors.extend(sub_errors)
             continue
-        if sub_dependant.use_cache and sub_dependant.cache_key in dependency_cache:
+        if sub_dependant.use_cache != DependencyCacheScope.nocache and sub_dependant.cache_key in dependency_cache:
             solved = dependency_cache[sub_dependant.cache_key]
         elif is_gen_callable(call) or is_async_gen_callable(call):
-            if sub_dependant.lifetime is not None:
-                if sub_dependant.lifetime == "request":
-                    stack = request.scope.get("fastapi_request_astack")
-                elif sub_dependant.lifetime == "endpoint":
-                    stack = request.scope.get("fastapi_endpoint_astack")
-                elif sub_dependant.lifetime == "app":
-                    stack = getattr(request.app.router, "fastapi_app_astack")
-                if stack is None:
-                    raise RuntimeError(
-                        async_contextmanager_dependencies_error
-                    )  # pragma: no cover
-                solved = await solve_generator(
-                    call=call, stack=stack, sub_values=sub_values
-                )
-            else:  # lifetime is None
-                if AsyncExitStack is None:
-                    raise RuntimeError(
-                        async_contextmanager_dependencies_error
-                    )  # pragma: no cover
-                stack = AsyncExitStack()
-                solved = await solve_generator(
-                    call=call, stack=stack, sub_values=sub_values
-                )
-                asyncio.create_task(stack.aclose())
+            if sub_dependant.lifetime == DependencyLifetime.request:
+                stack = request.scope.get("fastapi_request_astack")
+            elif sub_dependant.lifetime == DependencyLifetime.endpoint:
+                stack = request.scope.get("fastapi_endpoint_astack")
+            else:  # sub_dependant.lifetime == "app"
+                stack = getattr(request.app.router, "fastapi_app_astack")
+            if stack is None:
+                raise RuntimeError(
+                    async_contextmanager_dependencies_error
+                )  # pragma: no cover
+            solved = await solve_generator(
+                call=call, stack=stack, sub_values=sub_values
+            )
         elif is_coroutine_callable(call):
             solved = await call(**sub_values)
         else:
@@ -640,7 +629,7 @@ async def solve_dependencies(
             values[sub_dependant.name] = solved
         if sub_dependant.cache_key not in dependency_cache:
             dependency_cache[sub_dependant.cache_key] = solved
-        if sub_dependant.use_cache == "app" and sub_dependant.cache_key not in app_dependency_cache:
+        if sub_dependant.use_cache == DependencyCacheScope.app and sub_dependant.cache_key not in app_dependency_cache:
             app_dependency_cache[sub_dependant.cache_key] = solved
     path_values, path_errors = request_params_to_args(
         dependant.path_params, request.path_params

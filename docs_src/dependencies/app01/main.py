@@ -1,4 +1,5 @@
 from fastapi import Depends, FastAPI
+from fastapi.dependencies.lifetime import DependencyLifetime
 
 from . import config
 
@@ -10,7 +11,7 @@ def get_settings():
 
 
 @app.get("/info")
-async def info(settings: config.Settings = Depends(get_settings, lifetime="app")):
+async def info(settings: config.Settings = Depends(get_settings, lifetime=DependencyLifetime.app)):
     return {
         "app_name": settings.app_name,
         "admin_email": settings.admin_email,

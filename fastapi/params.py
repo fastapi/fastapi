@@ -360,8 +360,11 @@ class Depends:
 
     def __repr__(self) -> str:
         attr = getattr(self.dependency, "__name__", type(self.dependency).__name__)
-        cache = "" if self.use_cache else ", use_cache=False"
-        if self.lifetime == DependencyCacheScope.request:
+        if self.use_cache == DependencyCacheScope.request:
+            cache = ""
+        else:
+            cache = f", use_cache={self.use_cache}"
+        if self.lifetime == DependencyLifetime.request:
             lifetime = ""
         else:
             lifetime = f", lifetime={self.lifetime}"

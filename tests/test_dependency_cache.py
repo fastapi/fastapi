@@ -1,3 +1,4 @@
+from fastapi.dependencies.cache import DependencyCacheScope
 from fastapi import Depends, FastAPI
 from fastapi.testclient import TestClient
 
@@ -35,6 +36,22 @@ async def get_sub_counter_no_cache(
     return {"counter": count, "subcounter": subcount}
 
 
+@app.get("/sub-counter-app-cache/")
+async def get_sub_counter_app_cache(
+    subcount: int = Depends(super_dep),
+    count: int = Depends(dep_counter, use_cache=DependencyCacheScope.app),
+):
+    return {"counter": count, "subcounter": subcount}
+
+
+@app.get("/counter-app-cache/")
+async def get_counter_app_cache(
+    subcount: int = Depends(super_dep, use_cache=DependencyCacheScope.app),
+    count: int = Depends(dep_counter),
+):
+    return {"counter": count, "subcounter": subcount}
+
+
 client = TestClient(app)
 
 
@@ -66,3 +83,13 @@ def test_sub_counter_no_cache():
     response = client.get("/sub-counter-no-cache/")
     assert response.status_code == 200, response.text
     assert response.json() == {"counter": 4, "subcounter": 3}
+
+
+def test_counter_app_cache():
+    counter_holder["counter"] = 0
+    response = client.get("/counter-app-cache/")
+    assert response.status_code == 200, response.text
+    assert response.json() == {"counter": 1, "subcounter": 1}
+    response = client.get("/counter-app-cache/")
+    assert response.status_code == 200, response.text
+    assert response.json() == {"counter": 2, "subcounter": 1}

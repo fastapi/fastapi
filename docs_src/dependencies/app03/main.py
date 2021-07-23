@@ -1,8 +1,8 @@
-from fastapi.param_functions import Depends
 from typing import List
 
 from databases import Database
-from fastapi import FastAPI
+from fastapi import Depends, FastAPI
+from fastapi.dependencies.lifetime import DependencyLifetime
 
 from .db import get_db
 from .models import Note, NoteIn
@@ -13,7 +13,7 @@ app = FastAPI()
 
 
 @app.on_event("startup")
-async def startup(db: Database = Depends(get_db, lifetime="app")):
+async def startup(db: Database = Depends(get_db, lifetime=DependencyLifetime.app)):
     db.execute("SELECT 1")  # checks that we are properly connected to the database
 
 
