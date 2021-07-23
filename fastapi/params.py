@@ -349,14 +349,23 @@ class File(Form):
 
 class Depends:
     def __init__(
-        self, dependency: Optional[Callable[..., Any]] = None,
+        self,
+        dependency: Optional[Callable[..., Any]] = None,
         *,
         use_cache: DependencyCacheScope = DependencyCacheScope.request,
-        lifetime: DependencyLifetime = DependencyLifetime.request
+        lifetime: DependencyLifetime = DependencyLifetime.request,
     ):
         self.dependency = dependency
-        self.use_cache = use_cache if isinstance(use_cache, DependencyCacheScope) else DependencyCacheScope(use_cache)
-        self.lifetime = lifetime if isinstance(use_cache, DependencyLifetime) else DependencyLifetime(lifetime)
+        self.use_cache = (
+            use_cache
+            if isinstance(use_cache, DependencyCacheScope)
+            else DependencyCacheScope(use_cache)
+        )
+        self.lifetime = (
+            lifetime
+            if isinstance(use_cache, DependencyLifetime)
+            else DependencyLifetime(lifetime)
+        )
 
     def __repr__(self) -> str:
         attr = getattr(self.dependency, "__name__", type(self.dependency).__name__)
@@ -378,7 +387,7 @@ class Security(Depends):
         *,
         scopes: Optional[Sequence[str]] = None,
         use_cache: DependencyCacheScope = DependencyCacheScope.request,
-        lifetime: DependencyLifetime = DependencyLifetime.request
+        lifetime: DependencyLifetime = DependencyLifetime.request,
     ):
         super().__init__(dependency=dependency, use_cache=use_cache, lifetime=lifetime)
         self.scopes = scopes or []

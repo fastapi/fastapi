@@ -285,4 +285,6 @@ def Security(  # noqa: N802
     use_cache: DependencyCacheScope = DependencyCacheScope.request,
     lifetime: DependencyLifetime = DependencyLifetime.request,
 ) -> Any:
-    return params.Security(dependency=dependency, scopes=scopes, use_cache=use_cache, lifetime=lifetime)
+    return params.Security(
+        dependency=dependency, scopes=scopes, use_cache=use_cache, lifetime=lifetime
+    )

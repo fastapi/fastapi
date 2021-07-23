@@ -23,7 +23,8 @@ from typing import (
 from fastapi import params
 from fastapi.concurrency import AsyncExitStack
 from fastapi.datastructures import Default, DefaultPlaceholder
-from fastapi.dependencies.models import Dependant, DependencyCacheKey
+from fastapi.dependencies.cache import DependencyCacheKey
+from fastapi.dependencies.models import Dependant
 from fastapi.dependencies.utils import (
     get_body_field,
     get_dependant,
@@ -160,6 +161,7 @@ async def run_endpoint_function(
     else:
         return await run_in_threadpool(dependant.call, **values)
 
+
 async def handle_endpoint(
     request: Request,
     dependant: Dependant,
@@ -174,7 +176,7 @@ async def handle_endpoint(
         dependant=dependant,
         body=body,
         dependency_overrides_provider=dependency_overrides_provider,
-        app_dependency_cache=app_dependency_cache
+        app_dependency_cache=app_dependency_cache,
     )
     values, errors, background_tasks, sub_response, _ = solved_result
     if errors:
@@ -246,7 +248,7 @@ def get_request_handler(
             body=body,
             is_coroutine=is_coroutine,
             dependency_overrides_provider=dependency_overrides_provider,
-            app_dependency_cache=request.app.router.app_dependency_cache
+            app_dependency_cache=request.app.router.app_dependency_cache,
         )
         exception: Optional[Exception] = None
         if AsyncExitStack is not None:
@@ -301,7 +303,7 @@ def get_websocket_app(
             request=websocket,
             dependant=dependant,
             dependency_overrides_provider=dependency_overrides_provider,
-            app_dependency_cache=websocket.app.router.app_dependency_cache
+            app_dependency_cache=websocket.app.router.app_dependency_cache,
         )
         values, errors, _, _2, _3 = solved_result
         if errors:
@@ -494,9 +496,9 @@ class APIRouter(routing.Router):
         include_in_schema: bool = True,
     ) -> None:
         self.app_dependency_cache = {}
-        
+
         @contextlib.asynccontextmanager
-        async def dep_stack_cm() -> AsyncGenerator:
+        async def dep_stack_cm() -> AsyncGenerator[None, None]:
             if AsyncExitStack:
                 async with AsyncExitStack() as self.fastapi_app_astack:
                     yield
@@ -505,7 +507,7 @@ class APIRouter(routing.Router):
                 yield
             self.app_dependency_cache = {}
 
-        async def lifespan_context(app: Any) -> AsyncGenerator:
+        async def lifespan_context(app: Any) -> AsyncGenerator[None, None]:
             async with dep_stack_cm():
                 await self.startup()
                 yield
@@ -546,9 +548,9 @@ class APIRouter(routing.Router):
                 dependant=dependant,
                 app_dependency_cache=self.app_dependency_cache,
                 dependency_overrides_provider=self.dependency_overrides_provider,
-                stack=self.fastapi_app_astack
+                stack=self.fastapi_app_astack,
             )
-            is_coroutine = asyncio.iscoroutinefunction(dependant.call)
+            is_coroutine = asyncio.iscoroutinefunction(dependant.call)  # type: ignore
             await run_endpoint_function(
                 dependant=dependant, values=values, is_coroutine=is_coroutine
             )
@@ -563,9 +565,9 @@ class APIRouter(routing.Router):
                 dependant=dependant,
                 app_dependency_cache=self.app_dependency_cache,
                 dependency_overrides_provider=self.dependency_overrides_provider,
-                stack=self.fastapi_app_astack
+                stack=self.fastapi_app_astack,
             )
-            is_coroutine = asyncio.iscoroutinefunction(dependant.call)
+            is_coroutine = asyncio.iscoroutinefunction(dependant.call)  # type: ignore
             await run_endpoint_function(
                 dependant=dependant, values=values, is_coroutine=is_coroutine
             )

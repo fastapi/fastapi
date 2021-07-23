@@ -45,7 +45,7 @@ async def get_sub_counter_app_cache(
 
 
 @app.get("/counter-app-cache/")
-async def get_sub_counter_app_cache(
+async def get_counter_app_cache(
     subcount: int = Depends(super_dep, use_cache=DependencyCacheScope.app),
     count: int = Depends(dep_counter),
 ):

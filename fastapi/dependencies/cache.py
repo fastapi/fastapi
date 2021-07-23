@@ -1,8 +1,7 @@
 import enum
-from typing import Tuple, Callable, Any
+from typing import Any, Callable, Optional, Tuple
 
-
-DependencyCacheKey = Tuple[Callable[..., Any], Tuple[str]]
+DependencyCacheKey = Tuple[Optional[Callable[..., Any]], Tuple[str]]
 
 
 class DependencyCacheScope(enum.Enum):

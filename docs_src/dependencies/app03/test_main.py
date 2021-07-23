@@ -3,7 +3,6 @@ from fastapi.testclient import TestClient
 from . import config
 from .main import app
 
-
 openapi_schema = {
     "openapi": "3.0.2",
     "info": {"title": "FastAPI", "version": "0.1.0"},
@@ -114,7 +113,9 @@ openapi_schema = {
 
 def test_openapi_schema():
 
-    app.dependency_overrides[config.get_config] = lambda: config.Settings(db_url="sqlite:///./test.db")
+    app.dependency_overrides[config.get_config] = lambda: config.Settings(
+        db_url="sqlite:///./test.db"
+    )
 
     with TestClient(app) as client:
         response = client.get("/openapi.json")
@@ -124,7 +125,9 @@ def test_openapi_schema():
 
 def test_create_read():
 
-    app.dependency_overrides[config.get_config] = lambda: config.Settings(db_url="sqlite:///./test.db")
+    app.dependency_overrides[config.get_config] = lambda: config.Settings(
+        db_url="sqlite:///./test.db"
+    )
 
     with TestClient(app) as client:
         note = {"text": "Foo bar", "completed": False}

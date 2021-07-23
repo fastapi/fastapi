@@ -38,5 +38,4 @@ class WebSocketRequestValidationError(ValidationError):
 
 
 class DependencyResolutionError(FastAPIError):
-    """An error during dependency resolution
-    """
+    """An error during dependency resolution"""

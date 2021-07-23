@@ -1,10 +1,9 @@
 from typing import Any, List
 
 import pytest
-from fastapi.params import Body, Cookie, Depends, Header, Param, Path, Query
 from fastapi.dependencies.cache import DependencyCacheScope
 from fastapi.dependencies.lifetime import DependencyLifetime
-
+from fastapi.params import Body, Cookie, Depends, Header, Param, Path, Query
 
 test_data: List[Any] = ["teststr", None, ..., 1, []]
 
@@ -45,14 +44,31 @@ def test_body_repr(params):
 def test_depends_repr():
     assert repr(Depends()) == "Depends(NoneType)"
     assert repr(Depends(get_user)) == "Depends(get_user)"
-    assert repr(Depends(use_cache=False)) == "Depends(NoneType, use_cache=DependencyCacheScope.nocache)"
-    assert repr(Depends(use_cache=DependencyCacheScope.nocache)) == "Depends(NoneType, use_cache=DependencyCacheScope.nocache)"
     assert (
-        repr(Depends(get_user, use_cache=False)) == "Depends(get_user, use_cache=DependencyCacheScope.nocache)"
+        repr(Depends(use_cache=False))
+        == "Depends(NoneType, use_cache=DependencyCacheScope.nocache)"
     )
-    assert repr(Depends(lifetime="app")) == "Depends(NoneType, lifetime=DependencyLifetime.app)"
-    assert repr(Depends(lifetime=DependencyLifetime.app)) == "Depends(NoneType, lifetime=DependencyLifetime.app)"
     assert (
-        repr(Depends(get_user, lifetime="app")) == "Depends(get_user, lifetime=DependencyLifetime.app)"
+        repr(Depends(use_cache=DependencyCacheScope.nocache))
+        == "Depends(NoneType, use_cache=DependencyCacheScope.nocache)"
     )
-    assert repr(Depends(lifetime="app", use_cache=False)) == "Depends(NoneType, use_cache=DependencyCacheScope.nocache, lifetime=DependencyLifetime.app)"
+    assert (
+        repr(Depends(get_user, use_cache=False))
+        == "Depends(get_user, use_cache=DependencyCacheScope.nocache)"
+    )
+    assert (
+        repr(Depends(lifetime="app"))
+        == "Depends(NoneType, lifetime=DependencyLifetime.app)"
+    )
+    assert (
+        repr(Depends(lifetime=DependencyLifetime.app))
+        == "Depends(NoneType, lifetime=DependencyLifetime.app)"
+    )
+    assert (
+        repr(Depends(get_user, lifetime="app"))
+        == "Depends(get_user, lifetime=DependencyLifetime.app)"
+    )
+    assert (
+        repr(Depends(lifetime="app", use_cache=False))
+        == "Depends(NoneType, use_cache=DependencyCacheScope.nocache, lifetime=DependencyLifetime.app)"
+    )

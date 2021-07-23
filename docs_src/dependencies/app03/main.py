@@ -8,7 +8,6 @@ from .db import get_db
 from .models import Note, NoteIn
 from .schemas import notes
 
-
 app = FastAPI()
 
 

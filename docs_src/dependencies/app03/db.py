@@ -1,10 +1,10 @@
 from typing import AsyncGenerator
 
-from databases import Database
 import sqlalchemy
+from databases import Database
 from fastapi import Depends
 
-from .config import get_config, Settings
+from .config import Settings, get_config
 from .schemas import metadata
 
 
@@ -16,8 +16,7 @@ def run_migrations(config: Settings = Depends(get_config)) -> None:
 
 
 async def get_db(
-    config: Settings = Depends(get_config),
-    migrations: None = Depends(run_migrations)
+    config: Settings = Depends(get_config), migrations: None = Depends(run_migrations)
 ) -> AsyncGenerator[Database, None]:
     database = Database(config.db_url)
     await database.connect()

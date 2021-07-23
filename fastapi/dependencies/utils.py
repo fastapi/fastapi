@@ -23,9 +23,9 @@ from fastapi.concurrency import (
     asynccontextmanager,
     contextmanager_in_threadpool,
 )
-from fastapi.dependencies.models import Dependant, SecurityRequirement
 from fastapi.dependencies.cache import DependencyCacheKey, DependencyCacheScope
 from fastapi.dependencies.lifetime import DependencyLifetime
+from fastapi.dependencies.models import Dependant, SecurityRequirement
 from fastapi.exceptions import DependencyResolutionError
 from fastapi.logger import logger
 from fastapi.security.base import SecurityBase
@@ -110,7 +110,10 @@ def check_file_field(field: ModelField) -> None:
 
 
 def get_param_sub_dependant(
-    *, param: inspect.Parameter, path: str, security_scopes: Optional[List[str]] = None
+    *,
+    param: inspect.Parameter,
+    path: Union[str, None],
+    security_scopes: Optional[List[str]] = None,
 ) -> Dependant:
     depends: params.Depends = param.default
     if depends.dependency:
@@ -137,7 +140,7 @@ def get_sub_dependant(
     *,
     depends: params.Depends,
     dependency: Callable[..., Any],
-    path: str,
+    path: Union[str, None],
     name: Optional[str] = None,
     security_scopes: Optional[List[str]] = None,
 ) -> Dependant:
@@ -159,7 +162,7 @@ def get_sub_dependant(
         name=name,
         security_scopes=security_scopes,
         use_cache=depends.use_cache,
-        lifetime=depends.lifetime
+        lifetime=depends.lifetime,
     )
     if security_requirement:
         sub_dependant.security_requirements.append(security_requirement)
@@ -284,8 +287,8 @@ def get_dependant(
     path: Optional[str] = None,
     name: Optional[str] = None,
     security_scopes: Optional[List[str]] = None,
-    use_cache: DependencyCacheScope = True,
-    lifetime: DependencyLifetime = "request"
+    use_cache: DependencyCacheScope = DependencyCacheScope.request,
+    lifetime: DependencyLifetime = DependencyLifetime.request,
 ) -> Dependant:
     if path is not None:
         path_param_names = get_path_param_names(path)
@@ -295,7 +298,9 @@ def get_dependant(
     signature_params = endpoint_signature.parameters
     if is_gen_callable(call) or is_async_gen_callable(call):
         check_dependency_contextmanagers()
-    dependant = Dependant(call=call, name=name, path=path, use_cache=use_cache, lifetime=lifetime)
+    dependant = Dependant(
+        call=call, name=name, path=path, use_cache=use_cache, lifetime=lifetime
+    )
     for param_name, param in signature_params.items():
         if isinstance(param.default, params.Depends):
             sub_dependant = get_param_sub_dependant(
@@ -471,14 +476,11 @@ async def solve_generator(
 async def solve_lifespan_dependencies(
     *,
     dependant: Dependant,
-    app_dependency_cache: Optional[Dict[Tuple[Callable[..., Any], Tuple[str]], Any]],
+    app_dependency_cache: Dict[DependencyCacheKey, Any],
     dependency_overrides_provider: Optional[Any] = None,
-    dependency_cache: Optional[Dict[Tuple[Callable[..., Any], Tuple[str]], Any]] = None,
-    stack: Union[None, AsyncExitStack]
-) -> Tuple[
-    Dict[str, Any],
-    Dict[Tuple[Callable[..., Any], Tuple[str]], Any],
-]:
+    dependency_cache: Optional[Dict[DependencyCacheKey, Any]] = None,
+    stack: Union[None, AsyncExitStack],
+) -> Tuple[Dict[str, Any], Dict[DependencyCacheKey, Any]]:
     values: Dict[str, Any] = {}
     sub_dependant: Dependant
     dependency_cache = dependency_cache or app_dependency_cache.copy()
@@ -506,11 +508,14 @@ async def solve_lifespan_dependencies(
             dependency_overrides_provider=dependency_overrides_provider,
             app_dependency_cache=app_dependency_cache,
             dependency_cache=dependency_cache,
-            stack=stack
+            stack=stack,
         )
         sub_values, sub_dependency_cache = solved_result
         dependency_cache.update(sub_dependency_cache)
-        if sub_dependant.use_cache != DependencyCacheScope.nocache and sub_dependant.cache_key in dependency_cache:
+        if (
+            sub_dependant.use_cache != DependencyCacheScope.nocache
+            and sub_dependant.cache_key in dependency_cache
+        ):
             solved = dependency_cache[sub_dependant.cache_key]
         elif is_gen_callable(call) or is_async_gen_callable(call):
             if stack is None:
@@ -528,20 +533,25 @@ async def solve_lifespan_dependencies(
             values[sub_dependant.name] = solved
         if sub_dependant.cache_key not in dependency_cache:
             dependency_cache[sub_dependant.cache_key] = solved
-        if sub_dependant.use_cache == DependencyCacheScope.app and sub_dependant.cache_key not in app_dependency_cache:
+        if (
+            sub_dependant.use_cache == DependencyCacheScope.app
+            and sub_dependant.cache_key not in app_dependency_cache
+        ):
             app_dependency_cache[sub_dependant.cache_key] = solved
-    if any((
-        dependant.request_param_name,
-        dependant.query_params,
-        dependant.header_params,
-        dependant.cookie_params,
-        dependant.body_params,
-        dependant.request_param_name,
-        dependant.websocket_param_name,
-        dependant.http_connection_param_name,
-        dependant.response_param_name,
-        dependant.path
-    )):
+    if any(
+        (
+            dependant.request_param_name,
+            dependant.query_params,
+            dependant.header_params,
+            dependant.cookie_params,
+            dependant.body_params,
+            dependant.request_param_name,
+            dependant.websocket_param_name,
+            dependant.http_connection_param_name,
+            dependant.response_param_name,
+            dependant.path,
+        )
+    ):
         raise DependencyResolutionError(
             "Lifespan Dependencies cannot depend on connection parameters"
         )
@@ -552,18 +562,18 @@ async def solve_dependencies(
     *,
     request: Union[Request, WebSocket],
     dependant: Dependant,
-    app_dependency_cache: Optional[Dict[Tuple[Callable[..., Any], Tuple[str]], Any]],
+    app_dependency_cache: Dict[DependencyCacheKey, Any],
     body: Optional[Union[Dict[str, Any], FormData]] = None,
     background_tasks: Optional[BackgroundTasks] = None,
     response: Optional[Response] = None,
     dependency_overrides_provider: Optional[Any] = None,
-    dependency_cache: Optional[Dict[Tuple[Callable[..., Any], Tuple[str]], Any]] = None,
+    dependency_cache: Optional[Dict[DependencyCacheKey, Any]] = None,
 ) -> Tuple[
     Dict[str, Any],
     List[ErrorWrapper],
     Optional[BackgroundTasks],
     Response,
-    Dict[Tuple[Callable[..., Any], Tuple[str]], Any],
+    Dict[DependencyCacheKey, Any],
 ]:
     values: Dict[str, Any] = {}
     errors: List[ErrorWrapper] = []
@@ -608,7 +618,7 @@ async def solve_dependencies(
             response=response,
             dependency_overrides_provider=dependency_overrides_provider,
             dependency_cache=dependency_cache,
-            app_dependency_cache=app_dependency_cache
+            app_dependency_cache=app_dependency_cache,
         )
         (
             sub_values,
@@ -621,7 +631,10 @@ async def solve_dependencies(
         if sub_errors:
             errors.extend(sub_errors)
             continue
-        if sub_dependant.use_cache != DependencyCacheScope.nocache and sub_dependant.cache_key in dependency_cache:
+        if (
+            sub_dependant.use_cache != DependencyCacheScope.nocache
+            and sub_dependant.cache_key in dependency_cache
+        ):
             solved = dependency_cache[sub_dependant.cache_key]
         elif is_gen_callable(call) or is_async_gen_callable(call):
             if sub_dependant.lifetime == DependencyLifetime.request:
@@ -645,7 +658,10 @@ async def solve_dependencies(
             values[sub_dependant.name] = solved
         if sub_dependant.cache_key not in dependency_cache:
             dependency_cache[sub_dependant.cache_key] = solved
-        if sub_dependant.use_cache == DependencyCacheScope.app and sub_dependant.cache_key not in app_dependency_cache:
+        if (
+            sub_dependant.use_cache == DependencyCacheScope.app
+            and sub_dependant.cache_key not in app_dependency_cache
+        ):
             app_dependency_cache[sub_dependant.cache_key] = solved
     path_values, path_errors = request_params_to_args(
         dependant.path_params, request.path_params

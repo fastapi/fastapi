@@ -1,4 +1,4 @@
-from typing import Any, Callable, List, Optional, Sequence
+from typing import Any, Callable, List, Optional, Sequence, cast
 
 from fastapi.dependencies.cache import DependencyCacheKey, DependencyCacheScope
 from fastapi.dependencies.lifetime import DependencyLifetime
@@ -54,9 +54,21 @@ class Dependant:
         self.security_scopes_param_name = security_scopes_param_name
         self.name = name
         self.call = call
-        self.use_cache = use_cache if isinstance(use_cache, DependencyCacheScope) else DependencyCacheScope(use_cache)
-        self.lifetime = lifetime if isinstance(use_cache, DependencyLifetime) else DependencyLifetime(lifetime)
+        self.use_cache = (
+            use_cache
+            if isinstance(use_cache, DependencyCacheScope)
+            else DependencyCacheScope(use_cache)
+        )
+        self.lifetime = (
+            lifetime
+            if isinstance(use_cache, DependencyLifetime)
+            else DependencyLifetime(lifetime)
+        )
         # Store the path to be able to re-generate a dependable from it in overrides
         self.path = path
         # Save the cache key at creation to optimize performance
-        self.cache_key: DependencyCacheKey = (self.call, tuple(sorted(set(self.security_scopes or []))))
+        cache_key = (
+            self.call,
+            tuple(sorted(set(self.security_scopes or []))),
+        )
+        self.cache_key: DependencyCacheKey = cast(DependencyCacheKey, cache_key)

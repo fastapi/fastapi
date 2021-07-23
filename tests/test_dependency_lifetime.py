@@ -1,14 +1,12 @@
 import asyncio
-from time import sleep
 from threading import Event
+from time import sleep
 from typing import AsyncGenerator, Callable, Generator, List
 
 import pytest
-
 from fastapi import Depends, FastAPI, HTTPException
 from fastapi.dependencies.lifetime import DependencyLifetime
 from fastapi.testclient import TestClient
-
 
 DESTROY_TIME = 0.1  # simulate work
 
@@ -31,7 +29,6 @@ class AsyncCallableDep(CallableDependency):
 
 
 class LifespanEvents:
-
     def __init__(self) -> None:
         self.destroying = Event()
         self.destroyed = Event()
@@ -44,7 +41,6 @@ class GeneratorDependency:
 
 
 class SyncGeneratorDep(GeneratorDependency):
-
     def __call__(self) -> Generator["SyncGeneratorDep", None, None]:
         self.counter += 1
         events = LifespanEvents()
@@ -56,7 +52,6 @@ class SyncGeneratorDep(GeneratorDependency):
 
 
 class AsyncGeneratorDep(GeneratorDependency):
-
     async def __call__(self) -> AsyncGenerator["AsyncGeneratorDep", None]:
         self.counter += 1
         events = LifespanEvents()
@@ -67,9 +62,7 @@ class AsyncGeneratorDep(GeneratorDependency):
         events.destroyed.set()
 
 
-@pytest.mark.parametrize(
-    "dep_cls", (SyncGeneratorDep, AsyncGeneratorDep)
-)
+@pytest.mark.parametrize("dep_cls", (SyncGeneratorDep, AsyncGeneratorDep))
 def test_request_lifetime_context_manager(dep_cls: Callable[[], GeneratorDependency]):
 
     dep = dep_cls()
@@ -90,9 +83,7 @@ def test_request_lifetime_context_manager(dep_cls: Callable[[], GeneratorDepende
         assert dep.lifespan_events[1].destroyed.wait(DESTROY_TIME)
 
 
-@pytest.mark.parametrize(
-    "dep_cls", (SyncCallableDep, AsyncCallableDep)
-)
+@pytest.mark.parametrize("dep_cls", (SyncCallableDep, AsyncCallableDep))
 def test_request_lifetime_callable(dep_cls: Callable[[], CallableDependency]):
 
     dep = dep_cls()
@@ -110,9 +101,7 @@ def test_request_lifetime_callable(dep_cls: Callable[[], CallableDependency]):
         assert dep.counter == 2
 
 
-@pytest.mark.parametrize(
-    "dep_cls", (SyncGeneratorDep, AsyncGeneratorDep)
-)
+@pytest.mark.parametrize("dep_cls", (SyncGeneratorDep, AsyncGeneratorDep))
 def test_app_lifetime_context_manager(dep_cls: Callable[[], GeneratorDependency]):
 
     dep = dep_cls()
@@ -133,9 +122,7 @@ def test_app_lifetime_context_manager(dep_cls: Callable[[], GeneratorDependency]
     assert all(e.destroyed.is_set() for e in dep.lifespan_events)
 
 
-@pytest.mark.parametrize(
-    "dep_cls", (SyncCallableDep, AsyncCallableDep)
-)
+@pytest.mark.parametrize("dep_cls", (SyncCallableDep, AsyncCallableDep))
 def test_app_lifetime_callable(dep_cls: Callable[[], CallableDependency]):
 
     dep = dep_cls()
@@ -153,10 +140,7 @@ def test_app_lifetime_callable(dep_cls: Callable[[], CallableDependency]):
         assert dep.counter == 2
 
 
-
-@pytest.mark.parametrize(
-    "dep_cls", (SyncGeneratorDep, AsyncGeneratorDep)
-)
+@pytest.mark.parametrize("dep_cls", (SyncGeneratorDep, AsyncGeneratorDep))
 def test_endpoint_lifetime_context_manager(dep_cls: Callable[[], GeneratorDependency]):
 
     dep = dep_cls()
@@ -177,7 +161,6 @@ def test_endpoint_lifetime_context_manager(dep_cls: Callable[[], GeneratorDepend
 
 
 def test_endpoint_lifetime_context_manager_cleanup_raises_HTTPException():
-
     def error_gen():
         yield
         raise HTTPException(400)  # should set status code
@@ -186,7 +169,9 @@ def test_endpoint_lifetime_context_manager_cleanup_raises_HTTPException():
 
     called = False
 
-    @app.get("/", dependencies=[Depends(error_gen, lifetime=DependencyLifetime.endpoint)])
+    @app.get(
+        "/", dependencies=[Depends(error_gen, lifetime=DependencyLifetime.endpoint)]
+    )
     def root():
         nonlocal called
         called = True
@@ -198,7 +183,6 @@ def test_endpoint_lifetime_context_manager_cleanup_raises_HTTPException():
 
 
 def test_endpoint_lifetime_context_manager_cleanup_raises_Exception():
-
     def error_gen():
         yield
         raise Exception()  # results in 500 status code
@@ -207,7 +191,9 @@ def test_endpoint_lifetime_context_manager_cleanup_raises_Exception():
 
     called = False
 
-    @app.get("/", dependencies=[Depends(error_gen, lifetime=DependencyLifetime.endpoint)])
+    @app.get(
+        "/", dependencies=[Depends(error_gen, lifetime=DependencyLifetime.endpoint)]
+    )
     def root():
         nonlocal called
         called = True
@@ -217,9 +203,7 @@ def test_endpoint_lifetime_context_manager_cleanup_raises_Exception():
         assert called
 
 
-@pytest.mark.parametrize(
-    "dep_cls", (SyncCallableDep, AsyncCallableDep)
-)
+@pytest.mark.parametrize("dep_cls", (SyncCallableDep, AsyncCallableDep))
 def test_endpoint_lifetime_callable(dep_cls: Callable[[], CallableDependency]):
 
     dep = dep_cls()
