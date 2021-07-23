@@ -12,6 +12,8 @@ or the backport for Python 3.6, installed with:
     pip install async-generator
 """
 
+NO_SEND = object()
+
 
 def _fake_asynccontextmanager(func: Callable[..., Any]) -> Callable[..., Any]:
     def raiser(*args: Any, **kwargs: Any) -> Any:
@@ -40,12 +42,15 @@ except ImportError:
 
 
 @asynccontextmanager  # type: ignore
-async def contextmanager_in_threadpool(cm: Any) -> Any:
+async def contextmanager_in_threadpool(cm: Any, *, send: bool = False) -> Any:
     try:
-        yield await run_in_threadpool(cm.__enter__)
+        sent = yield await run_in_threadpool(cm.__enter__)
     except Exception as e:
         ok = await run_in_threadpool(cm.__exit__, type(e), e, None)
         if not ok:
             raise e
     else:
+        if send:
+            cm.gen.send(sent)
+            yield
         await run_in_threadpool(cm.__exit__, None, None, None)

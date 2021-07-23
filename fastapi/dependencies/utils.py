@@ -5,6 +5,7 @@ from contextlib import contextmanager
 from copy import deepcopy
 from typing import (
     Any,
+    AsyncGenerator,
     Callable,
     Dict,
     List,
@@ -53,6 +54,7 @@ from starlette.datastructures import FormData, Headers, QueryParams, UploadFile
 from starlette.requests import HTTPConnection, Request
 from starlette.responses import Response
 from starlette.websockets import WebSocket
+
 
 sequence_shapes = {
     SHAPE_LIST,
@@ -157,6 +159,7 @@ def get_sub_dependant(
         name=name,
         security_scopes=security_scopes,
         use_cache=depends.use_cache,
+        inject_response=depends.inject_response
     )
     if security_requirement:
         sub_dependant.security_requirements.append(security_requirement)
@@ -285,13 +288,16 @@ def get_dependant(
     name: Optional[str] = None,
     security_scopes: Optional[List[str]] = None,
     use_cache: bool = True,
+    inject_response: bool = False,
 ) -> Dependant:
     path_param_names = get_path_param_names(path)
     endpoint_signature = get_typed_signature(call)
     signature_params = endpoint_signature.parameters
     if is_gen_callable(call) or is_async_gen_callable(call):
         check_dependency_contextmanagers()
-    dependant = Dependant(call=call, name=name, path=path, use_cache=use_cache)
+    elif inject_response:
+        raise TypeError("`inject_response` can only be used with dependencies with `yield`")
+    dependant = Dependant(call=call, name=name, path=path, use_cache=use_cache, inject_response=inject_response)
     for param_name, param in signature_params.items():
         if isinstance(param.default, params.Depends):
             sub_dependant = get_param_sub_dependant(
@@ -447,10 +453,19 @@ def is_gen_callable(call: Callable[..., Any]) -> bool:
 
 
 async def solve_generator(
-    *, call: Callable[..., Any], stack: AsyncExitStack, sub_values: Dict[str, Any]
-) -> Any:
+    *, call: Callable[..., Any], stack: AsyncExitStack, sub_values: Dict[str, Any], send: bool = False
+) -> Tuple[Any, AsyncGenerator]:
     if is_gen_callable(call):
-        cm = contextmanager_in_threadpool(contextmanager(call)(**sub_values))
+        
+        if send:
+            def gen_factory(**kwargs):
+                original = call(**kwargs)
+                yield from original
+                yield
+        else:
+            gen_factory = call
+
+        cm = contextmanager_in_threadpool(contextmanager(gen_factory)(**sub_values), send=send)
     elif is_async_gen_callable(call):
         if not inspect.isasyncgenfunction(call):
             # asynccontextmanager from the async_generator backfill pre python3.7
@@ -460,8 +475,25 @@ async def solve_generator(
             # Expand the callable class into its __call__ method before decorating it.
             # This approach will work on newer python versions as well.
             call = getattr(call, "__call__", None)
-        cm = asynccontextmanager(call)(**sub_values)
-    return await stack.enter_async_context(cm)
+
+        if send:
+            async def gen_factory(**kwargs):
+                original: AsyncGenerator = call(**kwargs)
+                sent = yield (await original.__anext__())
+                try:
+                    await original.asend(sent)
+                except StopAsyncIteration:
+                    pass
+                else:
+                    raise RuntimeError("generator didn't stop")
+                yield
+                return
+        else:
+            gen_factory = call
+
+        cm = asynccontextmanager(gen_factory)(**sub_values)
+    value = await stack.enter_async_context(cm)
+    return value, cm.gen
 
 
 async def solve_dependencies(
@@ -479,9 +511,11 @@ async def solve_dependencies(
     Optional[BackgroundTasks],
     Response,
     Dict[Tuple[Callable[..., Any], Tuple[str]], Any],
+    List[AsyncGenerator]
 ]:
     values: Dict[str, Any] = {}
     errors: List[ErrorWrapper] = []
+    generators_expecting_response_send = []
     response = response or Response(
         content=None,
         status_code=None,  # type: ignore
@@ -512,6 +546,7 @@ async def solve_dependencies(
                 call=call,
                 name=sub_dependant.name,
                 security_scopes=sub_dependant.security_scopes,
+                inject_response=sub_dependant.inject_response
             )
             use_sub_dependant.security_scopes = sub_dependant.security_scopes
 
@@ -530,8 +565,10 @@ async def solve_dependencies(
             background_tasks,
             _,  # the subdependency returns the same response we have
             sub_dependency_cache,
+            sub_dependency_generators_expecting_response_send
         ) = solved_result
         dependency_cache.update(sub_dependency_cache)
+        generators_expecting_response_send.extend(sub_dependency_generators_expecting_response_send)
         if sub_errors:
             errors.extend(sub_errors)
             continue
@@ -543,9 +580,11 @@ async def solve_dependencies(
                 raise RuntimeError(
                     async_contextmanager_dependencies_error
                 )  # pragma: no cover
-            solved = await solve_generator(
-                call=call, stack=stack, sub_values=sub_values
+            solved, gen = await solve_generator(
+                call=call, stack=stack, sub_values=sub_values, send=sub_dependant.inject_response
             )
+            if sub_dependant.inject_response:
+                generators_expecting_response_send.append(gen)
         elif is_coroutine_callable(call):
             solved = await call(**sub_values)
         else:
@@ -596,7 +635,7 @@ async def solve_dependencies(
         values[dependant.security_scopes_param_name] = SecurityScopes(
             scopes=dependant.security_scopes
         )
-    return values, errors, background_tasks, response, dependency_cache
+    return values, errors, background_tasks, response, dependency_cache, generators_expecting_response_send
 
 
 def request_params_to_args(
