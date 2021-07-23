@@ -2,6 +2,7 @@ from typing import List
 
 from databases import Database
 from fastapi import Depends, FastAPI
+from fastapi.deoendencies.cache import DependencyCacheScope
 from fastapi.dependencies.lifetime import DependencyLifetime
 
 from .db import get_db
@@ -12,7 +13,7 @@ app = FastAPI()
 
 
 @app.on_event("startup")
-async def startup(db: Database = Depends(get_db, lifetime=DependencyLifetime.app)):
+async def startup(db: Database = Depends(get_db, use_cache=DependencyCacheScope.app, lifetime=DependencyLifetime.app)):
     db.execute("SELECT 1")  # checks that we are properly connected to the database
 
 
