@@ -18,7 +18,5 @@ def run_migrations(config: Settings = Depends(get_config)) -> None:
 async def get_db(
     config: Settings = Depends(get_config), migrations: None = Depends(run_migrations)
 ) -> AsyncGenerator[Database, None]:
-    database = Database(config.db_url)
-    await database.connect()
-    yield database
-    await database.disconnect()
+    async with Database(config.db_url) as db:
+        yield db
