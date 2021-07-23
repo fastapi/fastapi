@@ -167,7 +167,7 @@ To run this code, set an enviroment variable named `DB_URL` to point to your dat
 If you are running PostgreSQL locally, you might do: `export DB_URL=postgresql://user:password@postgresserver/db`.
 To test with SQLite, you can set `export DB_URL=sqlite:///./test.db`.
 
-For more information on enviroment variables, see [Environment Variables](settings#environment-variables.md){.internal-link target=_blank}.
+For more information on enviroment variables, see [Environment Variables](settings.md#environment-variables){.internal-link target=_blank}.
 
 Then you can copy this code as is, run it using Uvicorn and see the docs at <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 
