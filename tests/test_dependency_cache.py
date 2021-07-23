@@ -16,7 +16,9 @@ async def super_dep(count: int = Depends(dep_counter)):
     return count
 
 
-async def super_dep_app_cache(count: int = Depends(dep_counter, use_cache=DependencyCacheScope.app)):
+async def super_dep_app_cache(
+    count: int = Depends(dep_counter, use_cache=DependencyCacheScope.app)
+):
     return count
 
 
