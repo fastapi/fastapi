@@ -4,14 +4,14 @@ In FastAPI, if one of your dependencies is declared multiple times for the same 
 
 And it will save the returned value in a <abbr title="A utility/system to store computed/generated values, to re-use them instead of computing them again.">"cache"</abbr> and pass it to all the "dependants" that need it in that specific request, instead of calling the dependency multiple times for the same request.
 
-But you may not want this behavior. FastAPI let's you control this via _cache scopes_. You can set the _cache scope_ using the `use_cache` parameter to `Depends()`. For example, to disable the cache for a dependency:
+But you may not want this behavior. FastAPI let's you control this via *cache scopes*. You can set the cache scope using the `use_cache` parameter to `Depends()`. For example, to disable the cache for a dependency:
 
 ```Python hl_lines="1"
 def needy_dependency(fresh_value: str = Depends(get_value, use_cache=False)):
     return {"fresh_value": fresh_value}
 ```
 
-You may also find situations where you only want your dependencies to be created _once_.
+You may also find situations where you only want your dependencies to be created *once*.
 For example, if you are loading a config from enviroment variables using [Pydantic's settings management](../../advanced/settings.md){.internal-link target=_blank}, you probably only want that to happen once, and be cached therafter.
 For this situation, set `use_cache="app"` to cache the dependencies value for the lifetime of your application:
 
@@ -71,7 +71,7 @@ In this example, `app_value` will always have the same value while `request_valu
 
 ### Specialize the dependency
 
-If you want to have caching at _both_ the `"app"` scope _and_ the `"request"` scope, you can specialize your dependency itself.
+If you want to have caching at *both* the `"app"` scope _and_ the `"request"` scope, you can specialize your dependency itself.
 If your dependency is a class, you can sublcass it:
 
 ```Python
@@ -125,4 +125,4 @@ You can also use the values of `fastapi.dependencies.cache.DependencyCacheScopes
 !!! note "Info"
     You may be asking yourself what happens if you ask **FastAPI** to cache your dependency's value for the lifetime of your app when using [Dependencies with yield](dependencies-with-yield.md){.internal-link target=_blank}
     The handling of teardown for dependencies with yield can be controlled indpendently of the caching of the dependency's yielded value.
-    Read onto [Dependency lifetimes (the next section)](dependencies-with-yield.md){.internal-link target=_blank} to find out more!
+    Read onto [Dependency lifetimes (the next section)](dependency-lifetimes.md){.internal-link target=_blank} to find out more!

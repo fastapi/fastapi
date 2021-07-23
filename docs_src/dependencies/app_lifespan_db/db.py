@@ -8,7 +8,7 @@ from .config import Settings, get_config
 from .schemas import metadata
 
 
-def run_migrations(config: Settings = Depends(get_config)) -> None:
+def setup_schema(config: Settings = Depends(get_config)) -> None:
     engine = sqlalchemy.create_engine(
         config.db_url, connect_args={"check_same_thread": False}
     )
@@ -16,7 +16,7 @@ def run_migrations(config: Settings = Depends(get_config)) -> None:
 
 
 async def get_db(
-    config: Settings = Depends(get_config), migrations: None = Depends(run_migrations)
+    config: Settings = Depends(get_config), schema: None = Depends(setup_schema)
 ) -> AsyncGenerator[Database, None]:
     async with Database(config.db_url) as db:
         yield db
