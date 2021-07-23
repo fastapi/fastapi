@@ -45,7 +45,7 @@ async def get_sub_counter_app_cache(
 
 
 @app.get("/counter-app-cache/")
-async def get_counter_app_cache(
+async def get_sub_counter_app_cache(
     subcount: int = Depends(super_dep, use_cache=DependencyCacheScope.app),
     count: int = Depends(dep_counter),
 ):
@@ -85,11 +85,23 @@ def test_sub_counter_no_cache():
     assert response.json() == {"counter": 4, "subcounter": 3}
 
 
+def test_sub_counter_app_cache():
+    counter_holder["counter"] = 0
+    with TestClient(app) as client:
+        response = client.get("/sub-counter-app-cache/")
+        assert response.status_code == 200, response.text
+        assert response.json() == {"counter": 1, "subcounter": 1}
+        response = client.get("/sub-counter-app-cache/")
+        assert response.status_code == 200, response.text
+        assert response.json() == {"counter": 1, "subcounter": 1}
+
+
 def test_counter_app_cache():
     counter_holder["counter"] = 0
-    response = client.get("/counter-app-cache/")
-    assert response.status_code == 200, response.text
-    assert response.json() == {"counter": 1, "subcounter": 1}
-    response = client.get("/counter-app-cache/")
-    assert response.status_code == 200, response.text
-    assert response.json() == {"counter": 2, "subcounter": 1}
+    with TestClient(app) as client:
+        response = client.get("/counter-app-cache/")
+        assert response.status_code == 200, response.text
+        assert response.json() == {"counter": 1, "subcounter": 1}
+        response = client.get("/counter-app-cache/")
+        assert response.status_code == 200, response.text
+        assert response.json() == {"counter": 2, "subcounter": 1}
