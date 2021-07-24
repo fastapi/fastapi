@@ -472,7 +472,9 @@ async def solve_generator(
             except:
                 raise
             else:
-                raise RuntimeError("didn't stop")
+                # generator didn't stop
+                # yield and let context manager raise a RuntimeError
+                yield
 
         sync_cm = contextmanager(sync_gen_factory)(**sub_values)
         gen = sync_cm.gen
@@ -505,7 +507,9 @@ async def solve_generator(
             except:
                 raise
             else:
-                raise RuntimeError("didn't stop")
+                # generator didn't stop
+                # yield and let context manager raise a RuntimeError
+                yield
 
         cm = asynccontextmanager(async_gen_factory)(**sub_values)
         gen = cm.gen
