@@ -56,7 +56,6 @@ from starlette.requests import HTTPConnection, Request
 from starlette.responses import Response
 from starlette.websockets import WebSocket
 
-
 sequence_shapes = {
     SHAPE_LIST,
     SHAPE_SET,
@@ -451,11 +450,17 @@ def is_gen_callable(call: Callable[..., Any]) -> bool:
 
 async def solve_generator(
     *, call: Callable[..., Any], stack: AsyncExitStack, sub_values: Dict[str, Any]
-) -> Tuple[Any, Union[Generator, AsyncGenerator]]:
+) -> Tuple[
+    Any,
+    Union[
+        Generator[Any, Optional[Response], None],
+        AsyncGenerator[Any, Optional[Response]],
+    ],
+]:
     if is_gen_callable(call):
 
-        def sync_gen_factory(**kwargs):
-            original: Generator = call(**kwargs)
+        def sync_gen_factory() -> Generator[Any, Optional[Response], None]:
+            original: Generator[Any, Any, None] = call(**sub_values)
             sent = yield next(original)
             try:
                 yield
@@ -469,15 +474,15 @@ async def solve_generator(
                 original.send(sent)
             except StopIteration:
                 return
-            except:
-                raise
+            except Exception as e:
+                raise e
             else:
                 # generator didn't stop
                 # yield and let context manager raise a RuntimeError
                 yield
 
-        sync_cm = contextmanager(sync_gen_factory)(**sub_values)
-        gen = sync_cm.gen
+        sync_cm = contextmanager(sync_gen_factory)()
+        gen = sync_cm.gen  # type: ignore
         cm = contextmanager_in_threadpool(sync_cm)
     else:  # is_async_gen_callable(call) is True
         if not inspect.isasyncgenfunction(call):
@@ -489,8 +494,8 @@ async def solve_generator(
             # This approach will work on newer python versions as well.
             call = getattr(call, "__call__", None)
 
-        async def async_gen_factory(**kwargs):
-            original: AsyncGenerator = call(**kwargs)
+        async def async_gen_factory() -> AsyncGenerator[Any, Optional[Response]]:
+            original: AsyncGenerator[Any, Any] = call(**sub_values)
             sent = yield await original.__anext__()
             try:
                 yield
@@ -504,15 +509,15 @@ async def solve_generator(
                 await original.asend(sent)
             except StopAsyncIteration:
                 return
-            except:
-                raise
+            except Exception as e:
+                raise e
             else:
                 # generator didn't stop
                 # yield and let context manager raise a RuntimeError
                 yield
 
-        cm = asynccontextmanager(async_gen_factory)(**sub_values)
-        gen = cm.gen
+        cm = asynccontextmanager(async_gen_factory)()
+        gen = cm.gen  # type: ignore
     return await stack.enter_async_context(cm), gen
 
 
@@ -531,7 +536,12 @@ async def solve_dependencies(
     Optional[BackgroundTasks],
     Response,
     Dict[Tuple[Callable[..., Any], Tuple[str]], Any],
-    List[Union[Generator, AsyncGenerator]]
+    List[
+        Union[
+            Generator[Any, Optional[Response], None],
+            AsyncGenerator[Any, Optional[Response]],
+        ]
+    ],
 ]:
     values: Dict[str, Any] = {}
     errors: List[ErrorWrapper] = []
@@ -584,7 +594,7 @@ async def solve_dependencies(
             background_tasks,
             _,  # the subdependency returns the same response we have
             sub_dependency_cache,
-            sub_dependency_generators_to_send_response
+            sub_dependency_generators_to_send_response,
         ) = solved_result
         dependency_cache.update(sub_dependency_cache)
         generators_to_send_response.extend(sub_dependency_generators_to_send_response)
@@ -653,7 +663,14 @@ async def solve_dependencies(
         values[dependant.security_scopes_param_name] = SecurityScopes(
             scopes=dependant.security_scopes
         )
-    return values, errors, background_tasks, response, dependency_cache, generators_to_send_response
+    return (
+        values,
+        errors,
+        background_tasks,
+        response,
+        dependency_cache,
+        generators_to_send_response,
+    )
 
 
 def request_params_to_args(

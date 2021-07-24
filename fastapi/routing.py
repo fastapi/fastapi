@@ -4,6 +4,7 @@ import email.message
 import enum
 import inspect
 import json
+from types import GeneratorType
 from typing import (
     Any,
     AsyncGenerator,
@@ -19,7 +20,6 @@ from typing import (
     Type,
     Union,
 )
-from types import GeneratorType
 
 from fastapi import params
 from fastapi.datastructures import Default, DefaultPlaceholder
@@ -160,13 +160,18 @@ async def run_endpoint_function(
 
 async def send_response_into_generators(
     response: Union[None, Response],
-    generators: Iterable[Union[AsyncGenerator, Generator]]
+    generators: Iterable[
+        Union[
+            AsyncGenerator[Any, Optional[Response]],
+            Generator[Any, Optional[Response], None],
+        ]
+    ],
 ) -> None:
     for gen in generators:
         if isinstance(gen, GeneratorType):
             gen.send(response)
         else:  # async generator
-            await gen.asend(response)
+            await gen.asend(response)  # type: ignore
 
 
 def get_request_handler(
@@ -227,7 +232,14 @@ def get_request_handler(
             body=body,
             dependency_overrides_provider=dependency_overrides_provider,
         )
-        values, errors, background_tasks, sub_response, _, generators_to_send_response_into = solved_result
+        (
+            values,
+            errors,
+            background_tasks,
+            sub_response,
+            _,
+            generators_to_send_response_into,
+        ) = solved_result
         if errors:
             raise RequestValidationError(errors, body=body)
         else:
@@ -235,13 +247,18 @@ def get_request_handler(
                 raw_response = await run_endpoint_function(
                     dependant=dependant, values=values, is_coroutine=is_coroutine
                 )
-            except:
-                await send_response_into_generators(None, generators_to_send_response_into)
-                raise
+            except Exception as e:
+                # Send None into generators, we have no response to send
+                await send_response_into_generators(
+                    None, generators_to_send_response_into
+                )
+                raise e
             if isinstance(raw_response, Response):
                 if raw_response.background is None:
                     raw_response.background = background_tasks
-                await send_response_into_generators(raw_response, generators_to_send_response_into)
+                await send_response_into_generators(
+                    raw_response, generators_to_send_response_into
+                )
                 return raw_response
             response_data = await serialize_response(
                 field=response_field,
@@ -263,7 +280,9 @@ def get_request_handler(
             response.headers.raw.extend(sub_response.headers.raw)
             if sub_response.status_code:
                 response.status_code = sub_response.status_code
-            await send_response_into_generators(response, generators_to_send_response_into)
+            await send_response_into_generators(
+                response, generators_to_send_response_into
+            )
             return response
 
     return app
