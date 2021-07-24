@@ -70,7 +70,7 @@ You can however get a referecne to the final response returned from the path ope
 {!../../../docs_src/dependencies/tutorial013.py!}
 ```
 
-You can't modify this response (see ), but you can log it or do other background tasks with it.
+You can't modify this response (see [Dependencies with `yield` and `HTTPException` below](dependencies-with-yield.md#dependencies-with-yield-and-httpexception){.internal-link target=_blank} below), but you can log it or do other background tasks with it.
 
 !!! note "Technical Details"
     Accepting a value from a `yield` is called _sending_ a value into a generator.
