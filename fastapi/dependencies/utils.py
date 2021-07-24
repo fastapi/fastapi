@@ -456,23 +456,23 @@ async def solve_generator(
 
         def sync_gen_factory(**kwargs):
             original: Generator = call(**kwargs)
+            sent = yield next(original)
             try:
-                sent = yield next(original)
+                yield
             except Exception as e:
                 try:
                     original.throw(type(e), e, e.__traceback__)
                 except StopIteration:
                     return
-                except:
-                    raise
+                raise e
+            try:
+                original.send(sent)
+            except StopIteration:
+                return
+            except:
+                raise
             else:
-                yield
-                try:
-                    original.send(sent)
-                except StopIteration:
-                    return
-                except:
-                    raise
+                raise RuntimeError("didn't stop")
 
         sync_cm = contextmanager(sync_gen_factory)(**sub_values)
         gen = sync_cm.gen
@@ -486,26 +486,26 @@ async def solve_generator(
             # Expand the callable class into its __call__ method before decorating it.
             # This approach will work on newer python versions as well.
             call = getattr(call, "__call__", None)
-        
+
         async def async_gen_factory(**kwargs):
             original: AsyncGenerator = call(**kwargs)
+            sent = yield await original.__anext__()
             try:
-                sent = yield await original.__anext__()
+                yield
             except Exception as e:
                 try:
                     await original.athrow(type(e), e, e.__traceback__)
                 except StopAsyncIteration:
                     return
-                except:
-                    raise
+                raise e
+            try:
+                await original.asend(sent)
+            except StopAsyncIteration:
+                return
+            except:
+                raise
             else:
-                yield
-                try:
-                    await original.asend(sent)
-                except StopAsyncIteration:
-                    return
-                except:
-                    raise
+                raise RuntimeError("didn't stop")
 
         cm = asynccontextmanager(async_gen_factory)(**sub_values)
         gen = cm.gen

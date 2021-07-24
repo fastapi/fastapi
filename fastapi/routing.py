@@ -231,9 +231,13 @@ def get_request_handler(
         if errors:
             raise RequestValidationError(errors, body=body)
         else:
-            raw_response = await run_endpoint_function(
-                dependant=dependant, values=values, is_coroutine=is_coroutine
-            )
+            try:
+                raw_response = await run_endpoint_function(
+                    dependant=dependant, values=values, is_coroutine=is_coroutine
+                )
+            except:
+                await send_response_into_generators(None, generators_to_send_response_into)
+                raise
             if isinstance(raw_response, Response):
                 if raw_response.background is None:
                     raw_response.background = background_tasks
