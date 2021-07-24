@@ -53,6 +53,33 @@ The code following the `yield` statement is executed after the response has been
 
     **FastAPI** will do the right thing with each, the same as with normal dependencies.
 
+## Responses from path operations in dependencies with `yield`
+
+Normally, when you declare a depdendency on `Response`, this will *not* necessarily be the final response from your path operation.
+If your path operation depends on `Response` as well, it will get the same response object as your dependency.
+So in this way, your dependency can communicate response data with your path operation.
+But your path operation can totally ignore this response and return a completely different response, as is the case in this example:
+
+```Python hl_lines="18"
+{!../../../docs_src/dependencies/tutorial013.py!}
+```
+
+You can however get a referecne to the final response returned from the path operation by assigning the value returned by `yield` to a variable:
+
+```Python hl_lines="7"
+{!../../../docs_src/dependencies/tutorial013.py!}
+```
+
+You can't modify this response (see ), but you can log it or do other background tasks with it.
+
+!!! note "Technical Details"
+    Accepting a value from a `yield` is called _sending_ a value into a generator.
+    You can do it with any generator.
+    Here, FastAPI just arranged to _send_ the final response into the generator for you.
+
+!!! note "Technical Details"
+    Because this relies on functionality specific to generators, this will **not** work with context manager dependencies, even if they use `yield`.
+
 ## A dependency with `yield` and `try`
 
 If you use a `try` block in a dependency with `yield`, you'll receive any exception that was thrown when using the dependency.
