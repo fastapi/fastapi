@@ -97,6 +97,12 @@ The key features are:
 
 ---
 
+"_MONAI Label adopted the **FastAPI** library to create a REST API that facilitates interactive medical image annotation by using AI._"
+
+<div style="text-align: right; margin-right: 10%;">Andres Diaz-Pinto - <strong><a href="https://github.com/Project-MONAI/MONAILabel" target="_blank">MONAI Label</a> co-creator</strong> <a href="https://github.com/Project-MONAI/MONAILabel" target="_blank"><small>(ref)</small></a></div>
+
+---
+
 ## **Typer**, the FastAPI of CLIs
 
 <a href="https://typer.tiangolo.com" target="_blank"><img src="https://typer.tiangolo.com/img/logo-margin/logo-margin-vector.svg" style="width: 20%;"></a>
