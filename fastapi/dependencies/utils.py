@@ -466,7 +466,7 @@ async def solve_generator(
                 except:
                     raise
             else:
-                yield original
+                yield
                 try:
                     original.send(sent)
                 except StopIteration:
