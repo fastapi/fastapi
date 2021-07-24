@@ -26,6 +26,7 @@ from fastapi.concurrency import (
 )
 from fastapi.dependencies.models import Dependant, SecurityRequirement
 from fastapi.logger import logger
+from fastapi.responses import Response
 from fastapi.security.base import SecurityBase
 from fastapi.security.oauth2 import OAuth2, SecurityScopes
 from fastapi.security.open_id_connect_url import OpenIdConnect
@@ -51,7 +52,6 @@ from starlette.background import BackgroundTasks
 from starlette.concurrency import run_in_threadpool
 from starlette.datastructures import FormData, Headers, QueryParams, UploadFile
 from starlette.requests import HTTPConnection, Request
-from starlette.responses import Response
 from starlette.websockets import WebSocket
 
 sequence_shapes = {

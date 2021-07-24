@@ -223,6 +223,7 @@ def get_request_handler(
             if isinstance(raw_response, Response):
                 if raw_response.background is None:
                     raw_response.background = background_tasks
+                sub_response.final_response = raw_response
                 return raw_response
             response_data = await serialize_response(
                 field=response_field,
@@ -244,6 +245,7 @@ def get_request_handler(
             response.headers.raw.extend(sub_response.headers.raw)
             if sub_response.status_code:
                 response.status_code = sub_response.status_code
+            sub_response.final_response = response
             return response
 
     return app

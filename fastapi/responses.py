@@ -1,11 +1,12 @@
 from typing import Any
 
+from starlette.background import BackgroundTask
 from starlette.responses import FileResponse as FileResponse  # noqa
 from starlette.responses import HTMLResponse as HTMLResponse  # noqa
 from starlette.responses import JSONResponse as JSONResponse  # noqa
 from starlette.responses import PlainTextResponse as PlainTextResponse  # noqa
 from starlette.responses import RedirectResponse as RedirectResponse  # noqa
-from starlette.responses import Response as Response  # noqa
+from starlette.responses import Response as StarletteResponse  # noqa
 from starlette.responses import StreamingResponse as StreamingResponse  # noqa
 
 try:
@@ -18,6 +19,22 @@ try:
     import orjson
 except ImportError:  # pragma: nocover
     orjson = None  # type: ignore
+
+
+class Response(StarletteResponse):
+
+    final_response: StarletteResponse
+
+    def __init__(
+        self,
+        content: Any = None,
+        status_code: int = 200,
+        headers: dict = None,
+        media_type: str = None,
+        background: BackgroundTask = None,
+    ) -> None:
+        super().__init__(content=content, status_code=status_code, headers=headers, media_type=media_type, background=background)
+        self.final_response = None
 
 
 class UJSONResponse(JSONResponse):
