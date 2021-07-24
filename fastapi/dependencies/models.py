@@ -34,7 +34,6 @@ class Dependant:
         security_scopes: Optional[List[str]] = None,
         use_cache: bool = True,
         path: Optional[str] = None,
-        inject_response: bool = False,
     ) -> None:
         self.path_params = path_params or []
         self.query_params = query_params or []
@@ -57,4 +56,3 @@ class Dependant:
         self.path = path
         # Save the cache key at creation to optimize performance
         self.cache_key = (self.call, tuple(sorted(set(self.security_scopes or []))))
-        self.inject_response = inject_response

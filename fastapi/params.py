@@ -347,20 +347,15 @@ class File(Form):
 
 class Depends:
     def __init__(
-        self, dependency: Optional[Callable[..., Any]] = None,
-        *,
-        use_cache: bool = True,
-        inject_response: bool = False,
+        self, dependency: Optional[Callable[..., Any]] = None, *, use_cache: bool = True
     ):
         self.dependency = dependency
         self.use_cache = use_cache
-        self.inject_response = inject_response
 
     def __repr__(self) -> str:
         attr = getattr(self.dependency, "__name__", type(self.dependency).__name__)
         cache = "" if self.use_cache else ", use_cache=False"
-        inject_response = "" if not self.inject_response else ", inject_response=False"
-        return f"{self.__class__.__name__}({attr}{cache}{inject_response})"
+        return f"{self.__class__.__name__}({attr}{cache})"
 
 
 class Security(Depends):
@@ -370,7 +365,6 @@ class Security(Depends):
         *,
         scopes: Optional[Sequence[str]] = None,
         use_cache: bool = True,
-        inject_response: bool = False,
     ):
-        super().__init__(dependency=dependency, use_cache=use_cache, inject_response=inject_response)
+        super().__init__(dependency=dependency, use_cache=use_cache)
         self.scopes = scopes or []

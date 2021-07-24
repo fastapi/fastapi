@@ -6,9 +6,12 @@ import inspect
 import json
 from typing import (
     Any,
+    AsyncGenerator,
     Callable,
     Coroutine,
     Dict,
+    Generator,
+    Iterable,
     List,
     Optional,
     Sequence,
@@ -16,6 +19,7 @@ from typing import (
     Type,
     Union,
 )
+from types import GeneratorType
 
 from fastapi import params
 from fastapi.datastructures import Default, DefaultPlaceholder
@@ -154,6 +158,17 @@ async def run_endpoint_function(
         return await run_in_threadpool(dependant.call, **values)
 
 
+async def send_response_into_generators(
+    response: Union[None, Response],
+    generators: Iterable[Union[AsyncGenerator, Generator]]
+) -> None:
+    for gen in generators:
+        if isinstance(gen, GeneratorType):
+            gen.send(response)
+        else:  # async generator
+            await gen.asend(response)
+
+
 def get_request_handler(
     dependant: Dependant,
     body_field: Optional[ModelField] = None,
@@ -212,19 +227,17 @@ def get_request_handler(
             body=body,
             dependency_overrides_provider=dependency_overrides_provider,
         )
-        values, errors, background_tasks, sub_response, _, generators_expecting_response_send = solved_result
+        values, errors, background_tasks, sub_response, _, generators_to_send_response_into = solved_result
         if errors:
             raise RequestValidationError(errors, body=body)
         else:
             raw_response = await run_endpoint_function(
                 dependant=dependant, values=values, is_coroutine=is_coroutine
             )
-
             if isinstance(raw_response, Response):
                 if raw_response.background is None:
                     raw_response.background = background_tasks
-                for gen in generators_expecting_response_send:
-                    await gen.asend(raw_response)
+                await send_response_into_generators(raw_response, generators_to_send_response_into)
                 return raw_response
             response_data = await serialize_response(
                 field=response_field,
@@ -246,10 +259,7 @@ def get_request_handler(
             response.headers.raw.extend(sub_response.headers.raw)
             if sub_response.status_code:
                 response.status_code = sub_response.status_code
-            
-            for gen in generators_expecting_response_send:
-                await gen.asend(response)
-
+            await send_response_into_generators(response, generators_to_send_response_into)
             return response
 
     return app
