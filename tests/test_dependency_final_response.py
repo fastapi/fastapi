@@ -5,42 +5,43 @@ from fastapi import Depends, FastAPI, Response
 from fastapi.testclient import TestClient
 
 
-class SyncGenDep:
+class Dep:
     response: Union[None, Response] = None
 
-    def __call__(self, response: Response):
-        yield 1234
+
+class SyncGenDep(Dep):
+
+    def __call__(self, response: Response) -> "SyncGenDep":
+        yield self
         self.response = response.final_response
         return
 
 
-class AsyncGenDep:
-    response: Union[None, Response] = None
+class AsyncGenDep(Dep):
 
-    async def __call__(self, response: Response):
-        yield 1234
+    async def __call__(self, response: Response) -> "AsyncGenDep":
+        yield self
         self.response = response.final_response
         return
 
 
 @pytest.mark.parametrize(
-    "gen", (SyncGenDep(), AsyncGenDep()), ids=["sync-generator", "async-generator"]
+    "dep", (SyncGenDep(), AsyncGenDep(),),
+    ids=["sync-generator", "async-generator"]
 )
-def test_inject_response(gen: Union[SyncGenDep, AsyncGenDep]):
+def test_inject_response(dep: Dep):
     app = FastAPI()
 
-    @app.get("/raw")
-    def raw(v: int = Depends(gen)):
-        assert v == 1234
+    @app.get("/raw", dependencies=[Depends(dep)])
+    def raw():
         return Response(status_code=400)
 
-    @app.get("/json")
-    def json(v: int = Depends(gen)):
-        assert v == 1234
+    @app.get("/json", dependencies=[Depends(dep)])
+    def json():
         return "abcd"
 
     client = TestClient(app)
     client.get("/raw")
-    assert gen.response.status_code == 400
+    assert dep.response.status_code == 400
     client.get("/json")
-    assert gen.response.body == b'"abcd"'
+    assert dep.response.body == b'"abcd"'

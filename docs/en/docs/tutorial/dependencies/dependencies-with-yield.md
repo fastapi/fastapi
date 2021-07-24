@@ -53,6 +53,25 @@ The code following the `yield` statement is executed after the response has been
 
     **FastAPI** will do the right thing with each, the same as with normal dependencies.
 
+## Responses from path operations in dependencies with `yield`
+
+Normally, when you declare a depdendency on `Response`, this will *not* necessarily be the final response from your path operation.
+If your path operation depends on `Response` as well, it will get the same response object as your dependency.
+So in this way, your dependency can communicate response data with your path operation.
+But your path operation can totally ignore this response and return a completely different response, as is the case in this example:
+
+```Python hl_lines="18"
+{!../../../docs_src/dependencies/tutorial013.py!}
+```
+
+You can however get a referecne to the final response returned from the path operation by from the `.final_response` attribute of `fastapi.responses.Response`:
+
+```Python hl_lines="9"
+{!../../../docs_src/dependencies/tutorial013.py!}
+```
+
+You can't modify this response (see [Dependencies with `yield` and `HTTPException` below](dependencies-with-yield.md#dependencies-with-yield-and-httpexception){.internal-link target=_blank} below), but you can log it or do other background tasks with it.
+
 ## A dependency with `yield` and `try`
 
 If you use a `try` block in a dependency with `yield`, you'll receive any exception that was thrown when using the dependency.
