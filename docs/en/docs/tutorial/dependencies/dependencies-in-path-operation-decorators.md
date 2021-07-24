@@ -47,7 +47,7 @@ They can declare request requirements (like headers) or other sub-dependencies:
 !!! info
     If you declare a dependency on `Response`, you will get an empty reponse, but this will not may not be the same response that is returned to your client if your path operation returns a different response.
     The response returned by the path operation takes precedence over this response.
-    You *can* get the final response returned to the client if you use dependencies with yield, see [Security utilities (the next chapter)](../security/index.md){.internal-link target=_blank}
+    You *can* get the final response returned to the client if you use dependencies with yield, see [Responses from path operations in dependencies with `yield`](dependencies-with-yield.md#responses-from-path-operations-in-dependencies-with-yield){.internal-link target=_blank}.
 
 
 ### Raise exceptions
