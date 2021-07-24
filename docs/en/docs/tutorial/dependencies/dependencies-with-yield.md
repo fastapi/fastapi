@@ -70,6 +70,9 @@ You can however get a referecne to the final response returned from the path ope
 {!../../../docs_src/dependencies/tutorial013.py!}
 ```
 
+!!! note
+    If you try to access the attribute before the path operation runs (i.e. before ‘yield`) or after yielding if your path operation raised an exception instead of returning a response, the attribute will be set to `None`.
+
 You can't modify this response (see [Dependencies with `yield` and `HTTPException` below](dependencies-with-yield.md#dependencies-with-yield-and-httpexception){.internal-link target=_blank} below), but you can log it or do other background tasks with it.
 
 ## A dependency with `yield` and `try`
