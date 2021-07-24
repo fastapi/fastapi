@@ -443,7 +443,6 @@ Pydantic이 사용하는:
 Starlette이 사용하는:
 
 * <a href="http://docs.python-requests.org" target="_blank"><code>requests</code></a> - `TestClient`를 사용하려면 필요.
-* <a href="https://github.com/Tinche/aiofiles" target="_blank"><code>aiofiles</code></a> - `FileResponse` 또는 `StaticFiles`를 사용하려면 필요.
 * <a href="http://jinja.pocoo.org" target="_blank"><code>jinja2</code></a> - 기본 템플릿 설정을 사용하려면 필요.
 * <a href="https://andrew-d.github.io/python-multipart/" target="_blank"><code>python-multipart</code></a> - `request.form()`과 함께 <abbr title="HTTP 요청에서 파이썬 데이터로 가는 문자열 변환">"parsing"</abbr>의 지원을 원하면 필요.
 * <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - `SessionMiddleware` 지원을 위해 필요.
