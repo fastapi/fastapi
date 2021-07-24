@@ -469,17 +469,16 @@ async def solve_generator(
                     original.throw(type(e), e, e.__traceback__)
                 except StopIteration:
                     return
-                raise e
-            try:
-                original.send(sent)
-            except StopIteration:
-                return
-            except Exception as e:
-                raise e
             else:
-                # generator didn't stop
-                # yield and let context manager raise a RuntimeError
-                yield
+                try:
+                    original.send(sent)
+                except StopIteration:
+                    return
+                except Exception as e:
+                    raise e
+            # generator didn't stop
+            # yield and let context manager raise a RuntimeError
+            yield
 
         sync_cm = contextmanager(sync_gen_factory)()
         gen = sync_cm.gen  # type: ignore
@@ -504,17 +503,16 @@ async def solve_generator(
                     await original.athrow(type(e), e, e.__traceback__)
                 except StopAsyncIteration:
                     return
-                raise e
-            try:
-                await original.asend(sent)
-            except StopAsyncIteration:
-                return
-            except Exception as e:
-                raise e
             else:
-                # generator didn't stop
-                # yield and let context manager raise a RuntimeError
-                yield
+                try:
+                    await original.asend(sent)
+                except StopAsyncIteration:
+                    return
+                except Exception as e:
+                    raise e
+            # generator didn't stop
+            # yield and let context manager raise a RuntimeError
+            yield
 
         cm = asynccontextmanager(async_gen_factory)()
         gen = cm.gen  # type: ignore
