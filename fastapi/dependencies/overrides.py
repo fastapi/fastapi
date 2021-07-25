@@ -5,6 +5,6 @@ from unittest.mock import patch
 
 class DependendencyOverrides(Dict[Callable[..., Any], Callable[..., Any]]):
     @contextmanager
-    def __call__(self, overrides: dict):
+    def __call__(self, overrides: "DependendencyOverrides"):
         with patch.dict(self, overrides):
             yield
