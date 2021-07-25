@@ -116,9 +116,7 @@ class FastAPI(Starlette):
         self.swagger_ui_oauth2_redirect_url = swagger_ui_oauth2_redirect_url
         self.swagger_ui_init_oauth = swagger_ui_init_oauth
         self.extra = extra
-        self._dependency_overrides: Dict[
-            Callable[..., Any], Callable[..., Any]
-        ] = DependendencyOverrides()
+        self._dependency_overrides = DependendencyOverrides()
 
         self.openapi_version = "3.0.2"
 
@@ -129,15 +127,15 @@ class FastAPI(Starlette):
         self.setup()
 
     @property
-    def dependency_overrides(self) -> Dict[Callable[..., Any], Callable[..., Any]]:
+    def dependency_overrides(self) -> DependendencyOverrides:
         return self._dependency_overrides
 
     @dependency_overrides.setter
     def dependency_overrides(
-        self, value: Dict[Callable[..., Any], Callable[..., Any]]
+        self, overrides: DependendencyOverrides
     ) -> None:
-        value = value or {}
-        self._dependency_overrides = DependendencyOverrides(**value)
+        overrides = overrides or {}
+        self._dependency_overrides = DependendencyOverrides(**overrides)
 
     def openapi(self) -> Dict[str, Any]:
         if not self.openapi_schema:
