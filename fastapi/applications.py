@@ -3,6 +3,7 @@ from typing import Any, Callable, Coroutine, Dict, List, Optional, Sequence, Typ
 from fastapi import routing
 from fastapi.concurrency import AsyncExitStack
 from fastapi.datastructures import Default, DefaultPlaceholder
+from fastapi.dependencies.overrides import DependendencyOverrides
 from fastapi.encoders import DictIntStrAny, SetIntStr
 from fastapi.exception_handlers import (
     http_exception_handler,
@@ -115,7 +116,7 @@ class FastAPI(Starlette):
         self.swagger_ui_oauth2_redirect_url = swagger_ui_oauth2_redirect_url
         self.swagger_ui_init_oauth = swagger_ui_init_oauth
         self.extra = extra
-        self.dependency_overrides: Dict[Callable[..., Any], Callable[..., Any]] = {}
+        self._dependency_overrides: Dict[Callable[..., Any], Callable[..., Any]] = DependendencyOverrides()
 
         self.openapi_version = "3.0.2"
 
@@ -124,6 +125,15 @@ class FastAPI(Starlette):
             assert self.version, "A version must be provided for OpenAPI, e.g.: '2.1.0'"
         self.openapi_schema: Optional[Dict[str, Any]] = None
         self.setup()
+    
+    @property
+    def dependency_overrides(self) -> Dict[Callable[..., Any], Callable[..., Any]]:
+        return self._dependency_overrides
+    
+    @dependency_overrides.setter
+    def dependency_overrides(self, value: Dict[Callable[..., Any], Callable[..., Any]]) -> None:
+        value = value or {}
+        self._dependency_overrides = DependendencyOverrides(**value)
 
     def openapi(self) -> Dict[str, Any]:
         if not self.openapi_schema:

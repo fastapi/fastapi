@@ -313,3 +313,173 @@ def test_override_with_sub(url, status_code, expected):
     assert response.status_code == status_code
     assert response.json() == expected
     app.dependency_overrides = {}
+
+
+@pytest.mark.parametrize(
+    "url,status_code,expected",
+    [
+        (
+            "/main-depends/",
+            200,
+            {"in": "main-depends", "params": {"q": None, "skip": 5, "limit": 10}},
+        ),
+        (
+            "/main-depends/?q=foo",
+            200,
+            {"in": "main-depends", "params": {"q": "foo", "skip": 5, "limit": 10}},
+        ),
+        (
+            "/main-depends/?q=foo&skip=100&limit=200",
+            200,
+            {"in": "main-depends", "params": {"q": "foo", "skip": 5, "limit": 10}},
+        ),
+        ("/decorator-depends/", 200, {"in": "decorator-depends"}),
+        (
+            "/router-depends/",
+            200,
+            {"in": "router-depends", "params": {"q": None, "skip": 5, "limit": 10}},
+        ),
+        (
+            "/router-depends/?q=foo",
+            200,
+            {"in": "router-depends", "params": {"q": "foo", "skip": 5, "limit": 10}},
+        ),
+        (
+            "/router-depends/?q=foo&skip=100&limit=200",
+            200,
+            {"in": "router-depends", "params": {"q": "foo", "skip": 5, "limit": 10}},
+        ),
+        ("/router-decorator-depends/", 200, {"in": "router-decorator-depends"}),
+    ],
+)
+def test_override_simple(url, status_code, expected):
+    with app.dependency_overrides({common_parameters: overrider_dependency_simple}):
+        response = client.get(url)
+        assert response.status_code == status_code
+        assert response.json() == expected
+    assert app.dependency_overrides == {}
+
+
+@pytest.mark.parametrize(
+    "url,status_code,expected",
+    [
+        (
+            "/main-depends/",
+            422,
+            {
+                "detail": [
+                    {
+                        "loc": ["query", "k"],
+                        "msg": "field required",
+                        "type": "value_error.missing",
+                    }
+                ]
+            },
+        ),
+        (
+            "/main-depends/?q=foo",
+            422,
+            {
+                "detail": [
+                    {
+                        "loc": ["query", "k"],
+                        "msg": "field required",
+                        "type": "value_error.missing",
+                    }
+                ]
+            },
+        ),
+        ("/main-depends/?k=bar", 200, {"in": "main-depends", "params": {"k": "bar"}}),
+        (
+            "/decorator-depends/",
+            422,
+            {
+                "detail": [
+                    {
+                        "loc": ["query", "k"],
+                        "msg": "field required",
+                        "type": "value_error.missing",
+                    }
+                ]
+            },
+        ),
+        (
+            "/decorator-depends/?q=foo",
+            422,
+            {
+                "detail": [
+                    {
+                        "loc": ["query", "k"],
+                        "msg": "field required",
+                        "type": "value_error.missing",
+                    }
+                ]
+            },
+        ),
+        ("/decorator-depends/?k=bar", 200, {"in": "decorator-depends"}),
+        (
+            "/router-depends/",
+            422,
+            {
+                "detail": [
+                    {
+                        "loc": ["query", "k"],
+                        "msg": "field required",
+                        "type": "value_error.missing",
+                    }
+                ]
+            },
+        ),
+        (
+            "/router-depends/?q=foo",
+            422,
+            {
+                "detail": [
+                    {
+                        "loc": ["query", "k"],
+                        "msg": "field required",
+                        "type": "value_error.missing",
+                    }
+                ]
+            },
+        ),
+        (
+            "/router-depends/?k=bar",
+            200,
+            {"in": "router-depends", "params": {"k": "bar"}},
+        ),
+        (
+            "/router-decorator-depends/",
+            422,
+            {
+                "detail": [
+                    {
+                        "loc": ["query", "k"],
+                        "msg": "field required",
+                        "type": "value_error.missing",
+                    }
+                ]
+            },
+        ),
+        (
+            "/router-decorator-depends/?q=foo",
+            422,
+            {
+                "detail": [
+                    {
+                        "loc": ["query", "k"],
+                        "msg": "field required",
+                        "type": "value_error.missing",
+                    }
+                ]
+            },
+        ),
+        ("/router-decorator-depends/?k=bar", 200, {"in": "router-decorator-depends"}),
+    ],
+)
+def test_override_with_sub(url, status_code, expected):
+    with app.dependency_overrides({common_parameters: overrider_dependency_with_sub}):
+        response = client.get(url)
+        assert response.status_code == status_code
+        assert response.json() == expected
+    assert app.dependency_overrides == {}
