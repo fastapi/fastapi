@@ -224,17 +224,20 @@ def get_request_handler(
                 if raw_response.background is None:
                     raw_response.background = background_tasks
                 return raw_response
-            response_data = await serialize_response(
-                field=response_field,
-                response_content=raw_response,
-                include=response_model_include,
-                exclude=response_model_exclude,
-                by_alias=response_model_by_alias,
-                exclude_unset=response_model_exclude_unset,
-                exclude_defaults=response_model_exclude_defaults,
-                exclude_none=response_model_exclude_none,
-                is_coroutine=is_coroutine,
-            )
+            elif hasattr(actual_response_class, "__handles_raw_response__"):
+                response_data = raw_response
+            else:
+                response_data = await serialize_response(
+                    field=response_field,
+                    response_content=raw_response,
+                    include=response_model_include,
+                    exclude=response_model_exclude,
+                    by_alias=response_model_by_alias,
+                    exclude_unset=response_model_exclude_unset,
+                    exclude_defaults=response_model_exclude_defaults,
+                    exclude_none=response_model_exclude_none,
+                    is_coroutine=is_coroutine,
+                )
             response_args: Dict[str, Any] = {"background": background_tasks}
             # If status_code was set, use it, otherwise use the default from the
             # response class, in the case of redirect it's 307
