@@ -47,7 +47,7 @@ $ pip install python-jose[cryptography]
 !!! tip "豆知識"
     このチュートリアルでは以前、<a href="https://pyjwt.readthedocs.io/" class="external-link" target="_blank">PyJWT</a>を使用していました。
 
-    しかし、Python-joseは、PyJWTのすべての機能に加えて、他のツールと統合して構築する際に必要となるいくつかの追加機能を提供しています。そのため、代わりにPython-joseを使用するように更新されました。
+    しかし、Python-joseは、PyJWTのすべての機能に加えて、後に他のツールと統合して構築する際におそらく必要となる可能性のあるいくつかの追加機能を提供しています。そのため、代わりにPython-joseを使用するように更新されました。
 
 ## パスワードのハッシュ化
 
