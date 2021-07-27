@@ -42,7 +42,7 @@ Seguindo as convenções de controle de versão semântica, qualquer versão aba
 
 FastAPI também segue a convenção de que qualquer alteração de versão "PATCH" é para correção de bugs e alterações não significativas.
 
-!!! tip
+!!! tip "Dica"
     O "PATCH" é o último número, por exemplo, em `0.2.3`, a versão PATCH é `3`.
 
 Logo, você deveria conseguir fixar a versão, como:
