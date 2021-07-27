@@ -1,39 +1,38 @@
 # Security - Primeiros passos
 
-Let's imagine that you have your **backend** API in some domain.
+Vamos imaginar que você tem sua API **backend** em um domínio.
 
-And you have a **frontend** in another domain or in a different path of the same domain (or in a mobile application).
+E você tem um **frontend** em outro domínio ou em um caminho diferente no mesmo domínio (ou em uma aplicação mobile).
 
-And you want to have a way for the frontend to authenticate with the backend, using a **username** and **password**.
+E você quer criar um caminho para o frontend autenticar com o backend, usando **usuário** e **senha**.
 
-We can use **OAuth2** to build that with **FastAPI**.
+Podemos usar **OAuth2** para criá-lo com o **FastAPI**.
 
-But let's save you the time of reading the full long specification just to find those little pieces of information you need.
+Mas vamos ganhar o tempo de leitura de longas especificações só para encontrar esses pequenos pedaços de informações que você precisa.
 
-Let's use the tools provided by **FastAPI** to handle security.
+Vamos usar as ferramentas disponibilizadas pelo **FastAPI** para lidar com a segurança.
 
-## How it looks
+## Como seria
 
-Let's first just use the code and see how it works, and then we'll come back to understand what's happening.
+Vamos primeiro só usar o código e ver como isso funciona, e então nós iremos voltar para entender o que está acontecendo.
 
-## Create `main.py`
+## Criando `main.py`
 
-Copy the example in a file `main.py`:
+Copie o exemplo em um arquivo `main.py`:
 
 ```Python
 {!../../../docs_src/security/tutorial001.py!}
 ```
 
-## Run it
+## Execute
 
-!!! info
-    First install <a href="https://andrew-d.github.io/python-multipart/" class="external-link" target="_blank">`python-multipart`</a>.
+!!! info "Informação"
+    Primeiro instale <a href="https://andrew-d.github.io/python-multipart/" class="external-link" target="_blank">`python-multipart`</a>.
+    Exemplo: `pip install python-multipart`.
 
-    E.g. `pip install python-multipart`.
+    Isso porque o **OAuth2** usa "form data" para enviar `usuário` e `senha`.
 
-    This is because **OAuth2** uses "form data" for sending the `username` and `password`.
-
-Run the example with:
+Execute o exemplo:
 
 <div class="termy">
 
@@ -45,138 +44,137 @@ $ uvicorn main:app --reload
 
 </div>
 
-## Check it
+## Verifique
 
-Go to the interactive docs at: <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+Vá para a documentação interativa em: <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 
-You will see something like this:
+Você irá ver algo como isso:
 
 <img src="/img/tutorial/security/image01.png">
 
-!!! check "Authorize button!"
-    You already have a shiny new "Authorize" button.
+!!! check "Botão de autorização"
+    Você já tem um botão "Authorize" novinho em folha.
 
-    And your *path operation* has a little lock in the top-right corner that you can click.
+    E onde está o seu *path* tem um pequeno cadeado no canto direito-superior que você pode clicar.
 
-And if you click it, you have a little authorization form to type a `username` and `password` (and other optional fields):
+E se você clicar, você terá um pequeno formulário do tipo `usuário` e `senha` (e outros campos opcionais):
 
 <img src="/img/tutorial/security/image02.png">
 
 !!! note
-    It doesn't matter what you type in the form, it won't work yet. But we'll get there.
+    Não importa o que você escrever no formulário, isso não vai funcionar ainda. Mas nós iremos chegar lá.
 
-This is of course not the frontend for the final users, but it's a great automatic tool to document interactively all your API.
+Claro que não é o frontend destinado para o usuário final, mas isso é uma excelente ferramenta de automação para documentação interativa de toda sua API.
 
-It can be used by the frontend team (that can also be yourself).
+Pode ser usado pelo time de frontend (que pode ser você também).
 
-It can be used by third party applications and systems.
+Pode ser usado por aplicações de terceiros e sistemas.
 
-And it can also be used by yourself, to debug, check and test the same application.
+E isso pode também ser usado por você, para _debug_, verificação e teste da mesma aplicação.
 
-## The `password` flow
+## O fluxo `senha`
 
-Now let's go back a bit and understand what is all that.
+Agora vamos voltar um pouco e entender o que é tudo isso.
 
-The `password` "flow" is one of the ways ("flows") defined in OAuth2, to handle security and authentication.
+O fluxo de `senha` é um dos caminhos (fluxos) definidos em OAuth2, para lidar com segurança e autenticação.
 
-OAuth2 was designed so that the backend or API could be independent of the server that authenticates the user.
+OAuth2 foi desenhado para que o backend ou API pudesse ser independente do servidor que autentica o usuário.
 
-But in this case, the same **FastAPI** application will handle the API and the authentication.
+Mas nesse caso, a mesma aplicação **FastAPI** irá lidar com a API e a autenticação.
 
-So, let's review it from that simplified point of view:
+Então, vamos revisar de esse ponto de vista simplificado:
+* O usuário escreve `usuario` e `senha` em um frontend, e pressiona `Enter`.
+* O frontend (rodando no browser do usuário) envia aquele `username` e `password`paara uma URL específica em nossa API (declarada com `tokenUrl="token"`)
+* A API verifica aquele `usuario` e `senha`, e responde com um "token" (nós não implementamos na disso ainda).
+    * Um "token" é uma string com algum conteúdo que nós podemos usar depois para verificar esse usuário.
+    * Normalmente, um token expira após um certo tempo.
+        * Então, o usuário irá ter que entrar novamente no mesmo ponto depois.
+        * E se o token for rouvado, o risco é menor. Isso não é como uma chave permanente que irá funcionar para sempre (em muitos casos).
+* O frontend guarda aquele token temporariamente em algum lugar.
+* O usuário clica no frontend para ir para outra seção da aplicação web do frontend.
+* O fontend precisa buscar mais alguns dados da API.
+    * Mas precisa autenticar naquele endpoint específico.
+    * Então, para autenticar com nossa API, precisa de um header `Authorization` com um valor de `Bearer` e o token.
+    * Se o token for `foobar`, o conteúdo do header `Authorization` seria: `Bearer foobar`.
 
-* The user types the `username` and `password` in the frontend, and hits `Enter`.
-* The frontend (running in the user's browser) sends that `username` and `password` to a specific URL in our API (declared with `tokenUrl="token"`).
-* The API checks that `username` and `password`, and responds with a "token" (we haven't implemented any of this yet).
-    * A "token" is just a string with some content that we can use later to verify this user.
-    * Normally, a token is set to expire after some time.
-        * So, the user will have to log in again at some point later.
-        * And if the token is stolen, the risk is less. It is not like a permanent key that will work forever (in most of the cases).
-* The frontend stores that token temporarily somewhere.
-* The user clicks in the frontend to go to another section of the frontend web app.
-* The frontend needs to fetch some more data from the API.
-    * But it needs authentication for that specific endpoint.
-    * So, to authenticate with our API, it sends a header `Authorization` with a value of `Bearer ` plus the token.
-    * If the token contains `foobar`, the content of the `Authorization` header would be: `Bearer foobar`.
+## **FastAPI** `OAuth2PasswordBearer`
 
-## **FastAPI**'s `OAuth2PasswordBearer`
+**FastAPI** disponibiliza diversas ferramentas, para diferentes níveis de abstração, para implementar esses recursos de segurança.
 
-**FastAPI** provides several tools, at different levels of abstraction, to implement these security features.
+Nesse exemplo nós vamos usar **OAuth2**, com o fluxo de **senha**, usando um token **Bearer**. Nós faremos isso usando a classe `OAuth2PasswordBearer`.
 
-In this example we are going to use **OAuth2**, with the **Password** flow, using a **Bearer** token. We do that using the `OAuth2PasswordBearer` class.
+!!! info "Informação"
+    Um token "bearer" não é a única opção.
 
-!!! info
-    A "bearer" token is not the only option.
+    Mas ele é a melhor para nosso caso de uso.
 
-    But it's the best one for our use case.
+    E pode ser a melhor para a maioria dos casos de uso, a não ser que você seja um expert em OAuth2 e saiba exatamente por que a outra opção se encaixa melhor no que você precisa.
 
-    And it might be the best for most use cases, unless you are an OAuth2 expert and know exactly why there's another option that suits better your needs.
+    Nesse caso, o **FastAPI** também disponibiliza as ferramentas para você criar isso.
 
-    In that case, **FastAPI** also provides you with the tools to build it.
-
-When we create an instance of the `OAuth2PasswordBearer` class we pass in the `tokenUrl` parameter. This parameter contains the URL that the client (the frontend running in the user's browser) will use to send the `username` and `password` in order to get a token.
+Quando você cria uma instância da classe `OAuth2PasswordBearer` nós passamos no parâmetro `tokenUrl`. Esse parâmetro contém a URL que o cliente (o frontend rodanddo no browser do usuário) irá usar para enviar o `usuario` e `senha` pedindo um token.
 
 ```Python hl_lines="6"
 {!../../../docs_src/security/tutorial001.py!}
 ```
 
-!!! tip
-    here `tokenUrl="token"` refers to a relative URL `token` that we haven't created yet. As it's a relative URL, it's equivalent to `./token`.
+!!! tip "Dica"
+    Aqui `tokenUrl="token"` se refere a uma URL relativa a `token` que nós ainda não criamos. Como ela é uma URL relativa, equivale a `.token`.
 
-    Because we are using a relative URL, if your API was located at `https://example.com/`, then it would refer to `https://example.com/token`. But if your API was located at `https://example.com/api/v1/`, then it would refer to `https://example.com/api/v1/token`.
+    Por estarmos usando uma URL relativa, se sua API está localizada em `https://example.com/`, então ela seria refenciada para `https://example.com/token`. Mas se sua API estiver localizada em `https://example.com/api/v1/`, então ela seria referenciada para `https://example.com/api/v1/token`.
 
-    Using a relative URL is important to make sure your application keeps working even in an advanced use case like [Behind a Proxy](../../advanced/behind-a-proxy.md){.internal-link target=_blank}.
+    Ao usar uma URL relativa é importante ter certeza que sua aplicação continua funcionando mesmo em uso avançado como [Atrás do Proxy](../../advanced/behind-a-proxy.md){.internal-link target=_blank}.
 
-This parameter doesn't create that endpoint / *path operation*, but declares that the URL `/token` will be the one that the client should use to get the token. That information is used in OpenAPI, and then in the interactive API documentation systems.
+Esse parametro não cria esse endpoint / *caminho*, mas declara que a URL `/token` será usada para que o cliente possa usar para pegar o token. Essa informação é usada na OpenAPI, e então no sistema de documentação interativa da API.
 
-We will soon also create the actual path operation.
+Em breve, criaremos um caminho para uma operação real.
 
-!!! info
-    If you are a very strict "Pythonista" you might dislike the style of the parameter name `tokenUrl` instead of `token_url`.
+!!! info "Informação"
+    Se você é estritamente "Pythonista" você não vai gostar do estilo do parâmetro com nome `tokenUrl` em vez de `token_url`.
 
-    That's because it is using the same name as in the OpenAPI spec. So that if you need to investigate more about any of these security schemes you can just copy and paste it to find more information about it.
+    Isso é porque está usando o mesmo nome especificado na OpenAPI. De modo que se você precisar investigar mais sobre algum desses esquemas de segurança você pode somente copiar e colar para encontrar mais informações sobre isso.
 
-The `oauth2_scheme` variable is an instance of `OAuth2PasswordBearer`, but it is also a "callable".
+A variável `oauth2_scheme` é uma instância de `OAuth2PasswordBearer`, mas também é um "callable".
 
-It could be called as:
+Pode ser chamada assim:
 
 ```Python
-oauth2_scheme(some, parameters)
+oauth2_scheme(alguns, parametros)
 ```
 
-So, it can be used with `Depends`.
+Então, pode ser usada com `Depends`.
 
-### Use it
+### Utilização
 
+Agora você pode passar esse `oauth2_schema` em uma dependência com `Depends`.
 Now you can pass that `oauth2_scheme` in a dependency with `Depends`.
 
 ```Python hl_lines="10"
 {!../../../docs_src/security/tutorial001.py!}
 ```
 
-This dependency will provide a `str` that is assigned to the parameter `token` of the *path operation function*.
+Essa dependência irá providenciar uma `str` que será atribuída ao parâmetro `token` de um determinado *caminho/path de operação funcional*.
 
-**FastAPI** will know that it can use this dependency to define a "security scheme" in the OpenAPI schema (and the automatic API docs).
+O **FastAPI** saberá que pode usar essa dependência para definir um "esquema de segurança" no esquema da OpenAPI (e a documentação automática da API).
 
-!!! info "Technical Details"
-    **FastAPI** will know that it can use the class `OAuth2PasswordBearer` (declared in a dependency) to define the security scheme in OpenAPI because it inherits from `fastapi.security.oauth2.OAuth2`, which in turn inherits from `fastapi.security.base.SecurityBase`.
+!!! info "Detalhes técnicos"
+    O **FastAPI** irá saber que pode usar a classe `OAuth2PasswordBearer` (declarada em uma dependência) para definir o esquema de segurança na OpenAPI porque isso herda de `fastapi.security.oauth2.OAuth2`, que por sua vez herda `fastapi.security.base.ScurityBase`.
 
-    All the security utilities that integrate with OpenAPI (and the automatic API docs) inherit from `SecurityBase`, that's how **FastAPI** can know how to integrate them in OpenAPI.
+    Todo os utilitários de segurança que integram com a OpenAPI (e a documentação automática da API) herdam de `SecurityBase`, é assim que o **FastAPI** pode saber como integrá-los na OpenAPI.
+## O que isso faz
 
-## What it does
+Olhará e irá até aquele header `Authorization`, checa se o valor é `Bearer` mais algum token, e irá retornar o token como um `str`.
 
-It will go and look in the request for that `Authorization` header, check if the value is `Bearer ` plus some token, and will return the token as a `str`.
+Se não ver um header `Authorization`, ou o valor não tiver um token `Bearer `, irá responder diretamente com um código de erro com status 401 (`UNAUTHORIZED`).
 
-If it doesn't see an `Authorization` header, or the value doesn't have a `Bearer ` token, it will respond with a 401 status code error (`UNAUTHORIZED`) directly.
+Você não tem que checar se o token existe para retornar um erro. Terá certeza que se sua função for executada, irá ter um `str` naquele token.
 
-You don't even have to check if the token exists to return an error. You can be sure that if your function is executed, it will have a `str` in that token.
-
-You can try it already in the interactive docs:
+Você pode tentar diretamente na documentação interativa:
 
 <img src="/img/tutorial/security/image03.png">
 
-We are not verifying the validity of the token yet, but that's a start already.
+Ainda não estamos verificando a validade do token, mas isso já é um começo.
 
-## Recap
+## Recaptulando
 
-So, in just 3 or 4 extra lines, you already have some primitive form of security.
+Então, em somente 3 ou 4 linhas extras, você já tem uma forma primitiva de segurança.
