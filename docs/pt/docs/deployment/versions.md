@@ -53,7 +53,7 @@ fastapi>=0.45.0,<0.46.0
 
 Mudanças significativas e novos recursos são adicionados em versões "MINOR".
 
-!!! tip
+!!! tip "Dica"
     O "MINOR" é o número que está no meio, por exemplo, em `0.2.3`, a versão MINOR é `2`.
 
 ## Atualizando as versões do FastAPI
