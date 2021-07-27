@@ -10,7 +10,7 @@ Já é possível criar aplicativos de produção com **FastAPI** (e provavelment
 
 ## Fixe a sua versão de `fastapi`
 
-A primeira coisa que você deve fazer é "fixar" a versão do **FastAPI** que você está utilizando na versão específica mais recente, na qual você sabe que funciona corretamente para o seu aplicativo.
+A primeira coisa que você deve fazer é "fixar" a versão do **FastAPI** que você está utilizando na mais atual, na qual você sabe que funciona corretamente para o seu aplicativo.
 
 Por exemplo, supondo que você está usando a versão `0.45.0` em sua aplicação.
 
