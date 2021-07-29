@@ -99,7 +99,7 @@ Então, vamos revisá-lo desse ponto de vista simplificado:
 
 ## **FastAPI** `OAuth2PasswordBearer`
 
-**FastAPI** disponibiliza diversas ferramentas, para diferentes níveis de abstração, para implementar esses recursos de segurança.
+**FastAPI** disponibiliza diversas ferramentas em diferentes níveis de abstração para implementar esses recursos de segurança.
 
 Nesse exemplo nós vamos usar **OAuth2**, com o fluxo de **senha**, usando um token **Bearer**. Nós faremos isso usando a classe `OAuth2PasswordBearer`.
 
