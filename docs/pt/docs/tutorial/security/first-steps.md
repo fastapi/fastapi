@@ -112,7 +112,7 @@ Nesse exemplo nós vamos usar **OAuth2**, com o fluxo de **senha**, usando um to
 
     Nesse caso, o **FastAPI** também disponibiliza as ferramentas para você criar isso.
 
-Quando você cria uma instância da classe `OAuth2PasswordBearer` nós passamos no parâmetro `tokenUrl`. Esse parâmetro contém a URL que o cliente (o frontend rodanddo no browser do usuário) irá usar para enviar o `usuario` e `senha` pedindo um token.
+Quando criamos uma instância da classe `OAuth2PasswordBearer` passamos o parâmetro `tokenUrl`. Esse parâmetro contém a URL que o cliente (o frontend rodando no browser do usuário) usará para enviar o `usuario` e `senha`  a fim de obter um token.
 
 ```Python hl_lines="6"
 {!../../../docs_src/security/tutorial001.py!}
