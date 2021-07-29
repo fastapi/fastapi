@@ -280,7 +280,7 @@ class APIRoute(routing.Route):
         response_class: Optional[Type[Response]] = None,
         dependency_overrides_provider: Optional[Any] = None,
         callbacks: Optional[List["APIRoute"]] = None,
-        **extra: Any,
+        openapi_extra: Optional[Dict[str, Any]] = None,
     ) -> None:
         # normalise enums e.g. http.HTTPStatus
         if isinstance(status_code, enum.IntEnum):
@@ -367,7 +367,7 @@ class APIRoute(routing.Route):
         self.dependency_overrides_provider = dependency_overrides_provider
         self.callbacks = callbacks
         self.app = request_response(self.get_route_handler())
-        self.extra = extra
+        self.openapi_extra = openapi_extra
 
     def get_route_handler(self) -> Callable:
         return get_request_handler(
@@ -436,7 +436,6 @@ class APIRouter(routing.Router):
         name: Optional[str] = None,
         route_class_override: Optional[Type[APIRoute]] = None,
         callbacks: Optional[List[APIRoute]] = None,
-        **extra: Any,
     ) -> None:
         route_class = route_class_override or self.route_class
         route = route_class(
@@ -464,7 +463,6 @@ class APIRouter(routing.Router):
             name=name,
             dependency_overrides_provider=self.dependency_overrides_provider,
             callbacks=callbacks,
-            **extra,
         )
         self.routes.append(route)
 
@@ -493,7 +491,6 @@ class APIRouter(routing.Router):
         response_class: Optional[Type[Response]] = None,
         name: Optional[str] = None,
         callbacks: Optional[List[APIRoute]] = None,
-        **extra: Any,
     ) -> Callable:
         def decorator(func: Callable) -> Callable:
             self.add_api_route(
@@ -520,7 +517,6 @@ class APIRouter(routing.Router):
                 response_class=response_class or self.default_response_class,
                 name=name,
                 callbacks=callbacks,
-                **extra,
             )
             return func
 
@@ -644,7 +640,6 @@ class APIRouter(routing.Router):
         response_class: Optional[Type[Response]] = None,
         name: Optional[str] = None,
         callbacks: Optional[List[APIRoute]] = None,
-        **extra: Any,
     ) -> Callable:
         return self.api_route(
             path=path,
@@ -669,7 +664,6 @@ class APIRouter(routing.Router):
             response_class=response_class or self.default_response_class,
             name=name,
             callbacks=callbacks,
-            **extra,
         )
 
     def put(
@@ -696,7 +690,6 @@ class APIRouter(routing.Router):
         response_class: Optional[Type[Response]] = None,
         name: Optional[str] = None,
         callbacks: Optional[List[APIRoute]] = None,
-        **extra: Any,
     ) -> Callable:
         return self.api_route(
             path=path,
@@ -721,7 +714,6 @@ class APIRouter(routing.Router):
             response_class=response_class or self.default_response_class,
             name=name,
             callbacks=callbacks,
-            **extra,
         )
 
     def post(
@@ -748,7 +740,6 @@ class APIRouter(routing.Router):
         response_class: Optional[Type[Response]] = None,
         name: Optional[str] = None,
         callbacks: Optional[List[APIRoute]] = None,
-        **extra: Any,
     ) -> Callable:
         return self.api_route(
             path=path,
@@ -773,7 +764,6 @@ class APIRouter(routing.Router):
             response_class=response_class or self.default_response_class,
             name=name,
             callbacks=callbacks,
-            **extra,
         )
 
     def delete(
@@ -800,7 +790,6 @@ class APIRouter(routing.Router):
         response_class: Optional[Type[Response]] = None,
         name: Optional[str] = None,
         callbacks: Optional[List[APIRoute]] = None,
-        **extra: Any,
     ) -> Callable:
         return self.api_route(
             path=path,
@@ -825,7 +814,6 @@ class APIRouter(routing.Router):
             response_class=response_class or self.default_response_class,
             name=name,
             callbacks=callbacks,
-            **extra,
         )
 
     def options(
@@ -852,7 +840,6 @@ class APIRouter(routing.Router):
         response_class: Optional[Type[Response]] = None,
         name: Optional[str] = None,
         callbacks: Optional[List[APIRoute]] = None,
-        **extra: Any,
     ) -> Callable:
         return self.api_route(
             path=path,
@@ -877,7 +864,6 @@ class APIRouter(routing.Router):
             response_class=response_class or self.default_response_class,
             name=name,
             callbacks=callbacks,
-            **extra,
         )
 
     def head(
@@ -904,7 +890,6 @@ class APIRouter(routing.Router):
         response_class: Optional[Type[Response]] = None,
         name: Optional[str] = None,
         callbacks: Optional[List[APIRoute]] = None,
-        **extra: Any,
     ) -> Callable:
         return self.api_route(
             path=path,
@@ -929,7 +914,6 @@ class APIRouter(routing.Router):
             response_class=response_class or self.default_response_class,
             name=name,
             callbacks=callbacks,
-            **extra,
         )
 
     def patch(
@@ -956,7 +940,6 @@ class APIRouter(routing.Router):
         response_class: Optional[Type[Response]] = None,
         name: Optional[str] = None,
         callbacks: Optional[List[APIRoute]] = None,
-        **extra: Any,
     ) -> Callable:
         return self.api_route(
             path=path,
@@ -981,7 +964,6 @@ class APIRouter(routing.Router):
             response_class=response_class or self.default_response_class,
             name=name,
             callbacks=callbacks,
-            **extra,
         )
 
     def trace(
@@ -1008,7 +990,6 @@ class APIRouter(routing.Router):
         response_class: Optional[Type[Response]] = None,
         name: Optional[str] = None,
         callbacks: Optional[List[APIRoute]] = None,
-        **extra: Any,
     ) -> Callable:
 
         return self.api_route(
@@ -1034,5 +1015,4 @@ class APIRouter(routing.Router):
             response_class=response_class or self.default_response_class,
             name=name,
             callbacks=callbacks,
-            **extra,
         )
