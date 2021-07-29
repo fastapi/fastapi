@@ -99,3 +99,7 @@ a.announce-link:hover {
   display: flex;
   align-items: center;
 }
+
+.twitter {
+  color: #00acee;
+}

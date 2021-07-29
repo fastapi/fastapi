@@ -119,7 +119,7 @@ FastAPIには、様々なバックグラウンドの人々を歓迎する素晴�
 
 {% if sponsors %}
 {% for sponsor in sponsors.gold -%}
-<a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}"></a>
+<a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
 {% endfor %}
 {% endif %}
 
@@ -127,14 +127,22 @@ FastAPIには、様々なバックグラウンドの人々を歓迎する素晴�
 
 {% if sponsors %}
 {% for sponsor in sponsors.silver -%}
-<a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}"></a>
+<a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
 {% endfor %}
 {% endif %}
 
+### Bronze Sponsors
+
+{% if sponsors %}
+{% for sponsor in sponsors.bronze -%}
+<a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
+{% endfor %}
+{% endif %}
+
+### Individual Sponsors
+
 {% if people %}
 {% if people.sponsors_50 %}
-
-### Bronze Sponsors
 
 <div class="user-list user-list-center">
 {% for user in people.sponsors_50 %}
@@ -146,8 +154,6 @@ FastAPIには、様々なバックグラウンドの人々を歓迎する素晴�
 
 {% endif %}
 {% endif %}
-
-### Individual Sponsors
 
 {% if people %}
 <div class="user-list user-list-center">
