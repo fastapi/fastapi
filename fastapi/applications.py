@@ -55,6 +55,9 @@ class FastAPI(Starlette):
         ] = None,
         on_startup: Optional[Sequence[Callable[[], Any]]] = None,
         on_shutdown: Optional[Sequence[Callable[[], Any]]] = None,
+        terms_of_service: Optional[str] = None,
+        contact: Optional[Dict[str, Union[str, Any]]] = None,
+        license_info: Optional[Dict[str, Union[str, Any]]] = None,
         openapi_prefix: str = "",
         root_path: str = "",
         root_path_in_servers: bool = True,
@@ -97,6 +100,9 @@ class FastAPI(Starlette):
         self.title = title
         self.description = description
         self.version = version
+        self.terms_of_service = terms_of_service
+        self.contact = contact
+        self.license_info = license_info
         self.servers = servers or []
         self.openapi_url = openapi_url
         self.openapi_tags = openapi_tags
@@ -132,6 +138,9 @@ class FastAPI(Starlette):
                 version=self.version,
                 openapi_version=self.openapi_version,
                 description=self.description,
+                terms_of_service=self.terms_of_service,
+                contact=self.contact,
+                license_info=self.license_info,
                 routes=self.routes,
                 tags=self.openapi_tags,
                 servers=self.servers,
