@@ -167,7 +167,7 @@ Ele irá procurar no request header `Authorization`,  e checar se o valor é `Be
 
 Se não ver um header `Authorization`, ou o valor não tiver um token `Bearer `, irá responder diretamente com um código de erro com status 401 (`UNAUTHORIZED`).
 
-Você não tem que checar se o token existe para retornar um erro. Terá certeza que se sua função for executada, irá ter um `str` naquele token.
+Você não tem que checar se o token existe para retornar um erro. É certeza que se sua função for executada, irá ter um `str` naquele token.
 
 Você pode tentar diretamente na documentação interativa:
 
