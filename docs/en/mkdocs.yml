@@ -3,10 +3,23 @@ site_description: FastAPI framework, high performance, easy to learn, fast to co
 site_url: https://fastapi.tiangolo.com/
 theme:
   name: material
+  custom_dir: overrides
   palette:
-    scheme: preference
+  - scheme: default
     primary: teal
     accent: amber
+    toggle:
+      icon: material/lightbulb-outline
+      name: Switch to light mode
+  - scheme: slate
+    primary: teal
+    accent: amber
+    toggle:
+      icon: material/lightbulb
+      name: Switch to dark mode
+  features:
+  - search.suggest
+  - search.highlight
   icon:
     repo: fontawesome/brands/github-alt
   logo: img/icon-white.svg
@@ -26,13 +39,22 @@ nav:
 - FastAPI: index.md
 - Languages:
   - en: /
+  - de: /de/
   - es: /es/
+  - fr: /fr/
+  - id: /id/
   - it: /it/
+  - ja: /ja/
+  - ko: /ko/
+  - pl: /pl/
   - pt: /pt/
   - ru: /ru/
+  - sq: /sq/
+  - tr: /tr/
   - uk: /uk/
   - zh: /zh/
 - features.md
+- fastapi-people.md
 - python-types.md
 - Tutorial - User Guide:
   - tutorial/index.md
@@ -64,6 +86,7 @@ nav:
     - tutorial/dependencies/classes-as-dependencies.md
     - tutorial/dependencies/sub-dependencies.md
     - tutorial/dependencies/dependencies-in-path-operation-decorators.md
+    - tutorial/dependencies/global-dependencies.md
     - tutorial/dependencies/dependencies-with-yield.md
   - Security:
     - tutorial/security/index.md
@@ -96,6 +119,7 @@ nav:
     - advanced/security/oauth2-scopes.md
     - advanced/security/http-basic-auth.md
   - advanced/using-request-directly.md
+  - advanced/dataclasses.md
   - advanced/middleware.md
   - advanced/sql-databases-peewee.md
   - advanced/async-sql-databases.md
@@ -118,7 +142,13 @@ nav:
   - advanced/openapi-callbacks.md
   - advanced/wsgi.md
 - async.md
-- deployment.md
+- Deployment:
+  - deployment/index.md
+  - deployment/versions.md
+  - deployment/https.md
+  - deployment/deta.md
+  - deployment/docker.md
+  - deployment/manually.md
 - project-generation.md
 - alternatives.md
 - history-design-future.md
@@ -146,9 +176,11 @@ markdown_extensions:
 extra:
   social:
   - icon: fontawesome/brands/github-alt
-    link: https://github.com/tiangolo/typer
+    link: https://github.com/tiangolo/fastapi
+  - icon: fontawesome/brands/discord
+    link: https://discord.gg/VQjSZaeJmf
   - icon: fontawesome/brands/twitter
-    link: https://twitter.com/tiangolo
+    link: https://twitter.com/fastapi
   - icon: fontawesome/brands/linkedin
     link: https://www.linkedin.com/in/tiangolo
   - icon: fontawesome/brands/dev
@@ -157,6 +189,37 @@ extra:
     link: https://medium.com/@tiangolo
   - icon: fontawesome/solid/globe
     link: https://tiangolo.com
+  alternate:
+  - link: /
+    name: en - English
+  - link: /de/
+    name: de
+  - link: /es/
+    name: es - español
+  - link: /fr/
+    name: fr - français
+  - link: /id/
+    name: id
+  - link: /it/
+    name: it - italiano
+  - link: /ja/
+    name: ja - 日本語
+  - link: /ko/
+    name: ko - 한국어
+  - link: /pl/
+    name: pl
+  - link: /pt/
+    name: pt - português
+  - link: /ru/
+    name: ru - русский язык
+  - link: /sq/
+    name: sq - shqip
+  - link: /tr/
+    name: tr - Türkçe
+  - link: /uk/
+    name: uk - українська мова
+  - link: /zh/
+    name: zh - 汉语
 extra_css:
 - css/termynal.css
 - css/custom.css
@@ -164,5 +227,3 @@ extra_javascript:
 - https://unpkg.com/mermaid@8.4.6/dist/mermaid.min.js
 - js/termynal.js
 - js/custom.js
-- js/chat.js
-- https://sidecar.gitter.im/dist/sidecar.v1.js

@@ -17,7 +17,7 @@ First, you have to import it:
 
 You can then use `Field` with model attributes:
 
-```Python hl_lines="11 12 13 14"
+```Python hl_lines="11-14"
 {!../../../docs_src/body_fields/tutorial001.py!}
 ```
 

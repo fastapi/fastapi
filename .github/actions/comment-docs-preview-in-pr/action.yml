@@ -1,0 +1,13 @@
+name: Comment Docs Preview in PR
+description: Comment with the docs URL preview in the PR
+author: Sebastián Ramírez <tiangolo@gmail.com>
+inputs:
+  token:
+    description: Token for the repo. Can be passed in using {{ secrets.GITHUB_TOKEN }}
+    required: true
+  deploy_url:
+    description: The deployment URL to comment in the PR
+    required: true
+runs:
+  using: docker
+  image: Dockerfile

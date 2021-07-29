@@ -55,7 +55,7 @@ And Python has a special data type for sets of unique items, the `set`.
 
 Then we can import `Set` and declare `tags` as a `set` of `str`:
 
-```Python hl_lines="1 14"
+```Python hl_lines="1  14"
 {!../../../docs_src/body_nested_models/tutorial003.py!}
 ```
 
@@ -79,7 +79,7 @@ All that, arbitrarily nested.
 
 For example, we can define an `Image` model:
 
-```Python hl_lines="9 10 11"
+```Python hl_lines="9-11"
 {!../../../docs_src/body_nested_models/tutorial004.py!}
 ```
 
@@ -122,7 +122,7 @@ To see all the options you have, checkout the docs for <a href="https://pydantic
 
 For example, as in the `Image` model we have a `url` field, we can declare it to be instead of a `str`, a Pydantic's `HttpUrl`:
 
-```Python hl_lines="4 10"
+```Python hl_lines="4  10"
 {!../../../docs_src/body_nested_models/tutorial005.py!}
 ```
 
@@ -169,7 +169,7 @@ This will expect (convert, validate, document, etc) a JSON body like:
 
 You can define arbitrarily deeply nested models:
 
-```Python hl_lines="9 14 20 23 27"
+```Python hl_lines="9  14  20  23  27"
 {!../../../docs_src/body_nested_models/tutorial007.py!}
 ```
 
@@ -198,7 +198,7 @@ Even for items inside of lists:
 
 <img src="/img/tutorial/body-nested-models/image01.png">
 
-You couldn't get this kind of editor support if you where working directly with `dict` instead of Pydantic models.
+You couldn't get this kind of editor support if you were working directly with `dict` instead of Pydantic models.
 
 But you don't have to worry about them either, incoming dicts are converted automatically and your output is converted automatically to JSON too.
 
@@ -218,7 +218,7 @@ That's what we are going to see here.
 
 In this case, you would accept any `dict` as long as it has `int` keys with `float` values:
 
-```Python hl_lines="15"
+```Python hl_lines="9"
 {!../../../docs_src/body_nested_models/tutorial009.py!}
 ```
 
