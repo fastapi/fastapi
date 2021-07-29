@@ -16,8 +16,8 @@ class APIKeyQuery(APIKeyBase):
         self,
         *,
         name: str,
-        description: Optional[str] = None,
         scheme_name: Optional[str] = None,
+        description: Optional[str] = None,
         auto_error: bool = True
     ):
         self.model: APIKey = APIKey(
@@ -43,8 +43,8 @@ class APIKeyHeader(APIKeyBase):
         self,
         *,
         name: str,
-        description: Optional[str] = None,
         scheme_name: Optional[str] = None,
+        description: Optional[str] = None,
         auto_error: bool = True
     ):
         self.model: APIKey = APIKey(
@@ -70,8 +70,8 @@ class APIKeyCookie(APIKeyBase):
         self,
         *,
         name: str,
-        description: Optional[str] = None,
         scheme_name: Optional[str] = None,
+        description: Optional[str] = None,
         auto_error: bool = True
     ):
         self.model: APIKey = APIKey(
