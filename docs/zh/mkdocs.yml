@@ -81,6 +81,7 @@ nav:
   - tutorial/handling-errors.md
   - tutorial/body-updates.md
   - 依赖项:
+    - tutorial/dependencies/index.md
     - tutorial/dependencies/global-dependencies.md
   - 安全性:
     - tutorial/security/index.md
