@@ -498,6 +498,7 @@ class APIRouter(routing.Router):
         name: Optional[str] = None,
         route_class_override: Optional[Type[APIRoute]] = None,
         callbacks: Optional[List[BaseRoute]] = None,
+        openapi_extra: Optional[Dict[str, Any]] = None,
     ) -> None:
         route_class = route_class_override or self.route_class
         responses = responses or {}
@@ -539,6 +540,7 @@ class APIRouter(routing.Router):
             name=name,
             dependency_overrides_provider=self.dependency_overrides_provider,
             callbacks=current_callbacks,
+            openapi_extra=openapi_extra,
         )
         self.routes.append(route)
 
@@ -567,6 +569,7 @@ class APIRouter(routing.Router):
         response_class: Type[Response] = Default(JSONResponse),
         name: Optional[str] = None,
         callbacks: Optional[List[BaseRoute]] = None,
+        openapi_extra: Optional[Dict[str, Any]] = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         def decorator(func: DecoratedCallable) -> DecoratedCallable:
             self.add_api_route(
@@ -593,6 +596,7 @@ class APIRouter(routing.Router):
                 response_class=response_class,
                 name=name,
                 callbacks=callbacks,
+                openapi_extra=openapi_extra,
             )
             return func
 
@@ -697,6 +701,7 @@ class APIRouter(routing.Router):
                     name=route.name,
                     route_class_override=type(route),
                     callbacks=current_callbacks,
+                    openapi_extra=route.openapi_extra,
                 )
             elif isinstance(route, routing.Route):
                 methods = list(route.methods or [])  # type: ignore # in Starlette
@@ -744,6 +749,7 @@ class APIRouter(routing.Router):
         response_class: Type[Response] = Default(JSONResponse),
         name: Optional[str] = None,
         callbacks: Optional[List[BaseRoute]] = None,
+        openapi_extra: Optional[Dict[str, Any]] = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.api_route(
             path=path,
@@ -768,6 +774,7 @@ class APIRouter(routing.Router):
             response_class=response_class,
             name=name,
             callbacks=callbacks,
+            openapi_extra=openapi_extra,
         )
 
     def put(
@@ -794,6 +801,7 @@ class APIRouter(routing.Router):
         response_class: Type[Response] = Default(JSONResponse),
         name: Optional[str] = None,
         callbacks: Optional[List[BaseRoute]] = None,
+        openapi_extra: Optional[Dict[str, Any]] = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.api_route(
             path=path,
@@ -818,6 +826,7 @@ class APIRouter(routing.Router):
             response_class=response_class,
             name=name,
             callbacks=callbacks,
+            openapi_extra=openapi_extra,
         )
 
     def post(
@@ -844,6 +853,7 @@ class APIRouter(routing.Router):
         response_class: Type[Response] = Default(JSONResponse),
         name: Optional[str] = None,
         callbacks: Optional[List[BaseRoute]] = None,
+        openapi_extra: Optional[Dict[str, Any]] = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.api_route(
             path=path,
@@ -868,6 +878,7 @@ class APIRouter(routing.Router):
             response_class=response_class,
             name=name,
             callbacks=callbacks,
+            openapi_extra=openapi_extra,
         )
 
     def delete(
@@ -894,6 +905,7 @@ class APIRouter(routing.Router):
         response_class: Type[Response] = Default(JSONResponse),
         name: Optional[str] = None,
         callbacks: Optional[List[BaseRoute]] = None,
+        openapi_extra: Optional[Dict[str, Any]] = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.api_route(
             path=path,
@@ -918,6 +930,7 @@ class APIRouter(routing.Router):
             response_class=response_class,
             name=name,
             callbacks=callbacks,
+            openapi_extra=openapi_extra,
         )
 
     def options(
@@ -944,6 +957,7 @@ class APIRouter(routing.Router):
         response_class: Type[Response] = Default(JSONResponse),
         name: Optional[str] = None,
         callbacks: Optional[List[BaseRoute]] = None,
+        openapi_extra: Optional[Dict[str, Any]] = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.api_route(
             path=path,
@@ -968,6 +982,7 @@ class APIRouter(routing.Router):
             response_class=response_class,
             name=name,
             callbacks=callbacks,
+            openapi_extra=openapi_extra,
         )
 
     def head(
@@ -994,6 +1009,7 @@ class APIRouter(routing.Router):
         response_class: Type[Response] = Default(JSONResponse),
         name: Optional[str] = None,
         callbacks: Optional[List[BaseRoute]] = None,
+        openapi_extra: Optional[Dict[str, Any]] = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.api_route(
             path=path,
@@ -1018,6 +1034,7 @@ class APIRouter(routing.Router):
             response_class=response_class,
             name=name,
             callbacks=callbacks,
+            openapi_extra=openapi_extra,
         )
 
     def patch(
@@ -1044,6 +1061,7 @@ class APIRouter(routing.Router):
         response_class: Type[Response] = Default(JSONResponse),
         name: Optional[str] = None,
         callbacks: Optional[List[BaseRoute]] = None,
+        openapi_extra: Optional[Dict[str, Any]] = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.api_route(
             path=path,
@@ -1068,6 +1086,7 @@ class APIRouter(routing.Router):
             response_class=response_class,
             name=name,
             callbacks=callbacks,
+            openapi_extra=openapi_extra,
         )
 
     def trace(
@@ -1094,6 +1113,7 @@ class APIRouter(routing.Router):
         response_class: Type[Response] = Default(JSONResponse),
         name: Optional[str] = None,
         callbacks: Optional[List[BaseRoute]] = None,
+        openapi_extra: Optional[Dict[str, Any]] = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
 
         return self.api_route(
@@ -1119,4 +1139,5 @@ class APIRouter(routing.Router):
             response_class=response_class,
             name=name,
             callbacks=callbacks,
+            openapi_extra=openapi_extra,
         )
