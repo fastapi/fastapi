@@ -62,6 +62,7 @@ nav:
     - tutorial/security/index.md
 - Implantação:
   - deployment/index.md
+  - deployment/versions.md
 - alternatives.md
 - history-design-future.md
 - external-links.md
