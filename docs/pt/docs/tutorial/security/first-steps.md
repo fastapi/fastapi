@@ -14,7 +14,7 @@ Vamos usar as ferramentas disponibilizadas pelo **FastAPI** para lidar com a seg
 
 ## Como seria
 
-Vamos primeiro só usar o código e ver como isso funciona, e então nós iremos voltar para entender o que está acontecendo.
+Primeiro vamos só usar o código e ver como ele funciona, e depois nós iremos voltar para entender o que está acontecendo.
 
 ## Criando `main.py`
 
