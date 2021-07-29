@@ -4,22 +4,25 @@ You can customize several metadata configurations in your **FastAPI** applicatio
 
 ## Metadata for API
 
-You can set the following fields that are used in the OpenAPI specification and the automatic API docs UIs.
+You can set the following fields that are used in the OpenAPI specification and the automatic API docs UIs:
 
 | Parameter | Type | Description |
 |------------|------|-------------|
-| `title` | `string` | title/name of API |
-| `description` | `string` | description of API |
-| `version` | `string` | version of API, e.g. `v2` or `2.5.0` |
-| `terms_of_service` | `string` | URL to Terms of Service of API |
-| `contact` | `dict` | contact information of API, can contain the following *optional* fields: <table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td>name</td><td><code>string</code></td><td>name of contact person/organization</td></tr><tr><td>url</td><td><code>string</code></td><td>URL to contact information</td></tr><tr><td>email</td><td><code>string</code></td><td>email address of contact person/organisation</td></tr></tbody></table> |
-| `license_info` | `dict` | license information of API, can contain the following fields: <table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td>name</td><td><code>string</code></td><td>name of license (<b>required</b>)</td></tr><tr><td>url</td><td><code>string</code></td><td>URL to license</td></tr></tbody></table> |
+| `title` | `str` | The title of the API. |
+| `description` | `str` | A short description of the API. It can use Markdown. |
+| `version` | `string` | The version of the API. This is the version of your own application, not of OpenAPI. For example `2.5.0`. |
+| `terms_of_service` | `str` | A URL to the Terms of Service for the API. If provided, this has to be a URL. |
+| `contact` | `dict` | The contact information for the exposed API. It can contain several fields. <details><summary><code>contact</code> fields</summary><table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>name</code></td><td><code>str</code></td><td>The identifying name of the contact person/organization.</td></tr><tr><td><code>url</code></td><td><code>str</code></td><td>The URL pointing to the contact information. MUST be in the format of a URL.</td></tr><tr><td><code>email</code></td><td><code>str</code></td><td>The email address of the contact person/organization. MUST be in the format of an email address.</td></tr></tbody></table></details> |
+| `license_info` | `dict` | The license information for the exposed API. It can contain several fields. <details><summary><code>license_info</code> fields</summary><table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>name</code></td><td><code>str</code></td><td><strong>REQUIRED</strong> (if a <code>license_info</code> is set). The license name used for the API.</td></tr><tr><td><code>url</code></td><td><code>str</code></td><td>A URL to the license used for the API. MUST be in the format of a URL.</td></tr></tbody></table></details> |
 
-You can set them as follows.
+You can set them as follows:
 
-```Python hl_lines="4 5 6 7 8 9 10 11 12 13 14 15 16"
+```Python hl_lines="3-16  19-31"
 {!../../../docs_src/metadata/tutorial001.py!}
 ```
+
+!!! tip
+    You can write Markdown in the `description` field and it will be rendered in the output.
 
 With this configuration, the automatic API docs would look like:
 
