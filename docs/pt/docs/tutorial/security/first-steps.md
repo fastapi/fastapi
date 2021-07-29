@@ -163,7 +163,7 @@ O **FastAPI** saberá que pode usar essa dependência para definir um "esquema d
     Todos os utilitários de segurança que integram com a OpenAPI (e a documentação automática da API) herdam de `SecurityBase`, é assim que o **FastAPI** consegue saber como integrá-los na OpenAPI.
 ## O que isso faz
 
-Olhará e irá até aquele header `Authorization`, checa se o valor é `Bearer` mais algum token, e irá retornar o token como um `str`.
+Ele irá procurar no request header `Authorization`,  e checar se o valor é `Bearer` com algum token, e então retorna o token como um `str`.
 
 Se não ver um header `Authorization`, ou o valor não tiver um token `Bearer `, irá responder diretamente com um código de erro com status 401 (`UNAUTHORIZED`).
 
