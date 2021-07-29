@@ -4,7 +4,7 @@ from fastapi.testclient import TestClient
 app = FastAPI()
 
 
-@app.get("/", **{"x-custom-extension": "value"})
+@app.get("/", openapi_extra={"x-custom-extension": "value"})
 def route_with_extras():
     return {}
 
