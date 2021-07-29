@@ -88,7 +88,7 @@ Então, vamos revisá-lo desse ponto de vista simplificado:
 * A API verifica aquele `usuario` e `senha`, e responde com um "token" (nós não implementamos nada disso ainda).
     * Um "token" é uma string com algum conteúdo que nós podemos usar depois para verificar esse usuário.
     * Normalmente, um token expira após um certo tempo.
-        * Então, o usuário irá ter que entrar novamente no mesmo ponto depois.
+        * Então, o usuário terá que entrar novamente no futuro.
         * E se o token for rouvado, o risco é menor. Isso não é como uma chave permanente que irá funcionar para sempre (em muitos casos).
 * O frontend guarda aquele token temporariamente em algum lugar.
 * O usuário clica no frontend para ir para outra seção da aplicação web do frontend.
