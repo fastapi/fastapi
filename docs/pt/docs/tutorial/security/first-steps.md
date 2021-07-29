@@ -119,7 +119,7 @@ Quando criamos uma instância da classe `OAuth2PasswordBearer` passamos o parâm
 ```
 
 !!! tip "Dica"
-    Aqui `tokenUrl="token"` se refere a uma URL relativa a `token` que nós ainda não criamos. Como ela é uma URL relativa, equivale a `.token`.
+    Aqui `tokenUrl="token"` se refere a uma URL relativa a `token` que nós ainda não criamos. Como ela é uma URL relativa, equivale a `./token`.
 
     Por estarmos usando uma URL relativa, se sua API está localizada em `https://example.com/`, então ela seria refenciada para `https://example.com/token`. Mas se sua API estiver localizada em `https://example.com/api/v1/`, então ela seria referenciada para `https://example.com/api/v1/token`.
 
