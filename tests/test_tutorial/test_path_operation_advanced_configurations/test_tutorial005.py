@@ -18,7 +18,7 @@ openapi_schema = {
                 },
                 "summary": "Read Items",
                 "operationId": "read_items_items__get",
-                "x-my-open-api-extension": "value",
+                "x-aperture-labs-portal": "blue",
             }
         }
     },
@@ -29,3 +29,8 @@ def test_openapi_schema():
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
     assert response.json() == openapi_schema
+
+
+def test_get():
+    response = client.get("/items/")
+    assert response.status_code == 200, response.text
