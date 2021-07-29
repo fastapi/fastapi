@@ -362,10 +362,19 @@ def get_openapi(
     routes: Sequence[BaseRoute],
     tags: Optional[List[Dict[str, Any]]] = None,
     servers: Optional[List[Dict[str, Union[str, Any]]]] = None,
+    terms_of_service: Optional[str] = None,
+    contact: Optional[Dict[str, Union[str, Any]]] = None,
+    license_info: Optional[Dict[str, Union[str, Any]]] = None,
 ) -> Dict[str, Any]:
-    info = {"title": title, "version": version}
+    info: Dict[str, Any] = {"title": title, "version": version}
     if description:
         info["description"] = description
+    if terms_of_service:
+        info["termsOfService"] = terms_of_service
+    if contact:
+        info["contact"] = contact
+    if license_info:
+        info["license"] = license_info
     output: Dict[str, Any] = {"openapi": openapi_version, "info": info}
     if servers:
         output["servers"] = servers
