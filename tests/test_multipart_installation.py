@@ -42,7 +42,7 @@ def test_incorrect_multipart_installed_multi_form(monkeypatch):
         app = FastAPI()
 
         @app.post("/")
-        async def root(username: str = Form(...), pasword: str = Form(...)):
+        async def root(username: str = Form(...), password: str = Form(...)):
             return username  # pragma: nocover
 
 

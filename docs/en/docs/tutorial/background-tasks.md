@@ -15,7 +15,7 @@ This includes, for example:
 
 First, import `BackgroundTasks` and define a parameter in your *path operation function* with a type declaration of `BackgroundTasks`:
 
-```Python hl_lines="1 13"
+```Python hl_lines="1  13"
 {!../../../docs_src/background_tasks/tutorial001.py!}
 ```
 
@@ -33,7 +33,7 @@ In this case, the task function will write to a file (simulating sending an emai
 
 And as the write operation doesn't use `async` and `await`, we define the function with normal `def`:
 
-```Python hl_lines="6 7 8 9"
+```Python hl_lines="6-9"
 {!../../../docs_src/background_tasks/tutorial001.py!}
 ```
 
@@ -57,7 +57,7 @@ Using `BackgroundTasks` also works with the dependency injection system, you can
 
 **FastAPI** knows what to do in each case and how to re-use the same object, so that all the background tasks are merged together and are run in the background afterwards:
 
-```Python hl_lines="13 15 22 25"
+```Python hl_lines="13  15  22  25"
 {!../../../docs_src/background_tasks/tutorial002.py!}
 ```
 
@@ -81,7 +81,7 @@ You can see more details in <a href="https://www.starlette.io/background/" class
 
 ## Caveat
 
-If you need to perform heavy background computation and you don't necessarily need it to be run by the same process (for example, you don't need to share memory, variables, etc), you might benefit from using other bigger tools like <a href="http://www.celeryproject.org/" class="external-link" target="_blank">Celery</a>.
+If you need to perform heavy background computation and you don't necessarily need it to be run by the same process (for example, you don't need to share memory, variables, etc), you might benefit from using other bigger tools like <a href="https://docs.celeryproject.org" class="external-link" target="_blank">Celery</a>.
 
 They tend to require more complex configurations, a message/job queue manager, like RabbitMQ or Redis, but they allow you to run background tasks in multiple processes, and especially, in multiple servers.
 

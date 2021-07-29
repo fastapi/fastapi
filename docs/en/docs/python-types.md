@@ -1,8 +1,8 @@
 # Python Types Intro
 
-**Python 3.6+** has support for optional "type hints".
+Python has support for optional "type hints".
 
-These **"type hints"** are a new syntax (since Python 3.6+) that allow declaring the <abbr title="for example: str, int, float, bool">type</abbr> of a variable.
+These **"type hints"** are a special syntax that allow declaring the <abbr title="for example: str, int, float, bool">type</abbr> of a variable.
 
 By declaring types for your variables, editors and tools can give you better support.
 
@@ -193,7 +193,7 @@ And still, the editor knows it is a `str`, and provides support for that.
 
 You would do the same to declare `tuple`s and `set`s:
 
-```Python hl_lines="1 4"
+```Python hl_lines="1  4"
 {!../../../docs_src/python_types/tutorial007.py!}
 ```
 
@@ -210,7 +210,7 @@ The first type parameter is for the keys of the `dict`.
 
 The second type parameter is for the values of the `dict`:
 
-```Python hl_lines="1 4"
+```Python hl_lines="1  4"
 {!../../../docs_src/python_types/tutorial008.py!}
 ```
 
@@ -224,7 +224,7 @@ This means:
 
 You can also use `Optional` to declare that a variable has a type, like `str`, but that it is "optional", which means that it could also be `None`:
 
-```Python hl_lines="1 4"
+```Python hl_lines="1  4"
 {!../../../docs_src/python_types/tutorial009.py!}
 ```
 
@@ -249,7 +249,7 @@ You can also declare a class as the type of a variable.
 
 Let's say you have a class `Person`, with a name:
 
-```Python hl_lines="1 2 3"
+```Python hl_lines="1-3"
 {!../../../docs_src/python_types/tutorial010.py!}
 ```
 
