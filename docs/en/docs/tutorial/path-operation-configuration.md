@@ -28,7 +28,7 @@ That status code will be used in the response and will be added to the OpenAPI s
 
 You can add tags to your *path operation*, pass the parameter `tags` with a `list` of `str` (commonly just one `str`):
 
-```Python hl_lines="17 22 27"
+```Python hl_lines="17  22  27"
 {!../../../docs_src/path_operation_configuration/tutorial002.py!}
 ```
 
@@ -40,7 +40,7 @@ They will be added to the OpenAPI schema and used by the automatic documentation
 
 You can add a `summary` and `description`:
 
-```Python hl_lines="20 21"
+```Python hl_lines="20-21"
 {!../../../docs_src/path_operation_configuration/tutorial003.py!}
 ```
 
@@ -50,7 +50,7 @@ As descriptions tend to be long and cover multiple lines, you can declare the *p
 
 You can write <a href="https://en.wikipedia.org/wiki/Markdown" class="external-link" target="_blank">Markdown</a> in the docstring, it will be interpreted and displayed correctly (taking into account docstring indentation).
 
-```Python hl_lines="19 20 21 22 23 24 25 26 27"
+```Python hl_lines="19-27"
 {!../../../docs_src/path_operation_configuration/tutorial004.py!}
 ```
 

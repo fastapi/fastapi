@@ -1,14 +1,7 @@
-from typing import Callable, List, Optional, Sequence
+from typing import Any, Callable, List, Optional, Sequence
 
 from fastapi.security.base import SecurityBase
-
-try:
-    from pydantic.fields import ModelField
-except ImportError:  # pragma: nocover
-    # TODO: remove when removing support for Pydantic < 1.0.0
-    from pydantic.fields import Field as ModelField  # type: ignore
-
-param_supported_types = (str, int, float, bool)
+from pydantic.fields import ModelField
 
 
 class SecurityRequirement:
@@ -31,9 +24,10 @@ class Dependant:
         dependencies: Optional[List["Dependant"]] = None,
         security_schemes: Optional[List[SecurityRequirement]] = None,
         name: Optional[str] = None,
-        call: Optional[Callable] = None,
+        call: Optional[Callable[..., Any]] = None,
         request_param_name: Optional[str] = None,
         websocket_param_name: Optional[str] = None,
+        http_connection_param_name: Optional[str] = None,
         response_param_name: Optional[str] = None,
         background_tasks_param_name: Optional[str] = None,
         security_scopes_param_name: Optional[str] = None,
@@ -50,6 +44,7 @@ class Dependant:
         self.security_requirements = security_schemes or []
         self.request_param_name = request_param_name
         self.websocket_param_name = websocket_param_name
+        self.http_connection_param_name = http_connection_param_name
         self.response_param_name = response_param_name
         self.background_tasks_param_name = background_tasks_param_name
         self.security_scopes = security_scopes

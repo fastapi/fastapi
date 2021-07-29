@@ -10,7 +10,7 @@ GraphQL is implemented with Graphene, you can check <a href="https://docs.graphe
 
 Import `graphene` and define your GraphQL data:
 
-```Python hl_lines="1 6 7 8 9 10"
+```Python hl_lines="1  6-10"
 {!../../../docs_src/graphql/tutorial001.py!}
 ```
 
@@ -18,7 +18,7 @@ Import `graphene` and define your GraphQL data:
 
 Then import and add Starlette's `GraphQLApp`:
 
-```Python hl_lines="3 14"
+```Python hl_lines="3  14"
 {!../../../docs_src/graphql/tutorial001.py!}
 ```
 

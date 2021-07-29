@@ -2,29 +2,18 @@ from enum import Enum
 from typing import Any, Callable, Dict, Iterable, List, Optional, Union
 
 from fastapi.logger import logger
-from pydantic import BaseModel
+from pydantic import AnyUrl, BaseModel, Field
 
 try:
-    from pydantic import AnyUrl, Field
-except ImportError:  # pragma: nocover
-    # TODO: remove when removing support for Pydantic < 1.0.0
-    from pydantic import Schema as Field  # type: ignore
-    from pydantic import UrlStr as AnyUrl  # type: ignore
-
-try:
-    import email_validator
+    import email_validator  # type: ignore
 
     assert email_validator  # make autoflake ignore the unused import
-    try:
-        from pydantic import EmailStr
-    except ImportError:  # pragma: nocover
-        # TODO: remove when removing support for Pydantic < 1.0.0
-        from pydantic.types import EmailStr  # type: ignore
+    from pydantic import EmailStr
 except ImportError:  # pragma: no cover
 
     class EmailStr(str):  # type: ignore
         @classmethod
-        def __get_validators__(cls) -> Iterable[Callable]:
+        def __get_validators__(cls) -> Iterable[Callable[..., Any]]:
             yield cls.validate
 
         @classmethod
@@ -127,6 +116,9 @@ class SchemaBase(BaseModel):
     externalDocs: Optional[ExternalDocumentation] = None
     example: Optional[Any] = None
     deprecated: Optional[bool] = None
+
+    class Config:
+        extra: str = "allow"
 
 
 class Schema(SchemaBase):

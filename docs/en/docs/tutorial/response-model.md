@@ -35,13 +35,13 @@ But most importantly:
 
 Here we are declaring a `UserIn` model, it will contain a plaintext password:
 
-```Python hl_lines="9 11"
+```Python hl_lines="9  11"
 {!../../../docs_src/response_model/tutorial002.py!}
 ```
 
 And we are using this model to declare our input and the same model to declare our output:
 
-```Python hl_lines="17 18"
+```Python hl_lines="17-18"
 {!../../../docs_src/response_model/tutorial002.py!}
 ```
 
@@ -58,7 +58,7 @@ But if we use the same model for another *path operation*, we could be sending o
 
 We can instead create an input model with the plaintext password and an output model without it:
 
-```Python hl_lines="9 11 16"
+```Python hl_lines="9  11  16"
 {!../../../docs_src/response_model/tutorial003.py!}
 ```
 
@@ -90,7 +90,7 @@ And both models will be used for the interactive API documentation:
 
 Your response model could have default values, like:
 
-```Python hl_lines="11 13 14"
+```Python hl_lines="11  13-14"
 {!../../../docs_src/response_model/tutorial004.py!}
 ```
 
@@ -136,7 +136,7 @@ So, if you send a request to that *path operation* for the item with ID `foo`, t
 
 But if your data has values for the model's fields with default values, like the item with ID `bar`:
 
-```Python hl_lines="3 5"
+```Python hl_lines="3  5"
 {
     "name": "Bar",
     "description": "The bartenders",
@@ -151,7 +151,7 @@ they will be included in the response.
 
 If the data has the same values as the default ones, like the item with ID `baz`:
 
-```Python hl_lines="3 5 6"
+```Python hl_lines="3  5-6"
 {
     "name": "Baz",
     "description": None,
@@ -185,7 +185,7 @@ This can be used as a quick shortcut if you have only one Pydantic model and wan
 
     This also applies to `response_model_by_alias` that works similarly.
 
-```Python hl_lines="31 37"
+```Python hl_lines="31  37"
 {!../../../docs_src/response_model/tutorial005.py!}
 ```
 
@@ -198,7 +198,7 @@ This can be used as a quick shortcut if you have only one Pydantic model and wan
 
 If you forget to use a `set` and use a `list` or `tuple` instead, FastAPI will still convert it to a `set` and it will work correctly:
 
-```Python hl_lines="31 37"
+```Python hl_lines="31  37"
 {!../../../docs_src/response_model/tutorial006.py!}
 ```
 

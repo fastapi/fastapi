@@ -976,8 +976,8 @@ openapi_schema = {
                         },
                     },
                 },
-                "summary": "Get Query Type Optional",
-                "operationId": "get_query_type_optional_query_int_default_get",
+                "summary": "Get Query Type Int Default",
+                "operationId": "get_query_type_int_default_query_int_default_get",
                 "parameters": [
                     {
                         "required": False,
@@ -1144,7 +1144,7 @@ def test_swagger_ui():
     assert response.headers["content-type"] == "text/html; charset=utf-8"
     assert "swagger-ui-dist" in response.text
     assert (
-        f"oauth2RedirectUrl: window.location.origin + '/docs/oauth2-redirect'"
+        "oauth2RedirectUrl: window.location.origin + '/docs/oauth2-redirect'"
         in response.text
     )
 

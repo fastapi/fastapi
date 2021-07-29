@@ -31,7 +31,7 @@ Let's first focus on the dependency.
 
 It is just a function that can take all the same parameters that a *path operation function* can take:
 
-```Python hl_lines="8 9"
+```Python hl_lines="8-9"
 {!../../../docs_src/dependencies/tutorial001.py!}
 ```
 

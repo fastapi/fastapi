@@ -48,7 +48,7 @@ Let's try that in an example with tags for `users` and `items`.
 
 Create metadata for your tags and pass it to the `openapi_tags` parameter:
 
-```Python hl_lines="3 4 5 6 7 8 9 10 11 12 13 14 15 16  18"
+```Python hl_lines="3-16  18"
 {!../../../docs_src/metadata/tutorial004.py!}
 ```
 
