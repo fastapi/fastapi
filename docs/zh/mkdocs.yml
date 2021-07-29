@@ -39,6 +39,7 @@ nav:
 - FastAPI: index.md
 - Languages:
   - en: /
+  - de: /de/
   - es: /es/
   - fr: /fr/
   - id: /id/
@@ -80,7 +81,9 @@ nav:
   - tutorial/handling-errors.md
   - tutorial/body-updates.md
   - 依赖项:
+    - tutorial/dependencies/index.md
     - tutorial/dependencies/sub-dependencies.md
+    - tutorial/dependencies/global-dependencies.md
   - 安全性:
     - tutorial/security/index.md
     - tutorial/security/get-current-user.md
@@ -123,7 +126,7 @@ extra:
   - icon: fontawesome/brands/discord
     link: https://discord.gg/VQjSZaeJmf
   - icon: fontawesome/brands/twitter
-    link: https://twitter.com/tiangolo
+    link: https://twitter.com/fastapi
   - icon: fontawesome/brands/linkedin
     link: https://www.linkedin.com/in/tiangolo
   - icon: fontawesome/brands/dev
@@ -135,6 +138,8 @@ extra:
   alternate:
   - link: /
     name: en - English
+  - link: /de/
+    name: de
   - link: /es/
     name: es - español
   - link: /fr/

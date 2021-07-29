@@ -43,8 +43,8 @@ Documentation = "https://fastapi.tiangolo.com/"
 
 [tool.flit.metadata.requires-extra]
 test = [
-    "pytest ==5.4.3",
-    "pytest-cov ==2.10.0",
+    "pytest >=6.2.4,<7.0.0",
+    "pytest-cov >=2.12.0,<3.0.0",
     "pytest-asyncio >=0.14.0,<0.15.0",
     "mypy ==0.812",
     "flake8 >=3.8.3,<4.0.0",
@@ -99,3 +99,18 @@ all = [
 [tool.isort]
 profile = "black"
 known_third_party = ["fastapi", "pydantic", "starlette"]
+
+[tool.pytest.ini_options]
+addopts = [
+  "--strict-config",
+  "--strict-markers",
+]
+xfail_strict = true
+junit_family = "xunit2"
+filterwarnings = [
+    "error",
+    'ignore:"@coroutine" decorator is deprecated since Python 3\.8, use "async def" instead:DeprecationWarning',
+    # TODO: if these ignores are needed, enable them, otherwise remove them
+    # 'ignore:The explicit passing of coroutine objects to asyncio\.wait\(\) is deprecated since Python 3\.8:DeprecationWarning',
+    # 'ignore:Exception ignored in. <socket\.socket fd=-1:pytest.PytestUnraisableExceptionWarning',
+]

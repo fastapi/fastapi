@@ -227,6 +227,9 @@ class Operation(BaseModel):
     security: Optional[List[Dict[str, List[str]]]] = None
     servers: Optional[List[Server]] = None
 
+    class Config:
+        extra = "allow"
+
 
 class PathItem(BaseModel):
     ref: Optional[str] = Field(None, alias="$ref")
