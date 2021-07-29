@@ -369,7 +369,7 @@ item: Item
 
 ---
 
-Kembali ke coontoh kode sebelumnya, **FastAPI** akan:
+Kembali ke contoh kode sebelumnya, **FastAPI** akan:
 
 * Memvalidasi apakah `item_id` ada pada jalur untuk permintaan dengan method `GET` dan `PUT`.
 * Memvalidasi apakah `item_id` ber tipe `int` untuk permintaan `GET` dan `PUT`.
