@@ -3,7 +3,6 @@ from typing import Any, Callable, Dict, Iterable, List, Optional, Union
 
 from fastapi.logger import logger
 from pydantic import AnyUrl, BaseModel, Field
-from typing_extensions import Literal
 
 try:
     import email_validator  # type: ignore
@@ -127,7 +126,7 @@ class Schema(BaseModel):
     items: Optional["Schema"] = None
     properties: Optional[Dict[str, "Schema"]] = None
     additionalProperties: Optional[
-        Union["Schema", Dict[Literal["$ref"], str], bool]
+        Union["Schema", Reference, bool]
     ] = None
     description: Optional[str] = None
     format: Optional[str] = None
