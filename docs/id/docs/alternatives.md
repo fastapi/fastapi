@@ -290,127 +290,127 @@ Hug memiliki fitur yang menarik dan tidak biasa: menggunakan kerangka kerja yang
 Karena didasarkan pada standar sebelumnya untuk kerangka kerja web Python sinkron (WSGI), ia tidak dapat menangani Websockets dan hal-hal lain, meskipun masih memiliki kinerja tinggi juga.
 
 !!! info
-    Hug was created by Timothy Crosley, the same creator of <a href="https://github.com/timothycrosley/isort" class="external-link" target="_blank">`isort`</a>, a great tool to automatically sort imports in Python files.
+    Hug diciptakan oleh Timothy Crosley, pencipta yang sama dari <a href="https://github.com/timothycrosley/isort" class="external-link" target="_blank">`isort`</a>, alat yang hebat digunakan untuk mengurutkan impor dalam file Python secara otomatis.
 
-!!! check "Ideas inspired in **FastAPI**"
-    Hug inspired parts of APIStar, and was one of the tools I found most promising, alongside APIStar.
+!!! check "Ide yang menginspirasi **FastAPI**"
+    Hug merupakan bagian yang terinspirasi dari APIStar, dan Hug merupakan salah satu alat yang menurut saya paling menjanjikan, di samping APIStar.
 
-    Hug helped inspiring **FastAPI** to use Python type hints to declare parameters, and to generate a schema defining the API automatically.
+    Hug membantu menginspirasi **FastAPI** untuk menggunakan petunjuk jenis Python untuk mendeklarasikan parameter, dan untuk menghasilkan skema yang mendefinisikan API secara otomatis.
 
-    Hug inspired **FastAPI** to declare a `response` parameter in functions to set headers and cookies.
+    Hug menginspirasi **FastAPI** untuk mendeklarasikan parameter `response` dalam fungsi untuk mengatur header dan cookie.
 
 ### <a href="https://github.com/encode/apistar" class="external-link" target="_blank">APIStar</a> (<= 0.5)
 
-Right before deciding to build **FastAPI** I found **APIStar** server. It had almost everything I was looking for and had a great design.
+Tepat sebelum memutuskan untuk membangun **FastAPI** saya menemukan server **APIStar**. **APIStar** hampir memiliki semua yang saya cari dan **APIStar** memiliki desain yang hebat.
 
-It was one of the first implementations of a framework using Python type hints to declare parameters and requests that I ever saw (before NestJS and Molten). I found it more or less at the same time as Hug. But APIStar used the OpenAPI standard.
+APIStar adalah salah satu implementasi pertama yang pernah saya lihat dari kerangka kerja yang menggunakan petunjuk tipe Python untuk mendeklarasikan parameter dan permintaan  (sebelum NestJS dan Molten). Saya menemukannya kurang lebih pada saat yang sama dengan Hug. Tetapi APIStar menggunakan standar OpenAPI.
 
-It had automatic data validation, data serialization and OpenAPI schema generation based on the same type hints in several places.
+APIStar memiliki validasi data otomatis, serialisasi data, dan pembuatan skema OpenAPI berdasarkan petunjuk tipe yang sama di beberapa tempat.
 
-Body schema definitions didn't use the same Python type hints like Pydantic, it was a bit more similar to Marshmallow, so, editor support wouldn't be as good, but still, APIStar was the best available option.
+Definisi skema tubuh tidak menggunakan petunjuk jenis Python yang sama seperti Pydantic, sedikit lebih mirip dengan Marshmallow, jadi, dukungan editor tidak akan sebaik itu, tapi tetap saja, APIStar adalah opsi terbaik yang tersedia.
 
-It had the best performance benchmarks at the time (only surpassed by Starlette).
+APIStar memiliki tolok ukur kinerja terbaik pada saat itu (hanya dilampaui oleh Starlette).
 
-At first, it didn't have an automatic API documentation web UI, but I knew I could add Swagger UI to it.
+Pada awalnya, APIStar tidak memiliki UI web dokumentasi API otomatis, tetapi saya tahu saya dapat menambahkan UI Swagger ke dalamnya.
 
-It had a dependency injection system. It required pre-registration of components, as other tools discussed above. But still, it was a great feature.
+APIStar memiliki sistem injeksi ketergantungan. Itu diperlukan pada saat pra-pendaftaran komponen, seperti alat-alat lain yang dibahas di atas. Tapi tetap saja, itu adalah fitur yang hebat.
 
-I was never able to use it in a full project, as it didn't have security integration, so, I couldn't replace all the features I was having with the full-stack generators based on Flask-apispec. I had in my backlog of projects to create a pull request adding that functionality.
+Saya tidak pernah dapat menggunakannya dalam proyek secara penuh, karena tidak memiliki integrasi keamanan, jadi, saya tidak dapat mengganti semua fitur yang saya miliki dengan generator full-stack berdasarkan Flask-apispec. Saya memilikinya dalam backlog proyek untuk membuat permintaan pull-request agar menambahkan fungsionalitas itu.
 
-But then, the project's focus shifted.
+Tapi kemudian, fokus proyek bergeser.
 
-It was no longer an API web framework, as the creator needed to focus on Starlette.
+APIStar bukan lagi kerangka kerja web API, karena pembuatnya perlu fokus pada Starlette.
 
-Now APIStar is a set of tools to validate OpenAPI specifications, not a web framework.
+Sekarang APIStar adalah seperangkat alat untuk memvalidasi spesifikasi OpenAPI, bukan kerangka kerja web.
 
 !!! info
-    APIStar was created by Tom Christie. The same guy that created:
+    APIStar dibuat oleh Tom Christie. Orang yang sama yang menciptakan:
 
-    * Django REST Framework
-    * Starlette (in which **FastAPI** is based)
-    * Uvicorn (used by Starlette and **FastAPI**)
+    * Kerangka REST Django
+    * Starlette (di mana **FastAPI** didasarkan)
+    * Uvicorn (digunakan oleh Starlette dan **FastAPI**)
 
-!!! check "Inspired **FastAPI** to"
-    Exist.
+!!! check "Menginspirasi **FastAPI** untuk"
+    Ada.
 
-    The idea of declaring multiple things (data validation, serialization and documentation) with the same Python types, that at the same time provided great editor support, was something I considered a brilliant idea.
+    Gagasan untuk mendeklarasikan banyak hal (validasi data, serialisasi, dan dokumentasi) dengan tipe Python yang sama, yang pada saat yang sama memberikan dukungan editor yang hebat, adalah sesuatu yang saya anggap sebagai ide brilian.
     
-    And after searching for a long time for a similar framework and testing many different alternatives, APIStar was the best option available.
+    Dan setelah lama mencari kerangka kerja serupa dan menguji banyak alternatif berbeda, APIStar adalah opsi terbaik yang tersedia.
 
-    Then APIStar stopped to exist as a server and Starlette was created, and was a new better foundation for such a system. That was the final inspiration to build **FastAPI**.
+    Kemudian APIStar berhenti eksis sebagai server dan Starlette dibuat, dan merupakan fondasi baru yang lebih baik untuk sistem semacam itu. Itulah inspirasi terakhir untuk membangun **FastAPI**.
 
-    I consider **FastAPI** a "spiritual successor" to APIStar, while improving and increasing the features, typing system, and other parts, based on the learnings from all these previous tools.
+    Saya menganggap **FastAPI** sebagai "penerus spiritual" APIStar, sambil meningkatkan dan meningkatkan fitur, sistem pengetikan, dan bagian lainnya, berdasarkan pembelajaran dari semua alat sebelumnya ini.
 
-## Used by **FastAPI**
+## Digunakan oleh **FastAPI**
 
 ### <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a>
 
-Pydantic is a library to define data validation, serialization and documentation (using JSON Schema) based on Python type hints.
+Pydantic adalah pustaka untuk mendefinisikan validasi data, serialisasi dan dokumentasi (menggunakan Skema JSON) berdasarkan petunjuk jenis Python.
 
-That makes it extremely intuitive.
+Itu membuatnya sangat intuitif.
 
-It is comparable to Marshmallow. Although it's faster than Marshmallow in benchmarks. And as it is based on the same Python type hints, the editor support is great.
+Ini sebanding dengan Marshmallow. Meskipun lebih cepat dari Marshmallow di benchmark. Dan karena didasarkan pada petunjuk jenis Python yang sama, dukungan editor sangat bagus.
 
-!!! check "**FastAPI** uses it to"
-    Handle all the data validation, data serialization and automatic model documentation (based on JSON Schema).
+!!! check "**FastAPI** menggunakannya untuk"
+    Menangani semua validasi data, serialisasi data, dan dokumentasi model otomatis (berdasarkan Skema JSON).
 
-    **FastAPI** then takes that JSON Schema data and puts it in OpenAPI, apart from all the other things it does.
+    **FastAPI** kemudian mengambil data Skema JSON itu dan meletakkannya di OpenAPI, terlepas dari semua hal lain yang dilakukannya.
 
 ### <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a>
 
-Starlette is a lightweight <abbr title="The new standard for building asynchronous Python web">ASGI</abbr> framework/toolkit, which is ideal for building high-performance asyncio services.
+Starlette adalah <abbr title="Standar baru untuk membangun asynchronous Python web">ASGI</abbr> framework/toolkit, yang ideal untuk membangun layanan asyncio berkinerja tinggi.
 
-It is very simple and intuitive. It's designed to be easily extensible, and have modular components.
+Ini sangat sederhana dan intuitif. Ini dirancang agar mudah diperluas, dan memiliki komponen modular.
 
-It has:
+Memiliki:
 
-* Seriously impressive performance.
-* WebSocket support.
-* GraphQL support.
-* In-process background tasks.
-* Startup and shutdown events.
-* Test client built on requests.
-* CORS, GZip, Static Files, Streaming responses.
-* Session and Cookie support.
-* 100% test coverage.
-* 100% type annotated codebase.
-* Zero hard dependencies.
+* Performa yang sangat mengesankan.
+* Dukungan WebSocket.
+* Dukungan GraphQL.
+* Tugas latar belakang dalam proses.
+* Persitiwa startup dan shutdown.
+* Uji klien yang dibangun berdasarkan permintaan.
+* CORS, GZip, File Statis, Respons streaming.
+* Sesi dan dukungan Cookie.
+* 100% cakupan tes.
+* 100% jenis basis kode beranotasi.
+* Tanpa ketergantungan keras (hard dependencies).
 
-Starlette is currently the fastest Python framework tested. Only surpassed by Uvicorn, which is not a framework, but a server.
+Starlette saat ini merupakan kerangka kerja Python tercepat yang diuji. Hanya dilampaui oleh Uvicorn, yang bukan merupakan framework, melainkan server.
 
-Starlette provides all the basic web microframework functionality.
+Starlette menyediakan semua fungsionalitas web microframework dasar.
 
-But it doesn't provide automatic data validation, serialization or documentation.
+Tapi itu tidak memberikan validasi data otomatis, serialisasi atau dokumentasi.
 
-That's one of the main things that **FastAPI** adds on top, all based on Python type hints (using Pydantic). That, plus the dependency injection system, security utilities, OpenAPI schema generation, etc.
+Itulah salah satu hal utama yang **FastAPI** tambahkan di atas, semua berdasarkan petunjuk jenis Python (menggunakan Pydantic). Starlette, ditambah sistem injeksi ketergantungan, utilitas keamanan, pembuatan skema OpenAPI, dll.
 
-!!! note "Technical Details"
-    ASGI is a new "standard" being developed by Django core team members. It is still not a "Python standard" (a PEP), although they are in the process of doing that.
+!!! note "Rincian Teknis"
+    ASGI adalah "standar" baru yang sedang dikembangkan oleh anggota tim inti Django. Ini masih bukan "standar Python" (PEP), meskipun mereka sedang dalam proses melakukan itu.
 
-    Nevertheless, it is already being used as a "standard" by several tools. This greatly improves interoperability, as you could switch Uvicorn for any other ASGI server (like Daphne or Hypercorn), or you could add ASGI compatible tools, like `python-socketio`.
+    Namun demikian, itu sudah digunakan sebagai "standar" oleh beberapa alat. Ini sangat meningkatkan interoperabilitas, karena Anda dapat mengganti Uvicorn untuk server ASGI lainnya (seperti Daphne atau Hypercorn), atau Anda dapat menambahkan alat yang kompatibel dengan ASGI, seperti `python-socketio`.
 
-!!! check "**FastAPI** uses it to"
-    Handle all the core web parts. Adding features on top.
+!!! check "**FastAPI** menggunakannya untuk"
+    Tangani semua komponen web inti. Menambahkan fitur di atas.
 
-    The class `FastAPI` itself inherits directly from the class `Starlette`.
+    Kelas `FastAPI` sendiri mewarisi langsung dari kelas `Starlette`.
     
-    So, anything that you can do with Starlette, you can do it directly with **FastAPI**, as it is basically Starlette on steroids.
+    Jadi, apa pun yang dapat Anda lakukan dengan Starlette, Anda dapat melakukannya langsung dengan **FastAPI**, karena pada dasarnya **FastAPI** merupakan Starlette yang menggunakan steroid.
 
 ### <a href="https://www.uvicorn.org/" class="external-link" target="_blank">Uvicorn</a>
 
-Uvicorn is a lightning-fast ASGI server, built on uvloop and httptools.
+Uvicorn adalah server ASGI secepat kilat, dibangun di atas uvloop dan httptools.
 
-It is not a web framework, but a server. For example, it doesn't provide tools for routing by paths. That's something that a framework like Starlette (or **FastAPI**) would provide on top.
+Ini bukan kerangka kerja web, tetapi server. Misalnya, Uvicorn tidak menyediakan alat untuk perutean berdasarkan jalur. Itu adalah sesuatu yang akan disediakan oleh kerangka kerja seperti Starlette (atau **FastAPI**) di atas.
 
-It is the recommended server for Starlette and **FastAPI**.
+Ini adalah server yang direkomendasikan untuk Starlette dan **FastAPI**.
 
-!!! check "**FastAPI** recommends it as"
-    The main web server to run **FastAPI** applications.
+!!! check "**FastAPI** merekomendasikannya sebagai"
+    Server web utama untuk menjalankan aplikasi **FastAPI**.
 
-    You can combine it with Gunicorn, to have an asynchronous multi-process server.
+    Anda dapat menggabungkannya dengan Gunicorn, untuk memiliki server multi-proses asinkron.
 
-    Check more details in the [Deployment](deployment/index.md){.internal-link target=_blank} section.
+    Lihat detail selengkapnya di bagian [Deployment](deployment/index.md){.internal-link target=_blank}.
 
-## Benchmarks and speed
+## Tolok ukur dan kecepatan
 
-To understand, compare, and see the difference between Uvicorn, Starlette and FastAPI, check the section about [Benchmarks](benchmarks.md){.internal-link target=_blank}.
+Untuk memahami, membandingkan, dan melihat perbedaan antara Uvicorn, Starlette, dan FastAPI, periksa bagian tentang [Tolok Ukur](benchmarks.md){.internal-link target=_blank}.
