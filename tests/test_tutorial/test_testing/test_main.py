@@ -1,4 +1,4 @@
-from docs_src.app_testing.test_main import client, test_read_main  # noqa: F401
+from docs_src.app_testing.test_main import client, test_read_main
 
 openapi_schema = {
     "openapi": "3.0.2",
@@ -24,3 +24,7 @@ def test_openapi_schema():
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
     assert response.json() == openapi_schema
+
+
+def test_main():
+    test_read_main()
