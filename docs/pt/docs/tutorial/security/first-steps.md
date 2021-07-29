@@ -127,7 +127,7 @@ Quando criamos uma instância da classe `OAuth2PasswordBearer` passamos o parâm
 
 Esse parametro não cria esse endpoint / *rota*, mas declara que a URL `/token` será aquele que o cliente deve usar para obter o token. Essa informação é usada na OpenAPI, e então no sistema de documentação interativa da API.
 
-Em breve, criaremos um caminho para uma operação real.
+Em breve, criaremos uma rota para uma operação real.
 
 !!! info "Informação"
     Se você é estritamente "Pythonista" você não vai gostar do estilo do parâmetro com nome `tokenUrl` em vez de `token_url`.
