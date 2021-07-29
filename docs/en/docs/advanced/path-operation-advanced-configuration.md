@@ -19,7 +19,7 @@ If you want to use your APIs' function names as `operationId`s, you can iterate 
 
 You should do it after adding all your *path operations*.
 
-```Python hl_lines="2 12 13 14 15 16 17 18 19 20 21 24"
+```Python hl_lines="2  12-21  24"
 {!../../../docs_src/path_operation_advanced_configuration/tutorial002.py!}
 ```
 
@@ -47,6 +47,6 @@ Adding an `\f` (an escaped "form feed" character) causes **FastAPI** to truncate
 
 It won't show up in the documentation, but other tools (such as Sphinx) will be able to use the rest.
 
-```Python hl_lines="19 20 21 22 23 24 25 26 27 28 29"
+```Python hl_lines="19-29"
 {!../../../docs_src/path_operation_advanced_configuration/tutorial004.py!}
 ```

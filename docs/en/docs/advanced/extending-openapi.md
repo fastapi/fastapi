@@ -43,7 +43,7 @@ For example, let's add <a href="https://github.com/Rebilly/ReDoc/blob/master/doc
 
 First, write all your **FastAPI** application as normally:
 
-```Python hl_lines="1 4 7 8 9"
+```Python hl_lines="1  4  7-9"
 {!../../../docs_src/extending_openapi/tutorial001.py!}
 ```
 
@@ -51,7 +51,7 @@ First, write all your **FastAPI** application as normally:
 
 Then, use the same utility function to generate the OpenAPI schema, inside a `custom_openapi()` function:
 
-```Python hl_lines="2  15 16 17 18 19 20"
+```Python hl_lines="2  15-20"
 {!../../../docs_src/extending_openapi/tutorial001.py!}
 ```
 
@@ -59,7 +59,7 @@ Then, use the same utility function to generate the OpenAPI schema, inside a `cu
 
 Now you can add the ReDoc extension, adding a custom `x-logo` to the `info` "object" in the OpenAPI schema:
 
-```Python hl_lines="21 22 23"
+```Python hl_lines="21-23"
 {!../../../docs_src/extending_openapi/tutorial001.py!}
 ```
 
@@ -71,7 +71,7 @@ That way, your application won't have to generate the schema every time a user o
 
 It will be generated only once, and then the same cached schema will be used for the next requests.
 
-```Python hl_lines="13 14  24 25"
+```Python hl_lines="13-14  24-25"
 {!../../../docs_src/extending_openapi/tutorial001.py!}
 ```
 
@@ -172,7 +172,7 @@ $ pip install aiofiles
 * Import `StaticFiles`.
 * "Mount" a `StaticFiles()` instance in a specific path.
 
-```Python hl_lines="7 11"
+```Python hl_lines="7  11"
 {!../../../docs_src/extending_openapi/tutorial002.py!}
 ```
 
@@ -224,7 +224,7 @@ You can re-use FastAPI's internal functions to create the HTML pages for the doc
 
 And similarly for ReDoc...
 
-```Python hl_lines="2 3 4 5 6   14 15 16 17 18 19 20 21 22    25 26 27   30 31 32 33 34 35 36"
+```Python hl_lines="2-6  14-22  25-27  30-36"
 {!../../../docs_src/extending_openapi/tutorial002.py!}
 ```
 
@@ -239,7 +239,7 @@ And similarly for ReDoc...
 
 Now, to be able to test that everything works, create a *path operation*:
 
-```Python hl_lines="39 40 41"
+```Python hl_lines="39-41"
 {!../../../docs_src/extending_openapi/tutorial002.py!}
 ```
 

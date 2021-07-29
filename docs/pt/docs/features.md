@@ -7,7 +7,7 @@
 ### Baseado em padrões abertos
 
 * <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a> para criação de APIs, incluindo declarações de <abbr title="também conhecido como métodos HTTP, como POST, GET, PUT, DELETE">operações</abbr> de <abbr title="também conhecido como: endpoints, routes">caminho</abbr>, parâmetros, requisições de corpo, segurança etc.
-* Modelo de documentação automática com <a href="http://json-schema.org/" class="external-link" target="_blank"><strong>JSON Schema</strong></a> (já que o OpenAPI em si é baseado no JSON Schema).
+* Modelo de documentação automática com <a href="https://json-schema.org/" class="external-link" target="_blank"><strong>JSON Schema</strong></a> (já que o OpenAPI em si é baseado no JSON Schema).
 * Projetado em cima desses padrões após um estudo meticuloso, em vez de uma reflexão breve.
 * Isso também permite o uso de **geração de código do cliente** automaticamente em muitas linguagens.
 
