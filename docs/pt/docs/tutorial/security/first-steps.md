@@ -125,7 +125,7 @@ Quando criamos uma instância da classe `OAuth2PasswordBearer` passamos o parâm
 
     Ao usar uma URL relativa é importante ter certeza que sua aplicação continue funcionando mesmo em uso avançado como [Behind a Proxy](../../advanced/behind-a-proxy.md){.internal-link target=_blank}.
 
-Esse parametro não cria esse endpoint / *caminho*, mas declara que a URL `/token` será usada para que o cliente possa usar para pegar o token. Essa informação é usada na OpenAPI, e então no sistema de documentação interativa da API.
+Esse parametro não cria esse endpoint / *rota*, mas declara que a URL `/token` será aquele que o cliente deve usar para obter o token. Essa informação é usada na OpenAPI, e então no sistema de documentação interativa da API.
 
 Em breve, criaremos um caminho para uma operação real.
 
