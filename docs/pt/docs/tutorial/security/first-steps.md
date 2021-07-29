@@ -68,7 +68,7 @@ Claro que isso não é o frontend destinado para o usuário final, mas é uma ex
 
 Pode ser usado pelo time de frontend (que pode ser você também).
 
-Pode ser usado por aplicações de terceiros e sistemas.
+Pode ser usado por aplicações e sistemas de terceiros.
 
 E isso pode também ser usado por você, para _debug_, verificação e teste da mesma aplicação.
 
