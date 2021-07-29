@@ -147,7 +147,6 @@ Então, pode ser usada com `Depends`.
 ### Utilização
 
 Agora você pode passar esse `oauth2_schema` em uma dependência com `Depends`.
-Now you can pass that `oauth2_scheme` in a dependency with `Depends`.
 
 ```Python hl_lines="10"
 {!../../../docs_src/security/tutorial001.py!}
