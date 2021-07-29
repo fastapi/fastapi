@@ -158,7 +158,7 @@ Essa dependência irá providenciar uma `str` que será atribuída ao parâmetro
 O **FastAPI** saberá que pode usar essa dependência para definir um "esquema de segurança" no esquema da OpenAPI (e a documentação automática da API).
 
 !!! info "Detalhes técnicos"
-    O **FastAPI** irá saber que pode usar a classe `OAuth2PasswordBearer` (declarada em uma dependência) para definir o esquema de segurança na OpenAPI porque isso herda de `fastapi.security.oauth2.OAuth2`, que por sua vez herda `fastapi.security.base.ScurityBase`.
+    O **FastAPI** irá saber que é possível usar a classe `OAuth2PasswordBearer` (declarada em uma dependência) para definir o esquema de segurança na OpenAPI, porque isso herda de `fastapi.security.oauth2.OAuth2`, que por sua vez herda `fastapi.security.base.ScurityBase`.
 
     Todo os utilitários de segurança que integram com a OpenAPI (e a documentação automática da API) herdam de `SecurityBase`, é assim que o **FastAPI** pode saber como integrá-los na OpenAPI.
 ## O que isso faz
