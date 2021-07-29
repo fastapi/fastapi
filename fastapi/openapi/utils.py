@@ -163,8 +163,6 @@ def get_openapi_operation_metadata(
     operation["operationId"] = generate_operation_id(route=route, method=method)
     if route.deprecated:
         operation["deprecated"] = route.deprecated
-    if route.openapi_extra:
-        operation.update(route.openapi_extra)
     return operation
 
 
@@ -319,6 +317,8 @@ def get_openapi_path(
                             "HTTPValidationError": validation_error_response_definition,
                         }
                     )
+            if route.openapi_extra:
+                deep_dict_update(operation, route.openapi_extra)
             path[method.lower()] = operation
     return path, security_schemes, definitions
 
