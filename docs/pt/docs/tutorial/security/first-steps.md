@@ -123,7 +123,7 @@ Quando você cria uma instância da classe `OAuth2PasswordBearer` nós passamos 
 
     Por estarmos usando uma URL relativa, se sua API está localizada em `https://example.com/`, então ela seria refenciada para `https://example.com/token`. Mas se sua API estiver localizada em `https://example.com/api/v1/`, então ela seria referenciada para `https://example.com/api/v1/token`.
 
-    Ao usar uma URL relativa é importante ter certeza que sua aplicação continua funcionando mesmo em uso avançado como [Atrás do Proxy](../../advanced/behind-a-proxy.md){.internal-link target=_blank}.
+    Ao usar uma URL relativa é importante ter certeza que sua aplicação continue funcionando mesmo em uso avançado como [Behind a Proxy](../../advanced/behind-a-proxy.md){.internal-link target=_blank}.
 
 Esse parametro não cria esse endpoint / *caminho*, mas declara que a URL `/token` será usada para que o cliente possa usar para pegar o token. Essa informação é usada na OpenAPI, e então no sistema de documentação interativa da API.
 
