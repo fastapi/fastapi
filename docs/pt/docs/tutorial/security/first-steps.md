@@ -153,7 +153,7 @@ Now you can pass that `oauth2_scheme` in a dependency with `Depends`.
 {!../../../docs_src/security/tutorial001.py!}
 ```
 
-Essa dependência irá providenciar uma `str` que será atribuída ao parâmetro `token` de um determinado *caminho/path de operação funcional*.
+Essa dependência irá providenciar uma `str` que será atribuída ao parâmetro `token` de uma determinada *rota de operação funcional*.
 
 O **FastAPI** saberá que e possível usar essa dependência para definir um "esquema de segurança" no esquema da OpenAPI (e a documentação automática da API).
 
