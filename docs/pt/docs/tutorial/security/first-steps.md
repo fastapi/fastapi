@@ -82,7 +82,7 @@ OAuth2 foi desenhado para que o backend ou API pudesse ser independente do servi
 
 Mas nesse caso, a mesma aplicação **FastAPI** irá lidar com a API e a autenticação.
 
-Então, vamos revisar de esse ponto de vista simplificado:
+Então, vamos revisá-lo desse ponto de vista simplificado:
 * O usuário escreve `usuario` e `senha` em um frontend, e pressiona `Enter`.
 * O frontend (rodando no browser do usuário) envia aquele `username` e `password`paara uma URL específica em nossa API (declarada com `tokenUrl="token"`)
 * A API verifica aquele `usuario` e `senha`, e responde com um "token" (nós não implementamos na disso ainda).
