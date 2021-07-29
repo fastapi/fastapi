@@ -30,10 +30,16 @@ class Contact(BaseModel):
     url: Optional[AnyUrl] = None
     email: Optional[EmailStr] = None
 
+    class Config:
+        extra = "allow"
+
 
 class License(BaseModel):
     name: str
     url: Optional[AnyUrl] = None
+
+    class Config:
+        extra = "allow"
 
 
 class Info(BaseModel):
@@ -44,17 +50,26 @@ class Info(BaseModel):
     license: Optional[License] = None
     version: str
 
+    class Config:
+        extra = "allow"
+
 
 class ServerVariable(BaseModel):
     enum: Optional[List[str]] = None
     default: str
     description: Optional[str] = None
 
+    class Config:
+        extra = "allow"
+
 
 class Server(BaseModel):
     url: Union[AnyUrl, str]
     description: Optional[str] = None
     variables: Optional[Dict[str, ServerVariable]] = None
+
+    class Config:
+        extra = "allow"
 
 
 class Reference(BaseModel):
@@ -73,13 +88,19 @@ class XML(BaseModel):
     attribute: Optional[bool] = None
     wrapped: Optional[bool] = None
 
+    class Config:
+        extra = "allow"
+
 
 class ExternalDocumentation(BaseModel):
     description: Optional[str] = None
     url: AnyUrl
 
+    class Config:
+        extra = "allow"
 
-class SchemaBase(BaseModel):
+
+class Schema(BaseModel):
     ref: Optional[str] = Field(None, alias="$ref")
     title: Optional[str] = None
     multipleOf: Optional[float] = None
@@ -98,13 +119,13 @@ class SchemaBase(BaseModel):
     required: Optional[List[str]] = None
     enum: Optional[List[Any]] = None
     type: Optional[str] = None
-    allOf: Optional[List[Any]] = None
-    oneOf: Optional[List[Any]] = None
-    anyOf: Optional[List[Any]] = None
-    not_: Optional[Any] = Field(None, alias="not")
-    items: Optional[Any] = None
-    properties: Optional[Dict[str, Any]] = None
-    additionalProperties: Optional[Union[Dict[str, Any], bool]] = None
+    allOf: Optional[List["Schema"]] = None
+    oneOf: Optional[List["Schema"]] = None
+    anyOf: Optional[List["Schema"]] = None
+    not_: Optional["Schema"] = Field(None, alias="not")
+    items: Optional["Schema"] = None
+    properties: Optional[Dict[str, "Schema"]] = None
+    additionalProperties: Optional[Union["Schema", Reference, bool]] = None
     description: Optional[str] = None
     format: Optional[str] = None
     default: Optional[Any] = None
@@ -121,21 +142,14 @@ class SchemaBase(BaseModel):
         extra: str = "allow"
 
 
-class Schema(SchemaBase):
-    allOf: Optional[List[SchemaBase]] = None
-    oneOf: Optional[List[SchemaBase]] = None
-    anyOf: Optional[List[SchemaBase]] = None
-    not_: Optional[SchemaBase] = Field(None, alias="not")
-    items: Optional[SchemaBase] = None
-    properties: Optional[Dict[str, SchemaBase]] = None
-    additionalProperties: Optional[Union[Dict[str, Any], bool]] = None
-
-
 class Example(BaseModel):
     summary: Optional[str] = None
     description: Optional[str] = None
     value: Optional[Any] = None
     externalValue: Optional[AnyUrl] = None
+
+    class Config:
+        extra = "allow"
 
 
 class ParameterInType(Enum):
@@ -147,11 +161,13 @@ class ParameterInType(Enum):
 
 class Encoding(BaseModel):
     contentType: Optional[str] = None
-    # Workaround OpenAPI recursive reference, using Any
-    headers: Optional[Dict[str, Union[Any, Reference]]] = None
+    headers: Optional[Dict[str, Union["Header", Reference]]] = None
     style: Optional[str] = None
     explode: Optional[bool] = None
     allowReserved: Optional[bool] = None
+
+    class Config:
+        extra = "allow"
 
 
 class MediaType(BaseModel):
@@ -159,6 +175,9 @@ class MediaType(BaseModel):
     example: Optional[Any] = None
     examples: Optional[Dict[str, Union[Example, Reference]]] = None
     encoding: Optional[Dict[str, Encoding]] = None
+
+    class Config:
+        extra = "allow"
 
 
 class ParameterBase(BaseModel):
@@ -175,6 +194,9 @@ class ParameterBase(BaseModel):
     # Serialization rules for more complex scenarios
     content: Optional[Dict[str, MediaType]] = None
 
+    class Config:
+        extra = "allow"
+
 
 class Parameter(ParameterBase):
     name: str
@@ -185,15 +207,13 @@ class Header(ParameterBase):
     pass
 
 
-# Workaround OpenAPI recursive reference
-class EncodingWithHeaders(Encoding):
-    headers: Optional[Dict[str, Union[Header, Reference]]] = None
-
-
 class RequestBody(BaseModel):
     description: Optional[str] = None
     content: Dict[str, MediaType]
     required: Optional[bool] = None
+
+    class Config:
+        extra = "allow"
 
 
 class Link(BaseModel):
@@ -204,12 +224,18 @@ class Link(BaseModel):
     description: Optional[str] = None
     server: Optional[Server] = None
 
+    class Config:
+        extra = "allow"
+
 
 class Response(BaseModel):
     description: str
     headers: Optional[Dict[str, Union[Header, Reference]]] = None
     content: Optional[Dict[str, MediaType]] = None
     links: Optional[Dict[str, Union[Link, Reference]]] = None
+
+    class Config:
+        extra = "allow"
 
 
 class Operation(BaseModel):
@@ -220,9 +246,9 @@ class Operation(BaseModel):
     operationId: Optional[str] = None
     parameters: Optional[List[Union[Parameter, Reference]]] = None
     requestBody: Optional[Union[RequestBody, Reference]] = None
-    responses: Dict[str, Response]
-    # Workaround OpenAPI recursive reference
-    callbacks: Optional[Dict[str, Union[Dict[str, Any], Reference]]] = None
+    # Using Any for Specification Extensions
+    responses: Dict[str, Union[Response, Any]]
+    callbacks: Optional[Dict[str, Union[Dict[str, "PathItem"], Reference]]] = None
     deprecated: Optional[bool] = None
     security: Optional[List[Dict[str, List[str]]]] = None
     servers: Optional[List[Server]] = None
@@ -246,10 +272,8 @@ class PathItem(BaseModel):
     servers: Optional[List[Server]] = None
     parameters: Optional[List[Union[Parameter, Reference]]] = None
 
-
-# Workaround OpenAPI recursive reference
-class OperationWithCallbacks(BaseModel):
-    callbacks: Optional[Dict[str, Union[Dict[str, PathItem], Reference]]] = None
+    class Config:
+        extra = "allow"
 
 
 class SecuritySchemeType(Enum):
@@ -262,6 +286,9 @@ class SecuritySchemeType(Enum):
 class SecurityBase(BaseModel):
     type_: SecuritySchemeType = Field(..., alias="type")
     description: Optional[str] = None
+
+    class Config:
+        extra = "allow"
 
 
 class APIKeyIn(Enum):
@@ -290,6 +317,9 @@ class OAuthFlow(BaseModel):
     refreshUrl: Optional[str] = None
     scopes: Dict[str, str] = {}
 
+    class Config:
+        extra = "allow"
+
 
 class OAuthFlowImplicit(OAuthFlow):
     authorizationUrl: str
@@ -314,6 +344,9 @@ class OAuthFlows(BaseModel):
     clientCredentials: Optional[OAuthFlowClientCredentials] = None
     authorizationCode: Optional[OAuthFlowAuthorizationCode] = None
 
+    class Config:
+        extra = "allow"
+
 
 class OAuth2(SecurityBase):
     type_ = Field(SecuritySchemeType.oauth2, alias="type")
@@ -337,7 +370,11 @@ class Components(BaseModel):
     headers: Optional[Dict[str, Union[Header, Reference]]] = None
     securitySchemes: Optional[Dict[str, Union[SecurityScheme, Reference]]] = None
     links: Optional[Dict[str, Union[Link, Reference]]] = None
-    callbacks: Optional[Dict[str, Union[Dict[str, PathItem], Reference]]] = None
+    # Using Any for Specification Extensions
+    callbacks: Optional[Dict[str, Union[Dict[str, PathItem], Reference, Any]]] = None
+
+    class Config:
+        extra = "allow"
 
 
 class Tag(BaseModel):
@@ -345,13 +382,25 @@ class Tag(BaseModel):
     description: Optional[str] = None
     externalDocs: Optional[ExternalDocumentation] = None
 
+    class Config:
+        extra = "allow"
+
 
 class OpenAPI(BaseModel):
     openapi: str
     info: Info
     servers: Optional[List[Server]] = None
-    paths: Dict[str, PathItem]
+    # Using Any for Specification Extensions
+    paths: Dict[str, Union[PathItem, Any]]
     components: Optional[Components] = None
     security: Optional[List[Dict[str, List[str]]]] = None
     tags: Optional[List[Tag]] = None
     externalDocs: Optional[ExternalDocumentation] = None
+
+    class Config:
+        extra = "allow"
+
+
+Schema.update_forward_refs()
+Operation.update_forward_refs()
+Encoding.update_forward_refs()
