@@ -80,6 +80,8 @@ nav:
   - tutorial/request-forms-and-files.md
   - tutorial/handling-errors.md
   - tutorial/body-updates.md
+  - 依赖项:
+    - tutorial/dependencies/global-dependencies.md
   - 安全性:
     - tutorial/security/index.md
     - tutorial/security/get-current-user.md
