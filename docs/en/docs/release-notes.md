@@ -2,6 +2,7 @@
 
 ## Latest Changes
 
+* ✨ Add support for extensions and updates to the OpenAPI schema in path operations. PR [#1922](https://github.com/tiangolo/fastapi/pull/1922) by [@edouardlp](https://github.com/edouardlp).
 * ✨ Import and re-export data structures from Starlette, used by Request properties, on `fastapi.datastructures`. PR [#1872](https://github.com/tiangolo/fastapi/pull/1872) by [@jamescurtin](https://github.com/jamescurtin).
 * 📝 Update docs about async and response-model with more gender neutral language. PR [#1869](https://github.com/tiangolo/fastapi/pull/1869) by [@Edward-Knight](https://github.com/Edward-Knight).
 * ✨ Add additonal OpenAPI metadata parameters to `FastAPI` class, shown on the automatic API docs UI. PR [#1812](https://github.com/tiangolo/fastapi/pull/1812) by [@dkreeft](https://github.com/dkreeft).
