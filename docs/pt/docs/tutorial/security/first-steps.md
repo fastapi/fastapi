@@ -64,7 +64,7 @@ E se você clicar, você terá um pequeno formulário do tipo `usuário` e `senh
 !!! note
     Não importa o que você escrever no formulário, isso não vai funcionar ainda. Mas nós iremos chegar lá.
 
-Claro que não é o frontend destinado para o usuário final, mas isso é uma excelente ferramenta de automação para documentação interativa de toda sua API.
+Claro que isso não é o frontend destinado para o usuário final, mas é uma excelente ferramenta de automação para documentação interativa de toda sua API.
 
 Pode ser usado pelo time de frontend (que pode ser você também).
 
