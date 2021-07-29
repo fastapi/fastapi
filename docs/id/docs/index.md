@@ -245,7 +245,7 @@ Anda telah membuat sebuah Antarmuka Pemrograman Aplikasi yang berjalan:
 
 Sekarang buka halaman <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 
-Anda akan melihat dokumentasi API otomatis yang interktif (disediakan oleh <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a>):
+Anda akan melihat dokumentasi API otomatis yang interaktif (disediakan oleh <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a>):
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-01-swagger-ui-simple.png)
 
@@ -437,7 +437,7 @@ Tolok ukur TechEmpower Independen menunjukkan aplikasi **FastAPI** yang berjalan
 
 Untuk mengerti selebihnya, lihat bagian <a href="https://fastapi.tiangolo.com/benchmarks/" class="internal-link" target="_blank">Tolak Ukur</a>.
 
-## Dpendensi Optional
+## Opsional Dependensi
 
 Digunakan oleh Pydantic:
 
