@@ -1,3 +1,4 @@
+import dataclasses
 from collections import defaultdict
 from enum import Enum
 from pathlib import PurePath
@@ -61,6 +62,8 @@ def jsonable_encoder(
             custom_encoder=encoder,
             sqlalchemy_safe=sqlalchemy_safe,
         )
+    if dataclasses.is_dataclass(obj):
+        return dataclasses.asdict(obj)
     if isinstance(obj, Enum):
         return obj.value
     if isinstance(obj, PurePath):
