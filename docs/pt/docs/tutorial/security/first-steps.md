@@ -84,7 +84,7 @@ Mas nesse caso, a mesma aplicação **FastAPI** irá lidar com a API e a autenti
 
 Então, vamos revisá-lo desse ponto de vista simplificado:
 * O usuário escreve `usuario` e `senha` em um frontend, e pressiona `Enter`.
-* O frontend (rodando no browser do usuário) envia aquele `username` e `password`paara uma URL específica em nossa API (declarada com `tokenUrl="token"`)
+* O frontend (rodando no browser do usuário) envia aquele `usuario` e `senha` para uma URL específica em nossa API (declarada com `tokenUrl="token"`)
 * A API verifica aquele `usuario` e `senha`, e responde com um "token" (nós não implementamos nada disso ainda).
     * Um "token" é uma string com algum conteúdo que nós podemos usar depois para verificar esse usuário.
     * Normalmente, um token expira após um certo tempo.
