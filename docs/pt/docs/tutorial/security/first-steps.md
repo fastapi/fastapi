@@ -1,4 +1,4 @@
-# Security - Primeiros passos
+# Segurança - Primeiros passos
 
 Vamos imaginar que você tem sua API **backend** em um domínio.
 
