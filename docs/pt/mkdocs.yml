@@ -39,6 +39,7 @@ nav:
 - FastAPI: index.md
 - Languages:
   - en: /
+  - de: /de/
   - es: /es/
   - fr: /fr/
   - id: /id/
@@ -57,8 +58,12 @@ nav:
   - tutorial/index.md
   - tutorial/first-steps.md
   - tutorial/body-fields.md
-- Guia de Usuário Avançado:
-  - advanced/index.md
+  - Segurança:
+    - tutorial/security/index.md
+  - Guia de Usuário Avançado:
+    - advanced/index.md
+- Implantação:
+  - deployment/index.md
 - alternatives.md
 - history-design-future.md
 - external-links.md
@@ -98,6 +103,8 @@ extra:
   alternate:
   - link: /
     name: en - English
+  - link: /de/
+    name: de
   - link: /es/
     name: es - español
   - link: /fr/
@@ -131,3 +138,4 @@ extra_javascript:
 - https://unpkg.com/mermaid@8.4.6/dist/mermaid.min.js
 - https://fastapi.tiangolo.com/js/termynal.js
 - https://fastapi.tiangolo.com/js/custom.js
+

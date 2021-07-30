@@ -39,6 +39,7 @@ nav:
 - FastAPI: index.md
 - Languages:
   - en: /
+  - de: /de/
   - es: /es/
   - fr: /fr/
   - id: /id/
@@ -190,6 +191,8 @@ extra:
   alternate:
   - link: /
     name: en - English
+  - link: /de/
+    name: de
   - link: /es/
     name: es - español
   - link: /fr/

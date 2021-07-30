@@ -92,7 +92,7 @@ You can [contribute](contributing.md){.internal-link target=_blank} to the sourc
 
 * To fix a typo you found on the documentation.
 * To share an article, video, or podcast you created or found about FastAPI by <a href="https://github.com/tiangolo/fastapi/edit/master/docs/en/data/external_links.yml" class="external-link" target="_blank">editing this file</a>.
-    * Make sure you add your link to the end of the corresponding section.
+    * Make sure you add your link to the start of the corresponding section.
 * To help [translate the documentation](contributing.md#translations){.internal-link target=_blank} to your language.
     * You can also help reviewing the translations created by others.
 * To propose new documentation sections.
