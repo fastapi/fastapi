@@ -68,127 +68,127 @@ But if you go to the browser at <a href="http://127.0.0.1:8000/items/foo" class=
 Такая же ошибка будет, если вы попытаетесь предоставить значение типа `float` вместо целого числа, например: <a href="http://127.0.0.1:8000/items/4.2" class="external-link" target="_blank">http://127.0.0.1:8000/items/4.2</a>
 
 !!! check
-    So, with the same Python type declaration, **FastAPI** gives you data validation.
+    Таким образом, обычные аннотации типов Python в **FastAPI** используются для проверки (валидации) данных.
 
-    Notice that the error also clearly states exactly the point where the validation didn't pass.
+    Обратите внимание, что в описании ошибки четко указано, где именно не прошла проверка.
 
-    This is incredibly helpful while developing and debugging code that interacts with your API.
+    Это невероятно полезно при разработке и отладке кода, который взаимодействует с вашим API.
 
-## Documentation
+## Документирование
 
-And when you open your browser at <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>, you will see an automatic, interactive, API documentation like:
+А сейчас, если вы откроете страницу в браузере с адресом <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>, вы увидите автоматически сгенерированную, интерактивную документацию по API:
 
 <img src="/img/tutorial/path-params/image01.png">
 
 !!! check
-    Again, just with that same Python type declaration, **FastAPI** gives you automatic, interactive documentation (integrating Swagger UI).
+    Еще раз, используя обычные аннотации типов Python, **FastAPI** предоставляет автоматически генерируемую, интерактивную документации (интегрированный Swagger UI).
 
-    Notice that the path parameter is declared to be an integer.
+    Обратите внимание, тип параметра -- integer.
 
-## Standards-based benefits, alternative documentation
+## Преимущества использования стандартов, альтернативная документация
 
-And because the generated schema is from the <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md" class="external-link" target="_blank">OpenAPI</a> standard, there are many compatible tools.
+Поскольку генерируемая схема соответствует <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md" class="external-link" target="_blank">OpenAPI</a> стандарту, к ней может быть применено множество совместимых инструментов.
 
-Because of this, **FastAPI** itself provides an alternative API documentation (using ReDoc), which you can access at <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>:
+Сам **FastAPI** обеспечивает альтернативной документацией API (с помощью ReDic), которая доступна по адресу <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>:
 
 <img src="/img/tutorial/path-params/image02.png">
 
-The same way, there are many compatible tools. Including code generation tools for many languages.
+По такому же принципу работают и другие совместимые инструменты. Включая инструменты генерации кода для множества языков.
 
 ## Pydantic
 
-All the data validation is performed under the hood by <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a>, so you get all the benefits from it. And you know you are in good hands.
+Проверка данных выполняется под капотом с помощью <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a>, а значит, доступны все его преимущества. В общем, вы в надежных руках.
 
-You can use the same type declarations with `str`, `float`, `bool` and many other complex data types.
+Аналогично можно использовать аннотации типов `str`, `float`, `bool` и другие, более сложные типы.
 
-Several of these are explored in the next chapters of the tutorial.
+Некоторые из них будут рассмотрены в следующих главах данного руководства.
 
-## Order matters
+## Порядок имеет значение
 
-When creating *path operations*, you can find situations where you have a fixed path.
+При создании *операций с путями* может возникнуть ситуация, в которой будет фиксированный путь.
 
-Like `/users/me`, let's say that it's to get data about the current user.
+Например, `/users/me`, предположим, он будет возвращать данные о текущем пользователе.
 
-And then you can also have a path `/users/{user_id}` to get data about a specific user by some user ID.
+Также у вас есть путь `/users/{user_id}` для получения данных о конкретном пользователе по его некоторому ID.
 
-Because *path operations* are evaluated in order, you need to make sure that the path for `/users/me` is declared before the one for `/users/{user_id}`:
+Поскольку *операции с путями* вычисляются по порядку, вам необходимо убедиться, что путь `/users/me` объявлен перед путем `/users/{user_id}`:
 
 ```Python hl_lines="6  11"
 {!../../../docs_src/path_params/tutorial003.py!}
 ```
 
-Otherwise, the path for `/users/{user_id}` would match also for `/users/me`, "thinking" that it's receiving a parameter `user_id` with a value of `"me"`.
+В противном случае пути `/users/{user_id}` будет соответствовать и путь `/users/me`, "думая", что это параметр `user_id` со значением `"me"`.
 
-## Predefined values
+## Предопределенные значения
 
-If you have a *path operation* that receives a *path parameter*, but you want the possible valid *path parameter* values to be predefined, you can use a standard Python <abbr title="Enumeration">`Enum`</abbr>.
+Если у вас есть *операция по пути", которая получаем *параметр пути*, но вы хотите, чтобы возможные значения были заранее предопределены, можно воспользовать стандартным типом Python <abbr title="Enumeration">`Enum`</abbr>.
 
-### Create an `Enum` class
+### Создание класса `Enum`
 
-Import `Enum` and create a sub-class that inherits from `str` and from `Enum`.
+Импортируйте `Enum` и создайте класс-потомок, наследующий от `str` и `Enum`.
 
-By inheriting from `str` the API docs will be able to know that the values must be of type `string` and will be able to render correctly.
+Наследование от `str` позволяет документирующемупри документировании API понять, что значения должны быть типа `string`, и правильно их отображать.
 
-Then create class attributes with fixed values, which will be the available valid values:
+Затем добавьте атрибуты класса с фиксированными значениями, которые и станут допустимыми:
 
 ```Python hl_lines="1  6-9"
 {!../../../docs_src/path_params/tutorial005.py!}
 ```
 
 !!! info
-    <a href="https://docs.python.org/3/library/enum.html" class="external-link" target="_blank">Enumerations (or enums) are available in Python</a> since version 3.4.
+    <a href="https://docs.python.org/3/library/enum.html" class="external-link" target="_blank">Перечисления доступны в Python</a>, начиная с версии 3.4.
 
 !!! tip
-    If you are wondering, "AlexNet", "ResNet", and "LeNet" are just names of Machine Learning <abbr title="Technically, Deep Learning model architectures">models</abbr>.
+    Если вам интересно, "AlexNet", "ResNet" и "LeNet" - это просто названия <abbr title="Технически, архитектуры моделей глубокого обучения">моделей</abbr> машинного обучения.
 
-### Declare a *path parameter*
+### Объявление *параметра пути*
 
-Then create a *path parameter* with a type annotation using the enum class you created (`ModelName`):
+Теперь создайте *параметр пути* с аннотацией типа, используя ранее созданный класс (`ModelName`):
 
 ```Python hl_lines="16"
 {!../../../docs_src/path_params/tutorial005.py!}
 ```
 
-### Check the docs
+### Проверяем документацию
 
-Because the available values for the *path parameter* are predefined, the interactive docs can show them nicely:
+Поскольку возможные значения для *параметра* являются предопределенными, интерактивная документация замечательно их отображает:
 
 <img src="/img/tutorial/path-params/image03.png">
 
-### Working with Python *enumerations*
+### Работа с *перечислениями* в Python *enumerations*
 
-The value of the *path parameter* will be an *enumeration member*.
+Значение *параметра пути* является *членом класса перечисления*.
 
-#### Compare *enumeration members*
+#### Сравнение *членов перечисления*
 
-You can compare it with the *enumeration member* in your created enum `ModelName`:
+Вы можете сравнивать параметр с *членами перечисления* созданного вами `ModelName`:
 
 ```Python hl_lines="17"
 {!../../../docs_src/path_params/tutorial005.py!}
 ```
 
-#### Get the *enumeration value*
+#### Получение *значения перечисления*
 
-You can get the actual value (a `str` in this case) using `model_name.value`, or in general, `your_enum_member.value`:
+Можно получить фактическое значение перечисления (типа `str`, в данном случае) с помощью конструкции `model_name.value`, или в общем случае, `your_enum_member.value`:
 
 ```Python hl_lines="20"
 {!../../../docs_src/path_params/tutorial005.py!}
 ```
 
 !!! tip
-    You could also access the value `"lenet"` with `ModelName.lenet.value`.
+    А еще вы можете получить доступ к значению `"lenet"` с помощью конструкции `ModelName.lenet.value`.
 
-#### Return *enumeration members*
+#### Возврат *членов перечисления*
 
-You can return *enum members* from your *path operation*, even nested in a JSON body (e.g. a `dict`).
+Также можно вернуть *члены перечисления* из вашей *путевой операции*, можно даже вложенным в JSON (например, в словарь `dict`).
 
-They will be converted to their corresponding values (strings in this case) before returning them to the client:
+Они будут сконвертированы в соответствующие фактические значения (строки, в нашем случае) перед возвратом клиенту:
 
 ```Python hl_lines="18  21  23"
 {!../../../docs_src/path_params/tutorial005.py!}
 ```
 
-In your client you will get a JSON response like:
+В вашем клиенте вы увидите вот такой JSON-ответ:
 
 ```JSON
 {
@@ -197,52 +197,53 @@ In your client you will get a JSON response like:
 }
 ```
 
-## Path parameters containing paths
+## Параметры пути, содержащие путь
 
-Let's say you have a *path operation* with a path `/files/{file_path}`.
+Допустим, у вас есть *путевая операция* с путем `/files/{file_path}`.
 
-But you need `file_path` itself to contain a *path*, like `home/johndoe/myfile.txt`.
+Но вам надо, чтобы `file_path` тоже содержал некий *путь*, например `home/johndoe/myfile.txt`.
 
-So, the URL for that file would be something like: `/files/home/johndoe/myfile.txt`.
+То есть, итоговый URL для этого файла должен быть таким: `/files/home/johndoe/myfile.txt`.
 
-### OpenAPI support
+### Поддержка в OpenAPI
 
-OpenAPI doesn't support a way to declare a *path parameter* to contain a *path* inside, as that could lead to scenarios that are difficult to test and define.
+В OpenAPI нет никакого способа объявить *параметр пути*, содержащий *путь*, так как это может привести к сценариям, которые трудно протестировать и описать.
 
-Nevertheless, you can still do it in **FastAPI**, using one of the internal tools from Starlette.
+Однако, вы все равно можете сделать так в **FastAPI**, с помощью внутренних инструментов Starlette.
 
-And the docs would still work, although not adding any documentation telling that the parameter should contain a path.
+Документация будет по прежнему работать, хотя в ней и не будет никакой информации о том, что параметр содержит путь.
 
-### Path convertor
+### Конвертор пути
 
-Using an option directly from Starlette you can declare a *path parameter* containing a *path* using a URL like:
+Используя опцию Starlette можно объявить *путевой параметр*, содержащий *путь*, в URL вида:
 
 ```
 /files/{file_path:path}
 ```
 
 In this case, the name of the parameter is `file_path`, and the last part, `:path`, tells it that the parameter should match any *path*.
+В этом случае именем параметра является `file_path`, а дополнительная часть, `:path`, сообщает, что этот параметр соответствует любому *пути*.
 
-So, you can use it with:
+Например:
 
 ```Python hl_lines="6"
 {!../../../docs_src/path_params/tutorial004.py!}
 ```
 
 !!! tip
-    You could need the parameter to contain `/home/johndoe/myfile.txt`, with a leading slash (`/`).
+    Возможно, вам необходимо, чтобы параметр содержал `/home/johndoe/myfile.txt`, с ведущим "слэшем" (`/`).
 
-    In that case, the URL would be: `/files//home/johndoe/myfile.txt`, with a double slash (`//`) between `files` and `home`.
+    В этом случае URL должен быть: `/files//home/johndoe/myfile.txt`, с двойным "слэшем" (`//`) между `files` и `home`.
 
-## Recap
+## Резюме
 
-With **FastAPI**, by using short, intuitive and standard Python type declarations, you get:
+С **FastAPI**, используя короткие, интуитивно понятные и стандартные аннотации типов Python, вы получаете:
 
-* Editor support: error checks, autocompletion, etc.
-* Data "<abbr title="converting the string that comes from an HTTP request into Python data">parsing</abbr>"
-* Data validation
-* API annotation and automatic documentation
+* Поддержку в редакторе: проверку ошибок, автодополнение и т.п.
+* "<abbr title="конвертирование строк из запроса HTTP в данные (типы) Python">Парсинг</abbr>" данных.
+* Проверку (валидацию) данных
+* Автоматическую генерацию документации по API
 
-And you only have to declare them once.
+И объявить их нужно только один раз.
 
-That's probably the main visible advantage of **FastAPI** compared to alternative frameworks (apart from the raw performance).
+Вероятно, это главное явное преимущество **FastAPI** по сравнению с другими фреймворками (помимо чистой производительности).
