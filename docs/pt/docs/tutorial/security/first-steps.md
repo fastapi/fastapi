@@ -154,7 +154,7 @@ Agora você pode passar esse `oauth2_schema` em uma dependência com `Depends`.
 
 Essa dependência irá providenciar uma `str` que será atribuída ao parâmetro `token` de uma determinada *rota de operação funcional*.
 
-O **FastAPI** saberá que e possível usar essa dependência para definir um "esquema de segurança" no esquema da OpenAPI (e a documentação automática da API).
+O **FastAPI** saberá que é possível usar essa dependência para definir um "esquema de segurança" no esquema da OpenAPI (e a documentação automática da API).
 
 !!! info "Detalhes técnicos"
     O **FastAPI** irá saber que é possível usar a classe `OAuth2PasswordBearer` (declarada em uma dependência) para definir o esquema de segurança na OpenAPI, porque isso herda de `fastapi.security.oauth2.OAuth2`, que por sua vez herda `fastapi.security.base.ScurityBase`.
