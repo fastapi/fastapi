@@ -72,7 +72,7 @@ Pode ser usado por aplicações e sistemas de terceiros.
 
 E isso pode também ser usado por você, para _debug_, verificação e teste da mesma aplicação.
 
-## O fluxo `senha`
+## Fluxo de `senha`
 
 Agora vamos voltar um pouco e entender o que é tudo isso.
 
