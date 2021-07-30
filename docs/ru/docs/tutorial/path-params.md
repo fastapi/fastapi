@@ -1,48 +1,52 @@
-# Path Parameters
+# Параметры пути
 
-You can declare path "parameters" or "variables" with the same syntax used by Python format strings:
+Вы можете задавать "параметры" или "переменные" в пути с тем же синтаксисом, что и в форматных строках Python.
 
 ```Python hl_lines="6-7"
 {!../../../docs_src/path_params/tutorial001.py!}
 ```
 
-The value of the path parameter `item_id` will be passed to your function as the argument `item_id`.
+Значение параметра пути `item_id` будет передано в вашу функцию как аргумент `item_id`.
 
-So, if you run this example and go to <a href="http://127.0.0.1:8000/items/foo" class="external-link" target="_blank">http://127.0.0.1:8000/items/foo</a>, you will see a response of:
+Таким образом, если вы запустите этот пример и перейдете по адресу <a href="http://127.0.0.1:8000/items/foo" class="external-link" target="_blank">http://127.0.0.1:8000/items/foo</a>, вы увидите вот такой ответ:
 
 ```JSON
 {"item_id":"foo"}
 ```
 
-## Path parameters with types
+## Параметры пути с типами
 
-You can declare the type of a path parameter in the function, using standard Python type annotations:
+Вы можете добавить описание типа для параметра пути в функции используя стандартные аннотации типов Python.
 
 ```Python hl_lines="7"
 {!../../../docs_src/path_params/tutorial002.py!}
 ```
 
-In this case, `item_id` is declared to be an `int`.
+В данном случае, `item_id` объявлен как `int`.
 
 !!! check
-    This will give you editor support inside of your function, with error checks, completion, etc.
+    Это позволяет вашему редактору выполнять внутри функции проверку типа, автодополнение и т.п.
 
-## Data <abbr title="also known as: serialization, parsing, marshalling">conversion</abbr>
+## <abbr title="в том числе: сериализация, парсинг, маршаллинг">Преобразование</abbr> данных
 
 If you run this example and open your browser at <a href="http://127.0.0.1:8000/items/3" class="external-link" target="_blank">http://127.0.0.1:8000/items/3</a>, you will see a response of:
+Если вы запустите этот пример и откроете в браузере адрес <a href="http://127.0.0.1:8000/items/3" class="external-link" target="_blank">http://127.0.0.1:8000/items/3</a>, вы увидите следующий ответ:
 
 ```JSON
 {"item_id":3}
 ```
 
 !!! check
-    Notice that the value your function received (and returned) is `3`, as a Python `int`, not a string `"3"`.
+    Обратите внимание, что ваша функция получила не строку `"3"`, а число `3`, типа `int` в Python.
 
-    So, with that type declaration, **FastAPI** gives you automatic request <abbr title="converting the string that comes from an HTTP request into Python data">"parsing"</abbr>.
+    So, with that type declaration, **FastAPI** gives you automatic request .
+    Т.е. объявление типа дает возможность **FastAPI** автоматически <abbr title="сконвертировать строку, которая поступила с HTTP-запросом в данные Python">"распарсить"</abbr> запрос.
 
-## Data validation
+## Проверка данных
 
 But if you go to the browser at <a href="http://127.0.0.1:8000/items/foo" class="external-link" target="_blank">http://127.0.0.1:8000/items/foo</a>, you will see a nice HTTP error of:
+Но, если вы зайдете в браузер по адресу <a href="http://127.0.0.1:8000/items/foo" class="external-link" target="_blank">http://127.0.0.1:8000/items/foo</a>, то увидите симпатичную ошибку:
+
 
 ```JSON
 {
@@ -59,9 +63,9 @@ But if you go to the browser at <a href="http://127.0.0.1:8000/items/foo" class=
 }
 ```
 
-because the path parameter `item_id` had a value of `"foo"`, which is not an `int`.
+потому что параметр пути `item_id` получил значение `"foo"`, которое не является целочисленным, типом `int`.
 
-The same error would appear if you provided a `float` instead of an `int`, as in: <a href="http://127.0.0.1:8000/items/4.2" class="external-link" target="_blank">http://127.0.0.1:8000/items/4.2</a>
+Такая же ошибка будет, если вы попытаетесь предоставить значение типа `float` вместо целого числа, например: <a href="http://127.0.0.1:8000/items/4.2" class="external-link" target="_blank">http://127.0.0.1:8000/items/4.2</a>
 
 !!! check
     So, with the same Python type declaration, **FastAPI** gives you data validation.
