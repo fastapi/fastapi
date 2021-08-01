@@ -89,3 +89,7 @@ The anydep implementation attempts to bridge the gap between FastAPI and python-
 If you run the files, you'll see that anydep and python-dependency-injector are 2x as fast as FastAPI because they parallelize execution.
 
 In `comparisons/anydep_nested.py` and `comparisons/fastapi_nested.py` are comparisons of execution of deeply nested/branched dependency graphs. Interestingly, FastAPI seems to choke pretty quickly as the graph grows, while anydep seems to have much less trouble.
+
+#### Backwards compatibility
+
+This implementation should be API compatible (in terms of using `Depends` and such), but it would break or obsolete a lot of the functions in `fastapi/dependencies/utils.py`.
