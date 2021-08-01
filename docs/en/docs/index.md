@@ -220,6 +220,9 @@ The command `uvicorn main:app` refers to:
 
 </details>
 
+You can also use app.run() in your code if you want to which will just run the server via uvicorn as long as you have it installed.
+
+
 ### Check it
 
 Open your browser at <a href="http://127.0.0.1:8000/items/5?q=somequery" class="external-link" target="_blank">http://127.0.0.1:8000/items/5?q=somequery</a>.
