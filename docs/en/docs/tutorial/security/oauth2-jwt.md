@@ -42,7 +42,7 @@ $ pip install python-jose[cryptography]
 
 <a href="https://github.com/mpdavis/python-jose" class="external-link" target="_blank">Python-jose</a> requires a cryptographic backend as an extra.
 
-Here we are using the recommended one: <a href="http://cryptography.io/" class="external-link" target="_blank">pyca/cryptography</a>.
+Here we are using the recommended one: <a href="https://cryptography.io/" class="external-link" target="_blank">pyca/cryptography</a>.
 
 !!! tip
     This tutorial previously used <a href="https://pyjwt.readthedocs.io/" class="external-link" target="_blank">PyJWT</a>.
