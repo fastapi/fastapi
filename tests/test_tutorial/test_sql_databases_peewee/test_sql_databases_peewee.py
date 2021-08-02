@@ -5,7 +5,7 @@ from unittest.mock import MagicMock
 import pytest
 from fastapi.testclient import TestClient
 
-from ...utils import skip_py36
+from ...utils import needs_py37
 
 openapi_schema = {
     "openapi": "3.0.2",
@@ -340,14 +340,14 @@ def client():
     test_db.unlink()
 
 
-@skip_py36
+@needs_py37
 def test_openapi_schema(client):
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
     assert response.json() == openapi_schema
 
 
-@skip_py36
+@needs_py37
 def test_create_user(client):
     test_user = {"email": "johndoe@example.com", "password": "secret"}
     response = client.post("/users/", json=test_user)
@@ -359,7 +359,7 @@ def test_create_user(client):
     assert response.status_code == 400, response.text
 
 
-@skip_py36
+@needs_py37
 def test_get_user(client):
     response = client.get("/users/1")
     assert response.status_code == 200, response.text
@@ -368,13 +368,13 @@ def test_get_user(client):
     assert "id" in data
 
 
-@skip_py36
+@needs_py37
 def test_inexistent_user(client):
     response = client.get("/users/999")
     assert response.status_code == 404, response.text
 
 
-@skip_py36
+@needs_py37
 def test_get_users(client):
     response = client.get("/users/")
     assert response.status_code == 200, response.text
@@ -386,7 +386,7 @@ def test_get_users(client):
 time.sleep = MagicMock()
 
 
-@skip_py36
+@needs_py37
 def test_get_slowusers(client):
     response = client.get("/slowusers/")
     assert response.status_code == 200, response.text
@@ -395,7 +395,7 @@ def test_get_slowusers(client):
     assert "id" in data[0]
 
 
-@skip_py36
+@needs_py37
 def test_create_item(client):
     item = {"title": "Foo", "description": "Something that fights"}
     response = client.post("/users/1/items/", json=item)
@@ -419,7 +419,7 @@ def test_create_item(client):
     assert item_to_check["description"] == item["description"]
 
 
-@skip_py36
+@needs_py37
 def test_read_items(client):
     response = client.get("/items/")
     assert response.status_code == 200, response.text
