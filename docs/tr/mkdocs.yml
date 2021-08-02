@@ -58,7 +58,7 @@ markdown_extensions:
     permalink: true
 - markdown.extensions.codehilite:
     guess_lang: false
-- markdown_include.include:
+- mdx_include:
     base_path: docs
 - admonition
 - codehilite
