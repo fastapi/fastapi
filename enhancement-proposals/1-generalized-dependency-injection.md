@@ -28,6 +28,8 @@ Some of the issues that tie into this are:
 - [#504](https://github.com/tiangolo/fastapi/issues/504): Dependency Injection - Singleton?
 - [#425](https://github.com/tiangolo/fastapi/issues/425): Startup event dependencies
 - [#1873](https://github.com/tiangolo/fastapi/issues/1873): Use FastAPI Dependency Injection separately from the API routes
+- [#3620](https://github.com/tiangolo/fastapi/issues/3620): Automatically run session.commit() in session dependency BEFORE returning request
+- [#3317](https://github.com/tiangolo/fastapi/issues/3317): Add support to lazy initialize OAuth2 classes
 
 ## Proposal
 
