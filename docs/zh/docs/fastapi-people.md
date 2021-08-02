@@ -116,19 +116,32 @@ FastAPI 有一个非常棒的社区，它欢迎来自各个领域和背景的朋
 
 ### 金牌赞助商
 
-{% if sponsors %} {% for sponsor in sponsors.gold -%}
-<a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}"></a>
-{% endfor %} {% endif %}
+{% if sponsors %}
+{% for sponsor in sponsors.gold -%}
+<a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
+{% endfor %}
+{% endif %}
 
 ### 银牌赞助商
 
-{% if sponsors %} {% for sponsor in sponsors.silver -%}
-<a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}"></a>
-{% endfor %} {% endif %}
-
-{% if people %} {% if people.sponsors_50 %}
+{% if sponsors %}
+{% for sponsor in sponsors.silver -%}
+<a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
+{% endfor %}
+{% endif %}
 
 ### 铜牌赞助商
+
+{% if sponsors %}
+{% for sponsor in sponsors.bronze -%}
+<a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
+{% endfor %}
+{% endif %}
+
+### 个人赞助
+
+{% if people %}
+{% if people.sponsors_50 %}
 
 <div class="user-list user-list-center">
 {% for user in people.sponsors_50 %}
@@ -138,9 +151,8 @@ FastAPI 有一个非常棒的社区，它欢迎来自各个领域和背景的朋
 
 </div>
 
-{% endif %} {% endif %}
-
-### 个人赞助
+{% endif %}
+{% endif %}
 
 {% if people %}
 <div class="user-list user-list-center">

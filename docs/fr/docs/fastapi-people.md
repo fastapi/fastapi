@@ -114,6 +114,46 @@ Ce sont les **Sponsors**. 😎
 
 Ils soutiennent mon travail avec **FastAPI** (et d'autres) avec <a href="https://github.com/sponsors/tiangolo" class="external-link" target="_blank">GitHub Sponsors</a>.
 
+### Gold Sponsors
+
+{% if sponsors %}
+{% for sponsor in sponsors.gold -%}
+<a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
+{% endfor %}
+{% endif %}
+
+### Silver Sponsors
+
+{% if sponsors %}
+{% for sponsor in sponsors.silver -%}
+<a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
+{% endfor %}
+{% endif %}
+
+### Bronze Sponsors
+
+{% if sponsors %}
+{% for sponsor in sponsors.bronze -%}
+<a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
+{% endfor %}
+{% endif %}
+
+### Individual Sponsors
+
+{% if people %}
+{% if people.sponsors_50 %}
+
+<div class="user-list user-list-center">
+{% for user in people.sponsors_50 %}
+
+<div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a></div>
+{% endfor %}
+
+</div>
+
+{% endif %}
+{% endif %}
+
 {% if people %}
 <div class="user-list user-list-center">
 {% for user in people.sponsors %}
