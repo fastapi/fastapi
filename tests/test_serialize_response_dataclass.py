@@ -2,7 +2,7 @@ from typing import List, Optional
 from datetime import datetime
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from pydantic.dataclasses import dataclass
+from dataclasses import dataclass
 
 app = FastAPI()
 
