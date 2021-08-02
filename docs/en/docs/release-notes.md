@@ -2,6 +2,7 @@
 
 ## Latest Changes
 
+* ⬆ Add support for Python 3.9. PR [#2298](https://github.com/tiangolo/fastapi/pull/2298) by [@Kludex](https://github.com/Kludex).
 * 👥 Update FastAPI People. PR [#3642](https://github.com/tiangolo/fastapi/pull/3642) by [@github-actions[bot]](https://github.com/apps/github-actions).
 
 ## 0.68.0
