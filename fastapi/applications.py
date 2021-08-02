@@ -769,7 +769,7 @@ class FastAPI(Starlette):
     def run(self, **args):
         try:
             import uvicorn
-        except ImportError:
+        except ModuleNotFoundError:
             uvicorn = None
         assert uvicorn is not None, "'uvicorn' must be installed to use run"
         uvicorn.run(self, **args)
