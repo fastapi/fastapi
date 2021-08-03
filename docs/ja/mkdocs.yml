@@ -68,6 +68,7 @@ nav:
   - tutorial/body-updates.md
   - セキュリティ:
     - tutorial/security/first-steps.md
+    - tutorial/security/oauth2-jwt.md
   - tutorial/middleware.md
   - tutorial/cors.md
   - tutorial/static-files.md
@@ -97,7 +98,7 @@ markdown_extensions:
     permalink: true
 - markdown.extensions.codehilite:
     guess_lang: false
-- markdown_include.include:
+- mdx_include:
     base_path: docs
 - admonition
 - codehilite
