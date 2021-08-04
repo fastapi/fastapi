@@ -15,6 +15,7 @@ from fastapi.openapi.docs import (
     get_swagger_ui_html,
     get_swagger_ui_oauth2_redirect_html,
 )
+from fastapi.openapi.models import ServerD
 from fastapi.openapi.utils import get_openapi
 from fastapi.params import Depends
 from fastapi.types import DecoratedCallable
@@ -39,7 +40,7 @@ class FastAPI(Starlette):
         version: str = "0.1.0",
         openapi_url: Optional[str] = "/openapi.json",
         openapi_tags: Optional[List[Dict[str, Any]]] = None,
-        servers: Optional[List[Dict[str, Union[str, Any]]]] = None,
+        servers: Optional[List[ServerD]] = None,
         dependencies: Optional[Sequence[Depends]] = None,
         default_response_class: Type[Response] = Default(JSONResponse),
         docs_url: Optional[str] = "/docs",

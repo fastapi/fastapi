@@ -13,7 +13,7 @@ from fastapi.openapi.constants import (
     REF_PREFIX,
     STATUS_CODES_WITH_NO_BODY,
 )
-from fastapi.openapi.models import OpenAPI
+from fastapi.openapi.models import OpenAPI, ServerD
 from fastapi.params import Body, Param
 from fastapi.responses import Response
 from fastapi.utils import (
@@ -363,7 +363,7 @@ def get_openapi(
     description: Optional[str] = None,
     routes: Sequence[BaseRoute],
     tags: Optional[List[Dict[str, Any]]] = None,
-    servers: Optional[List[Dict[str, Union[str, Any]]]] = None,
+    servers: Optional[List[ServerD]] = None,
     terms_of_service: Optional[str] = None,
     contact: Optional[Dict[str, Union[str, Any]]] = None,
     license_info: Optional[Dict[str, Union[str, Any]]] = None,

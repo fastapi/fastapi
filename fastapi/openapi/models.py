@@ -1,8 +1,14 @@
+import sys
 from enum import Enum
 from typing import Any, Callable, Dict, Iterable, List, Optional, Union
 
 from fastapi.logger import logger
 from pydantic import AnyUrl, BaseModel, Field
+
+if sys.version_info >= (3, 8):  # pragma: no cover
+    from typing import TypedDict
+else:  # pragma: no cover
+    from typing_extensions import TypedDict
 
 try:
     import email_validator  # type: ignore
@@ -61,6 +67,12 @@ class ServerVariable(BaseModel):
 
     class Config:
         extra = "allow"
+
+
+class ServerD(TypedDict, total=False):
+    url: Union[AnyUrl, str]
+    description: Optional[str]
+    variables: Optional[Dict[str, ServerVariable]]
 
 
 class Server(BaseModel):
