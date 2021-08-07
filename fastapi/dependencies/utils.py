@@ -5,6 +5,7 @@ from contextlib import contextmanager
 from copy import deepcopy
 from typing import (
     Any,
+    Awaitable,
     Callable,
     Dict,
     List,
@@ -22,7 +23,9 @@ from fastapi.concurrency import (
     AsyncExitStack,
     _fake_asynccontextmanager,
     asynccontextmanager,
-    contextmanager_in_threadpool,
+    bind_async_context_manager_to_stack,
+    bind_callable_to_threadpool,
+    bind_context_manager_to_threadpool,
 )
 from fastapi.dependencies.models import Dependant, SecurityRequirement
 from fastapi.logger import logger
@@ -48,7 +51,6 @@ from pydantic.schema import get_annotation_from_field_info
 from pydantic.typing import ForwardRef, evaluate_forwardref
 from pydantic.utils import lenient_issubclass
 from starlette.background import BackgroundTasks
-from starlette.concurrency import run_in_threadpool
 from starlette.datastructures import FormData, Headers, QueryParams, UploadFile
 from starlette.requests import HTTPConnection, Request
 from starlette.responses import Response
@@ -446,12 +448,10 @@ def is_gen_callable(call: Callable[..., Any]) -> bool:
     return inspect.isgeneratorfunction(call)
 
 
-async def solve_generator(
-    *, call: Callable[..., Any], stack: AsyncExitStack, sub_values: Dict[str, Any]
-) -> Any:
-    if is_gen_callable(call):
-        cm = contextmanager_in_threadpool(contextmanager(call)(**sub_values))
-    elif is_async_gen_callable(call):
+def wrap_as_coroutine(
+    call: Callable[..., Any], stack: Union[AsyncExitStack, None]
+) -> Callable[..., Awaitable[Any]]:
+    if is_async_gen_callable(call):
         if not inspect.isasyncgenfunction(call):
             # asynccontextmanager from the async_generator backfill pre python3.7
             # does not support callables that are not functions or methods.
@@ -460,8 +460,22 @@ async def solve_generator(
             # Expand the callable class into its __call__ method before decorating it.
             # This approach will work on newer python versions as well.
             call = getattr(call, "__call__", None)
-        cm = asynccontextmanager(call)(**sub_values)
-    return await stack.enter_async_context(cm)
+        if stack is None:
+            raise RuntimeError(
+                async_contextmanager_dependencies_error
+            )  # pragma: no cover
+        call = bind_async_context_manager_to_stack(asynccontextmanager(call), stack)
+    elif is_gen_callable(call):
+        if stack is None:
+            raise RuntimeError(
+                async_contextmanager_dependencies_error
+            )  # pragma: no cover
+        call = bind_async_context_manager_to_stack(
+            bind_context_manager_to_threadpool(contextmanager(call)), stack
+        )
+    elif not is_coroutine_callable(call):
+        call = bind_callable_to_threadpool(call)
+    return call
 
 
 async def solve_dependencies(
@@ -537,19 +551,9 @@ async def solve_dependencies(
             continue
         if sub_dependant.use_cache and sub_dependant.cache_key in dependency_cache:
             solved = dependency_cache[sub_dependant.cache_key]
-        elif is_gen_callable(call) or is_async_gen_callable(call):
-            stack = request.scope.get("fastapi_astack")
-            if stack is None:
-                raise RuntimeError(
-                    async_contextmanager_dependencies_error
-                )  # pragma: no cover
-            solved = await solve_generator(
-                call=call, stack=stack, sub_values=sub_values
-            )
-        elif is_coroutine_callable(call):
-            solved = await call(**sub_values)
         else:
-            solved = await run_in_threadpool(call, **sub_values)
+            stack = request.scope.get("fastapi_astack")
+            solved = await wrap_as_coroutine(call, stack)(**sub_values)
         if sub_dependant.name is not None:
             values[sub_dependant.name] = solved
         if sub_dependant.cache_key not in dependency_cache:
