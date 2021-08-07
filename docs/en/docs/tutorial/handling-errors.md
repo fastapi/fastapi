@@ -158,20 +158,21 @@ path -> item_id
   value is not a valid integer (type=type_error.integer)
 ```
 
-#### `RequestValidationError` vs `ValidationError`
+### Override response validation exceptions
 
-!!! warning
-    These are technical details that you might skip if it's not important for you now.
+If you use a Pydantic model or dataclass in `response_model`, and your data has an error, **FastAPI** internally raises a `ResponseValidationError`.
 
-`RequestValidationError` is a sub-class of Pydantic's <a href="https://pydantic-docs.helpmanual.io/#error-handling" class="external-link" target="_blank">`ValidationError`</a>.
-
-**FastAPI** uses it so that, if you use a Pydantic model in `response_model`, and your data has an error, you will see the error in your log.
-
-But the client/user will not see it. Instead, the client will receive an "Internal Server Error" with a HTTP status code `500`.
+You will see the error in your log, but the client/user will not see it. Instead, the client will receive an "Internal Server Error" with a HTTP status code `500`.
 
 It should be this way because if you have a Pydantic `ValidationError` in your *response* or anywhere in your code (not in the client's *request*), it's actually a bug in your code.
 
 And while you fix it, your clients/users shouldn't have access to internal information about the error, as that could expose a security vulnerability.
+
+Howewer such errors could be rather tricky to reproduce using only Pydantic error info. Installing your own exception handler, you gain access to `request_body` and `response_body`, to print/log/sentry and save time on debugging.
+
+```Python
+{!../../../docs_src/handling_errors/tutorial007.py!}
+```
 
 ### Override the `HTTPException` error handler
 

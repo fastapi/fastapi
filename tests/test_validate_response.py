@@ -62,7 +62,7 @@ def test_invalid_qs():
         client.get("/items/invalidqs", params=req_qs)
 
     exception = excinfo.value
-    assert exception.request_body is None  # FIXME: capture query string params somehow?
+    assert exception.request_body is None
     assert exception.response_body == get_invalid_qs(**req_qs)
 
 
