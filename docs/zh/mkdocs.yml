@@ -39,8 +39,10 @@ nav:
 - FastAPI: index.md
 - Languages:
   - en: /
+  - de: /de/
   - es: /es/
   - fr: /fr/
+  - id: /id/
   - it: /it/
   - ja: /ja/
   - ko: /ko/
@@ -52,6 +54,7 @@ nav:
   - uk: /uk/
   - zh: /zh/
 - features.md
+- fastapi-people.md
 - python-types.md
 - 教程 - 用户指南:
   - tutorial/index.md
@@ -72,6 +75,14 @@ nav:
   - tutorial/schema-extra-example.md
   - tutorial/extra-data-types.md
   - tutorial/cookie-params.md
+  - tutorial/request-forms.md
+  - tutorial/request-files.md
+  - tutorial/request-forms-and-files.md
+  - tutorial/handling-errors.md
+  - tutorial/body-updates.md
+  - 依赖项:
+    - tutorial/dependencies/index.md
+    - tutorial/dependencies/global-dependencies.md
   - 安全性:
     - tutorial/security/index.md
     - tutorial/security/get-current-user.md
@@ -96,7 +107,7 @@ markdown_extensions:
     permalink: true
 - markdown.extensions.codehilite:
     guess_lang: false
-- markdown_include.include:
+- mdx_include:
     base_path: docs
 - admonition
 - codehilite
@@ -114,7 +125,7 @@ extra:
   - icon: fontawesome/brands/discord
     link: https://discord.gg/VQjSZaeJmf
   - icon: fontawesome/brands/twitter
-    link: https://twitter.com/tiangolo
+    link: https://twitter.com/fastapi
   - icon: fontawesome/brands/linkedin
     link: https://www.linkedin.com/in/tiangolo
   - icon: fontawesome/brands/dev
@@ -126,10 +137,14 @@ extra:
   alternate:
   - link: /
     name: en - English
+  - link: /de/
+    name: de
   - link: /es/
     name: es - español
   - link: /fr/
     name: fr - français
+  - link: /id/
+    name: id
   - link: /it/
     name: it - italiano
   - link: /ja/
