@@ -108,37 +108,36 @@ async def serialize_response(
     exclude_none: bool = False,
     is_coroutine: bool = True,
 ) -> Any:
-    if field:
-        errors = []
-        response_content = _prepare_response_content(
-            response_content,
-            exclude_unset=exclude_unset,
-            exclude_defaults=exclude_defaults,
-            exclude_none=exclude_none,
-        )
-        if is_coroutine:
-            value, errors_ = field.validate(response_content, {}, loc=("response",))
-        else:
-            value, errors_ = await run_in_threadpool(
-                field.validate, response_content, {}, loc=("response",)
-            )
-        if isinstance(errors_, ErrorWrapper):
-            errors.append(errors_)
-        elif isinstance(errors_, list):
-            errors.extend(errors_)
-        if errors:
-            raise ValidationError(errors, field.type_)
-        return jsonable_encoder(
-            value,
-            include=include,
-            exclude=exclude,
-            by_alias=by_alias,
-            exclude_unset=exclude_unset,
-            exclude_defaults=exclude_defaults,
-            exclude_none=exclude_none,
-        )
-    else:
+    if not field:
         return jsonable_encoder(response_content)
+    errors = []
+    response_content = _prepare_response_content(
+        response_content,
+        exclude_unset=exclude_unset,
+        exclude_defaults=exclude_defaults,
+        exclude_none=exclude_none,
+    )
+    if is_coroutine:
+        value, errors_ = field.validate(response_content, {}, loc=("response",))
+    else:
+        value, errors_ = await run_in_threadpool(
+            field.validate, response_content, {}, loc=("response",)
+        )
+    if isinstance(errors_, ErrorWrapper):
+        errors.append(errors_)
+    elif isinstance(errors_, list):
+        errors.extend(errors_)
+    if errors:
+        raise ValidationError(errors, field.type_)
+    return jsonable_encoder(
+        value,
+        include=include,
+        exclude=exclude,
+        by_alias=by_alias,
+        exclude_unset=exclude_unset,
+        exclude_defaults=exclude_defaults,
+        exclude_none=exclude_none,
+    )
 
 
 async def run_endpoint_function(
@@ -331,7 +330,7 @@ class APIRoute(routing.Route):
         self.path_regex, self.path_format, self.param_convertors = compile_path(path)
         if methods is None:
             methods = ["GET"]
-        self.methods: Set[str] = set([method.upper() for method in methods])
+        self.methods: Set[str] = {method.upper() for method in methods}
         self.unique_id = generate_operation_id_for_path(
             name=self.name, path=self.path_format, method=list(methods)[0]
         )
@@ -359,10 +358,7 @@ class APIRoute(routing.Route):
             self.secure_cloned_response_field = None
         self.status_code = status_code
         self.tags = tags or []
-        if dependencies:
-            self.dependencies = list(dependencies)
-        else:
-            self.dependencies = []
+        self.dependencies = list(dependencies) if dependencies else []
         self.summary = summary
         self.description = description or inspect.cleandoc(self.endpoint.__doc__ or "")
         # if a "form feed" character (page break) is found in the description text,
