@@ -229,9 +229,10 @@ def get_openapi_path(
                 # responses in Starlette
                 response_signature = inspect.signature(current_response_class.__init__)
                 status_code_param = response_signature.parameters.get("status_code")
-                if status_code_param is not None:
-                    if isinstance(status_code_param.default, int):
-                        status_code = str(status_code_param.default)
+                if status_code_param is not None and isinstance(
+                    status_code_param.default, int
+                ):
+                    status_code = str(status_code_param.default)
             operation.setdefault("responses", {}).setdefault(status_code, {})[
                 "description"
             ] = route.response_description
@@ -296,11 +297,9 @@ def get_openapi_path(
                     deep_dict_update(openapi_response, process_response)
                     openapi_response["description"] = description
             http422 = str(HTTP_422_UNPROCESSABLE_ENTITY)
-            if (all_route_params or route.body_field) and not any(
-                [
-                    status in operation["responses"]
-                    for status in [http422, "4XX", "default"]
-                ]
+            if (((all_route_params or route.body_field))) and all(
+                status not in operation["responses"]
+                for status in [http422, "4XX", "default"]
             ):
                 operation["responses"][http422] = {
                     "description": "Validation Error",
