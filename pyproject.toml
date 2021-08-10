@@ -96,6 +96,19 @@ all = [
     "async_exit_stack >=1.0.1,<2.0.0",
     "async_generator >=1.10,<2.0.0"
 ]
+requests = ["requests >=2.24.0,<3.0.0"]
+aiofiles = ["aiofiles >=0.5.0,<0.6.0"]
+jinja2 = ["jinja2 >=2.11.2,<3.0.0"]
+python-multipart = ["python-multipart >=0.0.5,<0.0.6"]
+itsdangerous = ["itsdangerous >=1.1.0,<2.0.0"]
+pyyaml = ["pyyaml >=5.3.1,<6.0.0"]
+graphene = ["graphene >=2.1.8,<3.0.0"]
+ujson = ["ujson >=4.0.1,<5.0.0"]
+orjson = ["orjson >=3.2.1,<4.0.0"]
+email_validator = ["email_validator >=1.1.1,<2.0.0"]
+uvicorn = ["uvicorn[standard] >=0.12.0,<0.14.0"]
+async_exit_stack = ["async_exit_stack >=1.0.1,<2.0.0"]
+async_generator = ["async_generator >=1.10,<2.0.0"]
 
 [tool.isort]
 profile = "black"
