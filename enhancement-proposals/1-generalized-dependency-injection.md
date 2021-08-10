@@ -41,7 +41,7 @@ There are two main principals under which this expansion was designed:
 
 To this end, the following high-level modifications are being proposed:
 
-1. Introduce a formal `Container`.
+1. Introduce a formal `Container`, but let the app create the container, lifespans, etc. so that if users want to access the container directly, they can, but aren't forced to learn the concept if they don't need to.
 2. Introduce scopes beyond the current defaults of `request` (`use_cache=True`) and no-scope/prototype (`use_cache=False`). These scopes would provide a more formal context for caching and lifetime control.
 3. Try to decouple the steps of wiring, building of an execution graph and execution of this graph. This allows parallelization of graph execution as well as introspection (e.g. to find Security scopes) without executing the graph.
 
