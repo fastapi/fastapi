@@ -15,7 +15,7 @@ Some of standout features of this DI system are:
 Yet because of this simplicity and design, the DI system lacks some features present in other DI systems such as:
 
 - Scoping: to be able to tie dependencies to the app lifetime or an endpoint instead of the request response cycle.
-- DI in non-path operations: this is mainly due to tight coupling of the internal implementation w/ the request/response cycle.
+- DI in lifespan (startup/shutdown) methods: this is mainly due to tight coupling of the internal implementation w/ the request/response cycle.
 - Parallelization of dependency collection: if the endpoint depends on foo and bar, and neither has further dependencies, foo and bar can be executed in parallel.
 
 Some of the issues that tie into this are:
