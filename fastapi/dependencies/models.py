@@ -47,12 +47,30 @@ class Dependant:
         self.http_connection_param_name = http_connection_param_name
         self.response_param_name = response_param_name
         self.background_tasks_param_name = background_tasks_param_name
-        self.security_scopes = security_scopes
+        self._security_scopes = security_scopes
         self.security_scopes_param_name = security_scopes_param_name
         self.name = name
-        self.call = call
+        self._call = call
         self.use_cache = use_cache
         # Store the path to be able to re-generate a dependable from it in overrides
         self.path = path
         # Save the cache key at creation to optimize performance
         self.cache_key = (self.call, tuple(sorted(set(self.security_scopes or []))))
+
+    @property
+    def call(self):
+        return self._call
+
+    @call.setter
+    def call(self, value):
+        self._call = value
+        self.cache_key = (value, tuple(sorted(set(self._security_scopes or []))))
+
+    @property
+    def security_scopes(self):
+        return self._security_scopes
+
+    @security_scopes.setter
+    def security_scopes(self, value):
+        self._security_scopes = value
+        self.cache_key = (self._call, tuple(sorted(set(value or []))))
