@@ -151,7 +151,7 @@ También puedes declarar al mismo tiempo, parámetros de cuerpo (**body**), ruta
 Los parámetros de la función serán reconocidas de la siguente forma:
 
 - Si el parámetro está declarado en la ruta (**path**), será utilizado como parámetro de ruta.
-- Si el parámetro es un **tipo singular**, como entero (`int`), decimal (`float`), cadena de caracteres (`str`), booleano (`bool`), etcétera) serán interpretados como consulta (**query**)
+- Si el parámetro es un **tipo singular**, como entero (`int`), flotante (`float`), cadena de caracteres (`str`), booleano (`bool`), etcétera, serán interpretados como consulta (**query**)
 - Si el parámetro ha sido declarado como **modelo Pydantic**, será interpretado como petición con cuerpo (**Request body**).
 
   !!! note
