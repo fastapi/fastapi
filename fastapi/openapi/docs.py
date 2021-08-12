@@ -14,7 +14,7 @@ def get_swagger_ui_html(
     swagger_favicon_url: str = "https://fastapi.tiangolo.com/img/favicon.png",
     oauth2_redirect_url: Optional[str] = None,
     init_oauth: Optional[Dict[str, Any]] = None,
-    defaultModelsExpandDepth: int = 1,
+    default_models_expand_depth: int = 1,
 ) -> HTMLResponse:
 
     html = f"""
