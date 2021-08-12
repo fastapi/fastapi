@@ -58,6 +58,8 @@ nav:
 - python-types.md
 - Tutoriel - Guide utilisateur:
   - tutorial/background-tasks.md
+- Deployment:
+  - deployment/index.md
 - project-generation.md
 - alternatives.md
 - external-links.md
