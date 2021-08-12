@@ -58,7 +58,7 @@ nav:
 - python-types.md
 - Tutoriel - Guide utilisateur:
   - tutorial/background-tasks.md
-- Deployment:
+- Deploiement:
   - deployment/https.md
 - project-generation.md
 - alternatives.md
