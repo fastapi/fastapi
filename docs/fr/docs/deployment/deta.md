@@ -1,19 +1,20 @@
-# Deploy FastAPI on Deta
+# Déployer FastAPI sur Deta
 
-In this section you will learn how to easily deploy a **FastAPI** application on <a href="https://www.deta.sh/?ref=fastapi" class="external-link" target="_blank">Deta</a> using the free plan. 🎁
+Dans cette section, vous apprendrez à déployer facilement une application **FastAPI** sur <a href="https://www.deta.
+sh/?ref=fastapi" class="external-link" target="_blank">Deta</a> en utilisant le plan tarifaire gratuit. 🎁
 
-It will take you about **10 minutes**.
+Cela vous prendra environ **10 minutes**.
 
 !!! info
-    <a href="https://www.deta.sh/?ref=fastapi" class="external-link" target="_blank">Deta</a> is a **FastAPI** sponsor. 🎉
+    <a href="https://www.deta.sh/?ref=fastapi" class="external-link" target="_blank">Deta</a> sponsorise **FastAPI**. 🎉
 
-## A basic **FastAPI** app
+## Une application **FastAPI** de base
 
-* Create a directory for your app, for example `./fastapideta/` and enter in it.
+* Créez un répertoire pour votre application, par exemple `./fastapideta/` et déplacez-vous dedans.
 
-### FastAPI code
+### Le code FastAPI
 
-* Create a `main.py` file with:
+* Créer un fichier `main.py` avec :
 
 ```Python
 from fastapi import FastAPI
@@ -31,20 +32,20 @@ def read_item(item_id: int):
     return {"item_id": item_id}
 ```
 
-### Requirements
+### Dépendances
 
-Now, in the same directory create a file `requirements.txt` with:
+Maintenant, dans le même répertoire, créez un fichier `requirements.txt` avec :
 
 ```text
 fastapi
 ```
 
 !!! tip
-    You don't need to install Uvicorn to deploy on Deta, although you would probably want to install it locally to test your app.
+    Il n'est pas nécessaire d'installer Uvicorn pour déployer sur Deta, bien qu'il soit probablement souhaitable de l'installer localement pour tester votre application.
 
-### Directory structure
+### Structure du répertoire
 
-You will now have one directory `./fastapideta/` with two files:
+Vous aurez maintenant un répertoire `./fastapideta/` avec deux fichiers :
 
 ```
 .
@@ -52,15 +53,16 @@ You will now have one directory `./fastapideta/` with two files:
 └── requirements.txt
 ```
 
-## Create a free Deta account
+## Créer un compte gratuit sur Deta 
 
-Now create a <a href="https://www.deta.sh/?ref=fastapi" class="external-link" target="_blank">free account on Deta</a>, you just need an email and password.
+Créez maintenant un <a href="https://www.deta.sh/?ref=fastapi" class="external-link" target="_blank">compte gratuit 
+sur Deta</a>, vous avez juste besoin d'une adresse email et d'un mot de passe.
 
-You don't even need a credit card.
+Vous n'avez même pas besoin d'une carte de crédit.
 
-## Install the CLI
+## Installer le CLI (Interface en Ligne de Commande)
 
-Once you have your account, install the Deta <abbr title="Command Line Interface application">CLI</abbr>:
+Une fois que vous avez votre compte, installez le  <abbr title="Command Line Interface application">CLI</abbr> de Deta :
 
 === "Linux, macOS"
 
@@ -82,9 +84,9 @@ Once you have your account, install the Deta <abbr title="Command Line Interface
 
     </div>
 
-After installing it, open a new terminal so that the installed CLI is detected.
+Après l'avoir installé, ouvrez un nouveau terminal afin que la nouvelle installation soit détectée.
 
-In a new terminal, confirm that it was correctly installed with:
+Dans un nouveau terminal, confirmez qu'il a été correctement installé avec :
 
 <div class="termy">
 
@@ -107,11 +109,11 @@ Available Commands:
 </div>
 
 !!! tip
-    If you have problems installing the CLI, check the <a href="https://docs.deta.sh/docs/micros/getting_started?ref=fastapi" class="external-link" target="_blank">official Deta docs</a>.
+    Si vous rencontrez des problèmes pour installer le CLI, consultez la <a href="https://docs.deta. sh/docs/micros/getting_started?ref=fastapi" class="external-link" target="_blank">documentation officielle de Deta (en anglais)</a>.
 
-## Login with the CLI
+## Connexion avec le CLI
 
-Now login to Deta from the CLI with:
+Maintenant, connectez-vous à Deta depuis le CLI avec :
 
 <div class="termy">
 
@@ -124,11 +126,11 @@ Logged in successfully.
 
 </div>
 
-This will open a web browser and authenticate automatically.
+Cela ouvrira un navigateur web et permettra une authentification automatique.
 
-## Deploy with Deta
+## Déployer avec Deta
 
-Next, deploy your application with the Deta CLI:
+Ensuite, déployez votre application avec le CLI de Deta :
 
 <div class="termy">
 
@@ -158,7 +160,7 @@ Successfully installed fastapi-0.61.1 pydantic-1.7.2 starlette-0.13.6
 
 </div>
 
-You will see a JSON message similar to:
+Vous verrez un message JSON similaire à :
 
 ```JSON hl_lines="4"
 {
@@ -171,13 +173,14 @@ You will see a JSON message similar to:
 ```
 
 !!! tip
-    Your deployment will have a different `"endpoint"` URL.
+    Votre déploiement aura une URL `"endpoint"` différente.
 
-## Check it
+## Vérifiez
 
-Now open your browser in your `endpoint` URL. In the example above it was `https://qltnci.deta.dev`, but yours will be different.
+Maintenant, dans votre navigateur ouvrez votre URL `endpoint`. Dans l'exemple ci-dessus, c'était 
+`https://qltnci.deta.dev`, mais la vôtre sera différente.
 
-You will see the JSON response from your FastAPI app:
+Vous verrez la réponse JSON de votre application FastAPI :
 
 ```JSON
 {
@@ -185,17 +188,17 @@ You will see the JSON response from your FastAPI app:
 }
 ```
 
-And now go to the `/docs` for your API, in the example above it would be `https://qltnci.deta.dev/docs`.
+Et maintenant naviguez vers `/docs` dans votre API, dans l'exemple ci-dessus ce serait `https://qltnci.deta.dev/docs`.
 
-It will show your docs like:
+Vous verrez votre documentation comme suit :
 
 <img src="/img/deployment/deta/image01.png">
 
-## Enable public access
+## Activer l'accès public
 
-By default, Deta will handle authentication using cookies for your account.
+Par défaut, Deta va gérer l'authentification en utilisant des cookies pour votre compte.
 
-But once you are ready, you can make it public with:
+Mais une fois que vous êtes prêt, vous pouvez le rendre public avec :
 
 <div class="termy">
 
@@ -207,34 +210,36 @@ Successfully disabled http auth
 
 </div>
 
-Now you can share that URL with anyone and they will be able to access your API. 🚀
+Maintenant, vous pouvez partager cette URL avec n'importe qui et ils seront en mesure d'accéder à votre API. 🚀
 
 ## HTTPS
 
-Congrats! You deployed your FastAPI app to Deta! 🎉 🍰
+Félicitations ! Vous avez déployé votre application FastAPI sur Deta ! 🎉 🍰
 
-Also notice that Deta correctly handles HTTPS for you, so you don't have to take care of that and can be sure that your clients will have a secure encrypted connection. ✅ 🔒
+Remarquez également que Deta gère correctement HTTPS pour vous, vous n'avez donc pas à vous en occuper et pouvez être sûr que vos clients auront une connexion cryptée sécurisée. ✅ 🔒
 
-## Check the Visor
+## Vérifiez le Visor
 
-From your docs UI (they will be in a URL like `https://qltnci.deta.dev/docs`) send a request to your *path operation* `/items/{item_id}`.
+À partir de l'interface graphique de votre documentation (dans une URL telle que `https://qltnci.deta.dev/docs`) 
+envoyez une requête à votre *opération de chemin* `/items/{item_id}`.
 
-For example with ID `5`.
+Par exemple avec l'ID `5`.
 
-Now go to <a href="https://web.deta.sh/" class="external-link" target="_blank">https://web.deta.sh</a>.
+Allez maintenant sur <a href="https://web.deta.sh/" class="external-link" target="_blank">https://web.deta.sh</a>.
 
-You will see there's a section to the left called <abbr title="it comes from Micro(server)">"Micros"</abbr> with each of your apps.
+Vous verrez qu'il y a une section à gauche appelée <abbr title="ça vient de Micro(server)">"Micros"</abbr> avec chacune de vos applications.
 
-You will see a tab with "Details", and also a tab "Visor", go to the tab "Visor".
+Vous verrez un onglet avec "Details", et aussi un onglet "Visor", allez à l'onglet "Visor".
 
-In there you can inspect the recent requests sent to your app.
+Vous pouvez y consulter les requêtes récentes envoyées à votre application.
 
-You can also edit them and re-play them.
+Vous pouvez également les modifier et les réécouter.
 
 <img src="/img/deployment/deta/image02.png">
 
-## Learn more
+## En savoir plus
 
-At some point you will probably want to store some data for your app in a way that persists through time. For that you can use <a href="https://docs.deta.sh/docs/base/py_tutorial?ref=fastapi" class="external-link" target="_blank">Deta Base</a>, it also has a generous **free tier**.
+À un moment donné, vous voudrez probablement stocker certaines données pour votre application d'une manière qui 
+persiste dans le temps. Pour cela, vous pouvez utiliser <a href="https://docs.deta.sh/docs/base/py_tutorial?ref=fastapi" class="external-link" target="_blank">Deta Base</a>, il dispose également d'un généreux **plan gratuit**.
 
-You can also read more in the <a href="https://docs.deta.sh?ref=fastapi" class="external-link" target="_blank">Deta Docs</a>.
+Vous pouvez également en lire plus dans la <a href="https://docs.deta.sh?ref=fastapi" class="external-link" target="_blank">documentation Deta</a>.
