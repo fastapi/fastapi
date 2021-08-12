@@ -33,7 +33,7 @@ def get_swagger_ui_html(
     <script>
     const ui = SwaggerUIBundle({{
         url: '{openapi_url}',
-        defaultModelsExpandDepth: {defaultModelsExpandDepth},
+        defaultModelsExpandDepth: {default_models_expand_depth},
     """
 
     if oauth2_redirect_url:
