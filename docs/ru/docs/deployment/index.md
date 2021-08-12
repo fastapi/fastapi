@@ -1,7 +1,7 @@
-# Deployment - Intro
+# Развертывание - Введение
 
-Deploying a **FastAPI** application is relatively easy.
+Развертывать **FastAPI**-приложения достаточно просто.
 
-There are several ways to do it depending on your specific use case and the tools that you use.
+Сушествуют различные способы, чтобы сделать это, в зависимости от ситуации и инструментов, которыми вы пользуетесь.
 
-You will see more details to have in mind and some of the techniques to do it in the next sections.
+В следующих разделах вы познакомитесь с более подробной информацией и некоторыми существующими техниками.
