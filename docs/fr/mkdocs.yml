@@ -60,7 +60,6 @@ nav:
   - tutorial/background-tasks.md
 - Déploiement:
   - deployment/index.md
-  - deployment/versions.md
 - project-generation.md
 - alternatives.md
 - external-links.md
