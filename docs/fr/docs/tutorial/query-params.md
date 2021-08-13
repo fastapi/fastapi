@@ -6,7 +6,7 @@ Quand vous déclarez des paramètres dans votre fonction de chemin qui ne font p
 {!../../../docs_src/query_params/tutorial001.py!}
 ```
 
-La partie appelée requête (ou **query**)  dans une URL est l'ensemble des paires clés-valeurs placées après le `?` , séparées par des `&`. 
+La partie appelée requête (ou **query**) dans une URL est l'ensemble des paires clés-valeurs placées après le `?` , séparées par des `&`. 
 
 Par exemple, dans l'URL :
 
