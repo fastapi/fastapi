@@ -1,35 +1,35 @@
-# Features
+# Merkmale
 
-## FastAPI features
+## FastAPI Merkmale
 
-**FastAPI** gives you the following:
+**FastAPI** ermöglicht Ihnen folgendes:
 
-### Based on open standards
+### Basiert auf offenen Standards
 
-* <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a> for API creation, including declarations of <abbr title="also known as: endpoints, routes">path</abbr> <abbr title="also known as HTTP methods, as POST, GET, PUT, DELETE">operations</abbr>, parameters, body requests, security, etc.
-* Automatic data model documentation with <a href="https://json-schema.org/" class="external-link" target="_blank"><strong>JSON Schema</strong></a> (as OpenAPI itself is based on JSON Schema).
-* Designed around these standards, after a meticulous study. Instead of an afterthought layer on top.
-* This also allows using automatic **client code generation** in many languages.
+* <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a> für API-Erstellung, zusammen mit Deklarationen von <abbr title="auch genannt: Endpunkte, Routen">Pfad</abbr> <abbr title="gemeint sind: HTTP-Methoden, wie POST, GET, PUT, DELETE">Operationen</abbr>, Parameter, Nachrichtenrumpf-Anfragen (englisch: body request), Sicherheit, etc.
+* Automatische Dokumentation der Datenentitäten mit dem <a href="https://json-schema.org/" class="external-link" target="_blank"><strong>JSON Schema</strong></a> (OpenAPI basiert selber auf dem JSON Schema).
+* Entworfen auf Grundlage dieser Standards nach einer sorgfältigen Studie, statt einer nachträglichen Schicht über diesen Standards.
+* Dies ermöglicht automatische **Quellcode-Generation auf Benutzerebene** in vielen Sprachen.
 
-### Automatic docs
+### Automatische Dokumentation
 
-Interactive API documentation and exploration web user interfaces. As the framework is based on OpenAPI, there are multiple options, 2 included by default.
+Mit einer interaktiven API-Dokumentation und explorativen webbasierten Benutzerschnittstellen. Dadurch, dass FastAPI auf OpenAPI basiert, gibt es hierzu mehrere Optionen, wobei zwei standartmäßig vorhanden sind.
 
-* <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank"><strong>Swagger UI</strong></a>, with interactive exploration, call and test your API directly from the browser.
+* <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank"><strong>Swagger UI</strong></a>, bietet interaktive Exploration: testen und rufen Sie ihre API direkt vom Webbrowser auf.
 
-![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-03-swagger-02.png)
+![Swagger UI Interaktion](https://fastapi.tiangolo.com/img/index/index-03-swagger-02.png)
 
-* Alternative API documentation with <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank"><strong>ReDoc</strong></a>.
+* Alternative API-Dokumentation mit <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank"><strong>ReDoc</strong></a>.
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-06-redoc-02.png)
 
-### Just Modern Python
+### Nur modernes Python
 
-It's all based on standard **Python 3.6 type** declarations (thanks to Pydantic). No new syntax to learn. Just standard modern Python.
+Das alles basiert jediglich auf **Python 3.6 Typ**-Deklarationen (dank Pydantic). Sie müssen keine neue Syntax lernen, nutzen Sie einfach nur standardisiertes modernes Python. 
 
-If you need a 2 minute refresher of how to use Python types (even if you don't use FastAPI), check the short tutorial: [Python Types](python-types.md){.internal-link target=_blank}.
+Wenn Sie eine kurze, zweiminütige, Auffrischung in der Benutzung von Python Typ-Deklarationen benötigen (auch wenn Sie nicht FastAPI nutzen), schauen Sie diese kurze Einführung (Englisch): [Python Types](python-types.md){.internal-link target=_blank}.
 
-You write standard Python with types:
+Sie schreiben Standard-Python mit Typ-Deklarationen:
 
 ```Python
 from typing import List, Dict
@@ -37,20 +37,20 @@ from datetime import date
 
 from pydantic import BaseModel
 
-# Declare a variable as a str
-# and get editor support inside the function
+# Deklariere eine Variable als str
+# und bekomme Editor-Unterstütung innerhalb der Funktion
 def main(user_id: str):
     return user_id
 
 
-# A Pydantic model
+# Ein Pydantic model
 class User(BaseModel):
     id: int
     name: str
     joined: date
 ```
 
-That can then be used like:
+Dies kann nun wiefolgt benutzt werden:
 
 ```Python
 my_user: User = User(id=3, name="John Doe", joined="2018-07-19")
@@ -65,21 +65,21 @@ my_second_user: User = User(**second_user_data)
 ```
 
 !!! info
-    `**second_user_data` means:
+    `**second_user_data` bedeutet:
 
-    Pass the keys and values of the `second_user_data` dict directly as key-value arguments, equivalent to: `User(id=4, name="Mary", joined="2018-11-30")`
+    Übergebe die Schlüssel und die zugehörigen Werte des `second_user_data`  Datenwörterbuches direckt als Schlüssel-Wert Argumente, äquivalent zu: `User(id=4, name="Mary", joined="2018-11-30")`
 
-### Editor support
+### Editor Unterstützung
 
-All the framework was designed to be easy and intuitive to use, all the decisions were tested on multiple editors even before starting development, to ensure the best development experience.
+FastAPI wurde so entworfen, dass es einfach und intuitiv zu benutzen ist; alle Entscheidungen wurden auf mehreren Editoren getestet (sogar vor der eigentlichen Implementierung), um so eine best mögliche Entwicklererfahrung zu gewährleisten.
 
-In the last Python developer survey it was clear <a href="https://www.jetbrains.com/research/python-developers-survey-2017/#tools-and-features" class="external-link" target="_blank">that the most used feature is "autocompletion"</a>.
+In der letzen Python Entwickler Umfrage stellte sich heraus, dass <a href="https://www.jetbrains.com/research/python-developers-survey-2017/#tools-and-features" class="external-link" target="_blank">die meist genutzte Funktion ist die "Autovervollständigung"</a>.
 
-The whole **FastAPI** framework is based to satisfy that. Autocompletion works everywhere.
+Die gesamte Struktur von **FastAPI** basiert auf einer zufriedenstellenden Autovervollständigung: sie funktioniert einfach überall.
 
-You will rarely need to come back to the docs.
+Sie müssen selten zu der Dokumentation von FastAPI zurückkehren.
 
-Here's how your editor might help you:
+So kann ihr Editor ihnen helfen:
 
 * in <a href="https://code.visualstudio.com/" class="external-link" target="_blank">Visual Studio Code</a>:
 
@@ -89,114 +89,114 @@ Here's how your editor might help you:
 
 ![editor support](https://fastapi.tiangolo.com/img/pycharm-completion.png)
 
-You will get completion in code you might even consider impossible before. As for example, the `price` key inside a JSON body (that could have been nested) that comes from a request.
+Sie bekommen Autovervollständigung an Stellen, an dennen Sie vorher dies für nicht möglich gehalten haben. Zum Beispiel der `price` Schlüssel aus einem JSON Datensatz (dieser könnte auch verschachtelt sein) aus einer Anfrage.
 
-No more typing the wrong key names, coming back and forth between docs, or scrolling up and down to find if you finally used `username` or `user_name`.
+Hierdurch werden Sie nie wieder einen falschen Schlüsselnamen benutzen und sparen sich lästige Zeit in Dokumentationen, um beispielsweise herauszufinden ob Sie `username` oder `user_name` als Schlüssel verwenden.
 
-### Short
+### Kompakt
 
-It has sensible **defaults** for everything, with optional configurations everywhere. All the parameters can be fine-tuned to do what you need and to define the API you need.
+FastAPI nutzt sensible **Standard-Einstellung** für alles, welche aber überall konfiguriert werden können. Alle Parameter können ganz genau an Ihre Bedürfnisse angepasst werden, sodass sie genau die API definieren können, die sie brachen.
 
-But by default, it all **"just works"**.
+Aber standartmäßig, **"funktioniert einfach"** alles.
 
-### Validation
+### Validierung
 
-* Validation for most (or all?) Python **data types**, including:
-    * JSON objects (`dict`).
-    * JSON array (`list`) defining item types.
-    * String (`str`) fields, defining min and max lengths.
-    * Numbers (`int`, `float`) with min and max values, etc.
+* Validierung für die meisten (oder alle?) Python **Datentypen**, hierzu gehören:
+    * JSON Objekte (`dict`).
+    * JSON Listen (`list`), die den Typ ihrer Elemente definieren.
+    * Zeichenketten (`str`), mit minimaler und maximaler Länge.
+    * Zahlen (`int`, `float`) mit minimaler und maximaler Größe, etc.
 
-* Validation for more exotic types, like:
+* Validierung für ungewögnliche Typen, wie:
     * URL.
     * Email.
     * UUID.
-    * ...and others.
+    * ... und andere.
 
-All the validation is handled by the well-established and robust **Pydantic**.
+Die gesamte Validierung übernimmt das etablierte und robuste **Pydantic**.
 
-### Security and authentication
+### Sicherheit und Authentifizierung
 
-Security and authentication integrated. Without any compromise with databases or data models.
+Sicherheit und Authentifizierung integriert. Ohne einen Kompromiss aufgrund einer Datenbank oder den Datenentitäten.
 
-All the security schemes defined in OpenAPI, including:
+Unterstützt alle Sicherheitsschemata, die von OpenAPI definiert wurden, hierzu gejören:
 
-* HTTP Basic.
-* **OAuth2** (also with **JWT tokens**). Check the tutorial on [OAuth2 with JWT](tutorial/security/oauth2-jwt.md){.internal-link target=_blank}.
-* API keys in:
-    * Headers.
-    * Query parameters.
+* HTTP Basis Authentifizierung.
+* **OAuth2** (auch mit **JWT Zugriffstokens**). Schauen Sie hierzu dieses Tutorial [OAuth2 mit JWT](tutorial/security/oauth2-jwt.md){.internal-link target=_blank}.
+* API Schlüssel in:
+    * Kopfzeile (HTTP Header).
+    * Anfrageparametern.
     * Cookies, etc.
 
-Plus all the security features from Starlette (including **session cookies**).
+Zusätzlich gibt es alle Sicherheitsfunktionen von Starlette (auch **session cookies**).
 
-All built as reusable tools and components that are easy to integrate with your systems, data stores, relational and NoSQL databases, etc.
+Alles wurde als wiederverwendbare Werkzeuge und Komponenten geschaffen, die einfach in ihre Systeme, Datenablagen, relationale und nicht-relationale Datenbanken, ..., integriert werden können.
 
-### Dependency Injection
+### Einbringen von Abhängigkeiten (meist: Dependency Injection)
 
-FastAPI includes an extremely easy to use, but extremely powerful <abbr title='also known as "components", "resources", "services", "providers"'><strong>Dependency Injection</strong></abbr> system.
+FastAPI bringt ein extrem einfaches, aber extrem mächtiges <abbr title='oft verwendet im Zusammenhang von: Komponenten, Resourcen, Diensten, Dienstanbieter'><strong>Dependency Injection</strong></abbr> System.
 
-* Even dependencies can have dependencies, creating a hierarchy or **"graph" of dependencies**.
-* All **automatically handled** by the framework.
-* All the dependencies can require data from requests and **augment the path operation** constraints and automatic documentation.
-* **Automatic validation** even for *path operation* parameters defined in dependencies.
-* Support for complex user authentication systems, **database connections**, etc.
-* **No compromise** with databases, frontends, etc. But easy integration with all of them.
+* Selbst Abhängigkeiten können Abhängigkeiten haben, woraus eine Hierachie oder ein **"Graph" von Abhängigkeiten** entsteht.
+* **automatische Umsetzung** durch FastAPI.
+* Alle Abhängigkeiten können Daten von Anfragen erforderb und können **Erweiterungen der Pfadoperations-**Eischränkungen und der automatischen Dokumentation hervornehmen.
+* **Automatische Validierung** selbst für *Pfadoperations*-Parameter, die in den Abhängigkeiten definiert wurden.
+* Unterstütz komplexe Benutzerauthentifizierungssysteme, mit **Datenbankverbindungen**, etc.
+* **Keine Kompromisse** mit Datenbanken, Eingängen, etc. Aber einfache Integration mit allen von ihnen..
 
-### Unlimited "plug-ins"
+### Unlimitierte Erweiterungen
 
-Or in other way, no need for them, import and use the code you need.
+Oder in anderen Worten, werden sie nicht benötigt: importieren und nutzen Sie den Quellcode, den Sie benötigen.
 
-Any integration is designed to be so simple to use (with dependencies) that you can create a "plug-in" for your application in 2 lines of code using the same structure and syntax used for your *path operations*.
+Jede Integration wurde so entworfen, dass sie einfach zu nutzen ist (mit Abhängigkeiten), sodass Sie eine Erweiterung für Ihre Anwendung mit nur zwei Zeilen an Quellcode implementieren können. Hierbei nutzen Sie die selbe Struktur und Syntax, wie bei Pfadoperationen.
 
-### Tested
+### Getestet
 
-* 100% <abbr title="The amount of code that is automatically tested">test coverage</abbr>.
-* 100% <abbr title="Python type annotations, with this your editor and external tools can give you better support">type annotated</abbr> code base.
-* Used in production applications.
+* 100% <abbr title="Die Anzahl an Code, die automatisch getestet wird">Testabdeckung</abbr>.
+* 100% <abbr title="Python Typ Annotationen, mit dennen Ihr Editor und andere exteren Werkezuge Sie besser unterstützen können">Typen annotiert</abbr>.
+* Verwendet in Produktionsanwendungen.
 
-## Starlette features
+## Starlette's Merkmale
 
-**FastAPI** is fully compatible with (and based on) <a href="https://www.starlette.io/" class="external-link" target="_blank"><strong>Starlette</strong></a>. So, any additional Starlette code you have, will also work.
+**FastAPI** ist vollkommen kompatibel (und basiert auf) <a href="https://www.starlette.io/" class="external-link" target="_blank"><strong>Starlette</strong></a>. Das bedeutet, dass jeder zusätliche Starlette Quellcode von Ihnen, auch funktioniert.
 
-`FastAPI` is actually a sub-class of `Starlette`. So, if you already know or use Starlette, most of the functionality will work the same way.
+`FastAPI` ist eigentlich einer Unterklasse von `Starlette`. Wenn sie also bereits Starlette kennen oder benutzen, können Sie das meiste Ihres Wissen direkt anwenden.
 
-With **FastAPI** you get all of **Starlette**'s features (as FastAPI is just Starlette on steroids):
+Mit **FastAPI** bekommen Sie viele von **Starlette**'s Funktionen (da FastAPI nur Starlette auf Steroiden ist):
 
-* Seriously impressive performance. It is <a href="https://github.com/encode/starlette#performance" class="external-link" target="_blank">one of the fastest Python frameworks available, on par with **NodeJS** and **Go**</a>.
-* **WebSocket** support.
-* **GraphQL** support.
-* In-process background tasks.
-* Startup and shutdown events.
-* Test client built on `requests`.
-* **CORS**, GZip, Static Files, Streaming responses.
-* **Session and Cookie** support.
-* 100% test coverage.
-* 100% type annotated codebase.
+* Erheblich beeindruckende Performanz. Es ist <a href="https://github.com/encode/starlette#performance" class="external-link" target="_blank">eines der schnellsten Python frameworks, auf Augenhöhe mit **NodeJS** und **Go**</a>.
+* **WebSocket**-Unterstützung.
+* **GraphQL**-Unterstützung.
+* Hintergrundauufgaben im selben Prozess.
+* Events für das Starten und Herunterfahren.
+* Testclient basierend auf `requests`.
+* **CORS**, GZip, statische Dateien, Antwortfluss.
+* **Sitzungs und Cookie** Unterstützung.
+* 100% Testabdeckung.
+* 100% Typen annotiert.
 
-## Pydantic features
+## Pydantic's Merkmale
 
-**FastAPI** is fully compatible with (and based on) <a href="https://pydantic-docs.helpmanual.io" class="external-link" target="_blank"><strong>Pydantic</strong></a>. So, any additional Pydantic code you have, will also work.
+**FastAPI** ist vollkommen kompatibel (und basiert auf) <a href="https://pydantic-docs.helpmanual.io" class="external-link" target="_blank"><strong>Pydantic</strong></a>. Das bedeutet, dass jeder zusätliche Pydantic Quellcode von Ihnen, auch funktioniert.
 
-Including external libraries also based on Pydantic, as <abbr title="Object-Relational Mapper">ORM</abbr>s, <abbr title="Object-Document Mapper">ODM</abbr>s for databases.
+Verfügbar sind ebenso externe auf Pydantic basierende Bibliotheken, wie <abbr title="Object-Relational Mapper (Abbildung von Objekten auf relationale Strukturen)">ORM</abbr>s, <abbr title="Object-Document Mapper (Abbildung von Objekten auf nicht-relationale Strukturen)">ODM</abbr>s für Datenbanken.
 
-This also means that in many cases you can pass the same object you get from a request **directly to the database**, as everything is validated automatically.
+Daher können Sie in vielen Fällen das Objekt einer Anfrage **direkt zur Datenbank** schicken, weil alles automatisch validiert wird.
 
-The same applies the other way around, in many cases you can just pass the object you get from the database **directly to the client**.
+Das selbe gilt auch für die andere Richtung: Sie können jedes Objekt aus der Datenbank  **direkt zum Klienten** schicken.
 
-With **FastAPI** you get all of **Pydantic**'s features (as FastAPI is based on Pydantic for all the data handling):
+Mit **FastAPI** bekommen Sie alle Funktionen von **Pydantic** (da FastAPI für die gesamte Datenverarbeitung Pydantic nutzt):
 
-* **No brainfuck**:
-    * No new schema definition micro-language to learn.
-    * If you know Python types you know how to use Pydantic.
-* Plays nicely with your **<abbr title="Integrated Development Environment, similar to a code editor">IDE</abbr>/<abbr title="A program that checks for code errors">linter</abbr>/brain**:
-    * Because pydantic data structures are just instances of classes you define; auto-completion, linting, mypy and your intuition should all work properly with your validated data.
-* **Fast**:
-    * in <a href="https://pydantic-docs.helpmanual.io/#benchmarks-tag" class="external-link" target="_blank">benchmarks</a> Pydantic is faster than all other tested libraries.
-* Validate **complex structures**:
-    * Use of hierarchical Pydantic models, Python `typing`’s `List` and `Dict`, etc.
-    * And validators allow complex data schemas to be clearly and easily defined, checked and documented as JSON Schema.
-    * You can have deeply **nested JSON** objects and have them all validated and annotated.
-* **Extendible**:
-    * Pydantic allows custom data types to be defined or you can extend validation with methods on a model decorated with the validator decorator.
-* 100% test coverage.
+* **Kein Kopfzerbrechen**:
+    * Sie müssen keine neue Schemadefinitionssprache lernen.
+    * Wenn Sie mit Python's Typisierung arbeiten können, können Sie auch mit Pydantic arbeiten.
+* Gutes Zusammenspiel mit Ihrer/Ihrem **<abbr title="Integrierten Entwicklungsumgebung, ähnlich zu (Quellcode-)Editor">IDE</abbr>/<abbr title="Ein Programm, was Fehler im Quellcode sucht">linter</abbr>/Gehirn**:
+    * Weil Datenstrukturen von Pydantic einfach nur Instanzen ihrer definierten Klassen sind, sollten Autovervollständigung, Linting, mypy und ihre Intuition einwandfrei funktionieren.
+* **Schnell**:
+    * In <a href="https://pydantic-docs.helpmanual.io/#benchmarks-tag" class="external-link" target="_blank">Vergleichen</a> ist Pydantic schneller als jede andere getestete Bibliothek.
+* Validierung von **komplexen Strukturen**:
+    * Benutzung von hierachischen Pydantic Schemata, Python `typing`’s `List` und `Dict`, etc.
+    * Validierungen erlauben klare und einfache Datenschemadefinition, überprüft und dokumentiert als JSON Schema.
+    * Sie können stark **verschachtelte JSON** Objekte haben und diese sind trotzdem validiert und annotiert.
+* **Erweiterbar**:
+    * Pydantic erlaubt die Definition von eigenen Datentypen oder sie können die Validierung mit einer `validator` dekorierten Methode erweitern..
+* 100% Testabdeckung.
