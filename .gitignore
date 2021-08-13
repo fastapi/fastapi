@@ -18,6 +18,8 @@ env
 docs_build
 venv
 .venv
+.env
+ENV/
 docs.zip
 archive.zip
 
