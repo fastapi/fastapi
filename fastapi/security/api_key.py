@@ -1,8 +1,8 @@
 from typing import Optional
 
+from fastapi.exceptions import HTTPException
 from fastapi.openapi.models import APIKey, APIKeyIn
 from fastapi.security.base import SecurityBase
-from starlette.exceptions import HTTPException
 from starlette.requests import Request
 from starlette.status import HTTP_403_FORBIDDEN
 
@@ -58,7 +58,9 @@ class APIKeyHeader(APIKeyBase):
         if not api_key:
             if self.auto_error:
                 raise HTTPException(
-                    status_code=HTTP_403_FORBIDDEN, detail="Not authenticated"
+                    status_code=HTTP_403_FORBIDDEN,
+                    detail="Not authenticated",
+                    headers={self.model.name: ""},
                 )
             else:
                 return None
