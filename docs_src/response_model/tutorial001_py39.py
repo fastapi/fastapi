@@ -1,6 +1,6 @@
-from typing import Optional, Set
+from typing import Optional
 
-from fastapi import FastAPI, status
+from fastapi import FastAPI
 from pydantic import BaseModel
 
 app = FastAPI()
@@ -11,9 +11,9 @@ class Item(BaseModel):
     description: Optional[str] = None
     price: float
     tax: Optional[float] = None
-    tags: Set[str] = set()
+    tags: list[str] = []
 
 
-@app.post("/items/", response_model=Item, status_code=status.HTTP_201_CREATED)
+@app.post("/items/", response_model=Item)
 async def create_item(item: Item):
     return item
