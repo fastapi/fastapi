@@ -32,7 +32,6 @@ Si vous souhaitez un rappel de 2 minutes sur l'utilisation des types en Python (
 Vous écrivez du python standard avec des annotations de types:
 
 ```Python
-from typing import List, Dict
 from datetime import date
 
 from pydantic import BaseModel
