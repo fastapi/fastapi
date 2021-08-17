@@ -33,7 +33,6 @@ google_analytics:
 - UA-133183413-1
 - auto
 plugins:
-- social
 - search
 - markdownextradata:
     data: data
