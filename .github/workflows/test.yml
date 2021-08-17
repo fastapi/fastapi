@@ -30,9 +30,6 @@ jobs:
       - name: Install Dependencies
         if: steps.cache.outputs.cache-hit != 'true'
         run: flit install --symlink
-      # TODO: remove this, only to test with the 3.10rc1 branch
-      - name: Install Pydantic for 3.10
-        run: pip install --force git+https://github.com/PrettyWood/pydantic.git@3.10rc 
       - name: Test
         run: bash scripts/test.sh
       - name: Upload coverage
