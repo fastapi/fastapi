@@ -114,4 +114,6 @@ filterwarnings = [
     # TODO: if these ignores are needed, enable them, otherwise remove them
     # 'ignore:The explicit passing of coroutine objects to asyncio\.wait\(\) is deprecated since Python 3\.8:DeprecationWarning',
     # 'ignore:Exception ignored in. <socket\.socket fd=-1:pytest.PytestUnraisableExceptionWarning',
+    # TODO: probably remove this after upgrading Starlette
+    'ignore:There is no current event loop:DeprecationWarning',
 ]
