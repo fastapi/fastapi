@@ -5,6 +5,8 @@ from pathlib import Path
 import pytest
 from fastapi.testclient import TestClient
 
+from ...utils import needs_py310
+
 openapi_schema = {
     "openapi": "3.0.2",
     "info": {"title": "FastAPI", "version": "0.1.0"},
@@ -283,8 +285,8 @@ openapi_schema = {
 }
 
 
-@pytest.fixture(scope="module")
-def client(tmp_path_factory: pytest.TempPathFactory):
+@pytest.fixture(scope="module", name="client")
+def get_client(tmp_path_factory: pytest.TempPathFactory):
     tmp_path = tmp_path_factory.mktemp("data")
     cwd = os.getcwd()
     os.chdir(tmp_path)
@@ -292,7 +294,7 @@ def client(tmp_path_factory: pytest.TempPathFactory):
     if test_db.is_file():  # pragma: nocover
         test_db.unlink()
     # Import while creating the client to create the DB after starting the test session
-    from docs_src.sql_databases.sql_app import main
+    from docs_src.sql_databases.sql_app_py310 import main
 
     # Ensure import side effects are re-executed
     importlib.reload(main)
@@ -303,12 +305,14 @@ def client(tmp_path_factory: pytest.TempPathFactory):
     os.chdir(cwd)
 
 
+@needs_py310
 def test_openapi_schema(client):
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
     assert response.json() == openapi_schema
 
 
+@needs_py310
 def test_create_user(client):
     test_user = {"email": "johndoe@example.com", "password": "secret"}
     response = client.post("/users/", json=test_user)
@@ -320,6 +324,7 @@ def test_create_user(client):
     assert response.status_code == 400, response.text
 
 
+@needs_py310
 def test_get_user(client):
     response = client.get("/users/1")
     assert response.status_code == 200, response.text
@@ -328,11 +333,13 @@ def test_get_user(client):
     assert "id" in data
 
 
+@needs_py310
 def test_inexistent_user(client):
     response = client.get("/users/999")
     assert response.status_code == 404, response.text
 
 
+@needs_py310
 def test_get_users(client):
     response = client.get("/users/")
     assert response.status_code == 200, response.text
@@ -341,6 +348,7 @@ def test_get_users(client):
     assert "id" in data[0]
 
 
+@needs_py310
 def test_create_item(client):
     item = {"title": "Foo", "description": "Something that fights"}
     response = client.post("/users/1/items/", json=item)
@@ -364,6 +372,7 @@ def test_create_item(client):
     assert item_to_check["description"] == item["description"]
 
 
+@needs_py310
 def test_read_items(client):
     response = client.get("/items/")
     assert response.status_code == 200, response.text

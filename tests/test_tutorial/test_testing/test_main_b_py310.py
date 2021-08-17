@@ -1,7 +1,10 @@
-from docs_src.app_testing.app_b import test_main
+from ...utils import needs_py310
 
 
+@needs_py310
 def test_app():
+    from docs_src.app_testing.app_b_py310 import test_main
+
     test_main.test_create_existing_item()
     test_main.test_create_item()
     test_main.test_create_item_bad_token()
