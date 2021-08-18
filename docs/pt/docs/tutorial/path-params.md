@@ -137,7 +137,7 @@ Assim, crie atributos de classe com valores fixos, que serão os valores válido
 !!! dica
 	Se você está se perguntando, "AlexNet", "ResNet", e "LeNet" são apenas nomes de <abbr title="técnicamente, modelos de arquitetura de Deep Learning">modelos</abbr> de Machine Learning (aprendizado de máquina).
 
-### Declare um *parâmetro de path*
+### Declare um *parâmetro de caminho*
 
 Logo, crie um *parâmetro de path* com anotações de tipo usando a classe enum que você criou (`ModelName`):
 
