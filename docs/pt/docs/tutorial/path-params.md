@@ -153,7 +153,7 @@ Visto que os valores disponíveis para o parâmetro do caminho estão predefinid
 
 ### Trabalhando com os *enumeration* do Python
 
-O valor do *parâmetro do path* será um *membro de enumeration*.
+O valor do *parâmetro do caminho* será um *membro de enumeration*.
 
 #### Compare *membros de enumeration*
 
