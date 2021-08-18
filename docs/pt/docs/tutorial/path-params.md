@@ -241,6 +241,6 @@ Com o **FastAPI**, usando as declarações de tipo do Python, você obtém:
 * Validação de dados
 * Anotação da API e documentação automática
 
-Você apenas tem que declarar-los uma vez.
+Você apenas tem que declará-los uma vez.
 
 Essa é provavelmente a vantagem mais visível do **FastAPI** se comparado com frameworks alternativos (além do desempenho puro).
