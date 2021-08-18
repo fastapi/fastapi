@@ -193,7 +193,7 @@ No seu cliente você vai obter uma resposta JSON como:
 }
 ```
 
-## Parâmetros de path que contém paths
+## Parâmetros de caminho que contém caminhos
 
 Digamos que você tenha uma *operação de path* com um path `/files/{file_path}`.
 
