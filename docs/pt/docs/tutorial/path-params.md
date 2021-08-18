@@ -113,7 +113,7 @@ Porque as operações de caminho são avaliadas em ordem, você precisa ter cert
 {!../../../docs_src/path_params/tutorial003.py!}
 ```
 
-Caso contrário, o path para `/users/{user_id}` coincidiria também para `/users/me`, "pensando" que estaria recebendo o parâmetro `user_id` com o valor de `"me"`.
+Caso contrário, o caminho para `/users/{user_id}` coincidiria também para `/users/me`, "pensando" que estaria recebendo o parâmetro `user_id` com o valor de `"me"`.
 
 ## Valores predefinidos
 
