@@ -207,7 +207,7 @@ O OpenAPI não suporta uma maneira de declarar um *parâmetro de caminho* que co
 
 No entanto, você pode fazer isso no **FastAPI**, usando uma das ferramentas internas do Starlette. 
 
-A documentação continuaria funcionando, ainda que não adicionaria nenhuma informação dizendo que o parâmetro deveria conter um path.
+A documentação continuaria funcionando, ainda que não adicionaria nenhuma informação dizendo que o parâmetro deveria conter um caminho.
 
 ### Conversor de caminho
 
