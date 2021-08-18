@@ -147,7 +147,7 @@ Logo, crie um *parâmetro de caminho* com anotações de tipo usando a classe en
 
 ### Revise a documentação
 
-Visto que os valores disponíveis para o parâmetro do path estão pré-definidos, a documentação interativa pode mostrar esses valores de uma forma bem legal:
+Visto que os valores disponíveis para o parâmetro do caminho estão predefinidos, a documentação interativa pode mostrar esses valores de uma forma bem legal:
 
 <img src="/img/tutorial/path-params/image03.png">
 
