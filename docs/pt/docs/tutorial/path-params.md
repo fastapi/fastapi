@@ -59,7 +59,7 @@ Mas se você abrir o seu navegador em <a href="http://127.0.0.1:8000/items/foo" 
 }
 ```
 
-devido ao parâmetro do path `item_id` ter um valor `"foo"`, que não é um `int`.
+devido ao parâmetro de caminho `item_id` ter um valor `"foo"`, que não é um `int`.
 
 O mesmo erro apareceria se você tivesse fornecido um `float` ao invés de um `int`, como em: <a href="http://127.0.0.1:8000/items/4.2" class="external-link" target="_blank">http://127.0.0.1:8000/items/4.2</a>
 
