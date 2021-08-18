@@ -178,7 +178,7 @@ Você pode ter o valor exato de enumerate (um `str` nesse caso) usando `model_na
 
 Você pode retornar *membros de enum* do seu *caminho de operação*, em um corpo JSON aninhado (por exemplo um `dict`).
 
-Eles serão convertidos para o seus valores correspondentes (strings nesse caso) antes de serem retornados ao client:
+Eles serão convertidos para o seus valores correspondentes (strings nesse caso) antes de serem retornados ao cliente:
 
 ```Python hl_lines="18  21  23"
 {!../../../docs_src/path_params/tutorial005.py!}
