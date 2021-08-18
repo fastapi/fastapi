@@ -101,7 +101,7 @@ Vamos explorar muitos destes tipos nos próximos capítulos do tutorial.
 
 ## A ordem importa
 
-Quando você cria operações de path, você pode se deparar com situações onde você pode ter um path fixo.
+Quando você cria operações de caminho, você pode se deparar com situações onde você pode ter um caminho fixo.
 
 Algo como `/users/me` por exemplo, digamos que esse path seja utilizado para pegar dados sobre o usuário atual.
 
