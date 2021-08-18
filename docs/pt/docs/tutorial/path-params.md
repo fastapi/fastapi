@@ -14,7 +14,7 @@ Então, se você rodar este exemplo e for até <a href="http://127.0.0.1:8000/it
 {"item_id":"foo"}
 ```
 
-## Parâmetros de path com tipos
+## Parâmetros de caminho com tipos
 
 Você pode declarar o tipo de um parâmetro na função usando as anotações padrões do Python:
 
