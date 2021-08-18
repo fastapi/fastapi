@@ -105,7 +105,7 @@ Quando você cria operações de caminho, você pode se deparar com situações 
 
 Algo como `/users/me` por exemplo, digamos que esse caminho seja utilizado para pegar dados sobre o usuário atual.
 
-E então você pode ter também um path `/users/{user_id}` para pegar dados sobre um usuário específico associado a um ID de usuário.
+E então você pode ter também um caminho `/users/{user_id}` para pegar dados sobre um usuário específico associado a um ID de usuário.
 
 Porque as operações de path são avaliadas em ordem, você precisa ter certeza que o path para `/users/me` está sendo declarado antes do path `/users/{user_id}`:
 
