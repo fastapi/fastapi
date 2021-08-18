@@ -44,7 +44,7 @@ So the new file structure looks like:
 
 First, we create a new database session with the new database.
 
-We'll use an in memory database that persists for the duration of the tests.
+We'll use an in-memory database that persists during the tests.
 
 But the rest of the session code is more or less the same, we just copy it.
 
