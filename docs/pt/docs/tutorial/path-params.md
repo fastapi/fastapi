@@ -211,7 +211,7 @@ A documentação continuaria funcionando, ainda que não adicionaria nenhuma inf
 
 ### Conversor de caminho
 
-Usando uma opção direta do Starlette você pode declarar um *parâmetro de path* contendo um *path* usando uma URL como:
+Usando uma opção direta do Starlette você pode declarar um *parâmetro de caminho* contendo um *caminho* usando uma URL como:
 
 ```
 /files/{file_path:path}
