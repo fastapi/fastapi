@@ -209,7 +209,7 @@ No entanto, você pode fazer isso no **FastAPI**, usando uma das ferramentas int
 
 A documentação continuaria funcionando, ainda que não adicionaria nenhuma informação dizendo que o parâmetro deveria conter um path.
 
-### Conversor de path
+### Conversor de caminho
 
 Usando uma opção direta do Starlette você pode declarar um *parâmetro de path* contendo um *path* usando uma URL como:
 
