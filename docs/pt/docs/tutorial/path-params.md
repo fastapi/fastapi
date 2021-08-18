@@ -195,7 +195,7 @@ No seu cliente você vai obter uma resposta JSON como:
 
 ## Parâmetros de caminho que contém caminhos
 
-Digamos que você tenha uma *operação de path* com um path `/files/{file_path}`.
+Digamos que você tenha uma *operação de caminho* com um caminho `/files/{file_path}`.
 
 Mas você precisa que o próprio `file_path` contenha um *path*, como `home/johndoe/myfile.txt`.
 
