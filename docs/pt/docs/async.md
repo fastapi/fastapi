@@ -37,7 +37,7 @@ def results():
 
 ---
 
-Se sua aplicação (de alguma forma) não tem que se comunicar com nada mais e  tem que esperar que o respondam, use `async def`.
+Se sua aplicação (de alguma forma) não tem que se comunicar com nada mais e tem que esperar que o respondam, use `async def`.
 
 ---
 
