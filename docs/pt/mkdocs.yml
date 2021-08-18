@@ -61,6 +61,8 @@ nav:
   - tutorial/body-fields.md
   - Segurança:
     - tutorial/security/index.md
+  - Guia de Usuário Avançado:
+    - advanced/index.md
 - Implantação:
   - deployment/index.md
   - deployment/versions.md
@@ -137,3 +139,4 @@ extra_css:
 extra_javascript:
 - https://fastapi.tiangolo.com/js/termynal.js
 - https://fastapi.tiangolo.com/js/custom.js
+
