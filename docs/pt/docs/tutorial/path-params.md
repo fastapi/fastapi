@@ -103,7 +103,7 @@ Vamos explorar muitos destes tipos nos próximos capítulos do tutorial.
 
 Quando você cria operações de caminho, você pode se deparar com situações onde você pode ter um caminho fixo.
 
-Algo como `/users/me` por exemplo, digamos que esse path seja utilizado para pegar dados sobre o usuário atual.
+Algo como `/users/me` por exemplo, digamos que esse caminho seja utilizado para pegar dados sobre o usuário atual.
 
 E então você pode ter também um path `/users/{user_id}` para pegar dados sobre um usuário específico associado a um ID de usuário.
 
