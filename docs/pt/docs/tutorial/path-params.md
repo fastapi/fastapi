@@ -184,7 +184,7 @@ Eles serão convertidos para o seus valores correspondentes (strings nesse caso)
 {!../../../docs_src/path_params/tutorial005.py!}
 ```
 
-No seu client você vai obter uma resposta JSON como:
+No seu cliente você vai obter uma resposta JSON como:
 
 ```JSON
 {
