@@ -217,7 +217,7 @@ Usando uma opção direta do Starlette você pode declarar um *parâmetro de cam
 /files/{file_path:path}
 ```
 
-Nesse caso, o nome do parâmetro é `file_path`, e a última parte, `:path`, diz que o parâmetro deveria coincidir com qualquer *path*.
+Nesse caso, o nome do parâmetro é `file_path`, e a última parte, `:path`, diz que o parâmetro deveria coincidir com qualquer *caminho*.
 
 Então, você poderia usar ele com:
 
