@@ -476,21 +476,16 @@ if __name__ == "__main__":
     )
 
     tiers = get_individual_sponsors(settings=settings)
-    sponsors_50 = []
-    for login, sponsor in tiers[50].items():
-        sponsors_50.append(
-            {"login": login, "avatarUrl": sponsor.avatarUrl, "url": sponsor.url}
-        )
     keys = list(tiers.keys())
     keys.sort(reverse=True)
     sponsors = []
     for key in keys:
-        if key >= 50:
-            continue
+        sponsor_group = []
         for login, sponsor in tiers[key].items():
-            sponsors.append(
+            sponsor_group.append(
                 {"login": login, "avatarUrl": sponsor.avatarUrl, "url": sponsor.url}
             )
+        sponsors.append(sponsor_group)
 
     people = {
         "maintainers": maintainers,
@@ -498,16 +493,21 @@ if __name__ == "__main__":
         "last_month_active": last_month_active,
         "top_contributors": top_contributors,
         "top_reviewers": top_reviewers,
-        "sponsors_50": sponsors_50,
+    }
+    github_sponsors = {
         "sponsors": sponsors,
     }
     people_path = Path("./docs/en/data/people.yml")
+    github_sponsors_path = Path("./docs/en/data/github_sponsors.yml")
     people_old_content = people_path.read_text(encoding="utf-8")
-    new_content = yaml.dump(people, sort_keys=False, width=200, allow_unicode=True)
-    if people_old_content == new_content:
+    github_sponsors_old_content = github_sponsors_path.read_text(encoding="utf-8")
+    new_people_content = yaml.dump(people, sort_keys=False, width=200, allow_unicode=True)
+    new_github_sponsors_content = yaml.dump(github_sponsors, sort_keys=False, width=200, allow_unicode=True)
+    if people_old_content == new_people_content and github_sponsors_old_content == new_github_sponsors_content:
         logging.info("The FastAPI People data hasn't changed, finishing.")
         sys.exit(0)
-    people_path.write_text(new_content, encoding="utf-8")
+    people_path.write_text(new_people_content, encoding="utf-8")
+    github_sponsors_path.write_text(new_github_sponsors_content, encoding="utf-8")
     logging.info("Setting up GitHub Actions git user")
     subprocess.run(["git", "config", "user.name", "github-actions"], check=True)
     subprocess.run(
