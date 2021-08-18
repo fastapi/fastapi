@@ -197,7 +197,7 @@ No seu cliente você vai obter uma resposta JSON como:
 
 Digamos que você tenha uma *operação de caminho* com um caminho `/files/{file_path}`.
 
-Mas você precisa que o próprio `file_path` contenha um *path*, como `home/johndoe/myfile.txt`.
+Mas você precisa que o próprio `file_path` contenha um *caminho*, como `home/johndoe/myfile.txt`.
 
 Então, a URL para este arquivo deveria ser algo como: `/files/home/johndoe/myfile.txt`.
 
