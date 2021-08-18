@@ -203,7 +203,7 @@ Então, a URL para este arquivo deveria ser algo como: `/files/home/johndoe/myfi
 
 ### Suporte do OpenAPI
 
-O OpenAPI não suporta uma maneira de declarar um *parâmetro de path* que contenha um *path* dentro, dado que isso poderia levar a cenários que são difíceis de testar e definir.
+O OpenAPI não suporta uma maneira de declarar um *parâmetro de caminho* que contenha um *caminho* dentro, dado que isso poderia levar a cenários que são difíceis de testar e definir.
 
 No entanto, você pode fazer isso no **FastAPI**, usando uma das ferramentas internas do Starlette. 
 
