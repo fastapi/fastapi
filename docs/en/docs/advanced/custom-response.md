@@ -198,13 +198,23 @@ Takes an async generator or a normal generator/iterator and streams the response
 
 #### Using `StreamingResponse` with file-like objects
 
-If you have a file-like object (e.g. the object returned by `open()`), you can return it in a `StreamingResponse`.
+If you have a file-like object (e.g. the object returned by `open()`), you can create a generator function to iterate over that file-like object.
+
+That way, you don't have to read it all first in memory, and you can pass that generator function to the `StreamingResponse`, and return it.
 
 This includes many libraries to interact with cloud storage, video processing, and others.
 
-```Python hl_lines="2  10-11"
+```{ .python .annotate hl_lines="2  10-12  14" }
 {!../../../docs_src/custom_response/tutorial008.py!}
 ```
+
+1. This is the generator function. It's a "generator function" because it contains `yield` statements inside.
+2. By using a `with` block, we make sure that the file-like object is closed after the generator function is done. So, after it finishes sending the response.
+3. This `yield from` tells the function to iterate over that thing named `file_like`. And then, for each part iterated, yield that part as coming from this generator function.
+
+    So, it is a generator function that transfers the "generating" work to something else internally.
+
+    By doing it this way, we can put it in a `with` block, and that way, ensure that it is closed after finishing.
 
 !!! tip
     Notice that here as we are using standard `open()` that doesn't support `async` and `await`, we declare the path operation with normal `def`.
