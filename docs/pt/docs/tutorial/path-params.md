@@ -139,7 +139,7 @@ Assim, crie atributos de classe com valores fixos, que serão os valores válido
 
 ### Declare um *parâmetro de caminho*
 
-Logo, crie um *parâmetro de path* com anotações de tipo usando a classe enum que você criou (`ModelName`):
+Logo, crie um *parâmetro de caminho* com anotações de tipo usando a classe enum que você criou (`ModelName`):
 
 ```Python hl_lines="16"
 {!../../../docs_src/path_params/tutorial005.py!}
