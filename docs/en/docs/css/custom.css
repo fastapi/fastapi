@@ -20,6 +20,7 @@ a.internal-link::after {
 .user-list {
   display: flex;
   flex-wrap: wrap;
+  margin-bottom: 2rem;
 }
 
 .user-list-center {

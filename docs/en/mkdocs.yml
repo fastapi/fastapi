@@ -20,6 +20,7 @@ theme:
   features:
   - search.suggest
   - search.highlight
+  - content.tabs.link
   icon:
     repo: fontawesome/brands/github-alt
   logo: img/icon-white.svg
@@ -162,6 +163,9 @@ markdown_extensions:
     permalink: true
 - markdown.extensions.codehilite:
     guess_lang: false
+# Uncomment these 2 lines during development to more easily add highlights
+# - pymdownx.highlight:
+#     linenums: true
 - mdx_include:
     base_path: docs
 - admonition
@@ -171,7 +175,7 @@ markdown_extensions:
     custom_fences:
     - name: mermaid
       class: mermaid
-      format: !!python/name:pymdownx.superfences.fence_div_format ''
+      format: !!python/name:pymdownx.superfences.fence_code_format ''
 - pymdownx.tabbed
 extra:
   social:
@@ -224,6 +228,5 @@ extra_css:
 - css/termynal.css
 - css/custom.css
 extra_javascript:
-- https://unpkg.com/mermaid@8.4.6/dist/mermaid.min.js
 - js/termynal.js
 - js/custom.js
