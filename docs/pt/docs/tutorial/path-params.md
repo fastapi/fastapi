@@ -117,7 +117,7 @@ Caso contrário, o caminho para `/users/{user_id}` coincidiria também para `/us
 
 ## Valores predefinidos
 
-Se você tem uma operação de path que recebe um parâmetro de path, mas que você queira que esses valores possíveis do parametro de path sejam pré-definidos, você pode usar <abbr title="Enumeration">`Enum`</abbr> padrão do Python.
+Se você tem uma operação de caminho que recebe um parâmetro de caminho, mas que você queira que esses valores possíveis do parâmetro de caminho sejam predefinidos, você pode usar <abbr title="Enumeration">`Enum`</abbr> padrão do Python.
 
 ### Criando uma classe `Enum`
 
