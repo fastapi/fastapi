@@ -79,7 +79,7 @@ Quando você abrir o seu navegador em <a href="http://127.0.0.1:8000/docs" class
 !!! check
 	Novamente, apenas com a mesma declaração de tipo do Python, o **FastAPI** te dá de forma automática e interativa a documentação (integrada com o Swagger UI).
 	
-	Veja que o parâmetro do path está declarado como sendo um inteiro (int).
+	Veja que o parâmetro de caminho está declarado como sendo um inteiro (int).
 
 ## Beneficios baseados em padrões, documentação alternativa
 
