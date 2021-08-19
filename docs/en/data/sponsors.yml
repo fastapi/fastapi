@@ -1,11 +1,11 @@
 gold:
-  - url: https://www.deta.sh/?ref=fastapi
-    title: The launchpad for all your (team's) ideas
-    img: https://fastapi.tiangolo.com/img/sponsors/deta.svg
   - url: https://bit.ly/2QSouzH
     title: "Jina: build neural search-as-a-service for any kind of data in just minutes."
     img: https://fastapi.tiangolo.com/img/sponsors/jina.svg
 silver:
+  - url: https://www.deta.sh/?ref=fastapi
+    title: The launchpad for all your (team's) ideas
+    img: https://fastapi.tiangolo.com/img/sponsors/deta.svg
   - url: https://www.investsuite.com/jobs
     title: Wealthtech jobs with FastAPI
     img: https://fastapi.tiangolo.com/img/sponsors/investsuite.svg
@@ -15,7 +15,6 @@ silver:
   - url: https://talkpython.fm/fastapi-sponsor
     title: FastAPI video courses on demand from people you trust
     img: https://fastapi.tiangolo.com/img/sponsors/talkpython.png
-bronze:
   - url: https://testdriven.io/courses/tdd-fastapi/
     title: Learn to build high-quality web apps with best practices
     img: https://fastapi.tiangolo.com/img/sponsors/testdriven.svg

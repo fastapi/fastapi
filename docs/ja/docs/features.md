@@ -31,7 +31,6 @@ FastAPIの機能はすべて、標準のPython 3.6型宣言に基づいていま
 型を使用した標準的なPythonを記述します:
 
 ```Python
-from typing import List, Dict
 from datetime import date
 
 from pydantic import BaseModel
