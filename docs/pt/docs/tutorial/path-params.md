@@ -1,4 +1,4 @@
-# Parâmetros do caminho da Url
+# Parâmetros do caminho da URL
 
 Você pode declarar os "parâmetros" ou "variáveis" com a mesma sintaxe utilizada pelo formato de strings do Python:
 
