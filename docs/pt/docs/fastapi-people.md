@@ -115,6 +115,7 @@ Esses são os **Patrocinadores**. 😎
 
 Eles estão apoiando meu trabalho **FastAPI** (e outros), principalmente através de <a href="https://github.com/sponsors/tiangolo" class="external-link" target="_blank">GitHub Sponsors</a>.
 
+{% if sponsors %}
 {% if sponsors.gold %}
 
 ### Patrocinadores Ouro
@@ -137,7 +138,6 @@ Eles estão apoiando meu trabalho **FastAPI** (e outros), principalmente atravé
 
 ### Patrocinadores Bronze
 
-{% if sponsors %}
 {% for sponsor in sponsors.bronze -%}
 <a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}"></a>
 {% endfor %}
@@ -161,6 +161,8 @@ Eles estão apoiando meu trabalho **FastAPI** (e outros), principalmente atravé
 </div>
 
 {% endfor %}
+{% endif %}
+
 {% endif %}
 
 ## Sobre os dados - detalhes técnicos
