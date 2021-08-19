@@ -115,21 +115,25 @@ Esses são os **Patrocinadores**. 😎
 
 Eles estão apoiando meu trabalho **FastAPI** (e outros), principalmente através de <a href="https://github.com/sponsors/tiangolo" class="external-link" target="_blank">GitHub Sponsors</a>.
 
+{% if sponsors.gold %}
+
 ### Patrocinadores Ouro
 
-{% if sponsors %}
 {% for sponsor in sponsors.gold -%}
 <a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}"></a>
 {% endfor %}
 {% endif %}
 
+{% if sponsors.silver %}
+
 ### Patrocinadores Prata
 
-{% if sponsors %}
 {% for sponsor in sponsors.silver -%}
 <a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}"></a>
 {% endfor %}
 {% endif %}
+
+{% if sponsors.bronze %}
 
 ### Patrocinadores Bronze
 
@@ -141,28 +145,22 @@ Eles estão apoiando meu trabalho **FastAPI** (e outros), principalmente atravé
 
 ### Patrocinadores Individuais
 
-{% if people %}
-{% if people.sponsors_50 %}
+{% if github_sponsors %}
+{% for group in github_sponsors.sponsors %}
 
 <div class="user-list user-list-center">
-{% for user in people.sponsors_50 %}
+
+{% for user in group %}
+{% if user.login not in sponsors_badge.logins %}
 
 <div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a></div>
+
+{% endif %}
 {% endfor %}
 
 </div>
 
-{% endif %}
-{% endif %}
-
-{% if people %}
-<div class="user-list user-list-center">
-{% for user in people.sponsors %}
-
-<div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a></div>
 {% endfor %}
-
-</div>
 {% endif %}
 
 ## Sobre os dados - detalhes técnicos
