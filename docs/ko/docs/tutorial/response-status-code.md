@@ -25,14 +25,14 @@
 * 응답에서 해당 상태 코드를 반환합니다.
 * 상태 코드를 OpenAPI 스키마(및 사용자 인터페이스)에 문서화 합니다.
 
-<img src="/img/tutorial/response-status-code/image01.png">
+<img src="https://fastapi.tiangolo.com/img/tutorial/response-status-code/image01.png">
 
 !!! note "참고" 
     어떤 응답 코드들은 해당 응답에 본문(body)이 없다는 것을 의미하기도 합니다(다음 항목 참고).
 
     이에 따라 FastAPI는 응답 본문이 없음을 명시하는 OpenAPI를 생성합니다.
 
-## HTTP 상태 코드에 관하여
+## HTTP 상태 코드에 대하여
 
 !!! note "참고"
     만약 HTTP 상태 코드에 대하여 이미 알고있다면, 다음 항목으로 넘어가십시오.
@@ -77,7 +77,7 @@ HTTP는 세자리의 숫자 상태 코드를 응답의 일부로 전송합니다
 
 이것은 단순히 작업을 편리하게 하기 위한 것으로, HTTP 상태 코드와 동일한 번호를 갖고있지만, 이를 사용하면 에디터의 자동완성 기능을 사용할 수 있습니다:
 
-<img src="/img/tutorial/response-status-code/image02.png">
+<img src="https://fastapi.tiangolo.com/img/tutorial/response-status-code/image02.png">
 
 !!! note "기술 세부사항"
     `from starlette import status` 역시 사용할 수 있습니다.
@@ -86,4 +86,4 @@ HTTP는 세자리의 숫자 상태 코드를 응답의 일부로 전송합니다
 
 ## 기본값 변경
 
-추후 [Advanced User Guide](../advanced/response-change-status-code.md){.internal-link target=_blank}에서 여기서 선언하는 기본 상태 코드가 아닌 다른 상태 코드를 반환하는 방법을 확인할 수 있습니다.
+추후 [Advanced User Guide](https://fastapi.tiangolo.com/advanced/response-change-status-code/){.internal-link target=_blank}에서 여기서 선언하는 기본 상태 코드가 아닌 다른 상태 코드를 반환하는 방법을 확인할 수 있습니다.
