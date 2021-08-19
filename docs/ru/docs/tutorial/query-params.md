@@ -1,156 +1,156 @@
-# Query Parameters
+# Параметры запроса
 
-When you declare other function parameters that are not part of the path parameters, they are automatically interpreted as "query" parameters.
+Если вы объявляете аргументы функции, которые не используются как параметры пути, то они автоматически интерпретируются как параметры запроса.
 
 ```Python hl_lines="9"
 {!../../../docs_src/query_params/tutorial001.py!}
 ```
 
-The query is the set of key-value pairs that go after the `?` in a URL, separated by `&` characters.
+Параметры запроса --- это пары ключ-значение, разделенные символом `&` и следующие за символом `?` в URL.
 
-For example, in the URL:
+Например в этом URL:
 
 ```
 http://127.0.0.1:8000/items/?skip=0&limit=10
 ```
 
-...the query parameters are:
+...параметрами запроса являются:
 
-* `skip`: with a value of `0`
-* `limit`: with a value of `10`
+* `skip` со значением `0`
+* `limit` со значнием `10`
 
-As they are part of the URL, they are "naturally" strings.
+Поскольку они являются частью URL, то логично, что они представляют собой строки.
 
-But when you declare them with Python types (in the example above, as `int`), they are converted to that type and validated against it.
+Но, когда вы описываете их с помощью типов Python (как `int` в примере ниже), они проверяются на допустимость и конвертируются в указанный тип.
 
-All the same process that applied for path parameters also applies for query parameters:
+Все, что касается параметров пути, также применимо и к параметрам запроса:
 
-* Editor support (obviously)
-* Data <abbr title="converting the string that comes from an HTTP request into Python data">"parsing"</abbr>
-* Data validation
-* Automatic documentation
+* Поддержка в редакторе (очевидно)
+* <abbr title="конвертация из строки HTTP-запроса в данные Python">"Парсинг"</abbr> данных
+* Валидация данных
+* Автоматическая документация
 
-## Defaults
+## Значения по умолчанию
 
-As query parameters are not a fixed part of a path, they can be optional and can have default values.
+Поскольку параметры запроса не являются частью пути, они необязательны и должны иметь значения по умолчанию.
 
-In the example above they have default values of `skip=0` and `limit=10`.
+В примере выше значения по умолчанию указаны: `skip=0` и `limit=10`.
 
-So, going to the URL:
+Поэтому, запросить URL:
 
 ```
 http://127.0.0.1:8000/items/
 ```
 
-would be the same as going to:
+равнозначно запросу:
 
 ```
 http://127.0.0.1:8000/items/?skip=0&limit=10
 ```
 
-But if you go to, for example:
+Но, если вы, к примеру, запросите:
 
 ```
 http://127.0.0.1:8000/items/?skip=20
 ```
 
-The parameter values in your function will be:
+Значения аргументов в вашей функции будут:
 
-* `skip=20`: because you set it in the URL
-* `limit=10`: because that was the default value
+* `skip=20`, потому что вы задали это значение в URL
+* `limit=10`, потому что это значение по умолчанию
 
-## Optional parameters
+## Небязательные параметры
 
-The same way, you can declare optional query parameters, by setting their default to `None`:
+Таким же образом, можно объявить необязательные параметры запроса, путем установки их значений по умолчанию в `None`:
 
 ```Python hl_lines="9"
 {!../../../docs_src/query_params/tutorial002.py!}
 ```
 
-In this case, the function parameter `q` will be optional, and will be `None` by default.
+В этом случае, аргумент функции `q` будет опциональным, а его значение будет `None` по умолчанию.
 
 !!! check
-    Also notice that **FastAPI** is smart enough to notice that the path parameter `item_id` is a path parameter and `q` is not, so, it's a query parameter.
+    Имейте в виду, что **FastAPI** достаточно сообразителен, чтобы понять, что `item_id` --- это параметр пути, а `q` --- нет, поэтому `q` является параметром запроса.
 
 !!! note
-    FastAPI will know that `q` is optional because of the `= None`.
+    FastAPI понимает, что `q` является необязательным, потому что `= None`.
 
-    The `Optional` in `Optional[str]` is not used by FastAPI (FastAPI will only use the `str` part), but the `Optional[str]` will let your editor help you finding errors in your code.
+    Выражение `Optional` в `Optional[str]` не используется FastAPI (FastAPI использует только `str` часть), но оно помогает вашему редактору обнаружить ошибки в коде.
 
-## Query parameter type conversion
+## Конвертация типов для параметров запроса
 
-You can also declare `bool` types, and they will be converted:
+Вы можете объявить аргумент типа `bool` и он будет сконвертирован:
 
 ```Python hl_lines="9"
 {!../../../docs_src/query_params/tutorial003.py!}
 ```
 
-In this case, if you go to:
+В этом случае, если вы сделаете запрос:
 
 ```
 http://127.0.0.1:8000/items/foo?short=1
 ```
 
-or
+или
 
 ```
 http://127.0.0.1:8000/items/foo?short=True
 ```
 
-or
+или
 
 ```
 http://127.0.0.1:8000/items/foo?short=true
 ```
 
-or
+или
 
 ```
 http://127.0.0.1:8000/items/foo?short=on
 ```
 
-or
+или
 
 ```
 http://127.0.0.1:8000/items/foo?short=yes
 ```
 
-or any other case variation (uppercase, first letter in uppercase, etc), your function will see the parameter `short` with a `bool` value of `True`. Otherwise as `False`.
+или любые другие варианты регистра (слово заглавными, первая буква заглавная и т.п.), внутри вашей функции аргумент `short` будет иметь тип `bool` со значением `True`. Или `False`, в противном случае.
 
 
 ## Multiple path and query parameters
 
-You can declare multiple path parameters and query parameters at the same time, **FastAPI** knows which is which.
+Вы можете объявлять множество параметров пути и параметров запроса одновременно, **FastAPI** разберется, кто из них кто.
 
-And you don't have to declare them in any specific order.
+И вам не нужно это указывать каким-то специальным образом.
 
-They will be detected by name:
+Они определяются по имени:
 
 ```Python hl_lines="8  10"
 {!../../../docs_src/query_params/tutorial004.py!}
 ```
 
-## Required query parameters
+## Обязательные параметры запроса
 
-When you declare a default value for non-path parameters (for now, we have only seen query parameters), then it is not required.
+Если вы указываете значение по умолчанию для всех параметров, кроме параметров пути (мы пока познакомились только с параметрами запроса), то они являются необязательными.
 
-If you don't want to add a specific value but just make it optional, set the default as `None`.
+Если вы не хотите задавать какое-то конкретное значение, но все еще хотите оставить параметр необязательным, установите значение по умолчанию в `None`.
 
-But when you want to make a query parameter required, you can just not declare any default value:
+Но если вы хотите сделать параметр запроса обязательным, то вам нужно не указывать значение по умолчанию:
 
 ```Python hl_lines="6-7"
 {!../../../docs_src/query_params/tutorial005.py!}
 ```
 
-Here the query parameter `needy` is a required query parameter of type `str`.
+В данном случае параметр `needy` является обязательным параметром запроса и имеет тип `str`.
 
-If you open in your browser a URL like:
+Если вы откроете в браузере такой URL:
 
 ```
 http://127.0.0.1:8000/items/foo-item
 ```
 
-...without adding the required parameter `needy`, you will see an error like:
+...без обязательного параметра `needy`, то увидите вот такую ошибку:
 
 ```JSON
 {
@@ -167,13 +167,13 @@ http://127.0.0.1:8000/items/foo-item
 }
 ```
 
-As `needy` is a required parameter, you would need to set it in the URL:
+Поскольку `needy` является обязательным параметром, вы должны указывать его в URL:
 
 ```
 http://127.0.0.1:8000/items/foo-item?needy=sooooneedy
 ```
 
-...this would work:
+...так работает:
 
 ```JSON
 {
@@ -182,17 +182,17 @@ http://127.0.0.1:8000/items/foo-item?needy=sooooneedy
 }
 ```
 
-And of course, you can define some parameters as required, some as having a default value, and some entirely optional:
+Разумеется, вы можете какие-то параметры объявить обязательными, какие-то --- со значениями по умолчанию, а какие-то --- опциональными.
 
 ```Python hl_lines="10"
 {!../../../docs_src/query_params/tutorial006.py!}
 ```
 
-In this case, there are 3 query parameters:
+Тут у нас есть 3 параметра запроса:
 
-* `needy`, a required `str`.
-* `skip`, an `int` with a default value of `0`.
-* `limit`, an optional `int`.
+* `needy`, обязательный, типа `str`.
+* `skip`, типа `int`, со значением по умолчанию `0`.
+* `limit`, необязательный, типа `int`.
 
 !!! tip
-    You could also use `Enum`s the same way as with [Path Parameters](path-params.md#predefined-values){.internal-link target=_blank}.
+    Вы можете использовать тип `Enum` так же, как и в [Параметрах пути](path-params.md#predefined-values){.internal-link target=_blank}.
