@@ -1,4 +1,4 @@
-# Parâmetros do caminho da URL
+# Parâmetros da rota da URL
 
 Você pode declarar os "parâmetros" ou "variáveis" com a mesma sintaxe utilizada pelo formato de strings do Python:
 
@@ -6,7 +6,7 @@ Você pode declarar os "parâmetros" ou "variáveis" com a mesma sintaxe utiliza
 {!../../../docs_src/path_params/tutorial001.py!}
 ```
 
-O valor do parâmetro que foi passado ao path `item_id` será passado para a sua função como o argumento `item_id`.
+O valor do parâmetro que foi passado à `item_id` será passado para a sua função como o argumento `item_id`.
 
 Então, se você rodar este exemplo e for até <a href="http://127.0.0.1:8000/items/foo" class="external-link" target="_blank">http://127.0.0.1:8000/items/foo</a>, você verá a seguinte resposta:
 
@@ -14,7 +14,7 @@ Então, se você rodar este exemplo e for até <a href="http://127.0.0.1:8000/it
 {"item_id":"foo"}
 ```
 
-## Parâmetros de caminho com tipos
+## Parâmetros da rota com tipos
 
 Você pode declarar o tipo de um parâmetro na função usando as anotações padrões do Python:
 
@@ -24,9 +24,9 @@ Você pode declarar o tipo de um parâmetro na função usando as anotações pa
 
 Nesse caso, `item_id` está sendo declarado como um `int`.
 
-!!! Check
+!!! Verifique
 	Isso vai dar à você suporte do seu editor dentro das funções, com verificações de erros, autocompletar, etc.
-	
+
 ## Conversão de <abbr title="também conhecido como: serialização, parsing, marshalling">dados</abbr>
 
 Se você rodar esse exemplo e abrir o seu navegador em <a href="http://127.0.0.1:8000/items/3" class="external-link" target="_blank">http://127.0.0.1:8000/items/3</a>, você verá a seguinte resposta:
@@ -35,9 +35,9 @@ Se você rodar esse exemplo e abrir o seu navegador em <a href="http://127.0.0.1
 {"item_id":3}
 ```
 
-!!! check
+!!! Verifique
 	Observe que o valor recebido pela função (e também retornado por ela) é `3`, como um Python `int`, não como uma string `"3"`.
-	
+
 	Então, com essa declaração de tipo, o **FastAPI** dá pra você um <abbr title="convertendo a string que veio do request HTTP em um dado Python">"parsing"</abbr> automático no request .
 
 ## Validação de dados
@@ -59,13 +59,13 @@ Mas se você abrir o seu navegador em <a href="http://127.0.0.1:8000/items/foo" 
 }
 ```
 
-devido ao parâmetro de caminho `item_id` ter um valor `"foo"`, que não é um `int`.
+devido ao parâmetro da rota `item_id` ter um valor `"foo"`, que não é um `int`.
 
 O mesmo erro apareceria se você tivesse fornecido um `float` ao invés de um `int`, como em: <a href="http://127.0.0.1:8000/items/4.2" class="external-link" target="_blank">http://127.0.0.1:8000/items/4.2</a>
 
-!!! check
+!!! Verifique
 	Então, com a mesma declaração de tipo do Python, o **FastAPI** dá pra você validação de dados.
-	
+
 	Observe que o erro também mostra claramente o ponto exato onde a validação não passou.
 
 	Isso é incrivelmente útil enquanto se desenvolve e debuga o código que interage com a sua API.
@@ -78,7 +78,7 @@ Quando você abrir o seu navegador em <a href="http://127.0.0.1:8000/docs" class
 
 !!! check
 	Novamente, apenas com a mesma declaração de tipo do Python, o **FastAPI** te dá de forma automática e interativa a documentação (integrada com o Swagger UI).
-	
+
 	Veja que o parâmetro de caminho está declarado como sendo um inteiro (int).
 
 ## Beneficios baseados em padrões, documentação alternativa
@@ -101,23 +101,23 @@ Vamos explorar muitos destes tipos nos próximos capítulos do tutorial.
 
 ## A ordem importa
 
-Quando você cria operações de caminho, você pode se deparar com situações onde você pode ter um caminho fixo.
+Quando você cria operações de rota, você pode se deparar com situações onde você pode ter uma rota fixa.
 
-Algo como `/users/me` por exemplo, digamos que esse caminho seja utilizado para pegar dados sobre o usuário atual.
+Algo como `/users/me` por exemplo, digamos que essa rota seja utilizada para pegar dados sobre o usuário atual.
 
-E então você pode ter também um caminho `/users/{user_id}` para pegar dados sobre um usuário específico associado a um ID de usuário.
+E então você pode ter também uma rota `/users/{user_id}` para pegar dados sobre um usuário específico associado a um ID de usuário.
 
-Porque as operações de caminho são avaliadas em ordem, você precisa ter certeza que o caminho para `/users/me` está sendo declarado antes do caminho `/users/{user_id}`:
+Porque as operações de rota são avaliadas em ordem, você precisa ter certeza que a rota para `/users/me` está sendo declarado antes do caminho `/users/{user_id}`:
 
 ```Python hl_lines="6  11"
 {!../../../docs_src/path_params/tutorial003.py!}
 ```
 
-Caso contrário, o caminho para `/users/{user_id}` coincidiria também para `/users/me`, "pensando" que estaria recebendo o parâmetro `user_id` com o valor de `"me"`.
+Caso contrário, a rota para `/users/{user_id}` coincidiria também para `/users/me`, "pensando" que estaria recebendo o parâmetro `user_id` com o valor de `"me"`.
 
 ## Valores predefinidos
 
-Se você tem uma operação de caminho que recebe um parâmetro de caminho, mas que você queira que esses valores possíveis do parâmetro de caminho sejam predefinidos, você pode usar <abbr title="Enumeration">`Enum`</abbr> padrão do Python.
+Se você tem uma operação de rota que recebe um parâmetro da rota, mas que você queira que esses valores possíveis do parâmetro da rota sejam predefinidos, você pode usar <abbr title="Enumeration">`Enum`</abbr> padrão do Python.
 
 ### Criando uma classe `Enum`
 
@@ -137,9 +137,9 @@ Assim, crie atributos de classe com valores fixos, que serão os valores válido
 !!! dica
 	Se você está se perguntando, "AlexNet", "ResNet", e "LeNet" são apenas nomes de <abbr title="técnicamente, modelos de arquitetura de Deep Learning">modelos</abbr> de Machine Learning (aprendizado de máquina).
 
-### Declare um *parâmetro de caminho*
+### Declare um *parâmetro de rota*
 
-Logo, crie um *parâmetro de caminho* com anotações de tipo usando a classe enum que você criou (`ModelName`):
+Logo, crie um *parâmetro de rota* com anotações de tipo usando a classe enum que você criou (`ModelName`):
 
 ```Python hl_lines="16"
 {!../../../docs_src/path_params/tutorial005.py!}
@@ -147,13 +147,13 @@ Logo, crie um *parâmetro de caminho* com anotações de tipo usando a classe en
 
 ### Revise a documentação
 
-Visto que os valores disponíveis para o parâmetro do caminho estão predefinidos, a documentação interativa pode mostrar esses valores de uma forma bem legal:
+Visto que os valores disponíveis para o parâmetro da rota estão predefinidos, a documentação interativa pode mostrar esses valores de uma forma bem legal:
 
 <img src="/img/tutorial/path-params/image03.png">
 
 ### Trabalhando com os *enumeration* do Python
 
-O valor do *parâmetro do caminho* será um *membro de enumeration*.
+O valor do *parâmetro da rota* será um *membro de enumeration*.
 
 #### Compare *membros de enumeration*
 
@@ -176,7 +176,7 @@ Você pode ter o valor exato de enumerate (um `str` nesse caso) usando `model_na
 
 #### Retorne *membros de enumeration*
 
-Você pode retornar *membros de enum* do seu *caminho de operação*, em um corpo JSON aninhado (por exemplo um `dict`).
+Você pode retornar *membros de enum* da sua *rota de operação*, em um corpo JSON aninhado (por exemplo um `dict`).
 
 Eles serão convertidos para o seus valores correspondentes (strings nesse caso) antes de serem retornados ao cliente:
 
@@ -193,31 +193,31 @@ No seu cliente você vai obter uma resposta JSON como:
 }
 ```
 
-## Parâmetros de caminho que contém caminhos
+## Parâmetros de rota que contém caminhos
 
-Digamos que você tenha uma *operação de caminho* com um caminho `/files/{file_path}`.
+Digamos que você tenha uma *operação de rota* com uma rota `/files/{file_path}`.
 
-Mas você precisa que o próprio `file_path` contenha um *caminho*, como `home/johndoe/myfile.txt`.
+Mas você precisa que o próprio `file_path` contenha uma *rota*, como `home/johndoe/myfile.txt`.
 
 Então, a URL para este arquivo deveria ser algo como: `/files/home/johndoe/myfile.txt`.
 
 ### Suporte do OpenAPI
 
-O OpenAPI não suporta uma maneira de declarar um *parâmetro de caminho* que contenha um *caminho* dentro, dado que isso poderia levar a cenários que são difíceis de testar e definir.
+O OpenAPI não suporta uma maneira de declarar um *parâmetro de rota* que contenha uma *rota* dentro, dado que isso poderia levar a cenários que são difíceis de testar e definir.
 
-No entanto, você pode fazer isso no **FastAPI**, usando uma das ferramentas internas do Starlette. 
+No entanto, você pode fazer isso no **FastAPI**, usando uma das ferramentas internas do Starlette.
 
-A documentação continuaria funcionando, ainda que não adicionaria nenhuma informação dizendo que o parâmetro deveria conter um caminho.
+A documentação continuaria funcionando, ainda que não adicionaria nenhuma informação dizendo que o parâmetro deveria conter uma rota.
 
-### Conversor de caminho
+### Conversor de rota
 
-Usando uma opção direta do Starlette você pode declarar um *parâmetro de caminho* contendo um *caminho* usando uma URL como:
+Usando uma opção direta do Starlette você pode declarar um *parâmetro de rota* contendo uma *rota* usando uma URL como:
 
 ```
 /files/{file_path:path}
 ```
 
-Nesse caso, o nome do parâmetro é `file_path`, e a última parte, `:path`, diz que o parâmetro deveria coincidir com qualquer *caminho*.
+Nesse caso, o nome do parâmetro é `file_path`, e a última parte, `:path`, diz que o parâmetro deveria coincidir com qualquer *rota*.
 
 Então, você poderia usar ele com:
 
@@ -227,7 +227,7 @@ Então, você poderia usar ele com:
 
 !!! dica
 	Você poderia precisar que o parâmetro contivesse `/home/johndoe/myfile.txt`, com uma barra no inicio (`/`).
-	
+
 	Neste caso, a URL deveria ser: `/files//home/johndoe/myfile.txt`, com barra dupla (`//`) entre `files` e `home`.
 
 
