@@ -20,6 +20,7 @@ a.internal-link::after {
 .user-list {
   display: flex;
   flex-wrap: wrap;
+  margin-bottom: 2rem;
 }
 
 .user-list-center {
@@ -98,4 +99,8 @@ a.announce-link:hover {
   min-height: 40px;
   display: flex;
   align-items: center;
+}
+
+.twitter {
+  color: #00acee;
 }
