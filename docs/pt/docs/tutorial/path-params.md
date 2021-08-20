@@ -24,7 +24,7 @@ Você pode declarar o tipo de um parâmetro na função usando as anotações pa
 
 Nesse caso, `item_id` está sendo declarado como um `int`.
 
-!!! Verifique
+!!! Check Verifique
 	Isso vai dar à você suporte do seu editor dentro das funções, com verificações de erros, autocompletar, etc.
 
 ## Conversão de <abbr title="também conhecido como: serialização, parsing, marshalling">dados</abbr>
