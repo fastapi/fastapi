@@ -163,9 +163,6 @@ markdown_extensions:
     permalink: true
 - markdown.extensions.codehilite:
     guess_lang: false
-# Uncomment these 2 lines during development to more easily add highlights
-# - pymdownx.highlight:
-#     linenums: true
 - mdx_include:
     base_path: docs
 - admonition

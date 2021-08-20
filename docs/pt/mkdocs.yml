@@ -60,6 +60,7 @@ nav:
   - tutorial/index.md
   - tutorial/first-steps.md
   - tutorial/path-params.md
+  - tutorial/query-params.md
   - tutorial/body-fields.md
   - Segurança:
     - tutorial/security/index.md
@@ -141,4 +142,3 @@ extra_css:
 extra_javascript:
 - https://fastapi.tiangolo.com/js/termynal.js
 - https://fastapi.tiangolo.com/js/custom.js
-
