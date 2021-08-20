@@ -606,7 +606,7 @@ class APIRouter(routing.Router):
         self, path: str, endpoint: Callable[..., Any], name: Optional[str] = None
     ) -> None:
         route = APIWebSocketRoute(
-            path,
+            self.prefix + path,
             endpoint=endpoint,
             name=name,
             dependency_overrides_provider=self.dependency_overrides_provider,
@@ -621,6 +621,11 @@ class APIRouter(routing.Router):
             return func
 
         return decorator
+
+    def websocket_route(
+        self, path: str, name: Optional[str] = None
+    ) -> Callable[[DecoratedCallable], DecoratedCallable]:
+        return super().websocket_route(self.prefix + path, name=name)  # type: ignore # in Starlette
 
     def include_router(
         self,
