@@ -61,7 +61,6 @@ nav:
   - tutorial/query-params.md
   - tutorial/header-params.md
   - tutorial/response-status-code.md
-  - tutorial/request-files.md
 markdown_extensions:
 - toc:
     permalink: true
