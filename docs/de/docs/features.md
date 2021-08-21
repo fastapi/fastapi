@@ -137,7 +137,7 @@ Alles wurde als wiederverwendbare Werkzeuge und Komponenten geschaffen, die einf
 FastAPI bringt ein extrem einfaches, aber extrem mächtiges <abbr title='oft verwendet im Zusammenhang von: Komponenten, Resourcen, Diensten, Dienstanbieter'><strong>Dependency Injection</strong></abbr> System.
 
 * Selbst Abhängigkeiten können Abhängigkeiten haben, woraus eine Hierachie oder ein **"Graph" von Abhängigkeiten** entsteht.
-* **automatische Umsetzung** durch FastAPI.
+* **Automatische Umsetzung** durch FastAPI.
 * Alle Abhängigkeiten können Daten von Anfragen erforderb und können **Erweiterungen der Pfadoperations-**Eischränkungen und der automatischen Dokumentation hervornehmen.
 * **Automatische Validierung** selbst für *Pfadoperations*-Parameter, die in den Abhängigkeiten definiert wurden.
 * Unterstütz komplexe Benutzerauthentifizierungssysteme, mit **Datenbankverbindungen**, etc.
