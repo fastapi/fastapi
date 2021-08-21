@@ -1,35 +1,35 @@
-# Features
+# Возможности
 
-## FastAPI features
+## FastAPI возможности
 
-**FastAPI** gives you the following:
+**FastAPI** дает вам следующее:
 
-### Based on open standards
+### Использование открытых стандартов
 
-* <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a> for API creation, including declarations of <abbr title="also known as: endpoints, routes">path</abbr> <abbr title="also known as HTTP methods, as POST, GET, PUT, DELETE">operations</abbr>, parameters, body requests, security, etc.
-* Automatic data model documentation with <a href="https://json-schema.org/" class="external-link" target="_blank"><strong>JSON Schema</strong></a> (as OpenAPI itself is based on JSON Schema).
-* Designed around these standards, after a meticulous study. Instead of an afterthought layer on top.
-* This also allows using automatic **client code generation** in many languages.
+* <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a> для создания API, включая объявления <abbr title="также известные как ендпоинты, маршруты">путей</abbr> <abbr title="также известных как HTTP-методы POST, GET, PUT, DELETE">операций</abbr>, параметров, тела запросов, безопасности и т.д.
+* Автоматическое документирование моделей данных с <a href="https://json-schema.org/" class="external-link" target="_blank"><strong>JSON Schema</strong></a> (т.к. OpenAPI основан на JSON Schema).
+* Проектирование вокруг этих стандартов после тщательного изучения.
+* Это также позволит автоматически **генерировать код клиента** на многих языках программирования.
 
-### Automatic docs
+### Автоматически генерируемая документация
 
-Interactive API documentation and exploration web user interfaces. As the framework is based on OpenAPI, there are multiple options, 2 included by default.
+Интерактивная документация и пользовательский интерфейс для исследования API. Так как фреймворк основан на OpenAPI, эти две возможности включены по умолчанию.
 
-* <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank"><strong>Swagger UI</strong></a>, with interactive exploration, call and test your API directly from the browser.
+* <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank"><strong>Swagger UI</strong></a>, с интерактивным исследованием, вызовом и тестированием вашего API прямо в браузере.
 
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-03-swagger-02.png)
 
-* Alternative API documentation with <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank"><strong>ReDoc</strong></a>.
+* Альтернативная API-документация с <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank"><strong>ReDoc</strong></a>.
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-06-redoc-02.png)
 
-### Just Modern Python
+### Просто Современный Python
 
-It's all based on standard **Python 3.6 type** declarations (thanks to Pydantic). No new syntax to learn. Just standard modern Python.
+Все это основано на стандартных объявлениях **типов Python 3.6** (благодаря Pydantic). Никакого нового синтаксиса для изучения. Просто стандартный современный Python.
 
-If you need a 2 minute refresher of how to use Python types (even if you don't use FastAPI), check the short tutorial: [Python Types](python-types.md){.internal-link target=_blank}.
+Если вам необходима пара минут, чтобы освежить в памяти, как использовать аннотации типов Python (даже если вы не используете FastAPI), ознакомьтесь с кратким руководством: [Python Types](python-types.md){.internal-link target=_blank}.
 
-You write standard Python with types:
+Вы пишете стандартный Python-код с типами:
 
 ```Python
 from typing import List, Dict
@@ -37,20 +37,20 @@ from datetime import date
 
 from pydantic import BaseModel
 
-# Declare a variable as a str
-# and get editor support inside the function
+# Объявите переменную как str
+# и получите поддержку редактора внутри функции
 def main(user_id: str):
     return user_id
 
 
-# A Pydantic model
+# Pydantic-модель
 class User(BaseModel):
     id: int
     name: str
     joined: date
 ```
 
-That can then be used like:
+Затем это может быть использовано следующим образом:
 
 ```Python
 my_user: User = User(id=3, name="John Doe", joined="2018-07-19")
@@ -65,122 +65,123 @@ my_second_user: User = User(**second_user_data)
 ```
 
 !!! info
-    `**second_user_data` means:
+    `**second_user_data` означает:
 
-    Pass the keys and values of the `second_user_data` dict directly as key-value arguments, equivalent to: `User(id=4, name="Mary", joined="2018-11-30")`
+    Передать ключи и значения словаря `second_user_data` напрямую в качестве аргументов типа ключ-значение, что эквивалентно варианту `User(id=4, name="Mary", joined="2018-11-30")`
 
-### Editor support
+### Поддержка редакторов
 
-All the framework was designed to be easy and intuitive to use, all the decisions were tested on multiple editors even before starting development, to ensure the best development experience.
+Весь фреймворк был спроектирован таким образом, чтобы быть простым и интуитивным в использовании, все решения были протестированы на множестве редакторов даже перед начальной разработкой, чтобы гарантировать лучший опыт разработки.
 
-In the last Python developer survey it was clear <a href="https://www.jetbrains.com/research/python-developers-survey-2017/#tools-and-features" class="external-link" target="_blank">that the most used feature is "autocompletion"</a>.
+В опросе Python-разработчиков за 2017 год было ясно, что <a href="https://www.jetbrains.com/research/python-developers-survey-2017/#tools-and-features" class="external-link" target="_blank">наиболее часто используемая функция - "автодополнение"</a>.
 
-The whole **FastAPI** framework is based to satisfy that. Autocompletion works everywhere.
+Весь **FastAPI**-фреймворк основан на том, чтобы достичь этого. Автодополнение работает везде.
 
-You will rarely need to come back to the docs.
+Вам редко придется возвращаться к документации.
 
-Here's how your editor might help you:
+Вот как ваш редактор может вам помочь:
 
-* in <a href="https://code.visualstudio.com/" class="external-link" target="_blank">Visual Studio Code</a>:
+* в <a href="https://code.visualstudio.com/" class="external-link" target="_blank">Visual Studio Code</a>:
 
 ![editor support](https://fastapi.tiangolo.com/img/vscode-completion.png)
 
-* in <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a>:
+* в <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a>:
 
 ![editor support](https://fastapi.tiangolo.com/img/pycharm-completion.png)
 
-You will get completion in code you might even consider impossible before. As for example, the `price` key inside a JSON body (that could have been nested) that comes from a request.
+Вы получите автодополнение в коде, которое раньше даже считали невозможным. Как, например, ключ `price` внутри JSON-тела (который мог быть вложенным), который приходит из запроса.
 
 No more typing the wrong key names, coming back and forth between docs, or scrolling up and down to find if you finally used `username` or `user_name`.
 
-### Short
+### Краткость
 
-It has sensible **defaults** for everything, with optional configurations everywhere. All the parameters can be fine-tuned to do what you need and to define the API you need.
+Имеются разумные **настройки по умолчанию** для всего с дополнительными опциями повсюду. Все параметры могут быть настроены таким образом, чтобы делать то, что вам нужно, и определять API, который вам нужен.
 
-But by default, it all **"just works"**.
+Но по умолчанию все это **"просто работает"**.
 
-### Validation
+### Валидация
 
-* Validation for most (or all?) Python **data types**, including:
-    * JSON objects (`dict`).
-    * JSON array (`list`) defining item types.
-    * String (`str`) fields, defining min and max lengths.
-    * Numbers (`int`, `float`) with min and max values, etc.
+* Валидация для большинства (или всех?) **типов данных** в Python, включая:
+    * JSON-объекты (`dict`).
+    * JSON-массив (`list`), определяющий типы элементов.
+    * Строковые (`str`) поля, определяющие максимальную и минимальную длину.
+    * Числа (`int`, `float`) с минимальными и максимальными значениями, и т.д.
 
-* Validation for more exotic types, like:
+* Валидация для более экзотических типов:
     * URL.
     * Email.
     * UUID.
-    * ...and others.
+    * ...и др.
 
-All the validation is handled by the well-established and robust **Pydantic**.
+Вся валидация выполняется хорошо зарекомендовавшим себя и надежным **Pydantic**.
 
-### Security and authentication
+### Безопасность и аутентификация
 
-Security and authentication integrated. Without any compromise with databases or data models.
+Безопасность и аутентификация интегрированы. Без каких-либо компромиссов с базами данных или моделями данных.
 
 All the security schemes defined in OpenAPI, including:
+Все схемы безопасности определены в OpenAPI, включая:
 
 * HTTP Basic.
-* **OAuth2** (also with **JWT tokens**). Check the tutorial on [OAuth2 with JWT](tutorial/security/oauth2-jwt.md){.internal-link target=_blank}.
-* API keys in:
-    * Headers.
-    * Query parameters.
-    * Cookies, etc.
+* **OAuth2** (также с **JWT-токенами**). Проверьте руководство [OAuth2 с JWT](tutorial/security/oauth2-jwt.md){.internal-link target=_blank}.
+* API-ключи в:
+    * заголовках.
+    * Query-параметрах.
+    * Cookies, и т.д.
 
-Plus all the security features from Starlette (including **session cookies**).
+А также все возможности, связанные с безопасностью, от Starlette (включая **session cookies**).
 
-All built as reusable tools and components that are easy to integrate with your systems, data stores, relational and NoSQL databases, etc.
+Все они созданы как инструменты и компоненты для дальнейшего переиспользования, которые легко интегрируются с вашими системами, хранилищами данных, реляционными и NoSQL базами данных, и т.д.
 
-### Dependency Injection
+### Внедрение зависимостей (Dependency Injection)
 
-FastAPI includes an extremely easy to use, but extremely powerful <abbr title='also known as "components", "resources", "services", "providers"'><strong>Dependency Injection</strong></abbr> system.
+FastAPI включает в себя чрезвычайно простую в использовании, но при этом чрезвычайно мощную систему для <abbr title='также известных как "компоненты", "ресурсы", "сервисы", "провайдеры"'><strong>внедрения зависимостей (Dependency Injection)</strong></abbr>.
 
-* Even dependencies can have dependencies, creating a hierarchy or **"graph" of dependencies**.
-* All **automatically handled** by the framework.
-* All the dependencies can require data from requests and **augment the path operation** constraints and automatic documentation.
-* **Automatic validation** even for *path operation* parameters defined in dependencies.
-* Support for complex user authentication systems, **database connections**, etc.
-* **No compromise** with databases, frontends, etc. But easy integration with all of them.
+* Даже зависимости могут иметь зависимости, создавая иерархию или **"граф" зависимостей**.
+* Все они **автоматически обрабатываются** фреймворком.
+* Все зависимости могут требовать данные из запросов и **дополнять операцию пути** ограничениями и автоматической документацией.
+* **Автоматическая валидация** даже для параметров *операции пути*, определенных в зависимостях.
+* Поддержка для сложных систем аутентификации пользователей, **подключений баз данных**, и т.д.
+* **Нет компромиссов** с базами данных, фронтендами, и т.д. Но простая интеграция с всеми из них.
 
-### Unlimited "plug-ins"
+### Неограниченные "плагины"
 
-Or in other way, no need for them, import and use the code you need.
+Другими словами, в них нет необходимости, просто импортируйте и используйте код, который вам необходим.
 
-Any integration is designed to be so simple to use (with dependencies) that you can create a "plug-in" for your application in 2 lines of code using the same structure and syntax used for your *path operations*.
+Любая интеграция спроектирована таким образом, чтобы быть настолько простой в использовании (с зависимостями), что вы можете создать «плагин» для своего приложения в пару строк кода, используя ту же структуру и синтаксис, что и для ваших *операций с путями*.
 
-### Tested
+### Протестированный
 
-* 100% <abbr title="The amount of code that is automatically tested">test coverage</abbr>.
-* 100% <abbr title="Python type annotations, with this your editor and external tools can give you better support">type annotated</abbr> code base.
-* Used in production applications.
+* 100% <abbr title="Количество автоматически протестированного кода">покрытие тестами</abbr>.
+* 100%-<abbr title="Python type annotations, with this your editor and external tools can give you better support">покрытая аннотациями типов</abbr> кодовая база.
+* Использован в реальных приложениях.
 
-## Starlette features
+## Starlette возможности
 
-**FastAPI** is fully compatible with (and based on) <a href="https://www.starlette.io/" class="external-link" target="_blank"><strong>Starlette</strong></a>. So, any additional Starlette code you have, will also work.
+**FastAPI** является полностью совместимым со (и основан на) <a href="https://www.starlette.io/" class="external-link" target="_blank"><strong>Starlette</strong></a>. Поэтому любой дополнительный Starlette-код, который у вас есть, будет также работать.
 
-`FastAPI` is actually a sub-class of `Starlette`. So, if you already know or use Starlette, most of the functionality will work the same way.
+FastAPI на самом деле является подклассом Starlette. То есть, если вы уже знаете или используете Starlette, большая часть возможностей будет работать точно так же.
 
-With **FastAPI** you get all of **Starlette**'s features (as FastAPI is just Starlette on steroids):
+С **FastAPI** вы получите все возможности **Starlette** (так как FastAPI является просто Starlette на стероидах):
 
-* Seriously impressive performance. It is <a href="https://github.com/encode/starlette#performance" class="external-link" target="_blank">one of the fastest Python frameworks available, on par with **NodeJS** and **Go**</a>.
-* **WebSocket** support.
-* **GraphQL** support.
-* In-process background tasks.
-* Startup and shutdown events.
-* Test client built on `requests`.
+* Серьезно впечатляющая производительность. Это <a href="https://github.com/encode/starlette#performance" class="external-link" target="_blank">один из самых быстрых доступных Python-фреймворков, наряду с **NodeJS** и **Go**</a>.
+* Поддержка **WebSocket**.
+* Поддержка **GraphQL**.
+* Фоновые задачи в процессе.
+* События для запуска и выключения приложения.
+* Тестовый клиент, основанный на `requests`.
 * **CORS**, GZip, Static Files, Streaming responses.
-* **Session and Cookie** support.
-* 100% test coverage.
-* 100% type annotated codebase.
+* Поддержка **Session и Cookie**.
+* 100% покрытие тестами.
+* 100% покрытая аннотациями типов кодовая база.
 
-## Pydantic features
+## Pydantic возможности
 
-**FastAPI** is fully compatible with (and based on) <a href="https://pydantic-docs.helpmanual.io" class="external-link" target="_blank"><strong>Pydantic</strong></a>. So, any additional Pydantic code you have, will also work.
+**FastAPI** является полностью совместимым с (и основан на) <a href="https://pydantic-docs.helpmanual.io" class="external-link" target="_blank"><strong>Pydantic</strong></a>. Поэтому любой дополнительный Pydantic-код, который у вас есть, будет также работать.
 
-Including external libraries also based on Pydantic, as <abbr title="Object-Relational Mapper">ORM</abbr>s, <abbr title="Object-Document Mapper">ODM</abbr>s for databases.
+Включая внешние библиотеки, которые также основаны на Pydantic, как, к примеру, <abbr title="Object-Relational Mapper">ORM</abbr>, <abbr title="Object-Document Mapper">ODM</abbr> для баз данных.
 
-This also means that in many cases you can pass the same object you get from a request **directly to the database**, as everything is validated automatically.
+Это также означает, что во многих случаях вы можете передать тот же объект, который вы получаете из запроса, **напрямую в базу данных**, т.к. все проверяется автоматически.
 
 The same applies the other way around, in many cases you can just pass the object you get from the database **directly to the client**.
 
