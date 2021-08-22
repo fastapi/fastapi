@@ -59,7 +59,7 @@ COPY ./app /app
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
 ```
 
-## Créez le code **FastAPI**.
+## Créer le code **FastAPI**.
 
 * Créer un répertoire `app` et y entrer.
 * Créez un fichier `main.py` avec :
