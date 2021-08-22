@@ -20,6 +20,7 @@ theme:
   features:
   - search.suggest
   - search.highlight
+  - content.tabs.link
   icon:
     repo: fontawesome/brands/github-alt
   logo: https://fastapi.tiangolo.com/img/icon-white.svg
@@ -82,6 +83,8 @@ nav:
   - tutorial/body-updates.md
   - 依赖项:
     - tutorial/dependencies/index.md
+    - tutorial/dependencies/sub-dependencies.md
+    - tutorial/dependencies/dependencies-in-path-operation-decorators.md
     - tutorial/dependencies/global-dependencies.md
   - 安全性:
     - tutorial/security/index.md
@@ -116,7 +119,7 @@ markdown_extensions:
     custom_fences:
     - name: mermaid
       class: mermaid
-      format: !!python/name:pymdownx.superfences.fence_div_format ''
+      format: !!python/name:pymdownx.superfences.fence_code_format ''
 - pymdownx.tabbed
 extra:
   social:
@@ -169,6 +172,5 @@ extra_css:
 - https://fastapi.tiangolo.com/css/termynal.css
 - https://fastapi.tiangolo.com/css/custom.css
 extra_javascript:
-- https://unpkg.com/mermaid@8.4.6/dist/mermaid.min.js
 - https://fastapi.tiangolo.com/js/termynal.js
 - https://fastapi.tiangolo.com/js/custom.js
