@@ -175,7 +175,7 @@ Pour configurer un cluster en mode Docker Swarm avec Traefik et la gestion de HT
 
 La façon la plus simple de tout mettre en place, serait d'utiliser les [**Générateurs de projet FastAPI**](../project-generation.md){.internal-link target=_blank}.
 
-Il est conçu pour être intégré à ce cluster Docker Swarm avec Traefik et HTTPS décrit ci-dessus.
+Le génerateur de projet adéquat est conçu pour être intégré à ce cluster Docker Swarm avec Traefik et HTTPS décrit ci-dessus.
 
 Vous pouvez générer un projet en 2 min environ.
 
