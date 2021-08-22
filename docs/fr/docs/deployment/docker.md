@@ -108,7 +108,7 @@ $ docker build -t myimage .
 
 ## Démarrer le conteneur Docker
 
-* Exécuter un conteneur basé sur votre image :
+* Exécutez un conteneur basé sur votre image :
 
 <div class="termy">
 
