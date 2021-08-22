@@ -154,7 +154,7 @@ haute performance. Il peut faire office de "Proxy de terminaison TLS" (entre aut
 
 Il est intégré à Let's Encrypt. Ainsi, il peut gérer toutes les parties HTTPS, y compris l'acquisition et le renouvellement des certificats.
 
-Il est également intégré à Docker. Ainsi, vous pouvez déclarer vos domaines dans les configurations de chaque application et faire en sorte qu'elle lise ces configurations, génère les certificats HTTPS et serve HTTPS à votre application automatiquement, sans nécessiter aucune modification de sa configuration.
+Il est également intégré à Docker. Ainsi, vous pouvez déclarer vos domaines dans les configurations de chaque application et faire en sorte qu'elles lisent ces configurations, génèrent les certificats HTTPS et servent via HTTPS à votre application automatiquement, sans nécessiter aucune modification de leurs configurations.
 
 ---
 
