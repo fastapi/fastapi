@@ -33,7 +33,6 @@
 编写带有类型标注的标准 Python：
 
 ```Python
-from typing import List, Dict
 from datetime import date
 
 from pydantic import BaseModel
