@@ -91,7 +91,7 @@ my_second_user: User = User(**second_user_data)
 
 Вы получите автодополнение в коде, которое раньше даже считали невозможным. Как, например, ключ `price` внутри JSON-тела (который мог быть вложенным), который приходит из запроса.
 
-No more typing the wrong key names, coming back and forth between docs, or scrolling up and down to find if you finally used `username` or `user_name`.
+Больше не придется вводить неправильные названия ключей, переключаться между документами или скроллить, чтобы узнать, использовали ли вы `username` или `user_name`.
 
 ### Краткость
 
@@ -119,7 +119,6 @@ No more typing the wrong key names, coming back and forth between docs, or scrol
 
 Безопасность и аутентификация интегрированы. Без каких-либо компромиссов с базами данных или моделями данных.
 
-All the security schemes defined in OpenAPI, including:
 Все схемы безопасности определены в OpenAPI, включая:
 
 * HTTP Basic.
@@ -153,7 +152,7 @@ FastAPI включает в себя чрезвычайно простую в и
 ### Протестированный
 
 * 100% <abbr title="Количество автоматически протестированного кода">покрытие тестами</abbr>.
-* 100%-<abbr title="Python type annotations, with this your editor and external tools can give you better support">покрытая аннотациями типов</abbr> кодовая база.
+* 100%-<abbr title="Аннотации Python-типов, с которыми ваш редактор и другие инструменты могут предоставить вам лучшую поддержку">покрытая аннотациями типов</abbr> кодовая база.
 * Использован в реальных приложениях.
 
 ## Starlette возможности
@@ -169,7 +168,7 @@ FastAPI на самом деле является подклассом Starlette
 * Поддержка **GraphQL**.
 * Фоновые задачи в процессе.
 * События для запуска и выключения приложения.
-* Тестовый клиент, основанный на `requests`.
+* Клиент для тестирования, основанный на `requests`.
 * **CORS**, GZip, Static Files, Streaming responses.
 * Поддержка **Session и Cookie**.
 * 100% покрытие тестами.
@@ -183,21 +182,21 @@ FastAPI на самом деле является подклассом Starlette
 
 Это также означает, что во многих случаях вы можете передать тот же объект, который вы получаете из запроса, **напрямую в базу данных**, т.к. все проверяется автоматически.
 
-The same applies the other way around, in many cases you can just pass the object you get from the database **directly to the client**.
+То же самое применимо и наоборот: во многих случаях вы можете просто передать объект, получаемый из базы данных, **напрямую клиенту**.
 
-With **FastAPI** you get all of **Pydantic**'s features (as FastAPI is based on Pydantic for all the data handling):
+С **FastAPI** вы получите все возможности **Pydantic** (так как FastAPI основан на Pydantic для всех обработок данных):
 
-* **No brainfuck**:
-    * No new schema definition micro-language to learn.
-    * If you know Python types you know how to use Pydantic.
-* Plays nicely with your **<abbr title="Integrated Development Environment, similar to a code editor">IDE</abbr>/<abbr title="A program that checks for code errors">linter</abbr>/brain**:
-    * Because pydantic data structures are just instances of classes you define; auto-completion, linting, mypy and your intuition should all work properly with your validated data.
-* **Fast**:
-    * in <a href="https://pydantic-docs.helpmanual.io/#benchmarks-tag" class="external-link" target="_blank">benchmarks</a> Pydantic is faster than all other tested libraries.
-* Validate **complex structures**:
-    * Use of hierarchical Pydantic models, Python `typing`’s `List` and `Dict`, etc.
-    * And validators allow complex data schemas to be clearly and easily defined, checked and documented as JSON Schema.
-    * You can have deeply **nested JSON** objects and have them all validated and annotated.
-* **Extendible**:
-    * Pydantic allows custom data types to be defined or you can extend validation with methods on a model decorated with the validator decorator.
-* 100% test coverage.
+* **Нет выноса мозга**:
+    * Нет нового микроязыка определения схемы для изучения.
+    * Если вы знаете Python-типы, вы знаете, как использовать Pydantic.
+* Отличная интеграция с вашим **<abbr title="Интегрированная среда разработки (Integrated Development Environment), похожая на редактор кода">IDE</abbr>/<abbr title="Программа, которая проверяет ошибки кода">линтером</abbr>/мозгом**:
+    * Потому как структуры данных pydantic являются просто экземплярами определенных вами классов; автодополнение, линтинг, mypy и ваша интуиция должны правильно работать с вашими проверенными данными.
+* **Быстроту**:
+    * по <a href="https://pydantic-docs.helpmanual.io/#benchmarks-tag" class="external-link" target="_blank">замерам</a> Pydantic быстрее всех других протестированных библиотек.
+* Валидацию **сложных структур**:
+    * Использование иерархических Pydantic-моделей, `List` и `Dict` из Python-модуля `typing`, и т.д.
+    * И валидаторы позволяют четко и легко определять сложные схемы данных, проверять и документировать их по спецификации JSON Schema. 
+    * У вас могут быть глубоко **вложенные JSON-объекты** все они будут провалидированы и иметь аннотации.
+* **Расширяемость**:
+    * Pydantic позволяет определять пользовательские типы данных, или вы можете расширить валидацию с помощью методов в модели с `validator` декоратором.
+* 100% покрытие тестами.
