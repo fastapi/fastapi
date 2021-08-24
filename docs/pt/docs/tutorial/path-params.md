@@ -107,7 +107,7 @@ Algo como `/users/me` por exemplo, digamos que essa rota seja utilizada para peg
 
 E então você pode ter também uma rota `/users/{user_id}` para pegar dados sobre um usuário específico associado a um ID de usuário.
 
-Porque as operações de rota são avaliadas em ordem, você precisa ter certeza que a rota para `/users/me` está sendo declarado antes do caminho `/users/{user_id}`:
+Porque as operações de rota são avaliadas em ordem, você precisa ter certeza que a rota para `/users/me` está sendo declarado antes da rota `/users/{user_id}`:
 
 ```Python hl_lines="6  11"
 {!../../../docs_src/path_params/tutorial003.py!}
