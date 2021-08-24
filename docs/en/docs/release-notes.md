@@ -2,6 +2,9 @@
 
 ## Latest Changes
 
+
+## 0.68.1
+
 * ✨ Add support for `read_with_orm_mode`, to support [SQLModel](https://sqlmodel.tiangolo.com/) relationship attributes. PR [#3757](https://github.com/tiangolo/fastapi/pull/3757) by [@tiangolo](https://github.com/tiangolo).
 
 ### Translations
