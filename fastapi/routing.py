@@ -549,7 +549,8 @@ class APIRouter(routing.Router):
             callbacks=current_callbacks,
             openapi_extra=openapi_extra,
         )
-        self.routes.append(route)
+        if route not in self.routes:
+            self.routes.append(route)
 
     def api_route(
         self,
