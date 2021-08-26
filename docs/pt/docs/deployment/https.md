@@ -13,7 +13,7 @@ Agora, a partir de uma perspectiva do desenvolvedor, aqui estão algumas coisas 
 
 * Para HTTPS, o servidor precisa ter certificados gerados por um terceiro.
     * Esses certificados são adquiridos de um terceiro, eles não são simplesmente "gerados".
-* Certificados tem um tempo de vida.
+* Certificados têm um tempo de vida.
     * Eles expiram.
     * E então eles precisam ser renovados, adquirindo-os novamente de um terceiro.
 * A criptografia da conexão acontece no nível TCP.
@@ -21,7 +21,7 @@ Agora, a partir de uma perspectiva do desenvolvedor, aqui estão algumas coisas 
     * Portanto, o manuseio do certificado e da criptografia é feito antes do HTTP.
 * O TCP não sabe sobre "domínios". Apenas sobre endereços IP.
     * As informações sobre o domínio solicitado vão nos dados HTTP.
-* Os certificados HTTPS “certificam” um determinado domínio, mas o protocolo e a encriptação acontecem ao nível do TCP, antes de sabermos com que domínio se trata.
+* Os certificados HTTPS “certificam” um determinado domínio, mas o protocolo e a encriptação acontecem ao nível do TCP, antes de sabermos de que domínio se trata.
 * Por padrão, isso significa que você só pode ter um certificado HTTPS por endereço IP.
     * Não importa o tamanho do seu servidor ou quão pequeno cada aplicativo que você tem nele possa ser.
     * No entanto, existe uma solução para isso.
