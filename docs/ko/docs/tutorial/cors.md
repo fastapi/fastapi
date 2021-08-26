@@ -28,7 +28,7 @@
 
 모든 출처를 허용하기 위해 리스트를 `"*"` ("와일드카드")로 선언하는 것도 가능합니다.
 
-하지만 이것은 특정한 유형의 통신만을 허용하며, 자격 증명(credentials)과 관련된 모든 것을 허용하지 않습니다: 쿠키, 액세스 토큰과 사용되는 인증 헤더(Authorization header) 등.
+하지만 이것은 특정한 유형의 통신만을 허용하며, 쿠키 및 액세스 토큰과 사용되는 인증 헤더(Authoriztion header) 등이 포함된 경우와 같이 자격 증명(credentials)이 포함된 통신은 허용되지 않습니다.  
 
 따라서 모든 작업을 의도한대로 실행하기 위해, 허용되는 출처를 명시적으로 지정하는 것이 좋습니다.
 
@@ -81,4 +81,4 @@
 !!! note "기술 세부 사항"
     `from starlette.middleware.cors import CORSMiddleware` 역시 사용할 수 있습니다.
 
-    **FastAPI**는 개발자인 당신의 편의를 위해 `fastapi.middleware` 에서 몇가지의 미들웨어를 제공합니다. 하지만 거의 모든 사용 가능한 미들웨어가 Stralette으로부터 직접 제공됩니다.
+    **FastAPI**는 개발자인 당신의 편의를 위해 `fastapi.middleware` 에서 몇가지의 미들웨어를 제공합니다. 하지만 대부분의 미들웨어가 Stralette으로부터 직접 제공됩니다.
