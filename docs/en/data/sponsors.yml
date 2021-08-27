@@ -18,3 +18,7 @@ silver:
   - url: https://testdriven.io/courses/tdd-fastapi/
     title: Learn to build high-quality web apps with best practices
     img: https://fastapi.tiangolo.com/img/sponsors/testdriven.svg
+bronze:
+  - url: https://calmcode.io
+    title: Code. Simply. Clearly. Calmly.
+    img: https://fastapi.tiangolo.com/img/sponsors/calmcode.jpg
