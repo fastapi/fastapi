@@ -1,79 +1,79 @@
-# Header Parameters
+# Header-параметры
 
-You can define Header parameters the same way you define `Query`, `Path` and `Cookie` parameters.
+Вы можете определить Header-параметры точно так же, как вы определяете `Query`, `Path` и `Cookie`-параметры.
 
-## Import `Header`
+## Импортируйте `Header`
 
-First import `Header`:
+Прежде всего, импортируйте `Header`:
 
 ```Python hl_lines="3"
 {!../../../docs_src/header_params/tutorial001.py!}
 ```
 
-## Declare `Header` parameters
+## Объявите `Header`-параметры
 
-Then declare the header parameters using the same structure as with `Path`, `Query` and `Cookie`.
+Затем объявите параметры заголовков, используя такую же структуру, как и с `Path`, `Query` и `Cookie`.
 
-The first value is the default value, you can pass all the extra validation or annotation parameters:
+Первое значение является значением по умолчанию, вы можете передать все дополнительные параметры валидации или аннотации:
 
 ```Python hl_lines="9"
 {!../../../docs_src/header_params/tutorial001.py!}
 ```
 
-!!! note "Technical Details"
-    `Header` is a "sister" class of `Path`, `Query` and `Cookie`. It also inherits from the same common `Param` class.
+!!! note "Технические Детали"
+    `Header` является "родственным" классом для `Path`, `Query` и `Cookie`. Он также наследуется от того же общего класса `Param`.
 
-    But remember that when you import `Query`, `Path`, `Header`, and others from `fastapi`, those are actually functions that return special classes.
+    Но помните, что когда вы импортируете `Query`, `Path`, `Header` и др. из `fastapi`, на самом деле это функции, возвращающие специальные классы.
 
 !!! info
-    To declare headers, you need to use `Header`, because otherwise the parameters would be interpreted as query parameters.
+    Для объявления заголовков вам необходимо использовать `Header`, в противном случае эти параметры будут интерпретироваться как параметры запроса.
 
-## Automatic conversion
+## Автоматическое преобразование
 
-`Header` has a little extra functionality on top of what `Path`, `Query` and `Cookie` provide.
+`Header` включает в себя немного больше функциональности, чем та, которую предоставляют `Path`, `Query` и `Cookie`.
 
-Most of the standard headers are separated by a "hyphen" character, also known as the "minus symbol" (`-`).
+Большинство стандартных заголовков разделяются дефисом (или знаком минус) `-`.
 
-But a variable like `user-agent` is invalid in Python.
+Но переменная вроде `user-agent` является некорректной в Python.
 
-So, by default, `Header` will convert the parameter names characters from underscore (`_`) to hyphen (`-`) to extract and document the headers.
+Поэтому по умолчанию `Header` будет преобразовывать знаки подчеркивания (`_`) в названиях параметров в дефисы (`-`) для получения и документирования заголовков.
 
-Also, HTTP headers are case-insensitive, so, you can declare them with standard Python style (also known as "snake_case").
+Кроме того, названия HTTP-заголовков являются регистронезависимыми, поэтому вы можете объявлять их в обычном Python-стиле (который также известен как "змеиная нотация"). 
 
-So, you can use `user_agent` as you normally would in Python code, instead of needing to capitalize the first letters as `User_Agent` or something similar.
+Поэтому вы можете использовать `user_agent`, как обычно написали бы в Python-коде, вместо того, чтобы переводить первые буквы в верхний рагистр вроде `User_Agent` или каким-то другим образом.
 
-If for some reason you need to disable automatic conversion of underscores to hyphens, set the parameter `convert_underscores` of `Header` to `False`:
+Если по каким-то причинам вам не требуется автоматическое преобразование символов подчеркивания в дефисы, установите параметр `convert_underscores` функции `Header` в значение `False`:
 
 ```Python hl_lines="10"
 {!../../../docs_src/header_params/tutorial002.py!}
 ```
 
 !!! warning
-    Before setting `convert_underscores` to `False`, bear in mind that some HTTP proxies and servers disallow the usage of headers with underscores.
+    Перед тем, как устанавливать `convert_underscores` в значение `False`, имейте в виду, что некоторые HTTP-прокси и серверы запрещают использование заголовков со знаками подчеркивания.
 
 
-## Duplicate headers
+## Повторяющиеся заголовки
 
-It is possible to receive duplicate headers. That means, the same header with multiple values.
+Возможно получить повторяющиеся заголовки. Это означает один и тот же заголовок с множеством значений.
 
-You can define those cases using a list in the type declaration.
+Вы можете определить эти случаи, используя список в объявлении типа.
 
-You will receive all the values from the duplicate header as a Python `list`.
+Вы получите все значения для повторяющегося заголовка в виде обычного `list`.
 
-For example, to declare a header of `X-Token` that can appear more than once, you can write:
+Например, для объявления заголовка `X-Token`, который может появиться больше раза, вы можете написать:
 
 ```Python hl_lines="9"
 {!../../../docs_src/header_params/tutorial003.py!}
 ```
 
-If you communicate with that *path operation* sending two HTTP headers like:
+Если вы взаимодействуете с подобным *обработчиком пути*, отправляя два HTTP-заголовка вроде:
 
 ```
 X-Token: foo
 X-Token: bar
 ```
 
-The response would be like:
+Ответ будет выглядеть так:
 
 ```JSON
 {
@@ -84,8 +84,8 @@ The response would be like:
 }
 ```
 
-## Recap
+## Резюме
 
-Declare headers with `Header`, using the same common pattern as `Query`, `Path` and `Cookie`.
+Объявляйте заголовки с `Header` так же, как и с `Query`, `Path` и `Cookie`.
 
-And don't worry about underscores in your variables, **FastAPI** will take care of converting them.
+И не волнуйтесь о знаках подчеркивания в ваших переменных, **FastAPI** позаботится об их преобразовании.
