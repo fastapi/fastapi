@@ -59,6 +59,7 @@ nav:
 - python-types.md
 - Tutoriel - Guide utilisateur:
   - tutorial/background-tasks.md
+- async.md
 - project-generation.md
 - alternatives.md
 - external-links.md
