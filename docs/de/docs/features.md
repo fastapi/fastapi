@@ -140,12 +140,8 @@ FastAPI enthält ein extrem einfaches, aber extrem mächtiges <abbr title='oft v
 
 * Selbst Abhängigkeiten können Abhängigkeiten haben, woraus eine Hierachie oder ein **"Graph" von Abhängigkeiten** entsteht.
 * **Automatische Umsetzung** durch FastAPI.
-<<<<<<< HEAD
-* Alle Abhängigkeiten können Daten von Anfragen erforderb und können **Erweiterungen der Pfadoperations-**Eischränkungen und der automatischen Dokumentation hervornehmen.
-=======
-* Alle Abhängigkeiten können Daten von Anfragen erfordern und können **Erweiterungen der Pfadoperations-**Eischränkungen und der automatischen Dokumentation hervornehmen.
->>>>>>> 62281f5 (add fixes)
-* **Automatische Validierung** selbst für *Pfadoperations*-Parameter, die in den Abhängigkeiten definiert wurden.
+* Alle abhängigen Komponenten könnten Daten von Anfragen, **Erweiterungen der Pfadoperations-**Einschränkungen und der automatisierten Dokumentation benötigen.
+* **Automatische Validierung** selbst für *Pfadoperationen*-Parameter, die in den Abhängigkeiten definiert wurden.
 * Unterstütz komplexe Benutzerauthentifizierungssysteme, mit **Datenbankverbindungen**, usw.
 * **Keine Kompromisse** bei Datenbanken, Eingabemasken, usw. Sondern einfache Integration von allen.
 
