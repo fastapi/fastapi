@@ -9,11 +9,11 @@
 * <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a> für API-Erstellung, zusammen mit Deklarationen von <abbr title="auch genannt: Endpunkte, Routen">Pfad</abbr> <abbr title="gemeint sind: HTTP-Methoden, wie POST, GET, PUT, DELETE">Operationen</abbr>, Parameter, Nachrichtenrumpf-Anfragen (englisch: body request), Sicherheit, etc.
 * Automatische Dokumentation der Datenentitäten mit dem <a href="https://json-schema.org/" class="external-link" target="_blank"><strong>JSON Schema</strong></a> (OpenAPI basiert selber auf dem JSON Schema).
 * Entworfen auf Grundlage dieser Standards nach einer sorgfältigen Studie, statt einer nachträglichen Schicht über diesen Standards.
-* Dies ermöglicht automatische **Quellcode-Generation auf Benutzerebene** in vielen Sprachen.
+* Dies ermöglicht automatische **Quellcode-Generierung auf Benutzerebene** in vielen Sprachen.
 
 ### Automatische Dokumentation
 
-Mit einer interaktiven API-Dokumentation und explorativen webbasierten Benutzerschnittstellen. Dadurch, dass FastAPI auf OpenAPI basiert, gibt es hierzu mehrere Optionen, wobei zwei standartmäßig vorhanden sind.
+Mit einer interaktiven API-Dokumentation und explorativen webbasierten Benutzerschnittstellen. Da FastAPI auf OpenAPI basiert, gibt es hierzu mehrere Optionen, wobei zwei standartmäßig vorhanden sind.
 
 * <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank"><strong>Swagger UI</strong></a>, bietet interaktive Exploration: testen und rufen Sie ihre API direkt vom Webbrowser auf.
 
@@ -25,9 +25,11 @@ Mit einer interaktiven API-Dokumentation und explorativen webbasierten Benutzers
 
 ### Nur modernes Python
 
-Das alles basiert jediglich auf **Python 3.6 Typ**-Deklarationen (dank Pydantic). Sie müssen keine neue Syntax lernen, nutzen Sie einfach nur standardisiertes modernes Python. 
+Alles basiert auf **Python 3.6 Typ**-Deklarationen (dank Pydantic). Es muss keine neue Syntax gelernt werden, nur standardisiertes modernes Python.
 
-Wenn Sie eine kurze, zweiminütige, Auffrischung in der Benutzung von Python Typ-Deklarationen benötigen (auch wenn Sie nicht FastAPI nutzen), schauen Sie diese kurze Einführung (Englisch): [Python Types](python-types.md){.internal-link target=_blank}.
+ 
+
+Wenn Sie eine kurze, zweiminütige, Auffrischung in der Benutzung von Python Typ-Deklarationen benötigen (auch wenn Sie FastAPI nicht nutzen), schauen Sie sich diese kurze Einführung an (Englisch): Python Types{.internal-link target=_blank}.
 
 Sie schreiben Standard-Python mit Typ-Deklarationen:
 
@@ -67,19 +69,19 @@ my_second_user: User = User(**second_user_data)
 !!! info
     `**second_user_data` bedeutet:
 
-    Übergebe die Schlüssel und die zugehörigen Werte des `second_user_data`  Datenwörterbuches direckt als Schlüssel-Wert Argumente, äquivalent zu: `User(id=4, name="Mary", joined="2018-11-30")`
+    Übergebe die Schlüssel und die zugehörigen Werte des `second_user_data` Datenwörterbuches direkt als Schlüssel-Wert Argumente, äquivalent zu: `User(id=4, name="Mary", joined="2018-11-30")`
 
 ### Editor Unterstützung
 
 FastAPI wurde so entworfen, dass es einfach und intuitiv zu benutzen ist; alle Entscheidungen wurden auf mehreren Editoren getestet (sogar vor der eigentlichen Implementierung), um so eine best mögliche Entwicklererfahrung zu gewährleisten.
 
-In der letzen Python Entwickler Umfrage stellte sich heraus, dass <a href="https://www.jetbrains.com/research/python-developers-survey-2017/#tools-and-features" class="external-link" target="_blank">die meist genutzte Funktion ist die "Autovervollständigung"</a>.
+In der letzen Python Entwickler Umfrage stellte sich heraus, dass <a href="https://www.jetbrains.com/research/python-developers-survey-2017/#tools-and-features" class="external-link" target="_blank">die meist genutzte Funktion die "Autovervollständigung" ist</a>.
 
-Die gesamte Struktur von **FastAPI** basiert auf einer zufriedenstellenden Autovervollständigung: sie funktioniert einfach überall.
+Die gesamte Struktur von **FastAPI** soll dem gerecht werden. Autovervollständigung funktioniert überall.
 
-Sie müssen selten zu der Dokumentation von FastAPI zurückkehren.
+Sie müssen selten in die Dokumentation schauen.
 
-So kann ihr Editor ihnen helfen:
+So kann ihr Editor Sie unterstützen:
 
 * in <a href="https://code.visualstudio.com/" class="external-link" target="_blank">Visual Studio Code</a>:
 
@@ -89,13 +91,13 @@ So kann ihr Editor ihnen helfen:
 
 ![editor support](https://fastapi.tiangolo.com/img/pycharm-completion.png)
 
-Sie bekommen Autovervollständigung an Stellen, an dennen Sie vorher dies für nicht möglich gehalten haben. Zum Beispiel der `price` Schlüssel aus einem JSON Datensatz (dieser könnte auch verschachtelt sein) aus einer Anfrage.
+Sie bekommen Autovervollständigung an Stellen, an denen Sie dies vorher nicht für möglich gehalten hätten. Zum Beispiel der `price` Schlüssel aus einem JSON Datensatz (dieser könnte auch verschachtelt sein) aus einer Anfrage.
 
-Hierdurch werden Sie nie wieder einen falschen Schlüsselnamen benutzen und sparen sich lästige Zeit in Dokumentationen, um beispielsweise herauszufinden ob Sie `username` oder `user_name` als Schlüssel verwenden.
+Hierdurch werden Sie nie wieder einen falschen Schlüsselnamen benutzen und sparen sich lästiges Suchen in der Dokumentation, um beispielsweise herauszufinden ob Sie `username` oder `user_name` als Schlüssel verwenden.
 
 ### Kompakt
 
-FastAPI nutzt sensible **Standard-Einstellung** für alles, welche aber überall konfiguriert werden können. Alle Parameter können ganz genau an Ihre Bedürfnisse angepasst werden, sodass sie genau die API definieren können, die sie brachen.
+FastAPI nutzt für alles sensible **Standard-Einstellungen**, welche optional überall konfiguriert werden können. Alle Parameter können ganz genau an Ihre Bedürfnisse angepasst werden, sodass sie genau die API definieren können, die sie brachen.
 
 Aber standartmäßig, **"funktioniert einfach"** alles.
 
@@ -104,8 +106,8 @@ Aber standartmäßig, **"funktioniert einfach"** alles.
 * Validierung für die meisten (oder alle?) Python **Datentypen**, hierzu gehören:
     * JSON Objekte (`dict`).
     * JSON Listen (`list`), die den Typ ihrer Elemente definieren.
-    * Zeichenketten (`str`), mit minimaler und maximaler Länge.
-    * Zahlen (`int`, `float`) mit minimaler und maximaler Größe, etc.
+    * Zeichenketten (`str`), mit definierter minimaler und maximaler Länge.
+    * Zahlen (`int`, `float`) mit minimaler und maximaler Größe, usw.
 
 * Validierung für ungewögnliche Typen, wie:
     * URL.
@@ -119,10 +121,10 @@ Die gesamte Validierung übernimmt das etablierte und robuste **Pydantic**.
 
 Sicherheit und Authentifizierung integriert. Ohne einen Kompromiss aufgrund einer Datenbank oder den Datenentitäten.
 
-Unterstützt alle Sicherheitsschemata, die von OpenAPI definiert wurden, hierzu gejören:
+Unterstützt alle von OpenAPI definierten Sicherheitsschemata, hierzu gehören:
 
 * HTTP Basis Authentifizierung.
-* **OAuth2** (auch mit **JWT Zugriffstokens**). Schauen Sie hierzu dieses Tutorial [OAuth2 mit JWT](tutorial/security/oauth2-jwt.md){.internal-link target=_blank}.
+* **OAuth2** (auch mit **JWT Zugriffstokens**). Schauen Sie sich hierzu dieses Tutorial an: [OAuth2 mit JWT](tutorial/security/oauth2-jwt.md){.internal-link target=_blank}.
 * API Schlüssel in:
     * Kopfzeile (HTTP Header).
     * Anfrageparametern.
@@ -134,18 +136,22 @@ Alles wurde als wiederverwendbare Werkzeuge und Komponenten geschaffen, die einf
 
 ### Einbringen von Abhängigkeiten (meist: Dependency Injection)
 
-FastAPI bringt ein extrem einfaches, aber extrem mächtiges <abbr title='oft verwendet im Zusammenhang von: Komponenten, Resourcen, Diensten, Dienstanbieter'><strong>Dependency Injection</strong></abbr> System.
+FastAPI enthält ein extrem einfaches, aber extrem mächtiges <abbr title='oft verwendet im Zusammenhang von: Komponenten, Resourcen, Diensten, Dienstanbieter'><strong>Dependency Injection</strong></abbr> System.
 
 * Selbst Abhängigkeiten können Abhängigkeiten haben, woraus eine Hierachie oder ein **"Graph" von Abhängigkeiten** entsteht.
 * **Automatische Umsetzung** durch FastAPI.
+<<<<<<< HEAD
 * Alle Abhängigkeiten können Daten von Anfragen erforderb und können **Erweiterungen der Pfadoperations-**Eischränkungen und der automatischen Dokumentation hervornehmen.
+=======
+* Alle Abhängigkeiten können Daten von Anfragen erfordern und können **Erweiterungen der Pfadoperations-**Eischränkungen und der automatischen Dokumentation hervornehmen.
+>>>>>>> 62281f5 (add fixes)
 * **Automatische Validierung** selbst für *Pfadoperations*-Parameter, die in den Abhängigkeiten definiert wurden.
-* Unterstütz komplexe Benutzerauthentifizierungssysteme, mit **Datenbankverbindungen**, etc.
-* **Keine Kompromisse** mit Datenbanken, Eingängen, etc. Aber einfache Integration mit allen von ihnen..
+* Unterstütz komplexe Benutzerauthentifizierungssysteme, mit **Datenbankverbindungen**, usw.
+* **Keine Kompromisse** bei Datenbanken, Eingabemasken, usw. Sondern einfache Integration von allen.
 
-### Unlimitierte Erweiterungen
+### Unbegrenzte Erweiterungen
 
-Oder in anderen Worten, werden sie nicht benötigt: importieren und nutzen Sie den Quellcode, den Sie benötigen.
+Oder mit anderen Worten, sie werden nicht benötigt. Importieren und nutzen Sie Quellcode nach Bedarf.
 
 Jede Integration wurde so entworfen, dass sie einfach zu nutzen ist (mit Abhängigkeiten), sodass Sie eine Erweiterung für Ihre Anwendung mit nur zwei Zeilen an Quellcode implementieren können. Hierbei nutzen Sie die selbe Struktur und Syntax, wie bei Pfadoperationen.
 
@@ -157,17 +163,17 @@ Jede Integration wurde so entworfen, dass sie einfach zu nutzen ist (mit Abhäng
 
 ## Starlette's Merkmale
 
-**FastAPI** ist vollkommen kompatibel (und basiert auf) <a href="https://www.starlette.io/" class="external-link" target="_blank"><strong>Starlette</strong></a>. Das bedeutet, dass jeder zusätliche Starlette Quellcode von Ihnen, auch funktioniert.
+**FastAPI** ist vollkommen kompatibel (und basiert auf) <a href="https://www.starlette.io/" class="external-link" target="_blank"><strong>Starlette</strong></a>. Das bedeutet, auch ihr eigner Starlett Quellcode funktioniert.
 
-`FastAPI` ist eigentlich einer Unterklasse von `Starlette`. Wenn sie also bereits Starlette kennen oder benutzen, können Sie das meiste Ihres Wissen direkt anwenden.
+`FastAPI` ist eigentlich eine Unterklasse von `Starlette`. Wenn sie also bereits Starlette kennen oder benutzen, können Sie das meiste Ihres Wissen direkt anwenden.
 
 Mit **FastAPI** bekommen Sie viele von **Starlette**'s Funktionen (da FastAPI nur Starlette auf Steroiden ist):
 
-* Erheblich beeindruckende Performanz. Es ist <a href="https://github.com/encode/starlette#performance" class="external-link" target="_blank">eines der schnellsten Python frameworks, auf Augenhöhe mit **NodeJS** und **Go**</a>.
+* Stark beeindruckende Performanz. Es ist <a href="https://github.com/encode/starlette#performance" class="external-link" target="_blank">eines der schnellsten Python frameworks, auf Augenhöhe mit **NodeJS** und **Go**</a>.
 * **WebSocket**-Unterstützung.
 * **GraphQL**-Unterstützung.
-* Hintergrundauufgaben im selben Prozess.
-* Events für das Starten und Herunterfahren.
+* Hintergrundaufgaben im selben Prozess.
+* Ereignisse für das Starten und Herunterfahren.
 * Testclient basierend auf `requests`.
 * **CORS**, GZip, statische Dateien, Antwortfluss.
 * **Sitzungs und Cookie** Unterstützung.
@@ -176,7 +182,7 @@ Mit **FastAPI** bekommen Sie viele von **Starlette**'s Funktionen (da FastAPI nu
 
 ## Pydantic's Merkmale
 
-**FastAPI** ist vollkommen kompatibel (und basiert auf) <a href="https://pydantic-docs.helpmanual.io" class="external-link" target="_blank"><strong>Pydantic</strong></a>. Das bedeutet, dass jeder zusätliche Pydantic Quellcode von Ihnen, auch funktioniert.
+**FastAPI** ist vollkommen kompatibel (und basiert auf) <a href="https://pydantic-docs.helpmanual.io" class="external-link" target="_blank"><strong>Pydantic</strong></a>. Das bedeutet, auch jeder zusätzliche Pydantic Quellcode funktioniert.
 
 Verfügbar sind ebenso externe auf Pydantic basierende Bibliotheken, wie <abbr title="Object-Relational Mapper (Abbildung von Objekten auf relationale Strukturen)">ORM</abbr>s, <abbr title="Object-Document Mapper (Abbildung von Objekten auf nicht-relationale Strukturen)">ODM</abbr>s für Datenbanken.
 
