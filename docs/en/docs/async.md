@@ -102,13 +102,15 @@ To see the difference, imagine the following story about burgers:
 
 ### Concurrent Burgers
 
+<!-- The gender neutral cook emoji "🧑‍🍳" does not render well in browsers. In the meantime, I'm using a mix of male "👨‍🍳" and female "👩‍🍳" cooks. -->
+
 You go with your crush 😍 to get fast food 🍔, you stand in line while the cashier 💁 takes the orders from the people in front of you.
 
 Then it's your turn, you place your order of 2 very fancy burgers 🍔 for your crush 😍 and you.
 
 You pay 💸.
 
-The cashier 💁 says something to the guy in the kitchen 👨‍🍳 so he knows he has to prepare your burgers 🍔 (even though he is currently preparing the ones for the previous clients).
+The cashier 💁 says something to the cook in the kitchen 👨‍🍳 so they know they have to prepare your burgers 🍔 (even though they are currently preparing the ones for the previous clients).
 
 The cashier 💁 gives you the number of your turn.
 
@@ -146,9 +148,9 @@ Now let's imagine these aren't "Concurrent Burgers", but "Parallel Burgers".
 
 You go with your crush 😍 to get parallel fast food 🍔.
 
-You stand in line while several (let's say 8) cashiers that at the same time are cooks 👨‍🍳👨‍🍳👨‍🍳👨‍🍳👨‍🍳👨‍🍳👨‍🍳👨‍🍳 take the orders from the people in front of you.
+You stand in line while several (let's say 8) cashiers that at the same time are cooks 👩‍🍳👨‍🍳👩‍🍳👨‍🍳👩‍🍳👨‍🍳👩‍🍳👨‍🍳 take the orders from the people in front of you.
 
-Everyone before you is waiting 🕙 for their burgers 🍔 to be ready before leaving the counter because each of the 8 cashiers goes himself and prepares the burger right away before getting the next order.
+Everyone before you is waiting 🕙 for their burgers 🍔 to be ready before leaving the counter because each of the 8 cashiers goes and prepares the burger right away before getting the next order.
 
 Then it's finally your turn, you place your order of 2 very fancy burgers 🍔 for your crush 😍 and you.
 
@@ -174,7 +176,7 @@ There was not much talk or flirting as most of the time was spent waiting 🕙 i
 
 In this scenario of the parallel burgers, you are a computer / program 🤖 with two processors (you and your crush 😍), both waiting 🕙 and dedicating their attention ⏯ to be "waiting on the counter" 🕙 for a long time.
 
-The fast food store has 8 processors (cashiers/cooks) 👨‍🍳👨‍🍳👨‍🍳👨‍🍳👨‍🍳👨‍🍳👨‍🍳👨‍🍳. While the concurrent burgers store might have had only 2 (one cashier and one cook) 💁 👨‍🍳.
+The fast food store has 8 processors (cashiers/cooks) 👩‍🍳👨‍🍳👩‍🍳👨‍🍳👩‍🍳👨‍🍳👩‍🍳👨‍🍳. While the concurrent burgers store might have had only 2 (one cashier and one cook) 💁 👨‍🍳.
 
 But still, the final experience is not the best 😞.
 
@@ -236,7 +238,7 @@ You could have turns as in the burgers example, first the living room, then the 
 
 It would take the same amount of time to finish with or without turns (concurrency) and you would have done the same amount of work.
 
-But in this case, if you could bring the 8 ex-cashier/cooks/now-cleaners 👨‍🍳👨‍🍳👨‍🍳👨‍🍳👨‍🍳👨‍🍳👨‍🍳👨‍🍳, and each one of them (plus you) could take a zone of the house to clean it, you could do all the work in **parallel**, with the extra help, and finish much sooner.
+But in this case, if you could bring the 8 ex-cashier/cooks/now-cleaners 👩‍🍳👨‍🍳👩‍🍳👨‍🍳👩‍🍳👨‍🍳👩‍🍳👨‍🍳, and each one of them (plus you) could take a zone of the house to clean it, you could do all the work in **parallel**, with the extra help, and finish much sooner.
 
 In this scenario, each one of the cleaners (including you) would be a processor, doing their part of the job.
 
