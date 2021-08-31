@@ -101,6 +101,8 @@ nav:
   - advanced/additional-status-codes.md
   - advanced/response-directly.md
   - advanced/custom-response.md
+  - 高级安全性:
+    - advanced/security/oauth2-scopes.md
 - deployment.md
 - contributing.md
 - help-fastapi.md
