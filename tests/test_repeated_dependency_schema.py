@@ -36,7 +36,7 @@ schema = {
             "ValidationError": {
                 "properties": {
                     "loc": {
-                        "items": {"type": "string"},
+                        "items": {"oneOf": [{"type": "string"}, {"type": "integer"}]},
                         "title": "Location",
                         "type": "array",
                     },
