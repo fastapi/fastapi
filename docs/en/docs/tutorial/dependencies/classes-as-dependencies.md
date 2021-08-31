@@ -63,7 +63,7 @@ So, a Python class is also a **callable**.
 
 Then, in **FastAPI**, you could use a Python class as a dependency.
 
-What FastAPI actually checks is that it is a "callable" (function, class or anything else) and the parameters defined.
+What FastAPI actually checks that it is a "callable" (function, class or anything else) and the parameters defined.
 
 If you pass a "callable" as a dependency in **FastAPI**, it will analyze the parameters for that "callable", and process them in the same way as the parameters for a *path operation function*. Including sub-dependencies.
 
