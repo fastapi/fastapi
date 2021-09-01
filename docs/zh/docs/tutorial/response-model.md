@@ -1,6 +1,6 @@
 # 响应模型
 
-使用 `response_model` 参数，可以在任意*路径操作*中声明响应模型：
+使用 `response_model` 参数，即可在*路径操作*中声明响应模型：
 
 * `@app.get()`
 * `@app.post()`
@@ -14,7 +14,7 @@
 
 !!! note "笔记"
 
-    注意，`response_model` 是（`get`、`post` 等）「装饰器」方法的参数。与之前的参数和请求体不同，不是*路径操作函数*的参数。
+    注意，`response_model` 是（`get`、`post` 等）**装饰器**方法的参数。与之前的参数和请求体不同，不是*路径操作函数*的参数。
 
 `response_model` 接收的类型与声明 Pydantic 模型属性的类型相同，可以是 Pydantic 模型，也可以是由 Pydantic 模型的 `list`，例如 `List[Item]`。
 
@@ -23,7 +23,7 @@ FastAPI 使用 `response_model`：
 * 转换为类型声明的输出数据
 * 校验数据
 * 在 OpenAPI *路径操作*中，为响应添加 JSON Schema
-* 生成自动文档
+* 生成 API 文档
 
 但最重要的是：
 
@@ -31,7 +31,7 @@ FastAPI 使用 `response_model`：
 
 !!! note "技术细节"
 
-    响应模型是在装饰器参数中声明的，而不是返回类型注释的函数，因为路径函数没有真正返回该响应模型，而是返回 `dict`、数据库对象或其他模型，然后再使用 `response_model` 执行字段约束和序列化。
+    响应模型是在装饰器参数中声明的，而不是返回类型注释的函数，因为路径函数没有真正返回该响应模型，而是返回 `dict`、数据库对象或其它模型，然后再使用 `response_model` 执行字段约束和序列化。
 
 ## 返回相同的输入数据
 
@@ -51,7 +51,7 @@ FastAPI 使用 `response_model`：
 
 本例中，因为是用户本人发送密码，这种操作没什么问题。
 
-但如果在其他*路径操作*中使用同一个模型，就会把用户的密码发送给每一个客户端。
+但如果在其它*路径操作*中使用同一个模型，就会把用户的密码发送给每一个客户端。
 
 !!! danger "警告"
 
@@ -79,13 +79,13 @@ FastAPI 使用 `response_model`：
 
 因此，**FastAPI** 会（使用 Pydantic）过滤掉所有未在输出模型中声明的数据。
 
-## 在文档中查看
+## 查看文档
 
-在自动文档中，可以看到输入模型和输出模型都有自己的 JSON Schema：
+在 API 文档中，可以看到输入模型和输出模型都有自己的 JSON Schema：
 
 <img src="/img/tutorial/response-model/image01.png">
 
-并且，API 交互文档可以使用这两个模型：
+并且，API 文档可以使用这两个模型：
 
 <img src="/img/tutorial/response-model/image02.png">
 
@@ -99,9 +99,9 @@ FastAPI 使用 `response_model`：
 
 * `description: Optional[str] = None` 的默认值是 `None`
 * `tax: float = 10.5` 的默认值是 `10.5`
-* `tags: List[str] = []` 的默认值是一个空列表： `[]`
+* `tags: List[str] = []` 的默认值是空列表： `[]`
 
-但如果没有对含默认值的属性另赋新值，输出结果会省略含默认值的属性。
+但如果没有为含默认值的属性另赋新值，输出结果会省略含默认值的属性。
 
 例如，NoSQL 数据库的模型中往往包含很多可选属性，如果输出含默认值的属性，输出的 JSON 响应会特别长，此时，可以省略只含默认值的属性。
 
@@ -113,7 +113,7 @@ FastAPI 使用 `response_model`：
 {!../../../docs_src/response_model/tutorial004.py!}
 ```
 
-响应中不再包含未修改过默认值的属性，只包含真正设置过值的属性。
+响应中就不会再包含未修改过默认值的属性，而是只包含设置过值的属性。
 
 因此，向*路径操作*发送 ID 为 `foo` 的商品的请求，则（不包括默认值的）响应为：
 
@@ -180,7 +180,7 @@ FastAPI 使用 `response_model`：
 
 路径操作装饰器参数还有 `response_model_include` 和 `response_model_exclude`。
 
-这两个参数的值是由属性名 `str` 组成的 `set`，用于包含（忽略其他属性）或排除（包含其他属性）集合中的属性名。
+这两个参数的值是由属性名 `str` 组成的 `set`，用于包含（忽略其它属性）或排除（包含其它属性）集合中的属性名。
 
 如果只有一个 Pydantic 模型，但又想从中移除某些输出数据，则可以使用这种快捷方法。
 
@@ -188,7 +188,7 @@ FastAPI 使用 `response_model`：
 
     但我们依然建议使用多个类，而不是这些参数。
     
-    因为，就算使用 `response_model_include` 或 `response_model_exclude` 省略了某些属性，但在应用的 OpenAPI 生成的 JSON Schema （及文档中）仍会显示完整的模型。
+    因为就算使用 `response_model_include` 或 `response_model_exclude` 省略属性，但在 OpenAPI 生成的 JSON Schema （及文档）中仍会显示完整的模型。
     
     这种操作也适用于类似的 `response_model_by_alias`。
 
