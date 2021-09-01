@@ -34,7 +34,7 @@
 {!../../../docs_src/path_operation_configuration/tutorial002.py!}
 ```
 
-OpenAPI 概图会自动添加标签，供自动文档接口使用：
+OpenAPI 概图会自动添加标签，供 API 文档接口使用：
 
 <img src="/img/tutorial/path-operation-configuration/image01.png">
 
@@ -56,7 +56,7 @@ OpenAPI 概图会自动添加标签，供自动文档接口使用：
 {!../../../docs_src/path_operation_configuration/tutorial004.py!}
 ```
 
-下图为 Markdown 文本在交互文档中的显示效果：
+下图为 Markdown 文本在 API 文档中的显示效果：
 
 <img src="/img/tutorial/path-operation-configuration/image02.png">
 
@@ -88,7 +88,7 @@ OpenAPI 概图会自动添加标签，供自动文档接口使用：
 {!../../../docs_src/path_operation_configuration/tutorial006.py!}
 ```
 
-交互文档会把该路径操作标记为弃用：
+API 文档会把该路径操作标记为弃用：
 
 <img src="/img/tutorial/path-operation-configuration/image04.png">
 
