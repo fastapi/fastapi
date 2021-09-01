@@ -93,6 +93,7 @@ nav:
     - tutorial/security/oauth2-jwt.md
   - tutorial/cors.md
   - tutorial/bigger-applications.md
+  - tutorial/background-tasks.md
   - tutorial/metadata.md
   - tutorial/debugging.md
 - 高级用户指南:
