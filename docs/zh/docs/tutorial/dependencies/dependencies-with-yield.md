@@ -10,7 +10,7 @@ FastAPI 可以让依赖项执行<abbr title='也称为 "exit"、"cleanup"、"tea
 
 !!! info "说明"
 
-    为了能正常运行，需要使用 **Python 3.7** 或以上版本，如果使用 **Python 3.6**，则需要安装「backports」：
+    为了能正常运行，需要使用 **Python 3.7** 或以上版本，如果使用 **Python 3.6**，则需要安装**backports**：
     
     ```
     pip install async-exit-stack async-generator
@@ -29,7 +29,7 @@ FastAPI 可以让依赖项执行<abbr title='也称为 "exit"、"cleanup"、"tea
 
 ## 数据库生成器依赖项
 
-开发人员可以使用**生成器依赖项**创建数据库会话，并在会话结束后关闭会话。
+开发者可以使用**生成器依赖项**创建数据库会话，并在会话结束后关闭会话。
 
 发送响应前，只会执行 `yield` 语句及该语句之前的代码：
 
@@ -37,7 +37,7 @@ FastAPI 可以让依赖项执行<abbr title='也称为 "exit"、"cleanup"、"tea
 {!../../../docs_src/dependencies/tutorial007.py!}
 ```
 
-`yield` 生成的值会被注入到*路径操作*或其他依赖项：
+`yield` 生成的值会被注入到*路径操作*或其它依赖项：
 
 ```Python hl_lines="4"
 {!../../../docs_src/dependencies/tutorial007.py!}
@@ -59,7 +59,7 @@ FastAPI 可以让依赖项执行<abbr title='也称为 "exit"、"cleanup"、"tea
 
 把依赖项的 `yield` 置于 `try`  代码块中，就可以接收到所有使用该依赖项时触发的异常。
 
-假设执行过程中的某行代码（这行代码可能在*路径操作或其他依赖项中*）导致了数据库事务的「回滚」，或导致了任何其他错误，使用 `try`  就可以在当前依赖项中触发异常。
+假设执行过程中的某行代码（这行代码可能在*路径操作或其它依赖项中*）导致了数据库事务的**回滚**，或导致了任何其它错误，使用 `try`  就可以在当前依赖项中触发异常。
 
 所以，可以使用 `except SomeException` 在依赖项中捕获的异常。
 
@@ -71,9 +71,9 @@ FastAPI 可以让依赖项执行<abbr title='也称为 "exit"、"cleanup"、"tea
 
 ## 子生成器依赖项
 
-生成器依赖项支持子依赖项及任意层级的子依赖项「树」，且每个子依赖项都可以使用 `yield`。
+生成器依赖项支持子依赖项及任意层级的子依赖项**树**，且每个子依赖项都可以使用 `yield`。
 
-**FastAPI** 将确保生成器依赖项中的「退出代码」以正确的顺序运行。
+**FastAPI** 将确保生成器依赖项中的**退出代码**以正确的顺序运行。
 
 例如，`dependency_c` 依赖于 `dependency_b`，而 `dependency_b` 又依赖于 `dependency_a`：
 
@@ -95,7 +95,7 @@ FastAPI 可以让依赖项执行<abbr title='也称为 "exit"、"cleanup"、"tea
 
 还支持让单个依赖项调用多个生成器依赖项。
 
-根据需要，开发人员可以使用任意形式的依赖项组合。
+根据需要，开发者可以使用任意形式的依赖项组合。
 
 **FastAPI** 能够确保一切都以正确的顺序运行。
 
@@ -121,7 +121,7 @@ FastAPI 可以让依赖项执行<abbr title='也称为 "exit"、"cleanup"、"tea
 
 但是，如果后台任务导致了数据库错误，至少可以在生成器依赖项中执行回滚操作，或干净地关闭会话，而且还可以生成错误日志，或向远程跟踪系统发送错误报告。
 
-如果预计某些代码有可能触发异常，最「Pythonic」的做法就是在这段代码中添加 `try` 异常处理代码块。
+如果预计某些代码有可能触发异常，最**Pythonic**的做法就是在这段代码中添加 `try` 异常处理代码块。
 
 如果需要在*返回响应*前处理自定义的异常，并且需要修改响应内容，或要触发 HTTPException，可以创建[自定义异常处理器](../handling-errors.md#install-custom-exception-handlers)。
 
@@ -147,21 +147,21 @@ participant tasks as 后台任务
     opt raise
         dep -->> handler: 触发 HTTPException
         handler -->> client: HTTP 错误响应
-        dep -->> dep: 触发其他异常
+        dep -->> dep: 触发其它异常
     end
     dep ->> operation: 运行依赖项，例如，数据库会话
     opt raise
         operation -->> handler: 触发 HTTPException
         handler -->> client: HTTP 错误响应
-        operation -->> dep: 触发其他异常
+        operation -->> dep: 触发其它异常
     end
     operation ->> client: 返回响应至客户端
     Note over client,operation: 响应已发送，不能再进行修改
     opt Tasks
         operation -->> tasks: 发送后台任务
     end
-    opt 触发其他异常
-        tasks -->> dep: 触发其他异常
+    opt 触发其它异常
+        tasks -->> dep: 触发其它异常
     end
     Note over dep: yield 语句之后
     opt 处理异常
@@ -173,20 +173,20 @@ participant tasks as 后台任务
 
     FastAPI 只会向客户端发送**一个响应**。这个响应可能是错误响应，也可能是来自*路径操作*的响应。
     
-    发送完这个响应后，不能再发送其他响应。
+    发送完这个响应后，不能再发送其它响应。
 
 
 !!! tip "提示"
 
-    上图显示的是 `HTTPException`, 但是也可以触发创建了[自定义异常处理器](../handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank}的任何其他异常。该异常不是由依赖项的退出代码处理，而是由自定义异常处理器处理。
+    上图显示的是 `HTTPException`, 但是也可以触发创建了[自定义异常处理器](../handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank}的任何其它异常。该异常不是由依赖项的退出代码处理，而是由自定义异常处理器处理。
     
     但是，如果触发的不是由异常处理器处理的异常，则依赖项的退出代码将处理该异常。
 
 ## 上下文管理器
 
-### 什么是「上下文管理器」
+### 什么是**上下文管理器**
 
-「上下文管理器」是指可以在 `with` 语句中使用的任意 Python 对象。
+**上下文管理器**是指可以在 `with` 语句中使用的任意 Python 对象。
 
 比如，<a href="https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files" class="external-link" target="_blank">使用 `with` 读取文件</a>：
 
@@ -196,17 +196,17 @@ with open("./somefile.txt") as f:
     print(contents)
 ```
 
-在底层，`open("./somefile.txt")` 创建了一个「上下文管理器」对象。
+在底层，`open("./somefile.txt")` 创建了一个**上下文管理器**对象。
 
 `with` 代码块运行完毕时，即使触发了异常，也一定会关闭文件。
 
-创建生成器依赖项，**FastAPI** 会在内部把该依赖项转换为上下文管理器，并将之与其他相关工具组合在一起。
+创建生成器依赖项，**FastAPI** 会在内部把该依赖项转换为上下文管理器，并将之与其它相关工具组合在一起。
 
 ### 在生成器依赖项中使用上下文管理器
 
 !!! warning "警告"
 
-    下述内容有点「难度」。
+    下述内容有点**难度**。
     
     如果您刚开始使用 **FastAPI**，可以先跳过这部分内容。
 
@@ -229,6 +229,6 @@ with open("./somefile.txt") as f:
     
     这是 **FastAPI** 内部的生成器依赖项使用方式。
     
-    但是，开发人员不必为 FastAPI 依赖项使用装饰器，我们不提倡这种操作。
+    但是，开发者不必为 FastAPI 依赖项使用装饰器，我们不提倡这种操作。
     
     FastAPI 会在内部进行处理。
