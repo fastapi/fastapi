@@ -15,14 +15,14 @@
 * 转换请求数据
 * 转换响应数据
 * 数据校验
-* 自动补全和自动文档
+* 自动补全和 API 文档
 
-## 其他数据类型
+## 其它数据类型
 
 下面介绍更多数据类型：
 
 * `UUID`：
-    * 标准的「通用唯一标识符」，在数据库和系统中常用作 ID
+    * 标准的**通用唯一标识符**，在数据库和系统中常用作 ID
     * 在请求和响应中为 `str`
 * `datetime.datetime`：
     *  Python `datetime.datetime`
@@ -36,7 +36,7 @@
 * `datetime.timedelta`：
     * Python `datetime.timedelta`
     * 在请求和响应中为 `float`，表示总秒数
-    * Pydantic 还支持「ISO 8601 时间差异编码」, <a href="https://pydantic-docs.helpmanual.io/#json-serialisation" class="external-link" target="_blank">详见文档</a>
+    * Pydantic 还支持**ISO 8601 时间差异编码**, <a href="https://pydantic-docs.helpmanual.io/#json-serialisation" class="external-link" target="_blank">详见文档</a>
 * `frozenset`：
     * 在请求和响应中与 `set` 相同：
         * 在请求中，读取列表，去除重复项，并转换为 `set`
@@ -45,7 +45,7 @@
 * `bytes`：
     * 标准的 Python `bytes`
     * 在请求和响应中为 `str`
-    * 生成的概图指明该 `str` 是 `binary`「格式」
+    * 生成的概图指明该 `str` 是 `binary`**格式**
 * `Decimal`：
     * 标准的 Python `Decimal`
     * 在请求和响应中作为 `float` 处理
@@ -59,7 +59,7 @@
 {!../../../docs_src/extra_data_types/tutorial001.py!}
 ```
 
-注意，函数的参数依然支持原生数据类型，例如，可以使用以下方式执行常规的日期操作：
+注意，函数的参数依然支持原生数据类型，例如，以如下方式执行常规日期操作：
 
 ```Python hl_lines="18-19"
 {!../../../docs_src/extra_data_types/tutorial001.py!}
