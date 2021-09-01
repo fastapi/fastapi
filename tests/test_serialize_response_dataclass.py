@@ -1,4 +1,4 @@
-from typing import List, Optional
+from typing import Dict, List, Optional
 
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
@@ -61,6 +61,48 @@ def get_no_response_model_objectlist():
     ]
 
 
+@app.get(
+    "/items/valid-exclude-none", response_model=Item, response_model_exclude_none=True
+)
+def get_valid_exclude_none():
+    return Item(name="valid", price=1.0)
+
+
+@app.get(
+    "/items/coerce-exclude-none",
+    response_model=Item,
+    response_model_exclude_none=True,
+)
+def get_coerce_exclude_none():
+    return Item(name="coerce", price="1.0")
+
+
+@app.get(
+    "/items/validlist-exclude-none",
+    response_model=List[Item],
+    response_model_exclude_none=True,
+)
+def get_validlist_exclude_none():
+    return [
+        Item(name="foo"),
+        Item(name="bar", price=1.0),
+        Item(name="baz", price=2.0, owner_ids=[1, 2, 3]),
+    ]
+
+
+@app.get(
+    "/items/validdict-exclude-none",
+    response_model=Dict[str, Item],
+    response_model_exclude_none=True,
+)
+def get_validdict_exclude_none():
+    return {
+        "k1": Item(name="foo"),
+        "k2": Item(name="bar", price=1.0),
+        "k3": Item(name="baz", price=2.0, owner_ids=[1, 2, 3]),
+    }
+
+
 client = TestClient(app)
 
 
@@ -116,3 +158,35 @@ def test_no_response_model_objectlist():
         {"name": "bar", "price": 1.0, "owner_ids": None},
         {"name": "baz", "price": 2.0, "owner_ids": [1, 2, 3]},
     ]
+
+
+def test_valid_exclude_none():
+    response = client.get("/items/valid-exclude-none")
+    response.raise_for_status()
+    assert response.json() == {"name": "valid", "price": 1.0}
+
+
+def test_coerce_exclude_none():
+    response = client.get("/items/coerce-exclude-none")
+    response.raise_for_status()
+    assert response.json() == {"name": "coerce", "price": 1.0}
+
+
+def test_validlist_exclude_none():
+    response = client.get("/items/validlist-exclude-none")
+    response.raise_for_status()
+    assert response.json() == [
+        {"name": "foo"},
+        {"name": "bar", "price": 1.0},
+        {"name": "baz", "price": 2.0, "owner_ids": [1, 2, 3]},
+    ]
+
+
+def test_validdict_exclude_none():
+    response = client.get("/items/validdict-exclude-none")
+    response.raise_for_status()
+    assert response.json() == {
+        "k1": {"name": "foo"},
+        "k2": {"name": "bar", "price": 1.0},
+        "k3": {"name": "baz", "price": 2.0, "owner_ids": [1, 2, 3]},
+    }
