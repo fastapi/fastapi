@@ -102,6 +102,7 @@ nav:
   - advanced/response-directly.md
   - advanced/custom-response.md
 - deployment.md
+- external-links.md
 - contributing.md
 - help-fastapi.md
 - benchmarks.md
