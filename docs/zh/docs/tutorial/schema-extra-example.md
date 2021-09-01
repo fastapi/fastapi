@@ -12,7 +12,7 @@ FastAPI 支持为应用中的数据声明示例。
 {!../../../docs_src/schema_extra_example/tutorial001.py!}
 ```
 
-输出的 **JSON Schema** 中会为模型添加这些附加信息，并在 API 自动文档中显示。
+输出的 **JSON Schema** 中会为模型添加这些附加信息，并在 API 文档中显示。
 
 !!! tip "提示"
 
@@ -103,7 +103,7 @@ Pydantic 模型的 **JSON Schema** 包含在 API 的 **OpenAPI** 中，并在文
 
 `example` 不是 JSON Schema 的组件，但它是 OpenAPI 为  JSON Schema 定制的组件，因此，文档中使用 `example`。
 
-但在（`Query()`、`Body()` 等）其他工具中使用 `example` 或 `examples` 时，这些描述数据的示例不会被添加至 JSON Schema（包括 OpenAPI 自己的 JSON Schema），而是被直接添加至 OpenAPI 的*路径操作*声明里（OpenAPI 使用 JSON Schema 外部的组件）。
+但在（`Query()`、`Body()` 等）其它工具中使用 `example` 或 `examples` 时，这些描述数据的示例不会被添加至 JSON Schema（包括 OpenAPI 自己的 JSON Schema），而是被直接添加至 OpenAPI 的*路径操作*声明里（OpenAPI 使用 JSON Schema 外部的组件）。
 
 对于 `Path()`、`Query()`、`Header()`、`Cookie()`，`example` 或 `examples` 被添加至 <a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#parameter-object" class="external-link" target="_blank">OpenAPI 定义中的`Parameter Object`（规范）</a>。
 
