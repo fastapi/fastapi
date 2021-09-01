@@ -1,20 +1,20 @@
-# Python 类型提示简介
+# Python 类型提示
 
-Python 支持可选的「类型提示」。
+Python 支持可选的**类型提示**。
 
-**「类型提示」**是声明变量<abbr title="例如：str、int、float、bool">类型</abbr>的特殊语法。
+**类型提示**是声明变量<abbr title="例如：str、int、float、bool">类型</abbr>的特殊语法。
 
 声明了变量类型，编辑器和开发工具就提供更好的支持。
 
-本章只是 Python 类型提示的**快速入门**，仅介绍了 **FastAPI** 使用类型提示的最少内容……真的很少。
+本章只是 Python 类型提示的**快速入门**，仅介绍了 **FastAPI** 中与类型提示相关的内容……真的很少。
 
-**FastAPI** 就是基于类型提示开发的，写代码的体验非常不错。
+**FastAPI** 是基于类型提示开发的，写代码的体验非常不错。
 
 就算不使用 **FastAPI**，了解一下类型提示也会让您获益匪浅。
 
 !!! note "笔记"
 
-    如果您是 Python 专家，已经熟知类型提示，就直接跳到下一章节吧。
+    如果您是 Python 专家，已经熟知类型提示，就直接跳到下一章吧。
 
 ## 动机
 
@@ -24,7 +24,7 @@ Python 支持可选的「类型提示」。
 {!../../../docs_src/python_types/tutorial001.py!}
 ```
 
-这个程序输出如下内容：
+这段代码输出如下内容：
 
 ```
 John Doe
@@ -33,7 +33,7 @@ John Doe
 该函数执行以下操作：
 
 * 接收 `first_name` 和 `last_name` 参数
-* 使用 `title()` 把每个参数的首字母转换为大写
+* 使用 `title()` 把参数的首字母转换为大写
 * 使用空格<abbr title="按顺序把多个内容组合成一个整体。">拼接</abbr>两个参数的值
 
 ```Python hl_lines="2"
@@ -48,7 +48,7 @@ John Doe
 
 在某一时刻，开始定义函数，并且准备好了参数……
 
-此时，需要调用「把首字母转换为大写的方法」。
+此时，需要调用**把首字母转换为大写的方法**。
 
 等等，那个方法是什么来着？`upper`？ `uppercase`？`first_uppercase`？还是`capitalize`？ 
 
@@ -78,7 +78,7 @@ John Doe
 
 就是这样。
 
-这就是「类型提示」：
+这就是**类型提示**：
 
 ```Python hl_lines="1"
 {!../../../docs_src/python_types/tutorial002.py!}
@@ -98,7 +98,7 @@ John Doe
 
 再次创建这个函数，这次添加了类型提示。
 
-在同样的地方，通过 `Ctrl+Space` 触发自动补全，就会发现：
+在同一个位置，使用 `Ctrl+Space` 触发自动补全，就会发现：
 
 <img src="https://fastapi.tiangolo.com/img/python-types/image02.png">
 
@@ -126,13 +126,13 @@ John Doe
 
 ## 声明类型
 
-您刚刚看到的就是类型提示常见的使用场景 ~ 用于函数的参数。
+您刚刚看到的就是类型提示常见的场景 ~ 用于函数的参数。
 
-这也是在 **FastAPI** 中类型提示的常见的使用场景。
+这也是在 **FastAPI** 中类型提示的常用场景。
 
 ### 简单类型
 
-类型提示不只用于 `str`，还可以声明 Python 的所有标准类型。
+类型提示不只使用 `str`，还能声明所有 Python 标准类型。
 
 比如，以下类型：
 
@@ -147,9 +147,9 @@ John Doe
 
 ### 通用类型的类型参数
 
-`dict`、`list`、`set`、`tuple` 等数据结构可以包含其他值，而且其内部的值也有自己的类型。
+`dict`、`list`、`set`、`tuple` 等数据结构可以包含其它值，而且其内部的值也有自己的类型。
 
-Python 的 `typing` 标准库可以用于声明这些类型及其子类型。
+Python 的 `typing` 标准库可以声明这些类型及其子类型。
 
 这个标准库专门用来支持类型提示。
 
@@ -163,11 +163,11 @@ Python 的 `typing` 标准库可以用于声明这些类型及其子类型。
 {!../../../docs_src/python_types/tutorial006.py!}
 ```
 
-同样用冒号（`:`）声明该变量。
+同样用冒号（`:`）声明变量。
 
 类型是 `List`。
 
-由于列表是包含「子类型」的类型，所以要把子类型放在方括号中：
+由于列表是包含**子类型**的类型，所以要把子类型放在方括号里：
 
 ```Python hl_lines="4"
 {!../../../docs_src/python_types/tutorial006.py!}
@@ -175,19 +175,19 @@ Python 的 `typing` 标准库可以用于声明这些类型及其子类型。
 
 !!! tip "提示"
 
-    方括号中的内部类型叫做「类型参数」。
+    方括号里的内部类型叫做**类型参数**。
     
     此时，`str` 是传递给 `List` 的类型参数。
 
-即：「变量 `items` 的类型是 `list`，并且列表里的每个元素的类型都是 `str`」。
+即：**变量 `items` 的类型是 `list`，并且列表里的每个元素的类型都是 `str`**。
 
-这样，即使在处理列表中的元素时，编辑器也可以提供支持：
+这样，即使在处理列表里的元素时，编辑器也能提供支持：
 
 <img src="https://fastapi.tiangolo.com/img/python-types/image05.png">
 
 没有类型，这种支持几乎不可能实现。
 
-注意，变量 `item` 是列表 `items` 中的元素。
+注意，变量 `item` 是列表 `items` 里的元素。
 
 而且，编辑器仍然把它识别为 `str`，并提供相关支持。
 
@@ -219,12 +219,12 @@ Python 的 `typing` 标准库可以用于声明这些类型及其子类型。
 即：
 
 * 变量 `prices` 是 `dict`：
-    * 该 `dict` 的键的类型是 `str`（每个元素的名称）
-    * 该 `dict` 的值的类型为 `float`（每个元素的价格）
+    * `dict` 的键的类型是 `str`（元素名称）
+    * `dict` 的值的类型是 `float`（元素价格）
 
 #### `Optional`
 
-使用 `Optional` 把变量声明为 `str` 等类型，但该类型是「可选的」，因此也可以是 `None`:
+使用 `Optional` 把变量声明为 `str` 等类型，但该类型是**可选的**，因此也可以是 `None`:
 
 ```Python hl_lines="1  4"
 {!../../../docs_src/python_types/tutorial009.py!}
@@ -255,7 +255,7 @@ Python 的 `typing` 标准库可以用于声明这些类型及其子类型。
 {!../../../docs_src/python_types/tutorial010.py!}
 ```
 
-接下来，把变量的类型声明为 `Person`：
+下面，把变量的类型声明为 `Person`：
 
 ```Python hl_lines="6"
 {!../../../docs_src/python_types/tutorial010.py!}
@@ -267,9 +267,9 @@ Python 的 `typing` 标准库可以用于声明这些类型及其子类型。
 
 ## Pydantic 模型
 
-<a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> 是用来执行数据校验的 Python 库。
+<a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> 是执行数据校验的 Python 库。
 
-可以将数据「结构」声明为包含属性的类。
+可以把数据**结构**声明为包含属性的类。
 
 每个属性都有自己的类型。
 
@@ -289,7 +289,7 @@ Python 的 `typing` 标准库可以用于声明这些类型及其子类型。
 
 **FastAPI** 就是基于 Pydantic 开发的。
 
-实际上，[教程 - 用户指南](tutorial/index.md){.internal-link target=_blank} 列出了很多示例。
+[教程 - 用户指南](tutorial/index.md){.internal-link target=_blank} 中列出了很多示例。
 
 ## **FastAPI** 中的类型提示
 
@@ -307,13 +307,13 @@ Python 的 `typing` 标准库可以用于声明这些类型及其子类型。
 * **校验数据**： 对于每一个请求：
     * 数据校验失败时，自动生成**错误信息**，并返回给客户端
 * 使用 OpenAPI **存档** API：
-    * 并在自动交互文档中显示
+    * 并在 API 文档中显示
 
-听上去有点抽象，不过不用担心。[教程 - 用户指南](tutorial/index.md){.internal-link target=_blank} 会详细介绍上述所有内容。
+听上去有点抽象，不过不用担心。[教程 - 用户指南](tutorial/index.md){.internal-link target=_blank} 中详细介绍了上述所有内容。
 
-最重要的是，使用 Python 标准类型，只要在一个地方声明（而不是添加更多的类、装饰器等），**FastAPI** 就会完成很多工作。
+最重要的是，使用 Python 标准类型，只要在一个地方声明（不用添加更多的类、装饰器等），**FastAPI** 就能完成很多工作。
 
 !!! info "说明"
 
-    学习完全部教程后，如果想了解更多类型的内容，<a href="https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html" class="external-link" target="_blank">`mypy` 的「速查表」</a>是非常不错的教材。
+    学习完教程后，如果想了解更多类型的内容，<a href="https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html" class="external-link" target="_blank">`mypy` 的**速查表**</a>非常不错。
 
