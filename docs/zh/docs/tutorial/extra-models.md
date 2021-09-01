@@ -10,9 +10,9 @@
 
 !!! danger "危险"
 
-    千万不要存储用户的明文密码。始终存储可以进行验证的「安全哈希值」。
+    千万不要存储用户的明文密码。始终存储可以进行验证的**安全哈希值**。
     
-    如果不了解这方面的知识，请参阅[安全性中的章节](security/simple-oauth2.md#password-hashing){.internal-link target=_blank}，了解什么是「密码哈希」。
+    如果不了解这方面的知识，请参阅[安全性中的章节](security/simple-oauth2.md#password-hashing){.internal-link target=_blank}，了解什么是**密码哈希**。
 
 ## 多个模型
 
@@ -28,9 +28,9 @@
 
 `user_in` 是类 `UserIn` 的 Pydantic 模型。
 
-Pydantic 模型支持 `.dict()` 方法，该方法返回包含模型数据的 `dict`。
+Pydantic 模型支持 `.dict()` 方法，能返回包含模型数据的**字典**。
 
-因此，如果以如下方式创建 Pydantic 对象 `user_in`：
+因此，如果使用如下方式创建 Pydantic 对象 `user_in`：
 
 ```Python
 user_in = UserIn(username="john", password="secret", email="john.doe@example.com")
@@ -42,7 +42,7 @@ user_in = UserIn(username="john", password="secret", email="john.doe@example.com
 user_dict = user_in.dict()
 ```
 
-现在，`user_dict` 变量中的就是包含数据的 `dict`（它是字典，不是 Pydantic 模型对象）。
+现在，变量 `user_dict`中的就是包含数据的**字典**（变量 `user_dict` 是字典，不是 Pydantic 模型对象）。
 
 以如下方式调用：
 
@@ -50,7 +50,7 @@ user_dict = user_in.dict()
 print(user_dict)
 ```
 
-输出的就是 Python 的 `dict`：
+输出的就是 Python **字典**：
 
 ```Python
 {
@@ -63,7 +63,7 @@ print(user_dict)
 
 #### 解包 `dict`
 
-把 `user_dict` 这样的 `dict` 以 `**user_dict` 形式传递给函数（或类），Python 会进行「解包」。它会把 `user_dict` 的键和值作为关键字参数直接传递。
+把**字典** `user_dict` 以 `**user_dict` 形式传递给函数（或类），Python 会执行**解包**操作。它会把 `user_dict` 的键和值作为关键字参数直接传递。
 
 因此，接着上面的 `user_dict` 继续编写如下代码：
 
@@ -82,7 +82,7 @@ UserInDB(
 )
 ```
 
-或更确切地说，直接使用 `user_dict` 可以表示未来可能包含的任何内容：
+或更精准，直接把可能会用到的内容与 `user_dict` 一起使用：
 
 ```Python
 UserInDB(
@@ -93,7 +93,7 @@ UserInDB(
 )
 ```
 
-#### 用其他模型中的内容生成 Pydantic 模型
+#### 用其它模型中的内容生成 Pydantic 模型
 
 上例中 ，从 `user_in.dict()` 中得到了 `user_dict`，下面的代码：
 
@@ -108,9 +108,9 @@ UserInDB(**user_dict)
 UserInDB(**user_in.dict())
 ```
 
-……因为 `user_in.dict()` 是字典，在传递给 `UserInDB` 时，把 `**` 加在  `user_in.dict()` 前，可以让 Python 进行「解包」。
+……因为 `user_in.dict()` 是字典，在传递给 `UserInDB` 时，把 `**` 加在  `user_in.dict()` 前，可以让 Python 进行**解包**。
 
-这样，就可以用其他 Pydantic 模型中的数据生成 Pydantic 模型。
+这样，就可以用其它 Pydantic 模型中的数据生成 Pydantic 模型。
 
 #### 解包 `dict` 和更多关键字
 
@@ -140,13 +140,13 @@ UserInDB(
 
 **FastAPI** 的核心思想就是减少代码重复。
 
-代码重复会导致 bug、安全问题、代码失步等问题（更新了某个位置的代码，但没有同步更新其他位置的代码）。
+代码重复会导致 bug、安全问题、代码失步等问题（更新了某个位置的代码，但没有同步更新其它位置的代码）。
 
 上面的这些模型共享了大量数据，拥有重复的属性名和类型。
 
 FastAPI 可以做得更好。
 
-声明 `UserBase` 模型作为其他模型的基类。然后，用该类衍生出继承其属性（类型声明、验证等）的子类。
+声明 `UserBase` 模型作为其它模型的基类。然后，用该类衍生出继承其属性（类型声明、验证等）的子类。
 
 所有数据转换、校验、文档等功能仍将正常运行。
 
@@ -200,4 +200,4 @@ FastAPI 可以做得更好。
 
 针对不同场景，可以随意使用不同的 Pydantic 模型继承定义的基类。
 
-实体必须具有不同的「状态」时，不必为不同状态的实体单独定义数据模型。例如，用户「实体」就有包含 `password`、包含 `password_hash` 以及不含密码等多种状态。
+实体必须具有不同的**状态**时，不必为不同状态的实体单独定义数据模型。例如，用户**实体**就有包含 `password`、包含 `password_hash` 以及不含密码等多种状态。
