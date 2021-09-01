@@ -103,7 +103,7 @@ nav:
   - advanced/custom-response.md
 - deployment.md
 - 部署:
-  - deployment/index.md
+  - deployment/versions.md
 - contributing.md
 - help-fastapi.md
 - benchmarks.md
