@@ -3,24 +3,10 @@ site_description: FastAPI framework, high performance, easy to learn, fast to co
 site_url: https://fastapi.tiangolo.com/tr/
 theme:
   name: material
-  custom_dir: overrides
   palette:
-  - scheme: default
+    scheme: preference
     primary: teal
     accent: amber
-    toggle:
-      icon: material/lightbulb-outline
-      name: Switch to light mode
-  - scheme: slate
-    primary: teal
-    accent: amber
-    toggle:
-      icon: material/lightbulb
-      name: Switch to dark mode
-  features:
-  - search.suggest
-  - search.highlight
-  - content.tabs.link
   icon:
     repo: fontawesome/brands/github-alt
   logo: https://fastapi.tiangolo.com/img/icon-white.svg
@@ -40,130 +26,20 @@ nav:
 - FastAPI: index.md
 - Languages:
   - en: /
-  - de: /de/
   - es: /es/
-  - fr: /fr/
-  - id: /id/
   - it: /it/
-  - ja: /ja/
-  - ko: /ko/
-  - pl: /pl/
   - pt: /pt/
   - ru: /ru/
-  - sq: /sq/
   - tr: /tr/
   - uk: /uk/
   - zh: /zh/
-- features.md
 - fastapi-people.md
-- python-types.md
-- Tutorial - User Guide:
-  - tutorial/index.md
-  - tutorial/first-steps.md
-  - tutorial/path-params.md
-  - tutorial/query-params.md
-  - tutorial/body.md
-  - tutorial/query-params-str-validations.md
-  - tutorial/path-params-numeric-validations.md
-  - tutorial/body-multiple-params.md
-  - tutorial/body-fields.md
-  - tutorial/body-nested-models.md
-  - tutorial/schema-extra-example.md
-  - tutorial/extra-data-types.md
-  - tutorial/cookie-params.md
-  - tutorial/header-params.md
-  - tutorial/response-model.md
-  - tutorial/extra-models.md
-  - tutorial/response-status-code.md
-  - tutorial/request-forms.md
-  - tutorial/request-files.md
-  - tutorial/request-forms-and-files.md
-  - tutorial/handling-errors.md
-  - tutorial/path-operation-configuration.md
-  - tutorial/encoder.md
-  - tutorial/body-updates.md
-  - Dependencies:
-    - tutorial/dependencies/index.md
-    - tutorial/dependencies/classes-as-dependencies.md
-    - tutorial/dependencies/sub-dependencies.md
-    - tutorial/dependencies/dependencies-in-path-operation-decorators.md
-    - tutorial/dependencies/global-dependencies.md
-    - tutorial/dependencies/dependencies-with-yield.md
-  - Security:
-    - tutorial/security/index.md
-    - tutorial/security/first-steps.md
-    - tutorial/security/get-current-user.md
-    - tutorial/security/simple-oauth2.md
-    - tutorial/security/oauth2-jwt.md
-  - tutorial/middleware.md
-  - tutorial/cors.md
-  - tutorial/sql-databases.md
-  - tutorial/bigger-applications.md
-  - tutorial/background-tasks.md
-  - tutorial/metadata.md
-  - tutorial/static-files.md
-  - tutorial/testing.md
-  - tutorial/debugging.md
-- Advanced User Guide:
-  - advanced/index.md
-  - advanced/path-operation-advanced-configuration.md
-  - advanced/additional-status-codes.md
-  - advanced/response-directly.md
-  - advanced/custom-response.md
-  - advanced/additional-responses.md
-  - advanced/response-cookies.md
-  - advanced/response-headers.md
-  - advanced/response-change-status-code.md
-  - advanced/advanced-dependencies.md
-  - Advanced Security:
-    - advanced/security/index.md
-    - advanced/security/oauth2-scopes.md
-    - advanced/security/http-basic-auth.md
-  - advanced/using-request-directly.md
-  - advanced/dataclasses.md
-  - advanced/middleware.md
-  - advanced/sql-databases-peewee.md
-  - advanced/async-sql-databases.md
-  - advanced/nosql-databases.md
-  - advanced/sub-applications.md
-  - advanced/behind-a-proxy.md
-  - advanced/templates.md
-  - advanced/graphql.md
-  - advanced/websockets.md
-  - advanced/events.md
-  - advanced/custom-request-and-route.md
-  - advanced/testing-websockets.md
-  - advanced/testing-events.md
-  - advanced/testing-dependencies.md
-  - advanced/testing-database.md
-  - advanced/async-tests.md
-  - advanced/settings.md
-  - advanced/conditional-openapi.md
-  - advanced/extending-openapi.md
-  - advanced/openapi-callbacks.md
-  - advanced/wsgi.md
-- async.md
-- Deployment:
-  - deployment/index.md
-  - deployment/versions.md
-  - deployment/https.md
-  - deployment/deta.md
-  - deployment/docker.md
-  - deployment/manually.md
-- project-generation.md
-- alternatives.md
-- history-design-future.md
-- external-links.md
-- benchmarks.md
-- help-fastapi.md
-- contributing.md
-- release-notes.md
 markdown_extensions:
 - toc:
     permalink: true
 - markdown.extensions.codehilite:
     guess_lang: false
-- mdx_include:
+- markdown_include.include:
     base_path: docs
 - admonition
 - codehilite
@@ -172,16 +48,14 @@ markdown_extensions:
     custom_fences:
     - name: mermaid
       class: mermaid
-      format: !!python/name:pymdownx.superfences.fence_code_format ''
+      format: !!python/name:pymdownx.superfences.fence_div_format ''
 - pymdownx.tabbed
 extra:
   social:
   - icon: fontawesome/brands/github-alt
-    link: https://github.com/tiangolo/fastapi
-  - icon: fontawesome/brands/discord
-    link: https://discord.gg/VQjSZaeJmf
+    link: https://github.com/tiangolo/typer
   - icon: fontawesome/brands/twitter
-    link: https://twitter.com/fastapi
+    link: https://twitter.com/tiangolo
   - icon: fontawesome/brands/linkedin
     link: https://www.linkedin.com/in/tiangolo
   - icon: fontawesome/brands/dev
@@ -190,37 +64,6 @@ extra:
     link: https://medium.com/@tiangolo
   - icon: fontawesome/solid/globe
     link: https://tiangolo.com
-  alternate:
-  - link: /
-    name: en - English
-  - link: /de/
-    name: de
-  - link: /es/
-    name: es - español
-  - link: /fr/
-    name: fr - français
-  - link: /id/
-    name: id
-  - link: /it/
-    name: it - italiano
-  - link: /ja/
-    name: ja - 日本語
-  - link: /ko/
-    name: ko - 한국어
-  - link: /pl/
-    name: pl
-  - link: /pt/
-    name: pt - português
-  - link: /ru/
-    name: ru - русский язык
-  - link: /sq/
-    name: sq - shqip
-  - link: /tr/
-    name: tr - Türkçe
-  - link: /uk/
-    name: uk - українська мова
-  - link: /zh/
-    name: zh - 汉语
 extra_css:
 - https://fastapi.tiangolo.com/css/termynal.css
 - https://fastapi.tiangolo.com/css/custom.css
@@ -228,3 +71,5 @@ extra_javascript:
 - https://unpkg.com/mermaid@8.4.6/dist/mermaid.min.js
 - https://fastapi.tiangolo.com/js/termynal.js
 - https://fastapi.tiangolo.com/js/custom.js
+- https://fastapi.tiangolo.com/js/chat.js
+- https://sidecar.gitter.im/dist/sidecar.v1.js
