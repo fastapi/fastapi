@@ -18,10 +18,10 @@ Hey! 👋
 </div>
 {% endif %}
 
-ben **FastAPI** 'nin yazarı ve geliştiricisiyim. Bununla ilgili daha fazla bilgiyi şurada okuyabilirsiniz:
+Ben **FastAPI** 'nin yazarı ve geliştiricisiyim. Bununla ilgili daha fazla bilgiyi şurada okuyabilirsiniz:
  [FastAPI yardım - yardım al - Yazar ile iletişime geç](help-fastapi.md#connect-with-the-author){.internal-link target=_blank}.
 
-... Burada size harika fastAPI topluluğunu göstermek istiyorum.
+... Burada size harika FastAPI topluluğunu göstermek istiyorum.
 
 ---
 
@@ -89,7 +89,7 @@ Kaynak koduna, belgelere, çevirilere vb. katkıda bulundular. 📦
 
 ## En fazla inceleme yapanlar
 
-işte **En fazla inceleme yapanlar**. 🕵️
+İşte **En fazla inceleme yapanlar**. 🕵️
 
 ### Çeviri için İncelemeler
 
@@ -97,7 +97,7 @@ Yalnızca birkaç dil konuşabiliyorum (ve çok da iyi değilim 😅). Bu yüzde
 
 ---
 
-**TEn fazla inceleme yapanlar** 🕵️ kodun, belgelerin ve özellikle **çevirilerin** kalitesini sağlamak için diğerlerinden daha fazla pull requests incelemiştir.
+**En fazla inceleme yapanlar** 🕵️ kodun, belgelerin ve özellikle **çevirilerin** kalitesini sağlamak için diğerlerinden daha fazla pull requests incelemiştir.
 
 {% if people %}
 <div class="user-list user-list-center">
