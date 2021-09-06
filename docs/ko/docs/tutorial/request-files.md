@@ -95,7 +95,7 @@ contents = myfile.file.read()
 !!! note "Starlette 기술 세부사항"
     **FastAPI**의 `UploadFile` 은 **Starlette**의 `UploadFile` 을 직접적으로 상속받지만, **Pydantic** 및 FastAPI의 다른 부분들과의 호환성을 위해 필요한 부분들이 추가되었습니다.
 
-## “폼 데이터”란
+## "폼 데이터"란
 
 HTML의 폼들(`<form></form>`)이 서버에 데이터를 전송하는 방식은 대개 데이터에 JSON과는 다른 "특별한" 인코딩을 사용합니다. 
 
