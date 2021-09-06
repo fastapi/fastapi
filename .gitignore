@@ -14,9 +14,8 @@ test.db
 log.txt
 Pipfile.lock
 env3.*
-env
+[.][v]env/
 docs_build
-venv
 docs.zip
 archive.zip
 

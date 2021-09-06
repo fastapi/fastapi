@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Tuple
 
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
@@ -7,6 +7,10 @@ from pydantic import BaseModel
 
 class Model(BaseModel):
     name: str
+
+
+class ContainerModel(BaseModel):
+    results: Tuple[Model, Model]
 
 
 app = FastAPI()
@@ -29,6 +33,11 @@ def valid3():
 
 @app.get("/valid4", responses={"500": {"model": List[Model]}})
 def valid4():
+    pass
+
+
+@app.get("/valid5", responses={"500": {"model": ContainerModel}})
+def valid5():
     pass
 
 
@@ -157,4 +166,6 @@ def test_path_operations():
     response = client.get("/valid3")
     assert response.status_code == 200, response.text
     response = client.get("/valid4")
+    assert response.status_code == 200, response.text
+    response = client.get("/valid5")
     assert response.status_code == 200, response.text
