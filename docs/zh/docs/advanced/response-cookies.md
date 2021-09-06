@@ -4,7 +4,7 @@
 
 *路径操作函数* 中可以声明 `Response` 类型的参数。
 
-现在，在*临时*响应对象中设置 cookie。
+然后你可以在这个*临时*的响应对象中设置 cookie。
 
 ```Python hl_lines="1  8-9"
 {!../../../docs_src/response_cookies/tutorial002.py!}
