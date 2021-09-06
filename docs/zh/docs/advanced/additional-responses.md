@@ -195,7 +195,7 @@ OpenAPI 概图在内部其它位置引用这个概图：
 
 例如，使用 Pydantic 模型声明包含状态码 `404` 的响应，并包含自定义 `description`。
 
-带状态码 `200` 的响应不仅使用 `response_model`，还包含了自定义 `example`：
+以及使用 `response_model` 状态码为 `200` 的响应，但是还包含了自定义的 `example`：
 
 ```Python hl_lines="20-31"
 {!../../../docs_src/additional_responses/tutorial003.py!}
