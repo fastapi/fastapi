@@ -209,7 +209,7 @@ OpenAPI 中会合并、包含这些内容，然后显示在 API 文档中：
 
 **FastAPI **还可以合并*路径操作*中的预定义响应和自定义响应。
 
-此处使用 Python **字典解包**，即 `**dict_to_unpack`：
+此处使用 Python **字典解包**，即通过 `**dict_to_unpack` 语法解包一个 `dict`：
 
 ```Python
 old_dict = {
