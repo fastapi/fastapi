@@ -1,4 +1,4 @@
-# OpenAPI 中的附加响应
+# OpenAPI 中的额外响应
 
 !!! warning "警告"
 
