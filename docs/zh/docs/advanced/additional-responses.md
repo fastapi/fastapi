@@ -10,7 +10,7 @@
 
 这些响应会包含在 OpenAPI 概图里，并在 API 文档中显示。
 
-但必须要确保这些响应与状态码和 `content` 一起直接以 `JSONResponse` 等方式返回。
+但必须要确保这些响应与状态码和 `content` 一起直接以一个 `Response` 对象如 `JSONResponse` 返回。
 
 ## 使用 `model` 的响应
 
