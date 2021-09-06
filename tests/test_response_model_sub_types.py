@@ -136,15 +136,49 @@ openapi_schema = {
                 },
             }
         },
+        "/valid5": {
+            "get": {
+                "summary": "Valid5",
+                "operationId": "valid5_valid5_get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {"application/json": {"schema": {}}},
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ContainerModel"
+                                },
+                            }
+                        },
+                    },
+                },
+            }
+        },
     },
     "components": {
         "schemas": {
+            "ContainerModel": {
+                "title": "ContainerModel",
+                "required": ["results"],
+                "type": "object",
+                "properties": {
+                    "results": {
+                        "items": {"$ref": "#/components/schemas/Model"},
+                        "title": "Results",
+                        "type": "array",
+                    }
+                },
+            },
             "Model": {
                 "title": "Model",
                 "required": ["name"],
                 "type": "object",
                 "properties": {"name": {"title": "Name", "type": "string"}},
-            }
+            },
         }
     },
 }
@@ -155,7 +189,7 @@ client = TestClient(app)
 def test_openapi_schema():
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
-    assert response.json() == openapi_schema
+    assert response.json() == openapi_schema, response.json()
 
 
 def test_path_operations():
