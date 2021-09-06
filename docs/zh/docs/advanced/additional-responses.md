@@ -12,7 +12,7 @@
 
 但必须要确保这些响应与状态码和 `content` 一起直接以一个 `Response` 对象如 `JSONResponse` 返回。
 
-## 使用 `model` 的响应
+## 以 `model` 声明额外响应
 
 *路径操作装饰器*支持 `response` 参数。
 
