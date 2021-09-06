@@ -4,7 +4,7 @@
 
 *路径操作函数*中可以声明 `Response` 类型的参数（正如声明响应的 cookie 时的做法一样）。
 
-现在，在*临时*响应对象中设置响应头。
+然后在*临时*的响应对象中设置响应头。
 
 ```Python hl_lines="1  7-8"
 {!../../../docs_src/response_headers/tutorial002.py!}
