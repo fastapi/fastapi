@@ -36,7 +36,7 @@
 
     `model` 键不是 OpenAPI 的组件。
     
-    **FastAPI** 在此接收 Pydantic 模型，生成 `JSON Schema`，并把它推送到正确的位置。
+    **FastAPI** 在此接收 Pydantic 模型，生成 `JSON Schema`，并把它置于正确的位置。
     
     正确的位置是：
     
