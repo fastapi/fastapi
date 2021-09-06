@@ -15,7 +15,7 @@
 
 ## `File` 및 `Form` 매개변수 정의
 
-`Body` 및 `Query` 와 동일한 방식으로 파일과 폼의 매개변수를 생성합니다:
+`Body` 및 `Query`와 동일한 방식으로 파일과 폼의 매개변수를 생성합니다:
 
 ```Python hl_lines="8" 
 {!../../../docs_src/request_forms_and_files/tutorial001.py!}
@@ -23,13 +23,13 @@
 
 파일과 폼 필드는 폼 데이터 형식으로 업로드되어 파일과 폼 필드로 전달됩니다.
 
-어떤 파일들은 `bytes` 로, 또 어떤 파일들은 `UploadFile` 로 선언할 수 있습니다.
+어떤 파일들은 `bytes`로, 또 어떤 파일들은 `UploadFile`로 선언할 수 있습니다.
 
 !!! warning "주의"
-    다수의 `File` 과 `Form` 매개변수를 한 *경로 동작*에 선언하는 것이 가능하지만, 요청의 본문이 `application/json` 가 아닌 `multipart/form-data` 로 인코딩 되기 때문에 JSON으로 받아야하는 `Body` 필드를 함께 선언할 수는 없습니다.
+    다수의 `File`과 `Form` 매개변수를 한 *경로 동작*에 선언하는 것이 가능하지만, 요청의 본문이 `application/json`가 아닌 `multipart/form-data`로 인코딩 되기 때문에 JSON으로 받아야하는 `Body` 필드를 함께 선언할 수는 없습니다.
 
     이는 **FastAPI**의 한계가 아니라, HTTP 프로토콜에 의한 것입니다.
 
 ## 요약
 
-하나의 요청으로 데이터와 파일들을 받아야 할 경우 `File` 과 `Form` 을 함께 사용하세요.
+하나의 요청으로 데이터와 파일들을 받아야 할 경우 `File`과 `Form`을 함께 사용하세요.
