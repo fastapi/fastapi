@@ -297,7 +297,7 @@ def get_openapi_path(
                     deep_dict_update(openapi_response, process_response)
                     openapi_response["description"] = description
             http422 = str(HTTP_422_UNPROCESSABLE_ENTITY)
-            if (((all_route_params or route.body_field))) and all(
+            if (all_route_params or route.body_field) and all(
                 status not in operation["responses"]
                 for status in [http422, "4XX", "default"]
             ):
