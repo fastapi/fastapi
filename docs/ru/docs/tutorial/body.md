@@ -1,41 +1,41 @@
-# Request Body
+# Тело запроса
 
-When you need to send data from a client (let's say, a browser) to your API, you send it as a **request body**.
+Когда вам необходимо отправить данные из клиента (допустим, браузер) в ваше API, вы отправляете их как **тело запроса**.
 
-A **request** body is data sent by the client to your API. A **response** body is the data your API sends to the client.
+Тело **запроса** --- это данные, отправляемые клиентом в ваше API. Тело **ответа** --- это данные, которые ваш API отправляет клиенту.
 
-Your API almost always has to send a **response** body. But clients don't necessarily need to send **request** bodies all the time.
+Ваш API почти всегда отправляет тело **ответа**. Но клиентам не обязательно всегда отправлять тело **запроса**.
 
-To declare a **request** body, you use <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> models with all their power and benefits.
+Чтобы объявить тело **запроса**, необходимо использовать модели <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a>, с всей их мощью и преимуществами.
 
 !!! info
-    To send data, you should use one of: `POST` (the more common), `PUT`, `DELETE` or `PATCH`.
+    Чтобы отправить данные, необходимо использовать один из методов: `POST` (чаще всего), `PUT`, `DELETE` или `PATCH`.
 
-    Sending a body with a `GET` request has an undefined behavior in the specifications, nevertheless, it is supported by FastAPI, only for very complex/extreme use cases.
+    Отправка тела с запросом `GET` имеет неопределенное поведение в спецификациях, тем не менее, оно поддерживается FastAPI только для очень сложных/экстремальных случаев использования.
 
-    As it is discouraged, the interactive docs with Swagger UI won't show the documentation for the body when using `GET`, and proxies in the middle might not support it.
+    Поскольку это не рекомендуется, интерактивная документация со Swagger UI не будут отображать документацию для тела при использовании GET, а прокси-серверы в середине могут не поддерживать его.
 
-## Import Pydantic's `BaseModel`
+## Импортирование `BaseModel` из Pydantic
 
-First, you need to import `BaseModel` from `pydantic`:
+Первое, что вам необходимо сделать, импортировать `BaseModel` из пакета `pydantic`:
 
 ```Python hl_lines="4"
 {!../../../docs_src/body/tutorial001.py!}
 ```
 
-## Create your data model
+## Создание вашей собственной модели
 
-Then you declare your data model as a class that inherits from `BaseModel`.
+После этого вы описываете вашу модель данных как класс, наследующий от `BaseModel`.
 
-Use standard Python types for all the attributes:
+Используйте стандартные типы Python для всех атрибутов:
 
 ```Python hl_lines="7-11"
 {!../../../docs_src/body/tutorial001.py!}
 ```
 
-The same as when declaring query parameters, when a model attribute has a default value, it is not required. Otherwise, it is required. Use `None` to make it just optional.
+Также как и при описании параметров запроса, когда атрибут модели имеет значение по умолчанию, он является необязательным. Иначе он обязателен. Используйте `None`, чтобы сделать его просто необязательным.
 
-For example, this model above declares a JSON "`object`" (or Python `dict`) like:
+Например, модель выше описывает вот такой JSON "объект" (или словарь Python):
 
 ```JSON
 {
@@ -46,7 +46,7 @@ For example, this model above declares a JSON "`object`" (or Python `dict`) like
 }
 ```
 
-...as `description` and `tax` are optional (with a default value of `None`), this JSON "`object`" would also be valid:
+...поскольку `description` и `tax` являются необязательными (с `None` в качестве значения по умолчанию), вот такой JSON "объект" также подходит:
 
 ```JSON
 {
@@ -55,111 +55,111 @@ For example, this model above declares a JSON "`object`" (or Python `dict`) like
 }
 ```
 
-## Declare it as a parameter
+## Объявление как параметра
 
-To add it to your *path operation*, declare it the same way you declared path and query parameters:
+Чтобы добавить параметр к вашим *операциям пути*, объявите его также, как вы объявляли параметры пути или параметры запроса:
 
 ```Python hl_lines="18"
 {!../../../docs_src/body/tutorial001.py!}
 ```
 
-...and declare its type as the model you created, `Item`.
+...и укажите созданную модель в качестве типа параметра, `Item`.
 
-## Results
+## Результаты
 
-With just that Python type declaration, **FastAPI** will:
+Всего лишь с помощью аннотации типов Python, **FastAPI**:
 
-* Read the body of the request as JSON.
-* Convert the corresponding types (if needed).
-* Validate the data.
-    * If the data is invalid, it will return a nice and clear error, indicating exactly where and what was the incorrect data.
-* Give you the received data in the parameter `item`.
-    * As you declared it in the function to be of type `Item`, you will also have all the editor support (completion, etc) for all of the attributes and their types.
-* Generate <a href="https://json-schema.org" class="external-link" target="_blank">JSON Schema</a> definitions for your model, you can also use them anywhere else you like if it makes sense for your project.
-* Those schemas will be part of the generated OpenAPI schema, and used by the automatic documentation <abbr title="User Interfaces">UIs</abbr>.
+* Читает тело запроса как JSON.
+* Приводит к соответствующим типам (если есть необходимость).
+* Проверяет корректность данных.
+    * Если данные некорректны, будет возращена читаемая и понятная ошибка, показывающая что именно и в каком месте некорректно в данных.
+* Складывает полученные данные в параметр `item`.
+    * Поскольку внутри функции вы объявили его с типом `Item`, то теперь у вас есть поддержка со стороны редактора (автодополнение и т.п.) для всех атрибутов и их типов.
+* Генерирует определения <a href="https://json-schema.org" class="external-link" target="_blank">JSON Schema</a> для вашей модели, так что вы можете их использовать где угодно, если это имеет значение для вашего проекта.
+* Эти схемы являются частью сгенерированной схемы OpenAPI и используются для автоматического документирования <abbr title="Пользовательских интерфейсов (User Interfaces)">UI</abbr>.
 
-## Automatic docs
+## Автоматическое документирование
 
-The JSON Schemas of your models will be part of your OpenAPI generated schema, and will be shown in the interactive API docs:
+Схема JSON ваших моделей будет частью сгенерированной схемы OpenAPI и будет отображена в интерактивной документации API:
 
 <img src="/img/tutorial/body/image01.png">
 
-And will be also used in the API docs inside each *path operation* that needs them:
+Также они будут использованы в документации по API внутри каждой *операции пути*, в которой они используются:
 
 <img src="/img/tutorial/body/image02.png">
 
-## Editor support
+## Поддержка редактора
 
-In your editor, inside your function you will get type hints and completion everywhere (this wouldn't happen if you received a `dict` instead of a Pydantic model):
+В вашем редакторе внутри вашей функции у вас будут подсказки по типам и автодополнение (это не будет работать, если вы получаете словарь вместо модели Pydantic):
 
 <img src="/img/tutorial/body/image03.png">
 
-You also get error checks for incorrect type operations:
+Также вы будете получать ошибки в случае несоответствия типов:
 
 <img src="/img/tutorial/body/image04.png">
 
-This is not by chance, the whole framework was built around that design.
+Это не случайно, весь фреймворк построен вокруг такого дизайна.
 
-And it was thoroughly tested at the design phase, before any implementation, to ensure it would work with all the editors.
+И это все тщательно протестировано еще на этапе разработки дизайна, до реализации, чтобы это работало со всеми редакторами.
 
-There were even some changes to Pydantic itself to support this.
+Для поддержки этого даже были внесены некоторые изменения в сам Pydantic.
 
-The previous screenshots were taken with <a href="https://code.visualstudio.com" class="external-link" target="_blank">Visual Studio Code</a>.
+На всех предыдущих скриншотах используется <a href="https://code.visualstudio.com" class="external-link" target="_blank">Visual Studio Code</a>.
 
-But you would get the same editor support with <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a> and most of the other Python editors:
+Но у вас будет такая же поддержка и с <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a>, и с любым из этих редакторов Python:
 
 <img src="/img/tutorial/body/image05.png">
 
 !!! tip
-    If you use <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a> as your editor, you can use the <a href="https://github.com/koxudaxi/pydantic-pycharm-plugin/" class="external-link" target="_blank">Pydantic PyCharm Plugin</a>.
+    Если вы используете <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a> в качестве редактора, то вам стоит попробовать плагин <a href="https://github.com/koxudaxi/pydantic-pycharm-plugin/" class="external-link" target="_blank">Pydantic PyCharm Plugin</a>.
 
-    It improves editor support for Pydantic models, with:
+    Он улучшает поддержку редактором моделей Pydantic в части:
     
-    * auto-completion
-    * type checks
-    * refactoring
-    * searching
-    * inspections
+    * автодополнения
+    * проверок типов
+    * рефакторинга
+    * поиска
+    * инспетирования.
 
-## Use the model
+## Использование модели
 
-Inside of the function, you can access all the attributes of the model object directly:
+Внутри функции вам доступны все атрибуты объекта модели напрямую:
 
 ```Python hl_lines="21"
 {!../../../docs_src/body/tutorial002.py!}
 ```
 
-## Request body + path parameters
+## Тело запроса + параметры пути
 
-You can declare path parameters and request body at the same time.
+Вы можете одновременно объявлять параметры пути и тело запроса.
 
-**FastAPI** will recognize that the function parameters that match path parameters should be **taken from the path**, and that function parameters that are declared to be Pydantic models should be **taken from the request body**.
+**FastAPI** распознает какие параметры функции соответствуют параметрам пути и должны быть **получены из пути**, а какие параметры функции, объявленные как модели Pydantic, должны быть **получены из тела запроса**.
 
 ```Python hl_lines="17-18"
 {!../../../docs_src/body/tutorial003.py!}
 ```
 
-## Request body + path + query parameters
+## Тело запроса + параметры пути + параметры запроса
 
-You can also declare **body**, **path** and **query** parameters, all at the same time.
+Вы также можете одновременно объявить параметры для **пути**, **запроса** и **тела запроса**.
 
-**FastAPI** will recognize each of them and take the data from the correct place.
+**FastAPI** распознает каждый из них и возьмет данные из правильного источника.
 
 ```Python hl_lines="18"
 {!../../../docs_src/body/tutorial004.py!}
 ```
 
-The function parameters will be recognized as follows:
+Параметры функции распознаются следующим образом:
 
-* If the parameter is also declared in the **path**, it will be used as a path parameter.
-* If the parameter is of a **singular type** (like `int`, `float`, `str`, `bool`, etc) it will be interpreted as a **query** parameter.
-* If the parameter is declared to be of the type of a **Pydantic model**, it will be interpreted as a request **body**.
+* Если параметр также указан в **пути**, то он будет использоваться как параметр пути.
+* Если аннотация типа параметра содержит **примитивный тип** (`int`, `float`, `str`, `bool` и т.п.), он будет интерпретирован как параметр **запроса**.
+* Если аннотация типа параметра представляет собой **модель Pydantic**, он будет интерпретирован как параметр **тела запроса**.
 
 !!! note
-    FastAPI will know that the value of `q` is not required because of the default value `= None`.
+    FastAPI понимает, что значение параметра `q` не является обязательным, потому что имеет значение по умолчанию `= None`.
 
-    The `Optional` in `Optional[str]` is not used by FastAPI, but will allow your editor to give you better support and detect errors.
+    Аннотация `Optional` в `Optional[str]` не используется FastAPI, но помогает вашему редактору лучше понимать ваш код и обнаруживать ошибки.
 
-## Without Pydantic
+## Без Pydantic
 
-If you don't want to use Pydantic models, you can also use **Body** parameters. See the docs for [Body - Multiple Parameters: Singular values in body](body-multiple-params.md#singular-values-in-body){.internal-link target=_blank}.
+Если вы не хотите использовать модели Pydantic, вы все еще можете использовать параметры **тела запроса**. Читайте в документации раздел [Тело - Несколько параметров: Единичные значения в теле](body-multiple-params.md#singular-values-in-body){.internal-link target=_blank}.
