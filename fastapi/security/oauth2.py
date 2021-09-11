@@ -118,9 +118,10 @@ class OAuth2(SecurityBase):
         *,
         flows: Union[OAuthFlowsModel, Dict[str, Dict[str, Any]]] = OAuthFlowsModel(),
         scheme_name: Optional[str] = None,
+        description: Optional[str] = None,
         auto_error: Optional[bool] = True
     ):
-        self.model = OAuth2Model(flows=flows)
+        self.model = OAuth2Model(flows=flows, description=description)
         self.scheme_name = scheme_name or self.__class__.__name__
         self.auto_error = auto_error
 
@@ -142,12 +143,18 @@ class OAuth2PasswordBearer(OAuth2):
         tokenUrl: str,
         scheme_name: Optional[str] = None,
         scopes: Optional[Dict[str, str]] = None,
+        description: Optional[str] = None,
         auto_error: bool = True,
     ):
         if not scopes:
             scopes = {}
         flows = OAuthFlowsModel(password={"tokenUrl": tokenUrl, "scopes": scopes})
-        super().__init__(flows=flows, scheme_name=scheme_name, auto_error=auto_error)
+        super().__init__(
+            flows=flows,
+            scheme_name=scheme_name,
+            description=description,
+            auto_error=auto_error,
+        )
 
     async def __call__(self, request: Request) -> Optional[str]:
         authorization: str = request.headers.get("Authorization")
@@ -172,6 +179,7 @@ class OAuth2AuthorizationCodeBearer(OAuth2):
         refreshUrl: Optional[str] = None,
         scheme_name: Optional[str] = None,
         scopes: Optional[Dict[str, str]] = None,
+        description: Optional[str] = None,
         auto_error: bool = True,
     ):
         if not scopes:
@@ -184,7 +192,12 @@ class OAuth2AuthorizationCodeBearer(OAuth2):
                 "scopes": scopes,
             }
         )
-        super().__init__(flows=flows, scheme_name=scheme_name, auto_error=auto_error)
+        super().__init__(
+            flows=flows,
+            scheme_name=scheme_name,
+            description=description,
+            auto_error=auto_error,
+        )
 
     async def __call__(self, request: Request) -> Optional[str]:
         authorization: str = request.headers.get("Authorization")
