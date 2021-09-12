@@ -48,7 +48,7 @@ des changements non rétrocompatibles.
 FastAPI suit également la convention que tout changement de version "PATCH" est pour des corrections de bogues et 
 des changements rétrocompatibles.
 
-!!! tip
+!!! tip "Astuce"
     Le "PATCH" est le dernier chiffre, par exemple, dans `0.2.3`, la version PATCH est `3`.
 
 Donc, vous devriez être capable d'épingler une version comme suit :
@@ -59,7 +59,7 @@ fastapi>=0.45.0,<0.46.0
 
 Les changements non rétrocompatibles et les nouvelles fonctionnalités sont ajoutés dans les versions "MINOR".
 
-!!! tip
+!!! tip "Astuce"
     Le "MINOR" est le numéro au milieu, par exemple, dans `0.2.3`, la version MINOR est `2`.
 
 ## Mise à jour des versions FastAPI
@@ -85,7 +85,7 @@ Ainsi, vous pouvez simplement laisser **FastAPI** utiliser la bonne version de S
 ## À propos de Pydantic
 
 Pydantic inclut des tests pour **FastAPI** avec ses propres tests, ainsi les nouvelles versions de Pydantic (au-dessus 
-de `1.0.0`) sont toujours compatibles avec FastAPI.
+de `1.0.0`) sont toujours compatibles avec **FastAPI**.
 
 Vous pouvez épingler Pydantic à toute version supérieure à `1.0.0` qui fonctionne pour vous et inférieure à `2.0.0`.
 
