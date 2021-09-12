@@ -60,7 +60,7 @@ nav:
 - Tutoriel - Guide utilisateur:
   - tutorial/background-tasks.md
 - async.md
-- Deploiement:
+- Déploiement:
   - deployment/manually.md
 - project-generation.md
 - alternatives.md

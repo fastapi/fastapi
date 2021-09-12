@@ -18,7 +18,7 @@ Il vous suffit d'installer un serveur compatible ASGI comme :
 
     </div>
 
-    !!! tip
+    !!! tip "Astuce"
         En ajoutant le `standard`, Uvicorn va installer et utiliser quelques dépendances supplémentaires recommandées.
         
         Cela inclut `uvloop`, le remplaçant performant de `asyncio`, qui fournit le gros gain de performance en matière de concurrence.
@@ -39,7 +39,7 @@ Il vous suffit d'installer un serveur compatible ASGI comme :
 
     ...ou tout autre serveur ASGI.
 
-Et exécutez votre application comme vous l'avez fait dans les tutoriels, mais sans l'option `--reload`, par exemple :
+Et d'exécuter votre application comme vous l'avez fait dans les tutoriels, mais sans l'option `--reload`, par exemple :
 
 === "Uvicorn"
 
