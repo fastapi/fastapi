@@ -42,7 +42,7 @@ le même serveur (dans ce cas, l'application **FastAPI**), prendre la réponse H
 
 Avant Let's Encrypt, ces certificats HTTPS étaient vendus par des tiers de confiance.
 
-Le processus d'acquisition d'un de ces certificats était auparavant lourd, nécessitait pas mal de paperasse et les certificats étaient assez chers.
+Le processus d'acquisition d'un de ces certificats était auparavant lourd, nécessitait pas mal de paperasses et les certificats étaient assez chers.
 
 Mais ensuite, <a href="https://letsencrypt.org/" class="external-link" target="_blank">Let's Encrypt</a> a été créé.
 
