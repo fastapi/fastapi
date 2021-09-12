@@ -63,13 +63,13 @@ Vamos ver aquela frase por partes na seção abaixo:
 
 ## Código assíncrono
 
-Código assíncrono apenas significa que a linguagem 💬 tem um jeito de dizer para o computador / programa 🤖 que em certo ponto, ele 🤖 terá que esperar por *algo* para finalizar em outro lugar. Vamos dizer que esse *algo* seja chamado "arquivo lento" 📝.
+Código assíncrono apenas significa que a linguagem 💬 tem um jeito de dizer para o computador / programa que em certo ponto, ele terá que esperar por *algo* para finalizar em outro lugar. Vamos dizer que esse *algo* seja chamado "arquivo lento" 📝.
 
 Então, durante esse tempo, o computador pode ir e fazer outro trabalho, enquanto o "arquivo lento" 📝 termine.
 
-Então o computador / programa 🤖 irá voltar toda hora que tiver uma chance porquê ele ainda está esperando o "arquivo lento", ou ele 🤖 nunca irá terminar todo o trabalho que tem até esse ponto. E ele 🤖 irá ver se alguma das tarefas que estava esperando já terminaram, fazendo o que quer que tinham que fazer.
+Então o computador / programa irá voltar toda hora que tiver uma chance porquê ele ainda está esperando o "arquivo lento", ou ele nunca irá terminar todo o trabalho que tem até esse ponto. E ele irá ver se alguma das tarefas que estava esperando já terminaram, fazendo o que quer que tinham que fazer.
 
-Depois, ele 🤖 pega a primeira tarefa para finalizar (vamos dizer, nosso "arquivo lento" 📝) e continua o que ele tem que fazer com isso.
+Depois, ele pega a primeira tarefa para finalizar (vamos dizer, nosso "arquivo lento" 📝) e continua o que ele tem que fazer com isso.
 
 Esse "esperar por algo" normalmente se refere a operações <abbr title="Entrada e Saída">I/O</abbr> que são relativamente "lentas" (comparadas a velocidade do processador e da memória RAM), como esperar por:
 

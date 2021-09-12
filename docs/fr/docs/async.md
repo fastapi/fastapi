@@ -62,13 +62,13 @@ Analysons les différentes parties de cette phrase dans les sections suivantes :
 
 ## Code asynchrone
 
-Faire du code asynchrone signifie que le langage 💬 est capable de dire à l'ordinateur / au programme 🤖 qu'à un moment du code, il 🤖 devra attendre que *quelque chose d'autre* se termine autre part. Disons que ce *quelque chose d'autre* est appelé "fichier-lent" 📝.
+Faire du code asynchrone signifie que le langage est capable de dire à l'ordinateur / au programme qu'à un moment du code, il devra attendre que *quelque chose d'autre* se termine autre part. Disons que ce *quelque chose d'autre* est appelé "fichier-lent".
 
-Donc, pendant ce temps, l'ordinateur pourra effectuer d'autres tâches, pendant que "fichier-lent" 📝 se termine.
+Donc, pendant ce temps, l'ordinateur pourra effectuer d'autres tâches, pendant que "fichier-lent" se termine.
 
-Ensuite l'ordinateur / le programme 🤖 reviendra à chaque fois qu'il en a la chance que ce soit parce qu'il attend à nouveau, ou car il 🤖 a fini tout le travail qu'il avait à faire. Il 🤖 regardera donc si les tâches qu'il attend ont terminé d'être effectuées.
+Ensuite l'ordinateur / le programme reviendra à chaque fois qu'il en a la chance que ce soit parce qu'il attend à nouveau, ou car il a fini tout le travail qu'il avait à faire. Il regardera donc si les tâches qu'il attend ont terminé d'être effectuées.
 
-Ensuite, il 🤖 prendra la première tâche à finir (disons, notre "fichier-lent" 📝) et continuera à faire avec cette dernière ce qu'il était censé.
+Ensuite, il prendra la première tâche à finir (disons, notre "fichier-lent") et continuera à faire avec cette dernière ce qu'il était censé.
 
 Ce "attendre quelque chose d'autre" fait généralement référence à des opérations <abbr title="Input/Output ou Entrées et Sorties ">I/O</abbr> qui sont relativement "lentes" (comparées à la vitesse du processeur et de la mémoire RAM) telles qu'attendre que :
 
@@ -101,109 +101,109 @@ Pour expliquer la différence, voici une histoire de burgers :
 
 #### Burgers concurrents
 
-Vous amenez votre crush 😍 dans votre fast food 🍔 favori, et faites la queue pendant que le serveur 💁 prend les commandes des personnes devant vous.
+Vous amenez votre crush dans votre fast food favori, et faites la queue pendant que le serveur prend les commandes des personnes devant vous.
 
-Puis vient votre tour, vous commandez alors 2 magnifiques burgers 🍔 pour votre crush 😍 et vous.
+Puis vient votre tour, vous commandez alors 2 magnifiques burgers pour votre crush et vous.
 
-Vous payez 💸.
+Vous payez.
 
-Le serveur 💁 dit quelque chose à son collègue dans la cuisine 👨‍🍳 pour qu'il sache qu'il doit préparer vos burgers 🍔 (bien qu'il soit déjà en train de préparer ceux des clients précédents).
+Le serveur dit quelque chose à son collègue dans la cuisine pour qu'il sache qu'il doit préparer vos burgers (bien qu'il soit déjà en train de préparer ceux des clients précédents).
 
-Le serveur 💁 vous donne le numéro assigné à votre commande.
+Le serveur vous donne le numéro assigné à votre commande.
 
-Pendant que vous attendez, vous allez choisir une table avec votre crush 😍, vous discutez avec votre crush 😍 pendant un long moment (les burgers étant "magnifiques" ils sont très longs à préparer ✨🍔✨).
+Pendant que vous attendez, vous allez choisir une table avec votre crush, vous discutez avec votre crush pendant un long moment (les burgers étant "magnifiques" ils sont très longs à préparer).
 
-Pendant que vous êtes assis à table, en attendant que les burgers 🍔 soient prêts, vous pouvez passer ce temps à admirer à quel point votre crush 😍 est géniale, mignonne et intelligente ✨😍✨.
+Pendant que vous êtes assis à table, en attendant que les burgers soient prêts, vous pouvez passer ce temps à admirer à quel point votre crush est géniale, mignonne et intelligente.
 
-Pendant que vous discutez avec votre crush 😍, de temps en temps vous jetez un coup d'oeil au nombre affiché au-dessus du comptoir pour savoir si c'est à votre tour d'être servis.
+Pendant que vous discutez avec votre crush, de temps en temps vous jetez un coup d'oeil au nombre affiché au-dessus du comptoir pour savoir si c'est à votre tour d'être servis.
 
-Jusqu'au moment où c'est (enfin) votre tour. Vous allez au comptoir, récupérez vos burgers 🍔 et revenez à votre table.
+Jusqu'au moment où c'est (enfin) votre tour. Vous allez au comptoir, récupérez vos burgers et revenez à votre table.
 
-Vous et votre crush 😍 mangez les burgers 🍔 et passez un bon moment ✨.
+Vous et votre crush mangez les burgers et passez un bon moment.
 
 ---
 
-Imaginez que vous êtes l'ordinateur / le programme 🤖 dans cette histoire.
+Imaginez que vous êtes l'ordinateur / le programme dans cette histoire.
 
-Pendant que vous faites la queue, vous être simplement inactif 😴, attendant votre tour, ne faisant rien de "productif". Mais la queue est rapide car le serveur 💁 prend seulement les commandes (et ne les prépare pas), donc tout va bien.
+Pendant que vous faites la queue, vous être simplement inactif, attendant votre tour, ne faisant rien de "productif". Mais la queue est rapide car le serveur prend seulement les commandes (et ne les prépare pas), donc tout va bien.
 
-Ensuite, quand c'est votre tour, vous faites des actions "productives" 🤓, vous étudiez le menu, décidez ce que vous voulez, demandez à votre crush 😍 son choix, payez 💸, vérifiez que vous utilisez la bonne carte de crédit, vérifiez que le montant débité sur la carte est correct, vérifiez que la commande contient les bons produits, etc.
+Ensuite, quand c'est votre tour, vous faites des actions "productives", vous étudiez le menu, décidez ce que vous voulez, demandez à votre crush son choix, payez, vérifiez que vous utilisez la bonne carte de crédit, vérifiez que le montant débité sur la carte est correct, vérifiez que la commande contient les bons produits, etc.
 
-Mais ensuite, même si vous n'avez pas encore vos burgers 🍔, votre travail avec le serveur 💁 est "en pause" ⏸, car vous devez attendre 🕙 que vos burgers soient prêts.
+Mais ensuite, même si vous n'avez pas encore vos burgers, votre travail avec le serveur est "en pause", car vous devez attendre que vos burgers soient prêts.
 
-Après vous être écarté du comptoir et vous être assis à votre table avec le numéro de votre commande, vous pouvez tourner 🔀 votre attention vers votre crush 😍, et "travailler" ⏯ 🤓 là-dessus. Vous êtes donc à nouveau en train de faire quelque chose de "productif" 🤓, vous flirtez avec votre crush 😍.
+Après vous être écarté du comptoir et vous être assis à votre table avec le numéro de votre commande, vous pouvez tourner votre attention vers votre crush, et "travailler" là-dessus. Vous êtes donc à nouveau en train de faire quelque chose de "productif", vous flirtez avec votre crush.
 
-Puis le serveur 💁 dit "J'ai fini de préparer les burgers" 🍔 en mettant votre numéro sur l'affichage du comptoir, mais vous ne courrez pas immédiatement au moment où votre numéro s'affiche. Vous savez que personne ne volera vos burgers 🍔 car vous avez votre numéro et les autres clients ont le leur.
+Puis le serveur dit "J'ai fini de préparer les burgers" en mettant votre numéro sur l'affichage du comptoir, mais vous ne courrez pas immédiatement au moment où votre numéro s'affiche. Vous savez que personne ne volera vos burgers car vous avez votre numéro et les autres clients ont le leur.
 
-Vous attendez donc que votre crush 😍 finisse son histoire, souriez gentiment et dites que vous allez chercher les burgers ⏸.
+Vous attendez donc que votre crush finisse son histoire, souriez gentiment et dites que vous allez chercher les burgers.
 
-Pour finir vous allez au comptoir 🔀, vers la tâche initiale qui est désormais terminée ⏯, récupérez les burgers 🍔, remerciez le serveur et ramenez les burgers 🍔 à votre table. Ceci termine l'étape / la tâche d'interaction avec le comptoir ⏹. Ce qui ensuite, crée une nouvelle tâche de "manger les burgers"  🔀 ⏯, mais la précédente, "récupérer les burgers" est terminée ⏹.
+Pour finir vous allez au comptoir, vers la tâche initiale qui est désormais terminée, récupérez les burgers, remerciez le serveur et ramenez les burgers à votre table. Ceci termine l'étape / la tâche d'interaction avec le comptoir. Ce qui ensuite, crée une nouvelle tâche de "manger les burgers" , mais la précédente, "récupérer les burgers" est terminée.
 
 #### Burgers parallèles
 
 Imaginons désormais que ce ne sont pas des "burgers concurrents" mais des "burgers parallèles".
 
-Vous allez avec votre crush 😍 dans un fast food 🍔 parallélisé.
+Vous allez avec votre crush dans un fast food parallélisé.
 
-Vous attendez pendant que plusieurs (disons 8) serveurs qui sont aussi des cuisiniers 👨‍🍳👨‍🍳👨‍🍳👨‍🍳👨‍🍳👨‍🍳👨‍🍳👨‍🍳 prennent les commandes des personnes devant vous.
+Vous attendez pendant que plusieurs (disons 8) serveurs qui sont aussi des cuisiniers prennent les commandes des personnes devant vous.
 
-Chaque personne devant vous attend 🕙 que son burger 🍔 soit prêt avant de quitter le comptoir car chacun des 8 serveurs va lui-même préparer le burger directement avant de prendre la commande suivante.
+Chaque personne devant vous attend que son burger soit prêt avant de quitter le comptoir car chacun des 8 serveurs va lui-même préparer le burger directement avant de prendre la commande suivante.
 
-Puis c'est enfin votre tour, vous commandez 2 magnifiques burgers 🍔 pour vous et votre crush 😍.
+Puis c'est enfin votre tour, vous commandez 2 magnifiques burgers pour vous et votre crush.
 
-Vous payez 💸.
+Vous payez.
 
-Le serveur va dans la cuisine 👨‍🍳.
+Le serveur va dans la cuisine.
 
-Vous attendez devant le comptoir afin que personne ne prenne vos burgers 🍔 avant vous, vu qu'il n'y a pas de numéro de commande.
+Vous attendez devant le comptoir afin que personne ne prenne vos burgers avant vous, vu qu'il n'y a pas de numéro de commande.
 
-Vous et votre crush 😍 étant occupés à vérifier que personne ne passe devant vous prendre vos burgers au moment où ils arriveront 🕙, vous ne pouvez pas vous préoccuper de votre crush 😞.
+Vous et votre crush étant occupés à vérifier que personne ne passe devant vous prendre vos burgers au moment où ils arriveront, vous ne pouvez pas vous préoccuper de votre crush.
 
-C'est du travail "synchrone", vous être "synchronisés" avec le serveur/cuisinier 👨‍🍳. Vous devez attendre 🕙 et être présent au moment exact où le serveur/cuisinier 👨‍🍳 finira les burgers 🍔 et vous les donnera, sinon quelqu'un risque de vous les prendre.
+C'est du travail "synchrone", vous être "synchronisés" avec le serveur/cuisinier. Vous devez attendre et être présent au moment exact où le serveur/cuisinier finira les burgers et vous les donnera, sinon quelqu'un risque de vous les prendre.
 
-Puis le serveur/cuisinier 👨‍🍳 revient enfin avec vos burgers 🍔, après un long moment d'attente 🕙 devant le comptoir.
+Puis le serveur/cuisinier revient enfin avec vos burgers, après un long moment d'attente devant le comptoir.
 
-Vous prenez vos burgers 🍔 et allez à une table avec votre crush 😍
+Vous prenez vos burgers et allez à une table avec votre crush
 
-Vous les mangez, et vous avez terminé 🍔 ⏹.
+Vous les mangez, et vous avez terminé.
 
-Durant tout ce processus, il n'y a presque pas eu de discussions ou de flirts car la plupart de votre temps à été passé à attendre 🕙 devant le comptoir 😞.
-
----
-
-Dans ce scénario de burgers parallèles, vous êtes un ordinateur / programme 🤖 avec deux processeurs (vous et votre crush 😍) attendant 🕙 à deux et dédiant votre attention 🕙 à "attendre devant le comptoir" pour une longue durée.
-
-Le fast-food a 8 processeurs (serveurs/cuisiniers) 👨‍🍳👨‍🍳👨‍🍳👨‍🍳👨‍🍳👨‍🍳👨‍🍳👨‍🍳. Alors que le fast-food de burgers concurrents en avait 2 (un serveur et un cuisinier).
-
-Et pourtant l'expérience finale n'est pas meilleure 😞.
+Durant tout ce processus, il n'y a presque pas eu de discussions ou de flirts car la plupart de votre temps à été passé à attendre devant le comptoir.
 
 ---
 
-C'est donc l'histoire équivalente parallèle pour les burgers 🍔.
+Dans ce scénario de burgers parallèles, vous êtes un ordinateur / programme avec deux processeurs (vous et votre crush) attendant à deux et dédiant votre attention à "attendre devant le comptoir" pour une longue durée.
+
+Le fast-food a 8 processeurs (serveurs/cuisiniers). Alors que le fast-food de burgers concurrents en avait 2 (un serveur et un cuisinier).
+
+Et pourtant l'expérience finale n'est pas meilleure.
+
+---
+
+C'est donc l'histoire équivalente parallèle pour les burgers.
 
 Pour un exemple plus courant dans la "vie réelle", imaginez une banque.
 
-Jusqu'à récemment, la plupart des banques avaient plusieurs caisses (et banquiers) 👨‍💼👨‍💼👨‍💼👨‍💼 et une unique file d'attente 🕙🕙🕙🕙🕙🕙🕙🕙.
+Jusqu'à récemment, la plupart des banques avaient plusieurs caisses (et banquiers) et une unique file d'attente.
 
-Tous les banquiers faisaient l'intégralité du travail avec chaque client avant de passer au suivant 👨‍💼⏯.
+Tous les banquiers faisaient l'intégralité du travail avec chaque client avant de passer au suivant.
 
-Et vous deviez attendre 🕙 dans la file pendant un long moment ou vous perdiez votre place.
+Et vous deviez attendre dans la file pendant un long moment ou vous perdiez votre place.
 
-Vous n'auriez donc probablement pas envie d'amener votre crush 😍 avec vous à la banque 🏦.
+Vous n'auriez donc probablement pas envie d'amener votre crush avec vous à la banque.
 
 #### Conclusion
 
-Dans ce scénario des "burgers du fast-food avec votre crush", comme il y a beaucoup d'attente 🕙, il est très logique d'avoir un système concurrent ⏸🔀⏯.
+Dans ce scénario des "burgers du fast-food avec votre crush", comme il y a beaucoup d'attente, il est très logique d'avoir un système concurrent.
 
 Et c'est le cas pour la plupart des applications web.
 
-Vous aurez de nombreux, nombreux utilisateurs, mais votre serveur attendra 🕙 que leur connexion peu performante envoie des requêtes.
+Vous aurez de nombreux, nombreux utilisateurs, mais votre serveur attendra que leur connexion peu performante envoie des requêtes.
 
-Puis vous attendrez 🕙 de nouveau que leurs réponses reviennent.
+Puis vous attendrez de nouveau que leurs réponses reviennent.
 
-Cette "attente" 🕙 se mesure en microsecondes, mais tout de même, en cumulé cela fait beaucoup d'attente.
+Cette "attente" se mesure en microsecondes, mais tout de même, en cumulé cela fait beaucoup d'attente.
 
-C'est pourquoi il est logique d'utiliser du code asynchrone ⏸🔀⏯ pour des APIs web.
+C'est pourquoi il est logique d'utiliser du code asynchrone pour des APIs web.
 
 La plupart des frameworks Python existants (y compris Flask et Django) ont été créés avant que les nouvelles fonctionnalités asynchrones de Python n'existent. Donc, les façons dont ils peuvent être déployés supportent l'exécution parallèle  et une ancienne forme d'exécution asynchrone qui n'est pas aussi puissante que les nouvelles fonctionnalités de Python.
 
@@ -229,13 +229,13 @@ Donc pour équilibrer tout ça, imaginez l'histoire suivante :
 
 ---
 
-Il n'y a plus d'attente 🕙 nulle part, juste beaucoup de travail à effectuer, dans différentes pièces de la maison.
+Il n'y a plus d'attente nulle part, juste beaucoup de travail à effectuer, dans différentes pièces de la maison.
 
-Vous pourriez diviser en différentes sections comme avec les burgers, d'abord le salon, puis la cuisine, etc. Mais vous n'attendez 🕙 rien, vous ne faites que nettoyer et nettoyer, la séparation en sections ne changerait rien au final.
+Vous pourriez diviser en différentes sections comme avec les burgers, d'abord le salon, puis la cuisine, etc. Mais vous n'attendez rien, vous ne faites que nettoyer et nettoyer, la séparation en sections ne changerait rien au final.
 
 Cela prendrait autant de temps pour finir avec ou sans sections (concurrence) et vous auriez effectué la même quantité de travail.
 
-Mais dans ce cas, si pouviez amener 8 ex-serveurs/cuisiniers/devenus-nettoyeurs 👨‍🍳👨‍🍳👨‍🍳👨‍🍳👨‍🍳👨‍🍳👨‍🍳👨‍🍳, et que chacun d'eux (plus vous) pouvait prendre une zone de la maison pour la nettoyer, vous pourriez faire tout le travail en parallèle, et finir plus tôt.
+Mais dans ce cas, si pouviez amener 8 ex-serveurs/cuisiniers/devenus-nettoyeurs, et que chacun d'eux (plus vous) pouvait prendre une zone de la maison pour la nettoyer, vous pourriez faire tout le travail en parallèle, et finir plus tôt.
 
 Dans ce scénario, chacun des nettoyeurs (vous y compris) serait un processeur, faisant sa partie du travail.
 
@@ -272,7 +272,7 @@ Pour une opération qui nécessite de l'attente avant de donner un résultat et 
 burgers = await get_burgers(2)
 ```
 
-Le mot-clé important ici est `await`. Il informe Python qu'il faut attendre ⏸ que `get_burgers(2)` finisse d'effectuer ses opérations 🕙 avant de stocker les résultats dans la variable `burgers`. Grâce à cela, Python saura qu'il peut aller effectuer d'autres opérations 🔀 ⏯ pendant ce temps (comme par exemple recevoir une autre requête).
+Le mot-clé important ici est `await`. Il informe Python qu'il faut attendre que `get_burgers(2)` finisse d'effectuer ses opérations avant de stocker les résultats dans la variable `burgers`. Grâce à cela, Python saura qu'il peut aller effectuer d'autres opérations pendant ce temps (comme par exemple recevoir une autre requête).
 
 Pour que `await` fonctionne, il doit être placé dans une fonction qui supporte l'asynchronicité. Pour que ça soit le cas, il faut déclarer cette dernière avec `async def` :
 
@@ -291,7 +291,7 @@ def get_sequential_burgers(number: int):
     return burgers
 ```
 
-Avec `async def`, Python sait que dans cette fonction il doit prendre en compte les expressions `await`, et qu'il peut mettre en pause ⏸ l'exécution de la fonction pour aller faire autre chose 🔀 avant de revenir.
+Avec `async def`, Python sait que dans cette fonction il doit prendre en compte les expressions `await`, et qu'il peut mettre en pause l'exécution de la fonction pour aller faire autre chose avant de revenir.
 
 Pour appeler une fonction définie avec `async def`, vous devez utiliser `await`. Donc ceci ne marche pas : 
 
@@ -340,7 +340,7 @@ Dans les versions précédentes de Javascript NodeJS / Navigateur, vous auriez u
 
 ## Coroutines
 
-**Coroutine** est juste un terme élaboré pour désigner ce qui est retourné par une fonction définie avec `async def`. Python sait que c'est comme une fonction classique qui va démarrer à un moment et terminer à un autre, mais qu'elle peut aussi être mise en pause ⏸, du moment qu'il y a un `await` dans son contenu.
+**Coroutine** est juste un terme élaboré pour désigner ce qui est retourné par une fonction définie avec `async def`. Python sait que c'est comme une fonction classique qui va démarrer à un moment et terminer à un autre, mais qu'elle peut aussi être mise en pause, du moment qu'il y a un `await` dans son contenu.
 
 Mais toutes ces fonctionnalités d'utilisation de code asynchrone avec `async` et `await` sont souvent résumées comme l'utilisation des *coroutines*. On peut comparer cela à la principale fonctionnalité clé de Go, les "Goroutines".
 
@@ -350,7 +350,7 @@ Reprenons la phrase du début de la page :
 
 > Les versions modernes de Python supportent le **code asynchrone** grâce aux **"coroutines"** avec les syntaxes **`async` et `await`**.
 
-Ceci devrait être plus compréhensible désormais. ✨
+Ceci devrait être plus compréhensible désormais.
 
 Tout ceci est donc ce qui donne sa force à **FastAPI** (à travers Starlette) et lui permet d'avoir des performances aussi impressionnantes.
 
