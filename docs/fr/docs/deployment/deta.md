@@ -40,7 +40,7 @@ Maintenant, dans le même répertoire, créez un fichier `requirements.txt` avec
 fastapi
 ```
 
-!!! tip
+!!! tip "Astuce"
     Il n'est pas nécessaire d'installer Uvicorn pour déployer sur Deta, bien qu'il soit probablement souhaitable de l'installer localement pour tester votre application.
 
 ### Structure du répertoire
@@ -108,7 +108,7 @@ Available Commands:
 
 </div>
 
-!!! tip
+!!! tip "Astuce"
     Si vous rencontrez des problèmes pour installer le CLI, consultez la <a href="https://docs.deta. sh/docs/micros/getting_started?ref=fastapi" class="external-link" target="_blank">documentation officielle de Deta (en anglais)</a>.
 
 ## Connexion avec le CLI
@@ -172,7 +172,7 @@ Vous verrez un message JSON similaire à :
 }
 ```
 
-!!! tip
+!!! tip "Astuce"
     Votre déploiement aura une URL `"endpoint"` différente.
 
 ## Vérifiez
@@ -233,7 +233,7 @@ Vous verrez un onglet avec "Details", et aussi un onglet "Visor", allez à l'ong
 
 Vous pouvez y consulter les requêtes récentes envoyées à votre application.
 
-Vous pouvez également les modifier et les réécouter.
+Vous pouvez également les modifier et les relancer.
 
 <img src="/img/deployment/deta/image02.png">
 
