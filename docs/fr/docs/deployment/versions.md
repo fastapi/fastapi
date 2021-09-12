@@ -66,8 +66,7 @@ Les changements non rétrocompatibles et les nouvelles fonctionnalités sont ajo
 
 Vous devriez tester votre application.
 
-Avec **FastAPI** c'est très facile (merci à Starlette), consultez la documentation : [Testing](../tutorial/testing.md){.
-internal-link target=_blank}
+Avec **FastAPI** c'est très facile (merci à Starlette), consultez la documentation : [Testing](../tutorial/testing.md){.internal-link target=_blank}
 
 Après avoir effectué des tests, vous pouvez mettre à jour la version **FastAPI** vers une version plus récente, et vous assurer que tout votre code fonctionne correctement en exécutant vos tests.
 
