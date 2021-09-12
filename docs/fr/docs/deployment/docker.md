@@ -5,7 +5,7 @@ Dans cette section, vous verrez des instructions et des liens vers des guides po
 * Faire de votre application **FastAPI** une image/conteneur Docker avec une performance maximale. En environ **5 min**.
 * (Optionnellement) comprendre ce que vous, en tant que développeur, devez savoir sur HTTPS.
 * Configurer un cluster en mode Docker Swarm avec HTTPS automatique, même sur un simple serveur à 5 dollars US/mois. En environ **20 min**.
-* Générez et déployez une application **FastAPI** complète, en utilisant votre cluster Docker Swarm, avec HTTPS, etc. En environ **10 min**.
+* Générer et déployer une application **FastAPI** complète, en utilisant votre cluster Docker Swarm, avec HTTPS, etc. En environ **10 min**.
 
 Vous pouvez utiliser <a href="https://www.docker.com/" class="external-link" target="_blank">**Docker**</a> pour le déploiement. Il présente plusieurs avantages comme la sécurité, la réplicabilité, la simplicité de développement, etc.
 
@@ -17,7 +17,7 @@ Cette image est dotée d'un mécanisme d'"auto-tuning", de sorte qu'il vous suff
 
 Mais vous pouvez toujours changer et mettre à jour toutes les configurations avec des variables d'environnement ou des fichiers de configuration.
 
-!!! tip
+!!! tip "Astuce"
     Pour voir toutes les configurations et options, rendez-vous sur la page de l'image Docker : <a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker" class="external-link" target="_blank">tiangolo/uvicorn-gunicorn-fastapi</a>.
 
 ## Créer un `Dockerfile`
@@ -118,7 +118,7 @@ $ docker run -d --name mycontainer -p 80:80 myimage
 
 </div>
 
-Vous disposez maintenant d'un serveur FastAPI optimisé dans un conteneur Docker. Réglé automatiquement pour votre 
+Vous disposez maintenant d'un serveur FastAPI optimisé dans un conteneur Docker. Configuré automatiquement pour votre 
 serveur actuel (et le nombre de cœurs du CPU).
 
 ## Vérifier
@@ -179,4 +179,4 @@ Le génerateur de projet adéquat est conçu pour être intégré à ce cluster 
 
 Vous pouvez générer un projet en 2 min environ.
 
-Le projet généré a des instructions pour le déployer et le faire prend encore 2 min.
+Le projet généré a des instructions pour le déployer et le faire prend 2 min de plus.
