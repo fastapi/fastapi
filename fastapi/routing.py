@@ -263,7 +263,7 @@ def get_websocket_app(
             dependant=dependant,
             dependency_overrides_provider=dependency_overrides_provider,
         )
-        values, errors, _, _2 = solved_result
+        _, errors, _2, _3 = solved_result
         if errors:
             await websocket.close(code=WS_1008_POLICY_VIOLATION)
             raise WebSocketRequestValidationError(errors)
