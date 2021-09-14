@@ -89,12 +89,12 @@ def test_get_no_headers():
     assert response.json() == {
         "detail": [
             {
-                "loc": ["header", "x-token"],
+                "loc": ["header", "x-key"],
                 "msg": "field required",
                 "type": "value_error.missing",
             },
             {
-                "loc": ["header", "x-key"],
+                "loc": ["header", "x-token"],
                 "msg": "field required",
                 "type": "value_error.missing",
             },
@@ -103,7 +103,7 @@ def test_get_no_headers():
 
 
 def test_get_invalid_one_header():
-    response = client.get("/items/", headers={"X-Token": "invalid"})
+    response = client.get("/items/", headers={"X-Token": "invalid", "X-Key": "fake-super-secret-key"})
     assert response.status_code == 400, response.text
     assert response.json() == {"detail": "X-Token header invalid"}
 

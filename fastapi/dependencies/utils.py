@@ -86,6 +86,16 @@ multipart_incorrect_install_error = (
 )
 
 
+class DependencyNode(object):
+
+    def __init__(self, call: Callable[..., Any]):
+        self.call = call
+        self.arguments: Dict[str, Any] = {}
+        self.refcount: int = 0
+        self.backref: List[Tuple[DependencyNode, str]] = []
+        self.result: Any = None
+
+
 def check_file_field(field: ModelField) -> None:
     field_info = field.field_info
     if isinstance(field_info, params.Form):
@@ -464,147 +474,179 @@ async def solve_generator(
     return await stack.enter_async_context(cm)
 
 
+def get_task(
+    call: Callable[..., Any], arguments: Dict[str, Any], request: Union[Request, WebSocket]
+) -> Any:
+    if is_gen_callable(call) or is_async_gen_callable(call):
+        stack = request.scope.get("fastapi_astack")
+        if stack is None:
+            raise RuntimeError(
+                async_contextmanager_dependencies_error
+            )  # pragma: no cover
+        return asyncio.create_task(solve_generator(
+            call=call, stack=stack, sub_values=arguments
+        ))
+    if is_coroutine_callable(call):
+        return asyncio.create_task(call(**arguments))
+    return asyncio.create_task(run_in_threadpool(call, **arguments))
+
+
 async def solve_dependencies(
     *,
     request: Union[Request, WebSocket],
     dependant: Dependant,
     body: Optional[Union[Dict[str, Any], FormData]] = None,
-    background_tasks: Optional[BackgroundTasks] = None,
-    response: Optional[Response] = None,
     dependency_overrides_provider: Optional[Any] = None,
-    dependency_cache: Optional[Dict[Tuple[Callable[..., Any], Tuple[str]], Any]] = None,
-) -> Tuple[
-    Dict[str, Any],
-    List[ErrorWrapper],
-    Optional[BackgroundTasks],
-    Response,
-    Dict[Tuple[Callable[..., Any], Tuple[str]], Any],
-]:
-    values: Dict[str, Any] = {}
-    errors: List[ErrorWrapper] = []
-    response = response or Response(
+):
+    root_dependant = dependant
+    root_node = None
+    stack = [(None, root_dependant)]
+    node_cache = {}
+    errors = []
+    response = Response(
         content=None,
         status_code=None,  # type: ignore
         headers=None,  # type: ignore # in Starlette
         media_type=None,  # type: ignore # in Starlette
         background=None,  # type: ignore # in Starlette
     )
-    dependency_cache = dependency_cache or {}
-    sub_dependant: Dependant
-    for sub_dependant in dependant.dependencies:
-        sub_dependant.call = cast(Callable[..., Any], sub_dependant.call)
-        sub_dependant.cache_key = cast(
-            Tuple[Callable[..., Any], Tuple[str]], sub_dependant.cache_key
-        )
-        call = sub_dependant.call
-        use_sub_dependant = sub_dependant
-        if (
-            dependency_overrides_provider
-            and dependency_overrides_provider.dependency_overrides
-        ):
-            original_call = sub_dependant.call
-            call = getattr(
-                dependency_overrides_provider, "dependency_overrides", {}
-            ).get(original_call, original_call)
-            use_path: str = sub_dependant.path  # type: ignore
-            use_sub_dependant = get_dependant(
-                path=use_path,
-                call=call,
-                name=sub_dependant.name,
-                security_scopes=sub_dependant.security_scopes,
-            )
-            use_sub_dependant.security_scopes = sub_dependant.security_scopes
+    background_tasks = None
+    pending_tasks = set()
+    tasks = {}
+    nodes_to_go = 0
+    nodes_to_start = []
+    overrides = getattr(dependency_overrides_provider, 'dependency_overrides', None) or {}
 
-        solved_result = await solve_dependencies(
-            request=request,
-            dependant=use_sub_dependant,
-            body=body,
-            background_tasks=background_tasks,
-            response=response,
-            dependency_overrides_provider=dependency_overrides_provider,
-            dependency_cache=dependency_cache,
-        )
-        (
-            sub_values,
-            sub_errors,
-            background_tasks,
-            _,  # the subdependency returns the same response we have
-            sub_dependency_cache,
-        ) = solved_result
-        dependency_cache.update(sub_dependency_cache)
-        if sub_errors:
-            errors.extend(sub_errors)
-            continue
-        if sub_dependant.use_cache and sub_dependant.cache_key in dependency_cache:
-            solved = dependency_cache[sub_dependant.cache_key]
-        elif is_gen_callable(call) or is_async_gen_callable(call):
-            stack = request.scope.get("fastapi_astack")
-            if stack is None:
-                raise RuntimeError(
-                    async_contextmanager_dependencies_error
-                )  # pragma: no cover
-            solved = await solve_generator(
-                call=call, stack=stack, sub_values=sub_values
+    assert root_dependant.call is not None, "dependant.call must be a function"
+
+    while stack:
+        parent_node, dependant = stack.pop()
+
+        dependant.call = cast(Callable[..., Any], dependant.call)
+        overrided_call = overrides.get(dependant.call)
+        if overrided_call:
+            security_scopes = dependant.security_scopes
+            dependant = get_dependant(
+                path=dependant.path,
+                call=overrided_call,
+                name=dependant.name,
+                security_scopes=security_scopes,
             )
-        elif is_coroutine_callable(call):
-            solved = await call(**sub_values)
-        else:
-            solved = await run_in_threadpool(call, **sub_values)
-        if sub_dependant.name is not None:
-            values[sub_dependant.name] = solved
-        if sub_dependant.cache_key not in dependency_cache:
-            dependency_cache[sub_dependant.cache_key] = solved
-    path_values, path_errors = request_params_to_args(
-        dependant.path_params, request.path_params
-    )
-    query_values, query_errors = request_params_to_args(
-        dependant.query_params, request.query_params
-    )
-    header_values, header_errors = request_params_to_args(
-        dependant.header_params, request.headers
-    )
-    cookie_values, cookie_errors = request_params_to_args(
-        dependant.cookie_params, request.cookies
-    )
-    values.update(path_values)
-    values.update(query_values)
-    values.update(header_values)
-    values.update(cookie_values)
-    errors += path_errors + query_errors + header_errors + cookie_errors
-    if dependant.body_params:
-        (
-            body_values,
-            body_errors,
-        ) = await request_body_to_args(  # body_params checked above
-            required_params=dependant.body_params, received_body=body
+            dependant.security_scopes = security_scopes
+
+        dependant.cache_key = cast(Tuple[Callable[..., Any], Tuple[str]], dependant.cache_key)
+
+        if dependant.use_cache and dependant.cache_key in node_cache:
+            node = node_cache[dependant.cache_key]
+            if parent_node:
+                node.backref.append((parent_node, dependant.name))
+            continue
+
+        node = DependencyNode(call=dependant.call)
+        if parent_node:
+            node.backref.append((parent_node, dependant.name))
+
+        if dependant.use_cache:
+            node_cache[dependant.cache_key] = node
+
+        for child_dependant in dependant.dependencies:
+            node.refcount += 1
+            stack.append((node, child_dependant))
+
+        request_params_to_args(
+            dependant.path_params, request.path_params, node.arguments, errors
         )
-        values.update(body_values)
-        errors.extend(body_errors)
-    if dependant.http_connection_param_name:
-        values[dependant.http_connection_param_name] = request
-    if dependant.request_param_name and isinstance(request, Request):
-        values[dependant.request_param_name] = request
-    elif dependant.websocket_param_name and isinstance(request, WebSocket):
-        values[dependant.websocket_param_name] = request
-    if dependant.background_tasks_param_name:
-        if background_tasks is None:
-            background_tasks = BackgroundTasks()
-        values[dependant.background_tasks_param_name] = background_tasks
-    if dependant.response_param_name:
-        values[dependant.response_param_name] = response
-    if dependant.security_scopes_param_name:
-        values[dependant.security_scopes_param_name] = SecurityScopes(
-            scopes=dependant.security_scopes
+        request_params_to_args(
+            dependant.query_params, request.query_params, node.arguments, errors
         )
-    return values, errors, background_tasks, response, dependency_cache
+        request_params_to_args(
+            dependant.header_params, request.headers, node.arguments, errors
+        )
+        request_params_to_args(
+            dependant.cookie_params, request.cookies, node.arguments, errors
+        )
+
+        # TODO make dependant
+        if dependant.body_params:
+            (
+                body_values,
+                body_errors,
+            ) = await request_body_to_args(  # body_params checked above
+                required_params=dependant.body_params, received_body=body
+            )
+            node.arguments.update(body_values)
+            errors.extend(body_errors)
+
+        if dependant.http_connection_param_name:
+            node.arguments[dependant.http_connection_param_name] = request
+
+        if dependant.request_param_name and isinstance(request, Request):
+            node.arguments[dependant.request_param_name] = request
+        elif dependant.websocket_param_name and isinstance(request, WebSocket):
+            node.arguments[dependant.websocket_param_name] = request
+
+        if dependant.background_tasks_param_name:
+            if background_tasks is None:
+                background_tasks = BackgroundTasks()
+            node.arguments[dependant.background_tasks_param_name] = background_tasks
+
+        if dependant.response_param_name:
+            node.arguments[dependant.response_param_name] = response
+
+        if dependant.security_scopes_param_name:
+            node.arguments[dependant.security_scopes_param_name] = SecurityScopes(
+                scopes=dependant.security_scopes
+            )
+
+        nodes_to_go += 1
+
+        # Do not start nodes before we check all errors
+        if node.refcount == 0:
+            nodes_to_start.append(node)
+
+        if root_node is None:
+            root_node = node
+
+    if errors:
+        return root_node.result, errors, background_tasks, response
+
+    for node in reversed(nodes_to_start):
+        task = get_task(node.call, node.arguments, request)
+        tasks[task] = node
+        pending_tasks.add(task)
+
+    while nodes_to_go > 0:
+        done, pending_tasks = await asyncio.wait(pending_tasks, return_when=asyncio.FIRST_COMPLETED)
+        for task in done:
+            nodes_to_go -= 1
+            exception = task.exception()
+            if exception:
+                raise exception
+            node = tasks[task]
+            task_result = task.result()
+            node.result = task_result
+            for parent_node, argument_name in node.backref:
+                if argument_name is not None:
+                    parent_node.arguments[argument_name] = task_result
+                parent_node.refcount -= 1
+                if parent_node.refcount == 0:
+                    new_task = get_task(parent_node.call, parent_node.arguments, request)
+                    tasks[new_task] = parent_node
+                    pending_tasks.add(new_task)
+
+    return root_node.result, errors, background_tasks, response
 
 
 def request_params_to_args(
     required_params: Sequence[ModelField],
     received_params: Union[Mapping[str, Any], QueryParams, Headers],
+    values: Optional[Dict[str, Any]] = None,
+    errors: Optional[List[ErrorWrapper]] = None,
 ) -> Tuple[Dict[str, Any], List[ErrorWrapper]]:
-    values = {}
-    errors = []
+    if values is None:
+        values = {}
+    if errors is None:
+        errors = []
     for field in required_params:
         if is_scalar_sequence_field(field) and isinstance(
             received_params, (QueryParams, Headers)

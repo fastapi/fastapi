@@ -219,39 +219,37 @@ def get_request_handler(
             body=body,
             dependency_overrides_provider=dependency_overrides_provider,
         )
-        values, errors, background_tasks, sub_response, _ = solved_result
+        raw_response, errors, background_tasks, sub_response = solved_result
+
         if errors:
             raise RequestValidationError(errors, body=body)
-        else:
-            raw_response = await run_endpoint_function(
-                dependant=dependant, values=values, is_coroutine=is_coroutine
-            )
 
-            if isinstance(raw_response, Response):
-                if raw_response.background is None:
-                    raw_response.background = background_tasks
-                return raw_response
-            response_data = await serialize_response(
-                field=response_field,
-                response_content=raw_response,
-                include=response_model_include,
-                exclude=response_model_exclude,
-                by_alias=response_model_by_alias,
-                exclude_unset=response_model_exclude_unset,
-                exclude_defaults=response_model_exclude_defaults,
-                exclude_none=response_model_exclude_none,
-                is_coroutine=is_coroutine,
-            )
-            response_args: Dict[str, Any] = {"background": background_tasks}
-            # If status_code was set, use it, otherwise use the default from the
-            # response class, in the case of redirect it's 307
-            if status_code is not None:
-                response_args["status_code"] = status_code
-            response = actual_response_class(response_data, **response_args)
-            response.headers.raw.extend(sub_response.headers.raw)
-            if sub_response.status_code:
-                response.status_code = sub_response.status_code
-            return response
+        if isinstance(raw_response, Response):
+            if raw_response.background is None:
+                raw_response.background = background_tasks
+            return raw_response
+
+        response_data = await serialize_response(
+            field=response_field,
+            response_content=raw_response,
+            include=response_model_include,
+            exclude=response_model_exclude,
+            by_alias=response_model_by_alias,
+            exclude_unset=response_model_exclude_unset,
+            exclude_defaults=response_model_exclude_defaults,
+            exclude_none=response_model_exclude_none,
+            is_coroutine=is_coroutine,
+        )
+        response_args: Dict[str, Any] = {"background": background_tasks}
+        # If status_code was set, use it, otherwise use the default from the
+        # response class, in the case of redirect it's 307
+        if status_code is not None:
+            response_args["status_code"] = status_code
+        response = actual_response_class(response_data, **response_args)
+        response.headers.raw.extend(sub_response.headers.raw)
+        if sub_response.status_code:
+            response.status_code = sub_response.status_code
+        return response
 
     return app
 
@@ -265,12 +263,10 @@ def get_websocket_app(
             dependant=dependant,
             dependency_overrides_provider=dependency_overrides_provider,
         )
-        values, errors, _, _2, _3 = solved_result
+        values, errors, _, _2 = solved_result
         if errors:
             await websocket.close(code=WS_1008_POLICY_VIOLATION)
             raise WebSocketRequestValidationError(errors)
-        assert dependant.call is not None, "dependant.call must be a function"
-        await dependant.call(**values)
 
     return app
 

@@ -442,12 +442,12 @@ def test_put_no_header():
     assert response.json() == {
         "detail": [
             {
-                "loc": ["query", "token"],
+                "loc": ["header", "x-token"],
                 "msg": "field required",
                 "type": "value_error.missing",
             },
             {
-                "loc": ["header", "x-token"],
+                "loc": ["query", "token"],
                 "msg": "field required",
                 "type": "value_error.missing",
             },
@@ -456,7 +456,7 @@ def test_put_no_header():
 
 
 def test_put_invalid_header():
-    response = client.put("/items/foo", headers={"X-Token": "invalid"})
+    response = client.put("/items/foo?token=jessica", headers={"X-Token": "invalid"})
     assert response.status_code == 400, response.text
     assert response.json() == {"detail": "X-Token header invalid"}
 
@@ -486,6 +486,6 @@ def test_admin():
 
 
 def test_admin_invalid_header():
-    response = client.post("/admin/", headers={"X-Token": "invalid"})
+    response = client.post("/admin/?token=jessica", headers={"X-Token": "invalid"})
     assert response.status_code == 400, response.text
     assert response.json() == {"detail": "X-Token header invalid"}
