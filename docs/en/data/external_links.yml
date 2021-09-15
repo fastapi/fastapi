@@ -1,5 +1,9 @@
 articles:
   english:
+  - author: Kaustubh Gupta
+    author_link: https://medium.com/@kaustubhgupta1828/
+    link: https://www.analyticsvidhya.com/blog/2021/06/deploying-ml-models-as-api-using-fastapi-and-heroku/
+    title: Deploying ML Models as API Using FastAPI and Heroku
   - author: "@pystar"
     author_link: https://pystar.substack.com/
     link: https://pystar.substack.com/p/how-to-create-a-fake-certificate
