@@ -498,9 +498,10 @@ async def solve_dependencies(
     body: Optional[Union[Dict[str, Any], FormData]] = None,
     dependency_overrides_provider: Optional[Any] = None,
 ):
-    root_dependant = dependant
+    assert dependant.call is not None, "dependant.call must be a function"
+
     root_node = None
-    stack = [(None, root_dependant)]
+    stack = [(None, dependant)]
     node_cache = {}
     errors = []
     response = Response(
@@ -516,8 +517,6 @@ async def solve_dependencies(
     nodes_to_go = 0
     nodes_to_start = []
     overrides = getattr(dependency_overrides_provider, 'dependency_overrides', None) or {}
-
-    assert root_dependant.call is not None, "dependant.call must be a function"
 
     while stack:
         parent_node, dependant = stack.pop()
