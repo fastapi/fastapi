@@ -143,7 +143,7 @@ FastAPI enthält ein extrem einfaches, aber extrem mächtiges <abbr title='oft v
 * Alle abhängigen Komponenten könnten Daten von Anfragen, **Erweiterungen der Pfadoperations-**Einschränkungen und der automatisierten Dokumentation benötigen.
 * **Automatische Validierung** selbst für *Pfadoperationen*-Parameter, die in den Abhängigkeiten definiert wurden.
 * Unterstützt komplexe Benutzerauthentifizierungssysteme, mit **Datenbankverbindungen**, usw.
-* **Keine Kompromisse** bei Datenbanken, Eingabemasken, usw. sondern einfache Integration von allen.
+* **Keine Kompromisse** bei Datenbanken, Eingabemasken, usw., sondern einfache Integration von allen.
 
 ### Unbegrenzte Erweiterungen
 
