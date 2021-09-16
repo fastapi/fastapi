@@ -24,7 +24,8 @@ from fastapi.dependencies.utils import (
     get_body_field,
     get_dependant,
     get_parameterless_sub_dependant,
-    solve_dependencies,
+    get_solving_plan,
+    run_plan,
 )
 from fastapi.encoders import DictIntStrAny, SetIntStr, jsonable_encoder
 from fastapi.exceptions import RequestValidationError, WebSocketRequestValidationError
@@ -170,6 +171,8 @@ def get_request_handler(
     else:
         actual_response_class = response_class
 
+    solving_plan = get_solving_plan(dependant, dependency_overrides_provider)
+
     async def app(request: Request) -> Response:
         try:
             body: Any = None
@@ -200,13 +203,17 @@ def get_request_handler(
             raise HTTPException(
                 status_code=400, detail="There was an error parsing the body"
             ) from e
-        solved_result = await solve_dependencies(
-            request=request,
-            dependant=dependant,
-            body=body,
-            dependency_overrides_provider=dependency_overrides_provider,
-        )
-        raw_response, errors, background_tasks, sub_response = solved_result
+
+        use_solving_plan = solving_plan
+        if (
+            dependency_overrides_provider
+            and getattr(dependency_overrides_provider, 'dependency_overrides', None)
+        ):
+            use_solving_plan = get_solving_plan(dependant, dependency_overrides_provider)
+
+        (
+            raw_response, errors, background_tasks, sub_response
+        ) = await run_plan(use_solving_plan, request, body=body)
 
         if errors:
             raise RequestValidationError(errors, body=body)
@@ -244,13 +251,18 @@ def get_request_handler(
 def get_websocket_app(
     dependant: Dependant, dependency_overrides_provider: Optional[Any] = None
 ) -> Callable[[WebSocket], Coroutine[Any, Any, Any]]:
+    solving_plan = get_solving_plan(dependant, dependency_overrides_provider)
+
     async def app(websocket: WebSocket) -> None:
-        solved_result = await solve_dependencies(
-            request=websocket,
-            dependant=dependant,
-            dependency_overrides_provider=dependency_overrides_provider,
-        )
-        _, errors, _2, _3 = solved_result
+        use_solving_plan = solving_plan
+        if (
+            dependency_overrides_provider
+            and getattr(dependency_overrides_provider, 'dependency_overrides', None)
+        ):
+            use_solving_plan = get_solving_plan(dependant, dependency_overrides_provider)
+
+        _, errors, _2, _3 = await run_plan(use_solving_plan, websocket)
+
         if errors:
             await websocket.close(code=WS_1008_POLICY_VIOLATION)
             raise WebSocketRequestValidationError(errors)

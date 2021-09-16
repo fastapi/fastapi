@@ -88,12 +88,59 @@ multipart_incorrect_install_error = (
 
 class DependencyNode(object):
 
-    def __init__(self, call: Callable[..., Any]):
+    def __init__(
+        self,
+        call: Callable[..., Any],
+        refcount: int = 0,
+        backref: List[Tuple[int, str]] = None,
+        arguments: Dict[str, Any] = None,
+        result: Any = None,
+    ):
         self.call = call
-        self.arguments: Dict[str, Any] = {}
-        self.refcount: int = 0
-        self.backref: List[Tuple[DependencyNode, str]] = []
-        self.result: Any = None
+        self.refcount = refcount
+        self.backref = backref or []
+        self.arguments = arguments or {}
+        self.result = result
+
+    def copy(self):
+        return DependencyNode(
+            self.call,
+            arguments={},
+            refcount=self.refcount,
+            backref=self.backref,
+            result=None,
+        )
+
+
+class SolvingPlan(object):
+
+    def __init__(
+        self,
+        nodes,
+        path_params_list,
+        query_params_list,
+        header_params_list,
+        cookie_params_list,
+        background_tasks_param_list,
+        http_connection_param_list,
+        request_param_list,
+        websocket_param_list,
+        response_param_list,
+        security_scopes_param_list,
+        body_params_list,
+    ):
+        self.nodes = nodes
+        self.path_params_list = path_params_list
+        self.query_params_list = query_params_list
+        self.header_params_list = header_params_list
+        self.cookie_params_list = cookie_params_list
+        self.background_tasks_param_list = background_tasks_param_list
+        self.http_connection_param_list = http_connection_param_list
+        self.request_param_list = request_param_list
+        self.websocket_param_list = websocket_param_list
+        self.response_param_list = response_param_list
+        self.security_scopes_param_list = security_scopes_param_list
+        self.body_params_list = body_params_list
 
 
 def check_file_field(field: ModelField) -> None:
@@ -491,35 +538,31 @@ def get_task(
     return asyncio.create_task(run_in_threadpool(call, **arguments))
 
 
-async def solve_dependencies(
-    *,
-    request: Union[Request, WebSocket],
+def get_solving_plan(
     dependant: Dependant,
-    body: Optional[Union[Dict[str, Any], FormData]] = None,
     dependency_overrides_provider: Optional[Any] = None,
 ):
     assert dependant.call is not None, "dependant.call must be a function"
 
-    root_node = None
     stack = [(None, dependant)]
     node_cache = {}
-    errors = []
-    response = Response(
-        content=None,
-        status_code=None,  # type: ignore
-        headers=None,  # type: ignore # in Starlette
-        media_type=None,  # type: ignore # in Starlette
-        background=None,  # type: ignore # in Starlette
-    )
-    background_tasks = None
-    pending_tasks = set()
-    tasks = {}
-    nodes_to_go = 0
-    nodes_to_start = []
     overrides = getattr(dependency_overrides_provider, 'dependency_overrides', None) or {}
 
+    nodes = []
+    path_params_list = []
+    query_params_list = []
+    header_params_list = []
+    cookie_params_list = []
+    background_tasks_param_list = []
+    http_connection_param_list = []
+    request_param_list = []
+    websocket_param_list = []
+    response_param_list = []
+    security_scopes_param_list = []
+    body_params_list = []
+
     while stack:
-        parent_node, dependant = stack.pop()
+        parent_node_idx, dependant = stack.pop()
 
         dependant.call = cast(Callable[..., Any], dependant.call)
         overrided_call = overrides.get(dependant.call)
@@ -537,146 +580,191 @@ async def solve_dependencies(
 
         if dependant.use_cache and dependant.cache_key in node_cache:
             node = node_cache[dependant.cache_key]
-            if parent_node:
-                node.backref.append((parent_node, dependant.name))
+            if parent_node_idx is not None:
+                node.backref.append((parent_node_idx, dependant.name))
             continue
 
         node = DependencyNode(call=dependant.call)
-        if parent_node:
-            node.backref.append((parent_node, dependant.name))
+        node_idx = len(nodes)
+        nodes.append(node)
+
+        if parent_node_idx is not None:
+            node.backref.append((parent_node_idx, dependant.name))
 
         if dependant.use_cache:
             node_cache[dependant.cache_key] = node
 
-        for child_dependant in dependant.dependencies:
+        for sub_dependant in dependant.dependencies:
             node.refcount += 1
-            stack.append((node, child_dependant))
+            stack.append((node_idx, sub_dependant))
 
-        request_params_to_args(
-            dependant.path_params, request.path_params, node.arguments, errors
-        )
-        request_params_to_args(
-            dependant.query_params, request.query_params, node.arguments, errors
-        )
-        request_params_to_args(
-            dependant.header_params, request.headers, node.arguments, errors
-        )
-        request_params_to_args(
-            dependant.cookie_params, request.cookies, node.arguments, errors
-        )
+        for dependant_params, list_for_params in (
+            (dependant.path_params, path_params_list),
+            (dependant.query_params, query_params_list),
+            (dependant.header_params, header_params_list),
+            (dependant.cookie_params, cookie_params_list),
+        ):
+            for dependant_param in dependant_params:
+                list_for_params.append((node_idx, dependant_param))
 
-        # TODO make dependant
-        if dependant.body_params:
+        for param_name, list_for_params in (
             (
-                body_values,
-                body_errors,
-            ) = await request_body_to_args(  # body_params checked above
-                required_params=dependant.body_params, received_body=body
-            )
-            node.arguments.update(body_values)
-            errors.extend(body_errors)
-
-        if dependant.http_connection_param_name:
-            node.arguments[dependant.http_connection_param_name] = request
-
-        if dependant.request_param_name and isinstance(request, Request):
-            node.arguments[dependant.request_param_name] = request
-        elif dependant.websocket_param_name and isinstance(request, WebSocket):
-            node.arguments[dependant.websocket_param_name] = request
-
-        if dependant.background_tasks_param_name:
-            if background_tasks is None:
-                background_tasks = BackgroundTasks()
-            node.arguments[dependant.background_tasks_param_name] = background_tasks
-
-        if dependant.response_param_name:
-            node.arguments[dependant.response_param_name] = response
+                dependant.background_tasks_param_name,
+                background_tasks_param_list,
+            ),
+            (dependant.http_connection_param_name, http_connection_param_list),
+            (dependant.request_param_name, request_param_list),
+            (dependant.websocket_param_name, websocket_param_list),
+            (dependant.response_param_name, response_param_list),
+            (dependant.body_params, body_params_list),
+        ):
+            if param_name:
+                list_for_params.append((node_idx, param_name))
 
         if dependant.security_scopes_param_name:
-            node.arguments[dependant.security_scopes_param_name] = SecurityScopes(
-                scopes=dependant.security_scopes
+            security_scopes_param_list.append((
+                node_idx, dependant.security_scopes_param_name, dependant.security_scopes
+            ))
+
+    plan = SolvingPlan(
+        nodes,
+        path_params_list,
+        query_params_list,
+        header_params_list,
+        cookie_params_list,
+        background_tasks_param_list,
+        http_connection_param_list,
+        request_param_list,
+        websocket_param_list,
+        response_param_list,
+        security_scopes_param_list,
+        body_params_list,
+    )
+
+    return plan
+
+async def run_plan(
+    plan: SolvingPlan,
+    request: Union[Request, WebSocket],
+    body: Optional[Union[Dict[str, Any], FormData]] = None,
+) -> Any:
+    response = Response(
+        content=None,
+        status_code=None,  # type: ignore
+        headers=None,  # type: ignore # in Starlette
+        media_type=None,  # type: ignore # in Starlette
+        background=None,  # type: ignore # in Starlette
+    )
+    background_tasks = None
+    errors = []
+    nodes = []
+    nodes = [node.copy() for node in plan.nodes]
+
+    if plan.background_tasks_param_list:
+        background_tasks = BackgroundTasks()
+        for node_idx, param_name in plan.background_tasks_param_list:
+            nodes[node_idx].arguments[param_name] = background_tasks
+
+    for node_idx, param_name in plan.http_connection_param_list:
+        nodes[node_idx].arguments[param_name] = request
+
+    if isinstance(request, Request):
+        for node_idx, param_name in plan.request_param_list:
+            nodes[node_idx].arguments[param_name] = request
+    elif isinstance(request, WebSocket):
+        for node_idx, param_name in plan.websocket_param_list:
+            nodes[node_idx].arguments[param_name] = request
+
+    for node_idx, param_name in plan.response_param_list:
+        nodes[node_idx].arguments[param_name] = response
+
+    for node_idx, param_name, security_scopes in plan.security_scopes_param_list:
+        nodes[node_idx].arguments[param_name] = SecurityScopes(scopes=security_scopes)
+
+    for required_params, received_params in (
+        (plan.path_params_list, request.path_params),
+        (plan.query_params_list, request.query_params),
+        (plan.header_params_list, request.headers),
+        (plan.cookie_params_list, request.cookies),
+    ):
+        for node_idx, field in required_params:
+            node_arguments = nodes[node_idx].arguments
+
+            if (
+                is_scalar_sequence_field(field)
+                and isinstance(received_params, (QueryParams, Headers))
+            ):
+                value = received_params.getlist(field.alias) or field.default
+            else:
+                value = received_params.get(field.alias)
+
+            field_info = field.field_info
+            if value is None:
+                if field.required:
+                    errors.append(
+                        ErrorWrapper(
+                            MissingError(), loc=(field_info.in_.value, field.alias)
+                        )
+                    )
+                else:
+                    node_arguments[field.name] = deepcopy(field.default)
+                continue
+            v_, errors_ = field.validate(
+                value, node_arguments, loc=(field_info.in_.value, field.alias)
             )
+            if isinstance(errors_, ErrorWrapper):
+                errors.append(errors_)
+            elif isinstance(errors_, list):
+                errors.extend(errors_)
+            else:
+                node_arguments[field.name] = v_
 
-        nodes_to_go += 1
-
-        # Do not start nodes before we check all errors
-        if node.refcount == 0:
-            nodes_to_start.append(node)
-
-        if root_node is None:
-            root_node = node
+    # TODO make async task
+    for node_idx, body_params in plan.body_params_list:
+        (
+            body_values,
+            body_errors,
+        ) = await request_body_to_args(  # body_params checked above
+            required_params=body_params, received_body=body
+        )
+        nodes[node_idx].arguments.update(body_values)
+        errors.extend(body_errors)
 
     if errors:
-        return root_node.result, errors, background_tasks, response
+        return nodes[0].result, errors, background_tasks, response
 
-    for node in reversed(nodes_to_start):
-        task = get_task(node.call, node.arguments, request)
-        tasks[task] = node
-        pending_tasks.add(task)
+    pending_tasks = set()
+    task_to_node = dict()
+    for node in nodes:
+        if node.refcount == 0:
+            task = get_task(node.call, node.arguments, request)
+            task_to_node[task] = node
+            pending_tasks.add(task)
 
-    while nodes_to_go > 0:
-        done, pending_tasks = await asyncio.wait(pending_tasks, return_when=asyncio.FIRST_COMPLETED)
+    while pending_tasks:
+        done, pending_tasks = await asyncio.wait(
+            pending_tasks, return_when=asyncio.FIRST_COMPLETED
+        )
         for task in done:
-            nodes_to_go -= 1
             exception = task.exception()
             if exception:
                 raise exception
-            node = tasks[task]
             task_result = task.result()
+            node = task_to_node[task]
             node.result = task_result
-            for parent_node, argument_name in node.backref:
+            for parent_node_idx, argument_name in node.backref:
+                parent_node = nodes[parent_node_idx]
+
                 if argument_name is not None:
                     parent_node.arguments[argument_name] = task_result
+
                 parent_node.refcount -= 1
                 if parent_node.refcount == 0:
-                    new_task = get_task(parent_node.call, parent_node.arguments, request)
-                    tasks[new_task] = parent_node
-                    pending_tasks.add(new_task)
+                    task = get_task(parent_node.call, parent_node.arguments, request)
+                    task_to_node[task] = parent_node
+                    pending_tasks.add(task)
 
-    return root_node.result, errors, background_tasks, response
-
-
-def request_params_to_args(
-    required_params: Sequence[ModelField],
-    received_params: Union[Mapping[str, Any], QueryParams, Headers],
-    values: Optional[Dict[str, Any]] = None,
-    errors: Optional[List[ErrorWrapper]] = None,
-) -> Tuple[Dict[str, Any], List[ErrorWrapper]]:
-    if values is None:
-        values = {}
-    if errors is None:
-        errors = []
-    for field in required_params:
-        if is_scalar_sequence_field(field) and isinstance(
-            received_params, (QueryParams, Headers)
-        ):
-            value = received_params.getlist(field.alias) or field.default
-        else:
-            value = received_params.get(field.alias)
-        field_info = field.field_info
-        assert isinstance(
-            field_info, params.Param
-        ), "Params must be subclasses of Param"
-        if value is None:
-            if field.required:
-                errors.append(
-                    ErrorWrapper(
-                        MissingError(), loc=(field_info.in_.value, field.alias)
-                    )
-                )
-            else:
-                values[field.name] = deepcopy(field.default)
-            continue
-        v_, errors_ = field.validate(
-            value, values, loc=(field_info.in_.value, field.alias)
-        )
-        if isinstance(errors_, ErrorWrapper):
-            errors.append(errors_)
-        elif isinstance(errors_, list):
-            errors.extend(errors_)
-        else:
-            values[field.name] = v_
-    return values, errors
+    return nodes[0].result, errors, background_tasks, response
 
 
 async def request_body_to_args(

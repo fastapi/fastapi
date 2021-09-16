@@ -442,12 +442,12 @@ def test_put_no_header():
     assert response.json() == {
         "detail": [
             {
-                "loc": ["header", "x-token"],
+                "loc": ["query", "token"],
                 "msg": "field required",
                 "type": "value_error.missing",
             },
             {
-                "loc": ["query", "token"],
+                "loc": ["header", "x-token"],
                 "msg": "field required",
                 "type": "value_error.missing",
             },
