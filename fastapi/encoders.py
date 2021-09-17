@@ -2,7 +2,7 @@ from collections import defaultdict
 from enum import Enum
 from pathlib import PurePath
 from types import GeneratorType
-from typing import Any, Callable, Dict, List, Optional, Set, Tuple, Union
+from typing import Any, Callable, Dict, Iterator, List, Optional, Set, Tuple, Union
 
 from pydantic import BaseModel
 from pydantic.json import ENCODERS_BY_TYPE
@@ -95,7 +95,7 @@ def jsonable_encoder(
                 )
                 encoded_dict[encoded_key] = encoded_value
         return encoded_dict
-    if isinstance(obj, (list, set, frozenset, GeneratorType, tuple)):
+    if isinstance(obj, (list, set, frozenset, GeneratorType, tuple, Iterator)):
         encoded_list = []
         for item in obj:
             encoded_list.append(

@@ -146,6 +146,11 @@ def test_encode_model_with_default():
     }
 
 
+def test_encode_iterator():
+    iterator = iter([{"foo": "foo", "bar": "bar"}])
+    assert jsonable_encoder(iterator) == [{"foo": "foo", "bar": "bar"}]
+
+
 def test_custom_encoders():
     class safe_datetime(datetime):
         pass
