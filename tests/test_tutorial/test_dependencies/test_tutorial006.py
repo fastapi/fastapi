@@ -89,12 +89,12 @@ def test_get_no_headers():
     assert response.json() == {
         "detail": [
             {
-                "loc": ["header", "x-key"],
+                "loc": ["header", "x-token"],
                 "msg": "field required",
                 "type": "value_error.missing",
             },
             {
-                "loc": ["header", "x-token"],
+                "loc": ["header", "x-key"],
                 "msg": "field required",
                 "type": "value_error.missing",
             },

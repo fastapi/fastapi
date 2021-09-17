@@ -594,7 +594,8 @@ def get_solving_plan(
         if dependant.use_cache:
             node_cache[dependant.cache_key] = node
 
-        for sub_dependant in dependant.dependencies:
+        # NOTE reverse dependencies only to comply legacy unit tests
+        for sub_dependant in reversed(dependant.dependencies):
             node.refcount += 1
             stack.append((node_idx, sub_dependant))
 
@@ -643,6 +644,7 @@ def get_solving_plan(
 
     return plan
 
+
 async def run_plan(
     plan: SolvingPlan,
     request: Union[Request, WebSocket],
@@ -657,7 +659,6 @@ async def run_plan(
     )
     background_tasks = None
     errors = []
-    nodes = []
     nodes = [node.copy() for node in plan.nodes]
 
     if plan.background_tasks_param_list:
