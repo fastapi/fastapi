@@ -32,7 +32,7 @@ John Doe
 Fonksiyon sırayla şunları yapar: 
 
 * `first_name` ve `last_name` değerlerini alır.
-*  `title()` ile değişkenlerin ilk karakterlerini büyütür.
+* `title()` ile değişkenlerin ilk karakterlerini büyütür.
 * Değişkenleri aralarında bir boşlukla beraber <abbr title="Onları bir bütün olarak sırayla birleştirir.">Birleştirir</abbr>.
 
 ```Python hl_lines="2"
