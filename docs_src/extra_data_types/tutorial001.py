@@ -14,6 +14,7 @@ async def read_items(
     end_datetime: Optional[datetime] = Body(None),
     repeat_at: Optional[time] = Body(None),
     process_after: Optional[timedelta] = Body(None),
+    process_args: Optional[frozenset] = Body(None)
 ):
     start_process = start_datetime + process_after
     duration = end_datetime - start_process
@@ -24,5 +25,6 @@ async def read_items(
         "repeat_at": repeat_at,
         "process_after": process_after,
         "start_process": start_process,
-        "duration": duration,
+        "process_args": process_args,
+        "duration": duration
     }
