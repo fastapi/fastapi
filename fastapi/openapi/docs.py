@@ -14,6 +14,7 @@ def get_swagger_ui_html(
     swagger_favicon_url: str = "https://fastapi.tiangolo.com/img/favicon.png",
     oauth2_redirect_url: Optional[str] = None,
     init_oauth: Optional[Dict[str, Any]] = None,
+    hide_curl: bool:False,
 ) -> HTMLResponse:
 
     html = f"""
@@ -30,8 +31,21 @@ def get_swagger_ui_html(
     <script src="{swagger_js_url}"></script>
     <!-- `SwaggerUIBundle` is now available on the page -->
     <script>
+    const HideCurlPlugin = () => {{
+        return {{
+            wrapComponents:  {{
+                curl: () => () => null
+            }}
+        }}
+    }}
     const ui = SwaggerUIBundle({{
         url: '{openapi_url}',
+    """
+    if hide_curl:
+        html += """
+        plugins: [
+            HideCurlPlugin
+        ],
     """
 
     if oauth2_redirect_url:

@@ -65,6 +65,7 @@ class FastAPI(Starlette):
         callbacks: Optional[List[BaseRoute]] = None,
         deprecated: Optional[bool] = None,
         include_in_schema: bool = True,
+        hide_curl: bool = False,
         **extra: Any,
     ) -> None:
         self._debug: bool = debug
@@ -129,6 +130,7 @@ class FastAPI(Starlette):
             assert self.title, "A title must be provided for OpenAPI, e.g.: 'My API'"
             assert self.version, "A version must be provided for OpenAPI, e.g.: '2.1.0'"
         self.openapi_schema: Optional[Dict[str, Any]] = None
+        self.hide_curl=hide_curl
         self.setup()
 
     def openapi(self) -> Dict[str, Any]:
@@ -174,6 +176,7 @@ class FastAPI(Starlette):
                     title=self.title + " - Swagger UI",
                     oauth2_redirect_url=oauth2_redirect_url,
                     init_oauth=self.swagger_ui_init_oauth,
+                    hide_curl=self.hide_curl
                 )
 
             self.add_route(self.docs_url, swagger_ui_html, include_in_schema=False)
