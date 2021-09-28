@@ -56,9 +56,7 @@ These changes should allow several of the features to be implemented naturally:
 ```python
 from typing import Generator
 
-from anydep.container import Container
-from anydep.models import Dependant
-from anydep.params import Depends
+from di import Container, Depends, Dependant
 
 async def dep() -> Generator[int, None, None]:
     yield 1
@@ -82,15 +80,10 @@ Dependency overrides can easily be implemented as context-managed binds.
 
 ### Implementation
 
-For a mostly functional sample implementation, see https://github.com/adriangb/anydep
+I implemented this proposal as a stand-alone DI system in https://github.com/adriangb/di
+This implemenatation, or elements of it, could be copied over to FastAPI, or the project could be transfered to @tiangolo (there is precedent for decoupling parts of the framework into seperate libraries, see `blacksheep` / `rodi`) or FastAPI could depend on this project.
 
-A good place to start is the `comparisons` folder.
-
-In `comparisons/simple` there are comparisons between FastAPI, anydep and python-dependency-injector (a mature full fledged DI system).
-The anydep implementation attempts to bridge the gap between FastAPI and python-dependency-injector.
-If you run the files, you'll see that anydep and python-dependency-injector are 2x as fast as FastAPI because they parallelize execution.
-
-In `comparisons/anydep_nested.py` and `comparisons/fastapi_nested.py` are comparisons of execution of deeply nested/branched dependency graphs. Interestingly, FastAPI seems to choke pretty quickly as the graph grows, while anydep seems to have much less trouble.
+This implementation demonstrates the benefits of the approach being proposed, and shows that it is not all that hard to implement.
 
 #### Backwards compatibility
 
