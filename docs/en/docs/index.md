@@ -235,7 +235,7 @@ You already created an API that:
 * Receives HTTP requests in the _paths_ `/` and `/items/{item_id}`.
 * Both _paths_ take `GET` <em>operations</em> (also known as HTTP _methods_).
 * The _path_ `/items/{item_id}` has a _path parameter_ `item_id` that should be an `int`.
-* The _path_ `/items/{item_id}` has an optional `str` _query parameter_ `q`.
+* The _path_ `/items/{q}` has an optional `str` _query parameter_ `q`.
 
 ### Interactive API docs
 
