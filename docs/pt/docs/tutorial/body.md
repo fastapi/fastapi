@@ -1,6 +1,6 @@
 # Corpo da Requisição
 
-Quando você precisa enviar dados de um cliente (Como de um navegador web) para sua API, você envia como um **corpo da requisição**.
+Quando você precisa enviar dados de um cliente (como de um navegador web) para sua API, você o envia como um **corpo da requisição**.
 
 O corpo da **requisição** é a informação enviada pelo cliente para sua API. O corpo da **resposta** é a informação que sua API envia para o cliente.
 
