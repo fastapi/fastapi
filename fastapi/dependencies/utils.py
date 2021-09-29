@@ -556,7 +556,7 @@ async def solve_dependencies(
                 values[sub_dependant.name] = solved
             if sub_dependant.cache_key not in dependency_cache:
                 dependency_cache[sub_dependant.cache_key] = solved
-        except Exception as e:
+        except (ValueError, TypeError) as e:
             errors.append(ErrorWrapper(e, loc=(sub_dependant.name)))
     path_values, path_errors = request_params_to_args(
         dependant.path_params, request.path_params
