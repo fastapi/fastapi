@@ -14,6 +14,7 @@ def get_swagger_ui_html(
     swagger_favicon_url: str = "https://fastapi.tiangolo.com/img/favicon.png",
     oauth2_redirect_url: Optional[str] = None,
     init_oauth: Optional[Dict[str, Any]] = None,
+    swagger_ui_parameters: Optional[Dict[str, Any]] = None,
 ) -> HTMLResponse:
 
     html = f"""
@@ -33,6 +34,15 @@ def get_swagger_ui_html(
     const ui = SwaggerUIBundle({{
         url: '{openapi_url}',
     """
+
+    if swagger_ui_parameters:
+        for key, value in swagger_ui_parameters.items():
+            try:
+                html += f"{key}: {json.dumps(value)},\n"
+            except TypeError as e:
+                raise TypeError(
+                    f"Error serializing value for '{key}' in swagger_ui_parameters: {e}"
+                ) from e
 
     if oauth2_redirect_url:
         html += f"oauth2RedirectUrl: window.location.origin + '{oauth2_redirect_url}',"

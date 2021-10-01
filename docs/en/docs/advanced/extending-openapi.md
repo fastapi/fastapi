@@ -248,3 +248,23 @@ Now, to be able to test that everything works, create a *path operation*:
 Now, you should be able to disconnect your WiFi, go to your docs at <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>, and reload the page.
 
 And even without Internet, you would be able to see the docs for your API and interact with it.
+
+## Configuring Swagger UI
+
+Extra [Swagger UI parameters](https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration) can be set using the `swagger_ui_parameters` argument either in the `FastAPI()` constructor directly in the `get_swagger_ui_html()` method. This can be used to disable Swagger UI's syntax highlighting, change the theme, etc.
+
+`swagger_ui_parameters` must be a dict mapping strings to values, using the parameters and values (with the correct JSON-serializable types) from the Swagger UI documentation. For example, to disable syntax highlighting:
+
+```Python
+app = FastAPI(
+        swagger_ui_parameters={'syntaxHighlight': False}
+)
+```
+
+or to set the syntax highlighting theme:
+
+```Python
+app = FastAPI(
+        swagger_ui_parameters={'syntaxHighlight.theme': 'obsidian'}
+)
+```
