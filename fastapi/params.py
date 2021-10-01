@@ -246,6 +246,8 @@ class Body(FieldInfo):
         self.embed = embed
         self.media_type = media_type
         self.example = example
+        if self.example != Undefined:
+            extra["example"] = self.example
         self.examples = examples
         super().__init__(
             default,

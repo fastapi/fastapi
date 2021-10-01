@@ -6,7 +6,7 @@ app = FastAPI()
 
 
 class Item(BaseModel):
-    data: str
+    data: str = Body(..., example={"data": "Data in Body example"})
 
     class Config:
         schema_extra = {"example": {"data": "Data in schema_extra"}}
@@ -278,7 +278,11 @@ openapi_schema = {
                 "requestBody": {
                     "content": {
                         "application/json": {
-                            "schema": {"$ref": "#/components/schemas/Item"},
+                            "schema": {
+                                "allOf": [{"$ref": "#/components/schemas/Item"}],
+                                "example": {"data": "Data in Body example"},
+                                "title": "Item",
+                            },
                             "example": {"data": "Data in Body example"},
                         }
                     },
@@ -350,7 +354,11 @@ openapi_schema = {
                 "requestBody": {
                     "content": {
                         "application/json": {
-                            "schema": {"$ref": "#/components/schemas/Item"},
+                            "schema": {
+                                "allOf": [{"$ref": "#/components/schemas/Item"}],
+                                "example": {"data": "Overriden example"},
+                                "title": "Item",
+                            },
                             "examples": {
                                 "example1": {
                                     "value": {"data": "examples example_examples 1"}
@@ -819,7 +827,13 @@ openapi_schema = {
                 "title": "Item",
                 "required": ["data"],
                 "type": "object",
-                "properties": {"data": {"title": "Data", "type": "string"}},
+                "properties": {
+                    "data": {
+                        "title": "Data",
+                        "type": "string",
+                        "example": {"data": "Data in Body example"},
+                    }
+                },
                 "example": {"data": "Data in schema_extra"},
             },
             "ValidationError": {
@@ -846,8 +860,9 @@ def test_openapi_schema():
     Test that example overrides work:
 
     * pydantic model schema_extra is included
-    * Body(example={}) overrides schema_extra in pydantic model
-    * Body(examples{}) overrides Body(example={}) and schema_extra in pydantic model
+    * Body(example={}) does not override schema_extra in pydantic model
+    * Body(examples{}) does not override Body(example={}) and schema_extra in pydantic model
+    * Endpoint examples override pydantic model examples
     """
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
