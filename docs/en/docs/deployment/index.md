@@ -4,7 +4,7 @@ Deploying a **FastAPI** application is relatively easy.
 
 ## What Does Deployment Mean
 
-To **deploy** an appliactions means to perform the necessary steps to make it **available to the users**.
+To **deploy** an appliaction means to perform the necessary steps to make it **available to the users**.
 
 For a **web API**, it normally involves putting it in a **remote machine**, with a **server program** that provides good performance, stability, etc, so that your **users** can **access** the application efficiently and without interruptions or problems.
 
