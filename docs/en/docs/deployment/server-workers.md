@@ -24,7 +24,7 @@ Here I'll show you how to use <a href="https://gunicorn.org/" class="external-li
 
 ## Gunicorn with Uvicorn Workers
 
-**Gunicorn** is mainly an application server using the **WSGI standard**. That means that Gunicorn can serve applications like Flask and Django. Gunicorn by itself is not compatible with **FastAPI**, as FastAPI uses the newest **ASGI standard**.
+**Gunicorn** is mainly an application server using the **WSGI standard**. That means that Gunicorn can serve applications like Flask and Django. Gunicorn by itself is not compatible with **FastAPI**, as FastAPI uses the newest **<a href="https://asgi.readthedocs.io/en/latest/" class="external-link" target="_blank">ASGI standard</a>**.
 
 But Gunicorn supports working as a **process manager** and allowing users to tell it which specific **worker process class** to use. Then Gunicorn would start one or more **worker processes** using that class.
 
