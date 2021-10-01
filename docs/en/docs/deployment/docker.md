@@ -268,7 +268,7 @@ And then, Docker will be able to **use the cache for the next step** that downlo
 
 Downloading and installing the package dependencies **could take minutes**, but using the **cache** would **take seconds** at most.
 
-And as you would be buildling the container image again and again during development to check that your code changes are working, there's a lot of accumulated time this would save.
+And as you would be building the container image again and again during development to check that your code changes are working, there's a lot of accumulated time this would save.
 
 Then, near the end of the `Dockerfile`, we copy all the code. As this is what **changes most frequently**, we put it near the end, because almost always, anything after this step will not be able to use the cache.
 
@@ -585,7 +585,7 @@ After having a Container (Docker) Image there are several ways to deploy it.
 For example:
 
 * With **Docker Compose** in a single server
-* With a **Kuberentes** cluster
+* With a **Kubernetes** cluster
 * With a Docker Swarm Mode cluster
 * With another tool like Nomad
 * With a cloud service that takes your container image and deploys it

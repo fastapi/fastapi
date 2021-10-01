@@ -26,11 +26,11 @@ Here I'll show you how to use <a href="https://gunicorn.org/" class="external-li
 
 **Gunicorn** is mainly an application server using the **WSGI standard**. That means that Gunicorn can serve applications like Flask and Django. Gunicorn by itself is not compatible with **FastAPI**, as FastAPI uses the newest **ASGI standard**.
 
-But Gunicorn supports working as a **process panager** and allowing users to tell it which specific **worker process class** to use. Then Gunicorn would start one or more **worker processes** using that class.
+But Gunicorn supports working as a **process manager** and allowing users to tell it which specific **worker process class** to use. Then Gunicorn would start one or more **worker processes** using that class.
 
 And **Uvicorn** has a **Gunicorn-compatible worker class**.
 
-Using that combination, Gunicorn would act as a **process panager**, listening on the **port** and the **IP**. And it would **transmit** the communication to the worker processes running the **Uvicorn class**.
+Using that combination, Gunicorn would act as a **process manager**, listening on the **port** and the **IP**. And it would **transmit** the communication to the worker processes running the **Uvicorn class**.
 
 And then the Gunicorn-compatible **Uvicorn worker** class would be in charge of converting the data sent by Gunicorn to the ASGI standard for FastAPI to use it.
 
@@ -105,7 +105,7 @@ In the output you can see that it shows the **PID** (process ID) of each process
 
 You can see that:
 
-* The Gunicorn **process panager** starts with PID `19499` (in your case it will be a different number).
+* The Gunicorn **process manager** starts with PID `19499` (in your case it will be a different number).
 * Then it starts `Listening at: http://0.0.0.0:80`.
 * Then it detects that it has to use the worker class at `uvicorn.workers.UvicornWorker`.
 * And then it starts **4 workers**, each with its own PID: `19511`, `19513`, `19514`, and `19515`.
@@ -118,7 +118,7 @@ Nevertheless, you would probably also want to have something outside making sure
 
 Uvicorn also has an option to start and run several **worker processes**.
 
-Nevertheless, as of now, Uvicorn's capabilities for handling worker processes are more limited than Gunicorn's. So, if you want to have a process panager at this level (at the Python level), then it might be better to try with Gunicorn as the process panager.
+Nevertheless, as of now, Uvicorn's capabilities for handling worker processes are more limited than Gunicorn's. So, if you want to have a process manager at this level (at the Python level), then it might be better to try with Gunicorn as the process manager.
 
 In any case, you would run it like this:
 
