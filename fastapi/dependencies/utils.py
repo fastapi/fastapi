@@ -535,29 +535,25 @@ async def solve_dependencies(
         if sub_errors:
             errors.extend(sub_errors)
             continue
-
-        try:
-            if sub_dependant.use_cache and sub_dependant.cache_key in dependency_cache:
-                solved = dependency_cache[sub_dependant.cache_key]
-            elif is_gen_callable(call) or is_async_gen_callable(call):
-                stack = request.scope.get("fastapi_astack")
-                if stack is None:
-                    raise RuntimeError(
-                        async_contextmanager_dependencies_error
-                    )  # pragma: no cover
-                solved = await solve_generator(
-                    call=call, stack=stack, sub_values=sub_values
-                )
-            elif is_coroutine_callable(call):
-                solved = await call(**sub_values)
-            else:
-                solved = await run_in_threadpool(call, **sub_values)
-            if sub_dependant.name is not None:
-                values[sub_dependant.name] = solved
-            if sub_dependant.cache_key not in dependency_cache:
-                dependency_cache[sub_dependant.cache_key] = solved
-        except (ValueError, TypeError) as e:
-            errors.append(ErrorWrapper(e, loc=(sub_dependant.name)))
+        if sub_dependant.use_cache and sub_dependant.cache_key in dependency_cache:
+            solved = dependency_cache[sub_dependant.cache_key]
+        elif is_gen_callable(call) or is_async_gen_callable(call):
+            stack = request.scope.get("fastapi_astack")
+            if stack is None:
+                raise RuntimeError(
+                    async_contextmanager_dependencies_error
+                )  # pragma: no cover
+            solved = await solve_generator(
+                call=call, stack=stack, sub_values=sub_values
+            )
+        elif is_coroutine_callable(call):
+            solved = await call(**sub_values)
+        else:
+            solved = await run_in_threadpool(call, **sub_values)
+        if sub_dependant.name is not None:
+            values[sub_dependant.name] = solved
+        if sub_dependant.cache_key not in dependency_cache:
+            dependency_cache[sub_dependant.cache_key] = solved
     path_values, path_errors = request_params_to_args(
         dependant.path_params, request.path_params
     )
