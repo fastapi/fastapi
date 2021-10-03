@@ -35,4 +35,12 @@ jobs:
       - name: Test
         run: bash scripts/test.sh
       - name: Upload coverage
-        uses: codecov/codecov-action@v1
+        if: ${{ github.event_name == 'push' }}
+        uses: codecov/codecov-action@v2
+        with:
+          flags: master
+      - name: Upload coverage
+        if: ${{ github.event_name == 'pull_request' }}
+        uses: codecov/codecov-action@v2
+        with:
+          flags: pr
