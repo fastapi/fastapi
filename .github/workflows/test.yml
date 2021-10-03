@@ -2,6 +2,8 @@ name: Test
 
 on:
   push:
+    branches:
+      - master
   pull_request:
     types: [opened, synchronize]
 
@@ -33,4 +35,5 @@ jobs:
       - name: Test
         run: bash scripts/test.sh
       - name: Upload coverage
+        if: ${{ github.event_name == 'push' }}
         uses: codecov/codecov-action@v1
