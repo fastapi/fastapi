@@ -418,6 +418,7 @@ For a more complete example including more features, see the <a href="https://fa
 * A very powerful and easy to use **<abbr title="also known as components, resources, providers, services, injectables">Dependency Injection</abbr>** system.
 * Security and authentication, including support for **OAuth2** with **JWT tokens** and **HTTP Basic** auth.
 * More advanced (but equally easy) techniques for declaring **deeply nested JSON models** (thanks to Pydantic).
+* **GraphQL** integration with <a href="https://strawberry.rocks" class="external-link" target="_blank">Strawberry</a> and other libraries.
 * Many extra features (thanks to Starlette) as:
     * **WebSockets**
     * extremely easy tests based on `requests` and `pytest`
