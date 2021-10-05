@@ -2,6 +2,7 @@
 
 ## Latest Changes
 
+* 🌐 Add Turkish translation for `docs/fastapi-people.md`. PR [#3848](https://github.com/tiangolo/fastapi/pull/3848) by [@BilalAlpaslan](https://github.com/BilalAlpaslan).
 ## 0.68.2
 
 This release has **no breaking changes**. 🎉
