@@ -101,7 +101,6 @@ nav:
   - advanced/additional-status-codes.md
   - advanced/response-directly.md
   - advanced/custom-response.md
-- deployment.md
 - contributing.md
 - help-fastapi.md
 - benchmarks.md
