@@ -47,7 +47,7 @@ test = [
     "pytest >=6.2.4,<7.0.0",
     "pytest-cov >=2.12.0,<3.0.0",
     "pytest-asyncio >=0.14.0,<0.15.0",
-    "mypy ==0.812",
+    "mypy ==0.910",
     "flake8 >=3.8.3,<4.0.0",
     "black ==20.8b1",
     "isort >=5.0.6,<6.0.0",
@@ -63,7 +63,12 @@ test = [
     "async_generator >=1.10,<2.0.0",
     "python-multipart >=0.0.5,<0.0.6",
     "aiofiles >=0.5.0,<0.6.0",
-    "flask >=1.1.2,<2.0.0"
+    "flask >=1.1.2,<2.0.0",
+
+    # types
+    "types-ujson ==0.1.1",
+    "types-orjson ==3.6.0",
+    "types-dataclasses ==0.1.7; python_version<'3.7'",
 ]
 doc = [
     "mkdocs >=1.1.2,<2.0.0",
@@ -100,6 +105,33 @@ all = [
 [tool.isort]
 profile = "black"
 known_third_party = ["fastapi", "pydantic", "starlette"]
+
+[tool.mypy]
+# --strict
+disallow_any_generics = true
+disallow_subclassing_any = true
+disallow_untyped_calls = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+disallow_untyped_decorators = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_return_any = true
+implicit_reexport = false
+strict_equality = true
+# --strict end
+
+[[tool.mypy.overrides]]
+module = "fastapi.concurrency"
+warn_unused_ignores = false
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "fastapi.tests.*"
+ignore_missing_imports = true
+check_untyped_defs = true
 
 [tool.pytest.ini_options]
 addopts = [
