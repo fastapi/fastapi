@@ -1,14 +1,26 @@
-import graphene
+import strawberry
 from fastapi import FastAPI
-from starlette.graphql import GraphQLApp
+from strawberry.asgi import GraphQL
 
 
-class Query(graphene.ObjectType):
-    hello = graphene.String(name=graphene.String(default_value="stranger"))
+@strawberry.type
+class User:
+    name: str
+    age: int
 
-    def resolve_hello(self, info, name):
-        return "Hello " + name
 
+@strawberry.type
+class Query:
+    @strawberry.field
+    def user(self) -> User:
+        return User(name="Patrick", age=100)
+
+
+schema = strawberry.Schema(query=Query)
+
+
+graphql_app = GraphQL(schema)
 
 app = FastAPI()
-app.add_route("/", GraphQLApp(schema=graphene.Schema(query=Query)))
+app.add_route("/graphql", graphql_app)
+app.add_websocket_route("/graphql", graphql_app)
