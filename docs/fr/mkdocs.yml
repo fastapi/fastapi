@@ -60,6 +60,8 @@ nav:
 - Tutoriel - Guide utilisateur:
   - tutorial/background-tasks.md
 - async.md
+- Déploiement:
+  - deployment/docker.md
 - project-generation.md
 - alternatives.md
 - external-links.md
