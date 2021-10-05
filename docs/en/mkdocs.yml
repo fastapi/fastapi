@@ -147,9 +147,11 @@ nav:
   - deployment/index.md
   - deployment/versions.md
   - deployment/https.md
-  - deployment/deta.md
-  - deployment/docker.md
   - deployment/manually.md
+  - deployment/concepts.md
+  - deployment/deta.md
+  - deployment/server-workers.md
+  - deployment/docker.md
 - project-generation.md
 - alternatives.md
 - history-design-future.md
