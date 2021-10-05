@@ -60,7 +60,7 @@ test = [
     "orjson >=3.2.1,<4.0.0",
     "ujson >=4.0.1,<5.0.0",
     "python-multipart >=0.0.5,<0.0.6",
-    "aiofiles >=0.5.0,<0.6.0",
+    "aiofiles >=0.5.0,<0.8.0",
     "flask >=1.1.2,<2.0.0",
     "async_exit_stack >=1.0.1,<2.0.0; python_version < '3.7'",
     "async_generator >=1.10,<2.0.0; python_version < '3.7'",
@@ -88,7 +88,7 @@ dev = [
 ]
 all = [
     "requests >=2.24.0,<3.0.0",
-    "aiofiles >=0.5.0,<0.6.0",
+    "aiofiles >=0.5.0,<0.8.0",
     "jinja2 >=2.11.2,<3.0.0",
     "python-multipart >=0.0.5,<0.0.6",
     "itsdangerous >=1.1.0,<2.0.0",
