@@ -1,5 +1,3 @@
-import os
-
 from fastapi.testclient import TestClient
 
 from docs_src.request_files.tutorial001 import app
@@ -152,35 +150,35 @@ def test_post_body_json():
     assert response.json() == file_required
 
 
-def test_post_file(tmpdir):
-    path = os.path.join(tmpdir, "test.txt")
-    with open(path, "wb") as file:
-        file.write(b"<file content>")
+def test_post_file(tmp_path):
+    path = tmp_path / "test.txt"
+    path.write_bytes(b"<file content>")
 
     client = TestClient(app)
-    response = client.post("/files/", files={"file": open(path, "rb")})
+    with path.open("rb") as file:
+        response = client.post("/files/", files={"file": file})
     assert response.status_code == 200, response.text
     assert response.json() == {"file_size": 14}
 
 
-def test_post_large_file(tmpdir):
+def test_post_large_file(tmp_path):
     default_pydantic_max_size = 2 ** 16
-    path = os.path.join(tmpdir, "test.txt")
-    with open(path, "wb") as file:
-        file.write(b"x" * (default_pydantic_max_size + 1))
+    path = tmp_path / "test.txt"
+    path.write_bytes(b"x" * (default_pydantic_max_size + 1))
 
     client = TestClient(app)
-    response = client.post("/files/", files={"file": open(path, "rb")})
+    with path.open("rb") as file:
+        response = client.post("/files/", files={"file": file})
     assert response.status_code == 200, response.text
     assert response.json() == {"file_size": default_pydantic_max_size + 1}
 
 
-def test_post_upload_file(tmpdir):
-    path = os.path.join(tmpdir, "test.txt")
-    with open(path, "wb") as file:
-        file.write(b"<file content>")
+def test_post_upload_file(tmp_path):
+    path = tmp_path / "test.txt"
+    path.write_bytes(b"<file content>")
 
     client = TestClient(app)
-    response = client.post("/uploadfile/", files={"file": open(path, "rb")})
+    with path.open("rb") as file:
+        response = client.post("/uploadfile/", files={"file": file})
     assert response.status_code == 200, response.text
     assert response.json() == {"filename": "test.txt"}

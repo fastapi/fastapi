@@ -18,9 +18,6 @@
 <a href="https://pypi.org/project/fastapi" target="_blank">
     <img src="https://img.shields.io/pypi/v/fastapi?color=%2334D058&label=pypi%20package" alt="Package version">
 </a>
-<a href="https://gitter.im/tiangolo/fastapi?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge" target="_blank">
-    <img src="https://badges.gitter.im/tiangolo/fastapi.svg" alt="Join the chat at https://gitter.im/tiangolo/fastapi">
-</a>
 </p>
 
 ---
@@ -45,9 +42,24 @@ Ana özellikleri:
 
 * **Standartlar belirli**: Tamamiyle API'ların açık standartlara bağlı ve (tam uyumlululuk içerisinde); <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (eski adıyla Swagger) ve <a href="http://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>.
 
-
-
 <small>* Bahsi geçen rakamsal ifadeler tamamiyle, geliştirme takımının kendi sundukları ürünü geliştirirken yaptıkları testlere dayanmakta.</small>
+
+## Sponsors
+
+<!-- sponsors -->
+
+{% if sponsors %}
+{% for sponsor in sponsors.gold -%}
+<a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
+{% endfor -%}
+{%- for sponsor in sponsors.silver -%}
+<a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
+{% endfor %}
+{% endif %}
+
+<!-- /sponsors -->
+
+<a href="https://fastapi.tiangolo.com/fastapi-people/#sponsors" class="external-link" target="_blank">Other sponsors</a>
 
 ## Görüşler
 
@@ -131,14 +143,14 @@ Uygulamanı kullanılabilir hale getirmek için <a href="http://www.uvicorn.org"
 <div class="termy">
 
 ```console
-$ pip install uvicorn
+$ pip install uvicorn[standard]
 
 ---> 100%
 ```
 
 </div>
 
-## Örnek 
+## Örnek
 
 ### Şimdi dene
 
