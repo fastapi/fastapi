@@ -367,7 +367,6 @@ It has:
 
 * Seriously impressive performance.
 * WebSocket support.
-* GraphQL support.
 * In-process background tasks.
 * Startup and shutdown events.
 * Test client built on requests.
@@ -375,7 +374,7 @@ It has:
 * Session and Cookie support.
 * 100% test coverage.
 * 100% type annotated codebase.
-* Zero hard dependencies.
+* Few hard dependencies.
 
 Starlette is currently the fastest Python framework tested. Only surpassed by Uvicorn, which is not a framework, but a server.
 
