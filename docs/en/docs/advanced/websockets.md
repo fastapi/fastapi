@@ -24,7 +24,7 @@ In production you would have one of the options above.
 
 But it's the simplest way to focus on the server-side of WebSockets and have a working example:
 
-```Python hl_lines="2  6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38  41 42 43"
+```Python hl_lines="2  6-38  41-43"
 {!../../../docs_src/websockets/tutorial001.py!}
 ```
 
@@ -32,7 +32,7 @@ But it's the simplest way to focus on the server-side of WebSockets and have a w
 
 In your **FastAPI** application, create a `websocket`:
 
-```Python hl_lines="1 46 47"
+```Python hl_lines="1  46-47"
 {!../../../docs_src/websockets/tutorial001.py!}
 ```
 
@@ -45,7 +45,7 @@ In your **FastAPI** application, create a `websocket`:
 
 In your WebSocket route you can `await` for messages and send messages.
 
-```Python hl_lines="48 49 50 51 52"
+```Python hl_lines="48-52"
 {!../../../docs_src/websockets/tutorial001.py!}
 ```
 
@@ -98,7 +98,7 @@ In WebSocket endpoints you can import from `fastapi` and use:
 
 They work the same way as for other FastAPI endpoints/*path operations*:
 
-```Python hl_lines="58 59 60 61 62 63 64 65  68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83"
+```Python hl_lines="58-65  68-83"
 {!../../../docs_src/websockets/tutorial002.py!}
 ```
 

@@ -17,7 +17,7 @@
 
 然后，你可以对模型属性使用 `Field`：
 
-```Python hl_lines="9 10"
+```Python hl_lines="9-10"
 {!../../../docs_src/body_fields/tutorial001.py!}
 ```
 

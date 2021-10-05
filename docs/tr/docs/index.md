@@ -18,41 +18,53 @@
 <a href="https://pypi.org/project/fastapi" target="_blank">
     <img src="https://img.shields.io/pypi/v/fastapi?color=%2334D058&label=pypi%20package" alt="Package version">
 </a>
-<a href="https://gitter.im/tiangolo/fastapi?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge" target="_blank">
-    <img src="https://badges.gitter.im/tiangolo/fastapi.svg" alt="Join the chat at https://gitter.im/tiangolo/fastapi">
-</a>
 </p>
 
 ---
 
-**Dökümantasyon**: <a href="https://fastapi.tiangolo.com" target="_blank">https://fastapi.tiangolo.com</a>
+**dokümantasyon**: <a href="https://fastapi.tiangolo.com" target="_blank">https://fastapi.tiangolo.com</a>
 
 **Kaynak kodu**: <a href="https://github.com/tiangolo/fastapi" target="_blank">https://github.com/tiangolo/fastapi</a>
 
 ---
 
-FastAPI, Python 3.6+'nın standard type hintlerine dayanan modern ve hızlı (yüksek performanslı) API'lar oluşturmak için kullanılabilecek web framework'ü. 
+FastAPI, Python 3.6+'nın standart type hintlerine dayanan modern ve hızlı (yüksek performanslı) API'lar oluşturmak için kullanılabilecek web framework'ü. 
 
 Ana özellikleri:
 
 * **Hızlı**: çok yüksek performanslı, **NodeJS** ve **Go** ile eşdeğer seviyede performans sağlıyor, (Starlette ve Pydantic sayesinde.) [Python'un en hızlı frameworklerinden bir tanesi.](#performans).
-* **Kodlaması hızlı**: Yeni özellikler geliştirmek neredeyse %200 - %300 kat daha hızlı. *
+* **Kodlaması hızlı**: Yeni özellikler geliştirmek neredeyse %200 - %300 daha hızlı. *
 * **Daha az bug**: Geliştirici (insan) kaynaklı hatalar neredeyse %40 azaltıldı. *
 * **Sezgileri güçlü**: Editor (otomatik-tamamlama) desteği harika. <abbr title="Otomatik tamamlama-IntelliSense">Otomatik tamamlama</abbr> her yerde. Debuglamak ile daha az zaman harcayacaksınız.
-* **Kolay**: Öğrenmesi ve kullanması kolay olmak üzere tasarlandı. Döküman okumak için harcayacağınız süre azaltıldı.
-* **Kısa**: Kod tekrarını minimale indir. Yeni parametre tanımlamak için birden fazla seçenek sunuyoruz. Daha az bug ile karşılaşırsınız.
-* **Güçlü**: Otomatik dökümantasyon ile beraber, kullanıma hazır kod yaz.
+* **Kolay**: Öğrenmesi ve kullanması kolay olacak şekilde. Doküman okumak için harcayacağınız süre azaltıldı.
+* **Kısa**: Kod tekrarını minimuma indirdik. Fonksiyon parametrelerinin tiplerini belirtmede farklı yollar sunarak karşılaşacağınız bug'ları azalttık.
+* **Güçlü**: Otomatik dokümantasyon ile beraber, kullanıma hazır kod yaz.
 
 * **Standartlar belirli**: Tamamiyle API'ların açık standartlara bağlı ve (tam uyumlululuk içerisinde); <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (eski adıyla Swagger) ve <a href="http://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>.
 
-
-
 <small>* Bahsi geçen rakamsal ifadeler tamamiyle, geliştirme takımının kendi sundukları ürünü geliştirirken yaptıkları testlere dayanmakta.</small>
+
+## Sponsors
+
+<!-- sponsors -->
+
+{% if sponsors %}
+{% for sponsor in sponsors.gold -%}
+<a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
+{% endfor -%}
+{%- for sponsor in sponsors.silver -%}
+<a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
+{% endfor %}
+{% endif %}
+
+<!-- /sponsors -->
+
+<a href="https://fastapi.tiangolo.com/fastapi-people/#sponsors" class="external-link" target="_blank">Other sponsors</a>
 
 ## Görüşler
 
 
-"_[...] Bugünlerde **FastAPI**'ı çok fazla kullanıyorum [...] Aslına bakarsanız **Microsoft'taki Machine Learning servislerimizin** hepsinde kullanmayı düşünüyorum. Bazıları çoktan **Windows**'un ana ürünlerine ve **Office** ürünlerine entegre edilmeye başlandı bile._"
+"_[...] Bugünlerde **FastAPI**'ı çok fazla kullanıyorum [...] Aslına bakarsanız **Microsoft'taki Machine Learning servislerimizin** hepsinde kullanmayı düşünüyorum. FastAPI ile geliştirdiğimiz servislerin bazıları çoktan **Windows**'un ana ürünlerine ve **Office** ürünlerine entegre edilmeye başlandı bile._"
 
 <div style="text-align: right; margin-right: 10%;">Kabir Khan - <strong>Microsoft</strong> <a href="https://github.com/tiangolo/fastapi/pull/26" target="_blank"><small>(ref)</small></a></div>
 
@@ -109,7 +121,7 @@ Eğer API yerine <abbr title="Command Line Interface">komut satırı uygulaması
 
 Python 3.6+
 
-FastAPI iki devin omuzlarına dayanıyor:
+FastAPI iki devin omuzları üstünde duruyor:
 
 * Web tarafı için <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a>.
 * Data tarafı için <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a>.
@@ -131,14 +143,14 @@ Uygulamanı kullanılabilir hale getirmek için <a href="http://www.uvicorn.org"
 <div class="termy">
 
 ```console
-$ pip install uvicorn
+$ pip install uvicorn[standard]
 
 ---> 100%
 ```
 
 </div>
 
-## Örnek 
+## Örnek
 
 ### Şimdi dene
 
@@ -216,15 +228,15 @@ INFO:     Application startup complete.
 
 * `main`: dosya olan `main.py` (yani Python "modülü").
 * `app`: ise `main.py` dosyasının içerisinde oluşturduğumuz `app = FastAPI()` 'a denk geliyor.
-* `--reload`: ise kodda herhangi bir değişiklik yaptığımızda serverın yapılan değişiklerileri algılayıp, değişiklileri siz herhangi bir şey yapmadan uygulamasını sağlıyor.
+* `--reload`: ise kodda herhangi bir değişiklik yaptığımızda serverın yapılan değişiklerileri algılayıp, değişiklikleri siz herhangi bir şey yapmadan uygulamasını sağlıyor.
 
 </details>
 
-### Dökümantasyonu kontrol et
+### Dokümantasyonu kontrol et
 
 Browserını aç ve şu linke git <a href="http://127.0.0.1:8000/items/5?q=somequery" class="external-link" target="_blank">http://127.0.0.1:8000/items/5?q=somequery</a>.
 
-Bir JSON yanıtı görüceksin:
+Bir JSON yanıtı göreceksin:
 
 ```JSON
 {"item_id": 5, "q": "somequery"}
@@ -237,23 +249,23 @@ Az önce oluşturduğun API:
 * `/items/{item_id}` _adresi_ ayrıca bir `item_id` _adres parametresine_  sahip ve bu bir `int` olmak zorunda.
 * `/items/{item_id}` _adresi_ opsiyonel bir `str` _sorgu paramtersine_ sahip bu da `q`.
 
-### İnteraktif API dökümantasyonu
+### İnteraktif API dokümantasyonu
 
 Şimdi <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a> adresine git.
 
-Senin için otomatik oluşturulmuş(<a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a> tarafından sağlanan) interaktif bir API dökümantasyonu göreceksin:
+Senin için otomatik oluşturulmuş(<a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a> tarafından sağlanan) interaktif bir API dokümanı göreceksin:
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-01-swagger-ui-simple.png)
 
-### Alternatif API dökümantasyonu
+### Alternatif API dokümantasyonu
 
 Şimdi <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a> adresine git.
 
-Senin için alternatif olarak (<a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a> tarafından sağlanan) bir API dökümantasyonu daha göreceksin:
+Senin için alternatif olarak (<a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a> tarafından sağlanan) bir API dokümantasyonu daha göreceksin:
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
-## Örnek değiştirme yapmak
+## Örnek bir değişiklik
 
 Şimdi `main.py` dosyasını değiştirelim ve body ile `PUT` talebi alabilir hale getirelim.
 
@@ -291,11 +303,11 @@ def update_item(item_id: int, item: Item):
 
 Server otomatik olarak yeniden başlamalı (çünkü yukarıda `uvicorn`'u çalıştırırken `--reload` parametresini kullandık.).
 
-### İnteraktif API dökümantasyonu'nda değiştirme yapmak
+### İnteraktif API dokümantasyonu'nda değiştirme yapmak
 
 Şimdi <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a> bağlantısına tekrar git.
 
-* İnteraktif API dökümantasyonu, yeni body ile beraber çoktan yenilenmiş olması lazım:
+* İnteraktif API dokümantasyonu, yeni body ile beraber çoktan yenilenmiş olması lazım:
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-03-swagger-02.png)
 
@@ -307,19 +319,19 @@ Server otomatik olarak yeniden başlamalı (çünkü yukarıda `uvicorn`'u çal�
 
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-05-swagger-04.png)
 
-### Alternatif API dökümantasyonunda değiştirmek
+### Alternatif API dokümantasyonunda değiştirmek
 
 Şimdi ise <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a> adresine git.
 
-* Alternatif dökümantasyonda koddaki değişimler ile beraber kendini yeni query ve body ile güncelledi.
+* Alternatif dokümantasyonda koddaki değişimler ile beraber kendini yeni query ve body ile güncelledi.
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-06-redoc-02.png)
 
 ### Özet
 
-Özetleyecek olursak, parametrelerin modellerini fonksiyon parametresi olarak **bir** kere belirliyorsun, body, vs. 
+Özetleyecek olursak, URL, sorgu veya request body'deki parametrelerini fonksiyon parametresi olarak kullanıyorsun. Bu parametrelerin veri tiplerini bir kere belirtmen yeterli. 
 
-Bunların hepsini standart Python modellerini kullanarak yapıyorsun.
+Type-hinting işlemini Python dilindeki standart veri tipleri ile yapabilirsin
 
 Yeni bir syntax'e alışmana gerek yok, metodlar ve classlar zaten spesifik kütüphanelere ait.
 
@@ -359,7 +371,7 @@ item: Item
     * `UUID` objesi.
     * Veritabanı modelleri.
     * ve daha fazlası...
-* 2 alternatif kullanıcı arayüzü dahil olmak üzere, otomatik interaktif API dökümantasyonu:
+* 2 alternatif kullanıcı arayüzü dahil olmak üzere, otomatik interaktif API dokümanu:
     * Swagger UI.
     * ReDoc.
 
@@ -377,12 +389,12 @@ Az önceki kod örneğine geri dönelim, **FastAPI**'ın yapacaklarına bir bak�
     * `name` adında bir parametetre olup olmadığını ve var ise onun `str` olup olmadığını kontol ediyor. 
     * `price` adında bir parametetre olup olmadığını ve var ise onun `float` olup olmadığını kontol ediyor. 
     * `is_offer` adında bir parametetre olup olmadığını ve var ise onun `bool` olup olmadığını kontol ediyor. 
-    * Bunların hepsi en derin JSON modellerinde bile yapacaktır.
-* Bütün veri tiplerini otomatik olarak JSON'a çeviriyor.
-* Her şeyi dökümantasyonlayıp, çeşitli yerlerde:
-    * İnteraktif dökümantasyon sistemleri.
+    * Bunların hepsini en derin JSON modellerinde bile yapacaktır.
+* Bütün veri tiplerini otomatik olarak JSON'a çeviriyor veya tam tersi.
+* Her şeyi dokümanlayıp, çeşitli yerlerde:
+    * İnteraktif dokümantasyon sistemleri.
     * Otomatik alıcı kodu üretim sistemlerinde ve çeşitli dillerde.
-* İki ayrı web arayüzüyle direkt olarak interaktif bir dökümantasyon sunuyor.
+* İki ayrı web arayüzüyle direkt olarak interaktif bir dokümantasyon sunuyor.
 
 ---
 
