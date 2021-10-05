@@ -67,6 +67,7 @@ nav:
 - Implantação:
   - deployment/index.md
   - deployment/versions.md
+  - deployment/https.md
 - alternatives.md
 - history-design-future.md
 - external-links.md
@@ -140,4 +141,3 @@ extra_css:
 extra_javascript:
 - https://fastapi.tiangolo.com/js/termynal.js
 - https://fastapi.tiangolo.com/js/custom.js
-
