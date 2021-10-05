@@ -59,6 +59,7 @@ nav:
 - Tutorial - Guia de Usuário:
   - tutorial/index.md
   - tutorial/first-steps.md
+  - tutorial/path-params.md
   - tutorial/body-fields.md
   - Segurança:
     - tutorial/security/index.md

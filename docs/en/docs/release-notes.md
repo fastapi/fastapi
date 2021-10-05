@@ -2,6 +2,12 @@
 
 ## Latest Changes
 
+* 🌐 Add Turkish translation for `docs/features.md`. PR [#1950](https://github.com/tiangolo/fastapi/pull/1950) by [@ycd](https://github.com/ycd).
+* 🌐 Add Turkish translation for `docs/benchmarks.md`. PR [#2729](https://github.com/tiangolo/fastapi/pull/2729) by [@Telomeraz](https://github.com/Telomeraz).
+* 🌐 Add Turkish translation for `docs/index.md`. PR [#1908](https://github.com/tiangolo/fastapi/pull/1908) by [@ycd](https://github.com/ycd).
+* 🌐 Add French translation for `docs/tutorial/body.md`. PR [#3671](https://github.com/tiangolo/fastapi/pull/3671) by [@Smlep](https://github.com/Smlep).
+* 🌐 Add French translation for `deployment/docker.md`. PR [#3694](https://github.com/tiangolo/fastapi/pull/3694) by [@rjNemo](https://github.com/rjNemo).
+* 🌐 Add Portuguese translation for `docs/tutorial/path-params.md`. PR [#3664](https://github.com/tiangolo/fastapi/pull/3664) by [@FelipeSilva93](https://github.com/FelipeSilva93).
 * 🌐 Add Portuguese translation for `docs/deployment/https.md`. PR [#3754](https://github.com/tiangolo/fastapi/pull/3754) by [@lsglucas](https://github.com/lsglucas).
 * ✨ Update GitHub Action: notify-translations, to avoid a race conditon. PR [#3989](https://github.com/tiangolo/fastapi/pull/3989) by [@tiangolo](https://github.com/tiangolo).
 * ⬆️ Upgrade development `autoflake`, supporting multi-line imports. PR [#3988](https://github.com/tiangolo/fastapi/pull/3988) by [@tiangolo](https://github.com/tiangolo).
