@@ -71,7 +71,7 @@ But you don't have to memorize what each of these codes mean.
 
 You can use the convenience variables from `fastapi.status`.
 
-```Python hl_lines="1 6"
+```Python hl_lines="1  6"
 {!../../../docs_src/response_status_code/tutorial002.py!}
 ```
 

@@ -1,2 +1,2 @@
-from starlette.websockets import WebSocket  # noqa
-from starlette.websockets import WebSocketDisconnect  # noqa
+from starlette.websockets import WebSocket as WebSocket  # noqa
+from starlette.websockets import WebSocketDisconnect as WebSocketDisconnect  # noqa

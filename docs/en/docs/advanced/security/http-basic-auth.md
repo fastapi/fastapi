@@ -20,7 +20,7 @@ Then, when you type that username and password, the browser sends them in the he
 * It returns an object of type `HTTPBasicCredentials`:
     * It contains the `username` and `password` sent.
 
-```Python hl_lines="2 6 10"
+```Python hl_lines="2  6  10"
 {!../../../docs_src/security/tutorial006.py!}
 ```
 
@@ -36,7 +36,7 @@ Use a dependency to check if the username and password are correct.
 
 For this, use the Python standard module <a href="https://docs.python.org/3/library/secrets.html" class="external-link" target="_blank">`secrets`</a> to check the username and password:
 
-```Python hl_lines="1  11 12 13"
+```Python hl_lines="1  11-13"
 {!../../../docs_src/security/tutorial007.py!}
 ```
 
@@ -102,6 +102,6 @@ That way, using `secrets.compare_digest()` in your application code, it will be 
 
 After detecting that the credentials are incorrect, return an `HTTPException` with a status code 401 (the same returned when no credentials are provided) and add the header `WWW-Authenticate` to make the browser show the login prompt again:
 
-```Python hl_lines="15 16 17 18 19"
+```Python hl_lines="15-19"
 {!../../../docs_src/security/tutorial007.py!}
 ```
