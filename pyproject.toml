@@ -59,11 +59,11 @@ test = [
     "databases[sqlite] >=0.3.2,<0.4.0",
     "orjson >=3.2.1,<4.0.0",
     "ujson >=4.0.1,<5.0.0",
-    "async_exit_stack >=1.0.1,<2.0.0",
-    "async_generator >=1.10,<2.0.0",
     "python-multipart >=0.0.5,<0.0.6",
     "aiofiles >=0.5.0,<0.6.0",
     "flask >=1.1.2,<2.0.0",
+    "async_exit_stack >=1.0.1,<2.0.0; python_version < '3.7'",
+    "async_generator >=1.10,<2.0.0; python_version < '3.7'",
 
     # types
     "types-ujson ==0.1.1",
@@ -98,8 +98,8 @@ all = [
     "orjson >=3.2.1,<4.0.0",
     "email_validator >=1.1.1,<2.0.0",
     "uvicorn[standard] >=0.12.0,<0.16.0",
-    "async_exit_stack >=1.0.1,<2.0.0",
-    "async_generator >=1.10,<2.0.0"
+    "async_exit_stack >=1.0.1,<2.0.0; python_version < '3.7'",
+    "async_generator >=1.10,<2.0.0; python_version < '3.7'",
 ]
 
 [tool.isort]
