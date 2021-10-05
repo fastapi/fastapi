@@ -37,7 +37,7 @@ requires = [
     "pydantic >=1.6.2,!=1.7,!=1.7.1,!=1.7.2,!=1.7.3,!=1.8,!=1.8.1,<2.0.0"
 ]
 description-file = "README.md"
-requires-python = ">=3.6"
+requires-python = ">=3.6.1"
 
 [tool.flit.metadata.urls]
 Documentation = "https://fastapi.tiangolo.com/"
