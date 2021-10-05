@@ -59,6 +59,7 @@ nav:
 - Tutorial - Guia de Usuário:
   - tutorial/index.md
   - tutorial/first-steps.md
+  - tutorial/path-params.md
   - tutorial/body-fields.md
   - tutorial/query-params-str-validations.md
   - Segurança:
@@ -68,6 +69,7 @@ nav:
 - Implantação:
   - deployment/index.md
   - deployment/versions.md
+  - deployment/https.md
 - alternatives.md
 - history-design-future.md
 - external-links.md

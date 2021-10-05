@@ -58,8 +58,11 @@ nav:
 - fastapi-people.md
 - python-types.md
 - Tutoriel - Guide utilisateur:
+  - tutorial/body.md
   - tutorial/background-tasks.md
 - async.md
+- Déploiement:
+  - deployment/docker.md
 - project-generation.md
 - alternatives.md
 - external-links.md
