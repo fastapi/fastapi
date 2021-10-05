@@ -1,4 +1,5 @@
 import http.client
+import inspect
 from enum import Enum
 from typing import Any, Dict, List, Optional, Sequence, Set, Tuple, Type, Union, cast
 
@@ -21,7 +22,7 @@ from fastapi.utils import (
     get_model_definitions,
 )
 from pydantic import BaseModel
-from pydantic.fields import ModelField
+from pydantic.fields import ModelField, Undefined
 from pydantic.schema import (
     field_schema,
     get_flat_models_from_fields,
@@ -101,6 +102,10 @@ def get_openapi_operation_parameters(
         }
         if field_info.description:
             parameter["description"] = field_info.description
+        if field_info.examples:
+            parameter["examples"] = jsonable_encoder(field_info.examples)
+        elif field_info.example != Undefined:
+            parameter["example"] = jsonable_encoder(field_info.example)
         if field_info.deprecated:
             parameter["deprecated"] = field_info.deprecated
         parameters.append(parameter)
@@ -124,7 +129,12 @@ def get_openapi_operation_request_body(
     request_body_oai: Dict[str, Any] = {}
     if required:
         request_body_oai["required"] = required
-    request_body_oai["content"] = {request_media_type: {"schema": body_schema}}
+    request_media_content: Dict[str, Any] = {"schema": body_schema}
+    if field_info.examples:
+        request_media_content["examples"] = jsonable_encoder(field_info.examples)
+    elif field_info.example != Undefined:
+        request_media_content["example"] = jsonable_encoder(field_info.example)
+    request_body_oai["content"] = {request_media_type: request_media_content}
     return request_body_oai
 
 
@@ -209,7 +219,19 @@ def get_openapi_path(
                         )
                         callbacks[callback.name] = {callback.path: cb_path}
                 operation["callbacks"] = callbacks
-            status_code = str(route.status_code)
+            if route.status_code is not None:
+                status_code = str(route.status_code)
+            else:
+                # It would probably make more sense for all response classes to have an
+                # explicit default status_code, and to extract it from them, instead of
+                # doing this inspection tricks, that would probably be in the future
+                # TODO: probably make status_code a default class attribute for all
+                # responses in Starlette
+                response_signature = inspect.signature(current_response_class.__init__)
+                status_code_param = response_signature.parameters.get("status_code")
+                if status_code_param is not None:
+                    if isinstance(status_code_param.default, int):
+                        status_code = str(status_code_param.default)
             operation.setdefault("responses", {}).setdefault(status_code, {})[
                 "description"
             ] = route.response_description
@@ -295,6 +317,8 @@ def get_openapi_path(
                             "HTTPValidationError": validation_error_response_definition,
                         }
                     )
+            if route.openapi_extra:
+                deep_dict_update(operation, route.openapi_extra)
             path[method.lower()] = operation
     return path, security_schemes, definitions
 
@@ -340,10 +364,19 @@ def get_openapi(
     routes: Sequence[BaseRoute],
     tags: Optional[List[Dict[str, Any]]] = None,
     servers: Optional[List[Dict[str, Union[str, Any]]]] = None,
+    terms_of_service: Optional[str] = None,
+    contact: Optional[Dict[str, Union[str, Any]]] = None,
+    license_info: Optional[Dict[str, Union[str, Any]]] = None,
 ) -> Dict[str, Any]:
-    info = {"title": title, "version": version}
+    info: Dict[str, Any] = {"title": title, "version": version}
     if description:
         info["description"] = description
+    if terms_of_service:
+        info["termsOfService"] = terms_of_service
+    if contact:
+        info["contact"] = contact
+    if license_info:
+        info["license"] = license_info
     output: Dict[str, Any] = {"openapi": openapi_version, "info": info}
     if servers:
         output["servers"] = servers
