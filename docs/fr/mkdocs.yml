@@ -58,6 +58,7 @@ nav:
 - fastapi-people.md
 - python-types.md
 - Tutoriel - Guide utilisateur:
+  - tutorial/body.md
   - tutorial/background-tasks.md
 - async.md
 - Déploiement:
