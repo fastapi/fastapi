@@ -158,11 +158,17 @@ $ pip install uvicorn[standard]
 
 ```Python
 from typing import Optional
+
 from fastapi import FastAPI
+
 app = FastAPI()
+
+
 @app.get("/")
 def read_root():
     return {"Hello": "World"}
+
+
 @app.get("/items/{item_id}")
 def read_item(item_id: int, q: Optional[str] = None):
     return {"item_id": item_id, "q": q}
@@ -175,11 +181,17 @@ Eğer kodunda `async` / `await` var ise, `async def` kullan:
 
 ```Python hl_lines="9 14"
 from typing import Optional
+
 from fastapi import FastAPI
+
 app = FastAPI()
+
+
 @app.get("/")
 async def read_root():
     return {"Hello": "World"}
+
+
 @app.get("/items/{item_id}")
 async def read_item(item_id: int, q: Optional[str] = None):
     return {"item_id": item_id, "q": q}
@@ -261,19 +273,29 @@ Senin için alternatif olarak (<a href="https://github.com/Rebilly/ReDoc" class=
 
 ```Python hl_lines="4  9 10 11 12  25 26 27"
 from typing import Optional
+
 from fastapi import FastAPI
 from pydantic import BaseModel
+
 app = FastAPI()
+
+
 class Item(BaseModel):
     name: str
     price: float
     is_offer: Optional[bool] = None
+
+
 @app.get("/")
 def read_root():
     return {"Hello": "World"}
+
+
 @app.get("/items/{item_id}")
 def read_item(item_id: int, q: Optional[str] = None):
     return {"item_id": item_id, "q": q}
+
+
 @app.put("/items/{item_id}")
 def update_item(item_id: int, item: Item):
     return {"item_name": item.name, "item_id": item_id}
