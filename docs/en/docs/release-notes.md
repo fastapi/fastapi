@@ -2,6 +2,13 @@
 
 ## Latest Changes
 
+## 0.68.2
+
+This release has **no breaking changes**. 🎉
+
+It upgrades the version ranges of sub-dependencies to allow applications using FastAPI to easily upgrade them.
+
+Soon there will be a new FastAPI release upgrading Starlette to take advantage of recent improvements, but as that has a higher chance of having breaking changes, it will be in a separate release.
 
 ### Features
 
