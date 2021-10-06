@@ -141,7 +141,6 @@ junit_family = "xunit2"
 filterwarnings = [
     "error",
     'ignore:"@coroutine" decorator is deprecated since Python 3\.8, use "async def" instead:DeprecationWarning',
-    "ignore:There is no current event loop:DeprecationWarning",
     # TODO: needed by AnyIO in Python 3.9, try to remove after an AnyIO upgrade
     'ignore:The loop argument is deprecated since Python 3\.8, and scheduled for removal in Python 3\.10:DeprecationWarning',
     # TODO: if these ignores are needed, enable them, otherwise remove them
