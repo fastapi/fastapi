@@ -84,8 +84,6 @@ dev = [
     "autoflake >=1.4.0,<2.0.0",
     "flake8 >=3.8.3,<4.0.0",
     "uvicorn[standard] >=0.12.0,<0.16.0",
-    # TODO: remove in the next major version
-    "graphene >=2.1.8,<3.0.0"
 ]
 all = [
     "requests >=2.24.0,<3.0.0",
@@ -95,8 +93,6 @@ all = [
     # TODO: try to upgrade after upgrading Starlette
     "itsdangerous >=1.1.0,<2.0.0",
     "pyyaml >=5.3.1,<6.0.0",
-    # TODO: remove in the next major version
-    "graphene >=2.1.8,<3.0.0",
     "ujson >=4.0.1,<5.0.0",
     "orjson >=3.2.1,<4.0.0",
     "email_validator >=1.1.1,<2.0.0",
