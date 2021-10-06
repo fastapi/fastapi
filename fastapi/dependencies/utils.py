@@ -13,7 +13,6 @@ from typing import (
     Sequence,
     Tuple,
     Type,
-    TypeVar,
     Union,
     cast,
 )
@@ -85,25 +84,6 @@ multipart_incorrect_install_error = (
     'And then install "python-multipart" with: \n\n'
     "pip install python-multipart\n"
 )
-
-
-_T = TypeVar("_T")
-
-
-async def _run_and_assign(
-    results: List[Optional[_T]], i: int, async_fn: Callable[[], Coroutine[Any, Any, _T]]
-) -> None:
-    results[i] = await async_fn()
-
-
-async def _wait_all(*async_fns: Callable[[], Coroutine[Any, Any, _T]]) -> List[_T]:
-    results: List[Optional[_T]] = [None] * len(async_fns)
-
-    async with anyio.create_task_group() as tg:
-        for i, async_fn in enumerate(async_fns):
-            tg.start_soon(_run_and_assign, results, i, async_fn)
-
-    return results  # type: ignore[return-value]
 
 
 def check_file_field(field: ModelField) -> None:
@@ -692,8 +672,18 @@ async def request_body_to_args(
                 and lenient_issubclass(field.type_, bytes)
                 and isinstance(value, sequence_types)
             ):
-                contents = await _wait_all(*(sub_value.read for sub_value in value))
-                value = sequence_shape_to_type[field.shape](contents)
+                results: List[Union[bytes, str]] = []
+
+                async def process_fn(
+                    fn: Callable[[], Coroutine[Any, Any, Any]]
+                ) -> None:
+                    result = await fn()
+                    results.append(result)
+
+                async with anyio.create_task_group() as tg:
+                    for sub_value in value:
+                        tg.start_soon(process_fn, sub_value.read)
+                value = sequence_shape_to_type[field.shape](results)
 
             v_, errors_ = field.validate(value, values, loc=loc)
 
