@@ -464,6 +464,10 @@ async def solve_generator(
     return await stack.enter_async_context(cm)
 
 
+class _CachedError:
+    pass
+
+
 async def solve_dependencies(
     *,
     request: Union[Request, WebSocket],
@@ -479,9 +483,11 @@ async def solve_dependencies(
     Optional[BackgroundTasks],
     Response,
     Dict[Tuple[Callable[..., Any], Tuple[str]], Any],
+    bool,
 ]:
     values: Dict[str, Any] = {}
     errors: List[ErrorWrapper] = []
+    has_error: bool = False
     response = response or Response(
         content=None,
         status_code=None,  # type: ignore
@@ -515,41 +521,52 @@ async def solve_dependencies(
             )
             use_sub_dependant.security_scopes = sub_dependant.security_scopes
 
-        solved_result = await solve_dependencies(
-            request=request,
-            dependant=use_sub_dependant,
-            body=body,
-            background_tasks=background_tasks,
-            response=response,
-            dependency_overrides_provider=dependency_overrides_provider,
-            dependency_cache=dependency_cache,
-        )
-        (
-            sub_values,
-            sub_errors,
-            background_tasks,
-            _,  # the subdependency returns the same response we have
-            sub_dependency_cache,
-        ) = solved_result
-        dependency_cache.update(sub_dependency_cache)
-        if sub_errors:
-            errors.extend(sub_errors)
+        if (
+            sub_dependant.cache_key in dependency_cache
+            and dependency_cache[sub_dependant.cache_key] is _CachedError
+        ):
+            has_error = True
             continue
-        if sub_dependant.use_cache and sub_dependant.cache_key in dependency_cache:
+        elif sub_dependant.cache_key in dependency_cache and sub_dependant.use_cache:
             solved = dependency_cache[sub_dependant.cache_key]
-        elif is_gen_callable(call) or is_async_gen_callable(call):
-            stack = request.scope.get("fastapi_astack")
-            if stack is None:
-                raise RuntimeError(
-                    async_contextmanager_dependencies_error
-                )  # pragma: no cover
-            solved = await solve_generator(
-                call=call, stack=stack, sub_values=sub_values
-            )
-        elif is_coroutine_callable(call):
-            solved = await call(**sub_values)
         else:
-            solved = await run_in_threadpool(call, **sub_values)
+            solved_result = await solve_dependencies(
+                request=request,
+                dependant=use_sub_dependant,
+                body=body,
+                background_tasks=background_tasks,
+                response=response,
+                dependency_overrides_provider=dependency_overrides_provider,
+                dependency_cache=dependency_cache,
+            )
+            (
+                sub_values,
+                sub_errors,
+                background_tasks,
+                _,  # the subdependency returns the same response we have
+                sub_dependency_cache,
+                sub_has_error,
+            ) = solved_result
+            dependency_cache.update(sub_dependency_cache)
+
+            if sub_errors or sub_has_error:
+                has_error = True
+                errors.extend(sub_errors)
+                dependency_cache[sub_dependant.cache_key] = _CachedError
+                continue
+            elif is_gen_callable(call) or is_async_gen_callable(call):
+                stack = request.scope.get("fastapi_astack")
+                if stack is None:
+                    raise RuntimeError(
+                        async_contextmanager_dependencies_error
+                    )  # pragma: no cover
+                solved = await solve_generator(
+                    call=call, stack=stack, sub_values=sub_values
+                )
+            elif is_coroutine_callable(call):
+                solved = await call(**sub_values)
+            else:
+                solved = await run_in_threadpool(call, **sub_values)
         if sub_dependant.name is not None:
             values[sub_dependant.name] = solved
         if sub_dependant.cache_key not in dependency_cache:
@@ -596,7 +613,7 @@ async def solve_dependencies(
         values[dependant.security_scopes_param_name] = SecurityScopes(
             scopes=dependant.security_scopes
         )
-    return values, errors, background_tasks, response, dependency_cache
+    return values, errors, background_tasks, response, dependency_cache, has_error
 
 
 def request_params_to_args(

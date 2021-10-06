@@ -219,7 +219,7 @@ def get_request_handler(
             body=body,
             dependency_overrides_provider=dependency_overrides_provider,
         )
-        values, errors, background_tasks, sub_response, _ = solved_result
+        values, errors, background_tasks, sub_response, _, _2 = solved_result
         if errors:
             raise RequestValidationError(errors, body=body)
         else:
@@ -265,7 +265,7 @@ def get_websocket_app(
             dependant=dependant,
             dependency_overrides_provider=dependency_overrides_provider,
         )
-        values, errors, _, _2, _3 = solved_result
+        values, errors, _, _2, _3, _4 = solved_result
         if errors:
             await websocket.close(code=WS_1008_POLICY_VIOLATION)
             raise WebSocketRequestValidationError(errors)
