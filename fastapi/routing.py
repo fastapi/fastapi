@@ -65,6 +65,13 @@ def _prepare_response_content(
     exclude_none: bool = False,
 ) -> Any:
     if isinstance(res, BaseModel):
+        read_with_orm_mode = getattr(res.__config__, "read_with_orm_mode", None)
+        if read_with_orm_mode:
+            # Let from_orm extract the data from this model instead of converting
+            # it now to a dict.
+            # Otherwise there's no way to extract lazy data that requires attribute
+            # access instead of dict iteration, e.g. lazy relationships.
+            return res
         return res.dict(
             by_alias=True,
             exclude_unset=exclude_unset,
