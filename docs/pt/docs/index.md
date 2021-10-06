@@ -39,19 +39,22 @@ Os recursos chave são:
 
 <small>* estimativas baseadas em testes realizados com equipe interna de desenvolvimento, construindo aplicações em produção.</small>
 
-## Gold Sponsors
+## Patrocinadores Ouro
 
 <!-- sponsors -->
 
 {% if sponsors %}
 {% for sponsor in sponsors.gold -%}
-<a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}"></a>
+<a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
+{% endfor -%}
+{%- for sponsor in sponsors.silver -%}
+<a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
 {% endfor %}
 {% endif %}
 
 <!-- /sponsors -->
 
-<a href="https://fastapi.tiangolo.com/fastapi-people/#sponsors" class="external-link" target="_blank">Other sponsors</a>
+<a href="https://fastapi.tiangolo.com/pt/fastapi-people/#patrocinadores" class="external-link" target="_blank">Outros patrocinadores</a>
 
 ## Opiniões
 

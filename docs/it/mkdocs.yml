@@ -20,6 +20,7 @@ theme:
   features:
   - search.suggest
   - search.highlight
+  - content.tabs.link
   icon:
     repo: fontawesome/brands/github-alt
   logo: https://fastapi.tiangolo.com/img/icon-white.svg
@@ -39,6 +40,7 @@ nav:
 - FastAPI: index.md
 - Languages:
   - en: /
+  - az: /az/
   - de: /de/
   - es: /es/
   - fr: /fr/
@@ -58,7 +60,7 @@ markdown_extensions:
     permalink: true
 - markdown.extensions.codehilite:
     guess_lang: false
-- markdown_include.include:
+- mdx_include:
     base_path: docs
 - admonition
 - codehilite
@@ -67,7 +69,7 @@ markdown_extensions:
     custom_fences:
     - name: mermaid
       class: mermaid
-      format: !!python/name:pymdownx.superfences.fence_div_format ''
+      format: !!python/name:pymdownx.superfences.fence_code_format ''
 - pymdownx.tabbed
 extra:
   social:
@@ -76,7 +78,7 @@ extra:
   - icon: fontawesome/brands/discord
     link: https://discord.gg/VQjSZaeJmf
   - icon: fontawesome/brands/twitter
-    link: https://twitter.com/tiangolo
+    link: https://twitter.com/fastapi
   - icon: fontawesome/brands/linkedin
     link: https://www.linkedin.com/in/tiangolo
   - icon: fontawesome/brands/dev
@@ -88,6 +90,8 @@ extra:
   alternate:
   - link: /
     name: en - English
+  - link: /az/
+    name: az
   - link: /de/
     name: de
   - link: /es/
@@ -120,6 +124,5 @@ extra_css:
 - https://fastapi.tiangolo.com/css/termynal.css
 - https://fastapi.tiangolo.com/css/custom.css
 extra_javascript:
-- https://unpkg.com/mermaid@8.4.6/dist/mermaid.min.js
 - https://fastapi.tiangolo.com/js/termynal.js
 - https://fastapi.tiangolo.com/js/custom.js

@@ -88,7 +88,7 @@ With `examples` added to `Body()` the `/docs` would look like:
 !!! warning
     These are very technical details about the standards **JSON Schema** and **OpenAPI**.
 
-    If the ideas above already work for you, that might me enough, and you probably don't need these details, feel free to skip them.
+    If the ideas above already work for you, that might be enough, and you probably don't need these details, feel free to skip them.
 
 When you add an example inside of a Pydantic model, using `schema_extra` or `Field(example="something")` that example is added to the **JSON Schema** for that Pydantic model.
 
