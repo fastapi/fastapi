@@ -33,8 +33,10 @@ classifiers = [
     "Topic :: Internet :: WWW/HTTP",
 ]
 requires = [
-    "starlette ==0.14.2",
-    "pydantic >=1.6.2,!=1.7,!=1.7.1,!=1.7.2,!=1.7.3,!=1.8,!=1.8.1,<2.0.0"
+    "starlette ==0.15.0",
+    "pydantic >=1.6.2,!=1.7,!=1.7.1,!=1.7.2,!=1.7.3,!=1.8,!=1.8.1,<2.0.0",
+    # TODO: remove contextlib2 as a direct dependency after upgrading Starlette
+    "contextlib2 >= 21.6.0; python_version < '3.7'",
 ]
 description-file = "README.md"
 requires-python = ">=3.6.1"
@@ -46,7 +48,6 @@ Documentation = "https://fastapi.tiangolo.com/"
 test = [
     "pytest >=6.2.4,<7.0.0",
     "pytest-cov >=2.12.0,<4.0.0",
-    "pytest-asyncio >=0.14.0,<0.16.0",
     "mypy ==0.910",
     "flake8 >=3.8.3,<4.0.0",
     "black ==21.9b0",
@@ -60,11 +61,9 @@ test = [
     "orjson >=3.2.1,<4.0.0",
     "ujson >=4.0.1,<5.0.0",
     "python-multipart >=0.0.5,<0.0.6",
-    "aiofiles >=0.5.0,<0.8.0",
     # TODO: try to upgrade after upgrading Starlette
     "flask >=1.1.2,<2.0.0",
-    "async_exit_stack >=1.0.1,<2.0.0; python_version < '3.7'",
-    "async_generator >=1.10,<2.0.0; python_version < '3.7'",
+    "anyio[trio] >=3.2.1,<4.0.0",
 
     # types
     "types-ujson ==0.1.1",
@@ -90,7 +89,6 @@ dev = [
 ]
 all = [
     "requests >=2.24.0,<3.0.0",
-    "aiofiles >=0.5.0,<0.8.0",
     # TODO: try to upgrade after upgrading Starlette
     "jinja2 >=2.11.2,<3.0.0",
     "python-multipart >=0.0.5,<0.0.6",
@@ -103,8 +101,6 @@ all = [
     "orjson >=3.2.1,<4.0.0",
     "email_validator >=1.1.1,<2.0.0",
     "uvicorn[standard] >=0.12.0,<0.16.0",
-    "async_exit_stack >=1.0.1,<2.0.0; python_version < '3.7'",
-    "async_generator >=1.10,<2.0.0; python_version < '3.7'",
 ]
 
 [tool.isort]
@@ -148,6 +144,8 @@ junit_family = "xunit2"
 filterwarnings = [
     "error",
     'ignore:"@coroutine" decorator is deprecated since Python 3\.8, use "async def" instead:DeprecationWarning',
+    # TODO: needed by AnyIO in Python 3.9, try to remove after an AnyIO upgrade
+    'ignore:The loop argument is deprecated since Python 3\.8, and scheduled for removal in Python 3\.10:DeprecationWarning',
     # TODO: if these ignores are needed, enable them, otherwise remove them
     # 'ignore:The explicit passing of coroutine objects to asyncio\.wait\(\) is deprecated since Python 3\.8:DeprecationWarning',
     # 'ignore:Exception ignored in. <socket\.socket fd=-1:pytest.PytestUnraisableExceptionWarning',

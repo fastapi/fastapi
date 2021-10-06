@@ -20,18 +20,6 @@ $ pip install jinja2
 
 </div>
 
-If you need to also serve static files (as in this example), install `aiofiles`:
-
-<div class="termy">
-
-```console
-$ pip install aiofiles
-
----> 100%
-```
-
-</div>
-
 ## Using `Jinja2Templates`
 
 * Import `Jinja2Templates`.
