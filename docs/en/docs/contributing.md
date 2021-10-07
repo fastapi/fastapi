@@ -163,20 +163,6 @@ It will also auto-sort all your imports.
 
 For it to sort them correctly, you need to have FastAPI installed locally in your environment, with the command in the section above using `--symlink` (or `--pth-file` on Windows).
 
-### Format imports
-
-There is another script that formats all the imports and makes sure you don't have unused imports:
-
-<div class="termy">
-
-```console
-$ bash scripts/format-imports.sh
-```
-
-</div>
-
-As it runs one command after the other and modifies and reverts many files, it takes a bit longer to run, so it might be easier to use `scripts/format.sh` frequently and `scripts/format-imports.sh` only before committing.
-
 ## Docs
 
 First, make sure you set up your environment as described above, that will install all the requirements.
