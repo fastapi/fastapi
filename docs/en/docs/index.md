@@ -134,7 +134,7 @@ You will also need an ASGI server, for production such as <a href="https://www.u
 <div class="termy">
 
 ```console
-$ pip install uvicorn[standard]
+$ pip install "uvicorn[standard]"
 
 ---> 100%
 ```
@@ -457,7 +457,7 @@ Used by FastAPI / Starlette:
 * <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - for the server that loads and serves your application.
 * <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - Required if you want to use `ORJSONResponse`.
 
-You can install all of these with `pip install fastapi[all]`.
+You can install all of these with `pip install "fastapi[all]"`.
 
 ## License
 

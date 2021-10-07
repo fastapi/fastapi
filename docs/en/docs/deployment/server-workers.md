@@ -39,7 +39,7 @@ And then the Gunicorn-compatible **Uvicorn worker** class would be in charge of 
 <div class="termy">
 
 ```console
-$ pip install uvicorn[standard] gunicorn
+$ pip install "uvicorn[standard]" gunicorn
 
 ---> 100%
 ```
