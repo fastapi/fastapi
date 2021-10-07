@@ -170,7 +170,7 @@ TraefikおよびHTTPS処理を備えたDocker Swarm Modeクラスターをセッ
 
 ### FastAPIアプリケーションのデプロイ
 
-すべてを設定するための最も簡単な方法は、[**FastAPI** Project Generators](project-generation.md){.internal-link target=_blank}を使用することでしょう。
+すべてを設定するための最も簡単な方法は、[**FastAPI** Project Generators](../project-generation.md){.internal-link target=_blank}を使用することでしょう。
 
 上述したTraefikとHTTPSを備えたDocker Swarm クラスタが統合されるように設計されています。
 
