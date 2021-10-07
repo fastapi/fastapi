@@ -1,10 +1,10 @@
 import logging
 import subprocess
 import sys
-from collections import Counter
+from collections import Counter, defaultdict
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
-from typing import Container, Dict, List, Optional, Set
+from typing import Container, DefaultDict, Dict, List, Optional, Set
 
 import httpx
 import yaml
@@ -375,7 +375,7 @@ def get_contributors(settings: Settings):
     return contributors, commentors, reviewers, authors
 
 
-def get_individual_sponsors(settings: Settings, max_individual_sponsor: int = 5):
+def get_individual_sponsors(settings: Settings):
     nodes: List[SponsorshipAsMaintainerNode] = []
     edges = get_graphql_sponsor_edges(settings=settings)
 
@@ -385,12 +385,12 @@ def get_individual_sponsors(settings: Settings, max_individual_sponsor: int = 5)
         last_edge = edges[-1]
         edges = get_graphql_sponsor_edges(settings=settings, after=last_edge.cursor)
 
-    entities: Dict[str, SponsorEntity] = {}
+    tiers: DefaultDict[float, Dict[str, SponsorEntity]] = defaultdict(dict)
     for node in nodes:
-        if node.tier.monthlyPriceInDollars > max_individual_sponsor:
-            continue
-        entities[node.sponsorEntity.login] = node.sponsorEntity
-    return entities
+        tiers[node.tier.monthlyPriceInDollars][
+            node.sponsorEntity.login
+        ] = node.sponsorEntity
+    return tiers
 
 
 def get_top_users(
@@ -475,12 +475,17 @@ if __name__ == "__main__":
         skip_users=skip_users,
     )
 
-    sponsors_by_login = get_individual_sponsors(settings=settings)
+    tiers = get_individual_sponsors(settings=settings)
+    keys = list(tiers.keys())
+    keys.sort(reverse=True)
     sponsors = []
-    for login, sponsor in sponsors_by_login.items():
-        sponsors.append(
-            {"login": login, "avatarUrl": sponsor.avatarUrl, "url": sponsor.url}
-        )
+    for key in keys:
+        sponsor_group = []
+        for login, sponsor in tiers[key].items():
+            sponsor_group.append(
+                {"login": login, "avatarUrl": sponsor.avatarUrl, "url": sponsor.url}
+            )
+        sponsors.append(sponsor_group)
 
     people = {
         "maintainers": maintainers,
@@ -488,15 +493,21 @@ if __name__ == "__main__":
         "last_month_active": last_month_active,
         "top_contributors": top_contributors,
         "top_reviewers": top_reviewers,
+    }
+    github_sponsors = {
         "sponsors": sponsors,
     }
     people_path = Path("./docs/en/data/people.yml")
+    github_sponsors_path = Path("./docs/en/data/github_sponsors.yml")
     people_old_content = people_path.read_text(encoding="utf-8")
-    new_content = yaml.dump(people, sort_keys=False, width=200, allow_unicode=True)
-    if people_old_content == new_content:
+    github_sponsors_old_content = github_sponsors_path.read_text(encoding="utf-8")
+    new_people_content = yaml.dump(people, sort_keys=False, width=200, allow_unicode=True)
+    new_github_sponsors_content = yaml.dump(github_sponsors, sort_keys=False, width=200, allow_unicode=True)
+    if people_old_content == new_people_content and github_sponsors_old_content == new_github_sponsors_content:
         logging.info("The FastAPI People data hasn't changed, finishing.")
         sys.exit(0)
-    people_path.write_text(new_content, encoding="utf-8")
+    people_path.write_text(new_people_content, encoding="utf-8")
+    github_sponsors_path.write_text(new_github_sponsors_content, encoding="utf-8")
     logging.info("Setting up GitHub Actions git user")
     subprocess.run(["git", "config", "user.name", "github-actions"], check=True)
     subprocess.run(
