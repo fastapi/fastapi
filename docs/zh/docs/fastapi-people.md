@@ -114,42 +114,51 @@ FastAPI 有一个非常棒的社区，它欢迎来自各个领域和背景的朋
 
 他们主要通过<a href="https://github.com/sponsors/tiangolo" class="external-link" target="_blank">GitHub Sponsors</a>支持我在 **FastAPI** (和其他项目)的工作。
 
+{% if sponsors.gold %}
+
 ### 金牌赞助商
 
-{% if sponsors %} {% for sponsor in sponsors.gold -%}
-<a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}"></a>
-{% endfor %} {% endif %}
+{% for sponsor in sponsors.gold -%}
+<a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
+{% endfor %}
+{% endif %}
+
+{% if sponsors.silver %}
 
 ### 银牌赞助商
 
-{% if sponsors %} {% for sponsor in sponsors.silver -%}
-<a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}"></a>
-{% endfor %} {% endif %}
+{% for sponsor in sponsors.silver -%}
+<a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
+{% endfor %}
+{% endif %}
 
-{% if people %} {% if people.sponsors_50 %}
+{% if sponsors.bronze %}
 
 ### 铜牌赞助商
 
-<div class="user-list user-list-center">
-{% for user in people.sponsors_50 %}
-
-<div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a></div>
+{% for sponsor in sponsors.bronze -%}
+<a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
 {% endfor %}
-
-</div>
-
-{% endif %} {% endif %}
+{% endif %}
 
 ### 个人赞助
 
-{% if people %}
+{% if github_sponsors %}
+{% for group in github_sponsors.sponsors %}
+
 <div class="user-list user-list-center">
-{% for user in people.sponsors %}
+
+{% for user in group %}
+{% if user.login not in sponsors_badge.logins %}
 
 <div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a></div>
+
+{% endif %}
 {% endfor %}
 
 </div>
+
+{% endfor %}
 {% endif %}
 
 ## 关于数据 - 技术细节
