@@ -183,7 +183,7 @@ FastAPI（实际上是 Starlette）将自动包含 Content-Length 的头。它�
 
 包括许多与云存储，视频处理等交互的库。
 
-```Python hl_lines="2  10 11"
+```Python hl_lines="2  10-12  14"
 {!../../../docs_src/custom_response/tutorial008.py!}
 ```
 
