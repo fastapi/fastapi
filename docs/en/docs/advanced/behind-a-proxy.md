@@ -44,7 +44,7 @@ proxy --> server
 
 The docs UI would also need the OpenAPI schema to declare that this API `server` is located at `/api/v1` (behind the proxy). For example:
 
-```JSON hl_lines="4 5 6 7 8"
+```JSON hl_lines="4-8"
 {
     "openapi": "3.0.2",
     // More stuff here
@@ -238,7 +238,7 @@ Now, if you go to the URL with the port for Uvicorn: <a href="http://127.0.0.1:8
 !!! tip
     Notice that even though you are accessing it at `http://127.0.0.1:8000/app` it shows the `root_path` of `/api/v1`, taken from the option `--root-path`.
 
-And now open the URL with the port for Traefik, including the path prefix: <a href="http://127.0.0.1:9999/api/v1/app" class="external-link" target="_blank">http://127.0.0.1:9999/api/vi/app</a>.
+And now open the URL with the port for Traefik, including the path prefix: <a href="http://127.0.0.1:9999/api/v1/app" class="external-link" target="_blank">http://127.0.0.1:9999/api/v1/app</a>.
 
 We get the same response:
 
@@ -290,13 +290,13 @@ If you pass a custom list of `servers` and there's a `root_path` (because your A
 
 For example:
 
-```Python hl_lines="4 5 6 7"
+```Python hl_lines="4-7"
 {!../../../docs_src/behind_a_proxy/tutorial003.py!}
 ```
 
 Will generate an OpenAPI schema like:
 
-```JSON hl_lines="5 6 7"
+```JSON hl_lines="5-7"
 {
     "openapi": "3.0.2",
     // More stuff here

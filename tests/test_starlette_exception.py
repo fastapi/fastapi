@@ -8,7 +8,7 @@ items = {"foo": "The Foo Wrestlers"}
 
 
 @app.get("/items/{item_id}")
-async def create_item(item_id: str):
+async def read_item(item_id: str):
     if item_id not in items:
         raise HTTPException(
             status_code=404,
@@ -19,7 +19,7 @@ async def create_item(item_id: str):
 
 
 @app.get("/starlette-items/{item_id}")
-async def create_item(item_id: str):
+async def read_starlette_item(item_id: str):
     if item_id not in items:
         raise StarletteHTTPException(status_code=404, detail="Item not found")
     return {"item": items[item_id]}
@@ -49,8 +49,8 @@ openapi_schema = {
                         },
                     },
                 },
-                "summary": "Create Item",
-                "operationId": "create_item_items__item_id__get",
+                "summary": "Read Item",
+                "operationId": "read_item_items__item_id__get",
                 "parameters": [
                     {
                         "required": True,
@@ -79,8 +79,8 @@ openapi_schema = {
                         },
                     },
                 },
-                "summary": "Create Item",
-                "operationId": "create_item_starlette_items__item_id__get",
+                "summary": "Read Starlette Item",
+                "operationId": "read_starlette_item_starlette_items__item_id__get",
                 "parameters": [
                     {
                         "required": True,

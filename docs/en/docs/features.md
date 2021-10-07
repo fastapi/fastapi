@@ -7,7 +7,7 @@
 ### Based on open standards
 
 * <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a> for API creation, including declarations of <abbr title="also known as: endpoints, routes">path</abbr> <abbr title="also known as HTTP methods, as POST, GET, PUT, DELETE">operations</abbr>, parameters, body requests, security, etc.
-* Automatic data model documentation with <a href="http://json-schema.org/" class="external-link" target="_blank"><strong>JSON Schema</strong></a> (as OpenAPI itself is based on JSON Schema).
+* Automatic data model documentation with <a href="https://json-schema.org/" class="external-link" target="_blank"><strong>JSON Schema</strong></a> (as OpenAPI itself is based on JSON Schema).
 * Designed around these standards, after a meticulous study. Instead of an afterthought layer on top.
 * This also allows using automatic **client code generation** in many languages.
 
@@ -32,7 +32,6 @@ If you need a 2 minute refresher of how to use Python types (even if you don't u
 You write standard Python with types:
 
 ```Python
-from typing import List, Dict
 from datetime import date
 
 from pydantic import BaseModel
@@ -165,7 +164,6 @@ With **FastAPI** you get all of **Starlette**'s features (as FastAPI is just Sta
 
 * Seriously impressive performance. It is <a href="https://github.com/encode/starlette#performance" class="external-link" target="_blank">one of the fastest Python frameworks available, on par with **NodeJS** and **Go**</a>.
 * **WebSocket** support.
-* **GraphQL** support.
 * In-process background tasks.
 * Startup and shutdown events.
 * Test client built on `requests`.

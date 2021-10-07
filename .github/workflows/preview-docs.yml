@@ -1,0 +1,41 @@
+name: Preview Docs
+on:
+  workflow_run:
+    workflows:
+      - Build Docs
+    types: 
+      - completed
+
+jobs:
+  preview-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Download Artifact Docs
+        uses: dawidd6/action-download-artifact@v2.9.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          workflow: build-docs.yml
+          run_id: ${{ github.event.workflow_run.id }}
+          name: docs-zip
+      - name: Unzip docs
+        run: |
+          rm -rf ./site
+          unzip docs.zip
+          rm -f docs.zip
+      - name: Deploy to Netlify
+        id: netlify
+        uses: nwtgck/actions-netlify@v1.1.5
+        with:
+          publish-dir: './site'
+          production-deploy: false
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          enable-commit-comment: false
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+      - name: Comment Deploy
+        uses: ./.github/actions/comment-docs-preview-in-pr
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          deploy_url: "${{ steps.netlify.outputs.deploy-url }}"

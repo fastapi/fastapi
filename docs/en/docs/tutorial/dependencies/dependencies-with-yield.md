@@ -7,15 +7,6 @@ To do this, use `yield` instead of `return`, and write the extra steps after.
 !!! tip
     Make sure to use `yield` one single time.
 
-!!! info
-    For this to work, you need to use **Python 3.7** or above, or in **Python 3.6**, install the "backports":
-
-    ```
-    pip install async-exit-stack async-generator
-    ```
-
-    This installs <a href="https://github.com/sorcio/async_exit_stack" class="external-link" target="_blank">async-exit-stack</a> and <a href="https://github.com/python-trio/async_generator" class="external-link" target="_blank">async-generator</a>.
-
 !!! note "Technical Details"
     Any function that is valid to use with:
 
@@ -32,7 +23,7 @@ For example, you could use this to create a database session and close it after 
 
 Only the code prior to and including the `yield` statement is executed before sending a response:
 
-```Python hl_lines="2 3 4"
+```Python hl_lines="2-4"
 {!../../../docs_src/dependencies/tutorial007.py!}
 ```
 
@@ -44,7 +35,7 @@ The yielded value is what is injected into *path operations* and other dependenc
 
 The code following the `yield` statement is executed after the response has been delivered:
 
-```Python hl_lines="5 6"
+```Python hl_lines="5-6"
 {!../../../docs_src/dependencies/tutorial007.py!}
 ```
 
@@ -63,7 +54,7 @@ So, you can look for that specific exception inside the dependency with `except 
 
 In the same way, you can use `finally` to make sure the exit steps are executed, no matter if there was an exception or not.
 
-```Python hl_lines="3 5"
+```Python hl_lines="3  5"
 {!../../../docs_src/dependencies/tutorial007.py!}
 ```
 
@@ -75,7 +66,7 @@ You can have sub-dependencies and "trees" of sub-dependencies of any size and sh
 
 For example, `dependency_c` can have a dependency on `dependency_b`, and `dependency_b` on `dependency_a`:
 
-```Python hl_lines="4 12 20"
+```Python hl_lines="4  12  20"
 {!../../../docs_src/dependencies/tutorial008.py!}
 ```
 
@@ -85,7 +76,7 @@ In this case `dependency_c`, to execute its exit code, needs the value from `dep
 
 And, in turn, `dependency_b` needs the value from `dependency_a` (here named `dep_a`) to be available for its exit code.
 
-```Python hl_lines="16 17 24 25"
+```Python hl_lines="16-17  24-25"
 {!../../../docs_src/dependencies/tutorial008.py!}
 ```
 
@@ -207,7 +198,7 @@ In Python, you can create Context Managers by <a href="https://docs.python.org/3
 You can also use them inside of **FastAPI** dependencies with `yield` by using
 `with` or `async with` statements inside of the dependency function:
 
-```Python hl_lines="1 2 3 4 5 6 7 8 9 13"
+```Python hl_lines="1-9  13"
 {!../../../docs_src/dependencies/tutorial010.py!}
 ```
 

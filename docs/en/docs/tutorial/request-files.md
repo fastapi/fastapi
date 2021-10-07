@@ -39,7 +39,7 @@ If you declare the type of your *path operation function* parameter as `bytes`, 
 
 Have in mind that this means that the whole contents will be stored in memory. This will work well for small files.
 
-But there are several cases in where you might benefit from using `UploadFile`.
+But there are several cases in which you might benefit from using `UploadFile`.
 
 ## `File` parameters with `UploadFile`
 
@@ -121,18 +121,11 @@ They would be associated to the same "form field" sent using "form data".
 
 To use that, declare a `List` of `bytes` or `UploadFile`:
 
-```Python hl_lines="10 15"
+```Python hl_lines="10  15"
 {!../../../docs_src/request_files/tutorial002.py!}
 ```
 
 You will receive, as declared, a `list` of `bytes` or `UploadFile`s.
-
-!!! note
-    Notice that, as of 2019-04-14, Swagger UI doesn't support multiple file uploads in the same form field. For more information, check <a href="https://github.com/swagger-api/swagger-ui/issues/4276" class="external-link" target="_blank">#4276</a> and <a href="https://github.com/swagger-api/swagger-ui/issues/3641" class="external-link" target="_blank">#3641</a>.
-
-    Nevertheless, **FastAPI** is already compatible with it, using the standard OpenAPI.
-    
-    So, whenever Swagger UI supports multi-file uploads, or any other tools that supports OpenAPI, they will be compatible with **FastAPI**.
 
 !!! note "Technical Details"
     You could also use `from starlette.responses import HTMLResponse`.

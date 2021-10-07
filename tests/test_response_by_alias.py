@@ -54,17 +54,17 @@ def by_alias_list():
 
 
 @app.get("/no-alias/dict", response_model=ModelNoAlias)
-def by_alias_dict():
+def no_alias_dict():
     return {"name": "Foo"}
 
 
 @app.get("/no-alias/model", response_model=ModelNoAlias)
-def by_alias_model():
+def no_alias_model():
     return ModelNoAlias(name="Foo")
 
 
 @app.get("/no-alias/list", response_model=List[ModelNoAlias])
-def by_alias_list():
+def no_alias_list():
     return [{"name": "Foo"}, {"name": "Bar"}]
 
 
@@ -178,8 +178,8 @@ openapi_schema = {
         },
         "/no-alias/dict": {
             "get": {
-                "summary": "By Alias Dict",
-                "operationId": "by_alias_dict_no_alias_dict_get",
+                "summary": "No Alias Dict",
+                "operationId": "no_alias_dict_no_alias_dict_get",
                 "responses": {
                     "200": {
                         "description": "Successful Response",
@@ -194,8 +194,8 @@ openapi_schema = {
         },
         "/no-alias/model": {
             "get": {
-                "summary": "By Alias Model",
-                "operationId": "by_alias_model_no_alias_model_get",
+                "summary": "No Alias Model",
+                "operationId": "no_alias_model_no_alias_model_get",
                 "responses": {
                     "200": {
                         "description": "Successful Response",
@@ -210,15 +210,15 @@ openapi_schema = {
         },
         "/no-alias/list": {
             "get": {
-                "summary": "By Alias List",
-                "operationId": "by_alias_list_no_alias_list_get",
+                "summary": "No Alias List",
+                "operationId": "no_alias_list_no_alias_list_get",
                 "responses": {
                     "200": {
                         "description": "Successful Response",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "title": "Response By Alias List No Alias List Get",
+                                    "title": "Response No Alias List No Alias List Get",
                                     "type": "array",
                                     "items": {
                                         "$ref": "#/components/schemas/ModelNoAlias"

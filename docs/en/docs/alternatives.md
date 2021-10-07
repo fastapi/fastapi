@@ -37,7 +37,7 @@ It was one of the first examples of **automatic API documentation**, and this wa
 !!! check "Inspired **FastAPI** to"
     Have an automatic API documentation web user interface.
 
-### <a href="http://flask.pocoo.org/" class="external-link" target="_blank">Flask</a>
+### <a href="https://flask.palletsprojects.com" class="external-link" target="_blank">Flask</a>
 
 Flask is a "microframework", it doesn't include database integrations nor many of the things that come by default in Django.
 
@@ -57,7 +57,7 @@ Given the simplicity of Flask, it seemed like a good match for building APIs. Th
     Have a simple and easy to use routing system.
 
 
-### <a href="http://docs.python-requests.org" class="external-link" target="_blank">Requests</a>
+### <a href="https://requests.readthedocs.io" class="external-link" target="_blank">Requests</a>
 
 **FastAPI** is not actually an alternative to **Requests**. Their scope is very different.
 
@@ -242,8 +242,6 @@ It was one of the first extremely fast Python frameworks based on `asyncio`. It 
 
 Falcon is another high performance Python framework, it is designed to be minimal, and work as the foundation of other frameworks like Hug.
 
-It uses the previous standard for Python web frameworks (WSGI) which is synchronous, so it can't handle WebSockets and other use cases. Nevertheless, it also has a very good performance.
-
 It is designed to have functions that receive two parameters, one "request" and one "response". Then you "read" parts from the request, and "write" parts to the response. Because of this design, it is not possible to declare request parameters and bodies with standard Python type hints as function parameters.
 
 So, data validation, serialization, and documentation, have to be done in code, not automatically. Or they have to be implemented as a framework on top of Falcon, like Hug. This same distinction happens in other frameworks that are inspired by Falcon's design, of having one request object and one response object as parameters.
@@ -276,7 +274,7 @@ Routes are declared in a single place, using functions declared in other places 
 
     This actually inspired updating parts of Pydantic, to support the same validation declaration style (all this functionality is now already available in Pydantic).
 
-### <a href="http://www.hug.rest/" class="external-link" target="_blank">Hug</a>
+### <a href="https://www.hug.rest/" class="external-link" target="_blank">Hug</a>
 
 Hug was one of the first frameworks to implement the declaration of API parameter types using Python type hints. This was a great idea that inspired other tools to do the same.
 
@@ -367,7 +365,6 @@ It has:
 
 * Seriously impressive performance.
 * WebSocket support.
-* GraphQL support.
 * In-process background tasks.
 * Startup and shutdown events.
 * Test client built on requests.
@@ -375,7 +372,7 @@ It has:
 * Session and Cookie support.
 * 100% test coverage.
 * 100% type annotated codebase.
-* Zero hard dependencies.
+* Few hard dependencies.
 
 Starlette is currently the fastest Python framework tested. Only surpassed by Uvicorn, which is not a framework, but a server.
 
@@ -410,7 +407,7 @@ It is the recommended server for Starlette and **FastAPI**.
 
     You can combine it with Gunicorn, to have an asynchronous multi-process server.
 
-    Check more details in the [Deployment](deployment.md){.internal-link target=_blank} section.
+    Check more details in the [Deployment](deployment/index.md){.internal-link target=_blank} section.
 
 ## Benchmarks and speed
 

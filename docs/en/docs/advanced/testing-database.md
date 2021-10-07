@@ -26,7 +26,7 @@ We create a new file at `sql_app/tests/test_sql_app.py`.
 
 So the new file structure looks like:
 
-``` hl_lines="9 10 11"
+``` hl_lines="9-11"
 .
 └── sql_app
     ├── __init__.py
@@ -48,7 +48,7 @@ For the tests we'll use a file `test.db` instead of `sql_app.db`.
 
 But the rest of the session code is more or less the same, we just copy it.
 
-```Python hl_lines="8  9  10 11 12 13"
+```Python hl_lines="8-13"
 {!../../../docs_src/sql_databases/sql_app/tests/test_sql_app.py!}
 ```
 
@@ -77,7 +77,7 @@ So we add that line here, with the new file.
 
 Now we create the dependency override and add it to the overrides for our app.
 
-```Python hl_lines="19 20 21 22 23 24  27"
+```Python hl_lines="19-24  27"
 {!../../../docs_src/sql_databases/sql_app/tests/test_sql_app.py!}
 ```
 
@@ -88,7 +88,7 @@ Now we create the dependency override and add it to the overrides for our app.
 
 Then we can just test the app as normally.
 
-```Python hl_lines="32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47"
+```Python hl_lines="32-47"
 {!../../../docs_src/sql_databases/sql_app/tests/test_sql_app.py!}
 ```
 

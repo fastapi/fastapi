@@ -1,0 +1,10 @@
+name: "Watch docs previews in PRs"
+description: "Check PRs and trigger new docs deploys"
+author: "Sebastián Ramírez <tiangolo@gmail.com>"
+inputs:
+  token:
+    description: 'Token for the repo. Can be passed in using {{ secrets.GITHUB_TOKEN }}'
+    required: true
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
