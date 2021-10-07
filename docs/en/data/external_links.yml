@@ -1,5 +1,9 @@
 articles:
   english:
+  - author: Kaustubh Gupta
+    author_link: https://medium.com/@kaustubhgupta1828/
+    link: https://www.analyticsvidhya.com/blog/2021/06/deploying-ml-models-as-api-using-fastapi-and-heroku/
+    title: Deploying ML Models as API Using FastAPI and Heroku
   - link: https://jarmos.netlify.app/posts/using-github-actions-to-deploy-a-fastapi-project-to-heroku/
     title: Using GitHub Actions to Deploy a FastAPI Project to Heroku
     author_link: https://jarmos.netlify.app/
@@ -184,10 +188,6 @@ articles:
     author_link: https://medium.com/@williamhayes
     link: https://medium.com/@williamhayes/fastapi-starlette-debug-vs-prod-5f7561db3a59
     title: FastAPI/Starlette debug vs prod
-  - author: Kaustubh Gupta
-    author_link: https://medium.com/@kaustubhgupta1828/
-    link: https://www.analyticsvidhya.com/blog/2021/06/deploying-ml-models-as-api-using-fastapi-and-heroku/
-    title: Deploying ML Models as API Using FastAPI and Heroku
   german:
   - author: Nico Axtmann
     author_link: https://twitter.com/_nicoax
