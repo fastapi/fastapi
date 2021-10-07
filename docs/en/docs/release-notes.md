@@ -94,7 +94,7 @@ Soon there will be a new FastAPI release upgrading Starlette to take advantage o
 ### Features
 
 * ✨ Add support for extensions and updates to the OpenAPI schema in each *path operation*. New docs: [FastAPI Path Operation Advanced Configuration - OpenAPI Extra](https://fastapi.tiangolo.com/advanced/path-operation-advanced-configuration/#openapi-extra). Initial PR [#1922](https://github.com/tiangolo/fastapi/pull/1922) by [@edouardlp](https://github.com/edouardlp).
-* ✨ Add additonal OpenAPI metadata parameters to `FastAPI` class, shown on the automatic API docs UI. New docs: [Metadata and Docs URLs](https://fastapi.tiangolo.com/tutorial/metadata/). Initial PR [#1812](https://github.com/tiangolo/fastapi/pull/1812) by [@dkreeft](https://github.com/dkreeft).
+* ✨ Add additional OpenAPI metadata parameters to `FastAPI` class, shown on the automatic API docs UI. New docs: [Metadata and Docs URLs](https://fastapi.tiangolo.com/tutorial/metadata/). Initial PR [#1812](https://github.com/tiangolo/fastapi/pull/1812) by [@dkreeft](https://github.com/dkreeft).
 * ✨ Add `description` parameter to all the security scheme classes, e.g. `APIKeyQuery(name="key", description="A very cool API key")`. PR [#1757](https://github.com/tiangolo/fastapi/pull/1757) by [@hylkepostma](https://github.com/hylkepostma).
 * ✨ Update OpenAPI models, supporting recursive models and extensions. PR [#3628](https://github.com/tiangolo/fastapi/pull/3628) by [@tiangolo](https://github.com/tiangolo).
 * ✨ Import and re-export data structures from Starlette, used by Request properties, on `fastapi.datastructures`. Initial PR [#1872](https://github.com/tiangolo/fastapi/pull/1872) by [@jamescurtin](https://github.com/jamescurtin).
