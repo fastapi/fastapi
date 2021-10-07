@@ -19,6 +19,11 @@ This way, in case there was a breaking change for your code in one of the releas
 
 * ⬆️ Upgrade Starlette to 0.16.0. PR [#4016](https://github.com/tiangolo/fastapi/pull/4016) by [@tiangolo](https://github.com/tiangolo).
 
+Also upgrades the ranges of optional dependencies:
+
+* `"jinja2 >=2.11.2,<4.0.0"`
+* `"itsdangerous >=1.1.0,<3.0.0"`
+
 ## 0.69.0
 
 ### Breaking Changes - Upgrade
