@@ -441,17 +441,6 @@ You can find an example of Alembic in a FastAPI project in the templates from [P
 
 ### Create a dependency
 
-!!! info
-    For this to work, you need to use **Python 3.7** or above, or in **Python 3.6**, install the "backports":
-
-    ```console
-    $ pip install async-exit-stack async-generator
-    ```
-
-    This installs <a href="https://github.com/sorcio/async_exit_stack" class="external-link" target="_blank">async-exit-stack</a> and <a href="https://github.com/python-trio/async_generator" class="external-link" target="_blank">async-generator</a>.
-
-    You can also use the alternative method with a "middleware" explained at the end.
-
 Now use the `SessionLocal` class we created in the `sql_app/databases.py` file to create a dependency.
 
 We need to have an independent database session/connection (`SessionLocal`) per request, use the same session through all the request and then close it after the request is finished.
