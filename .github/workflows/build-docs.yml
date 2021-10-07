@@ -4,7 +4,7 @@ on:
   pull_request:
     types: [opened, synchronize]
 jobs:
-  build:
+  build-docs:
     runs-on: ubuntu-18.04
     steps:
       - name: Dump GitHub context
@@ -13,15 +13,22 @@ jobs:
         run: echo "$GITHUB_CONTEXT"
       - uses: actions/checkout@v2
       - name: Set up Python
-        uses: actions/setup-python@v1
+        uses: actions/setup-python@v2
         with:
           python-version: "3.7"
+      - uses: actions/cache@v2
+        id: cache
+        with:
+          path: ${{ env.pythonLocation }}
+          key: ${{ runner.os }}-python-${{ env.pythonLocation }}-${{ hashFiles('pyproject.toml') }}-docs
       - name: Install Flit
+        if: steps.cache.outputs.cache-hit != 'true'
         run: python3.7 -m pip install flit
       - name: Install docs extras
-        run: python3.7 -m flit install --extras doc
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: python3.7 -m flit install --deps production --extras doc
       - name: Install Material for MkDocs Insiders
-        if: github.event.pull_request.head.repo.fork == false
+        if: github.event.pull_request.head.repo.fork == false && steps.cache.outputs.cache-hit != 'true'
         run: pip install git+https://${{ secrets.ACTIONS_TOKEN }}@github.com/squidfunk/mkdocs-material-insiders.git
       - name: Build Docs
         run: python3.7 ./scripts/docs.py build-all
