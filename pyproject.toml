@@ -125,7 +125,7 @@ strict_equality = true
 
 [[tool.mypy.overrides]]
 module = "jose.*"
-ignore_missing_imports = True
+ignore_missing_imports = true
 
 [[tool.mypy.overrides]]
 module = "fastapi.concurrency"
