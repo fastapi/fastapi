@@ -1,3 +1,4 @@
+import dataclasses
 from collections import defaultdict
 from enum import Enum
 from pathlib import PurePath
@@ -36,9 +37,9 @@ def jsonable_encoder(
     custom_encoder: Dict[Any, Callable[[Any], Any]] = {},
     sqlalchemy_safe: bool = True,
 ) -> Any:
-    if include is not None and not isinstance(include, set):
+    if include is not None and not isinstance(include, (set, dict)):
         include = set(include)
-    if exclude is not None and not isinstance(exclude, set):
+    if exclude is not None and not isinstance(exclude, (set, dict)):
         exclude = set(exclude)
     if isinstance(obj, BaseModel):
         encoder = getattr(obj.__config__, "json_encoders", {})
@@ -61,6 +62,8 @@ def jsonable_encoder(
             custom_encoder=encoder,
             sqlalchemy_safe=sqlalchemy_safe,
         )
+    if dataclasses.is_dataclass(obj):
+        return dataclasses.asdict(obj)
     if isinstance(obj, Enum):
         return obj.value
     if isinstance(obj, PurePath):
