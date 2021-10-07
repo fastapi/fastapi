@@ -1,5 +1,9 @@
 articles:
   english:
+  - link: https://jarmos.netlify.app/posts/using-github-actions-to-deploy-a-fastapi-project-to-heroku/
+    title: Using GitHub Actions to Deploy a FastAPI Project to Heroku
+    author_link: https://jarmos.netlify.app/
+    author: Somraj Saha
   - author: "@pystar"
     author_link: https://pystar.substack.com/
     link: https://pystar.substack.com/p/how-to-create-a-fake-certificate
