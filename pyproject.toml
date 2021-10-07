@@ -123,6 +123,9 @@ implicit_reexport = false
 strict_equality = true
 # --strict end
 
+[[tool.mypy.jose]]
+ignore_missing_imports = True
+
 [[tool.mypy.overrides]]
 module = "fastapi.concurrency"
 warn_unused_ignores = false
