@@ -2,6 +2,9 @@
 
 ## Latest Changes
 
+
+## 0.70.0
+
 This release just upgrades Starlette to the latest version, `0.16.0`, which includes several bug fixes and some small breaking changes.
 
 These last **three consecutive releases** are independent so that you can **migrate gradually**:
