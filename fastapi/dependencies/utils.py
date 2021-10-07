@@ -1,10 +1,11 @@
-import asyncio
+import dataclasses
 import inspect
 from contextlib import contextmanager
 from copy import deepcopy
 from typing import (
     Any,
     Callable,
+    Coroutine,
     Dict,
     List,
     Mapping,
@@ -16,10 +17,10 @@ from typing import (
     cast,
 )
 
+import anyio
 from fastapi import params
 from fastapi.concurrency import (
     AsyncExitStack,
-    _fake_asynccontextmanager,
     asynccontextmanager,
     contextmanager_in_threadpool,
 )
@@ -217,6 +218,7 @@ def is_scalar_field(field: ModelField) -> bool:
         field.shape == SHAPE_SINGLETON
         and not lenient_issubclass(field.type_, BaseModel)
         and not lenient_issubclass(field.type_, sequence_types + (dict,))
+        and not dataclasses.is_dataclass(field.type_)
         and not isinstance(field_info, params.Body)
     ):
         return False
@@ -264,18 +266,6 @@ def get_typed_annotation(param: inspect.Parameter, globalns: Dict[str, Any]) -> 
     return annotation
 
 
-async_contextmanager_dependencies_error = """
-FastAPI dependencies with yield require Python 3.7 or above,
-or the backports for Python 3.6, installed with:
-    pip install async-exit-stack async-generator
-"""
-
-
-def check_dependency_contextmanagers() -> None:
-    if AsyncExitStack is None or asynccontextmanager == _fake_asynccontextmanager:
-        raise RuntimeError(async_contextmanager_dependencies_error)  # pragma: no cover
-
-
 def get_dependant(
     *,
     path: str,
@@ -287,8 +277,6 @@ def get_dependant(
     path_param_names = get_path_param_names(path)
     endpoint_signature = get_typed_signature(call)
     signature_params = endpoint_signature.parameters
-    if is_gen_callable(call) or is_async_gen_callable(call):
-        check_dependency_contextmanagers()
     dependant = Dependant(call=call, name=name, path=path, use_cache=use_cache)
     for param_name, param in signature_params.items():
         if isinstance(param.default, params.Depends):
@@ -450,14 +438,6 @@ async def solve_generator(
     if is_gen_callable(call):
         cm = contextmanager_in_threadpool(contextmanager(call)(**sub_values))
     elif is_async_gen_callable(call):
-        if not inspect.isasyncgenfunction(call):
-            # asynccontextmanager from the async_generator backfill pre python3.7
-            # does not support callables that are not functions or methods.
-            # See https://github.com/python-trio/async_generator/issues/32
-            #
-            # Expand the callable class into its __call__ method before decorating it.
-            # This approach will work on newer python versions as well.
-            call = getattr(call, "__call__", None)
         cm = asynccontextmanager(call)(**sub_values)
     return await stack.enter_async_context(cm)
 
@@ -537,10 +517,7 @@ async def solve_dependencies(
             solved = dependency_cache[sub_dependant.cache_key]
         elif is_gen_callable(call) or is_async_gen_callable(call):
             stack = request.scope.get("fastapi_astack")
-            if stack is None:
-                raise RuntimeError(
-                    async_contextmanager_dependencies_error
-                )  # pragma: no cover
+            assert isinstance(stack, AsyncExitStack)
             solved = await solve_generator(
                 call=call, stack=stack, sub_values=sub_values
             )
@@ -695,9 +672,18 @@ async def request_body_to_args(
                 and lenient_issubclass(field.type_, bytes)
                 and isinstance(value, sequence_types)
             ):
-                awaitables = [sub_value.read() for sub_value in value]
-                contents = await asyncio.gather(*awaitables)
-                value = sequence_shape_to_type[field.shape](contents)
+                results: List[Union[bytes, str]] = []
+
+                async def process_fn(
+                    fn: Callable[[], Coroutine[Any, Any, Any]]
+                ) -> None:
+                    result = await fn()
+                    results.append(result)
+
+                async with anyio.create_task_group() as tg:
+                    for sub_value in value:
+                        tg.start_soon(process_fn, sub_value.read)
+                value = sequence_shape_to_type[field.shape](results)
 
             v_, errors_ = field.validate(value, values, loc=loc)
 
@@ -752,7 +738,7 @@ def get_body_field(*, dependant: Dependant, name: str) -> Optional[ModelField]:
     for param in flat_dependant.body_params:
         setattr(param.field_info, "embed", True)
     model_name = "Body_" + name
-    BodyModel = create_model(model_name)
+    BodyModel: Type[BaseModel] = create_model(model_name)
     for f in flat_dependant.body_params:
         BodyModel.__fields__[f.name] = get_schema_compatible_field(field=f)
     required = any(True for f in flat_dependant.body_params if f.required)
