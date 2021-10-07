@@ -20,7 +20,7 @@ Here I'll show you how to use <a href="https://gunicorn.org/" class="external-li
 !!! info
     If you are using containers, for example with Docker or Kubernetes, I'll tell you more about that in the next chapter: [FastAPI in Containers - Docker](./docker.md){.internal-link target=_blank}.
 
-    In particular, when running on **Kubernetes** you will probably **not** want to use Gunicorn, and instead run **a single Uvicorn process per container**, but I'll tell you about it later in that chapter.
+    In particular, when running on **Kubernetes** you will probably **not** want to use Gunicorn and instead run **a single Uvicorn process per container**, but I'll tell you about it later in that chapter.
 
 ## Gunicorn with Uvicorn Workers
 
@@ -90,7 +90,7 @@ Let's see what each of those options mean:
         ```
 
     * So, the colon in `main:app` would be equivalent to the Python `import` part in `from main import app`.
-* `--workers`: The number of worker processes to use, each will run a Uvicorn worker, in this case 4 workers.
+* `--workers`: The number of worker processes to use, each will run a Uvicorn worker, in this case, 4 workers.
 * `--worker-class`: The Gunicorn-compatible worker class to use in the worker processes.
     * Here we pass the class that Gunicorn can import and use with:
 
@@ -101,7 +101,7 @@ Let's see what each of those options mean:
 * `--bind`: This tells Gunicorn the IP and the port to listen to, using a colon (`:`) to separate the IP and the port.
     * If you were running Uvicorn directly, instead of `--bind 0.0.0.0:80` (the Gunicorn option) you would use `--host 0.0.0.0` and `--port 80`.
 
-In the output you can see that it shows the **PID** (process ID) of each process (it's just a number).
+In the output, you can see that it shows the **PID** (process ID) of each process (it's just a number).
 
 You can see that:
 
