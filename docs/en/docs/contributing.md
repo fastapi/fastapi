@@ -326,7 +326,7 @@ docs/es/docs/features.md
 * Now open the MkDocs config file for English at:
 
 ```
-docs/en/docs/mkdocs.yml
+docs/en/mkdocs.yml
 ```
 
 * Find the place where that `docs/features.md` is located in the config file. Somewhere like:
@@ -345,7 +345,7 @@ nav:
 * Open the MkDocs config file for the language you are editing, e.g.:
 
 ```
-docs/es/docs/mkdocs.yml
+docs/es/mkdocs.yml
 ```
 
 * Add it there at the exact same location it was for English, e.g.:
