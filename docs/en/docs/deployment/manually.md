@@ -92,6 +92,43 @@ You can then your application the same way you have done in the tutorials, but w
     
     It helps a lot during **development**, but you **shouldn't** use it in **production**.
 
+## Hypercorn with Trio
+
+Starlette and **FastAPI** are based on <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a>, which makes them compatible with both Python's standard library <a href="https://docs.python.org/3/library/asyncio-task.html" class="external-link" target="_blank">asyncio</a> and <a href="https://trio.readthedocs.io/en/stable/" class="external-link" target="_blank">Trio</a>.
+
+Nevertheless, Uvicorn is currently only compatible with asyncio, and it normally uses <a href="https://github.com/MagicStack/uvloop" class="external-link" target="_blank">`uvloop`</a>, the high-performance drop-in replacement for `asyncio`.
+
+But if you want to directly use **Trio**, then you can use **Hypercorn** as it supports it. ✨
+
+### Install Hypercorn with Trio
+
+First you need to install Hypercorn with Trio support:
+
+<div class="termy">
+
+```console
+$ pip install "hypercorn[trio]"
+---> 100%
+```
+
+</div>
+
+### Run with Trio
+
+Then you can pass the command line option `--worker-class` with the value `trio`:
+
+<div class="termy">
+
+```console
+$ hypercorn main:app --worker-class trio
+```
+
+</div>
+
+And that will start Hypercorn with your app using Trio as the backend.
+
+Now you can use Trio internally in your app. Or even better, you can use AnyIO, to keep your code compatible with both Trio and asyncio. 🎉
+
 ## Deployment Concepts
 
 These examples run the server program (e.g Uvicorn), starting **a single process**, listening on all the IPs (`0.0.0.0`) on a predefined port (e.g. `80`).
