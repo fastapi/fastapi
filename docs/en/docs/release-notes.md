@@ -2,7 +2,20 @@
 
 ## Latest Changes
 
+This release just upgrades Starlette to the latest version, `0.16.0`, which includes several bug fixes and some small breaking changes.
+
+These last **three consecutive releases** are independent so that you can **migrate gradually**:
+
+* First to FastAPI `0.68.2`, with no breaking changes, but upgrading all the sub-dependencies.
+* Next to FastAPI `0.69.0`, which upgrades Starlette to `0.15.0`, with AnyIO support, and a higher chance of having breaking changes in your code.
+* Finally to FastAPI `0.70.0`, just upgrading Starlette to the latest version `0.16.0` with additional bug fixes.
+
+This way, in case there was a breaking change for your code in one of the releases, you can still benefit from the previous upgrades. ✨
+
+### Breaking Changes - Upgrade
+
 * ⬆️ Upgrade Starlette to 0.16.0. PR [#4016](https://github.com/tiangolo/fastapi/pull/4016) by [@tiangolo](https://github.com/tiangolo).
+
 ## 0.69.0
 
 ### Breaking Changes - Upgrade
