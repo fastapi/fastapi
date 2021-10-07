@@ -33,10 +33,8 @@ classifiers = [
     "Topic :: Internet :: WWW/HTTP",
 ]
 requires = [
-    "starlette ==0.15.0",
+    "starlette ==0.16.0",
     "pydantic >=1.6.2,!=1.7,!=1.7.1,!=1.7.2,!=1.7.3,!=1.8,!=1.8.1,<2.0.0",
-    # TODO: remove contextlib2 as a direct dependency after upgrading Starlette
-    "contextlib2 >= 21.6.0; python_version < '3.7'",
 ]
 description-file = "README.md"
 requires-python = ">=3.6.1"
@@ -61,8 +59,7 @@ test = [
     "orjson >=3.2.1,<4.0.0",
     "ujson >=4.0.1,<5.0.0",
     "python-multipart >=0.0.5,<0.0.6",
-    # TODO: try to upgrade after upgrading Starlette
-    "flask >=1.1.2,<2.0.0",
+    "flask >=1.1.2,<3.0.0",
     "anyio[trio] >=3.2.1,<4.0.0",
 
     # types
@@ -87,11 +84,9 @@ dev = [
 ]
 all = [
     "requests >=2.24.0,<3.0.0",
-    # TODO: try to upgrade after upgrading Starlette
-    "jinja2 >=2.11.2,<3.0.0",
+    "jinja2 >=2.11.2,<4.0.0",
     "python-multipart >=0.0.5,<0.0.6",
-    # TODO: try to upgrade after upgrading Starlette
-    "itsdangerous >=1.1.0,<2.0.0",
+    "itsdangerous >=1.1.0,<3.0.0",
     "pyyaml >=5.3.1,<6.0.0",
     "ujson >=4.0.1,<5.0.0",
     "orjson >=3.2.1,<4.0.0",
@@ -141,7 +136,4 @@ filterwarnings = [
     "error",
     # TODO: needed by asyncio in Python 3.9.7 https://bugs.python.org/issue45097, try to remove on 3.9.8
     'ignore:The loop argument is deprecated since Python 3\.8, and scheduled for removal in Python 3\.10:DeprecationWarning:asyncio',
-    # TODO: if these ignores are needed, enable them, otherwise remove them
-    # 'ignore:The explicit passing of coroutine objects to asyncio\.wait\(\) is deprecated since Python 3\.8:DeprecationWarning',
-    # 'ignore:Exception ignored in. <socket\.socket fd=-1:pytest.PytestUnraisableExceptionWarning',
 ]
