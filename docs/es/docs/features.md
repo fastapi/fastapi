@@ -32,7 +32,6 @@ Si necesitas un repaso de 2 minutos de cómo usar los tipos de Python (así no u
 Escribes Python estándar con tipos así:
 
 ```Python
-from typing import List, Dict
 from datetime import date
 
 from pydantic import BaseModel

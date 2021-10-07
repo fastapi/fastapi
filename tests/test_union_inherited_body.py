@@ -4,7 +4,7 @@ from fastapi import FastAPI
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
 
-from .utils import skip_py36
+from .utils import needs_py37
 
 # In Python 3.6:
 # u = Union[ExtendedItem, Item] == __main__.Item
@@ -118,21 +118,21 @@ inherited_item_openapi_schema = {
 }
 
 
-@skip_py36
+@needs_py37
 def test_inherited_item_openapi_schema():
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
     assert response.json() == inherited_item_openapi_schema
 
 
-@skip_py36
+@needs_py37
 def test_post_extended_item():
     response = client.post("/items/", json={"name": "Foo", "age": 5})
     assert response.status_code == 200, response.text
     assert response.json() == {"item": {"name": "Foo", "age": 5}}
 
 
-@skip_py36
+@needs_py37
 def test_post_item():
     response = client.post("/items/", json={"name": "Foo"})
     assert response.status_code == 200, response.text
