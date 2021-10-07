@@ -2,6 +2,8 @@
 
 ## Latest Changes
 
+## 0.69.0
+
 ### Breaking Changes - Upgrade
 
 This release adds support for [Trio](https://trio.readthedocs.io/en/stable/). ✨
