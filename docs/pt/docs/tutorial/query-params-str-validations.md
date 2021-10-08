@@ -8,7 +8,7 @@ Vamos utilizar essa aplicação como exemplo:
 {!../../../docs_src/query_params_str_validations/tutorial001.py!}
 ```
 
-O parâmetro de consulta `q` é do tipo `Optional[str]`, que significa que é do tipo `str` mas que também pode ser `None`, e de fato, o valor padrão é `None`, então o FastAPI saberá que não é obrigatório.
+O parâmetro de consulta `q` é do tipo `Optional[str]`, o que significa que é do tipo `str` mas que também pode ser `None`, e de fato, o valor padrão é `None`, então o FastAPI saberá que não é obrigatório.
 
 !!! note "Observação"
     O FastAPI saberá que o valor de `q` não é obrigatório por causa do valor padrão `= None`.
