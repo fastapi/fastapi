@@ -14,6 +14,9 @@
 <a href="https://pypi.org/project/fastapi" target="_blank">
     <img src="https://img.shields.io/pypi/v/fastapi?color=%2334D058&label=pypi%20package" alt="Package version">
 </a>
+<a href="https://pypi.org/project/fastapi" target="_blank">
+    <img src="https://img.shields.io/pypi/pyversions/fastapi.svg?color=%2334D058" alt="Supported Python versions">
+</a>
 </p>
 
 ---
@@ -130,7 +133,7 @@ You will also need an ASGI server, for production such as <a href="https://www.u
 <div class="termy">
 
 ```console
-$ pip install uvicorn[standard]
+$ pip install "uvicorn[standard]"
 
 ---> 100%
 ```
@@ -454,7 +457,7 @@ Used by FastAPI / Starlette:
 * <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - Required if you want to use `ORJSONResponse`.
 * <a href="https://github.com/mpdavis/python-jose" target="_blank"><code>python-jose[cryptography]</code></a> - Required if you want to use `JwtAccess` or `JwtRefresh`.
 
-You can install all of these with `pip install fastapi[all]`.
+You can install all of these with `pip install "fastapi[all]"`.
 
 ## License
 

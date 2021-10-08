@@ -187,4 +187,4 @@ Having **HTTPS** is very important, and quite **critical** in most cases. Most o
 
 But once you know the basic information of **HTTPS for developers** you can easily combine and configure different tools to help you manage everything in a simple way.
 
-In some of the next chapters I'll show you several concrete examples of how to set up **HTTPS** for **FastAPI** applications. 🔒
+In some of the next chapters, I'll show you several concrete examples of how to set up **HTTPS** for **FastAPI** applications. 🔒
