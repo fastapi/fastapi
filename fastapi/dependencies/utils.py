@@ -110,6 +110,34 @@ class DependencyNode(object):
             result=None,
         )
 
+    async def task(
+        self,
+        nodes: List['DependencyNode'],
+        request: Request,
+        task_group: anyio.abc.TaskGroup,
+    ):
+        call = self.call
+        arguments = self.arguments
+        promise = None
+        if is_gen_callable(call) or is_async_gen_callable(call):
+            stack = request.scope.get("fastapi_astack")
+            assert isinstance(stack, AsyncExitStack)
+            promise = solve_generator(call=call, stack=stack, arguments=arguments)
+        elif is_coroutine_callable(call):
+            promise = call(**arguments)
+        else:
+            promise = run_in_threadpool(call, **arguments)
+        self.result = await promise
+
+        for parent_node_idx, argument_name in self.backref:
+            parent_node = nodes[parent_node_idx]
+            if argument_name is not None:
+                parent_node.arguments[argument_name] = self.result
+
+            parent_node.refcount -= 1
+            if parent_node.refcount == 0:
+                task_group.start_soon(parent_node.task, nodes, request, task_group)
+
 
 class SolvingPlan(object):
 
@@ -489,27 +517,13 @@ def is_gen_callable(call: Callable[..., Any]) -> bool:
 
 
 async def solve_generator(
-    *, call: Callable[..., Any], stack: AsyncExitStack, sub_values: Dict[str, Any]
+    *, call: Callable[..., Any], stack: AsyncExitStack, arguments: Dict[str, Any]
 ) -> Any:
     if is_gen_callable(call):
-        cm = contextmanager_in_threadpool(contextmanager(call)(**sub_values))
+        cm = contextmanager_in_threadpool(contextmanager(call)(**arguments))
     elif is_async_gen_callable(call):
-        cm = asynccontextmanager(call)(**sub_values)
+        cm = asynccontextmanager(call)(**arguments)
     return await stack.enter_async_context(cm)
-
-
-def get_task(
-    call: Callable[..., Any], arguments: Dict[str, Any], request: Union[Request, WebSocket]
-) -> Any:
-    if is_gen_callable(call) or is_async_gen_callable(call):
-        stack = request.scope.get("fastapi_astack")
-        assert isinstance(stack, AsyncExitStack)
-        return asyncio.create_task(solve_generator(
-            call=call, stack=stack, sub_values=arguments
-        ))
-    if is_coroutine_callable(call):
-        return asyncio.create_task(call(**arguments))
-    return asyncio.create_task(run_in_threadpool(call, **arguments))
 
 
 def get_solving_plan(
@@ -708,36 +722,10 @@ async def run_plan(
     if errors:
         return nodes[0].result, errors, background_tasks, response
 
-    pending_tasks = set()
-    task_to_node = dict()
-    for node in nodes:
-        if node.refcount == 0:
-            task = get_task(node.call, node.arguments, request)
-            task_to_node[task] = node
-            pending_tasks.add(task)
-
-    while pending_tasks:
-        done, pending_tasks = await asyncio.wait(
-            pending_tasks, return_when=asyncio.FIRST_COMPLETED
-        )
-        for task in done:
-            exception = task.exception()
-            if exception:
-                raise exception
-            task_result = task.result()
-            node = task_to_node[task]
-            node.result = task_result
-            for parent_node_idx, argument_name in node.backref:
-                parent_node = nodes[parent_node_idx]
-
-                if argument_name is not None:
-                    parent_node.arguments[argument_name] = task_result
-
-                parent_node.refcount -= 1
-                if parent_node.refcount == 0:
-                    task = get_task(parent_node.call, parent_node.arguments, request)
-                    task_to_node[task] = parent_node
-                    pending_tasks.add(task)
+    async with anyio.create_task_group() as task_group:
+        for node in nodes:
+            if node.refcount == 0:
+                task_group.start_soon(node.task, nodes, request, task_group)
 
     return nodes[0].result, errors, background_tasks, response
 
