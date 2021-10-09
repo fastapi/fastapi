@@ -44,7 +44,7 @@ def jsonable_encoder(
     if isinstance(obj, BaseModel):
         encoder = getattr(obj.__config__, "json_encoders", {})
         if custom_encoder:
-            encoder.update(custom_encoder)
+            encoder.copy().update(custom_encoder)
         obj_dict = obj.dict(
             include=include,  # type: ignore # in Pydantic
             exclude=exclude,  # type: ignore # in Pydantic

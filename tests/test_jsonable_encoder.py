@@ -161,6 +161,36 @@ def test_custom_encoders():
     assert encoded_instance["dt_field"] == instance.dt_field.isoformat()
 
 
+def test_custom_encoders_dont_modify():
+    class safe_datetime(datetime):
+        pass
+
+    class safer_datetime(datetime):
+        pass
+
+    orig_json_encoders = {
+        safer_datetime: lambda dt: dt.replace(
+            microsecond=0, tzinfo=timezone.utc
+        ).isoformat()
+    }
+
+    class MyModel(BaseModel):
+        dt_field: safe_datetime
+        dt_field2: safer_datetime = None
+
+        class Config:
+            json_encoders = orig_json_encoders
+
+    instance = MyModel(dt_field=safe_datetime.now())
+
+    encoded_instance = jsonable_encoder(
+        instance, custom_encoder={safe_datetime: lambda o: o.isoformat()}
+    )
+    assert encoded_instance["dt_field"] == instance.dt_field.isoformat()
+
+    assert MyModel.__config__.json_encoders == orig_json_encoders
+
+
 def test_encode_model_with_path(model_with_path):
     if isinstance(model_with_path.path, PureWindowsPath):
         expected = "\\foo\\bar"
