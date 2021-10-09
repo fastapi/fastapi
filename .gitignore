@@ -19,7 +19,7 @@ docs_build
 venv
 docs.zip
 archive.zip
-
+fastapi.example.py
 # vim temporary files
 *~
 .*.sw?
