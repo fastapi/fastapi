@@ -10,6 +10,7 @@ site
 .coverage
 coverage.xml
 .netlify
+fastsockets.py
 test.db
 log.txt
 Pipfile.lock
