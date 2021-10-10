@@ -302,15 +302,23 @@ def results():
 Просто у вас будет не одна таблица в Экселе, а множество. В ряде случаев используется
 специальный процессор для создания и / или использования построенных таким образом моделей.
 
-### Concurrency + Parallelism: Web + Machine Learning
+### Конкурентность + параллелизм: Веб + машинное обучение
 
-With **FastAPI** you can take the advantage of concurrency that is very common for web development (the same main attractive of NodeJS).
+**FastAPI** предоставляет возможности конкуретного программирования,
+которое очень распространено в веб-разработке (именно этим славится NodeJS).
 
-But you can also exploit the benefits of parallelism and multiprocessing (having multiple processes running in parallel) for **CPU bound** workloads like those in Machine Learning systems.
+Кроме того вы сможете использовать все преимущества параллелизма и
+<abbr title="multiprocessing">многопроцессорности</abbr> (когда несколько процессов работают параллельно),
+если рабочая нагрузка предполагает **ограничение по процессору**,
+как, например, в системах машинного обучения. <!--http://new.gramota.ru/spravka/punctum?layout=item&id=58_329-->
 
-That, plus the simple fact that Python is the main language for **Data Science**, Machine Learning and especially Deep Learning, make FastAPI a very good match for Data Science / Machine Learning web APIs and applications (among many others).
+Необходимо также отметить, что Python является главным языком в области
+<abbr title="наука о данных (data science)">**дата-сайенс**</abbr>,
+машинного обучения и, особенно, глубокого обучения. Всё это делает FastAPI
+отличным вариантом (среди многих других) для разработки веб-API и приложений
+в области дата-сайенс / машинного обучения.
 
-To see how to achieve this parallelism in production see the section about [Deployment](deployment/index.md){.internal-link target=_blank}.
+Как добиться такого параллелизма в эксплуатации описано в разделе [Развёртывание](deployment/index.md){.internal-link target=_blank}.
 
 ## `async` and `await`
 
