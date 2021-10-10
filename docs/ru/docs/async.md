@@ -379,17 +379,20 @@ async def read_burgers():
     return burgers
 ```
  
-### More technical details
+### Технические подробности
 
-You might have noticed that `await` can only be used inside of functions defined with `async def`.
+Как вы могли заметить, `await` может применяться только в функциях, объявленных с использованием `async def`.
 
-But at the same time, functions defined with `async def` have to be "awaited". So, functions with `async def` can only be called inside of functions defined with `async def` too.
+<!--http://new.gramota.ru/spravka/punctum?layout=item&id=58_128-->
+В то же время функции, объявленные с `async def`, необходимо "ожидать".
+Поэтому такие функции можно вызывать только из других функций, которые тоже объявлены с `async def`.
 
-So, about the egg and the chicken, how do you call the first `async` function?
+Но как же тогда появилась первая <abbr title="или яйцо?🤔">курица</abbr>? В смысле, как нам вызвать первую асинхронную функцию?
 
-If you are working with **FastAPI** you don't have to worry about that, because that "first" function will be your *path operation function*, and FastAPI will know how to do the right thing.
+При работе с **FastAPI** просто не думайте об этом, потому что "первой" функцией является ваша *функция обработки пути*,
+и дальше с этим разберётся FastAPI.
 
-But if you want to use `async` / `await` without FastAPI, <a href="https://docs.python.org/3/library/asyncio-task.html#coroutine" class="external-link" target="_blank">check the official Python docs</a>.
+Но если вы хотите использовать синтаксис `async` / `await` без FastAPI, <a href="https://docs.python.org/3/library/asyncio-task.html#coroutine" class="external-link" target="_blank">загляните в официальную документацию Python</a>.
 
 ### Other forms of asynchronous code
 
