@@ -320,47 +320,57 @@ def results():
 
 Как добиться такого параллелизма в эксплуатации описано в разделе [Развёртывание](deployment/index.md){.internal-link target=_blank}.
 
-## `async` and `await`
+## `async` и `await`
 
-Modern versions of Python have a very intuitive way to define asynchronous code. This makes it look just like normal "sequential" code and do the "awaiting" for you at the right moments.
+В современных версиях Python разработка асинхронного кода реализована очень интуитивно.
+Он выглядит как обычный "последовательный" код и самостоятельно выполняет "ожидание", когда это необходимо.
 
-When there is an operation that will require waiting before giving the results and has support for these new Python features, you can code it like:
+Если некая операция требует ожидания перед тем, как вернуть результат, и
+поддерживает современные возможности Python, код можно написать следующим образом:
 
 ```Python
 burgers = await get_burgers(2)
 ```
 
-The key here is the `await`. It tells Python that it has to wait ⏸ for `get_burgers(2)` to finish doing its thing 🕙 before storing the results in `burgers`. With that, Python will know that it can go and do something else 🔀 ⏯ in the meanwhile (like receiving another request).
+Главное здесь слово `await`. Оно сообщает интерпретатору, что необходимо дождаться ⏸
+пока `get_burgers(2)` закончит свои дела 🕙, и только после этого сохранить результат в `burgers`.
+Зная это, Python может пока переключиться на выполнение других задач 🔀 ⏯
+(например, получение следующего запроса).
 
-For `await` to work, it has to be inside a function that supports this asynchronicity. To do that, you just declare it with `async def`:
+Чтобы ключевое слово `await` сработало, оно должно находиться внутри функции,
+которая поддерживает асинхронность. Для этого вам просто нужно объявить её как `async def`:
 
 ```Python hl_lines="1"
 async def get_burgers(number: int):
-    # Do some asynchronous stuff to create the burgers
+    # Готовим бургеры по специальному асинхронному рецепту
     return burgers
 ```
 
-...instead of `def`:
+...вместо `def`:
 
 ```Python hl_lines="2"
-# This is not asynchronous
+# Это не асинхронный код
 def get_sequential_burgers(number: int):
-    # Do some sequential stuff to create the burgers
+    # Готовим бургеры последовательно по шагам
     return burgers
 ```
 
-With `async def`, Python knows that, inside that function, it has to be aware of `await` expressions, and that it can "pause" ⏸ the execution of that function and go do something else 🔀 before coming back.
+Объявление `async def` указывает интерпретатору, что внутри этой функции
+следует ожидать выражений `await`, и что можно поставить выполнение такой функции на "паузу" ⏸ и
+переключиться на другие задачи 🔀, с тем чтобы вернуться сюда позже.
 
-When you want to call an `async def` function, you have to "await" it. So, this won't work:
+Если вы хотите вызвать функцию с `async def`, вам нужно <abbr title="await">"ожидать"</abbr> её.
+Поэтому такое не сработает:
 
 ```Python
-# This won't work, because get_burgers was defined with: async def
+# Это не заработает, поскольку get_burgers объявлена с использованием async def
 burgers = get_burgers(2)
 ```
 
 ---
 
-So, if you are using a library that tells you that you can call it with `await`, you need to create the *path operation functions* that uses it with `async def`, like in:
+Если сторонняя библиотека требует от вас вызывать её с ключевым словом `await`,
+необходимо писать *функции обработки пути* с использованием `async def`, например:
 
 ```Python hl_lines="2-3"
 @app.get('/burgers')
@@ -368,7 +378,7 @@ async def read_burgers():
     burgers = await get_burgers(2)
     return burgers
 ```
-
+ 
 ### More technical details
 
 You might have noticed that `await` can only be used inside of functions defined with `async def`.
