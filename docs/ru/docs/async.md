@@ -410,11 +410,15 @@ async def read_burgers():
 <abbr title="callback">"обратные вызовы"</abbr>. Что выливалось в
 <a href="http://callbackhell.ru/" class="external-link" target="_blank">ад обратных вызовов</a>.
 
-## Coroutines
+## Сопрограммы
 
-**Coroutine** is just the very fancy term for the thing returned by an `async def` function. Python knows that it is something like a function that it can start and that it will end at some point, but that it might be paused ⏸ internally too, whenever there is an `await` inside of it.
+<abbr title="coroutine">**Корути́на**</abbr> (или же сопрограмма) — это крутое словечко для именования той сущности,
+которую возвращает функция `async def`. Python знает, что её можно запустить, как и обычную функцию,
+но кроме того сопрограмму можно поставить на паузу ⏸ в том месте, где встретится слово `await`.
 
-But all this functionality of using asynchronous code with `async` and `await` is many times summarized as using "coroutines". It is comparable to the main key feature of Go, the "Goroutines".
+Всю функциональность асинхронного программирования с использованием `async` и `await`
+часто обобщают словом "корутины". Они аналогичны <abbr title="Goroutines">"горутинам"</abbr>, ключевой особенности
+языка Go.
 
 ## Conclusion
 
