@@ -444,13 +444,23 @@ async def read_burgers():
     и вам интересно, как FastAPI обрабатывает `async def` в отличие от обычных `def`,
     читайте дальше.
 
-### Path operation functions
+### Функции обработки пути
 
-When you declare a *path operation function* with normal `def` instead of `async def`, it is run in an external threadpool that is then awaited, instead of being called directly (as it would block the server).
+Когда вы объявляете *функцию обработки пути* обычным образом с ключевым словом `def`
+вместо `async def`, FastAPI ожидает её выполнения, запустив функцию во внешнем
+<abbr title="threadpool">пуле потоков</abbr>, а не напрямую (это бы заблокировало сервер).
 
-If you are coming from another async framework that does not work in the way described above and you are used to define trivial compute-only *path operation functions* with plain `def` for a tiny performance gain (about 100 nanoseconds), please note that in **FastAPI** the effect would be quite opposite. In these cases, it's better to use `async def` unless your *path operation functions* use code that performs blocking <abbr title="Input/Output: disk reading or writing, network communications.">I/O</abbr>.
+Если ранее вы использовали другой асинхронный фреймворк, который работает иначе,
+и привыкли объявлять простые вычислительные *функции* через `def` ради
+незначительного прироста скорости (порядка 100 наносекунд), обратите внимание,
+что с **FastAPI** вы получите противоположный эффект. В таком случае больше подходит
+`async def`, если только *функция обработки пути* не использует код, приводящий
+к блокировке <abbr title="Ввод/вывод: чтение и запись на диск, сетевые соединения.">I/O</abbr>.
+<!--Уточнить: Не использовать async def, если код приводит к блокировке IO?-->
 
-Still, in both situations, chances are that **FastAPI** will [still be faster](/#performance){.internal-link target=_blank} than (or at least comparable to) your previous framework.
+<!--http://new.gramota.ru/spravka/punctum?layout=item&id=58_285-->
+Но в любом случае велика вероятность, что **FastAPI** [окажется быстрее](/#performance){.internal-link target=_blank}
+другого фреймворка (или хотя бы на уровне с ним).
 
 ### Dependencies
 
