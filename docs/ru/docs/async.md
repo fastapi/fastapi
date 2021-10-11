@@ -462,13 +462,18 @@ async def read_burgers():
 Но в любом случае велика вероятность, что **FastAPI** [окажется быстрее](/#performance){.internal-link target=_blank}
 другого фреймворка (или хотя бы на уровне с ним).
 
-### Dependencies
+### Зависимости
 
-The same applies for dependencies. If a dependency is a standard `def` function instead of `async def`, it is run in the external threadpool.
+То же относится к зависимостям. Если это обычная функция `def`, а не `async def`,
+она запускается во внешнем пуле потоков.
 
-### Sub-dependencies
+### Подзависимости
 
-You can have multiple dependencies and sub-dependencies requiring each other (as parameters of the function definitions), some of them might be created with `async def` and some with normal `def`. It would still work, and the ones created with normal `def` would be called on an external thread (from the threadpool) instead of being "awaited".
+Вы можете объявить множество ссылающихся друг на друга зависимостей и подзависимостей
+(в виде параметров при определении функции). Какие-то будут созданы с помощью `async def`,
+другие обычным образом через `def`, и такая схема вполне работоспособна. Функции,
+объявленные с помощью `def` будут запускаться на внешнем потоке (из пула),
+а не с помощью `await`.
 
 ### Other utility functions
 
