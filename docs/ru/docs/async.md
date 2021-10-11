@@ -433,14 +433,16 @@ async def read_burgers():
 На этом основана работа FastAPI (посредством Starlette), и именно это
 обеспечивает его высокую производительность.
 
-## Very Technical Details
+## Очень технические подробности
 
 !!! warning
-    You can probably skip this.
+    Этот раздел читать не обязательно.
 
-    These are very technical details of how **FastAPI** works underneath.
+    Здесь приводятся подробности внутреннего устройства **FastAPI**.
 
-    If you have quite some technical knowledge (co-routines, threads, blocking, etc) and are curious about how FastAPI handles `async def` vs normal `def`, go ahead.
+    Но если вы обладаете техническими знаниями (корутины, потоки, блокировка и т. д.)
+    и вам интересно, как FastAPI обрабатывает `async def` в отличие от обычных `def`,
+    читайте дальше.
 
 ### Path operation functions
 
