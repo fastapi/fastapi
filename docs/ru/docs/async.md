@@ -2,7 +2,7 @@
 
 Здесь приведена подробная информация об использовании синтаксиса `async def` при написании *функций обработки пути*, а также рассмотрены основы асинхронного программирования, конкурентности и параллелизма.
 
-## Нет времени?
+## Нет времени?<a name="in-a-hurry"></a>
 
 <abbr title="too long; didn't read (основная мысль)"><strong>TL;DR:</strong></abbr>
 
@@ -475,16 +475,22 @@ async def read_burgers():
 объявленные с помощью `def` будут запускаться на внешнем потоке (из пула),
 а не с помощью `await`.
 
-### Other utility functions
+### Другие служебные функции
 
-Any other utility function that you call directly can be created with normal `def` or `async def` and FastAPI won't affect the way you call it.
+Любые другие служебные функции, которые вы вызываете напрямую, можно объявлять
+с использованием `def` или `async def`. FastAPI не будет влиять на то, как вы
+их запускаете.
 
-This is in contrast to the functions that FastAPI calls for you: *path operation functions* and dependencies.
+Этим они отличаются от функций, которые FastAPI вызывает самостоятельно:
+*функции обработки пути* и зависимости.
 
-If your utility function is a normal function with `def`, it will be called directly (as you write it in your code), not in a threadpool, if the function is created with `async def` then you should `await` for that function when you call it in your code.
+Если служебная функция объявлена с помощью `def`, она будет вызвана напрямую
+(как вы и написали в коде), а не в отдельном потоке. Если же она объявлена с
+помощью `async def`, её вызов должен осуществляться с ожиданием через `await`.
 
 ---
 
-Again, these are very technical details that would probably be useful if you came searching for them.
+<!--http://new.gramota.ru/spravka/buro/search-answer?s=299749-->
+Ещё раз повторим, что все эти технические подробности полезны, только если вы специально их искали.
 
-Otherwise, you should be good with the guidelines from the section above: <a href="#in-a-hurry">In a hurry?</a>.
+В противном случае просто ознакомьтесь с основными принципами в разделе выше: <a href="#in-a-hurry">Нет времени?</a>.
