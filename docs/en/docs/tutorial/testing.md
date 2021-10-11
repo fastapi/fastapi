@@ -10,7 +10,7 @@ With it, you can use <a href="https://docs.pytest.org/" class="external-link" ta
 
 Import `TestClient`.
 
-Create a `TestClient` passing to it your **FastAPI**.
+Create a `TestClient` passing to it your **FastAPI** application.
 
 Create functions with a name that starts with `test_` (this is standard `pytest` conventions).
 

@@ -44,3 +44,10 @@ def test_disable_openapi(monkeypatch):
     assert response.status_code == 404, response.text
     response = client.get("/redoc")
     assert response.status_code == 404, response.text
+
+
+def test_root():
+    client = TestClient(tutorial001.app)
+    response = client.get("/")
+    assert response.status_code == 200
+    assert response.json() == {"message": "Hello World"}

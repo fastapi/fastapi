@@ -360,6 +360,12 @@ no_jessica = {
         ("/users/me?token=jessica", 200, {"username": "fakecurrentuser"}, {}),
         ("/users/me", 422, no_jessica, {}),
         (
+            "/users?token=monica",
+            400,
+            {"detail": "No Jessica token provided"},
+            {},
+        ),
+        (
             "/items?token=jessica",
             200,
             {"plumbus": {"name": "Plumbus"}, "gun": {"name": "Portal Gun"}},
@@ -370,6 +376,12 @@ no_jessica = {
             "/items/plumbus?token=jessica",
             200,
             {"name": "Plumbus", "item_id": "plumbus"},
+            {"X-Token": "fake-super-secret-token"},
+        ),
+        (
+            "/items/bar?token=jessica",
+            404,
+            {"detail": "Item not found"},
             {"X-Token": "fake-super-secret-token"},
         ),
         ("/items/plumbus", 422, no_jessica, {"X-Token": "fake-super-secret-token"}),
