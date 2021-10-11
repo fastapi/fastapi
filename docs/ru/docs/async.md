@@ -394,19 +394,21 @@ async def read_burgers():
 
 Но если вы хотите использовать синтаксис `async` / `await` без FastAPI, <a href="https://docs.python.org/3/library/asyncio-task.html#coroutine" class="external-link" target="_blank">загляните в официальную документацию Python</a>.
 
-### Other forms of asynchronous code
+### Другие виды асинхронного программирования
 
-This style of using `async` and `await` is relatively new in the language.
+Стиль написания кода с `async` и `await` появился в языке Python относительно недавно.
 
-But it makes working with asynchronous code a lot easier.
+Но он сильно облегчает работу с асинхронным кодом.
 
-This same syntax (or almost identical) was also included recently in modern versions of JavaScript (in Browser and NodeJS).
+Ровно такой же синтаксис (ну или почти такой же) недавно был включён в современные версии JavaScript (в браузере и NodeJS).
 
-But before that, handling asynchronous code was quite more complex and difficult.
+До этого поддержка асинхронного кода была реализована намного сложнее, и его было труднее воспринимать.
 
-In previous versions of Python, you could have used threads or <a href="https://www.gevent.org/" class="external-link" target="_blank">Gevent</a>. But the code is way more complex to understand, debug, and think about.
+В предыдущих версиях Python для этого использовались потоки или <a href="https://www.gevent.org/" class="external-link" target="_blank">Gevent</a>. Но такой код намного сложнее понимать, отлаживать и мысленно представлять.
 
-In previous versions of NodeJS / Browser JavaScript, you would have used "callbacks". Which leads to <a href="http://callbackhell.com/" class="external-link" target="_blank">callback hell</a>.
+Что касается JavaScript (в браузере и NodeJS), раньше там использовали для этой цели
+<abbr title="callback">"обратные вызовы"</abbr>. Что выливалось в
+<a href="http://callbackhell.ru/" class="external-link" target="_blank">ад обратных вызовов</a>.
 
 ## Coroutines
 
