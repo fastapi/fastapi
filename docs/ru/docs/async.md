@@ -420,15 +420,18 @@ async def read_burgers():
 часто обобщают словом "корутины". Они аналогичны <abbr title="Goroutines">"горутинам"</abbr>, ключевой особенности
 языка Go.
 
-## Conclusion
+## Заключение
 
-Let's see the same phrase from above:
+В самом начале была такая фраза:
 
-> Modern versions of Python have support for **"asynchronous code"** using something called **"coroutines"**, with **`async` and `await`** syntax.
+> Современные версии Python поддерживают разработку так называемого
+**"асинхронного кода"** посредством написания **"сопрограмм"** с использованием
+синтаксиса **`async` и `await`**.
 
-That should make more sense now. ✨
+Теперь всё должно звучать понятнее. ✨
 
-All that is what powers FastAPI (through Starlette) and what makes it have such an impressive performance.
+На этом основана работа FastAPI (посредством Starlette), и именно это
+обеспечивает его высокую производительность.
 
 ## Very Technical Details
 
