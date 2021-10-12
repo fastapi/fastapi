@@ -29,6 +29,7 @@ from pydantic.schema import (
     get_model_name_map,
 )
 from pydantic.utils import lenient_issubclass
+from fastapi.openapi.models import DefaultErrorSchema
 from starlette.responses import JSONResponse
 from starlette.routing import BaseRoute
 from starlette.status import HTTP_422_UNPROCESSABLE_ENTITY
@@ -167,7 +168,7 @@ def get_openapi_operation_metadata(
 
 
 def get_openapi_path(
-    *, route: routing.APIRoute, model_name_map: Dict[type, str]
+    *, route: routing.APIRoute, model_name_map: Dict[type, str], default_error_schema: Optional[DefaultErrorSchema] = None
 ) -> Tuple[Dict[str, Any], Dict[str, Any], Dict[str, Any]]:
     path = {}
     security_schemes: Dict[str, Any] = {}
@@ -296,12 +297,30 @@ def get_openapi_path(
                     deep_dict_update(openapi_response, process_response)
                     openapi_response["description"] = description
             http422 = str(HTTP_422_UNPROCESSABLE_ENTITY)
-            if (all_route_params or route.body_field) and not any(
+            if(default_error_schema is not None):
+                operation["responses"][default_error_schema["status"]] = {
+                    "description": default_error_schema["description"],
+                    "content": {
+                        "application/json": {
+                            "schema": {"$ref": REF_PREFIX + default_error_schema["name"] }
+                        },
+                    }
+                }
+                definitions.update(
+                    {
+                        default_error_schema["name"]: {
+                            "title": default_error_schema["name"],
+                            "type": "object",
+                            "properties": default_error_schema["properties"]
+                        }
+                    }
+                )
+            elif (all_route_params or route.body_field) and not any(
                 [
                     status in operation["responses"]
                     for status in [http422, "4XX", "default"]
                 ]
-            ):
+                ):
                 operation["responses"][http422] = {
                     "description": "Validation Error",
                     "content": {
@@ -362,6 +381,7 @@ def get_openapi(
     openapi_version: str = "3.0.2",
     description: Optional[str] = None,
     routes: Sequence[BaseRoute],
+    default_error_schema: Optional[DefaultErrorSchema] = None,
     tags: Optional[List[Dict[str, Any]]] = None,
     servers: Optional[List[Dict[str, Union[str, Any]]]] = None,
     terms_of_service: Optional[str] = None,
@@ -389,7 +409,7 @@ def get_openapi(
     )
     for route in routes:
         if isinstance(route, routing.APIRoute):
-            result = get_openapi_path(route=route, model_name_map=model_name_map)
+            result = get_openapi_path(route=route, model_name_map=model_name_map, default_error_schema=default_error_schema)
             if result:
                 path, security_schemes, path_definitions = result
                 if path:

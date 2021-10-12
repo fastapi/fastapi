@@ -15,6 +15,7 @@ from fastapi.openapi.docs import (
     get_swagger_ui_html,
     get_swagger_ui_oauth2_redirect_html,
 )
+from fastapi.openapi.models import DefaultErrorSchema
 from fastapi.openapi.utils import get_openapi
 from fastapi.params import Depends
 from fastapi.types import DecoratedCallable
@@ -62,6 +63,7 @@ class FastAPI(Starlette):
         root_path: str = "",
         root_path_in_servers: bool = True,
         responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
+        default_error_schema: Optional[DefaultErrorSchema] = None,
         callbacks: Optional[List[BaseRoute]] = None,
         deprecated: Optional[bool] = None,
         include_in_schema: bool = True,
@@ -123,6 +125,7 @@ class FastAPI(Starlette):
         self.extra = extra
         self.dependency_overrides: Dict[Callable[..., Any], Callable[..., Any]] = {}
 
+        self.default_error_schema = default_error_schema
         self.openapi_version = "3.0.2"
 
         if self.openapi_url:
@@ -141,6 +144,7 @@ class FastAPI(Starlette):
                 terms_of_service=self.terms_of_service,
                 contact=self.contact,
                 license_info=self.license_info,
+                default_error_schema=self.default_error_schema,
                 routes=self.routes,
                 tags=self.openapi_tags,
                 servers=self.servers,
