@@ -311,7 +311,8 @@ def get_openapi_path(
                         default_error_schema["name"]: {
                             "title": default_error_schema["name"],
                             "type": "object",
-                            "properties": default_error_schema["properties"]
+                            "properties": default_error_schema["properties"],
+                            "required": default_error_schema["required"]
                         }
                     }
                 )
