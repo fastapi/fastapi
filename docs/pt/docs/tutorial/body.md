@@ -4,38 +4,38 @@ Quando for preciso enviar dados de um cliente(Por exemplo, um browser) para a su
 
 O corpo da **requisição** são os dados enviados pelo cliente para a sua API, enquanto que o corpo da **resposta** são os dados que a sua API envia para o cliente.
 
-Your API almost always has to send a **response** body. But clients don't necessarily need to send **request** bodies all the time.
+A sua API quase sempre terá que enviar algo no corpo da **resposta**. Mas os clientes não necessariamente precisam enviar um corpo da **requisição** o tempo todo.
 
-To declare a **request** body, you use <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> models with all their power and benefits.
+Para declarar um corpo de **requisição**, você irá usar modelos <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> com todo o seu poder e benefícios.
 
-!!! info
-    To send data, you should use one of: `POST` (the more common), `PUT`, `DELETE` or `PATCH`.
+!!! Informação
+    Para enviar dados, você deve usar: `POST` (o mais comum), `PUT`, `DELETE` ou `PATCH`.
 
-    Sending a body with a `GET` request has an undefined behavior in the specifications, nevertheless, it is supported by FastAPI, only for very complex/extreme use cases.
+    Enviar um corpo numa requisição `GET` tem um comportamento indefinido nas especificações, de qualquer forma isso é suportado pelo FastAPI, apenas para casos muito complexos/extremos.
 
-    As it is discouraged, the interactive docs with Swagger UI won't show the documentation for the body when using `GET`, and proxies in the middle might not support it.
+    Visto que, não é aconselhado, a documentação iterativa com Swagger UI não irá mostrar documentação para o corpo quando se usar o método `GET`, e possíveis proxies no meio podem não    suportar.
 
-## Import Pydantic's `BaseModel`
+## Importe o `BaseModel` do Pydantic
 
-First, you need to import `BaseModel` from `pydantic`:
+Primeiramente, será preciso importar o `BaseModel` do `pydantic`:
 
 ```Python hl_lines="4"
 {!../../../docs_src/body/tutorial001.py!}
 ```
 
-## Create your data model
+## Crie o seu modelo de dados
 
-Then you declare your data model as a class that inherits from `BaseModel`.
+Apõs isso, será preciso criar o seu modelo de dados que irá herdar do `BaseModel`.
 
-Use standard Python types for all the attributes:
+Use os tipos padrões do Python para todos os atributos:
 
 ```Python hl_lines="7-11"
 {!../../../docs_src/body/tutorial001.py!}
 ```
 
-The same as when declaring query parameters, when a model attribute has a default value, it is not required. Otherwise, it is required. Use `None` to make it just optional.
+Da mesma forma de quando-se declara parâmetros de query, quando o atributo de um modelo possui um valor padrão, esse atributo não será obrigatório. Caso contrário sim. Use `None` para faze-lo meramente opcional.
 
-For example, this model above declares a JSON "`object`" (or Python `dict`) like:
+Por exemplo, esse modelo abaixo declara um "`object`" JSON(ou `dict` Python):
 
 ```JSON
 {
@@ -46,7 +46,7 @@ For example, this model above declares a JSON "`object`" (or Python `dict`) like
 }
 ```
 
-...as `description` and `tax` are optional (with a default value of `None`), this JSON "`object`" would also be valid:
+...uma vez que, `description` e `tax` são opcionais (com um valor padrão de `None`), esse "`object`" JSON também será válido:
 
 ```JSON
 {
@@ -55,83 +55,83 @@ For example, this model above declares a JSON "`object`" (or Python `dict`) like
 }
 ```
 
-## Declare it as a parameter
+## Declare como um parâmetro
 
-To add it to your *path operation*, declare it the same way you declared path and query parameters:
+De forma à adicionar para a sua *operação de rota*, declare da mesma forma que você declarou os parâmetros de rota e de query:
 
 ```Python hl_lines="18"
 {!../../../docs_src/body/tutorial001.py!}
 ```
 
-...and declare its type as the model you created, `Item`.
+...e declare o tipo como o modelo criado anteriormente, `Item`.
 
-## Results
+## Resultados
 
-With just that Python type declaration, **FastAPI** will:
+Com apenas essa declaração de tipos do Python, o **FastAPI** vai:
 
-* Read the body of the request as JSON.
-* Convert the corresponding types (if needed).
-* Validate the data.
-    * If the data is invalid, it will return a nice and clear error, indicating exactly where and what was the incorrect data.
-* Give you the received data in the parameter `item`.
-    * As you declared it in the function to be of type `Item`, you will also have all the editor support (completion, etc) for all of the attributes and their types.
-* Generate <a href="https://json-schema.org" class="external-link" target="_blank">JSON Schema</a> definitions for your model, you can also use them anywhere else you like if it makes sense for your project.
-* Those schemas will be part of the generated OpenAPI schema, and used by the automatic documentation <abbr title="User Interfaces">UIs</abbr>.
+* Ler o corpo da requisição como um JSON.
+* Converter os tipos correspondentes(caso necessário).
+* Validar os dados.
+    * Se os dados forem inválidos, um erro bonito e claro vai ser retornado, indicando exatamente aonde e o que foi o dado incorreto..
+* Lhe fornecer os dados recebidos no parâmetro `item`.
+    * Uma vez que, você declarou-o dentro da função como do tipo `Item`, você também receberá todo o suporte do editor de texto(compleção, etc) em relação a todos os atributos e seus respectivos tipos.
+* Gerar definições no formato de <a href="https://json-schema.org" class="external-link" target="_blank">schema JSON</a> para o seu modelo, você pode usa-las em qualquer lugar que quiser se fizer sentido para o seu proejto.
+* Esses schemas serão parte do schema OpenAPI gerado, e serâo usados pelas <abbr title="User Interfaces">UIs</abbr> de documentação automatica.
 
-## Automatic docs
+## Documentação automática
 
-The JSON Schemas of your models will be part of your OpenAPI generated schema, and will be shown in the interactive API docs:
+Os schemas JSON dos seus modelos serão parte do schema gerado pela OpenAPI, e serão mostrados na documentação interativa da API:
 
 <img src="/img/tutorial/body/image01.png">
 
-And will be also used in the API docs inside each *path operation* that needs them:
+E serão também usadas na documentação dentro de cada *operação de rota* que precisar deles:
 
 <img src="/img/tutorial/body/image02.png">
 
-## Editor support
+## Suporte do editor
 
-In your editor, inside your function you will get type hints and completion everywhere (this wouldn't happen if you received a `dict` instead of a Pydantic model):
+No seu editor, dentro da sua função você irá receber dicas de tipos e compleção em todos os locais(isso não iria acontecer se um `dict` fosse recebido invés de um modelo do Pydantic):
 
 <img src="/img/tutorial/body/image03.png">
 
-You also get error checks for incorrect type operations:
+Você tambẽm irá ter checagem de erros para os casos de operações com tipos incorretos:
 
 <img src="/img/tutorial/body/image04.png">
 
-This is not by chance, the whole framework was built around that design.
+Isso não é por acaso, o framework inteiro foi feito ao redor desse design.
 
-And it was thoroughly tested at the design phase, before any implementation, to ensure it would work with all the editors.
+E foi testado exaustivamente na fase de design, antes de qualquer implementação, para garantir que funcione com todos os editores de texto.
 
-There were even some changes to Pydantic itself to support this.
+Houveram até mesmo algumas mudanças feitas dentro do próprio Pydantic para suportar isso.
 
-The previous screenshots were taken with <a href="https://code.visualstudio.com" class="external-link" target="_blank">Visual Studio Code</a>.
+As capturas de tela anteriores foram capturadas com o <a href="https://code.visualstudio.com" class="external-link" target="_blank">Visual Studio Code</a>.
 
-But you would get the same editor support with <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a> and most of the other Python editors:
+Mas você receberia o mesmo tipo de suporte com o <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a> e com a maioria dos outros editores de Python:
 
 <img src="/img/tutorial/body/image05.png">
 
-!!! tip
-    If you use <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a> as your editor, you can use the <a href="https://github.com/koxudaxi/pydantic-pycharm-plugin/" class="external-link" target="_blank">Pydantic PyCharm Plugin</a>.
+!!! Dica
+    Se você usa o <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a> como o seu editor, você pode usar o <a href="https://github.com/koxudaxi/pydantic-pycharm-plugin/" class="external-link" target="_blank">Pydantic PyCharm Plugin</a>.
 
-    It improves editor support for Pydantic models, with:
+    Ele vai melhorar o suporte do editor para modelos do Pydantic, em relação a:
     
-    * auto-completion
-    * type checks
-    * refactoring
-    * searching
-    * inspections
+    * auto-complementação
+    * checagem de tipos
+    * refactoração
+    * busca
+    * inspeções
 
-## Use the model
+## Usando o modelo
 
-Inside of the function, you can access all the attributes of the model object directly:
+Dentro da função, você pode acessar todos os atributos do objeto do modelo diretamente:
 
 ```Python hl_lines="21"
 {!../../../docs_src/body/tutorial002.py!}
 ```
 
-## Request body + path parameters
+## Corpo de requisição + parâmetros de rota
 
-You can declare path parameters and request body at the same time.
+Você pode declarar parâmetros de rota e um corpo de requisição ao mesmo tempo.
 
 **FastAPI** will recognize that the function parameters that match path parameters should be **taken from the path**, and that function parameters that are declared to be Pydantic models should be **taken from the request body**.
 
