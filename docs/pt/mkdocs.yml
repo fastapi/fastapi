@@ -62,6 +62,7 @@ nav:
   - tutorial/first-steps.md
   - tutorial/path-params.md
   - tutorial/body-fields.md
+  - tutorial/body-nested-models.md
   - Segurança:
     - tutorial/security/index.md
   - Guia de Usuário Avançado:
