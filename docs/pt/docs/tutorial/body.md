@@ -33,7 +33,7 @@ Use os tipos padrões do Python para todos os atributos:
 {!../../../docs_src/body/tutorial001.py!}
 ```
 
-Da mesma forma de quando-se declara parâmetros de query, quando o atributo de um modelo possui um valor padrão, esse atributo não será obrigatório. Caso contrário sim. Use `None` para faze-lo meramente opcional.
+Da mesma forma de quando-se declara parâmetros de query, quando o atributo de um modelo possui um valor padrão, esse atributo não será obrigatório. Caso contrário sim. Use `None` para fazê-lo meramente opcional.
 
 Por exemplo, esse modelo abaixo declara um "`object`" JSON(ou `dict` Python):
 
@@ -57,7 +57,7 @@ Por exemplo, esse modelo abaixo declara um "`object`" JSON(ou `dict` Python):
 
 ## Declare como um parâmetro
 
-De forma à adicionar para a sua *operação de rota*, declare da mesma forma que você declarou os parâmetros de rota e de query:
+De forma a adicionar para a sua *operação de rota*, declare da mesma forma que você declarou os parâmetros de rota e de query:
 
 ```Python hl_lines="18"
 {!../../../docs_src/body/tutorial001.py!}
@@ -133,34 +133,34 @@ Dentro da função, você pode acessar todos os atributos do objeto do modelo di
 
 Você pode declarar parâmetros de rota e um corpo de requisição ao mesmo tempo.
 
-**FastAPI** will recognize that the function parameters that match path parameters should be **taken from the path**, and that function parameters that are declared to be Pydantic models should be **taken from the request body**.
+O **FastAPI** vai reconhecer que os parâmetros da função que correspondem aos parâmetros da rota devem ser **retirados da rota**, e que os parâmetros da função que são declarados como modelos do Pydantic devem ser **retirados do corpo da requisição**.
 
 ```Python hl_lines="17-18"
 {!../../../docs_src/body/tutorial003.py!}
 ```
 
-## Request body + path + query parameters
+## Parâmetros de corpo + rota + query
 
-You can also declare **body**, **path** and **query** parameters, all at the same time.
+Você também pode declarar parâmetros de **corpo**, **rota** e **query**, todos ao mesmo tempo.
 
-**FastAPI** will recognize each of them and take the data from the correct place.
+O **FastAPI** vai reconhecer cada um deles e extrair os dados do local certo.
 
 ```Python hl_lines="18"
 {!../../../docs_src/body/tutorial004.py!}
 ```
 
-The function parameters will be recognized as follows:
+Os parâmetros da função vão ser reconhecidos da seguinte forma:
 
-* If the parameter is also declared in the **path**, it will be used as a path parameter.
-* If the parameter is of a **singular type** (like `int`, `float`, `str`, `bool`, etc) it will be interpreted as a **query** parameter.
-* If the parameter is declared to be of the type of a **Pydantic model**, it will be interpreted as a request **body**.
+* Se o parâmetro também for declarado na **rota**, ele será usado como um parâmetro de rota.
+* Se o parâmetro for de um **tipo singular**( como `int`, `float`, `str`, `bool`, etc) ele será interpretado como um parâmetro de query.
+* Se o parâmetro for declarado como sendo do tipo de um **modelo do Pydantic**, ele será interpretado como sendo o **corpo** da requisição.
 
-!!! note
-    FastAPI will know that the value of `q` is not required because of the default value `= None`.
+!!! Nota
+    O FastAPI vai saber que o valor de `q` não é obrigatório porque seu valor padrão é `= None`.
 
-    The `Optional` in `Optional[str]` is not used by FastAPI, but will allow your editor to give you better support and detect errors.
+    O `Optional` em `Optional[str]` não é usado pelo FastAPI, mas irá permitir que o editor lhe dê um suporte melhor e detecte erros.
 
-## Without Pydantic
+## Sem o Pydantic
 
-If you don't want to use Pydantic models, you can also use **Body** parameters. See the docs for [Body - Multiple Parameters: Singular values in body](body-multiple-params.md#singular-values-in-body){.internal-link target=_blank}.
+Se você não quer usar modelos Pydantic, você também pode usar parâmetros de **Body**. Para mais informações cheque a documentação para [Body - Multiple Parameters: Singular values in body](body-multiple-params.md#singular-values-in-body){.internal-link target=_blank}.
 
