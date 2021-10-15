@@ -77,7 +77,7 @@ doc = [
     # TODO: upgrade and enable typer-cli once it supports Click 8.x.x
     # "typer-cli >=0.0.12,<0.0.13",
     "typer >=0.4.1,<0.5.0",
-    "pyyaml >=5.3.1,<6.0.0"
+    "pyyaml >=5.3.1,<7.0.0"
 ]
 dev = [
     "python-jose[cryptography] >=3.3.0,<4.0.0",
@@ -91,7 +91,7 @@ all = [
     "jinja2 >=2.11.2,<4.0.0",
     "python-multipart >=0.0.5,<0.0.6",
     "itsdangerous >=1.1.0,<3.0.0",
-    "pyyaml >=5.3.1,<6.0.0",
+    "pyyaml >=5.3.1,<7.0.0",
     "ujson >=4.0.1,<5.0.0",
     "orjson >=3.2.1,<4.0.0",
     "email_validator >=1.1.1,<2.0.0",
