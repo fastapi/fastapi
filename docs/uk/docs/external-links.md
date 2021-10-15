@@ -6,8 +6,8 @@
 
 Ось неповний список деяких з них.
 
-!!! tip
-    Якщо у вас є стаття, проект, інструмент або що-небудь інше, що стосується **FastAPI**, та ще не зазначеного тут, створіть <a href="https://github.com/tiangolo/fastapi/edit/master/docs/en/data/external_links.yml" class="external-link" target="_blank">Pull Request</a>.
+!!! підказка
+    Якщо у вас є стаття, проект, інструмент або що-небудь інше, що стосується **FastAPI**, та ще не зазначеного тут, створіть <a href="https://github.com/tiangolo/fastapi/edit/master/docs/en/data/external_links.yml" class="external-link" target="_blank">пулл реквест</a>.
 
 ## Статті
 
@@ -76,7 +76,7 @@
 
 ## Проекти
 
-Latest GitHub projects with the topic `fastapi`:
+Останні проекти GitHub на тему `fastapi`:
 
 <div class="github-topic-projects">
 </div>
