@@ -9,7 +9,7 @@ It will take you about **10 minutes**.
 
 ## A basic **FastAPI** app
 
-* Create a directory for your app, for example `./fastapideta/` and enter in it.
+* Create a directory for your app, for example, `./fastapideta/` and enter into it.
 
 ### FastAPI code
 
@@ -213,7 +213,7 @@ Now you can share that URL with anyone and they will be able to access your API.
 
 Congrats! You deployed your FastAPI app to Deta! 🎉 🍰
 
-Also notice that Deta correctly handles HTTPS for you, so you don't have to take care of that and can be sure that your clients will have a secure encrypted connection. ✅ 🔒
+Also, notice that Deta correctly handles HTTPS for you, so you don't have to take care of that and can be sure that your clients will have a secure encrypted connection. ✅ 🔒
 
 ## Check the Visor
 
@@ -235,7 +235,7 @@ You can also edit them and re-play them.
 
 ## Learn more
 
-At some point you will probably want to store some data for your app in a way that persists through time. For that you can use <a href="https://docs.deta.sh/docs/base/py_tutorial?ref=fastapi" class="external-link" target="_blank">Deta Base</a>, it also has a generous **free tier**.
+At some point, you will probably want to store some data for your app in a way that persists through time. For that you can use <a href="https://docs.deta.sh/docs/base/py_tutorial?ref=fastapi" class="external-link" target="_blank">Deta Base</a>, it also has a generous **free tier**.
 
 You can also read more in the <a href="https://docs.deta.sh?ref=fastapi" class="external-link" target="_blank">Deta Docs</a>.
 
@@ -253,6 +253,6 @@ Coming back to the concepts we discussed in [Deployments Concepts](./concepts.md
 !!! note
     Deta is designed to make it easy (and free) to deploy simple applications quickly.
 
-    It can simplify a lot several use cases, but at the same time it doesn't support others, like using external databases (apart from Deta's own NoSQL database system), custom virtual machines, etc.
+    It can simplify several use cases, but at the same time, it doesn't support others, like using external databases (apart from Deta's own NoSQL database system), custom virtual machines, etc.
 
     You can read more details in the <a href="https://docs.deta.sh/docs/micros/about/" class="external-link" target="_blank">Deta docs</a> to see if it's the right choice for you.
