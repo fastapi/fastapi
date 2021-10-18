@@ -7,15 +7,6 @@ To do this, use `yield` instead of `return`, and write the extra steps after.
 !!! tip
     Make sure to use `yield` one single time.
 
-!!! info
-    For this to work, you need to use **Python 3.7** or above, or in **Python 3.6**, install the "backports":
-
-    ```
-    pip install async-exit-stack async-generator
-    ```
-
-    This installs <a href="https://github.com/sorcio/async_exit_stack" class="external-link" target="_blank">async-exit-stack</a> and <a href="https://github.com/python-trio/async_generator" class="external-link" target="_blank">async-generator</a>.
-
 !!! note "Technical Details"
     Any function that is valid to use with:
 
