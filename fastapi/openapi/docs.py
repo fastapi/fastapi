@@ -1,8 +1,10 @@
 import json
-from typing import Any, Dict, Optional
+from typing import Any, Dict, Optional, List
 
 from fastapi.encoders import jsonable_encoder
 from starlette.responses import HTMLResponse
+
+from fastapi.openapi.plugins.base import OpenAPIPlugin
 
 
 def get_swagger_ui_html(
@@ -14,49 +16,56 @@ def get_swagger_ui_html(
     swagger_favicon_url: str = "https://fastapi.tiangolo.com/img/favicon.png",
     oauth2_redirect_url: Optional[str] = None,
     init_oauth: Optional[Dict[str, Any]] = None,
+    plugins: Optional[List[OpenAPIPlugin]] = None,
 ) -> HTMLResponse:
+
+    if plugins is None:
+        plugins = []
 
     html = f"""
     <!DOCTYPE html>
     <html>
-    <head>
-    <link type="text/css" rel="stylesheet" href="{swagger_css_url}">
-    <link rel="shortcut icon" href="{swagger_favicon_url}">
-    <title>{title}</title>
-    </head>
-    <body>
-    <div id="swagger-ui">
-    </div>
-    <script src="{swagger_js_url}"></script>
-    <!-- `SwaggerUIBundle` is now available on the page -->
-    <script>
-    const ui = SwaggerUIBundle({{
-        url: '{openapi_url}',
-    """
+        <head>
+            <link type="text/css" rel="stylesheet" href="{swagger_css_url}">
+            {"".join("".join(f'<link type="text/css" rel="stylesheet" href="{css}">' for css in plugin.css_urls) for plugin in plugins if hasattr(plugin, "css_urls"))}
 
-    if oauth2_redirect_url:
-        html += f"oauth2RedirectUrl: window.location.origin + '{oauth2_redirect_url}',"
+            <link rel="shortcut icon" href="{swagger_favicon_url}">
+            <title>{title}</title>
+        </head>
+        <body>
+            <div id="swagger-ui"></div>
+            <script src="{swagger_js_url}"></script>
+            <!-- `SwaggerUIBundle` is now available on the page -->
+            
+            {"".join("".join(f'<script src="{js}"></script>' for js in plugin.js_urls) for plugin in plugins if hasattr(plugin, "js_urls"))}
+            
+            <script>
 
-    html += """
-        dom_id: '#swagger-ui',
-        presets: [
-        SwaggerUIBundle.presets.apis,
-        SwaggerUIBundle.SwaggerUIStandalonePreset
-        ],
-        layout: "BaseLayout",
-        deepLinking: true,
-        showExtensions: true,
-        showCommonExtensions: true
-    })"""
+            {";".join(plugin.get() for plugin in plugins)}
+            
+            const ui = SwaggerUIBundle({{
+                url: '{openapi_url}',
+                dom_id: '#swagger-ui',
+                presets: [
+                SwaggerUIBundle.presets.apis,
+                SwaggerUIBundle.SwaggerUIStandalonePreset
+                ],
+                layout: "BaseLayout",
+                deepLinking: true,
+                showExtensions: true,
+                showCommonExtensions: true,
+                {f"oauth2RedirectUrl: window.location.origin + '{oauth2_redirect_url}'," if oauth2_redirect_url else ""}
+                plugins: [
+                    SwaggerUIBundle.plugins.DownloadUrl,
+                    {",".join(plugin.use() for plugin in plugins)}
+                ],
+                {",".join(f"...{plugin.config()}" for plugin in plugins)}
+            }})
+            
+            {f"ui.initOAuth({json.dumps(jsonable_encoder(init_oauth))})" if init_oauth else ""}
 
-    if init_oauth:
-        html += f"""
-        ui.initOAuth({json.dumps(jsonable_encoder(init_oauth))})
-        """
-
-    html += """
-    </script>
-    </body>
+            </script>
+        </body>
     </html>
     """
     return HTMLResponse(html)

@@ -9,6 +9,7 @@ from fastapi.exception_handlers import (
     request_validation_exception_handler,
 )
 from fastapi.exceptions import RequestValidationError
+from fastapi.openapi.plugins.base import OpenAPIPlugin
 from fastapi.logger import logger
 from fastapi.openapi.docs import (
     get_redoc_html,
@@ -48,10 +49,7 @@ class FastAPI(Starlette):
         swagger_ui_init_oauth: Optional[Dict[str, Any]] = None,
         middleware: Optional[Sequence[Middleware]] = None,
         exception_handlers: Optional[
-            Dict[
-                Union[int, Type[Exception]],
-                Callable[[Request, Any], Coroutine[Any, Any, Response]],
-            ]
+            Dict[Union[int, Type[Exception]], Callable[[Request, Any], Coroutine[Any, Any, Response]],]
         ] = None,
         on_startup: Optional[Sequence[Callable[[], Any]]] = None,
         on_shutdown: Optional[Sequence[Callable[[], Any]]] = None,
@@ -65,6 +63,7 @@ class FastAPI(Starlette):
         callbacks: Optional[List[BaseRoute]] = None,
         deprecated: Optional[bool] = None,
         include_in_schema: bool = True,
+        openapi_plugins: Optional[List[OpenAPIPlugin]] = None,
         **extra: Any,
     ) -> None:
         self._debug: bool = debug
@@ -82,19 +81,12 @@ class FastAPI(Starlette):
             responses=responses,
         )
         self.exception_handlers: Dict[
-            Union[int, Type[Exception]],
-            Callable[[Request, Any], Coroutine[Any, Any, Response]],
-        ] = (
-            {} if exception_handlers is None else dict(exception_handlers)
-        )
+            Union[int, Type[Exception]], Callable[[Request, Any], Coroutine[Any, Any, Response]],
+        ] = ({} if exception_handlers is None else dict(exception_handlers))
         self.exception_handlers.setdefault(HTTPException, http_exception_handler)
-        self.exception_handlers.setdefault(
-            RequestValidationError, request_validation_exception_handler
-        )
+        self.exception_handlers.setdefault(RequestValidationError, request_validation_exception_handler)
 
-        self.user_middleware: List[Middleware] = (
-            [] if middleware is None else list(middleware)
-        )
+        self.user_middleware: List[Middleware] = ([] if middleware is None else list(middleware))
         self.middleware_stack: ASGIApp = self.build_middleware_stack()
 
         self.title = title
@@ -106,6 +98,8 @@ class FastAPI(Starlette):
         self.servers = servers or []
         self.openapi_url = openapi_url
         self.openapi_tags = openapi_tags
+        self.openapi_plugins = openapi_plugins
+
         # TODO: remove when discarding the openapi_prefix parameter
         if openapi_prefix:
             logger.warning(
@@ -174,6 +168,7 @@ class FastAPI(Starlette):
                     title=self.title + " - Swagger UI",
                     oauth2_redirect_url=oauth2_redirect_url,
                     init_oauth=self.swagger_ui_init_oauth,
+                    plugins=self.openapi_plugins,
                 )
 
             self.add_route(self.docs_url, swagger_ui_html, include_in_schema=False)
@@ -184,18 +179,14 @@ class FastAPI(Starlette):
                     return get_swagger_ui_oauth2_redirect_html()
 
                 self.add_route(
-                    self.swagger_ui_oauth2_redirect_url,
-                    swagger_ui_redirect,
-                    include_in_schema=False,
+                    self.swagger_ui_oauth2_redirect_url, swagger_ui_redirect, include_in_schema=False,
                 )
         if self.openapi_url and self.redoc_url:
 
             async def redoc_html(req: Request) -> HTMLResponse:
                 root_path = req.scope.get("root_path", "").rstrip("/")
                 openapi_url = root_path + self.openapi_url
-                return get_redoc_html(
-                    openapi_url=openapi_url, title=self.title + " - ReDoc"
-                )
+                return get_redoc_html(openapi_url=openapi_url, title=self.title + " - ReDoc")
 
             self.add_route(self.redoc_url, redoc_html, include_in_schema=False)
 
@@ -232,9 +223,7 @@ class FastAPI(Starlette):
         response_model_exclude_defaults: bool = False,
         response_model_exclude_none: bool = False,
         include_in_schema: bool = True,
-        response_class: Union[Type[Response], DefaultPlaceholder] = Default(
-            JSONResponse
-        ),
+        response_class: Union[Type[Response], DefaultPlaceholder] = Default(JSONResponse),
         name: Optional[str] = None,
         openapi_extra: Optional[Dict[str, Any]] = None,
     ) -> None:
@@ -320,14 +309,10 @@ class FastAPI(Starlette):
 
         return decorator
 
-    def add_api_websocket_route(
-        self, path: str, endpoint: Callable[..., Any], name: Optional[str] = None
-    ) -> None:
+    def add_api_websocket_route(self, path: str, endpoint: Callable[..., Any], name: Optional[str] = None) -> None:
         self.router.add_api_websocket_route(path, endpoint, name=name)
 
-    def websocket(
-        self, path: str, name: Optional[str] = None
-    ) -> Callable[[DecoratedCallable], DecoratedCallable]:
+    def websocket(self, path: str, name: Optional[str] = None) -> Callable[[DecoratedCallable], DecoratedCallable]:
         def decorator(func: DecoratedCallable) -> DecoratedCallable:
             self.add_api_websocket_route(path, func, name=name)
             return func
