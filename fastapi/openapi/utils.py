@@ -73,9 +73,7 @@ def get_openapi_security_definitions(
     operation_security = []
     for security_requirement in flat_dependant.security_requirements:
         security_definition = jsonable_encoder(
-            security_requirement.security_scheme.model,
-            by_alias=True,
-            exclude_none=True,
+            security_requirement.security_scheme.model, by_alias=True, exclude_none=True
         )
         security_name = security_requirement.security_scheme.scheme_name
         security_definitions[security_name] = security_definition
@@ -407,4 +405,6 @@ def get_openapi(
     output["paths"] = paths
     if tags:
         output["tags"] = tags
-    return jsonable_encoder(OpenAPI(**output), by_alias=True, exclude_none=True)  # type: ignore
+    return jsonable_encoder(
+        OpenAPI(**output), by_alias=True, exclude_none=True
+    )  # type: ignore

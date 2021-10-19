@@ -1,10 +1,12 @@
 from typing import Dict, List
 
-from pydantic import BaseModel
-
 from fastapi.openapi.plugins.base import OpenAPIPlugin
 from fastapi.openapi.plugins.snippet.auto import PremadeSnippets
-from fastapi.openapi.plugins.snippet.models import Snippet, default_openapi_snippets, supported_snippet_languages
+from fastapi.openapi.plugins.snippet.models import (
+    Snippet,
+    default_openapi_snippets,
+    supported_snippet_languages,
+)
 
 
 class SnippetPlugin(OpenAPIPlugin):
@@ -21,7 +23,9 @@ class SnippetPlugin(OpenAPIPlugin):
     """
 
     snippets: Dict[str, Snippet] = PremadeSnippets.get(["curl", "python"])
-    js_urls: List = ["/public/openapisnippet.min.js"]  # TODO: Waiting for this to be added to CDN
+    js_urls: List = [
+        "/public/openapisnippet.min.js"
+    ]  # TODO: Waiting for this to be added to CDN
 
     def __init__(self, **kwargs):
         if "snippets" in kwargs:
@@ -113,4 +117,3 @@ class SnippetPlugin(OpenAPIPlugin):
 
             }};
         """
-

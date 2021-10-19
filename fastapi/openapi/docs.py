@@ -1,10 +1,9 @@
 import json
-from typing import Any, Dict, Optional, List
+from typing import Any, Dict, List, Optional
 
 from fastapi.encoders import jsonable_encoder
-from starlette.responses import HTMLResponse
-
 from fastapi.openapi.plugins.base import OpenAPIPlugin
+from starlette.responses import HTMLResponse
 
 
 def get_swagger_ui_html(
