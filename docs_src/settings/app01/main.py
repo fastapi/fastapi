@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 
-from . import config
+from .config import settings
 
 app = FastAPI()
 
@@ -8,7 +8,7 @@ app = FastAPI()
 @app.get("/info")
 async def info():
     return {
-        "app_name": config.settings.app_name,
-        "admin_email": config.settings.admin_email,
-        "items_per_user": config.settings.items_per_user,
+        "app_name": settings.app_name,
+        "admin_email": settings.admin_email,
+        "items_per_user": settings.items_per_user,
     }
