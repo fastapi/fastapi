@@ -1,6 +1,6 @@
 # Paramètres de requête et validations de chaînes de caractères
 
-**FastAPI** permets de déclarer des informations et des validateurs additionels pour vos paramètres de requêtes.
+**FastAPI** permet de déclarer des informations et des validateurs additionnels pour vos paramètres de requêtes.
 
 Commençons avec cette application pour exemple :
 
@@ -9,8 +9,6 @@ Commençons avec cette application pour exemple :
 ```
 
 Le paramètre de requête `q` a pour type `Optional[str]`, signifiant qu'il est de type `str` mais pourrait aussi être égal à `None`, et en effet, la valeur par défaut est `None`, donc **FastAPI** saura qu'il n'est pas requis.
-
-
 
 !!! note
     **FastAPI** saura que la valeur de `q` n'est pas requise grâce à la valeur par défaut `= None`.
@@ -45,7 +43,7 @@ Donc :
 q: Optional[str] = Query(None)
 ```
 
-...rends le paramètre optionnel, et est donc équivalent à :
+...rend le paramètre optionnel, et est donc équivalent à :
 
 ```Python
 q: Optional[str] = None
@@ -115,7 +113,7 @@ Disons que vous déclarez le paramètre `q` comme ayant une longueur minimale de
 ```
 
 !!! note "Rappel"
-    Avoir une valeur par défaut rends le paramètre optionnel.
+    Avoir une valeur par défaut rend le paramètre optionnel.
 
 ## Rendre ce paramètre requis
 
@@ -198,7 +196,9 @@ En allant sur :
 http://localhost:8000/items/
 ```
 
-la valeur par défaut de `q` sera : `["foo", "bar"]` et la réponse sera :
+la valeur par défaut de `q` sera : `["foo", "bar"]`
+
+et la réponse sera :
 
 ```JSON
 {
@@ -231,7 +231,7 @@ Ces informations seront incluses dans le schéma OpenAPI généré et utilisées
 !!! note
     Gardez en tête que les outils externes utilisés ne supportent pas forcément tous parfaitement OpenAPI.
 
-    Il se peut donc que certains d'entre eux n'utilisent pas toutes les métadonnées que vous avez déclaré pour le moment, bien que dans la plupart des cas, les fonctionnalités manquantes ont prévu d'être implémentées. 
+    Il se peut donc que certains d'entre eux n'utilisent pas toutes les métadonnées que vous avez déclarées pour le moment, bien que dans la plupart des cas, les fonctionnalités manquantes ont prévu d'être implémentées.
 
 On peut par exemple ajouter un titre :
 
@@ -271,7 +271,7 @@ Pour cela vous pouvez déclarer un `alias`, et cet alias est ce qui sera utilis�
 
 Disons que vous ne vouliez plus utiliser ce paramètre désormais.
 
-Il faut qu'il continue à exister pendant un certains temps car vos clients l'utilisent, mais vous voulez que la documentation mentionne clairement que ce paramètre est <abbr title="obsolète, recommandé de ne pas l'utiliser">déprécié</abbr>.
+Il faut qu'il continue à exister pendant un certain temps car vos clients l'utilisent, mais vous voulez que la documentation mentionne clairement que ce paramètre est <abbr title="obsolète, recommandé de ne pas l'utiliser">déprécié</abbr>.
 
 On utilise alors l'argument `deprecated=True` de `Query` :
 
