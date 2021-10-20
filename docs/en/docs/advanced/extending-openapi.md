@@ -152,21 +152,6 @@ After that, your file structure could look like:
     └── swagger-ui.css
 ```
 
-### Install `aiofiles`
-
-Now you need to install `aiofiles`:
-
-
-<div class="termy">
-
-```console
-$ pip install aiofiles
-
----> 100%
-```
-
-</div>
-
 ### Serve the static files
 
 * Import `StaticFiles`.
