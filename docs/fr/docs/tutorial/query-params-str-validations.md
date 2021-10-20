@@ -19,7 +19,7 @@ Le paramètre de requête `q` a pour type `Optional[str]`, signifiant qu'il est 
 
 ## Validation additionnelle
 
-Nous allons nous assurer que bien que `q` soit un paramètre optionnel, dès qu'il est fourni, **sa longueur n'excède pas 50 charactères**. 
+Nous allons nous assurer que bien que `q` soit un paramètre optionnel, dès qu'il est fourni, **sa longueur n'excède pas 50 caractères**.
 
 ## Importer `Query`
 
@@ -54,7 +54,7 @@ q: Optional[str] = None
 Mais déclare explicitement `q` comme étant un paramètre de requête.
 
 !!! info
-    Have in mind that FastAPI cares about the part:
+    **FastAPI** ne s'intéresse qu'à :
 
     ```Python
     = None
@@ -70,7 +70,7 @@ Mais déclare explicitement `q` comme étant un paramètre de requête.
 
     Le `Optional` du type est uniquement là pour permettre à votre éditeur de mieux vous aider.
 
-Ensuite, on peut passer d'autres paramètres à `Query`. Dans ce cas, le paramètre `max_length` qui ne s'applique qu'aux chaînes de caractères (`string`) :
+Ensuite, on peut passer d'autres paramètres à `Query`. Dans ce cas, le paramètre `max_length` qui ne s'applique qu'aux chaînes de caractères (`str`) :
 
 ```Python
 q: str = Query(None, max_length=50)
@@ -88,21 +88,21 @@ Ensuite, on peut par exemple rajouter un second paramètre `min_length` :
 
 ## Ajouter des validations par expressions régulières
 
-On peut définir une <abbr title="Une expression régulière, regex ou regexp est une suite de caractères qui définit un patterne de correspondance pour les chaînes de caractères.">expression régulière</abbr>, ou **regex** à laquelle le paramètre doit correspondre :
+On peut définir une <abbr title="Une expression régulière, regex ou regexp est une suite de caractères qui définit un pattern de correspondance pour les chaînes de caractères.">expression régulière</abbr>, ou **regex** à laquelle le paramètre doit correspondre :
 
 ```Python hl_lines="10"
 {!../../../docs_src/query_params_str_validations/tutorial004.py!}
 ```
 
-Cette expression régulière vérifie que la valeur passé comme paramètre :
+Cette expression régulière vérifie que la valeur passée comme paramètre :
 
-* `^` : commence avec les caractères qui suivent, avec aucun caractères avant ceux-là.
+* `^` : commence avec les caractères qui suivent, avec aucun caractère avant ceux-là.
 * `fixedquery` : a pour valeur exacte `fixedquery`.
 * `$` : se termine directement ensuite, n'a pas d'autres caractères après `fixedquery`.
 
-Si vous vous sentez perdu avec le concept de **regex**, pas d'inuiqétudes. Il s'agit d'une notion difficile pour beaucoup, et l'on peut déjà réussir à faire beaucoup sans jamais avoir à les manipuler.
+Si vous vous sentez perdu avec le concept de **regex**, pas d'inquiétudes. Il s'agit d'une notion difficile pour beaucoup, et l'on peut déjà réussir à faire beaucoup sans jamais avoir à les manipuler.
 
-Mais si vous décidez d'apprendre à les utiliser, sachez qu'ensuite vous pouvez les utiliser directement **FastAPI**.
+Mais si vous décidez d'apprendre à les utiliser, sachez qu'ensuite vous pouvez les utiliser directement dans **FastAPI**.
 
 ## Valeurs par défaut
 
@@ -119,7 +119,7 @@ Disons que vous déclarez le paramètre `q` comme ayant une longueur minimale de
 
 ## Rendre ce paramètre requis
 
-Quand on ne déclare ni validations ni métadonnées, on peut rendre le paramètre `q` requis en ne lui déclarant juste aucune valeur par défaut :
+Quand on ne déclare ni validation, ni métadonnée, on peut rendre le paramètre `q` requis en ne lui déclarant juste aucune valeur par défaut :
 
 ```Python
 q: str
@@ -144,7 +144,7 @@ Donc pour déclarer une valeur comme requise tout en utilisant `Query`, il faut 
 ```
 
 !!! info
-    Si vous n'avez jamais vu ce `...` avant : c'est des constantes natives de Python <a href="https://docs.python.org/fr/3/library/constants.html#Ellipsis" class="external-link" target="_blank">appelée "Ellipsis"</a>.
+    Si vous n'avez jamais vu ce `...` auparavant : c'est une des constantes natives de Python <a href="https://docs.python.org/fr/3/library/constants.html#Ellipsis" class="external-link" target="_blank">appelée "Ellipsis"</a>.
 
 Cela indiquera à **FastAPI** que la présence de ce paramètre est obligatoire.
 
@@ -152,7 +152,7 @@ Cela indiquera à **FastAPI** que la présence de ce paramètre est obligatoire.
 
 Quand on définit un paramètre de requête explicitement avec `Query` on peut aussi déclarer qu'il reçoit une liste de valeur, ou des "valeurs multiples".
 
-Par exemple, pour déclarer un paramètre de requête `q` qui peut apparaître plusieurs fois une URL, on écrit :
+Par exemple, pour déclarer un paramètre de requête `q` qui peut apparaître plusieurs fois dans une URL, on écrit :
 
 ```Python hl_lines="9"
 {!../../../docs_src/query_params_str_validations/tutorial011.py!}
@@ -178,13 +178,13 @@ Donc la réponse serait :
 ```
 
 !!! tip "Astuce"
-    Pour déclarer un paramètre de requête de type `list`, comme dans l'exemple ci-dessus, il faut explicitement utiliser `Query`, sinon cela serait interprété comme faisant partie du corps de la requête.
+    Pour déclarer un paramètre de requête de type `list`, comme dans l'exemple ci-dessus, il faut explicitement utiliser `Query`, sinon cela sera interprété comme faisant partie du corps de la requête.
 
 La documentation sera donc mise à jour automatiquement pour autoriser plusieurs valeurs :
 
 <img src="/img/tutorial/query-params-str-validations/image02.png">
 
-### Combiner liste de paramètres et valeur par défaut
+### Combiner liste de paramètres et valeurs par défaut
 
 Et l'on peut aussi définir une liste de valeurs par défaut si aucune n'est fournie :
 
@@ -224,14 +224,14 @@ Il est aussi possible d'utiliser directement `list` plutôt que `List[str]` :
 
 ## Déclarer des métadonnées supplémentaires
 
-On peut ajouter plus d'informations sur le paramètre.
+On peut aussi ajouter plus d'informations sur le paramètre.
 
-Ces informations seront incluses dans le schéma OpenAPI généré et utilisées par la documentation interactive, ou les potentiels outils externes utilisés.
+Ces informations seront incluses dans le schéma OpenAPI généré et utilisées par la documentation interactive ou les potentiels outils externes utilisés.
 
 !!! note
     Gardez en tête que les outils externes utilisés ne supportent pas forcément tous parfaitement OpenAPI.
 
-    Il se peut donc que certains d'entre eux n'utilisent pas toutes les métadonnées que vous avez déclaré pour le moment, bien que dans la plupart des cas, les fonctionnalités manquantes ont prévues d'être implémentées. 
+    Il se peut donc que certains d'entre eux n'utilisent pas toutes les métadonnées que vous avez déclaré pour le moment, bien que dans la plupart des cas, les fonctionnalités manquantes ont prévu d'être implémentées. 
 
 On peut par exemple ajouter un titre :
 
@@ -239,7 +239,7 @@ On peut par exemple ajouter un titre :
 {!../../../docs_src/query_params_str_validations/tutorial007.py!}
 ```
 
-Et une `description` :
+Et une description :
 
 ```Python hl_lines="13"
 {!../../../docs_src/query_params_str_validations/tutorial008.py!}
@@ -247,7 +247,7 @@ Et une `description` :
 
 ## Alias de paramètres
 
-Imaginez que vous voulez que votre paramètre se nomme `item-query`.
+Imaginez que vous vouliez que votre paramètre se nomme `item-query`.
 
 Comme dans la requête :
 
@@ -269,9 +269,9 @@ Pour cela vous pouvez déclarer un `alias`, et cet alias est ce qui sera utilis�
 
 ## Déprécier des paramètres
 
-Disons que vous ne voulez plus utiliser ce paramètre désormais.
+Disons que vous ne vouliez plus utiliser ce paramètre désormais.
 
-Il faut qu'il continue à exister pendant un certains temps car vos clients l'utilise, mais vous voulez que la documentation mentionne clairement que ce paramètre est <abbr title="obsolète, recommandé de ne pas l'utiliser">déprécié</abbr>.
+Il faut qu'il continue à exister pendant un certains temps car vos clients l'utilisent, mais vous voulez que la documentation mentionne clairement que ce paramètre est <abbr title="obsolète, recommandé de ne pas l'utiliser">déprécié</abbr>.
 
 On utilise alors l'argument `deprecated=True` de `Query` :
 
@@ -300,6 +300,6 @@ Validateurs spécifiques aux chaînes de caractères :
 * `max_length`
 * `regex`
 
-Parmi ces exemples, vous avez pu voir comment déclarer des validateurs les chaînes de caractères.
+Parmi ces exemples, vous avez pu voir comment déclarer des validateurs pour les chaînes de caractères.
 
 Dans les prochains chapitres, vous verrez comment déclarer des validateurs pour d'autres types, comme les nombres.
