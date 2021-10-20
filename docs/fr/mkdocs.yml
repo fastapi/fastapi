@@ -60,6 +60,7 @@ nav:
 - python-types.md
 - Tutoriel - Guide utilisateur:
   - tutorial/body.md
+  - tutorial/query-params-str-validations.md
   - tutorial/background-tasks.md
 - async.md
 - Déploiement:

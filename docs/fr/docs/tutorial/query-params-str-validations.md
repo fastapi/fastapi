@@ -1,0 +1,305 @@
+# Paramètres de requête et validations de chaînes de caractères
+
+**FastAPI** permets de déclarer des informations et des validateurs additionels pour vos paramètres de requêtes.
+
+Commençons avec cette application pour exemple :
+
+```Python hl_lines="9"
+{!../../../docs_src/query_params_str_validations/tutorial001.py!}
+```
+
+Le paramètre de requête `q` a pour type `Optional[str]`, signifiant qu'il est de type `str` mais pourrait aussi être égal à `None`, et en effet, la valeur par défaut est `None`, donc **FastAPI** saura qu'il n'est pas requis.
+
+
+
+!!! note
+    **FastAPI** saura que la valeur de `q` n'est pas requise grâce à la valeur par défaut `= None`.
+
+    Le `Optional` dans `Optional[str]` n'est pas utilisé par **FastAPI**, mais permettra à votre éditeur de vous offrir un meilleur support et de détecter de potentielles erreurs.
+
+## Validation additionnelle
+
+Nous allons nous assurer que bien que `q` soit un paramètre optionnel, dès qu'il est fourni, **sa longueur n'excède pas 50 charactères**. 
+
+## Importer `Query`
+
+Pour commencer, importez `Query` depuis `fastapi` :
+
+```Python hl_lines="3"
+{!../../../docs_src/query_params_str_validations/tutorial002.py!}
+```
+
+## Utiliser `Query` comme valeur par défaut
+
+Construisez ensuite la valeur par défaut de votre paramètre avec `Query`, en choisissant 50 comme `max_length` :
+
+```Python hl_lines="9"
+{!../../../docs_src/query_params_str_validations/tutorial002.py!}
+```
+
+Comme il faut remplacer `None` par `Query(None)`, le premier paramètre passé au constructeur de `Query` a pour but de choisir la valeur par défaut du paramètre.
+
+Donc :
+
+```Python
+q: Optional[str] = Query(None)
+```
+
+...rends le paramètre optionnel, et est donc équivalent à :
+
+```Python
+q: Optional[str] = None
+```
+
+Mais déclare explicitement `q` comme étant un paramètre de requête.
+
+!!! info
+    Have in mind that FastAPI cares about the part:
+
+    ```Python
+    = None
+    ```
+
+    ou :
+
+    ```Python
+    = Query(None)
+    ```
+
+    et utilisera ce `None` pour détecter que ce paramètre de requête n'est pas requis.
+
+    Le `Optional` du type est uniquement là pour permettre à votre éditeur de mieux vous aider.
+
+Ensuite, on peut passer d'autres paramètres à `Query`. Dans ce cas, le paramètre `max_length` qui ne s'applique qu'aux chaînes de caractères (`string`) :
+
+```Python
+q: str = Query(None, max_length=50)
+```
+
+Cela va valider les données, montrer une erreur claire si ces dernières ne sont pas valides, et documenter le paramètre dans le schéma OpenAPI de cette *opération de chemin*.
+
+## Rajouter de la validation
+
+Ensuite, on peut par exemple rajouter un second paramètre `min_length` :
+
+```Python hl_lines="9"
+{!../../../docs_src/query_params_str_validations/tutorial003.py!}
+```
+
+## Ajouter des validations par expressions régulières
+
+On peut définir une <abbr title="Une expression régulière, regex ou regexp est une suite de caractères qui définit un patterne de correspondance pour les chaînes de caractères.">expression régulière</abbr>, ou **regex** à laquelle le paramètre doit correspondre :
+
+```Python hl_lines="10"
+{!../../../docs_src/query_params_str_validations/tutorial004.py!}
+```
+
+Cette expression régulière vérifie que la valeur passé comme paramètre :
+
+* `^` : commence avec les caractères qui suivent, avec aucun caractères avant ceux-là.
+* `fixedquery` : a pour valeur exacte `fixedquery`.
+* `$` : se termine directement ensuite, n'a pas d'autres caractères après `fixedquery`.
+
+Si vous vous sentez perdu avec le concept de **regex**, pas d'inuiqétudes. Il s'agit d'une notion difficile pour beaucoup, et l'on peut déjà réussir à faire beaucoup sans jamais avoir à les manipuler.
+
+Mais si vous décidez d'apprendre à les utiliser, sachez qu'ensuite vous pouvez les utiliser directement **FastAPI**.
+
+## Valeurs par défaut
+
+De la même façon que vous pouvez passer `None` comme premier argument pour l'utiliser comme valeur par défaut, vous pouvez passer d'autres valeurs.
+
+Disons que vous déclarez le paramètre `q` comme ayant une longueur minimale de `3`, et une valeur par défaut étant `"fixedquery"` :
+
+```Python hl_lines="7"
+{!../../../docs_src/query_params_str_validations/tutorial005.py!}
+```
+
+!!! note "Rappel"
+    Avoir une valeur par défaut rends le paramètre optionnel.
+
+## Rendre ce paramètre requis
+
+Quand on ne déclare ni validations ni métadonnées, on peut rendre le paramètre `q` requis en ne lui déclarant juste aucune valeur par défaut :
+
+```Python
+q: str
+```
+
+à la place de :
+
+```Python
+q: Optional[str] = None
+```
+
+Mais maintenant, on déclare `q` avec `Query`, comme ceci :
+
+```Python
+q: Optional[str] = Query(None, min_length=3)
+```
+
+Donc pour déclarer une valeur comme requise tout en utilisant `Query`, il faut utiliser `...` comme premier argument :
+
+```Python hl_lines="7"
+{!../../../docs_src/query_params_str_validations/tutorial006.py!}
+```
+
+!!! info
+    Si vous n'avez jamais vu ce `...` avant : c'est des constantes natives de Python <a href="https://docs.python.org/fr/3/library/constants.html#Ellipsis" class="external-link" target="_blank">appelée "Ellipsis"</a>.
+
+Cela indiquera à **FastAPI** que la présence de ce paramètre est obligatoire.
+
+## Liste de paramètres / valeurs multiples via Query
+
+Quand on définit un paramètre de requête explicitement avec `Query` on peut aussi déclarer qu'il reçoit une liste de valeur, ou des "valeurs multiples".
+
+Par exemple, pour déclarer un paramètre de requête `q` qui peut apparaître plusieurs fois une URL, on écrit :
+
+```Python hl_lines="9"
+{!../../../docs_src/query_params_str_validations/tutorial011.py!}
+```
+
+Ce qui fait qu'avec une URL comme :
+
+```
+http://localhost:8000/items/?q=foo&q=bar
+```
+
+plusieurs valeurs pour le paramètre `q` pourraient être reçues simultanément (`foo` et `bar`) dans une `list` Python au sein de la *fonction de chemin*, dans le paramètre de fonction `q`.
+
+Donc la réponse serait :
+
+```JSON
+{
+  "q": [
+    "foo",
+    "bar"
+  ]
+}
+```
+
+!!! tip "Astuce"
+    Pour déclarer un paramètre de requête de type `list`, comme dans l'exemple ci-dessus, il faut explicitement utiliser `Query`, sinon cela serait interprété comme faisant partie du corps de la requête.
+
+La documentation sera donc mise à jour automatiquement pour autoriser plusieurs valeurs :
+
+<img src="/img/tutorial/query-params-str-validations/image02.png">
+
+### Combiner liste de paramètres et valeur par défaut
+
+Et l'on peut aussi définir une liste de valeurs par défaut si aucune n'est fournie :
+
+```Python hl_lines="9"
+{!../../../docs_src/query_params_str_validations/tutorial012.py!}
+```
+
+En allant sur :
+
+```
+http://localhost:8000/items/
+```
+
+la valeur par défaut de `q` sera : `["foo", "bar"]` et la réponse sera :
+
+```JSON
+{
+  "q": [
+    "foo",
+    "bar"
+  ]
+}
+```
+
+#### Utiliser `list`
+
+Il est aussi possible d'utiliser directement `list` plutôt que `List[str]` :
+
+```Python hl_lines="7"
+{!../../../docs_src/query_params_str_validations/tutorial013.py!}
+```
+
+!!! note
+    Dans ce cas-là, **FastAPI** ne vérifiera pas le contenu de la liste.
+
+    Par exemple, `List[int]` vérifiera (et documentera) que la liste est bien entièrement composée d'entiers. Alors qu'un simple `list` ne ferait pas cette vérification.
+
+## Déclarer des métadonnées supplémentaires
+
+On peut ajouter plus d'informations sur le paramètre.
+
+Ces informations seront incluses dans le schéma OpenAPI généré et utilisées par la documentation interactive, ou les potentiels outils externes utilisés.
+
+!!! note
+    Gardez en tête que les outils externes utilisés ne supportent pas forcément tous parfaitement OpenAPI.
+
+    Il se peut donc que certains d'entre eux n'utilisent pas toutes les métadonnées que vous avez déclaré pour le moment, bien que dans la plupart des cas, les fonctionnalités manquantes ont prévues d'être implémentées. 
+
+On peut par exemple ajouter un titre :
+
+```Python hl_lines="10"
+{!../../../docs_src/query_params_str_validations/tutorial007.py!}
+```
+
+Et une `description` :
+
+```Python hl_lines="13"
+{!../../../docs_src/query_params_str_validations/tutorial008.py!}
+```
+
+## Alias de paramètres
+
+Imaginez que vous voulez que votre paramètre se nomme `item-query`.
+
+Comme dans la requête :
+
+```
+http://127.0.0.1:8000/items/?item-query=foobaritems
+```
+
+Mais `item-query` n'est pas un nom de variable valide en Python.
+
+Le nom le plus proche serait `item_query`.
+
+Mais vous avez vraiment envie que ce soit exactement `item-query`...
+
+Pour cela vous pouvez déclarer un `alias`, et cet alias est ce qui sera utilisé pour trouver la valeur du paramètre :
+
+```Python hl_lines="9"
+{!../../../docs_src/query_params_str_validations/tutorial009.py!}
+```
+
+## Déprécier des paramètres
+
+Disons que vous ne voulez plus utiliser ce paramètre désormais.
+
+Il faut qu'il continue à exister pendant un certains temps car vos clients l'utilise, mais vous voulez que la documentation mentionne clairement que ce paramètre est <abbr title="obsolète, recommandé de ne pas l'utiliser">déprécié</abbr>.
+
+On utilise alors l'argument `deprecated=True` de `Query` :
+
+```Python hl_lines="18"
+{!../../../docs_src/query_params_str_validations/tutorial010.py!}
+```
+
+La documentation l'affichera bien comme déprécié (`deprecated`) :
+
+<img src="/img/tutorial/query-params-str-validations/image01.png">
+
+## Pour résumer
+
+Il est possible d'ajouter des validateurs et métadonnées pour vos paramètres.
+
+Validateurs génériques et métadonnées :
+
+* `alias`
+* `title`
+* `description`
+* `deprecated`
+
+Validateurs spécifiques aux chaînes de caractères :
+
+* `min_length`
+* `max_length`
+* `regex`
+
+Parmi ces exemples, vous avez pu voir comment déclarer des validateurs les chaînes de caractères.
+
+Dans les prochains chapitres, vous verrez comment déclarer des validateurs pour d'autres types, comme les nombres.
