@@ -61,6 +61,8 @@ nav:
   - tutorial/path-params.md
   - tutorial/query-params.md
   - tutorial/header-params.md
+  - 의존성:
+    - tutorial/dependencies/dependencies-in-path-operation-decorators.md
 markdown_extensions:
 - toc:
     permalink: true
