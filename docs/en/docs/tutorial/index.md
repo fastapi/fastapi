@@ -2,15 +2,13 @@
 
 This tutorial shows you how to use **FastAPI** with most of its features, step by step.
 
-Each section gradually builds on the previous ones, but it's structured to separate topics, so that you can go directly to any specific one to solve your specific API needs.
+Each section gradually builds on the previous ones. Each section is a separate topic, so that you can go directly to any specific topic to solve your specific API need.
 
-It is also built to work as a future reference.
-
-So you can come back and see exactly what you need.
+The tutorial is also built to work as a future reference, so you can come back and see exactly what you need.
 
 ## Run the code
 
-All the code blocks can be copied and used directly (they are actually tested Python files).
+All code blocks can be copied and used directly (they are tested Python files).
 
 To run any of the examples, copy the code to a file `main.py`, and start `uvicorn` with:
 
@@ -50,31 +48,31 @@ $ pip install "fastapi[all]"
 
 </div>
 
-...that also includes `uvicorn`, that you can use as the server that runs your code.
+...that also includes `uvicorn`, which you can use as the server that runs your code.
 
 !!! note
     You can also install it part by part.
 
-    This is what you would probably do once you want to deploy your application to production:
+    This is what you would probably do to deploy your application to production:
 
     ```
     pip install fastapi
     ```
 
-    Also install `uvicorn` to work as the server:
+    Also install `uvicorn` to act as the server:
 
     ```
     pip install "uvicorn[standard]"
     ```
 
-    And the same for each of the optional dependencies that you want to use.
+    Install each of the optional dependencies that you want to use.
 
 ## Advanced User Guide
 
 There is also an **Advanced User Guide** that you can read later after this **Tutorial - User guide**.
 
-The **Advanced User Guide**, builds on this, uses the same concepts, and teaches you some extra features.
+The **Advanced User Guide**, builds on this one, uses the same concepts, and teaches you some extra features.
 
-But you should first read the **Tutorial - User Guide** (what you are reading right now).
+But you should read the **Tutorial - User Guide** first (the document you are reading right now).
 
-It's designed so that you can build a complete application with just the **Tutorial - User Guide**, and then extend it in different ways, depending on your needs, using some of the additional ideas from the **Advanced User Guide**.
+FastAPI is designed so that you can build a complete application with just the **Tutorial - User Guide**, and then extend it as needed, using the additional ideas from the **Advanced User Guide**.
