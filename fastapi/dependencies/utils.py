@@ -467,7 +467,8 @@ async def solve_dependencies(
         media_type=None,  # type: ignore # in Starlette
         background=None,  # type: ignore # in Starlette
     )
-    dependency_cache = dependency_cache or {}
+    if dependency_cache is None:
+        dependency_cache = {}
     sub_dependant: Dependant
     for sub_dependant in dependant.dependencies:
         sub_dependant.call = cast(Callable[..., Any], sub_dependant.call)
@@ -493,7 +494,21 @@ async def solve_dependencies(
             )
             use_sub_dependant.security_scopes = sub_dependant.security_scopes
 
-        solved_result = await solve_dependencies(
+        if sub_dependant.use_cache and sub_dependant.cache_key in dependency_cache:
+            solved = dependency_cache[sub_dependant.cache_key]
+
+            if sub_dependant.name is not None:
+                values[sub_dependant.name] = solved
+
+            continue
+
+        (
+            sub_values,
+            sub_errors,
+            background_tasks,
+            _,  # the subdependency returns the same response we have
+            sub_dependency_cache,
+        ) = await solve_dependencies(
             request=request,
             dependant=use_sub_dependant,
             body=body,
@@ -502,19 +517,10 @@ async def solve_dependencies(
             dependency_overrides_provider=dependency_overrides_provider,
             dependency_cache=dependency_cache,
         )
-        (
-            sub_values,
-            sub_errors,
-            background_tasks,
-            _,  # the subdependency returns the same response we have
-            sub_dependency_cache,
-        ) = solved_result
         dependency_cache.update(sub_dependency_cache)
         if sub_errors:
             errors.extend(sub_errors)
             continue
-        if sub_dependant.use_cache and sub_dependant.cache_key in dependency_cache:
-            solved = dependency_cache[sub_dependant.cache_key]
         elif is_gen_callable(call) or is_async_gen_callable(call):
             stack = request.scope.get("fastapi_astack")
             assert isinstance(stack, AsyncExitStack)
