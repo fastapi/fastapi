@@ -37,7 +37,7 @@ Vous devriez voir dans la console, une ligne semblable à la suivante :
 INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
-Cette ligne montre l'URL par laquelle l'app est actuellement accesible, sur votre machine locale.
+Cette ligne montre l'URL par laquelle l'app est actuellement accessible, sur votre machine locale.
 
 ### Allez voir le résultat
 
@@ -87,7 +87,7 @@ Dans ce cas, cela signifierait les attributs JSON, ainsi que les types de ces at
 
 #### OpenAPI et JSON Schema
 
-**OpenAPI** définit un schéma d'API pour votre API. Et ce schéma inclut des définitions (ou "schémas") de la donnée envoyée et reçue par votre API en utilisant **JSON Schema**, le standard des schémas de données JSON.
+**OpenAPI** définit un schéma d'API pour votre API. Il inclut des définitions (ou "schémas") de la donnée envoyée et reçue par votre API en utilisant **JSON Schema**, le standard des schémas de données JSON.
 
 #### Allez voir `openapi.json`
 
