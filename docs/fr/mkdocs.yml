@@ -59,6 +59,7 @@ nav:
 - fastapi-people.md
 - python-types.md
 - Tutoriel - Guide utilisateur:
+  - tutorial/path-params.md
   - tutorial/query-params.md
   - tutorial/body.md
   - tutorial/background-tasks.md
