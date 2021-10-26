@@ -2,6 +2,7 @@
 
 ## Latest Changes
 
+* 🌐 Add Turkish translation for `docs/python-types.md`. PR [#3926](https://github.com/tiangolo/fastapi/pull/3926) by [@BilalAlpaslan](https://github.com/BilalAlpaslan).
 
 ## 0.70.0
 
