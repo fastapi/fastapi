@@ -1,6 +1,6 @@
 # FastAPI in Containers - Docker
 
-When deploying FastAPI applications a common approach is to build a **Linux container image**. It's normally done using <a href="https://www.docker.com/" class="external-link" target="_blank">**Docker**</a>. And then you can deploy that container image in one of different possible ways.
+When deploying FastAPI applications a common approach is to build a **Linux container image**. It's normally done using <a href="https://www.docker.com/" class="external-link" target="_blank">**Docker**</a>. You can then deploy that container image in one of a few possible ways.
 
 Using Linux containers has several advantages including **security**, **replicability**, **simplicity**, and others.
 
@@ -68,13 +68,13 @@ And there are many other images for different things like databases, for example
 * <a href="https://hub.docker.com/_/mongo" class="external-link" target="_blank">MongoDB</a>
 * <a href="https://hub.docker.com/_/redis" class="external-link" target="_blank">Redis</a>, etc.
 
-By using a pre-made container image it's very easy to **combine** and use different tools. For example, to try out a new database. In most cases you can use the **official images**, and just configure them with environment variables.
+By using a pre-made container image it's very easy to **combine** and use different tools. For example, to try out a new database. In most cases, you can use the **official images**, and just configure them with environment variables.
 
 That way, in many cases you can learn about containers and Docker and re-use that knowledge with many different tools and components.
 
 So, you would run **multiple containers** with different things, like a database, a Python application, a web server with a React frontend application, and connect them together via their internal network.
 
-All the container management systems (like Docker or Kubernetes) have these networking features integrated in them.
+All the container management systems (like Docker or Kubernetes) have these networking features integrated into them.
 
 ## Containers and Processes
 
@@ -84,7 +84,7 @@ When a **container** is started, it will run that command/program (although you 
 
 A container is running as long as the **main process** (command or program) is running.
 
-A container normally has a **single process**, but it's also possible to start subprocesses from the main process, and that way have **multiple processes** in the same container.
+A container normally has a **single process**, but it's also possible to start subprocesses from the main process, and that way you will have **multiple processes** in the same container.
 
 But it's not possible to have a running container without **at least one running process**. If the main process stops, the container stops.
 
@@ -137,7 +137,7 @@ Successfully installed fastapi pydantic uvicorn
 
 ### Create the **FastAPI** Code
 
-* Create an `app` directory and enter in it.
+* Create an `app` directory and enter it.
 * Create an empty file `__init__.py`.
 * Create a `main.py` file with:
 
@@ -216,7 +216,7 @@ CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
 
 6. Set the **command** to run the `uvicorn` server.
 
-    `CMD` takes a list of strings, each of this strings is what you would type in the command line separated by spaces.
+    `CMD` takes a list of strings, each of these strings is what you would type in the command line separated by spaces.
 
     This command will be run from the **current working directory**, the same `/code` directory you set above with `WORKDIR /code`.
 
@@ -338,7 +338,7 @@ You will see the alternative automatic documentation (provided by <a href="https
 
 ## Build a Docker Image with a Single-File FastAPI
 
-If your FastAPI is a single file, for example `main.py` without an `./app` directory, your file structure could look like:
+If your FastAPI is a single file, for example, `main.py` without an `./app` directory, your file structure could look like this:
 
 ```
 .
@@ -411,7 +411,7 @@ Without using containers, making applications run on startup and with restarts c
 
 ## Replication - Number of Processes
 
-If you have a <abbr title="A group of machines that are configured to be connected and work together in some way.">cluster</abbr> of machines with **Kubernetes**, Docker Swarm Mode, Nomad, or other similar complex system to manage distributed containers on multiple machines, then you will probably want to **handle replication** at the **cluster level** instead of using a **process manager** (like Gunicorn with workers) in each container.
+If you have a <abbr title="A group of machines that are configured to be connected and work together in some way.">cluster</abbr> of machines with **Kubernetes**, Docker Swarm Mode, Nomad, or another similar complex system to manage distributed containers on multiple machines, then you will probably want to **handle replication** at the **cluster level** instead of using a **process manager** (like Gunicorn with workers) in each container.
 
 One of those distributed container management systems like Kubernetes normally has some integrated way of handling **replication of containers** while still supporting **load balancing** for the incoming requests. All at the **cluster level**.
 
@@ -487,7 +487,7 @@ The main point is, **none** of these are **rules written in stone** that you hav
 
 ## Memory
 
-If you run **a single process per container** you will have a more or less well defined, stable, and limited amount of memory consumed by each of of those containers (more than one if they are replicated).
+If you run **a single process per container** you will have a more or less well-defined, stable, and limited amount of memory consumed by each of those containers (more than one if they are replicated).
 
 And then you can set those same memory limits and requirements in your configurations for your container management system (for example in **Kubernetes**). That way it will be able to **replicate the containers** in the **available machines** taking into account the amount of memory needed by them, and the amount available in the machines in the cluster.
 

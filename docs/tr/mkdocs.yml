@@ -9,13 +9,13 @@ theme:
     primary: teal
     accent: amber
     toggle:
-      icon: material/lightbulb-outline
+      icon: material/lightbulb
       name: Switch to light mode
   - scheme: slate
     primary: teal
     accent: amber
     toggle:
-      icon: material/lightbulb
+      icon: material/lightbulb-outline
       name: Switch to dark mode
   features:
   - search.suggest
@@ -57,6 +57,7 @@ nav:
   - zh: /zh/
 - features.md
 - fastapi-people.md
+- python-types.md
 markdown_extensions:
 - toc:
     permalink: true
