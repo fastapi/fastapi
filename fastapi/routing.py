@@ -99,6 +99,11 @@ def _prepare_response_content(
             for k, v in res.items()
         }
     elif dataclasses.is_dataclass(res):
+        # Allow dataclasses to specify the same read_with_orm_mode property as
+        # Pydantic models above
+        read_with_orm_mode = getattr(res, "__read_with_orm_mode__", None)
+        if read_with_orm_mode:
+            return res
         return dataclasses.asdict(res)
     return res
 
