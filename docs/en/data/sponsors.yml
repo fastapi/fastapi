@@ -18,6 +18,9 @@ silver:
   - url: https://testdriven.io/courses/tdd-fastapi/
     title: Learn to build high-quality web apps with best practices
     img: https://fastapi.tiangolo.com/img/sponsors/testdriven.svg
+  - url: https://github.com/deepset-ai/haystack/
+    title: Build powerful search from composable, open source building blocks
+    img: https://fastapi.tiangolo.com/img/sponsors/haystack-fastapi.svg
 bronze:
   - url: https://calmcode.io
     title: Code. Simply. Clearly. Calmly.
