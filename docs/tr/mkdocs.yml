@@ -57,6 +57,7 @@ nav:
   - zh: /zh/
 - features.md
 - fastapi-people.md
+- python-types.md
 markdown_extensions:
 - toc:
     permalink: true
