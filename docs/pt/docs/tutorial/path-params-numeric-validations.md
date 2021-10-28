@@ -96,7 +96,7 @@ E o mesmo para <abbr title="less than"><code>lt</code></abbr>.
 
 ## Recapitulando
 
-Com `Query`, `Path` (e outras que você ainda não viu) você pode declarar metadados e validações de texto como consta em [Parâmetros de consulta e validações de texto](query-params-str-validations.md){.internal-link target=_blank}.
+Com `Query`, `Path` (e outras que você ainda não viu) você pode declarar metadados e validações de texto do mesmo modo que com [Parâmetros de consulta e validações de texto](query-params-str-validations.md){.internal-link target=_blank}.
 
 E você também pode declarar validações numéricas:
 
