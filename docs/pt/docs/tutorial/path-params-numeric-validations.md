@@ -47,76 +47,76 @@ Então, você pode declarar sua função assim:
 {!../../../docs_src/path_params_numeric_validations/tutorial002.py!}
 ```
 
-## Ordene os parâmetros de a acordo com sua necessidade, dicas
+## Ordene os parâmetros de a acordo com sua necessidade, truques
 
-If you want to declare the `q` query parameter without a `Query` nor any default value, and the path parameter `item_id` using `Path`, and have them in a different order, Python has a little special syntax for that.
+Se você quiser declarar o parâmetro de consulta `q` sem um `Query` nem um valor padrão, e o parâmetro de rota `item_id` usando `Path`, e definí-los em uma ordem diferente, Python tem um pequeno truque na sintaxe para isso.
 
-Pass `*`, as the first parameter of the function.
+Passe `*`, como o primeiro parâmetro da função.
 
-Python won't do anything with that `*`, but it will know that all the following parameters should be called as keyword arguments (key-value pairs), also known as <abbr title="From: K-ey W-ord Arg-uments"><code>kwargs</code></abbr>. Even if they don't have a default value.
+O Python não vai fazer nada com esse `*`, mas ele vai saber que a partir dali os parâmetros seguintes deverão ser chamados argumentos nomeados (pares chave-valor), também conhecidos como <abbr title="Do inglês: K-ey W-ord Arg-uments"><code>kwargs</code></abbr>. Mesmo que eles não possuam um valor padrão.
 
 ```Python hl_lines="8"
 {!../../../docs_src/path_params_numeric_validations/tutorial003.py!}
 ```
 
-## Number validations: greater than or equal
+## Validações numéricas: maior que ou igual
 
-With `Query` and `Path` (and other's you'll see later) you can declare string constraints, but also number constraints.
+Com `Query` e `Path` (e outras que você verá mais tarde) você pode declarar restrições de string, e também restrições numéricas.
 
-Here, with `ge=1`, `item_id` will need to be an integer number "`g`reater than or `e`qual" to `1`.
+Aqui, com `ge=1`, `item_id` precisará ser um numéro inteiro maior que ("`g`reater than") ou igual ("`e`qual") a 1.
 
 ```Python hl_lines="8"
 {!../../../docs_src/path_params_numeric_validations/tutorial004.py!}
 ```
 
-## Number validations: greater than and less than or equal
+## Validações numéricas: maior que e menor que ou igual
 
-The same applies for:
+O mesmo se aplica para:
 
-* `gt`: `g`reater `t`han
-* `le`: `l`ess than or `e`qual
+* `gt`: maior que (`g`reater `t`han)
+* `le`: menor que ou igual (`l`ess than or `e`qual)
 
 ```Python hl_lines="9"
 {!../../../docs_src/path_params_numeric_validations/tutorial005.py!}
 ```
 
-## Number validations: floats, greater than and less than
+## Validações numéricas: valores do tipo float, maior que e menor que
 
-Number validations also work for `float` values.
+Validações numéricas também funcionam para valores do tipo `float`.
 
-Here's where it becomes important to be able to declare <abbr title="greater than"><code>gt</code></abbr> and not just <abbr title="greater than or equal"><code>ge</code></abbr>. As with it you can require, for example, that a value must be greater than `0`, even if it is less than `1`.
+Aqui é onde se torna importante a possibilidade de declarar <abbr title="greater than"><code>gt</code></abbr> e não apenas <abbr title="greater than or equal"><code>ge</code></abbr>. Com isso você pode especificar, por exemplo, que um valor deve ser maior que `0`, ainda que seja menor que `1`.
 
-So, `0.5` would be a valid value. But `0.0` or `0` would not.
+Assim, `0.5` seria um valor válido. Mas `0.0` ou `0` não seria.
 
-And the same for <abbr title="less than"><code>lt</code></abbr>.
+E o mesmo para <abbr title="less than"><code>lt</code></abbr>.
 
 ```Python hl_lines="11"
 {!../../../docs_src/path_params_numeric_validations/tutorial006.py!}
 ```
 
-## Recap
+## Recapitulando
 
-With `Query`, `Path` (and others you haven't seen yet) you can declare metadata and string validations in the same ways as with [Query Parameters and String Validations](query-params-str-validations.md){.internal-link target=_blank}.
+Com `Query`, `Path` (e outras que você ainda não viu) você pode declarar metadados e validações de texto como consta em [Parâmetros de consulta e validações de texto](query-params-str-validations.md){.internal-link target=_blank}.
 
-And you can also declare numeric validations:
+E você também pode declarar validações numéricas:
 
-* `gt`: `g`reater `t`han
-* `ge`: `g`reater than or `e`qual
-* `lt`: `l`ess `t`han
-* `le`: `l`ess than or `e`qual
+* `gt`: maior que (`g`reater `t`han)
+* `ge`: maior que ou igual (`g`reater than or `e`qual)
+* `lt`: menor que (`l`ess `t`han)
+* `le`: menor que ou igual (`l`ess than or `e`qual)
 
 !!! info
-    `Query`, `Path`, and others you will see later are subclasses of a common `Param` class (that you don't need to use).
+    `Query`, `Path`, e outras que você verá a frente são subclasses de uma classe `Param` comum (que você não precisa usar).
 
-    And all of them share the same all these same parameters of additional validation and metadata you have seen.
+    E todas elas compartilham todos esses mesmos parâmetros de validação adicional e metadados que você viu.
 
-!!! note "Technical Details"
-    When you import `Query`, `Path` and others from `fastapi`, they are actually functions.
+!!! note "Detalhes Técnicos"
+    Quando você importa `Query`, `Path` e outras de `fastapi`, elas são na verdade funções.
 
-    That when called, return instances of classes of the same name.
+    Que quando chamadas, retornam instâncias de classes de mesmo nome.
 
-    So, you import `Query`, which is a function. And when you call it, it returns an instance of a class also named `Query`.
+    Então, você importa `Query`,que é uma função. E quando você a chama, ela retorna uma instância de uma classe também chamada `Query`.
 
-    These functions are there (instead of just using the classes directly) so that your editor doesn't mark errors about their types.
+    Estas funções são assim (ao invés de apenas usar as classes diretamente) para que seu editor não acuse erros sobre seus tipos.
 
-    That way you can use your normal editor and coding tools without having to add custom configurations to disregard those errors.
+    Dessa maneira você pode user seu editor e ferramentas de desenvolvimento sem precisar adicionar configurações customizadas para ignorar estes erros.
