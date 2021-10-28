@@ -131,9 +131,9 @@ Dentro da função, você pode acessar todos os atributos do objeto do modelo di
 
 ## Corpo da requisição + parâmetros de rota
 
-Voce pode declarar parâmetros de rota e corpo da requisição ao mesmo tempo.
+Você pode declarar parâmetros de rota e corpo da requisição ao mesmo tempo.
 
-O **FastAPI** irá reconhecer os parâmetros da função que combinam com parâmetros de rota devem ser **retirados da rota**, e parâmetros da função que são declarados como modelos Pydantic sejam **retirados do corpo da requisição**.
+O **FastAPI** irá reconhecer que os parâmetros da função que combinam com parâmetros de rota devem ser **retirados da rota**, e parâmetros da função que são declarados como modelos Pydantic sejam **retirados do corpo da requisição**.
 
 ```Python hl_lines="17-18"
 {!../../../docs_src/body/tutorial003.py!}
