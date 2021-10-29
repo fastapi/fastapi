@@ -4,9 +4,7 @@ Este tutorial te muestra cómo usar **FastAPI** con la mayoría de sus caracter�
 
 Cada sección se basa gradualmente en las anteriores, pero está estructurada en temas separados, así puedes ir directamente a cualquier tema en concreto para resolver tus necesidades específicas sobre la API.
 
-También está diseñado para funcionar como una referencia futura.
-
-Para que puedas volver y ver exactamente lo que necesitas.
+Funciona también como una referencia futura, para que puedas volver y ver exactamente lo que necesitas.
 
 ## Ejecuta el código
 
