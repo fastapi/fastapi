@@ -91,9 +91,9 @@ Those parameters are what **FastAPI** will use to "solve" the dependency.
 
 In both cases, it will have:
 
-* an optional `q` query parameter.
-* a `skip` query parameter, with a default of `0`.
-* a `limit` query parameter, with a default of `100`.
+* An optional `q` query parameter that is a `str`.
+* A `skip` query parameter that is an `int`, with a default of `0`.
+* A `limit` query parameter that is an `int`, with a default of `100`.
 
 In both cases the data will be converted, validated, documented on the OpenAPI schema, etc.
 
