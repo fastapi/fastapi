@@ -9,13 +9,13 @@ theme:
     primary: teal
     accent: amber
     toggle:
-      icon: material/lightbulb-outline
+      icon: material/lightbulb
       name: Switch to light mode
   - scheme: slate
     primary: teal
     accent: amber
     toggle:
-      icon: material/lightbulb
+      icon: material/lightbulb-outline
       name: Switch to dark mode
   features:
   - search.suggest
@@ -60,6 +60,7 @@ nav:
 - Tutorial - Guia de Usuário:
   - tutorial/index.md
   - tutorial/first-steps.md
+  - tutorial/path-params.md
   - tutorial/body-fields.md
   - Segurança:
     - tutorial/security/index.md
@@ -68,6 +69,7 @@ nav:
 - Implantação:
   - deployment/index.md
   - deployment/versions.md
+  - deployment/https.md
 - alternatives.md
 - history-design-future.md
 - external-links.md

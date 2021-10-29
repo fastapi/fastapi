@@ -9,13 +9,21 @@ theme:
     primary: teal
     accent: amber
     toggle:
+<<<<<<< HEAD
       icon: material/lightbulb-outline
+=======
+      icon: material/lightbulb
+>>>>>>> 58ab733f19846b4875c5b79bfb1f4d1cb7f4823f
       name: Switch to light mode
   - scheme: slate
     primary: teal
     accent: amber
     toggle:
+<<<<<<< HEAD
       icon: material/lightbulb
+=======
+      icon: material/lightbulb-outline
+>>>>>>> 58ab733f19846b4875c5b79bfb1f4d1cb7f4823f
       name: Switch to dark mode
   features:
   - search.suggest
