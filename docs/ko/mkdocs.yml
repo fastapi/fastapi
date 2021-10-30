@@ -61,6 +61,8 @@ nav:
   - tutorial/path-params.md
   - tutorial/query-params.md
   - tutorial/header-params.md
+  - 보안:
+    - tutorial/security/first-steps.md
 markdown_extensions:
 - toc:
     permalink: true
