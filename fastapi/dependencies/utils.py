@@ -1,5 +1,6 @@
 import dataclasses
 import inspect
+from abc import ABCMeta
 from contextlib import contextmanager
 from copy import deepcopy
 from typing import (
@@ -243,6 +244,8 @@ def is_scalar_sequence_field(field: ModelField) -> bool:
 
 
 def get_typed_signature(call: Callable[..., Any]) -> inspect.Signature:
+    if isinstance(call, ABCMeta):
+        return inspect.Signature()
     signature = inspect.signature(call)
     globalns = getattr(call, "__globals__", {})
     typed_params = [
