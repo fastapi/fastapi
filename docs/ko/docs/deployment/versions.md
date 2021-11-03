@@ -61,7 +61,7 @@ fastapi>=0.45.0,<0.46.0
 
 애플리케이션을 검사해야합니다.
 
-**FastAPI** 를 이용하여 굉장히 쉽게 할 수 있습니다. (Starlette 덕분에), [Testing](../tutorial/testing.md){.internal-link target=_blank}문서를 확인해 보십시오:
+(Starlette 덕분에), **FastAPI** 를 이용하여 굉장히 쉽게 할 수 있습니다. [Testing](../tutorial/testing.md){.internal-link target=_blank}문서를 확인해 보십시오:
 
 검사를 해보고 난 후에, **FastAPI** 버전을 더 최신으로 업그레이드 할 수 있습니다. 그리고 코드들이 테스트에 정상적으로 작동하는지 확인을 해야합니다.
 
