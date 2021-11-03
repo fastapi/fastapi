@@ -59,7 +59,7 @@ fastapi>=0.45.0,<0.46.0
 
 ## FastAPI 버전의 업그레이드
 
-애플리케이션을 검사해야합니다.
+응용 프로그램을 검사해야합니다.
 
 (Starlette 덕분에), **FastAPI** 를 이용하여 굉장히 쉽게 할 수 있습니다. [Testing](../tutorial/testing.md){.internal-link target=_blank}문서를 확인해 보십시오:
 
