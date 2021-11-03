@@ -34,7 +34,7 @@ fastapi>=0.45.0,<0.46.0
 
 ## 이용가능한 버전들
 
-[Release Notes](../release-notes.md){.internal-link target=_blank}를 통해 사용할 수 있는 버전들을 볼 수 있습니다.(예를 들어, 가장 최신의 버전을 확인할 수 있습니다.)
+[Release Notes](../release-notes.md){.internal-link target=_blank}를 통해 사용할 수 있는 버전들을 확인할 수 있습니다.(예를 들어, 가장 최신의 버전을 확인할 수 있습니다.)
 
 
 ## 버전들에 대해
