@@ -76,7 +76,7 @@
 
 ## 더 많은 정보
 
-<abbr title="Cross-Origin Resource Sharing">교차 출처 리소스 공유</abbr>에 대한 더 많은 정보를 알고싶다면, <a href="https://developer.mozilla.org/ko/docs/Web/HTTP/CORS" class="external-link" target="_blank">Mozilla 교차 출처 리소스 공유 문서</a>를 참고하세요.
+<abbr title="교차-출처 리소스 공유">CORS</abbr>에 대한 더 많은 정보를 알고싶다면, <a href="https://developer.mozilla.org/ko/docs/Web/HTTP/CORS" class="external-link" target="_blank">Mozilla CORS 문서</a>를 참고하기 바랍니다.
 
 !!! note "기술 세부 사항"
     `from starlette.middleware.cors import CORSMiddleware` 역시 사용할 수 있습니다.
