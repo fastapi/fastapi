@@ -64,7 +64,7 @@
 
 미들웨어는 두가지 특정한 종류의 HTTP 요청에 응답합니다...
 
-### 교차 출처 리소스 공유 사전 요청
+### CORS 사전 요청
 
 `Origin` 및 `Access-Control-Request-Method` 헤더와 함께 전송하는 모든 `OPTIONS` 요청입니다.
 
