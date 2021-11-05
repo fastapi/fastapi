@@ -34,7 +34,7 @@
 
 ## `CORSMiddleware` 사용
 
-`CORSMiddleware` 을 사용하여 **FastAPI** 애플리케이션의 교차 출처 리소스 공유 환경을 설정할 수 있습니다.
+`CORSMiddleware` 을 사용하여 **FastAPI** 응용 프로그램의 교차 출처 리소스 공유 환경을 설정할 수 있습니다.
 
 * `CORSMiddleware` 임포트.
 * 허용되는 출처(문자열 형식)의 리스트 생성.
