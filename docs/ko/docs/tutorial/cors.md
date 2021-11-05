@@ -57,7 +57,7 @@
 * `allow_origins` - 교차-출처 요청을 보낼 수 있는 출처의 리스트입니다. 예) `['https://example.org', 'https://www.example.org']`. 모든 출처를 허용하기 위해 `['*']` 를 사용할 수 있습니다.
 * `allow_origin_regex` - 교차-출처 요청을 보낼 수 있는 출처를 정규표현식 문자열로 나타냅니다.  `'https://.*\.example\.org'`.
 * `allow_methods` - 교차-출처 요청을 허용하는 HTTP 메소드의 리스트입니다. 기본값은 `['GET']` 입니다. `['*']` 을 사용하여 모든 표준 메소드들을 허용할 수 있습니다.
-* `allow_headers` - 교차-출처를 지원하는 HTTP 요청 헤더(HTTP request header)의 리스트입니다. 기본값은 `[]` 입니다. 모든 헤더들을 허용하기 위해 `['*']` 를 사용할 수 있습니다. `Accept`, `Accept-Language`, `Content-Language` 그리고 `Content-Type` 헤더는 교차 출처 리소스 공유 요청시 언제나 허용됩니다.
+* `allow_headers` - 교차-출처를 지원하는 HTTP 요청 헤더의 리스트입니다. 기본값은 `[]` 입니다. 모든 헤더들을 허용하기 위해 `['*']` 를 사용할 수 있습니다. `Accept`, `Accept-Language`, `Content-Language` 그리고 `Content-Type` 헤더는 CORS 요청시 언제나 허용됩니다.
 * `allow_credentials` - 교차-출처 요청시 쿠키 지원 여부를 설정합니다. 기본값은 `False` 입니다. 또한 해당 항목을 허용할 경우 `allow_origins` 는 `['*']` 로 설정할 수 없으며, 출처를 반드시 특정해야 합니다.
 * `expose_headers` - 브라우저에 접근할 수 있어야 하는 모든 응답 헤더를 가리킵니다. 기본값은 `[]` 입니다.
 * `max_age` - 브라우저가 교차 출처 리소스 공유 응답을 캐시에 저장하는 최대 시간을 초 단위로 설정합니다. 기본값은 `600` 입니다.
