@@ -1,6 +1,6 @@
 # 교차 출처 리소스 공유
 
-<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS" class="external-link" target="_blank">교차 출처 리소스 공유</a>(CORS 또는 "Cross-Origin Resource Sharing")란, 브라우저에서 동작하는 프론트엔드가 자바스크립트로 코드로 백엔드와 통신하고, 백엔드는 해당 프론트엔드와 다른 "출처(origin)"에 존재하는 상황을 의미합니다. 
+<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS" class="external-link" target="_blank">CORS 또는 "교차-출처 리소스 공유"</a>란, 브라우저에서 동작하는 프론트엔드가 자바스크립트로 코드로 백엔드와 통신하고, 백엔드는 해당 프론트엔드와 다른 "출처"에 존재하는 상황을 의미합니다. 
 
 ## 출처
 
