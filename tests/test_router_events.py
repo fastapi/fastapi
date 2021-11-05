@@ -81,12 +81,15 @@ def test_router_events(state):
 
 
 def test_app_lifespan_state(state):
-    def lifespan(app):
-        state.app_startup = True
-        yield
-        state.app_shutdown = True
+    class Lifespan:
+        def __init__(self, app):
+            pass
+        async def __aenter__(self):
+            state.app_startup = True
+        async def __aexit__(self, exc_type, exc_value, exc_tb):
+            state.app_shutdown = True
 
-    app = FastAPI(lifespan=lifespan)
+    app = FastAPI(lifespan=Lifespan)
 
     @app.get("/")
     def main():
