@@ -1,6 +1,6 @@
 # 개발 - 기여
 
-먼저 [help FastAPI and get help](https://github.com/kty4119/fastapi/blob/master/docs/en/docs/help-fastapi.md)에서 기본 방법을 보고 도움을 얻는 것이 좋을지도 모릅니다.
+먼저 [help FastAPI and get help](https://github.com/tiangolo/fastapi/blob/master/docs/en/docs/help-fastapi.md)에서 기본 방법을 보고 도움을 얻는 것이 좋을지도 모릅니다.
 
 ## 개발
 
@@ -146,9 +146,9 @@ $ flit install --deps develop --pth-file
 
 #### 로컬 환경에서의 FastAPI 사용
 
-FastAPI를 가져오고 사용하는 Python 파일을 만들어, 로컬 환경에 설치된 Python으로 실행하면, 로컬 FastAPI 소스코드가 사용됩니다.
+FastAPI를 가져오고 사용하는 파이썬 파일을 만들어, 로컬 환경에 설치된 파이썬으로 실행하면, 로컬 FastAPI 소스코드가 사용됩니다.
 
-그리고 `--symlink` (Windows의 경우 `--pth-file` )에 설치되어있는 로컬 FastAPI 소스코드를 업데이트한 경우, Python 파일을 다시 실행하면, 새로운 버전의 FastAPI를 사용합니다.
+그리고 `--symlink` (Windows의 경우 `--pth-file` )에 설치되어있는 로컬 FastAPI 소스코드를 업데이트한 경우, 파이썬 파일을 다시 실행하면, 새로운 버전의 FastAPI를 사용합니다.
 
 이런 방법으로 로컬버전을 "install" 하지 않고 모든 변경 사항을 테스트 할 수 있습니다.
 
@@ -210,7 +210,7 @@ $ python ./scripts/docs.py live
 
 #### Typer CLI (선택 사항)
 
- `./scripts/docs.py` 에서는 `python` 프로그램에서 직접 사용하는 방법을 설명합니다.
+ `./scripts/docs.py` 에서는 `파이썬` 프로그램에서 직접 사용하는 방법을 설명합니다.
 
 하지만 [Typer CLI](https://typer.tiangolo.com/typer-cli/) 를 사용하여 설치한다면, 설치가 완료된 후 터미널에서 자동 완성 기능을 할 수 있습니다.
 
