@@ -1,6 +1,6 @@
 # 벤치마크
 
-독립적인 TechEmpower 벤치마크에 따르면 Uvicorn에서 실행되는 **FastAPI** 애플리케이션을 <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=로 표시합니다. zijzen-7" class="external-link" target="_blank">사용 가능한 가장 빠른 Python 프레임워크 중 하나</a>로  Starlette 및 Uvicorn보다 낮습니다. (FastAPI에서 내부적으로 사용). (*)
+독립적인 TechEmpower 벤치마크에 따르면 Uvicorn에서 실행되는 **FastAPI** 애플리케이션을 <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=로 표시합니다. zijzen-7" class="external-link" target="_blank">사용 가능한 가장 빠른 Python 프레임워크 중 하나</a>로  Starlette과 Uvicorn 다음으로 높은 순위입니다. (FastAPI에서 내부적으로 사용). (*)
 
 그러나 벤치마크를 확인하고 비교할 때 다음 사항을 염두에 두어야 합니다.
 
