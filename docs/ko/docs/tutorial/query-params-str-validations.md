@@ -2,7 +2,7 @@
 
 **FastAPI**를 사용하면 매개변수에 대한 추가 정보 및 유효성 검사를 선언할 수 있습니다.
 
-이 애플리케이션을 예로 들어보겠습니다:
+이 응용 프로그램을 예로 들어보겠습니다:
 
 ```Python hl_lines="9"
 {!../../../docs_src/query_params_str_validations/tutorial001.py!}
