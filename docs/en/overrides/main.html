@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block announce %}
+<div class="announce-wrapper">
+  <div id="announce-left">
+    <div class="item">
+      <a class="announce-link" href="https://twitter.com/fastapi" target="_blank">
+        <span class="twemoji twitter">
+          {% include ".icons/fontawesome/brands/twitter.svg" %}
+        </span> Follow <strong>@fastapi</strong> on <strong>Twitter</strong> to stay updated
+      </a>
+    </div>
+    <div class="item">
+      <a class="announce-link" href="https://fastapi.tiangolo.com/newsletter/">
+        <span class="twemoji">
+          {% include ".icons/material/email.svg" %}
+        </span> Subscribe to the <strong>FastAPI and friends</strong> newsletter 🎉
+      </a>
+    </div>
+    <div class="item">
+      <iframe style="display: inline-block; vertical-align: middle; border: none; margin-right: 0.5rem;" src="https://github.com/sponsors/tiangolo/button" title="Sponsor tiangolo" height="35" width="116" style="border: 0;"></iframe> <a class="announce-link" target="_blank" href="https://github.com/sponsors/tiangolo">You can now sponsor <strong>FastAPI</strong> 🍰</a>
+    </div>
+  </div>
+  <div id="announce-right" style="position: relative;">
+    <!-- <div class="item">
+      <a title="The launchpad for all your (team's) ideas" style="display: block; position: relative;" href="https://www.deta.sh/?ref=fastapi" target="_blank">
+        <span class="sponsor-badge">sponsor</span>
+        <img class="sponsor-image" src="/img/sponsors/deta-banner.svg" />
+      </a>
+    </div> -->
+    <div class="item">
+      <a title="Get three courses at 10% off their current prices! Plus, we'll be donating 10% of all profits from sales of this bundle to the FastAPI team." style="display: block; position: relative;" href="https://testdriven.io/talkpython/" target="_blank">
+        <span class="sponsor-badge">sponsor</span>
+        <img class="sponsor-image" src="/img/sponsors/fastapi-course-bundle-banner.svg" />
+      </a>
+    </div>
+    <div class="item">
+      <a title="Jina: build neural search-as-a-service for any kind of data in just minutes." style="display: block; position: relative;" href="https://bit.ly/2QSouzH" target="_blank">
+        <span class="sponsor-badge">sponsor</span>
+        <img class="sponsor-image" src="/img/sponsors/jina-banner.svg" />
+      </a>
+    </div>
+  </div>
+</div>
+{% endblock %}

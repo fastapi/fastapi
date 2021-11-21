@@ -39,7 +39,7 @@ This also means that if you are inside a utility function that you are calling i
 
 The benefit of raising an exception over `return`ing a value will be more evident in the section about Dependencies and Security.
 
-In this example, when the client request an item by an ID that doesn't exist, raise an exception with a status code of `404`:
+In this example, when the client requests an item by an ID that doesn't exist, raise an exception with a status code of `404`:
 
 ```Python hl_lines="11"
 {!../../../docs_src/handling_errors/tutorial001.py!}
@@ -260,6 +260,4 @@ You can import and re-use the default exception handlers from `fastapi.exception
 {!../../../docs_src/handling_errors/tutorial006.py!}
 ```
 
-In this example, you are just `print`ing the error with a very expressive message.
-
-But you get the idea, you can use the exception and then just re-use the default exception handlers.
+In this example you are just `print`ing the error with a very expressive message, but you get the idea. You can use the exception and then just re-use the default exception handlers.

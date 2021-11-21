@@ -364,7 +364,7 @@ Create utility functions to:
 
 * Read a single user by ID and by email.
 * Read multiple users.
-* Read a single item.
+* Read multiple items.
 
 ```Python hl_lines="1  3  6-7  10-11  14-15  27-28"
 {!../../../docs_src/sql_databases/sql_app/crud.py!}
@@ -440,17 +440,6 @@ A "migration" is the set of steps needed whenever you change the structure of yo
 You can find an example of Alembic in a FastAPI project in the templates from [Project Generation - Template](../project-generation.md){.internal-link target=_blank}. Specifically in <a href="https://github.com/tiangolo/full-stack-fastapi-postgresql/tree/master/%7B%7Bcookiecutter.project_slug%7D%7D/backend/app/alembic/" class="external-link" target="_blank">the `alembic` directory in the source code</a>.
 
 ### Create a dependency
-
-!!! info
-    For this to work, you need to use **Python 3.7** or above, or in **Python 3.6**, install the "backports":
-
-    ```console
-    $ pip install async-exit-stack async-generator
-    ```
-
-    This installs <a href="https://github.com/sorcio/async_exit_stack" class="external-link" target="_blank">async-exit-stack</a> and <a href="https://github.com/python-trio/async_generator" class="external-link" target="_blank">async-generator</a>.
-
-    You can also use the alternative method with a "middleware" explained at the end.
 
 Now use the `SessionLocal` class we created in the `sql_app/databases.py` file to create a dependency.
 

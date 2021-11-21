@@ -33,7 +33,7 @@ We need to install `python-jose` to generate and verify the JWT tokens in Python
 <div class="termy">
 
 ```console
-$ pip install python-jose[cryptography]
+$ pip install "python-jose[cryptography]"
 
 ---> 100%
 ```
@@ -76,7 +76,7 @@ So, install PassLib with Bcrypt:
 <div class="termy">
 
 ```console
-$ pip install passlib[bcrypt]
+$ pip install "passlib[bcrypt]"
 
 ---> 100%
 ```
