@@ -8,7 +8,7 @@
 {!../../../docs_src/query_params_str_validations/tutorial001.py!}
 ```
 
-쿼리 매개변수 `q`는 `Optional[str]` 타입입니다. 즉, `str` 형이지만 `None` 형 역시 될 수 있음을 뜻하고, 실제로 기본값은 `None`이기 때문에 FastAPI는 이 매개변수가 필수가 아니라는 것을 압니다.
+쿼리 매개변수 `q`는 `Optional[str]` 자료형입니다. 즉, `str` 자료형이지만 `None` 역시 될 수 있음을 뜻하고, 실제로 기본값은 `None`이기 때문에 FastAPI는 이 매개변수가 필수가 아니라는 것을 압니다.
 
 !!! note "참고"
     FastAPI는 `q`의 기본값이 `= None`이기 때문에 필수가 아님을 압니다.
