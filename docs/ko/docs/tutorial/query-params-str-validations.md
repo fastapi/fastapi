@@ -248,7 +248,7 @@ http://localhost:8000/items/
 
 매개변수가 `item-query`이길 원한다고 가정해 봅시다.
 
-다음과 같이:
+마치 다음과 같습니다:
 
 ```
 http://127.0.0.1:8000/items/?item-query=foobaritems
