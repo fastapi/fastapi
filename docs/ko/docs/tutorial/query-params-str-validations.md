@@ -162,7 +162,7 @@ q: Optional[str] = Query(None, min_length=3)
 http://localhost:8000/items/?q=foo&q=bar
 ```
 
-여러 `q` *쿼리 매개변수* 값들을 (`foo` 및 `bar`) 파이썬 `list`로 *경로 동작 함수* 내 *함수 매개변수* `q`로 전달 받습니다.
+여러 `q` *쿼리 매개변수* 값들을 (`foo` 및 `bar`) 파이썬 `list`로 *경로 작동 함수* 내 *함수 매개변수* `q`로 전달 받습니다.
 
 따라서 해당 URL에 대한 응답은 다음과 같습니다:
 
