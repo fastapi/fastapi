@@ -86,7 +86,7 @@ q: str = Query(None, max_length=50)
 
 ## 정규식 추가
 
-매개변수와 일치해야 하는 <abbr title="정규표현식(짧게 정규식), regex 또는 regexp는 문자열 조회 패턴을 정의하는 문자들의 순열이다">정규표현식</abbr>을 정의할 수 있습니다:
+매개변수와 일치해야 하는 <abbr title="정규표현식(regular expression), regex 또는 regexp는 문자열 조회 패턴을 정의하는 문자들의 순열입니다">정규표현식</abbr>을 정의할 수 있습니다:
 
 ```Python hl_lines="10"
 {!../../../docs_src/query_params_str_validations/tutorial004.py!}
