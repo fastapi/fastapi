@@ -184,7 +184,6 @@ http://localhost:8000/items/?q=foo&q=bar
 
 ### 쿼리 매개변수 리스트 / 기본값을 사용하는 다중값
 
-And you can also define a default `list` of values if none are provided:
 그리고 제공된 값이 없으면 기본 `list` 값을 정의할 수도 있습니다:
 
 ```Python hl_lines="9"
