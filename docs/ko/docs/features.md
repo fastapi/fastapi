@@ -106,7 +106,7 @@ Pass the keys and values of the `second_user_data` dict directly as key-value ar
   - 항목 유형을 정의하는 JSON 배열 (`list`).
   - 최소 길이와 최대 길이가 있는 문자열 (`str`) 필드.
   - 최소값과 최대값이 있는 숫자 (`int`, `float`), 등.
-- 보다 이국적인 유형에 대한 검증, 예를 들면:
+- 보다 익숙하지 않은 유형에 대한 검증, 예를 들면:
   - URL.
   - 이메일.
   - UUID.
