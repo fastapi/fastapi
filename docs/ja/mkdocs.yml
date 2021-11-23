@@ -81,6 +81,7 @@ nav:
   - advanced/additional-status-codes.md
   - advanced/response-directly.md
   - advanced/custom-response.md
+  - advanced/nosql-databases.md
 - async.md
 - デプロイ:
   - deployment/index.md
