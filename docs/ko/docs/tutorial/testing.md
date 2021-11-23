@@ -32,7 +32,7 @@
 
     **FastAPI**는 개발자 여러분의 편의를 위해 `fastapi.testclient`와 동일한 `starlette.testclient`를 제공합니다. 그러나 그것은 Starlette에서 직접 제공됩니다.
 
-!!! 팁  FastAPI 애플리케이션(예: 비동기 데이터베이스 함수)에 요청을 보내는 것과 별도로 테스트에서 `async` 함수를 호출하려면 고급 자습서의 [Async Tests](../advanced/async-tests.md){internal-link target=_blank} 를 살펴보세요.
+!!! 팁  FastAPI 애플리케이션(예: 비동기 데이터베이스 함수)에 요청을 보내는 것과 별도로 테스트에서 `async` 함수를 호출하려면 고급 자습서의 [Async Tests](../advanced/async-tests.md){internal-link target=_blank} 를 살펴보십시오.
 
 ## 테스트 분리
 
