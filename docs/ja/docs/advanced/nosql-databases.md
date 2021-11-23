@@ -142,7 +142,7 @@ UserInDB(username="johndoe", hashed_password="some_hash")
 
 私たちのコードはCouchbaseを呼び出しており、<a href="https://docs.couchbase.com/python-sdk/2.5/async-programming.html#asyncio-python-3-5" class="external-link" target="_blank">実験的なPython <code>await</code></a>を使用していないので、私たちは`async def`ではなく通常の`def`で関数を宣言する必要があります。
 
-また、Couchbaseは単一の`Bucket`オブジェクトを複数の<abbr title="プログラムによって実行される一連のコードのことで、同時に、または間隔をおいて他のコードも実行されることがあります。">スレッド</abbr>で使用しないことを推奨していますので、私たちは単に直接Bucketを取得し、それを私たちのユーティリティー関数に渡すことが出来ます。
+また、Couchbaseは単一の`Bucket`オブジェクトを複数の<abbr title="プログラムによって実行される一連のコードのことで、同時に、または間隔をおいて他のコードも実行されることがあります。">スレッド</abbr>で使用しないことを推奨していますので、単に直接Bucketを取得して関数に渡すことが出来ます。
 
 ```Python hl_lines="49-53"
 {!../../../docs_src/nosql_databases/tutorial001.py!}
