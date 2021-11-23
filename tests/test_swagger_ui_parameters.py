@@ -46,8 +46,10 @@ def test_swagger_ui(good_client):
     assert 'syntaxHighlight.theme: "obsidian",' in response.text
 
 
-def test_response(good_client):
+def test_response(good_client, bad_client):
     response = good_client.get("/items/")
+    assert response.json() == {"id": "foo"}
+    response = bad_client.get("/items/")
     assert response.json() == {"id": "foo"}
 
 
