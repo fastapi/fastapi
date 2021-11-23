@@ -10,7 +10,7 @@
 
 `TestClient`를 가져옵니다.
 
-**FastAPI** 애플리케이션에 전달하는 `TestClient`를 생성합니다.
+**FastAPI** 응용 프로그램에 전달하는 `TestClient`를 생성합니다.
 
 `test_`로 시작하는 이름으로 함수를 생성합니다 (표준 `pytest` 규칙).
 
