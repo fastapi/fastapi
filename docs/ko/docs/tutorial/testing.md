@@ -94,7 +94,7 @@
 * *headers*를 전달하려면 `headers` 매개변수에 `dict`를 사용하십시오.
 * *cookies*의 경우 `cookies` 매개변수의 `dict`.
 
-데이터를 백엔드에 전달하는 방법(`requests` 또는 `TestClient` 사용)에 대한 자세한 내용은 <a href="https://requests.readthedocs.io" class="external-link" target="_blank를 확인하세요. ">문서 요청</a>을 확인하세요.
+데이터를 백엔드에 전달하는 방법(`requests` 또는 `TestClient` 사용)에 대한 자세한 내용은 <a href="https://requests.readthedocs.io" class="external-link" target="_blank를 확인하세요. ">문서 요청</a>을 확인하십시오.
 
 !!! 정보  `TestClient`는 Pydantic 모델이 아닌 JSON으로 변환할 수 있는 데이터를 수신합니다.
 
