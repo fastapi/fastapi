@@ -91,7 +91,7 @@
 * *경로*  혹은 *쿼리*  매개변수를 전달하려면 URL 자체에 추가하십시오.
 * JSON 본문을 전달하려면 파이썬 객체(예: `dict`)를 매개변수 `json`에 전달합니다.
 * JSON 대신 *데이터에서*  보내야 한다면 `data` 매개변수를 대신 사용하십시오.
-* *headers*를 전달하려면 `headers` 매개변수에 `dict`를 사용하세요.
+* *headers*를 전달하려면 `headers` 매개변수에 `dict`를 사용하십시오.
 * *cookies*의 경우 `cookies` 매개변수의 `dict`.
 
 데이터를 백엔드에 전달하는 방법(`requests` 또는 `TestClient` 사용)에 대한 자세한 내용은 <a href="https://requests.readthedocs.io" class="external-link" target="_blank를 확인하세요. ">문서 요청</a>을 확인하세요.
