@@ -1,6 +1,6 @@
 # 테스트
 
-<a href="https://www.starlette.io/testclient/" class="external-link" target="_blank">Starlette</a> 덕분에 **FastAPI** 애플리케이션을 쉽고 즐겁게 테스트할 수 있습니다. .
+<a href="https://www.starlette.io/testclient/" class="external-link" target="_blank">Starlette</a> 덕분에 **FastAPI** 응용 프로그램을 쉽고 즐겁게 테스트할 수 있습니다. .
 
 <a href="https://requests.readthedocs.io" class="external-link" target="_blank">요청</a>을 기반으로 하므로 매우 친숙하고 직관적입니다.
 
