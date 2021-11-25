@@ -503,7 +503,7 @@ FastAPI 프로젝트에서의 Alembic에 대한 예시를 [Project Generation - 
 이를 통해, *경로 작동 함수* 내부에서 `crud.get_user`를 직접 호출해서 해당 세션을 사용할 수 있습니다.
 
 !!! tip "팁" 
-    반환되는 값은 SQLAlchemy 모델이거나 SQLAlchemy 모델들의 목록이라는 점을 주의하세요.
+    반환되는 값은 SQLAlchemy 모델이거나 SQLAlchemy 모델들의 목록이라는 점을 주의하십시오.
 
     하지만 모든 *경로 작동*이 'orm_mode'을 사용하여 Pydantic *모델* /스키마를 사용한 'response_model'을 가지고 있으므로 Pydantic 모델에 선언된 데이터는 이로부터 추출된 후 모든 일반 필터링 및 유효성 검사를 통해 클라이언트에게 반환됩니다.
 
