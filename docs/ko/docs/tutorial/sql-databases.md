@@ -508,7 +508,7 @@ FastAPI 프로젝트에서의 Alembic에 대한 예시를 [Project Generation - 
     하지만 모든 *경로 작동*이 'orm_mode'을 사용하여 Pydantic *모델* /스키마를 사용한 'response_model'을 가지고 있으므로 Pydantic 모델에 선언된 데이터는 이로부터 추출된 후 모든 일반 필터링 및 유효성 검사를 통해 클라이언트에게 반환됩니다.
 
 !!! tip "팁" 
-    `List[schemas.Item]`과 같은 표준 파이썬 형을 가진 `response_models`가 있다는 것도 주의하세요.
+    `List[schemas.Item]`과 같은 표준 파이썬 형을 가진 `response_models`가 있다는 것도 주의하십시오.
 
     그러나 `List`의 요쇼 / 매개변수는 'orm_mode'가 있는 Pydantic *모델*이기 때문에, 데이터는 문제 없이 클라이언트에게 반환됩니다.
 
