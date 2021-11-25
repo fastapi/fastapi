@@ -283,7 +283,7 @@ name: str
 ```
 
 !!! tip "팁"
-    API로부터 반환되어 사용자를 읽기 위해 사용되는 Pydantic *모델* `User` 은 `password` 를 포함하지 않는다는 것을 주의하세요.
+    API로부터 반환되어 사용자를 읽기 위해 사용되는 Pydantic *모델* `User` 은 `password` 를 포함하지 않는다는 것을 주의하십시오.
 
 ### Pydantic의 `orm_mode` 사용
 
