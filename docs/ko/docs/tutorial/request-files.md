@@ -90,7 +90,7 @@ contents = myfile.file.read()
 ```
 
 !!! note  "`async` 기술적 세부사항"
-    `async` 메소드들을 사용할 때 **FastAPI**는 스레드풀(treadpool)에서 파일 메소드들을 실행하고 그들을 기다립니다.
+    `async` 메소드들을 사용할 때 **FastAPI**는 스레드풀에서 파일 메소드들을 실행하고 그들을 기다립니다.
 
 !!! note "Starlette 기술 세부사항"
     **FastAPI**의 `UploadFile` 은 **Starlette**의 `UploadFile` 을 직접적으로 상속받지만, **Pydantic** 및 FastAPI의 다른 부분들과의 호환성을 위해 필요한 부분들이 추가되었습니다.
