@@ -447,7 +447,7 @@ Pour en savoir plus, consultez la section <a href="https://fastapi.tiangolo.com/
 
 Utilisé par Pydantic:
 
-* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - pour un JSON plus rapide <abbr title="converting the string that comes from an HTTP request into Python data">"parsing"</abbr>.
+* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - pour un <abbr title="convertit la chaine de caractère d'une requête HTTP en donnée Python">"décodage" JSON</abbr> plus rapide.
 * <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - pour la validation d'e-mail.
 
 Utilisé par Starlette :
