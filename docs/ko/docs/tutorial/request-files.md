@@ -83,7 +83,7 @@
 contents = await myfile.read()
 ```
 
-만약 일반적인 `def` *경로 동작 함수*의 내부라면, 다음과 같이 `UploadFile.file` 에 직접 접근할 수 있습니다:
+만약 일반적인 `def` *경로 작동 함수*의 내부라면, 다음과 같이 `UploadFile.file` 에 직접 접근할 수 있습니다:
 
 ```Python
 contents = myfile.file.read()
