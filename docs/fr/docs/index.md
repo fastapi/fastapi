@@ -455,7 +455,7 @@ Utilisé par Starlette :
 * <a href="https://requests.readthedocs.io" target="_blank"><code>requests</code></a> - Obligatoire si vous souhaitez utiliser le `TestClient`.
 * <a href="https://github.com/Tinche/aiofiles" target="_blank"><code>aiofiles</code></a> - Obligatoire si vous souhaitez utiliser `FileResponse` ou `StaticFiles`.
 * <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - Obligatoire si vous souhaitez utiliser la configuration de modèle par défaut.
-* <a href="https://andrew-d.github.io/python-multipart/" target="_blank"><code>python-multipart</code></a> - Obligatoire si vous souhaitez soutenir le formulaire <abbr title="converting the string that comes from an HTTP request into Python data">"parsing"</abbr>, avec `request.form()`.
+* <a href="https://andrew-d.github.io/python-multipart/" target="_blank"><code>python-multipart</code></a> - Obligatoire si vous souhaitez supporter le <abbr title="convertit la chaine de caractère d'une requête HTTP en donnée Python">"décodage"</abbr> de formulaire, avec `request.form()`.
 * <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - Requis pour la prise en charge de `SessionMiddleware`.
 * <a href="https://pyyaml.org/wiki/PyYAMLDocumentation" target="_blank"><code>pyyaml</code></a> - Requis pour le support `SchemaGenerator` de Starlette (vous n'en avez probablement pas besoin avec FastAPI).
 * <a href="https://graphene-python.org/" target="_blank"><code>graphene</code></a> - Requis pour la prise en charge de `GraphQLApp`.
