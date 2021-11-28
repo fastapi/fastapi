@@ -89,7 +89,7 @@ contents = await myfile.read()
 contents = myfile.file.read()
 ```
 
-!!! note  "`async` 기술 세부사항"
+!!! note  "`async` 기술적 세부사항"
     `async` 메소드들을 사용할 때 **FastAPI**는 스레드풀(treadpool)에서 파일 메소드들을 실행하고 그들을 기다립니다.
 
 !!! note "Starlette 기술 세부사항"
