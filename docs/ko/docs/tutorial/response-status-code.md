@@ -79,7 +79,7 @@ HTTP는 세자리의 숫자 상태 코드를 응답의 일부로 전송합니다
 
 <img src="https://fastapi.tiangolo.com/img/tutorial/response-status-code/image02.png">
 
-!!! note "기술 세부사항"
+!!! note "기술적 세부사항"
     `from starlette import status` 역시 사용할 수 있습니다.
 
     **FastAPI**는 개발자인 당신의 편의를 위해 `fastapi.status` 와 동일한 `starlette.status` 도 제공합니다. 하지만 이것은 Starlette로부터 직접 제공됩니다.
