@@ -64,7 +64,7 @@
 
 * `filename` : 문자열(`str`)로 된 업로드된 파일의 파일명입니다 (예: `myimage.jpg`).
 * `content_type` : 문자열(`str`)로 된 파일 형식(MIME type / media type)입니다 (예: `image/jpeg`).
-* `file` :  <a href="https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile" class="external-link" target="_blank">`SpooledTemporaryFile`</a> (<a href="https://docs.python.org/3/glossary.html#term-file-like-object" class="external-link" target="_blank">file-like</a> 객체)입니다. 이것은 file-like 객체를 필요로하는 다른 라이브러리에 직접적으로 전달할 수 있는 실질적인 파이썬 파일입니다.
+* `file` :  <a href="https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile" class="external-link" target="_blank">`SpooledTemporaryFile`</a> (<a href="https://docs.python.org/3/glossary.html#term-file-like-object" class="external-link" target="_blank">파일류</a> 객체)입니다. 이것은 "파일류" 객체를 필요로하는 다른 라이브러리에 직접적으로 전달할 수 있는 실질적인 파이썬 파일입니다.
 
 `UploadFile` 에는 다음의 `async` 메소드들이 있습니다. 이들은 내부적인 `SpooledTemporaryFile` 을 사용하여 해당하는 파일 메소드를 호출합니다.
 
