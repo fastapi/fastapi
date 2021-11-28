@@ -86,4 +86,4 @@ HTTP는 세자리의 숫자 상태 코드를 응답의 일부로 전송합니다
 
 ## 기본값 변경
 
-추후 [Advanced User Guide](https://fastapi.tiangolo.com/advanced/response-change-status-code/){.internal-link target=_blank}에서 여기서 선언하는 기본 상태 코드가 아닌 다른 상태 코드를 반환하는 방법을 확인할 수 있습니다.
+추후 여기서 선언하는 기본 상태 코드가 아닌 다른 상태 코드를 반환하는 방법을 [숙련된 사용자 지침서](https://fastapi.tiangolo.com/ko/advanced/response-change-status-code/){.internal-link target=_blank}에서 확인할 수 있습니다.
