@@ -28,7 +28,7 @@
 <img src="https://fastapi.tiangolo.com/img/tutorial/response-status-code/image01.png">
 
 !!! note "참고" 
-    어떤 응답 코드들은 해당 응답에 본문(body)이 없다는 것을 의미하기도 합니다(다음 항목 참고).
+    어떤 응답 코드들은 해당 응답에 본문이 없다는 것을 의미하기도 합니다 (다음 항목 참고).
 
     이에 따라 FastAPI는 응답 본문이 없음을 명시하는 OpenAPI를 생성합니다.
 
