@@ -426,7 +426,7 @@ Pour un exemple plus complet incluant plus de fonctionnalités, voir le <a href=
 * Déclaration de **paramètres** provenant d'autres endroits différents comme : **en-têtes**, **cookies**, **champs de formulaire** et **fichiers**.
 * Comment définir les **contraintes de validation** comme `maximum_length` ou `regex`.
 * Un très puissant et facile à utiliser **<abbr title="also known as components, resources, providers, services, injectables">Systéme d'injection de dépendance </abbr>** .
-* Sécurité et authentification, y compris la prise en charge de **OAuth2** avec **jetons JWT** et **HTTP Basic** auth.
+* Sécurité et authentification, y compris la prise en charge de **OAuth2** avec **jetons JWT** et l'authentification **HTTP Basic**.
 * Des techniques plus avancées (mais tout aussi simples) pour déclarer des **modèles JSON profondément imbriqués** (grâce à Pydantic).
 * De nombreuses fonctionnalités supplémentaires (grâce à Starlette) comme:
     * **WebSockets**
