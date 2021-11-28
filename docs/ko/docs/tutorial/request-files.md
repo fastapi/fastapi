@@ -137,7 +137,7 @@ HTML의 폼들(`<form></form>`)이 서버에 데이터를 전송하는 방식은
 !!! note "기술적 세부사항"
     `from starlette.responses import HTMLResponse` 역시 사용할  수 있습니다.
 
-    **FastAPI**는 개발자인 당신의 편의를 위해 `fastapi.responses` 와 동일한 `starlette.responses` 도 제공합니다. 하지만 대부분의 응답들은 Starlette로부터 직접 제공됩니다.
+    **FastAPI**는 개발자의 편의를 위해 `fastapi.responses` 와 동일한 `starlette.responses` 도 제공합니다. 하지만 대부분의 응답들은 Starlette로부터 직접 제공됩니다.
 
 ## 요약
 
