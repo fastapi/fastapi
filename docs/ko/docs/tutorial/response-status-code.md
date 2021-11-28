@@ -55,7 +55,7 @@ HTTP는 세자리의 숫자 상태 코드를 응답의 일부로 전송합니다
 * `**5xx**` 상태 코드는 서버 오류에 사용됩니다. 이것들을 직접 사용할 일은 거의 없습니다. 어플리케이션 코드나 서버의 일부에서 문제가 발생하면 자동으로 이들 상태 코드 중 하나를 반환합니다.
 
 !!! tip "팁"
-    각각의 상태 코드와 이들이 의미하는 내용에 대해 더 알고싶다면 <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status" class="external-link" target="_blank"><abbr title="Mozilla Developer Network">MDN</abbr> documentation about HTTP status codes</a> 를 확인하십시오.
+    각각의 상태 코드와 이들이 의미하는 내용에 대해 더 알고싶다면 <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status" class="external-link" target="_blank"><abbr title="Mozilla Developer Network">MDN</abbr> HTTP 상태 코드에 관한 문서</a> 를 확인하십시오.
 
 ## 이름을 기억하는 쉬운 방법
 
