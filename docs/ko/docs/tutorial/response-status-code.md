@@ -75,7 +75,7 @@ HTTP는 세자리의 숫자 상태 코드를 응답의 일부로 전송합니다
 {!../../../docs_src/response_status_code/tutorial002.py!}
 ```
 
-이것은 단순히 작업을 편리하게 하기 위한 것으로, HTTP 상태 코드와 동일한 번호를 갖고있지만, 이를 사용하면 에디터의 자동완성 기능을 사용할 수 있습니다:
+이것은 단순히 작업을 편리하게 하기 위한 것으로, HTTP 상태 코드와 동일한 번호를 갖고있지만, 이를 사용하면 편집기의 자동완성 기능을 사용할 수 있습니다:
 
 <img src="https://fastapi.tiangolo.com/img/tutorial/response-status-code/image02.png">
 
