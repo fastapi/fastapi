@@ -102,7 +102,7 @@ HTML의 폼들(`<form></form>`)이 서버에 데이터를 전송하는 방식은
 **FastAPI**는 JSON 대신 올바른 위치에서 데이터를 읽을 수 있도록 합니다.
 
 !!! note "기술적 세부사항"
-    폼의 데이터는 파일이 포함되지 않은 경우 일반적으로 "media type" `application/x-www-form-urlencoded` 을 사용해 인코딩 됩니다.
+    폼의 데이터는 파일이 포함되지 않은 경우 일반적으로 "미디어 유형" `application/x-www-form-urlencoded` 을 사용해 인코딩 됩니다.
 
     하지만 파일이 포함된 경우, `multipart/form-data`로 인코딩됩니다. `File`을 사용하였다면, **FastAPI**는 본문의 적합한 부분에서 파일을 가져와야 한다는 것을 인지합니다.
 
