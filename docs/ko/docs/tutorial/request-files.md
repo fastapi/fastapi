@@ -134,7 +134,7 @@ HTML의 폼들(`<form></form>`)이 서버에 데이터를 전송하는 방식은
 
     따라서 Swagger UI 또는 기타 그 외의 OpenAPI를 지원하는 툴이 다중 파일 업로드를 지원하는 경우, 이들은 **FastAPI**와 호환됩니다.
 
-!!! note "기술 세부사항"
+!!! note "기술적 세부사항"
     `from starlette.responses import HTMLResponse` 역시 사용할  수 있습니다.
 
     **FastAPI**는 개발자인 당신의 편의를 위해 `fastapi.responses` 와 동일한 `starlette.responses` 도 제공합니다. 하지만 대부분의 응답들은 Starlette로부터 직접 제공됩니다.
