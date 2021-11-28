@@ -60,7 +60,7 @@
 
 ### `UploadFile`
 
-`UploadFile` 은 다음과 같은 속성(attribute)이 있습니다:
+`UploadFile` 은 다음과 같은 어트리뷰트가 있습니다:
 
 * `filename` : 문자열(`str`)로 된 업로드된 파일의 파일명입니다 (예: `myimage.jpg`).
 * `content_type` : 문자열(`str`)로 된 파일 형식(MIME type / media type)입니다 (예: `image/jpeg`).
