@@ -18,7 +18,7 @@
 `status_code` 매개변수는 HTTP 상태 코드를 숫자로 입력받습니다.
 
 !!! info "정보"
-    `status_code` 는 Python의 `http.HTTPStatus` 와 같은 `IntEnum` 을 입력받을 수도 있습니다.
+    `status_code` 는 파이썬의 `http.HTTPStatus` 와 같은 `IntEnum` 을 입력받을 수도 있습니다.
 
 `status_code` 매개변수는:
 
