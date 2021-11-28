@@ -119,7 +119,7 @@ HTML의 폼들(`<form></form>`)이 서버에 데이터를 전송하는 방식은
 
 그들은 "폼 데이터"를 사용하여 전송된 동일한 "폼 필드"에 연결됩니다.
 
-이 기능을 사용하기 위해  `bytes` 의 `List` 또는 `UploadFile` 을 선언하세요:
+이 기능을 사용하기 위해 , `bytes` 의 `List` 또는 `UploadFile` 를 선언하기 바랍니다:
 
 ```Python hl_lines="10  15" 
 {!../../../docs_src/request_files/tutorial002.py!}
