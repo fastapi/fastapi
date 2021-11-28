@@ -28,7 +28,7 @@
 
 ---
 
-FastAPI est un framework Web moderne, rapide (hautes performances) pour la création d'API avec Python 3.6+ basé sur le type hints de  Python standard.
+FastAPI est un framework Web moderne, rapide (hautes performances) pour la création d'API avec Python 3.6+ basé sur les annotations de type standard de Python.
 
 Ces caractéristiques clés sont :
 
