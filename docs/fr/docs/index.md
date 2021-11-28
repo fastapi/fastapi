@@ -34,7 +34,7 @@ Ces caractéristiques clés sont :
 
 * **Rapide**: De très hautes performances, à égalité avec **NodeJS** et **Go** (grace à Starlette et Pydantic). [L'un des framework Python les plus rapides](#performance).
 
-* **Rapide à coder**: augmente ta productivité jusqu'a 200% à 300%. *
+* **Rapide à coder**: Augmente la productivité de 200% à 300%. *
 * **moins de bugs**: Réduis environ 40 % des erreurs induites par le développeur *
 * **Intuitive**: Excellent support pour les éditeurs de code. <abbr title="also known as auto-complete, autocompletion, IntelliSense">Complétiton</abbr> partout. moins de temps pour le débogage.
 * **Facile**: conçu pour être facile à apprendre et à utiliser.moins de temps pour lire la documentation.
