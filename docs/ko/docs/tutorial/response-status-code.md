@@ -69,7 +69,7 @@ HTTP는 세자리의 숫자 상태 코드를 응답의 일부로 전송합니다
 
 하지만 모든 상태 코드들이 무엇을 의미하는지 외울 필요는 없습니다.
 
-`fastapi.status` 의 편의 변수(convenience variables)를 사용할 수 있습니다.
+`fastapi.status` 의 편의 변수를 사용할 수 있습니다.
 
 ```Python hl_lines="1  6" 
 {!../../../docs_src/response_status_code/tutorial002.py!}
