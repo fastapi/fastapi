@@ -23,7 +23,7 @@ Some use cases include:
 
 Let's see how to make use of a custom `Request` subclass to decompress gzip requests.
 
-And an `APIRoute` subclass to use that custom request class.
+Add an `APIRoute` subclass to use that custom request class.
 
 ### Create a custom `GzipRequest` class
 
