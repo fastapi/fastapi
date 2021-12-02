@@ -7,7 +7,7 @@ $(document).ready(function () {
             is_busy: false,
             is_conn_broken: false,
             general_config: {
-                server_address: server_address || 'https://docsbot.jina.ai',
+                server_address: 'https://docsbot.jina.ai',
                 search_endpoint: '/search',
                 slack_endpoint: '/slack'
             },

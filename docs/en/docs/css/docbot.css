@@ -2,7 +2,7 @@
   position: fixed !important;
   bottom: 0;
   width: 16rem;
-  background: var(--color-background-primary);
+  background: white;
 }
 
 .jina-doc-bot .sd-summary-title {
@@ -168,14 +168,6 @@
   color: var(--color-sidebar-link-text);
 }
 
-.powered-by {
-  background: url(./Powered-by-Jina-Large-Basic.svg);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  height: 1rem;
-}
-
 .hidden-before-ready {
   display: none;
 }
@@ -184,8 +176,10 @@
   display: revert;
 }
 
-@media (prefers-color-scheme: dark) {
-  .powered-by {
-    background: url(./Powered-by-Jina-Large-Basic.svg);
-  }
+.powered-by {
+  background: url("https://docs.jina.ai/_static/Powered-by-Jina-Large-Basic.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  height: 2rem;
 }
