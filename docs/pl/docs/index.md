@@ -31,7 +31,7 @@ Cechami kluczowymi są:
 * **Wydajność**: FastApi jest bardzo wydajny, na równi z **NodeJS** oraz **Go** (podziękowania dla Starlette i Pydantic). [Jedna z najszybszych frameworków Pythonowych dostępnych](#wydajność).
 
 * **Szybkość napisania**: Przyśpiesz czas pisania funkcji o około 200% do 300%. *
-* **Mniejsza ilość błędów**: Zmniejsz błędy ludzkie (dewelopera) o około 40%. *
+* **Mniejsza ilość błędów**: Zmniejsz ludzkie (dewelopera) błędy o około 40%. *
 * **Intuicyjność**: Wspaniałe wsparcie przez edytory kodu. Wszędzie <abbr title="znane jako auto-complete, autocompletion, IntelliSense">automatyczne uzupełnianie</abbr>. Mniejszy czas debugowania.
 * **Łatwość**: Zaprojektowany by być prosty i łatwy do nauczenia. Mniej czasu spędzaj na czytanie dokumentacji.
 * **Krótkość**: Zmniejsz powtarzanie się kodu. Dla każdego parametru można dać wiele funkcji. Mniej błędów.
