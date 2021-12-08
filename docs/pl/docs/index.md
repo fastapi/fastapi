@@ -385,7 +385,7 @@ Wracając do poprzedniego przykładu, **FastAPI** :
 
 ---
 
-To dopiero początek, ale już masz mniejwięcej pojęcie jak to wszystko działa.
+To dopiero początek, ale już masz mniej-więcej pojęcie jak to wszystko działa.
 
 Spróbuj zmienić linijkę:
 
