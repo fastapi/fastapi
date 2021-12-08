@@ -418,7 +418,7 @@ Dla bardziej kompletnych przykładów posiadających więcej funkcji, zobacz <a 
 * Potężny i łatwy w użyciu system **<abbr title="znane jako komponenty, resources, providers, services, injectables">Dependency Injection</abbr>**.
 * Zabezpieczenia i autoryzacja, wliczając wsparcie dla **OAuth2** z **tokenami JWT** oraz autoryzacją **HTTP Basic**.
 * Bardziej zaawansowane (ale równie proste) techniki deklarowania **głęboko zagnieżdżonych modeli JSON** (podziękowania dla Pydantic).
-* Wiele dodatkowych funkcji (podziękowania dla Starlette) takie jak:
+* Wiele dodatkowych funkcji (dzięki Starlette) takie jak:
     * **WebSockety**
     * **GraphQL**
     * bardzo proste testy bazujące na `requests` oraz `pytest`
