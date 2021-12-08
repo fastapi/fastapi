@@ -63,6 +63,7 @@ nav:
   - tutorial/header-params.md
   - tutorial/path-params-numeric-validations.md
   - tutorial/response-status-code.md
+  - tutorial/request-files.md
 markdown_extensions:
 - toc:
     permalink: true
