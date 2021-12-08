@@ -238,7 +238,7 @@ Właśnie stworzyłeś API które:
 
 ### Interaktywna dokumentacja API
 
-Teraz wejdz na strone <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+Teraz wejdź na strone <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 
 Zobaczysz automatyczną interaktywną dokumentacje API (zrobiona z pomocą <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a>):
 
