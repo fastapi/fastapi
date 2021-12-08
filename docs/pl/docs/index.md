@@ -2,7 +2,7 @@
   <a href="https://fastapi.tiangolo.com"><img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI"></a>
 </p>
 <p align="center">
-    <em>FastAPI framework, szybka, prosta i gotowa do użycia w produkcji</em>
+    <em>FastAPI to szybki, prosty i gotowy do użycia w produkcji framework</em>
 </p>
 <p align="center">
 <a href="https://github.com/tiangolo/fastapi/actions?query=workflow%3ATest" target="_blank">
