@@ -35,7 +35,7 @@ Cechami kluczowymi są:
 * **Intuicyjność**: Wspaniałe wsparcie przez edytory kodu. Wszędzie <abbr title="znane jako auto-complete, autocompletion, IntelliSense">automatyczne uzupełnianie</abbr>. Mniejszy czas debugowania.
 * **Łatwość**: Zaprojektowany by być prosty i łatwy do nauczenia. Mniej czasu spędzaj na czytanie dokumentacji.
 * **Krótkość**: Zmniejsz powtarzanie się kodu. Dla każdego parametru można dać wiele funkcji. Mniej błędów.
-* **Solidność**: Kod może być stosowany w produkcji. Wraz z automatyczną interaktywną dokumentacją.
+* **Solidność**: Kod gotowy do środowiska produkyjnego. Wraz z automatyczną interaktywną dokumentacją.
 * **Bazowane na standardach**: Bazowane na (i w pełni kompatybilne z) otwartymi standardami w API: <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (wcześniej znane jako Swagger) oraz <a href="https://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>.
 
 <small>* oszacowania bazowane na testach przez wewnętrzny zespół deweloperów, budujących aplikacie używane w produkcji.</small>
