@@ -33,7 +33,7 @@ Cechami kluczowymi są:
 * **Szybkość napisania**: Przyśpiesz czas pisania funkcji o około 200% do 300%. *
 * **Mniejsza ilość błędów**: Zmniejsz błędy ludzkie (dewelopera) o około 40%. *
 * **Intuicyjność**: Wspaniałe wsparcie przez edytory kodu. Wszędzie <abbr title="znane jako auto-complete, autocompletion, IntelliSense">automatyczne uzupełnianie</abbr>. Mniejszy czas debugowania.
-* **Łatwość**: Zaprojektowana by być prosta i łatwa do nauczenia. Mniej czasu spędzanego na czytanie dokumentacji.
+* **Łatwość**: Zaprojektowany by być prosty i łatwy do nauczenia. Mniej czasu spędzaj na czytanie dokumentacji.
 * **Krótkość**: Zmniejsz powtarzanie się kodu. Dla każdego parametru można dać wiele funkcji. Mniej błędów.
 * **Solidność**: Kod może być stosowany w produkcji. Wraz z automatyczną interaktywną dokumentacją.
 * **Bazowane na standardach**: Bazowane na (i w pełni kompatybilne z) otwartymi standardami w API: <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (wcześniej znane jako Swagger) oraz <a href="https://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>.
