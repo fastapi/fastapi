@@ -256,7 +256,7 @@ Zobaczysz alternatywną, lecz wciąż automatyczną dokumentacje (zrobiona z pom
 
 Teraz zmodyfikujemy plik `main.py` aby otrzmywał treść (body, w przykładzie nazwane `Item`) żądania `PUT`.
 
-Zadeklaruj treść żądania używając standardowych typów w Pythonie, zasługi dla Pydantic.
+Zadeklaruj treść żądania, używając standardowych typów w Pythonie dzięki Pydantic.
 
 ```Python hl_lines="4  9-12  25-27"
 from typing import Optional
