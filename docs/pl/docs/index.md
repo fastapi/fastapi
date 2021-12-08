@@ -109,7 +109,7 @@ Jeżeli tworzysz aplikacje <abbr title="aplikacja z interfejsem konsolowym">CLI<
 
 Python 3.6+
 
-FastAPI stoi na grzbiecie gigantów:
+FastAPI stoi na ramionach olbrzymów:
 
 * <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> dla części sieciowych.
 * <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> dla części obsługujących dane.
