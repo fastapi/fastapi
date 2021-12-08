@@ -38,7 +38,7 @@ Cechami kluczowymi są:
 * **Solidność**: Kod gotowy do środowiska produkyjnego. Wraz z automatyczną interaktywną dokumentacją.
 * **Oparte na standardach**: Oparte na (i w pełni kompatybilne z) otwartymi standardami w API: <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (wcześniej znane jako Swagger) oraz <a href="https://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>.
 
-<small>* oszacowania bazowane na testach przez wewnętrzny zespół deweloperów, budujących aplikacie używane w produkcji.</small>
+<small>* oszacowania bazowane na testach przez wewnętrzny zespół deweloperów, budujących aplikacie używane na środowisku produkcyjnym.</small>
 
 ## Sponsorzy
 
