@@ -9,13 +9,13 @@ theme:
     primary: teal
     accent: amber
     toggle:
-      icon: material/lightbulb-outline
+      icon: material/lightbulb
       name: Switch to light mode
   - scheme: slate
     primary: teal
     accent: amber
     toggle:
-      icon: material/lightbulb
+      icon: material/lightbulb-outline
       name: Switch to dark mode
   features:
   - search.suggest
@@ -40,6 +40,7 @@ nav:
 - FastAPI: index.md
 - Languages:
   - en: /
+  - az: /az/
   - de: /de/
   - es: /es/
   - fr: /fr/
@@ -59,6 +60,7 @@ nav:
 - Tutorial - Guia de Usuário:
   - tutorial/index.md
   - tutorial/first-steps.md
+  - tutorial/path-params.md
   - tutorial/body-fields.md
   - Segurança:
     - tutorial/security/index.md
@@ -67,6 +69,7 @@ nav:
 - Implantação:
   - deployment/index.md
   - deployment/versions.md
+  - deployment/https.md
 - alternatives.md
 - history-design-future.md
 - external-links.md
@@ -106,6 +109,8 @@ extra:
   alternate:
   - link: /
     name: en - English
+  - link: /az/
+    name: az
   - link: /de/
     name: de
   - link: /es/
@@ -140,4 +145,3 @@ extra_css:
 extra_javascript:
 - https://fastapi.tiangolo.com/js/termynal.js
 - https://fastapi.tiangolo.com/js/custom.js
-
