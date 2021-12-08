@@ -28,7 +28,7 @@ FastAPI to nowoczesny, wydajny, framework sieciowy do budowania API używając P
 
 Cechami kluczowymi są:
 
-* **Wydajność**: FastApi jest bardzo wydajny, na równi z **NodeJS** oraz **Go** (podziękowania dla Starlette i Pydantic). [Jedna z najszybszych frameworków Pythonowych dostępnych](#wydajność).
+* **Wydajność**: FastApi jest bardzo wydajny, na równi z **NodeJS** oraz **Go** (podziękowania dla Starlette i Pydantic). [Jeden z najszybszych dostępnych frameworków Pythonowych ](#wydajność).
 
 * **Szybkość napisania**: Przyśpiesz czas pisania funkcji o około 200% do 300%. *
 * **Mniejsza ilość błędów**: Zmniejsz ludzkie (dewelopera) błędy o około 40%. *
