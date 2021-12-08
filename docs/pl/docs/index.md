@@ -140,7 +140,7 @@ $ pip install uvicorn[standard]
 
 ## Przykład
 
-### Napisz
+### Stwórz
 
 * Stwórz plik o nazwie `main.py` z:
 
