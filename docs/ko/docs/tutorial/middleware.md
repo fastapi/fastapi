@@ -54,7 +54,7 @@
 {!../../../docs_src/middleware/tutorial001.py!}
 ```
 
-## 그 이외의 미들웨어
+## 다른 미들웨어
 
 미들웨어 대한 더 많은 정보는 [숙련된 사용자 안내서: 향상된 미들웨어](../advanced/middleware.md){.internal-link target=\_blank}에서 확인할 수 있습니다.
 
