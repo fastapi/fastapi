@@ -37,7 +37,7 @@
 
     그러나 만약 클라이언트의 브라우저에서 볼 수 있는 사용자 정의 헤더를 가지고 있다면, 그것들을 CORS 설정([CORS (Cross-Origin Resource Sharing)](cors.md){.internal-link target=_blank})에 <a href="https://www.starlette.io/middleware/#corsmiddleware" class="external-link" target="_blank">Starlette CORS 문서</a>에 명시된 `expose_headers` 매개변수를 이용하여 헤더들을 추가하여야합니다.
 
-!!! note "기술 세부사항"
+!!! note "기술적 세부사항"
     `from starlette.requests import request`를 사용할 수도 있습니다.
 
     **FastAPI**는 개발자에게 편의를 위해 이를 제공합니다. 그러나 Starlette에서 직접 파생되었습니다.
