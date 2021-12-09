@@ -84,7 +84,7 @@ Just use any kind of model, any kind of class, any kind of database that you nee
 
 ## Code size
 
-This example might seem verbose. Have in mind that we are mixing security, data models utility functions and *path operations* in the same file.
+This example might seem verbose. Have in mind that we are mixing security, data models, utility functions and *path operations* in the same file.
 
 But here's the key point.
 

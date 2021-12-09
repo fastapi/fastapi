@@ -9,13 +9,13 @@ theme:
     primary: teal
     accent: amber
     toggle:
-      icon: material/lightbulb-outline
+      icon: material/lightbulb
       name: Switch to light mode
   - scheme: slate
     primary: teal
     accent: amber
     toggle:
-      icon: material/lightbulb
+      icon: material/lightbulb-outline
       name: Switch to dark mode
   features:
   - search.suggest
@@ -40,6 +40,7 @@ nav:
 - FastAPI: index.md
 - Languages:
   - en: /
+  - az: /az/
   - de: /de/
   - es: /es/
   - fr: /fr/
@@ -147,9 +148,11 @@ nav:
   - deployment/index.md
   - deployment/versions.md
   - deployment/https.md
-  - deployment/deta.md
-  - deployment/docker.md
   - deployment/manually.md
+  - deployment/concepts.md
+  - deployment/deta.md
+  - deployment/server-workers.md
+  - deployment/docker.md
 - project-generation.md
 - alternatives.md
 - history-design-future.md
@@ -163,9 +166,6 @@ markdown_extensions:
     permalink: true
 - markdown.extensions.codehilite:
     guess_lang: false
-# Uncomment these 2 lines during development to more easily add highlights
-# - pymdownx.highlight:
-#     linenums: true
 - mdx_include:
     base_path: docs
 - admonition
@@ -196,6 +196,8 @@ extra:
   alternate:
   - link: /
     name: en - English
+  - link: /az/
+    name: az
   - link: /de/
     name: de
   - link: /es/
