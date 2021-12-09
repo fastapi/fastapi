@@ -56,6 +56,6 @@
 
 ## 다른 미들웨어
 
-미들웨어 대한 더 많은 정보는 [숙련된 사용자 안내서: 향상된 미들웨어](../advanced/middleware.md){.internal-link target=\_blank}에서 확인할 수 있습니다.
+미들웨어에 대한 더 많은 정보는 [숙련된 사용자 안내서: 향상된 미들웨어](../advanced/middleware.md){.internal-link target=\_blank}에서 확인할 수 있습니다.
 
 다음 부분에서 미들웨어와 함께 <abbr title="교차-출처 리소스 공유">CORS</abbr>를 어떻게 다루는지에 대해 확인할 것입니다.
