@@ -61,6 +61,9 @@ nav:
   - tutorial/path-params.md
   - tutorial/query-params.md
   - tutorial/header-params.md
+  - tutorial/path-params-numeric-validations.md
+  - tutorial/response-status-code.md
+  - tutorial/request-files.md
 - async.md
 markdown_extensions:
 - toc:
