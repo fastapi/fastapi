@@ -29,7 +29,7 @@ openapi_schema = {
         "schemas": {
             "Item": {
                 "title": "Item",
-                "required": ["name", "price", "tags"],
+                "required": ["name", "price"],
                 "type": "object",
                 "properties": {
                     "name": {"title": "Name", "type": "string"},
