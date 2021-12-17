@@ -50,7 +50,9 @@ class FastAPI(Starlette):
         exception_handlers: Optional[
             Dict[
                 Union[int, Type[Exception]],
-                Callable[[Request, Any], Coroutine[Any, Any, Response]],
+                Callable[
+                    [Request, Any], Union[Response, Coroutine[Any, Any, Response]]
+                ],
             ]
         ] = None,
         on_startup: Optional[Sequence[Callable[[], Any]]] = None,
@@ -83,7 +85,7 @@ class FastAPI(Starlette):
         )
         self.exception_handlers: Dict[
             Union[int, Type[Exception]],
-            Callable[[Request, Any], Coroutine[Any, Any, Response]],
+            Callable[[Request, Any], Union[Response, Coroutine[Any, Any, Response]]],
         ] = (
             {} if exception_handlers is None else dict(exception_handlers)
         )
