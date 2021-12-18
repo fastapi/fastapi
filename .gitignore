@@ -23,3 +23,4 @@ archive.zip
 # vim temporary files
 *~
 .*.sw?
+.DS_Store
