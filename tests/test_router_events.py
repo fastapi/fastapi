@@ -84,8 +84,10 @@ def test_app_lifespan_state(state):
     class Lifespan:
         def __init__(self, app):
             pass
+
         async def __aenter__(self):
             state.app_startup = True
+
         async def __aexit__(self, exc_type, exc_value, exc_tb):
             state.app_shutdown = True
 
