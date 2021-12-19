@@ -175,4 +175,4 @@ The data is calculated each month, you can read the <a href="https://github.com/
 
 Here I'm also highlighting contributions from sponsors.
 
-I also reserve the right to update the algorithm, sections, thresholds, etc (just in case 🤷).
+I also reserve the right to update the algorithm, sections, thresholds, etc. (just in case 🤷).

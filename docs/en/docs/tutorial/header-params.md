@@ -42,7 +42,7 @@ Also, HTTP headers are case-insensitive, so, you can declare them with standard 
 
 So, you can use `user_agent` as you normally would in Python code, instead of needing to capitalize the first letters as `User_Agent` or something similar.
 
-If for some reason you need to disable automatic conversion of underscores to hyphens, set the parameter `convert_underscores` of `Header` to `False`:
+If for some reason you need to disable automatic conversion of underscores to hyphen, set the parameter `convert_underscores` of `Header` to `False`:
 
 ```Python hl_lines="10"
 {!../../../docs_src/header_params/tutorial002.py!}

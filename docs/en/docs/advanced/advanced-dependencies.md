@@ -4,7 +4,7 @@
 
 All the dependencies we have seen are a fixed function or class.
 
-But there could be cases where you want to be able to set parameters on the dependency, without having to declare many different functions or classes.
+But there could be cases where you want to be able to set parameters on the dependency, without having to declare different functions or classes.
 
 Let's imagine that we want to have a dependency that checks if the query parameter `q` contains some fixed content.
 

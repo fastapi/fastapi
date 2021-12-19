@@ -52,7 +52,7 @@ So now we can use the same `Depends` with our `get_current_user` in the *path op
 
 Notice that we declare the type of `current_user` as the Pydantic model `User`.
 
-This will help us inside of the function with all the completion and type checks.
+This will help us inside the function with all the completion and type checks.
 
 !!! tip
     You might remember that request bodies are also declared with Pydantic models.

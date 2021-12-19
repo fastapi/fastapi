@@ -26,7 +26,7 @@ async def read_results():
 
 ---
 
-If you are using a third party library that communicates with something (a database, an API, the file system, etc) and doesn't have support for using `await`, (this is currently the case for most database libraries), then declare your *path operation functions* as normally, with just `def`, like:
+If you are using a third party library that communicates with something (a database, an API, the file system, etc.) and doesn't have support for using `await`, (this is currently the case for most database libraries), then declare your *path operation functions* as normally, with just `def`, like:
 
 ```Python hl_lines="2"
 @app.get('/')
@@ -86,7 +86,7 @@ As the execution time is consumed mostly by waiting for <abbr title="Input and O
 
 It's called "asynchronous" because the computer / program doesn't have to be "synchronized" with the slow task, waiting for the exact moment that the task finishes, while doing nothing, to be able to take the task result and continue the work.
 
-Instead of that, by being an "asynchronous" system, once finished, the task can wait in line a little bit (some microseconds) for the computer / program to finish whatever it went to do, and then come back to take the results and continue working with them.
+Instead of that, by being an "asynchronous" system, once finished, the task can wait in line a little (some microseconds) for the computer / program to finish whatever it went to do, and then come back to take the results and continue working with them.
 
 For "synchronous" (contrary to "asynchronous") they commonly also use the term "sequential", because the computer / program follows all the steps in sequence before switching to a different task, even if those steps involve waiting.
 
@@ -102,7 +102,7 @@ To see the difference, imagine the following story about burgers:
 
 ### Concurrent Burgers
 
-<!-- The gender neutral cook emoji "🧑‍🍳" does not render well in browsers. In the meantime, I'm using a mix of male "👨‍🍳" and female "👩‍🍳" cooks. -->
+<!-- The gender-neutral cook emoji "🧑‍🍳" does not render well in browsers. In the meantime, I'm using a mix of male "👨‍🍳" and female "👩‍🍳" cooks. -->
 
 You go with your crush 😍 to get fast food 🍔, you stand in line while the cashier 💁 takes the orders from the people in front of you.
 
@@ -188,9 +188,9 @@ For a more "real life" example of this, imagine a bank.
 
 Up to recently, most of the banks had multiple cashiers 👨‍💼👨‍💼👨‍💼👨‍💼 and a big line 🕙🕙🕙🕙🕙🕙🕙🕙.
 
-All of the cashiers doing all the work with one client after the other 👨‍💼⏯.
+All the cashiers doing all the work with one client after the other 👨‍💼⏯.
 
-And you have to wait 🕙 in the line for a long time or you lose your turn.
+And you have to wait 🕙 in the line for a long time, or you lose your turn.
 
 You probably wouldn't want to take your crush 😍 with you to do errands at the bank 🏦.
 
@@ -222,7 +222,7 @@ And as you can have parallelism and asynchronicity at the same time, you get hig
 
 Nope! That's not the moral of the story.
 
-Concurrency is different than parallelism. And it is better on **specific** scenarios that involve a lot of waiting. Because of that, it generally is a lot better than parallelism for web application development. But not for everything.
+Concurrency is different from parallelism. And it is better on **specific** scenarios that involve a lot of waiting. Because of that, it generally is a lot better than parallelism for web application development. But not for everything.
 
 So, to balance that out, imagine the following short story:
 
@@ -253,7 +253,7 @@ For example:
 * **Audio** or **image processing**.
 * **Computer vision**: an image is composed of millions of pixels, each pixel has 3 values / colors, processing that normally requires computing something on those pixels, all at the same time.
 * **Machine Learning**: it normally requires lots of "matrix" and "vector" multiplications. Think of a huge spreadsheet with numbers and multiplying all of them together at the same time.
-* **Deep Learning**: this is a sub-field of Machine Learning, so, the same applies. It's just that there is not a single spreadsheet of numbers to multiply, but a huge set of them, and in many cases, you use a special processor to build and / or use those models.
+* **Deep Learning**: this is a subfield of Machine Learning, so, the same applies. It's just that there is not a single spreadsheet of numbers to multiply, but a huge set of them, and in many cases, you use a special processor to build and / or use those models.
 
 ### Concurrency + Parallelism: Web + Machine Learning
 
@@ -377,7 +377,7 @@ All that is what powers FastAPI (through Starlette) and what makes it have such 
 
 When you declare a *path operation function* with normal `def` instead of `async def`, it is run in an external threadpool that is then awaited, instead of being called directly (as it would block the server).
 
-If you are coming from another async framework that does not work in the way described above and you are used to define trivial compute-only *path operation functions* with plain `def` for a tiny performance gain (about 100 nanoseconds), please note that in **FastAPI** the effect would be quite opposite. In these cases, it's better to use `async def` unless your *path operation functions* use code that performs blocking <abbr title="Input/Output: disk reading or writing, network communications.">I/O</abbr>.
+If you are coming from another async framework that does not work in the way described above, and you are used to defining trivial compute-only *path operation functions* with plain `def` for a tiny performance gain (about 100 nanoseconds), please note that in **FastAPI** the effect would be quite opposite. In these cases, it's better to use `async def` unless your *path operation functions* use code that performs blocking <abbr title="Input/Output: disk reading or writing, network communications.">I/O</abbr>.
 
 Still, in both situations, chances are that **FastAPI** will [still be faster](/#performance){.internal-link target=_blank} than (or at least comparable to) your previous framework.
 

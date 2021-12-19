@@ -16,7 +16,7 @@ So, if you run this example and go to <a href="http://127.0.0.1:8000/items/foo" 
 
 ## Path parameters with types
 
-You can declare the type of a path parameter in the function, using standard Python type annotations:
+You can declare the type of path parameter in the function, using standard Python type annotations:
 
 ```Python hl_lines="7"
 {!../../../docs_src/path_params/tutorial002.py!}
@@ -25,7 +25,7 @@ You can declare the type of a path parameter in the function, using standard Pyt
 In this case, `item_id` is declared to be an `int`.
 
 !!! check
-    This will give you editor support inside of your function, with error checks, completion, etc.
+    This will give you editor support inside your function, with error checks, completion, etc.
 
 ## Data <abbr title="also known as: serialization, parsing, marshalling">conversion</abbr>
 
@@ -121,7 +121,7 @@ If you have a *path operation* that receives a *path parameter*, but you want th
 
 ### Create an `Enum` class
 
-Import `Enum` and create a sub-class that inherits from `str` and from `Enum`.
+Import `Enum` and create a subclass that inherits from `str` and from `Enum`.
 
 By inheriting from `str` the API docs will be able to know that the values must be of type `string` and will be able to render correctly.
 

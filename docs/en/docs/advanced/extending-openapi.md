@@ -165,7 +165,7 @@ After that, your file structure could look like:
 
 Start your application and go to <a href="http://127.0.0.1:8000/static/redoc.standalone.js" class="external-link" target="_blank">http://127.0.0.1:8000/static/redoc.standalone.js</a>.
 
-You should see a very long JavaScript file for **ReDoc**.
+You should see a very long JavaScript files for **ReDoc**.
 
 It could start with something like:
 
@@ -230,6 +230,6 @@ Now, to be able to test that everything works, create a *path operation*:
 
 ### Test it
 
-Now, you should be able to disconnect your WiFi, go to your docs at <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>, and reload the page.
+Now, you should be able to disconnect your Wi-Fi, go to your docs at <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>, and reload the page.
 
 And even without Internet, you would be able to see the docs for your API and interact with it.

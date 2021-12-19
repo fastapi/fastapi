@@ -68,7 +68,7 @@ But it declares it explicitly as being a query parameter.
 
     The `Optional` part is only to allow your editor to provide better support.
 
-Then, we can pass more parameters to `Query`. In this case, the `max_length` parameter that applies to strings:
+Then, we can pass more parameters to `Query`. In this case, the `max_length` parameter that applies to string:
 
 ```Python
 q: str = Query(None, max_length=50)
@@ -86,7 +86,7 @@ You can also add a parameter `min_length`:
 
 ## Add regular expressions
 
-You can define a <abbr title="A regular expression, regex or regexp is a sequence of characters that define a search pattern for strings.">regular expression</abbr> that the parameter should match:
+You can define a <abbr title="A regular expression, regex or regex is a sequence of characters that define a search pattern for strings.">regular expression</abbr> that the parameter should match:
 
 ```Python hl_lines="10"
 {!../../../docs_src/query_params_str_validations/tutorial004.py!}

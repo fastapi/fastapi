@@ -28,7 +28,7 @@ class MyUuid:
 
 @app.get("/fast_uuid")
 def return_fast_uuid():
-    # I don't want to import asyncpg for this test so I made my own UUID
+    # I don't want to import asyncpg for this test, so I made my own UUID
     # Import asyncpg and uncomment the two lines below for the actual bug
 
     # from asyncpg.pgproto import pgproto

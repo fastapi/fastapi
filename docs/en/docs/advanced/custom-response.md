@@ -8,7 +8,7 @@ But if you return a `Response` directly, the data won't be automatically convert
 
 But you can also declare the `Response` that you want to be used, in the *path operation decorator*.
 
-The contents that you return from your *path operation function* will be put inside of that `Response`.
+The contents that you return from your *path operation function* will be put inside that `Response`.
 
 And if that `Response` has a JSON media type (`application/json`), like is the case with the `JSONResponse` and `UJSONResponse`, the data you return will be automatically converted (and filtered) with any Pydantic `response_model` that you declared in the *path operation decorator*.
 
@@ -19,7 +19,7 @@ And if that `Response` has a JSON media type (`application/json`), like is the c
 
 For example, if you are squeezing performance, you can install and use <a href="https://github.com/ijl/orjson" class="external-link" target="_blank">`orjson`</a> and set the response to be `ORJSONResponse`.
 
-Import the `Response` class (sub-class) you want to use and declare it in the *path operation decorator*.
+Import the `Response` class (subclass) you want to use and declare it in the *path operation decorator*.
 
 ```Python hl_lines="2  7"
 {!../../../docs_src/custom_response/tutorial001b.py!}
@@ -67,11 +67,11 @@ The same example from above, returning an `HTMLResponse`, could look like:
     A `Response` returned directly by your *path operation function* won't be documented in OpenAPI (for example, the `Content-Type` won't be documented) and won't be visible in the automatic interactive docs.
 
 !!! info
-    Of course, the actual `Content-Type` header, status code, etc, will come from the `Response` object your returned.
+    Of course, the actual `Content-Type` header, status code, etc., will come from the `Response` object your returned.
 
 ### Document in OpenAPI and override `Response`
 
-If you want to override the response from inside of the function but at the same time document the "media type" in OpenAPI, you can use the `response_class` parameter AND return a `Response` object.
+If you want to override the response from inside the function but at the same time document the "media type" in OpenAPI, you can use the `response_class` parameter AND return a `Response` object.
 
 The `response_class` will then be used only to document the OpenAPI *path operation*, but your `Response` will be used as is.
 
@@ -95,7 +95,7 @@ But as you passed the `HTMLResponse` in the `response_class` too, **FastAPI** wi
 
 Here are some of the available responses.
 
-Have in mind that you can use `Response` to return anything else, or even create a custom sub-class.
+Have in mind that you can use `Response` to return anything else, or even create a custom subclass.
 
 !!! note "Technical Details"
     You could also use `from starlette.responses import HTMLResponse`.
@@ -127,7 +127,7 @@ Takes some text or bytes and returns an HTML response, as you read above.
 
 ### `PlainTextResponse`
 
-Takes some text or bytes and returns an plain text response.
+Takes some text or bytes and returns a plain text response.
 
 ```Python hl_lines="2  7  9"
 {!../../../docs_src/custom_response/tutorial005.py!}

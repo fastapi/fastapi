@@ -32,7 +32,7 @@ The `directory="static"` refers to the name of the directory that contains your 
 
 The `name="static"` gives it a name that can be used internally by **FastAPI**.
 
-All these parameters can be different than "`static`", adjust them with the needs and specific details of your own application.
+All these parameters can be different from "`static`", adjust them with the needs and specific details of your own application.
 
 ## More info
 

@@ -13,7 +13,7 @@ The same way you can specify a response model, you can also declare the HTTP sta
 ```
 
 !!! note
-    Notice that `status_code` is a parameter of the "decorator" method (`get`, `post`, etc). Not of your *path operation function*, like all the parameters and body.
+    Notice that `status_code` is a parameter of the "decorator" method (`get`, `post`, etc.). Not of your *path operation function*, like all the parameters and body.
 
 The `status_code` parameter receives a number with the HTTP status code.
 

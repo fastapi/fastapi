@@ -55,7 +55,7 @@ requests.post(callback_url, json={"description": "Invoice paid", "paid": True})
 
 But possibly the most important part of the callback is making sure that your API user (the external developer) implements the *external API* correctly, according to the data that *your API* is going to send in the request body of the callback, etc.
 
-So, what we will do next is add the code to document how that *external API* should look like to receive the callback from *your API*.
+So, what we will do next is to add the code to document how that *external API* should look like to receive the callback from *your API*.
 
 That documentation will show up in the Swagger UI at `/docs` in your API, and it will let external developers know how to build the *external API*.
 
@@ -155,7 +155,7 @@ and it would expect a response from that *external API* with a JSON body like:
 ```
 
 !!! tip
-    Notice how the callback URL used contains the URL received as a query parameter in `callback_url` (`https://www.external.org/events`) and also the invoice `id` from inside of the JSON body (`2expen51ve`).
+    Notice how the callback URL used contains the URL received as a query parameter in `callback_url` (`https://www.external.org/events`) and also the invoice `id` from inside the JSON body (`2expen51ve`).
 
 ### Add the callback router
 

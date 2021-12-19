@@ -90,7 +90,7 @@ With `examples` added to `Body()` the `/docs` would look like:
 
     If the ideas above already work for you, that might be enough, and you probably don't need these details, feel free to skip them.
 
-When you add an example inside of a Pydantic model, using `schema_extra` or `Field(example="something")` that example is added to the **JSON Schema** for that Pydantic model.
+When you add an example inside a Pydantic model, using `schema_extra` or `Field(example="something")` that example is added to the **JSON Schema** for that Pydantic model.
 
 And that **JSON Schema** of the Pydantic model is included in the **OpenAPI** of your API, and then it's used in the docs UI.
 
@@ -106,4 +106,4 @@ For `Path()`, `Query()`, `Header()`, and `Cookie()`, the `example` or `examples`
 
 And for `Body()`, `File()`, and `Form()`, the `example` or `examples` are equivalently added to the <a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#mediaTypeObject" class="external-link" target="_blank">OpenAPI definition, to the `Request Body Object`, in the field `content`, on the `Media Type Object` (in the specification)</a>.
 
-On the other hand, there's a newer version of OpenAPI: **3.1.0**, recently released. It is based on the latest JSON Schema and most of the modifications from OpenAPI's custom version of JSON Schema are removed, in exchange of the features from the recent versions of JSON Schema, so all these small differences are reduced. Nevertheless, Swagger UI currently doesn't support OpenAPI 3.1.0, so, for now, it's better to continue using the ideas above.
+On the other hand, there's a newer version of OpenAPI: **3.1.0**, recently released. It is based on the latest JSON Schema and most of the modifications from OpenAPI's custom version of JSON Schema are removed, in exchange for the features from the recent versions of JSON Schema, so all these small differences are reduced. Nevertheless, Swagger UI currently doesn't support OpenAPI 3.1.0, so, for now, it's better to continue using the ideas above.

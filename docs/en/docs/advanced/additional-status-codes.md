@@ -1,6 +1,6 @@
 # Additional Status Codes
 
-By default, **FastAPI** will return the responses using a `JSONResponse`, putting the content you return from your *path operation* inside of that `JSONResponse`.
+By default, **FastAPI** will return the responses using a `JSONResponse`, putting the content you return from your *path operation* inside that `JSONResponse`.
 
 It will use the default status code or the one you set in your *path operation*.
 

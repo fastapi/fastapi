@@ -17,7 +17,7 @@ You can pass to your *path operation decorators* a parameter `responses`.
 
 It receives a `dict`, the keys are status codes for each response, like `200`, and the values are other `dict`s with the information for each of them.
 
-Each of those response `dict`s can have a key `model`, containing a Pydantic model, just like `response_model`.
+Each of those responses `dict` can have a key `model`, containing a Pydantic model, just like `response_model`.
 
 **FastAPI** will take that model, generate its JSON Schema and include it in the correct place in OpenAPI.
 
@@ -166,7 +166,7 @@ The schemas are referenced to another place inside the OpenAPI schema:
 
 You can use this same `responses` parameter to add different media types for the same main response.
 
-For example, you can add an additional media type of `image/png`, declaring that your *path operation* can return a JSON object (with media type `application/json`) or a PNG image:
+For example, you can add additional media type of `image/png`, declaring that your *path operation* can return a JSON object (with media type `application/json`) or a PNG image:
 
 ```Python hl_lines="19-24  28"
 {!../../../docs_src/additional_responses/tutorial002.py!}
@@ -237,4 +237,4 @@ For example:
 To see what exactly you can include in the responses, you can check these sections in the OpenAPI specification:
 
 * <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#responsesObject" class="external-link" target="_blank">OpenAPI Responses Object</a>, it includes the `Response Object`.
-* <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#responseObject" class="external-link" target="_blank">OpenAPI Response Object</a>, you can include anything from this directly in each response inside your `responses` parameter. Including `description`, `headers`, `content` (inside of this is that you declare different media types and JSON Schemas), and `links`.
+* <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#responseObject" class="external-link" target="_blank">OpenAPI Response Object</a>, you can include anything from this directly in each response inside your `responses` parameter. Including `description`, `headers`, `content` (inside this is that you declare different media types and JSON Schemas), and `links`.

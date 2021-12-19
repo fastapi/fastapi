@@ -74,7 +74,7 @@ With just that Python type declaration, **FastAPI** will:
 * Validate the data.
     * If the data is invalid, it will return a nice and clear error, indicating exactly where and what was the incorrect data.
 * Give you the received data in the parameter `item`.
-    * As you declared it in the function to be of type `Item`, you will also have all the editor support (completion, etc) for all of the attributes and their types.
+    * As you declared it in the function to be of type `Item`, you will also have all the editor support (completion, etc.) for all the attributes and their types.
 * Generate <a href="https://json-schema.org" class="external-link" target="_blank">JSON Schema</a> definitions for your model, you can also use them anywhere else you like if it makes sense for your project.
 * Those schemas will be part of the generated OpenAPI schema, and used by the automatic documentation <abbr title="User Interfaces">UIs</abbr>.
 
@@ -123,7 +123,7 @@ But you would get the same editor support with <a href="https://www.jetbrains.co
 
 ## Use the model
 
-Inside of the function, you can access all the attributes of the model object directly:
+Inside the function, you can access all the attributes of the model object directly:
 
 ```Python hl_lines="21"
 {!../../../docs_src/body/tutorial002.py!}
@@ -152,8 +152,8 @@ You can also declare **body**, **path** and **query** parameters, all at the sam
 The function parameters will be recognized as follows:
 
 * If the parameter is also declared in the **path**, it will be used as a path parameter.
-* If the parameter is of a **singular type** (like `int`, `float`, `str`, `bool`, etc) it will be interpreted as a **query** parameter.
-* If the parameter is declared to be of the type of a **Pydantic model**, it will be interpreted as a request **body**.
+* If the parameter is of a **singular type** (like `int`, `float`, `str`, `bool`, etc.) it will be interpreted as a **query** parameter.
+* If the parameter is declared to be of the type of **Pydantic model**, it will be interpreted as a request **body**.
 
 !!! note
     FastAPI will know that the value of `q` is not required because of the default value `= None`.

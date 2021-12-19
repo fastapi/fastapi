@@ -10,7 +10,7 @@ And then you can set cookies in that *temporal* response object.
 {!../../../docs_src/response_cookies/tutorial002.py!}
 ```
 
-And then you can return any object you need, as you normally would (a `dict`, a database model, etc).
+And then you can return any object you need, as you normally would (a `dict`, a database model, etc.).
 
 And if you declared a `response_model`, it will still be used to filter and convert the object you returned.
 

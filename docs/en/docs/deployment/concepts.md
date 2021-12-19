@@ -2,7 +2,7 @@
 
 When deploying a **FastAPI** application, or actually, any type of web API, there are several concepts that you probably care about, and using them you can find the **most appropriate** way to **deploy your application**.
 
-Some of the important concepts are:
+Some important concepts are:
 
 * Security - HTTPS
 * Running on startup
@@ -29,11 +29,11 @@ In the [previous chapter about HTTPS](./https.md){.internal-link target=_blank} 
 
 We also saw that HTTPS is normally provided by a component **external** to your application server, a **TLS Termination Proxy**.
 
-And there has to be something in charge of **renewing the HTTPS certificates**, it could be the same component or it could be something different.
+And there has to be something in charge of **renewing the HTTPS certificates**, it could be the same component, or it could be something different.
 
 ### Example Tools for HTTPS
 
-Some of the tools you could use as a TLS Termination Proxy are:
+Some tools you could use as a TLS Termination Proxy are:
 
 * Traefik
     * Automatically handles certificates renewals ✨
@@ -80,7 +80,7 @@ The word **process** is normally used in a more specific way, only referring to 
 
 If you check out the "task manager" or "system monitor" (or similar tools) in your operating system, you will be able to see many of those processes running.
 
-And, for example, you will probably see that there are multiple processes running the same browser program (Firefox, Chrome, Edge, etc). They normally run one process per tab, plus some other extra processes.
+And, for example, you will probably see that there are multiple processes running the same browser program (Firefox, Chrome, Edge, etc.). They normally run one process per tab, plus some other extra processes.
 
 <img class="shadow" src="/img/deployment/concepts/image01.png">
 
@@ -149,7 +149,7 @@ And still, you would probably not want the application to stay dead because ther
 
 ### Restart After Crash
 
-But in those cases with really bad errors that crash the running **process**, you would want an external component that is in charge of **restarting** the process, at least a couple of times...
+But in those cases with awful errors that crash the running **process**, you would want an external component that is in charge of **restarting** the process, at least a couple of times...
 
 !!! tip
     ...Although if the whole application is just **crashing immediately** it probably doesn't make sense to keep restarting it forever. But in those cases, you will probably notice it during development, or at least right after deployment.
@@ -219,7 +219,7 @@ And of course, the same machine would probably have **other processes** running 
 
 An interesting detail is that the percentage of the **CPU used** by each process can **vary** a lot over time, but the **memory (RAM)** normally stays more or less **stable**.
 
-If you have an API that does a comparable amount of computations every time and you have a lot of clients, then the **CPU utilization** will probably *also be stable* (instead of constantly going up and down quickly).
+If you have an API that does a comparable amount of computations every time, and you have a lot of clients, then the **CPU utilization** will probably *also be stable* (instead of constantly going up and down quickly).
 
 ### Examples of Replication Tools and Strategies
 
@@ -281,11 +281,11 @@ Your server(s) is (are) a **resource**, you can consume or **utilize**, with you
 
 How much of the system resources do you want to be consuming/utilizing? It might be easy to think "not much", but in reality, you will probably want to consume **as much as possible without crashing**.
 
-If you are paying for 3 servers but you are using only a little bit of their RAM and CPU, you are probably **wasting money** 💸, and probably **wasting server electric power** 🌎, etc.
+If you are paying for 3 servers, but you are using only a little of their RAM and CPU, you are probably **wasting money** 💸, and probably **wasting server electric power** 🌎, etc.
 
-In that case, it could be better to have only 2 servers and use a higher percentage of their resources (CPU, memory, disk, network bandwidth, etc).
+In that case, it could be better to have only 2 servers and use a higher percentage of their resources (CPU, memory, disk, network bandwidth, etc.).
 
-On the other hand, if you have 2 servers and you are using **100% of their CPU and RAM**, at some point one process will ask for more memory, and the server will have to use the disk as "memory" (which can be thousands of times slower), or even **crash**. Or one process might need to do some computation and would have to wait until the CPU is free again.
+On the other hand, if you have 2 servers, and you are using **100% of their CPU and RAM**, at some point one process will ask for more memory, and the server will have to use the disk as "memory" (which can be thousands of times slower), or even **crash**. Or one process might need to do some computation and would have to wait until the CPU is free again.
 
 In this case, it would be better to get **one extra server** and run some processes on it so that they all have **enough RAM and CPU time**.
 
@@ -297,7 +297,7 @@ You can use simple tools like `htop` to see the CPU and RAM used in your server 
 
 ## Recap
 
-You have been reading here some of the main concepts that you would probably need to have in mind when deciding how to deploy your application:
+You have been reading here some main concepts that you would probably need to have in mind when deciding how to deploy your application:
 
 * Security - HTTPS
 * Running on startup

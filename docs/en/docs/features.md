@@ -27,7 +27,7 @@ Interactive API documentation and exploration web user interfaces. As the framew
 
 It's all based on standard **Python 3.6 type** declarations (thanks to Pydantic). No new syntax to learn. Just standard modern Python.
 
-If you need a 2 minute refresher of how to use Python types (even if you don't use FastAPI), check the short tutorial: [Python Types](python-types.md){.internal-link target=_blank}.
+If you need a 2-minute refresher of how to use Python types (even if you don't use FastAPI), check the short tutorial: [Python Types](python-types.md){.internal-link target=_blank}.
 
 You write standard Python with types:
 
@@ -158,7 +158,7 @@ Any integration is designed to be so simple to use (with dependencies) that you 
 
 **FastAPI** is fully compatible with (and based on) <a href="https://www.starlette.io/" class="external-link" target="_blank"><strong>Starlette</strong></a>. So, any additional Starlette code you have, will also work.
 
-`FastAPI` is actually a sub-class of `Starlette`. So, if you already know or use Starlette, most of the functionality will work the same way.
+`FastAPI` is actually a subclass of `Starlette`. So, if you already know or use Starlette, most of the functionality will work the same way.
 
 With **FastAPI** you get all of **Starlette**'s features (as FastAPI is just Starlette on steroids):
 
@@ -196,5 +196,5 @@ With **FastAPI** you get all of **Pydantic**'s features (as FastAPI is based on 
     * And validators allow complex data schemas to be clearly and easily defined, checked and documented as JSON Schema.
     * You can have deeply **nested JSON** objects and have them all validated and annotated.
 * **Extendible**:
-    * Pydantic allows custom data types to be defined or you can extend validation with methods on a model decorated with the validator decorator.
+    * Pydantic allows custom data types to be defined, or you can extend validation with methods on a model decorated with the validator decorator.
 * 100% test coverage.

@@ -11,7 +11,7 @@ For this reason it's common to provide them in environment variables that are re
 !!! tip
     If you already know what "environment variables" are and how to use them, feel free to skip to the next section below.
 
-An <a href="https://en.wikipedia.org/wiki/Environment_variable" class="external-link" target="_blank">environment variable</a> (also known as "env var") is a variable that lives outside of the Python code, in the operating system, and could be read by your Python code (or by other programs as well).
+An <a href="https://en.wikipedia.org/wiki/Environment_variable" class="external-link" target="_blank">environment variable</a> (also known as "env var") is a variable that lives outside the Python code, in the operating system, and could be read by your Python code (or by other programs as well).
 
 You can create and use environment variables in the shell, without needing Python:
 
@@ -51,7 +51,7 @@ You can create and use environment variables in the shell, without needing Pytho
 
 You could also create environment variables outside of Python, in the terminal (or with any other method), and then read them in Python.
 
-For example you could have a file `main.py` with:
+For example, you could have a file `main.py` with:
 
 ```Python hl_lines="3"
 import os
@@ -90,7 +90,7 @@ Hello Wade Wilson from Python
 
 </div>
 
-As environment variables can be set outside of the code, but can be read by the code, and don't have to be stored (committed to `git`) with the rest of the files, it's common to use them for configurations or settings.
+As environment variables can be set outside the code, but can be read by the code, and don't have to be stored (committed to `git`) with the rest of the files, it's common to use them for configurations or settings.
 
 You can also create an environment variable only for a specific program invocation, that is only available to that program, and only for its duration.
 
@@ -129,7 +129,7 @@ Fortunately, Pydantic provides a great utility to handle these settings coming f
 
 ### Create the `Settings` object
 
-Import `BaseSettings` from Pydantic and create a sub-class, very much like with a Pydantic model.
+Import `BaseSettings` from Pydantic and create a subclass, very much like with a Pydantic model.
 
 The same way as with Pydantic models, you declare class attributes with type annotations, and possibly default values.
 

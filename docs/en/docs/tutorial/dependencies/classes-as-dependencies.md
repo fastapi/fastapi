@@ -147,7 +147,7 @@ commons = Depends(CommonQueryParams)
 {!../../../docs_src/dependencies/tutorial003.py!}
 ```
 
-But declaring the type is encouraged as that way your editor will know what will be passed as the parameter `commons`, and then it can help you with code completion, type checks, etc:
+But declaring the type is encouraged as that way your editor will know what will be passed as the parameter `commons`, and then it can help you with code completion, type checks, etc.:
 
 <img src="/img/tutorial/dependencies/image02.png">
 

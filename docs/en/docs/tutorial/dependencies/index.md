@@ -6,7 +6,7 @@ It is designed to be very simple to use, and to make it very easy for any develo
 
 ## What is "Dependency Injection"
 
-**"Dependency Injection"** means, in programming, that there is a way for your code (in this case, your *path operation functions*) to declare things that it requires to work and use: "dependencies".
+**"Dependency Injection"** means, in programming, that there is a way for your code (in this case, your *path operation functions*) to declare things that it requires working and use: "dependencies".
 
 And then, that system (in this case **FastAPI**) will take care of doing whatever is needed to provide your code with those needed dependencies ("inject" the dependencies).
 
@@ -67,7 +67,7 @@ The same way you use `Body`, `Query`, etc. with your *path operation function* p
 {!../../../docs_src/dependencies/tutorial001.py!}
 ```
 
-Although you use `Depends` in the parameters of your function the same way you use `Body`, `Query`, etc, `Depends` works a bit differently.
+Although you use `Depends` in the parameters of your function the same way you use `Body`, `Query`, etc., `Depends` works a bit differently.
 
 You only give `Depends` a single parameter.
 

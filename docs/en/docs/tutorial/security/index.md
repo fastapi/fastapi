@@ -12,7 +12,7 @@ But first, let's check some small concepts.
 
 ## In a hurry?
 
-If you don't care about any of these terms and you just need to add security with authentication based on username and password *right now*, skip to the next chapters.
+If you don't care about any of these terms, and you just need to add security with authentication based on username and password *right now*, skip to the next chapters.
 
 ## OAuth2
 
@@ -77,7 +77,7 @@ OpenAPI defines the following security schemes:
     * HTTP Basic authentication.
     * HTTP Digest, etc.
 * `oauth2`: all the OAuth2 ways to handle security (called "flows").
-    * Several of these flows are appropriate for building an OAuth 2.0 authentication provider (like Google, Facebook, Twitter, GitHub, etc):
+    * Several of these flows are appropriate for building an OAuth 2.0 authentication provider (like Google, Facebook, Twitter, GitHub, etc.):
         * `implicit`
         * `clientCredentials`
         * `authorizationCode`

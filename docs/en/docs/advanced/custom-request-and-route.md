@@ -69,7 +69,7 @@ The only thing the function returned by `GzipRequest.get_route_handler` does dif
 
 Doing this, our `GzipRequest` will take care of decompressing the data (if necessary) before passing it to our *path operations*.
 
-After that, all of the processing logic is the same.
+After that, all the processing logic is the same.
 
 But because of our changes in `GzipRequest.body`, the request body will be automatically decompressed when it is loaded by **FastAPI** when needed.
 

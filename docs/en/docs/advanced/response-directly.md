@@ -12,10 +12,10 @@ It might be useful, for example, to return custom headers or cookies.
 
 ## Return a `Response`
 
-In fact, you can return any `Response` or any sub-class of it.
+In fact, you can return any `Response` or any subclass of it.
 
 !!! tip
-    `JSONResponse` itself is a sub-class of `Response`.
+    `JSONResponse` itself is a subclass of `Response`.
 
 And when you return a `Response`, **FastAPI** will pass it directly.
 
@@ -27,7 +27,7 @@ This gives you a lot of flexibility. You can return any data type, override any 
 
 Because **FastAPI** doesn't do any change to a `Response` you return, you have to make sure it's contents are ready for it.
 
-For example, you cannot put a Pydantic model in a `JSONResponse` without first converting it to a `dict` with all the data types (like `datetime`, `UUID`, etc) converted to JSON-compatible types.
+For example, you cannot put a Pydantic model in a `JSONResponse` without first converting it to a `dict` with all the data types (like `datetime`, `UUID`, etc.) converted to JSON-compatible types.
 
 For those cases, you can use the `jsonable_encoder` to convert your data before passing it to a response:
 

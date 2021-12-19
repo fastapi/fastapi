@@ -5,7 +5,7 @@ It is easy to assume that HTTPS is something that is just "enabled" or not.
 But it is way more complex than that.
 
 !!! tip
-    If you are in a hurry or don't care, continue with the next sections for step by step instructions to set everything up with different techniques.
+    If you are in a hurry or don't care, continue with the next sections for step-by-step instructions to set everything up with different techniques.
 
 To **learn the basics of HTTPS**, from a consumer perspective, check <a href="https://howhttps.works/" class="external-link" target="_blank">https://howhttps.works/</a>.
 
@@ -33,7 +33,7 @@ Now, from a **developer's perspective**, here are several things to have in mind
 
 It is a common practice to have **one program/HTTP server** running on the server (the machine, host, etc.) and **managing all the HTTPS parts**: receiving the **encrypted HTTPS requests**, sending the **decrypted HTTP requests** to the actual HTTP application running in the same server (the **FastAPI** application, in this case), take the **HTTP response** from the application, **encrypt it** using the appropriate **HTTPS certificate** and sending it back to the client using **HTTPS**. This server is often called a **<a href="https://en.wikipedia.org/wiki/TLS_termination_proxy" class="external-link" target="_blank">TLS Termination Proxy</a>**.
 
-Some of the options you could use as a TLS Termination Proxy are:
+Some options you could use as a TLS Termination Proxy are:
 
 * Traefik (that can also handle certificate renewals)
 * Caddy (that can also handle certificate renewals)
@@ -187,4 +187,4 @@ Having **HTTPS** is very important, and quite **critical** in most cases. Most o
 
 But once you know the basic information of **HTTPS for developers** you can easily combine and configure different tools to help you manage everything in a simple way.
 
-In some of the next chapters, I'll show you several concrete examples of how to set up **HTTPS** for **FastAPI** applications. 🔒
+In some next chapters, I'll show you several concrete examples of how to set up **HTTPS** for **FastAPI** applications. 🔒

@@ -115,7 +115,7 @@ or
 http://127.0.0.1:8000/items/foo?short=yes
 ```
 
-or any other case variation (uppercase, first letter in uppercase, etc), your function will see the parameter `short` with a `bool` value of `True`. Otherwise as `False`.
+or any other case variation (uppercase, first letter in uppercase, etc.), your function will see the parameter `short` with a `bool` value of `True`. Otherwise, as `False`.
 
 
 ## Multiple path and query parameters

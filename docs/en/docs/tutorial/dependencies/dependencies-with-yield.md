@@ -107,7 +107,7 @@ This is what allows anything set in the dependency (e.g. a DB session) to, for e
 
 Background tasks are run *after* the response has been sent. So there's no way to raise an `HTTPException` because there's not even a way to change the response that is *already sent*.
 
-But if a background task creates a DB error, at least you can rollback or cleanly close the session in the dependency with `yield`, and maybe log the error or report it to a remote tracking system.
+But if a background task creates a DB error, at least you can roll back or cleanly close the session in the dependency with `yield`, and maybe log the error or report it to a remote tracking system.
 
 If you have some code that you know could raise an exception, do the most normal/"Pythonic" thing and add a `try` block in that section of the code.
 
@@ -157,7 +157,7 @@ participant tasks as Background tasks
 ```
 
 !!! info
-    Only **one response** will be sent to the client. It might be one of the error responses or it will be the response from the *path operation*.
+    Only **one response** will be sent to the client. It might be one of the error responses, or it will be the response from the *path operation*.
 
     After one of those responses is sent, no other response can be sent.
 
@@ -195,8 +195,8 @@ When you create a dependency with `yield`, **FastAPI** will internally convert i
 
 In Python, you can create Context Managers by <a href="https://docs.python.org/3/reference/datamodel.html#context-managers" class="external-link" target="_blank">creating a class with two methods: `__enter__()` and `__exit__()`</a>.
 
-You can also use them inside of **FastAPI** dependencies with `yield` by using
-`with` or `async with` statements inside of the dependency function:
+You can also use them inside **FastAPI** dependencies with `yield` by using
+`with` or `async with` statements inside the dependency function:
 
 ```Python hl_lines="1-9  13"
 {!../../../docs_src/dependencies/tutorial010.py!}

@@ -131,7 +131,7 @@ Now you can use Trio internally in your app. Or even better, you can use AnyIO, 
 
 ## Deployment Concepts
 
-These examples run the server program (e.g Uvicorn), starting **a single process**, listening on all the IPs (`0.0.0.0`) on a predefined port (e.g. `80`).
+These examples run the server program (ex. Uvicorn), starting **a single process**, listening on all the IPs (`0.0.0.0`) on a predefined port (ex. `80`).
 
 This is the basic idea. But you will probably want to take care of some additional things, like:
 

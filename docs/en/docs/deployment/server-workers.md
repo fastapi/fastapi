@@ -90,7 +90,7 @@ Let's see what each of those options mean:
         ```
 
     * So, the colon in `main:app` would be equivalent to the Python `import` part in `from main import app`.
-* `--workers`: The number of worker processes to use, each will run a Uvicorn worker, in this case, 4 workers.
+* `--workers`: The number of worker processes to use, each will run an Uvicorn worker, in this case, 4 workers.
 * `--worker-class`: The Gunicorn-compatible worker class to use in the worker processes.
     * Here we pass the class that Gunicorn can import and use with:
 
@@ -152,7 +152,7 @@ You can also see that it shows the **PID** of each process, `27365` for the pare
 
 Here you saw how to use **Gunicorn** (or Uvicorn) managing **Uvicorn worker processes** to **parallelize** the execution of the application, take advantage of **multiple cores** in the CPU, and be able to serve **more requests**.
 
-From the list of deployment concepts from above, using workers would mainly help with the **replication** part, and a little bit with the **restarts**, but you still need to take care of the others:
+From the list of deployment concepts from above, using workers would mainly help with the **replication** part, and a little with the **restarts**, but you still need to take care of the others:
 
 * **Security - HTTPS**
 * **Running on startup**
@@ -171,7 +171,7 @@ There I'll also show you how to **build your own image from scratch** to run a s
 
 ## Recap
 
-You can use **Gunicorn** (or also Uvicorn) as a process manager with Uvicorn workers to take advantage of **multi-core CPUs**, to run **multiple processes in parallel**.
+You can use **Gunicorn** (or also Uvicorn) as a process manager with Uvicorn workers to take advantage of **multicore CPUs**, to run **multiple processes in parallel**.
 
 You could use these tools and ideas if you are setting up **your own deployment system** while taking care of the other deployment concepts yourself.
 

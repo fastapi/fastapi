@@ -13,7 +13,7 @@ You can declare the model used for the response with the parameter `response_mod
 ```
 
 !!! note
-    Notice that `response_model` is a parameter of the "decorator" method (`get`, `post`, etc). Not of your *path operation function*, like all the parameters and body.
+    Notice that `response_model` is a parameter of the "decorator" method (`get`, `post`, etc.). Not of your *path operation function*, like all the parameters and body.
 
 It receives the same type you would declare for a Pydantic model attribute, so, it can be a Pydantic model, but it can also be, e.g. a `list` of Pydantic models, like `List[Item]`.
 
@@ -47,7 +47,7 @@ And we are using this model to declare our input and the same model to declare o
 
 Now, whenever a browser is creating a user with a password, the API will return the same password in the response.
 
-In this case, it might not be a problem, because the user themself is sending the password.
+In this case, it might not be a problem, because the user themselves is sending the password.
 
 But if we use the same model for another *path operation*, we could be sending our user's passwords to every client.
 
@@ -179,7 +179,7 @@ They take a `set` of `str` with the name of the attributes to include (omitting 
 This can be used as a quick shortcut if you have only one Pydantic model and want to remove some data from the output.
 
 !!! tip
-    But it is still recommended to use the ideas above, using multiple classes, instead of these parameters.
+    But it is still recommended using the ideas above, using multiple classes, instead of these parameters.
 
     This is because the JSON Schema generated in your app's OpenAPI (and the docs) will still be the one for the complete model, even if you use `response_model_include` or `response_model_exclude` to omit some attributes.
 

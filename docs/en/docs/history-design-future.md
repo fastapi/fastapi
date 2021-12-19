@@ -4,11 +4,11 @@ Some time ago, <a href="https://github.com/tiangolo/fastapi/issues/3#issuecommen
 
 > What’s the history of this project? It seems to have come from nowhere to awesome in a few weeks [...]
 
-Here's a little bit of that history.
+Here's a bit of that history.
 
 ## Alternatives
 
-I have been creating APIs with complex requirements for several years (Machine Learning, distributed systems, asynchronous jobs, NoSQL databases, etc), leading several teams of developers.
+I have been creating APIs with complex requirements for several years (Machine Learning, distributed systems, asynchronous jobs, NoSQL databases, etc.), leading several teams of developers.
 
 As part of that, I needed to investigate, test and use many alternatives.
 
@@ -22,7 +22,7 @@ As said in the section [Alternatives](alternatives.md){.internal-link target=_bl
 
 There have been many tools created before that have helped inspire its creation.
 
-I have been avoiding the creation of a new framework for several years. First I tried to solve all the features covered by **FastAPI** using many different frameworks, plug-ins, and tools.
+I have been avoiding the creation of a new framework for several years. First I tried to solve all the features covered by **FastAPI** using many frameworks, plug-ins, and tools.
 
 But at some point, there was no other option than creating something that provided all these features, taking the best ideas from previous tools, and combining them in the best way possible, using language features that weren't even available before (Python 3.6+ type hints).
 

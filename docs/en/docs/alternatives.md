@@ -8,7 +8,7 @@ What inspired **FastAPI**, how it compares to other alternatives and what it lea
 
 There have been many tools created before that have helped inspire its creation.
 
-I have been avoiding the creation of a new framework for several years. First I tried to solve all the features covered by **FastAPI** using many different frameworks, plug-ins, and tools.
+I have been avoiding the creation of a new framework for several years. First I tried to solve all the features covered by **FastAPI** using different frameworks, plug-ins, and tools.
 
 But at some point, there was no other option than creating something that provided all these features, taking the best ideas from previous tools, and combining them in the best way possible, using language features that weren't even available before (Python 3.6+ type hints).
 
@@ -18,7 +18,7 @@ But at some point, there was no other option than creating something that provid
 
 It's the most popular Python framework and is widely trusted. It is used to build systems like Instagram.
 
-It's relatively tightly coupled with relational databases (like MySQL or PostgreSQL), so, having a NoSQL database (like Couchbase, MongoDB, Cassandra, etc) as the main store engine is not very easy.
+It's relatively tightly coupled with relational databases (like MySQL or PostgreSQL), so, having a NoSQL database (like Couchbase, MongoDB, Cassandra, etc.) as the main store engine is not very easy.
 
 It was created to generate the HTML in the backend, not to create APIs used by a modern frontend (like React, Vue.js and Angular) or by other systems (like <abbr title="Internet of Things">IoT</abbr> devices) communicating with it.
 
@@ -69,7 +69,7 @@ But still, FastAPI got quite some inspiration from Requests.
 
 They are, more or less, at opposite ends, complementing each other.
 
-Requests has a very simple and intuitive design, it's very easy to use, with sensible defaults. But at the same time, it's very powerful and customizable.
+`Requests` has a very simple and intuitive design, it's very easy to use, with sensible defaults. But at the same time, it's very powerful and customizable.
 
 That's why, as said in the official website:
 
@@ -146,7 +146,7 @@ Webargs is a tool that was made to provide that on top of several frameworks, in
 
 It uses Marshmallow underneath to do the data validation. And it was created by the same developers.
 
-It's a great tool and I have used it a lot too, before having **FastAPI**.
+It's a great tool, and I have used it a lot too, before having **FastAPI**.
 
 !!! info
     Webargs was created by the same Marshmallow developers.
@@ -168,7 +168,7 @@ And it generates OpenAPI schemas.
 
 That's how it works in Flask, Starlette, Responder, etc.
 
-But then, we have again the problem of having a micro-syntax, inside of a Python string (a big YAML).
+But then, we have again the problem of having a micro-syntax, inside a Python string (a big YAML).
 
 The editor can't help much with that. And if we modify parameters or Marshmallow schemas and forget to also modify that YAML docstring, the generated schema would be obsolete.
 
@@ -263,7 +263,7 @@ I discovered Molten in the first stages of building **FastAPI**. And it has quit
 
 It doesn't use a data validation, serialization and documentation third-party library like Pydantic, it has its own. So, these data type definitions would not be reusable as easily.
 
-It requires a little bit more verbose configurations. And as it is based on WSGI (instead of ASGI), it is not designed to take advantage of the high-performance provided by tools like Uvicorn, Starlette and Sanic.
+It requires a bit more verbose configurations. And as it is based on WSGI (instead of ASGI), it is not designed to take advantage of the high-performance provided by tools like Uvicorn, Starlette and Sanic.
 
 The dependency injection system requires pre-registration of the dependencies and the dependencies are solved based on the declared types. So, it's not possible to declare more than one "component" that provides a certain type.
 

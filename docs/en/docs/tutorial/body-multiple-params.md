@@ -54,10 +54,10 @@ So, it will then use the parameter names as keys (field names) in the body, and 
 ```
 
 !!! note
-    Notice that even though the `item` was declared the same way as before, it is now expected to be inside of the body with a key `item`.
+    Notice that even though the `item` was declared the same way as before, it is now expected to be inside the body with a key `item`.
 
 
-**FastAPI** will do the automatic conversion from the request, so that the parameter `item` receives it's specific content and the same for `user`.
+**FastAPI** will do the automatic conversion from the request, so that the parameter `item` receives its specific content and the same for `user`.
 
 It will perform the validation of the compound data, and will document it like that for the OpenAPI schema and automatic docs.
 
@@ -99,7 +99,7 @@ Again, it will convert the data types, validate, document, etc.
 
 ## Multiple body params and query
 
-Of course, you can also declare additional query parameters whenever you need, additional to any body parameters.
+Of course, you can also declare additional query parameters whenever you need, additional to `any body parameters.
 
 As, by default, singular values are interpreted as query parameters, you don't have to explicitly add a `Query`, you can just do:
 
@@ -123,7 +123,7 @@ Let's say you only have a single `item` body parameter from a Pydantic model `It
 
 By default, **FastAPI** will then expect its body directly.
 
-But if you want it to expect a JSON with a key `item` and inside of it the model contents, as it does when you declare extra body parameters, you can use the special `Body` parameter `embed`:
+But if you want it to expect a JSON with a key `item` and inside it the model contents, as it does when you declare extra body parameters, you can use the special `Body` parameter `embed`:
 
 ```Python
 item: Item = Body(..., embed=True)

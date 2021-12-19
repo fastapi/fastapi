@@ -20,7 +20,7 @@ Peewee has some heavy assumptions about its defaults and about how it should be 
 
 If you are developing an application with an older non-async framework, and can work with all its defaults, **it can be a great tool**.
 
-But if you need to change some of the defaults, support more than one predefined database, work with an async framework (like FastAPI), etc, you will need to add quite some complex extra code to override those defaults.
+But if you need to change some defaults, support more than one predefined database, work with an async framework (like FastAPI), etc., you will need to add quite some complex extra code to override those defaults.
 
 Nevertheless, it's possible to do it, and here you'll see exactly what code you have to add to be able to use Peewee with FastAPI.
 
@@ -37,7 +37,7 @@ So, we are going to focus only on the differences.
 
 ## File structure
 
-Let's say you have a directory named `my_super_project` that contains a sub-directory called `sql_app` with a structure like this:
+Let's say you have a directory named `my_super_project` that contains a subdirectory called `sql_app` with a structure like this:
 
 ```
 .
@@ -241,7 +241,7 @@ Create all the same CRUD utils as in the SQLAlchemy tutorial, all the code is ve
 
 There are some differences with the code for the SQLAlchemy tutorial.
 
-We don't pass a `db` attribute around. Instead we use the models directly. This is because the `db` object is a global object, that includes all the connection logic. That's why we had to do all the `contextvars` updates above.
+We don't pass a `db` attribute around. Instead, we use the models directly. This is because the `db` object is a global object, that includes all the connection logic. That's why we had to do all the `contextvars` updates above.
 
 Aso, when returning several objects, like in `get_users`, we directly call `list`, like in:
 
@@ -287,15 +287,15 @@ But we are not using the value given by this dependency (it actually doesn't giv
 
 ### Context variable sub-dependency
 
-For all the `contextvars` parts to work, we need to make sure we have an independent value in the `ContextVar` for each request that uses the database, and that value will be used as the database state (connection, transactions, etc) for the whole request.
+For all the `contextvars` parts to work, we need to make sure we have an independent value in the `ContextVar` for each request that uses the database, and that value will be used as the database state (connection, transactions, etc.) for the whole request.
 
-For that, we need to create another `async` dependency `reset_db_state()` that is used as a sub-dependency in `get_db()`. It will set the value for the context variable (with just a default `dict`) that will be used as the database state for the whole request. And then the dependency `get_db()` will store in it the database state (connection, transactions, etc).
+For that, we need to create another `async` dependency `reset_db_state()` that is used as a sub-dependency in `get_db()`. It will set the value for the context variable (with just a default `dict`) that will be used as the database state for the whole request. And then the dependency `get_db()` will store in it the database state (connection, transactions, etc.).
 
 ```Python hl_lines="18-20"
 {!../../../docs_src/sql_databases_peewee/sql_app/main.py!}
 ```
 
-For the **next request**, as we will reset that context variable again in the `async` dependency `reset_db_state()` and then create a new connection in the `get_db()` dependency, that new request will have its own database state (connection, transactions, etc).
+For the **next request**, as we will reset that context variable again in the `async` dependency `reset_db_state()` and then create a new connection in the `get_db()` dependency, that new request will have its own database state (connection, transactions, etc.).
 
 !!! tip
     As FastAPI is an async framework, one request could start being processed, and before finishing, another request could be received and start processing as well, and it all could be processed in the same thread.
@@ -350,7 +350,7 @@ def read_users(skip: int = 0, limit: int = 100):
 
 This example includes an extra *path operation* that simulates a long processing request with `time.sleep(sleep_time)`.
 
-It will have the database connection open at the beginning and will just wait some seconds before replying back. And each new request will wait one second less.
+It will have the database connection open at the beginning and will just wait some seconds before replying. And each new request will wait one second less.
 
 This will easily let you test that your app with Peewee and FastAPI is behaving correctly with all the stuff about threads.
 
@@ -385,19 +385,19 @@ Open your browser at <a href="http://127.0.0.1:8000/docs" class="external-link" 
 
 Then open 10 tabs at <a href="http://127.0.0.1:8000/docs#/default/read_slow_users_slowusers__get" class="external-link" target="_blank">http://127.0.0.1:8000/docs#/default/read_slow_users_slowusers__get</a> at the same time.
 
-Go to the *path operation* "Get `/slowusers/`" in all of the tabs. Use the "Try it out" button and execute the request in each tab, one right after the other.
+Go to the *path operation* "Get `/slowusers/`" in all the tabs. Use the "Try it out" button and execute the request in each tab, one right after the other.
 
 The tabs will wait for a bit and then some of them will show `Internal Server Error`.
 
 ### What happens
 
-The first tab will make your app create a connection to the database and wait for some seconds before replying back and closing the database connection.
+The first tab will make your app create a connection to the database and wait for some seconds before replying and closing the database connection.
 
 Then, for the request in the next tab, your app will wait for one second less, and so on.
 
-This means that it will end up finishing some of the last tabs' requests earlier than some of the previous ones.
+This means that it will end up finishing some of the last tabs' requests earlier than some previous ones.
 
-Then one the last requests that wait less seconds will try to open a database connection, but as one of those previous requests for the other tabs will probably be handled in the same thread as the first one, it will have the same database connection that is already open, and Peewee will throw an error and you will see it in the terminal, and the response will have an `Internal Server Error`.
+Then one the last requests that wait fewer seconds will try to open a database connection, but as one of those previous requests for the other tabs will probably be handled in the same thread as the first one, it will have the same database connection that is already open, and Peewee will throw an error, and you will see it in the terminal, and the response will have an `Internal Server Error`.
 
 This will probably happen for more than one of those tabs.
 
@@ -423,13 +423,13 @@ async def reset_db_state():
 
 Terminate your running app and start it again.
 
-Repeat the same process with the 10 tabs. This time all of them will wait and you will get all the results without errors.
+Repeat the same process with the 10 tabs. This time all of them will wait, and you will get all the results without errors.
 
 ...You fixed it!
 
 ## Review all the files
 
- Remember you should have a directory named `my_super_project` (or however you want) that contains a sub-directory called `sql_app`.
+ Remember you should have a directory named `my_super_project` (or however you want) that contains a subdirectory called `sql_app`.
 
 `sql_app` should have the following files:
 
@@ -472,13 +472,13 @@ Repeat the same process with the 10 tabs. This time all of them will wait and yo
 
 ### The problem
 
-Peewee uses <a href="https://docs.python.org/3/library/threading.html#thread-local-data" class="external-link" target="_blank">`threading.local`</a> by default to store it's database "state" data (connection, transactions, etc).
+Peewee uses <a href="https://docs.python.org/3/library/threading.html#thread-local-data" class="external-link" target="_blank">`threading.local`</a> by default to store its database "state" data (connection, transactions, etc).
 
 `threading.local` creates a value exclusive to the current thread, but an async framework would run all the code (e.g. for each request) in the same thread, and possibly not in order.
 
 On top of that, an async framework could run some sync code in a threadpool (using `asyncio.run_in_executor`), but belonging to the same request.
 
-This means that, with Peewee's current implementation, multiple tasks could be using the same `threading.local` variable and end up sharing the same connection and data (that they shouldn't), and at the same time, if they execute sync I/O-blocking code in a threadpool (as with normal `def` functions in FastAPI, in *path operations*  and dependencies), that code won't have access to the database state variables, even while it's part of the same request and it should be able to get access to the same database state.
+This means that, with Peewee's current implementation, multiple tasks could be using the same `threading.local` variable and end up sharing the same connection and data (that they shouldn't), and at the same time, if they execute sync I/O-blocking code in a threadpool (as with normal `def` functions in FastAPI, in *path operations*  and dependencies), that code won't have access to the database state variables, even while it's part of the same request, and it should be able to get access to the same database state.
 
 ### Context variables
 
@@ -498,7 +498,7 @@ To set a value used in the current "context" (e.g. for the current request) use:
 some_var.set("new value")
 ```
 
-To get a value anywhere inside of the context (e.g. in any part handling the current request) use:
+To get a value anywhere inside the context (e.g. in any part handling the current request) use:
 
 ```Python
 some_var.get()

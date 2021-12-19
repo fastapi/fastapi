@@ -22,7 +22,7 @@ You can set them as follows:
 ```
 
 !!! tip
-    You can write Markdown in the `description` field and it will be rendered in the output.
+    You can write Markdown in the `description` field, and it will be rendered in the output.
 
 With this configuration, the automatic API docs would look like:
 
@@ -52,7 +52,7 @@ Create metadata for your tags and pass it to the `openapi_tags` parameter:
 {!../../../docs_src/metadata/tutorial004.py!}
 ```
 
-Notice that you can use Markdown inside of the descriptions, for example "login" will be shown in bold (**login**) and "fancy" will be shown in italics (_fancy_).
+Notice that you can use Markdown inside the descriptions, for example "login" will be shown in bold (**login**) and "fancy" will be shown in italics (_fancy_).
 
 !!! tip
     You don't have to add metadata for all the tags that you use.

@@ -39,7 +39,7 @@ Python will complain if you put a value with a "default" before a value that doe
 
 But you can re-order them, and have the value without a default (the query parameter `q`) first.
 
-It doesn't matter for **FastAPI**. It will detect the parameters by their names, types and default declarations (`Query`, `Path`, etc), it doesn't care about the order.
+It doesn't matter for **FastAPI**. It will detect the parameters by their names, types and default declarations (`Query`, `Path`, etc.), it doesn't care about the order.
 
 So, you can declare your function as:
 
@@ -84,7 +84,7 @@ The same applies for:
 
 Number validations also work for `float` values.
 
-Here's where it becomes important to be able to declare <abbr title="greater than"><code>gt</code></abbr> and not just <abbr title="greater than or equal"><code>ge</code></abbr>. As with it you can require, for example, that a value must be greater than `0`, even if it is less than `1`.
+Here's where it becomes important to be able to declare <abbr title="greater than"><code>gt</code></abbr> and not just <abbr title="greater than or equal"><code>ge</code></abbr>. As with it, you can require, for example, that a value must be greater than `0`, even if it is less than `1`.
 
 So, `0.5` would be a valid value. But `0.0` or `0` would not.
 

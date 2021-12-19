@@ -732,7 +732,7 @@ def get_body_field(*, dependant: Dependant, name: str) -> Optional[ModelField]:
         final_field = get_schema_compatible_field(field=first_param)
         check_file_field(final_field)
         return final_field
-    # If one field requires to embed, all have to be embedded
+    # If one field requires embedding, all have to be embedded
     # in case a sub-dependency is evaluated with a single unique body field
     # That is combined (embedded) with other body fields
     for param in flat_dependant.body_params:

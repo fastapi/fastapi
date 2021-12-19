@@ -85,7 +85,7 @@ You could then have a `test_main_b.py`, the same as before, with the extended te
 {!../../../docs_src/app_testing/test_main_b.py!}
 ```
 
-Whenever you need the client to pass information in the request and you don't know how to, you can search (Google) how to do it in `requests`.
+Whenever you need the client to pass information in the request, and you don't know how to, you can search (Google) how to do it in `requests`.
 
 Then you just do the same in your tests.
 

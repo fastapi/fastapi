@@ -42,7 +42,7 @@ You can configure it in your **FastAPI** application using the `CORSMiddleware`.
 
 You can also specify if your backend allows:
 
-* Credentials (Authorization headers, Cookies, etc).
+* Credentials (Authorization headers, Cookies, etc.).
 * Specific HTTP methods (`POST`, `PUT`) or all of them with the wildcard `"*"`.
 * Specific HTTP headers or all of them with the wildcard `"*"`.
 

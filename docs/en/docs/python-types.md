@@ -228,7 +228,7 @@ You can also use `Optional` to declare that a variable has a type, like `str`, b
 {!../../../docs_src/python_types/tutorial009.py!}
 ```
 
-Using `Optional[str]` instead of just `str` will let the editor help you detecting errors where you could be assuming that a value is always a `str`, when it could actually be `None` too.
+Using `Optional[str]` instead of just `str` will let the editor help you to detect errors where you could be assuming that a value is always a `str`, when it could actually be `None` too.
 
 #### Generic types
 
@@ -245,7 +245,7 @@ are called **Generic types** or **Generics**.
 
 ### Classes as types
 
-You can also declare a class as the type of a variable.
+You can also declare a class as the type of variable.
 
 Let's say you have a class `Person`, with a name:
 
@@ -271,7 +271,7 @@ You declare the "shape" of the data as classes with attributes.
 
 And each attribute has a type.
 
-Then you create an instance of that class with some values and it will validate the values, convert them to the appropriate type (if that's the case) and give you an object with all the data.
+Then you create an instance of that class with some values, and it will validate the values, convert them to the appropriate type (if that's the case) and give you an object with all the data.
 
 And you get all the editor support with that resulting object.
 
@@ -292,7 +292,7 @@ You will see a lot more of all this in practice in the [Tutorial - User Guide](t
 
 **FastAPI** takes advantage of these type hints to do several things.
 
-With **FastAPI** you declare parameters with type hints and you get:
+With **FastAPI** you declare parameters with type hints, and you get:
 
 * **Editor support**.
 * **Type checks**.
@@ -308,7 +308,7 @@ With **FastAPI** you declare parameters with type hints and you get:
 
 This might all sound abstract. Don't worry. You'll see all this in action in the [Tutorial - User Guide](tutorial/index.md){.internal-link target=_blank}.
 
-The important thing is that by using standard Python types, in a single place (instead of adding more classes, decorators, etc), **FastAPI** will do a lot of the work for you.
+The important thing is that by using standard Python types, in a single place (instead of adding more classes, decorators, etc.), **FastAPI** will do a lot of the work for you.
 
 !!! info
     If you already went through all the tutorial and came back to see more about types, a good resource is <a href="https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html" class="external-link" target="_blank">the "cheat sheet" from `mypy`</a>.

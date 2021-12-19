@@ -14,7 +14,7 @@ Hiding the documentation just makes it more difficult to understand how to inter
 
 If you want to secure your API, there are several better things you can do, for example:
 
-* Make sure you have well defined Pydantic models for your request bodies and responses.
+* Make sure you have well-defined Pydantic models for your request bodies and responses.
 * Configure any required permissions and roles using dependencies.
 * Never store plaintext passwords, only password hashes.
 * Implement and use well-known cryptographic tools, like Passlib and JWT tokens, etc.

@@ -4,7 +4,7 @@ First, you might want to see the basic ways to [help FastAPI and get help](help-
 
 ## Developing
 
-If you already cloned the repository and you know that you need to deep dive in the code, here are some guidelines to set up your environment.
+If you already cloned the repository, and you know that you need to deep dive in the code, here are some guidelines to set up your environment.
 
 ### Virtual environment with `venv`
 
@@ -18,7 +18,7 @@ $ python -m venv env
 
 </div>
 
-That will create a directory `./env/` with the Python binaries and then you will be able to install packages for that isolated environment.
+That will create a directory `./env/` with the Python binaries, and then you will be able to install packages for that isolated environment.
 
 ### Activate the environment
 
@@ -188,9 +188,9 @@ And those Python files are included/injected in the documentation when generatin
 
 Most of the tests actually run against the example source files in the documentation.
 
-This helps making sure that:
+This helps to make sure that:
 
-* The documentation is up to date.
+* The documentation is up-to-date.
 * The documentation examples can be run as is.
 * Most of the features are covered by the documentation, ensured by test coverage.
 
@@ -268,7 +268,7 @@ Here are the steps to help with translations.
 
 For the languages I don't speak, I'll wait for several others to review the translation before merging.
 
-* You can also check if there are translations for your language and add a review to them, that will help me know that the translation is correct and I can merge it.
+* You can also check if there are translations for your language and add a review to them, that will help me know that the translation is correct, and I can merge it.
 
 * Use the same Python examples and only translate the text in the docs. You don't have to change anything for this to work.
 

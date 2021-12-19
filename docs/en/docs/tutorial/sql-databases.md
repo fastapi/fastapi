@@ -63,7 +63,7 @@ In a similar way you could use any other ORM.
 
 ## File structure
 
-For these examples, let's say you have a directory named `my_super_project` that contains a sub-directory called `sql_app` with a structure like this:
+For these examples, let's say you have a directory named `my_super_project` that contains a subdirectory called `sql_app` with a structure like this:
 
 ```
 .
@@ -322,7 +322,7 @@ id = data.id
 
 And with this, the Pydantic *model* is compatible with ORMs, and you can just declare it in the `response_model` argument in your *path operations*.
 
-You will be able to return a database model and it will read the data from it.
+You will be able to return a database model, and it will read the data from it.
 
 #### Technical Details about ORM mode
 
@@ -342,7 +342,7 @@ Without `orm_mode`, if you returned a SQLAlchemy model from your *path operation
 
 Even if you declared those relationships in your Pydantic models.
 
-But with ORM mode, as Pydantic itself will try to access the data it needs from attributes (instead of assuming a `dict`), you can declare the specific data you want to return and it will be able to go and get it, even from ORMs.
+But with ORM mode, as Pydantic itself will try to access the data it needs from attributes (instead of assuming a `dict`), you can declare the specific data you want to return, and it will be able to go and get it, even from ORMs.
 
 ## CRUD utils
 
@@ -489,7 +489,7 @@ We are creating the database session before each request in the dependency with 
 
 And then we can create the required dependency in the *path operation function*, to get that session directly.
 
-With that, we can just call `crud.get_user` directly from inside of the *path operation function* and use that session.
+With that, we can just call `crud.get_user` directly from inside the *path operation function* and use that session.
 
 !!! tip
     Notice that the values you return are SQLAlchemy models, or lists of SQLAlchemy models.
@@ -503,7 +503,7 @@ With that, we can just call `crud.get_user` directly from inside of the *path op
 
 ### About `def` vs `async def`
 
-Here we are using SQLAlchemy code inside of the *path operation function* and in the dependency, and, in turn, it will go and communicate with an external database.
+Here we are using SQLAlchemy code inside the *path operation function* and in the dependency, and, in turn, it will go and communicate with an external database.
 
 That could potentially require some "waiting".
 
@@ -536,7 +536,7 @@ def read_user(user_id: int, db: Session = Depends(get_db)):
 
 ## Migrations
 
-Because we are using SQLAlchemy directly and we don't require any kind of plug-in for it to work with **FastAPI**, we could integrate database <abbr title="Automatically updating the database to have any new column we define in our models.">migrations</abbr> with <a href="https://alembic.sqlalchemy.org" class="external-link" target="_blank">Alembic</a> directly.
+Because we are using SQLAlchemy directly, and we don't require any kind of plug-in for it to work with **FastAPI**, we could integrate database <abbr title="Automatically updating the database to have any new column we define in our models.">migrations</abbr> with <a href="https://alembic.sqlalchemy.org" class="external-link" target="_blank">Alembic</a> directly.
 
 And as the code related to SQLAlchemy and the SQLAlchemy models lives in separate independent files, you would even be able to perform the migrations with Alembic without having to install FastAPI, Pydantic, or anything else.
 
@@ -546,7 +546,7 @@ For example, in a background task worker with <a href="https://docs.celeryprojec
 
 ## Review all the files
 
- Remember you should have a directory named `my_super_project` that contains a sub-directory called `sql_app`.
+ Remember you should have a directory named `my_super_project` that contains a subdirectory called `sql_app`.
 
 `sql_app` should have the following files:
 

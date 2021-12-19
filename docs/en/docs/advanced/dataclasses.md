@@ -83,7 +83,7 @@ In that case, you can simply swap the standard `dataclasses` with `pydantic.data
 
     FastAPI will use the `response_model` parameter (that includes dataclasses) to convert the response.
 
-You can combine `dataclasses` with other type annotations in many different combinations to form complex data structures.
+You can combine `dataclasses` with other type annotations in many combinations to form complex data structures.
 
 Check the in-code annotation tips above to see more specific details.
 

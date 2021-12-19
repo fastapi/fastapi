@@ -60,7 +60,7 @@ First, let's quickly see the parts that change from the examples in the main **T
 {!../../../docs_src/security/tutorial005.py!}
 ```
 
-Now let's review those changes step by step.
+Now let's review those changes' step by step.
 
 ## OAuth2 Security scheme
 
@@ -72,11 +72,11 @@ The `scopes` parameter receives a `dict` with each scope as a key and the descri
 {!../../../docs_src/security/tutorial005.py!}
 ```
 
-Because we are now declaring those scopes, they will show up in the API docs when you log-in/authorize.
+Because we are now declaring those scopes, they will show up in the API docs when you log in/authorize.
 
 And you will be able to select which scopes you want to give access to: `me` and `items`.
 
-This is the same mechanism used when you give permissions while logging in with Facebook, Google, GitHub, etc:
+This is the same mechanism used when you give permissions while logging in with Facebook, Google, GitHub, etc.:
 
 <img src="/img/tutorial/security/image11.png">
 

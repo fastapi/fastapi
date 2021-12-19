@@ -16,11 +16,11 @@ Or you might have any other way to communicate with the WebSocket endpoint.
 
 ---
 
-But for this example, we'll use a very simple HTML document with some JavaScript, all inside a long string.
+But for this example, we'll use a very simple HTML documents with some JavaScript, all inside a long string.
 
-This, of course, is not optimal and you wouldn't use it for production.
+This, of course, is not optimal, and you wouldn't use it for production.
 
-In production you would have one of the options above.
+In production, you would have one of the options above.
 
 But it's the simplest way to focus on the server-side of WebSockets and have a working example:
 

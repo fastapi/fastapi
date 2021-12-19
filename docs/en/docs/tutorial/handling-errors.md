@@ -35,7 +35,7 @@ To return HTTP responses with errors to the client you use `HTTPException`.
 
 Because it's a Python exception, you don't `return` it, you `raise` it.
 
-This also means that if you are inside a utility function that you are calling inside of your *path operation function*, and you raise the `HTTPException` from inside of that utility function, it won't run the rest of the code in the *path operation function*, it will terminate that request right away and send the HTTP error from the `HTTPException` to the client.
+This also means that if you are inside a utility function that you are calling inside your *path operation function*, and you raise the `HTTPException` from inside that utility function, it won't run the rest of the code in the *path operation function*, it will terminate that request right away and send the HTTP error from the `HTTPException` to the client.
 
 The benefit of raising an exception over `return`ing a value will be more evident in the section about Dependencies and Security.
 
@@ -167,7 +167,7 @@ path -> item_id
 
 **FastAPI** uses it so that, if you use a Pydantic model in `response_model`, and your data has an error, you will see the error in your log.
 
-But the client/user will not see it. Instead, the client will receive an "Internal Server Error" with a HTTP status code `500`.
+But the client/user will not see it. Instead, the client will receive an "Internal Server Error" with an HTTP status code `500`.
 
 It should be this way because if you have a Pydantic `ValidationError` in your *response* or anywhere in your code (not in the client's *request*), it's actually a bug in your code.
 

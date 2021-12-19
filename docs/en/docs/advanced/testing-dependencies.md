@@ -12,7 +12,7 @@ Instead, you want to provide a different dependency that will be used only durin
 
 An example could be that you have an external authentication provider that you need to call.
 
-You send it a token and it returns an authenticated user.
+You send it a token, and it returns an authenticated user.
 
 This provider might be charging you per request, and calling it might take some extra time than if you had a fixed mock user for tests.
 

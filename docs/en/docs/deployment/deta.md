@@ -207,7 +207,7 @@ Successfully disabled http auth
 
 </div>
 
-Now you can share that URL with anyone and they will be able to access your API. 🚀
+Now you can share that URL with anyone, and they will be able to access your API. 🚀
 
 ## HTTPS
 

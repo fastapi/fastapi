@@ -35,7 +35,7 @@ Create file parameters the same way you would for `Body` or `Form`:
 
 The files will be uploaded as "form data".
 
-If you declare the type of your *path operation function* parameter as `bytes`, **FastAPI** will read the file for you and you will receive the contents as `bytes`.
+If you declare the type of your *path operation function* parameter as `bytes`, **FastAPI** will read the file for you, and you will receive the contents as `bytes`.
 
 Have in mind that this means that the whole contents will be stored in memory. This will work well for small files.
 
@@ -77,13 +77,13 @@ Using `UploadFile` has several advantages over `bytes`:
 
 As all these methods are `async` methods, you need to "await" them.
 
-For example, inside of an `async` *path operation function* you can get the contents with:
+For example, inside an `async` *path operation function* you can get the contents with:
 
 ```Python
 contents = await myfile.read()
 ```
 
-If you are inside of a normal `def` *path operation function*, you can access the `UploadFile.file` directly, for example:
+If you are inside a normal `def` *path operation function*, you can access the `UploadFile.file` directly, for example:
 
 ```Python
 contents = myfile.file.read()

@@ -33,7 +33,7 @@ CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
 
 Containers (mainly Linux containers) are a very **lightweight** way to package applications including all their dependencies and necessary files while keeping them isolated from other containers (other applications or components) in the same system.
 
-Linux containers run using the same Linux kernel of the host (machine, virtual machine, cloud server, etc). This just means that they are very lightweight (compared to full virtual machines emulating an entire operating system).
+Linux containers run using the same Linux kernel of the host (machine, virtual machine, cloud server, etc.). This just means that they are very lightweight (compared to full virtual machines emulating an entire operating system).
 
 This way, containers consume **little resources**, an amount comparable to running the processes directly (a virtual machine would consume much more).
 
@@ -70,7 +70,7 @@ And there are many other images for different things like databases, for example
 
 By using a pre-made container image it's very easy to **combine** and use different tools. For example, to try out a new database. In most cases, you can use the **official images**, and just configure them with environment variables.
 
-That way, in many cases you can learn about containers and Docker and re-use that knowledge with many different tools and components.
+That way, in many cases you can learn about containers and Docker and re-use that knowledge with many tools and components.
 
 So, you would run **multiple containers** with different things, like a database, a Python application, a web server with a React frontend application, and connect them together via their internal network.
 
@@ -206,7 +206,7 @@ CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
 
     Because the previous step copying the file could be detected by the **Docker cache**, this step will also **use the Docker cache** when available.
 
-    Using the cache in this step will **save** you a lot of **time** when building the image again and again during development, instead of **downloading and installing** all the dependencies **every time**.
+    Using the cache in this step will **save** your lot of **time** when building the image again and again during development, instead of **downloading and installing** all the dependencies **every time**.
 
 5. Copy the `./app` directory inside the `/code` directory.
 
@@ -220,7 +220,7 @@ CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
 
     This command will be run from the **current working directory**, the same `/code` directory you set above with `WORKDIR /code`.
 
-    Because the program will be started at `/code` and inside of it is the directory `./app` with your code, **Uvicorn** will be able to see and **import** `app` from `app.main`.
+    Because the program will be started at `/code` and inside it is the directory `./app` with your code, **Uvicorn** will be able to see and **import** `app` from `app.main`.
 
 !!! tip
     Review what each line does by clicking each number bubble in the code. 👆
@@ -377,7 +377,7 @@ Let's talk again about some of the same [Deployment Concepts](./concepts.md){.in
 
 Containers are mainly a tool to simplify the process of **building and deploying** an application, but they don't enforce a particular approach to handle these **deployment concepts**, and there are several possible strategies.
 
-The **good news** is that with each different strategy there's a way to cover all of the deployment concepts. 🎉
+The **good news** is that with each different strategy there's a way to cover all the deployment concepts. 🎉
 
 Let's review these **deployment concepts** in terms of containers:
 
@@ -432,7 +432,7 @@ And when working with containers, the same system you use to start and manage th
 
 When working with **Kubernetes** or similar distributed container management systems, using their internal networking mechanisms would allow the single **load balancer** that is listening on the main **port** to transmit communication (requests) to possibly **multiple containers** running your app.
 
-Each of these containers running your app would normally have **just one process** (e.g. a Uvicorn process running your FastAPI application). They would all be **identical containers**, running the same thing, but each with its own process, memory, etc. That way you would take advantage of **parallelization** in **different cores** of the CPU, or even in **different machines**.
+Each of these containers running your app would normally have **just one process** (e.g. an Uvicorn process running your FastAPI application). They would all be **identical containers**, running the same thing, but each with its own process, memory, etc. That way you would take advantage of **parallelization** in **different cores** of the CPU, or even in **different machines**.
 
 And the distributed container system with the **load balancer** would **distribute the requests** to each one of the containers with your app **in turns**. So, each request could be handled by one of the multiple **replicated containers** running your app.
 

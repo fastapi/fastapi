@@ -85,7 +85,7 @@ For example, we can define an `Image` model:
 
 ### Use the submodel as a type
 
-And then we can use it as the type of an attribute:
+And then we can use it as the type of attribute:
 
 ```Python hl_lines="20"
 {!../../../docs_src/body_nested_models/tutorial004.py!}
@@ -130,13 +130,13 @@ The string will be checked to be a valid URL, and documented in JSON Schema / Op
 
 ## Attributes with lists of submodels
 
-You can also use Pydantic models as subtypes of `list`, `set`, etc:
+You can also use Pydantic models as subtypes of `list`, `set`, etc.:
 
 ```Python hl_lines="20"
 {!../../../docs_src/body_nested_models/tutorial006.py!}
 ```
 
-This will expect (convert, validate, document, etc) a JSON body like:
+This will expect (convert, validate, document, etc.) a JSON body like:
 
 ```JSON hl_lines="11"
 {

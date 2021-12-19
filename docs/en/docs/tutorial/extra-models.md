@@ -144,7 +144,7 @@ And these models are all sharing a lot of the data and duplicating attribute nam
 
 We could do better.
 
-We can declare a `UserBase` model that serves as a base for our other models. And then we can make subclasses of that model that inherit its attributes (type declarations, validation, etc).
+We can declare a `UserBase` model that serves as a base for our other models. And then we can make subclasses of that model that inherit its attributes (type declarations, validation, etc.).
 
 All the data conversion, validation, documentation, etc. will still work as normally.
 

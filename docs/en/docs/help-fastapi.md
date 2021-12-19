@@ -70,7 +70,7 @@ I love to hear about how **FastAPI** is being used, what you have liked in it, i
 
 ## Help others with issues in GitHub
 
-You can see <a href="https://github.com/tiangolo/fastapi/issues" class="external-link" target="_blank">existing issues</a> and try and help others, most of the times they are questions that you might already know the answer for. 🤓
+You can see <a href="https://github.com/tiangolo/fastapi/issues" class="external-link" target="_blank">existing issues</a> and try and help others, most of the time they are questions that you might already know the answer for. 🤓
 
 If you are helping a lot of people with issues, you might become an official [FastAPI Expert](fastapi-people.md#experts){.internal-link target=_blank}. 🎉
 

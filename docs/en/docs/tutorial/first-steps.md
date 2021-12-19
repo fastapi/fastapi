@@ -322,7 +322,7 @@ You can return a `dict`, `list`, singular values as `str`, `int`, etc.
 
 You can also return Pydantic models (you'll see more about that later).
 
-There are many other objects and models that will be automatically converted to JSON (including ORMs, etc). Try using your favorite ones, it's highly probable that they are already supported.
+There are many other objects and models that will be automatically converted to JSON (including ORMs, etc.). Try using your favorite ones, it's highly probable that they are already supported.
 
 ## Recap
 
