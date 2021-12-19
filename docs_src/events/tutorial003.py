@@ -1,6 +1,9 @@
+from contextlib import asynccontextmanager
+
 from fastapi import FastAPI
 
 
+@asynccontextmanager
 async def lifespan(app):
     print("startup")
     yield
