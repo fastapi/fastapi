@@ -7,7 +7,7 @@ from contextlib import AsyncExitStack
 from enum import Enum, IntEnum
 from typing import (
     Any,
-    AsyncGenerator,
+    AsyncContextManager,
     Callable,
     Coroutine,
     Dict,
@@ -45,6 +45,7 @@ from pydantic.error_wrappers import ErrorWrapper, ValidationError
 from pydantic.fields import ModelField, Undefined
 from pydantic.utils import lenient_issubclass
 from starlette import routing
+from starlette.applications import Starlette
 from starlette.concurrency import run_in_threadpool
 from starlette.exceptions import HTTPException
 from starlette.requests import Request
@@ -493,7 +494,7 @@ class APIRouter(routing.Router):
         route_class: Type[APIRoute] = APIRoute,
         on_startup: Optional[Sequence[Callable[[], Any]]] = None,
         on_shutdown: Optional[Sequence[Callable[[], Any]]] = None,
-        lifespan: Optional[Callable[[Any], AsyncGenerator[Any, Any]]] = None,
+        lifespan: Optional[Callable[[Starlette], AsyncContextManager[Any]]] = None,
         deprecated: Optional[bool] = None,
         include_in_schema: bool = True,
         generate_unique_id_function: Callable[[APIRoute], str] = Default(

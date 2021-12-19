@@ -1,7 +1,7 @@
 from enum import Enum
 from typing import (
     Any,
-    AsyncGenerator,
+    AsyncContextManager,
     Awaitable,
     Callable,
     Coroutine,
@@ -71,10 +71,10 @@ class FastAPI(Starlette):
         ] = None,
         on_startup: Optional[Sequence[Callable[[], Any]]] = None,
         on_shutdown: Optional[Sequence[Callable[[], Any]]] = None,
+        lifespan: Optional[Callable[[Starlette], AsyncContextManager[Any]]] = None,
         terms_of_service: Optional[str] = None,
         contact: Optional[Dict[str, Union[str, Any]]] = None,
         license_info: Optional[Dict[str, Union[str, Any]]] = None,
-        lifespan: Optional[Callable[[Any], AsyncGenerator[Any, Any]]] = None,
         openapi_prefix: str = "",
         root_path: str = "",
         root_path_in_servers: bool = True,
