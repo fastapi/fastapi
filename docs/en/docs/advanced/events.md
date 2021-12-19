@@ -48,11 +48,10 @@ Here, the `shutdown` event handler function will write a text line `"Application
 
 # Lifespan
 
-You can also define a lifespan context as an async generator, instead of using startup and shutdown events.
+You can also define a lifespan context as an asynchronous context manager, instead of using separate startup and shutdown functions.
 
-This is useful when the startup and shutdown events of your application are encompassed in a context manager.
-
-This function must be declared with `async def` and contain one `yield` statement.
+This `async` function must be declared with the `@asynccontextmanager` decorator.  This was added to `contextlib` in Python 3.7.  For earlier versions of Python,
+you can install the `contextlib2` library to get `@asynccontextmanager`.
 
 ```Python hl_lines="4"
 {!../../../docs_src/events/tutorial003.py!}
