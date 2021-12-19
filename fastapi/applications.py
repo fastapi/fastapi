@@ -1,6 +1,6 @@
 from typing import (
     Any,
-    AsyncGenerator,
+    AsyncContextManager,
     Callable,
     Coroutine,
     Dict,
@@ -66,7 +66,7 @@ class FastAPI(Starlette):
         ] = None,
         on_startup: Optional[Sequence[Callable[[], Any]]] = None,
         on_shutdown: Optional[Sequence[Callable[[], Any]]] = None,
-        lifespan: Optional[Callable[[Any], AsyncGenerator[Any, Any]]] = None,
+        lifespan: Optional[Callable[[Starlette], AsyncContextManager[Any]]] = None,
         terms_of_service: Optional[str] = None,
         contact: Optional[Dict[str, Union[str, Any]]] = None,
         license_info: Optional[Dict[str, Union[str, Any]]] = None,
