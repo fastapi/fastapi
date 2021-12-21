@@ -64,7 +64,7 @@ def test_openapi_schema():
         "price",
         "tags",
     ]
-    assert alternative_data1 == openapi_schema or alternative_data2 == openapi_schema
+    assert openapi_schema in (alternative_data1, alternative_data2)
 
 
 def test_get_item():
