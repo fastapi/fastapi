@@ -2,6 +2,9 @@ gold:
   - url: https://bit.ly/2QSouzH
     title: "Jina: build neural search-as-a-service for any kind of data in just minutes."
     img: https://fastapi.tiangolo.com/img/sponsors/jina.svg
+  - url: https://cryptapi.io/
+    title: "CryptAPI: Your easy to use, secure and privacy oriented payment gateway."
+    img: https://fastapi.tiangolo.com/img/sponsors/cryptapi.svg
 silver:
   - url: https://www.deta.sh/?ref=fastapi
     title: The launchpad for all your (team's) ideas
