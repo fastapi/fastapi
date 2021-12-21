@@ -419,7 +419,7 @@ def get_file_to_nav_map(nav: list) -> Dict[str, Tuple[str, ...]]:
     file_to_nav = {}
     for item in nav:
         if type(item) is str:
-            file_to_nav[item] = tuple()
+            file_to_nav[item] = ()
         elif type(item) is dict:
             item_key = list(item.keys())[0]
             sub_nav = item[item_key]
