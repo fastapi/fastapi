@@ -24,16 +24,14 @@ def get_user(user_id: str):
 def get_items(user_id: Optional[str] = None):
     if user_id is None:
         return [{"item_id": "i1", "user_id": "u1"}, {"item_id": "i2", "user_id": "u2"}]
-    else:
-        return [{"item_id": "i2", "user_id": user_id}]
+    return [{"item_id": "i2", "user_id": user_id}]
 
 
 @item_router.get("/{item_id}")
 def get_item(item_id: str, user_id: Optional[str] = None):
     if user_id is None:
         return {"item_id": item_id}
-    else:
-        return {"item_id": item_id, "user_id": user_id}
+    return {"item_id": item_id, "user_id": user_id}
 
 
 app.include_router(user_router, prefix="/users")

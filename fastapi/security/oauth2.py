@@ -132,8 +132,7 @@ class OAuth2(SecurityBase):
                 raise HTTPException(
                     status_code=HTTP_403_FORBIDDEN, detail="Not authenticated"
                 )
-            else:
-                return None
+            return None
         return authorization
 
 
@@ -166,8 +165,7 @@ class OAuth2PasswordBearer(OAuth2):
                     detail="Not authenticated",
                     headers={"WWW-Authenticate": "Bearer"},
                 )
-            else:
-                return None
+            return None
         return param
 
 
@@ -209,8 +207,7 @@ class OAuth2AuthorizationCodeBearer(OAuth2):
                     detail="Not authenticated",
                     headers={"WWW-Authenticate": "Bearer"},
                 )
-            else:
-                return None  # pragma: nocover
+            return None  # pragma: nocover
         return param
 
 

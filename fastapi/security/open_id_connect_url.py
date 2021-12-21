@@ -29,6 +29,5 @@ class OpenIdConnect(SecurityBase):
                 raise HTTPException(
                     status_code=HTTP_403_FORBIDDEN, detail="Not authenticated"
                 )
-            else:
-                return None
+            return None
         return authorization

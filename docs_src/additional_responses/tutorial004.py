@@ -28,5 +28,4 @@ app = FastAPI()
 async def read_item(item_id: str, img: Optional[bool] = None):
     if img:
         return FileResponse("image.png", media_type="image/png")
-    else:
-        return {"id": "foo", "value": "there goes my hero"}
+    return {"id": "foo", "value": "there goes my hero"}

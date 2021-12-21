@@ -78,7 +78,7 @@ def _prepare_response_content(
             exclude_defaults=exclude_defaults,
             exclude_none=exclude_none,
         )
-    elif isinstance(res, list):
+    if isinstance(res, list):
         return [
             _prepare_response_content(
                 item,
@@ -88,7 +88,7 @@ def _prepare_response_content(
             )
             for item in res
         ]
-    elif isinstance(res, dict):
+    if isinstance(res, dict):
         return {
             k: _prepare_response_content(
                 v,
@@ -98,7 +98,7 @@ def _prepare_response_content(
             )
             for k, v in res.items()
         }
-    elif dataclasses.is_dataclass(res):
+    if dataclasses.is_dataclass(res):
         return dataclasses.asdict(res)
     return res
 
@@ -144,8 +144,7 @@ async def serialize_response(
             exclude_defaults=exclude_defaults,
             exclude_none=exclude_none,
         )
-    else:
-        return jsonable_encoder(response_content)
+    return jsonable_encoder(response_content)
 
 
 async def run_endpoint_function(
@@ -157,8 +156,7 @@ async def run_endpoint_function(
 
     if is_coroutine:
         return await dependant.call(**values)
-    else:
-        return await run_in_threadpool(dependant.call, **values)
+    return await run_in_threadpool(dependant.call, **values)
 
 
 def get_request_handler(
@@ -222,36 +220,36 @@ def get_request_handler(
         values, errors, background_tasks, sub_response, _ = solved_result
         if errors:
             raise RequestValidationError(errors, body=body)
-        else:
-            raw_response = await run_endpoint_function(
-                dependant=dependant, values=values, is_coroutine=is_coroutine
-            )
 
-            if isinstance(raw_response, Response):
-                if raw_response.background is None:
-                    raw_response.background = background_tasks
-                return raw_response
-            response_data = await serialize_response(
-                field=response_field,
-                response_content=raw_response,
-                include=response_model_include,
-                exclude=response_model_exclude,
-                by_alias=response_model_by_alias,
-                exclude_unset=response_model_exclude_unset,
-                exclude_defaults=response_model_exclude_defaults,
-                exclude_none=response_model_exclude_none,
-                is_coroutine=is_coroutine,
-            )
-            response_args: Dict[str, Any] = {"background": background_tasks}
-            # If status_code was set, use it, otherwise use the default from the
-            # response class, in the case of redirect it's 307
-            if status_code is not None:
-                response_args["status_code"] = status_code
-            response = actual_response_class(response_data, **response_args)
-            response.headers.raw.extend(sub_response.headers.raw)
-            if sub_response.status_code:
-                response.status_code = sub_response.status_code
-            return response
+        raw_response = await run_endpoint_function(
+            dependant=dependant, values=values, is_coroutine=is_coroutine
+        )
+
+        if isinstance(raw_response, Response):
+            if raw_response.background is None:
+                raw_response.background = background_tasks
+            return raw_response
+        response_data = await serialize_response(
+            field=response_field,
+            response_content=raw_response,
+            include=response_model_include,
+            exclude=response_model_exclude,
+            by_alias=response_model_by_alias,
+            exclude_unset=response_model_exclude_unset,
+            exclude_defaults=response_model_exclude_defaults,
+            exclude_none=response_model_exclude_none,
+            is_coroutine=is_coroutine,
+        )
+        response_args: Dict[str, Any] = {"background": background_tasks}
+        # If status_code was set, use it, otherwise use the default from the
+        # response class, in the case of redirect it's 307
+        if status_code is not None:
+            response_args["status_code"] = status_code
+        response = actual_response_class(response_data, **response_args)
+        response.headers.raw.extend(sub_response.headers.raw)
+        if sub_response.status_code:
+            response.status_code = sub_response.status_code
+        return response
 
     return app
 

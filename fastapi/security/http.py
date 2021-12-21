@@ -45,8 +45,7 @@ class HTTPBase(SecurityBase):
                 raise HTTPException(
                     status_code=HTTP_403_FORBIDDEN, detail="Not authenticated"
                 )
-            else:
-                return None
+            return None
         return HTTPAuthorizationCredentials(scheme=scheme, credentials=credentials)
 
 
@@ -85,8 +84,7 @@ class HTTPBasic(HTTPBase):
                     detail="Not authenticated",
                     headers=unauthorized_headers,
                 )
-            else:
-                return None
+            return None
         try:
             data = b64decode(param).decode("ascii")
         except (ValueError, UnicodeDecodeError, binascii.Error):
@@ -128,8 +126,7 @@ class HTTPBearer(HTTPBase):
                     status_code=HTTP_403_FORBIDDEN,
                     detail="Invalid authentication credentials",
                 )
-            else:
-                return None
+            return None
         return HTTPAuthorizationCredentials(scheme=scheme, credentials=credentials)
 
 
@@ -155,8 +152,7 @@ class HTTPDigest(HTTPBase):
                 raise HTTPException(
                     status_code=HTTP_403_FORBIDDEN, detail="Not authenticated"
                 )
-            else:
-                return None
+            return None
         if scheme.lower() != "digest":
             raise HTTPException(
                 status_code=HTTP_403_FORBIDDEN,

@@ -33,8 +33,7 @@ class APIKeyQuery(APIKeyBase):
                 raise HTTPException(
                     status_code=HTTP_403_FORBIDDEN, detail="Not authenticated"
                 )
-            else:
-                return None
+            return None
         return api_key
 
 
@@ -60,8 +59,7 @@ class APIKeyHeader(APIKeyBase):
                 raise HTTPException(
                     status_code=HTTP_403_FORBIDDEN, detail="Not authenticated"
                 )
-            else:
-                return None
+            return None
         return api_key
 
 
@@ -87,6 +85,5 @@ class APIKeyCookie(APIKeyBase):
                 raise HTTPException(
                     status_code=HTTP_403_FORBIDDEN, detail="Not authenticated"
                 )
-            else:
-                return None
+            return None
         return api_key

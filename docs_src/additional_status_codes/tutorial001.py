@@ -17,7 +17,7 @@ async def upsert_item(
         item["name"] = name
         item["size"] = size
         return item
-    else:
-        item = {"name": name, "size": size}
-        items[item_id] = item
-        return JSONResponse(status_code=status.HTTP_201_CREATED, content=item)
+
+    item = {"name": name, "size": size}
+    items[item_id] = item
+    return JSONResponse(status_code=status.HTTP_201_CREATED, content=item)

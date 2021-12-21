@@ -25,8 +25,7 @@ def get_current_user(oauth_header: Optional[str] = Security(api_key)):
 def read_current_user(current_user: User = Depends(get_current_user)):
     if current_user is None:
         return {"msg": "Create an account first"}
-    else:
-        return current_user
+    return current_user
 
 
 client = TestClient(app)

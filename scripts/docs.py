@@ -432,9 +432,7 @@ def get_file_to_nav_map(nav: list) -> Dict[str, Tuple[str, ...]]:
 def get_sections(nav: list) -> Dict[Tuple[str, ...], str]:
     sections = {}
     for item in nav:
-        if type(item) is str:
-            continue
-        elif type(item) is dict:
+        if type(item) is dict:
             item_key = list(item.keys())[0]
             sub_nav = item[item_key]
             sections[(item_key,)] = sub_nav[0]

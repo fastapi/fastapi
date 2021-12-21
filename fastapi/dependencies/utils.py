@@ -327,19 +327,19 @@ def add_non_field_param_to_dependency(
     if lenient_issubclass(param.annotation, Request):
         dependant.request_param_name = param.name
         return True
-    elif lenient_issubclass(param.annotation, WebSocket):
+    if lenient_issubclass(param.annotation, WebSocket):
         dependant.websocket_param_name = param.name
         return True
-    elif lenient_issubclass(param.annotation, HTTPConnection):
+    if lenient_issubclass(param.annotation, HTTPConnection):
         dependant.http_connection_param_name = param.name
         return True
-    elif lenient_issubclass(param.annotation, Response):
+    if lenient_issubclass(param.annotation, Response):
         dependant.response_param_name = param.name
         return True
-    elif lenient_issubclass(param.annotation, BackgroundTasks):
+    if lenient_issubclass(param.annotation, BackgroundTasks):
         dependant.background_tasks_param_name = param.name
         return True
-    elif lenient_issubclass(param.annotation, SecurityScopes):
+    if lenient_issubclass(param.annotation, SecurityScopes):
         dependant.security_scopes_param_name = param.name
         return True
     return None
