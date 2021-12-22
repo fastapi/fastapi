@@ -171,12 +171,8 @@ def get_openapi_operation_request_parameters(
 ) -> List[Dict[str, Any]]:
     operation_request_parameters: Dict[str, Dict[str, Any]] = {}
     for param in parameters:
-        if param["name"] not in operation_request_parameters:
+        if param["name"] not in operation_request_parameters or param["required"]:
             operation_request_parameters[param["name"]] = param
-        else:
-            existing_param = operation_request_parameters[param["name"]]
-            if not existing_param["required"] and param["required"]:
-                operation_request_parameters[param["name"]]["required"] = True
 
     return list(operation_request_parameters.values())
 
