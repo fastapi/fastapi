@@ -47,7 +47,7 @@ then the internal variable `__name__` in your file, created automatically by Pyt
 So, the section:
 
 ```Python
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(app, host="localhost", port=8000)
 ```
 
 will run.
@@ -69,7 +69,7 @@ in that case, the automatic variable inside of `myapp.py` will not have the vari
 So, the line:
 
 ```Python
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(app, host="localhost", port=8000)
 ```
 
 will not be executed.
