@@ -1,3 +1,1 @@
-from starlette.middleware.trustedhost import (  # noqa
-    TrustedHostMiddleware as TrustedHostMiddleware,
-)
+from starlette.middleware.trustedhost import TrustedHostMiddleware  # noqa

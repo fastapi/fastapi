@@ -1,1 +1,1 @@
-from starlette.middleware import Middleware as Middleware
+from starlette.middleware import Middleware

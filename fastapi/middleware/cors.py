@@ -1,1 +1,1 @@
-from starlette.middleware.cors import CORSMiddleware as CORSMiddleware  # noqa
+from starlette.middleware.cors import CORSMiddleware  # noqa
