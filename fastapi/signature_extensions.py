@@ -1,8 +1,5 @@
-from collections import namedtuple
-
-from inspect import Parameter, Signature, signature
-
-from typing import Any, Callable, Dict, Iterable, List, Optional, Set
+from inspect import Parameter
+from typing import Any, Callable, Dict, Iterable, Set
 
 from fastapi.types import DecoratedCallable
 
@@ -18,10 +15,11 @@ def extra_parameters(
             # consider value to be (annotation, default)
             annotation_default = tuple(value)
             if len(annotation_default) != 2:
-                raise ValueError('Expected an Iterable of length 2: (annotation, default)')
+                raise ValueError(
+                    "Expected an Iterable of length 2: (annotation, default)"
+                )
             extra_param = extra_param.replace(
-                annotation=annotation_default[0],
-                default=annotation_default[1]
+                annotation=annotation_default[0], default=annotation_default[1]
             )
         else:
             # consider value to be annotation
@@ -29,7 +27,9 @@ def extra_parameters(
         extra_params[name] = extra_param
 
     def decorator(func: DecoratedCallable) -> DecoratedCallable:
-        extra: Dict[str, Any] = getattr(func, '__endpoint_signature_extra_parameters__', dict())
+        extra: Dict[str, Any] = getattr(
+            func, "__endpoint_signature_extra_parameters__", dict()
+        )
         func.__endpoint_signature_extra_parameters__ = extra
         func.__endpoint_signature_extra_parameters__.update(**extra_params)
         return func
@@ -37,13 +37,11 @@ def extra_parameters(
     return decorator
 
 
-def exclude_parameters(
-    *args: str
-) -> Callable[[DecoratedCallable], DecoratedCallable]:
-
+def exclude_parameters(*args: str) -> Callable[[DecoratedCallable], DecoratedCallable]:
     def decorator(func: DecoratedCallable) -> DecoratedCallable:
-        exclude: Set[str] = getattr(func, '__endpoint_signature_excluded_parameters__', set())
+        exclude: Set[str] = getattr(
+            func, "__endpoint_signature_excluded_parameters__", set()
+        )
         func.__endpoint_signature_excluded_parameters__ = exclude.union(args)
         return func
-
     return decorator

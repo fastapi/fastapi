@@ -285,13 +285,17 @@ def get_augmented_signature(call: Callable[..., Any]) -> inspect.Signature:
 
     excluded_params = get_signature_excluded_parameters(call)
     merged_params = filter(lambda p: p.name not in excluded_params, merged_params)
-    merged_params = filter(lambda p: p.kind != inspect.Parameter.VAR_KEYWORD, merged_params)
-    
+    merged_params = filter(
+        lambda p: p.kind != inspect.Parameter.VAR_KEYWORD, merged_params
+    )
+
     augmented_signature = inspect.Signature(merged_params)
     return augmented_signature
 
 
-def get_signature_extra_parameters(call: Callable[..., Any]) -> Dict[str, inspect.Parameter]:
+def get_signature_extra_parameters(
+    call: Callable[..., Any]
+) -> Dict[str, inspect.Parameter]:
     return getattr(call, "__endpoint_signature_extra_parameters__", dict())
 
 
@@ -299,13 +303,15 @@ def get_signature_excluded_parameters(call: Callable[..., Any]) -> Set[str]:
     return getattr(call, "__endpoint_signature_excluded_parameters__", set())
 
 
-def merge_parameters(initial_param: inspect.Parameter, extra_param: inspect.Parameter) -> inspect.Parameter:
+def merge_parameters(
+    initial_param: inspect.Parameter, extra_param: inspect.Parameter
+) -> inspect.Parameter:
     merged_param_kwargs = {"kind": inspect.Parameter.KEYWORD_ONLY}
-    
+
     initial_name = initial_param.name
     extra_name = extra_param.name
     if initial_name != extra_name:
-        raise ValueError('Cannot merge parameters with different names')
+        raise ValueError("Cannot merge parameters with different names")
     merged_param_kwargs["name"] = initial_name
 
     initial_annotation = initial_param.annotation
@@ -318,7 +324,9 @@ def merge_parameters(initial_param: inspect.Parameter, extra_param: inspect.Para
         elif extra_annotation is inspect.Parameter.empty:
             merged_param_kwargs["annotation"] = initial_annotation
         else:
-            raise ValueError("Parameters' annotations cannot be different unless one of them is inspect._empty")
+            raise ValueError(
+                "Parameters' annotations cannot be different unless one of them is inspect._empty"
+            )
 
     initial_default = initial_param.default
     extra_default = extra_param.default
@@ -330,11 +338,13 @@ def merge_parameters(initial_param: inspect.Parameter, extra_param: inspect.Para
         elif extra_default is inspect.Parameter.empty:
             merged_param_kwargs["default"] = initial_default
         else:
-            raise ValueError("Parameters' defaults cannot be different unless one of them is inspect._empty")
+            raise ValueError(
+                "Parameters' defaults cannot be different unless one of them is inspect._empty"
+            )
 
     return inspect.Parameter(**merged_param_kwargs)
 
-    
+
 def get_dependant(
     *,
     path: str,

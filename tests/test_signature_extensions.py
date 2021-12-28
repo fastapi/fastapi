@@ -1,8 +1,7 @@
 from typing import Optional
 
-from fastapi import FastAPI, extra_parameters, exclude_parameters, Depends
+from fastapi import Depends, FastAPI, exclude_parameters, extra_parameters
 from fastapi.testclient import TestClient
-
 from pydantic import BaseModel
 
 
@@ -14,7 +13,7 @@ class Schema_1(BaseModel):
 async def dependency_1(dependency_1_param_1: int = 1, dependency_1_param_2: int = 2):
     return {
         "dependency_1_param_1": dependency_1_param_1,
-        "dependency_1_param_2": dependency_1_param_2
+        "dependency_1_param_2": dependency_1_param_2,
     }
 
 
@@ -27,8 +26,8 @@ def endpoint_1(a, **kwargs):
     return {"a": a, "b": kwargs["b"]}
 
 
-@app.get('/test2')
-@extra_parameters(b=(str, 'bbb'))
+@app.get("/test2")
+@extra_parameters(b=(str, "bbb"))
 def endpoint_2(a, **kwargs):
     return {"a": a, "b": kwargs["b"]}
 
@@ -39,19 +38,19 @@ def endpoint_3(a, **kwargs):
     return {"a": a, "b": kwargs["b"]}
 
 
-@app.get('/test_4/{b}')
+@app.get("/test_4/{b}")
 @extra_parameters(b=int)
 def endpoint_4(**kwargs):
     return {"b": kwargs["b"]}
 
 
-@app.post('/test_5')
+@app.post("/test_5")
 @extra_parameters(a=Schema_1)
 def endpoint_5(**kwargs):
     return kwargs["a"]
 
 
-@app.get('/test_6')
+@app.get("/test_6")
 @extra_parameters(a=(dict, Depends(dependency_1)))
 def endpoint_6(**kwargs):
     return kwargs["a"]
@@ -63,8 +62,8 @@ def endpoint_7(a):
     return {"a": a}
 
 
-@app.get('/test_8')
-@exclude_parameters('a')
+@app.get("/test_8")
+@exclude_parameters("a")
 def endpoint_8(a: int = 1, b: int = 2):
     return {"a": a, "b": b}
 
@@ -103,13 +102,17 @@ def test_extra_parameters_with_path_param():
 
 
 def test_extra_parameters_with_schema():
-    response = client.post("/test_5", json={"schema_1_param_1": 1, "schema_1_param_2": "2"})
+    response = client.post(
+        "/test_5", json={"schema_1_param_1": 1, "schema_1_param_2": "2"}
+    )
     data = response.json()
     assert data == {"schema_1_param_1": 1, "schema_1_param_2": "2"}
 
 
 def test_extra_parameters_with_depends():
-    response = client.get("/test_6", json={"dependency_1_param_1": 1, "dependency_1_param_2": "2"})
+    response = client.get(
+        "/test_6", json={"dependency_1_param_1": 1, "dependency_1_param_2": "2"}
+    )
     data = response.json()
     assert data == {"dependency_1_param_1": 1, "dependency_1_param_2": 2}
 
