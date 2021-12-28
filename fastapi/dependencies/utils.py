@@ -11,6 +11,7 @@ from typing import (
     Mapping,
     Optional,
     Sequence,
+    Set,
     Tuple,
     Type,
     Union,
@@ -266,6 +267,74 @@ def get_typed_annotation(param: inspect.Parameter, globalns: Dict[str, Any]) -> 
     return annotation
 
 
+def get_augmented_signature(call: Callable[..., Any]) -> inspect.Signature:
+    initial_params = get_typed_signature(call).parameters
+    extra_params = get_signature_extra_parameters(call).copy()
+
+    merged_params: List[inspect.Parameter] = []
+    for name, initial_param in initial_params.items():
+        extra_param = extra_params.pop(name, None)
+        if extra_param:
+            merged_param = merge_parameters(initial_param, extra_param)
+            merged_params.append(merged_param)
+        else:
+            merged_params.append(initial_param)
+    for extra_param in extra_params.values():
+        merged_params.append(extra_param)
+    merged_params.sort(key=lambda p: p.kind)
+
+    excluded_params = get_signature_excluded_parameters(call)
+    merged_params = filter(lambda p: p.name not in excluded_params, merged_params)
+    merged_params = filter(lambda p: p.kind != inspect.Parameter.VAR_KEYWORD, merged_params)
+    
+    augmented_signature = inspect.Signature(merged_params)
+    return augmented_signature
+
+
+def get_signature_extra_parameters(call: Callable[..., Any]) -> Dict[str, inspect.Parameter]:
+    return getattr(call, "__endpoint_signature_extra_parameters__", dict())
+
+
+def get_signature_excluded_parameters(call: Callable[..., Any]) -> Set[str]:
+    return getattr(call, "__endpoint_signature_excluded_parameters__", set())
+
+
+def merge_parameters(initial_param: inspect.Parameter, extra_param: inspect.Parameter) -> inspect.Parameter:
+    merged_param_kwargs = {"kind": inspect.Parameter.KEYWORD_ONLY}
+    
+    initial_name = initial_param.name
+    extra_name = extra_param.name
+    if initial_name != extra_name:
+        raise ValueError('Cannot merge parameters with different names')
+    merged_param_kwargs["name"] = initial_name
+
+    initial_annotation = initial_param.annotation
+    extra_annotation = extra_param.annotation
+    if initial_annotation == extra_annotation:
+        merged_param_kwargs["annotation"] = initial_annotation
+    else:
+        if initial_annotation is inspect.Parameter.empty:
+            merged_param_kwargs["annotation"] = extra_annotation
+        elif extra_annotation is inspect.Parameter.empty:
+            merged_param_kwargs["annotation"] = initial_annotation
+        else:
+            raise ValueError("Parameters' annotations cannot be different unless one of them is inspect._empty")
+
+    initial_default = initial_param.default
+    extra_default = extra_param.default
+    if initial_default == extra_default:
+        merged_param_kwargs["default"] = initial_default
+    else:
+        if initial_default is inspect.Parameter.empty:
+            merged_param_kwargs["default"] = extra_default
+        elif extra_default is inspect.Parameter.empty:
+            merged_param_kwargs["default"] = initial_default
+        else:
+            raise ValueError("Parameters' defaults cannot be different unless one of them is inspect._empty")
+
+    return inspect.Parameter(**merged_param_kwargs)
+
+    
 def get_dependant(
     *,
     path: str,
@@ -275,7 +344,7 @@ def get_dependant(
     use_cache: bool = True,
 ) -> Dependant:
     path_param_names = get_path_param_names(path)
-    endpoint_signature = get_typed_signature(call)
+    endpoint_signature = get_augmented_signature(call)
     signature_params = endpoint_signature.parameters
     dependant = Dependant(call=call, name=name, path=path, use_cache=use_cache)
     for param_name, param in signature_params.items():

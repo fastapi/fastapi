@@ -20,5 +20,7 @@ from .param_functions import Security as Security
 from .requests import Request as Request
 from .responses import Response as Response
 from .routing import APIRouter as APIRouter
+from .signature_extensions import extra_parameters as extra_parameters
+from .signature_extensions import exclude_parameters as exclude_parameters
 from .websockets import WebSocket as WebSocket
 from .websockets import WebSocketDisconnect as WebSocketDisconnect
