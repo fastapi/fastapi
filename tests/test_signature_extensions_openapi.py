@@ -178,8 +178,14 @@ app = FastAPI()
     extra_param_header=(str, Header("aaa")),
     extra_param_depends=(dict, Depends(dependency_1)),
 )
-@exclude_parameters("excluded_param")
-def endpoint_1(func_param_1, extra_param_str, excluded_param: int = 1, **kwargs):
+@exclude_parameters("excluded_param", 3)
+def endpoint_1(
+    func_param_1,
+    extra_param_str,
+    excluded_param: int = 1,
+    excluded_by_position_param: int = 1,
+    **kwargs
+):
     return {}
 
 

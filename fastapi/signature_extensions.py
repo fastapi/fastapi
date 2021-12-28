@@ -1,5 +1,5 @@
 from inspect import Parameter
-from typing import Any, Callable, Dict, Iterable, Set
+from typing import Any, Callable, Dict, Iterable, Set, Union
 
 from fastapi.types import DecoratedCallable
 
@@ -37,11 +37,14 @@ def extra_parameters(
     return decorator
 
 
-def exclude_parameters(*args: str) -> Callable[[DecoratedCallable], DecoratedCallable]:
+def exclude_parameters(
+    *args: Union[str, int]
+) -> Callable[[DecoratedCallable], DecoratedCallable]:
     def decorator(func: DecoratedCallable) -> DecoratedCallable:
         exclude: Set[str] = getattr(
             func, "__endpoint_signature_excluded_parameters__", set()
         )
         func.__endpoint_signature_excluded_parameters__ = exclude.union(args)
         return func
+
     return decorator

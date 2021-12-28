@@ -68,6 +68,12 @@ def endpoint_8(a: int = 1, b: int = 2):
     return {"a": a, "b": b}
 
 
+@app.get("/test_9")
+@exclude_parameters(0)
+def endpoint_9(a: int = 1, b: int = 2):
+    return {"a": a, "b": b}
+
+
 client = TestClient(app)
 
 
@@ -124,6 +130,12 @@ def test_extra_parameters_merging():
 
 
 def test_exclude():
-    response = client.get("/test_8")
+    response = client.get("/test_8", params={"a": 2})
+    data = response.json()
+    assert data == {"a": 1, "b": 2}
+
+
+def test_exclude_by_position():
+    response = client.get("/test_9", params={"a": 2})
     data = response.json()
     assert data == {"a": 1, "b": 2}

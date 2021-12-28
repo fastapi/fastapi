@@ -270,10 +270,16 @@ def get_typed_annotation(param: inspect.Parameter, globalns: Dict[str, Any]) -> 
 def get_augmented_signature(call: Callable[..., Any]) -> inspect.Signature:
     initial_params = get_typed_signature(call).parameters
     extra_params = get_signature_extra_parameters(call).copy()
+    excluded_params = get_signature_excluded_parameters(call)
 
     merged_params: List[inspect.Parameter] = []
-    for name, initial_param in initial_params.items():
+    for i, (name, initial_param) in enumerate(initial_params.items()):
         extra_param = extra_params.pop(name, None)
+        if (
+            i in excluded_params
+            and initial_param.kind >= inspect.Parameter.POSITIONAL_OR_KEYWORD
+        ):
+            continue
         if extra_param:
             merged_param = merge_parameters(initial_param, extra_param)
             merged_params.append(merged_param)
@@ -283,7 +289,6 @@ def get_augmented_signature(call: Callable[..., Any]) -> inspect.Signature:
         merged_params.append(extra_param)
     merged_params.sort(key=lambda p: p.kind)
 
-    excluded_params = get_signature_excluded_parameters(call)
     merged_params = filter(lambda p: p.name not in excluded_params, merged_params)
     merged_params = filter(
         lambda p: p.kind != inspect.Parameter.VAR_KEYWORD, merged_params
@@ -299,7 +304,7 @@ def get_signature_extra_parameters(
     return getattr(call, "__endpoint_signature_extra_parameters__", dict())
 
 
-def get_signature_excluded_parameters(call: Callable[..., Any]) -> Set[str]:
+def get_signature_excluded_parameters(call: Callable[..., Any]) -> Set[Union[str, int]]:
     return getattr(call, "__endpoint_signature_excluded_parameters__", set())
 
 
