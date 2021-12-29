@@ -48,6 +48,7 @@ nav:
   - it: /it/
   - ja: /ja/
   - ko: /ko/
+  - nl: /nl/
   - pl: /pl/
   - pt: /pt/
   - ru: /ru/
@@ -109,6 +110,8 @@ extra:
     name: ja - 日本語
   - link: /ko/
     name: ko - 한국어
+  - link: /nl/
+    name: nl - netherlands
   - link: /pl/
     name: pl
   - link: /pt/
