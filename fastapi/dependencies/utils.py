@@ -277,7 +277,7 @@ def get_augmented_signature(call: Callable[..., Any]) -> inspect.Signature:
         extra_param = extra_params.pop(name, None)
         if (
             i in excluded_params
-            and initial_param.kind >= inspect.Parameter.POSITIONAL_OR_KEYWORD
+            and initial_param.kind < inspect.Parameter.VAR_POSITIONAL
         ):
             continue
         if extra_param:
