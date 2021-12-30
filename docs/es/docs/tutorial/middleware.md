@@ -26,7 +26,7 @@ La función del middleware recibe:
 * Una función <abbr title="para llamar después">`call_next`</abbr> que recibirá la `petición` como parámetro.
     * Esta función pasará la `petición` a la correspondiente <abbr title="path operation">*operación de path*</abbr>.
     * Posteriormente, retorna la `respuesta` generada por la *operación de path*.
-* Luego, puedes modificar aun más la `respuesta` antes de devolverla.
+* Luego, puedes modificar aún más la `respuesta` antes de devolverla.
 
 ```Python hl_lines="8-9  11  14"
 {!../../../docs_src/middleware/tutorial001.py!}
