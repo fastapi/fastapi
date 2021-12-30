@@ -5,7 +5,7 @@ Puedes definir controladores de eventos (funciones) que necesiten ser ejecutados
 Estas funciones pueden ser declaradas mediante `async def` o de forma normal `def`.
 
 !!! Warning
-Solamente los controladores de eventos para la aplicación principal serán ejecutados, no se ejecutaran [Sub Aplicaciones - Montaje](./sub-applications.md){.internal-link target=\_blank}.
+Solamente los controladores de eventos para la aplicación principal serán ejecutados, no se ejecutarán [Sub Aplicaciones - Montaje](./sub-applications.md){.internal-link target=\_blank}.
 
 ## evento <abbr title="inicío">`startup`</abbr>
 
