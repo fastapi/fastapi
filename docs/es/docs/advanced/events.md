@@ -23,7 +23,7 @@ Y tú aplicación no recibirá peticiones hasta que todos los controladores de e
 
 ## evento `shutdown`
 
-Para añadir una función que debe ejecutarse cuando la aplicación se esta cerrando, debe declarase con el evento <abbr>`"shutdown"`</abbr>:
+Para añadir una función que debe ejecutarse cuando la aplicación se está cerrando, debe declararse con el evento <abbr>`"shutdown"`</abbr>:
 
 ```Python hl_lines="6"
 {!../../../docs_src/events/tutorial002.py!}
