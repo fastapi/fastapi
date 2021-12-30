@@ -35,7 +35,7 @@ La función del middleware recibe:
 !!! tip
     Ten en cuenta que puedes añadir <abbr title="encabezados">headers</abbr> personalizados <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers" class="external-link" target="_blank">utilizando el prefijo 'X-' </a>.
 
-    Pero, si tienes headers personalizados que deseas que un cliente pueda visualizar en un navegador, debes agregarlos a tus configuraciones de CORS ([CORS (Cross-Origin Resource Sharing)](cors.md){.internal-link target=_blank}) usando el parámetro `expose_headers`, puedes consultar más en <a href="https://www.starlette.io/middleware/#corsmiddleware" class="external-link" target="_blank">la documentación de Starlette acerca de CORS</a>.
+    Pero, si tienes headers personalizados que deseas que un cliente pueda visualizar en un navegador, debes agregarlos a tus configuraciones de CORS ([CORS (Cross-Origin Resource Sharing)](cors.md){.internal-link target=_blank}) empleando el parámetro `expose_headers`, puedes consultar más en <a href="https://www.starlette.io/middleware/#corsmiddleware" class="external-link" target="_blank">la documentación de Starlette acerca de CORS</a>.
 
 !!! note "Detalles Técnicos"
     También puedes utilizar `from starlette.requests import Request`.
