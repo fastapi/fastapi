@@ -41,7 +41,7 @@ En la función `open()`, el <abbr title="modo">`mode="a"`</abbr> significa <abbr
 
     Pero `open()` no utiliza `async` o `await`.
 
-    Para ello, declaramos un controlador de evento utilizando `def` en vez de `async def`.
+    Para ello, declaramos un controlador de evento usando `def` en vez de `async def`.
 
 !!! info
 Puedes consultar más acerca de controladores de eventos en <a href="https://www.starlette.io/events/" class="external-link" target="_blank">la documentación de Starlette acerca de eventos</a>.
