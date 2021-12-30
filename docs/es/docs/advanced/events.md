@@ -32,7 +32,7 @@ Para añadir una función que debe ejecutarse cuando la aplicación se está cer
 Aquí , el controlador de evento <abbr>`shutdown`</abbr> escribirá una línea de texto <abbr title="Cierre de aplicación">`"Application shutdown"`</abbr> a un archivo `log.txt`.
 
 !!! info
-En la función `open()`, el <abbr title="modo">`mode="a"`</abbr> significa <abbr title="agregar">"append"</abbr>, por lo tanto, la linea sera añadida después de cualquier elemento que halla en el archivo, sin llegar a sobre escribir el contenido previo.
+En la función `open()`, el <abbr title="modo">`mode="a"`</abbr> significa <abbr title="agregar">"append"</abbr>, por lo tanto, la línea será añadida después de cualquier elemento que halla en el archivo, sin llegar a sobreescribir el contenido previo.
 
 !!! tip
     Observa que en este caso estamos utilizando la función estándar `open()` de Python para interactúa con el archivo.
