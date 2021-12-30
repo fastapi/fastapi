@@ -767,15 +767,14 @@ async def run_plan(
     if errors:
         return nodes[0].result, errors, background_tasks, response
 
+    seed_nodes = [node for node in nodes if node.refcount == 0]
     if plan.async_tasks_count <= 1:
-        for node in nodes:
-            if node.refcount == 0:
-                await node.task(nodes, request, None)
+        for node in seed_nodes:
+            await node.task(nodes, request, None)
     else:
         async with anyio.create_task_group() as task_group:
-            for node in nodes:
-                if node.refcount == 0:
-                    task_group.start_soon(node.task, nodes, request, task_group)
+            for node in seed_nodes:
+                task_group.start_soon(node.task, nodes, request, task_group)
 
     return nodes[0].result, errors, background_tasks, response
 
