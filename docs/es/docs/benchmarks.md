@@ -25,10 +25,10 @@ La jerarquia es algo como:
 * **Starlette**:
   * Tendrá el siguiente mejor desempeño, después de Uvicorn. De hecho, Starlette usa Uvicorn para ejecutarse. Por lo tanto, probablemente solo se volvería "más lento" que Uvicorn cuando tenga que ejecutar más código.
   * Pero este provee las herramientos para contruir aplicaciones web simples, con direccionamiento basadao en rutas, etc.
-  * Si esta comparando Starlette, compare este con Sanic, Flask, Django, etc. frameworks web (o microframeworks).
+  * Si estás comparando Starlette, compare este con Sanic, Flask, Django, etc. frameworks web (o microframeworks).
 * **FastAPI**:
   * De la misma manera que Starlette usa Uvicorn y no puede ser más rápido que él, **FastAPI** usa Starlette, entonces no puede ser más rápido que él.
   * FastAPI proporciona más funciones además de Starlette. Funciones que casi siempre se necesitan al crear APIs, como validación y serialización de datos. Y al usarlo, obtienes documentación automática gratis (la documentación automática ni siquiera agrega sobre carga a las aplicaciones en ejecución, esta se genera al inicio).
-  * Si no usaste FastAPI y usaste Starlette directamente (u otra herramienta, como Sanic, Flask, Responder, etc.), tendrías que implementar toda la validación y serialización de datos tú mismo. Por lo tanto, tu aplicación final aún tendría la misma sobre carga que si se hubiera creado con FastAPI. Y en muchos casos, esta validación y serialización de datos es la mayor cantidad de código escrito en las aplicaciones.
-  * Entonces, usando FastAPI estas ahorrando tiempo de desarrollo, errores, lineas de código y probablemente obtendrias el mismo desempeño (o mejor) que si no usaras este (ya que tendría que implementarlo todo en su código ).
+  * Si no usaste FastAPI y usaste Starlette directamente (u otra herramienta, como Sanic, Flask, Responder, etc.), tendrías que implementar toda la validación y serialización de datos tú mismo. Por lo tanto, tu aplicación final aún tendría la misma sobrecarga que si se hubiera creado con FastAPI. Y en muchos casos, esta validación y serialización de datos es la mayor cantidad de código escrito en las aplicaciones.
+  * Entonces, usando FastAPI estás ahorrando tiempo de desarrollo, errores, lineas de código y probablemente obtendrías el mismo desempeño (o mejor) que si no usaras este (ya que tendría que implementar todo en su código).
   * Si está comparando FastAPI, compárelo con un framework de aplicación web (o un conjunto de herramientas) que proporciona validación de datos, serialización y documentación, como Flask-apispec, NestJS, Molten, etc. Frameworks con validación de datos automática, serialización y documentación, integrados.
