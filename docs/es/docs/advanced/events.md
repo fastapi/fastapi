@@ -37,7 +37,7 @@ En la función `open()`, el <abbr title="modo">`mode="a"`</abbr> significa <abbr
 !!! tip
     Observa que en este caso estamos utilizando la función estándar `open()` de Python para interactúa con el archivo.
 
-    Entonces , involucramos I/O <abbr title="entrada/salida">(input/output)</abbr>, que requiere "esperar" para que los elementos se escriban en el disco.
+    Entonces, involucramos I/O <abbr title="entrada/salida">(input/output)</abbr>, que requiere "esperar" para que los elementos se escriban en el disco.
 
     Pero `open()` no utiliza `async` o `await`.
 
