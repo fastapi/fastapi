@@ -12,11 +12,11 @@ Específicamente, al ver Uvicorn, Starlette y FastAPI comparados juntos (entre m
 
 Cuanto más simple sea la solución a un problema por parte de la herramienta, mejor rendimiento obtendrá. Y la mayoría de los puntos de referencia no prueban las funciones adicionales proporcionadas por la herramienta.
 
-La jerarquia es algo como:
+La jerarquía es algo como:
 
 * **Uvicorn**: un servidor ASGI (Asynchronous Server Gateway Interface)
   * **Starlette**: (usa Uvicorn) un microframework web
-    * **FastAPI**: (usa Starlette) un API microframework con varias funcionaldades adicionales para la creación de APIs, con validación de datos, etc.
+    * **FastAPI**: (usa Starlette) un API microframework con varias funcionalidades adicionales para la creación de APIs, con validación de datos, etc.
 
 * **Uvicorn**:
   * Tendrá el mejor rendimiento, ya que no tiene mucho código adicional aparte del servidor en sí.
@@ -24,7 +24,7 @@ La jerarquia es algo como:
   * Si estas comparando Uvicorn, compáralo con Daphne, Hypercorn, uWSGI, etc. Servidores de aplicaciones.
 * **Starlette**:
   * Tendrá el siguiente mejor desempeño, después de Uvicorn. De hecho, Starlette usa Uvicorn para ejecutarse. Por lo tanto, probablemente solo se volvería "más lento" que Uvicorn cuando tenga que ejecutar más código.
-  * Pero este provee las herramientos para contruir aplicaciones web simples, con direccionamiento basadao en rutas, etc.
+  * Pero este provee las herramientas para construir aplicaciones web simples, con direccionamiento basado en rutas, etc.
   * Si estás comparando Starlette, compare este con Sanic, Flask, Django, etc. frameworks web (o microframeworks).
 * **FastAPI**:
   * De la misma manera que Starlette usa Uvicorn y no puede ser más rápido que él, **FastAPI** usa Starlette, entonces no puede ser más rápido que él.
