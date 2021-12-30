@@ -2,7 +2,7 @@
 
 Puedes añadir middlewares a tus aplicaciones de **FastAPI**.
 
-Un "middleware" es una función que se ejecuta con cada **petición** antes de que se procesada por cualquier <abbr title="path operation">*operación de ruta*</abbr>. Y antes de devolver cada **respuesta**.
+Un "middleware" es una función que se ejecuta con cada **petición** antes de que sea procesada por cualquier <abbr title="path operation">*operación de ruta*</abbr>. Y antes de devolver cada **respuesta**.
 
 * Toma cada **petición** que llega a tu aplicación.
 * Luego puede hacer algo con esa **petición** o ejecutar cualquier código necesario.
