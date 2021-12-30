@@ -19,7 +19,7 @@ En este caso, el evento <abbr title="inicio">`startup`</abbr> inicializará los 
 
 Puedes añadir más de una función que controle eventos.
 
-Y tú aplicación no recibirá peticiones hasta que todos los controladores de eventos de tipo <abbr>`startup`</abbr> se hallan completado.
+Y tú aplicación no recibirá peticiones hasta que todos los controladores de eventos de tipo <abbr>`startup`</abbr> se hayan completado.
 
 ## evento `shutdown`
 
