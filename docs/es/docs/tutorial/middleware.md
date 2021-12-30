@@ -6,7 +6,7 @@ Un "middleware" es una función que se ejecuta con cada **petición** antes de q
 
 * Toma cada **petición** que llega a tu aplicación.
 * Luego puede hacer algo con esa **petición** o ejecutar cualquier código necesario.
-* Posteriormente toma la **petición** para ser procesada por el resto de la aplicación (por alguna *operación de path*).
+* Posteriormente, toma la **petición** para ser procesada por el resto de la aplicación (por alguna *operación de path*).
 * Luego toma la **respuesta** generada por la aplicación (por alguna *operación de path*).
 * Puede realizar algo con esa **respuesta** o ejecutar cualquier código necesario.
 * Y por ultimo, retornar la **respuesta**.
