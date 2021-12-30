@@ -35,7 +35,7 @@ Aquí , el controlador de evento <abbr>`shutdown`</abbr> escribirá una línea d
 En la función `open()`, el <abbr title="modo">`mode="a"`</abbr> significa <abbr title="agregar">"append"</abbr>, por lo tanto, la línea será añadida después de cualquier elemento que halla en el archivo, sin llegar a sobreescribir el contenido previo.
 
 !!! tip
-    Observa que en este caso estamos utilizando la función estándar `open()` de Python para interactúa con el archivo.
+    Observa que en este caso estamos utilizando la función estándar `open()` de Python para interactuar con el archivo.
 
     Entonces, involucramos I/O <abbr title="entrada/salida">(input/output)</abbr>, que requiere "esperar" para que los elementos se escriban en el disco.
 
