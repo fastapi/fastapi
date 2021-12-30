@@ -15,7 +15,7 @@ Para añadir una función que debe ejecutarse antes que la aplicación inicie, d
 {!../../../docs_src/events/tutorial001.py!}
 ```
 
-En este caso, el evento <abbr title="inicio">`startup`</abbr> inicializara los elementos de la "base de datos" (como un `diccionario`) con algunos valores.
+En este caso, el evento <abbr title="inicio">`startup`</abbr> inicializará los elementos de la "base de datos" (como un `diccionario`) con algunos valores.
 
 Puedes añadir más de una función que controle eventos.
 
