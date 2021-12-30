@@ -1,8 +1,8 @@
 # Puntos de referencia
 
-Los puntos de referencia  independientes, TechEmpower, colocan a las apliaciones **FastAPI** que se ejecutan bajo Uvicorn como <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank"> uno de los frameworks de python mas rapidos disponibles</a>, solo por debajo de Starlette y Uvicorn (utilizados internamente por FastAPI). (*)
+Los puntos de referencia  independientes, TechEmpower, colocan a las apliaciones **FastAPI** que se ejecutan bajo Uvicorn como <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank"> uno de los frameworks de python mas rápidos disponibles</a>, solo por debajo de Starlette y Uvicorn (utilizados internamente por FastAPI). (*)
 
-Pero cuando verificas los puntos de referencia y las comparaciones, deberias tener en mente lo siguiente.
+Pero cuando verificas los puntos de referencia y las comparaciones, deberías tener en mente lo siguiente.
 
 ## Puntos de referencia y rapidez
 
@@ -10,7 +10,7 @@ Cuando verificas las referencias, es común ver varias herramientas de diferente
 
 Específicamente, al ver Uvicorn, Starlette y FastAPI comparados juntos (entre muchas otras herramientas).
 
-Cuanto más simple sea la solucion a un problema por parte de la herramienta, mejor rendimiento obtendrá. Y la mayoría de los puntos de referencia no prueban las funciones adicionales proporcionadas por la herramienta.
+Cuanto más simple sea la solución a un problema por parte de la herramienta, mejor rendimiento obtendrá. Y la mayoría de los puntos de referencia no prueban las funciones adicionales proporcionadas por la herramienta.
 
 La jerarquia es algo como:
 
