@@ -1,6 +1,6 @@
 # Eventos: startup - shutdown
 
-Puedes definir controladores de eventos (funciones) que necesiten ser ejecutados antes de que inicie la aplicación, o cuando la aplicación se este cerrando.
+Puedes definir controladores de eventos (funciones) que necesiten ser ejecutados antes de que inicie la aplicación, o cuando la aplicación se esté cerrando.
 
 Estas funciones pueden ser declaradas mediante `async def` o de forma normal `def`.
 
