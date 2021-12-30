@@ -56,6 +56,6 @@ Por ejemplo, puedes añadir un <abbr>header</abbr> personalizado `X-Process-Time
 
 ## Otros middlewares
 
-Puedes leer más acerca de otros middlewares en [Guia de Usuario Avanzado: Middleware Avanzado](../advanced/middleware.md){.internal-link target=_blank}.
+Puedes leer más acerca de otros middlewares en [Guía de Usuario Avanzado: Middleware Avanzado](../advanced/middleware.md){.internal-link target=_blank}.
 
 Aprenderás como manejar el <abbr title="Cross-Origin Resource Sharing">CORS</abbr> con un middleware en la siguiente sección.
