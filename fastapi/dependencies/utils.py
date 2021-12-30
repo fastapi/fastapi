@@ -2,6 +2,7 @@ import dataclasses
 import inspect
 from contextlib import contextmanager
 from copy import deepcopy
+from enum import IntEnum
 from typing import (
     Any,
     Callable,
@@ -84,7 +85,22 @@ multipart_incorrect_install_error = (
 )
 
 
+class CallType(IntEnum):
+    ASYNC = 0
+    GENERATOR = 1
+    THREADPOOL = 2
+    SYNC = 3
+
+
 class DependencyNode(object):
+    __slots__ = (
+        'call',
+        'refcount',
+        'backref',
+        'arguments',
+        'result',
+        'call_type',
+    )
 
     def __init__(
         self,
@@ -93,12 +109,25 @@ class DependencyNode(object):
         backref: List[Tuple[int, str]] = None,
         arguments: Dict[str, Any] = None,
         result: Any = None,
+        _copy_args: Tuple[Any] = None,
     ):
         self.call = call
         self.refcount = refcount
         self.backref = backref or []
         self.arguments = arguments or {}
         self.result = result
+
+        if _copy_args is not None:
+            (self.call_type, ) = _copy_args
+
+        if is_gen_callable(call) or is_async_gen_callable(call):
+            self.call_type = CallType.GENERATOR
+        elif is_coroutine_callable(call):
+            self.call_type = CallType.ASYNC
+        elif getattr(call, '__fastapi_sync_dependency__', False):
+            self.call_type = CallType.SYNC
+        else:
+            self.call_type = CallType.THREADPOOL
 
     def copy(self):
         return DependencyNode(
@@ -107,26 +136,29 @@ class DependencyNode(object):
             refcount=self.refcount,
             backref=self.backref,
             result=None,
+            _copy_args=(
+                self.call_type,
+            )
         )
 
     async def task(
         self,
         nodes: List['DependencyNode'],
         request: Request,
-        task_group: anyio.abc.TaskGroup,
+        task_group: Optional[anyio.abc.TaskGroup],
     ):
         call = self.call
         arguments = self.arguments
-        promise = None
-        if is_gen_callable(call) or is_async_gen_callable(call):
+        if self.call_type == CallType.GENERATOR:
             stack = request.scope.get("fastapi_astack")
             assert isinstance(stack, AsyncExitStack)
-            promise = solve_generator(call=call, stack=stack, arguments=arguments)
-        elif is_coroutine_callable(call):
-            promise = call(**arguments)
+            self.result = await solve_generator(call=call, stack=stack, arguments=arguments)
+        elif self.call_type == CallType.ASYNC:
+            self.result = await call(**arguments)
+        elif self.call_type == CallType.THREADPOOL:
+            self.result = await run_in_threadpool(call, **arguments)
         else:
-            promise = run_in_threadpool(call, **arguments)
-        self.result = await promise
+            self.result = call(**arguments)
 
         for parent_node_idx, argument_name in self.backref:
             parent_node = nodes[parent_node_idx]
@@ -135,7 +167,10 @@ class DependencyNode(object):
 
             parent_node.refcount -= 1
             if parent_node.refcount == 0:
-                task_group.start_soon(parent_node.task, nodes, request, task_group)
+                if task_group is not None:
+                    task_group.start_soon(parent_node.task, nodes, request, task_group)
+                else:
+                    await parent_node.task(nodes, request, task_group)
 
 
 class SolvingPlan(object):
@@ -167,6 +202,17 @@ class SolvingPlan(object):
         self.response_param_list = response_param_list
         self.security_scopes_param_list = security_scopes_param_list
         self.body_params_list = body_params_list
+
+        self.sync_tasks_count = sum(
+            1 if node.call_type == CallType.SYNC else 0
+            for node in nodes
+        )
+        self.async_tasks_count = len(nodes) - self.sync_tasks_count
+
+
+def sync_dependency(f):
+    f.__fastapi_sync_dependency__ = True
+    return f
 
 
 def check_file_field(field: ModelField) -> None:
@@ -721,10 +767,15 @@ async def run_plan(
     if errors:
         return nodes[0].result, errors, background_tasks, response
 
-    async with anyio.create_task_group() as task_group:
+    if plan.async_tasks_count <= 1:
         for node in nodes:
             if node.refcount == 0:
-                task_group.start_soon(node.task, nodes, request, task_group)
+                await node.task(nodes, request, None)
+    else:
+        async with anyio.create_task_group() as task_group:
+            for node in nodes:
+                if node.refcount == 0:
+                    task_group.start_soon(node.task, nodes, request, task_group)
 
     return nodes[0].result, errors, background_tasks, response
 
