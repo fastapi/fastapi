@@ -18,7 +18,7 @@ Un "middleware" es una función que se ejecuta con cada **petición** antes de q
 
 ## Crear un middleware
 
-Para crear un middleware debemos utilizar el decorador `@app.middleware("http")` encima de la función.
+Para crear un middleware debemos usar el decorador `@app.middleware("http")` encima de la función.
 
 La función del middleware recibe:
 
