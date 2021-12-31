@@ -78,7 +78,7 @@ class HTTPBasic(HTTPBase):
             detail="Invalid authentication credentials",
             headers=unauthorized_headers,
         )
-        if not authorization or scheme.lower() != "basic":
+        if not authorization or scheme.casefold() != "basic":
             if self.auto_error:
                 raise HTTPException(
                     status_code=HTTP_401_UNAUTHORIZED,
@@ -122,7 +122,7 @@ class HTTPBearer(HTTPBase):
                 )
             else:
                 return None
-        if scheme.lower() != "bearer":
+        if scheme.casefold() != "bearer":
             if self.auto_error:
                 raise HTTPException(
                     status_code=HTTP_403_FORBIDDEN,
@@ -157,7 +157,7 @@ class HTTPDigest(HTTPBase):
                 )
             else:
                 return None
-        if scheme.lower() != "digest":
+        if scheme.casefold() != "digest":
             raise HTTPException(
                 status_code=HTTP_403_FORBIDDEN,
                 detail="Invalid authentication credentials",
