@@ -126,8 +126,14 @@ class FastAPI(Starlette):
         self.openapi_version = "3.0.2"
 
         if self.openapi_url:
-            assert self.title, "A title must be provided for OpenAPI, e.g.: 'My API'"
-            assert self.version, "A version must be provided for OpenAPI, e.g.: '2.1.0'"
+            if not self.title:
+                raise AssertionError(
+                    "A title must be provided for OpenAPI, e.g.: 'My API'"
+                )
+            if not self.version:
+                raise AssertionError(
+                    "A version must be provided for OpenAPI, e.g.: '2.1.0'"
+                )
         self.openapi_schema: Optional[Dict[str, Any]] = None
         self.setup()
 

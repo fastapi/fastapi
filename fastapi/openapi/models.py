@@ -7,7 +7,8 @@ from pydantic import AnyUrl, BaseModel, Field
 try:
     import email_validator  # type: ignore
 
-    assert email_validator  # make autoflake ignore the unused import
+    if not email_validator:
+        raise AssertionError  # make autoflake ignore the unused import
     from pydantic import EmailStr
 except ImportError:  # pragma: no cover
 

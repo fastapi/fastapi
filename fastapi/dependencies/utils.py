@@ -93,12 +93,14 @@ def check_file_field(field: ModelField) -> None:
             # __version__ is available in both multiparts, and can be mocked
             from multipart import __version__  # type: ignore
 
-            assert __version__
+            if not __version__:
+                raise AssertionError
             try:
                 # parse_options_header is only available in the right multipart
                 from multipart.multipart import parse_options_header  # type: ignore
 
-                assert parse_options_header
+                if not parse_options_header:
+                    raise AssertionError
             except ImportError:
                 logger.error(multipart_incorrect_install_error)
                 raise RuntimeError(multipart_incorrect_install_error)
@@ -125,9 +127,10 @@ def get_param_sub_dependant(
 
 
 def get_parameterless_sub_dependant(*, depends: params.Depends, path: str) -> Dependant:
-    assert callable(
-        depends.dependency
-    ), "A parameter-less dependency must have a callable dependency"
+    if not callable(depends.dependency):
+        raise AssertionError(
+            "A parameter-less dependency must have a callable dependency"
+        )
     return get_sub_dependant(depends=depends, dependency=depends.dependency, path=path)
 
 
@@ -291,9 +294,10 @@ def get_dependant(
             param=param, default_field_info=params.Query, param_name=param_name
         )
         if param_name in path_param_names:
-            assert is_scalar_field(
-                field=param_field
-            ), "Path params must be of one of the supported types"
+            if not is_scalar_field(field=param_field):
+                raise AssertionError(
+                    "Path params must be of one of the supported types"
+                )
             if isinstance(param.default, params.Path):
                 ignore_default = False
             else:
@@ -314,9 +318,10 @@ def get_dependant(
             add_param_to_fields(field=param_field, dependant=dependant)
         else:
             field_info = param_field.field_info
-            assert isinstance(
-                field_info, params.Body
-            ), f"Param: {param_field.name} can only be a request body, using Body(...)"
+            if not isinstance(field_info, params.Body):
+                raise AssertionError(
+                    f"Param: {param_field.name} can only be a request body, using Body(...)"
+                )
             dependant.body_params.append(param_field)
     return dependant
 
@@ -403,9 +408,10 @@ def add_param_to_fields(*, field: ModelField, dependant: Dependant) -> None:
     elif field_info.in_ == params.ParamTypes.header:
         dependant.header_params.append(field)
     else:
-        assert (
-            field_info.in_ == params.ParamTypes.cookie
-        ), f"non-body parameters must be in path, query, header or cookie: {field.name}"
+        if field_info.in_ != params.ParamTypes.cookie:
+            raise AssertionError(
+                f"non-body parameters must be in path, query, header or cookie: {field.name}"
+            )
         dependant.cookie_params.append(field)
 
 
@@ -517,7 +523,8 @@ async def solve_dependencies(
             solved = dependency_cache[sub_dependant.cache_key]
         elif is_gen_callable(call) or is_async_gen_callable(call):
             stack = request.scope.get("fastapi_astack")
-            assert isinstance(stack, AsyncExitStack)
+            if not isinstance(stack, AsyncExitStack):
+                raise AssertionError
             solved = await solve_generator(
                 call=call, stack=stack, sub_values=sub_values
             )
@@ -588,9 +595,8 @@ def request_params_to_args(
         else:
             value = received_params.get(field.alias)
         field_info = field.field_info
-        assert isinstance(
-            field_info, params.Param
-        ), "Params must be subclasses of Param"
+        if not isinstance(field_info, params.Param):
+            raise AssertionError("Params must be subclasses of Param")
         if value is None:
             if field.required:
                 errors.append(

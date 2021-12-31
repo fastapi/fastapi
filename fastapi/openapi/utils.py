@@ -119,7 +119,8 @@ def get_openapi_operation_request_body(
 ) -> Optional[Dict[str, Any]]:
     if not body_field:
         return None
-    assert isinstance(body_field, ModelField)
+    if not isinstance(body_field, ModelField):
+        raise AssertionError
     body_schema, _, _ = field_schema(
         body_field, model_name_map=model_name_map, ref_prefix=REF_PREFIX
     )
@@ -172,12 +173,14 @@ def get_openapi_path(
     path = {}
     security_schemes: Dict[str, Any] = {}
     definitions: Dict[str, Any] = {}
-    assert route.methods is not None, "Methods must be a list"
+    if route.methods is None:
+        raise AssertionError("Methods must be a list")
     if isinstance(route.response_class, DefaultPlaceholder):
         current_response_class: Type[Response] = route.response_class.value
     else:
         current_response_class = route.response_class
-    assert current_response_class, "A response class is needed to generate OpenAPI"
+    if not current_response_class:
+        raise AssertionError("A response class is needed to generate OpenAPI")
     route_response_media_type: Optional[str] = current_response_class.media_type
     if route.include_in_schema:
         for method in route.methods:
@@ -268,9 +271,8 @@ def get_openapi_path(
                     openapi_response = operation_responses.setdefault(
                         status_code_key, {}
                     )
-                    assert isinstance(
-                        process_response, dict
-                    ), "An additional response must be a dict"
+                    if not isinstance(process_response, dict):
+                        raise AssertionError("An additional response must be a dict")
                     field = route.response_fields.get(additional_status_code)
                     additional_field_schema: Optional[Dict[str, Any]] = None
                     if field:
@@ -335,9 +337,8 @@ def get_flat_models_from_routes(
             route, routing.APIRoute
         ):
             if route.body_field:
-                assert isinstance(
-                    route.body_field, ModelField
-                ), "A request body must be a Pydantic Field"
+                if not isinstance(route.body_field, ModelField):
+                    raise AssertionError("A request body must be a Pydantic Field")
                 body_fields_from_routes.append(route.body_field)
             if route.response_field:
                 responses_from_routes.append(route.response_field)

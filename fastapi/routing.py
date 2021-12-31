@@ -153,7 +153,8 @@ async def run_endpoint_function(
 ) -> Any:
     # Only called by get_request_handler. Has been split into its own function to
     # facilitate profiling endpoints, since inner functions are harder to profile.
-    assert dependant.call is not None, "dependant.call must be a function"
+    if dependant.call is None:
+        raise AssertionError("dependant.call must be a function")
 
     if is_coroutine:
         return await dependant.call(**values)
@@ -175,7 +176,8 @@ def get_request_handler(
     response_model_exclude_none: bool = False,
     dependency_overrides_provider: Optional[Any] = None,
 ) -> Callable[[Request], Coroutine[Any, Any, Response]]:
-    assert dependant.call is not None, "dependant.call must be a function"
+    if dependant.call is None:
+        raise AssertionError("dependant.call must be a function")
     is_coroutine = asyncio.iscoroutinefunction(dependant.call)
     is_body_form = body_field and isinstance(body_field.field_info, params.Form)
     if isinstance(response_class, DefaultPlaceholder):
@@ -269,7 +271,8 @@ def get_websocket_app(
         if errors:
             await websocket.close(code=WS_1008_POLICY_VIOLATION)
             raise WebSocketRequestValidationError(errors)
-        assert dependant.call is not None, "dependant.call must be a function"
+        if dependant.call is None:
+            raise AssertionError("dependant.call must be a function")
         await dependant.call(**values)
 
     return app
@@ -344,9 +347,10 @@ class APIRoute(routing.Route):
         )
         self.response_model = response_model
         if self.response_model:
-            assert (
-                status_code not in STATUS_CODES_WITH_NO_BODY
-            ), f"Status code {status_code} must not have a response body"
+            if status_code in STATUS_CODES_WITH_NO_BODY:
+                raise AssertionError(
+                    f"Status code {status_code} must not have a response body"
+                )
             response_name = "Response_" + self.unique_id
             self.response_field = create_response_field(
                 name=response_name, type_=self.response_model
@@ -379,12 +383,14 @@ class APIRoute(routing.Route):
         self.responses = responses or {}
         response_fields = {}
         for additional_status_code, response in self.responses.items():
-            assert isinstance(response, dict), "An additional response must be a dict"
+            if not isinstance(response, dict):
+                raise AssertionError("An additional response must be a dict")
             model = response.get("model")
             if model:
-                assert (
-                    additional_status_code not in STATUS_CODES_WITH_NO_BODY
-                ), f"Status code {additional_status_code} must not have a response body"
+                if additional_status_code in STATUS_CODES_WITH_NO_BODY:
+                    raise AssertionError(
+                        f"Status code {additional_status_code} must not have a response body"
+                    )
                 response_name = f"Response_{additional_status_code}_{self.unique_id}"
                 response_field = create_response_field(name=response_name, type_=model)
                 response_fields[additional_status_code] = response_field
@@ -403,7 +409,8 @@ class APIRoute(routing.Route):
         self.include_in_schema = include_in_schema
         self.response_class = response_class
 
-        assert callable(endpoint), "An endpoint must be a callable"
+        if not callable(endpoint):
+            raise AssertionError("An endpoint must be a callable")
         self.dependant = get_dependant(path=self.path_format, call=self.endpoint)
         for depends in self.dependencies[::-1]:
             self.dependant.dependencies.insert(
@@ -461,10 +468,12 @@ class APIRouter(routing.Router):
             on_shutdown=on_shutdown,  # type: ignore # in Starlette
         )
         if prefix:
-            assert prefix.startswith("/"), "A path prefix must start with '/'"
-            assert not prefix.endswith(
-                "/"
-            ), "A path prefix must not end with '/', as the routes will start with '/'"
+            if not prefix.startswith("/"):
+                raise AssertionError("A path prefix must start with '/'")
+            if prefix.endswith("/"):
+                raise AssertionError(
+                    "A path prefix must not end with '/', as the routes will start with '/'"
+                )
         self.prefix = prefix
         self.tags: List[str] = tags or []
         self.dependencies = list(dependencies or []) or []
@@ -643,10 +652,12 @@ class APIRouter(routing.Router):
         include_in_schema: bool = True,
     ) -> None:
         if prefix:
-            assert prefix.startswith("/"), "A path prefix must start with '/'"
-            assert not prefix.endswith(
-                "/"
-            ), "A path prefix must not end with '/', as the routes will start with '/'"
+            if not prefix.startswith("/"):
+                raise AssertionError("A path prefix must start with '/'")
+            if prefix.endswith("/"):
+                raise AssertionError(
+                    "A path prefix must not end with '/', as the routes will start with '/'"
+                )
         else:
             for r in router.routes:
                 path = getattr(r, "path")
