@@ -165,7 +165,7 @@ After that, your file structure could look like:
 
 Start your application and go to <a href="http://127.0.0.1:8000/static/redoc.standalone.js" class="external-link" target="_blank">http://127.0.0.1:8000/static/redoc.standalone.js</a>.
 
-You should see a very long JavaScript files for **ReDoc**.
+You should see a JavaScript file for **ReDoc**.
 
 It could start with something like:
 
