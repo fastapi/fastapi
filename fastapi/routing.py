@@ -336,8 +336,7 @@ class APIRoute(routing.Route):
         self.endpoint = endpoint
         self.name = get_name(endpoint) if name is None else name
         self.path_regex, self.path_format, self.param_convertors = compile_path(path)
-        if methods is None:
-            methods = ["GET"]
+        methods = methods or ["GET"]
         self.methods: Set[str] = set([method.upper() for method in methods])
         self.unique_id = generate_operation_id_for_path(
             name=self.name, path=self.path_format, method=list(methods)[0]
@@ -655,8 +654,7 @@ class APIRouter(routing.Router):
                     raise Exception(
                         f"Prefix and path cannot be both empty (path operation: {name})"
                     )
-        if responses is None:
-            responses = {}
+        responses = responses or {}
         for route in router.routes:
             if isinstance(route, APIRoute):
                 combined_responses = {**responses, **route.responses}
