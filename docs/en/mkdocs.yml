@@ -20,7 +20,6 @@ theme:
   features:
   - search.suggest
   - search.highlight
-  - content.tabs.link
   icon:
     repo: fontawesome/brands/github-alt
   logo: img/icon-white.svg
