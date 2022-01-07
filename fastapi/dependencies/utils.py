@@ -267,19 +267,13 @@ def get_typed_annotation(param: inspect.Parameter, globalns: Dict[str, Any]) -> 
     return annotation
 
 
-def get_augmented_signature(call: Callable[..., Any]) -> inspect.Signature:
+def get_typed_signature_with_extra_parameters(call: Callable[..., Any]) -> inspect.Signature:
     initial_params = get_typed_signature(call).parameters
     extra_params = get_signature_extra_parameters(call).copy()
-    excluded_params = get_signature_excluded_parameters(call)
 
     merged_params: List[inspect.Parameter] = []
-    for i, (name, initial_param) in enumerate(initial_params.items()):
+    for name, initial_param in initial_params.items():
         extra_param = extra_params.pop(name, None)
-        if (
-            i in excluded_params
-            and initial_param.kind < inspect.Parameter.VAR_POSITIONAL
-        ):
-            continue
         if extra_param:
             merged_param = merge_parameters(initial_param, extra_param)
             merged_params.append(merged_param)
@@ -288,24 +282,16 @@ def get_augmented_signature(call: Callable[..., Any]) -> inspect.Signature:
     for extra_param in extra_params.values():
         merged_params.append(extra_param)
     merged_params.sort(key=lambda p: p.kind)
-
-    merged_params = filter(lambda p: p.name not in excluded_params, merged_params)
     merged_params = filter(
         lambda p: p.kind != inspect.Parameter.VAR_KEYWORD, merged_params
     )
-
-    augmented_signature = inspect.Signature(merged_params)
-    return augmented_signature
+    return inspect.Signature(merged_params)
 
 
 def get_signature_extra_parameters(
     call: Callable[..., Any]
 ) -> Dict[str, inspect.Parameter]:
-    return getattr(call, "__endpoint_signature_extra_parameters__", dict())
-
-
-def get_signature_excluded_parameters(call: Callable[..., Any]) -> Set[Union[str, int]]:
-    return getattr(call, "__endpoint_signature_excluded_parameters__", set())
+    return getattr(call, "__endpoint_extra_parameters__", dict())
 
 
 def merge_parameters(
@@ -350,6 +336,10 @@ def merge_parameters(
     return inspect.Parameter(**merged_param_kwargs)
 
 
+def get_typed_signature_final(call: Callable[..., Any]) -> inspect.Signature:
+    return get_typed_signature_with_extra_parameters(call)
+
+
 def get_dependant(
     *,
     path: str,
@@ -359,7 +349,7 @@ def get_dependant(
     use_cache: bool = True,
 ) -> Dependant:
     path_param_names = get_path_param_names(path)
-    endpoint_signature = get_augmented_signature(call)
+    endpoint_signature = get_typed_signature_final(call)
     signature_params = endpoint_signature.parameters
     dependant = Dependant(call=call, name=name, path=path, use_cache=use_cache)
     for param_name, param in signature_params.items():

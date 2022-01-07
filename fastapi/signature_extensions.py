@@ -1,7 +1,10 @@
 from inspect import Parameter
-from typing import Any, Callable, Dict, Iterable, Set, Union
+from typing import Any, Callable, Dict, Iterable, Mapping, Set, Union
 
 from fastapi.types import DecoratedCallable
+
+
+ALLOWED_PARAMETER_REPLACE_KWARGS = {'annotation', 'default'}
 
 
 def extra_parameters(
@@ -11,7 +14,14 @@ def extra_parameters(
     extra_params: Dict[str, Parameter] = dict()
     for name, value in kwargs.items():
         extra_param = Parameter(name, Parameter.KEYWORD_ONLY)
-        if isinstance(value, Iterable):
+        if isinstance(value, Mapping):
+            diff = set(value) - ALLOWED_PARAMETER_REPLACE_KWARGS
+            if diff:
+                raise ValueError(
+                    f"Arguments {diff} are not allowed."
+                )
+            extra_param = extra_param.replace(**value)
+        elif isinstance(value, Iterable):
             # consider value to be (annotation, default)
             annotation_default = tuple(value)
             if len(annotation_default) != 2:
@@ -28,23 +38,10 @@ def extra_parameters(
 
     def decorator(func: DecoratedCallable) -> DecoratedCallable:
         extra: Dict[str, Any] = getattr(
-            func, "__endpoint_signature_extra_parameters__", dict()
+            func, "__endpoint_extra_parameters__", dict()
         )
-        func.__endpoint_signature_extra_parameters__ = extra
-        func.__endpoint_signature_extra_parameters__.update(**extra_params)
-        return func
-
-    return decorator
-
-
-def exclude_parameters(
-    *args: Union[str, int]
-) -> Callable[[DecoratedCallable], DecoratedCallable]:
-    def decorator(func: DecoratedCallable) -> DecoratedCallable:
-        exclude: Set[str] = getattr(
-            func, "__endpoint_signature_excluded_parameters__", set()
-        )
-        func.__endpoint_signature_excluded_parameters__ = exclude.union(args)
+        func.__endpoint_extra_parameters__ = extra
+        func.__endpoint_extra_parameters__.update(**extra_params)
         return func
 
     return decorator

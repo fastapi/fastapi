@@ -1,5 +1,4 @@
 from fastapi import Body, Depends, FastAPI, Header, extra_parameters
-from fastapi.signature_extensions import exclude_parameters
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
 
@@ -90,7 +89,10 @@ openapi_schema = {
                         "in": "query",
                         "name": "extra_param_str",
                         "required": True,
-                        "schema": {"title": "Extra Param Str", "type": "string"},
+                        "schema": {
+                            "title": "Extra Param Str",
+                            "type": "string"
+                        },
                     },
                     {
                         "in": "query",
@@ -101,6 +103,16 @@ openapi_schema = {
                             "title": "Extra Param Str Default",
                             "type": "string",
                         },
+                    },
+                    {
+                        'in': 'query',
+                        'name': 'extra_param_defined_with_dict',
+                        'required': False,
+                        'schema': {
+                            'default': 'aaa',
+                            'title': 'Extra Param Defined With Dict',
+                            'type': 'string'
+                        }
                     },
                     {
                         "in": "query",
@@ -173,17 +185,15 @@ app = FastAPI()
 @extra_parameters(
     extra_param_str=str,
     extra_param_str_default=(str, "aaa"),
+    extra_param_defined_with_dict={"annotation": str, "default": "aaa"},
     extra_param_schema_1=Schema_1,
     extra_param_body=(str, Body("aaa")),
     extra_param_header=(str, Header("aaa")),
     extra_param_depends=(dict, Depends(dependency_1)),
 )
-@exclude_parameters("excluded_param", 3)
 def endpoint_1(
     func_param_1,
     extra_param_str,
-    excluded_param: int = 1,
-    excluded_by_position_param: int = 1,
     **kwargs
 ):
     return {}

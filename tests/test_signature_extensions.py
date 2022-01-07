@@ -1,8 +1,10 @@
 from typing import Optional
 
-from fastapi import Depends, FastAPI, exclude_parameters, extra_parameters
+from fastapi import Depends, FastAPI, extra_parameters
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
+
+import pytest
 
 
 class Schema_1(BaseModel):
@@ -63,15 +65,9 @@ def endpoint_7(a):
 
 
 @app.get("/test_8")
-@exclude_parameters("a")
-def endpoint_8(a: int = 1, b: int = 2):
-    return {"a": a, "b": b}
-
-
-@app.get("/test_9")
-@exclude_parameters(0)
-def endpoint_9(a: int = 1, b: int = 2):
-    return {"a": a, "b": b}
+@extra_parameters(a={'annotation': int, 'default': 1})
+def endpoint_8(a):
+    return {"a": a}
 
 
 client = TestClient(app)
@@ -129,13 +125,15 @@ def test_extra_parameters_merging():
     assert data == {"a": 1}
 
 
-def test_exclude():
-    response = client.get("/test_8", params={"a": 2})
+def test_extra_parameters_dict():
+    response = client.get("/test_8")
     data = response.json()
-    assert data == {"a": 1, "b": 2}
+    assert data == {"a": 1}
 
 
-def test_exclude_by_position():
-    response = client.get("/test_9", params={"a": 2})
-    data = response.json()
-    assert data == {"a": 1, "b": 2}
+def test_extra_parameters_merging_conflict():
+    with pytest.raises(ValueError):
+        @app.get('/test_merge_conflict')
+        @extra_parameters(a=int)
+        def endpoint_merge_conflict(a: str):
+            return {"a": a}
