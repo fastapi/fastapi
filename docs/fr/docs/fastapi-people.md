@@ -114,25 +114,28 @@ Ce sont les **Sponsors**. 😎
 
 Ils soutiennent mon travail avec **FastAPI** (et d'autres) avec <a href="https://github.com/sponsors/tiangolo" class="external-link" target="_blank">GitHub Sponsors</a>.
 
+{% if sponsors.gold %}
+
 ### Gold Sponsors
 
-{% if sponsors %}
 {% for sponsor in sponsors.gold -%}
 <a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
 {% endfor %}
 {% endif %}
 
+{% if sponsors.silver %}
+
 ### Silver Sponsors
 
-{% if sponsors %}
 {% for sponsor in sponsors.silver -%}
 <a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
 {% endfor %}
 {% endif %}
 
+{% if sponsors.bronze %}
+
 ### Bronze Sponsors
 
-{% if sponsors %}
 {% for sponsor in sponsors.bronze -%}
 <a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
 {% endfor %}
@@ -140,28 +143,22 @@ Ils soutiennent mon travail avec **FastAPI** (et d'autres) avec <a href="https:/
 
 ### Individual Sponsors
 
-{% if people %}
-{% if people.sponsors_50 %}
+{% if github_sponsors %}
+{% for group in github_sponsors.sponsors %}
 
 <div class="user-list user-list-center">
-{% for user in people.sponsors_50 %}
+
+{% for user in group %}
+{% if user.login not in sponsors_badge.logins %}
 
 <div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a></div>
+
+{% endif %}
 {% endfor %}
 
 </div>
 
-{% endif %}
-{% endif %}
-
-{% if people %}
-<div class="user-list user-list-center">
-{% for user in people.sponsors %}
-
-<div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a></div>
 {% endfor %}
-
-</div>
 {% endif %}
 
 ## À propos des données - détails techniques
