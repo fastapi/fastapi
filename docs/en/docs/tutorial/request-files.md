@@ -119,11 +119,19 @@ It's possible to upload several files at the same time.
 
 They would be associated to the same "form field" sent using "form data".
 
-To use that, declare a `List` of `bytes` or `UploadFile`:
+To use that, declare a list of `bytes` or `UploadFile`:
 
-```Python hl_lines="10  15"
-{!../../../docs_src/request_files/tutorial002.py!}
-```
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="10  15"
+    {!> ../../../docs_src/request_files/tutorial002.py!}
+    ```
+
+=== "Python 3.9 and above"
+
+    ```Python hl_lines="8  13"
+    {!> ../../../docs_src/request_files/tutorial002_py39.py!}
+    ```
 
 You will receive, as declared, a `list` of `bytes` or `UploadFile`s.
 
