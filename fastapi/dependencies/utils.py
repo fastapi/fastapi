@@ -166,11 +166,13 @@ class DependencyNode(object):
                 parent_node.arguments[argument_name] = self.result
 
             parent_node.refcount -= 1
-            if parent_node.refcount == 0:
-                if task_group is not None:
-                    task_group.start_soon(parent_node.task, nodes, request, task_group)
-                else:
-                    await parent_node.task(nodes, request, task_group)
+            if parent_node.refcount != 0:
+                continue
+
+            if task_group is not None:
+                task_group.start_soon(parent_node.task, nodes, request, task_group)
+            else:
+                await parent_node.task(nodes, request, task_group)
 
 
 class SolvingPlan(object):
@@ -204,8 +206,8 @@ class SolvingPlan(object):
         self.body_params_list = body_params_list
 
         self.sync_tasks_count = sum(
-            1 if node.call_type == CallType.SYNC else 0
-            for node in nodes
+            1 for node in nodes
+            if node.call_type == CallType.SYNC
         )
         self.async_tasks_count = len(nodes) - self.sync_tasks_count
 
