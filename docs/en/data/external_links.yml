@@ -1,5 +1,9 @@
 articles:
   english:
+  - author: Silvan Melchior
+    author_link: https://github.com/silvanmelchior
+    link: https://blog.devgenius.io/seamless-fastapi-configuration-with-confz-90949c14ea12
+    title: Seamless FastAPI Configuration with ConfZ
   - author: Kaustubh Gupta
     author_link: https://medium.com/@kaustubhgupta1828/
     link: https://www.analyticsvidhya.com/blog/2021/06/deploying-ml-models-as-api-using-fastapi-and-heroku/
