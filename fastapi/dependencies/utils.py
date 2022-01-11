@@ -269,7 +269,7 @@ def _get_provided_type_generic(
 ) -> Dict[str, Any]:
     provided_type = {}
     if hasattr(origin, "__orig_bases__"):
-        base = getattr(origin, '__orig_bases__')[0]
+        base = getattr(origin, "__orig_bases__")[0]
         if hasattr(base, "__parameters__"):
             base_parameters = getattr(base, "__parameters__", ())
             args = get_args(call)
@@ -291,20 +291,24 @@ def get_typed_annotation(
 
 
 def _get_annotation_for_generic(annotation: Any, provided_type: Dict[str, Any]) -> Type:
-    annotation_args = get_args(annotation)
-    updated_args_annotation = False
     if annotation in provided_type:
         annotation = provided_type[annotation]
-    elif annotation_args is not None:
-        args_to_replace = []
-        for arg in annotation_args:
-            if arg in provided_type:
-                arg = provided_type[arg]
-                updated_args_annotation = True
-            args_to_replace.append(arg)
-        if updated_args_annotation:
-            setattr(annotation, "__args__", tuple(args_to_replace))
+
+    annotation_args = get_args(annotation)
+    if annotation_args is None:
+        return annotation
+
+    args_to_replace = []
+    for arg in annotation_args:
+        arg = provided_type.get(arg, arg)
+        args_to_replace.append(arg)
+
+    updated_args_annotation = any(arg in provided_type for arg in annotation_args)
+    if updated_args_annotation:
+        setattr(annotation, "__args__", tuple(args_to_replace))
+
     return annotation
+
 
 def get_dependant(
     *,

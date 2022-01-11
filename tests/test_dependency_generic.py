@@ -17,12 +17,13 @@ class ValueHolder(Generic[T, E]):
     def get(self):
         return self.x
 
+
 app = FastAPI()
 
 
 @app.post("/bar")
 async def post_endpoint_bar(
-        bar: ValueHolder[int, str] = Depends(), data: str = Body(..., embed=True)
+    bar: ValueHolder[int, str] = Depends(), data: str = Body(..., embed=True)
 ):
     return bar.get()
 
@@ -128,6 +129,6 @@ def test_openapi_servers():
 
 
 def test_post_generic_success():
-    response = client.post('/bar?y=123&z=456', json={'data': '', 'x': ['foo']})
+    response = client.post("/bar?y=123&z=456", json={"data": "", "x": ["foo"]})
     assert response.status_code == 200
-    assert response.json() == ['foo']
+    assert response.json() == ["foo"]
