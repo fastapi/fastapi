@@ -69,6 +69,7 @@ def get_redoc_html(
     redoc_js_url: str = "https://cdn.jsdelivr.net/npm/redoc@next/bundles/redoc.standalone.js",
     redoc_favicon_url: str = "https://fastapi.tiangolo.com/img/favicon.png",
     with_google_fonts: bool = True,
+    mermaid_js_url: str = "https://unpkg.com/mermaid@latest/dist/mermaid.min.js"
 ) -> HTMLResponse:
     html = f"""
     <!DOCTYPE html>
@@ -96,8 +97,30 @@ def get_redoc_html(
     </style>
     </head>
     <body>
-    <redoc spec-url="{openapi_url}"></redoc>
+    <redoc id="redoc-container"></redoc>
     <script src="{redoc_js_url}"> </script>
+    <script src="{mermaid_js_url}"> </script>
+    <script type="application/javascript">
+        mermaid.initialize({{startOnLoad: false}});
+        let id = 0;
+        Redoc.init("{openapi_url}", {{
+            theme: {{
+                extensionsHook: (name, props) => {{
+                    if (name !== "Markdown" || props.html === undefined) return "";
+                    var markdown = document.createElement("div");
+                    markdown.innerHTML = props.html;
+                    var mermaidNodes = markdown.querySelectorAll("pre > code.language-mermaid");
+                    for (const mermaidNode of mermaidNodes) {{
+                        mermaid.render(`mermaid-${{id++}}`, mermaidNode.textContent, svg => {{
+                            mermaidNode.parentNode.outerHTML = svg;
+                        }});
+                    }}
+                    props.dangerouslySetInnerHTML.__html = markdown.innerHTML;
+                    return "";
+                }}
+            }}
+        }}, document.getElementById("redoc-container"));
+    </script>
     </body>
     </html>
     """

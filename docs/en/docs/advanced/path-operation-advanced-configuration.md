@@ -51,6 +51,19 @@ It won't show up in the documentation, but other tools (such as Sphinx) will be 
 {!../../../docs_src/path_operation_advanced_configuration/tutorial004.py!}
 ```
 
+### Diagrams as code
+
+[Alternative API Docs](../tutorial/first-steps.md#alternative-api-docs) has build-in render of [MermaidJS](https://mermaid-js.github.io/mermaid/) diagrams.
+
+You can add `mermaid` code block into the docstring of a *path operation function* and it will be rendered to SVG diagram.
+It might be useful to visually describe what given endpoint does under the hood or how to use given endpoint.
+
+```Python hl_lines="11-17"
+{!../../../docs_src/path_operation_advanced_configuration/tutorial008.py!}
+```
+
+![ReDoc](https://fastapi.tiangolo.com/img/index/index-07-redoc-mermaid.png)
+
 ## Additional Responses
 
 You probably have seen how to declare the `response_model` and `status_code` for a *path operation*.
