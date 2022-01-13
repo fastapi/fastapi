@@ -634,7 +634,7 @@ class APIRouter(routing.Router):
         router: "APIRouter",
         *,
         prefix: str = "",
-        tags: Optional[List[str]] = None,
+        tags: Union[Optional[List[str]], Optional[str]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
         default_response_class: Type[Response] = Default(JSONResponse),
         responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
@@ -667,6 +667,10 @@ class APIRouter(routing.Router):
                     self.default_response_class,
                 )
                 current_tags = []
+
+                if isinstance(tags, str):
+                    tags = [tags]
+
                 if tags:
                     current_tags.extend(tags)
                 if route.tags:

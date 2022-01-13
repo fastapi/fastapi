@@ -339,7 +339,7 @@ class FastAPI(Starlette):
         router: routing.APIRouter,
         *,
         prefix: str = "",
-        tags: Optional[List[str]] = None,
+        tags: Union[Optional[List[str]], Optional[str]] = None,
         dependencies: Optional[Sequence[Depends]] = None,
         responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
         deprecated: Optional[bool] = None,
