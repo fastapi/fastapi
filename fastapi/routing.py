@@ -438,7 +438,7 @@ class APIRouter(routing.Router):
         self,
         *,
         prefix: str = "",
-        tags: Optional[List[str]] = None,
+        tags: Union[Optional[List[str]], Optional[str]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
         default_response_class: Type[Response] = Default(JSONResponse),
         responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
@@ -466,6 +466,10 @@ class APIRouter(routing.Router):
                 "/"
             ), "A path prefix must not end with '/', as the routes will start with '/'"
         self.prefix = prefix
+
+        if isinstance(tags, str):
+            tags = [tags]
+
         self.tags: List[str] = tags or []
         self.dependencies = list(dependencies or []) or []
         self.deprecated = deprecated
@@ -483,7 +487,7 @@ class APIRouter(routing.Router):
         *,
         response_model: Optional[Type[Any]] = None,
         status_code: Optional[int] = None,
-        tags: Optional[List[str]] = None,
+        tags: Union[Optional[List[str]], Optional[str]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
         summary: Optional[str] = None,
         description: Optional[str] = None,
@@ -514,6 +518,10 @@ class APIRouter(routing.Router):
             response_class, self.default_response_class
         )
         current_tags = self.tags.copy()
+
+        if isinstance(tags, str):
+            tags = [tags]
+
         if tags:
             current_tags.extend(tags)
         current_dependencies = self.dependencies.copy()
