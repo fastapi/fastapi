@@ -1,7 +1,10 @@
 from enum import Enum
+from inspect import Signature
 from typing import Any, Callable, Dict, Optional, Sequence
 
 from pydantic.fields import FieldInfo, Undefined
+
+from .signature_modifiers.utils import SignatureModifiers, transform_parameters_dict
 
 
 class ParamTypes(Enum):
@@ -354,6 +357,25 @@ class Depends:
 
     def __repr__(self) -> str:
         attr = getattr(self.dependency, "__name__", type(self.dependency).__name__)
+        cache = "" if self.use_cache else ", use_cache=False"
+        return f"{self.__class__.__name__}({attr}{cache})"
+
+
+class Kwargs(Depends):
+    def __init__(self, spec: Dict[str, Any], *, use_cache: bool = True):
+        def dependency(**kwargs: Any) -> Dict[str, Any]:
+            return kwargs
+
+        sign_modifiers = SignatureModifiers.of(dependency)
+        sign_modifiers.override = Signature(
+            tuple(transform_parameters_dict(spec).values())
+        )
+
+        self.dependency = dependency
+        self.use_cache = use_cache
+
+    def __repr__(self) -> str:
+        attr = SignatureModifiers.of(self.dependency).override  # type: ignore
         cache = "" if self.use_cache else ", use_cache=False"
         return f"{self.__class__.__name__}({attr}{cache})"
 

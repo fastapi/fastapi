@@ -1,4 +1,5 @@
 from fastapi import Body, Depends, FastAPI, Header, extra_parameters
+from fastapi.param_functions import Kwargs
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
 
@@ -89,10 +90,7 @@ openapi_schema = {
                         "in": "query",
                         "name": "extra_param_str",
                         "required": True,
-                        "schema": {
-                            "title": "Extra Param Str",
-                            "type": "string"
-                        },
+                        "schema": {"title": "Extra Param Str", "type": "string"},
                     },
                     {
                         "in": "query",
@@ -105,14 +103,20 @@ openapi_schema = {
                         },
                     },
                     {
-                        'in': 'query',
-                        'name': 'extra_param_defined_with_dict',
-                        'required': False,
-                        'schema': {
-                            'default': 'aaa',
-                            'title': 'Extra Param Defined With Dict',
-                            'type': 'string'
-                        }
+                        "in": "query",
+                        "name": "extra_param_defined_with_dict",
+                        "required": False,
+                        "schema": {
+                            "default": "aaa",
+                            "title": "Extra Param Defined With Dict",
+                            "type": "string",
+                        },
+                    },
+                    {
+                        "in": "query",
+                        "name": "kwarg_1",
+                        "required": True,
+                        "schema": {"title": "Kwarg 1", "type": "string"},
                     },
                     {
                         "in": "query",
@@ -191,11 +195,7 @@ app = FastAPI()
     extra_param_header=(str, Header("aaa")),
     extra_param_depends=(dict, Depends(dependency_1)),
 )
-def endpoint_1(
-    func_param_1,
-    extra_param_str,
-    **kwargs
-):
+def endpoint_1(func_param_1, extra_param_str, kws=Kwargs({"kwarg_1": str}), **kwargs):
     return {}
 
 

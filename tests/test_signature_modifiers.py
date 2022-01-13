@@ -1,10 +1,9 @@
 from typing import Optional
 
-from fastapi import Depends, FastAPI, extra_parameters
+import pytest
+from fastapi import Depends, FastAPI, Kwargs, extra_parameters
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
-
-import pytest
 
 
 class Schema_1(BaseModel):
@@ -65,9 +64,14 @@ def endpoint_7(a):
 
 
 @app.get("/test_8")
-@extra_parameters(a={'annotation': int, 'default': 1})
+@extra_parameters(a={"annotation": int, "default": 1})
 def endpoint_8(a):
     return {"a": a}
+
+
+@app.get("/test_9")
+def endpoint_9(kws: dict = Kwargs({"a": int, "b": (str, "b")})):
+    return kws
 
 
 client = TestClient(app)
@@ -133,7 +137,14 @@ def test_extra_parameters_dict():
 
 def test_extra_parameters_merging_conflict():
     with pytest.raises(ValueError):
-        @app.get('/test_merge_conflict')
+
+        @app.get("/test_merge_conflict")
         @extra_parameters(a=int)
         def endpoint_merge_conflict(a: str):
             return {"a": a}
+
+
+def test_kwargs():
+    response = client.get("/test_9", params={"a": "1"})
+    data = response.json()
+    assert data == {"a": 1, "b": "b"}

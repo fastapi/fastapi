@@ -11,7 +11,6 @@ from typing import (
     Mapping,
     Optional,
     Sequence,
-    Set,
     Tuple,
     Type,
     Union,
@@ -30,6 +29,7 @@ from fastapi.logger import logger
 from fastapi.security.base import SecurityBase
 from fastapi.security.oauth2 import OAuth2, SecurityScopes
 from fastapi.security.open_id_connect_url import OpenIdConnect
+from fastapi.signature_modifiers.utils import SignatureModifiers
 from fastapi.utils import create_response_field, get_path_param_names
 from pydantic import BaseModel, create_model
 from pydantic.error_wrappers import ErrorWrapper
@@ -267,9 +267,11 @@ def get_typed_annotation(param: inspect.Parameter, globalns: Dict[str, Any]) -> 
     return annotation
 
 
-def get_typed_signature_with_extra_parameters(call: Callable[..., Any]) -> inspect.Signature:
-    initial_params = get_typed_signature(call).parameters
-    extra_params = get_signature_extra_parameters(call).copy()
+def apply_extra_parameters(
+    sign: inspect.Signature, extra_params: Dict[str, inspect.Parameter]
+) -> inspect.Signature:
+    initial_params = sign.parameters
+    extra_params = extra_params.copy()
 
     merged_params: List[inspect.Parameter] = []
     for name, initial_param in initial_params.items():
@@ -282,22 +284,16 @@ def get_typed_signature_with_extra_parameters(call: Callable[..., Any]) -> inspe
     for extra_param in extra_params.values():
         merged_params.append(extra_param)
     merged_params.sort(key=lambda p: p.kind)
-    merged_params = filter(
-        lambda p: p.kind != inspect.Parameter.VAR_KEYWORD, merged_params
-    )
+    merged_params = [
+        p for p in merged_params if p.kind != inspect.Parameter.VAR_KEYWORD
+    ]
     return inspect.Signature(merged_params)
-
-
-def get_signature_extra_parameters(
-    call: Callable[..., Any]
-) -> Dict[str, inspect.Parameter]:
-    return getattr(call, "__endpoint_extra_parameters__", dict())
 
 
 def merge_parameters(
     initial_param: inspect.Parameter, extra_param: inspect.Parameter
 ) -> inspect.Parameter:
-    merged_param_kwargs = {"kind": inspect.Parameter.KEYWORD_ONLY}
+    merged_param_kwargs: Dict[str, Any] = {"kind": inspect.Parameter.KEYWORD_ONLY}
 
     initial_name = initial_param.name
     extra_name = extra_param.name
@@ -316,7 +312,7 @@ def merge_parameters(
             merged_param_kwargs["annotation"] = initial_annotation
         else:
             raise ValueError(
-                "Parameters' annotations cannot be different unless one of them is inspect._empty"
+                "Parameters' annotations cannot be different unless one of them is inspect.Parameter.empty"
             )
 
     initial_default = initial_param.default
@@ -330,14 +326,20 @@ def merge_parameters(
             merged_param_kwargs["default"] = initial_default
         else:
             raise ValueError(
-                "Parameters' defaults cannot be different unless one of them is inspect._empty"
+                "Parameters' defaults cannot be different unless one of them is inspect.Parameter.empty"
             )
 
     return inspect.Parameter(**merged_param_kwargs)
 
 
-def get_typed_signature_final(call: Callable[..., Any]) -> inspect.Signature:
-    return get_typed_signature_with_extra_parameters(call)
+def get_modified_typed_signature(call: Callable[..., Any]) -> inspect.Signature:
+    sign_modifiers = SignatureModifiers.of(call)
+    sign = sign_modifiers.override
+    if sign is not None:
+        return sign
+    sign = get_typed_signature(call)
+    sign = apply_extra_parameters(sign, sign_modifiers.extra_parameters)
+    return sign
 
 
 def get_dependant(
@@ -349,7 +351,7 @@ def get_dependant(
     use_cache: bool = True,
 ) -> Dependant:
     path_param_names = get_path_param_names(path)
-    endpoint_signature = get_typed_signature_final(call)
+    endpoint_signature = get_modified_typed_signature(call)
     signature_params = endpoint_signature.parameters
     dependant = Dependant(call=call, name=name, path=path, use_cache=use_cache)
     for param_name, param in signature_params.items():

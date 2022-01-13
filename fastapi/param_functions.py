@@ -273,6 +273,10 @@ def Depends(  # noqa: N802
     return params.Depends(dependency=dependency, use_cache=use_cache)
 
 
+def Kwargs(spec: Dict[str, Any], *, use_cache: bool = True) -> Any:  # noqa: N802
+    return params.Kwargs(spec=spec, use_cache=use_cache)
+
+
 def Security(  # noqa: N802
     dependency: Optional[Callable[..., Any]] = None,
     *,

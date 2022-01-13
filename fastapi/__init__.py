@@ -14,12 +14,13 @@ from .param_functions import Depends as Depends
 from .param_functions import File as File
 from .param_functions import Form as Form
 from .param_functions import Header as Header
+from .param_functions import Kwargs as Kwargs
 from .param_functions import Path as Path
 from .param_functions import Query as Query
 from .param_functions import Security as Security
 from .requests import Request as Request
 from .responses import Response as Response
 from .routing import APIRouter as APIRouter
-from .signature_extensions import extra_parameters as extra_parameters
+from .signature_modifiers import extra_parameters as extra_parameters
 from .websockets import WebSocket as WebSocket
 from .websockets import WebSocketDisconnect as WebSocketDisconnect
