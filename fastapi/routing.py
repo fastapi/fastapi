@@ -123,6 +123,11 @@ async def serialize_response(
             exclude_defaults=exclude_defaults,
             exclude_none=exclude_none,
         )
+        try:
+            if "__root__" in response_content:
+                response_content = response_content["__root__"]
+        except TypeError:
+            pass
         if is_coroutine:
             value, errors_ = field.validate(response_content, {}, loc=("response",))
         else:
