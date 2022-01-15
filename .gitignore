@@ -1,6 +1,7 @@
 .idea
 .ipynb_checkpoints
 .mypy_cache
+.python-version
 .vscode
 __pycache__
 .pytest_cache
