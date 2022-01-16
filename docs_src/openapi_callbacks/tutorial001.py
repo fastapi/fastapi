@@ -1,7 +1,6 @@
 from typing import Optional
 
 from fastapi import APIRouter, FastAPI
-from fastapi.responses import JSONResponse
 from pydantic import BaseModel, HttpUrl
 
 app = FastAPI()
@@ -23,11 +22,11 @@ class InvoiceEventReceived(BaseModel):
     ok: bool
 
 
-invoices_callback_router = APIRouter(default_response_class=JSONResponse)
+invoices_callback_router = APIRouter()
 
 
 @invoices_callback_router.post(
-    "{$callback_url}/invoices/{$request.body.id}", response_model=InvoiceEventReceived,
+    "{$callback_url}/invoices/{$request.body.id}", response_model=InvoiceEventReceived
 )
 def invoice_notification(body: InvoiceEvent):
     pass

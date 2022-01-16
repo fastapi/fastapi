@@ -2,6 +2,8 @@ name: Test
 
 on:
   push:
+    branches:
+      - master
   pull_request:
     types: [opened, synchronize]
 
@@ -10,19 +12,29 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [3.6, 3.7, 3.8]
+        python-version: ["3.6", "3.7", "3.8", "3.9", "3.10"]
       fail-fast: false
-    
+
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python
-        uses: actions/setup-python@v1
+        uses: actions/setup-python@v2
         with:
           python-version: ${{ matrix.python-version }}
+      - uses: actions/cache@v2
+        id: cache
+        with:
+          path: ${{ env.pythonLocation }}
+          key: ${{ runner.os }}-python-${{ env.pythonLocation }}-${{ hashFiles('pyproject.toml') }}-test
       - name: Install Flit
+        if: steps.cache.outputs.cache-hit != 'true'
         run: pip install flit
       - name: Install Dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
         run: flit install --symlink
+      - name: Lint
+        if: ${{ matrix.python-version != '3.6' }}
+        run: bash scripts/lint.sh
       - name: Test
         run: bash scripts/test.sh
       - name: Upload coverage

@@ -39,13 +39,16 @@ Sus características principales son:
 
 <small>* Esta estimación está basada en pruebas con un equipo de desarrollo interno contruyendo aplicaciones listas para producción.</small>
 
-## Gold Sponsors
+## Sponsors
 
 <!-- sponsors -->
 
 {% if sponsors %}
 {% for sponsor in sponsors.gold -%}
-<a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}"></a>
+<a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
+{% endfor -%}
+{%- for sponsor in sponsors.silver -%}
+<a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
 {% endfor %}
 {% endif %}
 
@@ -127,7 +130,7 @@ También vas a necesitar un servidor ASGI para producción cómo <a href="https:
 <div class="termy">
 
 ```console
-$ pip install uvicorn
+$ pip install uvicorn[standard]
 
 ---> 100%
 ```
