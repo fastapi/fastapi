@@ -2,6 +2,7 @@
 
 ## Latest Changes
 
+* 🌐 Add Polish translation for `docs/pl/docs/index.md`. PR [#4245](https://github.com/tiangolo/fastapi/pull/4245) by [@MicroPanda123](https://github.com/MicroPanda123).
 * 🌐 Add Chinese translation for `docs\tutorial\path-operation-configuration.md`. PR [#3312](https://github.com/tiangolo/fastapi/pull/3312) by [@jaystone776](https://github.com/jaystone776).
 * ✨ Enable configuring Swagger UI parameters. PR [#2568](https://github.com/tiangolo/fastapi/pull/2568) by [@jmriebold](https://github.com/jmriebold).
 * 📝 Update Python Types docs, add missing 3.6 / 3.9 example. PR [#4434](https://github.com/tiangolo/fastapi/pull/4434) by [@tiangolo](https://github.com/tiangolo).
