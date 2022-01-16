@@ -1,8 +1,26 @@
-# Deploy manually
+# Run a Server Manually - Uvicorn
 
-You can deploy **FastAPI** manually as well.
+The main thing you need to run a **FastAPI** application in a remote server machine is an ASGI server program like **Uvicorn**.
 
-You just need to install an ASGI compatible server like:
+There are 3 main alternatives:
+
+* <a href="https://www.uvicorn.org/" class="external-link" target="_blank">Uvicorn</a>: a high performance ASGI server.
+* <a href="https://pgjones.gitlab.io/hypercorn/" class="external-link" target="_blank">Hypercorn</a>: an ASGI server compatible with HTTP/2 and Trio among other features.
+* <a href="https://github.com/django/daphne" class="external-link" target="_blank">Daphne</a>: the ASGI server built for Django Channels.
+
+## Server Machine and Server Program
+
+There's a small detail about names to have in mind. 💡
+
+The word "**server**" is commonly used to refer to both the remote/cloud computer (the physical or virtual machine) and also the program that is running on that machine (e.g. Uvicorn).
+
+Just have that in mind when you read "server" in general, it could refer to one of those two things.
+
+When referring to the remote machine, it's common to call it **server**, but also **machine**, **VM** (virtual machine), **node**. Those all refer to some type of remote machine, normally running Linux, where you run programs.
+
+## Install the Server Program
+
+You can install an ASGI compatible server with:
 
 === "Uvicorn"
 
@@ -11,7 +29,7 @@ You just need to install an ASGI compatible server like:
     <div class="termy">
 
     ```console
-    $ pip install uvicorn[standard]
+    $ pip install "uvicorn[standard]"
 
     ---> 100%
     ```
@@ -39,7 +57,9 @@ You just need to install an ASGI compatible server like:
 
     ...or any other ASGI server.
 
-And run your application the same way you have done in the tutorials, but without the `--reload` option, e.g.:
+## Run the Server Program
+
+You can then your application the same way you have done in the tutorials, but without the `--reload` option, e.g.:
 
 === "Uvicorn"
 
@@ -65,10 +85,61 @@ And run your application the same way you have done in the tutorials, but withou
 
     </div>
 
-You might want to set up some tooling to make sure it is restarted automatically if it stops.
+!!! warning
+    Remember to remove the `--reload` option if you were using it.
 
-You might also want to install <a href="https://gunicorn.org/" class="external-link" target="_blank">Gunicorn</a> and <a href="https://www.uvicorn.org/#running-with-gunicorn" class="external-link" target="_blank">use it as a manager for Uvicorn</a>, or use Hypercorn with multiple workers.
+    The `--reload` option consumes much more resources, is more unstable, etc.
+    
+    It helps a lot during **development**, but you **shouldn't** use it in **production**.
 
-Making sure to fine-tune the number of workers, etc.
+## Hypercorn with Trio
 
-But if you are doing all that, you might just use the Docker image that does it automatically.
+Starlette and **FastAPI** are based on <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a>, which makes them compatible with both Python's standard library <a href="https://docs.python.org/3/library/asyncio-task.html" class="external-link" target="_blank">asyncio</a> and <a href="https://trio.readthedocs.io/en/stable/" class="external-link" target="_blank">Trio</a>.
+
+Nevertheless, Uvicorn is currently only compatible with asyncio, and it normally uses <a href="https://github.com/MagicStack/uvloop" class="external-link" target="_blank">`uvloop`</a>, the high-performance drop-in replacement for `asyncio`.
+
+But if you want to directly use **Trio**, then you can use **Hypercorn** as it supports it. ✨
+
+### Install Hypercorn with Trio
+
+First you need to install Hypercorn with Trio support:
+
+<div class="termy">
+
+```console
+$ pip install "hypercorn[trio]"
+---> 100%
+```
+
+</div>
+
+### Run with Trio
+
+Then you can pass the command line option `--worker-class` with the value `trio`:
+
+<div class="termy">
+
+```console
+$ hypercorn main:app --worker-class trio
+```
+
+</div>
+
+And that will start Hypercorn with your app using Trio as the backend.
+
+Now you can use Trio internally in your app. Or even better, you can use AnyIO, to keep your code compatible with both Trio and asyncio. 🎉
+
+## Deployment Concepts
+
+These examples run the server program (e.g Uvicorn), starting **a single process**, listening on all the IPs (`0.0.0.0`) on a predefined port (e.g. `80`).
+
+This is the basic idea. But you will probably want to take care of some additional things, like:
+
+* Security - HTTPS
+* Running on startup
+* Restarts
+* Replication (the number of processes running)
+* Memory
+* Previous steps before starting
+
+I'll tell you more about each of these concepts, how to think about them, and some concrete examples with strategies to handle them in the next chapters. 🚀
