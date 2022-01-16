@@ -78,6 +78,7 @@ nav:
   - tutorial/request-files.md
   - tutorial/request-forms-and-files.md
   - tutorial/handling-errors.md
+  - tutorial/path-operation-configuration.md
   - tutorial/body-updates.md
   - 依赖项:
     - tutorial/dependencies/index.md
