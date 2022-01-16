@@ -2,6 +2,7 @@
 
 ## Latest Changes
 
+* 🔧 Enable MkDocs Material Insiders' `content.tabs.link`. PR [#4399](https://github.com/tiangolo/fastapi/pull/4399) by [@tiangolo](https://github.com/tiangolo).
 ## 0.71.0
 
 ### Features
