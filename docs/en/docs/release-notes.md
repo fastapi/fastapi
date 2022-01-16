@@ -2,6 +2,7 @@
 
 ## Latest Changes
 
+* 🌐 Fix Korean translation for `docs/ko/docs/index.md`. PR [#4195](https://github.com/tiangolo/fastapi/pull/4195) by [@kty4119](https://github.com/kty4119).
 * 🌐 Add Polish translation for `docs/pl/docs/index.md`. PR [#4245](https://github.com/tiangolo/fastapi/pull/4245) by [@MicroPanda123](https://github.com/MicroPanda123).
 * 🌐 Add Chinese translation for `docs\tutorial\path-operation-configuration.md`. PR [#3312](https://github.com/tiangolo/fastapi/pull/3312) by [@jaystone776](https://github.com/jaystone776).
 * ✨ Enable configuring Swagger UI parameters. PR [#2568](https://github.com/tiangolo/fastapi/pull/2568) by [@jmriebold](https://github.com/jmriebold).
