@@ -2,6 +2,9 @@
 
 ## Latest Changes
 
+
+## 0.72.0
+
 ### Features
 
 * ✨ Enable configuring Swagger UI parameters. Original PR [#2568](https://github.com/tiangolo/fastapi/pull/2568) by [@jmriebold](https://github.com/jmriebold). Here are the new docs: [Configuring Swagger UI](https://fastapi.tiangolo.com/advanced/extending-openapi/#configuring-swagger-ui).
