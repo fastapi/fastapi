@@ -99,7 +99,7 @@ Again, it will convert the data types, validate, document, etc.
 
 ## Multiple body params and query
 
-Of course, you can also declare additional query parameters whenever you need, additional to `any body parameters.
+Of course, you can also declare additional query parameters whenever you need, additional to any body parameters.
 
 As, by default, singular values are interpreted as query parameters, you don't have to explicitly add a `Query`, you can just do:
 
