@@ -11,7 +11,7 @@ For this reason it's common to provide them in environment variables that are re
 !!! tip
     If you already know what "environment variables" are and how to use them, feel free to skip to the next section below.
 
-An <a href="https://en.wikipedia.org/wiki/Environment_variable" class="external-link" target="_blank">environment variable</a> (also known as "env var") is a variable that lives outside the Python code, in the operating system, and could be read by your Python code (or by other programs as well).
+An <a href="https://en.wikipedia.org/wiki/Environment_variable" class="external-link" target="_blank">environment variable</a> (also known as "env var") is a variable that lives outside Python code, in the operating system, and could be read by your Python code (or by other programs as well).
 
 You can create and use environment variables in the shell, without needing Python:
 
