@@ -149,7 +149,7 @@ And still, you would probably not want the application to stay dead because ther
 
 ### Restart After Crash
 
-But in those cases with awful errors that crash the running **process**, you would want an external component that is in charge of **restarting** the process, at least a couple of times...
+But, in cases of a hard error, that crashes the running **process**, you would want an external component that is in charge of **restarting** the process, at least a couple of times...
 
 !!! tip
     ...Although if the whole application is just **crashing immediately** it probably doesn't make sense to keep restarting it forever. But in those cases, you will probably notice it during development, or at least right after deployment.
