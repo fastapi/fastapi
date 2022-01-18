@@ -155,7 +155,7 @@ Os parâmetros da função serão reconhecidos conforme abaixo:
 * Se o parâmetro é de um **tipo único** (como `int`, `float`, `str`, `bool`, etc) será interpretado como um parâmetro de **consulta**.
 * Se o parâmetro é declarado como um **modelo Pydantic**, será interpretado como o **corpo** da requisição.
 
-!!! Observação
+!!! note "Observação"
     O FastAPI saberá que o valor de `q` não é obrigatório por causa do valor padrão `= None`.
 
     O `Optional` em `Optional[str]` não é utilizado pelo FastAPI, mas permite ao seu editor de texto lhe dar um suporte melhor e detectar erros.
