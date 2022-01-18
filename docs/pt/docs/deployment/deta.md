@@ -4,7 +4,7 @@ Nessa seção você aprenderá sobre como realizar a implantação de uma aplica
 
 Isso tudo levará aproximadamente **10 minutes**.
 
-!!! info
+!!! info "Informação"
     <a href="https://www.deta.sh/?ref=fastapi" class="external-link" target="_blank">Deta</a> é uma  patrocinadora do **FastAPI**. 🎉
 
 ## Uma aplicação **FastAPI** simples
@@ -39,7 +39,7 @@ Agora, no mesmo diretório crie o arquivo `requirements.txt` com:
 fastapi
 ```
 
-!!! dica
+!!! tip "Dica"
     Você não precisa instalar Uvicorn para realizar a implantação na Deta, embora você provavelmente vai querer instalá-lo para testar seu aplicativo localmente.
 
 ### Estrutura de diretório
@@ -106,7 +106,7 @@ Available Commands:
 
 </div>
 
-!!! dica
+!!! tip "Dica"
     Se você tiver problemas ao instalar a CLI, verifique a <a href="https://docs.deta.sh/docs/micros/getting_started?ref=fastapi" class="external-link" target="_blank">documentação oficial Deta</a>.
 
 ## Logue com a CLI
@@ -170,7 +170,7 @@ Você verá uma mensagem JSON semelhante a:
 }
 ```
 
-!!! dica
+!!! tip "Dica"
     Sua implantação terá um URL `"endpoint"` diferente.
 
 ## Confira
@@ -250,7 +250,7 @@ Voltando aos conceitos que discutimos em [Deployments Concepts](./concepts.md){.
 * **Memory**: Limite predefinido pela Deta, você pode contatá-los para aumentá-lo.
 * **Previous steps before starting**: Não suportado diretamente, você pode fazê-lo funcionar com o sistema Cron ou scripts adicionais.
 
-!!! nota
+!!! note "Nota"
     O Deta foi projetado para facilitar (e gratuitamente) a implantação rápida de aplicativos simples.
 
     Ele pode simplificar vários casos de uso, mas, ao mesmo tempo, não suporta outros, como o uso de bancos de dados externos (além do próprio sistema de banco de dados NoSQL da Deta), máquinas virtuais personalizadas, etc.
