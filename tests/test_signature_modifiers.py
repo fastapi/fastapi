@@ -28,15 +28,15 @@ def endpoint_1(a, **kwargs):
 
 
 @app.get("/test2")
-@extra_parameters(b=(str, "bbb"))
-def endpoint_2(a, **kwargs):
-    return {"a": a, "b": kwargs["b"]}
+@extra_parameters(a=(str, "aaa"))
+def endpoint_2(**kwargs):
+    return {"a": kwargs["a"]}
 
 
 @app.get("/test_3")
-@extra_parameters(b=(Optional[str], None))
-def endpoint_3(a, **kwargs):
-    return {"a": a, "b": kwargs["b"]}
+@extra_parameters(a=(Optional[str], None))
+def endpoint_3(**kwargs):
+    return {"a": kwargs["a"]}
 
 
 @app.get("/test_4/{b}")
@@ -58,19 +58,20 @@ def endpoint_6(**kwargs):
 
 
 @app.get("/test_7")
-@extra_parameters(a=(int, 1))
-def endpoint_7(a):
-    return {"a": a}
+@extra_parameters(
+    a={"annotation": int, "default": 1},
+    b={"default": 1},
+    c={"annotation": int},
+)
+def endpoint_7(a, b: int, c=1):
+    return {"a": a, "b": b, "c": c}
+
+
+endpoint_8_kwargs = {"a": int, "b": (str, "b")}
 
 
 @app.get("/test_8")
-@extra_parameters(a={"annotation": int, "default": 1})
-def endpoint_8(a):
-    return {"a": a}
-
-
-@app.get("/test_9")
-def endpoint_9(kws: dict = Kwargs({"a": int, "b": (str, "b")})):
+def endpoint_8(kws: dict = Kwargs(endpoint_8_kwargs)):
     return kws
 
 
@@ -84,21 +85,26 @@ def test_extra_parameters():
 
 
 def test_extra_parameters_default_with_no_value_passed():
-    response = client.get("/test2", params={"a": "foo"})
+    response = client.get("/test2")
     data = response.json()
-    assert data == {"a": "foo", "b": "bbb"}
+    assert data == {"a": "aaa"}
 
 
 def test_extra_parameters_default_with_value_passed():
-    response = client.get("/test2", params={"a": "foo", "b": "bar"})
+    response = client.get(
+        "/test2",
+        params={
+            "a": "bbb",
+        },
+    )
     data = response.json()
-    assert data == {"a": "foo", "b": "bar"}
+    assert data == {"a": "bbb"}
 
 
 def test_extra_parameters_optional_with_no_value_passed():
-    response = client.get("/test_3", params={"a": "foo"})
+    response = client.get("/test_3")
     data = response.json()
-    assert data == {"a": "foo", "b": None}
+    assert data == {"a": None}
 
 
 def test_extra_parameters_with_path_param():
@@ -124,27 +130,48 @@ def test_extra_parameters_with_depends():
 
 
 def test_extra_parameters_merging():
-    response = client.get("/test_7")
+    response = client.get("/test_7", params={"c": 1})
     data = response.json()
-    assert data == {"a": 1}
-
-
-def test_extra_parameters_dict():
-    response = client.get("/test_8")
-    data = response.json()
-    assert data == {"a": 1}
-
-
-def test_extra_parameters_merging_conflict():
-    with pytest.raises(ValueError):
-
-        @app.get("/test_merge_conflict")
-        @extra_parameters(a=int)
-        def endpoint_merge_conflict(a: str):
-            return {"a": a}
+    assert data == {"a": 1, "b": 1, "c": 1}
 
 
 def test_kwargs():
-    response = client.get("/test_9", params={"a": "1"})
+    response = client.get("/test_8", params={"a": "1"})
     data = response.json()
     assert data == {"a": 1, "b": "b"}
+
+
+def test_extra_parameters_annotation_merging_conflict():
+    with pytest.raises(ValueError):
+
+        @app.get("/test_annotation_merge_conflict")
+        @extra_parameters(a=int)
+        def endpoint_merge_conflict(a: str):
+            pass
+
+
+def test_extra_parameters_default_mergeing_conflict():
+    with pytest.raises(ValueError):
+
+        @app.get("/test_default_merge_conflict")
+        @extra_parameters(a=(int, 1))
+        def endpoint_merge_conflict(a: int = 2):
+            pass
+
+
+def test_extra_parameters_improper_length_iterable():
+    with pytest.raises(ValueError):
+
+        @app.get("/test_extra_parameters_impropper_length_iterable")
+        @extra_parameters(a=[1, 2, 3])
+        def endpoint_improper_length_iterable(**kwargs):
+            pass
+
+
+def test_extra_parameters_forbidden_dict_keys():
+    with pytest.raises(ValueError):
+
+        @app.get("/test_extra_parameters_forbidden_dict_keys")
+        @extra_parameters(a={"not_allowed_key": None})
+        def endpoint_forbidden_dict_keys(**kwargs):
+            pass

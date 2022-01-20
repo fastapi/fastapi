@@ -1,4 +1,8 @@
-from typing import Any, Dict, Iterable, Mapping, Type, Union
+from typing import Any, Dict, Mapping, Tuple, Type, Union
 
-SingleParameterSpec = Union[Mapping[str, Any], Iterable[Union[str, Any]], Type[Any]]
+SingleParameterSpec = Union[
+    Mapping[str, Union[Type[Any], Any]],
+    Tuple[Type[Any], Any],
+    Type[Any],
+]
 ParameterSpec = Dict[str, SingleParameterSpec]

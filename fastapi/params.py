@@ -374,11 +374,6 @@ class Kwargs(Depends):
         self.dependency = dependency
         self.use_cache = use_cache
 
-    def __repr__(self) -> str:
-        attr = SignatureModifiers.of(self.dependency).override  # type: ignore
-        cache = "" if self.use_cache else ", use_cache=False"
-        return f"{self.__class__.__name__}({attr}{cache})"
-
 
 class Security(Depends):
     def __init__(
