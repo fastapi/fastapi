@@ -1,8 +1,9 @@
+from dataclasses import dataclass
+from datetime import date
 from typing import List, Optional
 
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from pydantic.dataclasses import dataclass
 
 app = FastAPI()
 
@@ -12,6 +13,11 @@ class Item:
     name: str
     price: Optional[float] = None
     owner_ids: Optional[List[int]] = None
+
+
+@dataclass
+class EncodingItem:
+    date: date
 
 
 @app.get("/items/valid", response_model=Item)
@@ -27,6 +33,11 @@ def get_object():
 @app.get("/items/coerce", response_model=Item)
 def get_coerce():
     return {"name": "coerce", "price": "1.0"}
+
+
+@app.get("/items/encoding", response_model=EncodingItem)
+def get_encoding():
+    return {"date": date(2022, 1, 20)}
 
 
 @app.get("/items/validlist", response_model=List[Item])
@@ -80,6 +91,12 @@ def test_coerce():
     response = client.get("/items/coerce")
     response.raise_for_status()
     assert response.json() == {"name": "coerce", "price": 1.0, "owner_ids": None}
+
+
+def test_encoding():
+    response = client.get("/items/encoding")
+    response.raise_for_status()
+    assert response.json() == {"date": "2022-01-20"}
 
 
 def test_validlist():
