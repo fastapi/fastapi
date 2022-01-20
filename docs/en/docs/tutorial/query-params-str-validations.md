@@ -4,11 +4,19 @@
 
 Let's take this application as example:
 
-```Python hl_lines="9"
-{!../../../docs_src/query_params_str_validations/tutorial001.py!}
-```
+=== "Python 3.6 and above"
 
-The query parameter `q` is of type `Optional[str]`, that means that it's of type `str` but could also be `None`, and indeed, the default value is `None`, so FastAPI will know it's not required.
+    ```Python hl_lines="9"
+    {!> ../../../docs_src/query_params_str_validations/tutorial001.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="7"
+    {!> ../../../docs_src/query_params_str_validations/tutorial001_py310.py!}
+    ```
+
+The query parameter `q` is of type `Optional[str]` (or `str | None` in Python 3.10), that means that it's of type `str` but could also be `None`, and indeed, the default value is `None`, so FastAPI will know it's not required.
 
 !!! note
     FastAPI will know that the value of `q` is not required because of the default value `= None`.
@@ -23,17 +31,33 @@ We are going to enforce that even though `q` is optional, whenever it is provide
 
 To achieve that, first import `Query` from `fastapi`:
 
-```Python hl_lines="3"
-{!../../../docs_src/query_params_str_validations/tutorial002.py!}
-```
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="3"
+    {!> ../../../docs_src/query_params_str_validations/tutorial002.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="1"
+    {!> ../../../docs_src/query_params_str_validations/tutorial002_py310.py!}
+    ```
 
 ## Use `Query` as the default value
 
 And now use it as the default value of your parameter, setting the parameter `max_length` to 50:
 
-```Python hl_lines="9"
-{!../../../docs_src/query_params_str_validations/tutorial002.py!}
-```
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="9"
+    {!> ../../../docs_src/query_params_str_validations/tutorial002.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="7"
+    {!> ../../../docs_src/query_params_str_validations/tutorial002_py310.py!}
+    ```
 
 As we have to replace the default value `None` with `Query(None)`, the first parameter to `Query` serves the same purpose of defining that default value.
 
@@ -49,10 +73,22 @@ q: Optional[str] = Query(None)
 q: Optional[str] = None
 ```
 
+And in Python 3.10 and above:
+
+```Python
+q: str | None = Query(None)
+```
+
+...makes the parameter optional, the same as:
+
+```Python
+q: str | None = None
+```
+
 But it declares it explicitly as being a query parameter.
 
 !!! info
-    Have in mind that FastAPI cares about the part:
+    Have in mind that the most important part to make a parameter optional is the part:
 
     ```Python
     = None
@@ -64,9 +100,9 @@ But it declares it explicitly as being a query parameter.
     = Query(None)
     ```
 
-    and will use that `None` to detect that the query parameter is not required.
+    as it will use that `None` as the default value, and that way make the parameter **not required**.
 
-    The `Optional` part is only to allow your editor to provide better support.
+    The `Optional` part allows your editor to provide better support, but it is not what tells FastAPI that this parameter is not required.
 
 Then, we can pass more parameters to `Query`. In this case, the `max_length` parameter that applies to strings:
 
@@ -80,17 +116,33 @@ This will validate the data, show a clear error when the data is not valid, and 
 
 You can also add a parameter `min_length`:
 
-```Python hl_lines="9"
-{!../../../docs_src/query_params_str_validations/tutorial003.py!}
-```
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="9"
+    {!> ../../../docs_src/query_params_str_validations/tutorial003.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="7"
+    {!> ../../../docs_src/query_params_str_validations/tutorial003_py310.py!}
+    ```
 
 ## Add regular expressions
 
 You can define a <abbr title="A regular expression, regex or regexp is a sequence of characters that define a search pattern for strings.">regular expression</abbr> that the parameter should match:
 
-```Python hl_lines="10"
-{!../../../docs_src/query_params_str_validations/tutorial004.py!}
-```
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="10"
+    {!> ../../../docs_src/query_params_str_validations/tutorial004.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="8"
+    {!> ../../../docs_src/query_params_str_validations/tutorial004_py310.py!}
+    ```
 
 This specific regular expression checks that the received parameter value:
 
@@ -152,9 +204,23 @@ When you define a query parameter explicitly with `Query` you can also declare i
 
 For example, to declare a query parameter `q` that can appear multiple times in the URL, you can write:
 
-```Python hl_lines="9"
-{!../../../docs_src/query_params_str_validations/tutorial011.py!}
-```
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="9"
+    {!> ../../../docs_src/query_params_str_validations/tutorial011.py!}
+    ```
+
+=== "Python 3.9 and above"
+
+    ```Python hl_lines="9"
+    {!> ../../../docs_src/query_params_str_validations/tutorial011_py39.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="7"
+    {!> ../../../docs_src/query_params_str_validations/tutorial011_py310.py!}
+    ```
 
 Then, with a URL like:
 
@@ -186,9 +252,17 @@ The interactive API docs will update accordingly, to allow multiple values:
 
 And you can also define a default `list` of values if none are provided:
 
-```Python hl_lines="9"
-{!../../../docs_src/query_params_str_validations/tutorial012.py!}
-```
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="9"
+    {!> ../../../docs_src/query_params_str_validations/tutorial012.py!}
+    ```
+
+=== "Python 3.9 and above"
+
+    ```Python hl_lines="7"
+    {!> ../../../docs_src/query_params_str_validations/tutorial012_py39.py!}
+    ```
 
 If you go to:
 
@@ -209,7 +283,7 @@ the default of `q` will be: `["foo", "bar"]` and your response will be:
 
 #### Using `list`
 
-You can also use `list` directly instead of `List[str]`:
+You can also use `list` directly instead of `List[str]` (or `list[str]` in Python 3.9+):
 
 ```Python hl_lines="7"
 {!../../../docs_src/query_params_str_validations/tutorial013.py!}
@@ -233,15 +307,31 @@ That information will be included in the generated OpenAPI and used by the docum
 
 You can add a `title`:
 
-```Python hl_lines="10"
-{!../../../docs_src/query_params_str_validations/tutorial007.py!}
-```
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="10"
+    {!> ../../../docs_src/query_params_str_validations/tutorial007.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="7"
+    {!> ../../../docs_src/query_params_str_validations/tutorial007_py310.py!}
+    ```
 
 And a `description`:
 
-```Python hl_lines="13"
-{!../../../docs_src/query_params_str_validations/tutorial008.py!}
-```
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="13"
+    {!> ../../../docs_src/query_params_str_validations/tutorial008.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="12"
+    {!> ../../../docs_src/query_params_str_validations/tutorial008_py310.py!}
+    ```
 
 ## Alias parameters
 
@@ -261,9 +351,17 @@ But you still need it to be exactly `item-query`...
 
 Then you can declare an `alias`, and that alias is what will be used to find the parameter value:
 
-```Python hl_lines="9"
-{!../../../docs_src/query_params_str_validations/tutorial009.py!}
-```
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="9"
+    {!> ../../../docs_src/query_params_str_validations/tutorial009.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="7"
+    {!> ../../../docs_src/query_params_str_validations/tutorial009_py310.py!}
+    ```
 
 ## Deprecating parameters
 
@@ -273,9 +371,17 @@ You have to leave it there a while because there are clients using it, but you w
 
 Then pass the parameter `deprecated=True` to `Query`:
 
-```Python hl_lines="18"
-{!../../../docs_src/query_params_str_validations/tutorial010.py!}
-```
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="18"
+    {!> ../../../docs_src/query_params_str_validations/tutorial010.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="17"
+    {!> ../../../docs_src/query_params_str_validations/tutorial010_py310.py!}
+    ```
 
 The docs will show it like this:
 
