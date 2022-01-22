@@ -191,7 +191,7 @@ Ele mostrará sua documentação como:
 
 <img src="/img/deployment/deta/image01.png">
 
-## Permitindo acesso público
+## Permitir acesso público
 
 Por padrão, a Deta lidará com a autenticação usando cookies para sua conta.
 
