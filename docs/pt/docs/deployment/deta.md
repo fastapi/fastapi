@@ -248,7 +248,7 @@ Voltando aos conceitos que discutimos em [Deployments Concepts](./concepts.md){.
 * **Reinicialização**: Realizado pela Deta, como parte de seu serviço.
 * **Replication**: Realizado pela Deta, como parte de seu serviço.
 * **Memory**: Limite predefinido pela Deta, você pode contatá-los para aumentá-lo.
-* **Previous steps before starting**: Não suportado diretamente, você pode fazê-lo funcionar com o sistema Cron ou scripts adicionais.
+* **Etapas anteriores a inicialização**: Não suportado diretamente, você pode fazê-lo funcionar com o sistema Cron ou scripts adicionais.
 
 !!! note "Nota"
     O Deta foi projetado para facilitar (e gratuitamente) a implantação rápida de aplicativos simples.
