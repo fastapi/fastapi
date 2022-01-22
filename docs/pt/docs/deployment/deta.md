@@ -175,7 +175,7 @@ Você verá uma mensagem JSON semelhante a:
 
 ## Confira
 
-Agora, abra seu navegador no URL do `endpoint`. No exemplo acima foi `https://qltnci.deta.dev`, mas o seu será diferente.
+Agora, abra seu navegador na URL do `endpoint`. No exemplo acima foi `https://qltnci.deta.dev`, mas o seu será diferente.
 
 Você verá a resposta JSON do seu aplicativo FastAPI:
 
