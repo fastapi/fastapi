@@ -111,7 +111,7 @@ Available Commands:
 
 ## Login pela CLI
 
-Agora faça login na Deta da CLI com:
+Agora faça login na Deta pela CLI com:
 
 <div class="termy">
 
