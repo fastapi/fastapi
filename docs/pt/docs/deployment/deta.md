@@ -241,7 +241,7 @@ Você também pode ler mais na <a href="https://docs.deta.sh?ref=fastapi" class=
 
 ## Conceitos de implantação
 
-Voltando aos conceitos que discutimos em [Deployments Concepts](./concepts.md){.internal-link target=_blank}, veja como cada um deles seria tratado com o Deta:
+Voltando aos conceitos que discutimos em [Deployments Concepts](./concepts.md){.internal-link target=_blank}, veja como cada um deles seria tratado com a Deta:
 
 * **HTTPS**: Realizado pela Deta, eles fornecerão um subdomínio e lidarão com HTTPS automaticamente.
 * **Executando na inicialização**: Realizado pela Deta, como parte de seu serviço.
