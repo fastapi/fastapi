@@ -233,7 +233,7 @@ Você também pode editá-los e reproduzi-los novamente.
 
 <img src="/img/deployment/deta/image02.png">
 
-## Aprenda mais
+## Saiba mais
 
 Em algum momento, você provavelmente desejará armazenar alguns dados para seu aplicativo de uma forma que persista ao longo do tempo. Para isso você pode usar <a href="https://docs.deta.sh/docs/base/py_tutorial?ref=fastapi" class="external-link" target="_blank">Deta Base</a>, que também tem um generoso **nível gratuito**.
 
