@@ -60,7 +60,7 @@ Você nem precisa de um cartão de crédito.
 
 ## Instale a CLI
 
-Depois de ter sua conta criada, instale Deta <abbr title="Command Line Interface application">CLI</abbr>:
+Depois de ter sua conta criada, instale Deta <abbr title="Interface de Linha de Comando">CLI</abbr>:
 
 === "Linux, macOS"
 
