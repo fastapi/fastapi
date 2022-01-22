@@ -247,7 +247,7 @@ Voltando aos conceitos que discutimos em [Deployments Concepts](./concepts.md){.
 * **Executando na inicialização**: Realizado pela Deta, como parte de seu serviço.
 * **Reinicialização**: Realizado pela Deta, como parte de seu serviço.
 * **Replication**: Realizado pela Deta, como parte de seu serviço.
-* **Memory**: Limite predefinido pela Deta, você pode contatá-los para aumentá-lo.
+* **Memória**: Limite predefinido pela Deta, você pode contatá-los para aumentá-lo.
 * **Etapas anteriores a inicialização**: Não suportado diretamente, você pode fazê-lo funcionar com o sistema Cron ou scripts adicionais.
 
 !!! note "Nota"
