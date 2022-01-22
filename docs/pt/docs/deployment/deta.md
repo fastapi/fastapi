@@ -244,7 +244,7 @@ Você também pode ler mais na <a href="https://docs.deta.sh?ref=fastapi" class=
 Voltando aos conceitos que discutimos em [Deployments Concepts](./concepts.md){.internal-link target=_blank}, veja como cada um deles seria tratado com o Deta:
 
 * **HTTPS**: Realizado pela Deta, eles fornecerão um subdomínio e lidarão com HTTPS automaticamente.
-* **Running on startup**: Realizado pela Deta, como parte de seu serviço.
+* **Executando na inicialização**: Realizado pela Deta, como parte de seu serviço.
 * **Restarts**: Realizado pela Deta, como parte de seu serviço.
 * **Replication**: Realizado pela Deta, como parte de seu serviço.
 * **Memory**: Limite predefinido pela Deta, você pode contatá-los para aumentá-lo.
