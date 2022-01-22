@@ -246,7 +246,7 @@ Voltando aos conceitos que discutimos em [Deployments Concepts](./concepts.md){.
 * **HTTPS**: Realizado pela Deta, eles fornecerão um subdomínio e lidarão com HTTPS automaticamente.
 * **Executando na inicialização**: Realizado pela Deta, como parte de seu serviço.
 * **Reinicialização**: Realizado pela Deta, como parte de seu serviço.
-* **Replication**: Realizado pela Deta, como parte de seu serviço.
+* **Replicação**: Realizado pela Deta, como parte de seu serviço.
 * **Memória**: Limite predefinido pela Deta, você pode contatá-los para aumentá-lo.
 * **Etapas anteriores a inicialização**: Não suportado diretamente, você pode fazê-lo funcionar com o sistema Cron ou scripts adicionais.
 
