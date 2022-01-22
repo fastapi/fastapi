@@ -40,7 +40,7 @@ fastapi
 ```
 
 !!! tip "Dica"
-    Você não precisa instalar Uvicorn para realizar a implantação na Deta, embora você provavelmente vai querer instalá-lo para testar seu aplicativo localmente.
+    Você não precisa instalar Uvicorn para realizar a implantação na Deta, embora provavelmente queira instalá-lo para testar seu aplicativo localmente.
 
 ### Estrutura de diretório
 
