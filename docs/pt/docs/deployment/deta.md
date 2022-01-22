@@ -109,7 +109,7 @@ Available Commands:
 !!! tip "Dica"
     Se você tiver problemas ao instalar a CLI, verifique a <a href="https://docs.deta.sh/docs/micros/getting_started?ref=fastapi" class="external-link" target="_blank">documentação oficial da Deta</a>.
 
-## Logue com a CLI
+## Login pela CLI
 
 Agora faça login na Deta da CLI com:
 
