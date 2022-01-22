@@ -217,7 +217,7 @@ Além disso, observe que a Deta lida corretamente com HTTPS para você, para que
 
 ## Verifique o Visor
 
-Da UI da sua documentação (você estará em um URL como `https://qltnci.deta.dev/docs`) envie um request para *operação de rota* `/items/{item_id}`.
+Na UI da sua documentação (você estará em um URL como `https://qltnci.deta.dev/docs`) envie um request para *operação de rota* `/items/{item_id}`.
 
 Por exemplo com ID `5`.
 
