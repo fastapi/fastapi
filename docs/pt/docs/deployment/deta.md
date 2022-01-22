@@ -213,7 +213,7 @@ Agora você pode compartilhar essa URL com qualquer pessoa e elas conseguirão a
 
 Parabéns! Você realizou a implantação do seu app FastAPI na Deta! 🎉 🍰
 
-Além disso, observe que o Deta lida corretamente com HTTPS para você, para que você não precise cuidar disso e tenha certeza de que seus clientes terão uma conexão criptografada segura. ✅ 🔒
+Além disso, observe que a Deta lida corretamente com HTTPS para você, para que você não precise cuidar disso e tenha a certeza de que seus clientes terão uma conexão criptografada segura. ✅ 🔒
 
 ## Verifique o Visor
 
