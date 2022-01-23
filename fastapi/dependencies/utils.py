@@ -390,6 +390,8 @@ def get_param_field(
     field.required = required
     if not had_schema and not is_scalar_field(field=field):
         field.field_info = params.Body(field_info.default)
+    if not had_schema and lenient_issubclass(field.type_, UploadFile):
+        field.field_info = params.File(field_info.default)
 
     return field
 
