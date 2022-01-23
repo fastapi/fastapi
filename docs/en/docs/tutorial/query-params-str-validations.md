@@ -391,9 +391,17 @@ The docs will show it like this:
 
 To exclude a query parameter from the generated OpenAPI schema (and thus, from the automatic documentation systems), set the parameter `include_in_schema` of `Query` to `False`:
 
-```Python hl_lines="7"
-{!../../../docs_src/query_params_str_validations/tutorial014.py!}
-```
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="10"
+    {!> ../../../docs_src/query_params_str_validations/tutorial014.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="7"
+    {!> ../../../docs_src/query_params_str_validations/tutorial014_py310.py!}
+    ```
 
 ## Recap
 
