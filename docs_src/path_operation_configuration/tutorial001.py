@@ -11,7 +11,7 @@ class Item(BaseModel):
     description: Optional[str] = None
     price: float
     tax: Optional[float] = None
-    tags: Set[str] = []
+    tags: Set[str] = set()
 
 
 @app.post("/items/", response_model=Item, status_code=status.HTTP_201_CREATED)

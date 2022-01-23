@@ -235,7 +235,7 @@ And then we can require it from the *path operation function* as a dependency an
 
 Then it would be very easy to provide a different settings object during testing by creating a dependency override for `get_settings`:
 
-```Python hl_lines="8-9  12  21"
+```Python hl_lines="9-10  13  21"
 {!../../../docs_src/settings/app02/test_main.py!}
 ```
 
@@ -288,7 +288,7 @@ Reading a file from disk is normally a costly (slow) operation, so you probably 
 But every time we do:
 
 ```Python
-config.Settings()
+Settings()
 ```
 
 a new `Settings` object would be created, and at creation it would read the `.env` file again.
@@ -297,7 +297,7 @@ If the dependency function was just like:
 
 ```Python
 def get_settings():
-    return config.Settings()
+    return Settings()
 ```
 
 we would create that object for each request, and we would be reading the `.env` file for each request. ⚠️

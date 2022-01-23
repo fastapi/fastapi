@@ -119,20 +119,21 @@ It's possible to upload several files at the same time.
 
 They would be associated to the same "form field" sent using "form data".
 
-To use that, declare a `List` of `bytes` or `UploadFile`:
+To use that, declare a list of `bytes` or `UploadFile`:
 
-```Python hl_lines="10  15"
-{!../../../docs_src/request_files/tutorial002.py!}
-```
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="10  15"
+    {!> ../../../docs_src/request_files/tutorial002.py!}
+    ```
+
+=== "Python 3.9 and above"
+
+    ```Python hl_lines="8  13"
+    {!> ../../../docs_src/request_files/tutorial002_py39.py!}
+    ```
 
 You will receive, as declared, a `list` of `bytes` or `UploadFile`s.
-
-!!! note
-    Notice that, as of 2019-04-14, Swagger UI doesn't support multiple file uploads in the same form field. For more information, check <a href="https://github.com/swagger-api/swagger-ui/issues/4276" class="external-link" target="_blank">#4276</a> and <a href="https://github.com/swagger-api/swagger-ui/issues/3641" class="external-link" target="_blank">#3641</a>.
-
-    Nevertheless, **FastAPI** is already compatible with it, using the standard OpenAPI.
-    
-    So, whenever Swagger UI supports multi-file uploads, or any other tools that supports OpenAPI, they will be compatible with **FastAPI**.
 
 !!! note "Technical Details"
     You could also use `from starlette.responses import HTMLResponse`.

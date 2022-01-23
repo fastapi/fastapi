@@ -1,4 +1,5 @@
 import http.client
+import inspect
 from enum import Enum
 from typing import Any, Dict, List, Optional, Sequence, Set, Tuple, Type, Union, cast
 
@@ -220,7 +221,19 @@ def get_openapi_path(
                         )
                         callbacks[callback.name] = {callback.path: cb_path}
                 operation["callbacks"] = callbacks
-            status_code = str(route.status_code)
+            if route.status_code is not None:
+                status_code = str(route.status_code)
+            else:
+                # It would probably make more sense for all response classes to have an
+                # explicit default status_code, and to extract it from them, instead of
+                # doing this inspection tricks, that would probably be in the future
+                # TODO: probably make status_code a default class attribute for all
+                # responses in Starlette
+                response_signature = inspect.signature(current_response_class.__init__)
+                status_code_param = response_signature.parameters.get("status_code")
+                if status_code_param is not None:
+                    if isinstance(status_code_param.default, int):
+                        status_code = str(status_code_param.default)
             operation.setdefault("responses", {}).setdefault(status_code, {})[
                 "description"
             ] = route.response_description
@@ -306,6 +319,8 @@ def get_openapi_path(
                             "HTTPValidationError": validation_error_response_definition,
                         }
                     )
+            if route.openapi_extra:
+                deep_dict_update(operation, route.openapi_extra)
             path[method.lower()] = operation
     return path, security_schemes, definitions
 
@@ -351,10 +366,19 @@ def get_openapi(
     routes: Sequence[BaseRoute],
     tags: Optional[List[Dict[str, Any]]] = None,
     servers: Optional[List[Dict[str, Union[str, Any]]]] = None,
+    terms_of_service: Optional[str] = None,
+    contact: Optional[Dict[str, Union[str, Any]]] = None,
+    license_info: Optional[Dict[str, Union[str, Any]]] = None,
 ) -> Dict[str, Any]:
-    info = {"title": title, "version": version}
+    info: Dict[str, Any] = {"title": title, "version": version}
     if description:
         info["description"] = description
+    if terms_of_service:
+        info["termsOfService"] = terms_of_service
+    if contact:
+        info["contact"] = contact
+    if license_info:
+        info["license"] = license_info
     output: Dict[str, Any] = {"openapi": openapi_version, "info": info}
     if servers:
         output["servers"] = servers
