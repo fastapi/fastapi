@@ -41,9 +41,9 @@ Have in mind that this means that the whole contents will be stored in memory. T
 
 But there are several cases in which you might benefit from using `UploadFile`.
 
-## `File` Parameters with `UploadFile`
+## File Parameters with `UploadFile`
 
-Define a `File` parameter with a type of `UploadFile`:
+Define a file parameter with a type of `UploadFile`:
 
 ```Python hl_lines="12"
 {!../../../docs_src/request_files/tutorial001.py!}
@@ -51,7 +51,7 @@ Define a `File` parameter with a type of `UploadFile`:
 
 Using `UploadFile` has several advantages over `bytes`:
 
-* You don't have to use `File()` in the default value.
+* You don't have to use `File()` in the default value of the parameter.
 * It uses a "spooled" file:
     * A file stored in memory up to a maximum size limit, and after passing this limit it will be stored in disk.
 * This means that it will work well for large files like images, videos, large binaries, etc. without consuming all the memory.
@@ -116,7 +116,7 @@ The way HTML forms (`<form></form>`) sends the data to the server normally uses 
 
 ## Optional File Upload
 
-You can make a file optional by using standard type annotations:
+You can make a file optional by using standard type annotations and setting a default value of `None`:
 
 === "Python 3.6 and above"
 
@@ -132,7 +132,7 @@ You can make a file optional by using standard type annotations:
 
 ## `UploadFile` with Additional Metadata
 
-You can also use `File()` with `UploadFile` to set additional parameters in `File()`, for example additional metadata:
+You can also use `File()` with `UploadFile`, for example, to set additional metadata:
 
 ```Python hl_lines="13"
 {!../../../docs_src/request_files/tutorial001_03.py!}
@@ -183,4 +183,4 @@ And the same way as before, you can use `File()` to set additional parameters, e
 
 ## Recap
 
-Use `File` to declare files to be uploaded as input parameters (as form data).
+Use `File`, `bytes`, and `UploadFile` to declare files to be uploaded in the request, sent as form data.
