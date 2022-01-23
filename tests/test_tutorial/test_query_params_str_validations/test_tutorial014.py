@@ -1,4 +1,3 @@
-import pytest
 from fastapi.testclient import TestClient
 
 from docs_src.query_params_str_validations.tutorial014 import app
@@ -65,23 +64,19 @@ openapi_schema = {
 }
 
 
-@pytest.mark.parametrize(
-    "path,expected_status,expected_response",
-    [
-        ("/openapi.json", 200, openapi_schema),
-        (
-            "/items?hidden_query=hidden_query",
-            200,
-            {"hidden_query": "hidden_query"},
-        ),
-        (
-            "/items",
-            200,
-            {"hidden_query": "Not found"},
-        ),
-    ],
-)
-def test(path, expected_status, expected_response):
-    response = client.get(path)
-    assert response.status_code == expected_status
-    assert response.json() == expected_response
+def test_openapi_schema():
+    response = client.get("/openapi.json")
+    assert response.status_code == 200, response.text
+    assert response.json() == openapi_schema
+
+
+def test_hidden_query():
+    response = client.get("/items?hidden_query=somevalue")
+    assert response.status_code == 200, response.text
+    assert response.json() == {"hidden_query": "somevalue"}
+
+
+def test_no_hidden_query():
+    response = client.get("/items")
+    assert response.status_code == 200, response.text
+    assert response.json() == {"hidden_query": "Not found"}
