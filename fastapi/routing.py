@@ -35,6 +35,7 @@ from fastapi.utils import (
     create_response_field,
     generate_operation_id_for_path,
     get_value_or_default,
+    return_type,
 )
 from pydantic import BaseModel
 from pydantic.error_wrappers import ErrorWrapper, ValidationError
@@ -513,6 +514,7 @@ class APIRouter(routing.Router):
         current_response_class = get_value_or_default(
             response_class, self.default_response_class
         )
+        current_response_model = response_model or return_type(endpoint)
         current_tags = self.tags.copy()
         if tags:
             current_tags.extend(tags)
@@ -525,7 +527,7 @@ class APIRouter(routing.Router):
         route = route_class(
             self.prefix + path,
             endpoint=endpoint,
-            response_model=response_model,
+            response_model=current_response_model,
             status_code=status_code,
             tags=current_tags,
             dependencies=current_dependencies,

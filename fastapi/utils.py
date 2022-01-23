@@ -2,7 +2,7 @@ import functools
 import re
 from dataclasses import is_dataclass
 from enum import Enum
-from typing import Any, Dict, Optional, Set, Type, Union, cast
+from typing import Any, Callable, Dict, Optional, Set, Type, Union, cast
 
 import fastapi
 from fastapi.datastructures import DefaultPlaceholder, DefaultType
@@ -154,3 +154,15 @@ def get_value_or_default(
         if not isinstance(item, DefaultPlaceholder):
             return item
     return first_item
+
+
+def return_type(func: Callable[..., Any]) -> Optional[Any]:
+    """
+    Extract return type of given function.
+    partial functions are unwrapped first.
+    """
+    if isinstance(func, functools.partial):
+        func = func.func
+    return (
+        func.__annotations__.get("return") if hasattr(func, "__annotations__") else None
+    )
