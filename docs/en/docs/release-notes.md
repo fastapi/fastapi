@@ -2,6 +2,7 @@
 
 ## Latest Changes
 
+* 🔧 Add sponsor Dropbase. PR [#4465](https://github.com/tiangolo/fastapi/pull/4465) by [@tiangolo](https://github.com/tiangolo).
 
 ## 0.72.0
 
