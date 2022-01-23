@@ -91,24 +91,25 @@ def get_openapi_operation_parameters(
     for param in all_route_params:
         field_info = param.field_info
         field_info = cast(Param, field_info)
-        if field_info.include_in_schema:
-            parameter = {
-                "name": param.alias,
-                "in": field_info.in_.value,
-                "required": param.required,
-                "schema": field_schema(
-                    param, model_name_map=model_name_map, ref_prefix=REF_PREFIX
-                )[0],
-            }
-            if field_info.description:
-                parameter["description"] = field_info.description
-            if field_info.examples:
-                parameter["examples"] = jsonable_encoder(field_info.examples)
-            elif field_info.example != Undefined:
-                parameter["example"] = jsonable_encoder(field_info.example)
-            if field_info.deprecated:
-                parameter["deprecated"] = field_info.deprecated
-            parameters.append(parameter)
+        if not field_info.include_in_schema:
+            continue
+        parameter = {
+            "name": param.alias,
+            "in": field_info.in_.value,
+            "required": param.required,
+            "schema": field_schema(
+                param, model_name_map=model_name_map, ref_prefix=REF_PREFIX
+            )[0],
+        }
+        if field_info.description:
+            parameter["description"] = field_info.description
+        if field_info.examples:
+            parameter["examples"] = jsonable_encoder(field_info.examples)
+        elif field_info.example != Undefined:
+            parameter["example"] = jsonable_encoder(field_info.example)
+        if field_info.deprecated:
+            parameter["deprecated"] = field_info.deprecated
+        parameters.append(parameter)
     return parameters
 
 
