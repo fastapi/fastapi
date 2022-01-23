@@ -9,17 +9,18 @@ theme:
     primary: teal
     accent: amber
     toggle:
-      icon: material/lightbulb-outline
+      icon: material/lightbulb
       name: Switch to light mode
   - scheme: slate
     primary: teal
     accent: amber
     toggle:
-      icon: material/lightbulb
+      icon: material/lightbulb-outline
       name: Switch to dark mode
   features:
   - search.suggest
   - search.highlight
+  - content.tabs.link
   icon:
     repo: fontawesome/brands/github-alt
   logo: img/icon-white.svg
@@ -28,9 +29,6 @@ theme:
 repo_name: tiangolo/fastapi
 repo_url: https://github.com/tiangolo/fastapi
 edit_uri: ''
-google_analytics:
-- UA-133183413-1
-- auto
 plugins:
 - search
 - markdownextradata:
@@ -39,11 +37,15 @@ nav:
 - FastAPI: index.md
 - Languages:
   - en: /
+  - az: /az/
+  - de: /de/
   - es: /es/
   - fr: /fr/
+  - id: /id/
   - it: /it/
   - ja: /ja/
   - ko: /ko/
+  - pl: /pl/
   - pt: /pt/
   - ru: /ru/
   - sq: /sq/
@@ -116,6 +118,7 @@ nav:
     - advanced/security/oauth2-scopes.md
     - advanced/security/http-basic-auth.md
   - advanced/using-request-directly.md
+  - advanced/dataclasses.md
   - advanced/middleware.md
   - advanced/sql-databases-peewee.md
   - advanced/async-sql-databases.md
@@ -142,9 +145,11 @@ nav:
   - deployment/index.md
   - deployment/versions.md
   - deployment/https.md
-  - deployment/deta.md
-  - deployment/docker.md
   - deployment/manually.md
+  - deployment/concepts.md
+  - deployment/deta.md
+  - deployment/server-workers.md
+  - deployment/docker.md
 - project-generation.md
 - alternatives.md
 - history-design-future.md
@@ -158,7 +163,7 @@ markdown_extensions:
     permalink: true
 - markdown.extensions.codehilite:
     guess_lang: false
-- markdown_include.include:
+- mdx_include:
     base_path: docs
 - admonition
 - codehilite
@@ -167,14 +172,20 @@ markdown_extensions:
     custom_fences:
     - name: mermaid
       class: mermaid
-      format: !!python/name:pymdownx.superfences.fence_div_format ''
-- pymdownx.tabbed
+      format: !!python/name:pymdownx.superfences.fence_code_format ''
+- pymdownx.tabbed:
+    alternate_style: true
 extra:
+  analytics:
+    provider: google
+    property: UA-133183413-1
   social:
   - icon: fontawesome/brands/github-alt
-    link: https://github.com/tiangolo/typer
+    link: https://github.com/tiangolo/fastapi
+  - icon: fontawesome/brands/discord
+    link: https://discord.gg/VQjSZaeJmf
   - icon: fontawesome/brands/twitter
-    link: https://twitter.com/tiangolo
+    link: https://twitter.com/fastapi
   - icon: fontawesome/brands/linkedin
     link: https://www.linkedin.com/in/tiangolo
   - icon: fontawesome/brands/dev
@@ -186,16 +197,24 @@ extra:
   alternate:
   - link: /
     name: en - English
+  - link: /az/
+    name: az
+  - link: /de/
+    name: de
   - link: /es/
     name: es - español
   - link: /fr/
     name: fr - français
+  - link: /id/
+    name: id
   - link: /it/
     name: it - italiano
   - link: /ja/
     name: ja - 日本語
   - link: /ko/
     name: ko - 한국어
+  - link: /pl/
+    name: pl
   - link: /pt/
     name: pt - português
   - link: /ru/
@@ -212,6 +231,5 @@ extra_css:
 - css/termynal.css
 - css/custom.css
 extra_javascript:
-- https://unpkg.com/mermaid@8.4.6/dist/mermaid.min.js
 - js/termynal.js
 - js/custom.js
