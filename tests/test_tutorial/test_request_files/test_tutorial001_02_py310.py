@@ -5,7 +5,6 @@ from fastapi.testclient import TestClient
 
 from ...utils import needs_py310
 
-
 openapi_schema = {
     "openapi": "3.0.2",
     "info": {"title": "FastAPI", "version": "0.1.0"},

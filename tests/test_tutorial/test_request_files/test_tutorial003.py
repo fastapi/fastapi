@@ -149,7 +149,6 @@ def test_openapi_schema():
     assert response.json() == openapi_schema
 
 
-
 def test_post_files(tmp_path):
     path = tmp_path / "test.txt"
     path.write_bytes(b"<file content>")
