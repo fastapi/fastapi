@@ -162,7 +162,7 @@ def test_custom_encoders():
 
 
 def test_custom_enum_encoders():
-    def custom_enum_encoder(v):
+    def custom_enum_encoder(v: Enum):
         return v.value.lower()
 
     class MyEnum(Enum):
