@@ -21,9 +21,9 @@ Por exemplo para declarar um valor de metadado `title` para o parâmetro de rota
 ```
 
 !!! nota
-    Um parâmetro de rota é sempre obrigatório como se fosse parte da rota.
+    Um parâmetro de rota é sempre obrigatório, como se fizesse parte da rota.
     
-    Logo, você deve declará-lo com `...` para marcá-lo como obrigatório.
+    Então, você deve declará-lo com `...` para marcá-lo como obrigatório.
 
     Mesmo que você declare-o como `None` ou defina um valor padrão, isso não teria efeito algum, o parâmetro ainda seria obrigatório.
 
@@ -35,7 +35,7 @@ E você não precisa declarar mais nada em relação a este parâmetro, então v
 
 Mas você ainda precisa usar `Path` para o parâmetro de rota `item_id`.
 
-O Python vai acusar se você colocar um elemento com um valor padrão definido antes de outro que não tenha um valor padrão.
+O Python irá acusar se você colocar um elemento com um valor padrão definido antes de outro que não tenha um valor padrão.
 
 Mas você pode reordená-los, colocando primeiro o elemento sem o valor padrão (o parâmetro de consulta `q`).
 
@@ -105,7 +105,7 @@ E você também pode declarar validações numéricas:
 * `lt`: menor que (`l`ess `t`han)
 * `le`: menor que ou igual (`l`ess than or `e`qual)
 
-!!! info
+!!! info "Informação"
     `Query`, `Path`, e outras que você verá a frente são subclasses de uma classe `Param` comum (que você não precisa usar).
 
     E todas elas compartilham todos esses mesmos parâmetros de validação adicional e metadados que você viu.
@@ -115,7 +115,7 @@ E você também pode declarar validações numéricas:
 
     Que quando chamadas, retornam instâncias de classes de mesmo nome.
 
-    Então, você importa `Query`,que é uma função. E quando você a chama, ela retorna uma instância de uma classe também chamada `Query`.
+    Então, você importa `Query`, que é uma função. E quando você a chama, ela retorna uma instância de uma classe também chamada `Query`.
 
     Estas funções são assim (ao invés de apenas usar as classes diretamente) para que seu editor não acuse erros sobre seus tipos.
 
