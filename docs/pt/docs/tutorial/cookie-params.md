@@ -25,8 +25,8 @@ O primeiro valor é o valor padrão, você pode passar todas as validações adi
 
     Mas lembre-se que quando você importa `Query`, `Path`, `Cookie` e outras de `fastapi`, elas são na verdade funções que retornam classes especiais.
 
-!!! info
-    Para declarar cookies, você precisa usar `Cookie`, porque senão os parâmetros poderiam ser interpretados como parâmetros de consulta.
+!!! info "Informação"
+    Para declarar cookies, você precisa usar `Cookie`, caso contrário, os parâmetros seriam interpretados como parâmetros de consulta.
 
 ## Recapitulando
 
