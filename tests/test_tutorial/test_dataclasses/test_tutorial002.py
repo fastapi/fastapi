@@ -1,3 +1,5 @@
+from copy import deepcopy
+
 from fastapi.testclient import TestClient
 
 from docs_src.dataclasses.tutorial002 import app
@@ -29,7 +31,7 @@ openapi_schema = {
         "schemas": {
             "Item": {
                 "title": "Item",
-                "required": ["name", "price", "tags"],
+                "required": ["name", "price"],
                 "type": "object",
                 "properties": {
                     "name": {"title": "Name", "type": "string"},
@@ -51,7 +53,18 @@ openapi_schema = {
 def test_openapi_schema():
     response = client.get("/openapi.json")
     assert response.status_code == 200
-    assert response.json() == openapi_schema
+    # TODO: remove this once Pydantic 1.9 is released
+    # Ref: https://github.com/samuelcolvin/pydantic/pull/2557
+    data = response.json()
+    alternative_data1 = deepcopy(data)
+    alternative_data2 = deepcopy(data)
+    alternative_data1["components"]["schemas"]["Item"]["required"] = ["name", "price"]
+    alternative_data2["components"]["schemas"]["Item"]["required"] = [
+        "name",
+        "price",
+        "tags",
+    ]
+    assert alternative_data1 == openapi_schema or alternative_data2 == openapi_schema
 
 
 def test_get_item():
