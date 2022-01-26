@@ -2,7 +2,7 @@
 
 Nessa seção você aprenderá sobre como realizar a implantação de uma aplicação **FastAPI** na <a href="https://www.deta.sh/?ref=fastapi" class="external-link" target="_blank">Deta</a> utilizando o plano gratuito. 🎁
 
-Isso tudo levará aproximadamente **10 minutes**.
+Isso tudo levará aproximadamente **10 minutos**.
 
 !!! info "Informação"
     <a href="https://www.deta.sh/?ref=fastapi" class="external-link" target="_blank">Deta</a> é uma  patrocinadora do **FastAPI**. 🎉
