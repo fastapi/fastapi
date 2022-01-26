@@ -465,7 +465,7 @@ async def solve_dependencies(
     if response is None:
         response = Response()
         del response.headers["content-length"]
-        response.status_code = None
+        response.status_code = None  # type: ignore
     dependency_cache = dependency_cache or {}
     sub_dependant: Dependant
     for sub_dependant in dependant.dependencies:
