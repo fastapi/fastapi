@@ -1,5 +1,5 @@
 import sys
-from typing import AsyncGenerator, ContextManager, TypeVar
+from typing import AsyncGenerator, ContextManager, Optional, TypeVar
 
 from starlette.concurrency import iterate_in_threadpool as iterate_in_threadpool  # noqa
 from starlette.concurrency import run_in_threadpool as run_in_threadpool  # noqa
@@ -25,7 +25,7 @@ async def contextmanager_in_threadpool(
     try:
         yield await run_in_threadpool(cm.__enter__)
     except Exception as e:
-        ok = await run_in_threadpool(cm.__exit__, type(e), e, None)
+        ok: bool = await run_in_threadpool(cm.__exit__, type(e), e, None)
         if not ok:
             raise e
     else:
