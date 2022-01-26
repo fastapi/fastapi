@@ -46,7 +46,7 @@ J'ai testé plusieurs idées dans les éditeurs Python les plus populaires : PyC
 
 D'après le dernier <a href="https://www.jetbrains.com/research/python-developers-survey-2018/#development-tools" class="external-link" target="_blank">Python Developer Survey</a>, cela couvre environ 80% des utilisateurs.
 
-Cela signifie que **FastAPI** a été spécifiquement testé avec les éditeurs utilisés par 80% des développeurs Python. Et comme la plupart des autres éditeurs ont tendance à fonctionner de manière similaire, tous ses avantages devraient fonctionner pour pratiquement tous les éditeurs.
+Cela signifie que **FastAPI** a été spécifiquement testé avec les éditeurs utilisés par 80% des développeurs Python. Et comme la plupart des autres éditeurs ont tendance à fonctionner de façon similaire, tous ses avantages devraient fonctionner pour pratiquement tous les éditeurs.
 
 Ainsi, j'ai pu trouver les meilleurs moyens de réduire autant que possible la duplication du code, d'avoir la complétion partout, les contrôles de type et d'erreur, etc.
 
