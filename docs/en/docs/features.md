@@ -164,7 +164,6 @@ With **FastAPI** you get all of **Starlette**'s features (as FastAPI is just Sta
 
 * Seriously impressive performance. It is <a href="https://github.com/encode/starlette#performance" class="external-link" target="_blank">one of the fastest Python frameworks available, on par with **NodeJS** and **Go**</a>.
 * **WebSocket** support.
-* **GraphQL** support.
 * In-process background tasks.
 * Startup and shutdown events.
 * Test client built on `requests`.

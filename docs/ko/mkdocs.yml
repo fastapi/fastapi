@@ -9,13 +9,13 @@ theme:
     primary: teal
     accent: amber
     toggle:
-      icon: material/lightbulb-outline
+      icon: material/lightbulb
       name: Switch to light mode
   - scheme: slate
     primary: teal
     accent: amber
     toggle:
-      icon: material/lightbulb
+      icon: material/lightbulb-outline
       name: Switch to dark mode
   features:
   - search.suggest
@@ -29,9 +29,6 @@ theme:
 repo_name: tiangolo/fastapi
 repo_url: https://github.com/tiangolo/fastapi
 edit_uri: ''
-google_analytics:
-- UA-133183413-1
-- auto
 plugins:
 - search
 - markdownextradata:
@@ -40,6 +37,7 @@ nav:
 - FastAPI: index.md
 - Languages:
   - en: /
+  - az: /az/
   - de: /de/
   - es: /es/
   - fr: /fr/
@@ -60,6 +58,10 @@ nav:
   - tutorial/path-params.md
   - tutorial/query-params.md
   - tutorial/header-params.md
+  - tutorial/path-params-numeric-validations.md
+  - tutorial/response-status-code.md
+  - tutorial/request-files.md
+  - tutorial/request-forms-and-files.md
 markdown_extensions:
 - toc:
     permalink: true
@@ -75,8 +77,12 @@ markdown_extensions:
     - name: mermaid
       class: mermaid
       format: !!python/name:pymdownx.superfences.fence_code_format ''
-- pymdownx.tabbed
+- pymdownx.tabbed:
+    alternate_style: true
 extra:
+  analytics:
+    provider: google
+    property: UA-133183413-1
   social:
   - icon: fontawesome/brands/github-alt
     link: https://github.com/tiangolo/fastapi
@@ -95,6 +101,8 @@ extra:
   alternate:
   - link: /
     name: en - English
+  - link: /az/
+    name: az
   - link: /de/
     name: de
   - link: /es/

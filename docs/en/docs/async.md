@@ -324,7 +324,15 @@ So, about the egg and the chicken, how do you call the first `async` function?
 
 If you are working with **FastAPI** you don't have to worry about that, because that "first" function will be your *path operation function*, and FastAPI will know how to do the right thing.
 
-But if you want to use `async` / `await` without FastAPI, <a href="https://docs.python.org/3/library/asyncio-task.html#coroutine" class="external-link" target="_blank">check the official Python docs</a>.
+But if you want to use `async` / `await` without FastAPI, you can do it as well.
+
+### Write your own async code
+
+Starlette (and **FastAPI**) are based on <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a>, which makes it compatible with both Python's standard library <a href="https://docs.python.org/3/library/asyncio-task.html" class="external-link" target="_blank">asyncio</a> and <a href="https://trio.readthedocs.io/en/stable/" class="external-link" target="_blank">Trio</a>.
+
+In particular, you can directly use <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a> for your advanced concurrency use cases that require more advanced patterns in your own code.
+
+And even if you were not using FastAPI, you could also write your own async applications with <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a> to be highly compatible and get its benefits (e.g. *structured concurrency*).
 
 ### Other forms of asynchronous code
 

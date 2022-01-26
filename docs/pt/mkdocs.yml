@@ -9,13 +9,13 @@ theme:
     primary: teal
     accent: amber
     toggle:
-      icon: material/lightbulb-outline
+      icon: material/lightbulb
       name: Switch to light mode
   - scheme: slate
     primary: teal
     accent: amber
     toggle:
-      icon: material/lightbulb
+      icon: material/lightbulb-outline
       name: Switch to dark mode
   features:
   - search.suggest
@@ -29,9 +29,6 @@ theme:
 repo_name: tiangolo/fastapi
 repo_url: https://github.com/tiangolo/fastapi
 edit_uri: ''
-google_analytics:
-- UA-133183413-1
-- auto
 plugins:
 - search
 - markdownextradata:
@@ -40,6 +37,7 @@ nav:
 - FastAPI: index.md
 - Languages:
   - en: /
+  - az: /az/
   - de: /de/
   - es: /es/
   - fr: /fr/
@@ -59,7 +57,9 @@ nav:
 - Tutorial - Guia de Usuário:
   - tutorial/index.md
   - tutorial/first-steps.md
+  - tutorial/path-params.md
   - tutorial/body-fields.md
+  - tutorial/query-params-str-validations.md
   - Segurança:
     - tutorial/security/index.md
   - Guia de Usuário Avançado:
@@ -67,6 +67,7 @@ nav:
 - Implantação:
   - deployment/index.md
   - deployment/versions.md
+  - deployment/https.md
 - alternatives.md
 - history-design-future.md
 - external-links.md
@@ -86,8 +87,12 @@ markdown_extensions:
     - name: mermaid
       class: mermaid
       format: !!python/name:pymdownx.superfences.fence_code_format ''
-- pymdownx.tabbed
+- pymdownx.tabbed:
+    alternate_style: true
 extra:
+  analytics:
+    provider: google
+    property: UA-133183413-1
   social:
   - icon: fontawesome/brands/github-alt
     link: https://github.com/tiangolo/fastapi
@@ -106,6 +111,8 @@ extra:
   alternate:
   - link: /
     name: en - English
+  - link: /az/
+    name: az
   - link: /de/
     name: de
   - link: /es/
@@ -140,4 +147,3 @@ extra_css:
 extra_javascript:
 - https://fastapi.tiangolo.com/js/termynal.js
 - https://fastapi.tiangolo.com/js/custom.js
-
