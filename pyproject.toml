@@ -128,7 +128,10 @@ ignore_missing_imports = true
 check_untyped_defs = true
 
 [tool.pytest.ini_options]
-addopts = ["--strict-config", "--strict-markers"]
+addopts = [
+    "--strict-config",
+    "--strict-markers"
+]
 xfail_strict = true
 junit_family = "xunit2"
 filterwarnings = [
