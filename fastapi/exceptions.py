@@ -2,7 +2,7 @@ from typing import Any, Sequence, Type
 
 from pydantic import BaseModel, ValidationError, create_model
 from pydantic.error_wrappers import ErrorList
-from starlette.exceptions import HTTPException as HTTPException
+from starlette.exceptions import HTTPException as HTTPException  # noqa
 
 RequestErrorModel: Type[BaseModel] = create_model("Request")
 WebSocketErrorModel: Type[BaseModel] = create_model("WebSocket")
