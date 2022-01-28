@@ -20,6 +20,7 @@ theme:
   features:
   - search.suggest
   - search.highlight
+  - content.tabs.link
   icon:
     repo: fontawesome/brands/github-alt
   logo: https://fastapi.tiangolo.com/img/icon-white.svg
@@ -77,6 +78,7 @@ nav:
   - tutorial/request-files.md
   - tutorial/request-forms-and-files.md
   - tutorial/handling-errors.md
+  - tutorial/path-operation-configuration.md
   - tutorial/body-updates.md
   - 依赖项:
     - tutorial/dependencies/index.md
