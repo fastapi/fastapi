@@ -34,10 +34,6 @@ def shell_command(
 ):
     os.system(f"python -i {app}")
 
-@app.command()
-def routes():
-    typer.echo("Get all routes in main.py")
-
 def main():
     app()
 
