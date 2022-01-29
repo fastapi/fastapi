@@ -19,8 +19,9 @@ def test_param_repr(params):
     assert repr(Param(params)) == "Param(" + str(params) + ")"
 
 
-def test_path_repr(params):
-    assert repr(Path(params)) == "Path(Ellipsis)"
+def test_path_repr():
+    assert repr(Path()) == "Path(Ellipsis)"
+    assert repr(Path(...)) == "Path(Ellipsis)"
 
 
 def test_query_repr(params):

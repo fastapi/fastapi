@@ -195,36 +195,36 @@ openapi_schema = {
                 ],
             }
         },
-        "/path/param/{item_id}": {
-            "get": {
-                "responses": {
-                    "200": {
-                        "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
-                    },
-                    "422": {
-                        "description": "Validation Error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
-                                }
-                            }
-                        },
-                    },
-                },
-                "summary": "Get Path Param Id",
-                "operationId": "get_path_param_id_path_param__item_id__get",
-                "parameters": [
-                    {
-                        "required": True,
-                        "schema": {"title": "Item Id", "type": "string"},
-                        "name": "item_id",
-                        "in": "path",
-                    }
-                ],
-            }
-        },
+        # "/path/param/{item_id}": {
+        #     "get": {
+        #         "responses": {
+        #             "200": {
+        #                 "description": "Successful Response",
+        #                 "content": {"application/json": {"schema": {}}},
+        #             },
+        #             "422": {
+        #                 "description": "Validation Error",
+        #                 "content": {
+        #                     "application/json": {
+        #                         "schema": {
+        #                             "$ref": "#/components/schemas/HTTPValidationError"
+        #                         }
+        #                     }
+        #                 },
+        #             },
+        #         },
+        #         "summary": "Get Path Param Id",
+        #         "operationId": "get_path_param_id_path_param__item_id__get",
+        #         "parameters": [
+        #             {
+        #                 "required": True,
+        #                 "schema": {"title": "Item Id", "type": "string"},
+        #                 "name": "item_id",
+        #                 "in": "path",
+        #             }
+        #         ],
+        #     }
+        # },
         "/path/param-required/{item_id}": {
             "get": {
                 "responses": {

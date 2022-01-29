@@ -1,4 +1,5 @@
 from enum import Enum
+from types import EllipsisType
 from typing import Any, Callable, Dict, Optional, Sequence
 
 from pydantic.fields import FieldInfo, Undefined
@@ -16,7 +17,7 @@ class Param(FieldInfo):
 
     def __init__(
         self,
-        default: Any,
+        default: Any = Undefined,
         *,
         alias: Optional[str] = None,
         title: Optional[str] = None,
@@ -62,7 +63,7 @@ class Path(Param):
 
     def __init__(
         self,
-        default: Any,
+        default: EllipsisType = ...,
         *,
         alias: Optional[str] = None,
         title: Optional[str] = None,
@@ -80,9 +81,10 @@ class Path(Param):
         include_in_schema: bool = True,
         **extra: Any,
     ):
+        assert default is ..., "Path parameters cannot have a default value"
         self.in_ = self.in_
         super().__init__(
-            ...,
+            default,
             alias=alias,
             title=title,
             description=description,
@@ -106,7 +108,7 @@ class Query(Param):
 
     def __init__(
         self,
-        default: Any,
+        default: Any = Undefined,
         *,
         alias: Optional[str] = None,
         title: Optional[str] = None,
@@ -149,7 +151,7 @@ class Header(Param):
 
     def __init__(
         self,
-        default: Any,
+        default: Any = Undefined,
         *,
         alias: Optional[str] = None,
         convert_underscores: bool = True,
@@ -194,7 +196,7 @@ class Cookie(Param):
 
     def __init__(
         self,
-        default: Any,
+        default: Any = Undefined,
         *,
         alias: Optional[str] = None,
         title: Optional[str] = None,
@@ -235,7 +237,7 @@ class Cookie(Param):
 class Body(FieldInfo):
     def __init__(
         self,
-        default: Any,
+        default: Any = Undefined,
         *,
         embed: bool = False,
         media_type: str = "application/json",
@@ -279,7 +281,7 @@ class Body(FieldInfo):
 class Form(Body):
     def __init__(
         self,
-        default: Any,
+        default: Any = Undefined,
         *,
         media_type: str = "application/x-www-form-urlencoded",
         alias: Optional[str] = None,
@@ -319,7 +321,7 @@ class Form(Body):
 class File(Form):
     def __init__(
         self,
-        default: Any,
+        default: Any = Undefined,
         *,
         media_type: str = "multipart/form-data",
         alias: Optional[str] = None,
