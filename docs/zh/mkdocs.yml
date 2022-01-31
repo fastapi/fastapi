@@ -29,9 +29,6 @@ theme:
 repo_name: tiangolo/fastapi
 repo_url: https://github.com/tiangolo/fastapi
 edit_uri: ''
-google_analytics:
-- UA-133183413-1
-- auto
 plugins:
 - search
 - markdownextradata:
@@ -81,6 +78,7 @@ nav:
   - tutorial/request-files.md
   - tutorial/request-forms-and-files.md
   - tutorial/handling-errors.md
+  - tutorial/path-operation-configuration.md
   - tutorial/body-updates.md
   - 依赖项:
     - tutorial/dependencies/index.md
@@ -120,8 +118,12 @@ markdown_extensions:
     - name: mermaid
       class: mermaid
       format: !!python/name:pymdownx.superfences.fence_code_format ''
-- pymdownx.tabbed
+- pymdownx.tabbed:
+    alternate_style: true
 extra:
+  analytics:
+    provider: google
+    property: UA-133183413-1
   social:
   - icon: fontawesome/brands/github-alt
     link: https://github.com/tiangolo/fastapi

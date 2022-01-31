@@ -1,9 +1,9 @@
 import asyncio
 import dataclasses
 import email.message
-import enum
 import inspect
 import json
+from enum import Enum, IntEnum
 from typing import (
     Any,
     Callable,
@@ -300,7 +300,7 @@ class APIRoute(routing.Route):
         *,
         response_model: Optional[Type[Any]] = None,
         status_code: Optional[int] = None,
-        tags: Optional[List[str]] = None,
+        tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
         summary: Optional[str] = None,
         description: Optional[str] = None,
@@ -325,7 +325,7 @@ class APIRoute(routing.Route):
         openapi_extra: Optional[Dict[str, Any]] = None,
     ) -> None:
         # normalise enums e.g. http.HTTPStatus
-        if isinstance(status_code, enum.IntEnum):
+        if isinstance(status_code, IntEnum):
             status_code = int(status_code)
         self.path = path
         self.endpoint = endpoint
@@ -433,7 +433,7 @@ class APIRouter(routing.Router):
         self,
         *,
         prefix: str = "",
-        tags: Optional[List[str]] = None,
+        tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
         default_response_class: Type[Response] = Default(JSONResponse),
         responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
@@ -461,7 +461,7 @@ class APIRouter(routing.Router):
                 "/"
             ), "A path prefix must not end with '/', as the routes will start with '/'"
         self.prefix = prefix
-        self.tags: List[str] = tags or []
+        self.tags: List[Union[str, Enum]] = tags or []
         self.dependencies = list(dependencies or []) or []
         self.deprecated = deprecated
         self.include_in_schema = include_in_schema
@@ -478,7 +478,7 @@ class APIRouter(routing.Router):
         *,
         response_model: Optional[Type[Any]] = None,
         status_code: Optional[int] = None,
-        tags: Optional[List[str]] = None,
+        tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
         summary: Optional[str] = None,
         description: Optional[str] = None,
@@ -552,7 +552,7 @@ class APIRouter(routing.Router):
         *,
         response_model: Optional[Type[Any]] = None,
         status_code: Optional[int] = None,
-        tags: Optional[List[str]] = None,
+        tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
         summary: Optional[str] = None,
         description: Optional[str] = None,
@@ -629,7 +629,7 @@ class APIRouter(routing.Router):
         router: "APIRouter",
         *,
         prefix: str = "",
-        tags: Optional[List[str]] = None,
+        tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
         default_response_class: Type[Response] = Default(JSONResponse),
         responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
@@ -733,7 +733,7 @@ class APIRouter(routing.Router):
         *,
         response_model: Optional[Type[Any]] = None,
         status_code: Optional[int] = None,
-        tags: Optional[List[str]] = None,
+        tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
         summary: Optional[str] = None,
         description: Optional[str] = None,
@@ -785,7 +785,7 @@ class APIRouter(routing.Router):
         *,
         response_model: Optional[Type[Any]] = None,
         status_code: Optional[int] = None,
-        tags: Optional[List[str]] = None,
+        tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
         summary: Optional[str] = None,
         description: Optional[str] = None,
@@ -837,7 +837,7 @@ class APIRouter(routing.Router):
         *,
         response_model: Optional[Type[Any]] = None,
         status_code: Optional[int] = None,
-        tags: Optional[List[str]] = None,
+        tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
         summary: Optional[str] = None,
         description: Optional[str] = None,
@@ -889,7 +889,7 @@ class APIRouter(routing.Router):
         *,
         response_model: Optional[Type[Any]] = None,
         status_code: Optional[int] = None,
-        tags: Optional[List[str]] = None,
+        tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
         summary: Optional[str] = None,
         description: Optional[str] = None,
@@ -941,7 +941,7 @@ class APIRouter(routing.Router):
         *,
         response_model: Optional[Type[Any]] = None,
         status_code: Optional[int] = None,
-        tags: Optional[List[str]] = None,
+        tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
         summary: Optional[str] = None,
         description: Optional[str] = None,
@@ -993,7 +993,7 @@ class APIRouter(routing.Router):
         *,
         response_model: Optional[Type[Any]] = None,
         status_code: Optional[int] = None,
-        tags: Optional[List[str]] = None,
+        tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
         summary: Optional[str] = None,
         description: Optional[str] = None,
@@ -1045,7 +1045,7 @@ class APIRouter(routing.Router):
         *,
         response_model: Optional[Type[Any]] = None,
         status_code: Optional[int] = None,
-        tags: Optional[List[str]] = None,
+        tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
         summary: Optional[str] = None,
         description: Optional[str] = None,
@@ -1097,7 +1097,7 @@ class APIRouter(routing.Router):
         *,
         response_model: Optional[Type[Any]] = None,
         status_code: Optional[int] = None,
-        tags: Optional[List[str]] = None,
+        tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
         summary: Optional[str] = None,
         description: Optional[str] = None,

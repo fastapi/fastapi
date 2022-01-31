@@ -5,6 +5,9 @@ gold:
   - url: https://cryptapi.io/
     title: "CryptAPI: Your easy to use, secure and privacy oriented payment gateway."
     img: https://fastapi.tiangolo.com/img/sponsors/cryptapi.svg
+  - url: https://www.dropbase.io/careers
+    title: Dropbase - seamlessly collect, clean, and centralize data.
+    img: https://fastapi.tiangolo.com/img/sponsors/dropbase.svg
 silver:
   - url: https://www.deta.sh/?ref=fastapi
     title: The launchpad for all your (team's) ideas
