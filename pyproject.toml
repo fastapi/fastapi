@@ -130,7 +130,7 @@ check_untyped_defs = true
 [tool.pytest.ini_options]
 addopts = [
   "--strict-config",
-    "--strict-markers"
+  "--strict-markers"
 ]
 xfail_strict = true
 junit_family = "xunit2"
