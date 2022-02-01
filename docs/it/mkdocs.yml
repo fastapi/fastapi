@@ -52,6 +52,7 @@ nav:
   - tr: /tr/
   - uk: /uk/
   - zh: /zh/
+- python-types.md
 markdown_extensions:
 - toc:
     permalink: true
