@@ -8,9 +8,23 @@ You can declare the model used for the response with the parameter `response_mod
 * `@app.delete()`
 * etc.
 
-```Python hl_lines="17"
-{!../../../docs_src/response_model/tutorial001.py!}
-```
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="17"
+    {!> ../../../docs_src/response_model/tutorial001.py!}
+    ```
+
+=== "Python 3.9 and above"
+
+    ```Python hl_lines="17"
+    {!> ../../../docs_src/response_model/tutorial001_py39.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="15"
+    {!> ../../../docs_src/response_model/tutorial001_py310.py!}
+    ```
 
 !!! note
     Notice that `response_model` is a parameter of the "decorator" method (`get`, `post`, etc). Not of your *path operation function*, like all the parameters and body.
@@ -35,15 +49,31 @@ But most importantly:
 
 Here we are declaring a `UserIn` model, it will contain a plaintext password:
 
-```Python hl_lines="9  11"
-{!../../../docs_src/response_model/tutorial002.py!}
-```
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="9  11"
+    {!> ../../../docs_src/response_model/tutorial002.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="7  9"
+    {!> ../../../docs_src/response_model/tutorial002_py310.py!}
+    ```
 
 And we are using this model to declare our input and the same model to declare our output:
 
-```Python hl_lines="17-18"
-{!../../../docs_src/response_model/tutorial002.py!}
-```
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="17-18"
+    {!> ../../../docs_src/response_model/tutorial002.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="15-16"
+    {!> ../../../docs_src/response_model/tutorial002_py310.py!}
+    ```
 
 Now, whenever a browser is creating a user with a password, the API will return the same password in the response.
 
@@ -58,21 +88,45 @@ But if we use the same model for another *path operation*, we could be sending o
 
 We can instead create an input model with the plaintext password and an output model without it:
 
-```Python hl_lines="9  11  16"
-{!../../../docs_src/response_model/tutorial003.py!}
-```
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="9  11  16"
+    {!> ../../../docs_src/response_model/tutorial003.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="7  9  14"
+    {!> ../../../docs_src/response_model/tutorial003_py310.py!}
+    ```
 
 Here, even though our *path operation function* is returning the same input user that contains the password:
 
-```Python hl_lines="24"
-{!../../../docs_src/response_model/tutorial003.py!}
-```
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="24"
+    {!> ../../../docs_src/response_model/tutorial003.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="22"
+    {!> ../../../docs_src/response_model/tutorial003_py310.py!}
+    ```
 
 ...we declared the `response_model` to be our model `UserOut`, that doesn't include the password:
 
-```Python hl_lines="22"
-{!../../../docs_src/response_model/tutorial003.py!}
-```
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="22"
+    {!> ../../../docs_src/response_model/tutorial003.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="20"
+    {!> ../../../docs_src/response_model/tutorial003_py310.py!}
+    ```
 
 So, **FastAPI** will take care of filtering out all the data that is not declared in the output model (using Pydantic).
 
@@ -90,9 +144,23 @@ And both models will be used for the interactive API documentation:
 
 Your response model could have default values, like:
 
-```Python hl_lines="11  13-14"
-{!../../../docs_src/response_model/tutorial004.py!}
-```
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="11  13-14"
+    {!> ../../../docs_src/response_model/tutorial004.py!}
+    ```
+
+=== "Python 3.9 and above"
+
+    ```Python hl_lines="11  13-14"
+    {!> ../../../docs_src/response_model/tutorial004_py39.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="9  11-12"
+    {!> ../../../docs_src/response_model/tutorial004_py310.py!}
+    ```
 
 * `description: Optional[str] = None` has a default of `None`.
 * `tax: float = 10.5` has a default of `10.5`.
@@ -106,9 +174,23 @@ For example, if you have models with many optional attributes in a NoSQL databas
 
 You can set the *path operation decorator* parameter `response_model_exclude_unset=True`:
 
-```Python hl_lines="24"
-{!../../../docs_src/response_model/tutorial004.py!}
-```
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="24"
+    {!> ../../../docs_src/response_model/tutorial004.py!}
+    ```
+
+=== "Python 3.9 and above"
+
+    ```Python hl_lines="24"
+    {!> ../../../docs_src/response_model/tutorial004_py39.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="22"
+    {!> ../../../docs_src/response_model/tutorial004_py310.py!}
+    ```
 
 and those default values won't be included in the response, only the values actually set.
 
@@ -185,9 +267,17 @@ This can be used as a quick shortcut if you have only one Pydantic model and wan
 
     This also applies to `response_model_by_alias` that works similarly.
 
-```Python hl_lines="31  37"
-{!../../../docs_src/response_model/tutorial005.py!}
-```
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="31  37"
+    {!> ../../../docs_src/response_model/tutorial005.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="29  35"
+    {!> ../../../docs_src/response_model/tutorial005_py310.py!}
+    ```
 
 !!! tip
     The syntax `{"name", "description"}` creates a `set` with those two values.
@@ -198,9 +288,17 @@ This can be used as a quick shortcut if you have only one Pydantic model and wan
 
 If you forget to use a `set` and use a `list` or `tuple` instead, FastAPI will still convert it to a `set` and it will work correctly:
 
-```Python hl_lines="31  37"
-{!../../../docs_src/response_model/tutorial006.py!}
-```
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="31  37"
+    {!> ../../../docs_src/response_model/tutorial006.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="29  35"
+    {!> ../../../docs_src/response_model/tutorial006_py310.py!}
+    ```
 
 ## Recap
 

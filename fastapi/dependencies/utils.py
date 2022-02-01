@@ -390,6 +390,8 @@ def get_param_field(
     field.required = required
     if not had_schema and not is_scalar_field(field=field):
         field.field_info = params.Body(field_info.default)
+    if not had_schema and lenient_issubclass(field.type_, UploadFile):
+        field.field_info = params.File(field_info.default)
 
     return field
 
@@ -701,25 +703,6 @@ def get_missing_field_error(loc: Tuple[str, ...]) -> ErrorWrapper:
     return missing_field_error
 
 
-def get_schema_compatible_field(*, field: ModelField) -> ModelField:
-    out_field = field
-    if lenient_issubclass(field.type_, UploadFile):
-        use_type: type = bytes
-        if field.shape in sequence_shapes:
-            use_type = List[bytes]
-        out_field = create_response_field(
-            name=field.name,
-            type_=use_type,
-            class_validators=field.class_validators,
-            model_config=field.model_config,
-            default=field.default,
-            required=field.required,
-            alias=field.alias,
-            field_info=field.field_info,
-        )
-    return out_field
-
-
 def get_body_field(*, dependant: Dependant, name: str) -> Optional[ModelField]:
     flat_dependant = get_flat_dependant(dependant)
     if not flat_dependant.body_params:
@@ -729,9 +712,8 @@ def get_body_field(*, dependant: Dependant, name: str) -> Optional[ModelField]:
     embed = getattr(field_info, "embed", None)
     body_param_names_set = {param.name for param in flat_dependant.body_params}
     if len(body_param_names_set) == 1 and not embed:
-        final_field = get_schema_compatible_field(field=first_param)
-        check_file_field(final_field)
-        return final_field
+        check_file_field(first_param)
+        return first_param
     # If one field requires to embed, all have to be embedded
     # in case a sub-dependency is evaluated with a single unique body field
     # That is combined (embedded) with other body fields
@@ -740,7 +722,7 @@ def get_body_field(*, dependant: Dependant, name: str) -> Optional[ModelField]:
     model_name = "Body_" + name
     BodyModel: Type[BaseModel] = create_model(model_name)
     for f in flat_dependant.body_params:
-        BodyModel.__fields__[f.name] = get_schema_compatible_field(field=f)
+        BodyModel.__fields__[f.name] = f
     required = any(True for f in flat_dependant.body_params if f.required)
 
     BodyFieldInfo_kwargs: Dict[str, Any] = dict(default=None)
