@@ -33,7 +33,7 @@ COPY ./app /app
 
 ### より大きなアプリケーション
 
-[Bigger Applications with Multiple Files](tutorial/bigger-applications.md){.internal-link target=_blank} セクションに倣う場合は、`Dockerfile` は上記の代わりに、以下の様になるかもしれません:
+[Bigger Applications with Multiple Files](../tutorial/bigger-applications.md){.internal-link target=_blank} セクションに倣う場合は、`Dockerfile` は上記の代わりに、以下の様になるかもしれません:
 
 ```Dockerfile
 FROM tiangolo/uvicorn-gunicorn-fastapi:python3.7

@@ -66,7 +66,7 @@
 
 ### 拡張版 **FastAPI** アプリファイル
 
-**FastAPI** アプリに `main_b.py` ファイルがあるとします。
+**FastAPI** アプリに `main.py` ファイルがあるとします。
 
 そのファイルには、エラーを返す可能性のある `GET` オペレーションがあります。
 
@@ -75,15 +75,15 @@
 これらの *path operation* には `X-Token` ヘッダーが必要です。
 
 ```Python
-{!../../../docs_src/app_testing/main_b.py!}
+{!../../../docs_src/app_testing/main.py!}
 ```
 
 ### 拡張版テストファイル
 
-次に、先程のものに拡張版のテストを加えた、`test_main_b.py` を作成します。
+次に、先程のものに拡張版のテストを加えた、`test_main.py` を作成します。
 
 ```Python
-{!../../../docs_src/app_testing/test_main_b.py!}
+{!../../../docs_src/app_testing/test_main.py!}
 ```
 
 リクエストに情報を渡せるクライアントが必要で、その方法がわからない場合はいつでも、`requests` での実現方法を検索 (Google) できます。
