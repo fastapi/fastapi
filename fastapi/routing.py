@@ -466,6 +466,8 @@ class APIRouter(routing.Router):
                 "/"
             ), "A path prefix must not end with '/', as the routes will start with '/'"
         self.prefix = prefix
+        if tags:
+            assert not isinstance(tags, str), """tags should not be a string: please use ["tag"] instead of "tag"."""
         self.tags: List[str] = tags or []
         self.dependencies = list(dependencies or []) or []
         self.deprecated = deprecated
@@ -515,6 +517,7 @@ class APIRouter(routing.Router):
         )
         current_tags = self.tags.copy()
         if tags:
+            assert not isinstance(tags, str), """tags should not be a string: please use ["tag"] instead of "tag"."""
             current_tags.extend(tags)
         current_dependencies = self.dependencies.copy()
         if dependencies:
@@ -668,6 +671,7 @@ class APIRouter(routing.Router):
                 )
                 current_tags = []
                 if tags:
+                    assert not isinstance(tags, str), """tags should not be a string: please use ["tag"] instead of "tag"."""
                     current_tags.extend(tags)
                 if route.tags:
                     current_tags.extend(route.tags)
