@@ -54,7 +54,6 @@ nav:
   - zh: /zh/
 - features.md
 - Tutorial - Anleitung:
-  - tutorial/index.md
   - tutorial/first-steps.md
 markdown_extensions:
 - toc:

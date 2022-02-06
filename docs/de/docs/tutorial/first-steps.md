@@ -1,14 +1,14 @@
-# First Steps
+# Erste Schritte
 
-The simplest FastAPI file could look like this:
+Die einfachste FastAPI-Datei könnte wie folgt aussehen:
 
 ```Python
 {!../../../docs_src/first_steps/tutorial001.py!}
 ```
 
-Copy that to a file `main.py`.
+Kopieren Sie diese in die Datei `main.py`.
 
-Run the live server:
+Starten Sie den Live-Server:
 
 <div class="termy">
 
@@ -24,78 +24,78 @@ $ uvicorn main:app --reload
 
 </div>
 
-!!! note
-    The command `uvicorn main:app` refers to:
+!!! Hinweis
+    Der Befehl `uvicorn main:app` bezieht sich auf:
 
-    * `main`: the file `main.py` (the Python "module").
-    * `app`: the object created inside of `main.py` with the line `app = FastAPI()`.
-    * `--reload`: make the server restart after code changes. Only use for development.
+    * `main`: die Datei `main.py` (das Python "Modul").
+    * `app`: das Objekt, das innerhalb von `main.py` mit der Zeile `app = FastAPI()` erzeugt wird.
+    * `--reload`: lässt den Server nach Codeänderungen neu starten. Nur für die Entwicklung zu verwenden.
 
-In the output, there's a line with something like:
+In der Ausgabe sieht man eine Zeile wie diese:
 
 ```hl_lines="4"
 INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
-That line shows the URL where your app is being served, in your local machine.
+In dieser Zeile wird die URL angezeigt, unter der Ihre Anwendung auf Ihrem lokalen Rechner bereitgestellt wird.
 
-### Check it
+### Probieren Sie es aus
 
-Open your browser at <a href="http://127.0.0.1:8000" class="external-link" target="_blank">http://127.0.0.1:8000</a>.
+Öffnen Sie ihren Browser unter der Addresse <a href="http://127.0.0.1:8000" class="external-link" target="_blank">http://127.0.0.1:8000</a>.
 
-You will see the JSON response as:
+Sie bekommen die JSON-Antwort als:
 
 ```JSON
 {"message": "Hello World"}
 ```
 
-### Interactive API docs
+### Interaktive API-Dokumentation
 
-Now go to <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+Jetzt gehen Sie auf <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 
-You will see the automatic interactive API documentation (provided by <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a>):
+Es wird die automatische interaktive API-Dokumentation angezeigt (zur Verfügung gestellt von <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a>):
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-01-swagger-ui-simple.png)
 
-### Alternative API docs
+### Alternative API-Dokumentation
 
-And now, go to <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>.
+Gehen Sie jetzt auf <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>.
 
-You will see the alternative automatic documentation (provided by <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a>):
+Jetzt wird die alternative automatische Dokumentation angezeigt (zur Verfügung gestellt von <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a>):
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
 ### OpenAPI
 
-**FastAPI** generates a "schema" with all your API using the **OpenAPI** standard for defining APIs.
+**FastAPI** generiert ein "Schema" für Ihre gesamte APIs unter Verwendung des **OpenAPI**-Standards zur Definition von APIs.
 
 #### "Schema"
 
-A "schema" is a definition or description of something. Not the code that implements it, but just an abstract description.
+Ein "Schema" ist eine Definition oder Beschreibung von etwas. Nicht der Code, der es implementiert, sondern nur eine abstrakte Beschreibung.
 
-#### API "schema"
+#### API "Schema"
 
-In this case, <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> is a specification that dictates how to define a schema of your API.
+Hier ist, <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> ein Spezifikation, welche vorschreibt wie Ihr API Schema zu definieren ist.
 
-This schema definition includes your API paths, the possible parameters they take, etc.
+Diese Schemadefinition enthält Ihre API-Pfade, die möglichen Parameter, welche diese übernehmen können und mehr.
 
-#### Data "schema"
+#### Daten "Schema"
 
-The term "schema" might also refer to the shape of some data, like a JSON content.
+Der Begriff "Schema" kann sich auch auf die Form von Daten beziehen, z. B. einen JSON-Inhalt.
 
-In that case, it would mean the JSON attributes, and data types they have, etc.
+In diesem Fall wären damit die JSON-Attribute und die Datentypen gemeint, die sie verwenden, usw.
 
-#### OpenAPI and JSON Schema
+#### OpenAPI und JSON-Schema
 
-OpenAPI defines an API schema for your API. And that schema includes definitions (or "schemas") of the data sent and received by your API using **JSON Schema**, the standard for JSON data schemas.
+OpenAPI definiert ein API-Schema für Ihre API. Und dieses Schema enthält Definitionen (oder "Schemata") der Daten, die von Ihrer API unter Verwendung des **JSON Schemas**, eines Standards für JSON-Datenschemata, gesendet und empfangen werden.
 
-#### Check the `openapi.json`
+#### Überprüfen Sie die `openapi.json`.
 
-If you are curious about how the raw OpenAPI schema looks like, FastAPI automatically generates a JSON (schema) with the descriptions of all your API.
+Wenn Sie wissen möchten, wie das rohe OpenAPI-Schema aussieht, generiert FastAPI automatisch ein JSON-Schema mit den Beschreibungen Ihrer gesamten API.
 
-You can see it directly at: <a href="http://127.0.0.1:8000/openapi.json" class="external-link" target="_blank">http://127.0.0.1:8000/openapi.json</a>.
+Sie finden es unter: <a href="http://127.0.0.1:8000/openapi.json" class="external-link" target="_blank">http://127.0.0.1:8000/openapi.json</a>.
 
-It will show a JSON starting with something like:
+Es wird ein JSON Objekt angezeigt, welches etwa so anfängt:
 
 ```JSON
 {
@@ -118,40 +118,40 @@ It will show a JSON starting with something like:
 ...
 ```
 
-#### What is OpenAPI for
+#### Wofür ist die OpenAPI?
 
-The OpenAPI schema is what powers the two interactive documentation systems included.
+Das OpenAPI-Schema ist die Grundlage für die beiden enthaltenen interaktiven Dokumentationssysteme.
 
-And there are dozens of alternatives, all based on OpenAPI. You could easily add any of those alternatives to your application built with **FastAPI**.
+Und es gibt Dutzende von Alternativen, die alle auf OpenAPI basieren. Sie können jede dieser Alternativen leicht zu Ihrer mit **FastAPI** erstellten Anwendung hinzufügen.
 
-You could also use it to generate code automatically, for clients that communicate with your API. For example, frontend, mobile or IoT applications.
+Sie können es auch verwenden, um automatischen Code für Clients zu generieren, die mit Ihrer API kommunizieren. Zum Beispiel für Frontend-, mobile oder IoT-Anwendungen.
 
-## Recap, step by step
+## Schritt für Schritt Wiederholung
 
-### Step 1: import `FastAPI`
+### Schritt 1: `FastAPI` importieren
 
 ```Python hl_lines="1"
 {!../../../docs_src/first_steps/tutorial001.py!}
 ```
 
-`FastAPI` is a Python class that provides all the functionality for your API.
+`FastAPI` ist eine Python-Klasse, die die gesamte Funktionalität für Ihre API bereitstellt.
 
-!!! note "Technical Details"
-    `FastAPI` is a class that inherits directly from `Starlette`.
+!!! Hinweis "Technische Details"
+    `FastAPI` ist eine Klasse, die direkt von `Starlette` erbt..
 
-    You can use all the <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> functionality with `FastAPI` too.
+    Sie können alle <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> Funktionen auch mit `FastAPI` nutzen.
 
-### Step 2: create a `FastAPI` "instance"
+### Schritt 2: Erstellen einer `FastAPI` "Instanz"
 
 ```Python hl_lines="3"
 {!../../../docs_src/first_steps/tutorial001.py!}
 ```
 
-Here the `app` variable will be an "instance" of the class `FastAPI`.
+Hier wird die Variable `app` eine `Instanz` der Klasse `FastAPI` sein.
 
-This will be the main point of interaction to create all your API.
+Dies wird der Hauptpunkt der Interaktion sein, um Ihre gesamte API zu erstellen.
 
-This `app` is the same one referred by `uvicorn` in the command:
+Diese "App" ist dieselbe, auf die im Befehl "uvicorn" verwiesen wird:
 
 <div class="termy">
 
@@ -163,13 +163,13 @@ $ uvicorn main:app --reload
 
 </div>
 
-If you create your app like:
+Wenn Sie Ihre App so erstellen:
 
 ```Python hl_lines="3"
 {!../../../docs_src/first_steps/tutorial002.py!}
 ```
 
-And put it in a file `main.py`, then you would call `uvicorn` like:
+Und in eine Datei `main.py` schreiben, würden Sie `uvicorn` wie folgt aufrufen:
 
 <div class="termy">
 
@@ -181,153 +181,155 @@ $ uvicorn main:my_awesome_api --reload
 
 </div>
 
-### Step 3: create a *path operation*
+### Schritt 3: Erstellen einer *Pfadoperation*
 
-#### Path
+#### Pfad
 
-"Path" here refers to the last part of the URL starting from the first `/`.
+"Pfad" bezieht sich hier auf den letzten Teil der URL, beginnend mit dem ersten `/`.
 
-So, in a URL like:
+Also für eine URL wie:
 
 ```
 https://example.com/items/foo
 ```
 
-...the path would be:
+...wäre der Pfad:
 
 ```
 /items/foo
 ```
 
-!!! info
-    A "path" is also commonly called an "endpoint" or a "route".
+!!! Information
+    Ein "Pfad" wird gemeinhin auch als "Endpunkt" oder "Route" bezeichnet.
 
-While building an API, the "path" is the main way to separate "concerns" and "resources".
+Bei der Erstellung einer API ist der "Pfad" die wichtigste Methode zur Trennung von "Anliegen" und "Ressourcen".
 
 #### Operation
 
-"Operation" here refers to one of the HTTP "methods".
+"Operation" bezieht sich hier auf eine der HTTP-"Methoden".
 
-One of:
+wie:
 
 * `POST`
 * `GET`
 * `PUT`
 * `DELETE`
 
-...and the more exotic ones:
+...und die exotischeren unter ihnen:
 
 * `OPTIONS`
 * `HEAD`
 * `PATCH`
 * `TRACE`
 
-In the HTTP protocol, you can communicate to each path using one (or more) of these "methods".
+Beim HTTP-Protokoll können Sie mit jedem Pfad über eine (oder mehrere) dieser "Methoden" kommunizieren.
 
 ---
 
-When building APIs, you normally use these specific HTTP methods to perform a specific action.
+Bei der Erstellung von APIs verwenden Sie normalerweise diese spezifischen HTTP-Methoden, um eine bestimmte Aktion durchzuführen.
 
-Normally you use:
+Normalerweise verwenden Sie:
 
-* `POST`: to create data.
-* `GET`: to read data.
-* `PUT`: to update data.
-* `DELETE`: to delete data.
+* `POST`: um Daten anzulegen.
+* `GET`: um Daten zu lesen.
+* `PUT`: um Daten zu aktualisieren.
+* `DELETE`: um Daten zu löschen.
 
-So, in OpenAPI, each of the HTTP methods is called an "operation".
+In der OpenAPI wird also jede der HTTP-Methoden als "Operation" bezeichnet.
 
-We are going to call them "**operations**" too.
+Wir werden sie auch "**Operationen**" nennen.
 
-#### Define a *path operation decorator*
+#### Definieren eines *Pfadoperations-Dekorators*.
 
 ```Python hl_lines="6"
 {!../../../docs_src/first_steps/tutorial001.py!}
 ```
 
-The `@app.get("/")` tells **FastAPI** that the function right below is in charge of handling requests that go to:
+Das `@app.get("/")` sagt **FastAPI**, dass die Funktion direkt darunter für die Bearbeitung von Anfragen zuständig ist, die an:
 
-* the path `/`
-* using a <abbr title="an HTTP GET method"><code>get</code> operation</abbr>
+* den Pfad `/`
+* mit einer <abbr title=" HTTP GET Methode"><code>get</code> Operation</abbr> gesendet werden.
 
-!!! info "`@decorator` Info"
-    That `@something` syntax in Python is called a "decorator".
+!!! Information "`@decorator` Info"
 
-    You put it on top of a function. Like a pretty decorative hat (I guess that's where the term came from).
 
-    A "decorator" takes the function below and does something with it.
+    Diese `@etwas` Syntax wird in Python "Decorator" genannt.
 
-    In our case, this decorator tells **FastAPI** that the function below corresponds to the **path** `/` with an **operation** `get`.
+    Man setzt ihn über eine Funktion. Wie ein hübsches dekoratives Hütchen (daher kommt wohl der Begriff).
 
-    It is the "**path operation decorator**".
+    Ein "Dekorator" nimmt die darunter stehende Funktion und erweitert sie.
 
-You can also use the other operations:
+    In unserem Fall teilt dieser Dekorator **FastAPI** mit, dass die folgende Funktion dem **Pfad** `/` mit einer `get` **Operation** entspricht.
+
+    Es handelt sich um den "**Pfadoperations-Dekorator**".
+
+Sie können auch die anderen Operationen verwenden:
 
 * `@app.post()`
 * `@app.put()`
 * `@app.delete()`
 
-And the more exotic ones:
+Und die exotischeren unter ihnen:
 
 * `@app.options()`
 * `@app.head()`
 * `@app.patch()`
 * `@app.trace()`
 
-!!! tip
-    You are free to use each operation (HTTP method) as you wish.
+!!! Hinweis
+    Es steht Ihnen frei, jede Operation (HTTP-Methode) so zu verwenden, wie Sie es wünschen.
 
-    **FastAPI** doesn't enforce any specific meaning.
+    Die **FastAPI** erzwingt keine bestimmte Bedeutung.
 
-    The information here is presented as a guideline, not a requirement.
+    Die hier aufgeführten Informationen dienen als Leitfaden und sind nicht verbindlich.
 
-    For example, when using GraphQL you normally perform all the actions using only `POST` operations.
+    Wenn Sie beispielsweise GraphQL verwenden, führen Sie normalerweise alle Aktionen nur mit "POST"-Operationen durch.
 
-### Step 4: define the **path operation function**
+### Schritt 4: Die **Pfadoperations-Funktion** definieren
 
-This is our "**path operation function**":
+Dies ist unsere "**Pfadoperations-Funktion**":
 
-* **path**: is `/`.
-* **operation**: is `get`.
-* **function**: is the function below the "decorator" (below `@app.get("/")`).
+* **Pfad**: ist dies `/`.
+* **Operation**: ist `get`.
+* **FunKtion**: ist die Funktion unterhalb des "Dekorators" (unterhalb von `@app.get("/")`).
 
 ```Python hl_lines="7"
 {!../../../docs_src/first_steps/tutorial001.py!}
 ```
 
-This is a Python function.
+Es ist eine Python-Funktion.
 
-It will be called by **FastAPI** whenever it receives a request to the URL "`/`" using a `GET` operation.
+Sie wird von **FastAPI** immer dann aufgerufen, wenn sie eine Anfrage an die URL "`/`" mittels einer `GET`-Operation erhält.
 
-In this case, it is an `async` function.
+In diesem Fall handelt es sich um eine `async`-Funktion.
 
 ---
 
-You could also define it as a normal function instead of `async def`:
+Sie könnten sie auch als normale Funktion anstelle von `async def` definieren:
 
 ```Python hl_lines="7"
 {!../../../docs_src/first_steps/tutorial003.py!}
 ```
 
-!!! note
-    If you don't know the difference, check the [Async: *"In a hurry?"*](../async.md#in-a-hurry){.internal-link target=_blank}.
+!!! Hinweis
+    Wenn Sie den Unterschied nicht kennen, lesen Sie den [Async: *"In a hurry? "*](../async.md#in-a-hurry){.internal-link target=_blank}.
 
-### Step 5: return the content
+### Schritt 5: Rückgabe des Inhalts
 
 ```Python hl_lines="8"
 {!../../../docs_src/first_steps/tutorial001.py!}
 ```
 
-You can return a `dict`, `list`, singular values as `str`, `int`, etc.
+Sie können ein `Dict`, eine `List`, einzelne Werte wie `str`, `int`, usw. zurückgeben.
 
-You can also return Pydantic models (you'll see more about that later).
+Sie können auch Pydantic-Modelle zurückgeben (dazu später mehr).
 
-There are many other objects and models that will be automatically converted to JSON (including ORMs, etc). Try using your favorite ones, it's highly probable that they are already supported.
+Es gibt viele andere Objekte und Modelle, die automatisch in JSON konvertiert werden (einschließlich ORMs, usw.). Versuchen Sie, Ihre Lieblingsobjekte zu verwenden. Es ist sehr wahrscheinlich, dass sie bereits unterstützt werden.
 
-## Recap
+## Wiederholung
 
-* Import `FastAPI`.
-* Create an `app` instance.
-* Write a **path operation decorator** (like `@app.get("/")`).
-* Write a **path operation function** (like `def root(): ...` above).
-* Run the development server (like `uvicorn main:app --reload`).
+* Importieren Sie `FastAPI`.
+* Erstellen Sie eine `app` Instanz.
+* Legen Sie einen **Pfadoperations-Dekorators** an (wie `@app.get("/")`).
+* Schreiben Sie eine **Pfadoperations-Funktion** (wie `def root(): ...` oben).
+* Starten Sie den Entwicklungsserver (z.B. `uvicorn main:app --reload`).
