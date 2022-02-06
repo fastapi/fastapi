@@ -1,18 +1,18 @@
-# Tutorial - User Guide - Intro
+# Tutorial - Anleitung - Einstieg
 
-This tutorial shows you how to use **FastAPI** with most of its features, step by step.
+Dieses Tutorial zeigt Ihnen Schritt für Schritt, wie Sie **FastAPI** mit den meisten seiner Funktionen nutzen können.
 
-Each section gradually builds on the previous ones, but it's structured to separate topics, so that you can go directly to any specific one to solve your specific API needs.
+Jeder Abschnitt baut schrittweise auf den vorhergehenden auf, ist aber nach einzelnen Themen gegliedert, so dass Sie direkt zu einem bestimmten Thema gehen können, um Ihre speziellen API-Anforderungen zu lösen.
 
-It is also built to work as a future reference.
+Es ist auch als Nachschlagewerk für die Zukunft gedacht.
 
-So you can come back and see exactly what you need.
+Sie können also zurückkommen und genau sehen, was Sie brauchen.
 
-## Run the code
+## Code ausführen
 
-All the code blocks can be copied and used directly (they are actually tested Python files).
+Alle Codeblöcke können kopiert und direkt verwendet werden (es handelt sich dabei um getestete Python-Dateien).
 
-To run any of the examples, copy the code to a file `main.py`, and start `uvicorn` with:
+Um eines der Beispiele auszuführen, kopieren Sie den Code in die Datei `main.py`, und starten Sie `uvicorn` mit:
 
 <div class="termy">
 
@@ -28,17 +28,17 @@ $ uvicorn main:app --reload
 
 </div>
 
-It is **HIGHLY encouraged** that you write or copy the code, edit it and run it locally.
+Es ist **ÄUSSERST empfehlenswert**, den Code zu schreiben oder zu kopieren, zu bearbeiten und lokal auszuführen.
 
-Using it in your editor is what really shows you the benefits of FastAPI, seeing how little code you have to write, all the type checks, autocompletion, etc.
+Wenn Sie den Code in Ihrem Editor verwenden, können Sie die Vorteile von FastAPI am besten erkennen, da Sie sehen, wie wenig Code Sie schreiben müssen, wie gut die Typüberprüfungen und die automatische Vervollständigung funktionieren, usw.
 
 ---
 
-## Install FastAPI
+## FastAPI installieren
 
-The first step is to install FastAPI.
+Der erste Schritt ist die Installation von FastAPI.
 
-For the tutorial, you might want to install it with all the optional dependencies and features:
+Für das Lernprogramm sollten Sie es mit allen optionalen Abhängigkeiten und Funktionen installieren:
 
 <div class="termy">
 
@@ -50,31 +50,31 @@ $ pip install "fastapi[all]"
 
 </div>
 
-...that also includes `uvicorn`, that you can use as the server that runs your code.
+...das betrifft auch `uvicorn`, das Sie als Server verwenden können, auf dem Ihr Code läuft.
 
-!!! note
-    You can also install it part by part.
+!!! Hinweis
+    Sie können FastApi auch in Teilen installieren.
 
-    This is what you would probably do once you want to deploy your application to production:
+    Das folgende würden Sie wahrscheinlich tun, wenn Sie Ihre Anwendung in der Produktion einsetzen wollen:
 
     ```
     pip install fastapi
     ```
 
-    Also install `uvicorn` to work as the server:
+    Installieren Sie auch `uvicorn`, um es als Server einzusetzen:
 
     ```
     pip install "uvicorn[standard]"
     ```
 
-    And the same for each of the optional dependencies that you want to use.
+    Dasselbe gilt für jede der optionalen Abhängigkeiten, die Sie verwenden möchten.
 
-## Advanced User Guide
+## Anleitung für Fortgeschrittene
 
-There is also an **Advanced User Guide** that you can read later after this **Tutorial - User guide**.
+Es gibt auch ein **Anleitung für Fortgeschrittene**, das Sie später nach diesem **Tutorial - Anleitung** lesen können.
 
-The **Advanced User Guide**, builds on this, uses the same concepts, and teaches you some extra features.
+Die **Anleitung für Fortgeschrittene** baut auf diesem auf, verwendet die gleichen Konzepte und bringt Ihnen einige zusätzliche Funktionen bei.
 
-But you should first read the **Tutorial - User Guide** (what you are reading right now).
+Sie sollten jedoch zuerst das **Tutorial - Anleitung** (das, was Sie gerade lesen) lesen.
 
-It's designed so that you can build a complete application with just the **Tutorial - User Guide**, and then extend it in different ways, depending on your needs, using some of the additional ideas from the **Advanced User Guide**.
+Es ist so konzipiert, dass Sie mit dem **Tutorial - Anleitung** eine komplette Anwendung erstellen und diese dann je nach Ihren Bedürfnissen mit einigen der zusätzlichen Ideen aus der **Anleitung für Fortgeschrittene** erweitern können.
