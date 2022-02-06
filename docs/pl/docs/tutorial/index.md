@@ -30,7 +30,7 @@ $ uvicorn main:app --reload
 
 **BARDZO zalecamy** pisanie bądź kopiowanie kodu, edycję, a następnie wykonywanie go lokalnie.
 
-Użycie w Twoim edytorze jest tym, co pokazuje prawdziwe korzyści z FastAPI, pozwala zobaczyć jak mało kodu musisz napisać, wszystkie funkcje, takie jak kontrola typów, autouzupełnianie, itd.
+Użycie w Twoim edytorze jest tym, co pokazuje prawdziwe korzyści z FastAPI, pozwala zobaczyć jak mało kodu musisz napisać, wszystkie funkcje, takie jak kontrola typów, <abbr title="auto-complete, autocompletion, IntelliSense">automatyczne uzupełnianie</abbr>, itd.
 
 ---
 
