@@ -2,7 +2,7 @@
 
 Dieses Tutorial zeigt Ihnen Schritt für Schritt, wie Sie **FastAPI** mit den meisten seiner Funktionen nutzen können.
 
-Jeder Abschnitt baut schrittweise auf den vorhergehenden auf, ist aber nach einzelnen Themen gegliedert, so dass Sie direkt zu einem bestimmten Thema gehen können, um Ihre speziellen API-Anforderungen zu lösen.
+Jeder Abschnitt baut schrittweise auf dem vorhergehenden auf, ist aber nach einzelnen Themen gegliedert, so dass Sie direkt zu einem bestimmten Thema gehen können, um Ihre speziellen API-Anforderungen zu lösen.
 
 Es ist auch als Nachschlagewerk für die Zukunft gedacht.
 
@@ -71,7 +71,7 @@ $ pip install "fastapi[all]"
 
 ## Anleitung für Fortgeschrittene
 
-Es gibt auch ein **Anleitung für Fortgeschrittene**, das Sie später nach diesem **Tutorial - Anleitung** lesen können.
+Es gibt auch eine **Anleitung für Fortgeschrittene**, die Sie später nach diesem **Tutorial - Anleitung** lesen können.
 
 Die **Anleitung für Fortgeschrittene** baut auf diesem auf, verwendet die gleichen Konzepte und bringt Ihnen einige zusätzliche Funktionen bei.
 
