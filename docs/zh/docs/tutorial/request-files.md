@@ -44,9 +44,9 @@
 
 不过，很多情况下，`UploadFile` 更好用。
 
-## 含 `UploadFile` 的 `File` 参数
+## 含 `UploadFile` 的文件参数
 
-定义 `File` 参数时使用 `UploadFile`：
+定义文件参数时使用 `UploadFile`：
 
 ```Python hl_lines="12"
 {!../../../docs_src/request_files/tutorial001.py!}
@@ -94,7 +94,7 @@ contents = myfile.file.read()
 
 !!! note "`async` 技术细节"
 
-    使用 `async` 方法时，**FastAPI** 在线程池中执行文件方法，并 `awiat` 操作完成。
+    使用 `async` 方法时，**FastAPI** 在线程池中执行文件方法，并 `await` 操作完成。
 
 !!! note "Starlette 技术细节"
 
