@@ -67,7 +67,7 @@ Jetzt wird die alternative automatische Dokumentation angezeigt (zur Verfügung 
 
 ### OpenAPI
 
-**FastAPI** generiert ein "Schema" für Ihre gesamte APIs unter Verwendung des **OpenAPI**-Standards zur Definition von APIs.
+**FastAPI** generiert ein "Schema" für Ihre gesamte API unter Verwendung des **OpenAPI**-Standards zur Definition von APIs.
 
 #### "Schema"
 
@@ -75,13 +75,13 @@ Ein "Schema" ist eine Definition oder Beschreibung von etwas. Nicht der Code, de
 
 #### API "Schema"
 
-Hier ist, <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> ein Spezifikation, welche vorschreibt wie Ihr API Schema zu definieren ist.
+Hier ist, <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> eine Spezifikation, welche vorschreibt wie Ihr API Schema zu definieren ist.
 
 Diese Schemadefinition enthält Ihre API-Pfade, die möglichen Parameter, welche diese übernehmen können und mehr.
 
 #### Daten "Schema"
 
-Der Begriff "Schema" kann sich auch auf die Form von Daten beziehen, z. B. einen JSON-Inhalt.
+Der Begriff "Schema" kann sich auch auf die Form von Daten beziehen, z.B. einen JSON-Inhalt.
 
 In diesem Fall wären damit die JSON-Attribute und die Datentypen gemeint, die sie verwenden, usw.
 
@@ -255,9 +255,9 @@ Das `@app.get("/")` sagt **FastAPI**, dass die Funktion direkt darunter für die
 
     Diese `@etwas` Syntax wird in Python "Decorator" genannt.
 
-    Man setzt ihn über eine Funktion. Wie ein hübsches dekoratives Hütchen (daher kommt wohl der Begriff).
+    Man schreibt ihn über eine Funktion. Wie ein hübsches dekoratives Hütchen (daher kommt wohl der Begriff).
 
-    Ein "Dekorator" nimmt die darunter stehende Funktion und erweitert sie.
+    Ein "Dekorator" erweitert die darunter stehende Funktion.
 
     In unserem Fall teilt dieser Dekorator **FastAPI** mit, dass die folgende Funktion dem **Pfad** `/` mit einer `get` **Operation** entspricht.
 
@@ -289,7 +289,7 @@ Und die exotischeren unter ihnen:
 
 Dies ist unsere "**Pfadoperations-Funktion**":
 
-* **Pfad**: ist dies `/`.
+* **Pfad**: ist `/`.
 * **Operation**: ist `get`.
 * **FunKtion**: ist die Funktion unterhalb des "Dekorators" (unterhalb von `@app.get("/")`).
 
@@ -297,7 +297,7 @@ Dies ist unsere "**Pfadoperations-Funktion**":
 {!../../../docs_src/first_steps/tutorial001.py!}
 ```
 
-Es ist eine Python-Funktion.
+Dies ist eine Python-Funktion.
 
 Sie wird von **FastAPI** immer dann aufgerufen, wenn sie eine Anfrage an die URL "`/`" mittels einer `GET`-Operation erhält.
 
@@ -330,6 +330,6 @@ Es gibt viele andere Objekte und Modelle, die automatisch in JSON konvertiert we
 
 * Importieren Sie `FastAPI`.
 * Erstellen Sie eine `app` Instanz.
-* Legen Sie einen **Pfadoperations-Dekorators** an (wie `@app.get("/")`).
+* Legen Sie einen **Pfadoperations-Dekorator** an (wie `@app.get("/")`).
 * Schreiben Sie eine **Pfadoperations-Funktion** (wie `def root(): ...` oben).
 * Starten Sie den Entwicklungsserver (z.B. `uvicorn main:app --reload`).
