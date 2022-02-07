@@ -2,6 +2,12 @@ gold:
   - url: https://bit.ly/2QSouzH
     title: "Jina: build neural search-as-a-service for any kind of data in just minutes."
     img: https://fastapi.tiangolo.com/img/sponsors/jina.svg
+  - url: https://cryptapi.io/
+    title: "CryptAPI: Your easy to use, secure and privacy oriented payment gateway."
+    img: https://fastapi.tiangolo.com/img/sponsors/cryptapi.svg
+  - url: https://www.dropbase.io/careers
+    title: Dropbase - seamlessly collect, clean, and centralize data.
+    img: https://fastapi.tiangolo.com/img/sponsors/dropbase.svg
 silver:
   - url: https://www.deta.sh/?ref=fastapi
     title: The launchpad for all your (team's) ideas
@@ -18,6 +24,9 @@ silver:
   - url: https://testdriven.io/courses/tdd-fastapi/
     title: Learn to build high-quality web apps with best practices
     img: https://fastapi.tiangolo.com/img/sponsors/testdriven.svg
+  - url: https://github.com/deepset-ai/haystack/
+    title: Build powerful search from composable, open source building blocks
+    img: https://fastapi.tiangolo.com/img/sponsors/haystack-fastapi.svg
 bronze:
   - url: https://calmcode.io
     title: Code. Simply. Clearly. Calmly.
