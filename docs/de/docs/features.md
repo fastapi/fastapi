@@ -119,7 +119,7 @@ Die gesamte Validierung übernimmt das etablierte und robuste **Pydantic**.
 
 ### Sicherheit und Authentifizierung
 
-Sicherheit und Authentifizierung sind integriert. Ohne einen Kompromiss aufgrund einer Datenbank oder den Datenentitäten.
+Integrierte Sicherheit und Authentifizierung. Ohne Kompromisse bei Datenbanken oder Datenmodellen.
 
 Unterstützt werden alle von OpenAPI definierten Sicherheitsschemata, hierzu gehören:
 
@@ -142,7 +142,7 @@ FastAPI enthält ein extrem einfaches, aber extrem mächtiges <abbr title='oft v
 * **Automatische Umsetzung** durch FastAPI.
 * Alle abhängigen Komponenten könnten Daten von Anfragen, **Erweiterungen der Pfadoperations-**Einschränkungen und der automatisierten Dokumentation benötigen.
 * **Automatische Validierung** selbst für *Pfadoperationen*-Parameter, die in den Abhängigkeiten definiert wurden.
-* Unterstützt komplexe Benutzerauthentifizierungssysteme, mit **Datenbankverbindungen**, usw.
+* Unterstützt komplexe Benutzerauthentifizierungssysteme, **Datenbankverbindungen**, usw.
 * **Keine Kompromisse** bei Datenbanken, Eingabemasken, usw. Sondern einfache Integration von allen.
 
 ### Unbegrenzte Erweiterungen
