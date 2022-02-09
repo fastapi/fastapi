@@ -29,7 +29,7 @@ Por exemplo para declarar um valor de metadado `title` para o parâmetro de rota
 
 ## Ordene os parâmetros de a acordo com sua necessidade
 
-Suponha que você quer declarar o parâmetro de consulta `q` como uma `str` obrigatória.
+Suponha que você queira declarar o parâmetro de consulta `q` como uma `str` obrigatória.
 
 E você não precisa declarar mais nada em relação a este parâmetro, então você não precisa necessariamente usar `Query`.
 
