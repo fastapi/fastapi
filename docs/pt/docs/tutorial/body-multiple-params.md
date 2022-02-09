@@ -36,7 +36,7 @@ Mas você pode também declarar múltiplos parâmetros de corpo, por exemplo, `i
 
 Neste caso, **FastAPI** vai perceber que existe mais de um parâmetro de corpo na função (dois parâmetros que são modelos Pydantic).
 
-Então, ele vai usar o nome dos parâmetros como chaves (nome dos campos) no corpo, e espera um corpo como:
+Então, ele usará o nome dos parâmetros como chaves (nome dos campos) no corpo, e espera um corpo como:
 
 ```JSON
 {
