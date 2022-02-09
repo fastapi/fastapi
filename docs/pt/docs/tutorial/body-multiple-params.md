@@ -54,7 +54,7 @@ Então, ele vai usar o nome dos parâmetros como chaves (nome dos campos) no cor
 ```
 
 !!! nota
-    Repare que mesmo que o `item` esteja declarado da mesma maneira que antes, agora ele é esperado esteja dentro do corpo com uma chave `item`.
+    Repare que mesmo que o `item` esteja declarado da mesma maneira que antes, agora é esperado que ele esteja dentro do corpo com uma chave `item`.
 
 
 **FastAPI** vai fazer a conversão automática a partir da requisição, assim esse parâmetro `item` receberá seu respectivo conteúdo específico e o mesmo ocorre com `user`.
