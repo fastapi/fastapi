@@ -1,3 +1,4 @@
+from enum import Enum
 from typing import Any, Callable, Coroutine, Dict, List, Optional, Sequence, Type, Union
 
 from fastapi import routing
@@ -55,6 +56,9 @@ class FastAPI(Starlette):
         ] = None,
         on_startup: Optional[Sequence[Callable[[], Any]]] = None,
         on_shutdown: Optional[Sequence[Callable[[], Any]]] = None,
+        terms_of_service: Optional[str] = None,
+        contact: Optional[Dict[str, Union[str, Any]]] = None,
+        license_info: Optional[Dict[str, Union[str, Any]]] = None,
         openapi_prefix: str = "",
         root_path: str = "",
         root_path_in_servers: bool = True,
@@ -62,6 +66,7 @@ class FastAPI(Starlette):
         callbacks: Optional[List[BaseRoute]] = None,
         deprecated: Optional[bool] = None,
         include_in_schema: bool = True,
+        swagger_ui_parameters: Optional[Dict[str, Any]] = None,
         **extra: Any,
     ) -> None:
         self._debug: bool = debug
@@ -97,6 +102,9 @@ class FastAPI(Starlette):
         self.title = title
         self.description = description
         self.version = version
+        self.terms_of_service = terms_of_service
+        self.contact = contact
+        self.license_info = license_info
         self.servers = servers or []
         self.openapi_url = openapi_url
         self.openapi_tags = openapi_tags
@@ -114,6 +122,7 @@ class FastAPI(Starlette):
         self.redoc_url = redoc_url
         self.swagger_ui_oauth2_redirect_url = swagger_ui_oauth2_redirect_url
         self.swagger_ui_init_oauth = swagger_ui_init_oauth
+        self.swagger_ui_parameters = swagger_ui_parameters
         self.extra = extra
         self.dependency_overrides: Dict[Callable[..., Any], Callable[..., Any]] = {}
 
@@ -132,6 +141,9 @@ class FastAPI(Starlette):
                 version=self.version,
                 openapi_version=self.openapi_version,
                 description=self.description,
+                terms_of_service=self.terms_of_service,
+                contact=self.contact,
+                license_info=self.license_info,
                 routes=self.routes,
                 tags=self.openapi_tags,
                 servers=self.servers,
@@ -165,6 +177,7 @@ class FastAPI(Starlette):
                     title=self.title + " - Swagger UI",
                     oauth2_redirect_url=oauth2_redirect_url,
                     init_oauth=self.swagger_ui_init_oauth,
+                    swagger_ui_parameters=self.swagger_ui_parameters,
                 )
 
             self.add_route(self.docs_url, swagger_ui_html, include_in_schema=False)
@@ -206,8 +219,8 @@ class FastAPI(Starlette):
         endpoint: Callable[..., Coroutine[Any, Any, Response]],
         *,
         response_model: Optional[Type[Any]] = None,
-        status_code: int = 200,
-        tags: Optional[List[str]] = None,
+        status_code: Optional[int] = None,
+        tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[Depends]] = None,
         summary: Optional[str] = None,
         description: Optional[str] = None,
@@ -227,6 +240,7 @@ class FastAPI(Starlette):
             JSONResponse
         ),
         name: Optional[str] = None,
+        openapi_extra: Optional[Dict[str, Any]] = None,
     ) -> None:
         self.router.add_api_route(
             path,
@@ -251,6 +265,7 @@ class FastAPI(Starlette):
             include_in_schema=include_in_schema,
             response_class=response_class,
             name=name,
+            openapi_extra=openapi_extra,
         )
 
     def api_route(
@@ -258,8 +273,8 @@ class FastAPI(Starlette):
         path: str,
         *,
         response_model: Optional[Type[Any]] = None,
-        status_code: int = 200,
-        tags: Optional[List[str]] = None,
+        status_code: Optional[int] = None,
+        tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[Depends]] = None,
         summary: Optional[str] = None,
         description: Optional[str] = None,
@@ -277,6 +292,7 @@ class FastAPI(Starlette):
         include_in_schema: bool = True,
         response_class: Type[Response] = Default(JSONResponse),
         name: Optional[str] = None,
+        openapi_extra: Optional[Dict[str, Any]] = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         def decorator(func: DecoratedCallable) -> DecoratedCallable:
             self.router.add_api_route(
@@ -302,6 +318,7 @@ class FastAPI(Starlette):
                 include_in_schema=include_in_schema,
                 response_class=response_class,
                 name=name,
+                openapi_extra=openapi_extra,
             )
             return func
 
@@ -326,7 +343,7 @@ class FastAPI(Starlette):
         router: routing.APIRouter,
         *,
         prefix: str = "",
-        tags: Optional[List[str]] = None,
+        tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[Depends]] = None,
         responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
         deprecated: Optional[bool] = None,
@@ -351,8 +368,8 @@ class FastAPI(Starlette):
         path: str,
         *,
         response_model: Optional[Type[Any]] = None,
-        status_code: int = 200,
-        tags: Optional[List[str]] = None,
+        status_code: Optional[int] = None,
+        tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[Depends]] = None,
         summary: Optional[str] = None,
         description: Optional[str] = None,
@@ -370,6 +387,7 @@ class FastAPI(Starlette):
         response_class: Type[Response] = Default(JSONResponse),
         name: Optional[str] = None,
         callbacks: Optional[List[BaseRoute]] = None,
+        openapi_extra: Optional[Dict[str, Any]] = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.router.get(
             path,
@@ -393,6 +411,7 @@ class FastAPI(Starlette):
             response_class=response_class,
             name=name,
             callbacks=callbacks,
+            openapi_extra=openapi_extra,
         )
 
     def put(
@@ -400,8 +419,8 @@ class FastAPI(Starlette):
         path: str,
         *,
         response_model: Optional[Type[Any]] = None,
-        status_code: int = 200,
-        tags: Optional[List[str]] = None,
+        status_code: Optional[int] = None,
+        tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[Depends]] = None,
         summary: Optional[str] = None,
         description: Optional[str] = None,
@@ -419,6 +438,7 @@ class FastAPI(Starlette):
         response_class: Type[Response] = Default(JSONResponse),
         name: Optional[str] = None,
         callbacks: Optional[List[BaseRoute]] = None,
+        openapi_extra: Optional[Dict[str, Any]] = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.router.put(
             path,
@@ -442,6 +462,7 @@ class FastAPI(Starlette):
             response_class=response_class,
             name=name,
             callbacks=callbacks,
+            openapi_extra=openapi_extra,
         )
 
     def post(
@@ -449,8 +470,8 @@ class FastAPI(Starlette):
         path: str,
         *,
         response_model: Optional[Type[Any]] = None,
-        status_code: int = 200,
-        tags: Optional[List[str]] = None,
+        status_code: Optional[int] = None,
+        tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[Depends]] = None,
         summary: Optional[str] = None,
         description: Optional[str] = None,
@@ -468,6 +489,7 @@ class FastAPI(Starlette):
         response_class: Type[Response] = Default(JSONResponse),
         name: Optional[str] = None,
         callbacks: Optional[List[BaseRoute]] = None,
+        openapi_extra: Optional[Dict[str, Any]] = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.router.post(
             path,
@@ -491,6 +513,7 @@ class FastAPI(Starlette):
             response_class=response_class,
             name=name,
             callbacks=callbacks,
+            openapi_extra=openapi_extra,
         )
 
     def delete(
@@ -498,8 +521,8 @@ class FastAPI(Starlette):
         path: str,
         *,
         response_model: Optional[Type[Any]] = None,
-        status_code: int = 200,
-        tags: Optional[List[str]] = None,
+        status_code: Optional[int] = None,
+        tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[Depends]] = None,
         summary: Optional[str] = None,
         description: Optional[str] = None,
@@ -517,6 +540,7 @@ class FastAPI(Starlette):
         response_class: Type[Response] = Default(JSONResponse),
         name: Optional[str] = None,
         callbacks: Optional[List[BaseRoute]] = None,
+        openapi_extra: Optional[Dict[str, Any]] = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.router.delete(
             path,
@@ -540,6 +564,7 @@ class FastAPI(Starlette):
             response_class=response_class,
             name=name,
             callbacks=callbacks,
+            openapi_extra=openapi_extra,
         )
 
     def options(
@@ -547,8 +572,8 @@ class FastAPI(Starlette):
         path: str,
         *,
         response_model: Optional[Type[Any]] = None,
-        status_code: int = 200,
-        tags: Optional[List[str]] = None,
+        status_code: Optional[int] = None,
+        tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[Depends]] = None,
         summary: Optional[str] = None,
         description: Optional[str] = None,
@@ -566,6 +591,7 @@ class FastAPI(Starlette):
         response_class: Type[Response] = Default(JSONResponse),
         name: Optional[str] = None,
         callbacks: Optional[List[BaseRoute]] = None,
+        openapi_extra: Optional[Dict[str, Any]] = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.router.options(
             path,
@@ -589,6 +615,7 @@ class FastAPI(Starlette):
             response_class=response_class,
             name=name,
             callbacks=callbacks,
+            openapi_extra=openapi_extra,
         )
 
     def head(
@@ -596,8 +623,8 @@ class FastAPI(Starlette):
         path: str,
         *,
         response_model: Optional[Type[Any]] = None,
-        status_code: int = 200,
-        tags: Optional[List[str]] = None,
+        status_code: Optional[int] = None,
+        tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[Depends]] = None,
         summary: Optional[str] = None,
         description: Optional[str] = None,
@@ -615,6 +642,7 @@ class FastAPI(Starlette):
         response_class: Type[Response] = Default(JSONResponse),
         name: Optional[str] = None,
         callbacks: Optional[List[BaseRoute]] = None,
+        openapi_extra: Optional[Dict[str, Any]] = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.router.head(
             path,
@@ -638,6 +666,7 @@ class FastAPI(Starlette):
             response_class=response_class,
             name=name,
             callbacks=callbacks,
+            openapi_extra=openapi_extra,
         )
 
     def patch(
@@ -645,8 +674,8 @@ class FastAPI(Starlette):
         path: str,
         *,
         response_model: Optional[Type[Any]] = None,
-        status_code: int = 200,
-        tags: Optional[List[str]] = None,
+        status_code: Optional[int] = None,
+        tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[Depends]] = None,
         summary: Optional[str] = None,
         description: Optional[str] = None,
@@ -664,6 +693,7 @@ class FastAPI(Starlette):
         response_class: Type[Response] = Default(JSONResponse),
         name: Optional[str] = None,
         callbacks: Optional[List[BaseRoute]] = None,
+        openapi_extra: Optional[Dict[str, Any]] = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.router.patch(
             path,
@@ -687,6 +717,7 @@ class FastAPI(Starlette):
             response_class=response_class,
             name=name,
             callbacks=callbacks,
+            openapi_extra=openapi_extra,
         )
 
     def trace(
@@ -694,8 +725,8 @@ class FastAPI(Starlette):
         path: str,
         *,
         response_model: Optional[Type[Any]] = None,
-        status_code: int = 200,
-        tags: Optional[List[str]] = None,
+        status_code: Optional[int] = None,
+        tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[Depends]] = None,
         summary: Optional[str] = None,
         description: Optional[str] = None,
@@ -713,6 +744,7 @@ class FastAPI(Starlette):
         response_class: Type[Response] = Default(JSONResponse),
         name: Optional[str] = None,
         callbacks: Optional[List[BaseRoute]] = None,
+        openapi_extra: Optional[Dict[str, Any]] = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.router.trace(
             path,
@@ -736,4 +768,5 @@ class FastAPI(Starlette):
             response_class=response_class,
             name=name,
             callbacks=callbacks,
+            openapi_extra=openapi_extra,
         )

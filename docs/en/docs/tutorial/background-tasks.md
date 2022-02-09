@@ -57,9 +57,17 @@ Using `BackgroundTasks` also works with the dependency injection system, you can
 
 **FastAPI** knows what to do in each case and how to re-use the same object, so that all the background tasks are merged together and are run in the background afterwards:
 
-```Python hl_lines="13  15  22  25"
-{!../../../docs_src/background_tasks/tutorial002.py!}
-```
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="13  15  22  25"
+    {!> ../../../docs_src/background_tasks/tutorial002.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="11  13  20  23"
+    {!> ../../../docs_src/background_tasks/tutorial002_py310.py!}
+    ```
 
 In this example, the messages will be written to the `log.txt` file *after* the response is sent.
 
