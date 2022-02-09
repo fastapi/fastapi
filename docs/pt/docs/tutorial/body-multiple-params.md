@@ -121,7 +121,7 @@ como em:
 
 Suponha que você tem um único `item` parâmetro de corpo a partir de um modelo Pydantic `Item`.
 
-Por padrão, **FastAPI** vai então esperar que seu conteúdo venha no corpo diretamente.
+Por padrão, o **FastAPI** vai então esperar que seu conteúdo venha no corpo diretamente.
 
 Mas se você quiser que ele requisite por um JSON com uma chave `item` e dentro dele os conteúdos do modelo, como ocorre ao declarar vários parâmetros de corpo, você pode usar o parâmetro especial de `Body` chamado `embed`:
 
