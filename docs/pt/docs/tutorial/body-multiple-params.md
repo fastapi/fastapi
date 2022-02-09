@@ -1,6 +1,6 @@
 # Corpo - Múltiplos parâmetros
 
-Agora que nós vimos como usar `Path` e `Query`, vamos ver usos mais avançados de declarações para uso no corpo da requisição.
+Agora que nós vimos como usar `Path` e `Query`, veremos usos mais avançados de declarações no corpo da requisição.
 
 ## Misture `Path`, `Query` e parâmetros de corpo
 
