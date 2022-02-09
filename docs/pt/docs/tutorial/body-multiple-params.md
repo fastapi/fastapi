@@ -28,7 +28,7 @@ No exemplo anterior, as *operações de rota* esperariam um JSON no corpo conten
 }
 ```
 
-Mas você pode também declarar múltiplos parâmetros de corpo, e.g. `item` e `user`:
+Mas você pode também declarar múltiplos parâmetros de corpo, por exemplo, `item` e `user`:
 
 ```Python hl_lines="22"
 {!../../../docs_src/body_multiple_params/tutorial002.py!}
