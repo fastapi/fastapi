@@ -167,4 +167,4 @@ E o **FastAPI** vai manipulá-los, mandar para você os dados corretos na sua fu
 
 Você também pode declarar valores singulares para serem recebidos como parte do corpo.
 
-E você pode instruir **FastAPI** para requisitar no corpo a indicação de chave mesmo quando existe somente um parâmetro declarado.
+E você pode instruir o **FastAPI** para requisitar no corpo a indicação de chave mesmo quando existe somente um único parâmetro declarado.
