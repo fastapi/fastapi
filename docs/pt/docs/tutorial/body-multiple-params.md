@@ -135,7 +135,7 @@ como em:
 {!../../../docs_src/body_multiple_params/tutorial005.py!}
 ```
 
-Neste caso **FastAPI** vai esperar um corpo como:
+Neste caso o **FastAPI** vai esperar um corpo como:
 
 ```JSON hl_lines="2"
 {
