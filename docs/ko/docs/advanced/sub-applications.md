@@ -56,7 +56,7 @@ $ uvicorn main:app --reload
 
 다음으로, <a href="http://127.0.0.1:8000/subapi/docs" class="external-link" target="_blank">http://127.0.0.1:8000/subapi/docs</a>에서 하위 애플리케이션의 문서를 여십시오.
 
-하위 경로 접두사 `/subapi` 아래에 선언된 *경로 동작* 을 포함하는, 하위 애플리케이션에 대한 자동 API 문서를 확인할 수 있:
+하위 경로 접두사 `/subapi` 아래에 선언된 *경로 동작* 을 포함하는, 하위 애플리케이션에 대한 자동 API 문서를 확인할 수 있습니다:
 
 <img src="https://fastapi.tiangolo.com//img/tutorial/sub-applications/image02.png">
 
