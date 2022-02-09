@@ -113,11 +113,11 @@ como em:
 {!../../../docs_src/body_multiple_params/tutorial004.py!}
 ```
 
-!!! info
+!!! info "Informação"
     `Body` também possui todas as validações adicionais e metadados de parâmetros como em `Query`,`Path` e outras que você verá depois.
 
 
-## Requisite a indicação da chave para um único parâmetro de corpo
+## Declare um único parâmetro de corpo indicando sua chave
 
 Suponha que você tem um único `item` parâmetro de corpo a partir de um modelo Pydantic `Item`.
 
