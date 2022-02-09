@@ -64,6 +64,8 @@ nav:
   - tutorial/path-params-numeric-validations.md
   - tutorial/response-status-code.md
   - tutorial/request-files.md
+- 심화된 사용자 안내서:
+  - advanced/sub-applications.md
 markdown_extensions:
 - toc:
     permalink: true
