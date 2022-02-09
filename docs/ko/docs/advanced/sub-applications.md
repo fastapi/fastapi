@@ -50,13 +50,13 @@ $ uvicorn main:app --reload
 
 그리고 <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>에서 문서를 여십시오.
 
-메인 애플리케이션의 *경로 동작*만을 포함하는, 메인 애플리케이션에 대한 자동 API 문서를 확인할 수 있을 것입니다:
+메인 애플리케이션의 *경로 동작*만을 포함하는, 메인 애플리케이션에 대한 자동 API 문서를 확인할 수 있습니다:
 
 <img src="https://fastapi.tiangolo.com//img/tutorial/sub-applications/image01.png">
 
 다음으로, <a href="http://127.0.0.1:8000/subapi/docs" class="external-link" target="_blank">http://127.0.0.1:8000/subapi/docs</a>에서 하위 애플리케이션의 문서를 여십시오.
 
-하위 경로 접두사 `/subapi` 아래에 선언된 *경로 동작* 을 포함하는, 하위 애플리케이션에 대한 자동 API 문서를 확인할 수 있을 것입니다:
+하위 경로 접두사 `/subapi` 아래에 선언된 *경로 동작* 을 포함하는, 하위 애플리케이션에 대한 자동 API 문서를 확인할 수 있:
 
 <img src="https://fastapi.tiangolo.com//img/tutorial/sub-applications/image02.png">
 
