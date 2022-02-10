@@ -61,7 +61,7 @@ $ pip install "fastapi[all]"
     pip install fastapi
     ```
 
-    Zainstaluj tez `uvicorn`, który będzie służył jako serwer:
+    Zainstaluj też `uvicorn`, który będzie służył jako serwer:
 
     ```
     pip install "uvicorn[standard]"
