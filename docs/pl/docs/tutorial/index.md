@@ -1,4 +1,4 @@
-# Samouczek - Instrukcja - Wprowadzenie
+# Samouczek - Wprowadzenie
 
 Ten samouczek pokaże Ci, krok po kroku, jak używać większości funkcji **FastAPI**.
 
@@ -10,7 +10,7 @@ Możesz wracać i sprawdzać dokładnie to czego potrzebujesz.
 
 ## Wykonywanie kodu
 
-Wszystkie fragmenty kodu mogą być skopiowane bezpośrednio i użyte (są poprawnymi i przetestowanymi plikami)
+Wszystkie fragmenty kodu mogą być skopiowane bezpośrednio i użyte (są poprawnymi i przetestowanymi plikami).
 
 Żeby wykonać każdy przykład skopiuj kod to pliku `main.py` i uruchom `uvicorn` za pomocą:
 
@@ -38,7 +38,7 @@ Użycie w Twoim edytorze jest tym, co pokazuje prawdziwe korzyści z FastAPI, po
 
 Jako pierwszy krok zainstaluj FastAPI.
 
-Na potrzeby samouczka lepiej zainstaluj ze wszystkimi opcjonalnymi zależnościami i funkcjami:
+Na potrzeby samouczka możesz zainstalować również wszystkie opcjonalne biblioteki:
 
 <div class="termy">
 
@@ -53,29 +53,29 @@ $ pip install "fastapi[all]"
 ...wliczając w to `uvicorn`, który będzie służył jako serwer wykonujacy Twój kod.
 
 !!! note
-    You can also install it part by part.
+    Możesz również wykonać instalację "krok po kroku".
 
-    This is what you would probably do once you want to deploy your application to production:
+    Prawdopodobnie zechcesz to zrobić, kiedy będziesz wdrażać swoją aplikację w środowisku produkcyjnym:
 
     ```
     pip install fastapi
     ```
 
-    Also install `uvicorn` to work as the server:
+    Zainstaluj tez `uvicorn`, który będzie służył jako serwer:
 
     ```
     pip install "uvicorn[standard]"
     ```
 
-    And the same for each of the optional dependencies that you want to use.
+    Tak samo możesz zainstalować wszystkie dodatkowe biblioteki, których chcesz użyć.
 
-## Instrukcja dla zaawansowanych
+## Zaawansowany poradnik
 
-Jest też **Instrukcja dla zaawansowanych**, którą możesz przeczytać po lekturze tego **Samouczka - Instrukcji**.
+Jest też **Zaawansowany poradnik**, który możesz przeczytać po lekturze tego **Samouczka**.
 
-**Instrukcja dla zaawansowanych**, opiera się na tym samouczku, używa tych samych pojęć, żeby pokazać Ci kilka dodatkowych funkcji.
+**Zaawansowany poradnik** opiera się na tym samouczku, używa tych samych pojęć, żeby pokazać Ci kilka dodatkowych funkcji.
 
-Najpierw przeczytaj **Samouczek - Instrukcja** (czytasz to teraz).
+Najpierw jednak  powinieneś przeczytać **Samouczek** (czytasz go teraz).
 
-Samouczek jest zaprojektowany tak, że możesz stworzyć kompletną aplikację używając tylko **Samouczka - Instrukcji**, a następnie rozszerzać ją na różne sposoby, w zależności od potrzeb, używając kilku dodatkowych pomysłów z **Instrukcji dla zaawansowanych**
+Ten rozdział jest zaprojektowany tak, że możesz stworzyć kompletną aplikację używając tylko informacji tutaj zawartych, a następnie rozszerzać ją na różne sposoby, w zależności od potrzeb, używając kilku dodatkowych pomysłów z **Zaawansowanego poradnika**.
 
