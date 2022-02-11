@@ -35,7 +35,7 @@ plugins:
     data: data
 nav:
 - FastAPI: index.md
-- Languages:
+- Мови:
   - en: /
   - az: /az/
   - de: /de/
@@ -53,6 +53,8 @@ nav:
   - uk: /uk/
   - zh: /zh/
 - python-types.md
+- Туторіал - Посібник користувача:
+  - tutorial/index.md
 markdown_extensions:
 - toc:
     permalink: true
