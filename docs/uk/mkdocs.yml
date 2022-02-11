@@ -53,6 +53,7 @@ nav:
   - uk: /uk/
   - zh: /zh/
 - python-types.md
+- fastapi-people.md
 - Туторіал - Посібник користувача:
   - tutorial/index.md
 markdown_extensions:
