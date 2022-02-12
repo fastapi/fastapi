@@ -242,9 +242,25 @@ def is_scalar_sequence_field(field: ModelField) -> bool:
     return False
 
 
+def get_globalns(call: Callable[..., Any]) -> Dict[str, Any]:
+    source_func: Any
+    if hasattr(call, "__globals__"):
+        # If the callable has __globals__ set, use that
+        source_func = call
+    elif isinstance(call, type):
+        # If the callable is a class, its dependencies are declared on __init__
+        source_func = getattr(call, "__init__")
+    else:
+        # For callable instances of classes, the dependencies are declared on __call__
+        source_func = getattr(call, "__call__")
+
+    return cast(Dict[str, Any], getattr(source_func, "__globals__", {}))
+
+
 def get_typed_signature(call: Callable[..., Any]) -> inspect.Signature:
     signature = inspect.signature(call)
-    globalns = getattr(call, "__globals__", {})
+    globalns = get_globalns(call)
+
     typed_params = [
         inspect.Parameter(
             name=param.name,
