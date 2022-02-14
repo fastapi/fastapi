@@ -52,6 +52,9 @@ nav:
   - tr: /tr/
   - uk: /uk/
   - zh: /zh/
+- Туторіал - Посібник користувача:
+  - tutorial/index.md
+  - tutorial/first-steps.md
 markdown_extensions:
 - toc:
     permalink: true
