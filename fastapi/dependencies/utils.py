@@ -245,15 +245,31 @@ def is_scalar_sequence_field(field: ModelField) -> bool:
 def get_typed_signature(call: Callable[..., Any]) -> inspect.Signature:
     signature = inspect.signature(call)
     globalns = getattr(call, "__globals__", {})
-    typed_params = [
-        inspect.Parameter(
-            name=param.name,
-            kind=param.kind,
-            default=param.default,
-            annotation=get_typed_annotation(param, globalns),
-        )
-        for param in signature.parameters.values()
-    ]
+    if inspect.isclass(call):
+        from fastapi import Query
+        parameters = {}
+        fields = getattr(call, '__fields__', {})
+        for param in fields:
+            parameters[param] = dict((fields[param].field_info.__repr_args__()))
+        typed_params = [
+            inspect.Parameter(
+                name=param.name,
+                kind=param.kind,
+                default=Query(parameters[param.name].get("default"), description=parameters[param.name].get("description")),
+                annotation=get_typed_annotation(param, globalns),
+            )
+            for param in signature.parameters.values()
+        ]
+    else:
+        typed_params = [
+            inspect.Parameter(
+                name=param.name,
+                kind=param.kind,
+                default=param.default,
+                annotation=get_typed_annotation(param, globalns),
+            )
+            for param in signature.parameters.values()
+        ]
     typed_signature = inspect.Signature(typed_params)
     return typed_signature
 
