@@ -52,6 +52,8 @@ nav:
   - tr: /tr/
   - uk: /uk/
   - zh: /zh/
+- Туторіал - Посібник користувача:
+  - tutorial/body.md
 markdown_extensions:
 - toc:
     permalink: true
