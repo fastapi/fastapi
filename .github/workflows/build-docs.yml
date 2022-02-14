@@ -1,6 +1,8 @@
 name: Build Docs
 on:
   push:
+    branches:
+      - master
   pull_request:
     types: [opened, synchronize]
 jobs:
