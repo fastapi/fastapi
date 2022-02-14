@@ -137,8 +137,8 @@ class FastAPI(Starlette):
         self.setup()
 
     def build_middleware_stack(self) -> ASGIApp:
-        # Duplicate/override from Starlette to add AsyncExitStackMiddleware after
-        # inside of ExceptionMiddleware
+        # Duplicate/override from Starlette to add AsyncExitStackMiddleware
+        # inside of ExceptionMiddleware, inside of custom user middlewares
         debug = self.debug
         error_handler = None
         exception_handlers = {}
