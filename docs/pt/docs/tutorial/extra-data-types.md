@@ -15,7 +15,7 @@ E você ainda terá os mesmos recursos que viu até agora:
 * Conversão de dados das requisições recebidas.
 * Conversão de dados para os dados da resposta.
 * Validação de dados.
-* Anotação e documentação automática.
+* Anotação e documentação automáticas.
 
 ## Outros tipos de dados
 
