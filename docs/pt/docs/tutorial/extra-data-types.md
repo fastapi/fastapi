@@ -59,7 +59,7 @@ Aqui está uma *operação de rota* exemplo com parãmetros utilizando-se de alg
 {!../../../docs_src/extra_data_types/tutorial001.py!}
 ```
 
-Note que os parâmetros dentro da função tem seu tipo de dados natural, e você pode, por exemplo, performar manipulações de data normais, como:
+Note que os parâmetros dentro da função tem seu tipo de dados natural, e você pode, por exemplo, realizar manipulações normais de data, como:
 
 ```Python hl_lines="18-19"
 {!../../../docs_src/extra_data_types/tutorial001.py!}
