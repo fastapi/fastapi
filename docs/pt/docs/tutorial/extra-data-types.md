@@ -1,6 +1,6 @@
 # Tipos de dados extras
 
-Até agora, você tem usado tipos de dados comuns, tais quais:
+Até agora, você tem usado tipos de dados comuns, tais como:
 
 * `int`
 * `float`
