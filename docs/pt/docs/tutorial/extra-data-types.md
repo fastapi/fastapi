@@ -38,7 +38,7 @@ Aqui estão alguns dos tipos de dados adicionais que você pode usar:
     * Em requisições e respostas será representado como um `float` de segundos totais.
     * O Pydantic também permite representá-lo como uma "codificação ISO 8601 diferença de tempo", <a href="https://pydantic-docs.helpmanual.io/#json-serialisation" class="external-link" target="_blank">cheque a documentação para mais informações</a>.
 * `frozenset`:
-    * Em requisições e respostas, vai ser tratado da mesma forma que um `set`:
+    * Em requisições e respostas, será tratado da mesma forma que um `set`:
         * Nas requisições, uma lista será lida, eliminando duplicadas e convertendo-a em um `set`.
         * Nas respostas, o `set` será convertido para uma `list`.
         * O esquema gerado vai especificar que os valores do `set` são unicos (usando o `uniqueItems` do JSON Schema).
