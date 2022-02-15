@@ -1,107 +1,149 @@
-# 帮助 FastAPI - 获取帮助
+# 帮助 FastAPI 与求助
 
-你喜欢 **FastAPI** 吗？
+您喜欢 **FastAPI** 吗？
 
-您愿意去帮助 FastAPI，帮助其他用户以及作者吗？
+想帮助 FastAPI？其它用户？还有项目作者？
 
-或者你想要获得有关 **FastAPI** 的帮助？
+或要求助怎么使用 **FastAPI**？
 
-下面是一些非常简单的方式去提供帮助（有些只需单击一两次链接）。
+以下几种帮助的方式都非常简单（有些只需要点击一两下鼠标）。
 
-以及几种获取帮助的途径。
+求助的渠道也很多。
 
-## 在 GitHub 上 Star **FastAPI** 
+## 订阅新闻邮件
 
-你可以在 GitHub 上 "star" FastAPI（点击右上角的 star 按钮）：<a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">https://github.com/tiangolo/fastapi</a>。
+您可以订阅 [**FastAPI 和它的小伙伴** 新闻邮件](/newsletter/){.internal-link target=_blank}（不会经常收到）
 
-通过添加 star，其他用户将会更容易发现 FastAPI，并了解已经有许多人认为它有用。
+* FastAPI 及其小伙伴的新闻 🚀
+* 指南 📝
+* 功能 ✨
+* 破坏性更改 🚨
+* 开发技巧 ✅
 
-## Watch GitHub 仓库的版本发布
+## 在推特上关注 FastAPI 
 
-你可以在 GitHub 上 "watch" FastAPI（点击右上角的 watch 按钮）：<a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">https://github.com/tiangolo/fastapi</a>。
+<a href="https://twitter.com/fastapi" class="external-link" target="_blank">在 **Twitter** 上关注 @fastapi</a> 获取 **FastAPI** 的最新消息。🐦
 
-这时你可以选择 "Releases only" 选项。
+## 在 GitHub 上为 **FastAPI** 加星
 
-之后，只要有 **FastAPI** 的新版本（包含缺陷修复和新功能）发布，你都会（通过电子邮件）收到通知。
+您可以在 GitHub 上 **Star** FastAPI（只要点击右上角的星星就可以了）： <a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">https://github.com/tiangolo/fastapi。</a>⭐️
 
-## 加入聊天室
+**Star** 以后，其它用户就能更容易找到 FastAPI，并了解到已经有其他用户在使用它了。
 
-加入 Gitter 上的聊天室：<a href="https://gitter.im/tiangolo/fastapi" class="external-link" target="_blank">https://gitter.im/tiangolo/fastapi</a>。
+## 关注 GitHub 资源库的版本发布
 
-在这里你可以快速提问、帮助他人、分享想法等。
+您还可以在 GitHub 上 **Watch** FastAPI，（点击右上角的 **Watch** 按钮）<a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">https://github.com/tiangolo/fastapi。</a>👀
 
-## 与作者联系
+您可以选择只关注发布（**Releases only**）。
 
-你可以联系 <a href="https://tiangolo.com" class="external-link" target="_blank">我 (Sebastián Ramírez / `tiangolo`)</a> - FastAPI 的作者。
+这样，您就可以（在电子邮件里）接收到 **FastAPI** 新版发布的通知，及时了解 bug 修复与新功能。
 
-你可以：
+## 联系作者
 
-* <a href="https://github.com/tiangolo" class="external-link" target="_blank">在 **GitHub** 上关注我</a>。
-    * 查看我创建的其他的可能对你有帮助的开源项目。
-    * 关注我以了解我创建的新开源项目。
-* <a href="https://twitter.com/tiangolo" class="external-link" target="_blank">在 **Twitter** 上关注我</a>。
-    * 告诉我你是如何使用 FastAPI 的（我很乐意听到）。
-    * 提出问题。
-* <a href="https://www.linkedin.com/in/tiangolo/" class="external-link" target="_blank">在 **Linkedin** 上联系我</a>。
-    * 与我交流。
-    * 认可我的技能或推荐我 :)
-* <a href="https://medium.com/@tiangolo" class="external-link" target="_blank">在 **Medium** 上阅读我写的文章（或关注我）</a>。
-    * 阅读我创建的其他想法，文章和工具。
-    * 关注我以了解我发布的新内容。
+您可以联系项目作者，就是<a href="https://tiangolo.com" class="external-link" target="_blank">我（Sebastián Ramírez / `tiangolo`</a>）。
 
-## 发布和 **FastAPI** 有关的推特
+您可以：
 
-<a href="https://twitter.com/compose/tweet?text=I'm loving FastAPI because... https://github.com/tiangolo/fastapi cc @tiangolo" class="external-link" target="_blank"> 发布和 **FastAPI** 有关的推特</a> 让我和其他人知道你为什么喜欢它。
+* <a href="https://github.com/tiangolo" class="external-link" target="_blank">在 **GitHub** 上关注我</a>
+    * 了解其它我创建的开源项目，或许对您会有帮助
+    * 关注我什么时候创建新的开源项目
+* <a href="https://twitter.com/tiangolo" class="external-link" target="_blank">在 **Twitter** 上关注我</a>
+    * 告诉我您使用 FastAPI（我非常乐意听到这种消息）
+    * 接收我发布公告或新工具的消息
+    * 您还可以关注<a href="https://twitter.com/fastapi" class="external-link" target="_blank">@fastapi on Twitter</a>，这是个独立的账号
+* <a href="https://www.linkedin.com/in/tiangolo/" class="external-link" target="_blank">在**领英**上联系我</a>
+    * 接收我发布公告或新工具的消息（虽然我用 Twitter 比较多）
+* 阅读我在 <a href="https://dev.to/tiangolo" class="external-link" target="_blank">**Dev.to**</a> 或 <a href="https://medium.com/@tiangolo" class="external-link" target="_blank">**Medium**</a> 上的文章，或关注我
+    * 阅读我的其它想法、文章，了解我创建的工具
+    * 关注我，这样就可以随时看到我发布的新文章
 
-## 告诉我你正在如何使用 **FastAPI**
+## Tweet about **FastAPI**
 
-我很乐意听到有关 **FastAPI** 被如何使用、你喜欢它的哪一点、被投入使用的项目/公司等等信息。
+<a href="https://twitter.com/compose/tweet?text=I'm loving @fastapi because... https://github.com/tiangolo/fastapi" class="external-link" target="_blank">Tweet about **FastAPI**</a> 让我和大家知道您为什么喜欢 FastAPI。🎉
 
-你可以通过以下平台让我知道：
-
-* <a href="https://twitter.com/compose/tweet?text=Hey @tiangolo, I'm using FastAPI at..." class="external-link" target="_blank">**Twitter**</a>。
-* <a href="https://www.linkedin.com/in/tiangolo/" class="external-link" target="_blank">**Linkedin**</a>。
-* <a href="https://medium.com/@tiangolo" class="external-link" target="_blank">**Medium**</a>。
+知道有人使用 **FastAPI**，我会很开心，我也想知道您为什么喜欢 FastAPI，以及您在什么项目/哪些公司使用 FastAPI，等等。
 
 ## 为 FastAPI 投票
 
-* <a href="https://www.slant.co/options/34241/~fastapi-review" class="external-link" target="_blank">在 Slant 上为 **FastAPI** 投票</a>。
+* <a href="https://www.slant.co/options/34241/~fastapi-review" class="external-link" target="_blank">在 Slant 上为 **FastAPI** 投票</a>
+* <a href="https://alternativeto.net/software/fastapi/" class="external-link" target="_blank">在 AlternativeTo 上为 **FastAPI** 投票</a>
 
-## 帮助他人解决 GitHub 的 issues
+## 在 GitHub 上帮助其他人解决问题
 
-你可以查看 <a href="https://github.com/tiangolo/fastapi/issues" class="external-link" target="_blank">已有的 issues</a> 并尝试帮助其他人。
+您可以查看<a href="https://github.com/tiangolo/fastapi/issues" class="external-link" target="_blank">现有 issues</a>，并尝试帮助其他人解决问题，说不定您能解决这些问题呢。🤓
 
-## Watch GitHub 仓库
+如果帮助很多人解决了问题，您就有可能成为 [FastAPI 的官方专家](fastapi-people.md#experts){.internal-link target=_blank}。🎉
 
-你可以在 GitHub 上 "watch" FastAPI（点击右上角的 "watch" 按钮）：<a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">https://github.com/tiangolo/fastapi</a>。
+## 监听 GitHub 资源库
 
-如果你选择的是 "Watching" 而不是 "Releases only" 选项，你会在其他人创建了新的 issue 时收到通知。
+您可以在 GitHub 上「监听」FastAPI（点击右上角的 "watch" 按钮）： <a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">https://github.com/tiangolo/fastapi</a>. 👀
 
-然后你可以尝试帮助他们解决这些 issue。
+如果您选择 "Watching" 而不是 "Releases only"，有人创建新 Issue 时，您会接收到通知。
 
-## 创建 issue
+然后您就可以尝试并帮助他们解决问题。
 
-你可以在 GitHub 仓库中 <a href="https://github.com/tiangolo/fastapi/issues/new/choose" class="external-link" target="_blank">创建一个新 issue</a> 用来：
+## 创建 Issue
 
-* 报告 bug 或问题。
-* 提议新的特性。
-* 提问。
+您可以在 GitHub 资源库中<a href="https://github.com/tiangolo/fastapi/issues/new/choose" class="external-link" target="_blank">创建 Issue</a>，例如：
 
-## 创建 Pull Request
+* 提出**问题**或**意见**
+* 提出新**特性**建议
 
-你可以 <a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">创建一个 Pull Request</a> 用来：
+**注意**：如果您创建 Issue，我会要求您也要帮助别的用户。😉
 
-* 纠正你在文档中发现的错别字。
-* 添加新的文档内容。
-* 修复已有的 bug 或问题。
-* 添加新的特性。
+## 创建 PR
+
+您可以创建 PR 为源代码做[贡献](contributing.md){.internal-link target=_blank}，例如：
+
+* 修改文档错别字
+* <a href="https://github.com/tiangolo/fastapi/edit/master/docs/en/data/external_links.yml" class="external-link" target="_blank">编辑这个文件</a>，分享 FastAPI 的文章、视频、博客，不论是您自己的，还是您看到的都成
+    * 注意，添加的链接要放在对应区块的开头
+* [翻译文档](contributing.md#translations){.internal-link target=_blank}
+    * 审阅别人翻译的文档
+* 添加新的文档内容
+* 修复现有问题/Bug
+* 添加新功能
+
+## 加入聊天
+
+快加入 👥 <a href="https://discord.gg/VQjSZaeJmf" class="external-link" target="_blank">Discord 聊天服务器</a> 👥 和 FastAPI 社区里的小伙伴一起哈皮吧。
+
+!!! tip "提示"
+
+    如有问题，请在 <a href="https://github.com/tiangolo/fastapi/issues/new/choose" class="external-link" target="_blank">GitHub Issues</a> 里提问，在这里更容易得到 [FastAPI 专家](fastapi-people.md#experts){.internal-link target=_blank}的帮助。
+    
+    聊天室仅供闲聊。
+
+我们之前还使用过 <a href="https://gitter.im/tiangolo/fastapi" class="external-link" target="_blank">Gitter chat</a>，但它不支持频道等高级功能，聊天也比较麻烦，所以现在推荐使用 Discord。
+
+### 别在聊天室里提问
+
+注意，聊天室更倾向于“闲聊”，经常有人会提出一些笼统得让人难以回答的问题，所以在这里提问一般没人回答。
+
+GitHub Issues 里提供了模板，指引您提出正确的问题，有利于获得优质的回答，甚至可能解决您还没有想到的问题。而且就算答疑解惑要耗费不少时间，我还是会尽量在 GitHub 里回答问题。但在聊天室里，我就没功夫这么做了。😅
+
+聊天室里的聊天内容也不如 GitHub 里好搜索，聊天里的问答很容易就找不到了。只有在 GitHub Issues 里的问答才能帮助您成为  [FastAPI 专家](fastapi-people.md#experts){.internal-link target=_blank}，在 GitHub Issues 中为您带来更多关注。
+
+另一方面，聊天室里有成千上万的用户，在这里，您有很大可能遇到聊得来的人。😄
 
 ## 赞助作者
 
-你还可以通过 <a href="https://github.com/sponsors/tiangolo" class="external-link" target="_blank">GitHub sponsors</a> 在经济上支持作者（我）。
+您还可以通过 <a href="https://github.com/sponsors/tiangolo" class="external-link" target="_blank">GitHub 赞助商</a>资助本项目的作者（就是我）。
 
-这样你可以给我买杯咖啡☕️以示谢意😄。
+给我买杯咖啡 ☕️ 以示感谢 😄
+
+当然您也可以成为 FastAPI 的金牌或银牌赞助商。🏅🎉
+
+## 赞助 FastAPI 使用的工具
+
+如您在本文档中所见，FastAPI 站在巨人的肩膀上，它们分别是 Starlette 和 Pydantic。
+
+您还可以赞助：
+
+* <a href="https://github.com/sponsors/samuelcolvin" class="external-link" target="_blank">Samuel Colvin （Pydantic）</a>
+* <a href="https://github.com/sponsors/encode" class="external-link" target="_blank">Encode （Starlette, Uvicorn）</a>
 
 ---
 
-感谢！
+谢谢！🚀
+
