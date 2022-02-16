@@ -19,7 +19,7 @@ Primeiro, importe `BackgroundTasks` e defina um parâmetro em sua _função de o
 {!../../../docs_src/background_tasks/tutorial001.py!}
 ```
 
-**FastAPI** criará o objeto do tipo `BackgroundTasks` para você e o passará como esse parâmetro.
+O **FastAPI** criará o objeto do tipo `BackgroundTasks` para você e o passará como esse parâmetro.
 
 ## Criar uma função de tarefa
 
