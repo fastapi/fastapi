@@ -77,7 +77,7 @@ Usando apenas `BackgroundTasks` (e não `BackgroundTask`), é então possível u
 
 Ainda é possível usar `BackgroundTask` sozinho no FastAPI, mas você deve criar o objeto em seu código e retornar uma Starlette `Response` incluindo-o.
 
-Você pode ver mais detalhes nos <a href="https://www.starlette.io/background/" class="external-link" target="_blank"> documentos oficiais da Starlette para tarefas em segundo plano </a>.
+Você pode ver mais detalhes na <a href="https://www.starlette.io/background/" class="external-link" target="_blank"> documentação oficiais da Starlette para tarefas em segundo plano </a>.
 
 ## Ressalva
 
