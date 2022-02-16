@@ -71,7 +71,7 @@ E então outra tarefa em segundo plano gerada na _função de operação de cami
 
 A classe `BackgroundTasks` vem diretamente de <a href="https://www.starlette.io/background/" class="external-link" target="_blank">`starlette.background`</a>.
 
-Ele é importado/incluído diretamente no FastAPI para que você possa importá-lo do `fastapi` e evitar a importação acidental da alternativa `BackgroundTask` (sem o `s` no final) de `starlette.background`.
+Ela é importada/incluída diretamente no FastAPI para que você possa importá-la do `fastapi` e evitar a importação acidental da alternativa `BackgroundTask` (sem o `s` no final) de `starlette.background`.
 
 Usando apenas `BackgroundTasks` (e não `BackgroundTask`), é então possível usá-lo como um parâmetro de _função de operação de caminho_ e fazer **FastAPI** cuidar do resto para você, assim como ao usar o objeto `Request` diretamente.
 
