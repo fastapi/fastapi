@@ -2,7 +2,7 @@
 
 Você pode definir tarefas em segundo plano a serem executadas _ após _ retornar uma resposta.
 
-Isso é útil para operações que precisam acontecer após uma solicitação, mas que o cliente realmente não precisa estar esperando a operação ser concluída para receber a resposta.
+Isso é útil para operações que precisam acontecer após uma solicitação, mas que o cliente realmente não precisa esperar a operação ser concluída para receber a resposta.
 
 Isso inclui, por exemplo:
 
