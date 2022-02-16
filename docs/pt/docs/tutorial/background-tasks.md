@@ -49,7 +49,7 @@ Dentro de sua _função de operação de caminho_, passe sua função de tarefa 
 
 - Uma função de tarefa a ser executada em segundo plano (`write_notification`).
 - Qualquer sequência de argumentos que deve ser passada para a função de tarefa na ordem (`email`).
-- Quaisquer argumentos de palavra-chave que devem ser passados ​​para a função de tarefa (`mensagem = "alguma notificação"`).
+- Quaisquer argumentos nomeados que devem ser passados ​​para a função de tarefa (`mensagem = "alguma notificação"`).
 
 ## Injeção de dependência
 
