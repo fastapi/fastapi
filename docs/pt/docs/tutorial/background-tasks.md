@@ -55,7 +55,7 @@ Dentro de sua _função de operação de caminho_, passe sua função de tarefa 
 
 Usar `BackgroundTasks` também funciona com o sistema de injeção de dependência, você pode declarar um parâmetro do tipo `BackgroundTasks` em vários níveis: em uma _função de operação de caminho_, em uma dependência (confiável), em uma subdependência, etc.
 
-**FastAPI** sabe o que fazer em cada caso e como reutilizar o mesmo objeto, de forma que todas as tarefas em segundo plano sejam mescladas e executadas em segundo plano posteriormente:
+O **FastAPI** sabe o que fazer em cada caso e como reutilizar o mesmo objeto, de forma que todas as tarefas em segundo plano sejam mescladas e executadas em segundo plano posteriormente:
 
 ```Python hl_lines="13  15  22  25"
 {!../../../docs_src/background_tasks/tutorial002.py!}
