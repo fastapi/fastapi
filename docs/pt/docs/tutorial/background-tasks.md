@@ -27,7 +27,7 @@ Crie uma função a ser executada como tarefa em segundo plano.
 
 É apenas uma função padrão que pode receber parâmetros.
 
-Pode ser uma função `async def` ou `def` normal, **FastAPI** saberá como lidar com isso corretamente.
+Pode ser uma função `async def` ou `def` normal, o **FastAPI** saberá como lidar com isso corretamente.
 
 Nesse caso, a função de tarefa gravará em um arquivo (simulando o envio de um e-mail).
 
