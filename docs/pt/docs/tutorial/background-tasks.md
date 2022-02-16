@@ -6,7 +6,7 @@ Isso é útil para operações que precisam acontecer após uma solicitação, m
 
 Isso inclui, por exemplo:
 
-- Notificações por email enviadas após a realização de uma ação:
+- Envio de notificações por email após a realização de uma ação:
   - Como conectar-se a um servidor de e-mail e enviar um e-mail tende a ser "lento" (vários segundos), você pode retornar a resposta imediatamente e enviar a notificação por e-mail em segundo plano.
 - Processando dados:
   - Por exemplo, digamos que você receba um arquivo que deve passar por um processo lento, você pode retornar uma resposta de "Aceito" (HTTP 202) e processá-lo em segundo plano.
