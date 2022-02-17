@@ -2,6 +2,9 @@
 
 ## Latest Changes
 
+
+## 0.74.0
+
 ### Breaking Changes
 
 * ✨ Update internal `AsyncExitStack` to fix context for dependencies with `yield`. PR [#4575](https://github.com/tiangolo/fastapi/pull/4575) by [@tiangolo](https://github.com/tiangolo).
