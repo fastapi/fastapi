@@ -155,7 +155,26 @@ class FastAPI(Starlette):
                 Middleware(
                     ExceptionMiddleware, handlers=exception_handlers, debug=debug
                 ),
-                # Add FastAPI-specific AsyncExitStackMiddleware for dependencies
+                # Add FastAPI-specific AsyncExitStackMiddleware for dependencies with
+                # contextvars.
+                # This needs to happen after user middlewares because those create a
+                # new contextvars context copy by using a new AnyIO task group.
+                # The initial part of dependencies with yield is executed in the
+                # FastAPI code, inside all the middlewares, but the teardown part
+                # (after yield) is executed in the AsyncExitStack in this middleware,
+                # if the AsyncExitStack lived outside of the custom middlewares and
+                # contextvars were set in a dependency with yield in that internal
+                # contextvars context, the values would not be available in the
+                # outside context of the AsyncExitStack.
+                # By putting the middleware and the AsyncExitStack here, inside all
+                # user middlewares, the code before and after yield in dependencies
+                # with yield is executed in the same contextvars context, so all values
+                # set in contextvars before yield is still available after yield as
+                # would be expected.
+                # Additionally, by having this AsyncExitStack here, after the
+                # ExceptionMiddleware, now dependencies can catch handled exceptions,
+                # e.g. HTTPException, to customize the teardown code (e.g. DB session
+                # rollback).
                 Middleware(AsyncExitStackMiddleware),
             ]
         )
