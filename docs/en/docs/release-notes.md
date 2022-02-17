@@ -2,10 +2,74 @@
 
 ## Latest Changes
 
-* 🔧 Add Striveworks sponsor. PR [#4596](https://github.com/tiangolo/fastapi/pull/4596) by [@tiangolo](https://github.com/tiangolo).
+### Breaking Changes
+
 * ✨ Update internal `AsyncExitStack` to fix context for dependencies with `yield`. PR [#4575](https://github.com/tiangolo/fastapi/pull/4575) by [@tiangolo](https://github.com/tiangolo).
+
+Dependencies with `yield` can now catch `HTTPException` and custom exceptions. For example:
+
+```Python
+async def get_database():
+    with Session() as session:
+        try:
+            yield session
+        except HTTPException:
+            session.rollback()
+            raise
+        finally:
+            session.close()
+```
+
+After the dependency with `yield` handles the exception (or not) the exception is raised again. So that any exception handlers can catch it, or ultimately the default internal `ServerErrorMiddleware`.
+
+If you depended on exceptions not being received by dependencies with `yield`, and receiving an exception breaks the code after `yield`, you can use a block with `try` and `finally`:
+
+```Python
+async def do_something():
+    try:
+        yield something
+    finally:
+        some_cleanup()
+```
+
+...that way the `finally` block is run regardless of any exception that might happen.
+
+### Features
+
+* The same PR [#4575](https://github.com/tiangolo/fastapi/pull/4575) from above also fixes the `contextvars` context for the code before and after `yield`. This was the main objective of that PR.
+
+This means that now, if you set a value in a context variable before `yield`, the value would still be available after `yield` (as you would intuitively expect). And it also means that you can reset the context variable with a token afterwards.
+
+For example, this works correctly now:
+
+```Python
+from contextvars import ContextVar
+from typing import Any, Dict, Optional
+
+
+legacy_request_state_context_var: ContextVar[Optional[Dict[str, Any]]] = ContextVar(
+    "legacy_request_state_context_var", default=None
+)
+
+async def set_up_request_state_dependency():
+    request_state = {"user": "deadpond"}
+    contextvar_token = legacy_request_state_context_var.set(request_state)
+    yield request_state
+    legacy_request_state_context_var.reset(contextvar_token)
+```
+
+...before this change it would raise an error when resetting the context variable, because the `contextvars` context was different, because of the way it was implemented.
+
+**Note**: You probably don't need `contextvars`, and you should probably avoid using them. But they are powerful and useful in some advanced scenarios, for example, migrating from code that used Flask's `g` semi-global variable.
+
+**Technical Details**: If you want to know more of the technical details you can check out the PR description [#4575](https://github.com/tiangolo/fastapi/pull/4575).
+
+### Internal
+
+* 🔧 Add Striveworks sponsor. PR [#4596](https://github.com/tiangolo/fastapi/pull/4596) by [@tiangolo](https://github.com/tiangolo).
 * 💚 Only build docs on push when on master to avoid duplicate runs from PRs. PR [#4564](https://github.com/tiangolo/fastapi/pull/4564) by [@tiangolo](https://github.com/tiangolo).
 * 👥 Update FastAPI People. PR [#4502](https://github.com/tiangolo/fastapi/pull/4502) by [@github-actions[bot]](https://github.com/apps/github-actions).
+
 ## 0.73.0
 
 ### Features
