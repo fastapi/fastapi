@@ -1,7 +1,7 @@
+from enum import Enum
 from typing import Any, Callable, Coroutine, Dict, List, Optional, Sequence, Type, Union
 
 from fastapi import routing
-from fastapi.concurrency import AsyncExitStack
 from fastapi.datastructures import Default, DefaultPlaceholder
 from fastapi.encoders import DictIntStrAny, SetIntStr
 from fastapi.exception_handlers import (
@@ -10,6 +10,7 @@ from fastapi.exception_handlers import (
 )
 from fastapi.exceptions import RequestValidationError
 from fastapi.logger import logger
+from fastapi.middleware.asyncexitstack import AsyncExitStackMiddleware
 from fastapi.openapi.docs import (
     get_redoc_html,
     get_swagger_ui_html,
@@ -20,8 +21,9 @@ from fastapi.params import Depends
 from fastapi.types import DecoratedCallable
 from starlette.applications import Starlette
 from starlette.datastructures import State
-from starlette.exceptions import HTTPException
+from starlette.exceptions import ExceptionMiddleware, HTTPException
 from starlette.middleware import Middleware
+from starlette.middleware.errors import ServerErrorMiddleware
 from starlette.requests import Request
 from starlette.responses import HTMLResponse, JSONResponse, Response
 from starlette.routing import BaseRoute
@@ -65,6 +67,7 @@ class FastAPI(Starlette):
         callbacks: Optional[List[BaseRoute]] = None,
         deprecated: Optional[bool] = None,
         include_in_schema: bool = True,
+        swagger_ui_parameters: Optional[Dict[str, Any]] = None,
         **extra: Any,
     ) -> None:
         self._debug: bool = debug
@@ -120,6 +123,7 @@ class FastAPI(Starlette):
         self.redoc_url = redoc_url
         self.swagger_ui_oauth2_redirect_url = swagger_ui_oauth2_redirect_url
         self.swagger_ui_init_oauth = swagger_ui_init_oauth
+        self.swagger_ui_parameters = swagger_ui_parameters
         self.extra = extra
         self.dependency_overrides: Dict[Callable[..., Any], Callable[..., Any]] = {}
 
@@ -130,6 +134,55 @@ class FastAPI(Starlette):
             assert self.version, "A version must be provided for OpenAPI, e.g.: '2.1.0'"
         self.openapi_schema: Optional[Dict[str, Any]] = None
         self.setup()
+
+    def build_middleware_stack(self) -> ASGIApp:
+        # Duplicate/override from Starlette to add AsyncExitStackMiddleware
+        # inside of ExceptionMiddleware, inside of custom user middlewares
+        debug = self.debug
+        error_handler = None
+        exception_handlers = {}
+
+        for key, value in self.exception_handlers.items():
+            if key in (500, Exception):
+                error_handler = value
+            else:
+                exception_handlers[key] = value
+
+        middleware = (
+            [Middleware(ServerErrorMiddleware, handler=error_handler, debug=debug)]
+            + self.user_middleware
+            + [
+                Middleware(
+                    ExceptionMiddleware, handlers=exception_handlers, debug=debug
+                ),
+                # Add FastAPI-specific AsyncExitStackMiddleware for dependencies with
+                # contextvars.
+                # This needs to happen after user middlewares because those create a
+                # new contextvars context copy by using a new AnyIO task group.
+                # The initial part of dependencies with yield is executed in the
+                # FastAPI code, inside all the middlewares, but the teardown part
+                # (after yield) is executed in the AsyncExitStack in this middleware,
+                # if the AsyncExitStack lived outside of the custom middlewares and
+                # contextvars were set in a dependency with yield in that internal
+                # contextvars context, the values would not be available in the
+                # outside context of the AsyncExitStack.
+                # By putting the middleware and the AsyncExitStack here, inside all
+                # user middlewares, the code before and after yield in dependencies
+                # with yield is executed in the same contextvars context, so all values
+                # set in contextvars before yield is still available after yield as
+                # would be expected.
+                # Additionally, by having this AsyncExitStack here, after the
+                # ExceptionMiddleware, now dependencies can catch handled exceptions,
+                # e.g. HTTPException, to customize the teardown code (e.g. DB session
+                # rollback).
+                Middleware(AsyncExitStackMiddleware),
+            ]
+        )
+
+        app = self.router
+        for cls, options in reversed(middleware):
+            app = cls(app=app, **options)
+        return app
 
     def openapi(self) -> Dict[str, Any]:
         if not self.openapi_schema:
@@ -174,6 +227,7 @@ class FastAPI(Starlette):
                     title=self.title + " - Swagger UI",
                     oauth2_redirect_url=oauth2_redirect_url,
                     init_oauth=self.swagger_ui_init_oauth,
+                    swagger_ui_parameters=self.swagger_ui_parameters,
                 )
 
             self.add_route(self.docs_url, swagger_ui_html, include_in_schema=False)
@@ -202,12 +256,7 @@ class FastAPI(Starlette):
     async def __call__(self, scope: Scope, receive: Receive, send: Send) -> None:
         if self.root_path:
             scope["root_path"] = self.root_path
-        if AsyncExitStack:
-            async with AsyncExitStack() as stack:
-                scope["fastapi_astack"] = stack
-                await super().__call__(scope, receive, send)
-        else:
-            await super().__call__(scope, receive, send)  # pragma: no cover
+        await super().__call__(scope, receive, send)
 
     def add_api_route(
         self,
@@ -216,7 +265,7 @@ class FastAPI(Starlette):
         *,
         response_model: Optional[Type[Any]] = None,
         status_code: Optional[int] = None,
-        tags: Optional[List[str]] = None,
+        tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[Depends]] = None,
         summary: Optional[str] = None,
         description: Optional[str] = None,
@@ -270,7 +319,7 @@ class FastAPI(Starlette):
         *,
         response_model: Optional[Type[Any]] = None,
         status_code: Optional[int] = None,
-        tags: Optional[List[str]] = None,
+        tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[Depends]] = None,
         summary: Optional[str] = None,
         description: Optional[str] = None,
@@ -339,7 +388,7 @@ class FastAPI(Starlette):
         router: routing.APIRouter,
         *,
         prefix: str = "",
-        tags: Optional[List[str]] = None,
+        tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[Depends]] = None,
         responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
         deprecated: Optional[bool] = None,
@@ -365,7 +414,7 @@ class FastAPI(Starlette):
         *,
         response_model: Optional[Type[Any]] = None,
         status_code: Optional[int] = None,
-        tags: Optional[List[str]] = None,
+        tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[Depends]] = None,
         summary: Optional[str] = None,
         description: Optional[str] = None,
@@ -416,7 +465,7 @@ class FastAPI(Starlette):
         *,
         response_model: Optional[Type[Any]] = None,
         status_code: Optional[int] = None,
-        tags: Optional[List[str]] = None,
+        tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[Depends]] = None,
         summary: Optional[str] = None,
         description: Optional[str] = None,
@@ -467,7 +516,7 @@ class FastAPI(Starlette):
         *,
         response_model: Optional[Type[Any]] = None,
         status_code: Optional[int] = None,
-        tags: Optional[List[str]] = None,
+        tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[Depends]] = None,
         summary: Optional[str] = None,
         description: Optional[str] = None,
@@ -518,7 +567,7 @@ class FastAPI(Starlette):
         *,
         response_model: Optional[Type[Any]] = None,
         status_code: Optional[int] = None,
-        tags: Optional[List[str]] = None,
+        tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[Depends]] = None,
         summary: Optional[str] = None,
         description: Optional[str] = None,
@@ -569,7 +618,7 @@ class FastAPI(Starlette):
         *,
         response_model: Optional[Type[Any]] = None,
         status_code: Optional[int] = None,
-        tags: Optional[List[str]] = None,
+        tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[Depends]] = None,
         summary: Optional[str] = None,
         description: Optional[str] = None,
@@ -620,7 +669,7 @@ class FastAPI(Starlette):
         *,
         response_model: Optional[Type[Any]] = None,
         status_code: Optional[int] = None,
-        tags: Optional[List[str]] = None,
+        tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[Depends]] = None,
         summary: Optional[str] = None,
         description: Optional[str] = None,
@@ -671,7 +720,7 @@ class FastAPI(Starlette):
         *,
         response_model: Optional[Type[Any]] = None,
         status_code: Optional[int] = None,
-        tags: Optional[List[str]] = None,
+        tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[Depends]] = None,
         summary: Optional[str] = None,
         description: Optional[str] = None,
@@ -722,7 +771,7 @@ class FastAPI(Starlette):
         *,
         response_model: Optional[Type[Any]] = None,
         status_code: Optional[int] = None,
-        tags: Optional[List[str]] = None,
+        tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[Depends]] = None,
         summary: Optional[str] = None,
         description: Optional[str] = None,
