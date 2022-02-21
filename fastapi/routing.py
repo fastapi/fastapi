@@ -13,6 +13,7 @@ from typing import (
     Optional,
     Sequence,
     Set,
+    Tuple,
     Type,
     Union,
 )
@@ -44,7 +45,7 @@ from starlette.concurrency import run_in_threadpool
 from starlette.exceptions import HTTPException
 from starlette.requests import Request
 from starlette.responses import JSONResponse, Response
-from starlette.routing import BaseRoute
+from starlette.routing import BaseRoute, Match
 from starlette.routing import Mount as Mount  # noqa
 from starlette.routing import (
     compile_path,
@@ -53,7 +54,7 @@ from starlette.routing import (
     websocket_session,
 )
 from starlette.status import WS_1008_POLICY_VIOLATION
-from starlette.types import ASGIApp
+from starlette.types import ASGIApp, Scope
 from starlette.websockets import WebSocket
 
 
@@ -296,6 +297,12 @@ class APIWebSocketRoute(routing.WebSocketRoute):
         )
         self.path_regex, self.path_format, self.param_convertors = compile_path(path)
 
+    def matches(self, scope: Scope) -> Tuple[Match, Scope]:
+        match, child_scope = super().matches(scope)
+        if match != Match.NONE:
+            child_scope["route"] = self
+        return match, child_scope
+
 
 class APIRoute(routing.Route):
     def __init__(
@@ -431,6 +438,12 @@ class APIRoute(routing.Route):
             response_model_exclude_none=self.response_model_exclude_none,
             dependency_overrides_provider=self.dependency_overrides_provider,
         )
+
+    def matches(self, scope: Scope) -> Tuple[Match, Scope]:
+        match, child_scope = super().matches(scope)
+        if match != Match.NONE:
+            child_scope["route"] = self
+        return match, child_scope
 
 
 class APIRouter(routing.Router):
