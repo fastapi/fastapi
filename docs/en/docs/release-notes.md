@@ -2,6 +2,7 @@
 
 ## Latest Changes
 
+* ✨ Include route in scope to allow middleware and other tools to extract its information. PR [#4603](https://github.com/tiangolo/fastapi/pull/4603) by [@tiangolo](https://github.com/tiangolo).
 
 ## 0.74.0
 
