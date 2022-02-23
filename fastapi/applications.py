@@ -6,9 +6,13 @@ from fastapi.datastructures import Default, DefaultPlaceholder
 from fastapi.encoders import DictIntStrAny, SetIntStr
 from fastapi.exception_handlers import (
     http_exception_handler,
+    request_invalid_content_type_exception_handler,
     request_validation_exception_handler,
 )
-from fastapi.exceptions import RequestValidationError
+from fastapi.exceptions import (
+    RequestInvalidContentTypeException,
+    RequestValidationError,
+)
 from fastapi.logger import logger
 from fastapi.middleware.asyncexitstack import AsyncExitStackMiddleware
 from fastapi.openapi.docs import (
@@ -93,6 +97,10 @@ class FastAPI(Starlette):
         self.exception_handlers.setdefault(HTTPException, http_exception_handler)
         self.exception_handlers.setdefault(
             RequestValidationError, request_validation_exception_handler
+        )
+        self.exception_handlers.setdefault(
+            RequestInvalidContentTypeException,
+            request_invalid_content_type_exception_handler,
         )
 
         self.user_middleware: List[Middleware] = (

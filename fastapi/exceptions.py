@@ -32,6 +32,17 @@ class RequestValidationError(ValidationError):
         super().__init__(errors, RequestErrorModel)
 
 
+class RequestInvalidContentTypeException(StarletteHTTPException):
+    def __init__(
+        self,
+        status_code: int,
+        detail: Any = None,
+        headers: Optional[Dict[str, Any]] = None,
+    ) -> None:
+        super().__init__(status_code=status_code, detail=detail)
+        self.headers = headers
+
+
 class WebSocketRequestValidationError(ValidationError):
     def __init__(self, errors: Sequence[ErrorList]) -> None:
         super().__init__(errors, WebSocketErrorModel)

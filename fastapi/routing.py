@@ -28,7 +28,11 @@ from fastapi.dependencies.utils import (
     solve_dependencies,
 )
 from fastapi.encoders import DictIntStrAny, SetIntStr, jsonable_encoder
-from fastapi.exceptions import RequestValidationError, WebSocketRequestValidationError
+from fastapi.exceptions import (
+    RequestInvalidContentTypeException,
+    RequestValidationError,
+    WebSocketRequestValidationError,
+)
 from fastapi.openapi.constants import STATUS_CODES_WITH_NO_BODY
 from fastapi.types import DecoratedCallable
 from fastapi.utils import (
@@ -37,7 +41,7 @@ from fastapi.utils import (
     generate_operation_id_for_path,
     get_value_or_default,
 )
-from pydantic import BaseModel
+from pydantic import BaseModel, DictError
 from pydantic.error_wrappers import ErrorWrapper, ValidationError
 from pydantic.fields import ModelField, Undefined
 from starlette import routing
@@ -189,6 +193,7 @@ def get_request_handler(
             body: Any = None
             if body_field:
                 if is_body_form:
+
                     body = await request.form()
                 else:
                     body_bytes = await request.body()
@@ -222,6 +227,21 @@ def get_request_handler(
         )
         values, errors, background_tasks, sub_response, _ = solved_result
         if errors:
+            has_dict_error = False
+            content_type = request.headers.get("content-type") or ""
+            for e in errors:
+                if isinstance(e, list):
+                    for err in e:
+                        if isinstance(err.exc, DictError):
+                            has_dict_error = True
+                elif isinstance(e.exc, DictError):
+                    has_dict_error = True
+
+            if "multipart" in content_type and has_dict_error:
+                raise RequestInvalidContentTypeException(
+                    status_code=415,
+                    detail="Unsupported media type: multipart/form-data (expected application/json)",
+                )
             raise RequestValidationError(errors, body=body)
         else:
             raw_response = await run_endpoint_function(
