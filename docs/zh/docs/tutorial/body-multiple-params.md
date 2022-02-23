@@ -40,6 +40,7 @@
 
 ```JSON
 {
+    "item_id": 1,
     "item": {
         "name": "Foo",
         "description": "The pretender",

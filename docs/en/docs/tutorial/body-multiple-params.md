@@ -56,6 +56,7 @@ So, it will then use the parameter names as keys (field names) in the body, and 
 
 ```JSON
 {
+    "item_id": 1,
     "item": {
         "name": "Foo",
         "description": "The pretender",
