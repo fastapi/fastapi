@@ -51,6 +51,7 @@ nav:
   - sq: /sq/
   - tr: /tr/
   - uk: /uk/
+  - uz: /uz/
   - zh: /zh/
 markdown_extensions:
 - toc:
@@ -119,6 +120,8 @@ extra:
     name: tr - Türkçe
   - link: /uk/
     name: uk - українська мова
+  - link: /uz/
+    name: uz
   - link: /zh/
     name: zh - 汉语
 extra_css:
