@@ -121,8 +121,8 @@ def create_cloned_field(
 
 def generate_operation_id_for_path(*, name: str, path: str, method: str) -> str:
     operation_id = name + path
-    operation_id = re.sub("[^0-9a-zA-Z_]", "_", operation_id)
-    operation_id = operation_id + "_" + method.lower()
+    operation_id = re.sub("[^0-9a-zA-Z_]", " ", operation_id).title().replace(" ", "")
+    operation_id = operation_id + method.capitalize()
     return operation_id
 
 
