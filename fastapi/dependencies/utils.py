@@ -202,10 +202,23 @@ def get_flat_dependant(
     return flat_dependant
 
 
+def preserve_path_params_order(dependant: Dependant):
+
+    path_params_ordered = []
+    for elem in dependant.path.split("/"):
+        if elem.startswith("{") and elem.endswith("}"):
+            path_params_ordered.append(elem[1:-1])
+
+    def key(param: ModelField):
+        return path_params_ordered.index(param.name)
+
+    return key
+
+
 def get_flat_params(dependant: Dependant) -> List[ModelField]:
     flat_dependant = get_flat_dependant(dependant, skip_repeats=True)
     return (
-        flat_dependant.path_params
+        sorted(flat_dependant.path_params, key=preserve_path_params_order(dependant))
         + flat_dependant.query_params
         + flat_dependant.header_params
         + flat_dependant.cookie_params
