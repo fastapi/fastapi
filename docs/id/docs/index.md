@@ -6,7 +6,7 @@
   <a href="https://fastapi.tiangolo.com"><img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI"></a>
 </p>
 <p align="center">
-    <em>FastAPI framework, high performance, easy to learn, fast to code, ready for production</em>
+    <em>FastAPI framework, performa tinggi, mudah dipelajari, cepat menulis kode, siap untuk produksi</em>
 </p>
 <p align="center">
 <a href="https://github.com/tiangolo/fastapi/actions?query=workflow%3ATest" target="_blank">
@@ -22,27 +22,27 @@
 
 ---
 
-**Documentation**: <a href="https://fastapi.tiangolo.com" target="_blank">https://fastapi.tiangolo.com</a>
+**Documentation**: <a href="https://fastapi.tiangolo.com/id" target="_blank">https://fastapi.tiangolo.com/id</a>
 
 **Source Code**: <a href="https://github.com/tiangolo/fastapi" target="_blank">https://github.com/tiangolo/fastapi</a>
 
 ---
 
-FastAPI is a modern, fast (high-performance), web framework for building APIs with Python 3.6+ based on standard Python type hints.
+FastAPI adalah web framework untuk membangun beragam API dengan menggunakan Python 3.6+ berdasarkan Python type hints yang baku.
 
-The key features are:
+Fitur-fitur yang tersedia antara lain:
 
-* **Fast**: Very high performance, on par with **NodeJS** and **Go** (thanks to Starlette and Pydantic). [One of the fastest Python frameworks available](#performance).
+* **Fast**: Memiliki performa yang sangat tinggi,  **NodeJS** and **Go** (terima kasih untuk Starlette dan Pydantic). [Salah satu dari framework python tercepat yang ada](#performance).
 
-* **Fast to code**: Increase the speed to develop features by about 200% to 300%. *
-* **Fewer bugs**: Reduce about 40% of human (developer) induced errors. *
-* **Intuitive**: Great editor support. <abbr title="also known as auto-complete, autocompletion, IntelliSense">Completion</abbr> everywhere. Less time debugging.
-* **Easy**: Designed to be easy to use and learn. Less time reading docs.
-* **Short**: Minimize code duplication. Multiple features from each parameter declaration. Fewer bugs.
-* **Robust**: Get production-ready code. With automatic interactive documentation.
-* **Standards-based**: Based on (and fully compatible with) the open standards for APIs: <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (previously known as Swagger) and <a href="https://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>.
+* **Fast to code**: Meningkatkan kecepatan dalam membuat fitur 200% hingga 300%*
+* **Fewer bugs**: Mengurangi sekitar 40% kesalahan yang dilakukan develper. *
+* **Intuitive**: Dukungan pada editor yang hebat. <abbr title="juga dikenal dengan auto-complete, autocompletion, IntelliSense">Penyelesaian Otomatis</abbr> dimanapun. Lebih sedikit waktu untuk mengidentifikasi bug.
+* **Easy**: Di desain agar mudah digunakan dan dipelajari. Lebih sedikit waktu membaca dokumentasi.
+* **Short**: Meminimalisir duplikasi kode. Multi fitur dari setiap deklarasi parameter. Lebih sedikt bug.
+* **Robust**: Kode yang siap untuk produksi. Dilengkapi dengan dokumentasi interaktif.
+* **Standards-based**: Berdasarkan pada (dan kompatibel seluruhnya dengan) standar umum APIs: <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (sebelumnya dikenal dengan Swagger) dan <a href="https://json-schema.org/" class="external-link" target="_blank">Schema JSON</a>.
 
-<small>* estimation based on tests on an internal development team, building production applications.</small>
+<small>* perkiraan berdasarkan pada banyak tes yang dilakukan oleh tim pengembangan internal, membangun aplikasi-palikasi produksi.</small>
 
 ## Sponsors
 
@@ -61,7 +61,7 @@ The key features are:
 
 <a href="https://fastapi.tiangolo.com/fastapi-people/#sponsors" class="external-link" target="_blank">Other sponsors</a>
 
-## Opinions
+## Opini-opini
 
 "_[...] I'm using **FastAPI** a ton these days. [...] I'm actually planning to use it for all of my team's **ML services at Microsoft**. Some of them are getting integrated into the core **Windows** product and some **Office** products._"
 
@@ -101,24 +101,24 @@ The key features are:
 
 ---
 
-## **Typer**, the FastAPI of CLIs
+## **Typer**, FastAPI dari CLIs
 
 <a href="https://typer.tiangolo.com" target="_blank"><img src="https://typer.tiangolo.com/img/logo-margin/logo-margin-vector.svg" style="width: 20%;"></a>
 
-If you are building a <abbr title="Command Line Interface">CLI</abbr> app to be used in the terminal instead of a web API, check out <a href="https://typer.tiangolo.com/" class="external-link" target="_blank">**Typer**</a>.
+Jika kamu membangun <abbr title="Command Line Interface">CLI</abbr> sebuah aplikasi yang digunakan di terminal daripada API web, silakan lihat <a href="https://typer.tiangolo.com/" class="external-link" target="_blank">**Typer**</a>.
 
-**Typer** is FastAPI's little sibling. And it's intended to be the **FastAPI of CLIs**. ⌨️ 🚀
+**Typer** adalah "adik" dari FastAPI. Dan memang sengaja dibuat sebagai **CLIs dari FastAPI**. ⌨️ 🚀
 
-## Requirements
+## Persyaratan
 
 Python 3.6+
 
-FastAPI stands on the shoulders of giants:
+FastAPI berdiri diatas bahu para raksasa:
 
-* <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> for the web parts.
-* <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> for the data parts.
+* <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> untuk bagian web.
+* <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> untuk bagian data.
 
-## Installation
+## Instalasi
 
 <div class="termy">
 
@@ -130,7 +130,7 @@ $ pip install fastapi
 
 </div>
 
-You will also need an ASGI server, for production such as <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a> or <a href="https://gitlab.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>.
+Kamu juga akan membutuhkan server ASGI untuk tahap produksi seperti <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a> atau <a href="https://gitlab.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>.
 
 <div class="termy">
 
@@ -142,11 +142,11 @@ $ pip install uvicorn[standard]
 
 </div>
 
-## Example
+## Contoh
 
-### Create it
+### Membuat
 
-* Create a file `main.py` with:
+* Buat file `main.py` dengan kode:
 
 ```Python
 from typing import Optional
@@ -195,9 +195,9 @@ If you don't know, check the _"In a hurry?"_ section about <a href="https://fast
 
 </details>
 
-### Run it
+### Menjalankan
 
-Run the server with:
+Jalankan server dengan:
 
 <div class="termy">
 
@@ -224,44 +224,44 @@ The command `uvicorn main:app` refers to:
 
 </details>
 
-### Check it
+### Periksa
 
-Open your browser at <a href="http://127.0.0.1:8000/items/5?q=somequery" class="external-link" target="_blank">http://127.0.0.1:8000/items/5?q=somequery</a>.
+Buka browser anda pada <a href="http://127.0.0.1:8000/items/5?q=somequery" class="external-link" target="_blank">http://127.0.0.1:8000/items/5?q=somequery</a>.
 
-You will see the JSON response as:
+Kamu akan melihat response JSON sebagai berikut:
 
 ```JSON
 {"item_id": 5, "q": "somequery"}
 ```
 
-You already created an API that:
+Kamu telah berhasil membuat API yang memiliki kemampuan dibawah ini:
 
-* Receives HTTP requests in the _paths_ `/` and `/items/{item_id}`.
-* Both _paths_ take `GET` <em>operations</em> (also known as HTTP _methods_).
-* The _path_ `/items/{item_id}` has a _path parameter_ `item_id` that should be an `int`.
-* The _path_ `/items/{item_id}` has an optional `str` _query parameter_ `q`.
+* Menerima HTTP requests pada _jalur_ `/` dan _jalur_  `/items/{item_id}`.
+* Kedua _jalur_ menggunakan <em>operasi</em> `GET` (juga dikenal dengan  _methode_ HTTP).
+* _Jalur_  `/items/{item_id}` memiliki sebuah _parameter jalur_ `item_id` yang merupakan `int`.
+* _Jalur_  `/items/{item_id}` memiliki opsional `str` dengan _parameter query_ `q`.
 
-### Interactive API docs
+### Dokumentasi API interaktif
 
-Now go to <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+Sekarang pergilah menuju  <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 
-You will see the automatic interactive API documentation (provided by <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a>):
+Kamu akan melihat dokumentasi API interaktif otomatis (disediakan oleh <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a>):
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-01-swagger-ui-simple.png)
 
-### Alternative API docs
+### Dokumentasi API alternatif
 
-And now, go to <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>.
+Sekarang pergilah menuju <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>.
 
-You will see the alternative automatic documentation (provided by <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a>):
+Kamu akan melihat dokumentasi otomatis alternatif (yang disedeiakan oleh <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a>):
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
-## Example upgrade
+## Contoh Upgrade
 
-Now modify the file `main.py` to receive a body from a `PUT` request.
+Sekarang ubah file `main.py` untuk menerima body dari `PUT` request.
 
-Declare the body using standard Python types, thanks to Pydantic.
+Deklarasikan body menggunakan tipe data dari Python standar, terima kasih untuk Pydantic.
 
 ```Python hl_lines="4  9-12  25-27"
 from typing import Optional
@@ -293,63 +293,63 @@ def update_item(item_id: int, item: Item):
     return {"item_name": item.name, "item_id": item_id}
 ```
 
-The server should reload automatically (because you added `--reload` to the `uvicorn` command above).
+Server seharusnya melakukan muat ulang otomatis (sebab kamu menambahkan `--reload` kepada perintah `uvicorn` diatas).
 
-### Interactive API docs upgrade
+### Upgrade dokumentasi interaktif
 
-Now go to <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+Sekarang pergilah menuju <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 
-* The interactive API documentation will be automatically updated, including the new body:
+* Dokumentasi API interaktif akan secara otomatis diupdate termasuk bodi yang baru:
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-03-swagger-02.png)
 
-* Click on the button "Try it out", it allows you to fill the parameters and directly interact with the API:
+* Klik tombol "Try it out", untuk membuatmu bisa mengisi parameter dan berinteraksi langsung dengan API:
 
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-04-swagger-03.png)
 
-* Then click on the "Execute" button, the user interface will communicate with your API, send the parameters, get the results and show them on the screen:
+* Kemudian klik tombol "Execute" dan tampilan antarmuka akan berkomunikasi langsung dengan API, dan mengirimkan parameter-parameter, dan mendapatakan hasil untuk ditampilkan pada layar:
 
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-05-swagger-04.png)
 
-### Alternative API docs upgrade
+### Upgrade dokumentasi API alternatif
 
-And now, go to <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>.
+Sekarang pergilah menuju <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>.
 
-* The alternative documentation will also reflect the new query parameter and body:
+* Dokumenasti alternatif juga akan merefleksikan query parameter dan body yang baru:
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-06-redoc-02.png)
 
-### Recap
+### Ikhtisar
 
-In summary, you declare **once** the types of parameters, body, etc. as function parameters. 
+Secara ringkas, kamu mendeklarasikan **satu kali** tipe-tipe parameter, body, dan lain-lain sebagai parameter fungsi.
 
-You do that with standard modern Python types.
+Kamu melakukannya denga tipe-tipe dari Python modern yang standar.
 
-You don't have to learn a new syntax, the methods or classes of a specific library, etc.
+Kamu tidak harus belajar syntax, metode-metode ataupun class-class baru dari librari tertentu.
 
-Just standard **Python 3.6+**.
+Hanya **Python 3.6+** standar.
 
-For example, for an `int`:
+Sebagai contoh, untuk sebuah `int`:
 
 ```Python
 item_id: int
 ```
 
-or for a more complex `Item` model:
+atau untuk yang lebih kompleks mdel `Item`:
 
 ```Python
 item: Item
 ```
 
-...and with that single declaration you get:
+...dan dengan satu deklarasi kamu akan mendapatkan:
 
-* Editor support, including:
-    * Completion.
-    * Type checks.
-* Validation of data:
-    * Automatic and clear errors when the data is invalid.
-    * Validation even for deeply nested JSON objects.
-* <abbr title="also known as: serialization, parsing, marshalling">Conversion</abbr> of input data: coming from the network to Python data and types. Reading from:
+* Dukungan editor, termasuk:
+    * Penyempurnaan (_Completion_).
+    * Pengecekan tipe data.
+* Validasi data:
+    * Error yang otomatis dan jelas ketika data tidak valid.
+    * Validasi hingga pada semua obyek JSON bersarang.
+* <abbr title="juga dikenal sebagai : serialization, parsing, marshalling">Merubah </abbr> data yang diinput: berasal dari jaringan ke tipe-tipe dan data python. Didapatkan dari:
     * JSON.
     * Path parameters.
     * Query parameters.
@@ -357,42 +357,42 @@ item: Item
     * Headers.
     * Forms.
     * Files.
-* <abbr title="also known as: serialization, parsing, marshalling">Conversion</abbr> of output data: converting from Python data and types to network data (as JSON):
-    * Convert Python types (`str`, `int`, `float`, `bool`, `list`, etc).
-    * `datetime` objects.
-    * `UUID` objects.
-    * Database models.
-    * ...and many more.
-* Automatic interactive API documentation, including 2 alternative user interfaces:
+* <abbr title="also known as: serialization, parsing, marshalling">Konversi</abbr> data output: merubah tipe dan data python ke data jaringan (sebagai JSON):
+    * Konversi tipe-tipe python (`str`, `int`, `float`, `bool`, `list`, dll).
+    * obyek-obyek `datetime`.
+    * obyek-obyek `UUID`.
+    * Model-model dari database.
+    * ...dan masih banyak lagi.
+* Dokumentasi API interaktif otomatis, meliputi 2 alternatif tampilan antarmuka pengguna:
     * Swagger UI.
     * ReDoc.
 
 ---
 
-Coming back to the previous code example, **FastAPI** will:
+Kembali lagi ke contoh kode sebelumnya **FastAPI** akan:
 
-* Validate that there is an `item_id` in the path for `GET` and `PUT` requests.
-* Validate that the `item_id` is of type `int` for `GET` and `PUT` requests.
-    * If it is not, the client will see a useful, clear error.
-* Check if there is an optional query parameter named `q` (as in `http://127.0.0.1:8000/items/foo?q=somequery`) for `GET` requests.
-    * As the `q` parameter is declared with `= None`, it is optional.
-    * Without the `None` it would be required (as is the body in the case with `PUT`).
-* For `PUT` requests to `/items/{item_id}`, Read the body as JSON:
-    * Check that it has a required attribute `name` that should be a `str`. 
-    * Check that it has a required attribute `price` that has to be a `float`.
-    * Check that it has an optional attribute `is_offer`, that should be a `bool`, if present.
-    * All this would also work for deeply nested JSON objects.
-* Convert from and to JSON automatically.
-* Document everything with OpenAPI, that can be used by:
-    * Interactive documentation systems.
-    * Automatic client code generation systems, for many languages.
-* Provide 2 interactive documentation web interfaces directly.
+* Mem-validasi bahwa ada sebuah `item_id` pada jalur request `GET` dan `PUT`.
+* Mem-validasi bahwa `item_id` merupakan tipe `int` untuk request `GET` dan `PUT`.
+    * Jika hal itu tidak benar, maka klien akan melihat keterangan error yang jeals dan berguna.
+* Memeriksa bahwa ada query parameter opsional dengan nama `q` (seperti pada `http://127.0.0.1:8000/items/foo?q=somequery`) untuk request `GET`.
+    * Dengan dideklarasikan bahwa parameter `q = None`, maka artinya adalah opsional.
+    * Tanpa `None`, maka akan menjadi diperlukan ( seperti pada body pada kasusu request dengan `PUT`).
+* Untuk `PUT` request ke `/items/{item_id}`, membaca body sebagai JSON:
+    * Memeriksa jika memiliki atribut `name` yang diperlukan, dimana harus merupakan `str`. 
+    * Periksa jika memiliki atribut `price` yang diperlukan, dimana harus merupakan `float`.
+    * Periksa jika memiliki atribut opsional `is_offer`, dimana harus merupakan `bool`, jika ada.
+    * Semua hal ini juga akan bekerja pada obyek-obyek JSON bersarang.
+* Konversi dari dan ke JSON secara otomatis.
+* Mendokumentasikan semua dengan OpenAPI, yang dapat digunakan oleh:
+    * Sistem dokumentasi interaktif.
+    * Sistem penghasil kode klien secara otomatis, untuk banyak bahasa.
+* Menyediakan 2 dokumentasi interaktif pada tampilan web secara langsung.
 
 ---
 
-We just scratched the surface, but you already get the idea of how it all works.
+Kita hanya melihat di permukaan, tetapi kamu telah mendapatkan gagasan tentang bagaimana itu semua berkerja.
 
-Try changing the line with:
+Cobalah ubah kode pada baris dengan:
 
 ```Python
     return {"item_name": item.name, "item_id": item_id}
@@ -410,58 +410,59 @@ Try changing the line with:
         ... "item_price": item.price ...
 ```
 
-...and see how your editor will auto-complete the attributes and know their types:
+...dan lihatlah bagaimana editormu akan melakukan penyelesaian otomatis atribut-atribut dan tahu masing-masing tipenya.
 
 ![editor support](https://fastapi.tiangolo.com/img/vscode-completion.png)
 
-For a more complete example including more features, see the <a href="https://fastapi.tiangolo.com/tutorial/">Tutorial - User Guide</a>.
+Untuk contoh yang lebih kompleks termasukfitur-fitur yang lain, lihatlah <a href="https://fastapi.tiangolo.com/tutorial/">Tutorial - Pedoman Pengguna</a>.
 
-**Spoiler alert**: the tutorial - user guide includes:
+**Spoiler alert**: Tutorial - pedoman pengguna meliputi:
 
 * Declaration of **parameters** from other different places as: **headers**, **cookies**, **form fields** and **files**.
-* How to set **validation constraints** as `maximum_length` or `regex`.
-* A very powerful and easy to use **<abbr title="also known as components, resources, providers, services, injectables">Dependency Injection</abbr>** system.
-* Security and authentication, including support for **OAuth2** with **JWT tokens** and **HTTP Basic** auth.
-* More advanced (but equally easy) techniques for declaring **deeply nested JSON models** (thanks to Pydantic).
-* Many extra features (thanks to Starlette) as:
+* Deklarasi dari **parameter-parameter** dari tempat yang berbeda-beda seperti: **headers**, **cookies**, **form fields** dan **files**.
+* Bagaimana menge-set **batasan validasi** sebagai `maximum_length` atau `regex`.
+* System yang sangat tangguh dan mudah digunakan **<abbr title="juga dikenal sebagai components, resources, providers, services, injectables">Dependency Injection</abbr>** system.
+* Keamanan dan otentifikasi, termasuk support untuk **OAuth2** dengan **JWT tokens** dan **HTTP Basic** auth.
+* Teknik-teknik yang lebih maju (tetapi sama-sama mudah) untuk mendeklarasikan **model-model JSON bersarang** (terima kasih untuk Pydantic).
+* Banyak fitur-fitur tambahan (terima kasih untuk Starlette) untuk:
     * **WebSockets**
     * **GraphQL**
-    * extremely easy tests based on `requests` and `pytest`
+    * Tes-tes yang sangat mudah berdasarkan pada `requests` dan `pytest`
     * **CORS**
     * **Cookie Sessions**
-    * ...and more.
+    * ...dan masih banyak lagi.
 
-## Performance
+## Kinerja
 
-Independent TechEmpower benchmarks show **FastAPI** applications running under Uvicorn as <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">one of the fastest Python frameworks available</a>, only below Starlette and Uvicorn themselves (used internally by FastAPI). (*)
+Benchmark dari Independent TechEmpower memperlihatkan aplikasi-aplikasi **FastAPI** yang bekerja dibawah Uvicorn sebagai <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">salah satu dari framework-framework Python tercepat yang tersedia</a>, hanya dibawah Starlette dan Uvicorn sendiri (digunakan secara internal oleh FastAPI). (*)
 
-To understand more about it, see the section <a href="https://fastapi.tiangolo.com/benchmarks/" class="internal-link" target="_blank">Benchmarks</a>.
+Untuk lebih memahami hal tersebut, lihatlah bagian <a href="https://fastapi.tiangolo.com/benchmarks/" class="internal-link" target="_blank">Benchmarks</a>.
 
-## Optional Dependencies
+## Dependensi Opsional
 
-Used by Pydantic:
+Digunakan oleh Pydantic:
 
-* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - for faster JSON <abbr title="converting the string that comes from an HTTP request into Python data">"parsing"</abbr>.
-* <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - for email validation.
+* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - untuk JSON yang lebih cepat <abbr title="merubah string yang berasal dari permintaan HTTPke dalam data Python">"parsing"</abbr>.
+* <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - untuk validasi email.
 
-Used by Starlette:
+digunakan oleh Starlette:
 
-* <a href="https://requests.readthedocs.io" target="_blank"><code>requests</code></a> - Required if you want to use the `TestClient`.
-* <a href="https://github.com/Tinche/aiofiles" target="_blank"><code>aiofiles</code></a> - Required if you want to use `FileResponse` or `StaticFiles`.
-* <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - Required if you want to use the default template configuration.
-* <a href="https://andrew-d.github.io/python-multipart/" target="_blank"><code>python-multipart</code></a> - Required if you want to support form <abbr title="converting the string that comes from an HTTP request into Python data">"parsing"</abbr>, with `request.form()`.
-* <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - Required for `SessionMiddleware` support.
-* <a href="https://pyyaml.org/wiki/PyYAMLDocumentation" target="_blank"><code>pyyaml</code></a> - Required for Starlette's `SchemaGenerator` support (you probably don't need it with FastAPI).
-* <a href="https://graphene-python.org/" target="_blank"><code>graphene</code></a> - Required for `GraphQLApp` support.
-* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - Required if you want to use `UJSONResponse`.
+* <a href="https://requests.readthedocs.io" target="_blank"><code>requests</code></a> - Diperlukan jika hendak menggunakan `TestClient`.
+* <a href="https://github.com/Tinche/aiofiles" target="_blank"><code>aiofiles</code></a> - Diperlukan jika hendak menggunakan `FileResponse` atau `StaticFiles`.
+* <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - Diperlukan jika hendak  menggunakan konfigurasi templat bawaan.
+* <a href="https://andrew-d.github.io/python-multipart/" target="_blank"><code>python-multipart</code></a> - Diperlukan jika hendak mendukung <abbr title="converting the string that comes from an HTTP request into Python data">"parsing"</abbr> form, dengan `request.form()`.
+* <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - Diperlukan untuk dukungan `SessionMiddleware`.
+* <a href="https://pyyaml.org/wiki/PyYAMLDocumentation" target="_blank"><code>pyyaml</code></a> - Diperlukan untuk dukungan `SchemaGenerator` dari Starlette (kamu mungkin tidak memerlukannya dengan FastAPI).
+* <a href="https://graphene-python.org/" target="_blank"><code>graphene</code></a> - Diperlukan untuk dukungan `GraphQLApp`.
+* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - Diperlukan jika kamu hendak menggunakan `UJSONResponse`.
 
-Used by FastAPI / Starlette:
+Digunakan oleh FastAPI / Starlette:
 
-* <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - for the server that loads and serves your application.
-* <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - Required if you want to use `ORJSONResponse`.
+* <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - untuk server yang melayani dan memuat aplikasimu.
+* <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - Diperlukan jika hendak menggunakan `ORJSONResponse`.
 
-You can install all of these with `pip install fastapi[all]`.
+Kamu dapat menginstall semua hal tersebut dengan `pip install fastapi[all]`.
 
-## License
+## Lisensi
 
-This project is licensed under the terms of the MIT license.
+Proyek ini berlisensi dibawah ketentuan dari lisensi MIT.
