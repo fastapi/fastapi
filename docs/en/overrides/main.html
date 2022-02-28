@@ -61,3 +61,35 @@
   </div>
 </div>
 {% endblock %}
+{%- block scripts %}
+{{ super() }}
+<!-- DocsQA integration start -->
+<script src="https://cdn.jsdelivr.net/npm/qabot@0.4"></script>
+<script>
+  // This prevents the global search interfere with qa-bot internal text input.
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('qa-bot').forEach((x) => {
+      x.addEventListener('keydown', (event) => {
+        event.stopPropagation();
+      });
+    });
+  });
+</script>
+<qa-bot 
+  server="https://tiangolo-fastapi.docsqa.jina.ai"
+  theme="infer" 
+  title="FastAPI Bot"
+  description="A modern fast web framework for building APIs in Python"
+  style="font-size: 0.8rem"
+>
+  <template>
+      <dl>
+          <dt>You can ask questions about FastAPI. Try</dt>
+          <dd>What is FastAPI?</dd>
+          <dd>How fast is FastAPI?</dd>
+          <dd>Why should we use FastAPI over other frameworks?</dd>
+      </dl>
+  </template>
+</qa-bot>
+<!-- DocsQA integration end -->
+{%- endblock %}
