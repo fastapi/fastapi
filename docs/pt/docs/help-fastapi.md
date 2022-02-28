@@ -4,7 +4,7 @@ Você gosta do **FastAPI**?
 
 Você gostaria de ajudar o FastAPI, outros usários, e o autor?
 
-Ou você gostaria de obeter ajuda relacionada ao **FastAPI**?
+Ou você gostaria de obter ajuda relacionada ao **FastAPI**??
 
 Existem métodos muito simples de ajudar (A maioria das ajudas podem ser feitas com um ou dois cliques).
 
@@ -12,9 +12,9 @@ E também existem vários modos de se conseguir ajuda.
 
 ## Inscreva-se na newsletter
 
-Você pode se inscrever (na pouco frequente) [**FastAPI e amigos** newsletter](/newsletter/){.internal-link target=_blank} para receber atualizações:
+Você pode se inscrever (pouco frequente) [**FastAPI e amigos** newsletter](/newsletter/){.internal-link target=_blank} para receber atualizações:
 
-* Noticias sobre FastAPI e amigos 🚀
+* Notícias sobre FastAPI e amigos 🚀
 * Tutoriais 📝
 * Recursos ✨
 * Mudanças de última hora 🚨
@@ -22,13 +22,13 @@ Você pode se inscrever (na pouco frequente) [**FastAPI e amigos** newsletter](/
 
 ## Siga o FastAPI no twitter
 
-<a href="https://twitter.com/fastapi" class="external-link" target="_blank">Siga @fastapi no **Twitter**</a> para receber as ultimas noticias sobre o **FastAPI**. 🐦
+<a href="https://twitter.com/fastapi" class="external-link" target="_blank">Siga @fastapi no **Twitter**</a> para receber as últimas notícias sobre o **FastAPI**. 🐦
 
 ## Favorite o **FastAPI** no GitHub
 
 Você pode "favoritar" o FastAPI no GitHub (clicando na estrela no canto superior direito): <a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">https://github.com/tiangolo/fastapi</a>. ⭐️
 
-Favoritando, outros usuarios poderão encontrar mais facilmente e verão que já foi util para muita gente.
+Favoritando, outros usuários poderão encontrar mais facilmente e verão que já foi útil para muita gente.
 
 ## Acompanhe novos updates no repositorio do GitHub
 
@@ -48,7 +48,7 @@ Você pode:
     * Ver também outros projetos Open Source criados por mim que podem te ajudar.
     * Me seguir para saber quando um novo projeto Open Source for criado.
 * <a href="https://twitter.com/tiangolo" class="external-link" target="_blank">Me siga no **Twitter**</a>.
-    * Me dizer o motivo pelo o qual você está usando o FastAPI(Adoro ouvir esse tipo de comentários).
+    * Me dizer o motivo pelo o qual você está usando o FastAPI(Adoro ouvir esse tipo de comentário).
     * Saber quando eu soltar novos anúncios ou novas ferramentas.
     * Também é possivel <a href="https://twitter.com/fastapi" class="external-link" target="_blank">seguir o @fastapi no Twitter</a> (uma conta aparte).
 * <a href="https://www.linkedin.com/in/tiangolo/" class="external-link" target="_blank">Conect-se comigo no **Linkedin**</a>.
@@ -122,7 +122,7 @@ Tenha em mente que os chats permitem uma "conversa mais livre", dessa forma é m
 
 Nas questões do GitHub o template irá te guiar para que você faça a sua pergunta de um jeito mais correto, fazendo com que você receba respostas mais completas, e até mesmo que você mesmo resolva o problema antes de perguntar. E no GitHub eu garanto que sempre irei responder todas as perguntas, mesmo que leve um tempo. Eu pessoalmente não consigo fazer isso via chat. 😅
 
-Conversas no chat não são tão fáceis de serem encontrados quanto no GitHub, então questões e respostas podem se perder dentro da conversa. E apenas as que estão nas questões do GitHub contam para você se tornar um [Expert em FastAPI](fastapi-people.md#experts){.internal-link target=_blank}, entaõ você receberá mais atenção nas questões do GitHub.
+Conversas no chat não são tão fáceis de serem encontrados quanto no GitHub, então questões e respostas podem se perder dentro da conversa. E apenas as que estão nas questões do GitHub contam para você se tornar um [Expert em FastAPI](fastapi-people.md#experts){.internal-link target=_blank}, então você receberá mais atenção nas questões do GitHub.
 
 Por outro lado, existem milhares de usuários no chat, então tem uma grande chance de você encontrar alguém para trocar uma idéia por lá em qualquer horário. 😄
 
