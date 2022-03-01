@@ -147,7 +147,8 @@ def get_swagger_ui_oauth2_redirect_html() -> HTMLResponse:
 
             if ((
             oauth2.auth.schema.get("flow") === "accessCode"||
-            oauth2.auth.schema.get("flow") === "authorizationCode"
+            oauth2.auth.schema.get("flow") === "authorizationCode"||
+            oauth2.auth.schema.get("flow") === "authorization_code"
             ) && !oauth2.auth.code) {
                 if (!isValid) {
                     oauth2.errCb({
