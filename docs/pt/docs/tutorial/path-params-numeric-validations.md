@@ -63,7 +63,7 @@ O Python não vai fazer nada com esse `*`, mas ele vai saber que a partir dali o
 
 Com `Query` e `Path` (e outras que você verá mais tarde) você pode declarar restrições de string, e também restrições numéricas.
 
-Aqui, com `ge=1`, `item_id` precisará ser um numéro inteiro maior que ("`g`reater than") ou igual ("`e`qual") a 1.
+Aqui, com `ge=1`, `item_id` precisará ser um número inteiro maior que ("`g`reater than") ou igual ("`e`qual") a 1.
 
 ```Python hl_lines="8"
 {!../../../docs_src/path_params_numeric_validations/tutorial004.py!}
