@@ -1,5 +1,6 @@
 import http.client
 import inspect
+import warnings
 from enum import Enum
 from typing import Any, Dict, List, Optional, Sequence, Set, Tuple, Type, Union, cast
 
@@ -141,6 +142,12 @@ def get_openapi_operation_request_body(
 
 
 def generate_operation_id(*, route: routing.APIRoute, method: str) -> str:
+    warnings.warn(
+        "fastapi.openapi.utils.generate_operation_id() was deprecated, "
+        "it is not used internally, and will be removed soon",
+        DeprecationWarning,
+        stacklevel=2,
+    )
     if route.operation_id:
         return route.operation_id
     path: str = route.path_format
@@ -162,7 +169,7 @@ def get_openapi_operation_metadata(
     operation["summary"] = generate_operation_summary(route=route, method=method)
     if route.description:
         operation["description"] = route.description
-    operation["operationId"] = generate_operation_id(route=route, method=method)
+    operation["operationId"] = route.operation_id or route.unique_id
     if route.deprecated:
         operation["deprecated"] = route.deprecated
     return operation
