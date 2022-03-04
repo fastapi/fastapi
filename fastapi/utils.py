@@ -14,7 +14,7 @@ from pydantic.fields import FieldInfo, ModelField, UndefinedType
 from pydantic.schema import model_process_schema
 from pydantic.utils import lenient_issubclass
 
-if TYPE_CHECKING:
+if TYPE_CHECKING:  # pragma: nocover
     from routing import APIRoute
 
 
@@ -123,7 +123,9 @@ def create_cloned_field(
     return new_field
 
 
-def generate_operation_id_for_path(*, name: str, path: str, method: str) -> str:
+def generate_operation_id_for_path(
+    *, name: str, path: str, method: str
+) -> str:  # pragma: nocover
     warnings.warn(
         "fastapi.utils.generate_operation_id_for_path() was deprecated, "
         "it is not used internally, and will be removed soon",
