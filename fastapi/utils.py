@@ -15,7 +15,7 @@ from pydantic.schema import model_process_schema
 from pydantic.utils import lenient_issubclass
 
 if TYPE_CHECKING:  # pragma: nocover
-    from routing import APIRoute
+    from .routing import APIRoute
 
 
 def get_model_definitions(
