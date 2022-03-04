@@ -29,6 +29,11 @@ class ModelDefaults(BaseModel):
     z: str = "z"
 
 
+class ModelNoneWithUncommonDefaults(BaseModel):
+    x: Optional[str] = ...
+    y: Optional[str] = "y"
+
+
 @app.get("/", response_model=Model, response_model_exclude_unset=True)
 def get_root() -> ModelSubclass:
     return ModelSubclass(sub={}, y=1, z=0)
@@ -55,6 +60,13 @@ def get_exclude_defaults() -> ModelDefaults:
 )
 def get_exclude_none() -> ModelDefaults:
     return ModelDefaults(x=None, y="y")
+
+
+@app.get(
+    "/exclude_none_with_uncommon_defaults", response_model=ModelNoneWithUncommonDefaults, response_model_exclude_none=True
+)
+def get_exclude_none_with_uncommon_defaults() -> ModelNoneWithUncommonDefaults:
+    return ModelNoneWithUncommonDefaults(x=None, y=None)
 
 
 @app.get(
@@ -88,6 +100,11 @@ def test_return_exclude_defaults():
 def test_return_exclude_none():
     response = client.get("/exclude_none")
     assert response.json() == {"y": "y", "z": "z"}
+
+
+def test_return_exclude_none_with_uncommon_defaults():
+    response = client.get("/exclude_none_with_uncommon_defaults")
+    assert response.json() == {}
 
 
 def test_return_exclude_unset_none():
