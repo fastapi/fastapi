@@ -122,7 +122,12 @@ async def serialize_response(
             response_content,
             exclude_unset=exclude_unset,
             exclude_defaults=exclude_defaults,
-            exclude_none=exclude_none,
+            # jsonable_encoder() below will apply exclude_none, so it is not
+            # necessary here. Instead excluding None here may cause issues as
+            # not all fields with a value of None have a None default value
+            # and by that would be initialized with None after the validation
+            # phase again.
+            exclude_none=False,
         )
         if is_coroutine:
             value, errors_ = field.validate(response_content, {}, loc=("response",))

@@ -63,7 +63,9 @@ def get_exclude_none() -> ModelDefaults:
 
 
 @app.get(
-    "/exclude_none_with_uncommon_defaults", response_model=ModelNoneWithUncommonDefaults, response_model_exclude_none=True
+    "/exclude_none_with_uncommon_defaults",
+    response_model=ModelNoneWithUncommonDefaults,
+    response_model_exclude_none=True,
 )
 def get_exclude_none_with_uncommon_defaults() -> ModelNoneWithUncommonDefaults:
     return ModelNoneWithUncommonDefaults(x=None, y=None)
