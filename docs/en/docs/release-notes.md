@@ -3,6 +3,8 @@
 ## Latest Changes
 
 
+## 0.75.0
+
 * ✨ Add support for custom `generate_unique_id_function` and docs for generating clients. New docs: [Advanced - Generate Clients](https://fastapi.tiangolo.com/advanced/generate-clients/). PR [#4650](https://github.com/tiangolo/fastapi/pull/4650) by [@tiangolo](https://github.com/tiangolo).
 
 ## 0.74.1
