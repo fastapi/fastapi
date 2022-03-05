@@ -165,6 +165,12 @@ def test_security_oauth2():
     assert response.json() == {"username": "Bearer footokenbar"}
 
 
+def test_security_oauth2_custom_authorization_header():
+    expected_authorization_header = 'x-authorization'
+    target = OAuth2(authorization_header=expected_authorization_header)
+    assert target.authorization_header == expected_authorization_header
+
+
 def test_security_oauth2_password_other_header():
     response = client.get("/users/me", headers={"Authorization": "Other footokenbar"})
     assert response.status_code == 200, response.text
