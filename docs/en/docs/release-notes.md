@@ -2,6 +2,7 @@
 
 ## Latest Changes
 
+* 📝 Add Jina's QA Bot to the docs to help people that want to ask quick questions. PR [#4655](https://github.com/tiangolo/fastapi/pull/4655) by [@tiangolo](https://github.com/tiangolo).
 
 ## 0.75.0
 
