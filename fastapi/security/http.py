@@ -30,15 +30,17 @@ class HTTPBase(SecurityBase):
         scheme_name: Optional[str] = None,
         description: Optional[str] = None,
         auto_error: bool = True,
+        authorization_header: str = "Authorization"
     ):
         self.model = HTTPBaseModel(scheme=scheme, description=description)
         self.scheme_name = scheme_name or self.__class__.__name__
         self.auto_error = auto_error
+        self.authorization_header = authorization_header
 
     async def __call__(
         self, request: Request
     ) -> Optional[HTTPAuthorizationCredentials]:
-        authorization: str = request.headers.get("Authorization")
+        authorization: str = request.headers.get(self.authorization_header)
         scheme, credentials = get_authorization_scheme_param(authorization)
         if not (authorization and scheme and credentials):
             if self.auto_error:
@@ -57,7 +59,7 @@ class HTTPBasic(HTTPBase):
         scheme_name: Optional[str] = None,
         realm: Optional[str] = None,
         description: Optional[str] = None,
-        auto_error: bool = True,
+        auto_error: bool = True
     ):
         self.model = HTTPBaseModel(scheme="basic", description=description)
         self.scheme_name = scheme_name or self.__class__.__name__
@@ -67,6 +69,8 @@ class HTTPBasic(HTTPBase):
     async def __call__(  # type: ignore
         self, request: Request
     ) -> Optional[HTTPBasicCredentials]:
+        # No support for setting a custom named authorization header for HTTPBasic,
+        # because external lib requests.HTTPBasicAuth requires it to be set as "Authorization".
         authorization: str = request.headers.get("Authorization")
         scheme, param = get_authorization_scheme_param(authorization)
         if self.realm:
@@ -105,15 +109,17 @@ class HTTPBearer(HTTPBase):
         scheme_name: Optional[str] = None,
         description: Optional[str] = None,
         auto_error: bool = True,
+        authorization_header: str = "Authorization"
     ):
         self.model = HTTPBearerModel(bearerFormat=bearerFormat, description=description)
         self.scheme_name = scheme_name or self.__class__.__name__
         self.auto_error = auto_error
+        self.authorization_header = authorization_header
 
     async def __call__(
         self, request: Request
     ) -> Optional[HTTPAuthorizationCredentials]:
-        authorization: str = request.headers.get("Authorization")
+        authorization: str = request.headers.get(self.authorization_header)
         scheme, credentials = get_authorization_scheme_param(authorization)
         if not (authorization and scheme and credentials):
             if self.auto_error:
@@ -140,15 +146,17 @@ class HTTPDigest(HTTPBase):
         scheme_name: Optional[str] = None,
         description: Optional[str] = None,
         auto_error: bool = True,
+        authorization_header: str = "Authorization"
     ):
         self.model = HTTPBaseModel(scheme="digest", description=description)
         self.scheme_name = scheme_name or self.__class__.__name__
         self.auto_error = auto_error
+        self.authorization_header = authorization_header
 
     async def __call__(
         self, request: Request
     ) -> Optional[HTTPAuthorizationCredentials]:
-        authorization: str = request.headers.get("Authorization")
+        authorization: str = request.headers.get(self.authorization_header)
         scheme, credentials = get_authorization_scheme_param(authorization)
         if not (authorization and scheme and credentials):
             if self.auto_error:
