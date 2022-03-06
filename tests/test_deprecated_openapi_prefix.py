@@ -1,7 +1,7 @@
 from fastapi import FastAPI, Request
 from fastapi.testclient import TestClient
 
-app = FastAPI(openapi_prefix="/api/v1")
+app = FastAPI(root_path="/api/v1") # openapi_prefix removed
 
 
 @app.get("/app")

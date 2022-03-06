@@ -61,7 +61,6 @@ class FastAPI(Starlette):
         terms_of_service: Optional[str] = None,
         contact: Optional[Dict[str, Union[str, Any]]] = None,
         license_info: Optional[Dict[str, Union[str, Any]]] = None,
-        openapi_prefix: str = "",
         root_path: str = "",
         root_path_in_servers: bool = True,
         responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
@@ -96,15 +95,7 @@ class FastAPI(Starlette):
         if self.openapi_url:
             assert self.title, "A title must be provided for OpenAPI, e.g.: 'My API'"
             assert self.version, "A version must be provided for OpenAPI, e.g.: '2.1.0'"
-        # TODO: remove when discarding the openapi_prefix parameter
-        if openapi_prefix:
-            logger.warning(
-                '"openapi_prefix" has been deprecated in favor of "root_path", which '
-                "follows more closely the ASGI standard, is simpler, and more "
-                "automatic. Check the docs at "
-                "https://fastapi.tiangolo.com/advanced/sub-applications/"
-            )
-        self.root_path = root_path or openapi_prefix
+        self.root_path = root_path
         self.state: State = State()
         self.dependency_overrides: Dict[Callable[..., Any], Callable[..., Any]] = {}
         self.router: routing.APIRouter = routing.APIRouter(
