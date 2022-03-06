@@ -2,7 +2,6 @@ from fastapi import FastAPI
 from fastapi.openapi.utils import get_openapi
 from fastapi.testclient import TestClient
 
-swagger_ui_oauth2_redirect_url = "/docs/redirect"
 
 app = FastAPI()
 sub_app = FastAPI(
