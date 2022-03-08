@@ -236,10 +236,10 @@ Kamu akan melihat response JSON sebagai berikut:
 
 Kamu telah berhasil membuat API yang memiliki kemampuan dibawah ini:
 
-* Menerima HTTP requests pada _jalur_ `/` dan _jalur_  `/items/{item_id}`.
-* Kedua _jalur_ menggunakan <em>operasi</em> `GET` (juga dikenal dengan  _methode_ HTTP).
-* _Jalur_  `/items/{item_id}` memiliki sebuah _parameter jalur_ `item_id` yang merupakan `int`.
-* _Jalur_  `/items/{item_id}` memiliki opsional `str` dengan _parameter query_ `q`.
+* Menerima HTTP requests pada _path_ `/` dan _path_  `/items/{item_id}`.
+* Kedua _path_ menggunakan <em>operasi</em> `GET` (juga dikenal dengan  _methode_ HTTP).
+* _path_  `/items/{item_id}` memiliki sebuah _parameter path_ `item_id` yang merupakan `int`.
+* _path_  `/items/{item_id}` memiliki opsional `str` dengan _parameter query_ `q`.
 
 ### Dokumentasi API interaktif
 
@@ -371,7 +371,7 @@ item: Item
 
 Kembali lagi ke contoh kode sebelumnya **FastAPI** akan:
 
-* Mem-validasi bahwa ada sebuah `item_id` pada jalur request `GET` dan `PUT`.
+* Mem-validasi bahwa ada sebuah `item_id` pada path request `GET` dan `PUT`.
 * Mem-validasi bahwa `item_id` merupakan tipe `int` untuk request `GET` dan `PUT`.
     * Jika hal itu tidak benar, maka klien akan melihat keterangan error yang jeals dan berguna.
 * Memeriksa bahwa ada query parameter opsional dengan nama `q` (seperti pada `http://127.0.0.1:8000/items/foo?q=somequery`) untuk request `GET`.
