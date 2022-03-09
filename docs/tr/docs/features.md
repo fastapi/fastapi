@@ -198,7 +198,7 @@ Aynı şekilde, databaseden gelen objeyi de **direkt olarak isteğe** de tamamiy
 * Kullandığın geliştirme araçları ile iyi çalışır **<abbr title="Integrated Development Environment, kod editörüne benzer">IDE</abbr>/<abbr title="Code errorlarınızı inceleyen program">linter</abbr>/brain**:
     * Pydantic'in veri yapıları aslında sadece senin tanımladığın classlar; Bu yüzden doğrulanmış dataların ile otomatik tamamlama, linting ve mypy'ı kullanarak sorunsuz bir şekilde çalışabilirsin
 * **Hızlı**:
-    * <a href="https://pydantic-docs.helpmanual.io/#benchmarks-tag" class="external-link" target="_blank">Benchmarklarda</a>, Pydantic'in diğer bütün test edilmiş bütün kütüphanelerden daha hızlı.
+    * <a href="https://pydantic-docs.helpmanual.io/benchmarks/" class="external-link" target="_blank">Benchmarklarda</a>, Pydantic'in diğer bütün test edilmiş bütün kütüphanelerden daha hızlı.
 * **En kompleks** yapıları bile doğrula:
     * Hiyerarşik Pydantic modellerinin kullanımı ile beraber, Python `typing`’s `List` and `Dict`, vs gibi şeyleri doğrula.
     * Doğrulayıcılar en kompleks data şemalarının bile temiz ve kolay bir şekilde tanımlanmasına izin veriyor, ve hepsi JSON şeması olarak dokümante ediliyor
