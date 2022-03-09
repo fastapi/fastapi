@@ -123,8 +123,8 @@ async def serialize_response(
             exclude_unset=exclude_unset,
             exclude_defaults=exclude_defaults,
             # jsonable_encoder() below will apply exclude_none, so it is not
-            # necessary here. Instead excluding None here may cause issues as
-            # not all fields with a value of None have a None default value
+            # necessary here. Instead excluding None here may even cause issues
+            # as not all fields with a value of None have a None default value
             # and by that would be initialized with None after the validation
             # phase again.
             exclude_none=False,
