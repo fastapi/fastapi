@@ -393,7 +393,7 @@ def get_openapi(
     terms_of_service: Optional[str] = None,
     contact: Optional[Dict[str, Union[str, Any]]] = None,
     license_info: Optional[Dict[str, Union[str, Any]]] = None,
-    prefix: Optional[str] = None,
+    prefix: Optional[str] = "",
 ) -> Dict[str, Any]:
     info: Dict[str, Any] = {"title": title, "version": version}
     if description:
