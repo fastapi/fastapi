@@ -422,8 +422,7 @@ def get_openapi(
             )
             if result:
                 path, security_schemes, path_definitions = result
-                if prefix:
-                    route.path_format = prefix + route.path_format
+                route.path_format = prefix + route.path_format
                 if path:
                     paths.setdefault(route.path_format, {}).update(path)
                 if security_schemes:
