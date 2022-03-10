@@ -11,6 +11,9 @@ gold:
   - url: https://striveworks.us/careers?utm_source=fastapi&utm_medium=sponsor_banner&utm_campaign=feb_march#openings
     title: https://striveworks.us/careers
     img: https://fastapi.tiangolo.com/img/sponsors/striveworks.png
+  - url: https://www.classiq.io/careers
+    title: Join the team building a new SaaS platform that will change the computing world
+    img: https://fastapi.tiangolo.com/img/sponsors/classiq.png
 silver:
   - url: https://www.deta.sh/?ref=fastapi
     title: The launchpad for all your (team's) ideas
