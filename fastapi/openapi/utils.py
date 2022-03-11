@@ -393,7 +393,7 @@ def get_openapi(
     terms_of_service: Optional[str] = None,
     contact: Optional[Dict[str, Union[str, Any]]] = None,
     license_info: Optional[Dict[str, Union[str, Any]]] = None,
-    prefix: Optional[str] = "",
+    prefix: str = "",
 ) -> Dict[str, Any]:
     info: Dict[str, Any] = {"title": title, "version": version}
     if description:
@@ -422,7 +422,7 @@ def get_openapi(
             )
             if result:
                 path, security_schemes, path_definitions = result
-                route.path_format = prefix + route.path_format
+                route.path_format = f"{prefix}{route.path_format}"
                 if path:
                     paths.setdefault(route.path_format, {}).update(path)
                 if security_schemes:
