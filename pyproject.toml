@@ -82,7 +82,7 @@ dev = [
     "passlib[bcrypt] >=1.7.2,<2.0.0",
     "autoflake >=1.4.0,<2.0.0",
     "flake8 >=3.8.3,<4.0.0",
-    "uvicorn[standard] >=0.12.0,<0.16.0",
+    "uvicorn[standard] >=0.12.0,<0.18.0",
 ]
 all = [
     "requests >=2.24.0,<3.0.0",
@@ -93,7 +93,7 @@ all = [
     "ujson >=4.0.1,<5.0.0",
     "orjson >=3.2.1,<4.0.0",
     "email_validator >=1.1.1,<2.0.0",
-    "uvicorn[standard] >=0.12.0,<0.16.0",
+    "uvicorn[standard] >=0.12.0,<0.18.0",
 ]
 
 [tool.isort]
