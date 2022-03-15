@@ -51,7 +51,7 @@ The key features are:
 <a href="https://cryptapi.io/" target="_blank" title="CryptAPI: Your easy to use, secure and privacy oriented payment gateway."><img src="https://fastapi.tiangolo.com/img/sponsors/cryptapi.svg"></a>
 <a href="https://www.dropbase.io/careers" target="_blank" title="Dropbase - seamlessly collect, clean, and centralize data."><img src="https://fastapi.tiangolo.com/img/sponsors/dropbase.svg"></a>
 <a href="https://striveworks.us/careers?utm_source=fastapi&utm_medium=sponsor_banner&utm_campaign=feb_march#openings" target="_blank" title="https://striveworks.us/careers"><img src="https://fastapi.tiangolo.com/img/sponsors/striveworks.png"></a>
-<a href="https://www.classiq.io/careers" target="_blank" title="Join the team building a new SaaS platform that will change the computing world"><img src="https://fastapi.tiangolo.com/img/sponsors/classiq.png"></a>
+<a href="https://classiq.link/n4s" target="_blank" title="Join the team building a new SaaS platform that will change the computing world"><img src="https://fastapi.tiangolo.com/img/sponsors/classiq.png"></a>
 <a href="https://www.deta.sh/?ref=fastapi" target="_blank" title="The launchpad for all your (team's) ideas"><img src="https://fastapi.tiangolo.com/img/sponsors/deta.svg"></a>
 <a href="https://www.investsuite.com/jobs" target="_blank" title="Wealthtech jobs with FastAPI"><img src="https://fastapi.tiangolo.com/img/sponsors/investsuite.svg"></a>
 <a href="https://www.vim.so/?utm_source=FastAPI" target="_blank" title="We help you master vim with interactive exercises"><img src="https://fastapi.tiangolo.com/img/sponsors/vimso.png"></a>
