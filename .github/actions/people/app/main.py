@@ -517,7 +517,7 @@ if __name__ == "__main__":
     logging.info(f"Creating a new branch {branch_name}")
     subprocess.run(["git", "checkout", "-b", branch_name], check=True)
     logging.info("Adding updated file")
-    subprocess.run(["git", "add", str(people_path)], check=True)
+    subprocess.run(["git", "add", str(people_path), str(github_sponsors_path)], check=True) 
     logging.info("Committing updated file")
     message = "👥 Update FastAPI People"
     result = subprocess.run(["git", "commit", "-m", message], check=True)
