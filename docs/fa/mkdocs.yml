@@ -1,6 +1,6 @@
 site_name: FastAPI
 site_description: FastAPI framework, high performance, easy to learn, fast to code, ready for production
-site_url: https://fastapi.tiangolo.com/tr/
+site_url: https://fastapi.tiangolo.com/fa/
 theme:
   name: material
   custom_dir: overrides
@@ -25,10 +25,13 @@ theme:
     repo: fontawesome/brands/github-alt
   logo: https://fastapi.tiangolo.com/img/icon-white.svg
   favicon: https://fastapi.tiangolo.com/img/favicon.png
-  language: tr
+  language: fa
 repo_name: tiangolo/fastapi
 repo_url: https://github.com/tiangolo/fastapi
 edit_uri: ''
+google_analytics:
+- UA-133183413-1
+- auto
 plugins:
 - search
 - markdownextradata:
@@ -53,9 +56,6 @@ nav:
   - tr: /tr/
   - uk: /uk/
   - zh: /zh/
-- features.md
-- fastapi-people.md
-- python-types.md
 markdown_extensions:
 - toc:
     permalink: true
@@ -71,12 +71,8 @@ markdown_extensions:
     - name: mermaid
       class: mermaid
       format: !!python/name:pymdownx.superfences.fence_code_format ''
-- pymdownx.tabbed:
-    alternate_style: true
+- pymdownx.tabbed
 extra:
-  analytics:
-    provider: google
-    property: UA-133183413-1
   social:
   - icon: fontawesome/brands/github-alt
     link: https://github.com/tiangolo/fastapi
@@ -130,6 +126,7 @@ extra:
 extra_css:
 - https://fastapi.tiangolo.com/css/termynal.css
 - https://fastapi.tiangolo.com/css/custom.css
+- https://fastapi.tiangolo.com/css/rtl.css
 extra_javascript:
 - https://fastapi.tiangolo.com/js/termynal.js
 - https://fastapi.tiangolo.com/js/custom.js
