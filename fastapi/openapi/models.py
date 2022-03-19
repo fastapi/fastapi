@@ -123,7 +123,7 @@ class Schema(BaseModel):
     oneOf: Optional[List["Schema"]] = None
     anyOf: Optional[List["Schema"]] = None
     not_: Optional["Schema"] = Field(None, alias="not")
-    items: Optional["Schema"] = None
+    items: Optional[Union["Schema", List["Schema"]]] = None
     properties: Optional[Dict[str, "Schema"]] = None
     additionalProperties: Optional[Union["Schema", Reference, bool]] = None
     description: Optional[str] = None
