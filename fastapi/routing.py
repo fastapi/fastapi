@@ -645,6 +645,13 @@ class APIRouter(routing.Router):
 
         return decorator
 
+    def delete_api_route(self, path: str):
+        for i in range(len(self.routes)):
+            if self.routes[i].path == path:
+                self.routes.pop(i)
+                return True
+        return False
+
     def add_api_websocket_route(
         self, path: str, endpoint: Callable[..., Any], name: Optional[str] = None
     ) -> None:
