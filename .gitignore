@@ -12,6 +12,7 @@ coverage.xml
 .netlify
 test.db
 log.txt
+Pipfile
 Pipfile.lock
 env3.*
 env
