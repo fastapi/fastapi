@@ -9,6 +9,7 @@ from typing import (
     Callable,
     Coroutine,
     Dict,
+    Iterable,
     List,
     Optional,
     Sequence,
@@ -645,12 +646,23 @@ class APIRouter(routing.Router):
 
         return decorator
 
-    def delete_api_route(self, path: str):
-        for i in range(len(self.routes)):
-            if self.routes[i].path == path:
-                self.routes.pop(i)
-                return True
-        return False
+    def exclude_routes(self, paths: Iterable[str]) -> None:
+        path_route_idx = dict()  # maps paths to their index in self.routes
+        to_remove_idx = set()  # indexes of self.routes which should be removed
+        # we use set becuase paths may contain duplicates
+
+        for idx, route in enumerate(self.routes):
+            if route.path in path_route_idx:
+                path_route_idx[route.path].append(idx)
+            else:
+                path_route_idx[route.path] = [idx]
+
+        for path in paths:
+            if path in path_route_idx:
+                to_remove_idx.update(path_route_idx[path])
+
+        for idx in sorted(to_remove_idx, reverse=True):
+            del self.routes[idx]
 
     def add_api_websocket_route(
         self, path: str, endpoint: Callable[..., Any], name: Optional[str] = None
