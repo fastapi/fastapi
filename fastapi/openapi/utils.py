@@ -1,8 +1,21 @@
 import http.client
 import inspect
+import itertools
 import warnings
 from enum import Enum
-from typing import Any, Dict, List, Optional, Sequence, Set, Tuple, Type, Union, cast
+from typing import (
+    Any,
+    Callable,
+    Dict,
+    List,
+    Optional,
+    Sequence,
+    Set,
+    Tuple,
+    Type,
+    Union,
+    cast,
+)
 
 from fastapi import routing
 from fastapi.datastructures import DefaultPlaceholder
@@ -422,7 +435,10 @@ def get_openapi(
             if result:
                 path, security_schemes, path_definitions = result
                 if path:
-                    paths.setdefault(route.path_format, {}).update(path)
+                    existing_path = paths.get(route.path_format)
+                    paths[route.path_format] = (
+                        merge_paths(existing_path, path) if existing_path else path
+                    )
                 if security_schemes:
                     components.setdefault("securitySchemes", {}).update(
                         security_schemes
@@ -437,3 +453,123 @@ def get_openapi(
     if tags:
         output["tags"] = tags
     return jsonable_encoder(OpenAPI(**output), by_alias=True, exclude_none=True)  # type: ignore
+
+
+def merge_paths(
+    existing_path: Dict[str, Any], new_path: Dict[str, Any]
+) -> Dict[str, Any]:
+    """Merge two openapi path descriptions for the same route, e.g. for response content with different accept-encoding."""
+    path_by_operation_id: Dict[str, Dict[str, Any]] = {}
+    for method, operation in itertools.chain(existing_path.items(), new_path.items()):
+        path_by_operation_id.setdefault(operation["operationId"], {})[
+            method
+        ] = operation
+    return deep_dict_operation_merge(path_by_operation_id) or {}
+
+
+def merge_tags(tags_by_id: Dict[str, Optional[List[str]]]) -> Optional[List[str]]:
+    tags: Optional[List[str]] = None
+    for update_tags in tags_by_id.values():
+        if update_tags:
+            tags = tags or []
+            tags.extend(t for t in update_tags if t not in tags)
+    return tags
+
+
+def merge_summary(summary_by_id: Dict[str, Optional[str]]) -> Optional[str]:
+    summary: Optional[str] = None
+    for update_summary in summary_by_id.values():
+        if update_summary and summary != update_summary:
+            summary = f"{summary} / {update_summary}" if summary else update_summary
+    return summary
+
+
+def merge_description(desc_by_id: Dict[str, Optional[str]]) -> Optional[str]:
+    desc: Optional[str] = None
+    for update_id, update_desc in desc_by_id.items():
+        if update_desc and desc != update_desc:
+            desc = f"{desc}\n\n OR \n\n {update_desc}" if desc else update_desc
+    return desc
+
+
+def merge_operation_id(operation_id_by_id: Dict[str, Optional[str]]) -> Optional[str]:
+    operation_id: Optional[str] = None
+    for update_operation_id in operation_id_by_id.values():
+        if update_operation_id and operation_id != update_operation_id:
+            if operation_id:
+                message = f"Merging operation with id {operation_id} with operation with id {update_operation_id}."
+                warnings.warn(message)
+                operation_id = f"{operation_id}+{update_operation_id}"
+            else:
+                operation_id = update_operation_id
+    return operation_id
+
+
+def merge_deprecated(deprecated_by_id: Dict[str, Optional[bool]]) -> Optional[bool]:
+    if any(deprecated_by_id.values()):
+        return True
+    return None
+
+
+def merge_parameters(
+    params_by_id: Dict[str, Optional[List[Dict[str, Any]]]]
+) -> Optional[List[Dict[str, Any]]]:
+    with_params = [
+        (param_id, params) for (param_id, params) in params_by_id.items() if params
+    ]
+    if not with_params:
+        return None
+    if len(with_params) == 1:
+        return with_params[0][1]
+    param_by_id_by_name: Dict[str, Any] = {}
+    for (param_id, params) in with_params:
+        for param in params:
+            param_by_id_by_name.setdefault(param["name"], {})[param_id] = param
+
+    return [
+        deep_dict_operation_merge(param_by_id)
+        for param_by_id in param_by_id_by_name.values()
+    ]
+
+
+def deep_dict_operation_merge(dict_by_id: Dict[str, Dict[str, Any]]) -> Dict[str, Any]:
+    if not dict_by_id:
+        return dict_by_id
+    if len(dict_by_id) == 1:
+        return next(iter(dict_by_id.values()))
+    keys = {k for d in dict_by_id.values() for k in d}
+    result_dict: Optional[Dict[Any, Any]] = None
+    for key in keys:
+        merge_method = MERGE_METHODS_BY_KEY.get(key)
+        if not merge_method and _all_dict_or_none_at_key(dict_by_id, key):
+            merge_method = deep_dict_operation_merge
+        result_dict = result_dict or {}
+        dict_at_key_by_id = {d_id: d[key] for d_id, d in dict_by_id.items() if key in d}
+        if merge_method:
+            result_dict[key] = merge_method(dict_at_key_by_id)
+        else:
+            # use last entry at key for each
+            result_dict[key] = next(reversed(list(dict_at_key_by_id.values())), None)
+    return {k: v for k, v in result_dict.items() if v is not None} if result_dict else {}
+
+
+def _all_dict_or_none_at_key(dict_by_id: Dict[str, Dict[str, Any]], key: str) -> bool:
+    return all(
+        isinstance(d[key], dict)
+        for d in dict_by_id.values()
+        if key in d
+        if d[key] is not None
+    )
+
+
+MERGE_METHODS_BY_KEY: Dict[str, Callable[[Dict[str, Any]], Any]] = {
+    "tags": merge_tags,
+    "summary": merge_summary,
+    "description": merge_description,
+    "operationId": merge_operation_id,
+    "parameters": merge_parameters,
+    "deprecated": merge_deprecated,
+    "content": deep_dict_operation_merge,
+    "requestBody": deep_dict_operation_merge,
+    "callbacks": deep_dict_operation_merge,
+}
