@@ -1,5 +1,6 @@
 import http.client
 import inspect
+import warnings
 from enum import Enum
 from typing import Any, Dict, List, Optional, Sequence, Set, Tuple, Type, Union, cast
 
@@ -140,7 +141,15 @@ def get_openapi_operation_request_body(
     return request_body_oai
 
 
-def generate_operation_id(*, route: routing.APIRoute, method: str) -> str:
+def generate_operation_id(
+    *, route: routing.APIRoute, method: str
+) -> str:  # pragma: nocover
+    warnings.warn(
+        "fastapi.openapi.utils.generate_operation_id() was deprecated, "
+        "it is not used internally, and will be removed soon",
+        DeprecationWarning,
+        stacklevel=2,
+    )
     if route.operation_id:
         return route.operation_id
     path: str = route.path_format
@@ -154,7 +163,7 @@ def generate_operation_summary(*, route: routing.APIRoute, method: str) -> str:
 
 
 def get_openapi_operation_metadata(
-    *, route: routing.APIRoute, method: str
+    *, route: routing.APIRoute, method: str, operation_ids: Set[str]
 ) -> Dict[str, Any]:
     operation: Dict[str, Any] = {}
     if route.tags:
@@ -162,14 +171,25 @@ def get_openapi_operation_metadata(
     operation["summary"] = generate_operation_summary(route=route, method=method)
     if route.description:
         operation["description"] = route.description
-    operation["operationId"] = generate_operation_id(route=route, method=method)
+    operation_id = route.operation_id or route.unique_id
+    if operation_id in operation_ids:
+        message = (
+            f"Duplicate Operation ID {operation_id} for function "
+            + f"{route.endpoint.__name__}"
+        )
+        file_name = getattr(route.endpoint, "__globals__", {}).get("__file__")
+        if file_name:
+            message += f" at {file_name}"
+        warnings.warn(message)
+    operation_ids.add(operation_id)
+    operation["operationId"] = operation_id
     if route.deprecated:
         operation["deprecated"] = route.deprecated
     return operation
 
 
 def get_openapi_path(
-    *, route: routing.APIRoute, model_name_map: Dict[type, str]
+    *, route: routing.APIRoute, model_name_map: Dict[type, str], operation_ids: Set[str]
 ) -> Tuple[Dict[str, Any], Dict[str, Any], Dict[str, Any]]:
     path = {}
     security_schemes: Dict[str, Any] = {}
@@ -183,7 +203,9 @@ def get_openapi_path(
     route_response_media_type: Optional[str] = current_response_class.media_type
     if route.include_in_schema:
         for method in route.methods:
-            operation = get_openapi_operation_metadata(route=route, method=method)
+            operation = get_openapi_operation_metadata(
+                route=route, method=method, operation_ids=operation_ids
+            )
             parameters: List[Dict[str, Any]] = []
             flat_dependant = get_flat_dependant(route.dependant, skip_repeats=True)
             security_definitions, operation_security = get_openapi_security_definitions(
@@ -217,7 +239,9 @@ def get_openapi_path(
                             cb_security_schemes,
                             cb_definitions,
                         ) = get_openapi_path(
-                            route=callback, model_name_map=model_name_map
+                            route=callback,
+                            model_name_map=model_name_map,
+                            operation_ids=operation_ids,
                         )
                         callbacks[callback.name] = {callback.path: cb_path}
                 operation["callbacks"] = callbacks
@@ -384,6 +408,7 @@ def get_openapi(
         output["servers"] = servers
     components: Dict[str, Dict[str, Any]] = {}
     paths: Dict[str, Dict[str, Any]] = {}
+    operation_ids: Set[str] = set()
     flat_models = get_flat_models_from_routes(routes)
     model_name_map = get_model_name_map(flat_models)
     definitions = get_model_definitions(
@@ -391,7 +416,9 @@ def get_openapi(
     )
     for route in routes:
         if isinstance(route, routing.APIRoute):
-            result = get_openapi_path(route=route, model_name_map=model_name_map)
+            result = get_openapi_path(
+                route=route, model_name_map=model_name_map, operation_ids=operation_ids
+            )
             if result:
                 path, security_schemes, path_definitions = result
                 if path:
