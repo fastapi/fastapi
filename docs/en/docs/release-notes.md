@@ -2,6 +2,9 @@
 
 ## Latest Changes
 
+
+## 0.75.1
+
 ### Translations
 
 * 🌐 Start Dutch translations. PR [#4703](https://github.com/tiangolo/fastapi/pull/4703) by [@tiangolo](https://github.com/tiangolo).
