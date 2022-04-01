@@ -50,7 +50,7 @@ test = [
     "pytest-cov >=2.12.0,<4.0.0",
     "mypy ==0.910",
     "flake8 >=3.8.3,<4.0.0",
-    "black ==21.9b0",
+    "black == 22.3.0",
     "isort >=5.0.6,<6.0.0",
     "requests >=2.24.0,<3.0.0",
     "httpx >=0.14.0,<0.19.0",
@@ -74,7 +74,9 @@ doc = [
     "mkdocs-material >=8.1.4,<9.0.0",
     "mdx-include >=1.4.1,<2.0.0",
     "mkdocs-markdownextradata-plugin >=0.1.7,<0.3.0",
-    "typer-cli >=0.0.12,<0.0.13",
+    # TODO: upgrade and enable typer-cli once it supports Click 8.x.x
+    # "typer-cli >=0.0.12,<0.0.13",
+    "typer >=0.4.1,<0.5.0",
     "pyyaml >=5.3.1,<6.0.0"
 ]
 dev = [
