@@ -2,6 +2,7 @@
 
 ## Latest Changes
 
+* ➖ Temporarily remove typer-cli from dependencies and upgrade Black. PR [#4754](https://github.com/tiangolo/fastapi/pull/4754) by [@tiangolo](https://github.com/tiangolo).
 * 🌐 Start Dutch translations. PR [#4703](https://github.com/tiangolo/fastapi/pull/4703) by [@tiangolo](https://github.com/tiangolo).
 * 🔧 Add configuration to notify Dutch translations. PR [#4702](https://github.com/tiangolo/fastapi/pull/4702) by [@tiangolo](https://github.com/tiangolo).
 * 🌐 Start Persian/Farsi translations. PR [#4243](https://github.com/tiangolo/fastapi/pull/4243) by [@aminalaee](https://github.com/aminalaee).
