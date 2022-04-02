@@ -32,7 +32,7 @@ edit_uri: ''
 plugins:
 - search
 - markdownextradata:
-    data: data
+    data: ../en/data
 nav:
 - FastAPI: index.md
 - Languages:
@@ -64,6 +64,7 @@ nav:
 - Guía de Usuario Avanzada:
   - advanced/index.md
 - async.md
+- external-links.md
 - benchmarks.md
 markdown_extensions:
 - toc:
