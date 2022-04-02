@@ -65,7 +65,6 @@ nav:
   - advanced/index.md
 - async.md
 - external-links.md
-- benchmarks.md
 markdown_extensions:
 - toc:
     permalink: true
