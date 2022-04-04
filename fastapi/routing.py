@@ -115,6 +115,7 @@ async def serialize_response(
     exclude_defaults: bool = False,
     exclude_none: bool = False,
     is_coroutine: bool = True,
+    allow_rough_response_model: bool = False
 ) -> Any:
     if field:
         errors = []
@@ -134,7 +135,7 @@ async def serialize_response(
             errors.append(errors_)
         elif isinstance(errors_, list):
             errors.extend(errors_)
-        if errors:
+        if errors and not allow_rough_response_model:
             raise ValidationError(errors, field.type_)
         return jsonable_encoder(
             value,
@@ -175,6 +176,7 @@ def get_request_handler(
     response_model_exclude_defaults: bool = False,
     response_model_exclude_none: bool = False,
     dependency_overrides_provider: Optional[Any] = None,
+    allow_rough_response_model: bool = False,
 ) -> Callable[[Request], Coroutine[Any, Any, Response]]:
     assert dependant.call is not None, "dependant.call must be a function"
     is_coroutine = asyncio.iscoroutinefunction(dependant.call)
@@ -242,6 +244,7 @@ def get_request_handler(
                 exclude_defaults=response_model_exclude_defaults,
                 exclude_none=response_model_exclude_none,
                 is_coroutine=is_coroutine,
+                allow_rough_response_model=allow_rough_response_model
             )
             response_args: Dict[str, Any] = {"background": background_tasks}
             # If status_code was set, use it, otherwise use the default from the
@@ -311,6 +314,7 @@ class APIRoute(routing.Route):
         endpoint: Callable[..., Any],
         *,
         response_model: Optional[Type[Any]] = None,
+        allow_rough_response_model: bool = False,
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
@@ -342,6 +346,7 @@ class APIRoute(routing.Route):
         self.path = path
         self.endpoint = endpoint
         self.response_model = response_model
+        self.allow_rough_response_model = allow_rough_response_model
         self.summary = summary
         self.response_description = response_description
         self.deprecated = deprecated
@@ -445,6 +450,7 @@ class APIRoute(routing.Route):
             response_model_exclude_defaults=self.response_model_exclude_defaults,
             response_model_exclude_none=self.response_model_exclude_none,
             dependency_overrides_provider=self.dependency_overrides_provider,
+            allow_rough_response_model=self.allow_rough_response_model
         )
 
     def matches(self, scope: Scope) -> Tuple[Match, Scope]:
@@ -507,6 +513,7 @@ class APIRouter(routing.Router):
         endpoint: Callable[..., Any],
         *,
         response_model: Optional[Type[Any]] = None,
+        allow_rough_response_model: bool = False,
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
@@ -557,6 +564,7 @@ class APIRouter(routing.Router):
             self.prefix + path,
             endpoint=endpoint,
             response_model=response_model,
+            allow_rough_response_model=allow_rough_response_model,
             status_code=status_code,
             tags=current_tags,
             dependencies=current_dependencies,
@@ -588,6 +596,7 @@ class APIRouter(routing.Router):
         path: str,
         *,
         response_model: Optional[Type[Any]] = None,
+        allow_rough_response_model: bool = False,
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
@@ -618,6 +627,7 @@ class APIRouter(routing.Router):
                 path,
                 func,
                 response_model=response_model,
+                allow_rough_response_model=allow_rough_response_model,
                 status_code=status_code,
                 tags=tags,
                 dependencies=dependencies,
@@ -783,6 +793,7 @@ class APIRouter(routing.Router):
         path: str,
         *,
         response_model: Optional[Type[Any]] = None,
+        allow_rough_response_model: bool = False,
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
@@ -810,6 +821,7 @@ class APIRouter(routing.Router):
         return self.api_route(
             path=path,
             response_model=response_model,
+            allow_rough_response_model=allow_rough_response_model,
             status_code=status_code,
             tags=tags,
             dependencies=dependencies,
@@ -839,6 +851,7 @@ class APIRouter(routing.Router):
         path: str,
         *,
         response_model: Optional[Type[Any]] = None,
+        allow_rough_response_model: bool = False,
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
@@ -866,6 +879,7 @@ class APIRouter(routing.Router):
         return self.api_route(
             path=path,
             response_model=response_model,
+            allow_rough_response_model=allow_rough_response_model,
             status_code=status_code,
             tags=tags,
             dependencies=dependencies,
@@ -895,6 +909,7 @@ class APIRouter(routing.Router):
         path: str,
         *,
         response_model: Optional[Type[Any]] = None,
+        allow_rough_response_model: bool = False,
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
@@ -922,6 +937,7 @@ class APIRouter(routing.Router):
         return self.api_route(
             path=path,
             response_model=response_model,
+            allow_rough_response_model=allow_rough_response_model,
             status_code=status_code,
             tags=tags,
             dependencies=dependencies,
@@ -951,6 +967,7 @@ class APIRouter(routing.Router):
         path: str,
         *,
         response_model: Optional[Type[Any]] = None,
+        allow_rough_response_model: bool = False,
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
@@ -978,6 +995,7 @@ class APIRouter(routing.Router):
         return self.api_route(
             path=path,
             response_model=response_model,
+            allow_rough_response_model=allow_rough_response_model,
             status_code=status_code,
             tags=tags,
             dependencies=dependencies,
@@ -1007,6 +1025,7 @@ class APIRouter(routing.Router):
         path: str,
         *,
         response_model: Optional[Type[Any]] = None,
+        allow_rough_response_model: bool = False,
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
@@ -1034,6 +1053,7 @@ class APIRouter(routing.Router):
         return self.api_route(
             path=path,
             response_model=response_model,
+            allow_rough_response_model=allow_rough_response_model,
             status_code=status_code,
             tags=tags,
             dependencies=dependencies,
@@ -1063,6 +1083,7 @@ class APIRouter(routing.Router):
         path: str,
         *,
         response_model: Optional[Type[Any]] = None,
+        allow_rough_response_model: bool = False,
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
@@ -1090,6 +1111,7 @@ class APIRouter(routing.Router):
         return self.api_route(
             path=path,
             response_model=response_model,
+            allow_rough_response_model=allow_rough_response_model,
             status_code=status_code,
             tags=tags,
             dependencies=dependencies,
@@ -1119,6 +1141,7 @@ class APIRouter(routing.Router):
         path: str,
         *,
         response_model: Optional[Type[Any]] = None,
+        allow_rough_response_model: bool = False,
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
@@ -1146,6 +1169,7 @@ class APIRouter(routing.Router):
         return self.api_route(
             path=path,
             response_model=response_model,
+            allow_rough_response_model=allow_rough_response_model,
             status_code=status_code,
             tags=tags,
             dependencies=dependencies,
@@ -1175,6 +1199,7 @@ class APIRouter(routing.Router):
         path: str,
         *,
         response_model: Optional[Type[Any]] = None,
+        allow_rough_response_model: bool = False,
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
@@ -1199,10 +1224,10 @@ class APIRouter(routing.Router):
             generate_unique_id
         ),
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
-
         return self.api_route(
             path=path,
             response_model=response_model,
+            allow_rough_response_model=allow_rough_response_model,
             status_code=status_code,
             tags=tags,
             dependencies=dependencies,
