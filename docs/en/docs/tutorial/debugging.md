@@ -110,3 +110,37 @@ It will then start the server with your **FastAPI** code, stop at your breakpoin
 Here's how it might look:
 
 <img src="/img/tutorial/debugging/image02.png">
+
+## Avoiding relative import errors
+
+While the above examples work well for small projects, you will run into import errors if you use relative imports in your main python executable (for instance `myapp.py`).
+
+For example, you could include router instances instead of defining all your routes in `myapp.py`.
+
+```Python
+from fastapi import FastAPI
+
+from .routers import one_set_of_routes
+from .routers import another_set_of_routes
+
+app = FastAPI()
+
+app.include_router(one_set_of_routes.router)
+app.include_router(another_set_of_routes.router)
+
+```
+
+To still make use of debugging in your IDE make sure uvicorn is run (instead of `myapp.py`) with the correct parameters and has the appropriate working directory set. 
+
+Assuming your top-level directory is called `app`, your main fastapi executable is called `myapp.py`, and the variable that has the `FastApi()` instance assigned to it is called `app`. 
+Pycharm users can accomplish this by doing the following:
+
+* Select `myapp.py` in your project
+* "Add Configuration..."
+* Change "Script path" to "Module name"
+* Enter `uvicorn` in the "Module name" field
+* In the "Parameters" field enter `app.myapp:app --reload --host=0.0.0.0` 
+* In the "Working directory" enter the directory that *contains* your top-level directory. Specifying one directory below can lead to unexpected behaviour while specifying relative directories, e.g. static mounts.
+
+Depending on your Pycharm version, it could look like this:
+<img src="/img/tutorial/debugging/image03.png">
