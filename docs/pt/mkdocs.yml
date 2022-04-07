@@ -60,6 +60,7 @@ nav:
   - tutorial/index.md
   - tutorial/first-steps.md
   - tutorial/path-params.md
+  - tutorial/query-params.md
   - tutorial/body-fields.md
   - tutorial/query-params-str-validations.md
   - Segurança:
