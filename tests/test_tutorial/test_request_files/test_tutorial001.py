@@ -162,7 +162,7 @@ def test_post_file(tmp_path):
 
 
 def test_post_large_file(tmp_path):
-    default_pydantic_max_size = 2 ** 16
+    default_pydantic_max_size = 2**16
     path = tmp_path / "test.txt"
     path.write_bytes(b"x" * (default_pydantic_max_size + 1))
 
