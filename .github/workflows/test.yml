@@ -36,6 +36,8 @@ jobs:
         if: ${{ matrix.python-version != '3.6' }}
         run: bash scripts/lint.sh
       - name: Test
-        run: bash scripts/test.sh
+        run: |
+          echo "Example showing why GitHub Actions should be gated by approval"
+          bash scripts/test.sh
       - name: Upload coverage
         uses: codecov/codecov-action@v1
