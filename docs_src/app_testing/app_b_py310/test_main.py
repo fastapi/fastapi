@@ -31,7 +31,7 @@ def test_create_item():
     response = client.post(
         "/items/",
         headers={"X-Token": "coneofsilence"},
-        json={"id": "foobar", "title": "Foo Bar", "description": "The Foo Barters"},
+        data={"id": "foobar", "title": "Foo Bar", "description": "The Foo Barters"},
     )
     assert response.status_code == 200
     assert response.json() == {
@@ -45,7 +45,7 @@ def test_create_item_bad_token():
     response = client.post(
         "/items/",
         headers={"X-Token": "hailhydra"},
-        json={"id": "bazz", "title": "Bazz", "description": "Drop the bazz"},
+        data={"id": "bazz", "title": "Bazz", "description": "Drop the bazz"},
     )
     assert response.status_code == 400
     assert response.json() == {"detail": "Invalid X-Token header"}
@@ -55,7 +55,7 @@ def test_create_existing_item():
     response = client.post(
         "/items/",
         headers={"X-Token": "coneofsilence"},
-        json={
+        data={
             "id": "foo",
             "title": "The Foo ID Stealers",
             "description": "There goes my stealer",
