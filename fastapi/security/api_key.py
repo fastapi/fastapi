@@ -23,7 +23,7 @@ class APIKeyQuery(APIKeyBase):
         self.model: APIKey = APIKey(
             **{"in": APIKeyIn.query}, name=name, description=description
         )
-        self.scheme_name = scheme_name or self.__class__.__name__
+        self.scheme_name = scheme_name or name
         self.auto_error = auto_error
 
     async def __call__(self, request: Request) -> Optional[str]:
@@ -50,7 +50,7 @@ class APIKeyHeader(APIKeyBase):
         self.model: APIKey = APIKey(
             **{"in": APIKeyIn.header}, name=name, description=description
         )
-        self.scheme_name = scheme_name or self.__class__.__name__
+        self.scheme_name = scheme_name or name
         self.auto_error = auto_error
 
     async def __call__(self, request: Request) -> Optional[str]:
@@ -77,7 +77,7 @@ class APIKeyCookie(APIKeyBase):
         self.model: APIKey = APIKey(
             **{"in": APIKeyIn.cookie}, name=name, description=description
         )
-        self.scheme_name = scheme_name or self.__class__.__name__
+        self.scheme_name = scheme_name or name
         self.auto_error = auto_error
 
     async def __call__(self, request: Request) -> Optional[str]:

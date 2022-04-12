@@ -38,13 +38,13 @@ openapi_schema = {
                 },
                 "summary": "Read Current User",
                 "operationId": "read_current_user_users_me_get",
-                "security": [{"APIKeyCookie": []}],
+                "security": [{"key": []}],
             }
         }
     },
     "components": {
         "securitySchemes": {
-            "APIKeyCookie": {"type": "apiKey", "name": "key", "in": "cookie"}
+            "key": {"type": "apiKey", "name": "key", "in": "cookie"}
         }
     },
 }

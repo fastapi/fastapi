@@ -5,7 +5,8 @@ from pydantic import BaseModel
 
 app = FastAPI()
 
-api_key = APIKeyHeader(name="key", description="An API Key Header")
+api_key = APIKeyHeader(name="key")
+another_key = APIKeyHeader(name="another_key")
 
 
 class User(BaseModel):
@@ -17,8 +18,18 @@ def get_current_user(oauth_header: str = Security(api_key)):
     return user
 
 
+def get_current_user_with_another_key(oauth_header: str = Security(another_key)):
+    user = User(username=oauth_header)
+    return user
+
+
 @app.get("/users/me")
 def read_current_user(current_user: User = Depends(get_current_user)):
+    return current_user
+
+
+@app.get("/another_key/users/me")
+def read_current_user_another_key(current_user: User = Depends(get_current_user_with_another_key)):
     return current_user
 
 
@@ -40,16 +51,25 @@ openapi_schema = {
                 "operationId": "read_current_user_users_me_get",
                 "security": [{"key": []}],
             }
+        },
+        "/another_key/users/me": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {"application/json": {"schema": {}}},
+                    }
+                },
+                "summary": "Read Current User Another Key",
+                "operationId": "read_current_user_another_key_another_key_users_me_get",
+                "security": [{"another_key": []}],
+            }
         }
     },
     "components": {
         "securitySchemes": {
-            "key": {
-                "type": "apiKey",
-                "name": "key",
-                "in": "header",
-                "description": "An API Key Header",
-            }
+            "key": {"type": "apiKey", "name": "key", "in": "header"},
+            "another_key": {"type": "apiKey", "name": "another_key", "in": "header"}
         }
     },
 }
@@ -69,5 +89,17 @@ def test_security_api_key():
 
 def test_security_api_key_no_key():
     response = client.get("/users/me")
+    assert response.status_code == 403, response.text
+    assert response.json() == {"detail": "Not authenticated"}
+
+
+def test_another_security_api_key():
+    response = client.get("/another_key/users/me", headers={"another_key": "secret"})
+    assert response.status_code == 200, response.text
+    assert response.json() == {"username": "secret"}
+
+
+def test_another_security_api_key_no_key():
+    response = client.get("/another_key/users/me")
     assert response.status_code == 403, response.text
     assert response.json() == {"detail": "Not authenticated"}
