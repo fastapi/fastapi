@@ -43,9 +43,7 @@ openapi_schema = {
         }
     },
     "components": {
-        "securitySchemes": {
-            "key": {"type": "apiKey", "name": "key", "in": "header"}
-        }
+        "securitySchemes": {"key": {"type": "apiKey", "name": "key", "in": "header"}}
     },
 }
 

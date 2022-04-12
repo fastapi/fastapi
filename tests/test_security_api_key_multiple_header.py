@@ -29,7 +29,9 @@ def read_current_user(current_user: User = Depends(get_current_user)):
 
 
 @app.get("/another_key/users/me")
-def read_current_user_another_key(current_user: User = Depends(get_current_user_with_another_key)):
+def read_current_user_another_key(
+    current_user: User = Depends(get_current_user_with_another_key),
+):
     return current_user
 
 
@@ -64,12 +66,12 @@ openapi_schema = {
                 "operationId": "read_current_user_another_key_another_key_users_me_get",
                 "security": [{"another_key": []}],
             }
-        }
+        },
     },
     "components": {
         "securitySchemes": {
             "key": {"type": "apiKey", "name": "key", "in": "header"},
-            "another_key": {"type": "apiKey", "name": "another_key", "in": "header"}
+            "another_key": {"type": "apiKey", "name": "another_key", "in": "header"},
         }
     },
 }
