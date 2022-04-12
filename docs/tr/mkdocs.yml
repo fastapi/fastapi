@@ -55,6 +55,7 @@ nav:
 - features.md
 - fastapi-people.md
 - python-types.md
+- async.md
 markdown_extensions:
 - toc:
     permalink: true
