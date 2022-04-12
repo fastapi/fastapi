@@ -30,17 +30,17 @@ Para retornar ao cliente *responses* HTTP com erros, use o `HTTPException`.
 {!../../../docs_src/handling_errors/tutorial001.py!}
 ```
 
-### Aponte o `HTTPException` no seu código.
+### Lance o `HTTPException` no seu código.
 
 `HTTPException`, ao fundo, nada mais é do que a conjunção entre uma exceção comum do Python e informações adicionais relevantes para APIs.
 
-E porque é uma exceção do Python, você não **retorna** (return) o `HTTPException`, você aponta o (raise) no seu código.
+E porque é uma exceção do Python, você não **retorna** (return) o `HTTPException`, você lança o (raise) no seu código.
 
-Isso também significa que, se você está escrevendo uma função de utilidade, a qual você está chamando dentro da sua função de operações de caminhos, e você aponta o `HTTPException` dentro da função de utilidade, o resto do seu código não será executado dentro da função de operações de caminhos. Ao contrário, o `HTTPException` irá finalizar a requisição no mesmo instante e enviará o erro HTTP oriundo do `HTTPException` para o cliente.
+Isso também significa que, se você está escrevendo uma função de utilidade, a qual você está chamando dentro da sua função de operações de caminhos, e você lança o `HTTPException` dentro da função de utilidade, o resto do seu código não será executado dentro da função de operações de caminhos. Ao contrário, o `HTTPException` irá finalizar a requisição no mesmo instante e enviará o erro HTTP oriundo do `HTTPException` para o cliente.
 
-O benefício de apontar uma exceção em vez de retornar um valor ficará mais evidente na seção sobre Dependências e Segurança.
+O benefício de lançar uma exceção em vez de retornar um valor ficará mais evidente na seção sobre Dependências e Segurança.
 
-Neste exemplo, quando o cliente pede, na requisição, por um item cujo ID não existe, a exceção com o status code `404` é apontada:
+Neste exemplo, quando o cliente pede, na requisição, por um item cujo ID não existe, a exceção com o status code `404` é lançada:
 
 ```Python hl_lines="11"
 {!../../../docs_src/handling_errors/tutorial001.py!}
@@ -67,7 +67,7 @@ Mas se o cliente faz um *request* por `http://example.com/items/bar` (ou seja, u
 ```
 
 !!! dica
-    Quando você apontar um `HTTPException`, você pode passar qualquer valor convertível em JSON como parâmetro de `detail`, e não apenas `str`.
+    Quando você lançar um `HTTPException`, você pode passar qualquer valor convertível em JSON como parâmetro de `detail`, e não apenas `str`.
 
     Você pode passar um `dict` ou um `list`, etc.
     Esses tipos de dados são manipulados automaticamente pelo **FastAPI** e convertidos em JSON.
@@ -89,7 +89,7 @@ Mas caso você precise, para um cenário mais complexo, você pode adicionar hea
 
 Você pode adicionar manipuladores de exceção customizados com <a href="https://www.starlette.io/exceptions/" class="external-link" target="_blank">a mesma seção de utilidade de exceções presentes no Starlette</a>
 
-Digamos que você tenha uma exceção customizada `UnicornException` que você (ou uma biblioteca que você use) precise apontar (`raise`).
+Digamos que você tenha uma exceção customizada `UnicornException` que você (ou uma biblioteca que você use) precise lançar (`raise`).
 
 Nesse cenário, se você precisa manipular essa exceção de modo global com o FastAPI, você pode adicionar um manipulador de exceção customizada com `@app.exception_handler()`.
 
@@ -97,7 +97,7 @@ Nesse cenário, se você precisa manipular essa exceção de modo global com o F
 {!../../../docs_src/handling_errors/tutorial003.py!}
 ```
 
-Nesse cenário, se você fizer um request para `/unicorns/yolo`, a *operação de caminho* vai apontar (`raise`) o `UnicornException`.
+Nesse cenário, se você fizer um request para `/unicorns/yolo`, a *operação de caminho* vai lançar (`raise`) o `UnicornException`.
 
 Essa exceção será manipulada, contudo, pelo `unicorn_exception_handler`.
 
@@ -116,13 +116,13 @@ Dessa forma você receberá um erro "limpo", com o HTTP status code `418` e um J
 
 **FastAPI** tem alguns manipuladores default de exceções.
 
-Esses manipuladores são os responsáveis por retornar o JSON default de respostas quando você aponta (`raise`) o `HTTPException` e quando o *request* tem data inválida.
+Esses manipuladores são os responsáveis por retornar o JSON default de respostas quando você lança (`raise`) o `HTTPException` e quando o *request* tem data inválida.
 
 Você pode sobrescrever esses manipuladores de exceção com os seus próprios manipuladores.
 
 ## Sobrescreva exceções de validação da request
 
-Quando a requisição contém data inválida, **FastAPI** internamente aponta para o `RequestValidationError`.
+Quando a requisição contém data inválida, **FastAPI** internamente lança para o `RequestValidationError`.
 
 Para sobreescrevê-lo, importe o `RequestValidationError` e use-o com o `@app.exception_handler(RequestValidationError)` para decorar o manipulador de exceções.
 
@@ -230,11 +230,11 @@ A diferença entre os dois é a de que o `HTTPException` do **FastAPI** permite 
 
 Esses *headers* são necessários/utilizados internamente pelo OAuth 2.0 e também por outras utilidades de segurança.
 
-Portanto, você pode continuar apontando o `HTTPException` do **FastAPI** normalmente no seu código.
+Portanto, você pode continuar lançando o `HTTPException` do **FastAPI** normalmente no seu código.
 
 Porém, quando você registrar um manipulador de exceção, você deve registrá-lo através do `HTTPException` do Starlette.
 
-Dessa forma, se qualquer parte do código interno, extensão ou plug-in do Starlette apontar o `HTTPException`, o seu manipulador de exceção poderá capturar esse apontamento e tratá-lo.
+Dessa forma, se qualquer parte do código interno, extensão ou plug-in do Starlette lançar o `HTTPException`, o seu manipulador de exceção poderá capturar esse lançamento e tratá-lo.
 
 ```Python
 from starlette.exceptions import HTTPException as StarletteHTTPException
