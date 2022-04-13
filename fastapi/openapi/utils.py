@@ -152,7 +152,7 @@ def generate_operation_id(
     )
     if route.operation_id:
         return route.operation_id
-    path: str = route.path_format
+    path: str = route._route_full_path_format
     return generate_operation_id_for_path(name=route.name, path=path, method=method)
 
 
@@ -243,7 +243,7 @@ def get_openapi_path(
                             model_name_map=model_name_map,
                             operation_ids=operation_ids,
                         )
-                        callbacks[callback.name] = {callback.path: cb_path}
+                        callbacks[callback.name] = {callback._route_full_path: cb_path}
                 operation["callbacks"] = callbacks
             if route.status_code is not None:
                 status_code = str(route.status_code)
@@ -422,7 +422,7 @@ def get_openapi(
             if result:
                 path, security_schemes, path_definitions = result
                 if path:
-                    paths.setdefault(route.path_format, {}).update(path)
+                    paths.setdefault(route._route_full_path_format, {}).update(path)
                 if security_schemes:
                     components.setdefault("securitySchemes", {}).update(
                         security_schemes

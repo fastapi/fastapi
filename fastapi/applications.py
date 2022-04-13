@@ -137,6 +137,10 @@ class FastAPI(Starlette):
         self.middleware_stack: ASGIApp = self.build_middleware_stack()
         self.setup()
 
+    @property
+    def routes(self) -> List[BaseRoute]:
+        return list(self.router.iter_all_routes())
+
     def build_middleware_stack(self) -> ASGIApp:
         # Duplicate/override from Starlette to add AsyncExitStackMiddleware
         # inside of ExceptionMiddleware, inside of custom user middlewares

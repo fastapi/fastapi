@@ -139,7 +139,7 @@ def generate_operation_id_for_path(
 
 
 def generate_unique_id(route: "APIRoute") -> str:
-    operation_id = route.name + route.path_format
+    operation_id = route.name + route._route_full_path_format
     operation_id = re.sub("[^0-9a-zA-Z_]", "_", operation_id)
     assert route.methods
     operation_id = operation_id + "_" + list(route.methods)[0].lower()
