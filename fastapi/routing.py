@@ -311,6 +311,8 @@ class APIWebSocketRoute(routing.WebSocketRoute):
 
 
 class APIRoute(routing.Route):
+    _route_full_path_format: str  # only for mypy
+
     def __init__(
         self,
         path: str,
