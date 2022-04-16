@@ -38,4 +38,4 @@ jobs:
       - name: Test
         run: bash scripts/test.sh
       - name: Upload coverage
-        uses: codecov/codecov-action@v1
+        uses: codecov/codecov-action@v2
