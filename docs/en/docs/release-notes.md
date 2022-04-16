@@ -2,6 +2,7 @@
 
 ## Latest Changes
 
+* ⬆️ Upgrade Codecov GitHub Action. PR [#4801](https://github.com/tiangolo/fastapi/pull/4801) by [@tiangolo](https://github.com/tiangolo).
 
 ## 0.75.1
 
