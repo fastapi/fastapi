@@ -2,6 +2,18 @@ gold:
   - url: https://bit.ly/2QSouzH
     title: "Jina: build neural search-as-a-service for any kind of data in just minutes."
     img: https://fastapi.tiangolo.com/img/sponsors/jina.svg
+  - url: https://cryptapi.io/
+    title: "CryptAPI: Your easy to use, secure and privacy oriented payment gateway."
+    img: https://fastapi.tiangolo.com/img/sponsors/cryptapi.svg
+  - url: https://www.dropbase.io/careers
+    title: Dropbase - seamlessly collect, clean, and centralize data.
+    img: https://fastapi.tiangolo.com/img/sponsors/dropbase.svg
+  - url: https://striveworks.us/careers?utm_source=fastapi&utm_medium=sponsor_banner&utm_campaign=feb_march#openings
+    title: https://striveworks.us/careers
+    img: https://fastapi.tiangolo.com/img/sponsors/striveworks.png
+  - url: https://classiq.link/n4s
+    title: Join the team building a new SaaS platform that will change the computing world
+    img: https://fastapi.tiangolo.com/img/sponsors/classiq.png
 silver:
   - url: https://www.deta.sh/?ref=fastapi
     title: The launchpad for all your (team's) ideas
