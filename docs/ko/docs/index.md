@@ -35,7 +35,7 @@ FastAPI는 현대적이고, 빠르며(고성능), 파이썬 표준 타입 힌트
 * **직관적**: 훌륭한 편집기 지원. 모든 곳에서 <abbr title="also known as auto-complete, autocompletion, IntelliSense">자동완성</abbr>. 적은 디버깅 시간.
 * **쉬움**: 쉽게 사용하고 배우도록 설계. 적은 문서 읽기 시간.
 * **짧음**: 코드 중복 최소화. 각 매개변수 선언의 여러 기능. 적은 버그.
-* **견고함**: 준비된 프로덕션 용 코드를 얻으세요. 자동 대화형 문서와 함께.
+* **견고함**: 준비된 프로덕션 용 코드를 얻으십시오. 자동 대화형 문서와 함께.
 * **표준 기반**: API에 대한 (완전히 호환되는) 개방형 표준 기반: <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (이전에 Swagger로 알려졌던) 및 <a href="http://json-schema.org/" class="external-link" target="_blank">JSON 스키마</a>.
 
 <small>* 내부 개발팀의 프로덕션 애플리케이션을 빌드한 테스트에 근거한 측정</small>
@@ -46,7 +46,10 @@ FastAPI는 현대적이고, 빠르며(고성능), 파이썬 표준 타입 힌트
 
 {% if sponsors %}
 {% for sponsor in sponsors.gold -%}
-<a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}"></a>
+<a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
+{% endfor -%}
+{%- for sponsor in sponsors.silver -%}
+<a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
 {% endfor %}
 {% endif %}
 
@@ -86,9 +89,9 @@ FastAPI는 현대적이고, 빠르며(고성능), 파이썬 표준 타입 힌트
 
 ---
 
-"_REST API를 만들기 위해 **현대적인 프레임워크**를 찾고 있다면 **FastAPI**를 확인해 보세요. [...] 빠르고, 쓰기 쉽고, 배우기도 쉽습니다 [...]_"
+"_REST API를 만들기 위해 **현대적인 프레임워크**를 찾고 있다면 **FastAPI**를 확인해 보십시오. [...] 빠르고, 쓰기 쉽고, 배우기도 쉽습니다 [...]_"
 
-"_우리 **API**를 **FastAPI**로 바꿨습니다  [...] 아마 여러분도 좋아하실 겁니다 [...]_"
+"_우리 **API**를 **FastAPI**로 바꿨습니다  [...] 아마 여러분도 좋아하실 것입니다 [...]_"
 
 <div style="text-align: right; margin-right: 10%;">Ines Montani - Matthew Honnibal - <strong><a href="https://explosion.ai" target="_blank">Explosion AI</a> 설립자 - <a href="https://spacy.io" target="_blank">spaCy</a> 제작자</strong> <a href="https://twitter.com/_inesmontani/status/1144173225322143744" target="_blank"><small>(ref)</small></a> - <a href="https://twitter.com/honnibal/status/1144031421859655680" target="_blank"><small>(ref)</small></a></div>
 
@@ -98,7 +101,7 @@ FastAPI는 현대적이고, 빠르며(고성능), 파이썬 표준 타입 힌트
 
 <a href="https://typer.tiangolo.com" target="_blank"><img src="https://typer.tiangolo.com/img/logo-margin/logo-margin-vector.svg" style="width: 20%;"></a>
 
-웹 API 대신 터미널에서 사용할 <abbr title="Command Line Interface">CLI</abbr> 앱을 만들고 있다면, <a href="https://typer.tiangolo.com/" class="external-link" target="_blank">**Typer**</a>를 확인해 보세요.
+웹 API 대신 터미널에서 사용할 <abbr title="Command Line Interface">CLI</abbr> 앱을 만들고 있다면, <a href="https://typer.tiangolo.com/" class="external-link" target="_blank">**Typer**</a>를 확인해 보십시오.
 
 **Typer**는 FastAPI의 동생입니다. 그리고 **FastAPI의 CLI**가 되기 위해 생겼습니다. ⌨️ 🚀
 
@@ -139,7 +142,7 @@ $ pip install uvicorn[standard]
 
 ### 만들기
 
-* `main.py` 파일을 만드세요:
+* `main.py` 파일을 만드십시오:
 
 ```Python
 from typing import Optional
@@ -162,7 +165,7 @@ def read_item(item_id: int, q: Optional[str] = None):
 <details markdown="1">
 <summary>또는 <code>async def</code> 사용하기...</summary>
 
-여러분의 코드가 `async` / `await`을 사용한다면, `async def`를 사용하세요:
+여러분의 코드가 `async` / `await`을 사용한다면, `async def`를 사용하십시오.
 
 ```Python hl_lines="9 14"
 from typing import Optional
@@ -184,13 +187,13 @@ async def read_item(item_id: int, q: Optional[str] = None):
 
 **Note**:
 
-잘 모르겠다면, <a href="https://fastapi.tiangolo.com/async/#in-a-hurry" target="_blank">문서에서 `async`와 `await`</a>에 관한 _"급하세요?"_ 섹션을 확인해 보세요.
+잘 모르겠다면, <a href="https://fastapi.tiangolo.com/async/#in-a-hurry" target="_blank">문서에서 `async`와 `await`</a>에 관한 _"급하세요?"_ 섹션을 확인해 보십시오.
 
 </details>
 
 ### 실행하기
 
-서버를 실행하세요:
+서버를 실행하십시오:
 
 <div class="termy">
 
@@ -213,13 +216,13 @@ INFO:     Application startup complete.
 
 * `main`: `main.py` 파일 (파이썬 "모듈").
 * `app`: the object created inside of `main.py` with the line `app = FastAPI()`.
-* `--reload`: 코드가 변경된 후 서버 재시작하기. 개발환경에서만 사용하세요.
+* `--reload`: 코드가 변경된 후 서버 재시작하기. 개발환경에서만 사용하십시오.
 
 </details>
 
 ### 확인하기
 
-브라우저로 <a href="http://127.0.0.1:8000/items/5?q=somequery" class="external-link" target="_blank">http://127.0.0.1:8000/items/5?q=somequery</a>를 열어보세요.
+브라우저로 <a href="http://127.0.0.1:8000/items/5?q=somequery" class="external-link" target="_blank">http://127.0.0.1:8000/items/5?q=somequery</a>를 열어보십시오.
 
 아래의 JSON 응답을 볼 수 있습니다:
 
@@ -236,7 +239,7 @@ INFO:     Application startup complete.
 
 ### 대화형 API 문서
 
-이제 <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>로 가보세요.
+이제 <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>로 가보십시오.
 
 자동 대화형 API 문서를 볼 수 있습니다 (<a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a> 제공):
 
@@ -244,13 +247,13 @@ INFO:     Application startup complete.
 
 ### 대안 API 문서
 
-그리고 이제 <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>로 가보세요.
+그리고 이제 <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>로 가봅시다.
 
 다른 자동 문서를 볼 수 있습니다(<a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a> 제공):
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
-## 예제 개선
+## 예제 심화
 
 이제 `PUT` 요청에 있는 본문(Body)을 받기 위해 `main.py`를 수정해봅시다.
 
@@ -314,7 +317,7 @@ def update_item(item_id: int, item: Item):
 
 ### 요약
 
-요약하면, 여러분은 매개변수의 타입, 본문 등을 함수 매개변수로써 **한번에** 선언했습니다.
+요약하면, 여러분은 매개변수의 타입, 본문 등을 함수 매개변수로서 **한번에** 선언했습니다.
 
 여러분은 현대 표준 파이썬 타입으로 이를 행했습니다.
 
@@ -375,7 +378,7 @@ item: Item
     * `price`을 필수 속성으로 갖고 `float` 형인지 검사.
     * 만약 주어진다면, `is_offer`를 선택 속성으로 갖고 `bool` 형인지 검사.
     * 이 모든 것은 깊이 중첩된 JSON 객체에도 적용됩니다.
-* JSON으로, 그리고 에서부터 자동 변환.
+* JSON을 변환하거나 JSON으로 변환하는 것을 자동화.
 * 다음에서 사용할 수 있는 모든 것을 OpenAPI로 문서화:
     * 대화형 문서 시스템.
     * 여러 언어들에 대한 자동 클라이언트 코드 생성 시스템.
@@ -385,7 +388,7 @@ item: Item
 
 우리는 그저 수박 겉핡기만 했을 뿐인데 여러분은 벌써 어떻게 작동하는지 알고 있습니다.
 
-다음 줄을 바꿔보세요:
+다음 줄을 바꿔보십시오:
 
 ```Python
     return {"item_name": item.name, "item_id": item_id}
@@ -403,11 +406,11 @@ item: Item
         ... "item_price": item.price ...
 ```
 
-...그러고 나서 여러분의 편집기가 속성과 타입을 알고 자동 완성하는지 보세요:
+...그러고 나서 여러분의 편집기가 속성과 타입을 알고 자동 완성하는지 보십시오:
 
 ![editor support](https://fastapi.tiangolo.com/img/vscode-completion.png)
 
-더 많은 기능을 포함한 보다 완전한 예제의 경우, <a href="https://fastapi.tiangolo.com/tutorial/">튜토리얼 - 사용자 가이드</a>를 보세요.
+더 많은 기능을 포함한 보다 완전한 예제의 경우, <a href="https://fastapi.tiangolo.com/tutorial/">튜토리얼 - 사용자 가이드</a>를 보십시오.
 
 **스포일러 주의**: 튜토리얼 - 사용자 가이드는:
 
@@ -428,9 +431,9 @@ item: Item
 
 독립된 TechEmpower 벤치마크에서 Uvicorn에서 작동하는 FastAPI 어플리케이션이 <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">사용 가능한 가장 빠른 프레임워크 중 하나</a>로 Starlette와 Uvicorn(FastAPI에서 내부적으로 사용)에만 밑돌고 있습니다. (*)
 
-자세한 내용은 <a href="https://fastapi.tiangolo.com/benchmarks/" class="internal-link" target="_blank">벤치마크</a> 섹션을 보세요.
+자세한 내용은 <a href="https://fastapi.tiangolo.com/benchmarks/" class="internal-link" target="_blank">벤치마크</a> 섹션을 보십시오.
 
-## 선택가능한 종속사항
+## 선택가능한 의존성
 
 Pydantic이 사용하는:
 
@@ -444,7 +447,7 @@ Starlette이 사용하는:
 * <a href="http://jinja.pocoo.org" target="_blank"><code>jinja2</code></a> - 기본 템플릿 설정을 사용하려면 필요.
 * <a href="https://andrew-d.github.io/python-multipart/" target="_blank"><code>python-multipart</code></a> - `request.form()`과 함께 <abbr title="HTTP 요청에서 파이썬 데이터로 가는 문자열 변환">"parsing"</abbr>의 지원을 원하면 필요.
 * <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - `SessionMiddleware` 지원을 위해 필요.
-* <a href="https://pyyaml.org/wiki/PyYAMLDocumentation" target="_blank"><code>pyyaml</code></a> - Starlette의 `SchemaGenerator` 지원을 위해 필요 (FastAPI와 쓸때는 필요가 없을 겁니다).
+* <a href="https://pyyaml.org/wiki/PyYAMLDocumentation" target="_blank"><code>pyyaml</code></a> - Starlette의 `SchemaGenerator` 지원을 위해 필요 (FastAPI와 쓸때는 필요 없을 것입니다).
 * <a href="https://graphene-python.org/" target="_blank"><code>graphene</code></a> - `GraphQLApp` 지원을 위해 필요.
 * <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - `UJSONResponse`를 사용하려면 필요.
 

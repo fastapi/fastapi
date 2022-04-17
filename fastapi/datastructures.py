@@ -1,5 +1,10 @@
-from typing import Any, Callable, Iterable, Type, TypeVar
+from typing import Any, Callable, Dict, Iterable, Type, TypeVar
 
+from starlette.datastructures import URL as URL  # noqa: F401
+from starlette.datastructures import Address as Address  # noqa: F401
+from starlette.datastructures import FormData as FormData  # noqa: F401
+from starlette.datastructures import Headers as Headers  # noqa: F401
+from starlette.datastructures import QueryParams as QueryParams  # noqa: F401
 from starlette.datastructures import State as State  # noqa: F401
 from starlette.datastructures import UploadFile as StarletteUploadFile
 
@@ -15,13 +20,17 @@ class UploadFile(StarletteUploadFile):
             raise ValueError(f"Expected UploadFile, received: {type(v)}")
         return v
 
+    @classmethod
+    def __modify_schema__(cls, field_schema: Dict[str, Any]) -> None:
+        field_schema.update({"type": "string", "format": "binary"})
+
 
 class DefaultPlaceholder:
     """
     You shouldn't use this class directly.
 
     It's used internally to recognize when a default value has been overwritten, even
-    if the overriden default value was truthy.
+    if the overridden default value was truthy.
     """
 
     def __init__(self, value: Any):
@@ -42,6 +51,6 @@ def Default(value: DefaultType) -> DefaultType:
     You shouldn't use this function directly.
 
     It's used internally to recognize when a default value has been overwritten, even
-    if the overriden default value was truthy.
+    if the overridden default value was truthy.
     """
     return DefaultPlaceholder(value)  # type: ignore

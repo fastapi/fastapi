@@ -32,7 +32,6 @@ Se você precisa refrescar a memória rapidamente sobre como usar tipos do Pytho
 Você escreve Python padrão com tipos:
 
 ```Python
-from typing import List, Dict
 from datetime import date
 
 from pydantic import BaseModel
