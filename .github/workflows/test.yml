@@ -25,16 +25,16 @@ jobs:
         id: cache
         with:
           path: ${{ env.pythonLocation }}
-          key: ${{ runner.os }}-python-${{ env.pythonLocation }}-${{ hashFiles('pyproject.toml') }}-test-v01
+          key: ${{ runner.os }}-python-${{ env.pythonLocation }}-${{ hashFiles('pyproject.toml') }}-test-v02
       
       # TODO: remove tmate debugging
       # Allow debugging with tmate
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3
-        with:
-          limit-access-to-actor: true
-          token: ${{ secrets.ACTIONS_TOKEN }}
-          standard_token: ${{ secrets.GITHUB_TOKEN }}
+      # - name: Setup tmate session
+      #   uses: mxschmitt/action-tmate@v3
+      #   with:
+      #     limit-access-to-actor: true
+      #     token: ${{ secrets.ACTIONS_TOKEN }}
+      #     standard_token: ${{ secrets.GITHUB_TOKEN }}
       
       
       - name: Install Flit
