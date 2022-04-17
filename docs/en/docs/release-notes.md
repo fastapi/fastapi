@@ -2,6 +2,9 @@
 
 ## Latest Changes
 
+
+## 0.75.2
+
 This release includes upgrades to third-party packages that handle security issues. Although there's a chance these issues don't affect you in particular, please upgrade as soon as possible.
 
 ### Fixes
