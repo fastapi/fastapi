@@ -5,12 +5,6 @@ gold:
   - url: https://cryptapi.io/
     title: "CryptAPI: Your easy to use, secure and privacy oriented payment gateway."
     img: https://fastapi.tiangolo.com/img/sponsors/cryptapi.svg
-  - url: https://www.dropbase.io/careers
-    title: Dropbase - seamlessly collect, clean, and centralize data.
-    img: https://fastapi.tiangolo.com/img/sponsors/dropbase.svg
-  - url: https://striveworks.us/careers?utm_source=fastapi&utm_medium=sponsor_banner&utm_campaign=feb_march#openings
-    title: https://striveworks.us/careers
-    img: https://fastapi.tiangolo.com/img/sponsors/striveworks.png
   - url: https://classiq.link/n4s
     title: Join the team building a new SaaS platform that will change the computing world
     img: https://fastapi.tiangolo.com/img/sponsors/classiq.png
@@ -21,9 +15,6 @@ silver:
   - url: https://www.investsuite.com/jobs
     title: Wealthtech jobs with FastAPI
     img: https://fastapi.tiangolo.com/img/sponsors/investsuite.svg
-  - url: https://www.vim.so/?utm_source=FastAPI
-    title: We help you master vim with interactive exercises
-    img: https://fastapi.tiangolo.com/img/sponsors/vimso.png
   - url: https://talkpython.fm/fastapi-sponsor
     title: FastAPI video courses on demand from people you trust
     img: https://fastapi.tiangolo.com/img/sponsors/talkpython.png
@@ -33,7 +24,13 @@ silver:
   - url: https://github.com/deepset-ai/haystack/
     title: Build powerful search from composable, open source building blocks
     img: https://fastapi.tiangolo.com/img/sponsors/haystack-fastapi.svg
+  - url: https://www.udemy.com/course/fastapi-rest/
+    title: Learn FastAPI by building a complete project. Extend your knowledge on advanced web development-AWS, Payments, Emails.
+    img: https://fastapi.tiangolo.com/img/sponsors/ines-course.jpg
 bronze:
-  - url: https://calmcode.io
-    title: Code. Simply. Clearly. Calmly.
-    img: https://fastapi.tiangolo.com/img/sponsors/calmcode.jpg
+  - url: https://www.exoflare.com/open-source/?utm_source=FastAPI&utm_campaign=open_source
+    title: Biosecurity risk assessments made easy.
+    img: https://fastapi.tiangolo.com/img/sponsors/exoflare.png
+  - url: https://striveworks.us/careers?utm_source=fastapi&utm_medium=sponsor_banner&utm_campaign=feb_march#openings
+    title: https://striveworks.us/careers
+    img: https://fastapi.tiangolo.com/img/sponsors/striveworks.png
