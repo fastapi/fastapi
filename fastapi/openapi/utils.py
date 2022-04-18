@@ -38,7 +38,11 @@ validation_error_definition = {
     "title": "ValidationError",
     "type": "object",
     "properties": {
-        "loc": {"title": "Location", "type": "array", "items": {"type": "string"}},
+        "loc": {
+            "title": "Location",
+            "type": "array",
+            "items": {"anyOf": [{"type": "string"}, {"type": "integer"}]},
+        },
         "msg": {"title": "Message", "type": "string"},
         "type": {"title": "Error Type", "type": "string"},
     },
