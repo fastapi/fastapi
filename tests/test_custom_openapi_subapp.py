@@ -2,7 +2,6 @@ from fastapi import FastAPI
 from fastapi.openapi.utils import get_openapi
 from fastapi.testclient import TestClient
 
-
 app = FastAPI()
 sub_app = FastAPI(
     docs_url=None,
@@ -27,6 +26,7 @@ async def openapi(
         prefix="/sub_app",
     )
 
+
 app.mount("/sub_app", sub_app)
 
 
@@ -38,6 +38,4 @@ def test_sub_app_open_api():
     assert response.status_code == 200, response.json()
     assert response.headers["content-type"] == "application/json"
     paths = list(response.json()["paths"].keys())
-    assert paths == [
-        "/sub_app/items/", "/sub_app/openapi.json"
-    ]
+    assert paths == ["/sub_app/items/", "/sub_app/openapi.json"]
