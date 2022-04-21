@@ -156,8 +156,8 @@ class OAuth2PasswordBearer(OAuth2):
             auto_error=auto_error,
         )
 
-    async def __call__(self, request: Request) -> Optional[str]:
-        authorization: str = request.headers.get("Authorization")
+    async def __call__(self, request: Request = None, websocket: WebSocket = None) -> Optional[str]:
+        authorization: str = request.headers.get("Authorization") if request else websocket.headers.get("Authorization")
         scheme, param = get_authorization_scheme_param(authorization)
         if not authorization or scheme.lower() != "bearer":
             if self.auto_error:
