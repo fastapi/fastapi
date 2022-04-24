@@ -5,47 +5,34 @@ from docs_src.security.tutorial008 import app
 client = TestClient(app)
 
 openapi_schema = {
-  "openapi": "3.0.2",
-  "info": {
-    "title": "FastAPI",
-    "version": "0.1.0"
-  },
-  "paths": {
-    "/health": {
-      "get": {
-        "summary": "Endpoint",
-        "operationId": "endpoint_health_get",
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                }
-              }
+    "openapi": "3.0.2",
+    "info": {"title": "FastAPI", "version": "0.1.0"},
+    "paths": {
+        "/health": {
+            "get": {
+                "summary": "Endpoint",
+                "operationId": "endpoint_health_get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {"application/json": {"schema": {}}},
+                    }
+                },
+                "security": [{"APIKeyHeader": []}],
             }
-          }
-        },
-        "security": [
-          {
-            "APIKeyHeader": []
-          }
-        ]
-      }
-    }
-  },
-  "components": {
-    "securitySchemes": {
-      "APIKeyHeader": {
-        "type": "apiKey",
-        "description": "Mandatory API Token, required for all endpoints",
-        "in": "header",
-        "name": "X-API-KEY"
-      }
-    }
-  }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "APIKeyHeader": {
+                "type": "apiKey",
+                "description": "Mandatory API Token, required for all endpoints",
+                "in": "header",
+                "name": "X-API-KEY",
+            }
+        }
+    },
 }
-
 
 
 def test_openapi_schema():
