@@ -4,7 +4,7 @@ A common alternative to HTTP Basic Auth is using API Keys.
 
 In API Key Auth, the application expects the secret key, in header, or cookie, query or parameter, depending on setup.
 
-If it doesn't receive it, it returns HTTP 403 "Forbidden" error.
+If header isn't received it, FastAPI can return an HTTP 403 "Forbidden" error.
 
 ## Simple API Key Auth using header
 
@@ -29,6 +29,20 @@ This API now requires authentication to hit any endpoint:
 
     Have a look at [Pydantic settings](../../settings){.internal-link target=_blank} to do it.
 
+## A look at the Header
+
+Note how the `APIKeyHeader` describes the expected header name, and the
+description ends up on the documentation for the authentication: the description
+is a perfect place to link to your developer documentation's "Generate a token"
+section.
+
+```Python hl_lines="8  9"
+{!../../../docs_src/security/tutorial008.py!}
+```
+
+As for the `auto_error` parameter, it can be set to `True` so that missing the
+header returns automatic HTTP 403 "Forbidden".
+
 ## Protecting single endpoints
 
 Alternatively, the `Security` dependency can be defined at path level to protect
@@ -42,6 +56,3 @@ def password_reset(user: int, new_password: str):
 ## TODO Cookies, Query...
 
 All the variants of the API Key rainbow
-
-
-Also maybe go more in depth for the fact that `X-API-KEY` is the header's name?
