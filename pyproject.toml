@@ -26,7 +26,6 @@ classifiers = [
     "Intended Audience :: Developers",
     "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3 :: Only",
-    "Programming Language :: Python :: 3.6",
     "Programming Language :: Python :: 3.7",
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
@@ -39,7 +38,7 @@ requires = [
     "pydantic >=1.6.2,!=1.7,!=1.7.1,!=1.7.2,!=1.7.3,!=1.8,!=1.8.1,<2.0.0",
 ]
 description-file = "README.md"
-requires-python = ">=3.6.1"
+requires-python = ">=3.7"
 
 [tool.flit.metadata.urls]
 Documentation = "https://fastapi.tiangolo.com/"
