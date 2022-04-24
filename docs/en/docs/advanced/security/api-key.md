@@ -25,7 +25,7 @@ This API now requires authentication to hit any endpoint:
 <img src="/img/tutorial/security/image13.png">
 
 !!! tip
-    You like want the API Key secret to be sourced from environment variable or config file.
+    You likely want the API Key secret to be sourced from environment variable or config file.
 
     Have a look at [Pydantic settings](../../settings){.internal-link target=_blank} to do it.
 
