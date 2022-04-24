@@ -8,6 +8,9 @@ gold:
   - url: https://classiq.link/n4s
     title: Join the team building a new SaaS platform that will change the computing world
     img: https://fastapi.tiangolo.com/img/sponsors/classiq.png
+  - url: https://www.dropbase.io/careers
+    title: Dropbase - seamlessly collect, clean, and centralize data.
+    img: https://fastapi.tiangolo.com/img/sponsors/dropbase.svg
 silver:
   - url: https://www.deta.sh/?ref=fastapi
     title: The launchpad for all your (team's) ideas
@@ -15,7 +18,7 @@ silver:
   - url: https://www.investsuite.com/jobs
     title: Wealthtech jobs with FastAPI
     img: https://fastapi.tiangolo.com/img/sponsors/investsuite.svg
-  - url: https://talkpython.fm/fastapi-sponsor
+  - url: https://training.talkpython.fm/fastapi-courses
     title: FastAPI video courses on demand from people you trust
     img: https://fastapi.tiangolo.com/img/sponsors/talkpython.png
   - url: https://testdriven.io/courses/tdd-fastapi/
