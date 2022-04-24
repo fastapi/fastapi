@@ -83,7 +83,7 @@ openapi_shema = {
                 },
             }
         },
-        "/hidden_path/{hidden_path}": {
+        f"/hidden_path/{hidden_path}": {
             "get": {
                 "summary": "Hidden Path",
                 "operationId": "hidden_path_hidden_path__hidden_path__get",
