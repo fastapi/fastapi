@@ -4,7 +4,7 @@ A common alternative to HTTP Basic Auth is using API Keys.
 
 In API Key Auth, the application expects the secret key, in header, or cookie, query or parameter, depending on setup.
 
-If it doesn't receive it, it returns HTTP 401 "Unauthorized" error.
+If it doesn't receive it, it returns HTTP 403 "Forbidden" error.
 
 ## Simple API Key Auth using header
 
