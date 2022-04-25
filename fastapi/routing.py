@@ -38,11 +38,12 @@ from fastapi.types import DecoratedCallable
 from fastapi.utils import (
     create_cloned_field,
     create_response_field,
-    generate_operation_id_for_path,
+    generate_unique_id,
     get_value_or_default,
 )
-from pydantic import BaseModel, DictError
+from pydantic import BaseModel
 from pydantic.error_wrappers import ErrorWrapper, ValidationError
+from pydantic.errors import DictError
 from pydantic.fields import ModelField, Undefined
 from starlette import routing
 from starlette.concurrency import run_in_threadpool
@@ -229,12 +230,12 @@ def get_request_handler(
         if errors:
             has_dict_error = False
             content_type = request.headers.get("content-type") or ""
-            for e in errors:
-                if isinstance(e, list):
-                    for err in e:
+            for error in errors:
+                if isinstance(error, list):
+                    for err in error:
                         if isinstance(err.exc, DictError):
                             has_dict_error = True
-                elif isinstance(e.exc, DictError):
+                elif isinstance(error.exc, DictError):
                     has_dict_error = True
 
             if "multipart" in content_type and has_dict_error:
@@ -355,21 +356,47 @@ class APIRoute(routing.Route):
         dependency_overrides_provider: Optional[Any] = None,
         callbacks: Optional[List[BaseRoute]] = None,
         openapi_extra: Optional[Dict[str, Any]] = None,
+        generate_unique_id_function: Union[
+            Callable[["APIRoute"], str], DefaultPlaceholder
+        ] = Default(generate_unique_id),
     ) -> None:
-        # normalise enums e.g. http.HTTPStatus
-        if isinstance(status_code, IntEnum):
-            status_code = int(status_code)
         self.path = path
         self.endpoint = endpoint
+        self.response_model = response_model
+        self.summary = summary
+        self.response_description = response_description
+        self.deprecated = deprecated
+        self.operation_id = operation_id
+        self.response_model_include = response_model_include
+        self.response_model_exclude = response_model_exclude
+        self.response_model_by_alias = response_model_by_alias
+        self.response_model_exclude_unset = response_model_exclude_unset
+        self.response_model_exclude_defaults = response_model_exclude_defaults
+        self.response_model_exclude_none = response_model_exclude_none
+        self.include_in_schema = include_in_schema
+        self.response_class = response_class
+        self.dependency_overrides_provider = dependency_overrides_provider
+        self.callbacks = callbacks
+        self.openapi_extra = openapi_extra
+        self.generate_unique_id_function = generate_unique_id_function
+        self.tags = tags or []
+        self.responses = responses or {}
         self.name = get_name(endpoint) if name is None else name
         self.path_regex, self.path_format, self.param_convertors = compile_path(path)
         if methods is None:
             methods = ["GET"]
         self.methods: Set[str] = set([method.upper() for method in methods])
-        self.unique_id = generate_operation_id_for_path(
-            name=self.name, path=self.path_format, method=list(methods)[0]
-        )
-        self.response_model = response_model
+        if isinstance(generate_unique_id_function, DefaultPlaceholder):
+            current_generate_unique_id: Callable[
+                ["APIRoute"], str
+            ] = generate_unique_id_function.value
+        else:
+            current_generate_unique_id = generate_unique_id_function
+        self.unique_id = self.operation_id or current_generate_unique_id(self)
+        # normalize enums e.g. http.HTTPStatus
+        if isinstance(status_code, IntEnum):
+            status_code = int(status_code)
+        self.status_code = status_code
         if self.response_model:
             assert (
                 status_code not in STATUS_CODES_WITH_NO_BODY
@@ -391,19 +418,14 @@ class APIRoute(routing.Route):
         else:
             self.response_field = None  # type: ignore
             self.secure_cloned_response_field = None
-        self.status_code = status_code
-        self.tags = tags or []
         if dependencies:
             self.dependencies = list(dependencies)
         else:
             self.dependencies = []
-        self.summary = summary
         self.description = description or inspect.cleandoc(self.endpoint.__doc__ or "")
         # if a "form feed" character (page break) is found in the description text,
         # truncate description text to the content preceding the first "form feed"
         self.description = self.description.split("\f")[0]
-        self.response_description = response_description
-        self.responses = responses or {}
         response_fields = {}
         for additional_status_code, response in self.responses.items():
             assert isinstance(response, dict), "An additional response must be a dict"
@@ -419,16 +441,6 @@ class APIRoute(routing.Route):
             self.response_fields: Dict[Union[int, str], ModelField] = response_fields
         else:
             self.response_fields = {}
-        self.deprecated = deprecated
-        self.operation_id = operation_id
-        self.response_model_include = response_model_include
-        self.response_model_exclude = response_model_exclude
-        self.response_model_by_alias = response_model_by_alias
-        self.response_model_exclude_unset = response_model_exclude_unset
-        self.response_model_exclude_defaults = response_model_exclude_defaults
-        self.response_model_exclude_none = response_model_exclude_none
-        self.include_in_schema = include_in_schema
-        self.response_class = response_class
 
         assert callable(endpoint), "An endpoint must be a callable"
         self.dependant = get_dependant(path=self.path_format, call=self.endpoint)
@@ -438,10 +450,7 @@ class APIRoute(routing.Route):
                 get_parameterless_sub_dependant(depends=depends, path=self.path_format),
             )
         self.body_field = get_body_field(dependant=self.dependant, name=self.unique_id)
-        self.dependency_overrides_provider = dependency_overrides_provider
-        self.callbacks = callbacks
         self.app = request_response(self.get_route_handler())
-        self.openapi_extra = openapi_extra
 
     def get_route_handler(self) -> Callable[[Request], Coroutine[Any, Any, Response]]:
         return get_request_handler(
@@ -485,6 +494,9 @@ class APIRouter(routing.Router):
         on_shutdown: Optional[Sequence[Callable[[], Any]]] = None,
         deprecated: Optional[bool] = None,
         include_in_schema: bool = True,
+        generate_unique_id_function: Callable[[APIRoute], str] = Default(
+            generate_unique_id
+        ),
     ) -> None:
         super().__init__(
             routes=routes,  # type: ignore # in Starlette
@@ -508,6 +520,7 @@ class APIRouter(routing.Router):
         self.dependency_overrides_provider = dependency_overrides_provider
         self.route_class = route_class
         self.default_response_class = default_response_class
+        self.generate_unique_id_function = generate_unique_id_function
 
     def add_api_route(
         self,
@@ -539,6 +552,9 @@ class APIRouter(routing.Router):
         route_class_override: Optional[Type[APIRoute]] = None,
         callbacks: Optional[List[BaseRoute]] = None,
         openapi_extra: Optional[Dict[str, Any]] = None,
+        generate_unique_id_function: Union[
+            Callable[[APIRoute], str], DefaultPlaceholder
+        ] = Default(generate_unique_id),
     ) -> None:
         route_class = route_class_override or self.route_class
         responses = responses or {}
@@ -555,6 +571,9 @@ class APIRouter(routing.Router):
         current_callbacks = self.callbacks.copy()
         if callbacks:
             current_callbacks.extend(callbacks)
+        current_generate_unique_id = get_value_or_default(
+            generate_unique_id_function, self.generate_unique_id_function
+        )
         route = route_class(
             self.prefix + path,
             endpoint=endpoint,
@@ -581,6 +600,7 @@ class APIRouter(routing.Router):
             dependency_overrides_provider=self.dependency_overrides_provider,
             callbacks=current_callbacks,
             openapi_extra=openapi_extra,
+            generate_unique_id_function=current_generate_unique_id,
         )
         self.routes.append(route)
 
@@ -610,6 +630,9 @@ class APIRouter(routing.Router):
         name: Optional[str] = None,
         callbacks: Optional[List[BaseRoute]] = None,
         openapi_extra: Optional[Dict[str, Any]] = None,
+        generate_unique_id_function: Callable[[APIRoute], str] = Default(
+            generate_unique_id
+        ),
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         def decorator(func: DecoratedCallable) -> DecoratedCallable:
             self.add_api_route(
@@ -637,6 +660,7 @@ class APIRouter(routing.Router):
                 name=name,
                 callbacks=callbacks,
                 openapi_extra=openapi_extra,
+                generate_unique_id_function=generate_unique_id_function,
             )
             return func
 
@@ -646,7 +670,7 @@ class APIRouter(routing.Router):
         self, path: str, endpoint: Callable[..., Any], name: Optional[str] = None
     ) -> None:
         route = APIWebSocketRoute(
-            path,
+            self.prefix + path,
             endpoint=endpoint,
             name=name,
             dependency_overrides_provider=self.dependency_overrides_provider,
@@ -674,6 +698,9 @@ class APIRouter(routing.Router):
         callbacks: Optional[List[BaseRoute]] = None,
         deprecated: Optional[bool] = None,
         include_in_schema: bool = True,
+        generate_unique_id_function: Callable[[APIRoute], str] = Default(
+            generate_unique_id
+        ),
     ) -> None:
         if prefix:
             assert prefix.startswith("/"), "A path prefix must start with '/'"
@@ -714,6 +741,12 @@ class APIRouter(routing.Router):
                     current_callbacks.extend(callbacks)
                 if route.callbacks:
                     current_callbacks.extend(route.callbacks)
+                current_generate_unique_id = get_value_or_default(
+                    route.generate_unique_id_function,
+                    router.generate_unique_id_function,
+                    generate_unique_id_function,
+                    self.generate_unique_id_function,
+                )
                 self.add_api_route(
                     prefix + route.path,
                     route.endpoint,
@@ -742,6 +775,7 @@ class APIRouter(routing.Router):
                     route_class_override=type(route),
                     callbacks=current_callbacks,
                     openapi_extra=route.openapi_extra,
+                    generate_unique_id_function=current_generate_unique_id,
                 )
             elif isinstance(route, routing.Route):
                 methods = list(route.methods or [])  # type: ignore # in Starlette
@@ -790,6 +824,9 @@ class APIRouter(routing.Router):
         name: Optional[str] = None,
         callbacks: Optional[List[BaseRoute]] = None,
         openapi_extra: Optional[Dict[str, Any]] = None,
+        generate_unique_id_function: Callable[[APIRoute], str] = Default(
+            generate_unique_id
+        ),
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.api_route(
             path=path,
@@ -815,6 +852,7 @@ class APIRouter(routing.Router):
             name=name,
             callbacks=callbacks,
             openapi_extra=openapi_extra,
+            generate_unique_id_function=generate_unique_id_function,
         )
 
     def put(
@@ -842,6 +880,9 @@ class APIRouter(routing.Router):
         name: Optional[str] = None,
         callbacks: Optional[List[BaseRoute]] = None,
         openapi_extra: Optional[Dict[str, Any]] = None,
+        generate_unique_id_function: Callable[[APIRoute], str] = Default(
+            generate_unique_id
+        ),
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.api_route(
             path=path,
@@ -867,6 +908,7 @@ class APIRouter(routing.Router):
             name=name,
             callbacks=callbacks,
             openapi_extra=openapi_extra,
+            generate_unique_id_function=generate_unique_id_function,
         )
 
     def post(
@@ -894,6 +936,9 @@ class APIRouter(routing.Router):
         name: Optional[str] = None,
         callbacks: Optional[List[BaseRoute]] = None,
         openapi_extra: Optional[Dict[str, Any]] = None,
+        generate_unique_id_function: Callable[[APIRoute], str] = Default(
+            generate_unique_id
+        ),
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.api_route(
             path=path,
@@ -919,6 +964,7 @@ class APIRouter(routing.Router):
             name=name,
             callbacks=callbacks,
             openapi_extra=openapi_extra,
+            generate_unique_id_function=generate_unique_id_function,
         )
 
     def delete(
@@ -946,6 +992,9 @@ class APIRouter(routing.Router):
         name: Optional[str] = None,
         callbacks: Optional[List[BaseRoute]] = None,
         openapi_extra: Optional[Dict[str, Any]] = None,
+        generate_unique_id_function: Callable[[APIRoute], str] = Default(
+            generate_unique_id
+        ),
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.api_route(
             path=path,
@@ -971,6 +1020,7 @@ class APIRouter(routing.Router):
             name=name,
             callbacks=callbacks,
             openapi_extra=openapi_extra,
+            generate_unique_id_function=generate_unique_id_function,
         )
 
     def options(
@@ -998,6 +1048,9 @@ class APIRouter(routing.Router):
         name: Optional[str] = None,
         callbacks: Optional[List[BaseRoute]] = None,
         openapi_extra: Optional[Dict[str, Any]] = None,
+        generate_unique_id_function: Callable[[APIRoute], str] = Default(
+            generate_unique_id
+        ),
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.api_route(
             path=path,
@@ -1023,6 +1076,7 @@ class APIRouter(routing.Router):
             name=name,
             callbacks=callbacks,
             openapi_extra=openapi_extra,
+            generate_unique_id_function=generate_unique_id_function,
         )
 
     def head(
@@ -1050,6 +1104,9 @@ class APIRouter(routing.Router):
         name: Optional[str] = None,
         callbacks: Optional[List[BaseRoute]] = None,
         openapi_extra: Optional[Dict[str, Any]] = None,
+        generate_unique_id_function: Callable[[APIRoute], str] = Default(
+            generate_unique_id
+        ),
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.api_route(
             path=path,
@@ -1075,6 +1132,7 @@ class APIRouter(routing.Router):
             name=name,
             callbacks=callbacks,
             openapi_extra=openapi_extra,
+            generate_unique_id_function=generate_unique_id_function,
         )
 
     def patch(
@@ -1102,6 +1160,9 @@ class APIRouter(routing.Router):
         name: Optional[str] = None,
         callbacks: Optional[List[BaseRoute]] = None,
         openapi_extra: Optional[Dict[str, Any]] = None,
+        generate_unique_id_function: Callable[[APIRoute], str] = Default(
+            generate_unique_id
+        ),
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.api_route(
             path=path,
@@ -1127,6 +1188,7 @@ class APIRouter(routing.Router):
             name=name,
             callbacks=callbacks,
             openapi_extra=openapi_extra,
+            generate_unique_id_function=generate_unique_id_function,
         )
 
     def trace(
@@ -1154,6 +1216,9 @@ class APIRouter(routing.Router):
         name: Optional[str] = None,
         callbacks: Optional[List[BaseRoute]] = None,
         openapi_extra: Optional[Dict[str, Any]] = None,
+        generate_unique_id_function: Callable[[APIRoute], str] = Default(
+            generate_unique_id
+        ),
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
 
         return self.api_route(
@@ -1180,4 +1245,5 @@ class APIRouter(routing.Router):
             name=name,
             callbacks=callbacks,
             openapi_extra=openapi_extra,
+            generate_unique_id_function=generate_unique_id_function,
         )
