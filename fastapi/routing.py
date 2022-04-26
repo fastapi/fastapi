@@ -30,7 +30,7 @@ from fastapi.dependencies.utils import (
 from fastapi.encoders import DictIntStrAny, SetIntStr, jsonable_encoder
 from fastapi.exceptions import RequestValidationError, WebSocketRequestValidationError
 from fastapi.openapi.constants import STATUS_CODES_WITH_NO_BODY
-from fastapi.types import DecoratedCallable
+from fastapi.types import DecoratedCallable, DataclassDictFactoryType
 from fastapi.utils import (
     create_cloned_field,
     create_response_field,
@@ -57,7 +57,6 @@ from starlette.status import WS_1008_POLICY_VIOLATION
 from starlette.types import ASGIApp, Scope
 from starlette.websockets import WebSocket
 
-DataclassDictFactoryType = Callable[[list[tuple[str, Any]]], dict]
 
 def _prepare_response_content(
     res: Any,
@@ -367,6 +366,8 @@ class APIRoute(routing.Route):
         generate_unique_id_function: Union[
             Callable[["APIRoute"], str], DefaultPlaceholder
         ] = Default(generate_unique_id),
+        reconcile_nested_dataclasses: bool = False,
+        dataclass_dict_factory: DataclassDictFactoryType = None,
     ) -> None:
         self.path = path
         self.endpoint = endpoint
@@ -390,6 +391,8 @@ class APIRoute(routing.Route):
         self.tags = tags or []
         self.responses = responses or {}
         self.name = get_name(endpoint) if name is None else name
+        self.reconcile_nested_dataclasses = reconcile_nested_dataclasses,
+        self.dataclass_dict_factory = dataclass_dict_factory
         self.path_regex, self.path_format, self.param_convertors = compile_path(path)
         if methods is None:
             methods = ["GET"]
@@ -474,6 +477,8 @@ class APIRoute(routing.Route):
             response_model_exclude_defaults=self.response_model_exclude_defaults,
             response_model_exclude_none=self.response_model_exclude_none,
             dependency_overrides_provider=self.dependency_overrides_provider,
+            reconcile_nested_dataclasses=self.reconcile_nested_dataclasses,
+            dataclass_dict_factory=self.dataclass_dict_factory,
         )
 
     def matches(self, scope: Scope) -> Tuple[Match, Scope]:
@@ -563,6 +568,8 @@ class APIRouter(routing.Router):
         generate_unique_id_function: Union[
             Callable[[APIRoute], str], DefaultPlaceholder
         ] = Default(generate_unique_id),
+        reconcile_nested_dataclasses: bool = False,
+        dataclass_dict_factory: DataclassDictFactoryType = None,
     ) -> None:
         route_class = route_class_override or self.route_class
         responses = responses or {}
@@ -609,6 +616,8 @@ class APIRouter(routing.Router):
             callbacks=current_callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=current_generate_unique_id,
+            reconcile_nested_dataclasses=reconcile_nested_dataclasses,
+            dataclass_dict_factory=dataclass_dict_factory,
         )
         self.routes.append(route)
 
@@ -641,6 +650,8 @@ class APIRouter(routing.Router):
         generate_unique_id_function: Callable[[APIRoute], str] = Default(
             generate_unique_id
         ),
+        reconcile_nested_dataclasses: bool = False,
+        dataclass_dict_factory: DataclassDictFactoryType = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         def decorator(func: DecoratedCallable) -> DecoratedCallable:
             self.add_api_route(
@@ -669,6 +680,8 @@ class APIRouter(routing.Router):
                 callbacks=callbacks,
                 openapi_extra=openapi_extra,
                 generate_unique_id_function=generate_unique_id_function,
+                reconcile_nested_dataclasses=reconcile_nested_dataclasses,
+                dataclass_dict_factory=dataclass_dict_factory,
             )
             return func
 
@@ -709,6 +722,8 @@ class APIRouter(routing.Router):
         generate_unique_id_function: Callable[[APIRoute], str] = Default(
             generate_unique_id
         ),
+        reconcile_nested_dataclasses: bool = False,
+        dataclass_dict_factory: DataclassDictFactoryType = None,
     ) -> None:
         if prefix:
             assert prefix.startswith("/"), "A path prefix must start with '/'"
@@ -784,6 +799,8 @@ class APIRouter(routing.Router):
                     callbacks=current_callbacks,
                     openapi_extra=route.openapi_extra,
                     generate_unique_id_function=current_generate_unique_id,
+                    reconcile_nested_dataclasses=reconcile_nested_dataclasses,
+                    dataclass_dict_factory=dataclass_dict_factory,
                 )
             elif isinstance(route, routing.Route):
                 methods = list(route.methods or [])  # type: ignore # in Starlette
@@ -835,6 +852,8 @@ class APIRouter(routing.Router):
         generate_unique_id_function: Callable[[APIRoute], str] = Default(
             generate_unique_id
         ),
+        reconcile_nested_dataclasses: bool = False,
+        dataclass_dict_factory: DataclassDictFactoryType = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.api_route(
             path=path,
@@ -861,6 +880,8 @@ class APIRouter(routing.Router):
             callbacks=callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
+            reconcile_nested_dataclasses=reconcile_nested_dataclasses,
+            dataclass_dict_factory=dataclass_dict_factory,
         )
 
     def put(
@@ -891,6 +912,8 @@ class APIRouter(routing.Router):
         generate_unique_id_function: Callable[[APIRoute], str] = Default(
             generate_unique_id
         ),
+        reconcile_nested_dataclasses: bool = False,
+        dataclass_dict_factory: DataclassDictFactoryType = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.api_route(
             path=path,
@@ -917,6 +940,8 @@ class APIRouter(routing.Router):
             callbacks=callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
+            reconcile_nested_dataclasses=reconcile_nested_dataclasses,
+            dataclass_dict_factory=dataclass_dict_factory,
         )
 
     def post(
@@ -947,6 +972,8 @@ class APIRouter(routing.Router):
         generate_unique_id_function: Callable[[APIRoute], str] = Default(
             generate_unique_id
         ),
+        reconcile_nested_dataclasses: bool = False,
+        dataclass_dict_factory: DataclassDictFactoryType = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.api_route(
             path=path,
@@ -973,6 +1000,8 @@ class APIRouter(routing.Router):
             callbacks=callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
+            reconcile_nested_dataclasses=reconcile_nested_dataclasses,
+            dataclass_dict_factory=dataclass_dict_factory,
         )
 
     def delete(
@@ -1003,6 +1032,8 @@ class APIRouter(routing.Router):
         generate_unique_id_function: Callable[[APIRoute], str] = Default(
             generate_unique_id
         ),
+        reconcile_nested_dataclasses: bool = False,
+        dataclass_dict_factory: DataclassDictFactoryType = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.api_route(
             path=path,
@@ -1029,6 +1060,8 @@ class APIRouter(routing.Router):
             callbacks=callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
+            reconcile_nested_dataclasses=reconcile_nested_dataclasses,
+            dataclass_dict_factory=dataclass_dict_factory,
         )
 
     def options(
@@ -1059,6 +1092,8 @@ class APIRouter(routing.Router):
         generate_unique_id_function: Callable[[APIRoute], str] = Default(
             generate_unique_id
         ),
+        reconcile_nested_dataclasses: bool = False,
+        dataclass_dict_factory: DataclassDictFactoryType = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.api_route(
             path=path,
@@ -1085,6 +1120,8 @@ class APIRouter(routing.Router):
             callbacks=callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
+            reconcile_nested_dataclasses=reconcile_nested_dataclasses,
+            dataclass_dict_factory=dataclass_dict_factory,
         )
 
     def head(
@@ -1115,6 +1152,8 @@ class APIRouter(routing.Router):
         generate_unique_id_function: Callable[[APIRoute], str] = Default(
             generate_unique_id
         ),
+        reconcile_nested_dataclasses: bool = False,
+        dataclass_dict_factory: DataclassDictFactoryType = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.api_route(
             path=path,
@@ -1141,6 +1180,8 @@ class APIRouter(routing.Router):
             callbacks=callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
+            reconcile_nested_dataclasses=reconcile_nested_dataclasses,
+            dataclass_dict_factory=dataclass_dict_factory,
         )
 
     def patch(
@@ -1171,6 +1212,8 @@ class APIRouter(routing.Router):
         generate_unique_id_function: Callable[[APIRoute], str] = Default(
             generate_unique_id
         ),
+        reconcile_nested_dataclasses: bool = False,
+        dataclass_dict_factory: DataclassDictFactoryType = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.api_route(
             path=path,
@@ -1197,6 +1240,8 @@ class APIRouter(routing.Router):
             callbacks=callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
+            reconcile_nested_dataclasses=reconcile_nested_dataclasses,
+            dataclass_dict_factory=dataclass_dict_factory,
         )
 
     def trace(
@@ -1227,6 +1272,8 @@ class APIRouter(routing.Router):
         generate_unique_id_function: Callable[[APIRoute], str] = Default(
             generate_unique_id
         ),
+        reconcile_nested_dataclasses: bool = False,
+        dataclass_dict_factory: DataclassDictFactoryType = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
 
         return self.api_route(
@@ -1254,4 +1301,6 @@ class APIRouter(routing.Router):
             callbacks=callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
+            reconcile_nested_dataclasses=reconcile_nested_dataclasses,
+            dataclass_dict_factory=dataclass_dict_factory,
         )

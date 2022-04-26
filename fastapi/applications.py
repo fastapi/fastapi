@@ -18,7 +18,7 @@ from fastapi.openapi.docs import (
 )
 from fastapi.openapi.utils import get_openapi
 from fastapi.params import Depends
-from fastapi.types import DecoratedCallable
+from fastapi.types import DecoratedCallable, DataclassDictFactoryType
 from fastapi.utils import generate_unique_id
 from starlette.applications import Starlette
 from starlette.datastructures import State
@@ -450,6 +450,8 @@ class FastAPI(Starlette):
         generate_unique_id_function: Callable[[routing.APIRoute], str] = Default(
             generate_unique_id
         ),
+        reconcile_nested_dataclasses: bool = False,
+        dataclass_dict_factory: DataclassDictFactoryType = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.router.get(
             path,
