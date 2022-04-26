@@ -57,6 +57,7 @@ from starlette.status import WS_1008_POLICY_VIOLATION
 from starlette.types import ASGIApp, Scope
 from starlette.websockets import WebSocket
 
+DataclassDictFactoryType = Callable[[list[tuple[str, Any]]], dict]
 
 def _prepare_response_content(
     res: Any,
@@ -65,7 +66,7 @@ def _prepare_response_content(
     exclude_defaults: bool = False,
     exclude_none: bool = False,
     reconcile_nested_dataclasses: bool = False,
-    dataclass_dict_factory: Callable[[list[tuple[str, Any]]], dict] = None,
+    dataclass_dict_factory: DataclassDictFactoryType = None,
 ) -> Any:
     if isinstance(res, BaseModel):
         read_with_orm_mode = getattr(res.__config__, "read_with_orm_mode", None)
@@ -135,6 +136,8 @@ async def serialize_response(
     exclude_defaults: bool = False,
     exclude_none: bool = False,
     is_coroutine: bool = True,
+    reconcile_nested_dataclasses: bool = False,
+    dataclass_dict_factory: DataclassDictFactoryType = None,
 ) -> Any:
     if field:
         errors = []
@@ -143,6 +146,8 @@ async def serialize_response(
             exclude_unset=exclude_unset,
             exclude_defaults=exclude_defaults,
             exclude_none=exclude_none,
+            reconcile_nested_dataclasses=reconcile_nested_dataclasses,
+            dataclass_dict_factory=dataclass_dict_factory,
         )
         if is_coroutine:
             value, errors_ = field.validate(response_content, {}, loc=("response",))
@@ -195,6 +200,8 @@ def get_request_handler(
     response_model_exclude_defaults: bool = False,
     response_model_exclude_none: bool = False,
     dependency_overrides_provider: Optional[Any] = None,
+    reconcile_nested_dataclasses: bool = False,
+    dataclass_dict_factory: DataclassDictFactoryType = None,
 ) -> Callable[[Request], Coroutine[Any, Any, Response]]:
     assert dependant.call is not None, "dependant.call must be a function"
     is_coroutine = asyncio.iscoroutinefunction(dependant.call)
@@ -262,6 +269,8 @@ def get_request_handler(
                 exclude_defaults=response_model_exclude_defaults,
                 exclude_none=response_model_exclude_none,
                 is_coroutine=is_coroutine,
+                reconcile_nested_dataclasses=reconcile_nested_dataclasses,
+                dataclass_dict_factory=dataclass_dict_factory,
             )
             response_args: Dict[str, Any] = {"background": background_tasks}
             # If status_code was set, use it, otherwise use the default from the
