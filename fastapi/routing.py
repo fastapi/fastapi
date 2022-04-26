@@ -722,8 +722,6 @@ class APIRouter(routing.Router):
         generate_unique_id_function: Callable[[APIRoute], str] = Default(
             generate_unique_id
         ),
-        reconcile_nested_dataclasses: bool = False,
-        dataclass_dict_factory: DataclassDictFactoryType = None,
     ) -> None:
         if prefix:
             assert prefix.startswith("/"), "A path prefix must start with '/'"
