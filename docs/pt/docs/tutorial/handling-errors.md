@@ -49,7 +49,7 @@ Neste exemplo, quando o cliente pede, na requisição, por um item cujo ID não 
 ### A response resultante
 
 
-Se o cliente faz um *request* para `http://example.com/items/foo` (um `item_id` `"foo"`), esse cliente receberá um HTTP status code 200, e uma resposta JSON:
+Se o cliente faz uma requisição para `http://example.com/items/foo` (um `item_id` `"foo"`), esse cliente receberá um HTTP status code 200, e uma resposta JSON:
 
 
 ```
@@ -58,7 +58,7 @@ Se o cliente faz um *request* para `http://example.com/items/foo` (um `item_id` 
 }
 ```
 
-Mas se o cliente faz um *request* por `http://example.com/items/bar` (ou seja, um não existente `item_id "bar"`), esse cliente receberá um HTTP status code 404 (o erro "não encontrado" — *not found error*), e uma resposta JSON:
+Mas se o cliente faz uma requisição para `http://example.com/items/bar` (ou seja, um não existente `item_id "bar"`), esse cliente receberá um HTTP status code 404 (o erro "não encontrado" — *not found error*), e uma resposta JSON:
 
 ```JSON
 {
@@ -97,7 +97,7 @@ Nesse cenário, se você precisa manipular essa exceção de modo global com o F
 {!../../../docs_src/handling_errors/tutorial003.py!}
 ```
 
-Nesse cenário, se você fizer um request para `/unicorns/yolo`, a *operação de caminho* vai lançar (`raise`) o `UnicornException`.
+Nesse cenário, se você fizer uma requisição para `/unicorns/yolo`, a *operação de caminho* vai lançar (`raise`) o `UnicornException`.
 
 Essa exceção será manipulada, contudo, pelo `unicorn_exception_handler`.
 
@@ -107,20 +107,20 @@ Dessa forma você receberá um erro "limpo", com o HTTP status code `418` e um J
 {"message": "Oops! yolo did something. There goes a rainbow..."}
 ```
 
-!!! note "Technical Details"
+!!! note "Detalhes Técnicos"
     Você também pode usar `from starlette.requests import Request` and `from starlette.responses import JSONResponse`.
 
     **FastAPI** disponibiliza o mesmo `starlette.responses` através do `fastapi.responses` por conveniência ao desenvolvedor. Contudo, a maior parte das respostas disponíveis vem diretamente do Starlette. O mesmo acontece com o `Request`.
 
-## Sobrescreva o manipulador default de exceções
+## Sobrescreva o manipulador padrão de exceções
 
-**FastAPI** tem alguns manipuladores default de exceções.
+**FastAPI** tem alguns manipuladores padrão de exceções.
 
-Esses manipuladores são os responsáveis por retornar o JSON default de respostas quando você lança (`raise`) o `HTTPException` e quando o *request* tem data inválida.
+Esses manipuladores são os responsáveis por retornar o JSON padrão de respostas quando você lança (`raise`) o `HTTPException` e quando a requisição tem dados invalidos.
 
 Você pode sobrescrever esses manipuladores de exceção com os seus próprios manipuladores.
 
-## Sobrescreva exceções de validação da request
+## Sobrescreva exceções de validação da requisição
 
 Quando a requisição contém data inválida, **FastAPI** internamente lança para o `RequestValidationError`.
 
@@ -130,7 +130,7 @@ Para sobreescrevê-lo, importe o `RequestValidationError` e use-o com o `@app.ex
 {!../../../docs_src/handling_errors/tutorial004.py!}
 ```
 
-Se você for ao `/items/foo`, em vez de receber o JSON default com o erro:
+Se você for ao `/items/foo`, em vez de receber o JSON padrão com o erro:
 
 ```JSON
 {
@@ -166,7 +166,7 @@ path -> item_id
 
 Contudo, o cliente ou usuário não terão acesso a ele. Ao contrário, o cliente receberá um "Internal Server Error" com o HTTP status code `500`.
 
-E assim deve ser porque seria um bug no seu código ter o `ValidationError` do Pydantic na sua *response*, ou em qualquer outro lugar do seu código (que não no *request* do cliente).
+E assim deve ser porque seria um bug no seu código ter o `ValidationError` do Pydantic na sua *response*, ou em qualquer outro lugar do seu código (que não na requisição do cliente).
 
 E enquanto você conserta o bug, os clientes / usuários não deveriam ter acesso às informações internas do erro, porque, desse modo, haveria exposição de uma vulnerabilidade de segurança.
 
