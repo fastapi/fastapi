@@ -178,7 +178,7 @@ Por exemplo, você pode querer retornar uma *response* em *plain text* ao invés
 {!../../../docs_src/handling_errors/tutorial004.py!}
 ```
 
-!!! nota "Detalhes Técnico'"
+!!! nota "Detalhes Técnicos"
     Você pode usar `from starlette.responses import PlainTextResponse`.
 
     **FastAPI** disponibiliza o mesmo `starlette.responses` como `fastapi.responses`, como conveniência a você, desenvolvedor. Contudo, a maior parte das respostas disponíveis vem diretamente do Starlette.
