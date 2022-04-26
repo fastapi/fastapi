@@ -18,7 +18,7 @@ from fastapi.openapi.docs import (
 )
 from fastapi.openapi.utils import get_openapi
 from fastapi.params import Depends
-from fastapi.types import DecoratedCallable, DataclassDictFactoryType
+from fastapi.types import DataclassDictFactoryType, DecoratedCallable
 from fastapi.utils import generate_unique_id
 from starlette.applications import Starlette
 from starlette.datastructures import State

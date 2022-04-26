@@ -1,4 +1,4 @@
-from typing import List, Optional, Any
+from typing import Any, List, Optional
 
 import pytest
 from fastapi import FastAPI
@@ -77,12 +77,12 @@ def get_no_response_model_objectlist():
 
 
 def _test_item_model() -> ItemModel:
-    item = Item(name='foo', price=1.0, owner_ids=[1, 2, 3])
+    item = Item(name="foo", price=1.0, owner_ids=[1, 2, 3])
     return ItemModel(
         item=item,
         item_list=[item, item],
-        item_dict={'foo': item, 'bar': item},
-        item_dataclass=ItemDataclass(item=item)
+        item_dict={"foo": item, "bar": item},
+        item_dataclass=ItemDataclass(item=item),
     )
 
 
@@ -179,35 +179,37 @@ def test_response_model_nested_dataclass_invalid():
 def test_response_model_nested_dataclass_valid():
     response = client.get("/items/response-model-nested-dataclass/valid")
     assert response.json() == {
-        'item': {'name': 'foo', 'owner_ids': [1, 2, 3], 'price': 1.0},
-        'item_list': [
-            {'name': 'foo', 'owner_ids': [1, 2, 3], 'price': 1.0},
-            {'name': 'foo', 'owner_ids': [1, 2, 3], 'price': 1.0}
+        "item": {"name": "foo", "owner_ids": [1, 2, 3], "price": 1.0},
+        "item_list": [
+            {"name": "foo", "owner_ids": [1, 2, 3], "price": 1.0},
+            {"name": "foo", "owner_ids": [1, 2, 3], "price": 1.0},
         ],
-        'item_dict': {
-            'bar': {'name': 'foo', 'owner_ids': [1, 2, 3], 'price': 1.0},
-            'foo': {'name': 'foo', 'owner_ids': [1, 2, 3], 'price': 1.0}
+        "item_dict": {
+            "bar": {"name": "foo", "owner_ids": [1, 2, 3], "price": 1.0},
+            "foo": {"name": "foo", "owner_ids": [1, 2, 3], "price": 1.0},
         },
-        'item_dataclass': {
-            'item': {'name': 'foo', 'owner_ids': [1, 2, 3], 'price': 1.0},
-            'option': None
+        "item_dataclass": {
+            "item": {"name": "foo", "owner_ids": [1, 2, 3], "price": 1.0},
+            "option": None,
         },
     }
 
 
 def test_response_model_nested_dataclass_specify_dataclass_dict_factory():
-    response = client.get("/items/response-model-nested-dataclass/specify-dataclass-dict-factory")
+    response = client.get(
+        "/items/response-model-nested-dataclass/specify-dataclass-dict-factory"
+    )
     assert response.json() == {
-        'item': {'name': 'foo', 'owner_ids': [1, 2, 3], 'price': 1.0},
-        'item_list': [
-            {'name': 'foo', 'owner_ids': [1, 2, 3], 'price': 1.0},
-            {'name': 'foo', 'owner_ids': [1, 2, 3], 'price': 1.0}
+        "item": {"name": "foo", "owner_ids": [1, 2, 3], "price": 1.0},
+        "item_list": [
+            {"name": "foo", "owner_ids": [1, 2, 3], "price": 1.0},
+            {"name": "foo", "owner_ids": [1, 2, 3], "price": 1.0},
         ],
-        'item_dict': {
-            'bar': {'name': 'foo', 'owner_ids': [1, 2, 3], 'price': 1.0},
-            'foo': {'name': 'foo', 'owner_ids': [1, 2, 3], 'price': 1.0}
+        "item_dict": {
+            "bar": {"name": "foo", "owner_ids": [1, 2, 3], "price": 1.0},
+            "foo": {"name": "foo", "owner_ids": [1, 2, 3], "price": 1.0},
         },
-        'item_dataclass': {
-            'item': {'name': 'foo', 'owner_ids': [1, 2, 3], 'price': 1.0}
+        "item_dataclass": {
+            "item": {"name": "foo", "owner_ids": [1, 2, 3], "price": 1.0}
         },
     }

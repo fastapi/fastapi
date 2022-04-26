@@ -30,7 +30,7 @@ from fastapi.dependencies.utils import (
 from fastapi.encoders import DictIntStrAny, SetIntStr, jsonable_encoder
 from fastapi.exceptions import RequestValidationError, WebSocketRequestValidationError
 from fastapi.openapi.constants import STATUS_CODES_WITH_NO_BODY
-from fastapi.types import DecoratedCallable, DataclassDictFactoryType
+from fastapi.types import DataclassDictFactoryType, DecoratedCallable
 from fastapi.utils import (
     create_cloned_field,
     create_response_field,
