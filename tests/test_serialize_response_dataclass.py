@@ -1,7 +1,9 @@
-from typing import List, Optional
+from typing import List, Optional, Any
 
+import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
+from pydantic import BaseModel, ValidationError
 from pydantic.dataclasses import dataclass
 
 app = FastAPI()
@@ -12,6 +14,19 @@ class Item:
     name: str
     price: Optional[float] = None
     owner_ids: Optional[List[int]] = None
+
+
+@dataclass
+class ItemDataclass:
+    item: Item
+    option: Optional[bool] = None
+
+
+class ItemModel(BaseModel):
+    item: Item
+    item_list: list[Item]
+    item_dict: dict[str, Item]
+    item_dataclass: ItemDataclass
 
 
 @app.get("/items/valid", response_model=Item)
@@ -59,6 +74,44 @@ def get_no_response_model_objectlist():
         Item(name="bar", price=1.0),
         Item(name="baz", price=2.0, owner_ids=[1, 2, 3]),
     ]
+
+
+def _test_item_model() -> ItemModel:
+    item = Item(name='foo', price=1.0, owner_ids=[1, 2, 3])
+    return ItemModel(
+        item=item,
+        item_list=[item, item],
+        item_dict={'foo': item, 'bar': item},
+        item_dataclass=ItemDataclass(item=item)
+    )
+
+
+@app.get("/items/response-model-nested-dataclass/invalid", response_model=ItemModel)
+def get_response_model_nested_enum_invalid():
+    return _test_item_model()
+
+
+@app.get(
+    "/items/response-model-nested-dataclass/valid",
+    response_model=ItemModel,
+    reconcile_nested_dataclasses=True,
+)
+def get_response_model_nested_enum_valid():
+    return _test_item_model()
+
+
+def none_filtering_dict_factory(d: list[tuple[str, Any]]):
+    return {k: v for k, v in d if v is not None}
+
+
+@app.get(
+    "/items/response-model-nested-dataclass/specify-dataclass-dict-factory",
+    response_model=ItemModel,
+    reconcile_nested_dataclasses=True,
+    dataclass_dict_factory=none_filtering_dict_factory,
+)
+def get_response_model_nested_enum_specify_dataclass_dict_factory():
+    return _test_item_model()
 
 
 client = TestClient(app)
@@ -116,3 +169,45 @@ def test_no_response_model_objectlist():
         {"name": "bar", "price": 1.0, "owner_ids": None},
         {"name": "baz", "price": 2.0, "owner_ids": [1, 2, 3]},
     ]
+
+
+def test_response_model_nested_dataclass_invalid():
+    with pytest.raises(ValidationError):
+        client.get("/items/response-model-nested-dataclass/invalid")
+
+
+def test_response_model_nested_dataclass_valid():
+    response = client.get("/items/response-model-nested-dataclass/valid")
+    assert response.json() == {
+        'item': {'name': 'foo', 'owner_ids': [1, 2, 3], 'price': 1.0},
+        'item_list': [
+            {'name': 'foo', 'owner_ids': [1, 2, 3], 'price': 1.0},
+            {'name': 'foo', 'owner_ids': [1, 2, 3], 'price': 1.0}
+        ],
+        'item_dict': {
+            'bar': {'name': 'foo', 'owner_ids': [1, 2, 3], 'price': 1.0},
+            'foo': {'name': 'foo', 'owner_ids': [1, 2, 3], 'price': 1.0}
+        },
+        'item_dataclass': {
+            'item': {'name': 'foo', 'owner_ids': [1, 2, 3], 'price': 1.0},
+            'option': None
+        },
+    }
+
+
+def test_response_model_nested_dataclass_specify_dataclass_dict_factory():
+    response = client.get("/items/response-model-nested-dataclass/specify-dataclass-dict-factory")
+    assert response.json() == {
+        'item': {'name': 'foo', 'owner_ids': [1, 2, 3], 'price': 1.0},
+        'item_list': [
+            {'name': 'foo', 'owner_ids': [1, 2, 3], 'price': 1.0},
+            {'name': 'foo', 'owner_ids': [1, 2, 3], 'price': 1.0}
+        ],
+        'item_dict': {
+            'bar': {'name': 'foo', 'owner_ids': [1, 2, 3], 'price': 1.0},
+            'foo': {'name': 'foo', 'owner_ids': [1, 2, 3], 'price': 1.0}
+        },
+        'item_dataclass': {
+            'item': {'name': 'foo', 'owner_ids': [1, 2, 3], 'price': 1.0}
+        },
+    }

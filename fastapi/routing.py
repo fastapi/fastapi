@@ -65,7 +65,7 @@ def _prepare_response_content(
     exclude_defaults: bool = False,
     exclude_none: bool = False,
     reconcile_nested_dataclasses: bool = False,
-    dataclass_dict_factory: DataclassDictFactoryType = None,
+    dataclass_dict_factory: Optional[DataclassDictFactoryType] = None,
 ) -> Any:
     if isinstance(res, BaseModel):
         read_with_orm_mode = getattr(res.__config__, "read_with_orm_mode", None)
@@ -83,15 +83,14 @@ def _prepare_response_content(
         )
         if reconcile_nested_dataclasses:
             for k, v in res.items():
-                if dataclasses.is_dataclass(v):
-                    res[k] = _prepare_response_content(
-                        v,
-                        exclude_unset=exclude_unset,
-                        exclude_defaults=exclude_defaults,
-                        exclude_none=exclude_none,
-                        reconcile_nested_dataclasses=reconcile_nested_dataclasses,
-                        dataclass_dict_factory=dataclass_dict_factory,
-                    )
+                res[k] = _prepare_response_content(
+                    v,
+                    exclude_unset=exclude_unset,
+                    exclude_defaults=exclude_defaults,
+                    exclude_none=exclude_none,
+                    reconcile_nested_dataclasses=reconcile_nested_dataclasses,
+                    dataclass_dict_factory=dataclass_dict_factory,
+                )
         return res
     elif isinstance(res, list):
         return [
@@ -134,7 +133,7 @@ async def serialize_response(
     exclude_none: bool = False,
     is_coroutine: bool = True,
     reconcile_nested_dataclasses: bool = False,
-    dataclass_dict_factory: DataclassDictFactoryType = None,
+    dataclass_dict_factory: Optional[DataclassDictFactoryType] = None,
 ) -> Any:
     if field:
         errors = []
@@ -198,7 +197,7 @@ def get_request_handler(
     response_model_exclude_none: bool = False,
     dependency_overrides_provider: Optional[Any] = None,
     reconcile_nested_dataclasses: bool = False,
-    dataclass_dict_factory: DataclassDictFactoryType = None,
+    dataclass_dict_factory: Optional[DataclassDictFactoryType] = None,
 ) -> Callable[[Request], Coroutine[Any, Any, Response]]:
     assert dependant.call is not None, "dependant.call must be a function"
     is_coroutine = asyncio.iscoroutinefunction(dependant.call)
@@ -365,7 +364,7 @@ class APIRoute(routing.Route):
             Callable[["APIRoute"], str], DefaultPlaceholder
         ] = Default(generate_unique_id),
         reconcile_nested_dataclasses: bool = False,
-        dataclass_dict_factory: DataclassDictFactoryType = None,
+        dataclass_dict_factory: Optional[DataclassDictFactoryType] = None,
     ) -> None:
         self.path = path
         self.endpoint = endpoint
@@ -389,7 +388,7 @@ class APIRoute(routing.Route):
         self.tags = tags or []
         self.responses = responses or {}
         self.name = get_name(endpoint) if name is None else name
-        self.reconcile_nested_dataclasses = reconcile_nested_dataclasses,
+        self.reconcile_nested_dataclasses = reconcile_nested_dataclasses
         self.dataclass_dict_factory = dataclass_dict_factory
         self.path_regex, self.path_format, self.param_convertors = compile_path(path)
         if methods is None:
@@ -567,7 +566,7 @@ class APIRouter(routing.Router):
             Callable[[APIRoute], str], DefaultPlaceholder
         ] = Default(generate_unique_id),
         reconcile_nested_dataclasses: bool = False,
-        dataclass_dict_factory: DataclassDictFactoryType = None,
+        dataclass_dict_factory: Optional[DataclassDictFactoryType] = None,
     ) -> None:
         route_class = route_class_override or self.route_class
         responses = responses or {}
@@ -649,7 +648,7 @@ class APIRouter(routing.Router):
             generate_unique_id
         ),
         reconcile_nested_dataclasses: bool = False,
-        dataclass_dict_factory: DataclassDictFactoryType = None,
+        dataclass_dict_factory: Optional[DataclassDictFactoryType] = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         def decorator(func: DecoratedCallable) -> DecoratedCallable:
             self.add_api_route(
@@ -795,8 +794,8 @@ class APIRouter(routing.Router):
                     callbacks=current_callbacks,
                     openapi_extra=route.openapi_extra,
                     generate_unique_id_function=current_generate_unique_id,
-                    reconcile_nested_dataclasses=reconcile_nested_dataclasses,
-                    dataclass_dict_factory=dataclass_dict_factory,
+                    reconcile_nested_dataclasses=route.reconcile_nested_dataclasses,
+                    dataclass_dict_factory=route.dataclass_dict_factory,
                 )
             elif isinstance(route, routing.Route):
                 methods = list(route.methods or [])  # type: ignore # in Starlette
@@ -849,7 +848,7 @@ class APIRouter(routing.Router):
             generate_unique_id
         ),
         reconcile_nested_dataclasses: bool = False,
-        dataclass_dict_factory: DataclassDictFactoryType = None,
+        dataclass_dict_factory: Optional[DataclassDictFactoryType] = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.api_route(
             path=path,
@@ -909,7 +908,7 @@ class APIRouter(routing.Router):
             generate_unique_id
         ),
         reconcile_nested_dataclasses: bool = False,
-        dataclass_dict_factory: DataclassDictFactoryType = None,
+        dataclass_dict_factory: Optional[DataclassDictFactoryType] = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.api_route(
             path=path,
@@ -969,7 +968,7 @@ class APIRouter(routing.Router):
             generate_unique_id
         ),
         reconcile_nested_dataclasses: bool = False,
-        dataclass_dict_factory: DataclassDictFactoryType = None,
+        dataclass_dict_factory: Optional[DataclassDictFactoryType] = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.api_route(
             path=path,
@@ -1029,7 +1028,7 @@ class APIRouter(routing.Router):
             generate_unique_id
         ),
         reconcile_nested_dataclasses: bool = False,
-        dataclass_dict_factory: DataclassDictFactoryType = None,
+        dataclass_dict_factory: Optional[DataclassDictFactoryType] = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.api_route(
             path=path,
@@ -1089,7 +1088,7 @@ class APIRouter(routing.Router):
             generate_unique_id
         ),
         reconcile_nested_dataclasses: bool = False,
-        dataclass_dict_factory: DataclassDictFactoryType = None,
+        dataclass_dict_factory: Optional[DataclassDictFactoryType] = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.api_route(
             path=path,
@@ -1149,7 +1148,7 @@ class APIRouter(routing.Router):
             generate_unique_id
         ),
         reconcile_nested_dataclasses: bool = False,
-        dataclass_dict_factory: DataclassDictFactoryType = None,
+        dataclass_dict_factory: Optional[DataclassDictFactoryType] = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.api_route(
             path=path,
@@ -1209,7 +1208,7 @@ class APIRouter(routing.Router):
             generate_unique_id
         ),
         reconcile_nested_dataclasses: bool = False,
-        dataclass_dict_factory: DataclassDictFactoryType = None,
+        dataclass_dict_factory: Optional[DataclassDictFactoryType] = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.api_route(
             path=path,
@@ -1269,7 +1268,7 @@ class APIRouter(routing.Router):
             generate_unique_id
         ),
         reconcile_nested_dataclasses: bool = False,
-        dataclass_dict_factory: DataclassDictFactoryType = None,
+        dataclass_dict_factory: Optional[DataclassDictFactoryType] = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
 
         return self.api_route(

@@ -292,7 +292,7 @@ class FastAPI(Starlette):
             generate_unique_id
         ),
         reconcile_nested_dataclasses: bool = False,
-        dataclass_dict_factory: DataclassDictFactoryType = None,
+        dataclass_dict_factory: Optional[DataclassDictFactoryType] = None,
     ) -> None:
         self.router.add_api_route(
             path,
@@ -352,7 +352,7 @@ class FastAPI(Starlette):
             generate_unique_id
         ),
         reconcile_nested_dataclasses: bool = False,
-        dataclass_dict_factory: DataclassDictFactoryType = None,
+        dataclass_dict_factory: Optional[DataclassDictFactoryType] = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         def decorator(func: DecoratedCallable) -> DecoratedCallable:
             self.router.add_api_route(
@@ -459,7 +459,7 @@ class FastAPI(Starlette):
             generate_unique_id
         ),
         reconcile_nested_dataclasses: bool = False,
-        dataclass_dict_factory: DataclassDictFactoryType = None,
+        dataclass_dict_factory: Optional[DataclassDictFactoryType] = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.router.get(
             path,
@@ -518,7 +518,7 @@ class FastAPI(Starlette):
             generate_unique_id
         ),
         reconcile_nested_dataclasses: bool = False,
-        dataclass_dict_factory: DataclassDictFactoryType = None,
+        dataclass_dict_factory: Optional[DataclassDictFactoryType] = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.router.put(
             path,
@@ -577,7 +577,7 @@ class FastAPI(Starlette):
             generate_unique_id
         ),
         reconcile_nested_dataclasses: bool = False,
-        dataclass_dict_factory: DataclassDictFactoryType = None,
+        dataclass_dict_factory: Optional[DataclassDictFactoryType] = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.router.post(
             path,
@@ -636,7 +636,7 @@ class FastAPI(Starlette):
             generate_unique_id
         ),
         reconcile_nested_dataclasses: bool = False,
-        dataclass_dict_factory: DataclassDictFactoryType = None,
+        dataclass_dict_factory: Optional[DataclassDictFactoryType] = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.router.delete(
             path,
@@ -695,7 +695,7 @@ class FastAPI(Starlette):
             generate_unique_id
         ),
         reconcile_nested_dataclasses: bool = False,
-        dataclass_dict_factory: DataclassDictFactoryType = None,
+        dataclass_dict_factory: Optional[DataclassDictFactoryType] = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.router.options(
             path,
@@ -754,7 +754,7 @@ class FastAPI(Starlette):
             generate_unique_id
         ),
         reconcile_nested_dataclasses: bool = False,
-        dataclass_dict_factory: DataclassDictFactoryType = None,
+        dataclass_dict_factory: Optional[DataclassDictFactoryType] = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.router.head(
             path,
@@ -813,7 +813,7 @@ class FastAPI(Starlette):
             generate_unique_id
         ),
         reconcile_nested_dataclasses: bool = False,
-        dataclass_dict_factory: DataclassDictFactoryType = None,
+        dataclass_dict_factory: Optional[DataclassDictFactoryType] = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.router.patch(
             path,
@@ -872,7 +872,7 @@ class FastAPI(Starlette):
             generate_unique_id
         ),
         reconcile_nested_dataclasses: bool = False,
-        dataclass_dict_factory: DataclassDictFactoryType = None,
+        dataclass_dict_factory: Optional[DataclassDictFactoryType] = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.router.trace(
             path,
