@@ -64,6 +64,8 @@ def _prepare_response_content(
     exclude_unset: bool,
     exclude_defaults: bool = False,
     exclude_none: bool = False,
+    reconcile_nested_dataclasses: bool = False,
+    dataclass_dict_factory: Callable[[list[tuple[str, Any]]], dict] = None,
 ) -> Any:
     if isinstance(res, BaseModel):
         read_with_orm_mode = getattr(res.__config__, "read_with_orm_mode", None)
@@ -73,12 +75,26 @@ def _prepare_response_content(
             # Otherwise there's no way to extract lazy data that requires attribute
             # access instead of dict iteration, e.g. lazy relationships.
             return res
-        return res.dict(
+        res = res.dict(
             by_alias=True,
             exclude_unset=exclude_unset,
             exclude_defaults=exclude_defaults,
             exclude_none=exclude_none,
+            reconcile_nested_dataclasses=reconcile_nested_dataclasses,
+            dataclass_dict_factory=dataclass_dict_factory,
         )
+        if reconcile_nested_dataclasses:
+            for k, v in res.items():
+                if dataclasses.is_dataclass(v):
+                    res[k] = _prepare_response_content(
+                        v,
+                        exclude_unset=exclude_unset,
+                        exclude_defaults=exclude_defaults,
+                        exclude_none=exclude_none,
+                        reconcile_nested_dataclasses=reconcile_nested_dataclasses,
+                        dataclass_dict_factory=dataclass_dict_factory,
+                    )
+        return res
     elif isinstance(res, list):
         return [
             _prepare_response_content(
@@ -86,6 +102,8 @@ def _prepare_response_content(
                 exclude_unset=exclude_unset,
                 exclude_defaults=exclude_defaults,
                 exclude_none=exclude_none,
+                reconcile_nested_dataclasses=reconcile_nested_dataclasses,
+                dataclass_dict_factory=dataclass_dict_factory,
             )
             for item in res
         ]
@@ -96,11 +114,13 @@ def _prepare_response_content(
                 exclude_unset=exclude_unset,
                 exclude_defaults=exclude_defaults,
                 exclude_none=exclude_none,
+                reconcile_nested_dataclasses=reconcile_nested_dataclasses,
+                dataclass_dict_factory=dataclass_dict_factory,
             )
             for k, v in res.items()
         }
     elif dataclasses.is_dataclass(res):
-        return dataclasses.asdict(res)
+        return dataclasses.asdict(res, dict_factory=dataclass_dict_factory or dict)
     return res
 
 
