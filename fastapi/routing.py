@@ -80,8 +80,6 @@ def _prepare_response_content(
             exclude_unset=exclude_unset,
             exclude_defaults=exclude_defaults,
             exclude_none=exclude_none,
-            reconcile_nested_dataclasses=reconcile_nested_dataclasses,
-            dataclass_dict_factory=dataclass_dict_factory,
         )
         if reconcile_nested_dataclasses:
             for k, v in res.items():
