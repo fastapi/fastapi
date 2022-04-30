@@ -53,6 +53,37 @@ not the whole API, but specific, sensitive endpoints.
 def password_reset(user: int, new_password: str):
 ```
 
-## TODO Cookies, Query...
+## API Key in Cookies
 
-All the variants of the API Key rainbow
+For convenience, API Keys can be pushed in cookies instead.
+
+<!-- Note: tutorial009.py is 100 %CLONED from tests/test_security_api_key_cookie.py -->
+
+```Python hl_lines="2 7 14"
+{!../../../docs_src/security/tutorial009.py!}
+```
+
+Users can call this via:
+
+```Python
+response = client.get("/users/me", cookies={"key": "secret"})
+```
+
+## API Key in Query
+
+To round up the multiple ways to use API Keys, one can set the API key as query parameter.
+
+<!-- Note: tutorial010.py is 100 %CLONED from tests/test_security_api_key_query.py -->
+```Python hl_lines="2 7 14"
+{!../../../docs_src/security/tutorial010.py!}
+```
+
+Users can call this via:
+
+```Python
+response = client.get("/users/me?key=secret")
+```
+
+Note that setting `auto_error` to `False` can useful to support multiple
+methods for providing API Key, checking successively for Cookie, falling back to
+header, etc.
