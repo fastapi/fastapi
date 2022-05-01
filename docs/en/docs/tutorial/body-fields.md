@@ -55,6 +55,11 @@ You can then use `Field` with model attributes:
 
 You can declare extra information in `Field`, `Query`, `Body`, etc. And it will be included in the generated JSON Schema.
 
+!!! warning
+    Extra keys passed to `Field` will also be present in the resulting OpenAPI schema for your application.
+    These keys may not necessarily be part of the OpenAPI specification, for example, `const` (which pydantic uses to signify a constant value for validation).
+    As OpenAPI expects custom fields to be prefixed with `x-<prefix>-`, various generic OpenAPI tools, for example [the OpenAPI validator](https://validator.swagger.io/), may not work with your generated schema.
+
 You will learn more about adding extra information later in the docs, when learning to declare examples.
 
 ## Recap
