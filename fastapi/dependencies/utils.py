@@ -24,7 +24,7 @@ from fastapi.concurrency import (
     asynccontextmanager,
     contextmanager_in_threadpool,
 )
-from fastapi.dependencies.models import Dependant, SecurityRequirement
+from fastapi.dependencies.models import Dependant, Overrides, SecurityRequirement
 from fastapi.logger import logger
 from fastapi.security.base import SecurityBase
 from fastapi.security.oauth2 import OAuth2, SecurityScopes
@@ -108,7 +108,11 @@ def check_file_field(field: ModelField) -> None:
 
 
 def get_param_sub_dependant(
-    *, param: inspect.Parameter, path: str, security_scopes: Optional[List[str]] = None
+    *,
+    param: inspect.Parameter,
+    path: str,
+    security_scopes: Optional[List[str]] = None,
+    overrides: Optional[Dict[str, Any]] = None,
 ) -> Dependant:
     depends: params.Depends = param.default
     if depends.dependency:
@@ -121,6 +125,7 @@ def get_param_sub_dependant(
         path=path,
         name=param.name,
         security_scopes=security_scopes,
+        overrides=overrides,
     )
 
 
@@ -138,6 +143,7 @@ def get_sub_dependant(
     path: str,
     name: Optional[str] = None,
     security_scopes: Optional[List[str]] = None,
+    overrides: Optional[Dict[str, Any]] = None,
 ) -> Dependant:
     security_requirement = None
     security_scopes = security_scopes or []
@@ -157,10 +163,12 @@ def get_sub_dependant(
         name=name,
         security_scopes=security_scopes,
         use_cache=depends.use_cache,
+        overrides=overrides or depends.overrides,
     )
     if security_requirement:
         sub_dependant.security_requirements.append(security_requirement)
     sub_dependant.security_scopes = security_scopes
+    sub_dependant.overrides = overrides or depends.overrides
     return sub_dependant
 
 
@@ -186,6 +194,7 @@ def get_flat_dependant(
         security_schemes=dependant.security_requirements.copy(),
         use_cache=dependant.use_cache,
         path=dependant.path,
+        overrides=dependant.overrides,
     )
     for sub_dependant in dependant.dependencies:
         if skip_repeats and sub_dependant.cache_key in visited:
@@ -273,6 +282,7 @@ def get_dependant(
     name: Optional[str] = None,
     security_scopes: Optional[List[str]] = None,
     use_cache: bool = True,
+    overrides: Optional[Dict[str, Any]] = None,
 ) -> Dependant:
     path_param_names = get_path_param_names(path)
     endpoint_signature = get_typed_signature(call)
@@ -281,7 +291,10 @@ def get_dependant(
     for param_name, param in signature_params.items():
         if isinstance(param.default, params.Depends):
             sub_dependant = get_param_sub_dependant(
-                param=param, path=path, security_scopes=security_scopes
+                param=param,
+                path=path,
+                security_scopes=security_scopes,
+                overrides=overrides,
             )
             dependant.dependencies.append(sub_dependant)
             continue
@@ -341,6 +354,9 @@ def add_non_field_param_to_dependency(
         return True
     elif lenient_issubclass(param.annotation, SecurityScopes):
         dependant.security_scopes_param_name = param.name
+        return True
+    elif lenient_issubclass(param.annotation, Overrides):
+        dependant.overrides_param_name = param.name
         return True
     return None
 
@@ -492,8 +508,10 @@ async def solve_dependencies(
                 call=call,
                 name=sub_dependant.name,
                 security_scopes=sub_dependant.security_scopes,
+                overrides=sub_dependant.overrides,
             )
             use_sub_dependant.security_scopes = sub_dependant.security_scopes
+            use_sub_dependant.overrides = sub_dependant.overrides
 
         solved_result = await solve_dependencies(
             request=request,
@@ -573,6 +591,11 @@ async def solve_dependencies(
         values[dependant.security_scopes_param_name] = SecurityScopes(
             scopes=dependant.security_scopes
         )
+    if dependant.overrides_param_name:
+        values[dependant.overrides_param_name] = dependant.overrides
+    if dependant.overrides:
+        for k, v in dependant.overrides.items():
+            values[k] = v
     return values, errors, background_tasks, response, dependency_cache
 
 

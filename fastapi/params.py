@@ -357,9 +357,16 @@ class File(Form):
 
 class Depends:
     def __init__(
-        self, dependency: Optional[Callable[..., Any]] = None, *, use_cache: bool = True
+        self,
+        dependency: Optional[Callable[..., Any]] = None,
+        overrides: Optional[Dict[str, Any]] = {},
+        *,
+        use_cache: bool = True,
     ):
+        if dependency:
+            dependency.overrides = overrides
         self.dependency = dependency
+        self.overrides = overrides
         self.use_cache = use_cache
 
     def __repr__(self) -> str:
@@ -372,9 +379,14 @@ class Security(Depends):
     def __init__(
         self,
         dependency: Optional[Callable[..., Any]] = None,
+        overrides: Optional[Dict[str, Any]] = {},
         *,
         scopes: Optional[Sequence[str]] = None,
         use_cache: bool = True,
     ):
-        super().__init__(dependency=dependency, use_cache=use_cache)
+        super().__init__(
+            dependency=dependency,
+            use_cache=use_cache,
+            overrides=overrides,
+        )
         self.scopes = scopes or []

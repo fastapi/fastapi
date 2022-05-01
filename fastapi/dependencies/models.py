@@ -1,7 +1,11 @@
-from typing import Any, Callable, List, Optional, Sequence
+from typing import Any, Callable, Dict, List, Optional, Sequence
 
 from fastapi.security.base import SecurityBase
 from pydantic.fields import ModelField
+
+
+class Overrides(dict):
+    pass
 
 
 class SecurityRequirement:
@@ -34,6 +38,8 @@ class Dependant:
         security_scopes: Optional[List[str]] = None,
         use_cache: bool = True,
         path: Optional[str] = None,
+        overrides: Optional[Dict[str, Any]] = None,
+        overrides_param_name: Optional[str] = None,
     ) -> None:
         self.path_params = path_params or []
         self.query_params = query_params or []
@@ -54,5 +60,11 @@ class Dependant:
         self.use_cache = use_cache
         # Store the path to be able to re-generate a dependable from it in overrides
         self.path = path
+        self.overrides = overrides
+        self.overrides_param_name = overrides_param_name
         # Save the cache key at creation to optimize performance
-        self.cache_key = (self.call, tuple(sorted(set(self.security_scopes or []))))
+        self.cache_key = (
+            self.call,
+            str(self.overrides),
+            tuple(sorted(set(self.security_scopes or []))),
+        )
