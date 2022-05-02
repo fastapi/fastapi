@@ -1629,3 +1629,125 @@ def test_warn_duplicate_operation_id():
         assert len(w) == 2
         assert issubclass(w[-1].category, UserWarning)
         assert "Duplicate Operation ID" in str(w[-1].message)
+
+
+def test_operation_id_with_multiple_methods():
+    """Ensure a unique operation id is generated for each method"""
+    app = FastAPI()
+    router = APIRouter()
+
+    def root(item1: Item):
+        return item1  # pragma: nocover
+
+    router.add_api_route("/test", root, methods={"GET", "POST"})
+    app.include_router(router)
+
+    client = TestClient(app)
+
+    response = client.get("/openapi.json")
+    data = response.json()
+
+    assert data == {
+        "openapi": "3.0.2",
+        "info": {"title": "FastAPI", "version": "0.1.0"},
+        "paths": {
+            "/test": {
+                "get": {
+                    "summary": "Root",
+                    "operationId": "root_test_get",
+                    "requestBody": {
+                        "content": {
+                            "application/json": {
+                                "schema": {"$ref": "#/components/schemas/Item"}
+                            }
+                        },
+                        "required": True,
+                    },
+                    "responses": {
+                        "200": {
+                            "description": "Successful Response",
+                            "content": {"application/json": {"schema": {}}},
+                        },
+                        "422": {
+                            "description": "Validation Error",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/HTTPValidationError"
+                                    }
+                                }
+                            },
+                        },
+                    },
+                },
+                "post": {
+                    "summary": "Root",
+                    "operationId": "root_test_post",
+                    "requestBody": {
+                        "content": {
+                            "application/json": {
+                                "schema": {"$ref": "#/components/schemas/Item"}
+                            }
+                        },
+                        "required": True,
+                    },
+                    "responses": {
+                        "200": {
+                            "description": "Successful Response",
+                            "content": {"application/json": {"schema": {}}},
+                        },
+                        "422": {
+                            "description": "Validation Error",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/HTTPValidationError"
+                                    }
+                                }
+                            },
+                        },
+                    },
+                },
+            }
+        },
+        "components": {
+            "schemas": {
+                "HTTPValidationError": {
+                    "title": "HTTPValidationError",
+                    "type": "object",
+                    "properties": {
+                        "detail": {
+                            "title": "Detail",
+                            "type": "array",
+                            "items": {"$ref": "#/components/schemas/ValidationError"},
+                        }
+                    },
+                },
+                "Item": {
+                    "title": "Item",
+                    "required": ["name", "price"],
+                    "type": "object",
+                    "properties": {
+                        "name": {"title": "Name", "type": "string"},
+                        "price": {"title": "Price", "type": "number"},
+                    },
+                },
+                "ValidationError": {
+                    "title": "ValidationError",
+                    "required": ["loc", "msg", "type"],
+                    "type": "object",
+                    "properties": {
+                        "loc": {
+                            "title": "Location",
+                            "type": "array",
+                            "items": {
+                                "anyOf": [{"type": "string"}, {"type": "integer"}]
+                            },
+                        },
+                        "msg": {"title": "Message", "type": "string"},
+                        "type": {"title": "Error Type", "type": "string"},
+                    },
+                },
+            }
+        },
+    }
