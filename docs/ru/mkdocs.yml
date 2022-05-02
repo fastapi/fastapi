@@ -54,6 +54,10 @@ nav:
   - tr: /tr/
   - uk: /uk/
   - zh: /zh/
+- python-types.md
+- Tutorial - User Guide:
+  - tutorial/background-tasks.md
+- external-links.md
 markdown_extensions:
 - toc:
     permalink: true
