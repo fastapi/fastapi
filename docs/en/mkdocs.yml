@@ -145,6 +145,7 @@ nav:
   - advanced/openapi-callbacks.md
   - advanced/wsgi.md
   - advanced/generate-clients.md
+  - advanced/annotated.md
 - async.md
 - Deployment:
   - deployment/index.md

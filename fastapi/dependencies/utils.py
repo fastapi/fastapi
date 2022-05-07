@@ -361,16 +361,16 @@ def analyze_param(
         ]
         assert (
             len(fastapi_annotations) <= 1
-        ), f"cannot specify multiple `Annotated` FastAPI arguments for {param_name!r}"
+        ), f"Cannot specify multiple `Annotated` FastAPI arguments for {param_name!r}"
         fastapi_annotation = next(iter(fastapi_annotations), None)
         if isinstance(fastapi_annotation, FieldInfo):
             field_info = fastapi_annotation
-            assert field_info.default is Undefined, (
+            assert field_info.default is Undefined or field_info.default is Required, (
                 f"`{field_info.__class__.__name__}` default value cannot be set in"
-                f" `Annotated` for {param_name!r}"
+                f" `Annotated` for {param_name!r}. Set the default value with `=` instead."
             )
             if value is not inspect.Signature.empty:
-                assert not is_path_param, "path parameters cannot have default values"
+                assert not is_path_param, "Path parameters cannot have default values"
                 field_info.default = value
             else:
                 field_info.default = Required
@@ -384,9 +384,11 @@ def analyze_param(
             "Cannot specify `Depends` in `Annotated` and default value"
             f" together for {param_name!r}"
         )
+        assert field_info is None, (
+            "Cannot specify a FastAPI annotation in `Annotated` and `Depends` as a"
+            f" default value together for {param_name!r}"
+        )
         depends = value
-        if depends.dependency is None:
-            depends.dependency = type_annotation
     elif isinstance(value, FieldInfo):
         assert field_info is None, (
             "Cannot specify FastAPI annotations in `Annotated` and default value"
@@ -396,6 +398,9 @@ def analyze_param(
             value.default is not Undefined
         ), f"Must set a default for {param_name!r}. To make it required, use `...`."
         field_info = value
+
+    if depends is not None and depends.dependency is None:
+        depends.dependency = type_annotation
 
     if lenient_issubclass(
         type_annotation,
@@ -419,9 +424,10 @@ def analyze_param(
     field = None
     if field_info is not None:
         if is_path_param:
-            assert isinstance(
-                field_info, params.Path
-            ), f"Cannot use `{field_info.__class__.__name__}` for path param {param_name!r}"
+            assert isinstance(field_info, params.Path), (
+                f"Cannot use `{field_info.__class__.__name__}` for path param"
+                f" {param_name!r}"
+            )
         elif (
             isinstance(field_info, params.Param)
             and getattr(field_info, "in_", None) is None
