@@ -13,7 +13,7 @@ def test_no_annotated_defaults():
 
         @app.get("/items/{item_id}/")
         async def get_item(item_id: Annotated[int, Path(default=1)]):
-            pass
+            pass  # pragma: nocover
 
     with pytest.raises(
         AssertionError,
@@ -25,12 +25,12 @@ def test_no_annotated_defaults():
 
         @app.get("/")
         async def get(item_id: Annotated[int, Query(default=1)]):
-            pass
+            pass  # pragma: nocover
 
 
 def test_no_multiple_annotations():
     async def dep():
-        pass
+        pass  # pragma: nocover
 
     with pytest.raises(
         AssertionError,
@@ -39,7 +39,7 @@ def test_no_multiple_annotations():
 
         @app.get("/")
         async def get(foo: Annotated[int, Query(min_length=1), Query()]):
-            pass
+            pass  # pragma: nocover
 
     with pytest.raises(
         AssertionError,
@@ -51,7 +51,7 @@ def test_no_multiple_annotations():
 
         @app.get("/")
         async def get2(foo: Annotated[int, Depends(dep)] = Depends(dep)):
-            pass
+            pass  # pragma: nocover
 
     with pytest.raises(
         AssertionError,
@@ -63,7 +63,7 @@ def test_no_multiple_annotations():
 
         @app.get("/")
         async def get3(foo: Annotated[int, Query(min_length=1)] = Depends(dep)):
-            pass
+            pass  # pragma: nocover
 
 
 def test_defaults():
@@ -75,4 +75,4 @@ def test_defaults():
 
         @app.get("/")
         async def get(foo: int = Query()):
-            pass
+            pass  # pragma: nocover
