@@ -1,5 +1,4 @@
 from enum import Enum
-from types import EllipsisType
 from typing import Any, Callable, Dict, Optional, Sequence
 
 from pydantic.fields import FieldInfo, Undefined
@@ -63,7 +62,7 @@ class Path(Param):
 
     def __init__(
         self,
-        default: EllipsisType = ...,
+        default: Any = ...,
         *,
         alias: Optional[str] = None,
         title: Optional[str] = None,

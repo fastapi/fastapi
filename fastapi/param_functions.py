@@ -1,4 +1,3 @@
-from types import EllipsisType
 from typing import Any, Callable, Dict, Optional, Sequence
 
 from fastapi import params
@@ -6,7 +5,7 @@ from pydantic.fields import Undefined
 
 
 def Path(  # noqa: N802
-    default: EllipsisType = ...,
+    default: Any = ...,
     *,
     alias: Optional[str] = None,
     title: Optional[str] = None,

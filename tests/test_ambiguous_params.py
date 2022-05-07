@@ -50,7 +50,7 @@ def test_no_multiple_annotations():
     ):
 
         @app.get("/")
-        async def get(foo: Annotated[int, Depends(dep)] = Depends(dep)):
+        async def get2(foo: Annotated[int, Depends(dep)] = Depends(dep)):
             pass
 
     with pytest.raises(
@@ -62,7 +62,7 @@ def test_no_multiple_annotations():
     ):
 
         @app.get("/")
-        async def get(foo: Annotated[int, Query(min_length=1)] = Depends(dep)):
+        async def get3(foo: Annotated[int, Query(min_length=1)] = Depends(dep)):
             pass
 
 

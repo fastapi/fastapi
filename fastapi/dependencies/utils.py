@@ -116,6 +116,7 @@ def get_param_sub_dependant(
     path: str,
     security_scopes: Optional[List[str]] = None,
 ) -> Dependant:
+    assert depends.dependency
     return get_sub_dependant(
         depends=depends,
         dependency=depends.dependency,
@@ -350,7 +351,7 @@ def analyze_param(
     type_annotation: Any = Any
     if (
         annotation is not inspect.Signature.empty
-        and get_origin(annotation) is Annotated
+        and get_origin(annotation) is Annotated  # type: ignore[comparison-overlap]
     ):
         annotated_args = get_args(annotation)
         type_annotation = annotated_args[0]
@@ -459,7 +460,7 @@ def analyze_param(
     return type_annotation, depends, field
 
 
-def is_body_param(*, param_field: ModelField, is_path_param: bool) -> None:
+def is_body_param(*, param_field: ModelField, is_path_param: bool) -> bool:
     if is_path_param:
         assert is_scalar_field(
             field=param_field
