@@ -72,6 +72,7 @@ nav:
   - deployment/index.md
   - deployment/versions.md
   - deployment/https.md
+  - deployment/deta.md
 - alternatives.md
 - history-design-future.md
 - external-links.md
