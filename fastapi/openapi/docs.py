@@ -4,17 +4,29 @@ from typing import Any, Dict, Optional
 from fastapi.encoders import jsonable_encoder
 from starlette.responses import HTMLResponse
 
+swagger_ui_default_parameters = {
+    "dom_id": "#swagger-ui",
+    "layout": "BaseLayout",
+    "deepLinking": True,
+    "showExtensions": True,
+    "showCommonExtensions": True,
+}
+
 
 def get_swagger_ui_html(
     *,
     openapi_url: str,
     title: str,
-    swagger_js_url: str = "https://cdn.jsdelivr.net/npm/swagger-ui-dist@3/swagger-ui-bundle.js",
-    swagger_css_url: str = "https://cdn.jsdelivr.net/npm/swagger-ui-dist@3/swagger-ui.css",
+    swagger_js_url: str = "https://cdn.jsdelivr.net/npm/swagger-ui-dist@4/swagger-ui-bundle.js",
+    swagger_css_url: str = "https://cdn.jsdelivr.net/npm/swagger-ui-dist@4/swagger-ui.css",
     swagger_favicon_url: str = "https://fastapi.tiangolo.com/img/favicon.png",
     oauth2_redirect_url: Optional[str] = None,
     init_oauth: Optional[Dict[str, Any]] = None,
+    swagger_ui_parameters: Optional[Dict[str, Any]] = None,
 ) -> HTMLResponse:
+    current_swagger_ui_parameters = swagger_ui_default_parameters.copy()
+    if swagger_ui_parameters:
+        current_swagger_ui_parameters.update(swagger_ui_parameters)
 
     html = f"""
     <!DOCTYPE html>
@@ -34,19 +46,17 @@ def get_swagger_ui_html(
         url: '{openapi_url}',
     """
 
+    for key, value in current_swagger_ui_parameters.items():
+        html += f"{json.dumps(key)}: {json.dumps(jsonable_encoder(value))},\n"
+
     if oauth2_redirect_url:
         html += f"oauth2RedirectUrl: window.location.origin + '{oauth2_redirect_url}',"
 
     html += """
-        dom_id: '#swagger-ui',
-        presets: [
+    presets: [
         SwaggerUIBundle.presets.apis,
         SwaggerUIBundle.SwaggerUIStandalonePreset
         ],
-        layout: "BaseLayout",
-        deepLinking: true,
-        showExtensions: true,
-        showCommonExtensions: true
     })"""
 
     if init_oauth:
