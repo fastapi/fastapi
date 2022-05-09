@@ -2,6 +2,7 @@
 
 ## Latest Changes
 
+* 🌐 Add Portuguese translation for `docs/pt/docs/tutorial/background-tasks.md`. PR [#2170](https://github.com/tiangolo/fastapi/pull/2170) by [@izaguerreiro](https://github.com/izaguerreiro).
 * 🌐 Add Portuguese translation for `docs/deployment/deta.md`. PR [#4442](https://github.com/tiangolo/fastapi/pull/4442) by [@lsglucas](https://github.com/lsglucas).
 * 🌐 Add Russian translation for `docs/async.md`. PR [#4036](https://github.com/tiangolo/fastapi/pull/4036) by [@Winand](https://github.com/Winand).
 * 🌐 Add Portuguese translation for `docs/tutorial/body.md`. PR [#3960](https://github.com/tiangolo/fastapi/pull/3960) by [@leandrodesouzadev](https://github.com/leandrodesouzadev).
