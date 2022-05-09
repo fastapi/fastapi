@@ -161,6 +161,21 @@ def test_custom_encoders():
     assert encoded_instance["dt_field"] == instance.dt_field.isoformat()
 
 
+def test_custom_enum_encoders():
+    def custom_enum_encoder(v: Enum):
+        return v.value.lower()
+
+    class MyEnum(Enum):
+        ENUM_VAL_1 = "ENUM_VAL_1"
+
+    instance = MyEnum.ENUM_VAL_1
+
+    encoded_instance = jsonable_encoder(
+        instance, custom_encoder={MyEnum: custom_enum_encoder}
+    )
+    assert encoded_instance == custom_enum_encoder(instance)
+
+
 def test_encode_model_with_path(model_with_path):
     if isinstance(model_with_path.path, PureWindowsPath):
         expected = "\\foo\\bar"
