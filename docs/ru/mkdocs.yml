@@ -56,6 +56,7 @@ nav:
   - tr: /tr/
   - uk: /uk/
   - zh: /zh/
+- async.md
 markdown_extensions:
 - toc:
     permalink: true
