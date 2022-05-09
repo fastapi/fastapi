@@ -127,7 +127,7 @@ async def serialize_response(
         if is_coroutine:
             value, errors_ = field.validate(response_content, {}, loc=("response",))
         else:
-            value, errors_ = await run_in_threadpool(
+            value, errors_ = await run_in_threadpool(  # type: ignore[misc]
                 field.validate, response_content, {}, loc=("response",)
             )
         if isinstance(errors_, ErrorWrapper):
