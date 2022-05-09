@@ -2,6 +2,7 @@
 
 ## Latest Changes
 
+* 🌐 Add Portuguese translation of `tutorial/extra-data-types.md`. PR [#4077](https://github.com/tiangolo/fastapi/pull/4077) by [@luccasmmg](https://github.com/luccasmmg).
 * 🌐 Update German translation for `docs/features.md`. PR [#3905](https://github.com/tiangolo/fastapi/pull/3905) by [@jomue](https://github.com/jomue).
 * ⬆ Upgrade Starlette from 0.18.0 to 0.19.0. PR [#4488](https://github.com/tiangolo/fastapi/pull/4488) by [@Kludex](https://github.com/Kludex).
 
