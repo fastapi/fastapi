@@ -127,7 +127,7 @@ async def serialize_response(
         if is_coroutine:
             value, errors_ = field.validate(response_content, {}, loc=("response",))
         else:
-            value, errors_ = await run_in_threadpool(
+            value, errors_ = await run_in_threadpool(  # type: ignore[misc]
                 field.validate, response_content, {}, loc=("response",)
             )
         if isinstance(errors_, ErrorWrapper):
@@ -649,7 +649,7 @@ class APIRouter(routing.Router):
         self, path: str, endpoint: Callable[..., Any], name: Optional[str] = None
     ) -> None:
         route = APIWebSocketRoute(
-            path,
+            self.prefix + path,
             endpoint=endpoint,
             name=name,
             dependency_overrides_provider=self.dependency_overrides_provider,
