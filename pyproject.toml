@@ -35,7 +35,7 @@ classifiers = [
     "Topic :: Internet :: WWW/HTTP",
 ]
 requires = [
-    "starlette ==0.17.1",
+    "starlette ==0.18.0",
     "pydantic >=1.6.2,!=1.7,!=1.7.1,!=1.7.2,!=1.7.3,!=1.8,!=1.8.1,<2.0.0",
 ]
 description-file = "README.md"
@@ -140,4 +140,6 @@ filterwarnings = [
     "error",
     # TODO: needed by asyncio in Python 3.9.7 https://bugs.python.org/issue45097, try to remove on 3.9.8
     'ignore:The loop argument is deprecated since Python 3\.8, and scheduled for removal in Python 3\.10:DeprecationWarning:asyncio',
+    # TODO: remove after dropping support for Python 3.6
+    'ignore:Python 3.6 is no longer supported by the Python core team. Therefore, support for it is deprecated in cryptography and will be removed in a future release.:UserWarning:jose',
 ]
