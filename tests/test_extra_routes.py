@@ -32,12 +32,12 @@ def delete_item(item_id: str, item: Item):
 
 @app.head("/items/{item_id}")
 def head_item(item_id: str):
-    return JSONResponse(headers={"x-fastapi-item-id": item_id})
+    return JSONResponse(None, headers={"x-fastapi-item-id": item_id})
 
 
 @app.options("/items/{item_id}")
 def options_item(item_id: str):
-    return JSONResponse(headers={"x-fastapi-item-id": item_id})
+    return JSONResponse(None, headers={"x-fastapi-item-id": item_id})
 
 
 @app.patch("/items/{item_id}")
@@ -47,7 +47,7 @@ def patch_item(item_id: str, item: Item):
 
 @app.trace("/items/{item_id}")
 def trace_item(item_id: str):
-    return JSONResponse(media_type="message/http")
+    return JSONResponse(None, media_type="message/http")
 
 
 client = TestClient(app)
