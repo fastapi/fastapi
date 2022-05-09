@@ -1,7 +1,9 @@
+from typing import Any, List
+
 import pytest
 from fastapi.params import Body, Cookie, Depends, Header, Param, Path, Query
 
-test_data = ["teststr", None, ..., 1, []]
+test_data: List[Any] = ["teststr", None, ..., 1, []]
 
 
 def get_user():

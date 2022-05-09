@@ -1,0 +1,29 @@
+name: FastAPI People
+
+on:
+  schedule:
+    - cron: "0 14 1 * *"
+  workflow_dispatch:
+    inputs:
+      debug_enabled:
+        description: 'Run the build with tmate debugging enabled (https://github.com/marketplace/actions/debugging-with-tmate)'     
+        required: false
+        default: false
+
+jobs:
+  fastapi-people:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      # Allow debugging with tmate
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
+        if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.debug_enabled }}
+        with:
+          limit-access-to-actor: true
+          token: ${{ secrets.ACTIONS_TOKEN }}
+          standard_token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: ./.github/actions/people
+        with:
+          token: ${{ secrets.ACTIONS_TOKEN }}
+          standard_token: ${{ secrets.GITHUB_TOKEN }}
