@@ -1,4 +1,4 @@
-from typing import Any, Sequence, Type
+from typing import Any, Dict, Optional, Sequence, Type
 
 from pydantic import BaseModel, ValidationError, create_model
 from pydantic.error_wrappers import ErrorList
