@@ -65,7 +65,7 @@ $ pip install "fastapi[all]"
     pip install "uvicorn[standard]"
     ```
 
-    Install each of the optional dependencies that you want to use.
+    And then install each of the optional dependencies that you want to use.
 
 ## Advanced User Guide
 
