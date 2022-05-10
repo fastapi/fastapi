@@ -1,5 +1,16 @@
 from enum import Enum
-from typing import Any, Callable, Coroutine, Dict, List, Optional, Sequence, Type, Union
+from typing import (
+    Any,
+    Awaitable,
+    Callable,
+    Coroutine,
+    Dict,
+    List,
+    Optional,
+    Sequence,
+    Type,
+    Union,
+)
 
 from fastapi import routing
 from fastapi.datastructures import Default, DefaultPlaceholder
@@ -121,11 +132,8 @@ class FastAPI(Starlette):
             generate_unique_id_function=generate_unique_id_function,
         )
         self.exception_handlers: Dict[
-            Union[int, Type[Exception]],
-            Callable[[Request, Any], Coroutine[Any, Any, Response]],
-        ] = (
-            {} if exception_handlers is None else dict(exception_handlers)
-        )
+            Any, Callable[[Request, Any], Union[Response, Awaitable[Response]]]
+        ] = ({} if exception_handlers is None else dict(exception_handlers))
         self.exception_handlers.setdefault(HTTPException, http_exception_handler)
         self.exception_handlers.setdefault(
             RequestValidationError, request_validation_exception_handler
