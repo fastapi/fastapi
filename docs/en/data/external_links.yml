@@ -32,6 +32,10 @@ articles:
     author_link: https://rodrigo-arenas.medium.com/
     link: https://medium.com/analytics-vidhya/serve-a-machine-learning-model-using-sklearn-fastapi-and-docker-85aabf96729b
     title: "Serve a machine learning model using Sklearn, FastAPI and Docker"
+  - author: Yashasvi Singh
+    author_link: https://hashnode.com/@aUnicornDev
+    link: https://aunicorndev.hashnode.dev/series/supafast-api
+    title: "Building an API with FastAPI and Supabase and Deploying on Deta"
   - author: Navule Pavan Kumar Rao
     author_link: https://www.linkedin.com/in/navule/
     link: https://www.tutlinks.com/deploy-fastapi-on-ubuntu-gunicorn-caddy-2/
