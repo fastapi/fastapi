@@ -478,11 +478,11 @@ class APIRouter(routing.Router):
         ),
     ) -> None:
         super().__init__(
-            routes=routes,  # type: ignore # in Starlette
+            routes=routes,
             redirect_slashes=redirect_slashes,
-            default=default,  # type: ignore # in Starlette
-            on_startup=on_startup,  # type: ignore # in Starlette
-            on_shutdown=on_shutdown,  # type: ignore # in Starlette
+            default=default,
+            on_startup=on_startup,
+            on_shutdown=on_shutdown,
         )
         if prefix:
             assert prefix.startswith("/"), "A path prefix must start with '/'"
@@ -757,7 +757,7 @@ class APIRouter(routing.Router):
                     generate_unique_id_function=current_generate_unique_id,
                 )
             elif isinstance(route, routing.Route):
-                methods = list(route.methods or [])  # type: ignore # in Starlette
+                methods = list(route.methods or [])
                 self.add_route(
                     prefix + route.path,
                     route.endpoint,
