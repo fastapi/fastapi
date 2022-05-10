@@ -213,6 +213,10 @@ articles:
     author_link: https://twitter.com/_nicoax
     link: https://blog.codecentric.de/2019/08/inbetriebnahme-eines-scikit-learn-modells-mit-onnx-und-fastapi/
     title: Inbetriebnahme eines scikit-learn-Modells mit ONNX und FastAPI
+  - author: Felix Schürmeyer
+    author_link: https://hellocoding.de/autor/felix-schuermeyer/
+    link: https://hellocoding.de/blog/coding-language/python/fastapi
+    title: REST-API Programmieren mittels Python und dem FastAPI Modul
   japanese:
   - author: '@bee2'
     author_link: https://qiita.com/bee2
