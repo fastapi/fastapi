@@ -13,7 +13,7 @@
 
 ### Automatische Dokumentation
 
-Mit einer interaktiven API-Dokumentation und explorativen webbasierten Benutzerschnittstellen. Da FastAPI auf OpenAPI basiert, gibt es hierzu mehrere Optionen, wobei zwei standartmäßig vorhanden sind.
+Mit einer interaktiven API-Dokumentation und explorativen webbasierten Benutzerschnittstellen. Da FastAPI auf OpenAPI basiert, gibt es hierzu mehrere Optionen, wobei zwei standardmäßig vorhanden sind.
 
 * <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank"><strong>Swagger UI</strong></a>, bietet interaktive Exploration: testen und rufen Sie ihre API direkt vom Webbrowser auf.
 
@@ -99,7 +99,7 @@ Hierdurch werden Sie nie wieder einen falschen Schlüsselnamen benutzen und spar
 
 FastAPI nutzt für alles sensible **Standard-Einstellungen**, welche optional überall konfiguriert werden können. Alle Parameter können ganz genau an Ihre Bedürfnisse angepasst werden, sodass sie genau die API definieren können, die sie brauchen.
 
-Aber standartmäßig, **"funktioniert einfach"** alles.
+Aber standardmäßig, **"funktioniert einfach"** alles.
 
 ### Validierung
 
@@ -159,9 +159,9 @@ Jede Integration wurde so entworfen, dass sie einfach zu nutzen ist (mit Abhäng
 
 ## Starlette's Merkmale
 
-**FastAPI** ist vollkommen kompatibel (und basiert auf) <a href="https://www.starlette.io/" class="external-link" target="_blank"><strong>Starlette</strong></a>. Das bedeutet, auch ihr eigener Starlett Quellcode funktioniert.
+**FastAPI** ist vollkommen kompatibel (und basiert auf) <a href="https://www.starlette.io/" class="external-link" target="_blank"><strong>Starlette</strong></a>. Das bedeutet, auch ihr eigener Starlette Quellcode funktioniert.
 
-`FastAPI` ist eigentlich eine Unterklasse von `Starlette`. Wenn sie also bereits Starlette kennen oder benutzen, können Sie das meiste Ihres Wissen direkt anwenden.
+`FastAPI` ist eigentlich eine Unterklasse von `Starlette`. Wenn Sie also bereits Starlette kennen oder benutzen, können Sie das meiste Ihres Wissens direkt anwenden.
 
 Mit **FastAPI** bekommen Sie viele von **Starlette**'s Funktionen (da FastAPI nur Starlette auf Steroiden ist):
 
