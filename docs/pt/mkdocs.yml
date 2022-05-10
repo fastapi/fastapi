@@ -64,6 +64,7 @@ nav:
   - tutorial/body-fields.md
   - tutorial/extra-data-types.md
   - tutorial/query-params-str-validations.md
+  - tutorial/cookie-params.md
   - Segurança:
     - tutorial/security/index.md
   - Guia de Usuário Avançado:
