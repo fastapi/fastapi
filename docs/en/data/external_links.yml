@@ -204,6 +204,10 @@ articles:
     author_link: https://medium.com/@williamhayes
     link: https://medium.com/@williamhayes/fastapi-starlette-debug-vs-prod-5f7561db3a59
     title: FastAPI/Starlette debug vs prod
+  - author: Mukul Mantosh  
+    author_link: https://twitter.com/MantoshMukul
+    link: https://www.jetbrains.com/pycharm/guide/tutorials/fastapi-aws-kubernetes/
+    title: Developing FastAPI Application using K8s & AWS
   german:
   - author: Nico Axtmann
     author_link: https://twitter.com/_nicoax
