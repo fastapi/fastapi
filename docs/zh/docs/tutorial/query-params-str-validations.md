@@ -26,7 +26,7 @@
 
 现在，将 `Query` 用作查询参数的默认值，并将它的 `max_length` 参数设置为 50：
 
-```Python hl_lines="7"
+```Python hl_lines="9"
 {!../../../docs_src/query_params_str_validations/tutorial002.py!}
 ```
 
@@ -58,7 +58,7 @@ q: str = Query(None, max_length=50)
 
 你还可以添加 `min_length` 参数：
 
-```Python hl_lines="7"
+```Python hl_lines="9"
 {!../../../docs_src/query_params_str_validations/tutorial003.py!}
 ```
 
@@ -66,7 +66,7 @@ q: str = Query(None, max_length=50)
 
 你可以定义一个参数值必须匹配的<abbr title="正则表达式或正则是定义字符串搜索模式的字符序列。">正则表达式</abbr>：
 
-```Python hl_lines="8"
+```Python hl_lines="10"
 {!../../../docs_src/query_params_str_validations/tutorial004.py!}
 ```
 
@@ -211,13 +211,13 @@ http://localhost:8000/items/
 
 你可以添加 `title`：
 
-```Python hl_lines="7"
+```Python hl_lines="10"
 {!../../../docs_src/query_params_str_validations/tutorial007.py!}
 ```
 
 以及 `description`：
 
-```Python hl_lines="11"
+```Python hl_lines="13"
 {!../../../docs_src/query_params_str_validations/tutorial008.py!}
 ```
 
@@ -239,7 +239,7 @@ http://127.0.0.1:8000/items/?item-query=foobaritems
 
 这时你可以用 `alias` 参数声明一个别名，该别名将用于在 URL 中查找查询参数值：
 
-```Python hl_lines="7"
+```Python hl_lines="9"
 {!../../../docs_src/query_params_str_validations/tutorial009.py!}
 ```
 
@@ -251,7 +251,7 @@ http://127.0.0.1:8000/items/?item-query=foobaritems
 
 那么将参数 `deprecated=True` 传入 `Query`：
 
-```Python hl_lines="16"
+```Python hl_lines="18"
 {!../../../docs_src/query_params_str_validations/tutorial010.py!}
 ```
 
