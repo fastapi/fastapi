@@ -25,7 +25,7 @@ async def contextmanager_in_threadpool(
     try:
         yield await run_in_threadpool(cm.__enter__)
     except Exception as e:
-        ok = await run_in_threadpool(cm.__exit__, type(e), e, None)
+        ok: bool = await run_in_threadpool(cm.__exit__, type(e), e, None)
         if not ok:
             raise e
     else:
