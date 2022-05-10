@@ -3,6 +3,7 @@ from fastapi.testclient import TestClient
 
 router = APIRouter()
 prefix_router = APIRouter()
+native_prefix_route = APIRouter(prefix="/native")
 app = FastAPI()
 
 
@@ -47,8 +48,16 @@ async def router_ws_decorator_depends(
     await websocket.close()
 
 
+@native_prefix_route.websocket("/")
+async def router_native_prefix_ws(websocket: WebSocket):
+    await websocket.accept()
+    await websocket.send_text("Hello, router with native prefix!")
+    await websocket.close()
+
+
 app.include_router(router)
 app.include_router(prefix_router, prefix="/prefix")
+app.include_router(native_prefix_route)
 
 
 def test_app():
@@ -70,6 +79,13 @@ def test_prefix_router():
     with client.websocket_connect("/prefix/") as websocket:
         data = websocket.receive_text()
         assert data == "Hello, router with prefix!"
+
+
+def test_native_prefix_router():
+    client = TestClient(app)
+    with client.websocket_connect("/native/") as websocket:
+        data = websocket.receive_text()
+        assert data == "Hello, router with native prefix!"
 
 
 def test_router2():
