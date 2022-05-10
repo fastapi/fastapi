@@ -12,6 +12,10 @@ articles:
     author_link: https://pystar.substack.com/
     link: https://pystar.substack.com/p/how-to-create-a-fake-certificate
     title: How to Create A Fake Certificate Authority And Generate TLS Certs for FastAPI
+  - author: Ben Gamble
+    author_link: https://uk.linkedin.com/in/bengamble7
+    link: https://ably.com/blog/realtime-ticket-booking-solution-kafka-fastapi-ably
+    title: Building a realtime ticket booking solution with Kafka, FastAPI, and Ably
   - author: Shahriyar(Shako) Rzayev
     author_link: https://www.linkedin.com/in/shahriyar-rzayev/
     link: https://www.azepug.az/posts/fastapi/#building-simple-e-commerce-with-nuxtjs-and-fastapi-series
