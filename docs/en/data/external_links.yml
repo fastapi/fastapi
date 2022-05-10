@@ -2,6 +2,10 @@ articles:
   english:
   - author: Kaustubh Gupta
     author_link: https://medium.com/@kaustubhgupta1828/
+    link: https://levelup.gitconnected.com/5-advance-features-of-fastapi-you-should-try-7c0ac7eebb3e
+    title: 5 Advanced Features of FastAPI You Should Try
+  - author: Kaustubh Gupta
+    author_link: https://medium.com/@kaustubhgupta1828/
     link: https://www.analyticsvidhya.com/blog/2021/06/deploying-ml-models-as-api-using-fastapi-and-heroku/
     title: Deploying ML Models as API Using FastAPI and Heroku
   - link: https://jarmos.netlify.app/posts/using-github-actions-to-deploy-a-fastapi-project-to-heroku/
