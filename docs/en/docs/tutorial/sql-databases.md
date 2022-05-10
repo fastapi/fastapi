@@ -491,7 +491,7 @@ You can find an example of Alembic in a FastAPI project in the templates from [P
 
 ### Create a dependency
 
-Now use the `SessionLocal` class we created in the `sql_app/databases.py` file to create a dependency.
+Now use the `SessionLocal` class we created in the `sql_app/database.py` file to create a dependency.
 
 We need to have an independent database session/connection (`SessionLocal`) per request, use the same session through all the request and then close it after the request is finished.
 
