@@ -20,6 +20,7 @@ def Path(  # noqa: N802
     example: Any = Undefined,
     examples: Optional[Dict[str, Any]] = None,
     deprecated: Optional[bool] = None,
+    include_in_schema: bool = True,
     **extra: Any,
 ) -> Any:
     return params.Path(
@@ -37,6 +38,7 @@ def Path(  # noqa: N802
         example=example,
         examples=examples,
         deprecated=deprecated,
+        include_in_schema=include_in_schema,
         **extra,
     )
 
@@ -57,6 +59,7 @@ def Query(  # noqa: N802
     example: Any = Undefined,
     examples: Optional[Dict[str, Any]] = None,
     deprecated: Optional[bool] = None,
+    include_in_schema: bool = True,
     **extra: Any,
 ) -> Any:
     return params.Query(
@@ -74,6 +77,7 @@ def Query(  # noqa: N802
         example=example,
         examples=examples,
         deprecated=deprecated,
+        include_in_schema=include_in_schema,
         **extra,
     )
 
@@ -95,6 +99,7 @@ def Header(  # noqa: N802
     example: Any = Undefined,
     examples: Optional[Dict[str, Any]] = None,
     deprecated: Optional[bool] = None,
+    include_in_schema: bool = True,
     **extra: Any,
 ) -> Any:
     return params.Header(
@@ -113,6 +118,7 @@ def Header(  # noqa: N802
         example=example,
         examples=examples,
         deprecated=deprecated,
+        include_in_schema=include_in_schema,
         **extra,
     )
 
@@ -133,6 +139,7 @@ def Cookie(  # noqa: N802
     example: Any = Undefined,
     examples: Optional[Dict[str, Any]] = None,
     deprecated: Optional[bool] = None,
+    include_in_schema: bool = True,
     **extra: Any,
 ) -> Any:
     return params.Cookie(
@@ -150,6 +157,7 @@ def Cookie(  # noqa: N802
         example=example,
         examples=examples,
         deprecated=deprecated,
+        include_in_schema=include_in_schema,
         **extra,
     )
 
