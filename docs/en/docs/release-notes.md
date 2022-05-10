@@ -2,15 +2,26 @@
 
 ## Latest Changes
 
+### Upgrades
+
+* ⬆ Upgrade Starlette from 0.19.0 to 0.19.1. PR [#4819](https://github.com/tiangolo/fastapi/pull/4819) by [@Kludex](https://github.com/Kludex).
+
+### Docs
+
+* 📝 Add link to german article: REST-API Programmieren mittels Python und dem FastAPI Modul. PR [#4624](https://github.com/tiangolo/fastapi/pull/4624) by [@fschuermeyer](https://github.com/fschuermeyer).
+* 📝 Add external link: PyCharm Guide to FastAPI. PR [#4512](https://github.com/tiangolo/fastapi/pull/4512) by [@mukulmantosh](https://github.com/mukulmantosh).
+* 📝 Add external link to article: Building an API with FastAPI and Supabase and Deploying on Deta. PR [#4440](https://github.com/tiangolo/fastapi/pull/4440) by [@aUnicornDev](https://github.com/aUnicornDev).
+* ✏ Fix small typo in `docs/en/docs/tutorial/security/first-steps.md`. PR [#4515](https://github.com/tiangolo/fastapi/pull/4515) by [@KikoIlievski](https://github.com/KikoIlievski).
+
+### Translations
+
 * 🌐 Add Polish translation for `docs/pl/docs/tutorial/index.md`. PR [#4516](https://github.com/tiangolo/fastapi/pull/4516) by [@MKaczkow](https://github.com/MKaczkow).
 * ✏ Fix typo in deployment. PR [#4629](https://github.com/tiangolo/fastapi/pull/4629) by [@raisulislam541](https://github.com/raisulislam541).
 * 🌐 Add Portuguese translation for `docs/pt/docs/help-fastapi.md`. PR [#4583](https://github.com/tiangolo/fastapi/pull/4583) by [@mateusjs](https://github.com/mateusjs).
-* 📝 Add link to german article: REST-API Programmieren mittels Python und dem FastAPI Modul. PR [#4624](https://github.com/tiangolo/fastapi/pull/4624) by [@fschuermeyer](https://github.com/fschuermeyer).
+
+### Internal
+
 * 🔧 Add notifications in issue for Uzbek translations. PR [#4884](https://github.com/tiangolo/fastapi/pull/4884) by [@tiangolo](https://github.com/tiangolo).
-* ✏ Fix small typo in `docs/en/docs/tutorial/security/first-steps.md`. PR [#4515](https://github.com/tiangolo/fastapi/pull/4515) by [@KikoIlievski](https://github.com/KikoIlievski).
-* 📝 Add external link: PyCharm Guide to FastAPI. PR [#4512](https://github.com/tiangolo/fastapi/pull/4512) by [@mukulmantosh](https://github.com/mukulmantosh).
-* 📝 Add external link to article: Building an API with FastAPI and Supabase and Deploying on Deta. PR [#4440](https://github.com/tiangolo/fastapi/pull/4440) by [@aUnicornDev](https://github.com/aUnicornDev).
-* ⬆ Upgrade Starlette from 0.19.0 to 0.19.1. PR [#4819](https://github.com/tiangolo/fastapi/pull/4819) by [@Kludex](https://github.com/Kludex).
 
 ## 0.77.0
 
