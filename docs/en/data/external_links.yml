@@ -1,5 +1,9 @@
 articles:
   english:
+  - author: Silvan Melchior
+    author_link: https://github.com/silvanmelchior
+    link: https://blog.devgenius.io/seamless-fastapi-configuration-with-confz-90949c14ea12
+    title: Seamless FastAPI Configuration with ConfZ
   - author: Kaustubh Gupta
     author_link: https://medium.com/@kaustubhgupta1828/
     link: https://levelup.gitconnected.com/5-advance-features-of-fastapi-you-should-try-7c0ac7eebb3e
