@@ -2,7 +2,176 @@
 
 ## Latest Changes
 
+* ⬆ Upgrade Starlette from 0.19.0 to 0.19.1. PR [#4819](https://github.com/tiangolo/fastapi/pull/4819) by [@Kludex](https://github.com/Kludex).
+
+## 0.77.0
+
+### Upgrades
+
+* ⬆ Upgrade Starlette from 0.18.0 to 0.19.0. PR [#4488](https://github.com/tiangolo/fastapi/pull/4488) by [@Kludex](https://github.com/Kludex).
+    * When creating an explicit `JSONResponse` the `content` argument is now required.
+
+### Docs
+
+* 📝 Add external link to article: Seamless FastAPI Configuration with ConfZ. PR [#4414](https://github.com/tiangolo/fastapi/pull/4414) by [@silvanmelchior](https://github.com/silvanmelchior).
+* 📝 Add external link to article: 5 Advanced Features of FastAPI You Should Try. PR [#4436](https://github.com/tiangolo/fastapi/pull/4436) by [@kaustubhgupta](https://github.com/kaustubhgupta).
+* ✏ Reword to improve legibility of docs about `TestClient`. PR [#4389](https://github.com/tiangolo/fastapi/pull/4389) by [@rgilton](https://github.com/rgilton).
+* 📝 Add external link to blog post about Kafka, FastAPI, and Ably. PR [#4044](https://github.com/tiangolo/fastapi/pull/4044) by [@Ugbot](https://github.com/Ugbot).
+* ✏ Fix typo in `docs/en/docs/tutorial/sql-databases.md`. PR [#4875](https://github.com/tiangolo/fastapi/pull/4875) by [@wpyoga](https://github.com/wpyoga).
+* ✏ Fix typo in `docs/en/docs/async.md`. PR [#4726](https://github.com/tiangolo/fastapi/pull/4726) by [@Prezu](https://github.com/Prezu).
+
+### Translations
+
+* 🌐 Update source example highlights for `docs/zh/docs/tutorial/query-params-str-validations.md`. PR [#4237](https://github.com/tiangolo/fastapi/pull/4237) by [@caimaoy](https://github.com/caimaoy).
+* 🌐 Remove translation docs references to aiofiles as it's no longer needed since AnyIO. PR [#3594](https://github.com/tiangolo/fastapi/pull/3594) by [@alonme](https://github.com/alonme).
+* ✏ 🌐 Fix typo in Portuguese translation for `docs/pt/docs/tutorial/path-params.md`. PR [#4722](https://github.com/tiangolo/fastapi/pull/4722) by [@CleoMenezesJr](https://github.com/CleoMenezesJr).
+* 🌐 Fix live docs server for translations for some languages. PR [#4729](https://github.com/tiangolo/fastapi/pull/4729) by [@wakabame](https://github.com/wakabame).
+* 🌐 Add Portuguese translation for `docs/pt/docs/tutorial/cookie-params.md`. PR [#4112](https://github.com/tiangolo/fastapi/pull/4112) by [@lbmendes](https://github.com/lbmendes).
+* 🌐 Fix French translation for `docs/tutorial/body.md`. PR [#4332](https://github.com/tiangolo/fastapi/pull/4332) by [@Smlep](https://github.com/Smlep).
+* 🌐 Add Japanese translation for `docs/ja/docs/advanced/conditional-openapi.md`. PR [#2631](https://github.com/tiangolo/fastapi/pull/2631) by [@sh0nk](https://github.com/sh0nk).
+* 🌐 Fix Japanese translation of `docs/ja/docs/tutorial/body.md`. PR [#3062](https://github.com/tiangolo/fastapi/pull/3062) by [@a-takahashi223](https://github.com/a-takahashi223).
+* 🌐 Add Portuguese translation for `docs/pt/docs/tutorial/background-tasks.md`. PR [#2170](https://github.com/tiangolo/fastapi/pull/2170) by [@izaguerreiro](https://github.com/izaguerreiro).
+* 🌐 Add Portuguese translation for `docs/deployment/deta.md`. PR [#4442](https://github.com/tiangolo/fastapi/pull/4442) by [@lsglucas](https://github.com/lsglucas).
+* 🌐 Add Russian translation for `docs/async.md`. PR [#4036](https://github.com/tiangolo/fastapi/pull/4036) by [@Winand](https://github.com/Winand).
+* 🌐 Add Portuguese translation for `docs/tutorial/body.md`. PR [#3960](https://github.com/tiangolo/fastapi/pull/3960) by [@leandrodesouzadev](https://github.com/leandrodesouzadev).
+* 🌐 Add Portuguese translation of `tutorial/extra-data-types.md`. PR [#4077](https://github.com/tiangolo/fastapi/pull/4077) by [@luccasmmg](https://github.com/luccasmmg).
+* 🌐 Update German translation for `docs/features.md`. PR [#3905](https://github.com/tiangolo/fastapi/pull/3905) by [@jomue](https://github.com/jomue).
+
+## 0.76.0
+
+### Upgrades
+
+* ⬆ Upgrade Starlette from 0.17.1 to 0.18.0. PR [#4483](https://github.com/tiangolo/fastapi/pull/4483) by [@Kludex](https://github.com/Kludex).
+
+### Internal
+
+* 👥 Update FastAPI People. PR [#4847](https://github.com/tiangolo/fastapi/pull/4847) by [@github-actions[bot]](https://github.com/apps/github-actions).
+* 🔧 Add Budget Insight sponsor. PR [#4824](https://github.com/tiangolo/fastapi/pull/4824) by [@tiangolo](https://github.com/tiangolo).
+* 🍱 Update sponsor, ExoFlare badge. PR [#4822](https://github.com/tiangolo/fastapi/pull/4822) by [@tiangolo](https://github.com/tiangolo).
+* 🔧 Update sponsors, enable Dropbase again, update TalkPython link. PR [#4821](https://github.com/tiangolo/fastapi/pull/4821) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.75.2
+
+This release includes upgrades to third-party packages that handle security issues. Although there's a chance these issues don't affect you in particular, please upgrade as soon as possible.
+
+### Fixes
+
+* ✅ Fix new/recent tests with new fixed `ValidationError` JSON Schema. PR [#4806](https://github.com/tiangolo/fastapi/pull/4806) by [@tiangolo](https://github.com/tiangolo).
+* 🐛 Fix JSON Schema for `ValidationError` at field `loc`. PR [#3810](https://github.com/tiangolo/fastapi/pull/3810) by [@dconathan](https://github.com/dconathan).
+* 🐛 Fix support for prefix on APIRouter WebSockets. PR [#2640](https://github.com/tiangolo/fastapi/pull/2640) by [@Kludex](https://github.com/Kludex).
+
+### Upgrades
+
+* ⬆️ Update ujson ranges for CVE-2021-45958. PR [#4804](https://github.com/tiangolo/fastapi/pull/4804) by [@tiangolo](https://github.com/tiangolo).
+* ⬆️ Upgrade dependencies upper range for extras "all". PR [#4803](https://github.com/tiangolo/fastapi/pull/4803) by [@tiangolo](https://github.com/tiangolo).
+* ⬆ Upgrade Swagger UI - swagger-ui-dist@4. This handles a security issue in Swagger UI itself where it could be possible to inject HTML into Swagger UI. Please upgrade as soon as you can, in particular if you expose your Swagger UI (`/docs`) publicly to non-expert users. PR [#4347](https://github.com/tiangolo/fastapi/pull/4347) by [@RAlanWright](https://github.com/RAlanWright).
+
+### Internal
+
+* 🔧 Update sponsors, add: ExoFlare, Ines Course; remove: Dropbase, Vim.so, Calmcode; update: Striveworks, TalkPython and TestDriven.io. PR [#4805](https://github.com/tiangolo/fastapi/pull/4805) by [@tiangolo](https://github.com/tiangolo).
+* ⬆️ Upgrade Codecov GitHub Action. PR [#4801](https://github.com/tiangolo/fastapi/pull/4801) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.75.1
+
+### Translations
+
+* 🌐 Start Dutch translations. PR [#4703](https://github.com/tiangolo/fastapi/pull/4703) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Start Persian/Farsi translations. PR [#4243](https://github.com/tiangolo/fastapi/pull/4243) by [@aminalaee](https://github.com/aminalaee).
+* ✏ Reword sentence about handling errors. PR [#1993](https://github.com/tiangolo/fastapi/pull/1993) by [@khuhroproeza](https://github.com/khuhroproeza).
+
+### Internal
+
+* 👥 Update FastAPI People. PR [#4752](https://github.com/tiangolo/fastapi/pull/4752) by [@github-actions[bot]](https://github.com/apps/github-actions).
+* ➖ Temporarily remove typer-cli from dependencies and upgrade Black to unblock Pydantic CI. PR [#4754](https://github.com/tiangolo/fastapi/pull/4754) by [@tiangolo](https://github.com/tiangolo).
+* 🔧 Add configuration to notify Dutch translations. PR [#4702](https://github.com/tiangolo/fastapi/pull/4702) by [@tiangolo](https://github.com/tiangolo).
+* 👥 Update FastAPI People. PR [#4699](https://github.com/tiangolo/fastapi/pull/4699) by [@github-actions[bot]](https://github.com/apps/github-actions).
+* 🐛 Fix FastAPI People generation to include missing file in commit. PR [#4695](https://github.com/tiangolo/fastapi/pull/4695) by [@tiangolo](https://github.com/tiangolo).
+* 🔧 Update Classiq sponsor links. PR [#4688](https://github.com/tiangolo/fastapi/pull/4688) by [@tiangolo](https://github.com/tiangolo).
+* 🔧 Add Classiq sponsor. PR [#4671](https://github.com/tiangolo/fastapi/pull/4671) by [@tiangolo](https://github.com/tiangolo).
+* 📝 Add Jina's QA Bot to the docs to help people that want to ask quick questions. PR [#4655](https://github.com/tiangolo/fastapi/pull/4655) by [@tiangolo](https://github.com/tiangolo) based on original PR [#4626](https://github.com/tiangolo/fastapi/pull/4626) by [@hanxiao](https://github.com/hanxiao).
+
+## 0.75.0
+
+### Features
+
+* ✨ Add support for custom `generate_unique_id_function` and docs for generating clients. New docs: [Advanced - Generate Clients](https://fastapi.tiangolo.com/advanced/generate-clients/). PR [#4650](https://github.com/tiangolo/fastapi/pull/4650) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.74.1
+
+### Features
+
+* ✨ Include route in scope to allow middleware and other tools to extract its information. PR [#4603](https://github.com/tiangolo/fastapi/pull/4603) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.74.0
+
+### Breaking Changes
+
+* ✨ Update internal `AsyncExitStack` to fix context for dependencies with `yield`. PR [#4575](https://github.com/tiangolo/fastapi/pull/4575) by [@tiangolo](https://github.com/tiangolo).
+
+Dependencies with `yield` can now catch `HTTPException` and custom exceptions. For example:
+
+```Python
+async def get_database():
+    with Session() as session:
+        try:
+            yield session
+        except HTTPException:
+            session.rollback()
+            raise
+        finally:
+            session.close()
+```
+
+After the dependency with `yield` handles the exception (or not) the exception is raised again. So that any exception handlers can catch it, or ultimately the default internal `ServerErrorMiddleware`.
+
+If you depended on exceptions not being received by dependencies with `yield`, and receiving an exception breaks the code after `yield`, you can use a block with `try` and `finally`:
+
+```Python
+async def do_something():
+    try:
+        yield something
+    finally:
+        some_cleanup()
+```
+
+...that way the `finally` block is run regardless of any exception that might happen.
+
+### Features
+
+* The same PR [#4575](https://github.com/tiangolo/fastapi/pull/4575) from above also fixes the `contextvars` context for the code before and after `yield`. This was the main objective of that PR.
+
+This means that now, if you set a value in a context variable before `yield`, the value would still be available after `yield` (as you would intuitively expect). And it also means that you can reset the context variable with a token afterwards.
+
+For example, this works correctly now:
+
+```Python
+from contextvars import ContextVar
+from typing import Any, Dict, Optional
+
+
+legacy_request_state_context_var: ContextVar[Optional[Dict[str, Any]]] = ContextVar(
+    "legacy_request_state_context_var", default=None
+)
+
+async def set_up_request_state_dependency():
+    request_state = {"user": "deadpond"}
+    contextvar_token = legacy_request_state_context_var.set(request_state)
+    yield request_state
+    legacy_request_state_context_var.reset(contextvar_token)
+```
+
+...before this change it would raise an error when resetting the context variable, because the `contextvars` context was different, because of the way it was implemented.
+
+**Note**: You probably don't need `contextvars`, and you should probably avoid using them. But they are powerful and useful in some advanced scenarios, for example, migrating from code that used Flask's `g` semi-global variable.
+
+**Technical Details**: If you want to know more of the technical details you can check out the PR description [#4575](https://github.com/tiangolo/fastapi/pull/4575).
+
+### Internal
+
+* 🔧 Add Striveworks sponsor. PR [#4596](https://github.com/tiangolo/fastapi/pull/4596) by [@tiangolo](https://github.com/tiangolo).
+* 💚 Only build docs on push when on master to avoid duplicate runs from PRs. PR [#4564](https://github.com/tiangolo/fastapi/pull/4564) by [@tiangolo](https://github.com/tiangolo).
 * 👥 Update FastAPI People. PR [#4502](https://github.com/tiangolo/fastapi/pull/4502) by [@github-actions[bot]](https://github.com/apps/github-actions).
+
 ## 0.73.0
 
 ### Features
