@@ -64,6 +64,18 @@ They will be added to the OpenAPI schema and used by the automatic documentation
 
 <img src="/img/tutorial/path-operation-configuration/image01.png">
 
+### Tags with Enums
+
+If you have a big application, you might end up accumulating **several tags**, and you would want to make sure you always use the **same tag** for related *path operations*.
+
+In these cases, it could make sense to store the tags in an `Enum`.
+
+**FastAPI** supports that the same way as with plain strings:
+
+```Python hl_lines="1  8-10  13  18"
+{!../../../docs_src/path_operation_configuration/tutorial002b.py!}
+```
+
 ## Summary and description
 
 You can add a `summary` and `description`:
