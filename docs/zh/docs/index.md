@@ -40,13 +40,16 @@ FastAPI 是一个用于构建 API 的现代、快速（高性能）的 web 框�
 
 <small>* 根据对某个构建线上应用的内部开发团队所进行的测试估算得出。</small>
 
-## Gold Sponsors
+## Sponsors
 
 <!-- sponsors -->
 
 {% if sponsors %}
 {% for sponsor in sponsors.gold -%}
-<a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}"></a>
+<a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
+{% endfor -%}
+{%- for sponsor in sponsors.silver -%}
+<a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
 {% endfor %}
 {% endif %}
 
@@ -440,7 +443,6 @@ item: Item
 用于 Starlette：
 
 * <a href="https://requests.readthedocs.io" target="_blank"><code>requests</code></a> - 使用 `TestClient` 时安装。
-* <a href="https://github.com/Tinche/aiofiles" target="_blank"><code>aiofiles</code></a> - 使用 `FileResponse` 或 `StaticFiles` 时安装。
 * <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - 使用默认模板配置时安装。
 * <a href="https://andrew-d.github.io/python-multipart/" target="_blank"><code>python-multipart</code></a> - 需要通过 `request.form()` 对表单进行<abbr title="将来自 HTTP 请求中的字符串转换为 Python 数据类型">「解析」</abbr>时安装。
 * <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - 需要 `SessionMiddleware` 支持时安装。

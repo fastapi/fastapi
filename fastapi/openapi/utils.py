@@ -1,4 +1,6 @@
 import http.client
+import inspect
+import warnings
 from enum import Enum
 from typing import Any, Dict, List, Optional, Sequence, Set, Tuple, Type, Union, cast
 
@@ -36,7 +38,11 @@ validation_error_definition = {
     "title": "ValidationError",
     "type": "object",
     "properties": {
-        "loc": {"title": "Location", "type": "array", "items": {"type": "string"}},
+        "loc": {
+            "title": "Location",
+            "type": "array",
+            "items": {"anyOf": [{"type": "string"}, {"type": "integer"}]},
+        },
         "msg": {"title": "Message", "type": "string"},
         "type": {"title": "Error Type", "type": "string"},
     },
@@ -91,6 +97,8 @@ def get_openapi_operation_parameters(
     for param in all_route_params:
         field_info = param.field_info
         field_info = cast(Param, field_info)
+        if not field_info.include_in_schema:
+            continue
         parameter = {
             "name": param.alias,
             "in": field_info.in_.value,
@@ -137,7 +145,15 @@ def get_openapi_operation_request_body(
     return request_body_oai
 
 
-def generate_operation_id(*, route: routing.APIRoute, method: str) -> str:
+def generate_operation_id(
+    *, route: routing.APIRoute, method: str
+) -> str:  # pragma: nocover
+    warnings.warn(
+        "fastapi.openapi.utils.generate_operation_id() was deprecated, "
+        "it is not used internally, and will be removed soon",
+        DeprecationWarning,
+        stacklevel=2,
+    )
     if route.operation_id:
         return route.operation_id
     path: str = route.path_format
@@ -151,7 +167,7 @@ def generate_operation_summary(*, route: routing.APIRoute, method: str) -> str:
 
 
 def get_openapi_operation_metadata(
-    *, route: routing.APIRoute, method: str
+    *, route: routing.APIRoute, method: str, operation_ids: Set[str]
 ) -> Dict[str, Any]:
     operation: Dict[str, Any] = {}
     if route.tags:
@@ -159,14 +175,25 @@ def get_openapi_operation_metadata(
     operation["summary"] = generate_operation_summary(route=route, method=method)
     if route.description:
         operation["description"] = route.description
-    operation["operationId"] = generate_operation_id(route=route, method=method)
+    operation_id = route.operation_id or route.unique_id
+    if operation_id in operation_ids:
+        message = (
+            f"Duplicate Operation ID {operation_id} for function "
+            + f"{route.endpoint.__name__}"
+        )
+        file_name = getattr(route.endpoint, "__globals__", {}).get("__file__")
+        if file_name:
+            message += f" at {file_name}"
+        warnings.warn(message)
+    operation_ids.add(operation_id)
+    operation["operationId"] = operation_id
     if route.deprecated:
         operation["deprecated"] = route.deprecated
     return operation
 
 
 def get_openapi_path(
-    *, route: routing.APIRoute, model_name_map: Dict[type, str]
+    *, route: routing.APIRoute, model_name_map: Dict[type, str], operation_ids: Set[str]
 ) -> Tuple[Dict[str, Any], Dict[str, Any], Dict[str, Any]]:
     path = {}
     security_schemes: Dict[str, Any] = {}
@@ -180,7 +207,9 @@ def get_openapi_path(
     route_response_media_type: Optional[str] = current_response_class.media_type
     if route.include_in_schema:
         for method in route.methods:
-            operation = get_openapi_operation_metadata(route=route, method=method)
+            operation = get_openapi_operation_metadata(
+                route=route, method=method, operation_ids=operation_ids
+            )
             parameters: List[Dict[str, Any]] = []
             flat_dependant = get_flat_dependant(route.dependant, skip_repeats=True)
             security_definitions, operation_security = get_openapi_security_definitions(
@@ -214,11 +243,25 @@ def get_openapi_path(
                             cb_security_schemes,
                             cb_definitions,
                         ) = get_openapi_path(
-                            route=callback, model_name_map=model_name_map
+                            route=callback,
+                            model_name_map=model_name_map,
+                            operation_ids=operation_ids,
                         )
                         callbacks[callback.name] = {callback.path: cb_path}
                 operation["callbacks"] = callbacks
-            status_code = str(route.status_code)
+            if route.status_code is not None:
+                status_code = str(route.status_code)
+            else:
+                # It would probably make more sense for all response classes to have an
+                # explicit default status_code, and to extract it from them, instead of
+                # doing this inspection tricks, that would probably be in the future
+                # TODO: probably make status_code a default class attribute for all
+                # responses in Starlette
+                response_signature = inspect.signature(current_response_class.__init__)
+                status_code_param = response_signature.parameters.get("status_code")
+                if status_code_param is not None:
+                    if isinstance(status_code_param.default, int):
+                        status_code = str(status_code_param.default)
             operation.setdefault("responses", {}).setdefault(status_code, {})[
                 "description"
             ] = route.response_description
@@ -304,6 +347,8 @@ def get_openapi_path(
                             "HTTPValidationError": validation_error_response_definition,
                         }
                     )
+            if route.openapi_extra:
+                deep_dict_update(operation, route.openapi_extra)
             path[method.lower()] = operation
     return path, security_schemes, definitions
 
@@ -349,15 +394,25 @@ def get_openapi(
     routes: Sequence[BaseRoute],
     tags: Optional[List[Dict[str, Any]]] = None,
     servers: Optional[List[Dict[str, Union[str, Any]]]] = None,
+    terms_of_service: Optional[str] = None,
+    contact: Optional[Dict[str, Union[str, Any]]] = None,
+    license_info: Optional[Dict[str, Union[str, Any]]] = None,
 ) -> Dict[str, Any]:
-    info = {"title": title, "version": version}
+    info: Dict[str, Any] = {"title": title, "version": version}
     if description:
         info["description"] = description
+    if terms_of_service:
+        info["termsOfService"] = terms_of_service
+    if contact:
+        info["contact"] = contact
+    if license_info:
+        info["license"] = license_info
     output: Dict[str, Any] = {"openapi": openapi_version, "info": info}
     if servers:
         output["servers"] = servers
     components: Dict[str, Dict[str, Any]] = {}
     paths: Dict[str, Dict[str, Any]] = {}
+    operation_ids: Set[str] = set()
     flat_models = get_flat_models_from_routes(routes)
     model_name_map = get_model_name_map(flat_models)
     definitions = get_model_definitions(
@@ -365,7 +420,9 @@ def get_openapi(
     )
     for route in routes:
         if isinstance(route, routing.APIRoute):
-            result = get_openapi_path(route=route, model_name_map=model_name_map)
+            result = get_openapi_path(
+                route=route, model_name_map=model_name_map, operation_ids=operation_ids
+            )
             if result:
                 path, security_schemes, path_definitions = result
                 if path:

@@ -9,5 +9,5 @@ async def create_file(file: bytes = File(...)):
 
 
 @app.post("/uploadfile/")
-async def create_upload_file(file: UploadFile = File(...)):
+async def create_upload_file(file: UploadFile):
     return {"filename": file.filename}
