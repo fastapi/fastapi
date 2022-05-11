@@ -116,7 +116,7 @@ The cashier 💁 gives you the number of your turn.
 
 While you are waiting, you go with your crush 😍 and pick a table, you sit and talk with your crush 😍 for a long time (as your burgers are very fancy and take some time to prepare ✨🍔✨).
 
-As you are sitting on the table with your crush 😍, while you wait for the burgers 🍔, you can spend that time admiring how awesome, cute and smart your crush is ✨😍✨.
+As you are sitting at the table with your crush 😍, while you wait for the burgers 🍔, you can spend that time admiring how awesome, cute and smart your crush is ✨😍✨.
 
 While waiting and talking to your crush 😍, from time to time, you check the number displayed on the counter to see if it's your turn already.
 
@@ -134,7 +134,7 @@ Then, when it's your turn, you do actual "productive" work 🤓, you process the
 
 But then, even though you still don't have your burgers 🍔, your work with the cashier 💁 is "on pause" ⏸, because you have to wait 🕙 for your burgers to be ready.
 
-But as you go away from the counter and sit on the table with a number for your turn, you can switch 🔀 your attention to your crush 😍, and "work" ⏯ 🤓 on that. Then you are again doing something very "productive" 🤓, as is flirting with your crush 😍.
+But as you go away from the counter and sit at the table with a number for your turn, you can switch 🔀 your attention to your crush 😍, and "work" ⏯ 🤓 on that. Then you are again doing something very "productive" 🤓, as is flirting with your crush 😍.
 
 Then the cashier 💁 says "I'm finished with doing the burgers" 🍔 by putting your number on the counter's display, but you don't jump like crazy immediately when the displayed number changes to your turn number. You know no one will steal your burgers 🍔 because you have the number of your turn, and they have theirs.
 

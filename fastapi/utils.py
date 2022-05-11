@@ -1,8 +1,9 @@
 import functools
 import re
+import warnings
 from dataclasses import is_dataclass
 from enum import Enum
-from typing import Any, Dict, Optional, Set, Type, Union, cast
+from typing import TYPE_CHECKING, Any, Dict, Optional, Set, Type, Union, cast
 
 import fastapi
 from fastapi.datastructures import DefaultPlaceholder, DefaultType
@@ -12,6 +13,9 @@ from pydantic.class_validators import Validator
 from pydantic.fields import FieldInfo, ModelField, UndefinedType
 from pydantic.schema import model_process_schema
 from pydantic.utils import lenient_issubclass
+
+if TYPE_CHECKING:  # pragma: nocover
+    from .routing import APIRoute
 
 
 def get_model_definitions(
@@ -119,10 +123,26 @@ def create_cloned_field(
     return new_field
 
 
-def generate_operation_id_for_path(*, name: str, path: str, method: str) -> str:
+def generate_operation_id_for_path(
+    *, name: str, path: str, method: str
+) -> str:  # pragma: nocover
+    warnings.warn(
+        "fastapi.utils.generate_operation_id_for_path() was deprecated, "
+        "it is not used internally, and will be removed soon",
+        DeprecationWarning,
+        stacklevel=2,
+    )
     operation_id = name + path
     operation_id = re.sub("[^0-9a-zA-Z_]", "_", operation_id)
     operation_id = operation_id + "_" + method.lower()
+    return operation_id
+
+
+def generate_unique_id(route: "APIRoute") -> str:
+    operation_id = route.name + route.path_format
+    operation_id = re.sub("[^0-9a-zA-Z_]", "_", operation_id)
+    assert route.methods
+    operation_id = operation_id + "_" + list(route.methods)[0].lower()
     return operation_id
 
 

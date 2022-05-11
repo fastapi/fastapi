@@ -252,7 +252,7 @@ The second type parameter is for the values of the `dict`:
 === "Python 3.9 and above"
 
     ```Python hl_lines="1"
-    {!> ../../../docs_src/python_types/tutorial008.py!}
+    {!> ../../../docs_src/python_types/tutorial008_py39.py!}
     ```
 
 This means:

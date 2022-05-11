@@ -179,7 +179,7 @@ path -> item_id
     如果您觉得现在还用不到以下技术细节，可以先跳过下面的内容。
 
 
-`RequestValidationError` 是 Pydantic 的 <a href="https://pydantic-docs.helpmanual.io/#error-handling" class="external-link" target="_blank">`ValidationError`</a> 的子类。
+`RequestValidationError` 是 Pydantic 的 <a href="https://pydantic-docs.helpmanual.io/usage/models/#error-handling" class="external-link" target="_blank">`ValidationError`</a> 的子类。
 
 **FastAPI** 调用的就是 `RequestValidationError` 类，因此，如果在 `response_model` 中使用 Pydantic 模型，且数据有错误时，在日志中就会看到这个错误。
 
