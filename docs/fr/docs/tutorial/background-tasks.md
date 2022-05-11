@@ -81,7 +81,7 @@ Plus de détails sont disponibles dans <a href="https://www.starlette.io/backgro
 
 ## Avertissement
 
-Si vous avez besoin de réaliser des traitements lourds en tâche d'arrière-plan et que vous n'avez pas besoin que ces traitements aient lieu dans le même process (par exemple, pas besoin de partager la mémoire, les variables, etc.), il peut s'avérer profitable d'utiliser des outils plus importants tels que <a href="https://docs.celeryproject.org" class="external-link" target="_blank">Celery</a>.
+Si vous avez besoin de réaliser des traitements lourds en tâche d'arrière-plan et que vous n'avez pas besoin que ces traitements aient lieu dans le même process (par exemple, pas besoin de partager la mémoire, les variables, etc.), il peut s'avérer profitable d'utiliser des outils plus importants tels que <a href="https://docs.celeryq.dev" class="external-link" target="_blank">Celery</a>.
 
 Ces outils nécessitent généralement des configurations plus complexes ainsi qu'un gestionnaire de queue de message, comme RabbitMQ ou Redis, mais ils permettent d'exécuter des tâches d'arrière-plan dans différents process, et potentiellement, sur plusieurs serveurs.
 
