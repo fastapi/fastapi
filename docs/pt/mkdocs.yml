@@ -60,8 +60,11 @@ nav:
   - tutorial/index.md
   - tutorial/first-steps.md
   - tutorial/path-params.md
+  - tutorial/body.md
   - tutorial/body-fields.md
+  - tutorial/extra-data-types.md
   - tutorial/query-params-str-validations.md
+  - tutorial/cookie-params.md
   - Segurança:
     - tutorial/security/index.md
   - Guia de Usuário Avançado:
@@ -70,10 +73,12 @@ nav:
   - deployment/index.md
   - deployment/versions.md
   - deployment/https.md
+  - deployment/deta.md
 - alternatives.md
 - history-design-future.md
 - external-links.md
 - benchmarks.md
+- help-fastapi.md
 markdown_extensions:
 - toc:
     permalink: true
