@@ -40,11 +40,13 @@ nav:
   - az: /az/
   - de: /de/
   - es: /es/
+  - fa: /fa/
   - fr: /fr/
   - id: /id/
   - it: /it/
   - ja: /ja/
   - ko: /ko/
+  - nl: /nl/
   - pl: /pl/
   - pt: /pt/
   - ru: /ru/
@@ -58,8 +60,11 @@ nav:
   - tutorial/index.md
   - tutorial/first-steps.md
   - tutorial/path-params.md
+  - tutorial/body.md
   - tutorial/body-fields.md
+  - tutorial/extra-data-types.md
   - tutorial/query-params-str-validations.md
+  - tutorial/cookie-params.md
   - Segurança:
     - tutorial/security/index.md
   - Guia de Usuário Avançado:
@@ -68,10 +73,12 @@ nav:
   - deployment/index.md
   - deployment/versions.md
   - deployment/https.md
+  - deployment/deta.md
 - alternatives.md
 - history-design-future.md
 - external-links.md
 - benchmarks.md
+- help-fastapi.md
 markdown_extensions:
 - toc:
     permalink: true
@@ -117,6 +124,8 @@ extra:
     name: de
   - link: /es/
     name: es - español
+  - link: /fa/
+    name: fa
   - link: /fr/
     name: fr - français
   - link: /id/
@@ -127,6 +136,8 @@ extra:
     name: ja - 日本語
   - link: /ko/
     name: ko - 한국어
+  - link: /nl/
+    name: nl
   - link: /pl/
     name: pl
   - link: /pt/
