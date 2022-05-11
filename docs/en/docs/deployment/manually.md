@@ -59,7 +59,7 @@ You can install an ASGI compatible server with:
 
 ## Run the Server Program
 
-You can then your application the same way you have done in the tutorials, but without the `--reload` option, e.g.:
+You can then run your application the same way you have done in the tutorials, but without the `--reload` option, e.g.:
 
 === "Uvicorn"
 
