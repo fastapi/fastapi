@@ -1,5 +1,9 @@
 articles:
   english:
+  - author: Jean-Baptiste Rocher
+    author_link: https://hashnode.com/@jibrocher
+    link: https://dev.indooroutdoor.io/series/fastapi-react-poll-app
+    title: Building the Poll App From Django Tutorial With FastAPI And React
   - author: Silvan Melchior
     author_link: https://github.com/silvanmelchior
     link: https://blog.devgenius.io/seamless-fastapi-configuration-with-confz-90949c14ea12
