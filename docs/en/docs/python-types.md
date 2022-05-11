@@ -29,7 +29,7 @@ Calling this program outputs:
 John Doe
 ```
 
-The function does the following: 
+The function does the following:
 
 * Takes a `first_name` and `last_name`.
 * Converts the first letter of each one to upper case with `title()`.
@@ -334,14 +334,14 @@ These types that take type parameters in square brackets are called **Generic ty
 === "Python 3.9 and above"
 
     You can use the same builtin types as generics (with square brakets and types inside):
-    
+
     * `list`
     * `tuple`
     * `set`
     * `dict`
 
     And the same as with Python 3.6, from the `typing` module:
-    
+
     * `Union`
     * `Optional`
     * ...and others.
@@ -354,7 +354,7 @@ These types that take type parameters in square brackets are called **Generic ty
     * `tuple`
     * `set`
     * `dict`
-    
+
     And the same as with Python 3.6, from the `typing` module:
 
     * `Union`

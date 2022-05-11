@@ -114,7 +114,7 @@ Mas você terá o mesmo suporte do editor no <a href="https://www.jetbrains.com/
     Se você utiliza o <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a> como editor, você pode utilizar o <a href="https://github.com/koxudaxi/pydantic-pycharm-plugin/" class="external-link" target="_blank">Plugin do Pydantic para o PyCharm </a>.
 
     Melhora o suporte do editor para seus modelos Pydantic com::
-    
+
     * completação automática
     * verificação de tipos
     * refatoração

@@ -36,7 +36,7 @@
 
 !!! tip "豆知識"
     FastAPIアプリケーションへのリクエストの送信とは別に、テストで `async` 関数 (非同期データベース関数など) を呼び出したい場合は、高度なチュートリアルの[Async Tests](../advanced/async-tests.md){.internal-link target=_blank} を参照してください。
-    
+
 ## テストの分離
 
 実際のアプリケーションでは、おそらくテストを別のファイルに保存します。
@@ -112,7 +112,7 @@
     `TestClient` は、Pydanticモデルではなく、JSONに変換できるデータを受け取ることに注意してください。
 
     テストにPydanticモデルがあり、テスト中にそのデータをアプリケーションに送信したい場合は、[JSON互換エンコーダ](encoder.md){.internal-link target=_blank} で説明されている `jsonable_encoder` が利用できます。
-    
+
 ## 実行
 
 後は、`pytest` をインストールするだけです:
