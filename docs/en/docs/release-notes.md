@@ -2,6 +2,7 @@
 
 ## Latest Changes
 
+* ✏ Fix links to Pydantic docs. PR [#4670](https://github.com/tiangolo/fastapi/pull/4670) by [@kinuax](https://github.com/kinuax).
 
 ## 0.77.1
 
