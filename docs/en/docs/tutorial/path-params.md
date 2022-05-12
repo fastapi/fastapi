@@ -115,13 +115,13 @@ Because *path operations* are evaluated in order, you need to make sure that the
 
 Otherwise, the path for `/users/{user_id}` would match also for `/users/me`, "thinking" that it's receiving a parameter `user_id` with a value of `"me"`.
 
-Similarly, you cannot redefine a path operation.
+Similarly, you cannot redefine a path operation:
 
 ```Python hl_lines="6  11"
-{!../../../docs_src/path_params/tutorial006.py!}
+{!../../../docs_src/path_params/tutorial003b.py!}
 ```
 
-The first implementation will always be used since the paths match.
+The first one will always be used since the path matches first.
 
 ## Predefined values
 
