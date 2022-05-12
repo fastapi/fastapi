@@ -32,6 +32,21 @@ jobs:
       - name: Install Dependencies
         if: steps.cache.outputs.cache-hit != 'true'
         run: flit install --symlink
+      - uses: actions/cache@v2
+      - id: pre-commit-hooks-cache
+        with:
+          path: ~/.cache/pre-commit
+          key: ${{ runner.os }}-pre-commit-hooks-${{ hashFiles('.pre-commit-config.yaml') }}-v01
+      - name: Run pre-commit
+        run: pre-commit run
+      - name: Commit pre-commit changes
+        if: ${{ failure() && matrix.python-version == '3.10' }}
+        run: |
+          git config --global user.name "pre-commit"
+          git config --global user.email github-actions@github.com
+          git add --update
+          git commit -m "🎨 Format code with pre-commit"
+          git push
       - name: Lint
         if: ${{ matrix.python-version != '3.6' }}
         run: bash scripts/lint.sh
