@@ -85,6 +85,7 @@ dev = [
     "autoflake >=1.4.0,<2.0.0",
     "flake8 >=3.8.3,<4.0.0",
     "uvicorn[standard] >=0.12.0,<0.18.0",
+    "pre-commit >=2.17.0,<3.0.0",
 ]
 all = [
     "requests >=2.24.0,<3.0.0",

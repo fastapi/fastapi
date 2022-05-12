@@ -27,7 +27,7 @@ Mit einer interaktiven API-Dokumentation und explorativen webbasierten Benutzers
 
 Alles basiert auf **Python 3.6 Typ**-Deklarationen (dank Pydantic). Es muss keine neue Syntax gelernt werden, nur standardisiertes modernes Python.
 
- 
+
 
 Wenn Sie eine kurze, zweiminütige, Auffrischung in der Benutzung von Python Typ-Deklarationen benötigen (auch wenn Sie FastAPI nicht nutzen), schauen Sie sich diese kurze Einführung an (Englisch): Python Types{.internal-link target=_blank}.
 

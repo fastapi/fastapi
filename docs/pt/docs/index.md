@@ -365,7 +365,7 @@ Voltando ao código do exemplo anterior, **FastAPI** irá:
     * Como o parâmetro `q` é declarado com `= None`, ele é opcional.
     * Sem o `None` ele poderia ser obrigatório (como o corpo no caso de `PUT`).
 * Para requisições `PUT` para `/items/{item_id}`, lerá o corpo como JSON e:
-    * Verifica que tem um atributo obrigatório `name` que deve ser `str`. 
+    * Verifica que tem um atributo obrigatório `name` que deve ser `str`.
     * Verifica que tem um atributo obrigatório `price` que deve ser `float`.
     * Verifica que tem an atributo opcional `is_offer`, que deve ser `bool`, se presente.
     * Tudo isso também funciona para objetos JSON profundamente aninhados.

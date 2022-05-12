@@ -38,7 +38,7 @@ You can install an ASGI compatible server with:
 
     !!! tip
         By adding the `standard`, Uvicorn will install and use some recommended extra dependencies.
-        
+
         That including `uvloop`, the high-performance drop-in replacement for `asyncio`, that provides the big concurrency performance boost.
 
 === "Hypercorn"
@@ -89,7 +89,7 @@ You can then run your application the same way you have done in the tutorials, b
     Remember to remove the `--reload` option if you were using it.
 
     The `--reload` option consumes much more resources, is more unstable, etc.
-    
+
     It helps a lot during **development**, but you **shouldn't** use it in **production**.
 
 ## Hypercorn with Trio
