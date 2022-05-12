@@ -321,7 +321,7 @@ And now, go to <a href="http://127.0.0.1:8000/redoc" class="external-link" targe
 
 ### Recap
 
-In summary, you declare **once** the types of parameters, body, etc. as function parameters. 
+In summary, you declare **once** the types of parameters, body, etc. as function parameters.
 
 You do that with standard modern Python types.
 
@@ -378,7 +378,7 @@ Coming back to the previous code example, **FastAPI** will:
     * As the `q` parameter is declared with `= None`, it is optional.
     * Without the `None` it would be required (as is the body in the case with `PUT`).
 * For `PUT` requests to `/items/{item_id}`, Read the body as JSON:
-    * Check that it has a required attribute `name` that should be a `str`. 
+    * Check that it has a required attribute `name` that should be a `str`.
     * Check that it has a required attribute `price` that has to be a `float`.
     * Check that it has an optional attribute `is_offer`, that should be a `bool`, if present.
     * All this would also work for deeply nested JSON objects.
@@ -425,7 +425,6 @@ For a more complete example including more features, see the <a href="https://fa
 * More advanced (but equally easy) techniques for declaring **deeply nested JSON models** (thanks to Pydantic).
 * Many extra features (thanks to Starlette) as:
     * **WebSockets**
-    * **GraphQL**
     * extremely easy tests based on `requests` and `pytest`
     * **CORS**
     * **Cookie Sessions**
@@ -447,12 +446,10 @@ Used by Pydantic:
 Used by Starlette:
 
 * <a href="https://requests.readthedocs.io" target="_blank"><code>requests</code></a> - Required if you want to use the `TestClient`.
-* <a href="https://github.com/Tinche/aiofiles" target="_blank"><code>aiofiles</code></a> - Required if you want to use `FileResponse` or `StaticFiles`.
 * <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - Required if you want to use the default template configuration.
 * <a href="https://andrew-d.github.io/python-multipart/" target="_blank"><code>python-multipart</code></a> - Required if you want to support form <abbr title="converting the string that comes from an HTTP request into Python data">"parsing"</abbr>, with `request.form()`.
 * <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - Required for `SessionMiddleware` support.
 * <a href="https://pyyaml.org/wiki/PyYAMLDocumentation" target="_blank"><code>pyyaml</code></a> - Required for Starlette's `SchemaGenerator` support (you probably don't need it with FastAPI).
-* <a href="https://graphene-python.org/" target="_blank"><code>graphene</code></a> - Required for `GraphQLApp` support.
 * <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - Required if you want to use `UJSONResponse`.
 
 Used by FastAPI / Starlette:
