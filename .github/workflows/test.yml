@@ -33,7 +33,7 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
         run: flit install --symlink
       - uses: actions/cache@v2
-      - id: pre-commit-hooks-cache
+        id: pre-commit-hooks-cache
         with:
           path: ~/.cache/pre-commit
           key: ${{ runner.os }}-pre-commit-hooks-${{ hashFiles('.pre-commit-config.yaml') }}-v01
