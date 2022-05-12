@@ -22,7 +22,7 @@ To achieve that, import `JSONResponse`, and return your content there directly, 
     When you return a `Response` directly, like in the example above, it will be returned directly.
 
     It won't be serialized with a model, etc.
-    
+
     Make sure it has the data you want it to have, and that the values are valid JSON (if you are using `JSONResponse`).
 
 !!! note "Technical Details"

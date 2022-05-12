@@ -78,4 +78,3 @@ Jest też **Zaawansowany poradnik**, który możesz przeczytać po lekturze tego
 Najpierw jednak  powinieneś przeczytać **Samouczek** (czytasz go teraz).
 
 Ten rozdział jest zaprojektowany tak, że możesz stworzyć kompletną aplikację używając tylko informacji tutaj zawartych, a następnie rozszerzać ją na różne sposoby, w zależności od potrzeb, używając kilku dodatkowych pomysłów z **Zaawansowanego poradnika**.
-

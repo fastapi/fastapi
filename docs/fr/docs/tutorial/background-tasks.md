@@ -9,7 +9,7 @@ Cela comprend, par exemple :
 * Les notifications par email envoyées après l'exécution d'une action :
     * Étant donné que se connecter à un serveur et envoyer un email a tendance à être «lent» (plusieurs secondes), vous pouvez retourner la réponse directement et envoyer la notification en arrière-plan.
 * Traiter des données :
-    * Par exemple, si vous recevez un fichier qui doit passer par un traitement lent, vous pouvez retourner une réponse «Accepted» (HTTP 202) puis faire le traitement en arrière-plan. 
+    * Par exemple, si vous recevez un fichier qui doit passer par un traitement lent, vous pouvez retourner une réponse «Accepted» (HTTP 202) puis faire le traitement en arrière-plan.
 
 
 ## Utiliser `BackgroundTasks`
@@ -73,7 +73,7 @@ La classe `BackgroundTasks` provient directement de <a href="https://www.starlet
 
 Elle est importée/incluse directement dans **FastAPI** pour que vous puissiez l'importer depuis `fastapi` et éviter d'importer accidentellement `BackgroundTask` (sans `s` à la fin) depuis `starlette.background`.
 
-En utilisant seulement `BackgroundTasks` (et non `BackgroundTask`), il est possible de l'utiliser en tant que paramètre de *fonction de chemin* et de laisser **FastAPI** gérer le reste pour vous, comme en utilisant l'objet `Request` directement. 
+En utilisant seulement `BackgroundTasks` (et non `BackgroundTask`), il est possible de l'utiliser en tant que paramètre de *fonction de chemin* et de laisser **FastAPI** gérer le reste pour vous, comme en utilisant l'objet `Request` directement.
 
 Il est tout de même possible d'utiliser `BackgroundTask` seul dans **FastAPI**, mais dans ce cas il faut créer l'objet dans le code et renvoyer une `Response` Starlette l'incluant.
 

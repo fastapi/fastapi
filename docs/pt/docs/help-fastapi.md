@@ -36,7 +36,7 @@ Você pode "acompanhar" (watch) o FastAPI no GitHub (clicando no botão com um "
 
 Podendo selecionar apenas "Novos Updates".
 
-Fazendo isto, serão enviadas notificações (em seu email) sempre que tiver novos updates (uma nova versão) com correções de bugs e novos recursos no **FastAPI** 
+Fazendo isto, serão enviadas notificações (em seu email) sempre que tiver novos updates (uma nova versão) com correções de bugs e novos recursos no **FastAPI**
 
 ## Conect-se com o autor
 
