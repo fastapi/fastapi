@@ -38,7 +38,7 @@ jobs:
           path: ~/.cache/pre-commit
           key: ${{ runner.os }}-pre-commit-hooks-${{ hashFiles('.pre-commit-config.yaml') }}-v01
       - name: Run pre-commit
-        run: pre-commit run
+        run: pre-commit run --all-files
       - name: Commit pre-commit changes
         if: ${{ failure() && matrix.python-version == '3.10' }}
         run: |
