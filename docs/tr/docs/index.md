@@ -28,7 +28,7 @@
 
 ---
 
-FastAPI, Python 3.6+'nın standart type hintlerine dayanan modern ve hızlı (yüksek performanslı) API'lar oluşturmak için kullanılabilecek web framework'ü. 
+FastAPI, Python 3.6+'nın standart type hintlerine dayanan modern ve hızlı (yüksek performanslı) API'lar oluşturmak için kullanılabilecek web framework'ü.
 
 Ana özellikleri:
 
@@ -315,7 +315,7 @@ Server otomatik olarak yeniden başlamalı (çünkü yukarıda `uvicorn`'u çal�
 
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-04-swagger-03.png)
 
-* Şimdi "Execute" butonuna tıkla, kullanıcı arayüzü otomatik olarak API'ın ile bağlantı kurarak ona bu parametreleri gönderecek ve sonucu karşına getirecek. 
+* Şimdi "Execute" butonuna tıkla, kullanıcı arayüzü otomatik olarak API'ın ile bağlantı kurarak ona bu parametreleri gönderecek ve sonucu karşına getirecek.
 
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-05-swagger-04.png)
 
@@ -329,7 +329,7 @@ Server otomatik olarak yeniden başlamalı (çünkü yukarıda `uvicorn`'u çal�
 
 ### Özet
 
-Özetleyecek olursak, URL, sorgu veya request body'deki parametrelerini fonksiyon parametresi olarak kullanıyorsun. Bu parametrelerin veri tiplerini bir kere belirtmen yeterli. 
+Özetleyecek olursak, URL, sorgu veya request body'deki parametrelerini fonksiyon parametresi olarak kullanıyorsun. Bu parametrelerin veri tiplerini bir kere belirtmen yeterli.
 
 Type-hinting işlemini Python dilindeki standart veri tipleri ile yapabilirsin
 
@@ -381,14 +381,14 @@ Az önceki kod örneğine geri dönelim, **FastAPI**'ın yapacaklarına bir bak�
 
 * `item_id`'nin `GET` ve `PUT` talepleri içinde olup olmadığının doğruluğunu kontol edecek.
 * `item_id`'nin tipinin `int` olduğunu `GET` ve `PUT` talepleri içinde olup olmadığının doğruluğunu kontol edecek.
-    * Eğer `GET` ve `PUT` içinde yok ise ve `int` değil ise, sebebini belirten bir hata mesajı gösterecek 
+    * Eğer `GET` ve `PUT` içinde yok ise ve `int` değil ise, sebebini belirten bir hata mesajı gösterecek
 * Opsiyonel bir `q` parametresinin `GET` talebi için (`http://127.0.0.1:8000/items/foo?q=somequery` içinde) olup olmadığını kontrol edecek
     * `q` parametresini `= None` ile oluşturduğumuz için, opsiyonel bir parametre olacak.
     * Eğer `None` olmasa zorunlu bir parametre olacak idi (bu yüzden body'de `PUT` parametresi var).
 * `PUT` talebi için `/items/{item_id}`'nin body'sini, JSON olarak okuyor:
-    * `name` adında bir parametetre olup olmadığını ve var ise onun `str` olup olmadığını kontol ediyor. 
-    * `price` adında bir parametetre olup olmadığını ve var ise onun `float` olup olmadığını kontol ediyor. 
-    * `is_offer` adında bir parametetre olup olmadığını ve var ise onun `bool` olup olmadığını kontol ediyor. 
+    * `name` adında bir parametetre olup olmadığını ve var ise onun `str` olup olmadığını kontol ediyor.
+    * `price` adında bir parametetre olup olmadığını ve var ise onun `float` olup olmadığını kontol ediyor.
+    * `is_offer` adında bir parametetre olup olmadığını ve var ise onun `bool` olup olmadığını kontol ediyor.
     * Bunların hepsini en derin JSON modellerinde bile yapacaktır.
 * Bütün veri tiplerini otomatik olarak JSON'a çeviriyor veya tam tersi.
 * Her şeyi dokümanlayıp, çeşitli yerlerde:

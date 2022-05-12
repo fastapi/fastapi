@@ -101,7 +101,7 @@ common_parameters --> read_users
 !!! check "检查"
 
     注意，无需创建专门的类，并将之传递给 **FastAPI** 以进行「注册」或执行类似的操作。
-    
+
     只要把它传递给 `Depends`，**FastAPI** 就知道该如何执行后续操作。
 
 ## 要不要使用 `async`？
