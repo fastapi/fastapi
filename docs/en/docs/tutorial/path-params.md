@@ -115,6 +115,14 @@ Because *path operations* are evaluated in order, you need to make sure that the
 
 Otherwise, the path for `/users/{user_id}` would match also for `/users/me`, "thinking" that it's receiving a parameter `user_id` with a value of `"me"`.
 
+Similarly, you cannot redefine a path operation:
+
+```Python hl_lines="6  11"
+{!../../../docs_src/path_params/tutorial003b.py!}
+```
+
+The first one will always be used since the path matches first.
+
 ## Predefined values
 
 If you have a *path operation* that receives a *path parameter*, but you want the possible valid *path parameter* values to be predefined, you can use a standard Python <abbr title="Enumeration">`Enum`</abbr>.
