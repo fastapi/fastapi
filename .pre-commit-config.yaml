@@ -11,4 +11,38 @@ repos:
         -   --unsafe
     -   id: end-of-file-fixer
     -   id: trailing-whitespace
-
+-   repo: https://github.com/asottile/pyupgrade
+    rev: v2.32.1
+    hooks:
+    -   id: pyupgrade
+        args:
+        - --py3-plus
+        - --keep-runtime-typing
+-   repo: https://github.com/myint/autoflake
+    rev: v1.4
+    hooks:
+    -   id: autoflake
+        args:
+        - --recursive
+        - --in-place
+        - --remove-all-unused-imports
+        - --remove-unused-variables
+        - --expand-star-imports
+        - --exclude
+        - __init__.py
+        - --remove-duplicate-keys
+-   repo: https://github.com/pycqa/isort
+    rev: 5.10.1
+    hooks:
+    -   id: isort
+        name: isort (python)
+    -   id: isort
+        name: isort (cython)
+        types: [cython]
+    -   id: isort
+        name: isort (pyi)
+        types: [pyi]
+-   repo: https://github.com/psf/black
+    rev: 22.3.0
+    hooks:
+    -   id: black
