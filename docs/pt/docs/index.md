@@ -39,19 +39,22 @@ Os recursos chave são:
 
 <small>* estimativas baseadas em testes realizados com equipe interna de desenvolvimento, construindo aplicações em produção.</small>
 
-## Gold Sponsors
+## Patrocinadores Ouro
 
 <!-- sponsors -->
 
 {% if sponsors %}
 {% for sponsor in sponsors.gold -%}
-<a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}"></a>
+<a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
+{% endfor -%}
+{%- for sponsor in sponsors.silver -%}
+<a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
 {% endfor %}
 {% endif %}
 
 <!-- /sponsors -->
 
-<a href="https://fastapi.tiangolo.com/fastapi-people/#sponsors" class="external-link" target="_blank">Other sponsors</a>
+<a href="https://fastapi.tiangolo.com/pt/fastapi-people/#patrocinadores" class="external-link" target="_blank">Outros patrocinadores</a>
 
 ## Opiniões
 
@@ -362,7 +365,7 @@ Voltando ao código do exemplo anterior, **FastAPI** irá:
     * Como o parâmetro `q` é declarado com `= None`, ele é opcional.
     * Sem o `None` ele poderia ser obrigatório (como o corpo no caso de `PUT`).
 * Para requisições `PUT` para `/items/{item_id}`, lerá o corpo como JSON e:
-    * Verifica que tem um atributo obrigatório `name` que deve ser `str`. 
+    * Verifica que tem um atributo obrigatório `name` que deve ser `str`.
     * Verifica que tem um atributo obrigatório `price` que deve ser `float`.
     * Verifica que tem an atributo opcional `is_offer`, que deve ser `bool`, se presente.
     * Tudo isso também funciona para objetos JSON profundamente aninhados.
@@ -431,7 +434,6 @@ Usados por Pydantic:
 Usados por Starlette:
 
 * <a href="https://requests.readthedocs.io" target="_blank"><code>requests</code></a> - Necessário se você quiser utilizar o `TestClient`.
-* <a href="https://github.com/Tinche/aiofiles" target="_blank"><code>aiofiles</code></a> - Necessário se você quiser utilizar o `FileResponse` ou `StaticFiles`.
 * <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - Necessário se você quiser utilizar a configuração padrão de templates.
 * <a href="https://andrew-d.github.io/python-multipart/" target="_blank"><code>python-multipart</code></a> - Necessário se você quiser suporte com <abbr title="converte uma string que chega de uma requisição HTTP para dados Python">"parsing"</abbr> de formulário, com `request.form()`.
 * <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - Necessário para suporte a `SessionMiddleware`.
