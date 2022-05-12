@@ -1,0 +1,40 @@
+name: Auto Format
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  autoformat:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        ref: ${{ github.head_ref }}
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.10
+    - uses: actions/cache@v2
+      id: python-cache
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-python-env-pre-commit-${{ env.pythonLocation }}-v01
+    - name: Install pre-commit
+      if: steps.python-cache.outputs.cache-hit != 'true'
+      run: pip install pre-commit
+    - uses: actions/cache@v2
+      id: pre-commit-hooks-cache
+      with:
+        path: ~/.cache/pre-commit
+        key: ${{ runner.os }}-pre-commit-hooks-${{ hashFiles('.pre-commit-config.yaml') }}-v01
+    - name: Run pre-commit
+      run: pre-commit run --all-files
+    - name: Commit pre-commit changes
+      if: failure()
+      run: |
+        git config --global user.name "pre-commit"
+        git config --global user.email github-actions@github.com
+        git add --update
+        git commit -m "🎨 Format code with pre-commit"
+        git push
