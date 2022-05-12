@@ -11,4 +11,10 @@ repos:
         -   --unsafe
     -   id: end-of-file-fixer
     -   id: trailing-whitespace
-
+-   repo: https://github.com/asottile/pyupgrade
+    rev: v2.32.1
+    hooks:
+    -   id: pyupgrade
+        args:
+        - --py3-plus
+        - --keep-runtime-typing
