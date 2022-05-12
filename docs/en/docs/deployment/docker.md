@@ -350,7 +350,7 @@ If your FastAPI is a single file, for example, `main.py` without an `./app` dire
 Then you would just have to change the corresponding paths to copy the file inside the `Dockerfile`:
 
 ```{ .dockerfile .annotate hl_lines="10  13" }
-FROM python:3.9  
+FROM python:3.9
 
 WORKDIR /code
 

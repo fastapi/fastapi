@@ -13,7 +13,7 @@
 
 `fastapi` 에서 `File` 과 `UploadFile` 을 임포트 합니다:
 
-```Python hl_lines="1" 
+```Python hl_lines="1"
 {!../../../docs_src/request_files/tutorial001.py!}
 ```
 
@@ -21,7 +21,7 @@
 
 `Body` 및 `Form` 과 동일한 방식으로 파일의 매개변수를 생성합니다:
 
-```Python hl_lines="7" 
+```Python hl_lines="7"
 {!../../../docs_src/request_files/tutorial001.py!}
 ```
 
@@ -45,7 +45,7 @@
 
 `File` 매개변수를 `UploadFile` 타입으로 정의합니다:
 
-```Python hl_lines="12" 
+```Python hl_lines="12"
 {!../../../docs_src/request_files/tutorial001.py!}
 ```
 
@@ -97,7 +97,7 @@ contents = myfile.file.read()
 
 ## "폼 데이터"란
 
-HTML의 폼들(`<form></form>`)이 서버에 데이터를 전송하는 방식은 대개 데이터에 JSON과는 다른 "특별한" 인코딩을 사용합니다. 
+HTML의 폼들(`<form></form>`)이 서버에 데이터를 전송하는 방식은 대개 데이터에 JSON과는 다른 "특별한" 인코딩을 사용합니다.
 
 **FastAPI**는 JSON 대신 올바른 위치에서 데이터를 읽을 수 있도록 합니다.
 
@@ -121,7 +121,7 @@ HTML의 폼들(`<form></form>`)이 서버에 데이터를 전송하는 방식은
 
 이 기능을 사용하기 위해 , `bytes` 의 `List` 또는 `UploadFile` 를 선언하기 바랍니다:
 
-```Python hl_lines="10  15" 
+```Python hl_lines="10  15"
 {!../../../docs_src/request_files/tutorial002.py!}
 ```
 
