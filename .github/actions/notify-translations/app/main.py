@@ -54,7 +54,7 @@ if __name__ == "__main__":
     )
     if pr.state == "open":
         logging.debug(f"PR is open: {pr.number}")
-        label_strs = set([label.name for label in pr.get_labels()])
+        label_strs = {label.name for label in pr.get_labels()}
         if lang_all_label in label_strs and awaiting_label in label_strs:
             logging.info(
                 f"This PR seems to be a language translation and awaiting reviews: {pr.number}"
