@@ -1,7 +1,7 @@
 import logging
+import random
 import time
 from pathlib import Path
-import random
 from typing import Dict, Optional
 
 import yaml
