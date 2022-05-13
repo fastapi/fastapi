@@ -27,7 +27,7 @@ def post_tuple_of_models(square: Tuple[Coordinate, Coordinate]):
 
 
 @app.post("/tuple-form/")
-def hello(values: Tuple[int, int] = Form(...)):
+def hello(values: Tuple[int, int] = Form()):
     return values
 
 
