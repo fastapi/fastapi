@@ -52,7 +52,7 @@ def create_response_field(
     Create a new response field. Raises if type_ is invalid.
     """
     class_validators = class_validators or {}
-    field_info = field_info or FieldInfo(None)
+    field_info = field_info or FieldInfo()
 
     response_field = functools.partial(
         ModelField,
