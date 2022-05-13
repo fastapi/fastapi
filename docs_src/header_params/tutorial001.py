@@ -6,5 +6,5 @@ app = FastAPI()
 
 
 @app.get("/items/")
-async def read_items(user_agent: Optional[str] = Header(None)):
+async def read_items(user_agent: Optional[str] = Header(default=None)):
     return {"User-Agent": user_agent}

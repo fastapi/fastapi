@@ -57,8 +57,8 @@ async def get():
 
 async def get_cookie_or_token(
     websocket: WebSocket,
-    session: Optional[str] = Cookie(None),
-    token: Optional[str] = Query(None),
+    session: Optional[str] = Cookie(default=None),
+    token: Optional[str] = Query(default=None),
 ):
     if session is None and token is None:
         await websocket.close(code=status.WS_1008_POLICY_VIOLATION)
