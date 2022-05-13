@@ -79,7 +79,7 @@ Hypercorn을 사용하는 경우에도 `--root-path` 옵션을 사용할 수 있
 
 !!! note "기술적 세부사항"
      ASGI 명세는 이러한 경우에 대해 `root_path`를 정의합니다.
-     
+
       그리고  `--root-path` 커맨드 라인 옵션은 이 `root_path`을 규정합니다.
 
 ### 현재의 `root_path` 확인하기
@@ -152,7 +152,7 @@ Uvicorn은 프록시가 `http://127.0.0.1:8000/app`로 접근할 것으로 기�
 
 잘린 경로 접두사를 <a href="https://docs.traefik.io/" class="external-link" target="_blank">Traefik</a>을 사용해 로컬 환경에서 쉽게 테스트해볼 수 있습니다.
 
-<a href="https://github.com/containous/traefik/releases" class="external-link" target="_blank">Traefik을 다운로드 하십시오</a>. 이것은 단일 이진 파일로, 압축 파일을 풀어 터미널에서 직접적으로 실행할 수 있습니다. 
+<a href="https://github.com/containous/traefik/releases" class="external-link" target="_blank">Traefik을 다운로드 하십시오</a>. 이것은 단일 이진 파일로, 압축 파일을 풀어 터미널에서 직접적으로 실행할 수 있습니다.
 
 다음과 같은  `traefik.toml` 파일을 생성하십시오:
 
@@ -237,7 +237,7 @@ Uvicorn에 대한 포트를 사용해 URL로 접속하십시오: <a href="http:/
 
 !!! tip "팁"
     `http://127.0.0.1:8000/app`로 접근한다고 해도, `root_path`가 `--root-path`에서 가져온 `/api/v1`로 표시되는 것애 주목하십시오.
-    
+
 이제 Traefik에 대한 포트를 사용해 경로 접두사를 포함한 URL로 접속하십시오: <a href="http://127.0.0.1:9999/api/v1/app" class="external-link" target="_blank">http://127.0.0.1:9999/api/v1/app</a>.
 
 동일한 응답을 받는 것을 확인할 수 있습니다:
@@ -264,9 +264,9 @@ Uvicorn에 대한 포트를 사용해 URL로 접속하십시오: <a href="http:/
 응용프로그램에 접근하는 "공식적인" 방법은 우리가 정의한 경로 접두사를 갖는 프록시를 통한 것입니다. 따라서, URL에서 경로 접두사 없이 Uvicorn에서 직접 제공하는 문서 UI에 접근하려고 하는 경우, 이것은 동작하지 않을 것입니다. 프록시를 통해 접근해야하기 때문입니다.
 
  <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>에서 확인할 수 있습니다:
- 
+
  <img src="/img/tutorial/behind-a-proxy/image01.png">
- 
+
  하지만 문서 URL을 포트 `9999`의 프록시를 사용하는 "공식적인" URL인 `/api/v1/docs`를 통해 접근하면, 정상적으로 동작합니다! 🎉
 
 <a href="http://127.0.0.1:9999/api/v1/docs" class="external-link" target="_blank">http://127.0.0.1:9999/api/v1/docs</a>에서 확인할 수 있습니다:
@@ -281,10 +281,10 @@ Uvicorn에 대한 포트를 사용해 URL로 접속하십시오: <a href="http:/
 
 !!! warning "경고"
     여기부터는 심화된 사례에 대해 다룹니다. 넘어가셔도 좋습니다.
-     
+
 기본적으로, **FastAPI**는 `root_path`의 URL로 OpenAPI 스키마의 `server`를 생성합니다.
 
-하지만 그 대신에 다른 `servers`를 제공할 수도 있습니다. 일례로 스테이징 환경 및 운영 환경과 상호작용을 하는 *동일한* 문서 UI를 원하는 경우가 있습니다. 
+하지만 그 대신에 다른 `servers`를 제공할 수도 있습니다. 일례로 스테이징 환경 및 운영 환경과 상호작용을 하는 *동일한* 문서 UI를 원하는 경우가 있습니다.
 
 사용자 지정 리스트인 `servers`를 전달하고 `root_path`가 존재하는(API가 프록시 뒤에 위치하기 때문에) 경우, **FastAPI**는 이 `root_path`와 함께 "서버"를 해당 리스트의 첫 부분에 삽입합니다.
 
@@ -321,14 +321,14 @@ Uvicorn에 대한 포트를 사용해 URL로 접속하십시오: <a href="http:/
 
 !!! tip "팁"
      `url`의 값이  `root_path`에서 가져온 `/api/v1`인 자동으로 생성된 서버에 주목하십시오.
-     
+
 <a href="http://127.0.0.1:9999/api/v1/docs" class="external-link" target="_blank">http://127.0.0.1:9999/api/v1/docs</a>의 문서 UI는 다음처럼 생겼습니다:
 
 <img src="/img/tutorial/behind-a-proxy/image03.png">
 
 !!! tip "팁"
      문서 UI는 당신이 선택한 서버와 상호작용합니다.
-     
+
 ### `root_path`를 사용하는 자동 서버 비활성화
 
 **FastAPI**가 `root_path`를 사용한 자동 서버를 포함하는 것을 원치 않는다면, `root_path_in_servers=False` 매개변수를 사용할 수 있습니다:
