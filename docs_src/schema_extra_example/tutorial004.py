@@ -18,7 +18,6 @@ async def update_item(
     *,
     item_id: int,
     item: Item = Body(
-        ...,
         examples={
             "normal": {
                 "summary": "A normal example",
