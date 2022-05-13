@@ -6,5 +6,5 @@ app = FastAPI()
 
 
 @app.get("/items/")
-async def read_items(x_token: Optional[List[str]] = Header(None)):
+async def read_items(x_token: Optional[List[str]] = Header(default=None)):
     return {"X-Token values": x_token}

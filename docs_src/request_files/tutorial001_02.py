@@ -6,7 +6,7 @@ app = FastAPI()
 
 
 @app.post("/files/")
-async def create_file(file: Optional[bytes] = File(None)):
+async def create_file(file: Optional[bytes] = File(default=None)):
     if not file:
         return {"message": "No file sent"}
     else:

@@ -43,6 +43,7 @@ from pydantic.fields import (
     FieldInfo,
     ModelField,
     Required,
+    Undefined,
 )
 from pydantic.schema import get_annotation_from_field_info
 from pydantic.typing import ForwardRef, evaluate_forwardref
@@ -316,7 +317,7 @@ def get_dependant(
             field_info = param_field.field_info
             assert isinstance(
                 field_info, params.Body
-            ), f"Param: {param_field.name} can only be a request body, using Body(...)"
+            ), f"Param: {param_field.name} can only be a request body, using Body()"
             dependant.body_params.append(param_field)
     return dependant
 
@@ -353,7 +354,7 @@ def get_param_field(
     force_type: Optional[params.ParamTypes] = None,
     ignore_default: bool = False,
 ) -> ModelField:
-    default_value = Required
+    default_value: Any = Undefined
     had_schema = False
     if not param.default == param.empty and ignore_default is False:
         default_value = param.default
@@ -369,8 +370,13 @@ def get_param_field(
         if force_type:
             field_info.in_ = force_type  # type: ignore
     else:
-        field_info = default_field_info(default_value)
-    required = default_value == Required
+        field_info = default_field_info(default=default_value)
+    required = True
+    if default_value is Required or ignore_default:
+        required = True
+        default_value = None
+    elif default_value is not Undefined:
+        required = False
     annotation: Any = Any
     if not param.annotation == param.empty:
         annotation = param.annotation
@@ -382,12 +388,11 @@ def get_param_field(
     field = create_response_field(
         name=param.name,
         type_=annotation,
-        default=None if required else default_value,
+        default=default_value,
         alias=alias,
         required=required,
         field_info=field_info,
     )
-    field.required = required
     if not had_schema and not is_scalar_field(field=field):
         field.field_info = params.Body(field_info.default)
     if not had_schema and lenient_issubclass(field.type_, UploadFile):
