@@ -64,6 +64,8 @@ nav:
   - tutorial/response-status-code.md
   - tutorial/request-files.md
   - tutorial/request-forms-and-files.md
+- 심화된 사용자 안내서:
+  - advanced/behind-a-proxy.md
 markdown_extensions:
 - toc:
     permalink: true
