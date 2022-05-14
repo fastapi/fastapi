@@ -2,6 +2,9 @@
 
 ## Latest Changes
 
+
+## 0.78.0
+
 ### Features
 
 * ✨ Add support for omitting `...` as default value when declaring required parameters with:
