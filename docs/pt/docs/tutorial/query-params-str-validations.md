@@ -8,12 +8,12 @@ Vamos utilizar essa aplicação como exemplo:
 {!../../../docs_src/query_params_str_validations/tutorial001.py!}
 ```
 
-O parâmetro de consulta `q` é do tipo `Optional[str]`, o que significa que é do tipo `str` mas que também pode ser `None`, e de fato, o valor padrão é `None`, então o FastAPI saberá que não é obrigatório.
+O parâmetro de consulta `q` é do tipo `Union[str, None]`, o que significa que é do tipo `str` mas que também pode ser `None`, e de fato, o valor padrão é `None`, então o FastAPI saberá que não é obrigatório.
 
 !!! note "Observação"
     O FastAPI saberá que o valor de `q` não é obrigatório por causa do valor padrão `= None`.
 
-    O `Optional` em `Optional[str]` não é usado pelo FastAPI, mas permitirá que seu editor lhe dê um melhor suporte e detecte erros.
+    O `Union` em `Union[str, None]` não é usado pelo FastAPI, mas permitirá que seu editor lhe dê um melhor suporte e detecte erros.
 
 ## Validação adicional
 
@@ -40,13 +40,13 @@ Note que substituímos o valor padrão de `None` para `Query(default=None)`, o p
 Então:
 
 ```Python
-q: Optional[str] = Query(default=None)
+q: Union[str, None] = Query(default=None)
 ```
 
 ...Torna o parâmetro opcional, da mesma maneira que:
 
 ```Python
-q: Optional[str] = None
+q: Union[str, None] = None
 ```
 
 Mas o declara explicitamente como um parâmetro de consulta.
@@ -66,7 +66,7 @@ Mas o declara explicitamente como um parâmetro de consulta.
 
     E irá utilizar o `None` para detectar que o parâmetro de consulta não é obrigatório.
 
-    O `Optional` é apenas para permitir que seu editor de texto lhe dê um melhor suporte.
+    O `Union` é apenas para permitir que seu editor de texto lhe dê um melhor suporte.
 
 Então, podemos passar mais parâmetros para `Query`. Neste caso, o parâmetro `max_length` que se aplica a textos:
 
@@ -126,13 +126,13 @@ q: str
 em vez desta:
 
 ```Python
-q: Optional[str] = None
+q: Union[str, None] = None
 ```
 
 Mas agora nós o estamos declarando como `Query`, conforme abaixo:
 
 ```Python
-q: Optional[str] = Query(default=None, min_length=3)
+q: Union[str, None] = Query(default=None, min_length=3)
 ```
 
 Então, quando você precisa declarar um parâmetro obrigatório utilizando o `Query`, você pode utilizar `...` como o primeiro argumento:
