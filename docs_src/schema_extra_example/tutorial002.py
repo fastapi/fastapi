@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Union
 
 from fastapi import FastAPI
 from pydantic import BaseModel, Field
@@ -8,9 +8,9 @@ app = FastAPI()
 
 class Item(BaseModel):
     name: str = Field(example="Foo")
-    description: Optional[str] = Field(default=None, example="A very nice Item")
+    description: Union[str, None] = Field(default=None, example="A very nice Item")
     price: float = Field(example=35.4)
-    tax: Optional[float] = Field(default=None, example=3.2)
+    tax: Union[float, None] = Field(default=None, example=3.2)
 
 
 @app.put("/items/{item_id}")
