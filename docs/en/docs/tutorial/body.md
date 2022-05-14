@@ -206,7 +206,7 @@ The function parameters will be recognized as follows:
 !!! note
     FastAPI will know that the value of `q` is not required because of the default value `= None`.
 
-    The `Optional` in `Optional[str]` is not used by FastAPI, but will allow your editor to give you better support and detect errors.
+    The `Union` in `Union[str, None]` is not used by FastAPI, but will allow your editor to give you better support and detect errors.
 
 ## Without Pydantic
 

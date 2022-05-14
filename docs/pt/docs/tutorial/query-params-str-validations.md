@@ -35,12 +35,12 @@ Agora utilize-o como valor padrão do seu parâmetro, definindo o parâmetro `ma
 {!../../../docs_src/query_params_str_validations/tutorial002.py!}
 ```
 
-Note que substituímos o valor padrão de `None` para `Query(None)`, o primeiro parâmetro de `Query` serve para o mesmo propósito: definir o valor padrão do parâmetro.
+Note que substituímos o valor padrão de `None` para `Query(default=None)`, o primeiro parâmetro de `Query` serve para o mesmo propósito: definir o valor padrão do parâmetro.
 
 Então:
 
 ```Python
-q: Optional[str] = Query(None)
+q: Optional[str] = Query(default=None)
 ```
 
 ...Torna o parâmetro opcional, da mesma maneira que:
@@ -61,7 +61,7 @@ Mas o declara explicitamente como um parâmetro de consulta.
     Ou com:
 
     ```Python
-    = Query(None)
+    = Query(default=None)
     ```
 
     E irá utilizar o `None` para detectar que o parâmetro de consulta não é obrigatório.
@@ -71,7 +71,7 @@ Mas o declara explicitamente como um parâmetro de consulta.
 Então, podemos passar mais parâmetros para `Query`. Neste caso, o parâmetro `max_length` que se aplica a textos:
 
 ```Python
-q: str = Query(None, max_length=50)
+q: str = Query(default=None, max_length=50)
 ```
 
 Isso irá validar os dados, mostrar um erro claro quando os dados forem inválidos, e documentar o parâmetro na *operação de rota* do esquema OpenAPI..
@@ -132,7 +132,7 @@ q: Optional[str] = None
 Mas agora nós o estamos declarando como `Query`, conforme abaixo:
 
 ```Python
-q: Optional[str] = Query(None, min_length=3)
+q: Optional[str] = Query(default=None, min_length=3)
 ```
 
 Então, quando você precisa declarar um parâmetro obrigatório utilizando o `Query`, você pode utilizar `...` como o primeiro argumento:
