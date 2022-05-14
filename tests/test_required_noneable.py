@@ -21,11 +21,6 @@ def send_body_embed(b: Union[str, None] = Body(embed=True)):
     return b
 
 
-@app.post("/body")
-def send_body(b: Union[str, None] = Body()):
-    return b
-
-
 client = TestClient(app)
 
 
