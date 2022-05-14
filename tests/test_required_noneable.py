@@ -12,17 +12,17 @@ def read_query(q: Union[str, None]):
 
 
 @app.get("/explicit-query")
-def read_query(q: Union[str, None] = Query()):
+def read_explicit_query(q: Union[str, None] = Query()):
     return q
 
 
 @app.post("/body-embed")
-def read_query(b: Union[str, None] = Body(embed=True)):
+def send_body_embed(b: Union[str, None] = Body(embed=True)):
     return b
 
 
 @app.post("/body")
-def read_query(b: Union[str, None] = Body()):
+def send_body(b: Union[str, None] = Body()):
     return b
 
 
@@ -70,4 +70,4 @@ def test_required_noneable_body_embed_value():
 def test_required_noneable_body_embed_none():
     response = client.post("/body-embed", json={"b": None})
     assert response.status_code == 200, response.text
-    assert response.json() == None
+    assert response.json() is None
