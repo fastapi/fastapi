@@ -80,7 +80,7 @@ Isso irá validar os dados, mostrar um erro claro quando os dados forem inválid
 
 Você também pode incluir um parâmetro `min_length`:
 
-```Python hl_lines="9"
+```Python hl_lines="10"
 {!../../../docs_src/query_params_str_validations/tutorial003.py!}
 ```
 
@@ -88,7 +88,7 @@ Você também pode incluir um parâmetro `min_length`:
 
 Você pode definir uma <abbr title="Uma expressão regular, regex ou regexp é uma sequência de caracteres que define um parâmetro de busca para textos.">expressão regular</abbr> que combine com um padrão esperado pelo parâmetro:
 
-```Python hl_lines="10"
+```Python hl_lines="11"
 {!../../../docs_src/query_params_str_validations/tutorial004.py!}
 ```
 

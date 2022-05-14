@@ -79,7 +79,7 @@ q: Union[str, None] = Query(default=None, max_length=50)
 
 パラメータ`min_length`も追加することができます:
 
-```Python hl_lines="9"
+```Python hl_lines="10"
 {!../../../docs_src/query_params_str_validations/tutorial003.py!}
 ```
 
@@ -87,7 +87,7 @@ q: Union[str, None] = Query(default=None, max_length=50)
 
 パラメータが一致するべき<abbr title="正規表現とは、文字列の検索パターンを定義する文字列です。">正規表現</abbr>を定義することができます:
 
-```Python hl_lines="10"
+```Python hl_lines="11"
 {!../../../docs_src/query_params_str_validations/tutorial004.py!}
 ```
 

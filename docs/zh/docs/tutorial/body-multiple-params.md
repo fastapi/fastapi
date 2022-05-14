@@ -72,7 +72,7 @@
 但是你可以使用 `Body` 指示 **FastAPI** 将其作为请求体的另一个键进行处理。
 
 
-```Python hl_lines="21"
+```Python hl_lines="22"
 {!../../../docs_src/body_multiple_params/tutorial003.py!}
 ```
 

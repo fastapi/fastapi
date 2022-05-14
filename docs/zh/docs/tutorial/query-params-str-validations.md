@@ -58,7 +58,7 @@ q: Union[str, None] = Query(default=None, max_length=50)
 
 你还可以添加 `min_length` 参数：
 
-```Python hl_lines="9"
+```Python hl_lines="10"
 {!../../../docs_src/query_params_str_validations/tutorial003.py!}
 ```
 
@@ -66,7 +66,7 @@ q: Union[str, None] = Query(default=None, max_length=50)
 
 你可以定义一个参数值必须匹配的<abbr title="正则表达式或正则是定义字符串搜索模式的字符序列。">正则表达式</abbr>：
 
-```Python hl_lines="10"
+```Python hl_lines="11"
 {!../../../docs_src/query_params_str_validations/tutorial004.py!}
 ```
 
