@@ -114,7 +114,7 @@ Con esto puedes moverte hacia abajo viendo las opciones hasta que encuentras una
 
 Mira esta función que ya tiene type hints:
 
-```Python 
+```Python
 def get_name_with_age(name: str, age: int):
     name_with_age = name + " is this old: " + age
     return name_with_age
@@ -253,7 +253,7 @@ También puedes declarar una clase como el tipo de una variable.
 
 Digamos que tienes una clase `Person` con la propiedad `name`:
 
-```Python 
+```Python
 class Person:
     def __init__(self, name: str):
         self.name = name
