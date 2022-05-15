@@ -6,7 +6,7 @@
 
 ### Основан на открытых стандартах
 
-* <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a> для создания API, включая объявления <abbr title="также известных, как  HTTP-методы, такие, как: POST, GET, PUT, DELETE">переменных</abbr> <abbr title="известные как: эндпоинты, маршруты, 'ручки' и т.п.">пути</abbr>, параметров, тела запроса, безопасности и т.д. 
+* <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a> для создания API, включая объявления <abbr title="также известных, как  HTTP-методы, такие, как: POST, GET, PUT, DELETE">переменных</abbr> <abbr title="известные как: эндпоинты, маршруты, 'ручки' и т.п.">пути</abbr>, параметров, тела запроса, безопасности и т.д.
 
 * Автоматическое документирование модели данных <a href="https://json-schema.org/" class="external-link" target="_blank"><strong>JSON Schema</strong></a> (так как, сам OpenAPI основан на JSON Schema).
 * Разработан, придерживаясь этих стандартов, после тщательного их изучения. Изначально включает их в себя, а не как дополнительный слой.
@@ -69,7 +69,7 @@ my_second_user: User = User(**second_user_data)
     `**second_user_data` означает:
 
     Передать ключи и значения словаря `second_user_data`, как аргуметны "ключ-значение", это эквивалентно: `User(id=4, name="Mary", joined="2018-11-30")`.
-    
+
     (*прим. перев. Для этой операции также используется термин "распаковать".)
 
 ### Поддержка редактора
