@@ -8,6 +8,7 @@
 
 * <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a> для создания API, включая объявления <abbr title="также известных, как  HTTP-методы, такие, как: POST, GET, PUT, DELETE">операций</abbr> <abbr title="известные как: эндпоинты, маршруты, 'ручки' и т.п.">пути</abbr>, параметров, тела запроса, безопасности и т.д.
 
+
 * Автоматическое документирование модели данных <a href="https://json-schema.org/" class="external-link" target="_blank"><strong>JSON Schema</strong></a> (так как, сам OpenAPI основан на JSON Schema).
 * Разработан, придерживаясь этих стандартов, после тщательного их изучения. Изначально включает их в себя, а не как дополнительный слой.
 * Это также позволяет использовать автоматическую **генерацию клиентского кода** на многих языках.
