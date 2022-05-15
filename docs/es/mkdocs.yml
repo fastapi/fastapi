@@ -5,13 +5,15 @@ theme:
   name: material
   custom_dir: overrides
   palette:
-  - scheme: default
+  - media: "(prefers-color-scheme: light)"
+    scheme: default
     primary: teal
     accent: amber
     toggle:
       icon: material/lightbulb
       name: Switch to light mode
-  - scheme: slate
+  - media: "(prefers-color-scheme: dark)"
+    scheme: slate
     primary: teal
     accent: amber
     toggle:
