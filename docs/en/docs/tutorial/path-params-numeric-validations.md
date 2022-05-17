@@ -124,7 +124,7 @@ And you can also declare numeric validations:
 !!! info
     `Query`, `Path`, and others you will see later are subclasses of a common `Param` class (that you don't need to use).
 
-    And all of them share the same all these same parameters of additional validation and metadata you have seen.
+    And all of them share the same parameters of additional validation and metadata you have seen.
 
 !!! note "Technical Details"
     When you import `Query`, `Path` and others from `fastapi`, they are actually functions.
