@@ -20,16 +20,16 @@ O parâmetro `status_code` recebe um número com o código de status HTTP.
 !!! info "Informação"
     `status_code` também pode receber um `IntEnum`, como o do Python <a href="https://docs.python.org/3/library/http.html#http.HTTPStatus" class="external-link" target="_blank">`http.HTTPStatus`</a>.
 
-Será: 
+Será:
 
-* Retorne esse código de status na resposta. 
+* Retorne esse código de status na resposta.
 * Documente-o como tal no esquema OpenAPI (e, portanto, nas interfaces do usuário):
 
 <img src="/img/tutorial/response-status-code/image01.png">
 
 !!! note "Nota"
-    Alguns códigos de resposta (consulte a próxima seção) indicam que a resposta não possui um corpo. 
-    
+    Alguns códigos de resposta (consulte a próxima seção) indicam que a resposta não possui um corpo.
+
     O FastAPI sabe disso e produzirá documentos OpenAPI informando que não há corpo de resposta.
 
 ## Sobre os códigos de status HTTP
@@ -37,22 +37,22 @@ Será:
 !!! note "Nota"
     Se você já sabe o que são códigos de status HTTP, pule para a próxima seção.
 
-Em HTTP, você envia um código de status numérico de 3 dígitos como parte da resposta. 
+Em HTTP, você envia um código de status numérico de 3 dígitos como parte da resposta.
 
 Esses códigos de status têm um nome associado para reconhecê-los, mas o importante é o número.
 
 Resumidamente:
 
 
-* `100` e acima são para "Informações". Você raramente os usa diretamente. As respostas com esses códigos de status não podem ter um corpo. 
-* **`200`** e acima são para respostas "Bem-sucedidas". Estes são os que você mais usaria. 
-    * `200` é o código de status padrão, o que significa que tudo estava "OK". 
-    * Outro exemplo seria `201`, "Criado". É comumente usado após a criação de um novo registro no banco de dados. 
-    * Um caso especial é `204`, "Sem Conteúdo". Essa resposta é usada quando não há conteúdo para retornar ao cliente e, portanto, a resposta não deve ter um corpo. 
-* **`300`** e acima são para "Redirecionamento". As respostas com esses códigos de status podem ou não ter um corpo, exceto `304`, "Não modificado", que não deve ter um. 
-* **`400`** e acima são para respostas de "Erro do cliente". Este é o segundo tipo que você provavelmente mais usaria. 
-    * Um exemplo é `404`, para uma resposta "Não encontrado". 
-    * Para erros genéricos do cliente, você pode usar apenas `400`. 
+* `100` e acima são para "Informações". Você raramente os usa diretamente. As respostas com esses códigos de status não podem ter um corpo.
+* **`200`** e acima são para respostas "Bem-sucedidas". Estes são os que você mais usaria.
+    * `200` é o código de status padrão, o que significa que tudo estava "OK".
+    * Outro exemplo seria `201`, "Criado". É comumente usado após a criação de um novo registro no banco de dados.
+    * Um caso especial é `204`, "Sem Conteúdo". Essa resposta é usada quando não há conteúdo para retornar ao cliente e, portanto, a resposta não deve ter um corpo.
+* **`300`** e acima são para "Redirecionamento". As respostas com esses códigos de status podem ou não ter um corpo, exceto `304`, "Não modificado", que não deve ter um.
+* **`400`** e acima são para respostas de "Erro do cliente". Este é o segundo tipo que você provavelmente mais usaria.
+    * Um exemplo é `404`, para uma resposta "Não encontrado".
+    * Para erros genéricos do cliente, você pode usar apenas `400`.
 * `500` e acima são para erros do servidor. Você quase nunca os usa diretamente. Quando algo der errado em alguma parte do código do seu aplicativo ou servidor, ele retornará automaticamente um desses códigos de status.
 
 !!! tip "Dica"
@@ -84,7 +84,7 @@ Eles são apenas uma conveniência, eles possuem o mesmo número, mas dessa form
     Você também pode usar `from starlette import status`.
 
     **FastAPI** fornece o mesmo `starlette.status` como `fastapi.status` apenas como uma conveniência para você, o desenvolvedor. Mas vem diretamente da Starlette.
-    
+
 
 ## Alterando o padrão
 
