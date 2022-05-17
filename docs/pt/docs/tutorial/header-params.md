@@ -79,7 +79,7 @@ Se por algum motivo você precisar desabilitar a conversão automática de subli
 
 É possível receber cabeçalhos duplicados. Isso significa, o mesmo cabeçalho com vários valores.
 
-Você pode definir esses casos usando uma lista na declaração de tipo. 
+Você pode definir esses casos usando uma lista na declaração de tipo.
 
 Você receberá todos os valores do cabeçalho duplicado como uma `list` Python.
 
@@ -123,6 +123,6 @@ A resposta seria como:
 
 ## Recapitulando
 
-Declare cabeçalhos com `Header`, usando o mesmo padrão comum que utiliza-se em `Query`, `Path` e `Cookie`. 
+Declare cabeçalhos com `Header`, usando o mesmo padrão comum que utiliza-se em `Query`, `Path` e `Cookie`.
 
 E não se preocupe com sublinhados em suas variáveis, FastAPI cuidará da conversão deles.
