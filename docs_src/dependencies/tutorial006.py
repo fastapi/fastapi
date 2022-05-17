@@ -1,4 +1,4 @@
-from fastapi import Depends, FastAPI, Header, Request, HTTPException
+from fastapi import Depends, FastAPI, Header, HTTPException, Request
 
 app = FastAPI()
 
@@ -15,5 +15,5 @@ async def verify_key(x_key: str = Header(default=None)):
 
 
 @app.get("/items/", dependencies=[Depends(verify_token), Depends(verify_key)])
-async def read_items(request:Request):
+async def read_items(request: Request):
     return [{"item": "Foo"}, {"item": "Bar"}]
