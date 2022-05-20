@@ -18,13 +18,13 @@ Let's look at the example from the dependecies tutorial:
 
 We first define a _type alias_ for our dependency, called `CommonParamsDepends`. This will allow us to re-use the combined type annotatation (the `dict` part), and the FastAPI annotation (the `Depends` part).
 
-We then use this as the annotation for the `commons` parameter. This will tell FastAPI that the `commons` parameter is a dependency, just like if we had written 
+We then use this as the annotation for the `commons` parameter. This will tell FastAPI that the `commons` parameter is a dependency, just like if we had written
 
 ```Python
 async def read_items(commons = Depends(common_parameters)):
 ```
 
-At the same time, it also tells your IDE and type-checker that `commons` is a `dict`. 
+At the same time, it also tells your IDE and type-checker that `commons` is a `dict`.
 
 This saves you from having to write `param: dict = Depends(common_parameters)` everytime you use the `common_parameters` dependency. Instead we just defined an alias once, and can write `param: CommonParamsDepends` every time we use it.
 
