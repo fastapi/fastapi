@@ -63,7 +63,7 @@ def Query(  # noqa: N802
     **extra: Any,
 ) -> Any:
     return params.Query(
-        default,
+        default=default,
         alias=alias,
         title=title,
         description=description,
@@ -103,7 +103,7 @@ def Header(  # noqa: N802
     **extra: Any,
 ) -> Any:
     return params.Header(
-        default,
+        default=default,
         alias=alias,
         convert_underscores=convert_underscores,
         title=title,
@@ -143,7 +143,7 @@ def Cookie(  # noqa: N802
     **extra: Any,
 ) -> Any:
     return params.Cookie(
-        default,
+        default=default,
         alias=alias,
         title=title,
         description=description,
@@ -182,7 +182,7 @@ def Body(  # noqa: N802
     **extra: Any,
 ) -> Any:
     return params.Body(
-        default,
+        default=default,
         embed=embed,
         media_type=media_type,
         alias=alias,
@@ -220,7 +220,7 @@ def Form(  # noqa: N802
     **extra: Any,
 ) -> Any:
     return params.Form(
-        default,
+        default=default,
         media_type=media_type,
         alias=alias,
         title=title,
@@ -257,7 +257,7 @@ def File(  # noqa: N802
     **extra: Any,
 ) -> Any:
     return params.File(
-        default,
+        default=default,
         media_type=media_type,
         alias=alias,
         title=title,

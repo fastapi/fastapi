@@ -64,15 +64,3 @@ def test_no_multiple_annotations():
         @app.get("/")
         async def get3(foo: Annotated[int, Query(min_length=1)] = Depends(dep)):
             pass  # pragma: nocover
-
-
-def test_defaults():
-
-    with pytest.raises(
-        AssertionError,
-        match="Must set a default for 'foo'. To make it required, use `...`.",
-    ):
-
-        @app.get("/")
-        async def get(foo: int = Query()):
-            pass  # pragma: nocover

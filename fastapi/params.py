@@ -39,7 +39,7 @@ class Param(FieldInfo):
         self.examples = examples
         self.include_in_schema = include_in_schema
         super().__init__(
-            default,
+            default=default,
             alias=alias,
             title=title,
             description=description,
@@ -83,7 +83,7 @@ class Path(Param):
         assert default is ..., "Path parameters cannot have a default value"
         self.in_ = self.in_
         super().__init__(
-            default,
+            default=default,
             alias=alias,
             title=title,
             description=description,
@@ -126,7 +126,7 @@ class Query(Param):
         **extra: Any,
     ):
         super().__init__(
-            default,
+            default=default,
             alias=alias,
             title=title,
             description=description,
@@ -171,7 +171,7 @@ class Header(Param):
     ):
         self.convert_underscores = convert_underscores
         super().__init__(
-            default,
+            default=default,
             alias=alias,
             title=title,
             description=description,
@@ -214,7 +214,7 @@ class Cookie(Param):
         **extra: Any,
     ):
         super().__init__(
-            default,
+            default=default,
             alias=alias,
             title=title,
             description=description,
@@ -259,7 +259,7 @@ class Body(FieldInfo):
         self.example = example
         self.examples = examples
         super().__init__(
-            default,
+            default=default,
             alias=alias,
             title=title,
             description=description,
@@ -298,7 +298,7 @@ class Form(Body):
         **extra: Any,
     ):
         super().__init__(
-            default,
+            default=default,
             embed=True,
             media_type=media_type,
             alias=alias,
@@ -338,7 +338,7 @@ class File(Form):
         **extra: Any,
     ):
         super().__init__(
-            default,
+            default=default,
             media_type=media_type,
             alias=alias,
             title=title,

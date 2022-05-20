@@ -317,6 +317,45 @@ This also means that in Python 3.10, you can use `Something | None`:
     {!> ../../../docs_src/python_types/tutorial009_py310.py!}
     ```
 
+#### Using `Union` or `Optional`
+
+If you are using a Python version below 3.10, here's a tip from my very **subjective** point of view:
+
+* 🚨 Avoid using `Optional[SomeType]`
+* Instead ✨ **use `Union[SomeType, None]`** ✨.
+
+Both are equivalent and underneath they are the same, but I would recommend `Union` instead of `Optional` because the word "**optional**" would seem to imply that the value is optional, and it actually means "it can be `None`", even if it's not optional and is still required.
+
+I think `Union[str, SomeType]` is more explicit about what it means.
+
+It's just about the words and names. But those words can affect how you and your teammates think about the code.
+
+As an example, let's take this function:
+
+```Python hl_lines="1  4"
+{!../../../docs_src/python_types/tutorial009c.py!}
+```
+
+The parameter `name` is defined as `Optional[str]`, but it is **not optional**, you cannot call the function without the parameter:
+
+```Python
+say_hi()  # Oh, no, this throws an error! 😱
+```
+
+The `name` parameter is **still required** (not *optional*) because it doesn't have a default value. Still, `name` accepts `None` as the value:
+
+```Python
+say_hi(name=None)  # This works, None is valid 🎉
+```
+
+The good news is, once you are on Python 3.10 you won't have to worry about that, as you will be able to simply use `|` to define unions of types:
+
+```Python hl_lines="1  4"
+{!../../../docs_src/python_types/tutorial009c_py310.py!}
+```
+
+And then you won't have to worry about names like `Optional` and `Union`. 😎
+
 #### Generic types
 
 These types that take type parameters in square brackets are called **Generic types** or **Generics**, for example:
@@ -421,6 +460,9 @@ An example from the official Pydantic docs:
 **FastAPI** is all based on Pydantic.
 
 You will see a lot more of all this in practice in the [Tutorial - User Guide](tutorial/index.md){.internal-link target=_blank}.
+
+!!! tip
+    Pydantic has a special behavior when you use `Optional` or `Union[Something, None]` without a default value, you can read more about it in the Pydantic docs about <a href="https://pydantic-docs.helpmanual.io/usage/models/#required-optional-fields" class="external-link" target="_blank">Required Optional fields</a>.
 
 ## Type hints in **FastAPI**
 

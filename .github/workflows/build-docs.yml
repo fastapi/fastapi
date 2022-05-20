@@ -22,7 +22,7 @@ jobs:
         id: cache
         with:
           path: ${{ env.pythonLocation }}
-          key: ${{ runner.os }}-python-${{ env.pythonLocation }}-${{ hashFiles('pyproject.toml') }}-docs-v2
+          key: ${{ runner.os }}-python-docs-${{ env.pythonLocation }}-${{ hashFiles('pyproject.toml') }}-v03
       - name: Install Flit
         if: steps.cache.outputs.cache-hit != 'true'
         run: python3.7 -m pip install flit
@@ -30,7 +30,7 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
         run: python3.7 -m flit install --deps production --extras doc
       - name: Install Material for MkDocs Insiders
-        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.fork == false && steps.cache.outputs.cache-hit != 'true'
+        if: ( github.event_name != 'pull_request' || github.event.pull_request.head.repo.fork == false ) && steps.cache.outputs.cache-hit != 'true'
         run: pip install git+https://${{ secrets.ACTIONS_TOKEN }}@github.com/squidfunk/mkdocs-material-insiders.git
       - name: Build Docs
         run: python3.7 ./scripts/docs.py build-all

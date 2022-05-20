@@ -395,9 +395,6 @@ def analyze_param(
             "Cannot specify FastAPI annotations in `Annotated` and default value"
             f" together for {param_name!r}"
         )
-        assert (
-            value.default is not Undefined
-        ), f"Must set a default for {param_name!r}. To make it required, use `...`."
         field_info = value
 
     if depends is not None and depends.dependency is None:
@@ -414,7 +411,7 @@ def analyze_param(
     elif field_info is None and depends is None:
         default_value = value if value is not inspect.Signature.empty else Required
         if is_path_param:
-            # We might check here that `defualt_value is Required`, but the fact is that the same
+            # We might check here that `default_value is Required`, but the fact is that the same
             # parameter might sometimes be a path parameter and sometimes not. See
             # `tests/test_infer_param_optionality.py` for an example.
             field_info = params.Path()
@@ -448,7 +445,7 @@ def analyze_param(
             type_=annotation,
             default=field_info.default,
             alias=alias,
-            required=field_info.default is Required,
+            required=field_info.default in (Required, Undefined),
             field_info=field_info,
         )
         if used_default_field_info:
@@ -475,7 +472,7 @@ def is_body_param(*, param_field: ModelField, is_path_param: bool) -> bool:
     else:
         assert isinstance(
             param_field.field_info, params.Body
-        ), f"Param: {param_field.name} can only be a request body, using Body(...)"
+        ), f"Param: {param_field.name} can only be a request body, using Body()"
         return True
 
 
