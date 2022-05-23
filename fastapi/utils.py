@@ -28,6 +28,12 @@ def get_model_definitions(
         m_schema, m_definitions, m_nested_models = model_process_schema(
             model, model_name_map=model_name_map, ref_prefix=REF_PREFIX
         )
+        # if a "form feed" character (page break) is found in the description text,
+        # truncate description text to the content preceding the first "form feed"
+        for _, value in m_definitions.items():
+            if "description" in value:
+                value["description"] = value["description"].split("\f")[0]
+
         definitions.update(m_definitions)
         model_name = model_name_map[model]
         definitions[model_name] = m_schema
