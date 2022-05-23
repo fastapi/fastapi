@@ -108,7 +108,7 @@ FastAPI یک فریمورک وب مدرن، سریع (با کارایی بالا
 
 <a href="https://typer.tiangolo.com" target="_blank"><img src="https://typer.tiangolo.com/img/logo-margin/logo-margin-vector.svg" style="width: 20%;"></a>
 
-اگر شما یک برنامه <abbr title="Command Line Interface">CLI</abbr> میسازید، برنامه مورد استفاده در ترمینال به جای وب API ها، <a href="https://typer.tiangolo.com/" class="external-link" target="_blank">**Typer**</a> بررسی کنید.
+اگر شما یک برنامه <abbr title="Command Line Interface">CLI</abbr> میسازید، برنامه مورد استفاده در ترمینال به جای وب API ها، یعنی <a href="https://typer.tiangolo.com/" class="external-link" target="_blank">**Typer**</a> را بررسی کنید.
 
 **Typer** برادر کوچک FastAPI است. و قرار است **FastAPI CLI** باشد. ⌨️ 🚀
 
