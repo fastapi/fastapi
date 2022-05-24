@@ -36,7 +36,7 @@ For example, to declare another response with a status code `404` and a Pydantic
     **FastAPI** will take the Pydantic model from there, generate the `JSON Schema`, and put it in the correct place.
 
     The correct place is:
-    
+
     * In the key `content`, that has as value another JSON object (`dict`) that contains:
         * A key with the media type, e.g. `application/json`, that contains as value another JSON object, that contains:
             * A key `schema`, that has as the value the JSON Schema from the model, here's the correct place.
