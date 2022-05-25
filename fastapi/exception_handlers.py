@@ -1,3 +1,5 @@
+from typing import Any, Type
+
 from fastapi.encoders import jsonable_encoder
 from fastapi.exceptions import RequestValidationError
 from starlette.datastructures import MutableHeaders
@@ -7,7 +9,7 @@ from starlette.responses import JSONResponse, Response
 from starlette.status import HTTP_422_UNPROCESSABLE_ENTITY
 
 
-async def http_exception_handler(request: Request, exc: HTTPException) -> JSONResponse:
+async def http_exception_handler(request: Request, exc: HTTPException) -> Response:
     headers = getattr(exc, "headers", None)
     if headers is not None:
         headers = MutableHeaders(headers)
@@ -17,8 +19,8 @@ async def http_exception_handler(request: Request, exc: HTTPException) -> JSONRe
         del headers["content-type"]
 
     if exc.status_code in {204, 304}:
-        content = None
-        response_cls = Response
+        content: Any = None
+        response_cls: Type[Response] = Response
     else:
         content = {"detail": exc.detail}
         response_cls = JSONResponse
