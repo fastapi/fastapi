@@ -2,7 +2,7 @@ from typing import Any
 
 from starlette.responses import FileResponse as FileResponse  # noqa
 from starlette.responses import HTMLResponse as HTMLResponse  # noqa
-from starlette.responses import JSONResponse as JSONResponse  # noqa
+from starlette.responses import JSONResponse as _JSONResponse  # noqa
 from starlette.responses import PlainTextResponse as PlainTextResponse  # noqa
 from starlette.responses import RedirectResponse as RedirectResponse  # noqa
 from starlette.responses import Response as Response  # noqa
@@ -18,6 +18,10 @@ try:
     import orjson
 except ImportError:  # pragma: nocover
     orjson = None  # type: ignore
+
+
+class JSONResponse(_JSONResponse):
+    media_type = "application/json;charset=utf-8"
 
 
 class UJSONResponse(JSONResponse):
