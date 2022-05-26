@@ -42,7 +42,7 @@ def examples(
 @app.post("/example_examples/")
 def example_examples(
     item: Item = Body(
-        example={"data": "Overriden example"},
+        example={"data": "Overridden example"},
         examples={
             "example1": {"value": {"data": "examples example_examples 1"}},
             "example2": {"value": {"data": "examples example_examples 2"}},
@@ -76,7 +76,7 @@ def example_examples(
 # def form_example_examples(
 #     lastname: str = Form(
 #         ...,
-#         example="Doe overriden",
+#         example="Doe overridden",
 #         examples={
 #             "example1": {"summary": "last name summary", "value": "Doe"},
 #             "example2": {"value": "Doesn't"},
@@ -110,7 +110,7 @@ def path_examples(
 @app.get("/path_example_examples/{item_id}")
 def path_example_examples(
     item_id: str = Path(
-        example="item_overriden",
+        example="item_overridden",
         examples={
             "example1": {"summary": "item ID summary", "value": "item_1"},
             "example2": {"value": "item_2"},
@@ -147,9 +147,9 @@ def query_examples(
 def query_example_examples(
     data: Union[str, None] = Query(
         default=None,
-        example="query_overriden",
+        example="query_overridden",
         examples={
-            "example1": {"summary": "Qeury example 1", "value": "query1"},
+            "example1": {"summary": "Query example 1", "value": "query1"},
             "example2": {"value": "query2"},
         },
     ),
@@ -184,9 +184,9 @@ def header_examples(
 def header_example_examples(
     data: Union[str, None] = Header(
         default=None,
-        example="header_overriden",
+        example="header_overridden",
         examples={
-            "example1": {"summary": "Qeury example 1", "value": "header1"},
+            "example1": {"summary": "Query example 1", "value": "header1"},
             "example2": {"value": "header2"},
         },
     ),
@@ -221,9 +221,9 @@ def cookie_examples(
 def cookie_example_examples(
     data: Union[str, None] = Cookie(
         default=None,
-        example="cookie_overriden",
+        example="cookie_overridden",
         examples={
-            "example1": {"summary": "Qeury example 1", "value": "cookie1"},
+            "example1": {"summary": "Query example 1", "value": "cookie1"},
             "example2": {"value": "cookie2"},
         },
     ),
@@ -561,7 +561,7 @@ openapi_schema = {
                         "schema": {"title": "Data", "type": "string"},
                         "examples": {
                             "example1": {
-                                "summary": "Qeury example 1",
+                                "summary": "Query example 1",
                                 "value": "query1",
                             },
                             "example2": {"value": "query2"},
@@ -666,7 +666,7 @@ openapi_schema = {
                         "schema": {"title": "Data", "type": "string"},
                         "examples": {
                             "example1": {
-                                "summary": "Qeury example 1",
+                                "summary": "Query example 1",
                                 "value": "header1",
                             },
                             "example2": {"value": "header2"},
@@ -771,7 +771,7 @@ openapi_schema = {
                         "schema": {"title": "Data", "type": "string"},
                         "examples": {
                             "example1": {
-                                "summary": "Qeury example 1",
+                                "summary": "Query example 1",
                                 "value": "cookie1",
                             },
                             "example2": {"value": "cookie2"},

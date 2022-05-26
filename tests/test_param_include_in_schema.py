@@ -35,7 +35,7 @@ async def hidden_query(
 
 client = TestClient(app)
 
-openapi_shema = {
+openapi_schema = {
     "openapi": "3.0.2",
     "info": {"title": "FastAPI", "version": "0.1.0"},
     "paths": {
@@ -163,7 +163,7 @@ openapi_shema = {
 def test_openapi_schema():
     response = client.get("/openapi.json")
     assert response.status_code == 200
-    assert response.json() == openapi_shema
+    assert response.json() == openapi_schema
 
 
 @pytest.mark.parametrize(
