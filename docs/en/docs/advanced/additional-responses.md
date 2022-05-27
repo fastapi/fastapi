@@ -23,7 +23,7 @@ Each of those response `dict`s can have a key `model`, containing a Pydantic mod
 
 For example, to declare another response with a status code `404` and a Pydantic model `Message`, you can write:
 
-```Python hl_lines="18  23"
+```Python hl_lines="18  22"
 {!../../../docs_src/additional_responses/tutorial001.py!}
 ```
 
