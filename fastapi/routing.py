@@ -127,7 +127,7 @@ async def serialize_response(
         if is_coroutine:
             value, errors_ = field.validate(response_content, {}, loc=("response",))
         else:
-            value, errors_ = await run_in_threadpool(
+            value, errors_ = await run_in_threadpool(  # type: ignore[misc]
                 field.validate, response_content, {}, loc=("response",)
             )
         if isinstance(errors_, ErrorWrapper):
@@ -364,7 +364,7 @@ class APIRoute(routing.Route):
         self.path_regex, self.path_format, self.param_convertors = compile_path(path)
         if methods is None:
             methods = ["GET"]
-        self.methods: Set[str] = set([method.upper() for method in methods])
+        self.methods: Set[str] = {method.upper() for method in methods}
         if isinstance(generate_unique_id_function, DefaultPlaceholder):
             current_generate_unique_id: Callable[
                 ["APIRoute"], str
@@ -478,11 +478,11 @@ class APIRouter(routing.Router):
         ),
     ) -> None:
         super().__init__(
-            routes=routes,  # type: ignore # in Starlette
+            routes=routes,
             redirect_slashes=redirect_slashes,
-            default=default,  # type: ignore # in Starlette
-            on_startup=on_startup,  # type: ignore # in Starlette
-            on_shutdown=on_shutdown,  # type: ignore # in Starlette
+            default=default,
+            on_startup=on_startup,
+            on_shutdown=on_shutdown,
         )
         if prefix:
             assert prefix.startswith("/"), "A path prefix must start with '/'"
@@ -649,7 +649,7 @@ class APIRouter(routing.Router):
         self, path: str, endpoint: Callable[..., Any], name: Optional[str] = None
     ) -> None:
         route = APIWebSocketRoute(
-            path,
+            self.prefix + path,
             endpoint=endpoint,
             name=name,
             dependency_overrides_provider=self.dependency_overrides_provider,
@@ -757,7 +757,7 @@ class APIRouter(routing.Router):
                     generate_unique_id_function=current_generate_unique_id,
                 )
             elif isinstance(route, routing.Route):
-                methods = list(route.methods or [])  # type: ignore # in Starlette
+                methods = list(route.methods or [])
                 self.add_route(
                     prefix + route.path,
                     route.endpoint,

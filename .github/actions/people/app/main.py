@@ -14,7 +14,7 @@ from pydantic import BaseModel, BaseSettings, SecretStr
 github_graphql_url = "https://api.github.com/graphql"
 
 issues_query = """
-query Q($after: String) { 
+query Q($after: String) {
   repository(name: "fastapi", owner: "tiangolo") {
     issues(first: 100, after: $after) {
       edges {
@@ -47,7 +47,7 @@ query Q($after: String) {
 """
 
 prs_query = """
-query Q($after: String) { 
+query Q($after: String) {
   repository(name: "fastapi", owner: "tiangolo") {
     pullRequests(first: 100, after: $after) {
       edges {
@@ -501,9 +501,16 @@ if __name__ == "__main__":
     github_sponsors_path = Path("./docs/en/data/github_sponsors.yml")
     people_old_content = people_path.read_text(encoding="utf-8")
     github_sponsors_old_content = github_sponsors_path.read_text(encoding="utf-8")
-    new_people_content = yaml.dump(people, sort_keys=False, width=200, allow_unicode=True)
-    new_github_sponsors_content = yaml.dump(github_sponsors, sort_keys=False, width=200, allow_unicode=True)
-    if people_old_content == new_people_content and github_sponsors_old_content == new_github_sponsors_content:
+    new_people_content = yaml.dump(
+        people, sort_keys=False, width=200, allow_unicode=True
+    )
+    new_github_sponsors_content = yaml.dump(
+        github_sponsors, sort_keys=False, width=200, allow_unicode=True
+    )
+    if (
+        people_old_content == new_people_content
+        and github_sponsors_old_content == new_github_sponsors_content
+    ):
         logging.info("The FastAPI People data hasn't changed, finishing.")
         sys.exit(0)
     people_path.write_text(new_people_content, encoding="utf-8")
@@ -517,7 +524,9 @@ if __name__ == "__main__":
     logging.info(f"Creating a new branch {branch_name}")
     subprocess.run(["git", "checkout", "-b", branch_name], check=True)
     logging.info("Adding updated file")
-    subprocess.run(["git", "add", str(people_path)], check=True)
+    subprocess.run(
+        ["git", "add", str(people_path), str(github_sponsors_path)], check=True
+    )
     logging.info("Committing updated file")
     message = "👥 Update FastAPI People"
     result = subprocess.run(["git", "commit", "-m", message], check=True)
