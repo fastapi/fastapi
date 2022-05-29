@@ -34,12 +34,12 @@
 {!../../../docs_src/query_params_str_validations/tutorial002.py!}
 ```
 
-デフォルト値`None`を`Query(None)`に置き換える必要があるので、`Query`の最初の引数はデフォルト値を定義するのと同じです。
+デフォルト値`None`を`Query(default=None)`に置き換える必要があるので、`Query`の最初の引数はデフォルト値を定義するのと同じです。
 
 なので:
 
 ```Python
-q: Optional[str] = Query(None)
+q: Optional[str] = Query(default=None)
 ```
 
 ...を以下と同じようにパラメータをオプションにします:
@@ -60,7 +60,7 @@ q: Optional[str] = None
     もしくは:
 
     ```Python
-    = Query(None)
+    = Query(default=None)
     ```
 
     そして、 `None` を利用することでクエリパラメータが必須ではないと検知します。
@@ -70,7 +70,7 @@ q: Optional[str] = None
 そして、さらに多くのパラメータを`Query`に渡すことができます。この場合、文字列に適用される、`max_length`パラメータを指定します。
 
 ```Python
-q: str = Query(None, max_length=50)
+q: Union[str, None] = Query(default=None, max_length=50)
 ```
 
 これにより、データを検証し、データが有効でない場合は明確なエラーを表示し、OpenAPIスキーマの　*path operation* にパラメータを記載します。
@@ -79,7 +79,7 @@ q: str = Query(None, max_length=50)
 
 パラメータ`min_length`も追加することができます:
 
-```Python hl_lines="9"
+```Python hl_lines="10"
 {!../../../docs_src/query_params_str_validations/tutorial003.py!}
 ```
 
@@ -87,7 +87,7 @@ q: str = Query(None, max_length=50)
 
 パラメータが一致するべき<abbr title="正規表現とは、文字列の検索パターンを定義する文字列です。">正規表現</abbr>を定義することができます:
 
-```Python hl_lines="10"
+```Python hl_lines="11"
 {!../../../docs_src/query_params_str_validations/tutorial004.py!}
 ```
 
@@ -125,13 +125,13 @@ q: str
 以下の代わりに:
 
 ```Python
-q: Optional[str] = None
+q: Union[str, None] = None
 ```
 
 現在は以下の例のように`Query`で宣言しています:
 
 ```Python
-q: Optional[str] = Query(None, min_length=3)
+q: Union[str, None] = Query(default=None, min_length=3)
 ```
 
 そのため、`Query`を使用して必須の値を宣言する必要がある場合は、第一引数に`...`を使用することができます:
