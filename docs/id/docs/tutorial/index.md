@@ -1,6 +1,6 @@
 # Tutorial - Pedoman Pengguna - Pengenalan
 
-Tutorial ini menunjukan cara menggunalkan ***FastAPI*** dengan semua fitur-fiturnya, tahap demi tahap.
+Tutorial ini menunjukan cara menggunakan ***FastAPI*** dengan semua fitur-fiturnya, tahap demi tahap.
 
 Setiap bagian dibangun secara bertahap dari bagian sebelumnya, tetapi terstruktur untuk memisahkan banyak topik, sehingga kamu bisa secara langsung menuju ke topik spesifik untuk menyelesaikan kebutuhan API tertentu.
 
