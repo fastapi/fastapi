@@ -378,7 +378,7 @@ Kembali lagi ke contoh kode sebelumnya **FastAPI** akan:
     * Dengan dideklarasikan bahwa parameter `q = None`, maka artinya adalah opsional.
     * Tanpa `None`, maka akan menjadi diperlukan ( seperti pada body pada kasusu request dengan `PUT`).
 * Untuk `PUT` request ke `/items/{item_id}`, membaca body sebagai JSON:
-    * Memeriksa jika memiliki atribut `name` yang diperlukan, dimana harus merupakan `str`. 
+    * Memeriksa jika memiliki atribut `name` yang diperlukan, dimana harus merupakan `str`.
     * Periksa jika memiliki atribut `price` yang diperlukan, dimana harus merupakan `float`.
     * Periksa jika memiliki atribut opsional `is_offer`, dimana harus merupakan `bool`, jika ada.
     * Semua hal ini juga akan bekerja pada obyek-obyek JSON bersarang.
