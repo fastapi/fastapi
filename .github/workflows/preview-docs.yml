@@ -3,7 +3,7 @@ on:
   workflow_run:
     workflows:
       - Build Docs
-    types: 
+    types:
       - completed
 
 jobs:

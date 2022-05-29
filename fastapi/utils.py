@@ -1,8 +1,9 @@
 import functools
 import re
+import warnings
 from dataclasses import is_dataclass
 from enum import Enum
-from typing import Any, Dict, Optional, Set, Type, Union, cast
+from typing import TYPE_CHECKING, Any, Dict, Optional, Set, Type, Union, cast
 
 import fastapi
 from fastapi.datastructures import DefaultPlaceholder, DefaultType
@@ -12,6 +13,9 @@ from pydantic.class_validators import Validator
 from pydantic.fields import FieldInfo, ModelField, UndefinedType
 from pydantic.schema import model_process_schema
 from pydantic.utils import lenient_issubclass
+
+if TYPE_CHECKING:  # pragma: nocover
+    from .routing import APIRoute
 
 
 def get_model_definitions(
@@ -48,7 +52,7 @@ def create_response_field(
     Create a new response field. Raises if type_ is invalid.
     """
     class_validators = class_validators or {}
-    field_info = field_info or FieldInfo(None)
+    field_info = field_info or FieldInfo()
 
     response_field = functools.partial(
         ModelField,
@@ -119,23 +123,39 @@ def create_cloned_field(
     return new_field
 
 
-def generate_operation_id_for_path(*, name: str, path: str, method: str) -> str:
+def generate_operation_id_for_path(
+    *, name: str, path: str, method: str
+) -> str:  # pragma: nocover
+    warnings.warn(
+        "fastapi.utils.generate_operation_id_for_path() was deprecated, "
+        "it is not used internally, and will be removed soon",
+        DeprecationWarning,
+        stacklevel=2,
+    )
     operation_id = name + path
     operation_id = re.sub("[^0-9a-zA-Z_]", "_", operation_id)
     operation_id = operation_id + "_" + method.lower()
     return operation_id
 
 
+def generate_unique_id(route: "APIRoute") -> str:
+    operation_id = route.name + route.path_format
+    operation_id = re.sub("[^0-9a-zA-Z_]", "_", operation_id)
+    assert route.methods
+    operation_id = operation_id + "_" + list(route.methods)[0].lower()
+    return operation_id
+
+
 def deep_dict_update(main_dict: Dict[Any, Any], update_dict: Dict[Any, Any]) -> None:
-    for key in update_dict:
+    for key, value in update_dict.items():
         if (
             key in main_dict
             and isinstance(main_dict[key], dict)
-            and isinstance(update_dict[key], dict)
+            and isinstance(value, dict)
         ):
-            deep_dict_update(main_dict[key], update_dict[key])
+            deep_dict_update(main_dict[key], value)
         else:
-            main_dict[key] = update_dict[key]
+            main_dict[key] = value
 
 
 def get_value_or_default(
