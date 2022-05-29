@@ -123,7 +123,7 @@ Di situ akan terlihat sebuah JSON yang diawali dengan sesuatu seperti:
 Skema OpenAPI adalah hal yang menjadi kekuatan bagi dua sistem dokumentasi interaktif.
 
 
-Dan terdapat puluhan alternatif, semuanya berbasis pada OpenAPI. Kamu dapat dengan mudah menambahkan yang manapun dari alternatif-alternatif tersebut ke dalam aplikasimu yang dibangun menggunakan **FastAPI**. 
+Dan terdapat puluhan alternatif, semuanya berbasis pada OpenAPI. Kamu dapat dengan mudah menambahkan yang manapun dari alternatif-alternatif tersebut ke dalam aplikasimu yang dibangun menggunakan **FastAPI**.
 
 Kamu juga dapat menggunakannya untuk menghasilkan kode secara otomatis, untuk klien-klien yang berkomunikasi dengan API mu. Sebagai contoh, frontend, mobile atau aplikasi-aplikasi IoT.
 
