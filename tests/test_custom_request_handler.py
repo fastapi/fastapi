@@ -2,6 +2,7 @@ import json
 from typing import Any, Dict
 
 import pydantic as pyd
+import pytest
 from fastapi import APIRouter, FastAPI
 from fastapi.routing import APIRoute, RequestHandler
 from fastapi.testclient import TestClient
@@ -18,7 +19,7 @@ class CustomType(pyd.BaseModel):
         new_cls = cls._TYPES.get(cls_type)
         if new_cls is not None:
             return new_cls(**data.get("fields", {}))
-        return data
+        raise TypeError(f"{cls_type} is not a supported type")
 
 
 class Payload(CustomType):
@@ -68,11 +69,29 @@ app.include_router(router=router)
 client = TestClient(app)
 
 
-def test_custom_decoder():
+@pytest.mark.parametrize(
+    "expected_status,type_id,fields,response_payload",
+    [
+        (200, 1, {"field": "value"}, {"field": "value"}),
+        (400, 2, {"field": "value"}, {"detail": "There was an error parsing the body"}),
+    ],
+)
+def test_custom_decoder(expected_status, type_id, fields, response_payload):
     response = client.post(
         "/",
-        json={"_type": 1, "fields": {"field": "value"}},
+        json={"_type": type_id, "fields": fields},
         headers={"content-type": "application/x-custom-decoder"},
+    )
+
+    assert response.status_code == expected_status
+    assert response.json() == response_payload
+
+
+def test_normal_decoder_in_custom():
+    response = client.post(
+        "/",
+        json={"field": "value"},
+        headers={"content-type": "application/json"},
     )
 
     assert response.status_code == 200
