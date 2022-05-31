@@ -2,6 +2,7 @@ import asyncio
 import dataclasses
 import email.message
 import inspect
+import json
 from enum import Enum, IntEnum
 from typing import (
     Any,
@@ -41,10 +42,9 @@ from pydantic.error_wrappers import ErrorWrapper, ValidationError
 from pydantic.fields import ModelField
 from starlette import routing
 from starlette.concurrency import run_in_threadpool
-from starlette.datastructures import FormData
 from starlette.exceptions import HTTPException
 from starlette.requests import Request
-from starlette.responses import JSONResponse, Response, json
+from starlette.responses import JSONResponse, Response
 from starlette.routing import BaseRoute, Match
 from starlette.routing import Mount as Mount  # noqa
 from starlette.routing import (
@@ -106,22 +106,6 @@ class APIWebSocketRoute(routing.WebSocketRoute):
 
 
 class RequestHandler:
-    is_coroutine: bool
-    is_body_form: bool
-    actual_response_class: Type[Response]
-    dependant: Dependant
-    body_field: Optional[ModelField] = None
-    status_code: Optional[int] = None
-    response_class: Union[Type[Response], DefaultPlaceholder] = JSONResponse
-    response_field: Optional[ModelField] = None
-    response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None
-    response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None
-    response_model_by_alias: bool = True
-    response_model_exclude_unset: bool = False
-    response_model_exclude_defaults: bool = False
-    response_model_exclude_none: bool = False
-    dependency_overrides_provider: Optional[Any] = None
-
     def __init__(
         self,
         dependant: Dependant,
@@ -136,7 +120,7 @@ class RequestHandler:
         response_model_exclude_defaults: bool = False,
         response_model_exclude_none: bool = False,
         dependency_overrides_provider: Optional[Any] = None,
-    ) -> Callable[[Request], Coroutine[Any, Any, Response]]:
+    ) -> None:
         self.dependant = dependant
         self.body_field = body_field
         self.status_code = status_code
@@ -149,13 +133,16 @@ class RequestHandler:
         self.response_model_exclude_defaults = response_model_exclude_defaults
         self.response_model_exclude_none = response_model_exclude_none
         self.dependency_overrides_provider = dependency_overrides_provider
-        self.is_coroutine = asyncio.iscoroutinefunction(self.dependant.call)
-        self.is_body_form = self.body_field and isinstance(
-            self.body_field.field_info, params.Form
+        self.is_coroutine: bool = bool(
+            self.dependant.call and asyncio.iscoroutinefunction(self.dependant.call)
+        )
+        self.is_body_form: bool = bool(
+            self.body_field and isinstance(self.body_field.field_info, params.Form)
         )
 
+        self.actual_response_class: Type[Response]
         if isinstance(self.response_class, DefaultPlaceholder):
-            self.actual_response_class: Type[Response] = self.response_class.value
+            self.actual_response_class = self.response_class.value
         else:
             self.actual_response_class = self.response_class
 
@@ -170,9 +157,10 @@ class RequestHandler:
             subtype = message.get_content_subtype()
             if subtype == "json" or subtype.endswith("+json"):
                 return json_loads
+        return None
 
     async def encode_raw_response(self, _: Request, response_content: Any) -> Any:
-        field: ModelField = self.response_field
+        field: Optional[ModelField] = self.response_field
         if field:
             errors = []
             response_content = self._prepare_response_content(
@@ -205,15 +193,17 @@ class RequestHandler:
         else:
             return jsonable_encoder(response_content)
 
-    async def __call__(self, request: Request) -> Coroutine[Any, Any, Response]:
-        body: Optional[Union[dict, bytes, FormData]] = None
+    async def __call__(self, request: Request) -> Response:
+        body: Any = None
         try:
             if self.is_body_form:
                 body = await request.form()
             elif self.body_field:
                 body_bytes: bytes = await request.body()
                 if body_bytes:
-                    decoder: Callable[[bytes], Any] = self.get_decoder(request)
+                    decoder: Optional[Callable[[bytes], Any]] = self.get_decoder(
+                        request
+                    )
                     if decoder:
                         body = decoder(body_bytes)
                     else:
@@ -478,10 +468,8 @@ class APIRoute(routing.Route):
         )
 
         # Awaiting https://github.com/encode/starlette/pull/1444/files to remove this workaround
-        async def wrap_async_call(
-            *args, **kwargs
-        ) -> Callable[[Request], Coroutine[Any, Any, Response]]:
-            return await request_handler(*args, **kwargs)
+        async def wrap_async_call(request: Request) -> Response:
+            return await request_handler(request)
 
         return wrap_async_call
 
