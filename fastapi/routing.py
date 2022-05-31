@@ -159,7 +159,7 @@ class RequestHandler:
         else:
             self.actual_response_class = self.response_class
 
-    def get_decoder(self, request: Request) -> Callable[[bytes], Any] | None:
+    def get_decoder(self, request: Request) -> Optional[Callable[[bytes], Any]]:
         content_type_value = request.headers.get("content-type")
         if not content_type_value:
             return json_loads
@@ -206,7 +206,7 @@ class RequestHandler:
             return jsonable_encoder(response_content)
 
     async def __call__(self, request: Request) -> Coroutine[Any, Any, Response]:
-        body: dict | bytes | FormData = None
+        body: Optional[Union[dict, bytes, FormData]] = None
         try:
             if self.is_body_form:
                 body = await request.form()
@@ -478,7 +478,9 @@ class APIRoute(routing.Route):
         )
 
         # Awaiting https://github.com/encode/starlette/pull/1444/files to remove this workaround
-        async def wrap_async_call(*args, **kwargs):
+        async def wrap_async_call(
+            *args, **kwargs
+        ) -> Callable[[Request], Coroutine[Any, Any, Response]]:
             return await request_handler(*args, **kwargs)
 
         return wrap_async_call
