@@ -52,7 +52,7 @@ def jsonable_encoder(
     if isinstance(obj, BaseModel):
         encoder = getattr(obj.__config__, "json_encoders", {})
         if custom_encoder:
-            encoder.update(custom_encoder)
+            encoder = {**encoder, **custom_encoder}
         obj_dict = obj.dict(
             include=include,
             exclude=exclude,
