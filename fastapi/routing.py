@@ -2,7 +2,6 @@ import asyncio
 import dataclasses
 import email.message
 import inspect
-import json
 from enum import Enum, IntEnum
 from typing import (
     Any,
@@ -39,12 +38,13 @@ from fastapi.utils import (
 )
 from pydantic import BaseModel
 from pydantic.error_wrappers import ErrorWrapper, ValidationError
-from pydantic.fields import ModelField, Undefined
+from pydantic.fields import ModelField
 from starlette import routing
 from starlette.concurrency import run_in_threadpool
+from starlette.datastructures import FormData
 from starlette.exceptions import HTTPException
 from starlette.requests import Request
-from starlette.responses import JSONResponse, Response
+from starlette.responses import JSONResponse, Response, json
 from starlette.routing import BaseRoute, Match
 from starlette.routing import Mount as Mount  # noqa
 from starlette.routing import (
@@ -56,205 +56,6 @@ from starlette.routing import (
 from starlette.status import WS_1008_POLICY_VIOLATION
 from starlette.types import ASGIApp, Scope
 from starlette.websockets import WebSocket
-
-
-def _prepare_response_content(
-    res: Any,
-    *,
-    exclude_unset: bool,
-    exclude_defaults: bool = False,
-    exclude_none: bool = False,
-) -> Any:
-    if isinstance(res, BaseModel):
-        read_with_orm_mode = getattr(res.__config__, "read_with_orm_mode", None)
-        if read_with_orm_mode:
-            # Let from_orm extract the data from this model instead of converting
-            # it now to a dict.
-            # Otherwise there's no way to extract lazy data that requires attribute
-            # access instead of dict iteration, e.g. lazy relationships.
-            return res
-        return res.dict(
-            by_alias=True,
-            exclude_unset=exclude_unset,
-            exclude_defaults=exclude_defaults,
-            exclude_none=exclude_none,
-        )
-    elif isinstance(res, list):
-        return [
-            _prepare_response_content(
-                item,
-                exclude_unset=exclude_unset,
-                exclude_defaults=exclude_defaults,
-                exclude_none=exclude_none,
-            )
-            for item in res
-        ]
-    elif isinstance(res, dict):
-        return {
-            k: _prepare_response_content(
-                v,
-                exclude_unset=exclude_unset,
-                exclude_defaults=exclude_defaults,
-                exclude_none=exclude_none,
-            )
-            for k, v in res.items()
-        }
-    elif dataclasses.is_dataclass(res):
-        return dataclasses.asdict(res)
-    return res
-
-
-async def serialize_response(
-    *,
-    field: Optional[ModelField] = None,
-    response_content: Any,
-    include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-    exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-    by_alias: bool = True,
-    exclude_unset: bool = False,
-    exclude_defaults: bool = False,
-    exclude_none: bool = False,
-    is_coroutine: bool = True,
-) -> Any:
-    if field:
-        errors = []
-        response_content = _prepare_response_content(
-            response_content,
-            exclude_unset=exclude_unset,
-            exclude_defaults=exclude_defaults,
-            exclude_none=exclude_none,
-        )
-        if is_coroutine:
-            value, errors_ = field.validate(response_content, {}, loc=("response",))
-        else:
-            value, errors_ = await run_in_threadpool(  # type: ignore[misc]
-                field.validate, response_content, {}, loc=("response",)
-            )
-        if isinstance(errors_, ErrorWrapper):
-            errors.append(errors_)
-        elif isinstance(errors_, list):
-            errors.extend(errors_)
-        if errors:
-            raise ValidationError(errors, field.type_)
-        return jsonable_encoder(
-            value,
-            include=include,
-            exclude=exclude,
-            by_alias=by_alias,
-            exclude_unset=exclude_unset,
-            exclude_defaults=exclude_defaults,
-            exclude_none=exclude_none,
-        )
-    else:
-        return jsonable_encoder(response_content)
-
-
-async def run_endpoint_function(
-    *, dependant: Dependant, values: Dict[str, Any], is_coroutine: bool
-) -> Any:
-    # Only called by get_request_handler. Has been split into its own function to
-    # facilitate profiling endpoints, since inner functions are harder to profile.
-    assert dependant.call is not None, "dependant.call must be a function"
-
-    if is_coroutine:
-        return await dependant.call(**values)
-    else:
-        return await run_in_threadpool(dependant.call, **values)
-
-
-def get_request_handler(
-    dependant: Dependant,
-    body_field: Optional[ModelField] = None,
-    status_code: Optional[int] = None,
-    response_class: Union[Type[Response], DefaultPlaceholder] = Default(JSONResponse),
-    response_field: Optional[ModelField] = None,
-    response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-    response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-    response_model_by_alias: bool = True,
-    response_model_exclude_unset: bool = False,
-    response_model_exclude_defaults: bool = False,
-    response_model_exclude_none: bool = False,
-    dependency_overrides_provider: Optional[Any] = None,
-) -> Callable[[Request], Coroutine[Any, Any, Response]]:
-    assert dependant.call is not None, "dependant.call must be a function"
-    is_coroutine = asyncio.iscoroutinefunction(dependant.call)
-    is_body_form = body_field and isinstance(body_field.field_info, params.Form)
-    if isinstance(response_class, DefaultPlaceholder):
-        actual_response_class: Type[Response] = response_class.value
-    else:
-        actual_response_class = response_class
-
-    async def app(request: Request) -> Response:
-        try:
-            body: Any = None
-            if body_field:
-                if is_body_form:
-                    body = await request.form()
-                else:
-                    body_bytes = await request.body()
-                    if body_bytes:
-                        json_body: Any = Undefined
-                        content_type_value = request.headers.get("content-type")
-                        if not content_type_value:
-                            json_body = await request.json()
-                        else:
-                            message = email.message.Message()
-                            message["content-type"] = content_type_value
-                            if message.get_content_maintype() == "application":
-                                subtype = message.get_content_subtype()
-                                if subtype == "json" or subtype.endswith("+json"):
-                                    json_body = await request.json()
-                        if json_body != Undefined:
-                            body = json_body
-                        else:
-                            body = body_bytes
-        except json.JSONDecodeError as e:
-            raise RequestValidationError([ErrorWrapper(e, ("body", e.pos))], body=e.doc)
-        except Exception as e:
-            raise HTTPException(
-                status_code=400, detail="There was an error parsing the body"
-            ) from e
-        solved_result = await solve_dependencies(
-            request=request,
-            dependant=dependant,
-            body=body,
-            dependency_overrides_provider=dependency_overrides_provider,
-        )
-        values, errors, background_tasks, sub_response, _ = solved_result
-        if errors:
-            raise RequestValidationError(errors, body=body)
-        else:
-            raw_response = await run_endpoint_function(
-                dependant=dependant, values=values, is_coroutine=is_coroutine
-            )
-
-            if isinstance(raw_response, Response):
-                if raw_response.background is None:
-                    raw_response.background = background_tasks
-                return raw_response
-            response_data = await serialize_response(
-                field=response_field,
-                response_content=raw_response,
-                include=response_model_include,
-                exclude=response_model_exclude,
-                by_alias=response_model_by_alias,
-                exclude_unset=response_model_exclude_unset,
-                exclude_defaults=response_model_exclude_defaults,
-                exclude_none=response_model_exclude_none,
-                is_coroutine=is_coroutine,
-            )
-            response_args: Dict[str, Any] = {"background": background_tasks}
-            # If status_code was set, use it, otherwise use the default from the
-            # response class, in the case of redirect it's 307
-            if status_code is not None:
-                response_args["status_code"] = status_code
-            response = actual_response_class(response_data, **response_args)
-            response.headers.raw.extend(sub_response.headers.raw)
-            if sub_response.status_code:
-                response.status_code = sub_response.status_code
-            return response
-
-    return app
 
 
 def get_websocket_app(
@@ -304,6 +105,226 @@ class APIWebSocketRoute(routing.WebSocketRoute):
         return match, child_scope
 
 
+class RequestHandler:
+    is_coroutine: bool
+    is_body_form: bool
+    actual_response_class: Type[Response]
+    dependant: Dependant
+    body_field: Optional[ModelField] = None
+    status_code: Optional[int] = None
+    response_class: Union[Type[Response], DefaultPlaceholder] = JSONResponse
+    response_field: Optional[ModelField] = None
+    response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None
+    response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None
+    response_model_by_alias: bool = True
+    response_model_exclude_unset: bool = False
+    response_model_exclude_defaults: bool = False
+    response_model_exclude_none: bool = False
+    dependency_overrides_provider: Optional[Any] = None
+
+    def __init__(
+        self,
+        dependant: Dependant,
+        body_field: Optional[ModelField] = None,
+        status_code: Optional[int] = None,
+        response_class: Union[Type[Response], DefaultPlaceholder] = JSONResponse,
+        response_field: Optional[ModelField] = None,
+        response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
+        response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
+        response_model_by_alias: bool = True,
+        response_model_exclude_unset: bool = False,
+        response_model_exclude_defaults: bool = False,
+        response_model_exclude_none: bool = False,
+        dependency_overrides_provider: Optional[Any] = None,
+    ) -> Callable[[Request], Coroutine[Any, Any, Response]]:
+        self.dependant = dependant
+        self.body_field = body_field
+        self.status_code = status_code
+        self.response_class = response_class
+        self.response_field = response_field
+        self.response_model_include = response_model_include
+        self.response_model_exclude = response_model_exclude
+        self.response_model_by_alias = response_model_by_alias
+        self.response_model_exclude_unset = response_model_exclude_unset
+        self.response_model_exclude_defaults = response_model_exclude_defaults
+        self.response_model_exclude_none = response_model_exclude_none
+        self.dependency_overrides_provider = dependency_overrides_provider
+        self.is_coroutine = asyncio.iscoroutinefunction(self.dependant.call)
+        self.is_body_form = self.body_field and isinstance(
+            self.body_field.field_info, params.Form
+        )
+
+        if isinstance(self.response_class, DefaultPlaceholder):
+            self.actual_response_class: Type[Response] = self.response_class.value
+        else:
+            self.actual_response_class = self.response_class
+
+    def get_decoder(self, request: Request) -> Callable[[bytes], Any] | None:
+        content_type_value = request.headers.get("content-type")
+        if not content_type_value:
+            return json_loads
+
+        message = email.message.Message()
+        message["content-type"] = content_type_value
+        if message.get_content_maintype() == "application":
+            subtype = message.get_content_subtype()
+            if subtype == "json" or subtype.endswith("+json"):
+                return json_loads
+
+    async def encode_raw_response(self, _: Request, response_content: Any) -> Any:
+        field: ModelField = self.response_field
+        if field:
+            errors = []
+            response_content = self._prepare_response_content(
+                response_content,
+                exclude_unset=self.response_model_exclude_unset,
+                exclude_defaults=self.response_model_exclude_defaults,
+                exclude_none=self.response_model_exclude_none,
+            )
+            if self.is_coroutine:
+                value, errors_ = field.validate(response_content, {}, loc=("response",))
+            else:
+                value, errors_ = await run_in_threadpool(  # type: ignore[misc]
+                    field.validate, response_content, {}, loc=("response",)
+                )
+            if isinstance(errors_, ErrorWrapper):
+                errors.append(errors_)
+            elif isinstance(errors_, list):
+                errors.extend(errors_)
+            if errors:
+                raise ValidationError(errors, field.type_)
+            return jsonable_encoder(
+                value,
+                include=self.response_model_include,
+                exclude=self.response_model_exclude,
+                by_alias=self.response_model_by_alias,
+                exclude_unset=self.response_model_exclude_unset,
+                exclude_defaults=self.response_model_exclude_defaults,
+                exclude_none=self.response_model_exclude_none,
+            )
+        else:
+            return jsonable_encoder(response_content)
+
+    async def __call__(self, request: Request) -> Coroutine[Any, Any, Response]:
+        body: dict | bytes | FormData = None
+        try:
+            if self.is_body_form:
+                body = await request.form()
+            elif self.body_field:
+                body_bytes: bytes = await request.body()
+                if body_bytes:
+                    decoder: Callable[[bytes], Any] = self.get_decoder(request)
+                    if decoder:
+                        body = decoder(body_bytes)
+                    else:
+                        body = body_bytes
+        except RequestValidationError:
+            raise
+        except Exception as e:
+            raise HTTPException(
+                status_code=400,
+                detail="There was an error parsing the body",
+            ) from e
+
+        solved_result = await solve_dependencies(
+            request=request,
+            dependant=self.dependant,
+            body=body,
+            dependency_overrides_provider=self.dependency_overrides_provider,
+        )
+        values, errors, background_tasks, sub_response, _ = solved_result
+        if errors:
+            raise RequestValidationError(errors, body=body)
+        else:
+            raw_response = await self._run_endpoint_function(
+                dependant=self.dependant,
+                values=values,
+                is_coroutine=self.is_coroutine,
+            )
+
+            if isinstance(raw_response, Response):
+                if raw_response.background is None:
+                    raw_response.background = background_tasks
+                return raw_response
+
+            response_args: Dict[str, Any] = {"background": background_tasks}
+            if self.status_code is not None:
+                response_args["status_code"] = self.status_code
+
+            response_data: Any = await self.encode_raw_response(request, raw_response)
+            response: Response = self.actual_response_class(
+                response_data, **response_args
+            )
+
+            response.headers.raw.extend(sub_response.headers.raw)
+            # If status_code was set, use it, otherwise use the default from the
+            # response class, in the case of redirect it's 307
+            if sub_response.status_code:
+                response.status_code = sub_response.status_code
+
+            return response
+
+    @classmethod
+    def _prepare_response_content(
+        cls,
+        res: Any,
+        *,
+        exclude_unset: bool,
+        exclude_defaults: bool = False,
+        exclude_none: bool = False,
+    ) -> Any:
+        if isinstance(res, BaseModel):
+            read_with_orm_mode = getattr(res.__config__, "read_with_orm_mode", None)
+            if read_with_orm_mode:
+                # Let from_orm extract the data from this model instead of converting
+                # it now to a dict.
+                # Otherwise there's no way to extract lazy data that requires attribute
+                # access instead of dict iteration, e.g. lazy relationships.
+                return res
+            return res.dict(
+                by_alias=True,
+                exclude_unset=exclude_unset,
+                exclude_defaults=exclude_defaults,
+                exclude_none=exclude_none,
+            )
+        elif isinstance(res, list):
+            return [
+                cls._prepare_response_content(
+                    item,
+                    exclude_unset=exclude_unset,
+                    exclude_defaults=exclude_defaults,
+                    exclude_none=exclude_none,
+                )
+                for item in res
+            ]
+        elif isinstance(res, dict):
+            return {
+                k: cls._prepare_response_content(
+                    v,
+                    exclude_unset=exclude_unset,
+                    exclude_defaults=exclude_defaults,
+                    exclude_none=exclude_none,
+                )
+                for k, v in res.items()
+            }
+        elif dataclasses.is_dataclass(res):
+            return dataclasses.asdict(res)
+        return res
+
+    @classmethod
+    async def _run_endpoint_function(
+        cls, *, dependant: Dependant, values: Dict[str, Any], is_coroutine: bool
+    ) -> Any:
+        # Only called by get_request_handler. Has been split into its own function to
+        # facilitate profiling endpoints, since inner functions are harder to profile.
+        assert dependant.call is not None, "dependant.call must be a function"
+
+        if is_coroutine:
+            return await dependant.call(**values)
+        else:
+            return await run_in_threadpool(dependant.call, **values)
+
+
 class APIRoute(routing.Route):
     def __init__(
         self,
@@ -332,6 +353,9 @@ class APIRoute(routing.Route):
         response_class: Union[Type[Response], DefaultPlaceholder] = Default(
             JSONResponse
         ),
+        request_handler_class: Union[
+            Type[RequestHandler], DefaultPlaceholder
+        ] = Default(RequestHandler),
         dependency_overrides_provider: Optional[Any] = None,
         callbacks: Optional[List[BaseRoute]] = None,
         openapi_extra: Optional[Dict[str, Any]] = None,
@@ -365,6 +389,12 @@ class APIRoute(routing.Route):
         if methods is None:
             methods = ["GET"]
         self.methods: Set[str] = {method.upper() for method in methods}
+
+        if isinstance(request_handler_class, DefaultPlaceholder):
+            self.request_handler_class = request_handler_class.value
+        else:
+            self.request_handler_class = request_handler_class
+
         if isinstance(generate_unique_id_function, DefaultPlaceholder):
             current_generate_unique_id: Callable[
                 ["APIRoute"], str
@@ -432,7 +462,7 @@ class APIRoute(routing.Route):
         self.app = request_response(self.get_route_handler())
 
     def get_route_handler(self) -> Callable[[Request], Coroutine[Any, Any, Response]]:
-        return get_request_handler(
+        request_handler: RequestHandler = self.request_handler_class(
             dependant=self.dependant,
             body_field=self.body_field,
             status_code=self.status_code,
@@ -447,11 +477,25 @@ class APIRoute(routing.Route):
             dependency_overrides_provider=self.dependency_overrides_provider,
         )
 
+        # Awaiting https://github.com/encode/starlette/pull/1444/files to remove this workaround
+        async def wrap_async_call(*args, **kwargs):
+            return await request_handler(*args, **kwargs)
+
+        return wrap_async_call
+
     def matches(self, scope: Scope) -> Tuple[Match, Scope]:
         match, child_scope = super().matches(scope)
         if match != Match.NONE:
             child_scope["route"] = self
         return match, child_scope
+
+
+def json_loads(raw: bytes) -> Any:
+    raw_str: str = raw.decode()
+    try:
+        return json.loads(raw_str)
+    except json.JSONDecodeError as e:
+        raise RequestValidationError([ErrorWrapper(e, ("body", e.pos))], body=e.doc)
 
 
 class APIRouter(routing.Router):
