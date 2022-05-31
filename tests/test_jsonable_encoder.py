@@ -206,9 +206,9 @@ def test_custom_encoders():
     instance = MyModel(dt_field=safe_datetime.now())
 
     encoded_instance = jsonable_encoder(
-        instance, custom_encoder={safe_datetime: lambda o: o.isoformat()}
+        instance, custom_encoder={safe_datetime: lambda o: o.strftime("%H:%M:%S")}
     )
-    assert encoded_instance["dt_field"] == instance.dt_field.isoformat()
+    assert encoded_instance["dt_field"] == instance.dt_field.strftime("%H:%M:%S")
 
 
 def test_custom_enum_encoders():
