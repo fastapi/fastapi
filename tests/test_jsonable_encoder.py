@@ -210,6 +210,9 @@ def test_custom_encoders():
     )
     assert encoded_instance["dt_field"] == instance.dt_field.strftime("%H:%M:%S")
 
+    encoded_instance2 = jsonable_encoder(instance)
+    assert encoded_instance2["dt_field"] == instance.dt_field.isoformat()
+
 
 def test_custom_enum_encoders():
     def custom_enum_encoder(v: Enum):
