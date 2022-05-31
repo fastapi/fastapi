@@ -35,12 +35,12 @@ class CustomRequestHandler(RequestHandler):
         data = json.loads(raw.decode())
         return CustomType.from_type(data)
 
-    def get_decoder(self, request: Request):
+    def get_body_decoder(self, request: Request):
         content_type = request.headers.get("content-type")
         if content_type == "application/x-custom-decoder":
             return self.custom_decoder
 
-        return super().get_decoder(request)
+        return super().get_body_decoder(request)
 
 
 class CustomAPIRoute(APIRoute):

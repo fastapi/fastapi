@@ -146,7 +146,7 @@ class RequestHandler:
         else:
             self.actual_response_class = self.response_class
 
-    def get_decoder(self, request: Request) -> Optional[Callable[[bytes], Any]]:
+    def get_body_decoder(self, request: Request) -> Optional[Callable[[bytes], Any]]:
         content_type_value = request.headers.get("content-type")
         if not content_type_value:
             return json_loads
@@ -193,6 +193,13 @@ class RequestHandler:
         else:
             return jsonable_encoder(response_content)
 
+    async def create_response(
+        self, request: Request, raw_response: Any, **response_args: Any
+    ) -> Response:
+        response_data: Any = await self.encode_raw_response(request, raw_response)
+        response: Response = self.actual_response_class(response_data, **response_args)
+        return response
+
     async def __call__(self, request: Request) -> Response:
         body: Any = None
         try:
@@ -201,7 +208,7 @@ class RequestHandler:
             elif self.body_field:
                 body_bytes: bytes = await request.body()
                 if body_bytes:
-                    decoder: Optional[Callable[[bytes], Any]] = self.get_decoder(
+                    decoder: Optional[Callable[[bytes], Any]] = self.get_body_decoder(
                         request
                     )
                     if decoder:
@@ -241,9 +248,8 @@ class RequestHandler:
             if self.status_code is not None:
                 response_args["status_code"] = self.status_code
 
-            response_data: Any = await self.encode_raw_response(request, raw_response)
-            response: Response = self.actual_response_class(
-                response_data, **response_args
+            response: Response = await self.create_response(
+                request, raw_response, **response_args
             )
 
             response.headers.raw.extend(sub_response.headers.raw)
