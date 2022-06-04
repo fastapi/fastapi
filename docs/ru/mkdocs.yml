@@ -57,6 +57,8 @@ nav:
   - uk: /uk/
   - zh: /zh/
 - async.md
+- Развёртывание:
+  - deployment/versions.md
 markdown_extensions:
 - toc:
     permalink: true
