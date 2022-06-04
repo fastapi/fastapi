@@ -1,86 +1,86 @@
-# About FastAPI versions
+# О версиях FastAPI
 
-**FastAPI** is already being used in production in many applications and systems. And the test coverage is kept at 100%. But its development is still moving quickly.
+**FastAPI** уже используется в продакшене во многих приложениях и системах. Покрытие тестами поддерживается на уровне 100%. Однако, его разработка все еще продолжается.
 
-New features are added frequently, bugs are fixed regularly, and the code is still continuously improving.
+Часто добавляются новые функции, регулярно исправляются баги, код продолжает постоянно совершенствоваться.
 
-That's why the current versions are still `0.x.x`, this reflects that each version could potentially have breaking changes. This follows the <a href="https://semver.org/" class="external-link" target="_blank">Semantic Versioning</a> conventions.
+По указанным причинам текущие версии до сих пор `0.x.x`. Это говорит о том, что каждая версия может содержать обратно несовместимые изменения, следуя <a href="https://semver.org/" class="external-link" target="_blank">соглашению о Семантическом Версионировании</a>.
 
-You can create production applications with **FastAPI** right now (and you have probably been doing it for some time), you just have to make sure that you use a version that works correctly with the rest of your code.
+Уже сейчас вы можете создавать приложения в продакшене, используя **FastAPI**  (и скорее всего так и делаете), главное убедиться в том, что вы используете версию, которая корректно работает с вашим кодом.
 
-## Pin your `fastapi` version
+## Закрепите вашу версию `fastapi`
 
-The first thing you should do is to "pin" the version of **FastAPI** you are using to the specific latest version that you know works correctly for your application.
+Первым делом вам следует "закрепить" конкретную последнюю используемую версию **FastAPI**, которая корректно работает с вашим приложением.
 
-For example, let's say you are using version `0.45.0` in your app.
+Например, вы используете версию `0.45.0` в приложении.
 
-If you use a `requirements.txt` file you could specify the version with:
+Если вы используете файл `requirements.txt`, вы можете указать версию следующим способом:
 
 ```txt
 fastapi==0.45.0
 ```
 
-that would mean that you would use exactly the version `0.45.0`.
+что значит, что вы будете использовать именно версию `0.45.0`.
 
-Or you could also pin it with:
-
-```txt
-fastapi>=0.45.0,<0.46.0
-```
-
-that would mean that you would use the versions `0.45.0` or above, but less than `0.46.0`, for example, a version `0.45.2` would still be accepted.
-
-If you use any other tool to manage your installations, like Poetry, Pipenv, or others, they all have a way that you can use to define specific versions for your packages.
-
-## Available versions
-
-You can see the available versions (e.g. to check what is the current latest) in the [Release Notes](../release-notes.md){.internal-link target=_blank}.
-
-## About versions
-
-Following the Semantic Versioning conventions, any version below `1.0.0` could potentially add breaking changes.
-
-FastAPI also follows the convention that any "PATCH" version change is for bug fixes and non-breaking changes.
-
-!!! tip
-    The "PATCH" is the last number, for example, in `0.2.3`, the PATCH version is `3`.
-
-So, you should be able to pin to a version like:
+Или вы можете закрепить версию следующим способом:
 
 ```txt
 fastapi>=0.45.0,<0.46.0
 ```
 
-Breaking changes and new features are added in "MINOR" versions.
+что значит, что вы используете версии `0.45.0` или выше, но меньше чем `0.46.0`. Например, версия `0.45.2` все еще будет подходить.
+
+Если вы используете любой другой инструмент для организации установки, например Poetry, Pipenv или др., у них у всех имеется способ определения специфической версии для ваших пакетов.
+
+## Доступные версии
+
+Вы можете увидеть доступные версии (например - проверить последнюю на данный момент) в [Release Notes](../release-notes.md){.internal-link target=_blank}.
+
+## О версиях
+
+Следуя соглашению о Семантическом Версионировании, любые версии ниже `1.0.0` потенциально могут добавить обратно несовместимые изменения.
+
+FastAPI следует соглашению в том, что любые изменения "ПАТЧ"-версии предназначены для исправления багов и обратно совместимых изменений.
 
 !!! tip
-    The "MINOR" is the number in the middle, for example, in `0.2.3`, the MINOR version is `2`.
+    "ПАТЧ" - это последнее число. Например, в `0.2.3`, ПАТЧ-версия - это `3`.
 
-## Upgrading the FastAPI versions
+Итак, вы можете закрепить версию следующим образом:
 
-You should add tests for your app.
+```txt
+fastapi>=0.45.0,<0.46.0
+```
 
-With **FastAPI** it's very easy (thanks to Starlette), check the docs: [Testing](../tutorial/testing.md){.internal-link target=_blank}
+Обратно несовместимые изменения и новые функции добавляются в "МИНОРНЫЕ" версии.
 
-After you have tests, then you can upgrade the **FastAPI** version to a more recent one, and make sure that all your code is working correctly by running your tests.
+!!! tip
+    "МИНОРНАЯ" версия - это число в середине. Например, в `0.2.3` МИНОРНАЯ версия - это `2`.
 
-If everything is working, or after you make the necessary changes, and all your tests are passing, then you can pin your `fastapi` to that new recent version.
+## Обновление версии FastAPI
 
-## About Starlette
+Вам следует добавить тесты для вашего приложения.
 
-You shouldn't pin the version of `starlette`.
+С помощью **FastAPI** это очень просто (благодаря Starlette), см. документацию: [Testing](../tutorial/testing.md){.internal-link target=_blank}
 
-Different versions of **FastAPI** will use a specific newer version of Starlette.
+После создания тестов вы можете обновить свою версию **FastAPI** до более новой. После это следует убедиться, что ваш код работает корректно, запустив тесты.
 
-So, you can just let **FastAPI** use the correct Starlette version.
+Если все работает корректно или после внесения необходимых изменений все ваши тесты проходят, только тогда вы можете закрепить вашу новую версию `fastapi`.
 
-## About Pydantic
+## О Starlette
 
-Pydantic includes the tests for **FastAPI** with its own tests, so new versions of Pydantic (above `1.0.0`) are always compatible with FastAPI.
+Не следует закреплять версию `starlette`.
 
-You can pin Pydantic to any version above `1.0.0` that works for you and below `2.0.0`.
+Разные версии **FastAPI** будут использовать более новые версии Starlette.
 
-For example:
+Так что решение о используемой версии Starlette, вы можете оставить **FastAPI**.
+
+## О Pydantic
+
+Pydantic включает свои собственные тесты для **FastAPI**, так что новые версии Pydantic (выше `1.0.0`) всегда совместимы с FastAPI.
+
+Вы можете закрепить любую версию Pydantic, которая вам подходит, выше `1.0.0` и ниже `2.0.0`.
+
+Например:
 
 ```txt
 pydantic>=1.2.0,<2.0.0
