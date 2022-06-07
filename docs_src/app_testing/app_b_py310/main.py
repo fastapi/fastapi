@@ -18,7 +18,7 @@ class Item(BaseModel):
 
 
 @app.get("/items/{item_id}", response_model=Item)
-async def read_main(item_id: str, x_token: str = Header(...)):
+async def read_main(item_id: str, x_token: str = Header()):
     if x_token != fake_secret_token:
         raise HTTPException(status_code=400, detail="Invalid X-Token header")
     if item_id not in fake_db:
@@ -27,7 +27,7 @@ async def read_main(item_id: str, x_token: str = Header(...)):
 
 
 @app.post("/items/", response_model=Item)
-async def create_item(item: Item, x_token: str = Header(...)):
+async def create_item(item: Item, x_token: str = Header()):
     if x_token != fake_secret_token:
         raise HTTPException(status_code=400, detail="Invalid X-Token header")
     if item.id in fake_db:

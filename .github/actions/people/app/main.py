@@ -14,7 +14,7 @@ from pydantic import BaseModel, BaseSettings, SecretStr
 github_graphql_url = "https://api.github.com/graphql"
 
 issues_query = """
-query Q($after: String) { 
+query Q($after: String) {
   repository(name: "fastapi", owner: "tiangolo") {
     issues(first: 100, after: $after) {
       edges {
@@ -47,7 +47,7 @@ query Q($after: String) {
 """
 
 prs_query = """
-query Q($after: String) { 
+query Q($after: String) {
   repository(name: "fastapi", owner: "tiangolo") {
     pullRequests(first: 100, after: $after) {
       edges {

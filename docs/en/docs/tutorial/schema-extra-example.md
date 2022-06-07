@@ -68,13 +68,13 @@ Here we pass an `example` of the data expected in `Body()`:
 
 === "Python 3.6 and above"
 
-    ```Python hl_lines="21-26"
+    ```Python hl_lines="20-25"
     {!> ../../../docs_src/schema_extra_example/tutorial003.py!}
     ```
 
 === "Python 3.10 and above"
 
-    ```Python hl_lines="19-24"
+    ```Python hl_lines="18-23"
     {!> ../../../docs_src/schema_extra_example/tutorial003_py310.py!}
     ```
 
@@ -99,13 +99,13 @@ Each specific example `dict` in the `examples` can contain:
 
 === "Python 3.6 and above"
 
-    ```Python hl_lines="22-48"
+    ```Python hl_lines="21-47"
     {!> ../../../docs_src/schema_extra_example/tutorial004.py!}
     ```
 
 === "Python 3.10 and above"
 
-    ```Python hl_lines="20-46"
+    ```Python hl_lines="19-45"
     {!> ../../../docs_src/schema_extra_example/tutorial004_py310.py!}
     ```
 
