@@ -135,11 +135,11 @@ connect_args={"check_same_thread": False}
 !!! info "技术细节"
 
     默认情况下，SQLite 只允许一个线程与其通信，假设有多个线程的话，也只将处理一个独立的请求。
-    
+
     这是为了防止意外地为不同的事物（不同的请求）共享相同的连接。
-    
+
     但是在 FastAPI 中，普遍使用def函数，多个线程可以为同一个请求与数据库交互，所以我们需要使用`connect_args={"check_same_thread": False}`来让SQLite允许这样。
-    
+
     此外，我们将确保每个请求都在依赖项中获得自己的数据库连接会话，因此不需要该默认机制。
 
 ### 创建一个`SessionLocal`类
@@ -233,7 +233,7 @@ connect_args={"check_same_thread": False}
     为了避免 SQLAlchemy*模型*和 Pydantic*模型*之间的混淆，我们将有`models.py`（SQLAlchemy 模型的文件）和`schemas.py`（ Pydantic 模型的文件）。
 
     这些 Pydantic 模型或多或少地定义了一个“schema”（一个有效的数据形状）。
-    
+
     因此，这将帮助我们在使用两者时避免混淆。
 
 ### 创建初始 Pydantic*模型*/模式
@@ -341,9 +341,9 @@ name: str
     请注意，它使用`=`分配一个值，例如：
 
     `orm_mode = True`
-    
+
     它不使用之前的`:`来类型声明。
-    
+
     这是设置配置值，而不是声明类型。
 
 Pydantic`orm_mode`将告诉 Pydantic*模型*读取数据，即它不是一个`dict`，而是一个 ORM 模型（或任何其他具有属性的任意对象）。
@@ -432,29 +432,29 @@ current_user.items
     SQLAlchemy 模型`User`包含一个`hashed_password`，它应该是一个包含散列的安全密码。
 
     但由于 API 客户端提供的是原始密码，因此您需要将其提取并在应用程序中生成散列密码。
-    
+
     然后将hashed_password参数与要保存的值一起传递。
 
 !!! warning
     此示例不安全，密码未经过哈希处理。
 
     在现实生活中的应用程序中，您需要对密码进行哈希处理，并且永远不要以明文形式保存它们。
-    
+
     有关更多详细信息，请返回教程中的安全部分。
-    
+
     在这里，我们只关注数据库的工具和机制。
 
 !!! tip
     这里不是将每个关键字参数传递给Item并从Pydantic模型中读取每个参数，而是先生成一个字典，其中包含Pydantic模型的数据：
 
     `item.dict()`
-    
+
     然后我们将dict的键值对 作为关键字参数传递给 SQLAlchemy `Item`：
-    
+
     `Item(**item.dict())`
-    
+
     然后我们传递 Pydantic模型未提供的额外关键字参数`owner_id`：
-    
+
     `Item(**item.dict(), owner_id=user_id)`
 
 ## 主**FastAPI**应用程序
@@ -515,9 +515,9 @@ current_user.items
     我们将`SessionLocal()`请求的创建和处理放在一个`try`块中。
 
     然后我们在finally块中关闭它。
-    
+
     通过这种方式，我们确保数据库会话在请求后始终关闭。即使在处理请求时出现异常。
-    
+
     但是您不能从退出代码中引发另一个异常（在yield之后）。可以查阅 [Dependencies with yield and HTTPException](https://fastapi.tiangolo.com/zh/tutorial/dependencies/dependencies-with-yield/#dependencies-with-yield-and-httpexception)
 
 *然后，当在路径操作函数*中使用依赖项时，我们使用`Session`，直接从 SQLAlchemy 导入的类型声明它。
@@ -739,7 +739,7 @@ $ uvicorn sql_app.main:app --reload
     我们将`SessionLocal()`请求的创建和处理放在一个`try`块中。
 
     然后我们在finally块中关闭它。
-    
+
     通过这种方式，我们确保数据库会话在请求后始终关闭，即使在处理请求时出现异常也会关闭。
 
 ### 关于`request.state`
