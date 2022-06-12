@@ -172,12 +172,12 @@ async def handle_endpoint(
     values, errors, background_tasks, sub_response, _ = solved_result
     if errors:
         raise RequestValidationError(errors, body=body)
-    else:
-        raw_response = await run_endpoint_function(
-            dependant=dependant,
-            values=values,
-            is_coroutine=is_coroutine,
-        )
+
+    raw_response = await run_endpoint_function(
+        dependant=dependant,
+        values=values,
+        is_coroutine=is_coroutine,
+    )
     return raw_response, background_tasks, sub_response
 
 
