@@ -25,7 +25,7 @@ def get_model_definitions(
 ) -> Dict[str, Any]:
     definitions: Dict[str, Dict[str, Any]] = {}
     for model in flat_models:
-        m_schema, m_definitions, m_nested_models = model_process_schema(
+        m_schema, m_definitions, _ = model_process_schema(
             model, model_name_map=model_name_map, ref_prefix=REF_PREFIX
         )
         definitions.update(m_definitions)
@@ -133,14 +133,14 @@ def generate_operation_id_for_path(
         stacklevel=2,
     )
     operation_id = name + path
-    operation_id = re.sub("[^0-9a-zA-Z_]", "_", operation_id)
+    operation_id = re.sub("\W", "_", operation_id)
     operation_id = operation_id + "_" + method.lower()
     return operation_id
 
 
 def generate_unique_id(route: "APIRoute") -> str:
     operation_id = route.name + route.path_format
-    operation_id = re.sub("[^0-9a-zA-Z_]", "_", operation_id)
+    operation_id = re.sub("\W", "_", operation_id)
     assert route.methods
     operation_id = operation_id + "_" + list(route.methods)[0].lower()
     return operation_id
