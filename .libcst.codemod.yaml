@@ -1,0 +1,17 @@
+# String that LibCST should look for in code which indicates that the
+# module is generated code.
+generated_code_marker: '@generated'
+# Command line and arguments for invoking a code formatter. Anything
+# specified here must be capable of taking code via stdin and returning
+# formatted code via stdout.
+formatter: ['black', '-']
+# List of regex patterns which LibCST will evaluate against filenames to
+# determine if the module should be touched.
+blacklist_patterns: []
+# List of modules that contain codemods inside of them.
+modules:
+- "no_optional"
+# Absolute or relative path of the repository root, used for providing
+# full-repo metadata. Relative paths should be specified with this file
+# location as the base.
+repo_root: '.'

@@ -1,8 +1,8 @@
-from typing import Optional
+from typing import Union
 
 from pydantic import BaseModel
 
 
 class User(BaseModel):
     name: str
-    age: Optional[int]
+    age: Union[int, None]
