@@ -109,9 +109,17 @@ And another utility to verify if a received password matches the hash stored.
 
 And another one to authenticate and return a user.
 
-```Python hl_lines="7  48  55-56  59-60  69-75"
-{!../../../docs_src/security/tutorial004.py!}
-```
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="7  48  55-56  59-60  69-75"
+    {!> ../../../docs_src/security/tutorial004.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="6  47  54-55  58-59  68-74"
+    {!> ../../../docs_src/security/tutorial004_py310.py!}
+    ```
 
 !!! note
     If you check the new (fake) database `fake_users_db`, you will see how the hashed password looks like now: `"$2b$12$EixZaYVK1fsbw1ZfbX3OXePaWxn96p36WQoeG6Lruj3vjPGga31lW"`.
@@ -144,9 +152,17 @@ Define a Pydantic Model that will be used in the token endpoint for the response
 
 Create a utility function to generate a new access token.
 
-```Python hl_lines="6  12-14  28-30  78-86"
-{!../../../docs_src/security/tutorial004.py!}
-```
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="6  12-14  28-30  78-86"
+    {!> ../../../docs_src/security/tutorial004.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="5  11-13  27-29  77-85"
+    {!> ../../../docs_src/security/tutorial004_py310.py!}
+    ```
 
 ## Update the dependencies
 
@@ -156,9 +172,17 @@ Decode the received token, verify it, and return the current user.
 
 If the token is invalid, return an HTTP error right away.
 
-```Python hl_lines="89-106"
-{!../../../docs_src/security/tutorial004.py!}
-```
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="89-106"
+    {!> ../../../docs_src/security/tutorial004.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="88-105"
+    {!> ../../../docs_src/security/tutorial004_py310.py!}
+    ```
 
 ## Update the `/token` *path operation*
 
@@ -166,9 +190,17 @@ Create a `timedelta` with the expiration time of the token.
 
 Create a real JWT access token and return it.
 
-```Python hl_lines="115-128"
-{!../../../docs_src/security/tutorial004.py!}
-```
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="115-128"
+    {!> ../../../docs_src/security/tutorial004.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="114-127"
+    {!> ../../../docs_src/security/tutorial004_py310.py!}
+    ```
 
 ### Technical details about the JWT "subject" `sub`
 
