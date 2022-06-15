@@ -23,6 +23,8 @@ COPY ./app /code/app
 
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
 
+HEALTHCHECK CMD curl http://localhost/
+
 # If running behind a proxy like Nginx or Traefik add --proxy-headers
 # CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80", "--proxy-headers"]
 ```
@@ -181,6 +183,9 @@ COPY ./app /code/app
 
 # (6)
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
+
+# (7)
+HEALTHCHECK CMD curl http://localhost/
 ```
 
 1. Start from the official Python base image.
@@ -221,6 +226,10 @@ CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
     This command will be run from the **current working directory**, the same `/code` directory you set above with `WORKDIR /code`.
 
     Because the program will be started at `/code` and inside of it is the directory `./app` with your code, **Uvicorn** will be able to see and **import** `app` from `app.main`.
+
+7. Using a healthcheck instruction in your Dockerfile is considered a best practice to enable Docker to terminate containers which are not responding correctly, and instantiate new ones.
+
+    It is suggested to extend this basic healthcheck.
 
 !!! tip
     Review what each line does by clicking each number bubble in the code. 👆
