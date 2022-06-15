@@ -1,16 +1,16 @@
 import json
-from typing import Optional
+from typing import List, Optional
 
 from fastapi import APIRouter, Depends, FastAPI, WebSocket
 from fastapi.testclient import TestClient
 
 
-def dependency_list(deps: Optional[str] = None) -> list[str]:
+def dependency_list(deps: Optional[str] = None) -> List[str]:
     return [deps] if deps else []
 
 
 def create_dependency(name: str):
-    def fun(deps: list[str] = Depends(dependency_list)):
+    def fun(deps: List[str] = Depends(dependency_list)):
         print(f"create_dependency.fun({name})")
         deps.append(name)
 
