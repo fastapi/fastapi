@@ -24,7 +24,7 @@ Decimal('3.3')
 
 Before you start playing around with decimal in FastAPI application, the most important thing is to make sure that each dependencies and components you're using had the capabilites of hadling decimal (or sometimes call numeric) data type. That includes dependencies (such as [Pydantic](https://pydantic-docs.helpmanual.io/usage/types/#arguments-to-condecimal)), or database.
 
-In the following discussion, we'll use this example to discuss some possibility on how to serialize decimal: 
+In the following discussion, we'll use this example to discuss some possibility on how to serialize decimal:
 
 ```Python hl_lines="1  15  16"
 {!../../../docs_src/decimal_numbers/default_serialize.py!}
@@ -93,7 +93,7 @@ Maybe you only need two decimal points, and times/divided by 100 isn't something
 
 Maybe your client (Frontend website, mobile app) is not supported, then why bother implement this?
 
-Anyway, in this page, we've demonstrate two key points to help integrated Decimal support to your FastAPI application: 
+Anyway, in this page, we've demonstrate two key points to help integrated Decimal support to your FastAPI application:
 
 * `json_encoders` parameters in pydantic model
 * `SimpleJSONResponse` to serialize Decimal JSON
