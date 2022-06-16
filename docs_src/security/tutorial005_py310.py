@@ -103,14 +103,10 @@ def create_access_token(data: dict, expires_delta: timedelta | None = None):
 async def get_current_user(
     security_scopes: SecurityScopes, token: str = Depends(oauth2_scheme)
 ):
-    if security_scopes.scopes:
-        authenticate_value = f'Bearer scope="{security_scopes.scope_str}"'
-    else:
-        authenticate_value = f"Bearer"
     credentials_exception = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
         detail="Could not validate credentials",
-        headers={"WWW-Authenticate": authenticate_value},
+        headers={"WWW-Authenticate": "Bearer"},
     )
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
@@ -127,9 +123,8 @@ async def get_current_user(
     for scope in security_scopes.scopes:
         if scope not in token_data.scopes:
             raise HTTPException(
-                status_code=status.HTTP_401_UNAUTHORIZED,
+                status_code=status.HTTP_403_FORBIDDEN,
                 detail="Not enough permissions",
-                headers={"WWW-Authenticate": authenticate_value},
             )
     return user
 
@@ -148,7 +143,11 @@ async def get_current_active_user(
 async def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends()):
     user = authenticate_user(fake_users_db, form_data.username, form_data.password)
     if not user:
+        raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Incorrect username or password",
+            headers={"WWW-Authenticate": "Basic"},
+        )
     access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
     access_token = create_access_token(
         data={"sub": user.username, "scopes": form_data.scopes},
