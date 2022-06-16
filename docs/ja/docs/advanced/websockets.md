@@ -109,7 +109,7 @@ WebSocketエンドポイントでは、`fastapi` から以下をインポート�
 
     将来的には、どこからでも `raise` できる `WebSocketException` が用意され、専用の例外ハンドラを追加できるようになる予定です。これは、Starlette の <a href="https://github.com/encode/starlette/pull/527" class="external-link" target="_blank">PR #527</a> に依存するものです。
 
-### Try the WebSockets with dependencies
+### 依存関係を用いてWebSocketsを試してみる
 
 ファイル名が `main.py` である場合、以下の方法でアプリケーションを実行します。
 
