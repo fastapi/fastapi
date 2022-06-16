@@ -157,6 +157,12 @@ An alternative JSON response using <a href="https://github.com/ultrajson/ultrajs
 !!! tip
     It's possible that `ORJSONResponse` might be a faster alternative.
 
+### `SimpleJSONResponse`
+
+Another JSON response using <a href="https://github.com/simplejson/simplejson" class="external-link" target="_blank">`simplejson`</a>.
+
+This is particularly useful when you need to serialize `Decimal` data, see [Decimal Numbers](decimal-numbers.md) for more.
+
 ### `RedirectResponse`
 
 Returns an HTTP redirect. Uses a 307 status code (Temporary Redirect) by default.
