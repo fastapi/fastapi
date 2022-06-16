@@ -96,7 +96,7 @@ WebSocketエンドポイントでは、`fastapi` から以下をインポート�
 * `Path`
 * `Query`
 
-これらは、他のFastAPI エンドポイント/*パス操作* の場合と同じように機能します。
+これらは、他のFastAPI エンドポイント/*path operation* の場合と同じように機能します。
 
 ```Python hl_lines="58-65  68-83"
 {!../../../docs_src/websockets/tutorial002.py!}
