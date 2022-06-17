@@ -31,12 +31,13 @@ Because we have a proxy with a path prefix of `/api/v1` for our app, the fronten
 ```mermaid
 graph LR
 
-browser("Browser")
-proxy["Proxy on http://0.0.0.0:9999/api/v1/app"]
-server["Server on http://127.0.0.1:8000/app"]
+browser("Browser"):::FixFont;
+proxy["Proxy on http://0.0.0.0:9999/api/v1/app"]:::FixFont;
+server["Server on http://127.0.0.1:8000/app"]:::FixFont;
 
 browser --> proxy
 proxy --> server
+classDef FixFont font-size:14px
 ```
 
 !!! tip
