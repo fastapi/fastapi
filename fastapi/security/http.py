@@ -1,6 +1,6 @@
 import binascii
 from base64 import b64decode
-from typing import Optional
+from typing import Optional, Tuple
 
 from fastapi.exceptions import HTTPException
 from fastapi.openapi.models import HTTPBase as HTTPBaseModel
@@ -22,18 +22,25 @@ class HTTPAuthorizationCredentials(BaseModel):
     credentials: str
 
 
+class HTTPClientCredentials(BaseModel):
+    client_id: str
+    client_secret: str
+
+
 class HTTPBase(SecurityBase):
     def __init__(
         self,
         *,
         scheme: str,
         scheme_name: Optional[str] = None,
+        realm: Optional[str] = None,
         description: Optional[str] = None,
         auto_error: bool = True,
     ):
         self.model = HTTPBaseModel(scheme=scheme, description=description)
         self.scheme_name = scheme_name or self.__class__.__name__
         self.auto_error = auto_error
+        self.realm = realm
 
     async def __call__(
         self, request: Request
@@ -49,24 +56,9 @@ class HTTPBase(SecurityBase):
                 return None
         return HTTPAuthorizationCredentials(scheme=scheme, credentials=credentials)
 
-
-class HTTPBasic(HTTPBase):
-    def __init__(
-        self,
-        *,
-        scheme_name: Optional[str] = None,
-        realm: Optional[str] = None,
-        description: Optional[str] = None,
-        auto_error: bool = True,
-    ):
-        self.model = HTTPBaseModel(scheme="basic", description=description)
-        self.scheme_name = scheme_name or self.__class__.__name__
-        self.realm = realm
-        self.auto_error = auto_error
-
-    async def __call__(  # type: ignore
+    def get_http_basic_authorization_credentials(
         self, request: Request
-    ) -> Optional[HTTPBasicCredentials]:
+    ) -> Optional[Tuple[str, str]]:
         authorization: str = request.headers.get("Authorization")
         scheme, param = get_authorization_scheme_param(authorization)
         if self.realm:
@@ -91,9 +83,33 @@ class HTTPBasic(HTTPBase):
             data = b64decode(param).decode("ascii")
         except (ValueError, UnicodeDecodeError, binascii.Error):
             raise invalid_user_credentials_exc
-        username, separator, password = data.partition(":")
+        first_credential, separator, second_credential = data.partition(":")
         if not separator:
             raise invalid_user_credentials_exc
+        return (first_credential, second_credential)
+
+
+class HTTPBasic(HTTPBase):
+    def __init__(
+        self,
+        *,
+        scheme_name: Optional[str] = None,
+        realm: Optional[str] = None,
+        description: Optional[str] = None,
+        auto_error: bool = True,
+    ):
+        self.model = HTTPBaseModel(scheme="basic", description=description)
+        self.scheme_name = scheme_name or self.__class__.__name__
+        self.realm = realm
+        self.auto_error = auto_error
+
+    async def __call__(  # type: ignore
+        self, request: Request
+    ) -> Optional[HTTPBasicCredentials]:
+        credentials = self.get_http_basic_authorization_credentials(request)
+        if not credentials:
+            return None
+        username, password = credentials
         return HTTPBasicCredentials(username=username, password=password)
 
 
@@ -131,6 +147,17 @@ class HTTPBearer(HTTPBase):
             else:
                 return None
         return HTTPAuthorizationCredentials(scheme=scheme, credentials=credentials)
+
+
+class HTTPBasicClientCredentials(HTTPBase):
+    async def __call__(  # type:ignore
+        self, request: Request
+    ) -> Optional[HTTPClientCredentials]:
+        credentials = self.get_http_basic_authorization_credentials(request)
+        if not credentials:
+            return None
+        client_id, client_secret = credentials
+        return HTTPClientCredentials(client_id=client_id, client_secret=client_secret)
 
 
 class HTTPDigest(HTTPBase):
