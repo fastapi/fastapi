@@ -12,7 +12,7 @@
 * **ArangoDB**
 * **ElasticSearch** など。
 
-!!! tips "豆知識"
+!!! tip "豆知識"
     **FastAPI**と**Couchbase**を使った公式プロジェクト・ジェネレータがあります。すべて**Docker**ベースで、フロントエンドやその他のツールも含まれています: <a href="https://github.com/tiangolo/full-stack-fastapi-couchbase" class="external-link" target="_blank">https://github.com/tiangolo/full-stack-fastapi-couchbase</a>
 
 ## Couchbase コンポーネントの Import
