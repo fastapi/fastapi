@@ -23,7 +23,7 @@
 {!../../../docs_src/nosql_databases/tutorial001.py!}
 ```
 
-## "document type" として利用する定数の定義 
+## "document type" として利用する定数の定義
 
 documentで利用する固定の`type`フィールドを用意しておきます。
 
