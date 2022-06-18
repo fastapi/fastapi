@@ -22,6 +22,7 @@ classifiers = [
     "Development Status :: 4 - Beta",
     "Environment :: Web Environment",
     "Framework :: AsyncIO",
+    "Framework :: FastAPI",
     "Intended Audience :: Developers",
     "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3 :: Only",
@@ -29,11 +30,12 @@ classifiers = [
     "Programming Language :: Python :: 3.7",
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
     "Topic :: Internet :: WWW/HTTP :: HTTP Servers",
     "Topic :: Internet :: WWW/HTTP",
 ]
 requires = [
-    "starlette ==0.16.0",
+    "starlette==0.19.1",
     "pydantic >=1.6.2,!=1.7,!=1.7.1,!=1.7.2,!=1.7.3,!=1.8,!=1.8.1,<2.0.0",
 ]
 description-file = "README.md"
@@ -48,7 +50,7 @@ test = [
     "pytest-cov >=2.12.0,<4.0.0",
     "mypy ==0.910",
     "flake8 >=3.8.3,<4.0.0",
-    "black ==21.9b0",
+    "black == 22.3.0",
     "isort >=5.0.6,<6.0.0",
     "requests >=2.24.0,<3.0.0",
     "httpx >=0.14.0,<0.19.0",
@@ -57,41 +59,44 @@ test = [
     "peewee >=3.13.3,<4.0.0",
     "databases[sqlite] >=0.3.2,<0.6.0",
     "orjson >=3.2.1,<4.0.0",
-    "ujson >=4.0.1,<5.0.0",
+    "ujson >=4.0.1,!=4.0.2,!=4.1.0,!=4.2.0,!=4.3.0,!=5.0.0,!=5.1.0,<6.0.0",
     "python-multipart >=0.0.5,<0.0.6",
     "flask >=1.1.2,<3.0.0",
     "anyio[trio] >=3.2.1,<4.0.0",
 
     # types
-    "types-ujson ==0.1.1",
-    "types-orjson ==3.6.0",
-    "types-dataclasses ==0.1.7; python_version<'3.7'",
+    "types-ujson ==4.2.1",
+    "types-orjson ==3.6.2",
+    "types-dataclasses ==0.6.5; python_version<'3.7'",
 ]
 doc = [
     "mkdocs >=1.1.2,<2.0.0",
-    "mkdocs-material >=7.1.9,<8.0.0",
+    "mkdocs-material >=8.1.4,<9.0.0",
     "mdx-include >=1.4.1,<2.0.0",
     "mkdocs-markdownextradata-plugin >=0.1.7,<0.3.0",
-    "typer-cli >=0.0.12,<0.0.13",
-    "pyyaml >=5.3.1,<6.0.0"
+    # TODO: upgrade and enable typer-cli once it supports Click 8.x.x
+    # "typer-cli >=0.0.12,<0.0.13",
+    "typer >=0.4.1,<0.5.0",
+    "pyyaml >=5.3.1,<7.0.0",
 ]
 dev = [
     "python-jose[cryptography] >=3.3.0,<4.0.0",
     "passlib[bcrypt] >=1.7.2,<2.0.0",
     "autoflake >=1.4.0,<2.0.0",
     "flake8 >=3.8.3,<4.0.0",
-    "uvicorn[standard] >=0.12.0,<0.16.0",
+    "uvicorn[standard] >=0.12.0,<0.18.0",
+    "pre-commit >=2.17.0,<3.0.0",
 ]
 all = [
     "requests >=2.24.0,<3.0.0",
     "jinja2 >=2.11.2,<4.0.0",
     "python-multipart >=0.0.5,<0.0.6",
     "itsdangerous >=1.1.0,<3.0.0",
-    "pyyaml >=5.3.1,<6.0.0",
-    "ujson >=4.0.1,<5.0.0",
+    "pyyaml >=5.3.1,<7.0.0",
+    "ujson >=4.0.1,!=4.0.2,!=4.1.0,!=4.2.0,!=4.3.0,!=5.0.0,!=5.1.0,<6.0.0",
     "orjson >=3.2.1,<4.0.0",
     "email_validator >=1.1.1,<2.0.0",
-    "uvicorn[standard] >=0.12.0,<0.16.0",
+    "uvicorn[standard] >=0.12.0,<0.18.0",
 ]
 
 [tool.isort]
@@ -136,4 +141,7 @@ filterwarnings = [
     "error",
     # TODO: needed by asyncio in Python 3.9.7 https://bugs.python.org/issue45097, try to remove on 3.9.8
     'ignore:The loop argument is deprecated since Python 3\.8, and scheduled for removal in Python 3\.10:DeprecationWarning:asyncio',
+    'ignore:starlette.middleware.wsgi is deprecated and will be removed in a future release\..*:DeprecationWarning:starlette',
+    # TODO: remove after dropping support for Python 3.6
+    'ignore:Python 3.6 is no longer supported by the Python core team. Therefore, support for it is deprecated in cryptography and will be removed in a future release.:UserWarning:jose',
 ]
