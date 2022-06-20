@@ -124,8 +124,8 @@ class OAuth2ClientCredentialsRequestForm:
             auto_error=False, scheme_name="oAuth2ClientCredentials"
         )
 
-        @router.post("/login")
-        def login(
+        @router.post("/token")
+        def create_access_token(
             form: OAuth2ClientCredentialsRequestForm = Depends(),
             basic_credentials: Optional[HTTPClientCredentials] = Depends(token_scheme),
         ):
@@ -139,8 +139,7 @@ class OAuth2ClientCredentialsRequestForm:
                 HTTPException(status_code=400, detail="Client credentials not provided")
             pass
 
-    This will allow the client server send credential either header or body. But the recommended
-    way it is through the headers : https://datatracker.ietf.org/doc/html/rfc6749#page-40
+    This will allow the client to send its credentials either via headers or body with the request for a token.
 
     grant_type: the OAuth2 spec says it is required and MUST be the fixed string "client_credentials".
     scope: Optional string. Several scopes (each one a string) separated by spaces. E.g.
