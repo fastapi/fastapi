@@ -250,7 +250,7 @@ def get_typed_signature(call: Callable[..., Any]) -> inspect.Signature:
         # The __wrapped__ attribute is set by decorators, e.g. functools.wraps.
         # This while loop allows rereferencing forward references on decorated
         # methods.
-        nsobj = nsobj.__wrapped__
+        nsobj = nsobj.__wrapped__  # type: ignore
     globalns = getattr(nsobj, "__globals__", {})
     typed_params = [
         inspect.Parameter(
