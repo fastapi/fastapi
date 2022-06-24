@@ -1,6 +1,7 @@
 import functools
 
 from fastapi import FastAPI
+from fastapi.testclient import TestClient
 
 from .forward_reference_type import forwardref_method
 
@@ -21,5 +22,10 @@ def test_wrapped_method_type_inference():
     references.
     """
     app = FastAPI()
-    app.get("/endpoint")(passthrough(forwardref_method))
-    app.get("/endpoint2")(passthrough(passthrough(forwardref_method)))
+    client = TestClient(app)
+    app.post("/endpoint")(passthrough(forwardref_method))
+    app.post("/endpoint2")(passthrough(passthrough(forwardref_method)))
+    with client:
+        response = client.post("/endpoint", json={"input": {"x": 0}})
+        response2 = client.post("/endpoint2", json={"input": {"x": 0}})
+    assert response.json() == response2.json() == {"x": 1}
