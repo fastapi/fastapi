@@ -245,7 +245,13 @@ def is_scalar_sequence_field(field: ModelField) -> bool:
 
 def get_typed_signature(call: Callable[..., Any]) -> inspect.Signature:
     signature = inspect.signature(call)
-    globalns = getattr(call, "__globals__", {})
+    nsobj = call
+    while hasattr(nsobj, "__wrapped__"):
+        # The __wrapped__ attribute is set by decorators, e.g. functools.wraps.
+        # This while loop allows rereferencing forward references on decorated
+        # methods.
+        nsobj = nsobj.__wrapped__
+    globalns = getattr(nsobj, "__globals__", {})
     typed_params = [
         inspect.Parameter(
             name=param.name,
