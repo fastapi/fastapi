@@ -22,3 +22,4 @@ def test_wrapped_method_type_inference():
     """
     app = FastAPI()
     app.get("/endpoint")(passthrough(forwardref_method))
+    app.get("/endpoint2")(passthrough(passthrough(forwardref_method)))
