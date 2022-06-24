@@ -3,11 +3,11 @@ on:
   workflow_run:
     workflows:
       - Build Docs
-    types: 
+    types:
       - completed
 
 jobs:
-  deploy:
+  preview-docs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
