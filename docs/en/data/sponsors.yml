@@ -5,12 +5,12 @@ gold:
   - url: https://cryptapi.io/
     title: "CryptAPI: Your easy to use, secure and privacy oriented payment gateway."
     img: https://fastapi.tiangolo.com/img/sponsors/cryptapi.svg
-  - url: https://classiq.link/n4s
-    title: Join the team building a new SaaS platform that will change the computing world
-    img: https://fastapi.tiangolo.com/img/sponsors/classiq.png
   - url: https://www.dropbase.io/careers
     title: Dropbase - seamlessly collect, clean, and centralize data.
     img: https://fastapi.tiangolo.com/img/sponsors/dropbase.svg
+  - url: https://app.imgwhale.xyz/
+    title: The ultimate solution to unlimited and forever cloud storage.
+    img: https://fastapi.tiangolo.com/img/sponsors/imgwhale.svg
 silver:
   - url: https://www.deta.sh/?ref=fastapi
     title: The launchpad for all your (team's) ideas
