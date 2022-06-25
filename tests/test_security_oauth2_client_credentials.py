@@ -1,11 +1,10 @@
 from typing import Optional
 
-from fastapi import FastAPI, Security, Depends, HTTPException
+from fastapi import FastAPI, Security
 from fastapi.security import (
+    HTTPBasicClientCredentials,
     OAuth2ClientCredentials,
     OAuth2ClientCredentialsRequestForm,
-    HTTPClientCredentials,
-    HTTPBasicClientCredentials,
 )
 from fastapi.testclient import TestClient
 
@@ -104,7 +103,7 @@ def test_no_return_none():
     oauth2_scheme.auto_error = False
     response = client.get("/items")
     assert response.status_code == 200, response.text
-    assert response.json() == None
+    assert response.json() is None
     oauth2_scheme.auto_error = True
 
 
