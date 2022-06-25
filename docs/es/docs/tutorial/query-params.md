@@ -75,7 +75,7 @@ En este caso el parámetro de la función `q` será opcional y será `None` por 
 !!! note "Nota"
     FastAPI sabrá que `q` es opcional por el `= None`.
 
-    El `Optional` en `Optional[str]` no es usado por FastAPI (FastAPI solo usará la parte `str`), pero el `Optional[str]` le permitirá a tu editor ayudarte a encontrar errores en tu código.
+    El `Union` en `Union[str, None]` no es usado por FastAPI (FastAPI solo usará la parte `str`), pero el `Union[str, None]` le permitirá a tu editor ayudarte a encontrar errores en tu código.
 
 ## Conversión de tipos de parámetros de query
 
