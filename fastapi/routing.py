@@ -413,7 +413,9 @@ class APIRoute(routing.Route):
                 assert (
                     additional_status_code not in STATUS_CODES_WITH_NO_BODY
                 ), f"Status code {additional_status_code} must not have a response body"
-                response_name = f"ResponseStatusCode{additional_status_code}{self.unique_id}"
+                response_name = (
+                    f"ResponseStatusCode{additional_status_code}{self.unique_id}"
+                )
                 response_field = create_response_field(name=response_name, type_=model)
                 response_fields[additional_status_code] = response_field
         if response_fields:
