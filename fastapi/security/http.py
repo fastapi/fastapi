@@ -150,6 +150,19 @@ class HTTPBearer(HTTPBase):
 
 
 class HTTPBasicClientCredentials(HTTPBase):
+    def __init__(
+        self,
+        *,
+        scheme_name: Optional[str] = None,
+        realm: Optional[str] = None,
+        description: Optional[str] = None,
+        auto_error: bool = True,
+    ):
+        self.model = HTTPBaseModel(scheme="basic", description=description)
+        self.scheme_name = scheme_name or self.__class__.__name__
+        self.realm = realm
+        self.auto_error = auto_error
+
     async def __call__(  # type:ignore
         self, request: Request
     ) -> Optional[HTTPClientCredentials]:
