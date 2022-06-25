@@ -18,10 +18,11 @@ class ClientCredentialsAuthMock:
 
 @app.get("/users/me")
 def read_current_user(credentials: HTTPClientCredentials = Security(security)):
-    return {
-        "client_id": credentials.client_id,
-        "client_secret": credentials.client_secret,
-    }
+    if credentials:
+        return {
+            "client_id": credentials.client_id,
+            "client_secret": credentials.client_secret,
+        }
 
 
 client = TestClient(app)
@@ -84,3 +85,11 @@ def test_security_http_basic_non_basic_credentials():
     assert response.status_code == 401, response.text
     assert response.headers["WWW-Authenticate"] == "Basic"
     assert response.json() == {"detail": "Invalid authentication credentials"}
+
+
+def test_no_return_none():
+    security.auto_error = False
+    response = client.get("/users/me")
+    assert response.status_code == 200, response.text
+    assert response.json() is None
+    security.auto_error = True

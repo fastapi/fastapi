@@ -1,42 +1,18 @@
 from typing import Optional
 
 from fastapi import FastAPI, Security
-from fastapi.security import (
-    HTTPBasicClientCredentials,
-    OAuth2ClientCredentials,
-    OAuth2ClientCredentialsRequestForm,
-)
+from fastapi.security import OAuth2ClientCredentials, OAuth2ClientCredentialsRequestForm
 from fastapi.testclient import TestClient
 
 app = FastAPI()
 
 oauth2_scheme = OAuth2ClientCredentials(tokenUrl="token", auto_error=True)
 
-token_scheme = HTTPBasicClientCredentials(
-    auto_error=False, scheme_name="oAuth2ClientCredentials"
-)
-
 
 @app.get("/items/")
 async def read_items(token: Optional[str] = Security(oauth2_scheme)):
     if token:
         return {"token": token}
-
-
-# @app.post("/token")
-# def create_access_token(
-#     form: OAuth2ClientCredentialsRequestForm = Depends(),
-#     basic_credentials: Optional[HTTPClientCredentials] = Depends(token_scheme),
-# ):
-#     if form.client_id and form.client_secret:
-#         client_id = form.client_id
-#         client_secret = form.client_secret
-#     elif basic_credentials:
-#         client_id = basic_credentials.client_id
-#         client_secret = basic_credentials.client_secret
-#     else:
-#         HTTPException(status_code=400, detail="Client credentials not provided")
-#     return {"token": "jwt_token"}
 
 
 client = TestClient(app)
