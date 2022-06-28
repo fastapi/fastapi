@@ -66,6 +66,8 @@ nav:
   - tutorial/response-status-code.md
   - tutorial/request-files.md
   - tutorial/request-forms-and-files.md
+- Advanced User Guide:
+  - advanced/events.md
 markdown_extensions:
 - toc:
     permalink: true
