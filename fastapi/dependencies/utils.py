@@ -721,7 +721,7 @@ def get_body_field(*, dependant: Dependant, name: str) -> Optional[ModelField]:
     # That is combined (embedded) with other body fields
     for param in flat_dependant.body_params:
         setattr(param.field_info, "embed", True)
-    model_name = "Body_" + name
+    model_name = f"Body_{name}"
     BodyModel: Type[BaseModel] = create_model(model_name)
     for f in flat_dependant.body_params:
         BodyModel.__fields__[f.name] = f

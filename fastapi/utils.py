@@ -74,11 +74,11 @@ def create_response_field(
 def create_cloned_field(
     field: ModelField,
     *,
-    cloned_types: Optional[Dict[Type[BaseModel], Type[BaseModel]]] = None,
+    cloned_types: Optional[Dict[Type[BaseModel], Type[BaseModel]]] = {},
 ) -> ModelField:
-    # _cloned_types has already cloned types, to support recursive models
-    if cloned_types is None:
-        cloned_types = dict()
+    """
+    _cloned_types has already cloned types, to support recursive models
+    """
     original_type = field.type_
     if is_dataclass(original_type) and hasattr(original_type, "__pydantic_model__"):
         original_type = original_type.__pydantic_model__
@@ -167,7 +167,8 @@ def get_value_or_default(
 
     Otherwise, the first item (a `DefaultPlaceholder`) will be returned.
     """
-    for item in (first_item,) + extra_items:
+    items = (first_item,) + extra_items
+    for item in (first_item,) + items:
         if not isinstance(item, DefaultPlaceholder):
             return item
     return first_item
