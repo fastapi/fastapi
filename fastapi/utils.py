@@ -74,11 +74,11 @@ def create_response_field(
 def create_cloned_field(
     field: ModelField,
     *,
-    cloned_types: Optional[Dict[Type[BaseModel], Type[BaseModel]]] = {},
+    cloned_types: Optional[Dict[Type[BaseModel], Type[BaseModel]]] = None,
 ) -> ModelField:
-    """
-    _cloned_types has already cloned types, to support recursive models
-    """
+    # _cloned_types has already cloned types, to support recursive model
+    if cloned_types is None:
+        cloned_types = dict()
     original_type = field.type_
     if is_dataclass(original_type) and hasattr(original_type, "__pydantic_model__"):
         original_type = original_type.__pydantic_model__
