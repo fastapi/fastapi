@@ -76,7 +76,7 @@ def create_cloned_field(
     *,
     cloned_types: Optional[Dict[Type[BaseModel], Type[BaseModel]]] = None,
 ) -> ModelField:
-    # _cloned_types has already cloned types, to support recursive model
+    # _cloned_types has already cloned types, to support recursive models
     if cloned_types is None:
         cloned_types = dict()
     original_type = field.type_
