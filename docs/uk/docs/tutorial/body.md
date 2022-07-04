@@ -138,7 +138,7 @@
     Якщо ви використовуєте <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a> як ваш редактор, ви можете використати <a href="https://github.com/koxudaxi/pydantic-pycharm-plugin/" class="external-link" target="_blank">Pydantic PyCharm Plugin</a>.
 
     Він покращує підтримку редакторів для моделей Pydantic за допомогою:
-    
+
     * автозаповнення
     * перевірки типу
     * рефакторингу
