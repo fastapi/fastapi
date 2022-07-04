@@ -145,7 +145,7 @@ $ pip install uvicorn[standard]
 * `main.py` 파일을 만드십시오:
 
 ```Python
-from typing import Optional
+from typing import Union
 
 from fastapi import FastAPI
 
@@ -158,7 +158,7 @@ def read_root():
 
 
 @app.get("/items/{item_id}")
-def read_item(item_id: int, q: Optional[str] = None):
+def read_item(item_id: int, q: Union[str, None] = None):
     return {"item_id": item_id, "q": q}
 ```
 
@@ -168,7 +168,7 @@ def read_item(item_id: int, q: Optional[str] = None):
 여러분의 코드가 `async` / `await`을 사용한다면, `async def`를 사용하십시오.
 
 ```Python hl_lines="9 14"
-from typing import Optional
+from typing import Union
 
 from fastapi import FastAPI
 
@@ -181,7 +181,7 @@ async def read_root():
 
 
 @app.get("/items/{item_id}")
-async def read_item(item_id: int, q: Optional[str] = None):
+async def read_item(item_id: int, q: Union[str, None] = None):
     return {"item_id": item_id, "q": q}
 ```
 
@@ -260,7 +260,7 @@ INFO:     Application startup complete.
 Pydantic을 이용해 파이썬 표준 타입으로 본문을 선언합니다.
 
 ```Python hl_lines="4  9 10 11 12  25 26 27"
-from typing import Optional
+from typing import Union
 
 from fastapi import FastAPI
 from pydantic import BaseModel
@@ -271,7 +271,7 @@ app = FastAPI()
 class Item(BaseModel):
     name: str
     price: float
-    is_offer: Optional[bool] = None
+    is_offer: Union[bool, None] = None
 
 
 @app.get("/")
@@ -280,7 +280,7 @@ def read_root():
 
 
 @app.get("/items/{item_id}")
-def read_item(item_id: int, q: Optional[str] = None):
+def read_item(item_id: int, q: Union[str, None] = None):
     return {"item_id": item_id, "q": q}
 
 
