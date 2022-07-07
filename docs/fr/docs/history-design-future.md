@@ -36,7 +36,7 @@ Par exemple, il était clair que l'idéal était de se baser sur les annotations
 
 De plus, la meilleure approche était d'utiliser des normes déjà existantes.
 
-Ainsi, avant même de commencer à coder **FastAPI**, j'ai passé plusieurs mois à étudier les spécifications d'OpenAPI, JSON Schema, OAuth2, etc. Comprendre leurs relations, leurs chevauchements et leurs différences.
+Ainsi, avant même de commencer à coder **FastAPI**, j'ai passé plusieurs mois à étudier les spécifications d'OpenAPI, JSON Schema, OAuth2, etc. Comprendre leurs relations, leurs similarités et leurs différences.
 
 ## Conception
 
