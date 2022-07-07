@@ -44,7 +44,7 @@ Ensuite, j'ai passé du temps à concevoir l'"API" de développeur que je voulai
 
 J'ai testé plusieurs idées dans les éditeurs Python les plus populaires : PyCharm, VS Code, les éditeurs basés sur Jedi.
 
-D'après le dernier <a href="https://www.jetbrains.com/research/python-developers-survey-2018/#development-tools" class="external-link" target="_blank">Python Developer Survey</a>, cela couvre environ 80% des utilisateurs.
+D'après la dernière <a href="https://www.jetbrains.com/research/python-developers-survey-2018/#development-tools" class="external-link" target="_blank">Enquête Développeurs Python</a>, cela couvre environ 80% des utilisateurs.
 
 Cela signifie que **FastAPI** a été spécifiquement testé avec les éditeurs utilisés par 80% des développeurs Python. Et comme la plupart des autres éditeurs ont tendance à fonctionner de façon similaire, tous ses avantages devraient fonctionner pour pratiquement tous les éditeurs.
 
