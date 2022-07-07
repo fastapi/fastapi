@@ -79,7 +79,7 @@ Python won't do anything with that `*`, but it will know that all the following 
 
 With `Query` and `Path` (and other's you'll see later) you can declare string constraints, but also number constraints.
 
-Here, with `ge=1`, `item_id` will need to be an integer number "greater than or equal" to `1`.
+Here, with `ge=1`, `item_id` will need to be an integer number "**g**reater than or **e**qual" to `1`.
 
 ```Python hl_lines="8"
 {!../../../docs_src/path_params_numeric_validations/tutorial004.py!}
@@ -89,8 +89,8 @@ Here, with `ge=1`, `item_id` will need to be an integer number "greater than or 
 
 The same applies for:
 
-* `gt`: "greater than"
-* `le`: "less than or equal"
+* `gt`: "**g**reater **t**han"
+* `le`: "**l**ess than or **e**qual"
 
 ```Python hl_lines="9"
 {!../../../docs_src/path_params_numeric_validations/tutorial005.py!}
@@ -116,10 +116,10 @@ With `Query`, `Path` (and others you haven't seen yet) you can declare metadata 
 
 And you can also declare numeric validations:
 
-* `gt`: "greater than"
-* `ge`: "greater than or equal"
-* `lt`: "less than"
-* `le`: "less than or equal"
+* `gt`: "**g**reater **t**han"
+* `ge`: "**g**reater than or **e**qual"
+* `lt`: "**l**ess **t**han"
+* `le`: "**l**ess than or **e**qual"
 
 !!! info
     `Query`, `Path`, and others you will see later are subclasses of a common `Param` class (that you don't need to use).
