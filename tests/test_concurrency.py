@@ -4,10 +4,8 @@ from time import sleep
 from typing import Iterator
 
 import anyio
-
 import pytest
 from fastapi.concurrency import contextmanager_in_threadpool
-
 
 
 @contextmanager
@@ -24,7 +22,6 @@ async def run_cm(db_pool: BoundedSemaphore) -> None:
     print("acquiring therad token")
     async with contextmanager_in_threadpool(slow_cm(db_pool)):
         await anyio.sleep(0)  # checkpoint
-
 
 
 @pytest.mark.anyio
