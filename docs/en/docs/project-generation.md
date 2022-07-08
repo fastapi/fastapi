@@ -82,3 +82,26 @@ GitHub: <a href="https://github.com/microsoft/cookiecutter-spacy-fastapi" class=
 * **Azure DevOps** Kubernetes (AKS) CI/CD deployment built in.
 * **Multilingual** Easily choose one of spaCy's built in languages during project setup.
 * **Easily extensible** to other model frameworks (Pytorch, Tensorflow), not just spaCy.
+
+## Super flexible FastAPI template
+
+
+GitHub: <a href="https://github.com/s3rius/FastAPI-template" class="external-link" target="_blank">https://github.com/s3rius/FastAPI-template</a>
+
+### Super flexible FastAPI template - Features
+
+* You can choose between GraphQL and REST api;
+* Different databases support;
+* Different ORMs support;
+* Optional migrations for each ORM except raw drivers;
+* Optional redis support;
+* Optional rabbitmq support;
+* different CI\CD;
+* Optional Demo routers and models (This helps you to see how project is structured);
+* Pre-commit integration;
+* Generated tests with almost 90% coverage;
+* Tests for the generator itself;
+* Optional Prometheus integration;
+* Optional Sentry integration;
+* Optional Loguru logger;
+* Optional Opentelemetry integration.
