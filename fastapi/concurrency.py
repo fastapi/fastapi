@@ -45,10 +45,10 @@ async def contextmanager_in_threadpool(
         0, item_type=Optional[Exception]
     )
     async with AsyncExitStack() as stack:
-        await stack.enter_async_context(rcv_res)
-        await stack.enter_async_context(rcv_err)
-        await stack.enter_async_context(send_res)
-        await stack.enter_async_context(send_err)
+        stack.enter_context(rcv_res)
+        stack.enter_context(rcv_err)
+        stack.enter_context(send_res)
+        stack.enter_context(send_err)
         tg = await stack.enter_async_context(anyio.create_task_group())
         tg.start_soon(run_in_threadpool, _cm_thead_worker, cm, send_res, rcv_err)
         res = await rcv_res.receive()
