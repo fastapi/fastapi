@@ -20,7 +20,7 @@ Il existe plusieurs façons de procéder, en fonction de votre cas d'utilisation
 utilisez.
 
 Vous pouvez **déployer un serveur** vous-même en utilisant une combinaison d'outils, vous pouvez utiliser un **service
-en nuage** qui fait une partie du travail pour vous, ou d'autres options possibles.
+cloud** qui fait une partie du travail pour vous, ou encore d'autres options possibles.
 
 Je vais vous montrer certains des principaux concepts que vous devriez probablement avoir à l'esprit lors du déploiement
 d'une application **FastAPI** (bien que la plupart de ces concepts s'appliquent à tout autre type d'application web).
