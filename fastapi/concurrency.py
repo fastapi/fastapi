@@ -37,9 +37,11 @@ async def contextmanager_in_threadpool(
     cm: ContextManager[_T],
 ) -> AsyncGenerator[_T, None]:
     # streams for the data
-    send_res, rcv_res = anyio.create_memory_object_stream(0, item_type=Any)
+    send_res, rcv_res = anyio.create_memory_object_stream(  # type: ignore
+        0, item_type=Any
+    )
     # streams for exceptions
-    send_err, rcv_err = anyio.create_memory_object_stream(
+    send_err, rcv_err = anyio.create_memory_object_stream(  # type: ignore
         0, item_type=Optional[Exception]
     )
     async with AsyncExitStack() as stack:
