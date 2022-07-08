@@ -23,7 +23,7 @@ def slow_cm(db_pool: BoundedSemaphore) -> Iterator[None]:
 async def run_cm(db_pool: BoundedSemaphore) -> None:
     print("acquiring therad token")
     async with contextmanager_in_threadpool(slow_cm(db_pool)):
-        await anyio.sleep(0)
+        await anyio.sleep(0)  # checkpoint
 
 
 
@@ -42,6 +42,9 @@ async def test_contextmanager_in_threadpool_does_not_deadlock() -> None:
     total_tokens = int(limiter.total_tokens)
     db_pool = BoundedSemaphore(1)
     with anyio.fail_after(1):  # deadlock
+        # use a task group to simulate processing several concurrent requests
         async with anyio.create_task_group() as tg:
+            # create more requests than we have thread tokens
+            # to make sure we exhaust tokens that __exit__ would use
             for _ in range(total_tokens * 2):
                 tg.start_soon(run_cm, db_pool)
