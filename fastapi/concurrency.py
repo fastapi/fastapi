@@ -1,6 +1,8 @@
 import sys
-from typing import AsyncGenerator, ContextManager, TypeVar
+from typing import Any, AsyncGenerator, ContextManager, Optional, TypeVar
 
+import anyio
+from anyio.streams.memory import MemoryObjectReceiveStream, MemoryObjectSendStream
 from starlette.concurrency import iterate_in_threadpool as iterate_in_threadpool  # noqa
 from starlette.concurrency import run_in_threadpool as run_in_threadpool  # noqa
 from starlette.concurrency import (  # noqa
@@ -18,15 +20,39 @@ else:
 _T = TypeVar("_T")
 
 
+def _cm_thead_worker(
+    cm: ContextManager[_T],
+    res_stream: MemoryObjectSendStream[_T],
+    err_stream: MemoryObjectReceiveStream[Optional[Exception]],
+) -> None:
+    with cm as res:
+        anyio.from_thread.run(res_stream.send, res)
+        exc = anyio.from_thread.run(err_stream.receive)
+        if exc:
+            raise exc
+
+
 @asynccontextmanager
 async def contextmanager_in_threadpool(
     cm: ContextManager[_T],
 ) -> AsyncGenerator[_T, None]:
-    try:
-        yield await run_in_threadpool(cm.__enter__)
-    except Exception as e:
-        ok: bool = await run_in_threadpool(cm.__exit__, type(e), e, None)
-        if not ok:
-            raise e
-    else:
-        await run_in_threadpool(cm.__exit__, None, None, None)
+    # streams for the data
+    send_res, rcv_res = anyio.create_memory_object_stream(0, item_type=Any)
+    # streams for exceptions
+    send_err, rcv_err = anyio.create_memory_object_stream(
+        0, item_type=Optional[Exception]
+    )
+    async with AsyncExitStack() as stack:
+        await stack.enter_async_context(rcv_res)
+        await stack.enter_async_context(rcv_err)
+        await stack.enter_async_context(send_res)
+        await stack.enter_async_context(send_err)
+        tg = await stack.enter_async_context(anyio.create_task_group())
+        tg.start_soon(run_in_threadpool, _cm_thead_worker, cm, send_res, rcv_err)
+        res = await rcv_res.receive()
+        try:
+            yield res
+        except Exception as e:
+            await send_err.send(e)
+        else:
+            await send_err.send(None)
