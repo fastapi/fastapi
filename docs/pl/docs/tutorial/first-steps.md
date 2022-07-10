@@ -8,7 +8,7 @@ Najprostszy plik FastAPI może wyglądać tak:
 
 Skopiuj to do pliku `main.py`.
 
-Uruchom serwer na żywo:
+Uruchom serwer:
 
 <div class="termy">
 
@@ -28,7 +28,7 @@ $ uvicorn main:app --reload
     Polecenie `uvicorn main:app` odnosi się do:
 
     * `main`: plik `main.py` ("moduł" Python).
-    * `app`: obiekt stworzony wewnątrz `main.py` w lini `app = FastAPI()`.
+    * `app`: obiekt utworzony w pliku `main.py` w lini `app = FastAPI()`.
     * `--reload`: sprawia, że serwer uruchamia się ponownie po zmianie kodu. Używany tylko w trakcie tworzenia oprogramowania.
 
 Na wyjściu znajduje się linia z czymś w rodzaju:
@@ -67,17 +67,17 @@ Zobaczysz alternatywną automatycznie wygenerowaną dokumentację API (dostarczo
 
 ### OpenAPI
 
-**FastAPI** generuje "schemat" z całym Twoim API przy użyciu standardu **OpenAPI** do definiowania API.
+**FastAPI** generuje "schemat" z całym Twoim API przy użyciu standardu **OpenAPI** służącego do definiowania API.
 
-#### "Schemat"
+#### Schema
 
-"Schemat" jest definicją lub opisem czegoś. Nie jest to kod, który go implementuje, ale po prostu abstrakcyjny opis.
+"Schema" jest definicją lub opisem czegoś. Nie jest to kod, który go implementuje, ale po prostu abstrakcyjny opis.
 
-#### "Schemat" API
+#### API "Schema"
 
 W typ przypadku, <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> to specyfikacja, która dyktuje sposób definiowania schematu interfejsu API.
 
-Ta definicja schematu zawiera ścieżki API, możliwe parametry, które są przyjmowane przez endpointy, itp.
+Definicja schematu zawiera ścieżki API, możliwe parametry, które są przyjmowane przez endpointy, itp.
 
 #### "Schemat" danych
 
@@ -87,11 +87,11 @@ W takim przypadku będzie to oznaczać atrybuty JSON, ich typy danych itp.
 
 #### OpenAPI i JSON Schema
 
-OpenAPI definiuje schemat API dla Twojego API. A ten schemat zawiera definicje (lub "schematy") danych wysyłanych i odbieranych przez Twój interfejs API przy użyciu **Schematu JSON**, standardu dla schematów danych JSON.
+OpenAPI definiuje API Schema dla Twojego API, który zawiera definicje (lub "schematy") danych wysyłanych i odbieranych przez Twój interfejs API przy użyciu **JSON Schema**, standardu dla schematów danych w formacie JSON.
 
 #### Sprawdź `openapi.json`
 
-Jeśli jesteś ciekawy, jak wygląda surowy schemat OpenAPI, FastAPI automatycznie generuje JSON (schemat) z opisami wszystkich Twoich API.
+Jeśli jesteś ciekawy, jak wygląda surowy schemat OpenAPI, FastAPI automatycznie generuje JSON Schema z opisami wszystkich Twoich API.
 
 Możesz to zobaczyć bezpośrednio pod adresem: <a href="http://127.0.0.1:8000/openapi.json" class="external-link" target="_blank">http://127.0.0.1:8000/openapi.json</a>.
 
@@ -201,9 +201,9 @@ https://example.com/items/foo
 ```
 
 !!! info
-    "Ścieżka" jest zazwyczaj nazywana "endpoint" lub "route'.
+    "Ścieżka" jest zazwyczaj nazywana "path", "endpoint" lub "route'.
 
-Podczas budowania API, "ścieżka" jest głównym sposobem na oddzielenie "troski" i „zasobów”.
+Podczas budowania API, "ścieżka" jest głównym sposobem na oddzielenie "odpowiedzialności" i „zasobów”.
 
 #### Operacje
 
