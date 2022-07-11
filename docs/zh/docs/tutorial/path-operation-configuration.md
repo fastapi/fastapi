@@ -23,7 +23,7 @@
 !!! note "技术细节"
 
     也可以使用 `from starlette import status` 导入状态码。
-    
+
     **FastAPI** 的`fastapi.status` 和 `starlette.status` 一样，只是快捷方式。实际上，`fastapi.status` 直接继承自 Starlette。
 
 ## `tags` 参数
@@ -75,7 +75,7 @@ OpenAPI 概图会自动添加标签，供 API 文档接口使用：
 !!! check "检查"
 
     OpenAPI 规定每个*路径操作*都要有响应描述。
-    
+
     如果没有定义响应描述，**FastAPI** 则自动生成内容为 "Successful response" 的响应描述。
 
 <img src="/img/tutorial/path-operation-configuration/image03.png">

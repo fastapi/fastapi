@@ -9,7 +9,7 @@
 
 ## `File` 및 `Form` 업로드
 
-```Python hl_lines="1" 
+```Python hl_lines="1"
 {!../../../docs_src/request_forms_and_files/tutorial001.py!}
 ```
 
@@ -17,7 +17,7 @@
 
 `Body` 및 `Query`와 동일한 방식으로 파일과 폼의 매개변수를 생성합니다:
 
-```Python hl_lines="8" 
+```Python hl_lines="8"
 {!../../../docs_src/request_forms_and_files/tutorial001.py!}
 ```
 
