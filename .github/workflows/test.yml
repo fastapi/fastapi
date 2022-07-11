@@ -32,7 +32,7 @@ jobs:
       - name: Install Dependencies
         if: steps.cache.outputs.cache-hit != 'true'
         # TODO: remove --deps test, this is only to test running the tests in Python 3.11
-        run: flit install --symlink --deps test
+        run: flit install --symlink --extras test
         # run: flit install --symlink
       - name: Lint
         if: ${{ matrix.python-version != '3.6' }}
