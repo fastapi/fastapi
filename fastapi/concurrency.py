@@ -29,12 +29,12 @@ async def contextmanager_in_threadpool(
     except Exception as e:
         ok = bool(
             await anyio.to_thread.run_sync(
-                cm.__exit__, type(e), e, None, limiter=CapacityLimiter(float("inf"))
+                cm.__exit__, type(e), e, None, limiter=CapacityLimiter(1)
             )
         )
         if not ok:
             raise e
     else:
         await anyio.to_thread.run_sync(
-            cm.__exit__, None, None, None, limiter=CapacityLimiter(float("inf"))
+            cm.__exit__, None, None, None, limiter=CapacityLimiter(1)
         )
