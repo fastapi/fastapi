@@ -1,6 +1,8 @@
 import sys
 from typing import AsyncGenerator, ContextManager, TypeVar
 
+import anyio
+from anyio import CapacityLimiter
 from starlette.concurrency import iterate_in_threadpool as iterate_in_threadpool  # noqa
 from starlette.concurrency import run_in_threadpool as run_in_threadpool  # noqa
 from starlette.concurrency import (  # noqa
@@ -25,8 +27,14 @@ async def contextmanager_in_threadpool(
     try:
         yield await run_in_threadpool(cm.__enter__)
     except Exception as e:
-        ok: bool = await run_in_threadpool(cm.__exit__, type(e), e, None)
+        ok = bool(
+            await anyio.to_thread.run_sync(
+                cm.__exit__, type(e), e, None, limiter=CapacityLimiter(float("inf"))
+            )
+        )
         if not ok:
             raise e
     else:
-        await run_in_threadpool(cm.__exit__, None, None, None)
+        await anyio.to_thread.run_sync(
+            cm.__exit__, None, None, None, limiter=CapacityLimiter(float("inf"))
+        )
