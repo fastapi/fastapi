@@ -48,9 +48,7 @@ if __name__ == "__main__":
             use_pr = pr
             break
     if not use_pr:
-        logging.error(
-            f"No PR found for hash: {event.workflow_run.head_commit.id}"
-        )
+        logging.error(f"No PR found for hash: {event.workflow_run.head_commit.id}")
         sys.exit(0)
     github_headers = {
         "Authorization": f"token {settings.input_token.get_secret_value()}"

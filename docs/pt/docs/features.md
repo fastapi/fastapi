@@ -191,7 +191,7 @@ Com **FastAPI** você terá todos os recursos do **Pydantic** (já que FastAPI u
 * Vai bem com o/a seu/sua **<abbr title="Ambiente de Desenvolvimento Integrado, similar a um editor de código">IDE</abbr>/<abbr title="Um programa que confere erros de código">linter</abbr>/cérebro**:
     * Como as estruturas de dados do Pydantic são apenas instâncias de classes que você define, a auto completação, _linting_, _mypy_ e a sua intuição devem funcionar corretamente com seus dados validados.
 * **Rápido**:
-    * em <a href="https://pydantic-docs.helpmanual.io/#benchmarks-tag" class="external-link" target="_blank">_benchmarks_</a>, o Pydantic é mais rápido que todas as outras bibliotecas testadas.
+    * em <a href="https://pydantic-docs.helpmanual.io/benchmarks/" class="external-link" target="_blank">_benchmarks_</a>, o Pydantic é mais rápido que todas as outras bibliotecas testadas.
 * Valida **estruturas complexas**:
     * Use modelos hierárquicos do Pydantic, `List` e `Dict` do `typing` do Python, etc.
     * Validadores permitem que esquemas de dados complexos sejam limpos e facilmente definidos, conferidos e documentados como JSON Schema.
