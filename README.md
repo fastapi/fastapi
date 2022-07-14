@@ -47,7 +47,7 @@ The key features are:
 
 <!-- sponsors -->
 
-<a href="https://bit.ly/2QSouzH" target="_blank" title="Jina: build neural search-as-a-service for any kind of data in just minutes."><img src="https://fastapi.tiangolo.com/img/sponsors/jina.svg"></a>
+<a href="https://bit.ly/3PjOZqc" target="_blank" title="DiscoArt: Create compelling Disco Diffusion artworks in just one line"><img src="https://fastapi.tiangolo.com/img/sponsors/jina-ai.png"></a>
 <a href="https://cryptapi.io/" target="_blank" title="CryptAPI: Your easy to use, secure and privacy oriented payment gateway."><img src="https://fastapi.tiangolo.com/img/sponsors/cryptapi.svg"></a>
 <a href="https://app.imgwhale.xyz/" target="_blank" title="The ultimate solution to unlimited and forever cloud storage."><img src="https://fastapi.tiangolo.com/img/sponsors/imgwhale.svg"></a>
 <a href="https://doist.com/careers/9B437B1615-wa-senior-backend-engineer-python" target="_blank" title="Help us migrate doist to FastAPI"><img src="https://fastapi.tiangolo.com/img/sponsors/doist.svg"></a>
