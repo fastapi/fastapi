@@ -10,7 +10,7 @@
 </p>
 <p align="center">
 <a href="https://github.com/tiangolo/fastapi/actions?query=workflow%3ATest+event%3Apush+branch%3Amaster" target="_blank">
-    <img src="https://github.com/tiangolo/fastapi/workflows/Test/badge.svg?event=push&branch=master" alt="Test">
+    <img src="https://img.shields.io/github/workflow/status/tiangolo/fastapi/Test?event=push" alt="Test">
 </a>
 <a href="https://codecov.io/gh/tiangolo/fastapi" target="_blank">
     <img src="https://img.shields.io/codecov/c/github/tiangolo/fastapi?color=%2334D058" alt="Coverage">
