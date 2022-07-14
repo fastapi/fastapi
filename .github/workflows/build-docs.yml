@@ -13,9 +13,9 @@ jobs:
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: "3.7"
       - uses: actions/cache@v2
@@ -41,7 +41,7 @@ jobs:
           name: docs-zip
           path: ./docs.zip
       - name: Deploy to Netlify
-        uses: nwtgck/actions-netlify@v1.1.5
+        uses: nwtgck/actions-netlify@v1.2.3
         with:
           publish-dir: './site'
           production-branch: master
