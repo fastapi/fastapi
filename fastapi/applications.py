@@ -58,8 +58,13 @@ class FastAPI(Starlette):
         default_response_class: Type[Response] = Default(JSONResponse),
         docs_url: Optional[str] = "/docs",
         redoc_url: Optional[str] = "/redoc",
+        docs_title_suffix: Optional[str] = "- Swagger UI",
+        redoc_title_suffix: Optional[str] = " - ReDoc",
         swagger_ui_oauth2_redirect_url: Optional[str] = "/docs/oauth2-redirect",
         swagger_ui_init_oauth: Optional[Dict[str, Any]] = None,
+        swagger_js_url: str = "https://cdn.jsdelivr.net/npm/swagger-ui-dist@4/swagger-ui-bundle.js",
+        swagger_css_url: str = "https://cdn.jsdelivr.net/npm/swagger-ui-dist@4/swagger-ui.css",
+        swagger_favicon_url: str = "https://fastapi.tiangolo.com/img/favicon.png",
         middleware: Optional[Sequence[Middleware]] = None,
         exception_handlers: Optional[
             Dict[
@@ -97,6 +102,8 @@ class FastAPI(Starlette):
         self.root_path_in_servers = root_path_in_servers
         self.docs_url = docs_url
         self.redoc_url = redoc_url
+        self.docs_title_suffix = docs_title_suffix
+        self.redoc_title_suffix = redoc_title_suffix
         self.swagger_ui_oauth2_redirect_url = swagger_ui_oauth2_redirect_url
         self.swagger_ui_init_oauth = swagger_ui_init_oauth
         self.swagger_ui_parameters = swagger_ui_parameters
@@ -104,6 +111,9 @@ class FastAPI(Starlette):
         self.extra = extra
         self.openapi_version = "3.0.2"
         self.openapi_schema: Optional[Dict[str, Any]] = None
+        self.swagger_js_url = swagger_js_url
+        self.swagger_css_url = swagger_css_url
+        self.swagger_favicon_url = swagger_favicon_url
         if self.openapi_url:
             assert self.title, "A title must be provided for OpenAPI, e.g.: 'My API'"
             assert self.version, "A version must be provided for OpenAPI, e.g.: '2.1.0'"
@@ -234,7 +244,10 @@ class FastAPI(Starlette):
                     oauth2_redirect_url = root_path + oauth2_redirect_url
                 return get_swagger_ui_html(
                     openapi_url=openapi_url,
-                    title=self.title + " - Swagger UI",
+                    title=self.title + self.docs_title_suffix,
+                    swagger_js_url=self.swagger_js_url,
+                    swagger_css_url=self.swagger_css_url,
+                    swagger_favicon_url=self.swagger_favicon_url,
                     oauth2_redirect_url=oauth2_redirect_url,
                     init_oauth=self.swagger_ui_init_oauth,
                     swagger_ui_parameters=self.swagger_ui_parameters,
@@ -258,7 +271,7 @@ class FastAPI(Starlette):
                 root_path = req.scope.get("root_path", "").rstrip("/")
                 openapi_url = root_path + self.openapi_url
                 return get_redoc_html(
-                    openapi_url=openapi_url, title=self.title + " - ReDoc"
+                    openapi_url=openapi_url, title=self.title + self.redoc_title_suffix
                 )
 
             self.add_route(self.redoc_url, redoc_html, include_in_schema=False)
