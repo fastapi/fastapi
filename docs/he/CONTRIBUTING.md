@@ -13,13 +13,13 @@ In fact, the "hard" part is getting the parts which must remain in `ltr` to beha
 Just add `dir="ltr"` to the div.
 
     <div **dir="ltr"** class="termy">
-    
+
     ```console
     $ pip install "uvicorn[standard]"
-    
+
     ---> 100%
     ```
-    
+
     </div>
 
 ### Inline `monospace`.
@@ -58,7 +58,7 @@ than use the acronym from that point on.
 
 The following should stay in english:
 
-- Names, e.g. `FastAPI`, `NodeJS`, `main.py`. 
+- Names, e.g. `FastAPI`, `NodeJS`, `main.py`.
 - Python keywords, e.g. `async`.
 - Testimonials.
 - Anything you feel will be clearer in english.
@@ -67,8 +67,8 @@ The following should stay in english:
 
 ### Transliterations
 
-Asynchronous becomes "אסינכרוני" and so on. 
-  
+Asynchronous becomes "אסינכרוני" and so on.
+
 ### Translations
 
 | English         | Hebrew                  |
@@ -77,6 +77,6 @@ Asynchronous becomes "אסינכרוני" and so on.
 | Production      | סביבת ייצור             |
 | Debugging       | ניפוי שגיאות            |
 | Types           | טיפוסים                 |
-| Path parameter  | פרמטר נתיב              | 
+| Path parameter  | פרמטר נתיב              |
 | Query parameter | פרמטר שאילתא            |
 | Headers         | כותרות                  |
