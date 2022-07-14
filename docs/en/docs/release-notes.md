@@ -2,6 +2,9 @@
 
 ## Latest Changes
 
+
+## 0.79.0
+
 ### Fixes - Breaking Changes
 
 * 🐛 Fix removing body from status codes that do not support it. PR [#5145](https://github.com/tiangolo/fastapi/pull/5145) by [@tiangolo](https://github.com/tiangolo).
