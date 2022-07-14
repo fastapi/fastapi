@@ -5,8 +5,12 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
+    commit-message:
+      prefix: ⬆
   # Python
   - package-ecosystem: "pip"
     directory: "/"
     schedule:
       interval: "daily"
+    commit-message:
+      prefix: ⬆
