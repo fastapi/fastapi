@@ -58,6 +58,7 @@ nav:
   - zh: /zh/
 - Samouczek:
   - tutorial/index.md
+  - tutorial/first-steps.md
 markdown_extensions:
 - toc:
     permalink: true
