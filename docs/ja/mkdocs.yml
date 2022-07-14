@@ -78,6 +78,7 @@ nav:
   - tutorial/testing.md
   - tutorial/debugging.md
 - 高度なユーザーガイド:
+  - advanced/index.md
   - advanced/path-operation-advanced-configuration.md
   - advanced/additional-status-codes.md
   - advanced/response-directly.md
