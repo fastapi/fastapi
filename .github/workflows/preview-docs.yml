@@ -10,7 +10,7 @@ jobs:
   preview-docs:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Download Artifact Docs
         uses: dawidd6/action-download-artifact@v2.21.1
         with:
