@@ -5,14 +5,14 @@ theme:
   name: material
   custom_dir: overrides
   palette:
-  - media: "(prefers-color-scheme: light)"
+  - media: '(prefers-color-scheme: light)'
     scheme: default
     primary: teal
     accent: amber
     toggle:
       icon: material/lightbulb
       name: Switch to light mode
-  - media: "(prefers-color-scheme: dark)"
+  - media: '(prefers-color-scheme: dark)'
     scheme: slate
     primary: teal
     accent: amber
@@ -53,6 +53,7 @@ nav:
   - pt: /pt/
   - ru: /ru/
   - sq: /sq/
+  - sv: /sv/
   - tr: /tr/
   - uk: /uk/
   - zh: /zh/
@@ -133,6 +134,8 @@ extra:
     name: ru - русский язык
   - link: /sq/
     name: sq - shqip
+  - link: /sv/
+    name: sv - svenska
   - link: /tr/
     name: tr - Türkçe
   - link: /uk/
