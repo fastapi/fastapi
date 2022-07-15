@@ -3,7 +3,7 @@ Python 3.9 introduced the `Annotated` syntax for type annotations. This may also
 
 In FastAPI, this allows us to specify annotations without using default values, and allows us to avoid repeating the type annotation for a dependency.
 
-Let's look at the example from the dependecies tutorial:
+Let's look at the example from the dependencies tutorial:
 === "Python 3.6 and above"
     Before Python 3.9, we have to import `Annotated` from `typing_extensions` rather than `typing`.
 
