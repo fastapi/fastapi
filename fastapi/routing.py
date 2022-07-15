@@ -29,13 +29,13 @@ from fastapi.dependencies.utils import (
 )
 from fastapi.encoders import DictIntStrAny, SetIntStr, jsonable_encoder
 from fastapi.exceptions import RequestValidationError, WebSocketRequestValidationError
-from fastapi.openapi.constants import STATUS_CODES_WITH_NO_BODY
 from fastapi.types import DecoratedCallable
 from fastapi.utils import (
     create_cloned_field,
     create_response_field,
     generate_unique_id,
     get_value_or_default,
+    is_body_allowed_for_status_code,
 )
 from pydantic import BaseModel
 from pydantic.error_wrappers import ErrorWrapper, ValidationError
@@ -127,7 +127,7 @@ async def serialize_response(
         if is_coroutine:
             value, errors_ = field.validate(response_content, {}, loc=("response",))
         else:
-            value, errors_ = await run_in_threadpool(
+            value, errors_ = await run_in_threadpool(  # type: ignore[misc]
                 field.validate, response_content, {}, loc=("response",)
             )
         if isinstance(errors_, ErrorWrapper):
@@ -232,7 +232,17 @@ def get_request_handler(
                 if raw_response.background is None:
                     raw_response.background = background_tasks
                 return raw_response
-            response_data = await serialize_response(
+            response_args: Dict[str, Any] = {"background": background_tasks}
+            # If status_code was set, use it, otherwise use the default from the
+            # response class, in the case of redirect it's 307
+            current_status_code = (
+                status_code if status_code else sub_response.status_code
+            )
+            if current_status_code is not None:
+                response_args["status_code"] = current_status_code
+            if sub_response.status_code:
+                response_args["status_code"] = sub_response.status_code
+            content = await serialize_response(
                 field=response_field,
                 response_content=raw_response,
                 include=response_model_include,
@@ -243,15 +253,10 @@ def get_request_handler(
                 exclude_none=response_model_exclude_none,
                 is_coroutine=is_coroutine,
             )
-            response_args: Dict[str, Any] = {"background": background_tasks}
-            # If status_code was set, use it, otherwise use the default from the
-            # response class, in the case of redirect it's 307
-            if status_code is not None:
-                response_args["status_code"] = status_code
-            response = actual_response_class(response_data, **response_args)
+            response = actual_response_class(content, **response_args)
+            if not is_body_allowed_for_status_code(status_code):
+                response.body = b""
             response.headers.raw.extend(sub_response.headers.raw)
-            if sub_response.status_code:
-                response.status_code = sub_response.status_code
             return response
 
     return app
@@ -364,7 +369,7 @@ class APIRoute(routing.Route):
         self.path_regex, self.path_format, self.param_convertors = compile_path(path)
         if methods is None:
             methods = ["GET"]
-        self.methods: Set[str] = set([method.upper() for method in methods])
+        self.methods: Set[str] = {method.upper() for method in methods}
         if isinstance(generate_unique_id_function, DefaultPlaceholder):
             current_generate_unique_id: Callable[
                 ["APIRoute"], str
@@ -377,8 +382,8 @@ class APIRoute(routing.Route):
             status_code = int(status_code)
         self.status_code = status_code
         if self.response_model:
-            assert (
-                status_code not in STATUS_CODES_WITH_NO_BODY
+            assert is_body_allowed_for_status_code(
+                status_code
             ), f"Status code {status_code} must not have a response body"
             response_name = "Response_" + self.unique_id
             self.response_field = create_response_field(
@@ -410,8 +415,8 @@ class APIRoute(routing.Route):
             assert isinstance(response, dict), "An additional response must be a dict"
             model = response.get("model")
             if model:
-                assert (
-                    additional_status_code not in STATUS_CODES_WITH_NO_BODY
+                assert is_body_allowed_for_status_code(
+                    additional_status_code
                 ), f"Status code {additional_status_code} must not have a response body"
                 response_name = f"Response_{additional_status_code}_{self.unique_id}"
                 response_field = create_response_field(name=response_name, type_=model)
@@ -478,11 +483,11 @@ class APIRouter(routing.Router):
         ),
     ) -> None:
         super().__init__(
-            routes=routes,  # type: ignore # in Starlette
+            routes=routes,
             redirect_slashes=redirect_slashes,
-            default=default,  # type: ignore # in Starlette
-            on_startup=on_startup,  # type: ignore # in Starlette
-            on_shutdown=on_shutdown,  # type: ignore # in Starlette
+            default=default,
+            on_startup=on_startup,
+            on_shutdown=on_shutdown,
         )
         if prefix:
             assert prefix.startswith("/"), "A path prefix must start with '/'"
@@ -757,7 +762,7 @@ class APIRouter(routing.Router):
                     generate_unique_id_function=current_generate_unique_id,
                 )
             elif isinstance(route, routing.Route):
-                methods = list(route.methods or [])  # type: ignore # in Starlette
+                methods = list(route.methods or [])
                 self.add_route(
                     prefix + route.path,
                     route.endpoint,

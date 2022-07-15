@@ -94,7 +94,7 @@ a.announce-link:hover {
 .announce-wrapper .sponsor-badge {
   display: block;
   position: absolute;
-  top: -5px;
+  top: -10px;
   right: 0;
   font-size: 0.5rem;
   color: #999;
