@@ -561,7 +561,7 @@ openapi_schema = {
                         "schema": {"title": "Data", "type": "string"},
                         "examples": {
                             "example1": {
-                                "summary": "Qeury example 1",
+                                "summary": "Query example 1",
                                 "value": "query1",
                             },
                             "example2": {"value": "query2"},
@@ -666,7 +666,7 @@ openapi_schema = {
                         "schema": {"title": "Data", "type": "string"},
                         "examples": {
                             "example1": {
-                                "summary": "Qeury example 1",
+                                "summary": "Query example 1",
                                 "value": "header1",
                             },
                             "example2": {"value": "header2"},
@@ -771,7 +771,7 @@ openapi_schema = {
                         "schema": {"title": "Data", "type": "string"},
                         "examples": {
                             "example1": {
-                                "summary": "Qeury example 1",
+                                "summary": "Query example 1",
                                 "value": "cookie1",
                             },
                             "example2": {"value": "cookie2"},
