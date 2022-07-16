@@ -18,9 +18,9 @@
 
 ---
 
-**Documentation**: <a href="https://fastapi.tiangolo.com" target="_blank">https://fastapi.tiangolo.com</a>
+**Documentation** : <a href="https://fastapi.tiangolo.com" target="_blank">https://fastapi.tiangolo.com</a>
 
-**Code Source**: <a href="https://github.com/tiangolo/fastapi" target="_blank">https://github.com/tiangolo/fastapi</a>
+**Code Source** : <a href="https://github.com/tiangolo/fastapi" target="_blank">https://github.com/tiangolo/fastapi</a>
 
 ---
 
@@ -28,15 +28,15 @@ FastAPI est un framework web moderne et rapide (haute performance) pour la const
 
 Les principales fonctionnalités sont:
 
-* **Rapide**: Très haute performance, à égalité avec **NodeJS** et **Go** (merci à Starlette et Pydantic). [L'un des framework Python les plus rapides disponibles](#performance).
+* **Rapide** : Très haute performance, à égalité avec **NodeJS** et **Go** (merci à Starlette et Pydantic). [L'un des framework Python les plus rapides disponibles](#performance).
 
-* **Rapide à coder**: Augmenter la vitesse de développement des fonctionnalités d'environ 200 % à 300 %. *
-* **Moins de bugs**: Réduire d'environ 40 % les erreurs humaines (de développement). *
-* **Intuitif**: Excellente compatibilité avec les IDE. <abbr title="également connu sous le nom d'auto-complétion, autocomplétion, IntelliSense">Complétion</abbr> complète. Moins de temps pour le débogage.
-* **Facile**: Conçu pour être facile à utiliser et à apprendre. Moins de temps à lire la documentation.
-* **Concit**: Minimise la duplication des codes. Plusieurs fonctionnalités pour chaque déclaration de paramètres. Moins de bogues.
-* **Robuste**: Obtenez un code prêt pour la production. Avec une documentation interactive automatique.
-* **Basé sur des normes**: Basé sur (et entièrement compatible avec) les normes ouvertes pour les API: <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (précédemment connu sous le nom de Swagger) et <a href="https://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>.
+* **Rapide à coder** : Augmenter la vitesse de développement des fonctionnalités d'environ 200 % à 300 %. *
+* **Moins de bugs** : Réduire d'environ 40 % les erreurs humaines (de développement). *
+* **Intuitif** : Excellente compatibilité avec les IDE. <abbr title="également connu sous le nom d'auto-complétion, autocomplétion, IntelliSense">Complétion</abbr> complète. Moins de temps pour le débogage.
+* **Facile** : Conçu pour être facile à utiliser et à apprendre. Moins de temps à lire la documentation.
+* **Concit** : Minimise la duplication des codes. Plusieurs fonctionnalités pour chaque déclaration de paramètres. Moins de bogues.
+* **Robuste** : Obtenez un code prêt pour la production. Avec une documentation interactive automatique.
+* **Basé sur des normes** : Basé sur (et entièrement compatible avec) les normes ouvertes pour les API : <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (précédemment connu sous le nom de Swagger) et <a href="https://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>.
 
 <small>* estimation basée sur des tests sur une équipe de développement interne, construisant des applications de production.</small>
 
@@ -185,7 +185,7 @@ async def read_item(item_id: int, q: Union[str, None] = None):
     return {"item_id": item_id, "q": q}
 ```
 
-**Note**:
+**Note** :
 
 Si vous ne savez pas, consultez la section _"Vous êtes pressé ?"_ <a href="https://fastapi.tiangolo.com/async/#in-a-hurry" target="_blank">sur `async` et `await` dans la documentation</a>.
 
@@ -342,10 +342,10 @@ item: Item
 * La prise en charge de l'éditeur, notamment :
     * Complétion.
     * Contrôles de type.
-* Validation des données:
+* Validation des données :
     * Erreurs automatiques et claires lorsque les données ne sont pas valables.
     * Une validation même pour les objets JSON profondément imbriqués.
-* <abbr title="également connu sous le nom de: serialization, parsing, marshalling">Conversion</abbr> des données d'entrée : provenant du réseau en données et types Python. Lecture à partir de :
+* <abbr title="également connu sous le nom de : serialization, parsing, marshalling">Conversion</abbr> des données d'entrée : provenant du réseau en données et types Python. Lecture à partir de :
     * JSON.
     * Path parameters.
     * Query parameters.
@@ -353,7 +353,7 @@ item: Item
     * Headers.
     * Forms.
     * Files.
-* <abbr title="également connu sous le nom de: serialization, parsing, marshalling">Conversion</abbr> des données de sortie : conversion de données et de types Python en données de réseau (JSON) :
+* <abbr title="également connu sous le nom de : serialization, parsing, marshalling">Conversion</abbr> des données de sortie : conversion de données et de types Python en données de réseau (JSON) :
     * Conversion des types Python (`str`, `int`, `float`, `bool`, `list`, etc).
     * objets `datetime`.
     * objets `UUID`.
@@ -365,7 +365,7 @@ item: Item
 
 ---
 
-Pour revenir à l'exemple de code précédent, **FastAPI** fera:
+Pour revenir à l'exemple de code précédent, **FastAPI** fera :
 
 * La validation de la présence de `item_id` dans le chemin pour les requêtes `GET` et `PUT`.
 * La validation que `item_id` est de type `int` pour les requêtes `GET` et `PUT`.
@@ -373,13 +373,13 @@ Pour revenir à l'exemple de code précédent, **FastAPI** fera:
 * La vérification qu'il existe un paramètre facultatif nommé `q` (comme sur `http://127.0.0.1:8000/items/foo?q=somequery`) pour les requêtes `GET`.
     * Comme le paramètre `q` est déclaré avec `= None`, il est optionnel.
     * Sans le `None`, il serait nécessaire (comme l'est le corps de la requête dans le cas du `PUT`).
-* Pour les requêtes `PUT` sur `/items/{item_id}`, lit le corps de la requête comme du JSON:
+* Pour les requêtes `PUT` sur `/items/{item_id}`, lit le corps de la requête comme du JSON :
     * Vérifiez qu'il possède un attribut requis `name` qui devrait être un `str`.
     * Vérifiez qu'il possède un attribut requis `price` qui devrait être un `float`.
     * Vérifiez qu'il possède un attribut optionnel `is_offer`, qui devrait être un `bool`, si il est présent.
     * Tout cela fonctionne également pour les objets JSON profondément imbriqués.
 * Conversion automatique de et vers JSON.
-* Documente tout avec OpenAPI, qui peut être utilisé par:
+* Documente tout avec OpenAPI, qui peut être utilisé par :
     * Les systèmes de documentation interactifs.
     * Les systèmes de génération automatique de code client, pour de nombreuses langues.
 * Fournir directement deux interfaces web de documentation interactive.
@@ -435,7 +435,7 @@ Pour en savoir plus, consultez la rubrique <a href="https://fastapi.tiangolo.com
 
 ## Dépendances facultatives
 
-Utilisées par Pydantic:
+Utilisées par Pydantic :
 
 * <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - pour un <abbr title="conversion de la chaîne qui provient d'une requête HTTP en données Python">parsing</abbr> JSON plus rapide.
 * <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - pour la validation d'une adresse électronique.
