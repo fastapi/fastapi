@@ -5,9 +5,9 @@ La principale chose dont vous avez besoin pour exécuter une application **FastA
 Il existe 3 principales alternatives :
 
 * <a href="https://www.uvicorn.org/" class="external-link" target="_blank">Uvicorn</a> : un serveur ASGI haute performance.
-* <a href="https://pgjones.gitlab.io/hypercorn/" class="external-link" target="_blank">Hypercorn</a> : un serveur 
+* <a href="https://pgjones.gitlab.io/hypercorn/" class="external-link" target="_blank">Hypercorn</a> : un serveur
   ASGI compatible avec HTTP/2 et Trio entre autres caractéristiques.
-* <a href="https://github.com/django/daphne" class="external-link" target="_blank">Daphne</a> : le serveur ASGI 
+* <a href="https://github.com/django/daphne" class="external-link" target="_blank">Daphne</a> : le serveur ASGI
   conçu pour Django Channels.
 
 ## Machine serveur et programme serveur
@@ -41,7 +41,7 @@ Vous pouvez installer un serveur compatible ASGI avec :
 
     !!! tip "Astuce"
         En ajoutant le `standard`, Uvicorn va installer et utiliser quelques dépendances supplémentaires recommandées.
-        
+
         Cela inclut `uvloop`, le remplaçant performant de `asyncio`, qui fournit le gros gain de performance en matière de concurrence.
 
 === "Hypercorn"
@@ -97,9 +97,9 @@ Vous pouvez ensuite exécuter votre application de la même manière que vous l'
 
 ## Hypercorn avec Trio
 
-Starlette et **FastAPI** sont basés sur 
-<a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a>, qui les rend 
-compatibles avec <a href="https://docs.python.org/3/library/asyncio-task.html" class="external-link" target="_blank">asyncio</a>, de la bibliothèque standard Python et 
+Starlette et **FastAPI** sont basés sur
+<a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a>, qui les rend
+compatibles avec <a href="https://docs.python.org/3/library/asyncio-task.html" class="external-link" target="_blank">asyncio</a>, de la bibliothèque standard Python et
 <a href="https://trio.readthedocs.io/en/stable/" class="external-link" target="_blank">Trio</a>.
 
 Néanmoins, Uvicorn n'est actuellement compatible qu'avec asyncio, et il utilise normalement <a href="https://github.
