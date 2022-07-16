@@ -32,7 +32,7 @@ Les principales fonctionnalités sont:
 
 * **Rapide à coder**: Augmenter la vitesse de développement des fonctionnalités d'environ 200 % à 300 %. *
 * **Moins de bugs**: Réduire d'environ 40 % les erreurs humaines (de développement). *
-* **Intuitif**: Excellente compatibilité avec les IDE. <abbr title="également connu sous le nom d'auto-complétion, autocomplétion, IntelliSense">Completion</abbr> complète. Moins de temps pour le débogage.
+* **Intuitif**: Excellente compatibilité avec les IDE. <abbr title="également connu sous le nom d'auto-complétion, autocomplétion, IntelliSense">Complétion</abbr> complète. Moins de temps pour le débogage.
 * **Facile**: Conçu pour être facile à utiliser et à apprendre. Moins de temps à lire la documentation.
 * **Concit**: Minimise la duplication des codes. Plusieurs fonctionnalités pour chaque déclaration de paramètres. Moins de bogues.
 * **Robuste**: Obtenez un code prêt pour la production. Avec une documentation interactive automatique.
@@ -59,7 +59,7 @@ Les principales fonctionnalités sont:
 
 ## Opinions
 
-"_[...] J'utilise énormément **FastAPI** ces jours-ci. [...] En fait, je compte l'utiliser pour tous mon equipe chez **Microsoft**. Certains d'entre eux sont intégrés dans le produit de base **Windows** et dans certains produits **Office**._"
+"_[...] J'utilise énormément **FastAPI** ces jours-ci. [...] En fait, je compte l'utiliser dans mon équipe pour tous les **services de ML chez Microsoft**. Certains d'entre eux sont intégrés dans le produit de base **Windows** et dans certains produits **Office**._"
 
 <div style="text-align: right; margin-right: 10%;">Kabir Khan - <strong>Microsoft</strong> <a href="https://github.com/tiangolo/fastapi/pull/26" target="_blank"><small>(ref)</small></a></div>
 
@@ -77,7 +77,7 @@ Les principales fonctionnalités sont:
 
 ---
 
-"_Je suis aux anges avec **FastAPI**. C'est tellement amusant.!_"
+"_Je suis aux anges avec **FastAPI**. C'est tellement amusant !_"
 
 <div style="text-align: right; margin-right: 10%;">Brian Okken - <strong><a href="https://pythonbytes.fm/episodes/show/123/time-to-right-the-py-wrongs?time_in_sec=855" target="_blank">Python Bytes</a> animateur de podcast</strong> <a href="https://twitter.com/brianokken/status/1112220079972728832" target="_blank"><small>(ref)</small></a></div>
 
@@ -140,7 +140,7 @@ $ pip install uvicorn[standard]
 
 ## Exemple
 
-### Créer le
+### Créez-le
 
 * Créez un fichier `main.py` avec:
 
@@ -337,7 +337,7 @@ ou pour un modèle `Item` plus complexe :
 item: Item
 ```
 
-..et avec cette déclaration unique, vous obtenez :
+...et avec cette déclaration unique, vous obtenez :
 
 * La prise en charge de l'éditeur, notamment :
     * Complétion.
@@ -367,7 +367,7 @@ item: Item
 
 Pour revenir à l'exemple de code précédent, **FastAPI** fera:
 
-* La validation de la presence de `item_id` dans le chemin pour les requêtes `GET` et `PUT`.
+* La validation de la présence de `item_id` dans le chemin pour les requêtes `GET` et `PUT`.
 * La validation que `item_id` est de type `int` pour les requêtes `GET` et `PUT`.
     * Si ce n'est pas le cas, le client verra une erreur utile et claire.
 * La vérification qu'il existe un paramètre facultatif nommé `q` (comme sur `http://127.0.0.1:8000/items/foo?q=somequery`) pour les requêtes `GET`.
@@ -394,13 +394,13 @@ Essayez de changer la ligne avec :
     return {"item_name": item.name, "item_id": item_id}
 ```
 
-...de:
+...de :
 
 ```Python
         ... "item_name": item.name ...
 ```
 
-...vers:
+...vers :
 
 ```Python
         ... "item_price": item.price ...
@@ -412,7 +412,7 @@ Essayez de changer la ligne avec :
 
 Pour un exemple plus complet comprenant plus de fonctionnalités, voir le <a href="https://fastapi.tiangolo.com/tutorial/">Tutoriel - Guide utilisateur</a>.
 
-**Spoiler alert**: le tutoriel - guide utilisateur inclut:
+**Spoiler alert** : le tutoriel - guide utilisateur inclut :
 
 * Déclaration de **paramètres** à des endroits différents comme : **en-têtes**, **cookies**, **champs de formulaire** et **fichiers**.
 * Comment définir les **contraintes de validation** comme `maximum_length` ou `regex`.
@@ -440,7 +440,7 @@ Utilisées par Pydantic:
 * <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - pour un <abbr title="conversion de la chaîne qui provient d'une requête HTTP en données Python">parsing</abbr> JSON plus rapide.
 * <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - pour la validation d'une adresse électronique.
 
-Utilisées par Starlette:
+Utilisées par Starlette :
 
 * <a href="https://docs.python-requests.org" target="_blank"><code>requests</code></a> - Requis si vous souhaitez utiliser le `TestClient`.
 * <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - Requis si vous souhaitez utiliser la configuration de template par defaut.
@@ -450,7 +450,7 @@ Utilisées par Starlette:
 * <a href="https://graphene-python.org/" target="_blank"><code>graphene</code></a> - Requis pour le support de `GraphQLApp` .
 * <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - Requis si vous voulez utiliser `UJSONResponse`.
 
-Utilisé par FastAPI / Starlette :
+Utilisées par FastAPI / Starlette :
 
 * <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - pour le serveur qui charge et sert votre application.
 * <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - Requis si vous voulez utiliser `ORJSONResponse`.
