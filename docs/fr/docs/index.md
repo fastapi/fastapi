@@ -317,7 +317,7 @@ Et maintenant, rendez-vous sur <a href="http://127.0.0.1:8000/redoc" class="exte
 
 ### Récapitulatif
 
-En résumé, vous déclarez **une fois** les types de paramètres, le corps de la requête, etc. comme paramètres de fonction. 
+En résumé, vous déclarez **une fois** les types de paramètres, le corps de la requête, etc. comme paramètres de fonction.
 
 Vous faites cela avec des types Python standard modernes.
 
@@ -374,7 +374,7 @@ Pour revenir à l'exemple de code précédent, **FastAPI** fera:
     * Comme le paramètre `q` est déclaré avec `= None`, il est optionnel.
     * Sans le `None`, il serait nécessaire (comme l'est le corps de la requête dans le cas du `PUT`).
 * Pour les requêtes `PUT` sur `/items/{item_id}`, lit le corps de la requête comme du JSON:
-    * Vérifiez qu'il possède un attribut requis `name` qui devrait être un `str`. 
+    * Vérifiez qu'il possède un attribut requis `name` qui devrait être un `str`.
     * Vérifiez qu'il possède un attribut requis `price` qui devrait être un `float`.
     * Vérifiez qu'il possède un attribut optionnel `is_offer`, qui devrait être un `bool`, si il est présent.
     * Tout cela fonctionne également pour les objets JSON profondément imbriqués.
