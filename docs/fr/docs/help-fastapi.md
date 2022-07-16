@@ -60,7 +60,7 @@ Vous pouvez voir <a href="https://github.com/tiangolo/fastapi/issues" class="ext
 
 ## Watch le dépôt GitHub
 
-Vous pouvez "watch" FastAPI dans GitHub (en cliquant sur le bouton "watch" en haut à droite) :<a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">https://github.com/tiangolo/fastapi</a>. 👀
+Vous pouvez "watch" FastAPI dans GitHub (en cliquant sur le bouton "watch" en haut à droite) : <a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">https://github.com/tiangolo/fastapi</a>. 👀
 
 Si vous sélectionnez "Watching" au lieu de "Releases only", vous recevrez des notifications lorsque quelqu'un crée une nouvelle Issue.
 
