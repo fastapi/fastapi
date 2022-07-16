@@ -85,7 +85,7 @@ You can then run your application the same way you have done in the tutorials, b
 
     </div>
 
-!!! warning
+!!! Attention
     Remember to remove the `--reload` option if you were using it.
 
     The `--reload` option consumes much more resources, is more unstable, etc.
