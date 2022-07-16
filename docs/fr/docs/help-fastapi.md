@@ -66,7 +66,7 @@ Si vous sélectionnez "Watching" au lieu de "Releases only", vous recevrez des n
 
 Vous pouvez alors essayer de les aider à résoudre ces problèmes.
 
-## Créer une Issues
+## Créer une Issue
 
 Vous pouvez <a href="https://github.com/tiangolo/fastapi/issues/new/choose" class="external-link" target="_blank">créer une Issue</a> dans le dépôt GitHub, par exemple pour :
 
@@ -77,7 +77,7 @@ Vous pouvez <a href="https://github.com/tiangolo/fastapi/issues/new/choose" clas
 
 ## Créer une Pull Request
 
-Vous pouvez <a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">créer une Pull Request</a>, par exemple:
+Vous pouvez <a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">créer une Pull Request</a>, par exemple :
 
 * Pour corriger une faute de frappe que vous avez trouvée sur la documentation.
 * Proposer de nouvelles sections de documentation.
@@ -119,4 +119,4 @@ Vous pouvez également parrainer :
 
 ---
 
-Merci! 🚀
+Merci ! 🚀
