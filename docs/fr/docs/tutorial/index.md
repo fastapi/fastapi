@@ -50,7 +50,7 @@ $ pip install fastapi[all]
 
 </div>
 
-...qui comprend également `uvicorn`, que vous pouvez utiliser comme serveur pour exécuter votre code.
+... qui comprend également `uvicorn`, que vous pouvez utiliser comme serveur pour exécuter votre code.
 
 !!! note
     Vous pouvez également l'installer pièce par pièce.
