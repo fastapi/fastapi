@@ -1,16 +1,14 @@
-{!../../../docs/missing-translation.md!}
+# Développement - Contribuer
 
-# Development - Contributing
+Tout d'abord, vous voudrez peut-être voir les moyens de base pour [aider FastAPI et obtenir de l'aide](help-fastapi.md){.internal-link target=_blank}.
 
-First, you might want to see the basic ways to [help FastAPI and get help](help-fastapi.md){.internal-link target=_blank}.
+## Développement
 
-## Developing
+Si vous avez déjà cloné le dépôt et que vous savez que vous devez vous plonger dans le code, voici quelques directives pour mettre en place votre environnement.
 
-If you already cloned the repository and you know that you need to deep dive in the code, here are some guidelines to set up your environment.
+### Environnement virtuel avec `venv`
 
-### Virtual environment with `venv`
-
-You can create a virtual environment in a directory using Python's `venv` module:
+Vous pouvez créer un environnement virtuel dans un répertoire en utilisant le module `venv` de Python :
 
 <div class="termy">
 
@@ -20,11 +18,11 @@ $ python -m venv env
 
 </div>
 
-That will create a directory `./env/` with the Python binaries and then you will be able to install packages for that isolated environment.
+Cela va créer un répertoire `./env/` avec les binaires Python et vous pourrez alors installer des paquets pour cet environnement isolé.
 
-### Activate the environment
+### Activer l'environnement
 
-Activate the new environment with:
+Activez le nouvel environnement avec :
 
 === "Linux, macOS"
 
@@ -48,7 +46,7 @@ Activate the new environment with:
 
 === "Windows Bash"
 
-    Or if you use Bash for Windows (e.g. <a href="https://gitforwindows.org/" class="external-link" target="_blank">Git Bash</a>):
+    Ou si vous utilisez Bash pour Windows (par exemple <a href="https://gitforwindows.org/" class="external-link" target="_blank">Git Bash</a>):
 
     <div class="termy">
 
@@ -58,7 +56,7 @@ Activate the new environment with:
 
     </div>
 
-To check it worked, use:
+Pour vérifier que cela a fonctionné, utilisez :
 
 === "Linux, macOS, Windows Bash"
 
@@ -84,20 +82,20 @@ To check it worked, use:
 
     </div>
 
-If it shows the `pip` binary at `env/bin/pip` then it worked. 🎉
+Si celui-ci montre le binaire `pip` à `env/bin/pip`, alors ça a fonctionné. 🎉
 
 
 
 !!! tip
-    Every time you install a new package with `pip` under that environment, activate the environment again.
+    Chaque fois que vous installez un nouveau paquet avec `pip` sous cet environnement, activez à nouveau l'environnement.
 
-    This makes sure that if you use a terminal program installed by that package (like `flit`), you use the one from your local environment and not any other that could be installed globally.
+    Cela permet de s'assurer que si vous utilisez un programme terminal installé par ce paquet (comme `flit`), vous utilisez celui de votre environnement local et pas un autre qui pourrait être installé globalement.
 
 ### Flit
 
-**FastAPI** uses <a href="https://flit.readthedocs.io/en/latest/index.html" class="external-link" target="_blank">Flit</a> to build, package and publish the project.
+**FastAPI** utilise <a href="https://flit.readthedocs.io/en/latest/index.html" class="external-link" target="_blank">Flit</a> pour build, packager et publier le projet.
 
-After activating the environment as described above, install `flit`:
+Après avoir activé l'environnement comme décrit ci-dessus, installez `flit` :
 
 <div class="termy">
 
@@ -109,9 +107,9 @@ $ pip install flit
 
 </div>
 
-Now re-activate the environment to make sure you are using the `flit` you just installed (and not a global one).
+Réactivez maintenant l'environnement pour vous assurer que vous utilisez le "flit" que vous venez d'installer (et non un environnement global).
 
-And now use `flit` to install the development dependencies:
+Et maintenant, utilisez `flit` pour installer les dépendances de développement :
 
 === "Linux, macOS"
 
@@ -127,7 +125,7 @@ And now use `flit` to install the development dependencies:
 
 === "Windows"
 
-    If you are on Windows, use `--pth-file` instead of `--symlink`:
+    Si vous êtes sous Windows, utilisez `--pth-file` au lieu de `--symlink` :
 
     <div class="termy">
 
@@ -139,19 +137,19 @@ And now use `flit` to install the development dependencies:
 
     </div>
 
-It will install all the dependencies and your local FastAPI in your local environment.
+Il installera toutes les dépendances et votre FastAPI local dans votre environnement local.
 
-#### Using your local FastAPI
+#### Utiliser votre FastAPI local
 
-If you create a Python file that imports and uses FastAPI, and run it with the Python from your local environment, it will use your local FastAPI source code.
+Si vous créez un fichier Python qui importe et utilise FastAPI, et que vous l'exécutez avec le Python de votre environnement local, il utilisera votre code source FastAPI local.
 
-And if you update that local FastAPI source code, as it is installed with `--symlink` (or `--pth-file` on Windows), when you run that Python file again, it will use the fresh version of FastAPI you just edited.
+Et si vous mettez à jour le code source local de FastAPI, tel qu'il est installé avec `--symlink` (ou `--pth-file` sous Windows), lorsque vous exécutez à nouveau ce fichier Python, il utilisera la nouvelle version de FastAPI que vous venez d'éditer.
 
-That way, you don't have to "install" your local version to be able to test every change.
+De cette façon, vous n'avez pas à "installer" votre version locale pour pouvoir tester chaque changement.
 
-### Format
+### Formatage
 
-There is a script that you can run that will format and clean all your code:
+Il existe un script que vous pouvez exécuter qui formatera et nettoiera tout votre code :
 
 <div class="termy">
 
@@ -161,13 +159,13 @@ $ bash scripts/format.sh
 
 </div>
 
-It will also auto-sort all your imports.
+Il effectuera également un tri automatique de touts vos imports.
 
-For it to sort them correctly, you need to have FastAPI installed locally in your environment, with the command in the section above using `--symlink` (or `--pth-file` on Windows).
+Pour qu'il puisse les trier correctement, vous devez avoir FastAPI installé localement dans votre environnement, avec la commande dans la section ci-dessus en utilisant `--symlink` (ou `--pth-file` sous Windows).
 
-### Format imports
+### Formatage des imports
 
-There is another script that formats all the imports and makes sure you don't have unused imports:
+Il existe un autre script qui permet de formater touts les imports et de s'assurer que vous n'avez pas d'imports inutilisées :
 
 <div class="termy">
 
@@ -177,40 +175,40 @@ $ bash scripts/format-imports.sh
 
 </div>
 
-As it runs one command after the other and modifies and reverts many files, it takes a bit longer to run, so it might be easier to use `scripts/format.sh` frequently and `scripts/format-imports.sh` only before committing.
+Comme il exécute une commande après l'autre et modifie et inverse de nombreux fichiers, il prend un peu plus de temps à s'exécuter, il pourrait donc être plus facile d'utiliser fréquemment `scripts/format.sh` et `scripts/format-imports.sh` seulement avant de commit.
 
-## Docs
+## Documentation
 
-First, make sure you set up your environment as described above, that will install all the requirements.
+Tout d'abord, assurez-vous que vous configurez votre environnement comme décrit ci-dessus, qui installera toutes les exigences.
 
-The documentation uses <a href="https://www.mkdocs.org/" class="external-link" target="_blank">MkDocs</a>.
+La documentation utilise <a href="https://www.mkdocs.org/" class="external-link" target="_blank">MkDocs</a>.
 
-And there are extra tools/scripts in place to handle translations in `./scripts/docs.py`.
+Et il y a des outils/scripts supplémentaires en place pour gérer les traductions dans `./scripts/docs.py`.
 
 !!! tip
-    You don't need to see the code in `./scripts/docs.py`, you just use it in the command line.
+    Vous n'avez pas besoin de voir le code dans `./scripts/docs.py`, vous l'utilisez simplement dans la ligne de commande.
 
-All the documentation is in Markdown format in the directory `./docs/en/`.
+Toute la documentation est au format Markdown dans le répertoire `./docs/fr/`.
 
-Many of the tutorials have blocks of code.
+De nombreux tutoriels comportent des blocs de code.
 
-In most of the cases, these blocks of code are actual complete applications that can be run as is.
+Dans la plupart des cas, ces blocs de code sont de véritables applications complètes qui peuvent être exécutées telles quelles.
 
-In fact, those blocks of code are not written inside the Markdown, they are Python files in the `./docs_src/` directory.
+En fait, ces blocs de code ne sont pas écrits à l'intérieur du Markdown, ce sont des fichiers Python dans le répertoire `./docs_src/`.
 
-And those Python files are included/injected in the documentation when generating the site.
+Et ces fichiers Python sont inclus/injectés dans la documentation lors de la génération du site.
 
-### Docs for tests
+### Documentation pour les tests
 
-Most of the tests actually run against the example source files in the documentation.
+La plupart des tests sont en fait effectués par rapport aux exemples de fichiers sources dans la documentation.
 
-This helps making sure that:
+Cela permet de s'en assurer que:
 
-* The documentation is up to date.
-* The documentation examples can be run as is.
-* Most of the features are covered by the documentation, ensured by test coverage.
+* La documentation est à jour.
+* Les exemples de documentation peuvent être exécutés tels quels.
+* La plupart des fonctionnalités sont couvertes par la documentation, assurée par la couverture des tests.
 
-During local development, there is a script that builds the site and checks for any changes, live-reloading:
+Au cours du développement local, un script build le site et vérifie les changements éventuels, puis il est rechargé en direct :
 
 <div class="termy">
 
@@ -224,17 +222,17 @@ $ python ./scripts/docs.py live
 
 </div>
 
-It will serve the documentation on `http://127.0.0.1:8008`.
+Il servira la documentation sur `http://127.0.0.1:8008`.
 
-That way, you can edit the documentation/source files and see the changes live.
+De cette façon, vous pouvez modifier la documentation/les fichiers sources et voir les changements en direct.
 
-#### Typer CLI (optional)
+#### Typer CLI (facultatif)
 
-The instructions here show you how to use the script at `./scripts/docs.py` with the `python` program directly.
+Les instructions ici vous montrent comment utiliser le script à `./scripts/docs.py` avec le programme `python` directement.
 
-But you can also use <a href="https://typer.tiangolo.com/typer-cli/" class="external-link" target="_blank">Typer CLI</a>, and you will get autocompletion in your terminal for the commands after installing completion.
+Mais vous pouvez également utiliser <a href="https://typer.tiangolo.com/typer-cli/" class="external-link" target="_blank">Typer CLI</a>, et vous obtiendrez l'auto-complétion dans votre terminal pour les commandes après l'achèvement de  l'installation.
 
-If you install Typer CLI, you can install completion with:
+Si vous installez Typer CLI, vous pouvez installer la complétion avec :
 
 <div class="termy">
 
@@ -247,9 +245,9 @@ Completion will take effect once you restart the terminal.
 
 </div>
 
-### Apps and docs at the same time
+### Apps et documentation en même temps
 
-If you run the examples with, e.g.:
+Si vous exécutez les exemples avec, par exemple :
 
 <div class="termy">
 
@@ -261,47 +259,47 @@ $ uvicorn tutorial001:app --reload
 
 </div>
 
-as Uvicorn by default will use the port `8000`, the documentation on port `8008` won't clash.
+Comme Uvicorn utilisera par défaut le port `8000`, la documentation sur le port `8008` n'entrera pas en conflit.
 
-### Translations
+### Traductions
 
-Help with translations is VERY MUCH appreciated! And it can't be done without the help from the community. 🌎 🚀
+L'aide aux traductions est TRÈS appréciée ! Et cela ne peut se faire sans l'aide de la communauté. 🌎 🚀
 
-Here are the steps to help with translations.
+Voici les étapes à suivre pour aider à la traduction.
 
-#### Tips and guidelines
+#### Conseils et lignes directrices
 
-* Check the currently <a href="https://github.com/tiangolo/fastapi/pulls" class="external-link" target="_blank">existing pull requests</a> for your language and add reviews requesting changes or approving them.
-
-!!! tip
-    You can <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/commenting-on-a-pull-request" class="external-link" target="_blank">add comments with change suggestions</a> to existing pull requests.
-
-    Check the docs about <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-request-reviews" class="external-link" target="_blank">adding a pull request review</a> to approve it or request changes.
-
-* Check in the <a href="https://github.com/tiangolo/fastapi/issues" class="external-link" target="_blank">issues</a> to see if there's one coordinating translations for your language.
-
-* Add a single pull request per page translated. That will make it much easier for others to review it.
-
-For the languages I don't speak, I'll wait for several others to review the translation before merging.
-
-* You can also check if there are translations for your language and add a review to them, that will help me know that the translation is correct and I can merge it.
-
-* Use the same Python examples and only translate the text in the docs. You don't have to change anything for this to work.
-
-* Use the same images, file names, and links. You don't have to change anything for it to work.
-
-* To check the 2-letter code for the language you want to translate you can use the table <a href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes" class="external-link" target="_blank">List of ISO 639-1 codes</a>.
-
-#### Existing language
-
-Let's say you want to translate a page for a language that already has translations for some pages, like Spanish.
-
-In the case of Spanish, the 2-letter code is `es`. So, the directory for Spanish translations is located at `docs/es/`.
+* Vérifiez les <a href="https://github.com/tiangolo/fastapi/pulls" class="external-link" target="_blank">pull requests existantes</a> pour votre langue et ajouter des reviews demandant des changements ou les approuvant.
 
 !!! tip
-    The main ("official") language is English, located at `docs/en/`.
+    Vous pouvez <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/commenting-on-a-pull-request" class="external-link" target="_blank">ajouter des commentaires avec des suggestions de changement</a> aux pull requests existantes.
 
-Now run the live server for the docs in Spanish:
+    Consultez les documents concernant <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-request-reviews" class="external-link" target="_blank">l'ajout d'un review de pull request</a> pour l'approuver ou demander des modifications.
+
+* Vérifiez dans <a href="https://github.com/tiangolo/fastapi/issues" class="external-link" target="_blank">issues</a> pour voir s'il y a une personne qui coordonne les traductions pour votre langue.
+
+* Ajoutez une seule pull request par page traduite. Il sera ainsi beaucoup plus facile pour les autres de l'examiner.
+
+Pour les langues que je ne parle pas, je vais attendre que plusieurs autres reviews de la traduction avant de merge.
+
+* Vous pouvez également vérifier s'il existe des traductions pour votre langue et y ajouter une review, ce qui m'aidera à savoir si la traduction est correcte et je pourrai la fusionner.
+
+* Utilisez les mêmes exemples en Python et ne traduisez que le texte des documents. Vous n'avez pas besoin de changer quoi que ce soit pour que cela fonctionne.
+
+* Utilisez les mêmes images, noms de fichiers et liens. Vous n'avez pas besoin de changer quoi que ce soit pour que cela fonctionne.
+
+* Pour vérifier le code à 2 lettres de la langue que vous souhaitez traduire, vous pouvez utiliser le tableau <a href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes" class="external-link" target="_blank">Liste des codes ISO 639-1</a>.
+
+#### Langue existante
+
+Disons que vous voulez traduire une page pour une langue qui a déjà des traductions pour certaines pages, comme l'espagnol.
+
+Dans le cas de l'espagnol, le code à deux lettres est `es`. Ainsi, le répertoire des traductions espagnoles se trouve à l'adresse `docs/es/`.
+
+!!! tip
+    La langue principale ("officielle") est l'anglais, qui se trouve à l'adresse "docs/en/".
+
+Maintenant, lancez le serveur en live pour les documents en espagnol :
 
 <div class="termy">
 
@@ -316,36 +314,36 @@ $ python ./scripts/docs.py live es
 
 </div>
 
-Now you can go to <a href="http://127.0.0.1:8008" class="external-link" target="_blank">http://127.0.0.1:8008</a> and see your changes live.
+Vous pouvez maintenant aller sur <a href="http://127.0.0.1:8008" class="external-link" target="_blank">http://127.0.0.1:8008</a> et voir vos changements en direct.
 
-If you look at the FastAPI docs website, you will see that every language has all the pages. But some pages are not translated and have a notification about the missing translation.
+Si vous regardez le site web FastAPI docs, vous verrez que chaque langue a toutes les pages. Mais certaines pages ne sont pas traduites et sont accompagnées d'une notification concernant la traduction manquante.
 
-But when you run it locally like this, you will only see the pages that are already translated.
+Mais si vous le gérez localement de cette manière, vous ne verrez que les pages déjà traduites.
 
-Now let's say that you want to add a translation for the section [Features](features.md){.internal-link target=_blank}.
+Disons maintenant que vous voulez ajouter une traduction pour la section [Features](features.md){.internal-link target=_blank}.
 
-* Copy the file at:
+* Copiez le fichier à :
 
 ```
 docs/en/docs/features.md
 ```
 
-* Paste it in exactly the same location but for the language you want to translate, e.g.:
+* Collez-le exactement au même endroit mais pour la langue que vous voulez traduire, par exemple :
 
 ```
 docs/es/docs/features.md
 ```
 
 !!! tip
-    Notice that the only change in the path and file name is the language code, from `en` to `es`.
+    Notez que le seul changement dans le chemin et le nom du fichier est le code de langue, qui passe de `en` à `es`.
 
-* Now open the MkDocs config file for English at:
+* Ouvrez maintenant le fichier de configuration de MkDocs pour l'anglais à
 
 ```
 docs/en/docs/mkdocs.yml
 ```
 
-* Find the place where that `docs/features.md` is located in the config file. Somewhere like:
+* Trouvez l'endroit où cette `docs/features.md` se trouve dans le fichier de configuration. Quelque part comme :
 
 ```YAML hl_lines="8"
 site_name: FastAPI
@@ -358,13 +356,13 @@ nav:
 - features.md
 ```
 
-* Open the MkDocs config file for the language you are editing, e.g.:
+* Ouvrez le fichier de configuration MkDocs pour la langue que vous éditez, par exemple:
 
 ```
 docs/es/docs/mkdocs.yml
 ```
 
-* Add it there at the exact same location it was for English, e.g.:
+* Ajoutez-le à l'endroit exact où il se trouvait pour l'anglais, par exemple :
 
 ```YAML hl_lines="8"
 site_name: FastAPI
@@ -377,21 +375,21 @@ nav:
 - features.md
 ```
 
-Make sure that if there are other entries, the new entry with your translation is exactly in the same order as in the English version.
+Assurez-vous que s'il y a d'autres entrées, la nouvelle entrée avec votre traduction est exactement dans le même ordre que dans la version anglaise.
 
-If you go to your browser you will see that now the docs show your new section. 🎉
+Si vous allez sur votre navigateur, vous verrez que maintenant les documents montrent votre nouvelle section. 🎉
 
-Now you can translate it all and see how it looks as you save the file.
+Vous pouvez maintenant tout traduire et voir à quoi cela ressemble au fur et à mesure que vous enregistrez le fichier.
 
-#### New Language
+#### Nouvelle langue
 
-Let's say that you want to add translations for a language that is not yet translated, not even some pages.
+Disons que vous voulez ajouter des traductions pour une langue qui n'est pas encore traduite, pas même quelques pages.
 
-Let's say you want to add translations for Creole, and it's not yet there in the docs.
+Disons que vous voulez ajouter des traductions pour le Créole, et que ce n'est pas encore dans les documents.
 
-Checking the link from above, the code for "Creole" is `ht`.
+En vérifiant le lien ci-dessus, le code pour "Créole" est `ht`.
 
-The next step is to run the script to generate a new translation directory:
+L'étape suivante consiste à exécuter le script pour générer un nouveau répertoire de traduction :
 
 <div class="termy">
 
@@ -406,31 +404,31 @@ Updating en
 
 </div>
 
-Now you can check in your code editor the newly created directory `docs/ht/`.
+Vous pouvez maintenant vérifier dans votre éditeur de code le répertoire nouvellement créé `docs/ht/`.
 
 !!! tip
-    Create a first pull request with just this, to set up the configuration for the new language, before adding translations.
+    Créez une première demande d'extraction à l'aide de cette fonction, afin de configurer la nouvelle langue avant d'ajouter des traductions.
 
-    That way others can help with other pages while you work on the first one. 🚀
+    Ainsi, d'autres personnes peuvent vous aider à rédiger d'autres pages pendant que vous travaillez sur la première. 🚀
 
-Start by translating the main page, `docs/ht/index.md`.
+Commencez par traduire la page principale, `docs/ht/index.md`.
 
-Then you can continue with the previous instructions, for an "Existing Language".
+Vous pouvez ensuite continuer avec les instructions précédentes, pour une "langue existante".
 
-##### New Language not supported
+##### Nouvelle langue non prise en charge
 
-If when running the live server script you get an error about the language not being supported, something like:
+Si, lors de l'exécution du script du serveur en direct, vous obtenez une erreur indiquant que la langue n'est pas prise en charge, quelque chose comme:
 
 ```
  raise TemplateNotFound(template)
 jinja2.exceptions.TemplateNotFound: partials/language/xx.html
 ```
 
-That means that the theme doesn't support that language (in this case, with a fake 2-letter code of `xx`).
+Cela signifie que le thème ne supporte pas cette langue (dans ce cas, avec un faux code de 2 lettres de `xx`).
 
-But don't worry, you can set the theme language to English and then translate the content of the docs.
+Mais ne vous inquiétez pas, vous pouvez définir la langue du thème en anglais et ensuite traduire le contenu des documents.
 
-If you need to do that, edit the `mkdocs.yml` for your new language, it will have something like:
+Si vous avez besoin de faire cela, modifiez le fichier `mkdocs.yml` pour votre nouvelle langue, il aura quelque chose comme:
 
 ```YAML hl_lines="5"
 site_name: FastAPI
@@ -440,17 +438,17 @@ theme:
   language: xx
 ```
 
-Change that language from `xx` (from your language code) to `en`.
+Changez cette langue de `xx` (de votre code de langue) à `fr`.
 
-Then you can start the live server again.
+Vous pouvez ensuite relancer le serveur live.
 
-#### Preview the result
+#### Prévisualisez le résultat
 
-When you use the script at `./scripts/docs.py` with the `live` command it only shows the files and translations available for the current language.
+Lorsque vous utilisez le script à `./scripts/docs.py` avec la commande `live`, il n'affiche que les fichiers et les traductions disponibles pour la langue courante.
 
-But once you are done, you can test it all as it would look online.
+Mais une fois que vous avez terminé, vous pouvez tester le tout comme il le ferait en ligne.
 
-To do that, first build all the docs:
+Pour ce faire, il faut d'abord construire tous les documents :
 
 <div class="termy">
 
@@ -468,11 +466,11 @@ Copying en index.md to README.md
 
 </div>
 
-That generates all the docs at `./docs_build/` for each language. This includes adding any files with missing translations, with a note saying that "this file doesn't have a translation yet". But you don't have to do anything with that directory.
+Cela génère tous les documents à `./docs_build/` pour chaque langue. Cela inclut l'ajout de tout fichier dont la traduction est manquante, avec une note disant que "ce fichier n'a pas encore de traduction". Mais vous n'avez rien à faire avec ce répertoire.
 
-Then it builds all those independent MkDocs sites for each language, combines them, and generates the final output at `./site/`.
+Ensuite, il construit tous ces sites MkDocs indépendants pour chaque langue, les combine, et génère le résultat final à `./site/`.
 
-Then you can serve that with the command `serve`:
+Ensuite, vous pouvez servir cela avec le commandement `serve`:
 
 <div class="termy">
 
@@ -490,7 +488,7 @@ Serving at: http://127.0.0.1:8008
 
 ## Tests
 
-There is a script that you can run locally to test all the code and generate coverage reports in HTML:
+Il existe un script que vous pouvez exécuter localement pour tester tout le code et générer des rapports de couverture en HTML :
 
 <div class="termy">
 
@@ -500,4 +498,4 @@ $ bash scripts/test-cov-html.sh
 
 </div>
 
-This command generates a directory `./htmlcov/`, if you open the file `./htmlcov/index.html` in your browser, you can explore interactively the regions of code that are covered by the tests, and notice if there is any region missing.
+Cette commande génère un répertoire `./htmlcov/`, si vous ouvrez le fichier `./htmlcov/index.html` dans votre navigateur, vous pouvez explorer interactivement les régions de code qui sont couvertes par les tests, et remarquer s'il y a une région manquante.
