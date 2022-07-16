@@ -165,7 +165,7 @@ Pour qu'il puisse les trier correctement, vous devez avoir FastAPI installé loc
 
 ### Formatage des imports
 
-Il existe un autre script qui permet de formater touts les imports et de s'assurer que vous n'avez pas d'imports inutilisées :
+Il existe un autre script qui permet de formater touts les imports et de s'assurer que vous n'avez pas d'imports inutilisés :
 
 <div class="termy">
 
@@ -202,11 +202,11 @@ Et ces fichiers Python sont inclus/injectés dans la documentation lors de la g�
 
 La plupart des tests sont en fait effectués par rapport aux exemples de fichiers sources dans la documentation.
 
-Cela permet de s'en assurer que:
+Cela permet de s'assurer que :
 
 * La documentation est à jour.
 * Les exemples de documentation peuvent être exécutés tels quels.
-* La plupart des fonctionnalités sont couvertes par la documentation, assurée par la couverture des tests.
+* La plupart des fonctionnalités sont couvertes par la documentation, assurées par la couverture des tests.
 
 Au cours du développement local, un script build le site et vérifie les changements éventuels, puis il est rechargé en direct :
 
@@ -230,7 +230,7 @@ De cette façon, vous pouvez modifier la documentation/les fichiers sources et v
 
 Les instructions ici vous montrent comment utiliser le script à `./scripts/docs.py` avec le programme `python` directement.
 
-Mais vous pouvez également utiliser <a href="https://typer.tiangolo.com/typer-cli/" class="external-link" target="_blank">Typer CLI</a>, et vous obtiendrez l'auto-complétion dans votre terminal pour les commandes après l'achèvement de  l'installation.
+Mais vous pouvez également utiliser <a href="https://typer.tiangolo.com/typer-cli/" class="external-link" target="_blank">Typer CLI</a>, et vous obtiendrez l'auto-complétion dans votre terminal pour les commandes après l'achèvement de l'installation.
 
 Si vous installez Typer CLI, vous pouvez installer la complétion avec :
 
@@ -280,7 +280,7 @@ Voici les étapes à suivre pour aider à la traduction.
 
 * Ajoutez une seule pull request par page traduite. Il sera ainsi beaucoup plus facile pour les autres de l'examiner.
 
-Pour les langues que je ne parle pas, je vais attendre que plusieurs autres reviews de la traduction avant de merge.
+Pour les langues que je ne parle pas, je vais attendre plusieurs autres reviews de la traduction avant de merge.
 
 * Vous pouvez également vérifier s'il existe des traductions pour votre langue et y ajouter une review, ce qui m'aidera à savoir si la traduction est correcte et je pourrai la fusionner.
 
@@ -356,7 +356,7 @@ nav:
 - features.md
 ```
 
-* Ouvrez le fichier de configuration MkDocs pour la langue que vous éditez, par exemple:
+* Ouvrez le fichier de configuration MkDocs pour la langue que vous éditez, par exemple :
 
 ```
 docs/es/docs/mkdocs.yml
@@ -417,7 +417,7 @@ Vous pouvez ensuite continuer avec les instructions précédentes, pour une "lan
 
 ##### Nouvelle langue non prise en charge
 
-Si, lors de l'exécution du script du serveur en direct, vous obtenez une erreur indiquant que la langue n'est pas prise en charge, quelque chose comme:
+Si, lors de l'exécution du script du serveur en direct, vous obtenez une erreur indiquant que la langue n'est pas prise en charge, quelque chose comme :
 
 ```
  raise TemplateNotFound(template)
@@ -428,7 +428,7 @@ Cela signifie que le thème ne supporte pas cette langue (dans ce cas, avec un f
 
 Mais ne vous inquiétez pas, vous pouvez définir la langue du thème en anglais et ensuite traduire le contenu des documents.
 
-Si vous avez besoin de faire cela, modifiez le fichier `mkdocs.yml` pour votre nouvelle langue, il aura quelque chose comme:
+Si vous avez besoin de faire cela, modifiez le fichier `mkdocs.yml` pour votre nouvelle langue, il aura quelque chose comme :
 
 ```YAML hl_lines="5"
 site_name: FastAPI
