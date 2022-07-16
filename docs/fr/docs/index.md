@@ -337,7 +337,7 @@ ou pour un modèle `Item` plus complexe :
 item: Item
 ```
 
-...et avec cette déclaration unique, vous obtenez :
+... et avec cette déclaration unique, vous obtenez :
 
 * La prise en charge de l'éditeur, notamment :
     * Complétion.
@@ -358,7 +358,7 @@ item: Item
     * objets `datetime`.
     * objets `UUID`.
     * Modèles de bases de données.
-    * ...et bien d'autres encore.
+    * ... et bien d'autres encore.
 * Documentation d'API interactive automatique, comprenant 2 interfaces utilisateur alternatives :
     * Swagger UI.
     * ReDoc.
@@ -394,19 +394,19 @@ Essayez de changer la ligne avec :
     return {"item_name": item.name, "item_id": item_id}
 ```
 
-...de :
+... de :
 
 ```Python
         ... "item_name": item.name ...
 ```
 
-...vers :
+... vers :
 
 ```Python
         ... "item_price": item.price ...
 ```
 
-...et voyez comment votre éditeur complétera automatiquement les attributs et connaîtra leurs types :
+... et voyez comment votre éditeur complétera automatiquement les attributs et connaîtra leurs types :
 
 ![compatibilité IDE](https://fastapi.tiangolo.com/img/vscode-completion.png)
 
@@ -425,7 +425,7 @@ Pour un exemple plus complet comprenant plus de fonctionnalités, voir le <a hre
     * des tests extrêmement faciles basés sur `requests` et `pytest`
     * **CORS**
     * **Cookie Sessions**
-    * ...et plus encore.
+    * ... et plus encore.
 
 ## Performance
 
