@@ -71,10 +71,10 @@ $ pip install fastapi[all]
 
 ## Guide utilisateur avancé
 
-Il existe également un **Guide de utilisateur avancé** que vous pouvez lire plus tard après ce **Tutoriel - Guide de utilisateur**.
+Il existe également un **Guide d'utilisation avancé** que vous pouvez lire plus tard après ce **Tutoriel - Guide d'utilisation**.
 
-Le **Guide de l'utilisateur avancé**, qui s'appuie sur cette base, utilise les mêmes concepts et vous apprend quelques fonctionnalités supplémentaires.
+Le **Guide d'utilisation avancé**, qui s'appuie sur cette base, utilise les mêmes concepts et vous apprend quelques fonctionnalités supplémentaires.
 
-Mais vous devez d'abord lire le **Tutoriel - Guide de utilisateur** (ce que vous êtes en train de lire en ce moment).
+Mais vous devez d'abord lire le **Tutoriel - Guide d'utilisation** (ce que vous êtes en train de lire en ce moment).
 
-Il est conçu pour que vous puissiez construire une application complète avec seulement le **Tutoriel - Guide de utilisateur**, puis l'étendre de différentes manières, en fonction de vos besoins, en utilisant certaines des idées supplémentaires du **Guide de utilisateur avancé**.
+Il est conçu pour que vous puissiez construire une application complète avec seulement le **Tutoriel - Guide d'utilisation**, puis l'étendre de différentes manières, en fonction de vos besoins, en utilisant certaines des idées supplémentaires du **Guide d'utilisation avancé**.
