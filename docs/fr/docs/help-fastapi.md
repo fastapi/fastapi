@@ -28,7 +28,7 @@ Ainsi, vous recevrez des notifications (dans votre courrier électronique) chaqu
 
 Vous pouvez vous rapprocher de <a href="https://tiangolo.com" class="external-link" target="_blank">moi (Sebastián Ramírez / `tiangolo`)</a>, l'auteur.
 
-Vous le pouvez :
+Vous pouvez :
 
 * <a href="https://github.com/tiangolo" class="external-link" target="_blank">Me suivre sur **GitHub**</a>.
     * Voir d'autres projets Open Source que j'ai créés et qui pourraient vous aider.
