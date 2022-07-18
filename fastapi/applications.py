@@ -24,9 +24,9 @@ from fastapi.logger import logger
 from fastapi.middleware.asyncexitstack import AsyncExitStackMiddleware
 from fastapi.openapi.docs import (
     get_redoc_html,
+    get_stoplight_elements_html,
     get_swagger_ui_html,
     get_swagger_ui_oauth2_redirect_html,
-    get_stoplight_elements_html,
 )
 from fastapi.openapi.utils import get_openapi
 from fastapi.params import Depends
@@ -275,7 +275,11 @@ class FastAPI(Starlette):
                     openapi_url=openapi_url, title=self.title + " - Stoplight Elements"
                 )
 
-            self.add_route(self.stoplight_elements_url, stoplight_elements_html, include_in_schema=False)
+            self.add_route(
+                self.stoplight_elements_url,
+                stoplight_elements_html,
+                include_in_schema=False,
+            )
 
     async def __call__(self, scope: Scope, receive: Receive, send: Send) -> None:
         if self.root_path:

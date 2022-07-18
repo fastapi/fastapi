@@ -1,6 +1,6 @@
 import json
-from typing import Any, Dict, Optional
 from enum import Enum
+from typing import Any, Dict, Optional
 
 from fastapi.encoders import jsonable_encoder
 from starlette.responses import HTMLResponse
@@ -187,20 +187,24 @@ def get_swagger_ui_oauth2_redirect_html() -> HTMLResponse:
         """
     return HTMLResponse(content=html)
 
+
 class TryItCredentialPolicyOptions(Enum):
     OMIT = "omit"
-    include = "include"     
+    include = "include"
     SAME_ORIGIN = "same-origin"
+
 
 class LayoutOptions(Enum):
     SIDEBAR = "sidebar"
-    STACKED = "stacked"   
+    STACKED = "stacked"
+
 
 class RouterOptions(Enum):
     HISTORY = "history"
-    HASH = "hash"     
-    MEMORY = "memory"     
-    STATIC = "static"     
+    HASH = "hash"
+    MEMORY = "memory"
+    STATIC = "static"
+
 
 def get_stoplight_elements_html(
     *,
@@ -211,13 +215,13 @@ def get_stoplight_elements_html(
     stoplight_elements_favicon_url: str = "https://fastapi.tiangolo.com/img/favicon.png",
     api_description_document: str = None,
     base_path: str = None,
-    hide_internal:bool = False,
-    hide_try_it:bool = False,
-    try_it_cors_proxy:str = None,
+    hide_internal: bool = False,
+    hide_try_it: bool = False,
+    try_it_cors_proxy: str = None,
     try_it_credential_policy: TryItCredentialPolicyOptions = TryItCredentialPolicyOptions.OMIT,
     layout: LayoutOptions = LayoutOptions.SIDEBAR,
     logo: str = None,
-    router: RouterOptions = RouterOptions.HISTORY
+    router: RouterOptions = RouterOptions.HISTORY,
 ) -> HTMLResponse:
     html = f"""
     <!doctype html>
