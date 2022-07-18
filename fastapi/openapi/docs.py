@@ -243,10 +243,10 @@ def get_stoplight_elements_html(
             {'hideInternal="true"' if hide_internal == True else ''}
             {'hideTryIt="true"' if hide_try_it == True else ''}
             {f'tryItCorsProxy="{try_it_cors_proxy}"' if try_it_cors_proxy != '' else ''}
-            tryItCredentialPolicy="{try_it_credential_policy}"
-            layout="{layout}"
+            tryItCredentialPolicy="{try_it_credential_policy.value}"
+            layout="{layout.value}"
             {f'logo="{logo}"' if logo != '' else ''}
-            router="{router}"
+            router="{router.value}"
         />
 
     </body>
