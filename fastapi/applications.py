@@ -26,6 +26,7 @@ from fastapi.openapi.docs import (
     get_redoc_html,
     get_swagger_ui_html,
     get_swagger_ui_oauth2_redirect_html,
+    get_stoplight_elements_html,
 )
 from fastapi.openapi.utils import get_openapi
 from fastapi.params import Depends
@@ -58,6 +59,7 @@ class FastAPI(Starlette):
         default_response_class: Type[Response] = Default(JSONResponse),
         docs_url: Optional[str] = "/docs",
         redoc_url: Optional[str] = "/redoc",
+        stoplight_elements_url: Optional[str] = "/elements",
         swagger_ui_oauth2_redirect_url: Optional[str] = "/docs/oauth2-redirect",
         swagger_ui_init_oauth: Optional[Dict[str, Any]] = None,
         middleware: Optional[Sequence[Middleware]] = None,
@@ -97,6 +99,7 @@ class FastAPI(Starlette):
         self.root_path_in_servers = root_path_in_servers
         self.docs_url = docs_url
         self.redoc_url = redoc_url
+        self.stoplight_elements_url = stoplight_elements_url
         self.swagger_ui_oauth2_redirect_url = swagger_ui_oauth2_redirect_url
         self.swagger_ui_init_oauth = swagger_ui_init_oauth
         self.swagger_ui_parameters = swagger_ui_parameters
@@ -262,6 +265,17 @@ class FastAPI(Starlette):
                 )
 
             self.add_route(self.redoc_url, redoc_html, include_in_schema=False)
+
+        if self.openapi_url and self.stoplight_elements_url:
+
+            async def stoplight_elements_html(req: Request) -> HTMLResponse:
+                root_path = req.scope.get("root_path", "").rstrip("/")
+                openapi_url = root_path + self.openapi_url
+                return get_stoplight_elements_html(
+                    openapi_url=openapi_url, title=self.title + " - Stoplight Elements"
+                )
+
+            self.add_route(self.stoplight_elements_url, stoplight_elements_html, include_in_schema=False)
 
     async def __call__(self, scope: Scope, receive: Receive, send: Send) -> None:
         if self.root_path:
