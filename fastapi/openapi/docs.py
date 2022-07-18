@@ -209,14 +209,14 @@ def get_stoplight_elements_html(
     stoplight_elements_js_url: str = "https://unpkg.com/@stoplight/elements/web-components.min.js",
     stoplight_elements_css_url: str = "https://unpkg.com/@stoplight/elements/styles.min.css",
     stoplight_elements_favicon_url: str = "https://fastapi.tiangolo.com/img/favicon.png",
-    api_description_document: str = None,
-    base_path: str = None,
-    hide_internal:bool = False,
-    hide_try_it:bool = False,
-    try_it_cors_proxy:str = None,
+    api_description_document: str = "",
+    base_path: str = "",
+    hide_internal: bool = False,
+    hide_try_it: bool = False,
+    try_it_cors_proxy: str = "",
     try_it_credential_policy: TryItCredentialPolicyOptions = TryItCredentialPolicyOptions.OMIT,
     layout: LayoutOptions = LayoutOptions.SIDEBAR,
-    logo: str = None,
+    logo: str = "",
     router: RouterOptions = RouterOptions.HISTORY
 ) -> HTMLResponse:
     html = f"""
@@ -233,15 +233,15 @@ def get_stoplight_elements_html(
     <body>
 
         <elements-api
-            {f'apiDescriptionUrl="{openapi_url}"' if openapi_url is not None else ''}
-            {f'apiDescriptionDocument="{api_description_document}"' if api_description_document is not None else ''}
-            {f'basePath="{base_path}"' if base_path is not None else ''}
+            {f'apiDescriptionUrl="{openapi_url}"' if openapi_url != '' else ''}
+            {f'apiDescriptionDocument="{api_description_document}"' if api_description_document != '' else ''}
+            {f'basePath="{base_path}"' if base_path != '' else ''}
             {'hideInternal="true"' if hide_internal == True else ''}
             {'hideTryIt="true"' if hide_try_it == True else ''}
-            {f'tryItCorsProxy="{try_it_cors_proxy}"' if try_it_cors_proxy is not None else ''}
+            {f'tryItCorsProxy="{try_it_cors_proxy}"' if try_it_cors_proxy != '' else ''}
             tryItCredentialPolicy="{try_it_credential_policy}"
             layout="{layout}"
-            {f'logo="{logo}"' if logo is not None else ''}
+            {f'logo="{logo}"' if logo != '' else ''}
             router="{router}"
         />
 
