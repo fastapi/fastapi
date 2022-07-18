@@ -221,7 +221,7 @@ def get_stoplight_elements_html(
     try_it_credential_policy: TryItCredentialPolicyOptions = TryItCredentialPolicyOptions.OMIT,
     layout: LayoutOptions = LayoutOptions.SIDEBAR,
     logo: str = "",
-    router: RouterOptions = RouterOptions.HISTORY
+    router: RouterOptions = RouterOptions.HISTORY,
 ) -> HTMLResponse:
     html = f"""
     <!doctype html>
