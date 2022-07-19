@@ -229,7 +229,7 @@ HEALTHCHECK CMD curl http://localhost/
 
 7. Using a healthcheck instruction in your Dockerfile is considered a best practice to enable Docker to terminate containers which are not responding correctly, and instantiate new ones.
 
-    It is suggested to extend this basic healthcheck.
+    It is suggested to extend this basic healthcheck. Make sure to use the right port. For further information you can look at the official [Docker healthcheck documentation](https://docs.docker.com/engine/reference/builder/#healthcheck).
 
 !!! tip
     Review what each line does by clicking each number bubble in the code. 👆
