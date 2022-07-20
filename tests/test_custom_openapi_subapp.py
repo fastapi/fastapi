@@ -10,11 +10,6 @@ sub_app = FastAPI(
 )
 
 
-@sub_app.get("/items/")
-async def read_items():
-    return {"id": "foo"}
-
-
 @sub_app.get("/openapi.json")
 async def openapi(
     # Custom Deps
@@ -38,4 +33,4 @@ def test_sub_app_open_api():
     assert response.status_code == 200, response.json()
     assert response.headers["content-type"] == "application/json"
     paths = list(response.json()["paths"].keys())
-    assert paths == ["/sub_app/items/", "/sub_app/openapi.json"]
+    assert paths == ["/sub_app/openapi.json"]
