@@ -33,7 +33,7 @@ It is just a function that can take all the same parameters that a *path operati
 
 === "Python 3.6 and above"
 
-    ```Python hl_lines="8-9"
+    ```Python hl_lines="8-11"
     {!> ../../../docs_src/dependencies/tutorial001.py!}
     ```
 
@@ -81,7 +81,7 @@ The same way you use `Body`, `Query`, etc. with your *path operation function* p
 
 === "Python 3.6 and above"
 
-    ```Python hl_lines="13  18"
+    ```Python hl_lines="15  20"
     {!> ../../../docs_src/dependencies/tutorial001.py!}
     ```
 

@@ -220,7 +220,7 @@ Et comme on peut avoir du parallélisme et de l'asynchronicité en même temps, 
 Nope ! C'est ça la morale de l'histoire.
 
 La concurrence est différente du parallélisme. C'est mieux sur des scénarios **spécifiques** qui impliquent beaucoup d'attente. À cause de ça, c'est généralement bien meilleur que le parallélisme pour le développement d'applications web. Mais pas pour tout.
- 
+
 Donc pour équilibrer tout ça, imaginez l'histoire suivante :
 
 > Vous devez nettoyer une grande et sale maison.
@@ -293,7 +293,7 @@ def get_sequential_burgers(number: int):
 
 Avec `async def`, Python sait que dans cette fonction il doit prendre en compte les expressions `await`, et qu'il peut mettre en pause ⏸ l'exécution de la fonction pour aller faire autre chose 🔀 avant de revenir.
 
-Pour appeler une fonction définie avec `async def`, vous devez utiliser `await`. Donc ceci ne marche pas : 
+Pour appeler une fonction définie avec `async def`, vous devez utiliser `await`. Donc ceci ne marche pas :
 
 ```Python
 # Ceci ne fonctionne pas, car get_burgers a été défini avec async def
@@ -375,7 +375,7 @@ Au final, dans les deux situations, il est fort probable que **FastAPI** soit to
 
 La même chose s'applique aux dépendances. Si une dépendance est définie avec `def` plutôt que `async def`, elle est exécutée dans la threadpool externe.
 
-### Sous-dépendances 
+### Sous-dépendances
 
 Vous pouvez avoir de multiples dépendances et sous-dépendances dépendant les unes des autres (en tant que paramètres de la définition de la *fonction de chemin*), certaines créées avec `async def` et d'autres avec `def`. Cela fonctionnerait aussi, et celles définies avec un simple `def` seraient exécutées sur un thread externe (venant de la threadpool) plutôt que d'être "attendues".
 

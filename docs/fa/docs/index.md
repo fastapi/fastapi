@@ -14,6 +14,9 @@
 <a href="https://pypi.org/project/fastapi" target="_blank">
     <img src="https://img.shields.io/pypi/v/fastapi?color=%2334D058&label=pypi%20package" alt="Package version">
 </a>
+<a href="https://pypi.org/project/fastapi" target="_blank">
+    <img src="https://img.shields.io/pypi/pyversions/fastapi.svg?color=%2334D058" alt="Supported Python versions">
+</a>
 </p>
 
 ---
@@ -24,7 +27,7 @@
 
 ---
 FastAPI یک وب فریم‌ورک مدرن و سریع (با کارایی بالا) برای ایجاد APIهای متنوع (وب، وب‌سوکت و غبره) با زبان پایتون نسخه +۳.۶ است. این فریم‌ورک با رعایت کامل راهنمای نوع داده (Type Hint) ایجاد شده است.
- 
+
 ویژگی‌های کلیدی این فریم‌ورک عبارتند از:
 
 * **<abbr title="Fast">سرعت</abbr>**: کارایی بسیار بالا و قابل مقایسه با  **NodeJS** و **Go** (با تشکر از Starlette و Pydantic). [یکی از سریع‌ترین فریم‌ورک‌های پایتونی موجود](#performance).
@@ -34,7 +37,7 @@ FastAPI یک وب فریم‌ورک مدرن و سریع (با کارایی با
 * **<abbr title="Intuitive">غریزی</abbr>**: پشتیبانی فوق‌العاده در محیط‌های توسعه یکپارچه (IDE). <abbr title="یا اتوکامپلیت، اتوکامپلشن، اینتلیسنس">تکمیل</abbr> در همه بخش‌های کد. کاهش زمان رفع باگ.
 * **<abbr title="Easy">آسان</abbr>**: طراحی شده برای یادگیری و استفاده آسان. کاهش زمان مورد نیاز برای مراجعه به مستندات.
 * **<abbr title="Short">کوچک</abbr>**: کاهش تکرار در کد. چندین قابلیت برای هر پارامتر (منظور پارامترهای ورودی تابع هندلر می‌باشد، به بخش <a href="https://fastapi.tiangolo.com/#recap">خلاصه</a> در همین صفحه مراجعه شود). باگ کمتر.
-* **<abbr title="Robust">استوار</abbr>**: ایجاد کدی آماده برای استفاده در محیط پروداکشن و تولید خودکار <abbr title="Interactive documentation">مستندات تعاملی</abbr> 
+* **<abbr title="Robust">استوار</abbr>**: ایجاد کدی آماده برای استفاده در محیط پروداکشن و تولید خودکار <abbr title="Interactive documentation">مستندات تعاملی</abbr>
 * **<abbr title="Standards-based">مبتنی بر استانداردها</abbr>**: مبتنی بر (و منطبق با) استانداردهای متن باز مربوط به API: <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (سوگر سابق) و <a href="https://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>.
 
 <small>* تخمین‌ها بر اساس تست‌های انجام شده در یک تیم توسعه داخلی که مشغول ایجاد برنامه‌های کاربردی واقعی بودند صورت گرفته است.</small>
@@ -53,7 +56,7 @@ FastAPI یک وب فریم‌ورک مدرن و سریع (با کارایی با
 
 <a href="https://fastapi.tiangolo.com/fastapi-people/#sponsors" class="external-link" target="_blank">دیگر اسپانسرها</a>
 
-## نظر دیگران در مورد FastAPI 
+## نظر دیگران در مورد FastAPI
 
 <div style="text-align: left; direction: ltr;"><em> [...] I'm using <strong>FastAPI</strong> a ton these days. [...] I'm actually planning to use it for all of my team's <strong>ML services at Microsoft</strong>. Some of them are getting integrated into the core <strong>Windows</strong> product and some <strong>Office</strong> products."</em></div>
 
@@ -97,7 +100,7 @@ FastAPI یک وب فریم‌ورک مدرن و سریع (با کارایی با
 
 <a href="https://typer.tiangolo.com" target="_blank"><img src="https://typer.tiangolo.com/img/logo-margin/logo-margin-vector.svg" style="width: 20%;"></a>
 
-اگر در حال ساختن برنامه‌ای برای استفاده در <abbr title="Command Line Interface">CLI</abbr> (به جای استفاده در وب) هستید، می‌توانید از <a href="https://typer.tiangolo.com/" class="external-link" target="_blank">**Typer**</a>. استفاده کنید. 
+اگر در حال ساختن برنامه‌ای برای استفاده در <abbr title="Command Line Interface">CLI</abbr> (به جای استفاده در وب) هستید، می‌توانید از <a href="https://typer.tiangolo.com/" class="external-link" target="_blank">**Typer**</a>. استفاده کنید.
 
 **Typer** دوقلوی کوچکتر FastAPI است و قرار است معادلی برای FastAPI در برنامه‌های CLI باشد.️ 🚀
 
@@ -127,16 +130,16 @@ $ pip install fastapi
 <div class="termy">
 
 ```console
-$ pip install uvicorn
+$ pip install "uvicorn[standard]"
 
 ---> 100%
 ```
 
 </div>
 
-## مثال 
+## مثال
 
-### ایجاد کنید 
+### ایجاد کنید
 * فایلی به نام  `main.py` با محتوای زیر ایجاد کنید :
 
 ```Python
@@ -153,7 +156,7 @@ def read_root():
 
 
 @app.get("/items/{item_id}")
-def read_item(item_id: int, q: Optional[str] = None):
+def read_item(item_id: int, q: Union[str, None] = None):
     return {"item_id": item_id, "q": q}
 ```
 
@@ -182,12 +185,12 @@ async def read_item(item_id: int, q: Optional[str] = None):
 
 **توجه**:
 
-اگر با `async / await` آشنا نیستید، به بخش _"عجله‌ دارید?"_ در صفحه درباره <a href="https://fastapi.tiangolo.com/async/#in-a-hurry" target="_blank">`async` و `await` در مستندات</a> مراجعه کنید. 
+اگر با `async / await` آشنا نیستید، به بخش _"عجله‌ دارید?"_ در صفحه درباره <a href="https://fastapi.tiangolo.com/async/#in-a-hurry" target="_blank">`async` و `await` در مستندات</a> مراجعه کنید.
 
 
 </details>
 
-### اجرا کنید 
+### اجرا کنید
 
 با استفاده از دستور زیر سرور را اجرا کنید:
 
@@ -228,20 +231,20 @@ INFO:     Application startup complete.
 
 تا اینجا شما APIای ساختید که:
 
-* درخواست‌های HTTP به _مسیرهای_ `/` و `/items/{item_id}` را دریافت می‌کند. 
+* درخواست‌های HTTP به _مسیرهای_ `/` و `/items/{item_id}` را دریافت می‌کند.
 * هردو  _مسیر_ <abbr title="operations در OpenAPI">عملیات</abbr> (یا HTTP _متد_) `GET` را پشتیبانی می‌کنند.
 * _مسیر_ `/items/{item_id}` شامل  <abbr title="Path Parameter">_پارامتر مسیر_</abbr> `item_id` از نوع `int` است.
 * _مسیر_ `/items/{item_id}` شامل  <abbr title="Query Parameter">_پارامتر پرسمان_</abbr> اختیاری `q` از نوع `str` است.
 
-### مستندات API تعاملی 
+### مستندات API تعاملی
 
-حال به آدرس  <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a> بروید. 
+حال به آدرس  <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a> بروید.
 
 مستندات API تعاملی (ایجاد شده به کمک <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a>) را مشاهده خواهید کرد:
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-01-swagger-ui-simple.png)
 
-### مستندات API جایگزین 
+### مستندات API جایگزین
 
 حال به آدرس  <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a> بروید.
 
@@ -249,7 +252,7 @@ INFO:     Application startup complete.
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
-## تغییر مثال 
+## تغییر مثال
 
 حال فایل  `main.py` را مطابق زیر ویرایش کنید تا بتوانید <abbr title="Body">بدنه</abbr> یک درخواست `PUT` را دریافت کنید.
 
@@ -267,7 +270,7 @@ app = FastAPI()
 class Item(BaseModel):
     name: str
     price: float
-    is_offer: Optional[bool] = None
+    is_offer: Union[bool, None] = None
 
 
 @app.get("/")
@@ -276,7 +279,7 @@ def read_root():
 
 
 @app.get("/items/{item_id}")
-def read_item(item_id: int, q: Optional[str] = None):
+def read_item(item_id: int, q: Union[str, None] = None):
     return {"item_id": item_id, "q": q}
 
 
@@ -287,9 +290,9 @@ def update_item(item_id: int, item: Item):
 
 سرور به صورت خودکار ری‌استارت می‌شود (زیرا پیشتر از گزینه `--reload` در دستور  `uvicorn`  استفاده کردیم).
 
-### تغییر مستندات API تعاملی 
+### تغییر مستندات API تعاملی
 
-مجددا به آدرس  <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a> بروید. 
+مجددا به آدرس  <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a> بروید.
 
 * مستندات API تعاملی به صورت خودکار به‌روز شده است و شامل بدنه تعریف شده در مرحله قبل است:
 
@@ -303,7 +306,7 @@ def update_item(item_id: int, item: Item):
 
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-05-swagger-04.png)
 
-### تغییر مستندات API جایگزین 
+### تغییر مستندات API جایگزین
 
 حال به آدرس <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a> بروید.
 
@@ -311,7 +314,7 @@ def update_item(item_id: int, item: Item):
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-06-redoc-02.png)
 
-### خلاصه 
+### خلاصه
 
 به طور خلاصه شما **یک بار** انواع پارامترها، بدنه و غیره را به عنوان پارامترهای ورودی تابع خود تعریف می‌کنید.
 
@@ -370,7 +373,7 @@ item: Item
     * از آنجا که پارامتر `q` با  `= None` مقداردهی شده است, این پارامتر اختیاری است.
     * اگر از مقدار اولیه `None` استفاده نکنیم، این پارامتر الزامی خواهد بود (همانند بدنه درخواست در درخواست `PUT`).
 * برای درخواست‌های `PUT` به آدرس `/items/{item_id}`, بدنه درخواست باید از نوع JSON تعریف شده باشد:
-    * بررسی اینکه بدنه شامل فیلدی با نام `name` و از نوع `str` است. 
+    * بررسی اینکه بدنه شامل فیلدی با نام `name` و از نوع `str` است.
     * بررسی اینکه بدنه شامل فیلدی با نام `price` و از نوع `float` است.
     * بررسی اینکه بدنه شامل فیلدی اختیاری با نام `is_offer` است, که در صورت وجود باید از نوع `bool` باشد.
     * تمامی این موارد برای اشیاء JSON در هر عمقی قابل بررسی می‌باشد.
@@ -406,7 +409,7 @@ item: Item
 
 ![editor support](https://fastapi.tiangolo.com/img/vscode-completion.png)
 
-برای مشاهده مثال‌های کامل‌تر که شامل قابلیت‌های بیشتری از FastAPI باشد به بخش <a href="https://fastapi.tiangolo.com/tutorial/">آموزش - راهنمای کاربر</a> مراجعه کنید. 
+برای مشاهده مثال‌های کامل‌تر که شامل قابلیت‌های بیشتری از FastAPI باشد به بخش <a href="https://fastapi.tiangolo.com/tutorial/">آموزش - راهنمای کاربر</a> مراجعه کنید.
 
 **هشدار اسپویل**: بخش آموزش - راهنمای کاربر شامل موارد زیر است:
 
@@ -423,13 +426,13 @@ item: Item
     * **Cookie Sessions**
     * و موارد بیشمار دیگر.
 
-## کارایی 
+## کارایی
 
 معیار (بنچمارک‌)های مستقل TechEmpower حاکی از آن است که برنامه‌های **FastAPI** که تحت Uvicorn اجرا می‌شود، <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">یکی از سریع‌ترین فریم‌ورک‌های مبتنی بر پایتون</a>, است که کمی ضعیف‌تر از Starlette و Uvicorn عمل می‌کند (فریم‌ورک و سروری که FastAPI بر اساس آنها ایجاد شده است) (*)
 
 برای درک بهتری از این موضوع به بخش <a href="https://fastapi.tiangolo.com/benchmarks/" class="internal-link" target="_blank">بنچ‌مارک‌ها</a> مراجعه کنید.
 
-## نیازمندی‌های اختیاری 
+## نیازمندی‌های اختیاری
 
 استفاده شده توسط Pydantic:
 
@@ -454,6 +457,6 @@ item: Item
 
 می‌توان همه این موارد را با استفاده از دستور `pip install fastapi[all]`. به صورت یکجا نصب کرد.
 
-##   لایسنس 
+##   لایسنس
 
 این پروژه مشمول قوانین و مقررات لایسنس MIT است.
