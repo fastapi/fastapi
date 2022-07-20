@@ -2,6 +2,7 @@
 
 ## Latest Changes
 
+* 🌐 Add Persian translation for `docs/fa/docs/index.md` and tweak right-to-left CSS. PR [#2395](https://github.com/tiangolo/fastapi/pull/2395) by [@mohsen-mahmoodi](https://github.com/mohsen-mahmoodi).
 
 ## 0.79.0
 
