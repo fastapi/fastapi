@@ -66,6 +66,9 @@ nav:
   - tutorial/response-status-code.md
   - tutorial/request-files.md
   - tutorial/request-forms-and-files.md
+- 배포하기:
+  - deployment/server-workers.md
+  - deployment/versions.md
 markdown_extensions:
 - toc:
     permalink: true
