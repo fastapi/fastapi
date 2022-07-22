@@ -41,8 +41,6 @@ class ORJSONResponse(JSONResponse):
 
 
 class SimpleJSONResponse(JSONResponse):
-    media_type = "application/json"
-
     def render(self, content: Any) -> bytes:
         assert (
             simplejson is not None
