@@ -4,7 +4,7 @@ import sys
 from collections import Counter, defaultdict
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
-from typing import Container, DefaultDict, Dict, List, Optional, Set
+from typing import Container, DefaultDict, Dict, List, Set, Union
 
 import httpx
 import yaml
@@ -14,7 +14,7 @@ from pydantic import BaseModel, BaseSettings, SecretStr
 github_graphql_url = "https://api.github.com/graphql"
 
 issues_query = """
-query Q($after: String) { 
+query Q($after: String) {
   repository(name: "fastapi", owner: "tiangolo") {
     issues(first: 100, after: $after) {
       edges {
@@ -47,7 +47,7 @@ query Q($after: String) {
 """
 
 prs_query = """
-query Q($after: String) { 
+query Q($after: String) {
   repository(name: "fastapi", owner: "tiangolo") {
     pullRequests(first: 100, after: $after) {
       edges {
@@ -133,7 +133,7 @@ class Author(BaseModel):
 
 class CommentsNode(BaseModel):
     createdAt: datetime
-    author: Optional[Author] = None
+    author: Union[Author, None] = None
 
 
 class Comments(BaseModel):
@@ -142,7 +142,7 @@ class Comments(BaseModel):
 
 class IssuesNode(BaseModel):
     number: int
-    author: Optional[Author] = None
+    author: Union[Author, None] = None
     title: str
     createdAt: datetime
     state: str
@@ -179,7 +179,7 @@ class Labels(BaseModel):
 
 
 class ReviewNode(BaseModel):
-    author: Optional[Author] = None
+    author: Union[Author, None] = None
     state: str
 
 
@@ -190,7 +190,7 @@ class Reviews(BaseModel):
 class PullRequestNode(BaseModel):
     number: int
     labels: Labels
-    author: Optional[Author] = None
+    author: Union[Author, None] = None
     title: str
     createdAt: datetime
     state: str
@@ -263,7 +263,7 @@ class Settings(BaseSettings):
 
 
 def get_graphql_response(
-    *, settings: Settings, query: str, after: Optional[str] = None
+    *, settings: Settings, query: str, after: Union[str, None] = None
 ):
     headers = {"Authorization": f"token {settings.input_token.get_secret_value()}"}
     variables = {"after": after}
@@ -280,19 +280,19 @@ def get_graphql_response(
     return data
 
 
-def get_graphql_issue_edges(*, settings: Settings, after: Optional[str] = None):
+def get_graphql_issue_edges(*, settings: Settings, after: Union[str, None] = None):
     data = get_graphql_response(settings=settings, query=issues_query, after=after)
     graphql_response = IssuesResponse.parse_obj(data)
     return graphql_response.data.repository.issues.edges
 
 
-def get_graphql_pr_edges(*, settings: Settings, after: Optional[str] = None):
+def get_graphql_pr_edges(*, settings: Settings, after: Union[str, None] = None):
     data = get_graphql_response(settings=settings, query=prs_query, after=after)
     graphql_response = PRsResponse.parse_obj(data)
     return graphql_response.data.repository.pullRequests.edges
 
 
-def get_graphql_sponsor_edges(*, settings: Settings, after: Optional[str] = None):
+def get_graphql_sponsor_edges(*, settings: Settings, after: Union[str, None] = None):
     data = get_graphql_response(settings=settings, query=sponsors_query, after=after)
     graphql_response = SponsorsResponse.parse_obj(data)
     return graphql_response.data.user.sponsorshipsAsMaintainer.edges
@@ -501,9 +501,16 @@ if __name__ == "__main__":
     github_sponsors_path = Path("./docs/en/data/github_sponsors.yml")
     people_old_content = people_path.read_text(encoding="utf-8")
     github_sponsors_old_content = github_sponsors_path.read_text(encoding="utf-8")
-    new_people_content = yaml.dump(people, sort_keys=False, width=200, allow_unicode=True)
-    new_github_sponsors_content = yaml.dump(github_sponsors, sort_keys=False, width=200, allow_unicode=True)
-    if people_old_content == new_people_content and github_sponsors_old_content == new_github_sponsors_content:
+    new_people_content = yaml.dump(
+        people, sort_keys=False, width=200, allow_unicode=True
+    )
+    new_github_sponsors_content = yaml.dump(
+        github_sponsors, sort_keys=False, width=200, allow_unicode=True
+    )
+    if (
+        people_old_content == new_people_content
+        and github_sponsors_old_content == new_github_sponsors_content
+    ):
         logging.info("The FastAPI People data hasn't changed, finishing.")
         sys.exit(0)
     people_path.write_text(new_people_content, encoding="utf-8")
@@ -517,7 +524,9 @@ if __name__ == "__main__":
     logging.info(f"Creating a new branch {branch_name}")
     subprocess.run(["git", "checkout", "-b", branch_name], check=True)
     logging.info("Adding updated file")
-    subprocess.run(["git", "add", str(people_path)], check=True)
+    subprocess.run(
+        ["git", "add", str(people_path), str(github_sponsors_path)], check=True
+    )
     logging.info("Committing updated file")
     message = "👥 Update FastAPI People"
     result = subprocess.run(["git", "commit", "-m", message], check=True)
