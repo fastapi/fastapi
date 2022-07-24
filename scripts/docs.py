@@ -295,7 +295,7 @@ def update_single_lang(lang: str):
 
 @app.command()
 def update_languages(
-    lang: str = typer.Argument(
+    lang: Optional[str] = typer.Argument(
         None, callback=lang_callback, autocompletion=complete_existing_lang
     )
 ):
