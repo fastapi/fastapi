@@ -71,7 +71,7 @@ Sonra bilgisayar / program 🤖 her fırsatı olduğunda o noktada yaptığı t�
 
 Ardından, 🤖 bitirmek için ilk görevi alır ("slow-file" 📝) ve onunla ne yapması gerekiyorsa onu devam ettirir.
 
-Bu "başka bir şey için bekle" normalde, aşağıdakileri beklemek gibi (işlemcinin ve RAM belleğinin hızına kıyasla) nispeten "yavaş" olan <abbr title="Input ve Output (Giriş ve Çıkış)">I/O</abbr> işlemlerine atıfta bulunur:  
+Bu "başka bir şey için bekle" normalde, aşağıdakileri beklemek gibi (işlemcinin ve RAM belleğinin hızına kıyasla) nispeten "yavaş" olan <abbr title="Input ve Output (Giriş ve Çıkış)">I/O</abbr> işlemlerine atıfta bulunur:
 
 * istemci tarafından ağ üzerinden veri göndermek
 * ağ üzerinden istemciye gönderilen veriler
@@ -215,7 +215,7 @@ Mevcut popüler Python frameworklerinin çoğu (Flask ve Django gibi), Python'da
 
 Asenkron web (ASGI) özelliği, WebSockets için destek eklemek için Django'ya eklenmiş olsa da.
 
-Asenkron çalışabilme NodeJS in popüler olmasının sebebi (paralel olamasa bile) ve Go dilini güçlü yapan özelliktir.   
+Asenkron çalışabilme NodeJS in popüler olmasının sebebi (paralel olamasa bile) ve Go dilini güçlü yapan özelliktir.
 
 Ve bu **FastAPI** ile elde ettiğiniz performans düzeyiyle aynıdır.
 
@@ -246,7 +246,7 @@ Ama bu durumda, 8 eski kasiyer/aşçı - yeni temizlikçiyi getirebilseydiniz �
 
 Bu senaryoda, temizlikçilerin her biri (siz dahil) birer işlemci olacak ve üzerine düşeni yapacaktır.
 
-Yürütme süresinin çoğu (beklemek yerine) iş yapıldığından ve bilgisayardaki iş bir <abbr title="Central Processing Unit">CPU</abbr> tarafından yapıldığından, bu sorunlara "CPU bound" diyorlar". 
+Yürütme süresinin çoğu (beklemek yerine) iş yapıldığından ve bilgisayardaki iş bir <abbr title="Central Processing Unit">CPU</abbr> tarafından yapıldığından, bu sorunlara "CPU bound" diyorlar".
 
 ---
 
