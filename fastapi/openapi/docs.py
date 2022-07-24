@@ -118,7 +118,7 @@ def get_swagger_ui_oauth2_redirect_html() -> HTMLResponse:
     html = """
     <!DOCTYPE html>
     <html lang="en-US">
-    <body onload="run()">
+    <body>
     </body>
     </html>
     <script>
@@ -146,8 +146,9 @@ def get_swagger_ui_oauth2_redirect_html() -> HTMLResponse:
             isValid = qp.state === sentState
 
             if ((
-            oauth2.auth.schema.get("flow") === "accessCode"||
-            oauth2.auth.schema.get("flow") === "authorizationCode"
+              oauth2.auth.schema.get("flow") === "accessCode"||
+              oauth2.auth.schema.get("flow") === "authorizationCode" ||
+              oauth2.auth.schema.get("flow") === "authorization_code"
             ) && !oauth2.auth.code) {
                 if (!isValid) {
                     oauth2.errCb({
@@ -181,6 +182,14 @@ def get_swagger_ui_oauth2_redirect_html() -> HTMLResponse:
                 oauth2.callback({auth: oauth2.auth, token: qp, isValid: isValid, redirectUrl: redirectUrl});
             }
             window.close();
+        }
+
+        if( document.readyState !== 'loading' ) {
+          run();
+        } else {
+          document.addEventListener('DOMContentLoaded', function () {
+            run();
+          });
         }
     </script>
         """
