@@ -19,7 +19,7 @@ docs_build
 venv
 docs.zip
 archive.zip
-
+.v3.10.5
 # vim temporary files
 *~
 .*.sw?
