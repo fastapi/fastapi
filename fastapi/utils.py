@@ -21,7 +21,17 @@ if TYPE_CHECKING:  # pragma: nocover
 def is_body_allowed_for_status_code(status_code: Union[int, str, None]) -> bool:
     if status_code is None:
         return True
-    if status_code in ['default', '2XX', '2xx', '3XX', '3xx', '4XX', '4xx', '5XX', '5xx']:
+    if status_code in [
+        "default",
+        "2XX",
+        "2xx",
+        "3XX",
+        "3xx",
+        "4XX",
+        "4xx",
+        "5XX",
+        "5xx",
+    ]:
         return True
     current_status_code = int(status_code)
     return not (current_status_code < 200 or current_status_code in {204, 304})
