@@ -221,7 +221,7 @@ connect_args={"check_same_thread": False}
 
 当访问 user 中的属性`items`时，如 中`my_user.items`，它将有一个`Item`SQLAlchemy 模型列表（来自`items`表），这些模型具有指向`users`表中此记录的外键。
 
-当您访问`my_user.items`时，SQLAlchemy 实际上会从`items`表中的数据库中获取项目并在此处填充进去。
+当您访问`my_user.items`时，SQLAlchemy 实际上会从`items`表中的获取一批记录并在此处填充进去。
 
 同样，当访问 Item中的属性`owner`时，它将包含表中的`User`SQLAlchemy 模型`users`。使用`owner_id`属性/列及其外键来了解要从`users`表中获取哪条记录。
 
