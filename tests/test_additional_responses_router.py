@@ -2,8 +2,10 @@ from fastapi import APIRouter, FastAPI
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
 
+
 class ResponseModel(BaseModel):
     message: str
+
 
 app = FastAPI()
 router = APIRouter()
@@ -36,6 +38,7 @@ async def b():
 async def c():
     return "c"
 
+
 @router.get(
     "/d",
     responses={
@@ -46,6 +49,7 @@ async def c():
 )
 async def d():
     return "d"
+
 
 app.include_router(router)
 
@@ -94,15 +98,18 @@ openapi_schema = {
                 "summary": "C",
                 "operationId": "c_c_get",
             }
-        }, 
+        },
         "/d": {
             "get": {
                 "responses": {
                     "400": {"description": "Error with str"},
                     "5XX": {
                         "description": "Server Error",
-                        "content": {"application/json": {"schema": {
-                                    "$ref": "#/components/schemas/ResponseModel"}}}
+                        "content": {
+                            "application/json": {
+                                "schema": {"$ref": "#/components/schemas/ResponseModel"}
+                            }
+                        },
                     },
                     "200": {
                         "description": "Successful Response",
@@ -110,14 +117,17 @@ openapi_schema = {
                     },
                     "default": {
                         "description": "Default Response",
-                        "content": {"application/json": {"schema": {
-                                    "$ref": "#/components/schemas/ResponseModel"}}}
-                    }
+                        "content": {
+                            "application/json": {
+                                "schema": {"$ref": "#/components/schemas/ResponseModel"}
+                            }
+                        },
+                    },
                 },
                 "summary": "D",
                 "operationId": "d_d_get",
             }
-        }
+        },
     },
     "components": {
         "schemas": {
@@ -125,10 +135,10 @@ openapi_schema = {
                 "title": "ResponseModel",
                 "required": ["message"],
                 "type": "object",
-                "properties": {"message": {"title": "Message","type": "string"}}
+                "properties": {"message": {"title": "Message", "type": "string"}},
             }
         }
-    }
+    },
 }
 
 client = TestClient(app)
@@ -156,6 +166,7 @@ def test_c():
     response = client.get("/c")
     assert response.status_code == 200, response.text
     assert response.json() == "c"
+
 
 def test_d():
     response = client.get("/d")
