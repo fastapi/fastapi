@@ -103,6 +103,9 @@ def get_redoc_html(
         margin: 0;
         padding: 0;
       }}
+      table {{
+        display: table !important;
+      }}
     </style>
     </head>
     <body>
