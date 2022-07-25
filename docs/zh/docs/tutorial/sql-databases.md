@@ -376,7 +376,7 @@ SQLAlchemy 和许多其他默认情况下是“延迟加载”。
 current_user.items
 ```
 
-将使 SQLAlchemy 转到`items`表并获取该用户的项目，但不是之前。
+将使 SQLAlchemy 转到`items`表并获取该用户的项目，在调用`.items`之前不会去查询数据库。
 
 没有`orm_mode`，如果您从*路径操作*返回一个 SQLAlchemy 模型，它不会包含关系数据。
 
