@@ -276,7 +276,9 @@ def build_all():
     typer.echo("Building docs for: en")
     mkdocs.commands.build.build(mkdocs.config.load_config(site_dir=str(site_path)))
     os.chdir(current_dir)
-    langs = [lang.name for lang in get_lang_paths() if lang != en_docs_path and lang.is_dir()]
+    langs = [
+        lang.name for lang in get_lang_paths() if lang != en_docs_path and lang.is_dir()
+    ]
 
     cpu_count = os.cpu_count() or 1
     with Pool(cpu_count * 2) as p:

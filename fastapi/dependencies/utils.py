@@ -370,7 +370,7 @@ def get_param_field(
     elif default_value is not Undefined:
         required = False
     annotation: Any = Any
-    if param . annotation != param . empty:
+    if param.annotation != param.empty:
         annotation = param.annotation
     annotation = get_annotation_from_field_info(annotation, field_info, param_name)
     if not field_info.alias and getattr(field_info, "convert_underscores", None):
