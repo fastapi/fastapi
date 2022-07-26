@@ -133,7 +133,6 @@ def test_post_a():
     data = {"a": 2, "b": "foo"}
     response = client.post("/a/compute", json=data)
     assert response.status_code == 200, response.text
-    data = response.json()
 
 
 def test_post_a_invalid():
@@ -146,7 +145,6 @@ def test_post_b():
     data = {"a": 2, "b": "foo"}
     response = client.post("/b/compute/", json=data)
     assert response.status_code == 200, response.text
-    data = response.json()
 
 
 def test_post_b_invalid():

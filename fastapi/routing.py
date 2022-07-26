@@ -694,8 +694,8 @@ class APIRouter(routing.Router):
         else:
             for r in router.routes:
                 path = getattr(r, "path")
-                name = getattr(r, "name", "unknown")
                 if path is not None and not path:
+                    name = getattr(r, "name", "unknown")
                     raise Exception(
                         f"Prefix and path cannot be both empty (path operation: {name})"
                     )
