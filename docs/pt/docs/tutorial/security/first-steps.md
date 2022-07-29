@@ -179,4 +179,3 @@ Não estamos verificando a validade do token ainda, mas isso já é um começo
 ## Recapitulando
 
 Então, em apenas 3 ou 4 linhas extras, você já tem alguma forma primitiva de segurança.
-
