@@ -28,17 +28,17 @@ FastAPI는 현대적이고, 빠르며(고성능), 파이썬 표준 타입 힌트
 
 주요 특징:
 
-- **빠름**: (Starlette과 Pydantic 덕분에) **NodeJS** 및 **Go**와 대등할 정도로 매우 높은 성능을 가집니다. [사용 가능한 가장 빠른 파이썬 프레임워크 중 하나 입니다](#performance).
+* **빠름**: (Starlette과 Pydantic 덕분에) **NodeJS** 및 **Go**와 대등할 정도로 매우 높은 성능을 가집니다. [사용 가능한 가장 빠른 파이썬 프레임워크 중 하나 입니다](#performance).
 
-- **빠른 코드 작성**: 약 200%에서 300%까지 기능 개발 속도가 증가 합니다.\*
-- **적은 버그**: 사람(개발자)에 의한 에러 약 40%가 감소 됩니다. \*
-- **직관적**: 편집기를 훌륭히 지원 합니다. 모든 편집기에서 <abbr title="also known as auto-complete, autocompletion, IntelliSense">자동완성</abbr> 되어 적은 디버깅 시간을 가집니다.
-- **쉬움**: 쉽게 사용하고 배우도록 설계 되어 문서를 읽는 시간이 줄어 듭니다.
-- **짧음**: 코드 중복을 최소화 하며 각 매개변수 선언의 여러 기능을 가집니다. 버그를 줄일 수 있습니다.
-- **견고함**: 대화형 문서로 준비된 프로덕션 용 코드를 얻을 수 있습니다.
-- **표준 기반**: API에 대한 (완전히 호환되는) 개방형 표준 기반: <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (이전에 Swagger로 알려졌던) 및 <a href="http://json-schema.org/" class="external-link" target="_blank">JSON 스키마</a>.
+* **빠른 코드 작성**: 약 200%에서 300%까지 기능 개발 속도가 증가 합니다.\*
+* **적은 버그**: 사람(개발자)에 의한 에러 약 40%가 감소 됩니다. \*
+* **직관적**: 편집기를 훌륭히 지원 합니다. 모든 편집기에서 <abbr title="also known as auto-complete, autocompletion, IntelliSense">자동완성</abbr> 되어 적은 디버깅 시간을 가집니다.
+* **쉬움**: 쉽게 사용하고 배우도록 설계 되어 문서를 읽는 시간이 줄어 듭니다.
+* **짧음**: 코드 중복을 최소화 하며 각 매개변수 선언의 여러 기능을 가집니다. 버그를 줄일 수 있습니다.
+* **견고함**: 대화형 문서로 준비된 프로덕션 용 코드를 얻을 수 있습니다.
+* **표준 기반**: API에 대한 (완전히 호환되는) 개방형 표준 기반: <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (이전에 Swagger로 알려졌던) 및 <a href="http://json-schema.org/" class="external-link" target="_blank">JSON 스키마</a>.
 
-<small>\* 내부 개발팀의 프로덕션 애플리케이션을 빌드한 테스트에 근거한 측정</small>
+<small>* 내부 개발팀의 프로덕션 애플리케이션을 빌드한 테스트에 근거한 측정</small>
 
 ## 후원자
 
@@ -111,8 +111,8 @@ Python 3.6+
 
 FastAPI는 다음과 같은 의존성을 가집니다:
 
-- 웹 부분을 위한 <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a>.
-- 데이터 부분을 위한 <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a>.
+* 웹 부분을 위한 <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a>.
+* 데이터 부분을 위한 <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a>.
 
 ## 설치
 
@@ -142,7 +142,7 @@ $ pip install uvicorn[standard]
 
 ### 만들기
 
-- `main.py` 파일 작성 합니다:
+* `main.py` 파일 작성 합니다:
 
 ```Python
 from typing import Union
@@ -214,9 +214,9 @@ INFO:     Application startup complete.
 
 명령 `uvicorn main:app`은 다음을 나타냅니다:
 
-- `main`: `main.py` 파일 (파이썬 "모듈").
-- `app`: the object created inside of `main.py` with the line `app = FastAPI()`.
-- `--reload`: 코드가 변경된 후 서버 재시작하기. 개발환경에서만 사용합니다.
+* `main`: `main.py` 파일 (파이썬 "모듈").
+* `app`: the object created inside of `main.py` with the line `app = FastAPI()`.
+* `--reload`: 코드가 변경된 후 서버 재시작하기. 개발환경에서만 사용합니다.
 
 </details>
 
@@ -232,10 +232,10 @@ INFO:     Application startup complete.
 
 여러분은 벌써 API를 만들었습니다:
 
-- _경로_ `/` 및 `/items/{item_id}`에서 HTTP 요청 받기.
-- 두 _경로_ 모두 `GET` (HTTP _methods_ 로 알려진)을 받습니다.
-- _경로_ `/items/{item_id}`는 *경로 매개변수*가 `int`형 이어야 하는 `item_id`를 받습니다.
-- _경로_ `/items/{item_id}`는 optional 로 `str`형 이어야 하는 _경로 매개변수_ `q`를 받습니다.
+* _경로_ `/` 및 `/items/{item_id}`에서 HTTP 요청 받기.
+* 두 _경로_ 모두 `GET` (HTTP _methods_ 로 알려진)을 받습니다.
+* _경로_ `/items/{item_id}`는 *경로 매개변수*가 `int`형 이어야 하는 `item_id`를 받습니다.
+* _경로_ `/items/{item_id}`는 optional 로 `str`형 이어야 하는 _경로 매개변수_ `q`를 받습니다.
 
 ### 대화형 API 문서
 
@@ -295,15 +295,15 @@ def update_item(item_id: int, item: Item):
 
 이제 <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>로 이동합니다.
 
-- 대화형 API 문서가 새 본문과 함께 자동으로 업데이트 합니다:
+* 대화형 API 문서가 새 본문과 함께 자동으로 업데이트 합니다:
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-03-swagger-02.png)
 
-- "Try it out" 버튼을 클릭하면, 매개변수를 채울 수 있게 해주고 직접 API와 상호작용 할 수 있습니다:
+* "Try it out" 버튼을 클릭하면, 매개변수를 채울 수 있게 해주고 직접 API와 상호작용 할 수 있습니다:
 
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-04-swagger-03.png)
 
-- 그러고 나서 "Execute" 버튼을 누르면, 사용자 인터페이스는 API와 통신하고 매개변수를 전송하며 그 결과를 가져와서 화면에 표시합니다:
+* 그러고 나서 "Execute" 버튼을 누르면, 사용자 인터페이스는 API와 통신하고 매개변수를 전송하며 그 결과를 가져와서 화면에 표시합니다:
 
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-05-swagger-04.png)
 
@@ -311,7 +311,7 @@ def update_item(item_id: int, item: Item):
 
 그리고 이제, <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>로 이동합니다.
 
-- 대안 문서 역시 새 쿼리 매개변수와 본문을 반영합니다:
+* 대안 문서 역시 새 쿼리 매개변수와 본문을 반영합니다:
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-06-redoc-02.png)
 
@@ -452,8 +452,8 @@ Starlette이 사용하는:
 
 FastAPI / Starlette이 사용하는:
 
-- <a href="http://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - 애플리케이션을 로드하고 제공하는 서버.
-- <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - `ORJSONResponse`을 사용하려면 필요.
+* <a href="http://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - 애플리케이션을 로드하고 제공하는 서버.
+* <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - `ORJSONResponse`을 사용하려면 필요.
 
 `pip install fastapi[all]`를 통해 이 모두를 설치 할 수 있습니다.
 
