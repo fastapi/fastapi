@@ -26,21 +26,21 @@
 
 FastAPI는 현대적이고, 빠르며(고성능), 파이썬 표준 타입 힌트에 기초한 Python3.6+의 API를 빌드하기 위한 웹 프레임워크입니다.
 
-주요 특징으로:
+주요 특징:
 
-* **빠름**: (Starlette과 Pydantic 덕분에) **NodeJS** 및 **Go**와 대등할 정도로 매우 높은 성능. [사용 가능한 가장 빠른 파이썬 프레임워크 중 하나](#performance).
+- **빠름**: (Starlette과 Pydantic 덕분에) **NodeJS** 및 **Go**와 대등할 정도로 매우 높은 성능을 가집니다. [사용 가능한 가장 빠른 파이썬 프레임워크 중 하나 입니다](#performance).
 
-* **빠른 코드 작성**: 약 200%에서 300%까지 기능 개발 속도 증가. *
-* **적은 버그**: 사람(개발자)에 의한 에러 약 40% 감소. *
-* **직관적**: 훌륭한 편집기 지원. 모든 곳에서 <abbr title="also known as auto-complete, autocompletion, IntelliSense">자동완성</abbr>. 적은 디버깅 시간.
-* **쉬움**: 쉽게 사용하고 배우도록 설계. 적은 문서 읽기 시간.
-* **짧음**: 코드 중복 최소화. 각 매개변수 선언의 여러 기능. 적은 버그.
-* **견고함**: 준비된 프로덕션 용 코드를 얻으십시오. 자동 대화형 문서와 함께.
-* **표준 기반**: API에 대한 (완전히 호환되는) 개방형 표준 기반: <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (이전에 Swagger로 알려졌던) 및 <a href="http://json-schema.org/" class="external-link" target="_blank">JSON 스키마</a>.
+- **빠른 코드 작성**: 약 200%에서 300%까지 기능 개발 속도가 증가 합니다.\*
+- **적은 버그**: 사람(개발자)에 의한 에러 약 40%가 감소 됩니다. \*
+- **직관적**: 편집기를 훌륭히 지원 합니다. 모든 편집기에서 <abbr title="also known as auto-complete, autocompletion, IntelliSense">자동완성</abbr> 되어 적은 디버깅 시간을 가집니다.
+- **쉬움**: 쉽게 사용하고 배우도록 설계 되어 문서를 읽는 시간이 줄어 듭니다.
+- **짧음**: 코드 중복을 최소화 하며 각 매개변수 선언의 여러 기능을 가집니다. 버그를 줄일 수 있습니다.
+- **견고함**: 대화형 문서로 준비된 프로덕션 용 코드를 얻을 수 있습니다.
+- **표준 기반**: API에 대한 (완전히 호환되는) 개방형 표준 기반: <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (이전에 Swagger로 알려졌던) 및 <a href="http://json-schema.org/" class="external-link" target="_blank">JSON 스키마</a>.
 
-<small>* 내부 개발팀의 프로덕션 애플리케이션을 빌드한 테스트에 근거한 측정</small>
+<small>\* 내부 개발팀의 프로덕션 애플리케이션을 빌드한 테스트에 근거한 측정</small>
 
-## 골드 스폰서
+## 후원자
 
 <!-- sponsors -->
 
@@ -57,7 +57,7 @@ FastAPI는 현대적이고, 빠르며(고성능), 파이썬 표준 타입 힌트
 
 <a href="https://fastapi.tiangolo.com/fastapi-people/#sponsors" class="external-link" target="_blank">다른 스폰서</a>
 
-## 의견들
+## 의견
 
 "_[...] 저는 요즘 **FastAPI**를 많이 사용하고 있습니다. [...] 사실 우리 팀의 **마이크로소프트 ML 서비스** 전부를 바꿀 계획입니다. 그중 일부는 핵심 **Windows**와 몇몇의 **Office** 제품들이 통합되고 있습니다._"
 
@@ -89,9 +89,9 @@ FastAPI는 현대적이고, 빠르며(고성능), 파이썬 표준 타입 힌트
 
 ---
 
-"_REST API를 만들기 위해 **현대적인 프레임워크**를 찾고 있다면 **FastAPI**를 확인해 보십시오. [...] 빠르고, 쓰기 쉽고, 배우기도 쉽습니다 [...]_"
+"_REST API를 만들기 위해 **현대적인 프레임워크**를 찾고 있다면 **FastAPI**를 확인해 봅니다. [...] 빠르고, 쓰기 쉽고, 배우기도 쉽습니다. [...]_"
 
-"_우리 **API**를 **FastAPI**로 바꿨습니다  [...] 아마 여러분도 좋아하실 것입니다 [...]_"
+"_우리 **API**를 **FastAPI**로 바꿨습니다. [...] 아마 여러분도 좋아할 겁니다. [...]_"
 
 <div style="text-align: right; margin-right: 10%;">Ines Montani - Matthew Honnibal - <strong><a href="https://explosion.ai" target="_blank">Explosion AI</a> 설립자 - <a href="https://spacy.io" target="_blank">spaCy</a> 제작자</strong> <a href="https://twitter.com/_inesmontani/status/1144173225322143744" target="_blank"><small>(ref)</small></a> - <a href="https://twitter.com/honnibal/status/1144031421859655680" target="_blank"><small>(ref)</small></a></div>
 
@@ -101,18 +101,18 @@ FastAPI는 현대적이고, 빠르며(고성능), 파이썬 표준 타입 힌트
 
 <a href="https://typer.tiangolo.com" target="_blank"><img src="https://typer.tiangolo.com/img/logo-margin/logo-margin-vector.svg" style="width: 20%;"></a>
 
-웹 API 대신 터미널에서 사용할 <abbr title="Command Line Interface">CLI</abbr> 앱을 만들고 있다면, <a href="https://typer.tiangolo.com/" class="external-link" target="_blank">**Typer**</a>를 확인해 보십시오.
+웹 API 대신 터미널에서 사용할 <abbr title="Command Line Interface">CLI</abbr> 앱을 만들고 있다면, <a href="https://typer.tiangolo.com/" class="external-link" target="_blank">**Typer**</a>를 확인해 봅니다.
 
-**Typer**는 FastAPI의 동생입니다. 그리고 **FastAPI의 CLI**가 되기 위해 생겼습니다. ⌨️ 🚀
+**Typer**는 FastAPI의 동생으로 **FastAPI의 CLI**가 되기 위해 생겼습니다. ⌨️ 🚀
 
 ## 요구사항
 
 Python 3.6+
 
-FastAPI는 거인들의 어깨 위에 서 있습니다:
+FastAPI는 다음과 같은 의존성을 가집니다:
 
-* 웹 부분을 위한 <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a>.
-* 데이터 부분을 위한 <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a>.
+- 웹 부분을 위한 <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a>.
+- 데이터 부분을 위한 <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a>.
 
 ## 설치
 
@@ -126,7 +126,7 @@ $ pip install fastapi
 
 </div>
 
-프로덕션을 위해 <a href="http://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a> 또는 <a href="https://gitlab.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>과 같은 ASGI 서버도 필요할 겁니다.
+프로덕션을 위해 <a href="http://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a> 또는 <a href="https://gitlab.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>과 같은 ASGI 서버도 필요합니다.
 
 <div class="termy">
 
@@ -142,7 +142,7 @@ $ pip install uvicorn[standard]
 
 ### 만들기
 
-* `main.py` 파일을 만드십시오:
+- `main.py` 파일 작성 합니다:
 
 ```Python
 from typing import Union
@@ -163,9 +163,9 @@ def read_item(item_id: int, q: Union[str, None] = None):
 ```
 
 <details markdown="1">
-<summary>또는 <code>async def</code> 사용하기...</summary>
+<summary>또는 <code>async def</code> 사용 할 수 있습니다...</summary>
 
-여러분의 코드가 `async` / `await`을 사용한다면, `async def`를 사용하십시오.
+여러분의 코드가 `async` / `await`을 사용한다면, `async def`를 사용 합니다.
 
 ```Python hl_lines="9 14"
 from typing import Union
@@ -187,13 +187,13 @@ async def read_item(item_id: int, q: Union[str, None] = None):
 
 **Note**:
 
-잘 모르겠다면, <a href="https://fastapi.tiangolo.com/async/#in-a-hurry" target="_blank">문서에서 `async`와 `await`</a>에 관한 _"급하세요?"_ 섹션을 확인해 보십시오.
+잘 모르겠다면, <a href="https://fastapi.tiangolo.com/async/#in-a-hurry" target="_blank">문서에서 `async`와 `await`</a>에 관한 _"In a hurry?"_ 섹션을 확인해 봅니다.
 
 </details>
 
 ### 실행하기
 
-서버를 실행하십시오:
+서버를 실행 합니다:
 
 <div class="termy">
 
@@ -214,17 +214,17 @@ INFO:     Application startup complete.
 
 명령 `uvicorn main:app`은 다음을 나타냅니다:
 
-* `main`: `main.py` 파일 (파이썬 "모듈").
-* `app`: the object created inside of `main.py` with the line `app = FastAPI()`.
-* `--reload`: 코드가 변경된 후 서버 재시작하기. 개발환경에서만 사용하십시오.
+- `main`: `main.py` 파일 (파이썬 "모듈").
+- `app`: the object created inside of `main.py` with the line `app = FastAPI()`.
+- `--reload`: 코드가 변경된 후 서버 재시작하기. 개발환경에서만 사용합니다.
 
 </details>
 
 ### 확인하기
 
-브라우저로 <a href="http://127.0.0.1:8000/items/5?q=somequery" class="external-link" target="_blank">http://127.0.0.1:8000/items/5?q=somequery</a>를 열어보십시오.
+브라우저로 <a href="http://127.0.0.1:8000/items/5?q=somequery" class="external-link" target="_blank">http://127.0.0.1:8000/items/5?q=somequery</a>를 열어 봅니다.
 
-아래의 JSON 응답을 볼 수 있습니다:
+아래의 JSON 응답을 볼 수 있습니다.
 
 ```JSON
 {"item_id": 5, "q": "somequery"}
@@ -232,32 +232,32 @@ INFO:     Application startup complete.
 
 여러분은 벌써 API를 만들었습니다:
 
-* _경로_ `/` 및 `/items/{item_id}`에서 HTTP 요청 받기.
-* 두 _경로_ 모두 `GET` <em>연산</em>(HTTP _메소드_ 로 알려진)을 받습니다.
-* _경로_ `/items/{item_id}`는 _경로 매개변수_ `int`형 이어야 하는 `item_id`를 가지고 있습니다.
-* _경로_ `/items/{item_id}`는 선택적인 `str`형 이어야 하는 _경로 매개변수_ `q`를 가지고 있습니다.
+- _경로_ `/` 및 `/items/{item_id}`에서 HTTP 요청 받기.
+- 두 _경로_ 모두 `GET` (HTTP _methods_ 로 알려진)을 받습니다.
+- _경로_ `/items/{item_id}`는 *경로 매개변수*가 `int`형 이어야 하는 `item_id`를 받습니다.
+- _경로_ `/items/{item_id}`는 optional 로 `str`형 이어야 하는 _경로 매개변수_ `q`를 받습니다.
 
 ### 대화형 API 문서
 
-이제 <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>로 가보십시오.
+이제 <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>로 갑니다.
 
-자동 대화형 API 문서를 볼 수 있습니다 (<a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a> 제공):
+자동 대화형 API 문서를 볼 수 있습니다. (<a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a> 제공):
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-01-swagger-ui-simple.png)
 
 ### 대안 API 문서
 
-그리고 이제 <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>로 가봅시다.
+그리고 이제 <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>로 갑니다.
 
-다른 자동 문서를 볼 수 있습니다(<a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a> 제공):
+다른 자동 문서를 볼 수 있습니다. (<a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a> 제공):
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
 ## 예제 심화
 
-이제 `PUT` 요청에 있는 본문(Body)을 받기 위해 `main.py`를 수정해봅시다.
+이제 `PUT` 요청에 있는 본문(Body)을 받기 위해 `main.py`를 수정 해봅시다.
 
-Pydantic을 이용해 파이썬 표준 타입으로 본문을 선언합니다.
+Pydantic을 이용해 파이썬 표준 타입으로 본문을 선언 합니다.
 
 ```Python hl_lines="4  9 10 11 12  25 26 27"
 from typing import Union
@@ -289,21 +289,21 @@ def update_item(item_id: int, item: Item):
     return {"item_name": item.name, "item_id": item_id}
 ```
 
-서버가 자동으로 리로딩 할 수 있어야 합니다 (위에서 `uvicorn` 명령에 `--reload`을 추가 했기 때문입니다).
+서버가 자동으로 리로딩 할 수 있어야 합니다. (위에서 `uvicorn` 명령에 `--reload`을 추가 했기 때문입니다.)
 
 ### 대화형 API 문서 업그레이드
 
 이제 <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>로 이동합니다.
 
-* 대화형 API 문서가 새 본문과 함께 자동으로 업데이트 합니다:
+- 대화형 API 문서가 새 본문과 함께 자동으로 업데이트 합니다:
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-03-swagger-02.png)
 
-* "Try it out" 버튼을 클릭하면, 매개변수를 채울 수 있게 해주고 직접 API와 상호작용 할 수 있습니다:
+- "Try it out" 버튼을 클릭하면, 매개변수를 채울 수 있게 해주고 직접 API와 상호작용 할 수 있습니다:
 
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-04-swagger-03.png)
 
-* 그러고 나서 "Execute" 버튼을 누르면, 사용자 인터페이스는 API와 통신하고 매개변수를 전송하며 그 결과를 가져와서 화면에 표시합니다:
+- 그러고 나서 "Execute" 버튼을 누르면, 사용자 인터페이스는 API와 통신하고 매개변수를 전송하며 그 결과를 가져와서 화면에 표시합니다:
 
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-05-swagger-04.png)
 
@@ -311,7 +311,7 @@ def update_item(item_id: int, item: Item):
 
 그리고 이제, <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>로 이동합니다.
 
-* 대안 문서 역시 새 쿼리 매개변수와 본문을 반영합니다:
+- 대안 문서 역시 새 쿼리 매개변수와 본문을 반영합니다:
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-06-redoc-02.png)
 
@@ -319,11 +319,11 @@ def update_item(item_id: int, item: Item):
 
 요약하면, 여러분은 매개변수의 타입, 본문 등을 함수 매개변수로서 **한번에** 선언했습니다.
 
-여러분은 현대 표준 파이썬 타입으로 이를 행했습니다.
+여러분은 현대 표준 파이썬 타입으로 이를 이루었습니다.
 
 새로운 문법, 특정 라이브러리의 메소드나 클래스 등을 배울 필요가 없습니다.
 
-그저 표준 **Python 3.6+**입니다.
+이것은 그저 표준 **Python 3.6+**입니다.
 
 예를 들어, `int`에 대해선:
 
@@ -337,7 +337,7 @@ item_id: int
 item: Item
 ```
 
-...그리고 단 하나의 선언으로 여러분이 얻는 것은:
+...그리고 단 하나의 선언으로 아래의 것들을 얻었습니다:
 
 * 다음을 포함한 편집기 지원:
     * 자동완성.
@@ -365,14 +365,14 @@ item: Item
 
 ---
 
-이전 코드 예제로 돌아가서, **FastAPI**는 다음처럼 처리합니다:
+이전 코드 예제로 돌아가서, **FastAPI**는 다음을 처리합니다:
 
-* `GET` 및 `PUT` 요청에 `item_id`가 경로에 있는지 검증.
-* `GET` 및 `PUT` 요청에 `item_id`가 `int` 타입인지 검증.
+* `GET` 및 `PUT` 요청에 `item_id`가 경로에 있는지를 검증함.
+* `GET` 및 `PUT` 요청에 `item_id`가 `int` 타입인지 검증함
     * 그렇지 않다면 클라이언트는 유용하고 명확한 에러를 볼 수 있습니다.
-* `GET` 요청에 `q`라는 선택적인 쿼리 매개변수가 검사(`http://127.0.0.1:8000/items/foo?q=somequery`처럼).
+* `GET` 요청에 `q`라는 선택적인 쿼리 매개변수가 검사(예: `http://127.0.0.1:8000/items/foo?q=somequery`).
     * `q` 매개변수는 `= None`으로 선언되었기 때문에 선택사항입니다.
-    * `None`이 없다면 필수사항입니다(`PUT`의 경우와 마찬가지로).
+    * `None`이 없다면 필수사항입니다. (`PUT`의 경우와 마찬가지로).
 * `/items/{item_id}`으로의 `PUT` 요청은 본문을 JSON으로 읽음:
     * `name`을 필수 속성으로 갖고 `str` 형인지 검사.
     * `price`을 필수 속성으로 갖고 `float` 형인지 검사.
@@ -388,7 +388,7 @@ item: Item
 
 우리는 그저 수박 겉핡기만 했을 뿐인데 여러분은 벌써 어떻게 작동하는지 알고 있습니다.
 
-다음 줄을 바꿔보십시오:
+다음 줄을 바꿔봅니다:
 
 ```Python
     return {"item_name": item.name, "item_id": item_id}
@@ -406,13 +406,13 @@ item: Item
         ... "item_price": item.price ...
 ```
 
-...그러고 나서 여러분의 편집기가 속성과 타입을 알고 자동 완성하는지 보십시오:
+...그러고 나서 여러분의 편집기가 속성과 타입을 알고 자동 완성하는지 봅니다:
 
 ![editor support](https://fastapi.tiangolo.com/img/vscode-completion.png)
 
-더 많은 기능을 포함한 보다 완전한 예제의 경우, <a href="https://fastapi.tiangolo.com/tutorial/">튜토리얼 - 사용자 가이드</a>를 보십시오.
+더 많은 기능을 포함한 보다 상세 예제를 확인하고 싶은 경우, <a href="https://fastapi.tiangolo.com/tutorial/">튜토리얼 - 사용자 가이드</a>를 봅니다.
 
-**스포일러 주의**: 튜토리얼 - 사용자 가이드는:
+**스포일러 주의**: 튜토리얼 - 사용자 가이드:
 
 * 서로 다른 장소에서 **매개변수** 선언: **헤더**, **쿠키**, **폼 필드** 그리고 **파일**.
 * `maximum_length` 또는 `regex`처럼 **유효성 제약**하는 방법.
@@ -429,9 +429,9 @@ item: Item
 
 ## 성능
 
-독립된 TechEmpower 벤치마크에서 Uvicorn에서 작동하는 FastAPI 어플리케이션이 <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">사용 가능한 가장 빠른 프레임워크 중 하나</a>로 Starlette와 Uvicorn(FastAPI에서 내부적으로 사용)에만 밑돌고 있습니다. (*)
+독립된 TechEmpower 벤치마크에서 Uvicorn에서 작동하는 FastAPI 어플리케이션이 <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">사용 가능한 가장 빠른 프레임워크 중 하나</a>로 Starlette와 Uvicorn(FastAPI에서 내부적으로 사용)에 밑돌고 있습니다. (*)
 
-자세한 내용은 <a href="https://fastapi.tiangolo.com/benchmarks/" class="internal-link" target="_blank">벤치마크</a> 섹션을 보십시오.
+자세한 내용은 <a href="https://fastapi.tiangolo.com/benchmarks/" class="internal-link" target="_blank">벤치마크</a> 섹션을 봅니다.
 
 ## 선택가능한 의존성
 
@@ -452,8 +452,8 @@ Starlette이 사용하는:
 
 FastAPI / Starlette이 사용하는:
 
-* <a href="http://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - 애플리케이션을 로드하고 제공하는 서버.
-* <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - `ORJSONResponse`을 사용하려면 필요.
+- <a href="http://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - 애플리케이션을 로드하고 제공하는 서버.
+- <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - `ORJSONResponse`을 사용하려면 필요.
 
 `pip install fastapi[all]`를 통해 이 모두를 설치 할 수 있습니다.
 
