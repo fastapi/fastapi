@@ -3,7 +3,7 @@ import re
 import warnings
 from dataclasses import is_dataclass
 from enum import Enum
-from typing import TYPE_CHECKING, Any, Dict, Optional, Set, Type, Union, cast
+from typing import TYPE_CHECKING, Any, Callable, Dict, Optional, Set, Type, Union, cast
 
 import fastapi
 from fastapi.datastructures import DefaultPlaceholder, DefaultType
@@ -16,6 +16,12 @@ from pydantic.utils import lenient_issubclass
 
 if TYPE_CHECKING:  # pragma: nocover
     from .routing import APIRoute
+
+
+def get_return_type_of_callable(endpoint: Callable) -> Union[type, None]:
+    if issubclass(type(endpoint), functools.partial):
+        endpoint = endpoint.func
+    return endpoint.__annotations__.get("return")
 
 
 def is_body_allowed_for_status_code(status_code: Union[int, str, None]) -> bool:

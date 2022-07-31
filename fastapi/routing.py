@@ -4,7 +4,6 @@ import email.message
 import inspect
 import json
 from enum import Enum, IntEnum
-from functools import partial
 from typing import (
     Any,
     Callable,
@@ -35,6 +34,7 @@ from fastapi.utils import (
     create_cloned_field,
     create_response_field,
     generate_unique_id,
+    get_return_type_of_callable,
     get_value_or_default,
     is_body_allowed_for_status_code,
 )
@@ -347,15 +347,9 @@ class APIRoute(routing.Route):
     ) -> None:
         self.path = path
         self.endpoint = endpoint
-        self.response_model = response_model
-        if type(endpoint) != partial:
-            self.response_model = response_model or endpoint.__annotations__.get(
-                "return"
-            )
-        else:
-            self.response_model = response_model or endpoint.func.__annotations__.get(
-                "return"
-            )
+        self.response_model = (
+            response_model if response_model else get_return_type_of_callable(endpoint)
+        )
         self.summary = summary
         self.response_description = response_description
         self.deprecated = deprecated
