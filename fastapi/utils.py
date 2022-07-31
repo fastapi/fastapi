@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import functools
 import re
 import warnings
@@ -19,7 +21,7 @@ if TYPE_CHECKING:  # pragma: nocover
 
 
 def get_return_type_of_callable(
-    endpoint: Union[functools.partial[Any], Callable[..., Any]]
+    endpoint: Union[Type[functools.partial[Any]], Callable[..., Any]]
 ) -> Union[type, None]:
     if isinstance(endpoint, functools.partial):
         c = endpoint.func
