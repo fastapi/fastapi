@@ -1,6 +1,7 @@
 import asyncio
 import dataclasses
 import email.message
+from functools import partial
 import inspect
 import json
 from enum import Enum, IntEnum
@@ -347,9 +348,12 @@ class APIRoute(routing.Route):
         self.path = path
         self.endpoint = endpoint
         self.response_model = response_model
+        if type(endpoint) != partial:
+            self.response_model = response_model or endpoint.__annotations__.get("return")
+        else:
+            self.response_model = response_model or endpoint.func.__annotations__.get("return")
         self.summary = summary
         self.response_description = response_description
-        
         self.deprecated = deprecated
         self.operation_id = operation_id
         self.response_model_include = response_model_include
