@@ -1,10 +1,10 @@
 import functools
-from inspect import isclass
 import re
 import warnings
 from dataclasses import is_dataclass
 from enum import Enum
 from typing import TYPE_CHECKING, Any, Callable, Dict, Optional, Set, Type, Union, cast
+
 import fastapi
 from fastapi.datastructures import DefaultPlaceholder, DefaultType
 from fastapi.openapi.constants import REF_PREFIX
@@ -18,7 +18,9 @@ if TYPE_CHECKING:  # pragma: nocover
     from .routing import APIRoute
 
 
-def get_return_type_of_callable(endpoint: Union[functools.partial[Any], Callable[..., Any]]) -> Union[type, None]:
+def get_return_type_of_callable(
+    endpoint: Union[functools.partial[Any], Callable[..., Any]]
+) -> Union[type, None]:
     if isinstance(endpoint, functools.partial):
         c = endpoint.func
     else:
