@@ -349,6 +349,7 @@ class APIRoute(routing.Route):
         self.response_model = response_model
         self.summary = summary
         self.response_description = response_description
+        
         self.deprecated = deprecated
         self.operation_id = operation_id
         self.response_model_include = response_model_include
