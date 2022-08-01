@@ -18,6 +18,13 @@ if TYPE_CHECKING:  # pragma: nocover
     from .routing import APIRoute
 
 
+def is_body_allowed_for_status_code(status_code: Union[int, str, None]) -> bool:
+    if status_code is None:
+        return True
+    current_status_code = int(status_code)
+    return not (current_status_code < 200 or current_status_code in {204, 304})
+
+
 def get_model_definitions(
     *,
     flat_models: Set[Union[Type[BaseModel], Type[Enum]]],
