@@ -267,12 +267,14 @@ def get_graphql_response(
 ):
     headers = {"Authorization": f"token {settings.input_token.get_secret_value()}"}
     variables = {"after": after}
+    httpx_time_out = httpx.Timeout(read=30)
     response = httpx.post(
         github_graphql_url,
         headers=headers,
+        timeout=httpx_time_out,
         json={"query": query, "variables": variables, "operationName": "Q"},
     )
-    if not response.status_code == 200:
+    if response.status_code != 200:
         logging.error(f"Response was not 200, after: {after}")
         logging.error(response.text)
         raise RuntimeError(response.text)
