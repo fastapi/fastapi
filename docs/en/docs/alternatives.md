@@ -235,7 +235,7 @@ It was one of the first extremely fast Python frameworks based on `asyncio`. It 
 
 !!! check "Inspired **FastAPI** to"
     Find a way to have a crazy performance.
-    
+
     That's why **FastAPI** is based on Starlette, as it is the fastest framework available (tested by third-party benchmarks).
 
 ### <a href="https://falconframework.org/" class="external-link" target="_blank">Falcon</a>
@@ -333,7 +333,7 @@ Now APIStar is a set of tools to validate OpenAPI specifications, not a web fram
     Exist.
 
     The idea of declaring multiple things (data validation, serialization and documentation) with the same Python types, that at the same time provided great editor support, was something I considered a brilliant idea.
-    
+
     And after searching for a long time for a similar framework and testing many different alternatives, APIStar was the best option available.
 
     Then APIStar stopped to exist as a server and Starlette was created, and was a new better foundation for such a system. That was the final inspiration to build **FastAPI**.
@@ -391,7 +391,7 @@ That's one of the main things that **FastAPI** adds on top, all based on Python 
     Handle all the core web parts. Adding features on top.
 
     The class `FastAPI` itself inherits directly from the class `Starlette`.
-    
+
     So, anything that you can do with Starlette, you can do it directly with **FastAPI**, as it is basically Starlette on steroids.
 
 ### <a href="https://www.uvicorn.org/" class="external-link" target="_blank">Uvicorn</a>
