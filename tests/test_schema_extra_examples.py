@@ -1,3 +1,5 @@
+from typing import Union
+
 from fastapi import Body, Cookie, FastAPI, Header, Path, Query
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
@@ -18,14 +20,13 @@ def schema_extra(item: Item):
 
 
 @app.post("/example/")
-def example(item: Item = Body(..., example={"data": "Data in Body example"})):
+def example(item: Item = Body(example={"data": "Data in Body example"})):
     return item
 
 
 @app.post("/examples/")
 def examples(
     item: Item = Body(
-        ...,
         examples={
             "example1": {
                 "summary": "example1 summary",
@@ -41,7 +42,6 @@ def examples(
 @app.post("/example_examples/")
 def example_examples(
     item: Item = Body(
-        ...,
         example={"data": "Overriden example"},
         examples={
             "example1": {"value": {"data": "examples example_examples 1"}},
@@ -55,7 +55,7 @@ def example_examples(
 # TODO: enable these tests once/if Form(embed=False) is supported
 # TODO: In that case, define if File() should support example/examples too
 # @app.post("/form_example")
-# def form_example(firstname: str = Form(..., example="John")):
+# def form_example(firstname: str = Form(example="John")):
 #     return firstname
 
 
@@ -89,7 +89,6 @@ def example_examples(
 @app.get("/path_example/{item_id}")
 def path_example(
     item_id: str = Path(
-        ...,
         example="item_1",
     ),
 ):
@@ -99,7 +98,6 @@ def path_example(
 @app.get("/path_examples/{item_id}")
 def path_examples(
     item_id: str = Path(
-        ...,
         examples={
             "example1": {"summary": "item ID summary", "value": "item_1"},
             "example2": {"value": "item_2"},
@@ -112,7 +110,6 @@ def path_examples(
 @app.get("/path_example_examples/{item_id}")
 def path_example_examples(
     item_id: str = Path(
-        ...,
         example="item_overriden",
         examples={
             "example1": {"summary": "item ID summary", "value": "item_1"},
@@ -125,8 +122,8 @@ def path_example_examples(
 
 @app.get("/query_example/")
 def query_example(
-    data: str = Query(
-        None,
+    data: Union[str, None] = Query(
+        default=None,
         example="query1",
     ),
 ):
@@ -135,8 +132,8 @@ def query_example(
 
 @app.get("/query_examples/")
 def query_examples(
-    data: str = Query(
-        None,
+    data: Union[str, None] = Query(
+        default=None,
         examples={
             "example1": {"summary": "Query example 1", "value": "query1"},
             "example2": {"value": "query2"},
@@ -148,8 +145,8 @@ def query_examples(
 
 @app.get("/query_example_examples/")
 def query_example_examples(
-    data: str = Query(
-        None,
+    data: Union[str, None] = Query(
+        default=None,
         example="query_overriden",
         examples={
             "example1": {"summary": "Qeury example 1", "value": "query1"},
@@ -162,8 +159,8 @@ def query_example_examples(
 
 @app.get("/header_example/")
 def header_example(
-    data: str = Header(
-        None,
+    data: Union[str, None] = Header(
+        default=None,
         example="header1",
     ),
 ):
@@ -172,8 +169,8 @@ def header_example(
 
 @app.get("/header_examples/")
 def header_examples(
-    data: str = Header(
-        None,
+    data: Union[str, None] = Header(
+        default=None,
         examples={
             "example1": {"summary": "header example 1", "value": "header1"},
             "example2": {"value": "header2"},
@@ -185,8 +182,8 @@ def header_examples(
 
 @app.get("/header_example_examples/")
 def header_example_examples(
-    data: str = Header(
-        None,
+    data: Union[str, None] = Header(
+        default=None,
         example="header_overriden",
         examples={
             "example1": {"summary": "Qeury example 1", "value": "header1"},
@@ -199,8 +196,8 @@ def header_example_examples(
 
 @app.get("/cookie_example/")
 def cookie_example(
-    data: str = Cookie(
-        None,
+    data: Union[str, None] = Cookie(
+        default=None,
         example="cookie1",
     ),
 ):
@@ -209,8 +206,8 @@ def cookie_example(
 
 @app.get("/cookie_examples/")
 def cookie_examples(
-    data: str = Cookie(
-        None,
+    data: Union[str, None] = Cookie(
+        default=None,
         examples={
             "example1": {"summary": "cookie example 1", "value": "cookie1"},
             "example2": {"value": "cookie2"},
@@ -222,8 +219,8 @@ def cookie_examples(
 
 @app.get("/cookie_example_examples/")
 def cookie_example_examples(
-    data: str = Cookie(
-        None,
+    data: Union[str, None] = Cookie(
+        default=None,
         example="cookie_overriden",
         examples={
             "example1": {"summary": "Qeury example 1", "value": "cookie1"},
@@ -830,7 +827,7 @@ openapi_schema = {
                     "loc": {
                         "title": "Location",
                         "type": "array",
-                        "items": {"type": "string"},
+                        "items": {"anyOf": [{"type": "string"}, {"type": "integer"}]},
                     },
                     "msg": {"title": "Message", "type": "string"},
                     "type": {"title": "Error Type", "type": "string"},

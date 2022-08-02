@@ -139,7 +139,7 @@ Pythonのformat文字列と同様のシンタックスで「パスパラメー�
 
 ### *パスパラメータ*の宣言
 
-次に、作成したenumクラスである`ModelName`を使用した型アノテーションをもつ*パスパラメータ*を作成します: 
+次に、作成したenumクラスである`ModelName`を使用した型アノテーションをもつ*パスパラメータ*を作成します:
 
 ```Python hl_lines="16"
 {!../../../docs_src/path_params/tutorial005.py!}
