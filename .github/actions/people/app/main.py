@@ -260,6 +260,7 @@ class Settings(BaseSettings):
     input_token: SecretStr
     input_standard_token: SecretStr
     github_repository: str
+    http_read_time_out: int = 30
 
 
 def get_graphql_response(
@@ -267,7 +268,7 @@ def get_graphql_response(
 ):
     headers = {"Authorization": f"token {settings.input_token.get_secret_value()}"}
     variables = {"after": after}
-    httpx_time_out = httpx.Timeout(read=30)
+    httpx_time_out = httpx.Timeout(read=settings.http_read_time_out)
     response = httpx.post(
         github_graphql_url,
         headers=headers,
