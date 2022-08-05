@@ -64,17 +64,17 @@ my_second_user: User = User(**second_user_data)
 ```
 
 !!! info "정보"
-`**second_user_data` 가 의미하는 것은:
+    `**second_user_data` 는 의미하는 것은 이렇습니다.
 
     `second_user_data` 딕셔너리(dict) 내의 모든 키(key)와 값(value)들을 key-value 형태의 파라미터로 전부 넘긴다는 뜻입니다. 즉, `User(id=4, name="Mary", joined="2018-11-30")` 와 같은 코드가 됩니다.
 
 ### 에디터 지원
 
-All the framework was designed to be easy and intuitive to use, all the decisions were tested on multiple editors even before starting development, to ensure the best development experience.
+모든 프레임워크는 사용하기 쉽고 직관적으로 사용할 수 있도록 설계되었습니다. 그리고 모든 내용은 개발을 시작하기 전에 여러 에디터에서 테스트된 최고의 개발 경험을 보장받을 수 있도록 결정되었습니다.
 
 최근 파이썬 개발자 설문에서, <a href="https://www.jetbrains.com/research/python-developers-survey-2017/#tools-and-features" class="external-link" target="_blank">가장 많이 사용하는 기능은 "자동완성"</a>이었습니다.
 
-**FastAPI** 프레임워크 전체는 이걸 만족합니다. 어디서든 자동완성 할 수 있습니다.
+**FastAPI** 프레임워크 전체에서 이걸 만족합니다. 어디서든 자동완성 할 수 있습니다.
 
 문서를 보러 오는 일이 거의 없을겁니다.
 
@@ -136,7 +136,6 @@ OpenAPI에 정의된 보안 스키마들은 다음과 같습니다:
 FastAPI는 매우 사용하기 쉽고 매우 강력한 <abbr title='"컴포넌트", "리소스", "서비스", "providers" 등으로 알려진'><strong>의존성 주입(Dependency Injection)</strong></abbr> 시스템을 갖고 있습니다.
 
 - 의존성이 다른 의존성을 갖고 있다면, 의존성 계층 구조나 **의존성 "그래프"** 를 만듭니다.
-- All **automatically handled** by the framework.
 - 프레임워크에서 전부 **자동으로 처리**됩니다.
 - All the dependencies can require data from requests and **augment the path operation** constraints and automatic documentation.
 - **자동 검증**은 _path operation_ 파라미터에도 의존성을 정의할 수 있습니다.
