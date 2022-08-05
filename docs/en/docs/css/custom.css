@@ -4,8 +4,19 @@
   display: block;
 }
 
+.termy {
+  /* For right to left languages */
+  direction: ltr;
+}
+
 .termy [data-termynal] {
   white-space: pre-wrap;
+}
+
+a.external-link {
+  /* For right to left languages */
+  direction: ltr;
+  display: inline-block;
 }
 
 a.external-link::after {
@@ -117,4 +128,14 @@ a.announce-link:hover {
 
 .twitter {
   color: #00acee;
+}
+
+/* Right to left languages */
+code {
+  direction: ltr;
+  display: inline-block;
+}
+
+.md-content__inner h1 {
+  direction: ltr !important;
 }
