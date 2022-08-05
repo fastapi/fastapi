@@ -1,9 +1,9 @@
 from typing import Union
 
-from couchbase.options import LockMode
+from couchbase.auth import PasswordAuthenticator
 from couchbase.bucket import Bucket
 from couchbase.cluster import Cluster, ClusterOptions
-from couchbase.auth import PasswordAuthenticator
+from couchbase.options import LockMode
 from fastapi import FastAPI
 from pydantic import BaseModel
 
@@ -13,7 +13,7 @@ USERPROFILE_DOC_TYPE = "userprofile"
 def get_bucket():
     cluster = Cluster(
         "couchbase://couchbasehost:8091?fetch_mutation_tokens=1&operation_timeout=30&n1ql_timeout=300",
-        ClusterOptions(PasswordAuthenticator("username", "password"))
+        ClusterOptions(PasswordAuthenticator("username", "password")),
     )
     bucket: Bucket = cluster.open_bucket("bucket_name", lockmode=LockMode.WAIT)
     bucket.timeout = 30
