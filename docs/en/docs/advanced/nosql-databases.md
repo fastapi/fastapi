@@ -19,7 +19,7 @@ You can adapt it to any other NoSQL database like:
 
 For now, don't pay attention to the rest, only the imports:
 
-```Python hl_lines="3-5"
+```Python hl_lines="3-6"
 {!../../../docs_src/nosql_databases/tutorial001.py!}
 ```
 
@@ -29,7 +29,7 @@ We will use it later as a fixed field `type` in our documents.
 
 This is not required by Couchbase, but is a good practice that will help you afterwards.
 
-```Python hl_lines="9"
+```Python hl_lines="10"
 {!../../../docs_src/nosql_databases/tutorial001.py!}
 ```
 
@@ -54,7 +54,7 @@ This utility function will:
     * Set defaults for timeouts.
 * Return it.
 
-```Python hl_lines="12-21"
+```Python hl_lines="13-21"
 {!../../../docs_src/nosql_databases/tutorial001.py!}
 ```
 
