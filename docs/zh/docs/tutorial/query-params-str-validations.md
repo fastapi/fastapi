@@ -128,9 +128,9 @@ q: Union[str, None] = Query(default=None, min_length=3)
 ```
 
 !!! info
-    如果你之前没见过 `...` 这种用法：它是一个特殊的单独值，它是 <a href="https://docs.python.org/3/library/constants.html#Ellipsis" class="external-link" target="_blank">Python 的一部分并且被称为「省略号」</a>。  
+    如果你之前没见过 `...` 这种用法：它是一个特殊的单独值，它是 <a href="https://docs.python.org/3/library/constants.html#Ellipsis" class="external-link" target="_blank">Python 的一部分并且被称为「省略号」</a>。
     Pydantic 和 FastAPI 使用它来显式的声明需要一个值。
-     
+
 这将使 **FastAPI** 知道此查询参数是必需的。
 
 ### 使用`None`声明必需参数
@@ -156,7 +156,7 @@ q: Union[str, None] = Query(default=None, min_length=3)
 
 !!! tip
     请记住，在大多数情况下，当你需要某些东西时，可以简单地省略 `default` 参数，因此你通常不必使用 `...` 或 `Required`
-    
+
 
 ## 查询参数列表 / 多个值
 
