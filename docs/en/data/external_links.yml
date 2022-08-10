@@ -212,6 +212,10 @@ articles:
     author_link: https://twitter.com/MantoshMukul
     link: https://www.jetbrains.com/pycharm/guide/tutorials/fastapi-aws-kubernetes/
     title: Developing FastAPI Application using K8s & AWS
+  - author: New Relic
+    author_link: https://newrelic.com
+    link: https://newrelic.com/instant-observability/fastapi/e559ec64-f765-4470-a15f-1901fcebb468
+    title: How to monitor FastAPI application performance using Python agent
   german:
   - author: Nico Axtmann
     author_link: https://twitter.com/_nicoax
