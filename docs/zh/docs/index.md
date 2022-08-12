@@ -28,7 +28,7 @@ FastAPI 是一个用于构建 API 的现代、快速（高性能）的 web 框�
 
 关键特性:
 
-* **快速**：可与 **NodeJS** 和 **Go** 并肩的极高性能（归功于 Starlette 和 Pydantic）。[最快的 Python web 框架之一](#_11)。
+* **快速**：比 **NodeJS** 更高的性能（归功于 Starlette 和 Pydantic）。[最快的 Python web 框架之一](#_11)。
 
 * **高效编码**：提高功能开发速度约 200％ 至 300％。*
 * **更少 bug**：减少约 40％ 的人为（开发者）导致错误。*
@@ -429,7 +429,7 @@ item: Item
 
 ## 性能
 
-独立机构 TechEmpower 所作的基准测试结果显示，基于 Uvicorn 运行的 **FastAPI** 程序是 <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">最快的 Python web 框架之一</a>，仅次于 Starlette 和 Uvicorn 本身（FastAPI 内部使用了它们）。(*)
+独立机构 TechEmpower 所作的基准测试结果显示，基于 Uvicorn 运行的 **FastAPI** 程序是 <a href="https://www.techempower.com/benchmarks/#section=data-r21&test=query" class="external-link" target="_blank">最快的 Python web 框架之一</a>，仅次于 Starlette 和 Uvicorn 本身（FastAPI 内部使用了它们）。(*)
 
 想了解更多，请查阅 <a href="https://fastapi.tiangolo.com/benchmarks/" class="internal-link" target="_blank">基准测试</a> 章节。
 
