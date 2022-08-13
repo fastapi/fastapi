@@ -86,6 +86,7 @@ nav:
   - advanced/response-directly.md
   - advanced/custom-response.md
   - advanced/conditional-openapi.md
+  - advanced/events.md
 - async.md
 - デプロイ:
   - deployment/index.md
