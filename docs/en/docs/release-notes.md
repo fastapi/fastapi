@@ -2,6 +2,7 @@
 
 ## Latest Changes
 
+* 🌐 Add Portuguese translation for `docs/pt/docs/tutorial/query-params.md`. PR [#4775](https://github.com/tiangolo/fastapi/pull/4775) by [@batlopes](https://github.com/batlopes).
 * 🌐 Add Portuguese translation for `docs/pt/docs/tutorial/security/first-steps.md`. PR [#4954](https://github.com/tiangolo/fastapi/pull/4954) by [@FLAIR7](https://github.com/FLAIR7).
 * 🌐 Add translation for `docs/zh/docs/advanced/response-cookies.md`. PR [#4638](https://github.com/tiangolo/fastapi/pull/4638) by [@zhangbo2012](https://github.com/zhangbo2012).
 * ✏ Fix typo in `python-types.md`. PR [#5116](https://github.com/tiangolo/fastapi/pull/5116) by [@Kludex](https://github.com/Kludex).
