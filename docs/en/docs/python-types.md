@@ -267,7 +267,7 @@ You can declare that a variable can be any of **several types**, for example, an
 
 In Python 3.6 and above (including Python 3.10) you can use the `Union` type from `typing` and put inside the square brackets the possible types to accept.
 
-In Python 3.10 there's also an **alternative syntax** were you can put the possible types separated by a <abbr title='also called "bitwise or operator", but that meaning is not relevant here'>vertical bar (`|`)</abbr>.
+In Python 3.10 there's also an **alternative syntax** where you can put the possible types separated by a <abbr title='also called "bitwise or operator", but that meaning is not relevant here'>vertical bar (`|`)</abbr>.
 
 === "Python 3.6 and above"
 
