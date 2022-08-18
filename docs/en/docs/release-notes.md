@@ -2,6 +2,7 @@
 
 ## Latest Changes
 
+* 📝 Add note giving credit for illustrations to Ketrina Thompson. PR [#5284](https://github.com/tiangolo/fastapi/pull/5284) by [@tiangolo](https://github.com/tiangolo).
 ### Fixes
 
 * 🐛 Fix `jsonable_encoder` using `include` and `exclude` parameters for non-Pydantic objects. PR [#2606](https://github.com/tiangolo/fastapi/pull/2606) by [@xaviml](https://github.com/xaviml).
