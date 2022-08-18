@@ -72,6 +72,7 @@ nav:
   - deployment/docker.md
 - project-generation.md
 - alternatives.md
+- history-design-future.md
 - external-links.md
 markdown_extensions:
 - toc:
