@@ -2,6 +2,9 @@ gold:
   - url: https://bit.ly/3dmXC5S
     title: The data structure for unstructured multimodal data
     img: https://fastapi.tiangolo.com/img/sponsors/docarray.svg
+  - url: https://bit.ly/3JJ7y5C
+    title: Build cross-modal and multimodal applications on the cloud
+    img: https://fastapi.tiangolo.com/img/sponsors/jina2.svg
   - url: https://cryptapi.io/
     title: "CryptAPI: Your easy to use, secure and privacy oriented payment gateway."
     img: https://fastapi.tiangolo.com/img/sponsors/cryptapi.svg
@@ -11,9 +14,6 @@ gold:
   - url: https://doist.com/careers/9B437B1615-wa-senior-backend-engineer-python
     title: Help us migrate doist to FastAPI
     img: https://fastapi.tiangolo.com/img/sponsors/doist.svg
-  - url: https://bit.ly/3JJ7y5C
-    title: Build cross-modal and multimodal applications on the cloud
-    img: https://fastapi.tiangolo.com/img/sponsors/jina2.svg
 silver:
   - url: https://www.deta.sh/?ref=fastapi
     title: The launchpad for all your (team's) ideas
