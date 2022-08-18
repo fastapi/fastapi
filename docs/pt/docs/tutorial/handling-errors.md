@@ -157,7 +157,7 @@ path -> item_id
 
 ### `RequestValidationError` vs `ValidationError`
 
-!!! atenção
+!!! warning "Aviso"
     Você pode pular estes detalhes técnicos caso eles não sejam importantes para você neste momento.
 
 `RequestValidationError` é uma subclasse do <a href="https://pydantic-docs.helpmanual.io/#error-handling" class="external-link" target="_blank">`ValidationError`</a> existente no Pydantic.
