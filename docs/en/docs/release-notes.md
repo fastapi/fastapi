@@ -2,7 +2,6 @@
 
 ## Latest Changes
 
-* 📝 Add note giving credit for illustrations to Ketrina Thompson. PR [#5284](https://github.com/tiangolo/fastapi/pull/5284) by [@tiangolo](https://github.com/tiangolo).
 ### Fixes
 
 * 🐛 Fix `jsonable_encoder` using `include` and `exclude` parameters for non-Pydantic objects. PR [#2606](https://github.com/tiangolo/fastapi/pull/2606) by [@xaviml](https://github.com/xaviml).
@@ -11,6 +10,7 @@
 
 ### Docs
 
+* 📝 Add note giving credit for illustrations to [Ketrina Thompson](https://www.instagram.com/ketrinadrawsalot/). PR [#5284](https://github.com/tiangolo/fastapi/pull/5284) by [@tiangolo](https://github.com/tiangolo).
 * ✏ Fix typo in `python-types.md`. PR [#5116](https://github.com/tiangolo/fastapi/pull/5116) by [@Kludex](https://github.com/Kludex).
 * ✏ Fix typo in `docs/en/docs/python-types.md`. PR [#5007](https://github.com/tiangolo/fastapi/pull/5007) by [@atiabbz](https://github.com/atiabbz).
 * 📝 Remove unneeded Django/Flask references from async topic intro. PR [#5280](https://github.com/tiangolo/fastapi/pull/5280) by [@carltongibson](https://github.com/carltongibson).
