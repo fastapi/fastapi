@@ -8,6 +8,11 @@ With it, you can use <a href="https://docs.pytest.org/" class="external-link" ta
 
 ## Using `TestClient`
 
+!!! info
+    To use `TestClient`, first install <a href="https://github.com/psf/requests" class="external-link" target="_blank">`requests`</a>.
+
+    E.g. `pip install requests`.
+
 Import `TestClient`.
 
 Create a `TestClient` by passing your **FastAPI** application to it.
