@@ -223,7 +223,9 @@ def get_openapi_path(
             parameters.extend(operation_parameters)
             if parameters:
                 operation["parameters"] = list(
-                    {param["name"]: param for param in parameters}.values()
+                    {
+                        (param["in"], param["name"]): param for param in parameters
+                    }.values()
                 )
             if method in METHODS_WITH_BODY:
                 request_body_oai = get_openapi_operation_request_body(
