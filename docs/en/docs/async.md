@@ -232,11 +232,7 @@ This "waiting" 🕙 is measured in microseconds, but still, summing it all, it's
 
 That's why it makes a lot of sense to use asynchronous ⏸🔀⏯ code for web APIs.
 
-Most of the existing popular Python frameworks (including Flask and Django) were created before the new asynchronous features in Python existed. So, the ways they can be deployed support parallel execution and an older form of asynchronous execution that is not as powerful as the new capabilities.
-
-Even though the main specification for asynchronous web Python (ASGI) was developed at Django, to add support for WebSockets.
-
-That kind of asynchronicity is what made NodeJS popular (even though NodeJS is not parallel) and that's the strength of Go as a programming language.
+This kind of asynchronicity is what made NodeJS popular (even though NodeJS is not parallel) and that's the strength of Go as a programming language.
 
 And that's the same level of performance you get with **FastAPI**.
 
