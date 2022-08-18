@@ -67,11 +67,11 @@ class ModelWithConfig(BaseModel):
 
 
 class ModelWithAlias(BaseModel):
-    foo: str = Field(..., alias="Foo")
+    foo: str = Field(alias="Foo")
 
 
 class ModelWithDefault(BaseModel):
-    foo: str = ...
+    foo: str = ...  # type: ignore
     bar: str = "bar"
     bla: str = "bla"
 
@@ -88,7 +88,7 @@ def fixture_model_with_path(request):
         arbitrary_types_allowed = True
 
     ModelWithPath = create_model(
-        "ModelWithPath", path=(request.param, ...), __config__=Config
+        "ModelWithPath", path=(request.param, ...), __config__=Config  # type: ignore
     )
     return ModelWithPath(path=request.param("/foo", "bar"))
 
@@ -159,6 +159,21 @@ def test_custom_encoders():
         instance, custom_encoder={safe_datetime: lambda o: o.isoformat()}
     )
     assert encoded_instance["dt_field"] == instance.dt_field.isoformat()
+
+
+def test_custom_enum_encoders():
+    def custom_enum_encoder(v: Enum):
+        return v.value.lower()
+
+    class MyEnum(Enum):
+        ENUM_VAL_1 = "ENUM_VAL_1"
+
+    instance = MyEnum.ENUM_VAL_1
+
+    encoded_instance = jsonable_encoder(
+        instance, custom_encoder={MyEnum: custom_enum_encoder}
+    )
+    assert encoded_instance == custom_enum_encoder(instance)
 
 
 def test_encode_model_with_path(model_with_path):

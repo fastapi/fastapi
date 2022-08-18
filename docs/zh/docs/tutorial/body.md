@@ -73,7 +73,7 @@
     * 如果数据无效，将返回一条清晰易读的错误信息，指出不正确数据的确切位置和内容。
 * 将接收的数据赋值到参数 `item` 中。
     * 由于你已经在函数中将它声明为 `Item` 类型，你还将获得对于所有属性及其类型的一切编辑器支持（代码补全等）。
-* 为你的模型生成 <a href="http://json-schema.org" class="external-link" target="_blank">JSON 模式</a> 定义，你还可以在其他任何对你的项目有意义的地方使用它们。
+* 为你的模型生成 <a href="https://json-schema.org" class="external-link" target="_blank">JSON 模式</a> 定义，你还可以在其他任何对你的项目有意义的地方使用它们。
 * 这些模式将成为生成的 OpenAPI 模式的一部分，并且被自动化文档 <abbr title="用户界面">UI</abbr> 所使用。
 
 ## 自动化文档
