@@ -1,5 +1,17 @@
 articles:
   english:
+  - author: Jean-Baptiste Rocher
+    author_link: https://hashnode.com/@jibrocher
+    link: https://dev.indooroutdoor.io/series/fastapi-react-poll-app
+    title: Building the Poll App From Django Tutorial With FastAPI And React
+  - author: Silvan Melchior
+    author_link: https://github.com/silvanmelchior
+    link: https://blog.devgenius.io/seamless-fastapi-configuration-with-confz-90949c14ea12
+    title: Seamless FastAPI Configuration with ConfZ
+  - author: Kaustubh Gupta
+    author_link: https://medium.com/@kaustubhgupta1828/
+    link: https://levelup.gitconnected.com/5-advance-features-of-fastapi-you-should-try-7c0ac7eebb3e
+    title: 5 Advanced Features of FastAPI You Should Try
   - author: Kaustubh Gupta
     author_link: https://medium.com/@kaustubhgupta1828/
     link: https://www.analyticsvidhya.com/blog/2021/06/deploying-ml-models-as-api-using-fastapi-and-heroku/
@@ -12,6 +24,10 @@ articles:
     author_link: https://pystar.substack.com/
     link: https://pystar.substack.com/p/how-to-create-a-fake-certificate
     title: How to Create A Fake Certificate Authority And Generate TLS Certs for FastAPI
+  - author: Ben Gamble
+    author_link: https://uk.linkedin.com/in/bengamble7
+    link: https://ably.com/blog/realtime-ticket-booking-solution-kafka-fastapi-ably
+    title: Building a realtime ticket booking solution with Kafka, FastAPI, and Ably
   - author: Shahriyar(Shako) Rzayev
     author_link: https://www.linkedin.com/in/shahriyar-rzayev/
     link: https://www.azepug.az/posts/fastapi/#building-simple-e-commerce-with-nuxtjs-and-fastapi-series
@@ -20,6 +36,10 @@ articles:
     author_link: https://rodrigo-arenas.medium.com/
     link: https://medium.com/analytics-vidhya/serve-a-machine-learning-model-using-sklearn-fastapi-and-docker-85aabf96729b
     title: "Serve a machine learning model using Sklearn, FastAPI and Docker"
+  - author: Yashasvi Singh
+    author_link: https://hashnode.com/@aUnicornDev
+    link: https://aunicorndev.hashnode.dev/series/supafast-api
+    title: "Building an API with FastAPI and Supabase and Deploying on Deta"
   - author: Navule Pavan Kumar Rao
     author_link: https://www.linkedin.com/in/navule/
     link: https://www.tutlinks.com/deploy-fastapi-on-ubuntu-gunicorn-caddy-2/
@@ -27,7 +47,7 @@ articles:
   - author: Patrick Ladon
     author_link: https://dev.to/factorlive
     link: https://dev.to/factorlive/python-facebook-messenger-webhook-with-fastapi-on-glitch-4n90
-    title: Python Facebook messenger webhook with FastAPI on Glitch  
+    title: Python Facebook messenger webhook with FastAPI on Glitch
   - author: Dom Patmore
     author_link: https://twitter.com/dompatmore
     link: https://dompatmore.com/blog/authenticate-your-fastapi-app-with-auth0
@@ -188,11 +208,19 @@ articles:
     author_link: https://medium.com/@williamhayes
     link: https://medium.com/@williamhayes/fastapi-starlette-debug-vs-prod-5f7561db3a59
     title: FastAPI/Starlette debug vs prod
+  - author: Mukul Mantosh
+    author_link: https://twitter.com/MantoshMukul
+    link: https://www.jetbrains.com/pycharm/guide/tutorials/fastapi-aws-kubernetes/
+    title: Developing FastAPI Application using K8s & AWS
   german:
   - author: Nico Axtmann
     author_link: https://twitter.com/_nicoax
     link: https://blog.codecentric.de/2019/08/inbetriebnahme-eines-scikit-learn-modells-mit-onnx-und-fastapi/
     title: Inbetriebnahme eines scikit-learn-Modells mit ONNX und FastAPI
+  - author: Felix Schürmeyer
+    author_link: https://hellocoding.de/autor/felix-schuermeyer/
+    link: https://hellocoding.de/blog/coding-language/python/fastapi
+    title: REST-API Programmieren mittels Python und dem FastAPI Modul
   japanese:
   - author: '@bee2'
     author_link: https://qiita.com/bee2

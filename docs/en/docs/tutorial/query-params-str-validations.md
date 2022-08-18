@@ -16,12 +16,12 @@ Let's take this application as example:
     {!> ../../../docs_src/query_params_str_validations/tutorial001_py310.py!}
     ```
 
-The query parameter `q` is of type `Optional[str]` (or `str | None` in Python 3.10), that means that it's of type `str` but could also be `None`, and indeed, the default value is `None`, so FastAPI will know it's not required.
+The query parameter `q` is of type `Union[str, None]` (or `str | None` in Python 3.10), that means that it's of type `str` but could also be `None`, and indeed, the default value is `None`, so FastAPI will know it's not required.
 
 !!! note
     FastAPI will know that the value of `q` is not required because of the default value `= None`.
 
-    The `Optional` in `Optional[str]` is not used by FastAPI, but will allow your editor to give you better support and detect errors.
+    The `Union` in `Union[str, None]` will allow your editor to give you better support and detect errors.
 
 ## Additional validation
 
@@ -59,24 +59,24 @@ And now use it as the default value of your parameter, setting the parameter `ma
     {!> ../../../docs_src/query_params_str_validations/tutorial002_py310.py!}
     ```
 
-As we have to replace the default value `None` with `Query(None)`, the first parameter to `Query` serves the same purpose of defining that default value.
+As we have to replace the default value `None` in the function with `Query()`, we can now set the default value with the parameter `Query(default=None)`, it serves the same purpose of defining that default value.
 
 So:
 
 ```Python
-q: Optional[str] = Query(None)
+q: Union[str, None] = Query(default=None)
 ```
 
 ...makes the parameter optional, the same as:
 
 ```Python
-q: Optional[str] = None
+q: Union[str, None] = None
 ```
 
 And in Python 3.10 and above:
 
 ```Python
-q: str | None = Query(None)
+q: str | None = Query(default=None)
 ```
 
 ...makes the parameter optional, the same as:
@@ -97,17 +97,17 @@ But it declares it explicitly as being a query parameter.
     or the:
 
     ```Python
-    = Query(None)
+    = Query(default=None)
     ```
 
     as it will use that `None` as the default value, and that way make the parameter **not required**.
 
-    The `Optional` part allows your editor to provide better support, but it is not what tells FastAPI that this parameter is not required.
+    The `Union[str, None]` part allows your editor to provide better support, but it is not what tells FastAPI that this parameter is not required.
 
 Then, we can pass more parameters to `Query`. In this case, the `max_length` parameter that applies to strings:
 
 ```Python
-q: str = Query(None, max_length=50)
+q: Union[str, None] = Query(default=None, max_length=50)
 ```
 
 This will validate the data, show a clear error when the data is not valid, and document the parameter in the OpenAPI schema *path operation*.
@@ -118,7 +118,7 @@ You can also add a parameter `min_length`:
 
 === "Python 3.6 and above"
 
-    ```Python hl_lines="9"
+    ```Python hl_lines="10"
     {!> ../../../docs_src/query_params_str_validations/tutorial003.py!}
     ```
 
@@ -134,13 +134,13 @@ You can define a <abbr title="A regular expression, regex or regexp is a sequenc
 
 === "Python 3.6 and above"
 
-    ```Python hl_lines="10"
+    ```Python hl_lines="11"
     {!> ../../../docs_src/query_params_str_validations/tutorial004.py!}
     ```
 
 === "Python 3.10 and above"
 
-    ```Python hl_lines="8"
+    ```Python hl_lines="9"
     {!> ../../../docs_src/query_params_str_validations/tutorial004_py310.py!}
     ```
 
@@ -156,7 +156,7 @@ But whenever you need them and go and learn them, know that you can already use 
 
 ## Default values
 
-The same way that you can pass `None` as the first argument to be used as the default value, you can pass other values.
+The same way that you can pass `None` as the value for the `default` parameter, you can pass other values.
 
 Let's say that you want to declare the `q` query parameter to have a `min_length` of `3`, and to have a default value of `"fixedquery"`:
 
@@ -178,25 +178,67 @@ q: str
 instead of:
 
 ```Python
-q: Optional[str] = None
+q: Union[str, None] = None
 ```
 
 But we are now declaring it with `Query`, for example like:
 
 ```Python
-q: Optional[str] = Query(None, min_length=3)
+q: Union[str, None] = Query(default=None, min_length=3)
 ```
 
-So, when you need to declare a value as required while using `Query`, you can use `...` as the first argument:
+So, when you need to declare a value as required while using `Query`, you can simply not declare a default value:
 
 ```Python hl_lines="7"
 {!../../../docs_src/query_params_str_validations/tutorial006.py!}
 ```
 
+### Required with Ellipsis (`...`)
+
+There's an alternative way to explicitly declare that a value is required. You can set the `default` parameter to the literal value `...`:
+
+```Python hl_lines="7"
+{!../../../docs_src/query_params_str_validations/tutorial006b.py!}
+```
+
 !!! info
     If you hadn't seen that `...` before: it is a special single value, it is <a href="https://docs.python.org/3/library/constants.html#Ellipsis" class="external-link" target="_blank">part of Python and is called "Ellipsis"</a>.
 
+    It is used by Pydantic and FastAPI to explicitly declare that a value is required.
+
 This will let **FastAPI** know that this parameter is required.
+
+### Required with `None`
+
+You can declare that a parameter can accept `None`, but that it's still required. This would force clients to send a value, even if the value is `None`.
+
+To do that, you can declare that `None` is a valid type but still use `default=...`:
+
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="8"
+    {!> ../../../docs_src/query_params_str_validations/tutorial006c.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="7"
+    {!> ../../../docs_src/query_params_str_validations/tutorial006c_py310.py!}
+    ```
+
+!!! tip
+    Pydantic, which is what powers all the data validation and serialization in FastAPI, has a special behavior when you use `Optional` or `Union[Something, None]` without a default value, you can read more about it in the Pydantic docs about <a href="https://pydantic-docs.helpmanual.io/usage/models/#required-optional-fields" class="external-link" target="_blank">Required Optional fields</a>.
+
+### Use Pydantic's `Required` instead of Ellipsis (`...`)
+
+If you feel uncomfortable using `...`, you can also import and use `Required` from Pydantic:
+
+```Python hl_lines="2  8"
+{!../../../docs_src/query_params_str_validations/tutorial006d.py!}
+```
+
+!!! tip
+    Remember that in most of the cases, when something is required, you can simply omit the `default` parameter, so you normally don't have to use `...` nor `Required`.
 
 ## Query parameter list / multiple values
 
@@ -315,7 +357,7 @@ You can add a `title`:
 
 === "Python 3.10 and above"
 
-    ```Python hl_lines="7"
+    ```Python hl_lines="8"
     {!> ../../../docs_src/query_params_str_validations/tutorial007_py310.py!}
     ```
 
@@ -399,7 +441,7 @@ To exclude a query parameter from the generated OpenAPI schema (and thus, from t
 
 === "Python 3.10 and above"
 
-    ```Python hl_lines="7"
+    ```Python hl_lines="8"
     {!> ../../../docs_src/query_params_str_validations/tutorial014_py310.py!}
     ```
 
