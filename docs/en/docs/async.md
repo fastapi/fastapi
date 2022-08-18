@@ -136,6 +136,9 @@ You and your crush eat the burgers and have a nice time. ✨
 
 <img src="/img/async/concurrent-burgers/concurrent-burgers-07.png" class="illustration">
 
+!!! info
+    Beautiful illustrations by <a href="https://www.instagram.com/ketrinadrawsalot" class="external-link" target="_blank">Ketrina Thompson</a>. 🎨
+
 ---
 
 Imagine you are the computer / program 🤖 in that story.
@@ -196,6 +199,9 @@ You just eat them, and you are done. ⏹
 
 There was not much talk or flirting as most of the time was spent waiting 🕙 in front of the counter. 😞
 
+!!! info
+    Beautiful illustrations by <a href="https://www.instagram.com/ketrinadrawsalot" class="external-link" target="_blank">Ketrina Thompson</a>. 🎨
+
 ---
 
 In this scenario of the parallel burgers, you are a computer / program 🤖 with two processors (you and your crush), both waiting 🕙 and dedicating their attention ⏯ to be "waiting on the counter" 🕙 for a long time.
@@ -232,11 +238,7 @@ This "waiting" 🕙 is measured in microseconds, but still, summing it all, it's
 
 That's why it makes a lot of sense to use asynchronous ⏸🔀⏯ code for web APIs.
 
-Most of the existing popular Python frameworks (including Flask and Django) were created before the new asynchronous features in Python existed. So, the ways they can be deployed support parallel execution and an older form of asynchronous execution that is not as powerful as the new capabilities.
-
-Even though the main specification for asynchronous web Python (ASGI) was developed at Django, to add support for WebSockets.
-
-That kind of asynchronicity is what made NodeJS popular (even though NodeJS is not parallel) and that's the strength of Go as a programming language.
+This kind of asynchronicity is what made NodeJS popular (even though NodeJS is not parallel) and that's the strength of Go as a programming language.
 
 And that's the same level of performance you get with **FastAPI**.
 

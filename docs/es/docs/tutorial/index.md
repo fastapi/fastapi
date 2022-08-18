@@ -41,7 +41,7 @@ Para el tutorial, es posible que quieras instalarlo con todas las dependencias y
 <div class="termy">
 
 ```console
-$ pip install fastapi[all]
+$ pip install "fastapi[all]"
 
 ---> 100%
 ```
@@ -62,7 +62,7 @@ $ pip install fastapi[all]
     También debes instalar `uvicorn` para que funcione como tu servidor:
 
     ```
-    pip install uvicorn[standard]
+    pip install "uvicorn[standard]"
     ```
 
     Y lo mismo para cada una de las dependencias opcionales que quieras utilizar.
