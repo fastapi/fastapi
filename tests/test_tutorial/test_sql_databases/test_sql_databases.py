@@ -1,4 +1,5 @@
 import importlib
+import os
 from pathlib import Path
 
 import pytest
@@ -260,7 +261,7 @@ openapi_schema = {
                     "loc": {
                         "title": "Location",
                         "type": "array",
-                        "items": {"type": "string"},
+                        "items": {"anyOf": [{"type": "string"}, {"type": "integer"}]},
                     },
                     "msg": {"title": "Message", "type": "string"},
                     "type": {"title": "Error Type", "type": "string"},
@@ -283,7 +284,10 @@ openapi_schema = {
 
 
 @pytest.fixture(scope="module")
-def client():
+def client(tmp_path_factory: pytest.TempPathFactory):
+    tmp_path = tmp_path_factory.mktemp("data")
+    cwd = os.getcwd()
+    os.chdir(tmp_path)
     test_db = Path("./sql_app.db")
     if test_db.is_file():  # pragma: nocover
         test_db.unlink()
@@ -296,6 +300,7 @@ def client():
         yield c
     if test_db.is_file():  # pragma: nocover
         test_db.unlink()
+    os.chdir(cwd)
 
 
 def test_openapi_schema(client):
