@@ -93,6 +93,7 @@ nav:
     - tutorial/dependencies/global-dependencies.md
   - 安全性:
     - tutorial/security/index.md
+    - tutorial/security/first-steps.md
     - tutorial/security/get-current-user.md
     - tutorial/security/simple-oauth2.md
     - tutorial/security/oauth2-jwt.md
