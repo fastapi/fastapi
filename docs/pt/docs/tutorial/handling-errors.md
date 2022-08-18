@@ -66,7 +66,7 @@ Mas se o cliente faz uma requisição para `http://example.com/items/bar` (ou se
 }
 ```
 
-!!! dica
+!!! tip "Dica"
     Quando você lançar um `HTTPException`, você pode passar qualquer valor convertível em JSON como parâmetro de `detail`, e não apenas `str`.
 
     Você pode passar um `dict` ou um `list`, etc.
