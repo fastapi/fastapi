@@ -124,7 +124,7 @@ Você pode sobrescrever esses manipuladores de exceção com os seus próprios m
 
 Quando a requisição contém dados inválidos, **FastAPI** internamente lança para o `RequestValidationError`.
 
-Para sobreescrevê-lo, importe o `RequestValidationError` e use-o com o `@app.exception_handler(RequestValidationError)` para decorar o manipulador de exceções.
+Para sobrescrevê-lo, importe o `RequestValidationError` e use-o com o `@app.exception_handler(RequestValidationError)` para decorar o manipulador de exceções.
 
 ```Python hl_lines="2  14-16"
 {!../../../docs_src/handling_errors/tutorial004.py!}
