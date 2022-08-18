@@ -14,7 +14,7 @@ def get_parameters_with_repeated_aliases(
 
 client = TestClient(app)
 
-schema = {
+openapi_schema = {
     "components": {
         "schemas": {
             "HTTPValidationError": {
@@ -31,12 +31,12 @@ schema = {
             "ValidationError": {
                 "properties": {
                     "loc": {
-                        "items": {"type": "string"},
+                        "items": {"anyOf": [{"type": "string"}, {"type": "integer"}]},
                         "title": "Location",
                         "type": "array",
                     },
                     "msg": {"title": "Message", "type": "string"},
-                    "type": {"title": "Error " "Type", "type": "string"},
+                    "type": {"title": "Error Type", "type": "string"},
                 },
                 "required": ["loc", "msg", "type"],
                 "title": "ValidationError",
@@ -55,19 +55,19 @@ schema = {
                         "in": "path",
                         "name": "repeated_alias",
                         "required": True,
-                        "schema": {"title": "Repeated " "Alias", "type": "string"},
+                        "schema": {"title": "Repeated Alias", "type": "string"},
                     },
                     {
                         "in": "query",
                         "name": "repeated_alias",
                         "required": True,
-                        "schema": {"title": "Repeated " "Alias", "type": "string"},
+                        "schema": {"title": "Repeated Alias", "type": "string"},
                     },
                 ],
                 "responses": {
                     "200": {
                         "content": {"application/json": {"schema": {}}},
-                        "description": "Successful " "Response",
+                        "description": "Successful Response",
                     },
                     "422": {
                         "content": {
@@ -77,21 +77,21 @@ schema = {
                                 }
                             }
                         },
-                        "description": "Validation " "Error",
+                        "description": "Validation Error",
                     },
                 },
-                "summary": "Get Parameters With " "Repeated Aliases",
+                "summary": "Get Parameters With Repeated Aliases",
             }
         }
     },
 }
 
 
-def test_schema():
+def test_openapi_schema():
     response = client.get("/openapi.json")
     assert response.status_code == status.HTTP_200_OK
     actual_schema = response.json()
-    assert actual_schema == schema
+    assert actual_schema == openapi_schema
 
 
 def test_get_parameters():
