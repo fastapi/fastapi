@@ -58,6 +58,10 @@ nav:
   - tr: /tr/
   - uk: /uk/
   - zh: /zh/
+- python-types.md
+- Учебник - руководство пользователя:
+  - tutorial/background-tasks.md
+- external-links.md
 - async.md
 markdown_extensions:
 - toc:
