@@ -59,6 +59,10 @@ nav:
   - uk: /uk/
   - uz: /uz/
   - zh: /zh/
+- python-types.md
+- Учебник - руководство пользователя:
+  - tutorial/background-tasks.md
+- external-links.md
 - async.md
 markdown_extensions:
 - toc:
@@ -77,6 +81,8 @@ markdown_extensions:
       format: !!python/name:pymdownx.superfences.fence_code_format ''
 - pymdownx.tabbed:
     alternate_style: true
+- attr_list
+- md_in_html
 extra:
   analytics:
     provider: google

@@ -70,9 +70,11 @@ nav:
   - tutorial/background-tasks.md
 - async.md
 - Déploiement:
+  - deployment/index.md
   - deployment/docker.md
 - project-generation.md
 - alternatives.md
+- history-design-future.md
 - external-links.md
 markdown_extensions:
 - toc:
@@ -91,6 +93,8 @@ markdown_extensions:
       format: !!python/name:pymdownx.superfences.fence_code_format ''
 - pymdownx.tabbed:
     alternate_style: true
+- attr_list
+- md_in_html
 extra:
   analytics:
     provider: google
