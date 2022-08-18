@@ -69,6 +69,7 @@ nav:
   - tutorial/background-tasks.md
 - async.md
 - Déploiement:
+  - deployment/index.md
   - deployment/docker.md
 - project-generation.md
 - alternatives.md
