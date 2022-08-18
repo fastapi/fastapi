@@ -145,7 +145,7 @@ $ pip install uvicorn[standard]
 
 ```Python
 from fastapi import FastAPI
-from typing import Optional
+from typing import Union
 
 app = FastAPI()
 
@@ -156,7 +156,7 @@ def read_root():
 
 
 @app.get("/items/{item_id}")
-def read_item(item_id: int, q: Optional[str] = None):
+def read_item(item_id: int, q: Union[str, None] = None):
     return {"item_id": item_id, "q": q}
 ```
 
@@ -167,7 +167,7 @@ Si tu código usa `async` / `await`, usa `async def`:
 
 ```Python hl_lines="7  12"
 from fastapi import FastAPI
-from typing import Optional
+from typing import Union
 
 app = FastAPI()
 
@@ -178,7 +178,7 @@ async def read_root():
 
 
 @app.get("/items/{item_id}")
-async def read_item(item_id: int, q: Optional[str] = None):
+async def read_item(item_id: int, q: Union[str, None] = None):
     return {"item_id": item_id, "q": q}
 ```
 
@@ -259,7 +259,7 @@ Declara el body usando las declaraciones de tipo estándares de Python gracias a
 ```Python hl_lines="2  7-10  23-25"
 from fastapi import FastAPI
 from pydantic import BaseModel
-from typing import Optional
+from typing import Union
 
 app = FastAPI()
 
@@ -267,7 +267,7 @@ app = FastAPI()
 class Item(BaseModel):
     name: str
     price: float
-    is_offer: Optional[bool] = None
+    is_offer: Union[bool, None] = None
 
 
 @app.get("/")
@@ -276,7 +276,7 @@ def read_root():
 
 
 @app.get("/items/{item_id}")
-def read_item(item_id: int, q: Optional[str] = None):
+def read_item(item_id: int, q: Union[str, None] = None):
     return {"item_id": item_id, "q": q}
 
 
@@ -439,7 +439,6 @@ Usadas por Pydantic:
 Usados por Starlette:
 
 * <a href="https://requests.readthedocs.io" target="_blank"><code>requests</code></a> - Requerido si quieres usar el `TestClient`.
-* <a href="https://github.com/Tinche/aiofiles" target="_blank"><code>aiofiles</code></a> - Requerido si quieres usar `FileResponse` o `StaticFiles`.
 * <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - Requerido si quieres usar la configuración por defecto de templates.
 * <a href="https://andrew-d.github.io/python-multipart/" target="_blank"><code>python-multipart</code></a> - Requerido si quieres dar soporte a  <abbr title="convertir el string que viene de un HTTP request a datos de Python">"parsing"</abbr> de formularios, con `request.form()`.
 * <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - Requerido para dar soporte a `SessionMiddleware`.
