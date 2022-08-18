@@ -136,6 +136,9 @@ You and your crush eat the burgers and have a nice time. ✨
 
 <img src="/img/async/concurrent-burgers/concurrent-burgers-07.png" class="illustration">
 
+!!! info
+    Beautiful illustrations by <a href="https://www.instagram.com/ketrinadrawsalot" class="external-link" target="_blank">Ketrina Thompson</a>. 🎨
+
 ---
 
 Imagine you are the computer / program 🤖 in that story.
@@ -195,6 +198,9 @@ You just eat them, and you are done. ⏹
 <img src="/img/async/parallel-burgers/parallel-burgers-06.png" class="illustration">
 
 There was not much talk or flirting as most of the time was spent waiting 🕙 in front of the counter. 😞
+
+!!! info
+    Beautiful illustrations by <a href="https://www.instagram.com/ketrinadrawsalot" class="external-link" target="_blank">Ketrina Thompson</a>. 🎨
 
 ---
 
