@@ -2,6 +2,9 @@
 
 ## Latest Changes
 
+
+## 0.79.1
+
 ### Fixes
 
 * 🐛 Fix `jsonable_encoder` using `include` and `exclude` parameters for non-Pydantic objects. PR [#2606](https://github.com/tiangolo/fastapi/pull/2606) by [@xaviml](https://github.com/xaviml).
