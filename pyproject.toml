@@ -70,7 +70,6 @@ test = [
     # types
     "types-ujson ==4.2.1",
     "types-orjson ==3.6.2",
-    "types-dataclasses ==0.6.5; python_version<'3.7'",
 ]
 doc = [
     "mkdocs >=1.1.2,<2.0.0",
