@@ -67,7 +67,7 @@ class ModelWithConfig(BaseModel):
 
 
 class ModelWithAlias(BaseModel):
-    foo: str = Field(..., alias="Foo")
+    foo: str = Field(alias="Foo")
 
 
 class ModelWithDefault(BaseModel):

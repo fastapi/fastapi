@@ -114,7 +114,7 @@ Mas você terá o mesmo suporte do editor no <a href="https://www.jetbrains.com/
     Se você utiliza o <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a> como editor, você pode utilizar o <a href="https://github.com/koxudaxi/pydantic-pycharm-plugin/" class="external-link" target="_blank">Plugin do Pydantic para o PyCharm </a>.
 
     Melhora o suporte do editor para seus modelos Pydantic com::
-    
+
     * completação automática
     * verificação de tipos
     * refatoração
@@ -158,7 +158,7 @@ Os parâmetros da função serão reconhecidos conforme abaixo:
 !!! note "Observação"
     O FastAPI saberá que o valor de `q` não é obrigatório por causa do valor padrão `= None`.
 
-    O `Optional` em `Optional[str]` não é utilizado pelo FastAPI, mas permite ao seu editor de texto lhe dar um suporte melhor e detectar erros.
+    O `Union` em `Union[str, None]` não é utilizado pelo FastAPI, mas permite ao seu editor de texto lhe dar um suporte melhor e detectar erros.
 
 ## Sem o Pydantic
 
