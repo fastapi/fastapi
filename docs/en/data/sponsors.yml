@@ -11,7 +11,7 @@ gold:
   - url: https://app.imgwhale.xyz/
     title: The ultimate solution to unlimited and forever cloud storage.
     img: https://fastapi.tiangolo.com/img/sponsors/imgwhale.svg
-  - url: https://doist.com/careers/9B437B1615-wa-senior-backend-engineer-python
+  - url: https://doist.com/careers
     title: Help us migrate doist to FastAPI
     img: https://fastapi.tiangolo.com/img/sponsors/doist.svg
 silver:
