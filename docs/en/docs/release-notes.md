@@ -3,6 +3,79 @@
 ## Latest Changes
 
 
+## 0.79.1
+
+### Fixes
+
+* 🐛 Fix `jsonable_encoder` using `include` and `exclude` parameters for non-Pydantic objects. PR [#2606](https://github.com/tiangolo/fastapi/pull/2606) by [@xaviml](https://github.com/xaviml).
+* 🐛 Fix edge case with repeated aliases names not shown in OpenAPI. PR [#2351](https://github.com/tiangolo/fastapi/pull/2351) by [@klaa97](https://github.com/klaa97).
+* 📝 Add misc dependency installs to tutorial docs. PR [#2126](https://github.com/tiangolo/fastapi/pull/2126) by [@TeoZosa](https://github.com/TeoZosa).
+
+### Docs
+
+* 📝 Add note giving credit for illustrations to [Ketrina Thompson](https://www.instagram.com/ketrinadrawsalot/). PR [#5284](https://github.com/tiangolo/fastapi/pull/5284) by [@tiangolo](https://github.com/tiangolo).
+* ✏ Fix typo in `python-types.md`. PR [#5116](https://github.com/tiangolo/fastapi/pull/5116) by [@Kludex](https://github.com/Kludex).
+* ✏ Fix typo in `docs/en/docs/python-types.md`. PR [#5007](https://github.com/tiangolo/fastapi/pull/5007) by [@atiabbz](https://github.com/atiabbz).
+* 📝 Remove unneeded Django/Flask references from async topic intro. PR [#5280](https://github.com/tiangolo/fastapi/pull/5280) by [@carltongibson](https://github.com/carltongibson).
+* ✨ Add illustrations for Concurrent burgers and Parallel burgers. PR [#5277](https://github.com/tiangolo/fastapi/pull/5277) by [@tiangolo](https://github.com/tiangolo). Updated docs at: [Concurrency and Burgers](https://fastapi.tiangolo.com/async/#concurrency-and-burgers).
+
+### Translations
+
+* 🌐 Add Portuguese translation for `docs/pt/docs/tutorial/query-params.md`. PR [#4775](https://github.com/tiangolo/fastapi/pull/4775) by [@batlopes](https://github.com/batlopes).
+* 🌐 Add Portuguese translation for `docs/pt/docs/tutorial/security/first-steps.md`. PR [#4954](https://github.com/tiangolo/fastapi/pull/4954) by [@FLAIR7](https://github.com/FLAIR7).
+* 🌐 Add translation for `docs/zh/docs/advanced/response-cookies.md`. PR [#4638](https://github.com/tiangolo/fastapi/pull/4638) by [@zhangbo2012](https://github.com/zhangbo2012).
+* 🌐  Add French translation for `docs/fr/docs/deployment/index.md`. PR [#3689](https://github.com/tiangolo/fastapi/pull/3689) by [@rjNemo](https://github.com/rjNemo).
+* 🌐 Add Portuguese translation for `tutorial/handling-errors.md`. PR [#4769](https://github.com/tiangolo/fastapi/pull/4769) by [@frnsimoes](https://github.com/frnsimoes).
+* 🌐 Add French translation for `docs/fr/docs/history-design-future.md`. PR [#3451](https://github.com/tiangolo/fastapi/pull/3451) by [@rjNemo](https://github.com/rjNemo).
+* 🌐 Add Russian translation for `docs/ru/docs/tutorial/background-tasks.md`. PR [#4854](https://github.com/tiangolo/fastapi/pull/4854) by [@AdmiralDesu](https://github.com/AdmiralDesu).
+* 🌐 Add Chinese translation for `docs/tutorial/security/first-steps.md`. PR [#3841](https://github.com/tiangolo/fastapi/pull/3841) by [@jaystone776](https://github.com/jaystone776).
+* 🌐 Add Japanese translation for `docs/ja/docs/advanced/nosql-databases.md`. PR [#4205](https://github.com/tiangolo/fastapi/pull/4205) by [@sUeharaE4](https://github.com/sUeharaE4).
+* 🌐 Add Indonesian translation for `docs/id/docs/tutorial/index.md`. PR [#4705](https://github.com/tiangolo/fastapi/pull/4705) by [@bas-baskara](https://github.com/bas-baskara).
+* 🌐 Add Persian translation for `docs/fa/docs/index.md` and tweak right-to-left CSS. PR [#2395](https://github.com/tiangolo/fastapi/pull/2395) by [@mohsen-mahmoodi](https://github.com/mohsen-mahmoodi).
+
+### Internal
+
+* 🔧 Update Jina sponsorship. PR [#5283](https://github.com/tiangolo/fastapi/pull/5283) by [@tiangolo](https://github.com/tiangolo).
+* 🔧 Update Jina sponsorship. PR [#5272](https://github.com/tiangolo/fastapi/pull/5272) by [@tiangolo](https://github.com/tiangolo).
+* 🔧 Update sponsors, Striveworks badge. PR [#5179](https://github.com/tiangolo/fastapi/pull/5179) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.79.0
+
+### Fixes - Breaking Changes
+
+* 🐛 Fix removing body from status codes that do not support it. PR [#5145](https://github.com/tiangolo/fastapi/pull/5145) by [@tiangolo](https://github.com/tiangolo).
+    * Setting `status_code` to `204`, `304`, or any code below `200` (1xx) will remove the body from the response.
+    * This fixes an error in Uvicorn that otherwise would be thrown: `RuntimeError: Response content longer than Content-Length`.
+    * This removes `fastapi.openapi.constants.STATUS_CODES_WITH_NO_BODY`, it is replaced by a function in utils.
+
+### Translations
+
+* 🌐 Start of Hebrew translation. PR [#5050](https://github.com/tiangolo/fastapi/pull/5050) by [@itay-raveh](https://github.com/itay-raveh).
+* 🔧 Add config for Swedish translations notification. PR [#5147](https://github.com/tiangolo/fastapi/pull/5147) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Start of Swedish translation. PR [#5062](https://github.com/tiangolo/fastapi/pull/5062) by [@MrRawbin](https://github.com/MrRawbin).
+* 🌐 Add Japanese translation for `docs/ja/docs/advanced/index.md`. PR [#5043](https://github.com/tiangolo/fastapi/pull/5043) by [@wakabame](https://github.com/wakabame).
+* 🌐🇵🇱 Add Polish translation for `docs/pl/docs/tutorial/first-steps.md`. PR [#5024](https://github.com/tiangolo/fastapi/pull/5024) by [@Valaraucoo](https://github.com/Valaraucoo).
+
+### Internal
+
+* 🔧 Update translations notification for Hebrew. PR [#5158](https://github.com/tiangolo/fastapi/pull/5158) by [@tiangolo](https://github.com/tiangolo).
+* 🔧 Update Dependabot commit message. PR [#5156](https://github.com/tiangolo/fastapi/pull/5156) by [@tiangolo](https://github.com/tiangolo).
+* ⬆ Bump actions/upload-artifact from 2 to 3. PR [#5148](https://github.com/tiangolo/fastapi/pull/5148) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump actions/cache from 2 to 3. PR [#5149](https://github.com/tiangolo/fastapi/pull/5149) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* 🔧 Update sponsors badge configs. PR [#5155](https://github.com/tiangolo/fastapi/pull/5155) by [@tiangolo](https://github.com/tiangolo).
+* 👥 Update FastAPI People. PR [#5154](https://github.com/tiangolo/fastapi/pull/5154) by [@tiangolo](https://github.com/tiangolo).
+* 🔧 Update Jina sponsor badges. PR [#5151](https://github.com/tiangolo/fastapi/pull/5151) by [@tiangolo](https://github.com/tiangolo).
+* ⬆ Bump actions/checkout from 2 to 3. PR [#5133](https://github.com/tiangolo/fastapi/pull/5133) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#5030](https://github.com/tiangolo/fastapi/pull/5030) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
+* ⬆ Bump nwtgck/actions-netlify from 1.1.5 to 1.2.3. PR [#5132](https://github.com/tiangolo/fastapi/pull/5132) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump codecov/codecov-action from 2 to 3. PR [#5131](https://github.com/tiangolo/fastapi/pull/5131) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump dawidd6/action-download-artifact from 2.9.0 to 2.21.1. PR [#5130](https://github.com/tiangolo/fastapi/pull/5130) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump actions/setup-python from 2 to 4. PR [#5129](https://github.com/tiangolo/fastapi/pull/5129) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* 👷 Add Dependabot. PR [#5128](https://github.com/tiangolo/fastapi/pull/5128) by [@tiangolo](https://github.com/tiangolo).
+* ♻️ Move from `Optional[X]` to `Union[X, None]` for internal utils. PR [#5124](https://github.com/tiangolo/fastapi/pull/5124) by [@tiangolo](https://github.com/tiangolo).
+* 🔧 Update sponsors, remove Dropbase, add Doist. PR [#5096](https://github.com/tiangolo/fastapi/pull/5096) by [@tiangolo](https://github.com/tiangolo).
+* 🔧 Update sponsors, remove Classiq, add ImgWhale. PR [#5079](https://github.com/tiangolo/fastapi/pull/5079) by [@tiangolo](https://github.com/tiangolo).
+
 ## 0.78.0
 
 ### Features
