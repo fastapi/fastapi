@@ -2,6 +2,7 @@
 
 ## Latest Changes
 
+* 🌐 Fix typos in German translation for `docs/de/docs/features.md`. PR [#4533](https://github.com/tiangolo/fastapi/pull/4533) by [@0xflotus](https://github.com/0xflotus).
 * 🌐 Add missing navigator for `encoder.md` in Korean translation. PR [#5238](https://github.com/tiangolo/fastapi/pull/5238) by [@joonas-yoon](https://github.com/joonas-yoon).
 * Translated docs to ru `project_generator.md`, `features.md`, `help-fastapi.md`, upgrade `python-types.md`, `docs/ru/mkdocs.yml`.. PR [#4913](https://github.com/tiangolo/fastapi/pull/4913) by [@Xewus](https://github.com/Xewus).
 
