@@ -20,10 +20,10 @@ O parâmetro `status_code` recebe um número com o código de status HTTP.
 !!! info "Informação"
     `status_code` também pode receber um `IntEnum`, como o do Python <a href="https://docs.python.org/3/library/http.html#http.HTTPStatus" class="external-link" target="_blank">`http.HTTPStatus`</a>.
 
-Será:
+Dessa forma:
 
-* Retorne esse código de status na resposta.
-* Documente-o como tal no esquema OpenAPI (e, portanto, nas interfaces do usuário):
+* Este código de status será retornado na resposta.
+* Será documentado como tal no esquema OpenAPI (e, portanto, nas interfaces do usuário):
 
 <img src="/img/tutorial/response-status-code/image01.png">
 
