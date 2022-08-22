@@ -2,6 +2,7 @@
 
 ## Latest Changes
 
+* Translated docs to ru `project_generator.md`, `features.md`, `help-fastapi.md`, upgrade `python-types.md`, `docs/ru/mkdocs.yml`.. PR [#4913](https://github.com/tiangolo/fastapi/pull/4913) by [@Xewus](https://github.com/Xewus).
 
 ## 0.79.1
 
