@@ -27,7 +27,7 @@ Mit einer interaktiven API-Dokumentation und explorativen webbasierten Benutzers
 
 Alles basiert auf **Python 3.6 Typ**-Deklarationen (dank Pydantic). Es muss keine neue Syntax gelernt werden, nur standardisiertes modernes Python.
 
- 
+
 
 Wenn Sie eine kurze, zweiminütige, Auffrischung in der Benutzung von Python Typ-Deklarationen benötigen (auch wenn Sie FastAPI nicht nutzen), schauen Sie sich diese kurze Einführung an (Englisch): Python Types{.internal-link target=_blank}.
 
@@ -193,7 +193,7 @@ Mit **FastAPI** bekommen Sie alle Funktionen von **Pydantic** (da FastAPI für d
 * Gutes Zusammenspiel mit Ihrer/Ihrem **<abbr title="Integrierten Entwicklungsumgebung, ähnlich zu (Quellcode-)Editor">IDE</abbr>/<abbr title="Ein Programm, was Fehler im Quellcode sucht">linter</abbr>/Gehirn**:
     * Weil Datenstrukturen von Pydantic einfach nur Instanzen ihrer definierten Klassen sind, sollten Autovervollständigung, Linting, mypy und ihre Intuition einwandfrei funktionieren.
 * **Schnell**:
-    * In <a href="https://pydantic-docs.helpmanual.io/#benchmarks-tag" class="external-link" target="_blank">Vergleichen</a> ist Pydantic schneller als jede andere getestete Bibliothek.
+    * In <a href="https://pydantic-docs.helpmanual.io/benchmarks/" class="external-link" target="_blank">Vergleichen</a> ist Pydantic schneller als jede andere getestete Bibliothek.
 * Validierung von **komplexen Strukturen**:
     * Benutzung von hierachischen Pydantic Schemata, Python `typing`’s `List` und `Dict`, etc.
     * Validierungen erlauben eine klare und einfache Datenschemadefinition, überprüft und dokumentiert als JSON Schema.
