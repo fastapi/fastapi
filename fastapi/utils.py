@@ -50,7 +50,7 @@ def create_response_field(
     type_: Type[Any],
     class_validators: Optional[Dict[str, Validator]] = None,
     default: Optional[Any] = None,
-    required: Union[bool, UndefinedType] = False,
+    required: Union[bool, UndefinedType] = True,
     model_config: Type[BaseConfig] = BaseConfig,
     field_info: Optional[FieldInfo] = None,
     alias: Optional[str] = None,
