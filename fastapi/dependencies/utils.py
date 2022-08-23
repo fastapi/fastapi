@@ -370,7 +370,7 @@ def get_param_field(
         ):
             field_info.in_ = default_field_info.in_
         if force_type:
-            field_info.in_ = force_type
+            field_info.in_ = force_type # type: ignore
     else:
         field_info = default_field_info(default=default_value)
     required = True
