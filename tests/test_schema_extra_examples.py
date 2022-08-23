@@ -23,6 +23,7 @@ def schema_extra(item: Item):
 def example(item: Item = Body(example={"data": "Data in Body example"})):
     return item
 
+
 @app.post("/multiple-body-example/")
 def example(
     param1: str = Body(example="First Body example"),
@@ -354,7 +355,9 @@ openapi_schema = {
                 "requestBody": {
                     "content": {
                         "application/json": {
-                            "schema": {"$ref": "#/components/schemas/Body_example_multiple_body_example__post"},
+                            "schema": {
+                                "$ref": "#/components/schemas/Body_example_multiple_body_example__post"
+                            },
                         }
                     },
                     "required": True,
@@ -854,8 +857,16 @@ openapi_schema = {
                 "required": ["param1", "param2"],
                 "type": "object",
                 "properties": {
-                    "param1": {"title": "Param1", "type": "string", "example": "First Body example"},
-                    "param2": {"title": "Param2", "type": "string", "example": "Second Body example"},
+                    "param1": {
+                        "title": "Param1",
+                        "type": "string",
+                        "example": "First Body example",
+                    },
+                    "param2": {
+                        "title": "Param2",
+                        "type": "string",
+                        "example": "Second Body example",
+                    },
                 },
             },
             "Item": {
@@ -904,7 +915,9 @@ def test_call_api():
     assert response.status_code == 200, response.text
     response = client.post("/examples/", json={"data": "Foo"})
     assert response.status_code == 200, response.text
-    response = client.post("/multiple-body-example/", json={"param1": "Foo", "param2": "Bar"})
+    response = client.post(
+        "/multiple-body-example/", json={"param1": "Foo", "param2": "Bar"}
+    )
     assert response.status_code == 200, response.text
     response = client.post("/example_examples/", json={"data": "Foo"})
     assert response.status_code == 200, response.text
