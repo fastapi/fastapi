@@ -2,14 +2,86 @@
 
 ## Latest Changes
 
-* ⬆ Upgrade Swagger UI copy of `oauth2-redirect.html` to include fixes for flavors of authorization code flows in Swagger UI. PR [#3439](https://github.com/tiangolo/fastapi/pull/3439) by [@koonpeng](https://github.com/koonpeng).
+### Breaking Changes - Fixes
+
+* 🐛 Fix `response_model` not invalidating `None`. PR [#2725](https://github.com/tiangolo/fastapi/pull/2725) by [@hukkin](https://github.com/hukkin).
+
+If you are using `response_model` with some type that doesn't include `None` but the function is returning `None`, it will now raise an internal server error, because you are returning invalid data that violates the contract in `response_model`. Before this release it would allow breaking that contract returning `None`.
+
+For example, if you have an app like this:
+
+```Python
+from fastapi import FastAPI
+from pydantic import BaseModel
+
+class Item(BaseModel):
+    name: str
+    price: Optional[float] = None
+    owner_ids: Optional[List[int]] = None
+
+app = FastAPI()
+
+@app.get("/items/invalidnone", response_model=Item)
+def get_invalid_none():
+    return None
+```
+
+...calling the path `/items/invalidnone` will raise an error, because `None` is not a valid type for the `response_model` declared with `Item`.
+
+You could also be implicitly returning `None` without realizing, for example:
+
+```Python
+from fastapi import FastAPI
+from pydantic import BaseModel
+
+class Item(BaseModel):
+    name: str
+    price: Optional[float] = None
+    owner_ids: Optional[List[int]] = None
+
+app = FastAPI()
+
+@app.get("/items/invalidnone", response_model=Item)
+def get_invalid_none():
+    if flag:
+        return {"name": "foo"}
+    # if flag is False, at this point the function will implicitly return None
+```
+
+If you have *path operations* using `response_model` that need to be allowed to return `None`, make it explicit in `response_model` using `Union[Something, None]`:
+
+```Python
+from typing import Union
+
+from fastapi import FastAPI
+from pydantic import BaseModel
+
+class Item(BaseModel):
+    name: str
+    price: Optional[float] = None
+    owner_ids: Optional[List[int]] = None
+
+app = FastAPI()
+
+@app.get("/items/invalidnone", response_model=Union[Item, None])
+def get_invalid_none():
+    return None
+```
+
+This way the data will be correctly validated, you won't have an internal server error, and the documentation will also reflect that this *path operation* could return `None` (or `null` in JSON).
+
+### Fixes
+
+* ⬆ Upgrade Swagger UI copy of `oauth2-redirect.html` to include fixes for flavors of authorization code flows in Swagger UI. PR [#3439](https://github.com/tiangolo/fastapi/pull/3439) initial PR by [@koonpeng](https://github.com/koonpeng).
 * ♻ Strip empty whitespace from description extracted from docstrings. PR [#2821](https://github.com/tiangolo/fastapi/pull/2821) by [@and-semakin](https://github.com/and-semakin).
 * 🐛 Fix cached dependencies when using a dependency in `Security()` and other places (e.g. `Depends()`) with different OAuth2 scopes. PR [#2945](https://github.com/tiangolo/fastapi/pull/2945) by [@laggardkernel](https://github.com/laggardkernel).
-* 🐛 Fix `response_model` not invalidating `None`. PR [#2725](https://github.com/tiangolo/fastapi/pull/2725) by [@hukkin](https://github.com/hukkin).
 * 🎨 Update type annotations for `response_model`, allow things like `Union[str, None]`. PR [#5294](https://github.com/tiangolo/fastapi/pull/5294) by [@tiangolo](https://github.com/tiangolo).
+
+### Translations
+
 * 🌐 Fix typos in German translation for `docs/de/docs/features.md`. PR [#4533](https://github.com/tiangolo/fastapi/pull/4533) by [@0xflotus](https://github.com/0xflotus).
 * 🌐 Add missing navigator for `encoder.md` in Korean translation. PR [#5238](https://github.com/tiangolo/fastapi/pull/5238) by [@joonas-yoon](https://github.com/joonas-yoon).
-* Translated docs to ru `project_generator.md`, `features.md`, `help-fastapi.md`, upgrade `python-types.md`, `docs/ru/mkdocs.yml`.. PR [#4913](https://github.com/tiangolo/fastapi/pull/4913) by [@Xewus](https://github.com/Xewus).
+* (Empty PR merge by accident) [#4913](https://github.com/tiangolo/fastapi/pull/4913).
 
 ## 0.79.1
 
