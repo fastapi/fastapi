@@ -63,7 +63,7 @@ openapi_schema = {
                     "loc": {
                         "title": "Location",
                         "type": "array",
-                        "items": {"type": "string"},
+                        "items": {"anyOf": [{"type": "string"}, {"type": "integer"}]},
                     },
                     "msg": {"title": "Message", "type": "string"},
                     "type": {"title": "Error Type", "type": "string"},
@@ -227,6 +227,20 @@ def test_geo_json():
         headers={"Content-Type": "application/geo+json"},
     )
     assert response.status_code == 200, response.text
+
+
+def test_no_content_type_is_json():
+    response = client.post(
+        "/items/",
+        data='{"name": "Foo", "price": 50.5}',
+    )
+    assert response.status_code == 200, response.text
+    assert response.json() == {
+        "name": "Foo",
+        "description": None,
+        "price": 50.5,
+        "tax": None,
+    }
 
 
 def test_wrong_headers():
