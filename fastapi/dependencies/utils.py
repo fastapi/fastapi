@@ -108,10 +108,18 @@ def check_file_field(field: ModelField) -> None:
             raise RuntimeError(multipart_not_installed_error)
 
 
-def get_param_sub_dependant(*, param: inspect.Parameter, path: str, security_scopes: Optional[List[str]] = None) -> Dependant:
+def get_param_sub_dependant(
+    *, param: inspect.Parameter, path: str, security_scopes: Optional[List[str]] = None
+) -> Dependant:
     depends: params.Depends = param.default
     dependency = depends.dependency or param.annotation
-    return get_sub_dependant(depends=depends, dependency=dependency, path=path, name=param.name, security_scopes=security_scopes)
+    return get_sub_dependant(
+        depends=depends,
+        dependency=dependency,
+        path=path,
+        name=param.name,
+        security_scopes=security_scopes,
+    )
 
 
 def get_parameterless_sub_dependant(*, depends: params.Depends, path: str) -> Dependant:
@@ -217,7 +225,9 @@ def is_scalar_field(field: ModelField) -> bool:
 
 
 def is_scalar_sequence_field(field: ModelField) -> bool:
-    if field.shape in sequence_shapes and not lenient_issubclass(field.type_, BaseModel):
+    if field.shape in sequence_shapes and not lenient_issubclass(
+        field.type_, BaseModel
+    ):
         if field.sub_fields is not None:
             for sub_field in field.sub_fields:
                 if not is_scalar_field(sub_field):
@@ -229,8 +239,15 @@ def is_scalar_sequence_field(field: ModelField) -> bool:
 def get_typed_signature(call: Callable[..., Any]) -> inspect.Signature:
     signature = inspect.signature(call)
     globalns = getattr(call, "__globals__", {})
-    typed_params = [inspect.Parameter(name=param.name, kind=param.kind, default=param.default, annotation=get_typed_annotation(
-        param, globalns)) for param in signature.parameters.values()]
+    typed_params = [
+        inspect.Parameter(
+            name=param.name,
+            kind=param.kind,
+            default=param.default,
+            annotation=get_typed_annotation(param, globalns),
+        )
+        for param in signature.parameters.values()
+    ]
 
     return inspect.Signature(typed_params)
 
@@ -243,42 +260,65 @@ def get_typed_annotation(param: inspect.Parameter, globalns: Dict[str, Any]) -> 
     return annotation
 
 
-def get_dependant(*, path: str, call: Callable[..., Any], name: Optional[str] = None, security_scopes: Optional[List[str]] = None, use_cache: bool = True) -> Dependant:
+def get_dependant(
+    *,
+    path: str,
+    call: Callable[..., Any],
+    name: Optional[str] = None,
+    security_scopes: Optional[List[str]] = None,
+    use_cache: bool = True,
+) -> Dependant:
     path_param_names = get_path_param_names(path)
     endpoint_signature = get_typed_signature(call)
     signature_params = endpoint_signature.parameters
-    dependant = Dependant(call=call, name=name, path=path,
-                          security_scopes=security_scopes, use_cache=use_cache)
+    dependant = Dependant(
+        call=call,
+        name=name,
+        path=path,
+        security_scopes=security_scopes,
+        use_cache=use_cache,
+    )
 
     for param_name, param in signature_params.items():
         if isinstance(param.default, params.Depends):
             sub_dependant = get_param_sub_dependant(
-                param=param, path=path, security_scopes=security_scopes)
+                param=param, path=path, security_scopes=security_scopes
+            )
 
             dependant.dependencies.append(sub_dependant)
             continue
         if add_non_field_param_to_dependency(param=param, dependant=dependant):
             continue
         param_field = get_param_field(
-            param=param, default_field_info=params.Query, param_name=param_name)
+            param=param, default_field_info=params.Query, param_name=param_name
+        )
 
         if param_name in path_param_names:
             assert is_scalar_field(
-                field=param_field), "Path params must be of one of the supported types"
+                field=param_field
+            ), "Path params must be of one of the supported types"
 
             ignore_default = not isinstance(param.default, params.Path)
-            param_field = get_param_field(param=param, param_name=param_name, default_field_info=params.Path,
-                                          force_type=params.ParamTypes.path, ignore_default=ignore_default)
+            param_field = get_param_field(
+                param=param,
+                param_name=param_name,
+                default_field_info=params.Path,
+                force_type=params.ParamTypes.path,
+                ignore_default=ignore_default,
+            )
 
             add_param_to_fields(field=param_field, dependant=dependant)
         elif is_scalar_field(field=param_field):
             add_param_to_fields(field=param_field, dependant=dependant)
-        elif isinstance(param.default, (params.Query, params.Header)) and is_scalar_sequence_field(param_field):
+        elif isinstance(
+            param.default, (params.Query, params.Header)
+        ) and is_scalar_sequence_field(param_field):
             add_param_to_fields(field=param_field, dependant=dependant)
         else:
             field_info = param_field.field_info
             assert isinstance(
-                field_info, params.Body), f"Param: {param_field.name} can only be a request body, using Body()"
+                field_info, params.Body
+            ), f"Param: {param_field.name} can only be a request body, using Body()"
 
             dependant.body_params.append(param_field)
     return dependant
@@ -308,7 +348,14 @@ def add_non_field_param_to_dependency(
     return None
 
 
-def get_param_field(*, param: inspect.Parameter, param_name: str, default_field_info: Type[params.Param] = params.Param, force_type: Optional[params.ParamTypes] = None, ignore_default: bool = False) -> ModelField:
+def get_param_field(
+    *,
+    param: inspect.Parameter,
+    param_name: str,
+    default_field_info: Type[params.Param] = params.Param,
+    force_type: Optional[params.ParamTypes] = None,
+    ignore_default: bool = False,
+) -> ModelField:
     default_value: Any = Undefined
     had_schema = False
     if param.default != param.empty and not ignore_default:
@@ -317,7 +364,10 @@ def get_param_field(*, param: inspect.Parameter, param_name: str, default_field_
         had_schema = True
         field_info = default_value
         default_value = field_info.default
-        if isinstance(field_info, params.Param) and getattr(field_info, "in_", None) is None:
+        if (
+            isinstance(field_info, params.Param)
+            and getattr(field_info, "in_", None) is None
+        ):
             field_info.in_ = default_field_info.in_
         if force_type:
             field_info.in_ = force_type
@@ -330,15 +380,21 @@ def get_param_field(*, param: inspect.Parameter, param_name: str, default_field_
     elif default_value is not Undefined:
         required = False
     annotation: Any = Any
-    if param . annotation != param . empty:
+    if param.annotation != param.empty:
         annotation = param.annotation
     annotation = get_annotation_from_field_info(annotation, field_info, param_name)
     if not field_info.alias and getattr(field_info, "convert_underscores", None):
         alias = param.name.replace("_", "-")
     else:
         alias = field_info.alias or param.name
-    field = create_response_field(name=param.name, type_=annotation,
-                                  default=default_value, alias=alias, required=required, field_info=field_info)
+    field = create_response_field(
+        name=param.name,
+        type_=annotation,
+        default=default_value,
+        alias=alias,
+        required=required,
+        field_info=field_info,
+    )
 
     if not had_schema and not is_scalar_field(field=field):
         field.field_info = params.Body(field_info.default)
@@ -562,7 +618,10 @@ def request_params_to_args(
     return values, errors
 
 
-async def request_body_to_args(required_params: List[ModelField], received_body: Optional[Union[Dict[str, Any], FormData]]) -> Tuple[Dict[str, Any], List[ErrorWrapper]]:
+async def request_body_to_args(
+    required_params: List[ModelField],
+    received_body: Optional[Union[Dict[str, Any], FormData]],
+) -> Tuple[Dict[str, Any], List[ErrorWrapper]]:
     values = {}
     errors = []
     if required_params:
@@ -574,10 +633,12 @@ async def request_body_to_args(required_params: List[ModelField], received_body:
             received_body = {field.alias: received_body}
         for field in required_params:
             loc: Tuple[str, ...]
-            loc = ("body", ) if field_alias_omitted else ("body", field.alias)
+            loc = ("body",) if field_alias_omitted else ("body", field.alias)
             value: Optional[Any] = None
             if received_body is not None:
-                if (field.shape in sequence_shapes or field.type_ in sequence_types) and isinstance(received_body, FormData):
+                if (
+                    field.shape in sequence_shapes or field.type_ in sequence_types
+                ) and isinstance(received_body, FormData):
                     value = received_body.getlist(field.alias)
                 else:
                     try:
@@ -585,18 +646,36 @@ async def request_body_to_args(required_params: List[ModelField], received_body:
                     except AttributeError:
                         errors.append(get_missing_field_error(loc))
                         continue
-            if value is None or isinstance(field_info, params.Form) and value == "" or isinstance(field_info, params.Form) and field.shape in sequence_shapes and len(value) == 0:
+            if (
+                value is None
+                or isinstance(field_info, params.Form)
+                and value == ""
+                or isinstance(field_info, params.Form)
+                and field.shape in sequence_shapes
+                and len(value) == 0
+            ):
                 if field.required:
                     errors.append(get_missing_field_error(loc))
                 else:
                     values[field.name] = deepcopy(field.default)
                 continue
-            if isinstance(field_info, params.File) and lenient_issubclass(field.type_, bytes) and isinstance(value, UploadFile):
+            if (
+                isinstance(field_info, params.File)
+                and lenient_issubclass(field.type_, bytes)
+                and isinstance(value, UploadFile)
+            ):
                 value = await value.read()
-            elif field.shape in sequence_shapes and isinstance(field_info, params.File) and lenient_issubclass(field.type_, bytes) and isinstance(value, sequence_types):
+            elif (
+                field.shape in sequence_shapes
+                and isinstance(field_info, params.File)
+                and lenient_issubclass(field.type_, bytes)
+                and isinstance(value, sequence_types)
+            ):
                 results: List[Union[bytes, str]] = []
 
-                async def process_fn(fn: Callable[[], Coroutine[Any, Any, Any]]) -> None:
+                async def process_fn(
+                    fn: Callable[[], Coroutine[Any, Any, Any]]
+                ) -> None:
                     result = await fn()
                     results.append(result)
 
