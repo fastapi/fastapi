@@ -32,7 +32,6 @@ If you need a 2 minute refresher of how to use Python types (even if you don't u
 You write standard Python with types:
 
 ```Python
-from typing import List, Dict
 from datetime import date
 
 from pydantic import BaseModel
@@ -165,7 +164,6 @@ With **FastAPI** you get all of **Starlette**'s features (as FastAPI is just Sta
 
 * Seriously impressive performance. It is <a href="https://github.com/encode/starlette#performance" class="external-link" target="_blank">one of the fastest Python frameworks available, on par with **NodeJS** and **Go**</a>.
 * **WebSocket** support.
-* **GraphQL** support.
 * In-process background tasks.
 * Startup and shutdown events.
 * Test client built on `requests`.
@@ -192,7 +190,7 @@ With **FastAPI** you get all of **Pydantic**'s features (as FastAPI is based on 
 * Plays nicely with your **<abbr title="Integrated Development Environment, similar to a code editor">IDE</abbr>/<abbr title="A program that checks for code errors">linter</abbr>/brain**:
     * Because pydantic data structures are just instances of classes you define; auto-completion, linting, mypy and your intuition should all work properly with your validated data.
 * **Fast**:
-    * in <a href="https://pydantic-docs.helpmanual.io/#benchmarks-tag" class="external-link" target="_blank">benchmarks</a> Pydantic is faster than all other tested libraries.
+    * in <a href="https://pydantic-docs.helpmanual.io/benchmarks/" class="external-link" target="_blank">benchmarks</a> Pydantic is faster than all other tested libraries.
 * Validate **complex structures**:
     * Use of hierarchical Pydantic models, Python `typing`’s `List` and `Dict`, etc.
     * And validators allow complex data schemas to be clearly and easily defined, checked and documented as JSON Schema.
