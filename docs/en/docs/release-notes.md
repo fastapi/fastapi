@@ -2,6 +2,9 @@
 
 ## Latest Changes
 
+
+## 0.80.0
+
 ### Breaking Changes - Fixes
 
 * 🐛 Fix `response_model` not invalidating `None`. PR [#2725](https://github.com/tiangolo/fastapi/pull/2725) by [@hukkin](https://github.com/hukkin).
