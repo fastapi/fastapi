@@ -26,8 +26,20 @@ def example(item: Item = Body(example={"data": "Data in Body example"})):
 
 @app.post("/multiple-body-example/")
 def multiple_body_example(
-    param1: str = Body(example="First Body example"),
-    param2: str = Body(example="Second Body example"),
+    param1: str = Body(
+        example="First Body example",
+        examples={
+            "a first example for the first parameter": "foo",
+            "a second example for the first parameter": "bar"
+        }
+    ),
+    param2: str = Body(
+        example="Second Body example",
+        examples={
+            "a first example for the second parameter": "foo",
+            "a second example for the second parameter": "bar"
+        }
+    ),
 ):
     return param1 + param2
 
@@ -861,11 +873,19 @@ openapi_schema = {
                         "title": "Param1",
                         "type": "string",
                         "example": "First Body example",
+                        "examples": {
+                            "a first example for the first parameter": "foo",
+                            "a second example for the first parameter": "bar"
+                        },
                     },
                     "param2": {
                         "title": "Param2",
                         "type": "string",
                         "example": "Second Body example",
+                        "examples": {
+                            "a first example for the second parameter": "foo",
+                            "a second example for the second parameter": "bar"
+                        },
                     },
                 },
             },
