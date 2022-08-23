@@ -23,6 +23,13 @@ def schema_extra(item: Item):
 def example(item: Item = Body(example={"data": "Data in Body example"})):
     return item
 
+@app.post("/multiple-body-example/")
+def example(
+    param1: str = Body(example="First Body example"),
+    param2: str = Body(example="Second Body example"),
+):
+    return param1 + param2
+
 
 @app.post("/examples/")
 def examples(
@@ -318,6 +325,36 @@ openapi_schema = {
                                     "value": {"data": "Data in Body examples, example2"}
                                 },
                             },
+                        }
+                    },
+                    "required": True,
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {"application/json": {"schema": {}}},
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        },
+                    },
+                },
+            }
+        },
+        "/multiple-body-example/": {
+            "post": {
+                "summary": "Example",
+                "operationId": "example_multiple_body_example__post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {"$ref": "#/components/schemas/Body_example_multiple_body_example__post"},
                         }
                     },
                     "required": True,
@@ -812,6 +849,15 @@ openapi_schema = {
                     }
                 },
             },
+            "Body_example_multiple_body_example__post": {
+                "title": "Body_example_multiple_body_example__post",
+                "required": ["param1", "param2"],
+                "type": "object",
+                "properties": {
+                    "param1": {"title": "Param1", "type": "string", "example": "First Body example"},
+                    "param2": {"title": "Param2", "type": "string", "example": "Second Body example"},
+                },
+            },
             "Item": {
                 "title": "Item",
                 "required": ["data"],
@@ -857,6 +903,8 @@ def test_call_api():
     response = client.post("/example/", json={"data": "Foo"})
     assert response.status_code == 200, response.text
     response = client.post("/examples/", json={"data": "Foo"})
+    assert response.status_code == 200, response.text
+    response = client.post("/multiple-body-example/", json={"param1": "Foo", "param2": "Bar"})
     assert response.status_code == 200, response.text
     response = client.post("/example_examples/", json={"data": "Foo"})
     assert response.status_code == 200, response.text
