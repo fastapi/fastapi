@@ -30,15 +30,15 @@ def multiple_body_example(
         example="First Body example",
         examples={
             "a first example for the first parameter": "foo",
-            "a second example for the first parameter": "bar"
-        }
+            "a second example for the first parameter": "bar",
+        },
     ),
     param2: str = Body(
         example="Second Body example",
         examples={
             "a first example for the second parameter": "foo",
-            "a second example for the second parameter": "bar"
-        }
+            "a second example for the second parameter": "bar",
+        },
     ),
 ):
     return param1 + param2
@@ -875,7 +875,7 @@ openapi_schema = {
                         "example": "First Body example",
                         "examples": {
                             "a first example for the first parameter": "foo",
-                            "a second example for the first parameter": "bar"
+                            "a second example for the first parameter": "bar",
                         },
                     },
                     "param2": {
@@ -884,7 +884,7 @@ openapi_schema = {
                         "example": "Second Body example",
                         "examples": {
                             "a first example for the second parameter": "foo",
-                            "a second example for the second parameter": "bar"
+                            "a second example for the second parameter": "bar",
                         },
                     },
                 },
