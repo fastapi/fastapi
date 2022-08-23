@@ -350,13 +350,13 @@ openapi_schema = {
         },
         "/multiple-body-example/": {
             "post": {
-                "summary": "Example",
-                "operationId": "example_multiple_body_example__post",
+                "summary": "Multiple Body Example",
+                "operationId": "multiple_body_example_multiple_body_example__post",
                 "requestBody": {
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/Body_example_multiple_body_example__post"
+                                "$ref": "#/components/schemas/Body_multiple_body_example_multiple_body_example__post"
                             },
                         }
                     },
@@ -852,8 +852,8 @@ openapi_schema = {
                     }
                 },
             },
-            "Body_example_multiple_body_example__post": {
-                "title": "Body_example_multiple_body_example__post",
+            "Body_multiple_body_example_multiple_body_example__post": {
+                "title": "Body_multiple_body_example_multiple_body_example__post",
                 "required": ["param1", "param2"],
                 "type": "object",
                 "properties": {
