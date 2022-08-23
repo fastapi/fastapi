@@ -232,8 +232,7 @@ def generate_readme_content():
     message = template.render(sponsors=sponsors)
     pre_content = content[:pre_end]
     post_content = content[post_start:]
-    new_content = pre_content + message + post_content
-    return new_content
+    return pre_content + message + post_content
 
 
 @app.command()
@@ -277,11 +276,8 @@ def build_all():
     typer.echo("Building docs for: en")
     mkdocs.commands.build.build(mkdocs.config.load_config(site_dir=str(site_path)))
     os.chdir(current_dir)
-    langs = []
-    for lang in get_lang_paths():
-        if lang == en_docs_path or not lang.is_dir():
-            continue
-        langs.append(lang.name)
+    langs = [lang.name for lang in get_lang_paths() if lang != en_docs_path and lang.is_dir()]
+
     cpu_count = os.cpu_count() or 1
     with Pool(cpu_count * 2) as p:
         p.map(build_lang, langs)
@@ -327,11 +323,12 @@ def serve():
     typer.echo("Warning: this is a very simple server.")
     typer.echo("For development, use the command live instead.")
     typer.echo("This is here only to preview a site with translations already built.")
+
     typer.echo("Make sure you run the build-all command first.")
     os.chdir("site")
-    server_address = ("", 8008)
+    server_address = "", 8008
     server = HTTPServer(server_address, SimpleHTTPRequestHandler)
-    typer.echo(f"Serving at: http://127.0.0.1:8008")
+    typer.echo("Serving at: http://127.0.0.1:8008")
     server.serve_forever()
 
 
@@ -411,8 +408,7 @@ def get_key_section(
 def get_text_with_translate_missing(text: str) -> str:
     lines = text.splitlines()
     lines.insert(1, missing_translation_snippet)
-    new_text = "\n".join(lines)
-    return new_text
+    return "\n".join(lines)
 
 
 def get_file_to_nav_map(nav: list) -> Dict[str, Tuple[str, ...]]:
