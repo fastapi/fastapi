@@ -25,7 +25,7 @@ def example(item: Item = Body(example={"data": "Data in Body example"})):
 
 
 @app.post("/multiple-body-example/")
-def example(
+def multiple_body_example(
     param1: str = Body(example="First Body example"),
     param2: str = Body(example="Second Body example"),
 ):
