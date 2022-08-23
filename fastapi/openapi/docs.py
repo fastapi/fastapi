@@ -115,7 +115,7 @@ def get_redoc_html(
 
 
 def get_swagger_ui_oauth2_redirect_html() -> HTMLResponse:
-    # copied from https://github.com/swagger-api/swagger-ui/blob/v3.51.1/dist/oauth2-redirect.html
+    # copied from https://github.com/swagger-api/swagger-ui/blob/v4.14.0/dist/oauth2-redirect.html
     html = """
     <!doctype html>
     <html lang="en-US">
@@ -132,7 +132,7 @@ def get_swagger_ui_oauth2_redirect_html() -> HTMLResponse:
             var isValid, qp, arr;
 
             if (/code|token|error/.test(window.location.hash)) {
-                qp = window.location.hash.substring(1);
+                qp = window.location.hash.substring(1).replace('?', '&');
             } else {
                 qp = location.search.substring(1);
             }
@@ -157,7 +157,7 @@ def get_swagger_ui_oauth2_redirect_html() -> HTMLResponse:
                         authId: oauth2.auth.name,
                         source: "auth",
                         level: "warning",
-                        message: "Authorization may be unsafe, passed state was changed in server Passed state wasn't returned from auth server"
+                        message: "Authorization may be unsafe, passed state was changed in server. The passed state wasn't returned from auth server."
                     });
                 }
 
@@ -177,7 +177,7 @@ def get_swagger_ui_oauth2_redirect_html() -> HTMLResponse:
                         authId: oauth2.auth.name,
                         source: "auth",
                         level: "error",
-                        message: oauthErrorMsg || "[Authorization failed]: no accessCode received from the server"
+                        message: oauthErrorMsg || "[Authorization failed]: no accessCode received from the server."
                     });
                 }
             } else {
@@ -186,9 +186,13 @@ def get_swagger_ui_oauth2_redirect_html() -> HTMLResponse:
             window.close();
         }
 
-        window.addEventListener('DOMContentLoaded', function () {
-          run();
-        });
+        if (document.readyState !== 'loading') {
+            run();
+        } else {
+            document.addEventListener('DOMContentLoaded', function () {
+                run();
+            });
+        }
     </script>
     </body>
     </html>
