@@ -1,4 +1,5 @@
-from docs_src.app_testing.test_main import client, test_read_main
+import sys
+from pathlib import Path
 
 openapi_schema = {
     "openapi": "3.0.2",
@@ -20,11 +21,16 @@ openapi_schema = {
 }
 
 
-def test_openapi_schema():
+def test_testing():
+    current_path = sys.path.copy()
+    import docs_src.app_testing
+
+    testing_path = Path(docs_src.app_testing.__file__).parent
+    sys.path.append(str(testing_path))
+    from docs_src.app_testing.test_main import client, test_read_main
+
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
     assert response.json() == openapi_schema
-
-
-def test_main():
     test_read_main()
+    sys.path = current_path
