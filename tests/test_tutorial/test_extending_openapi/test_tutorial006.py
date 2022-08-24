@@ -11,7 +11,6 @@ def test_swagger_ui():
     assert 'router="history"' in response.text
     assert 'layout="sidebar"' in response.text
     assert 'tryItCredentialPolicy="omit"' in response.text
-    
 
 
 def test_get_users():
