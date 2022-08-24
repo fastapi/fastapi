@@ -1,10 +1,10 @@
 from fastapi import FastAPI
 from fastapi.openapi.docs import (
-    get_stoplight_elements_html,
-    get_swagger_ui_oauth2_redirect_html,
-    TryItCredentialPolicyOptions,
     LayoutOptions,
     RouterOptions,
+    TryItCredentialPolicyOptions,
+    get_stoplight_elements_html,
+    get_swagger_ui_oauth2_redirect_html,
 )
 from fastapi.staticfiles import StaticFiles
 
