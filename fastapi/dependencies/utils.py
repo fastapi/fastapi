@@ -727,12 +727,16 @@ def get_body_field(*, dependant: Dependant, name: str) -> Optional[ModelField]:
         setattr(param.field_info, "embed", True)
     model_name = "Body_" + name
     BodyModel: Type[BaseModel] = create_model(model_name)
+
     for f in flat_dependant.body_params:
         if getattr(f.field_info, "example", Undefined) is not Undefined:
             f.field_info.extra["example"] = getattr(f.field_info, "example", Undefined)
+
         if getattr(f.field_info, "examples", None) is not None:
             f.field_info.extra["examples"] = getattr(f.field_info, "examples", None)
+
         BodyModel.__fields__[f.name] = f
+
     required = any(True for f in flat_dependant.body_params if f.required)
 
     BodyFieldInfo_kwargs: Dict[str, Any] = dict(default=None)
