@@ -5,7 +5,7 @@ app = FastAPI(title="Example App")
 
 
 @app.get("/a/b")
-async def get_shuli_in_a_pita():
+async def get_a_and_b():
     return {"a": "b"}
 
 
