@@ -4,15 +4,9 @@ from fastapi.openapi.docs import (
     RouterOptions,
     TryItCredentialPolicyOptions,
     get_stoplight_elements_html,
-    get_swagger_ui_oauth2_redirect_html,
 )
 
 app = FastAPI(stoplight_elements_url=None)
-
-
-@app.get(app.swagger_ui_oauth2_redirect_url, include_in_schema=False)
-async def swagger_ui_redirect():
-    return get_swagger_ui_oauth2_redirect_html()
 
 
 @app.get("/elements", include_in_schema=False)
