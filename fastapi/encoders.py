@@ -1,3 +1,4 @@
+import dataclasses
 from collections import defaultdict
 from enum import Enum
 from pathlib import PurePath
@@ -33,9 +34,17 @@ def jsonable_encoder(
     exclude_unset: bool = False,
     exclude_defaults: bool = False,
     exclude_none: bool = False,
-    custom_encoder: Dict[Any, Callable[[Any], Any]] = {},
+    custom_encoder: Optional[Dict[Any, Callable[[Any], Any]]] = None,
     sqlalchemy_safe: bool = True,
 ) -> Any:
+    custom_encoder = custom_encoder or {}
+    if custom_encoder:
+        if type(obj) in custom_encoder:
+            return custom_encoder[type(obj)](obj)
+        else:
+            for encoder_type, encoder_instance in custom_encoder.items():
+                if isinstance(obj, encoder_type):
+                    return encoder_instance(obj)
     if include is not None and not isinstance(include, (set, dict)):
         include = set(include)
     if exclude is not None and not isinstance(exclude, (set, dict)):
@@ -61,6 +70,8 @@ def jsonable_encoder(
             custom_encoder=encoder,
             sqlalchemy_safe=sqlalchemy_safe,
         )
+    if dataclasses.is_dataclass(obj):
+        return dataclasses.asdict(obj)
     if isinstance(obj, Enum):
         return obj.value
     if isinstance(obj, PurePath):
@@ -69,6 +80,11 @@ def jsonable_encoder(
         return obj
     if isinstance(obj, dict):
         encoded_dict = {}
+        allowed_keys = set(obj.keys())
+        if include is not None:
+            allowed_keys &= set(include)
+        if exclude is not None:
+            allowed_keys -= set(exclude)
         for key, value in obj.items():
             if (
                 (
@@ -77,7 +93,7 @@ def jsonable_encoder(
                     or (not key.startswith("_sa"))
                 )
                 and (value is not None or not exclude_none)
-                and ((include and key in include) or not exclude or key not in exclude)
+                and key in allowed_keys
             ):
                 encoded_key = jsonable_encoder(
                     key,
@@ -115,14 +131,6 @@ def jsonable_encoder(
             )
         return encoded_list
 
-    if custom_encoder:
-        if type(obj) in custom_encoder:
-            return custom_encoder[type(obj)](obj)
-        else:
-            for encoder_type, encoder in custom_encoder.items():
-                if isinstance(obj, encoder_type):
-                    return encoder(obj)
-
     if type(obj) in ENCODERS_BY_TYPE:
         return ENCODERS_BY_TYPE[type(obj)](obj)
     for encoder, classes_tuple in encoders_by_class_tuples.items():
@@ -141,6 +149,8 @@ def jsonable_encoder(
             raise ValueError(errors)
     return jsonable_encoder(
         data,
+        include=include,
+        exclude=exclude,
         by_alias=by_alias,
         exclude_unset=exclude_unset,
         exclude_defaults=exclude_defaults,

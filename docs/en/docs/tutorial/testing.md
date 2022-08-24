@@ -8,9 +8,14 @@ With it, you can use <a href="https://docs.pytest.org/" class="external-link" ta
 
 ## Using `TestClient`
 
+!!! info
+    To use `TestClient`, first install <a href="https://github.com/psf/requests" class="external-link" target="_blank">`requests`</a>.
+
+    E.g. `pip install requests`.
+
 Import `TestClient`.
 
-Create a `TestClient` passing to it your **FastAPI**.
+Create a `TestClient` by passing your **FastAPI** application to it.
 
 Create functions with a name that starts with `test_` (this is standard `pytest` conventions).
 
@@ -65,7 +70,7 @@ Now let's extend this example and add more details to see how to test different 
 
 ### Extended **FastAPI** app file
 
-Let's say you have a file `main_b.py` with your **FastAPI** app.
+Let's say that now the file `main.py` with your **FastAPI** app has some other **path operations**.
 
 It has a `GET` operation that could return an error.
 
@@ -73,16 +78,24 @@ It has a `POST` operation that could return several errors.
 
 Both *path operations* require an `X-Token` header.
 
-```Python
-{!../../../docs_src/app_testing/main_b.py!}
-```
+=== "Python 3.6 and above"
+
+    ```Python
+    {!> ../../../docs_src/app_testing/app_b/main.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python
+    {!> ../../../docs_src/app_testing/app_b_py310/main.py!}
+    ```
 
 ### Extended testing file
 
-You could then have a `test_main_b.py`, the same as before, with the extended tests:
+You could then update `test_main.py` with the extended tests:
 
 ```Python
-{!../../../docs_src/app_testing/test_main_b.py!}
+{!> ../../../docs_src/app_testing/app_b/test_main.py!}
 ```
 
 Whenever you need the client to pass information in the request and you don't know how to, you can search (Google) how to do it in `requests`.

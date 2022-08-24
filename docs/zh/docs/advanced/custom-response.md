@@ -60,7 +60,7 @@
 正如你在 [直接返回响应](response-directly.md){.internal-link target=_blank} 中了解到的，你也可以通过直接返回响应在 *路径操作* 中直接重载响应。
 
 和上面一样的例子，返回一个 `HTMLResponse` 看起来可能是这样：
- 
+
 ```Python hl_lines="2 7 19"
 {!../../../docs_src/custom_response/tutorial003.py!}
 ```
@@ -183,7 +183,7 @@ FastAPI（实际上是 Starlette）将自动包含 Content-Length 的头。它�
 
 包括许多与云存储，视频处理等交互的库。
 
-```Python hl_lines="2  10 11"
+```Python hl_lines="2  10-12  14"
 {!../../../docs_src/custom_response/tutorial008.py!}
 ```
 
