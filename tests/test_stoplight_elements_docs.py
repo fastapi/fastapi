@@ -1,18 +1,18 @@
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 
-app = FastAPI(title="White Shuli 2")
+app = FastAPI(title="Example App")
 
 
-@app.get("/pita/shuli")
+@app.get("/a/b")
 async def get_shuli_in_a_pita():
-    return {"shuli": "pita"}
+    return {"a": "b"}
 
 
 client = TestClient(app)
 
 
-def test_swagger_ui():
+def test_elements_uit():
     response = client.get("/elements")
     assert response.status_code == 200, response.text
     print(response.text)
@@ -21,5 +21,5 @@ def test_swagger_ui():
 
 
 def test_response():
-    response = client.get("/pita/shuli")
-    assert response.json() == {"shuli": "pita"}
+    response = client.get("/a/b")
+    assert response.json() == {"a": "b"}
