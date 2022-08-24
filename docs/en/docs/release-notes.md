@@ -2,6 +2,7 @@
 
 ## Latest Changes
 
+* 🍱 Update Jina banner, fix typo. PR [#5301](https://github.com/tiangolo/fastapi/pull/5301) by [@tiangolo](https://github.com/tiangolo).
 
 ## 0.80.0
 
