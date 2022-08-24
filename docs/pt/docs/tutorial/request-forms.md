@@ -1,11 +1,11 @@
 # Dados do formulário
 
-Quando você precisa receber campos de formulário em vez de JSON, você pode usar `Form`.
+Quando você precisa receber campos de formulário ao invés de JSON, você pode usar `Form`.
 
 !!! info "Informação"
     Para usar formulários, primeiro instale <a href="https://andrew-d.github.io/python-multipart/" class="external-link" target="_blank">`python-multipart`</a>.
 
-    E.g. `pip install python-multipart`.
+    Ex: `pip install python-multipart`.
 
 ## Importe `Form`
 
@@ -23,7 +23,7 @@ Crie parâmetros de formulário da mesma forma que você faria para `Body` ou `Q
 {!../../../docs_src/request_forms/tutorial001.py!}
 ```
 
-Por exemplo, em uma das maneiras que a especificação OAuth2 pode ser usada (chamada "fluxo de senha"), é necessário enviar um `username` e uma `password` como campos de formulário.
+Por exemplo, em uma das maneiras que a especificação OAuth2 pode ser usada (chamada "fluxo de senha"), é necessário enviar um `username` e uma `password` como campos do formulário.
 
 A <abbr title="especificação">spec</abbr> exige que os campos sejam exatamente nomeados como `username` e `password` e sejam enviados como campos de formulário, não JSON.
 
@@ -49,7 +49,7 @@ O **FastAPI** fará a leitura desses dados no lugar certo em vez de JSON.
     Se você quiser ler mais sobre essas codificações e campos de formulário, vá para o <a href="https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Methods/POST" class="external-link" target="_blank"><abbr title="Mozilla Developer Network">MDN</abbr> web docs para <code>POST</code></a>.
 
 !!! warning "Aviso"
-    Você pode declarar vários parâmetros `Form` em uma *operação de caminho*, mas também não pode declarar campos `Body` que espera receber como JSON, pois a solicitação terá o corpo codificado usando `application/x-www- form-urlencoded` em vez de `application/json`.
+    Você pode declarar vários parâmetros `Form` em uma *operação de caminho*, mas não pode declarar campos `Body` que espera receber como JSON, pois a solicitação terá o corpo codificado usando `application/x-www- form-urlencoded` em vez de `application/json`.
 
     Esta não é uma limitação do **FastAPI**, é parte do protocolo HTTP.
 
