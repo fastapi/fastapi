@@ -91,7 +91,7 @@ Once you go to <a href="http://127.0.0.1:8000/redoc" class="external-link" targe
 
 ## Self-hosting JavaScript and CSS for docs
 
-The API docs use **Swagger UI** and **ReDoc**, and each of those need some JavaScript and CSS files.
+The API docs use **Swagger UI**, **ReDoc** and **Stoplight Elements**, and each of those need some JavaScript and CSS files.
 
 By default, those files are served from a <abbr title="Content Delivery Network: A service, normally composed of several servers, that provides static files, like JavaScript and CSS. It's commonly used to serve those files from the server closer to the client, improving performance.">CDN</abbr>.
 
@@ -135,9 +135,14 @@ You can probably right-click each link and select an option similar to `Save lin
 * <a href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@4/swagger-ui-bundle.js" class="external-link" target="_blank">`swagger-ui-bundle.js`</a>
 * <a href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@4/swagger-ui.css" class="external-link" target="_blank">`swagger-ui.css`</a>
 
-And **ReDoc** uses the file:
+**ReDoc** uses the file:
 
 * <a href="https://cdn.jsdelivr.net/npm/redoc@next/bundles/redoc.standalone.js" class="external-link" target="_blank">`redoc.standalone.js`</a>
+
+**Stoplight Elements** uses the files:
+
+* <a href="https://unpkg.com/@stoplight/elements/web-components.min.js" class="external-link" target="_blank">`web-components.min.js`</a>
+* <a href="https://unpkg.com/@stoplight/elements/styles.min.css" class="external-link" target="_blank">`styles.min.css`</a>
 
 After that, your file structure could look like:
 
@@ -147,6 +152,8 @@ After that, your file structure could look like:
 │   ├── __init__.py
 │   ├── main.py
 └── static
+    ├── web-components.min.js
+    ├── styles.min.css
     ├── redoc.standalone.js
     ├── swagger-ui-bundle.js
     └── swagger-ui.css
@@ -157,7 +164,7 @@ After that, your file structure could look like:
 * Import `StaticFiles`.
 * "Mount" a `StaticFiles()` instance in a specific path.
 
-```Python hl_lines="7  11"
+```Python hl_lines="8  12"
 {!../../../docs_src/extending_openapi/tutorial002.py!}
 ```
 
@@ -191,7 +198,7 @@ The first step is to disable the automatic docs, as those use the CDN by default
 
 To disable them, set their URLs to `None` when creating your `FastAPI` app:
 
-```Python hl_lines="9"
+```Python hl_lines="10"
 {!../../../docs_src/extending_openapi/tutorial002.py!}
 ```
 
@@ -209,7 +216,7 @@ You can re-use FastAPI's internal functions to create the HTML pages for the doc
 
 And similarly for ReDoc...
 
-```Python hl_lines="2-6  14-22  25-27  30-36"
+```Python hl_lines="2-7  15-23  26-28  31-37  39-46"
 {!../../../docs_src/extending_openapi/tutorial002.py!}
 ```
 
@@ -224,13 +231,13 @@ And similarly for ReDoc...
 
 Now, to be able to test that everything works, create a *path operation*:
 
-```Python hl_lines="39-41"
+```Python hl_lines="49-51"
 {!../../../docs_src/extending_openapi/tutorial002.py!}
 ```
 
 ### Test it
 
-Now, you should be able to disconnect your WiFi, go to your docs at <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>, and reload the page.
+Now, you should be able to disconnect your WiFi, go to your docs at <a href="http://127.0.0.1:8000/elements" class="external-link" target="_blank">http://127.0.0.1:8000/elements</a>, and reload the page.
 
 And even without Internet, you would be able to see the docs for your API and interact with it.
 
@@ -312,3 +319,39 @@ presets: [
 These are **JavaScript** objects, not strings, so you can't pass them from Python code directly.
 
 If you need to use JavaScript-only configurations like those, you can use one of the methods above. Override all the Swagger UI *path operation* and manually write any JavaScript you need.
+
+## Configuring Stoplight Elements
+
+You can configure some extra <a href="https://meta.stoplight.io/docs/elements/b074dc47b2826-elements-configuration-options" class="external-link" target="_blank">Stoplight Elements parameters</a>.
+
+To configure them, use the `get_stoplight_elements_html` built in function parameters.
+
+### Custom Stoplight Elements Config
+
+```Python hl_lines="24-37"
+{!../../../docs_src/extending_openapi/tutorial006.py!}
+```
+
+- `openapi_url` OpenAPI document URL, supporting `http://`, `https://`, and documents containing `$ref` to other http(s) documents.
+- `title` The page title
+- `stoplight_elements_js_url` URL to static JS file.
+    - Default: `"https://unpkg.com/@stoplight/elements/web-components.min.js"`
+- `stoplight_elements_css_url` URL to static CSS file.
+    - Default: `"https://unpkg.com/@stoplight/elements/styles.min.css"`
+- `stoplight_elements_favicon_url` URL to an image that will be used as the page favicon.
+    - Default: `"https://fastapi.tiangolo.com/img/favicon.png"`
+- `api_description_document` OpenAPI document, provided as YAML string, JSON string or JavaScript object.
+- `base_path` Helps when using `RouterOptions.HISTORY` but docs are in a subdirectory like https://example.com/api/elements.
+- `hide_internal` Pass `True` to filter out any content which has been marked as internal with `x-internal`.
+    - Default: `False`
+- `hide_try_it` Pass `True` to hide the <a href="https://meta.stoplight.io/docs/platform/ZG9jOjM2OTM3Mjky-try-it" class="external-link" target="_blank">Try It feature.</a>.
+    - Default: `False`
+- `try_it_cors_proxy` Pass the URL of a CORS proxy used to send requests to the Try It feature. The provided url is prepended to the URL of an actual request.
+- `try_it_credential_policy` Use to fetch the credential policy for the Try It feature
+    - Default: `TryItCredentialPolicyOptions.OMIT`
+- `layout` There are two layouts for Elements:
+    - Default: `LayoutOptions.SIDEBAR` Three-column design.
+    - `LayoutOptions.STACKED` Everything in a single column, making integrations with existing websites that have their own sidebar or other columns already.
+- `logo` URL to an image that will show as a small square logo next to the title, above the table of contents.
+- `router`
+    - Default: `RouterOptions.HISTORY`
