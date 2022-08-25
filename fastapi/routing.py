@@ -209,7 +209,9 @@ def get_request_handler(
                         else:
                             body = body_bytes
         except json.JSONDecodeError as e:
-            raise RequestValidationError([ErrorWrapper(e, ("body", e.pos))], body=e.doc)
+            raise RequestValidationError(
+                [ErrorWrapper(e, ("body", e.pos))], body=e.doc
+            ) from e
         except Exception as e:
             raise HTTPException(
                 status_code=400, detail="There was an error parsing the body"
