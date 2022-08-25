@@ -1,4 +1,4 @@
-import os
+from pathlib import Path
 from typing import Optional
 
 from fastapi import APIRouter, FastAPI, File, UploadFile
@@ -66,14 +66,14 @@ app.add_middleware(ContentSizeLimitMiddleware, max_content_size=2**8)
 client = TestClient(app)
 
 
-def test_custom_middleware_exception(tmpdir):
+def test_custom_middleware_exception(tmp_path: Path):
     default_pydantic_max_size = 2**16
-    path = os.path.join(tmpdir, "test.txt")
-    with open(path, "wb") as file:
-        file.write(b"x" * (default_pydantic_max_size + 1))
+    path = tmp_path / "test.txt"
+    path.write_bytes(b"x" * (default_pydantic_max_size + 1))
 
     with client:
-        response = client.post("/middleware", files={"file": open(path, "rb")})
+        with open(path, "rb") as file:
+            response = client.post("/middleware", files={"file": file})
         assert response.status_code == 422, response.text
         assert response.json() == {
             "detail": {
@@ -84,12 +84,12 @@ def test_custom_middleware_exception(tmpdir):
         }
 
 
-def test_custom_middleware_exception_not_raised(tmpdir):
-    path = os.path.join(tmpdir, "test.txt")
-    with open(path, "wb") as file:
-        file.write(b"<file content>")
+def test_custom_middleware_exception_not_raised(tmp_path: Path):
+    path = tmp_path / "test.txt"
+    path.write_bytes(b"<file content>")
 
     with client:
-        response = client.post("/middleware", files={"file": open(path, "rb")})
+        with open(path, "rb") as file:
+            response = client.post("/middleware", files={"file": file})
         assert response.status_code == 200, response.text
         assert response.json() == {"message": "OK"}
