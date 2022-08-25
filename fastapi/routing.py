@@ -209,7 +209,9 @@ def get_request_handler(
                         else:
                             body = body_bytes
         except json.JSONDecodeError as e:
-            raise RequestValidationError([ErrorWrapper(e, ("body", e.pos))], body=e.doc)
+            raise RequestValidationError(
+                [ErrorWrapper(e, ("body", e.pos))], body=e.doc
+            ) from e
         except HTTPException:
             raise
         except Exception as e:
