@@ -212,6 +212,8 @@ def get_request_handler(
             raise RequestValidationError(
                 [ErrorWrapper(e, ("body", e.pos))], body=e.doc
             ) from e
+        except HTTPException:
+            raise
         except Exception as e:
             raise HTTPException(
                 status_code=400, detail="There was an error parsing the body"
