@@ -361,7 +361,7 @@ async def read_burgers():
     この部分は**FastAPI**の仕組みに関する非常に技術的な詳細です。
 
     かなりの技術知識 (コルーチン、スレッド、ブロッキングなど) があり、FastAPIが `async def` と通常の `def` をどのように処理するか知りたい場合は、先に進んでください。
-    
+
 ### Path operation 関数
 
 *path operation 関数*を `async def` の代わりに通常の `def` で宣言すると、(サーバーをブロックするので) 直接呼び出す代わりに外部スレッドプール (awaitされる) で実行されます。
