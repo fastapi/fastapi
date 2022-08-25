@@ -11,7 +11,7 @@ router = APIRouter()
 
 
 class ContentSizeLimitMiddleware:
-    """ Content size limiting middleware for ASGI applications
+    """Content size limiting middleware for ASGI applications
     Args:
       app (ASGI application): ASGI application
       max_content_size (optional): the maximum content size allowed in bytes, None for no limit
@@ -60,14 +60,14 @@ def run_middleware(file: UploadFile = File(..., description="Big File")):
 
 
 app.include_router(router)
-app.add_middleware(ContentSizeLimitMiddleware, max_content_size=2 ** 8)
+app.add_middleware(ContentSizeLimitMiddleware, max_content_size=2**8)
 
 
 client = TestClient(app)
 
 
 def test_custom_middleware_exception(tmpdir):
-    default_pydantic_max_size = 2 ** 16
+    default_pydantic_max_size = 2**16
     path = os.path.join(tmpdir, "test.txt")
     with open(path, "wb") as file:
         file.write(b"x" * (default_pydantic_max_size + 1))
