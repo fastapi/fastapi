@@ -71,7 +71,14 @@ def jsonable_encoder(
             sqlalchemy_safe=sqlalchemy_safe,
         )
     if dataclasses.is_dataclass(obj):
-        return dataclasses.asdict(obj)
+        obj_dict = dataclasses.asdict(obj)
+        return jsonable_encoder(
+            obj_dict,
+            exclude_none=exclude_none,
+            exclude_defaults=exclude_defaults,
+            custom_encoder=custom_encoder,
+            sqlalchemy_safe=sqlalchemy_safe,
+        )
     if isinstance(obj, Enum):
         return obj.value
     if isinstance(obj, PurePath):
