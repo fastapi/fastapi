@@ -6,7 +6,7 @@ Quand vous déclarez des paramètres dans votre fonction de chemin qui ne font p
 {!../../../docs_src/query_params/tutorial001.py!}
 ```
 
-La partie appelée requête (ou **query**) dans une URL est l'ensemble des paires clés-valeurs placées après le `?` , séparées par des `&`. 
+La partie appelée requête (ou **query**) dans une URL est l'ensemble des paires clés-valeurs placées après le `?` , séparées par des `&`.
 
 Par exemple, dans l'URL :
 
@@ -120,7 +120,7 @@ ou n'importe quelle autre variation de casse (tout en majuscules, uniquement la 
 
 ## Multiples paramètres de chemin et de requête
 
-Vous pouvez déclarer plusieurs paramètres de chemin et paramètres de requête dans la même fonction, **FastAPI** saura comment les gérer. 
+Vous pouvez déclarer plusieurs paramètres de chemin et paramètres de requête dans la même fonction, **FastAPI** saura comment les gérer.
 
 Et vous n'avez pas besoin de les déclarer dans un ordre spécifique.
 

@@ -5,17 +5,17 @@ app = FastAPI()
 
 
 @app.get("/int/{param:int}")
-def int_convertor(param: int = Path(...)):
+def int_convertor(param: int = Path()):
     return {"int": param}
 
 
 @app.get("/float/{param:float}")
-def float_convertor(param: float = Path(...)):
+def float_convertor(param: float = Path()):
     return {"float": param}
 
 
 @app.get("/path/{param:path}")
-def path_convertor(param: str = Path(...)):
+def path_convertor(param: str = Path()):
     return {"path": param}
 
 
