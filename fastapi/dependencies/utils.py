@@ -34,6 +34,7 @@ from pydantic import BaseModel, create_model
 from pydantic.error_wrappers import ErrorWrapper
 from pydantic.errors import MissingError
 from pydantic.fields import (
+    SHAPE_FROZENSET,
     SHAPE_LIST,
     SHAPE_SEQUENCE,
     SHAPE_SET,
@@ -43,6 +44,7 @@ from pydantic.fields import (
     FieldInfo,
     ModelField,
     Required,
+    Undefined,
 )
 from pydantic.schema import get_annotation_from_field_info
 from pydantic.typing import ForwardRef, evaluate_forwardref
@@ -57,6 +59,7 @@ from starlette.websockets import WebSocket
 sequence_shapes = {
     SHAPE_LIST,
     SHAPE_SET,
+    SHAPE_FROZENSET,
     SHAPE_TUPLE,
     SHAPE_SEQUENCE,
     SHAPE_TUPLE_ELLIPSIS,
@@ -160,7 +163,6 @@ def get_sub_dependant(
     )
     if security_requirement:
         sub_dependant.security_requirements.append(security_requirement)
-    sub_dependant.security_scopes = security_scopes
     return sub_dependant
 
 
@@ -277,7 +279,13 @@ def get_dependant(
     path_param_names = get_path_param_names(path)
     endpoint_signature = get_typed_signature(call)
     signature_params = endpoint_signature.parameters
-    dependant = Dependant(call=call, name=name, path=path, use_cache=use_cache)
+    dependant = Dependant(
+        call=call,
+        name=name,
+        path=path,
+        security_scopes=security_scopes,
+        use_cache=use_cache,
+    )
     for param_name, param in signature_params.items():
         if isinstance(param.default, params.Depends):
             sub_dependant = get_param_sub_dependant(
@@ -316,7 +324,7 @@ def get_dependant(
             field_info = param_field.field_info
             assert isinstance(
                 field_info, params.Body
-            ), f"Param: {param_field.name} can only be a request body, using Body(...)"
+            ), f"Param: {param_field.name} can only be a request body, using Body()"
             dependant.body_params.append(param_field)
     return dependant
 
@@ -353,7 +361,7 @@ def get_param_field(
     force_type: Optional[params.ParamTypes] = None,
     ignore_default: bool = False,
 ) -> ModelField:
-    default_value = Required
+    default_value: Any = Undefined
     had_schema = False
     if not param.default == param.empty and ignore_default is False:
         default_value = param.default
@@ -369,8 +377,13 @@ def get_param_field(
         if force_type:
             field_info.in_ = force_type  # type: ignore
     else:
-        field_info = default_field_info(default_value)
-    required = default_value == Required
+        field_info = default_field_info(default=default_value)
+    required = True
+    if default_value is Required or ignore_default:
+        required = True
+        default_value = None
+    elif default_value is not Undefined:
+        required = False
     annotation: Any = Any
     if not param.annotation == param.empty:
         annotation = param.annotation
@@ -382,14 +395,15 @@ def get_param_field(
     field = create_response_field(
         name=param.name,
         type_=annotation,
-        default=None if required else default_value,
+        default=default_value,
         alias=alias,
         required=required,
         field_info=field_info,
     )
-    field.required = required
     if not had_schema and not is_scalar_field(field=field):
         field.field_info = params.Body(field_info.default)
+    if not had_schema and lenient_issubclass(field.type_, UploadFile):
+        field.field_info = params.File(field_info.default)
 
     return field
 
@@ -460,13 +474,10 @@ async def solve_dependencies(
 ]:
     values: Dict[str, Any] = {}
     errors: List[ErrorWrapper] = []
-    response = response or Response(
-        content=None,
-        status_code=None,  # type: ignore
-        headers=None,  # type: ignore # in Starlette
-        media_type=None,  # type: ignore # in Starlette
-        background=None,  # type: ignore # in Starlette
-    )
+    if response is None:
+        response = Response()
+        del response.headers["content-length"]
+        response.status_code = None  # type: ignore
     dependency_cache = dependency_cache or {}
     sub_dependant: Dependant
     for sub_dependant in dependant.dependencies:
@@ -491,7 +502,6 @@ async def solve_dependencies(
                 name=sub_dependant.name,
                 security_scopes=sub_dependant.security_scopes,
             )
-            use_sub_dependant.security_scopes = sub_dependant.security_scopes
 
         solved_result = await solve_dependencies(
             request=request,
@@ -701,25 +711,6 @@ def get_missing_field_error(loc: Tuple[str, ...]) -> ErrorWrapper:
     return missing_field_error
 
 
-def get_schema_compatible_field(*, field: ModelField) -> ModelField:
-    out_field = field
-    if lenient_issubclass(field.type_, UploadFile):
-        use_type: type = bytes
-        if field.shape in sequence_shapes:
-            use_type = List[bytes]
-        out_field = create_response_field(
-            name=field.name,
-            type_=use_type,
-            class_validators=field.class_validators,
-            model_config=field.model_config,
-            default=field.default,
-            required=field.required,
-            alias=field.alias,
-            field_info=field.field_info,
-        )
-    return out_field
-
-
 def get_body_field(*, dependant: Dependant, name: str) -> Optional[ModelField]:
     flat_dependant = get_flat_dependant(dependant)
     if not flat_dependant.body_params:
@@ -729,9 +720,8 @@ def get_body_field(*, dependant: Dependant, name: str) -> Optional[ModelField]:
     embed = getattr(field_info, "embed", None)
     body_param_names_set = {param.name for param in flat_dependant.body_params}
     if len(body_param_names_set) == 1 and not embed:
-        final_field = get_schema_compatible_field(field=first_param)
-        check_file_field(final_field)
-        return final_field
+        check_file_field(first_param)
+        return first_param
     # If one field requires to embed, all have to be embedded
     # in case a sub-dependency is evaluated with a single unique body field
     # That is combined (embedded) with other body fields
@@ -740,7 +730,7 @@ def get_body_field(*, dependant: Dependant, name: str) -> Optional[ModelField]:
     model_name = "Body_" + name
     BodyModel: Type[BaseModel] = create_model(model_name)
     for f in flat_dependant.body_params:
-        BodyModel.__fields__[f.name] = get_schema_compatible_field(field=f)
+        BodyModel.__fields__[f.name] = f
     required = any(True for f in flat_dependant.body_params if f.required)
 
     BodyFieldInfo_kwargs: Dict[str, Any] = dict(default=None)
