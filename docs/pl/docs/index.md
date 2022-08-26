@@ -130,7 +130,7 @@ Na serwerze produkcyjnym będziesz także potrzebował serwera ASGI, np. <a href
 <div class="termy">
 
 ```console
-$ pip install uvicorn[standard]
+$ pip install "uvicorn[standard]"
 
 ---> 100%
 ```

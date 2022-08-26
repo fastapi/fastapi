@@ -212,6 +212,10 @@ articles:
     author_link: https://twitter.com/MantoshMukul
     link: https://www.jetbrains.com/pycharm/guide/tutorials/fastapi-aws-kubernetes/
     title: Developing FastAPI Application using K8s & AWS
+  - author: KrishNa
+    author_link: https://medium.com/@krishnardt365
+    link: https://medium.com/@krishnardt365/fastapi-docker-and-postgres-91943e71be92
+    title: Fastapi, Docker(Docker compose) and Postgres
   german:
   - author: Nico Axtmann
     author_link: https://twitter.com/_nicoax
