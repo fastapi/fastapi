@@ -2,6 +2,9 @@
 
 ## Latest Changes
 
+
+## 0.81.0
+
 ### Features
 
 * ✨ Add ReDoc `<noscript>` warning when JS is disabled. PR [#5074](https://github.com/tiangolo/fastapi/pull/5074) by [@evroon](https://github.com/evroon).
