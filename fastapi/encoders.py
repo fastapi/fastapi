@@ -137,10 +137,10 @@ def jsonable_encoder(
         if isinstance(obj, classes_tuple):
             return encoder(obj)
 
-    errors: List[Exception] = []
     try:
         data = dict(obj)
     except Exception as e:
+        errors: List[Exception] = []
         errors.append(e)
         try:
             data = vars(obj)
