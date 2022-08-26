@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Union
 
 from fastapi import FastAPI
 from fastapi.encoders import jsonable_encoder
@@ -8,9 +8,9 @@ app = FastAPI()
 
 
 class Item(BaseModel):
-    name: Optional[str] = None
-    description: Optional[str] = None
-    price: Optional[float] = None
+    name: Union[str, None] = None
+    description: Union[str, None] = None
+    price: Union[float, None] = None
     tax: float = 10.5
     tags: list[str] = []
 
