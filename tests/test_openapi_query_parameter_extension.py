@@ -46,10 +46,10 @@ openapi_schema = {
                         "schema": {
                             "title": "Standard Query Param",
                             "type": "integer",
-                            "default": 50
+                            "default": 50,
                         },
                         "name": "standard_query_param",
-                        "in": "query"
+                        "in": "query",
                     },
                     {
                         "required": False,
@@ -104,7 +104,7 @@ openapi_schema = {
                     "loc": {
                         "title": "Location",
                         "type": "array",
-                        "items": {"type": "string"},
+                        "items": {"anyOf": [{"type": "string"}, {"type": "integer"}]},
                     },
                     "msg": {"title": "Message", "type": "string"},
                     "type": {"title": "Error Type", "type": "string"},
@@ -117,9 +117,6 @@ openapi_schema = {
 
 def test_openapi():
     response = client.get("/openapi.json")
-    print(response.json())
-    print()
-    print(openapi_schema)
     assert response.status_code == 200, response.text
     assert response.json() == openapi_schema
 
