@@ -122,9 +122,9 @@ And you can also declare numeric validations:
 * `le`: `l`ess than or `e`qual
 
 !!! info
-    `Query`, `Path`, and others you will see later are subclasses of a common `Param` class (that you don't need to use).
+    `Query`, `Path`, and other classes you will see later are subclasses of a common `Param` class.
 
-    And all of them share the same all these same parameters of additional validation and metadata you have seen.
+    All of them share the same parameters for additional validation and metadata you have seen.
 
 !!! note "Technical Details"
     When you import `Query`, `Path` and others from `fastapi`, they are actually functions.
