@@ -107,7 +107,7 @@ def get_redoc_html(
     </head>
     <body>
     <noscript>
-        Redoc requires Javascript to function. Please enable it to browse the documentation.
+        ReDoc requires Javascript to function. Please enable it to browse the documentation.
     </noscript>
     <redoc spec-url="{openapi_url}"></redoc>
     <script src="{redoc_js_url}"> </script>
