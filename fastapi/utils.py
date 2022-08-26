@@ -87,7 +87,7 @@ def create_cloned_field(
 ) -> ModelField:
     # _cloned_types has already cloned types, to support recursive models
     if cloned_types is None:
-        cloned_types = dict()
+        cloned_types = {}
     original_type = field.type_
     if is_dataclass(original_type) and hasattr(original_type, "__pydantic_model__"):
         original_type = original_type.__pydantic_model__
