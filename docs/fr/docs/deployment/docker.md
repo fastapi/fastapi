@@ -118,7 +118,7 @@ $ docker run -d --name mycontainer -p 80:80 myimage
 
 </div>
 
-Vous disposez maintenant d'un serveur FastAPI optimisé dans un conteneur Docker. Configuré automatiquement pour votre 
+Vous disposez maintenant d'un serveur FastAPI optimisé dans un conteneur Docker. Configuré automatiquement pour votre
 serveur actuel (et le nombre de cœurs du CPU).
 
 ## Vérifier
@@ -139,7 +139,7 @@ Vous verrez la documentation interactive automatique de l'API (fournie par <a hr
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-01-swagger-ui-simple.png)
 
-## Documentation de l'API alternative 
+## Documentation de l'API alternative
 
 Et vous pouvez également aller sur <a href="http://192.168.99.100/redoc" class="external-link" target="_blank">http://192.168.99.100/redoc</a> ou <a href="http://127.0.0.1/redoc" class="external-link" target="_blank">http://127.0.0.1/redoc</a> (ou équivalent, en utilisant votre hôte Docker).
 
@@ -149,7 +149,7 @@ Vous verrez la documentation automatique alternative (fournie par <a href="https
 
 ## Traefik
 
-<a href="https://traefik.io/" class="external-link" target="_blank">Traefik</a> est un reverse proxy/load balancer 
+<a href="https://traefik.io/" class="external-link" target="_blank">Traefik</a> est un reverse proxy/load balancer
 haute performance. Il peut faire office de "Proxy de terminaison TLS" (entre autres fonctionnalités).
 
 Il est intégré à Let's Encrypt. Ainsi, il peut gérer toutes les parties HTTPS, y compris l'acquisition et le renouvellement des certificats.
@@ -164,7 +164,7 @@ Avec ces informations et ces outils, passez à la section suivante pour tout com
 
 Vous pouvez avoir un cluster en mode Docker Swarm configuré en quelques minutes (environ 20 min) avec un processus Traefik principal gérant HTTPS (y compris l'acquisition et le renouvellement des certificats).
 
-En utilisant le mode Docker Swarm, vous pouvez commencer par un "cluster" d'une seule machine (il peut même s'agir 
+En utilisant le mode Docker Swarm, vous pouvez commencer par un "cluster" d'une seule machine (il peut même s'agir
 d'un serveur à 5 USD/mois) et ensuite vous pouvez vous développer autant que vous le souhaitez en ajoutant d'autres serveurs.
 
 Pour configurer un cluster en mode Docker Swarm avec Traefik et la gestion de HTTPS, suivez ce guide :
