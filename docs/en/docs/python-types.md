@@ -372,7 +372,7 @@ These types that take type parameters in square brackets are called **Generic ty
 
 === "Python 3.9 and above"
 
-    You can use the same builtin types as generics (with square brakets and types inside):
+    You can use the same builtin types as generics (with square brackets and types inside):
 
     * `list`
     * `tuple`
@@ -387,7 +387,7 @@ These types that take type parameters in square brackets are called **Generic ty
 
 === "Python 3.10 and above"
 
-    You can use the same builtin types as generics (with square brakets and types inside):
+    You can use the same builtin types as generics (with square brackets and types inside):
 
     * `list`
     * `tuple`
