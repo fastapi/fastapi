@@ -63,6 +63,8 @@ nav:
   - tutorial/background-tasks.md
 - external-links.md
 - async.md
+- Развёртывание:
+  - deployment/versions.md
 markdown_extensions:
 - toc:
     permalink: true
