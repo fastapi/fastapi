@@ -14,7 +14,7 @@
 
 要实现它，导入 `JSONResponse`，然后在其中直接返回你的内容，并将 `status_code` 设置为为你要的值。
 
-```Python hl_lines="2  19"
+```Python hl_lines="4  25"
 {!../../../docs_src/additional_status_codes/tutorial001.py!}
 ```
 
@@ -22,7 +22,7 @@
     当你直接返回一个像上面例子中的 `Response` 对象时，它会直接返回。
 
     FastAPI 不会用模型等对该响应进行序列化。
-    
+
     确保其中有你想要的数据，且返回的值为合法的 JSON（如果你使用 `JSONResponse` 的话）。
 
 !!! note "技术细节"
