@@ -104,21 +104,7 @@ profile = "black"
 known_third_party = ["fastapi", "pydantic", "starlette"]
 
 [tool.mypy]
-# --strict
-disallow_any_generics = true
-disallow_subclassing_any = true
-disallow_untyped_calls = true
-disallow_untyped_defs = true
-disallow_incomplete_defs = true
-check_untyped_defs = true
-disallow_untyped_decorators = true
-no_implicit_optional = true
-warn_redundant_casts = true
-warn_unused_ignores = true
-warn_return_any = true
-implicit_reexport = false
-strict_equality = true
-# --strict end
+strict = true
 
 [[tool.mypy.overrides]]
 module = "fastapi.concurrency"
