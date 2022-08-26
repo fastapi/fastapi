@@ -22,7 +22,7 @@
 下面是一些你可以使用的其他数据类型:
 
 * `UUID`:
-    * 一种标准的 "通用唯一标识符" ，在许多数据库和系统中用作ID。 
+    * 一种标准的 "通用唯一标识符" ，在许多数据库和系统中用作ID。
     * 在请求和响应中将以 `str` 表示。
 * `datetime.datetime`:
     * 一个 Python `datetime.datetime`.
@@ -36,7 +36,7 @@
 * `datetime.timedelta`:
     * 一个 Python `datetime.timedelta`.
     * 在请求和响应中将表示为 `float` 代表总秒数。
-    * Pydantic 也允许将其表示为 "ISO 8601 时间差异编码", <a href="https://pydantic-docs.helpmanual.io/#json-serialisation" class="external-link" target="_blank">查看文档了解更多信息</a>。
+    * Pydantic 也允许将其表示为 "ISO 8601 时间差异编码", <a href="https://pydantic-docs.helpmanual.io/usage/exporting_models/#json_encoders" class="external-link" target="_blank">查看文档了解更多信息</a>。
 * `frozenset`:
     * 在请求和响应中，作为 `set` 对待：
         * 在请求中，列表将被读取，消除重复，并将其转换为一个 `set`。
