@@ -158,7 +158,7 @@ The syntax using `typing` is **compatible** with all versions, from Python 3.6 t
 
 As Python advances, **newer versions** come with improved support for these type annotations and in many cases you won't even need to import and use the `typing` module to declare the type annotations.
 
-If you can chose a more recent version of Python for your project, you will be able to take advantage of that extra simplicity. See some examples below.
+If you can choose a more recent version of Python for your project, you will be able to take advantage of that extra simplicity. See some examples below.
 
 #### List
 
@@ -372,7 +372,7 @@ These types that take type parameters in square brackets are called **Generic ty
 
 === "Python 3.9 and above"
 
-    You can use the same builtin types as generics (with square brakets and types inside):
+    You can use the same builtin types as generics (with square brackets and types inside):
 
     * `list`
     * `tuple`
@@ -387,7 +387,7 @@ These types that take type parameters in square brackets are called **Generic ty
 
 === "Python 3.10 and above"
 
-    You can use the same builtin types as generics (with square brakets and types inside):
+    You can use the same builtin types as generics (with square brackets and types inside):
 
     * `list`
     * `tuple`

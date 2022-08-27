@@ -70,6 +70,7 @@ nav:
   - tutorial/extra-data-types.md
   - tutorial/query-params-str-validations.md
   - tutorial/cookie-params.md
+  - tutorial/header-params.md
   - tutorial/handling-errors.md
   - Segurança:
     - tutorial/security/index.md

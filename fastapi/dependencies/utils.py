@@ -34,6 +34,7 @@ from pydantic import BaseModel, create_model
 from pydantic.error_wrappers import ErrorWrapper
 from pydantic.errors import MissingError
 from pydantic.fields import (
+    SHAPE_FROZENSET,
     SHAPE_LIST,
     SHAPE_SEQUENCE,
     SHAPE_SET,
@@ -58,6 +59,7 @@ from starlette.websockets import WebSocket
 sequence_shapes = {
     SHAPE_LIST,
     SHAPE_SET,
+    SHAPE_FROZENSET,
     SHAPE_TUPLE,
     SHAPE_SEQUENCE,
     SHAPE_TUPLE_ELLIPSIS,
@@ -300,10 +302,7 @@ def get_dependant(
             assert is_scalar_field(
                 field=param_field
             ), "Path params must be of one of the supported types"
-            if isinstance(param.default, params.Path):
-                ignore_default = False
-            else:
-                ignore_default = True
+            ignore_default = not isinstance(param.default, params.Path)
             param_field = get_param_field(
                 param=param,
                 param_name=param_name,
