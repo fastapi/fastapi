@@ -293,7 +293,7 @@ def _get_annotation_for_generic(annotation: Any, provided_type: Dict[str, Any]) 
         annotation = provided_type[annotation]
 
     annotation_args = get_args(annotation)
-    if annotation_args is None:
+    if not annotation_args:
         return annotation
 
     args_to_replace = []
