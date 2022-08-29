@@ -47,7 +47,7 @@ from pydantic.fields import (
     Undefined,
 )
 from pydantic.schema import get_annotation_from_field_info
-from pydantic.typing import ForwardRef, evaluate_forwardref
+from pydantic.typing import ForwardRef, evaluate_forwardref, get_args, get_origin
 from pydantic.utils import lenient_issubclass
 from starlette.background import BackgroundTasks
 from starlette.concurrency import run_in_threadpool
@@ -72,7 +72,6 @@ sequence_shape_to_type = {
     SHAPE_SEQUENCE: list,
     SHAPE_TUPLE_ELLIPSIS: list,
 }
-
 
 multipart_not_installed_error = (
     'Form data requires "python-multipart" to be installed. \n'
@@ -244,7 +243,12 @@ def is_scalar_sequence_field(field: ModelField) -> bool:
     return False
 
 
-def get_typed_signature(call: Callable[..., Any]) -> inspect.Signature:
+def get_typed_signature(call: Any) -> inspect.Signature:
+    origin = get_origin(call)
+    provided_type: Dict[str, Any] = {}
+    if origin is not None:
+        provided_type = _get_provided_type_generic(origin, call)
+        call = origin.__init__
     signature = inspect.signature(call)
     globalns = getattr(call, "__globals__", {})
     typed_params = [
@@ -252,19 +256,55 @@ def get_typed_signature(call: Callable[..., Any]) -> inspect.Signature:
             name=param.name,
             kind=param.kind,
             default=param.default,
-            annotation=get_typed_annotation(param, globalns),
+            annotation=get_typed_annotation(param, provided_type, globalns),
         )
         for param in signature.parameters.values()
+        if param.name != "self"
     ]
     typed_signature = inspect.Signature(typed_params)
     return typed_signature
 
 
-def get_typed_annotation(param: inspect.Parameter, globalns: Dict[str, Any]) -> Any:
+def get_typed_annotation(
+    param: inspect.Parameter, provided_type: Dict[str, Any], globalns: Dict[str, Any]
+) -> Any:
     annotation = param.annotation
     if isinstance(annotation, str):
         annotation = ForwardRef(annotation)
         annotation = evaluate_forwardref(annotation, globalns, globalns)
+    annotation_generic = _get_annotation_for_generic(annotation, provided_type)
+    if annotation_generic is not None:
+        annotation = annotation_generic
+    return annotation
+
+
+def _get_provided_type_generic(origin: Type[Any], call: Type[Any]) -> Dict[str, Any]:
+    provided_type = {}
+    if hasattr(origin, "__orig_bases__"):
+        base = origin.__orig_bases__[0]
+        if hasattr(base, "__parameters__"):
+            args = get_args(call)
+            provided_type = dict(zip(base.__parameters__, args))
+    return provided_type
+
+
+def _get_annotation_for_generic(annotation: Any, provided_type: Dict[str, Any]) -> Any:
+    if annotation in provided_type:
+        annotation = provided_type[annotation]
+
+    annotation_args = get_args(annotation)
+    if annotation_args is None:
+        return annotation
+
+    args_to_replace = []
+    for arg in annotation_args:
+        arg = provided_type.get(arg, arg)
+        args_to_replace.append(arg)
+
+    updated_args_annotation = any(arg in provided_type for arg in annotation_args)
+    if updated_args_annotation:
+        setattr(annotation, "__args__", tuple(args_to_replace))
+
     return annotation
 
 
