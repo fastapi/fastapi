@@ -37,7 +37,7 @@ plugins:
     data: data
 nav:
 - FastAPI: index.md
-- Languages:
+- Языки:
   - en: /
   - az: /az/
   - de: /de/
@@ -58,6 +58,7 @@ nav:
   - tr: /tr/
   - uk: /uk/
   - zh: /zh/
+- features.md
 - python-types.md
 - Учебник - руководство пользователя:
   - tutorial/background-tasks.md
