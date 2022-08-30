@@ -4,12 +4,12 @@
 
 **FastAPI** предлагает вам следующее:
 
-### Базирование на открытых стандартах
+### Использование открытых стандартов
 
 * <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a> для создания API, включая объявления <abbr title="также известных, как  HTTP-методы, такие, как: POST, GET, PUT, DELETE">операций</abbr> <abbr title="известные как: эндпоинты, маршруты, 'ручки' и т.п.">пути</abbr>, параметров, тела запроса, безопасности и т.д.
 
 
-* Автоматическое документирование моделей данных в соответствии с <a href="https://json-schema.org/" class="external-link" target="_blank"><strong>JSON Schema</strong></a> (так как спецификацмя OpenAPI сама основана на JSON Schema).
+* Автоматическое документирование моделей данных в соответствии с <a href="https://json-schema.org/" class="external-link" target="_blank"><strong>JSON Schema</strong></a> (так как спецификация OpenAPI сама основана на JSON Schema).
 * Разработан, придерживаясь этих стандартов, после тщательного их изучения. Эти стандарты изначально включены во фреймфорк, а не являются дополнительной надстройкой.
 * Это также позволяет использовать автоматическую **генерацию клиентского кода** на многих языках.
 
@@ -165,7 +165,7 @@ FastAPI включает в себя чрезвычайно простую в и
 
 С **FastAPI** вы получаете все возможности **Starlette** (так как FastAPI это всего лишь Starlette на стероидах):
 
-* Серьёзно впечатляющая производительность. Это <a href="https://github.com/encode/starlette#performance" class="external-link" target="_blank">один из самых быстрых Python-фреймворков, наравне с **NodeJS** и **Go**</a>.
+* Серьёзно впечатляющая производительность. Это <a href="https://github.com/encode/starlette#performance" class="external-link" target="_blank">один из самых быстрых фреймворков на Python</a>, наравне с приложениями использующими **NodeJS** или **Go**.
 * Поддержка **WebSocket**.
 * Фоновые задачи для процессов.
 * События запуска и выключения.
