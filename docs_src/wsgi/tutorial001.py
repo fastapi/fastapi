@@ -1,8 +1,12 @@
+from flask_wtf.csrf import CSRFProtect
 from fastapi import FastAPI
 from fastapi.middleware.wsgi import WSGIMiddleware
 from flask import Flask, escape, request
 
+# OpenRefactory Warning: The 'Flask' method creates a Flask app
+# without Cross-Site Request Forgery (CSRF) protection.
 flask_app = Flask(__name__)
+CSRFProtect(flask_app)
 
 
 @flask_app.route("/")
