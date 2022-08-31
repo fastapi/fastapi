@@ -4,8 +4,19 @@
   display: block;
 }
 
+.termy {
+  /* For right to left languages */
+  direction: ltr;
+}
+
 .termy [data-termynal] {
   white-space: pre-wrap;
+}
+
+a.external-link {
+  /* For right to left languages */
+  direction: ltr;
+  display: inline-block;
 }
 
 a.external-link::after {
@@ -94,7 +105,7 @@ a.announce-link:hover {
 .announce-wrapper .sponsor-badge {
   display: block;
   position: absolute;
-  top: -5px;
+  top: -10px;
   right: 0;
   font-size: 0.5rem;
   color: #999;
@@ -117,4 +128,19 @@ a.announce-link:hover {
 
 .twitter {
   color: #00acee;
+}
+
+/* Right to left languages */
+code {
+  direction: ltr;
+  display: inline-block;
+}
+
+.md-content__inner h1 {
+  direction: ltr !important;
+}
+
+.illustration {
+  margin-top: 2em;
+  margin-bottom: 2em;
 }
