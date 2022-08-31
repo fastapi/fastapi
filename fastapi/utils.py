@@ -42,7 +42,7 @@ def get_model_definitions(
 
 
 def get_path_param_names(path: str) -> Set[str]:
-    return {name.split(":")[0] for name in re.findall("{(.*?)}", path)}
+    return set(re.findall("{(.*?)}", path))
 
 
 def create_response_field(
