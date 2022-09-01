@@ -2,7 +2,7 @@
 
 You can use any template engine you want with **FastAPI**.
 
-A common election is Jinja2, the same one used by Flask and other tools.
+A common choice is Jinja2, the same one used by Flask and other tools.
 
 There are utilities to configure it easily that you can use directly in your **FastAPI** application (provided by Starlette).
 
@@ -14,18 +14,6 @@ Install `jinja2`:
 
 ```console
 $ pip install jinja2
-
----> 100%
-```
-
-</div>
-
-If you need to also serve static files (as in this example), install `aiofiles`:
-
-<div class="termy">
-
-```console
-$ pip install aiofiles
 
 ---> 100%
 ```

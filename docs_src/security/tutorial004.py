@@ -1,5 +1,5 @@
 from datetime import datetime, timedelta
-from typing import Optional
+from typing import Union
 
 from fastapi import Depends, FastAPI, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
@@ -31,14 +31,14 @@ class Token(BaseModel):
 
 
 class TokenData(BaseModel):
-    username: Optional[str] = None
+    username: Union[str, None] = None
 
 
 class User(BaseModel):
     username: str
-    email: Optional[str] = None
-    full_name: Optional[str] = None
-    disabled: Optional[bool] = None
+    email: Union[str, None] = None
+    full_name: Union[str, None] = None
+    disabled: Union[bool, None] = None
 
 
 class UserInDB(User):
@@ -75,7 +75,7 @@ def authenticate_user(fake_db, username: str, password: str):
     return user
 
 
-def create_access_token(data: dict, expires_delta: Optional[timedelta] = None):
+def create_access_token(data: dict, expires_delta: Union[timedelta, None] = None):
     to_encode = data.copy()
     if expires_delta:
         expire = datetime.utcnow() + expires_delta
