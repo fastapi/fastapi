@@ -5,21 +5,24 @@ theme:
   name: material
   custom_dir: overrides
   palette:
-  - scheme: default
-    primary: teal
-    accent: amber
-    toggle:
-      icon: material/lightbulb-outline
-      name: Switch to light mode
-  - scheme: slate
+  - media: '(prefers-color-scheme: light)'
+    scheme: default
     primary: teal
     accent: amber
     toggle:
       icon: material/lightbulb
+      name: Switch to light mode
+  - media: '(prefers-color-scheme: dark)'
+    scheme: slate
+    primary: teal
+    accent: amber
+    toggle:
+      icon: material/lightbulb-outline
       name: Switch to dark mode
   features:
   - search.suggest
   - search.highlight
+  - content.tabs.link
   icon:
     repo: fontawesome/brands/github-alt
   logo: https://fastapi.tiangolo.com/img/icon-white.svg
@@ -28,9 +31,6 @@ theme:
 repo_name: tiangolo/fastapi
 repo_url: https://github.com/tiangolo/fastapi
 edit_uri: ''
-google_analytics:
-- UA-133183413-1
-- auto
 plugins:
 - search
 - markdownextradata:
@@ -39,15 +39,22 @@ nav:
 - FastAPI: index.md
 - Languages:
   - en: /
+  - az: /az/
+  - de: /de/
   - es: /es/
+  - fa: /fa/
   - fr: /fr/
+  - he: /he/
+  - id: /id/
   - it: /it/
   - ja: /ja/
   - ko: /ko/
+  - nl: /nl/
   - pl: /pl/
   - pt: /pt/
   - ru: /ru/
   - sq: /sq/
+  - sv: /sv/
   - tr: /tr/
   - uk: /uk/
   - zh: /zh/
@@ -55,6 +62,9 @@ nav:
 - python-types.md
 - Tutorial - Guía de Usuario:
   - tutorial/index.md
+  - tutorial/first-steps.md
+  - tutorial/path-params.md
+  - tutorial/query-params.md
 - Guía de Usuario Avanzada:
   - advanced/index.md
 - async.md
@@ -63,7 +73,7 @@ markdown_extensions:
     permalink: true
 - markdown.extensions.codehilite:
     guess_lang: false
-- markdown_include.include:
+- mdx_include:
     base_path: docs
 - admonition
 - codehilite
@@ -72,16 +82,22 @@ markdown_extensions:
     custom_fences:
     - name: mermaid
       class: mermaid
-      format: !!python/name:pymdownx.superfences.fence_div_format ''
-- pymdownx.tabbed
+      format: !!python/name:pymdownx.superfences.fence_code_format ''
+- pymdownx.tabbed:
+    alternate_style: true
+- attr_list
+- md_in_html
 extra:
+  analytics:
+    provider: google
+    property: UA-133183413-1
   social:
   - icon: fontawesome/brands/github-alt
     link: https://github.com/tiangolo/fastapi
   - icon: fontawesome/brands/discord
     link: https://discord.gg/VQjSZaeJmf
   - icon: fontawesome/brands/twitter
-    link: https://twitter.com/tiangolo
+    link: https://twitter.com/fastapi
   - icon: fontawesome/brands/linkedin
     link: https://www.linkedin.com/in/tiangolo
   - icon: fontawesome/brands/dev
@@ -93,16 +109,28 @@ extra:
   alternate:
   - link: /
     name: en - English
+  - link: /az/
+    name: az
+  - link: /de/
+    name: de
   - link: /es/
     name: es - español
+  - link: /fa/
+    name: fa
   - link: /fr/
     name: fr - français
+  - link: /he/
+    name: he
+  - link: /id/
+    name: id
   - link: /it/
     name: it - italiano
   - link: /ja/
     name: ja - 日本語
   - link: /ko/
     name: ko - 한국어
+  - link: /nl/
+    name: nl
   - link: /pl/
     name: pl
   - link: /pt/
@@ -111,6 +139,8 @@ extra:
     name: ru - русский язык
   - link: /sq/
     name: sq - shqip
+  - link: /sv/
+    name: sv - svenska
   - link: /tr/
     name: tr - Türkçe
   - link: /uk/
@@ -121,6 +151,5 @@ extra_css:
 - https://fastapi.tiangolo.com/css/termynal.css
 - https://fastapi.tiangolo.com/css/custom.css
 extra_javascript:
-- https://unpkg.com/mermaid@8.4.6/dist/mermaid.min.js
 - https://fastapi.tiangolo.com/js/termynal.js
 - https://fastapi.tiangolo.com/js/custom.js
