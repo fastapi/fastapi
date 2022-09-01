@@ -1,1 +1,4 @@
 blank_issues_enabled: false
+contact_links:
+  - name: Security Contact
+    about: Please report security vulnerabilities to security@tiangolo.com
