@@ -244,6 +244,36 @@ You can also use the `response_class` parameter:
 
 In this case, you can return the file path directly from your *path operation* function.
 
+## Custom response class
+
+You can create your own custom response class, inheriting from `Response` and using it.
+
+For example, let's say that you want to use <a href="https://github.com/ijl/orjson" class="external-link" target="_blank">`orjson`</a>, but with some custom settings not used in the included `ORJSONResponse` class.
+
+Let's say you want it to return indented and formatted JSON, so you want to use the orjson option `orjson.OPT_INDENT_2`.
+
+You could create a `CustomORJSONResponse`. The main thing you have to do is create a `Response.render(content)` method that returns the content as `bytes`:
+
+```Python hl_lines="9-14  17"
+{!../../../docs_src/custom_response/tutorial009c.py!}
+```
+
+Now instead of returning:
+
+```json
+{"message": "Hello World"}
+```
+
+...this response will return:
+
+```json
+{
+  "message": "Hello World"
+}
+```
+
+Of course, you will probably find much better ways to take advantage of this than formatting JSON. 😉
+
 ## Default response class
 
 When creating a **FastAPI** class instance or an `APIRouter` you can specify which response class to use by default.
