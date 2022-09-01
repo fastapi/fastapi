@@ -2,6 +2,7 @@
 
 ## Latest Changes
 
+* 🐛 Fix support for path parameters in WebSockets. PR [#3879](https://github.com/tiangolo/fastapi/pull/3879) by [@davidbrochart](https://github.com/davidbrochart).
 
 ## 0.81.0
 
