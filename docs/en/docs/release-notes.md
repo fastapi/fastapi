@@ -2,6 +2,7 @@
 
 ## Latest Changes
 
+* 📝 Add docs for creating a custom Response class. PR [#5331](https://github.com/tiangolo/fastapi/pull/5331) by [@tiangolo](https://github.com/tiangolo).
 * 📝 Add tip about using alias for form data fields. PR [#5329](https://github.com/tiangolo/fastapi/pull/5329) by [@tiangolo](https://github.com/tiangolo).
 * 🐛 Fix support for path parameters in WebSockets. PR [#3879](https://github.com/tiangolo/fastapi/pull/3879) by [@davidbrochart](https://github.com/davidbrochart).
 
