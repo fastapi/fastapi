@@ -1,6 +1,6 @@
 [build-system]
-requires = ["flit"]
-build-backend = "flit.buildapi"
+requires = ["flit_core"]
+build-backend = "flit_core.buildapi"
 
 [tool.flit.metadata]
 module = "fastapi"
