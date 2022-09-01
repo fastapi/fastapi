@@ -67,7 +67,7 @@ FastAPI 是一个用于构建 API 的现代、快速（高性能）的 web 框�
 
 「_我们选择了 **FastAPI** 来创建用于获取**预测结果**的 **REST** 服务。[用于 Ludwig]_」
 
-<div style="text-align: right; margin-right: 10%;">Piero Molino，Yaroslav Dudin 和 Sai Sumanth Miryala - <strong>Uber</strong> <a href="https://eng.uber.com/ludwig-v0-2/" target="_blank"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Piero Molino，Yaroslav Dudin 和 Sai Sumanth Miryala - <strong>Uber</strong> <a href="https://ludwig-ai.github.io/ludwig-docs/0.5/user_guide/serving/" target="_blank"><small>(ref)</small></a></div>
 
 ---
 

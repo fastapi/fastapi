@@ -66,7 +66,7 @@ FastAPI یک وب فریم‌ورک مدرن و سریع (با کارایی با
 
 <div style="text-align: left; direction: ltr;"><em>"We adopted the <strong>FastAPI</strong> library to spawn a <strong>REST</strong>server that can be queried to obtain <strong>predictions</strong>. [for Ludwig]"</em></div>
 
-<div style="text-align: right; margin-right: 10%;">Piero Molino, Yaroslav Dudin, and Sai Sumanth Miryala - <strong>Uber</strong> <a href="https://eng.uber.com/ludwig-v0-2/" target="_blank"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Piero Molino, Yaroslav Dudin, and Sai Sumanth Miryala - <strong>Uber</strong> <a href="https://ludwig-ai.github.io/ludwig-docs/0.5/user_guide/serving/" target="_blank"><small>(ref)</small></a></div>
 
 ---
 

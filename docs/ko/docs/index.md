@@ -67,7 +67,7 @@ FastAPI는 현대적이고, 빠르며(고성능), 파이썬 표준 타입 힌트
 
 "_**FastAPI** 라이브러리를 채택하여 **예측**을 얻기 위해 쿼리를 실행 할 수 있는 **REST** 서버를 생성했습니다. [Ludwig을 위해]_"
 
-<div style="text-align: right; margin-right: 10%;">Piero Molino, Yaroslav Dudin 그리고 Sai Sumanth Miryala - <strong>우버</strong> <a href="https://eng.uber.com/ludwig-v0-2/" target="_blank"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Piero Molino, Yaroslav Dudin 그리고 Sai Sumanth Miryala - <strong>우버</strong> <a href="https://ludwig-ai.github.io/ludwig-docs/0.5/user_guide/serving/" target="_blank"><small>(ref)</small></a></div>
 
 ---
 

@@ -166,7 +166,7 @@ articles:
     title: A FastAPI and Swagger UI visual cheatsheet
   - author: Uber Engineering
     author_link: https://eng.uber.com
-    link: https://eng.uber.com/ludwig-v0-2/
+    link: https://ludwig-ai.github.io/ludwig-docs/0.5/user_guide/serving/
     title: 'Uber: Ludwig v0.2 Adds New Features and Other Improvements to its Deep Learning Toolbox [including a FastAPI server]'
   - author: Maarten Grootendorst
     author_link: https://www.linkedin.com/in/mgrootendorst/
