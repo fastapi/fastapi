@@ -27,7 +27,9 @@ class OpenIdConnect(SecurityBase):
         if not authorization:
             if self.auto_error:
                 raise HTTPException(
-                    status_code=HTTP_403_FORBIDDEN, detail="Not authenticated"
+                    status_code=HTTP_401_UNAUTHORIZED,
+                    detail="Not authenticated",
+                    headers={"WWW-Authenticate": "Bearer"},
                 )
             else:
                 return None
