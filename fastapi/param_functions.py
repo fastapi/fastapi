@@ -1,10 +1,11 @@
-from typing import Any, Callable, Optional, Sequence
+from typing import Any, Callable, Dict, Optional, Sequence
 
 from fastapi import params
+from pydantic.fields import Undefined
 
 
 def Path(  # noqa: N802
-    default: Any,
+    default: Any = Undefined,
     *,
     alias: Optional[str] = None,
     title: Optional[str] = None,
@@ -16,7 +17,10 @@ def Path(  # noqa: N802
     min_length: Optional[int] = None,
     max_length: Optional[int] = None,
     regex: Optional[str] = None,
+    example: Any = Undefined,
+    examples: Optional[Dict[str, Any]] = None,
     deprecated: Optional[bool] = None,
+    include_in_schema: bool = True,
     **extra: Any,
 ) -> Any:
     return params.Path(
@@ -31,13 +35,16 @@ def Path(  # noqa: N802
         min_length=min_length,
         max_length=max_length,
         regex=regex,
+        example=example,
+        examples=examples,
         deprecated=deprecated,
+        include_in_schema=include_in_schema,
         **extra,
     )
 
 
 def Query(  # noqa: N802
-    default: Any,
+    default: Any = Undefined,
     *,
     alias: Optional[str] = None,
     title: Optional[str] = None,
@@ -49,11 +56,14 @@ def Query(  # noqa: N802
     min_length: Optional[int] = None,
     max_length: Optional[int] = None,
     regex: Optional[str] = None,
+    example: Any = Undefined,
+    examples: Optional[Dict[str, Any]] = None,
     deprecated: Optional[bool] = None,
+    include_in_schema: bool = True,
     **extra: Any,
 ) -> Any:
     return params.Query(
-        default,
+        default=default,
         alias=alias,
         title=title,
         description=description,
@@ -64,13 +74,16 @@ def Query(  # noqa: N802
         min_length=min_length,
         max_length=max_length,
         regex=regex,
+        example=example,
+        examples=examples,
         deprecated=deprecated,
+        include_in_schema=include_in_schema,
         **extra,
     )
 
 
 def Header(  # noqa: N802
-    default: Any,
+    default: Any = Undefined,
     *,
     alias: Optional[str] = None,
     convert_underscores: bool = True,
@@ -83,11 +96,14 @@ def Header(  # noqa: N802
     min_length: Optional[int] = None,
     max_length: Optional[int] = None,
     regex: Optional[str] = None,
+    example: Any = Undefined,
+    examples: Optional[Dict[str, Any]] = None,
     deprecated: Optional[bool] = None,
+    include_in_schema: bool = True,
     **extra: Any,
 ) -> Any:
     return params.Header(
-        default,
+        default=default,
         alias=alias,
         convert_underscores=convert_underscores,
         title=title,
@@ -99,13 +115,16 @@ def Header(  # noqa: N802
         min_length=min_length,
         max_length=max_length,
         regex=regex,
+        example=example,
+        examples=examples,
         deprecated=deprecated,
+        include_in_schema=include_in_schema,
         **extra,
     )
 
 
 def Cookie(  # noqa: N802
-    default: Any,
+    default: Any = Undefined,
     *,
     alias: Optional[str] = None,
     title: Optional[str] = None,
@@ -117,11 +136,14 @@ def Cookie(  # noqa: N802
     min_length: Optional[int] = None,
     max_length: Optional[int] = None,
     regex: Optional[str] = None,
+    example: Any = Undefined,
+    examples: Optional[Dict[str, Any]] = None,
     deprecated: Optional[bool] = None,
+    include_in_schema: bool = True,
     **extra: Any,
 ) -> Any:
     return params.Cookie(
-        default,
+        default=default,
         alias=alias,
         title=title,
         description=description,
@@ -132,13 +154,16 @@ def Cookie(  # noqa: N802
         min_length=min_length,
         max_length=max_length,
         regex=regex,
+        example=example,
+        examples=examples,
         deprecated=deprecated,
+        include_in_schema=include_in_schema,
         **extra,
     )
 
 
 def Body(  # noqa: N802
-    default: Any,
+    default: Any = Undefined,
     *,
     embed: bool = False,
     media_type: str = "application/json",
@@ -152,10 +177,12 @@ def Body(  # noqa: N802
     min_length: Optional[int] = None,
     max_length: Optional[int] = None,
     regex: Optional[str] = None,
+    example: Any = Undefined,
+    examples: Optional[Dict[str, Any]] = None,
     **extra: Any,
 ) -> Any:
     return params.Body(
-        default,
+        default=default,
         embed=embed,
         media_type=media_type,
         alias=alias,
@@ -168,12 +195,14 @@ def Body(  # noqa: N802
         min_length=min_length,
         max_length=max_length,
         regex=regex,
+        example=example,
+        examples=examples,
         **extra,
     )
 
 
 def Form(  # noqa: N802
-    default: Any,
+    default: Any = Undefined,
     *,
     media_type: str = "application/x-www-form-urlencoded",
     alias: Optional[str] = None,
@@ -186,10 +215,12 @@ def Form(  # noqa: N802
     min_length: Optional[int] = None,
     max_length: Optional[int] = None,
     regex: Optional[str] = None,
+    example: Any = Undefined,
+    examples: Optional[Dict[str, Any]] = None,
     **extra: Any,
 ) -> Any:
     return params.Form(
-        default,
+        default=default,
         media_type=media_type,
         alias=alias,
         title=title,
@@ -201,12 +232,14 @@ def Form(  # noqa: N802
         min_length=min_length,
         max_length=max_length,
         regex=regex,
+        example=example,
+        examples=examples,
         **extra,
     )
 
 
 def File(  # noqa: N802
-    default: Any,
+    default: Any = Undefined,
     *,
     media_type: str = "multipart/form-data",
     alias: Optional[str] = None,
@@ -219,10 +252,12 @@ def File(  # noqa: N802
     min_length: Optional[int] = None,
     max_length: Optional[int] = None,
     regex: Optional[str] = None,
+    example: Any = Undefined,
+    examples: Optional[Dict[str, Any]] = None,
     **extra: Any,
 ) -> Any:
     return params.File(
-        default,
+        default=default,
         media_type=media_type,
         alias=alias,
         title=title,
@@ -234,6 +269,8 @@ def File(  # noqa: N802
         min_length=min_length,
         max_length=max_length,
         regex=regex,
+        example=example,
+        examples=examples,
         **extra,
     )
 
