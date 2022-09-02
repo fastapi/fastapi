@@ -4,7 +4,6 @@ import orjson
 from fastapi import APIRouter, FastAPI
 from fastapi.responses import HTMLResponse, JSONResponse, PlainTextResponse
 from fastapi.testclient import TestClient
-from sqlalchemy.sql.elements import quoted_name
 
 
 class ORJSONResponse(JSONResponse):
@@ -30,12 +29,6 @@ router_b_a_c_override = APIRouter()  # Overrides default class again
 @app.get("/")
 def get_root():
     return {"msg": "Hello World"}
-
-
-@app.get("/orjson_non_str_keys")
-def get_orjson_non_str_keys():
-    key = quoted_name("msg")
-    return {key: "Hello World", 1: 1}
 
 
 @app.get("/override", response_class=PlainTextResponse)
@@ -129,13 +122,6 @@ def test_app():
     with client:
         response = client.get("/")
     assert response.json() == {"msg": "Hello World"}
-    assert response.headers["content-type"] == orjson_type
-
-
-def test_orjson_non_str_keys():
-    with client:
-        response = client.get("/orjson_non_str_keys")
-    assert response.json() == {"msg": "Hello World", "1": 1}
     assert response.headers["content-type"] == orjson_type
 
 
