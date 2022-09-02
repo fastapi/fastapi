@@ -45,12 +45,12 @@ class OAuth2PasswordRequestForm:
 
     def __init__(
         self,
-        grant_type: str = Form(None, regex="password"),
-        username: str = Form(...),
-        password: str = Form(...),
-        scope: str = Form(""),
-        client_id: Optional[str] = Form(None),
-        client_secret: Optional[str] = Form(None),
+        grant_type: str = Form(default=None, regex="password"),
+        username: str = Form(),
+        password: str = Form(),
+        scope: str = Form(default=""),
+        client_id: Optional[str] = Form(default=None),
+        client_secret: Optional[str] = Form(default=None),
     ):
         self.grant_type = grant_type
         self.username = username
@@ -95,12 +95,12 @@ class OAuth2PasswordRequestFormStrict(OAuth2PasswordRequestForm):
 
     def __init__(
         self,
-        grant_type: str = Form(..., regex="password"),
-        username: str = Form(...),
-        password: str = Form(...),
-        scope: str = Form(""),
-        client_id: Optional[str] = Form(None),
-        client_secret: Optional[str] = Form(None),
+        grant_type: str = Form(regex="password"),
+        username: str = Form(),
+        password: str = Form(),
+        scope: str = Form(default=""),
+        client_id: Optional[str] = Form(default=None),
+        client_secret: Optional[str] = Form(default=None),
     ):
         super().__init__(
             grant_type=grant_type,
@@ -119,7 +119,7 @@ class OAuth2(SecurityBase):
         flows: Union[OAuthFlowsModel, Dict[str, Dict[str, Any]]] = OAuthFlowsModel(),
         scheme_name: Optional[str] = None,
         description: Optional[str] = None,
-        auto_error: Optional[bool] = True
+        auto_error: bool = True
     ):
         self.model = OAuth2Model(flows=flows, description=description)
         self.scheme_name = scheme_name or self.__class__.__name__

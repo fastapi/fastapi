@@ -23,7 +23,7 @@ Each of those response `dict`s can have a key `model`, containing a Pydantic mod
 
 For example, to declare another response with a status code `404` and a Pydantic model `Message`, you can write:
 
-```Python hl_lines="18  23"
+```Python hl_lines="18  22"
 {!../../../docs_src/additional_responses/tutorial001.py!}
 ```
 
@@ -36,7 +36,7 @@ For example, to declare another response with a status code `404` and a Pydantic
     **FastAPI** will take the Pydantic model from there, generate the `JSON Schema`, and put it in the correct place.
 
     The correct place is:
-    
+
     * In the key `content`, that has as value another JSON object (`dict`) that contains:
         * A key with the media type, e.g. `application/json`, that contains as value another JSON object, that contains:
             * A key `schema`, that has as the value the JSON Schema from the model, here's the correct place.

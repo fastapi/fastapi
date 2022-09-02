@@ -84,7 +84,17 @@ To check it worked, use:
 
 If it shows the `pip` binary at `env/bin/pip` then it worked. 🎉
 
+Make sure you have the latest pip version on your virtual environment to avoid errors on the next steps:
 
+<div class="termy">
+
+```console
+$ python -m pip install --upgrade pip
+
+---> 100%
+```
+
+</div>
 
 !!! tip
     Every time you install a new package with `pip` under that environment, activate the environment again.
@@ -162,20 +172,6 @@ $ bash scripts/format.sh
 It will also auto-sort all your imports.
 
 For it to sort them correctly, you need to have FastAPI installed locally in your environment, with the command in the section above using `--symlink` (or `--pth-file` on Windows).
-
-### Format imports
-
-There is another script that formats all the imports and makes sure you don't have unused imports:
-
-<div class="termy">
-
-```console
-$ bash scripts/format-imports.sh
-```
-
-</div>
-
-As it runs one command after the other and modifies and reverts many files, it takes a bit longer to run, so it might be easier to use `scripts/format.sh` frequently and `scripts/format-imports.sh` only before committing.
 
 ## Docs
 
@@ -340,7 +336,7 @@ docs/es/docs/features.md
 * Now open the MkDocs config file for English at:
 
 ```
-docs/en/docs/mkdocs.yml
+docs/en/mkdocs.yml
 ```
 
 * Find the place where that `docs/features.md` is located in the config file. Somewhere like:
@@ -359,7 +355,7 @@ nav:
 * Open the MkDocs config file for the language you are editing, e.g.:
 
 ```
-docs/es/docs/mkdocs.yml
+docs/es/mkdocs.yml
 ```
 
 * Add it there at the exact same location it was for English, e.g.:
