@@ -6,21 +6,9 @@ Being able to use asynchronous functions in your tests could be useful, for exam
 
 Let's look at how we can make that work.
 
-## pytest-asyncio
+## pytest.mark.anyio
 
-If we want to call asynchronous functions in our tests, our test functions have to be asynchronous. Pytest provides a neat library for this, called `pytest-asyncio`, that allows us to specify that some test functions are to be called asynchronously.
-
-You can install it via:
-
-<div class="termy">
-
-```console
-$ pip install pytest-asyncio
-
----> 100%
-```
-
-</div>
+If we want to call asynchronous functions in our tests, our test functions have to be asynchronous. Anyio provides a neat plugin for this, that allows us to specify that some test functions are to be called asynchronously.
 
 ## HTTPX
 
@@ -38,13 +26,23 @@ The important difference for us is that with HTTPX we are not limited to synchro
 
 ## Example
 
-For a simple example, let's consider the following `main.py` module:
+For a simple example, let's consider a file structure similar to the one described in [Bigger Applications](../tutorial/bigger-applications.md){.internal-link target=_blank} and [Testing](../tutorial/testing.md){.internal-link target=_blank}:
+
+```
+.
+├── app
+│   ├── __init__.py
+│   ├── main.py
+│   └── test_main.py
+```
+
+The file `main.py` would have:
 
 ```Python
 {!../../../docs_src/async_tests/main.py!}
 ```
 
-The `test_main.py` module that contains the tests for `main.py` could look like this now:
+The file `test_main.py` would have the tests for `main.py`, it could look like this now:
 
 ```Python
 {!../../../docs_src/async_tests/test_main.py!}
@@ -66,7 +64,7 @@ $ pytest
 
 ## In Detail
 
-The marker `@pytest.mark.asyncio` tells pytest that this test function should be called asynchronously:
+The marker `@pytest.mark.anyio` tells pytest that this test function should be called asynchronously:
 
 ```Python hl_lines="7"
 {!../../../docs_src/async_tests/test_main.py!}
@@ -97,4 +95,4 @@ that we used to make our requests with the `TestClient`.
 As the testing function is now asynchronous, you can now also call (and `await`) other `async` functions apart from sending requests to your FastAPI application in your tests, exactly as you would call them anywhere else in your code.
 
 !!! tip
-    If you encounter a `RuntimeError: Task attached to a different loop` when integrating asynchronous function calls in your tests (e.g. when using <a href="https://stackoverflow.com/questions/41584243/runtimeerror-task-attached-to-a-different-loop" class="external-link" target="_blank">MongoDB's MotorClient</a>) check out <a href="https://github.com/pytest-dev/pytest-asyncio/issues/38#issuecomment-264418154" class="external-link" target="_blank">this issue</a> in the pytest-asyncio repository.
+    If you encounter a `RuntimeError: Task attached to a different loop` when integrating asynchronous function calls in your tests (e.g. when using <a href="https://stackoverflow.com/questions/41584243/runtimeerror-task-attached-to-a-different-loop" class="external-link" target="_blank">MongoDB's MotorClient</a>) Remember to instantiate objects that need an event loop only within async functions, e.g. an `'@app.on_event("startup")` callback.
