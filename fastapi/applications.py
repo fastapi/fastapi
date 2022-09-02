@@ -1,8 +1,18 @@
 from enum import Enum
-from typing import Any, Callable, Coroutine, Dict, List, Optional, Sequence, Type, Union
+from typing import (
+    Any,
+    Awaitable,
+    Callable,
+    Coroutine,
+    Dict,
+    List,
+    Optional,
+    Sequence,
+    Type,
+    Union,
+)
 
 from fastapi import routing
-from fastapi.concurrency import AsyncExitStack
 from fastapi.datastructures import Default, DefaultPlaceholder
 from fastapi.encoders import DictIntStrAny, SetIntStr
 from fastapi.exception_handlers import (
@@ -11,6 +21,7 @@ from fastapi.exception_handlers import (
 )
 from fastapi.exceptions import RequestValidationError
 from fastapi.logger import logger
+from fastapi.middleware.asyncexitstack import AsyncExitStackMiddleware
 from fastapi.openapi.docs import (
     get_redoc_html,
     get_swagger_ui_html,
@@ -19,10 +30,12 @@ from fastapi.openapi.docs import (
 from fastapi.openapi.utils import get_openapi
 from fastapi.params import Depends
 from fastapi.types import DecoratedCallable
+from fastapi.utils import generate_unique_id
 from starlette.applications import Starlette
 from starlette.datastructures import State
-from starlette.exceptions import HTTPException
+from starlette.exceptions import ExceptionMiddleware, HTTPException
 from starlette.middleware import Middleware
+from starlette.middleware.errors import ServerErrorMiddleware
 from starlette.requests import Request
 from starlette.responses import HTMLResponse, JSONResponse, Response
 from starlette.routing import BaseRoute
@@ -67,10 +80,44 @@ class FastAPI(Starlette):
         deprecated: Optional[bool] = None,
         include_in_schema: bool = True,
         swagger_ui_parameters: Optional[Dict[str, Any]] = None,
+        generate_unique_id_function: Callable[[routing.APIRoute], str] = Default(
+            generate_unique_id
+        ),
         **extra: Any,
     ) -> None:
         self._debug: bool = debug
+        self.title = title
+        self.description = description
+        self.version = version
+        self.terms_of_service = terms_of_service
+        self.contact = contact
+        self.license_info = license_info
+        self.openapi_url = openapi_url
+        self.openapi_tags = openapi_tags
+        self.root_path_in_servers = root_path_in_servers
+        self.docs_url = docs_url
+        self.redoc_url = redoc_url
+        self.swagger_ui_oauth2_redirect_url = swagger_ui_oauth2_redirect_url
+        self.swagger_ui_init_oauth = swagger_ui_init_oauth
+        self.swagger_ui_parameters = swagger_ui_parameters
+        self.servers = servers or []
+        self.extra = extra
+        self.openapi_version = "3.0.2"
+        self.openapi_schema: Optional[Dict[str, Any]] = None
+        if self.openapi_url:
+            assert self.title, "A title must be provided for OpenAPI, e.g.: 'My API'"
+            assert self.version, "A version must be provided for OpenAPI, e.g.: '2.1.0'"
+        # TODO: remove when discarding the openapi_prefix parameter
+        if openapi_prefix:
+            logger.warning(
+                '"openapi_prefix" has been deprecated in favor of "root_path", which '
+                "follows more closely the ASGI standard, is simpler, and more "
+                "automatic. Check the docs at "
+                "https://fastapi.tiangolo.com/advanced/sub-applications/"
+            )
+        self.root_path = root_path or openapi_prefix
         self.state: State = State()
+        self.dependency_overrides: Dict[Callable[..., Any], Callable[..., Any]] = {}
         self.router: routing.APIRouter = routing.APIRouter(
             routes=routes,
             dependency_overrides_provider=self,
@@ -82,13 +129,11 @@ class FastAPI(Starlette):
             deprecated=deprecated,
             include_in_schema=include_in_schema,
             responses=responses,
+            generate_unique_id_function=generate_unique_id_function,
         )
         self.exception_handlers: Dict[
-            Union[int, Type[Exception]],
-            Callable[[Request, Any], Coroutine[Any, Any, Response]],
-        ] = (
-            {} if exception_handlers is None else dict(exception_handlers)
-        )
+            Any, Callable[[Request, Any], Union[Response, Awaitable[Response]]]
+        ] = ({} if exception_handlers is None else dict(exception_handlers))
         self.exception_handlers.setdefault(HTTPException, http_exception_handler)
         self.exception_handlers.setdefault(
             RequestValidationError, request_validation_exception_handler
@@ -98,41 +143,56 @@ class FastAPI(Starlette):
             [] if middleware is None else list(middleware)
         )
         self.middleware_stack: ASGIApp = self.build_middleware_stack()
-
-        self.title = title
-        self.description = description
-        self.version = version
-        self.terms_of_service = terms_of_service
-        self.contact = contact
-        self.license_info = license_info
-        self.servers = servers or []
-        self.openapi_url = openapi_url
-        self.openapi_tags = openapi_tags
-        # TODO: remove when discarding the openapi_prefix parameter
-        if openapi_prefix:
-            logger.warning(
-                '"openapi_prefix" has been deprecated in favor of "root_path", which '
-                "follows more closely the ASGI standard, is simpler, and more "
-                "automatic. Check the docs at "
-                "https://fastapi.tiangolo.com/advanced/sub-applications/"
-            )
-        self.root_path = root_path or openapi_prefix
-        self.root_path_in_servers = root_path_in_servers
-        self.docs_url = docs_url
-        self.redoc_url = redoc_url
-        self.swagger_ui_oauth2_redirect_url = swagger_ui_oauth2_redirect_url
-        self.swagger_ui_init_oauth = swagger_ui_init_oauth
-        self.swagger_ui_parameters = swagger_ui_parameters
-        self.extra = extra
-        self.dependency_overrides: Dict[Callable[..., Any], Callable[..., Any]] = {}
-
-        self.openapi_version = "3.0.2"
-
-        if self.openapi_url:
-            assert self.title, "A title must be provided for OpenAPI, e.g.: 'My API'"
-            assert self.version, "A version must be provided for OpenAPI, e.g.: '2.1.0'"
-        self.openapi_schema: Optional[Dict[str, Any]] = None
         self.setup()
+
+    def build_middleware_stack(self) -> ASGIApp:
+        # Duplicate/override from Starlette to add AsyncExitStackMiddleware
+        # inside of ExceptionMiddleware, inside of custom user middlewares
+        debug = self.debug
+        error_handler = None
+        exception_handlers = {}
+
+        for key, value in self.exception_handlers.items():
+            if key in (500, Exception):
+                error_handler = value
+            else:
+                exception_handlers[key] = value
+
+        middleware = (
+            [Middleware(ServerErrorMiddleware, handler=error_handler, debug=debug)]
+            + self.user_middleware
+            + [
+                Middleware(
+                    ExceptionMiddleware, handlers=exception_handlers, debug=debug
+                ),
+                # Add FastAPI-specific AsyncExitStackMiddleware for dependencies with
+                # contextvars.
+                # This needs to happen after user middlewares because those create a
+                # new contextvars context copy by using a new AnyIO task group.
+                # The initial part of dependencies with yield is executed in the
+                # FastAPI code, inside all the middlewares, but the teardown part
+                # (after yield) is executed in the AsyncExitStack in this middleware,
+                # if the AsyncExitStack lived outside of the custom middlewares and
+                # contextvars were set in a dependency with yield in that internal
+                # contextvars context, the values would not be available in the
+                # outside context of the AsyncExitStack.
+                # By putting the middleware and the AsyncExitStack here, inside all
+                # user middlewares, the code before and after yield in dependencies
+                # with yield is executed in the same contextvars context, so all values
+                # set in contextvars before yield is still available after yield as
+                # would be expected.
+                # Additionally, by having this AsyncExitStack here, after the
+                # ExceptionMiddleware, now dependencies can catch handled exceptions,
+                # e.g. HTTPException, to customize the teardown code (e.g. DB session
+                # rollback).
+                Middleware(AsyncExitStackMiddleware),
+            ]
+        )
+
+        app = self.router
+        for cls, options in reversed(middleware):
+            app = cls(app=app, **options)
+        return app
 
     def openapi(self) -> Dict[str, Any]:
         if not self.openapi_schema:
@@ -206,19 +266,14 @@ class FastAPI(Starlette):
     async def __call__(self, scope: Scope, receive: Receive, send: Send) -> None:
         if self.root_path:
             scope["root_path"] = self.root_path
-        if AsyncExitStack:
-            async with AsyncExitStack() as stack:
-                scope["fastapi_astack"] = stack
-                await super().__call__(scope, receive, send)
-        else:
-            await super().__call__(scope, receive, send)  # pragma: no cover
+        await super().__call__(scope, receive, send)
 
     def add_api_route(
         self,
         path: str,
         endpoint: Callable[..., Coroutine[Any, Any, Response]],
         *,
-        response_model: Optional[Type[Any]] = None,
+        response_model: Any = None,
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[Depends]] = None,
@@ -241,6 +296,9 @@ class FastAPI(Starlette):
         ),
         name: Optional[str] = None,
         openapi_extra: Optional[Dict[str, Any]] = None,
+        generate_unique_id_function: Callable[[routing.APIRoute], str] = Default(
+            generate_unique_id
+        ),
     ) -> None:
         self.router.add_api_route(
             path,
@@ -266,13 +324,14 @@ class FastAPI(Starlette):
             response_class=response_class,
             name=name,
             openapi_extra=openapi_extra,
+            generate_unique_id_function=generate_unique_id_function,
         )
 
     def api_route(
         self,
         path: str,
         *,
-        response_model: Optional[Type[Any]] = None,
+        response_model: Any = None,
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[Depends]] = None,
@@ -293,6 +352,9 @@ class FastAPI(Starlette):
         response_class: Type[Response] = Default(JSONResponse),
         name: Optional[str] = None,
         openapi_extra: Optional[Dict[str, Any]] = None,
+        generate_unique_id_function: Callable[[routing.APIRoute], str] = Default(
+            generate_unique_id
+        ),
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         def decorator(func: DecoratedCallable) -> DecoratedCallable:
             self.router.add_api_route(
@@ -319,6 +381,7 @@ class FastAPI(Starlette):
                 response_class=response_class,
                 name=name,
                 openapi_extra=openapi_extra,
+                generate_unique_id_function=generate_unique_id_function,
             )
             return func
 
@@ -350,6 +413,9 @@ class FastAPI(Starlette):
         include_in_schema: bool = True,
         default_response_class: Type[Response] = Default(JSONResponse),
         callbacks: Optional[List[BaseRoute]] = None,
+        generate_unique_id_function: Callable[[routing.APIRoute], str] = Default(
+            generate_unique_id
+        ),
     ) -> None:
         self.router.include_router(
             router,
@@ -361,13 +427,14 @@ class FastAPI(Starlette):
             include_in_schema=include_in_schema,
             default_response_class=default_response_class,
             callbacks=callbacks,
+            generate_unique_id_function=generate_unique_id_function,
         )
 
     def get(
         self,
         path: str,
         *,
-        response_model: Optional[Type[Any]] = None,
+        response_model: Any = None,
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[Depends]] = None,
@@ -388,6 +455,9 @@ class FastAPI(Starlette):
         name: Optional[str] = None,
         callbacks: Optional[List[BaseRoute]] = None,
         openapi_extra: Optional[Dict[str, Any]] = None,
+        generate_unique_id_function: Callable[[routing.APIRoute], str] = Default(
+            generate_unique_id
+        ),
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.router.get(
             path,
@@ -412,13 +482,14 @@ class FastAPI(Starlette):
             name=name,
             callbacks=callbacks,
             openapi_extra=openapi_extra,
+            generate_unique_id_function=generate_unique_id_function,
         )
 
     def put(
         self,
         path: str,
         *,
-        response_model: Optional[Type[Any]] = None,
+        response_model: Any = None,
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[Depends]] = None,
@@ -439,6 +510,9 @@ class FastAPI(Starlette):
         name: Optional[str] = None,
         callbacks: Optional[List[BaseRoute]] = None,
         openapi_extra: Optional[Dict[str, Any]] = None,
+        generate_unique_id_function: Callable[[routing.APIRoute], str] = Default(
+            generate_unique_id
+        ),
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.router.put(
             path,
@@ -463,13 +537,14 @@ class FastAPI(Starlette):
             name=name,
             callbacks=callbacks,
             openapi_extra=openapi_extra,
+            generate_unique_id_function=generate_unique_id_function,
         )
 
     def post(
         self,
         path: str,
         *,
-        response_model: Optional[Type[Any]] = None,
+        response_model: Any = None,
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[Depends]] = None,
@@ -490,6 +565,9 @@ class FastAPI(Starlette):
         name: Optional[str] = None,
         callbacks: Optional[List[BaseRoute]] = None,
         openapi_extra: Optional[Dict[str, Any]] = None,
+        generate_unique_id_function: Callable[[routing.APIRoute], str] = Default(
+            generate_unique_id
+        ),
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.router.post(
             path,
@@ -514,13 +592,14 @@ class FastAPI(Starlette):
             name=name,
             callbacks=callbacks,
             openapi_extra=openapi_extra,
+            generate_unique_id_function=generate_unique_id_function,
         )
 
     def delete(
         self,
         path: str,
         *,
-        response_model: Optional[Type[Any]] = None,
+        response_model: Any = None,
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[Depends]] = None,
@@ -541,6 +620,9 @@ class FastAPI(Starlette):
         name: Optional[str] = None,
         callbacks: Optional[List[BaseRoute]] = None,
         openapi_extra: Optional[Dict[str, Any]] = None,
+        generate_unique_id_function: Callable[[routing.APIRoute], str] = Default(
+            generate_unique_id
+        ),
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.router.delete(
             path,
@@ -565,13 +647,14 @@ class FastAPI(Starlette):
             name=name,
             callbacks=callbacks,
             openapi_extra=openapi_extra,
+            generate_unique_id_function=generate_unique_id_function,
         )
 
     def options(
         self,
         path: str,
         *,
-        response_model: Optional[Type[Any]] = None,
+        response_model: Any = None,
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[Depends]] = None,
@@ -592,6 +675,9 @@ class FastAPI(Starlette):
         name: Optional[str] = None,
         callbacks: Optional[List[BaseRoute]] = None,
         openapi_extra: Optional[Dict[str, Any]] = None,
+        generate_unique_id_function: Callable[[routing.APIRoute], str] = Default(
+            generate_unique_id
+        ),
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.router.options(
             path,
@@ -616,13 +702,14 @@ class FastAPI(Starlette):
             name=name,
             callbacks=callbacks,
             openapi_extra=openapi_extra,
+            generate_unique_id_function=generate_unique_id_function,
         )
 
     def head(
         self,
         path: str,
         *,
-        response_model: Optional[Type[Any]] = None,
+        response_model: Any = None,
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[Depends]] = None,
@@ -643,6 +730,9 @@ class FastAPI(Starlette):
         name: Optional[str] = None,
         callbacks: Optional[List[BaseRoute]] = None,
         openapi_extra: Optional[Dict[str, Any]] = None,
+        generate_unique_id_function: Callable[[routing.APIRoute], str] = Default(
+            generate_unique_id
+        ),
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.router.head(
             path,
@@ -667,13 +757,14 @@ class FastAPI(Starlette):
             name=name,
             callbacks=callbacks,
             openapi_extra=openapi_extra,
+            generate_unique_id_function=generate_unique_id_function,
         )
 
     def patch(
         self,
         path: str,
         *,
-        response_model: Optional[Type[Any]] = None,
+        response_model: Any = None,
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[Depends]] = None,
@@ -694,6 +785,9 @@ class FastAPI(Starlette):
         name: Optional[str] = None,
         callbacks: Optional[List[BaseRoute]] = None,
         openapi_extra: Optional[Dict[str, Any]] = None,
+        generate_unique_id_function: Callable[[routing.APIRoute], str] = Default(
+            generate_unique_id
+        ),
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.router.patch(
             path,
@@ -718,13 +812,14 @@ class FastAPI(Starlette):
             name=name,
             callbacks=callbacks,
             openapi_extra=openapi_extra,
+            generate_unique_id_function=generate_unique_id_function,
         )
 
     def trace(
         self,
         path: str,
         *,
-        response_model: Optional[Type[Any]] = None,
+        response_model: Any = None,
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[Depends]] = None,
@@ -745,6 +840,9 @@ class FastAPI(Starlette):
         name: Optional[str] = None,
         callbacks: Optional[List[BaseRoute]] = None,
         openapi_extra: Optional[Dict[str, Any]] = None,
+        generate_unique_id_function: Callable[[routing.APIRoute], str] = Default(
+            generate_unique_id
+        ),
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         return self.router.trace(
             path,
@@ -769,4 +867,5 @@ class FastAPI(Starlette):
             name=name,
             callbacks=callbacks,
             openapi_extra=openapi_extra,
+            generate_unique_id_function=generate_unique_id_function,
         )
