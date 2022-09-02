@@ -131,13 +131,13 @@ def test_app():
     assert response.json() == {"msg": "Hello World"}
     assert response.headers["content-type"] == orjson_type
 
-    
+
 def test_orjson_non_str_keys():
     with client:
         response = client.get("/orjson_non_str_keys")
     assert response.json() == {"msg": "Hello World", "1": 1}
     assert response.headers["content-type"] == orjson_type
-    
+
 
 def test_app_override():
     with client:
