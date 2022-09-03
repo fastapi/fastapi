@@ -189,17 +189,6 @@ def get_openapi_operation_metadata(
     return operation
 
 
-def get_openapi_operation_request_parameters(
-    *, parameters: List[Dict[str, Any]]
-) -> List[Dict[str, Any]]:
-    operation_request_parameters: Dict[str, Dict[str, Any]] = {}
-    for param in parameters:
-        if param["name"] not in operation_request_parameters or param["required"]:
-            operation_request_parameters[param["name"]] = param
-
-    return list(operation_request_parameters.values())
-
-
 def get_openapi_path(
     *, route: routing.APIRoute, model_name_map: Dict[type, str], operation_ids: Set[str]
 ) -> Tuple[Dict[str, Any], Dict[str, Any], Dict[str, Any]]:
@@ -233,11 +222,18 @@ def get_openapi_path(
             )
             parameters.extend(operation_parameters)
             if parameters:
-                operation["parameters"] = list(
-                    {
-                        (param["in"], param["name"]): param for param in parameters
-                    }.values()
-                )
+                all_parameters = {
+                    (param["in"], param["name"]): param for param in parameters
+                }
+                required_parameters = {
+                    (param["in"], param["name"]): param
+                    for param in parameters
+                    if param.get("required")
+                }
+                # Make sure required definitions of the same parameter take precedence
+                # over non-required definitions
+                all_parameters.update(required_parameters)
+                operation["parameters"] = list(all_parameters.values())
             if method in METHODS_WITH_BODY:
                 request_body_oai = get_openapi_operation_request_body(
                     body_field=route.body_field, model_name_map=model_name_map
