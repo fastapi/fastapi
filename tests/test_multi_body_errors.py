@@ -10,7 +10,7 @@ app = FastAPI()
 
 class Item(BaseModel):
     name: str
-    age: condecimal(gt=Decimal(0.0))
+    age: condecimal(gt=Decimal(0.0))  # type: ignore
 
 
 @app.post("/items/")
@@ -79,7 +79,7 @@ openapi_schema = {
                     "loc": {
                         "title": "Location",
                         "type": "array",
-                        "items": {"type": "string"},
+                        "items": {"anyOf": [{"type": "string"}, {"type": "integer"}]},
                     },
                     "msg": {"title": "Message", "type": "string"},
                     "type": {"title": "Error Type", "type": "string"},
