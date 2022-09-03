@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Union
 
 from fastapi import Body, FastAPI
 from pydantic import BaseModel
@@ -8,9 +8,9 @@ app = FastAPI()
 
 class Item(BaseModel):
     name: str
-    description: Optional[str] = None
+    description: Union[str, None] = None
     price: float
-    tax: Optional[float] = None
+    tax: Union[float, None] = None
 
 
 @app.put("/items/{item_id}")
@@ -18,7 +18,6 @@ async def update_item(
     *,
     item_id: int,
     item: Item = Body(
-        ...,
         examples={
             "normal": {
                 "summary": "A normal example",

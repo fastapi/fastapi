@@ -5,9 +5,9 @@
 !!! info "说明"
 
     因为上传文件以「表单数据」形式发送。
-    
+
     所以接收上传文件，要预先安装 <a href="https://andrew-d.github.io/python-multipart/" class="external-link" target="_blank">`python-multipart`</a>。
-    
+
     例如： `pip install python-multipart`。
 
 ## 导入 `File`
@@ -29,7 +29,7 @@
 !!! info "说明"
 
     `File` 是直接继承自 `Form` 的类。
-    
+
     注意，从 `fastapi` 导入的 `Query`、`Path`、`File` 等项，实际上是返回特定类的函数。
 
 !!! tip "提示"
@@ -109,15 +109,15 @@ contents = myfile.file.read()
 !!! note "技术细节"
 
     不包含文件时，表单数据一般用 `application/x-www-form-urlencoded`「媒体类型」编码。
-    
+
     但表单包含文件时，编码为 `multipart/form-data`。使用了 `File`，**FastAPI** 就知道要从请求体的正确位置获取文件。
-    
+
     编码和表单字段详见 <a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Methods/POST" class="external-link" target="_blank"><abbr title="Mozilla Developer Network">MDN</abbr> Web 文档的 <code>POST </code></a> 小节。
 
 !!! warning "警告"
 
     可在一个*路径操作*中声明多个 `File` 和 `Form` 参数，但不能同时声明要接收 JSON 的 `Body` 字段。因为此时请求体的编码是 `multipart/form-data`，不是 `application/json`。
-    
+
     这不是 **FastAPI** 的问题，而是 HTTP 协议的规定。
 
 ## 多文件上传
@@ -137,15 +137,15 @@ FastAPI 支持同时上传多个文件。
 !!! note "笔记"
 
     注意，截至 2019 年 4 月 14 日，Swagger UI 不支持在同一个表单字段中上传多个文件。详见 <a href="https://github.com/swagger-api/swagger-ui/issues/4276" class="external-link" target="_blank">#4276</a> 和 <a href="https://github.com/swagger-api/swagger-ui/issues/3641" class="external-link" target="_blank">#3641</a>.
-    
+
     不过，**FastAPI** 已通过 OpenAPI 标准与之兼容。
-    
+
     因此，只要 Swagger UI 或任何其他支持 OpenAPI 的工具支持多文件上传，都将与 **FastAPI** 兼容。
 
 !!! note "技术细节"
 
     也可以使用 `from starlette.responses import HTMLResponse`。
-    
+
     `fastapi.responses` 其实与 `starlette.responses` 相同，只是为了方便开发者调用。实际上，大多数 **FastAPI** 的响应都直接从 Starlette 调用。
 
 ## 小结
