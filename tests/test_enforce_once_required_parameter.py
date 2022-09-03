@@ -100,6 +100,12 @@ def test_schema():
     assert actual_schema == expected_schema
 
 
-def test_get_foo():
+def test_get_invalid():
     response = client.get("/foo", params={"client_id": None})
     assert response.status_code == status.HTTP_422_UNPROCESSABLE_ENTITY
+
+
+def test_get_valid():
+    response = client.get("/foo", params={"client_id": "bar"})
+    assert response.status_code == 200
+    assert response.json() == {"client_id": "bar_key", "client_tag": "bar_tag"}
