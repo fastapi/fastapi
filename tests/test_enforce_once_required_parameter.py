@@ -43,7 +43,7 @@ expected_schema = {
             "ValidationError": {
                 "properties": {
                     "loc": {
-                        "items": {"type": "string"},
+                        "items": {"anyOf": [{"type": "string"}, {"type": "integer"}]},
                         "title": "Location",
                         "type": "array",
                     },
