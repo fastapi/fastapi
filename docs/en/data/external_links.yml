@@ -1,5 +1,9 @@
 articles:
   english:
+  - author: New Relic
+    author_link: https://newrelic.com
+    link: https://newrelic.com/instant-observability/fastapi/e559ec64-f765-4470-a15f-1901fcebb468
+    title: How to monitor FastAPI application performance using Python agent
   - author: Jean-Baptiste Rocher
     author_link: https://hashnode.com/@jibrocher
     link: https://dev.indooroutdoor.io/series/fastapi-react-poll-app
