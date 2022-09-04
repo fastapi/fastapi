@@ -1,6 +1,6 @@
 from typing import Optional
 
-from fastapi import FastAPI, Depends, Query
+from fastapi import Depends, FastAPI, Query
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
 
