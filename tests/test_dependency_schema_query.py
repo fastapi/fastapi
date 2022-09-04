@@ -12,11 +12,9 @@ class Item(BaseModel):
         "name default", description="This is a name_required_with_default field."
     )
     name_required_without_default: str = Query(
-        None, description="This is a name_required_without_default field."
+        description="This is a name_required_without_default field."
     )
-    optional_int: Optional[int] = Query(
-        None, description="This is a optional_int field"
-    )
+    optional_int: Optional[int] = Query(description="This is a optional_int field")
     optional_str: Optional[str] = Query(
         "default_exists", description="This is a optional_str field"
     )
@@ -33,7 +31,7 @@ async def item_with_query_dependency(item: Item = Depends()):
 
 client = TestClient(app)
 
-openapi_schema = {
+openapi_schema_with_not_omitted_description = {
     "openapi": "3.0.2",
     "info": {"title": "FastAPI", "version": "0.1.0"},
     "paths": {
@@ -57,7 +55,7 @@ openapi_schema = {
                     },
                     {
                         "description": "This is a name_required_without_default field.",
-                        "required": False,
+                        "required": True,
                         "schema": {
                             "title": "Name Required Without Default",
                             "type": "string",
@@ -175,4 +173,22 @@ openapi_schema = {
 def test_openapi_schema_with_query_dependency():
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
-    assert response.json() == openapi_schema
+    assert response.json() == openapi_schema_with_not_omitted_description
+
+
+def test_response():
+    expected_response = {
+        "name_required_with_default": "name default",
+        "name_required_without_default": "default",
+        "optional_int": None,
+        "optional_str": "default_exists",
+        "model": "model",
+        "manufacturer": "manufacturer",
+        "price": 100.0,
+        "tax": 9.0,
+    }
+    response = client.get(
+        "/item?name_required_with_default=name%20default&name_required_without_default=default&optional_str=default_exists&model=model&manufacturer=manufacturer&price=100&tax=9"
+    )
+    assert response.status_code == 200, response.text
+    assert response.json() == expected_response
