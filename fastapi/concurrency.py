@@ -1,3 +1,4 @@
+import math
 import sys
 from typing import AsyncGenerator, ContextManager, TypeVar
 
@@ -19,6 +20,8 @@ else:
 
 _T = TypeVar("_T")
 
+_exit_limiter = CapacityLimiter(math.inf)
+
 
 @asynccontextmanager
 async def contextmanager_in_threadpool(
@@ -30,18 +33,17 @@ async def contextmanager_in_threadpool(
     # to avoid this we let __exit__ run without a capacity limit
     # since we're creating a new limiter for each call, any non-zero limit
     # works (1 is arbitrary)
-    exit_limiter = CapacityLimiter(1)
     try:
         yield await run_in_threadpool(cm.__enter__)
     except Exception as e:
         ok = bool(
             await anyio.to_thread.run_sync(
-                cm.__exit__, type(e), e, None, limiter=exit_limiter
+                cm.__exit__, type(e), e, None, limiter=_exit_limiter
             )
         )
         if not ok:
             raise e
     else:
         await anyio.to_thread.run_sync(
-            cm.__exit__, None, None, None, limiter=exit_limiter
+            cm.__exit__, None, None, None, limiter=_exit_limiter
         )
