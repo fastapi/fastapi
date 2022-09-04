@@ -49,7 +49,6 @@ The key features are:
 <a href="https://bit.ly/3dmXC5S" target="_blank" title="The data structure for unstructured multimodal data"><img src="https://fastapi.tiangolo.com/img/sponsors/docarray.svg"></a>
 <a href="https://bit.ly/3JJ7y5C" target="_blank" title="Build cross-modal and multimodal applications on the cloud"><img src="https://fastapi.tiangolo.com/img/sponsors/jina2.svg"></a>
 <a href="https://cryptapi.io/" target="_blank" title="CryptAPI: Your easy to use, secure and privacy oriented payment gateway."><img src="https://fastapi.tiangolo.com/img/sponsors/cryptapi.svg"></a>
-<a href="https://app.imgwhale.xyz/" target="_blank" title="The ultimate solution to unlimited and forever cloud storage."><img src="https://fastapi.tiangolo.com/img/sponsors/imgwhale.svg"></a>
 <a href="https://doist.com/careers/9B437B1615-wa-senior-backend-engineer-python" target="_blank" title="Help us migrate doist to FastAPI"><img src="https://fastapi.tiangolo.com/img/sponsors/doist.svg"></a>
 <a href="https://www.deta.sh/?ref=fastapi" target="_blank" title="The launchpad for all your (team's) ideas"><img src="https://fastapi.tiangolo.com/img/sponsors/deta.svg"></a>
 <a href="https://www.investsuite.com/jobs" target="_blank" title="Wealthtech jobs with FastAPI"><img src="https://fastapi.tiangolo.com/img/sponsors/investsuite.svg"></a>
