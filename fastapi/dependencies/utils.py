@@ -251,7 +251,7 @@ def get_typed_signature(call: Callable[..., Any]) -> inspect.Signature:
     if len(fields):
         query_extra_info = dict()
         for param in fields:
-            query_extra_info[param] = dict((fields[param].field_info.__repr_args__()))
+            query_extra_info[param] = dict(fields[param].field_info.__repr_args__())
             query_extra_info[param]["default"] = (
                 Required
                 if getattr(fields[param], "required", False)
