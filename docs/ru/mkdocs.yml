@@ -37,7 +37,7 @@ plugins:
     data: data
 nav:
 - FastAPI: index.md
-- Языки:
+- Languages:
   - en: /
   - az: /az/
   - de: /de/
