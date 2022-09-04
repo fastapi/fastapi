@@ -2,18 +2,18 @@
 
 ## Cechy FastAPI
 
-**FastAPI** zapewnia Ci:
+**FastAPI** zapewnia Ci następujące korzyści:
 
 ### Oparcie o standardy open
 
-* <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a> do tworzenia API, w tym deklaracji <abbr title="znanie również jako: paths, endpoints, routes">ścieżek</abbr> <abbr title="znane również jako metody HTTP, takie jak POST, GET, PUT, DELETE">operacji</abbr>, parametrów, ciał zapytań, bezpieczeństwa, itp.
-* Automatyczna dokumentacja modelu danych za pomocą <a href="https://json-schema.org/" class="external-link" target="_blank"><strong>JSON Schema</strong></a> (ponieważ samo OpenAPI bazuje na JSON Schema).
+* <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a> do tworzenia API, w tym deklaracji <abbr title="znane również jako: paths, endpoints, routes">ścieżek</abbr> <abbr title="znane również jako metody HTTP, takie jak POST, GET, PUT, DELETE">operacji</abbr>, parametrów, <abbr title="po angielsku: body requests">ciał zapytań</abbr>, bezpieczeństwa, itp.
+* Automatyczna dokumentacja modelu danych za pomocą <a href="https://json-schema.org/" class="external-link" target="_blank"><strong>JSON Schema</strong></a> (ponieważ OpenAPI bazuje na JSON Schema).
 * Zaprojektowane wokół tych standardów, po drobiazgowej analizie, zamiast skupiania się na górnej warstwie.
 * Możliwość automatycznego **generowania kodu klienta** w wielu językach.
 
 ### Automatyczna dokumentacja
 
-Interaktywna dokumentacja API i przegląd interfejsów użytkownika. Z racji tego, że framework bazuje na OpenAPI, istnieje wiele opcji, z czego 2 są domyślnie dołączone.
+Interaktywna dokumentacja API i podgląd interfejsów użytkownika. Z racji tego, że framework bazuje na OpenAPI, istnieje wiele opcji, z czego 2 są domyślnie dołączone.
 
 * <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank"><strong>Swagger UI</strong></a>, z interaktywnym interfejsem - odpytuj i testuj swoje API bezpośrednio z przeglądarki.
 
@@ -29,7 +29,7 @@ Wszystko opiera się na standardowych deklaracjach typu **Python 3.6** (dzięki 
 
 Jeśli potrzebujesz szybkiego przypomnienia jak używać deklaracji typów w Pythonie (nawet jeśli nie używasz FastAPI), sprawdź krótki samouczek: [Python Types](python-types.md){.internal-link target=_blank}.
 
-Po prostu piszesz standardowe deklaracje typów Pythona:
+Wystarczy, że napiszesz standardowe deklaracje typów Pythona:
 
 ```Python
 from datetime import date
@@ -49,7 +49,7 @@ class User(BaseModel):
     joined: date
 ```
 
-Które mogą zostać później użyte w następujący sposób:
+A one będą mogły zostać później użyte w następujący sposób:
 
 ```Python
 my_user: User = User(id=3, name="John Doe", joined="2018-07-19")
@@ -70,9 +70,9 @@ my_second_user: User = User(**second_user_data)
 
 ### Wsparcie edytora
 
-Cały framework został zaprojektowany tak, aby był łatwy i intuicyjny w użyciu. Wszystkie decyzje zostały przetestowane na wielu edytorach jeszcze przed rozpoczęciem developmentu, aby zapewnić najlepsze wrażenia programistyczne.
+Cały framework został zaprojektowany tak, aby był łatwy i intuicyjny w użyciu. Wszystkie pomysły zostały przetestowane na wielu edytorach jeszcze przed rozpoczęciem procesu tworzenia, aby zapewnić najlepsze wrażenia programistyczne.
 
-Ostatnia ankieta "Python developer survey" jasno wskazuje, że <a href="https://www.jetbrains.com/research/python-developers-survey-2017/#tools-and-features" class="external-link" target="_blank">najczęściej używaną funkcjonalnością jest autouzupełnianie w edytorze</a>.
+Ostatnia ankieta <abbr title="coroczna ankieta przeprowadza w środowisku programistów języka Python">Python developer survey</abbr> jasno wskazuje, że <a href="https://www.jetbrains.com/research/python-developers-survey-2017/#tools-and-features" class="external-link" target="_blank">najczęściej używaną funkcjonalnością jest autouzupełnianie w edytorze</a>.
 
 Cała struktura frameworku **FastAPI** jest na tym oparta. Autouzupełnianie działa wszędzie.
 
@@ -88,7 +88,7 @@ Oto, jak twój edytor może Ci pomóc:
 
 ![wsparcie edytora](https://fastapi.tiangolo.com/img/pycharm-completion.png)
 
-Otrzymasz nawet uzupełnienie w miejscach, w których normalnie uzupełnienia nie ma. Na przykład klucz "price" w treści JSON (który mógł być zagnieżdżony), który pochodzi z zapytania.
+Otrzymasz uzupełnienie nawet w miejscach, w których normalnie uzupełnienia nie ma. Na przykład klucz "price" w treści JSON (który mógł być zagnieżdżony), który pochodzi z zapytania.
 
 Koniec z wpisywaniem błędnych nazw kluczy, przechodzeniem tam i z powrotem w dokumentacji lub przewijaniem w górę i w dół, aby sprawdzić, czy w końcu użyłeś nazwy `username` czy `user_name`.
 
@@ -102,8 +102,8 @@ Ale domyślnie wszystko **"po prostu działa"**.
 
 * Walidacja większości (lub wszystkich?) **typów danych** Pythona, w tym:
     * Obiektów JSON (`dict`).
-    * Tablic JSON (`list`) definiujących typ elementów.
-    * Pól tekstowych (`str`) określających minimalną i maksymalną długość.
+    * Tablic JSON (`list`) ze zdefiniowanym typem elementów.
+    * Pól tekstowych (`str`) z określeniem minimalnej i maksymalnej długości.
     * Liczb (`int`, `float`) z wartościami minimalnymi, maksymalnymi, itp.
 
 * Walidacja bardziej egzotycznych typów danych, takich jak:
@@ -127,20 +127,20 @@ Wszystkie schematy bezpieczeństwa zdefiniowane w OpenAPI, w tym:
     * Parametrach zapytań.
     * Ciasteczkach, itp.
 
-Plus wszystkie funkcje bezpieczeństwa Starlette (włączając w to **session cookies**).
+Plus wszystkie funkcje bezpieczeństwa Starlette (włączając w to **<abbr title="po angielsku: session cookies">ciasteczka sesyjne</abbr>**).
 
-Wszystko zbudowane jako narzędzia i komponenty wielokrotnego użytku, które można łatwo zintegrować z systemami, magazynami oraz bazami danych - relacyjnymi i NoSQL, itp.
+Wszystko zbudowane jako narzędzia i komponenty wielokrotnego użytku, które można łatwo zintegrować z systemami, magazynami oraz bazami danych - relacyjnymi, NoSQL, itp.
 
-### Wstrzykiwanie zależności
+### Dependency Injection
 
-FastAPI zawiera niezwykle łatwy w użyciu, ale niezwykle potężny system <abbr title='"Dependency Injection" również znane jako "components", "resources", "services", "providers"'><strong>wstrzykiwania zależności</strong></abbr>.
+FastAPI zawiera niezwykle łatwy w użyciu, ale niezwykle potężny system <abbr title='Po polsku: wstrzykiwanie zależności. Znane również jako "components", "resources", "services", "providers"'><strong>Dependency Injection</strong></abbr>.
 
 * Nawet zależności mogą mieć zależności, tworząc hierarchię lub **"graf" zależności**.
-* Wszystko **obsługiwane automatycznie** przez framework.
-* Wszystkie zależności mogą wymagać danych w żądaniach oraz rozszerzać ograniczenia i automatyczną dokumentację **operacji na ścieżce**.
+* Wszystko jest **obsługiwane automatycznie** przez framework.
+* Wszystkie zależności mogą wymagać danych w żądaniach oraz rozszerzać ograniczenia i automatyczną dokumentację **<abbr title="po angielsku: path operations">operacji na ścieżce</abbr>**.
 * **Automatyczna walidacja** parametrów *operacji na ścieżce* zdefiniowanych w zależnościach.
 * Obsługa złożonych systemów uwierzytelniania użytkowników, **połączeń z bazami danych**, itp.
-* Bazy danych, front end, itp. **bez kompromisów**, ale wciąż łatwe do integracji
+* Bazy danych, front end, itp. **bez kompromisów**, ale wciąż łatwe do integracji.
 
 ### Nieograniczone "wtyczki"
 
@@ -151,30 +151,30 @@ Każda integracja została zaprojektowana tak, aby była tak prosta w użyciu (z
 ### Testy
 
 * 100% <abbr title="Ilość kodu, który jest automatycznie testowany">pokrycia kodu testami</abbr>.
-* 100% <abbr title="Deklaracje typów Python - dzięki nim twój edytor i zewnętrzne narzędzia mogą zapewnić Ci lepszą obsługę">adnotacji typów</abbr>.
+* 100% <abbr title="Deklaracje typów Python - dzięki nim twój edytor i zewnętrzne narzędzia mogą zapewnić Ci lepsze wsparcie ">adnotacji typów</abbr>.
 * Używany w aplikacjach produkcyjnych.
 
-## Funkcje Starlette
+## Cechy Starlette
 
-**FastAPI** jest w pełni kompatybilny (oraz bazuje na) <a href="https://www.starlette.io/" class="external-link" target="_blank"><strong>Starlette</strong></a>. Tak więc każdy dodatkowy kod Starlette, który posiadasz, również będzie działał.
+**FastAPI** jest w pełni kompatybilny z (oraz bazuje na) <a href="https://www.starlette.io/" class="external-link" target="_blank"><strong>Starlette</strong></a>. Tak więc każdy dodatkowy kod Starlette, który posiadasz, również będzie działał.
 
-`FastAPI` jest w rzeczywitości podklasą `Starlette`, więc jeśli już znasz lub używasz Starlette, większość funkcji będzie działać w ten sam sposób.
+`FastAPI` jest w rzeczywistości podklasą `Starlette`, więc jeśli już znasz lub używasz Starlette, większość funkcji będzie działać w ten sam sposób.
 
 Dzięki **FastAPI** otrzymujesz wszystkie funkcje **Starlette** (ponieważ FastAPI to po prostu Starlette na sterydach):
 
 * Bardzo imponująca wydajność. Jest to <a href="https://github.com/encode/starlette#performance" class="external-link" target="_blank">jeden z najszybszych dostępnych frameworków Pythona, na równi z **NodeJS** i **Go**</a>.
 * Wsparcie dla **WebSocket**.
 * <abbr title='Zadania wykonywane w tle, bez zatrzymywania żądań, w tym samym procesie. Po angielsku: In-process background tasks'>Zadania w tle</abbr>.
-* Zdarzenia startup i shutdown.
-* Klient testowy zbudowany na podstawie `requests`.
+* Eventy startup i shutdown.
+* Klient testowy zbudowany na bazie biblioteki `requests`.
 * **CORS**, GZip, pliki statyczne, streamy.
-* Obsługa **sesji i ciasteczek**
-* 100% pokrycie testami
-* 100% adnotacji typów
+* Obsługa **sesji i ciasteczek**.
+* 100% pokrycie testami.
+* 100% adnotacji typów.
 
-## Funkcje Pydantic
+## Cechy Pydantic
 
-**FastAPI** jest w pełni kompatybilny (oraz bazuje na) <a href="https://pydantic-docs.helpmanual.io" class="external-link" target="_blank"><strong>Pydantic</strong></a>. Tak więc każdy dodatkowy kod Pydantic, który posiadasz, również będzie działał.
+**FastAPI** jest w pełni kompatybilny z (oraz bazuje na) <a href="https://pydantic-docs.helpmanual.io" class="external-link" target="_blank"><strong>Pydantic</strong></a>. Tak więc każdy dodatkowy kod Pydantic, który posiadasz, również będzie działał.
 
 Wliczając w to zewnętrzne biblioteki, również oparte o Pydantic, takie jak <abbr title="Mapowanie obiektowo-relacyjne. Po angielsku: Object-Relational Mapper">ORM</abbr>, <abbr title="Object-Document Mapper">ODM</abbr> dla baz danych.
 
@@ -185,9 +185,9 @@ Działa to również w drugą stronę, w wielu przypadkach możesz po prostu prz
 Dzięki **FastAPI** otrzymujesz wszystkie funkcje **Pydantic** (ponieważ FastAPI bazuje na Pydantic do obsługi wszystkich danych):
 
 * **Bez prania mózgu**:
-    * Brak nowego <abbr title="Po angielsku: schema definition micro-language">mikrojęzyka definicji schematu</abbr> do nauki.
+    * Brak nowego mikrojęzyka do definiowania schematu, którego trzeba się nauczyć.
     * Jeśli znasz adnotacje typów Pythona to wiesz jak używać Pydantic.
-* Dobrze współpracuje z Twoim **<abbr title='Skrót od "Integrated Development Environment", podobne do edytora kodu'>IDE</abbr>/<abbr title="Program, który sprawdza Twój kod pod kątem błędów">linter</abbr>/mózgiem**:
+* Dobrze współpracuje z Twoim **<abbr title='Skrót od "Integrated Development Environment", podobne do edytora kodu'>IDE</abbr>/<abbr title="Program, który sprawdza Twój kod pod kątem błędów">linterem</abbr>/mózgiem**:
     * Ponieważ struktury danych Pydantic to po prostu instancje klas, które definiujesz; autouzupełnianie, linting, mypy i twoja intuicja powinny działać poprawnie z Twoimi zweryfikowanymi danymi.
 * **Szybkość**:
     * w <a href="https://pydantic-docs.helpmanual.io/benchmarks/" class="external-link" target="_blank">benchmarkach</a> Pydantic jest szybszy niż wszystkie inne testowane biblioteki.
@@ -197,4 +197,4 @@ Dzięki **FastAPI** otrzymujesz wszystkie funkcje **Pydantic** (ponieważ FastAP
     * Możesz mieć głęboko **zagnieżdżone obiekty JSON** i wszystkie je weryfikować i adnotować.
 * **Rozszerzalność**:
     * Pydantic umożliwia zdefiniowanie niestandardowych typów danych lub rozszerzenie walidacji o metody na modelu, na których użyty jest dekorator walidatora.
-* 100% pokrycie testami
+* 100% pokrycie testami.
