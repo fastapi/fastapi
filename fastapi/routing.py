@@ -209,7 +209,11 @@ def get_request_handler(
                         else:
                             body = body_bytes
         except json.JSONDecodeError as e:
-            raise RequestValidationError([ErrorWrapper(e, ("body", e.pos))], body=e.doc)
+            raise RequestValidationError(
+                [ErrorWrapper(e, ("body", e.pos))], body=e.doc
+            ) from e
+        except HTTPException:
+            raise
         except Exception as e:
             raise HTTPException(
                 status_code=400, detail="There was an error parsing the body"
@@ -293,14 +297,14 @@ class APIWebSocketRoute(routing.WebSocketRoute):
         self.path = path
         self.endpoint = endpoint
         self.name = get_name(endpoint) if name is None else name
-        self.dependant = get_dependant(path=path, call=self.endpoint)
+        self.path_regex, self.path_format, self.param_convertors = compile_path(path)
+        self.dependant = get_dependant(path=self.path_format, call=self.endpoint)
         self.app = websocket_session(
             get_websocket_app(
                 dependant=self.dependant,
                 dependency_overrides_provider=dependency_overrides_provider,
             )
         )
-        self.path_regex, self.path_format, self.param_convertors = compile_path(path)
 
     def matches(self, scope: Scope) -> Tuple[Match, Scope]:
         match, child_scope = super().matches(scope)
@@ -315,7 +319,7 @@ class APIRoute(routing.Route):
         path: str,
         endpoint: Callable[..., Any],
         *,
-        response_model: Optional[Type[Any]] = None,
+        response_model: Any = None,
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
@@ -409,7 +413,7 @@ class APIRoute(routing.Route):
         self.description = description or inspect.cleandoc(self.endpoint.__doc__ or "")
         # if a "form feed" character (page break) is found in the description text,
         # truncate description text to the content preceding the first "form feed"
-        self.description = self.description.split("\f")[0]
+        self.description = self.description.split("\f")[0].strip()
         response_fields = {}
         for additional_status_code, response in self.responses.items():
             assert isinstance(response, dict), "An additional response must be a dict"
@@ -511,7 +515,7 @@ class APIRouter(routing.Router):
         path: str,
         endpoint: Callable[..., Any],
         *,
-        response_model: Optional[Type[Any]] = None,
+        response_model: Any = None,
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
@@ -592,7 +596,7 @@ class APIRouter(routing.Router):
         self,
         path: str,
         *,
-        response_model: Optional[Type[Any]] = None,
+        response_model: Any = None,
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
@@ -787,7 +791,7 @@ class APIRouter(routing.Router):
         self,
         path: str,
         *,
-        response_model: Optional[Type[Any]] = None,
+        response_model: Any = None,
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
@@ -843,7 +847,7 @@ class APIRouter(routing.Router):
         self,
         path: str,
         *,
-        response_model: Optional[Type[Any]] = None,
+        response_model: Any = None,
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
@@ -899,7 +903,7 @@ class APIRouter(routing.Router):
         self,
         path: str,
         *,
-        response_model: Optional[Type[Any]] = None,
+        response_model: Any = None,
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
@@ -955,7 +959,7 @@ class APIRouter(routing.Router):
         self,
         path: str,
         *,
-        response_model: Optional[Type[Any]] = None,
+        response_model: Any = None,
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
@@ -1011,7 +1015,7 @@ class APIRouter(routing.Router):
         self,
         path: str,
         *,
-        response_model: Optional[Type[Any]] = None,
+        response_model: Any = None,
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
@@ -1067,7 +1071,7 @@ class APIRouter(routing.Router):
         self,
         path: str,
         *,
-        response_model: Optional[Type[Any]] = None,
+        response_model: Any = None,
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
@@ -1123,7 +1127,7 @@ class APIRouter(routing.Router):
         self,
         path: str,
         *,
-        response_model: Optional[Type[Any]] = None,
+        response_model: Any = None,
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
@@ -1179,7 +1183,7 @@ class APIRouter(routing.Router):
         self,
         path: str,
         *,
-        response_model: Optional[Type[Any]] = None,
+        response_model: Any = None,
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,

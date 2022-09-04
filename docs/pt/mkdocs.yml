@@ -64,14 +64,17 @@ nav:
   - tutorial/index.md
   - tutorial/first-steps.md
   - tutorial/path-params.md
+  - tutorial/query-params.md
   - tutorial/body.md
   - tutorial/body-fields.md
   - tutorial/extra-data-types.md
   - tutorial/query-params-str-validations.md
   - tutorial/cookie-params.md
-  - tutorial/background-tasks.md
+  - tutorial/header-params.md
+  - tutorial/handling-errors.md
   - Segurança:
     - tutorial/security/index.md
+  - tutorial/background-tasks.md
   - Guia de Usuário Avançado:
     - advanced/index.md
 - Implantação:
@@ -101,6 +104,8 @@ markdown_extensions:
       format: !!python/name:pymdownx.superfences.fence_code_format ''
 - pymdownx.tabbed:
     alternate_style: true
+- attr_list
+- md_in_html
 extra:
   analytics:
     provider: google

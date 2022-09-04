@@ -80,6 +80,20 @@ The file `__init__.py` is just an empty file, but it tells Python that `sql_app`
 
 Now let's see what each file/module does.
 
+## Install `SQLAlchemy`
+
+First you need to install `SQLAlchemy`:
+
+<div class="termy">
+
+```console
+$ pip install sqlalchemy
+
+---> 100%
+```
+
+</div>
+
 ## Create the SQLAlchemy parts
 
 Let's refer to the file `sql_app/database.py`.
