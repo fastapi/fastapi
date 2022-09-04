@@ -2,6 +2,9 @@
 
 ## Latest Changes
 
+
+## 0.82.0
+
 🚨 This is probably the last release (or one of the last releases) to support Python 3.6. 🔥
 
 Python 3.6 reached the [end-of-life and is no longer supported by Python](https://www.python.org/downloads/release/python-3615/) since around a year ago.
