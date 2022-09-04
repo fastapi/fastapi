@@ -32,7 +32,6 @@ FastAPI is a modern, fast (high-performance), web framework for building APIs wi
 The key features are:
 
 * **Fast**: Very high performance, on par with **NodeJS** and **Go** (thanks to Starlette and Pydantic). [One of the fastest Python frameworks available](#performance).
-
 * **Fast to code**: Increase the speed to develop features by about 200% to 300%. *
 * **Fewer bugs**: Reduce about 40% of human (developer) induced errors. *
 * **Intuitive**: Great editor support. <abbr title="also known as auto-complete, autocompletion, IntelliSense">Completion</abbr> everywhere. Less time debugging.
@@ -47,15 +46,17 @@ The key features are:
 
 <!-- sponsors -->
 
-<a href="https://bit.ly/2QSouzH" target="_blank" title="Jina: build neural search-as-a-service for any kind of data in just minutes."><img src="https://fastapi.tiangolo.com/img/sponsors/jina.svg"></a>
+<a href="https://bit.ly/3dmXC5S" target="_blank" title="The data structure for unstructured multimodal data"><img src="https://fastapi.tiangolo.com/img/sponsors/docarray.svg"></a>
+<a href="https://bit.ly/3JJ7y5C" target="_blank" title="Build cross-modal and multimodal applications on the cloud"><img src="https://fastapi.tiangolo.com/img/sponsors/jina2.svg"></a>
 <a href="https://cryptapi.io/" target="_blank" title="CryptAPI: Your easy to use, secure and privacy oriented payment gateway."><img src="https://fastapi.tiangolo.com/img/sponsors/cryptapi.svg"></a>
-<a href="https://www.dropbase.io/careers" target="_blank" title="Dropbase - seamlessly collect, clean, and centralize data."><img src="https://fastapi.tiangolo.com/img/sponsors/dropbase.svg"></a>
+<a href="https://doist.com/careers/9B437B1615-wa-senior-backend-engineer-python" target="_blank" title="Help us migrate doist to FastAPI"><img src="https://fastapi.tiangolo.com/img/sponsors/doist.svg"></a>
 <a href="https://www.deta.sh/?ref=fastapi" target="_blank" title="The launchpad for all your (team's) ideas"><img src="https://fastapi.tiangolo.com/img/sponsors/deta.svg"></a>
 <a href="https://www.investsuite.com/jobs" target="_blank" title="Wealthtech jobs with FastAPI"><img src="https://fastapi.tiangolo.com/img/sponsors/investsuite.svg"></a>
-<a href="https://www.vim.so/?utm_source=FastAPI" target="_blank" title="We help you master vim with interactive exercises"><img src="https://fastapi.tiangolo.com/img/sponsors/vimso.png"></a>
-<a href="https://talkpython.fm/fastapi-sponsor" target="_blank" title="FastAPI video courses on demand from people you trust"><img src="https://fastapi.tiangolo.com/img/sponsors/talkpython.png"></a>
+<a href="https://training.talkpython.fm/fastapi-courses" target="_blank" title="FastAPI video courses on demand from people you trust"><img src="https://fastapi.tiangolo.com/img/sponsors/talkpython.png"></a>
 <a href="https://testdriven.io/courses/tdd-fastapi/" target="_blank" title="Learn to build high-quality web apps with best practices"><img src="https://fastapi.tiangolo.com/img/sponsors/testdriven.svg"></a>
 <a href="https://github.com/deepset-ai/haystack/" target="_blank" title="Build powerful search from composable, open source building blocks"><img src="https://fastapi.tiangolo.com/img/sponsors/haystack-fastapi.svg"></a>
+<a href="https://www.udemy.com/course/fastapi-rest/" target="_blank" title="Learn FastAPI by building a complete project. Extend your knowledge on advanced web development-AWS, Payments, Emails."><img src="https://fastapi.tiangolo.com/img/sponsors/ines-course.jpg"></a>
+<a href="https://careers.budget-insight.com/" target="_blank" title="Budget Insight is hiring!"><img src="https://fastapi.tiangolo.com/img/sponsors/budget-insight.svg"></a>
 
 <!-- /sponsors -->
 
@@ -149,7 +150,7 @@ $ pip install "uvicorn[standard]"
 * Create a file `main.py` with:
 
 ```Python
-from typing import Optional
+from typing import Union
 
 from fastapi import FastAPI
 
@@ -162,7 +163,7 @@ def read_root():
 
 
 @app.get("/items/{item_id}")
-def read_item(item_id: int, q: Optional[str] = None):
+def read_item(item_id: int, q: Union[str, None] = None):
     return {"item_id": item_id, "q": q}
 ```
 
@@ -172,7 +173,7 @@ def read_item(item_id: int, q: Optional[str] = None):
 If your code uses `async` / `await`, use `async def`:
 
 ```Python hl_lines="9  14"
-from typing import Optional
+from typing import Union
 
 from fastapi import FastAPI
 
@@ -185,7 +186,7 @@ async def read_root():
 
 
 @app.get("/items/{item_id}")
-async def read_item(item_id: int, q: Optional[str] = None):
+async def read_item(item_id: int, q: Union[str, None] = None):
     return {"item_id": item_id, "q": q}
 ```
 
@@ -264,7 +265,7 @@ Now modify the file `main.py` to receive a body from a `PUT` request.
 Declare the body using standard Python types, thanks to Pydantic.
 
 ```Python hl_lines="4  9-12  25-27"
-from typing import Optional
+from typing import Union
 
 from fastapi import FastAPI
 from pydantic import BaseModel
@@ -275,7 +276,7 @@ app = FastAPI()
 class Item(BaseModel):
     name: str
     price: float
-    is_offer: Optional[bool] = None
+    is_offer: Union[bool, None] = None
 
 
 @app.get("/")
@@ -284,7 +285,7 @@ def read_root():
 
 
 @app.get("/items/{item_id}")
-def read_item(item_id: int, q: Optional[str] = None):
+def read_item(item_id: int, q: Union[str, None] = None):
     return {"item_id": item_id, "q": q}
 
 
