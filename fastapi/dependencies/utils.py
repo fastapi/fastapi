@@ -34,6 +34,7 @@ from pydantic import BaseModel, create_model
 from pydantic.error_wrappers import ErrorWrapper
 from pydantic.errors import MissingError
 from pydantic.fields import (
+    SHAPE_FROZENSET,
     SHAPE_LIST,
     SHAPE_SEQUENCE,
     SHAPE_SET,
@@ -58,6 +59,7 @@ from starlette.websockets import WebSocket
 sequence_shapes = {
     SHAPE_LIST,
     SHAPE_SET,
+    SHAPE_FROZENSET,
     SHAPE_TUPLE,
     SHAPE_SEQUENCE,
     SHAPE_TUPLE_ELLIPSIS,
@@ -161,7 +163,6 @@ def get_sub_dependant(
     )
     if security_requirement:
         sub_dependant.security_requirements.append(security_requirement)
-    sub_dependant.security_scopes = security_scopes
     return sub_dependant
 
 
@@ -278,7 +279,13 @@ def get_dependant(
     path_param_names = get_path_param_names(path)
     endpoint_signature = get_typed_signature(call)
     signature_params = endpoint_signature.parameters
-    dependant = Dependant(call=call, name=name, path=path, use_cache=use_cache)
+    dependant = Dependant(
+        call=call,
+        name=name,
+        path=path,
+        security_scopes=security_scopes,
+        use_cache=use_cache,
+    )
     for param_name, param in signature_params.items():
         if isinstance(param.default, params.Depends):
             sub_dependant = get_param_sub_dependant(
@@ -295,10 +302,7 @@ def get_dependant(
             assert is_scalar_field(
                 field=param_field
             ), "Path params must be of one of the supported types"
-            if isinstance(param.default, params.Path):
-                ignore_default = False
-            else:
-                ignore_default = True
+            ignore_default = not isinstance(param.default, params.Path)
             param_field = get_param_field(
                 param=param,
                 param_name=param_name,
@@ -495,7 +499,6 @@ async def solve_dependencies(
                 name=sub_dependant.name,
                 security_scopes=sub_dependant.security_scopes,
             )
-            use_sub_dependant.security_scopes = sub_dependant.security_scopes
 
         solved_result = await solve_dependencies(
             request=request,
