@@ -19,7 +19,7 @@ repos:
         - --py3-plus
         - --keep-runtime-typing
 -   repo: https://github.com/myint/autoflake
-    rev: v1.4
+    rev: v1.5.1
     hooks:
     -   id: autoflake
         args:
