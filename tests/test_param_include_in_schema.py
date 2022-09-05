@@ -184,7 +184,8 @@ def test_openapi_schema():
     ],
 )
 def test_hidden_cookie(path, cookies, expected_status, expected_response):
-    response = client.get(path, cookies=cookies)
+    cookie_client = TestClient(app, cookies=cookies)
+    response = cookie_client.get(path)
     assert response.status_code == expected_status
     assert response.json() == expected_response
 

@@ -95,6 +95,9 @@ def get_client():
     ],
 )
 def test(path, cookies, expected_status, expected_response, client: TestClient):
-    response = client.get(path, cookies=cookies)
+    from docs_src.cookie_params.tutorial001_py310 import app
+
+    cookie_client = TestClient(app, cookies=cookies)
+    response = cookie_client.get(path)
     assert response.status_code == expected_status
     assert response.json() == expected_response

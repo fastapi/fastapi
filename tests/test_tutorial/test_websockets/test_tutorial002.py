@@ -14,10 +14,9 @@ def test_main():
 
 
 def test_websocket_with_cookie():
+    cookie_client = TestClient(app, cookies={"session": "fakesession"})
     with pytest.raises(WebSocketDisconnect):
-        with client.websocket_connect(
-            "/items/foo/ws", cookies={"session": "fakesession"}
-        ) as websocket:
+        with cookie_client.websocket_connect("/items/foo/ws") as websocket:
             message = "Message one"
             websocket.send_text(message)
             data = websocket.receive_text()

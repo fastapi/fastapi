@@ -57,7 +57,8 @@ def test_openapi_schema():
 
 
 def test_security_api_key():
-    response = client.get("/users/me", cookies={"key": "secret"})
+    cookie_client = TestClient(app, cookies={"key": "secret"})
+    response = cookie_client.get("/users/me")
     assert response.status_code == 200, response.text
     assert response.json() == {"username": "secret"}
 
