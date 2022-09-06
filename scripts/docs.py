@@ -374,7 +374,7 @@ def update_config(lang: str):
     languages: List[Dict[str, str]] = []
     alternate: List[Dict[str, str]] = []
 
-    # Language names sourced from https://quickref.me/iso-639-1. FastAPI
+    # Language names sourced from https://quickref.me/iso-639-1 . FastAPI
     # contributors may wish to update or change these, e.g. to fix capitalisation.
     local_language_names: Dict[str, str] = json.loads(
         (Path(__file__).parent / "../docs/language_names.json").read_text()
