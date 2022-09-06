@@ -38,9 +38,9 @@ plugins:
 nav:
 - FastAPI: index.md
 - Languages:
-  - en: /
   - az: /az/
   - de: /de/
+  - en: /en/
   - es: /es/
   - fa: /fa/
   - fr: /fr/
@@ -108,22 +108,22 @@ extra:
   - icon: fontawesome/solid/globe
     link: https://tiangolo.com
   alternate:
-  - link: /
-    name: en - English
   - link: /az/
-    name: az
+    name: az - azərbaycan dili
   - link: /de/
-    name: de
+    name: de - Deutsch
+  - link: /en/
+    name: en - English
   - link: /es/
     name: es - español
   - link: /fa/
-    name: fa
+    name: fa - فارسی
   - link: /fr/
     name: fr - français
   - link: /he/
-    name: he
+    name: he - עברית
   - link: /id/
-    name: id
+    name: id - Bahasa Indonesia
   - link: /it/
     name: it - italiano
   - link: /ja/
@@ -131,9 +131,9 @@ extra:
   - link: /ko/
     name: ko - 한국어
   - link: /nl/
-    name: nl
+    name: nl - Nederlands
   - link: /pl/
-    name: pl
+    name: pl - Polski
   - link: /pt/
     name: pt - português
   - link: /ru/
