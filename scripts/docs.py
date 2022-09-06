@@ -1,3 +1,4 @@
+import json
 import os
 import re
 import shutil
@@ -369,25 +370,34 @@ def update_config(lang: str):
         config = get_base_lang_config(lang)
         config["nav"] = current_config["nav"]
         config["theme"]["language"] = current_config["theme"]["language"]
-    languages = [{"en": "/"}]
-    alternate: List[Dict[str, str]] = config["extra"].get("alternate", [])
-    alternate_dict = {alt["link"]: alt["name"] for alt in alternate}
-    new_alternate: List[Dict[str, str]] = []
+
+    languages: List[Dict[str, str]] = []
+    alternate: List[Dict[str, str]] = []
+
+    # Language names sourced from https://quickref.me/iso-639-1. FastAPI
+    # contributors may wish to update or change these, e.g. to fix capitalisation.
+    local_language_names: Dict[str, str] = json.loads(
+        (Path(__file__).parent / "../docs/language_names.json").read_text()
+    )
     for lang_path in get_lang_paths():
-        if lang_path.name == "en" or not lang_path.is_dir():
+        if not lang_path.is_dir():
             continue
-        name = lang_path.name
-        languages.append({name: f"/{name}/"})
-    for lang_dict in languages:
-        name = list(lang_dict.keys())[0]
-        url = lang_dict[name]
-        if url not in alternate_dict:
-            new_alternate.append({"link": url, "name": name})
+
+        code = lang_path.name
+        url = f"/{code}/"
+
+        if code in local_language_names:
+            # This is for all real languages
+            name = f"{code} - {local_language_names[code]}"
         else:
-            use_name = alternate_dict[url]
-            new_alternate.append({"link": url, "name": use_name})
+            # This is for test languages, e.g. the language code xx
+            name = code
+
+        languages.append({code: url})
+        alternate.append({"link": url, "name": name})
+
     config["nav"][1] = {"Languages": languages}
-    config["extra"]["alternate"] = new_alternate
+    config["extra"]["alternate"] = alternate
     config_path.write_text(
         yaml.dump(config, sort_keys=False, width=200, allow_unicode=True),
         encoding="utf-8",
