@@ -1,5 +1,5 @@
 # 包含WSGI应用 - Flask，Django，和其它
- 
+
 您可以挂载多个WSGI应用，正如您在 [Sub Applications - Mounts](./sub-applications.md){.internal-link target=_blank}, [Behind a Proxy](./behind-a-proxy.md){.internal-link target=_blank} 中所看到的那样。
 
 为此, 您可以使用 `WSGIMiddleware` 来包装其它框架下的 WSGI 应用，比方说：Flask，Django，等。
