@@ -1,4 +1,4 @@
-from fastapi import Depends, FastAPI, Response
+from fastapi import FastAPI, Response
 from fastapi.params import Path
 from fastapi.testclient import TestClient
 
