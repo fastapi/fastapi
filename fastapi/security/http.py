@@ -73,11 +73,6 @@ class HTTPBasic(HTTPBase):
             unauthorized_headers = {"WWW-Authenticate": f'Basic realm="{self.realm}"'}
         else:
             unauthorized_headers = {"WWW-Authenticate": "Basic"}
-        invalid_user_credentials_exc = HTTPException(
-            status_code=HTTP_401_UNAUTHORIZED,
-            detail="Invalid authentication credentials",
-            headers=unauthorized_headers,
-        )
         if not authorization or scheme.lower() != "basic":
             if self.auto_error:
                 raise HTTPException(
@@ -87,6 +82,11 @@ class HTTPBasic(HTTPBase):
                 )
             else:
                 return None
+        invalid_user_credentials_exc = HTTPException(
+            status_code=HTTP_401_UNAUTHORIZED,
+            detail="Invalid authentication credentials",
+            headers=unauthorized_headers,
+        )
         try:
             data = b64decode(param).decode("ascii")
         except (ValueError, UnicodeDecodeError, binascii.Error):
