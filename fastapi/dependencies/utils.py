@@ -7,6 +7,7 @@ from typing import (
     Callable,
     Coroutine,
     Dict,
+    ForwardRef,
     List,
     Mapping,
     Optional,
@@ -47,7 +48,7 @@ from pydantic.fields import (
     Undefined,
 )
 from pydantic.schema import get_annotation_from_field_info
-from pydantic.typing import ForwardRef, evaluate_forwardref
+from pydantic.typing import evaluate_forwardref
 from pydantic.utils import lenient_issubclass
 from starlette.background import BackgroundTasks
 from starlette.concurrency import run_in_threadpool
