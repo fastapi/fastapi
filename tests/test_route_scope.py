@@ -12,6 +12,12 @@ async def get_user(user_id: str, request: Request):
     return {"user_id": user_id, "path": route.path}
 
 
+@app.post("/items/{item_id}:move")
+async def move_item(item_id: str, request: Request):
+    route: APIRoute = request.scope["route"]
+    return {"item_id": item_id, "path": route.path}
+
+
 @app.websocket("/items/{item_id}")
 async def websocket_item(item_id: str, websocket: WebSocket):
     route: APIWebSocketRoute = websocket.scope["route"]
@@ -36,6 +42,12 @@ def test_invalid_method_doesnt_match():
 def test_invalid_path_doesnt_match():
     response = client.post("/usersx/rick")
     assert response.status_code == 404, response.text
+
+
+def test_move():
+    response = client.post("/items/portal-gun:move")
+    assert response.status_code == 200, response.text
+    assert response.json() == {"item_id": "portal-gun", "path": "/items/{item_id}:move"}
 
 
 def test_websocket():
