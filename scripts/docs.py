@@ -384,7 +384,13 @@ def update_config(lang: str):
             continue
 
         code = lang_path.name
-        url = f"/{code}/"
+        if code == "en":
+            # English is served at the root url
+            url = "/"
+        else:
+            # All other languages are served under a path that starts with their
+            # language code
+            url = f"/{code}/"
 
         if code in local_language_names:
             # This is for all real languages

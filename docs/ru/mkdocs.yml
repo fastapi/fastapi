@@ -40,7 +40,7 @@ nav:
 - Languages:
   - az: /az/
   - de: /de/
-  - en: /en/
+  - en: /
   - es: /es/
   - fa: /fa/
   - fr: /fr/
@@ -109,7 +109,7 @@ extra:
     name: az - azərbaycan dili
   - link: /de/
     name: de - Deutsch
-  - link: /en/
+  - link: /
     name: en - English
   - link: /es/
     name: es - español
