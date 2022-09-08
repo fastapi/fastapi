@@ -26,7 +26,7 @@ async def read_results():
 
 ---
 
-If you are using a third party library that communicates with something (a database, an API, the file system, etc) and doesn't have support for using `await`, (this is currently the case for most database libraries), then declare your *path operation functions* as normally, with just `def`, like:
+If you are using a third party library that communicates with something (a database, an API, the file system, etc.) and doesn't have support for using `await`, (this is currently the case for most database libraries), then declare your *path operation functions* as normally, with just `def`, like:
 
 ```Python hl_lines="2"
 @app.get('/')
@@ -45,7 +45,7 @@ If you just don't know, use normal `def`.
 
 ---
 
-**Note**: you can mix `def` and `async def` in your *path operation functions* as much as you need and define each one using the best option for you. FastAPI will do the right thing with them.
+**Note**: You can mix `def` and `async def` in your *path operation functions* as much as you need and define each one using the best option for you. FastAPI will do the right thing with them.
 
 Anyway, in any of the cases above, FastAPI will still work asynchronously and be extremely fast.
 
@@ -397,7 +397,7 @@ All that is what powers FastAPI (through Starlette) and what makes it have such 
 
     These are very technical details of how **FastAPI** works underneath.
 
-    If you have quite some technical knowledge (co-routines, threads, blocking, etc) and are curious about how FastAPI handles `async def` vs normal `def`, go ahead.
+    If you have quite some technical knowledge (co-routines, threads, blocking, etc.) and are curious about how FastAPI handles `async def` vs normal `def`, go ahead.
 
 ### Path operation functions
 

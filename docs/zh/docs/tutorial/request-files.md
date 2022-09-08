@@ -44,9 +44,9 @@
 
 不过，很多情况下，`UploadFile` 更好用。
 
-## 含 `UploadFile` 的 `File` 参数
+## 含 `UploadFile` 的文件参数
 
-定义 `File` 参数时使用 `UploadFile`：
+定义文件参数时使用 `UploadFile`：
 
 ```Python hl_lines="12"
 {!../../../docs_src/request_files/tutorial001.py!}
@@ -94,7 +94,7 @@ contents = myfile.file.read()
 
 !!! note "`async` 技术细节"
 
-    使用 `async` 方法时，**FastAPI** 在线程池中执行文件方法，并 `awiat` 操作完成。
+    使用 `async` 方法时，**FastAPI** 在线程池中执行文件方法，并 `await` 操作完成。
 
 !!! note "Starlette 技术细节"
 
@@ -120,6 +120,30 @@ contents = myfile.file.read()
 
     这不是 **FastAPI** 的问题，而是 HTTP 协议的规定。
 
+## 可选文件上传
+
+您可以通过使用标准类型注解并将 None 作为默认值的方式将一个文件参数设为可选:
+
+=== "Python 3.6 及以上版本"
+
+    ```Python hl_lines="9  17"
+    {!> ../../../docs_src/request_files/tutorial001_02.py!}
+    ```
+
+=== "Python 3.9 及以上版本"
+
+    ```Python hl_lines="7  14"
+    {!> ../../../docs_src/request_files/tutorial001_02_py310.py!}
+    ```
+
+## 带有额外元数据的 `UploadFile`
+
+您也可以将 `File()` 与 `UploadFile` 一起使用，例如，设置额外的元数据:
+
+```Python hl_lines="13"
+{!../../../docs_src/request_files/tutorial001_03.py!}
+```
+
 ## 多文件上传
 
 FastAPI 支持同时上传多个文件。
@@ -128,25 +152,42 @@ FastAPI 支持同时上传多个文件。
 
 上传多个文件时，要声明含 `bytes` 或 `UploadFile` 的列表（`List`）：
 
-```Python hl_lines="10  15"
-{!../../../docs_src/request_files/tutorial002.py!}
-```
+=== "Python 3.6 及以上版本"
+
+    ```Python hl_lines="10  15"
+    {!> ../../../docs_src/request_files/tutorial002.py!}
+    ```
+
+=== "Python 3.9 及以上版本"
+
+    ```Python hl_lines="8  13"
+    {!> ../../../docs_src/request_files/tutorial002_py39.py!}
+    ```
 
 接收的也是含 `bytes` 或 `UploadFile` 的列表（`list`）。
 
-!!! note "笔记"
-
-    注意，截至 2019 年 4 月 14 日，Swagger UI 不支持在同一个表单字段中上传多个文件。详见 <a href="https://github.com/swagger-api/swagger-ui/issues/4276" class="external-link" target="_blank">#4276</a> 和 <a href="https://github.com/swagger-api/swagger-ui/issues/3641" class="external-link" target="_blank">#3641</a>.
-
-    不过，**FastAPI** 已通过 OpenAPI 标准与之兼容。
-
-    因此，只要 Swagger UI 或任何其他支持 OpenAPI 的工具支持多文件上传，都将与 **FastAPI** 兼容。
 
 !!! note "技术细节"
 
     也可以使用 `from starlette.responses import HTMLResponse`。
 
     `fastapi.responses` 其实与 `starlette.responses` 相同，只是为了方便开发者调用。实际上，大多数 **FastAPI** 的响应都直接从 Starlette 调用。
+
+### 带有额外元数据的多文件上传
+
+和之前的方式一样, 您可以为 `File()` 设置额外参数, 即使是 `UploadFile`:
+
+=== "Python 3.6 及以上版本"
+
+    ```Python hl_lines="18"
+    {!> ../../../docs_src/request_files/tutorial003.py!}
+    ```
+
+=== "Python 3.9 及以上版本"
+
+    ```Python hl_lines="16"
+    {!> ../../../docs_src/request_files/tutorial003_py39.py!}
+    ```
 
 ## 小结
 
