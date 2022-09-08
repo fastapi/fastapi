@@ -18,6 +18,18 @@ async def read_item(item_id: str):
     return {"item": items[item_id]}
 
 
+@app.get("/http-no-body-statuscode-exception")
+async def no_body_status_code_exception():
+    raise HTTPException(
+        status_code=204,
+    )
+
+
+@app.get("/http-no-body-statuscode-with-detail-exception")
+async def no_body_status_code_with_detail_exception():
+    raise HTTPException(status_code=204, detail="I should not make it!")
+
+
 @app.get("/starlette-items/{item_id}")
 async def read_starlette_item(item_id: str):
     if item_id not in items:
@@ -154,3 +166,15 @@ def test_get_starlette_item_not_found():
     assert response.status_code == 404, response.text
     assert response.headers.get("x-error") is None
     assert response.json() == {"detail": "Item not found"}
+
+
+def test_no_body_status_code_exception_handlers():
+    response = client.get("/http-no-body-statuscode-exception")
+    assert response.status_code == 204
+    assert not response.content
+
+
+def test_no_body_status_code_with_detail_exception_handlers():
+    response = client.get("/http-no-body-statuscode-with-detail-exception")
+    assert response.status_code == 204
+    assert not response.content
