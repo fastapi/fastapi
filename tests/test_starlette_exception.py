@@ -43,6 +43,36 @@ openapi_schema = {
     "openapi": "3.0.2",
     "info": {"title": "FastAPI", "version": "0.1.0"},
     "paths": {
+        "/http-no-body-statuscode-exception": {
+            "get": {
+                "operationId": "no_body_status_code_exception_http_no_body_statuscode_exception_get",
+                "responses": {
+                    "200": {
+                        "content": {"application/json": {"schema": {}}},
+                        "description": "Successful " "Response",
+                    }
+                },
+                "summary": "No Body " "Status " "Code " "Exception",
+            }
+        },
+        "/http-no-body-statuscode-with-detail-exception": {
+            "get": {
+                "operationId": "no_body_status_code_with_detail_exception_http_no_body_statuscode_with_detail_exception_get",
+                "responses": {
+                    "200": {
+                        "content": {"application/json": {"schema": {}}},
+                        "description": "Successful " "Response",
+                    }
+                },
+                "summary": "No "
+                "Body "
+                "Status "
+                "Code "
+                "With "
+                "Detail "
+                "Exception",
+            }
+        },
         "/items/{item_id}": {
             "get": {
                 "responses": {
