@@ -74,8 +74,12 @@ def jsonable_encoder(
         obj_dict = dataclasses.asdict(obj)
         return jsonable_encoder(
             obj_dict,
-            exclude_none=exclude_none,
+            include=include,
+            exclude=exclude,
+            by_alias=by_alias,
+            exclude_unset=exclude_unset,
             exclude_defaults=exclude_defaults,
+            exclude_none=exclude_none,
             custom_encoder=custom_encoder,
             sqlalchemy_safe=sqlalchemy_safe,
         )
