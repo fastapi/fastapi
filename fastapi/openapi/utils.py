@@ -176,9 +176,7 @@ def get_openapi_operation_metadata(
             f"Duplicate Operation ID {operation_id} for function "
             + f"{route.endpoint.__name__}"
         )
-        if file_name := getattr(route.endpoint, "__globals__", {}).get(
-            "__file__"
-        ):
+        if file_name := getattr(route.endpoint, "__globals__", {}).get("__file__"):
             message += f" at {file_name}"
         warnings.warn(message)
     operation_ids.add(operation_id)
@@ -330,7 +328,7 @@ def get_openapi_path(
                     deep_dict_update(openapi_response, process_response)
                     openapi_response["description"] = description
             http422 = str(HTTP_422_UNPROCESSABLE_ENTITY)
-            if ((all_route_params or route.body_field)) and all(
+            if (all_route_params or route.body_field) and all(
                 status not in operation["responses"]
                 for status in [http422, "4XX", "default"]
             ):
@@ -338,9 +336,7 @@ def get_openapi_path(
                     "description": "Validation Error",
                     "content": {
                         "application/json": {
-                            "schema": {
-                                "$ref": f"{REF_PREFIX}HTTPValidationError"
-                            }
+                            "schema": {"$ref": f"{REF_PREFIX}HTTPValidationError"}
                         }
                     },
                 }
@@ -383,9 +379,7 @@ def get_flat_models_from_routes(
             request_fields_from_routes.extend(params)
 
     return callback_flat_models | get_flat_models_from_fields(
-        body_fields_from_routes
-        + responses_from_routes
-        + request_fields_from_routes,
+        body_fields_from_routes + responses_from_routes + request_fields_from_routes,
         known_models=set(),
     )
 

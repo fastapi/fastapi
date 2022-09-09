@@ -87,8 +87,7 @@ if __name__ == "__main__":
                         f"Checking current comments in issue: {num} to see if already notified about this PR: {pr.number}"
                     )
                     already_notified = any(
-                        message in comment.body
-                        for comment in issue.get_comments()
+                        message in comment.body for comment in issue.get_comments()
                     )
 
                     if not already_notified:

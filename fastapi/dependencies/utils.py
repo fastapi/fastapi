@@ -214,8 +214,7 @@ def get_flat_params(dependant: Dependant) -> List[ModelField]:
 def is_scalar_field(field: ModelField) -> bool:
     field_info = field.field_info
     return (
-        not field.sub_fields
-        or all(is_scalar_field(f) for f in field.sub_fields)
+        not field.sub_fields or all(is_scalar_field(f) for f in field.sub_fields)
         if (
             field.shape == SHAPE_SINGLETON
             and not lenient_issubclass(field.type_, BaseModel)
@@ -628,7 +627,7 @@ async def request_body_to_args(
 
         for field in required_params:
             loc: Tuple[str, ...]
-            loc = ("body", ) if field_alias_omitted else ("body", field.alias)
+            loc = ("body",) if field_alias_omitted else ("body", field.alias)
             value: Optional[Any] = None
             if received_body is not None:
                 if (

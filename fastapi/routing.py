@@ -232,8 +232,8 @@ def get_request_handler(
                 raw_response.background = background_tasks
             return raw_response
         response_args: Dict[str, Any] = {"background": background_tasks}
-            # If status_code was set, use it, otherwise use the default from the
-            # response class, in the case of redirect it's 307
+        # If status_code was set, use it, otherwise use the default from the
+        # response class, in the case of redirect it's 307
         current_status_code = status_code or sub_response.status_code
         if current_status_code is not None:
             response_args["status_code"] = current_status_code

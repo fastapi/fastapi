@@ -10,8 +10,4 @@ async def create_file(file: bytes | None = File(default=None)):
 
 @app.post("/uploadfile/")
 async def create_upload_file(file: UploadFile | None = None):
-    return (
-        {"filename": file.filename}
-        if file
-        else {"message": "No upload file sent"}
-    )
+    return {"filename": file.filename} if file else {"message": "No upload file sent"}

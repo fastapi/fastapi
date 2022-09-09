@@ -139,7 +139,6 @@ def jsonable_encoder(
             for item in obj
         ]
 
-
     if type(obj) in ENCODERS_BY_TYPE:
         return ENCODERS_BY_TYPE[type(obj)](obj)
     for encoder, classes_tuple in encoders_by_class_tuples.items():
