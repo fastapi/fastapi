@@ -116,37 +116,36 @@ async def serialize_response(
     exclude_none: bool = False,
     is_coroutine: bool = True,
 ) -> Any:
-    if field:
-        errors = []
-        response_content = _prepare_response_content(
-            response_content,
-            exclude_unset=exclude_unset,
-            exclude_defaults=exclude_defaults,
-            exclude_none=exclude_none,
-        )
-        if is_coroutine:
-            value, errors_ = field.validate(response_content, {}, loc=("response",))
-        else:
-            value, errors_ = await run_in_threadpool(  # type: ignore[misc]
-                field.validate, response_content, {}, loc=("response",)
-            )
-        if isinstance(errors_, ErrorWrapper):
-            errors.append(errors_)
-        elif isinstance(errors_, list):
-            errors.extend(errors_)
-        if errors:
-            raise ValidationError(errors, field.type_)
-        return jsonable_encoder(
-            value,
-            include=include,
-            exclude=exclude,
-            by_alias=by_alias,
-            exclude_unset=exclude_unset,
-            exclude_defaults=exclude_defaults,
-            exclude_none=exclude_none,
-        )
-    else:
+    if not field:
         return jsonable_encoder(response_content)
+    errors = []
+    response_content = _prepare_response_content(
+        response_content,
+        exclude_unset=exclude_unset,
+        exclude_defaults=exclude_defaults,
+        exclude_none=exclude_none,
+    )
+    if is_coroutine:
+        value, errors_ = field.validate(response_content, {}, loc=("response",))
+    else:
+        value, errors_ = await run_in_threadpool(  # type: ignore[misc]
+            field.validate, response_content, {}, loc=("response",)
+        )
+    if isinstance(errors_, ErrorWrapper):
+        errors.append(errors_)
+    elif isinstance(errors_, list):
+        errors.extend(errors_)
+    if errors:
+        raise ValidationError(errors, field.type_)
+    return jsonable_encoder(
+        value,
+        include=include,
+        exclude=exclude,
+        by_alias=by_alias,
+        exclude_unset=exclude_unset,
+        exclude_defaults=exclude_defaults,
+        exclude_none=exclude_none,
+    )
 
 
 async def run_endpoint_function(
@@ -204,10 +203,7 @@ def get_request_handler(
                                 subtype = message.get_content_subtype()
                                 if subtype == "json" or subtype.endswith("+json"):
                                     json_body = await request.json()
-                        if json_body != Undefined:
-                            body = json_body
-                        else:
-                            body = body_bytes
+                        body = json_body if json_body != Undefined else body_bytes
         except json.JSONDecodeError as e:
             raise RequestValidationError(
                 [ErrorWrapper(e, ("body", e.pos))], body=e.doc
@@ -227,41 +223,38 @@ def get_request_handler(
         values, errors, background_tasks, sub_response, _ = solved_result
         if errors:
             raise RequestValidationError(errors, body=body)
-        else:
-            raw_response = await run_endpoint_function(
-                dependant=dependant, values=values, is_coroutine=is_coroutine
-            )
+        raw_response = await run_endpoint_function(
+            dependant=dependant, values=values, is_coroutine=is_coroutine
+        )
 
-            if isinstance(raw_response, Response):
-                if raw_response.background is None:
-                    raw_response.background = background_tasks
-                return raw_response
-            response_args: Dict[str, Any] = {"background": background_tasks}
+        if isinstance(raw_response, Response):
+            if raw_response.background is None:
+                raw_response.background = background_tasks
+            return raw_response
+        response_args: Dict[str, Any] = {"background": background_tasks}
             # If status_code was set, use it, otherwise use the default from the
             # response class, in the case of redirect it's 307
-            current_status_code = (
-                status_code if status_code else sub_response.status_code
-            )
-            if current_status_code is not None:
-                response_args["status_code"] = current_status_code
-            if sub_response.status_code:
-                response_args["status_code"] = sub_response.status_code
-            content = await serialize_response(
-                field=response_field,
-                response_content=raw_response,
-                include=response_model_include,
-                exclude=response_model_exclude,
-                by_alias=response_model_by_alias,
-                exclude_unset=response_model_exclude_unset,
-                exclude_defaults=response_model_exclude_defaults,
-                exclude_none=response_model_exclude_none,
-                is_coroutine=is_coroutine,
-            )
-            response = actual_response_class(content, **response_args)
-            if not is_body_allowed_for_status_code(response.status_code):
-                response.body = b""
-            response.headers.raw.extend(sub_response.headers.raw)
-            return response
+        current_status_code = status_code or sub_response.status_code
+        if current_status_code is not None:
+            response_args["status_code"] = current_status_code
+        if sub_response.status_code:
+            response_args["status_code"] = sub_response.status_code
+        content = await serialize_response(
+            field=response_field,
+            response_content=raw_response,
+            include=response_model_include,
+            exclude=response_model_exclude,
+            by_alias=response_model_by_alias,
+            exclude_unset=response_model_exclude_unset,
+            exclude_defaults=response_model_exclude_defaults,
+            exclude_none=response_model_exclude_none,
+            is_coroutine=is_coroutine,
+        )
+        response = actual_response_class(content, **response_args)
+        if not is_body_allowed_for_status_code(response.status_code):
+            response.body = b""
+        response.headers.raw.extend(sub_response.headers.raw)
+        return response
 
     return app
 
@@ -389,7 +382,7 @@ class APIRoute(routing.Route):
             assert is_body_allowed_for_status_code(
                 status_code
             ), f"Status code {status_code} must not have a response body"
-            response_name = "Response_" + self.unique_id
+            response_name = f"Response_{self.unique_id}"
             self.response_field = create_response_field(
                 name=response_name, type_=self.response_model
             )
@@ -406,10 +399,7 @@ class APIRoute(routing.Route):
         else:
             self.response_field = None  # type: ignore
             self.secure_cloned_response_field = None
-        if dependencies:
-            self.dependencies = list(dependencies)
-        else:
-            self.dependencies = []
+        self.dependencies = list(dependencies) if dependencies else []
         self.description = description or inspect.cleandoc(self.endpoint.__doc__ or "")
         # if a "form feed" character (page break) is found in the description text,
         # truncate description text to the content preceding the first "form feed"
@@ -417,19 +407,14 @@ class APIRoute(routing.Route):
         response_fields = {}
         for additional_status_code, response in self.responses.items():
             assert isinstance(response, dict), "An additional response must be a dict"
-            model = response.get("model")
-            if model:
+            if model := response.get("model"):
                 assert is_body_allowed_for_status_code(
                     additional_status_code
                 ), f"Status code {additional_status_code} must not have a response body"
                 response_name = f"Response_{additional_status_code}_{self.unique_id}"
                 response_field = create_response_field(name=response_name, type_=model)
                 response_fields[additional_status_code] = response_field
-        if response_fields:
-            self.response_fields: Dict[Union[int, str], ModelField] = response_fields
-        else:
-            self.response_fields = {}
-
+        self.response_fields = response_fields or {}
         assert callable(endpoint), "An endpoint must be a callable"
         self.dependant = get_dependant(path=self.path_format, call=self.endpoint)
         for depends in self.dependencies[::-1]:

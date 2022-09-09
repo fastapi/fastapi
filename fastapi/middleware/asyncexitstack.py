@@ -18,7 +18,7 @@ class AsyncExitStackMiddleware:
                     await self.app(scope, receive, send)
                 except Exception as e:
                     dependency_exception = e
-                    raise e
+                    raise dependency_exception
             if dependency_exception:
                 # This exception was possibly handled by the dependency but it should
                 # still bubble up so that the ServerErrorMiddleware can return a 500

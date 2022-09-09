@@ -189,8 +189,7 @@ def get_access_token(username="johndoe", password="secret", scope=None):
         data["scope"] = scope
     response = client.post("/token", data=data)
     content = response.json()
-    access_token = content.get("access_token")
-    return access_token
+    return content.get("access_token")
 
 
 def test_login():

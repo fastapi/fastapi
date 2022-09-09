@@ -278,8 +278,7 @@ def get_graphql_response(
         logging.error(f"Response was not 200, after: {after}")
         logging.error(response.text)
         raise RuntimeError(response.text)
-    data = response.json()
-    return data
+    return response.json()
 
 
 def get_graphql_issue_edges(*, settings: Settings, after: Union[str, None] = None):
@@ -305,8 +304,7 @@ def get_experts(settings: Settings):
     issue_edges = get_graphql_issue_edges(settings=settings)
 
     while issue_edges:
-        for edge in issue_edges:
-            issue_nodes.append(edge.node)
+        issue_nodes.extend(edge.node for edge in issue_edges)
         last_edge = issue_edges[-1]
         issue_edges = get_graphql_issue_edges(settings=settings, after=last_edge.cursor)
 
@@ -341,8 +339,7 @@ def get_contributors(settings: Settings):
     pr_edges = get_graphql_pr_edges(settings=settings)
 
     while pr_edges:
-        for edge in pr_edges:
-            pr_nodes.append(edge.node)
+        pr_nodes.extend(edge.node for edge in pr_edges)
         last_edge = pr_edges[-1]
         pr_edges = get_graphql_pr_edges(settings=settings, after=last_edge.cursor)
 
@@ -382,8 +379,7 @@ def get_individual_sponsors(settings: Settings):
     edges = get_graphql_sponsor_edges(settings=settings)
 
     while edges:
-        for edge in edges:
-            nodes.append(edge.node)
+        nodes.extend(edge.node for edge in edges)
         last_edge = edges[-1]
         edges = get_graphql_sponsor_edges(settings=settings, after=last_edge.cursor)
 
@@ -482,11 +478,15 @@ if __name__ == "__main__":
     keys.sort(reverse=True)
     sponsors = []
     for key in keys:
-        sponsor_group = []
-        for login, sponsor in tiers[key].items():
-            sponsor_group.append(
-                {"login": login, "avatarUrl": sponsor.avatarUrl, "url": sponsor.url}
-            )
+        sponsor_group = [
+            {
+                "login": login,
+                "avatarUrl": sponsor.avatarUrl,
+                "url": sponsor.url,
+            }
+            for login, sponsor in tiers[key].items()
+        ]
+
         sponsors.append(sponsor_group)
 
     people = {

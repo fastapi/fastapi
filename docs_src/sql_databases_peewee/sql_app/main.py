@@ -31,16 +31,14 @@ def get_db(db_state=Depends(reset_db_state)):
 
 @app.post("/users/", response_model=schemas.User, dependencies=[Depends(get_db)])
 def create_user(user: schemas.UserCreate):
-    db_user = crud.get_user_by_email(email=user.email)
-    if db_user:
+    if db_user := crud.get_user_by_email(email=user.email):
         raise HTTPException(status_code=400, detail="Email already registered")
     return crud.create_user(user=user)
 
 
 @app.get("/users/", response_model=List[schemas.User], dependencies=[Depends(get_db)])
 def read_users(skip: int = 0, limit: int = 100):
-    users = crud.get_users(skip=skip, limit=limit)
-    return users
+    return crud.get_users(skip=skip, limit=limit)
 
 
 @app.get(
@@ -64,8 +62,7 @@ def create_item_for_user(user_id: int, item: schemas.ItemCreate):
 
 @app.get("/items/", response_model=List[schemas.Item], dependencies=[Depends(get_db)])
 def read_items(skip: int = 0, limit: int = 100):
-    items = crud.get_items(skip=skip, limit=limit)
-    return items
+    return crud.get_items(skip=skip, limit=limit)
 
 
 @app.get(
@@ -75,5 +72,4 @@ def read_slow_users(skip: int = 0, limit: int = 100):
     global sleep_time
     sleep_time = max(0, sleep_time - 1)
     time.sleep(sleep_time)  # Fake long processing request
-    users = crud.get_users(skip=skip, limit=limit)
-    return users
+    return crud.get_users(skip=skip, limit=limit)

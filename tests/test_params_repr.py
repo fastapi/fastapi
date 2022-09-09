@@ -16,7 +16,7 @@ def params(request):
 
 
 def test_param_repr(params):
-    assert repr(Param(params)) == "Param(" + str(params) + ")"
+    assert repr(Param(params)) == f"Param({str(params)})"
 
 
 def test_path_repr(params):
@@ -24,19 +24,19 @@ def test_path_repr(params):
 
 
 def test_query_repr(params):
-    assert repr(Query(params)) == "Query(" + str(params) + ")"
+    assert repr(Query(params)) == f"Query({str(params)})"
 
 
 def test_header_repr(params):
-    assert repr(Header(params)) == "Header(" + str(params) + ")"
+    assert repr(Header(params)) == f"Header({str(params)})"
 
 
 def test_cookie_repr(params):
-    assert repr(Cookie(params)) == "Cookie(" + str(params) + ")"
+    assert repr(Cookie(params)) == f"Cookie({str(params)})"
 
 
 def test_body_repr(params):
-    assert repr(Body(params)) == "Body(" + str(params) + ")"
+    assert repr(Body(params)) == f"Body({str(params)})"
 
 
 def test_depends_repr():

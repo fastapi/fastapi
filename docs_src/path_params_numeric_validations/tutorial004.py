@@ -9,5 +9,5 @@ async def read_items(
 ):
     results = {"item_id": item_id}
     if q:
-        results.update({"q": q})
+        results["q"] = q
     return results

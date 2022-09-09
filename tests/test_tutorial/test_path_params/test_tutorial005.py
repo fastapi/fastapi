@@ -153,7 +153,7 @@ def test_openapi():
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
     data = response.json()
-    assert data == openapi_schema or data == openapi_schema2
+    assert data in [openapi_schema, openapi_schema2]
 
 
 @pytest.mark.parametrize(

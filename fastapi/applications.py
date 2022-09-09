@@ -217,10 +217,13 @@ class FastAPI(Starlette):
 
             async def openapi(req: Request) -> JSONResponse:
                 root_path = req.scope.get("root_path", "").rstrip("/")
-                if root_path not in server_urls:
-                    if root_path and self.root_path_in_servers:
-                        self.servers.insert(0, {"url": root_path})
-                        server_urls.add(root_path)
+                if (
+                    root_path not in server_urls
+                    and root_path
+                    and self.root_path_in_servers
+                ):
+                    self.servers.insert(0, {"url": root_path})
+                    server_urls.add(root_path)
                 return JSONResponse(self.openapi())
 
             self.add_route(self.openapi_url, openapi, include_in_schema=False)
@@ -234,11 +237,12 @@ class FastAPI(Starlette):
                     oauth2_redirect_url = root_path + oauth2_redirect_url
                 return get_swagger_ui_html(
                     openapi_url=openapi_url,
-                    title=self.title + " - Swagger UI",
+                    title=f"{self.title} - Swagger UI",
                     oauth2_redirect_url=oauth2_redirect_url,
                     init_oauth=self.swagger_ui_init_oauth,
                     swagger_ui_parameters=self.swagger_ui_parameters,
                 )
+
 
             self.add_route(self.docs_url, swagger_ui_html, include_in_schema=False)
 
@@ -257,9 +261,7 @@ class FastAPI(Starlette):
             async def redoc_html(req: Request) -> HTMLResponse:
                 root_path = req.scope.get("root_path", "").rstrip("/")
                 openapi_url = root_path + self.openapi_url
-                return get_redoc_html(
-                    openapi_url=openapi_url, title=self.title + " - ReDoc"
-                )
+                return get_redoc_html(openapi_url=openapi_url, title=f"{self.title} - ReDoc")
 
             self.add_route(self.redoc_url, redoc_html, include_in_schema=False)
 

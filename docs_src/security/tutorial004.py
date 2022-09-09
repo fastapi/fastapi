@@ -67,12 +67,10 @@ def get_user(db, username: str):
 
 
 def authenticate_user(fake_db, username: str, password: str):
-    user = get_user(fake_db, username)
-    if not user:
+    if user := get_user(fake_db, username):
+        return user if verify_password(password, user.hashed_password) else False
+    else:
         return False
-    if not verify_password(password, user.hashed_password):
-        return False
-    return user
 
 
 def create_access_token(data: dict, expires_delta: Union[timedelta, None] = None):
@@ -81,9 +79,8 @@ def create_access_token(data: dict, expires_delta: Union[timedelta, None] = None
         expire = datetime.utcnow() + expires_delta
     else:
         expire = datetime.utcnow() + timedelta(minutes=15)
-    to_encode.update({"exp": expire})
-    encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
-    return encoded_jwt
+    to_encode["exp"] = expire
+    return jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
 
 
 async def get_current_user(token: str = Depends(oauth2_scheme)):

@@ -25,7 +25,7 @@ class UserInDB(BaseModel):
 
 
 def fake_password_hasher(raw_password: str):
-    return "supersecret" + raw_password
+    return f"supersecret{raw_password}"
 
 
 def fake_save_user(user_in: UserIn):
@@ -37,5 +37,4 @@ def fake_save_user(user_in: UserIn):
 
 @app.post("/user/", response_model=UserOut)
 async def create_user(user_in: UserIn):
-    user_saved = fake_save_user(user_in)
-    return user_saved
+    return fake_save_user(user_in)
