@@ -10,9 +10,7 @@ def query_extractor(q: str | None = None):
 def query_or_cookie_extractor(
     q: str = Depends(query_extractor), last_query: str | None = Cookie(default=None)
 ):
-    if not q:
-        return last_query
-    return q
+    return q or last_query
 
 
 @app.get("/items/")

@@ -11,9 +11,7 @@ def _get_client_key(client_id: str = Query(...)) -> str:
 
 
 def _get_client_tag(client_id: Optional[str] = Query(None)) -> Optional[str]:
-    if client_id is None:
-        return None
-    return f"{client_id}_tag"
+    return None if client_id is None else f"{client_id}_tag"
 
 
 @app.get("/foo")

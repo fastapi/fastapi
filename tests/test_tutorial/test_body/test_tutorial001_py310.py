@@ -87,8 +87,7 @@ openapi_schema = {
 def client():
     from docs_src.body.tutorial001_py310 import app
 
-    client = TestClient(app)
-    return client
+    return TestClient(app)
 
 
 @needs_py310

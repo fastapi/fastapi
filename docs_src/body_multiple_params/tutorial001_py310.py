@@ -20,7 +20,7 @@ async def update_item(
 ):
     results = {"item_id": item_id}
     if q:
-        results.update({"q": q})
+        results["q"] = q
     if item:
-        results.update({"item": item})
+        results["item"] = item
     return results

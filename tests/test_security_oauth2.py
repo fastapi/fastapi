@@ -22,8 +22,7 @@ class User(BaseModel):
 
 # Here we use string annotations to test them
 def get_current_user(oauth_header: "str" = Security(reusable_oauth2)):
-    user = User(username=oauth_header)
-    return user
+    return User(username=oauth_header)
 
 
 @app.post("/login")

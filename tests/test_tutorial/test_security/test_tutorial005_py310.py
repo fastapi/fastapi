@@ -174,8 +174,7 @@ openapi_schema = {
 def get_client():
     from docs_src.security.tutorial005_py310 import app
 
-    client = TestClient(app)
-    return client
+    return TestClient(app)
 
 
 @needs_py310
@@ -193,8 +192,7 @@ def get_access_token(
         data["scope"] = scope
     response = client.post("/token", data=data)
     content = response.json()
-    access_token = content.get("access_token")
-    return access_token
+    return content.get("access_token")
 
 
 @needs_py310

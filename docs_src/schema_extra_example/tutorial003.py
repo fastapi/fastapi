@@ -25,5 +25,4 @@ async def update_item(
         },
     ),
 ):
-    results = {"item_id": item_id, "item": item}
-    return results
+    return {"item_id": item_id, "item": item}
