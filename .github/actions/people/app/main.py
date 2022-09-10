@@ -260,6 +260,7 @@ class Settings(BaseSettings):
     input_token: SecretStr
     input_standard_token: SecretStr
     github_repository: str
+    httpx_timeout: int = 30
 
 
 def get_graphql_response(
@@ -270,9 +271,10 @@ def get_graphql_response(
     response = httpx.post(
         github_graphql_url,
         headers=headers,
+        timeout=settings.httpx_timeout,
         json={"query": query, "variables": variables, "operationName": "Q"},
     )
-    if not response.status_code == 200:
+    if response.status_code != 200:
         logging.error(f"Response was not 200, after: {after}")
         logging.error(response.text)
         raise RuntimeError(response.text)

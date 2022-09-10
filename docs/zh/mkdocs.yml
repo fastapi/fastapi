@@ -85,6 +85,7 @@ nav:
   - tutorial/request-forms-and-files.md
   - tutorial/handling-errors.md
   - tutorial/path-operation-configuration.md
+  - tutorial/encoder.md
   - tutorial/body-updates.md
   - 依赖项:
     - tutorial/dependencies/index.md
