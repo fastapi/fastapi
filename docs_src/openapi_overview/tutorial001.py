@@ -24,7 +24,7 @@ class Item(BaseModel):
     )
     q: int = Field(
         0,
-        description="""The first parameter defines the default value. 
+        description="""The first parameter defines the default value.
         Also numeric validation are possible here but are
         better placed at the related query""",
         ge=-2,
