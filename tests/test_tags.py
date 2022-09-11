@@ -6,10 +6,12 @@ def test_string_is_invalid_in_router_tags():
     with pytest.raises(AssertionError):
         router = APIRouter(tags="test")
 
+
 def test_string_is_invalid_in_router_route_tags():
     router = APIRouter()
 
     with pytest.raises(AssertionError):
+
         @router.get("", tags="test")
         def test():
             ...
