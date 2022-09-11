@@ -62,13 +62,7 @@ openapi_schema = {
                         "description": "Successful " "Response",
                     }
                 },
-                "summary": "No "
-                "Body "
-                "Status "
-                "Code "
-                "With "
-                "Detail "
-                "Exception",
+                "summary": "No Body Status Code With Detail Exception",
             }
         },
         "/items/{item_id}": {
