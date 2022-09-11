@@ -1,6 +1,6 @@
 from fastapi.testclient import TestClient
 
-from response_model.tutorial003 import app
+from docs_src.response_model.tutorial003 import app
 
 client = TestClient(app)
 
@@ -74,7 +74,7 @@ openapi_schema = {
                     "loc": {
                         "title": "Location",
                         "type": "array",
-                        "items": {"type": "string"},
+                        "items": {"anyOf": [{"type": "string"}, {"type": "integer"}]},
                     },
                     "msg": {"title": "Message", "type": "string"},
                     "type": {"title": "Error Type", "type": "string"},

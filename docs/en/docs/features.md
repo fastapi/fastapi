@@ -7,7 +7,7 @@
 ### Based on open standards
 
 * <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a> for API creation, including declarations of <abbr title="also known as: endpoints, routes">path</abbr> <abbr title="also known as HTTP methods, as POST, GET, PUT, DELETE">operations</abbr>, parameters, body requests, security, etc.
-* Automatic data model documentation with <a href="http://json-schema.org/" class="external-link" target="_blank"><strong>JSON Schema</strong></a> (as OpenAPI itself is based on JSON Schema).
+* Automatic data model documentation with <a href="https://json-schema.org/" class="external-link" target="_blank"><strong>JSON Schema</strong></a> (as OpenAPI itself is based on JSON Schema).
 * Designed around these standards, after a meticulous study. Instead of an afterthought layer on top.
 * This also allows using automatic **client code generation** in many languages.
 
@@ -32,7 +32,6 @@ If you need a 2 minute refresher of how to use Python types (even if you don't u
 You write standard Python with types:
 
 ```Python
-from typing import List, Dict
 from datetime import date
 
 from pydantic import BaseModel
@@ -71,7 +70,7 @@ my_second_user: User = User(**second_user_data)
 
 ### Editor support
 
-All the framework was designed to be easy and intuitive to use, all the decisions where tested on multiple editors even before starting development, to ensure the best development experience.
+All the framework was designed to be easy and intuitive to use, all the decisions were tested on multiple editors even before starting development, to ensure the best development experience.
 
 In the last Python developer survey it was clear <a href="https://www.jetbrains.com/research/python-developers-survey-2017/#tools-and-features" class="external-link" target="_blank">that the most used feature is "autocompletion"</a>.
 
@@ -165,7 +164,6 @@ With **FastAPI** you get all of **Starlette**'s features (as FastAPI is just Sta
 
 * Seriously impressive performance. It is <a href="https://github.com/encode/starlette#performance" class="external-link" target="_blank">one of the fastest Python frameworks available, on par with **NodeJS** and **Go**</a>.
 * **WebSocket** support.
-* **GraphQL** support.
 * In-process background tasks.
 * Startup and shutdown events.
 * Test client built on `requests`.
@@ -192,11 +190,11 @@ With **FastAPI** you get all of **Pydantic**'s features (as FastAPI is based on 
 * Plays nicely with your **<abbr title="Integrated Development Environment, similar to a code editor">IDE</abbr>/<abbr title="A program that checks for code errors">linter</abbr>/brain**:
     * Because pydantic data structures are just instances of classes you define; auto-completion, linting, mypy and your intuition should all work properly with your validated data.
 * **Fast**:
-    * in <a href="https://pydantic-docs.helpmanual.io/#benchmarks-tag" class="external-link" target="_blank">benchmarks</a> Pydantic is faster than all other tested libraries.
+    * in <a href="https://pydantic-docs.helpmanual.io/benchmarks/" class="external-link" target="_blank">benchmarks</a> Pydantic is faster than all other tested libraries.
 * Validate **complex structures**:
     * Use of hierarchical Pydantic models, Python `typing`’s `List` and `Dict`, etc.
     * And validators allow complex data schemas to be clearly and easily defined, checked and documented as JSON Schema.
     * You can have deeply **nested JSON** objects and have them all validated and annotated.
-* **Extendible**:
+* **Extensible**:
     * Pydantic allows custom data types to be defined or you can extend validation with methods on a model decorated with the validator decorator.
 * 100% test coverage.

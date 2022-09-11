@@ -1,6 +1,6 @@
 from fastapi.testclient import TestClient
 
-from security.tutorial003 import app
+from docs_src.security.tutorial003 import app
 
 client = TestClient(app)
 
@@ -81,7 +81,7 @@ openapi_schema = {
                     "loc": {
                         "title": "Location",
                         "type": "array",
-                        "items": {"type": "string"},
+                        "items": {"anyOf": [{"type": "string"}, {"type": "integer"}]},
                     },
                     "msg": {"title": "Message", "type": "string"},
                     "type": {"title": "Error Type", "type": "string"},
@@ -102,7 +102,7 @@ openapi_schema = {
         "securitySchemes": {
             "OAuth2PasswordBearer": {
                 "type": "oauth2",
-                "flows": {"password": {"scopes": {}, "tokenUrl": "/token"}},
+                "flows": {"password": {"scopes": {}, "tokenUrl": "token"}},
             }
         },
     },

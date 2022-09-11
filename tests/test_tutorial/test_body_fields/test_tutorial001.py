@@ -1,16 +1,7 @@
 import pytest
 from fastapi.testclient import TestClient
 
-from body_fields.tutorial001 import app
-
-# TODO: remove when removing support for Pydantic < 1.0.0
-try:
-    from pydantic import Field  # noqa
-except ImportError:  # pragma: nocover
-    import pydantic
-
-    pydantic.Field = pydantic.Schema
-
+from docs_src.body_fields.tutorial001 import app
 
 client = TestClient(app)
 
@@ -96,7 +87,7 @@ openapi_schema = {
                     "loc": {
                         "title": "Location",
                         "type": "array",
-                        "items": {"type": "string"},
+                        "items": {"anyOf": [{"type": "string"}, {"type": "integer"}]},
                     },
                     "msg": {"title": "Message", "type": "string"},
                     "type": {"title": "Error Type", "type": "string"},

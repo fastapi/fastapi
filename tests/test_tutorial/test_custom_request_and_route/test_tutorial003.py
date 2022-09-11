@@ -1,6 +1,6 @@
 from fastapi.testclient import TestClient
 
-from custom_request_and_route.tutorial003 import app
+from docs_src.custom_request_and_route.tutorial003 import app
 
 client = TestClient(app)
 

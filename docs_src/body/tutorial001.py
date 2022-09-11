@@ -1,12 +1,14 @@
+from typing import Union
+
 from fastapi import FastAPI
 from pydantic import BaseModel
 
 
 class Item(BaseModel):
     name: str
-    description: str = None
+    description: Union[str, None] = None
     price: float
-    tax: float = None
+    tax: Union[float, None] = None
 
 
 app = FastAPI()

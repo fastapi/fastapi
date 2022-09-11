@@ -1,11 +1,11 @@
-from typing import List
+from typing import List, Union
 
 from pydantic import BaseModel
 
 
 class ItemBase(BaseModel):
     title: str
-    description: str = None
+    description: Union[str, None] = None
 
 
 class ItemCreate(ItemBase):

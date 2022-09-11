@@ -20,7 +20,7 @@ GitHub: <a href="https://github.com/tiangolo/full-stack-fastapi-postgresql" clas
     * **Easy**: Designed to be easy to use and learn. Less time reading docs.
     * **Short**: Minimize code duplication. Multiple features from each parameter declaration.
     * **Robust**: Get production-ready code. With automatic interactive documentation.
-    * **Standards-based**: Based on (and fully compatible with) the open standards for APIs: <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> and <a href="http://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>.
+    * **Standards-based**: Based on (and fully compatible with) the open standards for APIs: <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> and <a href="https://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>.
     * <a href="https://fastapi.tiangolo.com/features/" class="external-link" target="_blank">**Many other features**</a> including automatic validation, serialization, interactive documentation, authentication with OAuth2 JWT tokens, etc.
 * **Secure password** hashing by default.
 * **JWT token** authentication.
@@ -69,3 +69,16 @@ You can read more about it in the docs for the repo.
 ## Full Stack FastAPI MongoDB
 
 ...might come later, depending on my time availability and other factors. 😅 🎉
+
+## Machine Learning models with spaCy and FastAPI
+
+GitHub: <a href="https://github.com/microsoft/cookiecutter-spacy-fastapi" class="external-link" target="_blank">https://github.com/microsoft/cookiecutter-spacy-fastapi</a>
+
+### Machine Learning models with spaCy and FastAPI - Features
+
+* **spaCy** NER model integration.
+* **Azure Cognitive Search** request format built in.
+* **Production ready** Python web server using Uvicorn and Gunicorn.
+* **Azure DevOps** Kubernetes (AKS) CI/CD deployment built in.
+* **Multilingual** Easily choose one of spaCy's built in languages during project setup.
+* **Easily extensible** to other model frameworks (Pytorch, Tensorflow), not just spaCy.

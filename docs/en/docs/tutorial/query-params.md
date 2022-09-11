@@ -8,7 +8,7 @@ When you declare other function parameters that are not part of the path paramet
 
 The query is the set of key-value pairs that go after the `?` in a URL, separated by `&` characters.
 
-For example, in the url:
+For example, in the URL:
 
 ```
 http://127.0.0.1:8000/items/?skip=0&limit=10
@@ -63,9 +63,17 @@ The parameter values in your function will be:
 
 The same way, you can declare optional query parameters, by setting their default to `None`:
 
-```Python hl_lines="7"
-{!../../../docs_src/query_params/tutorial002.py!}
-```
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="9"
+    {!> ../../../docs_src/query_params/tutorial002.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="7"
+    {!> ../../../docs_src/query_params/tutorial002_py310.py!}
+    ```
 
 In this case, the function parameter `q` will be optional, and will be `None` by default.
 
@@ -76,9 +84,17 @@ In this case, the function parameter `q` will be optional, and will be `None` by
 
 You can also declare `bool` types, and they will be converted:
 
-```Python hl_lines="7"
-{!../../../docs_src/query_params/tutorial003.py!}
-```
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="9"
+    {!> ../../../docs_src/query_params/tutorial003.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="7"
+    {!> ../../../docs_src/query_params/tutorial003_py310.py!}
+    ```
 
 In this case, if you go to:
 
@@ -121,9 +137,17 @@ And you don't have to declare them in any specific order.
 
 They will be detected by name:
 
-```Python hl_lines="6 8"
-{!../../../docs_src/query_params/tutorial004.py!}
-```
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="8  10"
+    {!> ../../../docs_src/query_params/tutorial004.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="6  8"
+    {!> ../../../docs_src/query_params/tutorial004_py310.py!}
+    ```
 
 ## Required query parameters
 
@@ -133,7 +157,7 @@ If you don't want to add a specific value but just make it optional, set the def
 
 But when you want to make a query parameter required, you can just not declare any default value:
 
-```Python hl_lines="6 7"
+```Python hl_lines="6-7"
 {!../../../docs_src/query_params/tutorial005.py!}
 ```
 
@@ -179,9 +203,17 @@ http://127.0.0.1:8000/items/foo-item?needy=sooooneedy
 
 And of course, you can define some parameters as required, some as having a default value, and some entirely optional:
 
-```Python hl_lines="7"
-{!../../../docs_src/query_params/tutorial006.py!}
-```
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="10"
+    {!> ../../../docs_src/query_params/tutorial006.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="8"
+    {!> ../../../docs_src/query_params/tutorial006_py310.py!}
+    ```
 
 In this case, there are 3 query parameters:
 
@@ -191,36 +223,3 @@ In this case, there are 3 query parameters:
 
 !!! tip
     You could also use `Enum`s the same way as with [Path Parameters](path-params.md#predefined-values){.internal-link target=_blank}.
-
-## Optional type declarations
-
-!!! warning
-    This might be an advanced use case.
-
-    You might want to skip it.
-
-If you are using `mypy` it could complain with type declarations like:
-
-```Python
-limit: int = None
-```
-
-With an error like:
-
-```
-Incompatible types in assignment (expression has type "None", variable has type "int")
-```
-
-In those cases you can use `Optional` to tell `mypy` that the value could be `None`, like:
-
-```Python
-from typing import Optional
-
-limit: Optional[int] = None
-```
-
-In a *path operation* that could look like:
-
-```Python hl_lines="9"
-{!../../../docs_src/query_params/tutorial007.py!}
-```

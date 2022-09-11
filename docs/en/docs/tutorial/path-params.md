@@ -2,7 +2,7 @@
 
 You can declare path "parameters" or "variables" with the same syntax used by Python format strings:
 
-```Python hl_lines="6 7"
+```Python hl_lines="6-7"
 {!../../../docs_src/path_params/tutorial001.py!}
 ```
 
@@ -61,7 +61,7 @@ But if you go to the browser at <a href="http://127.0.0.1:8000/items/foo" class=
 
 because the path parameter `item_id` had a value of `"foo"`, which is not an `int`.
 
-The same error would appear if you provided a `float` instead of an int, as in: <a href="http://127.0.0.1:8000/items/4.2" class="external-link" target="_blank">http://127.0.0.1:8000/items/4.2</a>
+The same error would appear if you provided a `float` instead of an `int`, as in: <a href="http://127.0.0.1:8000/items/4.2" class="external-link" target="_blank">http://127.0.0.1:8000/items/4.2</a>
 
 !!! check
     So, with the same Python type declaration, **FastAPI** gives you data validation.
@@ -85,7 +85,7 @@ And when you open your browser at <a href="http://127.0.0.1:8000/docs" class="ex
 
 And because the generated schema is from the <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md" class="external-link" target="_blank">OpenAPI</a> standard, there are many compatible tools.
 
-Because of this, **FastAPI** itself provides an alternative API documentation (using ReDoc):
+Because of this, **FastAPI** itself provides an alternative API documentation (using ReDoc), which you can access at <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>:
 
 <img src="/img/tutorial/path-params/image02.png">
 
@@ -109,11 +109,19 @@ And then you can also have a path `/users/{user_id}` to get data about a specifi
 
 Because *path operations* are evaluated in order, you need to make sure that the path for `/users/me` is declared before the one for `/users/{user_id}`:
 
-```Python hl_lines="6 11"
+```Python hl_lines="6  11"
 {!../../../docs_src/path_params/tutorial003.py!}
 ```
 
 Otherwise, the path for `/users/{user_id}` would match also for `/users/me`, "thinking" that it's receiving a parameter `user_id` with a value of `"me"`.
+
+Similarly, you cannot redefine a path operation:
+
+```Python hl_lines="6  11"
+{!../../../docs_src/path_params/tutorial003b.py!}
+```
+
+The first one will always be used since the path matches first.
 
 ## Predefined values
 
@@ -125,9 +133,9 @@ Import `Enum` and create a sub-class that inherits from `str` and from `Enum`.
 
 By inheriting from `str` the API docs will be able to know that the values must be of type `string` and will be able to render correctly.
 
-And create class attributes with fixed values, those fixed values will be the available valid values:
+Then create class attributes with fixed values, which will be the available valid values:
 
-```Python hl_lines="1 6 7 8 9"
+```Python hl_lines="1  6-9"
 {!../../../docs_src/path_params/tutorial005.py!}
 ```
 
@@ -147,7 +155,7 @@ Then create a *path parameter* with a type annotation using the enum class you c
 
 ### Check the docs
 
-Because the available values for the *path parameter* are specified, the interactive docs can show them nicely:
+Because the available values for the *path parameter* are predefined, the interactive docs can show them nicely:
 
 <img src="/img/tutorial/path-params/image03.png">
 
@@ -167,7 +175,7 @@ You can compare it with the *enumeration member* in your created enum `ModelName
 
 You can get the actual value (a `str` in this case) using `model_name.value`, or in general, `your_enum_member.value`:
 
-```Python hl_lines="19"
+```Python hl_lines="20"
 {!../../../docs_src/path_params/tutorial005.py!}
 ```
 
@@ -178,10 +186,19 @@ You can get the actual value (a `str` in this case) using `model_name.value`, or
 
 You can return *enum members* from your *path operation*, even nested in a JSON body (e.g. a `dict`).
 
-They will be converted to their corresponding values before returning them to the client:
+They will be converted to their corresponding values (strings in this case) before returning them to the client:
 
-```Python hl_lines="18 20 21"
+```Python hl_lines="18  21  23"
 {!../../../docs_src/path_params/tutorial005.py!}
+```
+
+In your client you will get a JSON response like:
+
+```JSON
+{
+  "model_name": "alexnet",
+  "message": "Deep Learning FTW!"
+}
 ```
 
 ## Path parameters containing paths

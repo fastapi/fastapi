@@ -3,10 +3,8 @@ from base64 import b64decode
 from typing import Optional
 
 from fastapi.exceptions import HTTPException
-from fastapi.openapi.models import (
-    HTTPBase as HTTPBaseModel,
-    HTTPBearer as HTTPBearerModel,
-)
+from fastapi.openapi.models import HTTPBase as HTTPBaseModel
+from fastapi.openapi.models import HTTPBearer as HTTPBearerModel
 from fastapi.security.base import SecurityBase
 from fastapi.security.utils import get_authorization_scheme_param
 from pydantic import BaseModel
@@ -26,9 +24,14 @@ class HTTPAuthorizationCredentials(BaseModel):
 
 class HTTPBase(SecurityBase):
     def __init__(
-        self, *, scheme: str, scheme_name: str = None, auto_error: bool = True
+        self,
+        *,
+        scheme: str,
+        scheme_name: Optional[str] = None,
+        description: Optional[str] = None,
+        auto_error: bool = True,
     ):
-        self.model = HTTPBaseModel(scheme=scheme)
+        self.model = HTTPBaseModel(scheme=scheme, description=description)
         self.scheme_name = scheme_name or self.__class__.__name__
         self.auto_error = auto_error
 
@@ -49,9 +52,14 @@ class HTTPBase(SecurityBase):
 
 class HTTPBasic(HTTPBase):
     def __init__(
-        self, *, scheme_name: str = None, realm: str = None, auto_error: bool = True
+        self,
+        *,
+        scheme_name: Optional[str] = None,
+        realm: Optional[str] = None,
+        description: Optional[str] = None,
+        auto_error: bool = True,
     ):
-        self.model = HTTPBaseModel(scheme="basic")
+        self.model = HTTPBaseModel(scheme="basic", description=description)
         self.scheme_name = scheme_name or self.__class__.__name__
         self.realm = realm
         self.auto_error = auto_error
@@ -84,7 +92,7 @@ class HTTPBasic(HTTPBase):
         except (ValueError, UnicodeDecodeError, binascii.Error):
             raise invalid_user_credentials_exc
         username, separator, password = data.partition(":")
-        if not (separator):
+        if not separator:
             raise invalid_user_credentials_exc
         return HTTPBasicCredentials(username=username, password=password)
 
@@ -93,11 +101,12 @@ class HTTPBearer(HTTPBase):
     def __init__(
         self,
         *,
-        bearerFormat: str = None,
-        scheme_name: str = None,
+        bearerFormat: Optional[str] = None,
+        scheme_name: Optional[str] = None,
+        description: Optional[str] = None,
         auto_error: bool = True,
     ):
-        self.model = HTTPBearerModel(bearerFormat=bearerFormat)
+        self.model = HTTPBearerModel(bearerFormat=bearerFormat, description=description)
         self.scheme_name = scheme_name or self.__class__.__name__
         self.auto_error = auto_error
 
@@ -125,8 +134,14 @@ class HTTPBearer(HTTPBase):
 
 
 class HTTPDigest(HTTPBase):
-    def __init__(self, *, scheme_name: str = None, auto_error: bool = True):
-        self.model = HTTPBaseModel(scheme="digest")
+    def __init__(
+        self,
+        *,
+        scheme_name: Optional[str] = None,
+        description: Optional[str] = None,
+        auto_error: bool = True,
+    ):
+        self.model = HTTPBaseModel(scheme="digest", description=description)
         self.scheme_name = scheme_name or self.__class__.__name__
         self.auto_error = auto_error
 

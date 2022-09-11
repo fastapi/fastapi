@@ -1,6 +1,6 @@
 from fastapi.testclient import TestClient
 
-from events.tutorial001 import app
+from docs_src.events.tutorial001 import app
 
 openapi_schema = {
     "openapi": "3.0.2",
@@ -47,7 +47,7 @@ openapi_schema = {
                     "loc": {
                         "title": "Location",
                         "type": "array",
-                        "items": {"type": "string"},
+                        "items": {"anyOf": [{"type": "string"}, {"type": "integer"}]},
                     },
                     "msg": {"title": "Message", "type": "string"},
                     "type": {"title": "Error Type", "type": "string"},

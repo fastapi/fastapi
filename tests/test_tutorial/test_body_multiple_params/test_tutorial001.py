@@ -1,7 +1,7 @@
 import pytest
 from fastapi.testclient import TestClient
 
-from body_multiple_params.tutorial001 import app
+from docs_src.body_multiple_params.tutorial001 import app
 
 client = TestClient(app)
 
@@ -79,7 +79,7 @@ openapi_schema = {
                     "loc": {
                         "title": "Location",
                         "type": "array",
-                        "items": {"type": "string"},
+                        "items": {"anyOf": [{"type": "string"}, {"type": "integer"}]},
                     },
                     "msg": {"title": "Message", "type": "string"},
                     "type": {"title": "Error Type", "type": "string"},

@@ -1,6 +1,6 @@
 from fastapi.testclient import TestClient
 
-from sub_applications.tutorial001 import app
+from docs_src.sub_applications.tutorial001 import app
 
 client = TestClient(app)
 
@@ -26,7 +26,7 @@ openapi_schema_sub = {
     "openapi": "3.0.2",
     "info": {"title": "FastAPI", "version": "0.1.0"},
     "paths": {
-        "/subapi/sub": {
+        "/sub": {
             "get": {
                 "responses": {
                     "200": {
@@ -39,6 +39,7 @@ openapi_schema_sub = {
             }
         }
     },
+    "servers": [{"url": "/subapi"}],
 }
 
 

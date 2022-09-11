@@ -1,6 +1,6 @@
 from fastapi.testclient import TestClient
 
-from events.tutorial002 import app
+from docs_src.events.tutorial002 import app
 
 openapi_schema = {
     "openapi": "3.0.2",

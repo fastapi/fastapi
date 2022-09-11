@@ -6,9 +6,17 @@ Before diving deeper into the **Dependency Injection** system, let's upgrade the
 
 In the previous example, we were returning a `dict` from our dependency ("dependable"):
 
-```Python hl_lines="7"
-{!../../../docs_src/dependencies/tutorial001.py!}
-```
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="9"
+    {!> ../../../docs_src/dependencies/tutorial001.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="7"
+    {!> ../../../docs_src/dependencies/tutorial001_py310.py!}
+    ```
 
 But then we get a `dict` in the parameter `commons` of the *path operation function*.
 
@@ -69,31 +77,55 @@ If you pass a "callable" as a dependency in **FastAPI**, it will analyze the par
 
 That also applies to callables with no parameters at all. The same as it would be for *path operation functions* with no parameters.
 
-Then, we can change the dependency "dependable" `common_parameters` from above to the class `CommonQueryParameters`:
+Then, we can change the dependency "dependable" `common_parameters` from above to the class `CommonQueryParams`:
 
-```Python hl_lines="9 10 11 12 13"
-{!../../../docs_src/dependencies/tutorial002.py!}
-```
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="11-15"
+    {!> ../../../docs_src/dependencies/tutorial002.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="9-13"
+    {!> ../../../docs_src/dependencies/tutorial002_py310.py!}
+    ```
 
 Pay attention to the `__init__` method used to create the instance of the class:
 
-```Python hl_lines="10"
-{!../../../docs_src/dependencies/tutorial002.py!}
-```
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="12"
+    {!> ../../../docs_src/dependencies/tutorial002.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="10"
+    {!> ../../../docs_src/dependencies/tutorial002_py310.py!}
+    ```
 
 ...it has the same parameters as our previous `common_parameters`:
 
-```Python hl_lines="6"
-{!../../../docs_src/dependencies/tutorial001.py!}
-```
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="9"
+    {!> ../../../docs_src/dependencies/tutorial001.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="6"
+    {!> ../../../docs_src/dependencies/tutorial001_py310.py!}
+    ```
 
 Those parameters are what **FastAPI** will use to "solve" the dependency.
 
 In both cases, it will have:
 
-* an optional `q` query parameter.
-* a `skip` query parameter, with a default of `0`.
-* a `limit` query parameter, with a default of `100`.
+* An optional `q` query parameter that is a `str`.
+* A `skip` query parameter that is an `int`, with a default of `0`.
+* A `limit` query parameter that is an `int`, with a default of `100`.
 
 In both cases the data will be converted, validated, documented on the OpenAPI schema, etc.
 
@@ -101,15 +133,23 @@ In both cases the data will be converted, validated, documented on the OpenAPI s
 
 Now you can declare your dependency using this class.
 
-And as when **FastAPI** calls that class the value that will be passed as `commons` to your function will be an "instance" of the class, you can declare that parameter `commons` to be of type of the class, `CommonQueryParams`.
+=== "Python 3.6 and above"
 
-```Python hl_lines="17"
-{!../../../docs_src/dependencies/tutorial002.py!}
-```
+    ```Python hl_lines="19"
+    {!> ../../../docs_src/dependencies/tutorial002.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="17"
+    {!> ../../../docs_src/dependencies/tutorial002_py310.py!}
+    ```
+
+**FastAPI** calls the `CommonQueryParams` class. This creates an "instance" of that class and the instance will be passed as the parameter `commons` to your function.
 
 ## Type annotation vs `Depends`
 
-In the code above, you are declaring `commons` as:
+Notice how we write `CommonQueryParams` twice in the above code:
 
 ```Python
 commons: CommonQueryParams = Depends(CommonQueryParams)
@@ -143,9 +183,17 @@ commons = Depends(CommonQueryParams)
 
 ..as in:
 
-```Python hl_lines="17"
-{!../../../docs_src/dependencies/tutorial003.py!}
-```
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="19"
+    {!> ../../../docs_src/dependencies/tutorial003.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="17"
+    {!> ../../../docs_src/dependencies/tutorial003_py310.py!}
+    ```
 
 But declaring the type is encouraged as that way your editor will know what will be passed as the parameter `commons`, and then it can help you with code completion, type checks, etc:
 
@@ -175,17 +223,25 @@ commons: CommonQueryParams = Depends(CommonQueryParams)
 commons: CommonQueryParams = Depends()
 ```
 
-So, you can declare the dependency as the type of the variable, and use `Depends()` as the "default" value (the value after the `=`) for that function's parameter, without any parameter, instead of having to write the full class *again* inside of `Depends(CommonQueryParams)`.
+You declare the dependency as the type of the parameter, and you use `Depends()` as its "default" value (that after the `=`) for that function's parameter, without any parameter in `Depends()`, instead of having to write the full class *again* inside of `Depends(CommonQueryParams)`.
 
-So, the same example would look like:
+The same example would then look like:
 
-```Python hl_lines="17"
-{!../../../docs_src/dependencies/tutorial004.py!}
-```
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="19"
+    {!> ../../../docs_src/dependencies/tutorial004.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="17"
+    {!> ../../../docs_src/dependencies/tutorial004_py310.py!}
+    ```
 
 ...and **FastAPI** will know what to do.
 
 !!! tip
-    If all that seems more confusing than helpful, disregard it, you don't *need* it.
-    
+    If that seems more confusing than helpful, disregard it, you don't *need* it.
+
     It is just a shortcut. Because **FastAPI** cares about helping you minimize code repetition.
