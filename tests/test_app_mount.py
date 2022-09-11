@@ -1,6 +1,5 @@
-from fastapi import FastAPI, APIRouter
+from fastapi import APIRouter, FastAPI
 from fastapi.testclient import TestClient
-
 
 app = FastAPI()
 app2 = FastAPI()
