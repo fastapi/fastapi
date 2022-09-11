@@ -8,7 +8,9 @@ def query_extractor(q: str | None = None):
 
 
 def query_or_cookie_extractor(
-    response: Response, q: str = Depends(query_extractor), last_query: str | None = Cookie(default=None)
+    response: Response,
+    q: str = Depends(query_extractor),
+    last_query: str | None = Cookie(default=None),
 ):
     if not q:
         return last_query
