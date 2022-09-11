@@ -325,7 +325,7 @@ the default of `q` will be: `["foo", "bar"]` and your response will be:
 
 #### Parameter serialization
 
-If you don't like the default parameter serialization, pass 
+If you don't like the default parameter serialization, pass
 the parameter `explode=False` and appropriate `style` to `Query`.
 
 FastAPI supports the following style values:
