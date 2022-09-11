@@ -11,12 +11,9 @@ async def http_exception_handler(request: Request, exc: HTTPException) -> Respon
     headers = getattr(exc, "headers", None)
     if not is_body_allowed_for_status_code(exc.status_code):
         return Response(status_code=exc.status_code, headers=headers)
-    if headers:
-        return JSONResponse(
-            {"detail": exc.detail}, status_code=exc.status_code, headers=headers
-        )
-    else:
-        return JSONResponse({"detail": exc.detail}, status_code=exc.status_code)
+    return JSONResponse(
+        {"detail": exc.detail}, status_code=exc.status_code, headers=headers
+    )
 
 
 async def request_validation_exception_handler(
