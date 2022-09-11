@@ -2,6 +2,9 @@
 
 ## Latest Changes
 
+
+## 0.83.0
+
 ### Features
 
 * ✨ Add support in `jsonable_encoder` for include and exclude with dataclasses. PR [#4923](https://github.com/tiangolo/fastapi/pull/4923) by [@DCsunset](https://github.com/DCsunset).
