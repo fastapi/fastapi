@@ -50,7 +50,7 @@ openapi_schema = {
                         "description": "Successful " "Response",
                     }
                 },
-                "summary": "No Body " "Status " "Code " "Exception",
+                "summary": "No Body Status Code Exception",
             }
         },
         "/http-no-body-statuscode-with-detail-exception": {
