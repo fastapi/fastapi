@@ -1,6 +1,6 @@
 from fastapi.testclient import TestClient
 
-from async_sql_databases.tutorial001 import app
+from docs_src.async_sql_databases.tutorial001 import app
 
 openapi_schema = {
     "openapi": "3.0.2",
@@ -88,7 +88,7 @@ openapi_schema = {
                     "loc": {
                         "title": "Location",
                         "type": "array",
-                        "items": {"type": "string"},
+                        "items": {"anyOf": [{"type": "string"}, {"type": "integer"}]},
                     },
                     "msg": {"title": "Message", "type": "string"},
                     "type": {"title": "Error Type", "type": "string"},
@@ -113,7 +113,7 @@ openapi_schema = {
 def test_openapi_schema():
     with TestClient(app) as client:
         response = client.get("/openapi.json")
-        assert response.status_code == 200
+        assert response.status_code == 200, response.text
         assert response.json() == openapi_schema
 
 
@@ -121,11 +121,11 @@ def test_create_read():
     with TestClient(app) as client:
         note = {"text": "Foo bar", "completed": False}
         response = client.post("/notes/", json=note)
-        assert response.status_code == 200
+        assert response.status_code == 200, response.text
         data = response.json()
         assert data["text"] == note["text"]
         assert data["completed"] == note["completed"]
         assert "id" in data
-        response = client.get(f"/notes/")
-        assert response.status_code == 200
+        response = client.get("/notes/")
+        assert response.status_code == 200, response.text
         assert data in response.json()

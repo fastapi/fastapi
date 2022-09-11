@@ -1,4 +1,4 @@
-from typing import List, Set
+from typing import List, Set, Union
 
 from fastapi import FastAPI
 from pydantic import BaseModel, HttpUrl
@@ -13,14 +13,14 @@ class Image(BaseModel):
 
 class Item(BaseModel):
     name: str
-    description: str = None
+    description: Union[str, None] = None
     price: float
-    tax: float = None
-    tags: Set[str] = []
-    images: List[Image] = None
+    tax: Union[float, None] = None
+    tags: Set[str] = set()
+    images: Union[List[Image], None] = None
 
 
 @app.put("/items/{item_id}")
-async def update_item(*, item_id: int, item: Item):
+async def update_item(item_id: int, item: Item):
     results = {"item_id": item_id, "item": item}
     return results

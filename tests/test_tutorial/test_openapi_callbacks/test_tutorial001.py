@@ -1,6 +1,6 @@
 from fastapi.testclient import TestClient
 
-from openapi_callbacks.tutorial001 import app, invoice_notification
+from docs_src.openapi_callbacks.tutorial001 import app, invoice_notification
 
 client = TestClient(app)
 
@@ -143,7 +143,7 @@ openapi_schema = {
                     "loc": {
                         "title": "Location",
                         "type": "array",
-                        "items": {"type": "string"},
+                        "items": {"anyOf": [{"type": "string"}, {"type": "integer"}]},
                     },
                     "msg": {"title": "Message", "type": "string"},
                     "type": {"title": "Error Type", "type": "string"},
@@ -165,7 +165,7 @@ def test_get():
     response = client.post(
         "/invoices/", json={"id": "fooinvoice", "customer": "John", "total": 5.3}
     )
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == {"msg": "Invoice received"}
 
 

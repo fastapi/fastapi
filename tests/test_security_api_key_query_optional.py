@@ -58,17 +58,17 @@ openapi_schema = {
 
 def test_openapi_schema():
     response = client.get("/openapi.json")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == openapi_schema
 
 
 def test_security_api_key():
     response = client.get("/users/me?key=secret")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == {"username": "secret"}
 
 
 def test_security_api_key_no_key():
     response = client.get("/users/me")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == {"msg": "Create an account first"}

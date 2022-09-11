@@ -1,3 +1,5 @@
+from typing import Optional
+
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
 from fastapi.testclient import TestClient
@@ -8,7 +10,7 @@ app = FastAPI()
 
 class Item(BaseModel):
     name: str
-    price: float = None
+    price: Optional[float] = None
 
 
 @app.api_route("/items/{item_id}", methods=["GET"])
@@ -30,12 +32,12 @@ def delete_item(item_id: str, item: Item):
 
 @app.head("/items/{item_id}")
 def head_item(item_id: str):
-    return JSONResponse(headers={"x-fastapi-item-id": item_id})
+    return JSONResponse(None, headers={"x-fastapi-item-id": item_id})
 
 
 @app.options("/items/{item_id}")
 def options_item(item_id: str):
-    return JSONResponse(headers={"x-fastapi-item-id": item_id})
+    return JSONResponse(None, headers={"x-fastapi-item-id": item_id})
 
 
 @app.patch("/items/{item_id}")
@@ -45,7 +47,7 @@ def patch_item(item_id: str, item: Item):
 
 @app.trace("/items/{item_id}")
 def trace_item(item_id: str):
-    return JSONResponse(media_type="message/http")
+    return JSONResponse(None, media_type="message/http")
 
 
 client = TestClient(app)
@@ -290,7 +292,7 @@ openapi_schema = {
                     "loc": {
                         "title": "Location",
                         "type": "array",
-                        "items": {"type": "string"},
+                        "items": {"anyOf": [{"type": "string"}, {"type": "integer"}]},
                     },
                     "msg": {"title": "Message", "type": "string"},
                     "type": {"title": "Error Type", "type": "string"},
@@ -314,47 +316,47 @@ openapi_schema = {
 
 def test_openapi_schema():
     response = client.get("/openapi.json")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == openapi_schema
 
 
 def test_get_api_route():
     response = client.get("/items/foo")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == {"item_id": "foo"}
 
 
 def test_get_api_route_not_decorated():
     response = client.get("/items-not-decorated/foo")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == {"item_id": "foo"}
 
 
 def test_delete():
     response = client.delete("/items/foo", json={"name": "Foo"})
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == {"item_id": "foo", "item": {"name": "Foo", "price": None}}
 
 
 def test_head():
     response = client.head("/items/foo")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.headers["x-fastapi-item-id"] == "foo"
 
 
 def test_options():
     response = client.options("/items/foo")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.headers["x-fastapi-item-id"] == "foo"
 
 
 def test_patch():
     response = client.patch("/items/foo", json={"name": "Foo"})
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == {"item_id": "foo", "item": {"name": "Foo", "price": None}}
 
 
 def test_trace():
     response = client.request("trace", "/items/foo")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.headers["content-type"] == "message/http"

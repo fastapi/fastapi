@@ -3,7 +3,7 @@ from fastapi.security import OAuth2PasswordBearer
 
 app = FastAPI()
 
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/token")
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 
 @app.get("/items/")

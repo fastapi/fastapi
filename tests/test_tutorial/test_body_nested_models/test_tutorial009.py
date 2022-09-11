@@ -1,6 +1,6 @@
 from fastapi.testclient import TestClient
 
-from body_nested_models.tutorial009 import app
+from docs_src.body_nested_models.tutorial009 import app
 
 client = TestClient(app)
 
@@ -53,7 +53,7 @@ openapi_schema = {
                     "loc": {
                         "title": "Location",
                         "type": "array",
-                        "items": {"type": "string"},
+                        "items": {"anyOf": [{"type": "string"}, {"type": "integer"}]},
                     },
                     "msg": {"title": "Message", "type": "string"},
                     "type": {"title": "Error Type", "type": "string"},
@@ -77,25 +77,25 @@ openapi_schema = {
 
 def test_openapi_schema():
     response = client.get("/openapi.json")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == openapi_schema
 
 
 def test_post_body():
     data = {"2": 2.2, "3": 3.3}
     response = client.post("/index-weights/", json=data)
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == data
 
 
 def test_post_invalid_body():
     data = {"foo": 2.2, "3": 3.3}
     response = client.post("/index-weights/", json=data)
-    assert response.status_code == 422
+    assert response.status_code == 422, response.text
     assert response.json() == {
         "detail": [
             {
-                "loc": ["body", "weights", "__key__"],
+                "loc": ["body", "__key__"],
                 "msg": "value is not a valid integer",
                 "type": "type_error.integer",
             }

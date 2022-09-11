@@ -1,6 +1,6 @@
 from fastapi.testclient import TestClient
 
-from path_operation_advanced_configuration.tutorial001 import app
+from docs_src.path_operation_advanced_configuration.tutorial001 import app
 
 client = TestClient(app)
 
@@ -26,11 +26,11 @@ openapi_schema = {
 
 def test_openapi_schema():
     response = client.get("/openapi.json")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == openapi_schema
 
 
 def test_get():
     response = client.get("/items/")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == [{"item_id": "Foo"}]

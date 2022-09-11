@@ -71,7 +71,7 @@ openapi_schema = {
                     "loc": {
                         "title": "Location",
                         "type": "array",
-                        "items": {"type": "string"},
+                        "items": {"anyOf": [{"type": "string"}, {"type": "integer"}]},
                     },
                     "msg": {"title": "Message", "type": "string"},
                     "type": {"title": "Error Type", "type": "string"},
@@ -90,4 +90,4 @@ def test_reused_param():
 
 def test_read_users():
     response = client.get("/users/42")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text

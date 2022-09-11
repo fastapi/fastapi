@@ -1,5 +1,6 @@
+from typing import Optional
+
 from fastapi import APIRouter, FastAPI
-from fastapi.responses import JSONResponse
 from fastapi.testclient import TestClient
 from pydantic import BaseModel, HttpUrl
 
@@ -8,7 +9,7 @@ app = FastAPI()
 
 class Invoice(BaseModel):
     id: str
-    title: str = None
+    title: Optional[str] = None
     customer: str
     total: float
 
@@ -22,21 +23,34 @@ class InvoiceEventReceived(BaseModel):
     ok: bool
 
 
-invoices_callback_router = APIRouter(default_response_class=JSONResponse)
+invoices_callback_router = APIRouter()
 
 
 @invoices_callback_router.post(
-    "{$callback_url}/invoices/{$request.body.id}", response_model=InvoiceEventReceived,
+    "{$callback_url}/invoices/{$request.body.id}", response_model=InvoiceEventReceived
 )
 def invoice_notification(body: InvoiceEvent):
-    pass
+    pass  # pragma: nocover
+
+
+class Event(BaseModel):
+    name: str
+    total: float
+
+
+events_callback_router = APIRouter()
+
+
+@events_callback_router.get("{$callback_url}/events/{$request.body.title}")
+def event_callback(event: Event):
+    pass  # pragma: nocover
 
 
 subrouter = APIRouter()
 
 
 @subrouter.post("/invoices/", callbacks=invoices_callback_router.routes)
-def create_invoice(invoice: Invoice, callback_url: HttpUrl = None):
+def create_invoice(invoice: Invoice, callback_url: Optional[HttpUrl] = None):
     """
     Create an invoice.
 
@@ -56,7 +70,7 @@ def create_invoice(invoice: Invoice, callback_url: HttpUrl = None):
     return {"msg": "Invoice received"}
 
 
-app.include_router(subrouter)
+app.include_router(subrouter, callbacks=events_callback_router.routes)
 
 client = TestClient(app)
 
@@ -108,6 +122,40 @@ openapi_schema = {
                     },
                 },
                 "callbacks": {
+                    "event_callback": {
+                        "{$callback_url}/events/{$request.body.title}": {
+                            "get": {
+                                "summary": "Event Callback",
+                                "operationId": "event_callback__callback_url__events___request_body_title__get",
+                                "requestBody": {
+                                    "required": True,
+                                    "content": {
+                                        "application/json": {
+                                            "schema": {
+                                                "$ref": "#/components/schemas/Event"
+                                            }
+                                        }
+                                    },
+                                },
+                                "responses": {
+                                    "200": {
+                                        "description": "Successful Response",
+                                        "content": {"application/json": {"schema": {}}},
+                                    },
+                                    "422": {
+                                        "description": "Validation Error",
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {
+                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                }
+                                            }
+                                        },
+                                    },
+                                },
+                            }
+                        }
+                    },
                     "invoice_notification": {
                         "{$callback_url}/invoices/{$request.body.id}": {
                             "post": {
@@ -147,13 +195,22 @@ openapi_schema = {
                                 },
                             }
                         }
-                    }
+                    },
                 },
             }
         }
     },
     "components": {
         "schemas": {
+            "Event": {
+                "title": "Event",
+                "required": ["name", "total"],
+                "type": "object",
+                "properties": {
+                    "name": {"title": "Name", "type": "string"},
+                    "total": {"title": "Total", "type": "number"},
+                },
+            },
             "HTTPValidationError": {
                 "title": "HTTPValidationError",
                 "type": "object",
@@ -199,7 +256,7 @@ openapi_schema = {
                     "loc": {
                         "title": "Location",
                         "type": "array",
-                        "items": {"type": "string"},
+                        "items": {"anyOf": [{"type": "string"}, {"type": "integer"}]},
                     },
                     "msg": {"title": "Message", "type": "string"},
                     "type": {"title": "Error Type", "type": "string"},
@@ -221,10 +278,5 @@ def test_get():
     response = client.post(
         "/invoices/", json={"id": "fooinvoice", "customer": "John", "total": 5.3}
     )
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == {"msg": "Invoice received"}
-
-
-def test_dummy_callback():
-    # Just for coverage
-    invoice_notification({})

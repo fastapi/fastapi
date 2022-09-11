@@ -1,6 +1,6 @@
 from fastapi.testclient import TestClient
 
-from query_params_str_validations.tutorial013 import app
+from docs_src.query_params_str_validations.tutorial013 import app
 
 client = TestClient(app)
 
@@ -31,7 +31,12 @@ openapi_schema = {
                 "parameters": [
                     {
                         "required": False,
-                        "schema": {"title": "Q", "type": "array", "items": {}},
+                        "schema": {
+                            "title": "Q",
+                            "type": "array",
+                            "items": {},
+                            "default": [],
+                        },
                         "name": "q",
                         "in": "query",
                     }
@@ -49,7 +54,7 @@ openapi_schema = {
                     "loc": {
                         "title": "Location",
                         "type": "array",
-                        "items": {"type": "string"},
+                        "items": {"anyOf": [{"type": "string"}, {"type": "integer"}]},
                     },
                     "msg": {"title": "Message", "type": "string"},
                     "type": {"title": "Error Type", "type": "string"},
@@ -73,19 +78,19 @@ openapi_schema = {
 
 def test_openapi_schema():
     response = client.get("/openapi.json")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == openapi_schema
 
 
 def test_multi_query_values():
     url = "/items/?q=foo&q=bar"
     response = client.get(url)
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == {"q": ["foo", "bar"]}
 
 
 def test_query_no_values():
     url = "/items/"
     response = client.get(url)
-    assert response.status_code == 200
-    assert response.json() == {"q": None}
+    assert response.status_code == 200, response.text
+    assert response.json() == {"q": []}

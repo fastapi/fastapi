@@ -57,7 +57,7 @@ openapi_schema = {
                     "loc": {
                         "title": "Location",
                         "type": "array",
-                        "items": {"type": "string"},
+                        "items": {"anyOf": [{"type": "string"}, {"type": "integer"}]},
                     },
                     "msg": {"title": "Message", "type": "string"},
                     "type": {"title": "Error Type", "type": "string"},
@@ -81,17 +81,17 @@ openapi_schema = {
 
 def test_openapi_schema():
     response = client.get("/openapi.json")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == openapi_schema
 
 
 def test_put_no_body():
     response = client.put("/items/foo")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == {"item_id": "foo"}
 
 
 def test_put_no_body_with_body():
     response = client.put("/items/foo", json={"name": "Foo"})
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == {"item_id": "foo"}

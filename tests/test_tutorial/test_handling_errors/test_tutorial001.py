@@ -1,6 +1,6 @@
 from fastapi.testclient import TestClient
 
-from handling_errors.tutorial001 import app
+from docs_src.handling_errors.tutorial001 import app
 
 client = TestClient(app)
 
@@ -49,7 +49,7 @@ openapi_schema = {
                     "loc": {
                         "title": "Location",
                         "type": "array",
-                        "items": {"type": "string"},
+                        "items": {"anyOf": [{"type": "string"}, {"type": "integer"}]},
                     },
                     "msg": {"title": "Message", "type": "string"},
                     "type": {"title": "Error Type", "type": "string"},
@@ -73,18 +73,18 @@ openapi_schema = {
 
 def test_openapi_schema():
     response = client.get("/openapi.json")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == openapi_schema
 
 
 def test_get_item():
     response = client.get("/items/foo")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == {"item": "The Foo Wrestlers"}
 
 
 def test_get_item_not_found():
     response = client.get("/items/bar")
-    assert response.status_code == 404
+    assert response.status_code == 404, response.text
     assert response.headers.get("x-error") is None
     assert response.json() == {"detail": "Item not found"}

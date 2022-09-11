@@ -15,35 +15,37 @@ An <a href="https://en.wikipedia.org/wiki/Environment_variable" class="external-
 
 You can create and use environment variables in the shell, without needing Python:
 
-<div class="termy">
+=== "Linux, macOS, Windows Bash"
 
-```console
-// You could create an env var MY_NAME with
-$ export MY_NAME="Wade Wilson"
+    <div class="termy">
 
-// Then you could use it with other programs, like
-$ echo "Hello $MY_NAME"
+    ```console
+    // You could create an env var MY_NAME with
+    $ export MY_NAME="Wade Wilson"
 
-Hello Wade Wilson
-```
+    // Then you could use it with other programs, like
+    $ echo "Hello $MY_NAME"
 
-</div>
+    Hello Wade Wilson
+    ```
 
-Or in PowerShell in Windows:
+    </div>
 
-<div class="termy">
+=== "Windows PowerShell"
 
-```console
-// Create an env var MY_NAME
-$ $Env:MY_NAME = "Wade Wilson"
+    <div class="termy">
 
-// Use it with other programs, like
-$ echo "Hello $Env:MY_NAME"
+    ```console
+    // Create an env var MY_NAME
+    $ $Env:MY_NAME = "Wade Wilson"
 
-Hello Wade Wilson
-```
+    // Use it with other programs, like
+    $ echo "Hello $Env:MY_NAME"
 
-</div>
+    Hello Wade Wilson
+    ```
+
+    </div>
 
 ### Read env vars in Python
 
@@ -133,7 +135,7 @@ The same way as with Pydantic models, you declare class attributes with type ann
 
 You can use all the same validation features and tools you use for Pydantic models, like different data types and additional validations with `Field()`.
 
-```Python hl_lines="2  5 6 7 8  11"
+```Python hl_lines="2  5-8  11"
 {!../../../docs_src/settings/tutorial001.py!}
 ```
 
@@ -148,7 +150,7 @@ Next it will convert and validate the data. So, when you use that `settings` obj
 
 Then you can use the new `settings` object in your application:
 
-```Python hl_lines="18 19 20"
+```Python hl_lines="18-20"
 {!../../../docs_src/settings/tutorial001.py!}
 ```
 
@@ -187,7 +189,7 @@ For example, you could have a file `config.py` with:
 
 And then use it in a file `main.py`:
 
-```Python hl_lines="3  11 12 13"
+```Python hl_lines="3  11-13"
 {!../../../docs_src/settings/app01/main.py!}
 ```
 
@@ -214,7 +216,7 @@ Notice that now we don't create a default instance `settings = Settings()`.
 
 Now we create a dependency that returns a new `config.Settings()`.
 
-```Python hl_lines="5  11 12"
+```Python hl_lines="5  11-12"
 {!../../../docs_src/settings/app02/main.py!}
 ```
 
@@ -225,7 +227,7 @@ Now we create a dependency that returns a new `config.Settings()`.
 
 And then we can require it from the *path operation function* as a dependency and use it anywhere we need it.
 
-```Python hl_lines="16  18 19 20"
+```Python hl_lines="16  18-20"
 {!../../../docs_src/settings/app02/main.py!}
 ```
 
@@ -233,7 +235,7 @@ And then we can require it from the *path operation function* as a dependency an
 
 Then it would be very easy to provide a different settings object during testing by creating a dependency override for `get_settings`:
 
-```Python hl_lines="8 9  12  21"
+```Python hl_lines="9-10  13  21"
 {!../../../docs_src/settings/app02/test_main.py!}
 ```
 
@@ -270,7 +272,7 @@ APP_NAME="ChimichangApp"
 
 And then update your `config.py` with:
 
-```Python hl_lines="9 10"
+```Python hl_lines="9-10"
 {!../../../docs_src/settings/app03/config.py!}
 ```
 
@@ -286,7 +288,7 @@ Reading a file from disk is normally a costly (slow) operation, so you probably 
 But every time we do:
 
 ```Python
-config.Settings()
+Settings()
 ```
 
 a new `Settings` object would be created, and at creation it would read the `.env` file again.
@@ -295,7 +297,7 @@ If the dependency function was just like:
 
 ```Python
 def get_settings():
-    return config.Settings()
+    return Settings()
 ```
 
 we would create that object for each request, and we would be reading the `.env` file for each request. ⚠️

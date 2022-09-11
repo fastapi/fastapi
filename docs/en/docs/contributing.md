@@ -24,56 +24,74 @@ That will create a directory `./env/` with the Python binaries and then you will
 
 Activate the new environment with:
 
-<div class="termy">
+=== "Linux, macOS"
 
-```console
-$ source ./env/bin/activate
-```
+    <div class="termy">
 
-</div>
+    ```console
+    $ source ./env/bin/activate
+    ```
 
-Or in Windows' PowerShell:
+    </div>
 
-<div class="termy">
+=== "Windows PowerShell"
 
-```console
-$ .\env\Scripts\Activate.ps1
-```
+    <div class="termy">
 
-</div>
+    ```console
+    $ .\env\Scripts\Activate.ps1
+    ```
 
-Or if you use Bash for Windows (e.g. <a href="https://gitforwindows.org/" class="external-link" target="_blank">Git Bash</a>):
+    </div>
 
-<div class="termy">
+=== "Windows Bash"
 
-```console
-$ source ./env/Scripts/activate
-```
+    Or if you use Bash for Windows (e.g. <a href="https://gitforwindows.org/" class="external-link" target="_blank">Git Bash</a>):
 
-</div>
+    <div class="termy">
+
+    ```console
+    $ source ./env/Scripts/activate
+    ```
+
+    </div>
 
 To check it worked, use:
 
-<div class="termy">
+=== "Linux, macOS, Windows Bash"
 
-```console
-$ which pip
+    <div class="termy">
 
-some/directory/fastapi/env/bin/pip
-```
+    ```console
+    $ which pip
 
-</div>
+    some/directory/fastapi/env/bin/pip
+    ```
+
+    </div>
+
+=== "Windows PowerShell"
+
+    <div class="termy">
+
+    ```console
+    $ Get-Command pip
+
+    some/directory/fastapi/env/bin/pip
+    ```
+
+    </div>
 
 If it shows the `pip` binary at `env/bin/pip` then it worked. 🎉
 
-Or in Windows PowerShell:
+Make sure you have the latest pip version on your virtual environment to avoid errors on the next steps:
 
 <div class="termy">
 
 ```console
-$ Get-Command pip
+$ python -m pip install --upgrade pip
 
-some/directory/fastapi/env/bin/pip
+---> 100%
 ```
 
 </div>
@@ -103,27 +121,31 @@ Now re-activate the environment to make sure you are using the `flit` you just i
 
 And now use `flit` to install the development dependencies:
 
-<div class="termy">
+=== "Linux, macOS"
 
-```console
-$ flit install --deps develop --symlink
+    <div class="termy">
 
----> 100%
-```
+    ```console
+    $ flit install --deps develop --symlink
 
-</div>
+    ---> 100%
+    ```
 
-If you are on Windows, use `--pth-file` instead of `--symlink`:
+    </div>
 
-<div class="termy">
+=== "Windows"
 
-```console
-$ flit install --deps develop --pth-file
+    If you are on Windows, use `--pth-file` instead of `--symlink`:
 
----> 100%
-```
+    <div class="termy">
 
-</div>
+    ```console
+    $ flit install --deps develop --pth-file
+
+    ---> 100%
+    ```
+
+    </div>
 
 It will install all the dependencies and your local FastAPI in your local environment.
 
@@ -150,20 +172,6 @@ $ bash scripts/format.sh
 It will also auto-sort all your imports.
 
 For it to sort them correctly, you need to have FastAPI installed locally in your environment, with the command in the section above using `--symlink` (or `--pth-file` on Windows).
-
-### Format imports
-
-There is another script that formats all the imports and makes sure you don't have unused imports:
-
-<div class="termy">
-
-```console
-$ bash scripts/format-imports.sh
-```
-
-</div>
-
-As it runs one command after the other and modifies and reverts many files, it takes a bit longer to run, so it might be easier to use `scripts/format.sh` frequently and `scripts/format-imports.sh` only before committing.
 
 ## Docs
 
@@ -328,7 +336,7 @@ docs/es/docs/features.md
 * Now open the MkDocs config file for English at:
 
 ```
-docs/en/docs/mkdocs.yml
+docs/en/mkdocs.yml
 ```
 
 * Find the place where that `docs/features.md` is located in the config file. Somewhere like:
@@ -347,7 +355,7 @@ nav:
 * Open the MkDocs config file for the language you are editing, e.g.:
 
 ```
-docs/es/docs/mkdocs.yml
+docs/es/mkdocs.yml
 ```
 
 * Add it there at the exact same location it was for English, e.g.:
@@ -487,13 +495,3 @@ $ bash scripts/test-cov-html.sh
 </div>
 
 This command generates a directory `./htmlcov/`, if you open the file `./htmlcov/index.html` in your browser, you can explore interactively the regions of code that are covered by the tests, and notice if there is any region missing.
-
-### Tests in your editor
-
-If you want to use the integrated tests in your editor add `./docs_src` to your `PYTHONPATH` variable.
-
-For example, in VS Code you can create a file `.env` with:
-
-```env
-PYTHONPATH=./docs_src
-```

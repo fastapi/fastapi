@@ -28,7 +28,7 @@ class JsonApiError(BaseModel):
     responses={500: {"description": "Error", "model": JsonApiError}},
 )
 async def a():
-    pass  # pragma: no cover
+    pass
 
 
 @app.get("/b", responses={204: {"description": "No Content"}})
@@ -104,5 +104,12 @@ client = TestClient(app)
 
 def test_openapi_schema():
     response = client.get("/openapi.json")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == openapi_schema
+
+
+def test_get_response():
+    response = client.get("/a")
+    assert response.status_code == 204, response.text
+    assert "content-length" not in response.headers
+    assert response.content == b""

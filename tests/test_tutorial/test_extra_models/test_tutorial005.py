@@ -1,6 +1,6 @@
 from fastapi.testclient import TestClient
 
-from extra_models.tutorial005 import app
+from docs_src.extra_models.tutorial005 import app
 
 client = TestClient(app)
 
@@ -34,11 +34,11 @@ openapi_schema = {
 
 def test_openapi_schema():
     response = client.get("/openapi.json")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == openapi_schema
 
 
 def test_get_items():
     response = client.get("/keyword-weights/")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == {"foo": 2.3, "bar": 3.4}

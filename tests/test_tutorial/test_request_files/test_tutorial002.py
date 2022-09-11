@@ -1,8 +1,6 @@
-import os
-
 from fastapi.testclient import TestClient
 
-from request_files.tutorial002 import app
+from docs_src.request_files.tutorial002 import app
 
 client = TestClient(app)
 
@@ -121,7 +119,7 @@ openapi_schema = {
                     "loc": {
                         "title": "Location",
                         "type": "array",
-                        "items": {"type": "string"},
+                        "items": {"anyOf": [{"type": "string"}, {"type": "integer"}]},
                     },
                     "msg": {"title": "Message", "type": "string"},
                     "type": {"title": "Error Type", "type": "string"},
@@ -145,7 +143,7 @@ openapi_schema = {
 
 def test_openapi_schema():
     response = client.get("/openapi.json")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == openapi_schema
 
 
@@ -162,58 +160,56 @@ file_required = {
 
 def test_post_form_no_body():
     response = client.post("/files/")
-    assert response.status_code == 422
+    assert response.status_code == 422, response.text
     assert response.json() == file_required
 
 
 def test_post_body_json():
     response = client.post("/files/", json={"file": "Foo"})
-    assert response.status_code == 422
+    assert response.status_code == 422, response.text
     assert response.json() == file_required
 
 
-def test_post_files(tmpdir):
-    path = os.path.join(tmpdir, "test.txt")
-    with open(path, "wb") as file:
-        file.write(b"<file content>")
-    path2 = os.path.join(tmpdir, "test2.txt")
-    with open(path2, "wb") as file:
-        file.write(b"<file content2>")
+def test_post_files(tmp_path):
+    path = tmp_path / "test.txt"
+    path.write_bytes(b"<file content>")
+    path2 = tmp_path / "test2.txt"
+    path2.write_bytes(b"<file content2>")
 
     client = TestClient(app)
-    response = client.post(
-        "/files/",
-        files=(
-            ("files", ("test.txt", open(path, "rb"))),
-            ("files", ("test2.txt", open(path2, "rb"))),
-        ),
-    )
-    assert response.status_code == 200
+    with path.open("rb") as file, path2.open("rb") as file2:
+        response = client.post(
+            "/files/",
+            files=(
+                ("files", ("test.txt", file)),
+                ("files", ("test2.txt", file2)),
+            ),
+        )
+    assert response.status_code == 200, response.text
     assert response.json() == {"file_sizes": [14, 15]}
 
 
-def test_post_upload_file(tmpdir):
-    path = os.path.join(tmpdir, "test.txt")
-    with open(path, "wb") as file:
-        file.write(b"<file content>")
-    path2 = os.path.join(tmpdir, "test2.txt")
-    with open(path2, "wb") as file:
-        file.write(b"<file content2>")
+def test_post_upload_file(tmp_path):
+    path = tmp_path / "test.txt"
+    path.write_bytes(b"<file content>")
+    path2 = tmp_path / "test2.txt"
+    path2.write_bytes(b"<file content2>")
 
     client = TestClient(app)
-    response = client.post(
-        "/uploadfiles/",
-        files=(
-            ("files", ("test.txt", open(path, "rb"))),
-            ("files", ("test2.txt", open(path2, "rb"))),
-        ),
-    )
-    assert response.status_code == 200
+    with path.open("rb") as file, path2.open("rb") as file2:
+        response = client.post(
+            "/uploadfiles/",
+            files=(
+                ("files", ("test.txt", file)),
+                ("files", ("test2.txt", file2)),
+            ),
+        )
+    assert response.status_code == 200, response.text
     assert response.json() == {"filenames": ["test.txt", "test2.txt"]}
 
 
 def test_get_root():
     client = TestClient(app)
     response = client.get("/")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert b"<form" in response.content

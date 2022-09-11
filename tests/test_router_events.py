@@ -77,7 +77,7 @@ def test_router_events():
         assert state.router_shutdown is False
         assert state.sub_router_shutdown is False
         response = client.get("/")
-        assert response.status_code == 200
+        assert response.status_code == 200, response.text
         assert response.json() == {"message": "Hello World"}
     assert state.app_startup is True
     assert state.router_startup is True

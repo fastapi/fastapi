@@ -89,23 +89,23 @@ client = TestClient(app)
 
 def test_openapi_schema():
     response = client.get("/openapi.json")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == openapi_schema
 
 
 def test_a():
     response = client.get("/a")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == "a"
 
 
 def test_b():
     response = client.get("/b")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == "b"
 
 
 def test_c():
     response = client.get("/c")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == "c"

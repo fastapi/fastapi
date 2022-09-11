@@ -1,4 +1,4 @@
-from app_testing.tutorial001 import client, test_read_main
+from docs_src.app_testing.tutorial001 import client, test_read_main
 
 openapi_schema = {
     "openapi": "3.0.2",
@@ -22,7 +22,7 @@ openapi_schema = {
 
 def test_openapi_schema():
     response = client.get("/openapi.json")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == openapi_schema
 
 

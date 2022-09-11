@@ -1,6 +1,6 @@
 from fastapi.testclient import TestClient
 
-from events.tutorial002 import app
+from docs_src.events.tutorial002 import app
 
 openapi_schema = {
     "openapi": "3.0.2",
@@ -25,10 +25,10 @@ openapi_schema = {
 def test_events():
     with TestClient(app) as client:
         response = client.get("/openapi.json")
-        assert response.status_code == 200
+        assert response.status_code == 200, response.text
         assert response.json() == openapi_schema
         response = client.get("/items/")
-        assert response.status_code == 200
+        assert response.status_code == 200, response.text
         assert response.json() == [{"name": "Foo"}]
     with open("log.txt") as log:
         assert "Application shutdown" in log.read()

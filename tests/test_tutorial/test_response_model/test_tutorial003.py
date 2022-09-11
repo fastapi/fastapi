@@ -1,6 +1,6 @@
 from fastapi.testclient import TestClient
 
-from response_model.tutorial003 import app
+from docs_src.response_model.tutorial003 import app
 
 client = TestClient(app)
 
@@ -74,7 +74,7 @@ openapi_schema = {
                     "loc": {
                         "title": "Location",
                         "type": "array",
-                        "items": {"type": "string"},
+                        "items": {"anyOf": [{"type": "string"}, {"type": "integer"}]},
                     },
                     "msg": {"title": "Message", "type": "string"},
                     "type": {"title": "Error Type", "type": "string"},
@@ -98,7 +98,7 @@ openapi_schema = {
 
 def test_openapi_schema():
     response = client.get("/openapi.json")
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == openapi_schema
 
 
@@ -112,7 +112,7 @@ def test_post_user():
             "full_name": "Grave Dohl",
         },
     )
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     assert response.json() == {
         "username": "foo",
         "email": "foo@example.com",
