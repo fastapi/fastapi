@@ -31,9 +31,9 @@
 
 你可以通过传递额外信息给 `Field` 同样的方式操作`Path`, `Query`, `Body`等。
 
-比如，你可以将请求体的一个 `example` 传递给 `Body`: 
+比如，你可以将请求体的一个 `example` 传递给 `Body`:
 
-```Python hl_lines="21-26"
+```Python hl_lines="20-25"
 {!../../../docs_src/schema_extra_example/tutorial003.py!}
 ```
 
