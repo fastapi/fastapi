@@ -8,19 +8,20 @@ app3 = FastAPI()
 
 @app.get("/a")
 async def a():
-    return 'a'
+    return "a"
 
 
 @app2.get("/b")
 async def b():
     return "b"
 
+
 app.mount("/", app2)
 
 
 @app3.get("/")
 def testapp2():
-    return 'test'
+    return "test"
 
 
 router = APIRouter()
