@@ -114,6 +114,8 @@ FastAPI 有一个非常棒的社区，它欢迎来自各个领域和背景的朋
 
 他们主要通过<a href="https://github.com/sponsors/tiangolo" class="external-link" target="_blank">GitHub Sponsors</a>支持我在 **FastAPI** (和其他项目)的工作。
 
+{% if sponsors %}
+
 {% if sponsors.gold %}
 
 ### 金牌赞助商
@@ -139,6 +141,8 @@ FastAPI 有一个非常棒的社区，它欢迎来自各个领域和背景的朋
 {% for sponsor in sponsors.bronze -%}
 <a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
 {% endfor %}
+{% endif %}
+
 {% endif %}
 
 ### 个人赞助
