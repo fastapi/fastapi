@@ -783,6 +783,12 @@ class APIRouter(routing.Router):
         for handler in router.on_shutdown:
             self.add_event_handler("shutdown", handler)
 
+    def mount(self, path: str, app: ASGIApp, name: Optional[str] = None) -> None:
+        route = routing.Mount(path, app=app, name=name)
+        if route.__getattribute__("path") == "":
+            route.__setattr__("path", "/")
+        self.routes.append(route)
+
     def get(
         self,
         path: str,
