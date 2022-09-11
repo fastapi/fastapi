@@ -787,7 +787,7 @@ class APIRouter(routing.Router):
         route = routing.Mount(path, app=app, name=name)
         if route.__getattribute__("path") == "":
             route.__setattr__("path", "/")
-        self.routes.append(route)
+        self.routes.extend(route.routes)
 
     def get(
         self,
