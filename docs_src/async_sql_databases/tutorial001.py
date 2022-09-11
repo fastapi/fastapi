@@ -78,11 +78,7 @@ async def update_note(note_id: int, note: NoteIn):
     note_ = await database.fetch_one(query)
     if note_ is None:
         raise HTTPException(status_code=404, detail="Note not found")
-    query = (
-        notes.update()
-        .values(**note.dict())
-        .where(notes.c.id == note_id)
-    )
+    query = notes.update().values(**note.dict()).where(notes.c.id == note_id)
     await database.execute(query)
 
 
