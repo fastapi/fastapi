@@ -444,9 +444,7 @@ def get_sections_all(nav: list) -> Dict[Tuple[str, ...], Set[str]]:
         elif type(item) is dict:
             item_key = list(item.keys())[0]
             sub_nav = item[item_key]
-            sections[(item_key,)] = set(
-                [sub for sub in sub_nav if isinstance(sub, str)]
-            )
+            sections[(item_key,)] = {sub for sub in sub_nav if isinstance(sub, str)}
             sub_sections = get_sections_all(sub_nav)
             for k, v in sub_sections.items():
                 new_key = (item_key,) + k
