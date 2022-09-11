@@ -133,7 +133,7 @@ permanents qui les rendent inadaptés.
 
 ### <a href="https://marshmallow.readthedocs.io/en/3.0/" class="external-link" target="_blank">Marshmallow</a>
 
-L'une des principales fonctionnalités nécessaires aux systèmes API est la "<abbr title="également appelée 
+L'une des principales fonctionnalités nécessaires aux systèmes API est la "<abbr title="également appelée
 marshalling, conversion">sérialisation</abbr>" des données, qui consiste à prendre les données du code (Python) et à
 les convertir en quelque chose qui peut être envoyé sur le réseau. Par exemple, convertir un objet contenant des
 données provenant d'une base de données en un objet JSON. Convertir des objets `datetime` en strings, etc.
@@ -147,7 +147,7 @@ Sans un système de validation des données, vous devriez effectuer toutes les v
 
 Ces fonctionnalités sont ce pourquoi Marshmallow a été construit. C'est une excellente bibliothèque, et je l'ai déjà beaucoup utilisée.
 
-Mais elle a été créée avant que les type hints n'existent en Python. Ainsi, pour définir chaque <abbr title="la définition de 
+Mais elle a été créée avant que les type hints n'existent en Python. Ainsi, pour définir chaque <abbr title="la définition de
 la façon dont les données doivent être formées">schéma</abbr>, vous devez utiliser des utilitaires et des classes spécifiques fournies par Marshmallow.
 
 !!! check "A inspiré **FastAPI** à"
@@ -155,7 +155,7 @@ Utilisez du code pour définir des "schémas" qui fournissent automatiquement le
 
 ### <a href="https://webargs.readthedocs.io/en/latest/" class="external-link" target="_blank">Webargs</a>
 
-Une autre grande fonctionnalité requise par les API est le <abbr title="la lecture et la conversion en données 
+Une autre grande fonctionnalité requise par les API est le <abbr title="la lecture et la conversion en données
 Python">parsing</abbr> des données provenant des requêtes entrantes.
 
 Webargs est un outil qui a été créé pour fournir cela par-dessus plusieurs frameworks, dont Flask.

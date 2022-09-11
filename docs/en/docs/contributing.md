@@ -84,7 +84,17 @@ To check it worked, use:
 
 If it shows the `pip` binary at `env/bin/pip` then it worked. 🎉
 
+Make sure you have the latest pip version on your virtual environment to avoid errors on the next steps:
 
+<div class="termy">
+
+```console
+$ python -m pip install --upgrade pip
+
+---> 100%
+```
+
+</div>
 
 !!! tip
     Every time you install a new package with `pip` under that environment, activate the environment again.

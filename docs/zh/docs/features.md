@@ -193,9 +193,9 @@ FastAPI 有一个使用非常简单，但是非常强大的<abbr title='也叫�
     * 没有新的模式定义 micro-language 需要学习。
     * 如果你知道 Python types，你就知道如何使用 Pydantic。
 * 和你 **<abbr title="集成开发环境，和代码编辑器类似">IDE</abbr>/<abbr title="一个检查代码错误的程序">linter</abbr>/brain** 适配:
-    * 因为 pydantic 数据结构仅仅是你定义的类的实例；自动补全，linting，mypy 以及你的直觉应该可以和你验证的数据一起正常工作。 
+    * 因为 pydantic 数据结构仅仅是你定义的类的实例；自动补全，linting，mypy 以及你的直觉应该可以和你验证的数据一起正常工作。
 * **更快**：
-    * 在 <a href="https://pydantic-docs.helpmanual.io/#benchmarks-tag" class="external-link" target="_blank">基准测试</a> 中，Pydantic 比其他被测试的库都要快。
+    * 在 <a href="https://pydantic-docs.helpmanual.io/benchmarks/" class="external-link" target="_blank">基准测试</a> 中，Pydantic 比其他被测试的库都要快。
 * 验证**复杂结构**:
     * 使用分层的 Pydantic 模型, Python `typing`的 `List` 和 `Dict` 等等。
     * 验证器使我们能够简单清楚的将复杂的数据模式定义、检查并记录为 JSON Schema。

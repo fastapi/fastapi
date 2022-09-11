@@ -2,6 +2,20 @@
 
 You can use <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API" class="external-link" target="_blank">WebSockets</a> with **FastAPI**.
 
+## Install `WebSockets`
+
+First you need to install `WebSockets`:
+
+<div class="termy">
+
+```console
+$ pip install websockets
+
+---> 100%
+```
+
+</div>
+
 ## WebSockets client
 
 ### In production
