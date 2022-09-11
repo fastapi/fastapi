@@ -5,6 +5,12 @@
 
 ## 0.83.0
 
+🚨 This is probably the last release (or one of the last releases) to support Python 3.6. 🔥
+
+Python 3.6 reached the [end-of-life and is no longer supported by Python](https://www.python.org/downloads/release/python-3615/) since around a year ago.
+
+You hopefully updated to a supported version of Python a while ago. If you haven't, you really should.
+
 ### Features
 
 * ✨ Add support in `jsonable_encoder` for include and exclude with dataclasses. PR [#4923](https://github.com/tiangolo/fastapi/pull/4923) by [@DCsunset](https://github.com/DCsunset).
