@@ -221,9 +221,7 @@ def is_scalar_field(field: ModelField) -> bool:
         and not isinstance(field_info, params.Body)
     ):
         return False
-    if field.sub_fields and not all(
-        is_scalar_field(f) for f in field.sub_fields
-    ):
+    if field.sub_fields and not all(is_scalar_field(f) for f in field.sub_fields):
         return False
     return True
 
@@ -631,7 +629,7 @@ async def request_body_to_args(
 
         for field in required_params:
             loc: Tuple[str, ...]
-            loc = ("body", ) if field_alias_omitted else ("body", field.alias)
+            loc = ("body",) if field_alias_omitted else ("body", field.alias)
             value: Optional[Any] = None
             if received_body is not None:
                 if (
