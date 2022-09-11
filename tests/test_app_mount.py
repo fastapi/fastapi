@@ -32,8 +32,6 @@ app.include_router(router)
 client = TestClient(app)
 
 
-def test_openapi_schema():
-
 def test_a():
     response = client.get("/a")
     assert response.status_code == 200, response.text
