@@ -57,9 +57,17 @@ Using `BackgroundTasks` also works with the dependency injection system, you can
 
 **FastAPI** knows what to do in each case and how to re-use the same object, so that all the background tasks are merged together and are run in the background afterwards:
 
-```Python hl_lines="13  15  22  25"
-{!../../../docs_src/background_tasks/tutorial002.py!}
-```
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="13  15  22  25"
+    {!> ../../../docs_src/background_tasks/tutorial002.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="11  13  20  23"
+    {!> ../../../docs_src/background_tasks/tutorial002_py310.py!}
+    ```
 
 In this example, the messages will be written to the `log.txt` file *after* the response is sent.
 
@@ -81,7 +89,7 @@ You can see more details in <a href="https://www.starlette.io/background/" class
 
 ## Caveat
 
-If you need to perform heavy background computation and you don't necessarily need it to be run by the same process (for example, you don't need to share memory, variables, etc), you might benefit from using other bigger tools like <a href="https://docs.celeryproject.org" class="external-link" target="_blank">Celery</a>.
+If you need to perform heavy background computation and you don't necessarily need it to be run by the same process (for example, you don't need to share memory, variables, etc), you might benefit from using other bigger tools like <a href="https://docs.celeryq.dev" class="external-link" target="_blank">Celery</a>.
 
 They tend to require more complex configurations, a message/job queue manager, like RabbitMQ or Redis, but they allow you to run background tasks in multiple processes, and especially, in multiple servers.
 
