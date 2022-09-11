@@ -1,4 +1,4 @@
-from fastapi import Cookie, Depends, FastAPI, Response
+from fastapi import Cookie, Depends, FastAPI
 
 app = FastAPI()
 
