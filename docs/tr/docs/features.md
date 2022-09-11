@@ -6,7 +6,7 @@
 
 ### Açık standartları temel alır
 
-* API oluşturma işlemlerinde <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a> buna <abbr title="also known as: endpoints, routes">path</abbr> <abbr title=" HTTP metodları olarak bilinen, POST, GET, PUT, DELETE">operasyonları </abbr>parametreleri, body talebi, güvenlik  gibi şeyler dahil olmak üzere deklare bunların deklare edilmesi. 
+* API oluşturma işlemlerinde <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a> buna <abbr title="also known as: endpoints, routes">path</abbr> <abbr title=" HTTP metodları olarak bilinen, POST, GET, PUT, DELETE">operasyonları </abbr>parametreleri, body talebi, güvenlik  gibi şeyler dahil olmak üzere deklare bunların deklare edilmesi.
 * Otomatik olarak data modelinin <a href="http://json-schema.org/" class="external-link" target="_blank"><strong>JSON Schema</strong></a> ile beraber dokümante edilmesi (OpenAPI'n kendisi zaten JSON Schema'ya dayanıyor).
 * Titiz bir çalışmanın sonucunda yukarıdaki standartlara uygun bir framework oluşturduk. Standartları pastanın üzerine sonradan eklenmiş bir çilek olarak görmedik.
 * Ayrıca bu bir çok dilde kullanılabilecek **client code generator** kullanımına da izin veriyor.
@@ -74,7 +74,7 @@ my_second_user: User = User(**second_user_data)
 
 ### Editor desteği
 
-Bütün framework kullanılması kolay ve sezgileri güçlü olması için tasarlandı, verilen bütün kararlar geliştiricilere en iyi geliştirme deneyimini yaşatmak üzere, bir çok editör üzerinde test edildi. 
+Bütün framework kullanılması kolay ve sezgileri güçlü olması için tasarlandı, verilen bütün kararlar geliştiricilere en iyi geliştirme deneyimini yaşatmak üzere, bir çok editör üzerinde test edildi.
 
 Son yapılan Python geliştiricileri anketinde, açık ara <a href="https://www.jetbrains.com/research/python-developers-survey-2017/#tools-and-features" class="external-link" target="_blank">en çok kullanılan özellik "oto-tamamlama" idi.</a>.
 
@@ -135,7 +135,7 @@ Bütün güvenlik şemaları OpenAPI'da tanımlanmış durumda, kapsadıkları:
 
 Bütün güvenlik özellikleri Starlette'den geliyor (**session cookies'de** dahil olmak üzere).
 
-Bütün hepsi tekrardan kullanılabilir aletler ve bileşenler olarak, kolayca sistemlerinize, data depolarınıza, ilişkisel ve NoSQL databaselerinize entegre edebileceğiniz şekilde yapıldı. 
+Bütün hepsi tekrardan kullanılabilir aletler ve bileşenler olarak, kolayca sistemlerinize, data depolarınıza, ilişkisel ve NoSQL databaselerinize entegre edebileceğiniz şekilde yapıldı.
 
 ### Dependency injection
 
@@ -198,7 +198,7 @@ Aynı şekilde, databaseden gelen objeyi de **direkt olarak isteğe** de tamamiy
 * Kullandığın geliştirme araçları ile iyi çalışır **<abbr title="Integrated Development Environment, kod editörüne benzer">IDE</abbr>/<abbr title="Code errorlarınızı inceleyen program">linter</abbr>/brain**:
     * Pydantic'in veri yapıları aslında sadece senin tanımladığın classlar; Bu yüzden doğrulanmış dataların ile otomatik tamamlama, linting ve mypy'ı kullanarak sorunsuz bir şekilde çalışabilirsin
 * **Hızlı**:
-    * <a href="https://pydantic-docs.helpmanual.io/#benchmarks-tag" class="external-link" target="_blank">Benchmarklarda</a>, Pydantic'in diğer bütün test edilmiş bütün kütüphanelerden daha hızlı.
+    * <a href="https://pydantic-docs.helpmanual.io/benchmarks/" class="external-link" target="_blank">Benchmarklarda</a>, Pydantic'in diğer bütün test edilmiş bütün kütüphanelerden daha hızlı.
 * **En kompleks** yapıları bile doğrula:
     * Hiyerarşik Pydantic modellerinin kullanımı ile beraber, Python `typing`’s `List` and `Dict`, vs gibi şeyleri doğrula.
     * Doğrulayıcılar en kompleks data şemalarının bile temiz ve kolay bir şekilde tanımlanmasına izin veriyor, ve hepsi JSON şeması olarak dokümante ediliyor
@@ -206,4 +206,3 @@ Aynı şekilde, databaseden gelen objeyi de **direkt olarak isteğe** de tamamiy
 * **Genişletilebilir**:
     * Pydantic özelleştirilmiş data tiplerinin tanımlanmasının yapılmasına izin veriyor ayrıca validator decoratorü ile senin doğrulamaları genişletip, kendi doğrulayıcılarını yazmana izin veriyor.
 * 100% test kapsayıcılığı.
-    
