@@ -16,16 +16,16 @@ async def b():
     return "b"
 
 
-app.mount("/", app2)
+app.mount("/2", app2)
 
 
-@app3.get("/")
-def testapp2():
-    return "test"
+@app3.get("/c")
+def c():
+    return "c"
 
 
 router = APIRouter()
-router.mount("/", app3)
+router.mount("/3", app3)
 app.include_router(router)
 
 
@@ -39,12 +39,12 @@ def test_a():
 
 
 def test_b():
-    response = client.get("/b")
+    response = client.get("/2/b")
     assert response.status_code == 200, response.text
     assert response.json() == "b"
 
 
 def test_c():
-    response = client.get("/")
+    response = client.get("/3/c")
     assert response.status_code == 200, response.text
-    assert response.json() == "test"
+    assert response.json() == "c"
