@@ -20,6 +20,10 @@ You can subscribe to the (infrequent) [**FastAPI and friends** newsletter](/news
 * Breaking changes 🚨
 * Tips and tricks ✅
 
+## Follow FastAPI on Twitter
+
+<a href="https://twitter.com/fastapi" class="external-link" target="_blank">Follow @fastapi on **Twitter**</a> to get the latest news about **FastAPI**. 🐦
+
 ## Star **FastAPI** in GitHub
 
 You can "star" FastAPI in GitHub (clicking the star button at the top right): <a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">https://github.com/tiangolo/fastapi</a>. ⭐️
@@ -32,7 +36,7 @@ You can "watch" FastAPI in GitHub (clicking the "watch" button at the top right)
 
 There you can select "Releases only".
 
-Doing it, you will receive notifications (in your email) whenever there's a new release (a new version) of **FastAPI** with bug fixes and new features.
+By doing it, you will receive notifications (in your email) whenever there's a new release (a new version) of **FastAPI** with bug fixes and new features.
 
 ## Connect with the author
 
@@ -46,17 +50,18 @@ You can:
 * <a href="https://twitter.com/tiangolo" class="external-link" target="_blank">Follow me on **Twitter**</a>.
     * Tell me how you use FastAPI (I love to hear that).
     * Hear when I make announcements or release new tools.
+    * You can also <a href="https://twitter.com/fastapi" class="external-link" target="_blank">follow @fastapi on Twitter</a> (a separate account).
 * <a href="https://www.linkedin.com/in/tiangolo/" class="external-link" target="_blank">Connect with me on **Linkedin**</a>.
     * Hear when I make announcements or release new tools (although I use Twitter more often 🤷‍♂).
 * Read what I write (or follow me) on <a href="https://dev.to/tiangolo" class="external-link" target="_blank">**Dev.to**</a> or <a href="https://medium.com/@tiangolo" class="external-link" target="_blank">**Medium**</a>.
-    * Read other ideas, articles, and about tools I have created.
+    * Read other ideas, articles, and read about tools I have created.
     * Follow me to read when I publish something new.
 
 ## Tweet about **FastAPI**
 
-<a href="https://twitter.com/compose/tweet?text=I'm loving FastAPI because... https://github.com/tiangolo/fastapi cc @tiangolo" class="external-link" target="_blank">Tweet about **FastAPI**</a> and let me and others know why you like it. 🎉
+<a href="https://twitter.com/compose/tweet?text=I'm loving @fastapi because... https://github.com/tiangolo/fastapi" class="external-link" target="_blank">Tweet about **FastAPI**</a> and let me and others know why you like it. 🎉
 
-I love to hear about how **FastAPI** is being used, what have you liked in it, in which project/company are you using it, etc.
+I love to hear about how **FastAPI** is being used, what you have liked in it, in which project/company are you using it, etc.
 
 ## Vote for FastAPI
 
@@ -67,15 +72,15 @@ I love to hear about how **FastAPI** is being used, what have you liked in it, i
 
 You can see <a href="https://github.com/tiangolo/fastapi/issues" class="external-link" target="_blank">existing issues</a> and try and help others, most of the times they are questions that you might already know the answer for. 🤓
 
-If you are helping a lot of people on issues you might become an official [FastAPI Expert](fastapi-people.md#experts){.internal-link target=_blank}. 🎉
+If you are helping a lot of people with issues, you might become an official [FastAPI Expert](fastapi-people.md#experts){.internal-link target=_blank}. 🎉
 
 ## Watch the GitHub repository
 
 You can "watch" FastAPI in GitHub (clicking the "watch" button at the top right): <a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">https://github.com/tiangolo/fastapi</a>. 👀
 
-If you select "Watching" instead of "Releases only", you will receive notifications when someone creates a new issue.
+If you select "Watching" instead of "Releases only" you will receive notifications when someone creates a new issue.
 
-Then you can try and help them solving those issues.
+Then you can try and help them solve those issues.
 
 ## Create issues
 
@@ -84,7 +89,7 @@ You can <a href="https://github.com/tiangolo/fastapi/issues/new/choose" class="e
 * Ask a **question** or ask about a **problem**.
 * Suggest a new **feature**.
 
-**Note**: if you create an issue then I'm going to ask you to also help others. 😉
+**Note**: if you create an issue, then I'm going to ask you to also help others. 😉
 
 ## Create a Pull Request
 
@@ -92,9 +97,9 @@ You can [contribute](contributing.md){.internal-link target=_blank} to the sourc
 
 * To fix a typo you found on the documentation.
 * To share an article, video, or podcast you created or found about FastAPI by <a href="https://github.com/tiangolo/fastapi/edit/master/docs/en/data/external_links.yml" class="external-link" target="_blank">editing this file</a>.
-    * Make sure you add your link to the end of the corresponding section.
+    * Make sure you add your link to the start of the corresponding section.
 * To help [translate the documentation](contributing.md#translations){.internal-link target=_blank} to your language.
-    * You can also help reviewing the translations created by others.
+    * You can also help to review the translations created by others.
 * To propose new documentation sections.
 * To fix an existing issue/bug.
 * To add a new feature.
@@ -116,7 +121,7 @@ Have in mind that as chats allow more "free conversation", it's easy to ask ques
 
 In GitHub issues the template will guide you to write the right question so that you can more easily get a good answer, or even solve the problem yourself even before asking. And in GitHub I can make sure I always answer everything, even if it takes some time. I can't personally do that with the chat systems. 😅
 
-Conversations in the chat systems are also not as easily searchable as in GitHub, so questions and answers might get lost in the conversation. And only the ones in GitHub issues count to become a [FastAPI Expert](fastapi-people.md#experts){.internal-link target=_blank}, so you will most probably receive more attention in GitHub isssues.
+Conversations in the chat systems are also not as easily searchable as in GitHub, so questions and answers might get lost in the conversation. And only the ones in GitHub issues count to become a [FastAPI Expert](fastapi-people.md#experts){.internal-link target=_blank}, so you will most probably receive more attention in GitHub issues.
 
 On the other side, there are thousands of users in the chat systems, so there's a high chance you'll find someone to talk to there, almost all the time. 😄
 
