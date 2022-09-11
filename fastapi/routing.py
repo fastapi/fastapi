@@ -778,10 +778,18 @@ class APIRouter(routing.Router):
                 self.add_websocket_route(
                     prefix + route.path, route.endpoint, name=route.name
                 )
+            elif isinstance(route, routing.Mount):
+                self.mount(prefix + route.path, route.app, name=route.name)
         for handler in router.on_startup:
             self.add_event_handler("startup", handler)
         for handler in router.on_shutdown:
             self.add_event_handler("shutdown", handler)
+
+    def mount(self, path: str, app: ASGIApp, name: Optional[str] = None) -> None:
+        route = routing.Mount(path, app=app, name=name)
+        if route.__getattribute__("path") == "":
+            route.__setattr__("path", "/")
+        self.routes.append(route)
 
     def get(
         self,
