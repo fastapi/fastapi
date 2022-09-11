@@ -1,4 +1,4 @@
-from fastapi import Cookie, Depends, FastAPI
+from fastapi import Cookie, Depends, FastAPI, Response
 
 app = FastAPI()
 
@@ -8,10 +8,12 @@ def query_extractor(q: str | None = None):
 
 
 def query_or_cookie_extractor(
-    q: str = Depends(query_extractor), last_query: str | None = Cookie(default=None)
+    response: Response, q: str = Depends(query_extractor), last_query: str | None = Cookie(default=None)
 ):
     if not q:
         return last_query
+    else:
+        response.set_cookie(key="last_query", value=q)
     return q
 
 
