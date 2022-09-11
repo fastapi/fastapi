@@ -331,7 +331,7 @@ Agora APIStar é um conjunto de ferramentas para validar especificações OpenAP
     Existir.
 
     A idéia de declarar múltiplas coisas (validação de dados, serialização e documentação) com os mesmos tipos Python, que ao mesmo tempo fornecesse grande suporte ao editor, era algo que eu considerava uma brilhante idéia.
-    
+
     E após procurar por um logo tempo por um framework similar e testar muitas alternativas diferentes, APIStar foi a melhor opção disponível.
 
     Então APIStar parou de existir como um servidor e Starlette foi criado, e foi uma nova melhor fundação para tal sistema. Essa foi a inspiração final para construir **FastAPI**.
@@ -390,7 +390,7 @@ Essa é uma das principais coisas que **FastAPI** adiciona no topo, tudo baseado
     Controlar todas as partes web centrais. Adiciona recursos no topo.
 
     A classe `FastAPI` em si herda `Starlette`.
-    
+
     Então, qualquer coisa que você faz com Starlette, você pode fazer diretamente com **FastAPI**, pois ele é basicamente um Starlette com esteróides.
 
 ### <a href="https://www.uvicorn.org/" class="external-link" target="_blank">Uvicorn</a>
