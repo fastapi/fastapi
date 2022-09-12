@@ -11,6 +11,7 @@ def test_string_is_invalid_in_router_route_tags():
     router = APIRouter()
 
     with pytest.raises(TypeError):
+
         @router.get("", tags="test")
         def test():
             ...

@@ -501,7 +501,9 @@ class APIRouter(routing.Router):
         self.prefix = prefix
         if tags:
             if isinstance(tags, str):
-                raise TypeError(f"""tags should not be a string: please use ["{tags}"] instead of "{tags}".""")
+                raise TypeError(
+                    f"""tags should not be a string: please use ["{tags}"] instead of "{tags}"."""
+                )
         self.tags: List[Union[str, Enum]] = tags or []
         self.dependencies = list(dependencies or []) or []
         self.deprecated = deprecated
@@ -556,7 +558,9 @@ class APIRouter(routing.Router):
         current_tags = self.tags.copy()
         if tags:
             if isinstance(tags, str):
-                raise TypeError(f"""tags should not be a string: please use ["{tags}"] instead of "{tags}".""")
+                raise TypeError(
+                    f"""tags should not be a string: please use ["{tags}"] instead of "{tags}"."""
+                )
             current_tags.extend(tags)
         current_dependencies = self.dependencies.copy()
         if dependencies:
@@ -722,7 +726,9 @@ class APIRouter(routing.Router):
                 current_tags = []
                 if tags:
                     if isinstance(tags, str):
-                        raise TypeError(f"""tags should not be a string: please use ["{tags}"] instead of "{tags}".""")
+                        raise TypeError(
+                            f"""tags should not be a string: please use ["{tags}"] instead of "{tags}"."""
+                        )
                     current_tags.extend(tags)
                 if route.tags:
                     current_tags.extend(route.tags)
