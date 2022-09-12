@@ -6,6 +6,7 @@ def test_string_is_invalid_in_router_tags():
     with pytest.raises(TypeError):
         APIRouter(tags="test")
 
+
 def test_string_is_invalid_in_router_route_tags():
     router = APIRouter()
 
