@@ -258,7 +258,7 @@ def get_request_handler(
                 is_coroutine=is_coroutine,
             )
             response = actual_response_class(content, **response_args)
-            if not is_body_allowed_for_status_code(status_code):
+            if not is_body_allowed_for_status_code(response.status_code):
                 response.body = b""
             response.headers.raw.extend(sub_response.headers.raw)
             return response
