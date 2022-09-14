@@ -7,7 +7,6 @@ from typing import (
     Callable,
     Coroutine,
     Dict,
-    ForwardRef,
     List,
     Mapping,
     Optional,
@@ -17,6 +16,13 @@ from typing import (
     Union,
     cast,
 )
+
+# TODO: Once support for Python 3.7 is dropped, add `ForwardRef` to the import
+# block immediately above, and remove the try-except block immediately below.
+try:
+    from typing import ForwardRef
+except ImportError:
+    from pydantic.typing import ForwardRef  # type: ignore [attr-defined,no-redef]
 
 import anyio
 from fastapi import params
