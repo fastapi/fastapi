@@ -63,6 +63,7 @@ test = [
     "python-multipart >=0.0.5,<0.0.6",
     "flask >=1.1.2,<3.0.0",
     "anyio[trio] >=3.2.1,<4.0.0",
+    "msgpack >= 0.6.2",
 
     # types
     "types-ujson ==4.2.1",
