@@ -7,6 +7,7 @@ from typing import (
     Callable,
     Coroutine,
     Dict,
+    ForwardRef,
     List,
     Mapping,
     Optional,
