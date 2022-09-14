@@ -22,7 +22,7 @@ from typing import (
 try:
     from typing import ForwardRef
 except ImportError:
-    from pydantic.typing import ForwardRef  # type: ignore [attr-defined,no-redef]
+    from pydantic.typing import ForwardRef  # type: ignore [attr-defined,no-redef] # noqa: F811
 
 import anyio
 from fastapi import params
