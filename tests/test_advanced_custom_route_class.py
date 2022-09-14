@@ -1,16 +1,15 @@
-from collections import defaultdict
-import msgpack
-from typing import Any, Callable, Dict, Final
-import pytest
 import base64
+from collections import defaultdict
+from typing import Any, Callable, Final
+
 import fastapi
+import msgpack
 from fastapi import APIRouter, FastAPI, status
 from fastapi.routing import APIRoute, get_request_handler
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
 from starlette.requests import Request
 from starlette.responses import Response
-from starlette.routing import Route
 
 app = FastAPI()
 
@@ -38,7 +37,7 @@ class Base64Bytes(bytes):
 
 def base64_encode_as_str(data: bytes) -> str:
     """base64-encode binary data as ASCII string"""
-    return base64.b64encode(data).decode('ascii')
+    return base64.b64encode(data).decode("ascii")
 
 
 custom_json_encoder = {
@@ -160,7 +159,7 @@ class ModelWithBytes(BaseModel):
         pass
 
 
-TEXT: Final ="text"
+TEXT: Final = "text"
 BYTES: Final = b"\x16\r\xd4)\x93>(\x04\x83\xcc\xc5\xd6"
 
 
