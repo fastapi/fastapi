@@ -1,6 +1,6 @@
 import base64
 from collections import defaultdict
-from typing import Any, Callable, Final
+from typing import Any, Callable
 
 import fastapi
 import msgpack
@@ -14,10 +14,10 @@ from starlette.responses import Response
 app = FastAPI()
 
 
-ACCEPT: Final = "accept"
-CONTENT_TYPE: Final = "content-type"
-JSON: Final = "application/json"
-MSGPACK: Final = "application/x-msgpack"
+ACCEPT = "accept"
+CONTENT_TYPE = "content-type"
+JSON = "application/json"
+MSGPACK = "application/x-msgpack"
 
 
 class Base64Bytes(bytes):
@@ -71,7 +71,7 @@ class MsgpackRequest(Request):
 
     async def body(self) -> bytes:
         if not hasattr(self, "_body"):
-            body: Final = await super().body()
+            body = await super().body()
             if body:
                 # fastapi.tiangolo.com/advanced/custom-request-and-route/#handling-custom-request-body-encodings
                 self._body = msgpack.unpackb(body)
@@ -97,11 +97,11 @@ class MultimediaRouteMixin(APIRoute):
     Credit:
     https://github.com/tiangolo/fastapi/issues/521#issuecomment-646989249"""
 
-    REQUEST_CLASSES: Final = {
+    REQUEST_CLASSES = {
         MsgpackRequest.media_type: MsgpackRequest,
     }
 
-    RESPONSE_CLASSES: Final = {
+    RESPONSE_CLASSES = {
         MsgpackResponse.media_type: MsgpackResponse,
     }
 
@@ -159,8 +159,8 @@ class ModelWithBytes(BaseModel):
         pass
 
 
-TEXT: Final = "text"
-BYTES: Final = b"\x16\r\xd4)\x93>(\x04\x83\xcc\xc5\xd6"
+TEXT = "text"
+BYTES = b"\x16\r\xd4)\x93>(\x04\x83\xcc\xc5\xd6"
 
 
 test_dict = {
@@ -186,7 +186,7 @@ def post_test_model(body: ModelWithBytes) -> ModelWithBytes:
     return body
 
 
-ENDPOINT_PATH: Final = "/test_multimedia"
+ENDPOINT_PATH = "/test_multimedia"
 
 app.include_router(router=router, prefix=ENDPOINT_PATH)
 
