@@ -20,7 +20,7 @@ from typing import (
 # TODO: Once support for Python 3.7 is dropped, add `ForwardRef` to the import
 # block immediately above, and remove the try-except block immediately below.
 try:
-    from typing import ForwardRef # noqa
+    from typing import ForwardRef  # noqa
 except ImportError:  # noqa
     from pydantic.typing import ForwardRef  # type: ignore [attr-defined,no-redef]  # noqa
 
