@@ -31,8 +31,7 @@ jobs:
       - name: Publish
         uses: pypa/gh-action-pypi-publish@v1.5.1
         with:
-          user: ${{ secrets.FLIT_USERNAME }}
-          password: ${{ secrets.FLIT_PASSWORD }}
+          password: ${{ secrets.PYPI_API_TOKEN }}
       - name: Dump GitHub context
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
