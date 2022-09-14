@@ -143,7 +143,7 @@ Uygulamanı kullanılabilir hale getirmek için <a href="http://www.uvicorn.org"
 <div class="termy">
 
 ```console
-$ pip install uvicorn[standard]
+$ pip install "uvicorn[standard]"
 
 ---> 100%
 ```
