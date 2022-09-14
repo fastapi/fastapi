@@ -1,12 +1,16 @@
 [build-system]
-requires = ["flit"]
-build-backend = "flit.buildapi"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
-[tool.flit.metadata]
-module = "fastapi"
-author = "Sebastián Ramírez"
-author-email = "tiangolo@gmail.com"
-home-page = "https://github.com/tiangolo/fastapi"
+[project]
+name = "fastapi"
+description = "FastAPI framework, high performance, easy to learn, fast to code, ready for production"
+readme = "README.md"
+requires-python = ">=3.7"
+license = "MIT"
+authors = [
+    { name = "Sebastián Ramírez", email = "tiangolo@gmail.com" },
+]
 classifiers = [
     "Intended Audience :: Information Technology",
     "Intended Audience :: System Administrators",
@@ -26,7 +30,6 @@ classifiers = [
     "Intended Audience :: Developers",
     "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3 :: Only",
-    "Programming Language :: Python :: 3.6",
     "Programming Language :: Python :: 3.7",
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
@@ -34,17 +37,17 @@ classifiers = [
     "Topic :: Internet :: WWW/HTTP :: HTTP Servers",
     "Topic :: Internet :: WWW/HTTP",
 ]
-requires = [
+dependencies = [
     "starlette==0.19.1",
     "pydantic >=1.6.2,!=1.7,!=1.7.1,!=1.7.2,!=1.7.3,!=1.8,!=1.8.1,<2.0.0",
 ]
-description-file = "README.md"
-requires-python = ">=3.6.1"
+dynamic = ["version"]
 
-[tool.flit.metadata.urls]
+[project.urls]
+Homepage = "https://github.com/tiangolo/fastapi"
 Documentation = "https://fastapi.tiangolo.com/"
 
-[tool.flit.metadata.requires-extra]
+[project.optional-dependencies]
 test = [
     "pytest >=6.2.4,<7.0.0",
     "pytest-cov >=2.12.0,<4.0.0",
@@ -67,7 +70,6 @@ test = [
     # types
     "types-ujson ==4.2.1",
     "types-orjson ==3.6.2",
-    "types-dataclasses ==0.6.5; python_version<'3.7'",
 ]
 doc = [
     "mkdocs >=1.1.2,<2.0.0",
@@ -99,6 +101,9 @@ all = [
     "uvicorn[standard] >=0.12.0,<0.18.0",
 ]
 
+[tool.hatch.version]
+path = "fastapi/__init__.py"
+
 [tool.isort]
 profile = "black"
 known_third_party = ["fastapi", "pydantic", "starlette"]
@@ -128,6 +133,4 @@ filterwarnings = [
     # TODO: needed by asyncio in Python 3.9.7 https://bugs.python.org/issue45097, try to remove on 3.9.8
     'ignore:The loop argument is deprecated since Python 3\.8, and scheduled for removal in Python 3\.10:DeprecationWarning:asyncio',
     'ignore:starlette.middleware.wsgi is deprecated and will be removed in a future release\..*:DeprecationWarning:starlette',
-    # TODO: remove after dropping support for Python 3.6
-    'ignore:Python 3.6 is no longer supported by the Python core team. Therefore, support for it is deprecated in cryptography and will be removed in a future release.:UserWarning:jose',
 ]
