@@ -12,6 +12,9 @@ SetIntStr = Set[Union[int, str]]
 DictIntStrAny = Dict[Union[int, str], Any]
 
 
+catchall_encoder: Optional[Callable[[Any], Any]] = None  # ENCODERS_BY_TYPE's "default"
+
+
 def generate_encoders_by_class_tuples(
     type_encoder_map: Dict[Any, Callable[[Any], Any]]
 ) -> Dict[Callable[[Any], Any], Tuple[Any, ...]]:
@@ -50,7 +53,7 @@ def jsonable_encoder(
     if exclude is not None and not isinstance(exclude, (set, dict)):
         exclude = set(exclude)
     if isinstance(obj, BaseModel):
-        encoder = getattr(obj.__config__, "json_encoders", {})
+        encoder = getattr(obj.__config__, "json_encoders", {}).copy()
         if custom_encoder:
             encoder.update(custom_encoder)
         obj_dict = obj.dict(
@@ -147,6 +150,9 @@ def jsonable_encoder(
     for encoder, classes_tuple in encoders_by_class_tuples.items():
         if isinstance(obj, classes_tuple):
             return encoder(obj)
+
+    if catchall_encoder:
+        return catchall_encoder(obj)
 
     try:
         data = dict(obj)

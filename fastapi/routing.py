@@ -115,6 +115,7 @@ async def serialize_response(
     exclude_defaults: bool = False,
     exclude_none: bool = False,
     is_coroutine: bool = True,
+    custom_encoder: Optional[Dict[Any, Callable[[Any], Any]]] = None,
 ) -> Any:
     if field:
         errors = []
@@ -144,9 +145,10 @@ async def serialize_response(
             exclude_unset=exclude_unset,
             exclude_defaults=exclude_defaults,
             exclude_none=exclude_none,
+            custom_encoder=custom_encoder,
         )
     else:
-        return jsonable_encoder(response_content)
+        return jsonable_encoder(response_content, custom_encoder=custom_encoder)
 
 
 async def run_endpoint_function(
@@ -175,6 +177,7 @@ def get_request_handler(
     response_model_exclude_defaults: bool = False,
     response_model_exclude_none: bool = False,
     dependency_overrides_provider: Optional[Any] = None,
+    custom_encoder: Optional[Dict[Any, Callable[[Any], Any]]] = None,
 ) -> Callable[[Request], Coroutine[Any, Any, Response]]:
     assert dependant.call is not None, "dependant.call must be a function"
     is_coroutine = asyncio.iscoroutinefunction(dependant.call)
@@ -256,6 +259,7 @@ def get_request_handler(
                 exclude_defaults=response_model_exclude_defaults,
                 exclude_none=response_model_exclude_none,
                 is_coroutine=is_coroutine,
+                custom_encoder=custom_encoder,
             )
             response = actual_response_class(content, **response_args)
             if not is_body_allowed_for_status_code(response.status_code):
