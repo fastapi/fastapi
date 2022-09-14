@@ -2,6 +2,7 @@
 
 ## Latest Changes
 
+* 🔧 Update package metadata, drop support for Python 3.6, move build internals from Flit to Hatch. PR [#5240](https://github.com/tiangolo/fastapi/pull/5240) by [@ofek](https://github.com/ofek).
 
 ## 0.83.0
 
