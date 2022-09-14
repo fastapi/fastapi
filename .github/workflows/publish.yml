@@ -26,6 +26,8 @@ jobs:
       - name: Install build dependencies
         if: steps.cache.outputs.cache-hit != 'true'
         run: pip install build
+      - name: Build distribution
+        run: python -m build
       - name: Publish
         uses: pypa/gh-action-pypi-publish@v1.5.1
         with:
