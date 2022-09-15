@@ -53,14 +53,14 @@ test = [
     "pytest-cov >=2.12.0,<4.0.0",
     "mypy ==0.971",
     "flake8 >=3.8.3,<6.0.0",
-    "black == 22.3.0",
+    "black == 22.8.0",
     "isort >=5.0.6,<6.0.0",
     "requests >=2.24.0,<3.0.0",
-    "httpx >=0.14.0,<0.19.0",
+    "httpx >=0.23.0,<0.24.0",
     "email_validator >=1.1.1,<2.0.0",
     "sqlalchemy >=1.3.18,<1.5.0",
     "peewee >=3.13.3,<4.0.0",
-    "databases[sqlite] >=0.3.2,<0.6.0",
+    "databases[sqlite] >=0.3.2,<0.7.0",
     "orjson >=3.2.1,<4.0.0",
     "ujson >=4.0.1,!=4.0.2,!=4.1.0,!=4.2.0,!=4.3.0,!=5.0.0,!=5.1.0,<6.0.0",
     "python-multipart >=0.0.5,<0.0.6",
@@ -71,7 +71,7 @@ test = [
     "passlib[bcrypt] >=1.7.2,<2.0.0",
 
     # types
-    "types-ujson ==4.2.1",
+    "types-ujson ==5.4.0",
     "types-orjson ==3.6.2",
 ]
 doc = [
