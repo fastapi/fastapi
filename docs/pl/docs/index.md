@@ -106,7 +106,7 @@ Jeżeli tworzysz aplikacje <abbr title="aplikacja z interfejsem konsolowym">CLI<
 
 ## Wymagania
 
-Python 3.6+
+Python 3.7+
 
 FastAPI oparty jest na:
 

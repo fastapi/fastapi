@@ -88,54 +88,21 @@ $ python -m venv env
 !!! tip "豆知識"
     この環境で`pip`を使って新しいパッケージをインストールするたびに、仮想環境を再度有効化します。
 
-    これにより、そのパッケージによってインストールされたターミナルのプログラム (`flit`など) を使用する場合、ローカル環境のものを使用し、グローバルにインストールされたものは使用されなくなります。
+    これにより、そのパッケージによってインストールされたターミナルのプログラム を使用する場合、ローカル環境のものを使用し、グローバルにインストールされたものは使用されなくなります。
 
-### Flit
+### pip
 
-**FastAPI**は<a href="https://flit.readthedocs.io/en/latest/index.html" class="external-link" target="_blank">Flit</a> を使って、ビルド、パッケージ化、公開します。
-
-上記のように環境を有効化した後、`flit`をインストールします:
+上記のように環境を有効化した後:
 
 <div class="termy">
 
 ```console
-$ pip install flit
+$ pip install -e .[dev,doc,test]
 
 ---> 100%
 ```
 
 </div>
-
-
-次に、環境を再び有効化して、インストールしたばかりの`flit` (グローバルではない) を使用していることを確認します。
-
-そして、`flit`を使用して開発のための依存関係をインストールします:
-
-=== "Linux, macOS"
-
-    <div class="termy">
-
-    ```console
-    $ flit install --deps develop --symlink
-
-    ---> 100%
-    ```
-
-    </div>
-
-=== "Windows"
-
-    Windowsユーザーは、`--symlink`のかわりに`--pth-file`を使用します:
-
-    <div class="termy">
-
-    ```console
-    $ flit install --deps develop --pth-file
-
-    ---> 100%
-    ```
-
-    </div>
 
 これで、すべての依存関係とFastAPIを、ローカル環境にインストールします。
 
@@ -143,7 +110,7 @@ $ pip install flit
 
 FastAPIをインポートして使用するPythonファイルを作成し、ローカル環境で実行すると、ローカルのFastAPIソースコードが使用されます。
 
-そして、`--symlink` (Windowsでは` --pth-file`) でインストールされているローカルのFastAPIソースコードを更新した場合、そのPythonファイルを再度実行すると、更新したばかりの新しいバージョンのFastAPIが使用されます。
+そして、`-e` でインストールされているローカルのFastAPIソースコードを更新した場合、そのPythonファイルを再度実行すると、更新したばかりの新しいバージョンのFastAPIが使用されます。
 
 これにより、ローカルバージョンを「インストール」しなくても、すべての変更をテストできます。
 
@@ -161,7 +128,7 @@ $ bash scripts/format.sh
 
 また、すべてのインポートを自動でソートします。
 
-正しく並べ替えるには、上記セクションのコマンドで `--symlink` (Windowsの場合は` --pth-file`) を使い、FastAPIをローカル環境にインストールしている必要があります。
+正しく並べ替えるには、上記セクションのコマンドで `-e` を使い、FastAPIをローカル環境にインストールしている必要があります。
 
 ### インポートの整形
 
