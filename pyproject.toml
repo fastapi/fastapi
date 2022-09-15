@@ -81,13 +81,13 @@ doc = [
     "mkdocs-markdownextradata-plugin >=0.1.7,<0.3.0",
     # TODO: upgrade and enable typer-cli once it supports Click 8.x.x
     # "typer-cli >=0.0.12,<0.0.13",
-    "typer >=0.4.1,<0.5.0",
+    "typer >=0.4.1,<0.7.0",
     "pyyaml >=5.3.1,<7.0.0",
 ]
 dev = [
     "autoflake >=1.4.0,<2.0.0",
     "flake8 >=3.8.3,<6.0.0",
-    "uvicorn[standard] >=0.12.0,<0.18.0",
+    "uvicorn[standard] >=0.12.0,<0.19.0",
     "pre-commit >=2.17.0,<3.0.0",
 ]
 all = [
