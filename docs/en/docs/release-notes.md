@@ -2,6 +2,9 @@
 
 ## Latest Changes
 
+
+## 0.85.0
+
 ### Features
 
 * ⬆ Upgrade version required of Starlette from `0.19.1` to `0.20.4`. Initial PR [#4820](https://github.com/tiangolo/fastapi/pull/4820) by [@Kludex](https://github.com/Kludex).
