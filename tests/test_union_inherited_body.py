@@ -4,12 +4,6 @@ from fastapi import FastAPI
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
 
-# In Python 3.6:
-# u = Union[ExtendedItem, Item] == __main__.Item
-
-# But in Python 3.7:
-# u = Union[ExtendedItem, Item] == typing.Union[__main__.ExtendedItem, __main__.Item]
-
 app = FastAPI()
 
 
