@@ -426,8 +426,8 @@ def is_coroutine_callable(call: Callable[..., Any]) -> bool:
         return inspect.iscoroutinefunction(call)
     if inspect.isclass(call):
         return False
-    call = getattr(call, "__call__")
-    return inspect.iscoroutinefunction(call)
+    dunder_call = getattr(call, "__call__", None)
+    return inspect.iscoroutinefunction(dunder_call)
 
 
 def is_async_gen_callable(call: Callable[..., Any]) -> bool:
