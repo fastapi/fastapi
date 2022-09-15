@@ -56,6 +56,12 @@ class ContentSizeLimitMiddleware:
 
 @router.post("/middleware")
 def run_middleware(file: UploadFile = File(..., description="Big File")):
+    # TODO: without this, pytest raises an error, and it causes a segmentation fault on
+    # Python 3.11-rc.2, the app works normally when run with Uvicorn, not sure if it's
+    # a problem with Python 3.11, pytest, or FastAPI.
+    # But FastAPI (or Starlette) should probably try to close these
+    # SpooledTemporaryFiles automatically by default
+    file.file.close()
     return {"message": "OK"}
 
 
