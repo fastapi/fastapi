@@ -38,7 +38,7 @@ classifiers = [
     "Topic :: Internet :: WWW/HTTP",
 ]
 dependencies = [
-    "starlette==0.19.1",
+    "starlette==0.20.4",
     "pydantic >=1.6.2,!=1.7,!=1.7.1,!=1.7.2,!=1.7.3,!=1.8,!=1.8.1,<2.0.0",
 ]
 dynamic = ["version"]
