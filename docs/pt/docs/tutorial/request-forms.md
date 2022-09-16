@@ -1,6 +1,6 @@
 # Dados do formulário
 
-Quando você precisa receber campos de formulário ao invés de JSON, você pode usar `Form`.
+Quando você precisar receber campos de formulário ao invés de JSON, você pode usar `Form`.
 
 !!! info "Informação"
     Para usar formulários, primeiro instale <a href="https://andrew-d.github.io/python-multipart/" class="external-link" target="_blank">`python-multipart`</a>.
