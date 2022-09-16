@@ -12,6 +12,7 @@ SetIntStr = Set[Union[int, str]]
 DictIntStrAny = Dict[Union[int, str], Any]
 
 
+jsonable_encoder_mutates_config: bool = True
 catchall_encoder: Optional[Callable[[Any], Any]] = None  # ENCODERS_BY_TYPE's "default"
 
 
@@ -53,7 +54,9 @@ def jsonable_encoder(
     if exclude is not None and not isinstance(exclude, (set, dict)):
         exclude = set(exclude)
     if isinstance(obj, BaseModel):
-        encoder = getattr(obj.__config__, "json_encoders", {}).copy()
+        encoder = getattr(obj.__config__, "json_encoders", {})
+        if not jsonable_encoder_mutates_config:
+            encoder = encoder.copy()
         if custom_encoder:
             encoder.update(custom_encoder)
         obj_dict = obj.dict(

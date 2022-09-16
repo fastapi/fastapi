@@ -45,14 +45,6 @@ custom_json_encoder = {
 }
 
 
-_catchall_encoder_saved = fastapi.encoders.catchall_encoder
-# fastapi.encoders.catchall_encoder callable is applied by default to obj
-# (if obj is not None) after the logic that handles primitives, dicts, lists,
-# tuples, Pydantic models, etc. (applying models'  __config__.json_encoders,
-# custom encoders, pydantic.json.ENCODERS_BY_TYPE).
-fastapi.encoders.catchall_encoder = str
-
-
 # Override default encoders for raw bytes fields to skip base64-encoding
 # when using msgpack to serialize response payloads.
 msgpack_encoder_override = defaultdict(
@@ -198,22 +190,31 @@ def test_multimedia_route():
     that includes raw bytes for two combinations of  'Accept' and
     'Content-Type' HTTP headers."""
 
-    # # Test JSON-to-JSON POST
-    # for headers in (
-    #     {},
-    #     {ACCEPT: JSON},
-    #     {CONTENT_TYPE: JSON},
-    #     {ACCEPT: JSON, CONTENT_TYPE: JSON},
-    # ):
-    #     resp = client.post(
-    #         ENDPOINT_PATH,
-    #         json=base64_encoded_test_dict,
-    #         headers=headers,
-    #     )
-    #     assert resp.ok
-    #     result = resp.json()
-    #     assert resp.status_code == status.HTTP_200_OK
-    #    assert result == base64_encoded_test_dict
+    class Saved:
+        jsonable_encoder_mutates_config = (
+            fastapi.encoders.jsonable_encoder_mutates_config
+        )
+        catchall_encoder = fastapi.encoders.catchall_encoder
+
+    fastapi.encoders.jsonable_encoder_mutates_config = False
+    fastapi.encoders.catchall_encoder = str
+
+    # Test JSON-to-JSON POST
+    for headers in (
+        {},
+        {ACCEPT: JSON},
+        {CONTENT_TYPE: JSON},
+        {ACCEPT: JSON, CONTENT_TYPE: JSON},
+    ):
+        resp = client.post(
+            ENDPOINT_PATH,
+            json=base64_encoded_test_dict,
+            headers=headers,
+        )
+        assert resp.ok
+        result = resp.json()
+        assert resp.status_code == status.HTTP_200_OK
+        assert result == base64_encoded_test_dict
 
     # Test JSON-to-msgpack POST
     for headers in (
@@ -245,19 +246,17 @@ def test_multimedia_route():
         assert resp.status_code == status.HTTP_200_OK
         assert result == base64_encoded_test_dict
 
-    # # Test msgpack-to-msgpack POST
-    # for headers in (
-    #     {ACCEPT: MSGPACK, CONTENT_TYPE: MSGPACK},
-    # ):
-    #     resp = client.post(
-    #         ENDPOINT_PATH,
-    #         headers=headers,
-    #         data=msgpack.packb(test_dict),
-    #     )
-    #     assert resp.ok
-    #     assert resp.status_code == status.HTTP_200_OK
-    #     result = msgpack.unpackb(resp.content)
-    #     assert result == test_dict
+    # Test msgpack-to-msgpack POST
+    for headers in ({ACCEPT: MSGPACK, CONTENT_TYPE: MSGPACK},):
+        resp = client.post(
+            ENDPOINT_PATH,
+            headers=headers,
+            data=msgpack.packb(test_dict),
+        )
+        assert resp.ok
+        assert resp.status_code == status.HTTP_200_OK
+        result = msgpack.unpackb(resp.content)
+        assert result == test_dict
 
     # Test for error when sending JSON but expecting msgpack
     resp = client.post(
@@ -277,6 +276,8 @@ def test_multimedia_route():
     assert not resp.ok
     assert resp.status_code == status.HTTP_400_BAD_REQUEST
 
-
-# Restore pre-test state
-fastapi.encoders.catchall_encoder = _catchall_encoder_saved
+    # Restore pre-test state
+    fastapi.encoders.catchall_encoder = Saved.catchall_encoder
+    fastapi.encoders.jsonable_encoder_mutates_config = (
+        Saved.jsonable_encoder_mutates_config
+    )
