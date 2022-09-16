@@ -41,7 +41,7 @@ def base64_encode_as_str(data: bytes) -> str:
 
 
 custom_json_encoder = {
-    Base64Bytes: base64_encode_as_str,  # Overrides Pydantic default `lambda o: o.decode()`
+    bytes: base64_encode_as_str,  # Overrides Pydantic default `lambda o: o.decode()`
 }
 
 
@@ -83,8 +83,7 @@ class MsgpackResponse(Response):
 class MultimediaRouteMixin(APIRoute):
     """A route "mixin" that handles 'application/x-msgpack' in addition to
     'application/json'. Its generic design simplifies adding support for more
-    mime types. (Hence, a more accurate name for this class would be
-    `MultiMimeTypeRouteMixin`.)
+    media types.
 
     Credit:
     https://github.com/tiangolo/fastapi/issues/521#issuecomment-646989249"""
@@ -138,17 +137,13 @@ class MultimediaRouteMixin(APIRoute):
         return multimedia_route_handler
 
 
-class ModelConfig:
-    json_encoders = custom_json_encoder
-    validate_assignment = True
-
-
 class ModelWithBytes(BaseModel):
     text: str
     raw: Base64Bytes
 
-    class Config(ModelConfig):
-        pass
+    class Config:
+        json_encoders = custom_json_encoder
+        validate_assignment = True
 
 
 TEXT = "text"
@@ -170,11 +165,11 @@ router = APIRouter(route_class=MultimediaRouteMixin)
 
 
 @router.post("")
-def post_test_model(body: ModelWithBytes) -> ModelWithBytes:
+def post_model_with_bytes(body: ModelWithBytes) -> ModelWithBytes:
     assert body == ModelWithBytes(text=TEXT, raw=BYTES)
-    assert ModelConfig.json_encoders[Base64Bytes] is base64_encode_as_str
-    # Verify jsonable_encoder did not mutate body
-    # TODO: assert Base64Bytes not in body.__config__.json_encoders
+    assert body.__config__.json_encoders[bytes] is base64_encode_as_str
+    # Verify jsonable_encoder did not mutate body.__config__
+    TODO: assert Base64Bytes not in body.__config__.json_encoders
     return body
 
 
