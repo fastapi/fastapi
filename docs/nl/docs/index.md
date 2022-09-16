@@ -99,7 +99,7 @@ De belangrijkste kenmerken:
 
 ---
 
-## **Typer**, the FastAPI of CLIs
+## **Typer**, de FastAPI van CLIs
 
 <a href="https://typer.tiangolo.com" target="_blank"><img src="https://typer.tiangolo.com/img/logo-margin/logo-margin-vector.svg" style="width: 20%;"></a>
 
