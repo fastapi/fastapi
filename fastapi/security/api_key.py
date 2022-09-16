@@ -27,7 +27,7 @@ class APIKeyQuery(APIKeyBase):
         self.auto_error = auto_error
 
     async def __call__(self, request: Request) -> Optional[str]:
-        api_key: str = request.query_params.get(self.model.name)
+        api_key = request.query_params.get(self.model.name)
         if not api_key:
             if self.auto_error:
                 raise HTTPException(
