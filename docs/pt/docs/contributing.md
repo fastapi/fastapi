@@ -89,53 +89,21 @@ Se ele exibir o binário `pip` em `env/bin/pip` então funcionou. 🎉
 !!! tip
     Toda vez que você instalar um novo pacote com `pip` nesse ambiente, ative o ambiente novamente.
 
-    Isso garante que se você usar um programa instalado por aquele pacote (como `flit`), você utilizará aquele de seu ambiente local e não outro que possa estar instalado globalmente.
+    Isso garante que se você usar um programa instalado por aquele pacote, você utilizará aquele de seu ambiente local e não outro que possa estar instalado globalmente.
 
-### Flit
+### pip
 
-**FastAPI** utiliza <a href="https://flit.readthedocs.io/en/latest/index.html" class="external-link" target="_blank">Flit</a> para construir, empacotar e publicar o projeto.
-
-Após ativar o ambiente como descrito acima, instale o `flit`:
+Após ativar o ambiente como descrito acima:
 
 <div class="termy">
 
 ```console
-$ pip install flit
+$ pip install -e .[dev,doc,test]
 
 ---> 100%
 ```
 
 </div>
-
-Ative novamente o ambiente para ter certeza que você esteja utilizando o `flit` que você acabou de instalar (e não um global).
-
-E agora use `flit` para instalar as dependências de desenvolvimento:
-
-=== "Linux, macOS"
-
-    <div class="termy">
-
-    ```console
-    $ flit install --deps develop --symlink
-
-    ---> 100%
-    ```
-
-    </div>
-
-=== "Windows"
-
-    Se você está no Windows, use `--pth-file` ao invés de `--symlink`:
-
-    <div class="termy">
-
-    ```console
-    $ flit install --deps develop --pth-file
-
-    ---> 100%
-    ```
-
-    </div>
 
 Isso irá instalar todas as dependências e seu FastAPI local em seu ambiente local.
 
@@ -143,7 +111,7 @@ Isso irá instalar todas as dependências e seu FastAPI local em seu ambiente lo
 
 Se você cria um arquivo Python que importa e usa FastAPI, e roda com Python de seu ambiente local, ele irá utilizar o código fonte de seu FastAPI local.
 
-E se você atualizar o código fonte do FastAPI local, como ele é instalado com `--symlink` (ou `--pth-file` no Windows), quando você rodar aquele arquivo Python novamente, ele irá utilizar a nova versão do FastAPI que você acabou de editar.
+E se você atualizar o código fonte do FastAPI local, como ele é instalado com `-e`, quando você rodar aquele arquivo Python novamente, ele irá utilizar a nova versão do FastAPI que você acabou de editar.
 
 Desse modo, você não tem que "instalar" sua versão local para ser capaz de testar cada mudança.
 
@@ -161,7 +129,7 @@ $ bash scripts/format.sh
 
 Ele irá organizar também todos os seus imports.
 
-Para que ele organize os imports corretamente, você precisa ter o FastAPI instalado localmente em seu ambiente, com o comando na seção acima usando `--symlink` (ou `--pth-file` no Windows).
+Para que ele organize os imports corretamente, você precisa ter o FastAPI instalado localmente em seu ambiente, com o comando na seção acima usando `-e`.
 
 ### Formato dos imports
 
