@@ -169,7 +169,7 @@ def post_model_with_bytes(body: ModelWithBytes) -> ModelWithBytes:
     assert body == ModelWithBytes(text=TEXT, raw=BYTES)
     assert body.__config__.json_encoders[bytes] is base64_encode_as_str
     # Verify jsonable_encoder did not mutate body.__config__
-    TODO: assert Base64Bytes not in body.__config__.json_encoders
+    assert Base64Bytes not in body.__config__.json_encoders
     return body
 
 
