@@ -7,6 +7,7 @@ from typing import (
     Callable,
     Coroutine,
     Dict,
+    ForwardRef,
     List,
     Mapping,
     Optional,
@@ -47,7 +48,7 @@ from pydantic.fields import (
     Undefined,
 )
 from pydantic.schema import get_annotation_from_field_info
-from pydantic.typing import ForwardRef, evaluate_forwardref
+from pydantic.typing import evaluate_forwardref
 from pydantic.utils import lenient_issubclass
 from starlette.background import BackgroundTasks
 from starlette.concurrency import run_in_threadpool
@@ -425,22 +426,22 @@ def is_coroutine_callable(call: Callable[..., Any]) -> bool:
         return inspect.iscoroutinefunction(call)
     if inspect.isclass(call):
         return False
-    call = getattr(call, "__call__", None)
-    return inspect.iscoroutinefunction(call)
+    dunder_call = getattr(call, "__call__", None)
+    return inspect.iscoroutinefunction(dunder_call)
 
 
 def is_async_gen_callable(call: Callable[..., Any]) -> bool:
     if inspect.isasyncgenfunction(call):
         return True
-    call = getattr(call, "__call__", None)
-    return inspect.isasyncgenfunction(call)
+    dunder_call = getattr(call, "__call__", None)
+    return inspect.isasyncgenfunction(dunder_call)
 
 
 def is_gen_callable(call: Callable[..., Any]) -> bool:
     if inspect.isgeneratorfunction(call):
         return True
-    call = getattr(call, "__call__", None)
-    return inspect.isgeneratorfunction(call)
+    dunder_call = getattr(call, "__call__", None)
+    return inspect.isgeneratorfunction(dunder_call)
 
 
 async def solve_generator(
