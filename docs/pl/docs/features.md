@@ -8,12 +8,12 @@
 
 * <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a> do tworzenia API, w tym deklaracji <abbr title="znane również jako: paths, endpoints, routes">ścieżek</abbr> <abbr title="znane również jako metody HTTP, takie jak POST, GET, PUT, DELETE">operacji</abbr>, parametrów, <abbr title="po angielsku: body requests">ciał zapytań</abbr>, bezpieczeństwa, itp.
 * Automatyczna dokumentacja modelu danych za pomocą <a href="https://json-schema.org/" class="external-link" target="_blank"><strong>JSON Schema</strong></a> (ponieważ OpenAPI bazuje na JSON Schema).
-* Zaprojektowane wokół tych standardów, po drobiazgowej analizie, zamiast skupiania się na górnej warstwie.
+* Zaprojektowane z myślą o zgodności z powyższymi standardami zamiast dodawania ich obsługi po fakcie.
 * Możliwość automatycznego **generowania kodu klienta** w wielu językach.
 
 ### Automatyczna dokumentacja
 
-Interaktywna dokumentacja API i podgląd interfejsów użytkownika. Z racji tego, że framework bazuje na OpenAPI, istnieje wiele opcji, z czego 2 są domyślnie dołączone.
+Interaktywna dokumentacja i webowe interfejsy do eksploracji API. Z racji tego, że framework bazuje na OpenAPI, istnieje wiele opcji, z czego 2 są domyślnie dołączone.
 
 * <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank"><strong>Swagger UI</strong></a>, z interaktywnym interfejsem - odpytuj i testuj swoje API bezpośrednio z przeglądarki.
 
@@ -131,9 +131,9 @@ Plus wszystkie funkcje bezpieczeństwa Starlette (włączając w to **<abbr titl
 
 Wszystko zbudowane jako narzędzia i komponenty wielokrotnego użytku, które można łatwo zintegrować z systemami, magazynami oraz bazami danych - relacyjnymi, NoSQL, itp.
 
-### Dependency Injection
+### Wstrzykiwanie Zależności
 
-FastAPI zawiera niezwykle łatwy w użyciu, ale niezwykle potężny system <abbr title='Po polsku: wstrzykiwanie zależności. Znane również jako "components", "resources", "services", "providers"'><strong>Dependency Injection</strong></abbr>.
+FastAPI zawiera niezwykle łatwy w użyciu, ale niezwykle potężny system <abbr title='Po angielsku: Dependency Injection. Znane również jako "components", "resources", "services", "providers"'><strong>Wstrzykiwania Zależności</strong></abbr>.
 
 * Nawet zależności mogą mieć zależności, tworząc hierarchię lub **"graf" zależności**.
 * Wszystko jest **obsługiwane automatycznie** przez framework.
@@ -188,13 +188,13 @@ Dzięki **FastAPI** otrzymujesz wszystkie funkcje **Pydantic** (ponieważ FastAP
     * Brak nowego mikrojęzyka do definiowania schematu, którego trzeba się nauczyć.
     * Jeśli znasz adnotacje typów Pythona to wiesz jak używać Pydantic.
 * Dobrze współpracuje z Twoim **<abbr title='Skrót od "Integrated Development Environment", podobne do edytora kodu'>IDE</abbr>/<abbr title="Program, który sprawdza Twój kod pod kątem błędów">linterem</abbr>/mózgiem**:
-    * Ponieważ struktury danych Pydantic to po prostu instancje klas, które definiujesz; autouzupełnianie, linting, mypy i twoja intuicja powinny działać poprawnie z Twoimi zweryfikowanymi danymi.
+    * Ponieważ struktury danych Pydantic to po prostu instancje klas, które definiujesz; autouzupełnianie, linting, mypy i twoja intuicja powinny działać poprawnie z Twoimi zwalidowanymi danymi.
 * **Szybkość**:
     * w <a href="https://pydantic-docs.helpmanual.io/benchmarks/" class="external-link" target="_blank">benchmarkach</a> Pydantic jest szybszy niż wszystkie inne testowane biblioteki.
 * Walidacja **złożonych struktur**:
     * Wykorzystanie hierarchicznych modeli Pydantic, Pythonowego modułu `typing` zawierającego `List`, `Dict`, itp.
     * Walidatory umożliwiają jasne i łatwe definiowanie, sprawdzanie złożonych struktur danych oraz dokumentowanie ich jako JSON Schema.
-    * Możesz mieć głęboko **zagnieżdżone obiekty JSON** i wszystkie je weryfikować i adnotować.
+    * Możesz mieć głęboko **zagnieżdżone obiekty JSON** i wszystkie je poddać walidacji i adnotować.
 * **Rozszerzalność**:
     * Pydantic umożliwia zdefiniowanie niestandardowych typów danych lub rozszerzenie walidacji o metody na modelu, na których użyty jest dekorator walidatora.
 * 100% pokrycie testami.
