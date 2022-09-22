@@ -18,7 +18,7 @@ You can define an attribute to be a subtype. For example, a Python `list`:
     {!> ../../../docs_src/body_nested_models/tutorial001_py310.py!}
     ```
 
-This will make `tags` be a list of items. Although it doesn't declare the type of each of the items.
+This will make `tags` be a list, although it doesn't declare the type of the elements of the list.
 
 ## List fields with type parameter
 

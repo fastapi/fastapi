@@ -4,7 +4,7 @@ import sys
 from collections import Counter, defaultdict
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
-from typing import Container, DefaultDict, Dict, List, Optional, Set
+from typing import Container, DefaultDict, Dict, List, Set, Union
 
 import httpx
 import yaml
@@ -133,7 +133,7 @@ class Author(BaseModel):
 
 class CommentsNode(BaseModel):
     createdAt: datetime
-    author: Optional[Author] = None
+    author: Union[Author, None] = None
 
 
 class Comments(BaseModel):
@@ -142,7 +142,7 @@ class Comments(BaseModel):
 
 class IssuesNode(BaseModel):
     number: int
-    author: Optional[Author] = None
+    author: Union[Author, None] = None
     title: str
     createdAt: datetime
     state: str
@@ -179,7 +179,7 @@ class Labels(BaseModel):
 
 
 class ReviewNode(BaseModel):
-    author: Optional[Author] = None
+    author: Union[Author, None] = None
     state: str
 
 
@@ -190,7 +190,7 @@ class Reviews(BaseModel):
 class PullRequestNode(BaseModel):
     number: int
     labels: Labels
-    author: Optional[Author] = None
+    author: Union[Author, None] = None
     title: str
     createdAt: datetime
     state: str
@@ -260,19 +260,21 @@ class Settings(BaseSettings):
     input_token: SecretStr
     input_standard_token: SecretStr
     github_repository: str
+    httpx_timeout: int = 30
 
 
 def get_graphql_response(
-    *, settings: Settings, query: str, after: Optional[str] = None
+    *, settings: Settings, query: str, after: Union[str, None] = None
 ):
     headers = {"Authorization": f"token {settings.input_token.get_secret_value()}"}
     variables = {"after": after}
     response = httpx.post(
         github_graphql_url,
         headers=headers,
+        timeout=settings.httpx_timeout,
         json={"query": query, "variables": variables, "operationName": "Q"},
     )
-    if not response.status_code == 200:
+    if response.status_code != 200:
         logging.error(f"Response was not 200, after: {after}")
         logging.error(response.text)
         raise RuntimeError(response.text)
@@ -280,19 +282,19 @@ def get_graphql_response(
     return data
 
 
-def get_graphql_issue_edges(*, settings: Settings, after: Optional[str] = None):
+def get_graphql_issue_edges(*, settings: Settings, after: Union[str, None] = None):
     data = get_graphql_response(settings=settings, query=issues_query, after=after)
     graphql_response = IssuesResponse.parse_obj(data)
     return graphql_response.data.repository.issues.edges
 
 
-def get_graphql_pr_edges(*, settings: Settings, after: Optional[str] = None):
+def get_graphql_pr_edges(*, settings: Settings, after: Union[str, None] = None):
     data = get_graphql_response(settings=settings, query=prs_query, after=after)
     graphql_response = PRsResponse.parse_obj(data)
     return graphql_response.data.repository.pullRequests.edges
 
 
-def get_graphql_sponsor_edges(*, settings: Settings, after: Optional[str] = None):
+def get_graphql_sponsor_edges(*, settings: Settings, after: Union[str, None] = None):
     data = get_graphql_response(settings=settings, query=sponsors_query, after=after)
     graphql_response = SponsorsResponse.parse_obj(data)
     return graphql_response.data.user.sponsorshipsAsMaintainer.edges

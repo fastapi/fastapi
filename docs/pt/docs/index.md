@@ -100,7 +100,7 @@ Se você estiver construindo uma aplicação <abbr title="Command Line Interface
 
 ## Requisitos
 
-Python 3.6+
+Python 3.7+
 
 FastAPI está nos ombros de gigantes:
 
@@ -124,7 +124,7 @@ Você também precisará de um servidor ASGI para produção, tal como <a href="
 <div class="termy">
 
 ```console
-$ pip install uvicorn[standard]
+$ pip install "uvicorn[standard]"
 
 ---> 100%
 ```

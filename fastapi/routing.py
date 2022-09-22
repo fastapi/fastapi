@@ -29,13 +29,13 @@ from fastapi.dependencies.utils import (
 )
 from fastapi.encoders import DictIntStrAny, SetIntStr, jsonable_encoder
 from fastapi.exceptions import RequestValidationError, WebSocketRequestValidationError
-from fastapi.openapi.constants import STATUS_CODES_WITH_NO_BODY
 from fastapi.types import DecoratedCallable
 from fastapi.utils import (
     create_cloned_field,
     create_response_field,
     generate_unique_id,
     get_value_or_default,
+    is_body_allowed_for_status_code,
 )
 from pydantic import BaseModel
 from pydantic.error_wrappers import ErrorWrapper, ValidationError
@@ -127,7 +127,7 @@ async def serialize_response(
         if is_coroutine:
             value, errors_ = field.validate(response_content, {}, loc=("response",))
         else:
-            value, errors_ = await run_in_threadpool(  # type: ignore[misc]
+            value, errors_ = await run_in_threadpool(
                 field.validate, response_content, {}, loc=("response",)
             )
         if isinstance(errors_, ErrorWrapper):
@@ -209,7 +209,11 @@ def get_request_handler(
                         else:
                             body = body_bytes
         except json.JSONDecodeError as e:
-            raise RequestValidationError([ErrorWrapper(e, ("body", e.pos))], body=e.doc)
+            raise RequestValidationError(
+                [ErrorWrapper(e, ("body", e.pos))], body=e.doc
+            ) from e
+        except HTTPException:
+            raise
         except Exception as e:
             raise HTTPException(
                 status_code=400, detail="There was an error parsing the body"
@@ -232,7 +236,17 @@ def get_request_handler(
                 if raw_response.background is None:
                     raw_response.background = background_tasks
                 return raw_response
-            response_data = await serialize_response(
+            response_args: Dict[str, Any] = {"background": background_tasks}
+            # If status_code was set, use it, otherwise use the default from the
+            # response class, in the case of redirect it's 307
+            current_status_code = (
+                status_code if status_code else sub_response.status_code
+            )
+            if current_status_code is not None:
+                response_args["status_code"] = current_status_code
+            if sub_response.status_code:
+                response_args["status_code"] = sub_response.status_code
+            content = await serialize_response(
                 field=response_field,
                 response_content=raw_response,
                 include=response_model_include,
@@ -243,15 +257,10 @@ def get_request_handler(
                 exclude_none=response_model_exclude_none,
                 is_coroutine=is_coroutine,
             )
-            response_args: Dict[str, Any] = {"background": background_tasks}
-            # If status_code was set, use it, otherwise use the default from the
-            # response class, in the case of redirect it's 307
-            if status_code is not None:
-                response_args["status_code"] = status_code
-            response = actual_response_class(response_data, **response_args)
+            response = actual_response_class(content, **response_args)
+            if not is_body_allowed_for_status_code(response.status_code):
+                response.body = b""
             response.headers.raw.extend(sub_response.headers.raw)
-            if sub_response.status_code:
-                response.status_code = sub_response.status_code
             return response
 
     return app
@@ -288,14 +297,14 @@ class APIWebSocketRoute(routing.WebSocketRoute):
         self.path = path
         self.endpoint = endpoint
         self.name = get_name(endpoint) if name is None else name
-        self.dependant = get_dependant(path=path, call=self.endpoint)
+        self.path_regex, self.path_format, self.param_convertors = compile_path(path)
+        self.dependant = get_dependant(path=self.path_format, call=self.endpoint)
         self.app = websocket_session(
             get_websocket_app(
                 dependant=self.dependant,
                 dependency_overrides_provider=dependency_overrides_provider,
             )
         )
-        self.path_regex, self.path_format, self.param_convertors = compile_path(path)
 
     def matches(self, scope: Scope) -> Tuple[Match, Scope]:
         match, child_scope = super().matches(scope)
@@ -310,7 +319,7 @@ class APIRoute(routing.Route):
         path: str,
         endpoint: Callable[..., Any],
         *,
-        response_model: Optional[Type[Any]] = None,
+        response_model: Any = None,
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
@@ -377,8 +386,8 @@ class APIRoute(routing.Route):
             status_code = int(status_code)
         self.status_code = status_code
         if self.response_model:
-            assert (
-                status_code not in STATUS_CODES_WITH_NO_BODY
+            assert is_body_allowed_for_status_code(
+                status_code
             ), f"Status code {status_code} must not have a response body"
             response_name = "Response_" + self.unique_id
             self.response_field = create_response_field(
@@ -404,14 +413,14 @@ class APIRoute(routing.Route):
         self.description = description or inspect.cleandoc(self.endpoint.__doc__ or "")
         # if a "form feed" character (page break) is found in the description text,
         # truncate description text to the content preceding the first "form feed"
-        self.description = self.description.split("\f")[0]
+        self.description = self.description.split("\f")[0].strip()
         response_fields = {}
         for additional_status_code, response in self.responses.items():
             assert isinstance(response, dict), "An additional response must be a dict"
             model = response.get("model")
             if model:
-                assert (
-                    additional_status_code not in STATUS_CODES_WITH_NO_BODY
+                assert is_body_allowed_for_status_code(
+                    additional_status_code
                 ), f"Status code {additional_status_code} must not have a response body"
                 response_name = f"Response_{additional_status_code}_{self.unique_id}"
                 response_field = create_response_field(name=response_name, type_=model)
@@ -506,7 +515,7 @@ class APIRouter(routing.Router):
         path: str,
         endpoint: Callable[..., Any],
         *,
-        response_model: Optional[Type[Any]] = None,
+        response_model: Any = None,
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
@@ -587,7 +596,7 @@ class APIRouter(routing.Router):
         self,
         path: str,
         *,
-        response_model: Optional[Type[Any]] = None,
+        response_model: Any = None,
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
@@ -782,7 +791,7 @@ class APIRouter(routing.Router):
         self,
         path: str,
         *,
-        response_model: Optional[Type[Any]] = None,
+        response_model: Any = None,
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
@@ -838,7 +847,7 @@ class APIRouter(routing.Router):
         self,
         path: str,
         *,
-        response_model: Optional[Type[Any]] = None,
+        response_model: Any = None,
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
@@ -894,7 +903,7 @@ class APIRouter(routing.Router):
         self,
         path: str,
         *,
-        response_model: Optional[Type[Any]] = None,
+        response_model: Any = None,
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
@@ -950,7 +959,7 @@ class APIRouter(routing.Router):
         self,
         path: str,
         *,
-        response_model: Optional[Type[Any]] = None,
+        response_model: Any = None,
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
@@ -1006,7 +1015,7 @@ class APIRouter(routing.Router):
         self,
         path: str,
         *,
-        response_model: Optional[Type[Any]] = None,
+        response_model: Any = None,
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
@@ -1062,7 +1071,7 @@ class APIRouter(routing.Router):
         self,
         path: str,
         *,
-        response_model: Optional[Type[Any]] = None,
+        response_model: Any = None,
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
@@ -1118,7 +1127,7 @@ class APIRouter(routing.Router):
         self,
         path: str,
         *,
-        response_model: Optional[Type[Any]] = None,
+        response_model: Any = None,
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
@@ -1174,7 +1183,7 @@ class APIRouter(routing.Router):
         self,
         path: str,
         *,
-        response_model: Optional[Type[Any]] = None,
+        response_model: Any = None,
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,

@@ -107,7 +107,7 @@ FastAPI는 현대적이고, 빠르며(고성능), 파이썬 표준 타입 힌트
 
 ## 요구사항
 
-Python 3.6+
+Python 3.7+
 
 FastAPI는 거인들의 어깨 위에 서 있습니다:
 
@@ -131,7 +131,7 @@ $ pip install fastapi
 <div class="termy">
 
 ```console
-$ pip install uvicorn[standard]
+$ pip install "uvicorn[standard]"
 
 ---> 100%
 ```
