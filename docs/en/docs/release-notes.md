@@ -2,6 +2,7 @@
 
 ## Latest Changes
 
+* 📝 Add WayScript x FastAPI Tutorial to External Links section. PR [#5407](https://github.com/tiangolo/fastapi/pull/5407) by [@moneeka](https://github.com/moneeka).
 
 ## 0.85.0
 
