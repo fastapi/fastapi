@@ -17,7 +17,7 @@ Import `File` and `UploadFile` from `fastapi`:
 {!../../../docs_src/request_files/tutorial001.py!}
 ```
 
-## Define `File` parameters
+## Define `File` Parameters
 
 Create file parameters the same way you would for `Body` or `Form`:
 
@@ -41,9 +41,9 @@ Have in mind that this means that the whole contents will be stored in memory. T
 
 But there are several cases in which you might benefit from using `UploadFile`.
 
-## `File` parameters with `UploadFile`
+## File Parameters with `UploadFile`
 
-Define a `File` parameter with a type of `UploadFile`:
+Define a file parameter with a type of `UploadFile`:
 
 ```Python hl_lines="12"
 {!../../../docs_src/request_files/tutorial001.py!}
@@ -51,6 +51,7 @@ Define a `File` parameter with a type of `UploadFile`:
 
 Using `UploadFile` has several advantages over `bytes`:
 
+* You don't have to use `File()` in the default value of the parameter.
 * It uses a "spooled" file:
     * A file stored in memory up to a maximum size limit, and after passing this limit it will be stored in disk.
 * This means that it will work well for large files like images, videos, large binaries, etc. without consuming all the memory.
@@ -105,7 +106,7 @@ The way HTML forms (`<form></form>`) sends the data to the server normally uses 
     Data from forms is normally encoded using the "media type" `application/x-www-form-urlencoded` when it doesn't include files.
 
     But when the form includes files, it is encoded as `multipart/form-data`. If you use `File`, **FastAPI** will know it has to get the files from the correct part of the body.
-    
+
     If you want to read more about these encodings and form fields, head to the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST" class="external-link" target="_blank"><abbr title="Mozilla Developer Network">MDN</abbr> web docs for <code>POST</code></a>.
 
 !!! warning
@@ -113,17 +114,49 @@ The way HTML forms (`<form></form>`) sends the data to the server normally uses 
 
     This is not a limitation of **FastAPI**, it's part of the HTTP protocol.
 
-## Multiple file uploads
+## Optional File Upload
+
+You can make a file optional by using standard type annotations and setting a default value of `None`:
+
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="9  17"
+    {!> ../../../docs_src/request_files/tutorial001_02.py!}
+    ```
+
+=== "Python 3.9 and above"
+
+    ```Python hl_lines="7  14"
+    {!> ../../../docs_src/request_files/tutorial001_02_py310.py!}
+    ```
+
+## `UploadFile` with Additional Metadata
+
+You can also use `File()` with `UploadFile`, for example, to set additional metadata:
+
+```Python hl_lines="13"
+{!../../../docs_src/request_files/tutorial001_03.py!}
+```
+
+## Multiple File Uploads
 
 It's possible to upload several files at the same time.
 
 They would be associated to the same "form field" sent using "form data".
 
-To use that, declare a `List` of `bytes` or `UploadFile`:
+To use that, declare a list of `bytes` or `UploadFile`:
 
-```Python hl_lines="10  15"
-{!../../../docs_src/request_files/tutorial002.py!}
-```
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="10  15"
+    {!> ../../../docs_src/request_files/tutorial002.py!}
+    ```
+
+=== "Python 3.9 and above"
+
+    ```Python hl_lines="8  13"
+    {!> ../../../docs_src/request_files/tutorial002_py39.py!}
+    ```
 
 You will receive, as declared, a `list` of `bytes` or `UploadFile`s.
 
@@ -132,6 +165,22 @@ You will receive, as declared, a `list` of `bytes` or `UploadFile`s.
 
     **FastAPI** provides the same `starlette.responses` as `fastapi.responses` just as a convenience for you, the developer. But most of the available responses come directly from Starlette.
 
+### Multiple File Uploads with Additional Metadata
+
+And the same way as before, you can use `File()` to set additional parameters, even for `UploadFile`:
+
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="18"
+    {!> ../../../docs_src/request_files/tutorial003.py!}
+    ```
+
+=== "Python 3.9 and above"
+
+    ```Python hl_lines="16"
+    {!> ../../../docs_src/request_files/tutorial003_py39.py!}
+    ```
+
 ## Recap
 
-Use `File` to declare files to be uploaded as input parameters (as form data).
+Use `File`, `bytes`, and `UploadFile` to declare files to be uploaded in the request, sent as form data.

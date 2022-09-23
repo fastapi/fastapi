@@ -26,13 +26,23 @@ The important difference for us is that with HTTPX we are not limited to synchro
 
 ## Example
 
-For a simple example, let's consider the following `main.py` module:
+For a simple example, let's consider a file structure similar to the one described in [Bigger Applications](../tutorial/bigger-applications.md){.internal-link target=_blank} and [Testing](../tutorial/testing.md){.internal-link target=_blank}:
+
+```
+.
+├── app
+│   ├── __init__.py
+│   ├── main.py
+│   └── test_main.py
+```
+
+The file `main.py` would have:
 
 ```Python
 {!../../../docs_src/async_tests/main.py!}
 ```
 
-The `test_main.py` module that contains the tests for `main.py` could look like this now:
+The file `test_main.py` would have the tests for `main.py`, it could look like this now:
 
 ```Python
 {!../../../docs_src/async_tests/test_main.py!}
