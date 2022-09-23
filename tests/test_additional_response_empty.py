@@ -13,7 +13,7 @@ class Items(BaseModel):
 
 @app.post("/foo", responses={422: {}})
 def foo(items: Items):
-    return items.items
+    pass  # pragma: no cover
 
 
 client = TestClient(app)
