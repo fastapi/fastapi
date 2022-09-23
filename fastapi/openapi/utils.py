@@ -442,14 +442,11 @@ def get_openapi(
         # Add `nullable: True` to properties that are required but may be None
         # This is an OpenAPI 3.0 field, not part of JSON schema
         for model in flat_models:
-            # The real class is pydantic.ModelMetaclass, but that is inaccessible
-            if isinstance(model, BaseModel.__class__):
-                model_name = model_name_map.get(model)
-                for field_name, field in model.__fields__.items():
-                    if field.allow_none and field.required:
-                        definitions[model_name]["properties"][field_name][
-                            "nullable"
-                        ] = True
+            model_name = model_name_map[model]
+            # Enum models do not have fields
+            for field_name, field in getattr(model, "__fields__", {}).items():
+                if field.allow_none and field.required:
+                    definitions[model_name]["properties"][field_name]["nullable"] = True
         components["schemas"] = {k: definitions[k] for k in sorted(definitions)}
     if components:
         output["components"] = components
