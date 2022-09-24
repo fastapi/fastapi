@@ -135,6 +135,20 @@ def get_parameterless_sub_dependant(*, depends: params.Depends, path: str) -> De
     return get_sub_dependant(depends=depends, dependency=depends.dependency, path=path)
 
 
+def collapse_dependencies(dependencies: list[params.Depends]) -> list[params.Depends]:
+    """
+    Process a list of dependencies, removing any prior instance
+    of a dependency if one with `disable==True` is encountered
+    """
+    result: list[params.Depends] = []
+    for depends in dependencies:
+        if depends.disable:
+            result = [d for d in result if d.dependency != depends.dependency]
+        else:
+            result.append(depends)
+    return result
+
+
 def get_sub_dependant(
     *,
     depends: params.Depends,
