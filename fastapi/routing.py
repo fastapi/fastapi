@@ -23,6 +23,7 @@ from fastapi import params
 from fastapi.datastructures import Default, DefaultPlaceholder
 from fastapi.dependencies.models import Dependant
 from fastapi.dependencies.utils import (
+    collapse_nonparam_dependencies,
     get_body_field,
     get_dependant,
     get_parameterless_sub_dependant,
@@ -436,7 +437,7 @@ class APIRoute(routing.Route):
 
         assert callable(endpoint), "An endpoint must be a callable"
         self.dependant = get_dependant(path=self.path_format, call=self.endpoint)
-        for depends in self.dependencies[::-1]:
+        for depends in collapse_nonparam_dependencies(self.dependencies)[::-1]:
             self.dependant.dependencies.insert(
                 0,
                 get_parameterless_sub_dependant(depends=depends, path=self.path_format),

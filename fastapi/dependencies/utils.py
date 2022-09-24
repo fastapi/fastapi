@@ -1,5 +1,6 @@
 import dataclasses
 import inspect
+from collections import defaultdict
 from contextlib import contextmanager
 from copy import deepcopy
 from typing import (
@@ -133,6 +134,33 @@ def get_parameterless_sub_dependant(*, depends: params.Depends, path: str) -> De
         depends.dependency
     ), "A parameter-less dependency must have a callable dependency"
     return get_sub_dependant(depends=depends, dependency=depends.dependency, path=path)
+
+
+def collapse_nonparam_dependencies(
+    dependencies: List[params.Depends],
+) -> List[params.Depends]:
+    """
+    Process a list of dependencies, collapsing
+    multiple instances, multiple scope lists, into one.
+    """
+    active_depends: Dict[Any, List[str]] = defaultdict(list)
+    # Create a set of active Depends and Security objects
+    # maintaining the order of when first seen via dict ordering.
+    for depends in dependencies:
+        key = (type(depends), depends.dependency)
+        if isinstance(depends, params.Security):
+            active_depends[key].extend(depends.scopes)
+        else:
+            active_depends[key] = []
+
+    # Reconstruct the dependencies list
+    result = []
+    for (cls, dependency), scopes in active_depends.items():
+        if issubclass(cls, params.Security):
+            result.append(cls(dependency, scopes=scopes))
+        else:
+            result.append(cls(dependency))
+    return result
 
 
 def get_sub_dependant(
