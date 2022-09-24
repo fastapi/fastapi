@@ -46,5 +46,4 @@ def test_websocket():
 
 def test_websocket_invalid_path_doesnt_match():
     with pytest.raises(WebSocketDisconnect):
-        with client.websocket_connect("/itemsx/portal-gun") as websocket:
-            websocket.receive_json()
+        client.websocket_connect("/itemsx/portal-gun").__enter__()
