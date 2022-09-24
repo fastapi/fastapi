@@ -104,13 +104,16 @@ def create_cloned_field(
                 use_type.__fields__[f.name] = create_cloned_field(
                     f, cloned_types=cloned_types
                 )
-    new_field = create_response_field(name=field.name, type_=use_type)
+    new_field = create_response_field(
+        name=field.name,
+        type_=use_type,
+        class_validators=field.class_validators,
+        default=field.default,
+        required=field.required,
+        model_config=field.model_config,
+        alias=field.alias,
+    )
     new_field.has_alias = field.has_alias
-    new_field.alias = field.alias
-    new_field.class_validators = field.class_validators
-    new_field.default = field.default
-    new_field.required = field.required
-    new_field.model_config = field.model_config
     new_field.field_info = field.field_info
     new_field.allow_none = field.allow_none
     new_field.validate_always = field.validate_always
