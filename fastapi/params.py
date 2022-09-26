@@ -367,11 +367,14 @@ class Depends:
         self.use_cache = use_cache
         self.disable = disable
 
-    def __repr__(self) -> str:
+    def repr_helper(self, extra: str = "") -> str:
         attr = getattr(self.dependency, "__name__", type(self.dependency).__name__)
         cache = "" if self.use_cache else ", use_cache=False"
         disable = "" if not self.disable else ", disable=True"
-        return f"{self.__class__.__name__}({attr}{cache}{disable})"
+        return f"{self.__class__.__name__}({attr}{extra}{cache}{disable})"
+
+    def __repr__(self) -> str:
+        return self.repr_helper()
 
 
 class Security(Depends):
@@ -381,6 +384,10 @@ class Security(Depends):
         *,
         scopes: Optional[Sequence[str]] = None,
         use_cache: bool = True,
+        disable: bool = False,
     ):
-        super().__init__(dependency=dependency, use_cache=use_cache)
+        super().__init__(dependency=dependency, use_cache=use_cache, disable=disable)
         self.scopes = scopes or []
+
+    def __repr__(self) -> str:
+        return self.repr_helper(f", {self.scopes}")

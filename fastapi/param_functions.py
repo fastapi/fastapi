@@ -289,5 +289,8 @@ def Security(  # noqa: N802
     *,
     scopes: Optional[Sequence[str]] = None,
     use_cache: bool = True,
+    disable: bool = False,
 ) -> Any:
-    return params.Security(dependency=dependency, scopes=scopes, use_cache=use_cache)
+    return params.Security(
+        dependency=dependency, scopes=scopes, use_cache=use_cache, disable=disable
+    )
