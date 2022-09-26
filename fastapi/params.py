@@ -389,5 +389,5 @@ class Security(Depends):
         super().__init__(dependency=dependency, use_cache=use_cache, disable=disable)
         self.scopes = scopes or []
 
-    def __repr__(self) -> str:
+    def __repr__(self) -> str:  # pragma: no cover
         return self.repr_helper(f", {self.scopes}")

@@ -1,5 +1,6 @@
 import dataclasses
 import inspect
+from collections import defaultdict
 from contextlib import contextmanager
 from copy import deepcopy
 from typing import (
@@ -135,17 +136,53 @@ def get_parameterless_sub_dependant(*, depends: params.Depends, path: str) -> De
     return get_sub_dependant(depends=depends, dependency=depends.dependency, path=path)
 
 
-def collapse_dependencies(dependencies: list[params.Depends]) -> list[params.Depends]:
+def collapse_parameterless_depends(
+    dependencies: List[params.Depends],
+) -> List[params.Depends]:
     """
-    Process a list of dependencies, removing any prior instance
+    Process a list of Depends, removing any prior instance
     of a dependency if one with `disable==True` is encountered
+    or remove individual scopes from Security dependencies.
+    Collapse multiple instances of same callable, and multiple scope lists, into one.
     """
-    result: list[params.Depends] = []
+    active_depends: Dict[Any, None] = {}
+    active_securities: Dict[Any, List[str]] = defaultdict(list)
+    # Create a set of active Depends and Security objects
     for depends in dependencies:
-        if depends.disable:
-            result = [d for d in result if d.dependency != depends.dependency]
+        if isinstance(depends, params.Security):
+            if not depends.disable:
+                # append the scopes to the right
+                active_securities[depends.dependency].extend(depends.scopes)
+            else:
+                if depends.scopes:
+                    # remove individual scopes from the list of scopes
+                    if depends.dependency in active_securities:
+                        scopes = active_securities[depends.dependency]
+                        r_scopes = set(depends.scopes)
+                        if "*" not in scopes:
+                            scopes = [
+                                scope for scope in scopes if scope not in r_scopes
+                            ]
+                        else:
+                            # remove all scopes
+                            scopes = []
+                        active_securities[depends.dependency] = scopes
+                else:
+                    # remove the security completely
+                    del active_securities[depends.dependency]
         else:
-            result.append(depends)
+            if not depends.disable:
+                active_depends[depends.dependency] = None
+            else:
+                if depends.dependency in active_depends:
+                    del active_depends[depends.dependency]
+
+    # Reconstruct the dependencies list
+    result = []
+    for dependency in active_depends.keys():
+        result.append(params.Depends(dependency))
+    for dependency, scopes in active_securities.items():
+        result.append(params.Security(dependency, scopes=scopes))
     return result
 
 
