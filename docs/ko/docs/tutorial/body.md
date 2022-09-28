@@ -136,7 +136,7 @@ API는 거의 모든 경우 **리스폰스** 바디를 전송해야 합니다. �
 !!! tip "팁"
 만약 에디터로 <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a>을 사용한다면, <a href="https://github.com/koxudaxi/pydantic-pycharm-plugin/" class="external-link" target="_blank">Pydantic PyCharm Plugin</a>을 사용해도 됩니다.
 
-    다음 항목들에 대해, Pydantic 모델들에 대한 에디터 지원을 도와줍니다: 
+    다음 항목들에 대해, Pydantic 모델들에 대한 에디터 지원을 도와줍니다:
     * 자동 완성
     * 타입 체크
     * 리팩토링
@@ -209,4 +209,3 @@ FastAPI 는 변수 `q` 의 기본값이 `= None` 이라서, 필수값이 필요�
 ## Pydantic 이 없을 경우
 
 Pydantic 모델을 사용하고 싶지 않다면, **Body** 매개변수를 사용해도 됩니다. 해당 내용은 다음 문서 [Body - Multiple Parameters: Singular values in body](body-multiple-params.md#singular-values-in-body){.internal-link target=_blank}. 를 참조하세요.
-
