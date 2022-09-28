@@ -82,6 +82,8 @@ def create_response_field(
         )
 
 
+# the cloning process is pure/idempotent: i.e. if a type has ever been cloned, there's no need to
+# reclone it, just look it up here.
 _CLONED_TYPES_CACHE: Dict[Type[BaseModel], Type[BaseModel]] = {}
 
 
