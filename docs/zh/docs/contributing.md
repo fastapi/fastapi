@@ -88,53 +88,21 @@ $ python -m venv env
 !!! tip
     每一次你在该环境下使用 `pip` 安装了新软件包时，请再次激活该环境。
 
-    这样可以确保你在使用由该软件包安装的终端程序（如 `flit`）时使用的是当前虚拟环境中的程序，而不是其他的可能是全局安装的程序。
+    这样可以确保你在使用由该软件包安装的终端程序时使用的是当前虚拟环境中的程序，而不是其他的可能是全局安装的程序。
 
-### Flit
+### pip
 
-**FastAPI** 使用 <a href="https://flit.readthedocs.io/en/latest/index.html" class="external-link" target="_blank">Flit</a> 来构建、打包和发布项目。
-
-如上所述激活环境后，安装 `flit`：
+如上所述激活环境后：
 
 <div class="termy">
 
 ```console
-$ pip install flit
+$ pip install -e .[dev,doc,test]
 
 ---> 100%
 ```
 
 </div>
-
-现在重新激活环境，以确保你正在使用的是刚刚安装的 `flit`（而不是全局环境的）。
-
-然后使用 `flit` 来安装开发依赖：
-
-=== "Linux, macOS"
-
-    <div class="termy">
-
-    ```console
-    $ flit install --deps develop --symlink
-
-    ---> 100%
-    ```
-
-    </div>
-
-=== "Windows"
-
-    If you are on Windows, use `--pth-file` instead of `--symlink`:
-
-    <div class="termy">
-
-    ```console
-    $ flit install --deps develop --pth-file
-
-    ---> 100%
-    ```
-
-    </div>
 
 这将在虚拟环境中安装所有依赖和本地版本的 FastAPI。
 
@@ -142,7 +110,7 @@ $ pip install flit
 
 如果你创建一个导入并使用 FastAPI 的 Python 文件，然后使用虚拟环境中的 Python 运行它，它将使用你本地的 FastAPI 源码。
 
-并且如果你更改该本地 FastAPI 的源码，由于它是通过 `--symlink` （或 Windows 上的 `--pth-file`）安装的，当你再次运行那个 Python 文件，它将使用你刚刚编辑过的最新版本的 FastAPI。
+并且如果你更改该本地 FastAPI 的源码，由于它是通过 `-e` 安装的，当你再次运行那个 Python 文件，它将使用你刚刚编辑过的最新版本的 FastAPI。
 
 这样，你不必再去重新"安装"你的本地版本即可测试所有更改。
 
@@ -160,7 +128,7 @@ $ bash scripts/format.sh
 
 它还会自动对所有导入代码进行整理。
 
-为了使整理正确进行，你需要在当前环境中安装本地的 FastAPI，即在运行上述段落中的命令时添加 `--symlink`（或 Windows 上的 `--pth-file`）。
+为了使整理正确进行，你需要在当前环境中安装本地的 FastAPI，即在运行上述段落中的命令时添加 `-e`。
 
 ### 格式化导入
 

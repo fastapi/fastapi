@@ -106,7 +106,7 @@ Jeżeli tworzysz aplikacje <abbr title="aplikacja z interfejsem konsolowym">CLI<
 
 ## Wymagania
 
-Python 3.6+
+Python 3.7+
 
 FastAPI oparty jest na:
 
@@ -130,7 +130,7 @@ Na serwerze produkcyjnym będziesz także potrzebował serwera ASGI, np. <a href
 <div class="termy">
 
 ```console
-$ pip install uvicorn[standard]
+$ pip install "uvicorn[standard]"
 
 ---> 100%
 ```

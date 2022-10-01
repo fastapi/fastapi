@@ -13,27 +13,25 @@ jobs:
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
-          python-version: "3.6"
-      - uses: actions/cache@v2
+          python-version: "3.7"
+      - uses: actions/cache@v3
         id: cache
         with:
           path: ${{ env.pythonLocation }}
           key: ${{ runner.os }}-python-${{ env.pythonLocation }}-${{ hashFiles('pyproject.toml') }}-publish
-      - name: Install Flit
+      - name: Install build dependencies
         if: steps.cache.outputs.cache-hit != 'true'
-        run: pip install flit
-      - name: Install Dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: flit install --symlink
+        run: pip install build
+      - name: Build distribution
+        run: python -m build
       - name: Publish
-        env:
-          FLIT_USERNAME: ${{ secrets.FLIT_USERNAME }}
-          FLIT_PASSWORD: ${{ secrets.FLIT_PASSWORD }}
-        run: bash scripts/publish.sh
+        uses: pypa/gh-action-pypi-publish@v1.5.1
+        with:
+          password: ${{ secrets.PYPI_API_TOKEN }}
       - name: Dump GitHub context
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}

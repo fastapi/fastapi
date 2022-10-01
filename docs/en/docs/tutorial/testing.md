@@ -8,6 +8,11 @@ With it, you can use <a href="https://docs.pytest.org/" class="external-link" ta
 
 ## Using `TestClient`
 
+!!! info
+    To use `TestClient`, first install <a href="https://github.com/psf/requests" class="external-link" target="_blank">`requests`</a>.
+
+    E.g. `pip install requests`.
+
 Import `TestClient`.
 
 Create a `TestClient` by passing your **FastAPI** application to it.
@@ -45,7 +50,17 @@ And your **FastAPI** application might also be composed of several files/modules
 
 ### **FastAPI** app file
 
-Let's say you have a file `main.py` with your **FastAPI** app:
+Let's say you have a file structure as described in [Bigger Applications](./bigger-applications.md){.internal-link target=_blank}:
+
+```
+.
+├── app
+│   ├── __init__.py
+│   └── main.py
+```
+
+In the file `main.py` you have your **FastAPI** app:
+
 
 ```Python
 {!../../../docs_src/app_testing/main.py!}
@@ -53,17 +68,39 @@ Let's say you have a file `main.py` with your **FastAPI** app:
 
 ### Testing file
 
-Then you could have a file `test_main.py` with your tests, and import your `app` from the `main` module (`main.py`):
+Then you could have a file `test_main.py` with your tests. It could live on the same Python package (the same directory with a `__init__.py` file):
 
-```Python
+``` hl_lines="5"
+.
+├── app
+│   ├── __init__.py
+│   ├── main.py
+│   └── test_main.py
+```
+
+Because this file is in the same package, you can use relative imports to import the object `app` from the `main` module (`main.py`):
+
+```Python hl_lines="3"
 {!../../../docs_src/app_testing/test_main.py!}
 ```
+
+...and have the code for the tests just like before.
 
 ## Testing: extended example
 
 Now let's extend this example and add more details to see how to test different parts.
 
 ### Extended **FastAPI** app file
+
+Let's continue with the same file structure as before:
+
+```
+.
+├── app
+│   ├── __init__.py
+│   ├── main.py
+│   └── test_main.py
+```
 
 Let's say that now the file `main.py` with your **FastAPI** app has some other **path operations**.
 
