@@ -102,107 +102,140 @@ Para ver essa diferença, imagine a seguinte história sobre hambúrgueres:
 
 ### Hambúrgueres concorrentes
 
-Você vai com seu _crush_ :heart_eyes: na lanchonete, fica na fila enquanto o caixa pega os pedidos das pessoas na sua frente.
+Você vai com seu _crush_ 😍 na lanchonete, fica na fila enquanto o caixa pega os pedidos das pessoas na sua frente.
 
-Então chega a sua vez, você pede dois saborosos hambúrgueres para você e seu _crush_ :heart_eyes:.
+<img src="/img/async/concurrent-burgers/concurrent-burgers-01.png" class="illustration">
 
-Você paga.
+Então chega a sua vez, você pede dois saborosos hambúrgueres para você e seu _crush_. 🍔🍔
+
+<img src="/img/async/concurrent-burgers/concurrent-burgers-02.png" class="illustration">
 
 O caixa diz alguma coisa para o cara na cozinha para que ele tenha que preparar seus hambúrgueres (mesmo embora ele esteja preparando os lanches dos outros clientes).
 
+<img src="/img/async/concurrent-burgers/concurrent-burgers-03.png" class="illustration">
+
+Você paga. 💸
+
 O caixa te entrega seu número de chamada.
 
-Enquanto você espera, você vai com seu _crush_ :heart_eyes: e pega uma mesa, senta e conversa com seu _crush_ :heart_eyes: por um bom tempo (como seus hambúrgueres são muito saborosos, leva um tempo para serem preparados).
+<img src="/img/async/concurrent-burgers/concurrent-burgers-04.png" class="illustration">
 
-Enquanto você está sentado na mesa com seu _crush_ :heart_eyes:, esperando os hambúrgueres, você pode gastar o tempo admirando como lindo, maravilhoso e esperto é seu _crush_ :heart_eyes:.
+Enquanto você espera, você vai com seu _crush_ 😍 e pega uma mesa, senta e conversa com seu _crush_ 😍 por um bom tempo (como seus hambúrgueres são muito saborosos, leva um tempo para serem preparados).
 
-Enquanto espera e conversa com seu _crush_ :heart_eyes:, de tempos em tempos, você verifica o número de chamada exibido no balcão para ver se já é sua vez.
+Enquanto você está sentado na mesa com seu _crush_ 😍, esperando os hambúrgueres, você pode gastar o tempo admirando como lindo, maravilhoso e esperto é seu _crush_ ✨😍✨.
+
+<img src="/img/async/concurrent-burgers/concurrent-burgers-05.png" class="illustration">
+
+Enquanto espera e conversa com seu _crush_ 😍, de tempos em tempos, você verifica o número de chamada exibido no balcão para ver se já é sua vez.
 
 Então a certo ponto, é finalmente sua vez. Você vai no balcão, pega seus hambúrgueres e volta para a mesa.
 
-Você e seu _crush_ :heart_eyes: comem os hambúrgueres e aproveitam o tempo.
+<img src="/img/async/concurrent-burgers/concurrent-burgers-06.png" class="illustration">
+
+Você e seu _crush_ 😍 comem os hambúrgueres e aproveitam o tempo. ✨
+
+<img src="/img/async/concurrent-burgers/concurrent-burgers-07.png" class="illustration">
+
+!!! info
+    Beautiful illustrations by <a href="https://www.instagram.com/ketrinadrawsalot" class="external-link" target="_blank">Ketrina Thompson</a>. 🎨
 
 ---
 
-Imagine que você seja o computador  / programa nessa história.
+Imagine que você seja o computador  / programa 🤖 nessa história.
 
-Enquanto você está na fila, tranquilo, esperando por sua vez, não está fazendo nada "produtivo". Mas a fila é rápida porquê o caixa só está pegando os pedidos, então está tudo bem.
+Enquanto você está na fila, tranquilo, esperando por sua vez, não está fazendo nada "produtivo" 😴. Mas a fila é rápida porquê o caixa só está pegando os pedidos, então está tudo bem.
 
-Então, quando é sua vez, você faz o trabalho "produtivo" de verdade, você processa o menu, decide o que quer, pega a escolha de seu _crush_ :heart_eyes:, paga, verifica se entregou o valor correto em dinheiro ou cartão de crédito, verifica se foi cobrado corretamente, verifica se seu pedido está correto etc.
+Então, quando é sua vez, você faz o trabalho "produtivo" de verdade, você processa o menu, decide o que quer, pega a escolha de seu _crush_ 😍, paga, verifica se entregou o valor correto em dinheiro ou cartão de crédito, verifica se foi cobrado corretamente, verifica se seu pedido está correto etc.
 
-Mas então, embora você ainda não tenha os hambúrgueres, seu trabalho no caixa está "pausado", porquê você tem que esperar seus hambúrgueres estarem prontos.
+Mas então, embora você ainda não tenha os hambúrgueres, seu trabalho no caixa está "pausado" ⏸, porquê você tem que esperar 🕙 seus hambúrgueres estarem prontos.
 
-Mas enquanto você se afasta do balcão e senta na mesa com o número da sua chamada, você pode trocar sua atenção para seu _crush_ :heart_eyes:, e "trabalhar" nisso. Então você está novamente fazendo algo muito "produtivo", como flertar com seu _crush_ :heart_eyes:.
+Mas enquanto você se afasta do balcão e senta na mesa com o número da sua chamada, você pode trocar 🔀 sua atenção para seu _crush_ 😍, e "trabalhar" ⏯ 🤓 nisso. Então você está novamente fazendo algo muito "produtivo", como flertar com seu _crush_ 😍.
 
-Então o caixa diz que "seus hambúrgueres estão prontos" colocando seu número no balcão, mas você não corre que nem um maluco imediatamente quando o número exibido é o seu. Você sabe que ninguém irá roubar seus hambúrgueres porquê você tem o número de chamada, e os outros tem os números deles.
+Então o caixa diz 💁: "seus hambúrgueres estão prontos", colocando seu número no balcão, mas você não corre que nem um maluco imediatamente quando o número exibido é o seu. Você sabe que ninguém irá roubar seus hambúrgueres porquê você tem o número de chamada, e os outros tem os números deles.
 
-Então você espera que seu _crush_ :heart_eyes: termine a história que estava contando (terminar o trabalho atual / tarefa sendo processada), sorri gentilmente e diz que você está indo buscar os hambúrgueres.
+Então você espera que seu _crush_ 😍 termine a história que estava contando (terminar o trabalho atual ⏯ / tarefa sendo processada 🤓), sorri gentilmente e diz que você está indo buscar os hambúrgueres ⏸.
 
-Então você vai no balcão, para a tarefa inicial que agora está finalizada, pega os hambúrgueres, e leva para a mesa. Isso finaliza esse passo / tarefa da interação com o balcão. Agora é criada uma nova tarefa, "comer hambúrgueres", mas a tarefa anterior, "pegar os hambúrgueres" já está finalizada.
+Então você vai no balcão 🔀, para a tarefa inicial que agora está finalizada ⏯, pega os hambúrgueres, e leva para a mesa. Isso finaliza esse passo / tarefa da interação com o balcão ⏹. Agora é criada uma nova tarefa, "comer hambúrgueres" 🔀 ⏯, mas a tarefa anterior, "pegar os hambúrgueres" já está finalizada ⏹.
 
 ### Hambúrgueres paralelos
 
-Você vai com seu _crush_ :heart_eyes: em uma lanchonete paralela.
+Você vai com seu _crush_ 😍 em uma lanchonete paralela.
 
 Você fica na fila enquanto alguns (vamos dizer 8) caixas pegam os pedidos das pessoas na sua frente.
 
 Todo mundo antes de você está esperando pelos hambúrgueres estarem prontos antes de deixar o caixa porquê cada um dos 8 caixas vai e prepara o hambúrguer antes de pegar o próximo pedido.
 
-Então é finalmente sua vez, e pede 2 hambúrgueres muito saborosos para você e seu _crush_ :heart_eyes:.
+<img src="/img/async/parallel-burgers/parallel-burgers-01.png" class="illustration">
 
-Você paga.
+Então é finalmente sua vez, e pede 2 hambúrgueres muito saborosos para você e seu _crush_ 😍.
+
+Você paga 💸.
+
+<img src="/img/async/parallel-burgers/parallel-burgers-02.png" class="illustration">
 
 O caixa vai para a cozinha.
 
-Você espera, na frente do balcão, para que ninguém pegue seus hambúrgueres antes de você, já que não tem números de chamadas.
+Você espera, na frente do balcão 🕙, para que ninguém pegue seus hambúrgueres antes de você, já que não tem números de chamadas.
 
-Enquanto você e seu _crush_ :heart_eyes: estão ocupados não permitindo que ninguém passe a frente e pegue seus hambúrgueres assim que estiverem prontos, você não pode dar atenção ao seu _crush_ :heart_eyes:.
+<img src="/img/async/parallel-burgers/parallel-burgers-03.png" class="illustration">
 
-Isso é trabalho "síncrono", você está "sincronizado" com o caixa / cozinheiro. Você tem que esperar e estar lá no exato momento que o caixa / cozinheiro terminar os hambúrgueres e dá-los a você, ou então, outro alguém pode pegá-los.
+Enquanto você e seu _crush_ estão ocupados não permitindo que ninguém passe a frente e pegue seus hambúrgueres assim que estiverem prontos, você não pode dar atenção ao seu _crush_ 😞.
 
-Então seu caixa / cozinheiro finalmente volta com seus hambúrgueres, depois de um longo tempo esperando por eles em frente ao balcão.
+Isso é trabalho "síncrono", você está "sincronizado" com o caixa / cozinheiro 👨‍🍳. Você tem que esperar 🕙 e estar lá no exato momento que o caixa / cozinheiro 👨‍🍳 terminar os hambúrgueres e dá-los a você, ou então, outro alguém pode pegá-los.
 
-Você pega seus hambúrgueres e vai para a mesa com seu _crush_ :heart_eyes:.
+<img src="/img/async/parallel-burgers/parallel-burgers-04.png" class="illustration">
 
-Vocês comem os hambúrgueres, e o trabalho está terminado.
+Então seu caixa / cozinheiro 👨‍🍳 finalmente volta com seus hambúrgueres, depois de um longo tempo esperando 🕙 por eles em frente ao balcão.
 
-Não houve muita conversa ou flerte já que a maior parte do tempo foi gasto esperando os lanches na frente do balcão.
+<img src="/img/async/parallel-burgers/parallel-burgers-05.png" class="illustration">
+
+Você pega seus hambúrgueres e vai para a mesa com seu _crush_.
+
+Vocês apenas comem os hambúrgueres, e o trabalho está terminado. ⏹
+
+<img src="/img/async/parallel-burgers/parallel-burgers-06.png" class="illustration">
+
+Não houve muita conversa ou flerte já que a maior parte do tempo foi gasto esperando 🕙 os lanches na frente do balcão. 😞
+
+
+!!! info
+    Beautiful illustrations by <a href="https://www.instagram.com/ketrinadrawsalot" class="external-link" target="_blank">Ketrina Thompson</a>. 🎨
 
 ---
 
-Nesse cenário dos hambúrgueres paralelos, você é um computador / programa com dois processadores (você e seu _crush_ :heart_eyes:), ambos esperando e dedicando a atenção de estar "esperando no balcão" por um bom tempo.
+Nesse cenário dos hambúrgueres paralelos, você é um computador / programa 🤖 com dois processadores (você e seu _crush_), ambos esperando 🕙 e dedicando a atenção ⏯ de estar "esperando no balcão" 🕙 por um bom tempo.
 
 A lanchonete paralela tem 8 processadores (caixas / cozinheiros). Enquanto a lanchonete dos hambúrgueres concorrentes tinham apenas 2 (um caixa e um cozinheiro).
 
-Ainda assim, a última experiência não foi a melhor.
+Ainda assim, a última experiência não foi a melhor. 😞
 
 ---
 
-Essa poderia ser a história paralela equivalente aos hambúrgueres.
+Essa poderia ser a história paralela equivalente aos hambúrgueres. 🍔
 
 Para um exemplo "mais real", imagine um banco.
 
-Até recentemente, a maioria dos bancos tinha muitos caixas e uma grande fila.
+Até recentemente, a maioria dos bancos tinha muitos caixas 👨‍💼👨‍💼👨‍💼👨‍💼 e uma grande fila 🕙🕙🕙🕙🕙🕙🕙🕙.
 
-Todos os caixas fazendo todo o trabalho, um cliente após o outro.
+Todos os caixas fazendo todo o trabalho, um cliente após o outro 👨‍💼⏯.
 
-E você tinha que esperar na fila por um longo tempo ou poderia perder a vez.
+E você tinha que esperar 🕙 na fila por um longo tempo ou poderia perder a vez.
 
-Você provavelmente não gostaria de levar seu _crush_ :heart_eyes: com você para um rolezinho no banco.
+Você provavelmente não gostaria de levar seu _crush_ 😍 com você para um rolezinho no banco 🏦.
 
 ### Conclusão dos hambúrgueres
 
-Nesse cenário dos "hambúrgueres com seu _crush_ :heart_eyes:", como tem muita espera, faz mais sentido ter um sistema concorrente.
+Nesse cenário dos "hambúrgueres com seu _crush_ 😍", como tem muita espera 🕙, faz mais sentido ter um sistema **concorrente** ⏸🔀⏯.
 
 Esse é o caso da maioria das aplicações web.
 
-Geralmente são muitos usuários, e seu servidor está esperando pelas suas conexões não tão boas para enviar as requisições.
+Geralmente são muitos usuários, e seu servidor está esperando 🕙 pelas suas conexões não tão boas para enviar as requisições.
 
-E então esperando novamente pelas respostas voltarem.
+E então esperando 🕙 novamente pelas respostas voltarem.
 
-Essa "espera" é medida em microssegundos, e ainda assim, somando tudo, é um monte de espera no final.
+Essa "espera" 🕙 é medida em microssegundos, e ainda assim, somando tudo, é um monte de espera no final.
 
-Por isso que faz muito mais sentido utilizar código assíncrono para APIs web.
+Por isso que faz muito mais sentido utilizar código assíncrono ⏸🔀⏯ para APIs web.
 
 A maioria dos frameworks Python existentes mais populares (incluindo Flask e Django) foram criados antes que os novos recursos assíncronos existissem em Python. Então, os meios que eles podem ser colocados em produção para suportar execução paralela mais a forma antiga de execução assíncrona não são tão poderosos quanto as novas capacidades.
 
@@ -228,9 +261,9 @@ Então, para equilibrar tudo, imagine a seguinte historinha:
 
 ---
 
-Não há espera em lugar algum, apenas um monte de trabalho para ser feito, em múltiplos cômodos da casa.
+Não há espera 🕙 em lugar algum, apenas um monte de trabalho para ser feito, em múltiplos cômodos da casa.
 
-Você poderia ter chamadas como no exemplo dos hambúrgueres, primeiro a sala de estar, então a cozinha, mas você não está esperando por nada, apenas limpar e limpar, as chamadas não afetariam em nada.
+Você poderia ter chamadas como no exemplo dos hambúrgueres, primeiro a sala de estar, então a cozinha, mas você não está esperando 🕙 por nada, apenas limpar e limpar, as chamadas não afetariam em nada.
 
 Levaria o mesmo tempo para finalizar com ou sem chamadas (concorrência) e você teria feito o mesmo tanto de trabalho.
 
@@ -238,7 +271,7 @@ Mas nesse caso, se você trouxesse os 8 ex-caixas / cozinheiros / agora-faxineir
 
 Nesse cenário, cada um dos faxineiros (incluindo você) poderia ser um processador, fazendo a sua parte do trabalho.
 
-E a maior parte do tempo de execução é tomada por trabalho (ao invés de ficar esperando), e o trabalho em um computador é feito pela <abbr title="Unidade de Processamento Central">CPU</abbr>, que podem gerar problemas que são chamados de "limite de CPU".
+E a maior parte do tempo de execução é tomada por trabalho (ao invés de ficar esperando 🕙), e o trabalho em um computador é feito pela <abbr title="Unidade de Processamento Central">CPU</abbr>, que podem gerar problemas que são chamados de "limite de CPU".
 
 ---
 
@@ -273,7 +306,7 @@ Quando tem uma operação que exigirá espera antes de dar os resultados e tem s
 burgers = await get_burgers(2)
 ```
 
-A chave aqui é o `await`. Ele diz ao Python que ele tem que esperar por `get_burgers(2)` para finalizar suas coisas antes de armazenar os resultados em `burgers`. Com isso, o Python saberá que ele pode ir e fazer outras coisas nesse meio tempo (como receber outra requisição).
+A chave aqui é o `await`. Ele diz ao Python que ele tem que esperar ⏸ por `get_burgers(2)` para finalizar suas coisas 🕙 antes de armazenar os resultados em `burgers`. Com isso, o Python saberá que ele pode ir e fazer outras coisas 🔀 ⏯ nesse meio tempo (como receber outra requisição).
 
 Para o `await` funcionar, tem que estar dentro de uma função que suporte essa assincronicidade. Para fazer isso, apenas declare a função com `async def`:
 
@@ -292,7 +325,7 @@ def get_sequential_burgers(number: int):
     return burgers
 ```
 
-Com `async def`, o Python sabe que, dentro dessa função, tem que estar ciente das expressões `await`, e que isso pode "pausar" a execução dessa função, e poderá fazer outra coisa antes de voltar.
+Com `async def`, o Python sabe que, dentro dessa função, tem que estar ciente das expressões `await`, e que isso pode "pausar" ⏸ a execução dessa função, e poderá fazer outra coisa 🔀 antes de voltar.
 
 Quando você quiser chamar uma função `async def`, você tem que "esperar". Então, isso não funcionará:
 
@@ -340,7 +373,7 @@ Nas versões anteriores do NodeJS / Navegador JavaScript, você poderia utilizar
 
 ## Corrotinas
 
-**Corrotina** é apenas um jeito bonitinho para a coisa que é retornada de uma função `async def`. O Python sabe que é uma função que pode começar e terminar em algum ponto, mas que pode ser pausada internamente também, sempre que tiver um `await` dentro dela.
+**Corrotina** é apenas um jeito bonitinho para a coisa que é retornada de uma função `async def`. O Python sabe que é uma função que pode começar e terminar em algum ponto, mas que pode ser pausada ⏸ internamente também, sempre que tiver um `await` dentro dela.
 
 Mas toda essa funcionalidade de código assíncrono com `async` e `await` é muitas vezes resumida como "corrotina". É comparável ao principal recurso chave do Go, a "Gorotina".
 
@@ -350,7 +383,7 @@ Vamos ver a mesma frase com o conteúdo cima:
 
 > Versões modernas do Python tem suporte para **"código assíncrono"** usando algo chamado **"corrotinas"**, com sintaxe **`async` e `await`**.
 
-Isso pode fazer mais sentido agora.
+Isso pode fazer mais sentido agora. ✨
 
 Tudo isso é o que deixa o FastAPI poderoso (através do Starlette) e que o faz ter uma performance impressionante.
 
