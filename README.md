@@ -17,6 +17,11 @@
 <a href="https://pypi.org/project/fastapi" target="_blank">
     <img src="https://img.shields.io/pypi/pyversions/fastapi.svg?color=%2334D058" alt="Supported Python versions">
 </a>
+<!-->
+<a href="https://hub.docker.com/repository/docker/djlouden/fastapi" target="_blank">
+    <img src="https://img.shields.io/docker/pulls/djlouden/fastapi?color=%2334D058&label=Docker%20Pulls" alt="Docker Pulls">
+</a>
+<-->
 </p>
 
 ---
@@ -143,6 +148,41 @@ $ pip install "uvicorn[standard]"
 
 </div>
 
+### Docker
+You can use docker and docker compose to create a container with the server viewable at localhost:8000
+
+- Install [Docker Desktop](https://docs.docker.com/get-docker/) or [Docker Engine](https://docs.docker.com/engine/install/)
+- Install [Docker Compose](https://docs.docker.com/compose/install/)
+
+Review the [Dockerfile](Dockerfile) and [docker-compose.yml](docker-compose.yml).
+
+#### Docker Commands
+```
+# Build a docker image from the Dockerfile
+$ docker build -t fastapi:python3-alpine .
+
+# Run a docker container from the newly built image
+$ docker run -it -rm --name FastAPI -p 8000:8000 -w /usr/src/app/tests fastapi:python3-alpine uvicorn --host 0.0.0.0 main:app --reload
+```
+
+or
+
+```
+# Pull a prebuilt image from dockerhub: https://hub.docker.com/repository/docker/djlouden/fastapi
+$ docker pull djlouden/fastapi
+
+# Run a docker container from the newly built image
+$ docker run -it -rm --name FastAPI -p 8000:8000 -w /usr/src/app/tests fastapi:python3-alpine uvicorn --host 0.0.0.0 main:app --reload
+```
+### Docker Compose Commands
+```
+# Docker Compose pulls/builds and runs the container in one command
+$ docker-compose up -d
+
+# Tear down container
+$ docker-compsoe down
+```
+
 ## Example
 
 ### Create it
@@ -159,12 +199,12 @@ app = FastAPI()
 
 @app.get("/")
 def read_root():
-    return {"Hello": "World"}
+  return {"Hello": "World"}
 
 
 @app.get("/items/{item_id}")
 def read_item(item_id: int, q: Union[str, None] = None):
-    return {"item_id": item_id, "q": q}
+  return {"item_id": item_id, "q": q}
 ```
 
 <details markdown="1">
@@ -345,28 +385,28 @@ item: Item
 ...and with that single declaration you get:
 
 * Editor support, including:
-    * Completion.
-    * Type checks.
+  * Completion.
+  * Type checks.
 * Validation of data:
-    * Automatic and clear errors when the data is invalid.
-    * Validation even for deeply nested JSON objects.
+  * Automatic and clear errors when the data is invalid.
+  * Validation even for deeply nested JSON objects.
 * <abbr title="also known as: serialization, parsing, marshalling">Conversion</abbr> of input data: coming from the network to Python data and types. Reading from:
-    * JSON.
-    * Path parameters.
-    * Query parameters.
-    * Cookies.
-    * Headers.
-    * Forms.
-    * Files.
+  * JSON.
+  * Path parameters.
+  * Query parameters.
+  * Cookies.
+  * Headers.
+  * Forms.
+  * Files.
 * <abbr title="also known as: serialization, parsing, marshalling">Conversion</abbr> of output data: converting from Python data and types to network data (as JSON):
-    * Convert Python types (`str`, `int`, `float`, `bool`, `list`, etc).
-    * `datetime` objects.
-    * `UUID` objects.
-    * Database models.
-    * ...and many more.
+  * Convert Python types (`str`, `int`, `float`, `bool`, `list`, etc).
+  * `datetime` objects.
+  * `UUID` objects.
+  * Database models.
+  * ...and many more.
 * Automatic interactive API documentation, including 2 alternative user interfaces:
-    * Swagger UI.
-    * ReDoc.
+  * Swagger UI.
+  * ReDoc.
 
 ---
 
@@ -374,19 +414,19 @@ Coming back to the previous code example, **FastAPI** will:
 
 * Validate that there is an `item_id` in the path for `GET` and `PUT` requests.
 * Validate that the `item_id` is of type `int` for `GET` and `PUT` requests.
-    * If it is not, the client will see a useful, clear error.
+  * If it is not, the client will see a useful, clear error.
 * Check if there is an optional query parameter named `q` (as in `http://127.0.0.1:8000/items/foo?q=somequery`) for `GET` requests.
-    * As the `q` parameter is declared with `= None`, it is optional.
-    * Without the `None` it would be required (as is the body in the case with `PUT`).
+  * As the `q` parameter is declared with `= None`, it is optional.
+  * Without the `None` it would be required (as is the body in the case with `PUT`).
 * For `PUT` requests to `/items/{item_id}`, Read the body as JSON:
-    * Check that it has a required attribute `name` that should be a `str`.
-    * Check that it has a required attribute `price` that has to be a `float`.
-    * Check that it has an optional attribute `is_offer`, that should be a `bool`, if present.
-    * All this would also work for deeply nested JSON objects.
+  * Check that it has a required attribute `name` that should be a `str`.
+  * Check that it has a required attribute `price` that has to be a `float`.
+  * Check that it has an optional attribute `is_offer`, that should be a `bool`, if present.
+  * All this would also work for deeply nested JSON objects.
 * Convert from and to JSON automatically.
 * Document everything with OpenAPI, that can be used by:
-    * Interactive documentation systems.
-    * Automatic client code generation systems, for many languages.
+  * Interactive documentation systems.
+  * Automatic client code generation systems, for many languages.
 * Provide 2 interactive documentation web interfaces directly.
 
 ---
@@ -426,11 +466,11 @@ For a more complete example including more features, see the <a href="https://fa
 * More advanced (but equally easy) techniques for declaring **deeply nested JSON models** (thanks to Pydantic).
 * **GraphQL** integration with <a href="https://strawberry.rocks" class="external-link" target="_blank">Strawberry</a> and other libraries.
 * Many extra features (thanks to Starlette) as:
-    * **WebSockets**
-    * extremely easy tests based on `requests` and `pytest`
-    * **CORS**
-    * **Cookie Sessions**
-    * ...and more.
+  * **WebSockets**
+  * extremely easy tests based on `requests` and `pytest`
+  * **CORS**
+  * **Cookie Sessions**
+  * ...and more.
 
 ## Performance
 
