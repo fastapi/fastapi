@@ -1,0 +1,23 @@
+---
+version: "3"
+
+services:
+
+  ## Gives error on first build (compose tries to pull?) but still works.
+  # fastapi:
+  #   build: .
+  #   container_name: fastapi
+  #   image: fastapi:python3-apline
+  #   ports:
+  #     - 8000:8000
+  #   working_dir: /usr/src/app/tests
+  #   command: uvicorn --host 0.0.0.0 main:app --reload
+
+  # Use prebuilt image
+  fastapi:
+    container_name: fastapi
+    image: djlouden/fastapi:python3-alpine
+    ports:
+      - 8000:8000
+    working_dir: /usr/src/app/tests
+    command: uvicorn --host 0.0.0.0 main:app --reload
