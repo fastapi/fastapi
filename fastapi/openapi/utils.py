@@ -20,6 +20,7 @@ from fastapi.dependencies.utils import (
     _get_flat_fields_from_params,
     get_flat_dependant,
     get_flat_params,
+    get_resolved_dependant,
 )
 from fastapi.encoders import jsonable_encoder
 from fastapi.openapi.constants import METHODS_WITH_BODY, REF_PREFIX, REF_TEMPLATE
@@ -256,8 +257,17 @@ def get_openapi_path(
             operation = get_openapi_operation_metadata(
                 route=route, method=method, operation_ids=operation_ids
             )
+            dependency_overrides = None
+            if route.dependency_overrides_provider:
+                dependency_overrides = (
+                    route.dependency_overrides_provider.dependency_overrides
+                )
+            dependant = get_resolved_dependant(
+                dependant=route.dependant,
+                dependency_overrides=dependency_overrides,
+            )
             parameters: List[Dict[str, Any]] = []
-            flat_dependant = get_flat_dependant(route.dependant, skip_repeats=True)
+            flat_dependant = get_flat_dependant(dependant, skip_repeats=True)
             security_definitions, operation_security = get_openapi_security_definitions(
                 flat_dependant=flat_dependant
             )
@@ -265,8 +275,14 @@ def get_openapi_path(
                 operation.setdefault("security", []).extend(operation_security)
             if security_definitions:
                 security_schemes.update(security_definitions)
+<<<<<<< HEAD
             operation_parameters = _get_openapi_operation_parameters(
                 dependant=route.dependant,
+=======
+            all_route_params = get_flat_params(dependant)
+            operation_parameters = get_openapi_operation_parameters(
+                all_route_params=all_route_params,
+>>>>>>> 022f1e79 (Fix openapi document with dependencies override (#5451))
                 schema_generator=schema_generator,
                 model_name_map=model_name_map,
                 field_mapping=field_mapping,

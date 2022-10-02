@@ -113,6 +113,7 @@ def get_param_sub_dependant(
     depends: params.Depends,
     path: str,
     security_scopes: Optional[List[str]] = None,
+    dependency_overrides: Optional[Dict[Callable[..., Any], Callable[..., Any]]] = None,
 ) -> Dependant:
     assert depends.dependency
     return get_sub_dependant(
@@ -121,6 +122,7 @@ def get_param_sub_dependant(
         path=path,
         name=param_name,
         security_scopes=security_scopes,
+        dependency_overrides=dependency_overrides,
     )
 
 
@@ -138,7 +140,9 @@ def get_sub_dependant(
     path: str,
     name: Optional[str] = None,
     security_scopes: Optional[List[str]] = None,
+    dependency_overrides: Optional[Dict[Callable[..., Any], Callable[..., Any]]] = None,
 ) -> Dependant:
+    dependency = (dependency_overrides or {}).get(dependency, dependency)
     security_requirement = None
     security_scopes = security_scopes or []
     if isinstance(depends, params.Security):
@@ -157,6 +161,7 @@ def get_sub_dependant(
         name=name,
         security_scopes=security_scopes,
         use_cache=depends.use_cache,
+        dependency_overrides=dependency_overrides,
     )
     if security_requirement:
         sub_dependant.security_requirements.append(security_requirement)
@@ -254,6 +259,46 @@ def get_typed_return_annotation(call: Callable[..., Any]) -> Any:
     return get_typed_annotation(annotation, globalns)
 
 
+def get_resolved_dependant(
+    *,
+    dependant: Dependant,
+    dependency_overrides: Optional[Dict[Callable[..., Any], Callable[..., Any]]] = None,
+) -> Dependant:
+    new_call = call = dependant.call
+    if call:
+        new_call = (dependency_overrides or {}).get(call)
+    if new_call:
+        resolved_dependant = get_dependant(
+            path=dependant.path or "",
+            call=new_call,
+            name=dependant.name,
+            security_scopes=dependant.security_scopes,
+            use_cache=False,
+            dependency_overrides=dependency_overrides,
+        )
+    else:
+        resolved_dependant = Dependant(
+            call=dependant.call,
+            name=dependant.name,
+            path=dependant.path,
+            security_scopes=dependant.security_scopes,
+            use_cache=False,
+            path_params=dependant.path_params.copy(),
+            query_params=dependant.query_params.copy(),
+            header_params=dependant.header_params.copy(),
+            cookie_params=dependant.cookie_params.copy(),
+            body_params=dependant.body_params.copy(),
+            security_schemes=dependant.security_requirements.copy(),
+        )
+    for sub_dependant in dependant.dependencies:
+        resolved_dependant.dependencies.append(
+            get_resolved_dependant(
+                dependant=sub_dependant, dependency_overrides=dependency_overrides
+            )
+        )
+    return resolved_dependant
+
+
 def get_dependant(
     *,
     path: str,
@@ -261,7 +306,9 @@ def get_dependant(
     name: Optional[str] = None,
     security_scopes: Optional[List[str]] = None,
     use_cache: bool = True,
+    dependency_overrides: Optional[Dict[Callable[..., Any], Callable[..., Any]]] = None,
 ) -> Dependant:
+    call = (dependency_overrides or {}).get(call, call)
     path_param_names = get_path_param_names(path)
     endpoint_signature = get_typed_signature(call)
     signature_params = endpoint_signature.parameters
@@ -286,6 +333,7 @@ def get_dependant(
                 depends=param_details.depends,
                 path=path,
                 security_scopes=security_scopes,
+                dependency_overrides=dependency_overrides,
             )
             dependant.dependencies.append(sub_dependant)
             continue
