@@ -17,11 +17,11 @@
 <a href="https://pypi.org/project/fastapi" target="_blank">
     <img src="https://img.shields.io/pypi/pyversions/fastapi.svg?color=%2334D058" alt="Supported Python versions">
 </a>
-<!-->
+<!--
 <a href="https://hub.docker.com/repository/docker/djlouden/fastapi" target="_blank">
     <img src="https://img.shields.io/docker/pulls/djlouden/fastapi?color=%2334D058&label=Docker%20Pulls" alt="Docker Pulls">
 </a>
-<-->
+-->
 </p>
 
 ---
