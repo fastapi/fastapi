@@ -8,7 +8,7 @@ Vous pouvez déclarer des "paramètres" ou "variables" de chemin avec la même s
 {!../../../docs_src/path_params/tutorial001.py!}
 ```
 
-La valeur du paramètre `item_id` sera transmise à la fonction dans l'argument `item_id`. 
+La valeur du paramètre `item_id` sera transmise à la fonction dans l'argument `item_id`.
 
 Donc, si vous exécutez cet exemple et allez sur <a href="http://127.0.0.1:8000/items/foo" class="external-link" target="_blank">http://127.0.0.1:8000/items/foo</a>,
 vous verrez comme réponse :
@@ -44,7 +44,7 @@ Si vous exécutez cet exemple et allez sur <a href="http://127.0.0.1:8000/items/
     Comme vous l'avez remarqué, la valeur reçue par la fonction (et renvoyée ensuite) est `3`,
     en tant qu'entier (`int`) Python, pas la chaîne de caractères (`string`) `"3"`.
 
-    Grâce aux déclarations de types, **FastAPI** fournit du 
+    Grâce aux déclarations de types, **FastAPI** fournit du
     <abbr title="conversion de la chaîne de caractères venant de la requête HTTP en données Python">"parsing"</abbr> automatique.
 
 ## Validation de données
@@ -91,7 +91,7 @@ documentation générée automatiquement et interactive :
 
     On voit bien dans la documentation que `item_id` est déclaré comme entier.
 
-## Les avantages d'avoir une documentation basée sur une norme, et la documentation alternative. 
+## Les avantages d'avoir une documentation basée sur une norme, et la documentation alternative.
 
 Le schéma généré suivant la norme <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md" class="external-link" target="_blank">OpenAPI</a>,
 il existe de nombreux outils compatibles.
@@ -102,7 +102,7 @@ sur <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">
 <img src="/img/tutorial/path-params/image02.png">
 
 De la même façon, il existe bien d'autres outils compatibles, y compris des outils de génération de code
-pour de nombreux langages. 
+pour de nombreux langages.
 
 ## Pydantic
 

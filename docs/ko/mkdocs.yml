@@ -5,13 +5,15 @@ theme:
   name: material
   custom_dir: overrides
   palette:
-  - scheme: default
+  - media: '(prefers-color-scheme: light)'
+    scheme: default
     primary: teal
     accent: amber
     toggle:
       icon: material/lightbulb
       name: Switch to light mode
-  - scheme: slate
+  - media: '(prefers-color-scheme: dark)'
+    scheme: slate
     primary: teal
     accent: amber
     toggle:
@@ -20,6 +22,7 @@ theme:
   features:
   - search.suggest
   - search.highlight
+  - content.tabs.link
   icon:
     repo: fontawesome/brands/github-alt
   logo: https://fastapi.tiangolo.com/img/icon-white.svg
@@ -39,15 +42,19 @@ nav:
   - az: /az/
   - de: /de/
   - es: /es/
+  - fa: /fa/
   - fr: /fr/
+  - he: /he/
   - id: /id/
   - it: /it/
   - ja: /ja/
   - ko: /ko/
+  - nl: /nl/
   - pl: /pl/
   - pt: /pt/
   - ru: /ru/
   - sq: /sq/
+  - sv: /sv/
   - tr: /tr/
   - uk: /uk/
   - zh: /zh/
@@ -61,6 +68,7 @@ nav:
   - tutorial/response-status-code.md
   - tutorial/request-files.md
   - tutorial/request-forms-and-files.md
+  - tutorial/encoder.md
 markdown_extensions:
 - toc:
     permalink: true
@@ -78,6 +86,8 @@ markdown_extensions:
       format: !!python/name:pymdownx.superfences.fence_code_format ''
 - pymdownx.tabbed:
     alternate_style: true
+- attr_list
+- md_in_html
 extra:
   analytics:
     provider: google
@@ -106,8 +116,12 @@ extra:
     name: de
   - link: /es/
     name: es - español
+  - link: /fa/
+    name: fa
   - link: /fr/
     name: fr - français
+  - link: /he/
+    name: he
   - link: /id/
     name: id
   - link: /it/
@@ -116,6 +130,8 @@ extra:
     name: ja - 日本語
   - link: /ko/
     name: ko - 한국어
+  - link: /nl/
+    name: nl
   - link: /pl/
     name: pl
   - link: /pt/
@@ -124,6 +140,8 @@ extra:
     name: ru - русский язык
   - link: /sq/
     name: sq - shqip
+  - link: /sv/
+    name: sv - svenska
   - link: /tr/
     name: tr - Türkçe
   - link: /uk/
