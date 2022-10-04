@@ -291,14 +291,14 @@ class APIWebSocketRoute(routing.WebSocketRoute):
         path: str,
         endpoint: Callable[..., Any],
         *,
-        dependencies: Optional[Sequence[params.Depends]] = None,
         name: Optional[str] = None,
+        dependencies: Optional[Sequence[params.Depends]] = None,
         dependency_overrides_provider: Optional[Any] = None,
     ) -> None:
         self.path = path
         self.endpoint = endpoint
-        self.dependencies = dependencies or []
         self.name = get_name(endpoint) if name is None else name
+        self.dependencies = dependencies or []
         self.path_regex, self.path_format, self.param_convertors = compile_path(path)
         self.dependant = get_dependant(path=self.path_format, call=self.endpoint)
         for depends in self.dependencies[::-1]:
@@ -663,9 +663,9 @@ class APIRouter(routing.Router):
         self,
         path: str,
         endpoint: Callable[..., Any],
+        name: Optional[str] = None,
         *,
         dependencies: Optional[Sequence[params.Depends]] = None,
-        name: Optional[str] = None,
     ) -> None:
         current_dependencies = list(self.dependencies)
         if dependencies:
@@ -675,17 +675,17 @@ class APIRouter(routing.Router):
             self.prefix + path,
             endpoint=endpoint,
             name=name,
-            dependency_overrides_provider=self.dependency_overrides_provider,
             dependencies=current_dependencies,
+            dependency_overrides_provider=self.dependency_overrides_provider,
         )
         self.routes.append(route)
 
     def websocket(
         self,
         path: str,
+        name: Optional[str] = None,
         *,
         dependencies: Optional[Sequence[params.Depends]] = None,
-        name: Optional[str] = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         def decorator(func: DecoratedCallable) -> DecoratedCallable:
             self.add_api_websocket_route(
