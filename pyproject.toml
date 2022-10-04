@@ -66,6 +66,7 @@ test = [
     "python-multipart >=0.0.5,<0.0.6",
     "flask >=1.1.2,<3.0.0",
     "anyio[trio] >=3.2.1,<4.0.0",
+    "trio < 0.22.0",
     "python-jose[cryptography] >=3.3.0,<4.0.0",
     "pyyaml >=5.3.1,<7.0.0",
     "passlib[bcrypt] >=1.7.2,<2.0.0",
