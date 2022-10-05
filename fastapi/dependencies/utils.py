@@ -2,11 +2,7 @@ import dataclasses
 import inspect
 from contextlib import contextmanager
 from copy import deepcopy
-from types import (
-    BuiltinFunctionType,
-    FunctionType,
-    MethodType,
-)
+from types import BuiltinFunctionType, FunctionType, MethodType
 from typing import (
     Any,
     Callable,
