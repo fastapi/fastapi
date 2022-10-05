@@ -26,6 +26,9 @@ Será:
 - Retorna el código de estado en la respuesta.
 - Documentado como en el OpenAPI schema (además, en la interfaz de usuario):
 
+![image](https://user-images.githubusercontent.com/70811425/194106058-239f3547-e430-4d72-bb61-df7cf8dd2acb.png)
+
+
 !!! note Algunos códigos de respuesta (ve la siguiente sección) indica que la respuesta no tiene cuerpo.
 
 ``
@@ -82,7 +85,7 @@ Puedes usar las convenientes variables desde `fastapi.status`.
 
 Son tan convenientes, mantienen el mismo número, pero puedes usar el autocompletado del editor para encontrarlas:
 
-[imagen]
+![image](https://user-images.githubusercontent.com/70811425/194105942-a95651b0-fe60-4c3a-b166-999a077886d5.png)
 
 !!! note "Detalles técnicos" Podrías usar también `from starlette import status`.
 
