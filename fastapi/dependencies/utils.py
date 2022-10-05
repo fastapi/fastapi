@@ -2,12 +2,16 @@ import dataclasses
 import inspect
 from contextlib import contextmanager
 from copy import deepcopy
+from types import (
+    BuiltinFunctionType,
+    FunctionType,
+    MethodType,
+)
 from typing import (
     Any,
     Callable,
     Coroutine,
     Dict,
-    ForwardRef,
     List,
     Mapping,
     Optional,
@@ -16,6 +20,7 @@ from typing import (
     Type,
     Union,
     cast,
+    get_type_hints,
 )
 
 import anyio
@@ -48,7 +53,6 @@ from pydantic.fields import (
     Undefined,
 )
 from pydantic.schema import get_annotation_from_field_info
-from pydantic.typing import evaluate_forwardref
 from pydantic.utils import lenient_issubclass
 from starlette.background import BackgroundTasks
 from starlette.concurrency import run_in_threadpool
@@ -247,26 +251,25 @@ def is_scalar_sequence_field(field: ModelField) -> bool:
 
 def get_typed_signature(call: Callable[..., Any]) -> inspect.Signature:
     signature = inspect.signature(call)
-    globalns = getattr(call, "__globals__", {})
+    is_true_function = (
+        isinstance(call, FunctionType)
+        or isinstance(call, MethodType)
+        or isinstance(call, BuiltinFunctionType)
+    )
+    true_call = call if is_true_function else call.__call__
+    type_hints = get_type_hints(true_call)
     typed_params = [
         inspect.Parameter(
             name=param.name,
             kind=param.kind,
             default=param.default,
-            annotation=get_typed_annotation(param, globalns),
+            annotation=type_hints[param.name],
         )
         for param in signature.parameters.values()
     ]
-    typed_signature = inspect.Signature(typed_params)
+    return_type = type_hints.get("return", Any)
+    typed_signature = inspect.Signature(typed_params, return_annotation=return_type)
     return typed_signature
-
-
-def get_typed_annotation(param: inspect.Parameter, globalns: Dict[str, Any]) -> Any:
-    annotation = param.annotation
-    if isinstance(annotation, str):
-        annotation = ForwardRef(annotation)
-        annotation = evaluate_forwardref(annotation, globalns, globalns)
-    return annotation
 
 
 def get_dependant(
