@@ -252,7 +252,13 @@ def get_typed_signature(call: Callable[..., Any]) -> inspect.Signature:
         or isinstance(call, MethodType)
         or isinstance(call, BuiltinFunctionType)
     )
-    true_call = call if is_true_function else call.__call__  # type: ignore
+    if is_true_function:
+        true_call = call
+    else:
+        if hasattr(call, "__init__"):
+            true_call = call.__init__
+        else:
+            true_call = call.__call__  # type: ignore
     type_hints = get_type_hints(true_call)
     typed_params = [
         inspect.Parameter(
