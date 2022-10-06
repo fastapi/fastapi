@@ -19,7 +19,6 @@
 </a>
 </p>
 
-
 ---
 
 **Documentation**: <a href="https://fastapi.tiangolo.com" target="_blank">https://fastapi.tiangolo.com</a>
