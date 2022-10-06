@@ -1,6 +1,6 @@
 # Response Status Code
 
-De la misma manera que puedes especificar un modelo de respuesta, también puedes declarar codigos de estado HTTP 
+De la misma manera que puedes especificar un modelo de respuesta, también puedes declarar codigos de estado HTTP
 usados para la respuesta con el parametro `status_code` en cualquiera de los *path operations*:
 
 - `@app.get()`
@@ -51,18 +51,18 @@ En resumen:
       - Otro ejemplo sería `201`, "Creado". Es comúnmente usado después de crear una observación en la base de datos.
       - `204` es un caso especial, "Sin contenido". Esta respuesta es usada cuando no hay contenido de retorno por parte del cliente,
       y la respuesta no debe tener cuerpo.
-      
+
 - `300` en adelante son para "Redirección". Respuestas con estos códigos de estado pueden o no tener body, excepto para `304`, "No Modificado",
   el cual no debe tener body.
 
 - `400` en adelante son para respuestas para `Error del Cliente`. Estos son el segundo tipo de codigós que más usarás.
      - Un ejemplo es `404`, para respuesta de "No encontrado".
      - Para errores genéricos desde el cliente, puedes usar `400`.
-      
+
 - `500` en adelante son para errores del servidor. Tú nunca los usas directamente. Cuando algo sale mal en alguna parte del código de tu aplicación,
   o en el servidor, automáticamente retornará uno de estos códigos.
-  
-!!! tip Para saber más acerca de estos códigos de estado y cuál código se usa para cada caso, revisa el 
+
+!!! tip Para saber más acerca de estos códigos de estado y cuál código se usa para cada caso, revisa el
 [MDN documentation about HTTP status codes](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status).
 
 # Atajos para recordar los nombres
@@ -97,5 +97,3 @@ Son tan convenientes, mantienen el mismo número, pero puedes usar el autocomple
 # Cambiando el por defecto
 
 Después, en la [Guía Avanzada de Usuario](https://github.com/carlosm27/fastapi/blob/master/docs/en/docs/advanced/response-change-status-code.md), verás cómo retornar diferentes códigos de estado que los de por defecto declaras aquí.
-
-
