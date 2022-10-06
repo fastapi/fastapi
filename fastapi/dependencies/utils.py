@@ -254,7 +254,7 @@ def get_typed_signature(call: Callable[..., Any]) -> inspect.Signature:
     )
     if is_true_function:
         true_call = call
-    elif isinstance(call, Type):
+    elif isinstance(call, Type):  # type: ignore
         true_call = call.__init__  # type: ignore
     else:
         true_call = call.__call__  # type: ignore
