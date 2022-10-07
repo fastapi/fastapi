@@ -690,7 +690,7 @@ async def request_body_to_args(
 
                 async with anyio.create_task_group() as tg:
                     for sub_value in value:
-                        if isinstance(sub_value, FunctionType):
+                        if not isinstance(sub_value, str):
                             tg.start_soon(process_fn, sub_value.read)
                 value = sequence_shape_to_type[field.shape](results)
 
