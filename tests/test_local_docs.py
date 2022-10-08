@@ -1,4 +1,5 @@
 import inspect
+import json
 
 from fastapi.openapi.docs import get_redoc_html, get_swagger_ui_html
 
@@ -54,6 +55,27 @@ def test_strings_in_custom_redoc():
     body_content = html.body.decode()
     assert redoc_js_url in body_content
     assert redoc_favicon_url in body_content
+    assert "theme=" not in body_content
+
+
+def test_redoc_theme_and_custom_stylesheet_custom_redoc():
+    redoc_js_url = "fake_redoc_file.js"
+    redoc_favicon_url = "fake_redoc_file.png"
+    theme = {"colors": {"primary": {"main": "#DFC350"}}}
+    with_stylesheet = "/test/custom.css"
+    html = get_redoc_html(
+        openapi_url="/docs",
+        title="title",
+        redoc_js_url=redoc_js_url,
+        redoc_favicon_url=redoc_favicon_url,
+        redoc_theme=theme,
+        with_stylesheet=with_stylesheet,
+    )
+    body_content = html.body.decode()
+    assert redoc_js_url in body_content
+    assert redoc_favicon_url in body_content
+    assert f" theme='{json.dumps(theme)}'" in body_content
+    assert f'<link href="{with_stylesheet}" rel="stylesheet" />' in body_content
 
 
 def test_google_fonts_in_generated_redoc():

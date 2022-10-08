@@ -32,8 +32,8 @@ def get_swagger_ui_html(
     <!DOCTYPE html>
     <html>
     <head>
-    <link type="text/css" rel="stylesheet" href="{swagger_css_url}">
-    <link rel="shortcut icon" href="{swagger_favicon_url}">
+    <link type="text/css" rel="stylesheet" href="{swagger_css_url}" />
+    <link rel="shortcut icon" href="{swagger_favicon_url}" />
     <title>{title}</title>
     </head>
     <body>
@@ -78,8 +78,14 @@ def get_redoc_html(
     title: str,
     redoc_js_url: str = "https://cdn.jsdelivr.net/npm/redoc@next/bundles/redoc.standalone.js",
     redoc_favicon_url: str = "https://fastapi.tiangolo.com/img/favicon.png",
+    redoc_theme: Optional[dict] = None,
     with_google_fonts: bool = True,
+    with_stylesheet: str = "",
 ) -> HTMLResponse:
+
+    if redoc_theme:
+        redoc_theme = f" theme='{json.dumps(redoc_theme)}'"
+
     html = f"""
     <!DOCTYPE html>
     <html>
@@ -91,10 +97,16 @@ def get_redoc_html(
     """
     if with_google_fonts:
         html += """
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Roboto:300,400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Roboto:300,400,700" rel="stylesheet" />
     """
+
+    if with_stylesheet:
+        html += f"""
+    <link href="{with_stylesheet}" rel="stylesheet" />
+    """
+
     html += f"""
-    <link rel="shortcut icon" href="{redoc_favicon_url}">
+    <link rel="shortcut icon" href="{redoc_favicon_url}" />
     <!--
     ReDoc doesn't change outer page styles
     -->
@@ -109,7 +121,7 @@ def get_redoc_html(
     <noscript>
         ReDoc requires Javascript to function. Please enable it to browse the documentation.
     </noscript>
-    <redoc spec-url="{openapi_url}"></redoc>
+    <redoc spec-url="{openapi_url}"{redoc_theme}></redoc>
     <script src="{redoc_js_url}"> </script>
     </body>
     </html>
