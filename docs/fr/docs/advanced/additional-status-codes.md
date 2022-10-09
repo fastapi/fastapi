@@ -1,16 +1,16 @@
-# Codes de statut supplémentaires
+# Codes HTTP supplémentaires
 
 Par défaut, **FastAPI** renverra les réponses à l'aide d'une structure de données `JSONResponse`, en plaçant la réponse de votre  *chemin d'accès* à l'intérieur de cette `JSONResponse`.
 
-Il utilisera le code d'état par défaut ou celui que vous avez défini dans votre *chemin d'accès*.
+Il utilisera le code HTTP par défaut ou celui que vous avez défini dans votre *chemin d'accès*.
 
-## Codes d'état supplémentaires
+## Codes HTTP supplémentaires
 
-Si vous souhaitez renvoyer des codes d'état supplémentaires en plus du code principal, vous pouvez le faire en renvoyant directement une `Response`, comme une `JSONResponse`, et en définissant directement le code d'état supplémentaire.
+Si vous souhaitez renvoyer des codes HTTP supplémentaires en plus du code principal, vous pouvez le faire en renvoyant directement une `Response`, comme une `JSONResponse`, et en définissant directement le code HTTP supplémentaire.
 
-Par exemple, disons que vous voulez avoir un *chemin d'accès* qui permet de mettre à jour les éléments et renvoie les codes d'état HTTP de 200 "OK" en cas de succès.
+Par exemple, disons que vous voulez avoir un *chemin d'accès* qui permet de mettre à jour les éléments et renvoie les codes HTTP 200 "OK" en cas de succès.
 
-Mais vous voulez aussi qu'il accepte de nouveaux éléments. Et lorsque les éléments n'existaient pas auparavant, il les crée et renvoie un code d'état HTTP de 201 "Créé".
+Mais vous voulez aussi qu'il accepte de nouveaux éléments. Et lorsque les éléments n'existaient pas auparavant, il les crée et renvoie un code HTTP de 201 "Créé".
 
 Pour y parvenir, importez `JSONResponse` et renvoyez-y directement votre contenu, en définissant le `status_code` que vous souhaitez :
 
@@ -32,6 +32,6 @@ Pour y parvenir, importez `JSONResponse` et renvoyez-y directement votre contenu
 
 ## Documents OpenAPI et API
 
-Si vous renvoyez directement des codes d'état et des réponses supplémentaires, ils ne seront pas inclus dans le schéma OpenAPI (la documentation de l'API), car FastAPI n'a aucun moyen de savoir à l'avance ce que vous allez renvoyer.
+Si vous renvoyez directement des codes HTTP et des réponses supplémentaires, ils ne seront pas inclus dans le schéma OpenAPI (la documentation de l'API), car FastAPI n'a aucun moyen de savoir à l'avance ce que vous allez renvoyer.
 
 Mais vous pouvez documenter cela dans votre code, en utilisant : [Réponses supplémentaires dans OpenAPI](additional-responses.md){.internal-link target=_blank}.
