@@ -13,23 +13,26 @@ usados para la respuesta con el parametro `status_code` en cualquiera de los *pa
 {!../../../docs_src/response_status_code/tutorial001.py!}
 ```
 
-!!! note Toma en cuenta que `status_code` es un parámetro del método del "decorador" (`get`, `post`, etc)-
+!!! note 
+    Toma en cuenta que `status_code` es un parámetro del método del "decorador" (`get`, `post`, etc)-
 No de la función de tu *path operation*, como todos los parámetros y cuerpo.
 
 
 El parámetro `status_code` recibe un número con el código del estado HTTP.
 
-!!! info `status_code` puede alternamente recibir un `IntEnum`, como `http.HTTPStatus` de Python.
+!!! info 
+   `status_code` puede alternamente recibir un `IntEnum`, como <a href="https://docs.python.org/3/library/http.html#http.HTTPStatus" class="external-link" target="_blank">`http.HTTPStatus`</a> de Python.
 
 Será:
 
 - Retorna ese código de estado en la respuesta.
 - Documentado como en el OpenAPI "schema" (además, en la interfaz de usuario):
 
-![image](https://user-images.githubusercontent.com/70811425/194106058-239f3547-e430-4d72-bb61-df7cf8dd2acb.png)
+<img src="../../../en/docs/img/tutorial/response-status-code/image01.png">
 
 
-!!! note Algunos códigos de respuesta (ve la siguiente sección) indica que la respuesta no tiene body.
+!!! note 
+    Algunos códigos de respuesta (ve la siguiente sección) indica que la respuesta no tiene body.
 
 ```
 FastAPI sabe esto, y producirá documentatión OpenAPI diciendo que no hay body en la respuesta.
@@ -37,7 +40,8 @@ FastAPI sabe esto, y producirá documentatión OpenAPI diciendo que no hay body 
 
 # Acerca de los códigos de estado HTTP.
 
-!!! note Si ya sabes lo que son los códigos de estado HTTP, salta a la siguiente sección.
+!!! note 
+    Si ya sabes lo que son los códigos de estado HTTP, salta a la siguiente sección.
 
 En HTTP, tu envías un código de estado de tres dígitos como parte de la respuesta.
 
@@ -62,8 +66,9 @@ En resumen:
 - `500` en adelante son para errores del servidor. Tú nunca los usas directamente. Cuando algo sale mal en alguna parte del código de tu aplicación,
   o en el servidor, automáticamente retornará uno de estos códigos.
 
-!!! tip Para saber más acerca de estos códigos de estado y cuál código se usa para cada caso, revisa el
-[MDN documentation about HTTP status codes](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status).
+!!! tip 
+    Para saber más acerca de estos códigos de estado y cuál código se usa para cada caso, revisa la 
+<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status" class="external-link" target="_blank"><abbr title="Mozilla Developer Network"> documentación acerca de los códigos de estados MDN</abbr> .
 
 # Atajos para recordar los nombres
 
@@ -85,9 +90,10 @@ Puedes usar las convenientes variables desde `fastapi.status`.
 
 Son tan convenientes, mantienen el mismo número, pero puedes usar el autocompletado del editor para encontrarlas:
 
-![image](https://user-images.githubusercontent.com/70811425/194105942-a95651b0-fe60-4c3a-b166-999a077886d5.png)
+<img src="../../../en/docs/img/tutorial/response-status-code/image02.png">
 
-!!! note "Detalles técnicos" Podrías usar también `from starlette import status`.
+!!! note "Detalles técnicos" 
+    Podrías usar también `from starlette import status`.
 
 
 ```
