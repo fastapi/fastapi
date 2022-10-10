@@ -13,14 +13,14 @@ usados para la respuesta con el parametro `status_code` en cualquiera de los *pa
 {!../../../docs_src/response_status_code/tutorial001.py!}
 ```
 
-!!! note 
+!!! note
     Toma en cuenta que `status_code` es un parámetro del método del "decorador" (`get`, `post`, etc)-
 No de la función de tu *path operation*, como todos los parámetros y cuerpo.
 
 
 El parámetro `status_code` recibe un número con el código del estado HTTP.
 
-!!! info 
+!!! info
    `status_code` puede alternamente recibir un `IntEnum`, como <a href="https://docs.python.org/3/library/http.html#http.HTTPStatus" class="external-link" target="_blank">`http.HTTPStatus`</a> de Python.
 
 Será:
@@ -31,7 +31,7 @@ Será:
 <img src="../../../en/docs/img/tutorial/response-status-code/image01.png">
 
 
-!!! note 
+!!! note
     Algunos códigos de respuesta (ve la siguiente sección) indica que la respuesta no tiene body.
 
 ```
@@ -40,7 +40,7 @@ FastAPI sabe esto, y producirá documentatión OpenAPI diciendo que no hay body 
 
 # Acerca de los códigos de estado HTTP.
 
-!!! note 
+!!! note
     Si ya sabes lo que son los códigos de estado HTTP, salta a la siguiente sección.
 
 En HTTP, tu envías un código de estado de tres dígitos como parte de la respuesta.
@@ -66,8 +66,8 @@ En resumen:
 - `500` en adelante son para errores del servidor. Tú nunca los usas directamente. Cuando algo sale mal en alguna parte del código de tu aplicación,
   o en el servidor, automáticamente retornará uno de estos códigos.
 
-!!! tip 
-    Para saber más acerca de estos códigos de estado y cuál código se usa para cada caso, revisa la 
+!!! tip
+    Para saber más acerca de estos códigos de estado y cuál código se usa para cada caso, revisa la
 <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status" class="external-link" target="_blank"><abbr title="Mozilla Developer Network"> documentación acerca de los códigos de estados MDN</abbr> .
 
 # Atajos para recordar los nombres
@@ -92,7 +92,7 @@ Son tan convenientes, mantienen el mismo número, pero puedes usar el autocomple
 
 <img src="../../../en/docs/img/tutorial/response-status-code/image02.png">
 
-!!! note "Detalles técnicos" 
+!!! note "Detalles técnicos"
     Podrías usar también `from starlette import status`.
 
 
