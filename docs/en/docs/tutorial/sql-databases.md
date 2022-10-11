@@ -784,3 +784,45 @@ Adding a **middleware** here is similar to what a dependency with `yield` does, 
     Dependencies with `yield` were added recently to **FastAPI**.
 
     A previous version of this tutorial only had the examples with a middleware and there are probably several applications using the middleware for database session management.
+
+## Alternative method to avoid passing DB sessions
+
+By far, we have been passing the database session around either through dependency injection or request state handling. This should cover simpler use cases. But in bigger applications database session might be required in deeply nested functions. In those cases, you might need to pass the DB session to multiple layer of functions just to get it in the right place. This can introduce redundancy and code repitition.
+
+There is a better approach of using [`contextvars`](https://www.google.com) and middleware where you don't need to pass the DB session around. Rather the session can be called from any file (similar to Flask). Let's demonstrate an example where the DB session is called from a separate storage layer. We will be creating a stripped down version of what we did in our previous example.
+
+Let's modify our `database.py` file
+
+```Python hl_lines="4-5 12-14"
+{!> ../../../docs_src/sql_databases/sql_app_contextvar/database.py!}
+```
+
+Also the `config.py` file. We're adding it just for best practices. You can choose not to use the config file here, it has nothing to do with the tutorial we're following.
+
+```Python
+{!> ../../../docs_src/sql_databases/sql_app_contextvar/config.py!}
+```
+
+Here, we are using a context variable named `session_var`, which can hold different values based on the current request accessing it, *magically*. But, we need to set the proper context value based on the request. We can use a middleware for that. As each user will have a separate session, we will create a new session for each request and assign it to the context variable we created. Due to the nature of `contextvars`, it can have different values based on the request context.
+
+!!! info
+    `contextvar` is quite similar to `threading.local`, except it supports async operations too.
+
+In our `main.py`, modify as follows
+
+```Python hl_lines="12-18 22-23 30-31"
+{!> ../../../docs_src/sql_databases/sql_app_contextvar/main.py!}
+```
+
+We've added a middleware, which stores a newly created session in the `ContextVar` for each request. Notice how're *not* using any dependency anymore.
+
+!!! tip
+    You can use this middleware to implement request-level commits too, which means the session will be commited to the database only if the request was successful. In this way, you wouldn't need to call `.commit()` explicitly in other parts of your application.
+
+Let's now create the storage layer named `storage.py`, which will actually use the database sessions. This file is quite similar to our previous `crud.py` file, except here we're using a class to group the methods together. This is only for the sake of different example, you can apply the same concepts in the `crud.py` file without any issues.
+
+```Python hl_lines="2 10-12 17 21"
+{!> ../../../docs_src/sql_databases/sql_app_contextvar/storage.py!}
+```
+
+The `session` we are importing is actually the context that we created. We can just import the session object and call it to get the value of the session. In this way, the database session can be accessed anywhere.
