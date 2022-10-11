@@ -134,4 +134,6 @@ filterwarnings = [
     # TODO: needed by asyncio in Python 3.9.7 https://bugs.python.org/issue45097, try to remove on 3.9.8
     'ignore:The loop argument is deprecated since Python 3\.8, and scheduled for removal in Python 3\.10:DeprecationWarning:asyncio',
     'ignore:starlette.middleware.wsgi is deprecated and will be removed in a future release\..*:DeprecationWarning:starlette',
+    # see https://trio.readthedocs.io/en/stable/history.html#trio-0-22-0-2022-09-28
+    'ignore::trio.TrioDeprecationWarning',
 ]
