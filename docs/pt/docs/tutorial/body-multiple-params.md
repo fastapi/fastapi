@@ -123,7 +123,7 @@ Suponha que você tem um único parâmetro de corpo `item`, a partir de um model
 
 Por padrão, o **FastAPI** esperará que seu conteúdo venha no corpo diretamente.
 
-Mas se você quiser que ele requisite por um JSON com uma chave `item` e dentro dele os conteúdos do modelo, como ocorre ao declarar vários parâmetros de corpo, você pode usar o parâmetro especial de `Body` chamado `embed`:
+Mas se você quiser que ele espere por um JSON com uma chave `item` e dentro dele os conteúdos do modelo, como ocorre ao declarar vários parâmetros de corpo, você pode usar o parâmetro especial de `Body` chamado `embed`:
 
 ```Python
 item: Item = Body(..., embed=True)
