@@ -1,11 +1,11 @@
 # Réponses supplémentaires dans OpenAPI
 
 !!! Attention
-    C'est un sujet assez avancé.
+    Ceci concerne un sujet plutôt avancé.
 
-    Si vous commencez avec **FastAPI**, vous n'en aurez peut-être pas besoin.
+    Si vous débutez avec **FastAPI**, vous n'en aurez peut-être pas besoin.
 
-Vous pouvez déclarer des réponses supplémentaires, avec des codes de statut supplémentaires, des types de médias, des descriptions, etc.
+Vous pouvez déclarer des réponses supplémentaires, avec des codes HTTP, des types de médias, des descriptions, etc.
 
 Ces réponses supplémentaires seront incluses dans le schéma OpenAPI, elles apparaîtront donc également dans la documentation de l'API.
 
@@ -13,15 +13,15 @@ Mais pour ces réponses supplémentaires, vous devez vous assurer de renvoyer di
 
 ## Réponse supplémentaire avec `model`
 
-Vous pouvez ajouter à votre *décorateur de paramètre de chemin* un paramètre `responses`.
+Vous pouvez ajouter à votre décorateur de *paramètre de chemin* un paramètre `responses`.
 
-Il prend comme valeur un `dict` dont les clés sont des codes HTTP pour chaque réponse, comme `200`, et la valeur de ces clefs sont d'autres `dict` avec des informations pour chacun d'eux.
+Il prend comme valeur un `dict` dont les clés sont des codes HTTP pour chaque réponse, comme `200`, et la valeur de ces clés sont d'autres `dict` avec des informations pour chacun d'eux.
 
 Chacun de ces `dict` de réponse peut avoir une clé `model`, contenant un modèle Pydantic, tout comme `response_model`.
 
 **FastAPI** prendra ce modèle, générera son schéma JSON et l'inclura au bon endroit dans OpenAPI.
 
-Par exemple, pour déclarer une autre réponse avec un code de statut `404` et un modèle Pydantic `Message`, vous pouvez écrire :
+Par exemple, pour déclarer une autre réponse avec un code HTTP `404` et un modèle Pydantic `Message`, vous pouvez écrire :
 
 ```Python hl_lines="18 22"
 {!../../../docs_src/additional_responses/tutorial001.py!}
@@ -178,19 +178,19 @@ Par exemple, vous pouvez ajouter un type de média supplémentaire `image/png`, 
 !!! Info
     À moins que vous ne spécifiiez explicitement un type de média différent dans votre paramètre `responses`, FastAPI supposera que la réponse a le même type de média que la classe de réponse principale (par défaut `application/json`).
 
-    Mais si vous avez spécifié une classe de réponse personnalisée avec "None" comme type de média, FastAPI utilisera "application/json" pour toute réponse supplémentaire associée à un modèle.
+    Mais si vous avez spécifié une classe de réponse personnalisée avec `None` comme type de média, FastAPI utilisera `application/json` pour toute réponse supplémentaire associée à un modèle.
 
 ## Combinaison d'informations
 
 Vous pouvez également combiner des informations de réponse provenant de plusieurs endroits, y compris les paramètres `response_model`, `status_code` et `responses`.
 
-Vous pouvez déclarer un `response_model`, en utilisant le code d'état par défaut `200` (ou un code personnalisé si vous en avez besoin), puis déclarer des informations supplémentaires pour cette même réponse dans `responses`, directement dans le schéma OpenAPI.
+Vous pouvez déclarer un `response_model`, en utilisant le code HTTP par défaut `200` (ou un code personnalisé si vous en avez besoin), puis déclarer des informations supplémentaires pour cette même réponse dans `responses`, directement dans le schéma OpenAPI.
 
-**FastAPI** conservera les informations supplémentaires des "réponses" et les combinera avec le schéma JSON de votre modèle.
+**FastAPI** conservera les informations supplémentaires des `responses` et les combinera avec le schéma JSON de votre modèle.
 
-Par exemple, vous pouvez déclarer une réponse avec un code d'état "404" qui utilise un modèle Pydantic et a une "description" personnalisée.
+Par exemple, vous pouvez déclarer une réponse avec un code HTTP "404" qui utilise un modèle Pydantic et a une "description" personnalisée.
 
-Et une réponse avec un code d'état "200" qui utilise votre "response_model", mais inclut un "exemple" personnalisé :
+Et une réponse avec un code HTTP "200" qui utilise votre "response_model", mais inclut un "exemple" personnalisé :
 
 ```Python hl_lines="20-31"
 {!../../../docs_src/additional_responses/tutorial003.py!}
@@ -237,4 +237,4 @@ Par exemple:
 Pour voir exactement ce que vous pouvez inclure dans les réponses, vous pouvez consulter ces sections dans la spécification OpenAPI :
 
 * <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#responsesObject" class="external-link" target="_blank">Objet de réponses OpenAPI </a>, il inclut le `Response Object`.
-* <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#responseObject" class="external-link" target="_blank">Objet de réponse OpenAPI </a>, vous pouvez inclure n'importe quoi directement dans chaque réponse à l'intérieur de votre paramètre `responses`. Y compris `description`, `headers`, `content` (à l'intérieur de cela, vous déclarez différents types de médias et schémas JSON) et `links`.
+* <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#responseObject" class="external-link" target="_blank">Objet de réponse OpenAPI </a>, vous pouvez inclure n'importe quoi directement dans chaque réponse à l'intérieur de votre paramètre `responses`. Y compris `description`, `headers`, `content` (à l'intérieur de cela, vous déclarez différents types de médias et schémas JSON) et `links`.                
