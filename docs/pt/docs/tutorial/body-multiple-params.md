@@ -4,7 +4,7 @@ Agora que nós vimos como usar `Path` e `Query`, veremos usos mais avançados de
 
 ## Misture `Path`, `Query` e parâmetros de corpo
 
-Primeiro, é claro, você pode misturar `Path`, `Query` e declarações de parâmetro no corpo da requisição livremente e **FastAPI** saberá o que fazer.
+Primeiro, é claro, você pode misturar `Path`, `Query` e declarações de parâmetro no corpo da requisição livremente e o **FastAPI** saberá o que fazer.
 
 E você também pode declarar parâmetros de corpo como opcionais, definindo o valor padrão com `None`:
 
@@ -34,7 +34,7 @@ Mas você pode também declarar múltiplos parâmetros de corpo, por exemplo, `i
 {!../../../docs_src/body_multiple_params/tutorial002.py!}
 ```
 
-Neste caso, **FastAPI** perceberá que existe mais de um parâmetro de corpo na função (dois parâmetros que são modelos Pydantic).
+Neste caso, o **FastAPI** perceberá que existe mais de um parâmetro de corpo na função (dois parâmetros que são modelos Pydantic).
 
 Então, ele usará o nome dos parâmetros como chaves (nome dos campos) no corpo, e espera um corpo como:
 
@@ -57,7 +57,7 @@ Então, ele usará o nome dos parâmetros como chaves (nome dos campos) no corpo
     Repare que mesmo que o `item` esteja declarado da mesma maneira que antes, agora é esperado que ele esteja dentro do corpo com uma chave `item`.
 
 
-**FastAPI** fará a conversão automática a partir da requisição, assim esse parâmetro `item` receberá seu respectivo conteúdo e o mesmo ocorrerá com `user`.
+O **FastAPI** fará a conversão automática a partir da requisição, assim esse parâmetro `item` receberá seu respectivo conteúdo e o mesmo ocorrerá com `user`.
 
 Ele executará a validação dos dados compostos e irá documentá-los de maneira compatível com o esquema OpenAPI e documentação automática.
 
@@ -67,7 +67,7 @@ Assim como existem uma `Query` e uma `Path` para definir dados adicionais para p
 
 Por exemplo, extendendo o modelo anterior, você poder decidir por ter uma outra chave `importance` no mesmo corpo, além de `item` e `user`.
 
-Se você declará-lo como é, porque é um valor singular, o **FastAPI** vai assumir que se trata de um parâmetro de consulta.
+Se você declará-lo como é, porque é um valor singular, o **FastAPI** assumirá que se trata de um parâmetro de consulta.
 
 Mas você pode instruir o **FastAPI** para tratá-lo como outra chave do corpo usando `Body`:
 
@@ -76,7 +76,7 @@ Mas você pode instruir o **FastAPI** para tratá-lo como outra chave do corpo u
 {!../../../docs_src/body_multiple_params/tutorial003.py!}
 ```
 
-Neste caso, o **FastAPI** vai esperar um corpo como:
+Neste caso, o **FastAPI** esperará um corpo como:
 
 
 ```JSON
