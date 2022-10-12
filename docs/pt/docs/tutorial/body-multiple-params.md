@@ -63,7 +63,7 @@ Ele executará a validação dos dados compostos e irá documentá-los de maneir
 
 ## Valores singulares no corpo
 
-Assim como existem uma `Query` e uma `Path` para definir dados adicionais para parâmetros de consulta e de rota, **FastAPI** provê o equivalente para `Body`.
+Assim como existem uma `Query` e uma `Path` para definir dados adicionais para parâmetros de consulta e de rota, o **FastAPI** provê o equivalente para `Body`.
 
 Por exemplo, extendendo o modelo anterior, você poder decidir por ter uma outra chave `importance` no mesmo corpo, além de `item` e `user`.
 
