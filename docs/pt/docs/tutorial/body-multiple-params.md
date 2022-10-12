@@ -95,7 +95,7 @@ Neste caso, **FastAPI** vai esperar um corpo como:
 }
 ```
 
-Mais uma vez, ele vai converter os tipos de dados, validar, documentar, etc.
+Mais uma vez, ele converterá os tipos de dados, validar, documentar, etc.
 
 ## Múltiplos parâmetros de corpo e consulta
 
