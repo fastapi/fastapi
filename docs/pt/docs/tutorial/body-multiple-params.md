@@ -69,7 +69,7 @@ Por exemplo, extendendo o modelo anterior, você poder decidir por ter uma outra
 
 Se você declará-lo como é, porque é um valor singular, o **FastAPI** vai assumir que se trata de um parâmetro de consulta.
 
-Mas você pode instruir **FastAPI** para tratá-lo como outra chave do corpo usando `Body`:
+Mas você pode instruir o **FastAPI** para tratá-lo como outra chave do corpo usando `Body`:
 
 
 ```Python hl_lines="23"
