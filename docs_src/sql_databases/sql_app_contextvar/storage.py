@@ -1,4 +1,4 @@
-from . import schemas, models
+from . import models, schemas
 from .database import session
 
 

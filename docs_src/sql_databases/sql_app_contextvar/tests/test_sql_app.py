@@ -1,8 +1,9 @@
 import os
+
 import pytest
 from fastapi.testclient import TestClient
-from ..config import Config
 
+from ..config import Config
 
 TEST_DB_NAME = "test_contextvar.db"
 

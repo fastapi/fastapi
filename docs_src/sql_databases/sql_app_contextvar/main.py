@@ -1,8 +1,8 @@
-from fastapi import FastAPI, HTTPException, Response, Request
+from fastapi import FastAPI, HTTPException, Request, Response
 
 from . import models, schemas
+from .database import engine, session_factory, session_var
 from .storage import Storage
-from .database import session_factory, session_var, engine
 
 models.Base.metadata.create_all(bind=engine)
 
