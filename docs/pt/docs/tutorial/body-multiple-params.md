@@ -34,7 +34,7 @@ Mas você pode também declarar múltiplos parâmetros de corpo, por exemplo, `i
 {!../../../docs_src/body_multiple_params/tutorial002.py!}
 ```
 
-Neste caso, **FastAPI** vai perceber que existe mais de um parâmetro de corpo na função (dois parâmetros que são modelos Pydantic).
+Neste caso, **FastAPI** perceberá que existe mais de um parâmetro de corpo na função (dois parâmetros que são modelos Pydantic).
 
 Então, ele usará o nome dos parâmetros como chaves (nome dos campos) no corpo, e espera um corpo como:
 
