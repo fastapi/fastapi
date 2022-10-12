@@ -59,7 +59,7 @@ Então, ele usará o nome dos parâmetros como chaves (nome dos campos) no corpo
 
 **FastAPI** fará a conversão automática a partir da requisição, assim esse parâmetro `item` receberá seu respectivo conteúdo e o mesmo ocorrerá com `user`.
 
-Ele vai realizar a validação dos dados compostos, e vai documentá-los de maneira compatível com `OpenAPI schema` e documentação automática.
+Ele executará a validação dos dados compostos e irá documentá-los de maneira compatível com o esquema OpenAPI e documentação automática.
 
 ## Valores singulares no corpo
 
