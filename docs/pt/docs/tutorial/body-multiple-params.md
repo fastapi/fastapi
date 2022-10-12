@@ -119,7 +119,7 @@ como em:
 
 ## Declare um único parâmetro de corpo indicando sua chave
 
-Suponha que você tem um único `item` parâmetro de corpo a partir de um modelo Pydantic `Item`.
+Suponha que você tem um único parâmetro de corpo `item`, a partir de um modelo Pydantic `Item`.
 
 Por padrão, o **FastAPI** vai então esperar que seu conteúdo venha no corpo diretamente.
 
