@@ -67,7 +67,7 @@ Assim como existem uma `Query` e uma `Path` para definir dados adicionais para p
 
 Por exemplo, extendendo o modelo anterior, você poder decidir por ter uma outra chave `importance` no mesmo corpo, além de `item` e `user`.
 
-Se você declará-lo como é, porque é um valor singular, **FastAPI** vai assumir que se trata de um parâmetro de consulta.
+Se você declará-lo como é, porque é um valor singular, o **FastAPI** vai assumir que se trata de um parâmetro de consulta.
 
 Mas você pode instruir **FastAPI** para tratá-lo como outra chave do corpo usando `Body`:
 
