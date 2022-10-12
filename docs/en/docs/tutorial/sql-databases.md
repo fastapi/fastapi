@@ -793,7 +793,7 @@ There is a better approach of using [`contextvars`](https://www.google.com) and 
 
 Let's modify our `database.py` file
 
-```Python hl_lines="4-5 12-14"
+```Python hl_lines="1 13-14"
 {!> ../../../docs_src/sql_databases/sql_app_contextvar/database.py!}
 ```
 
