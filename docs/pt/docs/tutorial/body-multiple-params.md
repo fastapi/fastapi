@@ -76,7 +76,7 @@ Mas você pode instruir o **FastAPI** para tratá-lo como outra chave do corpo u
 {!../../../docs_src/body_multiple_params/tutorial003.py!}
 ```
 
-Neste caso, **FastAPI** vai esperar um corpo como:
+Neste caso, o **FastAPI** vai esperar um corpo como:
 
 
 ```JSON
