@@ -99,7 +99,7 @@ Mais uma vez, ele converterá os tipos de dados, validar, documentar, etc.
 
 ## Múltiplos parâmetros de corpo e consulta
 
-Obviamente, você pode também declarar parâmetros de consulta assim que você precisar, de modo adicional a quaisquer parâmetros de corpo.
+Obviamente, você também pode declarar parâmetros de consulta assim que você precisar, de modo adicional a quaisquer parâmetros de corpo.
 
 Dado que, por padrão, valores singulares são interpretados como parâmetros de consulta, você não precisa explicitamente adicionar uma `Query`, você pode somente:
 
