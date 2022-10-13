@@ -27,7 +27,7 @@ Por exemplo para declarar um valor de metadado `title` para o parâmetro de rota
 
     Mesmo que você declare-o como `None` ou defina um valor padrão, isso não teria efeito algum, o parâmetro ainda seria obrigatório.
 
-## Ordene os parâmetros de a acordo com sua necessidade
+## Ordene os parâmetros de acordo com sua necessidade
 
 Suponha que você queira declarar o parâmetro de consulta `q` como uma `str` obrigatória.
 
