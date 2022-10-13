@@ -8,9 +8,17 @@ Primeiro, é claro, você pode misturar `Path`, `Query` e declarações de parâ
 
 E você também pode declarar parâmetros de corpo como opcionais, definindo o valor padrão com `None`:
 
-```Python hl_lines="19-21"
-{!../../../docs_src/body_multiple_params/tutorial001.py!}
-```
+=== "Python 3.6 e superiores"
+
+    ```Python hl_lines="19-21"
+    {!> ../../../docs_src/body_multiple_params/tutorial001.py!}
+    ```
+
+=== "Python 3.10 e superiores"
+
+    ```Python hl_lines="17-19"
+    {!> ../../../docs_src/body_multiple_params/tutorial001_py310.py!}
+    ```
 
 !!! nota
     Repare que, neste caso, o `item` que seria capturado a partir do corpo é opcional. Visto que ele possui `None` como valor padrão.
@@ -30,9 +38,17 @@ No exemplo anterior, as *operações de rota* esperariam um JSON no corpo conten
 
 Mas você pode também declarar múltiplos parâmetros de corpo, por exemplo, `item` e `user`:
 
-```Python hl_lines="22"
-{!../../../docs_src/body_multiple_params/tutorial002.py!}
-```
+=== "Python 3.6 e superiores"
+
+    ```Python hl_lines="22"
+    {!> ../../../docs_src/body_multiple_params/tutorial002.py!}
+    ```
+
+=== "Python 3.10 e superiores"
+
+    ```Python hl_lines="20"
+    {!> ../../../docs_src/body_multiple_params/tutorial002_py310.py!}
+    ```
 
 Neste caso, o **FastAPI** perceberá que existe mais de um parâmetro de corpo na função (dois parâmetros que são modelos Pydantic).
 
@@ -71,13 +87,19 @@ Se você declará-lo como é, porque é um valor singular, o **FastAPI** assumir
 
 Mas você pode instruir o **FastAPI** para tratá-lo como outra chave do corpo usando `Body`:
 
+=== "Python 3.6 e superiores"
 
-```Python hl_lines="23"
-{!../../../docs_src/body_multiple_params/tutorial003.py!}
-```
+    ```Python hl_lines="22"
+    {!> ../../../docs_src/body_multiple_params/tutorial003.py!}
+    ```
+
+=== "Python 3.10 e superiores"
+
+    ```Python hl_lines="20"
+    {!> ../../../docs_src/body_multiple_params/tutorial003_py310.py!}
+    ```
 
 Neste caso, o **FastAPI** esperará um corpo como:
-
 
 ```JSON
 {
@@ -104,18 +126,31 @@ Obviamente, você também pode declarar parâmetros de consulta assim que você 
 Dado que, por padrão, valores singulares são interpretados como parâmetros de consulta, você não precisa explicitamente adicionar uma `Query`, você pode somente:
 
 ```Python
-q: Optional[str] = None
+q: Union[str, None] = None
 ```
 
-como em:
+Ou como em Python 3.10 e versões superiores:
 
-```Python hl_lines="28"
-{!../../../docs_src/body_multiple_params/tutorial004.py!}
+```Python
+q: str | None = None
 ```
+
+Por exemplo:
+
+=== "Python 3.6 e superiores"
+
+    ```Python hl_lines="27"
+    {!> ../../../docs_src/body_multiple_params/tutorial004.py!}
+    ```
+
+=== "Python 3.10 e superiores"
+
+    ```Python hl_lines="26"
+    {!> ../../../docs_src/body_multiple_params/tutorial004_py310.py!}
+    ```
 
 !!! info "Informação"
     `Body` também possui todas as validações adicionais e metadados de parâmetros como em `Query`,`Path` e outras que você verá depois.
-
 
 ## Declare um único parâmetro de corpo indicando sua chave
 
@@ -126,14 +161,22 @@ Por padrão, o **FastAPI** esperará que seu conteúdo venha no corpo diretament
 Mas se você quiser que ele espere por um JSON com uma chave `item` e dentro dele os conteúdos do modelo, como ocorre ao declarar vários parâmetros de corpo, você pode usar o parâmetro especial de `Body` chamado `embed`:
 
 ```Python
-item: Item = Body(..., embed=True)
+item: Item = Body(embed=True)
 ```
 
 como em:
 
-```Python hl_lines="17"
-{!../../../docs_src/body_multiple_params/tutorial005.py!}
-```
+=== "Python 3.6 e superiores"
+
+    ```Python hl_lines="17"
+    {!> ../../../docs_src/body_multiple_params/tutorial005.py!}
+    ```
+
+=== "Python 3.10 e superiores"
+
+    ```Python hl_lines="15"
+    {!> ../../../docs_src/body_multiple_params/tutorial005_py310.py!}
+    ```
 
 Neste caso o **FastAPI** esperará um corpo como:
 
