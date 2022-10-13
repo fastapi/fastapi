@@ -38,7 +38,7 @@ Por exemplo para declarar um valor de metadado `title` para o parâmetro de rota
 
 !!! note "Nota"
     Um parâmetro de rota é sempre obrigatório, como se fizesse parte da rota.
-    
+
     Então, você deve declará-lo com `...` para marcá-lo como obrigatório.
 
     Mesmo que você declare-o como `None` ou defina um valor padrão, isso não teria efeito algum, o parâmetro ainda seria obrigatório.
