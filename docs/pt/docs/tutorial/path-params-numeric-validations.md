@@ -6,9 +6,17 @@ Do mesmo modo que você pode declarar mais validações e metadados para parâme
 
 Primeiro, importe `Path` de `fastapi`:
 
-```Python hl_lines="3"
-{!../../../docs_src/path_params_numeric_validations/tutorial001.py!}
-```
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="3"
+    {!> ../../../docs_src/path_params_numeric_validations/tutorial001.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="1"
+    {!> ../../../docs_src/path_params_numeric_validations/tutorial001_py310.py!}
+    ```
 
 ## Declare metadados
 
@@ -16,9 +24,17 @@ Você pode declarar todos os parâmetros da mesma maneira que na `Query`.
 
 Por exemplo para declarar um valor de metadado `title` para o parâmetro de rota `item_id` você pode digitar:
 
-```Python hl_lines="10"
-{!../../../docs_src/path_params_numeric_validations/tutorial001.py!}
-```
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="10"
+    {!> ../../../docs_src/path_params_numeric_validations/tutorial001.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="8"
+    {!> ../../../docs_src/path_params_numeric_validations/tutorial001_py310.py!}
+    ```
 
 !!! note "Nota"
     Um parâmetro de rota é sempre obrigatório, como se fizesse parte da rota.
@@ -43,7 +59,7 @@ Isso não faz diferença para o **FastAPI**. Ele vai detectar os parâmetros pel
 
 Então, você pode declarar sua função assim:
 
-```Python hl_lines="8"
+```Python hl_lines="7"
 {!../../../docs_src/path_params_numeric_validations/tutorial002.py!}
 ```
 
@@ -55,13 +71,13 @@ Passe `*`, como o primeiro parâmetro da função.
 
 O Python não vai fazer nada com esse `*`, mas ele vai saber que a partir dali os parâmetros seguintes deverão ser chamados argumentos nomeados (pares chave-valor), também conhecidos como <abbr title="Do inglês: K-ey W-ord Arg-uments"><code>kwargs</code></abbr>. Mesmo que eles não possuam um valor padrão.
 
-```Python hl_lines="8"
+```Python hl_lines="7"
 {!../../../docs_src/path_params_numeric_validations/tutorial003.py!}
 ```
 
 ## Validações numéricas: maior que ou igual
 
-Com `Query` e `Path` (e outras que você verá mais tarde) você pode declarar restrições de string, e também restrições numéricas.
+Com `Query` e `Path` (e outras que você verá mais tarde) você pode declarar restrições numéricas.
 
 Aqui, com `ge=1`, `item_id` precisará ser um número inteiro maior que ("`g`reater than") ou igual ("`e`qual") a 1.
 
@@ -106,9 +122,9 @@ E você também pode declarar validações numéricas:
 * `le`: menor que ou igual (`l`ess than or `e`qual)
 
 !!! info "Informação"
-    `Query`, `Path`, e outras que você verá a frente são subclasses de uma classe `Param` comum (que você não precisa usar).
+    `Query`, `Path` e outras classes que você verá a frente são subclasses de uma classe comum `Param`.
 
-    E todas elas compartilham todos esses mesmos parâmetros de validação adicional e metadados que você viu.
+    Todas elas compartilham os mesmos parâmetros para validação adicional e metadados que você viu.
 
 !!! note "Detalhes Técnicos"
     Quando você importa `Query`, `Path` e outras de `fastapi`, elas são na verdade funções.
