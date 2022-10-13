@@ -20,7 +20,7 @@ Por exemplo para declarar um valor de metadado `title` para o parâmetro de rota
 {!../../../docs_src/path_params_numeric_validations/tutorial001.py!}
 ```
 
-!!! nota
+!!! note "Nota"
     Um parâmetro de rota é sempre obrigatório, como se fizesse parte da rota.
     
     Então, você deve declará-lo com `...` para marcá-lo como obrigatório.
