@@ -43,7 +43,7 @@ async def c():
     "/d",
     responses={
         "400": {"description": "Error with str"},
-        "5xx": {"model": ResponseModel},
+        "5XX": {"model": ResponseModel},
         "default": {"model": ResponseModel},
     },
 )
