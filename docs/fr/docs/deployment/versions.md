@@ -2,18 +2,18 @@
 
 **FastAPI** est déjà utilisé en production dans de nombreuses applications et systèmes. Et la couverture de test est maintenue à 100 %. Mais son développement est toujours aussi rapide.
 
-De nouvelles fonctionnalités sont ajoutées fréquemment, des bogues sont corrigés régulièrement et le code est 
+De nouvelles fonctionnalités sont ajoutées fréquemment, des bogues sont corrigés régulièrement et le code est
 amélioré continuellement.
 
-C'est pourquoi les versions actuelles sont toujours `0.x.x`, cela reflète que chaque version peut potentiellement 
-recevoir des changements non rétrocompatibles. Cela suit les conventions de <a href="https://semver.org/" class="external-link" 
+C'est pourquoi les versions actuelles sont toujours `0.x.x`, cela reflète que chaque version peut potentiellement
+recevoir des changements non rétrocompatibles. Cela suit les conventions de <a href="https://semver.org/" class="external-link"
 target="_blank">versionnage sémantique</a>.
 
 Vous pouvez créer des applications de production avec **FastAPI** dès maintenant (et vous le faites probablement depuis un certain temps), vous devez juste vous assurer que vous utilisez une version qui fonctionne correctement avec le reste de votre code.
 
 ## Épinglez votre version de `fastapi`
 
-Tout d'abord il faut "épingler" la version de **FastAPI** que vous utilisez à la dernière version dont vous savez 
+Tout d'abord il faut "épingler" la version de **FastAPI** que vous utilisez à la dernière version dont vous savez
 qu'elle fonctionne correctement pour votre application.
 
 Par exemple, disons que vous utilisez la version `0.45.0` dans votre application.
@@ -42,10 +42,10 @@ Vous pouvez consulter les versions disponibles (par exemple, pour vérifier quel
 
 ## À propos des versions
 
-Suivant les conventions de versionnage sémantique, toute version inférieure à `1.0.0` peut potentiellement ajouter 
+Suivant les conventions de versionnage sémantique, toute version inférieure à `1.0.0` peut potentiellement ajouter
 des changements non rétrocompatibles.
 
-FastAPI suit également la convention que tout changement de version "PATCH" est pour des corrections de bogues et 
+FastAPI suit également la convention que tout changement de version "PATCH" est pour des corrections de bogues et
 des changements rétrocompatibles.
 
 !!! tip "Astuce"
@@ -70,7 +70,7 @@ Avec **FastAPI** c'est très facile (merci à Starlette), consultez la documenta
 
 Après avoir effectué des tests, vous pouvez mettre à jour la version **FastAPI** vers une version plus récente, et vous assurer que tout votre code fonctionne correctement en exécutant vos tests.
 
-Si tout fonctionne, ou après avoir fait les changements nécessaires, et que tous vos tests passent, vous pouvez 
+Si tout fonctionne, ou après avoir fait les changements nécessaires, et que tous vos tests passent, vous pouvez
 épingler votre version de `fastapi` à cette nouvelle version récente.
 
 ## À propos de Starlette
@@ -83,7 +83,7 @@ Ainsi, vous pouvez simplement laisser **FastAPI** utiliser la bonne version de S
 
 ## À propos de Pydantic
 
-Pydantic inclut des tests pour **FastAPI** avec ses propres tests, ainsi les nouvelles versions de Pydantic (au-dessus 
+Pydantic inclut des tests pour **FastAPI** avec ses propres tests, ainsi les nouvelles versions de Pydantic (au-dessus
 de `1.0.0`) sont toujours compatibles avec **FastAPI**.
 
 Vous pouvez épingler Pydantic à toute version supérieure à `1.0.0` qui fonctionne pour vous et inférieure à `2.0.0`.
