@@ -2,11 +2,22 @@
 
 ## Latest Changes
 
-* 👥 Update FastAPI People. PR [#5447](https://github.com/tiangolo/fastapi/pull/5447) by [@github-actions[bot]](https://github.com/apps/github-actions).
+
+## 0.85.1
+
+### Fixes
+
 * 🐛 Fix support for strings in OpenAPI status codes: `default`, `1XX`, `2XX`, `3XX`, `4XX`, `5XX`. PR [#5187](https://github.com/tiangolo/fastapi/pull/5187) by [@JarroVGIT](https://github.com/JarroVGIT).
+
+### Docs
+
+* 📝 Add WayScript x FastAPI Tutorial to External Links section. PR [#5407](https://github.com/tiangolo/fastapi/pull/5407) by [@moneeka](https://github.com/moneeka).
+
+### Internal
+
+* 👥 Update FastAPI People. PR [#5447](https://github.com/tiangolo/fastapi/pull/5447) by [@github-actions[bot]](https://github.com/apps/github-actions).
 * 🔧 Disable Material for MkDocs search plugin. PR [#5495](https://github.com/tiangolo/fastapi/pull/5495) by [@tiangolo](https://github.com/tiangolo).
 * 🔇 Ignore Trio warning in tests for CI. PR [#5483](https://github.com/tiangolo/fastapi/pull/5483) by [@samuelcolvin](https://github.com/samuelcolvin).
-* 📝 Add WayScript x FastAPI Tutorial to External Links section. PR [#5407](https://github.com/tiangolo/fastapi/pull/5407) by [@moneeka](https://github.com/moneeka).
 
 ## 0.85.0
 
