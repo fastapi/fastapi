@@ -789,7 +789,7 @@ Adding a **middleware** here is similar to what a dependency with `yield` does, 
 
 By far, we have been passing the database session around either through dependency injection or request state handling. This should cover simpler use cases. But in bigger applications database session might be required in deeply nested functions. In those cases, you might need to pass the DB session to multiple layer of functions just to get it in the right place. This can introduce redundancy and code repitition.
 
-There is a better approach of using [`contextvars`](https://www.google.com) and middleware where you don't need to pass the DB session around. Rather the session can be called from any file (similar to Flask). Let's demonstrate an example where the DB session is called from a separate storage layer. We will be creating a stripped down version of what we did in our previous example.
+There is a better approach of using [`contextvars`](https://docs.python.org/3/library/contextvars.html) and middleware where you don't need to pass the DB session around. Rather the session can be called from any file (similar to Flask). Let's demonstrate an example where the DB session is called from a separate storage layer. We will be creating a stripped down version of what we did in our previous example.
 
 Let's modify our `database.py` file
 
