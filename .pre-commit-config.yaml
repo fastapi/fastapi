@@ -19,7 +19,7 @@ repos:
         - --py3-plus
         - --keep-runtime-typing
 -   repo: https://github.com/myint/autoflake
-    rev: v1.5.1
+    rev: v1.5.3
     hooks:
     -   id: autoflake
         args:
@@ -43,7 +43,7 @@ repos:
         name: isort (pyi)
         types: [pyi]
 -   repo: https://github.com/psf/black
-    rev: 22.6.0
+    rev: 22.8.0
     hooks:
     -   id: black
 ci:
