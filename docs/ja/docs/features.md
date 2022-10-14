@@ -193,7 +193,7 @@ FastAPIには非常に使いやすく、非常に強力な<abbr title='also know
 * ユーザーの **<abbr title = "コードエディターに似た統合開発環境">IDE</abbr>/<abbr title = "コードエラーをチェックするプログラム">リンター</abbr>/思考 とうまく連携します**：
     * Pydanticのデータ構造は、ユーザーが定義するクラスの単なるインスタンスであるため、オートコンプリート、リンティング、mypy、およびユーザーの直感はすべて、検証済みのデータで適切に機能するはずです。
 * **高速**：
-    * <a href="https://pydantic-docs.helpmanual.io/#benchmarks-tag" class="external-link" target="_blank">ベンチマーク</a>では、Pydanticは他のすべてのテスト済みライブラリよりも高速です。
+    * <a href="https://pydantic-docs.helpmanual.io/benchmarks/" class="external-link" target="_blank">ベンチマーク</a>では、Pydanticは他のすべてのテスト済みライブラリよりも高速です。
 * **複雑な構造**を検証：
     * 階層的なPydanticモデルや、Pythonの「`typing`」の「`list`」と「`dict`」などの利用。
     * バリデーターにより、複雑なデータスキーマを明確かつ簡単に定義、チェックし、JSONスキーマとして文書化できます。
