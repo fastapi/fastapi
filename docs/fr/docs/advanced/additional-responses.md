@@ -52,7 +52,7 @@ Les réponses générées au format OpenAPI pour cette *opération de chemin* se
             "content": {
                 "application/json": {
                     "schema": {
-                        "$ref": "#/composants/schémas/Message"
+                        "$ref": "#/components/schemas/Message"
                     }
                 }
             }
