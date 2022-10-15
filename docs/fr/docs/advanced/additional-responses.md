@@ -236,5 +236,5 @@ Par exemple:
 
 Pour voir exactement ce que vous pouvez inclure dans les réponses, vous pouvez consulter ces sections dans la spécification OpenAPI :
 
-* <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#responsesObject" class="external-link" target="_blank">Objet de réponses OpenAPI </a>, il inclut le `Response Object`.
-* <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#responseObject" class="external-link" target="_blank">Objet de réponse OpenAPI </a>, vous pouvez inclure n'importe quoi directement dans chaque réponse à l'intérieur de votre paramètre `responses`. Y compris `description`, `headers`, `content` (à l'intérieur de cela, vous déclarez différents types de médias et schémas JSON) et `links`.
+* <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#responsesObject" class="external-link" target="_blank">Objet Responses de OpenAPI </a>, il inclut le `Response Object`.
+* <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#responseObject" class="external-link" target="_blank">Objet Response de OpenAPI </a>, vous pouvez inclure n'importe quoi directement dans chaque réponse à l'intérieur de votre paramètre `responses`. Y compris `description`, `headers`, `content` (à l'intérieur de cela, vous déclarez différents types de médias et schémas JSON) et `links`.
