@@ -133,7 +133,7 @@ Next, deploy your application with the Deta CLI:
 <div class="termy">
 
 ```console
-$ deta new
+$ deta new --python
 
 Successfully created a new micro
 
