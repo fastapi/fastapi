@@ -1,7 +1,11 @@
+from contextlib import asynccontextmanager
+from typing import AsyncIterator, Dict
+
 import pytest
 from fastapi import APIRouter, FastAPI
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
+from starlette.applications import Starlette
 
 
 class State(BaseModel):
@@ -14,43 +18,43 @@ class State(BaseModel):
 
 
 @pytest.fixture
-def state():
+def state() -> State:
     return State()
 
 
-def test_router_events(state):
+def test_router_events(state: State) -> None:
     app = FastAPI()
 
     @app.get("/")
-    def main():
+    def main() -> Dict[str, str]:
         return {"message": "Hello World"}
 
     @app.on_event("startup")
-    def app_startup():
+    def app_startup() -> None:
         state.app_startup = True
 
     @app.on_event("shutdown")
-    def app_shutdown():
+    def app_shutdown() -> None:
         state.app_shutdown = True
 
     router = APIRouter()
 
     @router.on_event("startup")
-    def router_startup():
+    def router_startup() -> None:
         state.router_startup = True
 
     @router.on_event("shutdown")
-    def router_shutdown():
+    def router_shutdown() -> None:
         state.router_shutdown = True
 
     sub_router = APIRouter()
 
     @sub_router.on_event("startup")
-    def sub_router_startup():
+    def sub_router_startup() -> None:
         state.sub_router_startup = True
 
     @sub_router.on_event("shutdown")
-    def sub_router_shutdown():
+    def sub_router_shutdown() -> None:
         state.sub_router_shutdown = True
 
     router.include_router(sub_router)
@@ -80,21 +84,17 @@ def test_router_events(state):
     assert state.sub_router_shutdown is True
 
 
-def test_app_lifespan_state(state):
-    class Lifespan:
-        def __init__(self, app):
-            pass
+def test_app_lifespan_state(state: State) -> None:
+    @asynccontextmanager
+    async def lifespan(app: Starlette) -> AsyncIterator[None]:
+        state.app_startup = True
+        yield
+        state.app_shutdown = True
 
-        async def __aenter__(self):
-            state.app_startup = True
-
-        async def __aexit__(self, exc_type, exc_value, exc_tb):
-            state.app_shutdown = True
-
-    app = FastAPI(lifespan=Lifespan)
+    app = FastAPI(lifespan=lifespan)
 
     @app.get("/")
-    def main():
+    def main() -> Dict[str, str]:
         return {"message": "Hello World"}
 
     assert state.app_startup is False
