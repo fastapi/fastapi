@@ -133,7 +133,7 @@ Em seguida, implante seu aplicativo com a Deta CLI:
 <div class="termy">
 
 ```console
-$ deta new
+$ deta new --python
 
 Successfully created a new micro
 
