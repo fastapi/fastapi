@@ -58,7 +58,9 @@ test = [
     "requests >=2.24.0,<3.0.0",
     "httpx >=0.23.0,<0.24.0",
     "email_validator >=1.1.1,<2.0.0",
-    "sqlalchemy >=1.3.18,<1.5.0",
+    # TODO: once removing databases from tutorial, upgrade SQLAlchemy
+    # probably when including SQLModel
+    "sqlalchemy >=1.3.18,<=1.4.41",
     "peewee >=3.13.3,<4.0.0",
     "databases[sqlite] >=0.3.2,<0.7.0",
     "orjson >=3.2.1,<4.0.0",
