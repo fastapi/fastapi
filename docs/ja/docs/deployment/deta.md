@@ -133,7 +133,7 @@ Logged in successfully.
 <div class="termy">
 
 ```console
-$ deta new
+$ deta new --python
 
 Successfully created a new micro
 
