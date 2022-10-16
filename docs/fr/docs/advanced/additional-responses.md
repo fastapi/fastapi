@@ -48,7 +48,7 @@ Les réponses générées au format OpenAPI pour cette *opération de chemin* se
 {
     "responses": {
         "404": {
-            "description": "Réponse supplémentaire",
+            "description": "Additional Response",
             "content": {
                 "application/json": {
                     "schema": {
@@ -58,21 +58,21 @@ Les réponses générées au format OpenAPI pour cette *opération de chemin* se
             }
         },
         "200": {
-            "description": "Réponse réussie",
+            "description": "Successful Response",
             "content": {
                 "application/json": {
                     "schema": {
-                        "$ref": "#/composants/schémas/article"
+                        "$ref": "#/components/schemas/Item"
                     }
                 }
             }
         },
         "422": {
-            "description": "Erreur de validation",
+            "description": "Validation Error",
             "content": {
                 "application/json": {
                     "schema": {
-                        "$ref": "#/composants/schémas/HTTPValidationError"
+                        "$ref": "#/components/schemas/HTTPValidationError"
                     }
                 }
             }
@@ -92,67 +92,67 @@ Les schémas sont référencés à un autre endroit du modèle OpenAPI :
                 "required": [
                     "message"
                 ],
-                "type": "objet",
-                "Propriétés": {
+                "type": "object",
+                "properties": {
                     "message": {
                         "title": "Message",
-                        "type": "chaîne"
+                        "type": "string"
                     }
                 }
             },
-            "Article": {
-                "title": "Article",
+            "Item": {
+                "title": "Item",
                 "required": [
-                    "identifiant",
-                    "évaluer"
+                    "id",
+                    "value"
                 ],
-                "type": "objet",
+                "type": "object",
                 "properties": {
-                    "identifiant": {
-                        "title": "Identifiant",
-                        "type": "chaîne"
+                    "id": {
+                        "title": "Id",
+                        "type": "string"
                     },
                     "value": {
-                        "title": "Valeur",
-                        "type": "chaîne"
+                        "title": "Value",
+                        "type": "string"
                     }
                 }
             },
-            "Erreur de validation": {
-                "title": "Erreur de validation",
+            "ValidationError": {
+                "title": "ValidationError",
                 "required": [
                     "loc",
-                    "messages",
-                    "taper"
+                    "msg",
+                    "type"
                 ],
-                "type": "objet",
+                "type": "object",
                 "properties": {
                     "loc": {
-                        "title": "Emplacement",
-                        "type": "tableau",
+                        "title": "Location",
+                        "type": "array",
                         "items": {
-                            "type": "chaîne"
+                            "type": "string"
                         }
                     },
-                    "message": {
-                        "titre": "Message",
-                        "type": "chaîne"
+                    "msg": {
+                        "title": "Message",
+                        "type": "string"
                     },
-                    "taper": {
-                        "title": "Type d'erreur",
-                        "type": "chaîne"
+                    "type": {
+                        "title": "Error Type",
+                        "type": "string"
                     }
                 }
             },
-            "Erreur de validation HTTP": {
-                "title": "Erreur de validation HTTP",
-                "type": "objet",
+            "HTTPValidationError": {
+                "title": "HTTPValidationError",
+                "type": "object",
                 "properties": {
                     "detail": {
-                        "title": "Détail",
-                        "type": "tableau",
+                        "title": "Detail",
+                        "type": "array",
                         "items": {
-                            "$ref": "#/composants/schémas/ValidationError"
+                            "$ref": "#/components/schemas/ValidationError"
                         }
                     }
                 }
@@ -204,23 +204,23 @@ Tout sera combiné et inclus dans votre OpenAPI, et affiché dans la documentati
 
 Vous voulez peut-être avoir des réponses prédéfinies qui s'appliquent à de nombreux *paramètre de chemin*, mais vous souhaitez les combiner avec des réponses personnalisées nécessaires à chaque *opération de chemin*.
 
-Dans ces cas, vous pouvez utiliser la technique Python "d'affection par décomposition" d'un `dict` avec `**dict_to_unpack` :
+Dans ces cas, vous pouvez utiliser la technique Python "d'affection par décomposition" (appelé _unpacking_ en anglais) d'un `dict` avec `**dict_to_unpack` :
 
 ``` Python
 old_dict = {
-    "ancienne clé": "ancienne valeur",
-    "deuxième ancienne clé": "deuxième ancienne valeur",
+    "old key": "old value",
+    "second old key": "second old value",
 }
-new_dict = {**old_dict, "nouvelle clé": "nouvelle valeur"}
+new_dict = {**old_dict, "new key": "new value"}
 ```
 
 Ici, `new_dict` contiendra toutes les paires clé-valeur de `old_dict` plus la nouvelle paire clé-valeur :
 
 ``` Python
 {
-    "ancienne clé": "ancienne valeur",
-    "deuxième ancienne clé": "deuxième ancienne valeur",
-    "nouvelle clé": "nouvelle valeur",
+    "old key": "old value",
+    "second old key": "second old value",
+    "new key": "new value",
 }
 ```
 
