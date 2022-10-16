@@ -32,6 +32,7 @@ repo_name: tiangolo/fastapi
 repo_url: https://github.com/tiangolo/fastapi
 edit_uri: ''
 plugins:
+- search
 - markdownextradata:
     data: data
 nav:
