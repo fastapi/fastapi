@@ -1,4 +1,3 @@
-import asyncio
 import dataclasses
 import email.message
 import inspect
@@ -26,6 +25,7 @@ from fastapi.dependencies.utils import (
     get_dependant,
     get_parameterless_sub_dependant,
     solve_dependencies,
+    is_coroutine_function,
 )
 from fastapi.encoders import DictIntStrAny, SetIntStr, jsonable_encoder
 from fastapi.exceptions import RequestValidationError, WebSocketRequestValidationError
@@ -177,7 +177,7 @@ def get_request_handler(
     dependency_overrides_provider: Optional[Any] = None,
 ) -> Callable[[Request], Coroutine[Any, Any, Response]]:
     assert dependant.call is not None, "dependant.call must be a function"
-    is_coroutine = asyncio.iscoroutinefunction(dependant.call)
+    is_coroutine = is_coroutine_function(dependant.call)
     is_body_form = body_field and isinstance(body_field.field_info, params.Form)
     if isinstance(response_class, DefaultPlaceholder):
         actual_response_class: Type[Response] = response_class.value

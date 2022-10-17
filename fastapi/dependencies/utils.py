@@ -1,4 +1,6 @@
+import asyncio
 import dataclasses
+import functools
 import inspect
 from contextlib import contextmanager
 from copy import deepcopy
@@ -259,6 +261,15 @@ def get_typed_signature(call: Callable[..., Any]) -> inspect.Signature:
     ]
     typed_signature = inspect.Signature(typed_params)
     return typed_signature
+
+
+def is_coroutine_function(obj: Any) -> bool:
+    while isinstance(obj, functools.partial):
+        obj = obj.func
+
+    return asyncio.iscoroutinefunction(obj) or (
+        callable(obj) and asyncio.iscoroutinefunction(obj.__call__)
+    )
 
 
 def get_typed_annotation(param: inspect.Parameter, globalns: Dict[str, Any]) -> Any:
