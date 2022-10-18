@@ -6,7 +6,7 @@
 
 在前面的例子中, 我们从依赖项 ("可依赖对象") 中返回了一个 `dict`:
 
-=== "Python 3.6 以及 以下"
+=== "Python 3.6 以及 以上"
 
     ```Python hl_lines="9"
     {!> ../../../docs_src/dependencies/tutorial001.py!}
@@ -18,9 +18,9 @@
     {!> ../../../docs_src/dependencies/tutorial001_py310.py!}
     ```
 
-但是后面我们在路径操作函数的参数`commons `共享中得到了一个`dict`。
+但是后面我们在路径操作函数的参数 `commons` 中得到了一个 `dict`。
 
-我们知道编辑器不能为`dict`提供很多支持(比如补全)，因为它们不能知道它们的键和值类型。
+我们知道编辑器不能为 `dict` 提供很多支持(比如补全)，因为编辑器不知道 `dict` 的键和值类型。
 
 对此，我们可以做的更好...
 
@@ -30,11 +30,11 @@
 
 但这并不是声明依赖项的唯一方法(尽管它可能是更常见的方法)。
 
-关键因素是依赖项应该是“可调用的”。
+关键因素是依赖项应该是 "可调用对象"。
 
-Python中的“**可调用**”是指任何Python可以像函数一样“调用”的对象。
+Python 中的 "**可调用对象**" 是指任何 Python 可以像函数一样 "调用" 的对象。
 
-所以，如果你需要一个对象`something`(可能*不是*一个函数)，你可以像这样“调用”它(执行它)，就像：
+所以，如果你有一个对象 `something` (可能*不是*一个函数)，你可以 "调用" 它(执行它)，就像：
 
 ```Python
 something()
@@ -46,11 +46,11 @@ something()
 something(some_argument, some_keyword_argument="foo")
 ```
 
-像这样它就是“可调用”。
+这就是 "可调用对象"。
 
-## 类做依赖项
+## 类作为依赖项
 
-您可能会注意到，要创建一个Python类的实例，您可以使用相同的语法。
+您可能会注意到，要创建一个 Python 类的实例，您可以使用相同的语法。
 
 举个例子:
 
@@ -63,23 +63,23 @@ class Cat:
 fluffy = Cat(name="Mr Fluffy")
 ```
 
-在这个例子中, `fluffy` 是一个实现`Cat`的实例。
+在这个例子中, `fluffy` 是一个 `Cat` 类的实例。
 
-并且为了创建`fluffy`，你就调用了`Cat`。
+为了创建 `fluffy`，你调用了 `Cat` 。
 
-因此，Python类也是属于**可调用**。
+所以，Python 类也是 **可调用对象**。
 
-所以，在**FastAPI**中，你可以使用Python类作为依赖项。
+因此，在 **FastAPI** 中，你可以使用一个 Python 类作为一个依赖项。
 
-FastAPI实际上检查的是它是否“可调用”（函数，类或其他任何类型）以及定义的参数。
+实际上 FastAPI 检查的是它是一个 "可调用对象"（函数，类或其他任何类型）以及定义的参数。
 
-如果您在**FastAPI**中以一个“可调用”对象作为依赖项，它将分析该“可调用”对象的参数，并以与路径操作函数的参数相同的方式处理它们。包括子依赖项。
+如果您在 **FastAPI** 中传递一个 "可调用对象" 作为依赖项，它将分析该 "可调用对象" 的参数，并以处理路径操作函数的参数的方式来处理它们。包括子依赖项。
 
 这也适用于完全没有参数的可调用对象。这与不带参数的路径操作函数一样。
 
-所以，我们可以将上面的依赖项`common_parameters`更改为类`CommonQueryParams`
+所以，我们可以将上面的依赖项 "可依赖对象" `common_parameters` 更改为类 `CommonQueryParams`:
 
-=== "Python 3.6 以及 以下"
+=== "Python 3.6 以及 以上"
 
     ```Python hl_lines="11-15"
     {!> ../../../docs_src/dependencies/tutorial002.py!}
@@ -91,9 +91,9 @@ FastAPI实际上检查的是它是否“可调用”（函数，类或其他任�
     {!> ../../../docs_src/dependencies/tutorial002_py310.py!}
     ```
 
-注意用于创建类实例的`__init__`方法：
+注意用于创建类实例的 `__init__` 方法：
 
-=== "Python 3.6 以及 以下"
+=== "Python 3.6 以及 以上"
 
     ```Python hl_lines="12"
     {!> ../../../docs_src/dependencies/tutorial002.py!}
@@ -105,9 +105,9 @@ FastAPI实际上检查的是它是否“可调用”（函数，类或其他任�
     {!> ../../../docs_src/dependencies/tutorial002_py310.py!}
     ```
 
-...它具有与我们以前的`common_parameters`相同的参数：
+...它与我们以前的 `common_parameters` 具有相同的参数：
 
-=== "Python 3.6 以及 以下"
+=== "Python 3.6 以及 以上"
 
     ```Python hl_lines="9"
     {!> ../../../docs_src/dependencies/tutorial001.py!}
@@ -119,21 +119,21 @@ FastAPI实际上检查的是它是否“可调用”（函数，类或其他任�
     {!> ../../../docs_src/dependencies/tutorial001_py310.py!}
     ```
 
-这些参数就是**FastAPI**用来“处理”依赖项的。
+这些参数就是 **FastAPI** 用来 "处理" 依赖项的。
 
-在这两种创建依赖项方法下，都将会：
+在两个例子下，都有：
 
-* 一个可选的`q`查询参数，它是一个`str`类型。
-* 一个整数类型的`skip`查询参数，默认值为0。
-* 一个整数类型`limit`查询参数，默认值为0。
+* 一个可选的 `q` 查询参数，是 `str` 类型。
+* 一个 `skip` 查询参数，是 `int` 类型，默认值为 `0`。
+* 一个 `limit` 查询参数，是 `int` 类型，默认值为 `100`。
 
-在这两种创建依赖项方法下，数据都将在OpenAPI概图上进行转换、验证和记录等。
+在两个例子下，数据都将被转换、验证、在 OpenAPI schema 上文档化，等等。
 
 ## 使用它
 
-现在，您可以使用此类声明的依赖项了。
+现在，您可以使用这个类来声明你的依赖项了。
 
-=== "Python 3.6 以及 以下"
+=== "Python 3.6 以及 以上"
 
     ```Python hl_lines="19"
     {!> ../../../docs_src/dependencies/tutorial002.py!}
@@ -145,7 +145,7 @@ FastAPI实际上检查的是它是否“可调用”（函数，类或其他任�
     {!> ../../../docs_src/dependencies/tutorial002_py310.py!}
     ```
 
-**FastAPI** 调用这个`CommonQueryParams`类。这将创建该类的一个“实例”，该实例将作为`commons`参数传递给你的函数。
+**FastAPI** 调用 `CommonQueryParams` 类。这将创建该类的一个 "实例"，该实例将作为参数 `commons` 被传递给你的函数。
 
 ## 类型注解 vs `Depends`
 
@@ -161,19 +161,19 @@ commons: CommonQueryParams = Depends(CommonQueryParams)
 ... = Depends(CommonQueryParams)
 ```
 
-...**Fastapi**实际上将知道使用什么依赖项。
+...实际上是 **Fastapi** 用来知道依赖项是什么的。
 
-FastAPI将从中提取声明的参数，这才是FastAPI实际调用的。
+FastAPI 将从依赖项中提取声明的参数，这才是 FastAPI 实际调用的。
 
 ---
 
-在本例中，第一个`CommonQueryParams`：
+在本例中，第一个 `CommonQueryParams` ：
 
 ```Python
 commons: CommonQueryParams ...
 ```
 
-...对于**FastAPI**没有任何特殊的意义。FastAPI不会使用它进行数据转换、验证等（因为对于这，它实际使用的是`= Depends(CommonQueryParams)`）。
+...对于 **FastAPI** 没有任何特殊的意义。FastAPI 不会使用它进行数据转换、验证等 (因为对于这，它使用 `= Depends(CommonQueryParams)`)。
 
 你实际上可以只这样编写:
 
@@ -181,9 +181,9 @@ commons: CommonQueryParams ...
 commons = Depends(CommonQueryParams)
 ```
 
-..就像这样:
+..就像:
 
-=== "Python 3.6 以及 以下"
+=== "Python 3.6 以及 以上"
 
     ```Python hl_lines="19"
     {!> ../../../docs_src/dependencies/tutorial003.py!}
@@ -195,7 +195,7 @@ commons = Depends(CommonQueryParams)
     {!> ../../../docs_src/dependencies/tutorial003_py310.py!}
     ```
 
-但是声明类型是被鼓励的，因为这样你的编辑器就会知道将传递什么作为`commons`参数，然后它可以帮助你完成代码，类型检查，等等：
+但是声明类型是被鼓励的，因为那样你的编辑器就会知道将传递什么作为参数 `commons` ，然后它可以帮助你完成代码，类型检查，等等：
 
 <img src="/img/tutorial/dependencies/image02.png">
 
@@ -207,7 +207,7 @@ commons = Depends(CommonQueryParams)
 commons: CommonQueryParams = Depends(CommonQueryParams)
 ```
 
-**FastAPI**为这些情况提供了一个快捷方式，在这种情况下，依赖项是一个特定的类，**FastAPI**将其“调用”来创建类本身的一个实例。
+**FastAPI** 为这些情况提供了一个快捷方式，在这些情况下，依赖项 *明确地* 是一个类，**FastAPI** 将 "调用" 它来创建类本身的一个实例。
 
 对于这些特定的情况，您可以跟随以下操作：
 
@@ -223,11 +223,11 @@ commons: CommonQueryParams = Depends(CommonQueryParams)
 commons: CommonQueryParams = Depends()
 ```
 
-您声明依赖项作为参数的类型，并使用`Depends()`作为该函数的参数的“默认”值(在=之后)，而在`Depends()`中没有任何参数，这样不必在内部再次编写完整的类，取代了`Depends(CommonQueryParams)`。
+您声明依赖项作为参数的类型，并使用 `Depends()` 作为该函数的参数的 "默认" 值(在 `=` 之后)，而在 `Depends()` 中没有任何参数，而不是在 `Depends(CommonQueryParams)` 编写完整的类。
 
 同样的例子看起来像这样：
 
-=== "Python 3.6 以及 以下"
+=== "Python 3.6 以及 以上"
 
     ```Python hl_lines="19"
     {!> ../../../docs_src/dependencies/tutorial004.py!}
@@ -239,9 +239,9 @@ commons: CommonQueryParams = Depends()
     {!> ../../../docs_src/dependencies/tutorial004_py310.py!}
     ```
 
-...**Fastapi**将会知道该怎么处理。
+... **FastAPI** 会知道怎么处理。
 
 !!! tip
     如果这看起来更加混乱而不是更加有帮助，那么请忽略它，你不*需要*它。
 
-    这只是一个快捷方式。因为**FastAPI**关心的是帮助您减少代码重复。
+    这只是一个快捷方式。因为 **FastAPI** 关心的是帮助您减少代码重复。
