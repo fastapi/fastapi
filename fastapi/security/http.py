@@ -5,21 +5,14 @@ from typing import Optional
 from fastapi.exceptions import HTTPException
 from fastapi.openapi.models import HTTPBase as HTTPBaseModel
 from fastapi.openapi.models import HTTPBearer as HTTPBearerModel
-from fastapi.security.base import SecurityBase
+from fastapi.security.models import (
+    HTTPAuthorizationCredentials,
+    HTTPBasicCredentials,
+    SecurityBase,
+)
 from fastapi.security.utils import get_authorization_scheme_param
-from pydantic import BaseModel
 from starlette.requests import Request
 from starlette.status import HTTP_401_UNAUTHORIZED, HTTP_403_FORBIDDEN
-
-
-class HTTPBasicCredentials(BaseModel):
-    username: str
-    password: str
-
-
-class HTTPAuthorizationCredentials(BaseModel):
-    scheme: str
-    credentials: str
 
 
 class HTTPBase(SecurityBase):

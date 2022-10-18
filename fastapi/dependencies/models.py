@@ -1,6 +1,6 @@
 from typing import Any, Callable, List, Optional, Sequence
 
-from fastapi.security.base import SecurityBase
+from fastapi.security.models import SecurityBase
 from pydantic.fields import ModelField
 
 
