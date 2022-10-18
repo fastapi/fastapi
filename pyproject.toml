@@ -1,12 +1,16 @@
 [build-system]
-requires = ["flit"]
-build-backend = "flit.buildapi"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
-[tool.flit.metadata]
-module = "fastapi"
-author = "Sebastián Ramírez"
-author-email = "tiangolo@gmail.com"
-home-page = "https://github.com/tiangolo/fastapi"
+[project]
+name = "fastapi"
+description = "FastAPI framework, high performance, easy to learn, fast to code, ready for production"
+readme = "README.md"
+requires-python = ">=3.7"
+license = "MIT"
+authors = [
+    { name = "Sebastián Ramírez", email = "tiangolo@gmail.com" },
+]
 classifiers = [
     "Intended Audience :: Information Technology",
     "Intended Audience :: System Administrators",
@@ -26,7 +30,6 @@ classifiers = [
     "Intended Audience :: Developers",
     "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3 :: Only",
-    "Programming Language :: Python :: 3.6",
     "Programming Language :: Python :: 3.7",
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
@@ -34,40 +37,44 @@ classifiers = [
     "Topic :: Internet :: WWW/HTTP :: HTTP Servers",
     "Topic :: Internet :: WWW/HTTP",
 ]
-requires = [
-    "starlette==0.19.1",
+dependencies = [
+    "starlette==0.20.4",
     "pydantic >=1.6.2,!=1.7,!=1.7.1,!=1.7.2,!=1.7.3,!=1.8,!=1.8.1,<2.0.0",
 ]
-description-file = "README.md"
-requires-python = ">=3.6.1"
+dynamic = ["version"]
 
-[tool.flit.metadata.urls]
+[project.urls]
+Homepage = "https://github.com/tiangolo/fastapi"
 Documentation = "https://fastapi.tiangolo.com/"
 
-[tool.flit.metadata.requires-extra]
+[project.optional-dependencies]
 test = [
-    "pytest >=6.2.4,<7.0.0",
+    "pytest >=7.1.3,<8.0.0",
     "pytest-cov >=2.12.0,<4.0.0",
-    "mypy ==0.910",
-    "flake8 >=3.8.3,<4.0.0",
-    "black == 22.3.0",
+    "mypy ==0.971",
+    "flake8 >=3.8.3,<6.0.0",
+    "black == 22.8.0",
     "isort >=5.0.6,<6.0.0",
     "requests >=2.24.0,<3.0.0",
-    "httpx >=0.14.0,<0.19.0",
+    "httpx >=0.23.0,<0.24.0",
     "email_validator >=1.1.1,<2.0.0",
-    "sqlalchemy >=1.3.18,<1.5.0",
+    # TODO: once removing databases from tutorial, upgrade SQLAlchemy
+    # probably when including SQLModel
+    "sqlalchemy >=1.3.18,<=1.4.41",
     "peewee >=3.13.3,<4.0.0",
-    "databases[sqlite] >=0.3.2,<0.6.0",
+    "databases[sqlite] >=0.3.2,<0.7.0",
     "orjson >=3.2.1,<4.0.0",
     "ujson >=4.0.1,!=4.0.2,!=4.1.0,!=4.2.0,!=4.3.0,!=5.0.0,!=5.1.0,<6.0.0",
     "python-multipart >=0.0.5,<0.0.6",
     "flask >=1.1.2,<3.0.0",
     "anyio[trio] >=3.2.1,<4.0.0",
+    "python-jose[cryptography] >=3.3.0,<4.0.0",
+    "pyyaml >=5.3.1,<7.0.0",
+    "passlib[bcrypt] >=1.7.2,<2.0.0",
 
     # types
-    "types-ujson ==4.2.1",
+    "types-ujson ==5.4.0",
     "types-orjson ==3.6.2",
-    "types-dataclasses ==0.6.5; python_version<'3.7'",
 ]
 doc = [
     "mkdocs >=1.1.2,<2.0.0",
@@ -76,15 +83,13 @@ doc = [
     "mkdocs-markdownextradata-plugin >=0.1.7,<0.3.0",
     # TODO: upgrade and enable typer-cli once it supports Click 8.x.x
     # "typer-cli >=0.0.12,<0.0.13",
-    "typer >=0.4.1,<0.5.0",
+    "typer[all] >=0.6.1,<0.7.0",
     "pyyaml >=5.3.1,<7.0.0",
 ]
 dev = [
-    "python-jose[cryptography] >=3.3.0,<4.0.0",
-    "passlib[bcrypt] >=1.7.2,<2.0.0",
     "autoflake >=1.4.0,<2.0.0",
-    "flake8 >=3.8.3,<4.0.0",
-    "uvicorn[standard] >=0.12.0,<0.18.0",
+    "flake8 >=3.8.3,<6.0.0",
+    "uvicorn[standard] >=0.12.0,<0.19.0",
     "pre-commit >=2.17.0,<3.0.0",
 ]
 all = [
@@ -96,29 +101,18 @@ all = [
     "ujson >=4.0.1,!=4.0.2,!=4.1.0,!=4.2.0,!=4.3.0,!=5.0.0,!=5.1.0,<6.0.0",
     "orjson >=3.2.1,<4.0.0",
     "email_validator >=1.1.1,<2.0.0",
-    "uvicorn[standard] >=0.12.0,<0.18.0",
+    "uvicorn[standard] >=0.12.0,<0.19.0",
 ]
+
+[tool.hatch.version]
+path = "fastapi/__init__.py"
 
 [tool.isort]
 profile = "black"
 known_third_party = ["fastapi", "pydantic", "starlette"]
 
 [tool.mypy]
-# --strict
-disallow_any_generics = true
-disallow_subclassing_any = true
-disallow_untyped_calls = true
-disallow_untyped_defs = true
-disallow_incomplete_defs = true
-check_untyped_defs = true
-disallow_untyped_decorators = true
-no_implicit_optional = true
-warn_redundant_casts = true
-warn_unused_ignores = true
-warn_return_any = true
-implicit_reexport = false
-strict_equality = true
-# --strict end
+strict = true
 
 [[tool.mypy.overrides]]
 module = "fastapi.concurrency"
@@ -142,6 +136,6 @@ filterwarnings = [
     # TODO: needed by asyncio in Python 3.9.7 https://bugs.python.org/issue45097, try to remove on 3.9.8
     'ignore:The loop argument is deprecated since Python 3\.8, and scheduled for removal in Python 3\.10:DeprecationWarning:asyncio',
     'ignore:starlette.middleware.wsgi is deprecated and will be removed in a future release\..*:DeprecationWarning:starlette',
-    # TODO: remove after dropping support for Python 3.6
-    'ignore:Python 3.6 is no longer supported by the Python core team. Therefore, support for it is deprecated in cryptography and will be removed in a future release.:UserWarning:jose',
+    # see https://trio.readthedocs.io/en/stable/history.html#trio-0-22-0-2022-09-28
+    'ignore::trio.TrioDeprecationWarning',
 ]

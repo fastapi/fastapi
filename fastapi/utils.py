@@ -18,6 +18,23 @@ if TYPE_CHECKING:  # pragma: nocover
     from .routing import APIRoute
 
 
+def is_body_allowed_for_status_code(status_code: Union[int, str, None]) -> bool:
+    if status_code is None:
+        return True
+    # Ref: https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#patterned-fields-1
+    if status_code in {
+        "default",
+        "1XX",
+        "2XX",
+        "3XX",
+        "4XX",
+        "5XX",
+    }:
+        return True
+    current_status_code = int(status_code)
+    return not (current_status_code < 200 or current_status_code in {204, 304})
+
+
 def get_model_definitions(
     *,
     flat_models: Set[Union[Type[BaseModel], Type[Enum]]],
@@ -30,6 +47,8 @@ def get_model_definitions(
         )
         definitions.update(m_definitions)
         model_name = model_name_map[model]
+        if "description" in m_schema:
+            m_schema["description"] = m_schema["description"].split("\f")[0]
         definitions[model_name] = m_schema
     return definitions
 
@@ -43,7 +62,7 @@ def create_response_field(
     type_: Type[Any],
     class_validators: Optional[Dict[str, Validator]] = None,
     default: Optional[Any] = None,
-    required: Union[bool, UndefinedType] = False,
+    required: Union[bool, UndefinedType] = True,
     model_config: Type[BaseConfig] = BaseConfig,
     field_info: Optional[FieldInfo] = None,
     alias: Optional[str] = None,
@@ -80,7 +99,7 @@ def create_cloned_field(
 ) -> ModelField:
     # _cloned_types has already cloned types, to support recursive models
     if cloned_types is None:
-        cloned_types = dict()
+        cloned_types = {}
     original_type = field.type_
     if is_dataclass(original_type) and hasattr(original_type, "__pydantic_model__"):
         original_type = original_type.__pydantic_model__
@@ -133,14 +152,14 @@ def generate_operation_id_for_path(
         stacklevel=2,
     )
     operation_id = name + path
-    operation_id = re.sub("[^0-9a-zA-Z_]", "_", operation_id)
+    operation_id = re.sub(r"\W", "_", operation_id)
     operation_id = operation_id + "_" + method.lower()
     return operation_id
 
 
 def generate_unique_id(route: "APIRoute") -> str:
     operation_id = route.name + route.path_format
-    operation_id = re.sub("[^0-9a-zA-Z_]", "_", operation_id)
+    operation_id = re.sub(r"\W", "_", operation_id)
     assert route.methods
     operation_id = operation_id + "_" + list(route.methods)[0].lower()
     return operation_id
@@ -154,6 +173,12 @@ def deep_dict_update(main_dict: Dict[Any, Any], update_dict: Dict[Any, Any]) -> 
             and isinstance(value, dict)
         ):
             deep_dict_update(main_dict[key], value)
+        elif (
+            key in main_dict
+            and isinstance(main_dict[key], list)
+            and isinstance(update_dict[key], list)
+        ):
+            main_dict[key] = main_dict[key] + update_dict[key]
         else:
             main_dict[key] = value
 
