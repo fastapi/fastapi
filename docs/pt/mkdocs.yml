@@ -71,12 +71,13 @@ nav:
   - tutorial/query-params-str-validations.md
   - tutorial/cookie-params.md
   - tutorial/header-params.md
+  - tutorial/request-forms.md
   - tutorial/handling-errors.md
   - Segurança:
     - tutorial/security/index.md
   - tutorial/background-tasks.md
-  - Guia de Usuário Avançado:
-    - advanced/index.md
+- Guia de Usuário Avançado:
+  - advanced/index.md
 - Implantação:
   - deployment/index.md
   - deployment/versions.md
