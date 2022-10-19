@@ -58,7 +58,9 @@ test = [
     "requests >=2.24.0,<3.0.0",
     "httpx >=0.23.0,<0.24.0",
     "email_validator >=1.1.1,<2.0.0",
-    "sqlalchemy >=1.3.18,<1.5.0",
+    # TODO: once removing databases from tutorial, upgrade SQLAlchemy
+    # probably when including SQLModel
+    "sqlalchemy >=1.3.18,<=1.4.41",
     "peewee >=3.13.3,<4.0.0",
     "databases[sqlite] >=0.3.2,<0.7.0",
     "orjson >=3.2.1,<4.0.0",
@@ -81,7 +83,7 @@ doc = [
     "mkdocs-markdownextradata-plugin >=0.1.7,<0.3.0",
     # TODO: upgrade and enable typer-cli once it supports Click 8.x.x
     # "typer-cli >=0.0.12,<0.0.13",
-    "typer >=0.4.1,<0.7.0",
+    "typer[all] >=0.6.1,<0.7.0",
     "pyyaml >=5.3.1,<7.0.0",
 ]
 dev = [
