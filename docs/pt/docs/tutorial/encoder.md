@@ -32,8 +32,6 @@ A função recebe um objeto, como um modelo Pydantic e retorna uma versão compa
     {!> ../../../docs_src/encoder/tutorial001_py310.py!}
     ```
 
-In this example, it would convert the Pydantic model to a `dict`, and the `datetime` to a `str`.
-
 Neste exemplo, ele converteria o modelo Pydantic em um `dict`, e o `datetime` em um `str`.
 
 O resultado de chamar a função é algo que pode ser codificado com o padrão do Python <a href="https://docs.python.org/3/library/json.html#json.dumps" class="external-link" target="_blank">`json.dumps()`</a>.
