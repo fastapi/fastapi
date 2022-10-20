@@ -72,6 +72,7 @@ nav:
   - tutorial/cookie-params.md
   - tutorial/header-params.md
   - tutorial/handling-errors.md
+  - tutorial/encoder.md
   - Segurança:
     - tutorial/security/index.md
   - tutorial/background-tasks.md
