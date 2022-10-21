@@ -5,7 +5,6 @@ import pytest
 from fastapi import APIRouter, FastAPI
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
-from starlette.applications import Starlette
 
 
 class State(BaseModel):
@@ -86,7 +85,7 @@ def test_router_events(state: State) -> None:
 
 def test_app_lifespan_state(state: State) -> None:
     @asynccontextmanager
-    async def lifespan(app: Starlette) -> AsyncIterator[None]:
+    async def lifespan(app: FastAPI) -> AsyncIterator[None]:
         state.app_startup = True
         yield
         state.app_shutdown = True
