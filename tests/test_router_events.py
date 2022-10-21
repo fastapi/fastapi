@@ -1,5 +1,5 @@
 from contextlib import asynccontextmanager
-from typing import AsyncIterator, Dict
+from typing import AsyncGenerator, Dict
 
 import pytest
 from fastapi import APIRouter, FastAPI
@@ -85,7 +85,7 @@ def test_router_events(state: State) -> None:
 
 def test_app_lifespan_state(state: State) -> None:
     @asynccontextmanager
-    async def lifespan(app: FastAPI) -> AsyncIterator[None]:
+    async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
         state.app_startup = True
         yield
         state.app_shutdown = True
