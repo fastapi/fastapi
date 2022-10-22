@@ -233,7 +233,7 @@ Ces informations seront incluses dans le schéma OpenAPI généré et utilisées
 
     Il se peut donc que certains d'entre eux n'utilisent pas toutes les métadonnées que vous avez déclarées pour le moment, bien que dans la plupart des cas, les fonctionnalités manquantes ont prévu d'être implémentées.
 
-On peut par exemple ajouter un titre :
+Vous pouvez ajouter un `title` :
 
 ```Python hl_lines="10"
 {!../../../docs_src/query_params_str_validations/tutorial007.py!}
