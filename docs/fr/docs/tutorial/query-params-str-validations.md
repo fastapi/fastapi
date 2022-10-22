@@ -190,7 +190,7 @@ Et l'on peut aussi définir une liste de valeurs par défaut si aucune n'est fou
 {!../../../docs_src/query_params_str_validations/tutorial012.py!}
 ```
 
-En allant sur :
+Si vous allez à :
 
 ```
 http://localhost:8000/items/
