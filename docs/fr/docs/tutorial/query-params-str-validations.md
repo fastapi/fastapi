@@ -13,7 +13,7 @@ Le paramètre de requête `q` a pour type `Union[str, None]` (ou `str | None` en
 !!! note
     **FastAPI** saura que la valeur de `q` n'est pas requise grâce à la valeur par défaut `= None`.
 
-    Le `Optional` dans `Optional[str]` n'est pas utilisé par **FastAPI**, mais permettra à votre éditeur de vous offrir un meilleur support et de détecter de potentielles erreurs.
+    Le `Union` dans `Union[str, None]` permettra à votre éditeur de vous offrir un meilleur support et de détecter les erreurs.
 
 ## Validation additionnelle
 
