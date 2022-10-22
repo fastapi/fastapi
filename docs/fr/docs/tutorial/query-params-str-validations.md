@@ -162,7 +162,7 @@ Ce qui fait qu'avec une URL comme :
 http://localhost:8000/items/?q=foo&q=bar
 ```
 
-plusieurs valeurs pour le paramètre `q` pourraient être reçues simultanément (`foo` et `bar`) dans une `list` Python au sein de la *fonction de chemin*, dans le paramètre de fonction `q`.
+vous recevriez les valeurs des multiples paramètres de requête `q` (`foo` et `bar`) dans une `list` Python au sein de votre fonction de **path operation**, dans le paramètre de fonction `q`.
 
 Donc la réponse serait :
 
