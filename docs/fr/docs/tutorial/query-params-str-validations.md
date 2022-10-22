@@ -164,7 +164,7 @@ http://localhost:8000/items/?q=foo&q=bar
 
 vous recevriez les valeurs des multiples paramètres de requête `q` (`foo` et `bar`) dans une `list` Python au sein de votre fonction de **path operation**, dans le paramètre de fonction `q`.
 
-Donc la réponse serait :
+Donc la réponse de cette URL serait :
 
 ```JSON
 {
