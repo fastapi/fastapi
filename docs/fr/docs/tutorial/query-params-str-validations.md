@@ -8,7 +8,7 @@ Commençons avec cette application pour exemple :
 {!../../../docs_src/query_params_str_validations/tutorial001.py!}
 ```
 
-Le paramètre de requête `q` a pour type `Optional[str]`, signifiant qu'il est de type `str` mais pourrait aussi être égal à `None`, et en effet, la valeur par défaut est `None`, donc **FastAPI** saura qu'il n'est pas requis.
+Le paramètre de requête `q` a pour type `Union[str, None]` (ou `str | None` en Python 3.10), signifiant qu'il est de type `str` mais pourrait aussi être égal à `None`, et bien sûr, la valeur par défaut est `None`, donc **FastAPI** saura qu'il n'est pas requis.
 
 !!! note
     **FastAPI** saura que la valeur de `q` n'est pas requise grâce à la valeur par défaut `= None`.
