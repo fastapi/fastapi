@@ -86,7 +86,7 @@ Ensuite, on peut par exemple rajouter un second paramètre `min_length` :
 
 ## Ajouter des validations par expressions régulières
 
-On peut définir une <abbr title="Une expression régulière, regex ou regexp est une suite de caractères qui définit un pattern de correspondance pour les chaînes de caractères.">expression régulière</abbr>, ou **regex** à laquelle le paramètre doit correspondre :
+On peut définir une <abbr title="Une expression régulière, regex ou regexp est une suite de caractères qui définit un pattern de correspondance pour les chaînes de caractères.">expression régulière</abbr> à laquelle le paramètre doit correspondre :
 
 ```Python hl_lines="10"
 {!../../../docs_src/query_params_str_validations/tutorial004.py!}
