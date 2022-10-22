@@ -68,7 +68,7 @@ Mais déclare explicitement `q` comme étant un paramètre de requête.
 
     Le `Union[str, None]` est uniquement là pour permettre à votre éditeur un meilleur support.
 
-Ensuite, on peut passer d'autres paramètres à `Query`. Dans ce cas, le paramètre `max_length` qui ne s'applique qu'aux chaînes de caractères (`str`) :
+Ensuite, nous pouvons passer d'autres paramètres à `Query`. Dans cet exemple, le paramètre `max_length` qui s'applique aux chaînes de caractères :
 
 ```Python
 q: Union[str, None] = Query(default=None, max_length=50)
