@@ -17,7 +17,7 @@ Le paramètre de requête `q` a pour type `Union[str, None]` (ou `str | None` en
 
 ## Validation additionnelle
 
-Nous allons nous assurer que bien que `q` soit un paramètre optionnel, dès qu'il est fourni, **sa longueur n'excède pas 50 caractères**.
+Nous allons imposer que bien que `q` soit un paramètre optionnel, dès qu'il est fourni, **sa longueur n'excède pas 50 caractères**.
 
 ## Importer `Query`
 
