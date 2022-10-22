@@ -46,7 +46,7 @@ q: Union[str, None] = Query(default=None)
 ...rend le paramètre optionnel, et est donc équivalent à :
 
 ```Python
-q: Optional[str] = None
+q: Union[str, None] = None
 ```
 
 Mais déclare explicitement `q` comme étant un paramètre de requête.
