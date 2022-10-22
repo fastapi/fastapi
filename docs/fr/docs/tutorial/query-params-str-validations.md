@@ -98,7 +98,7 @@ Cette expression régulière vérifie que la valeur passée comme paramètre :
 * `fixedquery` : a pour valeur exacte `fixedquery`.
 * `$` : se termine directement ensuite, n'a pas d'autres caractères après `fixedquery`.
 
-Si vous vous sentez perdu avec le concept de **regex**, pas d'inquiétudes. Il s'agit d'une notion difficile pour beaucoup, et l'on peut déjà réussir à faire beaucoup sans jamais avoir à les manipuler.
+Si vous vous sentez perdu avec le concept d'**expression régulière**, pas d'inquiétudes. Il s'agit d'une notion difficile pour beaucoup, et l'on peut déjà réussir à faire beaucoup sans jamais avoir à les manipuler.
 
 Mais si vous décidez d'apprendre à les utiliser, sachez qu'ensuite vous pouvez les utiliser directement dans **FastAPI**.
 
