@@ -279,7 +279,7 @@ On utilise alors l'argument `deprecated=True` de `Query` :
 {!../../../docs_src/query_params_str_validations/tutorial010.py!}
 ```
 
-La documentation l'affichera bien comme déprécié (`deprecated`) :
+La documentation le présentera comme il suit :
 
 <img src="/img/tutorial/query-params-str-validations/image01.png">
 
