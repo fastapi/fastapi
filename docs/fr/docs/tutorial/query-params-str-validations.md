@@ -78,7 +78,7 @@ Cela va valider les données, montrer une erreur claire si ces dernières ne son
 
 ## Rajouter plus de validation
 
-Ensuite, on peut par exemple rajouter un second paramètre `min_length` :
+Vous pouvez aussi rajouter un second paramètre `min_length` :
 
 ```Python hl_lines="9"
 {!../../../docs_src/query_params_str_validations/tutorial003.py!}
