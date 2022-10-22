@@ -126,7 +126,7 @@ q: str
 à la place de :
 
 ```Python
-q: Optional[str] = None
+q: Union[str, None] = None
 ```
 
 Mais maintenant, on déclare `q` avec `Query`, comme ceci :
