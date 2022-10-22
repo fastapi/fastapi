@@ -40,7 +40,7 @@ Comme il faut remplacer `None` par `Query(None)`, le premier paramètre passé a
 Donc :
 
 ```Python
-q: Optional[str] = Query(None)
+q: Union[str, None] = Query(default=None)
 ```
 
 ...rend le paramètre optionnel, et est donc équivalent à :
