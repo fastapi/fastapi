@@ -1,6 +1,7 @@
 import os
 import re
 import shutil
+import subprocess
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 from multiprocessing import Pool
 from pathlib import Path
@@ -200,7 +201,7 @@ def build_lang(
     )
     current_dir = os.getcwd()
     os.chdir(build_lang_path)
-    mkdocs.commands.build.build(mkdocs.config.load_config(site_dir=str(dist_path)))
+    subprocess.run(["mkdocs", "build", "--site-dir", dist_path], check=True)
     os.chdir(current_dir)
     typer.secho(f"Successfully built docs for: {lang}", color=typer.colors.GREEN)
 
@@ -275,7 +276,7 @@ def build_all():
     current_dir = os.getcwd()
     os.chdir(en_docs_path)
     typer.echo("Building docs for: en")
-    mkdocs.commands.build.build(mkdocs.config.load_config(site_dir=str(site_path)))
+    subprocess.run(["mkdocs", "build", "--site-dir", site_path], check=True)
     os.chdir(current_dir)
     langs = []
     for lang in get_lang_paths():
