@@ -1,6 +1,6 @@
 # Paramètres de requête et validations de chaînes de caractères
 
-**FastAPI** permet de déclarer des informations et des validateurs additionnels pour vos paramètres de requêtes.
+**FastAPI** vous permet de déclarer des informations et des validateurs additionnels pour vos paramètres de requêtes.
 
 Commençons avec cette application pour exemple :
 
