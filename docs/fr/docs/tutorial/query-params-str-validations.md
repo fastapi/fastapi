@@ -64,7 +64,7 @@ Mais déclare explicitement `q` comme étant un paramètre de requête.
     = Query(None)
     ```
 
-    et utilisera ce `None` pour détecter que ce paramètre de requête n'est pas requis.
+    et utilisera ce `None` pour détecter que ce paramètre de requête **n'est pas requis**.
 
     Le `Union[str, None]` est uniquement là pour permettre à votre éditeur un meilleur support.
 
