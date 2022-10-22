@@ -35,7 +35,7 @@ Construisez ensuite la valeur par défaut de votre paramètre avec `Query`, en c
 {!../../../docs_src/query_params_str_validations/tutorial002.py!}
 ```
 
-Comme il faut remplacer `None` par `Query(None)`, le premier paramètre passé au constructeur de `Query` a pour but de choisir la valeur par défaut du paramètre.
+Comme nous devons remplacer la valeur par défaut `None` dans la fonction par `Query()`, nous pouvons maintenant définir la valeur par défaut avec le paramètre `Query(default=None)`, il sert le même objectif qui est de définir cette valeur par défaut.
 
 Donc :
 
