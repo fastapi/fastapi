@@ -21,7 +21,7 @@ Nous allons imposer que bien que `q` soit un paramètre optionnel, dès qu'il es
 
 ## Importer `Query`
 
-Pour commencer, importez `Query` depuis `fastapi` :
+Pour cela, importez d'abord `Query` depuis `fastapi` :
 
 ```Python hl_lines="3"
 {!../../../docs_src/query_params_str_validations/tutorial002.py!}
