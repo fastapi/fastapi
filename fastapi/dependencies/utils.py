@@ -539,9 +539,8 @@ async def solve_dependencies(
     values: Dict[str, Any] = {}
     errors: List[Any] = []
     if response is None:
-        # HACK: avoid generating the content-length header by setting the status code
-        # to a number lower than 200.
-        response = Response(status_code=0)
+        response = Response()
+        del response.headers["content-length"]
         response.status_code = None  # type: ignore
     dependency_cache = dependency_cache or {}
     sub_dependant: Dependant
