@@ -66,7 +66,7 @@ Mais déclare explicitement `q` comme étant un paramètre de requête.
 
     et utilisera ce `None` pour détecter que ce paramètre de requête n'est pas requis.
 
-    Le `Optional` du type est uniquement là pour permettre à votre éditeur de mieux vous aider.
+    Le `Union[str, None]` est uniquement là pour permettre à votre éditeur un meilleur support.
 
 Ensuite, on peut passer d'autres paramètres à `Query`. Dans ce cas, le paramètre `max_length` qui ne s'applique qu'aux chaînes de caractères (`str`) :
 
