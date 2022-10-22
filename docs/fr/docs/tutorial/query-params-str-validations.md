@@ -226,7 +226,7 @@ Il est aussi possible d'utiliser directement `list` plutôt que `List[str]` :
 
 On peut aussi ajouter plus d'informations sur le paramètre.
 
-Ces informations seront incluses dans le schéma OpenAPI généré et utilisées par la documentation interactive ou les potentiels outils externes utilisés.
+Ces informations seront incluses dans le schéma `OpenAPI` généré et utilisées par la documentation interactive ou les outils externes utilisés.
 
 !!! note
     Gardez en tête que les outils externes utilisés ne supportent pas forcément tous parfaitement OpenAPI.
