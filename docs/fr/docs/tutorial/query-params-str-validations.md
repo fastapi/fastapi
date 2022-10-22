@@ -239,7 +239,7 @@ On peut par exemple ajouter un titre :
 {!../../../docs_src/query_params_str_validations/tutorial007.py!}
 ```
 
-Et une description :
+Et une `description` :
 
 ```Python hl_lines="13"
 {!../../../docs_src/query_params_str_validations/tutorial008.py!}
