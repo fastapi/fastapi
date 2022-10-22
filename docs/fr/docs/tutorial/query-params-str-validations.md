@@ -132,7 +132,7 @@ q: Optional[str] = None
 Mais maintenant, on déclare `q` avec `Query`, comme ceci :
 
 ```Python
-q: Optional[str] = Query(None, min_length=3)
+q: Union[str, None] = Query(default=None, min_length=3)
 ```
 
 Donc pour déclarer une valeur comme requise tout en utilisant `Query`, il faut utiliser `...` comme premier argument :
