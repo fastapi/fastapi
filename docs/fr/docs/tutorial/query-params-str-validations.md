@@ -52,7 +52,7 @@ q: Union[str, None] = None
 Mais déclare explicitement `q` comme étant un paramètre de requête.
 
 !!! info
-    **FastAPI** ne s'intéresse qu'à :
+    Gardez à l'esprit que la partie la plus importante pour rendre un paramètre optionnel est :
 
     ```Python
     = None
