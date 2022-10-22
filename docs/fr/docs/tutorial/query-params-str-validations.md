@@ -74,7 +74,7 @@ Ensuite, nous pouvons passer d'autres paramètres à `Query`. Dans cet exemple, 
 q: Union[str, None] = Query(default=None, max_length=50)
 ```
 
-Cela va valider les données, montrer une erreur claire si ces dernières ne sont pas valides, et documenter le paramètre dans le schéma OpenAPI de cette *opération de chemin*.
+Cela va valider les données, montrer une erreur claire si ces dernières ne sont pas valides, et documenter le paramètre dans le schéma `OpenAPI` de cette *path operation*.
 
 ## Rajouter plus de validation
 
