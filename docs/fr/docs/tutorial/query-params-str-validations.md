@@ -43,7 +43,7 @@ Donc :
 q: Union[str, None] = Query(default=None)
 ```
 
-...rend le paramètre optionnel, et est donc équivalent à :
+... rend le paramètre optionnel, et est donc équivalent à :
 
 ```Python
 q: Union[str, None] = None
