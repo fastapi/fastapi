@@ -287,7 +287,7 @@ La documentation le présentera comme il suit :
 
 Il est possible d'ajouter des validateurs et métadonnées pour vos paramètres.
 
-Validateurs génériques et métadonnées :
+Validateurs et métadonnées génériques:
 
 * `alias`
 * `title`
