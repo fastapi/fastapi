@@ -499,7 +499,7 @@ class APIRouter(routing.Router):
                 "/"
             ), "A path prefix must not end with '/', as the routes will start with '/'"
         self.prefix = prefix
-        self.tags: Dict[Union[str, Enum]] = dict.fromkeys(tags) if tags else {}
+        self.tags: Dict[Union[str, Enum], None] = dict.fromkeys(tags) if tags else {}
         self.dependencies = list(dependencies or []) or []
         self.deprecated = deprecated
         self.include_in_schema = include_in_schema
