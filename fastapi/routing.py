@@ -25,6 +25,7 @@ from fastapi.dependencies.utils import (
     get_body_field,
     get_dependant,
     get_parameterless_sub_dependant,
+    get_typed_return_annotation,
     solve_dependencies,
 )
 from fastapi.encoders import DictIntStrAny, SetIntStr, jsonable_encoder
@@ -350,6 +351,8 @@ class APIRoute(routing.Route):
     ) -> None:
         self.path = path
         self.endpoint = endpoint
+        if response_model is None:
+            response_model = get_typed_return_annotation(endpoint)
         self.response_model = response_model
         self.summary = summary
         self.response_description = response_description

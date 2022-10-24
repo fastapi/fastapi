@@ -16,17 +16,22 @@ app = FastAPI()
 
 @app.get("/valid1")
 def valid1() -> ModelOne:
-    pass
+    return ModelOne(name="Test")
 
 
 @app.get("/valid2", response_model=ModelTwo)
 def valid2():
-    pass
+    return ModelTwo(surname="Test")
 
 
 @app.get("/valid3", response_model=ModelTwo)
 def valid3() -> ModelOne:
-    pass
+    return ModelTwo(surname="Test")
+
+
+@app.get("/valid4")
+def valid4() -> "ModelOne":
+    return ModelOne(name="Test")
 
 
 openapi_schema = {
@@ -81,6 +86,22 @@ openapi_schema = {
                 },
             }
         },
+        "/valid4": {
+            "get": {
+                "summary": "Valid4",
+                "operationId": "valid4_valid4_get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {"$ref": "#/components/schemas/ModelOne"}
+                            }
+                        },
+                    }
+                },
+            }
+        },
     },
     "components": {
         "schemas": {
@@ -115,4 +136,6 @@ def test_path_operations():
     response = client.get("/valid2")
     assert response.status_code == 200, response.text
     response = client.get("/valid3")
+    assert response.status_code == 200, response.text
+    response = client.get("/valid4")
     assert response.status_code == 200, response.text
