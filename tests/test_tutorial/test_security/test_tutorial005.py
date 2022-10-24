@@ -1,6 +1,6 @@
 from fastapi.testclient import TestClient
 
-from security.tutorial005 import (
+from docs_src.security.tutorial005 import (
     app,
     create_access_token,
     fake_users_db,
@@ -141,7 +141,7 @@ openapi_schema = {
                     "loc": {
                         "title": "Location",
                         "type": "array",
-                        "items": {"type": "string"},
+                        "items": {"anyOf": [{"type": "string"}, {"type": "integer"}]},
                     },
                     "msg": {"title": "Message", "type": "string"},
                     "type": {"title": "Error Type", "type": "string"},
@@ -168,7 +168,7 @@ openapi_schema = {
                             "me": "Read information about the current user.",
                             "items": "Read items.",
                         },
-                        "tokenUrl": "/token",
+                        "tokenUrl": "token",
                     }
                 },
             }

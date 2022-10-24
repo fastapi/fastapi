@@ -1,3 +1,5 @@
+from typing import Optional
+
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
 from fastapi.testclient import TestClient
@@ -8,7 +10,7 @@ app = FastAPI()
 
 class Item(BaseModel):
     name: str
-    price: float = None
+    price: Optional[float] = None
 
 
 @app.api_route("/items/{item_id}", methods=["GET"])
@@ -30,12 +32,12 @@ def delete_item(item_id: str, item: Item):
 
 @app.head("/items/{item_id}")
 def head_item(item_id: str):
-    return JSONResponse(headers={"x-fastapi-item-id": item_id})
+    return JSONResponse(None, headers={"x-fastapi-item-id": item_id})
 
 
 @app.options("/items/{item_id}")
 def options_item(item_id: str):
-    return JSONResponse(headers={"x-fastapi-item-id": item_id})
+    return JSONResponse(None, headers={"x-fastapi-item-id": item_id})
 
 
 @app.patch("/items/{item_id}")
@@ -45,7 +47,7 @@ def patch_item(item_id: str, item: Item):
 
 @app.trace("/items/{item_id}")
 def trace_item(item_id: str):
-    return JSONResponse(media_type="message/http")
+    return JSONResponse(None, media_type="message/http")
 
 
 client = TestClient(app)
@@ -290,7 +292,7 @@ openapi_schema = {
                     "loc": {
                         "title": "Location",
                         "type": "array",
-                        "items": {"type": "string"},
+                        "items": {"anyOf": [{"type": "string"}, {"type": "integer"}]},
                     },
                     "msg": {"title": "Message", "type": "string"},
                     "type": {"title": "Error Type", "type": "string"},

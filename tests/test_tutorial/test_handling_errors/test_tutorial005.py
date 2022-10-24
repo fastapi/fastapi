@@ -1,6 +1,6 @@
 from fastapi.testclient import TestClient
 
-from handling_errors.tutorial005 import app
+from docs_src.handling_errors.tutorial005 import app
 
 client = TestClient(app)
 
@@ -69,7 +69,7 @@ openapi_schema = {
                     "loc": {
                         "title": "Location",
                         "type": "array",
-                        "items": {"type": "string"},
+                        "items": {"anyOf": [{"type": "string"}, {"type": "integer"}]},
                     },
                     "msg": {"title": "Message", "type": "string"},
                     "type": {"title": "Error Type", "type": "string"},
@@ -92,7 +92,7 @@ def test_post_validation_error():
     assert response.json() == {
         "detail": [
             {
-                "loc": ["body", "item", "size"],
+                "loc": ["body", "size"],
                 "msg": "value is not a valid integer",
                 "type": "type_error.integer",
             }

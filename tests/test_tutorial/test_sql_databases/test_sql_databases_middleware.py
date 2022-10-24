@@ -260,7 +260,7 @@ openapi_schema = {
                     "loc": {
                         "title": "Location",
                         "type": "array",
-                        "items": {"type": "string"},
+                        "items": {"anyOf": [{"type": "string"}, {"type": "integer"}]},
                     },
                     "msg": {"title": "Message", "type": "string"},
                     "type": {"title": "Error Type", "type": "string"},
@@ -288,7 +288,7 @@ def client():
     if test_db.is_file():  # pragma: nocover
         test_db.unlink()
     # Import while creating the client to create the DB after starting the test session
-    from sql_databases.sql_app import alt_main
+    from docs_src.sql_databases.sql_app import alt_main
 
     # Ensure import side effects are re-executed
     importlib.reload(alt_main)

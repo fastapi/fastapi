@@ -1,6 +1,6 @@
 from fastapi.testclient import TestClient
 
-from handling_errors.tutorial001 import app
+from docs_src.handling_errors.tutorial001 import app
 
 client = TestClient(app)
 
@@ -49,7 +49,7 @@ openapi_schema = {
                     "loc": {
                         "title": "Location",
                         "type": "array",
-                        "items": {"type": "string"},
+                        "items": {"anyOf": [{"type": "string"}, {"type": "integer"}]},
                     },
                     "msg": {"title": "Message", "type": "string"},
                     "type": {"title": "Error Type", "type": "string"},

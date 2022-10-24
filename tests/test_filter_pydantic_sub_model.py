@@ -1,3 +1,5 @@
+from typing import Optional
+
 import pytest
 from fastapi import Depends, FastAPI
 from fastapi.testclient import TestClient
@@ -16,7 +18,7 @@ class ModelC(ModelB):
 
 class ModelA(BaseModel):
     name: str
-    description: str = None
+    description: Optional[str] = None
     model_b: ModelB
 
     @validator("name")
@@ -114,7 +116,7 @@ openapi_schema = {
                     "loc": {
                         "title": "Location",
                         "type": "array",
-                        "items": {"type": "string"},
+                        "items": {"anyOf": [{"type": "string"}, {"type": "integer"}]},
                     },
                     "msg": {"title": "Message", "type": "string"},
                     "type": {"title": "Error Type", "type": "string"},

@@ -1,6 +1,6 @@
 from fastapi.testclient import TestClient
 
-from query_params_str_validations.tutorial011 import app
+from docs_src.query_params_str_validations.tutorial011 import app
 
 client = TestClient(app)
 
@@ -53,7 +53,7 @@ openapi_schema = {
                     "loc": {
                         "title": "Location",
                         "type": "array",
-                        "items": {"type": "string"},
+                        "items": {"anyOf": [{"type": "string"}, {"type": "integer"}]},
                     },
                     "msg": {"title": "Message", "type": "string"},
                     "type": {"title": "Error Type", "type": "string"},

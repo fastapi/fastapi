@@ -2,7 +2,7 @@ import importlib
 
 from fastapi.testclient import TestClient
 
-from conditional_openapi import tutorial001
+from docs_src.conditional_openapi import tutorial001
 
 openapi_schema = {
     "openapi": "3.0.2",
@@ -44,3 +44,10 @@ def test_disable_openapi(monkeypatch):
     assert response.status_code == 404, response.text
     response = client.get("/redoc")
     assert response.status_code == 404, response.text
+
+
+def test_root():
+    client = TestClient(tutorial001.app)
+    response = client.get("/")
+    assert response.status_code == 200
+    assert response.json() == {"message": "Hello World"}

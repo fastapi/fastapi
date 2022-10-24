@@ -10,7 +10,7 @@ def client():
     static_dir: Path = Path(os.getcwd()) / "static"
     print(static_dir)
     static_dir.mkdir(exist_ok=True)
-    from extending_openapi.tutorial002 import app
+    from docs_src.extending_openapi.tutorial002 import app
 
     with TestClient(app) as client:
         yield client

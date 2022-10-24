@@ -1,6 +1,6 @@
 # Including WSGI - Flask, Django, others
 
-You can mount WSGI applications as you saw with [Sub Applications - Behind a Proxy, Mounts](./sub-applications-proxy.md){.internal-link target=_blank}.
+You can mount WSGI applications as you saw with [Sub Applications - Mounts](./sub-applications.md){.internal-link target=_blank}, [Behind a Proxy](./behind-a-proxy.md){.internal-link target=_blank}.
 
 For that, you can use the `WSGIMiddleware` and use it to wrap your WSGI application, for example, Flask, Django, etc.
 
@@ -12,7 +12,7 @@ Then wrap the WSGI (e.g. Flask) app with the middleware.
 
 And then mount that under a path.
 
-```Python hl_lines="2 3  22"
+```Python hl_lines="2-3  22"
 {!../../../docs_src/wsgi/tutorial001.py!}
 ```
 

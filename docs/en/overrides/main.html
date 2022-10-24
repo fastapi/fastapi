@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% block announce %}
+<div class="announce-wrapper">
+  <div id="announce-left">
+    <div class="item">
+      <a class="announce-link" href="https://twitter.com/fastapi" target="_blank">
+        <span class="twemoji twitter">
+          {% include ".icons/fontawesome/brands/twitter.svg" %}
+        </span> Follow <strong>@fastapi</strong> on <strong>Twitter</strong> to stay updated
+      </a>
+    </div>
+    <div class="item">
+      <a class="announce-link" href="https://fastapi.tiangolo.com/newsletter/">
+        <span class="twemoji">
+          {% include ".icons/material/email.svg" %}
+        </span> Subscribe to the <strong>FastAPI and friends</strong> newsletter 🎉
+      </a>
+    </div>
+    <div class="item">
+      <iframe style="display: inline-block; vertical-align: middle; border: none; margin-right: 0.5rem;" src="https://github.com/sponsors/tiangolo/button" title="Sponsor tiangolo" height="35" width="116" style="border: 0;"></iframe> <a class="announce-link" target="_blank" href="https://github.com/sponsors/tiangolo">You can now sponsor <strong>FastAPI</strong> 🍰</a>
+    </div>
+  </div>
+  <div id="announce-right" style="position: relative;">
+    <div class="item">
+      <a title="Get three courses at 10% off their current prices! Plus, we'll be donating 10% of all profits from sales of this bundle to the FastAPI team." style="display: block; position: relative;" href="https://testdriven.io/talkpython/" target="_blank">
+        <span class="sponsor-badge">sponsor</span>
+        <img class="sponsor-image" src="/img/sponsors/fastapi-course-bundle-banner.png" />
+      </a>
+    </div>
+    <div class="item">
+      <a title="The data structure for unstructured multimodal data" style="display: block; position: relative;" href="https://bit.ly/3AcNTYL" target="_blank">
+        <span class="sponsor-badge">sponsor</span>
+        <img class="sponsor-image" src="/img/sponsors/docarray-top-banner.svg" />
+      </a>
+    </div>
+    <div class="item">
+      <a title="CryptAPI: Your easy to use, secure and privacy oriented payment gateway." style="display: block; position: relative;" href="https://cryptapi.io/" target="_blank">
+        <span class="sponsor-badge">sponsor</span>
+        <img class="sponsor-image" src="/img/sponsors/cryptapi-banner.svg" />
+      </a>
+    </div>
+    <!-- <div class="item">
+      <a title="The ultimate solution to unlimited and forever cloud storage." style="display: block; position: relative;" href="https://app.imgwhale.xyz/" target="_blank">
+        <span class="sponsor-badge">sponsor</span>
+        <img class="sponsor-image" src="/img/sponsors/imgwhale-banner.svg" />
+      </a>
+    </div> -->
+    <div class="item">
+      <a title="Help us migrate doist to FastAPI" style="display: block; position: relative;" href="https://doist.com/careers/9B437B1615-wa-senior-backend-engineer-python" target="_blank">
+        <span class="sponsor-badge">sponsor</span>
+        <img class="sponsor-image" src="/img/sponsors/doist-banner.svg" />
+      </a>
+    </div>
+    <div class="item">
+      <a title="Build cross-modal and multimodal applications on the cloud" style="display: block; position: relative;" href="https://bit.ly/3dphxRq" target="_blank">
+        <span class="sponsor-badge">sponsor</span>
+        <img class="sponsor-image" src="/img/sponsors/jina-top-banner.svg" />
+      </a>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{%- block scripts %}
+{{ super() }}
+<!-- DocsQA integration start -->
+<script src="https://cdn.jsdelivr.net/npm/qabot@0.4"></script>
+<script>
+  // This prevents the global search from interfering with qa-bot's internal text input.
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('qa-bot').forEach((x) => {
+      x.addEventListener('keydown', (event) => {
+        event.stopPropagation();
+      });
+    });
+  });
+</script>
+<qa-bot
+  server="https://tiangolo-fastapi.docsqa.jina.ai"
+  theme="infer"
+  title="FastAPI Bot"
+  description="FastAPI framework, high performance, easy to learn, fast to code, ready for production"
+  style="font-size: 0.8rem"
+>
+  <template>
+      <dl>
+          <dt>You can ask questions about FastAPI. Try:</dt>
+          <dd>How do you deploy FastAPI?</dd>
+          <dd>What are type hints?</dd>
+          <dd>What is OpenAPI?</dd>
+      </dl>
+  </template>
+</qa-bot>
+<!-- DocsQA integration end -->
+{%- endblock %}

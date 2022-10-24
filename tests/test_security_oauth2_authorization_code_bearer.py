@@ -7,7 +7,7 @@ from fastapi.testclient import TestClient
 app = FastAPI()
 
 oauth2_scheme = OAuth2AuthorizationCodeBearer(
-    authorizationUrl="/authorize", tokenUrl="/token", auto_error=True
+    authorizationUrl="authorize", tokenUrl="token", auto_error=True
 )
 
 
@@ -42,8 +42,8 @@ openapi_schema = {
                 "type": "oauth2",
                 "flows": {
                     "authorizationCode": {
-                        "authorizationUrl": "/authorize",
-                        "tokenUrl": "/token",
+                        "authorizationUrl": "authorize",
+                        "tokenUrl": "token",
                         "scopes": {},
                     }
                 },

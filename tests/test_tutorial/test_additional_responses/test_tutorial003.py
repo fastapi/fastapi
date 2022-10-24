@@ -1,6 +1,6 @@
 from fastapi.testclient import TestClient
 
-from additional_responses.tutorial003 import app
+from docs_src.additional_responses.tutorial003 import app
 
 client = TestClient(app)
 
@@ -20,7 +20,7 @@ openapi_schema = {
                         },
                     },
                     "200": {
-                        "description": "Successful Response",
+                        "description": "Item requested by ID",
                         "content": {
                             "application/json": {
                                 "schema": {"$ref": "#/components/schemas/Item"},
@@ -77,7 +77,7 @@ openapi_schema = {
                     "loc": {
                         "title": "Location",
                         "type": "array",
-                        "items": {"type": "string"},
+                        "items": {"anyOf": [{"type": "string"}, {"type": "integer"}]},
                     },
                     "msg": {"title": "Message", "type": "string"},
                     "type": {"title": "Error Type", "type": "string"},

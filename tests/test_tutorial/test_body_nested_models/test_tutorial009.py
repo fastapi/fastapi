@@ -1,6 +1,6 @@
 from fastapi.testclient import TestClient
 
-from body_nested_models.tutorial009 import app
+from docs_src.body_nested_models.tutorial009 import app
 
 client = TestClient(app)
 
@@ -53,7 +53,7 @@ openapi_schema = {
                     "loc": {
                         "title": "Location",
                         "type": "array",
-                        "items": {"type": "string"},
+                        "items": {"anyOf": [{"type": "string"}, {"type": "integer"}]},
                     },
                     "msg": {"title": "Message", "type": "string"},
                     "type": {"title": "Error Type", "type": "string"},
@@ -95,7 +95,7 @@ def test_post_invalid_body():
     assert response.json() == {
         "detail": [
             {
-                "loc": ["body", "weights", "__key__"],
+                "loc": ["body", "__key__"],
                 "msg": "value is not a valid integer",
                 "type": "type_error.integer",
             }

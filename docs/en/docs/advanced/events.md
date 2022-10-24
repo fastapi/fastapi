@@ -4,6 +4,9 @@ You can define event handlers (functions) that need to be executed before the ap
 
 These functions can be declared with `async def` or normal `def`.
 
+!!! warning
+    Only event handlers for the main application will be executed, not for [Sub Applications - Mounts](./sub-applications.md){.internal-link target=_blank}.
+
 ## `startup` event
 
 To add a function that should be run before the application starts, declare it with the event `"startup"`:
