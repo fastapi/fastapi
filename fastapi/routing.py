@@ -320,7 +320,7 @@ class APIRoute(routing.Route):
         path: str,
         endpoint: Callable[..., Any],
         *,
-        response_model: Any = None,
+        response_model: Any = Default(None),
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
@@ -351,7 +351,7 @@ class APIRoute(routing.Route):
     ) -> None:
         self.path = path
         self.endpoint = endpoint
-        if response_model is None:
+        if isinstance(response_model, DefaultPlaceholder):
             response_model = get_typed_return_annotation(endpoint)
         self.response_model = response_model
         self.summary = summary
@@ -389,7 +389,7 @@ class APIRoute(routing.Route):
             status_code = int(status_code)
         self.status_code = status_code
         if self.response_model:
-            assert self.response_model is Any or is_body_allowed_for_status_code(
+            assert is_body_allowed_for_status_code(
                 status_code
             ), f"Status code {status_code} must not have a response body"
             response_name = "Response_" + self.unique_id
@@ -518,7 +518,7 @@ class APIRouter(routing.Router):
         path: str,
         endpoint: Callable[..., Any],
         *,
-        response_model: Any = None,
+        response_model: Any = Default(None),
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
@@ -599,7 +599,7 @@ class APIRouter(routing.Router):
         self,
         path: str,
         *,
-        response_model: Any = None,
+        response_model: Any = Default(None),
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
@@ -794,7 +794,7 @@ class APIRouter(routing.Router):
         self,
         path: str,
         *,
-        response_model: Any = None,
+        response_model: Any = Default(None),
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
@@ -850,7 +850,7 @@ class APIRouter(routing.Router):
         self,
         path: str,
         *,
-        response_model: Any = None,
+        response_model: Any = Default(None),
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
@@ -906,7 +906,7 @@ class APIRouter(routing.Router):
         self,
         path: str,
         *,
-        response_model: Any = None,
+        response_model: Any = Default(None),
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
@@ -962,7 +962,7 @@ class APIRouter(routing.Router):
         self,
         path: str,
         *,
-        response_model: Any = None,
+        response_model: Any = Default(None),
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
@@ -1018,7 +1018,7 @@ class APIRouter(routing.Router):
         self,
         path: str,
         *,
-        response_model: Any = None,
+        response_model: Any = Default(None),
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
@@ -1074,7 +1074,7 @@ class APIRouter(routing.Router):
         self,
         path: str,
         *,
-        response_model: Any = None,
+        response_model: Any = Default(None),
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
@@ -1130,7 +1130,7 @@ class APIRouter(routing.Router):
         self,
         path: str,
         *,
-        response_model: Any = None,
+        response_model: Any = Default(None),
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
@@ -1186,7 +1186,7 @@ class APIRouter(routing.Router):
         self,
         path: str,
         *,
-        response_model: Any = None,
+        response_model: Any = Default(None),
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
