@@ -16,7 +16,7 @@ def read_items(request: Request):
 app.include_router(router)
 
 
-@app.get('/test/', tags=["test", "test"])
+@app.get("/test/", tags=["test", "test"])
 def read_test():
     return "test"
 
