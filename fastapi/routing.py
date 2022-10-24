@@ -499,7 +499,7 @@ class APIRouter(routing.Router):
                 "/"
             ), "A path prefix must not end with '/', as the routes will start with '/'"
         self.prefix = prefix
-        self.tags: List[Union[str, Enum]] = tags or []
+        self.tags: Dict[Union[str, Enum]] = dict.fromkeys(tags) if tags else {}
         self.dependencies = list(dependencies or []) or []
         self.deprecated = deprecated
         self.include_in_schema = include_in_schema
@@ -552,7 +552,7 @@ class APIRouter(routing.Router):
         )
         current_tags = self.tags.copy()
         if tags:
-            current_tags.extend(tags)
+            current_tags.update(dict.fromkeys(tags))
         current_dependencies = self.dependencies.copy()
         if dependencies:
             current_dependencies.extend(dependencies)
@@ -567,7 +567,7 @@ class APIRouter(routing.Router):
             endpoint=endpoint,
             response_model=response_model,
             status_code=status_code,
-            tags=current_tags,
+            tags=list(current_tags),
             dependencies=current_dependencies,
             summary=summary,
             description=description,
