@@ -24,8 +24,18 @@ def read_test():
 client = TestClient(app)
 
 
-def test_sub_router():
+def test_openapi_for_duplicates():
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
     assert '"tags":["items"]' in response.text
     assert '"tags":["test"]' in response.text
+
+
+def test_items_url():
+    response = client.get("/items")
+    assert response.status_code == 200, response.text
+
+
+def test_test_url():
+    response = client.get("/test")
+    assert response.status_code == 200, response.text
