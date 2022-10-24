@@ -389,7 +389,7 @@ class APIRoute(routing.Route):
             status_code = int(status_code)
         self.status_code = status_code
         if self.response_model:
-            assert is_body_allowed_for_status_code(
+            assert self.response_model is Any or is_body_allowed_for_status_code(
                 status_code
             ), f"Status code {status_code} must not have a response body"
             response_name = "Response_" + self.unique_id
