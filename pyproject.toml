@@ -7,7 +7,7 @@ name = "fastapi"
 description = "FastAPI framework, high performance, easy to learn, fast to code, ready for production"
 readme = "README.md"
 requires-python = ">=3.7"
-license = "MIT"
+license = {text = "MIT"}
 authors = [
     { name = "Sebastián Ramírez", email = "tiangolo@gmail.com" },
 ]
