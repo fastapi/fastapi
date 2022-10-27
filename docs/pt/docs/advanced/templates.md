@@ -24,7 +24,7 @@ $ pip install jinja2
 
 * Importe `Jinja2Templates`.
 * Crie um objeto `templates`, que você pode reutilzar depois.
-* Declare um parametro `Request` na *operação de caminho* que irá retornar um template.
+* Declare um parâmetro `Request` na *operação de caminho* que irá retornar um template.
 * Use o `templates` que você criou para dar render e retornar um `TemplateResponse`, passando o `request` como um par de valores chave no "contexto" do Jinja2.
 
 ```Python hl_lines="4  11  15-16"
@@ -40,7 +40,7 @@ $ pip install jinja2
 !!! note "Detalhes Técnicos"
     Você também pode usar `from starlette.templating import Jinja2Templates`.
 
-    O **FastAPI** prove o mesmo `starlette.templating` como `fastapi.templating`, apenas para a sua conveniencia, o(a) desenvolvedor(a). Porém a maioria das respostas disponiveis vem diretamente do Starlette. O mesmo acontece com o `Request` e o `StaticFiles`.
+    O **FastAPI** prove o mesmo `starlette.templating` como `fastapi.templating`, apenas para a sua conveniência, o(a) desenvolvedor(a). Porém, a maioria das respostas disponíveis vem diretamente do Starlette. O mesmo acontece com o `Request` e o `StaticFiles`.
 
 ## Escrevendo templates
 
@@ -58,7 +58,7 @@ Isso vai mostrar o `id` do `dict` de "contexto" que você passou:
 
 ## Templates e arquivos estáticos
 
-E você também pode usar `url_for()` dentro de um template, e usa-ló, por exemplo, com o `StaticFiles` que você montou.
+E você também pode usar `url_for()` dentro de um template, e usá-lo, por exemplo, com o `StaticFiles` que você montou.
 
 ```jinja hl_lines="4"
 {!../../../docs_src/templates/templates/item.html!}
@@ -70,8 +70,8 @@ Nessa exemplo, ele seria vinculado a um arquivo CSS em `static/styles.css` com:
 {!../../../docs_src/templates/static/styles.css!}
 ```
 
-E por você estar usando `StaticFiles`, esse arquivo CSS deveria ser     servido automaticamente pela sua aplicação **FastAPI** na URL `/static/styles.css`.
+E por você estar usando `StaticFiles`, esse arquivo CSS deveria ser servido automaticamente pela sua aplicação **FastAPI** na URL `/static/styles.css`.
 
 ## Mais detalhes
 
-Para mais detalhes, incluindo como testar templates, cheque <a href="https://www.starlette.io/templates/" class="external-link" target="_blank">documenots do Starlette em templates</a>.
+Para mais detalhes, incluindo como testar templates, cheque <a href="https://www.starlette.io/templates/" class="external-link" target="_blank">documentos do Starlette em templates</a>.
