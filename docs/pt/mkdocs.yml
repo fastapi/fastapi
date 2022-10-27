@@ -71,9 +71,10 @@ nav:
   - tutorial/query-params-str-validations.md
   - tutorial/cookie-params.md
   - tutorial/header-params.md
+  - tutorial/response-status-code.md
   - tutorial/handling-errors.md
   - Segurança:
-    - tutorial/security/index.md
+    - tutorial/security/index
   - tutorial/background-tasks.md
   - Guia de Usuário Avançado:
     - advanced/index.md
