@@ -476,13 +476,24 @@ async def solve_dependencies(
         response = Response()
         del response.headers["content-length"]
         response.status_code = None  # type: ignore
-    dependency_cache = dependency_cache or {}
+    if dependency_cache is None:
+        dependency_cache = {}
     sub_dependant: Dependant
     for sub_dependant in dependant.dependencies:
-        sub_dependant.call = cast(Callable[..., Any], sub_dependant.call)
-        sub_dependant.cache_key = cast(
+        cache_key = cast(
             Tuple[Callable[..., Any], Tuple[str]], sub_dependant.cache_key
         )
+        if sub_dependant.use_cache:
+            try:
+                solved = dependency_cache[cache_key]
+            except KeyError:
+                pass
+            else:
+                if sub_dependant.name is not None:
+                    values[sub_dependant.name] = solved
+                continue
+
+        sub_dependant.call = cast(Callable[..., Any], sub_dependant.call)
         call = sub_dependant.call
         use_sub_dependant = sub_dependant
         if (
@@ -515,15 +526,12 @@ async def solve_dependencies(
             sub_errors,
             background_tasks,
             _,  # the subdependency returns the same response we have
-            sub_dependency_cache,
+            _,  # the returned cache is the same as passed in
         ) = solved_result
-        dependency_cache.update(sub_dependency_cache)
         if sub_errors:
             errors.extend(sub_errors)
             continue
-        if sub_dependant.use_cache and sub_dependant.cache_key in dependency_cache:
-            solved = dependency_cache[sub_dependant.cache_key]
-        elif is_gen_callable(call) or is_async_gen_callable(call):
+        if is_gen_callable(call) or is_async_gen_callable(call):
             stack = request.scope.get("fastapi_astack")
             assert isinstance(stack, AsyncExitStack)
             solved = await solve_generator(
@@ -535,8 +543,7 @@ async def solve_dependencies(
             solved = await run_in_threadpool(call, **sub_values)
         if sub_dependant.name is not None:
             values[sub_dependant.name] = solved
-        if sub_dependant.cache_key not in dependency_cache:
-            dependency_cache[sub_dependant.cache_key] = solved
+        dependency_cache[cache_key] = solved
     path_values, path_errors = request_params_to_args(
         dependant.path_params, request.path_params
     )

@@ -115,7 +115,7 @@ async def test_deep_cache(capsys):
         "scope_counter_1": 2,
         "scope_counter_2": 2,
     }
-    assert my_counter == 24
+    assert my_counter == 8
 
 
 async def test_deep_cache_perf(capsys):
