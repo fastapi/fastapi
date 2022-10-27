@@ -8,7 +8,7 @@ Um "middleware" é uma função que trabalha com todas as **requisições (reque
 * Depois, ele pode fazer algo com essa **requisição** ou rodar qualquer código necessário.
 * Depois, ele passa a **requisição** para ser processada pelo resto da aplicação (por alguma *operação de caminho*).
 * Depois, ele pega a **resposta** gerada pela aplicação (por alguma *operação de caminho*).
-* Ele pode fazer algo com essa **resposta** ou rodar qualquer código necessário. 
+* Ele pode fazer algo com essa **resposta** ou rodar qualquer código necessário.
 * Depois ele retorna a **resposta**.
 
 !!! note "Detalhes Técnicos"
@@ -48,7 +48,7 @@ Você pode adicionar código para ser rodado com a `requisição`, antes de qual
 
 E também depois da `resposta` ser gerada, antes de retorná-la.
 
-Por exemplo, você poderia adicionar um cabeçalho customizado `X-Process-Time` contendo o tempo em segundos que a requisição levou para ser processada e gerar uma resposta: 
+Por exemplo, você poderia adicionar um cabeçalho customizado `X-Process-Time` contendo o tempo em segundos que a requisição levou para ser processada e gerar uma resposta:
 
 ```Python hl_lines="10  12-13"
 {!../../../docs_src/middleware/tutorial001.py!}
