@@ -12,7 +12,7 @@ Você pode acessar arquivos estáticos automaticamente de um diretório usando `
 ```
 
 !!! note "Detalhes Técnicos"
-    Você também poderia usar `from starlette.staticfiles import StaticFiles`. 
+    Você também poderia usar `from starlette.staticfiles import StaticFiles`.
 
     A **FastAPI** fornece `starlette.staticfiles` como `fastapi.staticfiles` apenas por conveniência para você. Mas na verdade ele vem da Starlette.
 
