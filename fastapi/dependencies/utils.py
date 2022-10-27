@@ -480,9 +480,7 @@ async def solve_dependencies(
         dependency_cache = {}
     sub_dependant: Dependant
     for sub_dependant in dependant.dependencies:
-        cache_key = cast(
-            Tuple[Callable[..., Any], Tuple[str]], sub_dependant.cache_key
-        )
+        cache_key = cast(Tuple[Callable[..., Any], Tuple[str]], sub_dependant.cache_key)
         if sub_dependant.use_cache:
             try:
                 solved = dependency_cache[cache_key]
@@ -493,24 +491,22 @@ async def solve_dependencies(
                     values[sub_dependant.name] = solved
                 continue
 
-        sub_dependant.call = cast(Callable[..., Any], sub_dependant.call)
-        call = sub_dependant.call
+        call = cast(Callable[..., Any], sub_dependant.call)
         use_sub_dependant = sub_dependant
-        if (
-            dependency_overrides_provider
-            and dependency_overrides_provider.dependency_overrides
-        ):
-            original_call = sub_dependant.call
-            call = getattr(
-                dependency_overrides_provider, "dependency_overrides", {}
-            ).get(original_call, original_call)
-            use_path: str = sub_dependant.path  # type: ignore
-            use_sub_dependant = get_dependant(
-                path=use_path,
-                call=call,
-                name=sub_dependant.name,
-                security_scopes=sub_dependant.security_scopes,
-            )
+        dependency_overrides = getattr(
+            dependency_overrides_provider, "dependency_overrides", None
+        )
+        if dependency_overrides:
+            original_call = call
+            call = dependency_overrides.get(original_call, original_call)
+            if call is not original_call:
+                use_path: str = sub_dependant.path  # type: ignore
+                use_sub_dependant = get_dependant(
+                    path=use_path,
+                    call=call,
+                    name=sub_dependant.name,
+                    security_scopes=sub_dependant.security_scopes,
+                )
 
         solved_result = await solve_dependencies(
             request=request,
