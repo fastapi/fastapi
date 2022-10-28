@@ -2,7 +2,7 @@ from enum import Enum
 from typing import Any, Callable, Dict, Iterable, List, Optional, Union
 
 from fastapi.logger import logger
-from pydantic import AnyUrl, BaseModel, Field
+from pydantic import AnyUrl, BaseModel, Field, validator
 
 try:
     import email_validator  # type: ignore
@@ -399,6 +399,14 @@ class OpenAPI(BaseModel):
 
     class Config:
         extra = "allow"
+
+    @validator("tags")
+    def check_tags(cls, tags):  # type: ignore
+        unique_names = set()
+        assert not any(
+            t.name in unique_names or unique_names.add(t.name) for t in tags  # type: ignore
+        ), "Tag names must be unique"
+        return tags
 
 
 Schema.update_forward_refs()
