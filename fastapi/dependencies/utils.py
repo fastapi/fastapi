@@ -592,36 +592,41 @@ def request_params_to_args(
     values = {}
     errors = []
     for field in required_params:
-        if is_scalar_sequence_field(field) and isinstance(
-            received_params, (QueryParams, Headers)
-        ):
-            value = received_params.getlist(field.alias) or field.default
-        else:
-            value = received_params.get(field.alias)
-        field_info = field.field_info
-        assert isinstance(
-            field_info, params.Param
-        ), "Params must be subclasses of Param"
-        if value is None:
-            if field.required:
-                errors.append(
-                    ErrorWrapper(
-                        MissingError(), loc=(field_info.in_.value, field.alias)
-                    )
-                )
-            else:
-                values[field.name] = deepcopy(field.default)
-            continue
-        v_, errors_ = field.validate(
-            value, values, loc=(field_info.in_.value, field.alias)
-        )
-        if isinstance(errors_, ErrorWrapper):
-            errors.append(errors_)
-        elif isinstance(errors_, list):
-            errors.extend(errors_)
-        else:
-            values[field.name] = v_
+        request_field_to_arg(values, errors, field, received_params)
     return values, errors
+
+
+def request_field_to_arg(
+    values: dict[str, Any],
+    errors: List[ErrorWrapper],
+    field: ModelField,
+    received_params: Union[Mapping[str, Any], QueryParams, Headers],
+) -> None:
+    if is_scalar_sequence_field(field) and isinstance(
+        received_params, (QueryParams, Headers)
+    ):
+        value = received_params.getlist(field.alias) or field.default
+    else:
+        value = received_params.get(field.alias)
+    field_info = field.field_info
+    assert isinstance(field_info, params.Param), "Params must be subclasses of Param"
+    if value is None:
+        if field.required:
+            return errors.append(
+                ErrorWrapper(MissingError(), loc=(field_info.in_.value, field.alias))
+            )
+        else:
+            values[field.name] = deepcopy(field.default)
+            return
+    v_, errors_ = field.validate(value, values, loc=(field_info.in_.value, field.alias))
+    if not errors_:
+        # optimize for the common case
+        values[field.name] = v_
+        return
+    if isinstance(errors_, ErrorWrapper):
+        errors.append(errors_)
+    elif isinstance(errors_, list):
+        errors.extend(errors_)
 
 
 async def request_body_to_args(
