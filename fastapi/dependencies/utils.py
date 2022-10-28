@@ -455,14 +455,31 @@ async def solve_generator(
     return await stack.enter_async_context(cm)
 
 
+def response_factory():
+    response = Response()
+    del response.headers["content-length"]
+    response.status_code = None  # type: ignore
+    return response
+
+
 @dataclasses.dataclass
-class DependencyGetterContext:
-    values: Dict[str, Any]
-    errors: List[ErrorWrapper]
+class DependencySolverContext:
     request: Union[Request, WebSocket]
-    response: Optional[Response] = None
     body: Optional[Union[Dict[str, Any], FormData]] = None
+    dependency_overrides_provider: dataclasses.InitVar[Optional[Any]] = None
+    dependency_overrides: Optional[Dict[Any, Any]] = dataclasses.field(init=False)
+    response: Optional[Response] = dataclasses.field(default_factory=response_factory)
     background_tasks: Optional[BackgroundTasks] = None
+    dependency_cache: Dict[
+        Tuple[Callable[..., Any], Tuple[str]], Any
+    ] = dataclasses.field(default_factory=dict)
+    values: Dict[str, Any] = dataclasses.field(default_factory=dict)
+    errors: List[ErrorWrapper] = dataclasses.field(default_factory=list)
+
+    def __post_init__(self, dependency_overrides_provider: Optional[Any]) -> None:
+        self.dependency_overrides = (
+            getattr(dependency_overrides_provider, "dependency_overrides", None) or None
+        )
 
 
 DependencyGetter = Union[
@@ -473,34 +490,17 @@ DependencyGetter = Union[
 
 async def solve_dependencies(
     *,
-    request: Union[Request, WebSocket],
+    context: DependencySolverContext,
     dependant: Dependant,
-    body: Optional[Union[Dict[str, Any], FormData]] = None,
-    background_tasks: Optional[BackgroundTasks] = None,
-    response: Optional[Response] = None,
-    dependency_overrides_provider: Optional[Any] = None,
-    dependency_cache: Optional[Dict[Tuple[Callable[..., Any], Tuple[str]], Any]] = None,
-) -> Tuple[
-    Dict[str, Any],
-    List[ErrorWrapper],
-    Optional[BackgroundTasks],
-    Response,
-    Dict[Tuple[Callable[..., Any], Tuple[str]], Any],
-]:
+) -> Tuple[Dict[str, Any], List[ErrorWrapper]]:
     values: Dict[str, Any] = {}
     errors: List[ErrorWrapper] = []
-    if response is None:
-        response = Response()
-        del response.headers["content-length"]
-        response.status_code = None  # type: ignore
-    if dependency_cache is None:
-        dependency_cache = {}
     sub_dependant: Dependant
     for sub_dependant in dependant.dependencies:
         cache_key = cast(Tuple[Callable[..., Any], Tuple[str]], sub_dependant.cache_key)
         if sub_dependant.use_cache:
             try:
-                solved = dependency_cache[cache_key]
+                solved = context.dependency_cache[cache_key]
             except KeyError:
                 pass
             else:
@@ -510,12 +510,9 @@ async def solve_dependencies(
 
         call = cast(Callable[..., Any], sub_dependant.call)
         use_sub_dependant = sub_dependant
-        dependency_overrides = getattr(
-            dependency_overrides_provider, "dependency_overrides", None
-        )
-        if dependency_overrides:
+        if context.dependency_overrides:
             original_call = call
-            call = dependency_overrides.get(original_call, original_call)
+            call = context.dependency_overrides.get(original_call, original_call)
             if call is not original_call:
                 use_path: str = sub_dependant.path  # type: ignore
                 use_sub_dependant = get_dependant(
@@ -525,27 +522,16 @@ async def solve_dependencies(
                     security_scopes=sub_dependant.security_scopes,
                 )
 
-        solved_result = await solve_dependencies(
-            request=request,
+        sub_values, sub_errors = await solve_dependencies(
+            context=context,
             dependant=use_sub_dependant,
-            body=body,
-            background_tasks=background_tasks,
-            response=response,
-            dependency_overrides_provider=dependency_overrides_provider,
-            dependency_cache=dependency_cache,
         )
-        (
-            sub_values,
-            sub_errors,
-            background_tasks,
-            _,  # the subdependency returns the same response we have
-            _,  # the returned cache is the same as passed in
-        ) = solved_result
+
         if sub_errors:
             errors.extend(sub_errors)
             continue
         if is_gen_callable(call) or is_async_gen_callable(call):
-            stack = request.scope.get("fastapi_astack")
+            stack = context.request.scope.get("fastapi_astack")
             assert isinstance(stack, AsyncExitStack)
             solved = await solve_generator(
                 call=call, stack=stack, sub_values=sub_values
@@ -556,26 +542,19 @@ async def solve_dependencies(
             solved = await run_in_threadpool(call, **sub_values)
         if sub_dependant.name is not None:
             values[sub_dependant.name] = solved
-        dependency_cache[cache_key] = solved
+        context.dependency_cache[cache_key] = solved
 
     # solve built-in dependencies
     if dependant.dependency_getters:
-        context = DependencyGetterContext(
-            values=values,
-            errors=errors,
-            request=request,
-            response=response,
-            body=body,
-            background_tasks=background_tasks,
-        )
+        context.values = values
+        context.errors = errors
         for dependency_getter in dependant.dependency_getters:
             if inspect.iscoroutinefunction(dependency_getter):
                 await dependency_getter(context)
             else:
                 dependency_getter(context)
-        background_tasks = context.background_tasks
 
-    return values, errors, background_tasks, response, dependency_cache
+    return values, errors
 
 
 def get_dependent_dependency_getters(
@@ -589,7 +568,7 @@ def get_dependent_dependency_getters(
     for field in dependant.path_params:
 
         def get_path_param_getter(field: ModelField) -> DependencyGetter:
-            def get_param(context: DependencyGetterContext) -> None:
+            def get_param(context: DependencySolverContext) -> None:
                 return request_field_to_arg(
                     context.values, context.errors, field, context.request.path_params
                 )
@@ -601,7 +580,7 @@ def get_dependent_dependency_getters(
     for field in dependant.query_params:
 
         def get_query_param_getter(field: ModelField) -> DependencyGetter:
-            def get_param(context: DependencyGetterContext) -> None:
+            def get_param(context: DependencySolverContext) -> None:
                 return request_field_to_arg(
                     context.values, context.errors, field, context.request.query_params
                 )
@@ -613,7 +592,7 @@ def get_dependent_dependency_getters(
     for field in dependant.header_params:
 
         def get_header_param_getter(field: ModelField) -> DependencyGetter:
-            def get_param(context: DependencyGetterContext) -> None:
+            def get_param(context: DependencySolverContext) -> None:
                 return request_field_to_arg(
                     context.values, context.errors, field, context.request.headers
                 )
@@ -624,7 +603,7 @@ def get_dependent_dependency_getters(
     for field in dependant.cookie_params:
 
         def get_cookie_param_getter(field: ModelField) -> DependencyGetter:
-            def get_param(context: DependencyGetterContext) -> None:
+            def get_param(context: DependencySolverContext) -> None:
                 return request_field_to_arg(
                     context.values, context.errors, field, context.request.cookies
                 )
@@ -635,7 +614,7 @@ def get_dependent_dependency_getters(
 
     if dependant.body_params:
 
-        async def get_body_params(context: DependencyGetterContext) -> None:
+        async def get_body_params(context: DependencySolverContext) -> None:
             (
                 body_values,
                 body_errors,
@@ -649,7 +628,7 @@ def get_dependent_dependency_getters(
 
     if dependant.http_connection_param_name:
 
-        def get_connection(context: DependencyGetterContext) -> None:
+        def get_connection(context: DependencySolverContext) -> None:
             context.values[
                 cast(str, dependant.http_connection_param_name)
             ] = context.request
@@ -658,7 +637,7 @@ def get_dependent_dependency_getters(
 
     if dependant.request_param_name:
 
-        def get_request(context: DependencyGetterContext) -> None:
+        def get_request(context: DependencySolverContext) -> None:
             if isinstance(context.request, Request):
                 context.values[
                     cast(str, dependant.request_param_name)
@@ -668,7 +647,7 @@ def get_dependent_dependency_getters(
 
     if dependant.websocket_param_name:
 
-        def get_websocket(context: DependencyGetterContext) -> None:
+        def get_websocket(context: DependencySolverContext) -> None:
             if isinstance(context.request, WebSocket):
                 context.values[
                     cast(str, dependant.websocket_param_name)
@@ -678,7 +657,7 @@ def get_dependent_dependency_getters(
 
     if dependant.background_tasks_param_name:
 
-        def get_background_tasks(context: DependencyGetterContext) -> None:
+        def get_background_tasks(context: DependencySolverContext) -> None:
             if context.background_tasks is None:
                 context.background_tasks = BackgroundTasks()
             context.values[
@@ -689,14 +668,14 @@ def get_dependent_dependency_getters(
 
     if dependant.response_param_name:
 
-        def get_response(context: DependencyGetterContext) -> None:
+        def get_response(context: DependencySolverContext) -> None:
             context.values[cast(str, dependant.response_param_name)] = context.response
 
         getters.append(get_response)
 
     if dependant.security_scopes_param_name:
 
-        def get_scopes(context: DependencyGetterContext) -> None:
+        def get_scopes(context: DependencySolverContext) -> None:
             context.values[
                 cast(str, dependant.security_scopes_param_name)
             ] = SecurityScopes(scopes=dependant.security_scopes)

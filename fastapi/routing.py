@@ -23,6 +23,7 @@ from fastapi import params
 from fastapi.datastructures import Default, DefaultPlaceholder
 from fastapi.dependencies.models import Dependant
 from fastapi.dependencies.utils import (
+    DependencySolverContext,
     get_body_field,
     get_dependant,
     get_parameterless_sub_dependant,
@@ -222,13 +223,15 @@ def get_request_handler(
             raise HTTPException(
                 status_code=400, detail="There was an error parsing the body"
             ) from e
-        solved_result = await solve_dependencies(
+        context = DependencySolverContext(
             request=request,
-            dependant=dependant,
             body=body,
             dependency_overrides_provider=dependency_overrides_provider,
         )
-        values, errors, background_tasks, sub_response, _ = solved_result
+        values, errors = await solve_dependencies(
+            context=context,
+            dependant=dependant,
+        )
         if errors:
             raise RequestValidationError(errors, body=body)
         else:
@@ -238,18 +241,18 @@ def get_request_handler(
 
             if isinstance(raw_response, Response):
                 if raw_response.background is None:
-                    raw_response.background = background_tasks
+                    raw_response.background = context.background_tasks
                 return raw_response
-            response_args: Dict[str, Any] = {"background": background_tasks}
+            response_args: Dict[str, Any] = {"background": context.background_tasks}
             # If status_code was set, use it, otherwise use the default from the
             # response class, in the case of redirect it's 307
             current_status_code = (
-                status_code if status_code else sub_response.status_code
+                status_code if status_code else context.response.status_code
             )
             if current_status_code is not None:
                 response_args["status_code"] = current_status_code
-            if sub_response.status_code:
-                response_args["status_code"] = sub_response.status_code
+            if context.response.status_code:
+                response_args["status_code"] = context.response.status_code
             content = await serialize_response(
                 field=response_field,
                 response_content=raw_response,
@@ -264,7 +267,7 @@ def get_request_handler(
             response = actual_response_class(content, **response_args)
             if not is_body_allowed_for_status_code(response.status_code):
                 response.body = b""
-            response.headers.raw.extend(sub_response.headers.raw)
+            response.headers.raw.extend(context.response.headers.raw)
             return response
 
     return app
@@ -274,12 +277,14 @@ def get_websocket_app(
     dependant: Dependant, dependency_overrides_provider: Optional[Any] = None
 ) -> Callable[[WebSocket], Coroutine[Any, Any, Any]]:
     async def app(websocket: WebSocket) -> None:
-        solved_result = await solve_dependencies(
+        context = DependencySolverContext(
             request=websocket,
-            dependant=dependant,
             dependency_overrides_provider=dependency_overrides_provider,
         )
-        values, errors, _, _2, _3 = solved_result
+        values, errors = await solve_dependencies(
+            context=context,
+            dependant=dependant,
+        )
         if errors:
             await websocket.close(code=WS_1008_POLICY_VIOLATION)
             raise WebSocketRequestValidationError(errors)
