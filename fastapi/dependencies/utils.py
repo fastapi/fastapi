@@ -4,6 +4,7 @@ from contextlib import contextmanager
 from copy import deepcopy
 from typing import (
     Any,
+    Awaitable,
     Callable,
     Coroutine,
     Dict,
@@ -11,7 +12,6 @@ from typing import (
     List,
     Mapping,
     Optional,
-    Sequence,
     Tuple,
     Type,
     Union,
@@ -324,6 +324,7 @@ def get_dependant(
                 field_info, params.Body
             ), f"Param: {param_field.name} can only be a request body, using Body()"
             dependant.body_params.append(param_field)
+    dependant.dependency_getters = get_dependent_dependency_getters(dependant)
     return dependant
 
 
@@ -454,6 +455,22 @@ async def solve_generator(
     return await stack.enter_async_context(cm)
 
 
+@dataclasses.dataclass
+class DependencyGetterContext:
+    values: Dict[str, Any]
+    errors: List[ErrorWrapper]
+    request: Union[Request, WebSocket]
+    response: Optional[Response] = None
+    body: Optional[Union[Dict[str, Any], FormData]] = None
+    background_tasks: Optional[BackgroundTasks] = None
+
+
+DependencyGetter = Union[
+    Callable[[DependencySolverContext], None],
+    Callable[[DependencySolverContext], Awaitable[None]],
+]
+
+
 async def solve_dependencies(
     *,
     request: Union[Request, WebSocket],
@@ -540,64 +557,157 @@ async def solve_dependencies(
         if sub_dependant.name is not None:
             values[sub_dependant.name] = solved
         dependency_cache[cache_key] = solved
-    path_values, path_errors = request_params_to_args(
-        dependant.path_params, request.path_params
-    )
-    query_values, query_errors = request_params_to_args(
-        dependant.query_params, request.query_params
-    )
-    header_values, header_errors = request_params_to_args(
-        dependant.header_params, request.headers
-    )
-    cookie_values, cookie_errors = request_params_to_args(
-        dependant.cookie_params, request.cookies
-    )
-    values.update(path_values)
-    values.update(query_values)
-    values.update(header_values)
-    values.update(cookie_values)
-    errors += path_errors + query_errors + header_errors + cookie_errors
-    if dependant.body_params:
-        (
-            body_values,
-            body_errors,
-        ) = await request_body_to_args(  # body_params checked above
-            required_params=dependant.body_params, received_body=body
+
+    # solve built-in dependencies
+    if dependant.dependency_getters:
+        context = DependencyGetterContext(
+            values=values,
+            errors=errors,
+            request=request,
+            response=response,
+            body=body,
+            background_tasks=background_tasks,
         )
-        values.update(body_values)
-        errors.extend(body_errors)
-    if dependant.http_connection_param_name:
-        values[dependant.http_connection_param_name] = request
-    if dependant.request_param_name and isinstance(request, Request):
-        values[dependant.request_param_name] = request
-    elif dependant.websocket_param_name and isinstance(request, WebSocket):
-        values[dependant.websocket_param_name] = request
-    if dependant.background_tasks_param_name:
-        if background_tasks is None:
-            background_tasks = BackgroundTasks()
-        values[dependant.background_tasks_param_name] = background_tasks
-    if dependant.response_param_name:
-        values[dependant.response_param_name] = response
-    if dependant.security_scopes_param_name:
-        values[dependant.security_scopes_param_name] = SecurityScopes(
-            scopes=dependant.security_scopes
-        )
+        for dependency_getter in dependant.dependency_getters:
+            if inspect.iscoroutinefunction(dependency_getter):
+                await dependency_getter(context)
+            else:
+                dependency_getter(context)
+        background_tasks = context.background_tasks
+
     return values, errors, background_tasks, response, dependency_cache
 
 
-def request_params_to_args(
-    required_params: Sequence[ModelField],
-    received_params: Union[Mapping[str, Any], QueryParams, Headers],
-) -> Tuple[Dict[str, Any], List[ErrorWrapper]]:
-    values = {}
-    errors = []
-    for field in required_params:
-        request_field_to_arg(values, errors, field, received_params)
-    return values, errors
+def get_dependent_dependency_getters(
+    dependant: Dependant,
+) -> Optional[List[DependencyGetter]]:
+    """
+    Process built-in dependencies into a list of getter functions
+    """
+    getters: List[DependencyGetter] = []
+    field: ModelField
+    for field in dependant.path_params:
+
+        def get_path_param_getter(field: ModelField) -> DependencyGetter:
+            def get_param(context: DependencyGetterContext) -> None:
+                return request_field_to_arg(
+                    context.values, context.errors, field, context.request.path_params
+                )
+
+            return get_param
+
+        getters.append(get_path_param_getter(field))
+
+    for field in dependant.query_params:
+
+        def get_query_param_getter(field: ModelField) -> DependencyGetter:
+            def get_param(context: DependencyGetterContext) -> None:
+                return request_field_to_arg(
+                    context.values, context.errors, field, context.request.query_params
+                )
+
+            return get_param
+
+        getters.append(get_query_param_getter(field))
+
+    for field in dependant.header_params:
+
+        def get_header_param_getter(field: ModelField) -> DependencyGetter:
+            def get_param(context: DependencyGetterContext) -> None:
+                return request_field_to_arg(
+                    context.values, context.errors, field, context.request.headers
+                )
+
+            return get_param
+
+        getters.append(get_header_param_getter(field))
+    for field in dependant.cookie_params:
+
+        def get_cookie_param_getter(field: ModelField) -> DependencyGetter:
+            def get_param(context: DependencyGetterContext) -> None:
+                return request_field_to_arg(
+                    context.values, context.errors, field, context.request.cookies
+                )
+
+            return get_param
+
+        getters.append(get_cookie_param_getter(field))
+
+    if dependant.body_params:
+
+        async def get_body_params(context: DependencyGetterContext) -> None:
+            (
+                body_values,
+                body_errors,
+            ) = await request_body_to_args(  # body_params checked in solve_dependencies()
+                required_params=dependant.body_params, received_body=context.body
+            )
+            context.values.update(body_values)
+            context.errors.extend(body_errors)
+
+        getters.append(get_body_params)
+
+    if dependant.http_connection_param_name:
+
+        def get_connection(context: DependencyGetterContext) -> None:
+            context.values[
+                cast(str, dependant.http_connection_param_name)
+            ] = context.request
+
+        getters.append(get_connection)
+
+    if dependant.request_param_name:
+
+        def get_request(context: DependencyGetterContext) -> None:
+            if isinstance(context.request, Request):
+                context.values[
+                    cast(str, dependant.request_param_name)
+                ] = context.request
+
+        getters.append(get_request)
+
+    if dependant.websocket_param_name:
+
+        def get_websocket(context: DependencyGetterContext) -> None:
+            if isinstance(context.request, WebSocket):
+                context.values[
+                    cast(str, dependant.websocket_param_name)
+                ] = context.request
+
+        getters.append(get_websocket)
+
+    if dependant.background_tasks_param_name:
+
+        def get_background_tasks(context: DependencyGetterContext) -> None:
+            if context.background_tasks is None:
+                context.background_tasks = BackgroundTasks()
+            context.values[
+                cast(str, dependant.background_tasks_param_name)
+            ] = context.background_tasks
+
+        getters.append(get_background_tasks)
+
+    if dependant.response_param_name:
+
+        def get_response(context: DependencyGetterContext) -> None:
+            context.values[cast(str, dependant.response_param_name)] = context.response
+
+        getters.append(get_response)
+
+    if dependant.security_scopes_param_name:
+
+        def get_scopes(context: DependencyGetterContext) -> None:
+            context.values[
+                cast(str, dependant.security_scopes_param_name)
+            ] = SecurityScopes(scopes=dependant.security_scopes)
+
+        getters.append(get_scopes)
+
+    return getters or None
 
 
 def request_field_to_arg(
-    values: dict[str, Any],
+    values: Dict[str, Any],
     errors: List[ErrorWrapper],
     field: ModelField,
     received_params: Union[Mapping[str, Any], QueryParams, Headers],
