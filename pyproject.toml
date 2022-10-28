@@ -138,5 +138,7 @@ filterwarnings = [
     'ignore:starlette.middleware.wsgi is deprecated and will be removed in a future release\..*:DeprecationWarning:starlette',
     # see https://trio.readthedocs.io/en/stable/history.html#trio-0-22-0-2022-09-28
     "ignore:You seem to already have a custom.*:RuntimeWarning:trio",
-    'ignore::trio.TrioDeprecationWarning',
+    "ignore::trio.TrioDeprecationWarning",
+    # TODO remove pytest-cov
+    'ignore::pytest.PytestDeprecationWarning:pytest_cov',
 ]
