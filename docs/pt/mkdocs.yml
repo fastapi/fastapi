@@ -74,6 +74,7 @@ nav:
   - tutorial/handling-errors.md
   - Segurança:
     - tutorial/security/index.md
+  - tutorial/background-tasks.md
   - Guia de Usuário Avançado:
     - advanced/index.md
 - Implantação:
