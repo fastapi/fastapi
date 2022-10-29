@@ -22,6 +22,12 @@ class Item(BaseModel):
     manufacturer: str
     price: float
     tax: float
+    extra_optional_attributes: str = Query(
+        None,
+        description="This is a extra_optional_attributes field",
+        alias="extra_optional_attributes_alias",
+        max_length=30,
+    )
 
 
 @app.get("/item")
@@ -118,6 +124,19 @@ openapi_schema_with_not_omitted_description = {
                         "name": "tax",
                         "in": "query",
                     },
+                    {
+                        "description": "This is a extra_optional_attributes field",
+                        "required": True,
+                        "schema": {
+                            "title": "Extra Optional Attributes Alias",
+                            "maxLength": 30,
+                            "type": "string",
+                            "description": "This is a extra_optional_attributes field",
+                            "extra": {},
+                        },
+                        "name": "extra_optional_attributes_alias",
+                        "in": "query",
+                    },
                 ],
                 "responses": {
                     "200": {
@@ -186,9 +205,10 @@ def test_response():
         "manufacturer": "manufacturer",
         "price": 100.0,
         "tax": 9.0,
+        "extra_optional_attributes_alias": "alias_query",
     }
     response = client.get(
-        "/item?name_required_with_default=name%20default&name_required_without_default=default&optional_str=default_exists&model=model&manufacturer=manufacturer&price=100&tax=9"
+        "/item?name_required_with_default=name%20default&name_required_without_default=default&optional_str=default_exists&model=model&manufacturer=manufacturer&price=100&tax=9&extra_optional_attributes_alias=alias_query"
     )
     assert response.status_code == 200, response.text
     assert response.json() == expected_response
