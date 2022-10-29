@@ -106,7 +106,7 @@ Si estás construyendo un app de <abbr title="Interfaz de línea de comandos en 
 
 ## Requisitos
 
-Python 3.6+
+Python 3.7+
 
 FastAPI está sobre los hombros de gigantes:
 
