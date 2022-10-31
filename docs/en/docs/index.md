@@ -27,12 +27,11 @@
 
 ---
 
-FastAPI is a modern, fast (high-performance), web framework for building APIs with Python 3.6+ based on standard Python type hints.
+FastAPI is a modern, fast (high-performance), web framework for building APIs with Python 3.7+ based on standard Python type hints.
 
 The key features are:
 
 * **Fast**: Very high performance, on par with **NodeJS** and **Go** (thanks to Starlette and Pydantic). [One of the fastest Python frameworks available](#performance).
-
 * **Fast to code**: Increase the speed to develop features by about 200% to 300%. *
 * **Fewer bugs**: Reduce about 40% of human (developer) induced errors. *
 * **Intuitive**: Great editor support. <abbr title="also known as auto-complete, autocompletion, IntelliSense">Completion</abbr> everywhere. Less time debugging.
@@ -110,7 +109,7 @@ If you are building a <abbr title="Command Line Interface">CLI</abbr> app to be 
 
 ## Requirements
 
-Python 3.6+
+Python 3.7+
 
 FastAPI stands on the shoulders of giants:
 
@@ -129,7 +128,7 @@ $ pip install fastapi
 
 </div>
 
-You will also need an ASGI server, for production such as <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a> or <a href="https://gitlab.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>.
+You will also need an ASGI server, for production such as <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a> or <a href="https://github.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>.
 
 <div class="termy">
 
@@ -148,7 +147,7 @@ $ pip install "uvicorn[standard]"
 * Create a file `main.py` with:
 
 ```Python
-from typing import Optional
+from typing import Union
 
 from fastapi import FastAPI
 
@@ -161,7 +160,7 @@ def read_root():
 
 
 @app.get("/items/{item_id}")
-def read_item(item_id: int, q: Optional[str] = None):
+def read_item(item_id: int, q: Union[str, None] = None):
     return {"item_id": item_id, "q": q}
 ```
 
@@ -171,7 +170,7 @@ def read_item(item_id: int, q: Optional[str] = None):
 If your code uses `async` / `await`, use `async def`:
 
 ```Python hl_lines="9  14"
-from typing import Optional
+from typing import Union
 
 from fastapi import FastAPI
 
@@ -184,7 +183,7 @@ async def read_root():
 
 
 @app.get("/items/{item_id}")
-async def read_item(item_id: int, q: Optional[str] = None):
+async def read_item(item_id: int, q: Union[str, None] = None):
     return {"item_id": item_id, "q": q}
 ```
 
@@ -263,7 +262,7 @@ Now modify the file `main.py` to receive a body from a `PUT` request.
 Declare the body using standard Python types, thanks to Pydantic.
 
 ```Python hl_lines="4  9-12  25-27"
-from typing import Optional
+from typing import Union
 
 from fastapi import FastAPI
 from pydantic import BaseModel
@@ -274,7 +273,7 @@ app = FastAPI()
 class Item(BaseModel):
     name: str
     price: float
-    is_offer: Optional[bool] = None
+    is_offer: Union[bool, None] = None
 
 
 @app.get("/")
@@ -283,7 +282,7 @@ def read_root():
 
 
 @app.get("/items/{item_id}")
-def read_item(item_id: int, q: Optional[str] = None):
+def read_item(item_id: int, q: Union[str, None] = None):
     return {"item_id": item_id, "q": q}
 
 
@@ -326,7 +325,7 @@ You do that with standard modern Python types.
 
 You don't have to learn a new syntax, the methods or classes of a specific library, etc.
 
-Just standard **Python 3.6+**.
+Just standard **Python 3.7+**.
 
 For example, for an `int`:
 

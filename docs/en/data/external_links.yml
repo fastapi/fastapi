@@ -1,5 +1,17 @@
 articles:
   english:
+  - author: WayScript
+    author_link: https://www.wayscript.com
+    link: https://blog.wayscript.com/fast-api-quickstart/
+    title: Quickstart Guide to Build and Host Responsive APIs with Fast API and WayScript
+  - author: New Relic
+    author_link: https://newrelic.com
+    link: https://newrelic.com/instant-observability/fastapi/e559ec64-f765-4470-a15f-1901fcebb468
+    title: How to monitor FastAPI application performance using Python agent
+  - author: Jean-Baptiste Rocher
+    author_link: https://hashnode.com/@jibrocher
+    link: https://dev.indooroutdoor.io/series/fastapi-react-poll-app
+    title: Building the Poll App From Django Tutorial With FastAPI And React
   - author: Silvan Melchior
     author_link: https://github.com/silvanmelchior
     link: https://blog.devgenius.io/seamless-fastapi-configuration-with-confz-90949c14ea12
@@ -43,7 +55,7 @@ articles:
   - author: Patrick Ladon
     author_link: https://dev.to/factorlive
     link: https://dev.to/factorlive/python-facebook-messenger-webhook-with-fastapi-on-glitch-4n90
-    title: Python Facebook messenger webhook with FastAPI on Glitch  
+    title: Python Facebook messenger webhook with FastAPI on Glitch
   - author: Dom Patmore
     author_link: https://twitter.com/dompatmore
     link: https://dompatmore.com/blog/authenticate-your-fastapi-app-with-auth0
@@ -204,10 +216,14 @@ articles:
     author_link: https://medium.com/@williamhayes
     link: https://medium.com/@williamhayes/fastapi-starlette-debug-vs-prod-5f7561db3a59
     title: FastAPI/Starlette debug vs prod
-  - author: Mukul Mantosh  
+  - author: Mukul Mantosh
     author_link: https://twitter.com/MantoshMukul
     link: https://www.jetbrains.com/pycharm/guide/tutorials/fastapi-aws-kubernetes/
     title: Developing FastAPI Application using K8s & AWS
+  - author: KrishNa
+    author_link: https://medium.com/@krishnardt365
+    link: https://medium.com/@krishnardt365/fastapi-docker-and-postgres-91943e71be92
+    title: Fastapi, Docker(Docker compose) and Postgres
   german:
   - author: Nico Axtmann
     author_link: https://twitter.com/_nicoax

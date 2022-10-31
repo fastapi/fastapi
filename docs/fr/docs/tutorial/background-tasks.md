@@ -9,7 +9,7 @@ Cela comprend, par exemple :
 * Les notifications par email envoyées après l'exécution d'une action :
     * Étant donné que se connecter à un serveur et envoyer un email a tendance à être «lent» (plusieurs secondes), vous pouvez retourner la réponse directement et envoyer la notification en arrière-plan.
 * Traiter des données :
-    * Par exemple, si vous recevez un fichier qui doit passer par un traitement lent, vous pouvez retourner une réponse «Accepted» (HTTP 202) puis faire le traitement en arrière-plan. 
+    * Par exemple, si vous recevez un fichier qui doit passer par un traitement lent, vous pouvez retourner une réponse «Accepted» (HTTP 202) puis faire le traitement en arrière-plan.
 
 
 ## Utiliser `BackgroundTasks`
@@ -73,7 +73,7 @@ La classe `BackgroundTasks` provient directement de <a href="https://www.starlet
 
 Elle est importée/incluse directement dans **FastAPI** pour que vous puissiez l'importer depuis `fastapi` et éviter d'importer accidentellement `BackgroundTask` (sans `s` à la fin) depuis `starlette.background`.
 
-En utilisant seulement `BackgroundTasks` (et non `BackgroundTask`), il est possible de l'utiliser en tant que paramètre de *fonction de chemin* et de laisser **FastAPI** gérer le reste pour vous, comme en utilisant l'objet `Request` directement. 
+En utilisant seulement `BackgroundTasks` (et non `BackgroundTask`), il est possible de l'utiliser en tant que paramètre de *fonction de chemin* et de laisser **FastAPI** gérer le reste pour vous, comme en utilisant l'objet `Request` directement.
 
 Il est tout de même possible d'utiliser `BackgroundTask` seul dans **FastAPI**, mais dans ce cas il faut créer l'objet dans le code et renvoyer une `Response` Starlette l'incluant.
 
@@ -81,7 +81,7 @@ Plus de détails sont disponibles dans <a href="https://www.starlette.io/backgro
 
 ## Avertissement
 
-Si vous avez besoin de réaliser des traitements lourds en tâche d'arrière-plan et que vous n'avez pas besoin que ces traitements aient lieu dans le même process (par exemple, pas besoin de partager la mémoire, les variables, etc.), il peut s'avérer profitable d'utiliser des outils plus importants tels que <a href="https://docs.celeryproject.org" class="external-link" target="_blank">Celery</a>.
+Si vous avez besoin de réaliser des traitements lourds en tâche d'arrière-plan et que vous n'avez pas besoin que ces traitements aient lieu dans le même process (par exemple, pas besoin de partager la mémoire, les variables, etc.), il peut s'avérer profitable d'utiliser des outils plus importants tels que <a href="https://docs.celeryq.dev" class="external-link" target="_blank">Celery</a>.
 
 Ces outils nécessitent généralement des configurations plus complexes ainsi qu'un gestionnaire de queue de message, comme RabbitMQ ou Redis, mais ils permettent d'exécuter des tâches d'arrière-plan dans différents process, et potentiellement, sur plusieurs serveurs.
 
