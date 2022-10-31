@@ -69,6 +69,7 @@ nav:
   - tutorial/body-fields.md
   - tutorial/extra-data-types.md
   - tutorial/query-params-str-validations.md
+  - tutorial/path-params-numeric-validations.md
   - tutorial/cookie-params.md
   - tutorial/header-params.md
   - tutorial/response-status-code.md
