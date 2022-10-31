@@ -50,8 +50,8 @@ Documentation = "https://fastapi.tiangolo.com/"
 [project.optional-dependencies]
 test = [
     "pytest >=7.1.3,<8.0.0",
-    "pytest-cov >=2.12.0,<4.0.0",
-    "mypy ==0.971",
+    "pytest-cov >=2.12.0,<5.0.0",
+    "mypy ==0.982",
     "flake8 >=3.8.3,<6.0.0",
     "black == 22.8.0",
     "isort >=5.0.6,<6.0.0",
@@ -73,7 +73,7 @@ test = [
     "passlib[bcrypt] >=1.7.2,<2.0.0",
 
     # types
-    "types-ujson ==5.4.0",
+    "types-ujson ==5.5.0",
     "types-orjson ==3.6.2",
 ]
 doc = [
