@@ -2,6 +2,7 @@
 
 ## Latest Changes
 
+* 🌐 Add Portuguese translation for `docs/pt/docs/tutorial/response-status-code.md`. PR [#4922](https://github.com/tiangolo/fastapi/pull/4922) by [@batlopes](https://github.com/batlopes).
 * 🔧 Add config for Tamil translations. PR [#5563](https://github.com/tiangolo/fastapi/pull/5563) by [@tiangolo](https://github.com/tiangolo).
 * 🐛 Fix internal Trio test warnings. PR [#5547](https://github.com/tiangolo/fastapi/pull/5547) by [@samuelcolvin](https://github.com/samuelcolvin).
 * ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#5408](https://github.com/tiangolo/fastapi/pull/5408) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
