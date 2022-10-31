@@ -99,6 +99,7 @@ nav:
     - tutorial/security/simple-oauth2.md
     - tutorial/security/oauth2-jwt.md
   - tutorial/cors.md
+  - tutorial/sql-databases.md
   - tutorial/bigger-applications.md
   - tutorial/metadata.md
   - tutorial/debugging.md
