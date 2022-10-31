@@ -74,6 +74,7 @@ nav:
   - tutorial/cookie-params.md
   - tutorial/header-params.md
   - tutorial/response-status-code.md
+  - tutorial/request-forms.md
   - tutorial/handling-errors.md
   - Segurança:
     - tutorial/security/index.md
