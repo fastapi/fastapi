@@ -67,7 +67,7 @@ my_second_user: User = User(**second_user_data)
     `**second_user_data`வின் பொருள்:
 
     `second_user_data` அகராதியின் சாவி மற்றும் அளவிடுகளை நேராக சாவி-அளவிடு ஜோடியாக அனுப்புக, அதாவது `User(id=4, name="Mary", joined="2018-11-30")` யாக.
-    
+
 ### தொகுப்பி துணை
 
 சிறந்த உருவாக்குதல் அனுபவத்திற்காக, அனைத்து வரைசட்டங்களும் உள்ளுணர்வோடு எளிதாக பயன்படுத்த வடிவமைக்கபட்டது. மேலும், அனைத்து முடிவுகளும் பல தொகுப்பிகளில் வேலை ஆரம்பிபதற்க்கு முன்பே சோதிக்கபட்டது.
@@ -86,4 +86,4 @@ my_second_user: User = User(**second_user_data)
 
 ![editor support](https://fastapi.tiangolo.com/img/pycharm-completion.png)
 
-நிங்கள் 
+நிங்கள்
