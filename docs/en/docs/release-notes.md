@@ -2,6 +2,7 @@
 
 ## Latest Changes
 
+* 🌐 Add Portuguese translation for `docs/pt/docs/tutorial/body-multiple-params.md`. PR [#4111](https://github.com/tiangolo/fastapi/pull/4111) by [@lbmendes](https://github.com/lbmendes).
 * 🌐 Add Portuguese translation for `docs/pt/docs/tutorial/path-params-numeric-validations.md`. PR [#4099](https://github.com/tiangolo/fastapi/pull/4099) by [@lbmendes](https://github.com/lbmendes).
 * 🌐 Add French translation for `deployment/versions.md`. PR [#3690](https://github.com/tiangolo/fastapi/pull/3690) by [@rjNemo](https://github.com/rjNemo).
 * ⬆ Bump nwtgck/actions-netlify from 1.2.3 to 1.2.4. PR [#5507](https://github.com/tiangolo/fastapi/pull/5507) by [@dependabot[bot]](https://github.com/apps/dependabot).
