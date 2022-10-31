@@ -137,5 +137,8 @@ filterwarnings = [
     'ignore:The loop argument is deprecated since Python 3\.8, and scheduled for removal in Python 3\.10:DeprecationWarning:asyncio',
     'ignore:starlette.middleware.wsgi is deprecated and will be removed in a future release\..*:DeprecationWarning:starlette',
     # see https://trio.readthedocs.io/en/stable/history.html#trio-0-22-0-2022-09-28
-    'ignore::trio.TrioDeprecationWarning',
+    "ignore:You seem to already have a custom.*:RuntimeWarning:trio",
+    "ignore::trio.TrioDeprecationWarning",
+    # TODO remove pytest-cov
+    'ignore::pytest.PytestDeprecationWarning:pytest_cov',
 ]
