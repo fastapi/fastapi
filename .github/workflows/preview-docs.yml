@@ -25,7 +25,7 @@ jobs:
           rm -f docs.zip
       - name: Deploy to Netlify
         id: netlify
-        uses: nwtgck/actions-netlify@v1.2.3
+        uses: nwtgck/actions-netlify@v1.2.4
         with:
           publish-dir: './site'
           production-deploy: false
