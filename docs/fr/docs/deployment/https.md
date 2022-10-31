@@ -7,7 +7,7 @@ Mais c'est beaucoup plus complexe que cela.
 !!! tip
     Si vous êtes pressé ou si cela ne vous intéresse pas, passez aux sections suivantes pour obtenir des instructions étape par étape afin de tout configurer avec différentes techniques.
 
-Pour apprendre les bases du HTTPS, du point de vue d'un utilisateur, consultez <a href="https://howhttps.works/" 
+Pour apprendre les bases du HTTPS, du point de vue d'un utilisateur, consultez <a href="https://howhttps.works/"
 class="external-link" target="_blank">https://howhttps.works/</a>.
 
 Maintenant, du point de vue d'un développeur, voici plusieurs choses à avoir en tête en pensant au HTTPS :
@@ -26,16 +26,16 @@ Maintenant, du point de vue d'un développeur, voici plusieurs choses à avoir e
 * Par défaut, cela signifie que vous ne pouvez avoir qu'un seul certificat HTTPS par adresse IP.
     * Quelle que soit la taille de votre serveur ou la taille de chacune des applications qu'il contient.
     * Il existe cependant une solution à ce problème.
-* Il existe une extension du protocole TLS (celui qui gère le cryptage au niveau TCP, avant HTTP) appelée <a 
-  href="https://fr.wikipedia.org/wiki/Server_Name_Indication" class="external-link" target="_blank"><abbr 
+* Il existe une extension du protocole TLS (celui qui gère le cryptage au niveau TCP, avant HTTP) appelée <a
+  href="https://fr.wikipedia.org/wiki/Server_Name_Indication" class="external-link" target="_blank"><abbr
   title="Server Name Indication (indication du nom du serveur)">SNI (indication du nom du serveur)</abbr></a>.
     * Cette extension SNI permet à un seul serveur (avec une seule adresse IP) d'avoir plusieurs certificats HTTPS et de servir plusieurs domaines/applications HTTPS.
     * Pour que cela fonctionne, un seul composant (programme) fonctionnant sur le serveur, écoutant sur l'adresse IP publique, doit avoir tous les certificats HTTPS du serveur.
 * Après avoir obtenu une connexion sécurisée, le protocole de communication est toujours HTTP.
     * Le contenu est crypté, même s'il est envoyé avec le protocole HTTP.
 
-Il est courant d'avoir un seul programme/serveur HTTP fonctionnant sur le serveur (la machine, l'hôte, etc.) et 
-gérant toutes les parties HTTPS : envoyer les requêtes HTTP décryptées à l'application HTTP réelle fonctionnant sur 
+Il est courant d'avoir un seul programme/serveur HTTP fonctionnant sur le serveur (la machine, l'hôte, etc.) et
+gérant toutes les parties HTTPS : envoyer les requêtes HTTP décryptées à l'application HTTP réelle fonctionnant sur
 le même serveur (dans ce cas, l'application **FastAPI**), prendre la réponse HTTP de l'application, la crypter en utilisant le certificat approprié et la renvoyer au client en utilisant HTTPS. Ce serveur est souvent appelé un <a href="https://en.wikipedia.org/wiki/TLS_termination_proxy" class="external-link" target="_blank">Proxy de terminaison TLS</a>.
 
 ## Let's Encrypt
