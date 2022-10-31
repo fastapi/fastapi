@@ -89,6 +89,7 @@ nav:
   - tutorial/body-updates.md
   - 依赖项:
     - tutorial/dependencies/index.md
+    - tutorial/dependencies/classes-as-dependencies.md
     - tutorial/dependencies/sub-dependencies.md
     - tutorial/dependencies/dependencies-in-path-operation-decorators.md
     - tutorial/dependencies/global-dependencies.md
