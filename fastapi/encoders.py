@@ -54,8 +54,8 @@ def jsonable_encoder(
         if custom_encoder:
             encoder.update(custom_encoder)
         obj_dict = obj.dict(
-            include=include,  # type: ignore # in Pydantic
-            exclude=exclude,  # type: ignore # in Pydantic
+            include=include,
+            exclude=exclude,
             by_alias=by_alias,
             exclude_unset=exclude_unset,
             exclude_none=exclude_none,
@@ -71,7 +71,18 @@ def jsonable_encoder(
             sqlalchemy_safe=sqlalchemy_safe,
         )
     if dataclasses.is_dataclass(obj):
-        return dataclasses.asdict(obj)
+        obj_dict = dataclasses.asdict(obj)
+        return jsonable_encoder(
+            obj_dict,
+            include=include,
+            exclude=exclude,
+            by_alias=by_alias,
+            exclude_unset=exclude_unset,
+            exclude_defaults=exclude_defaults,
+            exclude_none=exclude_none,
+            custom_encoder=custom_encoder,
+            sqlalchemy_safe=sqlalchemy_safe,
+        )
     if isinstance(obj, Enum):
         return obj.value
     if isinstance(obj, PurePath):
@@ -80,6 +91,11 @@ def jsonable_encoder(
         return obj
     if isinstance(obj, dict):
         encoded_dict = {}
+        allowed_keys = set(obj.keys())
+        if include is not None:
+            allowed_keys &= set(include)
+        if exclude is not None:
+            allowed_keys -= set(exclude)
         for key, value in obj.items():
             if (
                 (
@@ -88,7 +104,7 @@ def jsonable_encoder(
                     or (not key.startswith("_sa"))
                 )
                 and (value is not None or not exclude_none)
-                and ((include and key in include) or not exclude or key not in exclude)
+                and key in allowed_keys
             ):
                 encoded_key = jsonable_encoder(
                     key,
@@ -132,10 +148,10 @@ def jsonable_encoder(
         if isinstance(obj, classes_tuple):
             return encoder(obj)
 
-    errors: List[Exception] = []
     try:
         data = dict(obj)
     except Exception as e:
+        errors: List[Exception] = []
         errors.append(e)
         try:
             data = vars(obj)
@@ -144,6 +160,8 @@ def jsonable_encoder(
             raise ValueError(errors)
     return jsonable_encoder(
         data,
+        include=include,
+        exclude=exclude,
         by_alias=by_alias,
         exclude_unset=exclude_unset,
         exclude_defaults=exclude_defaults,

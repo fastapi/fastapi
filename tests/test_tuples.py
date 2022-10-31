@@ -27,7 +27,7 @@ def post_tuple_of_models(square: Tuple[Coordinate, Coordinate]):
 
 
 @app.post("/tuple-form/")
-def hello(values: Tuple[int, int] = Form(...)):
+def hello(values: Tuple[int, int] = Form()):
     return values
 
 
@@ -200,7 +200,7 @@ openapi_schema = {
                     "loc": {
                         "title": "Location",
                         "type": "array",
-                        "items": {"type": "string"},
+                        "items": {"anyOf": [{"type": "string"}, {"type": "integer"}]},
                     },
                     "msg": {"title": "Message", "type": "string"},
                     "type": {"title": "Error Type", "type": "string"},

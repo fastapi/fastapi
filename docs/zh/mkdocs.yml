@@ -5,13 +5,15 @@ theme:
   name: material
   custom_dir: overrides
   palette:
-  - scheme: default
+  - media: '(prefers-color-scheme: light)'
+    scheme: default
     primary: teal
     accent: amber
     toggle:
       icon: material/lightbulb
       name: Switch to light mode
-  - scheme: slate
+  - media: '(prefers-color-scheme: dark)'
+    scheme: slate
     primary: teal
     accent: amber
     toggle:
@@ -42,6 +44,7 @@ nav:
   - es: /es/
   - fa: /fa/
   - fr: /fr/
+  - he: /he/
   - id: /id/
   - it: /it/
   - ja: /ja/
@@ -51,6 +54,7 @@ nav:
   - pt: /pt/
   - ru: /ru/
   - sq: /sq/
+  - sv: /sv/
   - tr: /tr/
   - uk: /uk/
   - zh: /zh/
@@ -81,6 +85,7 @@ nav:
   - tutorial/request-forms-and-files.md
   - tutorial/handling-errors.md
   - tutorial/path-operation-configuration.md
+  - tutorial/encoder.md
   - tutorial/body-updates.md
   - 依赖项:
     - tutorial/dependencies/index.md
@@ -89,6 +94,7 @@ nav:
     - tutorial/dependencies/global-dependencies.md
   - 安全性:
     - tutorial/security/index.md
+    - tutorial/security/first-steps.md
     - tutorial/security/get-current-user.md
     - tutorial/security/simple-oauth2.md
     - tutorial/security/oauth2-jwt.md
@@ -102,6 +108,7 @@ nav:
   - advanced/additional-status-codes.md
   - advanced/response-directly.md
   - advanced/custom-response.md
+  - advanced/response-cookies.md
 - contributing.md
 - help-fastapi.md
 - benchmarks.md
@@ -122,6 +129,8 @@ markdown_extensions:
       format: !!python/name:pymdownx.superfences.fence_code_format ''
 - pymdownx.tabbed:
     alternate_style: true
+- attr_list
+- md_in_html
 extra:
   analytics:
     provider: google
@@ -154,6 +163,8 @@ extra:
     name: fa
   - link: /fr/
     name: fr - français
+  - link: /he/
+    name: he
   - link: /id/
     name: id
   - link: /it/
@@ -172,6 +183,8 @@ extra:
     name: ru - русский язык
   - link: /sq/
     name: sq - shqip
+  - link: /sv/
+    name: sv - svenska
   - link: /tr/
     name: tr - Türkçe
   - link: /uk/

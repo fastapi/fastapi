@@ -1,5 +1,16 @@
 from enum import Enum
-from typing import Any, Callable, Coroutine, Dict, List, Optional, Sequence, Type, Union
+from typing import (
+    Any,
+    Awaitable,
+    Callable,
+    Coroutine,
+    Dict,
+    List,
+    Optional,
+    Sequence,
+    Type,
+    Union,
+)
 
 from fastapi import routing
 from fastapi.datastructures import Default, DefaultPlaceholder
@@ -22,9 +33,10 @@ from fastapi.types import DecoratedCallable
 from fastapi.utils import generate_unique_id
 from starlette.applications import Starlette
 from starlette.datastructures import State
-from starlette.exceptions import ExceptionMiddleware, HTTPException
+from starlette.exceptions import HTTPException
 from starlette.middleware import Middleware
 from starlette.middleware.errors import ServerErrorMiddleware
+from starlette.middleware.exceptions import ExceptionMiddleware
 from starlette.requests import Request
 from starlette.responses import HTMLResponse, JSONResponse, Response
 from starlette.routing import BaseRoute
@@ -121,11 +133,8 @@ class FastAPI(Starlette):
             generate_unique_id_function=generate_unique_id_function,
         )
         self.exception_handlers: Dict[
-            Union[int, Type[Exception]],
-            Callable[[Request, Any], Coroutine[Any, Any, Response]],
-        ] = (
-            {} if exception_handlers is None else dict(exception_handlers)
-        )
+            Any, Callable[[Request, Any], Union[Response, Awaitable[Response]]]
+        ] = ({} if exception_handlers is None else dict(exception_handlers))
         self.exception_handlers.setdefault(HTTPException, http_exception_handler)
         self.exception_handlers.setdefault(
             RequestValidationError, request_validation_exception_handler
@@ -265,7 +274,7 @@ class FastAPI(Starlette):
         path: str,
         endpoint: Callable[..., Coroutine[Any, Any, Response]],
         *,
-        response_model: Optional[Type[Any]] = None,
+        response_model: Any = None,
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[Depends]] = None,
@@ -323,7 +332,7 @@ class FastAPI(Starlette):
         self,
         path: str,
         *,
-        response_model: Optional[Type[Any]] = None,
+        response_model: Any = None,
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[Depends]] = None,
@@ -426,7 +435,7 @@ class FastAPI(Starlette):
         self,
         path: str,
         *,
-        response_model: Optional[Type[Any]] = None,
+        response_model: Any = None,
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[Depends]] = None,
@@ -481,7 +490,7 @@ class FastAPI(Starlette):
         self,
         path: str,
         *,
-        response_model: Optional[Type[Any]] = None,
+        response_model: Any = None,
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[Depends]] = None,
@@ -536,7 +545,7 @@ class FastAPI(Starlette):
         self,
         path: str,
         *,
-        response_model: Optional[Type[Any]] = None,
+        response_model: Any = None,
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[Depends]] = None,
@@ -591,7 +600,7 @@ class FastAPI(Starlette):
         self,
         path: str,
         *,
-        response_model: Optional[Type[Any]] = None,
+        response_model: Any = None,
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[Depends]] = None,
@@ -627,10 +636,10 @@ class FastAPI(Starlette):
             response_description=response_description,
             responses=responses,
             deprecated=deprecated,
+            operation_id=operation_id,
             response_model_include=response_model_include,
             response_model_exclude=response_model_exclude,
             response_model_by_alias=response_model_by_alias,
-            operation_id=operation_id,
             response_model_exclude_unset=response_model_exclude_unset,
             response_model_exclude_defaults=response_model_exclude_defaults,
             response_model_exclude_none=response_model_exclude_none,
@@ -646,7 +655,7 @@ class FastAPI(Starlette):
         self,
         path: str,
         *,
-        response_model: Optional[Type[Any]] = None,
+        response_model: Any = None,
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[Depends]] = None,
@@ -701,7 +710,7 @@ class FastAPI(Starlette):
         self,
         path: str,
         *,
-        response_model: Optional[Type[Any]] = None,
+        response_model: Any = None,
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[Depends]] = None,
@@ -756,7 +765,7 @@ class FastAPI(Starlette):
         self,
         path: str,
         *,
-        response_model: Optional[Type[Any]] = None,
+        response_model: Any = None,
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[Depends]] = None,
@@ -811,7 +820,7 @@ class FastAPI(Starlette):
         self,
         path: str,
         *,
-        response_model: Optional[Type[Any]] = None,
+        response_model: Any = None,
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[Depends]] = None,
