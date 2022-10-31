@@ -100,7 +100,7 @@ Se você estiver construindo uma aplicação <abbr title="Command Line Interface
 
 ## Requisitos
 
-Python 3.6+
+Python 3.7+
 
 FastAPI está nos ombros de gigantes:
 
@@ -124,7 +124,7 @@ Você também precisará de um servidor ASGI para produção, tal como <a href="
 <div class="termy">
 
 ```console
-$ pip install uvicorn[standard]
+$ pip install "uvicorn[standard]"
 
 ---> 100%
 ```
@@ -138,7 +138,7 @@ $ pip install uvicorn[standard]
 * Crie um arquivo `main.py` com:
 
 ```Python
-from typing import Optional
+from typing import Union
 
 from fastapi import FastAPI
 
@@ -151,7 +151,7 @@ def read_root():
 
 
 @app.get("/items/{item_id}")
-def read_item(item_id: int, q: Optional[str] = None):
+def read_item(item_id: int, q: Union[str, None] = None):
     return {"item_id": item_id, "q": q}
 ```
 
@@ -161,7 +161,7 @@ def read_item(item_id: int, q: Optional[str] = None):
 Se seu código utiliza `async` / `await`, use `async def`:
 
 ```Python hl_lines="9  14"
-from typing import Optional
+from typing import Union
 
 from fastapi import FastAPI
 
@@ -174,7 +174,7 @@ async def read_root():
 
 
 @app.get("/items/{item_id}")
-async def read_item(item_id: int, q: Optional[str] = None):
+async def read_item(item_id: int, q: Union[str, None] = None):
     return {"item_id": item_id, "q": q}
 ```
 
@@ -253,6 +253,8 @@ Agora modifique o arquivo `main.py` para receber um corpo para uma requisição 
 Declare o corpo utilizando tipos padrão Python, graças ao Pydantic.
 
 ```Python hl_lines="4  9-12  25-27"
+from typing import Union
+
 from fastapi import FastAPI
 from pydantic import BaseModel
 
@@ -262,7 +264,7 @@ app = FastAPI()
 class Item(BaseModel):
     name: str
     price: float
-    is_offer: Optional[bool] = None
+    is_offer: Union[bool] = None
 
 
 @app.get("/")
@@ -271,7 +273,7 @@ def read_root():
 
 
 @app.get("/items/{item_id}")
-def read_item(item_id: int, q: Optional[str] = None):
+def read_item(item_id: int, q: Union[str, None] = None):
     return {"item_id": item_id, "q": q}
 
 
@@ -365,7 +367,7 @@ Voltando ao código do exemplo anterior, **FastAPI** irá:
     * Como o parâmetro `q` é declarado com `= None`, ele é opcional.
     * Sem o `None` ele poderia ser obrigatório (como o corpo no caso de `PUT`).
 * Para requisições `PUT` para `/items/{item_id}`, lerá o corpo como JSON e:
-    * Verifica que tem um atributo obrigatório `name` que deve ser `str`. 
+    * Verifica que tem um atributo obrigatório `name` que deve ser `str`.
     * Verifica que tem um atributo obrigatório `price` que deve ser `float`.
     * Verifica que tem an atributo opcional `is_offer`, que deve ser `bool`, se presente.
     * Tudo isso também funciona para objetos JSON profundamente aninhados.
