@@ -1,8 +1,6 @@
 # Templates
 
-Você pode usar qualquer template engine, que você quiser com o **FastAPI**.
-
-Uma escolha comum é o Jinja2, o mesmo utilizado pelo Flask e outras ferramentas.
+Você pode utilizar qualquer *template engine* que desejar com **FastAPI**, como o Jinja2, o mesmo utilizado pelo Flask e outras ferramentas.
 
 Existem recursos para configurar ele facilmente, que você pode usar diretamente na sua aplicação **FastAPI** (fornecido por Starlette).
 
@@ -74,4 +72,4 @@ E por você estar usando `StaticFiles`, esse arquivo CSS deveria ser servido aut
 
 ## Mais detalhes
 
-Para mais detalhes, incluindo como testar templates, cheque <a href="https://www.starlette.io/templates/" class="external-link" target="_blank">documentos do Starlette em templates</a>.
+Para mais detalhes, incluindo como testar templates, cheque a<a href="https://www.starlette.io/templates/" class="external-link" target="_blank">documentação de templates do Starlette</a>.
