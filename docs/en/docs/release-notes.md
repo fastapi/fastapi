@@ -2,6 +2,9 @@
 
 ## Latest Changes
 
+
+## 0.85.2
+
 ### Docs
 
 * ✏ Fix grammar and add helpful links to dependencies in `docs/en/docs/async.md`. PR [#5432](https://github.com/tiangolo/fastapi/pull/5432) by [@pamelafox](https://github.com/pamelafox).
