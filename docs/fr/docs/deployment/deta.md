@@ -53,9 +53,9 @@ Vous aurez maintenant un répertoire `./fastapideta/` avec deux fichiers :
 └── requirements.txt
 ```
 
-## Créer un compte gratuit sur Deta 
+## Créer un compte gratuit sur Deta
 
-Créez maintenant un <a href="https://www.deta.sh/?ref=fastapi" class="external-link" target="_blank">compte gratuit 
+Créez maintenant un <a href="https://www.deta.sh/?ref=fastapi" class="external-link" target="_blank">compte gratuit
 sur Deta</a>, vous avez juste besoin d'une adresse email et d'un mot de passe.
 
 Vous n'avez même pas besoin d'une carte de crédit.
@@ -177,7 +177,7 @@ Vous verrez un message JSON similaire à :
 
 ## Vérifiez
 
-Maintenant, dans votre navigateur ouvrez votre URL `endpoint`. Dans l'exemple ci-dessus, c'était 
+Maintenant, dans votre navigateur ouvrez votre URL `endpoint`. Dans l'exemple ci-dessus, c'était
 `https://qltnci.deta.dev`, mais la vôtre sera différente.
 
 Vous verrez la réponse JSON de votre application FastAPI :
@@ -220,7 +220,7 @@ Remarquez également que Deta gère correctement HTTPS pour vous, vous n'avez do
 
 ## Vérifiez le Visor
 
-À partir de l'interface graphique de votre documentation (dans une URL telle que `https://qltnci.deta.dev/docs`) 
+À partir de l'interface graphique de votre documentation (dans une URL telle que `https://qltnci.deta.dev/docs`)
 envoyez une requête à votre *opération de chemin* `/items/{item_id}`.
 
 Par exemple avec l'ID `5`.
@@ -239,7 +239,7 @@ Vous pouvez également les modifier et les relancer.
 
 ## En savoir plus
 
-À un moment donné, vous voudrez probablement stocker certaines données pour votre application d'une manière qui 
+À un moment donné, vous voudrez probablement stocker certaines données pour votre application d'une manière qui
 persiste dans le temps. Pour cela, vous pouvez utiliser <a href="https://docs.deta.sh/docs/base/py_tutorial?ref=fastapi" class="external-link" target="_blank">Deta Base</a>, il dispose également d'un généreux **plan gratuit**.
 
 Vous pouvez également en lire plus dans la <a href="https://docs.deta.sh?ref=fastapi" class="external-link" target="_blank">documentation Deta</a>.
