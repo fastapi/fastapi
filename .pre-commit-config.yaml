@@ -19,7 +19,7 @@ repos:
         - --py3-plus
         - --keep-runtime-typing
 -   repo: https://github.com/PyCQA/autoflake
-    rev: v1.7.6
+    rev: v1.7.7
     hooks:
     -   id: autoflake
         args:
