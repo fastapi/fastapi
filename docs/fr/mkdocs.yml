@@ -70,6 +70,7 @@ nav:
 - async.md
 - Déploiement:
   - deployment/index.md
+  - deployment/versions.md
   - deployment/docker.md
 - project-generation.md
 - alternatives.md
