@@ -455,20 +455,13 @@ async def solve_generator(
     return await stack.enter_async_context(cm)
 
 
-def response_factory():
-    response = Response()
-    del response.headers["content-length"]
-    response.status_code = None  # type: ignore
-    return response
-
-
 @dataclasses.dataclass
 class DependencySolverContext:
     request: Union[Request, WebSocket]
     body: Optional[Union[Dict[str, Any], FormData]] = None
     dependency_overrides_provider: dataclasses.InitVar[Optional[Any]] = None
     dependency_overrides: Optional[Dict[Any, Any]] = dataclasses.field(init=False)
-    response: Optional[Response] = dataclasses.field(default_factory=response_factory)
+    response: Optional[Response] = None
     background_tasks: Optional[BackgroundTasks] = None
     dependency_cache: Dict[
         Tuple[Callable[..., Any], Tuple[str]], Any
@@ -669,6 +662,14 @@ def get_dependent_dependency_getters(
     if dependant.response_param_name:
 
         def get_response(context: DependencySolverContext) -> None:
+            # Generate temporary Response object on demand
+            # for HTTP dependencies
+            if context.response is None and isinstance(context.request, Request):
+                response = Response()
+                del response.headers["content-length"]
+                response.status_code = None  # type: ignore
+                context.response = response
+
             context.values[cast(str, dependant.response_param_name)] = context.response
 
         getters.append(get_response)

@@ -246,13 +246,12 @@ def get_request_handler(
             response_args: Dict[str, Any] = {"background": context.background_tasks}
             # If status_code was set, use it, otherwise use the default from the
             # response class, in the case of redirect it's 307
-            current_status_code = (
-                status_code if status_code else context.response.status_code
-            )
-            if current_status_code is not None:
-                response_args["status_code"] = current_status_code
-            if context.response.status_code:
-                response_args["status_code"] = context.response.status_code
+            # prefer status code from the temporary context if provided
+            returned_status_code = context.response and context.response.status_code
+            if returned_status_code is not None:
+                response_args["status_code"] = returned_status_code
+            elif status_code is not None:
+                response_args["status_code"] = status_code
             content = await serialize_response(
                 field=response_field,
                 response_content=raw_response,
@@ -267,7 +266,8 @@ def get_request_handler(
             response = actual_response_class(content, **response_args)
             if not is_body_allowed_for_status_code(response.status_code):
                 response.body = b""
-            response.headers.raw.extend(context.response.headers.raw)
+            if context.response:
+                response.headers.raw.extend(context.response.headers.raw)
             return response
 
     return app
