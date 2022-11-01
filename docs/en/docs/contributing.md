@@ -108,7 +108,7 @@ After activating the environment as described above:
 <div class="termy">
 
 ```console
-$ pip install -e .[dev,doc,test]
+$ pip install -e ."[dev,doc,test]"
 
 ---> 100%
 ```
