@@ -119,7 +119,7 @@ class OAuth2(SecurityBase):
         flows: Union[OAuthFlowsModel, Dict[str, Dict[str, Any]]] = OAuthFlowsModel(),
         scheme_name: Optional[str] = None,
         description: Optional[str] = None,
-        auto_error: Optional[bool] = True
+        auto_error: bool = True
     ):
         self.model = OAuth2Model(flows=flows, description=description)
         self.scheme_name = scheme_name or self.__class__.__name__

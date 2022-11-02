@@ -1,7 +1,7 @@
 import logging
 from datetime import datetime
 from pathlib import Path
-from typing import List, Optional
+from typing import List, Union
 
 import httpx
 from github import Github
@@ -16,7 +16,7 @@ class Settings(BaseSettings):
     input_token: SecretStr
     github_repository: str
     github_event_path: Path
-    github_event_name: Optional[str] = None
+    github_event_name: Union[str, None] = None
 
 
 class Artifact(BaseModel):
@@ -74,7 +74,7 @@ if __name__ == "__main__":
         logging.info(f"Docs preview was notified: {notified}")
         if not notified:
             artifact_name = f"docs-zip-{commit}"
-            use_artifact: Optional[Artifact] = None
+            use_artifact: Union[Artifact, None] = None
             for artifact in artifacts_response.artifacts:
                 if artifact.name == artifact_name:
                     use_artifact = artifact

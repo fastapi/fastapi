@@ -119,7 +119,7 @@ Eğer API yerine <abbr title="Command Line Interface">komut satırı uygulaması
 
 ## Gereksinimler
 
-Python 3.6+
+Python 3.7+
 
 FastAPI iki devin omuzları üstünde duruyor:
 
@@ -143,7 +143,7 @@ Uygulamanı kullanılabilir hale getirmek için <a href="http://www.uvicorn.org"
 <div class="termy">
 
 ```console
-$ pip install uvicorn[standard]
+$ pip install "uvicorn[standard]"
 
 ---> 100%
 ```
