@@ -3,4 +3,8 @@
 set -e
 set -x
 
-bash scripts/test.sh --cov-report=html ${@}
+bash scripts/test.sh ${@}
+coverage combine
+coverage report --show-missing
+coverage xml
+coverage html
