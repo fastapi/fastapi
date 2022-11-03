@@ -3,6 +3,7 @@ import dataclasses
 import email.message
 import inspect
 import json
+from contextlib import AsyncExitStack
 from enum import Enum, IntEnum
 from typing import (
     Any,
@@ -190,6 +191,9 @@ def get_request_handler(
             if body_field:
                 if is_body_form:
                     body = await request.form()
+                    stack = request.scope.get("fastapi_astack")
+                    assert isinstance(stack, AsyncExitStack)
+                    stack.push_async_callback(body.close)
                 else:
                     body_bytes = await request.body()
                     if body_bytes:
