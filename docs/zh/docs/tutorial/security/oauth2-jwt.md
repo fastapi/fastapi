@@ -47,7 +47,7 @@ $ pip install python-jose[cryptography]
 !!! tip "提示"
 
     本教程以前使用 <a href="https://pyjwt.readthedocs.io/" class="external-link" target="_blank">PyJWT</a>。
-    
+
     但后来换成了 Python-jose，因为 Python-jose 支持 PyJWT 的所有功能，还支持与其它工具集成时可能会用到的一些其它功能。
 
 ## 密码哈希
@@ -87,9 +87,9 @@ $ pip install passlib[bcrypt]
 !!! tip "提示"
 
     `passlib` 甚至可以读取 Django、Flask 的安全插件等工具创建的密码。
-    
+
     例如，把 Django 应用的数据共享给 FastAPI 应用的数据库。或利用同一个数据库，可以逐步把应用从 Django 迁移到 FastAPI。
-    
+
     并且，用户可以同时从 Django 应用或 FastAPI 应用登录。
 
 ## 密码哈希与校验
@@ -101,9 +101,9 @@ $ pip install passlib[bcrypt]
 !!! tip "提示"
 
     PassLib 上下文还支持使用不同哈希算法的功能，包括只能校验的已弃用旧算法等。
-    
+
     例如，用它读取和校验其它系统（如 Django）生成的密码，但要使用其它算法，如 Bcrypt，生成新的哈希密码。
-    
+
     同时，这些功能都是兼容的。
 
 接下来，创建三个工具函数，其中一个函数用于哈希用户的密码。
@@ -268,4 +268,3 @@ OAuth2 支持**`scopes`**（作用域）。
 **FastAPI** 还支持以相对简单的方式，使用 OAuth2 等安全、标准的协议。
 
 **高级用户指南**中详细介绍了 OAuth2**`scopes`**的内容，遵循同样的标准，实现更精密的权限系统。OAuth2 的作用域是脸书、谷歌、GitHub、微软、推特等第三方身份验证应用使用的机制，让用户授权第三方应用与 API 交互。
-
