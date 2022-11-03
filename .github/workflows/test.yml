@@ -37,7 +37,7 @@ jobs:
         env:
           COVERAGE_FILE: coverage/.coverage.${{ runner.os }}-py${{ matrix.python-version }}
           CONTEXT: ${{ runner.os }}-py${{ matrix.python-version }}
-      - name: store coverage files
+      - name: Store coverage files
         uses: actions/upload-artifact@v3
         with:
           name: coverage
