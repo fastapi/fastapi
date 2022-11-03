@@ -121,7 +121,7 @@ Have in mind that as chats allow more "free conversation", it's easy to ask ques
 
 In GitHub issues the template will guide you to write the right question so that you can more easily get a good answer, or even solve the problem yourself even before asking. And in GitHub I can make sure I always answer everything, even if it takes some time. I can't personally do that with the chat systems. 😅
 
-Conversations in the chat systems are also not as easily searchable as in GitHub, so questions and answers might get lost in the conversation. And only the ones in GitHub issues count to become a [FastAPI Expert](fastapi-people.md#experts){.internal-link target=_blank}, so you will most probably receive more attention in GitHub isssues.
+Conversations in the chat systems are also not as easily searchable as in GitHub, so questions and answers might get lost in the conversation. And only the ones in GitHub issues count to become a [FastAPI Expert](fastapi-people.md#experts){.internal-link target=_blank}, so you will most probably receive more attention in GitHub issues.
 
 On the other side, there are thousands of users in the chat systems, so there's a high chance you'll find someone to talk to there, almost all the time. 😄
 
