@@ -156,10 +156,3 @@ source = [
     "fastapi"
 ]
 context = '${CONTEXT}'
-
-[tool.coverage.report]
-exclude_lines = [
-    "pragma: no cover",
-    "@overload",
-    "if TYPE_CHECKING:",
-]
