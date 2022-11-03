@@ -1,4 +1,4 @@
-name: Smokeshow
+name: Test Coverage Preview
 
 on:
   workflow_run:
