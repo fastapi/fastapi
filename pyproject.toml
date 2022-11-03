@@ -136,6 +136,11 @@ filterwarnings = [
     # TODO: needed by asyncio in Python 3.9.7 https://bugs.python.org/issue45097, try to remove on 3.9.8
     'ignore:The loop argument is deprecated since Python 3\.8, and scheduled for removal in Python 3\.10:DeprecationWarning:asyncio',
     'ignore:starlette.middleware.wsgi is deprecated and will be removed in a future release\..*:DeprecationWarning:starlette',
+    # TODO: remove after upgrading HTTPX to a version newer than 0.23.0
+    # Including PR: https://github.com/encode/httpx/pull/2309
+    "ignore:'cgi' is deprecated:DeprecationWarning",
+    # For passlib
+    "ignore:'crypt' is deprecated and slated for removal in Python 3.13:DeprecationWarning",
     # see https://trio.readthedocs.io/en/stable/history.html#trio-0-22-0-2022-09-28
     "ignore:You seem to already have a custom.*:RuntimeWarning:trio",
     "ignore::trio.TrioDeprecationWarning",
