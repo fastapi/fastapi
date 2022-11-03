@@ -2,6 +2,9 @@
 
 ## Latest Changes
 
+
+## 0.86.0
+
 ### Features
 
 * ⬆ Add Python 3.11 to the officially supported versions. PR [#5587](https://github.com/tiangolo/fastapi/pull/5587) by [@tiangolo](https://github.com/tiangolo).
