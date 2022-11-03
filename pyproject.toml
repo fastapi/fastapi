@@ -155,6 +155,7 @@ source = [
     "tests",
     "fastapi"
 ]
+context = '${CONTEXT}'
 
 [tool.coverage.report]
 exclude_lines = [
