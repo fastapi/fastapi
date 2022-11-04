@@ -2,6 +2,7 @@
 
 ## Latest Changes
 
+* 📝 Update coverage badge to use Samuel Colvin's Smokeshow. PR [#5585](https://github.com/tiangolo/fastapi/pull/5585) by [@tiangolo](https://github.com/tiangolo).
 
 ## 0.86.0
 
