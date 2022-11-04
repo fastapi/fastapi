@@ -27,7 +27,7 @@ Os arquivos e campos de formulário serão carregados como dados de formulário 
 E você pode declarar alguns dos arquivos como `bytes` e alguns como `UploadFile`.
 
 !!! warning "Aviso"
-    Você pode declarar vários parâmetros `File` e `Form` em uma *operação de caminho* , mas você também não pode declarar campos `Body` que você espera receber como JSON, pois a solicitação terá o corpo codificado usando `multipart/form-data` ao invés de `application/json`.
+    Você pode declarar vários parâmetros `File` e `Form` em uma *operação de caminho*, mas não é possível declarar campos `Body` para receber como JSON, pois a requisição terá o corpo codificado usando `multipart/form-data` ao invés de `application/json`.
 
     Isso não é uma limitação do **FastAPI** , é parte do protocolo HTTP.
 
