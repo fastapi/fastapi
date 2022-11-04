@@ -13,7 +13,7 @@
 
 !!! note "기술적 세부사항"
     `from starlette.staticfiles import StaticFiles`를 사용할 수도 있습니다.
-    
+
     **FastAPI**는 개발자 여러분의 편의를 위해 `fastapi.staticfiles`와 동일한 `starlette.staticfiles`를 제공합니다. 그러나 실제로는 Starlette에서 직접 제공됩니다.
 
 
