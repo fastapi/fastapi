@@ -3,6 +3,7 @@ import dataclasses
 import email.message
 import inspect
 import json
+from contextlib import AsyncExitStack
 from enum import Enum, IntEnum
 from typing import (
     Any,
@@ -127,7 +128,7 @@ async def serialize_response(
         if is_coroutine:
             value, errors_ = field.validate(response_content, {}, loc=("response",))
         else:
-            value, errors_ = await run_in_threadpool(  # type: ignore[misc]
+            value, errors_ = await run_in_threadpool(
                 field.validate, response_content, {}, loc=("response",)
             )
         if isinstance(errors_, ErrorWrapper):
@@ -190,6 +191,9 @@ def get_request_handler(
             if body_field:
                 if is_body_form:
                     body = await request.form()
+                    stack = request.scope.get("fastapi_astack")
+                    assert isinstance(stack, AsyncExitStack)
+                    stack.push_async_callback(body.close)
                 else:
                     body_bytes = await request.body()
                     if body_bytes:
@@ -258,7 +262,7 @@ def get_request_handler(
                 is_coroutine=is_coroutine,
             )
             response = actual_response_class(content, **response_args)
-            if not is_body_allowed_for_status_code(status_code):
+            if not is_body_allowed_for_status_code(response.status_code):
                 response.body = b""
             response.headers.raw.extend(sub_response.headers.raw)
             return response
@@ -297,14 +301,14 @@ class APIWebSocketRoute(routing.WebSocketRoute):
         self.path = path
         self.endpoint = endpoint
         self.name = get_name(endpoint) if name is None else name
-        self.dependant = get_dependant(path=path, call=self.endpoint)
+        self.path_regex, self.path_format, self.param_convertors = compile_path(path)
+        self.dependant = get_dependant(path=self.path_format, call=self.endpoint)
         self.app = websocket_session(
             get_websocket_app(
                 dependant=self.dependant,
                 dependency_overrides_provider=dependency_overrides_provider,
             )
         )
-        self.path_regex, self.path_format, self.param_convertors = compile_path(path)
 
     def matches(self, scope: Scope) -> Tuple[Match, Scope]:
         match, child_scope = super().matches(scope)
