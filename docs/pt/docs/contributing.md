@@ -98,7 +98,7 @@ Após ativar o ambiente como descrito acima:
 <div class="termy">
 
 ```console
-$ pip install -e .[dev,doc,test]
+$ pip install -e ."[dev,doc,test]"
 
 ---> 100%
 ```
