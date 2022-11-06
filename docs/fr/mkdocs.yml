@@ -70,11 +70,15 @@ nav:
 - async.md
 - Déploiement:
   - deployment/index.md
+  - deployment/versions.md
+  - deployment/https.md
+  - deployment/deta.md
   - deployment/docker.md
 - project-generation.md
 - alternatives.md
 - history-design-future.md
 - external-links.md
+- help-fastapi.md
 markdown_extensions:
 - toc:
     permalink: true
