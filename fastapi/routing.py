@@ -26,6 +26,7 @@ from fastapi.dependencies.utils import (
     get_body_field,
     get_dependant,
     get_parameterless_sub_dependant,
+    get_path_hash_val,
     solve_dependencies,
 )
 from fastapi.encoders import DictIntStrAny, SetIntStr, jsonable_encoder
@@ -446,7 +447,7 @@ class APIRoute(routing.Route):
                 get_parameterless_sub_dependant(depends=depends, path=self.path_format),
             )
         self.body_field = get_body_field(dependant=self.dependant, name=self.unique_id)
-        self.hash_val = f"path:{self.path};methods:{self.methods}"
+        self.hash_val = get_path_hash_val(self.path, self.methods)
         self.app = request_response(self.get_route_handler())
 
     def get_route_handler(self) -> Callable[[Request], Coroutine[Any, Any, Response]]:
@@ -780,6 +781,10 @@ class APIRouter(routing.Router):
                 )
             elif isinstance(route, routing.Route):
                 methods = list(route.methods or [])
+                hash_val = get_path_hash_val(route.path, route.methods)
+                if hash_val in self.added_routes:
+                    raise RouteAlreadyExistsError(route.name)
+                self.added_routes.add(hash_val)
                 self.add_route(
                     prefix + route.path,
                     route.endpoint,

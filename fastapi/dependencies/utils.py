@@ -12,6 +12,7 @@ from typing import (
     Mapping,
     Optional,
     Sequence,
+    Set,
     Tuple,
     Type,
     Union,
@@ -73,7 +74,6 @@ sequence_shape_to_type = {
     SHAPE_SEQUENCE: list,
     SHAPE_TUPLE_ELLIPSIS: list,
 }
-
 
 multipart_not_installed_error = (
     'Form data requires "python-multipart" to be installed. \n'
@@ -755,3 +755,7 @@ def get_body_field(*, dependant: Dependant, name: str) -> Optional[ModelField]:
     )
     check_file_field(final_field)
     return final_field
+
+
+def get_path_hash_val(path: str, methods: Optional[Set[str]]) -> str:
+    return f"path:{path};methods:{methods}"
