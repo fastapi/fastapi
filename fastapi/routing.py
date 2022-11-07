@@ -29,7 +29,11 @@ from fastapi.dependencies.utils import (
     solve_dependencies,
 )
 from fastapi.encoders import DictIntStrAny, SetIntStr, jsonable_encoder
-from fastapi.exceptions import RequestValidationError, WebSocketRequestValidationError
+from fastapi.exceptions import (
+    RequestValidationError,
+    RouteAlreadyExistsError,
+    WebSocketRequestValidationError,
+)
 from fastapi.types import DecoratedCallable
 from fastapi.utils import (
     create_cloned_field,
@@ -442,6 +446,7 @@ class APIRoute(routing.Route):
                 get_parameterless_sub_dependant(depends=depends, path=self.path_format),
             )
         self.body_field = get_body_field(dependant=self.dependant, name=self.unique_id)
+        self.hash_val = f"path:{self.path};methods:{self.methods}"
         self.app = request_response(self.get_route_handler())
 
     def get_route_handler(self) -> Callable[[Request], Coroutine[Any, Any, Response]]:
@@ -513,6 +518,7 @@ class APIRouter(routing.Router):
         self.route_class = route_class
         self.default_response_class = default_response_class
         self.generate_unique_id_function = generate_unique_id_function
+        self.added_routes = set()
 
     def add_api_route(
         self,
@@ -594,6 +600,9 @@ class APIRouter(routing.Router):
             openapi_extra=openapi_extra,
             generate_unique_id_function=current_generate_unique_id,
         )
+        if route.hash_val in self.added_routes:
+            raise RouteAlreadyExistsError(route.name)
+        self.added_routes.add(route.hash_val)
         self.routes.append(route)
 
     def api_route(

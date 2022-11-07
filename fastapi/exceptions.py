@@ -34,3 +34,10 @@ class RequestValidationError(ValidationError):
 class WebSocketRequestValidationError(ValidationError):
     def __init__(self, errors: Sequence[ErrorList]) -> None:
         super().__init__(errors, WebSocketErrorModel)
+
+
+class RouteAlreadyExistsError(FastAPIError):
+    def __init__(self, f_name: str):
+        self.f_name = f_name
+        self.message = f"Route defined for {f_name} already exists!"
+        super().__init__(self.message)
