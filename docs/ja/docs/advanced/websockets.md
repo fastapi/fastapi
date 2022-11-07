@@ -2,11 +2,25 @@
 
 **FastAPI**で<a href="https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API" class="external-link" target="_blank">WebSocket</a>が使用できます。
 
+## `WebSockets`のインストール
+
+まず `WebSockets`のインストールが必要です。
+
+<div class="termy">
+
+```console
+$ pip install websockets
+
+---> 100%
+```
+
+</div>
+
 ## WebSocket クライアント
 
 ### 本番環境
 
-本番環境では、React、Vue.js、Angularなどの最新のフレームワークで作成されたフロントエンドを使用していることでしょう。
+本番環境では、React、Vue.js、Angularなどの最新のフレームワークで作成されたフロントエンドを使用しているでしょう。
 
 そして、バックエンドとWebSocketを使用して通信するために、おそらくフロントエンドのユーティリティを使用することになるでしょう。
 
