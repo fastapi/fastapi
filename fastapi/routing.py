@@ -518,7 +518,7 @@ class APIRouter(routing.Router):
         self.route_class = route_class
         self.default_response_class = default_response_class
         self.generate_unique_id_function = generate_unique_id_function
-        self.added_routes = set()
+        self.added_routes: Set[str] = set()
 
     def add_api_route(
         self,
