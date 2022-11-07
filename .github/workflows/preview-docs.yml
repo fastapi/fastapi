@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Download Artifact Docs
-        uses: dawidd6/action-download-artifact@v2.21.1
+        uses: dawidd6/action-download-artifact@v2.24.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           workflow: build-docs.yml
@@ -25,7 +25,7 @@ jobs:
           rm -f docs.zip
       - name: Deploy to Netlify
         id: netlify
-        uses: nwtgck/actions-netlify@v1.2.3
+        uses: nwtgck/actions-netlify@v1.2.4
         with:
           publish-dir: './site'
           production-deploy: false
