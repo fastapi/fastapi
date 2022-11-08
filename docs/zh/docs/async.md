@@ -429,4 +429,4 @@ Starlette （和 **FastAPI**） 是基于 <a href="https://anyio.readthedocs.io/
 
 再次提醒，这些是非常技术性的细节，如果你来搜索它可能对你有用。
 
-否则，您最好应该遵守的指导原则<a href="#in-a-hurry">赶时间吗？</a>.
+否则，您最好应该遵守的指导原则<a href="#_1">赶时间吗？</a>.
