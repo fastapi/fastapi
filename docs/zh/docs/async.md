@@ -22,7 +22,7 @@ async def read_results():
 ```
 
 !!! note
-你只能在被 `async def` 创建的函数内使用 `await`
+    你只能在被 `async def` 创建的函数内使用 `await`
 
 ---
 
