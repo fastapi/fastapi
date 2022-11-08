@@ -202,7 +202,7 @@ There was not much talk or flirting as most of the time was spent waiting 🕙 i
 没有太多的交谈或调情，因为大部分时间 🕙 都在柜台前等待😞。
 
 !!! info
-漂亮的插画来自 <a href="https://www.instagram.com/ketrinadrawsalot" class="external-link" target="_blank">Ketrina Thompson</a>. 🎨
+    漂亮的插画来自 <a href="https://www.instagram.com/ketrinadrawsalot" class="external-link" target="_blank">Ketrina Thompson</a>. 🎨
 
 ---
 
