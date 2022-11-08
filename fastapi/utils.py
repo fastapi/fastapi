@@ -4,6 +4,7 @@ import warnings
 from dataclasses import is_dataclass
 from enum import Enum
 from typing import TYPE_CHECKING, Any, Dict, Optional, Set, Type, Union, cast
+from weakref import WeakKeyDictionary
 
 import fastapi
 from fastapi.datastructures import DefaultPlaceholder, DefaultType
@@ -95,11 +96,15 @@ def create_response_field(
 def create_cloned_field(
     field: ModelField,
     *,
-    cloned_types: Optional[Dict[Type[BaseModel], Type[BaseModel]]] = None,
+    cloned_types: Optional[
+        Dict[Type[BaseModel], Type[BaseModel]]
+    ] = WeakKeyDictionary(),
 ) -> ModelField:
-    # _cloned_types has already cloned types, to support recursive models
+    # cloned_types caches already cloned types to support recursive models and improve
+    # performance by avoiding unecessary cloning
     if cloned_types is None:
-        cloned_types = {}
+        cloned_types = WeakKeyDictionary()
+
     original_type = field.type_
     if is_dataclass(original_type) and hasattr(original_type, "__pydantic_model__"):
         original_type = original_type.__pydantic_model__
