@@ -161,6 +161,7 @@ class FastAPI(Starlette):
 
         middleware = (
             [Middleware(ServerErrorMiddleware, handler=error_handler, debug=debug)]
+            + [Middleware(AsyncExitStackMiddleware)]
             + self.user_middleware
             + [
                 Middleware(
@@ -186,7 +187,6 @@ class FastAPI(Starlette):
                 # ExceptionMiddleware, now dependencies can catch handled exceptions,
                 # e.g. HTTPException, to customize the teardown code (e.g. DB session
                 # rollback).
-                Middleware(AsyncExitStackMiddleware),
             ]
         )
 
