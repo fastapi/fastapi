@@ -137,7 +137,7 @@ Python 的现代版本可以通过使用 `async` 和 `await` 语法创建**协�
 <img src="/img/async/concurrent-burgers/concurrent-burgers-07.png" class="illustration">
 
 !!! info
-漂亮的插画来自 <a href="https://www.instagram.com/ketrinadrawsalot" class="external-link" target="_blank">Ketrina Thompson</a>. 🎨
+    漂亮的插画来自 <a href="https://www.instagram.com/ketrinadrawsalot" class="external-link" target="_blank">Ketrina Thompson</a>. 🎨
 
 ---
 
