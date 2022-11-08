@@ -197,8 +197,6 @@ Python 的现代版本可以通过使用 `async` 和 `await` 语法创建**协�
 
 <img src="/img/async/parallel-burgers/parallel-burgers-06.png" class="illustration">
 
-There was not much talk or flirting as most of the time was spent waiting 🕙 in front of the counter. 😞
-
 没有太多的交谈或调情，因为大部分时间 🕙 都在柜台前等待😞。
 
 !!! info
