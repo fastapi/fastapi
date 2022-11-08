@@ -244,7 +244,7 @@ There was not much talk or flirting as most of the time was spent waiting 🕙 i
 
 这与 **FastAPI** 的性能水平相同。
 
-您可以同时拥有并行性和异步性，您可以获得比大多数经过测试的 NodeJS 框架更高的性能，并且与 Go 不相上下，这是一种更接近于 C 的编译语言（<a href="https://www.techempower.com/benchmarks/#section=data-r17&hw=ph&test=query&l=zijmkf-1" class="external-link" target="_blank">全部归功于 Starlette</a>）。
+您可以同时拥有并行性和异步性，您可以获得比大多数经过测试的 NodeJS 框架更高的性能，并且与 Go 不相上下， Go 是一种更接近于 C 的编译语言（<a href="https://www.techempower.com/benchmarks/#section=data-r17&hw=ph&test=query&l=zijmkf-1" class="external-link" target="_blank">全部归功于 Starlette</a>）。
 
 ### 并发比并行好吗？
 
