@@ -3,7 +3,17 @@ import re
 import warnings
 from dataclasses import is_dataclass
 from enum import Enum
-from typing import TYPE_CHECKING, Any, Dict, Optional, Set, Type, Union, cast
+from typing import (
+    TYPE_CHECKING,
+    Any,
+    Dict,
+    MutableMapping,
+    Optional,
+    Set,
+    Type,
+    Union,
+    cast,
+)
 from weakref import WeakKeyDictionary
 
 import fastapi
@@ -97,7 +107,7 @@ def create_cloned_field(
     field: ModelField,
     *,
     cloned_types: Optional[
-        Dict[Type[BaseModel], Type[BaseModel]]
+        MutableMapping[Type[BaseModel], Type[BaseModel]]
     ] = WeakKeyDictionary(),
 ) -> ModelField:
     # cloned_types caches already cloned types to support recursive models and improve
