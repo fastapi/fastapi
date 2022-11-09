@@ -69,6 +69,8 @@ nav:
   - tutorial/request-files.md
   - tutorial/request-forms-and-files.md
   - tutorial/encoder.md
+  - Dependencies:
+    - tutorial/dependencies/index.md
 markdown_extensions:
 - toc:
     permalink: true
