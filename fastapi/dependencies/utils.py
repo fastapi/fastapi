@@ -147,7 +147,7 @@ def get_sub_dependant(
     security_scopes = security_scopes or []
     dependency_scopes = None
     if isinstance(depends, params.Security):
-        dependency_scopes = depends.scopes
+        dependency_scopes = list(depends.scopes)
         security_scopes = security_scopes + list(dependency_scopes)
     if isinstance(dependency, SecurityBase):
         use_scopes: List[str] = []
@@ -167,6 +167,54 @@ def get_sub_dependant(
     if security_requirement:
         sub_dependant.security_requirements.append(security_requirement)
     return sub_dependant
+
+
+def merge_depends_into_dependant(
+    depends: params.Depends,
+    dependant: Dependant,
+) -> bool:
+    """
+    Recursively visit the sub-dependants of the dependant and see if the depends
+    is already present.
+    If the depends is a "Security", its scopes are _prepended_ to any
+    security sub-depenant with the same callable.
+    """
+    found: bool = False
+    for sub_dependant in dependant.dependencies:
+        if sub_dependant.call is depends.dependency:
+            found = True
+            if isinstance(depends, params.Security):
+                # extend the inherited scope prefix for this and lower
+                # dependants
+                if sub_dependant.security_scopes:
+                    if sub_dependant.dependency_scopes:
+                        own_len = len(sub_dependant.dependency_scopes)
+                        old_prefix = sub_dependant.security_scopes[:-own_len]
+                    else:
+                        old_prefix = sub_dependant.security_scopes
+                else:
+                    old_prefix = []
+                new_prefix = old_prefix + list(depends.scopes)
+                extend_scope_prefix(sub_dependant, old_prefix, new_prefix)
+
+                sub_dependant.security_scopes = list(depends.scopes) + (
+                    sub_dependant.security_scopes or []
+                )
+                sub_dependant.set_cache_key()
+        else:
+            if merge_depends_into_dependant(depends, sub_dependant):
+                found = True
+    return found
+
+
+def extend_scope_prefix(
+    dependant: Dependant, old_prefix: List[str], new_prefix: List[str]
+) -> None:
+    scopes = dependant.security_scopes or []
+    scopes = new_prefix + scopes[len(old_prefix) :]
+    dependant.security_scopes = scopes
+    for sub_dependant in dependant.dependencies:
+        extend_scope_prefix(sub_dependant, old_prefix=old_prefix, new_prefix=new_prefix)
 
 
 CacheKey = Tuple[Optional[Callable[..., Any]], Tuple[str, ...]]

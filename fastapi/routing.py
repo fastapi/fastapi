@@ -26,6 +26,7 @@ from fastapi.dependencies.utils import (
     get_body_field,
     get_dependant,
     get_parameterless_sub_dependant,
+    merge_depends_into_dependant,
     solve_dependencies,
 )
 from fastapi.encoders import DictIntStrAny, SetIntStr, jsonable_encoder
@@ -436,11 +437,18 @@ class APIRoute(routing.Route):
 
         assert callable(endpoint), "An endpoint must be a callable"
         self.dependant = get_dependant(path=self.path_format, call=self.endpoint)
+        # add all depends of the endpoint as parameterless sub-dependencies of the dependant
         for depends in self.dependencies[::-1]:
-            self.dependant.dependencies.insert(
-                0,
-                get_parameterless_sub_dependant(depends=depends, path=self.path_format),
-            )
+            if not merge_depends_into_dependant(
+                depends=depends, dependant=self.dependant
+            ):
+                self.dependant.dependencies.insert(
+                    0,
+                    get_parameterless_sub_dependant(
+                        depends=depends, path=self.path_format
+                    ),
+                )
+
         self.body_field = get_body_field(dependant=self.dependant, name=self.unique_id)
         self.app = request_response(self.get_route_handler())
 

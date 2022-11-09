@@ -57,4 +57,7 @@ class Dependant:
         # Store the path to be able to re-generate a dependable from it in overrides
         self.path = path
         # Save the cache key at creation to optimize performance
+        self.set_cache_key()
+
+    def set_cache_key(self) -> None:
         self.cache_key = (self.call, tuple(sorted(set(self.security_scopes or []))))
