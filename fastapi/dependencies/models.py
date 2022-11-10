@@ -7,7 +7,7 @@ from pydantic.fields import ModelField
 class SecurityRequirement:
     def __init__(
         self, security_scheme: SecurityBase, scopes: Optional[Sequence[str]] = None
-    ):
+    ) -> None:
         self.security_scheme = security_scheme
         self.scopes = scopes
 
