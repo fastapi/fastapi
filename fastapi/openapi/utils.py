@@ -1,8 +1,21 @@
 import http.client
 import inspect
 import warnings
+from collections import defaultdict
 from enum import Enum
-from typing import Any, Dict, List, Optional, Sequence, Set, Tuple, Type, Union, cast
+from typing import (
+    Any,
+    DefaultDict,
+    Dict,
+    List,
+    Optional,
+    Sequence,
+    Set,
+    Tuple,
+    Type,
+    Union,
+    cast,
+)
 
 from fastapi import routing
 from fastapi.datastructures import DefaultPlaceholder
@@ -72,7 +85,7 @@ def get_openapi_security_definitions(
     flat_dependant: Dependant,
 ) -> Tuple[Dict[str, Any], List[Dict[str, Any]]]:
     security_definitions = {}
-    operation_security = []
+    operation_security: DefaultDict[str, List[Any]] = defaultdict(lambda: [])
     for security_requirement in flat_dependant.security_requirements:
         security_definition = jsonable_encoder(
             security_requirement.security_scheme.model,
@@ -81,8 +94,10 @@ def get_openapi_security_definitions(
         )
         security_name = security_requirement.security_scheme.scheme_name
         security_definitions[security_name] = security_definition
-        operation_security.append({security_name: security_requirement.scopes})
-    return security_definitions, operation_security
+        operation_security[security_name] += security_requirement.scopes or []
+    return security_definitions, [
+        {security_name: scopes} for security_name, scopes in operation_security.items()
+    ]
 
 
 def get_openapi_operation_parameters(
