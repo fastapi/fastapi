@@ -1,6 +1,6 @@
 # Eşzamanlılık ve async / await
 
-*path operasyon fonksiyonu* için `async def`sözyazımı,  asenkron kod, eşzamanlılık ve paralellik hakkında bazı bilgiler.
+*path operasyon fonksiyonu* için `async def `sözdizimi,  asenkron kod, eşzamanlılık ve paralellik hakkında bazı ayrıntılar.
 
 ## Aceleniz mi var?
 
@@ -26,7 +26,7 @@ async def read_results():
 
 ---
 
-Eğer üçüncü parti kütüphaneler ile beraber birşeyler ile etkileşimde bulunuyorsak(veri tabanı,  API, dosya işlemleri, vb.) ve  `await` kulanımı desteklenmiyorsa, (birçok veri tabanı kütüphanesi için geçerlidir), o zaman *path operasyon fonksiyonunu* normal bir şekilde, yalnızca `def` kullanarak da tanımlayabiliriz, örneğin:
+Eğer üçüncü parti kütüphaneler ile beraber birşeyler ile etkileşimde bulunuyorsak (veri tabanı,  API, dosya işlemleri, vb.) ve  `await` kulanımı desteklenmiyorsa, (birçok veri tabanı kütüphanesi için geçerlidir), o zaman *path operasyon fonksiyonunuzu* normal bir şekilde, yalnızca `def` kullanarak tanımlayın, örneğin:
 
 ```Python hl_lines="2"
 @app.get('/')
@@ -45,9 +45,9 @@ Sadece bilmiyorsanız, normal `def` kullanın.
 
 ---
 
-**Not**: *path operasyon fonksiyonlarında* istediğiniz şekilde `def` yada `async def` kullanabilirsiniz. Sizin için en iyi olan seçeneği kullanabilirsiniz. FastAPI onlarla doğru olanı yapacaktır.
+**Not**: *path operasyon fonksiyonlarınızda* `def` ve `async def`'i ihtiyacınız olduğu kadar karıştırabilir ve her birini sizin için en iyi seçeneği kullanarak tanımlayabilirsiniz. FastAPI onlarla doğru olanı yapacaktır.
 
-Yukarıdaki durumlardan herhangi birinde FastAPI yine de asenkron olarak çalışacak ve son derece hızlı olacaktır.
+Her neyse, Yukarıdaki durumlardan herhangi birinde FastAPI yine de asenkron olarak çalışacak ve son derece hızlı olacaktır.
 
 Ancak yukarıdaki adımları takip ederek bazı performans optimizasyonları yapabiliriz
 
