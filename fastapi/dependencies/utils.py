@@ -149,11 +149,8 @@ def get_sub_dependant(
         dependency_scopes = depends.scopes
         security_scopes.extend(dependency_scopes)
     if isinstance(dependency, SecurityBase):
-        use_scopes: List[str] = []
-        if isinstance(dependency, (OAuth2, OpenIdConnect)):
-            use_scopes = security_scopes
         security_requirement = SecurityRequirement(
-            security_scheme=dependency, scopes=use_scopes
+            security_scheme=dependency, scopes=security_scopes
         )
     sub_dependant = get_dependant(
         path=path,
