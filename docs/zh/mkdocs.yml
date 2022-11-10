@@ -85,18 +85,22 @@ nav:
   - tutorial/request-forms-and-files.md
   - tutorial/handling-errors.md
   - tutorial/path-operation-configuration.md
+  - tutorial/encoder.md
   - tutorial/body-updates.md
   - 依赖项:
     - tutorial/dependencies/index.md
+    - tutorial/dependencies/classes-as-dependencies.md
     - tutorial/dependencies/sub-dependencies.md
     - tutorial/dependencies/dependencies-in-path-operation-decorators.md
     - tutorial/dependencies/global-dependencies.md
   - 安全性:
     - tutorial/security/index.md
+    - tutorial/security/first-steps.md
     - tutorial/security/get-current-user.md
     - tutorial/security/simple-oauth2.md
     - tutorial/security/oauth2-jwt.md
   - tutorial/cors.md
+  - tutorial/sql-databases.md
   - tutorial/bigger-applications.md
   - tutorial/metadata.md
   - tutorial/debugging.md
@@ -106,6 +110,8 @@ nav:
   - advanced/additional-status-codes.md
   - advanced/response-directly.md
   - advanced/custom-response.md
+  - advanced/response-cookies.md
+  - advanced/wsgi.md
 - contributing.md
 - help-fastapi.md
 - benchmarks.md
@@ -126,6 +132,8 @@ markdown_extensions:
       format: !!python/name:pymdownx.superfences.fence_code_format ''
 - pymdownx.tabbed:
     alternate_style: true
+- attr_list
+- md_in_html
 extra:
   analytics:
     provider: google
