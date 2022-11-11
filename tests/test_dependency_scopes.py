@@ -47,7 +47,6 @@ def recursive_scopes(dep=Security(dep3, scopes=["scope3"])):
 client = TestClient(app)
 
 
-@pytest.mark.xfail()
 # issue https://github.com/tiangolo/fastapi/issues/5623
 def test_recursive_scopes(mocks):
     """
