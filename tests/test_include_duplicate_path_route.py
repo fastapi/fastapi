@@ -148,4 +148,3 @@ def test_sub_with_duplicate_path_with_prefix():
             return  # pragma: no cover
 
         app.include_router(router, prefix="/prefix")  # pragma: no cover
-
