@@ -677,6 +677,10 @@ class APIRouter(routing.Router):
             name=name,
             dependency_overrides_provider=self.dependency_overrides_provider,
         )
+        hash_val = get_path_hash_val(route.path)
+        if hash_val in self.added_routes:
+            raise RouteAlreadyExistsError(route.name)
+        self.added_routes.add(hash_val)
         self.routes.append(route)
 
     def websocket(
@@ -781,7 +785,7 @@ class APIRouter(routing.Router):
                 )
             elif isinstance(route, routing.Route):
                 methods = list(route.methods or [])
-                hash_val = get_path_hash_val(route.path, route.methods)
+                hash_val = get_path_hash_val(prefix + route.path, route.methods)
                 if hash_val in self.added_routes:
                     raise RouteAlreadyExistsError(route.name)
                 self.added_routes.add(hash_val)

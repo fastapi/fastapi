@@ -757,5 +757,6 @@ def get_body_field(*, dependant: Dependant, name: str) -> Optional[ModelField]:
     return final_field
 
 
-def get_path_hash_val(path: str, methods: Optional[Set[str]]) -> str:
+def get_path_hash_val(path: str, methods: Optional[Set[str]] = None) -> str:
+    methods = methods or {"GET"}
     return f"path:{path};methods:{methods}"
