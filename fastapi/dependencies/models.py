@@ -32,6 +32,7 @@ class Dependant:
         background_tasks_param_name: Optional[str] = None,
         security_scopes_param_name: Optional[str] = None,
         security_scopes: Optional[List[str]] = None,
+        dependency_scopes: Optional[List[str]] = None,
         use_cache: bool = True,
         path: Optional[str] = None,
     ) -> None:
@@ -48,6 +49,7 @@ class Dependant:
         self.response_param_name = response_param_name
         self.background_tasks_param_name = background_tasks_param_name
         self.security_scopes = security_scopes
+        self.dependency_scopes = dependency_scopes
         self.security_scopes_param_name = security_scopes_param_name
         self.name = name
         self.call = call

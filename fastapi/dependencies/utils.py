@@ -145,6 +145,7 @@ def get_sub_dependant(
 ) -> Dependant:
     security_requirement = None
     security_scopes = security_scopes or []
+    dependency_scopes = None
     if isinstance(depends, params.Security):
         dependency_scopes = depends.scopes
         security_scopes = security_scopes + list(dependency_scopes)
@@ -160,6 +161,7 @@ def get_sub_dependant(
         call=dependency,
         name=name,
         security_scopes=security_scopes,
+        dependency_scopes=dependency_scopes,
         use_cache=depends.use_cache,
     )
     if security_requirement:
@@ -275,6 +277,7 @@ def get_dependant(
     call: Callable[..., Any],
     name: Optional[str] = None,
     security_scopes: Optional[List[str]] = None,
+    dependency_scopes: Optional[List[str]] = None,
     use_cache: bool = True,
 ) -> Dependant:
     path_param_names = get_path_param_names(path)
@@ -285,6 +288,7 @@ def get_dependant(
         name=name,
         path=path,
         security_scopes=security_scopes,
+        dependency_scopes=dependency_scopes,
         use_cache=use_cache,
     )
     for param_name, param in signature_params.items():
