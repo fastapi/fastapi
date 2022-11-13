@@ -8,6 +8,7 @@ from .applications import FastAPI as FastAPI
 from .background import BackgroundTasks as BackgroundTasks
 from .datastructures import UploadFile as UploadFile
 from .exceptions import HTTPException as HTTPException
+from .exceptions import WebSocketException as WebSocketException
 from .param_functions import Body as Body
 from .param_functions import Cookie as Cookie
 from .param_functions import Depends as Depends
