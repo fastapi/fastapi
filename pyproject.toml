@@ -56,7 +56,6 @@ test = [
     "flake8 >=3.8.3,<6.0.0",
     "black == 22.8.0",
     "isort >=5.0.6,<6.0.0",
-    "requests >=2.24.0,<3.0.0",
     "httpx >=0.23.0,<0.24.0",
     "email_validator >=1.1.1,<2.0.0",
     # TODO: once removing databases from tutorial, upgrade SQLAlchemy
@@ -94,7 +93,7 @@ dev = [
     "pre-commit >=2.17.0,<3.0.0",
 ]
 all = [
-    "requests >=2.24.0,<3.0.0",
+    "httpx >=0.23.0,<0.24.0",
     "jinja2 >=2.11.2,<4.0.0",
     "python-multipart >=0.0.5,<0.0.6",
     "itsdangerous >=1.1.0,<3.0.0",
