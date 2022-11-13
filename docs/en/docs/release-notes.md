@@ -2,6 +2,7 @@
 
 ## Latest Changes
 
+* ✏️  Clarify docs on CORS. PR [#5627](https://github.com/tiangolo/fastapi/pull/5627) by [@paxcodes](https://github.com/paxcodes).
 
 ### Features
 
