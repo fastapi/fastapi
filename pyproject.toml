@@ -156,3 +156,30 @@ source = [
     "fastapi"
 ]
 context = '${CONTEXT}'
+
+[tool.ruff]
+select = [
+    "E",  # pycodestyle errors
+    "W",  # pycodestyle warnings
+    "F",  # pyflakes
+    # "I",  # isort
+    "C",  # flake8-comprehensions
+    "B",  # flake8-bugbear
+]
+ignore = [
+    "E501",  # line too long, handled by black
+    "B008",  # do not perform function calls in argument defaults
+]
+
+[tool.ruff.per-file-ignores]
+"__init__.py" = ["F401"]
+"docs_src/dependencies/tutorial007.py" = ["F821"]
+"docs_src/dependencies/tutorial008.py" = ["F821"]
+"docs_src/dependencies/tutorial009.py" = ["F821"]
+"docs_src/dependencies/tutorial010.py" = ["F821"]
+"docs_src/custom_response/tutorial007.py" = ["B007"]
+"docs_src/dataclasses/tutorial003.py" = ["I001"]
+
+
+[tool.ruff.isort]
+known-third-party = ["fastapi", "pydantic", "starlette"]
