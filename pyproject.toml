@@ -53,7 +53,7 @@ test = [
     "pytest >=7.1.3,<8.0.0",
     "coverage[toml] >= 6.5.0,<7.0",
     "mypy ==0.982",
-    "flake8 >=3.8.3,<6.0.0",
+    "ruff ==0.0.114",
     "black == 22.8.0",
     "isort >=5.0.6,<6.0.0",
     "httpx >=0.23.0,<0.24.0",
@@ -87,8 +87,7 @@ doc = [
     "pyyaml >=5.3.1,<7.0.0",
 ]
 dev = [
-    "autoflake >=1.4.0,<2.0.0",
-    "flake8 >=3.8.3,<6.0.0",
+    "ruff ==0.0.114",
     "uvicorn[standard] >=0.12.0,<0.19.0",
     "pre-commit >=2.17.0,<3.0.0",
 ]
@@ -156,3 +155,30 @@ source = [
     "fastapi"
 ]
 context = '${CONTEXT}'
+
+[tool.ruff]
+select = [
+    "E",  # pycodestyle errors
+    "W",  # pycodestyle warnings
+    "F",  # pyflakes
+    # "I",  # isort
+    "C",  # flake8-comprehensions
+    "B",  # flake8-bugbear
+]
+ignore = [
+    "E501",  # line too long, handled by black
+    "B008",  # do not perform function calls in argument defaults
+]
+
+[tool.ruff.per-file-ignores]
+"__init__.py" = ["F401"]
+"docs_src/dependencies/tutorial007.py" = ["F821"]
+"docs_src/dependencies/tutorial008.py" = ["F821"]
+"docs_src/dependencies/tutorial009.py" = ["F821"]
+"docs_src/dependencies/tutorial010.py" = ["F821"]
+"docs_src/custom_response/tutorial007.py" = ["B007"]
+"docs_src/dataclasses/tutorial003.py" = ["I001"]
+
+
+[tool.ruff.isort]
+known-third-party = ["fastapi", "pydantic", "starlette"]
