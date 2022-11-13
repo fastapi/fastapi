@@ -2,6 +2,7 @@
 
 ## Latest Changes
 
+* ⬆ Bump black from 22.8.0 to 22.10.0. PR [#5569](https://github.com/tiangolo/fastapi/pull/5569) by [@dependabot[bot]](https://github.com/apps/dependabot).
 
 ## 0.87.0
 
