@@ -36,7 +36,7 @@ Here are some of the additional data types you can use:
 * `datetime.timedelta`:
     * A Python `datetime.timedelta`.
     * In requests and responses will be represented as a `float` of total seconds.
-    * Pydantic also allows representing it as a "ISO 8601 time diff encoding", <a href="https://pydantic-docs.helpmanual.io/#json-serialisation" class="external-link" target="_blank">see the docs for more info</a>.
+    * Pydantic also allows representing it as a "ISO 8601 time diff encoding", <a href="https://pydantic-docs.helpmanual.io/usage/exporting_models/#json_encoders" class="external-link" target="_blank">see the docs for more info</a>.
 * `frozenset`:
     * In requests and responses, treated the same as a `set`:
         * In requests, a list will be read, eliminating duplicates and converting it to a `set`.
@@ -55,12 +55,28 @@ Here are some of the additional data types you can use:
 
 Here's an example *path operation* with parameters using some of the above types.
 
-```Python hl_lines="1  3  12-16"
-{!../../../docs_src/extra_data_types/tutorial001.py!}
-```
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="1  3  12-16"
+    {!> ../../../docs_src/extra_data_types/tutorial001.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="1  2  11-15"
+    {!> ../../../docs_src/extra_data_types/tutorial001_py310.py!}
+    ```
 
 Note that the parameters inside the function have their natural data type, and you can, for example, perform normal date manipulations, like:
 
-```Python hl_lines="18-19"
-{!../../../docs_src/extra_data_types/tutorial001.py!}
-```
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="18-19"
+    {!> ../../../docs_src/extra_data_types/tutorial001.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="17-18"
+    {!> ../../../docs_src/extra_data_types/tutorial001_py310.py!}
+    ```
