@@ -111,7 +111,7 @@ In many cases they will only copy a fragment of the code, but that's not enough 
 
 ### Ask to close
 
-If they reply, there's a high chance you will have solved their problem, congrats, **you're a hero**! 🦸
+If they reply, there's a high chance you would have solved their problem, congrats, **you're a hero**! 🦸
 
 * Now you can ask them, if that solved their problem, to **close the issue**.
 
@@ -136,7 +136,7 @@ You can <a href="https://github.com/tiangolo/fastapi/issues/new/choose" class="e
 
 You can help me review pull requests from others.
 
-Again, please try as best to be kind. 🤗
+Again, please try your best to be kind. 🤗
 
 ---
 
