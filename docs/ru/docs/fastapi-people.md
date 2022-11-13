@@ -85,7 +85,7 @@
 </div>
 {% endif %}
 
-На самом деле таких людей довольно много (более сотни), вы можете увидеть их всех тут <a href="https://github.com/tiangolo/fastapi/graphs/contributors" class="external-link" target="_blank">FastAPI GitHub Contributors page</a>. 👷
+На самом деле таких людей довольно много (более сотни), вы можете увидеть всех на этой странице <a href="https://github.com/tiangolo/fastapi/graphs/contributors" class="external-link" target="_blank">FastAPI GitHub Contributors page</a>. 👷
 
 ## Рейтинг ревьюеров
 
@@ -114,7 +114,7 @@
 
 Здесь представлены **Спонсоры**. 😎
 
-Спонсоры поддерживают мою работу над **FastAPI** (и другими проектами), главным образом посредством <a href="https://github.com/sponsors/tiangolo" class="external-link" target="_blank">GitHub Sponsors</a>.
+Спонсоры поддерживают мою работу над **FastAPI** (и другими проектами) главным образом через <a href="https://github.com/sponsors/tiangolo" class="external-link" target="_blank">GitHub Sponsors</a>.
 
 {% if sponsors %}
 
