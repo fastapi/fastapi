@@ -268,7 +268,7 @@ Python 的现代版本可以通过使用 `async` 和 `await` 语法创建**协�
 
 在这个场景中，每个清洁工（包括您）都将是一个处理器，完成这个工作的一部分。
 
-由于大多数执行时间是由实际工作（而不是等待）占用的，并且计算机中的工作是由 <abbr title="Central Processing Unit">CPU</abbr> 完成的，所以他们称这些问题为"CPU 绑定"。
+由于大多数执行时间是由实际工作（而不是等待）占用的，并且计算机中的工作是由 <abbr title="Central Processing Unit">CPU</abbr> 完成的，所以他们称这些问题为"CPU 密集型"。
 
 ---
 
