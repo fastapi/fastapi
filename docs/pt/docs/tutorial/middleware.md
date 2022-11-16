@@ -4,11 +4,11 @@ Você pode adicionar middlewares nas suas aplicações **FastAPI**.
 
 Um "middleware" é uma função que trabalha com todas as **requisições (requests)** antes delas serem processadas por qualquer *operação de caminho*. E também com todas as **respostas (responses)** antes delas serem retornadas.
 
-* Ele pega cada **requisição** que chega para sua aplicação.
-* Depois, ele pode fazer algo com essa **requisição** ou rodar qualquer código necessário.
-* Depois, ele passa a **requisição** para ser processada pelo resto da aplicação (por alguma *operação de caminho*).
-* Depois, ele pega a **resposta** gerada pela aplicação (por alguma *operação de caminho*).
-* Ele pode fazer algo com essa **resposta** ou rodar qualquer código necessário.
+* Ele captura cada **requisição** que chega para sua aplicação.
+* Em seguida, ele pode manipular a **requisição** ou executar qualquer código necessário.
+* Depois, a **requisição** é liberada para ser processada pela aplicação (por alguma *operação de caminho*).
+* Depois, a **resposta** gerada é capturada pela aplicação (por alguma *operação de caminho*).
+* Ele pode fazer algo com essa **resposta** ou rodar qualquer código necessário. 
 * Depois ele retorna a **resposta**.
 
 !!! note "Detalhes Técnicos"
@@ -18,7 +18,7 @@ Um "middleware" é uma função que trabalha com todas as **requisições (reque
 
 ## Crie um middleware
 
-Para criar um middleware você usa o decorador `@app.middleware("http")` na linha de cima de uma função.
+Para criar um middleware você usará o decorador `@app.middleware("http")` na linha de cima de uma função.
 
 A função middleware recebe:
 
@@ -35,7 +35,7 @@ A função middleware recebe:
 !!! tip "Dica"
     Tenha em mente que propriedades de cabeçalho customizáveis podem ser adicionadas <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers" class="external-link" target="_blank">usando o prefixo 'X-'</a>.
 
-    Mas se você tem cabeçalhos customizados que você deseja que o cliente em um navegador veja, você precisa adicioná-los nas sua configurações do CORS ([CORS (Cross-Origin Resource Sharing)](cors.md){.internal-link target=_blank}) usando o parâmetro `expose_headers` documentado na <a href="https://www.starlette.io/middleware/#corsmiddleware" class="external-link" target="_blank">documentação do CORS do Starlette</a>.
+    Mas se você tem cabeçalhos customizados que deseja que o cliente em um navegador veja, você precisa adicioná-los nas sua configurações do CORS ([CORS (Cross-Origin Resource Sharing)](cors.md){.internal-link target=_blank}) usando o parâmetro `expose_headers` documentado na <a href="https://www.starlette.io/middleware/#corsmiddleware" class="external-link" target="_blank">documentação do CORS do Starlette</a>.
 
 !!! note "Detalhes Técnicos"
     Você também pode usar `from starlette.requests import Request`.
