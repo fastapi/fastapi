@@ -8,7 +8,7 @@ Um "middleware" é uma função que trabalha com todas as **requisições (reque
 * Em seguida, ele pode manipular a **requisição** ou executar qualquer código necessário.
 * Depois, a **requisição** é liberada para ser processada pela aplicação (por alguma *operação de caminho*).
 * Depois, a **resposta** gerada é capturada pela aplicação (por alguma *operação de caminho*).
-* Ele pode fazer algo com essa **resposta** ou rodar qualquer código necessário. 
+* Ele pode fazer algo com essa **resposta** ou rodar qualquer código necessário.
 * Depois ele retorna a **resposta**.
 
 !!! note "Detalhes Técnicos"
