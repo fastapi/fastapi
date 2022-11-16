@@ -426,21 +426,21 @@ def is_coroutine_callable(call: Callable[..., Any]) -> bool:
         return inspect.iscoroutinefunction(call)
     if inspect.isclass(call):
         return False
-    dunder_call = getattr(call, "__call__", None)
+    dunder_call = getattr(call, "__call__", None)  # noqa: B004
     return inspect.iscoroutinefunction(dunder_call)
 
 
 def is_async_gen_callable(call: Callable[..., Any]) -> bool:
     if inspect.isasyncgenfunction(call):
         return True
-    dunder_call = getattr(call, "__call__", None)
+    dunder_call = getattr(call, "__call__", None)  # noqa: B004
     return inspect.isasyncgenfunction(dunder_call)
 
 
 def is_gen_callable(call: Callable[..., Any]) -> bool:
     if inspect.isgeneratorfunction(call):
         return True
-    dunder_call = getattr(call, "__call__", None)
+    dunder_call = getattr(call, "__call__", None)  # noqa: B004
     return inspect.isgeneratorfunction(dunder_call)
 
 
@@ -724,14 +724,14 @@ def get_body_field(*, dependant: Dependant, name: str) -> Optional[ModelField]:
     # in case a sub-dependency is evaluated with a single unique body field
     # That is combined (embedded) with other body fields
     for param in flat_dependant.body_params:
-        setattr(param.field_info, "embed", True)
+        setattr(param.field_info, "embed", True)  # noqa: B010
     model_name = "Body_" + name
     BodyModel: Type[BaseModel] = create_model(model_name)
     for f in flat_dependant.body_params:
         BodyModel.__fields__[f.name] = f
     required = any(True for f in flat_dependant.body_params if f.required)
 
-    BodyFieldInfo_kwargs: Dict[str, Any] = dict(default=None)
+    BodyFieldInfo_kwargs: Dict[str, Any] = {"default": None}
     if any(isinstance(f.field_info, params.File) for f in flat_dependant.body_params):
         BodyFieldInfo: Type[params.Body] = params.File
     elif any(isinstance(f.field_info, params.Form) for f in flat_dependant.body_params):
@@ -740,7 +740,7 @@ def get_body_field(*, dependant: Dependant, name: str) -> Optional[ModelField]:
         BodyFieldInfo = params.Body
 
         body_param_media_types = [
-            getattr(f.field_info, "media_type")
+            f.field_info.media_type
             for f in flat_dependant.body_params
             if isinstance(f.field_info, params.Body)
         ]
