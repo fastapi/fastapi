@@ -29,7 +29,7 @@
 !!! 정보
     먼저 <a href="https://andrew-d.github.io/python-multipart/" class="external-link" target="_blank">`python-multipart`</a>를 설치합니다.
 
-    E.g. `pip install python-multipart`.
+    명령어 예시 : `pip install python-multipart`.
 
     **OAuth2**는 `아이디`와 `패스워드`를 보내기 위해 "폼 데이터"를 사용하기 때문입니다.
 
@@ -53,19 +53,19 @@ $ uvicorn main:app --reload
 
 <img src="/img/tutorial/security/image01.png">
 
-!!! check "Authorize 버튼!"
-    새 것처럼 반짝이는 "Authorize" 버튼이 있습니다.
+!!! 확인 "Authorize 버튼!"
+    새 것처럼 빛나는 "Authorize" 버튼이 있습니다.
 
     그리고 *경로 작업*에는 클릭할 수 있는 오른쪽 상단 모서리에 작은 자물쇠가 있습니다.
 
-클릭하면 '아이디'와 '패스워드'(및 기타 선택적 필드)를 입력할 수 있는 작은 승인 양식이 있습니다.:
+클릭하면 `아이디`와 `패스워드`(및 기타 선택적 필드)를 입력할 수 있는 작은 승인 서식이 있습니다:
 
 <img src="/img/tutorial/security/image02.png">
 
-!!! note
-    It doesn't matter what you type in the form, it won't work yet. But we'll get there.
+!!! 참고
+    서식에 어떤 타입을 입력하든 아직 작동하지 않기에 문제되지 않습니다. 하지만 우린 목표에 도달할 것입니다.
 
-이것은 물론 최종 사용자를 위한 프론트엔드는 아니지만 모든 API를 대화식으로 문서화하는 훌륭한 자동화 도구입니다.
+물론 이것은 최종 사용자를 위한 프론트엔드는 아니지만 모든 API를 대화형으로 문서화하는 훌륭한 자동화 도구입니다.
 
 프론트엔드 팀(자신일 수도 있음)에서 사용할 수 있습니다.
 
@@ -73,11 +73,11 @@ $ uvicorn main:app --reload
 
 또한 동일한 애플리케이션을 디버그, 확인 및 테스트하기 위해 직접 사용할 수도 있습니다.
 
-## `패스워드` 흐름
+## `패스워드` 플로우
 
 이제 조금 돌아가서 그것이 무엇인지 이해합시다.
 
-`패스워드` "흐름"은 보안 및 인증을 처리하기 위해 OAuth2에 정의된 방식("흐름") 중 하나입니다.
+`패스워드` "플로우"은 보안 및 인증을 처리하기 위해 OAuth2에 정의된 방식("플로우") 중 하나입니다.
 
 OAuth2는 백엔드 또는 API가 사용자를 인증하는 서버와 독립적일 수 있도록 설계되었습니다.
 
@@ -85,7 +85,7 @@ OAuth2는 백엔드 또는 API가 사용자를 인증하는 서버와 독립적�
 
 그럼 관점을 단순화해서 검토해 보겠습니다:
 
-* 사용자는 프론트엔드에 '아이디'과 '패스워드'를 입력하고 'Enter' 키를 누릅니다.
+* 사용자는 프론트엔드에 `아이디`과 `패스워드`를 입력하고 `Enter` 키를 누릅니다.
 * 프론트엔드(사용자의 브라우저에서 실행)는 해당 `아이디`와 `패스워드`를 API의 특정 URL(`tokenUrl="token"`로 선언됨)로 보냅니다.
 * API는 `아이디`과 `패스워드`를 확인하고 "토큰"으로 응답합니다(아직 구현하지 않았습니다).
     * "토큰"은 나중에 이 사용자를 확인하는 데 사용할 수 있는 일부 콘텐츠가 포함된 문자열입니다.
@@ -96,14 +96,14 @@ OAuth2는 백엔드 또는 API가 사용자를 인증하는 서버와 독립적�
 * 사용자가 프런트엔드를 클릭하여 프런트엔드 웹 앱의 다른 섹션으로 이동합니다.
 * 프론트엔드는 API에서 더 많은 데이터를 가져와야 합니다.
     * 그러나 특정 엔드포인트에 대한 인증이 필요합니다.
-    * 따라서 API로 인증하기 위해 'Bearer' 값에 토큰을 더한 'Authorization' 헤더를 보냅니다.
+    * 따라서 API로 인증하기 위해 `Bearer` 값에 토큰을 더한 `Authorization` 헤더를 보냅니다.
     * 만약 토큰에 `foobar`가 포함된다면 `Authorization` 헤더의 내용은 `Bearer foobar`입니다.
 
 ## **FastAPI**의 `OAuth2PasswordBearer`
 
 **FastAPI**는 이러한 보안 기능을 구현하기 위해 다양한 추상화 수준에서 여러 도구를 제공합니다.
 
-이 예시에서는 **Bearer** 토큰을 사용하여 **패스워드** 흐름과 함께 **OAuth2**를 사용할 것입니다. 우리는 `OAuth2PasswordBearer` 클래스를 사용하여 이를 수행합니다.
+이 예시에서는 **Bearer** 토큰을 사용하여 **패스워드** 플로우과 함께 **OAuth2**를 사용할 것입니다. 우리는 `OAuth2PasswordBearer` 클래스를 사용하여 이를 수행합니다.
 
 !!! 정보
     "bearer" 토큰이 유일한 선택지는 아닙니다.
@@ -154,28 +154,28 @@ oauth2_scheme(some, parameters)
 {!../../../docs_src/security/tutorial001.py!}
 ```
 
-이 종속성은 *경로 작동 함수*의 'token' 매개변수에 할당된 'str'을 제공합니다.
+이 의존성은 *경로 작동 함수*의 `token` 매개변수에 할당된 `str`을 제공합니다.
 
 **FastAPI**는 이 의존성을 사용하여 OpenAPI 스키마(및 자동 API 문서)에서 "보안 체계"를 정의할 수 있음을 알 수 있습니다.
 
 !!! 기술적 세부사항
-    **FastAPI**는 'fastapi.security.oauth2.OAuth2'에서 상속하기 때문에 'fastapi.security.base.SecurityBase'에서 차례로 상속되기에 'OAuth2PasswordBearer' 클래스(종속성에서 선언됨)를 사용하여 OpenAPI에서 보안 체계를 정의할 수 있음을 알 수 있습니다.
+    **FastAPI**는 `fastapi.security.oauth2.OAuth2`에서 상속하기 때문에 `fastapi.security.base.SecurityBase`에서 차례로 상속되기에 `OAuth2PasswordBearer` 클래스(의존성에서 선언됨)를 사용하여 OpenAPI에서 보안 체계를 정의할 수 있음을 알 수 있습니다.
 
     OpenAPI(및 자동 API 문서)와 통합되는 모든 보안 유틸리티는 `SecurityBase`를 상속하므로 **FastAPI**가 OpenAPI에 통합하는 방법을 알 수 있습니다.
 
-## What it does
+## 결과
 
 해당 `Authorization` 헤더에 대한 요청을 살펴보고 값이 `Bearer`와 일부 토큰인지 확인하고 토큰을 `str`로 반환합니다.
 
-'Authorization' 헤더가 표시되지 않거나 값에 'Bearer' 토큰이 없으면 401 상태 코드 오류('UNAUTHORIZED')로 직접 응답합니다.
+`Authorization` 헤더가 표시되지 않거나 값에 `Bearer` 토큰이 없으면 401 상태 코드 오류(`UNAUTHORIZED`)로 직접 응답합니다.
 
-오류를 반환하기 위해 토큰이 있는지 확인할 필요조차 없습니다. 함수가 실행되면 해당 토큰에 'str'이 있음을 확신할 수 있습니다.
+오류를 반환하기 위해 토큰이 있는지 확인할 필요조차 없습니다. 함수가 실행되면 해당 토큰에 `str`이 있음을 확신할 수 있습니다.
 
 대화형 문서에서 이미 시도해 볼 수 있습니다:
 
 <img src="/img/tutorial/security/image03.png">
 
-우리는 아직 토큰의 유효성을 확인하지 않았지만 이미 시작되었습니다.
+아직 토큰의 유효성을 확인하지 않았지만 이미 시작되었습니다.
 
 ## 요약
 
