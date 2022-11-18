@@ -75,6 +75,7 @@ nav:
   - tutorial/header-params.md
   - tutorial/response-status-code.md
   - tutorial/request-forms.md
+  - tutorial/request-forms-and-files.md
   - tutorial/handling-errors.md
   - Segurança:
     - tutorial/security/index.md
