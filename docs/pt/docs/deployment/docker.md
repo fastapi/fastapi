@@ -30,17 +30,17 @@ CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
 
 </details>
 
-## O que é um contêiner
+## O que é um Contêiner
 
-contêineres (especificamente contêineres Linux) são um jeito muito **leve** de empacotar aplicações contendo todas as dependências e arquivos necessários enquanto os mantém isolados de outros contêineres (outras aplicações ou componentes) no mesmo sistema. 
+Contêineres (especificamente contêineres Linux) são um jeito muito **leve** de empacotar aplicações contendo todas as dependências e arquivos necessários enquanto os mantém isolados de outros contêineres (outras aplicações ou componentes) no mesmo sistema. 
 
-contêineres Linux rodam usando o mesmo kernel Linux do hospedeiro (máquina, máquina virtual, servidor na nuvem, etc). Isso simplesmente significa que eles são muito leves (comparados com máquinas virtuais emulando um sistema operacional completo).
+Contêineres Linux rodam usando o mesmo kernel Linux do hospedeiro (máquina, máquina virtual, servidor na nuvem, etc). Isso simplesmente significa que eles são muito leves (comparados com máquinas virtuais emulando um sistema operacional completo).
 
 Dessa forma, contêineres consomem **poucos recursos**, uma quantidade comparável com rodar os processos diretamente (uma máquina virtual consumiria muito mais).
 
-contêineres também possuem seus próprios processos (comumente um único processo), sistema de arquivos e rede **isolados** simplificando deploy, segurança, desenvolvimento, etc.
+Contêineres também possuem seus próprios processos (comumente um único processo), sistema de arquivos e rede **isolados** simplificando deploy, segurança, desenvolvimento, etc.
 
-## O que é uma Imagem de contêiner
+## O que é uma Imagem de Contêiner
 
 Um **contêiner** é o que roda a partir de uma **imagem de contêiner**.
 
@@ -48,11 +48,11 @@ Uma imagem de contêiner é uma versão **estática** de todos os arquivos, vari
 
 Em contraste com a "**imagem de contêiner**" que contém os conteúdos estáticos armazenados, um "**contêiner**" normalmente se refere à instância rodando, a coisa que está sendo **executada**. 
 
-Quando o **contêiner** é iniciado e está rodando (iniciado a partir de uma **imagem de contêiner**), ele pode criar ou modificar arquivos, variáveis de ambiente, etc. Essas mudanças vão existir somente nesse contêiner, mas não estarão subjacentes na imagem do contêiner (não serão salvas no disco).
+Quando o **contêiner** é iniciado e está rodando (iniciado a partir de uma **imagem de contêiner**), ele pode criar ou modificar arquivos, variáveis de ambiente, etc. Essas mudanças vão existir somente nesse contêiner, mas não persistirão na imagem subjacente do container (não serão salvas no disco).
 
 Uma imagem de contêiner é comparável ao arquivo de **programa** e seus conteúdos, ex.: `python` e algum arquivo `main.py`. 
 
-E o **contêiner** próprio (em contraste à **imagem de contêiner**) é a própria instância da imagem rodando, comparável a um **processo**. Na verdade, um contêiner está rodando somente quando há um **processo rodando** (e normalmente é somente um processo). O contêiner finaliza quando não há um processo rodando nele.
+E o **contêiner** em si (em contraste à **imagem de contêiner**) é a própria instância da imagem rodando, comparável a um **processo**. Na verdade, um contêiner está rodando somente quando há um **processo rodando** (e normalmente é somente um processo). O contêiner finaliza quando não há um processo rodando nele.
 
 ## Imagens de contêiner
 
@@ -62,7 +62,7 @@ E existe um <a href="https://hub.docker.com/" class="external-link" target="_bla
 
 Por exemplo, há uma <a href="https://hub.docker.com/_/python" class="external-link" target="_blank">Imagem Python</a> oficial.
 
-E existe muitas outras imagens para diferentes bancos de dados, por exemplo:
+E existe muitas outras imagens para diferentes coisas, como bancos de dados, por exemplo:
 
 * <a href="https://hub.docker.com/_/postgres" class="external-link" target="_blank">PostgreSQL</a>
 * <a href="https://hub.docker.com/_/mysql" class="external-link" target="_blank">MySQL</a>
@@ -119,7 +119,6 @@ pydantic>=1.8.0,<2.0.0
 uvicorn>=0.15.0,<0.16.0
 ```
 
-And you would normally install those package dependencies with `pip`, for example:
 E você normalmente instalaria essas dependências de pacote com `pip`, por exemplo:
 
 <div class="termy">
@@ -135,7 +134,7 @@ Successfully installed fastapi pydantic uvicorn
 !!! info
     Há outros formatos e ferramentas para definir e instalar dependências de pacote.
 
-    Eu vou mostrar um exemplo usando Poetry mais abaixo em uma seção abaixo. 👇
+    Eu vou mostrar um exemplo depois usando Poetry em uma seção abaixo. 👇
 
 ### Criando o Código do **FastAPI**
 
@@ -284,7 +283,6 @@ COPY ./app /code/app
 Agora que todos os arquivos estão no lugar, vamos construir a imagem do contêiner.
 
 * Vá para o diretório do projeto (onde está o seu `Dockerfile`, contendo o diretório `app`).
-* Build your FastAPI image:
 * Construa sua imagem FastAPI:
 
 <div class="termy">
@@ -328,7 +326,7 @@ Você verá algo como:
 
 Agora você pode ir para <a href="http://192.168.99.100/docs" class="external-link" target="_blank">http://192.168.99.100/docs</a> ou <a href="http://127.0.0.1/docs" class="external-link" target="_blank">http://127.0.0.1/docs</a> (ou equivalente, usando seu host Docker).
 
-Você verá a documentação interativa automática de API (fornecida pelo <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a>):
+Você verá a documentação interativa automática da API (fornecida pelo <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a>):
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-01-swagger-ui-simple.png)
 
@@ -464,7 +462,7 @@ Você pode querer um gerenciador de processos no contêiner se seu aplicativo fo
 
 #### Docker Compose
 
-Você pode estar implantando em um **único servidor** (não em um cluster) com o **Docker Compose**, então você não teria uma maneira fácil de gerenciar a replicação de contêineres (com o Docker Compose) enquanto preserva a rede compartilhada e o **balanceador de carga**.
+Você pode estar implantando em um **único servidor** (não em um cluster) com o **Docker Compose**, então você não teria uma maneira fácil de gerenciar a replicação de contêineres (com o Docker Compose) enquanto preserva a rede compartilhada e o **balanceamento de carga**.
 
 Então você pode querer ter **um único contêiner** com um **gerenciador de processos** iniciando **vários processos trabalhadores** dentro.
 
@@ -495,7 +493,7 @@ Se você executar **um único processo por contêiner**, terá uma quantidade ma
 
 E então você pode definir esses mesmos limites e requisitos de memória em suas configurações para seu sistema de gerenciamento de contêineres (por exemplo, no **Kubernetes**). Dessa forma, ele poderá **replicar os contêineres** nas **máquinas disponíveis** levando em consideração a quantidade de memória necessária por eles e a quantidade disponível nas máquinas no cluster.
 
-Se sua aplicação for **simples**, isso provavelmente **não será um problema**, e você pode não precisar especificar limites de memória rígidos. Mas se você estiver **usando muito memória** (por exemplo, com **modelos de aprendizado de máquina**), deve verificar quanto memória está consumindo e ajustar o **número de contêineres** que executa em **cada máquina** (e talvez adicionar mais máquinas ao seu cluster).
+Se sua aplicação for **simples**, isso provavelmente **não será um problema**, e você pode não precisar especificar limites de memória rígidos. Mas se você estiver **usando muita memória** (por exemplo, com **modelos de aprendizado de máquina**), deve verificar quanta memória está consumindo e ajustar o **número de contêineres** que executa em **cada máquina** (e talvez adicionar mais máquinas ao seu cluster).
 
 Se você executar **múltiplos processos por contêiner** (por exemplo, com a imagem oficial do Docker), deve garantir que o número de processos iniciados não **consuma mais memória** do que o disponível.
 
@@ -598,7 +596,6 @@ Por exemplo:
 
 ## Imagem Docker com Poetry
 
-If you use <a href="https://python-poetry.org/" class="external-link" target="_blank">Poetry</a> to manage your project's dependencies, you could use Docker multi-stage building:
 Se você usa <a href="https://python-poetry.org/" class="external-link" target="_blank">Poetry</a> para gerenciar as dependências do seu projeto, pode usar a construção multi-estágio do Docker:
 
 ```{ .dockerfile .annotate }
