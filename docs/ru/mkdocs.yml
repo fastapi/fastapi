@@ -68,6 +68,7 @@ nav:
   - deployment/index.md
   - deployment/versions.md
 - external-links.md
+- help-fastapi.md
 markdown_extensions:
 - toc:
     permalink: true
