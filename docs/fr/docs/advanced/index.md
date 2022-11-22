@@ -1,24 +1,24 @@
-# Advanced User Guide - Intro
+# Guide de l'utilisateur avancé - Introduction
 
-## Additional Features
+## Caractéristiques supplémentaires
 
-The main [Tutorial - User Guide](../tutorial/){.internal-link target=_blank} should be enough to give you a tour through all the main features of **FastAPI**.
+Le [Tutoriel - Guide de l'utilisateur](../tutorial/){.internal-link target=_blank} devrait suffire à vous faire découvrir toutes les fonctionnalités principales de **FastAPI**.
 
-In the next sections you will see other options, configurations, and additional features.
+Dans les sections suivantes, vous verrez des options, configurations et fonctionnalités supplémentaires.
 
-!!! tip
-    The next sections are **not necessarily "advanced"**.
+!!! Conseil
+    Les sections de ce chapitre ne sont **pas nécessairement "avancées"**.
 
-    And it's possible that for your use case, the solution is in one of them.
+    Et il est possible que pour votre cas d'utilisation, la solution se trouve dans l'un d'entre eux.
 
-## Read the Tutorial first
+## Lisez d'abord le didacticiel
 
-You could still use most of the features in **FastAPI** with the knowledge from the main [Tutorial - User Guide](../tutorial/){.internal-link target=_blank}.
+Vous pouvez utiliser la plupart des fonctionnalités de **FastAPI** grâce aux connaissances du [Tutoriel - Guide de l'utilisateur](../tutorial/){.internal-link target=_blank}.
 
-And the next sections assume you already read it, and assume that you know those main ideas.
+Et les sections suivantes supposent que vous l'avez lu et que vous en connaissez les idées principales.
 
-## TestDriven.io course
+## Cours TestDriven.io
 
-If you would like to take an advanced-beginner course to complement this section of the docs, you might want to check: <a href="https://testdriven.io/courses/tdd-fastapi/" class="external-link" target="_blank">Test-Driven Development with FastAPI and Docker</a> by **TestDriven.io**.
+Si vous souhaitez suivre un cours pour débutants avancés pour compléter cette section de la documentation, vous pouvez consulter : <a href="https://testdrive.io/courses/tdd-fastapi/" class="external- link" target="_blank">Développement piloté par les tests avec FastAPI et Docker</a> par **TestDriven.io**.
 
-They are currently donating 10% of all profits to the development of **FastAPI**. 🎉 😄
+10 % de tous les bénéfices de ce cours sont reversés au développement de **FastAPI**. 🎉 😄
