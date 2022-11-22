@@ -183,24 +183,17 @@ def merge_depends_into_dependant(
     for sub_dependant in dependant.dependencies:
         if sub_dependant.call is depends.dependency:
             found = True
-            if isinstance(depends, params.Security):
-                # extend the inherited scope prefix for this and lower
-                # dependants
-                if sub_dependant.security_scopes:
-                    if sub_dependant.dependency_scopes:
-                        own_len = len(sub_dependant.dependency_scopes)
-                        old_prefix = sub_dependant.security_scopes[:-own_len]
-                    else:
-                        old_prefix = sub_dependant.security_scopes
-                else:
-                    old_prefix = []
-                new_prefix = old_prefix + list(depends.scopes)
+            # extend the inherited scope prefix for this and lower
+            # dependants.
+            # figure out the inherited part of the security_scopes
+            security_scopes = sub_dependant.security_scopes or []
+            dependency_scopes = sub_dependant.dependency_scopes or []
+            assert len(security_scopes) >= len(dependency_scopes)
+            own_len = len(dependency_scopes)
+            old_prefix = security_scopes[:-own_len]
+            new_prefix = old_prefix + list(depends.scopes)
+            if old_prefix != new_prefix:
                 extend_scope_prefix(sub_dependant, old_prefix, new_prefix)
-
-                sub_dependant.security_scopes = list(depends.scopes) + (
-                    sub_dependant.security_scopes or []
-                )
-                sub_dependant.set_cache_key()
         else:
             if merge_depends_into_dependant(depends, sub_dependant):
                 found = True
@@ -213,6 +206,7 @@ def extend_scope_prefix(
     scopes = dependant.security_scopes or []
     scopes = new_prefix + scopes[len(old_prefix) :]
     dependant.security_scopes = scopes
+    dependant.set_cache_key()
     for sub_dependant in dependant.dependencies:
         extend_scope_prefix(sub_dependant, old_prefix=old_prefix, new_prefix=new_prefix)
 
