@@ -32,7 +32,7 @@ CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
 
 ## O que é um Contêiner
 
-Contêineres (especificamente contêineres Linux) são um jeito muito **leve** de empacotar aplicações contendo todas as dependências e arquivos necessários enquanto os mantém isolados de outros contêineres (outras aplicações ou componentes) no mesmo sistema. 
+Contêineres (especificamente contêineres Linux) são um jeito muito **leve** de empacotar aplicações contendo todas as dependências e arquivos necessários enquanto os mantém isolados de outros contêineres (outras aplicações ou componentes) no mesmo sistema.
 
 Contêineres Linux rodam usando o mesmo kernel Linux do hospedeiro (máquina, máquina virtual, servidor na nuvem, etc). Isso simplesmente significa que eles são muito leves (comparados com máquinas virtuais emulando um sistema operacional completo).
 
@@ -46,11 +46,11 @@ Um **contêiner** é o que roda a partir de uma **imagem de contêiner**.
 
 Uma imagem de contêiner é uma versão **estática** de todos os arquivos, variáveis de ambiente e do comando/programa padrão que deve estar presente num contêiner. **Estática** aqui significa que a **imagem** de contêiner não está rodando, não está sendo executada, somente contém os arquivos e metadados empacotados.
 
-Em contraste com a "**imagem de contêiner**" que contém os conteúdos estáticos armazenados, um "**contêiner**" normalmente se refere à instância rodando, a coisa que está sendo **executada**. 
+Em contraste com a "**imagem de contêiner**" que contém os conteúdos estáticos armazenados, um "**contêiner**" normalmente se refere à instância rodando, a coisa que está sendo **executada**.
 
 Quando o **contêiner** é iniciado e está rodando (iniciado a partir de uma **imagem de contêiner**), ele pode criar ou modificar arquivos, variáveis de ambiente, etc. Essas mudanças vão existir somente nesse contêiner, mas não persistirão na imagem subjacente do container (não serão salvas no disco).
 
-Uma imagem de contêiner é comparável ao arquivo de **programa** e seus conteúdos, ex.: `python` e algum arquivo `main.py`. 
+Uma imagem de contêiner é comparável ao arquivo de **programa** e seus conteúdos, ex.: `python` e algum arquivo `main.py`.
 
 E o **contêiner** em si (em contraste à **imagem de contêiner**) é a própria instância da imagem rodando, comparável a um **processo**. Na verdade, um contêiner está rodando somente quando há um **processo rodando** (e normalmente é somente um processo). O contêiner finaliza quando não há um processo rodando nele.
 
@@ -69,7 +69,7 @@ E existe muitas outras imagens para diferentes coisas, como bancos de dados, por
 * <a href="https://hub.docker.com/_/mongo" class="external-link" target="_blank">MongoDB</a>
 * <a href="https://hub.docker.com/_/redis" class="external-link" target="_blank">Redis</a>, etc.
 
-Usando imagens de contêiner pré-prontas é muito fácil **combinar** e usar diferentes ferramentas. Por exemplo, para testar um novo banco de dados. Em muitos casos, você pode usar as **imagens oficiais** precisando somente de variáveis de ambiente para configurá-las. 
+Usando imagens de contêiner pré-prontas é muito fácil **combinar** e usar diferentes ferramentas. Por exemplo, para testar um novo banco de dados. Em muitos casos, você pode usar as **imagens oficiais** precisando somente de variáveis de ambiente para configurá-las.
 
 Dessa forma, em muitos casos você pode aprender sobre contêineres e Docker e re-usar essa experiência com diversos componentes e ferramentas.
 
@@ -352,7 +352,7 @@ Se seu FastAPI for um único arquivo, por exemplo, `main.py` sem um diretório `
 Então você só teria que alterar os caminhos correspondentes para copiar o arquivo dentro do `Dockerfile`:
 
 ```{ .dockerfile .annotate hl_lines="10  13" }
-FROM python:3.9  
+FROM python:3.9
 
 WORKDIR /code
 
