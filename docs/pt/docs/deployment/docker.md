@@ -2,7 +2,7 @@
 
 Ao fazer o deploy de aplicações FastAPI uma abordagem comum é construir uma **imagem de contêiner Linux**. Isso normalmente é feito usando o <a href="https://www.docker.com/" class="external-link" target="_blank">**Docker**</a>. Você pode a partir disso fazer o deploy dessa imagem de algumas maneiras.
 
-Usando contêineres Linux tem diversas vantagens incluindo **segurança**, **replicabilidade**, **simplicidade**, entre outras.
+Usando contêineres Linux você tem diversas vantagens incluindo **segurança**, **replicabilidade**, **simplicidade**, entre outras.
 
 !!! Dica
     Está com pressa e já sabe dessas coisas? Pode ir direto para [`Dockerfile` abaixo 👇](#build-a-docker-image-for-fastapi).
@@ -42,7 +42,7 @@ Contêineres também possuem seus próprios processos (comumente um único proce
 
 ## O que é uma Imagem de Contêiner
 
-Um **contêiner** é o que roda a partir de uma **imagem de contêiner**.
+Um **contêiner** roda a partir de uma **imagem de contêiner**.
 
 Uma imagem de contêiner é uma versão **estática** de todos os arquivos, variáveis de ambiente e do comando/programa padrão que deve estar presente num contêiner. **Estática** aqui significa que a **imagem** de contêiner não está rodando, não está sendo executada, somente contém os arquivos e metadados empacotados.
 
@@ -140,7 +140,6 @@ Successfully installed fastapi pydantic uvicorn
 
 * Crie um diretório `app` e entre nele.
 * Crie um arquivo vazio `__init__.py`.
-* Create a `main.py` file with:
 * Crie um arquivo `main.py` com:
 
 ```Python
@@ -377,7 +376,7 @@ Então ajuste o comando Uvicorn para usar o novo módulo `main` em vez de `app.m
 
 Vamos falar novamente sobre alguns dos mesmos [Conceitos de Implantação](./concepts.md){.internal-link target=_blank} em termos de contêineres.
 
-contêineres são principalmente uma ferramenta para simplificar o processo de **construção e implantação** de um aplicativo, mas eles não impõem uma abordagem particular para lidar com esses **conceitos de implantação** e existem várias estratégias possíveis.
+Contêineres são principalmente uma ferramenta para simplificar o processo de **construção e implantação** de um aplicativo, mas eles não impõem uma abordagem particular para lidar com esses **conceitos de implantação** e existem várias estratégias possíveis.
 
 A **boa notícia** é que com cada estratégia diferente há uma maneira de cobrir todos os conceitos de implantação. 🎉
 
