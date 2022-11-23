@@ -23,6 +23,7 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
           cache: "pip"
+          cache-dependency-path: pyproject.toml
       - name: Install Dependencies
         if: steps.setup-python.outputs.cache-hit != 'true'
         run: pip install -e .[all,dev,doc,test]
