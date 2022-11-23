@@ -276,7 +276,7 @@ Ve daha egzotik olanları:
 * `@app.patch()`
 * `@app.trace()`
 
-!!! tip 
+!!! tip
     Her işlemi (HTTP method) istediğiniz gibi kullanmakta özgürsünüz.
 
     **FastAPI** herhangi bir özel anlamı zorlamaz.
