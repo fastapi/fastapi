@@ -156,7 +156,7 @@ def read_root():
 
 
 @app.get("/items/{item_id}")
-def read_item(item_id: int, q: Optional[str] = None):
+def read_item(item_id: int, q: Union[str, None] = None):
     return {"item_id": item_id, "q": q}
 ```
 
@@ -255,9 +255,9 @@ COPY ./requirements.txt /code/requirements.txt
 
 Docker e outras ferramentas **constróem** essas imagens de contêiner **incrementalmente**, adicionando **uma camada em cima da outra**, começando do topo do `Dockerfile` e adicionando qualquer arquivo criado por cada uma das instruções do `Dockerfile`.
 
-Dockers e ferramentas similares também usam um **cache interno** ao construir a imagem, se um arquivo não mudou desde a última vez que a imagem do contêiner foi construída, então ele irá **reutilizar a mesma camada** criada na última vez, ao invés de copiar o arquivo novamente e criar uma nova camada do zero.
+Docker e ferramentas similares também usam um **cache interno** ao construir a imagem, se um arquivo não mudou desde a última vez que a imagem do contêiner foi construída, então ele irá **reutilizar a mesma camada** criada na última vez, ao invés de copiar o arquivo novamente e criar uma nova camada do zero.
 
-Somente evitar a cópia de arquivos não melhora as coisas muito, mas porque ele usou o cache para esse passo, ele pode **usar o cache para o próximo passo**. Por exemplo, ele pode usar o cache para a instrução que instala as dependências com:
+Somente evitar a cópia de arquivos não melhora muito as coisas, mas porque ele usou o cache para esse passo, ele pode **usar o cache para o próximo passo**. Por exemplo, ele pode usar o cache para a instrução que instala as dependências com:
 
 ```Dockerfile
 RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
