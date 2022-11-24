@@ -267,7 +267,7 @@ O arquivo com os requisitos de pacote **não muda com frequência**. Então, ao 
 
 E então, o Docker será capaz de **usar o cache para o próximo passo** que baixa e instala essas dependências. E é aqui que **salvamos muito tempo**. ✨ ...e evitamos tédio esperando. 😪😆
 
-Baixar e instalar as dependências do pacote **poderia levar minutos**, mas usando o **cache** levaria **segundos** no máximo.
+Baixar e instalar as dependências do pacote **pode levar minutos**, mas usando o **cache** leva **segundos** no máximo.
 
 E como você estaria construindo a imagem do contêiner novamente e novamente durante o desenvolvimento para verificar se suas alterações de código estão funcionando, há muito tempo acumulado que isso economizaria.
 
