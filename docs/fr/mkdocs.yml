@@ -68,6 +68,7 @@ nav:
   - tutorial/body.md
   - tutorial/background-tasks.md
 - Guide utilisateur avancé:
+  - advanced/path-operation-advanced-configuration.md
   - advanced/additional-status-codes.md
   - advanced/additional-responses.md
 - async.md
