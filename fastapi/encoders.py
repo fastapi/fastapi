@@ -53,13 +53,15 @@ def jsonable_encoder(
         encoder = getattr(obj.__config__, "json_encoders", {})
         if custom_encoder:
             encoder.update(custom_encoder)
-        obj_dict = obj.dict(
-            include=include,
-            exclude=exclude,
-            by_alias=by_alias,
-            exclude_unset=exclude_unset,
-            exclude_none=exclude_none,
-            exclude_defaults=exclude_defaults,
+        obj_dict = dict(
+            obj._iter(
+                include=include,
+                exclude=exclude,
+                by_alias=by_alias,
+                exclude_unset=exclude_unset,
+                exclude_none=exclude_none,
+                exclude_defaults=exclude_defaults,
+            )
         )
         if "__root__" in obj_dict:
             obj_dict = obj_dict["__root__"]
