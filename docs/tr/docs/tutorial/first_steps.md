@@ -67,7 +67,7 @@ Otomatik oluşturulmuş(<a href="https://github.com/Rebilly/ReDoc" class="extern
 
 ### OpenAPI
 
-**FastAPI**, API'leri tanımlamak için **OpenAPI** standardını kullanarak tüm API'lerinizle birlikte bir "şema" oluşturur.
+**FastAPI**, **OpenAPI** standardını kullanarak tüm API'leriniz ile birlikte "şema" oluşturur.
 
 #### "Şema"
 
@@ -134,12 +134,12 @@ API'nizle iletişim kuran istemciler için otomatik olarak kod oluşturmak için
 {!../../../docs_src/first_steps/tutorial001.py!}
 ```
 
-`FastAPI`, API'niz için tüm işlevleri sağlayan bir Python sınıfıdır.
+`FastAPI`, API'niz için tüm fonksiyonları sağlayan bir Python sınıfıdır.
 
 !!! note "Teknik Detaylar"
-    `FastAPI` doğrudan `Starlette` miras alan bir sınıftır.
+    `FastAPI` doğrudan `Starlette` kalıtım alan bir sınıftır.
 
-    Tüm <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> işlevlerini `FastAPI` ile de kullanabilirsiniz.
+    Tüm <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> fonksiyonlarını `FastAPI` ile de kullanabilirsiniz.
 
 ### Adım 2: Bir `FastAPI` örneği oluşturun
 
@@ -163,7 +163,7 @@ $ uvicorn main:app --reload
 
 </div>
 
-Uygulamanızı aşağıdaki gib oluşturursanız:
+Uygulamanızı aşağıdaki gibi oluşturursanız:
 
 ```Python hl_lines="3"
 {!../../../docs_src/first_steps/tutorial002.py!}
@@ -193,7 +193,7 @@ Yani, şu şekilde bir URL'de:
 https://example.com/items/foo
 ```
 
-... path şu olabilir:
+... path şöyle olabilir:
 
 ```
 /items/foo
@@ -246,7 +246,7 @@ Bizde onlara "**işlemler**" diyeceğiz.
 {!../../../docs_src/first_steps/tutorial001.py!}
 ```
 
-`@app.get("/")` **FastAPI'ye** aşağıdaki işlevin adresine giden istekleri işlemekten sorumlu olduğunu söyler:
+`@app.get("/")` **FastAPI'ye** aşağıdaki fonksiyonun adresine giden istekleri işlemekten sorumlu olduğunu söyler:
 
 * path `/`
 * <abbr title="an HTTP GET method"><code>get</code> işlemi</abbr> kullanılarak
@@ -259,7 +259,7 @@ Bizde onlara "**işlemler**" diyeceğiz.
 
     Bir "decorator" fonksiyonu alır ve bazı işlemler gerçekleştir.
 
-    Bizim durumumzda decarator **FastAPI'ye** işlevin bir `get` işlemi ile `/` pathine geldiğini söyler.
+    Bizim durumumzda decarator **FastAPI'ye** fonksiyonun bir `get` işlemi ile `/` pathine geldiğini söyler.
 
     Bu **path işlem decoratordür**
 
@@ -334,4 +334,4 @@ Otomatik olarak JSON'a dönüştürülecek(ORM'ler vb. dahil) başka birçok nes
 * Bir `app` örneği oluşturun.
 * **path işlem decorator** yazın. (`@app.get("/")` gibi)
 * **path işlem fonksiyonu** yazın. (`def root(): ...` gibi)
-* Development serverınızı çalıştırın. (`uvicorn main:app --reload` gibi)
+* Development sunucunuzu çalıştırın. (`uvicorn main:app --reload` gibi)
