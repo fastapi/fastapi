@@ -167,7 +167,7 @@ Com **FastAPI**, você terá todos os recursos do **Starlette** (já que FastAPI
 * Suporte a **GraphQL**.
 * Tarefas em processo _background_.
 * Eventos na inicialização e encerramento.
-* Cliente de testes construído sobre `requests`.
+* Cliente de testes construído sobre HTTPX.
 * Respostas em **CORS**, GZip, Static Files, Streaming.
 * Suporte a **Session e Cookie**.
 * 100% de cobertura de testes.
