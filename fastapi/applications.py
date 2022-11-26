@@ -84,6 +84,8 @@ class FastAPI(Starlette):
         generate_unique_id_function: Callable[[routing.APIRoute], str] = Default(
             generate_unique_id
         ),
+        openapi_schema_exclude_unset: bool = False,
+        openapi_schema_exclude_none: bool = True,
         **extra: Any,
     ) -> None:
         self._debug: bool = debug
@@ -105,6 +107,8 @@ class FastAPI(Starlette):
         self.extra = extra
         self.openapi_version = "3.0.2"
         self.openapi_schema: Optional[Dict[str, Any]] = None
+        self.openapi_schema_exclude_unset = openapi_schema_exclude_unset
+        self.openapi_schema_exclude_none = openapi_schema_exclude_none
         if self.openapi_url:
             assert self.title, "A title must be provided for OpenAPI, e.g.: 'My API'"
             assert self.version, "A version must be provided for OpenAPI, e.g.: '2.1.0'"
@@ -208,6 +212,8 @@ class FastAPI(Starlette):
                 routes=self.routes,
                 tags=self.openapi_tags,
                 servers=self.servers,
+                exclude_unset=self.openapi_schema_exclude_unset,
+                exclude_none=self.openapi_schema_exclude_none,
             )
         return self.openapi_schema
 
