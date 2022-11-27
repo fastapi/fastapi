@@ -30,16 +30,16 @@ OAuth2 还支持客户端发送**`scope`**表单字段。
 
 * 常见用例为，`users:read` 或 `users:write`
 * 脸书和 Instagram 使用 `instagram_basic`
-* 谷歌使用 `https://www.googleapis.com/auth/drive` 
+* 谷歌使用 `https://www.googleapis.com/auth/drive`
 
 !!! info "说明"
 
     OAuth2 中，**作用域**只是声明指定权限的字符串。
-    
+
     是否使用冒号 `:` 等符号，或是不是 URL 并不重要。
-    
+
     这些细节只是特定的实现方式。
-    
+
     对 OAuth2 来说，都只是字符串而已。
 
 ## 获取 `username` 和 `password` 的代码
@@ -64,7 +64,7 @@ OAuth2 还支持客户端发送**`scope`**表单字段。
 !!! tip "提示"
 
     实际上，OAuth2 规范*要求* `grant_type` 字段使用固定值 `password`，但 `OAuth2PasswordRequestForm` 没有作强制约束。
-    
+
     如需强制使用固定值 `password`，则不要用 `OAuth2PasswordRequestForm`，而是用 `OAuth2PasswordRequestFormStrict`。
 
 * 可选的 `client_id`（本例未使用）
@@ -73,11 +73,11 @@ OAuth2 还支持客户端发送**`scope`**表单字段。
 !!! info "说明"
 
     `OAuth2PasswordRequestForm` 与 `OAuth2PasswordBearer` 一样，都不是 FastAPI 的特殊类。
-    
+
     **FastAPI** 把 `OAuth2PasswordBearer` 识别为安全方案。因此，可以通过这种方式把它添加至 OpenAPI。
-    
+
     但 `OAuth2PasswordRequestForm` 只是可以自行编写的类依赖项，也可以直接声明 `Form` 参数。
-    
+
     但由于这种用例很常见，FastAPI 为了简便，就直接提供了对它的支持。
 
 ### 使用表单数据
@@ -85,7 +85,7 @@ OAuth2 还支持客户端发送**`scope`**表单字段。
 !!! tip "提示"
 
     `OAuth2PasswordRequestForm` 类依赖项的实例没有以空格分隔的长字符串属性 `scope`，但它支持 `scopes` 属性，由已发送的 scope 字符串列表组成。
-    
+
     本例没有使用 `scopes`，但开发者也可以根据需要使用该属性。
 
 现在，即可使用表单字段 `username`，从（伪）数据库中获取用户数据。
@@ -159,7 +159,7 @@ UserInDB(
 !!! tip "提示"
 
     下一章介绍使用哈希密码和 <abbr title="JSON Web Tokens">JWT</abbr> Token 的真正安全机制。
-    
+
     但现在，仅关注所需的特定细节。
 
 ```Python hl_lines="85"
@@ -169,11 +169,11 @@ UserInDB(
 !!! tip "提示"
 
     按规范的要求，应像本示例一样，返回带有 `access_token` 和 `token_type` 的 JSON 对象。
-    
+
     这是开发者必须在代码中自行完成的工作，并且要确保使用这些 JSON 的键。
-    
+
     这几乎是唯一需要开发者牢记在心，并按规范要求正确执行的事。
-    
+
     **FastAPI** 则负责处理其它的工作。
 
 ## 更新依赖项
@@ -195,17 +195,17 @@ UserInDB(
 !!! info "说明"
 
     此处返回值为 `Bearer` 的响应头 `WWW-Authenticate` 也是规范的一部分。
-    
+
     任何 401**UNAUTHORIZED**HTTP（错误）状态码都应返回 `WWW-Authenticate` 响应头。
-    
+
     本例中，因为使用的是 Bearer Token，该响应头的值应为 `Bearer`。
-    
+
     实际上，忽略这个附加响应头，也不会有什么问题。
-    
+
     之所以在此提供这个附加响应头，是为了符合规范的要求。
-    
+
     说不定什么时候，就有工具用得上它，而且，开发者或用户也可能用得上。
-    
+
     这就是遵循标准的好处……
 
 ## 实际效果
@@ -281,4 +281,3 @@ UserInDB(
 唯一欠缺的是，它仍然不是真的**安全**。
 
 下一章，介绍使用密码哈希支持库与 <abbr title="JSON Web Tokens">JWT</abbr> 令牌实现真正的安全机制。
-
