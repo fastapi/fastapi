@@ -2,6 +2,9 @@
 
 ## Latest Changes
 
+
+## 0.88.0
+
 ### Upgrades
 
 * ⬆ Bump Starlette to version `0.22.0` to fix bad encoding for query parameters in new `TestClient`. PR [#5659](https://github.com/tiangolo/fastapi/pull/5659) by [@azogue](https://github.com/azogue).
