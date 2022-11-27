@@ -66,11 +66,16 @@ nav:
   - tutorial/path-params.md
   - tutorial/query-params.md
   - tutorial/body.md
+  - tutorial/body-multiple-params.md
   - tutorial/body-fields.md
   - tutorial/extra-data-types.md
   - tutorial/query-params-str-validations.md
+  - tutorial/path-params-numeric-validations.md
   - tutorial/cookie-params.md
   - tutorial/header-params.md
+  - tutorial/response-status-code.md
+  - tutorial/request-forms.md
+  - tutorial/request-forms-and-files.md
   - tutorial/handling-errors.md
   - Segurança:
     - tutorial/security/index.md
