@@ -2,6 +2,7 @@
 
 ## Latest Changes
 
+* ⬆ Bump Starlette to version `0.22.0` to fix bad encoding for query parameters in `TestClient`. PR [#5659](https://github.com/tiangolo/fastapi/pull/5659) by [@azogue](https://github.com/azogue).
 * 👷 Tweak build-docs to improve CI performance. PR [#5699](https://github.com/tiangolo/fastapi/pull/5699) by [@tiangolo](https://github.com/tiangolo).
 * ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#5566](https://github.com/tiangolo/fastapi/pull/5566) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
 * 🌐 Add Portuguese translation for `docs/pt/docs/deployment/docker.md`. PR [#5663](https://github.com/tiangolo/fastapi/pull/5663) by [@ayr-ton](https://github.com/ayr-ton).
