@@ -97,7 +97,7 @@ $ python -m venv env
 <div class="termy">
 
 ```console
-$ pip install -e .[dev,doc,test]
+$ pip install -e ."[dev,doc,test]"
 
 ---> 100%
 ```
