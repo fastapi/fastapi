@@ -18,7 +18,6 @@ jobs:
         with:
           python-version: '3.9'
           cache: "pip"
-          cache-dependency-path: pyproject.toml
 
       - run: pip install smokeshow
 
