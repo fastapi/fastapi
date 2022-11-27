@@ -54,6 +54,8 @@ jobs:
       - uses: actions/setup-python@v4
         with:
           python-version: '3.8'
+          cache: "pip"
+          cache-dependency-path: pyproject.toml
 
       - name: Get coverage files
         uses: actions/download-artifact@v3
