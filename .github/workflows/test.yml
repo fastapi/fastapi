@@ -27,6 +27,13 @@ jobs:
       - name: Install Dependencies
         if: steps.setup-python.outputs.cache-hit != 'true'
         run: pip install -e .[all,dev,doc,test]
+      # Allow debugging with tmate
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
+        with:
+          limit-access-to-actor: true
+          token: ${{ secrets.ACTIONS_TOKEN }}
+          standard_token: ${{ secrets.GITHUB_TOKEN }}
       - name: Lint
         run: bash scripts/lint.sh
       - run: mkdir coverage
