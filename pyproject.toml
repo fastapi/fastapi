@@ -168,6 +168,7 @@ select = [
 ignore = [
     "E501",  # line too long, handled by black
     "B008",  # do not perform function calls in argument defaults
+    "C901",  # too complex
 ]
 
 [tool.ruff.per-file-ignores]
@@ -178,7 +179,8 @@ ignore = [
 "docs_src/dependencies/tutorial010.py" = ["F821"]
 "docs_src/custom_response/tutorial007.py" = ["B007"]
 "docs_src/dataclasses/tutorial003.py" = ["I001"]
-
+"docs_src/path_operation_advanced_configuration/tutorial007.py" = ["B904"]
+"docs_src/custom_request_and_route/tutorial002.py" = ["B904"]
 
 [tool.ruff.isort]
 known-third-party = ["fastapi", "pydantic", "starlette"]
