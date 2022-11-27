@@ -89,7 +89,7 @@ def create_response_field(
     except RuntimeError:
         raise fastapi.exceptions.FastAPIError(
             f"Invalid args for response field! Hint: check that {type_} is a valid pydantic field type"
-        )
+        ) from None
 
 
 def create_cloned_field(
