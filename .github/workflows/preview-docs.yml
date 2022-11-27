@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Download Artifact Docs
-        uses: dawidd6/action-download-artifact@v2.24.1
+        uses: dawidd6/action-download-artifact@v2.24.2
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           workflow: build-docs.yml
