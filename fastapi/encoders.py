@@ -54,8 +54,8 @@ def jsonable_encoder(
         if custom_encoder:
             encoder.update(custom_encoder)
         obj_dict = obj.dict(
-            include=include,  # type: ignore # in Pydantic
-            exclude=exclude,  # type: ignore # in Pydantic
+            include=include,
+            exclude=exclude,
             by_alias=by_alias,
             exclude_unset=exclude_unset,
             exclude_none=exclude_none,
