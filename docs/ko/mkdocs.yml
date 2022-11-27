@@ -70,6 +70,7 @@ nav:
   - tutorial/request-forms-and-files.md
   - tutorial/encoder.md
   - tutorial/static-files.md
+  - tutorial/debugging.md
 markdown_extensions:
 - toc:
     permalink: true
