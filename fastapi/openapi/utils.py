@@ -447,9 +447,9 @@ def get_openapi(
     output["paths"] = paths
     if tags:
         output["tags"] = tags
-    return jsonable_encoder(
+    return jsonable_encoder(  # type: ignore
         OpenAPI(**output),
         by_alias=True,
         exclude_unset=exclude_unset,
         exclude_none=exclude_none,
-    )  # type: ignore
+    )
