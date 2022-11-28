@@ -1,13 +1,7 @@
 from contextlib import AsyncExitStack as AsyncExitStack  # noqa
 from contextlib import asynccontextmanager as asynccontextmanager
 from functools import partial
-from typing import (
-    Any,
-    AsyncGenerator,
-    ContextManager,
-    Optional,
-    TypeVar,
-)
+from typing import Any, AsyncGenerator, ContextManager, Optional, TypeVar
 
 import anyio
 from anyio.streams.memory import MemoryObjectReceiveStream, MemoryObjectSendStream
