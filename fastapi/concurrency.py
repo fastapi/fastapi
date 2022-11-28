@@ -1,12 +1,9 @@
-from contextlib import AsyncExitStack as AsyncExitStack
+from contextlib import AsyncExitStack as AsyncExitStack  # noqa
 from contextlib import asynccontextmanager as asynccontextmanager
-from contextvars import copy_context
 from functools import partial
 from typing import (
     Any,
     AsyncGenerator,
-    Awaitable,
-    Callable,
     ContextManager,
     Optional,
     TypeVar,
@@ -15,19 +12,13 @@ from typing import (
 import anyio
 from anyio.streams.memory import MemoryObjectReceiveStream, MemoryObjectSendStream
 from anyio.to_thread import run_sync
+from starlette.concurrency import iterate_in_threadpool as iterate_in_threadpool  # noqa
+from starlette.concurrency import run_in_threadpool as run_in_threadpool  # noqa
+from starlette.concurrency import (  # noqa
+    run_until_first_complete as run_until_first_complete,
+)
 
 T = TypeVar("T")
-
-
-def callable_in_thread_pool(
-    call: Callable[..., T], *, limiter: Optional[anyio.CapacityLimiter]
-) -> Callable[..., Awaitable[T]]:
-    def inner(*args: Any, **kwargs: Any) -> "Awaitable[T]":
-        return anyio.to_thread.run_sync(
-            copy_context().run, lambda: call(*args, **kwargs), limiter=limiter
-        )  # type: ignore[return-value]
-
-    return inner
 
 
 def _cm_thead_worker(
