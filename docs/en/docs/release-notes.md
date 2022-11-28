@@ -2,6 +2,7 @@
 
 ## Latest Changes
 
+* ⬆ Update typer[all] requirement from <0.7.0,>=0.6.1 to >=0.6.1,<0.8.0. PR [#5639](https://github.com/tiangolo/fastapi/pull/5639) by [@dependabot[bot]](https://github.com/apps/dependabot).
 
 ## 0.88.0
 
