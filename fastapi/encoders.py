@@ -1,6 +1,6 @@
 import dataclasses
 import datetime
-from collections import defaultdict, deque
+from collections import deque
 from decimal import Decimal
 from enum import Enum
 from ipaddress import (
@@ -94,20 +94,6 @@ ENCODERS_BY_TYPE: dict[type[Any], Callable[[Any], Any]] = {
     AnyUrl: str,
     may_v1.AnyUrl: str,
 }
-
-
-def generate_encoders_by_class_tuples(
-    type_encoder_map: dict[Any, Callable[[Any], Any]],
-) -> dict[Callable[[Any], Any], tuple[Any, ...]]:
-    encoders_by_class_tuples: dict[Callable[[Any], Any], tuple[Any, ...]] = defaultdict(
-        tuple
-    )
-    for type_, encoder in type_encoder_map.items():
-        encoders_by_class_tuples[encoder] += (type_,)
-    return encoders_by_class_tuples
-
-
-encoders_by_class_tuples = generate_encoders_by_class_tuples(ENCODERS_BY_TYPE)
 
 
 def jsonable_encoder(
@@ -326,11 +312,9 @@ def jsonable_encoder(
             )
         return encoded_list
 
-    if type(obj) in ENCODERS_BY_TYPE:
-        return ENCODERS_BY_TYPE[type(obj)](obj)
-    for encoder, classes_tuple in encoders_by_class_tuples.items():
-        if isinstance(obj, classes_tuple):
-            return encoder(obj)
+    for base in obj.__class__.__mro__[:-1]:
+        if base in ENCODERS_BY_TYPE:
+            return ENCODERS_BY_TYPE[base](obj)
 
     try:
         data = dict(obj)
