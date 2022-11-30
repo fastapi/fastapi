@@ -55,7 +55,7 @@ Il n'apparaîtra pas dans la documentation, mais d'autres outils (tel que Sphinx
 
 Vous avez probablement vu comment déclarer le `response_model` et le `status_code` pour une *opération de chemin*.
 
-Cela définit les métadonnées sur la réponse principale d'une * opération de chemin *.
+Cela définit les métadonnées sur la réponse principale d'une *opération de chemin*.
 
 Vous pouvez également déclarer des réponses supplémentaires avec leurs modèles, codes de statut, etc.
 
