@@ -45,7 +45,7 @@ Vous pouvez limiter le texte utilisé de la docstring d'une *fonction de chemin*
 
 L'ajout d'un `\f` (un caractère d'échappement "form feed") va permettre à **FastAPI** de tronquer la sortie utilisée pour OpenAPI à ce stade.
 
-Il n'apparaîtra pas dans la documentation, mais d'autres outils (tels que Sphinx) pourront utiliser le reste.
+Il n'apparaîtra pas dans la documentation, mais d'autres outils (tel que Sphinx) pourront utiliser le reste.
 
 ```Python hl_lines="19-29"
 {!../../../docs_src/path_operation_advanced_configuration/tutorial004.py!}
