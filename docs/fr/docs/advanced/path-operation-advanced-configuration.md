@@ -26,7 +26,7 @@ Vous devriez le faire après avoir ajouté toutes vos *paramètres de chemin*.
 !!! Astuce
     Si vous appelez manuellement `app.openapi()`, vous devez mettre à jour les `operationId` avant.
 
-!!! warning
+!!! Attention
     Pour faire cela, vous devez vous assurer que chacun de vos *chemin* ait un nom unique.
 
     Même s'ils se trouvent dans des modules différents (fichiers Python).
