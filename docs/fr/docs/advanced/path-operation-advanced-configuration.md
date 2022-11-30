@@ -23,7 +23,7 @@ Vous devriez le faire après avoir ajouté toutes vos *paramètres de chemin*.
 {!../../../docs_src/path_operation_advanced_configuration/tutorial002.py!}
 ```
 
-!!! tip
+!!! Astuce
     Si vous appelez manuellement `app.openapi()`, vous devez mettre à jour les `operationId` avant.
 
 !!! warning
