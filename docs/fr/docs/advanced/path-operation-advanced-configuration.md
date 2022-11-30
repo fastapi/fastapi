@@ -164,7 +164,7 @@ Et nous analysons directement ce contenu YAML, puis nous utilisons à nouveau le
 {!../../../docs_src/path_operation_advanced_configuration/tutorial007.py!}
 ```
 
-!!! tip
+!!! Astuce
     Ici, nous réutilisons le même modèle Pydantic.
 
     Mais nous aurions pu tout aussi bien pu le valider d'une autre manière.
