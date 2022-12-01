@@ -182,7 +182,12 @@ def merge_depends_into_dependant(
     found: bool = False
     for sub_dependant in dependant.dependencies:
         if sub_dependant.call is depends.dependency:
+            # Depends and Security with empty scopes just need to be found,
+            # there is no scope propagation.
             found = True
+            if not isinstance(depends, params.Security):
+                break  # Depends has no scopes.
+
             # extend the inherited scope prefix for this and lower
             # dependants.
             # figure out the inherited part of the security_scopes
@@ -194,6 +199,8 @@ def merge_depends_into_dependant(
             new_prefix = old_prefix + list(depends.scopes)
             if old_prefix != new_prefix:
                 extend_scope_prefix(sub_dependant, old_prefix, new_prefix)
+            else:
+                break  # this Security had no scopes.
         else:
             if merge_depends_into_dependant(depends, sub_dependant):
                 found = True
