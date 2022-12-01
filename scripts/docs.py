@@ -284,7 +284,9 @@ def build_all():
             continue
         langs.append(lang.name)
     cpu_count = os.cpu_count() or 1
-    with Pool(cpu_count * 2) as p:
+    process_pool_size = cpu_count * 4
+    typer.echo(f"Using process pool size: {process_pool_size}")
+    with Pool(process_pool_size) as p:
         p.map(build_lang, langs)
 
 
