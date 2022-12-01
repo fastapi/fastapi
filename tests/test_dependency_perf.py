@@ -143,7 +143,7 @@ def get_endpoint_call(call, path="/foo"):  # pragma: no cover
     # create a dependency and call it directly
     dep = get_dependant(path="/foo", call=call)
     if hasattr(fastapi.dependencies.utils, "DependencySolverContext"):
-        Context = getattr(fastapi.dependencies.utils, "DependencySolverContext")
+        Context = fastapi.dependencies.utils.DependencySolverContext
 
         async def solve():
             request = Request(scope={"type": "http"})
