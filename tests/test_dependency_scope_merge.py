@@ -1,7 +1,7 @@
 from unittest.mock import Mock, call, patch
 
 import pytest
-from fastapi import Depends, FastAPI, Security
+from fastapi import APIRouter, Depends, FastAPI, Security
 from fastapi.security import SecurityScopes
 from fastapi.testclient import TestClient
 
@@ -107,6 +107,25 @@ def endpoint7(
     return {"dep": dep}
 
 
+def dep10(foo=Depends(app_dependency)):
+    return foo
+
+
+def dep11(foo=Depends(app_dependency2)):
+    return foo
+
+
+router1 = APIRouter(dependencies=[Depends(dep10), Security(dep11)])
+
+
+@router1.get("/endpoint1.1")
+def endpoint1_1(dep1=Depends(dep10), dep2=Security(dep11, scopes=["scope"])):
+    return {"dep1": dep1, "dep2": dep2}
+
+
+app.include_router(router1)
+
+
 client = TestClient(app)
 
 
@@ -191,3 +210,15 @@ def test_scopes_inherited_by_higher_security(mocks):
         [call(["endpoint7-p", "endpoint7-np", "dep7", "dep6"])]
     )
     assert result.json() == {"dep": ["endpoint7-p", "endpoint7-np", "dep7", "dep6"]}
+
+
+def test_empty_router_scopes(mocks):
+    """
+    A router has dependencies and securities with no scopes.  Test that it works.
+    """
+    result = client.get("endpoint1.1")
+    # first scope is the scope added to dep7 by endpoint 7, second
+    # is scope added to dep6 from the non-parameter scope.
+    _app_dependency.assert_has_calls([call([])])
+    _app_dependency2.assert_has_calls([call(["scope"])])
+    assert result.json() == {"dep1": [], "dep2": ["scope"]}
