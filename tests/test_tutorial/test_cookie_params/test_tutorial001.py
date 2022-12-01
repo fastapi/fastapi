@@ -3,8 +3,6 @@ from fastapi.testclient import TestClient
 
 from docs_src.cookie_params.tutorial001 import app
 
-client = TestClient(app)
-
 openapi_schema = {
     "openapi": "3.0.2",
     "info": {"title": "FastAPI", "version": "0.1.0"},
@@ -88,6 +86,7 @@ openapi_schema = {
     ],
 )
 def test(path, cookies, expected_status, expected_response):
-    response = client.get(path, cookies=cookies)
+    client = TestClient(app, cookies=cookies)
+    response = client.get(path)
     assert response.status_code == expected_status
     assert response.json() == expected_response

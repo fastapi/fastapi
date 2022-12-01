@@ -422,7 +422,7 @@ item: Item
 * 许多额外功能（归功于 Starlette）比如：
     * **WebSockets**
     * **GraphQL**
-    * 基于 `requests` 和 `pytest` 的极其简单的测试
+    * 基于 HTTPX 和 `pytest` 的极其简单的测试
     * **CORS**
     * **Cookie Sessions**
     * ......以及更多
@@ -442,7 +442,7 @@ item: Item
 
 用于 Starlette：
 
-* <a href="https://requests.readthedocs.io" target="_blank"><code>requests</code></a> - 使用 `TestClient` 时安装。
+* <a href="https://www.python-httpx.org" target="_blank"><code>httpx</code></a> - 使用 `TestClient` 时安装。
 * <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - 使用默认模板配置时安装。
 * <a href="https://andrew-d.github.io/python-multipart/" target="_blank"><code>python-multipart</code></a> - 需要通过 `request.form()` 对表单进行<abbr title="将来自 HTTP 请求中的字符串转换为 Python 数据类型">「解析」</abbr>时安装。
 * <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - 需要 `SessionMiddleware` 支持时安装。
