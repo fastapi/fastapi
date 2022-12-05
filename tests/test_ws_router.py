@@ -7,21 +7,21 @@ native_prefix_route = APIRouter(prefix="/native")
 app = FastAPI()
 
 
-@app.websocket_route("/")
+@app.websocket("/")
 async def index(websocket: WebSocket):
     await websocket.accept()
     await websocket.send_text("Hello, world!")
     await websocket.close()
 
 
-@router.websocket_route("/router")
+@router.websocket("/router")
 async def routerindex(websocket: WebSocket):
     await websocket.accept()
     await websocket.send_text("Hello, router!")
     await websocket.close()
 
 
-@prefix_router.websocket_route("/")
+@prefix_router.websocket("/")
 async def routerprefixindex(websocket: WebSocket):
     await websocket.accept()
     await websocket.send_text("Hello, router with prefix!")
