@@ -1,6 +1,6 @@
 # Path Parameters and Numeric Validations
 
-The same way you can declare more validations and metadata for query parameters with `Query`, you can declare the same type of validations and metadata for path parameters with `Path`.
+In the same way that you can declare more validations and metadata for query parameters with `Query`, you can declare the same type of validations and metadata for path parameters with `Path`.
 
 ## Import Path
 
@@ -77,7 +77,7 @@ Python won't do anything with that `*`, but it will know that all the following 
 
 ## Number validations: greater than or equal
 
-With `Query` and `Path` (and other's you'll see later) you can declare string constraints, but also number constraints.
+With `Query` and `Path` (and others you'll see later) you can declare number constraints.
 
 Here, with `ge=1`, `item_id` will need to be an integer number "`g`reater than or `e`qual" to `1`.
 
@@ -122,9 +122,9 @@ And you can also declare numeric validations:
 * `le`: `l`ess than or `e`qual
 
 !!! info
-    `Query`, `Path`, and others you will see later are subclasses of a common `Param` class (that you don't need to use).
+    `Query`, `Path`, and other classes you will see later are subclasses of a common `Param` class.
 
-    And all of them share the same all these same parameters of additional validation and metadata you have seen.
+    All of them share the same parameters for additional validation and metadata you have seen.
 
 !!! note "Technical Details"
     When you import `Query`, `Path` and others from `fastapi`, they are actually functions.

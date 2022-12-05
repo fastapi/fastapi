@@ -58,7 +58,7 @@ def test_post():
         - x-men
         - x-avengers
         """
-    response = client.post("/items/", data=yaml_data)
+    response = client.post("/items/", content=yaml_data)
     assert response.status_code == 200, response.text
     assert response.json() == {
         "name": "Deadpoolio",
@@ -74,7 +74,7 @@ def test_post_broken_yaml():
         x - x-men
         x - x-avengers
         """
-    response = client.post("/items/", data=yaml_data)
+    response = client.post("/items/", content=yaml_data)
     assert response.status_code == 422, response.text
     assert response.json() == {"detail": "Invalid YAML"}
 
@@ -88,7 +88,7 @@ def test_post_invalid():
         - x-avengers
         - sneaky: object
         """
-    response = client.post("/items/", data=yaml_data)
+    response = client.post("/items/", content=yaml_data)
     assert response.status_code == 422, response.text
     assert response.json() == {
         "detail": [

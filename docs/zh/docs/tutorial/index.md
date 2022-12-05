@@ -43,7 +43,7 @@ $ uvicorn main:app --reload
 <div class="termy">
 
 ```console
-$ pip install fastapi[all]
+$ pip install "fastapi[all]"
 
 ---> 100%
 ```
@@ -64,7 +64,7 @@ $ pip install fastapi[all]
     并且安装`uvicorn`来作为服务器：
 
     ```
-    pip install uvicorn[standard]
+    pip install "uvicorn[standard]"
     ```
 
     然后对你想使用的每个可选依赖项也执行相同的操作。
