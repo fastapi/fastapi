@@ -123,6 +123,35 @@ def utcnow() -> datetime:
     return datetime.utcnow()
 ```
 
+## Alternate Form
+
+To avoid delaying adoption of this proposal until after the `doc()` function has been added to the typing module, type checkers may support an alternative form `__typing_doc__`. This form can be defined locally without any reliance on the `typing` or `typing_extensions` modules. It allows immediate adoption of the specification by library authors. Type checkers that have not yet adopted this specification will retain their current behavior.
+
+To use this alternate form, library authors should include the following declaration within their type stubs or source files.
+
+```Python
+from typing import Any, Callable, Sequence, Type, TypeVar
+
+_T = TypeVar("_T")
+
+
+def __typing_doc__(
+    *,
+    description: str | None = None,
+    deprecated: bool = False,
+    discouraged: bool = False,
+    raises: Sequence[Type[Exception]] | None = None,
+    extra: dict[Any, Any] | None = None,
+) -> Callable[[_T], _T]:
+    # If used within a stub file, the following implementation can be
+    # replaced with "...".
+    return lambda a: a
+```
+
+And then they can use it in the same places they would use `doc()`.
+
+**Note**: this mimics and blatantly copies the pattern from the early versions of the [`dataclass_transform` specification](https://github.com/microsoft/pyright/blob/main/specs/dataclass_transforms.md#alternate-form).
+
 ## Rejected Ideas
 
 A possible alternative would be to support and try to push as a standard one of the existing docstring formats. But that would only solve the standardization.
@@ -134,8 +163,6 @@ It wouldn't solve any of the other problems, like getting editor support (syntax
 Runtime behavior is still not defined. It would probably make sense to have an attribute `__typing_doc__` on the function, method, or class. `__doc__` is already reserved for docstrings.
 
 For parameters, it could include the same object in the same `Annotated` type annotations.
-
-It would probably make sense to have a way to support early adopters. The same way the [`dataclass_transform` had an "Alternate Form"](https://github.com/microsoft/pyright/blob/main/specs/dataclass_transforms.md#alternate-form).
 
 ## Copyright
 
