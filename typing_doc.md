@@ -42,6 +42,7 @@ This `doc()` function would receive several parameters for metadata and document
 * `discouraged: bool`: this would mark a parameter, class, function, or method as discouraged. Editors could display them similar to `deprecated`. The reason why having a `discouraged` apart from `deprecated` is that there are cases where something is not gonna be removed for backward compatibility, but it shouldn't be used in new code. An example of this is `datetime.utcnow()`.
 * `extra: dict`: a dictionary containing any additional metadata that could be useful for developers or library authors.
     * An `extra` parameter instead of `**kwargs` is proposed to allow adding future standard parameters.
+* `**kwargs: Any`: allows arbitrary additional keyword args. This gives type checkers the freedom to support experimental parameters without needing to wait for changes in `typing.py`. Type checkers should report errors for any unrecognized parameters. This follows the same pattern designed in [PEP 681 – Data Class Transforms](https://peps.python.org/pep-0681/).
 
 Other possible future parameters could include:
 
