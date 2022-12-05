@@ -70,7 +70,7 @@ nav:
   - tutorial/request-forms-and-files.md
   - tutorial/encoder.md
   - 보안:
-    - tutorial/security/index.md
+    - tutorial/security/get-current-user.md
 markdown_extensions:
 - toc:
     permalink: true
