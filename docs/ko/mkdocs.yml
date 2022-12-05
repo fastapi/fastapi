@@ -69,6 +69,8 @@ nav:
   - tutorial/request-files.md
   - tutorial/request-forms-and-files.md
   - tutorial/encoder.md
+  - 보안:
+    - tutorial/security/index.md
 markdown_extensions:
 - toc:
     permalink: true
