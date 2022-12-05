@@ -6,7 +6,7 @@
 
 ここでは、 <a href="https://www.sqlalchemy.org/" class="external-link" target="_blank">SQLAlchemy</a>を使った例を見てみましょう。
 
-以下のような、SQLAlchemyがサポートするどのようなデータベースにも簡単に適応できます:
+以下のような、SQLAlchemyがサポートするどのようなデータベースにも簡単に適応できます。
 
 * PostgreSQL
 * MySQL
@@ -16,10 +16,10 @@
 
 この例では **SQLite** を使用します。なぜなら、SQLiteは単一のファイルを使用し、Pythonが完全にサポートしているからです。そのため、この例をコピーして、そのまま実行することができます。
 
-その後、本番のアプリケーションでは **PostgreSQL** のようなデータベースサーバーを使用したいと思うかもしれません。
+その後、本番のアプリケーションでは **PostgreSQL** のようなデータベースサーバーを使いたいと思うかもしれません。
 
 !!! Tip "豆知識"
-    **FastAPI** と **PostgreSQL** を使った公式のプロジェクトジェネレータがあります。これはフロントエンドやその他のツールを含んでおり、全て **Docker** を基にしています。 <a href="https://github.com/tiangolo/full-stack-fastapi-postgresql" class="external-link" target="_blank">https://github.com/tiangolo/full-stack-fastapi-postgresql</a>
+    **FastAPI** と **PostgreSQL** を使った公式のプロジェクトジェネレータがあります。これはフロントエンドやその他のツールを含んでおり、全て **Docker** をベースにしています。 <a href="https://github.com/tiangolo/full-stack-fastapi-postgresql" class="external-link" target="_blank">https://github.com/tiangolo/full-stack-fastapi-postgresql</a>
 
 !!! note "備考"
     コードのほとんどは、どのフレームワークでも使うような標準的な `SQLAlchemy` のコードであることに注意してください。
@@ -63,7 +63,7 @@ ORMでは、通常はSQLデータベースのテーブルを表すクラスを�
 
 ## ファイル構成
 
-これらの例では、`my_super_project` というディレクトリがあり、その中に `sql_app` というサブディレクトリがあり、次のような構造になっているとします:
+これらの例では、`my_super_project` というディレクトリがあり、その中に `sql_app` というサブディレクトリがあり、次のような構造になっているとします。
 
 ```
 .
@@ -79,6 +79,21 @@ ORMでは、通常はSQLデータベースのテーブルを表すクラスを�
 ファイル `__init__.py` はただの空ファイルですが、このファイルは `sql_app` とそのモジュール (Python ファイル) がパッケージであることを Python に知らせます。
 
 では、それぞれのファイル/モジュールが何をするのか見てみましょう。
+
+## `SQLAlchemy`のインストール
+
+まず `SQLAlchemy`のインストールが必要です。
+
+<div class="termy">
+
+```console
+$ pip install sqlalchemy
+
+---> 100%
+```
+
+</div>
+
 
 ## SQLAlchemyのパーツを作成する
 
@@ -102,7 +117,7 @@ ORMでは、通常はSQLデータベースのテーブルを表すクラスを�
 
 そのため、最後の部分が `./sql_app.db` になっています。
 
-もし、代わりに **PostgreSQL** データベースを使用している場合は、この行をアンコメントする必要があります:
+もし、代わりに **PostgreSQL** データベースを使用している場合は、この行をアンコメントする必要があります。
 
 ```Python
 SQLALCHEMY_DATABASE_URL = "postgresql://user:password@postgresserver/db"
@@ -146,7 +161,7 @@ connect_args={"check_same_thread": False}
 
 ### `SessionLocal` クラスの作成
 
-SessionLocal` クラスの各インスタンスがデータベースセッションになります。このクラス自身は、まだデータベースセッションではありません。
+`SessionLocal` クラスの各インスタンスがデータベースセッションになります。このクラス自身は、まだデータベースセッションではありません。
 
 しかし、一旦 `SessionLocal` クラスのインスタンスを作成すると、このインスタンスが実際のデータベースセッションとなります。
 
@@ -164,7 +179,7 @@ SessionLocal` クラスの各インスタンスがデータベースセッショ
 
 では、クラスを返す関数 `declarative_base()` を使ってみましょう。
 
-後で、このクラスを継承して、各データベースモデルやクラス（ORMモデル）を作成します:
+後で、このクラスを継承して、各データベースモデルやクラス（ORMモデル）を作成します。
 
 ```Python hl_lines="13"
 {!../../../docs_src/sql_databases/sql_app/database.py!}
@@ -268,13 +283,13 @@ SessionLocal` クラスの各インスタンスがデータベースセッショ
 
 #### SQLAlchemy式とPydantic式
 
-SQLAlchemyの *モデル* は、 `=` を使って属性を定義し、次のように `Column` にパラメータとして型を渡していることに注意してください:
+SQLAlchemyの *モデル* は、 `=` を使って属性を定義し、次のように `Column` にパラメータとして型を渡していることに注意してください。
 
 ```Python
 name = Column(String)
 ```
 
-一方、Pydantic *モデル* は `:` という新しい型注釈シンタックス/型ヒントを用いて型を宣言します:
+一方、Pydantic *モデル* は `:` という新しい型注釈シンタックス/型ヒントを用いて型を宣言します。
 
 ```Python
 name: str
@@ -340,7 +355,7 @@ name: str
     ```
 
 !!! Tip "豆知識"
-    このように、`=`で値を代入していることに注目してください:
+    このように、`=`で値を代入していることに注目してください。
 
     `orm_mode = True`
 
@@ -350,7 +365,7 @@ name: str
 
 Pydantic の `orm_mode` は、たとえそれが `dict` ではなく ORM モデル (あるいは属性を持つその他の任意のオブジェクト) であっても、Pydantic の *モデル* にデータを読み込むように指示します。
 
-このように、`dict`から`id`の値だけを取得しようとするのではなく:
+このように、`dict`から`id`の値だけを取得しようとするのではなく、
 
 ```Python
 id = data["id"]
@@ -402,7 +417,7 @@ Pydanticモデルでそれらの関係を宣言したとしても。
 
 `models` (SQLAlchemy のモデル) と`schemas` (Pydantic の *モデル* / スキーマ) をインポートします。
 
-以下の操作のためのutility functionsを作成します:
+以下の操作のためのutility functionsを作成します。
 
 * IDとemailから単一のuserを読み込む。
 * 複数のuserを読み込む。
@@ -419,7 +434,7 @@ Pydanticモデルでそれらの関係を宣言したとしても。
 
 次に、データを作成するためのutility functionsを作成します。
 
-The steps are:
+ステップは以下の通りです。
 
 * SQLAlchemyのモデル *インスタンス* を、あなたのデータで作成します。
 * そのインスタンスオブジェクトをデータベースセッションに `追加` します。
@@ -447,15 +462,15 @@ The steps are:
     ここでは、データベースのツールや仕組みにのみ焦点を当てます。
 
 !!! Tip "豆知識"
-    `Item` にキーワード引数を渡して、Pydantic *model* からそれぞれを読み込むのではなく、次の関数でPydantic *model* データの `dict` を生成しているのです:
+    `Item` にキーワード引数を渡して、Pydantic *model* からそれぞれを読み込むのではなく、次の関数でPydantic *model* データの `dict` を生成しているのです。
 
     `item.dict()`
 
-    そして、`dict` の key-value ペアを SQLAlchemy の `Item` へのキーワード引数として渡しています。次のように:
+    そして、`dict` の key-value ペアを SQLAlchemy の `Item` へのキーワード引数として渡しています。次のように。
 
     `Item(**item.dict())`
 
-    さらに、Pydantic *model* が提供しない別のキーワード引数 `owner_id` を、渡します。次のように:
+    さらに、Pydantic *model* が提供しない別のキーワード引数 `owner_id` を、渡します。次のように。
 
     `Item(**item.dict(), owner_id=user_id)`
 
@@ -465,7 +480,7 @@ The steps are:
 
 ### データベーステーブルの作成
 
-非常にシンプルな方法で、データベースのテーブルを作成します:
+非常にシンプルな方法で、データベースのテーブルを作成します。
 
 === "Python 3.6 and above"
 
@@ -485,7 +500,7 @@ The steps are:
 
 そして、Alembicを「マイグレーション」にも使うことになります（それが主な仕事です）。
 
-マイグレーション "とは、SQLAlchemy のモデルの構造を変更したり、新しい属性を追加した りするたびに、それらの変更をデータベースに再現し、新しいカラムやテーブルを追加する ために必要な一連のステップのことです。
+「マイグレーション」とは、SQLAlchemy のモデルの構造を変更したり、新しい属性を追加したりするたびに、それらの変更をデータベースに再現し、新しいカラムやテーブルを追加するために必要な一連のステップのことです。
 
 FastAPI プロジェクトでの Alembic の例は [Project Generation - Template](../project-generation.md){.internal-link target=_blank} のテンプレートで確認できます。具体的には <a href="https://github.com/tiangolo/full-stack-fastapi-postgresql/tree/master/%7B%7Bcookiecutter.project_slug%7D%7D/backend/app/alembic/" class="external-link" target="_blank">ソースコード内の alembic ディレクトリ</a> にあります。
 
@@ -524,7 +539,7 @@ FastAPI プロジェクトでの Alembic の例は [Project Generation - Templat
 
 そして、*path operation function* で依存関係を使うときには、SQLAlchemy から直接インポートした `Session` 型で宣言します。
 
-これにより、エディタは `db` パラメータが `Session` 型であることがわかるので、*path operation function* 内でより良いエディタサポートが得られます:
+これにより、エディタは `db` パラメータが `Session` 型であることがわかるので、*path operation function* 内でより良いエディタサポートが得られます。
 
 === "Python 3.6 and above"
 
@@ -581,19 +596,19 @@ FastAPI プロジェクトでの Alembic の例は [Project Generation - Templat
 
 その分、「待つ」ことが必要かもしれません。
 
-しかし、SQLAlchemy は `await` を直接使う互換性を持っていないので、以下のようにしたいのですが:
+しかし、SQLAlchemy は `await` を直接使う互換性を持っていないので、以下のようにしたいのですが、
 
 ```Python
 user = await db.query(User).first()
 ```
 
-...代わりに以下のようにしています:
+...代わりに以下のようにしています。
 
 ```Python
 user = db.query(User).first()
 ```
 
-そして、*path operation functions* と依存関係を `async def` を使わずに、通常の `def` で次のように宣言します:
+そして、*path operation functions* と依存関係を `async def` を使わずに、通常の `def` で次のように宣言します。
 
 ```Python hl_lines="2"
 @app.get("/users/{user_id}", response_model=schemas.User)
@@ -620,9 +635,9 @@ SQLAlchemyを直接使っていて、**FastAPI**との連携にプラグイン�
 
 ## すべてのファイルを確認する
 
- my_super_project`というディレクトリがあり、その中に `sql_app` というサブディレクトリがあることを思い出してください。
+ `my_super_project`というディレクトリがあり、その中に `sql_app` というサブディレクトリがあることを思い出してください。
 
-`sql_app` には以下のファイルが必要です:
+`sql_app` には以下のファイルが必要です。
 
 * `sql_app/__init__.py`: 空のファイル
 
@@ -686,7 +701,7 @@ SQLAlchemyを直接使っていて、**FastAPI**との連携にプラグイン�
 
     実際、ここに示したコードはテストの一部です。このドキュメントにあるコードのほとんどのように。
 
-そうすれば、Uvicornで実行できます:
+そうすれば、Uvicornで実行できます。
 
 
 <div class="termy">
@@ -701,7 +716,7 @@ $ uvicorn sql_app.main:app --reload
 
 そしたら、ブラウザで <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a> を開けます。
 
-そして、実際のデータベースからデータを読み出しながら、**FastAPI**アプリケーションと対話することができるようになります:
+そして、実際のデータベースからデータを読み込みながら、**FastAPI**アプリケーションと対話できるようになります。
 
 <img src="/img/tutorial/sql-databases/image01.png">
 
@@ -709,7 +724,7 @@ $ uvicorn sql_app.main:app --reload
 
 FastAPI とは別に、SQLite データベース（ファイル）を直接探索して、内容のデバッグ、テーブル、カラム、レコードの追加、データの修正などを行いたい場合、<a href="https://sqlitebrowser.org/" class="external-link" target="_blank">DB Browser for SQLite</a>を使用することができます。
 
-このように表示されます:
+このように表示されます。
 
 <img src="/img/tutorial/sql-databases/image02.png">
 
@@ -750,7 +765,7 @@ FastAPI とは別に、SQLite データベース（ファイル）を直接探�
 
 この場合、すべてのリクエストを通じて単一のデータベースセッションが使用され、その後（ミドルウェアで）クローズされることを保証するのに役立ちます。
 
-### yield` やミドルウェアとの依存関係
+### `yield` やミドルウェアとの依存関係
 
 ここで **middleware** を追加することは、 `yield` による依存関係が行うことと似ていますが、いくつかの違いがあります。
 
