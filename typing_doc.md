@@ -150,6 +150,8 @@ def __typing_doc__(
 
 And then they can use it in the same places they would use `doc()`.
 
+This alternate form can be used by early adopters including libraries, linters, editors, type checkers, documentation generation tools and others.
+
 **Note**: this mimics and blatantly copies the pattern from the early versions of the [`dataclass_transform` specification](https://github.com/microsoft/pyright/blob/main/specs/dataclass_transforms.md#alternate-form).
 
 ## Rejected Ideas
