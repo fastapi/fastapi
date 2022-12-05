@@ -51,7 +51,7 @@ Other possible future parameters could include:
 * `blocks: bool`: this would mark a callable as a synchronous blocking call. This way, editors could use it to warn about using it in async contexts directly.
 * `example: Any`: an example value for a parameter, or an example of the usage of the class, function, or method.
 
-This specification targets static analysis tools and editors, and as such, the values passed to these parameters should allow static evaluation and analysis. If a developer passes as the value to one of this parameters something that requires runtime execution (e.g. a function call) the behavior of static analysis tools is unspecified and they could omit that parameter from their process and results. For static analysis tools to be conformant with this specification they need only to support statically accessible values.
+This specification targets static analysis tools and editors, and as such, the values passed to these parameters should allow static evaluation and analysis. If a developer passes as the value to one of these parameters something that requires runtime execution (e.g. a function call) the behavior of static analysis tools is unspecified and they could omit that parameter from their process and results. For static analysis tools to be conformant with this specification they need only to support statically accessible values.
 
 An example documenting the attributes of a class, or in this case, the keys of a `TypedDict` could look like this:
 
