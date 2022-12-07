@@ -501,7 +501,7 @@ current_user.items
 
 "🛠️" ⚒ 🔁 💪 🕐❔ 👆 🔀 📊 👆 🇸🇲 🏷, 🚮 🆕 🔢, ♒️. 🔁 👈 🔀 💽, 🚮 🆕 🏓, 🆕 🏓, ♒️.
 
-👆 💪 🔎 🖼 ⚗ FastAPI 🏗 📄 ⚪️➡️ [🏗 ⚡ - 📄](../project-generation.md){.internal-link target=_blank}. 🎯 <a href="https://github.com/tiangolo/full-stack-fastapi-postgresql/tree/master/%7B%7Bcookiecutter.project_slug%7D%7D/backend/app/alembic/" class="external-link" target="_blank"> `alembic` 📁 ℹ 📟</a>.
+👆 💪 🔎 🖼 ⚗ FastAPI 🏗 📄 ⚪️➡️ [🏗 ⚡ - 📄](../project-generation.md){.internal-link target=_blank}. 🎯 <a href="https://github.com/tiangolo/full-stack-fastapi-postgresql/tree/master/src/backend/app/alembic/" class="external-link" target="_blank"> `alembic` 📁 ℹ 📟</a>.
 
 ### ✍ 🔗
 
