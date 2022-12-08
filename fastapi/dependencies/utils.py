@@ -215,7 +215,8 @@ def preserve_path_params_order(dependant: Dependant) -> Callable[[ModelField], i
             path_params_ordered.append(elem[1:-1])
 
     def key(param: ModelField) -> int:
-        return path_params_ordered.index(param.name)
+        # Use param.alias to cover both alias and name
+        return path_params_ordered.index(param.alias)
 
     return key
 
