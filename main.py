@@ -1,5 +1,4 @@
 from fastapi import APIRouter, Depends, FastAPI, Request
-from fastapi.testclient import TestClient
 
 app = FastAPI()
 
