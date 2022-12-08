@@ -205,14 +205,16 @@ def get_flat_dependant(
     return flat_dependant
 
 
-def preserve_path_params_order(dependant: Dependant):
+def preserve_path_params_order(dependant: Dependant) -> Callable[[ModelField], int]:
+
+    assert dependant.path is not None
 
     path_params_ordered = []
     for elem in dependant.path.split("/"):
         if elem.startswith("{") and elem.endswith("}"):
             path_params_ordered.append(elem[1:-1])
 
-    def key(param: ModelField):
+    def key(param: ModelField) -> int:
         return path_params_ordered.index(param.name)
 
     return key
