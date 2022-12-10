@@ -111,7 +111,7 @@ FastAPI یک وب فریم‌ورک مدرن و سریع (با کارایی با
 FastAPI مبتنی بر ابزارهای قدرتمند زیر است:
 
 * فریم‌ورک <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> برای بخش وب.
-* کتابخانه <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> برای بخش داده‌.
+* کتابخانه <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> برای بخش داده‌.
 
 ## نصب
 

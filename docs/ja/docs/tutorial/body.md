@@ -6,7 +6,7 @@
 
 APIはほとんどの場合 **レスポンス** ボディを送らなければなりません。しかし、クライアントは必ずしも **リクエスト** ボディを送らなければいけないわけではありません。
 
-**リクエスト** ボディを宣言するために <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> モデルを使用します。そして、その全てのパワーとメリットを利用します。
+**リクエスト** ボディを宣言するために <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> モデルを使用します。そして、その全てのパワーとメリットを利用します。
 
 !!! info "情報"
     データを送るには、`POST` (もっともよく使われる)、`PUT`、`DELETE` または `PATCH` を使うべきです。

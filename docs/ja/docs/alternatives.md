@@ -342,7 +342,7 @@ OpenAPIやJSON Schemaのような標準に基づいたものではありませ�
 
 ## **FastAPI**が利用しているもの
 
-### <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a>
+### <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a>
 
 Pydanticは、Pythonの型ヒントを元にデータのバリデーション、シリアライゼーション、 (JSON Schemaを使用した) ドキュメントを定義するライブラリです。
 

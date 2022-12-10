@@ -371,7 +371,7 @@ Exister.
 
 ## Utilisés par **FastAPI**
 
-### <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a>
+### <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a>
 
 Pydantic est une bibliothèque permettant de définir la validation, la sérialisation et la documentation des données (à l'aide de JSON Schema) en se basant sur les Python type hints.
 

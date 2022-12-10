@@ -174,7 +174,7 @@ With **FastAPI** you get all of **Starlette**'s features (as FastAPI is just Sta
 
 ## Pydantic features
 
-**FastAPI** is fully compatible with (and based on) <a href="https://pydantic-docs.helpmanual.io" class="external-link" target="_blank"><strong>Pydantic</strong></a>. So, any additional Pydantic code you have, will also work.
+**FastAPI** is fully compatible with (and based on) <a href="https://docs.pydantic.dev" class="external-link" target="_blank"><strong>Pydantic</strong></a>. So, any additional Pydantic code you have, will also work.
 
 Including external libraries also based on Pydantic, as <abbr title="Object-Relational Mapper">ORM</abbr>s, <abbr title="Object-Document Mapper">ODM</abbr>s for databases.
 
@@ -190,7 +190,7 @@ With **FastAPI** you get all of **Pydantic**'s features (as FastAPI is based on 
 * Plays nicely with your **<abbr title="Integrated Development Environment, similar to a code editor">IDE</abbr>/<abbr title="A program that checks for code errors">linter</abbr>/brain**:
     * Because pydantic data structures are just instances of classes you define; auto-completion, linting, mypy and your intuition should all work properly with your validated data.
 * **Fast**:
-    * in <a href="https://pydantic-docs.helpmanual.io/benchmarks/" class="external-link" target="_blank">benchmarks</a> Pydantic is faster than all other tested libraries.
+    * in <a href="https://docs.pydantic.dev/benchmarks/" class="external-link" target="_blank">benchmarks</a> Pydantic is faster than all other tested libraries.
 * Validate **complex structures**:
     * Use of hierarchical Pydantic models, Python `typing`’s `List` and `Dict`, etc.
     * And validators allow complex data schemas to be clearly and easily defined, checked and documented as JSON Schema.

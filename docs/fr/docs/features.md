@@ -174,7 +174,7 @@ Avec **FastAPI** vous aurez toutes les fonctionnalités de **Starlette** (FastAP
 
 ## Fonctionnalités de Pydantic
 
-**FastAPI** est totalement compatible avec (et basé sur) <a href="https://pydantic-docs.helpmanual.io" class="external-link" target="_blank"><strong>Pydantic</strong></a>. Le code utilisant Pydantic que vous ajouterez fonctionnera donc aussi.
+**FastAPI** est totalement compatible avec (et basé sur) <a href="https://docs.pydantic.dev" class="external-link" target="_blank"><strong>Pydantic</strong></a>. Le code utilisant Pydantic que vous ajouterez fonctionnera donc aussi.
 
 Inclus des librairies externes basées, aussi, sur Pydantic, servent d'<abbr title="Object-Relational Mapper">ORM</abbr>s, <abbr title="Object-Document Mapper">ODM</abbr>s pour les bases de données.
 
@@ -190,7 +190,7 @@ Avec **FastAPI** vous aurez toutes les fonctionnalités de **Pydantic**  (comme 
 * Aide votre **<abbr title="Integrated Development Environment, il s'agit de votre éditeur de code">IDE</abbr>/<abbr title="Programme qui analyse le code à la recherche d'erreurs">linter</abbr>/cerveau**:
     * Parce que les structures de données de pydantic consistent seulement en une instance de classe que vous définissez; l'auto-complétion, le linting, mypy et votre intuition devrait être largement suffisante pour valider vos données.
 * **Rapide**:
-    * Dans les <a href="https://pydantic-docs.helpmanual.io/benchmarks/" class="external-link" target="_blank">benchmarks</a> Pydantic est plus rapide que toutes les autres librairies testées.
+    * Dans les <a href="https://docs.pydantic.dev/benchmarks/" class="external-link" target="_blank">benchmarks</a> Pydantic est plus rapide que toutes les autres librairies testées.
 * Valide les **structures complexes**:
     * Utilise les modèles hiérarchique de Pydantic, le `typage` Python pour les `Lists`, `Dict`, etc.
     * Et les validateurs permettent aux schémas de données complexes d'être clairement et facilement définis, validés et documentés sous forme d'un schéma JSON.

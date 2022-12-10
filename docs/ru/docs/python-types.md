@@ -265,7 +265,7 @@ John Doe
 
 ## Pydantic-модели
 
-<a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> является Python-библиотекой для выполнения валидации данных.
+<a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> является Python-библиотекой для выполнения валидации данных.
 
 Вы объявляете «форму» данных как классы с атрибутами.
 
@@ -282,7 +282,7 @@ John Doe
 ```
 
 !!! info
-    Чтобы узнать больше о <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic, читайте его документацию</a>.
+    Чтобы узнать больше о <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic, читайте его документацию</a>.
 
 **FastAPI** целиком основан на Pydantic.
 

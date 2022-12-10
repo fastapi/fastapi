@@ -342,7 +342,7 @@ Now APIStar is a set of tools to validate OpenAPI specifications, not a web fram
 
 ## Used by **FastAPI**
 
-### <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a>
+### <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a>
 
 Pydantic is a library to define data validation, serialization and documentation (using JSON Schema) based on Python type hints.
 

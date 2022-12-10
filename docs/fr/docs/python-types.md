@@ -265,7 +265,7 @@ Et vous aurez accès, encore une fois, au support complet offert par l'éditeur 
 
 ## Les modèles Pydantic
 
-<a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> est une bibliothèque Python pour effectuer de la validation de données.
+<a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> est une bibliothèque Python pour effectuer de la validation de données.
 
 Vous déclarez la forme de la donnée avec des classes et des attributs.
 
@@ -282,7 +282,7 @@ Extrait de la documentation officielle de **Pydantic** :
 ```
 
 !!! info
-    Pour en savoir plus à propos de <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic, allez jeter un coup d'oeil à sa documentation</a>.
+    Pour en savoir plus à propos de <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic, allez jeter un coup d'oeil à sa documentation</a>.
 
 **FastAPI** est basé entièrement sur **Pydantic**.
 

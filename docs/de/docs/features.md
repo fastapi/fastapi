@@ -177,7 +177,7 @@ Mit **FastAPI** bekommen Sie viele von **Starlette**'s Funktionen (da FastAPI nu
 
 ## Pydantic's Merkmale
 
-**FastAPI** ist vollkommen kompatibel (und basiert auf) <a href="https://pydantic-docs.helpmanual.io" class="external-link" target="_blank"><strong>Pydantic</strong></a>. Das bedeutet, auch jeder zusätzliche Pydantic Quellcode funktioniert.
+**FastAPI** ist vollkommen kompatibel (und basiert auf) <a href="https://docs.pydantic.dev" class="external-link" target="_blank"><strong>Pydantic</strong></a>. Das bedeutet, auch jeder zusätzliche Pydantic Quellcode funktioniert.
 
 Verfügbar sind ebenso externe auf Pydantic basierende Bibliotheken, wie <abbr title="Object-Relational Mapper (Abbildung von Objekten auf relationale Strukturen)">ORM</abbr>s, <abbr title="Object-Document Mapper (Abbildung von Objekten auf nicht-relationale Strukturen)">ODM</abbr>s für Datenbanken.
 
@@ -193,7 +193,7 @@ Mit **FastAPI** bekommen Sie alle Funktionen von **Pydantic** (da FastAPI für d
 * Gutes Zusammenspiel mit Ihrer/Ihrem **<abbr title="Integrierten Entwicklungsumgebung, ähnlich zu (Quellcode-)Editor">IDE</abbr>/<abbr title="Ein Programm, was Fehler im Quellcode sucht">linter</abbr>/Gehirn**:
     * Weil Datenstrukturen von Pydantic einfach nur Instanzen ihrer definierten Klassen sind, sollten Autovervollständigung, Linting, mypy und ihre Intuition einwandfrei funktionieren.
 * **Schnell**:
-    * In <a href="https://pydantic-docs.helpmanual.io/benchmarks/" class="external-link" target="_blank">Vergleichen</a> ist Pydantic schneller als jede andere getestete Bibliothek.
+    * In <a href="https://docs.pydantic.dev/benchmarks/" class="external-link" target="_blank">Vergleichen</a> ist Pydantic schneller als jede andere getestete Bibliothek.
 * Validierung von **komplexen Strukturen**:
     * Benutzung von hierachischen Pydantic Schemata, Python `typing`’s `List` und `Dict`, etc.
     * Validierungen erlauben eine klare und einfache Datenschemadefinition, überprüft und dokumentiert als JSON Schema.

@@ -177,7 +177,7 @@ FastAPI включает в себя чрезвычайно простую в и
 
 ## Особенности и возможности Pydantic
 
-**FastAPI** основан на <a href="https://pydantic-docs.helpmanual.io" class="external-link" target="_blank"><strong>Pydantic</strong></a> и полностью совместим с ним. Так что, любой дополнительный код Pydantic, который у вас есть, будет также работать.
+**FastAPI** основан на <a href="https://docs.pydantic.dev" class="external-link" target="_blank"><strong>Pydantic</strong></a> и полностью совместим с ним. Так что, любой дополнительный код Pydantic, который у вас есть, будет также работать.
 
 Включая внешние библиотеки, также основанные на Pydantic, такие как: <abbr title="Object-Relational Mapper">ORM'ы</abbr>, <abbr title="Object-Document Mapper">ODM'ы</abbr> для баз данных.
 
@@ -193,7 +193,7 @@ FastAPI включает в себя чрезвычайно простую в и
 * Прекрасно сочетается с вашими **<abbr title="Интегрированное окружение для разработки, похожее на текстовый редактор">IDE</abbr>/<abbr title="программа проверяющая ошибки в коде">linter</abbr>/мозгом**:
     * Потому что структуры данных pydantic - это всего лишь экземпляры классов, определённых вами. Автодополнение, проверка кода, mypy и ваша интуиция - всё будет работать с вашими проверенными данными.
 * **Быстродействие**:
-    * В <a href="https://pydantic-docs.helpmanual.io/benchmarks/" class="external-link" target="_blank">тестовых замерах</a> Pydantic быстрее, чем все другие проверенные библиотеки.
+    * В <a href="https://docs.pydantic.dev/benchmarks/" class="external-link" target="_blank">тестовых замерах</a> Pydantic быстрее, чем все другие проверенные библиотеки.
 * Проверка **сложных структур**:
     * Использование иерархических моделей Pydantic; `List`, `Dict` и т.п. из модуля `typing` (входит в стандартную библиотеку Python).
     * Валидаторы позволяют четко и легко определять, проверять и документировать сложные схемы данных в виде JSON Schema.

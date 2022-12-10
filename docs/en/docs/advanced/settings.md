@@ -125,7 +125,7 @@ That means that any value read in Python from an environment variable will be a 
 
 ## Pydantic `Settings`
 
-Fortunately, Pydantic provides a great utility to handle these settings coming from environment variables with <a href="https://pydantic-docs.helpmanual.io/usage/settings/" class="external-link" target="_blank">Pydantic: Settings management</a>.
+Fortunately, Pydantic provides a great utility to handle these settings coming from environment variables with <a href="https://docs.pydantic.dev/usage/settings/" class="external-link" target="_blank">Pydantic: Settings management</a>.
 
 ### Create the `Settings` object
 
@@ -254,7 +254,7 @@ This practice is common enough that it has a name, these environment variables a
 
     But a dotenv file doesn't really have to have that exact filename.
 
-Pydantic has support for reading from these types of files using an external library. You can read more at <a href="https://pydantic-docs.helpmanual.io/usage/settings/#dotenv-env-support" class="external-link" target="_blank">Pydantic Settings: Dotenv (.env) support</a>.
+Pydantic has support for reading from these types of files using an external library. You can read more at <a href="https://docs.pydantic.dev/usage/settings/#dotenv-env-support" class="external-link" target="_blank">Pydantic Settings: Dotenv (.env) support</a>.
 
 !!! tip
     For this to work, you need to `pip install python-dotenv`.
@@ -279,7 +279,7 @@ And then update your `config.py` with:
 Here we create a class `Config` inside of your Pydantic `Settings` class, and set the `env_file` to the filename with the dotenv file we want to use.
 
 !!! tip
-    The `Config` class is used just for Pydantic configuration. You can read more at <a href="https://pydantic-docs.helpmanual.io/usage/model_config/" class="external-link" target="_blank">Pydantic Model Config</a>
+    The `Config` class is used just for Pydantic configuration. You can read more at <a href="https://docs.pydantic.dev/usage/model_config/" class="external-link" target="_blank">Pydantic Model Config</a>
 
 ### Creating the `Settings` only once with `lru_cache`
 

@@ -6,7 +6,7 @@ Here are several ways to do it.
 
 ## Pydantic `schema_extra`
 
-You can declare an `example` for a Pydantic model using `Config` and `schema_extra`, as described in <a href="https://pydantic-docs.helpmanual.io/usage/schema/#schema-customization" class="external-link" target="_blank">Pydantic's docs: Schema customization</a>:
+You can declare an `example` for a Pydantic model using `Config` and `schema_extra`, as described in <a href="https://docs.pydantic.dev/usage/schema/#schema-customization" class="external-link" target="_blank">Pydantic's docs: Schema customization</a>:
 
 === "Python 3.6 and above"
 

@@ -54,7 +54,7 @@ Le tout de manière à offrir la meilleure expérience de développement à tous
 
 ## Exigences
 
-Après avoir testé plusieurs alternatives, j'ai décidé que j'allais utiliser <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">**Pydantic**</a> pour ses avantages.
+Après avoir testé plusieurs alternatives, j'ai décidé que j'allais utiliser <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">**Pydantic**</a> pour ses avantages.
 
 J'y ai ensuite contribué, pour le rendre entièrement compatible avec JSON Schema, pour supporter différentes manières de définir les déclarations de contraintes, et pour améliorer le support des éditeurs (vérifications de type, autocomplétion) sur la base des tests effectués dans plusieurs éditeurs.
 

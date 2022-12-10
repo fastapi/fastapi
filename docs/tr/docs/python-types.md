@@ -265,7 +265,7 @@ Ve yine bütün editör desteğini alırsınız:
 
 ## Pydantic modelleri
 
-<a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> veri doğrulaması yapmak için bir Python kütüphanesidir.
+<a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> veri doğrulaması yapmak için bir Python kütüphanesidir.
 
 Verilerin "biçimini" niteliklere sahip sınıflar olarak düzenlersiniz.
 
@@ -282,7 +282,7 @@ Resmi Pydantic dokümanlarından alınmıştır:
 ```
 
 !!! info
-    Daha fazla şey öğrenmek için <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic'i takip edin</a>.
+    Daha fazla şey öğrenmek için <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic'i takip edin</a>.
 
 **FastAPI** tamamen Pydantic'e dayanmaktadır.
 
