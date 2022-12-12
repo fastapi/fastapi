@@ -65,16 +65,15 @@ class OAuth2PasswordRequestFormStrict(OAuth2PasswordRequestForm):
 
         @app.post("/login")
         def login(form_data: OAuth2PasswordRequestFormStrict = Depends()):
-            data = form_data.parse()
-            print(data.username)
-            print(data.password)
-            for scope in data.scopes:
+            print(form_data.username)
+            print(form_data.password)
+            for scope in form_data.scopes:
                 print(scope)
-            if data.client_id:
-                print(data.client_id)
-            if data.client_secret:
-                print(data.client_secret)
-            return data
+            if form_data.client_id:
+                print(form_data.client_id)
+            if form_data.client_secret:
+                print(form_data.client_secret)
+            return form_data
 
 
     It creates the following Form request parameters in your endpoint:
