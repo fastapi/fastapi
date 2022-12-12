@@ -16,7 +16,7 @@ class OAuth2PasswordRequestForm:
 
         @app.post("/login")
         def login(form_data: OAuth2PasswordRequestForm = Depends()):
-            data = form_data.parse()
+            data = form_data
             print(data.username)
             print(data.password)
             for scope in data.scopes:
