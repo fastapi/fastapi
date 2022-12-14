@@ -283,7 +283,7 @@ For example:
 
 ### Concurrency + Parallelism: Web + Machine Learning
 
-With **FastAPI** you can take the advantage of concurrency that is very common for web development (the same main attractive of NodeJS).
+With **FastAPI** you can take the advantage of concurrency that is very common for web development (the same main attraction of NodeJS).
 
 But you can also exploit the benefits of parallelism and multiprocessing (having multiple processes running in parallel) for **CPU bound** workloads like those in Machine Learning systems.
 
