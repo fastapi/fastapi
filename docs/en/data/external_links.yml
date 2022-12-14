@@ -227,7 +227,7 @@ articles:
   - author: Raf Rasenberg
     author_link: https://rafrasenberg.com/about/
     link: https://rafrasenberg.com/fastapi-lambda/
-    title: FastAPI lambda container: serverless simplified
+    title: 'FastAPI lambda container: serverless simplified'
   german:
   - author: Nico Axtmann
     author_link: https://twitter.com/_nicoax
