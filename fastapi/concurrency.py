@@ -52,7 +52,12 @@ async def contextmanager_in_threadpool(
         target = partial(
             # using a partial because start_soon does not accept kw args
             # but run_sync(..., limiter=...) _must_ be a kw argument
-            run_sync, _cm_thead_worker, cm, send_res, rcv_err, limiter=limiter
+            run_sync,
+            _cm_thead_worker,
+            cm,
+            send_res,
+            rcv_err,
+            limiter=limiter,
         )
         tg.start_soon(target)
         res = await rcv_res.receive()
