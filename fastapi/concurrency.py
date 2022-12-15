@@ -50,6 +50,8 @@ async def contextmanager_in_threadpool(
         stack.enter_context(send_err)
         tg = await stack.enter_async_context(anyio.create_task_group())
         target = partial(
+            # using a partial because start_soon does not accept kw args
+            # but run_sync(..., limiter=...) _must_ be a kw argument
             run_sync, _cm_thead_worker, cm, send_res, rcv_err, limiter=limiter
         )
         tg.start_soon(target)
