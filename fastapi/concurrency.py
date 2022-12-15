@@ -27,7 +27,7 @@ def _cm_thead_worker(
             raise exc
 
 
-MaybeException = Optional[Exception]
+_MaybeException = Optional[Exception]
 
 
 @asynccontextmanager
@@ -41,7 +41,7 @@ async def contextmanager_in_threadpool(
     )
     # streams for exceptions
     send_err, rcv_err = anyio.create_memory_object_stream(  # type: ignore
-        0, item_type=MaybeException
+        0, item_type=_MaybeException
     )
     async with AsyncExitStack() as stack:
         stack.enter_context(rcv_res)
