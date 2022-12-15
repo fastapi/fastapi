@@ -12,12 +12,12 @@ from starlette.concurrency import (  # noqa
     run_until_first_complete as run_until_first_complete,
 )
 
-T = TypeVar("T")
+_T = TypeVar("_T")
 
 
 def _cm_thead_worker(
-    cm: ContextManager[T],
-    res_stream: MemoryObjectSendStream[T],
+    cm: ContextManager[_T],
+    res_stream: MemoryObjectSendStream[_T],
     err_stream: MemoryObjectReceiveStream[Optional[Exception]],
 ) -> None:
     with cm as res:
@@ -32,9 +32,9 @@ MaybeException = Optional[Exception]
 
 @asynccontextmanager
 async def contextmanager_in_threadpool(
-    cm: ContextManager[T],
+    cm: ContextManager[_T],
     limiter: Optional[anyio.CapacityLimiter] = None,
-) -> AsyncGenerator[T, None]:
+) -> AsyncGenerator[_T, None]:
     # streams for the data
     send_res, rcv_res = anyio.create_memory_object_stream(  # type: ignore
         0, item_type=Any
