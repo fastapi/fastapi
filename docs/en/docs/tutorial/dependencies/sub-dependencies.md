@@ -55,7 +55,7 @@ Then we can use the dependency with:
 
 === "Python 3.6 and above"
 
-    ```Python hl_lines="21"
+    ```Python hl_lines="22"
     {!> ../../../docs_src/dependencies/tutorial005.py!}
     ```
 

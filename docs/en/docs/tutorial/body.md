@@ -138,7 +138,7 @@ But you would get the same editor support with <a href="https://www.jetbrains.co
     If you use <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a> as your editor, you can use the <a href="https://github.com/koxudaxi/pydantic-pycharm-plugin/" class="external-link" target="_blank">Pydantic PyCharm Plugin</a>.
 
     It improves editor support for Pydantic models, with:
-    
+
     * auto-completion
     * type checks
     * refactoring
@@ -206,7 +206,7 @@ The function parameters will be recognized as follows:
 !!! note
     FastAPI will know that the value of `q` is not required because of the default value `= None`.
 
-    The `Optional` in `Optional[str]` is not used by FastAPI, but will allow your editor to give you better support and detect errors.
+    The `Union` in `Union[str, None]` is not used by FastAPI, but will allow your editor to give you better support and detect errors.
 
 ## Without Pydantic
 

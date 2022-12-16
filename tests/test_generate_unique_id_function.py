@@ -217,7 +217,9 @@ def test_top_level_generate_unique_id():
                         "loc": {
                             "title": "Location",
                             "type": "array",
-                            "items": {"type": "string"},
+                            "items": {
+                                "anyOf": [{"type": "string"}, {"type": "integer"}]
+                            },
                         },
                         "msg": {"title": "Message", "type": "string"},
                         "type": {"title": "Error Type", "type": "string"},
@@ -416,7 +418,9 @@ def test_router_overrides_generate_unique_id():
                         "loc": {
                             "title": "Location",
                             "type": "array",
-                            "items": {"type": "string"},
+                            "items": {
+                                "anyOf": [{"type": "string"}, {"type": "integer"}]
+                            },
                         },
                         "msg": {"title": "Message", "type": "string"},
                         "type": {"title": "Error Type", "type": "string"},
@@ -615,7 +619,9 @@ def test_router_include_overrides_generate_unique_id():
                         "loc": {
                             "title": "Location",
                             "type": "array",
-                            "items": {"type": "string"},
+                            "items": {
+                                "anyOf": [{"type": "string"}, {"type": "integer"}]
+                            },
                         },
                         "msg": {"title": "Message", "type": "string"},
                         "type": {"title": "Error Type", "type": "string"},
@@ -887,7 +893,9 @@ def test_subrouter_top_level_include_overrides_generate_unique_id():
                         "loc": {
                             "title": "Location",
                             "type": "array",
-                            "items": {"type": "string"},
+                            "items": {
+                                "anyOf": [{"type": "string"}, {"type": "integer"}]
+                            },
                         },
                         "msg": {"title": "Message", "type": "string"},
                         "type": {"title": "Error Type", "type": "string"},
@@ -1089,7 +1097,9 @@ def test_router_path_operation_overrides_generate_unique_id():
                         "loc": {
                             "title": "Location",
                             "type": "array",
-                            "items": {"type": "string"},
+                            "items": {
+                                "anyOf": [{"type": "string"}, {"type": "integer"}]
+                            },
                         },
                         "msg": {"title": "Message", "type": "string"},
                         "type": {"title": "Error Type", "type": "string"},
@@ -1295,7 +1305,9 @@ def test_app_path_operation_overrides_generate_unique_id():
                         "loc": {
                             "title": "Location",
                             "type": "array",
-                            "items": {"type": "string"},
+                            "items": {
+                                "anyOf": [{"type": "string"}, {"type": "integer"}]
+                            },
                         },
                         "msg": {"title": "Message", "type": "string"},
                         "type": {"title": "Error Type", "type": "string"},
@@ -1579,7 +1591,9 @@ def test_callback_override_generate_unique_id():
                         "loc": {
                             "title": "Location",
                             "type": "array",
-                            "items": {"type": "string"},
+                            "items": {
+                                "anyOf": [{"type": "string"}, {"type": "integer"}]
+                            },
                         },
                         "msg": {"title": "Message", "type": "string"},
                         "type": {"title": "Error Type", "type": "string"},

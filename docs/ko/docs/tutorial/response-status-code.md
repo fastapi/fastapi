@@ -8,11 +8,11 @@
 * `@app.delete()`
 * 기타
 
-```Python hl_lines="6" 
+```Python hl_lines="6"
 {!../../../docs_src/response_status_code/tutorial001.py!}
 ```
 
-!!! note "참고" 
+!!! note "참고"
     `status_code` 는 "데코레이터" 메소드(`get`, `post` 등)의 매개변수입니다. 모든 매개변수들과 본문처럼 *경로 작동 함수*가 아닙니다.
 
 `status_code` 매개변수는 HTTP 상태 코드를 숫자로 입력받습니다.
@@ -27,7 +27,7 @@
 
 <img src="https://fastapi.tiangolo.com/img/tutorial/response-status-code/image01.png">
 
-!!! note "참고" 
+!!! note "참고"
     어떤 응답 코드들은 해당 응답에 본문이 없다는 것을 의미하기도 합니다 (다음 항목 참고).
 
     이에 따라 FastAPI는 응답 본문이 없음을 명시하는 OpenAPI를 생성합니다.
@@ -61,7 +61,7 @@ HTTP는 세자리의 숫자 상태 코드를 응답의 일부로 전송합니다
 
 상기 예시 참고:
 
-```Python hl_lines="6" 
+```Python hl_lines="6"
 {!../../../docs_src/response_status_code/tutorial001.py!}
 ```
 
@@ -71,7 +71,7 @@ HTTP는 세자리의 숫자 상태 코드를 응답의 일부로 전송합니다
 
 `fastapi.status` 의 편의 변수를 사용할 수 있습니다.
 
-```Python hl_lines="1  6" 
+```Python hl_lines="1  6"
 {!../../../docs_src/response_status_code/tutorial002.py!}
 ```
 
