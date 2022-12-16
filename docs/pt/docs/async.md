@@ -94,7 +94,7 @@ Para "síncrono" (contrário de "assíncrono") também é utilizado o termo "seq
 
 Essa idéia de código **assíncrono** descrito acima é algo às vezes chamado de **"concorrência"**. E é diferente de **"paralelismo"**.
 
-**Concorrência** e **paralelismo** ambos são relacionados a "diferentes coisas acontecendo mais ou menos ao mesmo tempo". 
+**Concorrência** e **paralelismo** ambos são relacionados a "diferentes coisas acontecendo mais ou menos ao mesmo tempo".
 
 Mas os detalhes entre *concorrência* e *paralelismo* são bem diferentes.
 
@@ -134,7 +134,7 @@ Mas então, embora você ainda não tenha os hambúrgueres, seu trabalho no caix
 
 Mas enquanto você se afasta do balcão e senta na mesa com o número da sua chamada, você pode trocar sua atenção para seu _crush_ :heart_eyes:, e "trabalhar" nisso. Então você está novamente fazendo algo muito "produtivo", como flertar com seu _crush_ :heart_eyes:.
 
-Então o caixa diz que "seus hambúrgueres estão prontos" colocando seu número no balcão, mas você não corre que nem um maluco imediatamente quando o número exibido é o seu. Você sabe que ninguém irá roubar seus hambúrgueres porquê você tem o número de chamada, e os outros tem os números deles. 
+Então o caixa diz que "seus hambúrgueres estão prontos" colocando seu número no balcão, mas você não corre que nem um maluco imediatamente quando o número exibido é o seu. Você sabe que ninguém irá roubar seus hambúrgueres porquê você tem o número de chamada, e os outros tem os números deles.
 
 Então você espera que seu _crush_ :heart_eyes: termine a história que estava contando (terminar o trabalho atual / tarefa sendo processada), sorri gentilmente e diz que você está indo buscar os hambúrgueres.
 
@@ -358,9 +358,9 @@ Tudo isso é o que deixa o FastAPI poderoso (através do Starlette) e que o faz 
 
 !!! warning
     Você pode provavelmente pular isso.
-    
+
     Esses são detalhes muito técnicos de como **FastAPI** funciona por baixo do capô.
-    
+
     Se você tem algum conhecimento técnico (corrotinas, threads, blocking etc) e está curioso sobre como o FastAPI controla o `async def` vs normal `def`, vá em frente.
 
 ### Funções de operação de rota
