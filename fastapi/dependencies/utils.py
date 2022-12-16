@@ -250,7 +250,7 @@ def get_typed_signature(call: Callable[..., Any]) -> inspect.Signature:
     globalns = getattr(call, "__globals__", {})
     fields = getattr(call, "__fields__", {})
     if len(fields):
-        query_extra_info = dict()
+        query_extra_info = {}
         for param in fields:
             query_extra_info[param] = dict(fields[param].field_info.__repr_args__())
             if "alias" in query_extra_info[param]:
