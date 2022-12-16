@@ -33,9 +33,10 @@ from fastapi.types import DecoratedCallable
 from fastapi.utils import generate_unique_id
 from starlette.applications import Starlette
 from starlette.datastructures import State
-from starlette.exceptions import ExceptionMiddleware, HTTPException
+from starlette.exceptions import HTTPException
 from starlette.middleware import Middleware
 from starlette.middleware.errors import ServerErrorMiddleware
+from starlette.middleware.exceptions import ExceptionMiddleware
 from starlette.requests import Request
 from starlette.responses import HTMLResponse, JSONResponse, Response
 from starlette.routing import BaseRoute
@@ -635,10 +636,10 @@ class FastAPI(Starlette):
             response_description=response_description,
             responses=responses,
             deprecated=deprecated,
+            operation_id=operation_id,
             response_model_include=response_model_include,
             response_model_exclude=response_model_exclude,
             response_model_by_alias=response_model_by_alias,
-            operation_id=operation_id,
             response_model_exclude_unset=response_model_exclude_unset,
             response_model_exclude_defaults=response_model_exclude_defaults,
             response_model_exclude_none=response_model_exclude_none,
