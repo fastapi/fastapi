@@ -107,7 +107,7 @@ FastAPI는 현대적이고, 빠르며(고성능), 파이썬 표준 타입 힌트
 
 ## 요구사항
 
-Python 3.6+
+Python 3.7+
 
 FastAPI는 거인들의 어깨 위에 서 있습니다:
 
@@ -131,7 +131,7 @@ $ pip install fastapi
 <div class="termy">
 
 ```console
-$ pip install uvicorn[standard]
+$ pip install "uvicorn[standard]"
 
 ---> 100%
 ```
@@ -145,7 +145,7 @@ $ pip install uvicorn[standard]
 * `main.py` 파일을 만드십시오:
 
 ```Python
-from typing import Optional
+from typing import Union
 
 from fastapi import FastAPI
 
@@ -158,7 +158,7 @@ def read_root():
 
 
 @app.get("/items/{item_id}")
-def read_item(item_id: int, q: Optional[str] = None):
+def read_item(item_id: int, q: Union[str, None] = None):
     return {"item_id": item_id, "q": q}
 ```
 
@@ -168,7 +168,7 @@ def read_item(item_id: int, q: Optional[str] = None):
 여러분의 코드가 `async` / `await`을 사용한다면, `async def`를 사용하십시오.
 
 ```Python hl_lines="9 14"
-from typing import Optional
+from typing import Union
 
 from fastapi import FastAPI
 
@@ -181,7 +181,7 @@ async def read_root():
 
 
 @app.get("/items/{item_id}")
-async def read_item(item_id: int, q: Optional[str] = None):
+async def read_item(item_id: int, q: Union[str, None] = None):
     return {"item_id": item_id, "q": q}
 ```
 
@@ -260,7 +260,7 @@ INFO:     Application startup complete.
 Pydantic을 이용해 파이썬 표준 타입으로 본문을 선언합니다.
 
 ```Python hl_lines="4  9 10 11 12  25 26 27"
-from typing import Optional
+from typing import Union
 
 from fastapi import FastAPI
 from pydantic import BaseModel
@@ -271,7 +271,7 @@ app = FastAPI()
 class Item(BaseModel):
     name: str
     price: float
-    is_offer: Optional[bool] = None
+    is_offer: Union[bool, None] = None
 
 
 @app.get("/")
@@ -280,7 +280,7 @@ def read_root():
 
 
 @app.get("/items/{item_id}")
-def read_item(item_id: int, q: Optional[str] = None):
+def read_item(item_id: int, q: Union[str, None] = None):
     return {"item_id": item_id, "q": q}
 
 
@@ -422,7 +422,7 @@ item: Item
 * (Starlette 덕분에) 많은 추가 기능:
     * **웹 소켓**
     * **GraphQL**
-    * `requests` 및 `pytest`에 기반한 극히 쉬운 테스트
+    * HTTPX 및 `pytest`에 기반한 극히 쉬운 테스트
     * **CORS**
     * **쿠키 세션**
     * ...기타 등등.
@@ -442,8 +442,7 @@ Pydantic이 사용하는:
 
 Starlette이 사용하는:
 
-* <a href="http://docs.python-requests.org" target="_blank"><code>requests</code></a> - `TestClient`를 사용하려면 필요.
-* <a href="https://github.com/Tinche/aiofiles" target="_blank"><code>aiofiles</code></a> - `FileResponse` 또는 `StaticFiles`를 사용하려면 필요.
+* <a href="https://www.python-httpx.org" target="_blank"><code>HTTPX</code></a> - `TestClient`를 사용하려면 필요.
 * <a href="http://jinja.pocoo.org" target="_blank"><code>jinja2</code></a> - 기본 템플릿 설정을 사용하려면 필요.
 * <a href="https://andrew-d.github.io/python-multipart/" target="_blank"><code>python-multipart</code></a> - `request.form()`과 함께 <abbr title="HTTP 요청에서 파이썬 데이터로 가는 문자열 변환">"parsing"</abbr>의 지원을 원하면 필요.
 * <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - `SessionMiddleware` 지원을 위해 필요.
