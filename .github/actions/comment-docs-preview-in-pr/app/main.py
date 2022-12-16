@@ -1,7 +1,7 @@
 import logging
 import sys
 from pathlib import Path
-from typing import Optional
+from typing import Union
 
 import httpx
 from github import Github
@@ -14,7 +14,7 @@ github_api = "https://api.github.com"
 class Settings(BaseSettings):
     github_repository: str
     github_event_path: Path
-    github_event_name: Optional[str] = None
+    github_event_name: Union[str, None] = None
     input_token: SecretStr
     input_deploy_url: str
 
@@ -42,7 +42,7 @@ if __name__ == "__main__":
     except ValidationError as e:
         logging.error(f"Error parsing event file: {e.errors()}")
         sys.exit(0)
-    use_pr: Optional[PullRequest] = None
+    use_pr: Union[PullRequest, None] = None
     for pr in repo.get_pulls():
         if pr.head.sha == event.workflow_run.head_commit.id:
             use_pr = pr

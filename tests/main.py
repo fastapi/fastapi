@@ -1,5 +1,5 @@
 import http
-from typing import Optional
+from typing import FrozenSet, Optional
 
 from fastapi import FastAPI, Path, Query
 
@@ -192,3 +192,8 @@ def get_query_param_required_type(query: int = Query()):
 @app.get("/enum-status-code", status_code=http.HTTPStatus.CREATED)
 def get_enum_status_code():
     return "foo bar"
+
+
+@app.get("/query/frozenset")
+def get_query_type_frozenset(query: FrozenSet[int] = Query(...)):
+    return ",".join(map(str, sorted(query)))
