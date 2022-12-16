@@ -252,16 +252,14 @@ def test_tuple_with_model_invalid():
 
 
 def test_tuple_form_valid():
-    response = client.post("/tuple-form/", data=[("values", "1"), ("values", "2")])
+    response = client.post("/tuple-form/", data={"values": ("1", "2")})
     assert response.status_code == 200, response.text
     assert response.json() == [1, 2]
 
 
 def test_tuple_form_invalid():
-    response = client.post(
-        "/tuple-form/", data=[("values", "1"), ("values", "2"), ("values", "3")]
-    )
+    response = client.post("/tuple-form/", data={"values": ("1", "2", "3")})
     assert response.status_code == 422, response.text
 
-    response = client.post("/tuple-form/", data=[("values", "1")])
+    response = client.post("/tuple-form/", data={"values": ("1")})
     assert response.status_code == 422, response.text
