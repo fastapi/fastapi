@@ -5,7 +5,7 @@
 !!! info "说明"
 
     要使用表单，需预先安装 <a href="https://andrew-d.github.io/python-multipart/" class="external-link" target="_blank">`python-multipart`</a>。
-    
+
     例如，`pip install python-multipart`。
 
 ## 导入 `Form`
@@ -47,15 +47,15 @@
 !!! note "技术细节"
 
     表单数据的「媒体类型」编码一般为 `application/x-www-form-urlencoded`。
-    
+
     但包含文件的表单编码为 `multipart/form-data`。文件处理详见下节。
-    
+
     编码和表单字段详见 <a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Methods/POST" class="external-link" target="_blank"><abbr title="Mozilla Developer Network">MDN</abbr> Web 文档的 <code>POST</code></a>小节。
 
 !!! warning "警告"
 
     可在一个*路径操作*中声明多个 `Form` 参数，但不能同时声明要接收 JSON 的 `Body` 字段。因为此时请求体的编码是 `application/x-www-form-urlencoded`，不是 `application/json`。
-    
+
     这不是 **FastAPI** 的问题，而是 HTTP 协议的规定。
 
 ## 小结

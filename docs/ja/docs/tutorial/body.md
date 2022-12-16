@@ -114,7 +114,7 @@ APIはほとんどの場合 **レスポンス** ボディを送らなければ�
     <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a>エディタを使用している場合は、<a href="https://github.com/koxudaxi/pydantic-pycharm-plugin/" class="external-link" target="_blank">Pydantic PyCharm Plugin</a>が使用可能です。
 
     以下のエディターサポートが強化されます:
-    
+
     * 自動補完
     * 型チェック
     * リファクタリング
@@ -157,9 +157,9 @@ APIはほとんどの場合 **レスポンス** ボディを送らなければ�
 
 !!! note "備考"
     FastAPIは、`= None`があるおかげで、`q`がオプショナルだとわかります。
- 
+
     `Optional[str]` の`Optional` はFastAPIでは使用されていません（FastAPIは`str`の部分のみ使用します）。しかし、`Optional[str]` はエディタがコードのエラーを見つけるのを助けてくれます。
 
 ## Pydanticを使わない方法
 
-もしPydanticモデルを使用したくない場合は、**ボディ**パラメータが利用できます。[Body - Multiple Parameters: Singular values in body](body-multiple-params.md#singular-values-in-body){.internal-link target=_blank}を確認してください。
+もしPydanticモデルを使用したくない場合は、**Body**パラメータが利用できます。[Body - Multiple Parameters: Singular values in body](body-multiple-params.md#singular-values-in-body){.internal-link target=_blank}を確認してください。
