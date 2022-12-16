@@ -213,6 +213,7 @@ class OAuth2AuthorizationCodeBearer(OAuth2):
                 return None  # pragma: nocover
         return param
 
+
 class OAuth2ClientCredentialsBearer(OAuth2):
     def __init__(
         self,
@@ -236,7 +237,6 @@ class OAuth2ClientCredentialsBearer(OAuth2):
             auto_error=auto_error,
         )
 
-    
     async def __call__(self, request: Request) -> Optional[str]:
         authorization: str = request.headers.get("Authorization")
         scheme, param = get_authorization_scheme_param(authorization)
