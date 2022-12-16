@@ -159,7 +159,7 @@ def jsonable_encoder(
             data = vars(obj)
         except Exception as e:
             errors.append(e)
-            raise ValueError(errors)
+            raise ValueError(errors) from e
     return jsonable_encoder(
         data,
         include=include,
