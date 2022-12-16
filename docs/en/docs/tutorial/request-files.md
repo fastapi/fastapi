@@ -124,7 +124,7 @@ You can make a file optional by using standard type annotations and setting a de
     {!> ../../../docs_src/request_files/tutorial001_02.py!}
     ```
 
-=== "Python 3.9 and above"
+=== "Python 3.10 and above"
 
     ```Python hl_lines="7  14"
     {!> ../../../docs_src/request_files/tutorial001_02_py310.py!}
