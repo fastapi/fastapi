@@ -3,29 +3,34 @@ on:
   workflow_run:
     workflows:
       - Build Docs
-    types: 
+    types:
       - completed
 
 jobs:
-  deploy:
+  preview-docs:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
+      - name: Clean site
+        run: |
+          rm -rf ./site
+          mkdir ./site
       - name: Download Artifact Docs
-        uses: dawidd6/action-download-artifact@v2.9.0
+        uses: dawidd6/action-download-artifact@v2.24.2
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           workflow: build-docs.yml
           run_id: ${{ github.event.workflow_run.id }}
           name: docs-zip
+          path: ./site/
       - name: Unzip docs
         run: |
-          rm -rf ./site
+          cd ./site
           unzip docs.zip
           rm -f docs.zip
       - name: Deploy to Netlify
         id: netlify
-        uses: nwtgck/actions-netlify@v1.1.5
+        uses: nwtgck/actions-netlify@v2.0.0
         with:
           publish-dir: './site'
           production-deploy: false

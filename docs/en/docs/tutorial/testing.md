@@ -2,19 +2,24 @@
 
 Thanks to <a href="https://www.starlette.io/testclient/" class="external-link" target="_blank">Starlette</a>, testing **FastAPI** applications is easy and enjoyable.
 
-It is based on <a href="https://requests.readthedocs.io" class="external-link" target="_blank">Requests</a>, so it's very familiar and intuitive.
+It is based on <a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX</a>, which in turn is designed based on Requests, so it's very familiar and intuitive.
 
 With it, you can use <a href="https://docs.pytest.org/" class="external-link" target="_blank">pytest</a> directly with **FastAPI**.
 
 ## Using `TestClient`
 
+!!! info
+    To use `TestClient`, first install <a href="https://www.python-httpx.org" class="external-link" target="_blank">`httpx`</a>.
+
+    E.g. `pip install httpx`.
+
 Import `TestClient`.
 
-Create a `TestClient` passing to it your **FastAPI**.
+Create a `TestClient` by passing your **FastAPI** application to it.
 
 Create functions with a name that starts with `test_` (this is standard `pytest` conventions).
 
-Use the `TestClient` object the same way as you do with `requests`.
+Use the `TestClient` object the same way as you do with `httpx`.
 
 Write simple `assert` statements with the standard Python expressions that you need to check (again, standard `pytest`).
 
@@ -45,7 +50,17 @@ And your **FastAPI** application might also be composed of several files/modules
 
 ### **FastAPI** app file
 
-Let's say you have a file `main.py` with your **FastAPI** app:
+Let's say you have a file structure as described in [Bigger Applications](./bigger-applications.md){.internal-link target=_blank}:
+
+```
+.
+├── app
+│   ├── __init__.py
+│   └── main.py
+```
+
+In the file `main.py` you have your **FastAPI** app:
+
 
 ```Python
 {!../../../docs_src/app_testing/main.py!}
@@ -53,11 +68,23 @@ Let's say you have a file `main.py` with your **FastAPI** app:
 
 ### Testing file
 
-Then you could have a file `test_main.py` with your tests, and import your `app` from the `main` module (`main.py`):
+Then you could have a file `test_main.py` with your tests. It could live on the same Python package (the same directory with a `__init__.py` file):
 
-```Python
+``` hl_lines="5"
+.
+├── app
+│   ├── __init__.py
+│   ├── main.py
+│   └── test_main.py
+```
+
+Because this file is in the same package, you can use relative imports to import the object `app` from the `main` module (`main.py`):
+
+```Python hl_lines="3"
 {!../../../docs_src/app_testing/test_main.py!}
 ```
+
+...and have the code for the tests just like before.
 
 ## Testing: extended example
 
@@ -65,7 +92,17 @@ Now let's extend this example and add more details to see how to test different 
 
 ### Extended **FastAPI** app file
 
-Let's say you have a file `main_b.py` with your **FastAPI** app.
+Let's continue with the same file structure as before:
+
+```
+.
+├── app
+│   ├── __init__.py
+│   ├── main.py
+│   └── test_main.py
+```
+
+Let's say that now the file `main.py` with your **FastAPI** app has some other **path operations**.
 
 It has a `GET` operation that could return an error.
 
@@ -73,19 +110,27 @@ It has a `POST` operation that could return several errors.
 
 Both *path operations* require an `X-Token` header.
 
-```Python
-{!../../../docs_src/app_testing/main_b.py!}
-```
+=== "Python 3.6 and above"
+
+    ```Python
+    {!> ../../../docs_src/app_testing/app_b/main.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python
+    {!> ../../../docs_src/app_testing/app_b_py310/main.py!}
+    ```
 
 ### Extended testing file
 
-You could then have a `test_main_b.py`, the same as before, with the extended tests:
+You could then update `test_main.py` with the extended tests:
 
 ```Python
-{!../../../docs_src/app_testing/test_main_b.py!}
+{!> ../../../docs_src/app_testing/app_b/test_main.py!}
 ```
 
-Whenever you need the client to pass information in the request and you don't know how to, you can search (Google) how to do it in `requests`.
+Whenever you need the client to pass information in the request and you don't know how to, you can search (Google) how to do it in `httpx`, or even how to do it with `requests`, as HTTPX's design is based on Requests' design.
 
 Then you just do the same in your tests.
 
@@ -97,7 +142,7 @@ E.g.:
 * To pass *headers*, use a `dict` in the `headers` parameter.
 * For *cookies*, a `dict` in the `cookies` parameter.
 
-For more information about how to pass data to the backend (using `requests` or the `TestClient`) check the <a href="https://requests.readthedocs.io" class="external-link" target="_blank">Requests documentation</a>.
+For more information about how to pass data to the backend (using `httpx` or the `TestClient`) check the <a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX documentation</a>.
 
 !!! info
     Note that the `TestClient` receives data that can be converted to JSON, not Pydantic models.

@@ -1,3 +1,5 @@
+import warnings
+
 import pytest
 from fastapi import APIRouter, Depends, FastAPI, Response
 from fastapi.responses import JSONResponse
@@ -175,7 +177,7 @@ async def path3_override_router2_override(level3: str):
     return level3
 
 
-@router2_override.get("/default3",)
+@router2_override.get("/default3")
 async def path3_default_router2_override(level3: str):
     return level3
 
@@ -217,7 +219,9 @@ async def path5_override_router4_override(level5: str):
     return level5
 
 
-@router4_override.get("/default5",)
+@router4_override.get(
+    "/default5",
+)
 async def path5_default_router4_override(level5: str):
     return level5
 
@@ -238,7 +242,9 @@ async def path5_override_router4_default(level5: str):
     return level5
 
 
-@router4_default.get("/default5",)
+@router4_default.get(
+    "/default5",
+)
 async def path5_default_router4_default(level5: str):
     return level5
 
@@ -339,7 +345,11 @@ client = TestClient(app)
 
 def test_openapi():
     client = TestClient(app)
-    response = client.get("/openapi.json")
+    with warnings.catch_warnings(record=True) as w:
+        warnings.simplefilter("always")
+        response = client.get("/openapi.json")
+        assert issubclass(w[-1].category, UserWarning)
+        assert "Duplicate Operation ID" in str(w[-1].message)
     assert response.json() == openapi_schema
 
 
@@ -6602,7 +6612,7 @@ openapi_schema = {
                     "loc": {
                         "title": "Location",
                         "type": "array",
-                        "items": {"type": "string"},
+                        "items": {"anyOf": [{"type": "string"}, {"type": "integer"}]},
                     },
                     "msg": {"title": "Message", "type": "string"},
                     "type": {"title": "Error Type", "type": "string"},
