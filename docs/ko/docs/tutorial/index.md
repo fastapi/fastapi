@@ -44,7 +44,7 @@ $ uvicorn main:app --reload
 <div class="termy">
 
 ```console
-$ pip install fastapi[all]
+$ pip install "fastapi[all]"
 
 ---> 100%
 ```

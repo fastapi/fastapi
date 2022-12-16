@@ -194,7 +194,7 @@ John Doe
 
 这表示：
 
-* 变量 `items_t` 是一个 `tuple`，其中的每个元素都是 `int` 类型。
+* 变量 `items_t` 是一个 `tuple`，其中的前两个元素都是 `int` 类型, 最后一个元素是 `str` 类型。
 * 变量 `items_s` 是一个 `set`，其中的每个元素都是 `bytes` 类型。
 
 #### 字典
