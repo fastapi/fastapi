@@ -1,0 +1,110 @@
+<mxfile host="65bd71144e">
+    <diagram id="jyERGzDynktFHFRGN0ph" name="Page-1">
+        <mxGraphModel dx="2481" dy="1867" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1920" pageHeight="1200" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="2" value="" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=4;" parent="1" vertex="1">
+                    <mxGeometry x="450" y="-50" width="820" height="970" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="&lt;font face=&quot;Roboto&quot;&gt;&lt;span style=&quot;font-size: 24px&quot;&gt;Server(s)&lt;/span&gt;&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;strokeWidth=3;fontFamily=Roboto Mono, mono;FType=g;" parent="1" vertex="1">
+                    <mxGeometry x="710" y="-50" width="300" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=3;exitX=0.092;exitY=1.01;exitDx=0;exitDy=0;dashed=1;exitPerimeter=0;" parent="1" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="800" y="521"/>
+                            <mxPoint x="800" y="560"/>
+                        </Array>
+                        <mxPoint x="803" y="521" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=3;dashed=1;" parent="1" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="800" y="520" as="sourcePoint"/>
+                        <Array as="points">
+                            <mxPoint x="800" y="680"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="33" value="" style="group" parent="1" vertex="1" connectable="0">
+                    <mxGeometry x="-140" y="-75" width="500" height="350" as="geometry"/>
+                </mxCell>
+                <mxCell id="29" value="&lt;font face=&quot;Roboto&quot; data-font-src=&quot;https://fonts.googleapis.com/css?family=Roboto&quot; style=&quot;font-size: 24px&quot;&gt;https://someapp.example.com&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=4;" parent="33" vertex="1">
+                    <mxGeometry x="60" y="27" width="380" height="250" as="geometry"/>
+                </mxCell>
+                <mxCell id="32" value="" style="pointerEvents=1;shadow=0;dashed=0;html=1;fillColor=#505050;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;outlineConnect=0;align=center;shape=mxgraph.office.devices.laptop;strokeColor=none;" parent="33" vertex="1">
+                    <mxGeometry width="500" height="350" as="geometry"/>
+                </mxCell>
+                <mxCell id="90" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;startArrow=none;startFill=0;endArrow=classic;endFill=1;strokeWidth=3;" parent="1" source="101" target="32" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="390" y="-190" as="sourcePoint"/>
+                        <Array as="points">
+                            <mxPoint x="390" y="-132"/>
+                            <mxPoint x="280" y="-132"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="34" value="&lt;font face=&quot;Roboto&quot; data-font-src=&quot;https://fonts.googleapis.com/css?family=Roboto&quot; style=&quot;font-size: 24px&quot;&gt;DNS Servers&lt;/font&gt;" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;strokeColor=#000000;strokeWidth=3;" parent="1" vertex="1">
+                    <mxGeometry x="-60" y="-540" width="330" height="260" as="geometry"/>
+                </mxCell>
+                <mxCell id="88" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=none;startFill=0;endArrow=classic;endFill=1;strokeWidth=3;dashed=1;" parent="1" source="100" target="34" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="65.05882352941171" y="-220" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="89" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=none;startFill=0;endArrow=none;endFill=1;strokeWidth=3;dashed=1;" parent="1" source="32" target="100" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="110" y="-75" as="sourcePoint"/>
+                        <mxPoint x="-4.941176470588289" y="-139.99999999999955" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="-5" y="-90"/>
+                            <mxPoint x="-5" y="-90"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="91" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;startArrow=none;startFill=0;endArrow=none;endFill=1;strokeWidth=3;" parent="1" source="34" target="101" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="105" y="-280" as="sourcePoint"/>
+                        <mxPoint x="390" y="-260" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="390" y="-430"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="36" value="&lt;font face=&quot;Roboto&quot; data-font-src=&quot;https://fonts.googleapis.com/css?family=Roboto&quot; style=&quot;font-size: 24px&quot;&gt;Port 443 (HTTPS)&lt;/font&gt;" style="ellipse;whiteSpace=wrap;html=1;strokeColor=#000000;strokeWidth=3;" parent="1" vertex="1">
+                    <mxGeometry x="330" y="680" width="170" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="42" value="&lt;font face=&quot;Roboto&quot; data-font-src=&quot;https://fonts.googleapis.com/css?family=Roboto&quot;&gt;&lt;span style=&quot;font-size: 24px&quot;&gt;IP:&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size: 24px&quot;&gt;123.124.125.126&lt;/span&gt;&lt;br&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#000000;strokeWidth=3;" parent="1" vertex="1">
+                    <mxGeometry x="290" y="600" width="220" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="100" value="&lt;span style=&quot;font-family: &amp;#34;roboto&amp;#34; ; font-size: 24px&quot;&gt;Who is: someapp.example.com&lt;/span&gt;" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;fixedSize=1;strokeWidth=3;" parent="1" vertex="1">
+                    <mxGeometry x="-110" y="-210" width="310" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="101" value="&lt;span style=&quot;font-family: &amp;#34;roboto&amp;#34; ; font-size: 24px&quot;&gt;IP:&lt;/span&gt;&lt;br style=&quot;font-family: &amp;#34;roboto&amp;#34;&quot;&gt;&lt;span style=&quot;font-family: &amp;#34;roboto&amp;#34; ; font-size: 24px&quot;&gt;123.124.125.126&lt;/span&gt;" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;fixedSize=1;strokeWidth=3;" parent="1" vertex="1">
+                    <mxGeometry x="270" y="-290" width="240" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="106" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;startArrow=none;startFill=0;endArrow=none;endFill=0;strokeWidth=3;" parent="1" source="104" target="36" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="-40" y="770"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="104" value="&lt;span style=&quot;font-family: &amp;#34;roboto&amp;#34; ; font-size: 24px&quot;&gt;TLS Handshake&lt;/span&gt;" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;fixedSize=1;strokeWidth=3;" parent="1" vertex="1">
+                    <mxGeometry x="-110" y="300" width="230" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="107" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;startArrow=none;startFill=0;endArrow=none;endFill=1;strokeWidth=3;" parent="1" source="32" target="104" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="-40" y="275" as="sourcePoint"/>
+                        <mxPoint x="341.38784067832285" y="770" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="-40" y="290"/>
+                            <mxPoint x="-40" y="290"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

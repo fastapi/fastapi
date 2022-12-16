@@ -84,58 +84,36 @@ To check it worked, use:
 
 If it shows the `pip` binary at `env/bin/pip` then it worked. 🎉
 
-
-
-!!! tip
-    Every time you install a new package with `pip` under that environment, activate the environment again.
-
-    This makes sure that if you use a terminal program installed by that package (like `flit`), you use the one from your local environment and not any other that could be installed globally.
-
-### Flit
-
-**FastAPI** uses <a href="https://flit.readthedocs.io/en/latest/index.html" class="external-link" target="_blank">Flit</a> to build, package and publish the project.
-
-After activating the environment as described above, install `flit`:
+Make sure you have the latest pip version on your virtual environment to avoid errors on the next steps:
 
 <div class="termy">
 
 ```console
-$ pip install flit
+$ python -m pip install --upgrade pip
 
 ---> 100%
 ```
 
 </div>
 
-Now re-activate the environment to make sure you are using the `flit` you just installed (and not a global one).
+!!! tip
+    Every time you install a new package with `pip` under that environment, activate the environment again.
 
-And now use `flit` to install the development dependencies:
+    This makes sure that if you use a terminal program installed by that package, you use the one from your local environment and not any other that could be installed globally.
 
-=== "Linux, macOS"
+### pip
 
-    <div class="termy">
+After activating the environment as described above:
 
-    ```console
-    $ flit install --deps develop --symlink
+<div class="termy">
 
-    ---> 100%
-    ```
+```console
+$ pip install -e ."[dev,doc,test]"
 
-    </div>
+---> 100%
+```
 
-=== "Windows"
-
-    If you are on Windows, use `--pth-file` instead of `--symlink`:
-
-    <div class="termy">
-
-    ```console
-    $ flit install --deps develop --pth-file
-
-    ---> 100%
-    ```
-
-    </div>
+</div>
 
 It will install all the dependencies and your local FastAPI in your local environment.
 
@@ -143,7 +121,7 @@ It will install all the dependencies and your local FastAPI in your local enviro
 
 If you create a Python file that imports and uses FastAPI, and run it with the Python from your local environment, it will use your local FastAPI source code.
 
-And if you update that local FastAPI source code, as it is installed with `--symlink` (or `--pth-file` on Windows), when you run that Python file again, it will use the fresh version of FastAPI you just edited.
+And if you update that local FastAPI source code, as it is installed with `-e`, when you run that Python file again, it will use the fresh version of FastAPI you just edited.
 
 That way, you don't have to "install" your local version to be able to test every change.
 
@@ -161,21 +139,7 @@ $ bash scripts/format.sh
 
 It will also auto-sort all your imports.
 
-For it to sort them correctly, you need to have FastAPI installed locally in your environment, with the command in the section above using `--symlink` (or `--pth-file` on Windows).
-
-### Format imports
-
-There is another script that formats all the imports and makes sure you don't have unused imports:
-
-<div class="termy">
-
-```console
-$ bash scripts/format-imports.sh
-```
-
-</div>
-
-As it runs one command after the other and modifies and reverts many files, it takes a bit longer to run, so it might be easier to use `scripts/format.sh` frequently and `scripts/format-imports.sh` only before committing.
+For it to sort them correctly, you need to have FastAPI installed locally in your environment, with the command in the section above using `-e`.
 
 ## Docs
 
@@ -340,7 +304,7 @@ docs/es/docs/features.md
 * Now open the MkDocs config file for English at:
 
 ```
-docs/en/docs/mkdocs.yml
+docs/en/mkdocs.yml
 ```
 
 * Find the place where that `docs/features.md` is located in the config file. Somewhere like:
@@ -359,7 +323,7 @@ nav:
 * Open the MkDocs config file for the language you are editing, e.g.:
 
 ```
-docs/es/docs/mkdocs.yml
+docs/es/mkdocs.yml
 ```
 
 * Add it there at the exact same location it was for English, e.g.:
