@@ -660,7 +660,7 @@ class APIRouter(routing.Router):
         return decorator
 
     def exclude_routes(self, paths: Iterable[str]) -> None:
-        path_route_idx = dict()  # maps paths to their index in self.routes
+        path_route_idx = {}  # maps paths to their index in self.routes
         to_remove_idx = set()  # indexes of self.routes which should be removed
         # we use set becuase paths may contain duplicates
 
