@@ -49,9 +49,17 @@ Now let's use the utilities provided by **FastAPI** to handle this.
 
 First, import `OAuth2PasswordRequestForm`, and use it as a dependency with `Depends` in the *path operation* for `/token`:
 
-```Python hl_lines="4  76"
-{!../../../docs_src/security/tutorial003.py!}
-```
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="4  76"
+    {!> ../../../docs_src/security/tutorial003.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="2  74"
+    {!> ../../../docs_src/security/tutorial003_py310.py!}
+    ```
 
 `OAuth2PasswordRequestForm` is a class dependency that declares a form body with:
 
@@ -90,9 +98,17 @@ If there is no such user, we return an error saying "incorrect username or passw
 
 For the error, we use the exception `HTTPException`:
 
-```Python hl_lines="3  77-79"
-{!../../../docs_src/security/tutorial003.py!}
-```
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="3  77-79"
+    {!> ../../../docs_src/security/tutorial003.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="1  75-77"
+    {!> ../../../docs_src/security/tutorial003_py310.py!}
+    ```
 
 ### Check the password
 
@@ -118,9 +134,17 @@ If your database is stolen, the thief won't have your users' plaintext passwords
 
 So, the thief won't be able to try to use those same passwords in another system (as many users use the same password everywhere, this would be dangerous).
 
-```Python hl_lines="80-83"
-{!../../../docs_src/security/tutorial003.py!}
-```
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="80-83"
+    {!> ../../../docs_src/security/tutorial003.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="78-81"
+    {!> ../../../docs_src/security/tutorial003_py310.py!}
+    ```
 
 #### About `**user_dict`
 
@@ -156,9 +180,17 @@ For this simple example, we are going to just be completely insecure and return 
 
     But for now, let's focus on the specific details we need.
 
-```Python hl_lines="85"
-{!../../../docs_src/security/tutorial003.py!}
-```
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="85"
+    {!> ../../../docs_src/security/tutorial003.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="83"
+    {!> ../../../docs_src/security/tutorial003_py310.py!}
+    ```
 
 !!! tip
     By the spec, you should return a JSON with an `access_token` and a `token_type`, the same as in this example.
@@ -181,9 +213,17 @@ Both of these dependencies will just return an HTTP error if the user doesn't ex
 
 So, in our endpoint, we will only get a user if the user exists, was correctly authenticated, and is active:
 
-```Python hl_lines="58-67  69-72  90"
-{!../../../docs_src/security/tutorial003.py!}
-```
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="58-66  69-72  90"
+    {!> ../../../docs_src/security/tutorial003.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="55-64  67-70  88"
+    {!> ../../../docs_src/security/tutorial003_py310.py!}
+    ```
 
 !!! info
     The additional header `WWW-Authenticate` with value `Bearer` we are returning here is also part of the spec.

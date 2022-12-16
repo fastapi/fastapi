@@ -37,14 +37,14 @@ FastAPI 支持创建含**子依赖项**的依赖项。
 
 接下来，就可以使用依赖项：
 
-```Python hl_lines="21"
+```Python hl_lines="22"
 {!../../../docs_src/dependencies/tutorial005.py!}
 ```
 
 !!! info "信息"
 
     注意，这里在*路径操作函数*中只声明了一个依赖项，即 `query_or_cookie_extractor` 。
-    
+
     但 **FastAPI** 必须先处理 `query_extractor`，以便在调用 `query_or_cookie_extractor` 时使用 `query_extractor` 返回的结果。
 
 ```mermaid
@@ -82,7 +82,7 @@ async def needy_dependency(fresh_value: str = Depends(get_value, use_cache=False
 !!! tip "提示"
 
     这些简单的例子现在看上去虽然没有什么实用价值，
-    
+
     但在**安全**一章中，您会了解到这些例子的用途，
-    
+
     以及这些例子所能节省的代码量。

@@ -25,5 +25,5 @@ app.router.route_class = ValidationErrorLoggingRoute
 
 
 @app.post("/")
-async def sum_numbers(numbers: List[int] = Body(...)):
+async def sum_numbers(numbers: List[int] = Body()):
     return sum(numbers)

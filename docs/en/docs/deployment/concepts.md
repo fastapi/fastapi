@@ -21,7 +21,7 @@ By considering these concepts, you will be able to **evaluate and design** the b
 
 In the next chapters, I'll give you more **concrete recipes** to deploy FastAPI applications.
 
-But for now, let's check these important **conceptual ideas**. These concepts also apply for any other type of web API. 💡
+But for now, let's check these important **conceptual ideas**. These concepts also apply to any other type of web API. 💡
 
 ## Security - HTTPS
 
@@ -47,7 +47,7 @@ Some of the tools you could use as a TLS Termination Proxy are:
     * With an external component like cert-manager for certificate renewals
 * Handled internally by a cloud provider as part of their services (read below 👇)
 
-Another option is that you could use a **cloud service** that does more of the work including setting up HTTPS. It could have some restrictions or charge you more, etc. But in that case you wouldn't have to set up a TLS Termination Proxy yourself.
+Another option is that you could use a **cloud service** that does more of the work including setting up HTTPS. It could have some restrictions or charge you more, etc. But in that case, you wouldn't have to set up a TLS Termination Proxy yourself.
 
 I'll show you some concrete examples in the next chapters.
 
@@ -64,7 +64,7 @@ We will talk a lot about the running "**process**", so it's useful to have clari
 The word **program** is commonly used to describe many things:
 
 * The **code** that you write, the **Python files**.
-* The **file** that can be **executed** by the operating system, for example `python`, `python.exe` or `uvicorn`.
+* The **file** that can be **executed** by the operating system, for example: `python`, `python.exe` or `uvicorn`.
 * A particular program while it is **running** on the operating system, using the CPU, and storing things on memory. This is also called a **process**.
 
 ### What is a Process
@@ -75,7 +75,7 @@ The word **process** is normally used in a more specific way, only referring to 
     * This doesn't refer to the file, nor to the code, it refers **specifically** to the thing that is being **executed** and managed by the operating system.
 * Any program, any code, **can only do things** when it is being **executed**. So, when there's a **process running**.
 * The process can be **terminated** (or "killed") by you, or by the operating system. At that point, it stops running/being executed, and it can **no longer do things**.
-* Each application that you have running in your computer has some process behind it, each running program, each window, etc. And there are normally many processes running **at the same time** while a computer is on.
+* Each application that you have running on your computer has some process behind it, each running program, each window, etc. And there are normally many processes running **at the same time** while a computer is on.
 * There can be **multiple processes** of the **same program** running at the same time.
 
 If you check out the "task manager" or "system monitor" (or similar tools) in your operating system, you will be able to see many of those processes running.
@@ -90,13 +90,13 @@ Now that we know the difference between the terms **process** and **program**, l
 
 ## Running on Startup
 
-In most cases, when you create a web API, you want it to be **always running**, uninterrupted, so that your clients can always access it. This is of course, unless you have a specific reason why you want it to run only on certain situations, but most of the time you want it constantly running and **available**.
+In most cases, when you create a web API, you want it to be **always running**, uninterrupted, so that your clients can always access it. This is of course, unless you have a specific reason why you want it to run only in certain situations, but most of the time you want it constantly running and **available**.
 
 ### In a Remote Server
 
 When you set up a remote server (a cloud server, a virtual machine, etc.) the simplest thing you can do is to run Uvicorn (or similar) manually, the same way you do when developing locally.
 
-And it will work, and will be useful **during development**.
+And it will work and will be useful **during development**.
 
 But if your connection to the server is lost, the **running process** will probably die.
 
@@ -108,7 +108,7 @@ In general, you will probably want the server program (e.g. Uvicorn) to be start
 
 ### Separate Program
 
-To achieve this, you will normally have a **separate program** that would make sure your application is run on startup. And in many cases it would also make sure other components or applications are also run, for example a database.
+To achieve this, you will normally have a **separate program** that would make sure your application is run on startup. And in many cases, it would also make sure other components or applications are also run, for example, a database.
 
 ### Example Tools to Run at Startup
 
@@ -177,7 +177,7 @@ For example, this could be handled by:
 
 With a FastAPI application, using a server program like Uvicorn, running it once in **one process** can serve multiple clients concurrently.
 
-But in many cases you will want to run several worker processes at the same time.
+But in many cases, you will want to run several worker processes at the same time.
 
 ### Multiple Processes - Workers
 
@@ -197,11 +197,11 @@ So, to be able to have **multiple processes** at the same time, there has to be 
 
 Now, when the program loads things in memory, for example, a machine learning model in a variable, or the contents of a large file in a variable, all that **consumes a bit of the memory (RAM)** of the server.
 
-And multiple processes normally **don't share any memory**. This means that each running process has its own things, its own variables, its own memory. And if you are consuming a large amount of memory in your code, **each process** will consume an equivalent amount of memory.
+And multiple processes normally **don't share any memory**. This means that each running process has its own things, variables, and memory. And if you are consuming a large amount of memory in your code, **each process** will consume an equivalent amount of memory.
 
 ### Server Memory
 
-For example, if your code loads a Machine Learning model with **1 GB in size**, when you run one process with your API, it will consume at least 1 GB or RAM. And if you start **4 processes** (4 workers), each will consume 1 GB of RAM. So, in total your API will consume **4 GB of RAM**.
+For example, if your code loads a Machine Learning model with **1 GB in size**, when you run one process with your API, it will consume at least 1 GB of RAM. And if you start **4 processes** (4 workers), each will consume 1 GB of RAM. So in total, your API will consume **4 GB of RAM**.
 
 And if your remote server or virtual machine only has 3 GB of RAM, trying to load more than 4 GB of RAM will cause problems. 🚨
 
@@ -253,12 +253,12 @@ But in most cases, you will want to perform these steps only **once**.
 
 So, you will want to have a **single process** to perform those **previous steps**, before starting the application.
 
-And you will have to make sure that it's a single process running those previous steps *even* if afterwards you start **multiple processes** (multiple workers) for the application itself. If those steps were run by **multiple processes**, they would **duplicate** the work by running it on **parallel**, and if the steps were something delicate like a database migration, they could cause conflicts with each other.
+And you will have to make sure that it's a single process running those previous steps *even* if afterwards, you start **multiple processes** (multiple workers) for the application itself. If those steps were run by **multiple processes**, they would **duplicate** the work by running it on **parallel**, and if the steps were something delicate like a database migration, they could cause conflicts with each other.
 
-Of course, there are some cases where there's no problem in running the previous steps multiple times, in that case it's a lot easier to handle.
+Of course, there are some cases where there's no problem in running the previous steps multiple times, in that case, it's a lot easier to handle.
 
 !!! tip
-    Also have in mind that depending on your setup, in some cases you **might not even need any previous steps** before starting your application.
+    Also, have in mind that depending on your setup, in some cases you **might not even need any previous steps** before starting your application.
 
     In that case, you wouldn't have to worry about any of this. 🤷
 
@@ -279,7 +279,7 @@ Here are some possible ideas:
 
 Your server(s) is (are) a **resource**, you can consume or **utilize**, with your programs, the computation time on the CPUs, and the RAM memory available.
 
-How much resources do you want to be consuming/utilizing? It might be easy to think "not much", but in reality, you will probably want to consume **as much as possible without crashing**.
+How much of the system resources do you want to be consuming/utilizing? It might be easy to think "not much", but in reality, you will probably want to consume **as much as possible without crashing**.
 
 If you are paying for 3 servers but you are using only a little bit of their RAM and CPU, you are probably **wasting money** 💸, and probably **wasting server electric power** 🌎, etc.
 
@@ -291,9 +291,9 @@ In this case, it would be better to get **one extra server** and run some proces
 
 There's also the chance that for some reason you have a **spike** of usage of your API. Maybe it went viral, or maybe some other services or bots start using it. And you might want to have extra resources to be safe in those cases.
 
-You could put an **arbitrary number** to target, for example something **between 50% to 90%** of resource utilization. The point is that those are probably the main things you will want to measure and use to tweak your deployments.
+You could put an **arbitrary number** to target, for example, something **between 50% to 90%** of resource utilization. The point is that those are probably the main things you will want to measure and use to tweak your deployments.
 
-You can use simple tools like `htop` to see the CPU and RAM used in your server, or the amount used by each process. Or you can use more complex monitoring tools, maybe distributed across servers, etc.
+You can use simple tools like `htop` to see the CPU and RAM used in your server or the amount used by each process. Or you can use more complex monitoring tools, which may be distributed across servers, etc.
 
 ## Recap
 
@@ -308,4 +308,4 @@ You have been reading here some of the main concepts that you would probably nee
 
 Understanding these ideas and how to apply them should give you the intuition necessary to take any decisions when configuring and tweaking your deployments. 🤓
 
-In the next sections I'll give you more concrete examples of possible strategies you can follow. 🚀
+In the next sections, I'll give you more concrete examples of possible strategies you can follow. 🚀
