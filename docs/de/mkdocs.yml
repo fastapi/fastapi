@@ -1,0 +1,146 @@
+site_name: FastAPI
+site_description: FastAPI framework, high performance, easy to learn, fast to code, ready for production
+site_url: https://fastapi.tiangolo.com/de/
+theme:
+  name: material
+  custom_dir: overrides
+  palette:
+  - media: '(prefers-color-scheme: light)'
+    scheme: default
+    primary: teal
+    accent: amber
+    toggle:
+      icon: material/lightbulb
+      name: Switch to light mode
+  - media: '(prefers-color-scheme: dark)'
+    scheme: slate
+    primary: teal
+    accent: amber
+    toggle:
+      icon: material/lightbulb-outline
+      name: Switch to dark mode
+  features:
+  - search.suggest
+  - search.highlight
+  - content.tabs.link
+  icon:
+    repo: fontawesome/brands/github-alt
+  logo: https://fastapi.tiangolo.com/img/icon-white.svg
+  favicon: https://fastapi.tiangolo.com/img/favicon.png
+  language: de
+repo_name: tiangolo/fastapi
+repo_url: https://github.com/tiangolo/fastapi
+edit_uri: ''
+plugins:
+- search
+- markdownextradata:
+    data: data
+nav:
+- FastAPI: index.md
+- Languages:
+  - en: /
+  - az: /az/
+  - de: /de/
+  - es: /es/
+  - fa: /fa/
+  - fr: /fr/
+  - he: /he/
+  - id: /id/
+  - it: /it/
+  - ja: /ja/
+  - ko: /ko/
+  - nl: /nl/
+  - pl: /pl/
+  - pt: /pt/
+  - ru: /ru/
+  - sq: /sq/
+  - sv: /sv/
+  - tr: /tr/
+  - uk: /uk/
+  - zh: /zh/
+- features.md
+markdown_extensions:
+- toc:
+    permalink: true
+- markdown.extensions.codehilite:
+    guess_lang: false
+- mdx_include:
+    base_path: docs
+- admonition
+- codehilite
+- extra
+- pymdownx.superfences:
+    custom_fences:
+    - name: mermaid
+      class: mermaid
+      format: !!python/name:pymdownx.superfences.fence_code_format ''
+- pymdownx.tabbed:
+    alternate_style: true
+- attr_list
+- md_in_html
+extra:
+  analytics:
+    provider: google
+    property: UA-133183413-1
+  social:
+  - icon: fontawesome/brands/github-alt
+    link: https://github.com/tiangolo/fastapi
+  - icon: fontawesome/brands/discord
+    link: https://discord.gg/VQjSZaeJmf
+  - icon: fontawesome/brands/twitter
+    link: https://twitter.com/fastapi
+  - icon: fontawesome/brands/linkedin
+    link: https://www.linkedin.com/in/tiangolo
+  - icon: fontawesome/brands/dev
+    link: https://dev.to/tiangolo
+  - icon: fontawesome/brands/medium
+    link: https://medium.com/@tiangolo
+  - icon: fontawesome/solid/globe
+    link: https://tiangolo.com
+  alternate:
+  - link: /
+    name: en - English
+  - link: /az/
+    name: az
+  - link: /de/
+    name: de
+  - link: /es/
+    name: es - español
+  - link: /fa/
+    name: fa
+  - link: /fr/
+    name: fr - français
+  - link: /he/
+    name: he
+  - link: /id/
+    name: id
+  - link: /it/
+    name: it - italiano
+  - link: /ja/
+    name: ja - 日本語
+  - link: /ko/
+    name: ko - 한국어
+  - link: /nl/
+    name: nl
+  - link: /pl/
+    name: pl
+  - link: /pt/
+    name: pt - português
+  - link: /ru/
+    name: ru - русский язык
+  - link: /sq/
+    name: sq - shqip
+  - link: /sv/
+    name: sv - svenska
+  - link: /tr/
+    name: tr - Türkçe
+  - link: /uk/
+    name: uk - українська мова
+  - link: /zh/
+    name: zh - 汉语
+extra_css:
+- https://fastapi.tiangolo.com/css/termynal.css
+- https://fastapi.tiangolo.com/css/custom.css
+extra_javascript:
+- https://fastapi.tiangolo.com/js/termynal.js
+- https://fastapi.tiangolo.com/js/custom.js

@@ -94,7 +94,7 @@ FastAPI 将使用此 `response_model` 来：
 {!../../../docs_src/response_model/tutorial004.py!}
 ```
 
-* `description: Optional[str] = None` 具有默认值 `None`。
+* `description: Union[str, None] = None` 具有默认值 `None`。
 * `tax: float = 10.5` 具有默认值 `10.5`.
 * `tags: List[str] = []` 具有一个空列表作为默认值： `[]`.
 
