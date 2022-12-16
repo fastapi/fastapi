@@ -1,3 +1,4 @@
+from dataclasses import dataclass
 from datetime import datetime, timezone
 from enum import Enum
 from pathlib import PurePath, PurePosixPath, PureWindowsPath
@@ -17,6 +18,12 @@ class Pet:
     def __init__(self, owner: Person, name: str):
         self.owner = owner
         self.name = name
+
+
+@dataclass
+class Item:
+    name: str
+    count: int
 
 
 class DictablePerson(Person):
@@ -129,6 +136,15 @@ def test_encode_dictable():
         "name": "Firulais",
         "owner": {"name": "Foo"},
     }
+
+
+def test_encode_dataclass():
+    item = Item(name="foo", count=100)
+    assert jsonable_encoder(item) == {"name": "foo", "count": 100}
+    assert jsonable_encoder(item, include={"name"}) == {"name": "foo"}
+    assert jsonable_encoder(item, exclude={"count"}) == {"name": "foo"}
+    assert jsonable_encoder(item, include={}) == {}
+    assert jsonable_encoder(item, exclude={}) == {"name": "foo", "count": 100}
 
 
 def test_encode_unsupported():

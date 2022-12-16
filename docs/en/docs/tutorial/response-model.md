@@ -168,7 +168,7 @@ Your response model could have default values, like:
     {!> ../../../docs_src/response_model/tutorial004_py310.py!}
     ```
 
-* `description: Union[str, None] = None` has a default of `None`.
+* `description: Union[str, None] = None` (or `str | None = None` in Python 3.10) has a default of `None`.
 * `tax: float = 10.5` has a default of `10.5`.
 * `tags: List[str] = []` as a default of an empty list: `[]`.
 
