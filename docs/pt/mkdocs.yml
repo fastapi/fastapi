@@ -5,17 +5,19 @@ theme:
   name: material
   custom_dir: overrides
   palette:
-  - scheme: default
-    primary: teal
-    accent: amber
-    toggle:
-      icon: material/lightbulb-outline
-      name: Switch to light mode
-  - scheme: slate
+  - media: '(prefers-color-scheme: light)'
+    scheme: default
     primary: teal
     accent: amber
     toggle:
       icon: material/lightbulb
+      name: Switch to light mode
+  - media: '(prefers-color-scheme: dark)'
+    scheme: slate
+    primary: teal
+    accent: amber
+    toggle:
+      icon: material/lightbulb-outline
       name: Switch to dark mode
   features:
   - search.suggest
@@ -29,9 +31,6 @@ theme:
 repo_name: tiangolo/fastapi
 repo_url: https://github.com/tiangolo/fastapi
 edit_uri: ''
-google_analytics:
-- UA-133183413-1
-- auto
 plugins:
 - search
 - markdownextradata:
@@ -40,17 +39,22 @@ nav:
 - FastAPI: index.md
 - Languages:
   - en: /
+  - az: /az/
   - de: /de/
   - es: /es/
+  - fa: /fa/
   - fr: /fr/
+  - he: /he/
   - id: /id/
   - it: /it/
   - ja: /ja/
   - ko: /ko/
+  - nl: /nl/
   - pl: /pl/
   - pt: /pt/
   - ru: /ru/
   - sq: /sq/
+  - sv: /sv/
   - tr: /tr/
   - uk: /uk/
   - zh: /zh/
@@ -59,18 +63,36 @@ nav:
 - Tutorial - Guia de Usuário:
   - tutorial/index.md
   - tutorial/first-steps.md
+  - tutorial/path-params.md
+  - tutorial/query-params.md
+  - tutorial/body.md
+  - tutorial/body-multiple-params.md
   - tutorial/body-fields.md
+  - tutorial/extra-data-types.md
+  - tutorial/query-params-str-validations.md
+  - tutorial/path-params-numeric-validations.md
+  - tutorial/cookie-params.md
+  - tutorial/header-params.md
+  - tutorial/response-status-code.md
+  - tutorial/request-forms.md
+  - tutorial/request-forms-and-files.md
+  - tutorial/handling-errors.md
   - Segurança:
     - tutorial/security/index.md
+  - tutorial/background-tasks.md
   - Guia de Usuário Avançado:
     - advanced/index.md
 - Implantação:
   - deployment/index.md
   - deployment/versions.md
+  - deployment/https.md
+  - deployment/deta.md
+  - deployment/docker.md
 - alternatives.md
 - history-design-future.md
 - external-links.md
 - benchmarks.md
+- help-fastapi.md
 markdown_extensions:
 - toc:
     permalink: true
@@ -86,8 +108,14 @@ markdown_extensions:
     - name: mermaid
       class: mermaid
       format: !!python/name:pymdownx.superfences.fence_code_format ''
-- pymdownx.tabbed
+- pymdownx.tabbed:
+    alternate_style: true
+- attr_list
+- md_in_html
 extra:
+  analytics:
+    provider: google
+    property: UA-133183413-1
   social:
   - icon: fontawesome/brands/github-alt
     link: https://github.com/tiangolo/fastapi
@@ -106,12 +134,18 @@ extra:
   alternate:
   - link: /
     name: en - English
+  - link: /az/
+    name: az
   - link: /de/
     name: de
   - link: /es/
     name: es - español
+  - link: /fa/
+    name: fa
   - link: /fr/
     name: fr - français
+  - link: /he/
+    name: he
   - link: /id/
     name: id
   - link: /it/
@@ -120,6 +154,8 @@ extra:
     name: ja - 日本語
   - link: /ko/
     name: ko - 한국어
+  - link: /nl/
+    name: nl
   - link: /pl/
     name: pl
   - link: /pt/
@@ -128,6 +164,8 @@ extra:
     name: ru - русский язык
   - link: /sq/
     name: sq - shqip
+  - link: /sv/
+    name: sv - svenska
   - link: /tr/
     name: tr - Türkçe
   - link: /uk/
@@ -140,4 +178,3 @@ extra_css:
 extra_javascript:
 - https://fastapi.tiangolo.com/js/termynal.js
 - https://fastapi.tiangolo.com/js/custom.js
-

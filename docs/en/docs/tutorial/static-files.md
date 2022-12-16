@@ -2,20 +2,6 @@
 
 You can serve static files automatically from a directory using `StaticFiles`.
 
-## Install `aiofiles`
-
-First you need to install `aiofiles`:
-
-<div class="termy">
-
-```console
-$ pip install aiofiles
-
----> 100%
-```
-
-</div>
-
 ## Use `StaticFiles`
 
 * Import `StaticFiles`.
