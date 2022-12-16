@@ -83,7 +83,7 @@ response = client.get('/')
 
 !!! tip
     Note that we're using async/await with the new `AsyncClient` - the request is asynchronous.
-    
+
 !!! warning
     If your application relies on events (i.e. `startup` or `shutdown`), HTTPx's `AsyncClient` won't trigger these events. To ensure your ASGI lifecycle events are triggered, you'll need to use an additional context manager, `LifespanManager` from [florimondmanca/asgi-lifespan](https://github.com/florimondmanca/asgi-lifespan#usage), when creating the `AsyncClient`. See [#2003](https://github.com/tiangolo/fastapi/issues/2003#issuecomment-801140731) for more details.
 
