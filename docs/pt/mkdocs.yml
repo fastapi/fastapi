@@ -76,6 +76,7 @@ nav:
   - tutorial/header-params.md
   - tutorial/response-status-code.md
   - tutorial/request-forms.md
+  - tutorial/request-forms-and-files.md
   - tutorial/handling-errors.md
   - Segurança:
     - tutorial/security/index.md
@@ -87,6 +88,7 @@ nav:
   - deployment/versions.md
   - deployment/https.md
   - deployment/deta.md
+  - deployment/docker.md
 - alternatives.md
 - history-design-future.md
 - external-links.md

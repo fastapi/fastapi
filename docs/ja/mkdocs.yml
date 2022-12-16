@@ -87,6 +87,7 @@ nav:
   - advanced/response-directly.md
   - advanced/custom-response.md
   - advanced/nosql-databases.md
+  - advanced/websockets.md
   - advanced/conditional-openapi.md
 - async.md
 - デプロイ:
