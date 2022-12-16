@@ -54,8 +54,8 @@ def jsonable_encoder(
         if custom_encoder:
             encoder.update(custom_encoder)
         obj_dict = obj.dict(
-            include=include,  # type: ignore # in Pydantic
-            exclude=exclude,  # type: ignore # in Pydantic
+            include=include,
+            exclude=exclude,
             by_alias=by_alias,
             exclude_unset=exclude_unset,
             exclude_none=exclude_none,
@@ -157,7 +157,7 @@ def jsonable_encoder(
             data = vars(obj)
         except Exception as e:
             errors.append(e)
-            raise ValueError(errors)
+            raise ValueError(errors) from e
     return jsonable_encoder(
         data,
         include=include,
