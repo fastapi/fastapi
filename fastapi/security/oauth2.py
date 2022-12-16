@@ -119,14 +119,14 @@ class OAuth2(SecurityBase):
         flows: Union[OAuthFlowsModel, Dict[str, Dict[str, Any]]] = OAuthFlowsModel(),
         scheme_name: Optional[str] = None,
         description: Optional[str] = None,
-        auto_error: Optional[bool] = True
+        auto_error: bool = True
     ):
         self.model = OAuth2Model(flows=flows, description=description)
         self.scheme_name = scheme_name or self.__class__.__name__
         self.auto_error = auto_error
 
     async def __call__(self, request: Request) -> Optional[str]:
-        authorization: str = request.headers.get("Authorization")
+        authorization = request.headers.get("Authorization")
         if not authorization:
             if self.auto_error:
                 raise HTTPException(
@@ -157,7 +157,7 @@ class OAuth2PasswordBearer(OAuth2):
         )
 
     async def __call__(self, request: Request) -> Optional[str]:
-        authorization: str = request.headers.get("Authorization")
+        authorization = request.headers.get("Authorization")
         scheme, param = get_authorization_scheme_param(authorization)
         if not authorization or scheme.lower() != "bearer":
             if self.auto_error:
@@ -200,7 +200,7 @@ class OAuth2AuthorizationCodeBearer(OAuth2):
         )
 
     async def __call__(self, request: Request) -> Optional[str]:
-        authorization: str = request.headers.get("Authorization")
+        authorization = request.headers.get("Authorization")
         scheme, param = get_authorization_scheme_param(authorization)
         if not authorization or scheme.lower() != "bearer":
             if self.auto_error:
