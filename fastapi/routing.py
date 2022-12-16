@@ -3,6 +3,7 @@ import dataclasses
 import email.message
 import inspect
 import json
+from contextlib import AsyncExitStack
 from enum import Enum, IntEnum
 from typing import (
     Any,
@@ -127,7 +128,7 @@ async def serialize_response(
         if is_coroutine:
             value, errors_ = field.validate(response_content, {}, loc=("response",))
         else:
-            value, errors_ = await run_in_threadpool(  # type: ignore[misc]
+            value, errors_ = await run_in_threadpool(
                 field.validate, response_content, {}, loc=("response",)
             )
         if isinstance(errors_, ErrorWrapper):
@@ -190,6 +191,9 @@ def get_request_handler(
             if body_field:
                 if is_body_form:
                     body = await request.form()
+                    stack = request.scope.get("fastapi_astack")
+                    assert isinstance(stack, AsyncExitStack)
+                    stack.push_async_callback(body.close)
                 else:
                     body_bytes = await request.body()
                     if body_bytes:
@@ -258,7 +262,7 @@ def get_request_handler(
                 is_coroutine=is_coroutine,
             )
             response = actual_response_class(content, **response_args)
-            if not is_body_allowed_for_status_code(status_code):
+            if not is_body_allowed_for_status_code(response.status_code):
                 response.body = b""
             response.headers.raw.extend(sub_response.headers.raw)
             return response
@@ -697,7 +701,7 @@ class APIRouter(routing.Router):
             ), "A path prefix must not end with '/', as the routes will start with '/'"
         else:
             for r in router.routes:
-                path = getattr(r, "path")
+                path = getattr(r, "path")  # noqa: B009
                 name = getattr(r, "name", "unknown")
                 if path is not None and not path:
                     raise Exception(
