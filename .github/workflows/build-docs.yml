@@ -36,7 +36,7 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: docs-zip
-          path: ./docs.zip
+          path: ./site/docs.zip
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v1.2.4
         with:

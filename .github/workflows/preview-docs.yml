@@ -11,6 +11,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - name: Clean site
+        run: |
+          rm -rf ./site
+          mkdir ./site
       - name: Download Artifact Docs
         uses: dawidd6/action-download-artifact@v2.24.2
         with:
@@ -18,9 +22,10 @@ jobs:
           workflow: build-docs.yml
           run_id: ${{ github.event.workflow_run.id }}
           name: docs-zip
+          path: ./site/
       - name: Unzip docs
         run: |
-          rm -rf ./site
+          cd ./site
           unzip docs.zip
           rm -f docs.zip
       - name: Deploy to Netlify
