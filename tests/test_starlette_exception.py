@@ -47,10 +47,10 @@ openapi_schema = {
                 "responses": {
                     "200": {
                         "content": {"application/json": {"schema": {}}},
-                        "description": "Successful " "Response",
+                        "description": "Successful Response",
                     }
                 },
-                "summary": "No Body " "Status " "Code " "Exception",
+                "summary": "No Body Status Code Exception",
             }
         },
         "/http-no-body-statuscode-with-detail-exception": {
@@ -59,7 +59,7 @@ openapi_schema = {
                 "responses": {
                     "200": {
                         "content": {"application/json": {"schema": {}}},
-                        "description": "Successful " "Response",
+                        "description": "Successful Response",
                     }
                 },
                 "summary": "No Body Status Code With Detail Exception",

@@ -434,7 +434,7 @@ Daha fazla örnek ve özellik için <a href="https://fastapi.tiangolo.com/tutori
 * Diğer ekstra özellikler (Starlette sayesinde):
     * **WebSockets**
     * **GraphQL**
-    * `requests` ve `pytest` sayesinde aşırı kolay testler.
+    * HTTPX ve `pytest` sayesinde aşırı kolay testler.
     * **CORS**
     * **Cookie Sessions**
     * ...ve daha fazlası.
@@ -454,7 +454,7 @@ Pydantic tarafında kullanılan:
 
 Starlette tarafında kullanılan:
 
-* <a href="http://docs.python-requests.org" target="_blank"><code>requests</code></a> - Eğer `TestClient` kullanmak istiyorsan gerekli.
+* <a href="https://www.python-httpx.org" target="_blank"><code>httpx</code></a> - Eğer `TestClient` kullanmak istiyorsan gerekli.
 * <a href="http://jinja.pocoo.org" target="_blank"><code>jinja2</code></a> - Eğer kendine ait template konfigürasyonu oluşturmak istiyorsan gerekli
 * <a href="https://andrew-d.github.io/python-multipart/" target="_blank"><code>python-multipart</code></a> - Form kullanmak istiyorsan gerekli <abbr title="HTTP bağlantısından gelen stringi Python objesine çevirmek için">("dönüşümü")</abbr>.
 * <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - `SessionMiddleware` desteği için gerekli.
