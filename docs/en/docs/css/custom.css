@@ -139,3 +139,8 @@ code {
 .md-content__inner h1 {
   direction: ltr !important;
 }
+
+.illustration {
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
