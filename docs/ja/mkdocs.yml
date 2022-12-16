@@ -85,6 +85,8 @@ nav:
   - advanced/additional-status-codes.md
   - advanced/response-directly.md
   - advanced/custom-response.md
+  - advanced/nosql-databases.md
+  - advanced/websockets.md
   - advanced/conditional-openapi.md
 - async.md
 - デプロイ:
@@ -117,6 +119,8 @@ markdown_extensions:
       format: !!python/name:pymdownx.superfences.fence_code_format ''
 - pymdownx.tabbed:
     alternate_style: true
+- attr_list
+- md_in_html
 extra:
   analytics:
     provider: google
