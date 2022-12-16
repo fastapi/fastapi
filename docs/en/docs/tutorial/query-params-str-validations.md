@@ -216,7 +216,7 @@ To do that, you can declare that `None` is a valid type but still use `default=.
 
 === "Python 3.6 and above"
 
-    ```Python hl_lines="8"
+    ```Python hl_lines="9"
     {!> ../../../docs_src/query_params_str_validations/tutorial006c.py!}
     ```
 
