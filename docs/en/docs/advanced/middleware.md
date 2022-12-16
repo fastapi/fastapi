@@ -62,13 +62,13 @@ Any incoming requests to `http` or `ws` will be redirected to the secure scheme 
 
 Enforces that all incoming requests have a correctly set `Host` header, in order to guard against HTTP Host Header attacks.
 
-```Python hl_lines="2  6 7 8"
+```Python hl_lines="2  6-8"
 {!../../../docs_src/advanced_middleware/tutorial002.py!}
 ```
 
 The following arguments are supported:
 
-* `allowed_hosts` - A list of domain names that should be allowed as hostnames. Wildcard domains such as `*.example.com` are supported for matching subdomains to allow any hostname either use `allowed_hosts=["*"]` or omit the middleware.
+* `allowed_hosts` - A list of domain names that should be allowed as hostnames. Wildcard domains such as `*.example.com` are supported for matching subdomains. To allow any hostname either use `allowed_hosts=["*"]` or omit the middleware.
 
 If an incoming request does not validate correctly then a `400` response will be sent.
 

@@ -27,7 +27,7 @@ For example, in one of the ways the OAuth2 specification can be used (called "pa
 
 The <abbr title="specification">spec</abbr> requires the fields to be exactly named `username` and `password`, and to be sent as form fields, not JSON.
 
-With `Form` you can declare the same metadata and validation as with `Body` (and `Query`, `Path`, `Cookie`).
+With `Form` you can declare the same configurations as with `Body` (and `Query`, `Path`, `Cookie`), including validation, examples, an alias (e.g. `user-name` instead of `username`), etc.
 
 !!! info
     `Form` is a class that inherits directly from `Body`.
@@ -45,7 +45,7 @@ The way HTML forms (`<form></form>`) sends the data to the server normally uses 
     Data from forms is normally encoded using the "media type" `application/x-www-form-urlencoded`.
 
     But when the form includes files, it is encoded as `multipart/form-data`. You'll read about handling files in the next chapter.
-    
+
     If you want to read more about these encodings and form fields, head to the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST" class="external-link" target="_blank"><abbr title="Mozilla Developer Network">MDN</abbr> web docs for <code>POST</code></a>.
 
 !!! warning

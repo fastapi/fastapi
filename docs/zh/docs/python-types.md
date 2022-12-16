@@ -188,13 +188,13 @@ John Doe
 
 声明 `tuple` 和 `set` 的方法也是一样的：
 
-```Python hl_lines="1 4"
+```Python hl_lines="1  4"
 {!../../../docs_src/python_types/tutorial007.py!}
 ```
 
 这表示：
 
-* 变量 `items_t` 是一个 `tuple`，其中的每个元素都是 `int` 类型。
+* 变量 `items_t` 是一个 `tuple`，其中的前两个元素都是 `int` 类型, 最后一个元素是 `str` 类型。
 * 变量 `items_s` 是一个 `set`，其中的每个元素都是 `bytes` 类型。
 
 #### 字典
@@ -205,7 +205,7 @@ John Doe
 
 第二个子类型声明 `dict` 的所有值：
 
-```Python hl_lines="1 4"
+```Python hl_lines="1  4"
 {!../../../docs_src/python_types/tutorial008.py!}
 ```
 
@@ -221,14 +221,14 @@ John Doe
 
 假设你有一个名为 `Person` 的类，拥有 name 属性：
 
-```Python hl_lines="1 2 3"
-{!../../../docs_src/python_types/tutorial009.py!}
+```Python hl_lines="1-3"
+{!../../../docs_src/python_types/tutorial010.py!}
 ```
 
 接下来，你可以将一个变量声明为 `Person` 类型：
 
 ```Python hl_lines="6"
-{!../../../docs_src/python_types/tutorial009.py!}
+{!../../../docs_src/python_types/tutorial010.py!}
 ```
 
 然后，你将再次获得所有的编辑器支持：

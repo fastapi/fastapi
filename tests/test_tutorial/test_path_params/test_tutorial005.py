@@ -9,7 +9,7 @@ openapi_schema = {
     "openapi": "3.0.2",
     "info": {"title": "FastAPI", "version": "0.1.0"},
     "paths": {
-        "/model/{model_name}": {
+        "/models/{model_name}": {
             "get": {
                 "responses": {
                     "200": {
@@ -28,7 +28,7 @@ openapi_schema = {
                     },
                 },
                 "summary": "Get Model",
-                "operationId": "get_model_model__model_name__get",
+                "operationId": "get_model_models__model_name__get",
                 "parameters": [
                     {
                         "required": True,
@@ -54,7 +54,7 @@ openapi_schema = {
                     "loc": {
                         "title": "Location",
                         "type": "array",
-                        "items": {"type": "string"},
+                        "items": {"anyOf": [{"type": "string"}, {"type": "integer"}]},
                     },
                     "msg": {"title": "Message", "type": "string"},
                     "type": {"title": "Error Type", "type": "string"},
@@ -80,10 +80,10 @@ openapi_schema2 = {
     "openapi": "3.0.2",
     "info": {"title": "FastAPI", "version": "0.1.0"},
     "paths": {
-        "/model/{model_name}": {
+        "/models/{model_name}": {
             "get": {
                 "summary": "Get Model",
-                "operationId": "get_model_model__model_name__get",
+                "operationId": "get_model_models__model_name__get",
                 "parameters": [
                     {
                         "required": True,
@@ -138,7 +138,7 @@ openapi_schema2 = {
                     "loc": {
                         "title": "Location",
                         "type": "array",
-                        "items": {"type": "string"},
+                        "items": {"anyOf": [{"type": "string"}, {"type": "integer"}]},
                     },
                     "msg": {"title": "Message", "type": "string"},
                     "type": {"title": "Error Type", "type": "string"},
@@ -160,22 +160,22 @@ def test_openapi():
     "url,status_code,expected",
     [
         (
-            "/model/alexnet",
+            "/models/alexnet",
             200,
             {"model_name": "alexnet", "message": "Deep Learning FTW!"},
         ),
         (
-            "/model/lenet",
+            "/models/lenet",
             200,
             {"model_name": "lenet", "message": "LeCNN all the images"},
         ),
         (
-            "/model/resnet",
+            "/models/resnet",
             200,
             {"model_name": "resnet", "message": "Have some residuals"},
         ),
         (
-            "/model/foo",
+            "/models/foo",
             422,
             {
                 "detail": [

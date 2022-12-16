@@ -36,7 +36,7 @@ If there's no `gzip` in the header, it will not try to decompress the body.
 
 That way, the same route class can handle gzip compressed or uncompressed requests.
 
-```Python hl_lines="8 9 10 11 12 13 14 15"
+```Python hl_lines="8-15"
 {!../../../docs_src/custom_request_and_route/tutorial001.py!}
 ```
 
@@ -50,7 +50,7 @@ This method returns a function. And that function is what will receive a request
 
 Here we use it to create a `GzipRequest` from the original request.
 
-```Python hl_lines="18 19 20 21 22 23 24 25 26"
+```Python hl_lines="18-26"
 {!../../../docs_src/custom_request_and_route/tutorial001.py!}
 ```
 
@@ -84,13 +84,13 @@ We can also use this same approach to access the request body in an exception ha
 
 All we need to do is handle the request inside a `try`/`except` block:
 
-```Python hl_lines="13 15"
+```Python hl_lines="13  15"
 {!../../../docs_src/custom_request_and_route/tutorial002.py!}
 ```
 
 If an exception occurs, the`Request` instance will still be in scope, so we can read and make use of the request body when handling the error:
 
-```Python hl_lines="16 17 18"
+```Python hl_lines="16-18"
 {!../../../docs_src/custom_request_and_route/tutorial002.py!}
 ```
 
@@ -104,6 +104,6 @@ You can also set the `route_class` parameter of an `APIRouter`:
 
 In this example, the *path operations* under the `router` will use the custom `TimedRoute` class, and will have an extra `X-Response-Time` header in the response with the time it took to generate the response:
 
-```Python hl_lines="13 14 15 16 17 18 19 20"
+```Python hl_lines="13-20"
 {!../../../docs_src/custom_request_and_route/tutorial003.py!}
 ```

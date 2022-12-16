@@ -1,1 +1,1 @@
-from starlette.testclient import TestClient  # noqa
+from starlette.testclient import TestClient as TestClient  # noqa

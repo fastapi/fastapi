@@ -33,7 +33,7 @@ We need to install `python-jose` to generate and verify the JWT tokens in Python
 <div class="termy">
 
 ```console
-$ pip install python-jose[cryptography]
+$ pip install "python-jose[cryptography]"
 
 ---> 100%
 ```
@@ -42,7 +42,7 @@ $ pip install python-jose[cryptography]
 
 <a href="https://github.com/mpdavis/python-jose" class="external-link" target="_blank">Python-jose</a> requires a cryptographic backend as an extra.
 
-Here we are using the recommended one: <a href="http://cryptography.io/" class="external-link" target="_blank">pyca/cryptography</a>.
+Here we are using the recommended one: <a href="https://cryptography.io/" class="external-link" target="_blank">pyca/cryptography</a>.
 
 !!! tip
     This tutorial previously used <a href="https://pyjwt.readthedocs.io/" class="external-link" target="_blank">PyJWT</a>.
@@ -76,7 +76,7 @@ So, install PassLib with Bcrypt:
 <div class="termy">
 
 ```console
-$ pip install passlib[bcrypt]
+$ pip install "passlib[bcrypt]"
 
 ---> 100%
 ```
@@ -109,9 +109,17 @@ And another utility to verify if a received password matches the hash stored.
 
 And another one to authenticate and return a user.
 
-```Python hl_lines="7  48  55 56  59 60  69 70 71 72 73 74 75"
-{!../../../docs_src/security/tutorial004.py!}
-```
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="7  48  55-56  59-60  69-75"
+    {!> ../../../docs_src/security/tutorial004.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="6  47  54-55  58-59  68-74"
+    {!> ../../../docs_src/security/tutorial004_py310.py!}
+    ```
 
 !!! note
     If you check the new (fake) database `fake_users_db`, you will see how the hashed password looks like now: `"$2b$12$EixZaYVK1fsbw1ZfbX3OXePaWxn96p36WQoeG6Lruj3vjPGga31lW"`.
@@ -144,9 +152,17 @@ Define a Pydantic Model that will be used in the token endpoint for the response
 
 Create a utility function to generate a new access token.
 
-```Python hl_lines="6  12 13 14  28 29 30  78 79 80 81 82 83 84 85 86"
-{!../../../docs_src/security/tutorial004.py!}
-```
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="6  12-14  28-30  78-86"
+    {!> ../../../docs_src/security/tutorial004.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="5  11-13  27-29  77-85"
+    {!> ../../../docs_src/security/tutorial004_py310.py!}
+    ```
 
 ## Update the dependencies
 
@@ -156,9 +172,17 @@ Decode the received token, verify it, and return the current user.
 
 If the token is invalid, return an HTTP error right away.
 
-```Python hl_lines="89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106"
-{!../../../docs_src/security/tutorial004.py!}
-```
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="89-106"
+    {!> ../../../docs_src/security/tutorial004.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="88-105"
+    {!> ../../../docs_src/security/tutorial004_py310.py!}
+    ```
 
 ## Update the `/token` *path operation*
 
@@ -166,9 +190,17 @@ Create a `timedelta` with the expiration time of the token.
 
 Create a real JWT access token and return it.
 
-```Python hl_lines="115 116 117 118 119 120 121 122 123 124 125 126 127 128"
-{!../../../docs_src/security/tutorial004.py!}
-```
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="115-128"
+    {!> ../../../docs_src/security/tutorial004.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="114-127"
+    {!> ../../../docs_src/security/tutorial004_py310.py!}
+    ```
 
 ### Technical details about the JWT "subject" `sub`
 
@@ -225,7 +257,7 @@ Call the endpoint `/users/me/`, you will get the response as:
 
 <img src="/img/tutorial/security/image09.png">
 
-If you open the developer tools, you could see how the data sent and only includes the token, the password is only sent in the first request to authenticate the user and get that access token, but not afterwards:
+If you open the developer tools, you could see how the data sent only includes the token, the password is only sent in the first request to authenticate the user and get that access token, but not afterwards:
 
 <img src="/img/tutorial/security/image10.png">
 

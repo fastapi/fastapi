@@ -1,0 +1,42 @@
+gold:
+  - url: https://bit.ly/3dmXC5S
+    title: The data structure for unstructured multimodal data
+    img: https://fastapi.tiangolo.com/img/sponsors/docarray.svg
+  - url: https://bit.ly/3JJ7y5C
+    title: Build cross-modal and multimodal applications on the cloud
+    img: https://fastapi.tiangolo.com/img/sponsors/jina2.svg
+  - url: https://cryptapi.io/
+    title: "CryptAPI: Your easy to use, secure and privacy oriented payment gateway."
+    img: https://fastapi.tiangolo.com/img/sponsors/cryptapi.svg
+  - url: https://doist.com/careers/9B437B1615-wa-senior-backend-engineer-python
+    title: Help us migrate doist to FastAPI
+    img: https://fastapi.tiangolo.com/img/sponsors/doist.svg
+silver:
+  - url: https://www.deta.sh/?ref=fastapi
+    title: The launchpad for all your (team's) ideas
+    img: https://fastapi.tiangolo.com/img/sponsors/deta.svg
+  - url: https://www.investsuite.com/jobs
+    title: Wealthtech jobs with FastAPI
+    img: https://fastapi.tiangolo.com/img/sponsors/investsuite.svg
+  - url: https://training.talkpython.fm/fastapi-courses
+    title: FastAPI video courses on demand from people you trust
+    img: https://fastapi.tiangolo.com/img/sponsors/talkpython.png
+  - url: https://testdriven.io/courses/tdd-fastapi/
+    title: Learn to build high-quality web apps with best practices
+    img: https://fastapi.tiangolo.com/img/sponsors/testdriven.svg
+  - url: https://github.com/deepset-ai/haystack/
+    title: Build powerful search from composable, open source building blocks
+    img: https://fastapi.tiangolo.com/img/sponsors/haystack-fastapi.svg
+  - url: https://www.udemy.com/course/fastapi-rest/
+    title: Learn FastAPI by building a complete project. Extend your knowledge on advanced web development-AWS, Payments, Emails.
+    img: https://fastapi.tiangolo.com/img/sponsors/ines-course.jpg
+  - url: https://careers.budget-insight.com/
+    title: Budget Insight is hiring!
+    img: https://fastapi.tiangolo.com/img/sponsors/budget-insight.svg
+bronze:
+  - url: https://www.exoflare.com/open-source/?utm_source=FastAPI&utm_campaign=open_source
+    title: Biosecurity risk assessments made easy.
+    img: https://fastapi.tiangolo.com/img/sponsors/exoflare.png
+  - url: https://bit.ly/3ccLCmM
+    title: https://striveworks.us/careers
+    img: https://fastapi.tiangolo.com/img/sponsors/striveworks2.png
