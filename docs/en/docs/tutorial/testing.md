@@ -2,16 +2,16 @@
 
 Thanks to <a href="https://www.starlette.io/testclient/" class="external-link" target="_blank">Starlette</a>, testing **FastAPI** applications is easy and enjoyable.
 
-It is based on <a href="https://requests.readthedocs.io" class="external-link" target="_blank">Requests</a>, so it's very familiar and intuitive.
+It is based on <a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX</a>, which in turn is designed based on Requests, so it's very familiar and intuitive.
 
 With it, you can use <a href="https://docs.pytest.org/" class="external-link" target="_blank">pytest</a> directly with **FastAPI**.
 
 ## Using `TestClient`
 
 !!! info
-    To use `TestClient`, first install <a href="https://github.com/psf/requests" class="external-link" target="_blank">`requests`</a>.
+    To use `TestClient`, first install <a href="https://www.python-httpx.org" class="external-link" target="_blank">`httpx`</a>.
 
-    E.g. `pip install requests`.
+    E.g. `pip install httpx`.
 
 Import `TestClient`.
 
@@ -19,7 +19,7 @@ Create a `TestClient` by passing your **FastAPI** application to it.
 
 Create functions with a name that starts with `test_` (this is standard `pytest` conventions).
 
-Use the `TestClient` object the same way as you do with `requests`.
+Use the `TestClient` object the same way as you do with `httpx`.
 
 Write simple `assert` statements with the standard Python expressions that you need to check (again, standard `pytest`).
 
@@ -130,7 +130,7 @@ You could then update `test_main.py` with the extended tests:
 {!> ../../../docs_src/app_testing/app_b/test_main.py!}
 ```
 
-Whenever you need the client to pass information in the request and you don't know how to, you can search (Google) how to do it in `requests`.
+Whenever you need the client to pass information in the request and you don't know how to, you can search (Google) how to do it in `httpx`, or even how to do it with `requests`, as HTTPX's design is based on Requests' design.
 
 Then you just do the same in your tests.
 
@@ -142,7 +142,7 @@ E.g.:
 * To pass *headers*, use a `dict` in the `headers` parameter.
 * For *cookies*, a `dict` in the `cookies` parameter.
 
-For more information about how to pass data to the backend (using `requests` or the `TestClient`) check the <a href="https://requests.readthedocs.io" class="external-link" target="_blank">Requests documentation</a>.
+For more information about how to pass data to the backend (using `httpx` or the `TestClient`) check the <a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX documentation</a>.
 
 !!! info
     Note that the `TestClient` receives data that can be converted to JSON, not Pydantic models.
