@@ -701,7 +701,7 @@ class APIRouter(routing.Router):
             ), "A path prefix must not end with '/', as the routes will start with '/'"
         else:
             for r in router.routes:
-                path = getattr(r, "path")
+                path = getattr(r, "path")  # noqa: B009
                 name = getattr(r, "name", "unknown")
                 if path is not None and not path:
                     raise Exception(

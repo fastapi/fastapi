@@ -420,7 +420,7 @@ Dla bardziej kompletnych przykładów posiadających więcej funkcjonalności, z
 * Wiele dodatkowych funkcji (dzięki Starlette) takie jak:
     * **WebSockety**
     * **GraphQL**
-    * bardzo proste testy bazujące na `requests` oraz `pytest`
+    * bardzo proste testy bazujące na HTTPX oraz `pytest`
     * **CORS**
     * **Sesje cookie**
     * ...i więcej.
@@ -440,7 +440,7 @@ Używane przez Pydantic:
 
 Używane przez Starlette:
 
-* <a href="https://requests.readthedocs.io" target="_blank"><code>requests</code></a> - Wymagane jeżeli chcesz korzystać z `TestClient`.
+* <a href="https://www.python-httpx.org" target="_blank"><code>httpx</code></a> - Wymagane jeżeli chcesz korzystać z `TestClient`.
 * <a href="https://github.com/Tinche/aiofiles" target="_blank"><code>aiofiles</code></a> - Wymagane jeżeli chcesz korzystać z `FileResponse` albo `StaticFiles`.
 * <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - Wymagane jeżeli chcesz używać domyślnej konfiguracji szablonów.
 * <a href="https://andrew-d.github.io/python-multipart/" target="_blank"><code>python-multipart</code></a> - Wymagane jeżelich chcesz wsparcie <abbr title="przetwarzania stringa którzy przychodzi z żądaniem HTTP na dane używane przez Pythona">"parsowania"</abbr> formularzy, używając `request.form()`.

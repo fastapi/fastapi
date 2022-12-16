@@ -424,7 +424,7 @@ item: Item
 * **GraphQL** интеграция с <a href="https://strawberry.rocks" class="external-link" target="_blank">Strawberry</a> и другими библиотеками.
 * Множество дополнительных функций (благодаря Starlette), таких как:
     * **Веб-сокеты**
-    * очень простые тесты на основе `requests` и `pytest`
+    * очень простые тесты на основе HTTPX и `pytest`
     * **CORS**
     * **Cookie сеансы(сессии)**
     * ...и многое другое.
@@ -444,7 +444,7 @@ item: Item
 
 Используется Starlette:
 
-* <a href="https://requests.readthedocs.io" target="_blank"><code>requests</code></a> - Обязательно, если вы хотите использовать `TestClient`.
+* <a href="https://www.python-httpx.org" target="_blank"><code>HTTPX</code></a> - Обязательно, если вы хотите использовать `TestClient`.
 * <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - Обязательно, если вы хотите использовать конфигурацию шаблона по умолчанию.
 * <a href="https://andrew-d.github.io/python-multipart/" target="_blank"><code>python-multipart</code></a> - Обязательно, если вы хотите поддерживать форму <abbr title="преобразование строки, полученной из HTTP-запроса, в данные Python">"парсинга"</abbr> с помощью `request.form()`.
 * <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - Обязательно, для поддержки `SessionMiddleware`.
