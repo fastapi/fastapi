@@ -3,6 +3,7 @@ from fastapi.testclient import TestClient
 
 router = APIRouter()
 prefix_router = APIRouter()
+native_prefix_route = APIRouter(prefix="/native")
 app = FastAPI()
 
 
@@ -34,6 +35,14 @@ async def routerindex2(websocket: WebSocket):
     await websocket.close()
 
 
+@router.websocket("/router/{pathparam:path}")
+async def routerindexparams(websocket: WebSocket, pathparam: str, queryparam: str):
+    await websocket.accept()
+    await websocket.send_text(pathparam)
+    await websocket.send_text(queryparam)
+    await websocket.close()
+
+
 async def ws_dependency():
     return "Socket Dependency"
 
@@ -47,8 +56,16 @@ async def router_ws_decorator_depends(
     await websocket.close()
 
 
+@native_prefix_route.websocket("/")
+async def router_native_prefix_ws(websocket: WebSocket):
+    await websocket.accept()
+    await websocket.send_text("Hello, router with native prefix!")
+    await websocket.close()
+
+
 app.include_router(router)
 app.include_router(prefix_router, prefix="/prefix")
+app.include_router(native_prefix_route)
 
 
 def test_app():
@@ -72,6 +89,13 @@ def test_prefix_router():
         assert data == "Hello, router with prefix!"
 
 
+def test_native_prefix_router():
+    client = TestClient(app)
+    with client.websocket_connect("/native/") as websocket:
+        data = websocket.receive_text()
+        assert data == "Hello, router with native prefix!"
+
+
 def test_router2():
     client = TestClient(app)
     with client.websocket_connect("/router2") as websocket:
@@ -87,6 +111,17 @@ def test_router_ws_depends():
 
 def test_router_ws_depends_with_override():
     client = TestClient(app)
-    app.dependency_overrides[ws_dependency] = lambda: "Override"
+    app.dependency_overrides[ws_dependency] = lambda: "Override"  # noqa: E731
     with client.websocket_connect("/router-ws-depends/") as websocket:
         assert websocket.receive_text() == "Override"
+
+
+def test_router_with_params():
+    client = TestClient(app)
+    with client.websocket_connect(
+        "/router/path/to/file?queryparam=a_query_param"
+    ) as websocket:
+        data = websocket.receive_text()
+        assert data == "path/to/file"
+        data = websocket.receive_text()
+        assert data == "a_query_param"
