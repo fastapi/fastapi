@@ -1,5 +1,5 @@
 from dataclasses import dataclass, field
-from typing import List, Optional
+from typing import List, Union
 
 from fastapi import FastAPI
 
@@ -9,8 +9,8 @@ class Item:
     name: str
     price: float
     tags: List[str] = field(default_factory=list)
-    description: Optional[str] = None
-    tax: Optional[float] = None
+    description: Union[str, None] = None
+    tax: Union[float, None] = None
 
 
 app = FastAPI()

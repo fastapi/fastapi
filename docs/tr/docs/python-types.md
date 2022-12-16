@@ -29,7 +29,7 @@ Programın çıktısı:
 John Doe
 ```
 
-Fonksiyon sırayla şunları yapar: 
+Fonksiyon sırayla şunları yapar:
 
 * `first_name` ve `last_name` değerlerini alır.
 * `title()` ile değişkenlerin ilk karakterlerini büyütür.
