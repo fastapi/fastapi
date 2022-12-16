@@ -31,7 +31,7 @@ FastAPI 提供了简单易用，但功能强大的**<abbr title="也称为组件
 
 依赖项就是一个函数，且可以使用与*路径操作函数*相同的参数：
 
-```Python hl_lines="8-9"
+```Python hl_lines="8-11"
 {!../../../docs_src/dependencies/tutorial001.py!}
 ```
 
@@ -63,7 +63,7 @@ FastAPI 提供了简单易用，但功能强大的**<abbr title="也称为组件
 
 与在*路径操作函数*参数中使用 `Body`、`Query` 的方式相同，声明依赖项需要使用 `Depends` 和一个新的参数：
 
-```Python hl_lines="13  18"
+```Python hl_lines="15  20"
 {!../../../docs_src/dependencies/tutorial001.py!}
 ```
 
@@ -101,7 +101,7 @@ common_parameters --> read_users
 !!! check "检查"
 
     注意，无需创建专门的类，并将之传递给 **FastAPI** 以进行「注册」或执行类似的操作。
-    
+
     只要把它传递给 `Depends`，**FastAPI** 就知道该如何执行后续操作。
 
 ## 要不要使用 `async`？

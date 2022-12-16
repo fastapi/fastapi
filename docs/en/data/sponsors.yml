@@ -1,16 +1,16 @@
 gold:
-  - url: https://bit.ly/2QSouzH
-    title: "Jina: build neural search-as-a-service for any kind of data in just minutes."
-    img: https://fastapi.tiangolo.com/img/sponsors/jina.svg
+  - url: https://bit.ly/3dmXC5S
+    title: The data structure for unstructured multimodal data
+    img: https://fastapi.tiangolo.com/img/sponsors/docarray.svg
+  - url: https://bit.ly/3JJ7y5C
+    title: Build cross-modal and multimodal applications on the cloud
+    img: https://fastapi.tiangolo.com/img/sponsors/jina2.svg
   - url: https://cryptapi.io/
     title: "CryptAPI: Your easy to use, secure and privacy oriented payment gateway."
     img: https://fastapi.tiangolo.com/img/sponsors/cryptapi.svg
-  - url: https://classiq.link/n4s
-    title: Join the team building a new SaaS platform that will change the computing world
-    img: https://fastapi.tiangolo.com/img/sponsors/classiq.png
-  - url: https://www.dropbase.io/careers
-    title: Dropbase - seamlessly collect, clean, and centralize data.
-    img: https://fastapi.tiangolo.com/img/sponsors/dropbase.svg
+  - url: https://doist.com/careers/9B437B1615-wa-senior-backend-engineer-python
+    title: Help us migrate doist to FastAPI
+    img: https://fastapi.tiangolo.com/img/sponsors/doist.svg
 silver:
   - url: https://www.deta.sh/?ref=fastapi
     title: The launchpad for all your (team's) ideas
@@ -37,6 +37,6 @@ bronze:
   - url: https://www.exoflare.com/open-source/?utm_source=FastAPI&utm_campaign=open_source
     title: Biosecurity risk assessments made easy.
     img: https://fastapi.tiangolo.com/img/sponsors/exoflare.png
-  - url: https://striveworks.us/careers?utm_source=fastapi&utm_medium=sponsor_banner&utm_campaign=feb_march#openings
+  - url: https://bit.ly/3ccLCmM
     title: https://striveworks.us/careers
-    img: https://fastapi.tiangolo.com/img/sponsors/striveworks.png
+    img: https://fastapi.tiangolo.com/img/sponsors/striveworks2.png
