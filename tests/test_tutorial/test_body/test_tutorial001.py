@@ -176,7 +176,7 @@ def test_post_broken_body():
     response = client.post(
         "/items/",
         headers={"content-type": "application/json"},
-        data="{some broken json}",
+        content="{some broken json}",
     )
     assert response.status_code == 422, response.text
     assert response.json() == {
@@ -214,7 +214,7 @@ def test_post_form_for_json():
 def test_explicit_content_type():
     response = client.post(
         "/items/",
-        data='{"name": "Foo", "price": 50.5}',
+        content='{"name": "Foo", "price": 50.5}',
         headers={"Content-Type": "application/json"},
     )
     assert response.status_code == 200, response.text
@@ -223,7 +223,7 @@ def test_explicit_content_type():
 def test_geo_json():
     response = client.post(
         "/items/",
-        data='{"name": "Foo", "price": 50.5}',
+        content='{"name": "Foo", "price": 50.5}',
         headers={"Content-Type": "application/geo+json"},
     )
     assert response.status_code == 200, response.text
@@ -232,7 +232,7 @@ def test_geo_json():
 def test_no_content_type_is_json():
     response = client.post(
         "/items/",
-        data='{"name": "Foo", "price": 50.5}',
+        content='{"name": "Foo", "price": 50.5}',
     )
     assert response.status_code == 200, response.text
     assert response.json() == {
@@ -255,17 +255,19 @@ def test_wrong_headers():
         ]
     }
 
-    response = client.post("/items/", data=data, headers={"Content-Type": "text/plain"})
+    response = client.post(
+        "/items/", content=data, headers={"Content-Type": "text/plain"}
+    )
     assert response.status_code == 422, response.text
     assert response.json() == invalid_dict
 
     response = client.post(
-        "/items/", data=data, headers={"Content-Type": "application/geo+json-seq"}
+        "/items/", content=data, headers={"Content-Type": "application/geo+json-seq"}
     )
     assert response.status_code == 422, response.text
     assert response.json() == invalid_dict
     response = client.post(
-        "/items/", data=data, headers={"Content-Type": "application/not-really-json"}
+        "/items/", content=data, headers={"Content-Type": "application/not-really-json"}
     )
     assert response.status_code == 422, response.text
     assert response.json() == invalid_dict

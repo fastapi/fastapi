@@ -59,13 +59,15 @@ nav:
   - uk: /uk/
   - zh: /zh/
 - features.md
+- fastapi-people.md
 - python-types.md
 - Учебник - руководство пользователя:
   - tutorial/background-tasks.md
-- external-links.md
 - async.md
 - Развёртывание:
+  - deployment/index.md
   - deployment/versions.md
+- external-links.md
 markdown_extensions:
 - toc:
     permalink: true
