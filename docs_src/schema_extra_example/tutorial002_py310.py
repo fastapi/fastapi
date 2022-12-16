@@ -5,10 +5,10 @@ app = FastAPI()
 
 
 class Item(BaseModel):
-    name: str = Field(..., example="Foo")
-    description: str | None = Field(None, example="A very nice Item")
-    price: float = Field(..., example=35.4)
-    tax: float | None = Field(None, example=3.2)
+    name: str = Field(example="Foo")
+    description: str | None = Field(default=None, example="A very nice Item")
+    price: float = Field(example=35.4)
+    tax: float | None = Field(default=None, example=3.2)
 
 
 @app.put("/items/{item_id}")
