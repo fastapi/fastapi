@@ -2,7 +2,7 @@
 
 <a href="https://www.starlette.io/testclient/" class="external-link" target="_blank">Starlette</a> のおかげで、**FastAPI** アプリケーションのテストは簡単で楽しいものになっています。
 
-<a href="http://docs.python-requests.org" class="external-link" target="_blank">Requests</a> がベースなので、非常に使いやすく直感的です。
+<a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX</a> がベースなので、非常に使いやすく直感的です。
 
 これを使用すると、**FastAPI** と共に <a href="https://docs.pytest.org/" class="external-link" target="_blank">pytest</a> を直接利用できます。
 
@@ -14,7 +14,7 @@
 
 `test_` から始まる名前の関数を作成します (これは `pytest` の標準的なコンベンションです)。
 
-`requests` と同じ様に `TestClient` オブジェクトを使用します。
+`httpx` と同じ様に `TestClient` オブジェクトを使用します。
 
 チェックしたい Python の標準的な式と共に、シンプルに `assert` 文を記述します。
 
@@ -36,7 +36,7 @@
 
 !!! tip "豆知識"
     FastAPIアプリケーションへのリクエストの送信とは別に、テストで `async` 関数 (非同期データベース関数など) を呼び出したい場合は、高度なチュートリアルの[Async Tests](../advanced/async-tests.md){.internal-link target=_blank} を参照してください。
-    
+
 ## テストの分離
 
 実際のアプリケーションでは、おそらくテストを別のファイルに保存します。
@@ -74,19 +74,27 @@
 
 これらの *path operation* には `X-Token` ヘッダーが必要です。
 
-```Python
-{!../../../docs_src/app_testing/main_b.py!}
-```
+=== "Python 3.6 and above"
+
+    ```Python
+    {!> ../../../docs_src/app_testing/app_b/main.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python
+    {!> ../../../docs_src/app_testing/app_b_py310/main.py!}
+    ```
 
 ### 拡張版テストファイル
 
 次に、先程のものに拡張版のテストを加えた、`test_main_b.py` を作成します。
 
 ```Python
-{!../../../docs_src/app_testing/test_main_b.py!}
+{!> ../../../docs_src/app_testing/app_b/test_main.py!}
 ```
 
-リクエストに情報を渡せるクライアントが必要で、その方法がわからない場合はいつでも、`requests` での実現方法を検索 (Google) できます。
+リクエストに情報を渡せるクライアントが必要で、その方法がわからない場合はいつでも、`httpx` での実現方法を検索 (Google) できます。
 
 テストでも同じことを行います。
 
@@ -98,13 +106,13 @@
 * *ヘッダー* を渡すには、`headers` パラメータに `dict` を渡します。
 * *cookies* の場合、 `cookies` パラメータに `dict` です。
 
-(`requests` または `TestClient` を使用して) バックエンドにデータを渡す方法の詳細は、<a href="http://docs.python-requests.org" class="external-link" target="_blank">Requestsのドキュメント</a>を確認してください。
+(`httpx` または `TestClient` を使用して) バックエンドにデータを渡す方法の詳細は、<a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPXのドキュメント</a>を確認してください。
 
 !!! info "情報"
     `TestClient` は、Pydanticモデルではなく、JSONに変換できるデータを受け取ることに注意してください。
 
     テストにPydanticモデルがあり、テスト中にそのデータをアプリケーションに送信したい場合は、[JSON互換エンコーダ](encoder.md){.internal-link target=_blank} で説明されている `jsonable_encoder` が利用できます。
-    
+
 ## 実行
 
 後は、`pytest` をインストールするだけです:

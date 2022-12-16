@@ -1,6 +1,8 @@
 import logging
+import random
+import time
 from pathlib import Path
-from typing import Dict, Optional
+from typing import Dict, Union
 
 import yaml
 from github import Github
@@ -16,8 +18,8 @@ class Settings(BaseSettings):
     github_repository: str
     input_token: SecretStr
     github_event_path: Path
-    github_event_name: Optional[str] = None
-    input_debug: Optional[bool] = False
+    github_event_name: Union[str, None] = None
+    input_debug: Union[bool, None] = False
 
 
 class PartialGitHubEventIssue(BaseModel):
@@ -45,11 +47,14 @@ if __name__ == "__main__":
     github_event = PartialGitHubEvent.parse_raw(contents)
     translations_map: Dict[str, int] = yaml.safe_load(translations_path.read_text())
     logging.debug(f"Using translations map: {translations_map}")
+    sleep_time = random.random() * 10  # random number between 0 and 10 seconds
     pr = repo.get_pull(github_event.pull_request.number)
-    logging.debug(f"Processing PR: {pr.number}")
+    logging.debug(
+        f"Processing PR: {pr.number}, with anti-race condition sleep time: {sleep_time}"
+    )
     if pr.state == "open":
         logging.debug(f"PR is open: {pr.number}")
-        label_strs = set([label.name for label in pr.get_labels()])
+        label_strs = {label.name for label in pr.get_labels()}
         if lang_all_label in label_strs and awaiting_label in label_strs:
             logging.info(
                 f"This PR seems to be a language translation and awaiting reviews: {pr.number}"
@@ -67,19 +72,31 @@ if __name__ == "__main__":
             for lang in langs:
                 if lang in translations_map:
                     num = translations_map[lang]
-                    logging.info(f"Found a translation issue for language: {lang} in issue: {num}")
+                    logging.info(
+                        f"Found a translation issue for language: {lang} in issue: {num}"
+                    )
                     issue = repo.get_issue(num)
                     message = f"Good news everyone! 😉 There's a new translation PR to be reviewed: #{pr.number} 🎉"
                     already_notified = False
-                    logging.info(f"Checking current comments in issue: {num} to see if already notified about this PR: {pr.number}")
+                    time.sleep(sleep_time)
+                    logging.info(
+                        f"Sleeping for {sleep_time} seconds to avoid race conditions and multiple comments"
+                    )
+                    logging.info(
+                        f"Checking current comments in issue: {num} to see if already notified about this PR: {pr.number}"
+                    )
                     for comment in issue.get_comments():
                         if message in comment.body:
                             already_notified = True
                     if not already_notified:
-                        logging.info(f"Writing comment in issue: {num} about PR: {pr.number}")
+                        logging.info(
+                            f"Writing comment in issue: {num} about PR: {pr.number}"
+                        )
                         issue.create_comment(message)
                     else:
-                        logging.info(f"Issue: {num} was already notified of PR: {pr.number}")
+                        logging.info(
+                            f"Issue: {num} was already notified of PR: {pr.number}"
+                        )
     else:
         logging.info(
             f"Changing labels in a closed PR doesn't trigger comments, PR: {pr.number}"
