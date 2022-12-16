@@ -27,7 +27,7 @@ def post_tuple_of_models(square: Tuple[Coordinate, Coordinate]):
 
 
 @app.post("/tuple-form/")
-def hello(values: Tuple[int, int] = Form(...)):
+def hello(values: Tuple[int, int] = Form()):
     return values
 
 
@@ -200,7 +200,7 @@ openapi_schema = {
                     "loc": {
                         "title": "Location",
                         "type": "array",
-                        "items": {"type": "string"},
+                        "items": {"anyOf": [{"type": "string"}, {"type": "integer"}]},
                     },
                     "msg": {"title": "Message", "type": "string"},
                     "type": {"title": "Error Type", "type": "string"},
@@ -252,16 +252,14 @@ def test_tuple_with_model_invalid():
 
 
 def test_tuple_form_valid():
-    response = client.post("/tuple-form/", data=[("values", "1"), ("values", "2")])
+    response = client.post("/tuple-form/", data={"values": ("1", "2")})
     assert response.status_code == 200, response.text
     assert response.json() == [1, 2]
 
 
 def test_tuple_form_invalid():
-    response = client.post(
-        "/tuple-form/", data=[("values", "1"), ("values", "2"), ("values", "3")]
-    )
+    response = client.post("/tuple-form/", data={"values": ("1", "2", "3")})
     assert response.status_code == 422, response.text
 
-    response = client.post("/tuple-form/", data=[("values", "1")])
+    response = client.post("/tuple-form/", data={"values": ("1")})
     assert response.status_code == 422, response.text

@@ -334,7 +334,7 @@ from app.routers import items, users
     ```Python
     from .routers import items, users
     ```
-    
+
     The second version is an "absolute import":
 
     ```Python
