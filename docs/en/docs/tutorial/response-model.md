@@ -61,6 +61,12 @@ Here we are declaring a `UserIn` model, it will contain a plaintext password:
     {!> ../../../docs_src/response_model/tutorial002_py310.py!}
     ```
 
+!!! info
+    To use `EmailStr`, first install <a href="https://github.com/JoshData/python-email-validator" class="external-link" target="_blank">`email_validator`</a>.
+
+    E.g. `pip install email-validator`
+    or `pip install pydantic[email]`.
+
 And we are using this model to declare our input and the same model to declare our output:
 
 === "Python 3.6 and above"
@@ -162,7 +168,7 @@ Your response model could have default values, like:
     {!> ../../../docs_src/response_model/tutorial004_py310.py!}
     ```
 
-* `description: Union[str, None] = None` has a default of `None`.
+* `description: Union[str, None] = None` (or `str | None = None` in Python 3.10) has a default of `None`.
 * `tax: float = 10.5` has a default of `10.5`.
 * `tags: List[str] = []` as a default of an empty list: `[]`.
 

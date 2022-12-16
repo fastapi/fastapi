@@ -166,7 +166,7 @@ With **FastAPI** you get all of **Starlette**'s features (as FastAPI is just Sta
 * **WebSocket** support.
 * In-process background tasks.
 * Startup and shutdown events.
-* Test client built on `requests`.
+* Test client built on HTTPX.
 * **CORS**, GZip, Static Files, Streaming responses.
 * **Session and Cookie** support.
 * 100% test coverage.
@@ -195,6 +195,6 @@ With **FastAPI** you get all of **Pydantic**'s features (as FastAPI is based on 
     * Use of hierarchical Pydantic models, Python `typing`’s `List` and `Dict`, etc.
     * And validators allow complex data schemas to be clearly and easily defined, checked and documented as JSON Schema.
     * You can have deeply **nested JSON** objects and have them all validated and annotated.
-* **Extendible**:
+* **Extensible**:
     * Pydantic allows custom data types to be defined or you can extend validation with methods on a model decorated with the validator decorator.
 * 100% test coverage.
