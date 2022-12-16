@@ -105,10 +105,10 @@ def check_file_field(field: ModelField) -> None:
                 assert parse_options_header
             except ImportError:
                 logger.error(multipart_incorrect_install_error)
-                raise RuntimeError(multipart_incorrect_install_error)
+                raise RuntimeError(multipart_incorrect_install_error) from None
         except ImportError:
             logger.error(multipart_not_installed_error)
-            raise RuntimeError(multipart_not_installed_error)
+            raise RuntimeError(multipart_not_installed_error) from None
 
 
 def get_param_sub_dependant(
