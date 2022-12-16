@@ -87,6 +87,7 @@ nav:
   - deployment/versions.md
   - deployment/https.md
   - deployment/deta.md
+  - deployment/docker.md
 - alternatives.md
 - history-design-future.md
 - external-links.md
