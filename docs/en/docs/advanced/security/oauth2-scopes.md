@@ -16,11 +16,11 @@ In this section you will see how to manage authentication and authorization with
     You don't necessarily need OAuth2 scopes, and you can handle authentication and authorization however you want.
 
     But OAuth2 with scopes can be nicely integrated into your API (with OpenAPI) and your API docs.
-    
+
     Nevertheless, you still enforce those scopes, or any other security/authorization requirement, however you need, in your code.
 
     In many cases, OAuth2 with scopes can be an overkill.
-    
+
     But if you know you need it, or you are curious, keep reading.
 
 ## OAuth2 scopes and OpenAPI
@@ -47,7 +47,7 @@ They are normally used to declare specific security permissions, for example:
     In OAuth2 a "scope" is just a string that declares a specific permission required.
 
     It doesn't matter if it has other characters like `:` or if it is a URL.
-    
+
     Those details are implementation specific.
 
     For OAuth2 they are just strings.
@@ -115,7 +115,7 @@ In this case, it requires the scope `me` (it could require more than one scope).
 
 !!! note
     You don't necessarily need to add different scopes in different places.
-    
+
     We are doing it here to demonstrate how **FastAPI** handles scopes declared at different levels.
 
 ```Python hl_lines="4  139  166"
@@ -157,7 +157,7 @@ The `security_scopes` object (of class `SecurityScopes`) also provides a `scope_
 
 We create an `HTTPException` that we can re-use (`raise`) later at several points.
 
-In this exception, we include the scopes required (if any) as a string separated by spaces (using `scope_str`). We put that string containing the scopes in in the `WWW-Authenticate` header (this is part of the spec).
+In this exception, we include the scopes required (if any) as a string separated by spaces (using `scope_str`). We put that string containing the scopes in the `WWW-Authenticate` header (this is part of the spec).
 
 ```Python hl_lines="105  107-115"
 {!../../../docs_src/security/tutorial005.py!}

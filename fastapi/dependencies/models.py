@@ -1,4 +1,4 @@
-from typing import Callable, List, Optional, Sequence
+from typing import Any, Callable, List, Optional, Sequence
 
 from fastapi.security.base import SecurityBase
 from pydantic.fields import ModelField
@@ -24,7 +24,7 @@ class Dependant:
         dependencies: Optional[List["Dependant"]] = None,
         security_schemes: Optional[List[SecurityRequirement]] = None,
         name: Optional[str] = None,
-        call: Optional[Callable] = None,
+        call: Optional[Callable[..., Any]] = None,
         request_param_name: Optional[str] = None,
         websocket_param_name: Optional[str] = None,
         http_connection_param_name: Optional[str] = None,
