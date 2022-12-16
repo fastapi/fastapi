@@ -34,13 +34,19 @@ Here's a more complete example.
 
 Use a dependency to check if the username and password are correct.
 
-For this, use the Python standard module <a href="https://docs.python.org/3/library/secrets.html" class="external-link" target="_blank">`secrets`</a> to check the username and password:
+For this, use the Python standard module <a href="https://docs.python.org/3/library/secrets.html" class="external-link" target="_blank">`secrets`</a> to check the username and password.
 
-```Python hl_lines="1  11-13"
+`secrets.compare_digest()` needs to take `bytes` or a `str` that only contains ASCII characters (the ones in English), this means it wouldn't work with characters like `á`, as in `Sebastián`.
+
+To handle that, we first convert the `username` and `password` to `bytes` encoding them with UTF-8.
+
+Then we can use `secrets.compare_digest()` to ensure that `credentials.username` is `"stanleyjobson"`, and that `credentials.password` is `"swordfish"`.
+
+```Python hl_lines="1  11-21"
 {!../../../docs_src/security/tutorial007.py!}
 ```
 
-This will ensure that `credentials.username` is `"stanleyjobson"`, and that `credentials.password` is `"swordfish"`. This would be similar to:
+This would be similar to:
 
 ```Python
 if not (credentials.username == "stanleyjobson") or not (credentials.password == "swordfish"):
@@ -102,6 +108,6 @@ That way, using `secrets.compare_digest()` in your application code, it will be 
 
 After detecting that the credentials are incorrect, return an `HTTPException` with a status code 401 (the same returned when no credentials are provided) and add the header `WWW-Authenticate` to make the browser show the login prompt again:
 
-```Python hl_lines="15-19"
+```Python hl_lines="23-27"
 {!../../../docs_src/security/tutorial007.py!}
 ```
