@@ -421,7 +421,7 @@ item: Item
 * قابلیت‌های اضافی دیگر (بر اساس Starlette) شامل:
     * **<abbr title="WebSocket">وب‌سوکت</abbr>**
     * **GraphQL**
-    * تست‌های خودکار آسان مبتنی بر `requests` و `pytest`
+    * تست‌های خودکار آسان مبتنی بر HTTPX و `pytest`
     * **CORS**
     * **Cookie Sessions**
     * و موارد بیشمار دیگر.
@@ -441,7 +441,7 @@ item: Item
 
 استفاده شده توسط Starlette:
 
-* <a href="https://requests.readthedocs.io" target="_blank"><code>requests</code></a> - در صورتی که می‌خواهید از `TestClient` استفاده کنید.
+* <a href="https://www.python-httpx.org" target="_blank"><code>HTTPX</code></a> - در صورتی که می‌خواهید از `TestClient` استفاده کنید.
 * <a href="https://github.com/Tinche/aiofiles" target="_blank"><code>aiofiles</code></a> - در صورتی که می‌خواهید از `FileResponse` و `StaticFiles` استفاده کنید.
 * <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - در صورتی که بخواهید از پیکربندی پیش‌فرض برای قالب‌ها استفاده کنید.
 * <a href="https://andrew-d.github.io/python-multipart/" target="_blank"><code>python-multipart</code></a> - در صورتی که بخواهید با استفاده از `request.form()` از قابلیت <abbr title="تبدیل رشته متنی موجود در درخواست HTTP به انواع داده پایتون">"تجزیه (parse)"</abbr> فرم استفاده کنید.
