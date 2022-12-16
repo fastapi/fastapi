@@ -21,6 +21,12 @@ For example, if you are squeezing performance, you can install and use <a href="
 
 Import the `Response` class (sub-class) you want to use and declare it in the *path operation decorator*.
 
+For large responses, returning a `Response` directly is much faster than returning a dictionary.
+
+This is because by default, FastAPI will inspect every item inside and make sure it is serializable with JSON, using the same [JSON Compatible Encoder](../tutorial/encoder.md){.internal-link target=_blank} explained in the tutorial. This is what allows you to return **arbitrary objects**, for example database models.
+
+But if you are certain that the content that you are returning is **serializable with JSON**, you can pass it directly to the response class and avoid the extra overhead that FastAPI would have by passing your return content through the `jsonable_encoder` before passing it to the response class.
+
 ```Python hl_lines="2  7"
 {!../../../docs_src/custom_response/tutorial001b.py!}
 ```
@@ -243,6 +249,36 @@ You can also use the `response_class` parameter:
 ```
 
 In this case, you can return the file path directly from your *path operation* function.
+
+## Custom response class
+
+You can create your own custom response class, inheriting from `Response` and using it.
+
+For example, let's say that you want to use <a href="https://github.com/ijl/orjson" class="external-link" target="_blank">`orjson`</a>, but with some custom settings not used in the included `ORJSONResponse` class.
+
+Let's say you want it to return indented and formatted JSON, so you want to use the orjson option `orjson.OPT_INDENT_2`.
+
+You could create a `CustomORJSONResponse`. The main thing you have to do is create a `Response.render(content)` method that returns the content as `bytes`:
+
+```Python hl_lines="9-14  17"
+{!../../../docs_src/custom_response/tutorial009c.py!}
+```
+
+Now instead of returning:
+
+```json
+{"message": "Hello World"}
+```
+
+...this response will return:
+
+```json
+{
+  "message": "Hello World"
+}
+```
+
+Of course, you will probably find much better ways to take advantage of this than formatting JSON. 😉
 
 ## Default response class
 

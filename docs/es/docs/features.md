@@ -167,7 +167,7 @@ Con **FastAPI** obtienes todas las características de **Starlette** (porque Fas
 * Soporte para **GraphQL**.
 * <abbr title="En español: tareas que se ejecutan en el fondo, sin frenar requests, en el mismo proceso. En ingles: In-process background tasks">Tareas en background</abbr>.
 * Eventos de startup y shutdown.
-* Cliente de pruebas construido con `requests`.
+* Cliente de pruebas construido con HTTPX.
 * **CORS**, GZip, Static Files, Streaming responses.
 * Soporte para **Session and Cookie**.
 * Cobertura de pruebas al 100%.
