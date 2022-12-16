@@ -4,7 +4,7 @@ from fastapi.testclient import TestClient
 app = FastAPI()
 
 
-def get_header(*, someheader: str = Header(...)):
+def get_header(*, someheader: str = Header()):
     return someheader
 
 
