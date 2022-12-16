@@ -174,7 +174,7 @@ Bütün entegrasyonlar kullanımı kolay olmak üzere (zorunluluklar ile beraber
 * **GraphQL** desteği.
 * Kullanım halinde arka plan işlevleri.
 * Başlatma ve kapatma eventleri(startup and shutdown).
-* Test sunucusu `requests` üzerine kurulu.
+* Test sunucusu HTTPX üzerine kurulu.
 * **CORS**, GZip, Static dosyalar, Streaming responseları.
 * **Session and Cookie** desteği.
 * 100% test kapsayıcılığı.
