@@ -433,7 +433,7 @@ if __name__ == "__main__":
     )
     authors = {**issue_authors, **pr_authors}
     maintainers_logins = {"tiangolo"}
-    bot_names = {"codecov", "github-actions"}
+    bot_names = {"codecov", "github-actions", "pre-commit-ci", "dependabot"}
     maintainers = []
     for login in maintainers_logins:
         user = authors[login]
