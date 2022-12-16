@@ -1,6 +1,7 @@
 import os
 import re
 import shutil
+import subprocess
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 from multiprocessing import Pool
 from pathlib import Path
@@ -106,6 +107,9 @@ def new_lang(lang: str = typer.Argument(..., callback=lang_callback)):
     en_index_content = en_index_path.read_text(encoding="utf-8")
     new_index_content = f"{missing_translation_snippet}\n\n{en_index_content}"
     new_index_path.write_text(new_index_content, encoding="utf-8")
+    new_overrides_gitignore_path = new_path / "overrides" / ".gitignore"
+    new_overrides_gitignore_path.parent.mkdir(parents=True, exist_ok=True)
+    new_overrides_gitignore_path.write_text("")
     typer.secho(f"Successfully initialized: {new_path}", color=typer.colors.GREEN)
     update_languages(lang=None)
 
@@ -197,7 +201,7 @@ def build_lang(
     )
     current_dir = os.getcwd()
     os.chdir(build_lang_path)
-    mkdocs.commands.build.build(mkdocs.config.load_config(site_dir=str(dist_path)))
+    subprocess.run(["mkdocs", "build", "--site-dir", dist_path], check=True)
     os.chdir(current_dir)
     typer.secho(f"Successfully built docs for: {lang}", color=typer.colors.GREEN)
 
@@ -205,6 +209,9 @@ def build_lang(
 index_sponsors_template = """
 {% if sponsors %}
 {% for sponsor in sponsors.gold -%}
+<a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}"></a>
+{% endfor -%}
+{%- for sponsor in sponsors.silver -%}
 <a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}"></a>
 {% endfor %}
 {% endif %}
@@ -269,7 +276,7 @@ def build_all():
     current_dir = os.getcwd()
     os.chdir(en_docs_path)
     typer.echo("Building docs for: en")
-    mkdocs.commands.build.build(mkdocs.config.load_config(site_dir=str(site_path)))
+    subprocess.run(["mkdocs", "build", "--site-dir", site_path], check=True)
     os.chdir(current_dir)
     langs = []
     for lang in get_lang_paths():
@@ -277,7 +284,9 @@ def build_all():
             continue
         langs.append(lang.name)
     cpu_count = os.cpu_count() or 1
-    with Pool(cpu_count * 2) as p:
+    process_pool_size = cpu_count * 4
+    typer.echo(f"Using process pool size: {process_pool_size}")
+    with Pool(process_pool_size) as p:
         p.map(build_lang, langs)
 
 
@@ -325,7 +334,7 @@ def serve():
     os.chdir("site")
     server_address = ("", 8008)
     server = HTTPServer(server_address, SimpleHTTPRequestHandler)
-    typer.echo(f"Serving at: http://127.0.0.1:8008")
+    typer.echo("Serving at: http://127.0.0.1:8008")
     server.serve_forever()
 
 
@@ -413,7 +422,7 @@ def get_file_to_nav_map(nav: list) -> Dict[str, Tuple[str, ...]]:
     file_to_nav = {}
     for item in nav:
         if type(item) is str:
-            file_to_nav[item] = tuple()
+            file_to_nav[item] = ()
         elif type(item) is dict:
             item_key = list(item.keys())[0]
             sub_nav = item[item_key]
