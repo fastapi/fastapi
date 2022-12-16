@@ -26,16 +26,16 @@
 
 现在，将 `Query` 用作查询参数的默认值，并将它的 `max_length` 参数设置为 50：
 
-```Python hl_lines="7"
+```Python hl_lines="9"
 {!../../../docs_src/query_params_str_validations/tutorial002.py!}
 ```
 
-由于我们必须用 `Query(None)` 替换默认值 `None`，`Query` 的第一个参数同样也是用于定义默认值。
+由于我们必须用 `Query(default=None)` 替换默认值 `None`，`Query` 的第一个参数同样也是用于定义默认值。
 
 所以：
 
 ```Python
-q: str = Query(None)
+q: Union[str, None] = Query(default=None)
 ```
 
 ...使得参数可选，等同于：
@@ -49,7 +49,7 @@ q: str = None
 然后，我们可以将更多的参数传递给 `Query`。在本例中，适用于字符串的 `max_length` 参数：
 
 ```Python
-q: str = Query(None, max_length=50)
+q: Union[str, None] = Query(default=None, max_length=50)
 ```
 
 将会校验数据，在数据无效时展示清晰的错误信息，并在 OpenAPI 模式的*路径操作*中记录该参​​数。
@@ -58,7 +58,7 @@ q: str = Query(None, max_length=50)
 
 你还可以添加 `min_length` 参数：
 
-```Python hl_lines="7"
+```Python hl_lines="10"
 {!../../../docs_src/query_params_str_validations/tutorial003.py!}
 ```
 
@@ -66,7 +66,7 @@ q: str = Query(None, max_length=50)
 
 你可以定义一个参数值必须匹配的<abbr title="正则表达式或正则是定义字符串搜索模式的字符序列。">正则表达式</abbr>：
 
-```Python hl_lines="8"
+```Python hl_lines="11"
 {!../../../docs_src/query_params_str_validations/tutorial004.py!}
 ```
 
@@ -104,25 +104,59 @@ q: str
 代替：
 
 ```Python
-q: str = None
+q: Union[str, None] = None
 ```
 
 但是现在我们正在用 `Query` 声明它，例如：
 
 ```Python
-q: str = Query(None, min_length=3)
+q: Union[str, None] = Query(default=None, min_length=3)
 ```
 
-因此，当你在使用 `Query` 且需要声明一个值是必需的时，可以将 `...` 用作第一个参数值：
+因此，当你在使用 `Query` 且需要声明一个值是必需的时，只需不声明默认参数：
 
 ```Python hl_lines="7"
 {!../../../docs_src/query_params_str_validations/tutorial006.py!}
 ```
 
+### 使用省略号(`...`)声明必需参数
+
+有另一种方法可以显式的声明一个值是必需的，即将默认参数的默认值设为 `...` ：
+
+```Python hl_lines="7"
+{!../../../docs_src/query_params_str_validations/tutorial006b.py!}
+```
+
 !!! info
     如果你之前没见过 `...` 这种用法：它是一个特殊的单独值，它是 <a href="https://docs.python.org/3/library/constants.html#Ellipsis" class="external-link" target="_blank">Python 的一部分并且被称为「省略号」</a>。
+    Pydantic 和 FastAPI 使用它来显式的声明需要一个值。
 
 这将使 **FastAPI** 知道此查询参数是必需的。
+
+### 使用`None`声明必需参数
+
+你可以声明一个参数可以接收`None`值，但它仍然是必需的。这将强制客户端发送一个值，即使该值是`None`。
+
+为此，你可以声明`None`是一个有效的类型，并仍然使用`default=...`：
+
+```Python hl_lines="9"
+{!../../../docs_src/query_params_str_validations/tutorial006c.py!}
+```
+
+!!! tip
+    Pydantic 是 FastAPI 中所有数据验证和序列化的核心，当你在没有设默认值的情况下使用 `Optional` 或 `Union[Something, None]` 时，它具有特殊行为，你可以在 Pydantic 文档中阅读有关<a href="https://pydantic-docs.helpmanual.io/usage/models/#required-optional-fields" class="external-link" target="_blank">必需可选字段</a>的更多信息。
+
+### 使用Pydantic中的`Required`代替省略号(`...`)
+
+如果你觉得使用 `...` 不舒服，你也可以从 Pydantic 导入并使用 `Required`：
+
+```Python hl_lines="2  8"
+{!../../../docs_src/query_params_str_validations/tutorial006d.py!}
+```
+
+!!! tip
+    请记住，在大多数情况下，当你需要某些东西时，可以简单地省略 `default` 参数，因此你通常不必使用 `...` 或 `Required`
+
 
 ## 查询参数列表 / 多个值
 
@@ -211,13 +245,13 @@ http://localhost:8000/items/
 
 你可以添加 `title`：
 
-```Python hl_lines="7"
+```Python hl_lines="10"
 {!../../../docs_src/query_params_str_validations/tutorial007.py!}
 ```
 
 以及 `description`：
 
-```Python hl_lines="11"
+```Python hl_lines="13"
 {!../../../docs_src/query_params_str_validations/tutorial008.py!}
 ```
 
@@ -239,7 +273,7 @@ http://127.0.0.1:8000/items/?item-query=foobaritems
 
 这时你可以用 `alias` 参数声明一个别名，该别名将用于在 URL 中查找查询参数值：
 
-```Python hl_lines="7"
+```Python hl_lines="9"
 {!../../../docs_src/query_params_str_validations/tutorial009.py!}
 ```
 
@@ -251,7 +285,7 @@ http://127.0.0.1:8000/items/?item-query=foobaritems
 
 那么将参数 `deprecated=True` 传入 `Query`：
 
-```Python hl_lines="16"
+```Python hl_lines="18"
 {!../../../docs_src/query_params_str_validations/tutorial010.py!}
 ```
 
