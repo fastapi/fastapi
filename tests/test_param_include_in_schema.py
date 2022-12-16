@@ -9,31 +9,29 @@ app = FastAPI()
 
 @app.get("/hidden_cookie")
 async def hidden_cookie(
-    hidden_cookie: Optional[str] = Cookie(None, include_in_schema=False)
+    hidden_cookie: Optional[str] = Cookie(default=None, include_in_schema=False)
 ):
     return {"hidden_cookie": hidden_cookie}
 
 
 @app.get("/hidden_header")
 async def hidden_header(
-    hidden_header: Optional[str] = Header(None, include_in_schema=False)
+    hidden_header: Optional[str] = Header(default=None, include_in_schema=False)
 ):
     return {"hidden_header": hidden_header}
 
 
 @app.get("/hidden_path/{hidden_path}")
-async def hidden_path(hidden_path: str = Path(..., include_in_schema=False)):
+async def hidden_path(hidden_path: str = Path(include_in_schema=False)):
     return {"hidden_path": hidden_path}
 
 
 @app.get("/hidden_query")
 async def hidden_query(
-    hidden_query: Optional[str] = Query(None, include_in_schema=False)
+    hidden_query: Optional[str] = Query(default=None, include_in_schema=False)
 ):
     return {"hidden_query": hidden_query}
 
-
-client = TestClient(app)
 
 openapi_shema = {
     "openapi": "3.0.2",
@@ -161,6 +159,7 @@ openapi_shema = {
 
 
 def test_openapi_schema():
+    client = TestClient(app)
     response = client.get("/openapi.json")
     assert response.status_code == 200
     assert response.json() == openapi_shema
@@ -184,7 +183,8 @@ def test_openapi_schema():
     ],
 )
 def test_hidden_cookie(path, cookies, expected_status, expected_response):
-    response = client.get(path, cookies=cookies)
+    client = TestClient(app, cookies=cookies)
+    response = client.get(path)
     assert response.status_code == expected_status
     assert response.json() == expected_response
 
@@ -207,12 +207,14 @@ def test_hidden_cookie(path, cookies, expected_status, expected_response):
     ],
 )
 def test_hidden_header(path, headers, expected_status, expected_response):
+    client = TestClient(app)
     response = client.get(path, headers=headers)
     assert response.status_code == expected_status
     assert response.json() == expected_response
 
 
 def test_hidden_path():
+    client = TestClient(app)
     response = client.get("/hidden_path/hidden_path")
     assert response.status_code == 200
     assert response.json() == {"hidden_path": "hidden_path"}
@@ -234,6 +236,7 @@ def test_hidden_path():
     ],
 )
 def test_hidden_query(path, expected_status, expected_response):
+    client = TestClient(app)
     response = client.get(path)
     assert response.status_code == expected_status
     assert response.json() == expected_response

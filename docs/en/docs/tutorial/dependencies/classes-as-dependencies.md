@@ -109,7 +109,7 @@ Pay attention to the `__init__` method used to create the instance of the class:
 
 === "Python 3.6 and above"
 
-    ```Python hl_lines="8"
+    ```Python hl_lines="9"
     {!> ../../../docs_src/dependencies/tutorial001.py!}
     ```
 

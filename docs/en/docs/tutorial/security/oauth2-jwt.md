@@ -257,7 +257,7 @@ Call the endpoint `/users/me/`, you will get the response as:
 
 <img src="/img/tutorial/security/image09.png">
 
-If you open the developer tools, you could see how the data sent and only includes the token, the password is only sent in the first request to authenticate the user and get that access token, but not afterwards:
+If you open the developer tools, you could see how the data sent only includes the token, the password is only sent in the first request to authenticate the user and get that access token, but not afterwards:
 
 <img src="/img/tutorial/security/image10.png">
 
