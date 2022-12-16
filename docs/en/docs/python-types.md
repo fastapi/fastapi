@@ -158,7 +158,7 @@ The syntax using `typing` is **compatible** with all versions, from Python 3.6 t
 
 As Python advances, **newer versions** come with improved support for these type annotations and in many cases you won't even need to import and use the `typing` module to declare the type annotations.
 
-If you can chose a more recent version of Python for your project, you will be able to take advantage of that extra simplicity. See some examples below.
+If you can choose a more recent version of Python for your project, you will be able to take advantage of that extra simplicity. See some examples below.
 
 #### List
 
@@ -267,7 +267,7 @@ You can declare that a variable can be any of **several types**, for example, an
 
 In Python 3.6 and above (including Python 3.10) you can use the `Union` type from `typing` and put inside the square brackets the possible types to accept.
 
-In Python 3.10 there's also an **alternative syntax** were you can put the possible types separated by a <abbr title='also called "bitwise or operator", but that meaning is not relevant here'>vertical bar (`|`)</abbr>.
+In Python 3.10 there's also an **alternative syntax** where you can put the possible types separated by a <abbr title='also called "bitwise or operator", but that meaning is not relevant here'>vertical bar (`|`)</abbr>.
 
 === "Python 3.6 and above"
 
@@ -326,7 +326,7 @@ If you are using a Python version below 3.10, here's a tip from my very **subjec
 
 Both are equivalent and underneath they are the same, but I would recommend `Union` instead of `Optional` because the word "**optional**" would seem to imply that the value is optional, and it actually means "it can be `None`", even if it's not optional and is still required.
 
-I think `Union[str, SomeType]` is more explicit about what it means.
+I think `Union[SomeType, None]` is more explicit about what it means.
 
 It's just about the words and names. But those words can affect how you and your teammates think about the code.
 
@@ -372,7 +372,7 @@ These types that take type parameters in square brackets are called **Generic ty
 
 === "Python 3.9 and above"
 
-    You can use the same builtin types as generics (with square brakets and types inside):
+    You can use the same builtin types as generics (with square brackets and types inside):
 
     * `list`
     * `tuple`
@@ -387,7 +387,7 @@ These types that take type parameters in square brackets are called **Generic ty
 
 === "Python 3.10 and above"
 
-    You can use the same builtin types as generics (with square brakets and types inside):
+    You can use the same builtin types as generics (with square brackets and types inside):
 
     * `list`
     * `tuple`
