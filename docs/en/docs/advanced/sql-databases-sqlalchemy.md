@@ -26,7 +26,7 @@ For this example, let's say you have a directory named `my_super_project` that c
 The file `__init__.py` is just an empty file, but it tells Python that `sql_app` with all its modules (Python files) is a package.
 
 Now let's see what each file/module does.
-    
+
 ## Create the `SQLAlchemy` parts
 
 To use the async parts you will need to import `create_async_engine` instead of the base engine.
@@ -37,7 +37,7 @@ To use the async parts you will need to import `create_async_engine` instead of 
 
 !!! tip
     If your using PostgreSQL you need to append `asyncpg` to the database string, as shown above.
-    
+
     You will also need to `pip install asyncpg`
 
 ## Create models and schemas
