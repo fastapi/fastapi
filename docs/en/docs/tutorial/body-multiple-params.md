@@ -8,9 +8,17 @@ First, of course, you can mix `Path`, `Query` and request body parameter declara
 
 And you can also declare body parameters as optional, by setting the default to `None`:
 
-```Python hl_lines="19-21"
-{!../../../docs_src/body_multiple_params/tutorial001.py!}
-```
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="19-21"
+    {!> ../../../docs_src/body_multiple_params/tutorial001.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="17-19"
+    {!> ../../../docs_src/body_multiple_params/tutorial001_py310.py!}
+    ```
 
 !!! note
     Notice that, in this case, the `item` that would be taken from the body is optional. As it has a `None` default value.
@@ -30,9 +38,17 @@ In the previous example, the *path operations* would expect a JSON body with the
 
 But you can also declare multiple body parameters, e.g. `item` and `user`:
 
-```Python hl_lines="22"
-{!../../../docs_src/body_multiple_params/tutorial002.py!}
-```
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="22"
+    {!> ../../../docs_src/body_multiple_params/tutorial002.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="20"
+    {!> ../../../docs_src/body_multiple_params/tutorial002_py310.py!}
+    ```
 
 In this case, **FastAPI** will notice that there are more than one body parameters in the function (two parameters that are Pydantic models).
 
@@ -71,13 +87,19 @@ If you declare it as is, because it is a singular value, **FastAPI** will assume
 
 But you can instruct **FastAPI** to treat it as another body key using `Body`:
 
+=== "Python 3.6 and above"
 
-```Python hl_lines="23"
-{!../../../docs_src/body_multiple_params/tutorial003.py!}
-```
+    ```Python hl_lines="22"
+    {!> ../../../docs_src/body_multiple_params/tutorial003.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="20"
+    {!> ../../../docs_src/body_multiple_params/tutorial003_py310.py!}
+    ```
 
 In this case, **FastAPI** will expect a body like:
-
 
 ```JSON
 {
@@ -104,18 +126,31 @@ Of course, you can also declare additional query parameters whenever you need, a
 As, by default, singular values are interpreted as query parameters, you don't have to explicitly add a `Query`, you can just do:
 
 ```Python
-q: Optional[str] = None
+q: Union[str, None] = None
 ```
 
-as in:
+Or in Python 3.10 and above:
 
-```Python hl_lines="28"
-{!../../../docs_src/body_multiple_params/tutorial004.py!}
+```Python
+q: str | None = None
 ```
+
+For example:
+
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="27"
+    {!> ../../../docs_src/body_multiple_params/tutorial004.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="26"
+    {!> ../../../docs_src/body_multiple_params/tutorial004_py310.py!}
+    ```
 
 !!! info
     `Body` also has all the same extra validation and metadata parameters as `Query`,`Path` and others you will see later.
-
 
 ## Embed a single body parameter
 
@@ -126,14 +161,22 @@ By default, **FastAPI** will then expect its body directly.
 But if you want it to expect a JSON with a key `item` and inside of it the model contents, as it does when you declare extra body parameters, you can use the special `Body` parameter `embed`:
 
 ```Python
-item: Item = Body(..., embed=True)
+item: Item = Body(embed=True)
 ```
 
 as in:
 
-```Python hl_lines="17"
-{!../../../docs_src/body_multiple_params/tutorial005.py!}
-```
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="17"
+    {!> ../../../docs_src/body_multiple_params/tutorial005.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="15"
+    {!> ../../../docs_src/body_multiple_params/tutorial005_py310.py!}
+    ```
 
 In this case **FastAPI** will expect a body like:
 

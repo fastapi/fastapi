@@ -10,7 +10,7 @@ To do this, use `yield` instead of `return`, and write the extra steps after.
 !!! note "Technical Details"
     Any function that is valid to use with:
 
-    * <a href="https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager" class="external-link" target="_blank">`@contextlib.contextmanager`</a> or 
+    * <a href="https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager" class="external-link" target="_blank">`@contextlib.contextmanager`</a> or
     * <a href="https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager" class="external-link" target="_blank">`@contextlib.asynccontextmanager`</a>
 
     would be valid to use as a **FastAPI** dependency.
@@ -99,7 +99,7 @@ You saw that you can use dependencies with `yield` and have `try` blocks that ca
 
 It might be tempting to raise an `HTTPException` or similar in the exit code, after the `yield`. But **it won't work**.
 
-The exit code in dependencies with `yield` is executed *after* [Exception Handlers](../handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank}. There's nothing catching exceptions thrown by your dependencies in the exit code (after the `yield`).
+The exit code in dependencies with `yield` is executed *after* the response is sent, so [Exception Handlers](../handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank} will have already run. There's nothing catching exceptions thrown by your dependencies in the exit code (after the `yield`).
 
 So, if you raise an `HTTPException` after the `yield`, the default (or any custom) exception handler that catches `HTTPException`s and returns an HTTP 400 response won't be there to catch that exception anymore.
 
@@ -138,9 +138,11 @@ participant tasks as Background tasks
     end
     dep ->> operation: Run dependency, e.g. DB session
     opt raise
-        operation -->> handler: Raise HTTPException
+        operation -->> dep: Raise HTTPException
+        dep -->> handler: Auto forward exception
         handler -->> client: HTTP error response
         operation -->> dep: Raise other exception
+        dep -->> handler: Auto forward exception
     end
     operation ->> client: Return response to client
     Note over client,operation: Response is already sent, can't change it anymore
@@ -162,9 +164,9 @@ participant tasks as Background tasks
     After one of those responses is sent, no other response can be sent.
 
 !!! tip
-    This diagram shows `HTTPException`, but you could also raise any other exception for which you create a [Custom Exception Handler](../handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank}. And that exception would be handled by that custom exception handler instead of the dependency exit code.
+    This diagram shows `HTTPException`, but you could also raise any other exception for which you create a [Custom Exception Handler](../handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank}.
 
-    But if you raise an exception that is not handled by the exception handlers, it will be handled by the exit code of the dependency.
+    If you raise any exception, it will be passed to the dependencies with yield, including `HTTPException`, and then **again** to the exception handlers. If there's no exception handler for that exception, it will then be handled by the default internal `ServerErrorMiddleware`, returning a 500 HTTP status code, to let the client know that there was an error in the server.
 
 ## Context Managers
 
@@ -205,7 +207,7 @@ You can also use them inside of **FastAPI** dependencies with `yield` by using
 !!! tip
     Another way to create a context manager is with:
 
-    * <a href="https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager" class="external-link" target="_blank">`@contextlib.contextmanager`</a> or 
+    * <a href="https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager" class="external-link" target="_blank">`@contextlib.contextmanager`</a> or
     * <a href="https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager" class="external-link" target="_blank">`@contextlib.asynccontextmanager`</a>
 
     using them to decorate a function with a single `yield`.

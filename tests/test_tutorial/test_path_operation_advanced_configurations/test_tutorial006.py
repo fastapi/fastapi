@@ -47,7 +47,7 @@ def test_openapi_schema():
 
 
 def test_post():
-    response = client.post("/items/", data=b"this is actually not validated")
+    response = client.post("/items/", content=b"this is actually not validated")
     assert response.status_code == 200, response.text
     assert response.json() == {
         "size": 30,
