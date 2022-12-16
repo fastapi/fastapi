@@ -111,7 +111,7 @@ Mais vous auriez le même support de l'éditeur avec <a href="https://www.jetbra
 <img src="/img/tutorial/body/image05.png">
 
 !!! tip "Astuce"
-    Si vous utilisez <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a> comme éditeur, vous pouvez utiliser le Plugin <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a>.
+    Si vous utilisez <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a> comme éditeur, vous pouvez utiliser le Plugin <a href="https://github.com/koxudaxi/pydantic-pycharm-plugin/" class="external-link" target="_blank">Pydantic PyCharm Plugin</a>.
 
     Ce qui améliore le support pour les modèles Pydantic avec :
 

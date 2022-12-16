@@ -1090,6 +1090,41 @@ openapi_schema = {
                 "operationId": "get_enum_status_code_enum_status_code_get",
             }
         },
+        "/query/frozenset": {
+            "get": {
+                "summary": "Get Query Type Frozenset",
+                "operationId": "get_query_type_frozenset_query_frozenset_get",
+                "parameters": [
+                    {
+                        "required": True,
+                        "schema": {
+                            "title": "Query",
+                            "uniqueItems": True,
+                            "type": "array",
+                            "items": {"type": "integer"},
+                        },
+                        "name": "query",
+                        "in": "query",
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {"application/json": {"schema": {}}},
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        },
+                    },
+                },
+            }
+        },
     },
     "components": {
         "schemas": {
@@ -1101,7 +1136,7 @@ openapi_schema = {
                     "loc": {
                         "title": "Location",
                         "type": "array",
-                        "items": {"type": "string"},
+                        "items": {"anyOf": [{"type": "string"}, {"type": "integer"}]},
                     },
                     "msg": {"title": "Message", "type": "string"},
                     "type": {"title": "Error Type", "type": "string"},
