@@ -1,4 +1,4 @@
-# Plantillas 
+# Plantillas
 
 Puedes utilizar cualquier gestor de plantillas con **FastAPI**.
 
@@ -54,7 +54,7 @@ $ pip install aiofiles
 
     **FastAPI** proporciona el mismo `starlette.templating` como `fastapi.templating`, siendo una conveniencia para ti, el desarrollador. Pero la mayoría de respuestas vienen directamente de Starlette. Lo mismo pasa con <abbr title="Petición">`Request`</abbr> y <abbr title="Archivos Estáticos">`StaticFiles`</abbr>.
 
-## Creando plantillas 
+## Creando plantillas
 
 Puedes crear una plantilla en `templates/item.html` utilizando:
 
@@ -84,6 +84,6 @@ En este ejemplo, está apuntando a un archivo CSS ubicado en `static/styles.css`
 
 Y como estas utilizando `StaticFiles`, ese archivo CSS será proporcionado automáticamente por tu aplicación de **FastAPI** en la URL `/static/styles.css` .
 
-## Más detalles 
+## Más detalles
 
 Para más detalles, incluido como probar las plantillas, consulta <a href="https://www.starlette.io/templates/" class="external-link" target="_blank">la documentación de Starlette acerca de plantillas</a>.
