@@ -284,7 +284,9 @@ def build_all():
             continue
         langs.append(lang.name)
     cpu_count = os.cpu_count() or 1
-    with Pool(cpu_count * 2) as p:
+    process_pool_size = cpu_count * 4
+    typer.echo(f"Using process pool size: {process_pool_size}")
+    with Pool(process_pool_size) as p:
         p.map(build_lang, langs)
 
 
@@ -332,7 +334,7 @@ def serve():
     os.chdir("site")
     server_address = ("", 8008)
     server = HTTPServer(server_address, SimpleHTTPRequestHandler)
-    typer.echo(f"Serving at: http://127.0.0.1:8008")
+    typer.echo("Serving at: http://127.0.0.1:8008")
     server.serve_forever()
 
 
@@ -420,7 +422,7 @@ def get_file_to_nav_map(nav: list) -> Dict[str, Tuple[str, ...]]:
     file_to_nav = {}
     for item in nav:
         if type(item) is str:
-            file_to_nav[item] = tuple()
+            file_to_nav[item] = ()
         elif type(item) is dict:
             item_key = list(item.keys())[0]
             sub_nav = item[item_key]

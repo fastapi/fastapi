@@ -4,7 +4,6 @@ from typing import Optional
 from fastapi import FastAPI, Security
 from fastapi.security import HTTPBasic, HTTPBasicCredentials
 from fastapi.testclient import TestClient
-from requests.auth import HTTPBasicAuth
 
 app = FastAPI()
 
@@ -51,8 +50,7 @@ def test_openapi_schema():
 
 
 def test_security_http_basic():
-    auth = HTTPBasicAuth(username="john", password="secret")
-    response = client.get("/users/me", auth=auth)
+    response = client.get("/users/me", auth=("john", "secret"))
     assert response.status_code == 200, response.text
     assert response.json() == {"username": "john", "password": "secret"}
 
