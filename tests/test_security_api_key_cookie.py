@@ -22,8 +22,6 @@ def read_current_user(current_user: User = Depends(get_current_user)):
     return current_user
 
 
-client = TestClient(app)
-
 openapi_schema = {
     "openapi": "3.0.2",
     "info": {"title": "FastAPI", "version": "0.1.0"},
@@ -51,18 +49,21 @@ openapi_schema = {
 
 
 def test_openapi_schema():
+    client = TestClient(app)
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
     assert response.json() == openapi_schema
 
 
 def test_security_api_key():
-    response = client.get("/users/me", cookies={"key": "secret"})
+    client = TestClient(app, cookies={"key": "secret"})
+    response = client.get("/users/me")
     assert response.status_code == 200, response.text
     assert response.json() == {"username": "secret"}
 
 
 def test_security_api_key_no_key():
+    client = TestClient(app)
     response = client.get("/users/me")
     assert response.status_code == 403, response.text
     assert response.json() == {"detail": "Not authenticated"}
