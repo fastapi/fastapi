@@ -21,14 +21,14 @@ class Shop(BaseModel):
 
 
 @app.post("/products")
-async def create_product(data: Product = Body(..., media_type=media_type, embed=True)):
+async def create_product(data: Product = Body(media_type=media_type, embed=True)):
     pass  # pragma: no cover
 
 
 @app.post("/shops")
 async def create_shop(
-    data: Shop = Body(..., media_type=media_type),
-    included: typing.List[Product] = Body([], media_type=media_type),
+    data: Shop = Body(media_type=media_type),
+    included: typing.List[Product] = Body(default=[], media_type=media_type),
 ):
     pass  # pragma: no cover
 
