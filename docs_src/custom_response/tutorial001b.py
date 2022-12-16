@@ -6,4 +6,4 @@ app = FastAPI()
 
 @app.get("/items/", response_class=ORJSONResponse)
 async def read_items():
-    return [{"item_id": "Foo"}]
+    return ORJSONResponse([{"item_id": "Foo"}])
