@@ -252,10 +252,10 @@ def get_globalns(call: Callable[..., Any]) -> Dict[str, Any]:
         source_func = call
     elif isinstance(call, type):
         # If the callable is a class, its dependencies are declared on __init__
-        source_func = getattr(call, "__init__")
+        source_func = call.__init__
     else:
         # For callable instances of classes, the dependencies are declared on __call__
-        source_func = getattr(call, "__call__")
+        source_func = call.__call__
 
     return cast(Dict[str, Any], getattr(source_func, "__globals__", {}))
 
