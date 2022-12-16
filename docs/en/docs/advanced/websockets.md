@@ -112,16 +112,14 @@ In WebSocket endpoints you can import from `fastapi` and use:
 
 They work the same way as for other FastAPI endpoints/*path operations*:
 
-```Python hl_lines="58-65  68-83"
+```Python hl_lines="66-77  76-91"
 {!../../../docs_src/websockets/tutorial002.py!}
 ```
 
 !!! info
-    In a WebSocket it doesn't really make sense to raise an `HTTPException`. So it's better to close the WebSocket connection directly.
+    As this is a WebSocket it doesn't really make sense to raise an `HTTPException`, instead we raise a `WebSocketException`.
 
     You can use a closing code from the <a href="https://tools.ietf.org/html/rfc6455#section-7.4.1" class="external-link" target="_blank">valid codes defined in the specification</a>.
-
-    In the future, there will be a `WebSocketException` that you will be able to `raise` from anywhere, and add exception handlers for it. It depends on the <a href="https://github.com/encode/starlette/pull/527" class="external-link" target="_blank">PR #527</a> in Starlette.
 
 ### Try the WebSockets with dependencies
 
