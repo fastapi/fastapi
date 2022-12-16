@@ -52,7 +52,7 @@ Documentation = "https://fastapi.tiangolo.com/"
 test = [
     "pytest >=7.1.3,<8.0.0",
     "coverage[toml] >= 6.5.0,<7.0",
-    "mypy ==0.982",
+    "mypy ==0.991",
     "ruff ==0.0.138",
     "black == 22.10.0",
     "isort >=5.0.6,<6.0.0",
