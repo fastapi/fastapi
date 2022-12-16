@@ -2,7 +2,7 @@
 
 <a href="https://www.starlette.io/testclient/" class="external-link" target="_blank">Starlette</a> のおかげで、**FastAPI** アプリケーションのテストは簡単で楽しいものになっています。
 
-<a href="http://docs.python-requests.org" class="external-link" target="_blank">Requests</a> がベースなので、非常に使いやすく直感的です。
+<a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX</a> がベースなので、非常に使いやすく直感的です。
 
 これを使用すると、**FastAPI** と共に <a href="https://docs.pytest.org/" class="external-link" target="_blank">pytest</a> を直接利用できます。
 
@@ -14,7 +14,7 @@
 
 `test_` から始まる名前の関数を作成します (これは `pytest` の標準的なコンベンションです)。
 
-`requests` と同じ様に `TestClient` オブジェクトを使用します。
+`httpx` と同じ様に `TestClient` オブジェクトを使用します。
 
 チェックしたい Python の標準的な式と共に、シンプルに `assert` 文を記述します。
 
@@ -94,7 +94,7 @@
 {!> ../../../docs_src/app_testing/app_b/test_main.py!}
 ```
 
-リクエストに情報を渡せるクライアントが必要で、その方法がわからない場合はいつでも、`requests` での実現方法を検索 (Google) できます。
+リクエストに情報を渡せるクライアントが必要で、その方法がわからない場合はいつでも、`httpx` での実現方法を検索 (Google) できます。
 
 テストでも同じことを行います。
 
@@ -106,7 +106,7 @@
 * *ヘッダー* を渡すには、`headers` パラメータに `dict` を渡します。
 * *cookies* の場合、 `cookies` パラメータに `dict` です。
 
-(`requests` または `TestClient` を使用して) バックエンドにデータを渡す方法の詳細は、<a href="http://docs.python-requests.org" class="external-link" target="_blank">Requestsのドキュメント</a>を確認してください。
+(`httpx` または `TestClient` を使用して) バックエンドにデータを渡す方法の詳細は、<a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPXのドキュメント</a>を確認してください。
 
 !!! info "情報"
     `TestClient` は、Pydanticモデルではなく、JSONに変換できるデータを受け取ることに注意してください。
