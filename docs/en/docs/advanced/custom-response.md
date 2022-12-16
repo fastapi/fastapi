@@ -21,6 +21,12 @@ For example, if you are squeezing performance, you can install and use <a href="
 
 Import the `Response` class (sub-class) you want to use and declare it in the *path operation decorator*.
 
+For large responses, returning a `Response` directly is much faster than returning a dictionary.
+
+This is because by default, FastAPI will inspect every item inside and make sure it is serializable with JSON, using the same [JSON Compatible Encoder](../tutorial/encoder.md){.internal-link target=_blank} explained in the tutorial. This is what allows you to return **arbitrary objects**, for example database models.
+
+But if you are certain that the content that you are returning is **serializable with JSON**, you can pass it directly to the response class and avoid the extra overhead that FastAPI would have by passing your return content through the `jsonable_encoder` before passing it to the response class.
+
 ```Python hl_lines="2  7"
 {!../../../docs_src/custom_response/tutorial001b.py!}
 ```
