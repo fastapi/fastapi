@@ -83,7 +83,7 @@ doc = [
     "mkdocs-markdownextradata-plugin >=0.1.7,<0.3.0",
     # TODO: upgrade and enable typer-cli once it supports Click 8.x.x
     # "typer-cli >=0.0.12,<0.0.13",
-    "typer[all] >=0.6.1,<0.7.0",
+    "typer[all] >=0.6.1,<0.8.0",
     "pyyaml >=5.3.1,<7.0.0",
 ]
 dev = [
