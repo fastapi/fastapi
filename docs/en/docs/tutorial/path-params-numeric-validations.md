@@ -1,14 +1,22 @@
 # Path Parameters and Numeric Validations
 
-The same way you can declare more validations and metadata for query parameters with `Query`, you can declare the same type of validations and metadata for path parameters with `Path`.
+In the same way that you can declare more validations and metadata for query parameters with `Query`, you can declare the same type of validations and metadata for path parameters with `Path`.
 
 ## Import Path
 
 First, import `Path` from `fastapi`:
 
-```Python hl_lines="3"
-{!../../../docs_src/path_params_numeric_validations/tutorial001.py!}
-```
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="3"
+    {!> ../../../docs_src/path_params_numeric_validations/tutorial001.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="1"
+    {!> ../../../docs_src/path_params_numeric_validations/tutorial001_py310.py!}
+    ```
 
 ## Declare metadata
 
@@ -16,13 +24,21 @@ You can declare all the same parameters as for `Query`.
 
 For example, to declare a `title` metadata value for the path parameter `item_id` you can type:
 
-```Python hl_lines="10"
-{!../../../docs_src/path_params_numeric_validations/tutorial001.py!}
-```
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="10"
+    {!> ../../../docs_src/path_params_numeric_validations/tutorial001.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="8"
+    {!> ../../../docs_src/path_params_numeric_validations/tutorial001_py310.py!}
+    ```
 
 !!! note
     A path parameter is always required as it has to be part of the path.
-    
+
     So, you should declare it with `...` to mark it as required.
 
     Nevertheless, even if you declared it with `None` or set a default value, it would not affect anything, it would still be always required.
@@ -43,7 +59,7 @@ It doesn't matter for **FastAPI**. It will detect the parameters by their names,
 
 So, you can declare your function as:
 
-```Python hl_lines="8"
+```Python hl_lines="7"
 {!../../../docs_src/path_params_numeric_validations/tutorial002.py!}
 ```
 
@@ -55,13 +71,13 @@ Pass `*`, as the first parameter of the function.
 
 Python won't do anything with that `*`, but it will know that all the following parameters should be called as keyword arguments (key-value pairs), also known as <abbr title="From: K-ey W-ord Arg-uments"><code>kwargs</code></abbr>. Even if they don't have a default value.
 
-```Python hl_lines="8"
+```Python hl_lines="7"
 {!../../../docs_src/path_params_numeric_validations/tutorial003.py!}
 ```
 
 ## Number validations: greater than or equal
 
-With `Query` and `Path` (and other's you'll see later) you can declare string constraints, but also number constraints.
+With `Query` and `Path` (and others you'll see later) you can declare number constraints.
 
 Here, with `ge=1`, `item_id` will need to be an integer number "`g`reater than or `e`qual" to `1`.
 
@@ -106,9 +122,9 @@ And you can also declare numeric validations:
 * `le`: `l`ess than or `e`qual
 
 !!! info
-    `Query`, `Path`, and others you will see later are subclasses of a common `Param` class (that you don't need to use).
+    `Query`, `Path`, and other classes you will see later are subclasses of a common `Param` class.
 
-    And all of them share the same all these same parameters of additional validation and metadata you have seen.
+    All of them share the same parameters for additional validation and metadata you have seen.
 
 !!! note "Technical Details"
     When you import `Query`, `Path` and others from `fastapi`, they are actually functions.
