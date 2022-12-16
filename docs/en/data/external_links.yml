@@ -1,5 +1,9 @@
 articles:
   english:
+  - author: WayScript
+    author_link: https://www.wayscript.com
+    link: https://blog.wayscript.com/fast-api-quickstart/
+    title: Quickstart Guide to Build and Host Responsive APIs with Fast API and WayScript
   - author: New Relic
     author_link: https://newrelic.com
     link: https://newrelic.com/instant-observability/fastapi/e559ec64-f765-4470-a15f-1901fcebb468
