@@ -32,6 +32,7 @@ repo_name: tiangolo/fastapi
 repo_url: https://github.com/tiangolo/fastapi
 edit_uri: ''
 plugins:
+- search
 - markdownextradata:
     data: data
 nav:
@@ -85,6 +86,7 @@ nav:
   - advanced/response-directly.md
   - advanced/custom-response.md
   - advanced/nosql-databases.md
+  - advanced/websockets.md
   - advanced/conditional-openapi.md
 - async.md
 - デプロイ:
