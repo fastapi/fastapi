@@ -9,6 +9,6 @@ def test_middleware():
     assert response.status_code == 200, response.text
 
     client = TestClient(app)
-    response = client.get("/", allow_redirects=False)
+    response = client.get("/", follow_redirects=False)
     assert response.status_code == 307, response.text
     assert response.headers["location"] == "https://testserver/"
