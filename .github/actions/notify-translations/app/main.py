@@ -2,7 +2,7 @@ import logging
 import random
 import time
 from pathlib import Path
-from typing import Dict, Optional
+from typing import Dict, Union
 
 import yaml
 from github import Github
@@ -18,8 +18,8 @@ class Settings(BaseSettings):
     github_repository: str
     input_token: SecretStr
     github_event_path: Path
-    github_event_name: Optional[str] = None
-    input_debug: Optional[bool] = False
+    github_event_name: Union[str, None] = None
+    input_debug: Union[bool, None] = False
 
 
 class PartialGitHubEventIssue(BaseModel):
