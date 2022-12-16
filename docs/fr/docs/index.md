@@ -426,7 +426,7 @@ For a more complete example including more features, see the <a href="https://fa
 * Many extra features (thanks to Starlette) as:
     * **WebSockets**
     * **GraphQL**
-    * extremely easy tests based on `requests` and `pytest`
+    * extremely easy tests based on HTTPX and `pytest`
     * **CORS**
     * **Cookie Sessions**
     * ...and more.
@@ -446,7 +446,7 @@ Used by Pydantic:
 
 Used by Starlette:
 
-* <a href="https://requests.readthedocs.io" target="_blank"><code>requests</code></a> - Required if you want to use the `TestClient`.
+* <a href="https://www.python-httpx.org" target="_blank"><code>HTTPX</code></a> - Required if you want to use the `TestClient`.
 * <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - Required if you want to use the default template configuration.
 * <a href="https://andrew-d.github.io/python-multipart/" target="_blank"><code>python-multipart</code></a> - Required if you want to support form <abbr title="converting the string that comes from an HTTP request into Python data">"parsing"</abbr>, with `request.form()`.
 * <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - Required for `SessionMiddleware` support.
