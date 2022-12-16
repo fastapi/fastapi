@@ -48,7 +48,7 @@ openapi_schema = {
                     "loc": {
                         "title": "Location",
                         "type": "array",
-                        "items": {"type": "string"},
+                        "items": {"anyOf": [{"type": "string"}, {"type": "integer"}]},
                     },
                     "msg": {"title": "Message", "type": "string"},
                     "type": {"title": "Error Type", "type": "string"},
@@ -70,14 +70,6 @@ openapi_schema = {
 }
 
 
-@pytest.fixture(name="client")
-def get_client():
-    from docs_src.cookie_params.tutorial001_py310 import app
-
-    client = TestClient(app)
-    return client
-
-
 @needs_py310
 @pytest.mark.parametrize(
     "path,cookies,expected_status,expected_response",
@@ -94,7 +86,10 @@ def get_client():
         ("/items", {"session": "cookiesession"}, 200, {"ads_id": None}),
     ],
 )
-def test(path, cookies, expected_status, expected_response, client: TestClient):
-    response = client.get(path, cookies=cookies)
+def test(path, cookies, expected_status, expected_response):
+    from docs_src.cookie_params.tutorial001_py310 import app
+
+    client = TestClient(app, cookies=cookies)
+    response = client.get(path)
     assert response.status_code == expected_status
     assert response.json() == expected_response

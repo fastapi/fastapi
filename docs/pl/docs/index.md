@@ -106,7 +106,7 @@ Jeżeli tworzysz aplikacje <abbr title="aplikacja z interfejsem konsolowym">CLI<
 
 ## Wymagania
 
-Python 3.6+
+Python 3.7+
 
 FastAPI oparty jest na:
 
@@ -130,7 +130,7 @@ Na serwerze produkcyjnym będziesz także potrzebował serwera ASGI, np. <a href
 <div class="termy">
 
 ```console
-$ pip install uvicorn[standard]
+$ pip install "uvicorn[standard]"
 
 ---> 100%
 ```
@@ -144,7 +144,7 @@ $ pip install uvicorn[standard]
 * Utwórz plik o nazwie `main.py` z:
 
 ```Python
-from typing import Optional
+from typing import Union
 
 from fastapi import FastAPI
 
@@ -157,7 +157,7 @@ def read_root():
 
 
 @app.get("/items/{item_id}")
-def read_item(item_id: int, q: Optional[str] = None):
+def read_item(item_id: int, q: Union[str, None] = None):
     return {"item_id": item_id, "q": q}
 ```
 
@@ -167,7 +167,7 @@ def read_item(item_id: int, q: Optional[str] = None):
 Jeżeli twój kod korzysta z `async` / `await`, użyj `async def`:
 
 ```Python hl_lines="9  14"
-from typing import Optional
+from typing import Union
 
 from fastapi import FastAPI
 
@@ -180,7 +180,7 @@ async def read_root():
 
 
 @app.get("/items/{item_id}")
-async def read_item(item_id: int, q: Optional[str] = None):
+async def read_item(item_id: int, q: Union[str, None] = None):
     return {"item_id": item_id, "q": q}
 ```
 
@@ -258,7 +258,7 @@ Zmodyfikuj teraz plik `main.py`, aby otrzmywał treść (body) żądania `PUT`.
 Zadeklaruj treść żądania, używając standardowych typów w Pythonie dzięki Pydantic.
 
 ```Python hl_lines="4  9-12  25-27"
-from typing import Optional
+from typing import Union
 
 from fastapi import FastAPI
 from pydantic import BaseModel
@@ -269,7 +269,7 @@ app = FastAPI()
 class Item(BaseModel):
     name: str
     price: float
-    is_offer: Optional[bool] = None
+    is_offer: Union[bool, None] = None
 
 
 @app.get("/")
@@ -278,7 +278,7 @@ def read_root():
 
 
 @app.get("/items/{item_id}")
-def read_item(item_id: int, q: Optional[str] = None):
+def read_item(item_id: int, q: Union[str, None] = None):
     return {"item_id": item_id, "q": q}
 
 
@@ -420,7 +420,7 @@ Dla bardziej kompletnych przykładów posiadających więcej funkcjonalności, z
 * Wiele dodatkowych funkcji (dzięki Starlette) takie jak:
     * **WebSockety**
     * **GraphQL**
-    * bardzo proste testy bazujące na `requests` oraz `pytest`
+    * bardzo proste testy bazujące na HTTPX oraz `pytest`
     * **CORS**
     * **Sesje cookie**
     * ...i więcej.
@@ -440,7 +440,7 @@ Używane przez Pydantic:
 
 Używane przez Starlette:
 
-* <a href="https://requests.readthedocs.io" target="_blank"><code>requests</code></a> - Wymagane jeżeli chcesz korzystać z `TestClient`.
+* <a href="https://www.python-httpx.org" target="_blank"><code>httpx</code></a> - Wymagane jeżeli chcesz korzystać z `TestClient`.
 * <a href="https://github.com/Tinche/aiofiles" target="_blank"><code>aiofiles</code></a> - Wymagane jeżeli chcesz korzystać z `FileResponse` albo `StaticFiles`.
 * <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - Wymagane jeżeli chcesz używać domyślnej konfiguracji szablonów.
 * <a href="https://andrew-d.github.io/python-multipart/" target="_blank"><code>python-multipart</code></a> - Wymagane jeżelich chcesz wsparcie <abbr title="przetwarzania stringa którzy przychodzi z żądaniem HTTP na dane używane przez Pythona">"parsowania"</abbr> formularzy, używając `request.form()`.

@@ -1,4 +1,4 @@
-from typing import Optional, Set
+from typing import Set, Union
 
 from fastapi import FastAPI, status
 from pydantic import BaseModel
@@ -8,9 +8,9 @@ app = FastAPI()
 
 class Item(BaseModel):
     name: str
-    description: Optional[str] = None
+    description: Union[str, None] = None
     price: float
-    tax: Optional[float] = None
+    tax: Union[float, None] = None
     tags: Set[str] = set()
 
 

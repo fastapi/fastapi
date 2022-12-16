@@ -254,7 +254,7 @@ El `@app.get("/")` le dice a **FastAPI** que la función que tiene justo debajo 
     Esa sintaxis `@algo` se llama un "decorador" en Python.
 
     Lo pones encima de una función. Es como un lindo sombrero decorado (creo que de ahí salió el concepto).
-    
+
     Un "decorador" toma la función que tiene debajo y hace algo con ella.
 
     En nuestro caso, este decorador le dice a **FastAPI** que la función que está debajo corresponde al **path** `/` con una **operación** `get`.

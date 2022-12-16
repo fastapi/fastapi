@@ -261,7 +261,7 @@ openapi_schema = {
                     "loc": {
                         "title": "Location",
                         "type": "array",
-                        "items": {"type": "string"},
+                        "items": {"anyOf": [{"type": "string"}, {"type": "integer"}]},
                     },
                     "msg": {"title": "Message", "type": "string"},
                     "type": {"title": "Error Type", "type": "string"},
@@ -350,12 +350,6 @@ def test_create_item(client):
     assert item["description"] == item_data["description"]
     assert "id" in item_data
     assert "owner_id" in item_data
-    response = client.get("/users/1")
-    assert response.status_code == 200, response.text
-    user_data = response.json()
-    item_to_check = [it for it in user_data["items"] if it["id"] == item_data["id"]][0]
-    assert item_to_check["title"] == item["title"]
-    assert item_to_check["description"] == item["description"]
     response = client.get("/users/1")
     assert response.status_code == 200, response.text
     user_data = response.json()
