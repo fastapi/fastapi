@@ -166,7 +166,7 @@ With **FastAPI** you get all of **Starlette**'s features (as FastAPI is just Sta
 * **WebSocket** support.
 * In-process background tasks.
 * Startup and shutdown events.
-* Test client built on `requests`.
+* Test client built on HTTPX.
 * **CORS**, GZip, Static Files, Streaming responses.
 * **Session and Cookie** support.
 * 100% test coverage.
