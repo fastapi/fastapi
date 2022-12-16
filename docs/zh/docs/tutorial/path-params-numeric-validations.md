@@ -22,7 +22,7 @@
 
 !!! note
     路径参数总是必需的，因为它必须是路径的一部分。
-    
+
     所以，你应该在声明时使用 `...` 将其标记为必需参数。
 
     然而，即使你使用 `None` 声明路径参数或设置一个其他默认值也不会有任何影响，它依然会是必需参数。
@@ -43,7 +43,7 @@
 
 因此，你可以将函数声明为：
 
-```Python hl_lines="8"
+```Python hl_lines="7"
 {!../../../docs_src/path_params_numeric_validations/tutorial002.py!}
 ```
 
@@ -55,7 +55,7 @@
 
 Python 不会对该 `*` 做任何事情，但是它将知道之后的所有参数都应作为关键字参数（键值对），也被称为 <abbr title="来自：K-ey W-ord Arg-uments"><code>kwargs</code></abbr>，来调用。即使它们没有默认值。
 
-```Python hl_lines="8"
+```Python hl_lines="7"
 {!../../../docs_src/path_params_numeric_validations/tutorial003.py!}
 ```
 

@@ -4,6 +4,6 @@ set -e
 set -x
 
 mypy fastapi
-flake8 fastapi tests
+ruff fastapi tests docs_src scripts
 black fastapi tests --check
 isort fastapi tests docs_src scripts --check-only
