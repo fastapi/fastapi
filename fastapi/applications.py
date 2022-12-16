@@ -870,6 +870,7 @@ class FastAPI(Starlette):
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
         )
+
     def run(self, **args):
         try:
             import uvicorn
