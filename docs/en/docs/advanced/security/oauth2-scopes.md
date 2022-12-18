@@ -266,4 +266,15 @@ The most secure is the code flow, but is more complex to implement as it require
 
 ## `Security` in decorator `dependencies`
 
-The same way you can define a `list` of `Depends` in the decorator's `dependencies` parameter (as explained in [Dependencies in path operation decorators](../../tutorial/dependencies/dependencies-in-path-operation-decorators.md){.internal-link target=_blank}), you could also use `Security` with `scopes` there.
+The same way you can define a `list` of `Depends` in the decorator's `dependencies` parameter (as explained in [Dependencies in path operation decorators](../../tutorial/dependencies/dependencies-in-path-operation-decorators.md){.internal-link target=_blank}), you could also use `Security` with `scopes` there.  Similarly, they can be added
+as `dependencies` arguments to the `FastAPI` application object, and to `APIRouter` objects.
+
+### Merging of scopes from decorator `dependencies`
+
+If you add a `Security` into a decorator's `dependencies` parameter, and that same function is also present as a `Security` or `Depends` parameter for the endpoint, it results
+in the `scopes` lists being joined: The scopes from the decorator get **prepended** to any scopes of the endpoint dependencies (a `Depends` object is equivalent to a
+`Security` object with an empty list for its `scopes` argument).  This works recursively:  Wherever the same `Security` is seen in the dependency hierarchy
+of the endpoint argument dependencies, the scopes get joined.
+
+Using this mechanism, you can add a single scope requirement at the root of the **app** (using the `FastAPI` `dependencies` argument), or at individual `APIRouter` instances,
+and then refine the scopes required on the endpoint dependencies.

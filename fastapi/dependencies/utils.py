@@ -145,9 +145,10 @@ def get_sub_dependant(
 ) -> Dependant:
     security_requirement = None
     security_scopes = security_scopes or []
+    dependency_scopes = None
     if isinstance(depends, params.Security):
-        dependency_scopes = depends.scopes
-        security_scopes.extend(dependency_scopes)
+        dependency_scopes = list(depends.scopes)
+        security_scopes = security_scopes + list(dependency_scopes)
     if isinstance(dependency, SecurityBase):
         use_scopes: List[str] = []
         if isinstance(dependency, (OAuth2, OpenIdConnect)):
@@ -160,11 +161,61 @@ def get_sub_dependant(
         call=dependency,
         name=name,
         security_scopes=security_scopes,
+        dependency_scopes=dependency_scopes,
         use_cache=depends.use_cache,
     )
     if security_requirement:
         sub_dependant.security_requirements.append(security_requirement)
     return sub_dependant
+
+
+def merge_depends_into_dependant(
+    depends: params.Depends,
+    dependant: Dependant,
+) -> bool:
+    """
+    Recursively visit the sub-dependants of the dependant and see if the depends
+    is already present.
+    If the depends is a "Security", its scopes are _prepended_ to any
+    security sub-depenant with the same callable.
+    """
+    found: bool = False
+    for sub_dependant in dependant.dependencies:
+        if sub_dependant.call is depends.dependency:
+            # Depends and Security with empty scopes just need to be found,
+            # there is no scope propagation.
+            found = True
+            if not isinstance(depends, params.Security):
+                break  # Depends has no scopes.
+
+            # extend the inherited scope prefix for this and lower
+            # dependants.
+            # figure out the inherited part of the security_scopes
+            security_scopes = sub_dependant.security_scopes or []
+            dependency_scopes = sub_dependant.dependency_scopes or []
+            assert len(security_scopes) >= len(dependency_scopes)
+            own_len = len(dependency_scopes)
+            old_prefix = security_scopes[:-own_len]
+            new_prefix = old_prefix + list(depends.scopes)
+            if old_prefix != new_prefix:
+                extend_scope_prefix(sub_dependant, old_prefix, new_prefix)
+            else:
+                break  # this Security had no scopes.
+        else:
+            if merge_depends_into_dependant(depends, sub_dependant):
+                found = True
+    return found
+
+
+def extend_scope_prefix(
+    dependant: Dependant, old_prefix: List[str], new_prefix: List[str]
+) -> None:
+    scopes = dependant.security_scopes or []
+    scopes = new_prefix + scopes[len(old_prefix) :]
+    dependant.security_scopes = scopes
+    dependant.set_cache_key()
+    for sub_dependant in dependant.dependencies:
+        extend_scope_prefix(sub_dependant, old_prefix=old_prefix, new_prefix=new_prefix)
 
 
 CacheKey = Tuple[Optional[Callable[..., Any]], Tuple[str, ...]]
@@ -275,6 +326,7 @@ def get_dependant(
     call: Callable[..., Any],
     name: Optional[str] = None,
     security_scopes: Optional[List[str]] = None,
+    dependency_scopes: Optional[List[str]] = None,
     use_cache: bool = True,
 ) -> Dependant:
     path_param_names = get_path_param_names(path)
@@ -285,6 +337,7 @@ def get_dependant(
         name=name,
         path=path,
         security_scopes=security_scopes,
+        dependency_scopes=dependency_scopes,
         use_cache=use_cache,
     )
     for param_name, param in signature_params.items():
