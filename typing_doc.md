@@ -40,7 +40,7 @@ This `doc()` function would receive several parameters for metadata and document
     * This could probably contain markup, like Markdown or reST. As that could be highly debated, that decision is left for a future proposal, to focus here on the main functionality.
 * `deprecated: bool`: this would mark a parameter, class, function, or method as deprecated. Editors could display it with a strike-through or other appropriate formatting.
 * `discouraged: bool`: this would mark a parameter, class, function, or method as discouraged. Editors could display them similar to `deprecated`. The reason why having a `discouraged` apart from `deprecated` is that there are cases where something is not gonna be removed for backward compatibility, but it shouldn't be used in new code. An example of this is `datetime.utcnow()`.
-* `raises: Sequence[Type[BaseException]]`: in a class, function, or method, this indicates the types of exceptions that could be raised by calling it. Editors and tooling could show a warning (e.g. a colored underline) if the call is not wrapped in a `try` block or the parent caller doesn't include the same exceptions in its `raises` parameter.
+* `raises: Mapping[Type[BaseException], str | None]`: in a class, function, or method, this indicates the types of exceptions that could be raised by calling it in they keys of the dictionary. Each value would be the description for each exception, possibly being `None` when the exception has no description. Editors and tooling could show a warning (e.g. a colored underline) if the call is not wrapped in a `try` block or the parent caller doesn't include the same exceptions in its `raises` parameter.
 * `extra: dict`: a dictionary containing any additional metadata that could be useful for developers or library authors.
     * An `extra` parameter instead of `**kwargs` is proposed to allow adding future standard parameters.
 * `**kwargs: Any`: allows arbitrary additional keyword args. This gives type checkers the freedom to support experimental parameters without needing to wait for changes in `typing.py`. Type checkers should report errors for any unrecognized parameters. This follows the same pattern designed in [PEP 681 – Data Class Transforms](https://peps.python.org/pep-0681/).
@@ -70,7 +70,13 @@ An example documenting a function could look like this:
 ```python
 from typing import Annotated, doc
 
-@doc(description="Create a new user in the system", raises=[InvalidUserError, UserExistsError])
+@doc(
+    description="Create a new user in the system",
+    raises={
+        InvalidUserError: "Raised when the user name is not allowed by the system",
+        UserExistsError: "Raised when the user already exists in the system",
+    },
+)
 def create_user(
     lastname: Annotated[
         str, doc(description="The **last name** of the newly created user")
@@ -124,7 +130,7 @@ To avoid delaying adoption of this proposal until after the `doc()` function has
 To use this alternate form, library authors should include the following declaration within their type stubs or source files.
 
 ```Python
-from typing import Any, Callable, Sequence, Type, TypeVar
+from typing import Any, Callable, Mapping, Type, TypeVar
 
 _T = TypeVar("_T")
 
@@ -134,7 +140,7 @@ def __typing_doc__(
     description: str | None = None,
     deprecated: bool = False,
     discouraged: bool = False,
-    raises: Sequence[Type[BaseException]] | None = None,
+    raises: Mapping[Type[BaseException], str | None] | None = None,
     extra: dict[Any, Any] | None = None,
 ) -> Callable[[_T], _T]:
     # If used within a stub file, the following implementation can be
