@@ -45,12 +45,6 @@ This `doc()` function would receive several parameters for metadata and document
     * An `extra` parameter instead of `**kwargs` is proposed to allow adding future standard parameters.
 * `**kwargs: Any`: allows arbitrary additional keyword args. This gives type checkers the freedom to support experimental parameters without needing to wait for changes in `typing.py`. Type checkers should report errors for any unrecognized parameters. This follows the same pattern designed in [PEP 681 – Data Class Transforms](https://peps.python.org/pep-0681/).
 
-Other possible future parameters could include:
-
-* `version_added: str`: the version of the library where this parameter, class, method, or function was added.
-* `blocks: bool`: this would mark a callable as a synchronous blocking call. This way, editors could use it to warn about using it in async contexts directly.
-* `example: Any`: an example value for a parameter, or an example of the usage of the class, function, or method.
-
 This specification targets static analysis tools and editors, and as such, the values passed to these parameters should allow static evaluation and analysis. If a developer passes as the value to one of these parameters something that requires runtime execution (e.g. a function call) the behavior of static analysis tools is unspecified and they could omit that parameter from their process and results. For static analysis tools to be conformant with this specification they need only to support statically accessible values.
 
 An example documenting the attributes of a class, or in this case, the keys of a `TypedDict` could look like this:
@@ -165,6 +159,14 @@ It wouldn't solve any of the other problems, like getting editor support (syntax
 Runtime behavior is still not defined. It would probably make sense to have an attribute `__typing_doc__` on the function, method, or class. `__doc__` is already reserved for docstrings.
 
 For parameters, it could include the same object in the same `Annotated` type annotations.
+
+### Additional Parameters
+
+Other possible future parameters could include:
+
+* `version_added: str`: the version of the library where this parameter, class, method, or function was added.
+* `blocks: bool`: this would mark a callable as a synchronous blocking call. This way, editors could use it to warn about using it in async contexts directly.
+* `example: Any`: an example value for a parameter, or an example of the usage of the class, function, or method.
 
 ## Copyright
 
