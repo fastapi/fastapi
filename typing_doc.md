@@ -176,6 +176,15 @@ Other possible future parameters could include:
 * `blocks: bool`: this would mark a callable as a synchronous blocking call. This way, editors could use it to warn about using it in async contexts directly.
 * `example: Any`: an example value for a parameter, or an example of the usage of the class, function, or method.
 
+### Additional Features
+
+Other possible features that could be added in the future, probably in the form of additional parameters, could include:
+
+* `**kwargs`: some form of documenting additional keyword arguments defined with `**kwargs` instead of using the independent parameters in the function/callable signature.
+* Generators: a way to document the types of values yielded by a generator.
+* Warnings: a way to document the possible warnings that a function or method can create.
+* Section titles: a way to separate groups of parameters into sections (or tags), mainly for documentation purposes, if that was included, it could make sense to also support a way to define the order of sections and their descriptions.
+
 ### Duplicated Effort
 
 There are some cases where there's already some type of similar alternative in place, sometimes applying only at runtime. For example, for the standard library, there's [`warnings._deprecated()`](https://github.com/python/cpython/blob/e9e63ad8653296c199446d6f7cdad889e492a34e/Lib/warnings.py#L498-L514).
