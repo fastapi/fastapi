@@ -125,7 +125,7 @@ def utcnow() -> datetime:
 
 ## Alternate Form
 
-To avoid delaying adoption of this proposal until after the `doc()` function has been added to the typing module, type checkers may support an alternative form `__typing_doc__`. This form can be defined locally without any reliance on the `typing` or `typing_extensions` modules. It allows immediate adoption of the specification by library authors. Type checkers that have not yet adopted this specification will retain their current behavior.
+To avoid delaying adoption of this proposal until after the `doc()` function has been added to the typing module, type checkers and tools may support an alternative form `__typing_doc__`. This form can be defined locally without any reliance on the `typing` or `typing_extensions` modules. It allows immediate adoption of the specification by library authors. Type checkers that have not yet adopted this specification will retain their current behavior.
 
 To use this alternate form, library authors should include the following declaration within their type stubs or source files.
 
@@ -161,6 +161,8 @@ A possible alternative would be to support and try to push as a standard one of 
 It wouldn't solve any of the other problems, like getting editor support (syntax checks) for library authors, the distance and duplication of information between a parameter definition and its documentation in the docstring, etc.
 
 ## Open Issues
+
+### Runtime Behavior
 
 Runtime behavior is still not defined. It would probably make sense to have an attribute `__typing_doc__` on the function, method, or class. `__doc__` is already reserved for docstrings.
 
