@@ -168,6 +168,14 @@ Other possible future parameters could include:
 * `blocks: bool`: this would mark a callable as a synchronous blocking call. This way, editors could use it to warn about using it in async contexts directly.
 * `example: Any`: an example value for a parameter, or an example of the usage of the class, function, or method.
 
+### Duplicated Effort
+
+There are some cases where there's already some type of similar alternative in place, sometimes applying only at runtime. For example, for the standard library, there's [`warnings._deprecated()`](https://github.com/python/cpython/blob/e9e63ad8653296c199446d6f7cdad889e492a34e/Lib/warnings.py#L498-L514).
+
+This new proposal would possibly involve some effort duplication for library maintainers adopting it if they already use another custom solution. Nevertheless, this duplication would only affect library authors, final users would not be affected by the duplication and would still benefit from the proposed standard plus any additional benefits provided by the current custom solution.
+
+It's also possible it would be wanted to have some connection from the documented information (e.g. a deprecation) to the runtime exception being raised or the warning generated. This document doesn't propose any solution for that, but it's something that could be considered in the future, for example, tools like mypy could warn if the code uses `doc()` but doesn't document exceptions being raised or warnings being generated.
+
 ## Copyright
 
 This document is placed in the public domain or under the
