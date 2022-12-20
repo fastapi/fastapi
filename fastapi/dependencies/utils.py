@@ -324,7 +324,17 @@ def get_dependant(
                 field_info, params.Body
             ), f"Param: {param_field.name} can only be a request body, using Body()"
             dependant.body_params.append(param_field)
-    dependant.dependency_getters = get_dependent_dependency_getters(dependant)
+
+    #  Get built-in dependenencies
+    dependency_getters = get_dependent_dependency_getters(dependant)
+    dependant.dependency_getters = (
+        list(filter(lambda f: not inspect.iscoroutinefunction(f), dependency_getters))
+        or None
+    )
+    dependant.async_dependency_getters = (
+        list(filter(lambda f: inspect.iscoroutinefunction(f), dependency_getters))
+        or None
+    )
     return dependant
 
 
@@ -542,17 +552,21 @@ async def solve_dependencies(
         context.values = values
         context.errors = errors
         for dependency_getter in dependant.dependency_getters:
-            if inspect.iscoroutinefunction(dependency_getter):
-                await dependency_getter(context)
-            else:
-                dependency_getter(context)
+            dependency_getter(context)
+    if dependant.async_dependency_getters:
+        context.values = values
+        context.errors = errors
+        # Only `async` getters are the `Body()` arguments, and there is only one
+        # which gets them all.
+        for dependency_getter in dependant.async_dependency_getters:
+            await dependency_getter(context)
 
     return values, errors
 
 
 def get_dependent_dependency_getters(
     dependant: Dependant,
-) -> Optional[List[DependencyGetter]]:
+) -> List[DependencyGetter]:
     """
     Process built-in dependencies into a list of getter functions
     """
@@ -683,7 +697,7 @@ def get_dependent_dependency_getters(
 
         getters.append(get_scopes)
 
-    return getters or None
+    return getters
 
 
 def request_field_to_arg(
