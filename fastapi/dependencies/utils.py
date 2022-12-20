@@ -572,51 +572,49 @@ def get_dependent_dependency_getters(
     """
     getters: List[DependencyGetter] = []
     field: ModelField
+
+    def get_path_param_getter(field: ModelField) -> DependencyGetter:
+        def get_param(context: DependencySolverContext) -> None:
+            return request_field_to_arg(
+                context.values, context.errors, field, context.request.path_params
+            )
+
+        return get_param
+
     for field in dependant.path_params:
-
-        def get_path_param_getter(field: ModelField) -> DependencyGetter:
-            def get_param(context: DependencySolverContext) -> None:
-                return request_field_to_arg(
-                    context.values, context.errors, field, context.request.path_params
-                )
-
-            return get_param
-
         getters.append(get_path_param_getter(field))
 
+    def get_query_param_getter(field: ModelField) -> DependencyGetter:
+        def get_param(context: DependencySolverContext) -> None:
+            return request_field_to_arg(
+                context.values, context.errors, field, context.request.query_params
+            )
+
+        return get_param
+
     for field in dependant.query_params:
-
-        def get_query_param_getter(field: ModelField) -> DependencyGetter:
-            def get_param(context: DependencySolverContext) -> None:
-                return request_field_to_arg(
-                    context.values, context.errors, field, context.request.query_params
-                )
-
-            return get_param
-
         getters.append(get_query_param_getter(field))
 
+    def get_header_param_getter(field: ModelField) -> DependencyGetter:
+        def get_param(context: DependencySolverContext) -> None:
+            return request_field_to_arg(
+                context.values, context.errors, field, context.request.headers
+            )
+
+        return get_param
+
     for field in dependant.header_params:
-
-        def get_header_param_getter(field: ModelField) -> DependencyGetter:
-            def get_param(context: DependencySolverContext) -> None:
-                return request_field_to_arg(
-                    context.values, context.errors, field, context.request.headers
-                )
-
-            return get_param
-
         getters.append(get_header_param_getter(field))
+
+    def get_cookie_param_getter(field: ModelField) -> DependencyGetter:
+        def get_param(context: DependencySolverContext) -> None:
+            return request_field_to_arg(
+                context.values, context.errors, field, context.request.cookies
+            )
+
+        return get_param
+
     for field in dependant.cookie_params:
-
-        def get_cookie_param_getter(field: ModelField) -> DependencyGetter:
-            def get_param(context: DependencySolverContext) -> None:
-                return request_field_to_arg(
-                    context.values, context.errors, field, context.request.cookies
-                )
-
-            return get_param
-
         getters.append(get_cookie_param_getter(field))
 
     if dependant.body_params:
