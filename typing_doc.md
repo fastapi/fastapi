@@ -183,7 +183,7 @@ Other possible features that could be added in the future, probably in the form 
 * `**kwargs`: some form of documenting additional keyword arguments defined with `**kwargs` instead of using the independent parameters in the function/callable signature.
 * Generators: a way to document the types of values yielded by a generator.
 * Warnings: a way to document the possible warnings that a function or method can create.
-* Section titles: a way to separate groups of parameters into sections (or tags), mainly for documentation purposes, if that was included, it could make sense to also support a way to define the order of sections and their descriptions.
+* Section titles: a way to separate groups of parameters into sections (or tags), mainly for documentation purposes, if that was included, it could make sense to also support a way to define the order of sections and their descriptions. Although this might be achievable using the current `extra` parameter for extensions.
 
 ### Duplicated Effort
 
