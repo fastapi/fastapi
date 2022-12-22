@@ -1,5 +1,5 @@
-from contextvars import ContextVar
 import threading
+from contextvars import ContextVar
 from typing import Dict
 
 import pytest
@@ -85,7 +85,6 @@ async def context_b(state: dict = Depends(context_a)):
         state["context_b"] = f"finished b with a: {state['context_a']}"
 
 
-
 ctx: ContextVar[str] = ContextVar("ctx")
 
 
@@ -155,7 +154,7 @@ async def get_context_b_bg(tasks: BackgroundTasks, state: dict = Depends(context
 
 
 @app.get("/check_cm_same_thread")
-async def check_cm_same_thread(_ = Depends(context_same_thread)):
+async def check_cm_same_thread(_=Depends(context_same_thread)):
     return None
 
 
