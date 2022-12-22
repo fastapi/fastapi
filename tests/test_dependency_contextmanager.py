@@ -1,3 +1,5 @@
+from contextvars import ContextVar
+import threading
 from typing import Dict
 
 import pytest
@@ -83,6 +85,20 @@ async def context_b(state: dict = Depends(context_a)):
         state["context_b"] = f"finished b with a: {state['context_a']}"
 
 
+
+ctx: ContextVar[str] = ContextVar("ctx")
+
+
+async def context_same_thread():
+    # test both a real world use case and a
+    # simpler synthetic check
+    ctx.set("foo")
+    ident = threading.get_ident()
+    yield
+    assert ctx.get() == "foo"
+    assert ident == threading.get_ident()
+
+
 @app.get("/async")
 async def get_async(state: str = Depends(asyncgen_state)):
     return state
@@ -136,6 +152,11 @@ async def get_context_b_bg(tasks: BackgroundTasks, state: dict = Depends(context
 
     tasks.add_task(bg, state)
     return state
+
+
+@app.get("/check_cm_same_thread")
+async def check_cm_same_thread(_ = Depends(context_same_thread)):
+    return None
 
 
 # Sync versions
@@ -383,3 +404,8 @@ def test_sync_background_tasks():
     assert state["context_b"] == "finished b with a: started a"
     assert state["context_a"] == "finished a"
     assert state["sync_bg"] == "sync_bg set - b: started b - a: started a"
+
+
+def test_sync_runs_in_single_thread():
+    response = client.get("/check_cm_same_thread")
+    response.raise_for_status()
