@@ -1,0 +1,89 @@
+مقالات:
+   انگلیسی:
+   - نویسنده: WayScript
+     نویسنده_لینک: https://www.wayscript.com
+     لینک: https://blog.wayscript.com/fast-api-quickstart/
+     عنوان: راهنمای شروع سریع برای ساخت و میزبانی APIهای پاسخگو با Fast API و WayScript
+   - نویسنده: یادگار جدید
+     نویسنده_لینک: https://newrelic.com
+     لینک: https://newrelic.com/instant-observability/fastapi/e559ec64-f765-4470-a15f-1901fcebb468
+     عنوان: نحوه نظارت بر عملکرد برنامه FastAPI با استفاده از عامل پایتون
+   - نویسنده: ژان باپتیست روچر
+     نویسنده_لینک: https://hashnode.com/@jibrocher
+     لینک: https://dev.indooroutdoor.io/series/fastapi-react-poll-app
+     عنوان: ساختن برنامه نظرسنجی از آموزش جنگو با FastAPI و React
+   - نویسنده: سیلوان ملچیور
+     نویسنده_لینک: https://github.com/silvanmelchior
+     پیوند: https://blog.devgenius.io/seamless-fastapi-configuration-with-confz-90949c14ea12
+     عنوان: پیکربندی بدون درز FastAPI با ConfZ
+   - نویسنده: Kaustubh Gupta
+     نویسنده_لینک: https://medium.com/@kaustubhgupta1828/
+     پیوند: https://levelup.gitconnected.com/5-advance-features-of-fastapi-you-should-try-7c0ac7eebb3e
+     عنوان: 5 ویژگی پیشرفته FastAPI که باید امتحان کنید
+   - نویسنده: Kaustubh Gupta
+     نویسنده_لینک: https://medium.com/@kaustubhgupta1828/
+     لینک: https://www.analyticsvidhya.com/blog/2021/06/deploying-ml-models-as-api-using-fastapi-and-heroku/
+     عنوان: استقرار مدل های ML به عنوان API با استفاده از FastAPI و Heroku
+   - پیوند: https://jarmos.netlify.app/posts/using-github-actions-to-deploy-a-fastapi-project-to-heroku/
+     عنوان: استفاده از GitHub Actions برای استقرار یک پروژه FastAPI در Heroku
+     نویسنده_لینک: https://jarmos.netlify.app/
+     نویسنده: سومرج سها
+   - نویسنده: "@pystar"
+     نویسنده_لینک: https://pystar.substack.com/
+     پیوند: https://pystar.substack.com/p/how-to-create-a-fake-certificate
+     عنوان: چگونه یک مرجع صدور گواهی جعلی ایجاد کنیم و گواهی های TLS را برای FastAPI ایجاد کنیم
+   - نویسنده: بن گمبل
+     نویسنده_لینک: https://uk.linkedin.com/in/bengamble7
+     لینک: https://ably.com/blog/realtime-ticket-booking-solution-kafka-fastapi-ably
+     عنوان: ایجاد راه حل رزرو بیدرنگ بلیط با کافکا، FastAPI و Ably
+   - نویسنده: شهریار(شاکو) رزایف
+     نویسنده_لینک: https://www.linkedin.com/in/shahriyar-rzayev/
+     لینک: https://www.azepug.az/posts/fastapi/#building-simple-e-commerce-with-nuxtjs-and-fastapi-series
+     عنوان: ایجاد تجارت الکترونیک ساده با NuxtJS و FastAPI
+   - نویسنده: رودریگو آرناس
+     نویسنده_لینک: https://rodrigo-arenas.medium.com/
+     لینک: https://medium.com/analytics-vidhya/serve-a-machine-learning-model-using-sklearn-fastapi-and-docker-85aabf96729b
+     عنوان: "ارائه یک مدل یادگیری ماشینی با استفاده از Sklearn، FastAPI و Docker"
+   - نویسنده: یاشاسوی سینگ
+     نویسنده_لینک: https://hashnode.com/@aUnicornDev
+     لینک: https://aunicorndev.hashnode.dev/series/supafast-api
+     عنوان: "ساخت API با FastAPI و Supabase و استقرار در Deta"
+   - نویسنده: ناول پاوان کومار رائو
+     نویسنده_لینک: https://www.linkedin.com/in/navule/
+     لینک: https://www.tutlinks.com/deploy-fastapi-on-ubuntu-gunicorn-caddy-2/
+     عنوان: استقرار FastAPI در اوبونتو و سرویس با استفاده از وب سرور Caddy 2
+   - نویسنده: پاتریک لادون
+     نویسنده_لینک: https://dev.to/factorlive
+     لینک: https://dev.to/factorlive/python-facebook-messenger-webhook-with-fastapi-on-glitch-4n90
+     عنوان: وب هوک پیام رسان فیس بوک پایتون با FastAPI در Glitch
+   - نویسنده: Dom Patmore
+     نویسنده_لینک: https://twitter.com/dompatmore
+     پیوند: https://dompatmore.com/blog/authenticate-your-fastapi-app-with-auth0
+     عنوان: برنامه FastAPI خود را با auth0 تأیید اعتبار کنید
+   - نویسنده: والون یانوزای
+     نویسنده_لینک: https://www.linkedin.com/in/valon-januzaj-b02692187/
+     لینک: https://valonjanuzaj.medium.com/deploy-a-dockerized-fastapi-application-to-aws-cc757830ba1b
+     عنوان: یک برنامه کاربردی FastAPI متصل به AWS را مستقر کنید
+   - نویسنده: Amit Chaudhary
+     نویسنده_لینک: https://twitter.com/amitness
+     لینک: https://amitness.com/2020/06/fastapi-vs-flask/
+     عنوان: FastAPI برای کاربران Flask
+   - نویسنده: لوئیس گیتون
+     نویسنده_لینک: https://twitter.com/louis_guitton
+     لینک: https://guitton.co/posts/fastapi-monitoring/
+     عنوان: نحوه نظارت بر سرویس FastAPI
+   - نویسنده: جولین هاربولوت
+     نویسنده_لینک: https://julienharbulot.com/
+     لینک: https://julienharbulot.com/notification-server.html
+     عنوان: سرور HTTP برای نمایش اعلان های دسکتاپ
+   - نویسنده: ندوبوزه گرانبها
+     نویسنده_لینک: https://medium.com/@gabbyprecious2000
+     لینک: https://medium.com/@gabbyprecious2000/creating-a-crud-app-with-fastapi-part-one-7c049292ad37
+     عنوان: ایجاد یک برنامه CRUD با FastAPI (قسمت اول)
+   - نویسنده: فرهاد مالک
+     نویسنده_لینک: https://medium.com/@farhadmalik
+     پیوند: https://towardsdatascience.com/build-and-host-fast-data-science-applications-using-fastapi-823be8a1d6a0
+     عنوان: ساخت و میزبانی برنامه های علوم داده سریع با استفاده از FastAPI
+   - نویسنده: ناول پاوان کومار رائو
+     نویسنده_لینک: https://www.linkedin.com/in/navule/
+     لینک: https://www.tutlinks.com/deploy-fast
