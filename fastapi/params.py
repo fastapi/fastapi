@@ -16,7 +16,7 @@ class Param(FieldInfo):
 
     def __init__(
         self,
-        default: Any,
+        default: Any = Undefined,
         *,
         alias: Optional[str] = None,
         title: Optional[str] = None,
@@ -31,13 +31,15 @@ class Param(FieldInfo):
         example: Any = Undefined,
         examples: Optional[Dict[str, Any]] = None,
         deprecated: Optional[bool] = None,
+        include_in_schema: bool = True,
         **extra: Any,
     ):
         self.deprecated = deprecated
         self.example = example
         self.examples = examples
+        self.include_in_schema = include_in_schema
         super().__init__(
-            default,
+            default=default,
             alias=alias,
             title=title,
             description=description,
@@ -60,7 +62,7 @@ class Path(Param):
 
     def __init__(
         self,
-        default: Any,
+        default: Any = Undefined,
         *,
         alias: Optional[str] = None,
         title: Optional[str] = None,
@@ -75,11 +77,12 @@ class Path(Param):
         example: Any = Undefined,
         examples: Optional[Dict[str, Any]] = None,
         deprecated: Optional[bool] = None,
+        include_in_schema: bool = True,
         **extra: Any,
     ):
         self.in_ = self.in_
         super().__init__(
-            ...,
+            default=...,
             alias=alias,
             title=title,
             description=description,
@@ -93,6 +96,7 @@ class Path(Param):
             deprecated=deprecated,
             example=example,
             examples=examples,
+            include_in_schema=include_in_schema,
             **extra,
         )
 
@@ -102,7 +106,7 @@ class Query(Param):
 
     def __init__(
         self,
-        default: Any,
+        default: Any = Undefined,
         *,
         alias: Optional[str] = None,
         title: Optional[str] = None,
@@ -117,10 +121,11 @@ class Query(Param):
         example: Any = Undefined,
         examples: Optional[Dict[str, Any]] = None,
         deprecated: Optional[bool] = None,
+        include_in_schema: bool = True,
         **extra: Any,
     ):
         super().__init__(
-            default,
+            default=default,
             alias=alias,
             title=title,
             description=description,
@@ -134,6 +139,7 @@ class Query(Param):
             deprecated=deprecated,
             example=example,
             examples=examples,
+            include_in_schema=include_in_schema,
             **extra,
         )
 
@@ -143,7 +149,7 @@ class Header(Param):
 
     def __init__(
         self,
-        default: Any,
+        default: Any = Undefined,
         *,
         alias: Optional[str] = None,
         convert_underscores: bool = True,
@@ -159,11 +165,12 @@ class Header(Param):
         example: Any = Undefined,
         examples: Optional[Dict[str, Any]] = None,
         deprecated: Optional[bool] = None,
+        include_in_schema: bool = True,
         **extra: Any,
     ):
         self.convert_underscores = convert_underscores
         super().__init__(
-            default,
+            default=default,
             alias=alias,
             title=title,
             description=description,
@@ -177,6 +184,7 @@ class Header(Param):
             deprecated=deprecated,
             example=example,
             examples=examples,
+            include_in_schema=include_in_schema,
             **extra,
         )
 
@@ -186,7 +194,7 @@ class Cookie(Param):
 
     def __init__(
         self,
-        default: Any,
+        default: Any = Undefined,
         *,
         alias: Optional[str] = None,
         title: Optional[str] = None,
@@ -201,10 +209,11 @@ class Cookie(Param):
         example: Any = Undefined,
         examples: Optional[Dict[str, Any]] = None,
         deprecated: Optional[bool] = None,
+        include_in_schema: bool = True,
         **extra: Any,
     ):
         super().__init__(
-            default,
+            default=default,
             alias=alias,
             title=title,
             description=description,
@@ -218,6 +227,7 @@ class Cookie(Param):
             deprecated=deprecated,
             example=example,
             examples=examples,
+            include_in_schema=include_in_schema,
             **extra,
         )
 
@@ -225,7 +235,7 @@ class Cookie(Param):
 class Body(FieldInfo):
     def __init__(
         self,
-        default: Any,
+        default: Any = Undefined,
         *,
         embed: bool = False,
         media_type: str = "application/json",
@@ -248,7 +258,7 @@ class Body(FieldInfo):
         self.example = example
         self.examples = examples
         super().__init__(
-            default,
+            default=default,
             alias=alias,
             title=title,
             description=description,
@@ -287,7 +297,7 @@ class Form(Body):
         **extra: Any,
     ):
         super().__init__(
-            default,
+            default=default,
             embed=True,
             media_type=media_type,
             alias=alias,
@@ -327,7 +337,7 @@ class File(Form):
         **extra: Any,
     ):
         super().__init__(
-            default,
+            default=default,
             media_type=media_type,
             alias=alias,
             title=title,
