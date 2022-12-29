@@ -1,6 +1,6 @@
 # 교차 출처 리소스 공유
 
-<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS" class="external-link" target="_blank">CORS 또는 "교차-출처 리소스 공유"</a>란, 브라우저에서 동작하는 프론트엔드가 자바스크립트로 코드로 백엔드와 통신하고, 백엔드는 해당 프론트엔드와 다른 "출처"에 존재하는 상황을 의미합니다. 
+<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS" class="external-link" target="_blank">CORS 또는 "교차-출처 리소스 공유"</a>란, 브라우저에서 동작하는 프론트엔드가 자바스크립트로 코드로 백엔드와 통신하고, 백엔드는 해당 프론트엔드와 다른 "출처"에 존재하는 상황을 의미합니다.
 
 ## 출처
 
@@ -28,7 +28,7 @@
 
 모든 출처를 허용하기 위해 목록을 `"*"` ("와일드카드")로 선언하는 것도 가능합니다.
 
-하지만 이것은 특정한 유형의 통신만을 허용하며, 쿠키 및 액세스 토큰과 사용되는 인증 헤더(Authoriztion header) 등이 포함된 경우와 같이 자격 증명(credentials)이 포함된 통신은 허용되지 않습니다.  
+하지만 이것은 특정한 유형의 통신만을 허용하며, 쿠키 및 액세스 토큰과 사용되는 인증 헤더(Authoriztion header) 등이 포함된 경우와 같이 자격 증명(credentials)이 포함된 통신은 허용되지 않습니다.
 
 따라서 모든 작업을 의도한대로 실행하기 위해, 허용되는 출처를 명시적으로 지정하는 것이 좋습니다.
 
@@ -46,7 +46,7 @@
 * 특정한 HTTP 메소드(`POST`, `PUT`) 또는 와일드카드 `"*"` 를 사용한 모든 HTTP 메소드.
 * 특정한 HTTP 헤더 또는 와일드카드 `"*"` 를 사용한 모든 HTTP 헤더.
 
-```Python hl_lines="2  6-11  13-19" 
+```Python hl_lines="2  6-11  13-19"
 {!../../../docs_src/cors/tutorial001.py!}
 ```
 
