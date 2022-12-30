@@ -72,7 +72,7 @@ async def create_note(note: NoteIn):
     return {**note.dict(), "id": last_record_id}
 
 
-@app.put("/notes/{note_id}/", response_model=Note)
+@app.put("/notes/{note_id}/")
 async def update_note(note_id: int, note: NoteIn):
     query = notes.select().where(notes.c.id == note_id)
     note_fetched = await database.fetch_one(query)
