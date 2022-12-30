@@ -75,8 +75,8 @@ async def create_note(note: NoteIn):
 @app.put("/notes/{note_id}/", response_model=Note)
 async def update_note(note_id: int, note: NoteIn):
     query = notes.select().where(notes.c.id == note_id)
-    note_ = await database.fetch_one(query)
-    if note_ is None:
+    note_fetched = await database.fetch_one(query)
+    if note_fetched is None:
         raise HTTPException(status_code=404, detail="Note not found")
     query = notes.update().values(**note.dict()).where(notes.c.id == note_id)
     await database.execute(query)
