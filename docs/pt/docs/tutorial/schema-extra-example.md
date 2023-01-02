@@ -14,7 +14,7 @@ Você pode declarar um `example` para um modelo Pydantic usando `Config` e `sche
 
 Essas informações extras serão adicionadas como se encontram no **JSON Schema** de resposta desse modelo e serão usadas na documentação da API.
 
-!!! dica
+!!! tip "dica"
     Você pode usar a mesma técnica para estender o JSON Schema e adicionar suas próprias informações extras de forma personalizada.
 
     Por exemplo, você pode usar isso para adicionar metadados em uma interface de usuário de front-end, etc.
