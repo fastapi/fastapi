@@ -2,7 +2,7 @@
 
 Com o **FastAPI**, você pode definir, validar, documentar e usar modelos profundamente aninhados de forma arbitrária (graças ao Pydantic).
 
-## Campos de lista
+## Campos do tipo Lista
 
 Você pode definir um atributo como um subtipo. Por exemplo, uma `list` do Python:
 
@@ -12,7 +12,7 @@ Você pode definir um atributo como um subtipo. Por exemplo, uma `list` do Pytho
 
 Isso fará com que `tags` seja uma lista de itens. Embora sem declarar o tipo de cada um dos itens.
 
-## Campo de lista com um parâmetro de tipo
+## Campos do tipo Lista com um parâmetro de tipo
 
 Mas o Python tem uma maneira específica de declarar listas com tipos internos ou "parâmetros de tipo":
 
