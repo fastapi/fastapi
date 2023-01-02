@@ -232,7 +232,7 @@ Neste caso, você aceitaria qualquer `dict`, desde que tenha chaves` int` com va
     Mas o Pydantic tem conversão automática de dados.
 
     Isso significa que, embora os clientes da API só possam enviar strings como chaves, desde que essas strings contenham inteiros puros, o Pydantic irá convertê-los e validá-los.
-    
+
     E o `dict` que você recebe como `weights` terá, na verdade, chaves `int` e valores` float`.
 
 ## Recapitulação
