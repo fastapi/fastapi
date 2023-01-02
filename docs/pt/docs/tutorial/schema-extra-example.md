@@ -2,7 +2,7 @@
 
 Você pode declarar exemplos dos dados que a sua aplicação pode receber.
 
-Aqui estão váris formas de se fazer isso.
+Aqui estão várias formas de se fazer isso.
 
 ## `schema_extra` do Pydantic
 
