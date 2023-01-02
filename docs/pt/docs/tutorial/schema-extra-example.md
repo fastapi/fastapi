@@ -29,7 +29,7 @@ Você pode usar isso para adicionar um `example` para cada campo:
 {!../../../docs_src/schema_extra_example/tutorial002.py!}
 ```
 
-!!! atenção
+!!! warning "atenção"
     Lembre-se de que esses argumentos extras passados ​​não adicionarão nenhuma validação, apenas informações extras, para fins de documentação.
 
 ## `example` e `examples` no OpenAPI
