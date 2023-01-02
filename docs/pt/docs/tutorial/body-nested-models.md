@@ -10,7 +10,7 @@ Você pode definir um atributo como um subtipo. Por exemplo, uma `list` do Pytho
 {!../../../docs_src/body_nested_models/tutorial001.py!}
 ```
 
-Isso fará com que `tags` seja uma lista de itens. Embora sem declarar o tipo de cada um dos itens.
+Isso fará com que tags seja uma lista de itens mesmo sem declarar o tipo dos elementos desta lista.
 
 ## Campos do tipo Lista com um parâmetro de tipo
 
