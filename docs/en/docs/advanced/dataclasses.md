@@ -8,7 +8,7 @@ But FastAPI also supports using <a href="https://docs.python.org/3/library/datac
 {!../../../docs_src/dataclasses/tutorial001.py!}
 ```
 
-This is still thanks to **Pydantic**, as it has <a href="https://pydantic-docs.helpmanual.io/usage/dataclasses/#use-of-stdlib-dataclasses-with-basemodel" class="external-link" target="_blank">internal support for `dataclasses`</a>.
+This is still supported thanks to **Pydantic**, as it has <a href="https://pydantic-docs.helpmanual.io/usage/dataclasses/#use-of-stdlib-dataclasses-with-basemodel" class="external-link" target="_blank">internal support for `dataclasses`</a>.
 
 So, even with the code above that doesn't use Pydantic explicitly, FastAPI is using Pydantic to convert those standard dataclasses to Pydantic's own flavor of dataclasses.
 
