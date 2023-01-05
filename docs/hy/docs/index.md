@@ -1,12 +1,8 @@
-
-{!../../../docs/missing-translation.md!}
-
-
 <p align="center">
   <a href="https://fastapi.tiangolo.com"><img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI"></a>
 </p>
 <p align="center">
-    <em>FastAPI framework, high performance, easy to learn, fast to code, ready for production</em>
+    <em>FastAPI ծրագրային բաղադրիչ, բարձր արտադրողականություն, արագ սովորվող, հեշտ գրվող, արտադրական համակարգին պատրաստ</em>
 </p>
 <p align="center">
 <a href="https://github.com/tiangolo/fastapi/actions?query=workflow%3ATest+event%3Apush+branch%3Amaster" target="_blank">
@@ -25,26 +21,26 @@
 
 ---
 
-**Documentation**: <a href="https://fastapi.tiangolo.com" target="_blank">https://fastapi.tiangolo.com</a>
+**Փաստաթղթավորում**: <a href="https://fastapi.tiangolo.com" target="_blank">https://fastapi.tiangolo.com</a>
 
-**Source Code**: <a href="https://github.com/tiangolo/fastapi" target="_blank">https://github.com/tiangolo/fastapi</a>
+**Կոդեր**: <a href="https://github.com/tiangolo/fastapi" target="_blank">https://github.com/tiangolo/fastapi</a>
 
 ---
 
-FastAPI is a modern, fast (high-performance), web framework for building APIs with Python 3.7+ based on standard Python type hints.
+FastAPI-ը ժամանակակից, արագ (բարձր արտադրողականությամբ),  վեբ ծրագրային բաղադրիչ է, որը նախատեսված է Python 3.7+ ծրագրավորման լեզվով API ներ ստեղծոլու համար  հետեվելով Python type hints ստանդարտներին.
 
-The key features are:
+Հիմնական առավոլություններն են․
 
-* **Fast**: Very high performance, on par with **NodeJS** and **Go** (thanks to Starlette and Pydantic). [One of the fastest Python frameworks available](#performance).
-* **Fast to code**: Increase the speed to develop features by about 200% to 300%. *
-* **Fewer bugs**: Reduce about 40% of human (developer) induced errors. *
-* **Intuitive**: Great editor support. <abbr title="also known as auto-complete, autocompletion, IntelliSense">Completion</abbr> everywhere. Less time debugging.
-* **Easy**: Designed to be easy to use and learn. Less time reading docs.
-* **Short**: Minimize code duplication. Multiple features from each parameter declaration. Fewer bugs.
-* **Robust**: Get production-ready code. With automatic interactive documentation.
-* **Standards-based**: Based on (and fully compatible with) the open standards for APIs: <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (previously known as Swagger) and <a href="https://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>.
+* **Արագ**․ Շատ բարձր արտադրողականություն համարժեք **NodeJS**-ի և **Go**-ի  (շնորհիվ Starlette-ի և Pydantic-ի)։ [Python-ի ամենաարագ ծրագրային բաղադրիչներից մեկը](#performance)։
+* **Արագ ծրագրավորվող**․ Ծրագրավորման արագությունը ավելացնում է մոտ 200% ից 300% ով։*
+* **Քիչ վրիպակներով**․ Մարդկային գործոնի (ծրագրավորողի) կողմից մոտ 40% ավելի քիչ վրիպակներ։ *
+* **Ինտուիտիվ**․ Խմբագրի հիանալի աջակցություն։ <abbr title="also known as auto-complete, autocompletion, IntelliSense">Ավարտում</abbr> ամենուր։ Ավելի արագ Վրիպազերծմում։
+* **Հեշտ**․ Նախագծված է հեշտ օգտագործման և սովորելու համար: Ավելի քիչ ժամանակ փաստաթղթեր կարդալու համար:
+* **Կարճ**․ Նվազագույնի հասցնել կոդերի կրկնօրինակումը: Բազմաթիվ առանձնահատկություններ յուրաքանչյուր պարամետրի հայտարարումից: Ավելի քիչ սխալներ:
+* **Ամուր**․ Ստացեք արտադրական պատրաստի կոդը: Ավտոմատ ինտերակտիվ փաստաթղթերով:
+* **Ստանդարտների վրա հիմնված**․ Հիմնված (և լիովին համատեղելի) API-ների բաց ստանդարտների վրա՝ <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (նախկինում հայտնի որպես Swagger) և <a href="https://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>։
 
-<small>* estimation based on tests on an internal development team, building production applications.</small>
+<small>* գնահատումը հիմնված է ներքին թիմի թեստերի վրա, արտադրական ծրագրեր կառուցելիս։ </small>
 
 ## Sponsors
 
