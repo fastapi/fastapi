@@ -164,7 +164,7 @@ Aqui, mesmo que nossa *função de operação de caminho* esteja retornando o me
     {!> ../../../docs_src/response_model/tutorial003_py310.py!}
     ```
 
-...we declared the `response_model` to be our model `UserOut`, that doesn't include the password:
+...declaramos o `response_model` como nosso modelo `UserOut`, que não inclui a senha:
 
 === "Python 3.6 e superior"
 
