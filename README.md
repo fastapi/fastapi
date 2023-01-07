@@ -49,7 +49,6 @@ The key features are:
 <a href="https://bit.ly/3dmXC5S" target="_blank" title="The data structure for unstructured multimodal data"><img src="https://fastapi.tiangolo.com/img/sponsors/docarray.svg"></a>
 <a href="https://bit.ly/3JJ7y5C" target="_blank" title="Build cross-modal and multimodal applications on the cloud"><img src="https://fastapi.tiangolo.com/img/sponsors/jina2.svg"></a>
 <a href="https://cryptapi.io/" target="_blank" title="CryptAPI: Your easy to use, secure and privacy oriented payment gateway."><img src="https://fastapi.tiangolo.com/img/sponsors/cryptapi.svg"></a>
-<a href="https://doist.com/careers/9B437B1615-wa-senior-backend-engineer-python" target="_blank" title="Help us migrate doist to FastAPI"><img src="https://fastapi.tiangolo.com/img/sponsors/doist.svg"></a>
 <a href="https://www.deta.sh/?ref=fastapi" target="_blank" title="The launchpad for all your (team's) ideas"><img src="https://fastapi.tiangolo.com/img/sponsors/deta.svg"></a>
 <a href="https://www.investsuite.com/jobs" target="_blank" title="Wealthtech jobs with FastAPI"><img src="https://fastapi.tiangolo.com/img/sponsors/investsuite.svg"></a>
 <a href="https://training.talkpython.fm/fastapi-courses" target="_blank" title="FastAPI video courses on demand from people you trust"><img src="https://fastapi.tiangolo.com/img/sponsors/talkpython.png"></a>
@@ -57,6 +56,7 @@ The key features are:
 <a href="https://github.com/deepset-ai/haystack/" target="_blank" title="Build powerful search from composable, open source building blocks"><img src="https://fastapi.tiangolo.com/img/sponsors/haystack-fastapi.svg"></a>
 <a href="https://www.udemy.com/course/fastapi-rest/" target="_blank" title="Learn FastAPI by building a complete project. Extend your knowledge on advanced web development-AWS, Payments, Emails."><img src="https://fastapi.tiangolo.com/img/sponsors/ines-course.jpg"></a>
 <a href="https://careers.budget-insight.com/" target="_blank" title="Budget Insight is hiring!"><img src="https://fastapi.tiangolo.com/img/sponsors/budget-insight.svg"></a>
+<a href="https://www.svix.com/" target="_blank" title="Svix - Webhooks as a service"><img src="https://fastapi.tiangolo.com/img/sponsors/svix.svg"></a>
 
 <!-- /sponsors -->
 

@@ -71,6 +71,7 @@ nav:
   - tutorial/encoder.md
   - 보안:
     - tutorial/security/get-current-user.md
+  - tutorial/cors.md
 markdown_extensions:
 - toc:
     permalink: true
