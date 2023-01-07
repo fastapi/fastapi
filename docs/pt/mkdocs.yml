@@ -73,6 +73,7 @@ nav:
   - tutorial/path-params-numeric-validations.md
   - tutorial/cookie-params.md
   - tutorial/header-params.md
+  - tutorial/response-model.md
   - tutorial/response-status-code.md
   - tutorial/request-forms.md
   - tutorial/request-forms-and-files.md
