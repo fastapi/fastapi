@@ -2,6 +2,8 @@
 
 ## Latest Changes
 
+## 0.89.0
+
 ### Features
 
 * ✨ Add support for function return type annotations to declare the `response_model`. Initial PR [#1436](https://github.com/tiangolo/fastapi/pull/1436) by [@uriyyo](https://github.com/uriyyo).
