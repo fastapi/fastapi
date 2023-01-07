@@ -69,6 +69,7 @@ nav:
   - tutorial/request-files.md
   - tutorial/request-forms-and-files.md
   - tutorial/encoder.md
+  - tutorial/cors.md
 markdown_extensions:
 - toc:
     permalink: true
