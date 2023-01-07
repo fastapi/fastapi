@@ -30,6 +30,9 @@ silver:
   - url: https://careers.budget-insight.com/
     title: Budget Insight is hiring!
     img: https://fastapi.tiangolo.com/img/sponsors/budget-insight.svg
+  - url: https://www.svix.com/
+    title: Svix - Webhooks as a service
+    img: https://fastapi.tiangolo.com/img/sponsors/svix.svg
 bronze:
   - url: https://www.exoflare.com/open-source/?utm_source=FastAPI&utm_campaign=open_source
     title: Biosecurity risk assessments made easy.
