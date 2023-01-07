@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block announce %}
+<div class="announce-wrapper">
+  <div id="announce-left">
+    <div class="item">
+      <a class="announce-link" href="https://twitter.com/fastapi" target="_blank">
+        <span class="twemoji twitter">
+          {% include ".icons/fontawesome/brands/twitter.svg" %}
+        </span> دنبال کردن <strong>@fastapi</strong> در <strong>توییتر</strong> برای بروزز ماندن
+      </a>
+    </div>
+    <div class="item">
+      <a class="announce-link" href="https://fastapi.tiangolo.com/newsletter/">
+        <span class="twemoji">
+          {% include ".icons/material/email.svg" %}
+        </span> دنبال کردن در  <strong>فست ای پی آی و دوستان</strong> مجله 🎉
+      </a>
+    </div>
+    <div class="item">
+      <iframe style="display: inline-block; vertical-align: middle; border: none; margin-right: 0.5rem;" src="https://github.com/sponsors/tiangolo/button" title="Sponsor tiangolo" height="35" width="116" style="border: 0;"></iframe> <a class="announce-link" target="_blank" href="https://github.com/sponsors/tiangolo">You can now sponsor <strong>FastAPI</strong> 🍰</a>
+    </div>
+  </div>
+  <div id="announce-right" style="position: relative;">
+    <div class="item">
+      <a title="The data structure for unstructured multimodal data" style="display: block; position: relative;" href="https://bit.ly/3AcNTYL" target="_blank">
+        <span class="sponsor-badge">اسپانسر</span>
+        <img class="sponsor-image" src="/img/sponsors/docarray-top-banner.svg" />
+      </a>
+    </div>
+    <div class="item">
+      <a title="CryptAPI: Your easy to use, secure and privacy oriented payment gateway." style="display: block; position: relative;" href="https://cryptapi.io/" target="_blank">
+        <span class="sponsor-badge">اسپانسر</span>
+        <img class="sponsor-image" src="/img/sponsors/cryptapi-banner.svg" />
+      </a>
+    </div>
+    <div class="item">
+      <a title="Build cross-modal and multimodal applications on the cloud" style="display: block; position: relative;" href="https://bit.ly/3dphxRq" target="_blank">
+        <span class="sponsor-badge">اسپانسر</span>
+        <img class="sponsor-image" src="/img/sponsors/jina-top-banner.svg" />
+      </a>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{%- block scripts %}
+{{ super() }}
+<!-- DocsQA integration start -->
+<script src="https://cdn.jsdelivr.net/npm/qabot@0.4"></script>
+<script>
+  // This prevents the global search from interfering with qa-bot's internal text input.
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('qa-bot').forEach((x) => {
+      x.addEventListener('keydown', (event) => {
+        event.stopPropagation();
+      });
+    });
+  });
+</script>
+<qa-bot
+  server="https://tiangolo-fastapi.docsqa.jina.ai"
+  theme="infer"
+  title="FastAPI Bot"
+  description="FastAPI framework, high performance, easy to learn, fast to code, ready for production"
+  style="font-size: 0.8rem"
+>
+  <template>
+      <dl>
+          <dt>می توانید در مورد FastAPI سوالاتی بپرسید. تلاش كردن:</dt>
+          <dd>چگونه FastAPI را مستقر می کنید؟</dd>
+          <dd>نکات تایپ چیست؟</dd>
+          <dd>OpenAPI چیست؟</dd>
+      </dl>
+  </template>
+</qa-bot>
+<!-- DocsQA integration end -->
+{%- endblock %}
