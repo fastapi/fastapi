@@ -8,9 +8,6 @@ gold:
   - url: https://cryptapi.io/
     title: "CryptAPI: Your easy to use, secure and privacy oriented payment gateway."
     img: https://fastapi.tiangolo.com/img/sponsors/cryptapi.svg
-  - url: https://doist.com/careers/9B437B1615-wa-senior-backend-engineer-python
-    title: Help us migrate doist to FastAPI
-    img: https://fastapi.tiangolo.com/img/sponsors/doist.svg
 silver:
   - url: https://www.deta.sh/?ref=fastapi
     title: The launchpad for all your (team's) ideas
