@@ -71,6 +71,7 @@ nav:
   - tutorial/encoder.md
   - Security:
     - tutorial/security/simple-oauth2.md
+  - tutorial/cors.md
 markdown_extensions:
 - toc:
     permalink: true
