@@ -290,11 +290,11 @@ T = TypeVar("T")
 
 
 @overload
-def Depends(
+def Depends(  # noqa: N802
     dependency: None = None,
     *,
     use_cache: bool = True,
-) -> Any:  # noqa: N802
+) -> Any:  # pragma: nocover
     pass
 
 
@@ -303,7 +303,7 @@ def Depends(  # noqa: N802
     dependency: Callable[..., Awaitable[T]],
     *,
     use_cache: bool = True,
-) -> T:
+) -> T:  # pragma: nocover
     pass
 
 
@@ -312,7 +312,7 @@ def Depends(  # noqa: N802
     dependency: Callable[..., Iterator[T]],
     *,
     use_cache: bool = True,
-) -> T:
+) -> T:  # pragma: nocover
     pass
 
 
@@ -321,7 +321,7 @@ def Depends(  # noqa: N802
     dependency: Callable[..., AsyncIterator[T]],
     *,
     use_cache: bool = True,
-) -> T:
+) -> T:  # pragma: nocover
     pass
 
 
@@ -330,7 +330,7 @@ def Depends(  # noqa: N802
     dependency: Callable[..., T],
     *,
     use_cache: bool = True,
-) -> T:
+) -> T:  # pragma: nocover
     pass
 
 
@@ -346,7 +346,7 @@ def Security(  # noqa: N802
     *,
     scopes: Optional[Sequence[str]] = None,
     use_cache: bool = True,
-) -> Any:
+) -> Any:  # pragma: nocover
     pass
 
 
@@ -356,7 +356,7 @@ def Security(  # noqa: N802
     *,
     scopes: Optional[Sequence[str]] = None,
     use_cache: bool = True,
-) -> T:
+) -> T:  # pragma: nocover
     pass
 
 
@@ -366,7 +366,7 @@ def Security(  # noqa: N802
     *,
     scopes: Optional[Sequence[str]] = None,
     use_cache: bool = True,
-) -> T:
+) -> T:  # pragma: nocover
     pass
 
 
@@ -376,7 +376,7 @@ def Security(  # noqa: N802
     *,
     scopes: Optional[Sequence[str]] = None,
     use_cache: bool = True,
-) -> T:
+) -> T:  # pragma: nocover
     pass
 
 
@@ -386,7 +386,7 @@ def Security(  # noqa: N802
     *,
     scopes: Optional[Sequence[str]] = None,
     use_cache: bool = True,
-) -> T:
+) -> T:  # pragma: nocover
     pass
 
 
