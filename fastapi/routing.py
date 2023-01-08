@@ -356,7 +356,13 @@ class APIRoute(routing.Route):
         self.path = path
         self.endpoint = endpoint
         if isinstance(response_model, DefaultPlaceholder):
-            response_model = get_typed_return_annotation(endpoint)
+            return_annotation = get_typed_return_annotation(endpoint)
+            if inspect.isclass(return_annotation) and issubclass(
+                return_annotation, Response
+            ):
+                response_model = None
+            else:
+                response_model = return_annotation
         self.response_model = response_model
         self.summary = summary
         self.response_description = response_description
