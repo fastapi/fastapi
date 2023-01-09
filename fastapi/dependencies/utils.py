@@ -276,7 +276,12 @@ def get_typed_return_annotation(call: Callable[..., Any]) -> Any:
         return None
 
     globalns = getattr(call, "__globals__", {})
-    return get_typed_annotation(annotation, globalns)
+    typed_annotation = get_typed_annotation(annotation, globalns)
+
+    if typed_annotation is type(None):
+        return None
+
+    return typed_annotation
 
 
 def get_dependant(
