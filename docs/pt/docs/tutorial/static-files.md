@@ -1,4 +1,4 @@
-# Arquivos Estáticos 
+# Arquivos Estáticos
 
 Você pode servir arquivos estáticos automaticamente de um diretório usando `StaticFiles`.
 
