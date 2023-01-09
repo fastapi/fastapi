@@ -278,7 +278,7 @@ def get_typed_return_annotation(call: Callable[..., Any]) -> Any:
     globalns = getattr(call, "__globals__", {})
     typed_annotation = get_typed_annotation(annotation, globalns)
 
-    if typed_annotation is type(None): # noqa: E721
+    if typed_annotation is type(None):  # noqa: E721
         return None
 
     return typed_annotation
