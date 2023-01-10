@@ -2,6 +2,9 @@
 
 ## Latest Changes
 
+
+## 0.89.1
+
 ### Fixes
 
 * 🐛 Ignore Response classes on return annotation. PR [#5855](https://github.com/tiangolo/fastapi/pull/5855) by [@Kludex](https://github.com/Kludex). See the new docs in the PR below.
