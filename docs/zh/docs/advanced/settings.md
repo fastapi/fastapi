@@ -250,7 +250,7 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" uvicorn main:app
 这种做法非常普遍，以至于它有一个名字，这些环境变量通常被放在一个文件 `.env` 中，这个文件被称为 `dotenv` 。
 
 !!! tip
-在类 Unix 的系统中，如 Linux 和 macOS，以点（`.`）开头的文件是一个隐藏文件。
+    在类 Unix 的系统中，如 Linux 和 macOS，以点（`.`）开头的文件是一个隐藏文件。
 
     但 dotenv 文件不一定要有那个确切的文件名。
 
