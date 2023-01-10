@@ -61,7 +61,7 @@ print(f"Hello {name} from Python")
 ```
 
 !!! tip
-<a href="https://docs.python.org/3.8/library/os.html#os.getenv" class="external-link" target="_blank">`os.getenv()`</a>的第二个参数是默认值。
+    <a href="https://docs.python.org/3.8/library/os.html#os.getenv" class="external-link" target="_blank">`os.getenv()`</a>的第二个参数是默认值。
 
     如果未获取到值, 默认值将为`None`, 这里我们提供 `"World"` 作为默认值使用.
 
