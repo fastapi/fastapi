@@ -279,7 +279,7 @@ APP_NAME="ChimichangApp"
 这里，我们在你的 Pydantic `Settings` 类中创建一个 `Config` 类，并将 `env_file` 设置为我们想要使用的 dotenv 文件的文件名。
 
 !!! tip
-使用 `Config` 类仅仅是为了 Pydantic 的设置. 你可以在<a href="https://pydantic-docs.helpmanual.io/usage/model_config/" class="external-link" target="_blank">Pydantic Model Config</a>中了解更多。
+    使用 `Config` 类仅仅是为了 Pydantic 的设置. 你可以在<a href="https://pydantic-docs.helpmanual.io/usage/model_config/" class="external-link" target="_blank">Pydantic Model Config</a>中了解更多。
 
 ### 只用 `lru_cache` 创建 `Settings` 一次
 
