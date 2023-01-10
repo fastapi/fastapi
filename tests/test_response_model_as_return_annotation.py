@@ -2,6 +2,7 @@ from typing import List, Union
 
 import pytest
 from fastapi import FastAPI
+from fastapi.exceptions import FastAPIError
 from fastapi.responses import JSONResponse, Response
 from fastapi.testclient import TestClient
 from pydantic import BaseModel, ValidationError
@@ -1096,3 +1097,15 @@ def test_no_response_model_annotation_json_response_class():
     response = client.get("/no_response_model-annotation_json_response_class")
     assert response.status_code == 200, response.text
     assert response.json() == {"foo": "bar"}
+
+
+def test_invalid_response_model_field():
+    app = FastAPI()
+    with pytest.raises(FastAPIError) as e:
+
+        @app.get("/")
+        def read_root() -> Union[Response, None]:
+            return Response(content="Foo")  # pragma: no cover
+
+    assert "valid Pydantic field type" in e.value.args[0]
+    assert "parameter response_model=None" in e.value.args[0]
