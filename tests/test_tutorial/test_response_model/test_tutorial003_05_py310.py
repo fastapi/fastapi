@@ -89,12 +89,14 @@ def test_openapi_schema(client: TestClient):
     assert response.json() == openapi_schema
 
 
+@needs_py310
 def test_get_portal(client: TestClient):
     response = client.get("/portal")
     assert response.status_code == 200, response.text
     assert response.json() == {"message": "Here's your interdimensional portal."}
 
 
+@needs_py310
 def test_get_redirect(client: TestClient):
     response = client.get("/portal", params={"teleport": True}, follow_redirects=False)
     assert response.status_code == 307, response.text
