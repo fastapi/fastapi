@@ -257,7 +257,7 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" uvicorn main:app
 Pydantic 支持使用外部库从这些类型的文件中进行读取。你可以在 <a href="https://pydantic-docs.helpmanual.io/usage/settings/#dotenv-env-support" class="external-link" target="_blank">Pydantic Settings: Dotenv (.env) support</a>了解更多。
 
 !!! tip
-要让这个工作，你需要运行`pip install python-dotenv`.
+    要让这个工作，你需要运行`pip install python-dotenv`.
 
 ### `.env` 文件
 
