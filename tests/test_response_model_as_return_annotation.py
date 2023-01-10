@@ -238,6 +238,16 @@ def no_response_model_annotation_union_return_model2() -> Union[User, Item]:
     return Item(name="Foo", price=42.0)
 
 
+@app.get("/no_response_model-annotation_union-return_model3")
+def no_response_model_annotation_union_return_model3() -> Union[User, None]:
+    return User(name="John", surname="Doe")
+
+
+@app.get("/no_response_model-annotation_union-return_none")
+def no_response_model_annotation_union_return_none() -> None:
+    return None
+
+
 @app.get("/no_response_model-annotation_response_class")
 def no_response_model_annotation_response_class() -> Response:
     return Response(content="Foo")
@@ -246,6 +256,23 @@ def no_response_model_annotation_response_class() -> Response:
 @app.get("/no_response_model-annotation_json_response_class")
 def no_response_model_annotation_json_response_class() -> JSONResponse:
     return JSONResponse(content={"foo": "bar"})
+
+
+@app.get("/no_response_model-annotation_union_response_class_model1")
+def no_response_model_annotation_union_response_class_model1() -> Union[Response, User]:
+    return User(name="John", surname="Doe")
+
+
+@app.get("/no_response_model-annotation_union_response_class_model2")
+def no_response_model_annotation_union_response_class_model2() -> Union[Response, User]:
+    return Response(content="Foo")
+
+
+@app.get("/no_response_model-annotation_union_response_class_model3")
+def no_response_model_annotation_union_response_class_model3() -> Union[
+    Response, User, None
+]:
+    return None
 
 
 openapi_schema = {
@@ -800,6 +827,34 @@ openapi_schema = {
                 },
             }
         },
+        "/no_response_model-annotation_union-return_model3": {
+            "get": {
+                "summary": "No Response Model Annotation Union Return Model3",
+                "operationId": "no_response_model_annotation_union_return_model3_no_response_model_annotation_union_return_model3_get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {"$ref": "#/components/schemas/User"}
+                            }
+                        },
+                    }
+                },
+            }
+        },
+        "/no_response_model-annotation_union-return_none": {
+            "get": {
+                "summary": "No Response Model Annotation Union Return None",
+                "operationId": "no_response_model_annotation_union_return_none_no_response_model_annotation_union_return_none_get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {"application/json": {"schema": {}}},
+                    }
+                },
+            }
+        },
         "/no_response_model-annotation_response_class": {
             "get": {
                 "summary": "No Response Model Annotation Response Class",
@@ -820,6 +875,54 @@ openapi_schema = {
                     "200": {
                         "description": "Successful Response",
                         "content": {"application/json": {"schema": {}}},
+                    }
+                },
+            }
+        },
+        "/no_response_model-annotation_union_response_class_model1": {
+            "get": {
+                "summary": "No Response Model Annotation Union Response Class Model1",
+                "operationId": "no_response_model_annotation_union_response_class_model1_no_response_model_annotation_union_response_class_model1_get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {"$ref": "#/components/schemas/User"}
+                            }
+                        },
+                    }
+                },
+            }
+        },
+        "/no_response_model-annotation_union_response_class_model2": {
+            "get": {
+                "summary": "No Response Model Annotation Union Response Class Model2",
+                "operationId": "no_response_model_annotation_union_response_class_model2_no_response_model_annotation_union_response_class_model2_get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {"$ref": "#/components/schemas/User"}
+                            }
+                        },
+                    }
+                },
+            }
+        },
+        "/no_response_model-annotation_union_response_class_model3": {
+            "get": {
+                "summary": "No Response Model Annotation Union Response Class Model3",
+                "operationId": "no_response_model_annotation_union_response_class_model3_no_response_model_annotation_union_response_class_model3_get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {"$ref": "#/components/schemas/User"}
+                            }
+                        },
                     }
                 },
             }
@@ -1086,6 +1189,17 @@ def test_no_response_model_annotation_union_return_model2():
     assert response.json() == {"name": "Foo", "price": 42.0}
 
 
+def test_no_response_model_annotation_union_return_model3():
+    response = client.get("/no_response_model-annotation_union-return_model3")
+    assert response.status_code == 200, response.text
+    assert response.json() == {"name": "John", "surname": "Doe"}
+
+
+def test_no_response_model_annotation_union_return_none():
+    response = client.get("/no_response_model-annotation_union-return_none")
+    assert response.status_code == 200, response.text
+
+
 def test_no_response_model_annotation_return_class():
     response = client.get("/no_response_model-annotation_response_class")
     assert response.status_code == 200, response.text
@@ -1096,3 +1210,21 @@ def test_no_response_model_annotation_json_response_class():
     response = client.get("/no_response_model-annotation_json_response_class")
     assert response.status_code == 200, response.text
     assert response.json() == {"foo": "bar"}
+
+
+def test_no_response_model_annotation_return_class_with_response_class():
+    response = client.get("/no_response_model-annotation_union_response_class_model1")
+    assert response.status_code == 200, response.text
+    assert response.json() == {"name": "John", "surname": "Doe"}
+
+
+def test_no_response_model_annotation_return_class_with_response_class2():
+    response = client.get("/no_response_model-annotation_union_response_class_model2")
+    assert response.status_code == 200, response.text
+    assert response.text == "Foo"
+
+
+def test_no_response_model_annotation_return_class_with_response_class3():
+    response = client.get("/no_response_model-annotation_union_response_class_model3")
+    assert response.status_code == 200, response.text
+    assert response.json() is None
