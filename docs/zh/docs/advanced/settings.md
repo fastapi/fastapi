@@ -169,7 +169,7 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" uvicorn main:app
 </div>
 
 !!! tip
-需要为一条命令设置多个环境变量时，只需用空格隔开，并把它们都放在命令前。
+    需要为一条命令设置多个环境变量时，只需用空格隔开，并把它们都放在命令前。
 
 然后 `admin_email` 设置将被设置为 `"deadpool@example.com"` 。
 
