@@ -1,5 +1,9 @@
 articles:
   english:
+  - author: Teresa N. Fontanella De Santis
+    author_link: https://dev.to/
+    link: https://dev.to/teresafds/authorization-on-fastapi-with-casbin-41og
+    title: Authorization on FastAPI with Casbin
   - author: WayScript
     author_link: https://www.wayscript.com
     link: https://blog.wayscript.com/fast-api-quickstart/

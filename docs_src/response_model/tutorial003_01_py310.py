@@ -4,14 +4,16 @@ from pydantic import BaseModel, EmailStr
 app = FastAPI()
 
 
-class UserIn(BaseModel):
+class BaseUser(BaseModel):
     username: str
-    password: str
     email: EmailStr
     full_name: str | None = None
 
 
-# Don't do this in production!
+class UserIn(BaseUser):
+    password: str
+
+
 @app.post("/user/")
-async def create_user(user: UserIn) -> UserIn:
+async def create_user(user: UserIn) -> BaseUser:
     return user
