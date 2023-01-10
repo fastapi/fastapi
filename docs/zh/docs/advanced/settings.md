@@ -221,7 +221,7 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" uvicorn main:app
 ```
 
 !!! tip
-我们将在稍后讨论 `@lru_cache()` 。
+    我们将在稍后讨论 `@lru_cache()` 。
 
      现在你可以假设 `get_settings()` 是一个正常的函数。
 
