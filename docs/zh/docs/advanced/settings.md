@@ -9,7 +9,7 @@
 ## 环境变量
 
 !!! tip
-如果你已经知道什么是 “环境变量” 以及如何使用它们，请直接跳到下面的章节。
+    如果你已经知道什么是 “环境变量” 以及如何使用它们，请直接跳到下面的章节。
 
 <a href="https://en.wikipedia.org/wiki/Environment_variable" class="external-link" target="_blank">环境变量</a> （也称"env var"） 是一个设置在 Python 代码之外的变量，在操作系统中，可以被你的 Python 代码读取（或者也可以被其它程序读取）。
 
