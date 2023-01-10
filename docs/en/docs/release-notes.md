@@ -2,6 +2,7 @@
 
 ## Latest Changes
 
+* 📝 Add External Link: FastAPI lambda container: serverless simplified. PR [#5784](https://github.com/tiangolo/fastapi/pull/5784) by [@rafrasenberg](https://github.com/rafrasenberg).
 ## 0.89.0
 
 ### Features
