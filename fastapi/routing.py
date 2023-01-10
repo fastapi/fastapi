@@ -40,6 +40,7 @@ from fastapi.utils import (
     is_body_allowed_for_status_code,
 )
 from pydantic import BaseModel
+from pydantic.utils import lenient_issubclass
 from pydantic.error_wrappers import ErrorWrapper, ValidationError
 from pydantic.fields import ModelField, Undefined
 from starlette import routing
@@ -357,9 +358,7 @@ class APIRoute(routing.Route):
         self.endpoint = endpoint
         if isinstance(response_model, DefaultPlaceholder):
             return_annotation = get_typed_return_annotation(endpoint)
-            if inspect.isclass(return_annotation) and issubclass(
-                return_annotation, Response
-            ):
+            if lenient_issubclass(return_annotation, Response):
                 response_model = None
             else:
                 response_model = return_annotation
