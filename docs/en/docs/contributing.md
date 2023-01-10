@@ -188,9 +188,9 @@ $ python ./scripts/docs.py live
 
 It will serve the documentation on `http://127.0.0.1:8008`.
 
-That way, you can edit the documentation/source files and see the changes live.
-
 This documentation will be in English by default. If you want to see it in another language, you need to add a localization label, for example: `en`.
+
+That way, you can edit the documentation/source files and see the changes live.
 
 #### Typer CLI (optional)
 
