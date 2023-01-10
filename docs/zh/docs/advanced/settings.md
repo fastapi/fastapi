@@ -115,7 +115,7 @@ Hello World from Python
 </div>
 
 !!! tip
-你可以在<a href="https://12factor.net/config" class="external-link" target="_blank">The Twelve-Factor App: Config</a>了解到更多。
+    你可以在<a href="https://12factor.net/config" class="external-link" target="_blank">The Twelve-Factor App: Config</a>了解到更多。
 
 ### 类型与验证
 
