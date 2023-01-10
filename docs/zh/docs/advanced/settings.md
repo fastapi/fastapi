@@ -281,7 +281,7 @@ APP_NAME="ChimichangApp"
 !!! tip
     使用 `Config` 类仅仅是为了 Pydantic 的设置. 你可以在<a href="https://pydantic-docs.helpmanual.io/usage/model_config/" class="external-link" target="_blank">Pydantic Model Config</a>中了解更多。
 
-### 只用 `lru_cache` 创建 `Settings` 一次
+### 使用 `lru_cache` 只创建 `Settings` 一次
 
 从磁盘上读取文件通常是一个昂贵的（缓慢的）操作，所以你可能只想读取一次，然后重新使用相同的设置对象，而不是为每个请求读取它。
 
