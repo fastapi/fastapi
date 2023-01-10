@@ -3,7 +3,6 @@ import dataclasses
 import email.message
 import inspect
 import json
-import sys
 from contextlib import AsyncExitStack
 from enum import Enum, IntEnum
 from typing import (
@@ -41,9 +40,9 @@ from fastapi.utils import (
     is_body_allowed_for_status_code,
 )
 from pydantic import BaseModel
+from pydantic.utils import lenient_issubclass
 from pydantic.error_wrappers import ErrorWrapper, ValidationError
 from pydantic.fields import ModelField, Undefined
-from pydantic.utils import lenient_issubclass as issubclass
 from starlette import routing
 from starlette.concurrency import run_in_threadpool
 from starlette.exceptions import HTTPException
@@ -60,11 +59,6 @@ from starlette.routing import (
 from starlette.status import WS_1008_POLICY_VIOLATION
 from starlette.types import ASGIApp, Scope
 from starlette.websockets import WebSocket
-
-if sys.version_info >= (3, 8):
-    from typing import get_args, get_origin
-else:
-    from typing_extensions import get_args, get_origin
 
 
 def _prepare_response_content(
@@ -364,16 +358,7 @@ class APIRoute(routing.Route):
         self.endpoint = endpoint
         if isinstance(response_model, DefaultPlaceholder):
             return_annotation = get_typed_return_annotation(endpoint)
-            if get_origin(return_annotation) is Union:
-                union_args = get_args(return_annotation)
-                args = tuple(arg for arg in union_args if not issubclass(arg, Response))
-                if len(args) > 1:
-                    response_model = Union[args]
-                elif len(args) == 1:
-                    response_model = args[0]
-                else:
-                    response_model = None
-            elif issubclass(return_annotation, Response):
+            if lenient_issubclass(return_annotation, Response):
                 response_model = None
             else:
                 response_model = return_annotation
