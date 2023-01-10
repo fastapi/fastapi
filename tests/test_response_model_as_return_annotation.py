@@ -2,6 +2,7 @@ from typing import List, Union
 
 import pytest
 from fastapi import FastAPI
+from fastapi.responses import JSONResponse, Response
 from fastapi.testclient import TestClient
 from pydantic import BaseModel, ValidationError
 
@@ -235,6 +236,16 @@ def no_response_model_annotation_union_return_model1() -> Union[User, Item]:
 @app.get("/no_response_model-annotation_union-return_model2")
 def no_response_model_annotation_union_return_model2() -> Union[User, Item]:
     return Item(name="Foo", price=42.0)
+
+
+@app.get("/no_response_model-annotation_response_class")
+def no_response_model_annotation_response_class() -> Response:
+    return Response(content="Foo")
+
+
+@app.get("/no_response_model-annotation_json_response_class")
+def no_response_model_annotation_json_response_class() -> JSONResponse:
+    return JSONResponse(content={"foo": "bar"})
 
 
 openapi_schema = {
@@ -789,6 +800,30 @@ openapi_schema = {
                 },
             }
         },
+        "/no_response_model-annotation_response_class": {
+            "get": {
+                "summary": "No Response Model Annotation Response Class",
+                "operationId": "no_response_model_annotation_response_class_no_response_model_annotation_response_class_get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {"application/json": {"schema": {}}},
+                    }
+                },
+            }
+        },
+        "/no_response_model-annotation_json_response_class": {
+            "get": {
+                "summary": "No Response Model Annotation Json Response Class",
+                "operationId": "no_response_model_annotation_json_response_class_no_response_model_annotation_json_response_class_get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {"application/json": {"schema": {}}},
+                    }
+                },
+            }
+        },
     },
     "components": {
         "schemas": {
@@ -1049,3 +1084,15 @@ def test_no_response_model_annotation_union_return_model2():
     response = client.get("/no_response_model-annotation_union-return_model2")
     assert response.status_code == 200, response.text
     assert response.json() == {"name": "Foo", "price": 42.0}
+
+
+def test_no_response_model_annotation_return_class():
+    response = client.get("/no_response_model-annotation_response_class")
+    assert response.status_code == 200, response.text
+    assert response.text == "Foo"
+
+
+def test_no_response_model_annotation_json_response_class():
+    response = client.get("/no_response_model-annotation_json_response_class")
+    assert response.status_code == 200, response.text
+    assert response.json() == {"foo": "bar"}
