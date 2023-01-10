@@ -240,7 +240,7 @@ $ uvicorn tutorial001:app --reload
 
 !!! Подсказка
     Вы можете <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/commenting-on-a-pull-request" class="external-link" target="_blank">добавлять комментарии с предложениями по изменению</a> в существующие пул-реквесты.
-    
+
     Ознакомьтесь с документацией о <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-request-reviews" class="external-link" target="_blank">добавлении отзыва к пул-реквесту</a> чтобы утвердить его или запросить изменения..
 
 * Проверьте <a href="https://github.com/tiangolo/fastapi/issues" class="external-link" target="_blank">проблемы и вопросы</a> чтобы узнать, есть ли кто-то, координирующий переводы для Вашего языка.
