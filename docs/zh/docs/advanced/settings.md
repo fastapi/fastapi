@@ -13,7 +13,7 @@
 
 <a href="https://en.wikipedia.org/wiki/Environment_variable" class="external-link" target="_blank">环境变量</a> （也称"env var"） 是一个设置在 Python 代码之外的变量，在操作系统中，可以被你的 Python 代码读取（或者也可以被其它程序读取）。
 
-你无需使用 Python 程序 就可以在 shell 中创建和使用环境变量。
+你无需使用 Python 程序 就可以在 shell 中创建和使用环境变量:
 
 === "Linux, macOS, Windows Bash"
 
