@@ -194,7 +194,7 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" uvicorn main:app
 ```
 
 !!! tip
-你仍让需要 `__init__.py` 文件如你在[更大的应用 - 多个文件](../tutorial/bigger-applications.md){.internal-link target=\_blank}中看到的那样。
+    你仍让需要 `__init__.py` 文件如你在[更大的应用 - 多个文件](../tutorial/bigger-applications.md){.internal-link target=\_blank}中看到的那样。
 
 ## 在依赖中设置
 
