@@ -179,7 +179,7 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" uvicorn main:app
 
 ## 在另一个 module 中设置
 
-你可以讲它分散到不同的 module 中，就像你在[更大的应用 - 多个文件](../tutorial/bigger-applications.md){.internal-link target=\_blank}中看到的一样。
+你可以将它分散到不同的 module 中，就像你在[更大的应用 - 多个文件](../tutorial/bigger-applications.md){.internal-link target=\_blank}中看到的一样。
 
 例如你有一个 `config.py` 文件:
 
