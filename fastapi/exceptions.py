@@ -15,6 +15,9 @@ class HTTPException(StarletteHTTPException):
     ) -> None:
         super().__init__(status_code=status_code, detail=detail, headers=headers)
 
+    def __str__(self) -> str:
+        return f"status_code : {self.status_code}, detail : {self.detail}"
+
 
 RequestErrorModel: Type[BaseModel] = create_model("Request")
 WebSocketErrorModel: Type[BaseModel] = create_model("WebSocket")
