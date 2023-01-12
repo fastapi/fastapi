@@ -89,6 +89,8 @@ Se você declarar um tipo de retorno e um `response_model`, o `response_model` t
 
 Dessa forma, você pode adicionar anotações de tipo corretas às suas funções, mesmo quando estiver retornando um tipo diferente do modelo de resposta, para ser usado pelo editor e ferramentas como mypy. E você ainda pode fazer com que FastAPI faça a validação de dados, documentação, etc. usando o `response_model`.
 
+Você também pode usar `response_model=None` para desabilitar a criação de um modelo de resposta para essa *operação de caminho*, você pode precisar fazer isso se estiver adicionando anotações de tipo para coisas que não são campos Pydantic válidos, você verá um exemplo disso em uma das seções abaixo.
+
 ## Retornar os mesmos dados de entrada
 
 Aqui estamos declarando um modelo `UserIn`, ele conterá uma senha em texto simples:
@@ -245,6 +247,74 @@ E ambos os modelos serão usados para a documentação interativa da API:
 
 <img src="https://fastapi.tiangolo.com/img/tutorial/response-model/image02.png">
 
+## Outras Anotações de Tipo de Retorno
+
+Pode haver casos em que você retorna algo que não é um campo Pydantic válido e o anota na função, apenas para obter o suporte fornecido pelas ferramentas (editor, mypy, etc).
+
+### Retornar uma Resposta Diretamente
+
+O caso mais comum seria retornar uma resposta diretamente:
+
+```Python hl_lines="8  10-11"
+{!> ../../../docs_src/response_model/tutorial003_02.py!}
+```
+
+Este caso simples é tratado automaticamente pelo FastAPI porque a anotação do tipo de retorno é a classe (ou uma subclasse) de `Response`.
+
+E as ferramentas também ficarão felizes porque tanto `RedirectResponse` quanto `JSONResponse` são subclasses de `Response`, então a anotação de tipo está correta.
+
+### Anotar uma Subclasse de Resposta
+
+Você também pode usar uma subclasse de `Response` na anotação de tipo:
+
+```Python hl_lines="8-9"
+{!> ../../../docs_src/response_model/tutorial003_03.py!}
+```
+
+Isso também funcionará porque `RedirectResponse` é uma subclasse de `Response`, e FastAPI lidará automaticamente com esse caso simples.
+
+### Anotações de Tipo de Retorno Inválidas
+
+Mas quando você retorna algum outro objeto arbitrário que não é um tipo Pydantic válido (por exemplo, um objeto de banco de dados) e o anota assim na função, o FastAPI tentará criar um modelo de resposta Pydantic a partir dessa anotação de tipo e falhará.
+
+O mesmo aconteceria se você tivesse algo como <abbr title='Uma união entre vários tipos significa "qualquer um desses tipos".'>união</abbr> entre diferentes tipos onde um ou mais deles não são tipos Pydantic válidos, por exemplo, isso falharia 💥:
+
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="10"
+    {!> ../../../docs_src/response_model/tutorial003_04.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="8"
+    {!> ../../../docs_src/response_model/tutorial003_04_py310.py!}
+    ```
+
+...isso falha porque a anotação de tipo não é um tipo Pydantic e não é apenas uma única classe ou subclasse `Response`, é uma união (qualquer uma das duas) entre uma `Response` e um `dict`.
+
+### Desativar Modelo de Resposta
+
+Continuando com o exemplo acima, você pode não querer ter a validação de dados padrão, documentação, filtragem, etc. que é executada pelo FastAPI.
+
+Mas você pode querer ainda manter a anotação do tipo de retorno na função para obter o suporte de ferramentas como editores e verificadores de tipo (por exemplo, mypy).
+
+Neste caso, você pode desabilitar a geração do modelo de resposta definindo `response_model=None`:
+
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="9"
+    {!> ../../../docs_src/response_model/tutorial003_05.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="7"
+    {!> ../../../docs_src/response_model/tutorial003_05_py310.py!}
+    ```
+
+Isso fará com que o FastAPI pule a geração do modelo de resposta e, dessa forma, você poderá ter quaisquer anotações de tipo de retorno necessárias sem que isso afete seu aplicativo FastAPI. 🤓
+
 ## Parâmetros de codificação do Modelo de Resposta
 
 Seu modelo de resposta pode ter valores padrão, como:
@@ -277,7 +347,7 @@ For example, if you have models with many optional attributes in a NoSQL databas
 
 ### Use o parâmetro `response_model_exclude_unset`
 
-Você pode definir o parâmetro *path operation decorator* `response_model_exclude_unset=True`:
+Você pode definir o parâmetro *decorador de operação de caminho* `response_model_exclude_unset=True`:
 
 === "Python 3.6 e superior"
 
@@ -359,7 +429,7 @@ Portanto, eles serão incluídos na resposta JSON.
 
 ### `response_model_include` and `response_model_exclude`
 
-Você também pode usar os parâmetros do *path operation decorator* `response_model_include` e `response_model_exclude`.
+Você também pode usar os parâmetros do *decorador de operação de caminho* `response_model_include` e `response_model_exclude`.
 
 Eles pegam um `conjunto` de `str` com o nome dos atributos a incluir (omitindo o restante) ou a excluir (incluindo o restante).
 
