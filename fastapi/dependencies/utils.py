@@ -267,7 +267,7 @@ def get_typed_signature(call: Callable[..., Any]) -> inspect.Signature:
                 name=param.name,
                 kind=param.kind,
                 default=params.Param(**query_extra_info[param.name]),
-                annotation=get_typed_annotation(param, globalns),
+                annotation=get_typed_annotation(param.annotation, globalns),
             )
             for param in signature.parameters.values()
         ]
@@ -277,7 +277,7 @@ def get_typed_signature(call: Callable[..., Any]) -> inspect.Signature:
                 name=param.name,
                 kind=param.kind,
                 default=param.default,
-                annotation=get_typed_annotation(param, globalns),
+                annotation=get_typed_annotation(param.annotation, globalns),
             )
             for param in signature.parameters.values()
         ]
