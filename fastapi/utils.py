@@ -21,6 +21,7 @@ if TYPE_CHECKING:  # pragma: nocover
 def is_body_allowed_for_status_code(status_code: Union[int, str, None]) -> bool:
     print("hello!")
     # TODO: something
+    unused = "something new"
     if status_code is None:
         return True
     # Ref: https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#patterned-fields-1
