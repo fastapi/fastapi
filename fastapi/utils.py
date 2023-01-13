@@ -20,6 +20,7 @@ if TYPE_CHECKING:  # pragma: nocover
 
 def is_body_allowed_for_status_code(status_code: Union[int, str, None]) -> bool:
     print("hello!")
+    print("hello again")
     # TODO: something
     unused = "something new"
     if status_code is None:
