@@ -22,12 +22,6 @@ from fastapi.exception_handlers import (
 from fastapi.exceptions import RequestValidationError
 from fastapi.logger import logger
 from fastapi.middleware.asyncexitstack import AsyncExitStackMiddleware
-from fastapi.openapi.docs import (
-    get_redoc_html,
-    get_swagger_ui_html,
-    get_swagger_ui_oauth2_redirect_html,
-)
-from fastapi.openapi.utils import get_openapi
 from fastapi.params import Depends
 from fastapi.types import DecoratedCallable
 from fastapi.utils import generate_unique_id
@@ -197,6 +191,8 @@ class FastAPI(Starlette):
 
     def openapi(self) -> Dict[str, Any]:
         if not self.openapi_schema:
+            from fastapi.openapi.utils import get_openapi
+
             self.openapi_schema = get_openapi(
                 title=self.title,
                 version=self.version,
@@ -228,6 +224,8 @@ class FastAPI(Starlette):
         if self.openapi_url and self.docs_url:
 
             async def swagger_ui_html(req: Request) -> HTMLResponse:
+                from fastapi.openapi.docs import get_swagger_ui_html
+
                 root_path = req.scope.get("root_path", "").rstrip("/")
                 openapi_url = root_path + self.openapi_url
                 oauth2_redirect_url = self.swagger_ui_oauth2_redirect_url
@@ -246,6 +244,8 @@ class FastAPI(Starlette):
             if self.swagger_ui_oauth2_redirect_url:
 
                 async def swagger_ui_redirect(req: Request) -> HTMLResponse:
+                    from fastapi.openapi.docs import get_swagger_ui_oauth2_redirect_html
+
                     return get_swagger_ui_oauth2_redirect_html()
 
                 self.add_route(
@@ -256,6 +256,8 @@ class FastAPI(Starlette):
         if self.openapi_url and self.redoc_url:
 
             async def redoc_html(req: Request) -> HTMLResponse:
+                from fastapi.openapi.docs import get_redoc_html
+
                 root_path = req.scope.get("root_path", "").rstrip("/")
                 openapi_url = root_path + self.openapi_url
                 return get_redoc_html(

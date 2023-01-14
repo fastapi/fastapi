@@ -1,4 +1,4 @@
-from fastapi.openapi.models import SecurityBase as SecurityBaseModel
+from fastapi.security.models import SecurityBase as SecurityBaseModel
 
 
 class SecurityBase:
