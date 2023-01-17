@@ -7,6 +7,7 @@ from typing import (
     Callable,
     Coroutine,
     Dict,
+    ForwardRef,
     List,
     Mapping,
     Optional,
@@ -34,6 +35,7 @@ from pydantic import BaseModel, create_model
 from pydantic.error_wrappers import ErrorWrapper
 from pydantic.errors import MissingError
 from pydantic.fields import (
+    SHAPE_FROZENSET,
     SHAPE_LIST,
     SHAPE_SEQUENCE,
     SHAPE_SET,
@@ -46,7 +48,7 @@ from pydantic.fields import (
     Undefined,
 )
 from pydantic.schema import get_annotation_from_field_info
-from pydantic.typing import ForwardRef, evaluate_forwardref
+from pydantic.typing import evaluate_forwardref
 from pydantic.utils import lenient_issubclass
 from starlette.background import BackgroundTasks
 from starlette.concurrency import run_in_threadpool
@@ -58,6 +60,7 @@ from starlette.websockets import WebSocket
 sequence_shapes = {
     SHAPE_LIST,
     SHAPE_SET,
+    SHAPE_FROZENSET,
     SHAPE_TUPLE,
     SHAPE_SEQUENCE,
     SHAPE_TUPLE_ELLIPSIS,
@@ -102,10 +105,10 @@ def check_file_field(field: ModelField) -> None:
                 assert parse_options_header
             except ImportError:
                 logger.error(multipart_incorrect_install_error)
-                raise RuntimeError(multipart_incorrect_install_error)
+                raise RuntimeError(multipart_incorrect_install_error) from None
         except ImportError:
             logger.error(multipart_not_installed_error)
-            raise RuntimeError(multipart_not_installed_error)
+            raise RuntimeError(multipart_not_installed_error) from None
 
 
 def get_param_sub_dependant(
@@ -161,7 +164,6 @@ def get_sub_dependant(
     )
     if security_requirement:
         sub_dependant.security_requirements.append(security_requirement)
-    sub_dependant.security_scopes = security_scopes
     return sub_dependant
 
 
@@ -251,7 +253,7 @@ def get_typed_signature(call: Callable[..., Any]) -> inspect.Signature:
             name=param.name,
             kind=param.kind,
             default=param.default,
-            annotation=get_typed_annotation(param, globalns),
+            annotation=get_typed_annotation(param.annotation, globalns),
         )
         for param in signature.parameters.values()
     ]
@@ -259,12 +261,22 @@ def get_typed_signature(call: Callable[..., Any]) -> inspect.Signature:
     return typed_signature
 
 
-def get_typed_annotation(param: inspect.Parameter, globalns: Dict[str, Any]) -> Any:
-    annotation = param.annotation
+def get_typed_annotation(annotation: Any, globalns: Dict[str, Any]) -> Any:
     if isinstance(annotation, str):
         annotation = ForwardRef(annotation)
         annotation = evaluate_forwardref(annotation, globalns, globalns)
     return annotation
+
+
+def get_typed_return_annotation(call: Callable[..., Any]) -> Any:
+    signature = inspect.signature(call)
+    annotation = signature.return_annotation
+
+    if annotation is inspect.Signature.empty:
+        return None
+
+    globalns = getattr(call, "__globals__", {})
+    return get_typed_annotation(annotation, globalns)
 
 
 def get_dependant(
@@ -278,7 +290,13 @@ def get_dependant(
     path_param_names = get_path_param_names(path)
     endpoint_signature = get_typed_signature(call)
     signature_params = endpoint_signature.parameters
-    dependant = Dependant(call=call, name=name, path=path, use_cache=use_cache)
+    dependant = Dependant(
+        call=call,
+        name=name,
+        path=path,
+        security_scopes=security_scopes,
+        use_cache=use_cache,
+    )
     for param_name, param in signature_params.items():
         if isinstance(param.default, params.Depends):
             sub_dependant = get_param_sub_dependant(
@@ -295,10 +313,7 @@ def get_dependant(
             assert is_scalar_field(
                 field=param_field
             ), "Path params must be of one of the supported types"
-            if isinstance(param.default, params.Path):
-                ignore_default = False
-            else:
-                ignore_default = True
+            ignore_default = not isinstance(param.default, params.Path)
             param_field = get_param_field(
                 param=param,
                 param_name=param_name,
@@ -421,22 +436,22 @@ def is_coroutine_callable(call: Callable[..., Any]) -> bool:
         return inspect.iscoroutinefunction(call)
     if inspect.isclass(call):
         return False
-    call = getattr(call, "__call__", None)
-    return inspect.iscoroutinefunction(call)
+    dunder_call = getattr(call, "__call__", None)  # noqa: B004
+    return inspect.iscoroutinefunction(dunder_call)
 
 
 def is_async_gen_callable(call: Callable[..., Any]) -> bool:
     if inspect.isasyncgenfunction(call):
         return True
-    call = getattr(call, "__call__", None)
-    return inspect.isasyncgenfunction(call)
+    dunder_call = getattr(call, "__call__", None)  # noqa: B004
+    return inspect.isasyncgenfunction(dunder_call)
 
 
 def is_gen_callable(call: Callable[..., Any]) -> bool:
     if inspect.isgeneratorfunction(call):
         return True
-    call = getattr(call, "__call__", None)
-    return inspect.isgeneratorfunction(call)
+    dunder_call = getattr(call, "__call__", None)  # noqa: B004
+    return inspect.isgeneratorfunction(dunder_call)
 
 
 async def solve_generator(
@@ -495,7 +510,6 @@ async def solve_dependencies(
                 name=sub_dependant.name,
                 security_scopes=sub_dependant.security_scopes,
             )
-            use_sub_dependant.security_scopes = sub_dependant.security_scopes
 
         solved_result = await solve_dependencies(
             request=request,
@@ -720,14 +734,14 @@ def get_body_field(*, dependant: Dependant, name: str) -> Optional[ModelField]:
     # in case a sub-dependency is evaluated with a single unique body field
     # That is combined (embedded) with other body fields
     for param in flat_dependant.body_params:
-        setattr(param.field_info, "embed", True)
+        setattr(param.field_info, "embed", True)  # noqa: B010
     model_name = "Body_" + name
     BodyModel: Type[BaseModel] = create_model(model_name)
     for f in flat_dependant.body_params:
         BodyModel.__fields__[f.name] = f
     required = any(True for f in flat_dependant.body_params if f.required)
 
-    BodyFieldInfo_kwargs: Dict[str, Any] = dict(default=None)
+    BodyFieldInfo_kwargs: Dict[str, Any] = {"default": None}
     if any(isinstance(f.field_info, params.File) for f in flat_dependant.body_params):
         BodyFieldInfo: Type[params.Body] = params.File
     elif any(isinstance(f.field_info, params.Form) for f in flat_dependant.body_params):
@@ -736,7 +750,7 @@ def get_body_field(*, dependant: Dependant, name: str) -> Optional[ModelField]:
         BodyFieldInfo = params.Body
 
         body_param_media_types = [
-            getattr(f.field_info, "media_type")
+            f.field_info.media_type
             for f in flat_dependant.body_params
             if isinstance(f.field_info, params.Body)
         ]
