@@ -69,7 +69,7 @@ nav:
   - tutorial/request-files.md
   - tutorial/request-forms-and-files.md
   - tutorial/encoder.md
-  - tutorial/cors.md  
+  - tutorial/cors.md
 - 배포하기:
   - deployment/server-workers.md
   - deployment/versions.md
