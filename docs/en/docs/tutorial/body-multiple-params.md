@@ -89,13 +89,13 @@ But you can instruct **FastAPI** to treat it as another body key using `Body`:
 
 === "Python 3.6 and above"
 
-    ```Python hl_lines="23"
+    ```Python hl_lines="22"
     {!> ../../../docs_src/body_multiple_params/tutorial003.py!}
     ```
 
 === "Python 3.10 and above"
 
-    ```Python hl_lines="21"
+    ```Python hl_lines="20"
     {!> ../../../docs_src/body_multiple_params/tutorial003_py310.py!}
     ```
 
@@ -126,7 +126,7 @@ Of course, you can also declare additional query parameters whenever you need, a
 As, by default, singular values are interpreted as query parameters, you don't have to explicitly add a `Query`, you can just do:
 
 ```Python
-q: Optional[str] = None
+q: Union[str, None] = None
 ```
 
 Or in Python 3.10 and above:
@@ -139,7 +139,7 @@ For example:
 
 === "Python 3.6 and above"
 
-    ```Python hl_lines="28"
+    ```Python hl_lines="27"
     {!> ../../../docs_src/body_multiple_params/tutorial004.py!}
     ```
 
@@ -152,7 +152,6 @@ For example:
 !!! info
     `Body` also has all the same extra validation and metadata parameters as `Query`,`Path` and others you will see later.
 
-
 ## Embed a single body parameter
 
 Let's say you only have a single `item` body parameter from a Pydantic model `Item`.
@@ -162,7 +161,7 @@ By default, **FastAPI** will then expect its body directly.
 But if you want it to expect a JSON with a key `item` and inside of it the model contents, as it does when you declare extra body parameters, you can use the special `Body` parameter `embed`:
 
 ```Python
-item: Item = Body(..., embed=True)
+item: Item = Body(embed=True)
 ```
 
 as in:
