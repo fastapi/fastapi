@@ -121,6 +121,10 @@ FastAPI stands on the shoulders of giants:
 
 ## Installation
 
+<a href="https://repology.org/project/python:fastapi/versions">
+    <img src="https://repology.org/badge/vertical-allrepos/python:fastapi.svg" alt="Packaging status" align="right">
+</a>
+
 <div class="termy">
 
 ```console
@@ -142,6 +146,8 @@ $ pip install "uvicorn[standard]"
 ```
 
 </div>
+
+You can also install fastapi from the offical [repos](https://repology.org/project/python:fastapi/versions) of various linux distributions using a package manager
 
 ## Example
 
