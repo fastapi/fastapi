@@ -239,9 +239,9 @@ class FastAPI(Starlette):
                     oauth2_redirect_url=oauth2_redirect_url,
                     init_oauth=self.swagger_ui_init_oauth,
                     swagger_ui_parameters=self.swagger_ui_parameters,
-                    swagger_js_url=self.extra.get('swagger_js_url'),
-                    swagger_css_url=self.extra.get('swagger_css_url'),
-                    swagger_favicon_url=self.extra.get('swagger_favicon_url'),
+                    swagger_js_url=self.extra.get("swagger_js_url"),
+                    swagger_css_url=self.extra.get("swagger_css_url"),
+                    swagger_favicon_url=self.extra.get("swagger_favicon_url"),
                 )
 
             self.add_route(self.docs_url, swagger_ui_html, include_in_schema=False)
