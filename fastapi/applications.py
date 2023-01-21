@@ -81,9 +81,9 @@ class FastAPI(Starlette):
         deprecated: Optional[bool] = None,
         include_in_schema: bool = True,
         swagger_ui_parameters: Optional[Dict[str, Any]] = None,
-        swagger_js_url: str = "",
-        swagger_css_url: str = "",
-        swagger_favicon_url: str = "",
+        swagger_js_url: str = "https://cdn.jsdelivr.net/npm/swagger-ui-dist@4/swagger-ui-bundle.js",
+        swagger_css_url: str = "https://cdn.jsdelivr.net/npm/swagger-ui-dist@4/swagger-ui.css",
+        swagger_favicon_url: str = "https://fastapi.tiangolo.com/img/favicon.png",
         generate_unique_id_function: Callable[[routing.APIRoute], str] = Default(
             generate_unique_id
         ),
