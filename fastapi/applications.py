@@ -109,8 +109,8 @@ class FastAPI(Starlette):
         self.openapi_version = "3.0.2"
         self.openapi_schema: Optional[Dict[str, Any]] = None
         self.swagger_js_url = swagger_js_url,
-        self.swagger_css_url: = swagger_css_url,
-        self.swagger_favicon_url: = swagger_css_url,
+        self.swagger_css_url = swagger_css_url,
+        self.swagger_favicon_url = swagger_css_url,
         if self.openapi_url:
             assert self.title, "A title must be provided for OpenAPI, e.g.: 'My API'"
             assert self.version, "A version must be provided for OpenAPI, e.g.: '2.1.0'"
