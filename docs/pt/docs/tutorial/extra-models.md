@@ -6,7 +6,7 @@ Isso é especialmente o caso para modelos de usuários, porque:
 
 * O **modelo de entrada** precisa ser capaz de ter uma senha.
 * O **modelo de saída** não deve ter uma senha.
-* O **modelo de banco de dados** provavelmente precisaria ter uma senha criptografada.password.
+* O **modelo de banco de dados** provavelmente precisaria ter uma senha criptografada.
 
 !!! danger
     Nunca armazene senhas em texto simples dos usuários. Sempre armazene uma "hash segura" que você pode verificar depois.
