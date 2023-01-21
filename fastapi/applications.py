@@ -81,6 +81,9 @@ class FastAPI(Starlette):
         deprecated: Optional[bool] = None,
         include_in_schema: bool = True,
         swagger_ui_parameters: Optional[Dict[str, Any]] = None,
+        swagger_js_url: str = "",
+        swagger_css_url: str = "",
+        swagger_favicon_url: str = "",
         generate_unique_id_function: Callable[[routing.APIRoute], str] = Default(
             generate_unique_id
         ),
@@ -105,6 +108,9 @@ class FastAPI(Starlette):
         self.extra = extra
         self.openapi_version = "3.0.2"
         self.openapi_schema: Optional[Dict[str, Any]] = None
+        self.swagger_js_url = swagger_js_url,
+        self.swagger_css_url: = swagger_css_url,
+        self.swagger_favicon_url: = swagger_css_url,
         if self.openapi_url:
             assert self.title, "A title must be provided for OpenAPI, e.g.: 'My API'"
             assert self.version, "A version must be provided for OpenAPI, e.g.: '2.1.0'"
@@ -239,9 +245,9 @@ class FastAPI(Starlette):
                     oauth2_redirect_url=oauth2_redirect_url,
                     init_oauth=self.swagger_ui_init_oauth,
                     swagger_ui_parameters=self.swagger_ui_parameters,
-                    swagger_js_url=self.extra.get("swagger_js_url"),
-                    swagger_css_url=self.extra.get("swagger_css_url"),
-                    swagger_favicon_url=self.extra.get("swagger_favicon_url"),
+                    swagger_js_url=self.swagger_js_url,
+                    swagger_css_url=self.swagger_css_url,
+                    swagger_favicon_url=self.swagger_favicon_url,
                 )
 
             self.add_route(self.docs_url, swagger_ui_html, include_in_schema=False)
