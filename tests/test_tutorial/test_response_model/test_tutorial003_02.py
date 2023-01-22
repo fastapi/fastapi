@@ -1,45 +1,34 @@
-from typing import Any
-
-from fastapi import FastAPI, Response
 from fastapi.testclient import TestClient
 
-app = FastAPI()
-
-
-@app.delete(
-    "/{id}",
-    status_code=204,
-    response_model=None,
-)
-async def delete_deployment(
-    id: int,
-    response: Response,
-) -> Any:
-    response.status_code = 400
-    return {"msg": "Status overwritten", "id": id}
-
+from docs_src.response_model.tutorial003_02 import app
 
 client = TestClient(app)
-
 
 openapi_schema = {
     "openapi": "3.0.2",
     "info": {"title": "FastAPI", "version": "0.1.0"},
     "paths": {
-        "/{id}": {
-            "delete": {
-                "summary": "Delete Deployment",
-                "operationId": "delete_deployment__id__delete",
+        "/portal": {
+            "get": {
+                "summary": "Get Portal",
+                "operationId": "get_portal_portal_get",
                 "parameters": [
                     {
-                        "required": True,
-                        "schema": {"title": "Id", "type": "integer"},
-                        "name": "id",
-                        "in": "path",
+                        "required": False,
+                        "schema": {
+                            "title": "Teleport",
+                            "type": "boolean",
+                            "default": False,
+                        },
+                        "name": "teleport",
+                        "in": "query",
                     }
                 ],
                 "responses": {
-                    "204": {"description": "Successful Response"},
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {"application/json": {"schema": {}}},
+                    },
                     "422": {
                         "description": "Validation Error",
                         "content": {
@@ -92,7 +81,13 @@ def test_openapi_schema():
     assert response.json() == openapi_schema
 
 
-def test_dependency_set_status_code():
-    response = client.delete("/1")
-    assert response.status_code == 400 and response.content
-    assert response.json() == {"msg": "Status overwritten", "id": 1}
+def test_get_portal():
+    response = client.get("/portal")
+    assert response.status_code == 200, response.text
+    assert response.json() == {"message": "Here's your interdimensional portal."}
+
+
+def test_get_redirect():
+    response = client.get("/portal", params={"teleport": True}, follow_redirects=False)
+    assert response.status_code == 307, response.text
+    assert response.headers["location"] == "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
