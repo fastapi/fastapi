@@ -1,6 +1,6 @@
 # Templates
 
-Você pode utilizar qualquer *template engine* que desejar com **FastAPI**, como o Jinja2, o mesmo utilizado pelo Flask e outras ferramentas.
+Você pode utilizar qualquer gerador de templates que desejar com **FastAPI**, como o Jinja2, o mesmo utilizado pelo Flask e outras ferramentas.
 
 Existem recursos para configurar ele facilmente, que você pode usar diretamente na sua aplicação **FastAPI** (fornecido por Starlette).
 
@@ -21,9 +21,9 @@ $ pip install jinja2
 ## Usando `Jinja2Templates`
 
 * Importe `Jinja2Templates`.
-* Crie um objeto `templates`, que você pode reutilzar depois.
+* Crie um objeto `templates`, que você poderá reutilzar depois.
 * Declare um parâmetro `Request` na *operação de caminho* que irá retornar um template.
-* Use o `templates` que você criou para dar render e retornar um `TemplateResponse`, passando o `request` como um par de valores chave no "contexto" do Jinja2.
+* Use o `templates` que foi criou para dar `render` e retornar um `TemplateResponse`, passando o `request` como um par de valores chave no "contexto" do Jinja2.
 
 ```Python hl_lines="4  11  15-16"
 {!../../../docs_src/templates/tutorial001.py!}
