@@ -27,9 +27,9 @@ silver:
   - url: https://www.udemy.com/course/fastapi-rest/
     title: Learn FastAPI by building a complete project. Extend your knowledge on advanced web development-AWS, Payments, Emails.
     img: https://fastapi.tiangolo.com/img/sponsors/ines-course.jpg
-  - url: https://careers.budget-insight.com/
-    title: Budget Insight is hiring!
-    img: https://fastapi.tiangolo.com/img/sponsors/budget-insight.svg
+  - url: https://careers.powens.com/
+    title: Powens is hiring!
+    img: https://fastapi.tiangolo.com/img/sponsors/powens.png
   - url: https://www.svix.com/
     title: Svix - Webhooks as a service
     img: https://fastapi.tiangolo.com/img/sponsors/svix.svg
