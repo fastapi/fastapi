@@ -2,6 +2,7 @@
 
 ## Latest Changes
 
+* 🔧 Update GitHub Sponsors badge data. PR [#5915](https://github.com/tiangolo/fastapi/pull/5915) by [@tiangolo](https://github.com/tiangolo).
 
 ## 0.89.1
 
