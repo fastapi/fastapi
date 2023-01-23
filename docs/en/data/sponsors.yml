@@ -29,8 +29,7 @@ silver:
     img: https://fastapi.tiangolo.com/img/sponsors/ines-course.jpg
   - url: https://careers.powens.com/
     title: Powens is hiring!
-    # img: https://fastapi.tiangolo.com/img/sponsors/powens.png
-    img: /img/sponsors/powens.png
+    img: https://fastapi.tiangolo.com/img/sponsors/powens.png
   - url: https://www.svix.com/
     title: Svix - Webhooks as a service
     img: https://fastapi.tiangolo.com/img/sponsors/svix.svg
