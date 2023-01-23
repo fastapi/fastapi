@@ -119,7 +119,7 @@ $ pip install -e ."[dev,doc,test]"
 
 #### Использование локального FastAPI
 
-Если Вы создаёте Python файл, который импортирует и использует FastAPI и запускаете его интерпретатором Python из Вашего локального окружения, то он будет использовать код из локального FastAPI.
+Если Вы создаёте Python файл, который импортирует и использует FastAPI,а затем запускаете его интерпретатором Python из Вашего локального окружения, то он будет использовать код из локального FastAPI.
 
 И, так как при вводе вышеупомянутой команды был указан флаг `-e`, если Вы измените код локального FastAPI, то при следующем запуске этого файла, он будет использовать свежую версию локального FastAPI, который Вы только что изменили.
 
@@ -242,7 +242,7 @@ $ uvicorn tutorial001:app --reload
 !!! tip "Подсказка"
     Вы можете <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/commenting-on-a-pull-request" class="external-link" target="_blank">добавлять комментарии с предложениями по изменению</a> в существующие пул-реквесты.
 
-    Ознакомьтесь с документацией о <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-request-reviews" class="external-link" target="_blank">добавлении отзыва к пул-реквесту</a>, чтобы утвердить его или запросить изменения..
+    Ознакомьтесь с документацией о <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-request-reviews" class="external-link" target="_blank">добавлении отзыва к пул-реквесту</a>, чтобы утвердить его или запросить изменения.
 
 * Проверьте <a href="https://github.com/tiangolo/fastapi/issues" class="external-link" target="_blank">проблемы и вопросы</a>, чтобы узнать, есть ли кто-то, координирующий переводы для Вашего языка.
 
@@ -387,7 +387,7 @@ Updating en
 
 ##### Новый язык не поддерживается
 
-Если при запуске скрипта `./scripts/docs.py live` Вы получаете сообщение об ошибке, что язык не поддерживается, что-то вроде
+Если при запуске скрипта `./scripts/docs.py live` Вы получаете сообщение об ошибке, что язык не поддерживается, что-то вроде:
 
 ```
  raise TemplateNotFound(template)
