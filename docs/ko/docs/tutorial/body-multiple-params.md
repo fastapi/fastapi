@@ -8,20 +8,20 @@
 
 그리고 본문 매개변수를 기본 값을 None으로 설정해서, 선택사항으로 선언할 수 있습니다:
 
-=== "Python 3.6 그리고 그 이상"
+=== "Python 3.6 이상"
 
     ```Python hl_lines="19-21"
     {!> ../../../docs_src/body_multiple_params/tutorial001.py!}
     ```
 
-=== "Python 3.10 그리고 그 이상"
+=== "Python 3.10 이상"
 
     ```Python hl_lines="17-19"
     {!> ../../../docs_src/body_multiple_params/tutorial001_py310.py!}
     ```
 
-!!! 주의
-    주의할 점으로, 이 경우 저 `item`의 경우 본문에서 선택사항으로 가져와질 것입니다. 왜냐하면 None이 기본 값으로 되어있기 때문입니다.
+!!! 참고
+    참고할 점으로, 이 경우 저 `item`의 경우 본문에서 선택사항으로 가져와질 것입니다. 왜냐하면 None이 기본 값으로 되어있기 때문입니다.
 
 ## 다중 본문 매개변수
 
@@ -38,13 +38,13 @@
 
 하지만 다중 본문 매개변수를 선언할 수 있습니다, 예시: `item` 그리고 `user`:
 
-=== "Python 3.6 그리고 그 이상"
+=== "Python 3.6 이상"
 
     ```Python hl_lines="22"
     {!> ../../../docs_src/body_multiple_params/tutorial002.py!}
     ```
 
-=== "Python 3.10 그리고 그 이상"
+=== "Python 3.10 이상"
 
     ```Python hl_lines="20"
     {!> ../../../docs_src/body_multiple_params/tutorial002_py310.py!}
@@ -69,8 +69,8 @@
 }
 ```
 
-!!! 주의
-    주의할 점으로, 비록 `item`이 이전과 같은 방식으로 선언되었지만, `item`은 이제 `item`이란 키와 함게 본문 안에 있는 것으로 기대되어 집니다.
+!!! note
+    참고할 점으로, `item`이 이전에 같은 방식으로 선언되었더라도, 여기서는 본문 안에 있는 `item`이라는 키가 사용될 것입니다.
 
 
 **FastAPI**는 요청으로부터 자동 변환을 할 것이며, 이를 통해  매개변수 `item`은 `item`의 상세한 내용을 받을 것이며, 이는  `user`도 동일합니다.
@@ -87,13 +87,13 @@
 
 하지만, **FastAPI**에게 그것을 다른 본문 키처럼 다루도록 `Body`를 사용하여 지시할 수 있습니다:
 
-=== "Python 3.6 그리고 그 이상"
+=== "Python 3.6 이상"
 
     ```Python hl_lines="22"
     {!> ../../../docs_src/body_multiple_params/tutorial003.py!}
     ```
 
-=== "Python 3.10 그리고 그 이상"
+=== "Python 3.10 이상"
 
     ```Python hl_lines="20"
     {!> ../../../docs_src/body_multiple_params/tutorial003_py310.py!}
@@ -129,7 +129,7 @@
 q: Union[str, None] = None
 ```
 
-또는 Python 3.10 그리고 그 이상에서:
+또는 Python 3.10 이상에서:
 
 ```Python
 q: str | None = None
@@ -137,13 +137,13 @@ q: str | None = None
 
 예를 들어:
 
-=== "Python 3.6 그리고 그 이상"
+=== "Python 3.6 이상"
 
     ```Python hl_lines="27"
     {!> ../../../docs_src/body_multiple_params/tutorial004.py!}
     ```
 
-=== "Python 3.10 그리고 그 이상"
+=== "Python 3.10 이상"
 
     ```Python hl_lines="26"
     {!> ../../../docs_src/body_multiple_params/tutorial004_py310.py!}
@@ -166,13 +166,13 @@ item: Item = Body(embed=True)
 
 실제로:
 
-=== "Python 3.6 그리고 그 이상"
+=== "Python 3.6 이상"
 
     ```Python hl_lines="17"
     {!> ../../../docs_src/body_multiple_params/tutorial005.py!}
     ```
 
-=== "Python 3.10 그리고 그 이상"
+=== "Python 3.10 이상"
 
     ```Python hl_lines="15"
     {!> ../../../docs_src/body_multiple_params/tutorial005_py310.py!}
