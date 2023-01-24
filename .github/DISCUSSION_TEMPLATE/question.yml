@@ -1,5 +1,3 @@
-name: Question or Problem
-description: Ask a question or ask about a problem
 labels: [question]
 body:
   - type: markdown
