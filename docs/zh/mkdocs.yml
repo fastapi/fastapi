@@ -92,7 +92,7 @@ nav:
     - tutorial/dependencies/sub-dependencies.md
     - tutorial/dependencies/dependencies-in-path-operation-decorators.md
     - tutorial/dependencies/global-dependencies.md
-    
+
   - 安全性:
     - tutorial/security/index.md
     - tutorial/security/first-steps.md
