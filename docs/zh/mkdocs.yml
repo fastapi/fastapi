@@ -71,15 +71,14 @@ nav:
   - tutorial/path-params-numeric-validations.md
   - tutorial/body-multiple-params.md
   - tutorial/body-fields.md
-  - tutorial/middleware.md
   - tutorial/body-nested-models.md
+  - tutorial/schema-extra-example.md
+  - tutorial/extra-data-types.md
+  - tutorial/cookie-params.md
   - tutorial/header-params.md
   - tutorial/response-model.md
   - tutorial/extra-models.md
   - tutorial/response-status-code.md
-  - tutorial/schema-extra-example.md
-  - tutorial/extra-data-types.md
-  - tutorial/cookie-params.md
   - tutorial/request-forms.md
   - tutorial/request-files.md
   - tutorial/request-forms-and-files.md
@@ -93,12 +92,14 @@ nav:
     - tutorial/dependencies/sub-dependencies.md
     - tutorial/dependencies/dependencies-in-path-operation-decorators.md
     - tutorial/dependencies/global-dependencies.md
+    
   - 安全性:
     - tutorial/security/index.md
     - tutorial/security/first-steps.md
     - tutorial/security/get-current-user.md
     - tutorial/security/simple-oauth2.md
     - tutorial/security/oauth2-jwt.md
+  - tutorial/middleware.md
   - tutorial/cors.md
   - tutorial/sql-databases.md
   - tutorial/bigger-applications.md
@@ -112,9 +113,12 @@ nav:
   - advanced/custom-response.md
   - advanced/response-cookies.md
   - advanced/wsgi.md
-- contributing.md
-- help-fastapi.md
+- 部署:
+  - deployment/index.md
+- external-links.md
 - benchmarks.md
+- help-fastapi.md
+- contributing.md
 markdown_extensions:
 - toc:
     permalink: true
@@ -195,8 +199,8 @@ extra:
   - link: /zh/
     name: zh - 汉语
 extra_css:
-- https://fastapi.tiangolo.com/css/termynal.css
-- https://fastapi.tiangolo.com/css/custom.css
+- css/termynal.css
+- css/custom.css
 extra_javascript:
-- https://fastapi.tiangolo.com/js/termynal.js
-- https://fastapi.tiangolo.com/js/custom.js
+- js/termynal.js
+- js/custom.js
