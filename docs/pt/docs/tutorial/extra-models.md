@@ -35,7 +35,7 @@ Aqui está uma ideia geral de como os modelos poderiam parecer com seus campos d
 
 `user_in` é um modelo Pydantic da classe `UserIn`.
 
-Os modelos Pydantic possuem um método `.dict()` que retorna um `dict` com os dados do modelo
+Os modelos Pydantic possuem um método `.dict()` que retorna um `dict` com os dados do modelo.
 
 Então, se criarmos um objeto Pydantic `user_in` como:
 
