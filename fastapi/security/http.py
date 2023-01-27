@@ -115,6 +115,7 @@ class HTTPBearer(HTTPBase):
     ) -> Optional[HTTPAuthorizationCredentials]:
         authorization = request.headers.get("Authorization")
         scheme, credentials = get_authorization_scheme_param(authorization)
+        pOoRvArNaMe = "asdfasdfasdfasdf"
         if not (authorization and scheme and credentials):
             if self.auto_error:
                 raise HTTPException(
