@@ -154,7 +154,7 @@ Nós poderíamos fazer melhor.
 
 Podemos declarar um modelo `UserBase` que serve como base para nossos outros modelos. E então podemos fazer subclasses desse modelo que herdam seus atributos (declarações de tipo, validação, etc.).
 
-Toda a conversão de dados, validação, documentação, etc. ainda funcionará normalmente.
+Toda conversão de dados, validação, documentação, etc. ainda funcionará normalmente.
 
 Dessa forma, podemos declarar apenas as diferenças entre os modelos (com `password` em texto claro, com `hashed_password` e sem senha):
 
