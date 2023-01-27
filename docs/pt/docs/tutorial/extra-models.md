@@ -11,7 +11,7 @@ Isso é especialmente o caso para modelos de usuários, porque:
 !!! danger
     Nunca armazene senhas em texto simples dos usuários. Sempre armazene uma "hash segura" que você pode verificar depois.
 
-    Se você não souber, vai aprender o que é uma "senha hash" nos [capítulos de segurança](security/simple-oauth2.md#password-hashing){.internal-link target=_blank}.
+    Se não souber, você aprenderá o que é uma "senha hash" nos [capítulos de segurança](security/simple-oauth2.md#password-hashing){.internal-link target=_blank}.
 
 ## Múltiplos modelos
 
