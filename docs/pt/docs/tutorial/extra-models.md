@@ -197,7 +197,7 @@ Para fazer isso, use a dica de tipo padrão do Python <a href="https://docs.pyth
 
 Neste exemplo, passamos `Union[PlaneItem, CarItem]` como o valor do argumento `response_model`.
 
-Porque estamos passando-o como um **valor para um argumento** em vez de colocá-lo em uma **anotação de tipo**, precisamos usar `Union` mesmo no Python 3.10.
+Dado que estamos passando-o como um **valor para um argumento** em vez de colocá-lo em uma **anotação de tipo**, precisamos usar `Union` mesmo no Python 3.10.
 
 Se estivesse em uma anotação de tipo, poderíamos ter usado a barra vertical, como:
 
