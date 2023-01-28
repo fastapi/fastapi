@@ -140,7 +140,7 @@ UserInDB(
 ```
 
 !!! warning
-    As funções adicionais de suporte são apenas para demonstração de um fluxo possível dos dados, mas é claro que elas não fornecem segurança real. E é importante seguir as boas práticas de segurança, como criptografar senhas antes de armazená-las em banco de dados, e não armazenar senhas em texto plano.
+    As funções adicionais de suporte são apenas para demonstração de um fluxo possível dos dados, mas é claro que elas não fornecem segurança real.
 
 ## Reduzir duplicação
 
@@ -248,7 +248,5 @@ Neste caso, você pode usar `typing.Dict` (ou simplesmente dict no Python 3.9 e 
 ## Em resumo
 
 Use vários modelos Pydantic e herde livremente para cada caso.
-
-You don't need to have a single data model per entity if that entity must be able to have different "states". As the case with the user "entity" with a state including `password`, `password_hash` and no password.
 
 Não é necessário ter um único modelo de dados por entidade se essa entidade precisar ter diferentes "estados". No caso da "entidade" de usuário com um estado que inclui `password`, `password_hash` e sem senha.
