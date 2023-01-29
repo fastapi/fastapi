@@ -58,7 +58,13 @@ It will show the `id` taken from the "context" `dict` you passed:
 
 ## Templates and static files
 
-And you can also use `url_for()` inside of the template, and use it, for example, with the `StaticFiles` you mounted.
+And you can also use `url_for()` inside of the template, and use it with arguments. Each argument would have the attribute passed to the function as follows:
+
+```jinja hl_lines="6"
+{!../../../docs_src/templates/templates/read_item.html!}
+```
+
+Furthermore, you can use `url_for()` with the `StaticFiles` you mounted:
 
 ```jinja hl_lines="4"
 {!../../../docs_src/templates/templates/item.html!}
