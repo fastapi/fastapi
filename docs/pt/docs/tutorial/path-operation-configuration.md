@@ -11,7 +11,7 @@ Você pode definir o `status_code` (HTTP) para ser usado na resposta da sua *ope
 
 Você pode passar diretamente o código `int`, como `404`.
 
-Mas se você não se lembrar do que cada código numérico significa, pode usar as constantes de atalho em `status`:
+Mas se você não se lembrar o que cada código numérico significa, pode usar as constantes de atalho em `status`:
 
 === "Python 3.6 and above"
 
