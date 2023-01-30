@@ -357,6 +357,7 @@ def live(
         lang = "en"
     lang_path: Path = docs_path / lang
     os.chdir(lang_path)
+    typer.echo(f"Selected language: {lang}")
     typer.echo("Running live docs at: http://127.0.0.1:8008")
     mkdocs.commands.serve.serve(dev_addr="127.0.0.1:8008")
 
