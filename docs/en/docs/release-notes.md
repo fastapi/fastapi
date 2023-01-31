@@ -2,6 +2,7 @@
 
 ## Latest Changes
 
+* 🔧 Update new issue chooser to direct to GitHub Discussions. PR [#5948](https://github.com/tiangolo/fastapi/pull/5948) by [@tiangolo](https://github.com/tiangolo).
 * 📝 Recommend GitHub Discussions for questions. PR [#5944](https://github.com/tiangolo/fastapi/pull/5944) by [@tiangolo](https://github.com/tiangolo).
 * 🔧 Update sponsors badges. PR [#5943](https://github.com/tiangolo/fastapi/pull/5943) by [@tiangolo](https://github.com/tiangolo).
 * ✨ Compute FastAPI Experts including GitHub Discussions. PR [#5941](https://github.com/tiangolo/fastapi/pull/5941) by [@tiangolo](https://github.com/tiangolo).
