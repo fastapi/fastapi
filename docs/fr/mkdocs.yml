@@ -40,6 +40,7 @@ nav:
 - Languages:
   - en: /
   - az: /az/
+  - by: /by/
   - de: /de/
   - es: /es/
   - fa: /fa/
@@ -125,6 +126,8 @@ extra:
     name: en - English
   - link: /az/
     name: az
+  - link: /by/
+    name: by - Беларуская мова
   - link: /de/
     name: de
   - link: /es/

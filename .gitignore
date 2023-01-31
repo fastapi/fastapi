@@ -19,6 +19,7 @@ docs_build
 venv
 docs.zip
 archive.zip
+/.python-version
 
 # vim temporary files
 *~
