@@ -71,7 +71,7 @@ Cada `dict` de exemplo específico em `examples` pode conter:
 * `summary`: Pequena descrição do exemplo.
 * `description`: Uma descrição longa que pode conter texto em Markdown.
 * `value`: O próprio exemplo mostrado, ex: um `dict`.
-* `externalValue`: alternativo a `value`, uma URL apontando para o exemplo. Embora isso possa não ser suportado por tantas ferramentas quanto `value`.
+* `externalValue`: alternativa ao `value`, uma URL apontando para o exemplo. Embora isso possa não ser suportado por tantas ferramentas quanto `value`.
 
 ```Python hl_lines="22-48"
 {!../../../docs_src/schema_extra_example/tutorial004.py!}
