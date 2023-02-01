@@ -85,7 +85,7 @@ Com `examples` adicionado a `Body()`, os `/docs` vão ficar assim:
 
 ## Detalhes técnicos
 
-!!! warning "atenção"
+!!! warning "Atenção"
     Esses são detalhes muito técnicos sobre os padrões **JSON Schema** e **OpenAPI**.
 
     Se as ideias explicadas acima já funcionam para você, isso pode ser o suficiente, e você provavelmente não precisa desses detalhes, fique à vontade para pular.
