@@ -44,7 +44,7 @@ Ao usar quaisquer dos:
 * `Form()`
 * `File()`
 
-você também pode declarar um dado `example` ou um grupo de `examples` com informações adicionais que serão adicionadas à **OpenAPI**.
+você também pode declarar um dado `example` ou um grupo de `examples` com informações adicionais que serão adicionadas ao **OpenAPI**.
 
 ### `Body` com `example`
 
