@@ -17,7 +17,7 @@ Essas informações extras serão adicionadas como se encontram no **JSON Schema
 !!! tip "dica"
     Você pode usar a mesma técnica para estender o JSON Schema e adicionar suas próprias informações extras de forma personalizada.
 
-    Por exemplo, você pode usar isso para adicionar metadados em uma interface de usuário de front-end, etc.
+    Por exemplo, você pode usar isso para adicionar metadados para uma interface de usuário de front-end, etc.
 
 ## `Field` de argumentos adicionais
 
