@@ -90,7 +90,7 @@ Com `examples` adicionado a `Body()`, os `/docs` vão ficar assim:
 
     Se as ideias explicadas acima já funcionam para você, isso pode ser o suficiente, e você provavelmente não precisa desses detalhes, fique à vontade para pular.
 
-Quando você adiciona um exemplo dentro de um modelo Pydantic, usando `schema_extra` ou` Field (example = "something") `esse exemplo é adicionado ao **JSON Schema** para esse modelo Pydantic.
+Quando você adiciona um exemplo dentro de um modelo Pydantic, usando `schema_extra` ou` Field(example="something") `esse exemplo é adicionado ao **JSON Schema** para esse modelo Pydantic.
 
 E esse **JSON Schema** do modelo Pydantic está incluído no **OpenAPI** da sua API e, em seguida, é usado na UI da documentação.
 
