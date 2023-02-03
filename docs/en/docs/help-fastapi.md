@@ -152,7 +152,7 @@ Here's what to have in mind and how to review a pull request:
 
 ### Understand the problem
 
-* First, make sure you **understand the problem** that the pull request is trying to solve. It might have a longer discussion in a GitHub Discussion or Issue.
+* First, make sure you **understand the problem** that the pull request is trying to solve. It might have a longer discussion in a GitHub Discussion or issue.
 
 * There's also a good chance that the pull request is not actually needed because the problem can be solved in a **different way**. Then you can suggest or ask about that.
 
