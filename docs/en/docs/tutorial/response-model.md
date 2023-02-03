@@ -89,6 +89,8 @@ If you declare both a return type and a `response_model`, the `response_model` w
 
 This way you can add correct type annotations to your functions even when you are returning a type different than the response model, to be used by the editor and tools like mypy. And still you can have FastAPI do the data validation, documentation, etc. using the `response_model`.
 
+You can also use `response_model=None` to disable creating a response model for that *path operation*, you might need to do it if you are adding type annotations for things that are not valid Pydantic fields, you will see an example of that in one of the sections below.
+
 ## Return the same input data
 
 Here we are declaring a `UserIn` model, it will contain a plaintext password:
@@ -243,6 +245,74 @@ When you see the automatic docs, you can check that the input model and output m
 And both models will be used for the interactive API documentation:
 
 <img src="/img/tutorial/response-model/image02.png">
+
+## Other Return Type Annotations
+
+There might be cases where you return something that is not a valid Pydantic field and you annotate it in the function, only to get the support provided by tooling (the editor, mypy, etc).
+
+### Return a Response Directly
+
+The most common case would be [returning a Response directly as explained later in the advanced docs](../advanced/response-directly.md){.internal-link target=_blank}.
+
+```Python hl_lines="8  10-11"
+{!> ../../../docs_src/response_model/tutorial003_02.py!}
+```
+
+This simple case is handled automatically by FastAPI because the return type annotation is the class (or a subclass) of `Response`.
+
+And tools will also be happy because both `RedirectResponse` and `JSONResponse` are subclasses of `Response`, so the type annotation is correct.
+
+### Annotate a Response Subclass
+
+You can also use a subclass of `Response` in the type annotation:
+
+```Python hl_lines="8-9"
+{!> ../../../docs_src/response_model/tutorial003_03.py!}
+```
+
+This will also work because `RedirectResponse` is a subclass of `Response`, and FastAPI will automatically handle this simple case.
+
+### Invalid Return Type Annotations
+
+But when you return some other arbitrary object that is not a valid Pydantic type (e.g. a database object) and you annotate it like that in the function, FastAPI will try to create a Pydantic response model from that type annotation, and will fail.
+
+The same would happen if you had something like a <abbr title='A union between multiple types means "any of these types".'>union</abbr> between different types where one or more of them are not valid Pydantic types, for example this would fail 💥:
+
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="10"
+    {!> ../../../docs_src/response_model/tutorial003_04.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="8"
+    {!> ../../../docs_src/response_model/tutorial003_04_py310.py!}
+    ```
+
+...this fails because the type annotation is not a Pydantic type and is not just a single `Response` class or subclass, it's a union (any of the two) between a `Response` and a `dict`.
+
+### Disable Response Model
+
+Continuing from the example above, you might not want to have the default data validation, documentation, filtering, etc. that is performed by FastAPI.
+
+But you might want to still keep the return type annotation in the function to get the support from tools like editors and type checkers (e.g. mypy).
+
+In this case, you can disable the response model generation by setting `response_model=None`:
+
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="9"
+    {!> ../../../docs_src/response_model/tutorial003_05.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="7"
+    {!> ../../../docs_src/response_model/tutorial003_05_py310.py!}
+    ```
+
+This will make FastAPI skip the response model generation and that way you can have any return type annotations you need without it affecting your FastAPI application. 🤓
 
 ## Response Model encoding parameters
 

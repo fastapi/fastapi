@@ -1,5 +1,9 @@
 articles:
   english:
+  - author: Raf Rasenberg
+    author_link: https://rafrasenberg.com/about/
+    link: https://rafrasenberg.com/fastapi-lambda/
+    title: 'FastAPI lambda container: serverless simplified'
   - author: Teresa N. Fontanella De Santis
     author_link: https://dev.to/
     link: https://dev.to/teresafds/authorization-on-fastapi-with-casbin-41og

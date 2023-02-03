@@ -155,6 +155,10 @@ source = [
     "fastapi"
 ]
 context = '${CONTEXT}'
+omit = [
+    "docs_src/response_model/tutorial003_04.py",
+    "docs_src/response_model/tutorial003_04_py310.py",
+]
 
 [tool.ruff]
 select = [
