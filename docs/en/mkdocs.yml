@@ -45,6 +45,7 @@ nav:
   - fa: /fa/
   - fr: /fr/
   - he: /he/
+  - hu: /hu/
   - id: /id/
   - it: /it/
   - ja: /ja/
@@ -218,6 +219,8 @@ extra:
     name: fr - français
   - link: /he/
     name: he
+  - link: /hu/
+    name: hu
   - link: /id/
     name: id
   - link: /it/
