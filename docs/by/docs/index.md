@@ -103,7 +103,7 @@ FastAPI - гэта сучасны, хуткі (высокапрадукцыйн�
 
 ---
 
-## **Typer**, CLIs(інтэрфейс каманднага радка) для FastAPI 
+## **Typer**, CLIs(інтэрфейс каманднага радка) для FastAPI
 
 <a href="https://typer.tiangolo.com" target="_blank"><img src="https://typer.tiangolo.com/img/logo-margin/logo-margin-vector.svg" style="width: 20%;"></a>
 
