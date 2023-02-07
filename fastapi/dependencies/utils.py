@@ -273,6 +273,12 @@ def get_typed_signature(call: Callable[..., Any]) -> inspect.Signature:
     return typed_signature
 
 
+def get_typed_return_annotation(call: Callable[..., Any]) -> Any:
+        signature = get_typed_signature(call)
+        annotation = signature.return_annotation
+        return annotation
+
+
 def get_dependant(
     *,
     path: str,
