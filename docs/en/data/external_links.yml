@@ -308,6 +308,11 @@ articles:
     author_link: https://fullstackstation.com/author/figonking/
     link: https://fullstackstation.com/fastapi-trien-khai-bang-docker/
     title: 'FASTAPI: TRIỂN KHAI BẰNG DOCKER'
+  taiwanese:
+  - author: Leon
+    author_link: http://editor.leonh.space/
+    link: https://editor.leonh.space/2022/tortoise/
+    title: 'Tortoise ORM / FastAPI 整合快速筆記'
 podcasts:
   english:
   - author: Podcast.`__init__`
