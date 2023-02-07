@@ -705,6 +705,15 @@ class APIRouter(routing.Router):
 
         return decorator
 
+    def websocket_route(
+        self, path: str, name: Union[str, None] = None
+    ) -> Callable[[DecoratedCallable], DecoratedCallable]:
+        def decorator(func: DecoratedCallable) -> DecoratedCallable:
+            self.add_websocket_route(path, func, name=name)
+            return func
+
+        return decorator
+
     def include_router(
         self,
         router: "APIRouter",

@@ -872,6 +872,15 @@ class FastAPI(Starlette):
             generate_unique_id_function=generate_unique_id_function,
         )
 
+    def websocket_route(
+        self, path: str, name: Union[str, None] = None
+    ) -> Callable[[DecoratedCallable], DecoratedCallable]:
+        def decorator(func: DecoratedCallable) -> DecoratedCallable:
+            self.router.add_websocket_route(path, func, name=name)
+            return func
+
+        return decorator
+
     def on_event(
         self, event_type: str
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
