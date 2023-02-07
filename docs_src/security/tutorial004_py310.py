@@ -18,10 +18,7 @@ fake_users_db = {
         "username": "johndoe",
         "full_name": "John Doe",
         "email": "johndoe@example.com",
-        "hashed_password": (
-            "$argon2id$v=19$m=65536,t=3,p=4$xdhb6x2jFKLUeu+dU8rZOw"
-            "$bsZZ1tXEjyKgj0eGFCxICRe5RL/HoZPNIJ9oa7nNjQs"
-        ),
+        "hashed_password": "$argon2id$v=19$m=65536,t=3,p=4$xdhb6x2jFKLUeu+dU8rZOw$bsZZ1tXEjyKgj0eGFCxICRe5RL/HoZPNIJ9oa7nNjQs",
         "disabled": False,
     }
 }
