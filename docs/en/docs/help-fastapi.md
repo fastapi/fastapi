@@ -69,11 +69,16 @@ I love to hear about how **FastAPI** is being used, what you have liked in it, i
 * <a href="https://alternativeto.net/software/fastapi/" class="external-link" target="_blank">Vote for **FastAPI** in AlternativeTo</a>.
 * <a href="https://stackshare.io/pypi-fastapi" class="external-link" target="_blank">Say you use **FastAPI** on StackShare</a>.
 
-## Help others with issues in GitHub
+## Help others with questions in GitHub
 
-You can see <a href="https://github.com/tiangolo/fastapi/issues" class="external-link" target="_blank">existing issues</a> and try and help others, most of the times those issues are questions that you might already know the answer for. 🤓
+You can try and help others with their questions in:
 
-If you are helping a lot of people with issues, you might become an official [FastAPI Expert](fastapi-people.md#experts){.internal-link target=_blank}. 🎉
+* <a href="https://github.com/tiangolo/fastapi/discussions/categories/questions?discussions_q=category%3AQuestions+is%3Aunanswered" class="external-link" target="_blank">GitHub Discussions</a>
+* <a href="https://github.com/tiangolo/fastapi/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc+label%3Aquestion+-label%3Aanswered+" class="external-link" target="_blank">GitHub Issues</a>
+
+In many cases you might already know the answer for those questions. 🤓
+
+If you are helping a lot of people with their questions, you will become an official [FastAPI Expert](fastapi-people.md#experts){.internal-link target=_blank}. 🎉
 
 Just remember, the most important point is: try to be kind. People come with their frustrations and in many cases don't ask in the best way, but try as best as you can to be kind. 🤗
 
@@ -81,7 +86,7 @@ The idea is for the **FastAPI** community to be kind and welcoming. At the same 
 
 ---
 
-Here's how to help others with issues:
+Here's how to help others with questions (in discussions or issues):
 
 ### Understand the question
 
@@ -113,24 +118,27 @@ In many cases they will only copy a fragment of the code, but that's not enough 
 
 If they reply, there's a high chance you would have solved their problem, congrats, **you're a hero**! 🦸
 
-* Now you can ask them, if that solved their problem, to **close the issue**.
+* Now, if that solved their problem, you can ask them to:
+
+    * In GitHub Discussions: mark the comment as the **answer**.
+    * In GitHub Issues: **close** the issue**.
 
 ## Watch the GitHub repository
 
 You can "watch" FastAPI in GitHub (clicking the "watch" button at the top right): <a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">https://github.com/tiangolo/fastapi</a>. 👀
 
-If you select "Watching" instead of "Releases only" you will receive notifications when someone creates a new issue.
+If you select "Watching" instead of "Releases only" you will receive notifications when someone creates a new issue or question. You can also specify that you only want to be notified about new issues, or discussions, or PRs, etc.
 
-Then you can try and help them solve those issues.
+Then you can try and help them solve those questions.
 
-## Create issues
+## Ask Questions
 
-You can <a href="https://github.com/tiangolo/fastapi/issues/new/choose" class="external-link" target="_blank">create a new issue</a> in the GitHub repository, for example to:
+You can <a href="https://github.com/tiangolo/fastapi/discussions/new?category=questions" class="external-link" target="_blank">create a new question</a> in the GitHub repository, for example to:
 
 * Ask a **question** or ask about a **problem**.
 * Suggest a new **feature**.
 
-**Note**: if you create an issue, then I'm going to ask you to also help others. 😉
+**Note**: if you do it, then I'm going to ask you to also help others. 😉
 
 ## Review Pull Requests
 
@@ -144,7 +152,7 @@ Here's what to have in mind and how to review a pull request:
 
 ### Understand the problem
 
-* First, make sure you **understand the problem** that the pull request is trying to solve. It might have a longer discussion in an issue.
+* First, make sure you **understand the problem** that the pull request is trying to solve. It might have a longer discussion in a GitHub Discussion or issue.
 
 * There's also a good chance that the pull request is not actually needed because the problem can be solved in a **different way**. Then you can suggest or ask about that.
 
@@ -207,7 +215,7 @@ There's a lot of work to do, and for most of it, **YOU** can do it.
 
 The main tasks that you can do right now are:
 
-* [Help others with issues in GitHub](#help-others-with-issues-in-github){.internal-link target=_blank} (see the section above).
+* [Help others with questions in GitHub](#help-others-with-questions-in-github){.internal-link target=_blank} (see the section above).
 * [Review Pull Requests](#review-pull-requests){.internal-link target=_blank} (see the section above).
 
 Those two tasks are what **consume time the most**. That's the main work of maintaining FastAPI.
@@ -219,7 +227,7 @@ If you can help me with that, **you are helping me maintain FastAPI** and making
 Join the 👥 <a href="https://discord.gg/VQjSZaeJmf" class="external-link" target="_blank">Discord chat server</a> 👥 and hang out with others in the FastAPI community.
 
 !!! tip
-    For questions, ask them in <a href="https://github.com/tiangolo/fastapi/issues/new/choose" class="external-link" target="_blank">GitHub issues</a>, there's a much better chance you will receive help by the [FastAPI Experts](fastapi-people.md#experts){.internal-link target=_blank}.
+    For questions, ask them in <a href="https://github.com/tiangolo/fastapi/discussions/new?category=questions" class="external-link" target="_blank">GitHub Discussions</a>, there's a much better chance you will receive help by the [FastAPI Experts](fastapi-people.md#experts){.internal-link target=_blank}.
 
     Use the chat only for other general conversations.
 
@@ -229,9 +237,9 @@ There is also the previous <a href="https://gitter.im/tiangolo/fastapi" class="e
 
 Have in mind that as chats allow more "free conversation", it's easy to ask questions that are too general and more difficult to answer, so, you might not receive answers.
 
-In GitHub issues the template will guide you to write the right question so that you can more easily get a good answer, or even solve the problem yourself even before asking. And in GitHub I can make sure I always answer everything, even if it takes some time. I can't personally do that with the chat systems. 😅
+In GitHub, the template will guide you to write the right question so that you can more easily get a good answer, or even solve the problem yourself even before asking. And in GitHub I can make sure I always answer everything, even if it takes some time. I can't personally do that with the chat systems. 😅
 
-Conversations in the chat systems are also not as easily searchable as in GitHub, so questions and answers might get lost in the conversation. And only the ones in GitHub issues count to become a [FastAPI Expert](fastapi-people.md#experts){.internal-link target=_blank}, so you will most probably receive more attention in GitHub issues.
+Conversations in the chat systems are also not as easily searchable as in GitHub, so questions and answers might get lost in the conversation. And only the ones in GitHub count to become a [FastAPI Expert](fastapi-people.md#experts){.internal-link target=_blank}, so you will most probably receive more attention in GitHub.
 
 On the other side, there are thousands of users in the chat systems, so there's a high chance you'll find someone to talk to there, almost all the time. 😄
 
