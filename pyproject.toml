@@ -60,7 +60,7 @@ test = [
     "email_validator >=1.1.1,<2.0.0",
     # TODO: once removing databases from tutorial, upgrade SQLAlchemy
     # probably when including SQLModel
-    "sqlalchemy >=1.3.18,<1.4.43",
+    "sqlalchemy >=1.3.18,<2.0.3",
     "peewee >=3.13.3,<4.0.0",
     "databases[sqlite] >=0.3.2,<0.7.0",
     "orjson >=3.2.1,<4.0.0",
