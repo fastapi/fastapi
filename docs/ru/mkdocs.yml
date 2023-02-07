@@ -62,6 +62,7 @@ nav:
 - fastapi-people.md
 - python-types.md
 - Учебник - руководство пользователя:
+  - tutorial/body-fields.md
   - tutorial/background-tasks.md
 - async.md
 - Развёртывание:
