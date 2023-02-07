@@ -10,6 +10,7 @@ from typing import (
     Sequence,
     Type,
     Union,
+    cast,
 )
 
 from fastapi import routing
@@ -118,6 +119,17 @@ class FastAPI(Starlette):
                 "https://fastapi.tiangolo.com/advanced/sub-applications/"
             )
         self.root_path = root_path or openapi_prefix
+        self.root_path = (
+            "/" + self.root_path
+            if not self.root_path.startswith("/") and self.root_path
+            else self.root_path
+        )
+        self.openapi_urls = [
+            {
+                "url": self.root_path + cast(str, self.openapi_url),
+                "name": "/",
+            }
+        ]
         self.state: State = State()
         self.dependency_overrides: Dict[Callable[..., Any], Callable[..., Any]] = {}
         self.router: routing.APIRouter = routing.APIRouter(
@@ -230,12 +242,11 @@ class FastAPI(Starlette):
 
             async def swagger_ui_html(req: Request) -> HTMLResponse:
                 root_path = req.scope.get("root_path", "").rstrip("/")
-                openapi_url = root_path + self.openapi_url
                 oauth2_redirect_url = self.swagger_ui_oauth2_redirect_url
                 if oauth2_redirect_url:
                     oauth2_redirect_url = root_path + oauth2_redirect_url
                 return get_swagger_ui_html(
-                    openapi_url=openapi_url,
+                    openapi_urls=self.openapi_urls,
                     title=self.title + " - Swagger UI",
                     oauth2_redirect_url=oauth2_redirect_url,
                     init_oauth=self.swagger_ui_init_oauth,
@@ -257,10 +268,8 @@ class FastAPI(Starlette):
         if self.openapi_url and self.redoc_url:
 
             async def redoc_html(req: Request) -> HTMLResponse:
-                root_path = req.scope.get("root_path", "").rstrip("/")
-                openapi_url = root_path + self.openapi_url
                 return get_redoc_html(
-                    openapi_url=openapi_url, title=self.title + " - ReDoc"
+                    openapi_urls=self.openapi_urls, title=self.title + " - ReDoc"
                 )
 
             self.add_route(self.redoc_url, redoc_html, include_in_schema=False)
@@ -903,3 +912,22 @@ class FastAPI(Starlette):
             return func
 
         return decorator
+
+    def mount(self, path: str, app: ASGIApp, name: Optional[str] = None) -> None:
+        if isinstance(app, FastAPI):
+            self.openapi_urls.append(
+                {
+                    "url": self.root_path
+                    + path
+                    + app.root_path
+                    + cast(str, app.openapi_url),
+                    "name": name or path,
+                }
+            )
+            for url in app.openapi_urls:
+                url["url"] = self.root_path + path + url["url"]
+            for server in self.servers:
+                server_to_add = server.copy()
+                server_to_add["url"] += path
+                app.servers.append(server_to_add)
+        return super().mount(path, app, name)

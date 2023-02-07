@@ -1,12 +1,11 @@
 import json
-from typing import Any, Dict, Optional
+from typing import Any, Dict, List, Optional
 
 from fastapi.encoders import jsonable_encoder
 from starlette.responses import HTMLResponse
 
 swagger_ui_default_parameters = {
     "dom_id": "#swagger-ui",
-    "layout": "BaseLayout",
     "deepLinking": True,
     "showExtensions": True,
     "showCommonExtensions": True,
@@ -15,9 +14,10 @@ swagger_ui_default_parameters = {
 
 def get_swagger_ui_html(
     *,
-    openapi_url: str,
+    openapi_urls: List[Dict[str, str]],
     title: str,
     swagger_js_url: str = "https://cdn.jsdelivr.net/npm/swagger-ui-dist@4/swagger-ui-bundle.js",
+    swagger_standalone_js_url: str = "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui-standalone-preset.js",
     swagger_css_url: str = "https://cdn.jsdelivr.net/npm/swagger-ui-dist@4/swagger-ui.css",
     swagger_favicon_url: str = "https://fastapi.tiangolo.com/img/favicon.png",
     oauth2_redirect_url: Optional[str] = None,
@@ -34,6 +34,7 @@ def get_swagger_ui_html(
     <head>
     <link type="text/css" rel="stylesheet" href="{swagger_css_url}">
     <link rel="shortcut icon" href="{swagger_favicon_url}">
+    <style type="text/css"> body {{margin:0;}}</style>
     <title>{title}</title>
     </head>
     <body>
@@ -41,10 +42,24 @@ def get_swagger_ui_html(
     </div>
     <script src="{swagger_js_url}"></script>
     <!-- `SwaggerUIBundle` is now available on the page -->
-    <script>
-    const ui = SwaggerUIBundle({{
-        url: '{openapi_url}',
     """
+    openapi_url = None
+    if len(openapi_urls) == 1:
+        openapi_url = openapi_urls[0]["url"]
+        html += f"""
+        <script>
+            const ui = SwaggerUIBundle({{
+                url: '{openapi_url}',
+                "layout": "BaseLayout",
+        """
+    else:
+        html += f"""
+        <script src="{swagger_standalone_js_url}"></script>
+        <script>
+        const ui = SwaggerUIBundle({{
+            urls: {json.dumps(openapi_urls)},
+            "layout": "StandaloneLayout",
+        """
 
     for key, value in current_swagger_ui_parameters.items():
         html += f"{json.dumps(key)}: {json.dumps(jsonable_encoder(value))},\n"
@@ -52,12 +67,12 @@ def get_swagger_ui_html(
     if oauth2_redirect_url:
         html += f"oauth2RedirectUrl: window.location.origin + '{oauth2_redirect_url}',"
 
-    html += """
+    html += f"""
     presets: [
         SwaggerUIBundle.presets.apis,
-        SwaggerUIBundle.SwaggerUIStandalonePreset
+        {"SwaggerUIBundle." if openapi_url else ""}SwaggerUIStandalonePreset
         ],
-    })"""
+    }})"""
 
     if init_oauth:
         html += f"""
@@ -74,10 +89,12 @@ def get_swagger_ui_html(
 
 def get_redoc_html(
     *,
-    openapi_url: str,
+    openapi_urls: List[Dict[str, str]],
     title: str,
     redoc_js_url: str = "https://cdn.jsdelivr.net/npm/redoc@next/bundles/redoc.standalone.js",
     redoc_favicon_url: str = "https://fastapi.tiangolo.com/img/favicon.png",
+    swagger_css_url: str = "https://cdn.jsdelivr.net/npm/swagger-ui-dist@4/swagger-ui.css",
+    redoc_bar_icon_url: str = "https://github.com/Redocly/redoc/raw/main/docs/images/redoc-logo.png",
     with_google_fonts: bool = True,
 ) -> HTMLResponse:
     html = f"""
@@ -85,6 +102,10 @@ def get_redoc_html(
     <html>
     <head>
     <title>{title}</title>
+    """
+    if len(openapi_urls) > 1:
+        html += f'<link type="text/css" rel="stylesheet" href="{swagger_css_url}">'
+    html += """
     <!-- needed for adaptive design -->
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -109,8 +130,47 @@ def get_redoc_html(
     <noscript>
         ReDoc requires Javascript to function. Please enable it to browse the documentation.
     </noscript>
-    <redoc spec-url="{openapi_url}"></redoc>
+    """
+    if len(openapi_urls) == 1:
+        openapi_url = openapi_urls[0]["url"]
+        html += f"""
+        <redoc spec-url="{openapi_url}"></redoc>
+        <script src="{redoc_js_url}"> </script>
+        """
+    else:
+        html += f"""
     <script src="{redoc_js_url}"> </script>
+    <div class="swagger-ui">
+    <div class="topbar">
+    <div class="wrapper">
+    <div class="topbar-wrapper"><a rel="noopener noreferrer" class="link"><img height="40"
+    src="{redoc_bar_icon_url}"
+    alt="ReDoc"></a>
+    <form class="download-url-wrapper"><label class="select-label" for="select">
+    <span>Select a definition</span>
+    <select id="links_dropdown">
+    </select>
+    </label>
+    </form>
+    </div>
+    </div>
+    </div>
+    </div>
+    <redoc></redoc>
+    <script>
+    var apis = {json.dumps(openapi_urls)}
+    Redoc.init(apis[0].url);
+    var $list = document.getElementById('links_dropdown');
+    $list.addEventListener('change', (function () {{ Redoc.init(this.value); }}));
+    apis.forEach(function (api) {{
+        var $listitem = document.createElement('option');
+        $listitem.setAttribute('value', api.url);
+        $listitem.innerText = api.name;
+        $list.appendChild($listitem);
+    }});
+    </script>
+    """
+    html += """
     </body>
     </html>
     """
