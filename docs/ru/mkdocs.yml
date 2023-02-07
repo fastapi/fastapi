@@ -63,12 +63,14 @@ nav:
 - python-types.md
 - Учебник - руководство пользователя:
   - tutorial/index.md
+  - tutorial/body-fields.md
   - tutorial/background-tasks.md
 - async.md
 - Развёртывание:
   - deployment/index.md
   - deployment/versions.md
 - external-links.md
+- contributing.md
 markdown_extensions:
 - toc:
     permalink: true
