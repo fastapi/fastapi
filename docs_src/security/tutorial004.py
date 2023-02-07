@@ -19,7 +19,10 @@ fake_users_db = {
         "username": "johndoe",
         "full_name": "John Doe",
         "email": "johndoe@example.com",
-        "hashed_password": "$2b$12$EixZaYVK1fsbw1ZfbX3OXePaWxn96p36WQoeG6Lruj3vjPGga31lW",
+        "hashed_password": (
+            "$argon2id$v=19$m=65536,t=3,p=4$xdhb6x2jFKLUeu+dU8rZOw"
+            "$bsZZ1tXEjyKgj0eGFCxICRe5RL/HoZPNIJ9oa7nNjQs"
+        ),
         "disabled": False,
     }
 }
@@ -45,7 +48,7 @@ class UserInDB(User):
     hashed_password: str
 
 
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+pwd_context = CryptContext(schemes=["argon2"], deprecated="auto")
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
