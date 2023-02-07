@@ -81,6 +81,7 @@ nav:
   - Segurança:
     - tutorial/security/index.md
   - tutorial/background-tasks.md
+  - tutorial/static-files.md
   - Guia de Usuário Avançado:
     - advanced/index.md
 - Implantação:
