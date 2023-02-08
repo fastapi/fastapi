@@ -2,6 +2,9 @@
 
 ## Latest Changes
 
+
+## 0.90.0
+
 ### Upgrades
 
 * ⬆️ Bump Starlette from 0.22.0 to 0.23.0. Initial PR [#5739](https://github.com/tiangolo/fastapi/pull/5739) by [@Kludex](https://github.com/Kludex).
