@@ -65,3 +65,25 @@ def test_google_fonts_in_generated_redoc():
         openapi_urls=[{"url": "/docs"}], title="title", with_google_fonts=False
     ).body.decode()
     assert "fonts.googleapis.com" not in body_without_google_fonts
+
+
+def test_swagger_api_definitions_created():
+    sig = inspect.signature(get_swagger_ui_html)
+    swagger_css_url = sig.parameters.get("swagger_standalone_js_url").default  # type: ignore
+    swagger_ui_body = get_swagger_ui_html(
+        openapi_urls=[{"url": "/docs"}, {"url": "/second", "name": "second_def"}],
+        title="title",
+    ).body.decode()
+    assert swagger_css_url in swagger_ui_body
+    assert "second_def" in swagger_ui_body
+
+
+def test_redoc_api_definitions_created():
+    sig = inspect.signature(get_redoc_html)
+    swagger_css_url = sig.parameters.get("swagger_css_url").default  # type: ignore
+    redoc_ui_body = get_redoc_html(
+        openapi_urls=[{"url": "/docs"}, {"url": "/second", "name": "second_def"}],
+        title="title",
+    ).body.decode()
+    assert swagger_css_url in redoc_ui_body
+    assert "second_def" in redoc_ui_body
