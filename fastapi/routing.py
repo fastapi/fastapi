@@ -71,15 +71,17 @@ def _prepare_response_content(
     exclude_unset: bool,
     exclude_defaults: bool = False,
     exclude_none: bool = False,
+    field: Optional[ModelField] = None,
 ) -> Any:
-    if isinstance(res, BaseModel):
-        read_with_orm_mode = getattr(res.__config__, "read_with_orm_mode", None)
+    if field is not None and issubclass(field.type_, BaseModel):
+        read_with_orm_mode = getattr(field.type_.__config__, "orm_mode", None)
         if read_with_orm_mode:
             # Let from_orm extract the data from this model instead of converting
             # it now to a dict.
             # Otherwise there's no way to extract lazy data that requires attribute
             # access instead of dict iteration, e.g. lazy relationships.
             return res
+    if isinstance(res, BaseModel):
         return res.dict(
             by_alias=True,
             exclude_unset=exclude_unset,
@@ -130,6 +132,7 @@ async def serialize_response(
             exclude_unset=exclude_unset,
             exclude_defaults=exclude_defaults,
             exclude_none=exclude_none,
+            field=field,
         )
         if is_coroutine:
             value, errors_ = field.validate(response_content, {}, loc=("response",))
