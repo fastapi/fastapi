@@ -64,6 +64,7 @@ nav:
 - Учебник - руководство пользователя:
   - tutorial/body-fields.md
   - tutorial/background-tasks.md
+  - tutorial/cookie-params.md
 - async.md
 - Развёртывание:
   - deployment/index.md
