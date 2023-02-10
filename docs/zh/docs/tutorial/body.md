@@ -17,9 +17,17 @@
 
 首先，你需要从 `pydantic` 中导入 `BaseModel`：
 
-```Python hl_lines="2"
-{!../../../docs_src/body/tutorial001.py!}
-```
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="4"
+    {!> ../../../docs_src/body/tutorial001.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="2"
+    {!> ../../../docs_src/body/tutorial001_py310.py!}
+    ```
 
 ## 创建数据模型
 
@@ -27,9 +35,17 @@
 
 使用标准的 Python 类型来声明所有属性：
 
-```Python hl_lines="5-9"
-{!../../../docs_src/body/tutorial001.py!}
-```
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="7-11"
+    {!> ../../../docs_src/body/tutorial001.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="5-9"
+    {!> ../../../docs_src/body/tutorial001_py310.py!}
+    ```
 
 和声明查询参数时一样，当一个模型属性具有默认值时，它不是必需的。否则它是一个必需属性。将默认值设为 `None` 可使其成为可选属性。
 
@@ -57,10 +73,17 @@
 
 使用与声明路径和查询参数的相同方式声明请求体，即可将其添加到「路径操作」中：
 
-```Python hl_lines="16"
-{!../../../docs_src/body/tutorial001.py!}
-```
+=== "Python 3.6 and above"
 
+    ```Python hl_lines="18"
+    {!> ../../../docs_src/body/tutorial001.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="16"
+    {!> ../../../docs_src/body/tutorial001_py310.py!}
+    ```
 ...并且将它的类型声明为你创建的 `Item` 模型。
 
 ## 结果
