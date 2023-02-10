@@ -87,7 +87,7 @@ class FastAPI(Starlette):
         ),
         **extra: Any,
     ) -> None:
-        self._debug: bool = debug
+        self.debug: bool = debug
         self.title = title
         self.description = description
         self.version = version
