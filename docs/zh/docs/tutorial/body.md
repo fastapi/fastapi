@@ -135,9 +135,17 @@ Pydantic 本身甚至也进行了一些更改以支持此功能。
 
 在函数内部，你可以直接访问模型对象的所有属性：
 
-```Python hl_lines="19"
-{!../../../docs_src/body/tutorial002.py!}
-```
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="21"
+    {!> ../../../docs_src/body/tutorial002.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="19"
+    {!> ../../../docs_src/body/tutorial002_py310.py!}
+    ```
 
 ## 请求体 + 路径参数
 
@@ -145,9 +153,17 @@ Pydantic 本身甚至也进行了一些更改以支持此功能。
 
 **FastAPI** 将识别出与路径参数匹配的函数参数应**从路径中获取**，而声明为 Pydantic 模型的函数参数应**从请求体中获取**。
 
-```Python hl_lines="15-16"
-{!../../../docs_src/body/tutorial003.py!}
-```
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="17-18"
+    {!> ../../../docs_src/body/tutorial003.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="15-16"
+    {!> ../../../docs_src/body/tutorial003_py310.py!}
+    ```
 
 ## 请求体 + 路径参数 + 查询参数
 
@@ -155,9 +171,17 @@ Pydantic 本身甚至也进行了一些更改以支持此功能。
 
 **FastAPI** 会识别它们中的每一个，并从正确的位置获取数据。
 
-```Python hl_lines="16"
-{!../../../docs_src/body/tutorial004.py!}
-```
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="18"
+    {!> ../../../docs_src/body/tutorial004.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="16"
+    {!> ../../../docs_src/body/tutorial004_py310.py!}
+    ```
 
 函数参数将依次按如下规则进行识别：
 
