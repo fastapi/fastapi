@@ -112,7 +112,7 @@ And the same for <abbr title="less than"><code>lt</code></abbr>.
 
 ## Recap
 
-With `Query`, `Path` (and others you haven't seen yet) you can declare metadata and string validations in the same ways as with [Query Parameters and String Validations](query-params-str-validations.md){.internal-link target=_blank}.
+With `Query`, `Path` (and others you haven't seen yet) you can declare metadata and numeric validations in the same ways as with [Query Parameters and String Validations](query-params-str-validations.md){.internal-link target=_blank}.
 
 And you can also declare numeric validations:
 
