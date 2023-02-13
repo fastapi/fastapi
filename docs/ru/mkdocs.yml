@@ -69,6 +69,7 @@ nav:
 - Развёртывание:
   - deployment/index.md
   - deployment/versions.md
+- alternatives.md
 - external-links.md
 - contributing.md
 markdown_extensions:
