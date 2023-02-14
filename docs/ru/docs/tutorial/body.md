@@ -149,9 +149,17 @@
 
 Внутри функции вам доступны все атрибуты объекта модели напрямую:
 
-```Python hl_lines="21"
-{!../../../docs_src/body/tutorial002.py!}
-```
+=== "Python 3.6 и выше"
+
+    ```Python hl_lines="21"
+    {!> ../../../docs_src/body/tutorial002.py!}
+    ```
+
+=== "Python 3.10 и выше"
+
+    ```Python hl_lines="19"
+    {!> ../../../docs_src/body/tutorial002_py310.py!}
+    ```
 
 ## Тело запроса + параметры пути
 
