@@ -19,9 +19,17 @@
 
 Первое, что вам необходимо сделать, это импортировать `BaseModel` из пакета `pydantic`:
 
-```Python hl_lines="4"
-{!../../../docs_src/body/tutorial001.py!}
-```
+=== "Python 3.6 и выше"
+
+    ```Python hl_lines="4"
+    {!> ../../../docs_src/body/tutorial001.py!}
+    ```
+
+=== "Python 3.10 и выше"
+
+    ```Python hl_lines="2"
+    {!> ../../../docs_src/body/tutorial001_py310.py!}
+    ```
 
 ## Создание вашей собственной модели
 
