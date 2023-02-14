@@ -35,6 +35,7 @@ from starlette.applications import Starlette
 from starlette.datastructures import State
 from starlette.exceptions import HTTPException
 from starlette.middleware import Middleware
+from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.middleware.errors import ServerErrorMiddleware
 from starlette.middleware.exceptions import ExceptionMiddleware
 from starlette.requests import Request
@@ -86,7 +87,7 @@ class FastAPI(Starlette):
         ),
         **extra: Any,
     ) -> None:
-        self._debug: bool = debug
+        self.debug = debug
         self.title = title
         self.description = description
         self.version = version
@@ -143,7 +144,7 @@ class FastAPI(Starlette):
         self.user_middleware: List[Middleware] = (
             [] if middleware is None else list(middleware)
         )
-        self.middleware_stack: ASGIApp = self.build_middleware_stack()
+        self.middleware_stack: Union[ASGIApp, None] = None
         self.setup()
 
     def build_middleware_stack(self) -> ASGIApp:
@@ -274,7 +275,7 @@ class FastAPI(Starlette):
         path: str,
         endpoint: Callable[..., Coroutine[Any, Any, Response]],
         *,
-        response_model: Any = None,
+        response_model: Any = Default(None),
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[Depends]] = None,
@@ -332,7 +333,7 @@ class FastAPI(Starlette):
         self,
         path: str,
         *,
-        response_model: Any = None,
+        response_model: Any = Default(None),
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[Depends]] = None,
@@ -435,7 +436,7 @@ class FastAPI(Starlette):
         self,
         path: str,
         *,
-        response_model: Any = None,
+        response_model: Any = Default(None),
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[Depends]] = None,
@@ -490,7 +491,7 @@ class FastAPI(Starlette):
         self,
         path: str,
         *,
-        response_model: Any = None,
+        response_model: Any = Default(None),
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[Depends]] = None,
@@ -545,7 +546,7 @@ class FastAPI(Starlette):
         self,
         path: str,
         *,
-        response_model: Any = None,
+        response_model: Any = Default(None),
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[Depends]] = None,
@@ -600,7 +601,7 @@ class FastAPI(Starlette):
         self,
         path: str,
         *,
-        response_model: Any = None,
+        response_model: Any = Default(None),
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[Depends]] = None,
@@ -655,7 +656,7 @@ class FastAPI(Starlette):
         self,
         path: str,
         *,
-        response_model: Any = None,
+        response_model: Any = Default(None),
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[Depends]] = None,
@@ -710,7 +711,7 @@ class FastAPI(Starlette):
         self,
         path: str,
         *,
-        response_model: Any = None,
+        response_model: Any = Default(None),
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[Depends]] = None,
@@ -765,7 +766,7 @@ class FastAPI(Starlette):
         self,
         path: str,
         *,
-        response_model: Any = None,
+        response_model: Any = Default(None),
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[Depends]] = None,
@@ -820,7 +821,7 @@ class FastAPI(Starlette):
         self,
         path: str,
         *,
-        response_model: Any = None,
+        response_model: Any = Default(None),
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[Depends]] = None,
@@ -870,3 +871,35 @@ class FastAPI(Starlette):
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
         )
+
+    def websocket_route(
+        self, path: str, name: Union[str, None] = None
+    ) -> Callable[[DecoratedCallable], DecoratedCallable]:
+        def decorator(func: DecoratedCallable) -> DecoratedCallable:
+            self.router.add_websocket_route(path, func, name=name)
+            return func
+
+        return decorator
+
+    def on_event(
+        self, event_type: str
+    ) -> Callable[[DecoratedCallable], DecoratedCallable]:
+        return self.router.on_event(event_type)
+
+    def middleware(
+        self, middleware_type: str
+    ) -> Callable[[DecoratedCallable], DecoratedCallable]:
+        def decorator(func: DecoratedCallable) -> DecoratedCallable:
+            self.add_middleware(BaseHTTPMiddleware, dispatch=func)
+            return func
+
+        return decorator
+
+    def exception_handler(
+        self, exc_class_or_status_code: Union[int, Type[Exception]]
+    ) -> Callable[[DecoratedCallable], DecoratedCallable]:
+        def decorator(func: DecoratedCallable) -> DecoratedCallable:
+            self.add_exception_handler(exc_class_or_status_code, func)
+            return func
+
+        return decorator
