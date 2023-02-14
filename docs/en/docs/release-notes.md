@@ -2,6 +2,7 @@
 
 ## Latest Changes
 
+* ⬆️ Upgrade Starlette to 0.25.0. PR [#5996](https://github.com/tiangolo/fastapi/pull/5996) by [@tiangolo](https://github.com/tiangolo).
 
 ## 0.91.0
 
