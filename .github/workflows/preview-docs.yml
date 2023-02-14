@@ -16,7 +16,7 @@ jobs:
           rm -rf ./site
           mkdir ./site
       - name: Download Artifact Docs
-        uses: dawidd6/action-download-artifact@v2.24.3
+        uses: dawidd6/action-download-artifact@v2.25.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           workflow: build-docs.yml
