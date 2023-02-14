@@ -2,6 +2,9 @@
 
 ## Latest Changes
 
+
+## 0.92.0
+
 🚨 This is a security fix. Please upgrade as soon as possible.
 
 ### Upgrades
