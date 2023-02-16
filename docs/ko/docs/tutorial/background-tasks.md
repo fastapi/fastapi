@@ -91,7 +91,7 @@ FastAPI에서 `BackgroundTask`를 단독으로 사용하는 것은 여전히 가
 
 만약 무거운 백그라운드 작업을 수행해야하고 동일한 프로세스에서 실행할 필요가 없는 경우 (예: 메모리, 변수 등을 공유할 필요가 없음) <a href="https://docs.celeryq.dev" class="external-link" target="_blank">`Celery`</a>와 같은 큰 도구를 사용하면 도움이 될 수 있습니다.
 
-RabbitMQ 또는 Redis와 같은 메시지/작업 큐 시스템 보다 복잡한 구성이 필요한 경향이 있지만, 여러 작업 프로세스를 특히 여러 서버에서 백그라운드에서 실행할 수 있습니다.
+RabbitMQ 또는 Redis와 같은 메시지/작업 큐 시스템 보다 복잡한 구성이 필요한 경향이 있지만, 여러 작업 프로세스를 특히 여러 서버의 백그라운드에서 실행할 수 있습니다.
 
 예제를 보시려면 [프로젝트 생성기](../project-generation.md){.internal-link target=\_blank} 를 참고하세요. 해당 예제에는 이미 구성된 Celery가 포함되어 있습니다.
 
