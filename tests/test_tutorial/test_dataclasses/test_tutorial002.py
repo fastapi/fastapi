@@ -54,7 +54,7 @@ def test_openapi_schema():
     response = client.get("/openapi.json")
     assert response.status_code == 200
     # TODO: remove this once Pydantic 1.9 is released
-    # Ref: https://github.com/samuelcolvin/pydantic/pull/2557
+    # Ref: https://github.com/pydantic/pydantic/pull/2557
     data = response.json()
     alternative_data1 = deepcopy(data)
     alternative_data2 = deepcopy(data)
