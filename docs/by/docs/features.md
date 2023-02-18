@@ -100,7 +100,7 @@ my_second_user: User = User(**second_user_data)
 
 ### Праверка дадзеных
 
-* Праверка большасці (ці ўсіх?) **тыпаў даных** Python, у тым ліку:
+* Праверка большасці (ці ўсіх?) **тыпаў дадзеных** Python, у тым ліку:
     * JSON аб'ектаў (`dict`).
     * JSON масіў (`list`) з вызначэннем тыпаў элемента.
     * Радковыя (`str`) палі з вызначэнне мінімальнай і максімальнай даўжыні.
@@ -112,89 +112,89 @@ my_second_user: User = User(**second_user_data)
     * UUID.
     * ...і іншых.
 
-Усе праверкі выконваюцца добра зарэкамендавалым сябе і надзейным **Pydantic**.
+Усе праверкі выконваюцца надзейным і добра зарэкамендавалым сябе **Pydantic**.
 
-### Security and authentication
+### Бяспека і аўтэнтыфікацыя
 
-Security and authentication integrated. Without any compromise with databases or data models.
+Бяспека і аўтэнтыфікацыя інтэграваныя. Без якіх-небудзь кампрамісаў з базамі дадзеных або мадэлямі дадзеных.
 
-All the security schemes defined in OpenAPI, including:
+Усе схемы бяспекі, вызначаныя ў OpenAPI, у тым ліку:
 
 * HTTP Basic.
-* **OAuth2** (also with **JWT tokens**). Check the tutorial on [OAuth2 with JWT](tutorial/security/oauth2-jwt.md){.internal-link target=_blank}.
-* API keys in:
-    * Headers.
-    * Query parameters.
-    * Cookies, etc.
+* **OAuth2** (таксама з **JWT токенамі**). Паглядзіце кіраўніцтва [OAuth2 with JWT](tutorial/security/oauth2-jwt.md){.internal-link target=_blank}.
+* API ключы ў:
+    * Загалоўках.
+    * Параметраз запросаў.
+    * Cookies і г.д.
 
-Plus all the security features from Starlette (including **session cookies**).
+Плюс усе функцыі бяспекі ад Starlette (у тым ліку **session cookies**).
 
-All built as reusable tools and components that are easy to integrate with your systems, data stores, relational and NoSQL databases, etc.
+Усё створана ў выглядзе шматразовых інструментаў і кампанентаў, якія лёгка інтэгруюцца з вашымі сістэмамі, сховішчамі дадзеных, рэляцыйнымі базамі дадзеных і базамі дадзеных NoSQL і г.д.
 
-### Dependency Injection
+### Увядзенне залежнасцей
 
-FastAPI includes an extremely easy to use, but extremely powerful <abbr title='also known as "components", "resources", "services", "providers"'><strong>Dependency Injection</strong></abbr> system.
+FastAPI ўключае надзвычай простую ў выкарыстанні, але надзвычай магутную сістэму <abbr title='таксама вядомую як "components", "resources", "services", "providers"'><strong>ўвядзення залежнасцей</strong></abbr>.
 
-* Even dependencies can have dependencies, creating a hierarchy or **"graph" of dependencies**.
-* All **automatically handled** by the framework.
-* All the dependencies can require data from requests and **augment the path operation** constraints and automatic documentation.
-* **Automatic validation** even for *path operation* parameters defined in dependencies.
-* Support for complex user authentication systems, **database connections**, etc.
-* **No compromise** with databases, frontends, etc. But easy integration with all of them.
+* Нават залежнасці могуць мець залежнасці, ствараючы іерархію або **"граф" залежнасцей**.
+* Усё **аўтаматычна апрацоўваецца** фрэймворкам.
+* Усе залежнасці могуць запатрабаваць дадзеныя з запытаў і **павялічыць аперацыю шляху** абмежаваннямі і аўтаматычнай дакументацыей.
+* **Аўтаматычная праверка** нават для параметраў *аперацый шляху*, вызначаных у залежнасцях.
+* Падтрымка складаных сістэм аўтэнтыфікацыі карыстальнікаў, **злучэнняў з базамі дадзеных** і г.д.
+* **Без кампрамісаў** з базамі дадзеных, інтэрфейсамі і г.д. Але простая інтэграцыя з усімі імі.
 
-### Unlimited "plug-ins"
+### Неабмежаванасць "плагінаў"
 
-Or in other way, no need for them, import and use the code you need.
+Ці іншымі словамі, яны не патрэбныя, імпартуйце і выкарыстоўвайце неабходны Вам код.
 
-Any integration is designed to be so simple to use (with dependencies) that you can create a "plug-in" for your application in 2 lines of code using the same structure and syntax used for your *path operations*.
+Усе інтэграцыі распрацаваны настолькі простымі ў выкарыстанні (з залежнасцямі), што вы можаце стварыць "плагін" для вашай праграмы ў 2 радках кода, выкарыстоўваючы тую ж структуру і сінтаксіс, якія выкарыстоўваюцца для вашых *аперацый шляху*.
 
-### Tested
+### Пратэставаны
 
-* 100% <abbr title="The amount of code that is automatically tested">test coverage</abbr>.
-* 100% <abbr title="Python type annotations, with this your editor and external tools can give you better support">type annotated</abbr> code base.
-* Used in production applications.
+* 100% <abbr title="Колькасць аўтаматычна тэстуемага кода">пакрыццё тэстами</abbr>.
+* 100% <abbr title="Анатацыі тыпаў Python, дзякуючы гэтаму ваш рэдактар і знешнія інструменты могуць забяспечыць вам лепшую падтрымку">анатацыі тыпаў</abbr> кодавай базы
+* Выкарыстоўваецца ў прадакшн праграмах.
 
-## Starlette features
+## Магчымасці Starlette
 
-**FastAPI** is fully compatible with (and based on) <a href="https://www.starlette.io/" class="external-link" target="_blank"><strong>Starlette</strong></a>. So, any additional Starlette code you have, will also work.
+**FastAPI** заснаваны і цалкам сумяшчальны са <a href="https://www.starlette.io/" class="external-link" target="_blank"><strong>Starlette</strong></a>. Такім чынам, любы дадатковы код Starlette, які ў вас ёсць, таксама будзе працаваць.
 
-`FastAPI` is actually a sub-class of `Starlette`. So, if you already know or use Starlette, most of the functionality will work the same way.
+`FastAPI` з'яўляецца падкласам `Starlette`. Таму калі вы ўжо ведаеце або карыстаецеся Starlette, большасць функцый будзе працаваць такім жа чынам.
 
-With **FastAPI** you get all of **Starlette**'s features (as FastAPI is just Starlette on steroids):
+З **FastAPI** вы атрымліваеце ўсе магчымасці **Starlette**, паколькі FastAPI - гэта проста Starlette на стэроідах:
+ 
+*Сур'ёзна ўражлівая прадукцыйнасць. Гэта <a href="https://github.com/encode/starlette#performance" class="external-link" target="_blank">Гэта адзін з самых хуткіх даступных фрэймворкаў Python, нароўні з  **NodeJS** і **Go**</a>.
+* Падтрымка **WebSocket**.
+* Фонавыя задачы ў працэсах.
+* Падзеі запуску і выключэння.
+* Тэставы кліент, пабудаваны на HTTPX.
+* **CORS**, GZip, Статычныя файлы, Патокавыя адказы.
+* Падтрымка **Сесій і Cookie**.
+* 100% пакрыццё тыстамі .
+* 100% анатацыі тыпаў кодавай базы.
 
-* Seriously impressive performance. It is <a href="https://github.com/encode/starlette#performance" class="external-link" target="_blank">one of the fastest Python frameworks available, on par with **NodeJS** and **Go**</a>.
-* **WebSocket** support.
-* In-process background tasks.
-* Startup and shutdown events.
-* Test client built on HTTPX.
-* **CORS**, GZip, Static Files, Streaming responses.
-* **Session and Cookie** support.
-* 100% test coverage.
-* 100% type annotated codebase.
+## Магчымасці Pydantic
 
-## Pydantic features
+**FastAPI** заснаваны і цалкам сумяшчальны с <a href="https://pydantic-docs.helpmanual.io" class="external-link" target="_blank"><strong>Pydantic</strong></a>. Такім чынам, любы дадатковы код Pydantic, які ў вас ёсць, таксама будзе працаваць.
 
-**FastAPI** is fully compatible with (and based on) <a href="https://pydantic-docs.helpmanual.io" class="external-link" target="_blank"><strong>Pydantic</strong></a>. So, any additional Pydantic code you have, will also work.
+Уключаючы знешнія бібліятэкі, таксама заснаваныя на Pydantic, такія як: <abbr title="Object-Relational Mapper">ORM</abbr>s, <abbr title="Object-Document Mapper">ODM</abbr>для баз дадзеных.
 
-Including external libraries also based on Pydantic, as <abbr title="Object-Relational Mapper">ORM</abbr>s, <abbr title="Object-Document Mapper">ODM</abbr>s for databases.
+Гэта таксама азначае, што ў многіх выпадках вы можаце перадаць той жа аб'ект, які атрымліваеце з запыту, **непасрэдна ў базу дадзеных**, бо ўсё правяраецца аўтаматычна.
 
-This also means that in many cases you can pass the same object you get from a request **directly to the database**, as everything is validated automatically.
+Тое ж самае і наадварот, у многіх выпадках вы можаце проста перадаць атрыманы аб'ект з базы дадзеных **непасрэдна кліенту**.
 
-The same applies the other way around, in many cases you can just pass the object you get from the database **directly to the client**.
+З **FastAPI** вы атрымліваеце ўсе функцыі **Pydantic** (паколькі FastAPI заснаваны на Pydantic для апрацоўкі ўсіх дадзеных):
 
-With **FastAPI** you get all of **Pydantic**'s features (as FastAPI is based on Pydantic for all the data handling):
-
-* **No brainfuck**:
-    * No new schema definition micro-language to learn.
-    * If you know Python types you know how to use Pydantic.
-* Plays nicely with your **<abbr title="Integrated Development Environment, similar to a code editor">IDE</abbr>/<abbr title="A program that checks for code errors">linter</abbr>/brain**:
-    * Because pydantic data structures are just instances of classes you define; auto-completion, linting, mypy and your intuition should all work properly with your validated data.
-* **Fast**:
-    * in <a href="https://pydantic-docs.helpmanual.io/benchmarks/" class="external-link" target="_blank">benchmarks</a> Pydantic is faster than all other tested libraries.
-* Validate **complex structures**:
-    * Use of hierarchical Pydantic models, Python `typing`’s `List` and `Dict`, etc.
-    * And validators allow complex data schemas to be clearly and easily defined, checked and documented as JSON Schema.
-    * You can have deeply **nested JSON** objects and have them all validated and annotated.
-* **Extensible**:
-    * Pydantic allows custom data types to be defined or you can extend validation with methods on a model decorated with the validator decorator.
-* 100% test coverage.
+* **Ніякіх мазгатрахаў**:
+    * Ніякіх мікрамоў для вызначэння новых схем
+    * Калі вы ведаеце тыпы Python, вы ведаеце, як выкарыстоўваць Pydantic.
+* Цудоўна сумяшчаецца з Вашым **<abbr title="Integrated Development Environment, similar to a code editor">IDE</abbr>/<abbr title="Праграма для праверкі кода на памылкі">лінтерам</abbr>/мозгам**:
+    * Паколькі струкруты дадзеных pydantic - гэта толькі экзэмпляры класаў, вызначыныя Вамі. Аўтадапаўненне, лінтынт, mypy і ваша інтуіцыя павінны правільна працаваць з вашымі праверанымі дадзенымі.
+* **Хуткасць**:
+    * у <a href="https://pydantic-docs.helpmanual.io/benchmarks/" class="external-link" target="_blank">бэнчмарках</a>  хутчэй, чым усе іншыя пратэставаныя бібліятэкі.
+* Праверка **складаных структур**:
+    * Выкарыстанне іерархічных мадэляў Pydantic, `List`, `Dict` і г.д з Python-модуля `typing`
+    * валідатары дазваляюць выразна і лёгка вызначаць, правяраць і дакументаваць складаныя схемы дадзеных у выглядзе схемы JSON.
+    * Вы можаце мець глыбока **ўкладзеныя аб'екты JSON**, правяраць іх усе і анатаваць.
+* **Пашыральнасць**:
+    * Pydantic дазваляе вызначаць карыстацкія тыпы дадзеных або пашыраць праверку метадамі мадэлі, з дапамогай праверачных дэкаратараў.
+* 100% пакрыццё тэстамі.
