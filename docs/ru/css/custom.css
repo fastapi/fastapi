@@ -1,0 +1,146 @@
+.termynal-comment {
+  color: #4a968f;
+  font-style: italic;
+  display: block;
+}
+
+.termy {
+  /* For right to left languages */
+  direction: ltr;
+}
+
+.termy [data-termynal] {
+  white-space: pre-wrap;
+}
+
+a.external-link {
+  /* For right to left languages */
+  direction: ltr;
+  display: inline-block;
+}
+
+a.external-link::after {
+  /* \00A0 is a non-breaking space
+        to make the mark be on the same line as the link
+    */
+  content: "\00A0[↪]";
+}
+
+a.internal-link::after {
+  /* \00A0 is a non-breaking space
+        to make the mark be on the same line as the link
+    */
+  content: "\00A0↪";
+}
+
+.shadow {
+  box-shadow: 5px 5px 10px #999;
+}
+
+/* Give space to lower icons so Gitter chat doesn't get on top of them */
+.md-footer-meta {
+  padding-bottom: 2em;
+}
+
+.user-list {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.user-list-center {
+  justify-content: space-evenly;
+}
+
+.user {
+  margin: 1em;
+  min-width: 7em;
+}
+
+.user .avatar-wrapper {
+  width: 80px;
+  height: 80px;
+  margin: 10px auto;
+  overflow: hidden;
+  border-radius: 50%;
+  position: relative;
+}
+
+.user .avatar-wrapper img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.user .title {
+  text-align: center;
+}
+
+.user .count {
+  font-size: 80%;
+  text-align: center;
+}
+
+a.announce-link:link,
+a.announce-link:visited {
+  color: #fff;
+}
+
+a.announce-link:hover {
+  color: var(--md-accent-fg-color);
+}
+
+.announce-wrapper {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.announce-wrapper div.item {
+  display: none;
+}
+
+.announce-wrapper .sponsor-badge {
+  display: block;
+  position: absolute;
+  top: -10px;
+  right: 0;
+  font-size: 0.5rem;
+  color: #999;
+  background-color: #666;
+  border-radius: 10px;
+  padding: 0 10px;
+  z-index: 10;
+}
+
+.announce-wrapper .sponsor-image {
+  display: block;
+  border-radius: 20px;
+}
+
+.announce-wrapper>div {
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+}
+
+.twitter {
+  color: #00acee;
+}
+
+/* Right to left languages */
+code {
+  direction: ltr;
+  display: inline-block;
+}
+
+.md-content__inner h1 {
+  direction: ltr !important;
+}
+
+.illustration {
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
