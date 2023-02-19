@@ -157,7 +157,7 @@ class FastAPI(Starlette):
         inside of ExceptionMiddleware, inside of custom user middlewares
         """
         debug: bool = self.debug
-        error_handler: Exception = None
+        error_handler = None
         exception_handlers: Dict[int, Exception] = {}
 
         for key, value in self.exception_handlers.items():
@@ -199,7 +199,7 @@ class FastAPI(Starlette):
 
         app: routing.APIRouter = self.router
         for cls, options in reversed(middleware):
-            app: routing.APIRouter = cls(app=app, **options)
+            app = cls(app=app, **options)
         return app
 
     def openapi(self) -> Dict[str, Any]:
@@ -220,7 +220,7 @@ class FastAPI(Starlette):
 
     def setup(self) -> None:
         if self.openapi_url:
-            urls: Generator[str] = (
+            urls: Generator[None, Dict[str], str] = (
                 server_data.get("url") for server_data in self.servers
             )
             server_urls: Set[str] = {url for url in urls if url}
@@ -238,7 +238,7 @@ class FastAPI(Starlette):
 
             async def swagger_ui_html(req: Request) -> HTMLResponse:
                 root_path: str = req.scope.get("root_path", "").rstrip("/")
-                openapi_url: str = root_path + self.openapi_url
+                openapi_url = root_path + self.openapi_url
                 oauth2_redirect_url: str = self.swagger_ui_oauth2_redirect_url
                 if oauth2_redirect_url:
                     oauth2_redirect_url: str = root_path + oauth2_redirect_url
