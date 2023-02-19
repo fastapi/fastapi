@@ -158,7 +158,7 @@ class FastAPI(Starlette):
         """
         debug: bool = self.debug
         error_handler = None
-        exception_handlers: Dict[int, Exception] = {}
+        exception_handlers = {}
 
         for key, value in self.exception_handlers.items():
             if key in (500, Exception):
@@ -220,7 +220,7 @@ class FastAPI(Starlette):
 
     def setup(self) -> None:
         if self.openapi_url:
-            urls: Generator[None, Dict[str], str] = (
+            urls = (
                 server_data.get("url") for server_data in self.servers
             )
             server_urls: Set[str] = {url for url in urls if url}
@@ -237,9 +237,9 @@ class FastAPI(Starlette):
         if self.openapi_url and self.docs_url:
 
             async def swagger_ui_html(req: Request) -> HTMLResponse:
-                root_path: str = req.scope.get("root_path", "").rstrip("/")
+                root_path = req.scope.get("root_path", "").rstrip("/")
                 openapi_url = root_path + self.openapi_url
-                oauth2_redirect_url: str = self.swagger_ui_oauth2_redirect_url
+                oauth2_redirect_url = self.swagger_ui_oauth2_redirect_url
                 if oauth2_redirect_url:
                     oauth2_redirect_url: str = root_path + oauth2_redirect_url
                 return get_swagger_ui_html(
