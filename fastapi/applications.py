@@ -5,9 +5,11 @@ from typing import (
     Callable,
     Coroutine,
     Dict,
+    Generator,
     List,
     Optional,
     Sequence,
+    Set,
     Type,
     Union,
 )
@@ -87,24 +89,26 @@ class FastAPI(Starlette):
         ),
         **extra: Any,
     ) -> None:
-        self.debug = debug
-        self.title = title
-        self.description = description
-        self.version = version
-        self.terms_of_service = terms_of_service
-        self.contact = contact
-        self.license_info = license_info
-        self.openapi_url = openapi_url
-        self.openapi_tags = openapi_tags
-        self.root_path_in_servers = root_path_in_servers
-        self.docs_url = docs_url
-        self.redoc_url = redoc_url
-        self.swagger_ui_oauth2_redirect_url = swagger_ui_oauth2_redirect_url
-        self.swagger_ui_init_oauth = swagger_ui_init_oauth
-        self.swagger_ui_parameters = swagger_ui_parameters
-        self.servers = servers or []
-        self.extra = extra
-        self.openapi_version = "3.0.2"
+        self.debug: bool = debug
+        self.title: str = title
+        self.description: str = description
+        self.version: str = version
+        self.terms_of_service: Optional[str] = terms_of_service
+        self.contact: Optional[Dict[str, Union[str, Any]]] = contact
+        self.license_info: Optional[Dict[str, Union[str, Any]]] = license_info
+        self.openapi_url: Optional[str] = openapi_url
+        self.openapi_tags: Optional[List[Dict[str, Any]]] = openapi_tags
+        self.root_path_in_servers: bool = root_path_in_servers
+        self.docs_url: Optional[str] = docs_url
+        self.redoc_url: Optional[str] = redoc_url
+        self.swagger_ui_oauth2_redirect_url: Optional[
+            str
+        ] = swagger_ui_oauth2_redirect_url
+        self.swagger_ui_init_oauth: Optional[Dict[str, Any]] = swagger_ui_init_oauth
+        self.swagger_ui_parameters: Optional[Dict[str, Any]] = swagger_ui_parameters
+        self.servers: Optional[List[Dict[str, Union[str, Any]]]] = servers or []
+        self.extra: Any = extra
+        self.openapi_version: str = "3.0.2"
         self.openapi_schema: Optional[Dict[str, Any]] = None
         if self.openapi_url:
             assert self.title, "A title must be provided for OpenAPI, e.g.: 'My API'"
@@ -117,7 +121,7 @@ class FastAPI(Starlette):
                 "automatic. Check the docs at "
                 "https://fastapi.tiangolo.com/advanced/sub-applications/"
             )
-        self.root_path = root_path or openapi_prefix
+        self.root_path: str = root_path or openapi_prefix
         self.state: State = State()
         self.dependency_overrides: Dict[Callable[..., Any], Callable[..., Any]] = {}
         self.router: routing.APIRouter = routing.APIRouter(
@@ -148,11 +152,13 @@ class FastAPI(Starlette):
         self.setup()
 
     def build_middleware_stack(self) -> ASGIApp:
-        # Duplicate/override from Starlette to add AsyncExitStackMiddleware
-        # inside of ExceptionMiddleware, inside of custom user middlewares
-        debug = self.debug
-        error_handler = None
-        exception_handlers = {}
+        """
+        Duplicate/override from Starlette to add AsyncExitStackMiddleware
+        inside of ExceptionMiddleware, inside of custom user middlewares
+        """
+        debug: bool = self.debug
+        error_handler: Exception = None
+        exception_handlers: Dict[int, Exception] = {}
 
         for key, value in self.exception_handlers.items():
             if key in (500, Exception):
@@ -160,7 +166,7 @@ class FastAPI(Starlette):
             else:
                 exception_handlers[key] = value
 
-        middleware = (
+        middleware: List[Middleware] = (
             [Middleware(ServerErrorMiddleware, handler=error_handler, debug=debug)]
             + self.user_middleware
             + [
@@ -191,9 +197,9 @@ class FastAPI(Starlette):
             ]
         )
 
-        app = self.router
+        app: routing.APIRouter = self.router
         for cls, options in reversed(middleware):
-            app = cls(app=app, **options)
+            app: routing.APIRouter = cls(app=app, **options)
         return app
 
     def openapi(self) -> Dict[str, Any]:
@@ -214,11 +220,13 @@ class FastAPI(Starlette):
 
     def setup(self) -> None:
         if self.openapi_url:
-            urls = (server_data.get("url") for server_data in self.servers)
-            server_urls = {url for url in urls if url}
+            urls: Generator[str] = (
+                server_data.get("url") for server_data in self.servers
+            )
+            server_urls: Set[str] = {url for url in urls if url}
 
             async def openapi(req: Request) -> JSONResponse:
-                root_path = req.scope.get("root_path", "").rstrip("/")
+                root_path: str = req.scope.get("root_path", "").rstrip("/")
                 if root_path not in server_urls:
                     if root_path and self.root_path_in_servers:
                         self.servers.insert(0, {"url": root_path})
@@ -229,11 +237,11 @@ class FastAPI(Starlette):
         if self.openapi_url and self.docs_url:
 
             async def swagger_ui_html(req: Request) -> HTMLResponse:
-                root_path = req.scope.get("root_path", "").rstrip("/")
-                openapi_url = root_path + self.openapi_url
-                oauth2_redirect_url = self.swagger_ui_oauth2_redirect_url
+                root_path: str = req.scope.get("root_path", "").rstrip("/")
+                openapi_url: str = root_path + self.openapi_url
+                oauth2_redirect_url: str = self.swagger_ui_oauth2_redirect_url
                 if oauth2_redirect_url:
-                    oauth2_redirect_url = root_path + oauth2_redirect_url
+                    oauth2_redirect_url: str = root_path + oauth2_redirect_url
                 return get_swagger_ui_html(
                     openapi_url=openapi_url,
                     title=self.title + " - Swagger UI",
@@ -257,8 +265,8 @@ class FastAPI(Starlette):
         if self.openapi_url and self.redoc_url:
 
             async def redoc_html(req: Request) -> HTMLResponse:
-                root_path = req.scope.get("root_path", "").rstrip("/")
-                openapi_url = root_path + self.openapi_url
+                root_path: str = req.scope.get("root_path", "").rstrip("/")
+                openapi_url: str = root_path + self.openapi_url
                 return get_redoc_html(
                     openapi_url=openapi_url, title=self.title + " - ReDoc"
                 )
