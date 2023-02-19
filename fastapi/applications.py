@@ -5,7 +5,6 @@ from typing import (
     Callable,
     Coroutine,
     Dict,
-    Generator,
     List,
     Optional,
     Sequence,
@@ -57,7 +56,7 @@ class FastAPI(Starlette):
         version: str = "0.1.0",
         openapi_url: Optional[str] = "/openapi.json",
         openapi_tags: Optional[List[Dict[str, Any]]] = None,
-        servers = None,
+        servers=None,
         dependencies: Optional[Sequence[Depends]] = None,
         default_response_class: Type[Response] = Default(JSONResponse),
         docs_url: Optional[str] = "/docs",
@@ -220,9 +219,7 @@ class FastAPI(Starlette):
 
     def setup(self) -> None:
         if self.openapi_url:
-            urls = (
-                server_data.get("url") for server_data in self.servers
-            )
+            urls = (server_data.get("url") for server_data in self.servers)
             server_urls: Set[str] = {url for url in urls if url}
 
             async def openapi(req: Request) -> JSONResponse:
