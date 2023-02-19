@@ -10,7 +10,6 @@ from fastapi import (
     WebSocketDisconnect,
     status,
 )
-from fastapi.exceptions import WebSocketRequestValidationError
 from fastapi.middleware import Middleware
 from fastapi.testclient import TestClient
 
@@ -94,6 +93,15 @@ async def router_ws_depends_validate(
     websocket: WebSocket, data=Depends(ws_dependency_validate)
 ):
     pass
+
+
+class CustomError(Exception):
+    pass
+
+
+@router.websocket("/custom_error/")
+async def router_ws_custom_error(websocket: WebSocket):
+    raise CustomError()
 
 
 def make_app(app=None, **kwargs):
@@ -201,8 +209,7 @@ def websocket_middleware(middleware_func):
 
 def test_depend_validation():
     """
-    Verify that a validation in a dependency raises an unhandled exception
-    In addition to sending a websocket.close()
+    Verify that a validation in a dependency invokes the correct exception handler
     """
     caught = []
 
@@ -222,8 +229,8 @@ def test_depend_validation():
             pass
     # the validation error does produce a close message
     assert e.value.code == status.WS_1008_POLICY_VIOLATION
-    # but it also produces a
-    assert isinstance(caught[0], WebSocketRequestValidationError)
+    # and no error is leaked
+    assert caught == []
 
 
 def test_depend_err_middleware():
@@ -245,3 +252,20 @@ def test_depend_err_middleware():
             pass
     assert e.value.code == status.WS_1006_ABNORMAL_CLOSURE
     assert "NotImplementedError" in e.value.reason
+
+
+def test_depend_err_handler():
+    """
+    Verify that it is possible to write custom WebSocket middleware to catch errors
+    """
+
+    async def custom_handler(websocket: WebSocket, exc: CustomError) -> None:
+        await websocket.close(1002, "foo")
+
+    myapp = make_app(exception_handlers={CustomError: custom_handler})
+    client = TestClient(myapp)
+    with pytest.raises(WebSocketDisconnect) as e:
+        with client.websocket_connect("/custom_error/"):
+            pass
+    assert e.value.code == 1002
+    assert "foo" in e.value.reason
