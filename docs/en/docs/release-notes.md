@@ -2,6 +2,7 @@
 
 ## Latest Changes
 
+* ⬆️ Upgrade and re-enable installing Typer-CLI. PR [#6008](https://github.com/tiangolo/fastapi/pull/6008) by [@tiangolo](https://github.com/tiangolo).
 
 ## 0.92.0
 
