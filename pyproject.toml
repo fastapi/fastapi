@@ -73,7 +73,7 @@ test = [
     "passlib[bcrypt] >=1.7.2,<2.0.0",
 
     # types
-    "types-ujson ==5.6.0.0",
+    "types-ujson ==5.7.0.1",
     "types-orjson ==3.6.2",
 ]
 doc = [
