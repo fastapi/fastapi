@@ -246,12 +246,10 @@ def is_scalar_sequence_field(field: ModelField) -> bool:
 
 
 def is_generic_type(obj: Any) -> bool:
-    return hasattr(obj, '__origin__') and hasattr(obj, '__args__')
+    return hasattr(obj, "__origin__") and hasattr(obj, "__args__")
 
 
-def substitute_generic_type(
-        annotation: Any, typevars: Dict[str, Any]
-) -> Any:
+def substitute_generic_type(annotation: Any, typevars: Dict[str, Any]) -> Any:
     collection_shells = {list: List, set: List, dict: Dict, tuple: Tuple}
     if is_generic_type(annotation):
         args = tuple(
@@ -265,11 +263,10 @@ def substitute_generic_type(
 def get_typed_signature(call: Callable[..., Any]) -> inspect.Signature:
     typevars = None
     if is_generic_type(call):
-        origin = getattr(call, '__origin__')
+        origin = call.__origin__
         typevars = {
-            typevar.__name__: value for typevar, value in zip(
-                origin.__parameters__, getattr(call, '__args__')
-            )
+            typevar.__name__: value
+            for typevar, value in zip(origin.__parameters__, call.__args__)
         }
         call = origin.__init__
 
@@ -283,16 +280,17 @@ def get_typed_signature(call: Callable[..., Any]) -> inspect.Signature:
             default=param.default,
             annotation=get_typed_annotation(param.annotation, globalns, typevars),
         )
-        for param in signature.parameters.values() if param.name != 'self'
+        for param in signature.parameters.values()
+        if param.name != "self"
     ]
     typed_signature = inspect.Signature(typed_params)
     return typed_signature
 
 
 def get_typed_annotation(
-        annotation: Any,
-        globalns: Dict[str, Any],
-        typevars: Optional[Dict[str, type]] = None,
+    annotation: Any,
+    globalns: Dict[str, Any],
+    typevars: Optional[Dict[str, type]] = None,
 ) -> Any:
     if isinstance(annotation, str):
         annotation = ForwardRef(annotation)
@@ -799,4 +797,3 @@ def get_body_field(*, dependant: Dependant, name: str) -> Optional[ModelField]:
     )
     check_file_field(final_field)
     return final_field
-
