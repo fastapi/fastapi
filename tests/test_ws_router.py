@@ -81,18 +81,18 @@ async def ws_dependency_err():
 
 @router.websocket("/depends-err/")
 async def router_ws_depends_err(websocket: WebSocket, data=Depends(ws_dependency_err)):
-    pass
+    pass  # pragma: no cover
 
 
 async def ws_dependency_validate(x_missing: str = Header()):
-    raise NotImplementedError()
+    pass  # pragma: no cover
 
 
 @router.websocket("/depends-validate/")
 async def router_ws_depends_validate(
     websocket: WebSocket, data=Depends(ws_dependency_validate)
 ):
-    pass
+    pass  # pragma: no cover
 
 
 class CustomError(Exception):
@@ -181,7 +181,7 @@ def test_wrong_uri():
     client = TestClient(app)
     with pytest.raises(WebSocketDisconnect) as e:
         with client.websocket_connect("/no-router/"):
-            pass
+            pass  # pragma: no cover
     assert e.value.code == status.WS_1000_NORMAL_CLOSURE
 
 
@@ -194,7 +194,7 @@ def websocket_middleware(middleware_func):
         @functools.wraps(app)
         async def wrapped_app(scope, receive, send):
             if scope["type"] != "websocket":
-                return await app(scope, receive, send)
+                return await app(scope, receive, send)  # pragma: no cover
 
             async def call_next():
                 return await app(scope, receive, send)
@@ -217,7 +217,7 @@ def test_depend_validation():
     async def catcher(websocket, call_next):
         try:
             return await call_next()
-        except Exception as e:
+        except Exception as e:   # pragma: no cover
             caught.append(e)
             raise
 
@@ -226,7 +226,7 @@ def test_depend_validation():
     client = TestClient(myapp)
     with pytest.raises(WebSocketDisconnect) as e:
         with client.websocket_connect("/depends-validate/"):
-            pass
+            pass  # pragma: no cover
     # the validation error does produce a close message
     assert e.value.code == status.WS_1008_POLICY_VIOLATION
     # and no error is leaked
@@ -249,7 +249,7 @@ def test_depend_err_middleware():
     client = TestClient(myapp)
     with pytest.raises(WebSocketDisconnect) as e:
         with client.websocket_connect("/depends-err/"):
-            pass
+            pass  # pragma: no cover
     assert e.value.code == status.WS_1006_ABNORMAL_CLOSURE
     assert "NotImplementedError" in e.value.reason
 
@@ -266,6 +266,6 @@ def test_depend_err_handler():
     client = TestClient(myapp)
     with pytest.raises(WebSocketDisconnect) as e:
         with client.websocket_connect("/custom_error/"):
-            pass
+            pass  # pragma: no cover
     assert e.value.code == 1002
     assert "foo" in e.value.reason
