@@ -282,16 +282,16 @@ def get_typed_signature(call: Callable[..., Any]) -> inspect.Signature:
             annotation=get_typed_annotation(param.annotation, globalns, typevars),
         )
         for param in signature.parameters.values()
-        if param.name != 'self'
+        if param.name != "self"
     ]
     typed_signature = inspect.Signature(typed_params)
     return typed_signature
 
 
 def get_typed_annotation(
-        annotation: Any,
-        globalns: Dict[str, Any],
-        typevars: Optional[Dict[str, type]] = None,
+    annotation: Any,
+    globalns: Dict[str, Any],
+    typevars: Optional[Dict[str, type]] = None,
 ) -> Any:
     if isinstance(annotation, str):
         annotation = ForwardRef(annotation)
@@ -798,4 +798,3 @@ def get_body_field(*, dependant: Dependant, name: str) -> Optional[ModelField]:
     )
     check_file_field(final_field)
     return final_field
-

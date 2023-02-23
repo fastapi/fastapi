@@ -19,7 +19,7 @@ class SecondGenericType(Generic[T, C]):
         simple: T,
         lst: List[T],
         dct: Dict[T, C],
-        custom_class: FirstGenericType[T] = Depends()
+        custom_class: FirstGenericType[T] = Depends(),
     ):
         self.simple = simple
         self.lst = lst
@@ -38,7 +38,7 @@ def depend_generic_type(obj: SecondGenericType[str, int] = Depends()):
         "dct": obj.dct,
         "custom_class": {
             "simple": obj.custom_class.simple,
-            "lst": obj.custom_class.lst
+            "lst": obj.custom_class.lst,
         },
     }
 
