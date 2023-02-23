@@ -155,8 +155,7 @@ class SortedTypeSet(Set[Type[Any]]):
             key=lambda type_: type_.__name__,
             reverse=self.sort_reversed,
         )
-        for member in members_sorted:
-            yield member
+        yield from members_sorted
 
 
 def test_model_description_escaped_with_formfeed():
