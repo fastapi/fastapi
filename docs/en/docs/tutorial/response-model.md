@@ -392,7 +392,7 @@ So, if you send a request to that *path operation* for the item with ID `foo`, t
 
     When creating a **FastAPI** class instance or an `APIRouter` you can specify which value to use by default for these parameters.
 
-    setting those in the *path operation* will still take precedence. 
+    setting those in the *path operation* will still take precedence.
 
 #### Data with values for fields with defaults
 
