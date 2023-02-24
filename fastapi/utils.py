@@ -205,3 +205,14 @@ def get_value_or_default(
         if not isinstance(item, DefaultPlaceholder):
             return item
     return first_item
+
+
+def get_value_or_default_value(
+    value_or_default: Union[DefaultPlaceholder, DefaultType],
+) -> DefaultType:
+    """
+    Return the value, or the default value if it was not explicitly set.
+    """
+    if isinstance(value_or_default, DefaultPlaceholder):
+        return value_or_default.value  # type: ignore
+    return value_or_default

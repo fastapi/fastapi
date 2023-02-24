@@ -37,6 +37,7 @@ from fastapi.utils import (
     create_response_field,
     generate_unique_id,
     get_value_or_default,
+    get_value_or_default_value,
     is_body_allowed_for_status_code,
 )
 from pydantic import BaseModel
@@ -182,10 +183,7 @@ def get_request_handler(
     assert dependant.call is not None, "dependant.call must be a function"
     is_coroutine = asyncio.iscoroutinefunction(dependant.call)
     is_body_form = body_field and isinstance(body_field.field_info, params.Form)
-    if isinstance(response_class, DefaultPlaceholder):
-        actual_response_class: Type[Response] = response_class.value
-    else:
-        actual_response_class = response_class
+    actual_response_class = get_value_or_default_value(response_class)
 
     async def app(request: Request) -> Response:
         try:
@@ -339,10 +337,12 @@ class APIRoute(routing.Route):
         operation_id: Optional[str] = None,
         response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
         response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-        response_model_by_alias: bool = True,
-        response_model_exclude_unset: bool = False,
-        response_model_exclude_defaults: bool = False,
-        response_model_exclude_none: bool = False,
+        response_model_by_alias: Union[bool, DefaultPlaceholder] = Default(True),
+        response_model_exclude_unset: Union[bool, DefaultPlaceholder] = Default(False),
+        response_model_exclude_defaults: Union[bool, DefaultPlaceholder] = Default(
+            False
+        ),
+        response_model_exclude_none: Union[bool, DefaultPlaceholder] = Default(False),
         include_in_schema: bool = True,
         response_class: Union[Type[Response], DefaultPlaceholder] = Default(
             JSONResponse
@@ -369,10 +369,18 @@ class APIRoute(routing.Route):
         self.operation_id = operation_id
         self.response_model_include = response_model_include
         self.response_model_exclude = response_model_exclude
-        self.response_model_by_alias = response_model_by_alias
-        self.response_model_exclude_unset = response_model_exclude_unset
-        self.response_model_exclude_defaults = response_model_exclude_defaults
-        self.response_model_exclude_none = response_model_exclude_none
+        self.response_model_by_alias = get_value_or_default_value(
+            response_model_by_alias
+        )
+        self.response_model_exclude_unset = get_value_or_default_value(
+            response_model_exclude_unset
+        )
+        self.response_model_exclude_defaults = get_value_or_default_value(
+            response_model_exclude_defaults
+        )
+        self.response_model_exclude_none = get_value_or_default_value(
+            response_model_exclude_none
+        )
         self.include_in_schema = include_in_schema
         self.response_class = response_class
         self.dependency_overrides_provider = dependency_overrides_provider
@@ -386,12 +394,10 @@ class APIRoute(routing.Route):
         if methods is None:
             methods = ["GET"]
         self.methods: Set[str] = {method.upper() for method in methods}
-        if isinstance(generate_unique_id_function, DefaultPlaceholder):
-            current_generate_unique_id: Callable[
-                ["APIRoute"], str
-            ] = generate_unique_id_function.value
-        else:
-            current_generate_unique_id = generate_unique_id_function
+
+        current_generate_unique_id = get_value_or_default_value(
+            generate_unique_id_function
+        )
         self.unique_id = self.operation_id or current_generate_unique_id(self)
         # normalize enums e.g. http.HTTPStatus
         if isinstance(status_code, IntEnum):
@@ -497,6 +503,10 @@ class APIRouter(routing.Router):
         generate_unique_id_function: Callable[[APIRoute], str] = Default(
             generate_unique_id
         ),
+        default_response_model_by_alias: bool = Default(True),
+        default_response_model_exclude_unset: bool = Default(False),
+        default_response_model_exclude_defaults: bool = Default(False),
+        default_response_model_exclude_none: bool = Default(False),
     ) -> None:
         super().__init__(
             routes=routes,
@@ -521,6 +531,12 @@ class APIRouter(routing.Router):
         self.route_class = route_class
         self.default_response_class = default_response_class
         self.generate_unique_id_function = generate_unique_id_function
+        self.default_response_model_by_alias = default_response_model_by_alias
+        self.default_response_model_exclude_unset = default_response_model_exclude_unset
+        self.default_response_model_exclude_defaults = (
+            default_response_model_exclude_defaults
+        )
+        self.default_response_model_exclude_none = default_response_model_exclude_none
 
     def route(
         self,
@@ -559,10 +575,12 @@ class APIRouter(routing.Router):
         operation_id: Optional[str] = None,
         response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
         response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-        response_model_by_alias: bool = True,
-        response_model_exclude_unset: bool = False,
-        response_model_exclude_defaults: bool = False,
-        response_model_exclude_none: bool = False,
+        response_model_by_alias: Union[bool, DefaultPlaceholder] = Default(True),
+        response_model_exclude_unset: Union[bool, DefaultPlaceholder] = Default(False),
+        response_model_exclude_defaults: Union[bool, DefaultPlaceholder] = Default(
+            False
+        ),
+        response_model_exclude_none: Union[bool, DefaultPlaceholder] = Default(False),
         include_in_schema: bool = True,
         response_class: Union[Type[Response], DefaultPlaceholder] = Default(
             JSONResponse
@@ -593,6 +611,22 @@ class APIRouter(routing.Router):
         current_generate_unique_id = get_value_or_default(
             generate_unique_id_function, self.generate_unique_id_function
         )
+        current_response_model_by_alias = get_value_or_default(
+            response_model_by_alias,
+            self.default_response_model_by_alias,
+        )
+        current_response_model_exclude_defaults = get_value_or_default(
+            response_model_exclude_defaults,
+            self.default_response_model_exclude_defaults,
+        )
+        current_response_model_exclude_unset = get_value_or_default(
+            response_model_exclude_unset,
+            self.default_response_model_exclude_unset,
+        )
+        current_response_model_exclude_none = get_value_or_default(
+            response_model_exclude_none,
+            self.default_response_model_exclude_none,
+        )
         route = route_class(
             self.prefix + path,
             endpoint=endpoint,
@@ -609,10 +643,10 @@ class APIRouter(routing.Router):
             operation_id=operation_id,
             response_model_include=response_model_include,
             response_model_exclude=response_model_exclude,
-            response_model_by_alias=response_model_by_alias,
-            response_model_exclude_unset=response_model_exclude_unset,
-            response_model_exclude_defaults=response_model_exclude_defaults,
-            response_model_exclude_none=response_model_exclude_none,
+            response_model_by_alias=current_response_model_by_alias,
+            response_model_exclude_unset=current_response_model_exclude_unset,
+            response_model_exclude_defaults=current_response_model_exclude_defaults,
+            response_model_exclude_none=current_response_model_exclude_none,
             include_in_schema=include_in_schema and self.include_in_schema,
             response_class=current_response_class,
             name=name,
@@ -640,10 +674,10 @@ class APIRouter(routing.Router):
         operation_id: Optional[str] = None,
         response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
         response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-        response_model_by_alias: bool = True,
-        response_model_exclude_unset: bool = False,
-        response_model_exclude_defaults: bool = False,
-        response_model_exclude_none: bool = False,
+        response_model_by_alias: bool = Default(True),
+        response_model_exclude_unset: bool = Default(False),
+        response_model_exclude_defaults: bool = Default(False),
+        response_model_exclude_none: bool = Default(False),
         include_in_schema: bool = True,
         response_class: Type[Response] = Default(JSONResponse),
         name: Optional[str] = None,
@@ -748,7 +782,7 @@ class APIRouter(routing.Router):
         for route in router.routes:
             if isinstance(route, APIRoute):
                 combined_responses = {**responses, **route.responses}
-                use_response_class = get_value_or_default(
+                current_response_class = get_value_or_default(
                     route.response_class,
                     router.default_response_class,
                     default_response_class,
@@ -775,6 +809,26 @@ class APIRouter(routing.Router):
                     generate_unique_id_function,
                     self.generate_unique_id_function,
                 )
+                current_response_model_by_alias = get_value_or_default(
+                    route.response_model_by_alias,
+                    router.default_response_model_by_alias,
+                    self.default_response_model_by_alias,
+                )
+                current_response_model_exclude_unset = get_value_or_default(
+                    route.response_model_exclude_unset,
+                    router.default_response_model_exclude_unset,
+                    self.default_response_model_exclude_unset,
+                )
+                current_response_model_exclude_defaults = get_value_or_default(
+                    route.response_model_exclude_defaults,
+                    router.default_response_model_exclude_defaults,
+                    self.default_response_model_exclude_defaults,
+                )
+                current_response_model_exclude_none = get_value_or_default(
+                    route.response_model_exclude_none,
+                    router.default_response_model_exclude_none,
+                    self.default_response_model_exclude_none,
+                )
                 self.add_api_route(
                     prefix + route.path,
                     route.endpoint,
@@ -791,14 +845,14 @@ class APIRouter(routing.Router):
                     operation_id=route.operation_id,
                     response_model_include=route.response_model_include,
                     response_model_exclude=route.response_model_exclude,
-                    response_model_by_alias=route.response_model_by_alias,
-                    response_model_exclude_unset=route.response_model_exclude_unset,
-                    response_model_exclude_defaults=route.response_model_exclude_defaults,
-                    response_model_exclude_none=route.response_model_exclude_none,
+                    response_model_by_alias=current_response_model_by_alias,
+                    response_model_exclude_unset=current_response_model_exclude_unset,
+                    response_model_exclude_defaults=current_response_model_exclude_defaults,
+                    response_model_exclude_none=current_response_model_exclude_none,
                     include_in_schema=route.include_in_schema
                     and self.include_in_schema
                     and include_in_schema,
-                    response_class=use_response_class,
+                    response_class=current_response_class,
                     name=route.name,
                     route_class_override=type(route),
                     callbacks=current_callbacks,
@@ -843,10 +897,10 @@ class APIRouter(routing.Router):
         operation_id: Optional[str] = None,
         response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
         response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-        response_model_by_alias: bool = True,
-        response_model_exclude_unset: bool = False,
-        response_model_exclude_defaults: bool = False,
-        response_model_exclude_none: bool = False,
+        response_model_by_alias: bool = Default(True),
+        response_model_exclude_unset: bool = Default(False),
+        response_model_exclude_defaults: bool = Default(False),
+        response_model_exclude_none: bool = Default(False),
         include_in_schema: bool = True,
         response_class: Type[Response] = Default(JSONResponse),
         name: Optional[str] = None,
@@ -899,10 +953,10 @@ class APIRouter(routing.Router):
         operation_id: Optional[str] = None,
         response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
         response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-        response_model_by_alias: bool = True,
-        response_model_exclude_unset: bool = False,
-        response_model_exclude_defaults: bool = False,
-        response_model_exclude_none: bool = False,
+        response_model_by_alias: bool = Default(True),
+        response_model_exclude_unset: bool = Default(False),
+        response_model_exclude_defaults: bool = Default(False),
+        response_model_exclude_none: bool = Default(False),
         include_in_schema: bool = True,
         response_class: Type[Response] = Default(JSONResponse),
         name: Optional[str] = None,
@@ -955,10 +1009,10 @@ class APIRouter(routing.Router):
         operation_id: Optional[str] = None,
         response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
         response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-        response_model_by_alias: bool = True,
-        response_model_exclude_unset: bool = False,
-        response_model_exclude_defaults: bool = False,
-        response_model_exclude_none: bool = False,
+        response_model_by_alias: bool = Default(True),
+        response_model_exclude_unset: bool = Default(False),
+        response_model_exclude_defaults: bool = Default(False),
+        response_model_exclude_none: bool = Default(False),
         include_in_schema: bool = True,
         response_class: Type[Response] = Default(JSONResponse),
         name: Optional[str] = None,
@@ -1011,10 +1065,10 @@ class APIRouter(routing.Router):
         operation_id: Optional[str] = None,
         response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
         response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-        response_model_by_alias: bool = True,
-        response_model_exclude_unset: bool = False,
-        response_model_exclude_defaults: bool = False,
-        response_model_exclude_none: bool = False,
+        response_model_by_alias: bool = Default(True),
+        response_model_exclude_unset: bool = Default(False),
+        response_model_exclude_defaults: bool = Default(False),
+        response_model_exclude_none: bool = Default(False),
         include_in_schema: bool = True,
         response_class: Type[Response] = Default(JSONResponse),
         name: Optional[str] = None,
@@ -1067,10 +1121,10 @@ class APIRouter(routing.Router):
         operation_id: Optional[str] = None,
         response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
         response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-        response_model_by_alias: bool = True,
-        response_model_exclude_unset: bool = False,
-        response_model_exclude_defaults: bool = False,
-        response_model_exclude_none: bool = False,
+        response_model_by_alias: bool = Default(True),
+        response_model_exclude_unset: bool = Default(False),
+        response_model_exclude_defaults: bool = Default(False),
+        response_model_exclude_none: bool = Default(False),
         include_in_schema: bool = True,
         response_class: Type[Response] = Default(JSONResponse),
         name: Optional[str] = None,
@@ -1123,10 +1177,10 @@ class APIRouter(routing.Router):
         operation_id: Optional[str] = None,
         response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
         response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-        response_model_by_alias: bool = True,
-        response_model_exclude_unset: bool = False,
-        response_model_exclude_defaults: bool = False,
-        response_model_exclude_none: bool = False,
+        response_model_by_alias: bool = Default(True),
+        response_model_exclude_unset: bool = Default(False),
+        response_model_exclude_defaults: bool = Default(False),
+        response_model_exclude_none: bool = Default(False),
         include_in_schema: bool = True,
         response_class: Type[Response] = Default(JSONResponse),
         name: Optional[str] = None,
@@ -1179,10 +1233,10 @@ class APIRouter(routing.Router):
         operation_id: Optional[str] = None,
         response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
         response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-        response_model_by_alias: bool = True,
-        response_model_exclude_unset: bool = False,
-        response_model_exclude_defaults: bool = False,
-        response_model_exclude_none: bool = False,
+        response_model_by_alias: bool = Default(True),
+        response_model_exclude_unset: bool = Default(False),
+        response_model_exclude_defaults: bool = Default(False),
+        response_model_exclude_none: bool = Default(False),
         include_in_schema: bool = True,
         response_class: Type[Response] = Default(JSONResponse),
         name: Optional[str] = None,
@@ -1235,10 +1289,10 @@ class APIRouter(routing.Router):
         operation_id: Optional[str] = None,
         response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
         response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-        response_model_by_alias: bool = True,
-        response_model_exclude_unset: bool = False,
-        response_model_exclude_defaults: bool = False,
-        response_model_exclude_none: bool = False,
+        response_model_by_alias: bool = Default(True),
+        response_model_exclude_unset: bool = Default(False),
+        response_model_exclude_defaults: bool = Default(False),
+        response_model_exclude_none: bool = Default(False),
         include_in_schema: bool = True,
         response_class: Type[Response] = Default(JSONResponse),
         name: Optional[str] = None,

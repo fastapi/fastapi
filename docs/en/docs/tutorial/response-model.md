@@ -388,6 +388,12 @@ So, if you send a request to that *path operation* for the item with ID `foo`, t
 
     as described in <a href="https://pydantic-docs.helpmanual.io/usage/exporting_models/#modeldict" class="external-link" target="_blank">the Pydantic docs</a> for `exclude_defaults` and `exclude_none`.
 
+!!! info
+
+    When creating a **FastAPI** class instance or an `APIRouter` you can specify which value to use by default for these parameters.
+
+    setting those in the *path operation* will still take precedence. 
+
 #### Data with values for fields with defaults
 
 But if your data has values for the model's fields with default values, like the item with ID `bar`:

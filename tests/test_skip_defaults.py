@@ -1,6 +1,7 @@
-from typing import Optional
+from typing import Dict, Optional
 
-from fastapi import FastAPI
+import pytest
+from fastapi import APIRouter, FastAPI
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
 
@@ -93,3 +94,109 @@ def test_return_exclude_none():
 def test_return_exclude_unset_none():
     response = client.get("/exclude_unset_none")
     assert response.json() == {"y": "y"}
+
+
+@pytest.mark.parametrize(
+    "exclude_defaults,exclude_none,exclude_unset,expected",
+    [
+        (True, False, False, {}),
+        (False, True, False, {"y": "y", "z": "z"}),
+        (False, False, True, {"x": None, "y": "y"}),
+    ],
+)
+def test_top_level_defaults(
+    exclude_defaults: bool,
+    exclude_none: bool,
+    exclude_unset: bool,
+    expected: Dict[str, str],
+):
+    app = FastAPI(
+        default_response_model_exclude_defaults=exclude_defaults,
+        default_response_model_exclude_none=exclude_none,
+        default_response_model_exclude_unset=exclude_unset,
+    )
+
+    @app.get("/")
+    def get() -> ModelDefaults:
+        return ModelDefaults(x=None, y="y")
+
+    client = TestClient(app)
+
+    response = client.get("/")
+    assert response.status_code == 200, response.text
+    assert response.json() == expected
+
+
+@pytest.mark.parametrize(
+    "exclude_defaults,exclude_none,exclude_unset,expected",
+    [
+        (True, False, False, {}),
+        (False, True, False, {"y": "y", "z": "z"}),
+        (False, False, True, {"x": None, "y": "y"}),
+    ],
+)
+def test_router_overrides_default_app(
+    exclude_defaults: bool,
+    exclude_none: bool,
+    exclude_unset: bool,
+    expected: Dict[str, str],
+):
+    app = FastAPI(
+        default_response_model_exclude_defaults=not exclude_defaults,
+        default_response_model_exclude_none=not exclude_none,
+        default_response_model_exclude_unset=not exclude_unset,
+    )
+    router = APIRouter(
+        default_response_model_exclude_defaults=exclude_defaults,
+        default_response_model_exclude_none=exclude_none,
+        default_response_model_exclude_unset=exclude_unset,
+    )
+
+    @router.get("/")
+    def get() -> ModelDefaults:
+        return ModelDefaults(x=None, y="y")
+
+    app.include_router(router)
+    client = TestClient(app)
+
+    response = client.get("/")
+    assert response.status_code == 200, response.text
+    assert response.json() == expected
+
+
+@pytest.mark.parametrize(
+    "exclude_defaults,exclude_none,exclude_unset,expected",
+    [
+        (True, False, False, {}),
+        (False, True, False, {"y": "y", "z": "z"}),
+        (False, False, True, {"x": None, "y": "y"}),
+    ],
+)
+def test_route_overrides_default_router(
+    exclude_defaults: bool,
+    exclude_none: bool,
+    exclude_unset: bool,
+    expected: Dict[str, str],
+):
+    app = FastAPI()
+    router = APIRouter(
+        default_response_model_exclude_defaults=not exclude_defaults,
+        default_response_model_exclude_none=not exclude_none,
+        default_response_model_exclude_unset=not exclude_unset,
+    )
+
+    @router.get(
+        "/",
+        response_model_exclude_defaults=exclude_defaults,
+        response_model_exclude_none=exclude_none,
+        response_model_exclude_unset=exclude_unset,
+    )
+    def get() -> ModelDefaults:
+        return ModelDefaults(x=None, y="y")
+
+    app.include_router(router)
+    client = TestClient(app)
+
+    response = client.get("/")
+    assert response.status_code == 200, response.text
+    assert response.json() == expected
