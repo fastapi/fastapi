@@ -26,6 +26,7 @@ from fastapi.concurrency import (
     contextmanager_in_threadpool,
 )
 from fastapi.dependencies.models import Dependant, SecurityRequirement
+from fastapi.dependencies.stubs import GenericTypeStub
 from fastapi.logger import logger
 from fastapi.security.base import SecurityBase
 from fastapi.security.oauth2 import OAuth2, SecurityScopes
@@ -263,16 +264,18 @@ def substitute_generic_type(annotation: Any, typevars: Dict[str, Any]) -> Any:
 def get_typed_signature(call: Callable[..., Any]) -> inspect.Signature:
     typevars = None
     if is_generic_type(call):
-        origin = call.__origin__
+        generic: GenericTypeStub = cast(GenericTypeStub, call)
         typevars = {
             typevar.__name__: value
-            for typevar, value in zip(origin.__parameters__, call.__args__)
+            for typevar, value in zip(
+                generic.__origin__.__parameters__, generic.__args__
+            )
         }
+        origin: Any = generic.__origin__
         call = origin.__init__
 
     signature = inspect.signature(call)
     globalns = getattr(call, "__globals__", {})
-
     typed_params = [
         inspect.Parameter(
             name=param.name,
