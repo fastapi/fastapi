@@ -69,6 +69,7 @@ nav:
   - tutorial/request-files.md
   - tutorial/request-forms-and-files.md
   - tutorial/encoder.md
+  - tutorial/cors.md
 markdown_extensions:
 - toc:
     permalink: true
@@ -91,7 +92,7 @@ markdown_extensions:
 extra:
   analytics:
     provider: google
-    property: UA-133183413-1
+    property: G-YNEVN69SC3
   social:
   - icon: fontawesome/brands/github-alt
     link: https://github.com/tiangolo/fastapi
