@@ -2,7 +2,9 @@
 
 In this section you will learn how to easily deploy a **FastAPI** application into your own "personal cloud" on <a href="https://deta.space?ref=fastapi" class="external-link" target="_blank">Deta Space</a>, for free. 🎁
 
-It will take you about **10 minutes** to deploy an API that you can use.
+It will take you about **10 minutes** to deploy an API that you can use. After that, you can optionally release it to anyone. 
+
+Let's dive in.
 
 !!! info
     <a href="https://deta.space?ref=fastapi" class="external-link" target="_blank">Deta</a> is a **FastAPI** sponsor. 🎉
