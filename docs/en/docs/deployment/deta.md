@@ -61,10 +61,10 @@ fastapi-deta/
 
 ## Create a free **Deta Space** account
 
-Next, create a free account on <a href="https://deta.space/signup?dev_mode=true&ref=fastapi" class="external-link" target="_blank">Deta Space</a>, you just need an email and password. 
+Next, create a free account on <a href="https://deta.space/signup?dev_mode=true&ref=fastapi" class="external-link" target="_blank">Deta Space</a>, you just need an email and password.
 
 You don't even need a credit card, but make sure **Developer Mode** is enabled when you sign up.
-    
+
 
 ## Install the CLI
 
