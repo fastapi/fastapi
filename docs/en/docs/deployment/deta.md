@@ -2,7 +2,7 @@
 
 In this section you will learn how to easily deploy a **FastAPI** application into your own "personal cloud" on <a href="https://deta.space?ref=fastapi" class="external-link" target="_blank">Deta Space</a>, for free. 🎁
 
-It will take you about **10 minutes** to deploy an API that you can use. After that, you can optionally release it to anyone. 
+It will take you about **10 minutes** to deploy an API that you can use. After that, you can optionally release it to anyone.
 
 Let's dive in.
 
@@ -124,7 +124,7 @@ Available Commands:
 
 ## Login with the CLI
 
-In order to authenticate your CLI with Deta Space, you will need an access token. 
+In order to authenticate your CLI with Deta Space, you will need an access token.
 
 To obtain this token, open your <a href="https://deta.space/login?ref=fastapi" class="external-link" target="_blank">Deta Space Canvas</a>, open the **Teletype** (command bar at the bottom of the Canvas), and then click on **Settings**. From there, select **Generate Token**. Copy the resulting token, and run `space login` from the Space CLI. Upon pasting the token into the CLI prompt and pressing enter, you should see a confirmation message.
 
@@ -278,7 +278,7 @@ This will allow anyone to find and install your app via <a href="https://deta.sp
 
 ## Check Runtime Logs
 
-Deta Space also lets you inspect the logs of every app you build or install. 
+Deta Space also lets you inspect the logs of every app you build or install.
 
 Add some logging functionality to your app by adding a `print` statement to your `main.py` file.
 
