@@ -159,7 +159,6 @@ $ space new
 
 The Space CLI will ask you to name the project, we will call ours `fastapi-deta`.
 
-
 Then, it will try to automatically detect which framework or language you are using, showing you what it finds. In our case it will identify the Python app with the following message, prompting you to confirm:
 
 ```console
