@@ -1,15 +1,17 @@
 # Deploy FastAPI on Deta Space
 
-In this section you will learn how to easily deploy a **FastAPI** application on <a href="https://deta.space?ref=fastapi" class="external-link" target="_blank">Deta Space</a> for free. 🎁
+In this section you will learn how to easily deploy a **FastAPI** application into your own "personal cloud" on <a href="https://deta.space?ref=fastapi" class="external-link" target="_blank">Deta Space</a>, for free. 🎁
 
-It will take you about **10 minutes**.
+It will take you about **10 minutes** to deploy an API that you can use. After that, you can optionally release it to anyone. 
+
+Let's dive in.
 
 !!! info
     <a href="https://deta.space?ref=fastapi" class="external-link" target="_blank">Deta</a> is a **FastAPI** sponsor. 🎉
 
 ## A simple **FastAPI** app
 
-- Create an empty directory with the name of your app, and then navigate into it.
+- To start, create an empty directory with the name of your app, and then navigate into it.
 
 ```console
 $ mkdir fastapi-deta
@@ -33,7 +35,6 @@ async def root():
 
 @app.get("/items/{item_id}")
 async def read_item(item_id: int):
-    print({"item_id": item_id})
     return {"item_id": item_id}
 ```
 
@@ -60,13 +61,13 @@ fastapi-deta/
 
 ## Create a free **Deta Space** account
 
-Next, create a free account on <a href="https://deta.space?ref=fastapi" class="external-link" target="_blank">Deta Space</a>, you just need an email and password.
+Next, create a free account on <a href="https://deta.space/signup?dev_mode=true&ref=fastapi" class="external-link" target="_blank">Deta Space</a>, you just need an email and password.
 
 You don't even need a credit card.
 
 ## Install the CLI
 
-Once you have your account, install the Space <abbr title="Command Line Interface application">CLI</abbr>:
+Once you have your account, install the Deta Space <abbr title="Command Line Interface application">CLI</abbr>:
 
 === "Linux, macOS"
 
@@ -119,11 +120,13 @@ Available Commands:
 </div>
 
 !!! tip
-    If you have problems installing the CLI, check the official <a href="https://deta.space/docs/en/basics/cli?ref=fastapi" class="external-link" target="_blank">Space docs</a>.
+    If you have problems installing the CLI, check the official <a href="https://deta.space/docs/en/basics/cli?ref=fastapi" class="external-link" target="_blank">Space Documentation</a>.
 
 ## Login with the CLI
 
-In order to authenticate your CLI, you will need an access token. To obtain this token, open the Teletype in your <a href="https://deta.space?ref=fastapi" class="external-link" target="_blank">Space Canvas</a>, click on Settings and then select Generate Token. Copy the token, run `space login`, and paste it into the CLI prompt. Upon entering the token and pressing enter, you should see a confirmation message.
+In order to authenticate your CLI with Deta Space, you will need an access token. 
+
+To obtain this token, open your <a href="https://deta.space/login?ref=fastapi" class="external-link" target="_blank">Deta Space Canvas</a>, open the **Teletype** (command bar at the bottom of the Canvas), and then click on **Settings**. From there, select **Generate Token**. Copy the resulting token, and run `space login` from the Space CLI. Upon pasting the token into the CLI prompt and pressing enter, you should see a confirmation message.
 
 <div class="termy">
 
@@ -143,7 +146,7 @@ To authenticate the Space CLI with your Space account, generate a new access tok
 
 ## Create a new project in Space
 
-Now create a new project from the Space CLI with:
+Now that you've authenticated with the Space CLI, use it to create a new <a href="https://deta.space/docs/en/basics/projects" class="external-link" target="_blank">Space Project</a>:
 
 ```console
 $ space new
@@ -151,7 +154,7 @@ $ space new
 ? What is your project's name? > fastapi-deta
 ```
 
-The Space CLI will ask you to name the project, we will call ours `fastapi-deta`. Then, it will try to detect which framework or language you are using and show you what's been found. In our case it will identify our Python app with the following message, prompting you to confirm:
+The Space CLI will ask you to name the project, we will call ours `fastapi-deta`. Then, it will try to automatically detect which framework or language you are using, showing you what it finds. In our case it will identify the Python app with the following message, prompting you to confirm:
 
 ```console
 ⚙️ No Spacefile found, trying to auto-detect configuration ...
@@ -166,12 +169,11 @@ name: fastapi-deta
 y
 ```
 
-This will create a new project in Builder and a Spacefile in the `fastapi-deta` directory.
+After you confirm, your project will be created in Deta Space, while the CLI will create a `Spacefile` locally in the `fastapi-deta` directory.
 
+Projects in Space live inside a special app called <a href="https://deta.space/docs/en/basics/projects#projects-in-builder?ref=fastapi" class="external-link" target="_blank">Builder</a>. Builder is a toolbox that helps you to create and manage your apps in Deta Space.
 
-Projects in Space live inside <a href="https://deta.space/docs/en/basics/projects#projects-in-builder?ref=fastapi" class="external-link" target="_blank">Builder</a>, which you can access from the Canvas. Builder is like a toolbox that helps you to create and manage your apps on Space.
-
-The <a href="https://deta.space/docs/en/reference/spacefile?ref=fastapi" class="external-link" target="_blank">Spacefile</a> has the configuration details of your app and Space needs it to know what your app looks like and how to get it running. You can adjust it based on your requirements, following the documentation.
+The <a href="https://deta.space/docs/en/reference/spacefile?ref=fastapi" class="external-link" target="_blank">Spacefile</a> is the configuration file which tells Deta Space how to run it. The `Spacefile` for your app will be as follows:
 
 ```yaml
 v: 0
@@ -181,11 +183,14 @@ micros:
     engine: python3.9
 ```
 
-The CLI will also create a hidden `.space` folder in the same directory with all the information necessary to work with your project in Builder. This folder should not be included in your version control and will automatically be added to your `.gitignore` file, if you have initialized a Git repository.
+It has the same sytax as a `yaml` file, and you can change it to add features like scheduled tasks or modify how your app functions. To learn more, read <a href="https://deta.space/docs/en/reference/spacefile" class="external-link" target="_blank">the `Spacefile` documentation</a>.
 
-## Deploy to Space
+!!! tip
+    The Space CLI will also create a hidden `.space` folder in your local directory to link your local environment with Deta Space. This folder should not be included in your version control and will automatically be added to your `.gitignore` file, if you have initialized a Git repository.
 
-Next, deploy your application using the Space CLI with:
+## Deploy to Deta Space
+
+To get your FastAPI live in the cloud, use one more CLI command:
 
 <div class="termy">
 
@@ -200,13 +205,14 @@ build complete... created revision: satyr-jvjk
 ```
 </div>
 
-This will package and upload all the necessary files to create a new "revision". A revision is a complete package of your app at one moment in time. A new revision is created with each push. You can take a look at this new revision by opening your project in Builder. It'll be visible under the Develop tab.
+This command will package your code, upload all the necessary files to Deta Space, and run a remote build of your app, resulting in a **revision**. Whenever you run `space push` successfully, a live instance of your API is automatically updated with the latest revision.
+
+!!! tip
+    You can manage your <a href="https://deta.space/docs/en/basics/revisions#whats-a-revision" class="external-link" target="_blank">revisions</a> by opening your project in the Builder app. The live copy of your API will be visible under the **Develop** tab in Builder.
 
 ## Check it
 
-Whenever you run `space push` successfully, a development instance of your project is automatically updated.
-
-This instance is automatically added to your Canvas on Deta Space. Clicking on the instance's card will open it in your browser with an endpoint URL like `https://fastapi-deta-gj7ka8.deta.app/`.
+The live instance of your API is also automatically added to your Canvas (the dashboard) on Deta Space. Click on the new app called `fastapi-deta`, and it will open your api in a new browser tab on a URL like `https://fastapi-deta-gj7ka8.deta.app/`.
 
 You will get a JSON response from your FastAPI app:
 
@@ -222,11 +228,13 @@ And now you can head over to the `/docs` of your API. For this example, it would
 
 ## Enable public access
 
-By default, an app instance is only accessible from the account that installed it. Deta will handle authentication for your account.
+Deta will handle authentication for your account using cookies. By default, every app or API that you `push` or install to your Space is personal - it's only accessible to you.
 
-But if you want to, you can make it public by defining which paths of your API should be available to the public with the `public_routes` parameter in your Spacefile.
+But you can also make your API public using the `Spacefile` from earlier.
 
-Setting your `public_routes` to `"*"` will open every route to the public:
+Define which paths of your API should be available to the public by adding a `public_routes` parameter to your Spacefile.
+
+Set your `public_routes` to `"*"` to open every route of your API to the public:
 
 ```yaml
 v: 0
@@ -238,7 +246,7 @@ micros:
       - "*"
 ```
 
-Run `space push` again to update your development instance on Deta Space.
+Then run `space push` again to update your live API on Deta Space.
 
 Once it deploys, you can share your URL with anyone and they will be able to access your API. 🚀
 
@@ -248,39 +256,60 @@ Congrats! You deployed your FastAPI app to Deta Space! 🎉 🍰
 
 Also, notice that Deta Space correctly handles HTTPS for you, so you don't have to take care of that and can be sure that your users will have a secure encrypted connection. ✅ 🔒
 
-## Check Runtime Logs
-
-Now taking a look at the code in `main.py` of the FastAPI app, you'll find that the second route, `/items/{item_id}`, is handled by the `read_item()` function. The code within this function includes a print statement that will output the `item_id` that is included in the URL. Send a request to your _path operation_ `/items/{item_id}` from the docs UI (which will have a URL like `https://fastapi-deta-gj7ka8.deta.app/docs`), using an ID like `5` as an example.
-
-Now go to your <a href="https://deta.space?ref=fastapi" class="external-link" target="_blank">Space's Canvas</a>. Click on the context menu (`...`) of your app instance, and click on View Logs. Here you can view your app's logs, sorted by time.
-
-<img src="/img/deployment/deta/image03.png">
-
 ## Create a release
 
-Space also allows you to publish your app, so anyone with a Deta account can install their own copy.
+Space also allows you to publish your API. When you publish, anyone else can install their own copy of your API, in their own cloud.
 
-To do so, you can create a _unlisted release_ of your app using the Space CLI:
+To do so, use a single command in the Space CLI to create an _unlisted release_:
 
 ```console
 space release
 ```
 
-This command will publish your app and give you a link to your release. Only people given this link can install it.
+This command publish your revision as a release and give you a link. Anyone you give this link to can install your API.
 
-You can also make your app publicly discoverable on <a href="https://deta.space/docs/en/basics/releases#discovery--app-pages?ref=fastapi" class="external-link" target="_blank">Space Discovery</a> by creating a _listed release_ with the Space CLI:
+You can also make your app publicly discoverable by creating a _listed release_ with the Space CLI:
 
 ```console
 space release --listed
 ```
 
-This will allow anyone to find and install your app via <a href="https://deta.space/discovery?ref=fastapi" class="external-link" target="_blank">Discovery</a>.
+This will allow anyone to find and install your app via <a href="https://deta.space/discovery?ref=fastapi" class="external-link" target="_blank">Deta Discovery</a>. Read more about <a href="https://deta.space/docs/en/basics/releases?ref=fastapi" class="external-link" target="_blank">releasing your app in the docs/a>.
+
+## Check Runtime Logs
+
+Deta Space also lets you inspect the logs of every app you build or install. 
+
+Add some logging functionality to your app by adding a `print` statement to your `main.py` file.
+
+```py
+from fastapi import FastAPI
+
+app = FastAPI()
+
+
+@app.get("/")
+async def root():
+    return {"hello": "world"}
+
+
+@app.get("/items/{item_id}")
+async def read_item(item_id: int):
+    print(item_id)
+    return {"item_id": item_id}
+```
+
+The code within the `read_item` function includes a print statement that will output the `item_id` that is included in the URL. Send a request to your _path operation_ `/items/{item_id}` from the docs UI (which will have a URL like `https://fastapi-deta-gj7ka8.deta.app/docs`), using an ID like `5` as an example.
+
+Now go to your <a href="https://deta.space?ref=fastapi" class="external-link" target="_blank">Space's Canvas</a>. Click on the context menu (`...`) of your live app instance, and then click on **View Logs**. Here you can view your app's logs, sorted by time.
+
+<img src="/img/deployment/deta/image03.png">
 
 ## Learn more
 
-At some point, you will probably want to store some data for your app in a way that persists through time. For that you can use <a href="https://deta.space/docs/en/basics/data#deta-base?ref=fastapi" class="external-link" target="_blank">Deta Base</a> and <a href="https://deta.space/docs/en/basics/data#deta-drive?ref=fastapi" class="external-link" target="_blank">Deta Drive</a>.
+At some point, you will probably want to store some data for your app in a way that persists through time. For that you can use <a href="https://deta.space/docs/en/basics/data#deta-base?ref=fastapi" class="external-link" target="_blank">Deta Base</a> and <a href="https://deta.space/docs/en/basics/data#deta-drive?ref=fastapi" class="external-link" target="_blank">Deta Drive</a>, both of which have a generous **free tier**.
 
-You can also read more in the <a href="https://deta.space/docs/?ref=fastapi" class="external-link" target="_blank">Space docs</a>.
+You can also read more in the <a href="https://deta.space/docs/?ref=fastapi" class="external-link" target="_blank">Deta Space Documentation</a>.
 
 ## Deployment Concepts
 
@@ -290,12 +319,13 @@ Coming back to the concepts we discussed in [Deployments Concepts](./concepts.md
 - **Running on startup**: Handled by Deta Space, as part of their service.
 - **Restarts**: Handled by Deta Space, as part of their service.
 - **Replication**: Handled by Deta Space, as part of their service.
+- **Authentication**: Handled by Deta Space, as part of their service.
 - **Memory**: Limit predefined by Deta Space, you could contact them to increase it.
-- **Previous steps before starting**: Can be configured using the <a href="https://deta.space/docs/en/reference/spacefile?ref=fastapi" class="external-link" target="_blank">Spacefile</a>.
+- **Previous steps before starting**: Can be configured using the <a href="https://deta.space/docs/en/reference/spacefile?ref=fastapi" class="external-link" target="_blank">`Spacefile`</a>.
 
 !!! note
-    Deta Space is designed to make it easy (and free) to deploy simple applications quickly.
+    Deta Space is designed to make it easy and free to build cloud applications for yourself. Then you can optionally share them with anyone.
 
     It can simplify several use cases, but at the same time, it doesn't support others, like using external databases (apart from Deta's own NoSQL database system), custom virtual machines, etc.
 
-    You can read more details in the <a href="https://deta.space/docs/en/basics/micros?ref=fastapi" class="external-link" target="_blank">Deta Space docs</a> to see if it's the right choice for you.
+    You can read more details in the <a href="https://deta.space/docs/en/basics/micros?ref=fastapi" class="external-link" target="_blank">Deta Space Documentation</a> to see if it's the right choice for you.
