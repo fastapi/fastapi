@@ -126,7 +126,11 @@ Available Commands:
 
 In order to authenticate your CLI with Deta Space, you will need an access token.
 
-To obtain this token, open your <a href="https://deta.space/login?ref=fastapi" class="external-link" target="_blank">Deta Space Canvas</a>, open the **Teletype** (command bar at the bottom of the Canvas), and then click on **Settings**. From there, select **Generate Token**. Copy the resulting token, and run `space login` from the Space CLI. Upon pasting the token into the CLI prompt and pressing enter, you should see a confirmation message.
+To obtain this token, open your <a href="https://deta.space/login?ref=fastapi" class="external-link" target="_blank">Deta Space Canvas</a>, open the **Teletype** (command bar at the bottom of the Canvas), and then click on **Settings**. From there, select **Generate Token** and copy the resulting token.
+
+<img src="/img/deployment/deta/image01.png">
+
+Now run `space login` from the Space CLI. Upon pasting the token into the CLI prompt and pressing enter, you should see a confirmation message.
 
 <div class="termy">
 
@@ -141,8 +145,6 @@ To authenticate the Space CLI with your Space account, generate a new access tok
 ```
 
 </div>
-
-<img src="/img/deployment/deta/image01.png">
 
 ## Create a new project in Space
 
@@ -212,7 +214,11 @@ This command will package your code, upload all the necessary files to Deta Spac
 
 ## Check it
 
-The live instance of your API is also automatically added to your Canvas (the dashboard) on Deta Space. Click on the new app called `fastapi-deta`, and it will open your api in a new browser tab on a URL like `https://fastapi-deta-gj7ka8.deta.app/`.
+The live instance of your API will also be added automatically to your Canvas (the dashboard) on Deta Space.
+
+<img src="/img/deployment/deta/image02.png">
+
+Click on the new app called `fastapi-deta`, and it will open your api in a new browser tab on a URL like `https://fastapi-deta-gj7ka8.deta.app/`.
 
 You will get a JSON response from your FastAPI app:
 
@@ -224,7 +230,7 @@ You will get a JSON response from your FastAPI app:
 
 And now you can head over to the `/docs` of your API. For this example, it would be `https://fastapi-deta-gj7ka8.deta.app/docs`.
 
-<img src="/img/deployment/deta/image02.png">
+<img src="/img/deployment/deta/image03.png">
 
 ## Enable public access
 
@@ -303,7 +309,7 @@ The code within the `read_item` function includes a print statement that will ou
 
 Now go to your <a href="https://deta.space?ref=fastapi" class="external-link" target="_blank">Space's Canvas</a>. Click on the context menu (`...`) of your live app instance, and then click on **View Logs**. Here you can view your app's logs, sorted by time.
 
-<img src="/img/deployment/deta/image03.png">
+<img src="/img/deployment/deta/image04.png">
 
 ## Learn more
 
