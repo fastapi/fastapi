@@ -144,7 +144,7 @@ To authenticate the Space CLI with your Space account, generate a new access tok
 
 ## Create a new project in Space
 
-Now that you've authenticated with the Space CLI, use it to create a new [Space Project](https://deta.space/docs/en/basics/projects):
+Now that you've authenticated with the Space CLI, use it to create a new <a href="https://deta.space/docs/en/basics/projects" class="external-link" target="_blank">Space Project</a>:
 
 ```console
 $ space new
@@ -181,7 +181,7 @@ micros:
     engine: python3.9
 ```
 
-It has the same sytax as a `yaml` file, and you can change it to add features like scheduled tasks or modify how your app functions. To learn more, read [the `Spacefile` documentation](https://deta.space/docs/en/reference/spacefile).
+It has the same sytax as a `yaml` file, and you can change it to add features like scheduled tasks or modify how your app functions. To learn more, read <a href="https://deta.space/docs/en/reference/spacefile" class="external-link" target="_blank">the `Spacefile` documentation</a>.
 
 !!! tip
     The Space CLI will also create a hidden `.space` folder in your local directory to link your local environment with Deta Space. This folder should not be included in your version control and will automatically be added to your `.gitignore` file, if you have initialized a Git repository.
@@ -206,7 +206,7 @@ build complete... created revision: satyr-jvjk
 This command will package your code, upload all the necessary files to Deta Space, and run a remote build of your app, resulting in a **revision**. Whenever you run `space push` successfully, a live instance of your API is automatically updated with the latest revision.
 
 !!! tip
-    You can manage your [revisions](https://deta.space/docs/en/basics/revisions#whats-a-revision) by opening your project in the Builder app. The live copy of your API will be visible under the **Develop** tab in Builder.
+    You can manage your <a href="https://deta.space/docs/en/basics/revisions#whats-a-revision" class="external-link" target="_blank">revisions</a> by opening your project in the Builder app. The live copy of your API will be visible under the **Develop** tab in Builder.
 
 ## Check it
 
@@ -272,7 +272,7 @@ You can also make your app publicly discoverable by creating a _listed release_ 
 space release --listed
 ```
 
-This will allow anyone to find and install your app via <a href="https://deta.space/discovery?ref=fastapi" class="external-link" target="_blank">Deta Discovery</a>.
+This will allow anyone to find and install your app via <a href="https://deta.space/discovery?ref=fastapi" class="external-link" target="_blank">Deta Discovery</a>. Read more about <a href="https://deta.space/docs/en/basics/releases?ref=fastapi" class="external-link" target="_blank">releasing your app in the docs/a>.
 
 ## Check Runtime Logs
 
@@ -296,6 +296,7 @@ async def read_item(item_id: int):
     print(item_id)
     return {"item_id": item_id}
 ```
+
 The code within the `read_item` function includes a print statement that will output the `item_id` that is included in the URL. Send a request to your _path operation_ `/items/{item_id}` from the docs UI (which will have a URL like `https://fastapi-deta-gj7ka8.deta.app/docs`), using an ID like `5` as an example.
 
 Now go to your <a href="https://deta.space?ref=fastapi" class="external-link" target="_blank">Space's Canvas</a>. Click on the context menu (`...`) of your live app instance, and then click on **View Logs**. Here you can view your app's logs, sorted by time.
@@ -325,4 +326,4 @@ Coming back to the concepts we discussed in [Deployments Concepts](./concepts.md
 
     It can simplify several use cases, but at the same time, it doesn't support others, like using external databases (apart from Deta's own NoSQL database system), custom virtual machines, etc.
 
-    You can read more details in the <a href="https://deta.space/docs/en/basics/micros?ref=fastapi" class="external-link" target="_blank">Deta Space docs</a> to see if it's the right choice for you.
+    You can read more details in the <a href="https://deta.space/docs/en/basics/micros?ref=fastapi" class="external-link" target="_blank">Deta Space Documentation</a> to see if it's the right choice for you.
