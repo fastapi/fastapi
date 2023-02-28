@@ -267,19 +267,55 @@ Also, notice that Deta Space correctly handles HTTPS for you, so you don't have 
 
 Space also allows you to publish your API. When you publish it, anyone else can install their own copy of your API, in their own cloud.
 
-To do so, use a single command in the Space CLI to create an **unlisted release**:
+To do so, run `space release` in the Space CLI to create an **unlisted release**:
+
+<div class="termy">
 
 ```console
-space release
+$ space release
+
+? Do you want to use the latest revision (buzzard-hczt)? (y/n) y
+
+~ Creating a Release with the latest Revision ...
+
+creating release...
+publishing release in edge locations..
+completed...
+released: fastapi-deta-exp-msbu
+https://deta.space/discovery/r/5kjhgyxewkdmtotx
+
+ Lift off -- successfully created a new Release!
+ Your Release is available globally on 5 Deta Edges
+ Anyone can install their own copy of your app.
 ```
+</div>
 
 This command publishes your revision as a release and gives you a link. Anyone you give this link to can install your API.
 
-You can also make your app publicly discoverable by creating a **listed release** with the Space CLI:
+
+You can also make your app publicly discoverable by creating a **listed release** with `space release --listed` in the Space CLI:
+
+<div class="termy">
 
 ```console
-space release --listed
+$ space release --listed
+
+? Do you want to use the latest revision (buzzard-hczt)? (y/n) y
+
+~ Creating a listed Release with the latest Revision ...
+
+creating release...
+publishing release in edge locations..
+completed...
+released: fastapi-deta-exp-msbu
+https://deta.space/discovery/@user/fastapi-deta
+
+ Lift off -- successfully created a new Release!
+ Your Release is available globally on 5 Deta Edges
+ Anyone can install their own copy of your app.
+ Listed on Discovery for others to find!
 ```
+</div>
 
 This will allow anyone to find and install your app via <a href="https://deta.space/discovery?ref=fastapi" class="external-link" target="_blank">Deta Discovery</a>. Read more about <a href="https://deta.space/docs/en/basics/releases?ref=fastapi" class="external-link" target="_blank">releasing your app in the docs</a>.
 
