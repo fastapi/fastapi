@@ -354,6 +354,10 @@ At some point, you will probably want to store some data for your app in a way t
 
 You can also read more in the <a href="https://deta.space/docs/?ref=fastapi" class="external-link" target="_blank">Deta Space Documentation</a>.
 
+!!! tip
+    If you have any Deta related questions, comments, or feedback, head to the <a href="https://go.deta.dev/discors" class="external-link" target="_blank">Deta Discord server</a>.
+
+
 ## Deployment Concepts
 
 Coming back to the concepts we discussed in [Deployments Concepts](./concepts.md){.internal-link target=\_blank}, here's how each of them would be handled with Deta Space:
