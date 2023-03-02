@@ -6,7 +6,7 @@ Il existe 3 principales alternatives :
 
 * <a href="https://www.uvicorn.org/" class="external-link" target="_blank">Uvicorn</a> : un serveur ASGI haute performance.
 * <a href="https://pgjones.gitlab.io/hypercorn/" class="external-link" target="_blank">Hypercorn</a> : un serveur
-  ASGI compatible avec HTTP/2 et Trio entre autres caractéristiques.
+  ASGI compatible avec HTTP/2 et Trio entre autres fonctionnalités.
 * <a href="https://github.com/django/daphne" class="external-link" target="_blank">Daphne</a> : le serveur ASGI
   conçu pour Django Channels.
 
@@ -18,7 +18,7 @@ Le mot "**serveur**" est couramment utilisé pour désigner à la fois l'ordinat
 
 Gardez cela à l'esprit lorsque vous lisez "serveur" en général, cela pourrait faire référence à l'une de ces deux choses.
 
-Lorsqu'on se réfère à la machine distante, il est courant de l'appeler **serveur**, mais aussi **machine**, **VM** (machine virtuelle), **nœud**. Tout cela fait référence à un type de machine distante, exécutant normalement Linux, sur laquelle vous exécutez des programmes.
+Lorsqu'on se réfère à la machine distante, il est courant de l'appeler **serveur**, mais aussi **machine**, **VM** (machine virtuelle), **nœud**. Tout cela fait référence à un type de machine distante, exécutant  Linux, en règle générale, sur laquelle vous exécutez des programmes.
 
 
 ## Installer le programme serveur
@@ -40,7 +40,7 @@ Vous pouvez installer un serveur compatible ASGI avec :
     </div>
 
     !!! tip "Astuce"
-        En ajoutant le `standard`, Uvicorn va installer et utiliser quelques dépendances supplémentaires recommandées.
+        En ajoutant `standard`, Uvicorn va installer et utiliser quelques dépendances supplémentaires recommandées.
 
         Cela inclut `uvloop`, le remplaçant performant de `asyncio`, qui fournit le gros gain de performance en matière de concurrence.
 
@@ -141,13 +141,13 @@ Vous pouvez désormais utiliser Trio en interne dans votre application. Ou mieux
 Ces exemples lancent le programme serveur (e.g. Uvicorn), démarrant **un seul processus**, sur toutes les IPs (`0.0.
 0.0`) sur un port prédéfini (par example, `80`).
 
-C'est la base. Mais vous voudrez probablement vous occuper de certaines choses supplémentaires, comme.. :
+C'est l'idée de base. Mais vous vous préoccuperez probablement de certains concepts supplémentaires, tels que ... :
 
 * la sécurité - HTTPS
 * l'exécution au démarrage
-* le redémarrage
+* les redémarrages
 * la réplication (le nombre de processus en cours d'exécution)
 * la mémoire
 * les étapes précédant le démarrage
 
-Je vous en dirai plus sur chacun de ces concepts, sur la façon d'y réfléchir et sur des exemples concrets avec des stratégies pour les traiter dans les prochains chapitres. 🚀
+Je vous en dirai plus sur chacun de ces concepts, sur la façon de les aborder, et donnerai quelques exemples concrets avec des stratégies pour les traiter dans les prochains chapitres. 🚀
