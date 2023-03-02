@@ -381,6 +381,10 @@ def get_graphql_response(
         logging.error(response.text)
         raise RuntimeError(response.text)
     data = response.json()
+    if "errors" in data:
+        logging.error(f"Errors in response, after: {after}, category_id: {category_id}")
+        logging.error(response.text)
+        raise RuntimeError(response.text)
     return data
 
 
