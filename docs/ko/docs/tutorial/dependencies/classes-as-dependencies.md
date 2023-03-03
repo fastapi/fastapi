@@ -75,7 +75,7 @@ FastAPI가 실질적으로 확인하는 것은 "호출 가능성"(함수, 클래
 
 매개변수가 없는 "호출 가능"한 것 역시 매개변수가 없는 *경로 동작 함수*와 동일한 방식으로 적용됩니다.
 
-그래서, 우리는 위 예제에서의 `common_paramenters` 의존성을 클래스 `CommonQueryParams`로 바꿀 수 있습니다. 
+그래서, 우리는 위 예제에서의 `common_paramenters` 의존성을 클래스 `CommonQueryParams`로 바꿀 수 있습니다.
 
 === "파이썬 3.6 이상"
 
@@ -170,7 +170,7 @@ FastAPI는 선언된 매개변수들을 추출할 것이고 실제로 이 변수
 commons: CommonQueryParams ...
 ```
 
-... **FastAPI**는 `CommonQueryParams` 변수에 어떠한 특별한 의미도 부여하지 않습니다. FastAPI는 이 변수를 데이터 변환, 검증 등에 활용하지 않습니다. (활용하려면 `= Depends(CommonQueryParams)`를 사용해야 합니다.) 
+... **FastAPI**는 `CommonQueryParams` 변수에 어떠한 특별한 의미도 부여하지 않습니다. FastAPI는 이 변수를 데이터 변환, 검증 등에 활용하지 않습니다. (활용하려면 `= Depends(CommonQueryParams)`를 사용해야 합니다.)
 
 실제로는 그냥 아래와 같이 작성할 수 있습니다:
 
