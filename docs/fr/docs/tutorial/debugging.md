@@ -1,18 +1,18 @@
-# Debugging
+# <abbr title="En anglais: Debugging">Débogage</abbr>
 
-You can connect the debugger in your editor, for example with Visual Studio Code or PyCharm.
+Vous pouvez connecter le <abbr title="En anglais: debugger">débogueur</abbr> dans votre éditeur, par exemple avec Visual Studio Code ou PyCharm.
 
-## Call `uvicorn`
+## Faites appel à `uvicorn`
 
-In your FastAPI application, import and run `uvicorn` directly:
+Dans votre application FastAPI, importez et exécutez directement `uvicorn` :
 
 ```Python hl_lines="1  15"
 {!../../../docs_src/debugging/tutorial001.py!}
 ```
 
-### About `__name__ == "__main__"`
+### À propos de `__name__ == "__main__"`
 
-The main purpose of the `__name__ == "__main__"` is to have some code that is executed when your file is called with:
+Le but principal de `__name__ == "__main__"` est d'avoir du code qui est exécuté lorsque votre fichier est appelé avec :
 
 <div class="termy">
 
@@ -22,17 +22,17 @@ $ python myapp.py
 
 </div>
 
-but is not called when another file imports it, like in:
+mais qui n'est pas appelé lorsqu'un autre fichier l'importe, comme dans :
 
 ```Python
 from myapp import app
 ```
 
-#### More details
+#### Pour davantage de détails
 
-Let's say your file is named `myapp.py`.
+Imaginons que votre fichier s'appelle `myapp.py`.
 
-If you run it with:
+Si vous l'exécutez avec :
 
 <div class="termy">
 
@@ -42,71 +42,71 @@ $ python myapp.py
 
 </div>
 
-then the internal variable `__name__` in your file, created automatically by Python, will have as value the string `"__main__"`.
+alors la variable interne `__name__` de votre fichier, créée automatiquement par Python, aura pour valeur la chaîne de caractères `"__main__"`.
 
-So, the section:
+Ainsi, la section :
 
 ```Python
     uvicorn.run(app, host="0.0.0.0", port=8000)
 ```
 
-will run.
+va s'exécuter.
 
 ---
 
-This won't happen if you import that module (file).
+Cela ne se produira pas si vous importez ce module (fichier).
 
-So, if you have another file `importer.py` with:
+Par exemple, si vous avez un autre fichier `importer.py` qui contient :
 
 ```Python
 from myapp import app
 
-# Some more code
+# Code supplémentaire
 ```
 
-in that case, the automatic variable inside of `myapp.py` will not have the variable `__name__` with a value of `"__main__"`.
+dans ce cas, la variable automatique `__name__` à l'intérieur de `myapp.py` n'aura pas la valeur `"__main__"`.
 
-So, the line:
+Ainsi, la ligne :
 
 ```Python
     uvicorn.run(app, host="0.0.0.0", port=8000)
 ```
 
-will not be executed.
+ne sera pas exécutée.
 
 !!! info
-    For more information, check <a href="https://docs.python.org/3/library/__main__.html" class="external-link" target="_blank">the official Python docs</a>.
+Pour plus d'informations, consultez <a href="https://docs.python.org/3/library/__main__.html" class="external-link" target="_blank">la documentation officielle de Python</a>.
 
-## Run your code with your debugger
+## Exécutez votre code avec votre <abbr title="En anglais: debugger">débogueur</abbr>
 
-Because you are running the Uvicorn server directly from your code, you can call your Python program (your FastAPI application) directly from the debugger.
+Parce que vous exécutez le serveur Uvicorn directement depuis votre code, vous pouvez appeler votre programme Python (votre application FastAPI) directement depuis le <abbr title="En anglais: debugger">débogueur</abbr>.
 
 ---
 
-For example, in Visual Studio Code, you can:
+Par exemple, dans Visual Studio Code, vous pouvez :
 
-* Go to the "Debug" panel.
-* "Add configuration...".
-* Select "Python"
-* Run the debugger with the option "`Python: Current File (Integrated Terminal)`".
+- Cliquer sur l'onglet "Debug" de la barre d'activités de Visual Studio Code.
+- "Add configuration...".
+- Sélectionnez "Python".
+- Lancez le <abbr title="En anglais: debugger">débogueur</abbr> avec l'option "`Python: Current File (Integrated Terminal)`".
 
-It will then start the server with your **FastAPI** code, stop at your breakpoints, etc.
+Il démarrera alors le serveur avec votre code **FastAPI**, s'arrêtera à vos points d'arrêt, etc.
 
-Here's how it might look:
+Voici à quoi cela pourrait ressembler :
 
 <img src="/img/tutorial/debugging/image01.png">
 
 ---
 
-If you use Pycharm, you can:
+Si vous utilisez Pycharm, vous pouvez :
 
-* Open the "Run" menu.
-* Select the option "Debug...".
-* Then a context menu shows up.
-* Select the file to debug (in this case, `main.py`).
+- Ouvrir le menu "Run".
+- Sélectionnez l'option "Debug...".
+- Un menu contextuel s'affiche alors.
+- Sélectionnez le fichier à déboguer (dans ce cas, `main.py`).
 
-It will then start the server with your **FastAPI** code, stop at your breakpoints, etc.
+Il démarrera alors le serveur avec votre code **FastAPI**, s'arrêtera à vos points d'arrêt, etc.
 
-Here's how it might look:
+Voici à quoi cela pourrait ressembler :
 
 <img src="/img/tutorial/debugging/image02.png">
