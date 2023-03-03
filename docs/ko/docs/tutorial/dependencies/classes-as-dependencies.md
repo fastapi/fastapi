@@ -22,10 +22,9 @@
 
 그리고 우리는 에디터들이 `딕셔너리` 객체의 키나 밸류의 자료형을 알 수 없기 때문에 많은 도움(자동 완성같은)을 줄 수 없다는 것을 알고 있습니다.
 
+우리는 더 잘해볼 수 있을 것 같습니다...
 
-여기서 더 개선이 가능합니다...
-
-## 무엇이 의존성을 만드는가
+## 의존성으로 사용 가능한 것
 
 지금까지 함수로 선언된 의존성을 봐왔습니다.
 
@@ -72,9 +71,9 @@ fluffy = Cat(name="Mr Fluffy")
 
 FastAPI가 실질적으로 확인하는 것은 "호출 가능성"(함수, 클래스 또는 다른 모든 것)과 정의된 매개변수들입니다.
 
-"호출 가능"한 것을 의존성으로서 **FastAPI**에 전달하면, 해당 "호출 가능"한 것에 대한 매개변수를 분석한 후 이를 *경로 동작 함수*를 위한 매개변수와 동일한 방식으로 처리합니다. 하위-의존성 또한 같은 방식으로 처리합니다.
+"호출 가능"한 것을 의존성으로서 **FastAPI**에 전달하면, 그 "호출 가능"한 것의 매개변수들을 분석한 후 이를 *경로 동작 함수*를 위한 매개변수와 동일한 방식으로 처리합니다. 하위-의존성 또한 같은 방식으로 처리합니다.
 
-매개변수가 없는 "호출 가능"한 것은 매개변수가 없는 *경로 동작 함수*와 동일한 방식으로 적용됩니다.
+매개변수가 없는 "호출 가능"한 것 역시 매개변수가 없는 *경로 동작 함수*와 동일한 방식으로 적용됩니다.
 
 그래서, 우리는 위 예제에서의 `common_paramenters` 의존성을 클래스 `CommonQueryParams`로 바꿀 수 있습니다. 
 
@@ -120,15 +119,15 @@ FastAPI가 실질적으로 확인하는 것은 "호출 가능성"(함수, 클래
 
 이 매개변수들은 **FastAPI**가 의존성을 "해결"하기 위해 사용할 것입니다
 
-함수와 클래스 두 가지 경우 모두, 아래 요소를 갖습니다:
+함수와 클래스 두 가지 방식 모두, 아래 요소를 갖습니다:
 
 * `문자열`이면서 선택사항인 쿼리 매개변수 `q`.
 * 기본값이 `0`이면서 `정수형`인 쿼리 매개변수 `skip`
 * 기본값이 `100`이면서 `정수형`인 쿼리 매개변수 `limit`
 
-두 가지 경우 모두, 데이터는 변환, 검증되고 OpenAPI 스키마에 문서화됩니다.
+두 가지 방식 모두, 데이터는 변환, 검증되고 OpenAPI 스키마에 문서화됩니다.
 
-## 응용
+## 사용해봅시다!
 
 이제 당신은 아래의 클래스를 이용해서 의존성을 정의할 수 있게 되었습니다.
 
@@ -173,7 +172,7 @@ commons: CommonQueryParams ...
 
 ... **FastAPI**는 `CommonQueryParams` 변수에 어떠한 특별한 의미도 부여하지 않습니다. FastAPI는 이 변수를 데이터 변환, 검증 등에 활용하지 않습니다. (활용하려면 `= Depends(CommonQueryParams)`를 사용해야 합니다.) 
 
-아래와 같이 작성할 수 있습니다:
+실제로는 그냥 아래와 같이 작성할 수 있습니다:
 
 ```Python
 commons = Depends(CommonQueryParams)
@@ -195,7 +194,7 @@ commons = Depends(CommonQueryParams)
 
 그러나 자료형을 선언하는 것은 에디터가 매개변수 `commons`로 전달될 것이 무엇인지 알게 되고, 코드 완성, 자료형 확인 등에 도움이 될 수 있으므로 권장됩니다.
 
-<img src="/img/tutorial/dependencies/image02.png">
+<!-- <img src="/img/tutorial/dependencies/image02.png"> -->
 
 ## 코드 단축
 
@@ -221,25 +220,25 @@ commons: CommonQueryParams = Depends(CommonQueryParams)
 commons: CommonQueryParams = Depends()
 ```
 
-You declare the dependency as the type of the parameter, and you use `Depends()` as its "default" value (that after the `=`) for that function's parameter, without any parameter in `Depends()`, instead of having to write the full class *again* inside of `Depends(CommonQueryParams)`.
+의존성을 매개변수로 선언할 때 `Depends(CommonQueryParams)`와 같이 클래스 이름 전체를 *다시* 작성하는 것 대신, 매개변수의 (`=` 다음에 오는) 기본 값으로 `Depends()`와 같이 내부에 어떤 매개변수도 없이 사용할 수 있습니다.
 
-The same example would then look like:
+아래에 같은 예제가 있습니다:
 
-=== "Python 3.6 and above"
+=== "파이썬 3.6 이상"
 
     ```Python hl_lines="19"
     {!> ../../../docs_src/dependencies/tutorial004.py!}
     ```
 
-=== "Python 3.10 and above"
+=== "파이썬 3.10 이상"
 
     ```Python hl_lines="17"
     {!> ../../../docs_src/dependencies/tutorial004_py310.py!}
     ```
 
-...and **FastAPI** will know what to do.
+...그리고 **FastAPI**는 무엇을 해야할 지 알게 됩니다.
 
-!!! tip
-    If that seems more confusing than helpful, disregard it, you don't *need* it.
+!!! tip "팁"
+    만약 이것이 도움이 되기보다 더 헷갈리게 만든다면, *필요* 없기 때문에, 잊어버리기 바랍니다.
 
-    It is just a shortcut. Because **FastAPI** cares about helping you minimize code repetition.
+    이것은 단지 손쉬운 방법일 뿐입니다. 왜냐하면 **FastAPI**는 코드 반복을 최소화할 수 있는 방법을 고민하기 때문입니다.
