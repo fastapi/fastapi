@@ -37,7 +37,7 @@ plugins:
     data: data
 nav:
 - FastAPI: index.md
-- Languages:
+- Idiomas:
   - en: /
   - az: /az/
   - de: /de/
@@ -66,6 +66,7 @@ nav:
   - tutorial/first-steps.md
   - tutorial/path-params.md
   - tutorial/query-params.md
+  - tutorial/body-nested-models.md
 - Guía de Usuario Avanzada:
   - advanced/index.md
 - async.md
