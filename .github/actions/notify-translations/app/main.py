@@ -347,8 +347,8 @@ if __name__ == "__main__":
     logging.debug(f"Using translations map: {lang_to_discussion_map}")
 
     # Messages to create or check
-    new_translation_message = f"Good news everyone! 😉 There's a new translation PR to be reviewed: #{pr.number} by @{pr.user.login} 🎉"
-    done_translation_message = f"Good news everyone! 😉 ~There's a new translation PR to be reviewed: #{pr.number} by @{pr.user.login}~ 🎉 Good job! This is done. 🍰"
+    new_translation_message = f"Good news everyone! 😉 There's a new translation PR to be reviewed: #{pr.number} by @{pr.user.login}. 🎉 This requires 2 approvals from native speakers to be merged. 🤓"
+    done_translation_message = f"~There's a new translation PR to be reviewed: #{pr.number} by @{pr.user.login}~ Good job! This is done. 🍰☕"
 
     # Normally only one language, but still
     for lang in langs:
