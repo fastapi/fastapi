@@ -1,6 +1,4 @@
-name: Feature Request
-description: Suggest an idea or ask for a feature that you would like to have in FastAPI
-labels: [enhancement]
+labels: [question]
 body:
   - type: markdown
     attributes:
@@ -9,9 +7,9 @@ body:
 
         Please follow these instructions, fill every question, and do every step. 🙏
 
-        I'm asking this because answering questions and solving problems in GitHub issues is what consumes most of the time.
+        I'm asking this because answering questions and solving problems in GitHub is what consumes most of the time.
 
-        I end up not being able to add new features, fix bugs, review pull requests, etc. as fast as I wish because I have to spend too much time handling issues.
+        I end up not being able to add new features, fix bugs, review pull requests, etc. as fast as I wish because I have to spend too much time handling questions.
 
         All that, on top of all the incredible help provided by a bunch of community members, the [FastAPI Experts](https://fastapi.tiangolo.com/fastapi-people/#experts), that give a lot of their time to come here and help others.
 
@@ -21,16 +19,16 @@ body:
 
         And there's a high chance that you will find the solution along the way and you won't even have to submit it and wait for an answer. 😎
 
-        As there are too many issues with questions, I'll have to close the incomplete ones. That will allow me (and others) to focus on helping people like you that follow the whole process and help us help you. 🤓
+        As there are too many questions, I'll have to discard and close the incomplete ones. That will allow me (and others) to focus on helping people like you that follow the whole process and help us help you. 🤓
   - type: checkboxes
     id: checks
     attributes:
       label: First Check
       description: Please confirm and check all the following options.
       options:
-        - label: I added a very descriptive title to this issue.
+        - label: I added a very descriptive title here.
           required: true
-        - label: I used the GitHub search to find a similar issue and didn't find it.
+        - label: I used the GitHub search to find a similar question and didn't find it.
           required: true
         - label: I searched the FastAPI documentation, with the integrated search.
           required: true
@@ -38,7 +36,7 @@ body:
           required: true
         - label: I already read and followed all the tutorial in the docs and didn't find an answer.
           required: true
-        - label: I already checked if it is not related to FastAPI but to [Pydantic](https://github.com/samuelcolvin/pydantic).
+        - label: I already checked if it is not related to FastAPI but to [Pydantic](https://github.com/pydantic/pydantic).
           required: true
         - label: I already checked if it is not related to FastAPI but to [Swagger UI](https://github.com/swagger-api/swagger-ui).
           required: true
@@ -51,9 +49,9 @@ body:
       description: |
         After submitting this, I commit to one of:
 
-          * Read open issues with questions until I find 2 issues where I can help someone and add a comment to help there.
+          * Read open questions until I find 2 where I can help someone and add a comment to help there.
           * I already hit the "watch" button in this repository to receive notifications and I commit to help at least 2 people that ask questions in the future.
-          * Implement a Pull Request for a confirmed bug.
+          * Review one Pull Request by downloading the code and following [all the review process](https://fastapi.tiangolo.com/help-fastapi/#review-pull-requests).
 
       options:
         - label: I commit to help with one of those options 👆
@@ -84,50 +82,15 @@ body:
     attributes:
       label: Description
       description: |
-        What is your feature request?
+        What is the problem, question, or error?
 
-        Write a short description telling me what you are trying to solve and what you are currently doing.
+        Write a short description telling me what you are doing, what you expect to happen, and what is currently happening.
       placeholder: |
         * Open the browser and call the endpoint `/`.
         * It returns a JSON with `{"Hello": "World"}`.
-        * I would like it to have an extra parameter to teleport me to the moon and back.
+        * But I expected it to return `{"Hello": "Sara"}`.
     validations:
       required: true
-  - type: textarea
-    id: wanted-solution
-    attributes:
-      label: Wanted Solution
-      description: |
-        Tell me what's the solution you would like.
-      placeholder: |
-        I would like it to have a `teleport_to_moon` parameter that defaults to `False`, and can be set to `True` to teleport me.
-    validations:
-      required: true
-  - type: textarea
-    id: wanted-code
-    attributes:
-      label: Wanted Code
-      description: Show me an example of how you would want the code to look like.
-      placeholder: |
-        from fastapi import FastAPI
-
-        app = FastAPI()
-
-
-        @app.get("/", teleport_to_moon=True)
-        def read_root():
-            return {"Hello": "World"}
-      render: python
-    validations:
-      required: true
-  - type: textarea
-    id: alternatives
-    attributes:
-      label: Alternatives
-      description: |
-        Tell me about alternatives you've considered.
-      placeholder: |
-        To wait for Space X moon travel plans to drop down long after they release them. But I would rather teleport.
   - type: dropdown
     id: os
     attributes:
