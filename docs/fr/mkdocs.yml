@@ -78,6 +78,7 @@ nav:
   - deployment/https.md
   - deployment/deta.md
   - deployment/docker.md
+  - deployment/manually.md
 - project-generation.md
 - alternatives.md
 - history-design-future.md
