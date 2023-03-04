@@ -42,6 +42,7 @@ from fastapi.utils import (
 from pydantic import BaseModel
 from pydantic.error_wrappers import ErrorWrapper, ValidationError
 from pydantic.fields import ModelField, Undefined
+from pydantic.utils import lenient_issubclass
 from starlette import routing
 from starlette.concurrency import run_in_threadpool
 from starlette.exceptions import HTTPException
@@ -356,7 +357,11 @@ class APIRoute(routing.Route):
         self.path = path
         self.endpoint = endpoint
         if isinstance(response_model, DefaultPlaceholder):
-            response_model = get_typed_return_annotation(endpoint)
+            return_annotation = get_typed_return_annotation(endpoint)
+            if lenient_issubclass(return_annotation, Response):
+                response_model = None
+            else:
+                response_model = return_annotation
         self.response_model = response_model
         self.summary = summary
         self.response_description = response_description
@@ -516,6 +521,25 @@ class APIRouter(routing.Router):
         self.route_class = route_class
         self.default_response_class = default_response_class
         self.generate_unique_id_function = generate_unique_id_function
+
+    def route(
+        self,
+        path: str,
+        methods: Optional[List[str]] = None,
+        name: Optional[str] = None,
+        include_in_schema: bool = True,
+    ) -> Callable[[DecoratedCallable], DecoratedCallable]:
+        def decorator(func: DecoratedCallable) -> DecoratedCallable:
+            self.add_route(
+                path,
+                func,
+                methods=methods,
+                name=name,
+                include_in_schema=include_in_schema,
+            )
+            return func
+
+        return decorator
 
     def add_api_route(
         self,
@@ -677,6 +701,15 @@ class APIRouter(routing.Router):
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         def decorator(func: DecoratedCallable) -> DecoratedCallable:
             self.add_api_websocket_route(path, func, name=name)
+            return func
+
+        return decorator
+
+    def websocket_route(
+        self, path: str, name: Union[str, None] = None
+    ) -> Callable[[DecoratedCallable], DecoratedCallable]:
+        def decorator(func: DecoratedCallable) -> DecoratedCallable:
+            self.add_websocket_route(path, func, name=name)
             return func
 
         return decorator
@@ -1242,3 +1275,12 @@ class APIRouter(routing.Router):
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
         )
+
+    def on_event(
+        self, event_type: str
+    ) -> Callable[[DecoratedCallable], DecoratedCallable]:
+        def decorator(func: DecoratedCallable) -> DecoratedCallable:
+            self.add_event_handler(event_type, func)
+            return func
+
+        return decorator

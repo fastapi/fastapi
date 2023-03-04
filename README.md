@@ -55,7 +55,7 @@ The key features are:
 <a href="https://testdriven.io/courses/tdd-fastapi/" target="_blank" title="Learn to build high-quality web apps with best practices"><img src="https://fastapi.tiangolo.com/img/sponsors/testdriven.svg"></a>
 <a href="https://github.com/deepset-ai/haystack/" target="_blank" title="Build powerful search from composable, open source building blocks"><img src="https://fastapi.tiangolo.com/img/sponsors/haystack-fastapi.svg"></a>
 <a href="https://www.udemy.com/course/fastapi-rest/" target="_blank" title="Learn FastAPI by building a complete project. Extend your knowledge on advanced web development-AWS, Payments, Emails."><img src="https://fastapi.tiangolo.com/img/sponsors/ines-course.jpg"></a>
-<a href="https://careers.budget-insight.com/" target="_blank" title="Budget Insight is hiring!"><img src="https://fastapi.tiangolo.com/img/sponsors/budget-insight.svg"></a>
+<a href="https://careers.powens.com/" target="_blank" title="Powens is hiring!"><img src="https://fastapi.tiangolo.com/img/sponsors/powens.png"></a>
 <a href="https://www.svix.com/" target="_blank" title="Svix - Webhooks as a service"><img src="https://fastapi.tiangolo.com/img/sponsors/svix.svg"></a>
 
 <!-- /sponsors -->
@@ -99,6 +99,12 @@ The key features are:
 "_We've switched over to **FastAPI** for our **APIs** [...] I think you'll like it [...]_"
 
 <div style="text-align: right; margin-right: 10%;">Ines Montani - Matthew Honnibal - <strong><a href="https://explosion.ai" target="_blank">Explosion AI</a> founders - <a href="https://spacy.io" target="_blank">spaCy</a> creators</strong> <a href="https://twitter.com/_inesmontani/status/1144173225322143744" target="_blank"><small>(ref)</small></a> - <a href="https://twitter.com/honnibal/status/1144031421859655680" target="_blank"><small>(ref)</small></a></div>
+
+---
+
+"_If anyone is looking to build a production Python API, I would highly recommend **FastAPI**. It is **beautifully designed**, **simple to use** and **highly scalable**, it has become a **key component** in our API first development strategy and is driving many automations and services such as our Virtual TAC Engineer._"
+
+<div style="text-align: right; margin-right: 10%;">Deon Pillsbury - <strong>Cisco</strong> <a href="https://www.linkedin.com/posts/deonpillsbury_cisco-cx-python-activity-6963242628536487936-trAp/" target="_blank"><small>(ref)</small></a></div>
 
 ---
 
