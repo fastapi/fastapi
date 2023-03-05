@@ -522,6 +522,25 @@ class APIRouter(routing.Router):
         self.default_response_class = default_response_class
         self.generate_unique_id_function = generate_unique_id_function
 
+    def route(
+        self,
+        path: str,
+        methods: Optional[List[str]] = None,
+        name: Optional[str] = None,
+        include_in_schema: bool = True,
+    ) -> Callable[[DecoratedCallable], DecoratedCallable]:
+        def decorator(func: DecoratedCallable) -> DecoratedCallable:
+            self.add_route(
+                path,
+                func,
+                methods=methods,
+                name=name,
+                include_in_schema=include_in_schema,
+            )
+            return func
+
+        return decorator
+
     def add_api_route(
         self,
         path: str,
@@ -682,6 +701,15 @@ class APIRouter(routing.Router):
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         def decorator(func: DecoratedCallable) -> DecoratedCallable:
             self.add_api_websocket_route(path, func, name=name)
+            return func
+
+        return decorator
+
+    def websocket_route(
+        self, path: str, name: Union[str, None] = None
+    ) -> Callable[[DecoratedCallable], DecoratedCallable]:
+        def decorator(func: DecoratedCallable) -> DecoratedCallable:
+            self.add_websocket_route(path, func, name=name)
             return func
 
         return decorator
@@ -1247,3 +1275,12 @@ class APIRouter(routing.Router):
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
         )
+
+    def on_event(
+        self, event_type: str
+    ) -> Callable[[DecoratedCallable], DecoratedCallable]:
+        def decorator(func: DecoratedCallable) -> DecoratedCallable:
+            self.add_event_handler(event_type, func)
+            return func
+
+        return decorator
