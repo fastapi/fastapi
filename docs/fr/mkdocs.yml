@@ -45,6 +45,7 @@ nav:
   - fa: /fa/
   - fr: /fr/
   - he: /he/
+  - hy: /hy/
   - id: /id/
   - it: /it/
   - ja: /ja/
@@ -77,6 +78,7 @@ nav:
   - deployment/https.md
   - deployment/deta.md
   - deployment/docker.md
+  - deployment/manually.md
 - project-generation.md
 - alternatives.md
 - history-design-future.md
@@ -135,6 +137,8 @@ extra:
     name: fr - français
   - link: /he/
     name: he
+  - link: /hy/
+    name: hy
   - link: /id/
     name: id
   - link: /it/
