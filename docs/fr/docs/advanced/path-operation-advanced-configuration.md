@@ -5,7 +5,7 @@
 !!! Attention
     Si vous n'êtes pas un "expert" en OpenAPI, vous n'en avez probablement pas besoin.
 
-Dans OpenAPI, les chemins sont des ressources, tels que /users ou /reports/summary/, exposées par votre API, et les opérations sont les méthodes HTTP utilisées pour manipuler ces chemins, telles que GET, POST ou DELETE. Les operationId sont des chaînes uniques facultatives utilisées pour identifier une opération d'un chemin. Vous pouvez définir l'OpenAPI `operationId` à utiliser dans votre *path operation* avec le paramètre `operation_id`.
+Dans OpenAPI, les chemins sont des ressources, tels que /users/ ou /items/, exposées par votre API, et les opérations sont les méthodes HTTP utilisées pour manipuler ces chemins, telles que GET, POST ou DELETE. Les operationId sont des chaînes uniques facultatives utilisées pour identifier une opération d'un chemin. Vous pouvez définir l'OpenAPI `operationId` à utiliser dans votre *opération de chemin* avec le paramètre `operation_id`.
 
 Vous devez vous assurer qu'il est unique pour chaque opération.
 
@@ -15,7 +15,7 @@ Vous devez vous assurer qu'il est unique pour chaque opération.
 
 ### Utilisation du nom *path operation function* comme operationId
 
-Si vous souhaitez utiliser les noms de fonction de vos API comme `operationId`, vous pouvez les parcourir tous et remplacer chaque `operation_id` de *path operation* en utilisant leur `APIRoute.name`.
+Si vous souhaitez utiliser les noms de fonction de vos API comme `operationId`, vous pouvez les parcourir tous et remplacer chaque `operation_id` de l'*opération de chemin* en utilisant leur `APIRoute.name`.
 
 Vous devriez le faire après avoir ajouté toutes vos *paramètres de chemin*.
 
@@ -74,9 +74,7 @@ Il inclut les `tags`, `parameters`, `requestBody`, `responses`, etc.
 
 Ce schéma OpenAPI spécifique aux *operations* est normalement généré automatiquement par **FastAPI**, mais vous pouvez également l'étendre.
 
-!!! Astuce
-    Il s'agit d'extension de bas niveau.
-
+!!! tip
     Si vous avez seulement besoin de déclarer des réponses supplémentaires, un moyen plus pratique de le faire est d'utiliser les [réponses supplémentaires dans OpenAPI](./additional-responses.md){.internal-link target=_blank}.
 
 Vous pouvez étendre le schéma OpenAPI pour une *opération de chemin* en utilisant le paramètre `openapi_extra`.
