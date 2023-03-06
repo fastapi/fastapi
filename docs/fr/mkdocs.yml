@@ -45,6 +45,7 @@ nav:
   - fa: /fa/
   - fr: /fr/
   - he: /he/
+  - hy: /hy/
   - id: /id/
   - it: /it/
   - ja: /ja/
@@ -67,7 +68,9 @@ nav:
   - tutorial/query-params.md
   - tutorial/body.md
   - tutorial/background-tasks.md
+  - tutorial/debugging.md
 - Guide utilisateur avancé:
+  - advanced/path-operation-advanced-configuration.md
   - advanced/additional-status-codes.md
   - advanced/additional-responses.md
 - async.md
@@ -77,6 +80,7 @@ nav:
   - deployment/https.md
   - deployment/deta.md
   - deployment/docker.md
+  - deployment/manually.md
 - project-generation.md
 - alternatives.md
 - history-design-future.md
@@ -104,7 +108,7 @@ markdown_extensions:
 extra:
   analytics:
     provider: google
-    property: UA-133183413-1
+    property: G-YNEVN69SC3
   social:
   - icon: fontawesome/brands/github-alt
     link: https://github.com/tiangolo/fastapi
@@ -135,6 +139,8 @@ extra:
     name: fr - français
   - link: /he/
     name: he
+  - link: /hy/
+    name: hy
   - link: /id/
     name: id
   - link: /it/

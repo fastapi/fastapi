@@ -1,6 +1,6 @@
 site_name: FastAPI
 site_description: FastAPI framework, high performance, easy to learn, fast to code, ready for production
-site_url: https://fastapi.tiangolo.com/es/
+site_url: https://fastapi.tiangolo.com/hy/
 theme:
   name: material
   custom_dir: overrides
@@ -27,7 +27,7 @@ theme:
     repo: fontawesome/brands/github-alt
   logo: https://fastapi.tiangolo.com/img/icon-white.svg
   favicon: https://fastapi.tiangolo.com/img/favicon.png
-  language: es
+  language: hy
 repo_name: tiangolo/fastapi
 repo_url: https://github.com/tiangolo/fastapi
 edit_uri: ''
@@ -59,16 +59,6 @@ nav:
   - tr: /tr/
   - uk: /uk/
   - zh: /zh/
-- features.md
-- python-types.md
-- Tutorial - Guía de Usuario:
-  - tutorial/index.md
-  - tutorial/first-steps.md
-  - tutorial/path-params.md
-  - tutorial/query-params.md
-- Guía de Usuario Avanzada:
-  - advanced/index.md
-- async.md
 markdown_extensions:
 - toc:
     permalink: true
@@ -91,7 +81,7 @@ markdown_extensions:
 extra:
   analytics:
     provider: google
-    property: G-YNEVN69SC3
+    property: UA-133183413-1
   social:
   - icon: fontawesome/brands/github-alt
     link: https://github.com/tiangolo/fastapi
