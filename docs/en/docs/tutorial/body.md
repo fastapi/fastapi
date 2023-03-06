@@ -19,9 +19,17 @@ To declare a **request** body, you use <a href="https://pydantic-docs.helpmanual
 
 First, you need to import `BaseModel` from `pydantic`:
 
-```Python hl_lines="4"
-{!../../../docs_src/body/tutorial001.py!}
-```
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="4"
+    {!> ../../../docs_src/body/tutorial001.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="2"
+    {!> ../../../docs_src/body/tutorial001_py310.py!}
+    ```
 
 ## Create your data model
 
@@ -29,9 +37,17 @@ Then you declare your data model as a class that inherits from `BaseModel`.
 
 Use standard Python types for all the attributes:
 
-```Python hl_lines="7-11"
-{!../../../docs_src/body/tutorial001.py!}
-```
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="7-11"
+    {!> ../../../docs_src/body/tutorial001.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="5-9"
+    {!> ../../../docs_src/body/tutorial001_py310.py!}
+    ```
 
 The same as when declaring query parameters, when a model attribute has a default value, it is not required. Otherwise, it is required. Use `None` to make it just optional.
 
@@ -59,9 +75,17 @@ For example, this model above declares a JSON "`object`" (or Python `dict`) like
 
 To add it to your *path operation*, declare it the same way you declared path and query parameters:
 
-```Python hl_lines="18"
-{!../../../docs_src/body/tutorial001.py!}
-```
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="18"
+    {!> ../../../docs_src/body/tutorial001.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="16"
+    {!> ../../../docs_src/body/tutorial001_py310.py!}
+    ```
 
 ...and declare its type as the model you created, `Item`.
 
@@ -114,7 +138,7 @@ But you would get the same editor support with <a href="https://www.jetbrains.co
     If you use <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a> as your editor, you can use the <a href="https://github.com/koxudaxi/pydantic-pycharm-plugin/" class="external-link" target="_blank">Pydantic PyCharm Plugin</a>.
 
     It improves editor support for Pydantic models, with:
-    
+
     * auto-completion
     * type checks
     * refactoring
@@ -125,9 +149,17 @@ But you would get the same editor support with <a href="https://www.jetbrains.co
 
 Inside of the function, you can access all the attributes of the model object directly:
 
-```Python hl_lines="21"
-{!../../../docs_src/body/tutorial002.py!}
-```
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="21"
+    {!> ../../../docs_src/body/tutorial002.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="19"
+    {!> ../../../docs_src/body/tutorial002_py310.py!}
+    ```
 
 ## Request body + path parameters
 
@@ -135,9 +167,17 @@ You can declare path parameters and request body at the same time.
 
 **FastAPI** will recognize that the function parameters that match path parameters should be **taken from the path**, and that function parameters that are declared to be Pydantic models should be **taken from the request body**.
 
-```Python hl_lines="17-18"
-{!../../../docs_src/body/tutorial003.py!}
-```
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="17-18"
+    {!> ../../../docs_src/body/tutorial003.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="15-16"
+    {!> ../../../docs_src/body/tutorial003_py310.py!}
+    ```
 
 ## Request body + path + query parameters
 
@@ -145,9 +185,17 @@ You can also declare **body**, **path** and **query** parameters, all at the sam
 
 **FastAPI** will recognize each of them and take the data from the correct place.
 
-```Python hl_lines="18"
-{!../../../docs_src/body/tutorial004.py!}
-```
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="18"
+    {!> ../../../docs_src/body/tutorial004.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="16"
+    {!> ../../../docs_src/body/tutorial004_py310.py!}
+    ```
 
 The function parameters will be recognized as follows:
 
@@ -158,7 +206,7 @@ The function parameters will be recognized as follows:
 !!! note
     FastAPI will know that the value of `q` is not required because of the default value `= None`.
 
-    The `Optional` in `Optional[str]` is not used by FastAPI, but will allow your editor to give you better support and detect errors.
+    The `Union` in `Union[str, None]` is not used by FastAPI, but will allow your editor to give you better support and detect errors.
 
 ## Without Pydantic
 

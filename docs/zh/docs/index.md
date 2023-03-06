@@ -28,7 +28,7 @@ FastAPI 是一个用于构建 API 的现代、快速（高性能）的 web 框�
 
 关键特性:
 
-* **快速**：可与 **NodeJS** 和 **Go** 比肩的极高性能（归功于 Starlette 和 Pydantic）。[最快的 Python web 框架之一](#_11)。
+* **快速**：可与 **NodeJS** 和 **Go** 并肩的极高性能（归功于 Starlette 和 Pydantic）。[最快的 Python web 框架之一](#_11)。
 
 * **高效编码**：提高功能开发速度约 200％ 至 300％。*
 * **更少 bug**：减少约 40％ 的人为（开发者）导致错误。*
@@ -131,7 +131,7 @@ $ pip install fastapi
 <div class="termy">
 
 ```console
-$ pip install uvicorn[standard]
+$ pip install "uvicorn[standard]"
 
 ---> 100%
 ```
@@ -145,7 +145,7 @@ $ pip install uvicorn[standard]
 * 创建一个 `main.py` 文件并写入以下内容:
 
 ```Python
-from typing import Optional
+from typing import Union
 
 from fastapi import FastAPI
 
@@ -158,7 +158,7 @@ def read_root():
 
 
 @app.get("/items/{item_id}")
-def read_item(item_id: int, q: Optional[str] = None):
+def read_item(item_id: int, q: Union[str, None] = None):
     return {"item_id": item_id, "q": q}
 ```
 
@@ -168,7 +168,7 @@ def read_item(item_id: int, q: Optional[str] = None):
 如果你的代码里会出现 `async` / `await`，请使用 `async def`：
 
 ```Python hl_lines="9  14"
-from typing import Optional
+from typing import Union
 
 from fastapi import FastAPI
 
@@ -181,7 +181,7 @@ async def read_root():
 
 
 @app.get("/items/{item_id}")
-async def read_item(item_id: int, q: Optional[str] = None):
+async def read_item(item_id: int, q: Union[str, None] = None):
     return {"item_id": item_id, "q": q}
 ```
 
@@ -260,7 +260,7 @@ INFO:     Application startup complete.
 我们借助 Pydantic 来使用标准的 Python 类型声明请求体。
 
 ```Python hl_lines="4  9-12  25-27"
-from typing import Optional
+from typing import Union
 
 from fastapi import FastAPI
 from pydantic import BaseModel
@@ -271,7 +271,7 @@ app = FastAPI()
 class Item(BaseModel):
     name: str
     price: float
-    is_offer: Optional[bool] = None
+    is_offer: Union[bool, None] = None
 
 
 @app.get("/")
@@ -280,7 +280,7 @@ def read_root():
 
 
 @app.get("/items/{item_id}")
-def read_item(item_id: int, q: Optional[str] = None):
+def read_item(item_id: int, q: Union[str, None] = None):
     return {"item_id": item_id, "q": q}
 
 
@@ -422,7 +422,7 @@ item: Item
 * 许多额外功能（归功于 Starlette）比如：
     * **WebSockets**
     * **GraphQL**
-    * 基于 `requests` 和 `pytest` 的极其简单的测试
+    * 基于 HTTPX 和 `pytest` 的极其简单的测试
     * **CORS**
     * **Cookie Sessions**
     * ......以及更多
@@ -442,8 +442,7 @@ item: Item
 
 用于 Starlette：
 
-* <a href="https://requests.readthedocs.io" target="_blank"><code>requests</code></a> - 使用 `TestClient` 时安装。
-* <a href="https://github.com/Tinche/aiofiles" target="_blank"><code>aiofiles</code></a> - 使用 `FileResponse` 或 `StaticFiles` 时安装。
+* <a href="https://www.python-httpx.org" target="_blank"><code>httpx</code></a> - 使用 `TestClient` 时安装。
 * <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - 使用默认模板配置时安装。
 * <a href="https://andrew-d.github.io/python-multipart/" target="_blank"><code>python-multipart</code></a> - 需要通过 `request.form()` 对表单进行<abbr title="将来自 HTTP 请求中的字符串转换为 Python 数据类型">「解析」</abbr>时安装。
 * <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - 需要 `SessionMiddleware` 支持时安装。
