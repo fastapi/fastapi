@@ -1,6 +1,6 @@
 site_name: FastAPI
 site_description: FastAPI framework, high performance, easy to learn, fast to code, ready for production
-site_url: https://fastapi.tiangolo.com/fr/
+site_url: https://fastapi.tiangolo.com/ta/
 theme:
   name: material
   custom_dir: overrides
@@ -27,7 +27,7 @@ theme:
     repo: fontawesome/brands/github-alt
   logo: https://fastapi.tiangolo.com/img/icon-white.svg
   favicon: https://fastapi.tiangolo.com/img/favicon.png
-  language: fr
+  language: en
 repo_name: tiangolo/fastapi
 repo_url: https://github.com/tiangolo/fastapi
 edit_uri: ''
@@ -45,7 +45,6 @@ nav:
   - fa: /fa/
   - fr: /fr/
   - he: /he/
-  - hy: /hy/
   - id: /id/
   - it: /it/
   - ja: /ja/
@@ -60,33 +59,6 @@ nav:
   - tr: /tr/
   - uk: /uk/
   - zh: /zh/
-- features.md
-- fastapi-people.md
-- python-types.md
-- Tutoriel - Guide utilisateur:
-  - tutorial/first-steps.md
-  - tutorial/path-params.md
-  - tutorial/query-params.md
-  - tutorial/body.md
-  - tutorial/background-tasks.md
-  - tutorial/debugging.md
-- Guide utilisateur avancé:
-  - advanced/path-operation-advanced-configuration.md
-  - advanced/additional-status-codes.md
-  - advanced/additional-responses.md
-- async.md
-- Déploiement:
-  - deployment/index.md
-  - deployment/versions.md
-  - deployment/https.md
-  - deployment/deta.md
-  - deployment/docker.md
-  - deployment/manually.md
-- project-generation.md
-- alternatives.md
-- history-design-future.md
-- external-links.md
-- help-fastapi.md
 markdown_extensions:
 - toc:
     permalink: true
@@ -109,7 +81,7 @@ markdown_extensions:
 extra:
   analytics:
     provider: google
-    property: G-YNEVN69SC3
+    property: UA-133183413-1
   social:
   - icon: fontawesome/brands/github-alt
     link: https://github.com/tiangolo/fastapi
@@ -140,8 +112,6 @@ extra:
     name: fr - français
   - link: /he/
     name: he
-  - link: /hy/
-    name: hy
   - link: /id/
     name: id
   - link: /it/
