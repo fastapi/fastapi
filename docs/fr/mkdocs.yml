@@ -68,6 +68,7 @@ nav:
   - tutorial/query-params.md
   - tutorial/body.md
   - tutorial/background-tasks.md
+  - tutorial/debugging.md
 - Guide utilisateur avancé:
   - advanced/additional-status-codes.md
   - advanced/additional-responses.md
