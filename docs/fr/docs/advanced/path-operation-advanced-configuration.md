@@ -74,7 +74,7 @@ Il inclut les `tags`, `parameters`, `requestBody`, `responses`, etc.
 
 Ce schéma OpenAPI spécifique aux *operations* est normalement généré automatiquement par **FastAPI**, mais vous pouvez également l'étendre.
 
-!!! tip
+!!! Astuce
     Si vous avez seulement besoin de déclarer des réponses supplémentaires, un moyen plus pratique de le faire est d'utiliser les [réponses supplémentaires dans OpenAPI](./additional-responses.md){.internal-link target=_blank}.
 
 Vous pouvez étendre le schéma OpenAPI pour une *opération de chemin* en utilisant le paramètre `openapi_extra`.
