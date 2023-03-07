@@ -233,9 +233,9 @@ INFO:     Application startup complete.
 আপনি ইতিমধ্যে একটি API তৈরি করেছেন যা:
 
 - `/` এবং `/items/{item_id}` _paths_ এ HTTP অনুরোধ গ্রহণ করে।
-- Both _paths_ take `GET` <em>operations</em> (also known as HTTP _methods_).
-- The _path_ `/items/{item_id}` has a _path parameter_ `item_id` that should be an `int`.
-- The _path_ `/items/{item_id}` has an optional `str` _query parameter_ `q`.
+- উভয় *path*ই `GET` <em>অপারেশন</em> নেয় ( যা HTTP _methods_ নামেও পরিচিত)।
+- _path_ `/items/{item_id}`-এ একটি _path প্যারামিটার_ `item_id` আছে যা কিনা `int` হতে হবে।
+- _path_ `/items/{item_id}`-এর একটি ঐচ্ছিক `str` _query প্যারামিটার_ `q` আছে।
 
 ### ইন্টারেক্টিভ API ডকুমেন্টেশন
 
@@ -396,13 +396,13 @@ item: Item
     return {"item_name": item.name, "item_id": item_id}
 ```
 
-...from:
+...পুর্বে:
 
 ```Python
         ... "item_name": item.name ...
 ```
 
-...to:
+...পরবর্তীতে:
 
 ```Python
         ... "item_price": item.price ...
