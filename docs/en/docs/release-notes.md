@@ -2,6 +2,9 @@
 
 ## Latest Changes
 
+
+## 0.93.0
+
 ### Features
 
 * ✨ Add support for `lifespan` async context managers (superseding `startup` and `shutdown` events). Initial PR [#2944](https://github.com/tiangolo/fastapi/pull/2944) by [@uSpike](https://github.com/uSpike).
