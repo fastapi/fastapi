@@ -7,6 +7,7 @@ from contextlib import AsyncExitStack
 from enum import Enum, IntEnum
 from typing import (
     Any,
+    AsyncContextManager,
     Callable,
     Coroutine,
     Dict,
@@ -492,6 +493,7 @@ class APIRouter(routing.Router):
         route_class: Type[APIRoute] = APIRoute,
         on_startup: Optional[Sequence[Callable[[], Any]]] = None,
         on_shutdown: Optional[Sequence[Callable[[], Any]]] = None,
+        lifespan: Optional[Callable[[Any], AsyncContextManager[Any]]] = None,
         deprecated: Optional[bool] = None,
         include_in_schema: bool = True,
         generate_unique_id_function: Callable[[APIRoute], str] = Default(
@@ -504,6 +506,7 @@ class APIRouter(routing.Router):
             default=default,
             on_startup=on_startup,
             on_shutdown=on_shutdown,
+            lifespan=lifespan,
         )
         if prefix:
             assert prefix.startswith("/"), "A path prefix must start with '/'"
