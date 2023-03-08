@@ -1,4 +1,4 @@
-#  *⃣ 
+#  *⃣
 
 👆 💪 ⚙️ <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API" class="external-link" target="_blank"> *⃣ </a> ⏮ **FastAPI**.
 

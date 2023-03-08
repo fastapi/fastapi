@@ -98,7 +98,7 @@
     {!> ../../../docs_src/path_operation_configuration/tutorial003_py310.py!}
     ```
 
-## 📛 ⚪️➡️ #⃣ 
+## 📛 ⚪️➡️ #⃣
 
 📛 😑 📏 &amp; 📔 💗 ⏸, 👆 💪 📣 *➡ 🛠* 📛 🔢 <abbr title="a multi-line string as the first expression inside a function (not assigned to any variable) used for documentation"> #⃣ </abbr> &amp; **FastAPI** 🔜 ✍ ⚫️ ⚪️➡️ 📤.
 
