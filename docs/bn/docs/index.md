@@ -2,7 +2,7 @@
   <a href="https://fastapi.tiangolo.com"><img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI"></a>
 </p>
 <p align="center">
-    <em>FastAPI সেরা-পারফরম্যান্সের, সহজে শেখার এবং দ্রুত কোড করে প্রডাকশনের জন্য ফ্রামওয়ার্ক।</em>
+    <em>FastAPI উচ্চ কার্যক্ষমতা সম্পন্ন, সহজে শেখার এবং দ্রুত কোড করে প্রডাকশনের জন্য ফ্রামওয়ার্ক।</em>
 </p>
 <p align="center">
 <a href="https://github.com/tiangolo/fastapi/actions?query=workflow%3ATest" target="_blank">
@@ -18,27 +18,27 @@
 
 ---
 
-**ডকুমেন্টেশন**: <a href="https://fastapi.tiangolo.com" target="_blank">https://fastapi.tiangolo.com</a>
+**নির্দেশিকা নথি**: <a href="https://fastapi.tiangolo.com" target="_blank">https://fastapi.tiangolo.com</a>
 
 **সোর্স কোড**: <a href="https://github.com/tiangolo/fastapi" target="_blank">https://github.com/tiangolo/fastapi</a>
 
 ---
 
-FastAPI একটি আধুনিক, দ্রুততম এবং সেরা-পারফরম্যান্স সম্পন্ন, Python 3.6+ দিয়ে API তৈরির জন্য স্ট্যান্ডার্ড পাইথন টাইপ ইঙ্গিতের ভিত্তিতে ওয়েব ফ্রেমওয়ার্ক।
+FastAPI একটি আধুনিক, দ্রুততম এবং উচ্চ কার্যক্ষমতা সম্পন্ন, Python 3.6+ দিয়ে API তৈরির জন্য স্ট্যান্ডার্ড পাইথন টাইপ ইঙ্গিতের ভিত্তিতে ওয়েব ফ্রেমওয়ার্ক।
 
 এর মূল বৈশিষ্ট্য গুলো হলঃ
 
-- **গতি**: এটি **NodeJS** এবং **Go** এর মত সেরা-পারফরম্যান্স সম্পন্ন (Starlette এবং Pydantic এর সাহায্যে)। [পাইথন দ্রুততম ফ্রেমওয়ার্ক গুলোর মধ্যে এটি একটি](#পারফরম্যান্স)।
-- **দ্রুত কোড করা**: ফিচার ডেভেলপ করার গতি ২০০% থেকে ৩০০% বৃদ্ধি করে৷ \*
-- **স্বল্প bugs**: মানুব (ডেভেলপার) সৃষ্ট ত্রুটির প্রায় 40% হ্রাস করুন। \*
-- **স্বজ্ঞাত**: দুর্দান্ত এডিটর সাপোর্ট। সর্বত্র <abbr title="also known as auto-complete, autocompletion, IntelliSense">Completion</abbr> নামেও পরিচিত। দ্রুত ডিবাগ করা যায়।
+- **গতি**: এটি **NodeJS** এবং **Go** এর মত সেরা-কার্যক্ষমতা সম্পন্ন (Starlette এবং Pydantic এর সাহায্যে)। [পাইথন দ্রুততম ফ্রেমওয়ার্ক গুলোর মধ্যে এটি একটি](#কার্যক্ষমতায়)।
+- **দ্রুত কোড করা**:বৈশিষ্ট্য বিকাশের গতি ২০০% থেকে ৩০০% বৃদ্ধি করে৷ \*
+- **স্বল্প bugs**: মানুব (ডেভেলপার) সৃষ্ট ত্রুটির প্রায় ৪০% হ্রাস করে। \*
+- **স্বজ্ঞাত**: দুর্দান্ত এডিটর সাহায্য <abbr title="also known as auto-complete, autocompletion, IntelliSense">Completion</abbr> নামেও পরিচিত। দ্রুত ডিবাগ করা যায়।
 
-- **সহজ**: এটি এমন ভাবের সজানো হয়েছে যেন দ্রুত ডকুমেন্টেশন পড়ে সহজে শেখা এবং ব্যবহার করা যায়।
+- **সহজ**: এটি এমন ভাবের সজানো হয়েছে যেন দ্রুত নির্দেশিকা নথি পড়ে সহজে শেখা এবং ব্যবহার করা যায়।
 - **সংক্ষিপ্ত**: কোড ডুপ্লিকেশন কমায়। প্রতিটি প্যারামিটার ঘোষণা থেকে একাধিক ফিচার পাওয়া যাবে। কম bug হবে।
-- **জোরালো**: স্বয়ংক্রিয় ইন্টারেক্টিভ ডকুমেন্টেশন সহ, উৎপাদনের জন্য প্রস্তুত কোড পাওয়া যাবে।
-- **মান-ভিত্তিক**: API-এর জন্য উন্মুক্ত মানগুলির উপর ভিত্তি করে (এবং সম্পূর্ণরূপে সামঞ্জস্যপূর্ণ): <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (যাহা পূর্বে Swagger নামে পরিচিত ছিল) এবং <a href="https://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>.
+- **জোরালো**: স্বয়ংক্রিয় ক্রিয়াশীল নির্দেশিকা নথি সহ, উৎপাদনের জন্য প্রস্তুত কোড পাওয়া যাবে।
+- **মান-ভিত্তিক**: API-এর জন্য উন্মুক্ত মানগুলির উপর ভিত্তি করে (এবং সম্পূর্ণরূপে সামঞ্জস্যপূর্ণ): <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (যা পূর্বে Swagger নামে পরিচিত ছিল) এবং <a href="https://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>.
 
-<small>\* এক দল প্রোডাকশন এপ্লিকেশন বানানো অভ্যন্তরীণ ডেভেলপার এর ওপর নিরীক্ষন ভিত্তিক অনুমান।</small>
+<small>\* উৎপাদনযাত এপ্লিকেশন বানানোর এক দল ডেভেলপার এর ওপর নিরীক্ষন ভিত্তিক অনুমান।</small>
 
 ## স্পনসর গণ
 
@@ -187,7 +187,7 @@ async def read_item(item_id: int, q: Union[str, None] = None):
 
 **টীকা**:
 
-আপনি যদি না জানেন, _"তাড়াহুড়ো?"_ বিভাগটি দেখুন <a href="https://fastapi.tiangolo.com/async/#in-a-hurry" target="_blank">`async` এবং `await` ডকের মধ্যে দেখুন </a>.
+আপনি যদি না জানেন, _"তাড়াহুড়ো?"_ বিভাগটি দেখুন <a href="https://fastapi.tiangolo.com/async/#in-a-hurry" target="_blank">`async` এবং `await` নথির মধ্যে দেখুন </a>.
 
 </details>
 
@@ -210,9 +210,9 @@ INFO:     Application startup complete.
 </div>
 
 <details markdown="1">
-<summary>কমান্ড সম্পর্কে <code>uvicorn main:app --reload</code>...</summary>
+<summary>নির্দেশনা সম্পর্কে <code>uvicorn main:app --reload</code>...</summary>
 
-`uvicorn main:app` কমান্ডটি দ্বারা বোঝায়:
+`uvicorn main:app` নির্দেশনাটি দ্বারা বোঝায়:
 
 - `main`: ফাইল `main.py` (পাইথন "মডিউল")।
 - `app`: `app = FastAPI()` লাইন দিয়ে `main.py` এর ভিতরে তৈরি করা অবজেক্ট।
@@ -237,19 +237,19 @@ INFO:     Application startup complete.
 - _path_ `/items/{item_id}`-এ একটি _path প্যারামিটার_ `item_id` আছে যা কিনা `int` হতে হবে।
 - _path_ `/items/{item_id}`-এর একটি ঐচ্ছিক `str` _query প্যারামিটার_ `q` আছে।
 
-### ইন্টারেক্টিভ API ডকুমেন্টেশন
+### ক্রিয়াশীল API নির্দেশিকা নথি
 
 এখন যান <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 
-আপনি স্বয়ংক্রিয় ভাবে প্রস্তুত ইন্টারেক্টিভ API ডকুমেন্টেশন দেখতে পাবেন (<a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a> প্রদত্ত):
+আপনি স্বয়ংক্রিয় ভাবে প্রস্তুত ক্রিয়াশীল API নির্দেশিকা নথি দেখতে পাবেন (<a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a> প্রদত্ত):
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-01-swagger-ui-simple.png)
 
-### বিকল্প API ডকুমেন্টেশন
+### বিকল্প API নির্দেশিকা নথি
 
 এবং এখন <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a> এ যান.
 
-আপনি স্বয়ংক্রিয় ভাবে প্রস্তুত বিকল্প ডকুমেন্টেশন দেখতে পাবেন (<a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a> প্রদত্ত):
+আপনি স্বয়ংক্রিয় ভাবে প্রস্তুত বিকল্প নির্দেশিকা নথি দেখতে পাবেন (<a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a> প্রদত্ত):
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
@@ -291,27 +291,27 @@ def update_item(item_id: int, item: Item):
 
 সার্ভারটি স্বয়ংক্রিয়ভাবে পুনরায় লোড হওয়া উচিত (কারণ আপনি উপরের `uvicorn` কমান্ডে `--reload` যোগ করেছেন)।
 
-### ইন্টারেক্টিভ API ডকুমেন্টেশন আপগ্রেড
+### ক্রিয়াশীল API নির্দেশিকা নথি উন্নীতকরণ
 
 এখন <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a> এডড্রেসে যান.
 
-- ইন্টারেক্টিভ API ডকুমেন্টেশনটি স্বয়ংক্রিয়ভাবে আপডেট হযে যাবে, নতুন বডি সহ:
+- ক্রিয়াশীল API নির্দেশিকা নথিটি স্বয়ংক্রিয়ভাবে উন্নীত হযে যাবে, নতুন বডি সহ:
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-03-swagger-02.png)
 
-- "Try it out" বাটনে ক্লিক করুন, এটি আপনাকে পেরামিটারগুলো পূরণ করতে এবং API এর সাথে সরাসরি ইন্টারঅ্যাক্ট করতে দেয়:
+- "Try it out" বাটনে চাপুন, এটি আপনাকে পেরামিটারগুলো পূরণ করতে এবং API এর সাথে সরাসরি ক্রিয়া-কলাপ করতে দিবে:
 
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-04-swagger-03.png)
 
-- তারপরে "Execute" বাটনে ক্লিক করুন, ইউজার ইন্টারফেসটি আপনার API এর সাথে যোগাযোগ করবে, পেরামিটার পাঠাবে, ফলাফলগুলি পাবে এবং সেগুলি স্ক্রিনে দেখাবে:
+- তারপরে "Execute" বাটনে চাপুন, ব্যবহারকারীর ইন্টারফেস আপনার API এর সাথে যোগাযোগ করবে, পেরামিটার পাঠাবে, ফলাফলগুলি পাবে এবং সেগুলি পর্রদায় দেখাবে:
 
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-05-swagger-04.png)
 
-### বিকল্প API ডকুমেন্টেশন আপগ্রেড
+### বিকল্প API নির্দেশিকা নথি আপগ্রেড
 
 এবং এখন <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a> এ যান।
 
-- বিকল্প ডকুমেন্টেশনও নতুন কুয়েরি প্যারামিটার এবং বডি প্রতিফলিত হবে:
+- বিকল্প নির্দেশিকা নথিতেও নতুন কুয়েরি প্যারামিটার এবং বডি প্রতিফলিত হবে:
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-06-redoc-02.png)
 
@@ -319,11 +319,11 @@ def update_item(item_id: int, item: Item):
 
 সংক্ষেপে, আপনি **শুধু একবার** প্যারামিটারের ধরন, বডি ইত্যাদি ফাংশন প্যারামিটার হিসেবে ঘোষণা করেন।
 
-আপনি সেটি আধুনিক স্ট্যান্ডার্ড পাইথন টিপের সাথে করেন।
+আপনি সেটি আধুনিক পাইথনের সাথে করেন।
 
-আপনাকে নতুন করে নির্দিষ্ট কোন লাইব্রেরির সিনট্যাক্স, ফাংশন বা ক্লাস কিছুই শিখতে হচ্ছে না।
+আপনাকে নতুন করে নির্দিষ্ট কোন লাইব্রেরির বাক্য গঠন, ফাংশন বা ক্লাস কিছুই শিখতে হচ্ছে না।
 
-শুধুই স্ট্যান্ডার্ড **Python 3.6+**
+শুধুই আধুনিক **Python 3.6+**
 
 উদাহরণস্বরূপ, `int` এর জন্য:
 
@@ -339,13 +339,13 @@ item: Item
 
 ...এবং সেই একই ঘোষণার সাথে আপনি পাবেন:
 
-- এডিটর সাপোর্ট, যেমন
+- এডিটর সাহায্য, যেমন
   - সমাপ্তি।
-  - টাইপ চেক।
+  - ধরণ যাচাই
 - তথ্য যাচাইকরণ:
-  - ডেটা অবৈধ হলে স্বয়ংক্রিয় এবং পরিষ্কার ত্রুটি।
+  - ডেটা অবৈধ হলে স্বয়ংক্রিয় এবং পরিষ্কার ত্রুটির নির্দেশনা।
   - এমনকি গভীরভাবে নেস্ট করা JSON অবজেক্টের জন্য বৈধতা।
-- ইনপুট ডেটায় <abbr title="যা পরিচিত: serialization, parsing, marshalling">রূপান্তর</abbr>: যা নেটওয়ার্ক থেকে পাইথন ডেটা এবং টাইপে আসে, এবং সেখান থেকে পড়া:
+- প্রেরিত তথ্য <abbr title="যা পরিচিত: serialization, parsing, marshalling">রূপান্তর</abbr>: যা নেটওয়ার্ক থেকে পাইথনের তথ্য এবং ধরনে আসে, এবং সেখান থেকে পড়া:
 
   - JSON।
   - পাথ প্যারামিটার।
@@ -361,7 +361,7 @@ item: Item
   - `UUID` objeঅবজেক্টcts।
   - ডাটাবেস মডেল।
   - ...এবং আরো অনেক।
-- স্বয়ংক্রিয় ইন্টারেক্টিভ API ডকুমেন্টেশন, 2টি বিকল্প ব্যবহারকারীর ইন্টারফেস সহ:
+- স্বয়ংক্রিয় ক্রিয়াশীল API নির্দেশিকা নথি, 2টি বিকল্প ব্যবহারকারীর ইন্টারফেস সহ:
   - সোয়াগার ইউ আই (Swagger UI)।
   - রিডক (ReDoc)।
 
@@ -379,16 +379,16 @@ item: Item
   - লক্ষ করুন, `name` একটি প্রয়োজনীয় অ্যাট্রিবিউট হিসাবে বিবেচনা করেছে এবং এটি `str` হতে হবে।
   - লক্ষ করুন এখানে, `price` অ্যাট্রিবিউটটি আবশ্যক এবং এটি `float` হতে হবে।
   - লক্ষ করুন `is_offer` একটি ঐচ্ছিক অ্যাট্রিবিউট এবং এটি `bool` হতে হবে যদি উপস্থিত থাকে।
-  - এই সবটি গভীরভাবে নেস্টড JSON অবজেক্টগুলিতেও কাজ করবে।
-- স্বয়ংক্রিয়ভাবে জেএসওএন হতে এবং জেএসওএন থেকে কনভার্ট করুন।
+  - এই সবটি গভীরভাবে অবস্থানরত JSON অবজেক্টগুলিতেও কাজ করবে।
+- স্বয়ংক্রিয়ভাবে JSON হতে এবং JSON থেকে কনভার্ট করুন।
 - OpenAPI দিয়ে সবকিছু ডকুমেন্ট করুন, যা ব্যবহার করা যেতে পারে:
-  - ইন্টারাক্টিভ ডকুমেন্টেশন সিস্টেম।
-  - অনেক ভাষার জন্য স্বয়ংক্রিয় ক্লায়েন্ট কোড জেনারেশন সিস্টেম।
-- সরাসরি 2টি ইন্টারেক্টিভ ডকুমেন্টেশন ওয়েব ইন্টারফেস প্রদান করা হয়েছে।
+  - ক্রিয়াশীল নির্দেশিকা নথি।
+  - অনেক ভাষার জন্য স্বয়ংক্রিয় ক্লায়েন্ট কোড তৈরির ব্যবস্থা।
+- সরাসরি 2টি ক্রিয়াশীল নির্দেশিকা নথি ওয়েব পৃষ্ঠ প্রদান করা হয়েছে।
 
 ---
 
-আমরা এতক্ষন শুধু এর পৃষ্ঠ তৈরি করেছি, কিন্তু আপনি ইতমধ্যেই এটি কিভাবে কাজ করে তার ধারণা পেয়ে গিয়েছেন।
+আমরা এতক্ষন শুধু এর পৃষ্ঠ তৈরি করেছি, কিন্তু আপনি ইতমধ্যেই এটি কিভাবে কাজ করে তার ধারণাও পেয়ে গিয়েছেন।
 
 নিম্নোক্ত লাইন গুলো পরিবর্তন করার চেষ্টা করুন:
 
@@ -408,7 +408,7 @@ item: Item
         ... "item_price": item.price ...
 ```
 
-...এবং দেখুন কিভাবে আপনার এডিটর এট্রিবিউটগুলি অটো-কমপ্লিট করবে এবং তাদের ধরন জানতে পারবে:
+...এবং দেখুন কিভাবে আপনার এডিটর উপাদানগুলোকে সয়ংক্রিয়ভাবে-সম্পন্ন করবে এবং তাদের ধরন জানতে পারবে:
 
 ![editor support](https://fastapi.tiangolo.com/img/vscode-completion.png)
 
@@ -418,10 +418,10 @@ item: Item
 
 - **হেডার**, **কুকিজ**, **ফর্ম ফিল্ড** এবং **ফাইলগুলি** এমন অন্যান্য জায়গা থেকে প্যারামিটার ঘোষণা করা।
 - `maximum_length` বা `regex` এর মতো **যাচাইকরণ বাধামুক্তি** সেট করা হয় কিভাবে, তা নিয়ে আলোচনা করা হবে।
-- একটি খুব শক্তিশালী এবং ব্যবহার করা সহজ <abbr title="also known as components, resources, providers, services, injectables">ডিপেন্ডেন্সি ইনজেকশন</abbr> সিস্টেম।
+- একটি খুব শক্তিশালী এবং ব্যবহার করা সহজ <abbr title="also known as components, resources, providers, services, injectables">ডিপেন্ডেন্সি ইনজেকশন</abbr> পদ্ধতি
 - **OAuth2** এবং **JWT টোকেন** এবং **HTTP Basic** auth সহ নিরাপত্তা এবং অনুমোদনপ্রাপ্তি সম্পর্কিত বিষয়সমূহের উপর।
-- **গভীরভাবে নেস্টেড JSON মডেল** ঘোষণা করার জন্য আরও উন্নত (কিন্তু সমান সহজ) কৌশল (Pydantic কে ধন্যবাদ)।
-- আরো অনেক অতিরিক্ত বৈশিষ্ট্য (স্টারলেটকে ধন্যবাদ) হিসাবে:
+- **গভীরভাবে অবস্থানরত JSON মডেল** ঘোষণা করার জন্য আরও উন্নত (কিন্তু সমান সহজ) কৌশল (Pydantic কে ধন্যবাদ)।
+- আরো অতিরিক্ত বৈশিষ্ট্য (স্টারলেটকে ধন্যবাদ) হিসাবে:
   - **WebSockets**
   - **GraphQL**
   - HTTPX এবং `pytest` ভিত্তিক অত্যন্ত সহজ পরীক্ষা
@@ -431,11 +431,11 @@ item: Item
 
 ## কর্মক্ষমতা
 
-স্বাধীন TechEmpower বেঞ্চমার্কগুলি দেখায় যে **FastAPI** অ্যাপ্লিকেশনগুলি Uvicorn-এর অধীনে চলমান দ্রুততম<a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">পাইথন ফ্রেমওয়ার্কগুলির মধ্যে একটি,</a> শুধুমাত্র Starlette এবং Uvicorn-এর পর (FastAPI দ্বারা অভ্যন্তরীণভাবে ব্যবহৃত)। (\*)
+স্বাধীন TechEmpower Benchmarks দেখায় যে **FastAPI** অ্যাপ্লিকেশনগুলি Uvicorn-এর অধীনে চলমান দ্রুততম<a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">পাইথন ফ্রেমওয়ার্কগুলির মধ্যে একটি,</a> শুধুমাত্র Starlette এবং Uvicorn-এর পর (FastAPI দ্বারা অভ্যন্তরীণভাবে ব্যবহৃত)। (\*)
 
-এটি সম্পর্কে আরও বুঝতে, বিভাগটি দেখুন <a href="https://fastapi.tiangolo.com/benchmarks/" class="internal-link" target="_blank">বেঞ্চমার্কগুলি</a>.
+এটি সম্পর্কে আরও বুঝতে, দেখুন <a href="https://fastapi.tiangolo.com/benchmarks/" class="internal-link" target="_blank">Benchmarks</a>.
 
-## ঐচ্ছিক ডিপেনডেন্সি
+## ঐচ্ছিক নির্ভরশীলতা
 
 Pydantic দ্বারা ব্যবহৃত:
 
@@ -445,11 +445,11 @@ Pydantic দ্বারা ব্যবহৃত:
 স্টারলেট দ্বারা ব্যবহৃত:
 
 - <a href="https://www.python-httpx.org" target="_blank"><code>httpx</code></a> - আপনি যদি `TestClient` ব্যবহার করতে চান তাহলে আবশ্যক।
-- <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - আপনি যদি ডিফল্ট টেমপ্লেট কনফিগারেশন ব্যবহার করতে চান তাহলে প্রয়োজন।
-- <a href="https://andrew-d.github.io/python-multipart/" target="_blank"><code>python-multipart</code></a> - আপনি যদি ফর্ম সমর্থন করতে চান তাহলে প্রয়োজন <abbr title="converting the string that comes from an HTTP request into Python data">"parsing"</abbr>, `request.form()` সহ।
-- <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - `SessionMiddleware` সমর্থনের জন্য প্রয়োজন।
+- <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - আপনি যদি প্রদত্ত টেমপ্লেট রূপরেখা ব্যবহার করতে চান তাহলে প্রয়োজন।
+- <a href="https://andrew-d.github.io/python-multipart/" target="_blank"><code>python-multipart</code></a> - আপনি যদি ফর্ম সহায়তা করতে চান তাহলে প্রয়োজন <abbr title="converting the string that comes from an HTTP request into Python data">"parsing"</abbr>, `request.form()` সহ।
+- <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - `SessionMiddleware` সহায়তার জন্য প্রয়োজন।
 - <a href="https://pyyaml.org/wiki/PyYAMLDocumentation" target="_blank"><code>pyyaml</code></a> - স্টারলেটের SchemaGenerator সাপোর্ট এর জন্য প্রয়োজন (আপনার সম্ভাবত FastAPI প্রয়োজন নেই)।
-- <a href="https://graphene-python.org/" target="_blank"><code>graphene</code></a> - `GraphQLApp` সমর্থনের জন্য প্রয়োজন।
+- <a href="https://graphene-python.org/" target="_blank"><code>graphene</code></a> - `GraphQLApp` সহায়তার জন্য প্রয়োজন।
 - <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - আপনি `UJSONResponse` ব্যবহার করতে চাইলে প্রয়োজন।
 
 FastAPI / Starlette দ্বারা ব্যবহৃত:
