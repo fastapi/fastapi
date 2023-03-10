@@ -189,7 +189,7 @@ The end result is that the item paths are now:
 
 ### Import the dependencies
 
-This codes lives in the module `app.routers.items`, the file `app/routers/items.py`.
+This code lives in the module `app.routers.items`, the file `app/routers/items.py`.
 
 And we need to get the dependency function from the module `app.dependencies`, the file `app/dependencies.py`.
 
