@@ -2,6 +2,9 @@
 
 ## Latest Changes
 
+
+## 0.94.0
+
 ### Upgrades
 
 * ⬆ Upgrade python-multipart to support 0.0.6. PR [#9212](https://github.com/tiangolo/fastapi/pull/9212) by [@musicinmybrain](https://github.com/musicinmybrain).
