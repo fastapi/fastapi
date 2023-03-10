@@ -1250,7 +1250,6 @@ class APIRouter(routing.Router):
             generate_unique_id
         ),
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
-
         return self.api_route(
             path=path,
             response_model=response_model,
