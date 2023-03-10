@@ -27,6 +27,8 @@ classifiers = [
     "Environment :: Web Environment",
     "Framework :: AsyncIO",
     "Framework :: FastAPI",
+    "Framework :: Pydantic",
+    "Framework :: Pydantic :: 1",
     "Intended Audience :: Developers",
     "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3 :: Only",
