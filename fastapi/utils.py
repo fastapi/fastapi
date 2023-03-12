@@ -80,7 +80,7 @@ def create_response_field(
             default=default,
             required=required,
             model_config=model_config,
-            alias=cast(str, alias),
+            alias=alias,
             field_info=field_info,
         )
     except RuntimeError:
