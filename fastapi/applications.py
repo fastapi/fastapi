@@ -31,7 +31,7 @@ from fastapi.openapi.utils import get_openapi
 from fastapi.params import Depends
 from fastapi.types import DecoratedCallable
 from fastapi.utils import generate_unique_id
-from starlette.applications import Starlette
+from starlette.applications import AppType, Starlette
 from starlette.datastructures import State
 from starlette.exceptions import HTTPException
 from starlette.middleware import Middleware
@@ -71,7 +71,7 @@ class FastAPI(Starlette):
         ] = None,
         on_startup: Optional[Sequence[Callable[[], Any]]] = None,
         on_shutdown: Optional[Sequence[Callable[[], Any]]] = None,
-        lifespan: Optional[Lifespan] = None,
+        lifespan: Optional[Lifespan[AppType]] = None,
         terms_of_service: Optional[str] = None,
         contact: Optional[Dict[str, Union[str, Any]]] = None,
         license_info: Optional[Dict[str, Union[str, Any]]] = None,
