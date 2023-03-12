@@ -121,7 +121,7 @@ If they reply, there's a high chance you would have solved their problem, congra
 * Now, if that solved their problem, you can ask them to:
 
     * In GitHub Discussions: mark the comment as the **answer**.
-    * In GitHub Issues: **close** the issue**.
+    * In GitHub Issues: **close** the issue.
 
 ## Watch the GitHub repository
 
