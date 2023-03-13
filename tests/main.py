@@ -1,5 +1,5 @@
 import http
-from typing import FrozenSet, Optional
+from typing import FrozenSet, Mapping, Optional
 
 from fastapi import FastAPI, Path, Query
 
@@ -190,7 +190,7 @@ def get_query_param_required_type(query: int = Query()):
 
 
 @app.get("/query/params")
-def get_query_params(queries: Dict[str, int] = Query({})):
+def get_query_params(queries: Mapping[str, int] = Query({})):
     return f"foo bar {queries}"
 
 
