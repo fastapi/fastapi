@@ -89,7 +89,7 @@ doc = [
 ]
 dev = [
     "ruff ==0.0.138",
-    "uvicorn[standard] >=0.12.0,<0.21.0",
+    "uvicorn[standard] >=0.12.0,<0.22.0",
     "pre-commit >=2.17.0,<3.0.0",
 ]
 all = [
