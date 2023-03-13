@@ -17,7 +17,6 @@ from typing import (
     Union,
     cast,
 )
-
 from collections import defaultdict
 
 import anyio
