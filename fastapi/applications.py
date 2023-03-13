@@ -46,7 +46,7 @@ from starlette.types import ASGIApp, Lifespan, Receive, Scope, Send
 
 class FastAPI(Starlette):
     def __init__(
-        self,
+        self: AppType,
         *,
         debug: bool = False,
         routes: Optional[List[BaseRoute]] = None,
