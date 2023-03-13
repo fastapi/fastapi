@@ -1,7 +1,6 @@
 from enum import Enum
 from typing import (
     Any,
-    AsyncContextManager,
     Awaitable,
     Callable,
     Coroutine,
@@ -42,7 +41,7 @@ from starlette.middleware.exceptions import ExceptionMiddleware
 from starlette.requests import Request
 from starlette.responses import HTMLResponse, JSONResponse, Response
 from starlette.routing import BaseRoute
-from starlette.types import ASGIApp, Receive, Scope, Send
+from starlette.types import ASGIApp, Lifespan, Receive, Scope, Send
 
 
 class FastAPI(Starlette):
@@ -72,7 +71,7 @@ class FastAPI(Starlette):
         ] = None,
         on_startup: Optional[Sequence[Callable[[], Any]]] = None,
         on_shutdown: Optional[Sequence[Callable[[], Any]]] = None,
-        lifespan: Optional[Callable[["FastAPI"], AsyncContextManager[Any]]] = None,
+        lifespan: Optional[Lifespan] = None,
         terms_of_service: Optional[str] = None,
         contact: Optional[Dict[str, Union[str, Any]]] = None,
         license_info: Optional[Dict[str, Union[str, Any]]] = None,

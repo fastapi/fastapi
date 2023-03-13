@@ -696,7 +696,7 @@ async def request_body_to_args(
                     fn: Callable[[], Coroutine[Any, Any, Any]]
                 ) -> None:
                     result = await fn()
-                    results.append(result)
+                    results.append(result)  # noqa: B023
 
                 async with anyio.create_task_group() as tg:
                     for sub_value in value:
