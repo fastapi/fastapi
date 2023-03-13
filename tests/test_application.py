@@ -1078,6 +1078,41 @@ openapi_schema = {
                 ],
             }
         },
+        "/query/params": {
+            "get": {
+                "summary": "Get Query Params",
+                "operationId": "get_query_params_query_params_get",
+                "parameters": [
+                    {
+                        "required": False,
+                        "schema": {
+                            "title": "Queries",
+                            "type": "object",
+                            "additionalProperties": {"type": "integer"},
+                            "default": {},
+                        },
+                        "name": "queries",
+                        "in": "query",
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {"application/json": {"schema": {}}},
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        },
+                    },
+                },
+            }
+        },
         "/enum-status-code": {
             "get": {
                 "responses": {
