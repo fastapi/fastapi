@@ -18,6 +18,8 @@ from typing import (
     cast,
 )
 
+from collections import defaultdict
+
 import anyio
 from fastapi import params
 from fastapi.concurrency import (
@@ -253,10 +255,11 @@ def is_scalar_mapping_field(field: ModelField) -> bool:
     if (field.shape in mapping_shapes) and not lenient_issubclass(
         field.type_, BaseModel
     ):
-        if field.sub_fields is not None:
-            for sub_field in field.sub_fields:
-                if not is_scalar_field(sub_field):
-                    return False
+        if field.sub_fields is None:
+            return True
+        for sub_field in field.sub_fields:
+            if (not is_scalar_field(sub_field)) and (not is_scalar_sequence_field(sub_field)):
+                return False
         return True
     if lenient_issubclass(field.type_, mapping_types):
         return True
@@ -625,7 +628,9 @@ def request_params_to_args(
         elif is_scalar_mapping_field(field) and isinstance(
             received_params, (QueryParams,)
         ):
-            value = received_params._dict
+            value = defaultdict(list)
+            for key, field_value in received_params.multi_items():
+                value[key].append(field_value)
         else:
             value = received_params.get(field.alias)
         field_info = field.field_info
