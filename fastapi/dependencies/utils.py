@@ -77,8 +77,8 @@ sequence_shape_to_type = {
 }
 
 mapping_shapes = {SHAPE_MAPPING}
-mapping_types = dict
-mapping_shapes_to_type = {SHAPE_MAPPING: dict}
+mapping_types = (Mapping)
+mapping_shapes_to_type = {SHAPE_MAPPING: Mapping}
 
 multipart_not_installed_error = (
     'Form data requires "python-multipart" to be installed. \n'
@@ -254,13 +254,9 @@ def is_scalar_mapping_field(field: ModelField) -> bool:
     if (field.shape in mapping_shapes) and not lenient_issubclass(
         field.type_, BaseModel
     ):
-        if field.sub_fields is None:
-            return True
         for sub_field in field.sub_fields:
             if not is_scalar_field(sub_field):
                 return False
-        return True
-    if lenient_issubclass(field.type_, mapping_types):
         return True
     return False
 
@@ -269,13 +265,9 @@ def is_scalar_sequence_mapping_field(field: ModelField) -> bool:
     if (field.shape in mapping_shapes) and not lenient_issubclass(
         field.type_, BaseModel
     ):
-        if field.sub_fields is None:
-            return True
         for sub_field in field.sub_fields:
             if not is_scalar_sequence_field(sub_field):
                 return False
-        return True
-    if lenient_issubclass(field.type_, mapping_types):
         return True
     return False
 

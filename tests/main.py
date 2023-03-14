@@ -190,13 +190,13 @@ def get_query_param_required_type(query: int = Query()):
 
 
 @app.get("/query/params")
-def get_query_params(queries: Mapping[str, int] = Query({})):
-    return f"foo bar {queries}"
+def get_query_params(query: Mapping[str, int] = Query({})):
+    return f"foo bar {query}"
 
 
 @app.get("/query/sequence-params")
-def get_sequence_query_params(queries: Mapping[str, List[int]] = Query({})):
-    return f"foo bar {queries}"
+def get_sequence_query_params(query: Mapping[str, List[int]] = Query({})):
+    return f"foo bar {query}"
 
 
 @app.get("/enum-status-code", status_code=http.HTTPStatus.CREATED)

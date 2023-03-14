@@ -1086,12 +1086,12 @@ openapi_schema = {
                     {
                         "required": False,
                         "schema": {
-                            "title": "Queries",
+                            "title": "Query",
                             "type": "object",
                             "additionalProperties": {"type": "integer"},
                             "default": {},
                         },
-                        "name": "queries",
+                        "name": "query",
                         "in": "query",
                     }
                 ],
@@ -1119,7 +1119,7 @@ openapi_schema = {
                 "parameters": [
                     {
                         "in": "query",
-                        "name": "queries",
+                        "name": "query",
                         "required": False,
                         "schema": {
                             "additionalProperties": {
@@ -1127,7 +1127,7 @@ openapi_schema = {
                                 "type": "array",
                             },
                             "default": {},
-                            "title": "Queries",
+                            "title": "Query",
                             "type": "object",
                         },
                     }
