@@ -57,7 +57,12 @@ response_not_valid_int = {
         (
             "/query/params?first-query=1&second-query=2",
             200,
-            "foo bar {'first-query': 1, " "'second-query': 2}",
+            "foo bar {'first-query': 1, 'second-query': 2}",
+        ),
+        (
+            "/query/sequence-params?first-query=1&first-query=2",
+            200,
+            "foo bar {'first-query': [1, 2]}",
         ),
     ],
 )
