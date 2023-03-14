@@ -241,6 +241,10 @@ articles:
     author_link: https://hellocoding.de/autor/felix-schuermeyer/
     link: https://hellocoding.de/blog/coding-language/python/fastapi
     title: REST-API Programmieren mittels Python und dem FastAPI Modul
+  - author: actidoo
+    author_link: https://www.actidoo.com
+    link: https://www.actidoo.com/de/blog/python-fastapi-domain-driven-design
+    title: Domain-driven Design mit Python und FastAPI
   japanese:
   - author: '@bee2'
     author_link: https://qiita.com/bee2
