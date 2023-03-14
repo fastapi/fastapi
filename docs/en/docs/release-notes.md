@@ -2,6 +2,11 @@
 
 ## Latest Changes
 
+
+## 0.94.1
+
+### Fixes
+
 * 🎨 Fix types for lifespan, upgrade Starlette to 0.26.1. PR [#9245](https://github.com/tiangolo/fastapi/pull/9245) by [@tiangolo](https://github.com/tiangolo).
 
 ## 0.94.0
