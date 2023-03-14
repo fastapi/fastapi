@@ -77,7 +77,7 @@ sequence_shape_to_type = {
 }
 
 mapping_shapes = {SHAPE_MAPPING}
-mapping_types = (Mapping)
+mapping_types = Mapping
 mapping_shapes_to_type = {SHAPE_MAPPING: Mapping}
 
 multipart_not_installed_error = (

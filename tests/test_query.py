@@ -63,7 +63,7 @@ response_not_valid_int = {
             "/query/sequence-params?first-query=1&first-query=2",
             200,
             "foo bar {'first-query': [1, 2]}",
-        )
+        ),
     ],
 )
 def test_get_path(path, expected_status, expected_response):
