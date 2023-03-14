@@ -9,6 +9,7 @@ from typing import (
     Optional,
     Sequence,
     Type,
+    TypeVar,
     Union,
 )
 
@@ -43,10 +44,12 @@ from starlette.responses import HTMLResponse, JSONResponse, Response
 from starlette.routing import BaseRoute
 from starlette.types import ASGIApp, Lifespan, Receive, Scope, Send
 
+AppType = TypeVar("AppType", bound="FastAPI")
+
 
 class FastAPI(Starlette):
     def __init__(
-        self,
+        self: AppType,
         *,
         debug: bool = False,
         routes: Optional[List[BaseRoute]] = None,
@@ -71,7 +74,7 @@ class FastAPI(Starlette):
         ] = None,
         on_startup: Optional[Sequence[Callable[[], Any]]] = None,
         on_shutdown: Optional[Sequence[Callable[[], Any]]] = None,
-        lifespan: Optional[Lifespan] = None,
+        lifespan: Optional[Lifespan[AppType]] = None,
         terms_of_service: Optional[str] = None,
         contact: Optional[Dict[str, Union[str, Any]]] = None,
         license_info: Optional[Dict[str, Union[str, Any]]] = None,
