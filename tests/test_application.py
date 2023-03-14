@@ -1113,6 +1113,44 @@ openapi_schema = {
                 },
             }
         },
+        "/query/sequence-params": {
+            "get": {
+                "operationId": "get_sequence_query_params_query_sequence_params_get",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "queries",
+                        "required": False,
+                        "schema": {
+                            "additionalProperties": {
+                                "items": {"type": "integer"},
+                                "type": "array",
+                            },
+                            "default": {},
+                            "title": "Queries",
+                            "type": "object",
+                        },
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {"application/json": {"schema": {}}},
+                        "description": "Successful " "Response",
+                    },
+                    "422": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        },
+                        "description": "Validation " "Error",
+                    },
+                },
+                "summary": "Get Sequence Query " "Params",
+            }
+        },
         "/enum-status-code": {
             "get": {
                 "responses": {
