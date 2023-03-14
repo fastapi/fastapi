@@ -251,11 +251,11 @@ def is_scalar_sequence_field(field: ModelField) -> bool:
 
 
 def is_scalar_mapping_field(field: ModelField) -> bool:
-    if (field.shape in mapping_shapes) and not lenient_issubclass(
-        field.type_, BaseModel
+    if (
+        (field.shape in mapping_shapes)
+        and not lenient_issubclass(field.type_, BaseModel)
+        and field.sub_fields is not None
     ):
-        if field.sub_fields is None:
-            return False
         for sub_field in field.sub_fields:
             if not is_scalar_field(sub_field):
                 return False
@@ -264,11 +264,11 @@ def is_scalar_mapping_field(field: ModelField) -> bool:
 
 
 def is_scalar_sequence_mapping_field(field: ModelField) -> bool:
-    if (field.shape in mapping_shapes) and not lenient_issubclass(
-        field.type_, BaseModel
+    if (
+        (field.shape in mapping_shapes)
+        and not lenient_issubclass(field.type_, BaseModel)
+        and field.sub_fields is not None
     ):
-        if field.sub_fields is None:
-            return False
         for sub_field in field.sub_fields:
             if not is_scalar_sequence_field(sub_field):
                 return False
