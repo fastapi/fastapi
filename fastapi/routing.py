@@ -44,7 +44,6 @@ from pydantic.error_wrappers import ErrorWrapper, ValidationError
 from pydantic.fields import ModelField, Undefined
 from pydantic.utils import lenient_issubclass
 from starlette import routing
-from starlette.applications import AppType
 from starlette.concurrency import run_in_threadpool
 from starlette.exceptions import HTTPException
 from starlette.requests import Request
@@ -493,7 +492,9 @@ class APIRouter(routing.Router):
         route_class: Type[APIRoute] = APIRoute,
         on_startup: Optional[Sequence[Callable[[], Any]]] = None,
         on_shutdown: Optional[Sequence[Callable[[], Any]]] = None,
-        lifespan: Optional[Lifespan[AppType]] = None,
+        # the generic to Lifespan[AppType] is the type of the top level application
+        # which the router cannot know statically, so we use typing.Any
+        lifespan: Optional[Lifespan[Any]] = None,
         deprecated: Optional[bool] = None,
         include_in_schema: bool = True,
         generate_unique_id_function: Callable[[APIRoute], str] = Default(

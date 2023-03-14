@@ -9,6 +9,7 @@ from typing import (
     Optional,
     Sequence,
     Type,
+    TypeVar,
     Union,
 )
 
@@ -31,7 +32,7 @@ from fastapi.openapi.utils import get_openapi
 from fastapi.params import Depends
 from fastapi.types import DecoratedCallable
 from fastapi.utils import generate_unique_id
-from starlette.applications import AppType, Starlette
+from starlette.applications import Starlette
 from starlette.datastructures import State
 from starlette.exceptions import HTTPException
 from starlette.middleware import Middleware
@@ -43,10 +44,12 @@ from starlette.responses import HTMLResponse, JSONResponse, Response
 from starlette.routing import BaseRoute
 from starlette.types import ASGIApp, Lifespan, Receive, Scope, Send
 
+AppType = TypeVar("AppType", bound="FastAPI")
+
 
 class FastAPI(Starlette):
     def __init__(
-        self,
+        self: AppType,
         *,
         debug: bool = False,
         routes: Optional[List[BaseRoute]] = None,
