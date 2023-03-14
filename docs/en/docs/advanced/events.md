@@ -138,9 +138,6 @@ Here, the `shutdown` event handler function will write a text line `"Application
 
     So, we declare the event handler function with standard `def` instead of `async def`.
 
-!!! info
-    You can read more about these event handlers in <a href="https://www.starlette.io/events/" class="external-link" target="_blank">Starlette's  Events' docs</a>.
-
 ### `startup` and `shutdown` together
 
 There's a high chance that the logic for your *startup* and *shutdown* is connected, you might want to start something and then finish it, acquire a resource and then release it, etc.
@@ -154,6 +151,11 @@ Because of that, it's now recommended to instead use the `lifespan` as explained
 Just a technical detail for the curious nerds. 🤓
 
 Underneath, in the ASGI technical specification, this is part of the <a href="https://asgi.readthedocs.io/en/latest/specs/lifespan.html" class="external-link" target="_blank">Lifespan Protocol</a>, and it defines events called `startup` and `shutdown`.
+
+!!! info
+    You can read more about the Starlette `lifespan` handlers in <a href="https://www.starlette.io/lifespan/" class="external-link" target="_blank">Starlette's  Lifespan' docs</a>.
+
+    Including how to handle lifespan state that can be used in other areas of your code.
 
 ## Sub Applications
 
