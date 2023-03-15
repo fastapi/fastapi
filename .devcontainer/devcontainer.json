@@ -1,0 +1,17 @@
+{
+	"name": "fastapi",
+	"image": "mcr.microsoft.com/devcontainers/python:0-3.11-bullseye",
+	"postCreateCommand": "cd /workspaces/fastapi && pip install -e .[dev,doc,all,test]",
+	"customizations": {
+		"vscode": {
+			"settings": {
+				"python.envFile": "/workspaces/python/DONOTCREATEME.env" // no need for vscode magic (might create problems with pydantic settings)
+			},
+			"extensions": [
+				"ms-python.python",
+				"ms-python.vscode-pylance",
+				"ms-vsliveshare.vsliveshare"
+			]
+		}
+	}
+}
