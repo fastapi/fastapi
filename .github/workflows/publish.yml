@@ -31,7 +31,7 @@ jobs:
       - name: Build distribution
         run: python -m build
       - name: Publish
-        uses: pypa/gh-action-pypi-publish@v1.6.4
+        uses: pypa/gh-action-pypi-publish@v1.8.1
         with:
           password: ${{ secrets.PYPI_API_TOKEN }}
       - name: Dump GitHub context
