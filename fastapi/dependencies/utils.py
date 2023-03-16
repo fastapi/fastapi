@@ -4,6 +4,7 @@ from contextlib import contextmanager
 from copy import deepcopy
 from typing import (
     Any,
+    Awaitable,
     Callable,
     Coroutine,
     Dict,
@@ -11,7 +12,6 @@ from typing import (
     List,
     Mapping,
     Optional,
-    Sequence,
     Tuple,
     Type,
     Union,
@@ -334,6 +334,17 @@ def get_dependant(
                 field_info, params.Body
             ), f"Param: {param_field.name} can only be a request body, using Body()"
             dependant.body_params.append(param_field)
+
+    #  Get built-in dependenencies
+    dependency_getters = get_dependent_dependency_getters(dependant)
+    dependant.dependency_getters = (
+        list(filter(lambda f: not inspect.iscoroutinefunction(f), dependency_getters))
+        or None
+    )
+    dependant.async_dependency_getters = (
+        list(filter(lambda f: inspect.iscoroutinefunction(f), dependency_getters))
+        or None
+    )
     return dependant
 
 
@@ -464,77 +475,76 @@ async def solve_generator(
     return await stack.enter_async_context(cm)
 
 
+@dataclasses.dataclass
+class DependencySolverContext:
+    request: Union[Request, WebSocket]
+    body: Optional[Union[Dict[str, Any], FormData]] = None
+    dependency_overrides_provider: dataclasses.InitVar[Optional[Any]] = None
+    dependency_overrides: Optional[Dict[Any, Any]] = dataclasses.field(init=False)
+    response: Optional[Response] = None
+    background_tasks: Optional[BackgroundTasks] = None
+    dependency_cache: Dict[
+        Tuple[Callable[..., Any], Tuple[str]], Any
+    ] = dataclasses.field(default_factory=dict)
+    values: Dict[str, Any] = dataclasses.field(default_factory=dict)
+    errors: List[ErrorWrapper] = dataclasses.field(default_factory=list)
+
+    def __post_init__(self, dependency_overrides_provider: Optional[Any]) -> None:
+        self.dependency_overrides = (
+            getattr(dependency_overrides_provider, "dependency_overrides", None) or None
+        )
+
+
+DependencyGetter = Union[
+    Callable[[DependencySolverContext], None],
+    Callable[[DependencySolverContext], Awaitable[None]],
+]
+
+
 async def solve_dependencies(
     *,
-    request: Union[Request, WebSocket],
+    context: DependencySolverContext,
     dependant: Dependant,
-    body: Optional[Union[Dict[str, Any], FormData]] = None,
-    background_tasks: Optional[BackgroundTasks] = None,
-    response: Optional[Response] = None,
-    dependency_overrides_provider: Optional[Any] = None,
-    dependency_cache: Optional[Dict[Tuple[Callable[..., Any], Tuple[str]], Any]] = None,
-) -> Tuple[
-    Dict[str, Any],
-    List[ErrorWrapper],
-    Optional[BackgroundTasks],
-    Response,
-    Dict[Tuple[Callable[..., Any], Tuple[str]], Any],
-]:
+) -> Tuple[Dict[str, Any], List[ErrorWrapper]]:
     values: Dict[str, Any] = {}
     errors: List[ErrorWrapper] = []
-    if response is None:
-        response = Response()
-        del response.headers["content-length"]
-        response.status_code = None  # type: ignore
-    dependency_cache = dependency_cache or {}
     sub_dependant: Dependant
     for sub_dependant in dependant.dependencies:
-        sub_dependant.call = cast(Callable[..., Any], sub_dependant.call)
-        sub_dependant.cache_key = cast(
-            Tuple[Callable[..., Any], Tuple[str]], sub_dependant.cache_key
-        )
-        call = sub_dependant.call
-        use_sub_dependant = sub_dependant
-        if (
-            dependency_overrides_provider
-            and dependency_overrides_provider.dependency_overrides
-        ):
-            original_call = sub_dependant.call
-            call = getattr(
-                dependency_overrides_provider, "dependency_overrides", {}
-            ).get(original_call, original_call)
-            use_path: str = sub_dependant.path  # type: ignore
-            use_sub_dependant = get_dependant(
-                path=use_path,
-                call=call,
-                name=sub_dependant.name,
-                security_scopes=sub_dependant.security_scopes,
-            )
+        cache_key = cast(Tuple[Callable[..., Any], Tuple[str]], sub_dependant.cache_key)
+        if sub_dependant.use_cache:
+            try:
+                solved = context.dependency_cache[cache_key]
+            except KeyError:
+                pass
+            else:
+                if sub_dependant.name is not None:
+                    values[sub_dependant.name] = solved
+                continue
 
-        solved_result = await solve_dependencies(
-            request=request,
+        call = cast(Callable[..., Any], sub_dependant.call)
+        use_sub_dependant = sub_dependant
+        if context.dependency_overrides:
+            original_call = call
+            call = context.dependency_overrides.get(original_call, original_call)
+            if call is not original_call:
+                use_path: str = sub_dependant.path  # type: ignore
+                use_sub_dependant = get_dependant(
+                    path=use_path,
+                    call=call,
+                    name=sub_dependant.name,
+                    security_scopes=sub_dependant.security_scopes,
+                )
+
+        sub_values, sub_errors = await solve_dependencies(
+            context=context,
             dependant=use_sub_dependant,
-            body=body,
-            background_tasks=background_tasks,
-            response=response,
-            dependency_overrides_provider=dependency_overrides_provider,
-            dependency_cache=dependency_cache,
         )
-        (
-            sub_values,
-            sub_errors,
-            background_tasks,
-            _,  # the subdependency returns the same response we have
-            sub_dependency_cache,
-        ) = solved_result
-        dependency_cache.update(sub_dependency_cache)
+
         if sub_errors:
             errors.extend(sub_errors)
             continue
-        if sub_dependant.use_cache and sub_dependant.cache_key in dependency_cache:
-            solved = dependency_cache[sub_dependant.cache_key]
-        elif is_gen_callable(call) or is_async_gen_callable(call):
-            stack = request.scope.get("fastapi_astack")
+        if is_gen_callable(call) or is_async_gen_callable(call):
+            stack = context.request.scope.get("fastapi_astack")
             assert isinstance(stack, AsyncExitStack)
             solved = await solve_generator(
                 call=call, stack=stack, sub_values=sub_values
@@ -545,90 +555,190 @@ async def solve_dependencies(
             solved = await run_in_threadpool(call, **sub_values)
         if sub_dependant.name is not None:
             values[sub_dependant.name] = solved
-        if sub_dependant.cache_key not in dependency_cache:
-            dependency_cache[sub_dependant.cache_key] = solved
-    path_values, path_errors = request_params_to_args(
-        dependant.path_params, request.path_params
-    )
-    query_values, query_errors = request_params_to_args(
-        dependant.query_params, request.query_params
-    )
-    header_values, header_errors = request_params_to_args(
-        dependant.header_params, request.headers
-    )
-    cookie_values, cookie_errors = request_params_to_args(
-        dependant.cookie_params, request.cookies
-    )
-    values.update(path_values)
-    values.update(query_values)
-    values.update(header_values)
-    values.update(cookie_values)
-    errors += path_errors + query_errors + header_errors + cookie_errors
-    if dependant.body_params:
-        (
-            body_values,
-            body_errors,
-        ) = await request_body_to_args(  # body_params checked above
-            required_params=dependant.body_params, received_body=body
-        )
-        values.update(body_values)
-        errors.extend(body_errors)
-    if dependant.http_connection_param_name:
-        values[dependant.http_connection_param_name] = request
-    if dependant.request_param_name and isinstance(request, Request):
-        values[dependant.request_param_name] = request
-    elif dependant.websocket_param_name and isinstance(request, WebSocket):
-        values[dependant.websocket_param_name] = request
-    if dependant.background_tasks_param_name:
-        if background_tasks is None:
-            background_tasks = BackgroundTasks()
-        values[dependant.background_tasks_param_name] = background_tasks
-    if dependant.response_param_name:
-        values[dependant.response_param_name] = response
-    if dependant.security_scopes_param_name:
-        values[dependant.security_scopes_param_name] = SecurityScopes(
-            scopes=dependant.security_scopes
-        )
-    return values, errors, background_tasks, response, dependency_cache
+        context.dependency_cache[cache_key] = solved
 
+    # solve built-in dependencies
+    if dependant.dependency_getters:
+        context.values = values
+        context.errors = errors
+        for dependency_getter in dependant.dependency_getters:
+            dependency_getter(context)
+    if dependant.async_dependency_getters:
+        context.values = values
+        context.errors = errors
+        # Only `async` getters are the `Body()` arguments, and there is only one
+        # which gets them all.
+        for dependency_getter in dependant.async_dependency_getters:
+            await dependency_getter(context)
 
-def request_params_to_args(
-    required_params: Sequence[ModelField],
-    received_params: Union[Mapping[str, Any], QueryParams, Headers],
-) -> Tuple[Dict[str, Any], List[ErrorWrapper]]:
-    values = {}
-    errors = []
-    for field in required_params:
-        if is_scalar_sequence_field(field) and isinstance(
-            received_params, (QueryParams, Headers)
-        ):
-            value = received_params.getlist(field.alias) or field.default
-        else:
-            value = received_params.get(field.alias)
-        field_info = field.field_info
-        assert isinstance(
-            field_info, params.Param
-        ), "Params must be subclasses of Param"
-        if value is None:
-            if field.required:
-                errors.append(
-                    ErrorWrapper(
-                        MissingError(), loc=(field_info.in_.value, field.alias)
-                    )
-                )
-            else:
-                values[field.name] = deepcopy(field.default)
-            continue
-        v_, errors_ = field.validate(
-            value, values, loc=(field_info.in_.value, field.alias)
-        )
-        if isinstance(errors_, ErrorWrapper):
-            errors.append(errors_)
-        elif isinstance(errors_, list):
-            errors.extend(errors_)
-        else:
-            values[field.name] = v_
     return values, errors
+
+
+def get_dependent_dependency_getters(
+    dependant: Dependant,
+) -> List[DependencyGetter]:
+    """
+    Process built-in dependencies into a list of getter functions
+    """
+    getters: List[DependencyGetter] = []
+    field: ModelField
+
+    def get_path_param_getter(field: ModelField) -> DependencyGetter:
+        def get_param(context: DependencySolverContext) -> None:
+            return request_field_to_arg(
+                context.values, context.errors, field, context.request.path_params
+            )
+
+        return get_param
+
+    for field in dependant.path_params:
+        getters.append(get_path_param_getter(field))
+
+    def get_query_param_getter(field: ModelField) -> DependencyGetter:
+        def get_param(context: DependencySolverContext) -> None:
+            return request_field_to_arg(
+                context.values, context.errors, field, context.request.query_params
+            )
+
+        return get_param
+
+    for field in dependant.query_params:
+        getters.append(get_query_param_getter(field))
+
+    def get_header_param_getter(field: ModelField) -> DependencyGetter:
+        def get_param(context: DependencySolverContext) -> None:
+            return request_field_to_arg(
+                context.values, context.errors, field, context.request.headers
+            )
+
+        return get_param
+
+    for field in dependant.header_params:
+        getters.append(get_header_param_getter(field))
+
+    def get_cookie_param_getter(field: ModelField) -> DependencyGetter:
+        def get_param(context: DependencySolverContext) -> None:
+            return request_field_to_arg(
+                context.values, context.errors, field, context.request.cookies
+            )
+
+        return get_param
+
+    for field in dependant.cookie_params:
+        getters.append(get_cookie_param_getter(field))
+
+    if dependant.body_params:
+
+        async def get_body_params(context: DependencySolverContext) -> None:
+            (
+                body_values,
+                body_errors,
+            ) = await request_body_to_args(  # body_params checked in solve_dependencies()
+                required_params=dependant.body_params, received_body=context.body
+            )
+            context.values.update(body_values)
+            context.errors.extend(body_errors)
+
+        getters.append(get_body_params)
+
+    if dependant.http_connection_param_name:
+
+        def get_connection(context: DependencySolverContext) -> None:
+            context.values[
+                cast(str, dependant.http_connection_param_name)
+            ] = context.request
+
+        getters.append(get_connection)
+
+    if dependant.request_param_name:
+
+        def get_request(context: DependencySolverContext) -> None:
+            if isinstance(context.request, Request):
+                context.values[
+                    cast(str, dependant.request_param_name)
+                ] = context.request
+
+        getters.append(get_request)
+
+    if dependant.websocket_param_name:
+
+        def get_websocket(context: DependencySolverContext) -> None:
+            if isinstance(context.request, WebSocket):
+                context.values[
+                    cast(str, dependant.websocket_param_name)
+                ] = context.request
+
+        getters.append(get_websocket)
+
+    if dependant.background_tasks_param_name:
+
+        def get_background_tasks(context: DependencySolverContext) -> None:
+            if context.background_tasks is None:
+                context.background_tasks = BackgroundTasks()
+            context.values[
+                cast(str, dependant.background_tasks_param_name)
+            ] = context.background_tasks
+
+        getters.append(get_background_tasks)
+
+    if dependant.response_param_name:
+
+        def get_response(context: DependencySolverContext) -> None:
+            # Generate temporary Response object on demand
+            # for HTTP dependencies
+            if context.response is None and isinstance(context.request, Request):
+                response = Response()
+                del response.headers["content-length"]
+                response.status_code = None  # type: ignore
+                context.response = response
+
+            context.values[cast(str, dependant.response_param_name)] = context.response
+
+        getters.append(get_response)
+
+    if dependant.security_scopes_param_name:
+
+        def get_scopes(context: DependencySolverContext) -> None:
+            context.values[
+                cast(str, dependant.security_scopes_param_name)
+            ] = SecurityScopes(scopes=dependant.security_scopes)
+
+        getters.append(get_scopes)
+
+    return getters
+
+
+def request_field_to_arg(
+    values: Dict[str, Any],
+    errors: List[ErrorWrapper],
+    field: ModelField,
+    received_params: Union[Mapping[str, Any], QueryParams, Headers],
+) -> None:
+    if is_scalar_sequence_field(field) and isinstance(
+        received_params, (QueryParams, Headers)
+    ):
+        value = received_params.getlist(field.alias) or field.default
+    else:
+        value = received_params.get(field.alias)
+    field_info = field.field_info
+    assert isinstance(field_info, params.Param), "Params must be subclasses of Param"
+    if value is None:
+        if field.required:
+            return errors.append(
+                ErrorWrapper(MissingError(), loc=(field_info.in_.value, field.alias))
+            )
+        else:
+            values[field.name] = deepcopy(field.default)
+            return
+    v_, errors_ = field.validate(value, values, loc=(field_info.in_.value, field.alias))
+    if not errors_:
+        # optimize for the common case
+        values[field.name] = v_
+        return
+    if isinstance(errors_, ErrorWrapper):
+        errors.append(errors_)
+    elif isinstance(errors_, list):
+        errors.extend(errors_)
 
 
 async def request_body_to_args(
