@@ -89,7 +89,7 @@ And then it just returns a `dict` containing those values.
 
 === "Python 3.6 and above"
 
-    ```Python hl_lines="4"
+    ```Python hl_lines="3"
     {!> ../../../docs_src/dependencies/tutorial001_an.py!}
     ```
 
