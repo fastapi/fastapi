@@ -9,10 +9,34 @@ First, you have to import it:
 === "Python 3.6 and above"
 
     ```Python hl_lines="4"
-    {!> ../../../docs_src/body_fields/tutorial001.py!}
+    {!> ../../../docs_src/body_fields/tutorial001_an.py!}
+    ```
+
+=== "Python 3.9 and above"
+
+    ```Python hl_lines="4"
+    {!> ../../../docs_src/body_fields/tutorial001_an_py39.py!}
     ```
 
 === "Python 3.10 and above"
+
+    ```Python hl_lines="4"
+    {!> ../../../docs_src/body_fields/tutorial001_an_py310.py!}
+    ```
+
+=== "Python 3.6 and above - non-Annotated"
+
+    !!! tip
+        Try to use the main, `Annotated` version better.
+
+    ```Python hl_lines="4"
+    {!> ../../../docs_src/body_fields/tutorial001.py!}
+    ```
+
+=== "Python 3.10 and above - non-Annotated"
+
+    !!! tip
+        Try to use the main, `Annotated` version better.
 
     ```Python hl_lines="2"
     {!> ../../../docs_src/body_fields/tutorial001_py310.py!}
@@ -27,11 +51,35 @@ You can then use `Field` with model attributes:
 
 === "Python 3.6 and above"
 
+    ```Python hl_lines="12-15"
+    {!> ../../../docs_src/body_fields/tutorial001_an.py!}
+    ```
+
+=== "Python 3.9 and above"
+
+    ```Python hl_lines="11-14"
+    {!> ../../../docs_src/body_fields/tutorial001_an_py39.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="11-14"
+    {!> ../../../docs_src/body_fields/tutorial001_an_py310.py!}
+    ```
+
+=== "Python 3.6 and above - non-Annotated"
+
+    !!! tip
+        Try to use the main, `Annotated` version better.
+
     ```Python hl_lines="11-14"
     {!> ../../../docs_src/body_fields/tutorial001.py!}
     ```
 
-=== "Python 3.10 and above"
+=== "Python 3.10 and above - non-Annotated"
+
+    !!! tip
+        Try to use the main, `Annotated` version better.
 
     ```Python hl_lines="9-12"
     {!> ../../../docs_src/body_fields/tutorial001_py310.py!}
