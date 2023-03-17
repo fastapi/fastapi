@@ -11,17 +11,51 @@ When you need to receive form fields instead of JSON, you can use `Form`.
 
 Import `Form` from `fastapi`:
 
-```Python hl_lines="1"
-{!../../../docs_src/request_forms/tutorial001.py!}
-```
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="1"
+    {!> ../../../docs_src/request_forms/tutorial001_an.py!}
+    ```
+
+=== "Python 3.9 and above"
+
+    ```Python hl_lines="3"
+    {!> ../../../docs_src/request_forms/tutorial001_an_py39.py!}
+    ```
+
+=== "Python 3.6 and above - non-Annotated"
+
+    !!! tip
+        Try to use the main, `Annotated` version better.
+
+    ```Python hl_lines="1"
+    {!> ../../../docs_src/request_forms/tutorial001.py!}
+    ```
 
 ## Define `Form` parameters
 
 Create form parameters the same way you would for `Body` or `Query`:
 
-```Python hl_lines="7"
-{!../../../docs_src/request_forms/tutorial001.py!}
-```
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="8"
+    {!> ../../../docs_src/request_forms/tutorial001_an.py!}
+    ```
+
+=== "Python 3.9 and above"
+
+    ```Python hl_lines="9"
+    {!> ../../../docs_src/request_forms/tutorial001_an_py39.py!}
+    ```
+
+=== "Python 3.6 and above - non-Annotated"
+
+    !!! tip
+        Try to use the main, `Annotated` version better.
+
+    ```Python hl_lines="7"
+    {!> ../../../docs_src/request_forms/tutorial001.py!}
+    ```
 
 For example, in one of the ways the OAuth2 specification can be used (called "password flow") it is required to send a `username` and `password` as form fields.
 
