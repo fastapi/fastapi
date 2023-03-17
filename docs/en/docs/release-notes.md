@@ -2,6 +2,7 @@
 
 ## Latest Changes
 
+* ✨Add support for PEP-593 `Annotated` for specifying dependencies and parameters. PR [#4871](https://github.com/tiangolo/fastapi/pull/4871) by [@nzig](https://github.com/nzig).
 
 ## 0.94.1
 
