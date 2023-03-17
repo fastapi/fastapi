@@ -1,8 +1,7 @@
-from typing_extensions import Annotated
-
 from typing import Union
 
 from fastapi import FastAPI, Query
+from typing_extensions import Annotated
 
 app = FastAPI()
 

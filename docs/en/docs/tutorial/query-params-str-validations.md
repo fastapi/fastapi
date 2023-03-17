@@ -274,7 +274,7 @@ You can define a <abbr title="A regular expression, regex or regexp is a sequenc
 
 === "Python 3.6 and above"
 
-    ```Python hl_lines="13"
+    ```Python hl_lines="12"
     {!> ../../../docs_src/query_params_str_validations/tutorial004_an.py!}
     ```
 
