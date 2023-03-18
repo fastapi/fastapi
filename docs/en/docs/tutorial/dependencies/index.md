@@ -33,11 +33,35 @@ It is just a function that can take all the same parameters that a *path operati
 
 === "Python 3.6 and above"
 
+    ```Python hl_lines="9-12"
+    {!> ../../../docs_src/dependencies/tutorial001_an.py!}
+    ```
+
+=== "Python 3.9 and above"
+
+    ```Python hl_lines="8-11"
+    {!> ../../../docs_src/dependencies/tutorial001_an_py39.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="8-9"
+    {!> ../../../docs_src/dependencies/tutorial001_an_py310.py!}
+    ```
+
+=== "Python 3.6 and above - non-Annotated"
+
+    !!! tip
+        Try to use the main, `Annotated` version better.
+
     ```Python hl_lines="8-11"
     {!> ../../../docs_src/dependencies/tutorial001.py!}
     ```
 
-=== "Python 3.10 and above"
+=== "Python 3.10 and above - non-Annotated"
+
+    !!! tip
+        Try to use the main, `Annotated` version better.
 
     ```Python hl_lines="6-7"
     {!> ../../../docs_src/dependencies/tutorial001_py310.py!}
@@ -66,10 +90,34 @@ And then it just returns a `dict` containing those values.
 === "Python 3.6 and above"
 
     ```Python hl_lines="3"
-    {!> ../../../docs_src/dependencies/tutorial001.py!}
+    {!> ../../../docs_src/dependencies/tutorial001_an.py!}
+    ```
+
+=== "Python 3.9 and above"
+
+    ```Python hl_lines="3"
+    {!> ../../../docs_src/dependencies/tutorial001_an_py39.py!}
     ```
 
 === "Python 3.10 and above"
+
+    ```Python hl_lines="3"
+    {!> ../../../docs_src/dependencies/tutorial001_an_py310.py!}
+    ```
+
+=== "Python 3.6 and above - non-Annotated"
+
+    !!! tip
+        Try to use the main, `Annotated` version better.
+
+    ```Python hl_lines="3"
+    {!> ../../../docs_src/dependencies/tutorial001.py!}
+    ```
+
+=== "Python 3.10 and above - non-Annotated"
+
+    !!! tip
+        Try to use the main, `Annotated` version better.
 
     ```Python hl_lines="1"
     {!> ../../../docs_src/dependencies/tutorial001_py310.py!}
@@ -81,11 +129,35 @@ The same way you use `Body`, `Query`, etc. with your *path operation function* p
 
 === "Python 3.6 and above"
 
+    ```Python hl_lines="16  21"
+    {!> ../../../docs_src/dependencies/tutorial001_an.py!}
+    ```
+
+=== "Python 3.9 and above"
+
+    ```Python hl_lines="15  20"
+    {!> ../../../docs_src/dependencies/tutorial001_an_py39.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="13  18"
+    {!> ../../../docs_src/dependencies/tutorial001_an_py310.py!}
+    ```
+
+=== "Python 3.6 and above - non-Annotated"
+
+    !!! tip
+        Try to use the main, `Annotated` version better.
+
     ```Python hl_lines="15  20"
     {!> ../../../docs_src/dependencies/tutorial001.py!}
     ```
 
-=== "Python 3.10 and above"
+=== "Python 3.10 and above - non-Annotated"
+
+    !!! tip
+        Try to use the main, `Annotated` version better.
 
     ```Python hl_lines="11  16"
     {!> ../../../docs_src/dependencies/tutorial001_py310.py!}
@@ -96,6 +168,8 @@ Although you use `Depends` in the parameters of your function the same way you u
 You only give `Depends` a single parameter.
 
 This parameter must be something like a function.
+
+You **don't call it** directly (don't add the parenthesis at the end), you just pass it as a parameter to `Depends()`.
 
 And that function takes parameters in the same way that *path operation functions* do.
 
@@ -125,6 +199,45 @@ This way you write shared code once and **FastAPI** takes care of calling it for
     Notice that you don't have to create a special class and pass it somewhere to **FastAPI** to "register" it or anything similar.
 
     You just pass it to `Depends` and **FastAPI** knows how to do the rest.
+
+## Share `Annotated` dependencies
+
+In the examples above, you see that there's a tiny bit of **code duplication**.
+
+When you need to use the `common_parameters()` dependency, you have to write the whole parameter with the type annotation and `Depends()`:
+
+```Python
+commons: Annotated[dict, Depends(common_parameters)]
+```
+
+But because we are using `Annotated`, we can store that `Annotated` value in a variable and use it in multiple places:
+
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="15  19  24"
+    {!> ../../../docs_src/dependencies/tutorial001_02_an.py!}
+    ```
+
+=== "Python 3.9 and above"
+
+    ```Python hl_lines="14  18  23"
+    {!> ../../../docs_src/dependencies/tutorial001_02_an_py39.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="12  16  21"
+    {!> ../../../docs_src/dependencies/tutorial001_02_an_py310.py!}
+    ```
+
+!!! tip
+    This is just standard Python, it's called a "type alias", it's actually not specific to **FastAPI**.
+
+    But because **FastAPI** is based on the Python standards, including `Annotated`, you can use this trick in your code. 😎
+
+The dependencies will keep working as expected, and the **best part** is that the **type information will be preserved**, which means that your editor will be able to keep providing you with **autocompletion**, **inline errors**, etc. The same for other tools like `mypy`.
+
+This will be especially useful when you use it in a **large code base** where you use **the same dependencies** over and over again in **many *path operations***.
 
 ## To `async` or not to `async`
 

@@ -9,10 +9,34 @@ First import `Cookie`:
 === "Python 3.6 and above"
 
     ```Python hl_lines="3"
-    {!> ../../../docs_src/cookie_params/tutorial001.py!}
+    {!> ../../../docs_src/cookie_params/tutorial001_an.py!}
+    ```
+
+=== "Python 3.9 and above"
+
+    ```Python hl_lines="3"
+    {!> ../../../docs_src/cookie_params/tutorial001_an_py39.py!}
     ```
 
 === "Python 3.10 and above"
+
+    ```Python hl_lines="3"
+    {!> ../../../docs_src/cookie_params/tutorial001_an_py310.py!}
+    ```
+
+=== "Python 3.6 and above - non-Annotated"
+
+    !!! tip
+        Try to use the main, `Annotated` version better.
+
+    ```Python hl_lines="3"
+    {!> ../../../docs_src/cookie_params/tutorial001.py!}
+    ```
+
+=== "Python 3.10 and above - non-Annotated"
+
+    !!! tip
+        Try to use the main, `Annotated` version better.
 
     ```Python hl_lines="1"
     {!> ../../../docs_src/cookie_params/tutorial001_py310.py!}
@@ -26,11 +50,35 @@ The first value is the default value, you can pass all the extra validation or a
 
 === "Python 3.6 and above"
 
+    ```Python hl_lines="10"
+    {!> ../../../docs_src/cookie_params/tutorial001_an.py!}
+    ```
+
+=== "Python 3.9 and above"
+
+    ```Python hl_lines="9"
+    {!> ../../../docs_src/cookie_params/tutorial001_an_py39.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="9"
+    {!> ../../../docs_src/cookie_params/tutorial001_an_py310.py!}
+    ```
+
+=== "Python 3.6 and above - non-Annotated"
+
+    !!! tip
+        Try to use the main, `Annotated` version better.
+
     ```Python hl_lines="9"
     {!> ../../../docs_src/cookie_params/tutorial001.py!}
     ```
 
-=== "Python 3.10 and above"
+=== "Python 3.10 and above - non-Annotated"
+
+    !!! tip
+        Try to use the main, `Annotated` version better.
 
     ```Python hl_lines="7"
     {!> ../../../docs_src/cookie_params/tutorial001_py310.py!}

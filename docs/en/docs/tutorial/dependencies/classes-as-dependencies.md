@@ -8,11 +8,35 @@ In the previous example, we were returning a `dict` from our dependency ("depend
 
 === "Python 3.6 and above"
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/dependencies/tutorial001.py!}
+    ```Python hl_lines="12"
+    {!> ../../../docs_src/dependencies/tutorial001_an.py!}
+    ```
+
+=== "Python 3.9 and above"
+
+    ```Python hl_lines="11"
+    {!> ../../../docs_src/dependencies/tutorial001_an_py39.py!}
     ```
 
 === "Python 3.10 and above"
+
+    ```Python hl_lines="9"
+    {!> ../../../docs_src/dependencies/tutorial001_an_py310.py!}
+    ```
+
+=== "Python 3.6 and above - non-Annotated"
+
+    !!! tip
+        Try to use the main, `Annotated` version better.
+
+    ```Python hl_lines="11"
+    {!> ../../../docs_src/dependencies/tutorial001.py!}
+    ```
+
+=== "Python 3.10 and above - non-Annotated"
+
+    !!! tip
+        Try to use the main, `Annotated` version better.
 
     ```Python hl_lines="7"
     {!> ../../../docs_src/dependencies/tutorial001_py310.py!}
@@ -81,11 +105,35 @@ Then, we can change the dependency "dependable" `common_parameters` from above t
 
 === "Python 3.6 and above"
 
+    ```Python hl_lines="12-16"
+    {!> ../../../docs_src/dependencies/tutorial002_an.py!}
+    ```
+
+=== "Python 3.9 and above"
+
+    ```Python hl_lines="11-15"
+    {!> ../../../docs_src/dependencies/tutorial002_an_py39.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="11-15"
+    {!> ../../../docs_src/dependencies/tutorial002_an_py310.py!}
+    ```
+
+=== "Python 3.6 and above - non-Annotated"
+
+    !!! tip
+        Try to use the main, `Annotated` version better.
+
     ```Python hl_lines="11-15"
     {!> ../../../docs_src/dependencies/tutorial002.py!}
     ```
 
-=== "Python 3.10 and above"
+=== "Python 3.10 and above - non-Annotated"
+
+    !!! tip
+        Try to use the main, `Annotated` version better.
 
     ```Python hl_lines="9-13"
     {!> ../../../docs_src/dependencies/tutorial002_py310.py!}
@@ -95,11 +143,35 @@ Pay attention to the `__init__` method used to create the instance of the class:
 
 === "Python 3.6 and above"
 
+    ```Python hl_lines="13"
+    {!> ../../../docs_src/dependencies/tutorial002_an.py!}
+    ```
+
+=== "Python 3.9 and above"
+
+    ```Python hl_lines="12"
+    {!> ../../../docs_src/dependencies/tutorial002_an_py39.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="12"
+    {!> ../../../docs_src/dependencies/tutorial002_an_py310.py!}
+    ```
+
+=== "Python 3.6 and above - non-Annotated"
+
+    !!! tip
+        Try to use the main, `Annotated` version better.
+
     ```Python hl_lines="12"
     {!> ../../../docs_src/dependencies/tutorial002.py!}
     ```
 
-=== "Python 3.10 and above"
+=== "Python 3.10 and above - non-Annotated"
+
+    !!! tip
+        Try to use the main, `Annotated` version better.
 
     ```Python hl_lines="10"
     {!> ../../../docs_src/dependencies/tutorial002_py310.py!}
@@ -109,11 +181,35 @@ Pay attention to the `__init__` method used to create the instance of the class:
 
 === "Python 3.6 and above"
 
+    ```Python hl_lines="10"
+    {!> ../../../docs_src/dependencies/tutorial001_an.py!}
+    ```
+
+=== "Python 3.9 and above"
+
+    ```Python hl_lines="9"
+    {!> ../../../docs_src/dependencies/tutorial001_an_py39.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="8"
+    {!> ../../../docs_src/dependencies/tutorial001_an_py310.py!}
+    ```
+
+=== "Python 3.6 and above - non-Annotated"
+
+    !!! tip
+        Try to use the main, `Annotated` version better.
+
     ```Python hl_lines="9"
     {!> ../../../docs_src/dependencies/tutorial001.py!}
     ```
 
-=== "Python 3.10 and above"
+=== "Python 3.10 and above - non-Annotated"
+
+    !!! tip
+        Try to use the main, `Annotated` version better.
 
     ```Python hl_lines="6"
     {!> ../../../docs_src/dependencies/tutorial001_py310.py!}
@@ -133,13 +229,38 @@ In both cases the data will be converted, validated, documented on the OpenAPI s
 
 Now you can declare your dependency using this class.
 
+
 === "Python 3.6 and above"
+
+    ```Python hl_lines="20"
+    {!> ../../../docs_src/dependencies/tutorial002_an.py!}
+    ```
+
+=== "Python 3.9 and above"
+
+    ```Python hl_lines="19"
+    {!> ../../../docs_src/dependencies/tutorial002_an_py39.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="19"
+    {!> ../../../docs_src/dependencies/tutorial002_an_py310.py!}
+    ```
+
+=== "Python 3.6 and above - non-Annotated"
+
+    !!! tip
+        Try to use the main, `Annotated` version better.
 
     ```Python hl_lines="19"
     {!> ../../../docs_src/dependencies/tutorial002.py!}
     ```
 
-=== "Python 3.10 and above"
+=== "Python 3.10 and above - non-Annotated"
+
+    !!! tip
+        Try to use the main, `Annotated` version better.
 
     ```Python hl_lines="17"
     {!> ../../../docs_src/dependencies/tutorial002_py310.py!}
@@ -151,14 +272,25 @@ Now you can declare your dependency using this class.
 
 Notice how we write `CommonQueryParams` twice in the above code:
 
-```Python
-commons: CommonQueryParams = Depends(CommonQueryParams)
-```
+=== "Python 3.6 and above"
+
+    ```Python
+    commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
+    ```
+
+=== "Python 3.6 and above - non-Annotated"
+
+    !!! tip
+        Try to use the main, `Annotated` version better.
+
+    ```Python
+    commons: CommonQueryParams = Depends(CommonQueryParams)
+    ```
 
 The last `CommonQueryParams`, in:
 
 ```Python
-... = Depends(CommonQueryParams)
+... Depends(CommonQueryParams)
 ```
 
 ...is what **FastAPI** will actually use to know what is the dependency.
@@ -169,27 +301,73 @@ From it is that FastAPI will extract the declared parameters and that is what Fa
 
 In this case, the first `CommonQueryParams`, in:
 
-```Python
-commons: CommonQueryParams ...
-```
+=== "Python 3.6 and above"
 
-...doesn't have any special meaning for **FastAPI**. FastAPI won't use it for data conversion, validation, etc. (as it is using the `= Depends(CommonQueryParams)` for that).
+    ```Python
+    commons: Annotated[CommonQueryParams, ...
+    ```
+
+=== "Python 3.6 and above - non-Annotated"
+
+    !!! tip
+        Try to use the main, `Annotated` version better.
+
+    ```Python
+    commons: CommonQueryParams ...
+    ```
+
+...doesn't have any special meaning for **FastAPI**. FastAPI won't use it for data conversion, validation, etc. (as it is using the `Depends(CommonQueryParams)` for that).
 
 You could actually write just:
 
-```Python
-commons = Depends(CommonQueryParams)
-```
+=== "Python 3.6 and above"
+
+    ```Python
+    commons: Annotated[Any, Depends(CommonQueryParams)]
+    ```
+
+=== "Python 3.6 and above - non-Annotated"
+
+    !!! tip
+        Try to use the main, `Annotated` version better.
+
+    ```Python
+    commons = Depends(CommonQueryParams)
+    ```
 
 ..as in:
 
 === "Python 3.6 and above"
 
+    ```Python hl_lines="20"
+    {!> ../../../docs_src/dependencies/tutorial003_an.py!}
+    ```
+
+=== "Python 3.9 and above"
+
+    ```Python hl_lines="19"
+    {!> ../../../docs_src/dependencies/tutorial003_an_py39.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="19"
+    {!> ../../../docs_src/dependencies/tutorial003_an_py310.py!}
+    ```
+
+=== "Python 3.6 and above - non-Annotated"
+
+    !!! tip
+        Try to use the main, `Annotated` version better.
+
     ```Python hl_lines="19"
     {!> ../../../docs_src/dependencies/tutorial003.py!}
     ```
 
-=== "Python 3.10 and above"
+=== "Python 3.10 and above - non-Annotated"
+
+    !!! tip
+        Try to use the main, `Annotated` version better.
 
     ```Python hl_lines="17"
     {!> ../../../docs_src/dependencies/tutorial003_py310.py!}
@@ -203,9 +381,20 @@ But declaring the type is encouraged as that way your editor will know what will
 
 But you see that we are having some code repetition here, writing `CommonQueryParams` twice:
 
-```Python
-commons: CommonQueryParams = Depends(CommonQueryParams)
-```
+=== "Python 3.6 and above"
+
+    ```Python
+    commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
+    ```
+
+=== "Python 3.6 and above - non-Annotated"
+
+    !!! tip
+        Try to use the main, `Annotated` version better.
+
+    ```Python
+    commons: CommonQueryParams = Depends(CommonQueryParams)
+    ```
 
 **FastAPI** provides a shortcut for these cases, in where the dependency is *specifically* a class that **FastAPI** will "call" to create an instance of the class itself.
 
@@ -213,27 +402,73 @@ For those specific cases, you can do the following:
 
 Instead of writing:
 
-```Python
-commons: CommonQueryParams = Depends(CommonQueryParams)
-```
+=== "Python 3.6 and above"
+
+    ```Python
+    commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
+    ```
+
+=== "Python 3.6 and above - non-Annotated"
+
+    !!! tip
+        Try to use the main, `Annotated` version better.
+
+    ```Python
+    commons: CommonQueryParams = Depends(CommonQueryParams)
+    ```
 
 ...you write:
 
-```Python
-commons: CommonQueryParams = Depends()
-```
+=== "Python 3.6 and above"
 
-You declare the dependency as the type of the parameter, and you use `Depends()` as its "default" value (that after the `=`) for that function's parameter, without any parameter in `Depends()`, instead of having to write the full class *again* inside of `Depends(CommonQueryParams)`.
+    ```Python
+    commons: Annotated[CommonQueryParams, Depends()]
+    ```
+
+=== "Python 3.6 - non-Annotated"
+
+    !!! tip
+        Try to use the main, `Annotated` version better.
+
+    ```Python
+    commons: CommonQueryParams = Depends()
+    ```
+
+You declare the dependency as the type of the parameter, and you use `Depends()` without any parameter, instead of having to write the full class *again* inside of `Depends(CommonQueryParams)`.
 
 The same example would then look like:
 
 === "Python 3.6 and above"
 
+    ```Python hl_lines="20"
+    {!> ../../../docs_src/dependencies/tutorial004_an.py!}
+    ```
+
+=== "Python 3.9 and above"
+
+    ```Python hl_lines="19"
+    {!> ../../../docs_src/dependencies/tutorial004_an_py39.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="19"
+    {!> ../../../docs_src/dependencies/tutorial004_an_py310.py!}
+    ```
+
+=== "Python 3.6 and above - non-Annotated"
+
+    !!! tip
+        Try to use the main, `Annotated` version better.
+
     ```Python hl_lines="19"
     {!> ../../../docs_src/dependencies/tutorial004.py!}
     ```
 
-=== "Python 3.10 and above"
+=== "Python 3.10 and above - non-Annotated"
+
+    !!! tip
+        Try to use the main, `Annotated` version better.
 
     ```Python hl_lines="17"
     {!> ../../../docs_src/dependencies/tutorial004_py310.py!}

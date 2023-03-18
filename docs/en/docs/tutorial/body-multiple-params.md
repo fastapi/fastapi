@@ -11,10 +11,34 @@ And you can also declare body parameters as optional, by setting the default to 
 === "Python 3.6 and above"
 
     ```Python hl_lines="19-21"
-    {!> ../../../docs_src/body_multiple_params/tutorial001.py!}
+    {!> ../../../docs_src/body_multiple_params/tutorial001_an.py!}
+    ```
+
+=== "Python 3.9 and above"
+
+    ```Python hl_lines="18-20"
+    {!> ../../../docs_src/body_multiple_params/tutorial001_an_py39.py!}
     ```
 
 === "Python 3.10 and above"
+
+    ```Python hl_lines="18-20"
+    {!> ../../../docs_src/body_multiple_params/tutorial001_an_py310.py!}
+    ```
+
+=== "Python 3.6 and above - non-Annotated"
+
+    !!! tip
+        Try to use the main, `Annotated` version better.
+
+    ```Python hl_lines="19-21"
+    {!> ../../../docs_src/body_multiple_params/tutorial001.py!}
+    ```
+
+=== "Python 3.10 and above - non-Annotated"
+
+    !!! tip
+        Try to use the main, `Annotated` version better.
 
     ```Python hl_lines="17-19"
     {!> ../../../docs_src/body_multiple_params/tutorial001_py310.py!}
@@ -89,11 +113,35 @@ But you can instruct **FastAPI** to treat it as another body key using `Body`:
 
 === "Python 3.6 and above"
 
+    ```Python hl_lines="24"
+    {!> ../../../docs_src/body_multiple_params/tutorial003_an.py!}
+    ```
+
+=== "Python 3.9 and above"
+
+    ```Python hl_lines="23"
+    {!> ../../../docs_src/body_multiple_params/tutorial003_an_py39.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="23"
+    {!> ../../../docs_src/body_multiple_params/tutorial003_an_py310.py!}
+    ```
+
+=== "Python 3.6 and above - non-Annotated"
+
+    !!! tip
+        Try to use the main, `Annotated` version better.
+
     ```Python hl_lines="22"
     {!> ../../../docs_src/body_multiple_params/tutorial003.py!}
     ```
 
-=== "Python 3.10 and above"
+=== "Python 3.10 and above - non-Annotated"
+
+    !!! tip
+        Try to use the main, `Annotated` version better.
 
     ```Python hl_lines="20"
     {!> ../../../docs_src/body_multiple_params/tutorial003_py310.py!}
@@ -139,13 +187,37 @@ For example:
 
 === "Python 3.6 and above"
 
+    ```Python hl_lines="28"
+    {!> ../../../docs_src/body_multiple_params/tutorial004_an.py!}
+    ```
+
+=== "Python 3.9 and above"
+
     ```Python hl_lines="27"
-    {!> ../../../docs_src/body_multiple_params/tutorial004.py!}
+    {!> ../../../docs_src/body_multiple_params/tutorial004_an_py39.py!}
     ```
 
 === "Python 3.10 and above"
 
-    ```Python hl_lines="26"
+    ```Python hl_lines="27"
+    {!> ../../../docs_src/body_multiple_params/tutorial004_an_py310.py!}
+    ```
+
+=== "Python 3.6 and above - non-Annotated"
+
+    !!! tip
+        Try to use the main, `Annotated` version better.
+
+    ```Python hl_lines="27"
+    {!> ../../../docs_src/body_multiple_params/tutorial004.py!}
+    ```
+
+=== "Python 3.10 and above - non-Annotated"
+
+    !!! tip
+        Try to use the main, `Annotated` version better.
+
+    ```Python hl_lines="25"
     {!> ../../../docs_src/body_multiple_params/tutorial004_py310.py!}
     ```
 
@@ -168,11 +240,35 @@ as in:
 
 === "Python 3.6 and above"
 
+    ```Python hl_lines="18"
+    {!> ../../../docs_src/body_multiple_params/tutorial005_an.py!}
+    ```
+
+=== "Python 3.9 and above"
+
+    ```Python hl_lines="17"
+    {!> ../../../docs_src/body_multiple_params/tutorial005_an_py39.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="17"
+    {!> ../../../docs_src/body_multiple_params/tutorial005_an_py310.py!}
+    ```
+
+=== "Python 3.6 and above - non-Annotated"
+
+    !!! tip
+        Try to use the main, `Annotated` version better.
+
     ```Python hl_lines="17"
     {!> ../../../docs_src/body_multiple_params/tutorial005.py!}
     ```
 
-=== "Python 3.10 and above"
+=== "Python 3.10 and above - non-Annotated"
+
+    !!! tip
+        Try to use the main, `Annotated` version better.
 
     ```Python hl_lines="15"
     {!> ../../../docs_src/body_multiple_params/tutorial005_py310.py!}

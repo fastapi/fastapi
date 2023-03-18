@@ -9,17 +9,51 @@ You can define files and form fields at the same time using `File` and `Form`.
 
 ## Import `File` and `Form`
 
-```Python hl_lines="1"
-{!../../../docs_src/request_forms_and_files/tutorial001.py!}
-```
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="1"
+    {!> ../../../docs_src/request_forms_and_files/tutorial001_an.py!}
+    ```
+
+=== "Python 3.9 and above"
+
+    ```Python hl_lines="3"
+    {!> ../../../docs_src/request_forms_and_files/tutorial001_an_py39.py!}
+    ```
+
+=== "Python 3.6 and above - non-Annotated"
+
+    !!! tip
+        Try to use the main, `Annotated` version better.
+
+    ```Python hl_lines="1"
+    {!> ../../../docs_src/request_forms_and_files/tutorial001.py!}
+    ```
 
 ## Define `File` and `Form` parameters
 
 Create file and form parameters the same way you would for `Body` or `Query`:
 
-```Python hl_lines="8"
-{!../../../docs_src/request_forms_and_files/tutorial001.py!}
-```
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="9-11"
+    {!> ../../../docs_src/request_forms_and_files/tutorial001_an.py!}
+    ```
+
+=== "Python 3.9 and above"
+
+    ```Python hl_lines="10-12"
+    {!> ../../../docs_src/request_forms_and_files/tutorial001_an_py39.py!}
+    ```
+
+=== "Python 3.6 and above - non-Annotated"
+
+    !!! tip
+        Try to use the main, `Annotated` version better.
+
+    ```Python hl_lines="8"
+    {!> ../../../docs_src/request_forms_and_files/tutorial001.py!}
+    ```
 
 The files and form fields will be uploaded as form data and you will receive the files and form fields.
 
