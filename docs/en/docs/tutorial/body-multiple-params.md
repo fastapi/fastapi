@@ -29,7 +29,7 @@ And you can also declare body parameters as optional, by setting the default to 
 === "Python 3.10+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="17-19"
     {!> ../../../docs_src/body_multiple_params/tutorial001_py310.py!}
@@ -38,7 +38,7 @@ And you can also declare body parameters as optional, by setting the default to 
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="19-21"
     {!> ../../../docs_src/body_multiple_params/tutorial001.py!}
@@ -132,7 +132,7 @@ But you can instruct **FastAPI** to treat it as another body key using `Body`:
 === "Python 3.10+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="20"
     {!> ../../../docs_src/body_multiple_params/tutorial003_py310.py!}
@@ -141,7 +141,7 @@ But you can instruct **FastAPI** to treat it as another body key using `Body`:
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="22"
     {!> ../../../docs_src/body_multiple_params/tutorial003.py!}
@@ -206,7 +206,7 @@ For example:
 === "Python 3.10+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="25"
     {!> ../../../docs_src/body_multiple_params/tutorial004_py310.py!}
@@ -215,7 +215,7 @@ For example:
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="27"
     {!> ../../../docs_src/body_multiple_params/tutorial004.py!}
@@ -259,7 +259,7 @@ as in:
 === "Python 3.10+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="15"
     {!> ../../../docs_src/body_multiple_params/tutorial005_py310.py!}
@@ -268,7 +268,7 @@ as in:
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="17"
     {!> ../../../docs_src/body_multiple_params/tutorial005.py!}

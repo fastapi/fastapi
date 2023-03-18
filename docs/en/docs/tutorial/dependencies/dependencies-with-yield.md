@@ -81,7 +81,7 @@ For example, `dependency_c` can have a dependency on `dependency_b`, and `depend
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="4  12  20"
     {!> ../../../docs_src/dependencies/tutorial008.py!}
@@ -108,7 +108,7 @@ And, in turn, `dependency_b` needs the value from `dependency_a` (here named `de
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="16-17  24-25"
     {!> ../../../docs_src/dependencies/tutorial008.py!}

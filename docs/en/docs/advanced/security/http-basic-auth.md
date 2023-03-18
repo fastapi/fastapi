@@ -35,7 +35,7 @@ Then, when you type that username and password, the browser sends them in the he
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="2  6  10"
     {!> ../../../docs_src/security/tutorial006.py!}
@@ -74,7 +74,7 @@ Then we can use `secrets.compare_digest()` to ensure that `credentials.username`
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="1  11-21"
     {!> ../../../docs_src/security/tutorial007.py!}
@@ -157,7 +157,7 @@ After detecting that the credentials are incorrect, return an `HTTPException` wi
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="23-27"
     {!> ../../../docs_src/security/tutorial007.py!}

@@ -133,7 +133,7 @@ They work the same way as for other FastAPI endpoints/*path operations*:
 === "Python 3.10+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="66-67  79"
     {!> ../../../docs_src/websockets/tutorial002_py310.py!}
@@ -142,7 +142,7 @@ They work the same way as for other FastAPI endpoints/*path operations*:
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="68-69  81"
     {!> ../../../docs_src/websockets/tutorial002.py!}

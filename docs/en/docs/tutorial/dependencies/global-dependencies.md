@@ -21,7 +21,7 @@ In that case, they will be applied to all the *path operations* in the applicati
 === "Python 3.6 non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="15"
     {!> ../../../docs_src/dependencies/tutorial012.py!}

@@ -52,7 +52,7 @@ It is just a function that can take all the same parameters that a *path operati
 === "Python 3.10+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="6-7"
     {!> ../../../docs_src/dependencies/tutorial001_py310.py!}
@@ -61,7 +61,7 @@ It is just a function that can take all the same parameters that a *path operati
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="8-11"
     {!> ../../../docs_src/dependencies/tutorial001.py!}
@@ -108,7 +108,7 @@ And then it just returns a `dict` containing those values.
 === "Python 3.10+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="1"
     {!> ../../../docs_src/dependencies/tutorial001_py310.py!}
@@ -117,7 +117,7 @@ And then it just returns a `dict` containing those values.
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="3"
     {!> ../../../docs_src/dependencies/tutorial001.py!}
@@ -148,7 +148,7 @@ The same way you use `Body`, `Query`, etc. with your *path operation function* p
 === "Python 3.10+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="11  16"
     {!> ../../../docs_src/dependencies/tutorial001_py310.py!}
@@ -157,7 +157,7 @@ The same way you use `Body`, `Query`, etc. with your *path operation function* p
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="15  20"
     {!> ../../../docs_src/dependencies/tutorial001.py!}

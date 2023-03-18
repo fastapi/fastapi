@@ -31,7 +31,7 @@ You could create a first dependency ("dependable") like:
 === "Python 3.10 non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="6-7"
     {!> ../../../docs_src/dependencies/tutorial005_py310.py!}
@@ -40,7 +40,7 @@ You could create a first dependency ("dependable") like:
 === "Python 3.6 non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="8-9"
     {!> ../../../docs_src/dependencies/tutorial005.py!}
@@ -75,7 +75,7 @@ Then you can create another dependency function (a "dependable") that at the sam
 === "Python 3.10 non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="11"
     {!> ../../../docs_src/dependencies/tutorial005_py310.py!}
@@ -84,7 +84,7 @@ Then you can create another dependency function (a "dependable") that at the sam
 === "Python 3.6 non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="13"
     {!> ../../../docs_src/dependencies/tutorial005.py!}
@@ -122,7 +122,7 @@ Then we can use the dependency with:
 === "Python 3.10 non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="19"
     {!> ../../../docs_src/dependencies/tutorial005_py310.py!}
@@ -131,7 +131,7 @@ Then we can use the dependency with:
 === "Python 3.6 non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="22"
     {!> ../../../docs_src/dependencies/tutorial005.py!}
@@ -171,7 +171,7 @@ In an advanced scenario where you know you need the dependency to be called at e
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="1"
     async def needy_dependency(fresh_value: str = Depends(get_value, use_cache=False)):

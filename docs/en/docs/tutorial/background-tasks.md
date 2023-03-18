@@ -78,7 +78,7 @@ Using `BackgroundTasks` also works with the dependency injection system, you can
 === "Python 3.10+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="11  13  20  23"
     {!> ../../../docs_src/background_tasks/tutorial002_py310.py!}
@@ -87,7 +87,7 @@ Using `BackgroundTasks` also works with the dependency injection system, you can
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="13  15  22  25"
     {!> ../../../docs_src/background_tasks/tutorial002.py!}

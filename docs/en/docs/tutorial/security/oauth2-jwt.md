@@ -130,7 +130,7 @@ And another one to authenticate and return a user.
 === "Python 3.10+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="6  47  54-55  58-59  68-74"
     {!> ../../../docs_src/security/tutorial004_py310.py!}
@@ -139,7 +139,7 @@ And another one to authenticate and return a user.
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="7  48  55-56  59-60  69-75"
     {!> ../../../docs_src/security/tutorial004.py!}
@@ -197,7 +197,7 @@ Create a utility function to generate a new access token.
 === "Python 3.10+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="5  11-13  27-29  77-85"
     {!> ../../../docs_src/security/tutorial004_py310.py!}
@@ -206,7 +206,7 @@ Create a utility function to generate a new access token.
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="6  12-14  28-30  78-86"
     {!> ../../../docs_src/security/tutorial004.py!}
@@ -241,7 +241,7 @@ If the token is invalid, return an HTTP error right away.
 === "Python 3.10+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="88-105"
     {!> ../../../docs_src/security/tutorial004_py310.py!}
@@ -250,7 +250,7 @@ If the token is invalid, return an HTTP error right away.
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="89-106"
     {!> ../../../docs_src/security/tutorial004.py!}
@@ -283,7 +283,7 @@ Create a real JWT access token and return it
 === "Python 3.10+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="114-127"
     {!> ../../../docs_src/security/tutorial004_py310.py!}
@@ -292,7 +292,7 @@ Create a real JWT access token and return it
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="115-128"
     {!> ../../../docs_src/security/tutorial004.py!}

@@ -33,7 +33,7 @@ To do that, we declare a method `__call__`:
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="10"
     {!> ../../../docs_src/dependencies/tutorial011.py!}
@@ -60,7 +60,7 @@ And now, we can use `__init__` to declare the parameters of the instance that we
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="7"
     {!> ../../../docs_src/dependencies/tutorial011.py!}
@@ -87,7 +87,7 @@ We could create an instance of this class with:
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="16"
     {!> ../../../docs_src/dependencies/tutorial011.py!}
@@ -122,7 +122,7 @@ checker(q="somequery")
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="20"
     {!> ../../../docs_src/dependencies/tutorial011.py!}

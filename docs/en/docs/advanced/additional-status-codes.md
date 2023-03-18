@@ -35,7 +35,7 @@ To achieve that, import `JSONResponse`, and return your content there directly, 
 === "Python 3.10+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="2  23"
     {!> ../../../docs_src/additional_status_codes/tutorial001_py310.py!}
@@ -44,7 +44,7 @@ To achieve that, import `JSONResponse`, and return your content there directly, 
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="4  25"
     {!> ../../../docs_src/additional_status_codes/tutorial001.py!}

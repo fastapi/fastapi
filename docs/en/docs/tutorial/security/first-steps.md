@@ -35,7 +35,7 @@ Copy the example in a file `main.py`:
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python
     {!> ../../../docs_src/security/tutorial001.py!}
@@ -149,7 +149,7 @@ When we create an instance of the `OAuth2PasswordBearer` class we pass in the `t
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="6"
     {!> ../../../docs_src/security/tutorial001.py!}
@@ -200,7 +200,7 @@ Now you can pass that `oauth2_scheme` in a dependency with `Depends`.
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="10"
     {!> ../../../docs_src/security/tutorial001.py!}
