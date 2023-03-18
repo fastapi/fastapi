@@ -2,9 +2,98 @@
 
 ## Latest Changes
 
+### Highlights
+
+This release adds support for dependencies and parameters using `Annotated`. ✨
+
+This has **several benefits**, one of the main ones is that now the parameters of your functions with `Annotated` would **not be affected** at all.
+
+If you call those functions in **other places in your code**, the actual **default values** will be kept, your editor will help you notice missing **required arguments**, Python will require you to pass required arguments at **runtime**, you will be able to **use the same functions** for different things and with different libraries (e.g. **Typer** will soon support `Annotated` too, then you could use the same function for an API and a CLI), etc.
+
+Because `Annotated` is **standard Python**, you still get all the **benefits** from editors and tools, like **autocompletion**, **inline errors**, etc.
+
+One of the **biggest benefits** is that now you can create `Annotated` dependencies that are then shared by multiple *path operation functions*, this will allow you to **reduce** a lot of **code duplication** in your codebase, while keeping all the support from editors and tools.
+
+For example, you could have code like this:
+
+```Python
+def get_current_user(token: str):
+    # authenticate user
+    return User()
+
+
+@app.get("/items/")
+def read_items(user: User = Depends(get_current_user)):
+    ...
+
+
+@app.post("/items/")
+def create_item(*, user: User = Depends(get_current_user), item: Item):
+    ...
+
+
+@app.get("/items/{item_id}")
+def read_item(*, user: User = Depends(get_current_user), item_id: int):
+    ...
+
+
+@app.delete("/items/{item_id}")
+def delete_item(*, user: User = Depends(get_current_user), item_id: int):
+    ...
+```
+
+There's a bit of code duplication for the dependency:
+
+```Python
+user: User = Depends(get_current_user)
+```
+
+...the bigger the codebase, the more noticeable it is.
+
+Now you can create an annotated dependency once, like this:
+
+```Python
+CurrentUser = Annotated[User, Depends(get_current_user)]
+```
+
+And then you can reuse this `Annotated` dependency:
+
+```Python
+CurrentUser = Annotated[User, Depends(get_current_user)]
+
+
+@app.get("/items/")
+def read_items(user: CurrentUser):
+    ...
+
+
+@app.post("/items/")
+def create_item(user: CurrentUser, item: Item):
+    ...
+
+
+@app.get("/items/{item_id}")
+def read_item(user: CurrentUser, item_id: int):
+    ...
+
+
+@app.delete("/items/{item_id}")
+def delete_item(user: CurrentUser, item_id: int):
+    ...
+```
+
+...and `CurrentUser` has all the typing information as `User`, so your editor will work as expected (autocompletion and everything), and **FastAPI** will be able to understand the dependency defined in `Annotated`. 😎
+
+Special thanks to [@nzig](https://github.com/nzig) for the core implementation and to [@adriangb](https://github.com/adriangb) for the inspiration and idea with [Xpresso](https://github.com/adriangb/xpresso)! 🚀
+
+### Features
+
+* ✨Add support for PEP-593 `Annotated` for specifying dependencies and parameters. PR [#4871](https://github.com/tiangolo/fastapi/pull/4871) by [@nzig](https://github.com/nzig).
+
+### Docs
+
 * 📝 Update order of examples, latest Python version first, and simplify version tab names. PR [#9269](https://github.com/tiangolo/fastapi/pull/9269) by [@tiangolo](https://github.com/tiangolo).
 * 📝 Update all docs to use `Annotated` as the main recommendation, with new examples and tests. PR [#9268](https://github.com/tiangolo/fastapi/pull/9268) by [@tiangolo](https://github.com/tiangolo).
-* ✨Add support for PEP-593 `Annotated` for specifying dependencies and parameters. PR [#4871](https://github.com/tiangolo/fastapi/pull/4871) by [@nzig](https://github.com/nzig).
 
 ## 0.94.1
 
