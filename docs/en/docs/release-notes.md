@@ -2,6 +2,7 @@
 
 ## Latest Changes
 
+* 📝 Tweak tip recommending `Annotated` in docs. PR [#9270](https://github.com/tiangolo/fastapi/pull/9270) by [@tiangolo](https://github.com/tiangolo).
 ### Highlights
 
 This release adds support for dependencies and parameters using `Annotated`. ✨
