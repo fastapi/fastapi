@@ -158,7 +158,13 @@ The syntax using `typing` is **compatible** with all versions, from Python 3.6 t
 
 As Python advances, **newer versions** come with improved support for these type annotations and in many cases you won't even need to import and use the `typing` module to declare the type annotations.
 
-If you can choose a more recent version of Python for your project, you will be able to take advantage of that extra simplicity. See some examples below.
+If you can choose a more recent version of Python for your project, you will be able to take advantage of that extra simplicity.
+
+In all the docs there are examples compatible with each version of Python (when there's a difference).
+
+For example "**Python 3.6+**" means it's compatible with Python 3.6 or above (including 3.7, 3.8, 3.9, 3.10, etc). And "**Python 3.9+**" means it's compatible with Python 3.9 or above (including 3.10, etc).
+
+If you can use the **latest versions of Python**, use the examples for the latest version, those will have the **best and simplest syntax**, for example, "**Python 3.10+**".
 
 #### List
 
