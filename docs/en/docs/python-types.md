@@ -170,6 +170,18 @@ If you can use the **latest versions of Python**, use the examples for the lates
 
 For example, let's define a variable to be a `list` of `str`.
 
+=== "Python 3.9+"
+
+    Declare the variable, with the same colon (`:`) syntax.
+
+    As the type, put `list`.
+
+    As the list is a type that contains some internal types, you put them in square brackets:
+
+    ```Python hl_lines="1"
+    {!> ../../../docs_src/python_types/tutorial006_py39.py!}
+    ```
+
 === "Python 3.6+"
 
     From `typing`, import `List` (with a capital `L`):
@@ -186,18 +198,6 @@ For example, let's define a variable to be a `list` of `str`.
 
     ```Python hl_lines="4"
     {!> ../../../docs_src/python_types/tutorial006.py!}
-    ```
-
-=== "Python 3.9+"
-
-    Declare the variable, with the same colon (`:`) syntax.
-
-    As the type, put `list`.
-
-    As the list is a type that contains some internal types, you put them in square brackets:
-
-    ```Python hl_lines="1"
-    {!> ../../../docs_src/python_types/tutorial006_py39.py!}
     ```
 
 !!! info
@@ -224,16 +224,16 @@ And still, the editor knows it is a `str`, and provides support for that.
 
 You would do the same to declare `tuple`s and `set`s:
 
-=== "Python 3.6+"
-
-    ```Python hl_lines="1  4"
-    {!> ../../../docs_src/python_types/tutorial007.py!}
-    ```
-
 === "Python 3.9+"
 
     ```Python hl_lines="1"
     {!> ../../../docs_src/python_types/tutorial007_py39.py!}
+    ```
+
+=== "Python 3.6+"
+
+    ```Python hl_lines="1  4"
+    {!> ../../../docs_src/python_types/tutorial007.py!}
     ```
 
 This means:
@@ -249,16 +249,16 @@ The first type parameter is for the keys of the `dict`.
 
 The second type parameter is for the values of the `dict`:
 
-=== "Python 3.6+"
-
-    ```Python hl_lines="1  4"
-    {!> ../../../docs_src/python_types/tutorial008.py!}
-    ```
-
 === "Python 3.9+"
 
     ```Python hl_lines="1"
     {!> ../../../docs_src/python_types/tutorial008_py39.py!}
+    ```
+
+=== "Python 3.6+"
+
+    ```Python hl_lines="1  4"
+    {!> ../../../docs_src/python_types/tutorial008.py!}
     ```
 
 This means:
@@ -273,18 +273,18 @@ You can declare that a variable can be any of **several types**, for example, an
 
 In Python 3.6 and above (including Python 3.10) you can use the `Union` type from `typing` and put inside the square brackets the possible types to accept.
 
-In Python 3.10 there's also an **alternative syntax** where you can put the possible types separated by a <abbr title='also called "bitwise or operator", but that meaning is not relevant here'>vertical bar (`|`)</abbr>.
-
-=== "Python 3.6+"
-
-    ```Python hl_lines="1  4"
-    {!> ../../../docs_src/python_types/tutorial008b.py!}
-    ```
+In Python 3.10 there's also a **new syntax** where you can put the possible types separated by a <abbr title='also called "bitwise or operator", but that meaning is not relevant here'>vertical bar (`|`)</abbr>.
 
 === "Python 3.10+"
 
     ```Python hl_lines="1"
     {!> ../../../docs_src/python_types/tutorial008b_py310.py!}
+    ```
+
+=== "Python 3.6+"
+
+    ```Python hl_lines="1  4"
+    {!> ../../../docs_src/python_types/tutorial008b.py!}
     ```
 
 In both cases this means that `item` could be an `int` or a `str`.
@@ -305,6 +305,12 @@ Using `Optional[str]` instead of just `str` will let the editor help you detecti
 
 This also means that in Python 3.10, you can use `Something | None`:
 
+=== "Python 3.10+"
+
+    ```Python hl_lines="1"
+    {!> ../../../docs_src/python_types/tutorial009_py310.py!}
+    ```
+
 === "Python 3.6+"
 
     ```Python hl_lines="1  4"
@@ -315,12 +321,6 @@ This also means that in Python 3.10, you can use `Something | None`:
 
     ```Python hl_lines="1  4"
     {!> ../../../docs_src/python_types/tutorial009b.py!}
-    ```
-
-=== "Python 3.10+"
-
-    ```Python hl_lines="1"
-    {!> ../../../docs_src/python_types/tutorial009_py310.py!}
     ```
 
 #### Using `Union` or `Optional`
@@ -366,15 +366,22 @@ And then you won't have to worry about names like `Optional` and `Union`. 😎
 
 These types that take type parameters in square brackets are called **Generic types** or **Generics**, for example:
 
-=== "Python 3.6+"
+=== "Python 3.10+"
 
-    * `List`
-    * `Tuple`
-    * `Set`
-    * `Dict`
+    You can use the same builtin types as generics (with square brackets and types inside):
+
+    * `list`
+    * `tuple`
+    * `set`
+    * `dict`
+
+    And the same as with Python 3.6, from the `typing` module:
+
     * `Union`
-    * `Optional`
+    * `Optional` (the same as with Python 3.6)
     * ...and others.
+
+    In Python 3.10, as an alternative to using the generics `Union` and `Optional`, you can use the <abbr title='also called "bitwise or operator", but that meaning is not relevant here'>vertical bar (`|`)</abbr> to declare unions of types, that's a lot better and simpler.
 
 === "Python 3.9+"
 
@@ -391,22 +398,15 @@ These types that take type parameters in square brackets are called **Generic ty
     * `Optional`
     * ...and others.
 
-=== "Python 3.10+"
+=== "Python 3.6+"
 
-    You can use the same builtin types as generics (with square brackets and types inside):
-
-    * `list`
-    * `tuple`
-    * `set`
-    * `dict`
-
-    And the same as with Python 3.6, from the `typing` module:
-
+    * `List`
+    * `Tuple`
+    * `Set`
+    * `Dict`
     * `Union`
-    * `Optional` (the same as with Python 3.6)
+    * `Optional`
     * ...and others.
-
-    In Python 3.10, as an alternative to using the generics `Union` and `Optional`, you can use the <abbr title='also called "bitwise or operator", but that meaning is not relevant here'>vertical bar (`|`)</abbr> to declare unions of types.
 
 ### Classes as types
 
@@ -446,10 +446,10 @@ And you get all the editor support with that resulting object.
 
 An example from the official Pydantic docs:
 
-=== "Python 3.6+"
+=== "Python 3.10+"
 
     ```Python
-    {!> ../../../docs_src/python_types/tutorial011.py!}
+    {!> ../../../docs_src/python_types/tutorial011_py310.py!}
     ```
 
 === "Python 3.9+"
@@ -458,10 +458,10 @@ An example from the official Pydantic docs:
     {!> ../../../docs_src/python_types/tutorial011_py39.py!}
     ```
 
-=== "Python 3.10+"
+=== "Python 3.6+"
 
     ```Python
-    {!> ../../../docs_src/python_types/tutorial011_py310.py!}
+    {!> ../../../docs_src/python_types/tutorial011.py!}
     ```
 
 !!! info
@@ -478,6 +478,14 @@ You will see a lot more of all this in practice in the [Tutorial - User Guide](t
 
 Python also has a feature that allows putting **additional metadata** in these type hints using `Annotated`.
 
+=== "Python 3.9+"
+
+    In Python 3.9, `Annotated` is part of the standard library, so you can import it from `typing`.
+
+    ```Python hl_lines="1  4"
+    {!> ../../../docs_src/python_types/tutorial013_py39.py!}
+    ```
+
 === "Python 3.6+"
 
     In versions below Python 3.9, you import `Annotated` from `typing_extensions`.
@@ -486,14 +494,6 @@ Python also has a feature that allows putting **additional metadata** in these t
 
     ```Python hl_lines="1  4"
     {!> ../../../docs_src/python_types/tutorial013.py!}
-    ```
-
-=== "Python 3.9+"
-
-    In Python 3.9, `Annotated` is part of the standard library, so you can import it from `typing`.
-
-    ```Python hl_lines="1  4"
-    {!> ../../../docs_src/python_types/tutorial013_py39.py!}
     ```
 
 Python itself doesn't do anything with this `Annotated`. And for editors and other tools, the type is still `str`.

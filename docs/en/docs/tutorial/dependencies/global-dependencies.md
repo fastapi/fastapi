@@ -6,17 +6,16 @@ Similar to the way you can [add `dependencies` to the *path operation decorators
 
 In that case, they will be applied to all the *path operations* in the application:
 
+=== "Python 3.9+"
+
+    ```Python hl_lines="16"
+    {!> ../../../docs_src/dependencies/tutorial012_an_py39.py!}
+    ```
 
 === "Python 3.6+"
 
     ```Python hl_lines="16"
     {!> ../../../docs_src/dependencies/tutorial012_an.py!}
-    ```
-
-=== "Python 3.9+"
-
-    ```Python hl_lines="16"
-    {!> ../../../docs_src/dependencies/tutorial012_an_py39.py!}
     ```
 
 === "Python 3.6 non-Annotated"

@@ -13,16 +13,16 @@ You can define files to be uploaded by the client using `File`.
 
 Import `File` and `UploadFile` from `fastapi`:
 
-=== "Python 3.6+"
-
-    ```Python hl_lines="1"
-    {!> ../../../docs_src/request_files/tutorial001_an.py!}
-    ```
-
 === "Python 3.9+"
 
     ```Python hl_lines="3"
     {!> ../../../docs_src/request_files/tutorial001_an_py39.py!}
+    ```
+
+=== "Python 3.6+"
+
+    ```Python hl_lines="1"
+    {!> ../../../docs_src/request_files/tutorial001_an.py!}
     ```
 
 === "Python 3.6+ non-Annotated"
@@ -38,16 +38,16 @@ Import `File` and `UploadFile` from `fastapi`:
 
 Create file parameters the same way you would for `Body` or `Form`:
 
-=== "Python 3.6+"
-
-    ```Python hl_lines="8"
-    {!> ../../../docs_src/request_files/tutorial001_an.py!}
-    ```
-
 === "Python 3.9+"
 
     ```Python hl_lines="9"
     {!> ../../../docs_src/request_files/tutorial001_an_py39.py!}
+    ```
+
+=== "Python 3.6+"
+
+    ```Python hl_lines="8"
+    {!> ../../../docs_src/request_files/tutorial001_an.py!}
     ```
 
 === "Python 3.6+ non-Annotated"
@@ -79,16 +79,16 @@ But there are several cases in which you might benefit from using `UploadFile`.
 
 Define a file parameter with a type of `UploadFile`:
 
-=== "Python 3.6+"
-
-    ```Python hl_lines="13"
-    {!> ../../../docs_src/request_files/tutorial001_an.py!}
-    ```
-
 === "Python 3.9+"
 
     ```Python hl_lines="14"
     {!> ../../../docs_src/request_files/tutorial001_an_py39.py!}
+    ```
+
+=== "Python 3.6+"
+
+    ```Python hl_lines="13"
+    {!> ../../../docs_src/request_files/tutorial001_an.py!}
     ```
 
 === "Python 3.6+ non-Annotated"
@@ -169,10 +169,10 @@ The way HTML forms (`<form></form>`) sends the data to the server normally uses 
 
 You can make a file optional by using standard type annotations and setting a default value of `None`:
 
-=== "Python 3.6+"
+=== "Python 3.10+"
 
-    ```Python hl_lines="10  18"
-    {!> ../../../docs_src/request_files/tutorial001_02_an.py!}
+    ```Python hl_lines="9  17"
+    {!> ../../../docs_src/request_files/tutorial001_02_an_py310.py!}
     ```
 
 === "Python 3.9+"
@@ -181,19 +181,10 @@ You can make a file optional by using standard type annotations and setting a de
     {!> ../../../docs_src/request_files/tutorial001_02_an_py39.py!}
     ```
 
-=== "Python 3.10+"
+=== "Python 3.6+"
 
-    ```Python hl_lines="9  17"
-    {!> ../../../docs_src/request_files/tutorial001_02_an_py310.py!}
-    ```
-
-=== "Python 3.6+ non-Annotated"
-
-    !!! tip
-        Try to use the main, `Annotated` version better.
-
-    ```Python hl_lines="9  17"
-    {!> ../../../docs_src/request_files/tutorial001_02.py!}
+    ```Python hl_lines="10  18"
+    {!> ../../../docs_src/request_files/tutorial001_02_an.py!}
     ```
 
 === "Python 3.10+ non-Annotated"
@@ -205,21 +196,29 @@ You can make a file optional by using standard type annotations and setting a de
     {!> ../../../docs_src/request_files/tutorial001_02_py310.py!}
     ```
 
+=== "Python 3.6+ non-Annotated"
+
+    !!! tip
+        Try to use the main, `Annotated` version better.
+
+    ```Python hl_lines="9  17"
+    {!> ../../../docs_src/request_files/tutorial001_02.py!}
+    ```
 
 ## `UploadFile` with Additional Metadata
 
 You can also use `File()` with `UploadFile`, for example, to set additional metadata:
 
-=== "Python 3.6+"
-
-    ```Python hl_lines="8  14"
-    {!> ../../../docs_src/request_files/tutorial001_03_an.py!}
-    ```
-
 === "Python 3.9+"
 
     ```Python hl_lines="9  15"
     {!> ../../../docs_src/request_files/tutorial001_03_an_py39.py!}
+    ```
+
+=== "Python 3.6+"
+
+    ```Python hl_lines="8  14"
+    {!> ../../../docs_src/request_files/tutorial001_03_an.py!}
     ```
 
 === "Python 3.6+ non-Annotated"
@@ -239,25 +238,16 @@ They would be associated to the same "form field" sent using "form data".
 
 To use that, declare a list of `bytes` or `UploadFile`:
 
-=== "Python 3.6+"
-
-    ```Python hl_lines="11  16"
-    {!> ../../../docs_src/request_files/tutorial002_an.py!}
-    ```
-
 === "Python 3.9+"
 
     ```Python hl_lines="10  15"
     {!> ../../../docs_src/request_files/tutorial002_an_py39.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.6+"
 
-    !!! tip
-        Try to use the main, `Annotated` version better.
-
-    ```Python hl_lines="10  15"
-    {!> ../../../docs_src/request_files/tutorial002.py!}
+    ```Python hl_lines="11  16"
+    {!> ../../../docs_src/request_files/tutorial002_an.py!}
     ```
 
 === "Python 3.9+ non-Annotated"
@@ -267,6 +257,15 @@ To use that, declare a list of `bytes` or `UploadFile`:
 
     ```Python hl_lines="8  13"
     {!> ../../../docs_src/request_files/tutorial002_py39.py!}
+    ```
+
+=== "Python 3.6+ non-Annotated"
+
+    !!! tip
+        Try to use the main, `Annotated` version better.
+
+    ```Python hl_lines="10  15"
+    {!> ../../../docs_src/request_files/tutorial002.py!}
     ```
 
 You will receive, as declared, a `list` of `bytes` or `UploadFile`s.
@@ -280,25 +279,16 @@ You will receive, as declared, a `list` of `bytes` or `UploadFile`s.
 
 And the same way as before, you can use `File()` to set additional parameters, even for `UploadFile`:
 
-=== "Python 3.6+"
-
-    ```Python hl_lines="12  19-21"
-    {!> ../../../docs_src/request_files/tutorial003_an.py!}
-    ```
-
 === "Python 3.9+"
 
     ```Python hl_lines="11  18-20"
     {!> ../../../docs_src/request_files/tutorial003_an_py39.py!}
     ```
 
-=== "Python 3.6+ non-Annotated"
+=== "Python 3.6+"
 
-    !!! tip
-        Try to use the main, `Annotated` version better.
-
-    ```Python hl_lines="11  18"
-    {!> ../../../docs_src/request_files/tutorial003.py!}
+    ```Python hl_lines="12  19-21"
+    {!> ../../../docs_src/request_files/tutorial003_an.py!}
     ```
 
 === "Python 3.9+ non-Annotated"
@@ -308,6 +298,15 @@ And the same way as before, you can use `File()` to set additional parameters, e
 
     ```Python hl_lines="9  16"
     {!> ../../../docs_src/request_files/tutorial003_py39.py!}
+    ```
+
+=== "Python 3.6+ non-Annotated"
+
+    !!! tip
+        Try to use the main, `Annotated` version better.
+
+    ```Python hl_lines="11  18"
+    {!> ../../../docs_src/request_files/tutorial003.py!}
     ```
 
 ## Recap

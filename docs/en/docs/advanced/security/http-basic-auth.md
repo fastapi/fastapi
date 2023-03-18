@@ -20,16 +20,16 @@ Then, when you type that username and password, the browser sends them in the he
 * It returns an object of type `HTTPBasicCredentials`:
     * It contains the `username` and `password` sent.
 
-=== "Python 3.6+"
-
-    ```Python hl_lines="2  7  11"
-    {!> ../../../docs_src/security/tutorial006_an.py!}
-    ```
-
 === "Python 3.9+"
 
     ```Python hl_lines="4  8  12"
     {!> ../../../docs_src/security/tutorial006_an_py39.py!}
+    ```
+
+=== "Python 3.6+"
+
+    ```Python hl_lines="2  7  11"
+    {!> ../../../docs_src/security/tutorial006_an.py!}
     ```
 
 === "Python 3.6+ non-Annotated"
@@ -59,16 +59,16 @@ To handle that, we first convert the `username` and `password` to `bytes` encodi
 
 Then we can use `secrets.compare_digest()` to ensure that `credentials.username` is `"stanleyjobson"`, and that `credentials.password` is `"swordfish"`.
 
-=== "Python 3.6+"
-
-    ```Python hl_lines="1  12-24"
-    {!> ../../../docs_src/security/tutorial007_an.py!}
-    ```
-
 === "Python 3.9+"
 
     ```Python hl_lines="1  12-24"
     {!> ../../../docs_src/security/tutorial007_an_py39.py!}
+    ```
+
+=== "Python 3.6+"
+
+    ```Python hl_lines="1  12-24"
+    {!> ../../../docs_src/security/tutorial007_an.py!}
     ```
 
 === "Python 3.6+ non-Annotated"
@@ -142,16 +142,16 @@ That way, using `secrets.compare_digest()` in your application code, it will be 
 
 After detecting that the credentials are incorrect, return an `HTTPException` with a status code 401 (the same returned when no credentials are provided) and add the header `WWW-Authenticate` to make the browser show the login prompt again:
 
-=== "Python 3.6+"
-
-    ```Python hl_lines="26-30"
-    {!> ../../../docs_src/security/tutorial007_an.py!}
-    ```
-
 === "Python 3.9+"
 
     ```Python hl_lines="26-30"
     {!> ../../../docs_src/security/tutorial007_an_py39.py!}
+    ```
+
+=== "Python 3.6+"
+
+    ```Python hl_lines="26-30"
+    {!> ../../../docs_src/security/tutorial007_an.py!}
     ```
 
 === "Python 3.6+ non-Annotated"
