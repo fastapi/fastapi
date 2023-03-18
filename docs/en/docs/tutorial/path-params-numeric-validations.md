@@ -27,7 +27,7 @@ First, import `Path` from `fastapi`, and import `Annotated`:
 === "Python 3.10+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="1"
     {!> ../../../docs_src/path_params_numeric_validations/tutorial001_py310.py!}
@@ -36,7 +36,7 @@ First, import `Path` from `fastapi`, and import `Annotated`:
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="3"
     {!> ../../../docs_src/path_params_numeric_validations/tutorial001.py!}
@@ -69,7 +69,7 @@ For example, to declare a `title` metadata value for the path parameter `item_id
 === "Python 3.10+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="8"
     {!> ../../../docs_src/path_params_numeric_validations/tutorial001_py310.py!}
@@ -78,7 +78,7 @@ For example, to declare a `title` metadata value for the path parameter `item_id
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="10"
     {!> ../../../docs_src/path_params_numeric_validations/tutorial001.py!}
@@ -113,7 +113,7 @@ So, you can declare your function as:
 === "Python 3.6 non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="7"
     {!> ../../../docs_src/path_params_numeric_validations/tutorial002.py!}
@@ -194,7 +194,7 @@ Here, with `ge=1`, `item_id` will need to be an integer number "`g`reater than o
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="8"
     {!> ../../../docs_src/path_params_numeric_validations/tutorial004.py!}
@@ -222,7 +222,7 @@ The same applies for:
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="9"
     {!> ../../../docs_src/path_params_numeric_validations/tutorial005.py!}
@@ -253,7 +253,7 @@ And the same for <abbr title="less than"><code>lt</code></abbr>.
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="11"
     {!> ../../../docs_src/path_params_numeric_validations/tutorial006.py!}

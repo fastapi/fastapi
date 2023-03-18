@@ -27,7 +27,7 @@ First, you have to import it:
 === "Python 3.10+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="2"
     {!> ../../../docs_src/body_fields/tutorial001_py310.py!}
@@ -36,7 +36,7 @@ First, you have to import it:
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="4"
     {!> ../../../docs_src/body_fields/tutorial001.py!}
@@ -70,7 +70,7 @@ You can then use `Field` with model attributes:
 === "Python 3.10+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="9-12"
     {!> ../../../docs_src/body_fields/tutorial001_py310.py!}
@@ -79,7 +79,7 @@ You can then use `Field` with model attributes:
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="11-14"
     {!> ../../../docs_src/body_fields/tutorial001.py!}

@@ -26,7 +26,7 @@ Import `Form` from `fastapi`:
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="1"
     {!> ../../../docs_src/request_forms/tutorial001.py!}
@@ -51,7 +51,7 @@ Create form parameters the same way you would for `Body` or `Query`:
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="7"
     {!> ../../../docs_src/request_forms/tutorial001.py!}

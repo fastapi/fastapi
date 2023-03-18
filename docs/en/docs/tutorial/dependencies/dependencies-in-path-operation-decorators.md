@@ -29,7 +29,7 @@ It should be a `list` of `Depends()`:
 === "Python 3.6 non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="17"
     {!> ../../../docs_src/dependencies/tutorial006.py!}
@@ -72,7 +72,7 @@ They can declare request requirements (like headers) or other sub-dependencies:
 === "Python 3.6 non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="6  11"
     {!> ../../../docs_src/dependencies/tutorial006.py!}
@@ -97,7 +97,7 @@ These dependencies can `raise` exceptions, the same as normal dependencies:
 === "Python 3.6 non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="8  13"
     {!> ../../../docs_src/dependencies/tutorial006.py!}
@@ -124,7 +124,7 @@ So, you can re-use a normal dependency (that returns a value) you already use so
 === "Python 3.6 non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="9  14"
     {!> ../../../docs_src/dependencies/tutorial006.py!}

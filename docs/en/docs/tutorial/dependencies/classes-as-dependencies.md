@@ -27,7 +27,7 @@ In the previous example, we were returning a `dict` from our dependency ("depend
 === "Python 3.10+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="7"
     {!> ../../../docs_src/dependencies/tutorial001_py310.py!}
@@ -36,7 +36,7 @@ In the previous example, we were returning a `dict` from our dependency ("depend
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="11"
     {!> ../../../docs_src/dependencies/tutorial001.py!}
@@ -124,7 +124,7 @@ Then, we can change the dependency "dependable" `common_parameters` from above t
 === "Python 3.10+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="9-13"
     {!> ../../../docs_src/dependencies/tutorial002_py310.py!}
@@ -133,7 +133,7 @@ Then, we can change the dependency "dependable" `common_parameters` from above t
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="11-15"
     {!> ../../../docs_src/dependencies/tutorial002.py!}
@@ -162,7 +162,7 @@ Pay attention to the `__init__` method used to create the instance of the class:
 === "Python 3.10+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="10"
     {!> ../../../docs_src/dependencies/tutorial002_py310.py!}
@@ -171,7 +171,7 @@ Pay attention to the `__init__` method used to create the instance of the class:
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="12"
     {!> ../../../docs_src/dependencies/tutorial002.py!}
@@ -200,7 +200,7 @@ Pay attention to the `__init__` method used to create the instance of the class:
 === "Python 3.10+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="6"
     {!> ../../../docs_src/dependencies/tutorial001_py310.py!}
@@ -209,7 +209,7 @@ Pay attention to the `__init__` method used to create the instance of the class:
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="9"
     {!> ../../../docs_src/dependencies/tutorial001.py!}
@@ -250,7 +250,7 @@ Now you can declare your dependency using this class.
 === "Python 3.10+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="17"
     {!> ../../../docs_src/dependencies/tutorial002_py310.py!}
@@ -259,7 +259,7 @@ Now you can declare your dependency using this class.
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="19"
     {!> ../../../docs_src/dependencies/tutorial002.py!}
@@ -274,7 +274,7 @@ Notice how we write `CommonQueryParams` twice in the above code:
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python
     commons: CommonQueryParams = Depends(CommonQueryParams)
@@ -309,7 +309,7 @@ In this case, the first `CommonQueryParams`, in:
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python
     commons: CommonQueryParams ...
@@ -328,7 +328,7 @@ You could actually write just:
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python
     commons = Depends(CommonQueryParams)
@@ -357,7 +357,7 @@ You could actually write just:
 === "Python 3.10+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="17"
     {!> ../../../docs_src/dependencies/tutorial003_py310.py!}
@@ -366,7 +366,7 @@ You could actually write just:
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="19"
     {!> ../../../docs_src/dependencies/tutorial003.py!}
@@ -383,7 +383,7 @@ But you see that we are having some code repetition here, writing `CommonQueryPa
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python
     commons: CommonQueryParams = Depends(CommonQueryParams)
@@ -410,7 +410,7 @@ Instead of writing:
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python
     commons: CommonQueryParams = Depends(CommonQueryParams)
@@ -427,7 +427,7 @@ Instead of writing:
 === "Python 3.6 non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python
     commons: CommonQueryParams = Depends()
@@ -458,7 +458,7 @@ The same example would then look like:
 === "Python 3.10+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="17"
     {!> ../../../docs_src/dependencies/tutorial004_py310.py!}
@@ -467,7 +467,7 @@ The same example would then look like:
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="19"
     {!> ../../../docs_src/dependencies/tutorial004.py!}

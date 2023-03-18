@@ -131,7 +131,7 @@ Both *path operations* require an `X-Token` header.
 === "Python 3.10+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python
     {!> ../../../docs_src/app_testing/app_b_py310/main.py!}
@@ -140,7 +140,7 @@ Both *path operations* require an `X-Token` header.
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python
     {!> ../../../docs_src/app_testing/app_b/main.py!}

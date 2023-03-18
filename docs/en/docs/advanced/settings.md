@@ -231,7 +231,7 @@ Now we create a dependency that returns a new `config.Settings()`.
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="5  11-12"
     {!> ../../../docs_src/settings/app02/main.py!}
@@ -259,7 +259,7 @@ And then we can require it from the *path operation function* as a dependency an
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="16  18-20"
     {!> ../../../docs_src/settings/app02/main.py!}
@@ -353,7 +353,7 @@ But as we are using the `@lru_cache()` decorator on top, the `Settings` object w
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="1  10"
     {!> ../../../docs_src/settings/app03/main.py!}

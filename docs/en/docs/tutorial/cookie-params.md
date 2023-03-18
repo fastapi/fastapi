@@ -27,7 +27,7 @@ First import `Cookie`:
 === "Python 3.10+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="1"
     {!> ../../../docs_src/cookie_params/tutorial001_py310.py!}
@@ -36,7 +36,7 @@ First import `Cookie`:
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="3"
     {!> ../../../docs_src/cookie_params/tutorial001.py!}
@@ -69,7 +69,7 @@ The first value is the default value, you can pass all the extra validation or a
 === "Python 3.10+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="7"
     {!> ../../../docs_src/cookie_params/tutorial001_py310.py!}
@@ -78,7 +78,7 @@ The first value is the default value, you can pass all the extra validation or a
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="9"
     {!> ../../../docs_src/cookie_params/tutorial001.py!}

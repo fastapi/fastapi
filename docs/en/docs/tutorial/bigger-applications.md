@@ -127,7 +127,7 @@ We will now use a simple dependency to read a custom `X-Token` header:
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="1  4-6"
     {!> ../../../docs_src/bigger_applications/app/dependencies.py!}

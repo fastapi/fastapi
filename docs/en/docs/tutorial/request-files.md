@@ -28,7 +28,7 @@ Import `File` and `UploadFile` from `fastapi`:
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="1"
     {!> ../../../docs_src/request_files/tutorial001.py!}
@@ -53,7 +53,7 @@ Create file parameters the same way you would for `Body` or `Form`:
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="7"
     {!> ../../../docs_src/request_files/tutorial001.py!}
@@ -94,7 +94,7 @@ Define a file parameter with a type of `UploadFile`:
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="12"
     {!> ../../../docs_src/request_files/tutorial001.py!}
@@ -190,7 +190,7 @@ You can make a file optional by using standard type annotations and setting a de
 === "Python 3.10+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="7  15"
     {!> ../../../docs_src/request_files/tutorial001_02_py310.py!}
@@ -199,7 +199,7 @@ You can make a file optional by using standard type annotations and setting a de
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="9  17"
     {!> ../../../docs_src/request_files/tutorial001_02.py!}
@@ -224,7 +224,7 @@ You can also use `File()` with `UploadFile`, for example, to set additional meta
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="7  13"
     {!> ../../../docs_src/request_files/tutorial001_03.py!}
@@ -253,7 +253,7 @@ To use that, declare a list of `bytes` or `UploadFile`:
 === "Python 3.9+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="8  13"
     {!> ../../../docs_src/request_files/tutorial002_py39.py!}
@@ -262,7 +262,7 @@ To use that, declare a list of `bytes` or `UploadFile`:
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="10  15"
     {!> ../../../docs_src/request_files/tutorial002.py!}
@@ -294,7 +294,7 @@ And the same way as before, you can use `File()` to set additional parameters, e
 === "Python 3.9+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="9  16"
     {!> ../../../docs_src/request_files/tutorial003_py39.py!}
@@ -303,7 +303,7 @@ And the same way as before, you can use `File()` to set additional parameters, e
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="11  18"
     {!> ../../../docs_src/request_files/tutorial003.py!}

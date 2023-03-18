@@ -70,7 +70,7 @@ First, import `OAuth2PasswordRequestForm`, and use it as a dependency with `Depe
 === "Python 3.10+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="2  74"
     {!> ../../../docs_src/security/tutorial003_py310.py!}
@@ -79,7 +79,7 @@ First, import `OAuth2PasswordRequestForm`, and use it as a dependency with `Depe
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="4  76"
     {!> ../../../docs_src/security/tutorial003.py!}
@@ -143,7 +143,7 @@ For the error, we use the exception `HTTPException`:
 === "Python 3.10+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="1  75-77"
     {!> ../../../docs_src/security/tutorial003_py310.py!}
@@ -152,7 +152,7 @@ For the error, we use the exception `HTTPException`:
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="3  77-79"
     {!> ../../../docs_src/security/tutorial003.py!}
@@ -203,7 +203,7 @@ So, the thief won't be able to try to use those same passwords in another system
 === "Python 3.10+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="78-81"
     {!> ../../../docs_src/security/tutorial003_py310.py!}
@@ -212,7 +212,7 @@ So, the thief won't be able to try to use those same passwords in another system
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="80-83"
     {!> ../../../docs_src/security/tutorial003.py!}
@@ -273,7 +273,7 @@ For this simple example, we are going to just be completely insecure and return 
 === "Python 3.10+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="83"
     {!> ../../../docs_src/security/tutorial003_py310.py!}
@@ -282,7 +282,7 @@ For this simple example, we are going to just be completely insecure and return 
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="85"
     {!> ../../../docs_src/security/tutorial003.py!}
@@ -330,7 +330,7 @@ So, in our endpoint, we will only get a user if the user exists, was correctly a
 === "Python 3.10+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="56-64  67-70  88"
     {!> ../../../docs_src/security/tutorial003_py310.py!}
@@ -339,7 +339,7 @@ So, in our endpoint, we will only get a user if the user exists, was correctly a
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="58-66  69-72  90"
     {!> ../../../docs_src/security/tutorial003.py!}

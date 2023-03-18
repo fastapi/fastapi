@@ -253,7 +253,7 @@ You can also add a parameter `min_length`:
 === "Python 3.10+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="7"
     {!> ../../../docs_src/query_params_str_validations/tutorial003_py310.py!}
@@ -262,7 +262,7 @@ You can also add a parameter `min_length`:
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="10"
     {!> ../../../docs_src/query_params_str_validations/tutorial003.py!}
@@ -293,7 +293,7 @@ You can define a <abbr title="A regular expression, regex or regexp is a sequenc
 === "Python 3.10+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="9"
     {!> ../../../docs_src/query_params_str_validations/tutorial004_py310.py!}
@@ -302,7 +302,7 @@ You can define a <abbr title="A regular expression, regex or regexp is a sequenc
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="11"
     {!> ../../../docs_src/query_params_str_validations/tutorial004.py!}
@@ -339,7 +339,7 @@ Let's say that you want to declare the `q` query parameter to have a `min_length
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="7"
     {!> ../../../docs_src/query_params_str_validations/tutorial005.py!}
@@ -393,7 +393,7 @@ So, when you need to declare a value as required while using `Query`, you can si
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="7"
     {!> ../../../docs_src/query_params_str_validations/tutorial006.py!}
@@ -423,7 +423,7 @@ There's an alternative way to explicitly declare that a value is required. You c
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="7"
     {!> ../../../docs_src/query_params_str_validations/tutorial006b.py!}
@@ -463,7 +463,7 @@ To do that, you can declare that `None` is a valid type but still use `...` as t
 === "Python 3.10+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="7"
     {!> ../../../docs_src/query_params_str_validations/tutorial006c_py310.py!}
@@ -472,7 +472,7 @@ To do that, you can declare that `None` is a valid type but still use `...` as t
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="9"
     {!> ../../../docs_src/query_params_str_validations/tutorial006c.py!}
@@ -500,7 +500,7 @@ If you feel uncomfortable using `...`, you can also import and use `Required` fr
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="2  8"
     {!> ../../../docs_src/query_params_str_validations/tutorial006d.py!}
@@ -536,7 +536,7 @@ For example, to declare a query parameter `q` that can appear multiple times in 
 === "Python 3.10+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="7"
     {!> ../../../docs_src/query_params_str_validations/tutorial011_py310.py!}
@@ -545,7 +545,7 @@ For example, to declare a query parameter `q` that can appear multiple times in 
 === "Python 3.9+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="9"
     {!> ../../../docs_src/query_params_str_validations/tutorial011_py39.py!}
@@ -554,7 +554,7 @@ For example, to declare a query parameter `q` that can appear multiple times in 
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="9"
     {!> ../../../docs_src/query_params_str_validations/tutorial011.py!}
@@ -605,7 +605,7 @@ And you can also define a default `list` of values if none are provided:
 === "Python 3.9+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="7"
     {!> ../../../docs_src/query_params_str_validations/tutorial012_py39.py!}
@@ -614,7 +614,7 @@ And you can also define a default `list` of values if none are provided:
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="9"
     {!> ../../../docs_src/query_params_str_validations/tutorial012.py!}
@@ -656,7 +656,7 @@ You can also use `list` directly instead of `List[str]` (or `list[str]` in Pytho
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="7"
     {!> ../../../docs_src/query_params_str_validations/tutorial013.py!}
@@ -701,7 +701,7 @@ You can add a `title`:
 === "Python 3.10+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="8"
     {!> ../../../docs_src/query_params_str_validations/tutorial007_py310.py!}
@@ -710,7 +710,7 @@ You can add a `title`:
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="10"
     {!> ../../../docs_src/query_params_str_validations/tutorial007.py!}
@@ -739,7 +739,7 @@ And a `description`:
 === "Python 3.10+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="12"
     {!> ../../../docs_src/query_params_str_validations/tutorial008_py310.py!}
@@ -748,7 +748,7 @@ And a `description`:
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="13"
     {!> ../../../docs_src/query_params_str_validations/tutorial008.py!}
@@ -793,7 +793,7 @@ Then you can declare an `alias`, and that alias is what will be used to find the
 === "Python 3.10+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="7"
     {!> ../../../docs_src/query_params_str_validations/tutorial009_py310.py!}
@@ -802,7 +802,7 @@ Then you can declare an `alias`, and that alias is what will be used to find the
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="9"
     {!> ../../../docs_src/query_params_str_validations/tutorial009.py!}
@@ -837,7 +837,7 @@ Then pass the parameter `deprecated=True` to `Query`:
 === "Python 3.10+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="17"
     {!> ../../../docs_src/query_params_str_validations/tutorial010_py310.py!}
@@ -846,7 +846,7 @@ Then pass the parameter `deprecated=True` to `Query`:
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="18"
     {!> ../../../docs_src/query_params_str_validations/tutorial010.py!}
@@ -881,7 +881,7 @@ To exclude a query parameter from the generated OpenAPI schema (and thus, from t
 === "Python 3.10+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="8"
     {!> ../../../docs_src/query_params_str_validations/tutorial014_py310.py!}
@@ -890,7 +890,7 @@ To exclude a query parameter from the generated OpenAPI schema (and thus, from t
 === "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="10"
     {!> ../../../docs_src/query_params_str_validations/tutorial014.py!}
