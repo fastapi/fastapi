@@ -57,40 +57,40 @@ Using `BackgroundTasks` also works with the dependency injection system, you can
 
 **FastAPI** knows what to do in each case and how to re-use the same object, so that all the background tasks are merged together and are run in the background afterwards:
 
-=== "Python 3.6 and above"
-
-    ```Python hl_lines="14  16  23  26"
-    {!> ../../../docs_src/background_tasks/tutorial002_an.py!}
-    ```
-
-=== "Python 3.9 and above"
-
-    ```Python hl_lines="13  15  22  25"
-    {!> ../../../docs_src/background_tasks/tutorial002_an_py39.py!}
-    ```
-
-=== "Python 3.10 and above"
+=== "Python 3.10+"
 
     ```Python hl_lines="13  15  22  25"
     {!> ../../../docs_src/background_tasks/tutorial002_an_py310.py!}
     ```
 
-=== "Python 3.6 and above - non-Annotated"
-
-    !!! tip
-        Try to use the main, `Annotated` version better.
+=== "Python 3.9+"
 
     ```Python hl_lines="13  15  22  25"
-    {!> ../../../docs_src/background_tasks/tutorial002.py!}
+    {!> ../../../docs_src/background_tasks/tutorial002_an_py39.py!}
     ```
 
-=== "Python 3.10 and above - non-Annotated"
+=== "Python 3.6+"
+
+    ```Python hl_lines="14  16  23  26"
+    {!> ../../../docs_src/background_tasks/tutorial002_an.py!}
+    ```
+
+=== "Python 3.10+ non-Annotated"
 
     !!! tip
         Try to use the main, `Annotated` version better.
 
     ```Python hl_lines="11  13  20  23"
     {!> ../../../docs_src/background_tasks/tutorial002_py310.py!}
+    ```
+
+=== "Python 3.6+ non-Annotated"
+
+    !!! tip
+        Try to use the main, `Annotated` version better.
+
+    ```Python hl_lines="13  15  22  25"
+    {!> ../../../docs_src/background_tasks/tutorial002.py!}
     ```
 
 In this example, the messages will be written to the `log.txt` file *after* the response is sent.

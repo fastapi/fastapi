@@ -216,19 +216,19 @@ Notice that now we don't create a default instance `settings = Settings()`.
 
 Now we create a dependency that returns a new `config.Settings()`.
 
-=== "Python 3.6 and above"
-
-    ```Python hl_lines="6  12-13"
-    {!> ../../../docs_src/settings/app02_an/main.py!}
-    ```
-
-=== "Python 3.9 and above"
+=== "Python 3.9+"
 
     ```Python hl_lines="6  12-13"
     {!> ../../../docs_src/settings/app02_an_py39/main.py!}
     ```
 
-=== "Python 3.6 and above - non-Annotated"
+=== "Python 3.6+"
+
+    ```Python hl_lines="6  12-13"
+    {!> ../../../docs_src/settings/app02_an/main.py!}
+    ```
+
+=== "Python 3.6+ non-Annotated"
 
     !!! tip
         Try to use the main, `Annotated` version better.
@@ -244,19 +244,19 @@ Now we create a dependency that returns a new `config.Settings()`.
 
 And then we can require it from the *path operation function* as a dependency and use it anywhere we need it.
 
-=== "Python 3.6 and above"
-
-    ```Python hl_lines="17  19-21"
-    {!> ../../../docs_src/settings/app02_an/main.py!}
-    ```
-
-=== "Python 3.9 and above"
+=== "Python 3.9+"
 
     ```Python hl_lines="17  19-21"
     {!> ../../../docs_src/settings/app02_an_py39/main.py!}
     ```
 
-=== "Python 3.6 and above - non-Annotated"
+=== "Python 3.6+"
+
+    ```Python hl_lines="17  19-21"
+    {!> ../../../docs_src/settings/app02_an/main.py!}
+    ```
+
+=== "Python 3.6+ non-Annotated"
 
     !!! tip
         Try to use the main, `Annotated` version better.
@@ -338,19 +338,19 @@ we would create that object for each request, and we would be reading the `.env`
 
 But as we are using the `@lru_cache()` decorator on top, the `Settings` object will be created only once, the first time it's called. ✔️
 
-=== "Python 3.6 and above"
-
-    ```Python hl_lines="1  11"
-    {!> ../../../docs_src/settings/app03_an/main.py!}
-    ```
-
-=== "Python 3.9 and above"
+=== "Python 3.9+"
 
     ```Python hl_lines="1  11"
     {!> ../../../docs_src/settings/app03_an_py39/main.py!}
     ```
 
-=== "Python 3.6 and above - non-Annotated"
+=== "Python 3.6+"
+
+    ```Python hl_lines="1  11"
+    {!> ../../../docs_src/settings/app03_an/main.py!}
+    ```
+
+=== "Python 3.6+ non-Annotated"
 
     !!! tip
         Try to use the main, `Annotated` version better.

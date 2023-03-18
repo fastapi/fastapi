@@ -20,19 +20,19 @@ Let's first just use the code and see how it works, and then we'll come back to 
 
 Copy the example in a file `main.py`:
 
-=== "Python 3.6 and above"
-
-    ```Python
-    {!> ../../../docs_src/security/tutorial001_an.py!}
-    ```
-
-=== "Python 3.9 and above"
+=== "Python 3.9+"
 
     ```Python
     {!> ../../../docs_src/security/tutorial001_an_py39.py!}
     ```
 
-=== "Python 3.6 and above - non-Annotated"
+=== "Python 3.6+"
+
+    ```Python
+    {!> ../../../docs_src/security/tutorial001_an.py!}
+    ```
+
+=== "Python 3.6+ non-Annotated"
 
     !!! tip
         Try to use the main, `Annotated` version better.
@@ -134,19 +134,19 @@ In this example we are going to use **OAuth2**, with the **Password** flow, usin
 
 When we create an instance of the `OAuth2PasswordBearer` class we pass in the `tokenUrl` parameter. This parameter contains the URL that the client (the frontend running in the user's browser) will use to send the `username` and `password` in order to get a token.
 
-=== "Python 3.6 and above"
-
-    ```Python  hl_lines="7"
-    {!> ../../../docs_src/security/tutorial001_an.py!}
-    ```
-
-=== "Python 3.9 and above"
+=== "Python 3.9+"
 
     ```Python hl_lines="8"
     {!> ../../../docs_src/security/tutorial001_an_py39.py!}
     ```
 
-=== "Python 3.6 and above - non-Annotated"
+=== "Python 3.6+"
+
+    ```Python  hl_lines="7"
+    {!> ../../../docs_src/security/tutorial001_an.py!}
+    ```
+
+=== "Python 3.6+ non-Annotated"
 
     !!! tip
         Try to use the main, `Annotated` version better.
@@ -185,19 +185,19 @@ So, it can be used with `Depends`.
 
 Now you can pass that `oauth2_scheme` in a dependency with `Depends`.
 
-=== "Python 3.6 and above"
-
-    ```Python  hl_lines="11"
-    {!> ../../../docs_src/security/tutorial001_an.py!}
-    ```
-
-=== "Python 3.9 and above"
+=== "Python 3.9+"
 
     ```Python hl_lines="12"
     {!> ../../../docs_src/security/tutorial001_an_py39.py!}
     ```
 
-=== "Python 3.6 and above - non-Annotated"
+=== "Python 3.6+"
+
+    ```Python  hl_lines="11"
+    {!> ../../../docs_src/security/tutorial001_an.py!}
+    ```
+
+=== "Python 3.6+ non-Annotated"
 
     !!! tip
         Try to use the main, `Annotated` version better.

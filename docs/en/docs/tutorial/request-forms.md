@@ -11,19 +11,19 @@ When you need to receive form fields instead of JSON, you can use `Form`.
 
 Import `Form` from `fastapi`:
 
-=== "Python 3.6 and above"
-
-    ```Python hl_lines="1"
-    {!> ../../../docs_src/request_forms/tutorial001_an.py!}
-    ```
-
-=== "Python 3.9 and above"
+=== "Python 3.9+"
 
     ```Python hl_lines="3"
     {!> ../../../docs_src/request_forms/tutorial001_an_py39.py!}
     ```
 
-=== "Python 3.6 and above - non-Annotated"
+=== "Python 3.6+"
+
+    ```Python hl_lines="1"
+    {!> ../../../docs_src/request_forms/tutorial001_an.py!}
+    ```
+
+=== "Python 3.6+ non-Annotated"
 
     !!! tip
         Try to use the main, `Annotated` version better.
@@ -36,19 +36,19 @@ Import `Form` from `fastapi`:
 
 Create form parameters the same way you would for `Body` or `Query`:
 
-=== "Python 3.6 and above"
-
-    ```Python hl_lines="8"
-    {!> ../../../docs_src/request_forms/tutorial001_an.py!}
-    ```
-
-=== "Python 3.9 and above"
+=== "Python 3.9+"
 
     ```Python hl_lines="9"
     {!> ../../../docs_src/request_forms/tutorial001_an_py39.py!}
     ```
 
-=== "Python 3.6 and above - non-Annotated"
+=== "Python 3.6+"
+
+    ```Python hl_lines="8"
+    {!> ../../../docs_src/request_forms/tutorial001_an.py!}
+    ```
+
+=== "Python 3.6+ non-Annotated"
 
     !!! tip
         Try to use the main, `Annotated` version better.

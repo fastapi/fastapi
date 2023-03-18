@@ -14,40 +14,40 @@ But you also want it to accept new items. And when the items didn't exist before
 
 To achieve that, import `JSONResponse`, and return your content there directly, setting the `status_code` that you want:
 
-=== "Python 3.6 and above"
-
-    ```Python hl_lines="4  26"
-    {!> ../../../docs_src/additional_status_codes/tutorial001_an.py!}
-    ```
-
-=== "Python 3.9 and above"
-
-    ```Python hl_lines="4  25"
-    {!> ../../../docs_src/additional_status_codes/tutorial001_an_py39.py!}
-    ```
-
-=== "Python 3.10 and above"
+=== "Python 3.10+"
 
     ```Python hl_lines="4  25"
     {!> ../../../docs_src/additional_status_codes/tutorial001_an_py310.py!}
     ```
 
-=== "Python 3.6 and above - non-Annotated"
-
-    !!! tip
-        Try to use the main, `Annotated` version better.
+=== "Python 3.9+"
 
     ```Python hl_lines="4  25"
-    {!> ../../../docs_src/additional_status_codes/tutorial001.py!}
+    {!> ../../../docs_src/additional_status_codes/tutorial001_an_py39.py!}
     ```
 
-=== "Python 3.10 and above - non-Annotated"
+=== "Python 3.6+"
+
+    ```Python hl_lines="4  26"
+    {!> ../../../docs_src/additional_status_codes/tutorial001_an.py!}
+    ```
+
+=== "Python 3.10+ non-Annotated"
 
     !!! tip
         Try to use the main, `Annotated` version better.
 
     ```Python hl_lines="2  23"
     {!> ../../../docs_src/additional_status_codes/tutorial001_py310.py!}
+    ```
+
+=== "Python 3.6+ non-Annotated"
+
+    !!! tip
+        Try to use the main, `Annotated` version better.
+
+    ```Python hl_lines="4  25"
+    {!> ../../../docs_src/additional_status_codes/tutorial001.py!}
     ```
 
 !!! warning

@@ -6,34 +6,25 @@ In the same way that you can declare more validations and metadata for query par
 
 First, import `Path` from `fastapi`, and import `Annotated`:
 
-=== "Python 3.6 and above"
-
-    ```Python hl_lines="3-4"
-    {!> ../../../docs_src/path_params_numeric_validations/tutorial001_an.py!}
-    ```
-
-=== "Python 3.9 and above"
-
-    ```Python hl_lines="1  3"
-    {!> ../../../docs_src/path_params_numeric_validations/tutorial001_an_py39.py!}
-    ```
-
-=== "Python 3.10 and above"
+=== "Python 3.10+"
 
     ```Python hl_lines="1  3"
     {!> ../../../docs_src/path_params_numeric_validations/tutorial001_an_py310.py!}
     ```
 
-=== "Python 3.6 and above - non-Annotated"
+=== "Python 3.9+"
 
-    !!! tip
-        Try to use the main, `Annotated` version better.
-
-    ```Python hl_lines="3"
-    {!> ../../../docs_src/path_params_numeric_validations/tutorial001.py!}
+    ```Python hl_lines="1  3"
+    {!> ../../../docs_src/path_params_numeric_validations/tutorial001_an_py39.py!}
     ```
 
-=== "Python 3.10 and above - non-Annotated"
+=== "Python 3.6+"
+
+    ```Python hl_lines="3-4"
+    {!> ../../../docs_src/path_params_numeric_validations/tutorial001_an.py!}
+    ```
+
+=== "Python 3.10+ non-Annotated"
 
     !!! tip
         Try to use the main, `Annotated` version better.
@@ -42,46 +33,55 @@ First, import `Path` from `fastapi`, and import `Annotated`:
     {!> ../../../docs_src/path_params_numeric_validations/tutorial001_py310.py!}
     ```
 
+=== "Python 3.6+ non-Annotated"
+
+    !!! tip
+        Try to use the main, `Annotated` version better.
+
+    ```Python hl_lines="3"
+    {!> ../../../docs_src/path_params_numeric_validations/tutorial001.py!}
+    ```
+
 ## Declare metadata
 
 You can declare all the same parameters as for `Query`.
 
 For example, to declare a `title` metadata value for the path parameter `item_id` you can type:
 
-=== "Python 3.6 and above"
-
-    ```Python hl_lines="11"
-    {!> ../../../docs_src/path_params_numeric_validations/tutorial001_an.py!}
-    ```
-
-=== "Python 3.9 and above"
-
-    ```Python hl_lines="10"
-    {!> ../../../docs_src/path_params_numeric_validations/tutorial001_an_py39.py!}
-    ```
-
-=== "Python 3.10 and above"
+=== "Python 3.10+"
 
     ```Python hl_lines="10"
     {!> ../../../docs_src/path_params_numeric_validations/tutorial001_an_py310.py!}
     ```
 
-=== "Python 3.6 and above - non-Annotated"
-
-    !!! tip
-        Try to use the main, `Annotated` version better.
+=== "Python 3.9+"
 
     ```Python hl_lines="10"
-    {!> ../../../docs_src/path_params_numeric_validations/tutorial001.py!}
+    {!> ../../../docs_src/path_params_numeric_validations/tutorial001_an_py39.py!}
     ```
 
-=== "Python 3.10 and above - non-Annotated"
+=== "Python 3.6+"
+
+    ```Python hl_lines="11"
+    {!> ../../../docs_src/path_params_numeric_validations/tutorial001_an.py!}
+    ```
+
+=== "Python 3.10+ non-Annotated"
 
     !!! tip
         Try to use the main, `Annotated` version better.
 
     ```Python hl_lines="8"
     {!> ../../../docs_src/path_params_numeric_validations/tutorial001_py310.py!}
+    ```
+
+=== "Python 3.6+ non-Annotated"
+
+    !!! tip
+        Try to use the main, `Annotated` version better.
+
+    ```Python hl_lines="10"
+    {!> ../../../docs_src/path_params_numeric_validations/tutorial001.py!}
     ```
 
 !!! note
@@ -110,7 +110,7 @@ It doesn't matter for **FastAPI**. It will detect the parameters by their names,
 
 So, you can declare your function as:
 
-=== "Python 3.6 - non-Annotated"
+=== "Python 3.6 non-Annotated"
 
     !!! tip
         Try to use the main, `Annotated` version better.
@@ -121,16 +121,16 @@ So, you can declare your function as:
 
 But have in mind that if you use `Annotated`, you won't have this problem, it won't matter as you're not using the function parameter default values for `Query()` or `Path()`.
 
-=== "Python 3.6 and above"
-
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/path_params_numeric_validations/tutorial002_an.py!}
-    ```
-
-=== "Python 3.9 and above"
+=== "Python 3.9+"
 
     ```Python hl_lines="10"
     {!> ../../../docs_src/path_params_numeric_validations/tutorial002_an_py39.py!}
+    ```
+
+=== "Python 3.6+"
+
+    ```Python hl_lines="9"
+    {!> ../../../docs_src/path_params_numeric_validations/tutorial002_an.py!}
     ```
 
 ## Order the parameters as you need, tricks
@@ -161,16 +161,16 @@ Python won't do anything with that `*`, but it will know that all the following 
 
 Have in mind that if you use `Annotated`, as you are not using function parameter default values, you won't have this problem, and yo probably won't need to use `*`.
 
-=== "Python 3.6 and above"
-
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/path_params_numeric_validations/tutorial003_an.py!}
-    ```
-
-=== "Python 3.9 and above"
+=== "Python 3.9+"
 
     ```Python hl_lines="10"
     {!> ../../../docs_src/path_params_numeric_validations/tutorial003_an_py39.py!}
+    ```
+
+=== "Python 3.6+"
+
+    ```Python hl_lines="9"
+    {!> ../../../docs_src/path_params_numeric_validations/tutorial003_an.py!}
     ```
 
 ## Number validations: greater than or equal
@@ -179,19 +179,19 @@ With `Query` and `Path` (and others you'll see later) you can declare number con
 
 Here, with `ge=1`, `item_id` will need to be an integer number "`g`reater than or `e`qual" to `1`.
 
-=== "Python 3.6 and above"
-
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/path_params_numeric_validations/tutorial004_an.py!}
-    ```
-
-=== "Python 3.9 and above"
+=== "Python 3.9+"
 
     ```Python hl_lines="10"
     {!> ../../../docs_src/path_params_numeric_validations/tutorial004_an_py39.py!}
     ```
 
-=== "Python 3.6 and above - non-Annotated"
+=== "Python 3.6+"
+
+    ```Python hl_lines="9"
+    {!> ../../../docs_src/path_params_numeric_validations/tutorial004_an.py!}
+    ```
+
+=== "Python 3.6+ non-Annotated"
 
     !!! tip
         Try to use the main, `Annotated` version better.
@@ -207,19 +207,19 @@ The same applies for:
 * `gt`: `g`reater `t`han
 * `le`: `l`ess than or `e`qual
 
-=== "Python 3.6 and above"
-
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/path_params_numeric_validations/tutorial005_an.py!}
-    ```
-
-=== "Python 3.9 and above"
+=== "Python 3.9+"
 
     ```Python hl_lines="10"
     {!> ../../../docs_src/path_params_numeric_validations/tutorial005_an_py39.py!}
     ```
 
-=== "Python 3.6 and above - non-Annotated"
+=== "Python 3.6+"
+
+    ```Python hl_lines="9"
+    {!> ../../../docs_src/path_params_numeric_validations/tutorial005_an.py!}
+    ```
+
+=== "Python 3.6+ non-Annotated"
 
     !!! tip
         Try to use the main, `Annotated` version better.
@@ -238,19 +238,19 @@ So, `0.5` would be a valid value. But `0.0` or `0` would not.
 
 And the same for <abbr title="less than"><code>lt</code></abbr>.
 
-=== "Python 3.6 and above"
-
-    ```Python hl_lines="12"
-    {!> ../../../docs_src/path_params_numeric_validations/tutorial006_an.py!}
-    ```
-
-=== "Python 3.9 and above"
+=== "Python 3.9+"
 
     ```Python hl_lines="13"
     {!> ../../../docs_src/path_params_numeric_validations/tutorial006_an_py39.py!}
     ```
 
-=== "Python 3.6 and above - non-Annotated"
+=== "Python 3.6+"
+
+    ```Python hl_lines="12"
+    {!> ../../../docs_src/path_params_numeric_validations/tutorial006_an.py!}
+    ```
+
+=== "Python 3.6+ non-Annotated"
 
     !!! tip
         Try to use the main, `Annotated` version better.

@@ -66,19 +66,19 @@ You can have sub-dependencies and "trees" of sub-dependencies of any size and sh
 
 For example, `dependency_c` can have a dependency on `dependency_b`, and `dependency_b` on `dependency_a`:
 
-=== "Python 3.6 and above"
-
-    ```Python hl_lines="5  13  21"
-    {!> ../../../docs_src/dependencies/tutorial008_an.py!}
-    ```
-
-=== "Python 3.9 and above"
+=== "Python 3.9+"
 
     ```Python hl_lines="6  14  22"
     {!> ../../../docs_src/dependencies/tutorial008_an_py39.py!}
     ```
 
-=== "Python 3.6 and above - non-Annotated"
+=== "Python 3.6+"
+
+    ```Python hl_lines="5  13  21"
+    {!> ../../../docs_src/dependencies/tutorial008_an.py!}
+    ```
+
+=== "Python 3.6+ non-Annotated"
 
     !!! tip
         Try to use the main, `Annotated` version better.
@@ -93,19 +93,19 @@ In this case `dependency_c`, to execute its exit code, needs the value from `dep
 
 And, in turn, `dependency_b` needs the value from `dependency_a` (here named `dep_a`) to be available for its exit code.
 
-=== "Python 3.6 and above"
-
-    ```Python hl_lines="17-18  25-26"
-    {!> ../../../docs_src/dependencies/tutorial008_an.py!}
-    ```
-
-=== "Python 3.9 and above"
+=== "Python 3.9+"
 
     ```Python hl_lines="18-19  26-27"
     {!> ../../../docs_src/dependencies/tutorial008_an_py39.py!}
     ```
 
-=== "Python 3.6 and above - non-Annotated"
+=== "Python 3.6+"
+
+    ```Python hl_lines="17-18  25-26"
+    {!> ../../../docs_src/dependencies/tutorial008_an.py!}
+    ```
+
+=== "Python 3.6+ non-Annotated"
 
     !!! tip
         Try to use the main, `Annotated` version better.

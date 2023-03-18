@@ -112,40 +112,40 @@ In WebSocket endpoints you can import from `fastapi` and use:
 
 They work the same way as for other FastAPI endpoints/*path operations*:
 
-=== "Python 3.6 and above"
-
-    ```Python hl_lines="69-70  83"
-    {!> ../../../docs_src/websockets/tutorial002_an.py!}
-    ```
-
-=== "Python 3.9 and above"
-
-    ```Python hl_lines="68-69  82"
-    {!> ../../../docs_src/websockets/tutorial002_an_py39.py!}
-    ```
-
-=== "Python 3.10 and above"
+=== "Python 3.10+"
 
     ```Python hl_lines="68-69  82"
     {!> ../../../docs_src/websockets/tutorial002_an_py310.py!}
     ```
 
-=== "Python 3.6 and above - non-Annotated"
+=== "Python 3.9+"
 
-    !!! tip
-        Try to use the main, `Annotated` version better.
-
-    ```Python hl_lines="68-69  81"
-    {!> ../../../docs_src/websockets/tutorial002.py!}
+    ```Python hl_lines="68-69  82"
+    {!> ../../../docs_src/websockets/tutorial002_an_py39.py!}
     ```
 
-=== "Python 3.10 and above - non-Annotated"
+=== "Python 3.6+"
+
+    ```Python hl_lines="69-70  83"
+    {!> ../../../docs_src/websockets/tutorial002_an.py!}
+    ```
+
+=== "Python 3.10+ non-Annotated"
 
     !!! tip
         Try to use the main, `Annotated` version better.
 
     ```Python hl_lines="66-67  79"
     {!> ../../../docs_src/websockets/tutorial002_py310.py!}
+    ```
+
+=== "Python 3.6+ non-Annotated"
+
+    !!! tip
+        Try to use the main, `Annotated` version better.
+
+    ```Python hl_lines="68-69  81"
+    {!> ../../../docs_src/websockets/tutorial002.py!}
     ```
 
 !!! info
@@ -185,16 +185,16 @@ With that you can connect the WebSocket and then send and receive messages:
 
 When a WebSocket connection is closed, the `await websocket.receive_text()` will raise a `WebSocketDisconnect` exception, which you can then catch and handle like in this example.
 
-=== "Python 3.6 and above"
-
-    ```Python hl_lines="81-83"
-    {!> ../../../docs_src/websockets/tutorial003.py!}
-    ```
-
-=== "Python 3.9 and above"
+=== "Python 3.9+"
 
     ```Python hl_lines="79-81"
     {!> ../../../docs_src/websockets/tutorial003_py39.py!}
+    ```
+
+=== "Python 3.6+"
+
+    ```Python hl_lines="81-83"
+    {!> ../../../docs_src/websockets/tutorial003.py!}
     ```
 
 To try it out:

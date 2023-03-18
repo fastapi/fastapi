@@ -10,40 +10,40 @@ They can be as **deep** as you need them to be.
 
 You could create a first dependency ("dependable") like:
 
-=== "Python 3.6 and above"
-
-    ```Python hl_lines="9-10"
-    {!> ../../../docs_src/dependencies/tutorial005_an.py!}
-    ```
-
-=== "Python 3.9 and above"
-
-    ```Python hl_lines="8-9"
-    {!> ../../../docs_src/dependencies/tutorial005_an_py39.py!}
-    ```
-
-=== "Python 3.10 and above"
+=== "Python 3.10+"
 
     ```Python hl_lines="8-9"
     {!> ../../../docs_src/dependencies/tutorial005_an_py310.py!}
     ```
 
-=== "Python 3.6 - non-Annotated"
-
-    !!! tip
-        Try to use the main, `Annotated` version better.
+=== "Python 3.9+"
 
     ```Python hl_lines="8-9"
-    {!> ../../../docs_src/dependencies/tutorial005.py!}
+    {!> ../../../docs_src/dependencies/tutorial005_an_py39.py!}
     ```
 
-=== "Python 3.10 - non-Annotated"
+=== "Python 3.6+"
+
+    ```Python hl_lines="9-10"
+    {!> ../../../docs_src/dependencies/tutorial005_an.py!}
+    ```
+
+=== "Python 3.10 non-Annotated"
 
     !!! tip
         Try to use the main, `Annotated` version better.
 
     ```Python hl_lines="6-7"
     {!> ../../../docs_src/dependencies/tutorial005_py310.py!}
+    ```
+
+=== "Python 3.6 non-Annotated"
+
+    !!! tip
+        Try to use the main, `Annotated` version better.
+
+    ```Python hl_lines="8-9"
+    {!> ../../../docs_src/dependencies/tutorial005.py!}
     ```
 
 It declares an optional query parameter `q` as a `str`, and then it just returns it.
@@ -54,40 +54,40 @@ This is quite simple (not very useful), but will help us focus on how the sub-de
 
 Then you can create another dependency function (a "dependable") that at the same time declares a dependency of its own (so it is a "dependant" too):
 
-=== "Python 3.6 and above"
-
-    ```Python hl_lines="14"
-    {!> ../../../docs_src/dependencies/tutorial005_an.py!}
-    ```
-
-=== "Python 3.9 and above"
-
-    ```Python hl_lines="13"
-    {!> ../../../docs_src/dependencies/tutorial005_an_py39.py!}
-    ```
-
-=== "Python 3.10 and above"
+=== "Python 3.10+"
 
     ```Python hl_lines="13"
     {!> ../../../docs_src/dependencies/tutorial005_an_py310.py!}
     ```
 
-=== "Python 3.6 - non-Annotated"
-
-    !!! tip
-        Try to use the main, `Annotated` version better.
+=== "Python 3.9+"
 
     ```Python hl_lines="13"
-    {!> ../../../docs_src/dependencies/tutorial005.py!}
+    {!> ../../../docs_src/dependencies/tutorial005_an_py39.py!}
     ```
 
-=== "Python 3.10 - non-Annotated"
+=== "Python 3.6+"
+
+    ```Python hl_lines="14"
+    {!> ../../../docs_src/dependencies/tutorial005_an.py!}
+    ```
+
+=== "Python 3.10 non-Annotated"
 
     !!! tip
         Try to use the main, `Annotated` version better.
 
     ```Python hl_lines="11"
     {!> ../../../docs_src/dependencies/tutorial005_py310.py!}
+    ```
+
+=== "Python 3.6 non-Annotated"
+
+    !!! tip
+        Try to use the main, `Annotated` version better.
+
+    ```Python hl_lines="13"
+    {!> ../../../docs_src/dependencies/tutorial005.py!}
     ```
 
 Let's focus on the parameters declared:
@@ -101,40 +101,40 @@ Let's focus on the parameters declared:
 
 Then we can use the dependency with:
 
-=== "Python 3.6 and above"
-
-    ```Python hl_lines="24"
-    {!> ../../../docs_src/dependencies/tutorial005_an.py!}
-    ```
-
-=== "Python 3.9 and above"
-
-    ```Python hl_lines="23"
-    {!> ../../../docs_src/dependencies/tutorial005_an_py39.py!}
-    ```
-
-=== "Python 3.10 and above"
+=== "Python 3.10+"
 
     ```Python hl_lines="23"
     {!> ../../../docs_src/dependencies/tutorial005_an_py310.py!}
     ```
 
-=== "Python 3.6 - non-Annotated"
+=== "Python 3.9+"
 
-    !!! tip
-        Try to use the main, `Annotated` version better.
-
-    ```Python hl_lines="22"
-    {!> ../../../docs_src/dependencies/tutorial005.py!}
+    ```Python hl_lines="23"
+    {!> ../../../docs_src/dependencies/tutorial005_an_py39.py!}
     ```
 
-=== "Python 3.10 - non-Annotated"
+=== "Python 3.6+"
+
+    ```Python hl_lines="24"
+    {!> ../../../docs_src/dependencies/tutorial005_an.py!}
+    ```
+
+=== "Python 3.10 non-Annotated"
 
     !!! tip
         Try to use the main, `Annotated` version better.
 
     ```Python hl_lines="19"
     {!> ../../../docs_src/dependencies/tutorial005_py310.py!}
+    ```
+
+=== "Python 3.6 non-Annotated"
+
+    !!! tip
+        Try to use the main, `Annotated` version better.
+
+    ```Python hl_lines="22"
+    {!> ../../../docs_src/dependencies/tutorial005.py!}
     ```
 
 !!! info
@@ -161,14 +161,14 @@ And it will save the returned value in a <abbr title="A utility/system to store 
 
 In an advanced scenario where you know you need the dependency to be called at every step (possibly multiple times) in the same request instead of using the "cached" value, you can set the parameter `use_cache=False` when using `Depends`:
 
-=== "Python 3.6 and above"
+=== "Python 3.6+"
 
     ```Python hl_lines="1"
     async def needy_dependency(fresh_value: Annotated[str, Depends(get_value, use_cache=False)]):
         return {"fresh_value": fresh_value}
     ```
 
-=== "Python 3.6 and above - non-Annotated"
+=== "Python 3.6+ non-Annotated"
 
     !!! tip
         Try to use the main, `Annotated` version better.
