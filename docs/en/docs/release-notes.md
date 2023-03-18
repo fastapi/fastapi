@@ -3,6 +3,8 @@
 ## Latest Changes
 
 
+## 0.95.0
+
 ### Highlights
 
 This release adds support for dependencies and parameters using `Annotated` and recommends its usage. ✨
