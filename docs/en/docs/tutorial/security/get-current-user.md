@@ -2,9 +2,26 @@
 
 In the previous chapter the security system (which is based on the dependency injection system) was giving the *path operation function* a `token` as a `str`:
 
-```Python hl_lines="10"
-{!../../../docs_src/security/tutorial001.py!}
-```
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="11"
+    {!> ../../../docs_src/security/tutorial001_an.py!}
+    ```
+
+=== "Python 3.9 and above"
+
+    ```Python hl_lines="12"
+    {!> ../../../docs_src/security/tutorial001_an_py39.py!}
+    ```
+
+=== "Python 3.6 and above - non-Annotated"
+
+    !!! tip
+        Try to use the main, `Annotated` version better.
+
+    ```Python hl_lines="10"
+    {!> ../../../docs_src/security/tutorial001.py!}
+    ```
 
 But that is still not that useful.
 
@@ -18,11 +35,35 @@ The same way we use Pydantic to declare bodies, we can use it anywhere else:
 
 === "Python 3.6 and above"
 
+    ```Python hl_lines="5  13-17"
+    {!> ../../../docs_src/security/tutorial002_an.py!}
+    ```
+
+=== "Python 3.9 and above"
+
+    ```Python hl_lines="5  12-16"
+    {!> ../../../docs_src/security/tutorial002_an_py39.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="5  12-16"
+    {!> ../../../docs_src/security/tutorial002_an_py310.py!}
+    ```
+
+=== "Python 3.6 and above - non-Annotated"
+
+    !!! tip
+        Try to use the main, `Annotated` version better.
+
     ```Python hl_lines="5  12-16"
     {!> ../../../docs_src/security/tutorial002.py!}
     ```
 
-=== "Python 3.10 and above"
+=== "Python 3.10 and above - non-Annotated"
+
+    !!! tip
+        Try to use the main, `Annotated` version better.
 
     ```Python hl_lines="3  10-14"
     {!> ../../../docs_src/security/tutorial002_py310.py!}
@@ -40,11 +81,35 @@ The same as we were doing before in the *path operation* directly, our new depen
 
 === "Python 3.6 and above"
 
+    ```Python hl_lines="26"
+    {!> ../../../docs_src/security/tutorial002_an.py!}
+    ```
+
+=== "Python 3.9 and above"
+
+    ```Python hl_lines="25"
+    {!> ../../../docs_src/security/tutorial002_an_py39.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="25"
+    {!> ../../../docs_src/security/tutorial002_an_py310.py!}
+    ```
+
+=== "Python 3.6 and above - non-Annotated"
+
+    !!! tip
+        Try to use the main, `Annotated` version better.
+
     ```Python hl_lines="25"
     {!> ../../../docs_src/security/tutorial002.py!}
     ```
 
-=== "Python 3.10 and above"
+=== "Python 3.10 and above - non-Annotated"
+
+    !!! tip
+        Try to use the main, `Annotated` version better.
 
     ```Python hl_lines="23"
     {!> ../../../docs_src/security/tutorial002_py310.py!}
@@ -56,11 +121,35 @@ The same as we were doing before in the *path operation* directly, our new depen
 
 === "Python 3.6 and above"
 
+    ```Python hl_lines="20-23  27-28"
+    {!> ../../../docs_src/security/tutorial002_an.py!}
+    ```
+
+=== "Python 3.9 and above"
+
+    ```Python hl_lines="19-22  26-27"
+    {!> ../../../docs_src/security/tutorial002_an_py39.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="19-22  26-27"
+    {!> ../../../docs_src/security/tutorial002_an_py310.py!}
+    ```
+
+=== "Python 3.6 and above - non-Annotated"
+
+    !!! tip
+        Try to use the main, `Annotated` version better.
+
     ```Python hl_lines="19-22  26-27"
     {!> ../../../docs_src/security/tutorial002.py!}
     ```
 
-=== "Python 3.10 and above"
+=== "Python 3.10 and above - non-Annotated"
+
+    !!! tip
+        Try to use the main, `Annotated` version better.
 
     ```Python hl_lines="17-20  24-25"
     {!> ../../../docs_src/security/tutorial002_py310.py!}
@@ -72,11 +161,35 @@ So now we can use the same `Depends` with our `get_current_user` in the *path op
 
 === "Python 3.6 and above"
 
+    ```Python hl_lines="32"
+    {!> ../../../docs_src/security/tutorial002_an.py!}
+    ```
+
+=== "Python 3.9 and above"
+
+    ```Python hl_lines="31"
+    {!> ../../../docs_src/security/tutorial002_an_py39.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="31"
+    {!> ../../../docs_src/security/tutorial002_an_py310.py!}
+    ```
+
+=== "Python 3.6 and above - non-Annotated"
+
+    !!! tip
+        Try to use the main, `Annotated` version better.
+
     ```Python hl_lines="31"
     {!> ../../../docs_src/security/tutorial002.py!}
     ```
 
-=== "Python 3.10 and above"
+=== "Python 3.10 and above - non-Annotated"
+
+    !!! tip
+        Try to use the main, `Annotated` version better.
 
     ```Python hl_lines="29"
     {!> ../../../docs_src/security/tutorial002_py310.py!}
@@ -130,11 +243,35 @@ And all these thousands of *path operations* can be as small as 3 lines:
 
 === "Python 3.6 and above"
 
+    ```Python hl_lines="31-33"
+    {!> ../../../docs_src/security/tutorial002_an.py!}
+    ```
+
+=== "Python 3.9 and above"
+
+    ```Python hl_lines="30-32"
+    {!> ../../../docs_src/security/tutorial002_an_py39.py!}
+    ```
+
+=== "Python 3.10 and above"
+
+    ```Python hl_lines="30-32"
+    {!> ../../../docs_src/security/tutorial002_an_py310.py!}
+    ```
+
+=== "Python 3.6 and above - non-Annotated"
+
+    !!! tip
+        Try to use the main, `Annotated` version better.
+
     ```Python hl_lines="30-32"
     {!> ../../../docs_src/security/tutorial002.py!}
     ```
 
-=== "Python 3.10 and above"
+=== "Python 3.10 and above - non-Annotated"
+
+    !!! tip
+        Try to use the main, `Annotated` version better.
 
     ```Python hl_lines="28-30"
     {!> ../../../docs_src/security/tutorial002_py310.py!}

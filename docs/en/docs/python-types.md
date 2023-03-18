@@ -1,8 +1,8 @@
 # Python Types Intro
 
-Python has support for optional "type hints".
+Python has support for optional "type hints" (also called "type annotations").
 
-These **"type hints"** are a special syntax that allow declaring the <abbr title="for example: str, int, float, bool">type</abbr> of a variable.
+These **"type hints"** or annotations are a special syntax that allow declaring the <abbr title="for example: str, int, float, bool">type</abbr> of a variable.
 
 By declaring types for your variables, editors and tools can give you better support.
 
@@ -422,6 +422,10 @@ And then, again, you get all the editor support:
 
 <img src="/img/python-types/image06.png">
 
+Notice that this means "`one_person` is an **instance** of the class `Person`".
+
+It doesn't mean "`one_person` is the **class** called `Person`".
+
 ## Pydantic models
 
 <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> is a Python library to perform data validation.
@@ -463,6 +467,43 @@ You will see a lot more of all this in practice in the [Tutorial - User Guide](t
 
 !!! tip
     Pydantic has a special behavior when you use `Optional` or `Union[Something, None]` without a default value, you can read more about it in the Pydantic docs about <a href="https://pydantic-docs.helpmanual.io/usage/models/#required-optional-fields" class="external-link" target="_blank">Required Optional fields</a>.
+
+## Type Hints with Metadata Annotations
+
+Python also has a feature that allows putting **additional metadata** in these type hints using `Annotated`.
+
+=== "Python 3.7 and above"
+
+    In versions below Python 3.9, you import `Annotated` from `typing_extensions`.
+
+    It will already be installed with **FastAPI**.
+
+    ```Python hl_lines="1  4"
+    {!> ../../../docs_src/python_types/tutorial013.py!}
+    ```
+
+=== "Python 3.9 and above"
+
+    In Python 3.9, `Annotated` is part of the standard library, so you can import it from `typing`.
+
+    ```Python hl_lines="1  4"
+    {!> ../../../docs_src/python_types/tutorial013_py39.py!}
+    ```
+
+Python itself doesn't do anything with this `Annotated`. And for editors and other tools, the type is still `str`.
+
+But you can use this space in `Annotated` to provide **FastAPI** with additional metadata about how you want your application to behave.
+
+The important thing to remember is that **the first *type parameter*** you pass to `Annotated` is the **actual type**. The rest, is just metadata for other tools.
+
+For now, you just need to know that `Annotated` exists, and that it's standard Python. 😎
+
+Later you will see how **powerful** it can be.
+
+!!! tip
+    The fact that this is **standard Python** means that you will still get the **best possible developer experience** in your editor, with the tools you use to analyze and refactor your code, etc. ✨
+
+    And also that your code will be very compatible with many other Python tools and libraries. 🚀
 
 ## Type hints in **FastAPI**
 

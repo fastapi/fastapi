@@ -216,9 +216,26 @@ Notice that now we don't create a default instance `settings = Settings()`.
 
 Now we create a dependency that returns a new `config.Settings()`.
 
-```Python hl_lines="5  11-12"
-{!../../../docs_src/settings/app02/main.py!}
-```
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="6  12-13"
+    {!> ../../../docs_src/settings/app02_an/main.py!}
+    ```
+
+=== "Python 3.9 and above"
+
+    ```Python hl_lines="6  12-13"
+    {!> ../../../docs_src/settings/app02_an_py39/main.py!}
+    ```
+
+=== "Python 3.6 and above - non-Annotated"
+
+    !!! tip
+        Try to use the main, `Annotated` version better.
+
+    ```Python hl_lines="5  11-12"
+    {!> ../../../docs_src/settings/app02/main.py!}
+    ```
 
 !!! tip
     We'll discuss the `@lru_cache()` in a bit.
@@ -227,9 +244,26 @@ Now we create a dependency that returns a new `config.Settings()`.
 
 And then we can require it from the *path operation function* as a dependency and use it anywhere we need it.
 
-```Python hl_lines="16  18-20"
-{!../../../docs_src/settings/app02/main.py!}
-```
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="17  19-21"
+    {!> ../../../docs_src/settings/app02_an/main.py!}
+    ```
+
+=== "Python 3.9 and above"
+
+    ```Python hl_lines="17  19-21"
+    {!> ../../../docs_src/settings/app02_an_py39/main.py!}
+    ```
+
+=== "Python 3.6 and above - non-Annotated"
+
+    !!! tip
+        Try to use the main, `Annotated` version better.
+
+    ```Python hl_lines="16  18-20"
+    {!> ../../../docs_src/settings/app02/main.py!}
+    ```
 
 ### Settings and testing
 
@@ -304,9 +338,26 @@ we would create that object for each request, and we would be reading the `.env`
 
 But as we are using the `@lru_cache()` decorator on top, the `Settings` object will be created only once, the first time it's called. ✔️
 
-```Python hl_lines="1  10"
-{!../../../docs_src/settings/app03/main.py!}
-```
+=== "Python 3.6 and above"
+
+    ```Python hl_lines="1  11"
+    {!> ../../../docs_src/settings/app03_an/main.py!}
+    ```
+
+=== "Python 3.9 and above"
+
+    ```Python hl_lines="1  11"
+    {!> ../../../docs_src/settings/app03_an_py39/main.py!}
+    ```
+
+=== "Python 3.6 and above - non-Annotated"
+
+    !!! tip
+        Try to use the main, `Annotated` version better.
+
+    ```Python hl_lines="1  10"
+    {!> ../../../docs_src/settings/app03/main.py!}
+    ```
 
 Then for any subsequent calls of `get_settings()` in the dependencies for the next requests, instead of executing the internal code of `get_settings()` and creating a new `Settings` object, it will return the same object that was returned on the first call, again and again.
 

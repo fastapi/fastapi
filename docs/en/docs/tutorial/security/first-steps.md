@@ -20,9 +20,27 @@ Let's first just use the code and see how it works, and then we'll come back to 
 
 Copy the example in a file `main.py`:
 
-```Python
-{!../../../docs_src/security/tutorial001.py!}
-```
+=== "Python 3.6 and above"
+
+    ```Python
+    {!> ../../../docs_src/security/tutorial001_an.py!}
+    ```
+
+=== "Python 3.9 and above"
+
+    ```Python
+    {!> ../../../docs_src/security/tutorial001_an_py39.py!}
+    ```
+
+=== "Python 3.6 and above - non-Annotated"
+
+    !!! tip
+        Try to use the main, `Annotated` version better.
+
+    ```Python
+    {!> ../../../docs_src/security/tutorial001.py!}
+    ```
+
 
 ## Run it
 
@@ -116,9 +134,26 @@ In this example we are going to use **OAuth2**, with the **Password** flow, usin
 
 When we create an instance of the `OAuth2PasswordBearer` class we pass in the `tokenUrl` parameter. This parameter contains the URL that the client (the frontend running in the user's browser) will use to send the `username` and `password` in order to get a token.
 
-```Python hl_lines="6"
-{!../../../docs_src/security/tutorial001.py!}
-```
+=== "Python 3.6 and above"
+
+    ```Python  hl_lines="7"
+    {!> ../../../docs_src/security/tutorial001_an.py!}
+    ```
+
+=== "Python 3.9 and above"
+
+    ```Python hl_lines="8"
+    {!> ../../../docs_src/security/tutorial001_an_py39.py!}
+    ```
+
+=== "Python 3.6 and above - non-Annotated"
+
+    !!! tip
+        Try to use the main, `Annotated` version better.
+
+    ```Python hl_lines="6"
+    {!> ../../../docs_src/security/tutorial001.py!}
+    ```
 
 !!! tip
     Here `tokenUrl="token"` refers to a relative URL `token` that we haven't created yet. As it's a relative URL, it's equivalent to `./token`.
@@ -150,9 +185,26 @@ So, it can be used with `Depends`.
 
 Now you can pass that `oauth2_scheme` in a dependency with `Depends`.
 
-```Python hl_lines="10"
-{!../../../docs_src/security/tutorial001.py!}
-```
+=== "Python 3.6 and above"
+
+    ```Python  hl_lines="11"
+    {!> ../../../docs_src/security/tutorial001_an.py!}
+    ```
+
+=== "Python 3.9 and above"
+
+    ```Python hl_lines="12"
+    {!> ../../../docs_src/security/tutorial001_an_py39.py!}
+    ```
+
+=== "Python 3.6 and above - non-Annotated"
+
+    !!! tip
+        Try to use the main, `Annotated` version better.
+
+    ```Python hl_lines="10"
+    {!> ../../../docs_src/security/tutorial001.py!}
+    ```
 
 This dependency will provide a `str` that is assigned to the parameter `token` of the *path operation function*.
 
