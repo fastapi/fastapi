@@ -6,13 +6,13 @@ Você pode definir parâmetros de Cabeçalho da mesma maneira que define paramê
 
 Primeiro importe `Header`:
 
-=== "Python 3.6 and above"
+=== "Python 3.6+"
 
     ```Python hl_lines="3"
     {!> ../../../docs_src/header_params/tutorial001.py!}
     ```
 
-=== "Python 3.10 and above"
+=== "Python 3.10+"
 
     ```Python hl_lines="1"
     {!> ../../../docs_src/header_params/tutorial001_py310.py!}
@@ -24,13 +24,13 @@ Então declare os paramêtros de cabeçalho usando a mesma estrutura que em `Pat
 
 O primeiro valor é o valor padrão, você pode passar todas as validações adicionais ou parâmetros de anotação:
 
-=== "Python 3.6 and above"
+=== "Python 3.6+"
 
     ```Python hl_lines="9"
     {!> ../../../docs_src/header_params/tutorial001.py!}
     ```
 
-=== "Python 3.10 and above"
+=== "Python 3.10+"
 
     ```Python hl_lines="7"
     {!> ../../../docs_src/header_params/tutorial001_py310.py!}
@@ -60,13 +60,13 @@ Portanto, você pode usar `user_agent` como faria normalmente no código Python,
 
 Se por algum motivo você precisar desabilitar a conversão automática de sublinhados para hífens, defina o parâmetro `convert_underscores` de `Header` para `False`:
 
-=== "Python 3.6 and above"
+=== "Python 3.6+"
 
     ```Python hl_lines="10"
     {!> ../../../docs_src/header_params/tutorial002.py!}
     ```
 
-=== "Python 3.10 and above"
+=== "Python 3.10+"
 
     ```Python hl_lines="8"
     {!> ../../../docs_src/header_params/tutorial002_py310.py!}
@@ -85,19 +85,19 @@ Você receberá todos os valores do cabeçalho duplicado como uma `list` Python.
 
 Por exemplo, para declarar um cabeçalho de `X-Token` que pode aparecer mais de uma vez, você pode escrever:
 
-=== "Python 3.6 and above"
+=== "Python 3.6+"
 
     ```Python hl_lines="9"
     {!> ../../../docs_src/header_params/tutorial003.py!}
     ```
 
-=== "Python 3.9 and above"
+=== "Python 3.9+"
 
     ```Python hl_lines="9"
     {!> ../../../docs_src/header_params/tutorial003_py39.py!}
     ```
 
-=== "Python 3.10 and above"
+=== "Python 3.10+"
 
     ```Python hl_lines="7"
     {!> ../../../docs_src/header_params/tutorial003_py310.py!}

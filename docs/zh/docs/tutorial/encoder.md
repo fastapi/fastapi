@@ -20,13 +20,13 @@
 
 它接收一个对象，比如Pydantic模型，并会返回一个JSON兼容的版本：
 
-=== "Python 3.6 and above"
+=== "Python 3.6+"
 
     ```Python hl_lines="5  22"
     {!> ../../../docs_src/encoder/tutorial001.py!}
     ```
 
-=== "Python 3.10 and above"
+=== "Python 3.10+"
 
     ```Python hl_lines="4  21"
     {!> ../../../docs_src/encoder/tutorial001_py310.py!}

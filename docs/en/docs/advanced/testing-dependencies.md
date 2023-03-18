@@ -28,25 +28,25 @@ To override a dependency for testing, you put as a key the original dependency (
 
 And then **FastAPI** will call that override instead of the original dependency.
 
-=== "Python 3.6 and above"
+=== "Python 3.6+"
 
     ```Python hl_lines="29-30  33"
     {!> ../../../docs_src/dependency_testing/tutorial001_an.py!}
     ```
 
-=== "Python 3.9 and above"
+=== "Python 3.9+"
 
     ```Python hl_lines="28-29  32"
     {!> ../../../docs_src/dependency_testing/tutorial001_an_py39.py!}
     ```
 
-=== "Python 3.10 and above"
+=== "Python 3.10+"
 
     ```Python hl_lines="26-27  30"
     {!> ../../../docs_src/dependency_testing/tutorial001_an_py310.py!}
     ```
 
-=== "Python 3.6 and above - non-Annotated"
+=== "Python 3.6+ non-Annotated"
 
     !!! tip
         Try to use the main, `Annotated` version better.
@@ -55,7 +55,7 @@ And then **FastAPI** will call that override instead of the original dependency.
     {!> ../../../docs_src/dependency_testing/tutorial001.py!}
     ```
 
-=== "Python 3.10 and above - non-Annotated"
+=== "Python 3.10+ non-Annotated"
 
     !!! tip
         Try to use the main, `Annotated` version better.

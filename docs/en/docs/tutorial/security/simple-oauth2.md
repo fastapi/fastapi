@@ -49,25 +49,25 @@ Now let's use the utilities provided by **FastAPI** to handle this.
 
 First, import `OAuth2PasswordRequestForm`, and use it as a dependency with `Depends` in the *path operation* for `/token`:
 
-=== "Python 3.6 and above"
+=== "Python 3.6+"
 
     ```Python hl_lines="4  79"
     {!> ../../../docs_src/security/tutorial003_an.py!}
     ```
 
-=== "Python 3.9 and above"
+=== "Python 3.9+"
 
     ```Python hl_lines="4  78"
     {!> ../../../docs_src/security/tutorial003_an_py39.py!}
     ```
 
-=== "Python 3.10 and above"
+=== "Python 3.10+"
 
     ```Python hl_lines="4  78"
     {!> ../../../docs_src/security/tutorial003_an_py310.py!}
     ```
 
-=== "Python 3.6 and above - non-Annotated"
+=== "Python 3.6+ non-Annotated"
 
     !!! tip
         Try to use the main, `Annotated` version better.
@@ -76,7 +76,7 @@ First, import `OAuth2PasswordRequestForm`, and use it as a dependency with `Depe
     {!> ../../../docs_src/security/tutorial003.py!}
     ```
 
-=== "Python 3.10 and above - non-Annotated"
+=== "Python 3.10+ non-Annotated"
 
     !!! tip
         Try to use the main, `Annotated` version better.
@@ -122,25 +122,25 @@ If there is no such user, we return an error saying "incorrect username or passw
 
 For the error, we use the exception `HTTPException`:
 
-=== "Python 3.6 and above"
+=== "Python 3.6+"
 
     ```Python hl_lines="3  80-82"
     {!> ../../../docs_src/security/tutorial003_an.py!}
     ```
 
-=== "Python 3.9 and above"
+=== "Python 3.9+"
 
     ```Python hl_lines="3  79-81"
     {!> ../../../docs_src/security/tutorial003_an_py39.py!}
     ```
 
-=== "Python 3.10 and above"
+=== "Python 3.10+"
 
     ```Python hl_lines="3  79-81"
     {!> ../../../docs_src/security/tutorial003_an_py310.py!}
     ```
 
-=== "Python 3.6 and above - non-Annotated"
+=== "Python 3.6+ non-Annotated"
 
     !!! tip
         Try to use the main, `Annotated` version better.
@@ -149,7 +149,7 @@ For the error, we use the exception `HTTPException`:
     {!> ../../../docs_src/security/tutorial003.py!}
     ```
 
-=== "Python 3.10 and above - non-Annotated"
+=== "Python 3.10+ non-Annotated"
 
     !!! tip
         Try to use the main, `Annotated` version better.
@@ -182,25 +182,25 @@ If your database is stolen, the thief won't have your users' plaintext passwords
 
 So, the thief won't be able to try to use those same passwords in another system (as many users use the same password everywhere, this would be dangerous).
 
-=== "Python 3.6 and above"
+=== "Python 3.6+"
 
     ```Python hl_lines="83-86"
     {!> ../../../docs_src/security/tutorial003_an.py!}
     ```
 
-=== "Python 3.9 and above"
+=== "Python 3.9+"
 
     ```Python hl_lines="82-85"
     {!> ../../../docs_src/security/tutorial003_an_py39.py!}
     ```
 
-=== "Python 3.10 and above"
+=== "Python 3.10+"
 
     ```Python hl_lines="82-85"
     {!> ../../../docs_src/security/tutorial003_an_py310.py!}
     ```
 
-=== "Python 3.6 and above - non-Annotated"
+=== "Python 3.6+ non-Annotated"
 
     !!! tip
         Try to use the main, `Annotated` version better.
@@ -209,7 +209,7 @@ So, the thief won't be able to try to use those same passwords in another system
     {!> ../../../docs_src/security/tutorial003.py!}
     ```
 
-=== "Python 3.10 and above - non-Annotated"
+=== "Python 3.10+ non-Annotated"
 
     !!! tip
         Try to use the main, `Annotated` version better.
@@ -252,25 +252,25 @@ For this simple example, we are going to just be completely insecure and return 
 
     But for now, let's focus on the specific details we need.
 
-=== "Python 3.6 and above"
+=== "Python 3.6+"
 
     ```Python hl_lines="88"
     {!> ../../../docs_src/security/tutorial003_an.py!}
     ```
 
-=== "Python 3.9 and above"
+=== "Python 3.9+"
 
     ```Python hl_lines="87"
     {!> ../../../docs_src/security/tutorial003_an_py39.py!}
     ```
 
-=== "Python 3.10 and above"
+=== "Python 3.10+"
 
     ```Python hl_lines="87"
     {!> ../../../docs_src/security/tutorial003_an_py310.py!}
     ```
 
-=== "Python 3.6 and above - non-Annotated"
+=== "Python 3.6+ non-Annotated"
 
     !!! tip
         Try to use the main, `Annotated` version better.
@@ -279,7 +279,7 @@ For this simple example, we are going to just be completely insecure and return 
     {!> ../../../docs_src/security/tutorial003.py!}
     ```
 
-=== "Python 3.10 and above - non-Annotated"
+=== "Python 3.10+ non-Annotated"
 
     !!! tip
         Try to use the main, `Annotated` version better.
@@ -309,25 +309,25 @@ Both of these dependencies will just return an HTTP error if the user doesn't ex
 
 So, in our endpoint, we will only get a user if the user exists, was correctly authenticated, and is active:
 
-=== "Python 3.6 and above"
+=== "Python 3.6+"
 
     ```Python hl_lines="59-67  70-75  95"
     {!> ../../../docs_src/security/tutorial003_an.py!}
     ```
 
-=== "Python 3.9 and above"
+=== "Python 3.9+"
 
     ```Python hl_lines="58-66  69-74  94"
     {!> ../../../docs_src/security/tutorial003_an_py39.py!}
     ```
 
-=== "Python 3.10 and above"
+=== "Python 3.10+"
 
     ```Python hl_lines="58-66  69-74  94"
     {!> ../../../docs_src/security/tutorial003_an_py310.py!}
     ```
 
-=== "Python 3.6 and above - non-Annotated"
+=== "Python 3.6+ non-Annotated"
 
     !!! tip
         Try to use the main, `Annotated` version better.
@@ -336,7 +336,7 @@ So, in our endpoint, we will only get a user if the user exists, was correctly a
     {!> ../../../docs_src/security/tutorial003.py!}
     ```
 
-=== "Python 3.10 and above - non-Annotated"
+=== "Python 3.10+ non-Annotated"
 
     !!! tip
         Try to use the main, `Annotated` version better.

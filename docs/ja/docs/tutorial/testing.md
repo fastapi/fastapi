@@ -74,13 +74,13 @@
 
 これらの *path operation* には `X-Token` ヘッダーが必要です。
 
-=== "Python 3.6 and above"
+=== "Python 3.6+"
 
     ```Python
     {!> ../../../docs_src/app_testing/app_b/main.py!}
     ```
 
-=== "Python 3.10 and above"
+=== "Python 3.10+"
 
     ```Python
     {!> ../../../docs_src/app_testing/app_b_py310/main.py!}

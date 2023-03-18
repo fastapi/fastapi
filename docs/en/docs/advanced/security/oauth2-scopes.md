@@ -56,25 +56,25 @@ They are normally used to declare specific security permissions, for example:
 
 First, let's quickly see the parts that change from the examples in the main **Tutorial - User Guide** for [OAuth2 with Password (and hashing), Bearer with JWT tokens](../../tutorial/security/oauth2-jwt.md){.internal-link target=_blank}. Now using OAuth2 scopes:
 
-=== "Python 3.6 and above"
+=== "Python 3.6+"
 
     ```Python hl_lines="2  4  8  12  47  65  106  108-116  122-125  129-135  140  156"
     {!> ../../../docs_src/security/tutorial005_an.py!}
     ```
 
-=== "Python 3.9 and above"
+=== "Python 3.9+"
 
     ```Python hl_lines="2  4  8  12  46  64  105  107-115  121-124  128-134  139  155"
     {!> ../../../docs_src/security/tutorial005_an_py39.py!}
     ```
 
-=== "Python 3.10 and above"
+=== "Python 3.10+"
 
     ```Python hl_lines="4  8  12  46  64  105  107-115  121-124  128-134  139  155"
     {!> ../../../docs_src/security/tutorial005_an_py310.py!}
     ```
 
-=== "Python 3.6 and above - non-Annotated"
+=== "Python 3.6+ non-Annotated"
 
     !!! tip
         Try to use the main, `Annotated` version better.
@@ -83,7 +83,7 @@ First, let's quickly see the parts that change from the examples in the main **T
     {!> ../../../docs_src/security/tutorial005.py!}
     ```
 
-=== "Python 3.9 and above - non-Annotated"
+=== "Python 3.9+ non-Annotated"
 
     !!! tip
         Try to use the main, `Annotated` version better.
@@ -92,7 +92,7 @@ First, let's quickly see the parts that change from the examples in the main **T
     {!> ../../../docs_src/security/tutorial005_py39.py!}
     ```
 
-=== "Python 3.10 and above - non-Annotated"
+=== "Python 3.10+ non-Annotated"
 
     !!! tip
         Try to use the main, `Annotated` version better.
@@ -109,25 +109,25 @@ The first change is that now we are declaring the OAuth2 security scheme with tw
 
 The `scopes` parameter receives a `dict` with each scope as a key and the description as the value:
 
-=== "Python 3.6 and above"
+=== "Python 3.6+"
 
     ```Python hl_lines="63-66"
     {!> ../../../docs_src/security/tutorial005_an.py!}
     ```
 
-=== "Python 3.9 and above"
+=== "Python 3.9+"
 
     ```Python hl_lines="62-65"
     {!> ../../../docs_src/security/tutorial005_an_py39.py!}
     ```
 
-=== "Python 3.10 and above"
+=== "Python 3.10+"
 
     ```Python hl_lines="62-65"
     {!> ../../../docs_src/security/tutorial005_an_py310.py!}
     ```
 
-=== "Python 3.6 and above - non-Annotated"
+=== "Python 3.6+ non-Annotated"
 
     !!! tip
         Try to use the main, `Annotated` version better.
@@ -136,7 +136,7 @@ The `scopes` parameter receives a `dict` with each scope as a key and the descri
     {!> ../../../docs_src/security/tutorial005.py!}
     ```
 
-=== "Python 3.9 and above - non-Annotated"
+=== "Python 3.9+ non-Annotated"
 
     !!! tip
         Try to use the main, `Annotated` version better.
@@ -145,7 +145,7 @@ The `scopes` parameter receives a `dict` with each scope as a key and the descri
     {!> ../../../docs_src/security/tutorial005_py39.py!}
     ```
 
-=== "Python 3.10 and above - non-Annotated"
+=== "Python 3.10+ non-Annotated"
 
     !!! tip
         Try to use the main, `Annotated` version better.
@@ -175,25 +175,25 @@ And we return the scopes as part of the JWT token.
 
     But in your application, for security, you should make sure you only add the scopes that the user is actually able to have, or the ones you have predefined.
 
-=== "Python 3.6 and above"
+=== "Python 3.6+"
 
     ```Python hl_lines="156"
     {!> ../../../docs_src/security/tutorial005_an.py!}
     ```
 
-=== "Python 3.9 and above"
+=== "Python 3.9+"
 
     ```Python hl_lines="155"
     {!> ../../../docs_src/security/tutorial005_an_py39.py!}
     ```
 
-=== "Python 3.10 and above"
+=== "Python 3.10+"
 
     ```Python hl_lines="155"
     {!> ../../../docs_src/security/tutorial005_an_py310.py!}
     ```
 
-=== "Python 3.6 and above - non-Annotated"
+=== "Python 3.6+ non-Annotated"
 
     !!! tip
         Try to use the main, `Annotated` version better.
@@ -202,7 +202,7 @@ And we return the scopes as part of the JWT token.
     {!> ../../../docs_src/security/tutorial005.py!}
     ```
 
-=== "Python 3.9 and above - non-Annotated"
+=== "Python 3.9+ non-Annotated"
 
     !!! tip
         Try to use the main, `Annotated` version better.
@@ -211,7 +211,7 @@ And we return the scopes as part of the JWT token.
     {!> ../../../docs_src/security/tutorial005_py39.py!}
     ```
 
-=== "Python 3.10 and above - non-Annotated"
+=== "Python 3.10+ non-Annotated"
 
     !!! tip
         Try to use the main, `Annotated` version better.
@@ -241,25 +241,25 @@ In this case, it requires the scope `me` (it could require more than one scope).
 
     We are doing it here to demonstrate how **FastAPI** handles scopes declared at different levels.
 
-=== "Python 3.6 and above"
+=== "Python 3.6+"
 
     ```Python hl_lines="4  140  171"
     {!> ../../../docs_src/security/tutorial005_an.py!}
     ```
 
-=== "Python 3.9 and above"
+=== "Python 3.9+"
 
     ```Python hl_lines="4  139  170"
     {!> ../../../docs_src/security/tutorial005_an_py39.py!}
     ```
 
-=== "Python 3.10 and above"
+=== "Python 3.10+"
 
     ```Python hl_lines="4  139  170"
     {!> ../../../docs_src/security/tutorial005_an_py310.py!}
     ```
 
-=== "Python 3.6 and above - non-Annotated"
+=== "Python 3.6+ non-Annotated"
 
     !!! tip
         Try to use the main, `Annotated` version better.
@@ -268,7 +268,7 @@ In this case, it requires the scope `me` (it could require more than one scope).
     {!> ../../../docs_src/security/tutorial005.py!}
     ```
 
-=== "Python 3.9 and above - non-Annotated"
+=== "Python 3.9+ non-Annotated"
 
     !!! tip
         Try to use the main, `Annotated` version better.
@@ -277,7 +277,7 @@ In this case, it requires the scope `me` (it could require more than one scope).
     {!> ../../../docs_src/security/tutorial005_py39.py!}
     ```
 
-=== "Python 3.10 and above - non-Annotated"
+=== "Python 3.10+ non-Annotated"
 
     !!! tip
         Try to use the main, `Annotated` version better.
@@ -307,25 +307,25 @@ We also declare a special parameter of type `SecurityScopes`, imported from `fas
 
 This `SecurityScopes` class is similar to `Request` (`Request` was used to get the request object directly).
 
-=== "Python 3.6 and above"
+=== "Python 3.6+"
 
     ```Python hl_lines="8  106"
     {!> ../../../docs_src/security/tutorial005_an.py!}
     ```
 
-=== "Python 3.9 and above"
+=== "Python 3.9+"
 
     ```Python hl_lines="8  105"
     {!> ../../../docs_src/security/tutorial005_an_py39.py!}
     ```
 
-=== "Python 3.10 and above"
+=== "Python 3.10+"
 
     ```Python hl_lines="8  105"
     {!> ../../../docs_src/security/tutorial005_an_py310.py!}
     ```
 
-=== "Python 3.6 and above - non-Annotated"
+=== "Python 3.6+ non-Annotated"
 
     !!! tip
         Try to use the main, `Annotated` version better.
@@ -334,7 +334,7 @@ This `SecurityScopes` class is similar to `Request` (`Request` was used to get t
     {!> ../../../docs_src/security/tutorial005.py!}
     ```
 
-=== "Python 3.9 and above - non-Annotated"
+=== "Python 3.9+ non-Annotated"
 
     !!! tip
         Try to use the main, `Annotated` version better.
@@ -343,7 +343,7 @@ This `SecurityScopes` class is similar to `Request` (`Request` was used to get t
     {!> ../../../docs_src/security/tutorial005_py39.py!}
     ```
 
-=== "Python 3.10 and above - non-Annotated"
+=== "Python 3.10+ non-Annotated"
 
     !!! tip
         Try to use the main, `Annotated` version better.
@@ -364,25 +364,25 @@ We create an `HTTPException` that we can re-use (`raise`) later at several point
 
 In this exception, we include the scopes required (if any) as a string separated by spaces (using `scope_str`). We put that string containing the scopes in the `WWW-Authenticate` header (this is part of the spec).
 
-=== "Python 3.6 and above"
+=== "Python 3.6+"
 
     ```Python hl_lines="106  108-116"
     {!> ../../../docs_src/security/tutorial005_an.py!}
     ```
 
-=== "Python 3.9 and above"
+=== "Python 3.9+"
 
     ```Python hl_lines="105  107-115"
     {!> ../../../docs_src/security/tutorial005_an_py39.py!}
     ```
 
-=== "Python 3.10 and above"
+=== "Python 3.10+"
 
     ```Python hl_lines="105  107-115"
     {!> ../../../docs_src/security/tutorial005_an_py310.py!}
     ```
 
-=== "Python 3.6 and above - non-Annotated"
+=== "Python 3.6+ non-Annotated"
 
     !!! tip
         Try to use the main, `Annotated` version better.
@@ -391,7 +391,7 @@ In this exception, we include the scopes required (if any) as a string separated
     {!> ../../../docs_src/security/tutorial005.py!}
     ```
 
-=== "Python 3.9 and above - non-Annotated"
+=== "Python 3.9+ non-Annotated"
 
     !!! tip
         Try to use the main, `Annotated` version better.
@@ -400,7 +400,7 @@ In this exception, we include the scopes required (if any) as a string separated
     {!> ../../../docs_src/security/tutorial005_py39.py!}
     ```
 
-=== "Python 3.10 and above - non-Annotated"
+=== "Python 3.10+ non-Annotated"
 
     !!! tip
         Try to use the main, `Annotated` version better.
@@ -423,25 +423,25 @@ Instead of, for example, a `dict`, or something else, as it could break the appl
 
 We also verify that we have a user with that username, and if not, we raise that same exception we created before.
 
-=== "Python 3.6 and above"
+=== "Python 3.6+"
 
     ```Python hl_lines="47  117-128"
     {!> ../../../docs_src/security/tutorial005_an.py!}
     ```
 
-=== "Python 3.9 and above"
+=== "Python 3.9+"
 
     ```Python hl_lines="46  116-127"
     {!> ../../../docs_src/security/tutorial005_an_py39.py!}
     ```
 
-=== "Python 3.10 and above"
+=== "Python 3.10+"
 
     ```Python hl_lines="46  116-127"
     {!> ../../../docs_src/security/tutorial005_an_py310.py!}
     ```
 
-=== "Python 3.6 and above - non-Annotated"
+=== "Python 3.6+ non-Annotated"
 
     !!! tip
         Try to use the main, `Annotated` version better.
@@ -450,7 +450,7 @@ We also verify that we have a user with that username, and if not, we raise that
     {!> ../../../docs_src/security/tutorial005.py!}
     ```
 
-=== "Python 3.9 and above - non-Annotated"
+=== "Python 3.9+ non-Annotated"
 
     !!! tip
         Try to use the main, `Annotated` version better.
@@ -459,7 +459,7 @@ We also verify that we have a user with that username, and if not, we raise that
     {!> ../../../docs_src/security/tutorial005_py39.py!}
     ```
 
-=== "Python 3.10 and above - non-Annotated"
+=== "Python 3.10+ non-Annotated"
 
     !!! tip
         Try to use the main, `Annotated` version better.
@@ -474,25 +474,25 @@ We now verify that all the scopes required, by this dependency and all the depen
 
 For this, we use `security_scopes.scopes`, that contains a `list` with all these scopes as `str`.
 
-=== "Python 3.6 and above"
+=== "Python 3.6+"
 
     ```Python hl_lines="129-135"
     {!> ../../../docs_src/security/tutorial005_an.py!}
     ```
 
-=== "Python 3.9 and above"
+=== "Python 3.9+"
 
     ```Python hl_lines="128-134"
     {!> ../../../docs_src/security/tutorial005_an_py39.py!}
     ```
 
-=== "Python 3.10 and above"
+=== "Python 3.10+"
 
     ```Python hl_lines="128-134"
     {!> ../../../docs_src/security/tutorial005_an_py310.py!}
     ```
 
-=== "Python 3.6 and above - non-Annotated"
+=== "Python 3.6+ non-Annotated"
 
     !!! tip
         Try to use the main, `Annotated` version better.
@@ -501,7 +501,7 @@ For this, we use `security_scopes.scopes`, that contains a `list` with all these
     {!> ../../../docs_src/security/tutorial005.py!}
     ```
 
-=== "Python 3.9 and above - non-Annotated"
+=== "Python 3.9+ non-Annotated"
 
     !!! tip
         Try to use the main, `Annotated` version better.
@@ -510,7 +510,7 @@ For this, we use `security_scopes.scopes`, that contains a `list` with all these
     {!> ../../../docs_src/security/tutorial005_py39.py!}
     ```
 
-=== "Python 3.10 and above - non-Annotated"
+=== "Python 3.10+ non-Annotated"
 
     !!! tip
         Try to use the main, `Annotated` version better.

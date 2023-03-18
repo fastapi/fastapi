@@ -8,25 +8,25 @@ First, of course, you can mix `Path`, `Query` and request body parameter declara
 
 And you can also declare body parameters as optional, by setting the default to `None`:
 
-=== "Python 3.6 and above"
+=== "Python 3.6+"
 
     ```Python hl_lines="19-21"
     {!> ../../../docs_src/body_multiple_params/tutorial001_an.py!}
     ```
 
-=== "Python 3.9 and above"
+=== "Python 3.9+"
 
     ```Python hl_lines="18-20"
     {!> ../../../docs_src/body_multiple_params/tutorial001_an_py39.py!}
     ```
 
-=== "Python 3.10 and above"
+=== "Python 3.10+"
 
     ```Python hl_lines="18-20"
     {!> ../../../docs_src/body_multiple_params/tutorial001_an_py310.py!}
     ```
 
-=== "Python 3.6 and above - non-Annotated"
+=== "Python 3.6+ non-Annotated"
 
     !!! tip
         Try to use the main, `Annotated` version better.
@@ -35,7 +35,7 @@ And you can also declare body parameters as optional, by setting the default to 
     {!> ../../../docs_src/body_multiple_params/tutorial001.py!}
     ```
 
-=== "Python 3.10 and above - non-Annotated"
+=== "Python 3.10+ non-Annotated"
 
     !!! tip
         Try to use the main, `Annotated` version better.
@@ -62,13 +62,13 @@ In the previous example, the *path operations* would expect a JSON body with the
 
 But you can also declare multiple body parameters, e.g. `item` and `user`:
 
-=== "Python 3.6 and above"
+=== "Python 3.6+"
 
     ```Python hl_lines="22"
     {!> ../../../docs_src/body_multiple_params/tutorial002.py!}
     ```
 
-=== "Python 3.10 and above"
+=== "Python 3.10+"
 
     ```Python hl_lines="20"
     {!> ../../../docs_src/body_multiple_params/tutorial002_py310.py!}
@@ -111,25 +111,25 @@ If you declare it as is, because it is a singular value, **FastAPI** will assume
 
 But you can instruct **FastAPI** to treat it as another body key using `Body`:
 
-=== "Python 3.6 and above"
+=== "Python 3.6+"
 
     ```Python hl_lines="24"
     {!> ../../../docs_src/body_multiple_params/tutorial003_an.py!}
     ```
 
-=== "Python 3.9 and above"
+=== "Python 3.9+"
 
     ```Python hl_lines="23"
     {!> ../../../docs_src/body_multiple_params/tutorial003_an_py39.py!}
     ```
 
-=== "Python 3.10 and above"
+=== "Python 3.10+"
 
     ```Python hl_lines="23"
     {!> ../../../docs_src/body_multiple_params/tutorial003_an_py310.py!}
     ```
 
-=== "Python 3.6 and above - non-Annotated"
+=== "Python 3.6+ non-Annotated"
 
     !!! tip
         Try to use the main, `Annotated` version better.
@@ -138,7 +138,7 @@ But you can instruct **FastAPI** to treat it as another body key using `Body`:
     {!> ../../../docs_src/body_multiple_params/tutorial003.py!}
     ```
 
-=== "Python 3.10 and above - non-Annotated"
+=== "Python 3.10+ non-Annotated"
 
     !!! tip
         Try to use the main, `Annotated` version better.
@@ -185,25 +185,25 @@ q: str | None = None
 
 For example:
 
-=== "Python 3.6 and above"
+=== "Python 3.6+"
 
     ```Python hl_lines="28"
     {!> ../../../docs_src/body_multiple_params/tutorial004_an.py!}
     ```
 
-=== "Python 3.9 and above"
+=== "Python 3.9+"
 
     ```Python hl_lines="27"
     {!> ../../../docs_src/body_multiple_params/tutorial004_an_py39.py!}
     ```
 
-=== "Python 3.10 and above"
+=== "Python 3.10+"
 
     ```Python hl_lines="27"
     {!> ../../../docs_src/body_multiple_params/tutorial004_an_py310.py!}
     ```
 
-=== "Python 3.6 and above - non-Annotated"
+=== "Python 3.6+ non-Annotated"
 
     !!! tip
         Try to use the main, `Annotated` version better.
@@ -212,7 +212,7 @@ For example:
     {!> ../../../docs_src/body_multiple_params/tutorial004.py!}
     ```
 
-=== "Python 3.10 and above - non-Annotated"
+=== "Python 3.10+ non-Annotated"
 
     !!! tip
         Try to use the main, `Annotated` version better.
@@ -238,25 +238,25 @@ item: Item = Body(embed=True)
 
 as in:
 
-=== "Python 3.6 and above"
+=== "Python 3.6+"
 
     ```Python hl_lines="18"
     {!> ../../../docs_src/body_multiple_params/tutorial005_an.py!}
     ```
 
-=== "Python 3.9 and above"
+=== "Python 3.9+"
 
     ```Python hl_lines="17"
     {!> ../../../docs_src/body_multiple_params/tutorial005_an_py39.py!}
     ```
 
-=== "Python 3.10 and above"
+=== "Python 3.10+"
 
     ```Python hl_lines="17"
     {!> ../../../docs_src/body_multiple_params/tutorial005_an_py310.py!}
     ```
 
-=== "Python 3.6 and above - non-Annotated"
+=== "Python 3.6+ non-Annotated"
 
     !!! tip
         Try to use the main, `Annotated` version better.
@@ -265,7 +265,7 @@ as in:
     {!> ../../../docs_src/body_multiple_params/tutorial005.py!}
     ```
 
-=== "Python 3.10 and above - non-Annotated"
+=== "Python 3.10+ non-Annotated"
 
     !!! tip
         Try to use the main, `Annotated` version better.

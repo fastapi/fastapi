@@ -31,25 +31,25 @@ Let's first focus on the dependency.
 
 It is just a function that can take all the same parameters that a *path operation function* can take:
 
-=== "Python 3.6 and above"
+=== "Python 3.6+"
 
     ```Python hl_lines="9-12"
     {!> ../../../docs_src/dependencies/tutorial001_an.py!}
     ```
 
-=== "Python 3.9 and above"
+=== "Python 3.9+"
 
     ```Python hl_lines="8-11"
     {!> ../../../docs_src/dependencies/tutorial001_an_py39.py!}
     ```
 
-=== "Python 3.10 and above"
+=== "Python 3.10+"
 
     ```Python hl_lines="8-9"
     {!> ../../../docs_src/dependencies/tutorial001_an_py310.py!}
     ```
 
-=== "Python 3.6 and above - non-Annotated"
+=== "Python 3.6+ non-Annotated"
 
     !!! tip
         Try to use the main, `Annotated` version better.
@@ -58,7 +58,7 @@ It is just a function that can take all the same parameters that a *path operati
     {!> ../../../docs_src/dependencies/tutorial001.py!}
     ```
 
-=== "Python 3.10 and above - non-Annotated"
+=== "Python 3.10+ non-Annotated"
 
     !!! tip
         Try to use the main, `Annotated` version better.
@@ -87,25 +87,25 @@ And then it just returns a `dict` containing those values.
 
 ### Import `Depends`
 
-=== "Python 3.6 and above"
+=== "Python 3.6+"
 
     ```Python hl_lines="3"
     {!> ../../../docs_src/dependencies/tutorial001_an.py!}
     ```
 
-=== "Python 3.9 and above"
+=== "Python 3.9+"
 
     ```Python hl_lines="3"
     {!> ../../../docs_src/dependencies/tutorial001_an_py39.py!}
     ```
 
-=== "Python 3.10 and above"
+=== "Python 3.10+"
 
     ```Python hl_lines="3"
     {!> ../../../docs_src/dependencies/tutorial001_an_py310.py!}
     ```
 
-=== "Python 3.6 and above - non-Annotated"
+=== "Python 3.6+ non-Annotated"
 
     !!! tip
         Try to use the main, `Annotated` version better.
@@ -114,7 +114,7 @@ And then it just returns a `dict` containing those values.
     {!> ../../../docs_src/dependencies/tutorial001.py!}
     ```
 
-=== "Python 3.10 and above - non-Annotated"
+=== "Python 3.10+ non-Annotated"
 
     !!! tip
         Try to use the main, `Annotated` version better.
@@ -127,25 +127,25 @@ And then it just returns a `dict` containing those values.
 
 The same way you use `Body`, `Query`, etc. with your *path operation function* parameters, use `Depends` with a new parameter:
 
-=== "Python 3.6 and above"
+=== "Python 3.6+"
 
     ```Python hl_lines="16  21"
     {!> ../../../docs_src/dependencies/tutorial001_an.py!}
     ```
 
-=== "Python 3.9 and above"
+=== "Python 3.9+"
 
     ```Python hl_lines="15  20"
     {!> ../../../docs_src/dependencies/tutorial001_an_py39.py!}
     ```
 
-=== "Python 3.10 and above"
+=== "Python 3.10+"
 
     ```Python hl_lines="13  18"
     {!> ../../../docs_src/dependencies/tutorial001_an_py310.py!}
     ```
 
-=== "Python 3.6 and above - non-Annotated"
+=== "Python 3.6+ non-Annotated"
 
     !!! tip
         Try to use the main, `Annotated` version better.
@@ -154,7 +154,7 @@ The same way you use `Body`, `Query`, etc. with your *path operation function* p
     {!> ../../../docs_src/dependencies/tutorial001.py!}
     ```
 
-=== "Python 3.10 and above - non-Annotated"
+=== "Python 3.10+ non-Annotated"
 
     !!! tip
         Try to use the main, `Annotated` version better.
@@ -212,19 +212,19 @@ commons: Annotated[dict, Depends(common_parameters)]
 
 But because we are using `Annotated`, we can store that `Annotated` value in a variable and use it in multiple places:
 
-=== "Python 3.6 and above"
+=== "Python 3.6+"
 
     ```Python hl_lines="15  19  24"
     {!> ../../../docs_src/dependencies/tutorial001_02_an.py!}
     ```
 
-=== "Python 3.9 and above"
+=== "Python 3.9+"
 
     ```Python hl_lines="14  18  23"
     {!> ../../../docs_src/dependencies/tutorial001_02_an_py39.py!}
     ```
 
-=== "Python 3.10 and above"
+=== "Python 3.10+"
 
     ```Python hl_lines="12  16  21"
     {!> ../../../docs_src/dependencies/tutorial001_02_an_py310.py!}
