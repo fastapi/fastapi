@@ -27,11 +27,11 @@
 
 ---
 
-FastAPI est un framework web moderne et rapide (haute performance) pour la construction d'API avec Python 3.7+, basé sur les annotations de type standard de Python.
+FastAPI est un framework web moderne et rapide (haute performance) pour la création d'API avec Python 3.7+, basé sur les annotations de type standard de Python.
 
 Les principales fonctionnalités sont :
 
-* **Rapidité** : De très hautes performances, à égalité avec **NodeJS** et **Go** (grâce à Starlette et Pydantic). [L'un des frameworks Python les plus rapides](#performance).
+* **Rapidité** : De très hautes performances, au niveau de **NodeJS** et **Go** (grâce à Starlette et Pydantic). [L'un des frameworks Python les plus rapides](#performance).
 * **Rapide à coder** : Augmente la vitesse de développement des fonctionnalités d'environ 200 % à 300 %. *
 * **Moins de bugs** : Réduit d'environ 40 % les erreurs induites par le développeur. *
 * **Intuitif** : Excellente compatibilité avec les IDE. <abbr title="également connu sous le nom d'auto-complétion, autocomplétion, IntelliSense">Complétion</abbr> complète. Moins de temps passé à déboguer.
