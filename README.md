@@ -19,11 +19,11 @@
 </a>
 </p>
 
----
-
-**Documentation**: <a href="https://fastapi.tiangolo.com" target="_blank">https://fastapi.tiangolo.com</a>
-
-**Source Code**: <a href="https://github.com/tiangolo/fastapi" target="_blank">https://github.com/tiangolo/fastapi</a>
+<p align="center">
+    <a href="https://fastapi.tiangolo.com" target="_blank">Documentation</a>
+    •
+    <a href="https://github.com/tiangolo/fastapi" target="_blank">Source Code</a>
+</p>
 
 ---
 
