@@ -199,7 +199,7 @@ Instead use the actual default value of the function parameter. Otherwise, it wo
 For example, this is not allowed:
 
 ```Python
-q: Annotated[str Query(default="rick")] = "morty"
+q: Annotated[str, Query(default="rick")] = "morty"
 ```
 
 ...because it's not clear if the default value should be `"rick"` or `"morty"`.
