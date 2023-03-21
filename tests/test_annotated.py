@@ -114,10 +114,10 @@ openapi_schema = {
                         "schema": {
                             "title": "get a description",
                             "type": "string",
-                            "description": "description"
+                            "description": "description",
                         },
                         "name": "foo",
-                        "in": "query"
+                        "in": "query",
                     }
                 ],
                 "responses": {
@@ -149,10 +149,10 @@ openapi_schema = {
                         "schema": {
                             "title": "get a description",
                             "type": "string",
-                            "description": "description"
+                            "description": "description",
                         },
                         "name": "foo",
-                        "in": "path"
+                        "in": "path",
                     }
                 ],
                 "responses": {
