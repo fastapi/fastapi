@@ -109,15 +109,15 @@ openapi_schema = {
                 "operationId": "description_description_get",
                 "parameters": [
                     {
+                        "description": "description",
                         "required": False,
                         "schema": {
                             "title": "get a description",
                             "type": "string",
-                            "default": "foo",
-                            "description": "description",
+                            "description": "description"
                         },
                         "name": "foo",
-                        "in": "query",
+                        "in": "query"
                     }
                 ],
                 "responses": {
@@ -144,14 +144,15 @@ openapi_schema = {
                 "operationId": "description_description__foo__get",
                 "parameters": [
                     {
+                        "description": "description",
                         "required": True,
                         "schema": {
                             "title": "get a description",
                             "type": "string",
-                            "description": "description",
+                            "description": "description"
                         },
                         "name": "foo",
-                        "in": "path",
+                        "in": "path"
                     }
                 ],
                 "responses": {
@@ -290,6 +291,8 @@ foo_is_short = {
         ("/default", 200, {"foo": "foo"}),
         ("/default?foo=bar", 200, {"foo": "bar"}),
         ("/required?foo=bar", 200, {"foo": "bar"}),
+        ("/description?foo=bar", 200, {"foo": "bar"}),
+        ("/description/bar", 200, {"foo": "bar"}),
         ("/required", 422, foo_is_missing),
         ("/required?foo=", 422, foo_is_short),
         ("/multiple?foo=bar", 200, {"foo": "bar"}),
