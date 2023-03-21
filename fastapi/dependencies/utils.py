@@ -367,6 +367,7 @@ def analyze_param(
     used_default_field_info = False
     depends = None
     type_annotation: Any = Any
+    metadata = None
     if (
         annotation is not inspect.Signature.empty
         and get_origin(annotation) is Annotated  # type: ignore[comparison-overlap]
@@ -376,7 +377,7 @@ def analyze_param(
         fastapi_annotations = [
             arg
             for arg in annotated_args[1:]
-            if isinstance(arg, (FieldInfo, params.Depends))
+            if isinstance(arg, (FieldInfo, params.Depends, params.OpenAPIAnnotation))
         ]
         assert (
             len(fastapi_annotations) <= 1
@@ -395,6 +396,11 @@ def analyze_param(
                 field_info.default = Required
         elif isinstance(fastapi_annotation, params.Depends):
             depends = fastapi_annotation
+        elif isinstance(fastapi_annotation, params.OpenAPIAnnotation):
+            # If of type `string` the fastapi_annotation
+            # is considered as the field description
+            metadata = fastapi_annotation
+
     elif annotation is not inspect.Signature.empty:
         type_annotation = annotation
 
@@ -428,13 +434,24 @@ def analyze_param(
         ), f"Cannot specify FastAPI annotation for type {type_annotation!r}"
     elif field_info is None and depends is None:
         default_value = value if value is not inspect.Signature.empty else Required
+        openapi_params: Dict[str, Any] = {}
+        if metadata is not None:
+            openapi_params = {
+                "title": metadata.title,
+                "description": metadata.description,
+                "deprecated": metadata.deprecated,
+                "examples": metadata.examples,
+                "example": metadata.example,
+                "include_in_schema": metadata.include_in_schema,
+            }
+
         if is_path_param:
             # We might check here that `default_value is Required`, but the fact is that the same
             # parameter might sometimes be a path parameter and sometimes not. See
             # `tests/test_infer_param_optionality.py` for an example.
-            field_info = params.Path()
+            field_info = params.Path(**openapi_params)
         else:
-            field_info = params.Query(default=default_value)
+            field_info = params.Query(default=default_value, **openapi_params)
         used_default_field_info = True
 
     field = None

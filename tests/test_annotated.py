@@ -1,5 +1,6 @@
 import pytest
 from fastapi import FastAPI, Query
+from fastapi.params import OpenAPIAnnotation
 from fastapi.testclient import TestClient
 from typing_extensions import Annotated
 
@@ -15,6 +16,10 @@ async def default(foo: Annotated[str, Query()] = "foo"):
 async def required(foo: Annotated[str, Query(min_length=1)]):
     return {"foo": foo}
 
+@app.get("/description/{foo}")
+@app.get("/description")
+async def description(foo: Annotated[str, OpenAPIAnnotation(title="get a description", description="description")] = None):
+    return {"foo": foo}
 
 @app.get("/multiple")
 async def multiple(foo: Annotated[str, object(), Query(min_length=1)]):
@@ -72,6 +77,66 @@ openapi_schema = {
                         "schema": {"title": "Foo", "minLength": 1, "type": "string"},
                         "name": "foo",
                         "in": "query",
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {"application/json": {"schema": {}}},
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        },
+                    },
+                },
+            }
+        },
+        "/description": {
+            "get": {
+                "summary": "Description",
+                "operationId": "description_description_get",
+                "parameters": [
+                    {
+                        "required": False,
+                        "schema": {"title": "get a description", "type": "string", "default": "foo", "description": "description"},
+                        "name": "foo",
+                        "in": "query",
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {"application/json": {"schema": {}}},
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        },
+                    },
+                },
+            }
+        },
+        "/description/{foo}": {
+            "get": {
+                "summary": "Description",
+                "operationId": "description_description__foo__get",
+                "parameters": [
+                    {
+                        "required": True,
+                        "schema": {"title": "get a description", "type": "string", "description": "description"},
+                        "name": "foo",
+                        "in": "path",
                     }
                 ],
                 "responses": {

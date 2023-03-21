@@ -11,6 +11,28 @@ class ParamTypes(Enum):
     cookie = "cookie"
 
 
+class OpenAPIAnnotation:
+    def __init__(
+        self,
+        *,
+        title: Optional[str] = None,
+        description: Optional[str] = None,
+        example: Any = Undefined,
+        examples: Optional[Dict[str, Any]] = None,
+        deprecated: Optional[bool] = None,
+        include_in_schema: bool = True,
+    ):
+        self.title = title
+        self.description = description
+        self.deprecated = deprecated
+        self.examples = examples
+        self.example = example
+        self.include_in_schema = include_in_schema
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}"
+
+
 class Param(FieldInfo):
     in_: ParamTypes
 
