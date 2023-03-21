@@ -16,10 +16,16 @@ async def default(foo: Annotated[str, Query()] = "foo"):
 async def required(foo: Annotated[str, Query(min_length=1)]):
     return {"foo": foo}
 
+
 @app.get("/description/{foo}")
 @app.get("/description")
-async def description(foo: Annotated[str, OpenAPIAnnotation(title="get a description", description="description")] = None):
+async def description(
+    foo: Annotated[
+        str, OpenAPIAnnotation(title="get a description", description="description")
+    ] = None
+):
     return {"foo": foo}
+
 
 @app.get("/multiple")
 async def multiple(foo: Annotated[str, object(), Query(min_length=1)]):
@@ -104,7 +110,12 @@ openapi_schema = {
                 "parameters": [
                     {
                         "required": False,
-                        "schema": {"title": "get a description", "type": "string", "default": "foo", "description": "description"},
+                        "schema": {
+                            "title": "get a description",
+                            "type": "string",
+                            "default": "foo",
+                            "description": "description",
+                        },
                         "name": "foo",
                         "in": "query",
                     }
@@ -134,7 +145,11 @@ openapi_schema = {
                 "parameters": [
                     {
                         "required": True,
-                        "schema": {"title": "get a description", "type": "string", "description": "description"},
+                        "schema": {
+                            "title": "get a description",
+                            "type": "string",
+                            "description": "description",
+                        },
                         "name": "foo",
                         "in": "path",
                     }
