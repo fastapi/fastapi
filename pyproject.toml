@@ -186,6 +186,12 @@ ignore = [
 "docs_src/dataclasses/tutorial003.py" = ["I001"]
 "docs_src/path_operation_advanced_configuration/tutorial007.py" = ["B904"]
 "docs_src/custom_request_and_route/tutorial002.py" = ["B904"]
+"docs_src/dependencies/tutorial008_an.py" = ["F821"]
+"docs_src/dependencies/tutorial008_an_py39.py" = ["F821"]
+"docs_src/query_params_str_validations/tutorial012_an.py" = ["B006"]
+"docs_src/query_params_str_validations/tutorial012_an_py39.py" = ["B006"]
+"docs_src/query_params_str_validations/tutorial013_an.py" = ["B006"]
+"docs_src/query_params_str_validations/tutorial013_an_py39.py" = ["B006"]
 
 [tool.ruff.isort]
 known-third-party = ["fastapi", "pydantic", "starlette"]
