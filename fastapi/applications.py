@@ -8,6 +8,7 @@ from typing import (
     List,
     Optional,
     Sequence,
+    Tuple,
     Type,
     TypeVar,
     Union,
@@ -420,6 +421,7 @@ class FastAPI(Starlette):
         include_in_schema: bool = True,
         default_response_class: Type[Response] = Default(JSONResponse),
         callbacks: Optional[List[BaseRoute]] = None,
+        decorators: Optional[List[Tuple[Callable | Any, ...]]] = None,
         generate_unique_id_function: Callable[[routing.APIRoute], str] = Default(
             generate_unique_id
         ),
@@ -434,6 +436,7 @@ class FastAPI(Starlette):
             include_in_schema=include_in_schema,
             default_response_class=default_response_class,
             callbacks=callbacks,
+            decorators=decorators,
             generate_unique_id_function=generate_unique_id_function,
         )
 

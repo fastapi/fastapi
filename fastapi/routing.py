@@ -349,6 +349,7 @@ class APIRoute(routing.Route):
         ),
         dependency_overrides_provider: Optional[Any] = None,
         callbacks: Optional[List[BaseRoute]] = None,
+        decorators: Optional[List[Tuple[Callable | Any, ...]]] = None,
         openapi_extra: Optional[Dict[str, Any]] = None,
         generate_unique_id_function: Union[
             Callable[["APIRoute"], str], DefaultPlaceholder
@@ -377,6 +378,7 @@ class APIRoute(routing.Route):
         self.response_class = response_class
         self.dependency_overrides_provider = dependency_overrides_provider
         self.callbacks = callbacks
+        self.decorators = decorators
         self.openapi_extra = openapi_extra
         self.generate_unique_id_function = generate_unique_id_function
         self.tags = tags or []
@@ -485,6 +487,7 @@ class APIRouter(routing.Router):
         default_response_class: Type[Response] = Default(JSONResponse),
         responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
         callbacks: Optional[List[BaseRoute]] = None,
+        decorators: Optional[List[Tuple[Callable | Any, ...]]] = None,
         routes: Optional[List[routing.BaseRoute]] = None,
         redirect_slashes: bool = True,
         default: Optional[ASGIApp] = None,
@@ -521,6 +524,7 @@ class APIRouter(routing.Router):
         self.include_in_schema = include_in_schema
         self.responses = responses or {}
         self.callbacks = callbacks or []
+        self.decorators = decorators or []
         self.dependency_overrides_provider = dependency_overrides_provider
         self.route_class = route_class
         self.default_response_class = default_response_class
@@ -574,6 +578,7 @@ class APIRouter(routing.Router):
         name: Optional[str] = None,
         route_class_override: Optional[Type[APIRoute]] = None,
         callbacks: Optional[List[BaseRoute]] = None,
+        decorators: Optional[List[Tuple[Callable | Any, ...]]] = None,
         openapi_extra: Optional[Dict[str, Any]] = None,
         generate_unique_id_function: Union[
             Callable[[APIRoute], str], DefaultPlaceholder
@@ -594,6 +599,9 @@ class APIRouter(routing.Router):
         current_callbacks = self.callbacks.copy()
         if callbacks:
             current_callbacks.extend(callbacks)
+        current_decorators = self.decorators.copy()
+        if decorators:
+            current_decorators.extend(decorators)
         current_generate_unique_id = get_value_or_default(
             generate_unique_id_function, self.generate_unique_id_function
         )
@@ -622,6 +630,7 @@ class APIRouter(routing.Router):
             name=name,
             dependency_overrides_provider=self.dependency_overrides_provider,
             callbacks=current_callbacks,
+            decorators=current_decorators,
             openapi_extra=openapi_extra,
             generate_unique_id_function=current_generate_unique_id,
         )
@@ -728,6 +737,7 @@ class APIRouter(routing.Router):
         default_response_class: Type[Response] = Default(JSONResponse),
         responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
         callbacks: Optional[List[BaseRoute]] = None,
+        decorators: Optional[List[Tuple[Callable | Any, ...]]] = None,
         deprecated: Optional[bool] = None,
         include_in_schema: bool = True,
         generate_unique_id_function: Callable[[APIRoute], str] = Default(
@@ -773,6 +783,14 @@ class APIRouter(routing.Router):
                     current_callbacks.extend(callbacks)
                 if route.callbacks:
                     current_callbacks.extend(route.callbacks)
+                current_decorators = []
+                if decorators:
+                    current_decorators.extend(decorators)
+                if route.decorators:
+                    current_decorators.extend(route.decorators)
+                for decorator, *args in reversed(current_decorators):
+                    assert callable(decorator), "A decorator must be a callable"
+                    route.endpoint = decorator(route.endpoint, *args)
                 current_generate_unique_id = get_value_or_default(
                     route.generate_unique_id_function,
                     router.generate_unique_id_function,
