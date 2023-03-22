@@ -25,6 +25,9 @@ Let's see a very simple example. It will be so simple that it is not very useful
 
 But this way we can focus on how the **Dependency Injection** system works.
 
+!!! check
+    Annotated Dependencies were introduced in version 0.95.0 but didn't fail gracefully before that. Please confirm you have updated to the most recent version of FastAPI before continuing.
+
 ### Create a dependency, or "dependable"
 
 Let's first focus on the dependency.
