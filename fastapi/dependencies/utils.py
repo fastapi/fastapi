@@ -816,7 +816,7 @@ def get_body_field(*, dependant: Dependant, name: str) -> Optional[ModelField]:
     model_name = "Body_" + name
     BodyModel: Type[BaseModel] = create_model(model_name)
     for f in flat_dependant.body_params:
-        BodyModel.__fields__[f.name] = f
+        BodyModel.__fields__[f.alias] = f
     required = any(True for f in flat_dependant.body_params if f.required)
 
     BodyFieldInfo_kwargs: Dict[str, Any] = {"default": None}
