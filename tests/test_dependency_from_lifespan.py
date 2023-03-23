@@ -3,6 +3,8 @@ from typing import Any, AsyncIterator, Dict
 
 from typing_extensions import Annotated
 
+import pytest
+
 from fastapi import Depends, FastAPI, FromLifespan
 from fastapi.testclient import TestClient
 
@@ -51,3 +53,22 @@ def test_app_extract_from_lifespan() -> None:
         response = client.get("/")
         assert response.status_code == 200, response.text
         assert response.json() == 42
+
+
+def test_app_extract_from_lifespan_not_found() -> None:
+    class Foo:
+        pass
+
+    @asynccontextmanager
+    async def lifespan(app: FastAPI) -> AsyncIterator[Dict[str, Any]]:
+        yield {}
+
+    app = FastAPI(lifespan=lifespan)
+
+    @app.get("/")
+    async def endpoint(foo: FromLifespan[Foo]) -> Any:
+        raise AssertionError("Should not be called")  # pragma: no cover
+
+    with TestClient(app) as client:
+        with pytest.raises(RuntimeError, match="not found"):
+            client.get("/")
