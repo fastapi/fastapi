@@ -225,36 +225,6 @@ openapi_schema = {
                 ],
             }
         },
-        "/path/param-required/{item_id}": {
-            "get": {
-                "responses": {
-                    "200": {
-                        "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
-                    },
-                    "422": {
-                        "description": "Validation Error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
-                                }
-                            }
-                        },
-                    },
-                },
-                "summary": "Get Path Param Required Id",
-                "operationId": "get_path_param_required_id_path_param_required__item_id__get",
-                "parameters": [
-                    {
-                        "required": True,
-                        "schema": {"title": "Item Id", "type": "string"},
-                        "name": "item_id",
-                        "in": "path",
-                    }
-                ],
-            }
-        },
         "/path/param-minlength/{item_id}": {
             "get": {
                 "responses": {
