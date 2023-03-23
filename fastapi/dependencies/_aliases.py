@@ -1,5 +1,5 @@
 from inspect import Parameter
-from typing import Any, Dict, Optional, TypeVar, cast
+from typing import Any, Dict, Optional, Type, TypeVar, cast
 
 from fastapi.params import Deferred, Depends
 from fastapi.requests import Request
@@ -11,11 +11,11 @@ T = TypeVar("T")
 LifespanState = Dict[str, Any]
 
 
-def get_type(param: Parameter) -> type[Any]:
+def get_type(param: Parameter) -> Type[Any]:
     annotation = param.annotation
     while get_origin(annotation) is Annotated:
         annotation = get_args(annotation)[0]
-    return annotation
+    return annotation  # type: ignore[no-any-return]
 
 
 class _FromLifespan:
