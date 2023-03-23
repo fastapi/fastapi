@@ -395,7 +395,7 @@ def analyze_param(
         elif isinstance(fastapi_annotation, params.Depends):
             depends = fastapi_annotation
         elif isinstance(fastapi_annotation, params.Deferred):
-            depends = fastapi_annotation(param)
+            depends = fastapi_annotation(params.DependsContext(param))
     elif annotation is not inspect.Signature.empty:
         type_annotation = annotation
 

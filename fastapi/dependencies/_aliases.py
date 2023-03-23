@@ -1,7 +1,7 @@
 from inspect import Parameter
 from typing import Any, Dict, Optional, Type, TypeVar, cast
 
-from fastapi.params import Deferred, Depends
+from fastapi.params import Deferred, Depends, DependsContext
 from fastapi.requests import Request
 from typing_extensions import Annotated, get_args, get_origin
 
@@ -19,8 +19,8 @@ def get_type(param: Parameter) -> Type[Any]:
 
 
 class _FromLifespan:
-    def __init__(self, param: Parameter) -> None:
-        self._type = get_type(param)
+    def __init__(self, ctx: DependsContext) -> None:
+        self._type = get_type(ctx.param)
         self._key: Optional[str] = None
 
     def __call__(self, request: Request) -> Any:
@@ -35,7 +35,7 @@ class _FromLifespan:
         return state[self._key]
 
 
-def _from_lifespan(param: Parameter) -> Depends:
+def _from_lifespan(param: DependsContext) -> Depends:
     return Depends(_FromLifespan(param))
 
 

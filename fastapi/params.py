@@ -382,9 +382,14 @@ class Security(Depends):
         self.scopes = scopes or []
 
 
+class DependsContext:
+    def __init__(self, param: Parameter) -> None:
+        self.param = param
+
+
 class Deferred:
-    def __init__(self, dependency_factory: Callable[[Parameter], Depends]) -> None:
+    def __init__(self, dependency_factory: Callable[[DependsContext], Depends]) -> None:
         self.dependency_factory = dependency_factory
 
-    def __call__(self, param: Parameter) -> Depends:
+    def __call__(self, param: DependsContext) -> Depends:
         return self.dependency_factory(param)
