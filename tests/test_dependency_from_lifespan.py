@@ -1,12 +1,10 @@
 from contextlib import asynccontextmanager
 from typing import Any, AsyncIterator, Dict
 
-from typing_extensions import Annotated
-
 import pytest
-
 from fastapi import Depends, FastAPI, FromLifespan
 from fastapi.testclient import TestClient
+from typing_extensions import Annotated
 
 
 def test_app_extract_from_lifespan() -> None:
