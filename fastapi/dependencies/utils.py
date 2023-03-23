@@ -301,8 +301,7 @@ def get_dependant(
     for param_name, param in signature_params.items():
         is_path_param = param_name in path_param_names
         type_annotation, depends, param_field = analyze_param(
-            param_name=param_name,
-            annotation=param.annotation,
+            param=param,
             value=param.default,
             is_path_param=is_path_param,
         )
@@ -358,8 +357,7 @@ def add_non_field_param_to_dependency(
 
 def analyze_param(
     *,
-    param_name: str,
-    annotation: Any,
+    param: inspect.Parameter,
     value: Any,
     is_path_param: bool,
 ) -> Tuple[Any, Optional[params.Depends], Optional[ModelField]]:
@@ -367,6 +365,7 @@ def analyze_param(
     used_default_field_info = False
     depends = None
     type_annotation: Any = Any
+    param_name, annotation = param.name, param.annotation
     if (
         annotation is not inspect.Signature.empty
         and get_origin(annotation) is Annotated  # type: ignore[comparison-overlap]
@@ -376,7 +375,7 @@ def analyze_param(
         fastapi_annotations = [
             arg
             for arg in annotated_args[1:]
-            if isinstance(arg, (FieldInfo, params.Depends))
+            if isinstance(arg, (FieldInfo, params.Depends, params.Deferred))
         ]
         assert (
             len(fastapi_annotations) <= 1
@@ -395,6 +394,8 @@ def analyze_param(
                 field_info.default = Required
         elif isinstance(fastapi_annotation, params.Depends):
             depends = fastapi_annotation
+        elif isinstance(fastapi_annotation, params.Deferred):
+            depends = fastapi_annotation(param)
     elif annotation is not inspect.Signature.empty:
         type_annotation = annotation
 
