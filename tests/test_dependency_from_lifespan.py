@@ -1,5 +1,7 @@
 from contextlib import asynccontextmanager
-from typing import Annotated, Any, AsyncIterator, Dict
+from typing import Any, AsyncIterator, Dict
+
+from typing_extensions import Annotated
 
 from fastapi import Depends, FastAPI, FromLifespan
 from fastapi.testclient import TestClient
