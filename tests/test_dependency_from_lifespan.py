@@ -7,22 +7,28 @@ from fastapi.testclient import TestClient
 
 def test_app_extract_from_lifespan() -> None:
     class DatabaseConnection:
+        def __init__(self, expected: int) -> None:
+            self.expected = expected
+
         async def query(self, __query: str) -> Any:
-            assert __query == "SELECT 42"
-            return 42
+            assert __query == f"SELECT {self.expected}"
+            return self.expected
 
     class DatabaseConnectionPool:
+        def __init__(self, expected: int) -> None:
+            self.expected = expected
+
         @asynccontextmanager
         async def acquire(self) -> AsyncIterator[DatabaseConnection]:
-            yield DatabaseConnection()
+            yield DatabaseConnection(self.expected)
 
     @asynccontextmanager
-    async def connect() -> AsyncIterator[DatabaseConnectionPool]:
-        yield DatabaseConnectionPool()
+    async def connect(expected: int) -> AsyncIterator[DatabaseConnectionPool]:
+        yield DatabaseConnectionPool(expected)
 
     @asynccontextmanager
     async def lifespan(app: FastAPI) -> AsyncIterator[Dict[str, Any]]:
-        async with connect() as db:
+        async with connect(42) as db:
             yield {"db": db}
 
     app = FastAPI(lifespan=lifespan)
