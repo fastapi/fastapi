@@ -56,7 +56,6 @@ from starlette.routing import (
     request_response,
     websocket_session,
 )
-from starlette.status import WS_1008_POLICY_VIOLATION
 from starlette.types import ASGIApp, Lifespan, Scope
 from starlette.websockets import WebSocket
 
