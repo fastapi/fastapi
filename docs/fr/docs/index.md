@@ -195,7 +195,7 @@ async def read_item(item_id: int, q: Union[str, None] = None):
 
 **Note**
 
-Si vous n'y êtes pas familiers, consultez la section _"Vous êtes pressés ?"_ à propos de <a href="https://fastapi.tiangolo.com/fr/async/#vous-etes-presses" target="_blank">`async` et `await` dans la documentation</a>.
+Si vous n'êtes pas familier avec cette notion, consultez la section _"Vous êtes pressés ?"_ à propos de <a href="https://fastapi.tiangolo.com/fr/async/#vous-etes-presses" target="_blank">`async` et `await` dans la documentation</a>.
 
 </details>
 
@@ -232,7 +232,7 @@ La commande `uvicorn main:app` fait référence à :
 
 Ouvrez votre navigateur à l'adresse <a href="http://127.0.0.1:8000/items/5?q=somequery" class="external-link" target="_blank">http://127.0.0.1:8000/items/5?q=somequery</a>.
 
-Vous obtenez cette réponse <abbr title="JavaScript Object Notation">JSON</abbr> :
+Vous obtenez alors cette réponse <abbr title="JavaScript Object Notation">JSON</abbr> :
 
 ```JSON
 {"item_id": 5, "q": "somequery"}
