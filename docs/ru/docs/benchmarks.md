@@ -1,6 +1,6 @@
 # Замеры производительности
 
-Независимые тесты производительности приложений от TechEmpower показывают, что **FastAPI** под управлением Uvicorn <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">является одним из самых быстрых Python-фреймворков из доступных</a>, уступая только Starlette и Uvicorn (которые используются в FastAPI). (*)
+Независимые тесты производительности приложений от TechEmpower показывают, что **FastAPI** под управлением Uvicorn <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">один из самых быстрых Python-фреймворков</a> и уступает только Starlette и Uvicorn (которые используются в FastAPI). (*)
 
 Но при просмотре и сравнении замеров производительности следует иметь в виду нижеописанное.
 
@@ -15,8 +15,8 @@
 Иерархия инструментов имеет следующий вид:
 
 * **Uvicorn**: ASGI-сервер
-    * **Starlette**: (использует Uvicorn) веб-микрофреймворк
-        * **FastAPI**: (использует Starlette) API-микрофреймворк с дополнительными функциями для создания API, с валидацией данных и т.д.
+    * **Starlette** (использует Uvicorn): веб-микрофреймворк
+        * **FastAPI** (использует Starlette): API-микрофреймворк с дополнительными функциями для создания API, с валидацией данных и т.д.
 
 * **Uvicorn**:
     * Будет иметь наилучшую производительность, так как не имеет большого количества дополнительного кода, кроме самого сервера.
