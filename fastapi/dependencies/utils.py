@@ -608,7 +608,7 @@ async def solve_dependencies(
         dependency_cache.update(sub_dependency_cache)
 
         field_map = {
-            field.name: (field.field_info.in_.value, field)
+            field.name: field
             for fields in [
                 sub_dependant.path_params,
                 sub_dependant.query_params,
@@ -643,6 +643,7 @@ async def solve_dependencies(
             if sub_dependant.name is not None:
                 field = field_map[sub_dependant.name]
                 errors.append(
+<<<<<<< Updated upstream
                     ErrorWrapper(
                         exc,
                         loc=[
@@ -652,6 +653,11 @@ async def solve_dependencies(
                     )
                 )
 
+=======
+                    ErrorWrapper(exc, loc=(field.field_info.in_.value, field.alias))
+                )
+                
+>>>>>>> Stashed changes
                 continue
 
         if sub_dependant.name is not None:
