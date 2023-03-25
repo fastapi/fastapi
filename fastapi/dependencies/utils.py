@@ -642,10 +642,16 @@ async def solve_dependencies(
         except ValueError as exc:
             if sub_dependant.name is not None:
                 field = field_map[sub_dependant.name]
+                field_info = field.field_info
+
+                assert isinstance(
+                    field_info, params.Param
+                ), "Params must be subclasses of Param"
+                
                 errors.append(
                     ErrorWrapper(
                         exc,
-                        loc=(field.field_info.in_.value, field.alias),
+                        loc=(field_info.in_.value, field.alias),
                     )
                 )
 
