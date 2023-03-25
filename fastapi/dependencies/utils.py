@@ -647,7 +647,7 @@ async def solve_dependencies(
                 assert isinstance(
                     field_info, params.Param
                 ), "Params must be subclasses of Param"
-                
+
                 errors.append(
                     ErrorWrapper(
                         exc,
