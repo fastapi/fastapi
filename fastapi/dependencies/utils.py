@@ -606,7 +606,7 @@ async def solve_dependencies(
             sub_dependency_cache,
         ) = solved_result
         dependency_cache.update(sub_dependency_cache)
-        
+
         field_map = {
             field.name: (field.field_info.in_.value, field)
             for fields in [
@@ -619,7 +619,7 @@ async def solve_dependencies(
             if fields is not None
             for field in fields
         }
-        
+
         solved = None
 
         try:
@@ -642,11 +642,16 @@ async def solve_dependencies(
         except ValueError as exc:
             if sub_dependant.name is not None:
                 field = field_map[sub_dependant.name]
-                errors.append(ErrorWrapper(exc, loc=[
-                    field[0],
-                    field[1].alias,
-                ]))
-                
+                errors.append(
+                    ErrorWrapper(
+                        exc,
+                        loc=[
+                            field[0],
+                            field[1].alias,
+                        ],
+                    )
+                )
+
                 continue
 
         if sub_dependant.name is not None:
