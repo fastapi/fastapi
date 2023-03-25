@@ -31,9 +31,12 @@ def test_bad_text():
     assert response.json() == {
         "detail": [
             {
-                "loc": [["query", "text"]],
+                "loc": [
+                    "query",
+                    "text"
+                ],
                 "msg": "bad_word is not allowed",
-                "type": "value_error",
+                "type": "value_error"
             }
         ]
     }
