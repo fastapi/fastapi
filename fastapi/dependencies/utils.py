@@ -606,25 +606,54 @@ async def solve_dependencies(
             sub_dependency_cache,
         ) = solved_result
         dependency_cache.update(sub_dependency_cache)
-        if sub_errors:
-            errors.extend(sub_errors)
-            continue
-        if sub_dependant.use_cache and sub_dependant.cache_key in dependency_cache:
-            solved = dependency_cache[sub_dependant.cache_key]
-        elif is_gen_callable(call) or is_async_gen_callable(call):
-            stack = request.scope.get("fastapi_astack")
-            assert isinstance(stack, AsyncExitStack)
-            solved = await solve_generator(
-                call=call, stack=stack, sub_values=sub_values
-            )
-        elif is_coroutine_callable(call):
-            solved = await call(**sub_values)
-        else:
-            solved = await run_in_threadpool(call, **sub_values)
+        
+        field_map = {
+            field.name: (field.field_info.in_.value, field)
+            for fields in [
+                sub_dependant.path_params,
+                sub_dependant.query_params,
+                sub_dependant.header_params,
+                sub_dependant.cookie_params,
+                sub_dependant.body_params,
+            ]
+            if fields is not None
+            for field in fields
+        }
+        
+        solved = None
+
+        try:
+            if sub_errors:
+                errors.extend(sub_errors)
+                continue
+            if sub_dependant.use_cache and sub_dependant.cache_key in dependency_cache:
+                solved = dependency_cache[sub_dependant.cache_key]
+            elif is_gen_callable(call) or is_async_gen_callable(call):
+                stack = request.scope.get("fastapi_astack")
+                assert isinstance(stack, AsyncExitStack)
+                solved = await solve_generator(
+                    call=call, stack=stack, sub_values=sub_values
+                )
+            elif is_coroutine_callable(call):
+                solved = await call(**sub_values)
+            else:
+                solved = await run_in_threadpool(call, **sub_values)
+
+        except ValueError as exc:
+            if sub_dependant.name is not None:
+                field = field_map[sub_dependant.name]
+                errors.append(ErrorWrapper(exc, loc=[
+                    field[0],
+                    field[1].alias,
+                ]))
+                
+                continue
+
         if sub_dependant.name is not None:
             values[sub_dependant.name] = solved
         if sub_dependant.cache_key not in dependency_cache:
             dependency_cache[sub_dependant.cache_key] = solved
+
     path_values, path_errors = request_params_to_args(
         dependant.path_params, request.path_params
     )
