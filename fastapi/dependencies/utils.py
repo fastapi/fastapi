@@ -643,21 +643,12 @@ async def solve_dependencies(
             if sub_dependant.name is not None:
                 field = field_map[sub_dependant.name]
                 errors.append(
-<<<<<<< Updated upstream
                     ErrorWrapper(
                         exc,
-                        loc=[
-                            field[0],
-                            field[1].alias,
-                        ],
+                        loc=(field.field_info.in_.value, field.alias),
                     )
                 )
 
-=======
-                    ErrorWrapper(exc, loc=(field.field_info.in_.value, field.alias))
-                )
-                
->>>>>>> Stashed changes
                 continue
 
         if sub_dependant.name is not None:
