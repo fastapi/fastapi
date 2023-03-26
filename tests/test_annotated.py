@@ -313,3 +313,27 @@ def test_openapi_schema():
             }
         },
     }
+
+
+def test_default_annotated():
+    app = FastAPI()
+
+    @app.get("/test")
+    async def test(var: Annotated[str, Query("bar")]):
+        return {"foo": var}
+
+    client = TestClient(app)
+
+    response = client.get("/test")
+    assert response.status_code == 200
+    assert response.json() == {"foo": "bar"}
+
+    response = client.get("/test?var=baz")
+    assert response.status_code == 200
+    assert response.json() == {"foo": "baz"}
+
+    # while calling the function directly there is no default value
+    with pytest.raises(
+        TypeError, match="missing 1 required positional argument: 'var'"
+    ):
+        test()

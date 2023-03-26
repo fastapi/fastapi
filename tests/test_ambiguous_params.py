@@ -18,13 +18,13 @@ def test_no_annotated_defaults():
     with pytest.raises(
         AssertionError,
         match=(
-            "`Query` default value cannot be set in `Annotated` for 'item_id'. Set the"
-            " default value with `=` instead."
+            "`Query` default value cannot be set in `Annotated` for 'item_id' "
+            "while regular default value is specified."
         ),
     ):
 
         @app.get("/")
-        async def get(item_id: Annotated[int, Query(default=1)]):
+        async def get(item_id: Annotated[int, Query(default=1)] = 3):
             pass  # pragma: nocover
 
 
