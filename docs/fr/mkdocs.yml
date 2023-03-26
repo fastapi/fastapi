@@ -56,6 +56,7 @@ nav:
   - ru: /ru/
   - sq: /sq/
   - sv: /sv/
+  - ta: /ta/
   - tr: /tr/
   - uk: /uk/
   - zh: /zh/
@@ -68,7 +69,9 @@ nav:
   - tutorial/query-params.md
   - tutorial/body.md
   - tutorial/background-tasks.md
+  - tutorial/debugging.md
 - Guide utilisateur avancé:
+  - advanced/path-operation-advanced-configuration.md
   - advanced/additional-status-codes.md
   - advanced/additional-responses.md
 - async.md
@@ -159,6 +162,8 @@ extra:
     name: sq - shqip
   - link: /sv/
     name: sv - svenska
+  - link: /ta/
+    name: ta - தமிழ்
   - link: /tr/
     name: tr - Türkçe
   - link: /uk/
