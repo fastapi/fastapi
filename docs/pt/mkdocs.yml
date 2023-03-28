@@ -86,6 +86,7 @@ nav:
   - tutorial/static-files.md
   - Guia de Usuário Avançado:
     - advanced/index.md
+    - advanced/events.md
 - Implantação:
   - deployment/index.md
   - deployment/versions.md

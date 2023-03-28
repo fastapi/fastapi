@@ -1,162 +1,163 @@
-# Lifespan Events
+# Eventos de vida útil
 
-You can define logic (code) that should be executed before the application **starts up**. This means that this code will be executed **once**, **before** the application **starts receiving requests**.
+Você pode definir a lógica (código) que poderia ser executada antes da aplicação **começar**. Isso significa que esse código será executado **uma vez**, **antes** da aplicação **começar a receber requests**.
 
-The same way, you can define logic (code) that should be executed when the application is **shutting down**. In this case, this code will be executed **once**, **after** having handled possibly **many requests**.
+Do mesmo modo, você pode definir a lógica (código) que será executada quando a aplicação estiver **desligando**. Nesse caso, esse código será executado **uma vez**, **depois** de ter possivelmente tratado **várias requests**.
 
-Because this code is executed before the application **starts** taking requests, and right after it **finishes** handling requests, it covers the whole application **lifespan** (the word "lifespan" will be important in a second 😉).
+Por conta desse código ser executado antes da aplição **começar** a receber requests, e logo depois disso **termina** de lidar com as requests, isso cobre toda a **vida útil** da aplicação (o termo "vida útil" será importante em um segundo 😉).
 
-This can be very useful for setting up **resources** that you need to use for the whole app, and that are **shared** among requests, and/or that you need to **clean up** afterwards. For example, a database connection pool, or loading a shared machine learning model.
+Pode ser muito útil para configurar **recursos** que você precisa usar por toda aplicação, e que são **compartilhadas** entre os requests, e/ou que você precisa **limpar** após. Por exemplo, o pool de uma conexão com o banco, ou carregamento de um modelo compartilhado de _machine learning_.
 
-## Use Case
+## Caso de uso
 
-Let's start with an example **use case** and then see how to solve it with this.
+Vamos iniciar com um exemplo de **caso de uso** e então ver como resolvê-lo com isso.
 
-Let's imagine that you have some **machine learning models** that you want to use to handle requests. 🤖
+Vamos imaginar que você tem algum **modelos de _machine learning_** que você quer usar para lidar com os requests. 🤖
 
-The same models are shared among requests, so, it's not one model per request, or one per user or something similar.
+Os mesmos modelos são compartilhados entre os requests, então, não é um modelo por request, ou um por usuário ou algo parecido.
 
-Let's imagine that loading the model can **take quite some time**, because it has to read a lot of **data from disk**. So you don't want to do it for every request.
+Vamos imaginar que o carregamento do modelo pode **levar bastante tempo**, porque ele pode ler uma grande quantidade de **dados do disco**. Então você não quer fazer isso a cada request.
 
-You could load it at the top level of the module/file, but that would also mean that it would **load the model** even if you are just running a simple automated test, then that test would be **slow** because it would have to wait for the model to load before being able to run an independent part of the code.
+Você poderia carregá-lo em um nível mais alto do módulo/arquivo, mas isso poderia também significaria **carregar o modelo** mesmo se você estiver executando um simples teste automatizado, então esse teste poderia ficar **lento** por causa porque teria que esperar o carregamento do modelo antes de ser capaz de executar uma parte independete do código.
 
-That's what we'll solve, let's load the model before the requests are handled, but only right before the application starts receiving requests, not while  the code is being loaded.
+
+Isso é o que nós iremos resolver, vamos carregar o modelo antes das requests serem manuseadas, mas apenas um pouco antes da aplicação iniciar o recebimento de requests, não enquanto o código estiver sendo carregado.
 
 ## Lifespan
 
-You can define this *startup* and *shutdown* logic using the `lifespan` parameter of the `FastAPI` app, and a "context manager" (I'll show you what that is in a second).
+Você pode definí-lo com lógica de *inicialização* e *desligamento* usando os parâmetros de `lifespan` da aplicação `FastAPI`, e um "gerenciador de contexto" (I'll show you what that is in a second).
 
-Let's start with an example and then see it in detail.
+Vamos iniciar com um exemplo e ver isso detalhadamente.
 
-We create an async function `lifespan()` with `yield` like this:
+Nós criamos uma função assíncrona chamada `lifespan()` com `yield` como isso:
 
 ```Python hl_lines="16  19"
 {!../../../docs_src/events/tutorial003.py!}
 ```
 
-Here we are simulating the expensive *startup* operation of loading the model by putting the (fake) model function in the dictionary with machine learning models before the `yield`. This code will be executed **before** the application **starts taking requests**, during the *startup*.
+Aqui nós estamos simulando a *inicialização* custosa de carregamento do modelo colocando a (falsa) função modelo em um dicionário em um dicinário com modelo de _machine learning_ antes do `yield`. Esse código será executado **antes** da aplicação **começar a receber requests**, durante a *inicialização*.
 
-And then, right after the `yield`, we unload the model. This code will be executed **after** the application **finishes handling requests**, right before the *shutdown*. This could, for example, release resources like memory or a GPU.
+E então, logo após o `yield`, descarregaremos o modelo. Esse código será executado **após** a aplicação **terminar de lidar com os requests**, pouco antes do *desligamento*. Isso poderia, por exemplo, liberar recursos como memória ou GPU.
 
 !!! tip
-    The `shutdown` would happen when you are **stopping** the application.
+    O `shutdown` aconteceria quando você está **parando** a aplicação.
 
-    Maybe you need to start a new version, or you just got tired of running it. 🤷
+    Talvez você precise inicializar uma nova versão, ou apenas cansou de executá-la. 🤷
 
-### Lifespan function
+### Função _lifespan_
 
-The first thing to notice, is that we are defining an async function with `yield`. This is very similar to Dependencies with `yield`.
+A primeira coisa a notar, é que nós estamos definindo uma função assíncrona com `yield`. Isso é muito semelhante à Dependências com `yield`.
 
 ```Python hl_lines="14-19"
 {!../../../docs_src/events/tutorial003.py!}
 ```
 
-The first part of the function, before the `yield`, will be executed **before** the application starts.
+A primeira parte da função, antes do `yield`, irá ser executada **antes** da aplicação começar.
 
-And the part after the `yield` will be executed **after** the application has finished.
+E a parte posterior do `yield` irá executar **após** a aplicação ser finalizada.
 
-### Async Context Manager
+### Gerenciador de Contexto Assíncrono
 
-If you check, the function is decorated with an `@asynccontextmanager`.
+Se você verificar, a função está decorada com um `@asynccontextmanager`.
 
-That converts the function into something called an "**async context manager**".
+Que converte a função em algo chamado de "**Gerenciador de Contexto Assíncrono**".
 
 ```Python hl_lines="1  13"
 {!../../../docs_src/events/tutorial003.py!}
 ```
 
-A **context manager** in Python is something that you can use in a `with` statement, for example, `open()` can be used as a context manager:
+Um **gerenciador de contexto** em Python é algo que você pode usar em uma declaração `with`, por exemplo, `open()` pode ser usado como um gerenciador de contexto:
 
 ```Python
 with open("file.txt") as file:
     file.read()
 ```
 
-In recent versions of Python, there's also an **async context manager**. You would use it with `async with`:
+Nas versões mais recentes de Python, há também um **gerenciador de contexto assíncrono**. Você deveria usar isso com `async with`:
 
 ```Python
 async with lifespan(app):
     await do_stuff()
 ```
 
-When you create a context manager or an async context manager like above, what it does is that, before entering the `with` block, it will execute the code before the `yield`, and after exiting the `with` block, it will execute the code after the `yield`.
+Quando você cria um gerenciador de contexto ou um gerenciador de contexto assíncrono como o mencionado acima, o que ele faz é que, antes de entrar no bloco `with`, ele irá executar o código anterior ao `yield`, e depois de sair do bloco `with`, ele irá executar o código depois do `yield`.
 
-In our code example above, we don't use it directly, but we pass it to FastAPI for it to use it.
+No nosso exemplo de código acima, nós não usamos ele diretamente, mas nós passamos para o FastAPI para ele usá-lo.
 
-The `lifespan` parameter of the `FastAPI` app takes an **async context manager**, so we can pass our new `lifespan` async context manager to it.
+O parâmetro `lifespan` da aplicação `FastAPI` leva um **Gerenciador de Contexto Assíncrono**, então nós podemos passar nosso novo gerenciador de contexto assíncrono do `lifespan` para ele.
 
 ```Python hl_lines="22"
 {!../../../docs_src/events/tutorial003.py!}
 ```
 
-## Alternative Events (deprecated)
+## Eventos alternativos (deprecados)
 
 !!! warning
-    The recommended way to handle the *startup* and *shutdown* is using the `lifespan` parameter of the `FastAPI` app as described above.
+    O caminho recomendável para lidar com a *inicialização* e o *desligamento* é usando o parâmetro `lifespan` da aplicação `FastAPI` como descrito acima.
 
-    You can probably skip this part.
+    Você provavelmente pode pular essa parte.
 
-There's an alternative way to define this logic to be executed during *startup* and during *shutdown*.
+Há um caminho alternativo para refinir a execução dessa lógica durante *inicialização* e durante *desligamento*.
 
-You can define event handlers (functions) that need to be executed before the application starts up, or when the application is shutting down.
+Você pode definir manipuladores de eventos (funções) que precisam ser executadas antes da aplicação começar, ou quando a aplicação está desligando.
 
-These functions can be declared with `async def` or normal `def`.
+Essas funções podem ser declaradas com `async def` ou `def` normal.
 
-### `startup` event
+### Evento `startup`
 
-To add a function that should be run before the application starts, declare it with the event `"startup"`:
+Para adicionar uma função que deve rodar antes da aplicação iniciar, declare-a com o evento `"startup"`:
 
 ```Python hl_lines="8"
 {!../../../docs_src/events/tutorial001.py!}
 ```
 
-In this case, the `startup` event handler function will initialize the items "database" (just a `dict`) with some values.
+Nesse caso, a função de manipulação de evento `startup` irá inicializar os itens do "database" (só um `dict`) com alguns valores.
 
-You can add more than one event handler function.
+Você pode adicionar mais que uma função de manipulação de evento.
 
-And your application won't start receiving requests until all the `startup` event handlers have completed.
+E sua aplicação não irá começar a receber requests até que tudo da manipulação de evento `startup` esteja completo.
 
-### `shutdown` event
+### Evento `shutdown`
 
-To add a function that should be run when the application is shutting down, declare it with the event `"shutdown"`:
+Para adicionar uma função que deve ser executada quando a aplicação estiver desligando, declare ela com o evento `"shutdown"`:
 
 ```Python hl_lines="6"
 {!../../../docs_src/events/tutorial002.py!}
 ```
 
-Here, the `shutdown` event handler function will write a text line `"Application shutdown"` to a file `log.txt`.
+Aqui, a função de manipulação de evento `shutdown` irá escrever uma linha de texto `"Application shutdown"` no arquivo `log.txt`.
 
 !!! info
-    In the `open()` function, the `mode="a"` means "append", so, the line will be added after whatever is on that file, without overwriting the previous contents.
+    Na função `open()`, o `mode="a"` significa "acrescentar", então, a linha irá ser adicionada depois de qualquer coisa que esteja naquele arquivo, sem sobrescrever o conteúdo anterior.
 
 !!! tip
-    Notice that in this case we are using a standard Python `open()` function that interacts with a file.
+    Perceba que nesse caso nós estamos usando a função padrão do Python `open()` que interage com um arquivo.
 
-    So, it involves I/O (input/output), that requires "waiting" for things to be written to disk.
+    Então, isso envolve I/O (input/output), que requer "espera" para coisas serem escritas em disco.
 
-    But `open()` doesn't use `async` and `await`.
+    Mas `open()` não usa `async` e `await`.
 
-    So, we declare the event handler function with standard `def` instead of `async def`.
+    Então, nós declaramos uma função de manipulação de evento com o padrão `def` ao invés de `async def`.
 
-### `startup` and `shutdown` together
+### `startup` e `shutdown` juntos
 
-There's a high chance that the logic for your *startup* and *shutdown* is connected, you might want to start something and then finish it, acquire a resource and then release it, etc.
+Há uma grande chance que a lógica para sua *inicialização* e *desligamento* esteja conectada, você pode querer iniciar alguma coisa e então finalizá-la, adquirir um recurso e então liberá-lo, etc.
 
-Doing that in separated functions that don't share logic or variables together is more difficult as you would need to store values in global variables or similar tricks.
+Fazendo isso em funções separadas que não compartilham lógica ou variáveis entre elas é mais difícil já que você precisa armazenar os valores em variáveis globais ou truques parecidos.
 
-Because of that, it's now recommended to instead use the `lifespan` as explained above.
+Por causa disso, agora é recomendado em vez disso usar o `lifespan` como explicado acima.
 
-## Technical Details
+## Detalhes técnicos
 
-Just a technical detail for the curious nerds. 🤓
+Só um detalhe técnico para nerds curiosos. 🤓
 
-Underneath, in the ASGI technical specification, this is part of the <a href="https://asgi.readthedocs.io/en/latest/specs/lifespan.html" class="external-link" target="_blank">Lifespan Protocol</a>, and it defines events called `startup` and `shutdown`.
+Por baixo, na especificação técnica ASGI, essa é a parte do <a href="https://asgi.readthedocs.io/en/latest/specs/lifespan.html" class="external-link" target="_blank">Protocolo Lifespan</a>, e define eventos chamados `startup` e `shutdown`.
 
 !!! info
-    You can read more about the Starlette `lifespan` handlers in <a href="https://www.starlette.io/lifespan/" class="external-link" target="_blank">Starlette's  Lifespan' docs</a>.
+    Você pode ler mais sobre o manipulador `lifespan` do Starlette na <a href="https://www.starlette.io/lifespan/" class="external-link" target="_blank">Documentação do Lifespan Starlette</a>.
 
-    Including how to handle lifespan state that can be used in other areas of your code.
+    Incluindo como manipular estado do lifespan que pode ser usado em outras áreas do seu código.
 
-## Sub Applications
+## Sub Aplicações
 
-🚨 Have in mind that these lifespan events (startup and shutdown) will only be executed for the main application, not for [Sub Applications - Mounts](./sub-applications.md){.internal-link target=_blank}.
+🚨 Tenha em mente que esses eventos de lifespan (de inicialização e desligamento) irão somente ser executados para a aplicação principal, não para [Sub Aplicações - Montagem](./sub-applications.md){.internal-link target=_blank}.
