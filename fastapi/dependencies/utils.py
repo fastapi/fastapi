@@ -384,10 +384,6 @@ def analyze_param(
         fastapi_annotation = next(iter(fastapi_annotations), None)
         if isinstance(fastapi_annotation, FieldInfo):
             field_info = fastapi_annotation
-            assert field_info.default is Undefined or field_info.default is Required, (
-                f"`{field_info.__class__.__name__}` default value cannot be set in"
-                f" `Annotated` for {param_name!r}. Set the default value with `=` instead."
-            )
             if value is not inspect.Signature.empty:
                 assert not is_path_param, "Path parameters cannot have default values"
                 field_info.default = value

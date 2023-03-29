@@ -1,5 +1,6 @@
 import pytest
 from fastapi import FastAPI, Query
+from fastapi.routing import APIRouter
 from fastapi.testclient import TestClient
 from typing_extensions import Annotated
 
@@ -25,6 +26,16 @@ async def multiple(foo: Annotated[str, object(), Query(min_length=1)]):
 async def unrelated(foo: Annotated[str, object()]):
     return {"foo": foo}
 
+
+router = APIRouter(prefix="/router")
+
+
+@router.get("/default")
+async def router_default(foo: Annotated[int, Query(gte=0)] = 0):
+    return {"foo": foo}
+
+
+app.include_router(router)
 
 client = TestClient(app)
 
@@ -152,6 +163,41 @@ openapi_schema = {
                 },
             }
         },
+        "/router/default": {
+            "get": {
+                "summary": "Router Default",
+                "operationId": "router_default_router_default_get",
+                "parameters": [
+                    {
+                        "required": False,
+                        "schema": {
+                            "title": "Foo",
+                            "gte": 0,
+                            "type": "integer",
+                            "default": 0,
+                        },
+                        "name": "foo",
+                        "in": "query",
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {"application/json": {"schema": {}}},
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        },
+                    },
+                },
+            }
+        },
     },
     "components": {
         "schemas": {
@@ -217,6 +263,7 @@ foo_is_short = {
         ("/multiple?foo=", 422, foo_is_short),
         ("/unrelated?foo=bar", 200, {"foo": "bar"}),
         ("/unrelated", 422, foo_is_missing),
+        ("/router/default", 200, {"foo": 0}),
         ("/openapi.json", 200, openapi_schema),
     ],
 )
