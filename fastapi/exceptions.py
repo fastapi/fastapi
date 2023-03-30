@@ -1,4 +1,4 @@
-from typing import Any, Dict, Optional, Sequence, Type, Tuple
+from typing import Any, Dict, Optional, Sequence, Tuple, Type
 
 from pydantic import BaseModel, ValidationError, create_model
 from pydantic.error_wrappers import ErrorList
@@ -15,7 +15,7 @@ class HTTPException(StarletteHTTPException):
     ) -> None:
         super().__init__(status_code=status_code, detail=detail, headers=headers)
 
-    def __reduce__(self) -> Tuple['HTTPException', Tuple[Any, ...]]:
+    def __reduce__(self) -> Tuple["HTTPException", Tuple[Any, ...]]:
         return (self.__class__, (self.status_code,))
 
 
