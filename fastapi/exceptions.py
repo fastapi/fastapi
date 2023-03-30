@@ -15,8 +15,8 @@ class HTTPException(StarletteHTTPException):
     ) -> None:
         super().__init__(status_code=status_code, detail=detail, headers=headers)
 
-    def __reduce__(self) -> Tuple["HTTPException", Tuple[Any, ...]]:
-        return (self.__class__, (self.status_code,))
+    def __reduce__(self) -> Tuple[Type["HTTPException"], Tuple[int]]:
+        return self.__class__, (self.status_code,)
 
 
 RequestErrorModel: Type[BaseModel] = create_model("Request")
