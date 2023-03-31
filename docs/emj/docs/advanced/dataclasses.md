@@ -10,22 +10,22 @@ FastAPI 🏗 🔛 🔝 **Pydantic**, &amp; 👤 ✔️ 🌏 👆 ❔ ⚙️ Pyda
 
 👉 🐕‍🦺 👏 **Pydantic**, ⚫️ ✔️ <a href="https://pydantic-docs.helpmanual.io/usage/dataclasses/#use-of-stdlib-dataclasses-with-basemodel" class="external-link" target="_blank">🔗 🐕‍🦺 `dataclasses`</a>.
 
-, ⏮ 📟 🔛 👈 🚫 ⚙️ Pydantic 🎯, FastAPI ⚙️ Pydantic 🗜 📚 🐩 🎻 Pydantic 👍 🍛 🎻.
+, ⏮️ 📟 🔛 👈 🚫 ⚙️ Pydantic 🎯, FastAPI ⚙️ Pydantic 🗜 📚 🐩 🎻 Pydantic 👍 🍛 🎻.
 
 &amp; ↗️, ⚫️ 🐕‍🦺 🎏:
 
 * 💽 🔬
-* 💽 🛠
+* 💽 🛠️
 * 💽 🧾, ♒️.
 
-👉 👷 🎏 🌌 ⏮ Pydantic 🏷. &amp; ⚫️ 🤙 🏆 🎏 🌌 🔘, ⚙️ Pydantic.
+👉 👷 🎏 🌌 ⏮️ Pydantic 🏷. &amp; ⚫️ 🤙 🏆 🎏 🌌 🔘, ⚙️ Pydantic.
 
 !!! info
     ✔️ 🤯 👈 🎻 💪 🚫 🌐 Pydantic 🏷 💪.
 
     , 👆 5️⃣📆 💪 ⚙️ Pydantic 🏷.
 
-    ✋️ 🚥 👆 ✔️ 📚 🎻 🤥 🤭, 👉 👌 🎱 ⚙️ 👫 🏋️ 🕸 🛠 ⚙️ FastAPI. 👶
+    ✋️ 🚥 👆 ✔️ 📚 🎻 🤥 🤭, 👉 👌 🎱 ⚙️ 👫 🏋️ 🕸 🛠️ ⚙️ FastAPI. 👶
 
 ## 🎻 `response_model`
 
@@ -37,59 +37,59 @@ FastAPI 🏗 🔛 🔝 **Pydantic**, &amp; 👤 ✔️ 🌏 👆 ❔ ⚙️ Pyda
 
 🎻 🔜 🔁 🗜 Pydantic 🎻.
 
-👉 🌌, 🚮 🔗 🔜 🎦 🆙 🛠 🩺 👩‍💻 🔢:
+👉 🌌, 🚮 🔗 🔜 🎦 🆙 🛠️ 🩺 👩‍💻 🔢:
 
 <img src="/img/tutorial/dataclasses/image01.png">
 
 ## 🎻 🔁 📊 📊
 
-👆 💪 🌀 `dataclasses` ⏮ 🎏 🆎 ✍ ⚒ 🐦 📊 📊.
+👆 💪 🌀 `dataclasses` ⏮️ 🎏 🆎 ✍ ⚒ 🐦 📊 📊.
 
-💼, 👆 💪 ✔️ ⚙️ Pydantic ⏬ `dataclasses`. 🖼, 🚥 👆 ✔️ ❌ ⏮ 🔁 🏗 🛠 🧾.
+💼, 👆 💪 ✔️ ⚙️ Pydantic ⏬ `dataclasses`. 🖼, 🚥 👆 ✔️ ❌ ⏮️ 🔁 🏗 🛠️ 🧾.
 
-👈 💼, 👆 💪 🎯 💱 🐩 `dataclasses` ⏮ `pydantic.dataclasses`, ❔ 💧-♻:
+👈 💼, 👆 💪 🎯 💱 🐩 `dataclasses` ⏮️ `pydantic.dataclasses`, ❔ 💧-♻:
 
 ```{ .python .annotate hl_lines="1  5  8-11  14-17  23-25  28" }
 {!../../../docs_src/dataclasses/tutorial003.py!}
 ```
 
-1⃣. 👥 🗄 `field` ⚪️➡️ 🐩 `dataclasses`.
+1️⃣. 👥 🗄 `field` ⚪️➡️ 🐩 `dataclasses`.
 
-2⃣. `pydantic.dataclasses` 💧-♻ `dataclasses`.
+2️⃣. `pydantic.dataclasses` 💧-♻ `dataclasses`.
 
-3⃣. `Author` 🎻 🔌 📇 `Item` 🎻.
+3️⃣. `Author` 🎻 🔌 📇 `Item` 🎻.
 
-4⃣. `Author` 🎻 ⚙️ `response_model` 🔢.
+4️⃣. `Author` 🎻 ⚙️ `response_model` 🔢.
 
-5⃣. 👆 💪 ⚙️ 🎏 🐩 🆎 ✍ ⏮ 🎻 📨 💪.
+5️⃣. 👆 💪 ⚙️ 🎏 🐩 🆎 ✍ ⏮️ 🎻 📨 💪.
 
     👉 💼, ⚫️ 📇 `Item` 🎻.
 
-6⃣. 📥 👥 🛬 📖 👈 🔌 `items` ❔ 📇 🎻.
+6️⃣. 📥 👥 🛬 📖 👈 🔌 `items` ❔ 📇 🎻.
 
     FastAPI 🎯 <abbr title="converting the data to a format that can be transmitted">✍</abbr> 💽 🎻.
 
-7⃣. 📥 `response_model` ⚙️ 🆎 ✍ 📇 `Author` 🎻.
+7️⃣. 📥 `response_model` ⚙️ 🆎 ✍ 📇 `Author` 🎻.
 
-    🔄, 👆 💪 🌀 `dataclasses` ⏮ 🐩 🆎 ✍.
+    🔄, 👆 💪 🌀 `dataclasses` ⏮️ 🐩 🆎 ✍.
 
-8⃣. 👀 👈 👉 *➡ 🛠 🔢* ⚙️ 🥔 `def` ↩️ `async def`.
+8️⃣. 👀 👈 👉 *➡ 🛠️ 🔢* ⚙️ 🥔 `def` ↩️ `async def`.
 
     🕧, FastAPI 👆 💪 🌀 `def` &amp; `async def` 💪.
 
     🚥 👆 💪 ↗️ 🔃 🕐❔ ⚙️ ❔, ✅ 👅 📄 _"🏃 ❓" _ 🩺 🔃 <a href="https://fastapi.tiangolo.com/async/#in-a-hurry" target="_blank" class="internal-link">`async` &amp; `await`</a>.
 
-9⃣. 👉 *➡ 🛠 🔢* 🚫 🛬 🎻 (👐 ⚫️ 💪), ✋️ 📇 📖 ⏮ 🔗 💽.
+9️⃣. 👉 *➡ 🛠️ 🔢* 🚫 🛬 🎻 (👐 ⚫️ 💪), ✋️ 📇 📖 ⏮️ 🔗 💽.
 
     FastAPI 🔜 ⚙️ `response_model` 🔢 (👈 🔌 🎻) 🗜 📨.
 
-👆 💪 🌀 `dataclasses` ⏮ 🎏 🆎 ✍ 📚 🎏 🌀 📨 🏗 📊 📊.
+👆 💪 🌀 `dataclasses` ⏮️ 🎏 🆎 ✍ 📚 🎏 🌀 📨 🏗 📊 📊.
 
 ✅-📟 ✍ 💁‍♂ 🔛 👀 🌅 🎯 ℹ.
 
 ## 💡 🌅
 
-👆 💪 🌀 `dataclasses` ⏮ 🎏 Pydantic 🏷, 😖 ⚪️➡️ 👫, 🔌 👫 👆 👍 🏷, ♒️.
+👆 💪 🌀 `dataclasses` ⏮️ 🎏 Pydantic 🏷, 😖 ⚪️➡️ 👫, 🔌 👫 👆 👍 🏷, ♒️.
 
 💡 🌅, ✅ <a href="https://pydantic-docs.helpmanual.io/usage/dataclasses/" class="external-link" target="_blank">Pydantic 🩺 🔃 🎻</a>.
 

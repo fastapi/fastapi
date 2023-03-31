@@ -2,10 +2,10 @@
 
 👑 👜 👆 💪 🏃 **FastAPI** 🈸 🛰 💽 🎰 🔫 💽 📋 💖 **Uvicorn**.
 
-📤 3⃣ 👑 🎛:
+📤 3️⃣ 👑 🎛:
 
 * <a href="https://www.uvicorn.org/" class="external-link" target="_blank">Uvicorn</a>: ↕ 🎭 🔫 💽.
-* <a href="https://pgjones.gitlab.io/hypercorn/" class="external-link" target="_blank">Hypercorn</a>: 🔫 💽 🔗 ⏮ 🇺🇸🔍/2⃣ &amp; 🎻 👪 🎏 ⚒.
+* <a href="https://pgjones.gitlab.io/hypercorn/" class="external-link" target="_blank">Hypercorn</a>: 🔫 💽 🔗 ⏮️ 🇺🇸🔍/2️⃣ &amp; 🎻 👪 🎏 ⚒.
 * <a href="https://github.com/django/daphne" class="external-link" target="_blank">👸</a>: 🔫 💽 🏗 ✳ 📻.
 
 ## 💽 🎰 &amp; 💽 📋
@@ -14,13 +14,13 @@
 
 🔤 "**💽**" 🛎 ⚙️ 🔗 👯‍♂️ 🛰/☁ 💻 (⚛ ⚖️ 🕹 🎰) &amp; 📋 👈 🏃‍♂ 🔛 👈 🎰 (✅ Uvicorn).
 
-✔️ 👈 🤯 🕐❔ 👆 ✍ "💽" 🏢, ⚫️ 💪 🔗 1⃣ 📚 2⃣ 👜.
+✔️ 👈 🤯 🕐❔ 👆 ✍ "💽" 🏢, ⚫️ 💪 🔗 1️⃣ 📚 2️⃣ 👜.
 
 🕐❔ 🔗 🛰 🎰, ⚫️ ⚠ 🤙 ⚫️ **💽**, ✋️ **🎰**, **💾** (🕹 🎰), **🕸**. 👈 🌐 🔗 🆎 🛰 🎰, 🛎 🏃‍♂ 💾, 🌐❔ 👆 🏃 📋.
 
 ## ❎ 💽 📋
 
-👆 💪 ❎ 🔫 🔗 💽 ⏮:
+👆 💪 ❎ 🔫 🔗 💽 ⏮️:
 
 === "Uvicorn"
 
@@ -39,11 +39,11 @@
     !!! tip
         ❎ `standard`, Uvicorn 🔜 ❎ &amp; ⚙️ 👍 ➕ 🔗.
 
-        👈 ✅ `uvloop`, ↕-🎭 💧-♻ `asyncio`, 👈 🚚 🦏 🛠 🎭 📈.
+        👈 ✅ `uvloop`, ↕-🎭 💧-♻ `asyncio`, 👈 🚚 🦏 🛠️ 🎭 📈.
 
 === "Hypercorn"
 
-    * <a href="https://gitlab.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>, 🔫 💽 🔗 ⏮ 🇺🇸🔍/2⃣.
+    * <a href="https://gitlab.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>, 🔫 💽 🔗 ⏮️ 🇺🇸🔍/2️⃣.
 
     <div class="termy">
 
@@ -59,7 +59,7 @@
 
 ## 🏃 💽 📋
 
-👆 💪 ⤴ 🏃 👆 🈸 🎏 🌌 👆 ✔️ ⌛ 🔰, ✋️ 🍵 `--reload` 🎛, ✅:
+👆 💪 ⤴️ 🏃 👆 🈸 🎏 🌌 👆 ✔️ ⌛ 🔰, ✋️ 🍵 `--reload` 🎛, ✅:
 
 === "Uvicorn"
 
@@ -90,19 +90,19 @@
 
      `--reload` 🎛 🍴 🌅 🌅 ℹ, 🌅 ⚠, ♒️.
 
-    ⚫️ ℹ 📚 ⏮ **🛠**, ✋️ 👆 **🚫🔜 🚫** ⚙️ ⚫️ **🏭**.
+    ⚫️ ℹ 📚 ⏮️ **🛠️**, ✋️ 👆 **🚫🔜 🚫** ⚙️ ⚫️ **🏭**.
 
-## Hypercorn ⏮ 🎻
+## Hypercorn ⏮️ 🎻
 
-💃 &amp; **FastAPI** ⚓️ 🔛 <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a>, ❔ ⚒ 👫 🔗 ⏮ 👯‍♂️ 🐆 🐩 🗃 <a href="https://docs.python.org/3/library/asyncio-task.html" class="external-link" target="_blank">✳</a> &amp; <a href="https://trio.readthedocs.io/en/stable/" class="external-link" target="_blank">🎻</a>.
+💃 &amp; **FastAPI** ⚓️ 🔛 <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a>, ❔ ⚒ 👫 🔗 ⏮️ 👯‍♂️ 🐍 🐩 🗃 <a href="https://docs.python.org/3/library/asyncio-task.html" class="external-link" target="_blank">✳</a> &amp; <a href="https://trio.readthedocs.io/en/stable/" class="external-link" target="_blank">🎻</a>.
 
-👐, Uvicorn ⏳ 🕴 🔗 ⏮ ✳, &amp; ⚫️ 🛎 ⚙️ <a href="https://github.com/MagicStack/uvloop" class="external-link" target="_blank">`uvloop`</a>, ↕-🎭 💧-♻ `asyncio`.
+👐, Uvicorn ⏳ 🕴 🔗 ⏮️ ✳, &amp; ⚫️ 🛎 ⚙️ <a href="https://github.com/MagicStack/uvloop" class="external-link" target="_blank">`uvloop`</a>, ↕-🎭 💧-♻ `asyncio`.
 
-✋️ 🚥 👆 💚 🔗 ⚙️ **🎻**, ⤴ 👆 💪 ⚙️ **Hypercorn** ⚫️ 🐕‍🦺 ⚫️. 👶
+✋️ 🚥 👆 💚 🔗 ⚙️ **🎻**, ⤴️ 👆 💪 ⚙️ **Hypercorn** ⚫️ 🐕‍🦺 ⚫️. 👶
 
-### ❎ Hypercorn ⏮ 🎻
+### ❎ Hypercorn ⏮️ 🎻
 
-🥇 👆 💪 ❎ Hypercorn ⏮ 🎻 🐕‍🦺:
+🥇 👆 💪 ❎ Hypercorn ⏮️ 🎻 🐕‍🦺:
 
 <div class="termy">
 
@@ -113,9 +113,9 @@ $ pip install "hypercorn[trio]"
 
 </div>
 
-### 🏃 ⏮ 🎻
+### 🏃 ⏮️ 🎻
 
-⤴ 👆 💪 🚶‍♀️ 📋 ⏸ 🎛 `--worker-class` ⏮ 💲 `trio`:
+⤴️ 👆 💪 🚶‍♀️ 📋 ⏸ 🎛 `--worker-class` ⏮️ 💲 `trio`:
 
 <div class="termy">
 
@@ -125,21 +125,21 @@ $ hypercorn main:app --worker-class trio
 
 </div>
 
-&amp; 👈 🔜 ▶ Hypercorn ⏮ 👆 📱 ⚙️ 🎻 👩‍💻.
+&amp; 👈 🔜 ▶️ Hypercorn ⏮️ 👆 📱 ⚙️ 🎻 👩‍💻.
 
-🔜 👆 💪 ⚙️ 🎻 🔘 👆 📱. ⚖️ 👍, 👆 💪 ⚙️ AnyIO, 🚧 👆 📟 🔗 ⏮ 👯‍♂️ 🎻 &amp; ✳. 👶
+🔜 👆 💪 ⚙️ 🎻 🔘 👆 📱. ⚖️ 👍, 👆 💪 ⚙️ AnyIO, 🚧 👆 📟 🔗 ⏮️ 👯‍♂️ 🎻 &amp; ✳. 👶
 
-## 🛠 🔧
+## 🛠️ 🔧
 
-👫 🖼 🏃 💽 📋 (📧.Ⓜ Uvicorn), ▶ **👁 🛠**, 👂 🔛 🌐 📢 (`0.0.0.0`) 🔛 🔁 ⛴ (✅ `80`).
+👫 🖼 🏃 💽 📋 (📧.Ⓜ Uvicorn), ▶️ **👁 🛠️**, 👂 🔛 🌐 📢 (`0.0.0.0`) 🔛 🔁 ⛴ (✅ `80`).
 
 👉 🔰 💭. ✋️ 👆 🔜 🎲 💚 ✊ 💅 🌖 👜, 💖:
 
 * 💂‍♂ - 🇺🇸🔍
 * 🏃‍♂ 🔛 🕴
 * ⏏
-* 🧬 (🔢 🛠 🏃)
+* 🧬 (🔢 🛠️ 🏃)
 * 💾
-* ⏮ 🔁 ⏭ ▶
+* ⏮️ 🔁 ⏭ ▶️
 
-👤 🔜 💬 👆 🌅 🔃 🔠 👫 🔧, ❔ 💭 🔃 👫, &amp; 🧱 🖼 ⏮ 🎛 🍵 👫 ⏭ 📃. 👶
+👤 🔜 💬 👆 🌅 🔃 🔠 👫 🔧, ❔ 💭 🔃 👫, &amp; 🧱 🖼 ⏮️ 🎛 🍵 👫 ⏭ 📃. 👶

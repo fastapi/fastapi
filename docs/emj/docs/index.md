@@ -2,7 +2,7 @@
   <a href="https://fastapi.tiangolo.com"><img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI"></a>
 </p>
 <p align="center">
-    <em>FastAPI 🛠, ↕ 🎭, ⏩ 💡, ⏩ 📟, 🔜 🏭</em>
+    <em>FastAPI 🛠️, ↕ 🎭, ⏩ 💡, ⏩ 📟, 🔜 🏭</em>
 </p>
 <p align="center">
 <a href="https://github.com/tiangolo/fastapi/actions?query=workflow%3ATest+event%3Apush+branch%3Amaster" target="_blank">
@@ -21,26 +21,26 @@
 
 ---
 
-**🧾**: <a href="https://fastapi.tiangolo.com" target="_blank">Https://fastapi.tiangolo.com</a>
+**🧾**: <a href="https://fastapi.tiangolo.com" target="_blank">https://fastapi.tiangolo.com</a>
 
 **ℹ 📟**: <a href="https://github.com/tiangolo/fastapi" target="_blank">https://github.com/tiangolo/fastapi</a>
 
 ---
 
-FastAPI 🏛, ⏩ (↕-🎭), 🕸 🛠 🏗 🛠 ⏮ 🐆 3⃣.7⃣ ➕ ⚓️ 🔛 🐩 🐆 🆎 🔑.
+FastAPI 🏛, ⏩ (↕-🎭), 🕸 🛠️ 🏗 🛠️ ⏮️ 🐍 3️⃣.7️⃣ ➕ ⚓️ 🔛 🐩 🐍 🆎 🔑.
 
 🔑 ⚒:
 
-* **⏩**: 📶 ↕ 🎭, 🔛 🇷🇪 ⏮ **✳** &amp; **🚶** (👏 💃 &amp; Pydantic). [1⃣ ⏩ 🐆 🛠 💪](#performance).
-* **⏩ 📟**: 📈 🚅 🛠 ⚒ 🔃 2⃣0⃣0⃣ 💯 3⃣0⃣0⃣ 💯. *
-* **👩‍❤‍👨 🐛**: 📉 🔃 4⃣0⃣ 💯 🗿 (👩‍💻) 📉 ❌. *
-* **🏋️**: 👑 👨‍🎨 🐕‍🦺. <abbr title="also known as auto-complete, autocompletion, IntelliSense">🛠</abbr> 🌐. 🌘 🕰 🛠.
+* **⏩**: 📶 ↕ 🎭, 🔛 🇷🇪 ⏮️ **✳** &amp; **🚶** (👏 💃 &amp; Pydantic). [1️⃣ ⏩ 🐍 🛠️ 💪](#performance).
+* **⏩ 📟**: 📈 🚅 🛠️ ⚒ 🔃 2️⃣0️⃣0️⃣ 💯 3️⃣0️⃣0️⃣ 💯. *
+* **👩‍❤‍👨 🐛**: 📉 🔃 4️⃣0️⃣ 💯 🗿 (👩‍💻) 📉 ❌. *
+* **🏋️**: 👑 👨‍🎨 🐕‍🦺. <abbr title="also known as auto-complete, autocompletion, IntelliSense">🛠️</abbr> 🌐. 🌘 🕰 🛠️.
 * **⏩**: 🔧 ⏩ ⚙️ &amp; 💡. 🌘 🕰 👂 🩺.
 * **📏**: 📉 📟 ❎. 💗 ⚒ ⚪️➡️ 🔠 🔢 📄. 👩‍❤‍👨 🐛.
-* **🏋️**: 🤚 🏭-🔜 📟. ⏮ 🏧 🎓 🧾.
-* **🐩-⚓️**: ⚓️ 🔛 (&amp; 🍕 🔗 ⏮) 📂 🐩 🔗: <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">🗄</a> (⏪ 💭 🦁) &amp; <a href="https://json-schema.org/" class="external-link" target="_blank">🎻 🔗</a>.
+* **🏋️**: 🤚 🏭-🔜 📟. ⏮️ 🏧 🎓 🧾.
+* **🐩-⚓️**: ⚓️ 🔛 (&amp; 🍕 🔗 ⏮️) 📂 🐩 🔗: <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">🗄</a> (⏪ 💭 🦁) &amp; <a href="https://json-schema.org/" class="external-link" target="_blank">🎻 🔗</a>.
 
-<small>* ⚖ ⚓️ 🔛 💯 🔛 🔗 🛠 🏉, 🏗 🏭 🈸.</small>
+<small>* ⚖ ⚓️ 🔛 💯 🔛 🔗 🛠️ 🏉, 🏗 🏭 🈸.</small>
 
 ## 💰
 
@@ -61,19 +61,19 @@ FastAPI 🏛, ⏩ (↕-🎭), 🕸 🛠 🏗 🛠 ⏮ 🐆 3⃣.7⃣ ➕ ⚓️ 
 
 ## 🤔
 
-"_[...] 👤 ⚙️ **FastAPI** 📚 👫 📆. [...] 👤 🤙 📆 ⚙️ ⚫️ 🌐 👇 🏉 **⚗ 🐕‍🦺 🤸‍♂**. 👫 💆‍♂ 🛠 🔘 🐚 **🖥** 🏬 &amp; **📠** 🏬._"
+"_[...] 👤 ⚙️ **FastAPI** 📚 👫 📆. [...] 👤 🤙 📆 ⚙️ ⚫️ 🌐 👇 🏉 **⚗ 🐕‍🦺 🤸‍♂**. 👫 💆‍♂ 🛠️ 🔘 🐚 **🖥** 🏬 &amp; **📠** 🏬._"
 
 <div style="text-align: right; margin-right: 10%;">🧿 🇵🇰 - <strong>🤸‍♂</strong> <a href="https://github.com/tiangolo/fastapi/pull/26" target="_blank"><small>(🇦🇪)</small></a></div>
 
 ---
 
-"_👥 🛠 **FastAPI** 🗃 🤖 **🎂** 💽 👈 💪 🔢 🚚 **🔮**. [👨📛]_"
+"_👥 🛠️ **FastAPI** 🗃 🤖 **🎂** 💽 👈 💪 🔢 🚚 **🔮**. [👨📛]_"
 
 <div style="text-align: right; margin-right: 10%;">🇮🇹 🇸🇻, 👨📛 👨📛, &amp; 🇱🇰 🕉 🕉 - <strong>🙃</strong> <a href="https://eng.uber.com/ludwig-v0-2/" target="_blank"><small>(🇦🇪)</small></a></div>
 
 ---
 
-"_**📺** 🙏 📣 📂-ℹ 🚀 👆 **⚔ 🧾** 🎶 🛠: **📨**❗ [🏗 ⏮ **FastAPI**]_"
+"_**📺** 🙏 📣 📂-ℹ 🚀 👆 **⚔ 🧾** 🎶 🛠️: **📨**❗ [🏗 ⏮️ **FastAPI**]_"
 
 <div style="text-align: right; margin-right: 10%;">✡ 🍏, 👖 🇪🇸, 🌲 🍏 - <strong>📺</strong> <a href="https://netflixtechblog.com/introducing-dispatch-da4b8a2a8072" target="_blank"><small>(🇦🇪)</small></a></div>
 
@@ -81,7 +81,7 @@ FastAPI 🏛, ⏩ (↕-🎭), 🕸 🛠 🏗 🛠 ⏮ 🐆 3⃣.7⃣ ➕ ⚓️ 
 
 "_👤 🤭 🌕 😄 🔃 **FastAPI**. ⚫️ 🎊 ❗_"
 
-<div style="text-align: right; margin-right: 10%;">✡ 🇭🇰 - <strong><a href="https://pythonbytes.fm/episodes/show/123/time-to-right-the-py-wrongs?time_in_sec=855" target="_blank">🐆 🔢</a> 📻 🦠</strong> <a href="https://twitter.com/brianokken/status/1112220079972728832" target="_blank"><small>(🇦🇪)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">✡ 🇭🇰 - <strong><a href="https://pythonbytes.fm/episodes/show/123/time-to-right-the-py-wrongs?time_in_sec=855" target="_blank">🐍 🔢</a> 📻 🦠</strong> <a href="https://twitter.com/brianokken/status/1112220079972728832" target="_blank"><small>(🇦🇪)</small></a></div>
 
 ---
 
@@ -91,7 +91,7 @@ FastAPI 🏛, ⏩ (↕-🎭), 🕸 🛠 🏗 🛠 ⏮ 🐆 3⃣.7⃣ ➕ ⚓️ 
 
 ---
 
-"_🚥 👆 👀 💡 1⃣ **🏛 🛠** 🏗 🎂 🔗, ✅ 👅 **FastAPI** [...] ⚫️ ⏩, ⏩ ⚙️ &amp; ⏩ 💡 [...]_"
+"_🚥 👆 👀 💡 1️⃣ **🏛 🛠️** 🏗 🎂 🔗, ✅ 👅 **FastAPI** [...] ⚫️ ⏩, ⏩ ⚙️ &amp; ⏩ 💡 [...]_"
 
 "_👥 ✔️ 🎛 🤭 **FastAPI** 👆 **🔗** [...] 👤 💭 👆 🔜 💖 ⚫️ [...]_"
 
@@ -99,7 +99,7 @@ FastAPI 🏛, ⏩ (↕-🎭), 🕸 🛠 🏗 🛠 ⏮ 🐆 3⃣.7⃣ ➕ ⚓️ 
 
 ---
 
-"_🚥 🙆 👀 🏗 🏭 🐆 🛠, 👤 🔜 🏆 👍 **FastAPI**. ⚫️ **💎 🏗**, **🙅 ⚙️** &amp; **🏆 🛠**, ⚫️ ✔️ ▶️ **🔑 🦲** 👆 🛠 🥇 🛠 🎛 &amp; 🚘 📚 🏧 &amp; 🐕‍🦺 ✅ 👆 🕹 🔫 👨‍💻._"
+"_🚥 🙆 👀 🏗 🏭 🐍 🛠️, 👤 🔜 🏆 👍 **FastAPI**. ⚫️ **💎 🏗**, **🙅 ⚙️** &amp; **🏆 🛠️**, ⚫️ ✔️ ▶️️ **🔑 🦲** 👆 🛠️ 🥇 🛠️ 🎛 &amp; 🚘 📚 🏧 &amp; 🐕‍🦺 ✅ 👆 🕹 🔫 👨‍💻._"
 
 <div style="text-align: right; margin-right: 10%;">🇹🇦 🍰 - <strong>📻</strong> <a href="https://www.linkedin.com/posts/deonpillsbury_cisco-cx-python-activity-6963242628536487936-trAp/" target="_blank"><small>(🇦🇪)</small></a></div>
 
@@ -109,13 +109,13 @@ FastAPI 🏛, ⏩ (↕-🎭), 🕸 🛠 🏗 🛠 ⏮ 🐆 3⃣.7⃣ ➕ ⚓️ 
 
 <a href="https://typer.tiangolo.com" target="_blank"><img src="https://typer.tiangolo.com/img/logo-margin/logo-margin-vector.svg" style="width: 20%;"></a>
 
-🚥 👆 🏗 <abbr title="Command Line Interface">✳</abbr> 📱 ⚙️ 📶 ↩️ 🕸 🛠, ✅ 👅 <a href="https://typer.tiangolo.com/" class="external-link" target="_blank">**🏎**</a>.
+🚥 👆 🏗 <abbr title="Command Line Interface">✳</abbr> 📱 ⚙️ 📶 ↩️ 🕸 🛠️, ✅ 👅 <a href="https://typer.tiangolo.com/" class="external-link" target="_blank">**🏎**</a>.
 
 **🏎** FastAPI 🐥 👪. &amp; ⚫️ 🎯 **FastAPI 🇳🇨**. 👶 👶 👶
 
 ## 📄
 
-🐆 3⃣.7⃣ ➕
+🐍 3️⃣.7️⃣ ➕
 
 FastAPI 🧍 🔛 ⌚ 🐘:
 
@@ -150,7 +150,7 @@ $ pip install "uvicorn[standard]"
 
 ### ✍ ⚫️
 
-* ✍ 📁 `main.py` ⏮:
+* ✍ 📁 `main.py` ⏮️:
 
 ```Python
 from typing import Union
@@ -201,7 +201,7 @@ async def read_item(item_id: int, q: Union[str, None] = None):
 
 ### 🏃 ⚫️
 
-🏃 💽 ⏮:
+🏃 💽 ⏮️:
 
 <div class="termy">
 
@@ -222,15 +222,15 @@ INFO:     Application startup complete.
 
 📋 `uvicorn main:app` 🔗:
 
-* `main`: 📁 `main.py` (🐆 "🕹").
-* `app`: 🎚 ✍ 🔘 `main.py` ⏮ ⏸ `app = FastAPI()`.
-* `--reload`: ⚒ 💽 ⏏ ⏮ 📟 🔀. 🕴 👉 🛠.
+* `main`: 📁 `main.py` (🐍 "🕹").
+* `app`: 🎚 ✍ 🔘 `main.py` ⏮️ ⏸ `app = FastAPI()`.
+* `--reload`: ⚒ 💽 ⏏ ⏮️ 📟 🔀. 🕴 👉 🛠️.
 
 </details>
 
 ### ✅ ⚫️
 
-📂 👆 🖥 <a href="http://127.0.0.1:8000/items/5?q=somequery" class="external-link" target="_blank">Http://127.0.0.1:8000/items/5?q=somequery</a>.
+📂 👆 🖥 <a href="http://127.0.0.1:8000/items/5?q=somequery" class="external-link" target="_blank">http://127.0.0.1:8000/items/5?q=somequery</a>.
 
 👆 🔜 👀 🎻 📨:
 
@@ -238,24 +238,24 @@ INFO:     Application startup complete.
 {"item_id": 5, "q": "somequery"}
 ```
 
-👆 ⏪ ✍ 🛠 👈:
+👆 ⏪ ✍ 🛠️ 👈:
 
 * 📨 🇺🇸🔍 📨 _➡_ `/` &amp; `/items/{item_id}`.
-* 👯‍♂️ _➡_ ✊ `GET` <em>🛠</em> (💭 🇺🇸🔍 _👩‍🔬_).
+* 👯‍♂️ _➡_ ✊ `GET` <em>🛠️</em> (💭 🇺🇸🔍 _👩‍🔬_).
 *  _➡_ `/items/{item_id}` ✔️ _➡ 🔢_ `item_id` 👈 🔜 `int`.
 *  _➡_ `/items/{item_id}` ✔️ 📦 `str` _🔢 = `q`.
 
-### 🎓 🛠 🩺
+### 🎓 🛠️ 🩺
 
-🔜 🚶 <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">Http://127.0.0.1:8000/docs</a>.
+🔜 🚶 <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 
-👆 🔜 👀 🏧 🎓 🛠 🧾 (🚚 <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">🦁 🎚</a>):
+👆 🔜 👀 🏧 🎓 🛠️ 🧾 (🚚 <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">🦁 🎚</a>):
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-01-swagger-ui-simple.png)
 
-### 🎛 🛠 🩺
+### 🎛 🛠️ 🩺
 
-&amp; 🔜, 🚶 <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">Http://127.0.0.1:8000/redoc</a>.
+&amp; 🔜, 🚶 <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>.
 
 👆 🔜 👀 🎛 🏧 🧾 (🚚 <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">📄</a>):
 
@@ -265,7 +265,7 @@ INFO:     Application startup complete.
 
 🔜 🔀 📁 `main.py` 📨 💪 ⚪️➡️ `PUT` 📨.
 
-📣 💪 ⚙️ 🐩 🐆 🆎, 👏 Pydantic.
+📣 💪 ⚙️ 🐩 🐍 🆎, 👏 Pydantic.
 
 ```Python hl_lines="4  9-12  25-27"
 from typing import Union
@@ -299,25 +299,25 @@ def update_item(item_id: int, item: Item):
 
 💽 🔜 🔃 🔁 (↩️ 👆 🚮 `--reload` `uvicorn` 📋 🔛).
 
-### 🎓 🛠 🩺 ♻
+### 🎓 🛠️ 🩺 ♻
 
-🔜 🚶 <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">Http://127.0.0.1:8000/docs</a>.
+🔜 🚶 <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 
-* 🎓 🛠 🧾 🔜 🔁 ℹ, 🔌 🆕 💪:
+* 🎓 🛠️ 🧾 🔜 🔁 ℹ, 🔌 🆕 💪:
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-03-swagger-02.png)
 
-* 🖊 🔛 🔼 "🔄 ⚫️ 👅", ⚫️ ✔ 👆 🥧 🔢 &amp; 🔗 🔗 ⏮ 🛠:
+* 🖊 🔛 🔼 "🔄 ⚫️ 👅", ⚫️ ✔ 👆 🥧 🔢 &amp; 🔗 🔗 ⏮️ 🛠️:
 
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-04-swagger-03.png)
 
-* ⤴ 🖊 🔛 "🛠" 🔼, 👩‍💻 🔢 🔜 🔗 ⏮ 👆 🛠, 📨 🔢, 🤚 🏁 &amp; 🎦 👫 🔛 🖥:
+* ⤴️ 🖊 🔛 "🛠️" 🔼, 👩‍💻 🔢 🔜 🔗 ⏮️ 👆 🛠️, 📨 🔢, 🤚 🏁 &amp; 🎦 👫 🔛 🖥:
 
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-05-swagger-04.png)
 
-### 🎛 🛠 🩺 ♻
+### 🎛 🛠️ 🩺 ♻
 
-&amp; 🔜, 🚶 <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">Http://127.0.0.1:8000/redoc</a>.
+&amp; 🔜, 🚶 <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>.
 
 * 🎛 🧾 🔜 🎨 🆕 🔢 🔢 &amp; 💪:
 
@@ -327,11 +327,11 @@ def update_item(item_id: int, item: Item):
 
 📄, 👆 📣 **🕐** 🆎 🔢, 💪, ♒️. 🔢 🔢.
 
-👆 👈 ⏮ 🐩 🏛 🐆 🆎.
+👆 👈 ⏮️ 🐩 🏛 🐍 🆎.
 
 👆 🚫 ✔️ 💡 🆕 ❕, 👩‍🔬 ⚖️ 🎓 🎯 🗃, ♒️.
 
-🐩 **🐆 3⃣.7⃣ ➕**.
+🐩 **🐍 3️⃣.7️⃣ ➕**.
 
 🖼, `int`:
 
@@ -345,15 +345,15 @@ item_id: int
 item: Item
 ```
 
-...&amp; ⏮ 👈 👁 📄 👆 🤚:
+...&amp; ⏮️ 👈 👁 📄 👆 🤚:
 
 * 👨‍🎨 🐕‍🦺, 🔌:
-    * 🛠.
+    * 🛠️.
     * 🆎 ✅.
 * 🔬 💽:
     * 🏧 &amp; 🆑 ❌ 🕐❔ 📊 ❌.
     * 🔬 🙇 🐦 🎻 🎚.
-* <abbr title="also known as: serialization, parsing, marshalling">🛠</abbr> 🔢 💽: 👟 ⚪️➡️ 🕸 🐆 💽 &amp; 🆎. 👂 ⚪️➡️:
+* <abbr title="also known as: serialization, parsing, marshalling">🛠️</abbr> 🔢 💽: 👟 ⚪️➡️ 🕸 🐍 💽 &amp; 🆎. 👂 ⚪️➡️:
     * 🎻.
     * ➡ 🔢.
     * 🔢 🔢.
@@ -361,42 +361,42 @@ item: Item
     * 🎚.
     * 📨.
     * 📁.
-* <abbr title="also known as: serialization, parsing, marshalling">🛠</abbr> 🔢 📊: 🗜 ⚪️➡️ 🐆 💽 &amp; 🆎 🕸 💽 (🎻):
-    * 🗜 🐆 🆎 (`str`, `int`, `float`, `bool`, `list`, ♒️).
+* <abbr title="also known as: serialization, parsing, marshalling">🛠️</abbr> 🔢 📊: 🗜 ⚪️➡️ 🐍 💽 &amp; 🆎 🕸 💽 (🎻):
+    * 🗜 🐍 🆎 (`str`, `int`, `float`, `bool`, `list`, ♒️).
     * `datetime` 🎚.
     * `UUID` 🎚.
     * 💽 🏷.
     * ...&amp; 📚 🌖.
-* 🏧 🎓 🛠 🧾, 🔌 2⃣ 🎛 👩‍💻 🔢:
+* 🏧 🎓 🛠️ 🧾, 🔌 2️⃣ 🎛 👩‍💻 🔢:
     * 🦁 🎚.
     * 📄.
 
 ---
 
-👟 🔙 ⏮ 📟 🖼, **FastAPI** 🔜:
+👟 🔙 ⏮️ 📟 🖼, **FastAPI** 🔜:
 
 * ✔ 👈 📤 `item_id` ➡ `GET` &amp; `PUT` 📨.
 * ✔ 👈 `item_id` 🆎 `int` `GET` &amp; `PUT` 📨.
     * 🚥 ⚫️ 🚫, 👩‍💻 🔜 👀 ⚠, 🆑 ❌.
 * ✅ 🚥 📤 📦 🔢 🔢 📛 `q` ( `http://127.0.0.1:8000/items/foo?q=somequery`) `GET` 📨.
-    *  `q` 🔢 📣 ⏮ `= None`, ⚫️ 📦.
-    * 🍵 `None` ⚫️ 🔜 🚚 (💪 💼 ⏮ `PUT`).
+    *  `q` 🔢 📣 ⏮️ `= None`, ⚫️ 📦.
+    * 🍵 `None` ⚫️ 🔜 🚚 (💪 💼 ⏮️ `PUT`).
 *  `PUT` 📨 `/items/{item_id}`, ✍ 💪 🎻:
     * ✅ 👈 ⚫️ ✔️ ✔ 🔢 `name` 👈 🔜 `str`.
     * ✅ 👈 ⚫️ ✔️ ✔ 🔢 `price` 👈 ✔️ `float`.
     * ✅ 👈 ⚫️ ✔️ 📦 🔢 `is_offer`, 👈 🔜 `bool`, 🚥 🎁.
     * 🌐 👉 🔜 👷 🙇 🐦 🎻 🎚.
 * 🗜 ⚪️➡️ &amp; 🎻 🔁.
-* 📄 🌐 ⏮ 🗄, 👈 💪 ⚙️:
+* 📄 🌐 ⏮️ 🗄, 👈 💪 ⚙️:
     * 🎓 🧾 ⚙️.
     * 🏧 👩‍💻 📟 ⚡ ⚙️, 📚 🇪🇸.
-* 🚚 2⃣ 🎓 🧾 🕸 🔢 🔗.
+* 🚚 2️⃣ 🎓 🧾 🕸 🔢 🔗.
 
 ---
 
 👥 🖌 🧽, ✋️ 👆 ⏪ 🤚 💭 ❔ ⚫️ 🌐 👷.
 
-🔄 🔀 ⏸ ⏮:
+🔄 🔀 ⏸ ⏮️:
 
 ```Python
     return {"item_name": item.name, "item_id": item_id}
@@ -425,11 +425,11 @@ item: Item
 * 📄 **🔢** ⚪️➡️ 🎏 🎏 🥉: **🎚**, **🍪**, **📨 🏑** &amp; **📁**.
 * ❔ ⚒ **🔬 ⚛** `maximum_length` ⚖️ `regex`.
 * 📶 🏋️ &amp; ⏩ ⚙️ **<abbr title="also known as components, resources, providers, services, injectables">🔗 💉</abbr>** ⚙️.
-* 💂‍♂ &amp; 🤝, ✅ 🐕‍🦺 **Oauth2⃣** ⏮ **🥙 🤝** &amp; **🇺🇸🔍 🔰** 🔐.
+* 💂‍♂ &amp; 🤝, ✅ 🐕‍🦺 **Oauth2️⃣** ⏮️ **🥙 🤝** &amp; **🇺🇸🔍 🔰** 🔐.
 * 🌅 🏧 (✋️ 😨 ⏩) ⚒ 📣 **🙇 🐦 🎻 🏷** (👏 Pydantic).
-* **🕹** 🛠 ⏮ <a href="https://strawberry.rocks" class="external-link" target="_blank">🍓</a> &amp; 🎏 🗃.
+* **🕹** 🛠️ ⏮️ <a href="https://strawberry.rocks" class="external-link" target="_blank">🍓</a> &amp; 🎏 🗃.
 * 📚 ➕ ⚒ (👏 💃):
-    * ** *⃣ **
+    * ** *️⃣ **
     * 📶 ⏩ 💯 ⚓️ 🔛 🇸🇲 &amp; `pytest`
     * **⚜**
     * **🍪 🎉**
@@ -437,7 +437,7 @@ item: Item
 
 ## 🎭
 
-🔬 🇸🇲 📇 🎦 **FastAPI** 🈸 🏃‍♂ 🔽 Uvicorn <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">1⃣ ⏩ 🐆 🛠 💪</a>, 🕴 🔛 💃 &amp; Uvicorn 👫 (⚙️ 🔘 FastAPI). (*)
+🔬 🇸🇲 📇 🎦 **FastAPI** 🈸 🏃‍♂ 🔽 Uvicorn <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">1️⃣ ⏩ 🐍 🛠️ 💪</a>, 🕴 🔛 💃 &amp; Uvicorn 👫 (⚙️ 🔘 FastAPI). (*)
 
 🤔 🌖 🔃 ⚫️, 👀 📄 <a href="https://fastapi.tiangolo.com/benchmarks/" class="internal-link" target="_blank">📇</a>.
 
@@ -452,9 +452,9 @@ item: Item
 
 * <a href="https://www.python-httpx.org" target="_blank"><code>httpx</code></a> - ✔ 🚥 👆 💚 ⚙️ `TestClient`.
 * <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - ✔ 🚥 👆 💚 ⚙️ 🔢 📄 📳.
-* <a href="https://andrew-d.github.io/python-multipart/" target="_blank"><code>python-multipart</code></a> - ✔ 🚥 👆 💚 🐕‍🦺 📨 <abbr title="converting the string that comes from an HTTP request into Python data">"✍"</abbr>, ⏮ `request.form()`.
+* <a href="https://andrew-d.github.io/python-multipart/" target="_blank"><code>python-multipart</code></a> - ✔ 🚥 👆 💚 🐕‍🦺 📨 <abbr title="converting the string that comes from an HTTP request into Python data">"✍"</abbr>, ⏮️ `request.form()`.
 * <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - ✔ `SessionMiddleware` 🐕‍🦺.
-* <a href="https://pyyaml.org/wiki/PyYAMLDocumentation" target="_blank"><code>pyyaml</code></a> - ✔ 💃 `SchemaGenerator` 🐕‍🦺 (👆 🎲 🚫 💪 ⚫️ ⏮ FastAPI).
+* <a href="https://pyyaml.org/wiki/PyYAMLDocumentation" target="_blank"><code>pyyaml</code></a> - ✔ 💃 `SchemaGenerator` 🐕‍🦺 (👆 🎲 🚫 💪 ⚫️ ⏮️ FastAPI).
 * <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - ✔ 🚥 👆 💚 ⚙️ `UJSONResponse`.
 
 ⚙️ FastAPI / 💃:
@@ -462,7 +462,7 @@ item: Item
 * <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - 💽 👈 📐 &amp; 🍦 👆 🈸.
 * <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - ✔ 🚥 👆 💚 ⚙️ `ORJSONResponse`.
 
-👆 💪 ❎ 🌐 👫 ⏮ `pip install "fastapi[all]"`.
+👆 💪 ❎ 🌐 👫 ⏮️ `pip install "fastapi[all]"`.
 
 ## 🛂
 

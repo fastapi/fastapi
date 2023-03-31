@@ -4,24 +4,24 @@
 
 ## 🔃 💂‍♂, 🔗, &amp; 🩺
 
-🕵‍♂ 👆 🧾 👩‍💻 🔢 🏭 *🚫🔜 🚫* 🌌 🛡 👆 🛠.
+🕵‍♂ 👆 🧾 👩‍💻 🔢 🏭 *🚫🔜 🚫* 🌌 🛡 👆 🛠️.
 
-👈 🚫 🚮 🙆 ➕ 💂‍♂ 👆 🛠, *➡ 🛠* 🔜 💪 🌐❔ 👫.
+👈 🚫 🚮 🙆 ➕ 💂‍♂ 👆 🛠️, *➡ 🛠️* 🔜 💪 🌐❔ 👫.
 
 🚥 📤 💂‍♂ ⚠ 👆 📟, ⚫️ 🔜 🔀.
 
-🕵‍♂ 🧾 ⚒ ⚫️ 🌅 ⚠ 🤔 ❔ 🔗 ⏮ 👆 🛠, &amp; 💪 ⚒ ⚫️ 🌅 ⚠ 👆 ℹ ⚫️ 🏭. ⚫️ 💪 🤔 🎯 📨 <a href="https://en.wikipedia.org/wiki/Security_through_obscurity" class="external-link" target="_blank">💂‍♂ 🔘 🌌</a>.
+🕵‍♂ 🧾 ⚒ ⚫️ 🌅 ⚠ 🤔 ❔ 🔗 ⏮️ 👆 🛠️, &amp; 💪 ⚒ ⚫️ 🌅 ⚠ 👆 ℹ ⚫️ 🏭. ⚫️ 💪 🤔 🎯 📨 <a href="https://en.wikipedia.org/wiki/Security_through_obscurity" class="external-link" target="_blank">💂‍♂ 🔘 🌌</a>.
 
-🚥 👆 💚 🔐 👆 🛠, 📤 📚 👍 👜 👆 💪, 🖼:
+🚥 👆 💚 🔐 👆 🛠️, 📤 📚 👍 👜 👆 💪, 🖼:
 
 * ⚒ 💭 👆 ✔️ 👍 🔬 Pydantic 🏷 👆 📨 💪 &amp; 📨.
 * 🔗 🙆 ✔ ✔ &amp; 🔑 ⚙️ 🔗.
-* 🙅 🏪 🔢 🔐, 🕴 🔐#⃣.
-* 🛠 &amp; ⚙️ 👍-💭 🔐 🧰, 💖 🇸🇲 &amp; 🥙 🤝, ♒️.
-* 🚮 🌅 🧽 ✔ 🎛 ⏮ Oauth2⃣ ↔ 🌐❔ 💪.
+* 🙅 🏪 🔢 🔐, 🕴 🔐#️⃣.
+* 🛠️ &amp; ⚙️ 👍-💭 🔐 🧰, 💖 🇸🇲 &amp; 🥙 🤝, ♒️.
+* 🚮 🌅 🧽 ✔ 🎛 ⏮️ Oauth2️⃣ ↔ 🌐❔ 💪.
 * ...♒️.
 
-👐, 👆 5️⃣📆 ✔️ 📶 🎯 ⚙️ 💼 🌐❔ 👆 🤙 💪 ❎ 🛠 🩺 🌐 (✅ 🏭) ⚖️ ⚓️ 🔛 📳 ⚪️➡️ 🌐 🔢.
+👐, 👆 5️⃣📆 ✔️ 📶 🎯 ⚙️ 💼 🌐❔ 👆 🤙 💪 ❎ 🛠️ 🩺 🌐 (✅ 🏭) ⚖️ ⚓️ 🔛 📳 ⚪️➡️ 🌐 🔢.
 
 ## 🎲 🗄 ⚪️➡️ ⚒ &amp; 🇨🇻 {
 
@@ -33,11 +33,11 @@
 {!../../../docs_src/conditional_openapi/tutorial001.py!}
 ```
 
-📥 👥 📣 ⚒ `openapi_url` ⏮ 🎏 🔢 `"/openapi.json"`.
+📥 👥 📣 ⚒ `openapi_url` ⏮️ 🎏 🔢 `"/openapi.json"`.
 
-&amp; ⤴ 👥 ⚙️ ⚫️ 🕐❔ 🏗 `FastAPI` 📱.
+&amp; ⤴️ 👥 ⚙️ ⚫️ 🕐❔ 🏗 `FastAPI` 📱.
 
-⤴ 👆 💪 ❎ 🗄 (✅ 🎚 🩺) ⚒ 🌐 🔢 `OPENAPI_URL` 🛁 🎻, 💖:
+⤴️ 👆 💪 ❎ 🗄 (✅ 🎚 🩺) ⚒ 🌐 🔢 `OPENAPI_URL` 🛁 🎻, 💖:
 
 <div class="termy">
 
@@ -49,7 +49,7 @@ $ OPENAPI_URL= uvicorn main:app
 
 </div>
 
-⤴ 🚥 👆 🚶 📛 `/openapi.json`, `/docs`, ⚖️ `/redoc` 👆 🔜 🤚 `404 Not Found` ❌ 💖:
+⤴️ 🚥 👆 🚶 📛 `/openapi.json`, `/docs`, ⚖️ `/redoc` 👆 🔜 🤚 `404 Not Found` ❌ 💖:
 
 ```JSON
 {

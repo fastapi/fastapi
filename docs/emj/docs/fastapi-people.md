@@ -18,7 +18,7 @@ FastAPI ✔️ 🎆 👪 👈 🙋 👫👫 ⚪️➡️ 🌐 🖥.
 </div>
 {% endif %}
 
-👤 👼 &amp; 🐛 **FastAPI**. 👆 💪 ✍ 🌅 🔃 👈 [ℹ FastAPI - 🤚 ℹ - 🔗 ⏮ 📕](help-fastapi.md#connect-with-the-author){.internal-link target=_blank}.
+👤 👼 &amp; 🐛 **FastAPI**. 👆 💪 ✍ 🌅 🔃 👈 [ℹ FastAPI - 🤚 ℹ - 🔗 ⏮️ 📕](help-fastapi.md#connect-with-the-author){.internal-link target=_blank}.
 
 ...✋️ 📥 👤 💚 🎦 👆 👪.
 
@@ -28,15 +28,15 @@ FastAPI ✔️ 🎆 👪 👈 🙋 👫👫 ⚪️➡️ 🌐 🖥.
 
 👫 👫👫 👈:
 
-* [ℹ 🎏 ⏮ ❔ 📂](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank}.
+* [ℹ 🎏 ⏮️ ❔ 📂](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank}.
 * [✍ 🚲 📨](help-fastapi.md#create-a-pull-request){.internal-link target=_blank}.
 * 📄 🚲 📨, [✴️ ⚠ ✍](contributing.md#translations){.internal-link target=_blank}.
 
 👏 👫. 👶 👶
 
-## 🌅 🦁 👩‍💻 🏁 🗓
+## 🌅 🦁 👩‍💻 🏁 🗓️
 
-👫 👩‍💻 👈 ✔️ [🤝 🎏 🏆 ⏮ ❔ 📂](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank} ⏮ 🏁 🗓. 👶
+👫 👩‍💻 👈 ✔️ [🤝 🎏 🏆 ⏮️ ❔ 📂](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank} ⏮️ 🏁 🗓️. 👶
 
 {% if people %}
 <div class="user-list user-list-center">
@@ -52,7 +52,7 @@ FastAPI ✔️ 🎆 👪 👈 🙋 👫👫 ⚪️➡️ 🌐 🖥.
 
 📥 **FastAPI 🕴**. 👶
 
-👫 👩‍💻 👈 ✔️ [ℹ 🎏 🏆 ⏮ ❔ 📂](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank} 🔘 *🌐 🕰*.
+👫 👩‍💻 👈 ✔️ [ℹ 🎏 🏆 ⏮️ ❔ 📂](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank} 🔘 *🌐 🕰*.
 
 👫 ✔️ 🎦 🕴 🤝 📚 🎏. 👶
 
@@ -112,7 +112,7 @@ FastAPI ✔️ 🎆 👪 👈 🙋 👫👫 ⚪️➡️ 🌐 🖥.
 
 👫 **💰**. 👶
 
-👫 🔗 👇 👷 ⏮ **FastAPI** (&amp; 🎏), ✴️ 🔘 <a href="https://github.com/sponsors/tiangolo" class="external-link" target="_blank">📂 💰</a>.
+👫 🔗 👇 👷 ⏮️ **FastAPI** (&amp; 🎏), ✴️ 🔘 <a href="https://github.com/sponsors/tiangolo" class="external-link" target="_blank">📂 💰</a>.
 
 {% if sponsors %}
 
@@ -169,10 +169,10 @@ FastAPI ✔️ 🎆 👪 👈 🙋 👫👫 ⚪️➡️ 🌐 🖥.
 
 👑 🎯 👉 📃 🎦 🎯 👪 ℹ 🎏.
 
-✴️ ✅ 🎯 👈 🛎 🌘 ⭐, &amp; 📚 💼 🌅 😩, 💖 🤝 🎏 ⏮ ❔ &amp; ⚖ 🚲 📨 ⏮ ✍.
+✴️ ✅ 🎯 👈 🛎 🌘 ⭐, &amp; 📚 💼 🌅 😩, 💖 🤝 🎏 ⏮️ ❔ &amp; ⚖ 🚲 📨 ⏮️ ✍.
 
-💽 ⚖ 🔠 🗓, 👆 💪 ✍ <a href="https://github.com/tiangolo/fastapi/blob/master/.github/actions/people/app/main.py" class="external-link" target="_blank">ℹ 📟 📥</a>.
+💽 ⚖ 🔠 🗓️, 👆 💪 ✍ <a href="https://github.com/tiangolo/fastapi/blob/master/.github/actions/people/app/main.py" class="external-link" target="_blank">ℹ 📟 📥</a>.
 
 📥 👤 🎦 💰 ⚪️➡️ 💰.
 
-👤 🏦 ▶️ ℹ 📊, 📄, ⚡, ♒️ (💼 🤷).
+👤 🏦 ▶️️ ℹ 📊, 📄, ⚡, ♒️ (💼 🤷).

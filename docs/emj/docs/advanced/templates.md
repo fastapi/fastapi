@@ -1,8 +1,8 @@
 # 📄
 
-👆 💪 ⚙️ 🙆 📄 🚒 👆 💚 ⏮ **FastAPI**.
+👆 💪 ⚙️ 🙆 📄 🚒 👆 💚 ⏮️ **FastAPI**.
 
-⚠ ⚒ Jinja2⃣, 🎏 1⃣ ⚙️ 🏺 &amp; 🎏 🧰.
+⚠ ⚒ Jinja2️⃣, 🎏 1️⃣ ⚙️ 🏺 &amp; 🎏 🧰.
 
 📤 🚙 🔗 ⚫️ 💪 👈 👆 💪 ⚙️ 🔗 👆 **FastAPI** 🈸 (🚚 💃).
 
@@ -24,15 +24,15 @@ $ pip install jinja2
 
 * 🗄 `Jinja2Templates`.
 * ✍ `templates` 🎚 👈 👆 💪 🏤-⚙️ ⏪.
-* 📣 `Request` 🔢 *➡ 🛠* 👈 🔜 📨 📄.
-* ⚙️ `templates` 👆 ✍ ✍ &amp; 📨 `TemplateResponse`, 🚶‍♀️ `request` 1⃣ 🔑-💲 👫 Jinja2⃣ "🔑".
+* 📣 `Request` 🔢 *➡ 🛠️* 👈 🔜 📨 📄.
+* ⚙️ `templates` 👆 ✍ ✍ &amp; 📨 `TemplateResponse`, 🚶‍♀️ `request` 1️⃣ 🔑-💲 👫 Jinja2️⃣ "🔑".
 
 ```Python hl_lines="4  11  15-16"
 {!../../../docs_src/templates/tutorial001.py!}
 ```
 
 !!! note
-    👀 👈 👆 ✔️ 🚶‍♀️ `request` 🍕 🔑-💲 👫 🔑 Jinja2⃣. , 👆 ✔️ 📣 ⚫️ 👆 *➡ 🛠*.
+    👀 👈 👆 ✔️ 🚶‍♀️ `request` 🍕 🔑-💲 👫 🔑 Jinja2️⃣. , 👆 ✔️ 📣 ⚫️ 👆 *➡ 🛠️*.
 
 !!! tip
     📣 `response_class=HTMLResponse` 🩺 🎚 🔜 💪 💭 👈 📨 🔜 🕸.
@@ -40,11 +40,11 @@ $ pip install jinja2
 !!! note "📡 ℹ"
     👆 💪 ⚙️ `from starlette.templating import Jinja2Templates`.
 
-    **FastAPI** 🚚 🎏 `starlette.templating` `fastapi.templating` 🏪 👆, 👩‍💻. ✋️ 🌅 💪 📨 👟 🔗 ⚪️➡️ 💃. 🎏 ⏮ `Request` &amp; `StaticFiles`.
+    **FastAPI** 🚚 🎏 `starlette.templating` `fastapi.templating` 🏪 👆, 👩‍💻. ✋️ 🌅 💪 📨 👟 🔗 ⚪️➡️ 💃. 🎏 ⏮️ `Request` &amp; `StaticFiles`.
 
 ## ✍ 📄
 
-⤴ 👆 💪 ✍ 📄 `templates/item.html` ⏮:
+⤴️ 👆 💪 ✍ 📄 `templates/item.html` ⏮️:
 
 ```jinja hl_lines="7"
 {!../../../docs_src/templates/templates/item.html!}
@@ -58,13 +58,13 @@ $ pip install jinja2
 
 ## 📄 &amp; 🎻 📁
 
-&amp; 👆 💪 ⚙️ `url_for()` 🔘 📄, &amp; ⚙️ ⚫️, 🖼, ⏮ `StaticFiles` 👆 📌.
+&amp; 👆 💪 ⚙️ `url_for()` 🔘 📄, &amp; ⚙️ ⚫️, 🖼, ⏮️ `StaticFiles` 👆 📌.
 
 ```jinja hl_lines="4"
 {!../../../docs_src/templates/templates/item.html!}
 ```
 
-👉 🖼, ⚫️ 🔜 🔗 🎚 📁 `static/styles.css` ⏮:
+👉 🖼, ⚫️ 🔜 🔗 🎚 📁 `static/styles.css` ⏮️:
 
 ```CSS hl_lines="4"
 {!../../../docs_src/templates/static/styles.css!}

@@ -1,10 +1,10 @@
 # ⚜ (✖️-🇨🇳 ℹ 🤝)
 
-<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS" class="external-link" target="_blank">⚜ ⚖️ "✖️-🇨🇳 ℹ 🤝"</a> 🔗 ⚠ 🕐❔ 🕸 🏃‍♂ 🖥 ✔️ 🕸 📟 👈 🔗 ⏮ 👩‍💻, &amp; 👩‍💻 🎏 "🇨🇳" 🌘 🕸.
+<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS" class="external-link" target="_blank">⚜ ⚖️ "✖️-🇨🇳 ℹ 🤝"</a> 🔗 ⚠ 🕐❔ 🕸 🏃‍♂ 🖥 ✔️ 🕸 📟 👈 🔗 ⏮️ 👩‍💻, &amp; 👩‍💻 🎏 "🇨🇳" 🌘 🕸.
 
 ## 🇨🇳
 
-🇨🇳 🌀 🛠 (`http`, `https`), 🆔 (`myapp.com`, `localhost`, `localhost.tiangolo.com`), &amp; ⛴ (`80`, `443`, `8080`).
+🇨🇳 🌀 🛠️ (`http`, `https`), 🆔 (`myapp.com`, `localhost`, `localhost.tiangolo.com`), &amp; ⛴ (`80`, `443`, `8080`).
 
 , 🌐 👫 🎏 🇨🇳:
 
@@ -12,13 +12,13 @@
 * `https://localhost`
 * `http://localhost:8080`
 
-🚥 👫 🌐 `localhost`, 👫 ⚙️ 🎏 🛠 ⚖️ ⛴,, 👫 🎏 "🇨🇳".
+🚥 👫 🌐 `localhost`, 👫 ⚙️ 🎏 🛠️ ⚖️ ⛴,, 👫 🎏 "🇨🇳".
 
 ## 🔁
 
-, ➡️ 💬 👆 ✔️ 🕸 🏃 👆 🖥 `http://localhost:8080`, &amp; 🚮 🕸 🔄 🔗 ⏮ 👩‍💻 🏃 `http://localhost` (↩️ 👥 🚫 ✔ ⛴, 🖥 🔜 🤔 🔢 ⛴ `80`).
+, ➡️ 💬 👆 ✔️ 🕸 🏃 👆 🖥 `http://localhost:8080`, &amp; 🚮 🕸 🔄 🔗 ⏮️ 👩‍💻 🏃 `http://localhost` (↩️ 👥 🚫 ✔ ⛴, 🖥 🔜 🤔 🔢 ⛴ `80`).
 
-⤴, 🖥 🔜 📨 🇺🇸🔍 `OPTIONS` 📨 👩‍💻, &amp; 🚥 👩‍💻 📨 ☑ 🎚 ✔ 📻 ⚪️➡️ 👉 🎏 🇨🇳 (`http://localhost:8080`) ⤴ 🖥 🔜 ➡️ 🕸 🕸 📨 🚮 📨 👩‍💻.
+⤴️, 🖥 🔜 📨 🇺🇸🔍 `OPTIONS` 📨 👩‍💻, &amp; 🚥 👩‍💻 📨 ☑ 🎚 ✔ 📻 ⚪️➡️ 👉 🎏 🇨🇳 (`http://localhost:8080`) ⤴️ 🖥 🔜 ➡️ 🕸 🕸 📨 🚮 📨 👩‍💻.
 
 🏆 👉, 👩‍💻 🔜 ✔️ 📇 "✔ 🇨🇳".
 
@@ -28,7 +28,7 @@
 
 ⚫️ 💪 📣 📇 `"*"` ("🃏") 💬 👈 🌐 ✔.
 
-✋️ 👈 🔜 🕴 ✔ 🎯 🆎 📻, 🚫 🌐 👈 🔌 🎓: 🍪, ✔ 🎚 💖 📚 ⚙️ ⏮ 📨 🤝, ♒️.
+✋️ 👈 🔜 🕴 ✔ 🎯 🆎 📻, 🚫 🌐 👈 🔌 🎓: 🍪, ✔ 🎚 💖 📚 ⚙️ ⏮️ 📨 🤝, ♒️.
 
 , 🌐 👷 ☑, ⚫️ 👻 ✔ 🎯 ✔ 🇨🇳.
 
@@ -38,19 +38,19 @@
 
 * 🗄 `CORSMiddleware`.
 * ✍ 📇 ✔ 🇨🇳 (🎻).
-* 🚮 ⚫️ "🛠" 👆 **FastAPI** 🈸.
+* 🚮 ⚫️ "🛠️" 👆 **FastAPI** 🈸.
 
 👆 💪 ✔ 🚥 👆 👩‍💻 ✔:
 
 * 🎓 (✔ 🎚, 🍪, ♒️).
-* 🎯 🇺🇸🔍 👩‍🔬 (`POST`, `PUT`) ⚖️ 🌐 👫 ⏮ 🃏 `"*"`.
-* 🎯 🇺🇸🔍 🎚 ⚖️ 🌐 👫 ⏮ 🃏 `"*"`.
+* 🎯 🇺🇸🔍 👩‍🔬 (`POST`, `PUT`) ⚖️ 🌐 👫 ⏮️ 🃏 `"*"`.
+* 🎯 🇺🇸🔍 🎚 ⚖️ 🌐 👫 ⏮️ 🃏 `"*"`.
 
 ```Python hl_lines="2  6-11  13-19"
 {!../../../docs_src/cors/tutorial001.py!}
 ```
 
-🔢 🔢 ⚙️ `CORSMiddleware` 🛠 🚫 🔢, 👆 🔜 💪 🎯 🛠 🎯 🇨🇳, 👩‍🔬, ⚖️ 🎚, ✔ 🖥 ✔ ⚙️ 👫 ✖️-🆔 🔑.
+🔢 🔢 ⚙️ `CORSMiddleware` 🛠️ 🚫 🔢, 👆 🔜 💪 🎯 🛠️ 🎯 🇨🇳, 👩‍🔬, ⚖️ 🎚, ✔ 🖥 ✔ ⚙️ 👫 ✖️-🆔 🔑.
 
 📄 ❌ 🐕‍🦺:
 
@@ -62,17 +62,17 @@
 * `expose_headers` - 🎦 🙆 📨 🎚 👈 🔜 ⚒ ♿ 🖥. 🔢 `[]`.
 * `max_age` - ⚒ 🔆 🕰 🥈 🖥 💾 ⚜ 📨. 🔢 `600`.
 
-🛠 📨 2⃣ 🎯 🆎 🇺🇸🔍 📨...
+🛠️ 📨 2️⃣ 🎯 🆎 🇺🇸🔍 📨...
 
 ### ⚜ 🛫 📨
 
-👉 🙆 `OPTIONS` 📨 ⏮ `Origin` &amp; `Access-Control-Request-Method` 🎚.
+👉 🙆 `OPTIONS` 📨 ⏮️ `Origin` &amp; `Access-Control-Request-Method` 🎚.
 
-👉 💼 🛠 🔜 🆘 📨 📨 &amp; 📨 ⏮ ☑ ⚜ 🎚, &amp; 👯‍♂️ `200` ⚖️ `400` 📨 🎓 🎯.
+👉 💼 🛠️ 🔜 🆘 📨 📨 &amp; 📨 ⏮️ ☑ ⚜ 🎚, &amp; 👯‍♂️ `200` ⚖️ `400` 📨 🎓 🎯.
 
 ### 🙅 📨
 
-🙆 📨 ⏮ `Origin` 🎚. 👉 💼 🛠 🔜 🚶‍♀️ 📨 🔘 😐, ✋️ 🔜 🔌 ☑ ⚜ 🎚 🔛 📨.
+🙆 📨 ⏮️ `Origin` 🎚. 👉 💼 🛠️ 🔜 🚶‍♀️ 📨 🔘 😐, ✋️ 🔜 🔌 ☑ ⚜ 🎚 🔛 📨.
 
 ## 🌅 ℹ
 
@@ -81,4 +81,4 @@
 !!! note "📡 ℹ"
     👆 💪 ⚙️ `from starlette.middleware.cors import CORSMiddleware`.
 
-    **FastAPI** 🚚 📚 🛠 `fastapi.middleware` 🏪 👆, 👩‍💻. ✋️ 🌅 💪 🛠 👟 🔗 ⚪️➡️ 💃.
+    **FastAPI** 🚚 📚 🛠️ `fastapi.middleware` 🏪 👆, 👩‍💻. ✋️ 🌅 💪 🛠️ 👟 🔗 ⚪️➡️ 💃.

@@ -1,10 +1,10 @@
-# Oauth2⃣ ⏮ 🔐 (&amp; 🔁), 📨 ⏮ 🥙 🤝
+# Oauth2️⃣ ⏮️ 🔐 (&amp; 🔁), 📨 ⏮️ 🥙 🤝
 
 🔜 👈 👥 ✔️ 🌐 💂‍♂ 💧, ➡️ ⚒ 🈸 🤙 🔐, ⚙️ <abbr title="JSON Web Tokens">🥙</abbr> 🤝 &amp; 🔐 🔐 🔁.
 
-👉 📟 🕳 👆 💪 🤙 ⚙️ 👆 🈸, 🖊 🔐 #⃣ 👆 💽, ♒️.
+👉 📟 🕳 👆 💪 🤙 ⚙️ 👆 🈸, 🖊 🔐 #️⃣ 👆 💽, ♒️.
 
-👥 🔜 ▶ ⚪️➡️ 🌐❔ 👥 ◀️ ⏮ 📃 &amp; 📈 ⚫️.
+👥 🔜 ▶️ ⚪️➡️ 🌐❔ 👥 ◀️ ⏮️ 📃 &amp; 📈 ⚫️.
 
 ## 🔃 🥙
 
@@ -20,15 +20,15 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4
 
 ✋️ ⚫️ 🛑. , 🕐❔ 👆 📨 🤝 👈 👆 ♨, 👆 💪 ✔ 👈 👆 🤙 ♨ ⚫️.
 
-👈 🌌, 👆 💪 ✍ 🤝 ⏮ 👔, ➡️ 💬, 1⃣ 🗓. &amp; ⤴ 🕐❔ 👩‍💻 👟 🔙 ⏭ 📆 ⏮ 🤝, 👆 💭 👈 👩‍💻 🕹 👆 ⚙️.
+👈 🌌, 👆 💪 ✍ 🤝 ⏮️ 👔, ➡️ 💬, 1️⃣ 🗓️. &amp; ⤴️ 🕐❔ 👩‍💻 👟 🔙 ⏭ 📆 ⏮️ 🤝, 👆 💭 👈 👩‍💻 🕹 👆 ⚙️.
 
-⏮ 🗓, 🤝 🔜 🕛 &amp; 👩‍💻 🔜 🚫 ✔ &amp; 🔜 ✔️ 🛑 🔄 🤚 🆕 🤝. &amp; 🚥 👩‍💻 (⚖️ 🥉 🥳) 🔄 🔀 🤝 🔀 👔, 👆 🔜 💪 🔎 ⚫️, ↩️ 💳 🔜 🚫 🏏.
+⏮️ 🗓️, 🤝 🔜 🕛 &amp; 👩‍💻 🔜 🚫 ✔ &amp; 🔜 ✔️ 🛑 🔄 🤚 🆕 🤝. &amp; 🚥 👩‍💻 (⚖️ 🥉 🥳) 🔄 🔀 🤝 🔀 👔, 👆 🔜 💪 🔎 ⚫️, ↩️ 💳 🔜 🚫 🏏.
 
-🚥 👆 💚 🤾 ⏮ 🥙 🤝 &amp; 👀 ❔ 👫 👷, ✅ <a href="https://jwt.io/" class="external-link" target="_blank">Https://jwt.io</a>.
+🚥 👆 💚 🤾 ⏮️ 🥙 🤝 &amp; 👀 ❔ 👫 👷, ✅ <a href="https://jwt.io/" class="external-link" target="_blank">https://jwt.io</a>.
 
 ## ❎ `python-jose`
 
-👥 💪 ❎ `python-jose` 🏗 &amp; ✔ 🥙 🤝 🐆:
+👥 💪 ❎ `python-jose` 🏗 &amp; ✔ 🥙 🤝 🐍:
 
 <div class="termy">
 
@@ -40,14 +40,14 @@ $ pip install "python-jose[cryptography]"
 
 </div>
 
-<a href="https://github.com/mpdavis/python-jose" class="external-link" target="_blank">🐆-🇩🇬</a> 🚚 🔐 👩‍💻 ➕.
+<a href="https://github.com/mpdavis/python-jose" class="external-link" target="_blank">🐍-🇩🇬</a> 🚚 🔐 👩‍💻 ➕.
 
-📥 👥 ⚙️ 👍 1⃣: <a href="https://cryptography.io/" class="external-link" target="_blank">)/⚛</a>.
+📥 👥 ⚙️ 👍 1️⃣: <a href="https://cryptography.io/" class="external-link" target="_blank">)/⚛</a>.
 
 !!! tip
     👉 🔰 ⏪ ⚙️ <a href="https://pyjwt.readthedocs.io/" class="external-link" target="_blank">PyJWT</a>.
 
-    ✋️ ⚫️ ℹ ⚙️ 🐆-🇩🇬 ↩️ ⚫️ 🚚 🌐 ⚒ ⚪️➡️ PyJWT ➕ ➕ 👈 👆 💪 💪 ⏪ 🕐❔ 🏗 🛠 ⏮ 🎏 🧰.
+    ✋️ ⚫️ ℹ ⚙️ 🐍-🇩🇬 ↩️ ⚫️ 🚚 🌐 ⚒ ⚪️➡️ PyJWT ➕ ➕ 👈 👆 💪 💪 ⏪ 🕐❔ 🏗 🛠️ ⏮️ 🎏 🧰.
 
 ## 🔐 🔁
 
@@ -59,19 +59,19 @@ $ pip install "python-jose[cryptography]"
 
 ### ⚫️❔ ⚙️ 🔐 🔁
 
-🚥 👆 💽 📎, 🧙‍♀ 🏆 🚫 ✔️ 👆 👩‍💻' 🔢 🔐, 🕴#⃣.
+🚥 👆 💽 📎, 🧙‍♀ 🏆 🚫 ✔️ 👆 👩‍💻' 🔢 🔐, 🕴#️⃣.
 
 , 🧙‍♀ 🏆 🚫 💪 🔄 ⚙️ 👈 🔐 ➕1️⃣ ⚙️ (📚 👩‍💻 ⚙️ 🎏 🔐 🌐, 👉 🔜 ⚠).
 
 ## ❎ `passlib`
 
-🇸🇲 👑 🐆 📦 🍵 🔐#⃣.
+🇸🇲 👑 🐍 📦 🍵 🔐#️⃣.
 
-⚫️ 🐕‍🦺 📚 🔐 🔁 📊 &amp; 🚙 👷 ⏮ 👫.
+⚫️ 🐕‍🦺 📚 🔐 🔁 📊 &amp; 🚙 👷 ⏮️ 👫.
 
 👍 📊 "🐡".
 
-, ❎ 🇸🇲 ⏮ 🐡:
+, ❎ 🇸🇲 ⏮️ 🐡:
 
 <div class="termy">
 
@@ -84,45 +84,45 @@ $ pip install "passlib[bcrypt]"
 </div>
 
 !!! tip
-    ⏮ `passlib`, 👆 💪 🔗 ⚫️ 💪 ✍ 🔐 ✍ **✳**, **🏺** 💂‍♂ 🔌-⚖️ 📚 🎏.
+    ⏮️ `passlib`, 👆 💪 🔗 ⚫️ 💪 ✍ 🔐 ✍ **✳**, **🏺** 💂‍♂ 🔌-⚖️ 📚 🎏.
 
-    , 👆 🔜 💪, 🖼, 💰 🎏 📊 ⚪️➡️ ✳ 🈸 💽 ⏮ FastAPI 🈸. ⚖️ 📉 ↔ ✳ 🈸 ⚙️ 🎏 💽.
+    , 👆 🔜 💪, 🖼, 💰 🎏 📊 ⚪️➡️ ✳ 🈸 💽 ⏮️ FastAPI 🈸. ⚖️ 📉 ↔ ✳ 🈸 ⚙️ 🎏 💽.
 
      &amp; 👆 👩‍💻 🔜 💪 💳 ⚪️➡️ 👆 ✳ 📱 ⚖️ ⚪️➡️ 👆 **FastAPI** 📱, 🎏 🕰.
 
-##  #⃣ &amp; ✔ 🔐
+##  #️⃣ &amp; ✔ 🔐
 
 🗄 🧰 👥 💪 ⚪️➡️ `passlib`.
 
-✍ 🇸🇲 "🔑". 👉 ⚫️❔ 🔜 ⚙️ #⃣ &amp; ✔ 🔐.
+✍ 🇸🇲 "🔑". 👉 ⚫️❔ 🔜 ⚙️ #️⃣ &amp; ✔ 🔐.
 
 !!! tip
-    🇸🇲 🔑 ✔️ 🛠 ⚙️ 🎏 🔁 📊, 🔌 😢 🗝 🕐 🕴 ✔ ✔ 👫, ♒️.
+    🇸🇲 🔑 ✔️ 🛠️ ⚙️ 🎏 🔁 📊, 🔌 😢 🗝 🕐 🕴 ✔ ✔ 👫, ♒️.
 
-    🖼, 👆 💪 ⚙️ ⚫️ ✍ &amp; ✔ 🔐 🏗 ➕1️⃣ ⚙️ (💖 ✳) ✋️ #⃣ 🙆 🆕 🔐 ⏮ 🎏 📊 💖 🐡.
+    🖼, 👆 💪 ⚙️ ⚫️ ✍ &amp; ✔ 🔐 🏗 ➕1️⃣ ⚙️ (💖 ✳) ✋️ #️⃣ 🙆 🆕 🔐 ⏮️ 🎏 📊 💖 🐡.
 
-     &amp; 🔗 ⏮ 🌐 👫 🎏 🕰.
+     &amp; 🔗 ⏮️ 🌐 👫 🎏 🕰.
 
-✍ 🚙 🔢 #⃣ 🔐 👟 ⚪️➡️ 👩‍💻.
+✍ 🚙 🔢 #️⃣ 🔐 👟 ⚪️➡️ 👩‍💻.
 
-&amp; ➕1️⃣ 🚙 ✔ 🚥 📨 🔐 🏏 #⃣ 🏪.
+&amp; ➕1️⃣ 🚙 ✔ 🚥 📨 🔐 🏏 #️⃣ 🏪.
 
-&amp; ➕1️⃣ 1⃣ 🔓 &amp; 📨 👩‍💻.
+&amp; ➕1️⃣ 1️⃣ 🔓 &amp; 📨 👩‍💻.
 
-=== "🐆 3⃣.6⃣ &amp; 🔛"
+=== "🐍 3️⃣.6️⃣ &amp; 🔛"
 
     ```Python hl_lines="7  48  55-56  59-60  69-75"
     {!> ../../../docs_src/security/tutorial004.py!}
     ```
 
-=== "🐆 3⃣.1⃣0⃣ &amp; 🔛"
+=== "🐍 3️⃣.1️⃣0️⃣ &amp; 🔛"
 
     ```Python hl_lines="6  47  54-55  58-59  68-74"
     {!> ../../../docs_src/security/tutorial004_py310.py!}
     ```
 
 !!! note
-    🚥 👆 ✅ 🆕 (❌) 💽 `fake_users_db`, 👆 🔜 👀 ❔ #⃣ 🔐 👀 💖 🔜: `"$2b$12$EixZaYVK1fsbw1ZfbX3OXePaWxn96p36WQoeG6Lruj3vjPGga31lW"`.
+    🚥 👆 ✅ 🆕 (❌) 💽 `fake_users_db`, 👆 🔜 👀 ❔ #️⃣ 🔐 👀 💖 🔜: `"$2b$12$EixZaYVK1fsbw1ZfbX3OXePaWxn96p36WQoeG6Lruj3vjPGga31lW"`.
 
 ## 🍵 🥙 🤝
 
@@ -142,9 +142,9 @@ $ openssl rand -hex 32
 
 </div>
 
-&amp; 📁 🔢 🔢 `SECRET_KEY` (🚫 ⚙️ 1⃣ 🖼).
+&amp; 📁 🔢 🔢 `SECRET_KEY` (🚫 ⚙️ 1️⃣ 🖼).
 
-✍ 🔢 `ALGORITHM` ⏮ 📊 ⚙️ 🛑 🥙 🤝 &amp; ⚒ ⚫️ `"HS256"`.
+✍ 🔢 `ALGORITHM` ⏮️ 📊 ⚙️ 🛑 🥙 🤝 &amp; ⚒ ⚫️ `"HS256"`.
 
 ✍ 🔢 👔 🤝.
 
@@ -152,13 +152,13 @@ $ openssl rand -hex 32
 
 ✍ 🚙 🔢 🏗 🆕 🔐 🤝.
 
-=== "🐆 3⃣.6⃣ &amp; 🔛"
+=== "🐍 3️⃣.6️⃣ &amp; 🔛"
 
     ```Python hl_lines="6  12-14  28-30  78-86"
     {!> ../../../docs_src/security/tutorial004.py!}
     ```
 
-=== "🐆 3⃣.1⃣0⃣ &amp; 🔛"
+=== "🐍 3️⃣.1️⃣0️⃣ &amp; 🔛"
 
     ```Python hl_lines="5  11-13  27-29  77-85"
     {!> ../../../docs_src/security/tutorial004_py310.py!}
@@ -168,35 +168,35 @@ $ openssl rand -hex 32
 
 ℹ `get_current_user` 📨 🎏 🤝 ⏭, ✋️ 👉 🕰, ⚙️ 🥙 🤝.
 
-🔣 📨 🤝, ✔ ⚫️, &amp; 📨 ⏮ 👩‍💻.
+🔣 📨 🤝, ✔ ⚫️, &amp; 📨 ⏮️ 👩‍💻.
 
-🚥 🤝 ❌, 📨 🇺🇸🔍 ❌ ▶️ ↖️.
+🚥 🤝 ❌, 📨 🇺🇸🔍 ❌ ▶️️ ↖️.
 
-=== "🐆 3⃣.6⃣ &amp; 🔛"
+=== "🐍 3️⃣.6️⃣ &amp; 🔛"
 
     ```Python hl_lines="89-106"
     {!> ../../../docs_src/security/tutorial004.py!}
     ```
 
-=== "🐆 3⃣.1⃣0⃣ &amp; 🔛"
+=== "🐍 3️⃣.1️⃣0️⃣ &amp; 🔛"
 
     ```Python hl_lines="88-105"
     {!> ../../../docs_src/security/tutorial004_py310.py!}
     ```
 
-## ℹ `/token` *➡ 🛠*
+## ℹ `/token` *➡ 🛠️*
 
-✍ `timedelta` ⏮ 👔 🕰 🤝.
+✍ `timedelta` ⏮️ 👔 🕰 🤝.
 
 ✍ 🎰 🥙 🔐 🤝 &amp; 📨 ⚫️.
 
-=== "🐆 3⃣.6⃣ &amp; 🔛"
+=== "🐍 3️⃣.6️⃣ &amp; 🔛"
 
     ```Python hl_lines="115-128"
     {!> ../../../docs_src/security/tutorial004.py!}
     ```
 
-=== "🐆 3⃣.1⃣0⃣ &amp; 🔛"
+=== "🐍 3️⃣.1️⃣0️⃣ &amp; 🔛"
 
     ```Python hl_lines="114-127"
     {!> ../../../docs_src/security/tutorial004_py310.py!}
@@ -204,29 +204,29 @@ $ openssl rand -hex 32
 
 ### 📡 ℹ 🔃 🥙 "📄" `sub`
 
-🥙 🔧 💬 👈 📤 🔑 `sub`, ⏮ 📄 🤝.
+🥙 🔧 💬 👈 📤 🔑 `sub`, ⏮️ 📄 🤝.
 
 ⚫️ 📦 ⚙️ ⚫️, ✋️ 👈 🌐❔ 👆 🔜 🚮 👩‍💻 🆔, 👥 ⚙️ ⚫️ 📥.
 
-🥙 5️⃣📆 ⚙️ 🎏 👜 ↖️ ⚪️➡️ ⚖ 👩‍💻 &amp; 🤝 👫 🎭 🛠 🔗 🔛 👆 🛠.
+🥙 5️⃣📆 ⚙️ 🎏 👜 ↖️ ⚪️➡️ ⚖ 👩‍💻 &amp; 🤝 👫 🎭 🛠️ 🔗 🔛 👆 🛠️.
 
 🖼, 👆 💪 🔬 "🚘" ⚖️ "📰 🏤".
 
-⤴ 👆 💪 🚮 ✔ 🔃 👈 👨‍💼, 💖 "💾" (🚘) ⚖️ "✍" (📰).
+⤴️ 👆 💪 🚮 ✔ 🔃 👈 👨‍💼, 💖 "💾" (🚘) ⚖️ "✍" (📰).
 
-&amp; ⤴, 👆 💪 🤝 👈 🥙 🤝 👩‍💻 (⚖️ 🤖), &amp; 👫 💪 ⚙️ ⚫️ 🎭 👈 🎯 (💾 🚘, ⚖️ ✍ 📰 🏤) 🍵 💆‍♂ ✔️ 🏧, ⏮ 🥙 🤝 👆 🛠 🏗 👈.
+&amp; ⤴️, 👆 💪 🤝 👈 🥙 🤝 👩‍💻 (⚖️ 🤖), &amp; 👫 💪 ⚙️ ⚫️ 🎭 👈 🎯 (💾 🚘, ⚖️ ✍ 📰 🏤) 🍵 💆‍♂ ✔️ 🏧, ⏮️ 🥙 🤝 👆 🛠️ 🏗 👈.
 
 ⚙️ 👫 💭, 🥙 💪 ⚙️ 🌌 🌖 🤓 😐.
 
 📚 💼, 📚 👈 👨‍💼 💪 ✔️ 🎏 🆔, ➡️ 💬 `foo` (👩‍💻 `foo`, 🚘 `foo`, &amp; 📰 🏤 `foo`).
 
-, ❎ 🆔 💥, 🕐❔ 🏗 🥙 🤝 👩‍💻, 👆 💪 🔡 💲 `sub` 🔑, ✅ ⏮ `username:`. , 👉 🖼, 💲 `sub` 💪 ✔️: `username:johndoe`.
+, ❎ 🆔 💥, 🕐❔ 🏗 🥙 🤝 👩‍💻, 👆 💪 🔡 💲 `sub` 🔑, ✅ ⏮️ `username:`. , 👉 🖼, 💲 `sub` 💪 ✔️: `username:johndoe`.
 
 ⚠ 👜 ✔️ 🤯 👈 `sub` 🔑 🔜 ✔️ 😍 🆔 🤭 🎂 🈸, &amp; ⚫️ 🔜 🎻.
 
 ## ✅ ⚫️
 
-🏃 💽 &amp; 🚶 🩺: <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">Http://127.0.0.1:8000/docs</a>.
+🏃 💽 &amp; 🚶 🩺: <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 
 👆 🔜 👀 👩‍💻 🔢 💖:
 
@@ -240,7 +240,7 @@ $ openssl rand -hex 32
 🔐: `secret`
 
 !!! check
-    👀 👈 🕳 📟 🔢 🔐 "`secret`", 👥 🕴 ✔️ #⃣ ⏬.
+    👀 👈 🕳 📟 🔢 🔐 "`secret`", 👥 🕴 ✔️ #️⃣ ⏬.
 
 <img src="/img/tutorial/security/image08.png">
 
@@ -257,41 +257,41 @@ $ openssl rand -hex 32
 
 <img src="/img/tutorial/security/image09.png">
 
-🚥 👆 📂 👩‍💻 🧰, 👆 💪 👀 ❔ 📊 📨 🕴 🔌 🤝, 🔐 🕴 📨 🥇 📨 🔓 👩‍💻 &amp; 🤚 👈 🔐 🤝, ✋️ 🚫 ⏮:
+🚥 👆 📂 👩‍💻 🧰, 👆 💪 👀 ❔ 📊 📨 🕴 🔌 🤝, 🔐 🕴 📨 🥇 📨 🔓 👩‍💻 &amp; 🤚 👈 🔐 🤝, ✋️ 🚫 ⏮️:
 
 <img src="/img/tutorial/security/image10.png">
 
 !!! note
-    👀 🎚 `Authorization`, ⏮ 💲 👈 ▶ ⏮ `Bearer `.
+    👀 🎚 `Authorization`, ⏮️ 💲 👈 ▶️ ⏮️ `Bearer `.
 
-## 🏧 ⚙️ ⏮ `scopes`
+## 🏧 ⚙️ ⏮️ `scopes`
 
-Oauth2⃣ ✔️ 🔑 "↔".
+Oauth2️⃣ ✔️ 🔑 "↔".
 
 👆 💪 ⚙️ 👫 🚮 🎯 ⚒ ✔ 🥙 🤝.
 
-⤴ 👆 💪 🤝 👉 🤝 👩‍💻 🔗 ⚖️ 🥉 🥳, 🔗 ⏮ 👆 🛠 ⏮ ⚒ 🚫.
+⤴️ 👆 💪 🤝 👉 🤝 👩‍💻 🔗 ⚖️ 🥉 🥳, 🔗 ⏮️ 👆 🛠️ ⏮️ ⚒ 🚫.
 
-👆 💪 💡 ❔ ⚙️ 👫 &amp; ❔ 👫 🛠 🔘 **FastAPI** ⏪ **🏧 👩‍💻 🦮**.
+👆 💪 💡 ❔ ⚙️ 👫 &amp; ❔ 👫 🛠️ 🔘 **FastAPI** ⏪ **🏧 👩‍💻 🦮**.
 
 ## 🌃
 
-⏮ ⚫️❔ 👆 ✔️ 👀 🆙 🔜, 👆 💪 ⚒ 🆙 🔐 **FastAPI** 🈸 ⚙️ 🐩 💖 Oauth2⃣ &amp; 🥙.
+⏮️ ⚫️❔ 👆 ✔️ 👀 🆙 🔜, 👆 💪 ⚒ 🆙 🔐 **FastAPI** 🈸 ⚙️ 🐩 💖 Oauth2️⃣ &amp; 🥙.
 
-🌖 🙆 🛠 🚚 💂‍♂ ▶️ 👍 🏗 📄 🔜.
+🌖 🙆 🛠️ 🚚 💂‍♂ ▶️️ 👍 🏗 📄 🔜.
 
-📚 📦 👈 📉 ⚫️ 📚 ✔️ ⚒ 📚 ⚠ ⏮ 💽 🏷, 💽, &amp; 💪 ⚒. &amp; 👉 📦 👈 📉 👜 💁‍♂️ 🌅 🤙 ✔️ 💂‍♂ ⚠ 🔘.
+📚 📦 👈 📉 ⚫️ 📚 ✔️ ⚒ 📚 ⚠ ⏮️ 💽 🏷, 💽, &amp; 💪 ⚒. &amp; 👉 📦 👈 📉 👜 💁‍♂️ 🌅 🤙 ✔️ 💂‍♂ ⚠ 🔘.
 
 ---
 
-**FastAPI** 🚫 ⚒ 🙆 ⚠ ⏮ 🙆 💽, 💽 🏷 ⚖️ 🧰.
+**FastAPI** 🚫 ⚒ 🙆 ⚠ ⏮️ 🙆 💽, 💽 🏷 ⚖️ 🧰.
 
 ⚫️ 🤝 👆 🌐 💪 ⚒ 🕐 👈 👖 👆 🏗 🏆.
 
-&amp; 👆 💪 ⚙️ 🔗 📚 👍 🚧 &amp; 🛎 ⚙️ 📦 💖 `passlib` &amp; `python-jose`, ↩️ **FastAPI** 🚫 🚚 🙆 🏗 🛠 🛠 🔢 📦.
+&amp; 👆 💪 ⚙️ 🔗 📚 👍 🚧 &amp; 🛎 ⚙️ 📦 💖 `passlib` &amp; `python-jose`, ↩️ **FastAPI** 🚫 🚚 🙆 🏗 🛠️ 🛠️ 🔢 📦.
 
-✋️ ⚫️ 🚚 👆 🧰 📉 🛠 🌅 💪 🍵 🎯 💪, ⚖, ⚖️ 💂‍♂.
+✋️ ⚫️ 🚚 👆 🧰 📉 🛠️ 🌅 💪 🍵 🎯 💪, ⚖, ⚖️ 💂‍♂.
 
-&amp; 👆 💪 ⚙️ &amp; 🛠 🔐, 🐩 🛠, 💖 Oauth2⃣ 📶 🙅 🌌.
+&amp; 👆 💪 ⚙️ &amp; 🛠️ 🔐, 🐩 🛠️, 💖 Oauth2️⃣ 📶 🙅 🌌.
 
-👆 💪 💡 🌅 **🏧 👩‍💻 🦮** 🔃 ❔ ⚙️ Oauth2⃣ "↔", 🌖 👌-🧽 ✔ ⚙️, 📄 👫 🎏 🐩. Oauth2⃣ ⏮ ↔ 🛠 ⚙️ 📚 🦏 🤝 🐕‍🦺, 💖 👱📔, 🇺🇸🔍, 📂, 🤸‍♂, 👱📔, ♒️. ✔ 🥉 🥳 🈸 🔗 ⏮ 👫 🔗 🔛 👨‍💼 👫 👩‍💻.
+👆 💪 💡 🌅 **🏧 👩‍💻 🦮** 🔃 ❔ ⚙️ Oauth2️⃣ "↔", 🌖 👌-🧽 ✔ ⚙️, 📄 👫 🎏 🐩. Oauth2️⃣ ⏮️ ↔ 🛠️ ⚙️ 📚 🦏 🤝 🐕‍🦺, 💖 👱📔, 🇺🇸🔍, 📂, 🤸‍♂, 👱📔, ♒️. ✔ 🥉 🥳 🈸 🔗 ⏮️ 👫 🔗 🔛 👨‍💼 👫 👩‍💻.

@@ -1,6 +1,6 @@
-#  *⃣
+#  *️⃣
 
-👆 💪 ⚙️ <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API" class="external-link" target="_blank"> *⃣ </a> ⏮ **FastAPI**.
+👆 💪 ⚙️ <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API" class="external-link" target="_blank"> *️⃣ </a> ⏮️ **FastAPI**.
 
 ## ❎ `WebSockets`
 
@@ -16,27 +16,27 @@ $ pip install websockets
 
 </div>
 
-##  *⃣ 👩‍💻
+##  *️⃣ 👩‍💻
 
 ### 🏭
 
-👆 🏭 ⚙️, 👆 🎲 ✔️ 🕸 ✍ ⏮ 🏛 🛠 💖 😥, Vue.js ⚖️ 📐.
+👆 🏭 ⚙️, 👆 🎲 ✔️ 🕸 ✍ ⏮️ 🏛 🛠️ 💖 😥, Vue.js ⚖️ 📐.
 
-&amp; 🔗 ⚙️ *⃣ ⏮ 👆 👩‍💻 👆 🔜 🎲 ⚙️ 👆 🕸 🚙.
+&amp; 🔗 ⚙️ *️⃣ ⏮️ 👆 👩‍💻 👆 🔜 🎲 ⚙️ 👆 🕸 🚙.
 
-⚖️ 👆 💪 ✔️ 🇦🇸 📱 🈸 👈 🔗 ⏮ 👆 *⃣ 👩‍💻 🔗, 🇦🇸 📟.
+⚖️ 👆 💪 ✔️ 🇦🇸 📱 🈸 👈 🔗 ⏮️ 👆 *️⃣ 👩‍💻 🔗, 🇦🇸 📟.
 
-⚖️ 👆 5️⃣📆 ✔️ 🙆 🎏 🌌 🔗 ⏮ *⃣ 🔗.
+⚖️ 👆 5️⃣📆 ✔️ 🙆 🎏 🌌 🔗 ⏮️ *️⃣ 🔗.
 
 ---
 
-✋️ 👉 🖼, 👥 🔜 ⚙️ 📶 🙅 🕸 📄 ⏮ 🕸, 🌐 🔘 📏 🎻.
+✋️ 👉 🖼, 👥 🔜 ⚙️ 📶 🙅 🕸 📄 ⏮️ 🕸, 🌐 🔘 📏 🎻.
 
 👉, ↗️, 🚫 ⚖ &amp; 👆 🚫🔜 ⚙️ ⚫️ 🏭.
 
-🏭 👆 🔜 ✔️ 1⃣ 🎛 🔛.
+🏭 👆 🔜 ✔️ 1️⃣ 🎛 🔛.
 
-✋️ ⚫️ 🙅 🌌 🎯 🔛 💽-🚄 *⃣ &amp; ✔️ 👷 🖼:
+✋️ ⚫️ 🙅 🌌 🎯 🔛 💽-🚄 *️⃣ &amp; ✔️ 👷 🖼:
 
 ```Python hl_lines="2  6-38  41-43"
 {!../../../docs_src/websockets/tutorial001.py!}
@@ -57,7 +57,7 @@ $ pip install websockets
 
 ## ⌛ 📧 &amp; 📨 📧
 
-👆 *⃣ 🛣 👆 💪 `await` 📧 &amp; 📨 📧.
+👆 *️⃣ 🛣 👆 💪 `await` 📧 &amp; 📨 📧.
 
 ```Python hl_lines="48-52"
 {!../../../docs_src/websockets/tutorial001.py!}
@@ -67,7 +67,7 @@ $ pip install websockets
 
 ## 🔄 ⚫️
 
-🚥 👆 📁 📛 `main.py`, 🏃 👆 🈸 ⏮:
+🚥 👆 📁 📛 `main.py`, 🏃 👆 🈸 ⏮️:
 
 <div class="termy">
 
@@ -79,7 +79,7 @@ $ uvicorn main:app --reload
 
 </div>
 
-📂 👆 🖥 <a href="http://127.0.0.1:8000" class="external-link" target="_blank">Http://127.0.0.1:8000</a>.
+📂 👆 🖥 <a href="http://127.0.0.1:8000" class="external-link" target="_blank">http://127.0.0.1:8000</a>.
 
 👆 🔜 👀 🙅 📃 💖:
 
@@ -89,7 +89,7 @@ $ uvicorn main:app --reload
 
 <img src="/img/tutorial/websockets/image02.png">
 
-&amp; 👆 **FastAPI** 🈸 ⏮ *⃣ 🔜 📨 🔙:
+&amp; 👆 **FastAPI** 🈸 ⏮️ *️⃣ 🔜 📨 🔙:
 
 <img src="/img/tutorial/websockets/image03.png">
 
@@ -97,11 +97,11 @@ $ uvicorn main:app --reload
 
 <img src="/img/tutorial/websockets/image04.png">
 
-&amp; 🌐 👫 🔜 ⚙️ 🎏 *⃣ 🔗.
+&amp; 🌐 👫 🔜 ⚙️ 🎏 *️⃣ 🔗.
 
 ## ⚙️ `Depends` &amp; 🎏
 
-*⃣ 🔗 👆 💪 🗄 ⚪️➡️ `fastapi` &amp; ⚙️:
+*️⃣ 🔗 👆 💪 🗄 ⚪️➡️ `fastapi` &amp; ⚙️:
 
 * `Depends`
 * `Security`
@@ -110,20 +110,20 @@ $ uvicorn main:app --reload
 * `Path`
 * `Query`
 
-👫 👷 🎏 🌌 🎏 FastAPI 🔗/*➡ 🛠*:
+👫 👷 🎏 🌌 🎏 FastAPI 🔗/*➡ 🛠️*:
 
 ```Python hl_lines="66-77  76-91"
 {!../../../docs_src/websockets/tutorial002.py!}
 ```
 
 !!! info
-    👉 *⃣ ⚫️ 🚫 🤙 ⚒ 🔑 🤚 `HTTPException`, ↩️ 👥 🤚 `WebSocketException`.
+    👉 *️⃣ ⚫️ 🚫 🤙 ⚒ 🔑 🤚 `HTTPException`, ↩️ 👥 🤚 `WebSocketException`.
 
     👆 💪 ⚙️ 📪 📟 ⚪️➡️ <a href="https://tools.ietf.org/html/rfc6455#section-7.4.1" class="external-link" target="_blank">☑ 📟 🔬 🔧</a>.
 
-### 🔄 *⃣ ⏮ 🔗
+### 🔄 *️⃣ ⏮️ 🔗
 
-🚥 👆 📁 📛 `main.py`, 🏃 👆 🈸 ⏮:
+🚥 👆 📁 📛 `main.py`, 🏃 👆 🈸 ⏮️:
 
 <div class="termy">
 
@@ -135,7 +135,7 @@ $ uvicorn main:app --reload
 
 </div>
 
-📂 👆 🖥 <a href="http://127.0.0.1:8000" class="external-link" target="_blank">Http://127.0.0.1:8000</a>.
+📂 👆 🖥 <a href="http://127.0.0.1:8000" class="external-link" target="_blank">http://127.0.0.1:8000</a>.
 
 📤 👆 💪 ⚒:
 
@@ -145,13 +145,13 @@ $ uvicorn main:app --reload
 !!! tip
     👀 👈 🔢 `token` 🔜 🍵 🔗.
 
-⏮ 👈 👆 💪 🔗 *⃣ &amp; ⤴ 📨 &amp; 📨 📧:
+⏮️ 👈 👆 💪 🔗 *️⃣ &amp; ⤴️ 📨 &amp; 📨 📧:
 
 <img src="/img/tutorial/websockets/image05.png">
 
 ## 🚚 🔀 &amp; 💗 👩‍💻
 
-🕐❔ *⃣ 🔗 📪, `await websocket.receive_text()` 🔜 🤚 `WebSocketDisconnect` ⚠, ❔ 👆 💪 ⤴ ✊ &amp; 🍵 💖 👉 🖼.
+🕐❔ *️⃣ 🔗 📪, `await websocket.receive_text()` 🔜 🤚 `WebSocketDisconnect` ⚠, ❔ 👆 💪 ⤴️ ✊ &amp; 🍵 💖 👉 🖼.
 
 ```Python hl_lines="81-83"
 {!../../../docs_src/websockets/tutorial003.py!}
@@ -159,9 +159,9 @@ $ uvicorn main:app --reload
 
 🔄 ⚫️ 👅:
 
-* 📂 📱 ⏮ 📚 🖥 📑.
+* 📂 📱 ⏮️ 📚 🖥 📑.
 * ✍ 📧 ⚪️➡️ 👫.
-* ⤴ 🔐 1⃣ 📑.
+* ⤴️ 🔐 1️⃣ 📑.
 
 👈 🔜 🤚 `WebSocketDisconnect` ⚠, &amp; 🌐 🎏 👩‍💻 🔜 📨 📧 💖:
 
@@ -170,15 +170,15 @@ Client #1596980209979 left the chat
 ```
 
 !!! tip
-    📱 🔛 ⭐ &amp; 🙅 🖼 🎦 ❔ 🍵 &amp; 📻 📧 📚 *⃣ 🔗.
+    📱 🔛 ⭐ &amp; 🙅 🖼 🎦 ❔ 🍵 &amp; 📻 📧 📚 *️⃣ 🔗.
 
-    ✋️ ✔️ 🤯 👈, 🌐 🍵 💾, 👁 📇, ⚫️ 🔜 🕴 👷 ⏪ 🛠 🏃, &amp; 🔜 🕴 👷 ⏮ 👁 🛠.
+    ✋️ ✔️ 🤯 👈, 🌐 🍵 💾, 👁 📇, ⚫️ 🔜 🕴 👷 ⏪ 🛠️ 🏃, &amp; 🔜 🕴 👷 ⏮️ 👁 🛠️.
 
-    🚥 👆 💪 🕳 ⏩ 🛠 ⏮ FastAPI ✋️ 👈 🌖 🏋️, 🐕‍🦺 ✳, ✳ ⚖️ 🎏, ✅ <a href="https://github.com/encode/broadcaster" class="external-link" target="_blank">🗜/📻</a>.
+    🚥 👆 💪 🕳 ⏩ 🛠️ ⏮️ FastAPI ✋️ 👈 🌖 🏋️, 🐕‍🦺 ✳, ✳ ⚖️ 🎏, ✅ <a href="https://github.com/encode/broadcaster" class="external-link" target="_blank">🗜/📻</a>.
 
 ## 🌅 ℹ
 
 💡 🌅 🔃 🎛, ✅ 💃 🧾:
 
 * <a href="https://www.starlette.io/websockets/" class="external-link" target="_blank"> `WebSocket` 🎓</a>.
-* <a href="https://www.starlette.io/endpoints/#websocketendpoint" class="external-link" target="_blank">🎓-⚓️ *⃣ 🚚</a>.
+* <a href="https://www.starlette.io/endpoints/#websocketendpoint" class="external-link" target="_blank">🎓-⚓️ *️⃣ 🚚</a>.

@@ -85,7 +85,7 @@
 
 ## 🏗
 
-⏪ 📂 🏗 ⏮ ❔ `fastapi`:
+⏪ 📂 🏗 ⏮️ ❔ `fastapi`:
 
 <div class="github-topic-projects">
 </div>

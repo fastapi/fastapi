@@ -151,7 +151,7 @@ nav:
   - advanced/wsgi.md
   - advanced/generate-clients.md
 - async.md
-- 🛠:
+- 🛠️:
   - deployment/index.md
   - deployment/versions.md
   - deployment/https.md

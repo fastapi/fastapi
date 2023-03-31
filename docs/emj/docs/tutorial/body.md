@@ -1,31 +1,31 @@
 # 📨 💪
 
-🕐❔ 👆 💪 📨 📊 ⚪️➡️ 👩‍💻 (➡️ 💬, 🖥) 👆 🛠, 👆 📨 ⚫️ **📨 💪**.
+🕐❔ 👆 💪 📨 📊 ⚪️➡️ 👩‍💻 (➡️ 💬, 🖥) 👆 🛠️, 👆 📨 ⚫️ **📨 💪**.
 
-**📨** 💪 📊 📨 👩‍💻 👆 🛠. **📨** 💪 💽 👆 🛠 📨 👩‍💻.
+**📨** 💪 📊 📨 👩‍💻 👆 🛠️. **📨** 💪 💽 👆 🛠️ 📨 👩‍💻.
 
-👆 🛠 🌖 🕧 ✔️ 📨 **📨** 💪. ✋️ 👩‍💻 🚫 🎯 💪 📨 **📨** 💪 🌐 🕰.
+👆 🛠️ 🌖 🕧 ✔️ 📨 **📨** 💪. ✋️ 👩‍💻 🚫 🎯 💪 📨 **📨** 💪 🌐 🕰.
 
-📣 **📨** 💪, 👆 ⚙️ <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> 🏷 ⏮ 🌐 👫 🏋️ &amp; 💰.
+📣 **📨** 💪, 👆 ⚙️ <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> 🏷 ⏮️ 🌐 👫 🏋️ &amp; 💰.
 
 !!! info
-    📨 💽, 👆 🔜 ⚙️ 1⃣: `POST` (🌅 ⚠), `PUT`, `DELETE` ⚖️ `PATCH`.
+    📨 💽, 👆 🔜 ⚙️ 1️⃣: `POST` (🌅 ⚠), `PUT`, `DELETE` ⚖️ `PATCH`.
 
-    📨 💪 ⏮ `GET` 📨 ✔️ ⚠ 🎭 🔧, 👐, ⚫️ 🐕‍🦺 FastAPI, 🕴 📶 🏗/😕 ⚙️ 💼.
+    📨 💪 ⏮️ `GET` 📨 ✔️ ⚠ 🎭 🔧, 👐, ⚫️ 🐕‍🦺 FastAPI, 🕴 📶 🏗/😕 ⚙️ 💼.
 
-    ⚫️ 🚫, 🎓 🩺 ⏮ 🦁 🎚 🏆 🚫 🎦 🧾 💪 🕐❔ ⚙️ `GET`, &amp; 🗳 🖕 💪 🚫 🐕‍🦺 ⚫️.
+    ⚫️ 🚫, 🎓 🩺 ⏮️ 🦁 🎚 🏆 🚫 🎦 🧾 💪 🕐❔ ⚙️ `GET`, &amp; 🗳 🖕 💪 🚫 🐕‍🦺 ⚫️.
 
 ## 🗄 Pydantic `BaseModel`
 
 🥇, 👆 💪 🗄 `BaseModel` ⚪️➡️ `pydantic`:
 
-=== "🐆 3⃣.6⃣ &amp; 🔛"
+=== "🐍 3️⃣.6️⃣ &amp; 🔛"
 
     ```Python hl_lines="4"
     {!> ../../../docs_src/body/tutorial001.py!}
     ```
 
-=== "🐆 3⃣.1⃣0⃣ &amp; 🔛"
+=== "🐍 3️⃣.1️⃣0️⃣ &amp; 🔛"
 
     ```Python hl_lines="2"
     {!> ../../../docs_src/body/tutorial001_py310.py!}
@@ -33,17 +33,17 @@
 
 ## ✍ 👆 💽 🏷
 
-⤴ 👆 📣 👆 💽 🏷 🎓 👈 😖 ⚪️➡️ `BaseModel`.
+⤴️ 👆 📣 👆 💽 🏷 🎓 👈 😖 ⚪️➡️ `BaseModel`.
 
-⚙️ 🐩 🐆 🆎 🌐 🔢:
+⚙️ 🐩 🐍 🆎 🌐 🔢:
 
-=== "🐆 3⃣.6⃣ &amp; 🔛"
+=== "🐍 3️⃣.6️⃣ &amp; 🔛"
 
     ```Python hl_lines="7-11"
     {!> ../../../docs_src/body/tutorial001.py!}
     ```
 
-=== "🐆 3⃣.1⃣0⃣ &amp; 🔛"
+=== "🐍 3️⃣.1️⃣0️⃣ &amp; 🔛"
 
     ```Python hl_lines="5-9"
     {!> ../../../docs_src/body/tutorial001_py310.py!}
@@ -51,7 +51,7 @@
 
 🎏 🕐❔ 📣 🔢 🔢, 🕐❔ 🏷 🔢 ✔️ 🔢 💲, ⚫️ 🚫 ✔. ⏪, ⚫️ ✔. ⚙️ `None` ⚒ ⚫️ 📦.
 
-🖼, 👉 🏷 🔛 📣 🎻 "`object`" (⚖️ 🐆 `dict`) 💖:
+🖼, 👉 🏷 🔛 📣 🎻 "`object`" (⚖️ 🐍 `dict`) 💖:
 
 ```JSON
 {
@@ -62,7 +62,7 @@
 }
 ```
 
-... `description` &amp; `tax` 📦 (⏮ 🔢 💲 `None`), 👉 🎻 "`object`" 🔜 ☑:
+... `description` &amp; `tax` 📦 (⏮️ 🔢 💲 `None`), 👉 🎻 "`object`" 🔜 ☑:
 
 ```JSON
 {
@@ -73,15 +73,15 @@
 
 ## 📣 ⚫️ 🔢
 
-🚮 ⚫️ 👆 *➡ 🛠*, 📣 ⚫️ 🎏 🌌 👆 📣 ➡ &amp; 🔢 🔢:
+🚮 ⚫️ 👆 *➡ 🛠️*, 📣 ⚫️ 🎏 🌌 👆 📣 ➡ &amp; 🔢 🔢:
 
-=== "🐆 3⃣.6⃣ &amp; 🔛"
+=== "🐍 3️⃣.6️⃣ &amp; 🔛"
 
     ```Python hl_lines="18"
     {!> ../../../docs_src/body/tutorial001.py!}
     ```
 
-=== "🐆 3⃣.1⃣0⃣ &amp; 🔛"
+=== "🐍 3️⃣.1️⃣0️⃣ &amp; 🔛"
 
     ```Python hl_lines="16"
     {!> ../../../docs_src/body/tutorial001_py310.py!}
@@ -91,57 +91,57 @@
 
 ## 🏁
 
-⏮ 👈 🐆 🆎 📄, **FastAPI** 🔜:
+⏮️ 👈 🐍 🆎 📄, **FastAPI** 🔜:
 
 * ✍ 💪 📨 🎻.
 * 🗜 🔗 🆎 (🚥 💪).
 * ✔ 💽.
     * 🚥 💽 ❌, ⚫️ 🔜 📨 👌 &amp; 🆑 ❌, ☠️ ⚫️❔ 🌐❔ &amp; ⚫️❔ ❌ 📊.
 * 🤝 👆 📨 📊 🔢 `item`.
-    * 👆 📣 ⚫️ 🔢 🆎 `Item`, 👆 🔜 ✔️ 🌐 👨‍🎨 🐕‍🦺 (🛠, ♒️) 🌐 🔢 &amp; 👫 🆎.
+    * 👆 📣 ⚫️ 🔢 🆎 `Item`, 👆 🔜 ✔️ 🌐 👨‍🎨 🐕‍🦺 (🛠️, ♒️) 🌐 🔢 &amp; 👫 🆎.
 * 🏗 <a href="https://json-schema.org" class="external-link" target="_blank">🎻 🔗</a> 🔑 👆 🏷, 👆 💪 ⚙️ 👫 🙆 🙆 👆 💖 🚥 ⚫️ ⚒ 🔑 👆 🏗.
 * 👈 🔗 🔜 🍕 🏗 🗄 🔗, &amp; ⚙️ 🏧 🧾 <abbr title="User Interfaces">⚜</abbr>.
 
 ## 🏧 🩺
 
-🎻 🔗 👆 🏷 🔜 🍕 👆 🗄 🏗 🔗, &amp; 🔜 🎦 🎓 🛠 🩺:
+🎻 🔗 👆 🏷 🔜 🍕 👆 🗄 🏗 🔗, &amp; 🔜 🎦 🎓 🛠️ 🩺:
 
 <img src="/img/tutorial/body/image01.png">
 
-&amp; 🔜 ⚙️ 🛠 🩺 🔘 🔠 *➡ 🛠* 👈 💪 👫:
+&amp; 🔜 ⚙️ 🛠️ 🩺 🔘 🔠 *➡ 🛠️* 👈 💪 👫:
 
 <img src="/img/tutorial/body/image02.png">
 
 ## 👨‍🎨 🐕‍🦺
 
-👆 👨‍🎨, 🔘 👆 🔢 👆 🔜 🤚 🆎 🔑 &amp; 🛠 🌐 (👉 🚫🔜 🔨 🚥 👆 📨 `dict` ↩️ Pydantic 🏷):
+👆 👨‍🎨, 🔘 👆 🔢 👆 🔜 🤚 🆎 🔑 &amp; 🛠️ 🌐 (👉 🚫🔜 🔨 🚥 👆 📨 `dict` ↩️ Pydantic 🏷):
 
 <img src="/img/tutorial/body/image03.png">
 
-👆 🤚 ❌ ✅ ❌ 🆎 🛠:
+👆 🤚 ❌ ✅ ❌ 🆎 🛠️:
 
 <img src="/img/tutorial/body/image04.png">
 
-👉 🚫 🤞, 🎂 🛠 🏗 🤭 👈 🔧.
+👉 🚫 🤞, 🎂 🛠️ 🏗 🤭 👈 🔧.
 
-&amp; ⚫️ 🙇 💯 🔧 🌓, ⏭ 🙆 🛠, 🚚 ⚫️ 🔜 👷 ⏮ 🌐 👨‍🎨.
+&amp; ⚫️ 🙇 💯 🔧 🌓, ⏭ 🙆 🛠️, 🚚 ⚫️ 🔜 👷 ⏮️ 🌐 👨‍🎨.
 
 📤 🔀 Pydantic ⚫️ 🐕‍🦺 👉.
 
-⏮ 🖼 ✊ ⏮ <a href="https://code.visualstudio.com" class="external-link" target="_blank">🎙 🎙 📟</a>.
+⏮️ 🖼 ✊ ⏮️ <a href="https://code.visualstudio.com" class="external-link" target="_blank">🎙 🎙 📟</a>.
 
-✋️ 👆 🔜 🤚 🎏 👨‍🎨 🐕‍🦺 ⏮ <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">🗒</a> &amp; 🌅 🎏 🐆 👨‍🎨:
+✋️ 👆 🔜 🤚 🎏 👨‍🎨 🐕‍🦺 ⏮️ <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">🗒</a> &amp; 🌅 🎏 🐍 👨‍🎨:
 
 <img src="/img/tutorial/body/image05.png">
 
 !!! tip
     🚥 👆 ⚙️ <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">🗒</a> 👆 👨‍🎨, 👆 💪 ⚙️ <a href="https://github.com/koxudaxi/pydantic-pycharm-plugin/" class="external-link" target="_blank">Pydantic 🗒 📁</a>.
 
-    ⚫️ 📉 👨‍🎨 🐕‍🦺 Pydantic 🏷, ⏮:
+    ⚫️ 📉 👨‍🎨 🐕‍🦺 Pydantic 🏷, ⏮️:
 
-    * 🚘-🛠
+    * 🚘-🛠️
     * 🆎 ✅
-    * 🛠
+    * 🛠️
     * 🔎
     * 🔬
 
@@ -149,13 +149,13 @@
 
 🔘 🔢, 👆 💪 🔐 🌐 🔢 🏷 🎚 🔗:
 
-=== "🐆 3⃣.6⃣ &amp; 🔛"
+=== "🐍 3️⃣.6️⃣ &amp; 🔛"
 
     ```Python hl_lines="21"
     {!> ../../../docs_src/body/tutorial002.py!}
     ```
 
-=== "🐆 3⃣.1⃣0⃣ &amp; 🔛"
+=== "🐍 3️⃣.1️⃣0️⃣ &amp; 🔛"
 
     ```Python hl_lines="19"
     {!> ../../../docs_src/body/tutorial002_py310.py!}
@@ -167,13 +167,13 @@
 
 **FastAPI** 🔜 🤔 👈 🔢 🔢 👈 🏏 ➡ 🔢 🔜 **✊ ⚪️➡️ ➡**, &amp; 👈 🔢 🔢 👈 📣 Pydantic 🏷 🔜 **✊ ⚪️➡️ 📨 💪**.
 
-=== "🐆 3⃣.6⃣ &amp; 🔛"
+=== "🐍 3️⃣.6️⃣ &amp; 🔛"
 
     ```Python hl_lines="17-18"
     {!> ../../../docs_src/body/tutorial003.py!}
     ```
 
-=== "🐆 3⃣.1⃣0⃣ &amp; 🔛"
+=== "🐍 3️⃣.1️⃣0️⃣ &amp; 🔛"
 
     ```Python hl_lines="15-16"
     {!> ../../../docs_src/body/tutorial003_py310.py!}
@@ -185,13 +185,13 @@
 
 **FastAPI** 🔜 🤔 🔠 👫 &amp; ✊ 📊 ⚪️➡️ ☑ 🥉.
 
-=== "🐆 3⃣.6⃣ &amp; 🔛"
+=== "🐍 3️⃣.6️⃣ &amp; 🔛"
 
     ```Python hl_lines="18"
     {!> ../../../docs_src/body/tutorial004.py!}
     ```
 
-=== "🐆 3⃣.1⃣0⃣ &amp; 🔛"
+=== "🐍 3️⃣.1️⃣0️⃣ &amp; 🔛"
 
     ```Python hl_lines="16"
     {!> ../../../docs_src/body/tutorial004_py310.py!}

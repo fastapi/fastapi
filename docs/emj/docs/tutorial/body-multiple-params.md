@@ -8,13 +8,13 @@
 
 &amp; 👆 💪 📣 💪 🔢 📦, ⚒ 🔢 `None`:
 
-=== "🐆 3⃣.6⃣ &amp; 🔛"
+=== "🐍 3️⃣.6️⃣ &amp; 🔛"
 
     ```Python hl_lines="19-21"
     {!> ../../../docs_src/body_multiple_params/tutorial001.py!}
     ```
 
-=== "🐆 3⃣.1⃣0⃣ &amp; 🔛"
+=== "🐍 3️⃣.1️⃣0️⃣ &amp; 🔛"
 
     ```Python hl_lines="17-19"
     {!> ../../../docs_src/body_multiple_params/tutorial001_py310.py!}
@@ -25,7 +25,7 @@
 
 ## 💗 💪 🔢
 
-⏮ 🖼, *➡ 🛠* 🔜 ⌛ 🎻 💪 ⏮ 🔢 `Item`, 💖:
+⏮️ 🖼, *➡ 🛠️* 🔜 ⌛ 🎻 💪 ⏮️ 🔢 `Item`, 💖:
 
 ```JSON
 {
@@ -38,21 +38,21 @@
 
 ✋️ 👆 💪 📣 💗 💪 🔢, ✅ `item` &amp; `user`:
 
-=== "🐆 3⃣.6⃣ &amp; 🔛"
+=== "🐍 3️⃣.6️⃣ &amp; 🔛"
 
     ```Python hl_lines="22"
     {!> ../../../docs_src/body_multiple_params/tutorial002.py!}
     ```
 
-=== "🐆 3⃣.1⃣0⃣ &amp; 🔛"
+=== "🐍 3️⃣.1️⃣0️⃣ &amp; 🔛"
 
     ```Python hl_lines="20"
     {!> ../../../docs_src/body_multiple_params/tutorial002_py310.py!}
     ```
 
-👉 💼, **FastAPI** 🔜 👀 👈 📤 🌅 🌘 1⃣ 💪 🔢 🔢 (2⃣ 🔢 👈 Pydantic 🏷).
+👉 💼, **FastAPI** 🔜 👀 👈 📤 🌅 🌘 1️⃣ 💪 🔢 🔢 (2️⃣ 🔢 👈 Pydantic 🏷).
 
-, ⚫️ 🔜 ⤴ ⚙️ 🔢 📛 🔑 (🏑 📛) 💪, &amp; ⌛ 💪 💖:
+, ⚫️ 🔜 ⤴️ ⚙️ 🔢 📛 🔑 (🏑 📛) 💪, &amp; ⌛ 💪 💖:
 
 ```JSON
 {
@@ -70,10 +70,10 @@
 ```
 
 !!! note
-    👀 👈 ✋️ `item` 📣 🎏 🌌 ⏭, ⚫️ 🔜 ⌛ 🔘 💪 ⏮ 🔑 `item`.
+    👀 👈 ✋️ `item` 📣 🎏 🌌 ⏭, ⚫️ 🔜 ⌛ 🔘 💪 ⏮️ 🔑 `item`.
 
 
-**FastAPI** 🔜 🏧 🛠 ⚪️➡️ 📨, 👈 🔢 `item` 📨 ⚫️ 🎯 🎚 &amp; 🎏 `user`.
+**FastAPI** 🔜 🏧 🛠️ ⚪️➡️ 📨, 👈 🔢 `item` 📨 ⚫️ 🎯 🎚 &amp; 🎏 `user`.
 
 ⚫️ 🔜 🎭 🔬 ⚗ 💽, &amp; 🔜 📄 ⚫️ 💖 👈 🗄 🔗 &amp; 🏧 🩺.
 
@@ -81,19 +81,19 @@
 
 🎏 🌌 📤 `Query` &amp; `Path` 🔬 ➕ 💽 🔢 &amp; ➡ 🔢, **FastAPI** 🚚 🌓 `Body`.
 
-🖼, ↔ ⏮ 🏷, 👆 💪 💭 👈 👆 💚 ✔️ ➕1️⃣ 🔑 `importance` 🎏 💪, 🥈 `item` &amp; `user`.
+🖼, ↔ ⏮️ 🏷, 👆 💪 💭 👈 👆 💚 ✔️ ➕1️⃣ 🔑 `importance` 🎏 💪, 🥈 `item` &amp; `user`.
 
 🚥 👆 📣 ⚫️, ↩️ ⚫️ ⭐ 💲, **FastAPI** 🔜 🤔 👈 ⚫️ 🔢 🔢.
 
 ✋️ 👆 💪 💡 **FastAPI** 😥 ⚫️ ➕1️⃣ 💪 🔑 ⚙️ `Body`:
 
-=== "🐆 3⃣.6⃣ &amp; 🔛"
+=== "🐍 3️⃣.6️⃣ &amp; 🔛"
 
     ```Python hl_lines="22"
     {!> ../../../docs_src/body_multiple_params/tutorial003.py!}
     ```
 
-=== "🐆 3⃣.1⃣0⃣ &amp; 🔛"
+=== "🐍 3️⃣.1️⃣0️⃣ &amp; 🔛"
 
     ```Python hl_lines="20"
     {!> ../../../docs_src/body_multiple_params/tutorial003_py310.py!}
@@ -129,7 +129,7 @@
 q: Union[str, None] = None
 ```
 
-⚖️ 🐆 3⃣.1⃣0⃣ &amp; 🔛:
+⚖️ 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛:
 
 ```Python
 q: str | None = None
@@ -137,13 +137,13 @@ q: str | None = None
 
 🖼:
 
-=== "🐆 3⃣.6⃣ &amp; 🔛"
+=== "🐍 3️⃣.6️⃣ &amp; 🔛"
 
     ```Python hl_lines="27"
     {!> ../../../docs_src/body_multiple_params/tutorial004.py!}
     ```
 
-=== "🐆 3⃣.1⃣0⃣ &amp; 🔛"
+=== "🐍 3️⃣.1️⃣0️⃣ &amp; 🔛"
 
     ```Python hl_lines="26"
     {!> ../../../docs_src/body_multiple_params/tutorial004_py310.py!}
@@ -156,9 +156,9 @@ q: str | None = None
 
 ➡️ 💬 👆 🕴 ✔️ 👁 `item` 💪 🔢 ⚪️➡️ Pydantic 🏷 `Item`.
 
-🔢, **FastAPI** 🔜 ⤴ ⌛ 🚮 💪 🔗.
+🔢, **FastAPI** 🔜 ⤴️ ⌛ 🚮 💪 🔗.
 
-✋️ 🚥 👆 💚 ⚫️ ⌛ 🎻 ⏮ 🔑 `item` &amp; 🔘 ⚫️ 🏷 🎚, ⚫️ 🔨 🕐❔ 👆 📣 ➕ 💪 🔢, 👆 💪 ⚙️ 🎁 `Body` 🔢 `embed`:
+✋️ 🚥 👆 💚 ⚫️ ⌛ 🎻 ⏮️ 🔑 `item` &amp; 🔘 ⚫️ 🏷 🎚, ⚫️ 🔨 🕐❔ 👆 📣 ➕ 💪 🔢, 👆 💪 ⚙️ 🎁 `Body` 🔢 `embed`:
 
 ```Python
 item: Item = Body(embed=True)
@@ -166,13 +166,13 @@ item: Item = Body(embed=True)
 
 :
 
-=== "🐆 3⃣.6⃣ &amp; 🔛"
+=== "🐍 3️⃣.6️⃣ &amp; 🔛"
 
     ```Python hl_lines="17"
     {!> ../../../docs_src/body_multiple_params/tutorial005.py!}
     ```
 
-=== "🐆 3⃣.1⃣0⃣ &amp; 🔛"
+=== "🐍 3️⃣.1️⃣0️⃣ &amp; 🔛"
 
     ```Python hl_lines="15"
     {!> ../../../docs_src/body_multiple_params/tutorial005_py310.py!}
@@ -204,9 +204,9 @@ item: Item = Body(embed=True)
 
 ## 🌃
 
-👆 💪 🚮 💗 💪 🔢 👆 *➡ 🛠 🔢*, ✋️ 📨 💪 🕴 ✔️ 👁 💪.
+👆 💪 🚮 💗 💪 🔢 👆 *➡ 🛠️ 🔢*, ✋️ 📨 💪 🕴 ✔️ 👁 💪.
 
-✋️ **FastAPI** 🔜 🍵 ⚫️, 🤝 👆 ☑ 📊 👆 🔢, &amp; ✔ &amp; 📄 ☑ 🔗 *➡ 🛠*.
+✋️ **FastAPI** 🔜 🍵 ⚫️, 🤝 👆 ☑ 📊 👆 🔢, &amp; ✔ &amp; 📄 ☑ 🔗 *➡ 🛠️*.
 
 👆 💪 📣 ⭐ 💲 📨 🍕 💪.
 

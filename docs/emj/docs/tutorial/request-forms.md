@@ -23,11 +23,11 @@
 {!../../../docs_src/request_forms/tutorial001.py!}
 ```
 
-🖼, 1⃣ 🌌 Oauth2⃣ 🔧 💪 ⚙️ (🤙 "🔐 💧") ⚫️ ✔ 📨 `username` &amp; `password` 📨 🏑.
+🖼, 1️⃣ 🌌 Oauth2️⃣ 🔧 💪 ⚙️ (🤙 "🔐 💧") ⚫️ ✔ 📨 `username` &amp; `password` 📨 🏑.
 
 <abbr title="specification">🔌</abbr> 🚚 🏑 ⚫️❔ 📛 `username` &amp; `password`, &amp; 📨 📨 🏑, 🚫 🎻.
 
-⏮ `Form` 👆 💪 📣 🎏 📳 ⏮ `Body` (&amp; `Query`, `Path`, `Cookie`), 🔌 🔬, 🖼, 📛 (✅ `user-name` ↩️ `username`), ♒️.
+⏮️ `Form` 👆 💪 📣 🎏 📳 ⏮️ `Body` (&amp; `Query`, `Path`, `Cookie`), 🔌 🔬, 🖼, 📛 (✅ `user-name` ↩️ `username`), ♒️.
 
 !!! info
     `Form` 🎓 👈 😖 🔗 ⚪️➡️ `Body`.
@@ -39,7 +39,7 @@
 
 🌌 🕸 📨 (`<form></form>`) 📨 💽 💽 🛎 ⚙️ "🎁" 🔢 👈 📊, ⚫️ 🎏 ⚪️➡️ 🎻.
 
-**FastAPI** 🔜 ⚒ 💭 ✍ 👈 📊 ⚪️➡️ ▶️ 🥉 ↩️ 🎻.
+**FastAPI** 🔜 ⚒ 💭 ✍ 👈 📊 ⚪️➡️ ▶️️ 🥉 ↩️ 🎻.
 
 !!! note "📡 ℹ"
     📊 ⚪️➡️ 📨 🛎 🗜 ⚙️ "📻 🆎" `application/x-www-form-urlencoded`.
@@ -49,9 +49,9 @@
     🚥 👆 💚 ✍ 🌖 🔃 👉 🔢 &amp; 📨 🏑, 👳 <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST" class="external-link" target="_blank"><abbr title="Mozilla Developer Network">🏇</abbr> 🕸 🩺 <code>POST</code></a>.
 
 !!! warning
-    👆 💪 📣 💗 `Form` 🔢 *➡ 🛠*, ✋️ 👆 💪 🚫 📣 `Body` 🏑 👈 👆 ⌛ 📨 🎻, 📨 🔜 ✔️ 💪 🗜 ⚙️ `application/x-www-form-urlencoded` ↩️ `application/json`.
+    👆 💪 📣 💗 `Form` 🔢 *➡ 🛠️*, ✋️ 👆 💪 🚫 📣 `Body` 🏑 👈 👆 ⌛ 📨 🎻, 📨 🔜 ✔️ 💪 🗜 ⚙️ `application/x-www-form-urlencoded` ↩️ `application/json`.
 
-    👉 🚫 🚫 **FastAPI**, ⚫️ 🍕 🇺🇸🔍 🛠.
+    👉 🚫 🚫 **FastAPI**, ⚫️ 🍕 🇺🇸🔍 🛠️.
 
 ## 🌃
 

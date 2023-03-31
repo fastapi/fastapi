@@ -1,14 +1,14 @@
-# 🛠 - 📉
+# 🛠️ - 📉
 
 🥇, 👆 💪 💚 👀 🔰 🌌 [ℹ FastAPI &amp; 🤚 ℹ](help-fastapi.md){.internal-link target=_blank}.
 
-## 🛠
+## 🛠️
 
 🚥 👆 ⏪ 🖖 🗃 &amp; 👆 💭 👈 👆 💪 ⏬ 🤿 📟, 📥 📄 ⚒ 🆙 👆 🌐.
 
-### 🕹 🌐 ⏮ `venv`
+### 🕹 🌐 ⏮️ `venv`
 
-👆 💪 ✍ 🕹 🌐 📁 ⚙️ 🐆 `venv` 🕹:
+👆 💪 ✍ 🕹 🌐 📁 ⚙️ 🐍 `venv` 🕹:
 
 <div class="termy">
 
@@ -18,11 +18,11 @@ $ python -m venv env
 
 </div>
 
-👈 🔜 ✍ 📁 `./env/` ⏮ 🐆 💱 &amp; ⤴ 👆 🔜 💪 ❎ 📦 👈 ❎ 🌐.
+👈 🔜 ✍ 📁 `./env/` ⏮️ 🐍 💱 &amp; ⤴️ 👆 🔜 💪 ❎ 📦 👈 ❎ 🌐.
 
 ### 🔓 🌐
 
-🔓 🆕 🌐 ⏮:
+🔓 🆕 🌐 ⏮️:
 
 === "💾, 🇸🇻"
 
@@ -82,7 +82,7 @@ $ python -m venv env
 
     </div>
 
-🚥 ⚫️ 🎦 `pip` 💱 `env/bin/pip` ⤴ ⚫️ 👷. 👶
+🚥 ⚫️ 🎦 `pip` 💱 `env/bin/pip` ⤴️ ⚫️ 👷. 👶
 
 ⚒ 💭 👆 ✔️ 📰 🐖 ⏬ 🔛 👆 🕹 🌐 ❎ ❌ 🔛 ⏭ 📶:
 
@@ -97,13 +97,13 @@ $ python -m pip install --upgrade pip
 </div>
 
 !!! tip
-    🔠 🕰 👆 ❎ 🆕 📦 ⏮ `pip` 🔽 👈 🌐, 🔓 🌐 🔄.
+    🔠 🕰 👆 ❎ 🆕 📦 ⏮️ `pip` 🔽 👈 🌐, 🔓 🌐 🔄.
 
-    👉 ⚒ 💭 👈 🚥 👆 ⚙️ 📶 📋 ❎ 👈 📦, 👆 ⚙️ 1⃣ ⚪️➡️ 👆 🇧🇿 🌐 &amp; 🚫 🙆 🎏 👈 💪 ❎ 🌐.
+    👉 ⚒ 💭 👈 🚥 👆 ⚙️ 📶 📋 ❎ 👈 📦, 👆 ⚙️ 1️⃣ ⚪️➡️ 👆 🇧🇿 🌐 &amp; 🚫 🙆 🎏 👈 💪 ❎ 🌐.
 
 ### 🐖
 
-⏮ 🔓 🌐 🔬 🔛:
+⏮️ 🔓 🌐 🔬 🔛:
 
 <div class="termy">
 
@@ -119,9 +119,9 @@ $ pip install -e ."[dev,doc,test]"
 
 #### ⚙️ 👆 🇧🇿 FastAPI
 
-🚥 👆 ✍ 🐆 📁 👈 🗄 &amp; ⚙️ FastAPI, &amp; 🏃 ⚫️ ⏮ 🐆 ⚪️➡️ 👆 🇧🇿 🌐, ⚫️ 🔜 ⚙️ 👆 🇧🇿 FastAPI ℹ 📟.
+🚥 👆 ✍ 🐍 📁 👈 🗄 &amp; ⚙️ FastAPI, &amp; 🏃 ⚫️ ⏮️ 🐍 ⚪️➡️ 👆 🇧🇿 🌐, ⚫️ 🔜 ⚙️ 👆 🇧🇿 FastAPI ℹ 📟.
 
-&amp; 🚥 👆 ℹ 👈 🇧🇿 FastAPI ℹ 📟, ⚫️ ❎ ⏮ `-e`, 🕐❔ 👆 🏃 👈 🐆 📁 🔄, ⚫️ 🔜 ⚙️ 🍋 ⏬ FastAPI 👆 ✍.
+&amp; 🚥 👆 ℹ 👈 🇧🇿 FastAPI ℹ 📟, ⚫️ ❎ ⏮️ `-e`, 🕐❔ 👆 🏃 👈 🐍 📁 🔄, ⚫️ 🔜 ⚙️ 🍋 ⏬ FastAPI 👆 ✍.
 
 👈 🌌, 👆 🚫 ✔️ "❎" 👆 🇧🇿 ⏬ 💪 💯 🔠 🔀.
 
@@ -139,13 +139,13 @@ $ bash scripts/format.sh
 
 ⚫️ 🔜 🚘-😇 🌐 👆 🗄.
 
-⚫️ 😇 👫 ☑, 👆 💪 ✔️ FastAPI ❎ 🌐 👆 🌐, ⏮ 📋 📄 🔛 ⚙️ `-e`.
+⚫️ 😇 👫 ☑, 👆 💪 ✔️ FastAPI ❎ 🌐 👆 🌐, ⏮️ 📋 📄 🔛 ⚙️ `-e`.
 
 ## 🩺
 
 🥇, ⚒ 💭 👆 ⚒ 🆙 👆 🌐 🔬 🔛, 👈 🔜 ❎ 🌐 📄.
 
-🧾 ⚙️ <a href="https://www.mkdocs.org/" class="external-link" target="_blank">🏻</a>.
+🧾 ⚙️ <a href="https://www.mkdocs.org/" class="external-link" target="_blank">⬜</a>.
 
 &amp; 📤 ➕ 🧰/✍ 🥉 🍵 ✍ `./scripts/docs.py`.
 
@@ -158,9 +158,9 @@ $ bash scripts/format.sh
 
 🌅 💼, 👫 🍫 📟 ☑ 🏁 🈸 👈 💪 🏃.
 
-👐, 👈 🍫 📟 🚫 ✍ 🔘 ✍, 👫 🐆 📁 `./docs_src/` 📁.
+👐, 👈 🍫 📟 🚫 ✍ 🔘 ✍, 👫 🐍 📁 `./docs_src/` 📁.
 
-&amp; 👈 🐆 📁 🔌/💉 🧾 🕐❔ 🏭 🕸.
+&amp; 👈 🐍 📁 🔌/💉 🧾 🕐❔ 🏭 🕸.
 
 ### 🩺 💯
 
@@ -172,7 +172,7 @@ $ bash scripts/format.sh
 * 🧾 🖼 💪 🏃.
 * 🌅 ⚒ 📔 🧾, 🚚 💯 💰.
 
-⏮ 🇧🇿 🛠, 📤 ✍ 👈 🏗 🕸 &amp; ✅ 🙆 🔀, 🖖-🔫:
+⏮️ 🇧🇿 🛠️, 📤 ✍ 👈 🏗 🕸 &amp; ✅ 🙆 🔀, 🖖-🔫:
 
 <div class="termy">
 
@@ -192,11 +192,11 @@ $ python ./scripts/docs.py live
 
 #### 🏎 ✳ (📦)
 
-👩‍🌾 📥 🎦 👆 ❔ ⚙️ ✍ `./scripts/docs.py` ⏮ `python` 📋 🔗.
+👩‍🌾 📥 🎦 👆 ❔ ⚙️ ✍ `./scripts/docs.py` ⏮️ `python` 📋 🔗.
 
-✋️ 👆 💪 ⚙️ <a href="https://typer.tiangolo.com/typer-cli/" class="external-link" target="_blank">🏎 ✳</a>, &amp; 👆 🔜 🤚 ✍ 👆 📶 📋 ⏮ ❎ 🛠.
+✋️ 👆 💪 ⚙️ <a href="https://typer.tiangolo.com/typer-cli/" class="external-link" target="_blank">🏎 ✳</a>, &amp; 👆 🔜 🤚 ✍ 👆 📶 📋 ⏮️ ❎ 🛠️.
 
-🚥 👆 ❎ 🏎 ✳, 👆 💪 ❎ 🛠 ⏮:
+🚥 👆 ❎ 🏎 ✳, 👆 💪 ❎ 🛠️ ⏮️:
 
 <div class="termy">
 
@@ -211,7 +211,7 @@ Completion will take effect once you restart the terminal.
 
 ### 📱 &amp; 🩺 🎏 🕰
 
-🚥 👆 🏃 🖼 ⏮, ✅:
+🚥 👆 🏃 🖼 ⏮️, ✅:
 
 <div class="termy">
 
@@ -227,20 +227,20 @@ Uvicorn 🔢 🔜 ⚙️ ⛴ `8000`, 🧾 🔛 ⛴ `8008` 🏆 🚫 ⚔.
 
 ### ✍
 
-ℹ ⏮ ✍ 📶 🌅 👍 ❗ &amp; ⚫️ 💪 🚫 🔨 🍵 ℹ ⚪️➡️ 👪. 👶 👶
+ℹ ⏮️ ✍ 📶 🌅 👍 ❗ &amp; ⚫️ 💪 🚫 🔨 🍵 ℹ ⚪️➡️ 👪. 👶 👶
 
-📥 📶 ℹ ⏮ ✍.
+📥 📶 ℹ ⏮️ ✍.
 
 #### 💁‍♂ &amp; 📄
 
 * ✅ ⏳ <a href="https://github.com/tiangolo/fastapi/pulls" class="external-link" target="_blank">♻ 🚲 📨</a> 👆 🇪🇸 &amp; 🚮 📄 ✔ 🔀 ⚖️ ✔ 👫.
 
 !!! tip
-    👆 💪 <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/commenting-on-a-pull-request" class="external-link" target="_blank">🚮 🏤 ⏮ 🔀 🔑</a> ♻ 🚲 📨.
+    👆 💪 <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/commenting-on-a-pull-request" class="external-link" target="_blank">🚮 🏤 ⏮️ 🔀 🔑</a> ♻ 🚲 📨.
 
     ✅ 🩺 🔃 <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-request-reviews" class="external-link" target="_blank">❎ 🚲 📨 📄</a> ✔ ⚫️ ⚖️ 📨 🔀.
 
-* ✅ <a href="https://github.com/tiangolo/fastapi/issues" class="external-link" target="_blank">❔</a> 👀 🚥 📤 1⃣ 🛠 ✍ 👆 🇪🇸.
+* ✅ <a href="https://github.com/tiangolo/fastapi/issues" class="external-link" target="_blank">❔</a> 👀 🚥 📤 1️⃣ 🛠️ ✍ 👆 🇪🇸.
 
 * 🚮 👁 🚲 📨 📍 📃 💬. 👈 🔜 ⚒ ⚫️ 🌅 ⏩ 🎏 📄 ⚫️.
 
@@ -248,17 +248,17 @@ Uvicorn 🔢 🔜 ⚙️ ⛴ `8000`, 🧾 🔛 ⛴ `8008` 🏆 🚫 ⚔.
 
 * 👆 💪 ✅ 🚥 📤 ✍ 👆 🇪🇸 &amp; 🚮 📄 👫, 👈 🔜 ℹ 👤 💭 👈 ✍ ☑ &amp; 👤 💪 🔗 ⚫️.
 
-* ⚙️ 🎏 🐆 🖼 &amp; 🕴 💬 ✍ 🩺. 👆 🚫 ✔️ 🔀 🕳 👉 👷.
+* ⚙️ 🎏 🐍 🖼 &amp; 🕴 💬 ✍ 🩺. 👆 🚫 ✔️ 🔀 🕳 👉 👷.
 
 * ⚙️ 🎏 🖼, 📁 📛, &amp; 🔗. 👆 🚫 ✔️ 🔀 🕳 ⚫️ 👷.
 
-* ✅ 2⃣-🔤 📟 🇪🇸 👆 💚 💬 👆 💪 ⚙️ 🏓 <a href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes" class="external-link" target="_blank">📇 💾 6⃣3⃣9⃣-1⃣ 📟</a>.
+* ✅ 2️⃣-🔤 📟 🇪🇸 👆 💚 💬 👆 💪 ⚙️ 🏓 <a href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes" class="external-link" target="_blank">📇 💾 6️⃣3️⃣9️⃣-1️⃣ 📟</a>.
 
 #### ♻ 🇪🇸
 
 ➡️ 💬 👆 💚 💬 📃 🇪🇸 👈 ⏪ ✔️ ✍ 📃, 💖 🇪🇸.
 
-💼 🇪🇸, 2⃣-🔤 📟 `es`. , 📁 🇪🇸 ✍ 🔎 `docs/es/`.
+💼 🇪🇸, 2️⃣-🔤 📟 `es`. , 📁 🇪🇸 ✍ 🔎 `docs/es/`.
 
 !!! tip
     👑 ("🛂") 🇪🇸 🇪🇸, 🔎 `docs/en/`.
@@ -278,7 +278,7 @@ $ python ./scripts/docs.py live es
 
 </div>
 
-🔜 👆 💪 🚶 <a href="http://127.0.0.1:8008" class="external-link" target="_blank">Http://127.0.0.1:8008</a> &amp; 👀 👆 🔀 🖖.
+🔜 👆 💪 🚶 <a href="http://127.0.0.1:8008" class="external-link" target="_blank">http://127.0.0.1:8008</a> &amp; 👀 👆 🔀 🖖.
 
 🚥 👆 👀 FastAPI 🩺 🕸, 👆 🔜 👀 👈 🔠 🇪🇸 ✔️ 🌐 📃. ✋️ 📃 🚫 💬 &amp; ✔️ 📨 🔃 ❌ ✍.
 
@@ -301,7 +301,7 @@ docs/es/docs/features.md
 !!! tip
     👀 👈 🕴 🔀 ➡ &amp; 📁 📛 🇪🇸 📟, ⚪️➡️ `en` `es`.
 
-* 🔜 📂 🏻 📁 📁 🇪🇸:
+* 🔜 📂 ⬜ 📁 📁 🇪🇸:
 
 ```
 docs/en/mkdocs.yml
@@ -320,7 +320,7 @@ nav:
 - features.md
 ```
 
-* 📂 🏻 📁 📁 🇪🇸 👆 ✍, ✅:
+* 📂 ⬜ 📁 📁 🇪🇸 👆 ✍, ✅:
 
 ```
 docs/es/mkdocs.yml
@@ -339,7 +339,7 @@ nav:
 - features.md
 ```
 
-⚒ 💭 👈 🚥 📤 🎏 ⛔, 🆕 ⛔ ⏮ 👆 ✍ ⚫️❔ 🎏 ✔ 🇪🇸 ⏬.
+⚒ 💭 👈 🚥 📤 🎏 ⛔, 🆕 ⛔ ⏮️ 👆 ✍ ⚫️❔ 🎏 ✔ 🇪🇸 ⏬.
 
 🚥 👆 🚶 👆 🖥 👆 🔜 👀 👈 🔜 🩺 🎦 👆 🆕 📄. 👶
 
@@ -371,13 +371,13 @@ Updating en
 🔜 👆 💪 ✅ 👆 📟 👨‍🎨 ⏳ ✍ 📁 `docs/ht/`.
 
 !!! tip
-    ✍ 🥇 🚲 📨 ⏮ 👉, ⚒ 🆙 📳 🆕 🇪🇸, ⏭ ❎ ✍.
+    ✍ 🥇 🚲 📨 ⏮️ 👉, ⚒ 🆙 📳 🆕 🇪🇸, ⏭ ❎ ✍.
 
-    👈 🌌 🎏 💪 ℹ ⏮ 🎏 📃 ⏪ 👆 👷 🔛 🥇 🕐. 👶
+    👈 🌌 🎏 💪 ℹ ⏮️ 🎏 📃 ⏪ 👆 👷 🔛 🥇 🕐. 👶
 
-▶ ✍ 👑 📃, `docs/ht/index.md`.
+▶️ ✍ 👑 📃, `docs/ht/index.md`.
 
-⤴ 👆 💪 😣 ⏮ ⏮ 👩‍🌾, "♻ 🇪🇸".
+⤴️ 👆 💪 😣 ⏮️ ⏮️ 👩‍🌾, "♻ 🇪🇸".
 
 ##### 🆕 🇪🇸 🚫 🐕‍🦺
 
@@ -388,9 +388,9 @@ Updating en
 jinja2.exceptions.TemplateNotFound: partials/language/xx.html
 ```
 
-👈 ⛓ 👈 🎢 🚫 🐕‍🦺 👈 🇪🇸 (👉 💼, ⏮ ❌ 2⃣-🔤 📟 `xx`).
+👈 ⛓ 👈 🎢 🚫 🐕‍🦺 👈 🇪🇸 (👉 💼, ⏮️ ❌ 2️⃣-🔤 📟 `xx`).
 
-✋️ 🚫 😟, 👆 💪 ⚒ 🎢 🇪🇸 🇪🇸 &amp; ⤴ 💬 🎚 🩺.
+✋️ 🚫 😟, 👆 💪 ⚒ 🎢 🇪🇸 🇪🇸 &amp; ⤴️ 💬 🎚 🩺.
 
 🚥 👆 💪 👈, ✍ `mkdocs.yml` 👆 🆕 🇪🇸, ⚫️ 🔜 ✔️ 🕳 💖:
 
@@ -404,11 +404,11 @@ theme:
 
 🔀 👈 🇪🇸 ⚪️➡️ `xx` (⚪️➡️ 👆 🇪🇸 📟) `en`.
 
-⤴ 👆 💪 ▶ 🖖 💽 🔄.
+⤴️ 👆 💪 ▶️ 🖖 💽 🔄.
 
 #### 🎮 🏁
 
-🕐❔ 👆 ⚙️ ✍ `./scripts/docs.py` ⏮ `live` 📋 ⚫️ 🕴 🎦 📁 &amp; ✍ 💪 ⏮ 🇪🇸.
+🕐❔ 👆 ⚙️ ✍ `./scripts/docs.py` ⏮️ `live` 📋 ⚫️ 🕴 🎦 📁 &amp; ✍ 💪 ⏮️ 🇪🇸.
 
 ✋️ 🕐 👆 🔨, 👆 💪 💯 ⚫️ 🌐 ⚫️ 🔜 👀 💳.
 
@@ -430,11 +430,11 @@ Copying en index.md to README.md
 
 </div>
 
-👈 🏗 🌐 🩺 `./docs_build/` 🔠 🇪🇸. 👉 🔌 ❎ 🙆 📁 ⏮ ❌ ✍, ⏮ 🗒 💬 👈 "👉 📁 🚫 ✔️ ✍". ✋️ 👆 🚫 ✔️ 🕳 ⏮ 👈 📁.
+👈 🏗 🌐 🩺 `./docs_build/` 🔠 🇪🇸. 👉 🔌 ❎ 🙆 📁 ⏮️ ❌ ✍, ⏮️ 🗒 💬 👈 "👉 📁 🚫 ✔️ ✍". ✋️ 👆 🚫 ✔️ 🕳 ⏮️ 👈 📁.
 
-⤴ ⚫️ 🏗 🌐 👈 🔬 🏻 🕸 🔠 🇪🇸, 🌀 👫, &amp; 🏗 🏁 🔢 `./site/`.
+⤴️ ⚫️ 🏗 🌐 👈 🔬 ⬜ 🕸 🔠 🇪🇸, 🌀 👫, &amp; 🏗 🏁 🔢 `./site/`.
 
-⤴ 👆 💪 🍦 👈 ⏮ 📋 `serve`:
+⤴️ 👆 💪 🍦 👈 ⏮️ 📋 `serve`:
 
 <div class="termy">
 

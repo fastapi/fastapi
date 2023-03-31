@@ -1,38 +1,38 @@
-# 💽 👨‍🏭 - 🐁 ⏮ Uvicorn
+# 💽 👨‍🏭 - 🐁 ⏮️ Uvicorn
 
-➡️ ✅ 🔙 👈 🛠 🔧 ⚪️➡️ ⏭:
+➡️ ✅ 🔙 👈 🛠️ 🔧 ⚪️➡️ ⏭:
 
 * 💂‍♂ - 🇺🇸🔍
 * 🏃‍♂ 🔛 🕴
 * ⏏
-* **🧬 (🔢 🛠 🏃)**
+* **🧬 (🔢 🛠️ 🏃)**
 * 💾
-* ⏮ 🔁 ⏭ ▶
+* ⏮️ 🔁 ⏭ ▶️
 
-🆙 👉 ☝, ⏮ 🌐 🔰 🩺, 👆 ✔️ 🎲 🏃‍♂ **💽 📋** 💖 Uvicorn, 🏃‍♂ **👁 🛠**.
+🆙 👉 ☝, ⏮️ 🌐 🔰 🩺, 👆 ✔️ 🎲 🏃‍♂ **💽 📋** 💖 Uvicorn, 🏃‍♂ **👁 🛠️**.
 
-🕐❔ 🛠 🈸 👆 🔜 🎲 💚 ✔️ **🧬 🛠** ✊ 📈 **💗 🐚** &amp; 💪 🍵 🌅 📨.
+🕐❔ 🛠️ 🈸 👆 🔜 🎲 💚 ✔️ **🧬 🛠️** ✊ 📈 **💗 🐚** &amp; 💪 🍵 🌅 📨.
 
-👆 👀 ⏮ 📃 🔃 [🛠 🔧](./concepts.md){.internal-link target=_blank}, 📤 💗 🎛 👆 💪 ⚙️.
+👆 👀 ⏮️ 📃 🔃 [🛠️ 🔧](./concepts.md){.internal-link target=_blank}, 📤 💗 🎛 👆 💪 ⚙️.
 
-📥 👤 🔜 🎦 👆 ❔ ⚙️ <a href="https://gunicorn.org/" class="external-link" target="_blank">**🐁**</a> ⏮ **Uvicorn 👨‍🏭 🛠**.
+📥 👤 🔜 🎦 👆 ❔ ⚙️ <a href="https://gunicorn.org/" class="external-link" target="_blank">**🐁**</a> ⏮️ **Uvicorn 👨‍🏭 🛠️**.
 
 !!! info
-    🚥 👆 ⚙️ 📦, 🖼 ⏮ ☁ ⚖️ Kubernete, 👤 🔜 💬 👆 🌅 🔃 👈 ⏭ 📃: [FastAPI 📦 - ☁](./docker.md){.internal-link target=_blank}.
+    🚥 👆 ⚙️ 📦, 🖼 ⏮️ ☁ ⚖️ Kubernete, 👤 🔜 💬 👆 🌅 🔃 👈 ⏭ 📃: [FastAPI 📦 - ☁](./docker.md){.internal-link target=_blank}.
 
-    🎯, 🕐❔ 🏃 🔛 **Kubernete** 👆 🔜 🎲 **🚫** 💚 ⚙️ 🐁 &amp; ↩️ 🏃 **👁 Uvicorn 🛠 📍 📦**, ✋️ 👤 🔜 💬 👆 🔃 ⚫️ ⏪ 👈 📃.
+    🎯, 🕐❔ 🏃 🔛 **Kubernete** 👆 🔜 🎲 **🚫** 💚 ⚙️ 🐁 &amp; ↩️ 🏃 **👁 Uvicorn 🛠️ 📍 📦**, ✋️ 👤 🔜 💬 👆 🔃 ⚫️ ⏪ 👈 📃.
 
-## 🐁 ⏮ Uvicorn 👨‍🏭
+## 🐁 ⏮️ Uvicorn 👨‍🏭
 
-**🐁** ✴️ 🈸 💽 ⚙️ **🇨🇻 🐩**. 👈 ⛓ 👈 🐁 💪 🍦 🈸 💖 🏺 &amp; ✳. 🐁 ⚫️ 🚫 🔗 ⏮ **FastAPI**, FastAPI ⚙️ 🆕 **<a href="https://asgi.readthedocs.io/en/latest/" class="external-link" target="_blank">🔫 🐩</a>**.
+**🐁** ✴️ 🈸 💽 ⚙️ **🇨🇻 🐩**. 👈 ⛓ 👈 🐁 💪 🍦 🈸 💖 🏺 &amp; ✳. 🐁 ⚫️ 🚫 🔗 ⏮️ **FastAPI**, FastAPI ⚙️ 🆕 **<a href="https://asgi.readthedocs.io/en/latest/" class="external-link" target="_blank">🔫 🐩</a>**.
 
-✋️ 🐁 🐕‍🦺 👷 **🛠 👨‍💼** &amp; 🤝 👩‍💻 💬 ⚫️ ❔ 🎯 **👨‍🏭 🛠 🎓** ⚙️. ⤴ 🐁 🔜 ▶ 1⃣ ⚖️ 🌖 **👨‍🏭 🛠** ⚙️ 👈 🎓.
+✋️ 🐁 🐕‍🦺 👷 **🛠️ 👨‍💼** &amp; 🤝 👩‍💻 💬 ⚫️ ❔ 🎯 **👨‍🏭 🛠️ 🎓** ⚙️. ⤴️ 🐁 🔜 ▶️ 1️⃣ ⚖️ 🌖 **👨‍🏭 🛠️** ⚙️ 👈 🎓.
 
 &amp; **Uvicorn** ✔️ **🐁-🔗 👨‍🏭 🎓**.
 
-⚙️ 👈 🌀, 🐁 🔜 🚫 **🛠 👨‍💼**, 👂 🔛 **⛴** &amp; **📢**. &amp; ⚫️ 🔜 **📶** 📻 👨‍🏭 🛠 🏃 **Uvicorn 🎓**.
+⚙️ 👈 🌀, 🐁 🔜 🚫 **🛠️ 👨‍💼**, 👂 🔛 **⛴** &amp; **📢**. &amp; ⚫️ 🔜 **📶** 📻 👨‍🏭 🛠️ 🏃 **Uvicorn 🎓**.
 
-&amp; ⤴ 🐁-🔗 **Uvicorn 👨‍🏭** 🎓 🔜 🈚 🏭 📊 📨 🐁 🔫 🐩 FastAPI ⚙️ ⚫️.
+&amp; ⤴️ 🐁-🔗 **Uvicorn 👨‍🏭** 🎓 🔜 🈚 🏭 📊 📨 🐁 🔫 🐩 FastAPI ⚙️ ⚫️.
 
 ## ❎ 🐁 &amp; Uvicorn
 
@@ -46,11 +46,11 @@ $ pip install "uvicorn[standard]" gunicorn
 
 </div>
 
-👈 🔜 ❎ 👯‍♂️ Uvicorn ⏮ `standard` ➕ 📦 (🤚 ↕ 🎭) &amp; 🐁.
+👈 🔜 ❎ 👯‍♂️ Uvicorn ⏮️ `standard` ➕ 📦 (🤚 ↕ 🎭) &amp; 🐁.
 
-## 🏃 🐁 ⏮ Uvicorn 👨‍🏭
+## 🏃 🐁 ⏮️ Uvicorn 👨‍🏭
 
-⤴ 👆 💪 🏃 🐁 ⏮:
+⤴️ 👆 💪 🏃 🐁 ⏮️:
 
 <div class="termy">
 
@@ -82,17 +82,17 @@ $ gunicorn main:app --workers 4 --worker-class uvicorn.workers.UvicornWorker --b
 
 ➡️ 👀 ⚫️❔ 🔠 👈 🎛 ⛓:
 
-* `main:app`: 👉 🎏 ❕ ⚙️ Uvicorn, `main` ⛓ 🐆 🕹 📛 "`main`",, 📁 `main.py`. &amp; `app` 📛 🔢 👈 **FastAPI** 🈸.
-    * 👆 💪 🌈 👈 `main:app` 🌓 🐆 `import` 📄 💖:
+* `main:app`: 👉 🎏 ❕ ⚙️ Uvicorn, `main` ⛓ 🐍 🕹 📛 "`main`",, 📁 `main.py`. &amp; `app` 📛 🔢 👈 **FastAPI** 🈸.
+    * 👆 💪 🌈 👈 `main:app` 🌓 🐍 `import` 📄 💖:
 
         ```Python
         from main import app
         ```
 
-    * , ❤ `main:app` 🔜 🌓 🐆 `import` 🍕 `from main import app`.
-* `--workers`: 🔢 👨‍🏭 🛠 ⚙️, 🔠 🔜 🏃 Uvicorn 👨‍🏭, 👉 💼, 4⃣ 👨‍🏭.
-* `--worker-class`: 🐁-🔗 👨‍🏭 🎓 ⚙️ 👨‍🏭 🛠.
-    * 📥 👥 🚶‍♀️ 🎓 👈 🐁 💪 🗄 &amp; ⚙️ ⏮:
+    * , ❤ `main:app` 🔜 🌓 🐍 `import` 🍕 `from main import app`.
+* `--workers`: 🔢 👨‍🏭 🛠️ ⚙️, 🔠 🔜 🏃 Uvicorn 👨‍🏭, 👉 💼, 4️⃣ 👨‍🏭.
+* `--worker-class`: 🐁-🔗 👨‍🏭 🎓 ⚙️ 👨‍🏭 🛠️.
+    * 📥 👥 🚶‍♀️ 🎓 👈 🐁 💪 🗄 &amp; ⚙️ ⏮️:
 
         ```Python
         import uvicorn.workers.UvicornWorker
@@ -101,24 +101,24 @@ $ gunicorn main:app --workers 4 --worker-class uvicorn.workers.UvicornWorker --b
 * `--bind`: 👉 💬 🐁 📢 &amp; ⛴ 👂, ⚙️ ❤ (`:`) 🎏 📢 &amp; ⛴.
     * 🚥 👆 🏃‍♂ Uvicorn 🔗, ↩️ `--bind 0.0.0.0:80` (🐁 🎛) 👆 🔜 ⚙️ `--host 0.0.0.0` &amp; `--port 80`.
 
-🔢, 👆 💪 👀 👈 ⚫️ 🎦 **🕹** (🛠 🆔) 🔠 🛠 (⚫️ 🔢).
+🔢, 👆 💪 👀 👈 ⚫️ 🎦 **🕹** (🛠️ 🆔) 🔠 🛠️ (⚫️ 🔢).
 
 👆 💪 👀 👈:
 
-* 🐁 **🛠 👨‍💼** ▶ ⏮ 🕹 `19499` (👆 💼 ⚫️ 🔜 🎏 🔢).
-* ⤴ ⚫️ ▶ `Listening at: http://0.0.0.0:80`.
-* ⤴ ⚫️ 🔍 👈 ⚫️ ✔️ ⚙️ 👨‍🏭 🎓 `uvicorn.workers.UvicornWorker`.
-*  &amp; ⤴ ⚫️ ▶ **4⃣ 👨‍🏭**, 🔠 ⏮ 🚮 👍 🕹: `19511`, `19513`, `19514`, &amp; `19515`.
+* 🐁 **🛠️ 👨‍💼** ▶️ ⏮️ 🕹 `19499` (👆 💼 ⚫️ 🔜 🎏 🔢).
+* ⤴️ ⚫️ ▶️ `Listening at: http://0.0.0.0:80`.
+* ⤴️ ⚫️ 🔍 👈 ⚫️ ✔️ ⚙️ 👨‍🏭 🎓 `uvicorn.workers.UvicornWorker`.
+*  &amp; ⤴️ ⚫️ ▶️ **4️⃣ 👨‍🏭**, 🔠 ⏮️ 🚮 👍 🕹: `19511`, `19513`, `19514`, &amp; `19515`.
 
-🐁 🔜 ✊ 💅 🛠 **☠️ 🛠** &amp; **🔁** 🆕 🕐 🚥 💚 🚧 🔢 👨‍🏭. 👈 ℹ 🍕 ⏮ **⏏** 🔧 ⚪️➡️ 📇 🔛.
+🐁 🔜 ✊ 💅 🛠️ **☠️ 🛠️** &amp; **🔁** 🆕 🕐 🚥 💚 🚧 🔢 👨‍🏭. 👈 ℹ 🍕 ⏮️ **⏏** 🔧 ⚪️➡️ 📇 🔛.
 
 👐, 👆 🔜 🎲 💚 ✔️ 🕳 🏞 ⚒ 💭 **⏏ 🐁** 🚥 💪, &amp; **🏃 ⚫️ 🔛 🕴**, ♒️.
 
-## Uvicorn ⏮ 👨‍🏭
+## Uvicorn ⏮️ 👨‍🏭
 
-Uvicorn ✔️ 🎛 ▶ &amp; 🏃 📚 **👨‍🏭 🛠**.
+Uvicorn ✔️ 🎛 ▶️ &amp; 🏃 📚 **👨‍🏭 🛠️**.
 
-👐, 🔜, Uvicorn 🛠 🚚 👨‍🏭 🛠 🌅 📉 🌘 🐁. , 🚥 👆 💚 ✔️ 🛠 👨‍💼 👉 🎚 (🐆 🎚), ⤴ ⚫️ 💪 👍 🔄 ⏮ 🐁 🛠 👨‍💼.
+👐, 🔜, Uvicorn 🛠️ 🚚 👨‍🏭 🛠️ 🌅 📉 🌘 🐁. , 🚥 👆 💚 ✔️ 🛠️ 👨‍💼 👉 🎚 (🐍 🎚), ⤴️ ⚫️ 💪 👍 🔄 ⏮️ 🐁 🛠️ 👨‍💼.
 
 🙆 💼, 👆 🔜 🏃 ⚫️ 💖 👉:
 
@@ -144,35 +144,35 @@ $ uvicorn main:app --host 0.0.0.0 --port 8080 --workers 4
 
 </div>
 
-🕴 🆕 🎛 📥 `--workers` 💬 Uvicorn ▶ 4⃣ 👨‍🏭 🛠.
+🕴 🆕 🎛 📥 `--workers` 💬 Uvicorn ▶️ 4️⃣ 👨‍🏭 🛠️.
 
-👆 💪 👀 👈 ⚫️ 🎦 **🕹** 🔠 🛠, `27365` 👪 🛠 (👉 **🛠 👨‍💼**) &amp; 1⃣ 🔠 👨‍🏭 🛠: `27368`, `27369`, `27370`, &amp; `27367`.
+👆 💪 👀 👈 ⚫️ 🎦 **🕹** 🔠 🛠️, `27365` 👪 🛠️ (👉 **🛠️ 👨‍💼**) &amp; 1️⃣ 🔠 👨‍🏭 🛠️: `27368`, `27369`, `27370`, &amp; `27367`.
 
-## 🛠 🔧
+## 🛠️ 🔧
 
-📥 👆 👀 ❔ ⚙️ **🐁** (⚖️ Uvicorn) 🛠 **Uvicorn 👨‍🏭 🛠** **🔁** 🛠 🈸, ✊ 📈 **💗 🐚** 💽, &amp; 💪 🍦 **🌅 📨**.
+📥 👆 👀 ❔ ⚙️ **🐁** (⚖️ Uvicorn) 🛠️ **Uvicorn 👨‍🏭 🛠️** **🔁** 🛠️ 🈸, ✊ 📈 **💗 🐚** 💽, &amp; 💪 🍦 **🌅 📨**.
 
-⚪️➡️ 📇 🛠 🔧 ⚪️➡️ 🔛, ⚙️ 👨‍🏭 🔜 ✴️ ℹ ⏮ **🧬** 🍕, &amp; 🐥 🍖 ⏮ **⏏**, ✋️ 👆 💪 ✊ 💅 🎏:
+⚪️➡️ 📇 🛠️ 🔧 ⚪️➡️ 🔛, ⚙️ 👨‍🏭 🔜 ✴️ ℹ ⏮️ **🧬** 🍕, &amp; 🐥 🍖 ⏮️ **⏏**, ✋️ 👆 💪 ✊ 💅 🎏:
 
 * **💂‍♂ - 🇺🇸🔍**
 * **🏃‍♂ 🔛 🕴**
 * ***⏏***
-* 🧬 (🔢 🛠 🏃)
+* 🧬 (🔢 🛠️ 🏃)
 * **💾**
-* **⏮ 🔁 ⏭ ▶**
+* **⏮️ 🔁 ⏭ ▶️**
 
 ## 📦 &amp; ☁
 
-⏭ 📃 🔃 [FastAPI 📦 - ☁](./docker.md){.internal-link target=_blank} 👤 🔜 💬 🎛 👆 💪 ⚙️ 🍵 🎏 **🛠 🔧**.
+⏭ 📃 🔃 [FastAPI 📦 - ☁](./docker.md){.internal-link target=_blank} 👤 🔜 💬 🎛 👆 💪 ⚙️ 🍵 🎏 **🛠️ 🔧**.
 
-👤 🔜 🎦 👆 **🛂 ☁ 🖼** 👈 🔌 **🐁 ⏮ Uvicorn 👨‍🏭** &amp; 🔢 📳 👈 💪 ⚠ 🙅 💼.
+👤 🔜 🎦 👆 **🛂 ☁ 🖼** 👈 🔌 **🐁 ⏮️ Uvicorn 👨‍🏭** &amp; 🔢 📳 👈 💪 ⚠ 🙅 💼.
 
-📤 👤 🔜 🎦 👆 ❔ **🏗 👆 👍 🖼 ⚪️➡️ 🖌** 🏃 👁 Uvicorn 🛠 (🍵 🐁). ⚫️ 🙅 🛠 &amp; 🎲 ⚫️❔ 👆 🔜 💚 🕐❔ ⚙️ 📎 📦 🧾 ⚙️ 💖 **Kubernete**.
+📤 👤 🔜 🎦 👆 ❔ **🏗 👆 👍 🖼 ⚪️➡️ 🖌** 🏃 👁 Uvicorn 🛠️ (🍵 🐁). ⚫️ 🙅 🛠️ &amp; 🎲 ⚫️❔ 👆 🔜 💚 🕐❔ ⚙️ 📎 📦 🧾 ⚙️ 💖 **Kubernete**.
 
 ## 🌃
 
-👆 💪 ⚙️ **🐁** (⚖️ Uvicorn) 🛠 👨‍💼 ⏮ Uvicorn 👨‍🏭 ✊ 📈 **👁-🐚 💽**, 🏃 **💗 🛠 🔗**.
+👆 💪 ⚙️ **🐁** (⚖️ Uvicorn) 🛠️ 👨‍💼 ⏮️ Uvicorn 👨‍🏭 ✊ 📈 **👁-🐚 💽**, 🏃 **💗 🛠️ 🔗**.
 
-👆 💪 ⚙️ 👉 🧰 &amp; 💭 🚥 👆 ⚒ 🆙 **👆 👍 🛠 ⚙️** ⏪ ✊ 💅 🎏 🛠 🔧 👆.
+👆 💪 ⚙️ 👉 🧰 &amp; 💭 🚥 👆 ⚒ 🆙 **👆 👍 🛠️ ⚙️** ⏪ ✊ 💅 🎏 🛠️ 🔧 👆.
 
-✅ 👅 ⏭ 📃 💡 🔃 **FastAPI** ⏮ 📦 (✅ ☁ &amp; Kubernete). 👆 🔜 👀 👈 👈 🧰 ✔️ 🙅 🌌 ❎ 🎏 **🛠 🔧** 👍. 👶
+✅ 👅 ⏭ 📃 💡 🔃 **FastAPI** ⏮️ 📦 (✅ ☁ &amp; Kubernete). 👆 🔜 👀 👈 👈 🧰 ✔️ 🙅 🌌 ❎ 🎏 **🛠️ 🔧** 👍. 👶

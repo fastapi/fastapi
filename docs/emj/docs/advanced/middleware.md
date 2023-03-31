@@ -1,20 +1,20 @@
-# 🏧 🛠
+# 🏧 🛠️
 
-👑 🔰 👆 ✍ ❔ 🚮 [🛃 🛠](../tutorial/middleware.md){.internal-link target=_blank} 👆 🈸.
+👑 🔰 👆 ✍ ❔ 🚮 [🛃 🛠️](../tutorial/middleware.md){.internal-link target=_blank} 👆 🈸.
 
-&amp; ⤴ 👆 ✍ ❔ 🍵 [⚜ ⏮ `CORSMiddleware`](../tutorial/cors.md){.internal-link target=_blank}.
+&amp; ⤴️ 👆 ✍ ❔ 🍵 [⚜ ⏮️ `CORSMiddleware`](../tutorial/cors.md){.internal-link target=_blank}.
 
-👉 📄 👥 🔜 👀 ❔ ⚙️ 🎏 🛠.
+👉 📄 👥 🔜 👀 ❔ ⚙️ 🎏 🛠️.
 
-## ❎ 🔫 🛠
+## ❎ 🔫 🛠️
 
-**FastAPI** ⚓️ 🔛 💃 &amp; 🛠 <abbr title="Asynchronous Server Gateway Interface">🔫</abbr> 🔧, 👆 💪 ⚙️ 🙆 🔫 🛠.
+**FastAPI** ⚓️ 🔛 💃 &amp; 🛠️ <abbr title="Asynchronous Server Gateway Interface">🔫</abbr> 🔧, 👆 💪 ⚙️ 🙆 🔫 🛠️.
 
-🛠 🚫 ✔️ ⚒ FastAPI ⚖️ 💃 👷, 📏 ⚫️ ⏩ 🔫 🔌.
+🛠️ 🚫 ✔️ ⚒ FastAPI ⚖️ 💃 👷, 📏 ⚫️ ⏩ 🔫 🔌.
 
-🏢, 🔫 🛠 🎓 👈 ⌛ 📨 🔫 📱 🥇 ❌.
+🏢, 🔫 🛠️ 🎓 👈 ⌛ 📨 🔫 📱 🥇 ❌.
 
-, 🧾 🥉-🥳 🔫 🛠 👫 🔜 🎲 💬 👆 🕳 💖:
+, 🧾 🥉-🥳 🔫 🛠️ 👫 🔜 🎲 💬 👆 🕳 💖:
 
 ```Python
 from unicorn import UnicornMiddleware
@@ -24,7 +24,7 @@ app = SomeASGIApp()
 new_app = UnicornMiddleware(app, some_config="rainbow")
 ```
 
-✋️ FastAPI (🤙 💃) 🚚 🙅 🌌 ⚫️ 👈 ⚒ 💭 👈 🔗 🛠 🍵 💽 ❌ &amp; 🛃 ⚠ 🐕‍🦺 👷 ☑.
+✋️ FastAPI (🤙 💃) 🚚 🙅 🌌 ⚫️ 👈 ⚒ 💭 👈 🔗 🛠️ 🍵 💽 ❌ &amp; 🛃 ⚠ 🐕‍🦺 👷 ☑.
 
 👈, 👆 ⚙️ `app.add_middleware()` (🖼 ⚜).
 
@@ -37,20 +37,20 @@ app = FastAPI()
 app.add_middleware(UnicornMiddleware, some_config="rainbow")
 ```
 
-`app.add_middleware()` 📨 🛠 🎓 🥇 ❌ &amp; 🙆 🌖 ❌ 🚶‍♀️ 🛠.
+`app.add_middleware()` 📨 🛠️ 🎓 🥇 ❌ &amp; 🙆 🌖 ❌ 🚶‍♀️ 🛠️.
 
-## 🛠 🛠
+## 🛠️ 🛠️
 
-**FastAPI** 🔌 📚 🛠 ⚠ ⚙️ 💼, 👥 🔜 👀 ⏭ ❔ ⚙️ 👫.
+**FastAPI** 🔌 📚 🛠️ ⚠ ⚙️ 💼, 👥 🔜 👀 ⏭ ❔ ⚙️ 👫.
 
 !!! note "📡 ℹ"
     ⏭ 🖼, 👆 💪 ⚙️ `from starlette.middleware.something import SomethingMiddleware`.
 
-    **FastAPI** 🚚 📚 🛠 `fastapi.middleware` 🏪 👆, 👩‍💻. ✋️ 🌅 💪 🛠 👟 🔗 ⚪️➡️ 💃.
+    **FastAPI** 🚚 📚 🛠️ `fastapi.middleware` 🏪 👆, 👩‍💻. ✋️ 🌅 💪 🛠️ 👟 🔗 ⚪️➡️ 💃.
 
 ## `HTTPSRedirectMiddleware`
 
-🛠 👈 🌐 📨 📨 🔜 👯‍♂️ `https` ⚖️ `wss`.
+🛠️ 👈 🌐 📨 📨 🔜 👯‍♂️ `https` ⚖️ `wss`.
 
 🙆 📨 📨 `http` ⚖️ `ws` 🔜 ❎ 🔐 ⚖ ↩️.
 
@@ -60,7 +60,7 @@ app.add_middleware(UnicornMiddleware, some_config="rainbow")
 
 ## `TrustedHostMiddleware`
 
-🛠 👈 🌐 📨 📨 ✔️ ☑ ⚒ `Host` 🎚, ✔ 💂‍♂ 🛡 🇺🇸🔍 🦠 🎚 👊.
+🛠️ 👈 🌐 📨 📨 ✔️ ☑ ⚒ `Host` 🎚, ✔ 💂‍♂ 🛡 🇺🇸🔍 🦠 🎚 👊.
 
 ```Python hl_lines="2  6-8"
 {!../../../docs_src/advanced_middleware/tutorial002.py!}
@@ -68,15 +68,15 @@ app.add_middleware(UnicornMiddleware, some_config="rainbow")
 
 📄 ❌ 🐕‍🦺:
 
-* `allowed_hosts` - 📇 🆔 📛 👈 🔜 ✔ 📛. 🃏 🆔 ✅ `*.example.com` 🐕‍🦺 🎀 📁. ✔ 🙆 📛 👯‍♂️ ⚙️ `allowed_hosts=["*"]` ⚖️ 🚫 🛠.
+* `allowed_hosts` - 📇 🆔 📛 👈 🔜 ✔ 📛. 🃏 🆔 ✅ `*.example.com` 🐕‍🦺 🎀 📁. ✔ 🙆 📛 👯‍♂️ ⚙️ `allowed_hosts=["*"]` ⚖️ 🚫 🛠️.
 
-🚥 📨 📨 🔨 🚫 ✔ ☑ ⤴ `400` 📨 🔜 📨.
+🚥 📨 📨 🔨 🚫 ✔ ☑ ⤴️ `400` 📨 🔜 📨.
 
 ## `GZipMiddleware`
 
 🍵 🗜 📨 🙆 📨 👈 🔌 `"gzip"` `Accept-Encoding` 🎚.
 
-🛠 🔜 🍵 👯‍♂️ 🐩 &amp; 🎥 📨.
+🛠️ 🔜 🍵 👯‍♂️ 🐩 &amp; 🎥 📨.
 
 ```Python hl_lines="2  6"
 {!../../../docs_src/advanced_middleware/tutorial003.py!}
@@ -86,9 +86,9 @@ app.add_middleware(UnicornMiddleware, some_config="rainbow")
 
 * `minimum_size` - 🚫 🗜 📨 👈 🤪 🌘 👉 💯 📐 🔢. 🔢 `500`.
 
-## 🎏 🛠
+## 🎏 🛠️
 
-📤 📚 🎏 🔫 🛠.
+📤 📚 🎏 🔫 🛠️.
 
 🖼:
 
@@ -96,4 +96,4 @@ app.add_middleware(UnicornMiddleware, some_config="rainbow")
 * <a href="https://github.com/encode/uvicorn/blob/master/uvicorn/middleware/proxy_headers.py" class="external-link" target="_blank">Uvicorn `ProxyHeadersMiddleware`</a>
 * <a href="https://github.com/florimondmanca/msgpack-asgi" class="external-link" target="_blank">🇸🇲</a>
 
-👀 🎏 💪 🛠 ✅ <a href="https://www.starlette.io/middleware/" class="external-link" target="_blank">💃 🛠 🩺</a> &amp; <a href="https://github.com/florimondmanca/awesome-asgi" class="external-link" target="_blank">🔫 👌 📇</a>.
+👀 🎏 💪 🛠️ ✅ <a href="https://www.starlette.io/middleware/" class="external-link" target="_blank">💃 🛠️ 🩺</a> &amp; <a href="https://github.com/florimondmanca/awesome-asgi" class="external-link" target="_blank">🔫 👌 📇</a>.

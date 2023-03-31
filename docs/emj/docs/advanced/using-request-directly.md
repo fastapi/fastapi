@@ -1,6 +1,6 @@
 # ⚙️ 📨 🔗
 
-🆙 🔜, 👆 ✔️ 📣 🍕 📨 👈 👆 💪 ⏮ 👫 🆎.
+🆙 🔜, 👆 ✔️ 📣 🍕 📨 👈 👆 💪 ⏮️ 👫 🆎.
 
 ✊ 📊 ⚪️➡️:
 
@@ -9,23 +9,23 @@
 * 🍪.
 * ♒️.
 
-&amp; 🔨, **FastAPI** ⚖ 👈 💽, 🏭 ⚫️ &amp; 🏭 🧾 👆 🛠 🔁.
+&amp; 🔨, **FastAPI** ⚖ 👈 💽, 🏭 ⚫️ &amp; 🏭 🧾 👆 🛠️ 🔁.
 
 ✋️ 📤 ⚠ 🌐❔ 👆 💪 💪 🔐 `Request` 🎚 🔗.
 
 ## ℹ 🔃 `Request` 🎚
 
-**FastAPI** 🤙 **💃** 🔘, ⏮ 🧽 📚 🧰 🔛 🔝, 👆 💪 ⚙️ 💃 <a href="https://www.starlette.io/requests/" class="external-link" target="_blank">`Request`</a> 🎚 🔗 🕐❔ 👆 💪.
+**FastAPI** 🤙 **💃** 🔘, ⏮️ 🧽 📚 🧰 🔛 🔝, 👆 💪 ⚙️ 💃 <a href="https://www.starlette.io/requests/" class="external-link" target="_blank">`Request`</a> 🎚 🔗 🕐❔ 👆 💪.
 
-⚫️ 🔜 ⛓ 👈 🚥 👆 🤚 📊 ⚪️➡️ `Request` 🎚 🔗 (🖼, ✍ 💪) ⚫️ 🏆 🚫 ✔, 🗜 ⚖️ 📄 (⏮ 🗄, 🏧 🛠 👩‍💻 🔢) FastAPI.
+⚫️ 🔜 ⛓ 👈 🚥 👆 🤚 📊 ⚪️➡️ `Request` 🎚 🔗 (🖼, ✍ 💪) ⚫️ 🏆 🚫 ✔, 🗜 ⚖️ 📄 (⏮️ 🗄, 🏧 🛠️ 👩‍💻 🔢) FastAPI.
 
-👐 🙆 🎏 🔢 📣 🛎 (🖼, 💪 ⏮ Pydantic 🏷) 🔜 ✔, 🗜, ✍, ♒️.
+👐 🙆 🎏 🔢 📣 🛎 (🖼, 💪 ⏮️ Pydantic 🏷) 🔜 ✔, 🗜, ✍, ♒️.
 
 ✋️ 📤 🎯 💼 🌐❔ ⚫️ ⚠ 🤚 `Request` 🎚.
 
 ## ⚙️ `Request` 🎚 🔗
 
-➡️ 🌈 👆 💚 🤚 👩‍💻 📢 📢/🦠 🔘 👆 *➡ 🛠 🔢*.
+➡️ 🌈 👆 💚 🤚 👩‍💻 📢 📢/🦠 🔘 👆 *➡ 🛠️ 🔢*.
 
 👈 👆 💪 🔐 📨 🔗.
 
@@ -33,12 +33,12 @@
 {!../../../docs_src/using_request_directly/tutorial001.py!}
 ```
 
-📣 *➡ 🛠 🔢* 🔢 ⏮ 🆎 ➖ `Request` **FastAPI** 🔜 💭 🚶‍♀️ `Request` 👈 🔢.
+📣 *➡ 🛠️ 🔢* 🔢 ⏮️ 🆎 ➖ `Request` **FastAPI** 🔜 💭 🚶‍♀️ `Request` 👈 🔢.
 
 !!! tip
-    🗒 👈 👉 💼, 👥 📣 ➡ 🔢 ⤴ 📨 🔢.
+    🗒 👈 👉 💼, 👥 📣 ➡ 🔢 ⤴️ 📨 🔢.
 
-    , ➡ 🔢 🔜 ⚗, ✔, 🗜 ✔ 🆎 &amp; ✍ ⏮ 🗄.
+    , ➡ 🔢 🔜 ⚗, ✔, 🗜 ✔ 🆎 &amp; ✍ ⏮️ 🗄.
 
     🎏 🌌, 👆 💪 📣 🙆 🎏 🔢 🛎, &amp; ➡, 🤚 `Request` 💁‍♂️.
 

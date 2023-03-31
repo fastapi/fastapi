@@ -1,6 +1,6 @@
 # FastAPI 📦 - ☁
 
-🕐❔ 🛠 FastAPI 🈸 ⚠ 🎯 🏗 **💾 📦 🖼**. ⚫️ 🛎 🔨 ⚙️ <a href="https://www.docker.com/" class="external-link" target="_blank">**☁**</a>. 👆 💪 ⤴ 🛠 👈 📦 🖼 1⃣ 👩‍❤‍👨 💪 🌌.
+🕐❔ 🛠️ FastAPI 🈸 ⚠ 🎯 🏗 **💾 📦 🖼**. ⚫️ 🛎 🔨 ⚙️ <a href="https://www.docker.com/" class="external-link" target="_blank">**☁**</a>. 👆 💪 ⤴️ 🛠️ 👈 📦 🖼 1️⃣ 👩‍❤‍👨 💪 🌌.
 
 ⚙️ 💾 📦 ✔️ 📚 📈 ✅ **💂‍♂**, **🔬**, **🦁**, &amp; 🎏.
 
@@ -35,31 +35,31 @@ CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
 
 💾 📦 🏃 ⚙️ 🎏 💾 💾 🦠 (🎰, 🕹 🎰, ☁ 💽, ♒️). 👉 ⛓ 👈 👫 📶 💿 (🔬 🌕 🕹 🎰 👍 🎂 🏃‍♂ ⚙️).
 
-👉 🌌, 📦 🍴 **🐥 ℹ**, 💸 ⭐ 🏃‍♂ 🛠 🔗 (🕹 🎰 🔜 🍴 🌅 🌅).
+👉 🌌, 📦 🍴 **🐥 ℹ**, 💸 ⭐ 🏃‍♂ 🛠️ 🔗 (🕹 🎰 🔜 🍴 🌅 🌅).
 
-📦 ✔️ 👫 👍 **❎** 🏃‍♂ 🛠 (🛎 1⃣ 🛠), 📁 ⚙️, &amp; 🕸, 🔬 🛠, 💂‍♂, 🛠, ♒️.
+📦 ✔️ 👫 👍 **❎** 🏃‍♂ 🛠️ (🛎 1️⃣ 🛠️), 📁 ⚙️, &amp; 🕸, 🔬 🛠️, 💂‍♂, 🛠️, ♒️.
 
 ## ⚫️❔ 📦 🖼
 
 **📦** 🏃 ⚪️➡️ **📦 🖼**.
 
-📦 🖼 **🎻** ⏬ 🌐 📁, 🌐 🔢, &amp; 🔢 📋/📋 👈 🔜 🎁 📦. **🎻** 📥 ⛓ 👈 📦 **🖼** 🚫 🏃, ⚫️ 🚫 ➖ 🛠, ⚫️ 🕴 📦 📁 &amp; 🗃.
+📦 🖼 **🎻** ⏬ 🌐 📁, 🌐 🔢, &amp; 🔢 📋/📋 👈 🔜 🎁 📦. **🎻** 📥 ⛓ 👈 📦 **🖼** 🚫 🏃, ⚫️ 🚫 ➖ 🛠️, ⚫️ 🕴 📦 📁 &amp; 🗃.
 
-🔅 "**📦 🖼**" 👈 🏪 🎻 🎚,"**📦**" 🛎 🔗 🏃‍♂ 👐, 👜 👈 ➖ **🛠**.
+🔅 "**📦 🖼**" 👈 🏪 🎻 🎚,"**📦**" 🛎 🔗 🏃‍♂ 👐, 👜 👈 ➖ **🛠️**.
 
-🕐❔ **📦** ▶ &amp; 🏃‍♂ (▶ ⚪️➡️ **📦 🖼**) ⚫️ 💪 ✍ ⚖️ 🔀 📁, 🌐 🔢, ♒️. 👈 🔀 🔜 🔀 🕴 👈 📦, ✋️ 🔜 🚫 😣 👽 📦 🖼 (🔜 🚫 🖊 💾).
+🕐❔ **📦** ▶️ &amp; 🏃‍♂ (▶️ ⚪️➡️ **📦 🖼**) ⚫️ 💪 ✍ ⚖️ 🔀 📁, 🌐 🔢, ♒️. 👈 🔀 🔜 🔀 🕴 👈 📦, ✋️ 🔜 🚫 😣 👽 📦 🖼 (🔜 🚫 🖊 💾).
 
 📦 🖼 ⭐ **📋** 📁 &amp; 🎚, ✅ `python` &amp; 📁 `main.py`.
 
-&amp; **📦** ⚫️ (🔅 **📦 🖼**) ☑ 🏃 👐 🖼, ⭐ **🛠**. 👐, 📦 🏃 🕴 🕐❔ ⚫️ ✔️ **🛠 🏃** (&amp; 🛎 ⚫️ 🕴 👁 🛠). 📦 ⛔️ 🕐❔ 📤 🙅‍♂ 🛠 🏃 ⚫️.
+&amp; **📦** ⚫️ (🔅 **📦 🖼**) ☑ 🏃 👐 🖼, ⭐ **🛠️**. 👐, 📦 🏃 🕴 🕐❔ ⚫️ ✔️ **🛠️ 🏃** (&amp; 🛎 ⚫️ 🕴 👁 🛠️). 📦 ⛔️ 🕐❔ 📤 🙅‍♂ 🛠️ 🏃 ⚫️.
 
 ## 📦 🖼
 
-☁ ✔️ 1⃣ 👑 🧰 ✍ &amp; 🛠 **📦 🖼** &amp; **📦**.
+☁ ✔️ 1️⃣ 👑 🧰 ✍ &amp; 🛠️ **📦 🖼** &amp; **📦**.
 
-&amp; 📤 📢 <a href="https://hub.docker.com/" class="external-link" target="_blank">☁ 🎡</a> ⏮ 🏤-⚒ **🛂 📦 🖼** 📚 🧰, 🌐, 💽, &amp; 🈸.
+&amp; 📤 📢 <a href="https://hub.docker.com/" class="external-link" target="_blank">☁ 🎡</a> ⏮️ 🏤-⚒ **🛂 📦 🖼** 📚 🧰, 🌐, 💽, &amp; 🈸.
 
-🖼, 📤 🛂 <a href="https://hub.docker.com/_/python" class="external-link" target="_blank">🐆 🖼</a>.
+🖼, 📤 🛂 <a href="https://hub.docker.com/_/python" class="external-link" target="_blank">🐍 🖼</a>.
 
 &amp; 📤 📚 🎏 🖼 🎏 👜 💖 💽, 🖼:
 
@@ -68,31 +68,31 @@ CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
 * <a href="https://hub.docker.com/_/mongo" class="external-link" target="_blank">✳</a>
 * <a href="https://hub.docker.com/_/redis" class="external-link" target="_blank">✳</a>, ♒️.
 
-⚙️ 🏤-⚒ 📦 🖼 ⚫️ 📶 ⏩ **🌀** &amp; ⚙️ 🎏 🧰. 🖼, 🔄 👅 🆕 💽. 🌅 💼, 👆 💪 ⚙️ **🛂 🖼**, &amp; 🔗 👫 ⏮ 🌐 🔢.
+⚙️ 🏤-⚒ 📦 🖼 ⚫️ 📶 ⏩ **🌀** &amp; ⚙️ 🎏 🧰. 🖼, 🔄 👅 🆕 💽. 🌅 💼, 👆 💪 ⚙️ **🛂 🖼**, &amp; 🔗 👫 ⏮️ 🌐 🔢.
 
-👈 🌌, 📚 💼 👆 💪 💡 🔃 📦 &amp; ☁ &amp; 🏤-⚙️ 👈 💡 ⏮ 📚 🎏 🧰 &amp; 🦲.
+👈 🌌, 📚 💼 👆 💪 💡 🔃 📦 &amp; ☁ &amp; 🏤-⚙️ 👈 💡 ⏮️ 📚 🎏 🧰 &amp; 🦲.
 
-, 👆 🔜 🏃 **💗 📦** ⏮ 🎏 👜, 💖 💽, 🐆 🈸, 🕸 💽 ⏮ 😥 🕸 🈸, &amp; 🔗 👫 👯‍♂️ 📨 👫 🔗 🕸.
+, 👆 🔜 🏃 **💗 📦** ⏮️ 🎏 👜, 💖 💽, 🐍 🈸, 🕸 💽 ⏮️ 😥 🕸 🈸, &amp; 🔗 👫 👯‍♂️ 📨 👫 🔗 🕸.
 
-🌐 📦 🧾 ⚙️ (💖 ☁ ⚖️ Kubernete) ✔️ 👫 🕸 ⚒ 🛠 🔘 👫.
+🌐 📦 🧾 ⚙️ (💖 ☁ ⚖️ Kubernete) ✔️ 👫 🕸 ⚒ 🛠️ 🔘 👫.
 
-## 📦 &amp; 🛠
+## 📦 &amp; 🛠️
 
-**📦 🖼** 🛎 🔌 🚮 🗃 🔢 📋 ⚖️ 📋 👈 🔜 🏃 🕐❔ **📦** ▶ &amp; 🔢 🚶‍♀️ 👈 📋. 📶 🎏 ⚫️❔ 🔜 🚥 ⚫️ 📋 ⏸.
+**📦 🖼** 🛎 🔌 🚮 🗃 🔢 📋 ⚖️ 📋 👈 🔜 🏃 🕐❔ **📦** ▶️ &amp; 🔢 🚶‍♀️ 👈 📋. 📶 🎏 ⚫️❔ 🔜 🚥 ⚫️ 📋 ⏸.
 
-🕐❔ **📦** ▶, ⚫️ 🔜 🏃 👈 📋/📋 (👐 👆 💪 🔐 ⚫️ &amp; ⚒ ⚫️ 🏃 🎏 📋/📋).
+🕐❔ **📦** ▶️, ⚫️ 🔜 🏃 👈 📋/📋 (👐 👆 💪 🔐 ⚫️ &amp; ⚒ ⚫️ 🏃 🎏 📋/📋).
 
-📦 🏃 📏 **👑 🛠** (📋 ⚖️ 📋) 🏃.
+📦 🏃 📏 **👑 🛠️** (📋 ⚖️ 📋) 🏃.
 
-📦 🛎 ✔️ **👁 🛠**, ✋️ ⚫️ 💪 ▶ ✳ ⚪️➡️ 👑 🛠, &amp; 👈 🌌 👆 🔜 ✔️ **💗 🛠** 🎏 📦.
+📦 🛎 ✔️ **👁 🛠️**, ✋️ ⚫️ 💪 ▶️ ✳ ⚪️➡️ 👑 🛠️, &amp; 👈 🌌 👆 🔜 ✔️ **💗 🛠️** 🎏 📦.
 
-✋️ ⚫️ 🚫 💪 ✔️ 🏃‍♂ 📦 🍵 **🌘 1⃣ 🏃‍♂ 🛠**. 🚥 👑 🛠 ⛔️, 📦 ⛔️.
+✋️ ⚫️ 🚫 💪 ✔️ 🏃‍♂ 📦 🍵 **🌘 1️⃣ 🏃‍♂ 🛠️**. 🚥 👑 🛠️ ⛔️, 📦 ⛔️.
 
 ## 🏗 ☁ 🖼 FastAPI
 
 🆗, ➡️ 🏗 🕳 🔜 ❗ 👶
 
-👤 🔜 🎦 👆 ❔ 🏗 **☁ 🖼** FastAPI **⚪️➡️ 🖌**, ⚓️ 🔛 **🛂 🐆** 🖼.
+👤 🔜 🎦 👆 ❔ 🏗 **☁ 🖼** FastAPI **⚪️➡️ 🖌**, ⚓️ 🔛 **🛂 🐍** 🖼.
 
 👉 ⚫️❔ 👆 🔜 💚 **🏆 💼**, 🖼:
 
@@ -106,7 +106,7 @@ CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
 
 ⚫️ 🔜 🪀 ✴️ 🔛 🧰 👆 ⚙️ **❎** 👈 📄.
 
-🌅 ⚠ 🌌 ⚫️ ✔️ 📁 `requirements.txt` ⏮ 📦 📛 &amp; 👫 ⏬, 1⃣ 📍 ⏸.
+🌅 ⚠ 🌌 ⚫️ ✔️ 📁 `requirements.txt` ⏮️ 📦 📛 &amp; 👫 ⏬, 1️⃣ 📍 ⏸.
 
 👆 🔜 ↗️ ⚙️ 🎏 💭 👆 ✍ [🔃 FastAPI ⏬](./versions.md){.internal-link target=_blank} ⚒ ↔ ⏬.
 
@@ -118,7 +118,7 @@ pydantic>=1.8.0,<2.0.0
 uvicorn>=0.15.0,<0.16.0
 ```
 
-&amp; 👆 🔜 🛎 ❎ 👈 📦 🔗 ⏮ `pip`, 🖼:
+&amp; 👆 🔜 🛎 ❎ 👈 📦 🔗 ⏮️ `pip`, 🖼:
 
 <div class="termy">
 
@@ -139,7 +139,7 @@ Successfully installed fastapi pydantic uvicorn
 
 * ✍ `app` 📁 &amp; ⛔ ⚫️.
 * ✍ 🛁 📁 `__init__.py`.
-* ✍ `main.py` 📁 ⏮:
+* ✍ `main.py` 📁 ⏮️:
 
 ```Python
 from typing import Union
@@ -161,7 +161,7 @@ def read_item(item_id: int, q: Union[str, None] = None):
 
 ### 📁
 
-🔜 🎏 🏗 📁 ✍ 📁 `Dockerfile` ⏮:
+🔜 🎏 🏗 📁 ✍ 📁 `Dockerfile` ⏮️:
 
 ```{ .dockerfile .annotate }
 # (1)
@@ -183,44 +183,44 @@ COPY ./app /code/app
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
 ```
 
-1⃣. ▶ ⚪️➡️ 🛂 🐆 🧢 🖼.
+1️⃣. ▶️ ⚪️➡️ 🛂 🐍 🧢 🖼.
 
-2⃣. ⚒ ⏮ 👷 📁 `/code`.
+2️⃣. ⚒ ⏮️ 👷 📁 `/code`.
 
     👉 🌐❔ 👥 🔜 🚮 `requirements.txt` 📁 &amp; `app` 📁.
 
-3⃣. 📁 📁 ⏮ 📄 `/code` 📁.
+3️⃣. 📁 📁 ⏮️ 📄 `/code` 📁.
 
-    📁 **🕴** 📁 ⏮ 📄 🥇, 🚫 🎂 📟.
+    📁 **🕴** 📁 ⏮️ 📄 🥇, 🚫 🎂 📟.
 
-    👉 📁 **🚫 🔀 🛎**, ☁ 🔜 🔍 ⚫️ &amp; ⚙️ **💾** 👉 🔁, 🛠 💾 ⏭ 🔁 💁‍♂️.
+    👉 📁 **🚫 🔀 🛎**, ☁ 🔜 🔍 ⚫️ &amp; ⚙️ **💾** 👉 🔁, 🛠️ 💾 ⏭ 🔁 💁‍♂️.
 
-4⃣. ❎ 📦 🔗 📄 📁.
+4️⃣. ❎ 📦 🔗 📄 📁.
 
-     `--no-cache-dir` 🎛 💬 `pip` 🚫 🖊 ⏬ 📦 🌐, 👈 🕴 🚥 `pip` 🔜 🏃 🔄 ❎ 🎏 📦, ✋️ 👈 🚫 💼 🕐❔ 👷 ⏮ 📦.
+     `--no-cache-dir` 🎛 💬 `pip` 🚫 🖊 ⏬ 📦 🌐, 👈 🕴 🚥 `pip` 🔜 🏃 🔄 ❎ 🎏 📦, ✋️ 👈 🚫 💼 🕐❔ 👷 ⏮️ 📦.
 
     !!! note
-         `--no-cache-dir` 🕴 🔗 `pip`, ⚫️ ✔️ 🕳 ⏮ ☁ ⚖️ 📦.
+         `--no-cache-dir` 🕴 🔗 `pip`, ⚫️ ✔️ 🕳 ⏮️ ☁ ⚖️ 📦.
 
      `--upgrade` 🎛 💬 `pip` ♻ 📦 🚥 👫 ⏪ ❎.
 
-    ↩️ ⏮ 🔁 🖨 📁 💪 🔍 **☁ 💾**, 👉 🔁 🔜 **⚙️ ☁ 💾** 🕐❔ 💪.
+    ↩️ ⏮️ 🔁 🖨 📁 💪 🔍 **☁ 💾**, 👉 🔁 🔜 **⚙️ ☁ 💾** 🕐❔ 💪.
 
-    ⚙️ 💾 👉 🔁 🔜 **🖊** 👆 📚 **🕰** 🕐❔ 🏗 🖼 🔄 &amp; 🔄 ⏮ 🛠, ↩️ **⏬ &amp; ❎** 🌐 🔗 **🔠 🕰**.
+    ⚙️ 💾 👉 🔁 🔜 **🖊** 👆 📚 **🕰** 🕐❔ 🏗 🖼 🔄 &amp; 🔄 ⏮️ 🛠️, ↩️ **⏬ &amp; ❎** 🌐 🔗 **🔠 🕰**.
 
-5⃣. 📁 `./app` 📁 🔘 `/code` 📁.
+5️⃣. 📁 `./app` 📁 🔘 `/code` 📁.
 
     👉 ✔️ 🌐 📟 ❔ ⚫️❔ **🔀 🌅 🛎** ☁ **💾** 🏆 🚫 ⚙️ 👉 ⚖️ 🙆 **📄 🔁** 💪.
 
     , ⚫️ ⚠ 🚮 👉 **🏘 🔚** `Dockerfile`, 🔬 📦 🖼 🏗 🕰.
 
-6⃣. ⚒ **📋** 🏃 `uvicorn` 💽.
+6️⃣. ⚒ **📋** 🏃 `uvicorn` 💽.
 
     `CMD` ✊ 📇 🎻, 🔠 👫 🎻 ⚫️❔ 👆 🔜 🆎 📋 ⏸ 👽 🚀.
 
-    👉 📋 🔜 🏃 ⚪️➡️ **⏮ 👷 📁**, 🎏 `/code` 📁 👆 ⚒ 🔛 ⏮ `WORKDIR /code`.
+    👉 📋 🔜 🏃 ⚪️➡️ **⏮️ 👷 📁**, 🎏 `/code` 📁 👆 ⚒ 🔛 ⏮️ `WORKDIR /code`.
 
-    ↩️ 📋 🔜 ▶ `/code` &amp; 🔘 ⚫️ 📁 `./app` ⏮ 👆 📟, **Uvicorn** 🔜 💪 👀 &amp; **🗄** `app` ⚪️➡️ `app.main`.
+    ↩️ 📋 🔜 ▶️ `/code` &amp; 🔘 ⚫️ 📁 `./app` ⏮️ 👆 📟, **Uvicorn** 🔜 💪 👀 &amp; **🗄** `app` ⚪️➡️ `app.main`.
 
 !!! tip
     📄 ⚫️❔ 🔠 ⏸ 🔨 🖊 🔠 🔢 💭 📟. 👶
@@ -246,31 +246,31 @@ CMD ["uvicorn", "app.main:app", "--proxy-headers", "--host", "0.0.0.0", "--port"
 
 #### ☁ 💾
 
-📤 ⚠ 🎱 👉 `Dockerfile`, 👥 🥇 📁 **📁 ⏮ 🔗 😞**, 🚫 🎂 📟. ➡️ 👤 💬 👆 ⚫️❔ 👈.
+📤 ⚠ 🎱 👉 `Dockerfile`, 👥 🥇 📁 **📁 ⏮️ 🔗 😞**, 🚫 🎂 📟. ➡️ 👤 💬 👆 ⚫️❔ 👈.
 
 ```Dockerfile
 COPY ./requirements.txt /code/requirements.txt
 ```
 
-☁ &amp; 🎏 🧰 **🏗** 👉 📦 🖼 **🔁**, 🚮 **1⃣ 🧽 🔛 🔝 🎏**, ▶ ⚪️➡️ 🔝 `Dockerfile` &amp; ❎ 🙆 📁 ✍ 🔠 👩‍🌾 `Dockerfile`.
+☁ &amp; 🎏 🧰 **🏗** 👉 📦 🖼 **🔁**, 🚮 **1️⃣ 🧽 🔛 🔝 🎏**, ▶️ ⚪️➡️ 🔝 `Dockerfile` &amp; ❎ 🙆 📁 ✍ 🔠 👩‍🌾 `Dockerfile`.
 
-☁ &amp; 🎏 🧰 ⚙️ **🔗 💾** 🕐❔ 🏗 🖼, 🚥 📁 🚫 🔀 ↩️ 🏁 🕰 🏗 📦 🖼, ⤴ ⚫️ 🔜 **🏤-⚙️ 🎏 🧽** ✍ 🏁 🕰, ↩️ 🖨 📁 🔄 &amp; 🏗 🆕 🧽 ⚪️➡️ 🖌.
+☁ &amp; 🎏 🧰 ⚙️ **🔗 💾** 🕐❔ 🏗 🖼, 🚥 📁 🚫 🔀 ↩️ 🏁 🕰 🏗 📦 🖼, ⤴️ ⚫️ 🔜 **🏤-⚙️ 🎏 🧽** ✍ 🏁 🕰, ↩️ 🖨 📁 🔄 &amp; 🏗 🆕 🧽 ⚪️➡️ 🖌.
 
-❎ 📁 📁 🚫 🎯 📉 👜 💁‍♂️ 🌅, ✋️ ↩️ ⚫️ ⚙️ 💾 👈 🔁, ⚫️ 💪 **⚙️ 💾 ⏭ 🔁**. 🖼, ⚫️ 💪 ⚙️ 💾 👩‍🌾 👈 ❎ 🔗 ⏮:
+❎ 📁 📁 🚫 🎯 📉 👜 💁‍♂️ 🌅, ✋️ ↩️ ⚫️ ⚙️ 💾 👈 🔁, ⚫️ 💪 **⚙️ 💾 ⏭ 🔁**. 🖼, ⚫️ 💪 ⚙️ 💾 👩‍🌾 👈 ❎ 🔗 ⏮️:
 
 ```Dockerfile
 RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 ```
 
-📁 ⏮ 📦 📄 **🏆 🚫 🔀 🛎**. , 🖨 🕴 👈 📁, ☁ 🔜 💪 **⚙️ 💾** 👈 🔁.
+📁 ⏮️ 📦 📄 **🏆 🚫 🔀 🛎**. , 🖨 🕴 👈 📁, ☁ 🔜 💪 **⚙️ 💾** 👈 🔁.
 
-&amp; ⤴, ☁ 🔜 💪 **⚙️ 💾 ⏭ 🔁** 👈 ⏬ &amp; ❎ 👈 🔗. &amp; 📥 🌐❔ 👥 **🖊 📚 🕰**. 👶 ...&amp; ❎ 😩 ⌛. 👶 👶
+&amp; ⤴️, ☁ 🔜 💪 **⚙️ 💾 ⏭ 🔁** 👈 ⏬ &amp; ❎ 👈 🔗. &amp; 📥 🌐❔ 👥 **🖊 📚 🕰**. 👶 ...&amp; ❎ 😩 ⌛. 👶 👶
 
 ⏬ &amp; ❎ 📦 🔗 **💪 ✊ ⏲**, ✋️ ⚙️ **💾** 🔜 **✊ 🥈** 🌅.
 
-&amp; 👆 🔜 🏗 📦 🖼 🔄 &amp; 🔄 ⏮ 🛠 ✅ 👈 👆 📟 🔀 👷, 📤 📚 📈 🕰 👉 🔜 🖊.
+&amp; 👆 🔜 🏗 📦 🖼 🔄 &amp; 🔄 ⏮️ 🛠️ ✅ 👈 👆 📟 🔀 👷, 📤 📚 📈 🕰 👉 🔜 🖊.
 
-⤴, 🏘 🔚 `Dockerfile`, 👥 📁 🌐 📟. 👉 ⚫️❔ **🔀 🏆 🛎**, 👥 🚮 ⚫️ 🏘 🔚, ↩️ 🌖 🕧, 🕳 ⏮ 👉 🔁 🔜 🚫 💪 ⚙️ 💾.
+⤴️, 🏘 🔚 `Dockerfile`, 👥 📁 🌐 📟. 👉 ⚫️❔ **🔀 🏆 🛎**, 👥 🚮 ⚫️ 🏘 🔚, ↩️ 🌖 🕧, 🕳 ⏮️ 👉 🔁 🔜 🚫 💪 ⚙️ 💾.
 
 ```Dockerfile
 COPY ./app /code/app
@@ -296,9 +296,9 @@ $ docker build -t myimage .
 !!! tip
     👀 `.` 🔚, ⚫️ 🌓 `./`, ⚫️ 💬 ☁ 📁 ⚙️ 🏗 📦 🖼.
 
-    👉 💼, ⚫️ 🎏 ⏮ 📁 (`.`).
+    👉 💼, ⚫️ 🎏 ⏮️ 📁 (`.`).
 
-### ▶ ☁ 📦
+### ▶️ ☁ 📦
 
 * 🏃 📦 ⚓️ 🔛 👆 🖼:
 
@@ -312,7 +312,7 @@ $ docker run -d --name mycontainer -p 80:80 myimage
 
 ## ✅ ⚫️
 
-👆 🔜 💪 ✅ ⚫️ 👆 ☁ 📦 📛, 🖼: <a href="http://192.168.99.100/items/5?q=somequery" class="external-link" target="_blank">Http://192.168.99.100/items/5?q=somequery</a> ⚖️ <a href="http://127.0.0.1/items/5?q=somequery" class="external-link" target="_blank">http://127.0.0.1/items/5?q=somequery</a> (⚖️ 🌓, ⚙️ 👆 ☁ 🦠).
+👆 🔜 💪 ✅ ⚫️ 👆 ☁ 📦 📛, 🖼: <a href="http://192.168.99.100/items/5?q=somequery" class="external-link" target="_blank">http://192.168.99.100/items/5?q=somequery</a> ⚖️ <a href="http://127.0.0.1/items/5?q=somequery" class="external-link" target="_blank">http://127.0.0.1/items/5?q=somequery</a> (⚖️ 🌓, ⚙️ 👆 ☁ 🦠).
 
 👆 🔜 👀 🕳 💖:
 
@@ -320,23 +320,23 @@ $ docker run -d --name mycontainer -p 80:80 myimage
 {"item_id": 5, "q": "somequery"}
 ```
 
-## 🎓 🛠 🩺
+## 🎓 🛠️ 🩺
 
-🔜 👆 💪 🚶 <a href="http://192.168.99.100/docs" class="external-link" target="_blank">Http://192.168.99.100/docs</a> ⚖️ <a href="http://127.0.0.1/docs" class="external-link" target="_blank">http://127.0.0.1/docs</a> (⚖️ 🌓, ⚙️ 👆 ☁ 🦠).
+🔜 👆 💪 🚶 <a href="http://192.168.99.100/docs" class="external-link" target="_blank">http://192.168.99.100/docs</a> ⚖️ <a href="http://127.0.0.1/docs" class="external-link" target="_blank">http://127.0.0.1/docs</a> (⚖️ 🌓, ⚙️ 👆 ☁ 🦠).
 
-👆 🔜 👀 🏧 🎓 🛠 🧾 (🚚 <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">🦁 🎚</a>):
+👆 🔜 👀 🏧 🎓 🛠️ 🧾 (🚚 <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">🦁 🎚</a>):
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-01-swagger-ui-simple.png)
 
-## 🎛 🛠 🩺
+## 🎛 🛠️ 🩺
 
-&amp; 👆 💪 🚶 <a href="http://192.168.99.100/redoc" class="external-link" target="_blank">Http://192.168.99.100/redoc</a> ⚖️ <a href="http://127.0.0.1/redoc" class="external-link" target="_blank">http://127.0.0.1/redoc</a> (⚖️ 🌓, ⚙️ 👆 ☁ 🦠).
+&amp; 👆 💪 🚶 <a href="http://192.168.99.100/redoc" class="external-link" target="_blank">http://192.168.99.100/redoc</a> ⚖️ <a href="http://127.0.0.1/redoc" class="external-link" target="_blank">http://127.0.0.1/redoc</a> (⚖️ 🌓, ⚙️ 👆 ☁ 🦠).
 
 👆 🔜 👀 🎛 🏧 🧾 (🚚 <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">📄</a>):
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
-## 🏗 ☁ 🖼 ⏮ 👁-📁 FastAPI
+## 🏗 ☁ 🖼 ⏮️ 👁-📁 FastAPI
 
 🚥 👆 FastAPI 👁 📁, 🖼, `main.py` 🍵 `./app` 📁, 👆 📁 📊 💪 👀 💖 👉:
 
@@ -347,7 +347,7 @@ $ docker run -d --name mycontainer -p 80:80 myimage
 └── requirements.txt
 ```
 
-⤴ 👆 🔜 ✔️ 🔀 🔗 ➡ 📁 📁 🔘 `Dockerfile`:
+⤴️ 👆 🔜 ✔️ 🔀 🔗 ➡ 📁 📁 🔘 `Dockerfile`:
 
 ```{ .dockerfile .annotate hl_lines="10  13" }
 FROM python:3.9
@@ -365,57 +365,57 @@ COPY ./main.py /code/
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]
 ```
 
-1⃣. 📁 `main.py` 📁 `/code` 📁 🔗 (🍵 🙆 `./app` 📁).
+1️⃣. 📁 `main.py` 📁 `/code` 📁 🔗 (🍵 🙆 `./app` 📁).
 
-2⃣. 🏃 Uvicorn &amp; 💬 ⚫️ 🗄 `app` 🎚 ⚪️➡️ `main` (↩️ 🏭 ⚪️➡️ `app.main`).
+2️⃣. 🏃 Uvicorn &amp; 💬 ⚫️ 🗄 `app` 🎚 ⚪️➡️ `main` (↩️ 🏭 ⚪️➡️ `app.main`).
 
-⤴ 🔆 Uvicorn 📋 ⚙️ 🆕 🕹 `main` ↩️ `app.main` 🗄 FastAPI 🎚 `app`.
+⤴️ 🔆 Uvicorn 📋 ⚙️ 🆕 🕹 `main` ↩️ `app.main` 🗄 FastAPI 🎚 `app`.
 
-## 🛠 🔧
+## 🛠️ 🔧
 
-➡️ 💬 🔄 🔃 🎏 [🛠 🔧](./concepts.md){.internal-link target=_blank} ⚖ 📦.
+➡️ 💬 🔄 🔃 🎏 [🛠️ 🔧](./concepts.md){.internal-link target=_blank} ⚖ 📦.
 
-📦 ✴️ 🧰 📉 🛠 **🏗 &amp; 🛠** 🈸, ✋️ 👫 🚫 🛠 🎯 🎯 🍵 👉 **🛠 🔧**, &amp; 📤 📚 💪 🎛.
+📦 ✴️ 🧰 📉 🛠️ **🏗 &amp; 🛠️** 🈸, ✋️ 👫 🚫 🛠️ 🎯 🎯 🍵 👉 **🛠️ 🔧**, &amp; 📤 📚 💪 🎛.
 
-**👍 📰** 👈 ⏮ 🔠 🎏 🎛 📤 🌌 📔 🌐 🛠 🔧. 👶
+**👍 📰** 👈 ⏮️ 🔠 🎏 🎛 📤 🌌 📔 🌐 🛠️ 🔧. 👶
 
-➡️ 📄 👉 **🛠 🔧** ⚖ 📦:
+➡️ 📄 👉 **🛠️ 🔧** ⚖ 📦:
 
 * 🇺🇸🔍
 * 🏃‍♂ 🔛 🕴
 * ⏏
-* 🧬 (🔢 🛠 🏃)
+* 🧬 (🔢 🛠️ 🏃)
 * 💾
-* ⏮ 🔁 ⏭ ▶
+* ⏮️ 🔁 ⏭ ▶️
 
 ## 🇺🇸🔍
 
 🚥 👥 🎯 🔛 **📦 🖼** FastAPI 🈸 (&amp; ⏪ 🏃‍♂ **📦**), 🇺🇸🔍 🛎 🔜 🍵 **🗜** ➕1️⃣ 🧰.
 
-⚫️ 💪 ➕1️⃣ 📦, 🖼 ⏮ <a href="https://traefik.io/" class="external-link" target="_blank">Traefik</a>, 🚚 **🇺🇸🔍** &amp; **🏧** 🛠 **📄**.
+⚫️ 💪 ➕1️⃣ 📦, 🖼 ⏮️ <a href="https://traefik.io/" class="external-link" target="_blank">Traefik</a>, 🚚 **🇺🇸🔍** &amp; **🏧** 🛠️ **📄**.
 
 !!! tip
-    Traefik ✔️ 🛠 ⏮ ☁, Kubernete, &amp; 🎏, ⚫️ 📶 ⏩ ⚒ 🆙 &amp; 🔗 🇺🇸🔍 👆 📦 ⏮ ⚫️.
+    Traefik ✔️ 🛠️ ⏮️ ☁, Kubernete, &amp; 🎏, ⚫️ 📶 ⏩ ⚒ 🆙 &amp; 🔗 🇺🇸🔍 👆 📦 ⏮️ ⚫️.
 
-👐, 🇺🇸🔍 💪 🍵 ☁ 🐕‍🦺 1⃣ 👫 🐕‍🦺 (⏪ 🏃 🈸 📦).
+👐, 🇺🇸🔍 💪 🍵 ☁ 🐕‍🦺 1️⃣ 👫 🐕‍🦺 (⏪ 🏃 🈸 📦).
 
 ## 🏃‍♂ 🔛 🕴 &amp; ⏏
 
-📤 🛎 ➕1️⃣ 🧰 🈚 **▶ &amp; 🏃‍♂** 👆 📦.
+📤 🛎 ➕1️⃣ 🧰 🈚 **▶️ &amp; 🏃‍♂** 👆 📦.
 
 ⚫️ 💪 **☁** 🔗, **☁ ✍**, **Kubernete**, **☁ 🐕‍🦺**, ♒️.
 
-🌅 (⚖️ 🌐) 💼, 📤 🙅 🎛 🛠 🏃 📦 🔛 🕴 &amp; 🛠 ⏏ 🔛 ❌. 🖼, ☁, ⚫️ 📋 ⏸ 🎛 `--restart`.
+🌅 (⚖️ 🌐) 💼, 📤 🙅 🎛 🛠️ 🏃 📦 🔛 🕴 &amp; 🛠️ ⏏ 🔛 ❌. 🖼, ☁, ⚫️ 📋 ⏸ 🎛 `--restart`.
 
-🍵 ⚙️ 📦, ⚒ 🈸 🏃 🔛 🕴 &amp; ⏮ ⏏ 💪 ⚠ &amp; ⚠. ✋️ 🕐❔ **👷 ⏮ 📦** 🌅 💼 👈 🛠 🔌 🔢. 👶
+🍵 ⚙️ 📦, ⚒ 🈸 🏃 🔛 🕴 &amp; ⏮️ ⏏ 💪 ⚠ &amp; ⚠. ✋️ 🕐❔ **👷 ⏮️ 📦** 🌅 💼 👈 🛠️ 🔌 🔢. 👶
 
-## 🧬 - 🔢 🛠
+## 🧬 - 🔢 🛠️
 
-🚥 👆 ✔️ <abbr title="A group of machines that are configured to be connected and work together in some way.">🌑</abbr> 🎰 ⏮ **☁**, ☁ 🐝 📳, 🖖, ⚖️ ➕1️⃣ 🎏 🏗 ⚙️ 🛠 📎 📦 🔛 💗 🎰, ⤴ 👆 🔜 🎲 💚 **🍵 🧬** **🌑 🎚** ↩️ ⚙️ **🛠 👨‍💼** (💖 🐁 ⏮ 👨‍🏭) 🔠 📦.
+🚥 👆 ✔️ <abbr title="A group of machines that are configured to be connected and work together in some way.">🌑</abbr> 🎰 ⏮️ **☁**, ☁ 🐝 📳, 🖖, ⚖️ ➕1️⃣ 🎏 🏗 ⚙️ 🛠️ 📎 📦 🔛 💗 🎰, ⤴️ 👆 🔜 🎲 💚 **🍵 🧬** **🌑 🎚** ↩️ ⚙️ **🛠️ 👨‍💼** (💖 🐁 ⏮️ 👨‍🏭) 🔠 📦.
 
-1⃣ 📚 📎 📦 🧾 ⚙️ 💖 Kubernete 🛎 ✔️ 🛠 🌌 🚚 **🧬 📦** ⏪ 🔗 **📐 ⚖** 📨 📨. 🌐 **🌑 🎚**.
+1️⃣ 📚 📎 📦 🧾 ⚙️ 💖 Kubernete 🛎 ✔️ 🛠️ 🌌 🚚 **🧬 📦** ⏪ 🔗 **📐 ⚖** 📨 📨. 🌐 **🌑 🎚**.
 
-📚 💼, 👆 🔜 🎲 💚 🏗 **☁ 🖼 ⚪️➡️ 🖌** [🔬 🔛](#dockerfile), ❎ 👆 🔗, &amp; 🏃‍♂ **👁 Uvicorn 🛠** ↩️ 🏃‍♂ 🕳 💖 🐁 ⏮ Uvicorn 👨‍🏭.
+📚 💼, 👆 🔜 🎲 💚 🏗 **☁ 🖼 ⚪️➡️ 🖌** [🔬 🔛](#dockerfile), ❎ 👆 🔗, &amp; 🏃‍♂ **👁 Uvicorn 🛠️** ↩️ 🏃‍♂ 🕳 💖 🐁 ⏮️ Uvicorn 👨‍🏭.
 
 ### 📐 ⚙
 
@@ -426,123 +426,123 @@ CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]
 !!! tip
     🎏 **🤝 ❎ 🗳** 🦲 ⚙️ 🇺🇸🔍 🔜 🎲 **📐 ⚙**.
 
-&amp; 🕐❔ 👷 ⏮ 📦, 🎏 ⚙️ 👆 ⚙️ ▶ &amp; 🛠 👫 🔜 ⏪ ✔️ 🔗 🧰 📶 **🕸 📻** (✅ 🇺🇸🔍 📨) ⚪️➡️ 👈 **📐 ⚙** (👈 💪 **🤝 ❎ 🗳**) 📦(Ⓜ) ⏮ 👆 📱.
+&amp; 🕐❔ 👷 ⏮️ 📦, 🎏 ⚙️ 👆 ⚙️ ▶️ &amp; 🛠️ 👫 🔜 ⏪ ✔️ 🔗 🧰 📶 **🕸 📻** (✅ 🇺🇸🔍 📨) ⚪️➡️ 👈 **📐 ⚙** (👈 💪 **🤝 ❎ 🗳**) 📦(Ⓜ) ⏮️ 👆 📱.
 
-### 1⃣ 📐 ⚙ - 💗 👨‍🏭 📦
+### 1️⃣ 📐 ⚙ - 💗 👨‍🏭 📦
 
-🕐❔ 👷 ⏮ **Kubernete** ⚖️ 🎏 📎 📦 🧾 ⚙️, ⚙️ 👫 🔗 🕸 🛠 🔜 ✔ 👁 **📐 ⚙** 👈 👂 🔛 👑 **⛴** 📶 📻 (📨) 🎲 **💗 📦** 🏃 👆 📱.
+🕐❔ 👷 ⏮️ **Kubernete** ⚖️ 🎏 📎 📦 🧾 ⚙️, ⚙️ 👫 🔗 🕸 🛠️ 🔜 ✔ 👁 **📐 ⚙** 👈 👂 🔛 👑 **⛴** 📶 📻 (📨) 🎲 **💗 📦** 🏃 👆 📱.
 
-🔠 👫 📦 🏃‍♂ 👆 📱 🔜 🛎 ✔️ **1⃣ 🛠** (✅ Uvicorn 🛠 🏃 👆 FastAPI 🈸). 👫 🔜 🌐 **🌓 📦**, 🏃‍♂ 🎏 👜, ✋️ 🔠 ⏮ 🚮 👍 🛠, 💾, ♒️. 👈 🌌 👆 🔜 ✊ 📈 **🛠** **🎏 🐚** 💽, ⚖️ **🎏 🎰**.
+🔠 👫 📦 🏃‍♂ 👆 📱 🔜 🛎 ✔️ **1️⃣ 🛠️** (✅ Uvicorn 🛠️ 🏃 👆 FastAPI 🈸). 👫 🔜 🌐 **🌓 📦**, 🏃‍♂ 🎏 👜, ✋️ 🔠 ⏮️ 🚮 👍 🛠️, 💾, ♒️. 👈 🌌 👆 🔜 ✊ 📈 **🛠️** **🎏 🐚** 💽, ⚖️ **🎏 🎰**.
 
-&amp; 📎 📦 ⚙️ ⏮ **📐 ⚙** 🔜 **📎 📨** 🔠 1⃣ 📦 ⏮ 👆 📱 **🔄**. , 🔠 📨 💪 🍵 1⃣ 💗 **🔁 📦** 🏃 👆 📱.
+&amp; 📎 📦 ⚙️ ⏮️ **📐 ⚙** 🔜 **📎 📨** 🔠 1️⃣ 📦 ⏮️ 👆 📱 **🔄**. , 🔠 📨 💪 🍵 1️⃣ 💗 **🔁 📦** 🏃 👆 📱.
 
-&amp; 🛎 👉 **📐 ⚙** 🔜 💪 🍵 📨 👈 🚶 *🎏* 📱 👆 🌑 (✅ 🎏 🆔, ⚖️ 🔽 🎏 📛 ➡ 🔡), &amp; 🔜 📶 👈 📻 ▶️ 📦 *👈 🎏* 🈸 🏃‍♂ 👆 🌑.
+&amp; 🛎 👉 **📐 ⚙** 🔜 💪 🍵 📨 👈 🚶 *🎏* 📱 👆 🌑 (✅ 🎏 🆔, ⚖️ 🔽 🎏 📛 ➡ 🔡), &amp; 🔜 📶 👈 📻 ▶️️ 📦 *👈 🎏* 🈸 🏃‍♂ 👆 🌑.
 
-### 1⃣ 🛠 📍 📦
+### 1️⃣ 🛠️ 📍 📦
 
-👉 🆎 😐, 👆 🎲 🔜 💚 ✔️ **👁 (Uvicorn) 🛠 📍 📦**, 👆 🔜 ⏪ 🚚 🧬 🌑 🎚.
+👉 🆎 😐, 👆 🎲 🔜 💚 ✔️ **👁 (Uvicorn) 🛠️ 📍 📦**, 👆 🔜 ⏪ 🚚 🧬 🌑 🎚.
 
-, 👉 💼, 👆 **🔜 🚫** 💚 ✔️ 🛠 👨‍💼 💖 🐁 ⏮ Uvicorn 👨‍🏭, ⚖️ Uvicorn ⚙️ 🚮 👍 Uvicorn 👨‍🏭. 👆 🔜 💚 ✔️ **👁 Uvicorn 🛠** 📍 📦 (✋️ 🎲 💗 📦).
+, 👉 💼, 👆 **🔜 🚫** 💚 ✔️ 🛠️ 👨‍💼 💖 🐁 ⏮️ Uvicorn 👨‍🏭, ⚖️ Uvicorn ⚙️ 🚮 👍 Uvicorn 👨‍🏭. 👆 🔜 💚 ✔️ **👁 Uvicorn 🛠️** 📍 📦 (✋️ 🎲 💗 📦).
 
-✔️ ➕1️⃣ 🛠 👨‍💼 🔘 📦 (🔜 ⏮ 🐁 ⚖️ Uvicorn 🛠 Uvicorn 👨‍🏭) 🔜 🕴 🚮 **🙃 🔀** 👈 👆 🌅 🎲 ⏪ ✊ 💅 ⏮ 👆 🌑 ⚙️.
+✔️ ➕1️⃣ 🛠️ 👨‍💼 🔘 📦 (🔜 ⏮️ 🐁 ⚖️ Uvicorn 🛠️ Uvicorn 👨‍🏭) 🔜 🕴 🚮 **🙃 🔀** 👈 👆 🌅 🎲 ⏪ ✊ 💅 ⏮️ 👆 🌑 ⚙️.
 
-### 📦 ⏮ 💗 🛠 &amp; 🎁 💼
+### 📦 ⏮️ 💗 🛠️ &amp; 🎁 💼
 
-↗️, 📤 **🎁 💼** 🌐❔ 👆 💪 💚 ✔️ **📦** ⏮ **🐁 🛠 👨‍💼** ▶ 📚 **Uvicorn 👨‍🏭 🛠** 🔘.
+↗️, 📤 **🎁 💼** 🌐❔ 👆 💪 💚 ✔️ **📦** ⏮️ **🐁 🛠️ 👨‍💼** ▶️ 📚 **Uvicorn 👨‍🏭 🛠️** 🔘.
 
-📚 💼, 👆 💪 ⚙️ **🛂 ☁ 🖼** 👈 🔌 **🐁** 🛠 👨‍💼 🏃‍♂ 💗 **Uvicorn 👨‍🏭 🛠**, &amp; 🔢 ⚒ 🔆 🔢 👨‍🏭 ⚓️ 🔛 ⏮ 💽 🐚 🔁. 👤 🔜 💬 👆 🌅 🔃 ⚫️ 🔛 [🛂 ☁ 🖼 ⏮ 🐁 - Uvicorn](#official-docker-image-with-gunicorn-uvicorn).
+📚 💼, 👆 💪 ⚙️ **🛂 ☁ 🖼** 👈 🔌 **🐁** 🛠️ 👨‍💼 🏃‍♂ 💗 **Uvicorn 👨‍🏭 🛠️**, &amp; 🔢 ⚒ 🔆 🔢 👨‍🏭 ⚓️ 🔛 ⏮️ 💽 🐚 🔁. 👤 🔜 💬 👆 🌅 🔃 ⚫️ 🔛 [🛂 ☁ 🖼 ⏮️ 🐁 - Uvicorn](#official-docker-image-with-gunicorn-uvicorn).
 
 📥 🖼 🕐❔ 👈 💪 ⚒ 🔑:
 
 #### 🙅 📱
 
-👆 💪 💚 🛠 👨‍💼 📦 🚥 👆 🈸 **🙅 🥃** 👈 👆 🚫 💪 (🐥 🚫) 👌-🎶 🔢 🛠 💁‍♂️ 🌅, &amp; 👆 💪 ⚙️ 🏧 🔢 (⏮ 🛂 ☁ 🖼), &amp; 👆 🏃‍♂ ⚫️ 🔛 **👁 💽**, 🚫 🌑.
+👆 💪 💚 🛠️ 👨‍💼 📦 🚥 👆 🈸 **🙅 🥃** 👈 👆 🚫 💪 (🐥 🚫) 👌-🎶 🔢 🛠️ 💁‍♂️ 🌅, &amp; 👆 💪 ⚙️ 🏧 🔢 (⏮️ 🛂 ☁ 🖼), &amp; 👆 🏃‍♂ ⚫️ 🔛 **👁 💽**, 🚫 🌑.
 
 #### ☁ ✍
 
-👆 💪 🛠 **👁 💽** (🚫 🌑) ⏮ **☁ ✍**, 👆 🚫🔜 ✔️ ⏩ 🌌 🛠 🧬 📦 (⏮ ☁ ✍) ⏪ 🛡 🔗 🕸 &amp; **📐 ⚖**.
+👆 💪 🛠️ **👁 💽** (🚫 🌑) ⏮️ **☁ ✍**, 👆 🚫🔜 ✔️ ⏩ 🌌 🛠️ 🧬 📦 (⏮️ ☁ ✍) ⏪ 🛡 🔗 🕸 &amp; **📐 ⚖**.
 
-⤴ 👆 💪 💚 ✔️ **👁 📦** ⏮ **🛠 👨‍💼** ▶ **📚 👨‍🏭 🛠** 🔘.
+⤴️ 👆 💪 💚 ✔️ **👁 📦** ⏮️ **🛠️ 👨‍💼** ▶️ **📚 👨‍🏭 🛠️** 🔘.
 
 #### 🤴 &amp; 🎏 🤔
 
-👆 💪 ✔️ **🎏 🤔** 👈 🔜 ⚒ ⚫️ ⏩ ✔️ **👁 📦** ⏮ **💗 🛠** ↩️ ✔️ **💗 📦** ⏮ **👁 🛠** 🔠 👫.
+👆 💪 ✔️ **🎏 🤔** 👈 🔜 ⚒ ⚫️ ⏩ ✔️ **👁 📦** ⏮️ **💗 🛠️** ↩️ ✔️ **💗 📦** ⏮️ **👁 🛠️** 🔠 👫.
 
 🖼 (🪀 🔛 👆 🖥) 👆 💪 ✔️ 🧰 💖 🤴 🏭 🎏 📦 👈 🔜 ✔️ 🔐 **🔠 📨** 👈 👟.
 
 👉 💼, 🚥 👆 ✔️ **💗 📦**, 🔢, 🕐❔ 🤴 👟 **✍ ⚖**, ⚫️ 🔜 🤚 🕐 **👁 📦 🔠 🕰** (📦 👈 🍵 👈 🎯 📨), ↩️ 🤚 **📈 ⚖** 🌐 🔁 📦.
 
-⤴, 👈 💼, ⚫️ 💪 🙅 ✔️ **1⃣ 📦** ⏮ **💗 🛠**, &amp; 🇧🇿 🧰 (✅ 🤴 🏭) 🔛 🎏 📦 📈 🤴 ⚖ 🌐 🔗 🛠 &amp; 🎦 👈 ⚖ 🔛 👈 👁 📦.
+⤴️, 👈 💼, ⚫️ 💪 🙅 ✔️ **1️⃣ 📦** ⏮️ **💗 🛠️**, &amp; 🇧🇿 🧰 (✅ 🤴 🏭) 🔛 🎏 📦 📈 🤴 ⚖ 🌐 🔗 🛠️ &amp; 🎦 👈 ⚖ 🔛 👈 👁 📦.
 
 ---
 
-👑 ☝, **👌** 👉 **🚫 ✍ 🗿** 👈 👆 ✔️ 😄 ⏩. 👆 💪 ⚙️ 👫 💭 **🔬 👆 👍 ⚙️ 💼** &amp; 💭 ⚫️❔ 👍 🎯 👆 ⚙️, ✅ 👅 ❔ 🛠 🔧:
+👑 ☝, **👌** 👉 **🚫 ✍ 🗿** 👈 👆 ✔️ 😄 ⏩. 👆 💪 ⚙️ 👫 💭 **🔬 👆 👍 ⚙️ 💼** &amp; 💭 ⚫️❔ 👍 🎯 👆 ⚙️, ✅ 👅 ❔ 🛠️ 🔧:
 
 * 💂‍♂ - 🇺🇸🔍
 * 🏃‍♂ 🔛 🕴
 * ⏏
-* 🧬 (🔢 🛠 🏃)
+* 🧬 (🔢 🛠️ 🏃)
 * 💾
-* ⏮ 🔁 ⏭ ▶
+* ⏮️ 🔁 ⏭ ▶️
 
 ## 💾
 
-🚥 👆 🏃 **👁 🛠 📍 📦** 👆 🔜 ✔️ 🌅 ⚖️ 🌘 👍-🔬, ⚖, &amp; 📉 💸 💾 🍴 🔠 👈 📦 (🌅 🌘 1⃣ 🚥 👫 🔁).
+🚥 👆 🏃 **👁 🛠️ 📍 📦** 👆 🔜 ✔️ 🌅 ⚖️ 🌘 👍-🔬, ⚖, &amp; 📉 💸 💾 🍴 🔠 👈 📦 (🌅 🌘 1️⃣ 🚥 👫 🔁).
 
-&amp; ⤴ 👆 💪 ⚒ 👈 🎏 💾 📉 &amp; 📄 👆 📳 👆 📦 🧾 ⚙️ (🖼 **Kubernete**). 👈 🌌 ⚫️ 🔜 💪 **🔁 📦** **💪 🎰** ✊ 🔘 🏧 💸 💾 💪 👫, &amp; 💸 💪 🎰 🌑.
+&amp; ⤴️ 👆 💪 ⚒ 👈 🎏 💾 📉 &amp; 📄 👆 📳 👆 📦 🧾 ⚙️ (🖼 **Kubernete**). 👈 🌌 ⚫️ 🔜 💪 **🔁 📦** **💪 🎰** ✊ 🔘 🏧 💸 💾 💪 👫, &amp; 💸 💪 🎰 🌑.
 
-🚥 👆 🈸 **🙅**, 👉 🔜 🎲 **🚫 ⚠**, &amp; 👆 💪 🚫 💪 ✔ 🏋️ 💾 📉. ✋️ 🚥 👆 **⚙️ 📚 💾** (🖼 ⏮ **🎰 🏫** 🏷), 👆 🔜 ✅ ❔ 🌅 💾 👆 😩 &amp; 🔆 **🔢 📦** 👈 🏃 **🔠 🎰** (&amp; 🎲 🚮 🌖 🎰 👆 🌑).
+🚥 👆 🈸 **🙅**, 👉 🔜 🎲 **🚫 ⚠**, &amp; 👆 💪 🚫 💪 ✔ 🏋️ 💾 📉. ✋️ 🚥 👆 **⚙️ 📚 💾** (🖼 ⏮️ **🎰 🏫** 🏷), 👆 🔜 ✅ ❔ 🌅 💾 👆 😩 &amp; 🔆 **🔢 📦** 👈 🏃 **🔠 🎰** (&amp; 🎲 🚮 🌖 🎰 👆 🌑).
 
-🚥 👆 🏃 **💗 🛠 📍 📦** (🖼 ⏮ 🛂 ☁ 🖼) 👆 🔜 ✔️ ⚒ 💭 👈 🔢 🛠 ▶ 🚫 **🍴 🌖 💾** 🌘 ⚫️❔ 💪.
+🚥 👆 🏃 **💗 🛠️ 📍 📦** (🖼 ⏮️ 🛂 ☁ 🖼) 👆 🔜 ✔️ ⚒ 💭 👈 🔢 🛠️ ▶️ 🚫 **🍴 🌖 💾** 🌘 ⚫️❔ 💪.
 
-## ⏮ 🔁 ⏭ ▶ &amp; 📦
+## ⏮️ 🔁 ⏭ ▶️ &amp; 📦
 
-🚥 👆 ⚙️ 📦 (✅ ☁, Kubernete), ⤴ 📤 2⃣ 👑 🎯 👆 💪 ⚙️.
+🚥 👆 ⚙️ 📦 (✅ ☁, Kubernete), ⤴️ 📤 2️⃣ 👑 🎯 👆 💪 ⚙️.
 
 ### 💗 📦
 
-🚥 👆 ✔️ **💗 📦**, 🎲 🔠 1⃣ 🏃 **👁 🛠** (🖼, **Kubernete** 🌑), ⤴ 👆 🔜 🎲 💚 ✔️ **🎏 📦** 🔨 👷 **⏮ 📶** 👁 📦, 🏃 👁 🛠, **⏭** 🏃 🔁 👨‍🏭 📦.
+🚥 👆 ✔️ **💗 📦**, 🎲 🔠 1️⃣ 🏃 **👁 🛠️** (🖼, **Kubernete** 🌑), ⤴️ 👆 🔜 🎲 💚 ✔️ **🎏 📦** 🔨 👷 **⏮️ 📶** 👁 📦, 🏃 👁 🛠️, **⏭** 🏃 🔁 👨‍🏭 📦.
 
 !!! info
     🚥 👆 ⚙️ Kubernete, 👉 🔜 🎲 <a href="https://kubernetes.io/docs/concepts/workloads/pods/init-containers/" class="external-link" target="_blank">🕑 📦</a>.
 
-🚥 👆 ⚙️ 💼 📤 🙅‍♂ ⚠ 🏃‍♂ 👈 ⏮ 📶 **💗 🕰 🔗** (🖼 🚥 👆 🚫 🏃 💽 🛠, ✋️ ✅ 🚥 💽 🔜), ⤴ 👆 💪 🚮 👫 🔠 📦 ▶️ ⏭ ▶ 👑 🛠.
+🚥 👆 ⚙️ 💼 📤 🙅‍♂ ⚠ 🏃‍♂ 👈 ⏮️ 📶 **💗 🕰 🔗** (🖼 🚥 👆 🚫 🏃 💽 🛠️, ✋️ ✅ 🚥 💽 🔜), ⤴️ 👆 💪 🚮 👫 🔠 📦 ▶️️ ⏭ ▶️ 👑 🛠️.
 
 ### 👁 📦
 
-🚥 👆 ✔️ 🙅 🖥, ⏮ **👁 📦** 👈 ⤴ ▶ 💗 **👨‍🏭 🛠** (⚖️ 1⃣ 🛠), ⤴ 👆 💪 🏃 👈 ⏮ 🔁 🎏 📦, ▶️ ⏭ ▶ 🛠 ⏮ 📱. 🛂 ☁ 🖼 🐕‍🦺 👉 🔘.
+🚥 👆 ✔️ 🙅 🖥, ⏮️ **👁 📦** 👈 ⤴️ ▶️ 💗 **👨‍🏭 🛠️** (⚖️ 1️⃣ 🛠️), ⤴️ 👆 💪 🏃 👈 ⏮️ 🔁 🎏 📦, ▶️️ ⏭ ▶️ 🛠️ ⏮️ 📱. 🛂 ☁ 🖼 🐕‍🦺 👉 🔘.
 
-## 🛂 ☁ 🖼 ⏮ 🐁 - Uvicorn
+## 🛂 ☁ 🖼 ⏮️ 🐁 - Uvicorn
 
-📤 🛂 ☁ 🖼 👈 🔌 🐁 🏃‍♂ ⏮ Uvicorn 👨‍🏭, ℹ ⏮ 📃: [💽 👨‍🏭 - 🐁 ⏮ Uvicorn](./server-workers.md){.internal-link target=_blank}.
+📤 🛂 ☁ 🖼 👈 🔌 🐁 🏃‍♂ ⏮️ Uvicorn 👨‍🏭, ℹ ⏮️ 📃: [💽 👨‍🏭 - 🐁 ⏮️ Uvicorn](./server-workers.md){.internal-link target=_blank}.
 
-👉 🖼 🔜 ⚠ ✴️ ⚠ 🔬 🔛: [📦 ⏮ 💗 🛠 &amp; 🎁 💼](#containers-with-multiple-processes-and-special-cases).
+👉 🖼 🔜 ⚠ ✴️ ⚠ 🔬 🔛: [📦 ⏮️ 💗 🛠️ &amp; 🎁 💼](#containers-with-multiple-processes-and-special-cases).
 
 * <a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker" class="external-link" target="_blank">tiangolo/uvicorn-🐁-fastapi</a>.
 
 !!! warning
-    📤 ↕ 🤞 👈 👆 **🚫** 💪 👉 🧢 🖼 ⚖️ 🙆 🎏 🎏 1⃣, &amp; 🔜 👻 📆 🏗 🖼 ⚪️➡️ 🖌 [🔬 🔛: 🏗 ☁ 🖼 FastAPI](#build-a-docker-image-for-fastapi).
+    📤 ↕ 🤞 👈 👆 **🚫** 💪 👉 🧢 🖼 ⚖️ 🙆 🎏 🎏 1️⃣, &amp; 🔜 👻 📆 🏗 🖼 ⚪️➡️ 🖌 [🔬 🔛: 🏗 ☁ 🖼 FastAPI](#build-a-docker-image-for-fastapi).
 
-👉 🖼 ✔️ **🚘-📳** 🛠 🔌 ⚒ **🔢 👨‍🏭 🛠** ⚓️ 🔛 💽 🐚 💪.
+👉 🖼 ✔️ **🚘-📳** 🛠️ 🔌 ⚒ **🔢 👨‍🏭 🛠️** ⚓️ 🔛 💽 🐚 💪.
 
-⚫️ ✔️ **🤔 🔢**, ✋️ 👆 💪 🔀 &amp; ℹ 🌐 📳 ⏮ **🌐 🔢** ⚖️ 📳 📁.
+⚫️ ✔️ **🤔 🔢**, ✋️ 👆 💪 🔀 &amp; ℹ 🌐 📳 ⏮️ **🌐 🔢** ⚖️ 📳 📁.
 
-⚫️ 🐕‍🦺 🏃 <a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker#pre_start_path" class="external-link" target="_blank">**⏮ 🔁 ⏭ ▶**</a> ⏮ ✍.
+⚫️ 🐕‍🦺 🏃 <a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker#pre_start_path" class="external-link" target="_blank">**⏮️ 🔁 ⏭ ▶️**</a> ⏮️ ✍.
 
 !!! tip
     👀 🌐 📳 &amp; 🎛, 🚶 ☁ 🖼 📃: <a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker" class="external-link" target="_blank">Tiangolo/uvicorn-🐁-fastapi</a>.
 
-### 🔢 🛠 🔛 🛂 ☁ 🖼
+### 🔢 🛠️ 🔛 🛂 ☁ 🖼
 
-**🔢 🛠** 🔛 👉 🖼 **📊 🔁** ⚪️➡️ 💽 **🐚** 💪.
+**🔢 🛠️** 🔛 👉 🖼 **📊 🔁** ⚪️➡️ 💽 **🐚** 💪.
 
 👉 ⛓ 👈 ⚫️ 🔜 🔄 **🗜** 🌅 **🎭** ⚪️➡️ 💽 💪.
 
-👆 💪 🔆 ⚫️ ⏮ 📳 ⚙️ **🌐 🔢**, ♒️.
+👆 💪 🔆 ⚫️ ⏮️ 📳 ⚙️ **🌐 🔢**, ♒️.
 
-✋️ ⚫️ ⛓ 👈 🔢 🛠 🪀 🔛 💽 📦 🏃, **💸 💾 🍴** 🔜 🪀 🔛 👈.
+✋️ ⚫️ ⛓ 👈 🔢 🛠️ 🪀 🔛 💽 📦 🏃, **💸 💾 🍴** 🔜 🪀 🔛 👈.
 
-, 🚥 👆 🈸 🍴 📚 💾 (🖼 ⏮ 🎰 🏫 🏷), &amp; 👆 💽 ✔️ 📚 💽 🐚 **✋️ 🐥 💾**, ⤴ 👆 📦 💪 🔚 🆙 🔄 ⚙️ 🌅 💾 🌘 ⚫️❔ 💪, &amp; 🤕 🎭 📚 (⚖️ 💥). 👶
+, 🚥 👆 🈸 🍴 📚 💾 (🖼 ⏮️ 🎰 🏫 🏷), &amp; 👆 💽 ✔️ 📚 💽 🐚 **✋️ 🐥 💾**, ⤴️ 👆 📦 💪 🔚 🆙 🔄 ⚙️ 🌅 💾 🌘 ⚫️❔ 💪, &amp; 🤕 🎭 📚 (⚖️ 💥). 👶
 
 ### ✍ `Dockerfile`
 
@@ -560,7 +560,7 @@ COPY ./app /app
 
 ### 🦏 🈸
 
-🚥 👆 ⏩ 📄 🔃 🏗 [🦏 🈸 ⏮ 💗 📁](../tutorial/bigger-applications.md){.internal-link target=_blank}, 👆 `Dockerfile` 💪 ↩️ 👀 💖:
+🚥 👆 ⏩ 📄 🔃 🏗 [🦏 🈸 ⏮️ 💗 📁](../tutorial/bigger-applications.md){.internal-link target=_blank}, 👆 `Dockerfile` 💪 ↩️ 👀 💖:
 
 ```Dockerfile hl_lines="7"
 FROM tiangolo/uvicorn-gunicorn-fastapi:python3.9
@@ -574,25 +574,25 @@ COPY ./app /app/app
 
 ### 🕐❔ ⚙️
 
-👆 🔜 🎲 **🚫** ⚙️ 👉 🛂 🧢 🖼 (⚖️ 🙆 🎏 🎏 1⃣) 🚥 👆 ⚙️ **Kubernete** (⚖️ 🎏) &amp; 👆 ⏪ ⚒ **🧬** 🌑 🎚, ⏮ 💗 **📦**. 📚 💼, 👆 👍 📆 **🏗 🖼 ⚪️➡️ 🖌** 🔬 🔛: [🏗 ☁ 🖼 FastAPI](#build-a-docker-image-for-fastapi).
+👆 🔜 🎲 **🚫** ⚙️ 👉 🛂 🧢 🖼 (⚖️ 🙆 🎏 🎏 1️⃣) 🚥 👆 ⚙️ **Kubernete** (⚖️ 🎏) &amp; 👆 ⏪ ⚒ **🧬** 🌑 🎚, ⏮️ 💗 **📦**. 📚 💼, 👆 👍 📆 **🏗 🖼 ⚪️➡️ 🖌** 🔬 🔛: [🏗 ☁ 🖼 FastAPI](#build-a-docker-image-for-fastapi).
 
-👉 🖼 🔜 ⚠ ✴️ 🎁 💼 🔬 🔛 [📦 ⏮ 💗 🛠 &amp; 🎁 💼](#containers-with-multiple-processes-and-special-cases). 🖼, 🚥 👆 🈸 **🙅 🥃** 👈 ⚒ 🔢 🔢 🛠 ⚓️ 🔛 💽 👷 👍, 👆 🚫 💚 😥 ⏮ ❎ 🛠 🧬 🌑 🎚, &amp; 👆 🚫 🏃 🌅 🌘 1⃣ 📦 ⏮ 👆 📱. ⚖️ 🚥 👆 🛠 ⏮ **☁ ✍**, 🏃 🔛 👁 💽, ♒️.
+👉 🖼 🔜 ⚠ ✴️ 🎁 💼 🔬 🔛 [📦 ⏮️ 💗 🛠️ &amp; 🎁 💼](#containers-with-multiple-processes-and-special-cases). 🖼, 🚥 👆 🈸 **🙅 🥃** 👈 ⚒ 🔢 🔢 🛠️ ⚓️ 🔛 💽 👷 👍, 👆 🚫 💚 😥 ⏮️ ❎ 🛠️ 🧬 🌑 🎚, &amp; 👆 🚫 🏃 🌅 🌘 1️⃣ 📦 ⏮️ 👆 📱. ⚖️ 🚥 👆 🛠️ ⏮️ **☁ ✍**, 🏃 🔛 👁 💽, ♒️.
 
-## 🛠 📦 🖼
+## 🛠️ 📦 🖼
 
-⏮ ✔️ 📦 (☁) 🖼 📤 📚 🌌 🛠 ⚫️.
+⏮️ ✔️ 📦 (☁) 🖼 📤 📚 🌌 🛠️ ⚫️.
 
 🖼:
 
-* ⏮ **☁ ✍** 👁 💽
-* ⏮ **Kubernete** 🌑
-* ⏮ ☁ 🐝 📳 🌑
-* ⏮ ➕1️⃣ 🧰 💖 🖖
-* ⏮ ☁ 🐕‍🦺 👈 ✊ 👆 📦 🖼 &amp; 🛠 ⚫️
+* ⏮️ **☁ ✍** 👁 💽
+* ⏮️ **Kubernete** 🌑
+* ⏮️ ☁ 🐝 📳 🌑
+* ⏮️ ➕1️⃣ 🧰 💖 🖖
+* ⏮️ ☁ 🐕‍🦺 👈 ✊ 👆 📦 🖼 &amp; 🛠️ ⚫️
 
-## ☁ 🖼 ⏮ 🎶
+## ☁ 🖼 ⏮️ 🎶
 
-🚥 👆 ⚙️ <a href="https://python-poetry.org/" class="external-link" target="_blank">🎶</a> 🛠 👆 🏗 🔗, 👆 💪 ⚙️ ☁ 👁-▶ 🏗:
+🚥 👆 ⚙️ <a href="https://python-poetry.org/" class="external-link" target="_blank">🎶</a> 🛠️ 👆 🏗 🔗, 👆 💪 ⚙️ ☁ 👁-▶️ 🏗:
 
 ```{ .dockerfile .annotate }
 # (1)
@@ -629,48 +629,48 @@ COPY ./app /code/app
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
 ```
 
-1⃣. 👉 🥇 ▶, ⚫️ 🌟 `requirements-stage`.
+1️⃣. 👉 🥇 ▶️, ⚫️ 🌟 `requirements-stage`.
 
-2⃣. ⚒ `/tmp` ⏮ 👷 📁.
+2️⃣. ⚒ `/tmp` ⏮️ 👷 📁.
 
     📥 🌐❔ 👥 🔜 🏗 📁 `requirements.txt`
 
-3⃣. ❎ 🎶 👉 ☁ ▶.
+3️⃣. ❎ 🎶 👉 ☁ ▶️.
 
-4⃣. 📁 `pyproject.toml` &amp; `poetry.lock` 📁 `/tmp` 📁.
+4️⃣. 📁 `pyproject.toml` &amp; `poetry.lock` 📁 `/tmp` 📁.
 
-    ↩️ ⚫️ ⚙️ `./poetry.lock*` (▶ ⏮ `*`), ⚫️ 🏆 🚫 💥 🚥 👈 📁 🚫 💪.
+    ↩️ ⚫️ ⚙️ `./poetry.lock*` (▶️ ⏮️ `*`), ⚫️ 🏆 🚫 💥 🚥 👈 📁 🚫 💪.
 
-5⃣. 🏗 `requirements.txt` 📁.
+5️⃣. 🏗 `requirements.txt` 📁.
 
-6⃣. 👉 🏁 ▶, 🕳 📥 🔜 🛡 🏁 📦 🖼.
+6️⃣. 👉 🏁 ▶️, 🕳 📥 🔜 🛡 🏁 📦 🖼.
 
-7⃣. ⚒ ⏮ 👷 📁 `/code`.
+7️⃣. ⚒ ⏮️ 👷 📁 `/code`.
 
-8⃣. 📁 `requirements.txt` 📁 `/code` 📁.
+8️⃣. 📁 `requirements.txt` 📁 `/code` 📁.
 
-    👉 📁 🕴 🖖 ⏮ ☁ ▶, 👈 ⚫️❔ 👥 ⚙️ `--from-requirements-stage` 📁 ⚫️.
+    👉 📁 🕴 🖖 ⏮️ ☁ ▶️, 👈 ⚫️❔ 👥 ⚙️ `--from-requirements-stage` 📁 ⚫️.
 
-9⃣. ❎ 📦 🔗 🏗 `requirements.txt` 📁.
+9️⃣. ❎ 📦 🔗 🏗 `requirements.txt` 📁.
 
-1⃣0⃣. 📁 `app` 📁 `/code` 📁.
+1️⃣0️⃣. 📁 `app` 📁 `/code` 📁.
 
-1⃣1⃣. 🏃 `uvicorn` 📋, 💬 ⚫️ ⚙️ `app` 🎚 🗄 ⚪️➡️ `app.main`.
+1️⃣1️⃣. 🏃 `uvicorn` 📋, 💬 ⚫️ ⚙️ `app` 🎚 🗄 ⚪️➡️ `app.main`.
 
 !!! tip
     🖊 💭 🔢 👀 ⚫️❔ 🔠 ⏸ 🔨.
 
-**☁ ▶** 🍕 `Dockerfile` 👈 👷 **🍕 📦 🖼** 👈 🕴 ⚙️ 🏗 📁 ⚙️ ⏪.
+**☁ ▶️** 🍕 `Dockerfile` 👈 👷 **🍕 📦 🖼** 👈 🕴 ⚙️ 🏗 📁 ⚙️ ⏪.
 
-🥇 ▶ 🔜 🕴 ⚙️ **❎ 🎶** &amp; **🏗 `requirements.txt`** ⏮ 👆 🏗 🔗 ⚪️➡️ 🎶 `pyproject.toml` 📁.
+🥇 ▶️ 🔜 🕴 ⚙️ **❎ 🎶** &amp; **🏗 `requirements.txt`** ⏮️ 👆 🏗 🔗 ⚪️➡️ 🎶 `pyproject.toml` 📁.
 
-👉 `requirements.txt` 📁 🔜 ⚙️ ⏮ `pip` ⏪ **⏭ ▶**.
+👉 `requirements.txt` 📁 🔜 ⚙️ ⏮️ `pip` ⏪ **⏭ ▶️**.
 
-🏁 📦 🖼 **🕴 🏁 ▶** 🛡. ⏮ ▶(Ⓜ) 🔜 ❎.
+🏁 📦 🖼 **🕴 🏁 ▶️** 🛡. ⏮️ ▶️(Ⓜ) 🔜 ❎.
 
-🕐❔ ⚙️ 🎶, ⚫️ 🔜 ⚒ 🔑 ⚙️ **☁ 👁-▶ 🏗** ↩️ 👆 🚫 🤙 💪 ✔️ 🎶 &amp; 🚮 🔗 ❎ 🏁 📦 🖼, 👆 **🕴 💪** ✔️ 🏗 `requirements.txt` 📁 ❎ 👆 🏗 🔗.
+🕐❔ ⚙️ 🎶, ⚫️ 🔜 ⚒ 🔑 ⚙️ **☁ 👁-▶️ 🏗** ↩️ 👆 🚫 🤙 💪 ✔️ 🎶 &amp; 🚮 🔗 ❎ 🏁 📦 🖼, 👆 **🕴 💪** ✔️ 🏗 `requirements.txt` 📁 ❎ 👆 🏗 🔗.
 
-⤴ ⏭ (&amp; 🏁) ▶ 👆 🔜 🏗 🖼 🌅 ⚖️ 🌘 🎏 🌌 🔬 ⏭.
+⤴️ ⏭ (&amp; 🏁) ▶️ 👆 🔜 🏗 🖼 🌅 ⚖️ 🌘 🎏 🌌 🔬 ⏭.
 
 ### ⛅ 🤝 ❎ 🗳 - 🎶
 
@@ -682,16 +682,16 @@ CMD ["uvicorn", "app.main:app", "--proxy-headers", "--host", "0.0.0.0", "--port"
 
 ## 🌃
 
-⚙️ 📦 ⚙️ (✅ ⏮ **☁** &amp; **Kubernete**) ⚫️ ▶️ 📶 🎯 🍵 🌐 **🛠 🔧**:
+⚙️ 📦 ⚙️ (✅ ⏮️ **☁** &amp; **Kubernete**) ⚫️ ▶️️ 📶 🎯 🍵 🌐 **🛠️ 🔧**:
 
 * 🇺🇸🔍
 * 🏃‍♂ 🔛 🕴
 * ⏏
-* 🧬 (🔢 🛠 🏃)
+* 🧬 (🔢 🛠️ 🏃)
 * 💾
-* ⏮ 🔁 ⏭ ▶
+* ⏮️ 🔁 ⏭ ▶️
 
-🌅 💼, 👆 🎲 🏆 🚫 💚 ⚙️ 🙆 🧢 🖼, &amp; ↩️ **🏗 📦 🖼 ⚪️➡️ 🖌** 1⃣ ⚓️ 🔛 🛂 🐆 ☁ 🖼.
+🌅 💼, 👆 🎲 🏆 🚫 💚 ⚙️ 🙆 🧢 🖼, &amp; ↩️ **🏗 📦 🖼 ⚪️➡️ 🖌** 1️⃣ ⚓️ 🔛 🛂 🐍 ☁ 🖼.
 
 ✊ 💅 **✔** 👩‍🌾 `Dockerfile` &amp; **☁ 💾** 👆 💪 **📉 🏗 🕰**, 📉 👆 📈 (&amp; ❎ 😩). 👶
 

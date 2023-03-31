@@ -1,18 +1,18 @@
-# 🛠 &amp; 🔁 / ⌛
+# 🛠️ &amp; 🔁 / ⌛
 
-ℹ 🔃 `async def` ❕ *➡ 🛠 🔢* &amp; 🖥 🔃 🔁 📟, 🛠, &amp; 🔁.
+ℹ 🔃 `async def` ❕ *➡ 🛠️ 🔢* &amp; 🖥 🔃 🔁 📟, 🛠️, &amp; 🔁.
 
 ## 🏃 ❓
 
 <abbr title="too long; didn't read"><strong>🆑;👩‍⚕️:</strong></abbr>
 
-🚥 👆 ⚙️ 🥉 🥳 🗃 👈 💬 👆 🤙 👫 ⏮ `await`, 💖:
+🚥 👆 ⚙️ 🥉 🥳 🗃 👈 💬 👆 🤙 👫 ⏮️ `await`, 💖:
 
 ```Python
 results = await some_library()
 ```
 
-⤴, 📣 👆 *➡ 🛠 🔢* ⏮ `async def` 💖:
+⤴️, 📣 👆 *➡ 🛠️ 🔢* ⏮️ `async def` 💖:
 
 ```Python hl_lines="2"
 @app.get('/')
@@ -22,11 +22,11 @@ async def read_results():
 ```
 
 !!! note
-    👆 💪 🕴 ⚙️ `await` 🔘 🔢 ✍ ⏮ `async def`.
+    👆 💪 🕴 ⚙️ `await` 🔘 🔢 ✍ ⏮️ `async def`.
 
 ---
 
-🚥 👆 ⚙️ 🥉 🥳 🗃 👈 🔗 ⏮ 🕳 (💽, 🛠, 📁 ⚙️, ♒️.) &amp; 🚫 ✔️ 🐕‍🦺 ⚙️ `await`, (👉 ⏳ 💼 🌅 💽 🗃), ⤴ 📣 👆 *➡ 🛠 🔢* 🛎, ⏮ `def`, 💖:
+🚥 👆 ⚙️ 🥉 🥳 🗃 👈 🔗 ⏮️ 🕳 (💽, 🛠️, 📁 ⚙️, ♒️.) &amp; 🚫 ✔️ 🐕‍🦺 ⚙️ `await`, (👉 ⏳ 💼 🌅 💽 🗃), ⤴️ 📣 👆 *➡ 🛠️ 🔢* 🛎, ⏮️ `def`, 💖:
 
 ```Python hl_lines="2"
 @app.get('/')
@@ -37,7 +37,7 @@ def results():
 
 ---
 
-🚥 👆 🈸 (😫) 🚫 ✔️ 🔗 ⏮ 🕳 🙆 &amp; ⌛ ⚫️ 📨, ⚙️ `async def`.
+🚥 👆 🈸 (😫) 🚫 ✔️ 🔗 ⏮️ 🕳 🙆 &amp; ⌛ ⚫️ 📨, ⚙️ `async def`.
 
 ---
 
@@ -45,15 +45,15 @@ def results():
 
 ---
 
-**🗒**: 👆 💪 🌀 `def` &amp; `async def` 👆 *➡ 🛠 🔢* 🌅 👆 💪 &amp; 🔬 🔠 1⃣ ⚙️ 🏆 🎛 👆. FastAPI 🔜 ▶️ 👜 ⏮ 👫.
+**🗒**: 👆 💪 🌀 `def` &amp; `async def` 👆 *➡ 🛠️ 🔢* 🌅 👆 💪 &amp; 🔬 🔠 1️⃣ ⚙️ 🏆 🎛 👆. FastAPI 🔜 ▶️️ 👜 ⏮️ 👫.
 
 😆, 🙆 💼 🔛, FastAPI 🔜 👷 🔁 &amp; 📶 ⏩.
 
-✋️ 📄 📶 🔛, ⚫️ 🔜 💪 🎭 🛠.
+✋️ 📄 📶 🔛, ⚫️ 🔜 💪 🎭 🛠️.
 
 ## 📡 ℹ
 
-🏛 ⏬ 🐆 ✔️ 🐕‍🦺 **"🔁 📟"** ⚙️ 🕳 🤙 **"🔁"**, ⏮ **`async` &amp; `await`** ❕.
+🏛 ⏬ 🐍 ✔️ 🐕‍🦺 **"🔁 📟"** ⚙️ 🕳 🤙 **"🔁"**, ⏮️ **`async` &amp; `await`** ❕.
 
 ➡️ 👀 👈 🔤 🍕 📄 🔛:
 
@@ -65,52 +65,52 @@ def results():
 
 🔁 📟 ⛓ 👈 🇪🇸 👶 ✔️ 🌌 💬 💻 / 📋 👶 👈 ☝ 📟, ⚫️ 👶 🔜 ✔️ ⌛ *🕳 🙆* 🏁 👱 🙆. ➡️ 💬 👈 *🕳 🙆* 🤙 "🐌-📁" 👶.
 
-, ⏮ 👈 🕰, 💻 💪 🚶 &amp; 🎏 👷, ⏪ "🐌-📁" 👶 🏁.
+, ⏮️ 👈 🕰, 💻 💪 🚶 &amp; 🎏 👷, ⏪ "🐌-📁" 👶 🏁.
 
-⤴ 💻 / 📋 👶 🔜 👟 🔙 🔠 🕰 ⚫️ ✔️ 🤞 ↩️ ⚫️ ⌛ 🔄, ⚖️ 🕐❔ ⚫️ 👶 🏁 🌐 👷 ⚫️ ✔️ 👈 ☝. &amp; ⚫️ 👶 🔜 👀 🚥 🙆 📋 ⚫️ ⌛ ✔️ ⏪ 🏁, 🤸 ⚫️❔ ⚫️ ✔️.
+⤴️ 💻 / 📋 👶 🔜 👟 🔙 🔠 🕰 ⚫️ ✔️ 🤞 ↩️ ⚫️ ⌛ 🔄, ⚖️ 🕐❔ ⚫️ 👶 🏁 🌐 👷 ⚫️ ✔️ 👈 ☝. &amp; ⚫️ 👶 🔜 👀 🚥 🙆 📋 ⚫️ ⌛ ✔️ ⏪ 🏁, 🤸 ⚫️❔ ⚫️ ✔️.
 
-⏭, ⚫️ 👶 ✊ 🥇 📋 🏁 (➡️ 💬, 👆 "🐌-📁" 👶) &amp; 😣 ⚫️❔ ⚫️ ✔️ ⏮ ⚫️.
+⏭, ⚫️ 👶 ✊ 🥇 📋 🏁 (➡️ 💬, 👆 "🐌-📁" 👶) &amp; 😣 ⚫️❔ ⚫️ ✔️ ⏮️ ⚫️.
 
-👈 "⌛ 🕳 🙆" 🛎 🔗 <abbr title="Input and Output">👤/🅾</abbr> 🛠 👈 📶 "🐌" (🔬 🚅 🕹 &amp; 💾 💾), 💖 ⌛:
+👈 "⌛ 🕳 🙆" 🛎 🔗 <abbr title="Input and Output">👤/🅾</abbr> 🛠️ 👈 📶 "🐌" (🔬 🚅 🕹 &amp; 💾 💾), 💖 ⌛:
 
 * 📊 ⚪️➡️ 👩‍💻 📨 🔘 🕸
 * 📊 📨 👆 📋 📨 👩‍💻 🔘 🕸
 * 🎚 📁 💾 ✍ ⚙️ &amp; 🤝 👆 📋
 * 🎚 👆 📋 🤝 ⚙️ ✍ 💾
-* 🛰 🛠 🛠
-* 💽 🛠 🏁
+* 🛰 🛠️ 🛠️
+* 💽 🛠️ 🏁
 * 💽 🔢 📨 🏁
 * ♒️.
 
-🛠 🕰 🍴 ✴️ ⌛ <abbr title="Input and Output">👤/🅾</abbr> 🛠, 👫 🤙 👫 "👤/🅾 🔗" 🛠.
+🛠️ 🕰 🍴 ✴️ ⌛ <abbr title="Input and Output">👤/🅾</abbr> 🛠️, 👫 🤙 👫 "👤/🅾 🔗" 🛠️.
 
-⚫️ 🤙 "🔁" ↩️ 💻 / 📋 🚫 ✔️ "🔁" ⏮ 🐌 📋, ⌛ ☑ 🙍 👈 📋 🏁, ⏪ 🔨 🕳, 💪 ✊ 📋 🏁 &amp; 😣 👷.
+⚫️ 🤙 "🔁" ↩️ 💻 / 📋 🚫 ✔️ "🔁" ⏮️ 🐌 📋, ⌛ ☑ 🙍 👈 📋 🏁, ⏪ 🔨 🕳, 💪 ✊ 📋 🏁 &amp; 😣 👷.
 
-↩️ 👈, 💆‍♂ "🔁" ⚙️, 🕐 🏁, 📋 💪 ⌛ ⏸ 🐥 👄 (⏲) 💻 / 📋 🏁 ⚫️❔ ⚫️ 🚶, &amp; ⤴ 👟 🔙 ✊ 🏁 &amp; 😣 👷 ⏮ 👫.
+↩️ 👈, 💆‍♂ "🔁" ⚙️, 🕐 🏁, 📋 💪 ⌛ ⏸ 🐥 👄 (⏲) 💻 / 📋 🏁 ⚫️❔ ⚫️ 🚶, &amp; ⤴️ 👟 🔙 ✊ 🏁 &amp; 😣 👷 ⏮️ 👫.
 
 "🔁" (👽 "🔁") 👫 🛎 ⚙️ ⚖ "🔁", ↩️ 💻 / 📋 ⏩ 🌐 📶 🔁 ⏭ 🔀 🎏 📋, 🚥 👈 🔁 🔌 ⌛.
 
-### 🛠 &amp; 🍔
+### 🛠️ &amp; 🍔
 
-👉 💭 **🔁** 📟 🔬 🔛 🕣 🤙 **"🛠"**. ⚫️ 🎏 ⚪️➡️ **"🔁"**.
+👉 💭 **🔁** 📟 🔬 🔛 🕣 🤙 **"🛠️"**. ⚫️ 🎏 ⚪️➡️ **"🔁"**.
 
-**🛠** &amp; **🔁** 👯‍♂️ 🔗 "🎏 👜 😥 🌅 ⚖️ 🌘 🎏 🕰".
+**🛠️** &amp; **🔁** 👯‍♂️ 🔗 "🎏 👜 😥 🌅 ⚖️ 🌘 🎏 🕰".
 
-✋️ ℹ 🖖 *🛠* &amp; *🔁* 🎏.
+✋️ ℹ 🖖 *🛠️* &amp; *🔁* 🎏.
 
 👀 🔺, 🌈 📄 📖 🔃 🍔:
 
-### 🛠 🍔
+### 🛠️ 🍔
 
-👆 🚶 ⏮ 👆 🥰 🤚 ⏩ 🥕, 👆 🧍 ⏸ ⏪ 🏧 ✊ ✔ ⚪️➡️ 👫👫 🚪 👆. 👶
+👆 🚶 ⏮️ 👆 🥰 🤚 ⏩ 🥕, 👆 🧍 ⏸ ⏪ 🏧 ✊ ✔ ⚪️➡️ 👫👫 🚪 👆. 👶
 
 <img src="/img/async/concurrent-burgers/concurrent-burgers-01.png" class="illustration">
 
-⤴ ⚫️ 👆 🔄, 👆 🥉 👆 ✔ 2⃣ 📶 🎀 🍔 👆 🥰 &amp; 👆. 👶 👶
+⤴️ ⚫️ 👆 🔄, 👆 🥉 👆 ✔ 2️⃣ 📶 🎀 🍔 👆 🥰 &amp; 👆. 👶 👶
 
 <img src="/img/async/concurrent-burgers/concurrent-burgers-02.png" class="illustration">
 
-🏧 💬 🕳 🍳 👨‍🍳 👫 💭 👫 ✔️ 🏗 👆 🍔 (✋️ 👫 ⏳ 🏗 🕐 ⏮ 👩‍💻).
+🏧 💬 🕳 🍳 👨‍🍳 👫 💭 👫 ✔️ 🏗 👆 🍔 (✋️ 👫 ⏳ 🏗 🕐 ⏮️ 👩‍💻).
 
 <img src="/img/async/concurrent-burgers/concurrent-burgers-03.png" class="illustration">
 
@@ -120,15 +120,15 @@ def results():
 
 <img src="/img/async/concurrent-burgers/concurrent-burgers-04.png" class="illustration">
 
-⏪ 👆 ⌛, 👆 🚶 ⏮ 👆 🥰 &amp; ⚒ 🏓, 👆 🧎 &amp; 💬 ⏮ 👆 🥰 📏 🕰 (👆 🍔 📶 🎀 &amp; ✊ 🕰 🏗).
+⏪ 👆 ⌛, 👆 🚶 ⏮️ 👆 🥰 &amp; ⚒ 🏓, 👆 🧎 &amp; 💬 ⏮️ 👆 🥰 📏 🕰 (👆 🍔 📶 🎀 &amp; ✊ 🕰 🏗).
 
-👆 🏖 🏓 ⏮ 👆 🥰, ⏪ 👆 ⌛ 🍔, 👆 💪 💸 👈 🕰 😮 ❔ 👌, 🐨 &amp; 🙃 👆 🥰 👶 👶 👶.
+👆 🏖 🏓 ⏮️ 👆 🥰, ⏪ 👆 ⌛ 🍔, 👆 💪 💸 👈 🕰 😮 ❔ 👌, 🐨 &amp; 🙃 👆 🥰 👶 👶 👶.
 
 <img src="/img/async/concurrent-burgers/concurrent-burgers-05.png" class="illustration">
 
 ⏪ ⌛ &amp; 💬 👆 🥰, ⚪️➡️ 🕰 🕰, 👆 ✅ 🔢 🖥 🔛 ⏲ 👀 🚥 ⚫️ 👆 🔄 ⏪.
 
-⤴ ☝, ⚫️ 😒 👆 🔄. 👆 🚶 ⏲, 🤚 👆 🍔 &amp; 👟 🔙 🏓.
+⤴️ ☝, ⚫️ 😒 👆 🔄. 👆 🚶 ⏲, 🤚 👆 🍔 &amp; 👟 🔙 🏓.
 
 <img src="/img/async/concurrent-burgers/concurrent-burgers-06.png" class="illustration">
 
@@ -145,31 +145,31 @@ def results():
 
 ⏪ 👆 ⏸, 👆 ⛽ 👶, ⌛ 👆 🔄, 🚫 🔨 🕳 📶 "😌". ✋️ ⏸ ⏩ ↩️ 🏧 🕴 ✊ ✔ (🚫 🏗 👫), 👈 👌.
 
-⤴, 🕐❔ ⚫️ 👆 🔄, 👆 ☑ "😌" 👷, 👆 🛠 🍣, 💭 ⚫️❔ 👆 💚, 🤚 👆 🥰 ⚒, 💸, ✅ 👈 👆 🤝 ☑ 💵 ⚖️ 💳, ✅ 👈 👆 🈚 ☑, ✅ 👈 ✔ ✔️ ☑ 🏬, ♒️.
+⤴️, 🕐❔ ⚫️ 👆 🔄, 👆 ☑ "😌" 👷, 👆 🛠️ 🍣, 💭 ⚫️❔ 👆 💚, 🤚 👆 🥰 ⚒, 💸, ✅ 👈 👆 🤝 ☑ 💵 ⚖️ 💳, ✅ 👈 👆 🈚 ☑, ✅ 👈 ✔ ✔️ ☑ 🏬, ♒️.
 
-✋️ ⤴, ✋️ 👆 🚫 ✔️ 👆 🍔, 👆 👷 ⏮ 🏧 "🔛 ⏸" ⏸, ↩️ 👆 ✔️ ⌛ 👶 👆 🍔 🔜.
+✋️ ⤴️, ✋️ 👆 🚫 ✔️ 👆 🍔, 👆 👷 ⏮️ 🏧 "🔛 ⏸" ⏸, ↩️ 👆 ✔️ ⌛ 👶 👆 🍔 🔜.
 
-✋️ 👆 🚶 ↖️ ⚪️➡️ ⏲ &amp; 🧎 🏓 ⏮ 🔢 👆 🔄, 👆 💪 🎛 👶 👆 🙋 👆 🥰, &amp; "👷" 👶 👶 🔛 👈. ⤴ 👆 🔄 🔨 🕳 📶 "😌" 😏 ⏮ 👆 🥰 👶.
+✋️ 👆 🚶 ↖️ ⚪️➡️ ⏲ &amp; 🧎 🏓 ⏮️ 🔢 👆 🔄, 👆 💪 🎛 👶 👆 🙋 👆 🥰, &amp; "👷" 👶 👶 🔛 👈. ⤴️ 👆 🔄 🔨 🕳 📶 "😌" 😏 ⏮️ 👆 🥰 👶.
 
-⤴ 🏧 👶 💬 "👤 🏁 ⏮ 🔨 🍔" 🚮 👆 🔢 🔛 ⏲ 🖥, ✋️ 👆 🚫 🦘 💖 😜 ⏪ 🕐❔ 🖥 🔢 🔀 👆 🔄 🔢. 👆 💭 🙅‍♂ 1⃣ 🔜 📎 👆 🍔 ↩️ 👆 ✔️ 🔢 👆 🔄, &amp; 👫 ✔️ 👫.
+⤴️ 🏧 👶 💬 "👤 🏁 ⏮️ 🔨 🍔" 🚮 👆 🔢 🔛 ⏲ 🖥, ✋️ 👆 🚫 🦘 💖 😜 ⏪ 🕐❔ 🖥 🔢 🔀 👆 🔄 🔢. 👆 💭 🙅‍♂ 1️⃣ 🔜 📎 👆 🍔 ↩️ 👆 ✔️ 🔢 👆 🔄, &amp; 👫 ✔️ 👫.
 
-👆 ⌛ 👆 🥰 🏁 📖 (🏁 ⏮ 👷 👶 / 📋 ➖ 🛠 👶), 😀 🖐 &amp; 💬 👈 👆 🔜 🍔 ⏸.
+👆 ⌛ 👆 🥰 🏁 📖 (🏁 ⏮️ 👷 👶 / 📋 ➖ 🛠️ 👶), 😀 🖐 &amp; 💬 👈 👆 🔜 🍔 ⏸.
 
-⤴ 👆 🚶 ⏲ 👶, ▶ 📋 👈 🔜 🏁 👶, ⚒ 🍔, 💬 👏 &amp; ✊ 👫 🏓. 👈 🏁 👈 🔁 / 📋 🔗 ⏮ ⏲ ⏹. 👈 🔄, ✍ 🆕 📋, "🍴 🍔" 👶 👶, ✋️ ⏮ 1⃣ "🤚 🍔" 🏁 ⏹.
+⤴️ 👆 🚶 ⏲ 👶, ▶️ 📋 👈 🔜 🏁 👶, ⚒ 🍔, 💬 👏 &amp; ✊ 👫 🏓. 👈 🏁 👈 🔁 / 📋 🔗 ⏮️ ⏲ ⏹. 👈 🔄, ✍ 🆕 📋, "🍴 🍔" 👶 👶, ✋️ ⏮️ 1️⃣ "🤚 🍔" 🏁 ⏹.
 
 ### 🔗 🍔
 
-🔜 ➡️ 🌈 👫 ➖🚫 🚫 "🛠 🍔", ✋️ "🔗 🍔".
+🔜 ➡️ 🌈 👫 ➖🚫 🚫 "🛠️ 🍔", ✋️ "🔗 🍔".
 
-👆 🚶 ⏮ 👆 🥰 🤚 🔗 ⏩ 🥕.
+👆 🚶 ⏮️ 👆 🥰 🤚 🔗 ⏩ 🥕.
 
-👆 🧍 ⏸ ⏪ 📚 (➡️ 💬 8⃣) 🏧 👈 🎏 🕰 🍳 ✊ ✔ ⚪️➡️ 👫👫 🚪 👆.
+👆 🧍 ⏸ ⏪ 📚 (➡️ 💬 8️⃣) 🏧 👈 🎏 🕰 🍳 ✊ ✔ ⚪️➡️ 👫👫 🚪 👆.
 
-👱 ⏭ 👆 ⌛ 👫 🍔 🔜 ⏭ 🍂 ⏲ ↩️ 🔠 8⃣ 🏧 🚶 &amp; 🏗 🍔 ▶️ ↖️ ⏭ 💆‍♂ ⏭ ✔.
+👱 ⏭ 👆 ⌛ 👫 🍔 🔜 ⏭ 🍂 ⏲ ↩️ 🔠 8️⃣ 🏧 🚶 &amp; 🏗 🍔 ▶️️ ↖️ ⏭ 💆‍♂ ⏭ ✔.
 
 <img src="/img/async/parallel-burgers/parallel-burgers-01.png" class="illustration">
 
-⤴ ⚫️ 😒 👆 🔄, 👆 🥉 👆 ✔ 2⃣ 📶 🎀 🍔 👆 🥰 &amp; 👆.
+⤴️ ⚫️ 😒 👆 🔄, 👆 🥉 👆 ✔ 2️⃣ 📶 🎀 🍔 👆 🥰 &amp; 👆.
 
 👆 💸 👶.
 
@@ -177,21 +177,21 @@ def results():
 
 🏧 🚶 👨‍🍳.
 
-👆 ⌛, 🧍 🚪 ⏲ 👶, 👈 🙅‍♂ 1⃣ 🙆 ✊ 👆 🍔 ⏭ 👆, 📤 🙅‍♂ 🔢 🔄.
+👆 ⌛, 🧍 🚪 ⏲ 👶, 👈 🙅‍♂ 1️⃣ 🙆 ✊ 👆 🍔 ⏭ 👆, 📤 🙅‍♂ 🔢 🔄.
 
 <img src="/img/async/parallel-burgers/parallel-burgers-03.png" class="illustration">
 
 👆 &amp; 👆 🥰 😩 🚫 ➡️ 🙆 🤚 🚪 👆 &amp; ✊ 👆 🍔 🕐❔ 👫 🛬, 👆 🚫🔜 💸 🙋 👆 🥰. 👶
 
-👉 "🔁" 👷, 👆 "🔁" ⏮ 🏧/🍳 👶 👶. 👆 ✔️ ⌛ 👶 &amp; 📤 ☑ 🙍 👈 🏧/🍳 👶 👶 🏁 🍔 &amp; 🤝 👫 👆, ⚖️ ⏪, 👱 🙆 💪 ✊ 👫.
+👉 "🔁" 👷, 👆 "🔁" ⏮️ 🏧/🍳 👶 👶. 👆 ✔️ ⌛ 👶 &amp; 📤 ☑ 🙍 👈 🏧/🍳 👶 👶 🏁 🍔 &amp; 🤝 👫 👆, ⚖️ ⏪, 👱 🙆 💪 ✊ 👫.
 
 <img src="/img/async/parallel-burgers/parallel-burgers-04.png" class="illustration">
 
-⤴ 👆 🏧/🍳 👶 👶 😒 👟 🔙 ⏮ 👆 🍔, ⏮ 📏 🕰 ⌛ 👶 📤 🚪 ⏲.
+⤴️ 👆 🏧/🍳 👶 👶 😒 👟 🔙 ⏮️ 👆 🍔, ⏮️ 📏 🕰 ⌛ 👶 📤 🚪 ⏲.
 
 <img src="/img/async/parallel-burgers/parallel-burgers-05.png" class="illustration">
 
-👆 ✊ 👆 🍔 &amp; 🚶 🏓 ⏮ 👆 🥰.
+👆 ✊ 👆 🍔 &amp; 🚶 🏓 ⏮️ 👆 🥰.
 
 👆 🍴 👫, &amp; 👆 🔨. ⏹
 
@@ -204,9 +204,9 @@ def results():
 
 ---
 
-👉 😐 🔗 🍔, 👆 💻 / 📋 👶 ⏮ 2⃣ 🕹 (👆 &amp; 👆 🥰), 👯‍♂️ ⌛ 👶 &amp; 💡 👫 🙋 👶 "⌛ 🔛 ⏲" 👶 📏 🕰.
+👉 😐 🔗 🍔, 👆 💻 / 📋 👶 ⏮️ 2️⃣ 🕹 (👆 &amp; 👆 🥰), 👯‍♂️ ⌛ 👶 &amp; 💡 👫 🙋 👶 "⌛ 🔛 ⏲" 👶 📏 🕰.
 
-⏩ 🥕 🏪 ✔️ 8⃣ 🕹 (🏧/🍳). ⏪ 🛠 🍔 🏪 💪 ✔️ ✔️ 🕴 2⃣ (1⃣ 🏧 &amp; 1⃣ 🍳).
+⏩ 🥕 🏪 ✔️ 8️⃣ 🕹 (🏧/🍳). ⏪ 🛠️ 🍔 🏪 💪 ✔️ ✔️ 🕴 2️⃣ (1️⃣ 🏧 &amp; 1️⃣ 🍳).
 
 ✋️, 🏁 💡 🚫 🏆. 👶
 
@@ -218,37 +218,37 @@ def results():
 
 🆙 ⏳, 🏆 🏦 ✔️ 💗 🏧 👶 👶 👶 👶 👶 👶 👶 👶 &amp; 🦏 ⏸ 👶 👶 👶 👶 👶 👶 👶 👶.
 
-🌐 🏧 🔨 🌐 👷 ⏮ 1⃣ 👩‍💻 ⏮ 🎏 👶 👶 👶.
+🌐 🏧 🔨 🌐 👷 ⏮️ 1️⃣ 👩‍💻 ⏮️ 🎏 👶 👶 👶.
 
 &amp; 👆 ✔️ ⌛ 👶 ⏸ 📏 🕰 ⚖️ 👆 💸 👆 🔄.
 
-👆 🎲 🚫🔜 💚 ✊ 👆 🥰 👶 ⏮ 👆 👷 🏦 👶.
+👆 🎲 🚫🔜 💚 ✊ 👆 🥰 👶 ⏮️ 👆 👷 🏦 👶.
 
 ### 🍔 🏁
 
-👉 😐 "⏩ 🥕 🍔 ⏮ 👆 🥰", 📤 📚 ⌛ 👶, ⚫️ ⚒ 📚 🌅 🔑 ✔️ 🛠 ⚙️ ⏸ 👶 👶.
+👉 😐 "⏩ 🥕 🍔 ⏮️ 👆 🥰", 📤 📚 ⌛ 👶, ⚫️ ⚒ 📚 🌅 🔑 ✔️ 🛠️ ⚙️ ⏸ 👶 👶.
 
 👉 💼 🌅 🕸 🈸.
 
 📚, 📚 👩‍💻, ✋️ 👆 💽 ⌛ 👶 👫 🚫--👍 🔗 📨 👫 📨.
 
-&amp; ⤴ ⌛ 👶 🔄 📨 👟 🔙.
+&amp; ⤴️ ⌛ 👶 🔄 📨 👟 🔙.
 
 👉 "⌛" 👶 ⚖ ⏲, ✋️, ⚖ ⚫️ 🌐, ⚫️ 📚 ⌛ 🔚.
 
 👈 ⚫️❔ ⚫️ ⚒ 📚 🔑 ⚙️ 🔁 ⏸ 👶 👶 📟 🕸 🔗.
 
-👉 😇 🔀 ⚫️❔ ⚒ ✳ 🌟 (✋️ ✳ 🚫 🔗) &amp; 👈 💪 🚶 🛠 🇪🇸.
+👉 😇 🔀 ⚫️❔ ⚒ ✳ 🌟 (✋️ ✳ 🚫 🔗) &amp; 👈 💪 🚶 🛠️ 🇪🇸.
 
-&amp; 👈 🎏 🎚 🎭 👆 🤚 ⏮ **FastAPI**.
+&amp; 👈 🎏 🎚 🎭 👆 🤚 ⏮️ **FastAPI**.
 
-&amp; 👆 💪 ✔️ 🔁 &amp; 🔀 🎏 🕰, 👆 🤚 ↕ 🎭 🌘 🌅 💯 ✳ 🛠 &amp; 🔛 🇷🇪 ⏮ 🚶, ❔ ✍ 🇪🇸 🔐 🅱 <a href="https://www.techempower.com/benchmarks/#section=data-r17&hw=ph&test=query&l=zijmkf-1" class="external-link" target="_blank">(🌐 👏 💃)</a>.
+&amp; 👆 💪 ✔️ 🔁 &amp; 🔀 🎏 🕰, 👆 🤚 ↕ 🎭 🌘 🌅 💯 ✳ 🛠️ &amp; 🔛 🇷🇪 ⏮️ 🚶, ❔ ✍ 🇪🇸 🔐 🅱 <a href="https://www.techempower.com/benchmarks/#section=data-r17&hw=ph&test=query&l=zijmkf-1" class="external-link" target="_blank">(🌐 👏 💃)</a>.
 
-### 🛠 👍 🌘 🔁 ❓
+### 🛠️ 👍 🌘 🔁 ❓
 
 😆 ❗ 👈 🚫 🛐 📖.
 
-🛠 🎏 🌘 🔁. &amp; ⚫️ 👻 🔛 **🎯** 😐 👈 🔌 📚 ⌛. ↩️ 👈, ⚫️ 🛎 📚 👍 🌘 🔁 🕸 🈸 🛠. ✋️ 🚫 🌐.
+🛠️ 🎏 🌘 🔁. &amp; ⚫️ 👻 🔛 **🎯** 😐 👈 🔌 📚 ⌛. ↩️ 👈, ⚫️ 🛎 📚 👍 🌘 🔁 🕸 🈸 🛠️. ✋️ 🚫 🌐.
 
 , ⚖ 👈 👅, 🌈 📄 📏 📖:
 
@@ -260,50 +260,50 @@ def results():
 
 📤 🙅‍♂ ⌛ 👶 🙆, 📚 👷 🔨, 🔛 💗 🥉 🏠.
 
-👆 💪 ✔️ 🔄 🍔 🖼, 🥇 🏠 🧖‍♂, ⤴ 👨‍🍳, ✋️ 👆 🚫 ⌛ 👶 🕳, 🧹 &amp; 🧹, 🔄 🚫🔜 📉 🕳.
+👆 💪 ✔️ 🔄 🍔 🖼, 🥇 🏠 🧖‍♂, ⤴️ 👨‍🍳, ✋️ 👆 🚫 ⌛ 👶 🕳, 🧹 &amp; 🧹, 🔄 🚫🔜 📉 🕳.
 
-⚫️ 🔜 ✊ 🎏 💸 🕰 🏁 ⏮ ⚖️ 🍵 🔄 (🛠) &amp; 👆 🔜 ✔️ ⌛ 🎏 💸 👷.
+⚫️ 🔜 ✊ 🎏 💸 🕰 🏁 ⏮️ ⚖️ 🍵 🔄 (🛠️) &amp; 👆 🔜 ✔️ ⌛ 🎏 💸 👷.
 
-✋️ 👉 💼, 🚥 👆 💪 ✊️ 8⃣ 👰-🏧/🍳/🔜-🧹, &amp; 🔠 1⃣ 👫 (➕ 👆) 💪 ✊ 🏒 🏠 🧹 ⚫️, 👆 💪 🌐 👷 **🔗**, ⏮ ➕ ℹ, &amp; 🏁 🌅 🔜.
+✋️ 👉 💼, 🚥 👆 💪 ✊️ 8️⃣ 👰-🏧/🍳/🔜-🧹, &amp; 🔠 1️⃣ 👫 (➕ 👆) 💪 ✊ 🏒 🏠 🧹 ⚫️, 👆 💪 🌐 👷 **🔗**, ⏮️ ➕ ℹ, &amp; 🏁 🌅 🔜.
 
-👉 😐, 🔠 1⃣ 🧹 (🔌 👆) 🔜 🕹, 🤸 👫 🍕 👨‍🏭.
+👉 😐, 🔠 1️⃣ 🧹 (🔌 👆) 🔜 🕹, 🤸 👫 🍕 👨‍🏭.
 
-&amp; 🏆 🛠 🕰 ✊ ☑ 👷 (↩️ ⌛), &amp; 👷 💻 ⌛ <abbr title="Central Processing Unit">💽</abbr>, 👫 🤙 👫 ⚠ "💽 🎁".
+&amp; 🏆 🛠️ 🕰 ✊ ☑ 👷 (↩️ ⌛), &amp; 👷 💻 ⌛ <abbr title="Central Processing Unit">💽</abbr>, 👫 🤙 👫 ⚠ "💽 🎁".
 
 ---
 
-⚠ 🖼 💽 🔗 🛠 👜 👈 🚚 🏗 🧪 🏭.
+⚠ 🖼 💽 🔗 🛠️ 👜 👈 🚚 🏗 🧪 🏭.
 
 🖼:
 
 * **🎧** ⚖️ **🖼 🏭**.
-* **💻 👓**: 🖼 ✍ 💯 🔅, 🔠 🔅 ✔️ 3⃣ 💲 / 🎨, 🏭 👈 🛎 🚚 💻 🕳 🔛 📚 🔅, 🌐 🎏 🕰.
-* **🎰 🏫**: ⚫️ 🛎 🚚 📚 "✖" &amp; "🖼" ✖. 💭 🦏 📋 ⏮ 🔢 &amp; ✖ 🌐 👫 👯‍♂️ 🎏 🕰.
+* **💻 👓**: 🖼 ✍ 💯 🔅, 🔠 🔅 ✔️ 3️⃣ 💲 / 🎨, 🏭 👈 🛎 🚚 💻 🕳 🔛 📚 🔅, 🌐 🎏 🕰.
+* **🎰 🏫**: ⚫️ 🛎 🚚 📚 "✖" &amp; "🖼" ✖. 💭 🦏 📋 ⏮️ 🔢 &amp; ✖ 🌐 👫 👯‍♂️ 🎏 🕰.
 * **⏬ 🏫**: 👉 🎧-🏑 🎰 🏫,, 🎏 ✔. ⚫️ 👈 📤 🚫 👁 📋 🔢 ✖, ✋️ 🦏 ⚒ 👫, &amp; 📚 💼, 👆 ⚙️ 🎁 🕹 🏗 &amp; / ⚖️ ⚙️ 👈 🏷.
 
-### 🛠 ➕ 🔁: 🕸 ➕ 🎰 🏫
+### 🛠️ ➕ 🔁: 🕸 ➕ 🎰 🏫
 
-⏮ **FastAPI** 👆 💪 ✊ 📈 🛠 👈 📶 ⚠ 🕸 🛠 (🎏 👑 🧲 ✳).
+⏮️ **FastAPI** 👆 💪 ✊ 📈 🛠️ 👈 📶 ⚠ 🕸 🛠️ (🎏 👑 🧲 ✳).
 
-✋️ 👆 💪 🐄 💰 🔁 &amp; 💾 (✔️ 💗 🛠 🏃‍♂ 🔗) **💽 🎁** ⚖ 💖 👈 🎰 🏫 ⚙️.
+✋️ 👆 💪 🐄 💰 🔁 &amp; 💾 (✔️ 💗 🛠️ 🏃‍♂ 🔗) **💽 🎁** ⚖ 💖 👈 🎰 🏫 ⚙️.
 
-👈, ➕ 🙅 👐 👈 🐆 👑 🇪🇸 **💽 🧪**, 🎰 🏫 &amp; ✴️ ⏬ 🏫, ⚒ FastAPI 📶 👍 🏏 💽 🧪 / 🎰 🏫 🕸 🔗 &amp; 🈸 (👪 📚 🎏).
+👈, ➕ 🙅 👐 👈 🐍 👑 🇪🇸 **💽 🧪**, 🎰 🏫 &amp; ✴️ ⏬ 🏫, ⚒ FastAPI 📶 👍 🏏 💽 🧪 / 🎰 🏫 🕸 🔗 &amp; 🈸 (👪 📚 🎏).
 
-👀 ❔ 🏆 👉 🔁 🏭 👀 📄 🔃 [🛠](deployment/index.md){.internal-link target=_blank}.
+👀 ❔ 🏆 👉 🔁 🏭 👀 📄 🔃 [🛠️](deployment/index.md){.internal-link target=_blank}.
 
 ## `async` &amp; `await`
 
-🏛 ⏬ 🐆 ✔️ 📶 🏋️ 🌌 🔬 🔁 📟. 👉 ⚒ ⚫️ 👀 💖 😐 "🔁" 📟 &amp; "⌛" 👆 ▶️ 🙍.
+🏛 ⏬ 🐍 ✔️ 📶 🏋️ 🌌 🔬 🔁 📟. 👉 ⚒ ⚫️ 👀 💖 😐 "🔁" 📟 &amp; "⌛" 👆 ▶️️ 🙍.
 
-🕐❔ 📤 🛠 👈 🔜 🚚 ⌛ ⏭ 🤝 🏁 &amp; ✔️ 🐕‍🦺 👉 🆕 🐆 ⚒, 👆 💪 📟 ⚫️ 💖:
+🕐❔ 📤 🛠️ 👈 🔜 🚚 ⌛ ⏭ 🤝 🏁 &amp; ✔️ 🐕‍🦺 👉 🆕 🐍 ⚒, 👆 💪 📟 ⚫️ 💖:
 
 ```Python
 burgers = await get_burgers(2)
 ```
 
-🔑 📥 `await`. ⚫️ 💬 🐆 👈 ⚫️ ✔️ ⌛ ⏸ `get_burgers(2)` 🏁 🔨 🚮 👜 👶 ⏭ ♻ 🏁 `burgers`. ⏮ 👈, 🐆 🔜 💭 👈 ⚫️ 💪 🚶 &amp; 🕳 🙆 👶 👶 👐 (💖 📨 ➕1️⃣ 📨).
+🔑 📥 `await`. ⚫️ 💬 🐍 👈 ⚫️ ✔️ ⌛ ⏸ `get_burgers(2)` 🏁 🔨 🚮 👜 👶 ⏭ ♻ 🏁 `burgers`. ⏮️ 👈, 🐍 🔜 💭 👈 ⚫️ 💪 🚶 &amp; 🕳 🙆 👶 👶 👐 (💖 📨 ➕1️⃣ 📨).
 
-`await` 👷, ⚫️ ✔️ 🔘 🔢 👈 🐕‍🦺 👉 🔀. 👈, 👆 📣 ⚫️ ⏮ `async def`:
+`await` 👷, ⚫️ ✔️ 🔘 🔢 👈 🐕‍🦺 👉 🔀. 👈, 👆 📣 ⚫️ ⏮️ `async def`:
 
 ```Python hl_lines="1"
 async def get_burgers(number: int):
@@ -320,7 +320,7 @@ def get_sequential_burgers(number: int):
     return burgers
 ```
 
-⏮ `async def`, 🐆 💭 👈, 🔘 👈 🔢, ⚫️ ✔️ 🤔 `await` 🧬, &amp; 👈 ⚫️ 💪 "⏸" ⏸ 🛠 👈 🔢 &amp; 🚶 🕳 🙆 👶 ⏭ 👟 🔙.
+⏮️ `async def`, 🐍 💭 👈, 🔘 👈 🔢, ⚫️ ✔️ 🤔 `await` 🧬, &amp; 👈 ⚫️ 💪 "⏸" ⏸ 🛠️ 👈 🔢 &amp; 🚶 🕳 🙆 👶 ⏭ 👟 🔙.
 
 🕐❔ 👆 💚 🤙 `async def` 🔢, 👆 ✔️ "⌛" ⚫️. , 👉 🏆 🚫 👷:
 
@@ -331,7 +331,7 @@ burgers = get_burgers(2)
 
 ---
 
-, 🚥 👆 ⚙️ 🗃 👈 💬 👆 👈 👆 💪 🤙 ⚫️ ⏮ `await`, 👆 💪 ✍ *➡ 🛠 🔢* 👈 ⚙️ ⚫️ ⏮ `async def`, 💖:
+, 🚥 👆 ⚙️ 🗃 👈 💬 👆 👈 👆 💪 🤙 ⚫️ ⏮️ `await`, 👆 💪 ✍ *➡ 🛠️ 🔢* 👈 ⚙️ ⚫️ ⏮️ `async def`, 💖:
 
 ```Python hl_lines="2-3"
 @app.get('/burgers')
@@ -342,49 +342,49 @@ async def read_burgers():
 
 ### 🌅 📡 ℹ
 
-👆 💪 ✔️ 👀 👈 `await` 💪 🕴 ⚙️ 🔘 🔢 🔬 ⏮ `async def`.
+👆 💪 ✔️ 👀 👈 `await` 💪 🕴 ⚙️ 🔘 🔢 🔬 ⏮️ `async def`.
 
-✋️ 🎏 🕰, 🔢 🔬 ⏮ `async def` ✔️ "⌛". , 🔢 ⏮ `async def` 💪 🕴 🤙 🔘 🔢 🔬 ⏮ `async def` 💁‍♂️.
+✋️ 🎏 🕰, 🔢 🔬 ⏮️ `async def` ✔️ "⌛". , 🔢 ⏮️ `async def` 💪 🕴 🤙 🔘 🔢 🔬 ⏮️ `async def` 💁‍♂️.
 
 , 🔃 🥚 &amp; 🐔, ❔ 👆 🤙 🥇 `async` 🔢 ❓
 
-🚥 👆 👷 ⏮ **FastAPI** 👆 🚫 ✔️ 😟 🔃 👈, ↩️ 👈 "🥇" 🔢 🔜 👆 *➡ 🛠 🔢*, &amp; FastAPI 🔜 💭 ❔ ▶️ 👜.
+🚥 👆 👷 ⏮️ **FastAPI** 👆 🚫 ✔️ 😟 🔃 👈, ↩️ 👈 "🥇" 🔢 🔜 👆 *➡ 🛠️ 🔢*, &amp; FastAPI 🔜 💭 ❔ ▶️️ 👜.
 
 ✋️ 🚥 👆 💚 ⚙️ `async` / `await` 🍵 FastAPI, 👆 💪 ⚫️ 👍.
 
 ### ✍ 👆 👍 🔁 📟
 
-💃 (&amp; **FastAPI**) ⚓️ 🔛 <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a>, ❔ ⚒ ⚫️ 🔗 ⏮ 👯‍♂️ 🐆 🐩 🗃 <a href="https://docs.python.org/3/library/asyncio-task.html" class="external-link" target="_blank">✳</a> &amp; <a href="https://trio.readthedocs.io/en/stable/" class="external-link" target="_blank">🎻</a>.
+💃 (&amp; **FastAPI**) ⚓️ 🔛 <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a>, ❔ ⚒ ⚫️ 🔗 ⏮️ 👯‍♂️ 🐍 🐩 🗃 <a href="https://docs.python.org/3/library/asyncio-task.html" class="external-link" target="_blank">✳</a> &amp; <a href="https://trio.readthedocs.io/en/stable/" class="external-link" target="_blank">🎻</a>.
 
-🎯, 👆 💪 🔗 ⚙️ <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a> 👆 🏧 🛠 ⚙️ 💼 👈 🚚 🌅 🏧 ⚓ 👆 👍 📟.
+🎯, 👆 💪 🔗 ⚙️ <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a> 👆 🏧 🛠️ ⚙️ 💼 👈 🚚 🌅 🏧 ⚓ 👆 👍 📟.
 
-&amp; 🚥 👆 🚫 ⚙️ FastAPI, 👆 💪 ✍ 👆 👍 🔁 🈸 ⏮ <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a> 🏆 🔗 &amp; 🤚 🚮 💰 (✅ *📊 🛠*).
+&amp; 🚥 👆 🚫 ⚙️ FastAPI, 👆 💪 ✍ 👆 👍 🔁 🈸 ⏮️ <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a> 🏆 🔗 &amp; 🤚 🚮 💰 (✅ *📊 🛠️*).
 
 ### 🎏 📨 🔁 📟
 
 👉 👗 ⚙️ `async` &amp; `await` 📶 🆕 🇪🇸.
 
-✋️ ⚫️ ⚒ 👷 ⏮ 🔁 📟 📚 ⏩.
+✋️ ⚫️ ⚒ 👷 ⏮️ 🔁 📟 📚 ⏩.
 
 👉 🎏 ❕ (⚖️ 🌖 🌓) 🔌 ⏳ 🏛 ⏬ 🕸 (🖥 &amp; ✳).
 
 ✋️ ⏭ 👈, 🚚 🔁 📟 🌖 🏗 &amp; ⚠.
 
-⏮ ⏬ 🐆, 👆 💪 ✔️ ⚙️ 🧵 ⚖️ <a href="https://www.gevent.org/" class="external-link" target="_blank">🐁</a>. ✋️ 📟 🌌 🌖 🏗 🤔, ℹ, &amp; 💭 🔃.
+⏮️ ⏬ 🐍, 👆 💪 ✔️ ⚙️ 🧵 ⚖️ <a href="https://www.gevent.org/" class="external-link" target="_blank">🐁</a>. ✋️ 📟 🌌 🌖 🏗 🤔, ℹ, &amp; 💭 🔃.
 
-⏮ ⏬ ✳ / 🖥 🕸, 👆 🔜 ✔️ ⚙️ "⏲". ❔ ↘️ <a href="http://callbackhell.com/" class="external-link" target="_blank">⏲ 🔥😈</a>.
+⏮️ ⏬ ✳ / 🖥 🕸, 👆 🔜 ✔️ ⚙️ "⏲". ❔ ↘️ <a href="http://callbackhell.com/" class="external-link" target="_blank">⏲ 🔥😈</a>.
 
 ## 🔁
 
-**🔁** 📶 🎀 ⚖ 👜 📨 `async def` 🔢. 🐆 💭 👈 ⚫️ 🕳 💖 🔢 👈 ⚫️ 💪 ▶ &amp; 👈 ⚫️ 🔜 🔚 ☝, ✋️ 👈 ⚫️ 5️⃣📆 ⏸ ⏸ 🔘 💁‍♂️, 🕐❔ 📤 `await` 🔘 ⚫️.
+**🔁** 📶 🎀 ⚖ 👜 📨 `async def` 🔢. 🐍 💭 👈 ⚫️ 🕳 💖 🔢 👈 ⚫️ 💪 ▶️ &amp; 👈 ⚫️ 🔜 🔚 ☝, ✋️ 👈 ⚫️ 5️⃣📆 ⏸ ⏸ 🔘 💁‍♂️, 🕐❔ 📤 `await` 🔘 ⚫️.
 
-✋️ 🌐 👉 🛠 ⚙️ 🔁 📟 ⏮ `async` &amp; `await` 📚 🕰 🔬 ⚙️ "🔁". ⚫️ ⭐ 👑 🔑 ⚒ 🚶, "🔁".
+✋️ 🌐 👉 🛠️ ⚙️ 🔁 📟 ⏮️ `async` &amp; `await` 📚 🕰 🔬 ⚙️ "🔁". ⚫️ ⭐ 👑 🔑 ⚒ 🚶, "🔁".
 
 ## 🏁
 
 ➡️ 👀 🎏 🔤 ⚪️➡️ 🔛:
 
-> 🏛 ⏬ 🐆 ✔️ 🐕‍🦺 **"🔁 📟"** ⚙️ 🕳 🤙 **"🔁"**, ⏮ **`async` &amp; `await`** ❕.
+> 🏛 ⏬ 🐍 ✔️ 🐕‍🦺 **"🔁 📟"** ⚙️ 🕳 🤙 **"🔁"**, ⏮️ **`async` &amp; `await`** ❕.
 
 👈 🔜 ⚒ 🌅 🔑 🔜. 👶
 
@@ -397,15 +397,15 @@ async def read_burgers():
 
     👉 📶 📡 ℹ ❔ **FastAPI** 👷 🔘.
 
-    🚥 👆 ✔️ 📡 💡 (🈶-🏋, 🧵, 🍫, ♒️.) &amp; 😟 🔃 ❔ FastAPI 🍵 `async def` 🆚 😐 `def`, 🚶 ⤴.
+    🚥 👆 ✔️ 📡 💡 (🈶-🏋, 🧵, 🍫, ♒️.) &amp; 😟 🔃 ❔ FastAPI 🍵 `async def` 🆚 😐 `def`, 🚶 ⤴️.
 
-### ➡ 🛠 🔢
+### ➡ 🛠️ 🔢
 
-🕐❔ 👆 📣 *➡ 🛠 🔢* ⏮ 😐 `def` ↩️ `async def`, ⚫️ 🏃 🔢 🧵 👈 ⤴ ⌛, ↩️ ➖ 🤙 🔗 (⚫️ 🔜 🍫 💽).
+🕐❔ 👆 📣 *➡ 🛠️ 🔢* ⏮️ 😐 `def` ↩️ `async def`, ⚫️ 🏃 🔢 🧵 👈 ⤴️ ⌛, ↩️ ➖ 🤙 🔗 (⚫️ 🔜 🍫 💽).
 
-🚥 👆 👟 ⚪️➡️ ➕1️⃣ 🔁 🛠 👈 🔨 🚫 👷 🌌 🔬 🔛 &amp; 👆 ⚙️ ⚖ 🙃 📊-🕴 *➡ 🛠 🔢* ⏮ ✅ `def` 🤪 🎭 📈 (🔃 1⃣0⃣0⃣ 💓), 🙏 🗒 👈 **FastAPI** ⭐ 🔜 🔄. 👫 💼, ⚫️ 👻 ⚙️ `async def` 🚥 👆 *➡ 🛠 🔢* ⚙️ 📟 👈 🎭 🚧 <abbr title="Input/Output: disk reading or writing, network communications.">👤/🅾</abbr>.
+🚥 👆 👟 ⚪️➡️ ➕1️⃣ 🔁 🛠️ 👈 🔨 🚫 👷 🌌 🔬 🔛 &amp; 👆 ⚙️ ⚖ 🙃 📊-🕴 *➡ 🛠️ 🔢* ⏮️ ✅ `def` 🤪 🎭 📈 (🔃 1️⃣0️⃣0️⃣ 💓), 🙏 🗒 👈 **FastAPI** ⭐ 🔜 🔄. 👫 💼, ⚫️ 👻 ⚙️ `async def` 🚥 👆 *➡ 🛠️ 🔢* ⚙️ 📟 👈 🎭 🚧 <abbr title="Input/Output: disk reading or writing, network communications.">👤/🅾</abbr>.
 
-, 👯‍♂️ ⚠, 🤞 👈 **FastAPI** 🔜 [⏩](/#performance){.internal-link target=_blank} 🌘 (⚖️ 🌘 ⭐) 👆 ⏮ 🛠.
+, 👯‍♂️ ⚠, 🤞 👈 **FastAPI** 🔜 [⏩](/#performance){.internal-link target=_blank} 🌘 (⚖️ 🌘 ⭐) 👆 ⏮️ 🛠️.
 
 ### 🔗
 
@@ -413,18 +413,18 @@ async def read_burgers():
 
 ### 🎧-🔗
 
-👆 💪 ✔️ 💗 🔗 &amp; [🎧-🔗](/tutorial/dependencies/sub-dependencies.md){.internal-link target=_blank} 🚫 🔠 🎏 (🔢 🔢 🔑), 👫 💪 ✍ ⏮ `async def` &amp; ⏮ 😐 `def`. ⚫️ 🔜 👷, &amp; 🕐 ✍ ⏮ 😐 `def` 🔜 🤙 🔛 🔢 🧵 (⚪️➡️ 🧵) ↩️ ➖ "⌛".
+👆 💪 ✔️ 💗 🔗 &amp; [🎧-🔗](/tutorial/dependencies/sub-dependencies.md){.internal-link target=_blank} 🚫 🔠 🎏 (🔢 🔢 🔑), 👫 💪 ✍ ⏮️ `async def` &amp; ⏮️ 😐 `def`. ⚫️ 🔜 👷, &amp; 🕐 ✍ ⏮️ 😐 `def` 🔜 🤙 🔛 🔢 🧵 (⚪️➡️ 🧵) ↩️ ➖ "⌛".
 
 ### 🎏 🚙 🔢
 
-🙆 🎏 🚙 🔢 👈 👆 🤙 🔗 💪 ✍ ⏮ 😐 `def` ⚖️ `async def` &amp; FastAPI 🏆 🚫 📉 🌌 👆 🤙 ⚫️.
+🙆 🎏 🚙 🔢 👈 👆 🤙 🔗 💪 ✍ ⏮️ 😐 `def` ⚖️ `async def` &amp; FastAPI 🏆 🚫 📉 🌌 👆 🤙 ⚫️.
 
-👉 🔅 🔢 👈 FastAPI 🤙 👆: *➡ 🛠 🔢* &amp; 🔗.
+👉 🔅 🔢 👈 FastAPI 🤙 👆: *➡ 🛠️ 🔢* &amp; 🔗.
 
-🚥 👆 🚙 🔢 😐 🔢 ⏮ `def`, ⚫️ 🔜 🤙 🔗 (👆 ✍ ⚫️ 👆 📟), 🚫 🧵, 🚥 🔢 ✍ ⏮ `async def` ⤴ 👆 🔜 `await` 👈 🔢 🕐❔ 👆 🤙 ⚫️ 👆 📟.
+🚥 👆 🚙 🔢 😐 🔢 ⏮️ `def`, ⚫️ 🔜 🤙 🔗 (👆 ✍ ⚫️ 👆 📟), 🚫 🧵, 🚥 🔢 ✍ ⏮️ `async def` ⤴️ 👆 🔜 `await` 👈 🔢 🕐❔ 👆 🤙 ⚫️ 👆 📟.
 
 ---
 
 🔄, 👉 📶 📡 ℹ 👈 🔜 🎲 ⚠ 🚥 👆 👟 🔎 👫.
 
-⏪, 👆 🔜 👍 ⏮ 📄 ⚪️➡️ 📄 🔛: <a href="#in-a-hurry">🏃 ❓</a>.
+⏪, 👆 🔜 👍 ⏮️ 📄 ⚪️➡️ 📄 🔛: <a href="#in-a-hurry">🏃 ❓</a>.

@@ -1,22 +1,22 @@
 # 📨 🏷 - 📨 🆎
 
-👆 💪 📣 🆎 ⚙️ 📨 ✍ *➡ 🛠 🔢* **📨 🆎**.
+👆 💪 📣 🆎 ⚙️ 📨 ✍ *➡ 🛠️ 🔢* **📨 🆎**.
 
 👆 💪 ⚙️ **🆎 ✍** 🎏 🌌 👆 🔜 🔢 💽 🔢 **🔢**, 👆 💪 ⚙️ Pydantic 🏷, 📇, 📖, 📊 💲 💖 🔢, 🎻, ♒️.
 
-=== "🐆 3⃣.6⃣ &amp; 🔛"
+=== "🐍 3️⃣.6️⃣ &amp; 🔛"
 
     ```Python hl_lines="18  23"
     {!> ../../../docs_src/response_model/tutorial001_01.py!}
     ```
 
-=== "🐆 3⃣.9⃣ &amp; 🔛"
+=== "🐍 3️⃣.9️⃣ &amp; 🔛"
 
     ```Python hl_lines="18  23"
     {!> ../../../docs_src/response_model/tutorial001_01_py39.py!}
     ```
 
-=== "🐆 3⃣.1⃣0⃣ &amp; 🔛"
+=== "🐍 3️⃣.1️⃣0️⃣ &amp; 🔛"
 
     ```Python hl_lines="16  21"
     {!> ../../../docs_src/response_model/tutorial001_01_py310.py!}
@@ -26,7 +26,7 @@ FastAPI 🔜 ⚙️ 👉 📨 🆎:
 
 * **✔** 📨 💽.
     * 🚥 💽 ❌ (✅ 👆 ❌ 🏑), ⚫️ ⛓ 👈 *👆* 📱 📟 💔, 🚫 🛬 ⚫️❔ ⚫️ 🔜, &amp; ⚫️ 🔜 📨 💽 ❌ ↩️ 🛬 ❌ 💽. 👉 🌌 👆 &amp; 👆 👩‍💻 💪 🎯 👈 👫 🔜 📨 💽 &amp; 💽 💠 📈.
-* 🚮 **🎻 🔗** 📨, 🗄 *➡ 🛠*.
+* 🚮 **🎻 🔗** 📨, 🗄 *➡ 🛠️*.
     * 👉 🔜 ⚙️ **🏧 🩺**.
     * ⚫️ 🔜 ⚙️ 🏧 👩‍💻 📟 ⚡ 🧰.
 
@@ -41,11 +41,11 @@ FastAPI 🔜 ⚙️ 👉 📨 🆎:
 
 🖼, 👆 💪 💚 **📨 📖** ⚖️ 💽 🎚, ✋️ **📣 ⚫️ Pydantic 🏷**. 👉 🌌 Pydantic 🏷 🔜 🌐 💽 🧾, 🔬, ♒️. 🎚 👈 👆 📨 (✅ 📖 ⚖️ 💽 🎚).
 
-🚥 👆 🚮 📨 🆎 ✍, 🧰 &amp; 👨‍🎨 🔜 😭 ⏮ (☑) ❌ 💬 👆 👈 👆 🔢 🛬 🆎 (✅#⃣) 👈 🎏 ⚪️➡️ ⚫️❔ 👆 📣 (✅ Pydantic 🏷).
+🚥 👆 🚮 📨 🆎 ✍, 🧰 &amp; 👨‍🎨 🔜 😭 ⏮️ (☑) ❌ 💬 👆 👈 👆 🔢 🛬 🆎 (✅#️⃣) 👈 🎏 ⚪️➡️ ⚫️❔ 👆 📣 (✅ Pydantic 🏷).
 
-📚 💼, 👆 💪 ⚙️ *➡ 🛠 👨‍🎨* 🔢 `response_model` ↩️ 📨 🆎.
+📚 💼, 👆 💪 ⚙️ *➡ 🛠️ 👨‍🎨* 🔢 `response_model` ↩️ 📨 🆎.
 
-👆 💪 ⚙️ `response_model` 🔢 🙆 *➡ 🛠*:
+👆 💪 ⚙️ `response_model` 🔢 🙆 *➡ 🛠️*:
 
 * `@app.get()`
 * `@app.post()`
@@ -53,26 +53,26 @@ FastAPI 🔜 ⚙️ 👉 📨 🆎:
 * `@app.delete()`
 * ♒️.
 
-=== "🐆 3⃣.6⃣ &amp; 🔛"
+=== "🐍 3️⃣.6️⃣ &amp; 🔛"
 
     ```Python hl_lines="17  22  24-27"
     {!> ../../../docs_src/response_model/tutorial001.py!}
     ```
 
-=== "🐆 3⃣.9⃣ &amp; 🔛"
+=== "🐍 3️⃣.9️⃣ &amp; 🔛"
 
     ```Python hl_lines="17  22  24-27"
     {!> ../../../docs_src/response_model/tutorial001_py39.py!}
     ```
 
-=== "🐆 3⃣.1⃣0⃣ &amp; 🔛"
+=== "🐍 3️⃣.1️⃣0️⃣ &amp; 🔛"
 
     ```Python hl_lines="17  22  24-27"
     {!> ../../../docs_src/response_model/tutorial001_py310.py!}
     ```
 
 !!! note
-    👀 👈 `response_model` 🔢 "👨‍🎨" 👩‍🔬 (`get`, `post`, ♒️). 🚫 👆 *➡ 🛠 🔢*, 💖 🌐 🔢 &amp; 💪.
+    👀 👈 `response_model` 🔢 "👨‍🎨" 👩‍🔬 (`get`, `post`, ♒️). 🚫 👆 *➡ 🛠️ 🔢*, 💖 🌐 🔢 &amp; 💪.
 
 `response_model` 📨 🎏 🆎 👆 🔜 📣 Pydantic 🏷 🏑,, ⚫️ 💪 Pydantic 🏷, ✋️ ⚫️ 💪, ✅ `list` Pydantic 🏷, 💖 `List[Item]`.
 
@@ -81,7 +81,7 @@ FastAPI 🔜 ⚙️ 👉 `response_model` 🌐 💽 🧾, 🔬, ♒️. &amp; **
 !!! tip
     🚥 👆 ✔️ ⚠ 🆎 ✅ 👆 👨‍🎨, ✍, ♒️, 👆 💪 📣 🔢 📨 🆎 `Any`.
 
-    👈 🌌 👆 💬 👨‍🎨 👈 👆 😫 🛬 🕳. ✋️ FastAPI 🔜 💽 🧾, 🔬, 🖥, ♒️. ⏮ `response_model`.
+    👈 🌌 👆 💬 👨‍🎨 👈 👆 😫 🛬 🕳. ✋️ FastAPI 🔜 💽 🧾, 🔬, 🖥, ♒️. ⏮️ `response_model`.
 
 ### `response_model` 📫
 
@@ -89,19 +89,19 @@ FastAPI 🔜 ⚙️ 👉 `response_model` 🌐 💽 🧾, 🔬, ♒️. &amp; **
 
 👉 🌌 👆 💪 🚮 ☑ 🆎 ✍ 👆 🔢 🕐❔ 👆 🛬 🆎 🎏 🌘 📨 🏷, ⚙️ 👨‍🎨 &amp; 🧰 💖 ✍. &amp; 👆 💪 ✔️ FastAPI 💽 🔬, 🧾, ♒️. ⚙️ `response_model`.
 
-👆 💪 ⚙️ `response_model=None` ❎ 🏗 📨 🏷 👈 *➡ 🛠*, 👆 5️⃣📆 💪 ⚫️ 🚥 👆 ❎ 🆎 ✍ 👜 👈 🚫 ☑ Pydantic 🏑, 👆 🔜 👀 🖼 👈 1⃣ 📄 🔛.
+👆 💪 ⚙️ `response_model=None` ❎ 🏗 📨 🏷 👈 *➡ 🛠️*, 👆 5️⃣📆 💪 ⚫️ 🚥 👆 ❎ 🆎 ✍ 👜 👈 🚫 ☑ Pydantic 🏑, 👆 🔜 👀 🖼 👈 1️⃣ 📄 🔛.
 
 ## 📨 🎏 🔢 💽
 
 📥 👥 📣 `UserIn` 🏷, ⚫️ 🔜 🔌 🔢 🔐:
 
-=== "🐆 3⃣.6⃣ &amp; 🔛"
+=== "🐍 3️⃣.6️⃣ &amp; 🔛"
 
     ```Python hl_lines="9  11"
     {!> ../../../docs_src/response_model/tutorial002.py!}
     ```
 
-=== "🐆 3⃣.1⃣0⃣ &amp; 🔛"
+=== "🐍 3️⃣.1️⃣0️⃣ &amp; 🔛"
 
     ```Python hl_lines="7  9"
     {!> ../../../docs_src/response_model/tutorial002_py310.py!}
@@ -115,52 +115,52 @@ FastAPI 🔜 ⚙️ 👉 `response_model` 🌐 💽 🧾, 🔬, ♒️. &amp; **
 
 &amp; 👥 ⚙️ 👉 🏷 📣 👆 🔢 &amp; 🎏 🏷 📣 👆 🔢:
 
-=== "🐆 3⃣.6⃣ &amp; 🔛"
+=== "🐍 3️⃣.6️⃣ &amp; 🔛"
 
     ```Python hl_lines="18"
     {!> ../../../docs_src/response_model/tutorial002.py!}
     ```
 
-=== "🐆 3⃣.1⃣0⃣ &amp; 🔛"
+=== "🐍 3️⃣.1️⃣0️⃣ &amp; 🔛"
 
     ```Python hl_lines="16"
     {!> ../../../docs_src/response_model/tutorial002_py310.py!}
     ```
 
-🔜, 🕐❔ 🖥 🏗 👩‍💻 ⏮ 🔐, 🛠 🔜 📨 🎏 🔐 📨.
+🔜, 🕐❔ 🖥 🏗 👩‍💻 ⏮️ 🔐, 🛠️ 🔜 📨 🎏 🔐 📨.
 
 👉 💼, ⚫️ 💪 🚫 ⚠, ↩️ ⚫️ 🎏 👩‍💻 📨 🔐.
 
-✋️ 🚥 👥 ⚙️ 🎏 🏷 ➕1️⃣ *➡ 🛠*, 👥 💪 📨 👆 👩‍💻 🔐 🔠 👩‍💻.
+✋️ 🚥 👥 ⚙️ 🎏 🏷 ➕1️⃣ *➡ 🛠️*, 👥 💪 📨 👆 👩‍💻 🔐 🔠 👩‍💻.
 
 !!! danger
     🙅 🏪 ✅ 🔐 👩‍💻 ⚖️ 📨 ⚫️ 📨 💖 👉, 🚥 👆 💭 🌐 ⚠ &amp; 👆 💭 ⚫️❔ 👆 🔨.
 
 ## 🚮 🔢 🏷
 
-👥 💪 ↩️ ✍ 🔢 🏷 ⏮ 🔢 🔐 &amp; 🔢 🏷 🍵 ⚫️:
+👥 💪 ↩️ ✍ 🔢 🏷 ⏮️ 🔢 🔐 &amp; 🔢 🏷 🍵 ⚫️:
 
-=== "🐆 3⃣.6⃣ &amp; 🔛"
+=== "🐍 3️⃣.6️⃣ &amp; 🔛"
 
     ```Python hl_lines="9  11  16"
     {!> ../../../docs_src/response_model/tutorial003.py!}
     ```
 
-=== "🐆 3⃣.1⃣0⃣ &amp; 🔛"
+=== "🐍 3️⃣.1️⃣0️⃣ &amp; 🔛"
 
     ```Python hl_lines="9  11  16"
     {!> ../../../docs_src/response_model/tutorial003_py310.py!}
     ```
 
-📥, ✋️ 👆 *➡ 🛠 🔢* 🛬 🎏 🔢 👩‍💻 👈 🔌 🔐:
+📥, ✋️ 👆 *➡ 🛠️ 🔢* 🛬 🎏 🔢 👩‍💻 👈 🔌 🔐:
 
-=== "🐆 3⃣.6⃣ &amp; 🔛"
+=== "🐍 3️⃣.6️⃣ &amp; 🔛"
 
     ```Python hl_lines="24"
     {!> ../../../docs_src/response_model/tutorial003.py!}
     ```
 
-=== "🐆 3⃣.1⃣0⃣ &amp; 🔛"
+=== "🐍 3️⃣.1️⃣0️⃣ &amp; 🔛"
 
     ```Python hl_lines="24"
     {!> ../../../docs_src/response_model/tutorial003_py310.py!}
@@ -168,13 +168,13 @@ FastAPI 🔜 ⚙️ 👉 `response_model` 🌐 💽 🧾, 🔬, ♒️. &amp; **
 
 ...👥 📣 `response_model` 👆 🏷 `UserOut`, 👈 🚫 🔌 🔐:
 
-=== "🐆 3⃣.6⃣ &amp; 🔛"
+=== "🐍 3️⃣.6️⃣ &amp; 🔛"
 
     ```Python hl_lines="22"
     {!> ../../../docs_src/response_model/tutorial003.py!}
     ```
 
-=== "🐆 3⃣.1⃣0⃣ &amp; 🔛"
+=== "🐍 3️⃣.1️⃣0️⃣ &amp; 🔛"
 
     ```Python hl_lines="22"
     {!> ../../../docs_src/response_model/tutorial003_py310.py!}
@@ -184,7 +184,7 @@ FastAPI 🔜 ⚙️ 👉 `response_model` 🌐 💽 🧾, 🔬, ♒️. &amp; **
 
 ### `response_model` ⚖️ 📨 🆎
 
-👉 💼, ↩️ 2⃣ 🏷 🎏, 🚥 👥 ✍ 🔢 📨 🆎 `UserOut`, 👨‍🎨 &amp; 🧰 🔜 😭 👈 👥 🛬 ❌ 🆎, 📚 🎏 🎓.
+👉 💼, ↩️ 2️⃣ 🏷 🎏, 🚥 👥 ✍ 🔢 📨 🆎 `UserOut`, 👨‍🎨 &amp; 🧰 🔜 😭 👈 👥 🛬 ❌ 🆎, 📚 🎏 🎓.
 
 👈 ⚫️❔ 👉 🖼 👥 ✔️ 📣 ⚫️ `response_model` 🔢.
 
@@ -192,29 +192,29 @@ FastAPI 🔜 ⚙️ 👉 `response_model` 🌐 💽 🧾, 🔬, ♒️. &amp; **
 
 ## 📨 🆎 &amp; 💽 🖥
 
-➡️ 😣 ⚪️➡️ ⏮ 🖼. 👥 💚 **✍ 🔢 ⏮ 1⃣ 🆎** ✋️ 📨 🕳 👈 🔌 **🌅 💽**.
+➡️ 😣 ⚪️➡️ ⏮️ 🖼. 👥 💚 **✍ 🔢 ⏮️ 1️⃣ 🆎** ✋️ 📨 🕳 👈 🔌 **🌅 💽**.
 
 👥 💚 FastAPI 🚧 **🖥** 📊 ⚙️ 📨 🏷.
 
-⏮ 🖼, ↩️ 🎓 🎏, 👥 ✔️ ⚙️ `response_model` 🔢. ✋️ 👈 ⛓ 👈 👥 🚫 🤚 🐕‍🦺 ⚪️➡️ 👨‍🎨 &amp; 🧰 ✅ 🔢 📨 🆎.
+⏮️ 🖼, ↩️ 🎓 🎏, 👥 ✔️ ⚙️ `response_model` 🔢. ✋️ 👈 ⛓ 👈 👥 🚫 🤚 🐕‍🦺 ⚪️➡️ 👨‍🎨 &amp; 🧰 ✅ 🔢 📨 🆎.
 
 ✋️ 🌅 💼 🌐❔ 👥 💪 🕳 💖 👉, 👥 💚 🏷 **⛽/❎** 📊 👉 🖼.
 
 &amp; 👈 💼, 👥 💪 ⚙️ 🎓 &amp; 🧬 ✊ 📈 🔢 **🆎 ✍** 🤚 👍 🐕‍🦺 👨‍🎨 &amp; 🧰, &amp; 🤚 FastAPI **💽 🖥**.
 
-=== "🐆 3⃣.6⃣ &amp; 🔛"
+=== "🐍 3️⃣.6️⃣ &amp; 🔛"
 
     ```Python hl_lines="9-13  15-16  20"
     {!> ../../../docs_src/response_model/tutorial003_01.py!}
     ```
 
-=== "🐆 3⃣.1⃣0⃣ &amp; 🔛"
+=== "🐍 3️⃣.1️⃣0️⃣ &amp; 🔛"
 
     ```Python hl_lines="7-10  13-14  18"
     {!> ../../../docs_src/response_model/tutorial003_01_py310.py!}
     ```
 
-⏮ 👉, 👥 🤚 🏭 🐕‍🦺, ⚪️➡️ 👨‍🎨 &amp; ✍ 👉 📟 ☑ ⚖ 🆎, ✋️ 👥 🤚 💽 🖥 ⚪️➡️ FastAPI.
+⏮️ 👉, 👥 🤚 🏭 🐕‍🦺, ⚪️➡️ 👨‍🎨 &amp; ✍ 👉 📟 ☑ ⚖ 🆎, ✋️ 👥 🤚 💽 🖥 ⚪️➡️ FastAPI.
 
 ❔ 🔨 👉 👷 ❓ ➡️ ✅ 👈 👅. 👶
 
@@ -222,7 +222,7 @@ FastAPI 🔜 ⚙️ 👉 `response_model` 🌐 💽 🧾, 🔬, ♒️. &amp; **
 
 🥇 ➡️ 👀 ❔ 👨‍🎨, ✍ &amp; 🎏 🧰 🔜 👀 👉.
 
-`BaseUser` ✔️ 🧢 🏑. ⤴ `UserIn` 😖 ⚪️➡️ `BaseUser` &amp; 🚮 `password` 🏑,, ⚫️ 🔜 🔌 🌐 🏑 ⚪️➡️ 👯‍♂️ 🏷.
+`BaseUser` ✔️ 🧢 🏑. ⤴️ `UserIn` 😖 ⚪️➡️ `BaseUser` &amp; 🚮 `password` 🏑,, ⚫️ 🔜 🔌 🌐 🏑 ⚪️➡️ 👯‍♂️ 🏷.
 
 👥 ✍ 🔢 📨 🆎 `BaseUser`, ✋️ 👥 🤙 🛬 `UserIn` 👐.
 
@@ -232,9 +232,9 @@ FastAPI 🔜 ⚙️ 👉 `response_model` 🌐 💽 🧾, 🔬, ♒️. &amp; **
 
 🔜, FastAPI, ⚫️ 🔜 👀 📨 🆎 &amp; ⚒ 💭 👈 ⚫️❔ 👆 📨 🔌 **🕴** 🏑 👈 📣 🆎.
 
-FastAPI 🔨 📚 👜 🔘 ⏮ Pydantic ⚒ 💭 👈 📚 🎏 🚫 🎓 🧬 🚫 ⚙️ 📨 💽 🖥, ⏪ 👆 💪 🔚 🆙 🛬 🌅 🌅 💽 🌘 ⚫️❔ 👆 📈.
+FastAPI 🔨 📚 👜 🔘 ⏮️ Pydantic ⚒ 💭 👈 📚 🎏 🚫 🎓 🧬 🚫 ⚙️ 📨 💽 🖥, ⏪ 👆 💪 🔚 🆙 🛬 🌅 🌅 💽 🌘 ⚫️❔ 👆 📈.
 
-👉 🌌, 👆 💪 🤚 🏆 👯‍♂️ 🌏: 🆎 ✍ ⏮ **🏭 🐕‍🦺** &amp; **💽 🖥**.
+👉 🌌, 👆 💪 🤚 🏆 👯‍♂️ 🌏: 🆎 ✍ ⏮️ **🏭 🐕‍🦺** &amp; **💽 🖥**.
 
 ## 👀 ⚫️ 🩺
 
@@ -242,7 +242,7 @@ FastAPI 🔨 📚 👜 🔘 ⏮ Pydantic ⚒ 💭 👈 📚 🎏 🚫 🎓 🧬 
 
 <img src="/img/tutorial/response-model/image01.png">
 
-&amp; 👯‍♂️ 🏷 🔜 ⚙️ 🎓 🛠 🧾:
+&amp; 👯‍♂️ 🏷 🔜 ⚙️ 🎓 🛠️ 🧾:
 
 <img src="/img/tutorial/response-model/image02.png">
 
@@ -276,37 +276,37 @@ FastAPI 🔨 📚 👜 🔘 ⏮ Pydantic ⚒ 💭 👈 📚 🎏 🚫 🎓 🧬 
 
 ✋️ 🕐❔ 👆 📨 🎏 ❌ 🎚 👈 🚫 ☑ Pydantic 🆎 (✅ 💽 🎚) &amp; 👆 ✍ ⚫️ 💖 👈 🔢, FastAPI 🔜 🔄 ✍ Pydantic 📨 🏷 ⚪️➡️ 👈 🆎 ✍, &amp; 🔜 ❌.
 
-🎏 🔜 🔨 🚥 👆 ✔️ 🕳 💖 <abbr title='A union between multiple types means "any of these types".'>🇪🇺</abbr> 🖖 🎏 🆎 🌐❔ 1⃣ ⚖️ 🌅 👫 🚫 ☑ Pydantic 🆎, 🖼 👉 🔜 ❌ 👶:
+🎏 🔜 🔨 🚥 👆 ✔️ 🕳 💖 <abbr title='A union between multiple types means "any of these types".'>🇪🇺</abbr> 🖖 🎏 🆎 🌐❔ 1️⃣ ⚖️ 🌅 👫 🚫 ☑ Pydantic 🆎, 🖼 👉 🔜 ❌ 👶:
 
-=== "🐆 3⃣.6⃣ &amp; 🔛"
+=== "🐍 3️⃣.6️⃣ &amp; 🔛"
 
     ```Python hl_lines="10"
     {!> ../../../docs_src/response_model/tutorial003_04.py!}
     ```
 
-=== "🐆 3⃣.1⃣0⃣ &amp; 🔛"
+=== "🐍 3️⃣.1️⃣0️⃣ &amp; 🔛"
 
     ```Python hl_lines="8"
     {!> ../../../docs_src/response_model/tutorial003_04_py310.py!}
     ```
 
-...👉 ❌ ↩️ 🆎 ✍ 🚫 Pydantic 🆎 &amp; 🚫 👁 `Response` 🎓 ⚖️ 🏿, ⚫️ 🇪🇺 (🙆 2⃣) 🖖 `Response` &amp; `dict`.
+...👉 ❌ ↩️ 🆎 ✍ 🚫 Pydantic 🆎 &amp; 🚫 👁 `Response` 🎓 ⚖️ 🏿, ⚫️ 🇪🇺 (🙆 2️⃣) 🖖 `Response` &amp; `dict`.
 
 ### ❎ 📨 🏷
 
-▶ ⚪️➡️ 🖼 🔛, 👆 5️⃣📆 🚫 💚 ✔️ 🔢 💽 🔬, 🧾, 🖥, ♒️. 👈 🎭 FastAPI.
+▶️ ⚪️➡️ 🖼 🔛, 👆 5️⃣📆 🚫 💚 ✔️ 🔢 💽 🔬, 🧾, 🖥, ♒️. 👈 🎭 FastAPI.
 
 ✋️ 👆 💪 💚 🚧 📨 🆎 ✍ 🔢 🤚 🐕‍🦺 ⚪️➡️ 🧰 💖 👨‍🎨 &amp; 🆎 ☑ (✅ ✍).
 
 👉 💼, 👆 💪 ❎ 📨 🏷 ⚡ ⚒ `response_model=None`:
 
-=== "🐆 3⃣.6⃣ &amp; 🔛"
+=== "🐍 3️⃣.6️⃣ &amp; 🔛"
 
     ```Python hl_lines="9"
     {!> ../../../docs_src/response_model/tutorial003_05.py!}
     ```
 
-=== "🐆 3⃣.1⃣0⃣ &amp; 🔛"
+=== "🐍 3️⃣.1️⃣0️⃣ &amp; 🔛"
 
     ```Python hl_lines="7"
     {!> ../../../docs_src/response_model/tutorial003_05_py310.py!}
@@ -318,49 +318,49 @@ FastAPI 🔨 📚 👜 🔘 ⏮ Pydantic ⚒ 💭 👈 📚 🎏 🚫 🎓 🧬 
 
 👆 📨 🏷 💪 ✔️ 🔢 💲, 💖:
 
-=== "🐆 3⃣.6⃣ &amp; 🔛"
+=== "🐍 3️⃣.6️⃣ &amp; 🔛"
 
     ```Python hl_lines="11  13-14"
     {!> ../../../docs_src/response_model/tutorial004.py!}
     ```
 
-=== "🐆 3⃣.9⃣ &amp; 🔛"
+=== "🐍 3️⃣.9️⃣ &amp; 🔛"
 
     ```Python hl_lines="11  13-14"
     {!> ../../../docs_src/response_model/tutorial004_py39.py!}
     ```
 
-=== "🐆 3⃣.1⃣0⃣ &amp; 🔛"
+=== "🐍 3️⃣.1️⃣0️⃣ &amp; 🔛"
 
     ```Python hl_lines="9  11-12"
     {!> ../../../docs_src/response_model/tutorial004_py310.py!}
     ```
 
-* `description: Union[str, None] = None` (⚖️ `str | None = None` 🐆 3⃣.1⃣0⃣) ✔️ 🔢 `None`.
+* `description: Union[str, None] = None` (⚖️ `str | None = None` 🐍 3️⃣.1️⃣0️⃣) ✔️ 🔢 `None`.
 * `tax: float = 10.5` ✔️ 🔢 `10.5`.
 * `tags: List[str] = []` 🔢 🛁 📇: `[]`.
 
 ✋️ 👆 💪 💚 🚫 👫 ⚪️➡️ 🏁 🚥 👫 🚫 🤙 🏪.
 
-🖼, 🚥 👆 ✔️ 🏷 ⏮ 📚 📦 🔢 ☁ 💽, ✋️ 👆 🚫 💚 📨 📶 📏 🎻 📨 🌕 🔢 💲.
+🖼, 🚥 👆 ✔️ 🏷 ⏮️ 📚 📦 🔢 ☁ 💽, ✋️ 👆 🚫 💚 📨 📶 📏 🎻 📨 🌕 🔢 💲.
 
 ### ⚙️ `response_model_exclude_unset` 🔢
 
-👆 💪 ⚒ *➡ 🛠 👨‍🎨* 🔢 `response_model_exclude_unset=True`:
+👆 💪 ⚒ *➡ 🛠️ 👨‍🎨* 🔢 `response_model_exclude_unset=True`:
 
-=== "🐆 3⃣.6⃣ &amp; 🔛"
+=== "🐍 3️⃣.6️⃣ &amp; 🔛"
 
     ```Python hl_lines="24"
     {!> ../../../docs_src/response_model/tutorial004.py!}
     ```
 
-=== "🐆 3⃣.9⃣ &amp; 🔛"
+=== "🐍 3️⃣.9️⃣ &amp; 🔛"
 
     ```Python hl_lines="24"
     {!> ../../../docs_src/response_model/tutorial004_py39.py!}
     ```
 
-=== "🐆 3⃣.1⃣0⃣ &amp; 🔛"
+=== "🐍 3️⃣.1️⃣0️⃣ &amp; 🔛"
 
     ```Python hl_lines="22"
     {!> ../../../docs_src/response_model/tutorial004_py310.py!}
@@ -368,7 +368,7 @@ FastAPI 🔨 📚 👜 🔘 ⏮ Pydantic ⚒ 💭 👈 📚 🎏 🚫 🎓 🧬 
 
 &amp; 👈 🔢 💲 🏆 🚫 🔌 📨, 🕴 💲 🤙 ⚒.
 
-, 🚥 👆 📨 📨 👈 *➡ 🛠* 🏬 ⏮ 🆔 `foo`, 📨 (🚫 ✅ 🔢 💲) 🔜:
+, 🚥 👆 📨 📨 👈 *➡ 🛠️* 🏬 ⏮️ 🆔 `foo`, 📨 (🚫 ✅ 🔢 💲) 🔜:
 
 ```JSON
 {
@@ -378,7 +378,7 @@ FastAPI 🔨 📚 👜 🔘 ⏮ Pydantic ⚒ 💭 👈 📚 🎏 🚫 🎓 🧬 
 ```
 
 !!! info
-    FastAPI ⚙️ Pydantic 🏷 `.dict()` ⏮ <a href="https://pydantic-docs.helpmanual.io/usage/exporting_models/#modeldict" class="external-link" target="_blank">🚮 `exclude_unset` 🔢</a> 🏆 👉.
+    FastAPI ⚙️ Pydantic 🏷 `.dict()` ⏮️ <a href="https://pydantic-docs.helpmanual.io/usage/exporting_models/#modeldict" class="external-link" target="_blank">🚮 `exclude_unset` 🔢</a> 🏆 👉.
 
 !!! info
     👆 💪 ⚙️:
@@ -388,9 +388,9 @@ FastAPI 🔨 📚 👜 🔘 ⏮ Pydantic ⚒ 💭 👈 📚 🎏 🚫 🎓 🧬 
 
     🔬 <a href="https://pydantic-docs.helpmanual.io/usage/exporting_models/#modeldict" class="external-link" target="_blank">Pydantic 🩺</a> `exclude_defaults` &amp; `exclude_none`.
 
-#### 📊 ⏮ 💲 🏑 ⏮ 🔢
+#### 📊 ⏮️ 💲 🏑 ⏮️ 🔢
 
-✋️ 🚥 👆 📊 ✔️ 💲 🏷 🏑 ⏮ 🔢 💲, 💖 🏬 ⏮ 🆔 `bar`:
+✋️ 🚥 👆 📊 ✔️ 💲 🏷 🏑 ⏮️ 🔢 💲, 💖 🏬 ⏮️ 🆔 `bar`:
 
 ```Python hl_lines="3  5"
 {
@@ -403,9 +403,9 @@ FastAPI 🔨 📚 👜 🔘 ⏮ Pydantic ⚒ 💭 👈 📚 🎏 🚫 🎓 🧬 
 
 👫 🔜 🔌 📨.
 
-#### 📊 ⏮ 🎏 💲 🔢
+#### 📊 ⏮️ 🎏 💲 🔢
 
-🚥 📊 ✔️ 🎏 💲 🔢 🕐, 💖 🏬 ⏮ 🆔 `baz`:
+🚥 📊 ✔️ 🎏 💲 🔢 🕐, 💖 🏬 ⏮️ 🆔 `baz`:
 
 ```Python hl_lines="3  5-6"
 {
@@ -428,33 +428,33 @@ FastAPI 🙃 🥃 (🤙, Pydantic 🙃 🥃) 🤔 👈, ✋️ `description`, `t
 
 ### `response_model_include` &amp; `response_model_exclude`
 
-👆 💪 ⚙️ *➡ 🛠 👨‍🎨* 🔢 `response_model_include` &amp; `response_model_exclude`.
+👆 💪 ⚙️ *➡ 🛠️ 👨‍🎨* 🔢 `response_model_include` &amp; `response_model_exclude`.
 
-👫 ✊ `set` `str` ⏮ 📛 🔢 🔌 (❎ 🎂) ⚖️ 🚫 (✅ 🎂).
+👫 ✊ `set` `str` ⏮️ 📛 🔢 🔌 (❎ 🎂) ⚖️ 🚫 (✅ 🎂).
 
-👉 💪 ⚙️ ⏩ ⌨ 🚥 👆 ✔️ 🕴 1⃣ Pydantic 🏷 &amp; 💚 ❎ 💽 ⚪️➡️ 🔢.
+👉 💪 ⚙️ ⏩ ⌨ 🚥 👆 ✔️ 🕴 1️⃣ Pydantic 🏷 &amp; 💚 ❎ 💽 ⚪️➡️ 🔢.
 
 !!! tip
     ✋️ ⚫️ 👍 ⚙️ 💭 🔛, ⚙️ 💗 🎓, ↩️ 👫 🔢.
 
-    👉 ↩️ 🎻 🔗 🏗 👆 📱 🗄 (&amp; 🩺) 🔜 1⃣ 🏁 🏷, 🚥 👆 ⚙️ `response_model_include` ⚖️ `response_model_exclude` 🚫 🔢.
+    👉 ↩️ 🎻 🔗 🏗 👆 📱 🗄 (&amp; 🩺) 🔜 1️⃣ 🏁 🏷, 🚥 👆 ⚙️ `response_model_include` ⚖️ `response_model_exclude` 🚫 🔢.
 
     👉 ✔ `response_model_by_alias` 👈 👷 ➡.
 
-=== "🐆 3⃣.6⃣ &amp; 🔛"
+=== "🐍 3️⃣.6️⃣ &amp; 🔛"
 
     ```Python hl_lines="31  37"
     {!> ../../../docs_src/response_model/tutorial005.py!}
     ```
 
-=== "🐆 3⃣.1⃣0⃣ &amp; 🔛"
+=== "🐍 3️⃣.1️⃣0️⃣ &amp; 🔛"
 
     ```Python hl_lines="29  35"
     {!> ../../../docs_src/response_model/tutorial005_py310.py!}
     ```
 
 !!! tip
-    ❕ `{"name", "description"}` ✍ `set` ⏮ 📚 2⃣ 💲.
+    ❕ `{"name", "description"}` ✍ `set` ⏮️ 📚 2️⃣ 💲.
 
     ⚫️ 🌓 `set(["name", "description"])`.
 
@@ -462,13 +462,13 @@ FastAPI 🙃 🥃 (🤙, Pydantic 🙃 🥃) 🤔 👈, ✋️ `description`, `t
 
 🚥 👆 💭 ⚙️ `set` &amp; ⚙️ `list` ⚖️ `tuple` ↩️, FastAPI 🔜 🗜 ⚫️ `set` &amp; ⚫️ 🔜 👷 ☑:
 
-=== "🐆 3⃣.6⃣ &amp; 🔛"
+=== "🐍 3️⃣.6️⃣ &amp; 🔛"
 
     ```Python hl_lines="31  37"
     {!> ../../../docs_src/response_model/tutorial006.py!}
     ```
 
-=== "🐆 3⃣.1⃣0⃣ &amp; 🔛"
+=== "🐍 3️⃣.1️⃣0️⃣ &amp; 🔛"
 
     ```Python hl_lines="29  35"
     {!> ../../../docs_src/response_model/tutorial006_py310.py!}
@@ -476,6 +476,6 @@ FastAPI 🙃 🥃 (🤙, Pydantic 🙃 🥃) 🤔 👈, ✋️ `description`, `t
 
 ## 🌃
 
-⚙️ *➡ 🛠 👨‍🎨* 🔢 `response_model` 🔬 📨 🏷 &amp; ✴️ 🚚 📢 💽 ⛽ 👅.
+⚙️ *➡ 🛠️ 👨‍🎨* 🔢 `response_model` 🔬 📨 🏷 &amp; ✴️ 🚚 📢 💽 ⛽ 👅.
 
 ⚙️ `response_model_exclude_unset` 📨 🕴 💲 🎯 ⚒.

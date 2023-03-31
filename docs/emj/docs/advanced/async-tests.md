@@ -2,11 +2,11 @@
 
 👆 ✔️ ⏪ 👀 ❔ 💯 👆 **FastAPI** 🈸 ⚙️ 🚚 `TestClient`. 🆙 🔜, 👆 ✔️ 🕴 👀 ❔ ✍ 🔁 💯, 🍵 ⚙️ `async` 🔢.
 
-➖ 💪 ⚙️ 🔁 🔢 👆 💯 💪 ⚠, 🖼, 🕐❔ 👆 🔬 👆 💽 🔁. 🌈 👆 💚 💯 📨 📨 👆 FastAPI 🈸 &amp; ⤴ ✔ 👈 👆 👩‍💻 ⏪ ✍ ☑ 💽 💽, ⏪ ⚙️ 🔁 💽 🗃.
+➖ 💪 ⚙️ 🔁 🔢 👆 💯 💪 ⚠, 🖼, 🕐❔ 👆 🔬 👆 💽 🔁. 🌈 👆 💚 💯 📨 📨 👆 FastAPI 🈸 &amp; ⤴️ ✔ 👈 👆 👩‍💻 ⏪ ✍ ☑ 💽 💽, ⏪ ⚙️ 🔁 💽 🗃.
 
 ➡️ 👀 ❔ 👥 💪 ⚒ 👈 👷.
 
-## ✳.™.anyio
+## pytest.mark.anyio
 
 🚥 👥 💚 🤙 🔁 🔢 👆 💯, 👆 💯 🔢 ✔️ 🔁. AnyIO 🚚 👌 📁 👉, 👈 ✔ 👥 ✔ 👈 💯 🔢 🤙 🔁.
 
@@ -16,11 +16,11 @@
 
 `TestClient` 🔨 🎱 🔘 🤙 🔁 FastAPI 🈸 👆 😐 `def` 💯 🔢, ⚙️ 🐩 ✳. ✋️ 👈 🎱 🚫 👷 🚫🔜 🕐❔ 👥 ⚙️ ⚫️ 🔘 🔁 🔢. 🏃 👆 💯 🔁, 👥 💪 🙅‍♂ 📏 ⚙️ `TestClient` 🔘 👆 💯 🔢.
 
-`TestClient` ⚓️ 🔛 <a href="https://www.python-httpx.org" class="external-link" target="_blank">🇸🇲</a>, &amp; ↩️, 👥 💪 ⚙️ ⚫️ 🔗 💯 🛠.
+`TestClient` ⚓️ 🔛 <a href="https://www.python-httpx.org" class="external-link" target="_blank">🇸🇲</a>, &amp; ↩️, 👥 💪 ⚙️ ⚫️ 🔗 💯 🛠️.
 
 ## 🖼
 
-🙅 🖼, ➡️ 🤔 📁 📊 🎏 1⃣ 🔬 [🦏 🈸](../tutorial/bigger-applications.md){.internal-link target=_blank} &amp; [🔬](../tutorial/testing.md){.internal-link target=_blank}:
+🙅 🖼, ➡️ 🤔 📁 📊 🎏 1️⃣ 🔬 [🦏 🈸](../tutorial/bigger-applications.md){.internal-link target=_blank} &amp; [🔬](../tutorial/testing.md){.internal-link target=_blank}:
 
 ```
 .
@@ -67,7 +67,7 @@ $ pytest
 !!! tip
     🗒 👈 💯 🔢 🔜 `async def` ↩️ `def` ⏭ 🕐❔ ⚙️ `TestClient`.
 
-⤴ 👥 💪 ✍ `AsyncClient` ⏮ 📱, &amp; 📨 🔁 📨 ⚫️, ⚙️ `await`.
+⤴️ 👥 💪 ✍ `AsyncClient` ⏮️ 📱, &amp; 📨 🔁 📨 ⚫️, ⚙️ `await`.
 
 ```Python hl_lines="9-10"
 {!../../../docs_src/async_tests/test_main.py!}
@@ -79,14 +79,14 @@ $ pytest
 response = client.get('/')
 ```
 
-...👈 👥 ⚙️ ⚒ 👆 📨 ⏮ `TestClient`.
+...👈 👥 ⚙️ ⚒ 👆 📨 ⏮️ `TestClient`.
 
 !!! tip
-    🗒 👈 👥 ⚙️ 🔁/⌛ ⏮ 🆕 `AsyncClient` - 📨 🔁.
+    🗒 👈 👥 ⚙️ 🔁/⌛ ⏮️ 🆕 `AsyncClient` - 📨 🔁.
 
 ## 🎏 🔁 🔢 🤙
 
 🔬 🔢 🔜 🔁, 👆 💪 🔜 🤙 (&amp; `await`) 🎏 `async` 🔢 ↖️ ⚪️➡️ 📨 📨 👆 FastAPI 🈸 👆 💯, ⚫️❔ 👆 🔜 🤙 👫 🙆 🙆 👆 📟.
 
 !!! tip
-    🚥 👆 ⚔ `RuntimeError: Task attached to a different loop` 🕐❔ 🛠 🔁 🔢 🤙 👆 💯 (✅ 🕐❔ ⚙️ <a href="https://stackoverflow.com/questions/41584243/runtimeerror-task-attached-to-a-different-loop" class="external-link" target="_blank">✳ MotorClient</a>) 💭 🔗 🎚 👈 💪 🎉 ➰ 🕴 🏞 🔁 🔢, ✅ `'@app.on_event("startup")` ⏲.
+    🚥 👆 ⚔ `RuntimeError: Task attached to a different loop` 🕐❔ 🛠️ 🔁 🔢 🤙 👆 💯 (✅ 🕐❔ ⚙️ <a href="https://stackoverflow.com/questions/41584243/runtimeerror-task-attached-to-a-different-loop" class="external-link" target="_blank">✳ MotorClient</a>) 💭 🔗 🎚 👈 💪 🎉 ➰ 🕴 🏞 🔁 🔢, ✅ `'@app.on_event("startup")` ⏲.

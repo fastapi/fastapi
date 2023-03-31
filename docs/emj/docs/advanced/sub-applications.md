@@ -1,14 +1,14 @@
 # 🎧 🈸 - 🗻
 
-🚥 👆 💪 ✔️ 2⃣ 🔬 FastAPI 🈸, ⏮ 👫 👍 🔬 🗄 &amp; 👫 👍 🩺 ⚜, 👆 💪 ✔️ 👑 📱 &amp; "🗻" 1⃣ (⚖️ 🌅) 🎧-🈸(Ⓜ).
+🚥 👆 💪 ✔️ 2️⃣ 🔬 FastAPI 🈸, ⏮️ 👫 👍 🔬 🗄 &amp; 👫 👍 🩺 ⚜, 👆 💪 ✔️ 👑 📱 &amp; "🗻" 1️⃣ (⚖️ 🌅) 🎧-🈸(Ⓜ).
 
 ## 🗜 **FastAPI** 🈸
 
-"🗜" ⛓ ❎ 🍕 "🔬" 🈸 🎯 ➡, 👈 ⤴ ✊ 💅 🚚 🌐 🔽 👈 ➡, ⏮ _➡ 🛠_ 📣 👈 🎧-🈸.
+"🗜" ⛓ ❎ 🍕 "🔬" 🈸 🎯 ➡, 👈 ⤴️ ✊ 💅 🚚 🌐 🔽 👈 ➡, ⏮️ _➡ 🛠️_ 📣 👈 🎧-🈸.
 
 ### 🔝-🎚 🈸
 
-🥇, ✍ 👑, 🔝-🎚, **FastAPI** 🈸, &amp; 🚮 *➡ 🛠*:
+🥇, ✍ 👑, 🔝-🎚, **FastAPI** 🈸, &amp; 🚮 *➡ 🛠️*:
 
 ```Python hl_lines="3  6-8"
 {!../../../docs_src/sub_applications/tutorial001.py!}
@@ -16,9 +16,9 @@
 
 ### 🎧-🈸
 
-⤴, ✍ 👆 🎧-🈸, &amp; 🚮 *➡ 🛠*.
+⤴️, ✍ 👆 🎧-🈸, &amp; 🚮 *➡ 🛠️*.
 
-👉 🎧-🈸 ➕1️⃣ 🐩 FastAPI 🈸, ✋️ 👉 1⃣ 👈 🔜 "🗻":
+👉 🎧-🈸 ➕1️⃣ 🐩 FastAPI 🈸, ✋️ 👉 1️⃣ 👈 🔜 "🗻":
 
 ```Python hl_lines="11  14-16"
 {!../../../docs_src/sub_applications/tutorial001.py!}
@@ -34,9 +34,9 @@
 {!../../../docs_src/sub_applications/tutorial001.py!}
 ```
 
-### ✅ 🏧 🛠 🩺
+### ✅ 🏧 🛠️ 🩺
 
-🔜, 🏃 `uvicorn` ⏮ 👑 📱, 🚥 👆 📁 `main.py`, ⚫️ 🔜:
+🔜, 🏃 `uvicorn` ⏮️ 👑 📱, 🚥 👆 📁 `main.py`, ⚫️ 🔜:
 
 <div class="termy">
 
@@ -48,23 +48,23 @@ $ uvicorn main:app --reload
 
 </div>
 
-&amp; 📂 🩺 <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">Http://127.0.0.1:8000/docs</a>.
+&amp; 📂 🩺 <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 
-👆 🔜 👀 🏧 🛠 🩺 👑 📱, 🔌 🕴 🚮 👍 _➡ 🛠_:
+👆 🔜 👀 🏧 🛠️ 🩺 👑 📱, 🔌 🕴 🚮 👍 _➡ 🛠️_:
 
 <img src="/img/tutorial/sub-applications/image01.png">
 
-&amp; ⤴, 📂 🩺 🎧-🈸, <a href="http://127.0.0.1:8000/subapi/docs" class="external-link" target="_blank">Http://127.0.0.1:8000/subapi/docs</a>.
+&amp; ⤴️, 📂 🩺 🎧-🈸, <a href="http://127.0.0.1:8000/subapi/docs" class="external-link" target="_blank">http://127.0.0.1:8000/subapi/docs</a>.
 
-👆 🔜 👀 🏧 🛠 🩺 🎧-🈸, ✅ 🕴 🚮 👍 _➡ 🛠_, 🌐 🔽 ☑ 🎧-➡ 🔡 `/subapi`:
+👆 🔜 👀 🏧 🛠️ 🩺 🎧-🈸, ✅ 🕴 🚮 👍 _➡ 🛠️_, 🌐 🔽 ☑ 🎧-➡ 🔡 `/subapi`:
 
 <img src="/img/tutorial/sub-applications/image02.png">
 
-🚥 👆 🔄 🔗 ⏮ 🙆 2⃣ 👩‍💻 🔢, 👫 🔜 👷 ☑, ↩️ 🖥 🔜 💪 💬 🔠 🎯 📱 ⚖️ 🎧-📱.
+🚥 👆 🔄 🔗 ⏮️ 🙆 2️⃣ 👩‍💻 🔢, 👫 🔜 👷 ☑, ↩️ 🖥 🔜 💪 💬 🔠 🎯 📱 ⚖️ 🎧-📱.
 
 ### 📡 ℹ: `root_path`
 
-🕐❔ 👆 🗻 🎧-🈸 🔬 🔛, FastAPI 🔜 ✊ 💅 🔗 🗻 ➡ 🎧-🈸 ⚙️ 🛠 ⚪️➡️ 🔫 🔧 🤙 `root_path`.
+🕐❔ 👆 🗻 🎧-🈸 🔬 🔛, FastAPI 🔜 ✊ 💅 🔗 🗻 ➡ 🎧-🈸 ⚙️ 🛠️ ⚪️➡️ 🔫 🔧 🤙 `root_path`.
 
 👈 🌌, 🎧-🈸 🔜 💭 ⚙️ 👈 ➡ 🔡 🩺 🎚.
 
