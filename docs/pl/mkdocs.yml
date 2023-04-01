@@ -41,7 +41,7 @@ nav:
   - en: /
   - az: /az/
   - de: /de/
-  - emj: /emj/
+  - em: /em/
   - es: /es/
   - fa: /fa/
   - fr: /fr/
@@ -109,8 +109,8 @@ extra:
     name: az
   - link: /de/
     name: de
-  - link: /emj/
-    name: emj
+  - link: /em/
+    name: 😉
   - link: /es/
     name: es - español
   - link: /fa/

@@ -1,6 +1,6 @@
 site_name: FastAPI
 site_description: FastAPI framework, high performance, easy to learn, fast to code, ready for production
-site_url: https://fastapi.tiangolo.com/emj/
+site_url: https://fastapi.tiangolo.com/em/
 theme:
   name: material
   custom_dir: overrides
@@ -41,7 +41,7 @@ nav:
   - en: /
   - az: /az/
   - de: /de/
-  - emj: /emj/
+  - em: /em/
   - es: /es/
   - fa: /fa/
   - fr: /fr/
@@ -213,8 +213,8 @@ extra:
     name: az
   - link: /de/
     name: de
-  - link: /emj/
-    name: emj
+  - link: /em/
+    name: 😉
   - link: /es/
     name: es - español
   - link: /fa/
