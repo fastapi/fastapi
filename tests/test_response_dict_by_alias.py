@@ -1,6 +1,4 @@
-from typing import List
-
-from fastapi import FastAPI, Depends
+from fastapi import Depends, FastAPI
 from fastapi.testclient import TestClient
 from pydantic import BaseModel, Field
 
@@ -14,18 +12,14 @@ class MockServiceModel(BaseModel):
 class MockService:
     def __init__(self):
         self.initialized = True
-        self.data = {
-            "F_NAME": "Ilyas Q."
-        }
+        self.data = {"F_NAME": "Ilyas Q."}
 
     def get_data(self) -> MockServiceModel:
-        return MockServiceModel(
-            **self.data
-        )
+        return MockServiceModel(**self.data)
 
 
 class ResponseSchema(BaseModel):
-    full_name: str = Field(alias='fullName')
+    full_name: str = Field(alias="fullName")
 
     class Config:
         allow_population_by_field_name = True
