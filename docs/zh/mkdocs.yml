@@ -113,6 +113,7 @@ nav:
   - advanced/additional-status-codes.md
   - advanced/response-directly.md
   - advanced/custom-response.md
+  - advanced/templates.md
   - advanced/response-cookies.md
   - advanced/wsgi.md
 - contributing.md
