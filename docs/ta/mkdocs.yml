@@ -41,10 +41,12 @@ nav:
   - en: /
   - az: /az/
   - de: /de/
+  - em: /em/
   - es: /es/
   - fa: /fa/
   - fr: /fr/
   - he: /he/
+  - hy: /hy/
   - id: /id/
   - it: /it/
   - ja: /ja/
@@ -81,7 +83,7 @@ markdown_extensions:
 extra:
   analytics:
     provider: google
-    property: UA-133183413-1
+    property: G-YNEVN69SC3
   social:
   - icon: fontawesome/brands/github-alt
     link: https://github.com/tiangolo/fastapi
@@ -104,6 +106,8 @@ extra:
     name: az
   - link: /de/
     name: de
+  - link: /em/
+    name: 😉
   - link: /es/
     name: es - español
   - link: /fa/
@@ -112,6 +116,8 @@ extra:
     name: fr - français
   - link: /he/
     name: he
+  - link: /hy/
+    name: hy
   - link: /id/
     name: id
   - link: /it/
