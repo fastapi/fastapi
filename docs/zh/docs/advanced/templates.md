@@ -25,7 +25,7 @@ $ pip install jinja2
 * 导入 `Jinja2Templates`
 * 创建一个可重用的 `templates` 对象
 * 在 *路径操作* 中添加返回一个模板的 `Request` 参数
-* 使用之前创建的 `templates` 来渲染并返回一个 `TemplateResponse`，并将 `request` 作为 “上下文” 中的一个键值对传递给 Jinja2 
+* 使用之前创建的 `templates` 来渲染并返回一个 `TemplateResponse`，并将 `request` 作为 “上下文” 中的一个键值对传递给 Jinja2
 
 ```Python hl_lines="4  11  15-16"
 {!../../../docs_src/templates/tutorial001.py!}
