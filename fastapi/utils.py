@@ -55,10 +55,10 @@ def get_model_definitions(
 def get_path_param_names(path: str) -> Set[str]:
     """
     Extracts parameter names from a given URL path string.
-    
+
     Args:
     - path (str): The URL path string from which to extract parameter names.
-    
+
     Returns:
     - A set of strings representing the parameter names extracted from the given path string.
     """
@@ -77,7 +77,7 @@ def create_response_field(
 ) -> ModelField:
     """
     Create a new response field. Raises if type_ is invalid.
-    
+
     Args:
         name (str): The name of the response field.
         type_ (Type[Any]): The type of the response field.
@@ -95,10 +95,10 @@ def create_response_field(
         fastapi.exceptions.FastAPIError: If the type of the field is invalid.
 
     Note:
-        The function raises an error if the type of the field is invalid. 
-        The error message provides a hint to check that the type is a valid Pydantic field type. 
-        If the return type annotation is not a valid Pydantic field, the response model can be disabled using 
-        the response_model=None parameter in the path operation decorator. Refer to the FastAPI documentation 
+        The function raises an error if the type of the field is invalid.
+        The error message provides a hint to check that the type is a valid Pydantic field type.
+        If the return type annotation is not a valid Pydantic field, the response model can be disabled using
+        the response_model=None parameter in the path operation decorator. Refer to the FastAPI documentation
         for more information: https://fastapi.tiangolo.com/tutorial/response-model/
     """
     class_validators = class_validators or {}
