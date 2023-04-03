@@ -53,6 +53,15 @@ def get_model_definitions(
 
 
 def get_path_param_names(path: str) -> Set[str]:
+    """
+    Extracts parameter names from a given URL path string.
+    
+    Args:
+    - path (str): The URL path string from which to extract parameter names.
+    
+    Returns:
+    - A set of strings representing the parameter names extracted from the given path string.
+    """
     return set(re.findall("{(.*?)}", path))
 
 
@@ -68,6 +77,29 @@ def create_response_field(
 ) -> ModelField:
     """
     Create a new response field. Raises if type_ is invalid.
+    
+    Args:
+        name (str): The name of the response field.
+        type_ (Type[Any]): The type of the response field.
+        class_validators (Optional[Dict[str, Validator]], optional): Dictionary of validators for the field. Defaults to None.
+        default (Optional[Any], optional): The default value for the field. Defaults to None.
+        required (Union[bool, UndefinedType], optional): Whether the field is required or not. Defaults to True.
+        model_config (Type[BaseConfig], optional): The configuration for the Pydantic model. Defaults to BaseConfig.
+        field_info (Optional[FieldInfo], optional): Extra metadata about the field. Defaults to None.
+        alias (Optional[str], optional): The alias for the field. Defaults to None.
+
+    Returns:
+        ModelField: A Pydantic ModelField object representing the response field.
+
+    Raises:
+        fastapi.exceptions.FastAPIError: If the type of the field is invalid.
+
+    Note:
+        The function raises an error if the type of the field is invalid. 
+        The error message provides a hint to check that the type is a valid Pydantic field type. 
+        If the return type annotation is not a valid Pydantic field, the response model can be disabled using 
+        the response_model=None parameter in the path operation decorator. Refer to the FastAPI documentation 
+        for more information: https://fastapi.tiangolo.com/tutorial/response-model/
     """
     class_validators = class_validators or {}
     field_info = field_info or FieldInfo()
@@ -161,6 +193,17 @@ def generate_operation_id_for_path(
 
 
 def generate_unique_id(route: "APIRoute") -> str:
+    """
+    A function that generates a unique ID based on an API route.
+    Args:
+        route (APIRoute): An object that represents an API route.
+    Returns:
+        str: A string that represents a unique ID for the given API route.
+    Raises:
+        AssertionError: If the methods attribute of the route object is empty.
+    The function concatenates the name and path format of the route object, replaces any non-word character with an underscore,
+    appends the first method of the methods attribute of the route object (converted to lowercase), and returns the resulting string as the unique ID.
+    """
     operation_id = route.name + route.path_format
     operation_id = re.sub(r"\W", "_", operation_id)
     assert route.methods
