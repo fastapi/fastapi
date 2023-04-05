@@ -43,10 +43,16 @@ async def decorated_1_route():
 async def no_decorators_in_router():
     return {"return": "/no_decorators_in_router response"}
 
-async def non_router_decorated_endpoint():
-    return {'return': 'non decorated route'}
 
-router_non_decorated_route.add_api_route('/non_router_decorated_endpoint', non_router_decorated_endpoint, decorators=[(decorator_1,), (decorator_2, DECORATOR_ARG)])
+async def non_router_decorated_endpoint():
+    return {"return": "non decorated route"}
+
+
+router_non_decorated_route.add_api_route(
+    "/non_router_decorated_endpoint",
+    non_router_decorated_endpoint,
+    decorators=[(decorator_1,), (decorator_2, DECORATOR_ARG)],
+)
 
 
 app.include_router(router_decorated)
@@ -73,6 +79,7 @@ def test_non_decorated_router():
     assert response.json()["decorator_1"]
     assert response.json()["decorator_2"]
     assert response.json()["arg"] == DECORATOR_ARG
+
 
 def test_non_router_decorated_endpoint():
     response = client.get("/non_router_decorated_endpoint")
