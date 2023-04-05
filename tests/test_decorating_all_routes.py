@@ -1,11 +1,10 @@
 from functools import wraps
-import time
+
 from fastapi import FastAPI
 from fastapi.routing import APIRouter
 from fastapi.testclient import TestClient
 
-
-DECORATOR_ARG = 'arg'
+DECORATOR_ARG = "arg"
 
 app = FastAPI()
 
@@ -14,27 +13,29 @@ def decorator_1(endpoint):
     @wraps(endpoint)
     async def wrapper(*args, **kwargs):
         response = await endpoint(*args, **kwargs)
-        response.update({'decorator_1': True})
+        response.update({"decorator_1": True})
         return response
 
     return wrapper
+
 
 def decorator_2(endpoint, arg_1: str):
     @wraps(endpoint)
     async def wrapper(*args, **kwargs):
         response = await endpoint(*args, **kwargs)
-        response.update({'decorator_2': True, 'arg': arg_1})
+        response.update({"decorator_2": True, "arg": arg_1})
         return response
 
     return wrapper
 
-router_decorated = APIRouter(decorators=[(decorator_1, ), (decorator_2, DECORATOR_ARG)])
+
+router_decorated = APIRouter(decorators=[(decorator_1,), (decorator_2, DECORATOR_ARG)])
 router_non_decorated = APIRouter()
 
 
 @router_decorated.get("/decorated_1")
 async def decorated_1_route():
-    return {"return": '/decorated_1 response'}
+    return {"return": "/decorated_1 response"}
 
 
 @router_non_decorated.get("/no_decorators_in_router")
@@ -43,7 +44,9 @@ async def no_decorators_in_router():
 
 
 app.include_router(router_decorated)
-app.include_router(router_non_decorated, decorators=[(decorator_1, ), (decorator_2, DECORATOR_ARG)])
+app.include_router(
+    router_non_decorated, decorators=[(decorator_1,), (decorator_2, DECORATOR_ARG)]
+)
 
 
 client = TestClient(app)
@@ -52,15 +55,14 @@ client = TestClient(app)
 def test_decorated_router():
     response = client.get("/decorated_1")
     assert response.status_code == 200
-    assert response.json()['decorator_1']
-    assert response.json()['decorator_2']
-    assert response.json()['arg'] == DECORATOR_ARG
+    assert response.json()["decorator_1"]
+    assert response.json()["decorator_2"]
+    assert response.json()["arg"] == DECORATOR_ARG
 
 
 def test_non_decorated_router():
     response = client.get("/no_decorators_in_router")
     assert response.status_code == 200
-    assert response.json()['decorator_1']
-    assert response.json()['decorator_2']
-    assert response.json()['arg'] == DECORATOR_ARG
-
+    assert response.json()["decorator_1"]
+    assert response.json()["decorator_2"]
+    assert response.json()["arg"] == DECORATOR_ARG
