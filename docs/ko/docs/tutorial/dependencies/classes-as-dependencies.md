@@ -192,7 +192,7 @@ commons = Depends(CommonQueryParams)
     {!> ../../../docs_src/dependencies/tutorial003_py310.py!}
     ```
 
-그러나 자료형을 선언하는 것은 에디터가 매개변수 `commons`로 전달될 것이 무엇인지 알게 되고, 코드 완성, 자료형 확인 등에 도움이 될 수 있으므로 권장됩니다.
+그러나 자료형을 선언하면 에디터가 매개변수 `commons`로 전달될 것이 무엇인지 알게 되고, 이를 통해 코드 완성, 자료형 확인 등에 도움이 될 수 있으므로 권장됩니다.
 
 <!-- <img src="/img/tutorial/dependencies/image02.png"> -->
 
