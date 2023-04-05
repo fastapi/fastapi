@@ -147,7 +147,7 @@ FastAPI가 실질적으로 확인하는 것은 "호출 가능성"(함수, 클래
 
 ## 타입 힌팅 vs `Depends`
 
-위 코드에서 어떻게 `CommonQueryParams`를 두 번이나 작성했는 지 알아두길 바랍니다:
+위 코드에서 `CommonQueryParams`를 두 번 작성한 방식에 주목하십시오:
 
 ```Python
 commons: CommonQueryParams = Depends(CommonQueryParams)
