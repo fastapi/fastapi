@@ -421,7 +421,7 @@ class FastAPI(Starlette):
         include_in_schema: bool = True,
         default_response_class: Type[Response] = Default(JSONResponse),
         callbacks: Optional[List[BaseRoute]] = None,
-        decorators: Optional[List[Tuple[Callable | Any, ...]]] = None,
+        decorators: Optional[List[Tuple[Union[Callable[[], Any], Any], ...]]] = None,
         generate_unique_id_function: Callable[[routing.APIRoute], str] = Default(
             generate_unique_id
         ),

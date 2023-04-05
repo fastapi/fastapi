@@ -349,7 +349,7 @@ class APIRoute(routing.Route):
         ),
         dependency_overrides_provider: Optional[Any] = None,
         callbacks: Optional[List[BaseRoute]] = None,
-        decorators: Optional[List[Tuple[Callable | Any, ...]]] = None,
+        decorators: Optional[List[Tuple[Union[Callable[[], Any], Any], ...]]] = None,
         openapi_extra: Optional[Dict[str, Any]] = None,
         generate_unique_id_function: Union[
             Callable[["APIRoute"], str], DefaultPlaceholder
@@ -487,7 +487,7 @@ class APIRouter(routing.Router):
         default_response_class: Type[Response] = Default(JSONResponse),
         responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
         callbacks: Optional[List[BaseRoute]] = None,
-        decorators: Optional[List[Tuple[Callable | Any, ...]]] = None,
+        decorators: Optional[List[Tuple[Union[Callable[[], Any], Any], ...]]] = None,
         routes: Optional[List[routing.BaseRoute]] = None,
         redirect_slashes: bool = True,
         default: Optional[ASGIApp] = None,
@@ -578,7 +578,7 @@ class APIRouter(routing.Router):
         name: Optional[str] = None,
         route_class_override: Optional[Type[APIRoute]] = None,
         callbacks: Optional[List[BaseRoute]] = None,
-        decorators: Optional[List[Tuple[Callable | Any, ...]]] = None,
+        decorators: Optional[List[Tuple[Union[Callable[[], Any], Any], ...]]] = None,
         openapi_extra: Optional[Dict[str, Any]] = None,
         generate_unique_id_function: Union[
             Callable[[APIRoute], str], DefaultPlaceholder
@@ -737,7 +737,7 @@ class APIRouter(routing.Router):
         default_response_class: Type[Response] = Default(JSONResponse),
         responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
         callbacks: Optional[List[BaseRoute]] = None,
-        decorators: Optional[List[Tuple[Callable | Any, ...]]] = None,
+        decorators: Optional[List[Tuple[Union[Callable[[], Any], Any], ...]]] = None,
         deprecated: Optional[bool] = None,
         include_in_schema: bool = True,
         generate_unique_id_function: Callable[[APIRoute], str] = Default(
