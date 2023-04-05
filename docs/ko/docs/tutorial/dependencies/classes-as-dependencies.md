@@ -46,7 +46,7 @@ something()
 something(some_argument, some_keyword_argument="foo")
 ```
 
-"호출 가능"이 됩니다.
+상기와 같은 방식으로 "호출(실행)" 할 수 있다면 "호출 가능"이 됩니다.
 
 ## 의존성으로서의 클래스
 
