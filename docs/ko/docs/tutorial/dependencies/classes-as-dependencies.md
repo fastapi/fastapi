@@ -172,7 +172,7 @@ commons: CommonQueryParams ...
 
 ... **FastAPI**는 `CommonQueryParams` 변수에 어떠한 특별한 의미도 부여하지 않습니다. FastAPI는 이 변수를 데이터 변환, 검증 등에 활용하지 않습니다. (활용하려면 `= Depends(CommonQueryParams)`를 사용해야 합니다.)
 
-실제로는 그냥 아래와 같이 작성할 수 있습니다:
+사실 아래와 같이 작성해도 무관합니다:
 
 ```Python
 commons = Depends(CommonQueryParams)
