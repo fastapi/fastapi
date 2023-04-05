@@ -220,7 +220,7 @@ commons: CommonQueryParams = Depends(CommonQueryParams)
 commons: CommonQueryParams = Depends()
 ```
 
-의존성을 매개변수로 선언할 때 `Depends(CommonQueryParams)`와 같이 클래스 이름 전체를 *다시* 작성하는 것 대신, 매개변수의 (`=` 다음에 오는) 기본 값으로 `Depends()`와 같이 내부에 어떤 매개변수도 없이 사용할 수 있습니다.
+의존성을 매개변수의 타입으로 선언하는 경우 `Depends(CommonQueryParams)`처럼 클래스 이름 전체를 *다시* 작성하는 대신, 매개변수를 넣지 않은 `Depends()`의 형태로 사용할 수 있습니다.
 
 아래에 같은 예제가 있습니다:
 
