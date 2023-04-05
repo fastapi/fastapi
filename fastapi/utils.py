@@ -1,4 +1,3 @@
-import functools
 import re
 import warnings
 from dataclasses import is_dataclass
@@ -73,19 +72,17 @@ def create_response_field(
     class_validators = class_validators or {}
     field_info = field_info or FieldInfo()
 
-    response_field = functools.partial(
-        ModelField,
-        name=name,
-        type_=type_,
-        class_validators=class_validators,
-        default=default,
-        required=required,
-        model_config=model_config,
-        alias=alias,
-    )
-
     try:
-        return response_field(field_info=field_info)
+        return ModelField(
+            name=name,
+            type_=type_,
+            class_validators=class_validators,
+            default=default,
+            required=required,
+            model_config=model_config,
+            alias=alias,
+            field_info=field_info,
+        )
     except RuntimeError:
         raise fastapi.exceptions.FastAPIError(
             "Invalid args for response field! Hint: "
