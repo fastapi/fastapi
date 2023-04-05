@@ -159,7 +159,7 @@ commons: CommonQueryParams = Depends(CommonQueryParams)
 ... = Depends(CommonQueryParams)
 ```
 
-...이것이 **FastAPI**가 실제로 어떤 것이 의존성인지 알기 위해서 사용하는 방법입니다.
+... **FastAPI**가 실제로 어떤 것이 의존성인지 알기 위해서 사용하는 방법입니다.
 FastAPI는 선언된 매개변수들을 추출할 것이고 실제로 이 변수들을 호출할 것입니다.
 
 ---
