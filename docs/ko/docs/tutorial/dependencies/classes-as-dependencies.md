@@ -204,7 +204,7 @@ commons = Depends(CommonQueryParams)
 commons: CommonQueryParams = Depends(CommonQueryParams)
 ```
 
-**FastAPI**는 의존성이 *특히* **FastAPI**가 클래스 자체의 인스턴스를 생성하기 위해 "호출"하는 클래스인 경우, 조금 더 쉬운 방법을 제공합니다.
+**FastAPI**는 *특히* 의존성이 **FastAPI**가 클래스 자체의 인스턴스를 생성하기 위해 "호출"하는 클래스인 경우, 조금 더 쉬운 방법을 제공합니다.
 
 이러한 특정한 경우에는 아래처럼 사용할 수 있습니다:
 
