@@ -236,7 +236,7 @@ commons: CommonQueryParams = Depends()
     {!> ../../../docs_src/dependencies/tutorial004_py310.py!}
     ```
 
-...그리고 **FastAPI**는 무엇을 해야할 지 알게 됩니다.
+...이렇게 코드를 단축하여도 **FastAPI**는 무엇을 해야하는지 알고 있습니다.
 
 !!! tip "팁"
     만약 이것이 도움이 되기보다 더 헷갈리게 만든다면, 잊어버리십시오. 이것이 반드시 필요한 것은 아닙니다.
