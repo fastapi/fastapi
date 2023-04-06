@@ -1,6 +1,6 @@
 # Tutorial - Pedoman Pengguna - Pengenalan
 
-Tutorial ini menunjukan cara menggunakan ***FastAPI*** dengan semua fitur-fiturnya, tahap demi tahap.
+Tutorial ini menunjukkan cara menggunakan ***FastAPI*** dengan semua fitur-fiturnya, tahap demi tahap.
 
 Setiap bagian dibangun secara bertahap dari bagian sebelumnya, tetapi terstruktur untuk memisahkan banyak topik, sehingga kamu bisa secara langsung menuju ke topik spesifik untuk menyelesaikan kebutuhan API tertentu.
 
@@ -10,9 +10,9 @@ Sehingga kamu dapat kembali lagi dan mencari apa yang kamu butuhkan dengan tepat
 
 ## Jalankan kode
 
-Semua blok-blok kode dapat dicopy dan digunakan langsung (Mereka semua sebenarnya adalah file python yang sudah teruji).
+Semua blok-blok kode dapat disalin dan digunakan langsung (Mereka adalah berkas python yang sudah teruji).
 
-Untuk menjalankan setiap contoh, copy kode ke file `main.py`, dan jalankan `uvicorn` dengan:
+Untuk menjalankan setiap contoh, salin kode ke file `main.py`, dan jalankan `uvicorn` dengan:
 
 <div class="termy">
 
@@ -28,15 +28,15 @@ $ uvicorn main:app --reload
 
 </div>
 
-**SANGAT disarankan** agar kamu menulis atau meng-copy kode, meng-editnya dan menjalankannya secara lokal.
+**SANGAT disarankan** agar kamu menulis atau menyalin kode, mengubah dan menjalankannya secara lokal.
 
 Dengan menggunakannya di dalam editor, benar-benar memperlihatkan manfaat dari FastAPI, melihat bagaimana sedikitnya kode yang harus kamu tulis, semua pengecekan tipe, pelengkapan otomatis, dll.
 
 ---
 
-## Install FastAPI
+## Instal FastAPI
 
-Langkah pertama adalah dengan meng-install FastAPI.
+Langkah pertama adalah dengan meng-instal FastAPI.
 
 Untuk tutorial, kamu mungkin hendak meng-instalnya dengan semua pilihan fitur dan dependensinya:
 
@@ -61,7 +61,7 @@ $ pip install "fastapi[all]"
     pip install fastapi
     ```
 
-    Juga install `uvicorn` untk menjalankan server"
+    Juga install `uvicorn` untuk menjalankan server"
 
     ```
     pip install "uvicorn[standard]"
