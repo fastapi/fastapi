@@ -115,6 +115,15 @@ nav:
   - advanced/custom-response.md
   - advanced/response-cookies.md
   - advanced/wsgi.md
+- 部署:
+  - deployment/index.md
+  - deployment/versions.md
+  - deployment/https.md
+  - deployment/manually.md
+  - deployment/concepts.md
+  - deployment/deta.md
+  - deployment/server-workers.md
+  - deployment/docker.md
 - contributing.md
 - help-fastapi.md
 - benchmarks.md
