@@ -1,9 +1,9 @@
 from typing import Union
 
 from couchbase import LOCKMODE_WAIT
+from couchbase.auth import PasswordAuthenticator
 from couchbase.bucket import Bucket
 from couchbase.cluster import Cluster
-from couchbase.auth import PasswordAuthenticator
 from fastapi import FastAPI
 from pydantic import BaseModel
 
