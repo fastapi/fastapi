@@ -115,6 +115,7 @@ nav:
   - advanced/custom-response.md
   - advanced/response-cookies.md
   - advanced/wsgi.md
+- project-generation.md
 - contributing.md
 - help-fastapi.md
 - benchmarks.md
