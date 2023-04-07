@@ -19,7 +19,7 @@
 
 🔜, 🚫 💸 🙋 🎂, 🕴 🗄:
 
-```Python hl_lines="3-5"
+```Python hl_lines="3-6"
 {!../../../docs_src/nosql_databases/tutorial001.py!}
 ```
 
@@ -29,7 +29,7 @@
 
 👉 🚫 ✔ 🗄, ✋️ 👍 💡 👈 🔜 ℹ 👆 ⏮️.
 
-```Python hl_lines="9"
+```Python hl_lines="10"
 {!../../../docs_src/nosql_databases/tutorial001.py!}
 ```
 
@@ -54,7 +54,7 @@
     * ⚒ 🔢 ⏲.
 * 📨 ⚫️.
 
-```Python hl_lines="12-21"
+```Python hl_lines="13-22"
 {!../../../docs_src/nosql_databases/tutorial001.py!}
 ```
 
@@ -66,7 +66,7 @@
 
 🥇, ➡️ ✍ `User` 🏷:
 
-```Python hl_lines="24-28"
+```Python hl_lines="25-29"
 {!../../../docs_src/nosql_databases/tutorial001.py!}
 ```
 
@@ -80,7 +80,7 @@
 
 👥 🚫 ✍ ⚫️ 🏿 Pydantic `BaseModel` ✋️ 🏿 👆 👍 `User`, ↩️ ⚫️ 🔜 ✔️ 🌐 🔢 `User` ➕ 👩‍❤‍👨 🌅:
 
-```Python hl_lines="31-33"
+```Python hl_lines="32-34"
 {!../../../docs_src/nosql_databases/tutorial001.py!}
 ```
 
@@ -100,7 +100,7 @@
 
 🏗 🔢 👈 🕴 💡 🤚 👆 👩‍💻 ⚪️➡️ `username` (⚖️ 🙆 🎏 🔢) 🔬 👆 *➡ 🛠️ 🔢*, 👆 💪 🌖 💪 🏤-⚙️ ⚫️ 💗 🍕 &amp; 🚮 <abbr title="Automated test, written in code, that checks if another piece of code is working correctly.">⚒ 💯</abbr> ⚫️:
 
-```Python hl_lines="36-42"
+```Python hl_lines="37-43"
 {!../../../docs_src/nosql_databases/tutorial001.py!}
 ```
 
@@ -135,7 +135,7 @@ UserInDB(username="johndoe", hashed_password="some_hash")
 
 ### ✍ `FastAPI` 📱
 
-```Python hl_lines="46"
+```Python hl_lines="47"
 {!../../../docs_src/nosql_databases/tutorial001.py!}
 ```
 
@@ -145,7 +145,7 @@ UserInDB(username="johndoe", hashed_password="some_hash")
 
 , 🗄 👍 🚫 ⚙️ 👁 `Bucket` 🎚 💗 "<abbr title="A sequence of code being executed by the program, while at the same time, or at intervals, there can be others being executed too.">🧵</abbr>Ⓜ",, 👥 💪 🤚 🥡 🔗 &amp; 🚶‍♀️ ⚫️ 👆 🚙 🔢:
 
-```Python hl_lines="49-53"
+```Python hl_lines="50-54"
 {!../../../docs_src/nosql_databases/tutorial001.py!}
 ```
 
