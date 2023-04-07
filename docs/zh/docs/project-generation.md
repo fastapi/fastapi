@@ -43,8 +43,8 @@ GitHub: <a href="https://github.com/tiangolo/full-stack-fastapi-postgresql" clas
     - **Vuetify** 美化套件。
     - **TypeScript**。
     - 基于**Nginx**的Docker服务器 (可以很好的与 Vue-router 一起工作)。
-    - Docker多段式构建，所以您无需保存或提交已编译的代码。 
-    - 前端测试在构建时运行(也可以禁用)。 
+    - Docker多段式构建，所以您无需保存或提交已编译的代码。
+    - 前端测试在构建时运行(也可以禁用)。
     - 尽可能模块化，因此它可以直接使用，但是您也可以使用Vue CLI重新生成或按需创建，并复用您想要的内容。
 * **PGAdmin** 用于管理PostgreSQL 数据库， 您也可以改为使用 PHPMyAdmin 和 MySQL。
 * **Flower** 监控Celery。
