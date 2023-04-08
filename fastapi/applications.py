@@ -65,6 +65,9 @@ class FastAPI(Starlette):
         redoc_url: Optional[str] = "/redoc",
         swagger_ui_oauth2_redirect_url: Optional[str] = "/docs/oauth2-redirect",
         swagger_ui_init_oauth: Optional[Dict[str, Any]] = None,
+        swagger_js_url: str = "https://cdn.jsdelivr.net/npm/swagger-ui-dist@4/swagger-ui-bundle.js",
+        swagger_css_url: str = "https://cdn.jsdelivr.net/npm/swagger-ui-dist@4/swagger-ui.css",
+        swagger_favicon_url: str = "https://fastapi.tiangolo.com/img/favicon.png",
         middleware: Optional[Sequence[Middleware]] = None,
         exception_handlers: Optional[
             Dict[
@@ -105,6 +108,9 @@ class FastAPI(Starlette):
         self.redoc_url = redoc_url
         self.swagger_ui_oauth2_redirect_url = swagger_ui_oauth2_redirect_url
         self.swagger_ui_init_oauth = swagger_ui_init_oauth
+        self.swagger_js_url = swagger_js_url
+        self.swagger_css_url = swagger_css_url
+        self.swagger_favicon_url = swagger_favicon_url
         self.swagger_ui_parameters = swagger_ui_parameters
         self.servers = servers or []
         self.extra = extra
@@ -243,6 +249,9 @@ class FastAPI(Starlette):
                     openapi_url=openapi_url,
                     title=self.title + " - Swagger UI",
                     oauth2_redirect_url=oauth2_redirect_url,
+                    swagger_js_url=self.swagger_js_url,
+                    swagger_css_url=self.swagger_css_url,
+                    swagger_favicon_url=self.swagger_favicon_url,
                     init_oauth=self.swagger_ui_init_oauth,
                     swagger_ui_parameters=self.swagger_ui_parameters,
                 )
