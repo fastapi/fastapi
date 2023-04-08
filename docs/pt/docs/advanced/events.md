@@ -25,7 +25,7 @@ Isso é o que nós iremos resolver, vamos carregar o modelo antes das requests s
 
 ## Lifespan
 
-Você pode definí-lo com lógica de *inicialização* e *desligamento* usando os parâmetros de `lifespan` da aplicação `FastAPI`, e um "gerenciador de contexto" (I'll show you what that is in a second).
+Você pode defini-lo com lógica de *inicialização* e *desligamento* usando os parâmetros de `lifespan` da aplicação `FastAPI`, e um "gerenciador de contexto" (Te mostrarei o que é isso a seguir).
 
 Vamos iniciar com um exemplo e ver isso detalhadamente.
 
