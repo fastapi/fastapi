@@ -2,6 +2,7 @@
 
 ## Latest Changes
 
+* 🌐 🔠 📄 🐢 Translate docs to Emoji 🥳 🎉 💥 🤯 🤯. PR [#5385](https://github.com/tiangolo/fastapi/pull/5385) by [@LeeeeT](https://github.com/LeeeeT).
 
 ## 0.95.0
 
