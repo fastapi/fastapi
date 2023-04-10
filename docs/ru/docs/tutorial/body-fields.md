@@ -6,16 +6,16 @@
 
 Сначала вы должны импортировать его:
 
-=== "Python 3.6 и выше"
-
-    ```Python hl_lines="4"
-    {!> ../../../docs_src/body_fields/tutorial001.py!}
-    ```
-
-=== "Python 3.10 и выше"
+=== "Python 3.10+"
 
     ```Python hl_lines="2"
     {!> ../../../docs_src/body_fields/tutorial001_py310.py!}
+    ```
+
+=== "Python 3.6+"
+
+    ```Python hl_lines="4"
+    {!> ../../../docs_src/body_fields/tutorial001.py!}
     ```
 
 !!! warning "Внимание"
@@ -25,16 +25,16 @@
 
 Вы можете использовать функцию `Field` с атрибутами модели:
 
-=== "Python 3.6 и выше"
-
-    ```Python hl_lines="11-14"
-    {!> ../../../docs_src/body_fields/tutorial001.py!}
-    ```
-
-=== "Python 3.10 и выше"
+=== "Python 3.10+"
 
     ```Python hl_lines="9-12"
     {!> ../../../docs_src/body_fields/tutorial001_py310.py!}
+    ```
+
+=== "Python 3.6+"
+
+    ```Python hl_lines="11-14"
+    {!> ../../../docs_src/body_fields/tutorial001.py!}
     ```
 
 Функция `Field` работает так же, как `Query`, `Path` и `Body`, у ее такие же параметры и т.д.
