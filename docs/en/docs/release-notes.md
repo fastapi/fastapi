@@ -2,6 +2,7 @@
 
 ## Latest Changes
 
+* 🔧 Update sponsors, add databento, remove Ines's course and StriveWorks. PR [#9351](https://github.com/tiangolo/fastapi/pull/9351) by [@tiangolo](https://github.com/tiangolo).
 * 🌐 🔠 📄 🐢 Translate docs to Emoji 🥳 🎉 💥 🤯 🤯. PR [#5385](https://github.com/tiangolo/fastapi/pull/5385) by [@LeeeeT](https://github.com/LeeeeT).
 
 ## 0.95.0
