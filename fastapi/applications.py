@@ -436,6 +436,8 @@ class FastAPI(Starlette):
             callbacks=callbacks,
             generate_unique_id_function=generate_unique_id_function,
         )
+        for exc_or_code, handler in router.exception_handlers.items():
+            self.add_exception_handler(exc_or_code, handler)
 
     def get(
         self,
