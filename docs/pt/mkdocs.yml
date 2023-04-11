@@ -42,6 +42,7 @@ nav:
   - az: /az/
   - cs: /cs/
   - de: /de/
+  - em: /em/
   - es: /es/
   - fa: /fa/
   - fr: /fr/
@@ -145,6 +146,8 @@ extra:
     name: cs
   - link: /de/
     name: de
+  - link: /em/
+    name: 😉
   - link: /es/
     name: es - español
   - link: /fa/
