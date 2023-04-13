@@ -71,6 +71,7 @@ nav:
   - tutorial/body.md
   - tutorial/body-multiple-params.md
   - tutorial/body-fields.md
+  - tutorial/body-nested-models.md
   - tutorial/extra-data-types.md
   - tutorial/extra-models.md
   - tutorial/query-params-str-validations.md
