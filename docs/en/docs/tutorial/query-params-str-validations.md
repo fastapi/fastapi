@@ -117,7 +117,7 @@ Notice that the default value is still `None`, so the parameter is still optiona
 
 But now, having `Query(max_length=50)` inside of `Annotated`, we are telling FastAPI that we want it to extract this value from the query parameters (this would have been the default anyway 🤷) and that we want to have **additional validation** for this value (that's why we do this, to get the additional validation). 😎
 
-FastAPI wll now:
+FastAPI will now:
 
 * **Validate** the data making sure that the max length is 50 characters
 * Show a **clear error** for the client when the data is not valid
@@ -206,7 +206,7 @@ Instead use the actual default value of the function parameter. Otherwise, it wo
 For example, this is not allowed:
 
 ```Python
-q: Annotated[str Query(default="rick")] = "morty"
+q: Annotated[str, Query(default="rick")] = "morty"
 ```
 
 ...because it's not clear if the default value should be `"rick"` or `"morty"`.
