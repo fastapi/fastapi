@@ -2,6 +2,9 @@
 
 ## Latest Changes
 
+
+## 0.95.1
+
 ### Fixes
 
 * 🐛 Fix using `Annotated` in routers or path operations decorated multiple times. PR [#9315](https://github.com/tiangolo/fastapi/pull/9315) by [@sharonyogev](https://github.com/sharonyogev).
