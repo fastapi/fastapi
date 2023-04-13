@@ -25,9 +25,6 @@ Let's see a very simple example. It will be so simple that it is not very useful
 
 But this way we can focus on how the **Dependency Injection** system works.
 
-!!! check
-    Annotated Dependencies were introduced in version 0.95.0 but didn't fail gracefully before that. Please confirm you have updated to the most recent version of FastAPI before continuing.
-
 ### Create a dependency, or "dependable"
 
 Let's first focus on the dependency.
@@ -87,6 +84,13 @@ In this case, this dependency expects:
 * An optional query parameter `limit` that is an `int`, and by default is `100`.
 
 And then it just returns a `dict` containing those values.
+
+!!! info
+    FastAPI added support for `Annotated` (and started recommending it) in version 0.95.0.
+
+    If you have an older version, you would get errors when trying to use `Annotated`.
+
+    Make sure you [Upgrade the FastAPI version](../../deployment/versions.md#upgrading-the-fastapi-versions){.internal-link target=_blank} to at least 0.95.1 before using `Annotated`.
 
 ### Import `Depends`
 
