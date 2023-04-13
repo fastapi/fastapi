@@ -18,22 +18,22 @@ Not the class itself (which is already a callable), but an instance of that clas
 
 To do that, we declare a method `__call__`:
 
-=== "Python 3.6 and above"
-
-    ```Python hl_lines="11"
-    {!> ../../../docs_src/dependencies/tutorial011_an.py!}
-    ```
-
-=== "Python 3.9 and above"
+=== "Python 3.9+"
 
     ```Python hl_lines="12"
     {!> ../../../docs_src/dependencies/tutorial011_an_py39.py!}
     ```
 
-=== "Python 3.6 and above - non-Annotated"
+=== "Python 3.6+"
+
+    ```Python hl_lines="11"
+    {!> ../../../docs_src/dependencies/tutorial011_an.py!}
+    ```
+
+=== "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="10"
     {!> ../../../docs_src/dependencies/tutorial011.py!}
@@ -45,22 +45,22 @@ In this case, this `__call__` is what **FastAPI** will use to check for addition
 
 And now, we can use `__init__` to declare the parameters of the instance that we can use to "parameterize" the dependency:
 
-=== "Python 3.6 and above"
-
-    ```Python hl_lines="8"
-    {!> ../../../docs_src/dependencies/tutorial011_an.py!}
-    ```
-
-=== "Python 3.9 and above"
+=== "Python 3.9+"
 
     ```Python hl_lines="9"
     {!> ../../../docs_src/dependencies/tutorial011_an_py39.py!}
     ```
 
-=== "Python 3.6 and above - non-Annotated"
+=== "Python 3.6+"
+
+    ```Python hl_lines="8"
+    {!> ../../../docs_src/dependencies/tutorial011_an.py!}
+    ```
+
+=== "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="7"
     {!> ../../../docs_src/dependencies/tutorial011.py!}
@@ -72,22 +72,22 @@ In this case, **FastAPI** won't ever touch or care about `__init__`, we will use
 
 We could create an instance of this class with:
 
-=== "Python 3.6 and above"
-
-    ```Python hl_lines="17"
-    {!> ../../../docs_src/dependencies/tutorial011_an.py!}
-    ```
-
-=== "Python 3.9 and above"
+=== "Python 3.9+"
 
     ```Python hl_lines="18"
     {!> ../../../docs_src/dependencies/tutorial011_an_py39.py!}
     ```
 
-=== "Python 3.6 and above - non-Annotated"
+=== "Python 3.6+"
+
+    ```Python hl_lines="17"
+    {!> ../../../docs_src/dependencies/tutorial011_an.py!}
+    ```
+
+=== "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="16"
     {!> ../../../docs_src/dependencies/tutorial011.py!}
@@ -107,22 +107,22 @@ checker(q="somequery")
 
 ...and pass whatever that returns as the value of the dependency in our *path operation function* as the parameter `fixed_content_included`:
 
-=== "Python 3.6 and above"
-
-    ```Python hl_lines="21"
-    {!> ../../../docs_src/dependencies/tutorial011_an.py!}
-    ```
-
-=== "Python 3.9 and above"
+=== "Python 3.9+"
 
     ```Python hl_lines="22"
     {!> ../../../docs_src/dependencies/tutorial011_an_py39.py!}
     ```
 
-=== "Python 3.6 and above - non-Annotated"
+=== "Python 3.6+"
+
+    ```Python hl_lines="21"
+    {!> ../../../docs_src/dependencies/tutorial011_an.py!}
+    ```
+
+=== "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="20"
     {!> ../../../docs_src/dependencies/tutorial011.py!}

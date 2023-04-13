@@ -14,22 +14,22 @@ The *path operation decorator* receives an optional argument `dependencies`.
 
 It should be a `list` of `Depends()`:
 
-=== "Python 3.6 and above"
-
-    ```Python hl_lines="18"
-    {!> ../../../docs_src/dependencies/tutorial006_an.py!}
-    ```
-
-=== "Python 3.9 and above"
+=== "Python 3.9+"
 
     ```Python hl_lines="19"
     {!> ../../../docs_src/dependencies/tutorial006_an_py39.py!}
     ```
 
-=== "Python 3.6 - non-Annotated"
+=== "Python 3.6+"
+
+    ```Python hl_lines="18"
+    {!> ../../../docs_src/dependencies/tutorial006_an.py!}
+    ```
+
+=== "Python 3.6 non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="17"
     {!> ../../../docs_src/dependencies/tutorial006.py!}
@@ -57,22 +57,22 @@ You can use the same dependency *functions* you use normally.
 
 They can declare request requirements (like headers) or other sub-dependencies:
 
-=== "Python 3.6 and above"
-
-    ```Python hl_lines="7  12"
-    {!> ../../../docs_src/dependencies/tutorial006_an.py!}
-    ```
-
-=== "Python 3.9 and above"
+=== "Python 3.9+"
 
     ```Python hl_lines="8  13"
     {!> ../../../docs_src/dependencies/tutorial006_an_py39.py!}
     ```
 
-=== "Python 3.6 - non-Annotated"
+=== "Python 3.6+"
+
+    ```Python hl_lines="7  12"
+    {!> ../../../docs_src/dependencies/tutorial006_an.py!}
+    ```
+
+=== "Python 3.6 non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="6  11"
     {!> ../../../docs_src/dependencies/tutorial006.py!}
@@ -82,22 +82,22 @@ They can declare request requirements (like headers) or other sub-dependencies:
 
 These dependencies can `raise` exceptions, the same as normal dependencies:
 
-=== "Python 3.6 and above"
-
-    ```Python hl_lines="9  14"
-    {!> ../../../docs_src/dependencies/tutorial006_an.py!}
-    ```
-
-=== "Python 3.9 and above"
+=== "Python 3.9+"
 
     ```Python hl_lines="10  15"
     {!> ../../../docs_src/dependencies/tutorial006_an_py39.py!}
     ```
 
-=== "Python 3.6 - non-Annotated"
+=== "Python 3.6+"
+
+    ```Python hl_lines="9  14"
+    {!> ../../../docs_src/dependencies/tutorial006_an.py!}
+    ```
+
+=== "Python 3.6 non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="8  13"
     {!> ../../../docs_src/dependencies/tutorial006.py!}
@@ -109,22 +109,22 @@ And they can return values or not, the values won't be used.
 
 So, you can re-use a normal dependency (that returns a value) you already use somewhere else, and even though the value won't be used, the dependency will be executed:
 
-=== "Python 3.6 and above"
-
-    ```Python hl_lines="10  15"
-    {!> ../../../docs_src/dependencies/tutorial006_an.py!}
-    ```
-
-=== "Python 3.9 and above"
+=== "Python 3.9+"
 
     ```Python hl_lines="11  16"
     {!> ../../../docs_src/dependencies/tutorial006_an_py39.py!}
     ```
 
-=== "Python 3.6 - non-Annotated"
+=== "Python 3.6+"
+
+    ```Python hl_lines="10  15"
+    {!> ../../../docs_src/dependencies/tutorial006_an.py!}
+    ```
+
+=== "Python 3.6 non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="9  14"
     {!> ../../../docs_src/dependencies/tutorial006.py!}

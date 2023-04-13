@@ -112,22 +112,22 @@ So we put them in their own `dependencies` module (`app/dependencies.py`).
 
 We will now use a simple dependency to read a custom `X-Token` header:
 
-=== "Python 3.6 and above"
-
-    ```Python hl_lines="1  5-7"
-    {!> ../../../docs_src/bigger_applications/app_an/dependencies.py!}
-    ```
-
-=== "Python 3.9 and above"
+=== "Python 3.9+"
 
     ```Python hl_lines="3  6-8"
     {!> ../../../docs_src/bigger_applications/app_an_py39/dependencies.py!}
     ```
 
-=== "Python 3.6 and above - non-Annotated"
+=== "Python 3.6+"
+
+    ```Python hl_lines="1  5-7"
+    {!> ../../../docs_src/bigger_applications/app_an/dependencies.py!}
+    ```
+
+=== "Python 3.6+ non-Annotated"
 
     !!! tip
-        Try to use the main, `Annotated` version better.
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="1  4-6"
     {!> ../../../docs_src/bigger_applications/app/dependencies.py!}

@@ -1,5 +1,5 @@
 import pytest
-from fastapi import FastAPI, Query
+from fastapi import APIRouter, FastAPI, Query
 from fastapi.testclient import TestClient
 from typing_extensions import Annotated
 
@@ -224,3 +224,44 @@ def test_get(path, expected_status, expected_response):
     response = client.get(path)
     assert response.status_code == expected_status
     assert response.json() == expected_response
+
+
+def test_multiple_path():
+    @app.get("/test1")
+    @app.get("/test2")
+    async def test(var: Annotated[str, Query()] = "bar"):
+        return {"foo": var}
+
+    response = client.get("/test1")
+    assert response.status_code == 200
+    assert response.json() == {"foo": "bar"}
+
+    response = client.get("/test1", params={"var": "baz"})
+    assert response.status_code == 200
+    assert response.json() == {"foo": "baz"}
+
+    response = client.get("/test2")
+    assert response.status_code == 200
+    assert response.json() == {"foo": "bar"}
+
+    response = client.get("/test2", params={"var": "baz"})
+    assert response.status_code == 200
+    assert response.json() == {"foo": "baz"}
+
+
+def test_nested_router():
+    app = FastAPI()
+
+    router = APIRouter(prefix="/nested")
+
+    @router.get("/test")
+    async def test(var: Annotated[str, Query()] = "bar"):
+        return {"foo": var}
+
+    app.include_router(router)
+
+    client = TestClient(app)
+
+    response = client.get("/nested/test")
+    assert response.status_code == 200
+    assert response.json() == {"foo": "bar"}

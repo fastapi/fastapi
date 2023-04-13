@@ -4,22 +4,22 @@ You can declare the type used for the response by annotating the *path operation
 
 You can use **type annotations** the same way you would for input data in function **parameters**, you can use Pydantic models, lists, dictionaries, scalar values like integers, booleans, etc.
 
-=== "Python 3.6 and above"
+=== "Python 3.10+"
 
-    ```Python hl_lines="18  23"
-    {!> ../../../docs_src/response_model/tutorial001_01.py!}
+    ```Python hl_lines="16  21"
+    {!> ../../../docs_src/response_model/tutorial001_01_py310.py!}
     ```
 
-=== "Python 3.9 and above"
+=== "Python 3.9+"
 
     ```Python hl_lines="18  23"
     {!> ../../../docs_src/response_model/tutorial001_01_py39.py!}
     ```
 
-=== "Python 3.10 and above"
+=== "Python 3.6+"
 
-    ```Python hl_lines="16  21"
-    {!> ../../../docs_src/response_model/tutorial001_01_py310.py!}
+    ```Python hl_lines="18  23"
+    {!> ../../../docs_src/response_model/tutorial001_01.py!}
     ```
 
 FastAPI will use this return type to:
@@ -53,22 +53,22 @@ You can use the `response_model` parameter in any of the *path operations*:
 * `@app.delete()`
 * etc.
 
-=== "Python 3.6 and above"
+=== "Python 3.10+"
 
     ```Python hl_lines="17  22  24-27"
-    {!> ../../../docs_src/response_model/tutorial001.py!}
+    {!> ../../../docs_src/response_model/tutorial001_py310.py!}
     ```
 
-=== "Python 3.9 and above"
+=== "Python 3.9+"
 
     ```Python hl_lines="17  22  24-27"
     {!> ../../../docs_src/response_model/tutorial001_py39.py!}
     ```
 
-=== "Python 3.10 and above"
+=== "Python 3.6+"
 
     ```Python hl_lines="17  22  24-27"
-    {!> ../../../docs_src/response_model/tutorial001_py310.py!}
+    {!> ../../../docs_src/response_model/tutorial001.py!}
     ```
 
 !!! note
@@ -95,16 +95,16 @@ You can also use `response_model=None` to disable creating a response model for 
 
 Here we are declaring a `UserIn` model, it will contain a plaintext password:
 
-=== "Python 3.6 and above"
-
-    ```Python hl_lines="9  11"
-    {!> ../../../docs_src/response_model/tutorial002.py!}
-    ```
-
-=== "Python 3.10 and above"
+=== "Python 3.10+"
 
     ```Python hl_lines="7  9"
     {!> ../../../docs_src/response_model/tutorial002_py310.py!}
+    ```
+
+=== "Python 3.6+"
+
+    ```Python hl_lines="9  11"
+    {!> ../../../docs_src/response_model/tutorial002.py!}
     ```
 
 !!! info
@@ -115,16 +115,16 @@ Here we are declaring a `UserIn` model, it will contain a plaintext password:
 
 And we are using this model to declare our input and the same model to declare our output:
 
-=== "Python 3.6 and above"
-
-    ```Python hl_lines="18"
-    {!> ../../../docs_src/response_model/tutorial002.py!}
-    ```
-
-=== "Python 3.10 and above"
+=== "Python 3.10+"
 
     ```Python hl_lines="16"
     {!> ../../../docs_src/response_model/tutorial002_py310.py!}
+    ```
+
+=== "Python 3.6+"
+
+    ```Python hl_lines="18"
+    {!> ../../../docs_src/response_model/tutorial002.py!}
     ```
 
 Now, whenever a browser is creating a user with a password, the API will return the same password in the response.
@@ -140,44 +140,44 @@ But if we use the same model for another *path operation*, we could be sending o
 
 We can instead create an input model with the plaintext password and an output model without it:
 
-=== "Python 3.6 and above"
-
-    ```Python hl_lines="9  11  16"
-    {!> ../../../docs_src/response_model/tutorial003.py!}
-    ```
-
-=== "Python 3.10 and above"
+=== "Python 3.10+"
 
     ```Python hl_lines="9  11  16"
     {!> ../../../docs_src/response_model/tutorial003_py310.py!}
+    ```
+
+=== "Python 3.6+"
+
+    ```Python hl_lines="9  11  16"
+    {!> ../../../docs_src/response_model/tutorial003.py!}
     ```
 
 Here, even though our *path operation function* is returning the same input user that contains the password:
 
-=== "Python 3.6 and above"
-
-    ```Python hl_lines="24"
-    {!> ../../../docs_src/response_model/tutorial003.py!}
-    ```
-
-=== "Python 3.10 and above"
+=== "Python 3.10+"
 
     ```Python hl_lines="24"
     {!> ../../../docs_src/response_model/tutorial003_py310.py!}
+    ```
+
+=== "Python 3.6+"
+
+    ```Python hl_lines="24"
+    {!> ../../../docs_src/response_model/tutorial003.py!}
     ```
 
 ...we declared the `response_model` to be our model `UserOut`, that doesn't include the password:
 
-=== "Python 3.6 and above"
-
-    ```Python hl_lines="22"
-    {!> ../../../docs_src/response_model/tutorial003.py!}
-    ```
-
-=== "Python 3.10 and above"
+=== "Python 3.10+"
 
     ```Python hl_lines="22"
     {!> ../../../docs_src/response_model/tutorial003_py310.py!}
+    ```
+
+=== "Python 3.6+"
+
+    ```Python hl_lines="22"
+    {!> ../../../docs_src/response_model/tutorial003.py!}
     ```
 
 So, **FastAPI** will take care of filtering out all the data that is not declared in the output model (using Pydantic).
@@ -202,16 +202,16 @@ But in most of the cases where we need to do something like this, we want the mo
 
 And in those cases, we can use classes and inheritance to take advantage of function **type annotations** to get better support in the editor and tools, and still get the FastAPI **data filtering**.
 
-=== "Python 3.6 and above"
-
-    ```Python hl_lines="9-13  15-16  20"
-    {!> ../../../docs_src/response_model/tutorial003_01.py!}
-    ```
-
-=== "Python 3.10 and above"
+=== "Python 3.10+"
 
     ```Python hl_lines="7-10  13-14  18"
     {!> ../../../docs_src/response_model/tutorial003_01_py310.py!}
+    ```
+
+=== "Python 3.6+"
+
+    ```Python hl_lines="9-13  15-16  20"
+    {!> ../../../docs_src/response_model/tutorial003_01.py!}
     ```
 
 With this, we get tooling support, from editors and mypy as this code is correct in terms of types, but we also get the data filtering from FastAPI.
@@ -278,16 +278,16 @@ But when you return some other arbitrary object that is not a valid Pydantic typ
 
 The same would happen if you had something like a <abbr title='A union between multiple types means "any of these types".'>union</abbr> between different types where one or more of them are not valid Pydantic types, for example this would fail 💥:
 
-=== "Python 3.6 and above"
-
-    ```Python hl_lines="10"
-    {!> ../../../docs_src/response_model/tutorial003_04.py!}
-    ```
-
-=== "Python 3.10 and above"
+=== "Python 3.10+"
 
     ```Python hl_lines="8"
     {!> ../../../docs_src/response_model/tutorial003_04_py310.py!}
+    ```
+
+=== "Python 3.6+"
+
+    ```Python hl_lines="10"
+    {!> ../../../docs_src/response_model/tutorial003_04.py!}
     ```
 
 ...this fails because the type annotation is not a Pydantic type and is not just a single `Response` class or subclass, it's a union (any of the two) between a `Response` and a `dict`.
@@ -300,16 +300,16 @@ But you might want to still keep the return type annotation in the function to g
 
 In this case, you can disable the response model generation by setting `response_model=None`:
 
-=== "Python 3.6 and above"
-
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/response_model/tutorial003_05.py!}
-    ```
-
-=== "Python 3.10 and above"
+=== "Python 3.10+"
 
     ```Python hl_lines="7"
     {!> ../../../docs_src/response_model/tutorial003_05_py310.py!}
+    ```
+
+=== "Python 3.6+"
+
+    ```Python hl_lines="9"
+    {!> ../../../docs_src/response_model/tutorial003_05.py!}
     ```
 
 This will make FastAPI skip the response model generation and that way you can have any return type annotations you need without it affecting your FastAPI application. 🤓
@@ -318,22 +318,22 @@ This will make FastAPI skip the response model generation and that way you can h
 
 Your response model could have default values, like:
 
-=== "Python 3.6 and above"
+=== "Python 3.10+"
 
-    ```Python hl_lines="11  13-14"
-    {!> ../../../docs_src/response_model/tutorial004.py!}
+    ```Python hl_lines="9  11-12"
+    {!> ../../../docs_src/response_model/tutorial004_py310.py!}
     ```
 
-=== "Python 3.9 and above"
+=== "Python 3.9+"
 
     ```Python hl_lines="11  13-14"
     {!> ../../../docs_src/response_model/tutorial004_py39.py!}
     ```
 
-=== "Python 3.10 and above"
+=== "Python 3.6+"
 
-    ```Python hl_lines="9  11-12"
-    {!> ../../../docs_src/response_model/tutorial004_py310.py!}
+    ```Python hl_lines="11  13-14"
+    {!> ../../../docs_src/response_model/tutorial004.py!}
     ```
 
 * `description: Union[str, None] = None` (or `str | None = None` in Python 3.10) has a default of `None`.
@@ -348,22 +348,22 @@ For example, if you have models with many optional attributes in a NoSQL databas
 
 You can set the *path operation decorator* parameter `response_model_exclude_unset=True`:
 
-=== "Python 3.6 and above"
+=== "Python 3.10+"
 
-    ```Python hl_lines="24"
-    {!> ../../../docs_src/response_model/tutorial004.py!}
+    ```Python hl_lines="22"
+    {!> ../../../docs_src/response_model/tutorial004_py310.py!}
     ```
 
-=== "Python 3.9 and above"
+=== "Python 3.9+"
 
     ```Python hl_lines="24"
     {!> ../../../docs_src/response_model/tutorial004_py39.py!}
     ```
 
-=== "Python 3.10 and above"
+=== "Python 3.6+"
 
-    ```Python hl_lines="22"
-    {!> ../../../docs_src/response_model/tutorial004_py310.py!}
+    ```Python hl_lines="24"
+    {!> ../../../docs_src/response_model/tutorial004.py!}
     ```
 
 and those default values won't be included in the response, only the values actually set.
@@ -441,16 +441,16 @@ This can be used as a quick shortcut if you have only one Pydantic model and wan
 
     This also applies to `response_model_by_alias` that works similarly.
 
-=== "Python 3.6 and above"
-
-    ```Python hl_lines="31  37"
-    {!> ../../../docs_src/response_model/tutorial005.py!}
-    ```
-
-=== "Python 3.10 and above"
+=== "Python 3.10+"
 
     ```Python hl_lines="29  35"
     {!> ../../../docs_src/response_model/tutorial005_py310.py!}
+    ```
+
+=== "Python 3.6+"
+
+    ```Python hl_lines="31  37"
+    {!> ../../../docs_src/response_model/tutorial005.py!}
     ```
 
 !!! tip
@@ -462,16 +462,16 @@ This can be used as a quick shortcut if you have only one Pydantic model and wan
 
 If you forget to use a `set` and use a `list` or `tuple` instead, FastAPI will still convert it to a `set` and it will work correctly:
 
-=== "Python 3.6 and above"
-
-    ```Python hl_lines="31  37"
-    {!> ../../../docs_src/response_model/tutorial006.py!}
-    ```
-
-=== "Python 3.10 and above"
+=== "Python 3.10+"
 
     ```Python hl_lines="29  35"
     {!> ../../../docs_src/response_model/tutorial006_py310.py!}
+    ```
+
+=== "Python 3.6+"
+
+    ```Python hl_lines="31  37"
+    {!> ../../../docs_src/response_model/tutorial006.py!}
     ```
 
 ## Recap
