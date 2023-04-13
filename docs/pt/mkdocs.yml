@@ -41,6 +41,7 @@ nav:
   - en: /
   - az: /az/
   - de: /de/
+  - em: /em/
   - es: /es/
   - fa: /fa/
   - fr: /fr/
@@ -73,6 +74,7 @@ nav:
   - tutorial/extra-data-types.md
   - tutorial/query-params-str-validations.md
   - tutorial/path-params-numeric-validations.md
+  - tutorial/path-operation-configuration.md
   - tutorial/cookie-params.md
   - tutorial/header-params.md
   - tutorial/response-status-code.md
@@ -142,6 +144,8 @@ extra:
     name: az
   - link: /de/
     name: de
+  - link: /em/
+    name: 😉
   - link: /es/
     name: es - español
   - link: /fa/
