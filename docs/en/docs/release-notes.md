@@ -2,6 +2,7 @@
 
 ## Latest Changes
 
+* ✏ Fix wrong import from typing module in Persian translations for `docs/fa/docs/index.md`. PR [#6083](https://github.com/tiangolo/fastapi/pull/6083) by [@Kimiaattaei](https://github.com/Kimiaattaei).
 * ✏️ Fix format, remove unnecessary asterisks in `docs/en/docs/help-fastapi.md`. PR [#9249](https://github.com/tiangolo/fastapi/pull/9249) by [@armgabrielyan](https://github.com/armgabrielyan).
 * ✏ Fix typo in `docs/en/docs/tutorial/query-params-str-validations.md`. PR [#9272](https://github.com/tiangolo/fastapi/pull/9272) by [@nicornk](https://github.com/nicornk).
 * ✏ Fix typo/bug in inline code example in `docs/en/docs/tutorial/query-params-str-validations.md`. PR [#9273](https://github.com/tiangolo/fastapi/pull/9273) by [@tim-habitat](https://github.com/tim-habitat).
