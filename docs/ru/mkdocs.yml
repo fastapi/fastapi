@@ -68,6 +68,7 @@ nav:
   - tutorial/query-params-str-validations.md
   - tutorial/body-fields.md
   - tutorial/background-tasks.md
+  - tutorial/extra-data-types.md
   - tutorial/cookie-params.md
 - async.md
 - Развёртывание:
