@@ -74,6 +74,8 @@ nav:
   - deployment/versions.md
 - history-design-future.md
 - external-links.md
+- benchmarks.md
+- help-fastapi.md
 - contributing.md
 markdown_extensions:
 - toc:
