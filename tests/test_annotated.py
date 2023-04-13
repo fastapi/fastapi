@@ -236,12 +236,22 @@ def test_multiple_path():
     assert response.status_code == 200
     assert response.json() == {"foo": "bar"}
 
+    response = client.get("/test1", params={"var": "baz"})
+    assert response.status_code == 200
+    assert response.json() == {"foo": "baz"}
+
     response = client.get("/test2")
     assert response.status_code == 200
     assert response.json() == {"foo": "bar"}
 
+    response = client.get("/test2", params={"var": "baz"})
+    assert response.status_code == 200
+    assert response.json() == {"foo": "baz"}
+
 
 def test_nested_router():
+    app = FastAPI()
+
     router = APIRouter(prefix="/nested")
 
     @router.get("/test")
@@ -249,6 +259,8 @@ def test_nested_router():
         return {"foo": var}
 
     app.include_router(router)
+
+    client = TestClient(app)
 
     response = client.get("/nested/test")
     assert response.status_code == 200
