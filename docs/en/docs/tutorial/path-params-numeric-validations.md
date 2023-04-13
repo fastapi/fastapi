@@ -42,6 +42,13 @@ First, import `Path` from `fastapi`, and import `Annotated`:
     {!> ../../../docs_src/path_params_numeric_validations/tutorial001.py!}
     ```
 
+!!! info
+    FastAPI added support for `Annotated` (and started recommending it) in version 0.95.0.
+
+    If you have an older version, you would get errors when trying to use `Annotated`.
+
+    Make sure you [Upgrade the FastAPI version](../deployment/versions.md#upgrading-the-fastapi-versions){.internal-link target=_blank} to at least 0.95.1 before using `Annotated`.
+
 ## Declare metadata
 
 You can declare all the same parameters as for `Query`.
