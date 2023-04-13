@@ -73,6 +73,8 @@ nav:
   - tutorial/request-forms-and-files.md
   - tutorial/encoder.md
   - tutorial/cors.md
+  - 의존성:
+    - tutorial/dependencies/classes-as-dependencies.md
 markdown_extensions:
 - toc:
     permalink: true
