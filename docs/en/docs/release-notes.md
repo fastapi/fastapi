@@ -2,6 +2,7 @@
 
 ## Latest Changes
 
+* 🌐 Add Russian translation for `docs/ru/docs/benchmarks.md`. PR [#9271](https://github.com/tiangolo/fastapi/pull/9271) by [@Xewus](https://github.com/Xewus).
 * 🐛 Fix using `Annotated` in routers or path operations decorated multiple times. PR [#9315](https://github.com/tiangolo/fastapi/pull/9315) by [@sharonyogev](https://github.com/sharonyogev).
 * 🔧 Update sponsors, add databento, remove Ines's course and StriveWorks. PR [#9351](https://github.com/tiangolo/fastapi/pull/9351) by [@tiangolo](https://github.com/tiangolo).
 * 🌐 🔠 📄 🐢 Translate docs to Emoji 🥳 🎉 💥 🤯 🤯. PR [#5385](https://github.com/tiangolo/fastapi/pull/5385) by [@LeeeeT](https://github.com/LeeeeT).
