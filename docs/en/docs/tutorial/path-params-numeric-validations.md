@@ -159,7 +159,7 @@ Python won't do anything with that `*`, but it will know that all the following 
 
 ### Better with `Annotated`
 
-Have in mind that if you use `Annotated`, as you are not using function parameter default values, you won't have this problem, and yo probably won't need to use `*`.
+Have in mind that if you use `Annotated`, as you are not using function parameter default values, you won't have this problem, and you probably won't need to use `*`.
 
 === "Python 3.9+"
 
