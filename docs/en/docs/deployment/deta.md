@@ -44,10 +44,8 @@ Now, in the same directory create a file `requirements.txt` with:
 
 ```text
 fastapi
+uvicorn
 ```
-
-!!! tip
-    You don't need to install Uvicorn to deploy on Deta Space, although you would probably want to install it locally to test your app.
 
 ### Directory structure
 
@@ -191,6 +189,19 @@ It has the same sytax as a `yaml` file, and you can use it to add features like 
 !!! tip
     The Space CLI will also create a hidden `.space` folder in your local directory to link your local environment with Deta Space. This folder should not be included in your version control and will automatically be added to your `.gitignore` file, if you have initialized a Git repository.
 
+## Define the run command in the Spacefile
+
+The `run` command in the Spacefile tells Space what command should be executed to start your app. In this case it would be `uvicorn main:app`.
+
+```diff
+v: 0
+micros:
+  - name: fastapi-deta
+    src: .
+    engine: python3.9
++   run: uvicorn main:app
+```
+
 ## Deploy to Deta Space
 
 To get your FastAPI live in the cloud, use one more CLI command:
@@ -250,7 +261,7 @@ micros:
     src: .
     engine: python3.9
     public_routes:
-      - "*"
+      - "/*"
 ```
 
 Then run `space push` again to update your live API on Deta Space.
