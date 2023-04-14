@@ -56,6 +56,15 @@ Here's an incomplete list of some of them.
 {% endfor %}
 {% endif %}
 
+### Taiwanese
+
+{% if external_links %}
+{% for article in external_links.articles.taiwanese %}
+
+* <a href="{{ article.link }}" class="external-link" target="_blank">{{ article.title }}</a> by <a href="{{ article.author_link }}" class="external-link" target="_blank">{{ article.author }}</a>.
+{% endfor %}
+{% endif %}
+
 ## Podcasts
 
 {% if external_links %}
