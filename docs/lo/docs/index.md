@@ -35,16 +35,16 @@ FastAPI ແມ່ນທັນສະໄໝ, ໄວ (ປະສິດທິພາ�
 
 ຄຸນສົມບັດຫຼັກປະກອບມີ:
 
-* **ໄວ**: Very high performance, on par with **NodeJS** and **Go** (thanks to Starlette and Pydantic). [One of the fastest Python frameworks available](#performance).
-* **ສ້າງໄດ້ໄວ**: Increase the speed to develop features by about 200% to 300%. *
-* **ບັນຫາໜ້ອຍ**: Reduce about 40% of human (developer) induced errors. *
-* **ໃຊ້ງານງ່າຍ**: Great editor support. <abbr title="also known as auto-complete, autocompletion, IntelliSense">Completion</abbr> everywhere. Less time debugging.
-* **ງ່າຍ**: Designed to be easy to use and learn. Less time reading docs.
-* **ສັ້ນ**: Minimize code duplication. Multiple features from each parameter declaration. Fewer bugs.
-* **ແຂງແກ່ນ**: Get production-ready code. With automatic interactive documentation.
-* **ຕາມມາດຕະຖານ**: Based on (and fully compatible with) the open standards for APIs: <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (previously known as Swagger) and <a href="https://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>.
+* **ໄວ**: ປະສິດທິພາບສູງຫຼາຍ, on par with **NodeJS** and **Go** (thanks to Starlette and Pydantic). [One of the fastest Python frameworks available](#performance).
+* **ສ້າງໄດ້ໄວ**: ເພີ່ມຄວາມໄວໃນການພັດທະນາຄຸນສົມບັດປະມັນ 200% ເຖິງ 300%. *
+* **ບັນຫາໜ້ອຍ**: ຫຼຸດຜ່ອນປະມານ 40% ຂອງຄົນ (ຜູ້ພັດທະນາ) ທີອາດກໍໃຫ້ເກີດຄວາມຜິດພາດ. *
+* **ໃຊ້ງານງ່າຍ**: ມີ editor ທີຄັກ. <abbr title="also known as auto-complete, autocompletion, IntelliSense">ຊ່ອຍຕື່ມຄໍາ</abbr> ທຸກບ່ອນ. ການຫາຂໍ້ຜິດພາດໃຊ້ເວລາໜ້ອຍລົງ.
+* **ງ່າຍ**: ຖືກອອກແບບມາໃຫ້ໃຊ້ງານ ແລະ ຮຽນຮູ້ງ່າຍ. ໃຊ້ເວລາໜ້ອຍໃນການອ່ານເອກະສານ.
+* **ສັ້ນ**: ຫຼຸດຜ່ອນການຊໍ້າກັນຂອງໂຄດ. ຄຸນສົມບັດຫຼາຍຈາກການປະກາດແຕ່ລະພາລາມີເຕີ. ຂໍ້ຜິດພາດໜ້ອຍ.
+* **ແຂງແກ່ນ**: ຮັບໂຄດທີພ້ອມສຳລັບວຽກ production. ພ້ອມເອກະສານແບບໂຕ້ຕອບໂດຍອັດຕະໂນມັດ.
+* **ຕາມມາດຕະຖານ**: ອີງໃສ່ (ແລະເຂົ້າກັນໄດ້ຢ່າງເຕັມສ່ວນກັບ) ມາດຕະຖານທີເປີດສໍາລັບ APIs: <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (ໃນເມືອກ່ອນເອີ້ນວ່າ Swagger) ແລະ <a href="https://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>.
 
-<small>* estimation based on tests on an internal development team, building production applications.</small>
+<small>* ຄາດຄະເນໂດຍອີງໃສ່ການທົດສອບໃນທີມພັດທະນາພາຍໃນ, ສ້າງ production application</small>
 
 ## ຜູ້ສະໜັບສະໜູນ
 
@@ -177,7 +177,7 @@ def read_item(item_id: int, q: Union[str, None] = None):
 <details markdown="1">
 <summary>ຫຼື ໃຊ້ <code>async def</code>...</summary>
 
-If your code uses `async` / `await`, use `async def`:
+ຖ້າເຈົ້າຂຽນໂຄດດ້ວຍ `async` / `await`, ໃຊ້ `async def`:
 
 ```Python hl_lines="9  14"
 from typing import Union
@@ -197,9 +197,9 @@ async def read_item(item_id: int, q: Union[str, None] = None):
     return {"item_id": item_id, "q": q}
 ```
 
-**Note**:
+**ໝາຍເຫດ**:
 
-If you don't know, check the _"In a hurry?"_ section about <a href="https://fastapi.tiangolo.com/async/#in-a-hurry" target="_blank">`async` and `await` in the docs</a>.
+ຖ້າເຈົ້າບໍ່ຮູ້, ກວດໃນຫົວຂໍ້ _"ຟ້າວຫວາ?"_  ກ່ຽວກັບ <a href="https://fastapi.tiangolo.com/async/#in-a-hurry" target="_blank">`async` ແລະ `await` ໃນເອກະສານ</a>.
 
 </details>
 
@@ -224,19 +224,19 @@ INFO:     Application startup complete.
 <details markdown="1">
 <summary>ກ່ຽວກັບຄຳສັ່ງ <code>uvicorn main:app --reload</code>...</summary>
 
-The command `uvicorn main:app` refers to:
+ຄຳສັ່ງ `uvicorn main:app` ໝາຍເຖິງ:
 
-* `main`: the file `main.py` (the Python "module").
-* `app`: the object created inside of `main.py` with the line `app = FastAPI()`.
-* `--reload`: make the server restart after code changes. Only do this for development.
+* `main`: ຟາຍ `main.py` (the Python "module").
+* `app`: object ຖືກສ້າງໃນຟາຍ `main.py` ໃນແຖວ `app = FastAPI()`.
+* `--reload`: ເຮັດໃຫ້ server ແລ່ນໃໝ່ ຫຼັງຈາກໂຄດມີການປ່ຽນແປງ. ໃຊ້ສະເພາະຕອນພັດທະນາ.
 
 </details>
 
 ### ກວດມັນ
 
-Open your browser at <a href="http://127.0.0.1:8000/items/5?q=somequery" class="external-link" target="_blank">http://127.0.0.1:8000/items/5?q=somequery</a>.
+ເປີດບາວເຊີຂອງທ່ານທີ່ <a href="http://127.0.0.1:8000/items/5?q=somequery" class="external-link" target="_blank">http://127.0.0.1:8000/items/5?q=somequery</a>.
 
-You will see the JSON response as:
+ທ່ານຈະເຫັນຂໍ້ຄວາມ JSON ແຈ້ງກັບ ດັ່ງນີ້:
 
 ```JSON
 {"item_id": 5, "q": "somequery"}
@@ -443,7 +443,7 @@ For a more complete example including more features, see the <a href="https://fa
 
 Independent TechEmpower benchmarks show **FastAPI** applications running under Uvicorn as <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">one of the fastest Python frameworks available</a>, only below Starlette and Uvicorn themselves (used internally by FastAPI). (*)
 
-To understand more about it, see the section <a href="https://fastapi.tiangolo.com/benchmarks/" class="internal-link" target="_blank">Benchmarks</a>.
+ເພື່ອທຳຄວາມເຂົ້າໃຈກັບມັນຫຼາຍຂຶ້ນ, ເບິ່ງຫົວຂໍ້ <a href="https://fastapi.tiangolo.com/benchmarks/" class="internal-link" target="_blank">ເກນວັດມາດຕະຖານ</a>.
 
 ## ທາງເລືອກ Dependencies
 
