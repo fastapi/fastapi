@@ -6,7 +6,7 @@
   <a href="https://fastapi.tiangolo.com"><img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI"></a>
 </p>
 <p align="center">
-    <em>FastAPI framework, high performance, easy to learn, fast to code, ready for production</em>
+    <em>ເຄື່ອງມື FastAPI , ປະສິດທິພາບສູງ, ຮຽນງ່າຍ, ສ້າງໄດ້ໄວ, ພ້ອມສຳລັບ production</em>
 </p>
 <p align="center">
 <a href="https://github.com/tiangolo/fastapi/actions?query=workflow%3ATest+event%3Apush+branch%3Amaster" target="_blank">
@@ -25,28 +25,28 @@
 
 ---
 
-**Documentation**: <a href="https://fastapi.tiangolo.com" target="_blank">https://fastapi.tiangolo.com</a>
+**ເອກະສານ**: <a href="https://fastapi.tiangolo.com" target="_blank">https://fastapi.tiangolo.com</a>
 
 **Source Code**: <a href="https://github.com/tiangolo/fastapi" target="_blank">https://github.com/tiangolo/fastapi</a>
 
 ---
 
-FastAPI is a modern, fast (high-performance), web framework for building APIs with Python 3.7+ based on standard Python type hints.
+FastAPI ແມ່ນທັນສະໄໝ, ໄວ (ປະສິດທິພາບສູງ), ເຄື່ອງມືເວັບສຳລັບພັດທະນາ APIs ດ້ວຍພາສາ Python ເວີຊັ່ນ 3.7 ຂຶ້ນໄປ ອີງຕາມມາດຕະຖານຂອງ Python type hints.
 
-The key features are:
+ຄຸນສົມບັດຫຼັກປະກອບມີ:
 
-* **Fast**: Very high performance, on par with **NodeJS** and **Go** (thanks to Starlette and Pydantic). [One of the fastest Python frameworks available](#performance).
-* **Fast to code**: Increase the speed to develop features by about 200% to 300%. *
-* **Fewer bugs**: Reduce about 40% of human (developer) induced errors. *
-* **Intuitive**: Great editor support. <abbr title="also known as auto-complete, autocompletion, IntelliSense">Completion</abbr> everywhere. Less time debugging.
-* **Easy**: Designed to be easy to use and learn. Less time reading docs.
-* **Short**: Minimize code duplication. Multiple features from each parameter declaration. Fewer bugs.
-* **Robust**: Get production-ready code. With automatic interactive documentation.
-* **Standards-based**: Based on (and fully compatible with) the open standards for APIs: <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (previously known as Swagger) and <a href="https://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>.
+* **ໄວ**: Very high performance, on par with **NodeJS** and **Go** (thanks to Starlette and Pydantic). [One of the fastest Python frameworks available](#performance).
+* **ສ້າງໄດ້ໄວ**: Increase the speed to develop features by about 200% to 300%. *
+* **ບັນຫາໜ້ອຍ**: Reduce about 40% of human (developer) induced errors. *
+* **ໃຊ້ງານງ່າຍ**: Great editor support. <abbr title="also known as auto-complete, autocompletion, IntelliSense">Completion</abbr> everywhere. Less time debugging.
+* **ງ່າຍ**: Designed to be easy to use and learn. Less time reading docs.
+* **ສັ້ນ**: Minimize code duplication. Multiple features from each parameter declaration. Fewer bugs.
+* **ແຂງແກ່ນ**: Get production-ready code. With automatic interactive documentation.
+* **ຕາມມາດຕະຖານ**: Based on (and fully compatible with) the open standards for APIs: <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (previously known as Swagger) and <a href="https://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>.
 
 <small>* estimation based on tests on an internal development team, building production applications.</small>
 
-## Sponsors
+## ຜູ້ສະໜັບສະໜູນ
 
 <!-- sponsors -->
 
@@ -61,9 +61,9 @@ The key features are:
 
 <!-- /sponsors -->
 
-<a href="https://fastapi.tiangolo.com/fastapi-people/#sponsors" class="external-link" target="_blank">Other sponsors</a>
+<a href="https://fastapi.tiangolo.com/fastapi-people/#sponsors" class="external-link" target="_blank">ຜູ້ສະໜັບສະໜຸນອື່ນໆ</a>
 
-## Opinions
+## ຄວາມຄິດເຫັນ
 
 "_[...] I'm using **FastAPI** a ton these days. [...] I'm actually planning to use it for all of my team's **ML services at Microsoft**. Some of them are getting integrated into the core **Windows** product and some **Office** products._"
 
@@ -109,7 +109,7 @@ The key features are:
 
 ---
 
-## **Typer**, the FastAPI of CLIs
+## **Typer**, FastAPI ຂອງ CLIs
 
 <a href="https://typer.tiangolo.com" target="_blank"><img src="https://typer.tiangolo.com/img/logo-margin/logo-margin-vector.svg" style="width: 20%;"></a>
 
@@ -117,7 +117,7 @@ If you are building a <abbr title="Command Line Interface">CLI</abbr> app to be 
 
 **Typer** is FastAPI's little sibling. And it's intended to be the **FastAPI of CLIs**. ⌨️ 🚀
 
-## Requirements
+## ຄວາມຕ້ອງການ
 
 Python 3.7+
 
@@ -126,7 +126,7 @@ FastAPI stands on the shoulders of giants:
 * <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> for the web parts.
 * <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> for the data parts.
 
-## Installation
+## ການຕິດຕັ້ງ
 
 <div class="termy">
 
@@ -150,11 +150,11 @@ $ pip install "uvicorn[standard]"
 
 </div>
 
-## Example
+## ຕົວຢ່າງ
 
-### Create it
+### ສ້າງມັນ
 
-* Create a file `main.py` with:
+* ສ້າງຟາຍໃໝ່ `main.py` ດ້ວຍ:
 
 ```Python
 from typing import Union
@@ -175,7 +175,7 @@ def read_item(item_id: int, q: Union[str, None] = None):
 ```
 
 <details markdown="1">
-<summary>Or use <code>async def</code>...</summary>
+<summary>ຫຼື ໃຊ້ <code>async def</code>...</summary>
 
 If your code uses `async` / `await`, use `async def`:
 
@@ -203,9 +203,9 @@ If you don't know, check the _"In a hurry?"_ section about <a href="https://fast
 
 </details>
 
-### Run it
+### ແລ່ນມັນ
 
-Run the server with:
+ແລ່ນເຊີເວີດ້ວຍ:
 
 <div class="termy">
 
@@ -222,7 +222,7 @@ INFO:     Application startup complete.
 </div>
 
 <details markdown="1">
-<summary>About the command <code>uvicorn main:app --reload</code>...</summary>
+<summary>ກ່ຽວກັບຄຳສັ່ງ <code>uvicorn main:app --reload</code>...</summary>
 
 The command `uvicorn main:app` refers to:
 
@@ -232,7 +232,7 @@ The command `uvicorn main:app` refers to:
 
 </details>
 
-### Check it
+### ກວດມັນ
 
 Open your browser at <a href="http://127.0.0.1:8000/items/5?q=somequery" class="external-link" target="_blank">http://127.0.0.1:8000/items/5?q=somequery</a>.
 
@@ -249,15 +249,15 @@ You already created an API that:
 * The _path_ `/items/{item_id}` has a _path parameter_ `item_id` that should be an `int`.
 * The _path_ `/items/{item_id}` has an optional `str` _query parameter_ `q`.
 
-### Interactive API docs
+### ເອກະສານ API ແບບຕອບໂຕ້
 
-Now go to <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+ຕອນນີ້ໃຫ້ໄປທີ <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 
 You will see the automatic interactive API documentation (provided by <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a>):
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-01-swagger-ui-simple.png)
 
-### Alternative API docs
+### ເອກະສານ API ແບບໃກ້ຄຽງ
 
 And now, go to <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>.
 
@@ -265,7 +265,7 @@ You will see the alternative automatic documentation (provided by <a href="https
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
-## Example upgrade
+## ຕົວຢ່າງຂອງການອັບເກດ
 
 Now modify the file `main.py` to receive a body from a `PUT` request.
 
@@ -303,7 +303,7 @@ def update_item(item_id: int, item: Item):
 
 The server should reload automatically (because you added `--reload` to the `uvicorn` command above).
 
-### Interactive API docs upgrade
+### ອັບເກດເອກະສານ API ແບບຕອບໂຕ້
 
 Now go to <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 
@@ -319,7 +319,7 @@ Now go to <a href="http://127.0.0.1:8000/docs" class="external-link" target="_bl
 
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-05-swagger-04.png)
 
-### Alternative API docs upgrade
+### ອັບເກດເອກະສານ API ແບບໃກ້ຄຽງ
 
 And now, go to <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>.
 
@@ -327,7 +327,7 @@ And now, go to <a href="http://127.0.0.1:8000/redoc" class="external-link" targe
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-06-redoc-02.png)
 
-### Recap
+### ສະຫຼຸບ
 
 In summary, you declare **once** the types of parameters, body, etc. as function parameters.
 
@@ -439,20 +439,20 @@ For a more complete example including more features, see the <a href="https://fa
     * **Cookie Sessions**
     * ...and more.
 
-## Performance
+## ປະສິດທິພາບ
 
 Independent TechEmpower benchmarks show **FastAPI** applications running under Uvicorn as <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">one of the fastest Python frameworks available</a>, only below Starlette and Uvicorn themselves (used internally by FastAPI). (*)
 
 To understand more about it, see the section <a href="https://fastapi.tiangolo.com/benchmarks/" class="internal-link" target="_blank">Benchmarks</a>.
 
-## Optional Dependencies
+## ທາງເລືອກ Dependencies
 
-Used by Pydantic:
+ຖືກໃຊ້ໂດຍ Pydantic:
 
 * <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - for faster JSON <abbr title="converting the string that comes from an HTTP request into Python data">"parsing"</abbr>.
 * <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - for email validation.
 
-Used by Starlette:
+ຖືກໃຊ້ໂດຍ Starlette:
 
 * <a href="https://www.python-httpx.org" target="_blank"><code>httpx</code></a> - Required if you want to use the `TestClient`.
 * <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - Required if you want to use the default template configuration.
@@ -461,13 +461,13 @@ Used by Starlette:
 * <a href="https://pyyaml.org/wiki/PyYAMLDocumentation" target="_blank"><code>pyyaml</code></a> - Required for Starlette's `SchemaGenerator` support (you probably don't need it with FastAPI).
 * <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - Required if you want to use `UJSONResponse`.
 
-Used by FastAPI / Starlette:
+ຖືກໃຊ້ໂດຍ FastAPI / Starlette:
 
 * <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - for the server that loads and serves your application.
 * <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - Required if you want to use `ORJSONResponse`.
 
-You can install all of these with `pip install "fastapi[all]"`.
+ທ່ານສາມາດຕິດຕັ້ງທັງໝົດດ້ວຍການໃຊ້ຊຸດຄຳສັ່ງນີ້ `pip install "fastapi[all]"`.
 
-## License
+## ລາຍເຊັນ
 
-This project is licensed under the terms of the MIT license.
+ໂຄ່ງການນີ້ຢູ່ມີລາຍເຊັນພາຍໃຕ້ເງື່ອນໄຂຂອງລາຍເຊັນ MIT.
