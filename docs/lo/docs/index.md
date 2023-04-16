@@ -441,7 +441,7 @@ item: Item
 
 ## ປະສິດທິພາບ
 
-ຕົວຊີ້ວັດອິດສະຫຼະ TechEmpower ສະແດງໃຫ້ເຫັນວ່າ **FastAPI** application ແລ່ນພາຍໃຕ້ Uvicorn ໃນຮູບແບບຂອງ 
+ຕົວຊີ້ວັດອິດສະຫຼະ TechEmpower ສະແດງໃຫ້ເຫັນວ່າ **FastAPI** application ແລ່ນພາຍໃຕ້ Uvicorn ໃນຮູບແບບຂອງ
  <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">ໜຶ່ງໃນເຄື່ອງມື Python ທີໄວທີສຸດທີມີຢູ່</a>, ເປັນຮອງແຕ່ Starlette ແລະ Uvicorn ຂອງພວກເຂົາ (ໃຊ້ພາຍໃນໂດຍ FastAPI). (*)
 
 ເພື່ອທຳຄວາມເຂົ້າໃຈກັບມັນຫຼາຍຂຶ້ນ, ເບິ່ງຫົວຂໍ້ <a href="https://fastapi.tiangolo.com/benchmarks/" class="internal-link" target="_blank">ເກນວັດມາດຕະຖານ</a>.
