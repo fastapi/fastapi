@@ -450,21 +450,21 @@ item: Item
 
 ໃຊ້ໂດຍ Pydantic:
 
-* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - for faster JSON <abbr title="converting the string that comes from an HTTP request into Python data">"parsing"</abbr>.
-* <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - for email validation.
+* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - ສຳລັບ JSON <abbr title="converting the string that comes from an HTTP request into Python data">"parsing"</abbr> ທີໄວກວ່າ.
+* <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - ສຳລັບການກວດສອບອີເມວ.
 
 ໃຊ້ໂດຍ Starlette:
 
-* <a href="https://www.python-httpx.org" target="_blank"><code>httpx</code></a> - Required if you want to use the `TestClient`.
-* <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - Required if you want to use the default template configuration.
-* <a href="https://andrew-d.github.io/python-multipart/" target="_blank"><code>python-multipart</code></a> - Required if you want to support form <abbr title="converting the string that comes from an HTTP request into Python data">"parsing"</abbr>, with `request.form()`.
-* <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - Required for `SessionMiddleware` support.
-* <a href="https://pyyaml.org/wiki/PyYAMLDocumentation" target="_blank"><code>pyyaml</code></a> - Required for Starlette's `SchemaGenerator` support (you probably don't need it with FastAPI).
-* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - Required if you want to use `UJSONResponse`.
+* <a href="https://www.python-httpx.org" target="_blank"><code>httpx</code></a> - ຈຳເປັນຖ້າທ່ານຕ້ອງການໃຊ້ `TestClient`.
+* <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - ຈຳເປັນຖ້າທ່ານຕ້ອງການໃຊ້ການກຳນົດຄ່າ template ເລີ່ມຕົ້ນ.
+* <a href="https://andrew-d.github.io/python-multipart/" target="_blank"><code>python-multipart</code></a> - ຈຳເປັນຖ້າທ່ານຕ້ອງການສະໜັບສະໜູນຟອມ  <abbr title="ການແປງ string ທີມາຈາກ HTTP request ມາເປັນ ຂໍ້ມູນພາສາ Python">"parsing"</abbr>, ດ້ວຍ `request.form()`.
+* <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - ຈຳເປັນສຳລັບການສະໜັບສະໜູນ `SessionMiddleware`.
+* <a href="https://pyyaml.org/wiki/PyYAMLDocumentation" target="_blank"><code>pyyaml</code></a> - ຈຳເປັນສຳລັບການສະໜັບສະໜູນ  `SchemaGenerator` ຂອງ Starlette  (ທ່ານບໍ່ຈໍາເປັນຕ້ອງການມັນກັບ FastAPI).
+* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - ຈຳເປັນຖ້າທ່ານຕ້ອງການໃຊ້ `UJSONResponse`.
 
 ໃຊ້ໂດຍ FastAPI / Starlette:
 
-* <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - for the server that loads and serves your application.
+* <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - ສຳລັບເຊີເວີທີໂຫຼດ ແລະ ໃຫ້ບໍລິການ application ຂອງທ່ານ.
 * <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - Required if you want to use `ORJSONResponse`.
 
 ທ່ານສາມາດຕິດຕັ້ງທັງໝົດດ້ວຍການໃຊ້ຊຸດຄຳສັ່ງນີ້ `pip install "fastapi[all]"`.
