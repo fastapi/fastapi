@@ -36,7 +36,7 @@ FastAPI ມີຊຸມຊົນທີນ່າຕື່ນຕາຕື່ນໃ
 
 ## ບັນດາຜູ້ໃຊ້ທີມີການເຄື່ອນໄຫວຫຼາຍສຸດໃນເດືອນແລ້ວນີ້
 
-These are the users that have been [helping others the most with questions in GitHub](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank} during the last month. ☕
+ນີ້ແມ່ນບັນດາຜູ້ໃຊ້ທີ [ຊ່ວຍໃນການຕັ້ງຄຳຖາມໃນ GitHub ຫຼາຍທີ່ສຸດ](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank} ໃນຊ່ວງເດືອນທີຜ່ານມາ. ☕
 
 {% if people %}
 <div class="user-list user-list-center">
@@ -52,9 +52,9 @@ These are the users that have been [helping others the most with questions in Gi
 
 ນີ້ແມ່ນ **ຜູ້ຊ່ຽວຊານ FastAPI**. 🤓
 
-These are the users that have [helped others the most with questions in GitHub](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank} through *all time*.
+ນີ້ແມ່ນບັນດາຜູ້ຄົນທີ [ຊ່ວຍຜູ້ອື່ນຫຼາຍສຸດໃນການຕັ້ງຄຳຖາມໃນ GitHub](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank} *ຕະຫຼອດ ເວລາ*.
 
-They have proven to be experts by helping many others. ✨
+ພວກເຂົາໄດ້ພິສູດແລ້ວວ່າໄດ້ເປັນຜູ້ຊ່ຽວຊານໂດຍການຊ່ວຍເຫຼືອຫຼາຍຄົນ. ✨
 
 {% if people %}
 <div class="user-list user-list-center">
@@ -84,7 +84,7 @@ They have proven to be experts by helping many others. ✨
 </div>
 {% endif %}
 
-There are many other contributors (more than a hundred), you can see them all in the <a href="https://github.com/tiangolo/fastapi/graphs/contributors" class="external-link" target="_blank">FastAPI GitHub Contributors page</a>. 👷
+ມີຜູ້ມີສ່ວນຮ່ວມອື່ນໆອີກຫຼາກຫຼາຍ (ຫຼາຍກວ່າຮ້ອຍຄົນ), ທ່ານສາມາດເບິ່ງທັງໝົດໄດ້ໃນ <a href="https://github.com/tiangolo/fastapi/graphs/contributors" class="external-link" target="_blank">ໜ້າ FastAPI GitHub Contributors </a>. 👷
 
 ## ຜູ້ກວດສູງສຸດ
 
@@ -96,7 +96,7 @@ There are many other contributors (more than a hundred), you can see them all in
 
 ---
 
-The **Top Reviewers** 🕵️ have reviewed the most Pull Requests from others, ensuring the quality of the code, documentation, and especially, the **translations**.
+**ຜູ້ກວດສູງສຸດ** 🕵️ ໄດ້ກວດສອບ Pull Requests ຈາກຄົນອື່ນ, ເພື່ອຮັບປະກັນຄຸນນະພາບຂອງໂຄດ, ເອກະສານ, ແລະ ໂດຍສະເພາະແມ່ນ, **ການແປ**.
 
 {% if people %}
 <div class="user-list user-list-center">
@@ -112,7 +112,7 @@ The **Top Reviewers** 🕵️ have reviewed the most Pull Requests from others, 
 
 ນີ້ແມ່ນບັນດາ **ຜູ້ສະໜັບສະໜູນ**. 😎
 
-They are supporting my work with **FastAPI** (and others), mainly through <a href="https://github.com/sponsors/tiangolo" class="external-link" target="_blank">GitHub Sponsors</a>.
+ພວກເຂົາໄດ້ສະໜັບສະໜູນການເຮັດວຽກຂອງຂ້ອຍກັບ **FastAPI** (ແລະ ອື່ນໆ), ຫຼັກໆແມ່ນຜ່ານ <a href="https://github.com/sponsors/tiangolo" class="external-link" target="_blank">GitHub Sponsors</a>.  
 
 {% if sponsors %}
 
@@ -167,12 +167,12 @@ They are supporting my work with **FastAPI** (and others), mainly through <a hre
 
 ## ກ່ຽວກັບຂໍ້ມູນ - ຂໍ້ມູນທາງເທັກນິກ
 
-The main intention of this page is to highlight the effort of the community to help others.
+ຈຸດປະສົງຂອງໜ້ານີ້ແມ່ນເນັ້ນໃຫ້ຄວາມພະຍາຍາມຂອງຊຸມຊົນໃນການຊ່ວຍເຫຼືອຜູ້ອື່ນ.
 
-Especially including efforts that are normally less visible, and in many cases more arduous, like helping others with questions and reviewing Pull Requests with translations.
+ໂດຍສະເພາະແມ່ນລວມເຖິງຄວາມພະຍາຍາມທີປົກະຕິຈະບໍ່ຄ່ອຍເບິ່ງເຫັນ ແລະ ໃນຫຼາຍກໍລະນີແມ່ນຍາກຫຼາຍເຊັ່ນ: ການຊ່ວຍເຫຼືອຜູ່ອື່ນດ້ວຍການຕັ້ງຄຳຖາມ ແລະ ກວດກາ Pull Requests ພ້ອມການແປ.
 
-The data is calculated each month, you can read the <a href="https://github.com/tiangolo/fastapi/blob/master/.github/actions/people/app/main.py" class="external-link" target="_blank">source code here</a>.
+ຂໍ້ມູນເຫຼົ່ານີ້ແມ່ນໄດ້ຄິດໄລ່ໃນທຸກເດືອນ, ທ່ານສາມາດອ່ານໄດ້ໃນ <a href="https://github.com/tiangolo/fastapi/blob/master/.github/actions/people/app/main.py" class="external-link" target="_blank">source code ຢູ່ນີ້</a>.
 
-Here I'm also highlighting contributions from sponsors.
+ຂ້ອຍກໍຍັງຢາກໃຫ້ເຫັນຄວາມສຳຄັນຂອງການມີສ່ວນຮ່ວມຂອງຜູ້ສະໜັບສະໜູນ.
 
-I also reserve the right to update the algorithm, sections, thresholds, etc (just in case 🤷).
+ຂ້ອຍຍັງສະຫງວນສິດໃນການປັບປຸງ algorithm, sections, threshold ແລະ ອື່ນໆ (ໃນກໍລະນີ 🤷).
