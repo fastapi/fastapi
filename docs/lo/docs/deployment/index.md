@@ -1,21 +1,21 @@
 # Deployment - ບົດນຳ
 
-Deploying a **FastAPI** application is relatively easy.
+Deploying **FastAPI** application ແມ່ນຄ່ອນຂ້າງງ່າຍ.
 
-## What Does Deployment Mean
+## Deployment ແມ່ນຫຍັງ?
 
-To **deploy** an application means to perform the necessary steps to make it **available to the users**.
+ການ **deploy** application ໝາຍຄວາມວ່າເປັນການປະຕິບັດຂັ້ນຕອນທີຈຳເປັນເພື່ອໃຫ້ **ພ້ອມສຳລັບຜູ້ໃຊ້ງານ**.
 
-For a **web API**, it normally involves putting it in a **remote machine**, with a **server program** that provides good performance, stability, etc, so that your **users** can **access** the application efficiently and without interruptions or problems.
+ສຳລັບ **web API**, ເປັນປົກະຕິທີຈະຕັ້ງລະບົບໄວ້ໃນ **remote machine**, ດ້ວຍ **server program** ທີສາມາດສະໜອງປະສິດທິພາບທີດີ, ມີຄວາມຕໍ່ເນື່ອງ, ແລະ ອື່ນໆ, ດັ່ງນັ້ນ **ຜູ້ໃຊ້** ຂອງທ່ານຈຶ່ງສາມາດ **ເຂົ້າເຖິງ** application ໄດ້ຢ່າງມີປະສິດທິພາບ ແລະ ປາສະຈາກການຂັດຂ້ອງ ຫຼື ບັນຫາ. 
 
-This is in contrast to the **development** stages, where you are constantly changing the code, breaking it and fixing it, stopping and restarting the development server, etc.
+ນີ້ແມ່ນການປຽບທຽບຂັ້ນຕອນຂອງ **ການພັດທະນາ**, ບ່ອນທີທ່ານກຳລັງປ່ຽນແປງໂຄດ, ມ້າງ ແລະ ແກ້ໄຂມັນ, ການຢຸດ ຫຼື ເລີ່ມໃໝ່ຂອງ development server ແລະ ອື່ນໆ.
 
-## Deployment Strategies
+## ກົນລະຍຸດໃນການ Deploy 
 
-There are several ways to do it depending on your specific use case and the tools that you use.
+ມີຫຼາຍວິທີການທີຈະເຮັດຂຶ້ນກັບກໍລະນີສະເພາະ ແລະ ເຄື່ອງມືທີທ່ານໃຊ້.
 
-You could **deploy a server** yourself using a combination of tools, you could use a **cloud service** that does part of the work for you, or other possible options.
+ທ່ານສາມາດ **deploy server** ດ້ວຍຕົວທ່ານເອງ ໂດຍການໃຊ້ເຄື່ອງມືແບບປະສົມປະສານ, ທ່ານສາມາດໃຊ້ **cloud service** ທີເຮັດວຽກນຳກັນໄດ້ ສຳລັບທ່ານ ຫຼື ທາງເລືອກອື່ນໆທີ່ເປັນໄປໄດ້.
 
-I will show you some of the main concepts you should probably have in mind when deploying a **FastAPI** application (although most of it applies to any other type of web application).
+ຂ້ອຍຈະສະແດງໃຫ້ທ່ານເບິ່ງບາງແນວຄິດຫຼັກທີທ່ານຄວນມີສະເໝີເວລາ deploy **FastAPI** application (ເຖິງວ່າສ່ວນຫຼາຍແມ່ນຈະສາມາດນຳໃຊ້ກັບ web application ປະເພດອື່ນໆ).
 
-You will see more details to have in mind and some of the techniques to do it in the next sections. ✨
+ທ່ານຈະໄດ້ເຫັນລາຍລະອຽດເພີ່ມເຕີມທີຄວນຄິດກ່ອນສະເໝີ ແລະ ບາງເຕັກນິກທີ່ຈະໃຊ້ ໃນຫົວຂໍ້ຕໍ່ໄປ. ✨
