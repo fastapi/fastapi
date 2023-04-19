@@ -1,5 +1,3 @@
-from typing import Annotated
-
 from fastapi import FastAPI, File, Form
 from fastapi.testclient import TestClient
 
@@ -7,7 +5,7 @@ app = FastAPI()
 
 
 @app.post("/files/")
-async def create_file(token: Annotated[str, Form()], file: Annotated[bytes, File()]):
+async def create_file(token: str = Form(), file: bytes = File()):
     return {
         "file_size": len(file),
         "token": token,
