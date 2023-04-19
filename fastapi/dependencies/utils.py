@@ -725,6 +725,7 @@ async def request_body_to_args(
             received_body = {field.alias: received_body}
 
         for field in required_params:
+            field_info = field.field_info
             loc: Tuple[str, ...]
             if field_alias_omitted:
                 loc = ("body",)
