@@ -1,5 +1,5 @@
 site_name: FastAPI
-site_description: FastAPI framework, high performance, easy to learn, fast to code, ready for production
+site_description: FastAPI is a web framework that combines high performance, ease of learning, and rapid coding. It is designed for building scalable and reliable applications that are ready for production.
 site_url: https://fastapi.tiangolo.com/nl/
 theme:
   name: material

@@ -1,4 +1,4 @@
-"""FastAPI framework, high performance, easy to learn, fast to code, ready for production"""
+"""FastAPI is a web framework that combines high performance, ease of learning, and rapid coding. It is designed for building scalable and reliable applications that are ready for production."""
 
 __version__ = "0.95.1"
 

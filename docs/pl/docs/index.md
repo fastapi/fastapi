@@ -2,7 +2,7 @@
   <a href="https://fastapi.tiangolo.com"><img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI"></a>
 </p>
 <p align="center">
-    <em>FastAPI to szybki, prosty w nauce i gotowy do użycia w produkcji framework</em>
+    <em>FastAPI is a web framework that combines high performance, ease of learning, and rapid coding. It is designed for building scalable and reliable applications that are ready for production.</em>
 </p>
 <p align="center">
 <a href="https://github.com/tiangolo/fastapi/actions?query=workflow%3ATest" target="_blank">
