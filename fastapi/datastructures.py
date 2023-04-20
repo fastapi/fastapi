@@ -1,6 +1,5 @@
 from typing import Any, Callable, Dict, Iterable, Type, TypeVar
 
-from starlette.datastructures import Address, FormData, Headers, QueryParams, State, URL
 from starlette.datastructures import UploadFile as StarletteUploadFile
 
 
