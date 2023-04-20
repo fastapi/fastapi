@@ -1,63 +1,63 @@
-# Return a Response Directly
+# Retourner une réponse directement
 
-When you create a **FastAPI** *path operation* you can normally return any data from it: a `dict`, a `list`, a Pydantic model, a database model, etc.
+Lorsque vous créez une *opération de chemins* **FastAPI**, vous pouvez normalement retourner n'importe quelle donnée : un `dict`, une `list`, un modèle Pydantique, un modèle de base de données, etc.
 
-By default, **FastAPI** would automatically convert that return value to JSON using the `jsonable_encoder` explained in [JSON Compatible Encoder](../tutorial/encoder.md){.internal-link target=_blank}.
+Par défaut, **FastAPI** convertirait automatiquement cette valeur de retour en JSON en utilisant le `jsonable_encoder` expliqué dans [JSON Compatible Encoder](../tutorial/encoder.md){.internal-link target=_blank}.
 
-Then, behind the scenes, it would put that JSON-compatible data (e.g. a `dict`) inside of a `JSONResponse` that would be used to send the response to the client.
+Ensuite, dans les coulisses, il mettra ces données compatibles JSON (par exemple un `dict`) à l'intérieur d'un `JSONResponse` qui sera utilisé pour envoyer la réponse au client.
 
-But you can return a `JSONResponse` directly from your *path operations*.
+Mais vous pouvez retourner une `JSONResponse` directement à partir de vos *opérations de chemin*.
 
-It might be useful, for example, to return custom headers or cookies.
+Cela peut être utile, par exemple, pour retourner des en-têtes personnalisés ou des cookies.
 
-## Return a `Response`
+## Retourner une `Response`
 
-In fact, you can return any `Response` or any sub-class of it.
+En fait, vous pouvez retourner n'importe quelle `Response` ou n'importe quelle sous-classe de celle-ci.
 
-!!! tip
-    `JSONResponse` itself is a sub-class of `Response`.
+!!! Note
+    `JSONResponse` est lui-même une sous-classe de `Response`.
 
-And when you return a `Response`, **FastAPI** will pass it directly.
+Et quand vous retournez une `Response`, **FastAPI** la transmet directement.
 
-It won't do any data conversion with Pydantic models, it won't convert the contents to any type, etc.
+Elle ne fera aucune conversion de données avec les modèles Pydantic, elle ne convertira pas le contenu en un type quelconque.
 
-This gives you a lot of flexibility. You can return any data type, override any data declaration or validation, etc.
+Cela vous donne beaucoup de flexibilité. Vous pouvez retourner n'importe quel type de données, surcharger n'importe quelle déclaration ou validation de données.
 
-## Using the `jsonable_encoder` in a `Response`
+## Utiliser le `jsonable_encoder` dans une `Response`
 
-Because **FastAPI** doesn't do any change to a `Response` you return, you have to make sure it's contents are ready for it.
+Parce que **FastAPI** n'apporte aucune modification à une `Response` que vous retournez, vous devez vous assurer que son contenu est prêt à être utilisé.
 
-For example, you cannot put a Pydantic model in a `JSONResponse` without first converting it to a `dict` with all the data types (like `datetime`, `UUID`, etc) converted to JSON-compatible types.
+Par exemple, vous ne pouvez pas mettre un modèle Pydantic dans une `JSONResponse` sans d'abord le convertir en un `dict` avec tous les types de données (comme `datetime`, `UUID`, etc) convertis en types compatibles avec JSON.
 
-For those cases, you can use the `jsonable_encoder` to convert your data before passing it to a response:
+Pour ces cas, vous pouvez spécifier un appel à `jsonable_encoder` pour convertir vos données avant de les passer à une réponse :
 
-```Python hl_lines="6-7  21-22"
-{!../../../docs_src/response_directly/tutorial001.py!}
+``Python hl_lines="6-7 21-22"
+{ !../../../docs_src/response_directly/tutorial001.py!}
 ```
 
-!!! note "Technical Details"
-    You could also use `from starlette.responses import JSONResponse`.
+!!! note "Détails techniques"
+    Vous pouvez aussi utiliser `from starlette.responses import JSONResponse`.
 
-    **FastAPI** provides the same `starlette.responses` as `fastapi.responses` just as a convenience for you, the developer. But most of the available responses come directly from Starlette.
+    **FastAPI** fournit le même objet `starlette.responses` que `fastapi.responses` juste par commodité pour le développeur. Mais la plupart des réponses disponibles proviennent directement de Starlette.
 
-## Returning a custom `Response`
+## Retourner une `Response` personnalisée
 
-The example above shows all the parts you need, but it's not very useful yet, as you could have just returned the `item` directly, and **FastAPI** would put it in a `JSONResponse` for you, converting it to a `dict`, etc. All that by default.
+L'exemple ci-dessus montre toutes les parties dont vous avez besoin, mais il n'est pas encore très utile, car vous auriez pu retourner l'`item` directement, et **FastAPI** l'aurait mis dans une `JSONResponse` pour vous, en le convertissant en `dict`, etc. Tout cela par défaut.
 
-Now, let's see how you could use that to return a custom response.
+Maintenant, voyons comment vous pourriez utiliser cela pour retourner une réponse personnalisée.
 
-Let's say that you want to return an <a href="https://en.wikipedia.org/wiki/XML" class="external-link" target="_blank">XML</a> response.
+Disons que vous voulez retourner une réponse <a href="https://en.wikipedia.org/wiki/XML" class="external-link" target="_blank">XML</a>.
 
-You could put your XML content in a string, put it in a `Response`, and return it:
+Vous pouvez mettre votre contenu XML dans une chaîne de caractères, la placer dans une `Response`, et la retourner :
 
-```Python hl_lines="1  18"
-{!../../../docs_src/response_directly/tutorial002.py!}
+``Python hl_lines="1 18"
+{ !../../../docs_src/response_directly/tutorial002.py!}
 ```
 
 ## Notes
 
-When you return a `Response` directly its data is not validated, converted (serialized), nor documented automatically.
+Lorsque vous renvoyez une `Response` directement, ses données ne sont pas validées, converties (sérialisées), ni documentées automatiquement.
 
-But you can still document it as described in [Additional Responses in OpenAPI](additional-responses.md){.internal-link target=_blank}.
+Mais vous pouvez toujours les documenter comme décrit dans [Additional Responses in OpenAPI](additional-responses.md){.internal-link target=_blank}.
 
-You can see in later sections how to use/declare these custom `Response`s while still having automatic data conversion, documentation, etc.
+Vous pouvez voir dans les sections suivantes comment utiliser/déclarer ces `Response`s personnalisées tout en conservant la conversion automatique des données, la documentation, etc.
