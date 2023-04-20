@@ -1,18 +1,18 @@
-# Tutorial - User Guide - Intro
+# ບົດຮຽນ - ຄູ່ມືຜູ້ໃຊ້ - ເລີ່ມຕົ້ນ
 
-This tutorial shows you how to use **FastAPI** with most of its features, step by step.
+ບົດຮຽນນີ້ຈະແນະນຳທ່ານກ່ຽວກັບວິທີໃຊ້ **FastAPI** ກັບຄຸນນະສົມບັດຫຼັກ, ເປັນເທື່ອລະຂັ້ນຕອນ.
 
-Each section gradually builds on the previous ones, but it's structured to separate topics, so that you can go directly to any specific one to solve your specific API needs.
+ແຕ່ລະຫົວຂໍ້ແມ່ນສ້າງຈາກສ່ວນກ່ອນໜ້ານີ້ ແຕ່ມີການຈັດເປັນຫົວຂໍ້ແຍກຕ່າງຫາກ ສະນັ້ນທ່ານຈະສາມາດເຂົ້າໄປເບິ່ງສ່ວນໃດໜຶ່ງສະເພາະເພື່ອແກ້ໄຂບັນຫາ API ທີທ່ານຕ້ອງການ
 
-It is also built to work as a future reference.
+ນອກຈາກນີ້ຍັງສ້າງຂຶ້ນເພື່ອເປັນບ່ອນອ້າງອີງໃນອະນາຄົດ.
 
-So you can come back and see exactly what you need.
+ດັ່ງນັ້ນ, ທ່ານສາມາດກັບມາເບິ່ງສິ່ງທີ່ທ່ານຕ້ອງການໄດ້ຢ່າງແນ່ນອນ
 
-## Run the code
+## ແລ່ນໂຄດ
 
-All the code blocks can be copied and used directly (they are actually tested Python files).
+ບ໋ອກໂຄດທັງໝົດສາມາດສຳເນົາ ແລະ ນຳໃຊ້ໄດ້ໂດຍກົງ (ພວກມັນຜ່ານການທົດສອບຕົວຈິງກັບຟາຍ Python ແລ້ວ).
 
-To run any of the examples, copy the code to a file `main.py`, and start `uvicorn` with:
+ເພື່ອແລ່ນໂຄດໃດໜຶ່ງຕາມຕົວຢ່າງ, ສຳເນົາໂຄດໃສ່ຟາຍ `main.py` ແລະ ແລ່ນຄຳສັ່ງ `uvicorn` ດັ່ງນີ້:
 
 <div class="termy">
 
@@ -28,17 +28,17 @@ $ uvicorn main:app --reload
 
 </div>
 
-It is **HIGHLY encouraged** that you write or copy the code, edit it and run it locally.
+**ແນະນຳເປັນຢ່າງສູງ** ໃຫ້ທ່ານຂຽນ ຫຼື ສຳເນົາໂຄດ ແກ້ໄຂ ແລະ ແລ່ນໂຄດໃນເຄື່ອງ.
 
-Using it in your editor is what really shows you the benefits of FastAPI, seeing how little code you have to write, all the type checks, autocompletion, etc.
+ໃຊ້ມັນໃນ editor ຂອງທ່ານແມ່ນມັນຈະສະແດງໃຫ້ເຫັນເຖິງຜົນປະໂຫຍດຂອງການໃຊ້ FastAPI, ເບິ່ງການປ່ຽນແປງໂຄດເລັກນ້ອຍ ທີທ່ານໄດ້ຂຽນ, ການກວດປະເພດທັງໝົດ, ການຕື່ມຂໍ້ຄວາມອັດຕະໂນມັດ ແລະ ອື່ນໆ.
 
 ---
 
-## Install FastAPI
+## ຕິດຕັ້ງ FastAPI
 
-The first step is to install FastAPI.
+ຂັ້ນຕອນທຳອິດແມ່ນທຳການຕິດຕັ້ງ FastAPI.
 
-For the tutorial, you might want to install it with all the optional dependencies and features:
+ສຳລັບບົດຮຽນ, ທ່ານອາດຈະຕ້ອງໄດ້ຕິດຕັ້ງມັນພ້ອມກັບ dependency ທາງເລືອກທັງໝົດ ແລະ ຄຸນນະສົມບັດ:
 
 <div class="termy">
 
@@ -50,31 +50,31 @@ $ pip install "fastapi[all]"
 
 </div>
 
-...that also includes `uvicorn`, that you can use as the server that runs your code.
+...ເຊິ່ງລວມເຖິງ `uvicorn` ທີ່ທ່ານສາມາດໃຊ້ເປັນເຊີເວີແລ່ນໂຄດຂອງທ່ານ.
 
-!!! note
-    You can also install it part by part.
+!!! ໝາຍເຫດ
+    ທ່ານສາມາດຕິດຕັ້ງເປັນສ່ວນໄດ້.
 
-    This is what you would probably do once you want to deploy your application to production:
+    ນີ້ແມ່ນສິ່ງທີ່ທ່ານຈະຕ້ອງເຮັດເມື່ອຕ້ອງການປັບໃຊ້ກັບ application ຂອງທ່ານສຳລັບ production:
 
     ```
     pip install fastapi
     ```
 
-    Also install `uvicorn` to work as the server:
+    ຕິດຕັ້ງ `uvicorn` ເພື່ອເຮັດວຽກເປັນເຊີເວີນຳ:
 
     ```
     pip install "uvicorn[standard]"
     ```
 
-    And the same for each of the optional dependencies that you want to use.
+    ແລະ ຄືກັນສຳລັບແຕ່ລະທາງເລືອກ dependency ທີ່ທ່ານຕ້ອງການໃຊ້.
 
-## Advanced User Guide
+## ຄູ່ມືຜູ້ໃຊ້ຂັ້ນສູງ
 
-There is also an **Advanced User Guide** that you can read later after this **Tutorial - User guide**.
+ມັນບໍ່ມີ **ຄູ່ມືຜູ້ໃຊ້ຂັ້ນສູງ** ທີ່ທ່ານສາມາດອ່ານໄດ້ພາຍຫຼັງຈາກ **ບົດຮຽນ - ຄູ່ມືຜູ້ໃຊ້ - ເລີ່ມຕົ້ນ** ນີ້.
 
-The **Advanced User Guide**, builds on this, uses the same concepts, and teaches you some extra features.
+**ຄູ່ມືຜູ້ໃຊ້ຂັ້ນສູງ**, ສ້າງຈາກສິ່ງນີ້, ໃຊ້ແນວຄິດ, ແລະ ສອນຄຸນລັກສະນະພິເສດບາງຢ່າງໃຫ້ແກ່ທ່ານ.
 
-But you should first read the **Tutorial - User Guide** (what you are reading right now).
+ແຕ່ທ່ານຕ້ອງໄດ້ອ່ານ **ບົດຮຽນ - ຄູ່ມືຜູ້ໃຊ້ - ເລີ່ມຕົ້ນ** (ສິ່ງທີ່ທ່ານກຳລັງອ່ານຢູ່ໃນປັດຈຸບັນ).
 
-It's designed so that you can build a complete application with just the **Tutorial - User Guide**, and then extend it in different ways, depending on your needs, using some of the additional ideas from the **Advanced User Guide**.
+ມັນຖືກອອກແບບມາເພື່ອໃຫ້ທ່ານສາມາດສ້າງ application ທີ່ສົມບູນດ້ວຍ **ບົດຮຽນ - ຄູ່ມືຜູ້ໃຊ້ - ເລີ່ມຕົ້ນ** ແລ້ວຂະຫຍາຍໃນຮູບແບບຕ່າງໆຕາມຄວາມຕ້ອງການຂອງທ່ານ ໂດຍໃຊ້ແນວຄິດເພີ່ມເຕີ່ມຈາກ **ຄູ່ມືຜູ້ໃຊ້ຂັ້ນສູງ**
