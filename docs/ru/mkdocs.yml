@@ -41,6 +41,7 @@ nav:
   - en: /
   - az: /az/
   - de: /de/
+  - em: /em/
   - es: /es/
   - fa: /fa/
   - fr: /fr/
@@ -64,15 +65,21 @@ nav:
 - fastapi-people.md
 - python-types.md
 - Учебник - руководство пользователя:
+  - tutorial/query-params-str-validations.md
   - tutorial/body-fields.md
   - tutorial/background-tasks.md
+  - tutorial/extra-data-types.md
   - tutorial/cookie-params.md
 - async.md
 - Развёртывание:
   - deployment/index.md
   - deployment/versions.md
+- project-generation.md
+- alternatives.md
 - history-design-future.md
 - external-links.md
+- benchmarks.md
+- help-fastapi.md
 - contributing.md
 markdown_extensions:
 - toc:
@@ -119,6 +126,8 @@ extra:
     name: az
   - link: /de/
     name: de
+  - link: /em/
+    name: 😉
   - link: /es/
     name: es - español
   - link: /fa/

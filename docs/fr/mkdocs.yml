@@ -41,6 +41,7 @@ nav:
   - en: /
   - az: /az/
   - de: /de/
+  - em: /em/
   - es: /es/
   - fa: /fa/
   - fr: /fr/
@@ -71,6 +72,7 @@ nav:
   - tutorial/background-tasks.md
   - tutorial/debugging.md
 - Guide utilisateur avancé:
+  - advanced/index.md
   - advanced/path-operation-advanced-configuration.md
   - advanced/additional-status-codes.md
   - advanced/additional-responses.md
@@ -132,6 +134,8 @@ extra:
     name: az
   - link: /de/
     name: de
+  - link: /em/
+    name: 😉
   - link: /es/
     name: es - español
   - link: /fa/
