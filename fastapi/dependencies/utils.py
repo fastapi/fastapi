@@ -40,7 +40,6 @@ from pydantic.fields import (
     SHAPE_LIST,
     SHAPE_MAPPING,
     SHAPE_SEQUENCE,
-    SHAPE_MAPPING,
     SHAPE_SET,
     SHAPE_SINGLETON,
     SHAPE_TUPLE,
@@ -251,6 +250,7 @@ def is_scalar_sequence_field(field: ModelField) -> bool:
         return True
     return False
 
+
 def is_scalar_mapping_field(field: ModelField) -> bool:
     if (field.shape in mapping_shapes) and not lenient_issubclass(
         field.type_, BaseModel
@@ -275,6 +275,7 @@ def is_scalar_sequence_mapping_field(field: ModelField) -> bool:
                 return False
         return True
     return False
+
 
 def is_scalar_mapping_field(field: ModelField) -> bool:
     if (
@@ -544,9 +545,10 @@ def is_body_param(*, param_field: ModelField, is_path_param: bool) -> bool:
         param_field.field_info, (params.Query, params.Header)
     ) and is_scalar_sequence_field(param_field):
         return False
-    elif isinstance(
-        param_field.field_info, (params.Query, params.Header)
-    ) and (is_scalar_sequence_mapping_field(param_field) or is_scalar_mapping_field(param_field)):
+    elif isinstance(param_field.field_info, (params.Query, params.Header)) and (
+        is_scalar_sequence_mapping_field(param_field)
+        or is_scalar_mapping_field(param_field)
+    ):
         return False
     else:
         assert isinstance(
@@ -751,7 +753,7 @@ def request_params_to_args(
         ):
             if not len(received_params.multi_items()):
                 value = field.default
-            else:    
+            else:
                 value = defaultdict(list)
                 for k, v in received_params.multi_items():
                     value[k].append(v)

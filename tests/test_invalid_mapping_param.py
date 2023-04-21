@@ -1,14 +1,12 @@
-from typing import Mapping, List
+from typing import List, Mapping
 
 import pytest
 from fastapi import FastAPI, Query
-from pydantic import BaseModel
 
 
 def test_invalid_sequence():
     with pytest.raises(AssertionError):
         app = FastAPI()
-
 
         @app.get("/items/")
         def read_items(q: Mapping[str, List[List[str]]] = Query(default=None)):
