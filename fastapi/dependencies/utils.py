@@ -1,5 +1,6 @@
 import dataclasses
 import inspect
+from collections import defaultdict
 from contextlib import contextmanager
 from copy import copy, deepcopy
 from typing import (
@@ -714,6 +715,19 @@ def request_params_to_args(
             received_params, (QueryParams, Headers)
         ):
             value = received_params.getlist(field.alias) or field.default
+        if is_scalar_mapping_field(field) and isinstance(
+            received_params, (QueryParams, Headers)
+        ):
+            value = dict(received_params.multi_items()) or field.default
+        elif is_scalar_sequence_mapping_field(field) and isinstance(
+            received_params, (QueryParams, Headers)
+        ):
+            if not len(received_params.multi_items()):
+                value = field.default
+            else:    
+                value = defaultdict(list)
+                for k, v in received_params.multi_items():
+                    value[k].append(v)
         else:
             value = received_params.get(field.alias)
         field_info = field.field_info
