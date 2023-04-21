@@ -38,6 +38,7 @@ from pydantic.fields import (
     SHAPE_FROZENSET,
     SHAPE_LIST,
     SHAPE_SEQUENCE,
+    SHAPE_MAPPING,
     SHAPE_SET,
     SHAPE_SINGLETON,
     SHAPE_TUPLE,
@@ -75,6 +76,9 @@ sequence_shape_to_type = {
     SHAPE_TUPLE_ELLIPSIS: list,
 }
 
+mapping_shapes = {SHAPE_MAPPING}
+mapping_types = Mapping
+mapping_shapes_to_type = {SHAPE_MAPPING: Mapping}
 
 multipart_not_installed_error = (
     'Form data requires "python-multipart" to be installed. \n'
@@ -245,6 +249,30 @@ def is_scalar_sequence_field(field: ModelField) -> bool:
         return True
     return False
 
+def is_scalar_mapping_field(field: ModelField) -> bool:
+    if (field.shape in mapping_shapes) and not lenient_issubclass(
+        field.type_, BaseModel
+    ):
+        if field.sub_fields is None:
+            return False
+        for sub_field in field.sub_fields:
+            if not is_scalar_field(sub_field):
+                return False
+        return True
+    return False
+
+
+def is_scalar_sequence_mapping_field(field: ModelField) -> bool:
+    if (field.shape in mapping_shapes) and not lenient_issubclass(
+        field.type_, BaseModel
+    ):
+        if field.sub_fields is None:
+            return False
+        for sub_field in field.sub_fields:
+            if not is_scalar_sequence_field(sub_field):
+                return False
+        return True
+    return False
 
 def get_typed_signature(call: Callable[..., Any]) -> inspect.Signature:
     signature = inspect.signature(call)
@@ -487,6 +515,10 @@ def is_body_param(*, param_field: ModelField, is_path_param: bool) -> bool:
     elif isinstance(
         param_field.field_info, (params.Query, params.Header)
     ) and is_scalar_sequence_field(param_field):
+        return False
+    elif isinstance(
+        param_field.field_info, (params.Query, params.Header)
+    ) and (is_scalar_sequence_mapping_field(param_field) or is_scalar_mapping_field(param_field)):
         return False
     else:
         assert isinstance(
