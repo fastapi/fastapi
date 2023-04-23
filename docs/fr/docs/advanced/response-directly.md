@@ -1,10 +1,10 @@
-# Retourner une réponse directement
+# Renvoyer directement une réponse
 
-Lorsque vous créez une *opération de chemins* **FastAPI**, vous pouvez normalement retourner n'importe quelle donnée : un `dict`, une `list`, un modèle Pydantique, un modèle de base de données, etc.
+Lorsque vous créez une *opération de chemins* **FastAPI**, vous pouvez normalement retourner n'importe quelle donnée : un `dict`, une `list`, un modèle Pydantic, un modèle de base de données, etc.
 
 Par défaut, **FastAPI** convertirait automatiquement cette valeur de retour en JSON en utilisant le `jsonable_encoder` expliqué dans [JSON Compatible Encoder](../tutorial/encoder.md){.internal-link target=_blank}.
 
-Ensuite, dans les coulisses, il mettra ces données compatibles JSON (par exemple un `dict`) à l'intérieur d'un `JSONResponse` qui sera utilisé pour envoyer la réponse au client.
+Ensuite, en arrière-plan, il mettra ces données JSON-compatible (par exemple un `dict`) à l'intérieur d'un `JSONResponse` qui sera utilisé pour envoyer la réponse au client.
 
 Mais vous pouvez retourner une `JSONResponse` directement à partir de vos *opérations de chemin*.
 
@@ -15,7 +15,7 @@ Cela peut être utile, par exemple, pour retourner des en-têtes personnalisés 
 En fait, vous pouvez retourner n'importe quelle `Response` ou n'importe quelle sous-classe de celle-ci.
 
 !!! Note
-    `JSONResponse` est lui-même une sous-classe de `Response`.
+    `JSONResponse` est elle-même une sous-classe de `Response`.
 
 Et quand vous retournez une `Response`, **FastAPI** la transmet directement.
 
@@ -25,14 +25,14 @@ Cela vous donne beaucoup de flexibilité. Vous pouvez retourner n'importe quel t
 
 ## Utiliser le `jsonable_encoder` dans une `Response`
 
-Parce que **FastAPI** n'apporte aucune modification à une `Response` que vous retournez, vous devez vous assurer que son contenu est prêt à être utilisé.
+Parce que **FastAPI** n'apporte aucune modification à une `Response` que vous retournez, vous devez vous assurer que son contenu est prêt à être utilisé (sérialisable).
 
-Par exemple, vous ne pouvez pas mettre un modèle Pydantic dans une `JSONResponse` sans d'abord le convertir en un `dict` avec tous les types de données (comme `datetime`, `UUID`, etc) convertis en types compatibles avec JSON.
+Par exemple, vous ne pouvez pas mettre un modèle Pydantic dans une `JSONResponse` sans d'abord le convertir en un `dict` avec tous les types de données (comme `datetime`, `UUID`, etc.) convertis en types compatibles avec JSON.
 
 Pour ces cas, vous pouvez spécifier un appel à `jsonable_encoder` pour convertir vos données avant de les passer à une réponse :
 
-``Python hl_lines="6-7 21-22"
-{ !../../../docs_src/response_directly/tutorial001.py!}
+```Python hl_lines="6-7  21-22"
+{!../../../docs_src/response_directly/tutorial001.py!}
 ```
 
 !!! note "Détails techniques"
@@ -50,8 +50,8 @@ Disons que vous voulez retourner une réponse <a href="https://en.wikipedia.org/
 
 Vous pouvez mettre votre contenu XML dans une chaîne de caractères, la placer dans une `Response`, et la retourner :
 
-``Python hl_lines="1 18"
-{ !../../../docs_src/response_directly/tutorial002.py!}
+```Python hl_lines="1  18"
+{!../../../docs_src/response_directly/tutorial002.py!}
 ```
 
 ## Notes
