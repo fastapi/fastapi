@@ -10,7 +10,7 @@ Mais vous pouvez retourner une `JSONResponse` directement à partir de vos *opé
 
 Cela peut être utile, par exemple, pour retourner des en-têtes personnalisés ou des cookies.
 
-## Retourner une `Response`
+## Renvoyer une `Response`
 
 En fait, vous pouvez retourner n'importe quelle `Response` ou n'importe quelle sous-classe de celle-ci.
 
@@ -40,7 +40,7 @@ Pour ces cas, vous pouvez spécifier un appel à `jsonable_encoder` pour convert
 
     **FastAPI** fournit le même objet `starlette.responses` que `fastapi.responses` juste par commodité pour le développeur. Mais la plupart des réponses disponibles proviennent directement de Starlette.
 
-## Retourner une `Response` personnalisée
+## Renvoyer une `Response` personnalisée
 
 L'exemple ci-dessus montre toutes les parties dont vous avez besoin, mais il n'est pas encore très utile, car vous auriez pu retourner l'`item` directement, et **FastAPI** l'aurait mis dans une `JSONResponse` pour vous, en le convertissant en `dict`, etc. Tout cela par défaut.
 
