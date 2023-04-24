@@ -658,10 +658,15 @@ class APIRouter(routing.Router):
         ),
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         def decorator(func: DecoratedCallable) -> DecoratedCallable:
+            def return_type_hint(func):
+                return inspect.getfullargspec(func).annotations.get(
+                    "return", Default(None)
+                )
+
             self.add_api_route(
                 path,
                 func,
-                response_model=response_model,
+                response_model=response_model or return_type_hint(func),
                 status_code=status_code,
                 tags=tags,
                 dependencies=dependencies,
