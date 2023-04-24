@@ -19,26 +19,6 @@ from typing import (
     Union,
 )
 
-from fastapi import params
-from fastapi.datastructures import Default, DefaultPlaceholder
-from fastapi.dependencies.models import Dependant
-from fastapi.dependencies.utils import (
-    get_body_field,
-    get_dependant,
-    get_parameterless_sub_dependant,
-    get_typed_return_annotation,
-    solve_dependencies,
-)
-from fastapi.encoders import DictIntStrAny, SetIntStr, jsonable_encoder
-from fastapi.exceptions import RequestValidationError, WebSocketRequestValidationError
-from fastapi.types import DecoratedCallable
-from fastapi.utils import (
-    create_cloned_field,
-    create_response_field,
-    generate_unique_id,
-    get_value_or_default,
-    is_body_allowed_for_status_code,
-)
 from pydantic import BaseModel
 from pydantic.error_wrappers import ErrorWrapper, ValidationError
 from pydantic.fields import ModelField, Undefined
@@ -59,6 +39,27 @@ from starlette.routing import (
 from starlette.status import WS_1008_POLICY_VIOLATION
 from starlette.types import ASGIApp, Lifespan, Scope
 from starlette.websockets import WebSocket
+
+from fastapi import params
+from fastapi.datastructures import Default, DefaultPlaceholder
+from fastapi.dependencies.models import Dependant
+from fastapi.dependencies.utils import (
+    get_body_field,
+    get_dependant,
+    get_parameterless_sub_dependant,
+    get_typed_return_annotation,
+    solve_dependencies,
+)
+from fastapi.encoders import DictIntStrAny, SetIntStr, jsonable_encoder
+from fastapi.exceptions import RequestValidationError, WebSocketRequestValidationError
+from fastapi.types import DecoratedCallable
+from fastapi.utils import (
+    create_cloned_field,
+    create_response_field,
+    generate_unique_id,
+    get_value_or_default,
+    is_body_allowed_for_status_code,
+)
 
 
 def _prepare_response_content(
@@ -658,7 +659,7 @@ class APIRouter(routing.Router):
         ),
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         def decorator(func: DecoratedCallable) -> DecoratedCallable:
-            def return_type_hint(func):
+            def return_type_hint(func: DecoratedCallable) -> Any:
                 return inspect.getfullargspec(func).annotations.get(
                     "return", Default(None)
                 )
