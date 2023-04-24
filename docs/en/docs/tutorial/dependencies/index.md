@@ -85,6 +85,13 @@ In this case, this dependency expects:
 
 And then it just returns a `dict` containing those values.
 
+!!! info
+    FastAPI added support for `Annotated` (and started recommending it) in version 0.95.0.
+
+    If you have an older version, you would get errors when trying to use `Annotated`.
+
+    Make sure you [Upgrade the FastAPI version](../../deployment/versions.md#upgrading-the-fastapi-versions){.internal-link target=_blank} to at least 0.95.1 before using `Annotated`.
+
 ### Import `Depends`
 
 === "Python 3.10+"
