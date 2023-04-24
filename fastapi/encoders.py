@@ -1,5 +1,5 @@
 import dataclasses
-from collections import defaultdict
+from collections import defaultdict, deque
 from enum import Enum
 from pathlib import PurePath
 from types import GeneratorType
@@ -124,7 +124,7 @@ def jsonable_encoder(
                 )
                 encoded_dict[encoded_key] = encoded_value
         return encoded_dict
-    if isinstance(obj, (list, set, frozenset, GeneratorType, tuple)):
+    if isinstance(obj, (list, set, frozenset, GeneratorType, tuple, deque)):
         encoded_list = []
         for item in obj:
             encoded_list.append(
