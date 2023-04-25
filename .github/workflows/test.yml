@@ -21,7 +21,8 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
-          cache: "pip"
+          # Issue ref: https://github.com/actions/setup-python/issues/436
+          # cache: "pip"
           cache-dependency-path: pyproject.toml
       - uses: actions/cache@v3
         id: cache
@@ -54,7 +55,8 @@ jobs:
       - uses: actions/setup-python@v4
         with:
           python-version: '3.8'
-          cache: "pip"
+          # Issue ref: https://github.com/actions/setup-python/issues/436
+          # cache: "pip"
           cache-dependency-path: pyproject.toml
 
       - name: Get coverage files
