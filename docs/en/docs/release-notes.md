@@ -2,6 +2,7 @@
 
 ## Latest Changes
 
+* ⬆ Bump pypa/gh-action-pypi-publish from 1.6.4 to 1.8.5. PR [#9346](https://github.com/tiangolo/fastapi/pull/9346) by [@dependabot[bot]](https://github.com/apps/dependabot).
 
 ## 0.95.1
 
