@@ -35,16 +35,7 @@ from pydantic import BaseModel, create_model
 from pydantic.error_wrappers import ErrorWrapper
 from pydantic.errors import MissingError
 from pydantic.fields import (
-    SHAPE_FROZENSET,
-    SHAPE_LIST,
-    SHAPE_SEQUENCE,
-    SHAPE_SET,
-    SHAPE_SINGLETON,
-    SHAPE_TUPLE,
-    SHAPE_TUPLE_ELLIPSIS,
     FieldInfo,
-    ModelField,
-    Required,
     Undefined,
 )
 from pydantic.schema import get_annotation_from_field_info
@@ -57,23 +48,6 @@ from starlette.requests import HTTPConnection, Request
 from starlette.responses import Response
 from starlette.websockets import WebSocket
 from typing_extensions import Annotated
-
-sequence_shapes = {
-    SHAPE_LIST,
-    SHAPE_SET,
-    SHAPE_FROZENSET,
-    SHAPE_TUPLE,
-    SHAPE_SEQUENCE,
-    SHAPE_TUPLE_ELLIPSIS,
-}
-sequence_types = (list, set, tuple)
-sequence_shape_to_type = {
-    SHAPE_LIST: list,
-    SHAPE_SET: set,
-    SHAPE_TUPLE: tuple,
-    SHAPE_SEQUENCE: list,
-    SHAPE_TUPLE_ELLIPSIS: list,
-}
 
 
 multipart_not_installed_error = (
@@ -91,8 +65,8 @@ multipart_incorrect_install_error = (
 )
 
 
-def check_file_field(field: ModelField) -> None:
-    field_info = field.field_info
+def check_file_field(field: FieldInfo) -> None:
+    field_info = field
     if isinstance(field_info, params.Form):
         try:
             # __version__ is available in both multiparts, and can be mocked
@@ -206,7 +180,7 @@ def get_flat_dependant(
     return flat_dependant
 
 
-def get_flat_params(dependant: Dependant) -> List[ModelField]:
+def get_flat_params(dependant: Dependant) -> List[FieldInfo]:
     flat_dependant = get_flat_dependant(dependant, skip_repeats=True)
     return (
         flat_dependant.path_params
@@ -216,7 +190,7 @@ def get_flat_params(dependant: Dependant) -> List[ModelField]:
     )
 
 
-def is_scalar_field(field: ModelField) -> bool:
+def is_scalar_field(field: FieldInfo) -> bool:
     field_info = field.field_info
     if not (
         field.shape == SHAPE_SINGLETON
@@ -232,7 +206,7 @@ def is_scalar_field(field: ModelField) -> bool:
     return True
 
 
-def is_scalar_sequence_field(field: ModelField) -> bool:
+def is_scalar_sequence_field(field: FieldInfo) -> bool:
     if (field.shape in sequence_shapes) and not lenient_issubclass(
         field.type_, BaseModel
     ):
@@ -362,7 +336,7 @@ def analyze_param(
     annotation: Any,
     value: Any,
     is_path_param: bool,
-) -> Tuple[Any, Optional[params.Depends], Optional[ModelField]]:
+) -> Tuple[Any, Optional[params.Depends], Optional[FieldInfo]]:
     field_info = None
     used_default_field_info = False
     depends = None
@@ -476,7 +450,7 @@ def analyze_param(
     return type_annotation, depends, field
 
 
-def is_body_param(*, param_field: ModelField, is_path_param: bool) -> bool:
+def is_body_param(*, param_field: FieldInfo, is_path_param: bool) -> bool:
     if is_path_param:
         assert is_scalar_field(
             field=param_field
@@ -495,8 +469,8 @@ def is_body_param(*, param_field: ModelField, is_path_param: bool) -> bool:
         return True
 
 
-def add_param_to_fields(*, field: ModelField, dependant: Dependant) -> None:
-    field_info = cast(params.Param, field.field_info)
+def add_param_to_fields(*, field: FieldInfo, dependant: Dependant) -> None:
+    field_info = cast(params.Param, field)
     if field_info.in_ == params.ParamTypes.path:
         dependant.path_params.append(field)
     elif field_info.in_ == params.ParamTypes.query:
@@ -672,7 +646,7 @@ async def solve_dependencies(
 
 
 def request_params_to_args(
-    required_params: Sequence[ModelField],
+    required_params: Sequence[FieldInfo],
     received_params: Union[Mapping[str, Any], QueryParams, Headers],
 ) -> Tuple[Dict[str, Any], List[ErrorWrapper]]:
     values = {}
@@ -711,7 +685,7 @@ def request_params_to_args(
 
 
 async def request_body_to_args(
-    required_params: List[ModelField],
+    required_params: List[FieldInfo],
     received_body: Optional[Union[Dict[str, Any], FormData]],
 ) -> Tuple[Dict[str, Any], List[ErrorWrapper]]:
     values = {}
@@ -798,7 +772,7 @@ def get_missing_field_error(loc: Tuple[str, ...]) -> ErrorWrapper:
     return missing_field_error
 
 
-def get_body_field(*, dependant: Dependant, name: str) -> Optional[ModelField]:
+def get_body_field(*, dependant: Dependant, name: str) -> Optional[FieldInfo]:
     flat_dependant = get_flat_dependant(dependant)
     if not flat_dependant.body_params:
         return None

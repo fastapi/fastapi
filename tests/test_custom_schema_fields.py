@@ -8,10 +8,11 @@ app = FastAPI()
 class Item(BaseModel):
     name: str
 
-    class Config:
-        schema_extra = {
+    model_config = {
+        "schema_extra": {
             "x-something-internal": {"level": 4},
         }
+    }
 
 
 @app.get("/foo", response_model=Item)

@@ -30,16 +30,14 @@ class Contact(BaseModel):
     url: Optional[AnyUrl] = None
     email: Optional[EmailStr] = None
 
-    class Config:
-        extra = "allow"
+    model_config = {"extra": "allow"}
 
 
 class License(BaseModel):
     name: str
     url: Optional[AnyUrl] = None
 
-    class Config:
-        extra = "allow"
+    model_config = {"extra": "allow"}
 
 
 class Info(BaseModel):
@@ -50,8 +48,7 @@ class Info(BaseModel):
     license: Optional[License] = None
     version: str
 
-    class Config:
-        extra = "allow"
+    model_config = {"extra": "allow"}
 
 
 class ServerVariable(BaseModel):
@@ -59,8 +56,7 @@ class ServerVariable(BaseModel):
     default: str
     description: Optional[str] = None
 
-    class Config:
-        extra = "allow"
+    model_config = {"extra": "allow"}
 
 
 class Server(BaseModel):
@@ -68,8 +64,7 @@ class Server(BaseModel):
     description: Optional[str] = None
     variables: Optional[Dict[str, ServerVariable]] = None
 
-    class Config:
-        extra = "allow"
+    model_config = {"extra": "allow"}
 
 
 class Reference(BaseModel):
@@ -88,16 +83,14 @@ class XML(BaseModel):
     attribute: Optional[bool] = None
     wrapped: Optional[bool] = None
 
-    class Config:
-        extra = "allow"
+    model_config = {"extra": "allow"}
 
 
 class ExternalDocumentation(BaseModel):
     description: Optional[str] = None
     url: AnyUrl
 
-    class Config:
-        extra = "allow"
+    model_config = {"extra": "allow"}
 
 
 class Schema(BaseModel):
@@ -108,14 +101,14 @@ class Schema(BaseModel):
     exclusiveMaximum: Optional[float] = None
     minimum: Optional[float] = None
     exclusiveMinimum: Optional[float] = None
-    maxLength: Optional[int] = Field(default=None, gte=0)
-    minLength: Optional[int] = Field(default=None, gte=0)
+    maxLength: Optional[int] = Field(default=None, ge=0)
+    minLength: Optional[int] = Field(default=None, ge=0)
     pattern: Optional[str] = None
-    maxItems: Optional[int] = Field(default=None, gte=0)
-    minItems: Optional[int] = Field(default=None, gte=0)
+    maxItems: Optional[int] = Field(default=None, ge=0)
+    minItems: Optional[int] = Field(default=None, ge=0)
     uniqueItems: Optional[bool] = None
-    maxProperties: Optional[int] = Field(default=None, gte=0)
-    minProperties: Optional[int] = Field(default=None, gte=0)
+    maxProperties: Optional[int] = Field(default=None, ge=0)
+    minProperties: Optional[int] = Field(default=None, ge=0)
     required: Optional[List[str]] = None
     enum: Optional[List[Any]] = None
     type: Optional[str] = None
@@ -138,8 +131,7 @@ class Schema(BaseModel):
     example: Optional[Any] = None
     deprecated: Optional[bool] = None
 
-    class Config:
-        extra: str = "allow"
+    model_config = {"extra": "allow"}
 
 
 class Example(BaseModel):
@@ -148,8 +140,7 @@ class Example(BaseModel):
     value: Optional[Any] = None
     externalValue: Optional[AnyUrl] = None
 
-    class Config:
-        extra = "allow"
+    model_config = {"extra": "allow"}
 
 
 class ParameterInType(Enum):
@@ -166,8 +157,7 @@ class Encoding(BaseModel):
     explode: Optional[bool] = None
     allowReserved: Optional[bool] = None
 
-    class Config:
-        extra = "allow"
+    model_config = {"extra": "allow", "undefined_types_warning": False}
 
 
 class MediaType(BaseModel):
@@ -176,8 +166,7 @@ class MediaType(BaseModel):
     examples: Optional[Dict[str, Union[Example, Reference]]] = None
     encoding: Optional[Dict[str, Encoding]] = None
 
-    class Config:
-        extra = "allow"
+    model_config = {"extra": "allow", "undefined_types_warning": False}
 
 
 class ParameterBase(BaseModel):
@@ -194,8 +183,7 @@ class ParameterBase(BaseModel):
     # Serialization rules for more complex scenarios
     content: Optional[Dict[str, MediaType]] = None
 
-    class Config:
-        extra = "allow"
+    model_config = {"extra": "allow", "undefined_types_warning": False}
 
 
 class Parameter(ParameterBase):
@@ -212,8 +200,7 @@ class RequestBody(BaseModel):
     content: Dict[str, MediaType]
     required: Optional[bool] = None
 
-    class Config:
-        extra = "allow"
+    model_config = {"extra": "allow"}
 
 
 class Link(BaseModel):
@@ -224,8 +211,7 @@ class Link(BaseModel):
     description: Optional[str] = None
     server: Optional[Server] = None
 
-    class Config:
-        extra = "allow"
+    model_config = {"extra": "allow"}
 
 
 class Response(BaseModel):
@@ -234,8 +220,7 @@ class Response(BaseModel):
     content: Optional[Dict[str, MediaType]] = None
     links: Optional[Dict[str, Union[Link, Reference]]] = None
 
-    class Config:
-        extra = "allow"
+    model_config = {"extra": "allow"}
 
 
 class Operation(BaseModel):
@@ -253,8 +238,7 @@ class Operation(BaseModel):
     security: Optional[List[Dict[str, List[str]]]] = None
     servers: Optional[List[Server]] = None
 
-    class Config:
-        extra = "allow"
+    model_config = {"extra": "allow", "undefined_types_warning": False}
 
 
 class PathItem(BaseModel):
@@ -272,8 +256,7 @@ class PathItem(BaseModel):
     servers: Optional[List[Server]] = None
     parameters: Optional[List[Union[Parameter, Reference]]] = None
 
-    class Config:
-        extra = "allow"
+    model_config = {"extra": "allow"}
 
 
 class SecuritySchemeType(Enum):
@@ -287,8 +270,7 @@ class SecurityBase(BaseModel):
     type_: SecuritySchemeType = Field(alias="type")
     description: Optional[str] = None
 
-    class Config:
-        extra = "allow"
+    model_config = {"extra": "allow"}
 
 
 class APIKeyIn(Enum):
@@ -298,18 +280,18 @@ class APIKeyIn(Enum):
 
 
 class APIKey(SecurityBase):
-    type_ = Field(SecuritySchemeType.apiKey, alias="type")
+    type_: SecuritySchemeType = Field(SecuritySchemeType.apiKey, alias="type")
     in_: APIKeyIn = Field(alias="in")
     name: str
 
 
 class HTTPBase(SecurityBase):
-    type_ = Field(SecuritySchemeType.http, alias="type")
+    type_: SecuritySchemeType = Field(SecuritySchemeType.http, alias="type")
     scheme: str
 
 
 class HTTPBearer(HTTPBase):
-    scheme = "bearer"
+    scheme: str = "bearer"
     bearerFormat: Optional[str] = None
 
 
@@ -317,8 +299,7 @@ class OAuthFlow(BaseModel):
     refreshUrl: Optional[str] = None
     scopes: Dict[str, str] = {}
 
-    class Config:
-        extra = "allow"
+    model_config = {"extra": "allow"}
 
 
 class OAuthFlowImplicit(OAuthFlow):
@@ -344,17 +325,16 @@ class OAuthFlows(BaseModel):
     clientCredentials: Optional[OAuthFlowClientCredentials] = None
     authorizationCode: Optional[OAuthFlowAuthorizationCode] = None
 
-    class Config:
-        extra = "allow"
+    model_config = {"extra": "allow"}
 
 
 class OAuth2(SecurityBase):
-    type_ = Field(SecuritySchemeType.oauth2, alias="type")
+    type_: SecuritySchemeType = Field(SecuritySchemeType.oauth2, alias="type")
     flows: OAuthFlows
 
 
 class OpenIdConnect(SecurityBase):
-    type_ = Field(SecuritySchemeType.openIdConnect, alias="type")
+    type_: SecuritySchemeType = Field(SecuritySchemeType.openIdConnect, alias="type")
     openIdConnectUrl: str
 
 
@@ -373,8 +353,7 @@ class Components(BaseModel):
     # Using Any for Specification Extensions
     callbacks: Optional[Dict[str, Union[Dict[str, PathItem], Reference, Any]]] = None
 
-    class Config:
-        extra = "allow"
+    model_config = {"extra": "allow"}
 
 
 class Tag(BaseModel):
@@ -382,8 +361,7 @@ class Tag(BaseModel):
     description: Optional[str] = None
     externalDocs: Optional[ExternalDocumentation] = None
 
-    class Config:
-        extra = "allow"
+    model_config = {"extra": "allow"}
 
 
 class OpenAPI(BaseModel):
@@ -397,10 +375,9 @@ class OpenAPI(BaseModel):
     tags: Optional[List[Tag]] = None
     externalDocs: Optional[ExternalDocumentation] = None
 
-    class Config:
-        extra = "allow"
+    model_config = {"extra": "allow"}
 
 
-Schema.update_forward_refs()
-Operation.update_forward_refs()
-Encoding.update_forward_refs()
+Schema.model_rebuild()
+Operation.model_rebuild()
+Encoding.model_rebuild()

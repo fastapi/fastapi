@@ -2,7 +2,7 @@ from typing import Union
 
 from fastapi import Body, Cookie, FastAPI, Header, Path, Query
 from fastapi.testclient import TestClient
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 app = FastAPI()
 
@@ -10,8 +10,9 @@ app = FastAPI()
 class Item(BaseModel):
     data: str
 
-    class Config:
-        schema_extra = {"example": {"data": "Data in schema_extra"}}
+    model_config = ConfigDict(
+        schema_extra={"example": {"data": "Data in schema_extra"}}
+    )
 
 
 @app.post("/schema_extra/")

@@ -41,7 +41,7 @@ from fastapi.utils import (
 )
 from pydantic import BaseModel
 from pydantic.error_wrappers import ErrorWrapper, ValidationError
-from pydantic.fields import ModelField, Undefined
+from pydantic.fields import FieldInfo, Undefined
 from pydantic.utils import lenient_issubclass
 from starlette import routing
 from starlette.concurrency import run_in_threadpool
@@ -109,7 +109,7 @@ def _prepare_response_content(
 
 async def serialize_response(
     *,
-    field: Optional[ModelField] = None,
+    field: Optional[FieldInfo] = None,
     response_content: Any,
     include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
     exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
@@ -167,10 +167,10 @@ async def run_endpoint_function(
 
 def get_request_handler(
     dependant: Dependant,
-    body_field: Optional[ModelField] = None,
+    body_field: Optional[FieldInfo] = None,
     status_code: Optional[int] = None,
     response_class: Union[Type[Response], DefaultPlaceholder] = Default(JSONResponse),
-    response_field: Optional[ModelField] = None,
+    response_field: Optional[FieldInfo] = None,
     response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
     response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
     response_model_by_alias: bool = True,
@@ -181,7 +181,7 @@ def get_request_handler(
 ) -> Callable[[Request], Coroutine[Any, Any, Response]]:
     assert dependant.call is not None, "dependant.call must be a function"
     is_coroutine = asyncio.iscoroutinefunction(dependant.call)
-    is_body_form = body_field and isinstance(body_field.field_info, params.Form)
+    is_body_form = body_field and isinstance(body_field, params.Form)
     if isinstance(response_class, DefaultPlaceholder):
         actual_response_class: Type[Response] = response_class.value
     else:
@@ -413,7 +413,7 @@ class APIRoute(routing.Route):
             # By being a new field, no inheritance will be passed as is. A new model
             # will be always created.
             self.secure_cloned_response_field: Optional[
-                ModelField
+                FieldInfo
             ] = create_cloned_field(self.response_field)
         else:
             self.response_field = None  # type: ignore
@@ -438,7 +438,7 @@ class APIRoute(routing.Route):
                 response_field = create_response_field(name=response_name, type_=model)
                 response_fields[additional_status_code] = response_field
         if response_fields:
-            self.response_fields: Dict[Union[int, str], ModelField] = response_fields
+            self.response_fields: Dict[Union[int, str], FieldInfo] = response_fields
         else:
             self.response_fields = {}
 

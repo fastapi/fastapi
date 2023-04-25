@@ -2,7 +2,7 @@ from typing import Any
 
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 
 class PersonBase(BaseModel):
@@ -15,9 +15,7 @@ class Person(PersonBase):
     def full_name(self) -> str:
         return f"{self.name} {self.lastname}"
 
-    class Config:
-        orm_mode = True
-        read_with_orm_mode = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 class PersonCreate(PersonBase):
@@ -27,8 +25,7 @@ class PersonCreate(PersonBase):
 class PersonRead(PersonBase):
     full_name: str
 
-    class Config:
-        orm_mode = True
+    model_config = {"from_attributes": True}
 
 
 app = FastAPI()

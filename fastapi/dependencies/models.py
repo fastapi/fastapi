@@ -1,7 +1,7 @@
 from typing import Any, Callable, List, Optional, Sequence
 
 from fastapi.security.base import SecurityBase
-from pydantic.fields import ModelField
+from pydantic.fields import FieldInfo
 
 
 class SecurityRequirement:
@@ -16,11 +16,11 @@ class Dependant:
     def __init__(
         self,
         *,
-        path_params: Optional[List[ModelField]] = None,
-        query_params: Optional[List[ModelField]] = None,
-        header_params: Optional[List[ModelField]] = None,
-        cookie_params: Optional[List[ModelField]] = None,
-        body_params: Optional[List[ModelField]] = None,
+        path_params: Optional[List[FieldInfo]] = None,
+        query_params: Optional[List[FieldInfo]] = None,
+        header_params: Optional[List[FieldInfo]] = None,
+        cookie_params: Optional[List[FieldInfo]] = None,
+        body_params: Optional[List[FieldInfo]] = None,
         dependencies: Optional[List["Dependant"]] = None,
         security_schemes: Optional[List[SecurityRequirement]] = None,
         name: Optional[str] = None,

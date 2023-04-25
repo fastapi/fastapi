@@ -48,17 +48,17 @@ class Unserializable:
 class ModelWithCustomEncoder(BaseModel):
     dt_field: datetime
 
-    class Config:
-        json_encoders = {
+    model_config = {
+        "json_encoders": {
             datetime: lambda dt: dt.replace(
                 microsecond=0, tzinfo=timezone.utc
             ).isoformat()
         }
+    }
 
 
 class ModelWithCustomEncoderSubclass(ModelWithCustomEncoder):
-    class Config:
-        pass
+    model_config = {}
 
 
 class RoleEnum(Enum):
@@ -69,8 +69,7 @@ class RoleEnum(Enum):
 class ModelWithConfig(BaseModel):
     role: Optional[RoleEnum] = None
 
-    class Config:
-        use_enum_values = True
+    model_config = {"use_enum_values": True}
 
 
 class ModelWithAlias(BaseModel):
@@ -91,11 +90,10 @@ class ModelWithRoot(BaseModel):
     name="model_with_path", params=[PurePath, PurePosixPath, PureWindowsPath]
 )
 def fixture_model_with_path(request):
-    class Config:
-        arbitrary_types_allowed = True
+    model_config = {"arbitrary_types_allowed": True}
 
     ModelWithPath = create_model(
-        "ModelWithPath", path=(request.param, ...), __config__=Config  # type: ignore
+        "ModelWithPath", path=(request.param, ...), __config__=model_config  # type: ignore
     )
     return ModelWithPath(path=request.param("/foo", "bar"))
 

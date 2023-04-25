@@ -4,12 +4,14 @@ from dataclasses import is_dataclass
 from enum import Enum
 from typing import TYPE_CHECKING, Any, Dict, Optional, Set, Type, Union, cast
 
+from pydantic._internal._fields import Undefined
+
 import fastapi
 from fastapi.datastructures import DefaultPlaceholder, DefaultType
 from fastapi.openapi.constants import REF_PREFIX
 from pydantic import BaseConfig, BaseModel, create_model
 from pydantic.class_validators import Validator
-from pydantic.fields import FieldInfo, ModelField, UndefinedType
+from pydantic.fields import FieldInfo
 from pydantic.schema import model_process_schema
 from pydantic.utils import lenient_issubclass
 
@@ -61,11 +63,11 @@ def create_response_field(
     type_: Type[Any],
     class_validators: Optional[Dict[str, Validator]] = None,
     default: Optional[Any] = None,
-    required: Union[bool, UndefinedType] = True,
+    required: Union[bool, Undefined] = True,
     model_config: Type[BaseConfig] = BaseConfig,
     field_info: Optional[FieldInfo] = None,
     alias: Optional[str] = None,
-) -> ModelField:
+) -> FieldInfo:
     """
     Create a new response field. Raises if type_ is invalid.
     """
@@ -73,7 +75,7 @@ def create_response_field(
     field_info = field_info or FieldInfo()
 
     try:
-        return ModelField(
+        return FieldInfo(
             name=name,
             type_=type_,
             class_validators=class_validators,
@@ -96,10 +98,10 @@ def create_response_field(
 
 
 def create_cloned_field(
-    field: ModelField,
+    field: FieldInfo,
     *,
     cloned_types: Optional[Dict[Type[BaseModel], Type[BaseModel]]] = None,
-) -> ModelField:
+) -> FieldInfo:
     # _cloned_types has already cloned types, to support recursive models
     if cloned_types is None:
         cloned_types = {}

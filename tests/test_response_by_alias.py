@@ -2,7 +2,7 @@ from typing import List
 
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 app = FastAPI()
 
@@ -14,13 +14,14 @@ class Model(BaseModel):
 class ModelNoAlias(BaseModel):
     name: str
 
-    class Config:
-        schema_extra = {
+    model_config = ConfigDict(
+        schema_extra={
             "description": (
                 "response_model_by_alias=False is basically a quick hack, to support "
                 "proper OpenAPI use another model with the correct field names"
             )
         }
+    )
 
 
 @app.get("/dict", response_model=Model, response_model_by_alias=False)

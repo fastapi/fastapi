@@ -8,12 +8,13 @@ from pydantic import BaseModel
 class ModelWithDatetimeField(BaseModel):
     dt_field: datetime
 
-    class Config:
-        json_encoders = {
+    model_config = {
+        "json_encoders": {
             datetime: lambda dt: dt.replace(
                 microsecond=0, tzinfo=timezone.utc
             ).isoformat()
         }
+    }
 
 
 app = FastAPI()

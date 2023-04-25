@@ -2,7 +2,7 @@ import http.client
 import inspect
 import warnings
 from enum import Enum
-from typing import Any, Dict, List, Optional, Sequence, Set, Tuple, Type, Union, cast
+from typing import Any, Dict, List, Optional, Sequence, Set, Tuple, Type, Union
 
 from fastapi import routing
 from fastapi.datastructures import DefaultPlaceholder
@@ -20,7 +20,7 @@ from fastapi.utils import (
     is_body_allowed_for_status_code,
 )
 from pydantic import BaseModel
-from pydantic.fields import ModelField, Undefined
+from pydantic.fields import FieldInfo, Undefined
 from pydantic.schema import (
     field_schema,
     get_flat_models_from_fields,
@@ -87,49 +87,47 @@ def get_openapi_security_definitions(
 
 def get_openapi_operation_parameters(
     *,
-    all_route_params: Sequence[ModelField],
+    all_route_params: Sequence[Param],
     model_name_map: Dict[Union[Type[BaseModel], Type[Enum]], str],
 ) -> List[Dict[str, Any]]:
     parameters = []
     for param in all_route_params:
-        field_info = param.field_info
-        field_info = cast(Param, field_info)
-        if not field_info.include_in_schema:
+        param = param
+        if not param.include_in_schema:
             continue
         parameter = {
             "name": param.alias,
-            "in": field_info.in_.value,
-            "required": param.required,
+            "in": param.in_.value,
+            "required": param.is_required(),
             "schema": field_schema(
                 param, model_name_map=model_name_map, ref_prefix=REF_PREFIX
             )[0],
         }
-        if field_info.description:
-            parameter["description"] = field_info.description
-        if field_info.examples:
-            parameter["examples"] = jsonable_encoder(field_info.examples)
-        elif field_info.example != Undefined:
-            parameter["example"] = jsonable_encoder(field_info.example)
-        if field_info.deprecated:
-            parameter["deprecated"] = field_info.deprecated
+        if param.description:
+            parameter["description"] = param.description
+        if param.examples:
+            parameter["examples"] = jsonable_encoder(param.examples)
+        elif param.example != Undefined:
+            parameter["example"] = jsonable_encoder(param.example)
+        if param.deprecated:
+            parameter["deprecated"] = param.deprecated
         parameters.append(parameter)
     return parameters
 
 
 def get_openapi_operation_request_body(
     *,
-    body_field: Optional[ModelField],
+    body_field: Optional[Body],
     model_name_map: Dict[Union[Type[BaseModel], Type[Enum]], str],
 ) -> Optional[Dict[str, Any]]:
     if not body_field:
         return None
-    assert isinstance(body_field, ModelField)
     body_schema, _, _ = field_schema(
         body_field, model_name_map=model_name_map, ref_prefix=REF_PREFIX
     )
-    field_info = cast(Body, body_field.field_info)
+    field_info = body_field
     request_media_type = field_info.media_type
-    required = body_field.required
+    required = body_field.is_required()
     request_body_oai: Dict[str, Any] = {}
     if required:
         request_body_oai["required"] = required
@@ -361,9 +359,9 @@ def get_openapi_path(
 def get_flat_models_from_routes(
     routes: Sequence[BaseRoute],
 ) -> Set[Union[Type[BaseModel], Type[Enum]]]:
-    body_fields_from_routes: List[ModelField] = []
-    responses_from_routes: List[ModelField] = []
-    request_fields_from_routes: List[ModelField] = []
+    body_fields_from_routes: List[FieldInfo] = []
+    responses_from_routes: List[FieldInfo] = []
+    request_fields_from_routes: List[FieldInfo] = []
     callback_flat_models: Set[Union[Type[BaseModel], Type[Enum]]] = set()
     for route in routes:
         if getattr(route, "include_in_schema", None) and isinstance(
@@ -371,7 +369,7 @@ def get_flat_models_from_routes(
         ):
             if route.body_field:
                 assert isinstance(
-                    route.body_field, ModelField
+                    route.body_field, FieldInfo
                 ), "A request body must be a Pydantic Field"
                 body_fields_from_routes.append(route.body_field)
             if route.response_field:
