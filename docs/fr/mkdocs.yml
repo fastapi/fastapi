@@ -76,6 +76,7 @@ nav:
   - advanced/index.md
   - advanced/path-operation-advanced-configuration.md
   - advanced/additional-status-codes.md
+  - advanced/response-directly.md
   - advanced/additional-responses.md
 - async.md
 - Déploiement:
