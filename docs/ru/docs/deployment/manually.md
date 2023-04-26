@@ -98,7 +98,8 @@
 
 ## Hypercorn с Trio
 
-Starlette и **FastAPI** основаны на <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a>, которая делает их совместимыми со стандартными библиотеками Python - <a href="https://docs.python.org/3/library/asyncio-task.html" class="external-link" target="_blank">asyncio</a> и <a href="https://trio.readthedocs.io/en/stable/" class="external-link" target="_blank">Trio</a>.
+Starlette и **FastAPI** основаны на <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a>, которая делает их совместимыми как с <a href="https://docs.python.org/3/library/asyncio-task.html" class="external-link" target="_blank">asyncio</a> - стандартной библиотекой Python, так и с <a href="https://trio.readthedocs.io/en/stable/" class="external-link" target="_blank">Trio</a>.
+
 
 Тем не менее Uvicorn совместим только с asyncio и обычно используется совместно с <a href="https://github.com/MagicStack/uvloop" class="external-link" target="_blank">`uvloop`</a>, высокопроизводительной заменой `asyncio`.
 
