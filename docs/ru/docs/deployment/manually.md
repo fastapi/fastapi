@@ -102,7 +102,7 @@ Starlette и **FastAPI** основаны на <a href="https://anyio.readthedoc
 
 Тем не менее Uvicorn совместим только с asyncio и обычно используется совместно с <a href="https://github.com/MagicStack/uvloop" class="external-link" target="_blank">`uvloop`</a>, высокопроизводительной заменой `asyncio`.
 
-Но если Вы желаете использовать **Trio**, то можете использовать совместимый с нею **Hypercorn**. ✨
+Но если Вы хотите использовать **Trio** напрямую, то можете воспользоваться **Hypercorn**, так как они совместимы. ✨
 
 ### Установка Hypercorn с Trio
 
