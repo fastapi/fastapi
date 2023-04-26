@@ -40,6 +40,7 @@ nav:
 - Languages:
   - en: /
   - az: /az/
+  - cs: /cs/
   - de: /de/
   - em: /em/
   - es: /es/
@@ -75,6 +76,7 @@ nav:
   - advanced/index.md
   - advanced/path-operation-advanced-configuration.md
   - advanced/additional-status-codes.md
+  - advanced/response-directly.md
   - advanced/additional-responses.md
 - async.md
 - Déploiement:
@@ -132,6 +134,8 @@ extra:
     name: en - English
   - link: /az/
     name: az
+  - link: /cs/
+    name: cs
   - link: /de/
     name: de
   - link: /em/
