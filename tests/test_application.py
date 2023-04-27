@@ -627,7 +627,7 @@ openapi_schema = {
                         "required": True,
                         "schema": {
                             "title": "Item Id",
-                            "exclusiveMaximum": 3.0,
+                            "exclusiveMaximum": 3,
                             "type": "integer",
                         },
                         "name": "item_id",
@@ -661,7 +661,7 @@ openapi_schema = {
                         "required": True,
                         "schema": {
                             "title": "Item Id",
-                            "exclusiveMinimum": 3.0,
+                            "exclusiveMinimum": 3,
                             "type": "integer",
                         },
                         "name": "item_id",
@@ -695,7 +695,7 @@ openapi_schema = {
                         "required": True,
                         "schema": {
                             "title": "Item Id",
-                            "maximum": 3.0,
+                            "maximum": 3,
                             "type": "integer",
                         },
                         "name": "item_id",
@@ -729,7 +729,7 @@ openapi_schema = {
                         "required": True,
                         "schema": {
                             "title": "Item Id",
-                            "minimum": 3.0,
+                            "minimum": 3,
                             "type": "integer",
                         },
                         "name": "item_id",
@@ -763,8 +763,8 @@ openapi_schema = {
                         "required": True,
                         "schema": {
                             "title": "Item Id",
-                            "exclusiveMaximum": 3.0,
-                            "exclusiveMinimum": 1.0,
+                            "exclusiveMaximum": 3,
+                            "exclusiveMinimum": 1,
                             "type": "integer",
                         },
                         "name": "item_id",
@@ -798,8 +798,8 @@ openapi_schema = {
                         "required": True,
                         "schema": {
                             "title": "Item Id",
-                            "maximum": 3.0,
-                            "minimum": 1.0,
+                            "maximum": 3,
+                            "minimum": 1,
                             "type": "integer",
                         },
                         "name": "item_id",
