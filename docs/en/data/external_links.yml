@@ -3,7 +3,7 @@ articles:
   - author: Nicoló Lino
     author_link: https://www.nlino.com
     link: https://github.com/softwarebloat/python-tracing-demo
-    title: 'Instrument a FastAPI service adding tracing with OpnTelemetry and send/show traces in Grafana Tempo'
+    title: 'Instrument a FastAPI service adding tracing with OpenTelemetry and send/show traces in Grafana Tempo'
   - author: Raf Rasenberg
     author_link: https://rafrasenberg.com/about/
     link: https://rafrasenberg.com/fastapi-lambda/
