@@ -6,7 +6,7 @@
 
 Starlette 提供了一些工具，使你能快速配置其与 **FastAPI** 一同使用。
 
-## 安装需求
+## 安装依赖
 
 安装 `jinja2`：
 
@@ -40,7 +40,7 @@ $ pip install jinja2
 !!! note "技术细节"
     你也可以使用 `from starlette.templating import Jinja2Templates`。
 
-    为了你，即开发者的便利，**FastAPI** 提供了与 `fastapi.templating` 一致的 `starlette.templating`。但绝大多数的响应值都直接来自于 Starlette，该情况同样适用于 `Request` 和 `StaticFiles`。
+    为了你和开发者们的便利，**FastAPI** 提供了与 `fastapi.templating` 一致的 `starlette.templating`。但绝大多数的响应值都直接来自于 Starlette，该情况同样适用于 `Request` 和 `StaticFiles`。
 
 ## 编写模板
 
