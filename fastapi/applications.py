@@ -52,6 +52,7 @@ class FastAPI(Starlette):
         self: AppType,
         *,
         debug: bool = False,
+        redirect_slashes: bool = True,
         routes: Optional[List[BaseRoute]] = None,
         title: str = "FastAPI",
         description: str = "",
@@ -126,6 +127,7 @@ class FastAPI(Starlette):
         self.dependency_overrides: Dict[Callable[..., Any], Callable[..., Any]] = {}
         self.router: routing.APIRouter = routing.APIRouter(
             routes=routes,
+            redirect_slashes=redirect_slashes,
             dependency_overrides_provider=self,
             on_startup=on_startup,
             on_shutdown=on_shutdown,
