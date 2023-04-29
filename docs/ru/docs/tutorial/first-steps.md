@@ -248,7 +248,7 @@ https://example.com/items/foo
 Декоратор `@app.get("/")` указывает **FastAPI**, что функция, прямо под ним, отвечает за обработку запросов, поступающих по адресу:
 
 * путь `/`
-* используя <abbr title="HTTP GET метод"><code>get</code> операцию</abbr>
+* использующих <abbr title="HTTP GET метод"><code>get</code> операцию</abbr>
 
 !!! info "`@decorator` Дополнительная информация"
     Синтаксис `@something` в Python называется "декоратор".
