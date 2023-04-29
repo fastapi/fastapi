@@ -141,7 +141,7 @@ OpenAPI описывает схему API. Эта схема содержит о
 
     Вы можете использовать всю функциональность <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> в `FastAPI`.
 
-### Шаг 2: создать экземпляр `FastAPI`
+### Шаг 2: создайте экземпляр `FastAPI`
 
 ```Python hl_lines="3"
 {!../../../docs_src/first_steps/tutorial001.py!}
