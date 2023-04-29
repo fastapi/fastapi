@@ -183,7 +183,7 @@ $ uvicorn main:my_awesome_api --reload
 
 ### Шаг 3: определить *операцию пути (path operation)*
 
-#### Путь (path)
+#### Путь <abbr>path</abbr>
 
 "Путь" это часть URL, после первого символа `/`.
 
