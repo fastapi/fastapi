@@ -40,6 +40,7 @@ nav:
 - Languages:
   - en: /
   - az: /az/
+  - cs: /cs/
   - de: /de/
   - em: /em/
   - es: /es/
@@ -109,6 +110,8 @@ extra:
     name: en - English
   - link: /az/
     name: az
+  - link: /cs/
+    name: cs
   - link: /de/
     name: de
   - link: /em/
