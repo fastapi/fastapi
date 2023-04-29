@@ -128,7 +128,7 @@ OpenAPI описывает схему API. Эта схема содержит о
 
 ## Рассмотрим поэтапно
 
-### Шаг 1: import `FastAPI`
+### Шаг 1: импортируйте `FastAPI`
 
 ```Python hl_lines="1"
 {!../../../docs_src/first_steps/tutorial001.py!}
