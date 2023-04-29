@@ -181,7 +181,7 @@ $ uvicorn main:my_awesome_api --reload
 
 </div>
 
-### Шаг 3: определить *операцию пути (path operation)*
+### Шаг 3: определите *операцию пути <abbr>path operation</abbr>*
 
 #### Путь <abbr>path</abbr>
 
