@@ -75,7 +75,7 @@ INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 
 #### API "схема"
 
-<a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> - это спецификация, которая определяет, как описать схему API.
+<a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> - это спецификация, которая определяет, как описывать схему API.
 
 Определение схемы содержит пути (paths) API, их параметры и т.п.
 
