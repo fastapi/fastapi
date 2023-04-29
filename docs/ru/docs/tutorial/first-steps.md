@@ -239,7 +239,7 @@ https://example.com/items/foo
 
 Мы также будем придерживаться этого термина.
 
-#### Определим *декоратор операции пути (path operation decorator)*
+#### Определите *декоратор операции пути (path operation decorator)*
 
 ```Python hl_lines="6"
 {!../../../docs_src/first_steps/tutorial001.py!}
