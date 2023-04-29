@@ -66,6 +66,7 @@ nav:
 - fastapi-people.md
 - python-types.md
 - Учебник - руководство пользователя:
+  - tutorial/first-steps.md
   - tutorial/query-params-str-validations.md
   - tutorial/body-fields.md
   - tutorial/background-tasks.md
