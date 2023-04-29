@@ -312,7 +312,7 @@ https://example.com/items/foo
 !!! note "Технические детали"
     Если не знаете в чём разница, посмотрите [Конкурентность: *"Нет времени?"*](../async.md#in-a-hurry){.internal-link target=_blank}.
 
-### Шаг 5: вернуть результат
+### Шаг 5: верните результат
 
 ```Python hl_lines="8"
 {!../../../docs_src/first_steps/tutorial001.py!}
