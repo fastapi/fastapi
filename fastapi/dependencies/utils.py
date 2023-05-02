@@ -417,6 +417,8 @@ def analyze_param(
         field_info = value
 
     if depends is not None and depends.dependency is None:
+        # Copy `depends` before mutating it
+        depends = copy(depends)
         depends.dependency = type_annotation
 
     if lenient_issubclass(
