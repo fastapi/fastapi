@@ -4,6 +4,7 @@ on:
   pull_request_target:
     types:
       - labeled
+      - closed
 
 jobs:
   notify-translations:
