@@ -1,6 +1,6 @@
 from typing import List
 
-from fastapi import FastAPI
+from fastapi import APIRouter, FastAPI
 from fastapi.testclient import TestClient
 from pydantic import BaseModel, Field
 
@@ -321,3 +321,65 @@ def test_read_list_no_alias():
         {"name": "Foo"},
         {"name": "Bar"},
     ]
+
+
+def test_top_level_response_model_by_alias():
+    app = FastAPI(default_response_model_by_alias=False)
+
+    @app.get("/")
+    def read_model() -> Model:
+        return Model(alias="Foo")
+
+    client = TestClient(app)
+
+    response = client.get("/")
+    assert response.status_code == 200, response.text
+    assert response.json() == {"name": "Foo"}
+
+
+def test_router_overrides_response_model_by_alias():
+    app = FastAPI(default_response_model_by_alias=False)
+    router = APIRouter(default_response_model_by_alias=True)
+
+    @app.get("/")
+    def read_model_root() -> Model:
+        return Model(alias="Foo")
+
+    @router.get("/router")
+    def read_model_router() -> Model:
+        return Model(alias="Foo")
+
+    app.include_router(router)
+    client = TestClient(app)
+
+    response = client.get("/")
+    assert response.status_code == 200, response.text
+    assert response.json() == {"name": "Foo"}
+
+    response = client.get("/router")
+    assert response.status_code == 200, response.text
+    assert response.json() == {"alias": "Foo"}
+
+
+def test_route_overrides_response_model_by_alias():
+    app = FastAPI(default_response_model_by_alias=False)
+    router = APIRouter(default_response_model_by_alias=False)
+
+    @app.get("/", response_model_by_alias=True)
+    def read_model_root() -> Model:
+        return Model(alias="Foo")
+
+    @router.get("/router", response_model_by_alias=True)
+    def read_model_router() -> Model:
+        return Model(alias="Foo")
+
+    app.include_router(router)
+    client = TestClient(app)
+
+    response = client.get("/")
+    assert response.status_code == 200, response.text
+    assert response.json() == {"alias": "Foo"}
+
+    response = client.get("/router")
+    assert response.status_code == 200, response.text
+    assert response.json() == {"alias": "Foo"}
