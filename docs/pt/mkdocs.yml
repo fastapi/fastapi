@@ -88,6 +88,7 @@ nav:
   - tutorial/encoder.md
   - Segurança:
     - tutorial/security/index.md
+    - tutorial/security/first-steps.md
   - tutorial/background-tasks.md
   - tutorial/static-files.md
   - Guia de Usuário Avançado:
