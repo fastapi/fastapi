@@ -40,6 +40,7 @@ nav:
 - Languages:
   - en: /
   - az: /az/
+  - cs: /cs/
   - de: /de/
   - em: /em/
   - es: /es/
@@ -73,6 +74,8 @@ nav:
   - tutorial/request-forms-and-files.md
   - tutorial/encoder.md
   - tutorial/cors.md
+  - 의존성:
+    - tutorial/dependencies/classes-as-dependencies.md
 markdown_extensions:
 - toc:
     permalink: true
@@ -116,6 +119,8 @@ extra:
     name: en - English
   - link: /az/
     name: az
+  - link: /cs/
+    name: cs
   - link: /de/
     name: de
   - link: /em/
