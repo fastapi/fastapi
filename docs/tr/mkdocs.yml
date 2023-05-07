@@ -40,11 +40,14 @@ nav:
 - Languages:
   - en: /
   - az: /az/
+  - cs: /cs/
   - de: /de/
+  - em: /em/
   - es: /es/
   - fa: /fa/
   - fr: /fr/
   - he: /he/
+  - hy: /hy/
   - id: /id/
   - it: /it/
   - ja: /ja/
@@ -55,12 +58,15 @@ nav:
   - ru: /ru/
   - sq: /sq/
   - sv: /sv/
+  - ta: /ta/
   - tr: /tr/
   - uk: /uk/
   - zh: /zh/
 - features.md
 - fastapi-people.md
 - python-types.md
+- Tutorial - User Guide:
+  - tutorial/first-steps.md
 markdown_extensions:
 - toc:
     permalink: true
@@ -83,7 +89,7 @@ markdown_extensions:
 extra:
   analytics:
     provider: google
-    property: UA-133183413-1
+    property: G-YNEVN69SC3
   social:
   - icon: fontawesome/brands/github-alt
     link: https://github.com/tiangolo/fastapi
@@ -104,8 +110,12 @@ extra:
     name: en - English
   - link: /az/
     name: az
+  - link: /cs/
+    name: cs
   - link: /de/
     name: de
+  - link: /em/
+    name: 😉
   - link: /es/
     name: es - español
   - link: /fa/
@@ -114,6 +124,8 @@ extra:
     name: fr - français
   - link: /he/
     name: he
+  - link: /hy/
+    name: hy
   - link: /id/
     name: id
   - link: /it/
@@ -134,6 +146,8 @@ extra:
     name: sq - shqip
   - link: /sv/
     name: sv - svenska
+  - link: /ta/
+    name: ta - தமிழ்
   - link: /tr/
     name: tr - Türkçe
   - link: /uk/
