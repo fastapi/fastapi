@@ -1,6 +1,6 @@
 # Deploy FastAPI on Deta Space
 
-In this section you will learn how to easily deploy a **FastAPI** application into your own "personal cloud" on <a href="https://deta.space?ref=fastapi" class="external-link" target="_blank">Deta Space</a>, for free. 🎁
+In this section you will learn how to easily deploy a **FastAPI** application on <a href="https://deta.space?ref=fastapi" class="external-link" target="_blank">Deta Space</a>, for free. 🎁
 
 It will take you about **10 minutes** to deploy an API that you can use. After that, you can optionally release it to anyone.
 
@@ -11,30 +11,30 @@ Let's dive in.
 
 ## A simple **FastAPI** app
 
-- To start, create an empty directory with the name of your app, and then navigate into it.
+* To start, create an empty directory with the name of your app, for example `./fastapi-deta/`, and then navigate into it.
 
 ```console
 $ mkdir fastapi-deta
 $ cd fastapi-deta
 ```
 
-### FastAPI app code
+### FastAPI code
 
-- Create a `main.py` file with:
+* Create a `main.py` file with:
 
-```py
+```Python
 from fastapi import FastAPI
 
 app = FastAPI()
 
 
 @app.get("/")
-async def root():
-    return {"hello": "world"}
+def read_root():
+    return {"Hello": "World"}
 
 
 @app.get("/items/{item_id}")
-async def read_item(item_id: int):
+def read_item(item_id: int):
     return {"item_id": item_id}
 ```
 
@@ -44,15 +44,15 @@ Now, in the same directory create a file `requirements.txt` with:
 
 ```text
 fastapi
-uvicorn
+uvicorn[standard]
 ```
 
 ### Directory structure
 
-You will now have a directory with two files:
+You will now have a directory `./fastapi-deta/` with two files:
 
-```text
-fastapi-deta/
+```
+.
 └── main.py
 └── requirements.txt
 ```
@@ -119,7 +119,7 @@ Available Commands:
 </div>
 
 !!! tip
-    If you have problems installing the CLI, check the official <a href="https://deta.space/docs/en/basics/cli?ref=fastapi" class="external-link" target="_blank">Space Documentation</a>.
+    If you have problems installing the CLI, check the official <a href="https://deta.space/docs/en/basics/cli?ref=fastapi" class="external-link" target="_blank">Deta Space Documentation</a>.
 
 ## Login with the CLI
 
@@ -127,7 +127,7 @@ In order to authenticate your CLI with Deta Space, you will need an access token
 
 To obtain this token, open your <a href="https://deta.space/login?ref=fastapi" class="external-link" target="_blank">Deta Space Canvas</a>, open the **Teletype** (command bar at the bottom of the Canvas), and then click on **Settings**. From there, select **Generate Token** and copy the resulting token.
 
-<img src="/img/deployment/deta/image01.png">
+<img src="/img/deployment/deta/image03.png">
 
 Now run `space login` from the Space CLI. Upon pasting the token into the CLI prompt and pressing enter, you should see a confirmation message.
 
@@ -184,7 +184,7 @@ micros:
     engine: python3.9
 ```
 
-It has the same sytax as a `yaml` file, and you can use it to add features like scheduled tasks or modify how your app functions, which we'll do later. To learn more, read <a href="https://deta.space/docs/en/reference/spacefile" class="external-link" target="_blank">the `Spacefile` documentation</a>.
+It is a `yaml` file, and you can use it to add features like scheduled tasks or modify how your app functions, which we'll do later. To learn more, read <a href="https://deta.space/docs/en/reference/spacefile" class="external-link" target="_blank">the `Spacefile` documentation</a>.
 
 !!! tip
     The Space CLI will also create a hidden `.space` folder in your local directory to link your local environment with Deta Space. This folder should not be included in your version control and will automatically be added to your `.gitignore` file, if you have initialized a Git repository.
@@ -215,7 +215,7 @@ $ space push
 build complete... created revision: satyr-jvjk
 
 ✔ Successfully pushed your code and created a new Revision!
-ℹ Updating your developement instance with the latest Revision, it will be available on your Canvas shortly.
+ℹ Updating your development instance with the latest Revision, it will be available on your Canvas shortly.
 ```
 </div>
 
@@ -228,7 +228,7 @@ This command will package your code, upload all the necessary files to Deta Spac
 
 The live instance of your API will also be added automatically to your Canvas (the dashboard) on Deta Space.
 
-<img src="/img/deployment/deta/image02.png">
+<img src="/img/deployment/deta/image04.png">
 
 Click on the new app called `fastapi-deta`, and it will open your API in a new browser tab on a URL like `https://fastapi-deta-gj7ka8.deta.app/`.
 
@@ -236,13 +236,13 @@ You will get a JSON response from your FastAPI app:
 
 ```JSON
 {
-    "hello": "world"
+    "Hello": "World"
 }
 ```
 
 And now you can head over to the `/docs` of your API. For this example, it would be `https://fastapi-deta-gj7ka8.deta.app/docs`.
 
-<img src="/img/deployment/deta/image03.png">
+<img src="/img/deployment/deta/image05.png">
 
 ## Enable public access
 
@@ -276,7 +276,7 @@ Also, notice that Deta Space correctly handles HTTPS for you, so you don't have 
 
 ## Create a release
 
-Space also allows you to publish your API. When you publish it, anyone else can install their own copy of your API, in their own cloud.
+Space also allows you to publish your API. When you publish it, anyone else can install their own copy of your API, in their own Data Space cloud.
 
 To do so, run `space release` in the Space CLI to create an **unlisted release**:
 
@@ -357,7 +357,7 @@ The code within the `read_item` function includes a print statement that will ou
 
 Now go to your <a href="https://deta.space?ref=fastapi" class="external-link" target="_blank">Space's Canvas</a>. Click on the context menu (`...`) of your live app instance, and then click on **View Logs**. Here you can view your app's logs, sorted by time.
 
-<img src="/img/deployment/deta/image04.png">
+<img src="/img/deployment/deta/image06.png">
 
 ## Learn more
 
@@ -371,7 +371,7 @@ You can also read more in the <a href="https://deta.space/docs/?ref=fastapi" cla
 
 ## Deployment Concepts
 
-Coming back to the concepts we discussed in [Deployments Concepts](./concepts.md){.internal-link target=\_blank}, here's how each of them would be handled with Deta Space:
+Coming back to the concepts we discussed in [Deployments Concepts](./concepts.md){.internal-link target=_blank}, here's how each of them would be handled with Deta Space:
 
 - **HTTPS**: Handled by Deta Space, they will give you a subdomain and handle HTTPS automatically.
 - **Running on startup**: Handled by Deta Space, as part of their service.
