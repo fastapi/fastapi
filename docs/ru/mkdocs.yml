@@ -71,6 +71,7 @@ nav:
   - tutorial/background-tasks.md
   - tutorial/extra-data-types.md
   - tutorial/cookie-params.md
+  - tutorial/testing.md
   - tutorial/response-status-code.md
 - async.md
 - Развёртывание:
