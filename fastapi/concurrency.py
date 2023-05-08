@@ -35,7 +35,7 @@ async def contextmanager_in_threadpool(
             )
         )
         if not ok:
-            raise e.with_traceback(traceback)
+            raise e.with_traceback(traceback) from e
     else:
         await anyio.to_thread.run_sync(
             cm.__exit__, None, None, None, limiter=exit_limiter
