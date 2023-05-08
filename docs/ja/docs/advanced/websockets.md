@@ -2,20 +2,6 @@
 
 **FastAPI**で<a href="https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API" class="external-link" target="_blank">WebSocket</a>が使用できます。
 
-## `WebSockets`のインストール
-
-まず `WebSockets`のインストールが必要です。
-
-<div class="termy">
-
-```console
-$ pip install websockets
-
----> 100%
-```
-
-</div>
-
 ## WebSocket クライアント
 
 ### 本番環境
