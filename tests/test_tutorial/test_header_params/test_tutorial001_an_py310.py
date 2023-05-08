@@ -12,6 +12,7 @@ def get_client():
     return client
 
 
+@needs_py310
 @pytest.mark.parametrize(
     "path,headers,expected_status,expected_response",
     [
