@@ -1,6 +1,6 @@
 site_name: FastAPI
 site_description: FastAPI framework, high performance, easy to learn, fast to code, ready for production
-site_url: https://fastapi.tiangolo.com/pt/
+site_url: https://fastapi.tiangolo.com/lo/
 theme:
   name: material
   custom_dir: overrides
@@ -27,7 +27,7 @@ theme:
     repo: fontawesome/brands/github-alt
   logo: https://fastapi.tiangolo.com/img/icon-white.svg
   favicon: https://fastapi.tiangolo.com/img/favicon.png
-  language: pt
+  language: en
 repo_name: tiangolo/fastapi
 repo_url: https://github.com/tiangolo/fastapi
 edit_uri: ''
@@ -40,7 +40,6 @@ nav:
 - Languages:
   - en: /
   - az: /az/
-  - cs: /cs/
   - de: /de/
   - em: /em/
   - es: /es/
@@ -63,47 +62,6 @@ nav:
   - tr: /tr/
   - uk: /uk/
   - zh: /zh/
-- features.md
-- fastapi-people.md
-- Tutorial - Guia de Usuário:
-  - tutorial/index.md
-  - tutorial/first-steps.md
-  - tutorial/path-params.md
-  - tutorial/query-params.md
-  - tutorial/body.md
-  - tutorial/body-multiple-params.md
-  - tutorial/body-fields.md
-  - tutorial/body-nested-models.md
-  - tutorial/extra-data-types.md
-  - tutorial/extra-models.md
-  - tutorial/query-params-str-validations.md
-  - tutorial/path-params-numeric-validations.md
-  - tutorial/path-operation-configuration.md
-  - tutorial/cookie-params.md
-  - tutorial/header-params.md
-  - tutorial/response-status-code.md
-  - tutorial/request-forms.md
-  - tutorial/request-forms-and-files.md
-  - tutorial/handling-errors.md
-  - tutorial/encoder.md
-  - Segurança:
-    - tutorial/security/index.md
-  - tutorial/background-tasks.md
-  - tutorial/static-files.md
-  - Guia de Usuário Avançado:
-    - advanced/index.md
-    - advanced/events.md
-- Implantação:
-  - deployment/index.md
-  - deployment/versions.md
-  - deployment/https.md
-  - deployment/deta.md
-  - deployment/docker.md
-- alternatives.md
-- history-design-future.md
-- external-links.md
-- benchmarks.md
-- help-fastapi.md
 markdown_extensions:
 - toc:
     permalink: true
@@ -147,8 +105,6 @@ extra:
     name: en - English
   - link: /az/
     name: az
-  - link: /cs/
-    name: cs
   - link: /de/
     name: de
   - link: /em/

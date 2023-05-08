@@ -52,6 +52,7 @@ nav:
   - it: /it/
   - ja: /ja/
   - ko: /ko/
+  - lo: /lo/
   - nl: /nl/
   - pl: /pl/
   - pt: /pt/
@@ -71,11 +72,14 @@ nav:
   - tutorial/background-tasks.md
   - tutorial/extra-data-types.md
   - tutorial/cookie-params.md
+  - tutorial/testing.md
   - tutorial/response-status-code.md
 - async.md
 - Развёртывание:
   - deployment/index.md
   - deployment/versions.md
+  - deployment/https.md
+  - deployment/manually.md
 - project-generation.md
 - alternatives.md
 - history-design-future.md
@@ -150,6 +154,8 @@ extra:
     name: ja - 日本語
   - link: /ko/
     name: ko - 한국어
+  - link: /lo/
+    name: lo - ພາສາລາວ
   - link: /nl/
     name: nl
   - link: /pl/
