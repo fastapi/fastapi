@@ -1,7 +1,9 @@
 from typing import Any, Dict, Optional, Sequence, Type
 
 from pydantic import BaseModel, ValidationError, create_model
-from pydantic.error_wrappers import ErrorList
+
+# TODO (pv2)
+# from pydantic.error_wrappers import ErrorList
 from starlette.exceptions import HTTPException as StarletteHTTPException
 from starlette.exceptions import WebSocketException as WebSocketException  # noqa: F401
 
@@ -26,12 +28,33 @@ class FastAPIError(RuntimeError):
     """
 
 
-class RequestValidationError(ValidationError):
-    def __init__(self, errors: Sequence[ErrorList], *, body: Any = None) -> None:
+class RequestValidationError(Exception):
+    # TODO (pv2)
+    # def __init__(self, errors: Sequence[ErrorList], *, body: Any = None) -> None:
+    def __init__(self, errors: Sequence[Any], *, body: Any = None) -> None:
         self.body = body
-        super().__init__(errors, RequestErrorModel)
+        self.pydantic_validation_error = ValidationError("Request", errors)
+
+    def errors(self) -> Sequence[Any]:
+        return self.pydantic_validation_error.errors()
 
 
-class WebSocketRequestValidationError(ValidationError):
-    def __init__(self, errors: Sequence[ErrorList]) -> None:
-        super().__init__(errors, WebSocketErrorModel)
+class WebSocketRequestValidationError(Exception):
+    # TODO (pv2)
+    # def __init__(self, errors: Sequence[ErrorList]) -> None:
+    def __init__(self, errors: Sequence[Any]) -> None:
+        self.pydantic_validation_error = ValidationError("WebSocket", errors)
+
+    def errors(self) -> Sequence[Any]:
+        return self.pydantic_validation_error.errors()
+
+
+class ResponseValidationError(Exception):
+    # TODO (pv2)
+    # def __init__(self, errors: Sequence[ErrorList], *, body: Any = None) -> None:
+    def __init__(self, errors: Sequence[Any], *, body: Any = None) -> None:
+        self.body = body
+        self.pydantic_validation_error = ValidationError("Response", errors)
+
+    def errors(self) -> Sequence[Any]:
+        return self.pydantic_validation_error.errors()

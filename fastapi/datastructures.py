@@ -1,5 +1,8 @@
 from typing import Any, Callable, Dict, Iterable, Type, TypeVar
 
+from pydantic._internal._schema_generation_shared import GetJsonSchemaHandler
+from pydantic.json_schema import JsonSchemaValue
+from pydantic_core import CoreSchema, core_schema
 from starlette.datastructures import URL as URL  # noqa: F401
 from starlette.datastructures import Address as Address  # noqa: F401
 from starlette.datastructures import FormData as FormData  # noqa: F401
@@ -21,8 +24,26 @@ class UploadFile(StarletteUploadFile):
         return v
 
     @classmethod
+    def _validate(cls, __input_value: Any, _: Any) -> "UploadFile":
+        if not isinstance(__input_value, StarletteUploadFile):
+            raise ValueError(f"Expected UploadFile, received: {type(__input_value)}")
+        return __input_value
+
+    @classmethod
     def __modify_schema__(cls, field_schema: Dict[str, Any]) -> None:
         field_schema.update({"type": "string", "format": "binary"})
+
+    @classmethod
+    def __get_pydantic_json_schema__(
+        cls, core_schema: core_schema.CoreSchema, handler: GetJsonSchemaHandler
+    ) -> JsonSchemaValue:
+        return {"type": "string", "format": "binary"}
+
+    @classmethod
+    def __get_pydantic_core_schema__(
+        cls, source: Type[Any], handler: Callable[[Any], CoreSchema]
+    ) -> core_schema.CoreSchema:
+        return core_schema.general_plain_validator_function(cls._validate)
 
 
 class DefaultPlaceholder:

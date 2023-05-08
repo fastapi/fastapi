@@ -1,7 +1,9 @@
 from enum import Enum
 from typing import Any, Callable, Dict, Optional, Sequence
 
-from pydantic.fields import FieldInfo, Undefined
+from pydantic.fields import FieldInfo
+
+from ._compat import Undefined
 
 
 class ParamTypes(Enum):

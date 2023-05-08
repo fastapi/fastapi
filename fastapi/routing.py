@@ -20,6 +20,7 @@ from typing import (
 )
 
 from fastapi import params
+from fastapi._compat import ModelField, Undefined, lenient_issubclass
 from fastapi.datastructures import Default, DefaultPlaceholder
 from fastapi.dependencies.models import Dependant
 from fastapi.dependencies.utils import (
@@ -30,7 +31,11 @@ from fastapi.dependencies.utils import (
     solve_dependencies,
 )
 from fastapi.encoders import DictIntStrAny, SetIntStr, jsonable_encoder
-from fastapi.exceptions import RequestValidationError, WebSocketRequestValidationError
+from fastapi.exceptions import (
+    RequestValidationError,
+    ResponseValidationError,
+    WebSocketRequestValidationError,
+)
 from fastapi.types import DecoratedCallable
 from fastapi.utils import (
     create_cloned_field,
@@ -40,9 +45,9 @@ from fastapi.utils import (
     is_body_allowed_for_status_code,
 )
 from pydantic import BaseModel
-from pydantic.error_wrappers import ErrorWrapper, ValidationError
-from pydantic.fields import FieldInfo, Undefined
-from pydantic.utils import lenient_issubclass
+
+# TODO (pv2)
+# from pydantic.error_wrappers import ErrorWrapper, ValidationError
 from starlette import routing
 from starlette.concurrency import run_in_threadpool
 from starlette.exceptions import HTTPException
@@ -69,14 +74,14 @@ def _prepare_response_content(
     exclude_none: bool = False,
 ) -> Any:
     if isinstance(res, BaseModel):
-        read_with_orm_mode = getattr(res.__config__, "read_with_orm_mode", None)
+        read_with_orm_mode = getattr(res.model_config, "read_with_orm_mode", None)
         if read_with_orm_mode:
             # Let from_orm extract the data from this model instead of converting
             # it now to a dict.
             # Otherwise there's no way to extract lazy data that requires attribute
             # access instead of dict iteration, e.g. lazy relationships.
             return res
-        return res.dict(
+        return res.model_dump(
             by_alias=True,
             exclude_unset=exclude_unset,
             exclude_defaults=exclude_defaults,
@@ -109,7 +114,7 @@ def _prepare_response_content(
 
 async def serialize_response(
     *,
-    field: Optional[FieldInfo] = None,
+    field: Optional[ModelField] = None,
     response_content: Any,
     include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
     exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
@@ -133,12 +138,12 @@ async def serialize_response(
             value, errors_ = await run_in_threadpool(
                 field.validate, response_content, {}, loc=("response",)
             )
-        if isinstance(errors_, ErrorWrapper):
-            errors.append(errors_)
-        elif isinstance(errors_, list):
+        if isinstance(errors_, list):
             errors.extend(errors_)
+        elif errors_:
+            errors.append(errors_)
         if errors:
-            raise ValidationError(errors, field.type_)
+            raise ResponseValidationError(errors=errors, body=response_content)
         return jsonable_encoder(
             value,
             include=include,
@@ -167,10 +172,10 @@ async def run_endpoint_function(
 
 def get_request_handler(
     dependant: Dependant,
-    body_field: Optional[FieldInfo] = None,
+    body_field: Optional[ModelField] = None,
     status_code: Optional[int] = None,
     response_class: Union[Type[Response], DefaultPlaceholder] = Default(JSONResponse),
-    response_field: Optional[FieldInfo] = None,
+    response_field: Optional[ModelField] = None,
     response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
     response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
     response_model_by_alias: bool = True,
@@ -181,7 +186,7 @@ def get_request_handler(
 ) -> Callable[[Request], Coroutine[Any, Any, Response]]:
     assert dependant.call is not None, "dependant.call must be a function"
     is_coroutine = asyncio.iscoroutinefunction(dependant.call)
-    is_body_form = body_field and isinstance(body_field, params.Form)
+    is_body_form = body_field and isinstance(body_field.field_info, params.Form)
     if isinstance(response_class, DefaultPlaceholder):
         actual_response_class: Type[Response] = response_class.value
     else:
@@ -216,7 +221,15 @@ def get_request_handler(
                             body = body_bytes
         except json.JSONDecodeError as e:
             raise RequestValidationError(
-                [ErrorWrapper(e, ("body", e.pos))], body=e.doc
+                [
+                    {
+                        "type": "json-decode-error",
+                        "loc": ("body", e.pos),
+                        "msg": "JSON decode error",
+                        "input": {},
+                    }
+                ],
+                body=e.doc,
             ) from e
         except HTTPException:
             raise
@@ -412,8 +425,9 @@ class APIRoute(routing.Route):
             # would pass the validation and be returned as is.
             # By being a new field, no inheritance will be passed as is. A new model
             # will be always created.
+            # TODO (pyv2)
             self.secure_cloned_response_field: Optional[
-                FieldInfo
+                ModelField
             ] = create_cloned_field(self.response_field)
         else:
             self.response_field = None  # type: ignore
@@ -438,7 +452,7 @@ class APIRoute(routing.Route):
                 response_field = create_response_field(name=response_name, type_=model)
                 response_fields[additional_status_code] = response_field
         if response_fields:
-            self.response_fields: Dict[Union[int, str], FieldInfo] = response_fields
+            self.response_fields: Dict[Union[int, str], ModelField] = response_fields
         else:
             self.response_fields = {}
 

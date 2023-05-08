@@ -1,15 +1,82 @@
 import dataclasses
-from collections import defaultdict
+import datetime
+from collections import defaultdict, deque
+from decimal import Decimal
 from enum import Enum
-from pathlib import PurePath
+from ipaddress import (
+    IPv4Address,
+    IPv4Interface,
+    IPv4Network,
+    IPv6Address,
+    IPv6Interface,
+    IPv6Network,
+)
+from pathlib import Path, PurePath
+from re import Pattern
 from types import GeneratorType
-from typing import Any, Callable, Dict, List, Optional, Set, Tuple, Union
+from typing import Any, Callable, Dict, List, Optional, Set, Tuple, Type, Union
+from uuid import UUID
 
 from pydantic import BaseModel
-from pydantic.json import ENCODERS_BY_TYPE
+from pydantic.color import Color
+from pydantic.networks import NameEmail
+from pydantic.types import SecretBytes, SecretStr
 
 SetIntStr = Set[Union[int, str]]
 DictIntStrAny = Dict[Union[int, str], Any]
+
+
+def isoformat(o: Union[datetime.date, datetime.time]) -> str:
+    return o.isoformat()
+
+
+def decimal_encoder(dec_value: Decimal) -> Union[int, float]:
+    """
+    Encodes a Decimal as int of there's no exponent, otherwise float
+
+    This is useful when we use ConstrainedDecimal to represent Numeric(x,0)
+    where a integer (but not int typed) is used. Encoding this as a float
+    results in failed round-tripping between encode and parse.
+    Our Id type is a prime example of this.
+
+    >>> decimal_encoder(Decimal("1.0"))
+    1.0
+
+    >>> decimal_encoder(Decimal("1"))
+    1
+    """
+    if dec_value.as_tuple().exponent >= 0:
+        return int(dec_value)
+    else:
+        return float(dec_value)
+
+
+ENCODERS_BY_TYPE: Dict[Type[Any], Callable[[Any], Any]] = {
+    bytes: lambda o: o.decode(),
+    Color: str,
+    datetime.date: isoformat,
+    datetime.datetime: isoformat,
+    datetime.time: isoformat,
+    datetime.timedelta: lambda td: td.total_seconds(),
+    Decimal: decimal_encoder,
+    Enum: lambda o: o.value,
+    frozenset: list,
+    deque: list,
+    GeneratorType: list,
+    IPv4Address: str,
+    IPv4Interface: str,
+    IPv4Network: str,
+    IPv6Address: str,
+    IPv6Interface: str,
+    IPv6Network: str,
+    NameEmail: str,
+    Path: str,
+    Pattern: lambda o: o.pattern,
+    SecretBytes: str,
+    SecretStr: str,
+    set: list,
+    UUID: str,
+}
 
 
 def generate_encoders_by_class_tuples(
@@ -50,10 +117,11 @@ def jsonable_encoder(
     if exclude is not None and not isinstance(exclude, (set, dict)):
         exclude = set(exclude)
     if isinstance(obj, BaseModel):
-        encoder = getattr(obj.__config__, "json_encoders", {})
-        if custom_encoder:
-            encoder.update(custom_encoder)
-        obj_dict = obj.dict(
+        # TODO (pv2)
+        # encoder = getattr(obj.__config__, "json_encoders", {})
+        # if custom_encoder:
+        #     encoder.update(custom_encoder)
+        obj_dict = obj.model_dump(
             include=include,
             exclude=exclude,
             by_alias=by_alias,
@@ -67,7 +135,8 @@ def jsonable_encoder(
             obj_dict,
             exclude_none=exclude_none,
             exclude_defaults=exclude_defaults,
-            custom_encoder=encoder,
+            # TODO (pv2)
+            # custom_encoder=encoder,
             sqlalchemy_safe=sqlalchemy_safe,
         )
     if dataclasses.is_dataclass(obj):
