@@ -64,7 +64,7 @@ nav:
   - uk: /uk/
   - zh: /zh/
 - features.md
-- Tutorial - User Guide:
+- Tutorial - Benutzerhandbuch:
   - tutorial/index.md
 markdown_extensions:
 - toc:
