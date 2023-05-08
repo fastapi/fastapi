@@ -16,7 +16,7 @@ class Item(BaseModel):
     "/items/",
     openapi_extra={
         "requestBody": {
-            "content": {"application/x-yaml": {"schema": Item.schema()}},
+            "content": {"application/x-yaml": {"schema": Item.model_json_schema()}},
             "required": True,
         },
     },
