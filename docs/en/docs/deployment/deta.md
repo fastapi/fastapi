@@ -138,7 +138,7 @@ $ space login
 
 To authenticate the Space CLI with your Space account, generate a new access token in your Space settings and paste it below:
 
-? Enter access token (41 chars) > *****************************************
+# Enter access token (41 chars) >$ *****************************************
 
 👍 Login Successful!
 ```
@@ -152,7 +152,7 @@ Now that you've authenticated with the Space CLI, use it to create a new <a href
 ```console
 $ space new
 
-? What is your project's name? > fastapi-deta
+# What is your project's name? >$ fastapi-deta
 ```
 
 The Space CLI will ask you to name the project, we will call ours `fastapi-deta`.
@@ -168,8 +168,7 @@ name: fastapi-deta
  L src: .
  L engine: python3.9
 
-? Do you want to bootstrap "fastapi-deta" with this configuration? (y/n)
-y
+# Do you want to bootstrap "fastapi-deta" with this configuration? (y/n)$ y
 ```
 
 After you confirm, your project will be created in Deta Space inside a special app called <a href="https://deta.space/docs/en/basics/projects#projects-in-builder?ref=fastapi" class="external-link" target="_blank">Builder</a>. Builder is a toolbox that helps you to create and manage your apps in Deta Space.
@@ -211,7 +210,8 @@ To get your FastAPI live in the cloud, use one more CLI command:
 ```console
 $ space push
 
-...
+---> 100%
+
 build complete... created revision: satyr-jvjk
 
 ✔ Successfully pushed your code and created a new Revision!
@@ -285,9 +285,11 @@ To do so, run `space release` in the Space CLI to create an **unlisted release**
 ```console
 $ space release
 
-? Do you want to use the latest revision (buzzard-hczt)? (y/n) y
+# Do you want to use the latest revision (buzzard-hczt)? (y/n)$ y
 
-~ Creating a Release with the latest Revision ...
+~ Creating a Release with the latest Revision
+
+---> 100%
 
 creating release...
 publishing release in edge locations..
@@ -311,7 +313,7 @@ You can also make your app publicly discoverable by creating a **listed release*
 ```console
 $ space release --listed
 
-? Do you want to use the latest revision (buzzard-hczt)? (y/n) y
+# Do you want to use the latest revision (buzzard-hczt)? (y/n)$ y
 
 ~ Creating a listed Release with the latest Revision ...
 
