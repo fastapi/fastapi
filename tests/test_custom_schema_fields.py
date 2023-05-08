@@ -9,7 +9,7 @@ class Item(BaseModel):
     name: str
 
     model_config = {
-        "schema_extra": {
+        "json_schema_extra": {
             "x-something-internal": {"level": 4},
         }
     }

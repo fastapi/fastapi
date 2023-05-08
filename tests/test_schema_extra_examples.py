@@ -11,7 +11,7 @@ class Item(BaseModel):
     data: str
 
     model_config = ConfigDict(
-        schema_extra={"example": {"data": "Data in schema_extra"}}
+        json_schema_extra={"example": {"data": "Data in schema_extra"}}
     )
 
 

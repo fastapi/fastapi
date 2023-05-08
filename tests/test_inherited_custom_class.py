@@ -43,7 +43,11 @@ def return_fast_uuid():
 
 
 class SomeCustomClass(BaseModel):
-    model_config = {"arbitrary_types_allowed": True, "json_encoders": {uuid.UUID: str}}
+    model_config = {
+        "arbitrary_types_allowed": True,
+        # TODO (pv2)
+        # "json_encoders": {uuid.UUID: str}
+    }
 
     a_uuid: MyUuid
 

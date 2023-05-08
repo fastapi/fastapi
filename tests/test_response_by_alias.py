@@ -15,7 +15,7 @@ class ModelNoAlias(BaseModel):
     name: str
 
     model_config = ConfigDict(
-        schema_extra={
+        json_schema_extra={
             "description": (
                 "response_model_by_alias=False is basically a quick hack, to support "
                 "proper OpenAPI use another model with the correct field names"

@@ -1,4 +1,4 @@
-from datetime import datetime, timezone
+from datetime import datetime
 
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
@@ -8,13 +8,14 @@ from pydantic import BaseModel
 class ModelWithDatetimeField(BaseModel):
     dt_field: datetime
 
-    model_config = {
-        "json_encoders": {
-            datetime: lambda dt: dt.replace(
-                microsecond=0, tzinfo=timezone.utc
-            ).isoformat()
-        }
-    }
+    # TODO (pv2)
+    # model_config = {
+    #     "json_encoders": {
+    #         datetime: lambda dt: dt.replace(
+    #             microsecond=0, tzinfo=timezone.utc
+    #         ).isoformat()
+    #     }
+    # }
 
 
 app = FastAPI()

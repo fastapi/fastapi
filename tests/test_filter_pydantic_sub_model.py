@@ -3,7 +3,7 @@ from typing import Optional
 import pytest
 from fastapi import Depends, FastAPI
 from fastapi.testclient import TestClient
-from pydantic import BaseModel, ValidationError, validator
+from pydantic import BaseModel, FieldValidationInfo, ValidationError, field_validator
 
 app = FastAPI()
 
@@ -21,8 +21,8 @@ class ModelA(BaseModel):
     description: Optional[str] = None
     model_b: ModelB
 
-    @validator("name")
-    def lower_username(cls, name: str, values):
+    @field_validator("name")
+    def lower_username(cls, name: str, info: FieldValidationInfo):
         if not name.endswith("A"):
             raise ValueError("name must end in A")
         return name
