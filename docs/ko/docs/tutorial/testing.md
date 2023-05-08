@@ -17,11 +17,11 @@ Requests를 바탕으로 설계된 <a href="https://www.python-httpx.org" class=
 
 여러분의 **FastAPI** 애플리케이션을 전달 하셔서 `TestClient`를 생성합니다.
 
-`test_`로 시작하는 함수를 생성합니다. (이것은 `pytest`의 표준적인 관례입니다).
+`test_`로 시작하는 함수를 생성합니다 (이것은 `pytest`의 표준적인 관례입니다).
 
 `httpx`를 사용하시는 것과 같은 방식으로 `TestClient` 객체를 사용합니다.
 
-여러분이 확인하고 싶으신 항목을 표준 파이썬 수식을 이용해 간단하게 `assert` 문장으로 작성합니다. (다시 한번, `pytest`의 표준적인 관례입니다).
+여러분이 확인하고 싶으신 항목을 표준 파이썬 수식을 이용해 간단하게 `assert` 문장으로 작성합니다 (다시 한번, `pytest`의 표준적인 관례입니다).
 
 ```Python hl_lines="2  12  15-18"
 {!../../../docs_src/app_testing/tutorial001.py!}
@@ -37,10 +37,10 @@ Requests를 바탕으로 설계된 <a href="https://www.python-httpx.org" class=
 !!! note "기술 세부사항"
     여러분은 또한 `from starlette.testclient import TestClient`를 사용하실 수도 있습니다.
 
-    개발자인 여러분의 편의를 위해 **FastAPI**는 `starlette.testclient`과 동일한 `fastapi.testclient`.  그러나 이것은 Starlette에서 직접 파생된 기능입니다.
+    개발자인 여러분의 편의를 위해 **FastAPI**는 `starlette.testclient`과 동일한 `fastapi.testclient`를 제공합니다.  그러나 이것은 Starlette에서 직접 파생된 기능입니다.
 
 !!! tip "팁"
-    여러분이 만약 FastAPI 애플리케이션에 요청을 보내는 것과는 별개로 (예를 들어 비동기적인 데이터베이스 함수) `async` 함수를 호출하고 싶으시다면 심화 자습서에 있는 [Async Tests](../advanced/async-tests.md){.internal-link target=_blank}를 참고하시기를 바랍니다.
+    여러분이 만약 FastAPI 애플리케이션에 요청을 보내는 것과는 별개로 테스트 내에서 `async` 함수를 호출하고 싶으시다면 (예를 들어 비동기적인 데이터베이스 함수) 심화 자습서에 있는 [Async Tests](../advanced/async-tests.md){.internal-link target=_blank}를 참고하시기를 바랍니다.
 
 ## 테스트 분리하기
 
@@ -68,7 +68,7 @@ Requests를 바탕으로 설계된 <a href="https://www.python-httpx.org" class=
 
 ### 테스트 파일
 
-그렇다면 여러분은 `test_main.py` 파일에 테스트를 작성하실 수도 있습니다. 이 파일은 동일한 파이썬 패키지에 위치할 수도 있습니다 (`__init__.py` 파일과 동일한 디렉터리):
+그렇다면 여러분은 `test_main.py` 파일에 테스트를 작성하실 수 있습니다. 이 파일은 동일한 파이썬 패키지에 위치할 수도 있습니다 (`__init__.py` 파일과 동일한 디렉터리):
 
 ``` hl_lines="5"
 .
@@ -86,7 +86,7 @@ Requests를 바탕으로 설계된 <a href="https://www.python-httpx.org" class=
 
 ...그리고 전과 동일하게 테스트 코드를 포함할 수 있습니다.
 
-## 테스팅: 확장 예시
+## 테스트: 확장 예시
 
 이제 이 예시를 확장 시키고 어떻게 다른 부분들을 테스트하는지 살펴보기 위해 추가적인 세부 사항을 더해 봅니다.
 
@@ -102,7 +102,7 @@ Requests를 바탕으로 설계된 <a href="https://www.python-httpx.org" class=
 │   └── test_main.py
 ```
 
-이제 여러분의 **FastAPI** 애플리케이션에 있는 `main.py` 파일에 다른 **path operations**이 있다고 가정해 봅니다.
+이제 여러분의 **FastAPI** 애플리케이션에 있는 `main.py` 파일에 다른 **path operations**가 있다고 가정해 봅니다.
 
 파일에 에러를 리턴할 소지가 있는 `GET` 연산이 있습니다.
 
@@ -130,8 +130,8 @@ Requests를 바탕으로 설계된 <a href="https://www.python-httpx.org" class=
 
 === "Python 3.10+ non-Annotated"
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+    !!! tip "팁"
+        가능하다면 `Annotated` 버전을 사용하는 것을 선호합니다.
 
     ```Python
     {!> ../../../docs_src/app_testing/app_b_py310/main.py!}
@@ -139,14 +139,14 @@ Requests를 바탕으로 설계된 <a href="https://www.python-httpx.org" class=
 
 === "Python 3.6+ non-Annotated"
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+    !!! tip "팁"
+        가능하다면 `Annotated` 버전을 사용하는 것을 선호합니다.
 
     ```Python
     {!> ../../../docs_src/app_testing/app_b/main.py!}
     ```
 
-### 확장된 테스팅 파일
+### 확장된 테스트 파일
 
 이제 여러분은 `test_main.py`에 확장된 테스트를 추가해 업데이트하실 수 있습니다:
 
@@ -171,7 +171,7 @@ Requests를 바탕으로 설계된 <a href="https://www.python-httpx.org" class=
 !!! info "정보"
     `TestClient`는 Pydantic 모델이 아니라 JSON으로 변경이 가능한 데이터를 받는다는 점을 숙지 하시기를 바랍니다.
 
-    만약 여러분의 테스트에 Pydantic 모델이 있고 테스팅 중에 여러분이 그것의 데이터를 애플리케이션으로 전송하고자 하신다면 [JSON Compatible Encoder](encoder.md){.internal-link target=_blank}에 나와 있는 `jsonable_encoder`를 사용하실 수 있습니다.
+    만약 여러분의 테스트에 Pydantic 모델이 있고 테스트 중에 그것의 데이터를 애플리케이션으로 전송하고자 하신다면 [JSON Compatible Encoder](encoder.md){.internal-link target=_blank}에 나와 있는 `jsonable_encoder`를 사용하실 수 있습니다.
 
 ## 실행
 
