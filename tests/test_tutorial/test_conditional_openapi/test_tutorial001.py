@@ -25,6 +25,7 @@ def test_root():
 
 
 def test_default_openapi():
+    importlib.reload(tutorial001)
     client = TestClient(tutorial001.app)
     response = client.get("/docs")
     assert response.status_code == 200, response.text
