@@ -4,7 +4,9 @@ from typing import Any, Dict, List, Tuple, Union
 from pydantic import TypeAdapter, ValidationError
 from pydantic._internal._fields import Undefined, _UndefinedType
 from pydantic._internal._typing_extra import eval_type_lenient
+from pydantic._internal._utils import lenient_issubclass as lenient_issubclass
 from pydantic.fields import FieldInfo
+from pydantic.json_schema import GenerateJsonSchema as GenerateJsonSchema
 from pydantic_core import ErrorDetails
 from typing_extensions import Annotated
 
