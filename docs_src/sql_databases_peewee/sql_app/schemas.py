@@ -1,8 +1,7 @@
 from typing import Any, List, Union
 
 import peewee
-from pydantic import BaseModel, model_serializer
-from pydantic.validators import model_validator
+from pydantic import BaseModel
 from pydantic.utils import GetterDict
 
 
@@ -27,7 +26,7 @@ class Item(ItemBase):
     id: int
     owner_id: int
 
-    model_config = dict(from_attributes=True, getter_dict=PeeweeGetterDict)
+    model_config = {"from_attributes": True, "getter_dict": PeeweeGetterDict}
     # TODO: Fix: getter_dict = PeeweeGetterDict
 
 
