@@ -3,78 +3,6 @@ from fastapi.testclient import TestClient
 
 from ...utils import needs_py39
 
-openapi_schema = {
-    "openapi": "3.0.2",
-    "info": {"title": "FastAPI", "version": "0.1.0"},
-    "paths": {
-        "/items/": {
-            "get": {
-                "responses": {
-                    "200": {
-                        "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
-                    },
-                    "422": {
-                        "description": "Validation Error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
-                                }
-                            }
-                        },
-                    },
-                },
-                "summary": "Read Items",
-                "operationId": "read_items_items__get",
-                "parameters": [
-                    {
-                        "required": True,
-                        "schema": {"title": "X-Token", "type": "string"},
-                        "name": "x-token",
-                        "in": "header",
-                    },
-                    {
-                        "required": True,
-                        "schema": {"title": "X-Key", "type": "string"},
-                        "name": "x-key",
-                        "in": "header",
-                    },
-                ],
-            }
-        }
-    },
-    "components": {
-        "schemas": {
-            "ValidationError": {
-                "title": "ValidationError",
-                "required": ["loc", "msg", "type"],
-                "type": "object",
-                "properties": {
-                    "loc": {
-                        "title": "Location",
-                        "type": "array",
-                        "items": {"anyOf": [{"type": "string"}, {"type": "integer"}]},
-                    },
-                    "msg": {"title": "Message", "type": "string"},
-                    "type": {"title": "Error Type", "type": "string"},
-                },
-            },
-            "HTTPValidationError": {
-                "title": "HTTPValidationError",
-                "type": "object",
-                "properties": {
-                    "detail": {
-                        "title": "Detail",
-                        "type": "array",
-                        "items": {"$ref": "#/components/schemas/ValidationError"},
-                    }
-                },
-            },
-        }
-    },
-}
-
 
 @pytest.fixture(name="client")
 def get_client():
@@ -82,13 +10,6 @@ def get_client():
 
     client = TestClient(app)
     return client
-
-
-@needs_py39
-def test_openapi_schema(client: TestClient):
-    response = client.get("/openapi.json")
-    assert response.status_code == 200, response.text
-    assert response.json() == openapi_schema
 
 
 @needs_py39
@@ -138,3 +59,82 @@ def test_get_valid_headers(client: TestClient):
     )
     assert response.status_code == 200, response.text
     assert response.json() == [{"item": "Foo"}, {"item": "Bar"}]
+
+
+@needs_py39
+def test_openapi_schema(client: TestClient):
+    response = client.get("/openapi.json")
+    assert response.status_code == 200, response.text
+    assert response.json() == {
+        "openapi": "3.0.2",
+        "info": {"title": "FastAPI", "version": "0.1.0"},
+        "paths": {
+            "/items/": {
+                "get": {
+                    "responses": {
+                        "200": {
+                            "description": "Successful Response",
+                            "content": {"application/json": {"schema": {}}},
+                        },
+                        "422": {
+                            "description": "Validation Error",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/HTTPValidationError"
+                                    }
+                                }
+                            },
+                        },
+                    },
+                    "summary": "Read Items",
+                    "operationId": "read_items_items__get",
+                    "parameters": [
+                        {
+                            "required": True,
+                            "schema": {"title": "X-Token", "type": "string"},
+                            "name": "x-token",
+                            "in": "header",
+                        },
+                        {
+                            "required": True,
+                            "schema": {"title": "X-Key", "type": "string"},
+                            "name": "x-key",
+                            "in": "header",
+                        },
+                    ],
+                }
+            }
+        },
+        "components": {
+            "schemas": {
+                "ValidationError": {
+                    "title": "ValidationError",
+                    "required": ["loc", "msg", "type"],
+                    "type": "object",
+                    "properties": {
+                        "loc": {
+                            "title": "Location",
+                            "type": "array",
+                            "items": {
+                                "anyOf": [{"type": "string"}, {"type": "integer"}]
+                            },
+                        },
+                        "msg": {"title": "Message", "type": "string"},
+                        "type": {"title": "Error Type", "type": "string"},
+                    },
+                },
+                "HTTPValidationError": {
+                    "title": "HTTPValidationError",
+                    "type": "object",
+                    "properties": {
+                        "detail": {
+                            "title": "Detail",
+                            "type": "array",
+                            "items": {"$ref": "#/components/schemas/ValidationError"},
+                        }
+                    },
+                },
+            }
+        },
+    }
