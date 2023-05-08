@@ -27,13 +27,14 @@ async def contextmanager_in_threadpool(
     try:
         yield await run_in_threadpool(cm.__enter__)
     except Exception as e:
+        _, _, traceback = sys.exc_info()
         ok = bool(
             await anyio.to_thread.run_sync(
                 cm.__exit__, type(e), e, None, limiter=exit_limiter
             )
         )
         if not ok:
-            raise e
+            raise e.with_traceback(traceback)
     else:
         await anyio.to_thread.run_sync(
             cm.__exit__, None, None, None, limiter=exit_limiter
