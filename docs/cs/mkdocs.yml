@@ -1,6 +1,6 @@
 site_name: FastAPI
 site_description: FastAPI framework, high performance, easy to learn, fast to code, ready for production
-site_url: https://fastapi.tiangolo.com/zh/
+site_url: https://fastapi.tiangolo.com/cs/
 theme:
   name: material
   custom_dir: overrides
@@ -27,7 +27,7 @@ theme:
     repo: fontawesome/brands/github-alt
   logo: https://fastapi.tiangolo.com/img/icon-white.svg
   favicon: https://fastapi.tiangolo.com/img/favicon.png
-  language: zh
+  language: cs
 repo_name: tiangolo/fastapi
 repo_url: https://github.com/tiangolo/fastapi
 edit_uri: ''
@@ -42,7 +42,6 @@ nav:
   - az: /az/
   - cs: /cs/
   - de: /de/
-  - em: /em/
   - es: /es/
   - fa: /fa/
   - fr: /fr/
@@ -62,63 +61,6 @@ nav:
   - tr: /tr/
   - uk: /uk/
   - zh: /zh/
-- features.md
-- fastapi-people.md
-- python-types.md
-- 教程 - 用户指南:
-  - tutorial/index.md
-  - tutorial/first-steps.md
-  - tutorial/path-params.md
-  - tutorial/query-params.md
-  - tutorial/body.md
-  - tutorial/query-params-str-validations.md
-  - tutorial/path-params-numeric-validations.md
-  - tutorial/body-multiple-params.md
-  - tutorial/body-fields.md
-  - tutorial/middleware.md
-  - tutorial/body-nested-models.md
-  - tutorial/header-params.md
-  - tutorial/response-model.md
-  - tutorial/extra-models.md
-  - tutorial/response-status-code.md
-  - tutorial/schema-extra-example.md
-  - tutorial/extra-data-types.md
-  - tutorial/cookie-params.md
-  - tutorial/request-forms.md
-  - tutorial/request-files.md
-  - tutorial/request-forms-and-files.md
-  - tutorial/handling-errors.md
-  - tutorial/path-operation-configuration.md
-  - tutorial/encoder.md
-  - tutorial/body-updates.md
-  - 依赖项:
-    - tutorial/dependencies/index.md
-    - tutorial/dependencies/classes-as-dependencies.md
-    - tutorial/dependencies/sub-dependencies.md
-    - tutorial/dependencies/dependencies-in-path-operation-decorators.md
-    - tutorial/dependencies/global-dependencies.md
-  - 安全性:
-    - tutorial/security/index.md
-    - tutorial/security/first-steps.md
-    - tutorial/security/get-current-user.md
-    - tutorial/security/simple-oauth2.md
-    - tutorial/security/oauth2-jwt.md
-  - tutorial/cors.md
-  - tutorial/sql-databases.md
-  - tutorial/bigger-applications.md
-  - tutorial/metadata.md
-  - tutorial/debugging.md
-- 高级用户指南:
-  - advanced/index.md
-  - advanced/path-operation-advanced-configuration.md
-  - advanced/additional-status-codes.md
-  - advanced/response-directly.md
-  - advanced/custom-response.md
-  - advanced/response-cookies.md
-  - advanced/wsgi.md
-- contributing.md
-- help-fastapi.md
-- benchmarks.md
 markdown_extensions:
 - toc:
     permalink: true
@@ -166,8 +108,6 @@ extra:
     name: cs
   - link: /de/
     name: de
-  - link: /em/
-    name: 😉
   - link: /es/
     name: es - español
   - link: /fa/

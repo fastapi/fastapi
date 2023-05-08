@@ -40,6 +40,7 @@ nav:
 - Languages:
   - en: /
   - az: /az/
+  - cs: /cs/
   - de: /de/
   - em: /em/
   - es: /es/
@@ -70,10 +71,12 @@ nav:
   - tutorial/background-tasks.md
   - tutorial/extra-data-types.md
   - tutorial/cookie-params.md
+  - tutorial/response-status-code.md
 - async.md
 - Развёртывание:
   - deployment/index.md
   - deployment/versions.md
+  - deployment/https.md
   - deployment/manually.md
 - project-generation.md
 - alternatives.md
@@ -125,6 +128,8 @@ extra:
     name: en - English
   - link: /az/
     name: az
+  - link: /cs/
+    name: cs
   - link: /de/
     name: de
   - link: /em/
