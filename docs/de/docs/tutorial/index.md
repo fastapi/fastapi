@@ -28,7 +28,7 @@ $ uvicorn main:app --reload
 
 </div>
 
-Es wird **ausdrücklich empfohlen**, dass Sie den Code schreiben oder kopieren, ihn bearbeiten und lokal ausführen. 
+Es wird **ausdrücklich empfohlen**, dass Sie den Code schreiben oder kopieren, ihn bearbeiten und lokal ausführen.
 
 Die Verwendung in Ihrem eigenen Editor zeigt Ihnen die Vorteile von FastAPI am besten, wenn Sie sehen, wie wenig Code Sie schreiben müssen, all die Typprüfungen, die automatische Vervollständigung usw.
 
@@ -60,7 +60,7 @@ $ pip install "fastapi[all]"
     ```
     pip install fastapi
     ```
-    
+
     Installieren Sie auch `uvicorn`, dies arbeitet als Server:
 
     ```
