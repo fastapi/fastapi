@@ -44,124 +44,6 @@ def read_users_me(current_user: Optional[User] = Depends(get_current_user)):
 
 client = TestClient(app)
 
-openapi_schema = {
-    "openapi": "3.0.2",
-    "info": {"title": "FastAPI", "version": "0.1.0"},
-    "paths": {
-        "/login": {
-            "post": {
-                "responses": {
-                    "200": {
-                        "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
-                    },
-                    "422": {
-                        "description": "Validation Error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
-                                }
-                            }
-                        },
-                    },
-                },
-                "summary": "Login",
-                "operationId": "login_login_post",
-                "requestBody": {
-                    "content": {
-                        "application/x-www-form-urlencoded": {
-                            "schema": {
-                                "$ref": "#/components/schemas/Body_login_login_post"
-                            }
-                        }
-                    },
-                    "required": True,
-                },
-            }
-        },
-        "/users/me": {
-            "get": {
-                "responses": {
-                    "200": {
-                        "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
-                    }
-                },
-                "summary": "Read Users Me",
-                "operationId": "read_users_me_users_me_get",
-                "security": [{"OAuth2": []}],
-            }
-        },
-    },
-    "components": {
-        "schemas": {
-            "Body_login_login_post": {
-                "title": "Body_login_login_post",
-                "required": ["grant_type", "username", "password"],
-                "type": "object",
-                "properties": {
-                    "grant_type": {
-                        "title": "Grant Type",
-                        "pattern": "password",
-                        "type": "string",
-                    },
-                    "username": {"title": "Username", "type": "string"},
-                    "password": {"title": "Password", "type": "string"},
-                    "scope": {"title": "Scope", "type": "string", "default": ""},
-                    "client_id": {"title": "Client Id", "type": "string"},
-                    "client_secret": {"title": "Client Secret", "type": "string"},
-                },
-            },
-            "ValidationError": {
-                "title": "ValidationError",
-                "required": ["loc", "msg", "type"],
-                "type": "object",
-                "properties": {
-                    "loc": {
-                        "title": "Location",
-                        "type": "array",
-                        "items": {"anyOf": [{"type": "string"}, {"type": "integer"}]},
-                    },
-                    "msg": {"title": "Message", "type": "string"},
-                    "type": {"title": "Error Type", "type": "string"},
-                },
-            },
-            "HTTPValidationError": {
-                "title": "HTTPValidationError",
-                "type": "object",
-                "properties": {
-                    "detail": {
-                        "title": "Detail",
-                        "type": "array",
-                        "items": {"$ref": "#/components/schemas/ValidationError"},
-                    }
-                },
-            },
-        },
-        "securitySchemes": {
-            "OAuth2": {
-                "type": "oauth2",
-                "flows": {
-                    "password": {
-                        "scopes": {
-                            "read:users": "Read the users",
-                            "write:users": "Create users",
-                        },
-                        "tokenUrl": "token",
-                    }
-                },
-            }
-        },
-    },
-}
-
-
-def test_openapi_schema():
-    response = client.get("/openapi.json")
-    assert response.status_code == 200, response.text
-    assert response.json() == openapi_schema
-
 
 def test_security_oauth2():
     response = client.get("/users/me", headers={"Authorization": "Bearer footokenbar"})
@@ -251,3 +133,121 @@ def test_strict_login(data, expected_status, expected_response):
     response = client.post("/login", data=data)
     assert response.status_code == expected_status
     assert response.json() == expected_response
+
+
+def test_openapi_schema():
+    response = client.get("/openapi.json")
+    assert response.status_code == 200, response.text
+    assert response.json() == {
+        "openapi": "3.0.2",
+        "info": {"title": "FastAPI", "version": "0.1.0"},
+        "paths": {
+            "/login": {
+                "post": {
+                    "responses": {
+                        "200": {
+                            "description": "Successful Response",
+                            "content": {"application/json": {"schema": {}}},
+                        },
+                        "422": {
+                            "description": "Validation Error",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/HTTPValidationError"
+                                    }
+                                }
+                            },
+                        },
+                    },
+                    "summary": "Login",
+                    "operationId": "login_login_post",
+                    "requestBody": {
+                        "content": {
+                            "application/x-www-form-urlencoded": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Body_login_login_post"
+                                }
+                            }
+                        },
+                        "required": True,
+                    },
+                }
+            },
+            "/users/me": {
+                "get": {
+                    "responses": {
+                        "200": {
+                            "description": "Successful Response",
+                            "content": {"application/json": {"schema": {}}},
+                        }
+                    },
+                    "summary": "Read Users Me",
+                    "operationId": "read_users_me_users_me_get",
+                    "security": [{"OAuth2": []}],
+                }
+            },
+        },
+        "components": {
+            "schemas": {
+                "Body_login_login_post": {
+                    "title": "Body_login_login_post",
+                    "required": ["grant_type", "username", "password"],
+                    "type": "object",
+                    "properties": {
+                        "grant_type": {
+                            "title": "Grant Type",
+                            "pattern": "password",
+                            "type": "string",
+                        },
+                        "username": {"title": "Username", "type": "string"},
+                        "password": {"title": "Password", "type": "string"},
+                        "scope": {"title": "Scope", "type": "string", "default": ""},
+                        "client_id": {"title": "Client Id", "type": "string"},
+                        "client_secret": {"title": "Client Secret", "type": "string"},
+                    },
+                },
+                "ValidationError": {
+                    "title": "ValidationError",
+                    "required": ["loc", "msg", "type"],
+                    "type": "object",
+                    "properties": {
+                        "loc": {
+                            "title": "Location",
+                            "type": "array",
+                            "items": {
+                                "anyOf": [{"type": "string"}, {"type": "integer"}]
+                            },
+                        },
+                        "msg": {"title": "Message", "type": "string"},
+                        "type": {"title": "Error Type", "type": "string"},
+                    },
+                },
+                "HTTPValidationError": {
+                    "title": "HTTPValidationError",
+                    "type": "object",
+                    "properties": {
+                        "detail": {
+                            "title": "Detail",
+                            "type": "array",
+                            "items": {"$ref": "#/components/schemas/ValidationError"},
+                        }
+                    },
+                },
+            },
+            "securitySchemes": {
+                "OAuth2": {
+                    "type": "oauth2",
+                    "flows": {
+                        "password": {
+                            "scopes": {
+                                "read:users": "Read the users",
+                                "write:users": "Create users",
+                            },
+                            "tokenUrl": "token",
+                        }
+                    },
+                }
+            },
+        },
+    }
