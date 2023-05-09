@@ -166,7 +166,7 @@ def build_lang(
         lang_file_path: Path = build_lang_path / "docs" / file_path
         en_file_path: Path = en_lang_path / "docs" / file_path
         lang_file_path.parent.mkdir(parents=True, exist_ok=True)
-        if not lang_file_path.is_file():
+        if not lang_file_path.is_file() or file not in lang_file_to_nav:
             en_text = en_file_path.read_text(encoding="utf-8")
             lang_text = get_text_with_translate_missing(en_text)
             lang_file_path.write_text(lang_text, encoding="utf-8")
