@@ -72,11 +72,14 @@ nav:
   - tutorial/background-tasks.md
   - tutorial/extra-data-types.md
   - tutorial/cookie-params.md
+  - tutorial/testing.md
   - tutorial/response-status-code.md
 - async.md
 - Развёртывание:
   - deployment/index.md
   - deployment/versions.md
+  - deployment/https.md
+  - deployment/manually.md
 - project-generation.md
 - alternatives.md
 - history-design-future.md
