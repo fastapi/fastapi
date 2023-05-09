@@ -40,21 +40,26 @@ nav:
 - Languages:
   - en: /
   - az: /az/
+  - cs: /cs/
   - de: /de/
+  - em: /em/
   - es: /es/
   - fa: /fa/
   - fr: /fr/
   - he: /he/
+  - hy: /hy/
   - id: /id/
   - it: /it/
   - ja: /ja/
   - ko: /ko/
+  - lo: /lo/
   - nl: /nl/
   - pl: /pl/
   - pt: /pt/
   - ru: /ru/
   - sq: /sq/
   - sv: /sv/
+  - ta: /ta/
   - tr: /tr/
   - uk: /uk/
   - zh: /zh/
@@ -145,8 +150,12 @@ extra:
     name: en - English
   - link: /az/
     name: az
+  - link: /cs/
+    name: cs
   - link: /de/
     name: de
+  - link: /em/
+    name: 😉
   - link: /es/
     name: es - español
   - link: /fa/
@@ -155,6 +164,8 @@ extra:
     name: fr - français
   - link: /he/
     name: he
+  - link: /hy/
+    name: hy
   - link: /id/
     name: id
   - link: /it/
@@ -163,6 +174,8 @@ extra:
     name: ja - 日本語
   - link: /ko/
     name: ko - 한국어
+  - link: /lo/
+    name: lo - ພາສາລາວ
   - link: /nl/
     name: nl
   - link: /pl/
@@ -175,6 +188,8 @@ extra:
     name: sq - shqip
   - link: /sv/
     name: sv - svenska
+  - link: /ta/
+    name: ta - தமிழ்
   - link: /tr/
     name: tr - Türkçe
   - link: /uk/
