@@ -140,7 +140,7 @@ class Schema(BaseModel):
 
     class Config:
         extra: str = "allow"
-        smart_union = True
+        smart_union: bool = True
 
 
 class Example(BaseModel):
