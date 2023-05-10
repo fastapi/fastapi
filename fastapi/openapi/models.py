@@ -103,11 +103,11 @@ class ExternalDocumentation(BaseModel):
 class Schema(BaseModel):
     ref: Optional[str] = Field(default=None, alias="$ref")
     title: Optional[str] = None
-    multipleOf: Optional[float] = None
-    maximum: Optional[float] = None
-    exclusiveMaximum: Optional[float] = None
-    minimum: Optional[float] = None
-    exclusiveMinimum: Optional[float] = None
+    multipleOf: Optional[Union[float, int]] = None
+    maximum: Optional[Union[float, int]] = None
+    exclusiveMaximum: Optional[Union[float, int]] = None
+    minimum: Optional[Union[float, int]] = None
+    exclusiveMinimum: Optional[Union[float, int]] = None
     maxLength: Optional[int] = Field(default=None, gte=0)
     minLength: Optional[int] = Field(default=None, gte=0)
     pattern: Optional[str] = None
@@ -140,6 +140,7 @@ class Schema(BaseModel):
 
     class Config:
         extra: str = "allow"
+        smart_union = True
 
 
 class Example(BaseModel):
