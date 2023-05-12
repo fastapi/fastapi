@@ -27,6 +27,9 @@ from pydantic.utils import lenient_issubclass
 if TYPE_CHECKING:  # pragma: nocover
     from .routing import APIRoute
 
+# Cache for `create_cloned_field`
+_CLONED_TYPES_CACHE = WeakKeyDictionary()
+
 
 def is_body_allowed_for_status_code(status_code: Union[int, str, None]) -> bool:
     if status_code is None:
@@ -109,14 +112,12 @@ def create_response_field(
 def create_cloned_field(
     field: ModelField,
     *,
-    cloned_types: Optional[
-        MutableMapping[Type[BaseModel], Type[BaseModel]]
-    ] = WeakKeyDictionary(),
+    cloned_types: Optional[MutableMapping[Type[BaseModel], Type[BaseModel]]] = None,
 ) -> ModelField:
     # cloned_types caches already cloned types to support recursive models and improve
     # performance by avoiding unecessary cloning
     if cloned_types is None:
-        cloned_types = WeakKeyDictionary()
+        cloned_types = _CLONED_TYPES_CACHE
 
     original_type = field.type_
     if is_dataclass(original_type) and hasattr(original_type, "__pydantic_model__"):
