@@ -8,6 +8,7 @@ FastAPI支持执行某些额外步骤的依赖项，在完成之后进行清理�
     确保只使用一次`yield`。
 
 !!! 注意 "技术细节"
+
     任何一个可以与以下内容一起使用的函数：
 
     * <a href="https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager" class="external-link" target="_blank">`@contextlib.contextmanager`</a> 或者 
@@ -17,7 +18,8 @@ FastAPI支持执行某些额外步骤的依赖项，在完成之后进行清理�
 
     实际上，FastAPI内部使用这两个装饰器。
     
-    ## 使用`yield`的数据库依赖项
+    
+ ## 使用`yield`的数据库依赖项
 
 例如，您可以使用这种方式创建数据库会话，并在完成后关闭它。
 
@@ -40,6 +42,7 @@ FastAPI支持执行某些额外步骤的依赖项，在完成之后进行清理�
 ```
 
 !!! 提示
+
     您可以使用`async`或正常函数。
 
     **FastAPI** 对于每个函数都会采取正确的处理方式，就如同处理通常的依赖项一样。
@@ -88,9 +91,9 @@ FastAPI支持执行某些额外步骤的依赖项，在完成之后进行清理�
 
 并且它们都可以使用`yield`。
 
-在此示例中，为了执行其退出代码，`dependency_c` 需要 `dependency_b`（这里命名为 `dep_b`）的值仍可用。
+在这种情况下，dependency_c 执行其退出代码所需的前提是需要已经有 dependency_b 的值（此处命名为 dep_b）可用。
 
-而，依次地，`dependency_b` 需要 `dependency_a`（这里命名为 `dep_a`）的值可用于其退出代码。
+反过来，dependency_b 执行其退出代码所需的前提是需要已经有 dependency_a 的值（此处命名为 dep_a）可用。
 
 === "Python 3.9+"
 
@@ -105,7 +108,7 @@ FastAPI支持执行某些额外步骤的依赖项，在完成之后进行清理�
     ```
 
 === "Python 3.6+ non-Annotated"
-
+    
     !!! tip
         如果可能，请尽量使用“ Annotated”版本。
 
@@ -122,9 +125,11 @@ FastAPI支持执行某些额外步骤的依赖项，在完成之后进行清理�
 **FastAPI** 将确保按正确的顺序运行所有内容。
 
 !!! note "技术细节"
+
     这是由 Python 的<a href="https://docs.python.org/3/library/contextlib.html" class="external-link" target="_blank">上下文管理器</a>完成的。
 
     **FastAPI** 在内部使用它们来实现这一点。
+    
 
 ## 使用 `yield` 和 `HTTPException` 的依赖项
 
@@ -147,6 +152,7 @@ FastAPI支持执行某些额外步骤的依赖项，在完成之后进行清理�
 如果您有自定义异常要在返回响应之前处理并可能修改响应和甚至引发 `HTTPException`，请创建[自定义异常处理程序](../handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank}。
 
 !!! tip
+
     仍然可以在 `yield` 前引发包括 `HTTPException` 在内的异常，但是之后不行。
 
 执行的顺序大致如下图所示。时间从上到下流动。每列都是相互交互或执行代码的其中一部分。
