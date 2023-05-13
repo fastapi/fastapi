@@ -64,6 +64,8 @@ nav:
   - uk: /uk/
   - zh: /zh/
 - features.md
+- Tutorial - Benutzerhandbuch:
+  - tutorial/first-steps.md
 markdown_extensions:
 - toc:
     permalink: true
