@@ -23,7 +23,7 @@
 * ✍ `metadata` 🎚.
 * ✍ 🏓 `notes` ⚙️ `metadata` 🎚.
 
-```Python hl_lines="4  14  16-22"
+```Python hl_lines="5  15  17-23"
 {!../../../docs_src/async_sql_databases/tutorial001.py!}
 ```
 
@@ -38,7 +38,7 @@
 * ✍ `DATABASE_URL`.
 * ✍ `database` 🎚.
 
-```Python hl_lines="3  9  12"
+```Python hl_lines="4  10  13"
 {!../../../docs_src/async_sql_databases/tutorial001.py!}
 ```
 
@@ -54,7 +54,7 @@
 * ✍ `engine`.
 * ✍ 🌐 🏓 ⚪️➡️ `metadata` 🎚.
 
-```Python hl_lines="25-28"
+```Python hl_lines="26-29"
 {!../../../docs_src/async_sql_databases/tutorial001.py!}
 ```
 
@@ -65,7 +65,7 @@
 * 🗒 ✍ (`NoteIn`).
 * 🗒 📨 (`Note`).
 
-```Python hl_lines="31-33  36-39"
+```Python hl_lines="32-34  37-40"
 {!../../../docs_src/async_sql_databases/tutorial001.py!}
 ```
 
@@ -78,7 +78,7 @@
 * ✍ 👆 `FastAPI` 🈸.
 * ✍ 🎉 🐕‍🦺 🔗 &amp; 🔌 ⚪️➡️ 💽.
 
-```Python hl_lines="42  45-47  50-52"
+```Python hl_lines="43-49  52"
 {!../../../docs_src/async_sql_databases/tutorial001.py!}
 ```
 

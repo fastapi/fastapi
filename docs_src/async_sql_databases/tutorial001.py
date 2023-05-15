@@ -1,3 +1,4 @@
+import contextlib
 from typing import List
 
 import databases
@@ -39,17 +40,16 @@ class Note(BaseModel):
     completed: bool
 
 
-app = FastAPI()
+@contextlib.asynccontextmanager
+async def lifespan(app: FastAPI):
+    try:
+        await database.connect()
+        yield
+    finally:
+        await database.disconnect()
 
 
-@app.on_event("startup")
-async def startup():
-    await database.connect()
-
-
-@app.on_event("shutdown")
-async def shutdown():
-    await database.disconnect()
+app = FastAPI(lifespan=lifespan)
 
 
 @app.get("/notes/", response_model=List[Note])

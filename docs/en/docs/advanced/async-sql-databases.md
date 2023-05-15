@@ -23,7 +23,7 @@ Later, for your production application, you might want to use a database server 
 * Create a `metadata` object.
 * Create a table `notes` using the `metadata` object.
 
-```Python hl_lines="4  14  16-22"
+```Python hl_lines="5  15  17-23"
 {!../../../docs_src/async_sql_databases/tutorial001.py!}
 ```
 
@@ -38,7 +38,7 @@ Later, for your production application, you might want to use a database server 
 * Create a `DATABASE_URL`.
 * Create a `database` object.
 
-```Python hl_lines="3  9  12"
+```Python hl_lines="4  10  13"
 {!../../../docs_src/async_sql_databases/tutorial001.py!}
 ```
 
@@ -54,7 +54,7 @@ Here, this section would run directly, right before starting your **FastAPI** ap
 * Create an `engine`.
 * Create all the tables from the `metadata` object.
 
-```Python hl_lines="25-28"
+```Python hl_lines="26-29"
 {!../../../docs_src/async_sql_databases/tutorial001.py!}
 ```
 
@@ -65,7 +65,7 @@ Create Pydantic models for:
 * Notes to be created (`NoteIn`).
 * Notes to be returned (`Note`).
 
-```Python hl_lines="31-33  36-39"
+```Python hl_lines="32-34  37-40"
 {!../../../docs_src/async_sql_databases/tutorial001.py!}
 ```
 
@@ -76,9 +76,9 @@ So, you will be able to see it all in the interactive API docs.
 ## Connect and disconnect
 
 * Create your `FastAPI` application.
-* Create event handlers to connect and disconnect from the database.
+* Create lifespan handler to connect and disconnect from the database.
 
-```Python hl_lines="42  45-47  50-52"
+```Python hl_lines="43-49  52"
 {!../../../docs_src/async_sql_databases/tutorial001.py!}
 ```
 
