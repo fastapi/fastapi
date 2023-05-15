@@ -89,4 +89,4 @@ response = client.get('/')
 🔬 🔢 🔜 🔁, 👆 💪 🔜 🤙 (&amp; `await`) 🎏 `async` 🔢 ↖️ ⚪️➡️ 📨 📨 👆 FastAPI 🈸 👆 💯, ⚫️❔ 👆 🔜 🤙 👫 🙆 🙆 👆 📟.
 
 !!! tip
-    🚥 👆 ⚔ `RuntimeError: Task attached to a different loop` 🕐❔ 🛠️ 🔁 🔢 🤙 👆 💯 (✅ 🕐❔ ⚙️ <a href="https://stackoverflow.com/questions/41584243/runtimeerror-task-attached-to-a-different-loop" class="external-link" target="_blank">✳ MotorClient</a>) 💭 🔗 🎚 👈 💪 🎉 ➰ 🕴 🏞 🔁 🔢, ✅ `'@app.on_event("startup")` ⏲.
+    🚥 👆 ⚔ `RuntimeError: Task attached to a different loop` 🕐❔ 🛠️ 🔁 🔢 🤙 👆 💯 (✅ 🕐❔ ⚙️ <a href="https://stackoverflow.com/questions/41584243/runtimeerror-task-attached-to-a-different-loop" class="external-link" target="_blank">✳ MotorClient</a>) 💭 🔗 🎚 👈 💪 🎉 ➰ 🕴 🏞 🔁 🔢, ✅ `lifespan` ⏲.
