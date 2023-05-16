@@ -902,12 +902,18 @@ def get_body_field(*, dependant: Dependant, name: str) -> Optional[ModelField]:
     for param in flat_dependant.body_params:
         setattr(param.field_info, "embed", True)  # noqa: B010
     model_name = "Body_" + name
-    BodyModel: Type[BaseModel] = create_model(model_name)
-    for f in flat_dependant.body_params:
-        BodyModel.model_fields[f.name] = f.field_info
+    field_params = {
+        f.name: (f.field_info.annotation, f.field_info)
+        for f in flat_dependant.body_params
+    }
+    BodyModel: Type[BaseModel] = create_model(model_name, **field_params)
+    # for f in flat_dependant.body_params:
+    #     BodyModel.model_fields[f.name] = f.field_info
     required = any(True for f in flat_dependant.body_params if f.required)
 
-    BodyFieldInfo_kwargs: Dict[str, Any] = {"default": None}
+    BodyFieldInfo_kwargs: Dict[str, Any] = {"annotation": BodyModel, "alias": "body"}
+    if not required:
+        BodyFieldInfo_kwargs["default"] = None
     if any(isinstance(f.field_info, params.File) for f in flat_dependant.body_params):
         BodyFieldInfo: Type[params.Body] = params.File
     elif any(isinstance(f.field_info, params.Form) for f in flat_dependant.body_params):
