@@ -5,9 +5,9 @@ from enum import Enum
 from typing import TYPE_CHECKING, Any, Dict, Optional, Set, Type, Union, cast
 
 import fastapi
-from fastapi._compat import ModelField, UndefinedType, lenient_issubclass
+from fastapi._compat import ModelField, Undefined, UndefinedType, lenient_issubclass
 from fastapi.datastructures import DefaultPlaceholder, DefaultType
-from pydantic import BaseModel, create_model
+from pydantic import BaseModel, PydanticSchemaGenerationError, create_model
 
 # from pydantic.class_validators import Validator
 from pydantic.fields import FieldInfo
@@ -67,8 +67,8 @@ def create_response_field(
     # TODO (pv2)
     # class_validators: Optional[Dict[str, Validator]] = None,
     class_validators: Optional[Dict[str, Any]] = None,
-    default: Optional[Any] = None,
-    required: Union[bool, UndefinedType] = True,
+    default: Optional[Any] = Undefined,
+    required: Union[bool, UndefinedType] = Undefined,
     # model_config: Type[BaseConfig] = BaseConfig,
     field_info: Optional[FieldInfo] = None,
     alias: Optional[str] = None,
@@ -91,7 +91,7 @@ def create_response_field(
             # alias=alias,
             field_info=field_info,
         )
-    except RuntimeError:
+    except (RuntimeError, PydanticSchemaGenerationError):
         raise fastapi.exceptions.FastAPIError(
             "Invalid args for response field! Hint: "
             f"check that {type_} is a valid Pydantic field type. "
