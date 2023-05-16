@@ -2,8 +2,9 @@ from typing import Optional
 
 import pytest
 from fastapi import Depends, FastAPI
+from fastapi.exceptions import ResponseValidationError
 from fastapi.testclient import TestClient
-from pydantic import BaseModel, FieldValidationInfo, ValidationError, field_validator
+from pydantic import BaseModel, FieldValidationInfo, field_validator
 
 app = FastAPI()
 
@@ -51,9 +52,9 @@ def test_filter_sub_model():
 
 
 def test_validator_is_cloned():
-    with pytest.raises(ValidationError) as err:
+    with pytest.raises(ResponseValidationError) as err:
         client.get("/model/modelX")
-    assert err.value.errors() == [
+    assert err.value.pydantic_validation_error.errors() == [
         {
             "loc": ("response", "name"),
             "msg": "name must end in A",
