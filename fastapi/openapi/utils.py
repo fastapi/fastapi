@@ -14,7 +14,7 @@ from fastapi.datastructures import DefaultPlaceholder
 from fastapi.dependencies.models import Dependant
 from fastapi.dependencies.utils import get_flat_dependant, get_flat_params
 from fastapi.encoders import jsonable_encoder
-from fastapi.openapi.constants import METHODS_WITH_BODY, REF_PREFIX
+from fastapi.openapi.constants import METHODS_WITH_BODY, REF_PREFIX, REF_TEMPLATE
 from fastapi.openapi.models import OpenAPI
 from fastapi.params import Body, Param
 from fastapi.responses import Response
@@ -424,9 +424,13 @@ def get_openapi(
     # flat_models = get_flat_models_from_routes(routes)
     all_fields = get_fields_from_routes(routes)
     # model_name_map = get_model_name_map(flat_models)
-    schema_generator = GenerateJsonSchema(ref_template=REF_PREFIX)
-    core_schemas = [field._type_adapter.core_schema for field in all_fields]
-    definitions = schema_generator.generate_definitions(core_schemas)
+
+    schema_generator = GenerateJsonSchema(ref_template=REF_TEMPLATE)
+    # core_schemas = [field._type_adapter.core_schema for field in all_fields]
+    inputs = [
+        (field, "validation", field._type_adapter.core_schema) for field in all_fields
+    ]
+    refs_map, definitions = schema_generator.generate_definitions(inputs=inputs)
     # definitions = get_model_definitions(
     #     flat_models=flat_models, model_name_map=model_name_map
     # )
@@ -461,10 +465,18 @@ def get_schema_from_model_field(
     *, field: ModelField, schema_generator: GenerateJsonSchema
 ):
     # This expects that GenerateJsonSchema was already used to generate the definitions
-    core_ref = field._type_adapter.core_schema.get("ref")
-    if core_ref:
-        def_ref = schema_generator.core_to_defs_refs.get(core_ref)
-        json_schema = schema_generator.definitions[def_ref]
-    else:
-        json_schema = schema_generator.generate_inner(field._type_adapter.core_schema)
+    # core_ref = field._type_adapter.core_schema.get("schema", {}).get("schema", {}).get("schema_ref")
+    # core_ref = field._type_adapter.core_schema.get("schema", {}).get("schema_ref")
+    # if core_ref:
+    #     def_ref = schema_generator.core_to_defs_refs.get((core_ref, "validation"))
+    #     json_schema = schema_generator.definitions[def_ref]
+    # else:
+    # json_schema = schema_generator.generate_inner(field._type_adapter.core_schema)
+    json_schema = schema_generator.generate_inner(field._type_adapter.core_schema)
+    if "$ref" not in json_schema:
+        # TODO remove when deprecating Pydantic v1
+        # Ref: https://github.com/pydantic/pydantic/blob/d61792cc42c80b13b23e3ffa74bc37ec7c77f7d1/pydantic/schema.py#L207
+        json_schema["title"] = field.field_info.title or field.alias.title().replace(
+            "_", " "
+        )
     return json_schema
