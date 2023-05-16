@@ -1,4 +1,5 @@
 import pytest
+from dirty_equals import IsDict
 from fastapi.testclient import TestClient
 
 from docs_src.path_params.tutorial005 import app
@@ -98,12 +99,22 @@ def test_openapi():
                         }
                     },
                 },
-                "ModelName": {
-                    "title": "ModelName",
-                    "enum": ["alexnet", "resnet", "lenet"],
-                    "type": "string",
-                    "description": "An enumeration.",
-                },
+                "ModelName": IsDict(
+                    {
+                        "title": "ModelName",
+                        "enum": ["alexnet", "resnet", "lenet"],
+                        "type": "string",
+                    }
+                )
+                | IsDict(
+                    {
+                        # TODO: remove when deprecating Pydantic v1
+                        "title": "ModelName",
+                        "enum": ["alexnet", "resnet", "lenet"],
+                        "type": "string",
+                        "description": "An enumeration.",
+                    }
+                ),
                 "ValidationError": {
                     "title": "ValidationError",
                     "required": ["loc", "msg", "type"],
