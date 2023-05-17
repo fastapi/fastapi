@@ -271,7 +271,7 @@ Pero en este caso, si pudieras traer a los 8 ex cajeros / cocineros / ahora limp
 
 En este escenario, cada uno de los limpiadores (incluido tú) sería un procesador, haciendo su parte del trabajo.
 
-Y como la mayor parte del tiempo de ejecución lo coge el trabajo real (en lugar de esperar), y el trabajo en un sistema lo realiza una <abbr title = "Central Processing Unit. En español: Unidad Central de Procesamiento."> CPU </abbr>, a estos problemas se les llama "<abbr title="En español: atado a CPU.">CPU bond</abbr>".
+Y como la mayor parte del tiempo de ejecución lo coge el trabajo real (en lugar de esperar), y el trabajo en un sistema lo realiza una <abbr title = "Central Processing Unit. En español: Unidad Central de Procesamiento."> CPU </abbr>, a estos problemas se les llama "<abbr title="En español: atado a CPU.">CPU bound</abbr>".
 
 ---
 
@@ -288,7 +288,7 @@ Por ejemplo:
 
 Con **FastAPI** puedes aprovechar la concurrencia que es muy común para el desarrollo web (atractivo principal de NodeJS).
 
-Pero también puedes aprovechar los beneficios del paralelismo y el multiprocesamiento (tener múltiples procesos ejecutándose en paralelo) para cargas de trabajo **CPU bond** como las de los sistemas de Machine Learning.
+Pero también puedes aprovechar los beneficios del paralelismo y el multiprocesamiento (tener múltiples procesos ejecutándose en paralelo) para cargas de trabajo **CPU bound** como las de los sistemas de Machine Learning.
 
 Eso, más el simple hecho de que Python es el lenguaje principal para **Data Science**, Machine Learning y especialmente Deep Learning, hacen de FastAPI una muy buena combinación para las API y aplicaciones web de Data Science / Machine Learning (entre muchas otras).
 
