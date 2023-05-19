@@ -1,6 +1,7 @@
 from typing import Optional
 
 import pytest
+from dirty_equals import IsDict, IsStr
 from fastapi import APIRouter, Depends, FastAPI
 from fastapi.testclient import TestClient
 
@@ -50,99 +51,152 @@ async def overrider_dependency_with_sub(msg: dict = Depends(overrider_sub_depend
     return msg
 
 
-@pytest.mark.parametrize(
-    "url,status_code,expected",
-    [
-        (
-            "/main-depends/",
-            422,
+def test_main_depends(insert_assert):
+    response = client.get("/main-depends/")
+    assert response.status_code == 422
+    # insert_assert(response.json())
+    assert response.json() == IsDict(
+        {
+            "detail": [
+                {
+                    "type": "missing",
+                    "loc": ["query", "q"],
+                    "msg": "Field required",
+                    "input": None,
+                    "url": IsStr(regex=r"^https://errors\.pydantic\.dev/.*/v/missing"),
+                }
+            ]
+        }
+    ) | IsDict(
+        # TODO: remove when deprecating Pydantic v1
+        {
+            "detail": [
+                {
+                    "loc": ["query", "q"],
+                    "msg": "field required",
+                    "type": "value_error.missing",
+                }
+            ]
+        }
+    )
+
+
+def test_main_depends_q_foo():
+    response = client.get("/main-depends/?q=foo")
+    assert response.status_code == 200
+    assert response.json() == {
+        "in": "main-depends",
+        "params": {"q": "foo", "skip": 0, "limit": 100},
+    }
+
+
+def test_main_depends_q_foo_skip_100_limit_200():
+    response = client.get("/main-depends/?q=foo&skip=100&limit=200")
+    assert response.status_code == 200
+    assert response.json() == {
+        "in": "main-depends",
+        "params": {"q": "foo", "skip": 100, "limit": 200},
+    }
+
+
+def test_decorator_depends(insert_assert):
+    response = client.get("/decorator-depends/")
+    assert response.status_code == 422
+    # insert_assert(response.json())
+    assert response.json() == IsDict(
+        {
+            "detail": [
+                {
+                    "type": "missing",
+                    "loc": ["query", "q"],
+                    "msg": "Field required",
+                    "input": None,
+                    "url": IsStr(regex=r"^https://errors\.pydantic\.dev/.*/v/missing"),
+                }
+            ]
+        }
+    ) | IsDict(
+        # TODO: remove when deprecating Pydantic v1
+        {
+            "detail": [
+                {
+                    "loc": ["query", "q"],
+                    "msg": "field required",
+                    "type": "value_error.missing",
+                }
+            ]
+        }
+    )
+
+
+def test_decorator_depends_q_foo():
+    response = client.get("/decorator-depends/?q=foo")
+    assert response.status_code == 200
+    assert response.json() == {"in": "decorator-depends"}
+
+
+def test_decorator_depends_q_foo_skip_100_limit_200():
+    response = client.get("/decorator-depends/?q=foo&skip=100&limit=200")
+    assert response.status_code == 200
+    assert response.json() == {"in": "decorator-depends"}
+
+
+def test_router_depends():
+    response = client.get("/router-depends/")
+    assert response.status_code == 422
+    assert response.json() == {
+        "detail": [
             {
-                "detail": [
-                    {
-                        "loc": ["query", "q"],
-                        "msg": "field required",
-                        "type": "value_error.missing",
-                    }
-                ]
-            },
-        ),
-        (
-            "/main-depends/?q=foo",
-            200,
-            {"in": "main-depends", "params": {"q": "foo", "skip": 0, "limit": 100}},
-        ),
-        (
-            "/main-depends/?q=foo&skip=100&limit=200",
-            200,
-            {"in": "main-depends", "params": {"q": "foo", "skip": 100, "limit": 200}},
-        ),
-        (
-            "/decorator-depends/",
-            422,
+                "loc": ["query", "q"],
+                "msg": "field required",
+                "type": "value_error.missing",
+            }
+        ]
+    }
+
+
+def test_router_depends_q_foo():
+    response = client.get("/router-depends/?q=foo")
+    assert response.status_code == 200
+    assert response.json() == {
+        "in": "router-depends",
+        "params": {"q": "foo", "skip": 0, "limit": 100},
+    }
+
+
+def test_router_depends_q_foo_skip_100_limit_200():
+    response = client.get("/router-depends/?q=foo&skip=100&limit=200")
+    assert response.status_code == 200
+    assert response.json() == {
+        "in": "router-depends",
+        "params": {"q": "foo", "skip": 100, "limit": 200},
+    }
+
+
+def test_router_decorator_depends():
+    response = client.get("/router-decorator-depends/")
+    assert response.status_code == 422
+    assert response.json() == {
+        "detail": [
             {
-                "detail": [
-                    {
-                        "loc": ["query", "q"],
-                        "msg": "field required",
-                        "type": "value_error.missing",
-                    }
-                ]
-            },
-        ),
-        ("/decorator-depends/?q=foo", 200, {"in": "decorator-depends"}),
-        (
-            "/decorator-depends/?q=foo&skip=100&limit=200",
-            200,
-            {"in": "decorator-depends"},
-        ),
-        (
-            "/router-depends/",
-            422,
-            {
-                "detail": [
-                    {
-                        "loc": ["query", "q"],
-                        "msg": "field required",
-                        "type": "value_error.missing",
-                    }
-                ]
-            },
-        ),
-        (
-            "/router-depends/?q=foo",
-            200,
-            {"in": "router-depends", "params": {"q": "foo", "skip": 0, "limit": 100}},
-        ),
-        (
-            "/router-depends/?q=foo&skip=100&limit=200",
-            200,
-            {"in": "router-depends", "params": {"q": "foo", "skip": 100, "limit": 200}},
-        ),
-        (
-            "/router-decorator-depends/",
-            422,
-            {
-                "detail": [
-                    {
-                        "loc": ["query", "q"],
-                        "msg": "field required",
-                        "type": "value_error.missing",
-                    }
-                ]
-            },
-        ),
-        ("/router-decorator-depends/?q=foo", 200, {"in": "router-decorator-depends"}),
-        (
-            "/router-decorator-depends/?q=foo&skip=100&limit=200",
-            200,
-            {"in": "router-decorator-depends"},
-        ),
-    ],
-)
-def test_normal_app(url, status_code, expected):
-    response = client.get(url)
-    assert response.status_code == status_code
-    assert response.json() == expected
+                "loc": ["query", "q"],
+                "msg": "field required",
+                "type": "value_error.missing",
+            }
+        ]
+    }
+
+
+def test_router_decorator_depends_q_foo():
+    response = client.get("/router-decorator-depends/?q=foo")
+    assert response.status_code == 200
+    assert response.json() == {"in": "router-decorator-depends"}
+
+
+def test_router_decorator_depends_q_foo_skip_100_limit_200():
+    response = client.get("/router-decorator-depends/?q=foo&skip=100&limit=200")
+    assert response.status_code == 200
+    assert response.json() == {"in": "router-decorator-depends"}
 
 
 @pytest.mark.parametrize(
