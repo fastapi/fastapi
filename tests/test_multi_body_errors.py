@@ -4,6 +4,7 @@ from typing import List
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 from pydantic import BaseModel, condecimal
+from dirty_equals import IsDict
 
 app = FastAPI()
 
@@ -126,11 +127,23 @@ def test_openapi_schema():
                     "type": "object",
                     "properties": {
                         "name": {"title": "Name", "type": "string"},
-                        "age": {
-                            "title": "Age",
-                            "exclusiveMinimum": 0.0,
-                            "type": "number",
-                        },
+                        "age": IsDict(
+                            {
+                                "title": "Age",
+                                "anyOf": [
+                                    {"exclusiveMinimum": 0.0, "type": "number"},
+                                    {"type": "string"},
+                                ],
+                            }
+                        )
+                        | IsDict(
+                            # TODO: remove when deprecating Pydantic v1
+                            {
+                                "title": "Age",
+                                "exclusiveMinimum": 0.0,
+                                "type": "number",
+                            }
+                        ),
                     },
                 },
                 "ValidationError": {
