@@ -5,6 +5,7 @@ from fastapi import Depends, FastAPI
 from fastapi.exceptions import ResponseValidationError
 from fastapi.testclient import TestClient
 from pydantic import BaseModel, FieldValidationInfo, field_validator
+from dirty_equals import IsDict, IsStr
 
 app = FastAPI()
 
@@ -20,7 +21,7 @@ class ModelC(ModelB):
 class ModelA(BaseModel):
     name: str
     description: Optional[str] = None
-    model_b: ModelB
+    foo: ModelB
 
     @field_validator("name")
     def lower_username(cls, name: str, info: FieldValidationInfo):
@@ -35,7 +36,7 @@ async def get_model_c() -> ModelC:
 
 @app.get("/model/{name}", response_model=ModelA)
 async def get_model_a(name: str, model_c=Depends(get_model_c)):
-    return {"name": name, "description": "model-a-desc", "model_b": model_c}
+    return {"name": name, "description": "model-a-desc", "foo": model_c}
 
 
 client = TestClient(app)
@@ -47,7 +48,7 @@ def test_filter_sub_model():
     assert response.json() == {
         "name": "modelA",
         "description": "model-a-desc",
-        "model_b": {"username": "test-user"},
+        "foo": {"username": "test-user"},
     }
 
 
@@ -55,11 +56,24 @@ def test_validator_is_cloned():
     with pytest.raises(ResponseValidationError) as err:
         client.get("/model/modelX")
     assert err.value.pydantic_validation_error.errors() == [
-        {
-            "loc": ("response", "name"),
-            "msg": "name must end in A",
-            "type": "value_error",
-        }
+        IsDict(
+            {
+                "type": "value_error",
+                "loc": ("name",),
+                "msg": "Value error, name must end in A",
+                "input": "modelX",
+                "ctx": {"error": "name must end in A"},
+                "url": IsStr(regex=r"^https://errors\.pydantic\.dev/.*/v/value_error$"),
+            }
+        )
+        | IsDict(
+            # TODO remove when deprecating Pydantic v1
+            {
+                "loc": ("response", "name"),
+                "msg": "name must end in A",
+                "type": "value_error",
+            }
+        )
     ]
 
 
@@ -120,12 +134,20 @@ def test_openapi_schema():
                 },
                 "ModelA": {
                     "title": "ModelA",
-                    "required": ["name", "model_b"],
+                    "required": ["name", "foo"],
                     "type": "object",
                     "properties": {
                         "name": {"title": "Name", "type": "string"},
-                        "description": {"title": "Description", "type": "string"},
-                        "model_b": {"$ref": "#/components/schemas/ModelB"},
+                        "description": IsDict(
+                            {
+                                "title": "Description",
+                                "anyOf": [{"type": "string"}, {"type": "null"}],
+                            }
+                        )
+                        |
+                        # TODO remove when deprecating Pydantic v1
+                        IsDict({"title": "Description", "type": "string"}),
+                        "foo": {"$ref": "#/components/schemas/ModelB"},
                     },
                 },
                 "ModelB": {
