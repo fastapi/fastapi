@@ -1,10 +1,10 @@
 from decimal import Decimal
 from typing import List
 
+from dirty_equals import IsDict
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 from pydantic import BaseModel, condecimal
-from dirty_equals import IsDict
 
 app = FastAPI()
 

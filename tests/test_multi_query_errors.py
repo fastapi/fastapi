@@ -1,8 +1,8 @@
 from typing import List
 
+from dirty_equals import IsDict, IsStr
 from fastapi import FastAPI, Query
 from fastapi.testclient import TestClient
-from dirty_equals import IsDict, IsStr
 
 app = FastAPI()
 
@@ -33,14 +33,18 @@ def test_multi_query_incorrect():
                     "loc": ["query", "q", 0],
                     "msg": "Input should be a valid integer, unable to parse string as an integer",
                     "input": "five",
-                    "url": IsStr(regex=r"^https://errors\.pydantic\.dev/.*/v/int_parsing$"),
+                    "url": IsStr(
+                        regex=r"^https://errors\.pydantic\.dev/.*/v/int_parsing$"
+                    ),
                 },
                 {
                     "type": "int_parsing",
                     "loc": ["query", "q", 1],
                     "msg": "Input should be a valid integer, unable to parse string as an integer",
                     "input": "six",
-                    "url": IsStr(regex=r"^https://errors\.pydantic\.dev/.*/v/int_parsing$"),
+                    "url": IsStr(
+                        regex=r"^https://errors\.pydantic\.dev/.*/v/int_parsing$"
+                    ),
                 },
             ]
         }

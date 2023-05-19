@@ -1,11 +1,11 @@
 from typing import Optional
 
 import pytest
+from dirty_equals import IsDict, IsStr
 from fastapi import Depends, FastAPI
 from fastapi.exceptions import ResponseValidationError
 from fastapi.testclient import TestClient
 from pydantic import BaseModel, FieldValidationInfo, field_validator
-from dirty_equals import IsDict, IsStr
 
 app = FastAPI()
 
