@@ -31,6 +31,7 @@ from fastapi._compat import (
     Required,
     Undefined,
     ValidationError,
+    _regenerate_error_with_loc,
     evaluate_forwardref,
     get_annotation_from_field_info,
     lenient_issubclass,
@@ -749,10 +750,11 @@ def request_params_to_args(
         assert isinstance(
             field_info, params.Param
         ), "Params must be subclasses of Param"
+        loc = (field_info.in_.value, field.alias)
         if value is None:
             if field.required:
                 errors.append(
-                    get_missing_field_error(loc=(field_info.in_.value, field.alias))
+                    get_missing_field_error(loc=loc)
                     # TODO (pv2)
                     # ErrorWrapper(
                     #     MissingError(), loc=(field_info.in_.value, field.alias)
@@ -768,9 +770,14 @@ def request_params_to_args(
         # )
         # if isinstance(errors_, ErrorWrapper):
         if isinstance(errors_, ValidationError):
-            errors.append(errors_)
+            new_errors = _regenerate_error_with_loc(
+                errors=errors_.errors(), loc_prefix=loc
+            )
+            new_error = ValidationError(title=errors_.title, errors=new_errors)
+            errors.append(new_error)
         elif isinstance(errors_, list):
-            errors.extend(errors_)
+            new_errors = _regenerate_error_with_loc(errors=errors_, loc_prefix=loc)
+            errors.extend(new_errors)
         else:
             values[field.name] = v_
     return values, errors
