@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import Any, Dict, List, Tuple, Union
+from typing import Any, Dict, List, Sequence, Tuple, Union
 
 from pydantic import TypeAdapter, ValidationError
 from pydantic._internal._fields import Undefined, _UndefinedType
@@ -11,6 +11,10 @@ from pydantic_core import ErrorDetails
 from typing_extensions import Annotated
 
 # from pydantic.schema import get_annotation_from_field_info
+
+Required = Undefined
+UndefinedType = _UndefinedType
+evaluate_forwardref = eval_type_lenient
 
 
 def get_annotation_from_field_info(
@@ -69,6 +73,13 @@ class ModelField:
         return id(self)
 
 
-Required = Undefined
-UndefinedType = _UndefinedType
-evaluate_forwardref = eval_type_lenient
+def _regenerate_error_with_loc(
+    *, errors: Sequence[ErrorDetails], loc_prefix: Tuple[str, ...]
+):
+    # TODO (pv2): should the loc really be reversed?
+    updated_loc_errors: List[ErrorDetails] = [
+        {**err, "loc": tuple(reversed(loc_prefix + err.get("loc", ())))}
+        for err in errors
+    ]
+
+    return updated_loc_errors
