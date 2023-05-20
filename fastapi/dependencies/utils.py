@@ -534,11 +534,15 @@ def is_gen_callable(call: Callable[..., Any]) -> bool:
 
 
 async def solve_generator(
-    *, call: Callable[..., Any], stack: AsyncExitStack, sub_values: Dict[str, Any]
+    *,
+    call: Callable[..., Any],
+    unwrapped_call: Callable[..., Any],
+    stack: AsyncExitStack,
+    sub_values: Dict[str, Any],
 ) -> Any:
-    if is_gen_callable(call):
+    if is_gen_callable(unwrapped_call):
         cm = contextmanager_in_threadpool(contextmanager(call)(**sub_values))
-    elif is_async_gen_callable(call):
+    elif is_async_gen_callable(unwrapped_call):
         cm = asynccontextmanager(call)(**sub_values)
     return await stack.enter_async_context(cm)
 
@@ -610,15 +614,19 @@ async def solve_dependencies(
         if sub_errors:
             errors.extend(sub_errors)
             continue
+        unwrapped_call = inspect.unwrap(call)
         if sub_dependant.use_cache and sub_dependant.cache_key in dependency_cache:
             solved = dependency_cache[sub_dependant.cache_key]
-        elif is_gen_callable(call) or is_async_gen_callable(call):
+        elif is_gen_callable(unwrapped_call) or is_async_gen_callable(unwrapped_call):
             stack = request.scope.get("fastapi_astack")
             assert isinstance(stack, AsyncExitStack)
             solved = await solve_generator(
-                call=call, stack=stack, sub_values=sub_values
+                call=call,
+                unwrapped_call=unwrapped_call,
+                stack=stack,
+                sub_values=sub_values,
             )
-        elif is_coroutine_callable(call):
+        elif is_coroutine_callable(unwrapped_call):
             solved = await call(**sub_values)
         else:
             solved = await run_in_threadpool(call, **sub_values)
