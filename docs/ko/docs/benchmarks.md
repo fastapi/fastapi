@@ -6,26 +6,26 @@
 
 ## 벤치마크와 속도
 
-When you check the benchmarks, it is common to see several tools of different types compared as equivalent.
+벤치마크를 확인할때 서로 다른 유형의 도구들을 동등한 것으로 비교 되는것이 일반적입니다.
 
-Specifically, to see Uvicorn, Starlette and FastAPI compared together (among many other tools).
+특히 Uvicorn, Starlette, 그리고 FastPAI (다른 많은 도구들 중에서)가 함께 비교됩니다.
 
-The simpler the problem solved by the tool, the better performance it will get. And most of the benchmarks don't test the additional features provided by the tool.
+도구가 해결하는 문제가 단순할수록 더 나은 성능을 얻을 수 있습니다. 그리고 대부분의 벤치마크는 도구가 제공하는 추가 기능을 테스트 하지는 않습니다.
 
-The hierarchy is like:
+계층 구조는 다음과 같습니다:
 
-* **Uvicorn**: an ASGI server
-    * **Starlette**: (uses Uvicorn) a web microframework
-        * **FastAPI**: (uses Starlette) an API microframework with several additional features for building APIs, with data validation, etc.
+* **Uvicorn**: ASGI 서버
+    * **Starlette**: (Uvicorn 사용) 웹 마이크로 프레임워크
+        * **FastAPI**: (Starlette 사용) API 구축, 데이터 유효성 검사등 추가 기능이 있는 API 마이크로 프레임워크
 
 * **Uvicorn**:
-    * Will have the best performance, as it doesn't have much extra code apart from the server itself.
-    * You wouldn't write an application in Uvicorn directly. That would mean that your code would have to include more or less, at least, all the code provided by Starlette (or **FastAPI**). And if you did that, your final application would have the same overhead as having used a framework and minimizing your app code and bugs.
-    * If you are comparing Uvicorn, compare it against Daphne, Hypercorn, uWSGI, etc. Application servers.
+    * 서버 자체를 제외하고는 추가적인 코드가 많지 않음으로 최고의 성능을 발휘합니다.
+    * 여러분이 Uvicorn으로 직접 애플리케이션을 작성 하지는 않으실겁니다. 즉 여러분의 코드는 최소한 Starlette (또는 **FastAPI**)에서 제공되는 모든 코드를 포함해야 합니다.  만약 여러분이 그렇게 하신다면 여러분의 최종 애플리케이션은 프레임워크를 사용하고 애플리케이션 코드와 버그를 최소화 한것과 동일한 고정경비를 가지게 됩니다. 
+    * 여러분이 Uvicorn을 비교하시려면, Daphne, Hypercorn, uWSGI 등과 같은 애플리케이션 서버와 비교하십시오.
 * **Starlette**:
-    * Will have the next best performance, after Uvicorn. In fact, Starlette uses Uvicorn to run. So, it probably can only get "slower" than Uvicorn by having to execute more code.
-    * But it provides you the tools to build simple web applications, with routing based on paths, etc.
-    * If you are comparing Starlette, compare it against Sanic, Flask, Django, etc. Web frameworks (or microframeworks).
+    * Uvicorn 다음으로 최고의 성능을 발휘합니다. 실제고 Starlette은 Uvicorn을 사용하여 실행됩니다. 따라서 더 많은 코드를 실행해야 하기 때문에 Uvicorn보다 느릴 수 밖에 없습니다.
+    * 그렇지만 경로를 기반으로 하는 라우팅등 간단한 웹 애플리케이션을 구축 할 수 있는 도구들를 제공합니다.
+    * 여러분이 Starlette을 비교하시려면, Sanic, Flask, Django 등과 같은 웹 프레임워크 (또는 마이크로 프레임워크)와 비교하십시오.
 * **FastAPI**:
     * The same way that Starlette uses Uvicorn and cannot be faster than it, **FastAPI** uses Starlette, so it cannot be faster than it.
     * FastAPI provides more features on top of Starlette. Features that you almost always need when building APIs, like data validation and serialization. And by using it, you get automatic documentation for free (the automatic documentation doesn't even add overhead to running applications, it is generated on startup).
