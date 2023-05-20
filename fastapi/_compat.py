@@ -66,7 +66,12 @@ if PYDANTIC_V2:
             try:
                 return self._type_adapter.validate_python(value), None
             except ValidationError as exc:
-                use_loc = loc if isinstance(loc, tuple) else (loc,)
+                if isinstance(loc, tuple):
+                    use_loc = loc
+                elif loc == "":
+                    use_loc = ()
+                else:
+                    use_loc = (loc,)
                 return None, _regenerate_error_with_loc(
                     errors=exc.errors(), loc_prefix=use_loc
                 )
