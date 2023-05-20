@@ -266,6 +266,8 @@ def _annotation_is_sequence(annotation: type[Any] | None) -> bool:
 
 
 def field_annotation_is_sequence(annotation: type[Any] | None) -> bool:
+    if lenient_issubclass(annotation, str):
+        return False
     return _annotation_is_sequence(annotation) or _annotation_is_sequence(
         get_origin(annotation)
     )
@@ -282,8 +284,6 @@ def field_annotation_is_scalar_sequence(annotation: type[Any] | None) -> bool:
             elif not field_annotation_is_scalar(arg):
                 return False
         return at_least_one_scalar_sequence
-    if lenient_issubclass(annotation, str):
-        return False
     return field_annotation_is_sequence(annotation) and all(
         field_annotation_is_scalar(sub_annotation)
         for sub_annotation in get_args(annotation)
