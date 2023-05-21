@@ -55,11 +55,11 @@ def test_filter_sub_model():
 def test_validator_is_cloned():
     with pytest.raises(ResponseValidationError) as err:
         client.get("/model/modelX")
-    assert err.value.pydantic_validation_error.errors() == [
+    assert err.value.errors() == [
         IsDict(
             {
                 "type": "value_error",
-                "loc": ("name",),
+                "loc": ("response", "name"),
                 "msg": "Value error, name must end in A",
                 "input": "modelX",
                 "ctx": {"error": "name must end in A"},
