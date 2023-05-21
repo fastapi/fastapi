@@ -1,3 +1,4 @@
+from dirty_equals import IsDict, IsStr
 from fastapi.testclient import TestClient
 
 from docs_src.handling_errors.tutorial005 import app
@@ -8,16 +9,34 @@ client = TestClient(app)
 def test_post_validation_error():
     response = client.post("/items/", json={"title": "towel", "size": "XL"})
     assert response.status_code == 422, response.text
-    assert response.json() == {
-        "detail": [
-            {
-                "loc": ["body", "size"],
-                "msg": "value is not a valid integer",
-                "type": "type_error.integer",
-            }
-        ],
-        "body": {"title": "towel", "size": "XL"},
-    }
+    assert response.json() == IsDict(
+        {
+            "detail": [
+                {
+                    "type": "int_parsing",
+                    "loc": ["body", "size"],
+                    "msg": "Input should be a valid integer, unable to parse string as an integer",
+                    "input": "XL",
+                    "url": IsStr(
+                        regex=r"^https://errors\.pydantic\.dev/.*/v/int_parsing"
+                    ),
+                }
+            ],
+            "body": {"title": "towel", "size": "XL"},
+        }
+    ) | IsDict(
+        # TODO: remove when deprecating Pydantic v1
+        {
+            "detail": [
+                {
+                    "loc": ["body", "size"],
+                    "msg": "value is not a valid integer",
+                    "type": "type_error.integer",
+                }
+            ],
+            "body": {"title": "towel", "size": "XL"},
+        }
+    )
 
 
 def test_post():
