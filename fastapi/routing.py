@@ -257,7 +257,9 @@ def get_request_handler(
                 response_content=raw_response,
                 include=response_model_include,
                 exclude=response_model_exclude,
-                by_alias=response_model_by_alias if response_model_by_alias is not None else True,
+                by_alias=response_model_by_alias
+                if response_model_by_alias is not None
+                else True,
                 exclude_unset=response_model_exclude_unset,
                 exclude_defaults=response_model_exclude_defaults,
                 exclude_none=response_model_exclude_none,
@@ -663,6 +665,7 @@ class APIRouter(routing.Router):
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         if response_model_by_alias is None:
             response_model_by_alias = self.response_model_by_alias
+
         def decorator(func: DecoratedCallable) -> DecoratedCallable:
             self.add_api_route(
                 path,
