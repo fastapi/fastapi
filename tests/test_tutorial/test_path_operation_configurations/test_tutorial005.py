@@ -1,3 +1,4 @@
+from dirty_equals import IsDict
 from fastapi.testclient import TestClient
 
 from docs_src.path_operation_configuration.tutorial005 import app
@@ -68,9 +69,27 @@ def test_openapi_schema():
                     "type": "object",
                     "properties": {
                         "name": {"title": "Name", "type": "string"},
+                        "description": IsDict(
+                            {
+                                "title": "Description",
+                                "anyOf": [{"type": "string"}, {"type": "null"}],
+                            }
+                        )
+                        | IsDict(
+                            # TODO: remove when deprecating Pydantic v1
+                            {"title": "Description", "type": "string"}
+                        ),
                         "price": {"title": "Price", "type": "number"},
-                        "description": {"title": "Description", "type": "string"},
-                        "tax": {"title": "Tax", "type": "number"},
+                        "tax": IsDict(
+                            {
+                                "title": "Tax",
+                                "anyOf": [{"type": "number"}, {"type": "null"}],
+                            }
+                        )
+                        | IsDict(
+                            # TODO: remove when deprecating Pydantic v1
+                            {"title": "Tax", "type": "number"}
+                        ),
                         "tags": {
                             "title": "Tags",
                             "uniqueItems": True,
