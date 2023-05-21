@@ -13,12 +13,14 @@ def get_client():
     return client
 
 
+@needs_py39
 def test_users_token_jessica(client: TestClient):
     response = client.get("/users?token=jessica")
     assert response.status_code == 200
     assert response.json() == [{"username": "Rick"}, {"username": "Morty"}]
 
 
+@needs_py39
 def test_users_with_no_token(client: TestClient):
     response = client.get("/users")
     assert response.status_code == 422
@@ -48,12 +50,14 @@ def test_users_with_no_token(client: TestClient):
     )
 
 
+@needs_py39
 def test_users_foo_token_jessica(client: TestClient):
     response = client.get("/users/foo?token=jessica")
     assert response.status_code == 200
     assert response.json() == {"username": "foo"}
 
 
+@needs_py39
 def test_users_foo_with_no_token(client: TestClient):
     response = client.get("/users/foo")
     assert response.status_code == 422
@@ -83,12 +87,14 @@ def test_users_foo_with_no_token(client: TestClient):
     )
 
 
+@needs_py39
 def test_users_me_token_jessica(client: TestClient):
     response = client.get("/users/me?token=jessica")
     assert response.status_code == 200
     assert response.json() == {"username": "fakecurrentuser"}
 
 
+@needs_py39
 def test_users_me_with_no_token(client: TestClient):
     response = client.get("/users/me")
     assert response.status_code == 422
@@ -118,12 +124,14 @@ def test_users_me_with_no_token(client: TestClient):
     )
 
 
+@needs_py39
 def test_users_token_monica_with_no_jessica(client: TestClient):
     response = client.get("/users?token=monica")
     assert response.status_code == 400
     assert response.json() == {"detail": "No Jessica token provided"}
 
 
+@needs_py39
 def test_items_token_jessica(client: TestClient):
     response = client.get(
         "/items?token=jessica", headers={"X-Token": "fake-super-secret-token"}
@@ -135,6 +143,7 @@ def test_items_token_jessica(client: TestClient):
     }
 
 
+@needs_py39
 def test_items_with_no_token_jessica(client: TestClient):
     response = client.get("/items", headers={"X-Token": "fake-super-secret-token"})
     assert response.status_code == 422
@@ -164,6 +173,7 @@ def test_items_with_no_token_jessica(client: TestClient):
     )
 
 
+@needs_py39
 def test_items_plumbus_token_jessica(client: TestClient):
     response = client.get(
         "/items/plumbus?token=jessica", headers={"X-Token": "fake-super-secret-token"}
@@ -172,6 +182,7 @@ def test_items_plumbus_token_jessica(client: TestClient):
     assert response.json() == {"name": "Plumbus", "item_id": "plumbus"}
 
 
+@needs_py39
 def test_items_bar_token_jessica(client: TestClient):
     response = client.get(
         "/items/bar?token=jessica", headers={"X-Token": "fake-super-secret-token"}
@@ -180,6 +191,7 @@ def test_items_bar_token_jessica(client: TestClient):
     assert response.json() == {"detail": "Item not found"}
 
 
+@needs_py39
 def test_items_plumbus_with_no_token(client: TestClient):
     response = client.get(
         "/items/plumbus", headers={"X-Token": "fake-super-secret-token"}
@@ -211,18 +223,21 @@ def test_items_plumbus_with_no_token(client: TestClient):
     )
 
 
+@needs_py39
 def test_items_with_invalid_token(client: TestClient):
     response = client.get("/items?token=jessica", headers={"X-Token": "invalid"})
     assert response.status_code == 400
     assert response.json() == {"detail": "X-Token header invalid"}
 
 
+@needs_py39
 def test_items_bar_with_invalid_token(client: TestClient):
     response = client.get("/items/bar?token=jessica", headers={"X-Token": "invalid"})
     assert response.status_code == 400
     assert response.json() == {"detail": "X-Token header invalid"}
 
 
+@needs_py39
 def test_items_with_missing_x_token_header(client: TestClient):
     response = client.get("/items?token=jessica")
     assert response.status_code == 422
@@ -252,6 +267,7 @@ def test_items_with_missing_x_token_header(client: TestClient):
     )
 
 
+@needs_py39
 def test_items_plumbus_with_missing_x_token_header(client: TestClient):
     response = client.get("/items/plumbus?token=jessica")
     assert response.status_code == 422
@@ -281,12 +297,14 @@ def test_items_plumbus_with_missing_x_token_header(client: TestClient):
     )
 
 
+@needs_py39
 def test_root_token_jessica(client: TestClient):
     response = client.get("/?token=jessica")
     assert response.status_code == 200
     assert response.json() == {"message": "Hello Bigger Applications!"}
 
 
+@needs_py39
 def test_root_with_no_token(client: TestClient):
     response = client.get("/")
     assert response.status_code == 422
