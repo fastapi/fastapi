@@ -21,6 +21,7 @@ from pydantic import BaseModel
 from pydantic.color import Color
 from pydantic.networks import NameEmail
 from pydantic.types import SecretBytes, SecretStr
+from pydantic_core import MultiHostUrl, Url
 
 SetIntStr = Set[Union[int, str]]
 DictIntStrAny = Dict[Union[int, str], Any]
@@ -76,6 +77,8 @@ ENCODERS_BY_TYPE: Dict[Type[Any], Callable[[Any], Any]] = {
     SecretStr: str,
     set: list,
     UUID: str,
+    Url: str,
+    MultiHostUrl: str,
 }
 
 
@@ -122,6 +125,7 @@ def jsonable_encoder(
         # if custom_encoder:
         #     encoder.update(custom_encoder)
         obj_dict = obj.model_dump(
+            mode="json",
             include=include,
             exclude=exclude,
             by_alias=by_alias,
