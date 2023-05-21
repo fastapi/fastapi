@@ -223,10 +223,11 @@ def get_request_handler(
             raise RequestValidationError(
                 [
                     {
-                        "type": "json-decode-error",
+                        "type": "json_invalid",
                         "loc": ("body", e.pos),
                         "msg": "JSON decode error",
                         "input": {},
+                        "ctx": {"error": e.msg},
                     }
                 ],
                 body=e.doc,
