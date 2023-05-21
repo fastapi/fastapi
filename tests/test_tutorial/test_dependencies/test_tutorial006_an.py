@@ -1,3 +1,4 @@
+from dirty_equals import IsDict, IsStr
 from fastapi.testclient import TestClient
 
 from docs_src.dependencies.tutorial006_an import app
@@ -8,20 +9,42 @@ client = TestClient(app)
 def test_get_no_headers():
     response = client.get("/items/")
     assert response.status_code == 422, response.text
-    assert response.json() == {
-        "detail": [
-            {
-                "loc": ["header", "x-token"],
-                "msg": "field required",
-                "type": "value_error.missing",
-            },
-            {
-                "loc": ["header", "x-key"],
-                "msg": "field required",
-                "type": "value_error.missing",
-            },
-        ]
-    }
+    assert response.json() == IsDict(
+        {
+            "detail": [
+                {
+                    "type": "missing",
+                    "loc": ["header", "x-token"],
+                    "msg": "Field required",
+                    "input": None,
+                    "url": IsStr(regex=r"^https://errors\.pydantic\.dev/.*/v/missing"),
+                },
+                {
+                    "type": "missing",
+                    "loc": ["header", "x-key"],
+                    "msg": "Field required",
+                    "input": None,
+                    "url": IsStr(regex=r"^https://errors\.pydantic\.dev/.*/v/missing"),
+                },
+            ]
+        }
+    ) | IsDict(
+        # TODO: remove when deprecating Pydantic v1
+        {
+            "detail": [
+                {
+                    "loc": ["header", "x-token"],
+                    "msg": "field required",
+                    "type": "value_error.missing",
+                },
+                {
+                    "loc": ["header", "x-key"],
+                    "msg": "field required",
+                    "type": "value_error.missing",
+                },
+            ]
+        }
+    )
 
 
 def test_get_invalid_one_header():
