@@ -1,7 +1,7 @@
 import pytest
 from fastapi.testclient import TestClient
 
-from ...utils import needs_py310
+from ...utils import needs_py39
 
 
 @pytest.fixture(name="client")
@@ -12,7 +12,7 @@ def get_client():
     return client
 
 
-@needs_py310
+@needs_py39
 @pytest.mark.parametrize(
     "path,headers,expected_status,expected_response",
     [
@@ -28,7 +28,7 @@ def test(path, headers, expected_status, expected_response, client: TestClient):
     assert response.json() == expected_response
 
 
-@needs_py310
+@needs_py39
 def test_openapi_schema(client: TestClient):
     response = client.get("/openapi.json")
     assert response.status_code == 200
