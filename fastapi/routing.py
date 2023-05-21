@@ -173,7 +173,7 @@ def get_request_handler(
     response_field: Optional[ModelField] = None,
     response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
     response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-    response_model_by_alias: bool = True,
+    response_model_by_alias: Optional[bool] = None,
     response_model_exclude_unset: bool = False,
     response_model_exclude_defaults: bool = False,
     response_model_exclude_none: bool = False,
@@ -257,7 +257,7 @@ def get_request_handler(
                 response_content=raw_response,
                 include=response_model_include,
                 exclude=response_model_exclude,
-                by_alias=response_model_by_alias,
+                by_alias=response_model_by_alias if response_model_by_alias is not None else True,
                 exclude_unset=response_model_exclude_unset,
                 exclude_defaults=response_model_exclude_defaults,
                 exclude_none=response_model_exclude_none,
@@ -339,7 +339,7 @@ class APIRoute(routing.Route):
         operation_id: Optional[str] = None,
         response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
         response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-        response_model_by_alias: bool = True,
+        response_model_by_alias: Optional[bool] = None,
         response_model_exclude_unset: bool = False,
         response_model_exclude_defaults: bool = False,
         response_model_exclude_none: bool = False,
@@ -500,6 +500,7 @@ class APIRouter(routing.Router):
         generate_unique_id_function: Callable[[APIRoute], str] = Default(
             generate_unique_id
         ),
+        response_model_by_alias: Optional[bool] = None,
     ) -> None:
         super().__init__(
             routes=routes,
@@ -525,6 +526,7 @@ class APIRouter(routing.Router):
         self.route_class = route_class
         self.default_response_class = default_response_class
         self.generate_unique_id_function = generate_unique_id_function
+        self.response_model_by_alias = response_model_by_alias
 
     def route(
         self,
@@ -563,7 +565,7 @@ class APIRouter(routing.Router):
         operation_id: Optional[str] = None,
         response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
         response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-        response_model_by_alias: bool = True,
+        response_model_by_alias: Optional[bool] = None,
         response_model_exclude_unset: bool = False,
         response_model_exclude_defaults: bool = False,
         response_model_exclude_none: bool = False,
@@ -579,6 +581,8 @@ class APIRouter(routing.Router):
             Callable[[APIRoute], str], DefaultPlaceholder
         ] = Default(generate_unique_id),
     ) -> None:
+        if response_model_by_alias is None:
+            response_model_by_alias = self.response_model_by_alias
         route_class = route_class_override or self.route_class
         responses = responses or {}
         combined_responses = {**self.responses, **responses}
@@ -644,7 +648,7 @@ class APIRouter(routing.Router):
         operation_id: Optional[str] = None,
         response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
         response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-        response_model_by_alias: bool = True,
+        response_model_by_alias: Optional[bool] = None,
         response_model_exclude_unset: bool = False,
         response_model_exclude_defaults: bool = False,
         response_model_exclude_none: bool = False,
@@ -657,6 +661,8 @@ class APIRouter(routing.Router):
             generate_unique_id
         ),
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
+        if response_model_by_alias is None:
+            response_model_by_alias = self.response_model_by_alias
         def decorator(func: DecoratedCallable) -> DecoratedCallable:
             self.add_api_route(
                 path,
@@ -847,7 +853,7 @@ class APIRouter(routing.Router):
         operation_id: Optional[str] = None,
         response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
         response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-        response_model_by_alias: bool = True,
+        response_model_by_alias: Optional[bool] = None,
         response_model_exclude_unset: bool = False,
         response_model_exclude_defaults: bool = False,
         response_model_exclude_none: bool = False,
@@ -860,6 +866,8 @@ class APIRouter(routing.Router):
             generate_unique_id
         ),
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
+        if response_model_by_alias is None:
+            response_model_by_alias = self.response_model_by_alias
         return self.api_route(
             path=path,
             response_model=response_model,
@@ -903,7 +911,7 @@ class APIRouter(routing.Router):
         operation_id: Optional[str] = None,
         response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
         response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-        response_model_by_alias: bool = True,
+        response_model_by_alias: Optional[bool] = None,
         response_model_exclude_unset: bool = False,
         response_model_exclude_defaults: bool = False,
         response_model_exclude_none: bool = False,
@@ -916,6 +924,8 @@ class APIRouter(routing.Router):
             generate_unique_id
         ),
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
+        if response_model_by_alias is None:
+            response_model_by_alias = self.response_model_by_alias
         return self.api_route(
             path=path,
             response_model=response_model,
@@ -959,7 +969,7 @@ class APIRouter(routing.Router):
         operation_id: Optional[str] = None,
         response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
         response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-        response_model_by_alias: bool = True,
+        response_model_by_alias: Optional[bool] = None,
         response_model_exclude_unset: bool = False,
         response_model_exclude_defaults: bool = False,
         response_model_exclude_none: bool = False,
@@ -972,6 +982,8 @@ class APIRouter(routing.Router):
             generate_unique_id
         ),
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
+        if response_model_by_alias is None:
+            response_model_by_alias = self.response_model_by_alias
         return self.api_route(
             path=path,
             response_model=response_model,
@@ -1015,7 +1027,7 @@ class APIRouter(routing.Router):
         operation_id: Optional[str] = None,
         response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
         response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-        response_model_by_alias: bool = True,
+        response_model_by_alias: Optional[bool] = None,
         response_model_exclude_unset: bool = False,
         response_model_exclude_defaults: bool = False,
         response_model_exclude_none: bool = False,
@@ -1028,6 +1040,8 @@ class APIRouter(routing.Router):
             generate_unique_id
         ),
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
+        if response_model_by_alias is None:
+            response_model_by_alias = self.response_model_by_alias
         return self.api_route(
             path=path,
             response_model=response_model,
@@ -1071,7 +1085,7 @@ class APIRouter(routing.Router):
         operation_id: Optional[str] = None,
         response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
         response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-        response_model_by_alias: bool = True,
+        response_model_by_alias: Optional[bool] = None,
         response_model_exclude_unset: bool = False,
         response_model_exclude_defaults: bool = False,
         response_model_exclude_none: bool = False,
@@ -1084,6 +1098,8 @@ class APIRouter(routing.Router):
             generate_unique_id
         ),
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
+        if response_model_by_alias is None:
+            response_model_by_alias = self.response_model_by_alias
         return self.api_route(
             path=path,
             response_model=response_model,
@@ -1127,7 +1143,7 @@ class APIRouter(routing.Router):
         operation_id: Optional[str] = None,
         response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
         response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-        response_model_by_alias: bool = True,
+        response_model_by_alias: Optional[bool] = None,
         response_model_exclude_unset: bool = False,
         response_model_exclude_defaults: bool = False,
         response_model_exclude_none: bool = False,
@@ -1140,6 +1156,8 @@ class APIRouter(routing.Router):
             generate_unique_id
         ),
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
+        if response_model_by_alias is None:
+            response_model_by_alias = self.response_model_by_alias
         return self.api_route(
             path=path,
             response_model=response_model,
@@ -1183,7 +1201,7 @@ class APIRouter(routing.Router):
         operation_id: Optional[str] = None,
         response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
         response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-        response_model_by_alias: bool = True,
+        response_model_by_alias: Optional[bool] = None,
         response_model_exclude_unset: bool = False,
         response_model_exclude_defaults: bool = False,
         response_model_exclude_none: bool = False,
@@ -1196,6 +1214,8 @@ class APIRouter(routing.Router):
             generate_unique_id
         ),
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
+        if response_model_by_alias is None:
+            response_model_by_alias = self.response_model_by_alias
         return self.api_route(
             path=path,
             response_model=response_model,
@@ -1239,7 +1259,7 @@ class APIRouter(routing.Router):
         operation_id: Optional[str] = None,
         response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
         response_model_exclude: Optional[Union[SetIntStr, DictIntStrAny]] = None,
-        response_model_by_alias: bool = True,
+        response_model_by_alias: Optional[bool] = None,
         response_model_exclude_unset: bool = False,
         response_model_exclude_defaults: bool = False,
         response_model_exclude_none: bool = False,
@@ -1252,6 +1272,8 @@ class APIRouter(routing.Router):
             generate_unique_id
         ),
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
+        if response_model_by_alias is None:
+            response_model_by_alias = self.response_model_by_alias
         return self.api_route(
             path=path,
             response_model=response_model,
