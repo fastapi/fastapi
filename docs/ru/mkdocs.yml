@@ -68,6 +68,7 @@ nav:
 - python-types.md
 - Учебник - руководство пользователя:
   - tutorial/query-params-str-validations.md
+  - tutorial/path-params-numeric-validations.md
   - tutorial/body-fields.md
   - tutorial/background-tasks.md
   - tutorial/extra-data-types.md
