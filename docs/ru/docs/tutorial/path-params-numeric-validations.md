@@ -4,19 +4,50 @@
 
 ## Импорт Path
 
-Сначала импортируйте `Path` из `fastapi`:
+Сначала импортируйте `Path` из `fastapi`, а также импортируйте `Annotated`:
+
+=== "Python 3.10+"
+
+    ```Python hl_lines="1  3"
+    {!> ../../../docs_src/path_params_numeric_validations/tutorial001_an_py310.py!}
+    ```
+
+=== "Python 3.9+"
+
+    ```Python hl_lines="1  3"
+    {!> ../../../docs_src/path_params_numeric_validations/tutorial001_an_py39.py!}
+    ```
 
 === "Python 3.6+"
+
+    ```Python hl_lines="3-4"
+    {!> ../../../docs_src/path_params_numeric_validations/tutorial001_an.py!}
+    ```
+
+=== "Python 3.10+ без Annotated"
+
+    !!! tip "Подсказка"
+        Рекомендуется использовать версию с `Annotated` если возможно.
+
+    ```Python hl_lines="1"
+    {!> ../../../docs_src/path_params_numeric_validations/tutorial001_py310.py!}
+    ```
+
+=== "Python 3.6+ без Annotated"
+
+    !!! tip "Подсказка"
+        Рекомендуется использовать версию с `Annotated` если возможно.
 
     ```Python hl_lines="3"
     {!> ../../../docs_src/path_params_numeric_validations/tutorial001.py!}
     ```
 
-=== "Python 3.10+"
+!!! info "Информация"
+    Поддержка `Annotated` была добавлена в FastAPI начиная с версии 0.95.0 (и с этой версии рекомендуется использовать этот подход).
 
-    ```Python hl_lines="1"
-    {!> ../../../docs_src/path_params_numeric_validations/tutorial001_py310.py!}
-    ```
+    Если вы используете более старую версию, вы столкнётесь с ошибками при попытке использовать `Annotated`.
+
+    Убедитесь, что вы [обновили версию FastAPI](../deployment/versions.md#upgrading-the-fastapi-versions){.internal-link target=_blank} как минимум до 0.95.1 перед тем, как использовать `Annotated`.
 
 ## Определите метаданные
 
@@ -24,16 +55,40 @@
 
 Например, чтобы указать значение метаданных `title` для path-параметра `item_id`, вы можете написать:
 
-=== "Python 3.6+"
+=== "Python 3.10+"
 
     ```Python hl_lines="10"
-    {!> ../../../docs_src/path_params_numeric_validations/tutorial001.py!}
+    {!> ../../../docs_src/path_params_numeric_validations/tutorial001_an_py310.py!}
     ```
 
-=== "Python 3.10+"
+=== "Python 3.9+"
+
+    ```Python hl_lines="10"
+    {!> ../../../docs_src/path_params_numeric_validations/tutorial001_an_py39.py!}
+    ```
+
+=== "Python 3.6+"
+
+    ```Python hl_lines="11"
+    {!> ../../../docs_src/path_params_numeric_validations/tutorial001_an.py!}
+    ```
+
+=== "Python 3.10+ без Annotated"
+
+    !!! tip "Подсказка"
+        Рекомендуется использовать версию с `Annotated` если возможно.
 
     ```Python hl_lines="8"
     {!> ../../../docs_src/path_params_numeric_validations/tutorial001_py310.py!}
+    ```
+
+=== "Python 3.6+ без Annotated"
+
+    !!! tip "Подсказка"
+        Рекомендуется использовать версию с `Annotated` если возможно.
+
+    ```Python hl_lines="10"
+    {!> ../../../docs_src/path_params_numeric_validations/tutorial001.py!}
     ```
 
 !!! note "Примечание"
@@ -45,11 +100,14 @@
 
 ## Задайте нужный вам порядок параметров
 
+!!! tip "Подсказка"
+    Возможно, это не так важно или необходимо, если вы используете `Annotated`.
+
 Допустим, вы хотите объявить query-параметр `q` как обязательный параметр типа `str`.
 
 И если вам больше ничего не нужно указывать для этого параметра, то нет необходимости использовать `Query`.
 
-Но вам по-прежнему нужно использовать `Path` для path-параметра `item_id`.
+Но вам по-прежнему нужно использовать `Path` для path-параметра `item_id`. И по какой-либо причине вы не хотите использовать `Annotated`.
 
 Python укажет на ошибку, если параметр со значением по умолчанию вы поместите перед другим параметром, у которого нет значения по умолчанию.
 
@@ -59,22 +117,68 @@ Python укажет на ошибку, если параметр со значе
 
 Поэтому вы можете определить функцию так:
 
-```Python hl_lines="7"
-{!../../../docs_src/path_params_numeric_validations/tutorial002.py!}
-```
+=== "Python 3.6 без Annotated"
+
+    !!! tip "Подсказка"
+        Рекомендуется использовать версию с `Annotated` если возможно.
+
+    ```Python hl_lines="7"
+    {!> ../../../docs_src/path_params_numeric_validations/tutorial002.py!}
+    ```
+
+Но имейте в виду, что если вы используете `Annotated`, вы не столкнётесь с этой проблемой, так как вы не используете `Query()` или `Path()` в качестве значения по умолчанию для параметра функции.
+
+=== "Python 3.9+"
+
+    ```Python hl_lines="10"
+    {!> ../../../docs_src/path_params_numeric_validations/tutorial002_an_py39.py!}
+    ```
+
+=== "Python 3.6+"
+
+    ```Python hl_lines="9"
+    {!> ../../../docs_src/path_params_numeric_validations/tutorial002_an.py!}
+    ```
 
 ## Задайте нужный вам порядок параметров, полезные приёмы
 
-Если вы хотите объявить query-параметр `q` без `Query` и без значения по умолчанию, а также path-параметр `item_id` с помощью `Path`, и указать их в другом порядке, то вы можете использовать специальную возможность синтаксиса Python.
+!!! tip "Подсказка"
+    Возможно, это не так важно или необходимо, если вы используете `Annotated`.
+
+Здесь описан **небольшой приём**, который может оказаться удобным, хотя часто он вам не понадобится.
+
+Если вы хотите:
+
+* объявить query-параметр `q` без `Query` и без значения по умолчанию
+* объявить path-параметр `item_id` с помощью `Path`
+* указать их в другом порядке
+* не использовать `Annotated`
+
+...то вы можете использовать специальную возможность синтаксиса Python.
 
 Передайте `*` в качестве первого параметра функции.
 
 Python не будет ничего делать с `*`, но он будет знать, что все следующие параметры являются именованными аргументами (парами ключ-значение), также известными как <abbr title="From: K-ey W-ord Arg-uments"><code>kwargs</code></abbr>, даже если у них нет значений по умолчанию.
 
-
 ```Python hl_lines="7"
 {!../../../docs_src/path_params_numeric_validations/tutorial003.py!}
 ```
+
+### Лучше с `Annotated`
+
+Имейте в виду, что если вы используете `Annotated`, то, поскольку вы не используете значений по умолчанию для параметров функции, то у вас не возникнет подобной проблемы и вам не придётся использовать `*`.
+
+=== "Python 3.9+"
+
+    ```Python hl_lines="10"
+    {!> ../../../docs_src/path_params_numeric_validations/tutorial003_an_py39.py!}
+    ```
+
+=== "Python 3.6+"
+
+    ```Python hl_lines="9"
+    {!> ../../../docs_src/path_params_numeric_validations/tutorial003_an.py!}
+    ```
 
 ## Валидация числовых данных: больше или равно
 
@@ -82,9 +186,26 @@ Python не будет ничего делать с `*`, но он будет з
 
 В этом примере при указании `ge=1`, параметр `item_id` должен быть больше или равен `1` ("`g`reater than or `e`qual").
 
-```Python hl_lines="8"
-{!../../../docs_src/path_params_numeric_validations/tutorial004.py!}
-```
+=== "Python 3.9+"
+
+    ```Python hl_lines="10"
+    {!> ../../../docs_src/path_params_numeric_validations/tutorial004_an_py39.py!}
+    ```
+
+=== "Python 3.6+"
+
+    ```Python hl_lines="9"
+    {!> ../../../docs_src/path_params_numeric_validations/tutorial004_an.py!}
+    ```
+
+=== "Python 3.6+ без Annotated"
+
+    !!! tip "Подсказка"
+        Рекомендуется использовать версию с `Annotated` если возможно.
+
+    ```Python hl_lines="8"
+    {!> ../../../docs_src/path_params_numeric_validations/tutorial004.py!}
+    ```
 
 ## Валидация числовых данных: больше и меньше или равно
 
@@ -93,9 +214,26 @@ Python не будет ничего делать с `*`, но он будет з
 * `gt`: больше (`g`reater `t`han)
 * `le`: меньше или равно (`l`ess than or `e`qual)
 
-```Python hl_lines="9"
-{!../../../docs_src/path_params_numeric_validations/tutorial005.py!}
-```
+=== "Python 3.9+"
+
+    ```Python hl_lines="10"
+    {!> ../../../docs_src/path_params_numeric_validations/tutorial005_an_py39.py!}
+    ```
+
+=== "Python 3.6+"
+
+    ```Python hl_lines="9"
+    {!> ../../../docs_src/path_params_numeric_validations/tutorial005_an.py!}
+    ```
+
+=== "Python 3.6+ без Annotated"
+
+    !!! tip "Подсказка"
+        Рекомендуется использовать версию с `Annotated` если возможно.
+
+    ```Python hl_lines="9"
+    {!> ../../../docs_src/path_params_numeric_validations/tutorial005.py!}
+    ```
 
 ## Валидация числовых данных: числа с плавающей точкой, больше и меньше
 
@@ -107,9 +245,26 @@ Python не будет ничего делать с `*`, но он будет з
 
 То же самое справедливо и для <abbr title="less than"><code>lt</code></abbr>.
 
-```Python hl_lines="11"
-{!../../../docs_src/path_params_numeric_validations/tutorial006.py!}
-```
+=== "Python 3.9+"
+
+    ```Python hl_lines="13"
+    {!> ../../../docs_src/path_params_numeric_validations/tutorial006_an_py39.py!}
+    ```
+
+=== "Python 3.6+"
+
+    ```Python hl_lines="12"
+    {!> ../../../docs_src/path_params_numeric_validations/tutorial006_an.py!}
+    ```
+
+=== "Python 3.6+ без Annotated"
+
+    !!! tip "Подсказка"
+        Рекомендуется использовать версию с `Annotated` если возможно.
+
+    ```Python hl_lines="11"
+    {!> ../../../docs_src/path_params_numeric_validations/tutorial006.py!}
+    ```
 
 ## Резюме
 
