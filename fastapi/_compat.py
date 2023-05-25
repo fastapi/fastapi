@@ -101,10 +101,8 @@ def get_annotation_from_field_info(
 def _regenerate_error_with_loc(
     *, errors: Sequence[ErrorDetails], loc_prefix: Tuple[Union[str, int], ...]
 ):
-    # TODO (pv2): should the loc really be reversed?
     updated_loc_errors: List[ErrorDetails] = [
-        {**err, "loc": tuple(reversed(loc_prefix + err.get("loc", ())))}
-        for err in errors
+        {**err, "loc": loc_prefix + err.get("loc", ())} for err in errors
     ]
 
     return updated_loc_errors

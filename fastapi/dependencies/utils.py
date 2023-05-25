@@ -937,15 +937,9 @@ async def request_body_to_args(
 # TODO (pv2)
 # def get_missing_field_error(loc: Tuple[str, ...]) -> ErrorWrapper:
 def get_missing_field_error(loc: Tuple[str, ...]) -> Dict[str, Any]:
-    # missing_field_error = ErrorWrapper(MissingError(), loc=loc)
-    # TODO (pv2): should the loc really be reversed?
-    return {
-        "type": "missing",
-        "loc": tuple(reversed(loc)),
-        "msg": "Field required",
-        # "input": {},
-    }
-    # return missing_field_error
+    error = ValidationError.from_exception_data('Field required', [{"type": "missing", "loc": loc, "input": {}}]).errors()[0]
+    del error['input']
+    return error
 
 
 def get_body_field(*, dependant: Dependant, name: str) -> Optional[ModelField]:
