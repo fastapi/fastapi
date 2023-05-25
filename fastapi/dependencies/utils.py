@@ -266,7 +266,7 @@ def _annotation_is_sequence(annotation: type[Any] | None) -> bool:
 
 
 def field_annotation_is_sequence(annotation: type[Any] | None) -> bool:
-    if lenient_issubclass(annotation, str):
+    if lenient_issubclass(annotation, (str, bytes)):
         return False
     return _annotation_is_sequence(annotation) or _annotation_is_sequence(
         get_origin(annotation)
