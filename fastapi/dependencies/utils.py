@@ -937,8 +937,10 @@ async def request_body_to_args(
 # TODO (pv2)
 # def get_missing_field_error(loc: Tuple[str, ...]) -> ErrorWrapper:
 def get_missing_field_error(loc: Tuple[str, ...]) -> Dict[str, Any]:
-    error = ValidationError.from_exception_data('Field required', [{"type": "missing", "loc": loc, "input": {}}]).errors()[0]
-    del error['input']
+    error = ValidationError.from_exception_data(
+        "Field required", [{"type": "missing", "loc": loc, "input": {}}]
+    ).errors()[0]
+    del error["input"]
     return error
 
 

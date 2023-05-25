@@ -37,7 +37,7 @@ def _prepare_errors(errors: Sequence[Any]) -> list[InitErrorDetails]:
     known_errors = set(all_literal_values(ErrorType))
     for error in errors:
         assert isinstance(error, dict)
-        if error['type'] in known_errors:
+        if error["type"] in known_errors:
             result.append(error)
         else:
             new_error = error.copy()

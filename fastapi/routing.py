@@ -126,7 +126,7 @@ async def serialize_response(
 ) -> Any:
     if field:
         errors = []
-        if not hasattr(field, 'serialize'):
+        if not hasattr(field, "serialize"):
             # pydantic v1
             response_content = _prepare_response_content(
                 response_content,
@@ -147,7 +147,7 @@ async def serialize_response(
         if errors:
             raise ResponseValidationError(errors=errors, body=response_content)
 
-        if hasattr(field, 'serialize'):
+        if hasattr(field, "serialize"):
             return field.serialize(value)
 
         return jsonable_encoder(
