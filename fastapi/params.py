@@ -56,7 +56,8 @@ class Param(FieldInfo):
         )
 
     def __repr__(self) -> str:
-        return f"{self.__class__.__name__}({self.default})"
+        repr_default = ... if self.default is Undefined else str(self.default)
+        return f"{self.__class__.__name__}({repr_default})"
 
 
 class Path(Param):
@@ -276,7 +277,8 @@ class Body(FieldInfo):
         )
 
     def __repr__(self) -> str:
-        return f"{self.__class__.__name__}({self.default})"
+        repr_default = ... if self.default is Undefined else self.default
+        return f"{self.__class__.__name__}({repr_default})"
 
 
 class Form(Body):
