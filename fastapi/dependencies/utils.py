@@ -297,6 +297,58 @@ def is_scalar_field(field: FieldInfo) -> bool:
     )
 
 
+def is_bytes_or_nonable_bytes_annotation(annotation: Any) -> bool:
+    if lenient_issubclass(annotation, bytes):
+        return True
+    origin = get_origin(annotation)
+    if origin is Union or origin is UnionType:
+        for arg in get_args(annotation):
+            if lenient_issubclass(arg, bytes):
+                return True
+    return False
+
+
+def is_uploadfile_or_nonable_uploadfile_annotation(annotation: Any) -> bool:
+    if lenient_issubclass(annotation, UploadFile):
+        return True
+    origin = get_origin(annotation)
+    if origin is Union or origin is UnionType:
+        for arg in get_args(annotation):
+            if lenient_issubclass(arg, UploadFile):
+                return True
+    return False
+
+
+def is_bytes_sequence_annotation(annotation: type[Any] | None) -> bool:
+    origin = get_origin(annotation)
+    if origin is Union or origin is UnionType:
+        at_least_one_bytes_sequence = False
+        for arg in get_args(annotation):
+            if is_bytes_sequence_annotation(arg):
+                at_least_one_bytes_sequence = True
+                continue
+        return at_least_one_bytes_sequence
+    return field_annotation_is_sequence(annotation) and all(
+        is_bytes_or_nonable_bytes_annotation(sub_annotation)
+        for sub_annotation in get_args(annotation)
+    )
+
+
+def is_uploadfile_sequence_annotation(annotation: type[Any] | None) -> bool:
+    origin = get_origin(annotation)
+    if origin is Union or origin is UnionType:
+        at_least_one_bytes_sequence = False
+        for arg in get_args(annotation):
+            if is_uploadfile_sequence_annotation(arg):
+                at_least_one_bytes_sequence = True
+                continue
+        return at_least_one_bytes_sequence
+    return field_annotation_is_sequence(annotation) and all(
+        is_uploadfile_or_nonable_uploadfile_annotation(sub_annotation)
+        for sub_annotation in get_args(annotation)
+    )
+
+
 def get_typed_signature(call: Callable[..., Any]) -> inspect.Signature:
     signature = inspect.signature(call)
     globalns = getattr(call, "__globals__", {})
@@ -489,7 +541,9 @@ def analyze_param(
             # parameter might sometimes be a path parameter and sometimes not. See
             # `tests/test_infer_param_optionality.py` for an example.
             field_info = params.Path(annotation=type_annotation)
-        elif lenient_issubclass(type_annotation, UploadFile):
+        elif is_uploadfile_or_nonable_uploadfile_annotation(
+            type_annotation
+        ) or is_uploadfile_sequence_annotation(type_annotation):
             field_info = params.File(annotation=type_annotation, default=default_value)
         elif not field_annotation_is_scalar(annotation=type_annotation):
             field_info = params.Body(annotation=type_annotation, default=default_value)
@@ -839,20 +893,23 @@ async def request_body_to_args(
                 continue
             if (
                 isinstance(field_info, params.File)
-                and lenient_issubclass(field.type_, bytes)
+                and is_bytes_or_nonable_bytes_annotation(field.type_)
                 and isinstance(value, UploadFile)
             ):
                 value = await value.read()
             elif (
                 # TODO (pv2)
                 # field.shape in sequence_shapes
-                field_annotation_is_sequence(field.field_info.annotation)
+                is_bytes_sequence_annotation(field.type_)
                 and isinstance(field_info, params.File)
-                and lenient_issubclass(field.type_, bytes)
                 and isinstance(value, sequence_types)
             ):
                 # for type checkers
-                assert issubclass(field.field_info.annotation, sequence_types)
+                origin_type = (
+                    get_origin(field.field_info.annotation)
+                    or field.field_info.annotation
+                )
+                assert issubclass(origin_type, sequence_types)
                 results: List[Union[bytes, str]] = []
 
                 async def process_fn(
@@ -864,9 +921,7 @@ async def request_body_to_args(
                 async with anyio.create_task_group() as tg:
                     for sub_value in value:
                         tg.start_soon(process_fn, sub_value.read)
-                value = sequence_annotation_to_type[field.field_info.annotation](
-                    results
-                )
+                value = sequence_annotation_to_type[origin_type](results)
 
             v_, errors_ = field.validate(value, values, loc=loc)
 
