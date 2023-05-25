@@ -79,6 +79,7 @@ sequence_types = (Sequence, tuple, set, frozenset, deque)
 sequence_annotation_to_type = {
     Sequence: list,
     List: list,
+    list: list,
     Tuple: tuple,
     tuple: tuple,
     Set: set,
