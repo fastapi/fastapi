@@ -79,9 +79,9 @@ multiple_errors = {
 
 
 def test_put_correct_body():
-    response = client.post("/items/", json=[{"name": "Foo", "age": 5}])
+    response = client.post("/items/", json=[{"name": "Foo", "age": "5"}])
     assert response.status_code == 200, response.text
-    assert response.json() == {"item": [{"name": "Foo", "age": 5}]}
+    assert response.json() == {"item": [{"name": "Foo", "age": "5"}]}
 
 
 def test_jsonable_encoder_requiring_error():
