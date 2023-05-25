@@ -126,12 +126,14 @@ async def serialize_response(
 ) -> Any:
     if field:
         errors = []
-        response_content = _prepare_response_content(
-            response_content,
-            exclude_unset=exclude_unset,
-            exclude_defaults=exclude_defaults,
-            exclude_none=exclude_none,
-        )
+        if not hasattr(field, 'serialize'):
+            # pydantic v1
+            response_content = _prepare_response_content(
+                response_content,
+                exclude_unset=exclude_unset,
+                exclude_defaults=exclude_defaults,
+                exclude_none=exclude_none,
+            )
         if is_coroutine:
             value, errors_ = field.validate(response_content, {}, loc=("response",))
         else:
@@ -144,6 +146,10 @@ async def serialize_response(
             errors.append(errors_)
         if errors:
             raise ResponseValidationError(errors=errors, body=response_content)
+
+        if hasattr(field, 'serialize'):
+            return field.serialize(value)
+
         return jsonable_encoder(
             value,
             include=include,

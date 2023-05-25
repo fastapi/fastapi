@@ -75,6 +75,9 @@ if PYDANTIC_V2:
                     errors=exc.errors(), loc_prefix=use_loc
                 )
 
+        def serialize(self, value: Any) -> Any:
+            return self._type_adapter.dump_python(value)
+
         def __hash__(self) -> int:
             # Each ModelField is unique for our purposes, to allow making a dict from
             # ModelField to its JSON Schema.
