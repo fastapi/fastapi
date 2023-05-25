@@ -235,7 +235,7 @@ def _annotation_is_complex(annotation: type[Any] | None) -> bool:
         return False
 
     return lenient_issubclass(
-        annotation, (BaseModel, Mapping, *sequence_types)
+        annotation, (BaseModel, Mapping, *sequence_types, UploadFile)
     ) or is_dataclass(annotation)
 
 
