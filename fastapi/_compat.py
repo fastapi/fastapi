@@ -1,15 +1,14 @@
-import sys
+import types
 from dataclasses import dataclass
 from typing import Any, Dict, List, Sequence, Tuple, Union
 
-if sys.version_info < (3, 9):
-    from typing_extensions import Annotated
-else:
-    from typing import Annotated
-
 from pydantic.version import VERSION as PYDANTIC_VERSION
+from typing_extensions import Annotated
 
 PYDANTIC_V2 = PYDANTIC_VERSION.startswith("2.")
+
+UnionType = getattr(types, "UnionType", Union)
+NoneType = getattr(types, "UnionType", None)
 
 if PYDANTIC_V2:
     from pydantic import TypeAdapter, ValidationError
