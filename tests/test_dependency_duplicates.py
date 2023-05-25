@@ -1,8 +1,9 @@
 from typing import List
 
-from dirty_equals import IsDict, IsStr
+from dirty_equals import IsDict
 from fastapi import Depends, FastAPI
 from fastapi.testclient import TestClient
+from fastapi.utils import match_pydantic_error_url
 from pydantic import BaseModel
 
 app = FastAPI()
@@ -56,7 +57,7 @@ def test_no_duplicates_invalid():
                     "loc": ["body", "item2"],
                     "msg": "Field required",
                     "input": None,
-                    "url": IsStr(regex=r"^https://errors\.pydantic\.dev/.*/v/missing"),
+                    "url": match_pydantic_error_url("missing"),
                 }
             ]
         }

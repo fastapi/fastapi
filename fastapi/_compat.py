@@ -81,11 +81,11 @@ if PYDANTIC_V2:
             return id(self)
 
 else:
+    from pydantic.fields import FieldInfo as FieldInfo
     from pydantic.fields import ModelField as ModelField  # noqa: F401
     from pydantic.fields import Undefined as Undefined
     from pydantic.fields import UndefinedType as UndefinedType  # noqa: F401
     from pydantic.typing import evaluate_forwardref as evaluate_forwardref  # noqa: F401
-    from pydatantic.fields import FieldInfo as FieldInfo
 
     ErrorDetails = Dict[str, Any]
 

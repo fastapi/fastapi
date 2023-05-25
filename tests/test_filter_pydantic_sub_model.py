@@ -1,10 +1,11 @@
 from typing import Optional
 
 import pytest
-from dirty_equals import IsDict, IsStr
+from dirty_equals import IsDict
 from fastapi import Depends, FastAPI
 from fastapi.exceptions import ResponseValidationError
 from fastapi.testclient import TestClient
+from fastapi.utils import match_pydantic_error_url
 from pydantic import BaseModel, FieldValidationInfo, field_validator
 
 app = FastAPI()
@@ -63,7 +64,7 @@ def test_validator_is_cloned():
                 "msg": "Value error, name must end in A",
                 "input": "modelX",
                 "ctx": {"error": "name must end in A"},
-                "url": IsStr(regex=r"^https://errors\.pydantic\.dev/.*/v/value_error$"),
+                "url": match_pydantic_error_url("value_error"),
             }
         )
         | IsDict(

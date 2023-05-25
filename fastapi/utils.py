@@ -5,6 +5,7 @@ from enum import Enum
 from typing import TYPE_CHECKING, Any, Dict, Optional, Set, Type, Union, cast
 
 import fastapi
+from dirty_equals import IsStr
 from fastapi._compat import ModelField, Undefined, UndefinedType, lenient_issubclass
 from fastapi.datastructures import DefaultPlaceholder, DefaultType
 from pydantic import BaseModel, PydanticSchemaGenerationError, create_model
@@ -211,3 +212,7 @@ def get_value_or_default(
         if not isinstance(item, DefaultPlaceholder):
             return item
     return first_item
+
+
+def match_pydantic_error_url(error_type: str) -> IsStr:
+    return IsStr(regex=rf"^https://errors\.pydantic\.dev/.*/v/{error_type}")

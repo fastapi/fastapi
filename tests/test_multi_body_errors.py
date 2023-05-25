@@ -4,6 +4,7 @@ from typing import List
 from dirty_equals import IsDict
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
+from fastapi.utils import match_pydantic_error_url
 from pydantic import BaseModel, condecimal
 
 app = FastAPI()
@@ -24,36 +25,54 @@ client = TestClient(app)
 
 single_error = {
     "detail": [
-        {
-            "ctx": {"limit_value": 0.0},
-            "loc": ["body", 0, "age"],
-            "msg": "ensure this value is greater than 0",
-            "type": "value_error.number.not_gt",
-        }
+        IsDict(
+            {
+                "ctx": {"limit_value": 0.0},
+                "loc": ["body", 0, "age"],
+                "msg": "ensure this value is greater than 0",
+                "type": "value_error.number.not_gt",
+            }
+        )
+        | IsDict(
+            {
+                "ctx": {"gt": 0.0},
+                "input": -1.0,
+                "loc": ["body", 0, "age"],
+                "msg": "Input should be greater than 0",
+                "type": "greater_than",
+                "url": match_pydantic_error_url("greater_than"),
+            }
+        )
     ]
 }
 
 multiple_errors = {
     "detail": [
         {
+            "input": {"age": "five"},
             "loc": ["body", 0, "name"],
-            "msg": "field required",
-            "type": "value_error.missing",
+            "msg": "Field required",
+            "type": "missing",
+            "url": match_pydantic_error_url("missing"),
         },
         {
+            "input": "five",
             "loc": ["body", 0, "age"],
-            "msg": "value is not a valid decimal",
-            "type": "type_error.decimal",
+            "msg": "Input should be a valid decimal",
+            "type": "decimal_parsing",
         },
         {
+            "input": {"age": "six"},
             "loc": ["body", 1, "name"],
-            "msg": "field required",
-            "type": "value_error.missing",
+            "msg": "Field required",
+            "type": "missing",
+            "url": match_pydantic_error_url("missing"),
         },
         {
+            "input": "six",
             "loc": ["body", 1, "age"],
-            "msg": "value is not a valid decimal",
-            "type": "type_error.decimal",
+            "msg": "Input should be a valid decimal",
+            "type": "decimal_parsing",
         },
     ]
 }

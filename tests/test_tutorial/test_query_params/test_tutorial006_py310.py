@@ -1,6 +1,7 @@
 import pytest
-from dirty_equals import IsDict, IsStr
+from dirty_equals import IsDict
 from fastapi.testclient import TestClient
+from fastapi.utils import match_pydantic_error_url
 
 from ...utils import needs_py310
 
@@ -37,25 +38,21 @@ def test_foo_no_needy(client: TestClient):
                     "loc": ["query", "needy"],
                     "msg": "Field required",
                     "input": None,
-                    "url": IsStr(regex=r"^https://errors\.pydantic\.dev/.*/v/missing"),
+                    "url": match_pydantic_error_url("missing"),
                 },
                 {
                     "type": "int_parsing",
                     "loc": ["query", "skip"],
                     "msg": "Input should be a valid integer, unable to parse string as an integer",
                     "input": "a",
-                    "url": IsStr(
-                        regex=r"^https://errors\.pydantic\.dev/.*/v/int_parsing"
-                    ),
+                    "url": match_pydantic_error_url("int_parsing"),
                 },
                 {
                     "type": "int_parsing",
                     "loc": ["query", "limit"],
                     "msg": "Input should be a valid integer, unable to parse string as an integer",
                     "input": "b",
-                    "url": IsStr(
-                        regex=r"^https://errors\.pydantic\.dev/.*/v/int_parsing"
-                    ),
+                    "url": match_pydantic_error_url("int_parsing"),
                 },
             ]
         }

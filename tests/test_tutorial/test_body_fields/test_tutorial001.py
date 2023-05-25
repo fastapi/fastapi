@@ -1,6 +1,7 @@
 import pytest
-from dirty_equals import IsDict, IsStr
+from dirty_equals import IsDict
 from fastapi.testclient import TestClient
+from fastapi.utils import match_pydantic_error_url
 
 
 @pytest.fixture(name="client")
@@ -56,9 +57,7 @@ def test_invalid_price(client: TestClient):
                     "msg": "Input should be greater than 0",
                     "input": -3.0,
                     "ctx": {"gt": 0.0},
-                    "url": IsStr(
-                        regex=r"^https://errors\.pydantic\.dev/.*/v/greater_than"
-                    ),
+                    "url": match_pydantic_error_url("greater_than"),
                 }
             ]
         }

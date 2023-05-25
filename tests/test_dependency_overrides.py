@@ -1,9 +1,10 @@
 from typing import Optional
 
 import pytest
-from dirty_equals import IsDict, IsStr
+from dirty_equals import IsDict
 from fastapi import APIRouter, Depends, FastAPI
 from fastapi.testclient import TestClient
+from fastapi.utils import match_pydantic_error_url
 
 app = FastAPI()
 
@@ -62,7 +63,7 @@ def test_main_depends():
                     "loc": ["query", "q"],
                     "msg": "Field required",
                     "input": None,
-                    "url": IsStr(regex=r"^https://errors\.pydantic\.dev/.*/v/missing"),
+                    "url": match_pydantic_error_url("missing"),
                 }
             ]
         }
@@ -110,7 +111,7 @@ def test_decorator_depends(insert_assert):
                     "loc": ["query", "q"],
                     "msg": "Field required",
                     "input": None,
-                    "url": IsStr(regex=r"^https://errors\.pydantic\.dev/.*/v/missing"),
+                    "url": match_pydantic_error_url("missing"),
                 }
             ]
         }
@@ -151,7 +152,7 @@ def test_router_depends():
                     "loc": ["query", "q"],
                     "msg": "Field required",
                     "input": None,
-                    "url": IsStr(regex=r"^https://errors\.pydantic\.dev/.*/v/missing"),
+                    "url": match_pydantic_error_url("missing"),
                 }
             ]
         }
@@ -198,7 +199,7 @@ def test_router_decorator_depends():
                     "loc": ["query", "q"],
                     "msg": "Field required",
                     "input": None,
-                    "url": IsStr(regex=r"^https://errors\.pydantic\.dev/.*/v/missing"),
+                    "url": match_pydantic_error_url("missing"),
                 }
             ]
         }
@@ -285,7 +286,7 @@ def test_override_with_sub_main_depends():
                     "loc": ["query", "k"],
                     "msg": "Field required",
                     "input": None,
-                    "url": IsStr(regex=r"^https://errors\.pydantic\.dev/.*/v/missing"),
+                    "url": match_pydantic_error_url("missing"),
                 }
             ]
         }
@@ -316,7 +317,7 @@ def test_override_with_sub__main_depends_q_foo():
                     "loc": ["query", "k"],
                     "msg": "Field required",
                     "input": None,
-                    "url": IsStr(regex=r"^https://errors\.pydantic\.dev/.*/v/missing"),
+                    "url": match_pydantic_error_url("missing"),
                 }
             ]
         }
@@ -355,7 +356,7 @@ def test_override_with_sub_decorator_depends():
                     "loc": ["query", "k"],
                     "msg": "Field required",
                     "input": None,
-                    "url": IsStr(regex=r"^https://errors\.pydantic\.dev/.*/v/missing"),
+                    "url": match_pydantic_error_url("missing"),
                 }
             ]
         }
@@ -386,7 +387,7 @@ def test_override_with_sub_decorator_depends_q_foo():
                     "loc": ["query", "k"],
                     "msg": "Field required",
                     "input": None,
-                    "url": IsStr(regex=r"^https://errors\.pydantic\.dev/.*/v/missing"),
+                    "url": match_pydantic_error_url("missing"),
                 }
             ]
         }
@@ -425,7 +426,7 @@ def test_override_with_sub_router_depends():
                     "loc": ["query", "k"],
                     "msg": "Field required",
                     "input": None,
-                    "url": IsStr(regex=r"^https://errors\.pydantic\.dev/.*/v/missing"),
+                    "url": match_pydantic_error_url("missing"),
                 }
             ]
         }
@@ -456,7 +457,7 @@ def test_override_with_sub_router_depends_q_foo():
                     "loc": ["query", "k"],
                     "msg": "Field required",
                     "input": None,
-                    "url": IsStr(regex=r"^https://errors\.pydantic\.dev/.*/v/missing"),
+                    "url": match_pydantic_error_url("missing"),
                 }
             ]
         }
@@ -495,7 +496,7 @@ def test_override_with_sub_router_decorator_depends():
                     "loc": ["query", "k"],
                     "msg": "Field required",
                     "input": None,
-                    "url": IsStr(regex=r"^https://errors\.pydantic\.dev/.*/v/missing"),
+                    "url": match_pydantic_error_url("missing"),
                 }
             ]
         }
@@ -526,7 +527,7 @@ def test_override_with_sub_router_decorator_depends_q_foo():
                     "loc": ["query", "k"],
                     "msg": "Field required",
                     "input": None,
-                    "url": IsStr(regex=r"^https://errors\.pydantic\.dev/.*/v/missing"),
+                    "url": match_pydantic_error_url("missing"),
                 }
             ]
         }

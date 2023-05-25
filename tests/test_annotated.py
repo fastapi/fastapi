@@ -1,7 +1,8 @@
 import pytest
-from dirty_equals import IsDict, IsStr
+from dirty_equals import IsDict
 from fastapi import APIRouter, FastAPI, Query
 from fastapi.testclient import TestClient
+from fastapi.utils import match_pydantic_error_url
 from typing_extensions import Annotated
 
 app = FastAPI()
@@ -37,7 +38,7 @@ foo_is_missing = {
                 "msg": "Field required",
                 "type": "missing",
                 "input": None,
-                "url": IsStr(regex=r"^https://errors\.pydantic\.dev/.*/v/missing"),
+                "url": match_pydantic_error_url("missing"),
             }
         )
         # TODO: remove when deprecating Pydantic v1
@@ -59,9 +60,7 @@ foo_is_short = {
                 "msg": "String should have at least 1 characters",
                 "type": "string_too_short",
                 "input": "",
-                "url": IsStr(
-                    regex=r"^https://errors\.pydantic\.dev/.*/v/string_too_short"
-                ),
+                "url": match_pydantic_error_url("string_too_short"),
             }
         )
         # TODO: remove when deprecating Pydantic v1

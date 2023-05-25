@@ -1,5 +1,6 @@
-from dirty_equals import IsDict, IsStr
+from dirty_equals import IsDict
 from fastapi.testclient import TestClient
+from fastapi.utils import match_pydantic_error_url
 
 from docs_src.dependencies.tutorial012 import app
 
@@ -17,14 +18,14 @@ def test_get_no_headers_items():
                     "loc": ["header", "x-token"],
                     "msg": "Field required",
                     "input": None,
-                    "url": IsStr(regex=r"^https://errors\.pydantic\.dev/.*/v/missing"),
+                    "url": match_pydantic_error_url("missing"),
                 },
                 {
                     "type": "missing",
                     "loc": ["header", "x-key"],
                     "msg": "Field required",
                     "input": None,
-                    "url": IsStr(regex=r"^https://errors\.pydantic\.dev/.*/v/missing"),
+                    "url": match_pydantic_error_url("missing"),
                 },
             ]
         }
@@ -58,14 +59,14 @@ def test_get_no_headers_users():
                     "loc": ["header", "x-token"],
                     "msg": "Field required",
                     "input": None,
-                    "url": IsStr(regex=r"^https://errors\.pydantic\.dev/.*/v/missing"),
+                    "url": match_pydantic_error_url("missing"),
                 },
                 {
                     "type": "missing",
                     "loc": ["header", "x-key"],
                     "msg": "Field required",
                     "input": None,
-                    "url": IsStr(regex=r"^https://errors\.pydantic\.dev/.*/v/missing"),
+                    "url": match_pydantic_error_url("missing"),
                 },
             ]
         }

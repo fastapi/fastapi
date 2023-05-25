@@ -1,5 +1,6 @@
-from dirty_equals import IsDict, IsStr
+from dirty_equals import IsDict
 from fastapi.testclient import TestClient
+from fastapi.utils import match_pydantic_error_url
 
 from docs_src.dataclasses.tutorial001 import app
 
@@ -28,9 +29,7 @@ def test_post_invalid_item():
                     "loc": ["body", "price"],
                     "msg": "Input should be a valid number, unable to parse string as an number",
                     "input": "invalid price",
-                    "url": IsStr(
-                        regex=r"^https://errors\.pydantic\.dev/.*/v/float_parsing"
-                    ),
+                    "url": match_pydantic_error_url("float_parsing"),
                 }
             ]
         }
