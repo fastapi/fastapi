@@ -1,3 +1,4 @@
+from dirty_equals import IsDict
 from fastapi.testclient import TestClient
 
 from docs_src.request_files.tutorial001_02 import app
@@ -53,9 +54,22 @@ def test_openapi_schema():
                     "requestBody": {
                         "content": {
                             "multipart/form-data": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Body_create_file_files__post"
-                                }
+                                "schema": IsDict(
+                                    {
+                                        "allOf": [
+                                            {
+                                                "$ref": "#/components/schemas/Body_create_file_files__post"
+                                            }
+                                        ],
+                                        "title": "Body",
+                                    }
+                                )
+                                | IsDict(
+                                    # TODO: remove when deprecating Pydantic v1
+                                    {
+                                        "$ref": "#/components/schemas/Body_create_file_files__post"
+                                    }
+                                )
                             }
                         }
                     },
@@ -84,9 +98,22 @@ def test_openapi_schema():
                     "requestBody": {
                         "content": {
                             "multipart/form-data": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Body_create_upload_file_uploadfile__post"
-                                }
+                                "schema": IsDict(
+                                    {
+                                        "allOf": [
+                                            {
+                                                "$ref": "#/components/schemas/Body_create_upload_file_uploadfile__post"
+                                            }
+                                        ],
+                                        "title": "Body",
+                                    }
+                                )
+                                | IsDict(
+                                    # TODO: remove when deprecating Pydantic v1
+                                    {
+                                        "$ref": "#/components/schemas/Body_create_upload_file_uploadfile__post"
+                                    }
+                                )
                             }
                         }
                     },
@@ -115,14 +142,38 @@ def test_openapi_schema():
                     "title": "Body_create_file_files__post",
                     "type": "object",
                     "properties": {
-                        "file": {"title": "File", "type": "string", "format": "binary"}
+                        "file": IsDict(
+                            {
+                                "title": "File",
+                                "anyOf": [
+                                    {"type": "string", "format": "binary"},
+                                    {"type": "null"},
+                                ],
+                            }
+                        )
+                        | IsDict(
+                            # TODO: remove when deprecating Pydantic v1
+                            {"title": "File", "type": "string", "format": "binary"}
+                        )
                     },
                 },
                 "Body_create_upload_file_uploadfile__post": {
                     "title": "Body_create_upload_file_uploadfile__post",
                     "type": "object",
                     "properties": {
-                        "file": {"title": "File", "type": "string", "format": "binary"}
+                        "file": IsDict(
+                            {
+                                "title": "File",
+                                "anyOf": [
+                                    {"type": "string", "format": "binary"},
+                                    {"type": "null"},
+                                ],
+                            }
+                        )
+                        | IsDict(
+                            # TODO: remove when deprecating Pydantic v1
+                            {"title": "File", "type": "string", "format": "binary"}
+                        )
                     },
                 },
                 "HTTPValidationError": {

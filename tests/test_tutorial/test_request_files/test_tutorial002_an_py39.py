@@ -1,4 +1,5 @@
 import pytest
+from dirty_equals import IsDict, IsStr
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 
@@ -18,33 +19,68 @@ def get_client(app: FastAPI):
     return client
 
 
-file_required = {
-    "detail": [
-        {
-            "loc": ["body", "files"],
-            "msg": "field required",
-            "type": "value_error.missing",
-        }
-    ]
-}
-
-
 @needs_py39
 def test_post_form_no_body(client: TestClient):
     response = client.post("/files/")
     assert response.status_code == 422, response.text
-    assert response.json() == file_required
+    assert response.json() == IsDict(
+        {
+            "detail": [
+                {
+                    "type": "missing",
+                    "loc": ["body", "files"],
+                    "msg": "Field required",
+                    "input": None,
+                    "url": IsStr(regex=r"^https://errors\.pydantic\.dev/.*/v/missing"),
+                }
+            ]
+        }
+    ) | IsDict(
+        # TODO: remove when deprecating Pydantic v1
+        {
+            "detail": [
+                {
+                    "loc": ["body", "files"],
+                    "msg": "field required",
+                    "type": "value_error.missing",
+                }
+            ]
+        }
+    )
 
 
 @needs_py39
 def test_post_body_json(client: TestClient):
     response = client.post("/files/", json={"file": "Foo"})
     assert response.status_code == 422, response.text
-    assert response.json() == file_required
+    assert response.json() == IsDict(
+        {
+            "detail": [
+                {
+                    "type": "missing",
+                    "loc": ["body", "files"],
+                    "msg": "Field required",
+                    "input": None,
+                    "url": IsStr(regex=r"^https://errors\.pydantic\.dev/.*/v/missing"),
+                }
+            ]
+        }
+    ) | IsDict(
+        # TODO: remove when deprecating Pydantic v1
+        {
+            "detail": [
+                {
+                    "loc": ["body", "files"],
+                    "msg": "field required",
+                    "type": "value_error.missing",
+                }
+            ]
+        }
+    )
 
 
 @needs_py39
-def test_post_files(tmp_path, app: FastAPI):
+def test_post_files(tmp_path, app: FastAPI, insert_assert):
     path = tmp_path / "test.txt"
     path.write_bytes(b"<file content>")
     path2 = tmp_path / "test2.txt"
