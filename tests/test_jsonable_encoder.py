@@ -191,6 +191,7 @@ def test_encode_model_with_default():
     }
 
 
+@pytest.mark.xfail(reason="Custom encoders are not currently supported in pydantic")
 def test_custom_encoders():
     class safe_datetime(datetime):
         pass
