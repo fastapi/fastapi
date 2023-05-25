@@ -3,7 +3,7 @@ import uuid
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from pydantic import BaseModel
+from pydantic import BaseModel, field_serializer
 
 app = FastAPI()
 
@@ -43,13 +43,13 @@ def return_fast_uuid():
 
 
 class SomeCustomClass(BaseModel):
-    model_config = {
-        "arbitrary_types_allowed": True,
-        # TODO (pv2)
-        # "json_encoders": {uuid.UUID: str}
-    }
+    model_config = {"arbitrary_types_allowed": True}
 
     a_uuid: MyUuid
+
+    @field_serializer("a_uuid")
+    def serialize_a_uuid(self, v):
+        return str(v)
 
 
 @app.get("/get_custom_class")

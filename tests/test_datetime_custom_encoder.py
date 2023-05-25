@@ -1,21 +1,16 @@
-from datetime import datetime
+from datetime import datetime, timezone
 
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from pydantic import BaseModel
+from pydantic import BaseModel, field_serializer
 
 
 class ModelWithDatetimeField(BaseModel):
     dt_field: datetime
 
-    # TODO (pv2)
-    # model_config = {
-    #     "json_encoders": {
-    #         datetime: lambda dt: dt.replace(
-    #             microsecond=0, tzinfo=timezone.utc
-    #         ).isoformat()
-    #     }
-    # }
+    @field_serializer("dt_field")
+    def serialize_datetime(self, dt):
+        return dt.replace(microsecond=0, tzinfo=timezone.utc).isoformat()
 
 
 app = FastAPI()

@@ -1,12 +1,12 @@
 from dataclasses import dataclass
-from datetime import datetime
+from datetime import datetime, timezone
 from enum import Enum
 from pathlib import PurePath, PurePosixPath, PureWindowsPath
 from typing import Optional
 
 import pytest
 from fastapi.encoders import jsonable_encoder
-from pydantic import BaseModel, Field, ValidationError, create_model
+from pydantic import BaseModel, Field, ValidationError, create_model, field_serializer
 
 
 class Person:
@@ -48,14 +48,9 @@ class Unserializable:
 class ModelWithCustomEncoder(BaseModel):
     dt_field: datetime
 
-    model_config = {
-        # TODO (pv2)
-        # "json_encoders": {
-        #     datetime: lambda dt: dt.replace(
-        #         microsecond=0, tzinfo=timezone.utc
-        #     ).isoformat()
-        # }
-    }
+    @field_serializer("dt_field")
+    def serialize_dt_field(self, dt):
+        return dt.replace(microsecond=0, tzinfo=timezone.utc).isoformat()
 
 
 class ModelWithCustomEncoderSubclass(ModelWithCustomEncoder):
