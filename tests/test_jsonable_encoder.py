@@ -6,7 +6,9 @@ from typing import Optional
 
 import pytest
 from fastapi.encoders import jsonable_encoder
-from pydantic import BaseModel, Field, ValidationError, create_model, field_serializer
+from pydantic import BaseModel, Field, ValidationError, create_model
+
+from .utils import needs_pydanticv1, needs_pydanticv2
 
 
 class Person:
@@ -43,18 +45,6 @@ class Unserializable:
     @property
     def __dict__(self):
         raise NotImplementedError()
-
-
-class ModelWithCustomEncoder(BaseModel):
-    dt_field: datetime
-
-    @field_serializer("dt_field")
-    def serialize_dt_field(self, dt):
-        return dt.replace(microsecond=0, tzinfo=timezone.utc).isoformat()
-
-
-class ModelWithCustomEncoderSubclass(ModelWithCustomEncoder):
-    model_config = {}
 
 
 class RoleEnum(Enum):
@@ -148,14 +138,47 @@ def test_encode_unsupported():
         jsonable_encoder(unserializable)
 
 
-def test_encode_custom_json_encoders_model():
+@needs_pydanticv2
+def test_encode_custom_json_encoders_model_pydanticv2():
+    from pydantic import field_serializer
+
+    class ModelWithCustomEncoder(BaseModel):
+        dt_field: datetime
+
+        @field_serializer("dt_field")
+        def serialize_dt_field(self, dt):
+            return dt.replace(microsecond=0, tzinfo=timezone.utc).isoformat()
+
+    class ModelWithCustomEncoderSubclass(ModelWithCustomEncoder):
+        pass
+
     model = ModelWithCustomEncoder(dt_field=datetime(2019, 1, 1, 8))
     assert jsonable_encoder(model) == {"dt_field": "2019-01-01T08:00:00+00:00"}
+    subclass_model = ModelWithCustomEncoderSubclass(dt_field=datetime(2019, 1, 1, 8))
+    assert jsonable_encoder(subclass_model) == {"dt_field": "2019-01-01T08:00:00+00:00"}
 
 
-def test_encode_custom_json_encoders_model_subclass():
-    model = ModelWithCustomEncoderSubclass(dt_field=datetime(2019, 1, 1, 8))
+# TODO: remove when deprecating Pydantic v1
+@needs_pydanticv1
+def test_encode_custom_json_encoders_model_pydanticv1():
+    class ModelWithCustomEncoder(BaseModel):
+        dt_field: datetime
+
+        class Config:
+            json_encoders = {
+                datetime: lambda dt: dt.replace(
+                    microsecond=0, tzinfo=timezone.utc
+                ).isoformat()
+            }
+
+    class ModelWithCustomEncoderSubclass(ModelWithCustomEncoder):
+        class Config:
+            pass
+
+    model = ModelWithCustomEncoder(dt_field=datetime(2019, 1, 1, 8))
     assert jsonable_encoder(model) == {"dt_field": "2019-01-01T08:00:00+00:00"}
+    subclass_model = ModelWithCustomEncoderSubclass(dt_field=datetime(2019, 1, 1, 8))
+    assert jsonable_encoder(subclass_model) == {"dt_field": "2019-01-01T08:00:00+00:00"}
 
 
 def test_encode_model_with_config():
@@ -191,7 +214,7 @@ def test_encode_model_with_default():
     }
 
 
-@pytest.mark.xfail(reason="Custom encoders are not currently supported in pydantic")
+@needs_pydanticv1
 def test_custom_encoders():
     class safe_datetime(datetime):
         pass
