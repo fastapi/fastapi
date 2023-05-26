@@ -1,6 +1,6 @@
 import types
 from dataclasses import dataclass
-from typing import Any, Dict, List, Sequence, Tuple, Union
+from typing import Any, Dict, List, Sequence, Set, Tuple, Union
 
 from pydantic.version import VERSION as PYDANTIC_VERSION
 from typing_extensions import Annotated
@@ -9,6 +9,8 @@ PYDANTIC_V2 = PYDANTIC_VERSION.startswith("2.")
 
 UnionType = getattr(types, "UnionType", Union)
 NoneType = getattr(types, "UnionType", None)
+SetIntStr = Set[Union[int, str]]
+DictIntStrAny = Dict[Union[int, str], Any]
 
 if PYDANTIC_V2:
     from pydantic import TypeAdapter, ValidationError
@@ -75,8 +77,28 @@ if PYDANTIC_V2:
                     errors=exc.errors(), loc_prefix=use_loc
                 )
 
-        def serialize(self, value: Any) -> Any:
-            return self._type_adapter.dump_python(value)
+        def serialize(
+            self,
+            value: Any,
+            *,
+            mode: str = "json",
+            include: Union[SetIntStr, DictIntStrAny, None] = None,
+            exclude: Union[SetIntStr, DictIntStrAny, None] = None,
+            by_alias: bool = True,
+            exclude_unset: bool = False,
+            exclude_defaults: bool = False,
+            exclude_none: bool = False,
+        ) -> Any:
+            return self._type_adapter.dump_python(
+                value,
+                mode=mode,
+                include=include,
+                exclude=exclude,
+                by_alias=by_alias,
+                exclude_unset=exclude_unset,
+                exclude_defaults=exclude_defaults,
+                exclude_none=exclude_none,
+            )
 
         def __hash__(self) -> int:
             # Each ModelField is unique for our purposes, to allow making a dict from

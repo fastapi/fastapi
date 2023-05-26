@@ -148,7 +148,15 @@ async def serialize_response(
             raise ResponseValidationError(errors=errors, body=response_content)
 
         if hasattr(field, "serialize"):
-            return field.serialize(value)
+            return field.serialize(
+                value,
+                include=include,
+                exclude=exclude,
+                by_alias=by_alias,
+                exclude_unset=exclude_unset,
+                exclude_defaults=exclude_defaults,
+                exclude_none=exclude_none,
+            )
 
         return jsonable_encoder(
             value,
