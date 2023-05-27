@@ -1,5 +1,5 @@
 from enum import Enum
-from typing import Any, Callable, Dict, Optional, Sequence
+from typing import Any, Callable, Dict, List, Optional, Sequence
 
 from pydantic.fields import FieldInfo
 
@@ -31,14 +31,13 @@ class Param(FieldInfo):
         max_length: Optional[int] = None,
         pattern: Optional[str] = None,
         example: Any = Undefined,
-        examples: Optional[Dict[str, Any]] = None,
+        examples: Optional[List[Any]] = None,
         deprecated: Optional[bool] = None,
         include_in_schema: bool = True,
         **extra: Any,
     ):
         self.deprecated = deprecated
         self.example = example
-        self.examples = examples
         self.include_in_schema = include_in_schema
         super().__init__(
             default=default,
@@ -52,8 +51,12 @@ class Param(FieldInfo):
             min_length=min_length,
             max_length=max_length,
             pattern=pattern,
+            examples=examples,
             **extra,
         )
+        # TODO: pv2 decide how to handle OpenAPI examples vs JSON Schema examples
+        # and how to deprecate OpenAPI examples
+        self.examples = examples
 
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}({self.default})"
@@ -259,7 +262,6 @@ class Body(FieldInfo):
         self.embed = embed
         self.media_type = media_type
         self.example = example
-        self.examples = examples
         super().__init__(
             default=default,
             alias=alias,
@@ -274,6 +276,9 @@ class Body(FieldInfo):
             pattern=pattern,
             **extra,
         )
+        # TODO: pv2 decide how to handle OpenAPI examples vs JSON Schema examples
+        # and how to deprecate OpenAPI examples
+        self.examples = examples
 
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}({self.default})"
