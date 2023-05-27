@@ -114,11 +114,11 @@ def test_path_int_42_5():
         {
             "detail": [
                 {
-                    "type": "int_from_float",
+                    "type": "int_parsing",
                     "loc": ["path", "item_id"],
-                    "msg": "Input should be a valid integer, got a number with a fractional part",
+                    "msg": "Input should be a valid integer, unable to parse string as an integer",
                     "input": "42.5",
-                    "url": match_pydantic_error_url("int_from_float"),
+                    "url": match_pydantic_error_url("int_parsing"),
                 }
             ]
         }
@@ -803,11 +803,11 @@ def test_path_param_lt_int_2_7():
         {
             "detail": [
                 {
-                    "type": "int_from_float",
+                    "type": "int_parsing",
                     "loc": ["path", "item_id"],
-                    "msg": "Input should be a valid integer, got a number with a fractional part",
+                    "msg": "Input should be a valid integer, unable to parse string as an integer",
                     "input": "2.7",
-                    "url": match_pydantic_error_url("int_from_float"),
+                    "url": match_pydantic_error_url("int_parsing"),
                 }
             ]
         }
@@ -869,11 +869,11 @@ def test_path_param_gt_int_2_7():
         {
             "detail": [
                 {
-                    "type": "int_from_float",
+                    "type": "int_parsing",
                     "loc": ["path", "item_id"],
-                    "msg": "Input should be a valid integer, got a number with a fractional part",
+                    "msg": "Input should be a valid integer, unable to parse string as an integer",
                     "input": "2.7",
-                    "url": match_pydantic_error_url("int_from_float"),
+                    "url": match_pydantic_error_url("int_parsing"),
                 }
             ]
         }
@@ -941,11 +941,11 @@ def test_path_param_le_int_2_7():
         {
             "detail": [
                 {
-                    "type": "int_from_float",
+                    "type": "int_parsing",
                     "loc": ["path", "item_id"],
-                    "msg": "Input should be a valid integer, got a number with a fractional part",
+                    "msg": "Input should be a valid integer, unable to parse string as an integer",
                     "input": "2.7",
-                    "url": match_pydantic_error_url("int_from_float"),
+                    "url": match_pydantic_error_url("int_parsing"),
                 }
             ]
         }
@@ -1013,11 +1013,11 @@ def test_path_param_ge_int_2_7():
         {
             "detail": [
                 {
-                    "type": "int_from_float",
+                    "type": "int_parsing",
                     "loc": ["path", "item_id"],
-                    "msg": "Input should be a valid integer, got a number with a fractional part",
+                    "msg": "Input should be a valid integer, unable to parse string as an integer",
                     "input": "2.7",
-                    "url": match_pydantic_error_url("int_from_float"),
+                    "url": match_pydantic_error_url("int_parsing"),
                 }
             ]
         }
@@ -1110,11 +1110,11 @@ def test_path_param_lt_gt_int_2_7():
         {
             "detail": [
                 {
-                    "type": "int_from_float",
+                    "type": "int_parsing",
                     "loc": ["path", "item_id"],
-                    "msg": "Input should be a valid integer, got a number with a fractional part",
+                    "msg": "Input should be a valid integer, unable to parse string as an integer",
                     "input": "2.7",
-                    "url": match_pydantic_error_url("int_from_float"),
+                    "url": match_pydantic_error_url("int_parsing"),
                 }
             ]
         }
@@ -1188,11 +1188,11 @@ def test_path_param_le_ge_int_2_7():
         {
             "detail": [
                 {
-                    "type": "int_from_float",
+                    "type": "int_parsing",
                     "loc": ["path", "item_id"],
-                    "msg": "Input should be a valid integer, got a number with a fractional part",
+                    "msg": "Input should be a valid integer, unable to parse string as an integer",
                     "input": "2.7",
-                    "url": match_pydantic_error_url("int_from_float"),
+                    "url": match_pydantic_error_url("int_parsing"),
                 }
             ]
         }

@@ -131,11 +131,11 @@ def test_query_int_query_42_5():
         {
             "detail": [
                 {
-                    "type": "int_from_float",
+                    "type": "int_parsing",
                     "loc": ["query", "query"],
-                    "msg": "Input should be a valid integer, got a number with a fractional part",
+                    "msg": "Input should be a valid integer, unable to parse string as an integer",
                     "input": "42.5",
-                    "url": match_pydantic_error_url("int_from_float"),
+                    "url": match_pydantic_error_url("int_parsing"),
                 }
             ]
         }
