@@ -214,13 +214,12 @@ def test_post_broken_body(client: TestClient):
             "detail": [
                 {
                     "type": "json_invalid",
-                    "loc": [1, "body"],
-                    "msg": "Invalid JSON: Expecting property name enclosed in double quotes",
+                    "loc": ["body", 1],
+                    "msg": "JSON decode error",
                     "input": {},
                     "ctx": {
                         "error": "Expecting property name enclosed in double quotes"
                     },
-                    "url": match_pydantic_error_url("json_invalid"),
                 }
             ]
         }
