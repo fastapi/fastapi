@@ -3,7 +3,7 @@ from dataclasses import dataclass
 from typing import Any, Dict, List, Sequence, Set, Tuple, Union
 
 from pydantic.version import VERSION as PYDANTIC_VERSION
-from typing_extensions import Annotated
+from typing_extensions import Annotated, Literal
 
 PYDANTIC_V2 = PYDANTIC_VERSION.startswith("2.")
 
@@ -48,7 +48,7 @@ if PYDANTIC_V2:
             return self.field_info.annotation
 
         def __post_init__(self):
-            self._type_adapter = TypeAdapter(
+            self._type_adapter: TypeAdapter[Any] = TypeAdapter(
                 Annotated[self.field_info.annotation, self.field_info]
             )
 
@@ -81,7 +81,7 @@ if PYDANTIC_V2:
             self,
             value: Any,
             *,
-            mode: str = "json",
+            mode: Literal["json", "python"] = "json",
             include: Union[SetIntStr, DictIntStrAny, None] = None,
             exclude: Union[SetIntStr, DictIntStrAny, None] = None,
             by_alias: bool = True,
@@ -89,8 +89,12 @@ if PYDANTIC_V2:
             exclude_defaults: bool = False,
             exclude_none: bool = False,
         ) -> Any:
+            # TODO: pv2 is this right?
+            # To avoid accepting isinstance, and leaking data
+            use_value = TypeAdapter(Any).dump_python(value)
+            validated = self._type_adapter.validate_python(use_value)
             return self._type_adapter.dump_python(
-                value,
+                validated,
                 mode=mode,
                 include=include,
                 exclude=exclude,
