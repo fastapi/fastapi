@@ -12,7 +12,7 @@ def test_get_validation_error(insert_assert):
     assert (
         # TODO: remove when deprecating Pydantic v1
         "path -> item_id" in response.text
-        or "'loc': ('item_id', 'path')" in response.text
+        or "'loc': ('path', 'item_id')" in response.text
     )
     assert (
         # TODO: remove when deprecating Pydantic v1
