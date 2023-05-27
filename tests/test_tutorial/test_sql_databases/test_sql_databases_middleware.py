@@ -2,7 +2,10 @@ import importlib
 from pathlib import Path
 
 import pytest
+from dirty_equals import IsDict
 from fastapi.testclient import TestClient
+
+from ...utils import needs_pydanticv1
 
 
 @pytest.fixture(scope="module")
@@ -54,6 +57,8 @@ def test_get_users(client):
     assert "id" in data[0]
 
 
+# TODO: pv2 add Pydantic v2 version
+@needs_pydanticv1
 def test_create_item(client):
     item = {"title": "Foo", "description": "Something that fights"}
     response = client.post("/users/1/items/", json=item)
@@ -77,6 +82,8 @@ def test_create_item(client):
     assert item_to_check["description"] == item["description"]
 
 
+# TODO: pv2 add Pydantic v2 version
+@needs_pydanticv1
 def test_read_items(client):
     response = client.get("/items/")
     assert response.status_code == 200, response.text
@@ -87,7 +94,7 @@ def test_read_items(client):
     assert "description" in first_item
 
 
-def test_openapi_schema(client):
+def test_openapi_schema(client: TestClient):
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
     assert response.json() == {
@@ -315,7 +322,16 @@ def test_openapi_schema(client):
                     "type": "object",
                     "properties": {
                         "title": {"title": "Title", "type": "string"},
-                        "description": {"title": "Description", "type": "string"},
+                        "description": IsDict(
+                            {
+                                "title": "Description",
+                                "anyOf": [{"type": "string"}, {"type": "null"}],
+                            }
+                        )
+                        | IsDict(
+                            # TODO: remove when deprecating Pydantic v1
+                            {"title": "Description", "type": "string"}
+                        ),
                     },
                 },
                 "Item": {
@@ -324,7 +340,16 @@ def test_openapi_schema(client):
                     "type": "object",
                     "properties": {
                         "title": {"title": "Title", "type": "string"},
-                        "description": {"title": "Description", "type": "string"},
+                        "description": IsDict(
+                            {
+                                "title": "Description",
+                                "anyOf": [{"type": "string"}, {"type": "null"}],
+                            }
+                        )
+                        | IsDict(
+                            # TODO: remove when deprecating Pydantic v1
+                            {"title": "Description", "type": "string"},
+                        ),
                         "id": {"title": "Id", "type": "integer"},
                         "owner_id": {"title": "Owner Id", "type": "integer"},
                     },

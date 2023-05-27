@@ -3,6 +3,7 @@ import os
 from pathlib import Path
 
 import pytest
+from dirty_equals import IsDict
 from fastapi.testclient import TestClient
 
 from ...utils import needs_py39
@@ -101,7 +102,7 @@ def test_read_items(client):
 
 
 @needs_py39
-def test_openapi_schema(client):
+def test_openapi_schema(client: TestClient):
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
     assert response.json() == {
@@ -329,7 +330,16 @@ def test_openapi_schema(client):
                     "type": "object",
                     "properties": {
                         "title": {"title": "Title", "type": "string"},
-                        "description": {"title": "Description", "type": "string"},
+                        "description": IsDict(
+                            {
+                                "title": "Description",
+                                "anyOf": [{"type": "string"}, {"type": "null"}],
+                            }
+                        )
+                        | IsDict(
+                            # TODO: remove when deprecating Pydantic v1
+                            {"title": "Description", "type": "string"}
+                        ),
                     },
                 },
                 "Item": {
@@ -338,7 +348,16 @@ def test_openapi_schema(client):
                     "type": "object",
                     "properties": {
                         "title": {"title": "Title", "type": "string"},
-                        "description": {"title": "Description", "type": "string"},
+                        "description": IsDict(
+                            {
+                                "title": "Description",
+                                "anyOf": [{"type": "string"}, {"type": "null"}],
+                            }
+                        )
+                        | IsDict(
+                            # TODO: remove when deprecating Pydantic v1
+                            {"title": "Description", "type": "string"},
+                        ),
                         "id": {"title": "Id", "type": "integer"},
                         "owner_id": {"title": "Owner Id", "type": "integer"},
                     },
