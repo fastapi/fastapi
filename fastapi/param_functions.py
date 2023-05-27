@@ -1,7 +1,7 @@
 from typing import Any, Callable, Dict, Optional, Sequence
 
 from fastapi import params
-from pydantic.fields import Undefined
+from fastapi._compat import Undefined
 
 
 def Path(  # noqa: N802
