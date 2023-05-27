@@ -68,9 +68,11 @@ if PYDANTIC_V2:
                 # TODO: pv2 is this right?
                 # To be able to validate a non-dict (e.g. another Pydantic model) it
                 # has to first be converted to a dict
-                use_value = TypeAdapter(Any).dump_python(value)
-                validated = self._type_adapter.validate_python(use_value)
-                return self._type_adapter.validate_python(validated), None
+
+                # Doing this breaks orm_mode with properties
+                # use_value = TypeAdapter(Any).dump_python(value)
+                # validated = self._type_adapter.validate_python(use_value)
+                return self._type_adapter.validate_python(value), None
             except ValidationError as exc:
                 if isinstance(loc, tuple):
                     use_loc = loc
@@ -96,10 +98,11 @@ if PYDANTIC_V2:
         ) -> Any:
             # TODO: pv2 is this right?
             # To avoid accepting isinstance, and leaking data
-            use_value = TypeAdapter(Any).dump_python(value)
-            validated = self._type_adapter.validate_python(use_value)
+            # This seems to break response_by_alias
+            # use_value = TypeAdapter(Any).dump_python(value)
+            # validated = self._type_adapter.validate_python(use_value)
             return self._type_adapter.dump_python(
-                validated,
+                value,
                 mode=mode,
                 include=include,
                 exclude=exclude,
