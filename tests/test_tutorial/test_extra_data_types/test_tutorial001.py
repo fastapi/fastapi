@@ -152,7 +152,7 @@ def test_openapi_schema():
                             {
                                 "title": "Process After",
                                 "anyOf": [
-                                    {"type": "number", "format": "time-delta"},
+                                    {"type": "string", "format": "duration"},
                                     {"type": "null"},
                                 ],
                             }
