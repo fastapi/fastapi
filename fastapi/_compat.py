@@ -13,6 +13,7 @@ UnionType = getattr(types, "UnionType", Union)
 NoneType = getattr(types, "UnionType", None)
 SetIntStr = Set[Union[int, str]]
 DictIntStrAny = Dict[Union[int, str], Any]
+ModelNameMap = Dict[Union[Type[BaseModel], Type[Enum]], str]
 
 if PYDANTIC_V2:
     from pydantic import PydanticSchemaGenerationError as PydanticSchemaGenerationError
@@ -141,13 +142,17 @@ else:
     from pydantic.fields import Required as Required  # noqa: F401
     from pydantic.fields import Undefined as Undefined
     from pydantic.fields import UndefinedType as UndefinedType  # noqa: F401
-    from pydantic.schema import model_process_schema
+    from pydantic.schema import field_schema, get_model_name_map, model_process_schema
     from pydantic.typing import evaluate_forwardref as evaluate_forwardref  # noqa: F401
     from pydantic.utils import lenient_issubclass as lenient_issubclass  # noqa: F401
 
     ErrorDetails = Dict[str, Any]
     GetJsonSchemaHandler = Any
     JsonSchemaValue = Dict[str, Any]
+
+    @dataclass
+    class GenerateJsonSchema:
+        ref_template: str
 
     class PydanticSchemaGenerationError(Exception):
         pass
@@ -208,3 +213,57 @@ def _get_model_config(model: BaseModel) -> Any:
         return model.model_config
     else:
         return model.__config__
+
+
+def get_schema_from_model_field(
+    *,
+    field: ModelField,
+    schema_generator: GenerateJsonSchema,
+    model_name_map: ModelNameMap,
+) -> Dict[str, Any]:
+    # This expects that GenerateJsonSchema was already used to generate the definitions
+    # core_ref = field._type_adapter.core_schema.get("schema", {}).get("schema", {}).get("schema_ref")
+    # core_ref = field._type_adapter.core_schema.get("schema", {}).get("schema_ref")
+    # if core_ref:
+    #     def_ref = schema_generator.core_to_defs_refs.get((core_ref, "validation"))
+    #     json_schema = schema_generator.definitions[def_ref]
+    # else:
+    # json_schema = schema_generator.generate_inner(field._type_adapter.core_schema)
+    if PYDANTIC_V2:
+        json_schema = schema_generator.generate_inner(field._type_adapter.core_schema)
+        if "$ref" not in json_schema:
+            # TODO remove when deprecating Pydantic v1
+            # Ref: https://github.com/pydantic/pydantic/blob/d61792cc42c80b13b23e3ffa74bc37ec7c77f7d1/pydantic/schema.py#L207
+            json_schema[
+                "title"
+            ] = field.field_info.title or field.alias.title().replace("_", " ")
+        return json_schema
+    else:
+        return field_schema(
+            field, model_name_map=model_name_map, ref_prefix=REF_PREFIX
+        )[0]
+
+
+def get_compat_model_name_map(fields: List[ModelField]) -> ModelNameMap:
+    if PYDANTIC_V2:
+        return {}
+    else:
+        return get_model_name_map(fields)
+
+
+def get_definitions(
+    *,
+    fields: List[ModelField],
+    schema_generator: GenerateJsonSchema,
+    model_name_map: ModelNameMap,
+) -> Dict[str, Any]:
+    if PYDANTIC_V2:
+        inputs = [
+            (field, "validation", field._type_adapter.core_schema) for field in fields
+        ]
+        _, definitions = schema_generator.generate_definitions(inputs=inputs)
+        return definitions
+    else:
+        return get_model_definitions(
+            flat_models=set(fields), model_name_map=model_name_map
+        )

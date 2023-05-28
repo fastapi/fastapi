@@ -7,7 +7,11 @@ from fastapi import routing
 from fastapi._compat import (
     GenerateJsonSchema,
     ModelField,
+    ModelNameMap,
     Undefined,
+    get_compat_model_name_map,
+    get_definitions,
+    get_schema_from_model_field,
     lenient_issubclass,
 )
 from fastapi.datastructures import DefaultPlaceholder
@@ -85,6 +89,7 @@ def get_openapi_operation_parameters(
     *,
     all_route_params: Sequence[ModelField],
     schema_generator: GenerateJsonSchema,
+    model_name_map: ModelNameMap,
 ) -> List[Dict[str, Any]]:
     parameters = []
     for param in all_route_params:
@@ -93,7 +98,9 @@ def get_openapi_operation_parameters(
         if not field_info.include_in_schema:
             continue
         param_schema = get_schema_from_model_field(
-            field=param, schema_generator=schema_generator
+            field=param,
+            schema_generator=schema_generator,
+            model_name_map=model_name_map,
         )
         parameter = {
             "name": param.alias,
@@ -117,12 +124,15 @@ def get_openapi_operation_request_body(
     *,
     body_field: Optional[ModelField],
     schema_generator: GenerateJsonSchema,
+    model_name_map: ModelNameMap,
 ) -> Optional[Dict[str, Any]]:
     if not body_field:
         return None
     assert isinstance(body_field, ModelField)
     body_schema = get_schema_from_model_field(
-        field=body_field, schema_generator=schema_generator
+        field=body_field,
+        schema_generator=schema_generator,
+        model_name_map=model_name_map,
     )
     field_info = cast(Body, body_field.field_info)
     request_media_type = field_info.media_type
@@ -191,6 +201,7 @@ def get_openapi_path(
     route: routing.APIRoute,
     operation_ids: Set[str],
     schema_generator: GenerateJsonSchema,
+    model_name_map: ModelNameMap,
 ) -> Tuple[Dict[str, Any], Dict[str, Any], Dict[str, Any]]:
     path = {}
     security_schemes: Dict[str, Any] = {}
@@ -218,7 +229,9 @@ def get_openapi_path(
                 security_schemes.update(security_definitions)
             all_route_params = get_flat_params(route.dependant)
             operation_parameters = get_openapi_operation_parameters(
-                all_route_params=all_route_params, schema_generator=schema_generator
+                all_route_params=all_route_params,
+                schema_generator=schema_generator,
+                model_name_map=model_name_map,
             )
             parameters.extend(operation_parameters)
             if parameters:
@@ -236,7 +249,9 @@ def get_openapi_path(
                 operation["parameters"] = list(all_parameters.values())
             if method in METHODS_WITH_BODY:
                 request_body_oai = get_openapi_operation_request_body(
-                    body_field=route.body_field, schema_generator=schema_generator
+                    body_field=route.body_field,
+                    schema_generator=schema_generator,
+                    model_name_map=model_name_map,
                 )
                 if request_body_oai:
                     operation["requestBody"] = request_body_oai
@@ -252,6 +267,7 @@ def get_openapi_path(
                             route=callback,
                             operation_ids=operation_ids,
                             schema_generator=schema_generator,
+                            model_name_map=model_name_map,
                         )
                         callbacks[callback.name] = {callback.path: cb_path}
                 operation["callbacks"] = callbacks
@@ -280,6 +296,7 @@ def get_openapi_path(
                         response_schema = get_schema_from_model_field(
                             field=route.response_field,
                             schema_generator=schema_generator,
+                            model_name_map=model_name_map,
                         )
                     else:
                         response_schema = {}
@@ -309,7 +326,9 @@ def get_openapi_path(
                     additional_field_schema: Optional[Dict[str, Any]] = None
                     if field:
                         additional_field_schema = get_schema_from_model_field(
-                            field=field, schema_generator=schema_generator
+                            field=field,
+                            schema_generator=schema_generator,
+                            model_name_map=model_name_map,
                         )
                         media_type = route_response_media_type or "application/json"
                         additional_schema = (
@@ -421,25 +440,28 @@ def get_openapi(
     components: Dict[str, Dict[str, Any]] = {}
     paths: Dict[str, Dict[str, Any]] = {}
     operation_ids: Set[str] = set()
-    # flat_models = get_flat_models_from_routes(routes)
     all_fields = get_fields_from_routes(routes)
-    # model_name_map = get_model_name_map(flat_models)
-
+    model_name_map = get_compat_model_name_map(all_fields)
     schema_generator = GenerateJsonSchema(ref_template=REF_TEMPLATE)
-    # core_schemas = [field._type_adapter.core_schema for field in all_fields]
-    inputs = [
-        (field, "validation", field._type_adapter.core_schema) for field in all_fields
-    ]
-    _, definitions = schema_generator.generate_definitions(inputs=inputs)
+    # inputs = [
+    #     (field, "validation", field._type_adapter.core_schema) for field in all_fields
+    # ]
+    # _, definitions = schema_generator.generate_definitions(inputs=inputs)
     # definitions = get_model_definitions(
     #     flat_models=flat_models, model_name_map=model_name_map
     # )
+    definitions = get_definitions(
+        fields=all_fields,
+        schema_generator=schema_generator,
+        model_name_map=model_name_map,
+    )
     for route in routes:
         if isinstance(route, routing.APIRoute):
             result = get_openapi_path(
                 route=route,
                 operation_ids=operation_ids,
                 schema_generator=schema_generator,
+                model_name_map=model_name_map,
             )
             if result:
                 path, security_schemes, path_definitions = result
@@ -459,24 +481,3 @@ def get_openapi(
     if tags:
         output["tags"] = tags
     return jsonable_encoder(OpenAPI(**output), by_alias=True, exclude_none=True)  # type: ignore
-
-
-def get_schema_from_model_field(
-    *, field: ModelField, schema_generator: GenerateJsonSchema
-):
-    # This expects that GenerateJsonSchema was already used to generate the definitions
-    # core_ref = field._type_adapter.core_schema.get("schema", {}).get("schema", {}).get("schema_ref")
-    # core_ref = field._type_adapter.core_schema.get("schema", {}).get("schema_ref")
-    # if core_ref:
-    #     def_ref = schema_generator.core_to_defs_refs.get((core_ref, "validation"))
-    #     json_schema = schema_generator.definitions[def_ref]
-    # else:
-    # json_schema = schema_generator.generate_inner(field._type_adapter.core_schema)
-    json_schema = schema_generator.generate_inner(field._type_adapter.core_schema)
-    if "$ref" not in json_schema:
-        # TODO remove when deprecating Pydantic v1
-        # Ref: https://github.com/pydantic/pydantic/blob/d61792cc42c80b13b23e3ffa74bc37ec7c77f7d1/pydantic/schema.py#L207
-        json_schema["title"] = field.field_info.title or field.alias.title().replace(
-            "_", " "
-        )
-    return json_schema
