@@ -242,7 +242,9 @@ else:
         if not (
             field.shape == SHAPE_SINGLETON
             and not lenient_issubclass(field.type_, BaseModel)
-            and not lenient_issubclass(field.type_, sequence_types + (dict,))
+            # and not lenient_issubclass(field.type_, sequence_types + (dict,))
+            and not lenient_issubclass(field.type_, dict)
+            and not field_annotation_is_sequence(field.type_)
             and not is_dataclass(field.type_)
             and not isinstance(field_info, params.Body)
         ):
@@ -360,13 +362,28 @@ def get_definitions(
         )
 
 
-def _annotation_is_complex(annotation: type[Any] | None) -> bool:
-    if lenient_issubclass(annotation, str):
+def _annotation_is_sequence(annotation: type[Any] | None) -> bool:
+    if lenient_issubclass(annotation, (str, bytes)):
         return False
+    return lenient_issubclass(annotation, sequence_types)
 
-    return lenient_issubclass(
-        annotation, (BaseModel, Mapping, *sequence_types, UploadFile)
-    ) or is_dataclass(annotation)
+
+def field_annotation_is_sequence(annotation: type[Any] | None) -> bool:
+    return _annotation_is_sequence(annotation) or _annotation_is_sequence(
+        get_origin(annotation)
+    )
+
+
+def value_is_sequence(value: Any) -> bool:
+    return isinstance(value, sequence_types) and not isinstance(value, (str, bytes))
+
+
+def _annotation_is_complex(annotation: Type[Any] | None) -> bool:
+    return (
+        lenient_issubclass(annotation, (BaseModel, Mapping, UploadFile))
+        or _annotation_is_sequence(annotation)
+        or is_dataclass(annotation)
+    )
 
 
 def field_annotation_is_complex(annotation: type[Any] | None) -> bool:
@@ -389,18 +406,6 @@ def field_annotation_is_scalar(annotation: Any) -> bool:
 
     # handle Ellipsis here to make tuple[int, ...] work nicely
     return annotation is Ellipsis or not field_annotation_is_complex(annotation)
-
-
-def _annotation_is_sequence(annotation: type[Any] | None) -> bool:
-    return lenient_issubclass(annotation, sequence_types)
-
-
-def field_annotation_is_sequence(annotation: type[Any] | None) -> bool:
-    if lenient_issubclass(annotation, (str, bytes)):
-        return False
-    return _annotation_is_sequence(annotation) or _annotation_is_sequence(
-        get_origin(annotation)
-    )
 
 
 def field_annotation_is_scalar_sequence(annotation: type[Any] | None) -> bool:

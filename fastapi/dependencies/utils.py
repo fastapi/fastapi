@@ -45,6 +45,7 @@ from fastapi._compat import (
     lenient_issubclass,
     sequence_types,
     serialize_sequence_value,
+    value_is_sequence,
 )
 from fastapi.concurrency import (
     AsyncExitStack,
@@ -408,7 +409,6 @@ def analyze_param(
             field_info = params.Body(annotation=type_annotation, default=default_value)
         else:
             field_info = params.Query(annotation=type_annotation, default=default_value)
-        # used_default_field_info = True
 
     field = None
     if field_info is not None:
@@ -759,8 +759,10 @@ async def request_body_to_args(
                 # field.shape in sequence_shapes
                 is_bytes_sequence_annotation(field.type_)
                 and isinstance(field_info, params.File)
-                and isinstance(value, sequence_types)
+                and value_is_sequence(value)
             ):
+                # For types
+                assert isinstance(value, sequence_types)
                 results: List[Union[bytes, str]] = []
 
                 async def process_fn(
