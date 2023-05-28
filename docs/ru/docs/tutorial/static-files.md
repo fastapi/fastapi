@@ -5,7 +5,7 @@
 ## Использование `StaticFiles`
 
 * Импортируйте `StaticFiles`.
-* "Монтируйте (.mount)" экземпляр `StaticFiles()` в определенной директории.
+* "Примонтируйте" экземпляр `StaticFiles()` с указанием определенной директории.
 
 ```Python hl_lines="2  6"
 {!../../../docs_src/static_files/tutorial001.py!}
