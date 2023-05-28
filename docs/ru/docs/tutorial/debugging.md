@@ -85,8 +85,8 @@ from myapp import app
 
 Например, в Visual Studio Code, вы можете:
 
-* Перейдите в "Debug" панель.
-* "Add configuration...".
+* Перейдите на панель "Debug".
+* Выберите "Add configuration...".
 * Выберите "Python"
 * Запустите отладчик "`Python: Current File (Integrated Terminal)`".
 
