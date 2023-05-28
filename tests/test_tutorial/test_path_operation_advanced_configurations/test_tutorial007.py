@@ -1,15 +1,20 @@
+import pytest
 from fastapi.testclient import TestClient
-
-from docs_src.path_operation_advanced_configuration.tutorial007 import app
 
 from ...utils import needs_pydanticv1
 
-client = TestClient(app)
+
+@pytest.fixture(name="client")
+def get_client():
+    from docs_src.path_operation_advanced_configuration.tutorial007 import app
+
+    client = TestClient(app)
+    return client
 
 
 # TODO: pv2 add Pydantic v2 version
 @needs_pydanticv1
-def test_post():
+def test_post(client: TestClient):
     yaml_data = """
         name: Deadpoolio
         tags:
@@ -25,7 +30,9 @@ def test_post():
     }
 
 
-def test_post_broken_yaml():
+# TODO: pv2 add Pydantic v2 version
+@needs_pydanticv1
+def test_post_broken_yaml(client: TestClient):
     yaml_data = """
         name: Deadpoolio
         tags:
@@ -40,7 +47,7 @@ def test_post_broken_yaml():
 
 # TODO: pv2 add Pydantic v2 version
 @needs_pydanticv1
-def test_post_invalid():
+def test_post_invalid(client: TestClient):
     yaml_data = """
         name: Deadpoolio
         tags:
@@ -58,7 +65,9 @@ def test_post_invalid():
     }
 
 
-def test_openapi_schema():
+# TODO: pv2 add Pydantic v2 version
+@needs_pydanticv1
+def test_openapi_schema(client: TestClient):
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
     assert response.json() == {
