@@ -14,7 +14,7 @@
 !!! заметка "Технические детали"
     Вы также можете использовать `from starlette.staticfiles import StaticFiles`.
 
-    **FastAPI** предоставляет те же `starlette.staticfiles`, что и `fastapi.staticfiles`, просто для вашего удобства, как разработчика. Но на самом деле это берётся напрямую из библиотеки Starlette.
+    **FastAPI** предоставляет `starlette.staticfiles` под псевдонимом `fastapi.staticfiles`, просто для вашего удобства, как разработчика. Но на самом деле это берётся напрямую из библиотеки Starlette.
 
 ### Что такое "Mounting"
 
