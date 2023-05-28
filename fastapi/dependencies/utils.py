@@ -675,11 +675,7 @@ def request_params_to_args(
             else:
                 values[field.name] = deepcopy(field.default)
             continue
-        v_, errors_ = field.validate(value)
-        # TODO (pv2)
-        # v_, errors_ = field.validate(
-        #     value, values, loc=(field_info.in_.value, field.alias)
-        # )
+        v_, errors_ = field.validate(value, values, loc=())
         # if isinstance(errors_, ErrorWrapper):
         if isinstance(errors_, ValidationError):
             new_errors = _regenerate_error_with_loc(
