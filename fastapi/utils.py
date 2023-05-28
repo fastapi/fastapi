@@ -1,20 +1,23 @@
 import re
 import warnings
 from dataclasses import is_dataclass
-from enum import Enum
 from typing import TYPE_CHECKING, Any, Dict, Optional, Set, Type, Union, cast
 
 import fastapi
 from dirty_equals import IsStr
-from fastapi._compat import ModelField, Undefined, UndefinedType, lenient_issubclass
+from fastapi._compat import (
+    PYDANTIC_V2,
+    BaseConfig,
+    ModelField,
+    PydanticSchemaGenerationError,
+    Undefined,
+    UndefinedType,
+    Validator,
+    lenient_issubclass,
+)
 from fastapi.datastructures import DefaultPlaceholder, DefaultType
-from pydantic import BaseModel, PydanticSchemaGenerationError, create_model
-
-# from pydantic.class_validators import Validator
+from pydantic import BaseModel, create_model
 from pydantic.fields import FieldInfo
-
-# TODO (pyv2)
-# from pydantic.schema import model_process_schema
 
 if TYPE_CHECKING:  # pragma: nocover
     from .routing import APIRoute
@@ -37,27 +40,6 @@ def is_body_allowed_for_status_code(status_code: Union[int, str, None]) -> bool:
     return not (current_status_code < 200 or current_status_code in {204, 304})
 
 
-# TODO (pv2)
-def get_model_definitions(
-    *,
-    flat_models: Set[Union[Type[BaseModel], Type[Enum]]],
-    model_name_map: Dict[Union[Type[BaseModel], Type[Enum]], str],
-) -> Dict[str, Any]:
-    # TODO (pyv2)
-    return {}
-    # definitions: Dict[str, Dict[str, Any]] = {}
-    # for model in flat_models:
-    #     m_schema, m_definitions, m_nested_models = model_process_schema(
-    #         model, model_name_map=model_name_map, ref_prefix=REF_PREFIX
-    #     )
-    #     definitions.update(m_definitions)
-    #     model_name = model_name_map[model]
-    #     if "description" in m_schema:
-    #         m_schema["description"] = m_schema["description"].split("\f")[0]
-    #     definitions[model_name] = m_schema
-    # return definitions
-
-
 def get_path_param_names(path: str) -> Set[str]:
     return set(re.findall("{(.*?)}", path))
 
@@ -65,12 +47,10 @@ def get_path_param_names(path: str) -> Set[str]:
 def create_response_field(
     name: str,
     type_: Type[Any],
-    # TODO (pv2)
-    # class_validators: Optional[Dict[str, Validator]] = None,
-    class_validators: Optional[Dict[str, Any]] = None,
+    class_validators: Optional[Dict[str, Validator]] = None,
     default: Optional[Any] = Undefined,
     required: Union[bool, UndefinedType] = Undefined,
-    # model_config: Type[BaseConfig] = BaseConfig,
+    model_config: Type[BaseConfig] = BaseConfig,
     field_info: Optional[FieldInfo] = None,
     alias: Optional[str] = None,
 ) -> ModelField:
@@ -79,19 +59,20 @@ def create_response_field(
     """
     class_validators = class_validators or {}
     field_info = field_info or FieldInfo(annotation=type_, default=default, alias=alias)
-    try:
-        return ModelField(
-            name=name,
-            # type_=type_,
-            # TODO (pv2)
-            # class_validators=class_validators,
-            # default=default,
-            # required=required,
-            # TODO (pv2)
-            # model_config=model_config,
-            # alias=alias,
-            field_info=field_info,
+    kwargs = {"name": name, "field_info": field_info}
+    if not PYDANTIC_V2:
+        kwargs.update(
+            {
+                "type_": type_,
+                "class_validators": class_validators,
+                "default": default,
+                "required": required,
+                "model_config": model_config,
+                "alias": alias,
+            }
         )
+    try:
+        return ModelField(**kwargs)
     except (RuntimeError, PydanticSchemaGenerationError):
         raise fastapi.exceptions.FastAPIError(
             "Invalid args for response field! Hint: "
@@ -105,11 +86,12 @@ def create_response_field(
 
 
 def create_cloned_field(
-    field: FieldInfo,
+    field: ModelField,
     *,
     cloned_types: Optional[Dict[Type[BaseModel], Type[BaseModel]]] = None,
-) -> FieldInfo:
-    return field
+) -> ModelField:
+    if PYDANTIC_V2:
+        return field
     # _cloned_types has already cloned types, to support recursive models
     if cloned_types is None:
         cloned_types = {}

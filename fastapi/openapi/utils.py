@@ -430,7 +430,7 @@ def get_openapi(
     inputs = [
         (field, "validation", field._type_adapter.core_schema) for field in all_fields
     ]
-    refs_map, definitions = schema_generator.generate_definitions(inputs=inputs)
+    _, definitions = schema_generator.generate_definitions(inputs=inputs)
     # definitions = get_model_definitions(
     #     flat_models=flat_models, model_name_map=model_name_map
     # )

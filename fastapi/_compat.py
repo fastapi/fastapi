@@ -1,7 +1,9 @@
 import types
 from dataclasses import dataclass
-from typing import Any, Dict, List, Sequence, Set, Tuple, Union
+from enum import Enum
+from typing import Any, Dict, List, Sequence, Set, Tuple, Type, Union
 
+from pydantic import BaseModel
 from pydantic.version import VERSION as PYDANTIC_VERSION
 from typing_extensions import Annotated, Literal
 
@@ -13,17 +15,26 @@ SetIntStr = Set[Union[int, str]]
 DictIntStrAny = Dict[Union[int, str], Any]
 
 if PYDANTIC_V2:
+    from pydantic import PydanticSchemaGenerationError as PydanticSchemaGenerationError
     from pydantic import TypeAdapter, ValidationError
     from pydantic._internal._fields import Undefined, _UndefinedType
+    from pydantic._internal._schema_generation_shared import (
+        GetJsonSchemaHandler as GetJsonSchemaHandler,
+    )
     from pydantic._internal._typing_extra import eval_type_lenient
     from pydantic._internal._utils import lenient_issubclass as lenient_issubclass
     from pydantic.fields import FieldInfo
     from pydantic.json_schema import GenerateJsonSchema as GenerateJsonSchema
+    from pydantic.json_schema import JsonSchemaValue as JsonSchemaValue
     from pydantic_core import ErrorDetails
 
     Required = Undefined
     UndefinedType = _UndefinedType
     evaluate_forwardref = eval_type_lenient
+    Validator = Any
+
+    class BaseConfig:
+        pass
 
     @dataclass
     class ModelField:
@@ -117,14 +128,47 @@ if PYDANTIC_V2:
             # ModelField to its JSON Schema.
             return id(self)
 
+    def get_model_definitions(**kwargs) -> Dict[str, Any]:
+        return {}
+
 else:
+    from fastapi.openapi.constants import REF_PREFIX as REF_PREFIX
+    from pydantic import BaseConfig as BaseConfig  # noqa: F401
+    from pydantic import ValidationError as ValidationError  # noqa: F401
+    from pydantic.class_validators import Validator as Validator  # noqa: F401
     from pydantic.fields import FieldInfo as FieldInfo
     from pydantic.fields import ModelField as ModelField  # noqa: F401
+    from pydantic.fields import Required as Required  # noqa: F401
     from pydantic.fields import Undefined as Undefined
     from pydantic.fields import UndefinedType as UndefinedType  # noqa: F401
+    from pydantic.schema import model_process_schema
     from pydantic.typing import evaluate_forwardref as evaluate_forwardref  # noqa: F401
+    from pydantic.utils import lenient_issubclass as lenient_issubclass  # noqa: F401
 
     ErrorDetails = Dict[str, Any]
+    GetJsonSchemaHandler = Any
+    JsonSchemaValue = Dict[str, Any]
+
+    class PydanticSchemaGenerationError(Exception):
+        pass
+
+    def get_model_definitions(
+        *,
+        flat_models: Set[Union[Type[BaseModel], Type[Enum]]],
+        model_name_map: Dict[Union[Type[BaseModel], Type[Enum]], str],
+    ) -> Dict[str, Any]:
+        definitions: Dict[str, Dict[str, Any]] = {}
+        for model in flat_models:
+            m_schema, m_definitions, m_nested_models = model_process_schema(
+                model, model_name_map=model_name_map, ref_prefix=REF_PREFIX
+            )
+            definitions.update(m_definitions)
+            model_name = model_name_map[model]
+            if "description" in m_schema:
+                m_schema["description"] = m_schema["description"].split("\f")[0]
+            definitions[model_name] = m_schema
+        return definitions
+
 
 # from pydantic.schema import get_annotation_from_field_info
 
@@ -143,3 +187,24 @@ def _regenerate_error_with_loc(
     ]
 
     return updated_loc_errors
+
+
+def _model_rebuild(model: Type[BaseModel]) -> None:
+    if PYDANTIC_V2:
+        model.model_rebuild()
+    else:
+        model.update_forward_refs()
+
+
+def _model_dump(model: Type[BaseModel], **kwargs) -> Dict[str, Any]:
+    if PYDANTIC_V2:
+        return model.model_dump(**kwargs)
+    else:
+        return model.dict(**kwargs)
+
+
+def _get_model_config(model: BaseModel) -> Any:
+    if PYDANTIC_V2:
+        return model.model_config
+    else:
+        return model.__config__

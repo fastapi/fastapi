@@ -1,7 +1,6 @@
 from typing import Any, Callable, Dict, Iterable, Type, TypeVar
 
-from pydantic._internal._schema_generation_shared import GetJsonSchemaHandler
-from pydantic.json_schema import JsonSchemaValue
+from fastapi._compat import GetJsonSchemaHandler, JsonSchemaValue
 from pydantic_core import CoreSchema, core_schema
 from starlette.datastructures import URL as URL  # noqa: F401
 from starlette.datastructures import Address as Address  # noqa: F401
