@@ -1,23 +1,18 @@
 import inspect
 import types
 import typing
-from collections import deque
 from contextlib import contextmanager
 from copy import deepcopy
-from dataclasses import is_dataclass
 from typing import (
     Any,
     Callable,
     Coroutine,
-    Deque,
     Dict,
     ForwardRef,
-    FrozenSet,
     List,
     Mapping,
     Optional,
     Sequence,
-    Set,
     Tuple,
     Type,
     Union,
@@ -27,14 +22,29 @@ from typing import (
 import anyio
 from fastapi import params
 from fastapi._compat import (
+    PYDANTIC_V2,
+    ErrorWrapper,
     ModelField,
     Required,
     Undefined,
     ValidationError,
     _regenerate_error_with_loc,
+    copy_field_info,
+    create_body_model,
     evaluate_forwardref,
+    field_annotation_is_scalar,
     get_annotation_from_field_info,
+    get_missing_field_error,
+    is_bytes_or_nonable_bytes_annotation,
+    is_bytes_sequence_annotation,
+    is_scalar_field,
+    is_scalar_sequence_field,
+    is_sequence_field,
+    is_uploadfile_or_nonable_uploadfile_annotation,
+    is_uploadfile_sequence_annotation,
     lenient_issubclass,
+    sequence_types,
+    serialize_sequence_value,
 )
 from fastapi.concurrency import (
     AsyncExitStack,
@@ -47,7 +57,6 @@ from fastapi.security.base import SecurityBase
 from fastapi.security.oauth2 import OAuth2, SecurityScopes
 from fastapi.security.open_id_connect_url import OpenIdConnect
 from fastapi.utils import create_response_field, get_path_param_names
-from pydantic import BaseModel, create_model
 from pydantic.fields import FieldInfo
 from starlette.background import BackgroundTasks
 from starlette.concurrency import run_in_threadpool
@@ -58,37 +67,6 @@ from starlette.websockets import WebSocket
 from typing_extensions import Annotated, get_args, get_origin
 
 UnionType = getattr(types, "UnionType", typing.Union)
-
-# sequence_shapes = {
-#     SHAPE_LIST,
-#     SHAPE_SET,
-#     SHAPE_FROZENSET,
-#     SHAPE_TUPLE,
-#     SHAPE_SEQUENCE,
-#     SHAPE_TUPLE_ELLIPSIS,
-# }
-sequence_types = (Sequence, tuple, set, frozenset, deque)
-# sequence_shape_to_type = {
-#     SHAPE_LIST: list,
-#     SHAPE_SET: set,
-#     SHAPE_TUPLE: tuple,
-#     SHAPE_SEQUENCE: list,
-#     SHAPE_TUPLE_ELLIPSIS: list,
-# }
-
-sequence_annotation_to_type = {
-    Sequence: list,
-    List: list,
-    list: list,
-    Tuple: tuple,
-    tuple: tuple,
-    Set: set,
-    set: set,
-    FrozenSet: frozenset,
-    frozenset: frozenset,
-    Deque: deque,
-    deque: deque,
-}
 
 
 multipart_not_installed_error = (
@@ -231,124 +209,6 @@ def get_flat_params(dependant: Dependant) -> List[ModelField]:
     )
 
 
-def _annotation_is_complex(annotation: type[Any] | None) -> bool:
-    if lenient_issubclass(annotation, str):
-        return False
-
-    return lenient_issubclass(
-        annotation, (BaseModel, Mapping, *sequence_types, UploadFile)
-    ) or is_dataclass(annotation)
-
-
-def field_annotation_is_complex(annotation: type[Any] | None) -> bool:
-    origin = get_origin(annotation)
-    if origin is typing.Union or origin is UnionType:
-        return any(field_annotation_is_complex(arg) for arg in get_args(annotation))
-
-    return (
-        _annotation_is_complex(annotation)
-        or _annotation_is_complex(origin)
-        or hasattr(origin, "__pydantic_core_schema__")
-        or hasattr(origin, "__get_pydantic_core_schema__")
-    )
-
-
-def field_annotation_is_scalar(annotation: Any) -> bool:
-    origin = get_origin(annotation)
-    if origin is typing.Union or origin is UnionType:
-        return all(field_annotation_is_scalar(arg) for arg in get_args(annotation))
-
-    # handle Ellipsis here to make tuple[int, ...] work nicely
-    return annotation is Ellipsis or not field_annotation_is_complex(annotation)
-
-
-def _annotation_is_sequence(annotation: type[Any] | None) -> bool:
-    return lenient_issubclass(annotation, sequence_types)
-
-
-def field_annotation_is_sequence(annotation: type[Any] | None) -> bool:
-    if lenient_issubclass(annotation, (str, bytes)):
-        return False
-    return _annotation_is_sequence(annotation) or _annotation_is_sequence(
-        get_origin(annotation)
-    )
-
-
-def field_annotation_is_scalar_sequence(annotation: type[Any] | None) -> bool:
-    origin = get_origin(annotation)
-    if origin is typing.Union or origin is UnionType:
-        at_least_one_scalar_sequence = False
-        for arg in get_args(annotation):
-            if field_annotation_is_scalar_sequence(arg):
-                at_least_one_scalar_sequence = True
-                continue
-            elif not field_annotation_is_scalar(arg):
-                return False
-        return at_least_one_scalar_sequence
-    return field_annotation_is_sequence(annotation) and all(
-        field_annotation_is_scalar(sub_annotation)
-        for sub_annotation in get_args(annotation)
-    )
-
-
-def is_scalar_field(field: FieldInfo) -> bool:
-    return field_annotation_is_scalar(field.annotation) and not isinstance(
-        field, params.Body
-    )
-
-
-def is_bytes_or_nonable_bytes_annotation(annotation: Any) -> bool:
-    if lenient_issubclass(annotation, bytes):
-        return True
-    origin = get_origin(annotation)
-    if origin is Union or origin is UnionType:
-        for arg in get_args(annotation):
-            if lenient_issubclass(arg, bytes):
-                return True
-    return False
-
-
-def is_uploadfile_or_nonable_uploadfile_annotation(annotation: Any) -> bool:
-    if lenient_issubclass(annotation, UploadFile):
-        return True
-    origin = get_origin(annotation)
-    if origin is Union or origin is UnionType:
-        for arg in get_args(annotation):
-            if lenient_issubclass(arg, UploadFile):
-                return True
-    return False
-
-
-def is_bytes_sequence_annotation(annotation: type[Any] | None) -> bool:
-    origin = get_origin(annotation)
-    if origin is Union or origin is UnionType:
-        at_least_one_bytes_sequence = False
-        for arg in get_args(annotation):
-            if is_bytes_sequence_annotation(arg):
-                at_least_one_bytes_sequence = True
-                continue
-        return at_least_one_bytes_sequence
-    return field_annotation_is_sequence(annotation) and all(
-        is_bytes_or_nonable_bytes_annotation(sub_annotation)
-        for sub_annotation in get_args(annotation)
-    )
-
-
-def is_uploadfile_sequence_annotation(annotation: type[Any] | None) -> bool:
-    origin = get_origin(annotation)
-    if origin is Union or origin is UnionType:
-        at_least_one_bytes_sequence = False
-        for arg in get_args(annotation):
-            if is_uploadfile_sequence_annotation(arg):
-                at_least_one_bytes_sequence = True
-                continue
-        return at_least_one_bytes_sequence
-    return field_annotation_is_sequence(annotation) and all(
-        is_uploadfile_or_nonable_uploadfile_annotation(sub_annotation)
-        for sub_annotation in get_args(annotation)
-    )
-
-
 def get_typed_signature(call: Callable[..., Any]) -> inspect.Signature:
     signature = inspect.signature(call)
     globalns = getattr(call, "__globals__", {})
@@ -368,9 +228,6 @@ def get_typed_signature(call: Callable[..., Any]) -> inspect.Signature:
 def get_typed_annotation(annotation: Any, globalns: Dict[str, Any]) -> Any:
     if isinstance(annotation, str):
         annotation = ForwardRef(annotation)
-        # TODO (pv2)
-        # Copy this evaluate_forwardref from Pydantic v1
-        # pydantic._internal._typing_extra.eval_type_lenient
         annotation = evaluate_forwardref(annotation, globalns, globalns)
     return annotation
 
@@ -489,8 +346,9 @@ def analyze_param(
         fastapi_annotation = next(iter(fastapi_annotations), None)
         if isinstance(fastapi_annotation, FieldInfo):
             # Copy `field_info` because we mutate `field_info.default` below.
-            # field_info = copy(fastapi_annotation)
-            field_info = type(fastapi_annotation).from_annotation(annotation)
+            field_info = copy_field_info(
+                field_info=fastapi_annotation, annotation=annotation
+            )
             assert field_info.default is Undefined or field_info.default is Required, (
                 f"`{field_info.__class__.__name__}` default value cannot be set in"
                 f" `Annotated` for {param_name!r}. Set the default value with `=` instead."
@@ -521,7 +379,8 @@ def analyze_param(
             f" together for {param_name!r}"
         )
         field_info = value
-        field_info.annotation = type_annotation
+        if PYDANTIC_V2:
+            field_info.annotation = type_annotation
 
     if depends is not None and depends.dependency is None:
         depends.dependency = type_annotation
@@ -587,17 +446,15 @@ def analyze_param(
 
 def is_body_param(*, param_field: ModelField, is_path_param: bool) -> bool:
     if is_path_param:
-        assert field_annotation_is_scalar(
-            annotation=param_field.field_info.annotation
+        assert is_scalar_field(
+            field=param_field
         ), "Path params must be of one of the supported types"
         return False
-    elif is_scalar_field(field=param_field.field_info):
+    elif is_scalar_field(field=param_field):
         return False
     elif isinstance(
         param_field.field_info, (params.Query, params.Header)
-    ) and field_annotation_is_scalar_sequence(
-        annotation=param_field.field_info.annotation
-    ):
+    ) and is_scalar_sequence_field(param_field):
         return False
     else:
         assert isinstance(
@@ -795,9 +652,9 @@ def request_params_to_args(
     values = {}
     errors = []
     for field in required_params:
-        if field_annotation_is_scalar_sequence(
-            field.field_info.annotation
-        ) and isinstance(received_params, (QueryParams, Headers)):
+        if is_scalar_sequence_field(field) and isinstance(
+            received_params, (QueryParams, Headers)
+        ):
             value = received_params.getlist(field.alias) or field.default
         else:
             value = received_params.get(field.alias)
@@ -866,7 +723,7 @@ async def request_body_to_args(
                 if (
                     # TODO (pv2)
                     # field.shape in sequence_shapes or field.type_ in sequence_types
-                    field_annotation_is_sequence(field.field_info.annotation)
+                    is_sequence_field(field)
                 ) and isinstance(received_body, FormData):
                     value = received_body.getlist(field.alias)
                 else:
@@ -882,7 +739,7 @@ async def request_body_to_args(
                     isinstance(field_info, params.Form)
                     # TODO (pv2)
                     # and field.shape in sequence_shapes
-                    and field_annotation_is_sequence(field.field_info.annotation)
+                    and is_sequence_field(field)
                     and len(value) == 0
                 )
             ):
@@ -904,12 +761,6 @@ async def request_body_to_args(
                 and isinstance(field_info, params.File)
                 and isinstance(value, sequence_types)
             ):
-                # for type checkers
-                origin_type = (
-                    get_origin(field.field_info.annotation)
-                    or field.field_info.annotation
-                )
-                assert issubclass(origin_type, sequence_types)
                 results: List[Union[bytes, str]] = []
 
                 async def process_fn(
@@ -921,27 +772,19 @@ async def request_body_to_args(
                 async with anyio.create_task_group() as tg:
                     for sub_value in value:
                         tg.start_soon(process_fn, sub_value.read)
-                value = sequence_annotation_to_type[origin_type](results)
+                value = serialize_sequence_value(field=field, value=results)
 
             v_, errors_ = field.validate(value, values, loc=loc)
 
-            if isinstance(errors_, list):
+            if isinstance(errors_, ErrorWrapper):
+                errors.append(errors_)
+            elif isinstance(errors_, list):
                 errors.extend(errors_)
             elif errors_:
                 errors.append(errors_)
             else:
                 values[field.name] = v_
     return values, errors
-
-
-# TODO (pv2)
-# def get_missing_field_error(loc: Tuple[str, ...]) -> ErrorWrapper:
-def get_missing_field_error(loc: Tuple[str, ...]) -> Dict[str, Any]:
-    error = ValidationError.from_exception_data(
-        "Field required", [{"type": "missing", "loc": loc, "input": {}}]
-    ).errors()[0]
-    error["input"] = None
-    return error
 
 
 def get_body_field(*, dependant: Dependant, name: str) -> Optional[ModelField]:
@@ -961,16 +804,18 @@ def get_body_field(*, dependant: Dependant, name: str) -> Optional[ModelField]:
     for param in flat_dependant.body_params:
         setattr(param.field_info, "embed", True)  # noqa: B010
     model_name = "Body_" + name
-    field_params = {
-        f.name: (f.field_info.annotation, f.field_info)
-        for f in flat_dependant.body_params
-    }
-    BodyModel: Type[BaseModel] = create_model(model_name, **field_params)
-    # for f in flat_dependant.body_params:
-    #     BodyModel.model_fields[f.name] = f.field_info
+    BodyModel = create_body_model(
+        fields=flat_dependant.body_params, model_name=model_name
+    )
     required = any(True for f in flat_dependant.body_params if f.required)
-
-    BodyFieldInfo_kwargs: Dict[str, Any] = {"annotation": BodyModel, "alias": "body"}
+    # TODO: pv2 is this necessary? Can I just leave the v2 version for both?
+    if PYDANTIC_V2:
+        BodyFieldInfo_kwargs: Dict[str, Any] = {
+            "annotation": BodyModel,
+            "alias": "body",
+        }
+    else:
+        BodyFieldInfo_kwargs: Dict[str, Any] = {"default": None}
     if not required:
         BodyFieldInfo_kwargs["default"] = None
     if any(isinstance(f.field_info, params.File) for f in flat_dependant.body_params):
