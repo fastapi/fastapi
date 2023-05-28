@@ -83,7 +83,7 @@ from myapp import app
 
 ---
 
-Например, в Visual Studio Code, вы можете:
+Например, в Visual Studio Code вы можете выполнить следующие шаги:
 
 * Перейдите на панель "Debug".
 * Выберите "Add configuration...".
