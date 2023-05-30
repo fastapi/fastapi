@@ -38,7 +38,7 @@
 === "Python 3.6+ non-Annotated"
 
     !!! Заметка
-        Рекомендуется использовать `Annotated` версию, если это возможно.
+        Рекомендуется использовать версию с `Annotated`, если это возможно.
 
     ```Python hl_lines="19-21"
     {!> ../../../docs_src/body_multiple_params/tutorial001.py!}
