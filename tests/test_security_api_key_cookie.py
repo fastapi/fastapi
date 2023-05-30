@@ -1,6 +1,7 @@
 from fastapi import Depends, FastAPI, Security
 from fastapi.security import APIKeyCookie
 from fastapi.testclient import TestClient
+from fastapi.websockets import WebSocket
 from pydantic import BaseModel
 
 app = FastAPI()
@@ -22,11 +23,25 @@ def read_current_user(current_user: User = Depends(get_current_user)):
     return current_user
 
 
+@app.websocket("/users/me/ws")
+async def read_current_user(websocket: WebSocket, current_user: User = Depends(get_current_user)):
+    await websocket.accept()
+    await websocket.send_json(current_user.dict())
+    await websocket.close()
+
+
 def test_security_api_key():
     client = TestClient(app, cookies={"key": "secret"})
     response = client.get("/users/me")
     assert response.status_code == 200, response.text
     assert response.json() == {"username": "secret"}
+
+
+def test_security_api_key_ws():
+    client = TestClient(app, cookies={"key": "secret"})
+    with client.websocket_connect("/users/me/ws") as websocket:
+        data = websocket.receive_json()
+        assert data == {"username": "secret"}
 
 
 def test_security_api_key_no_key():

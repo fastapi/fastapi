@@ -4,6 +4,7 @@ from fastapi.openapi.models import APIKey, APIKeyIn
 from fastapi.security.base import SecurityBase
 from starlette.exceptions import HTTPException
 from starlette.requests import Request
+from starlette.websockets import WebSocket
 from starlette.status import HTTP_403_FORBIDDEN
 
 
@@ -80,8 +81,12 @@ class APIKeyCookie(APIKeyBase):
         self.scheme_name = scheme_name or self.__class__.__name__
         self.auto_error = auto_error
 
-    async def __call__(self, request: Request) -> Optional[str]:
-        api_key = request.cookies.get(self.model.name)
+    async def __call__(
+        self,
+        request: Request = None,
+        websocket: WebSocket = None,
+    ) -> Optional[str]:
+        api_key = (request or websocket).cookies.get(self.model.name)
         if not api_key:
             if self.auto_error:
                 raise HTTPException(
