@@ -24,7 +24,9 @@ def read_current_user(current_user: User = Depends(get_current_user)):
 
 
 @app.websocket("/users/me/ws")
-async def read_current_user(websocket: WebSocket, current_user: User = Depends(get_current_user)):
+async def read_current_user(
+    websocket: WebSocket, current_user: User = Depends(get_current_user)
+):
     await websocket.accept()
     await websocket.send_json(current_user.dict())
     await websocket.close()

@@ -4,8 +4,8 @@ from fastapi.openapi.models import APIKey, APIKeyIn
 from fastapi.security.base import SecurityBase
 from starlette.exceptions import HTTPException
 from starlette.requests import Request
-from starlette.websockets import WebSocket
 from starlette.status import HTTP_403_FORBIDDEN
+from starlette.websockets import WebSocket
 
 
 class APIKeyBase(SecurityBase):
