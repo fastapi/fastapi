@@ -16,20 +16,23 @@ from pydantic.utils import lenient_issubclass
 if TYPE_CHECKING:  # pragma: nocover
     from .routing import APIRoute
 
+
 class OpenAPIHttpStatusCodeRanges(Enum):
-    ''' Represents HTTP status codes ranges in the OpenAPI specification
+    """Represents HTTP status codes ranges in the OpenAPI specification
     Ref: https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#patterned-fields-1
-    '''
+    """
+
     DEFAULT = "default"
     INFORMATIONAL = "1XX"
     SUCCESS = "2XX"
     REDIRECTION = "3XX"
     CLIENT_ERROR = "4XX"
     SERVER_ERROR = "5XX"
-    
+
     @classmethod
     def has_value(cls, value):
-        return value in cls._value2member_map_ 
+        return value in cls._value2member_map_
+
 
 def is_body_allowed_for_status_code(status_code: Union[int, str, None]) -> bool:
     if status_code is None:
@@ -40,7 +43,9 @@ def is_body_allowed_for_status_code(status_code: Union[int, str, None]) -> bool:
         current_status_code = int(status_code)
     except:
         return False
-    return (current_status_code >= 200 and current_status_code <=526) and (current_status_code not in {204, 304})
+    return (current_status_code >= 200 and current_status_code <= 526) and (
+        current_status_code not in {204, 304}
+    )
 
 
 def get_model_definitions(
