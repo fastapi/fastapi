@@ -18,7 +18,7 @@ class APIKeyQuery(APIKeyBase):
         name: str,
         scheme_name: Optional[str] = None,
         description: Optional[str] = None,
-        auto_error: bool = True
+        auto_error: bool = True,
     ):
         self.model: APIKey = APIKey(
             **{"in": APIKeyIn.query}, name=name, description=description
@@ -27,7 +27,7 @@ class APIKeyQuery(APIKeyBase):
         self.auto_error = auto_error
 
     async def __call__(self, request: Request) -> Optional[str]:
-        api_key: str = request.query_params.get(self.model.name)
+        api_key = request.query_params.get(self.model.name)
         if not api_key:
             if self.auto_error:
                 raise HTTPException(
@@ -45,7 +45,7 @@ class APIKeyHeader(APIKeyBase):
         name: str,
         scheme_name: Optional[str] = None,
         description: Optional[str] = None,
-        auto_error: bool = True
+        auto_error: bool = True,
     ):
         self.model: APIKey = APIKey(
             **{"in": APIKeyIn.header}, name=name, description=description
@@ -54,7 +54,7 @@ class APIKeyHeader(APIKeyBase):
         self.auto_error = auto_error
 
     async def __call__(self, request: Request) -> Optional[str]:
-        api_key: str = request.headers.get(self.model.name)
+        api_key = request.headers.get(self.model.name)
         if not api_key:
             if self.auto_error:
                 raise HTTPException(
@@ -72,7 +72,7 @@ class APIKeyCookie(APIKeyBase):
         name: str,
         scheme_name: Optional[str] = None,
         description: Optional[str] = None,
-        auto_error: bool = True
+        auto_error: bool = True,
     ):
         self.model: APIKey = APIKey(
             **{"in": APIKeyIn.cookie}, name=name, description=description

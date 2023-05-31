@@ -5,14 +5,14 @@ theme:
   name: material
   custom_dir: overrides
   palette:
-  - media: "(prefers-color-scheme: light)"
+  - media: '(prefers-color-scheme: light)'
     scheme: default
     primary: teal
     accent: amber
     toggle:
       icon: material/lightbulb
       name: Switch to light mode
-  - media: "(prefers-color-scheme: dark)"
+  - media: '(prefers-color-scheme: dark)'
     scheme: slate
     primary: teal
     accent: amber
@@ -40,24 +40,32 @@ nav:
 - Languages:
   - en: /
   - az: /az/
+  - cs: /cs/
   - de: /de/
+  - em: /em/
   - es: /es/
   - fa: /fa/
   - fr: /fr/
+  - he: /he/
+  - hy: /hy/
   - id: /id/
   - it: /it/
   - ja: /ja/
   - ko: /ko/
+  - lo: /lo/
   - nl: /nl/
   - pl: /pl/
   - pt: /pt/
   - ru: /ru/
   - sq: /sq/
+  - sv: /sv/
+  - ta: /ta/
   - tr: /tr/
   - uk: /uk/
   - zh: /zh/
 - Samouczek:
   - tutorial/index.md
+  - tutorial/first-steps.md
 markdown_extensions:
 - toc:
     permalink: true
@@ -75,10 +83,12 @@ markdown_extensions:
       format: !!python/name:pymdownx.superfences.fence_code_format ''
 - pymdownx.tabbed:
     alternate_style: true
+- attr_list
+- md_in_html
 extra:
   analytics:
     provider: google
-    property: UA-133183413-1
+    property: G-YNEVN69SC3
   social:
   - icon: fontawesome/brands/github-alt
     link: https://github.com/tiangolo/fastapi
@@ -99,14 +109,22 @@ extra:
     name: en - English
   - link: /az/
     name: az
+  - link: /cs/
+    name: cs
   - link: /de/
     name: de
+  - link: /em/
+    name: 😉
   - link: /es/
     name: es - español
   - link: /fa/
     name: fa
   - link: /fr/
     name: fr - français
+  - link: /he/
+    name: he
+  - link: /hy/
+    name: hy
   - link: /id/
     name: id
   - link: /it/
@@ -115,6 +133,8 @@ extra:
     name: ja - 日本語
   - link: /ko/
     name: ko - 한국어
+  - link: /lo/
+    name: lo - ພາສາລາວ
   - link: /nl/
     name: nl
   - link: /pl/
@@ -125,6 +145,10 @@ extra:
     name: ru - русский язык
   - link: /sq/
     name: sq - shqip
+  - link: /sv/
+    name: sv - svenska
+  - link: /ta/
+    name: ta - தமிழ்
   - link: /tr/
     name: tr - Türkçe
   - link: /uk/

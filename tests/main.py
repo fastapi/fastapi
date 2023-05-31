@@ -1,5 +1,5 @@
 import http
-from typing import Optional
+from typing import FrozenSet, Optional
 
 from fastapi import FastAPI, Path, Query
 
@@ -49,12 +49,7 @@ def get_bool_id(item_id: bool):
 
 
 @app.get("/path/param/{item_id}")
-def get_path_param_id(item_id: str = Path()):
-    return item_id
-
-
-@app.get("/path/param-required/{item_id}")
-def get_path_param_required_id(item_id: str = Path()):
+def get_path_param_id(item_id: Optional[str] = Path()):
     return item_id
 
 
@@ -192,3 +187,8 @@ def get_query_param_required_type(query: int = Query()):
 @app.get("/enum-status-code", status_code=http.HTTPStatus.CREATED)
 def get_enum_status_code():
     return "foo bar"
+
+
+@app.get("/query/frozenset")
+def get_query_type_frozenset(query: FrozenSet[int] = Query(...)):
+    return ",".join(map(str, sorted(query)))
