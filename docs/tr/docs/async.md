@@ -53,7 +53,7 @@ Ancak yukarıdaki adımları takip ederek, bazı performans optimizasyonları ya
 
 ## Teknik Detaylar
 
-Python modern versiyonlarında **`async` ve `await`** sözdizimi ile **"coroutines"**  kullanan **"asenkron kod"** desteğine sahiptir.
+Python'un modern versiyonlarında **`async` ve `await`** sözdizimi ile **"coroutines"**  kullanan **"asenkron kod"** desteğine sahiptir.
 
 Bu ifadeyi aşağıdaki bölümlerde daha da ayrıntılı açıklayalım:
 
