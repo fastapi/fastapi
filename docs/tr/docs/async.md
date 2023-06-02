@@ -1,4 +1,4 @@
-# Eşzamanlılık ve async / await
+# Concurrency ve async / await
 
 *path operasyon fonksiyonu* için `async def `sözdizimi,  asenkron kod, eşzamanlılık ve paralellik hakkında bazı ayrıntılar.
 
@@ -6,13 +6,13 @@
 
 <abbr title="too long; didn't read"><strong>TL;DR:</strong></abbr>
 
-Eğer onları `await` ile çağırmanızı söyleyen üçüncü taraf bir kütüphane kullanıyorsanız, örneğin:
+Eğer `await` ile çağrılması gerektiğini belirten üçüncü taraf kütüphaneleri kullanıyorsanız, örneğin:
 
 ```Python
 results = await some_library()
 ```
 
-O zaman *path operasyon fonksiyonunu*  `async def` ile tanımlayın:
+O zaman *path operasyon fonksiyonunu* `async def` ile tanımlayın örneğin:
 
 ```Python hl_lines="2"
 @app.get('/')
@@ -22,11 +22,11 @@ async def read_results():
 ```
 
 !!! not
-    `await` yalnızca `async def` ile tanımlanan fonksiyonların içinde kullanılabilir.
+    Sadece `async def` ile tanımlanan fonksiyonlar içinde `await` kullanabilirsiniz.
 
 ---
 
-Eğer üçüncü parti kütüphaneler ile beraber birşeyler ile etkileşimde bulunuyorsak (veri tabanı,  API, dosya işlemleri, vb.) ve  `await` kulanımı desteklenmiyorsa, (birçok veri tabanı kütüphanesi için geçerlidir), o zaman *path operasyon fonksiyonunuzu* normal bir şekilde, yalnızca `def` kullanarak tanımlayın, örneğin:
+Eğer bir veritabanı, bir API, dosya sistemi vb. ile iletişim kuran bir üçüncü taraf bir kütüphane kullanıyorsanız ve `await` kullanımını desteklemiyorsa, (bu şu anda çoğu veritabanı kütüphanesi için geçerli bir durumdur), o zaman *path operasyon fonksiyonunuzu* `def` kullanarak normal bir şekilde tanımlayın, örneğin:
 
 ```Python hl_lines="2"
 @app.get('/')
@@ -37,7 +37,7 @@ def results():
 
 ---
 
-Eğer uygulamanız (bir şekilde) başka bir şeyle iletişim kurması gerekmiyor ama  yanıt vermesini beklemeniz gerekiyorsa `async def` kullanabilirsiniz.
+Eğer uygulamanız (bir şekilde) başka bir şeyle iletişim kurmak ve onun cevap vermesini beklemek zorunda değilse, `async def` kullanın.
 
 ---
 
@@ -45,11 +45,11 @@ Sadece bilmiyorsanız, normal `def` kullanın.
 
 ---
 
-**Not**: *path operasyon fonksiyonlarınızda* `def` ve `async def`'i ihtiyacınız olduğu kadar karıştırabilir ve her birini sizin için en iyi seçeneği kullanarak tanımlayabilirsiniz. FastAPI onlarla doğru olanı yapacaktır.
+**Not**: *path operasyon fonksiyonlarınızda* `def` ve `async def`'i ihtiyaç duyduğunuz gibi karıştırabilir ve her birini sizin için en iyi seçeneği kullanarak tanımlayabilirsiniz. FastAPI onlarla doğru olanı yapacaktır.
 
-Her neyse, Yukarıdaki durumlardan herhangi birinde FastAPI yine de asenkron olarak çalışacak ve son derece hızlı olacaktır.
+Her neyse, yukarıdaki durumlardan herhangi birinde, FastAPI yine de asenkron olarak çalışacak ve son derece hızlı olacaktır.
 
-Ancak yukarıdaki adımları takip ederek bazı performans optimizasyonları yapabiliriz
+Ancak yukarıdaki adımları takip ederek, bazı performans optimizasyonları yapılabilecektir.
 
 ## Teknik Detaylar
 
