@@ -75,6 +75,7 @@ nav:
   - tutorial/testing.md
   - tutorial/response-status-code.md
   - tutorial/query-params.md
+  - tutorial/body-multiple-params.md
 - async.md
 - Развёртывание:
   - deployment/index.md
