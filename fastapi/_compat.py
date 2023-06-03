@@ -111,14 +111,10 @@ if PYDANTIC_V2:
             loc: Union[Tuple[Union[int, str], ...], str] = "",
         ) -> tuple[Any, Union[List[ErrorDetails], None]]:
             try:
-                # TODO: pv2 is this right?
-                # To be able to validate a non-dict (e.g. another Pydantic model) it
-                # has to first be converted to a dict
-
-                # Doing this breaks orm_mode with properties
-                # use_value = TypeAdapter(Any).dump_python(value)
-                # validated = self._type_adapter.validate_python(use_value)
-                return self._type_adapter.validate_python(value), None
+                return (
+                    self._type_adapter.validate_python(value, from_attributes=True),
+                    None,
+                )
             except ValidationError as exc:
                 if isinstance(loc, tuple):
                     use_loc = loc
