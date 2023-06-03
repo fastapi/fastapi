@@ -245,18 +245,18 @@ def test_post_broken_body(client: TestClient):
 
 
 @needs_py310
-def test_post_form_for_json(client: TestClient):
+def test_post_form_for_json(client: TestClient, insert_assert):
     response = client.post("/items/", data={"name": "Foo", "price": 50.5})
     assert response.status_code == 422, response.text
     assert response.json() == IsDict(
         {
             "detail": [
                 {
-                    "type": "dict_type",
+                    "type": "dict_attributes_type",
                     "loc": ["body"],
-                    "msg": "Input should be a valid dictionary",
+                    "msg": "Input should be a valid dictionary or instance to extract fields from",
                     "input": "name=Foo&price=50.5",
-                    "url": match_pydantic_error_url("dict_type"),
+                    "url": match_pydantic_error_url("dict_attributes_type"),
                 }
             ]
         }
@@ -320,11 +320,13 @@ def test_wrong_headers(client: TestClient):
         {
             "detail": [
                 {
-                    "type": "dict_type",
+                    "type": "dict_attributes_type",
                     "loc": ["body"],
-                    "msg": "Input should be a valid dictionary",
+                    "msg": "Input should be a valid dictionary or instance to extract fields from",
                     "input": '{"name": "Foo", "price": 50.5}',
-                    "url": match_pydantic_error_url("dict_type"),
+                    "url": match_pydantic_error_url(
+                        "dict_attributes_type"
+                    ),  # "https://errors.pydantic.dev/0.38.0/v/dict_attributes_type",
                 }
             ]
         }
@@ -349,11 +351,11 @@ def test_wrong_headers(client: TestClient):
         {
             "detail": [
                 {
-                    "type": "dict_type",
+                    "type": "dict_attributes_type",
                     "loc": ["body"],
-                    "msg": "Input should be a valid dictionary",
+                    "msg": "Input should be a valid dictionary or instance to extract fields from",
                     "input": '{"name": "Foo", "price": 50.5}',
-                    "url": match_pydantic_error_url("dict_type"),
+                    "url": match_pydantic_error_url("dict_attributes_type"),
                 }
             ]
         }
@@ -377,11 +379,11 @@ def test_wrong_headers(client: TestClient):
         {
             "detail": [
                 {
-                    "type": "dict_type",
+                    "type": "dict_attributes_type",
                     "loc": ["body"],
-                    "msg": "Input should be a valid dictionary",
+                    "msg": "Input should be a valid dictionary or instance to extract fields from",
                     "input": '{"name": "Foo", "price": 50.5}',
-                    "url": match_pydantic_error_url("dict_type"),
+                    "url": match_pydantic_error_url("dict_attributes_type"),
                 }
             ]
         }
