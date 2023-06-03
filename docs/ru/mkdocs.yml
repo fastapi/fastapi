@@ -67,17 +67,21 @@ nav:
 - fastapi-people.md
 - python-types.md
 - Учебник - руководство пользователя:
+  - tutorial/path-params.md
   - tutorial/query-params-str-validations.md
+  - tutorial/path-params-numeric-validations.md
   - tutorial/body-fields.md
   - tutorial/background-tasks.md
   - tutorial/extra-data-types.md
   - tutorial/cookie-params.md
   - tutorial/testing.md
   - tutorial/response-status-code.md
+  - tutorial/body-multiple-params.md
 - async.md
 - Развёртывание:
   - deployment/index.md
   - deployment/versions.md
+  - deployment/concepts.md
   - deployment/https.md
   - deployment/manually.md
 - project-generation.md
