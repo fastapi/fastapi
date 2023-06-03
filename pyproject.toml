@@ -129,6 +129,7 @@ check_untyped_defs = true
 addopts = [
   "--strict-config",
   "--strict-markers",
+  "--ignore=docs_src",
 ]
 xfail_strict = true
 junit_family = "xunit2"
