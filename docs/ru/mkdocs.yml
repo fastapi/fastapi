@@ -76,6 +76,7 @@ nav:
   - tutorial/cookie-params.md
   - tutorial/testing.md
   - tutorial/response-status-code.md
+  - tutorial/query-params.md
   - tutorial/body-multiple-params.md
   - tutorial/debugging.md
 - async.md
