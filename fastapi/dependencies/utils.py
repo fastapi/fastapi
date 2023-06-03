@@ -1,7 +1,7 @@
 import dataclasses
 import inspect
 from contextlib import contextmanager
-from copy import deepcopy
+from copy import copy, deepcopy
 from typing import (
     Any,
     Callable,
@@ -383,7 +383,8 @@ def analyze_param(
         ), f"Cannot specify multiple `Annotated` FastAPI arguments for {param_name!r}"
         fastapi_annotation = next(iter(fastapi_annotations), None)
         if isinstance(fastapi_annotation, FieldInfo):
-            field_info = fastapi_annotation
+            # Copy `field_info` because we mutate `field_info.default` below.
+            field_info = copy(fastapi_annotation)
             assert field_info.default is Undefined or field_info.default is Required, (
                 f"`{field_info.__class__.__name__}` default value cannot be set in"
                 f" `Annotated` for {param_name!r}. Set the default value with `=` instead."
