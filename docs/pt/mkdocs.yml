@@ -52,6 +52,7 @@ nav:
   - it: /it/
   - ja: /ja/
   - ko: /ko/
+  - lo: /lo/
   - nl: /nl/
   - pl: /pl/
   - pt: /pt/
@@ -91,6 +92,7 @@ nav:
   - tutorial/static-files.md
   - Guia de Usuário Avançado:
     - advanced/index.md
+    - advanced/events.md
 - Implantação:
   - deployment/index.md
   - deployment/versions.md
@@ -169,6 +171,8 @@ extra:
     name: ja - 日本語
   - link: /ko/
     name: ko - 한국어
+  - link: /lo/
+    name: lo - ພາສາລາວ
   - link: /nl/
     name: nl
   - link: /pl/

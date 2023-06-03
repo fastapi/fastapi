@@ -52,6 +52,7 @@ nav:
   - it: /it/
   - ja: /ja/
   - ko: /ko/
+  - lo: /lo/
   - nl: /nl/
   - pl: /pl/
   - pt: /pt/
@@ -67,16 +68,23 @@ nav:
 - python-types.md
 - Учебник - руководство пользователя:
   - tutorial/first-steps.md
+  - tutorial/path-params.md
   - tutorial/query-params-str-validations.md
+  - tutorial/path-params-numeric-validations.md
   - tutorial/body-fields.md
   - tutorial/background-tasks.md
   - tutorial/extra-data-types.md
   - tutorial/cookie-params.md
+  - tutorial/testing.md
   - tutorial/response-status-code.md
+  - tutorial/body-multiple-params.md
 - async.md
 - Развёртывание:
   - deployment/index.md
   - deployment/versions.md
+  - deployment/concepts.md
+  - deployment/https.md
+  - deployment/manually.md
 - project-generation.md
 - alternatives.md
 - history-design-future.md
@@ -151,6 +159,8 @@ extra:
     name: ja - 日本語
   - link: /ko/
     name: ko - 한국어
+  - link: /lo/
+    name: lo - ພາສາລາວ
   - link: /nl/
     name: nl
   - link: /pl/
