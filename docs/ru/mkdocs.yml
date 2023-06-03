@@ -67,6 +67,7 @@ nav:
 - fastapi-people.md
 - python-types.md
 - Учебник - руководство пользователя:
+  - tutorial/first-steps.md
   - tutorial/path-params.md
   - tutorial/query-params-str-validations.md
   - tutorial/path-params-numeric-validations.md
