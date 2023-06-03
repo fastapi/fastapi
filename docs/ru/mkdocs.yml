@@ -74,6 +74,7 @@ nav:
   - tutorial/cookie-params.md
   - tutorial/testing.md
   - tutorial/response-status-code.md
+  - tutorial/body-multiple-params.md
 - async.md
 - Развёртывание:
   - deployment/index.md
