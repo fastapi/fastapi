@@ -79,6 +79,7 @@ nav:
 - Развёртывание:
   - deployment/index.md
   - deployment/versions.md
+  - deployment/concepts.md
   - deployment/https.md
   - deployment/manually.md
 - project-generation.md
