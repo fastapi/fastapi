@@ -2,6 +2,9 @@
 
 ## Latest Changes
 
+
+## 0.96.0
+
 ### Features
 
 * ⚡ Update `create_cloned_field` to use a global cache and improve startup performance. PR [#4645](https://github.com/tiangolo/fastapi/pull/4645) by [@madkinsz](https://github.com/madkinsz) and previous original PR by [@huonw](https://github.com/huonw).
