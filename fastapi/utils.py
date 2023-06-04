@@ -58,7 +58,12 @@ def create_response_field(
     Create a new response field. Raises if type_ is invalid.
     """
     class_validators = class_validators or {}
-    field_info = field_info or FieldInfo(annotation=type_, default=default, alias=alias)
+    if PYDANTIC_V2:
+        field_info = field_info or FieldInfo(
+            annotation=type_, default=default, alias=alias
+        )
+    else:
+        field_info = field_info or FieldInfo()
     kwargs = {"name": name, "field_info": field_info}
     if not PYDANTIC_V2:
         kwargs.update(
