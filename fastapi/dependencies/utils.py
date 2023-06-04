@@ -53,6 +53,7 @@ from fastapi.concurrency import (
     contextmanager_in_threadpool,
 )
 from fastapi.dependencies.models import Dependant, SecurityRequirement
+from fastapi.exceptions import RequestErrorModel
 from fastapi.logger import logger
 from fastapi.security.base import SecurityBase
 from fastapi.security.oauth2 import OAuth2, SecurityScopes
@@ -665,23 +666,21 @@ def request_params_to_args(
         loc = (field_info.in_.value, field.alias)
         if value is None:
             if field.required:
-                errors.append(
-                    get_missing_field_error(loc=loc)
-                    # TODO (pv2)
-                    # ErrorWrapper(
-                    #     MissingError(), loc=(field_info.in_.value, field.alias)
-                    # )
-                )
+                errors.append(get_missing_field_error(loc=loc))
             else:
                 values[field.name] = deepcopy(field.default)
             continue
-        v_, errors_ = field.validate(value, values, loc=())
-        # if isinstance(errors_, ErrorWrapper):
+        v_, errors_ = field.validate(value, values, loc=loc)
         if isinstance(errors_, ValidationError):
             new_errors = _regenerate_error_with_loc(
                 errors=errors_.errors(), loc_prefix=loc
             )
             new_error = ValidationError(title=errors_.title, errors=new_errors)
+            errors.append(new_error)
+        elif isinstance(errors_, ErrorWrapper):
+            new_error = ValidationError(
+                errors=[errors_], model=RequestErrorModel
+            ).errors()[0]
             errors.append(new_error)
         elif isinstance(errors_, list):
             new_errors = _regenerate_error_with_loc(errors=errors_, loc_prefix=loc)
@@ -775,7 +774,10 @@ async def request_body_to_args(
             v_, errors_ = field.validate(value, values, loc=loc)
 
             if isinstance(errors_, ErrorWrapper):
-                errors.append(errors_)
+                new_error = ValidationError(
+                    errors=[errors_], model=RequestErrorModel
+                ).errors()[0]
+                errors.append(new_error)
             elif isinstance(errors_, list):
                 errors.extend(errors_)
             elif errors_:

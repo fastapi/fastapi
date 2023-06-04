@@ -17,6 +17,7 @@ from typing import (
     Union,
 )
 
+from fastapi.exceptions import RequestErrorModel
 from pydantic import BaseModel, create_model
 from pydantic.version import VERSION as PYDANTIC_VERSION
 from starlette.datastructures import UploadFile
@@ -532,7 +533,8 @@ def get_missing_field_error(loc: Tuple[str, ...]) -> Dict[str, Any]:
         return error
     else:
         missing_field_error = ErrorWrapper(MissingError(), loc=loc)
-        return missing_field_error
+        new_error = ValidationError([missing_field_error], RequestErrorModel)
+        return new_error.errors()[0]
 
 
 def create_body_model(
