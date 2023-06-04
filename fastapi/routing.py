@@ -51,9 +51,6 @@ from fastapi.utils import (
     is_body_allowed_for_status_code,
 )
 from pydantic import BaseModel
-
-# TODO (pv2)
-# from pydantic.error_wrappers import ErrorWrapper, ValidationError
 from starlette import routing
 from starlette.concurrency import run_in_threadpool
 from starlette.exceptions import HTTPException
@@ -447,7 +444,7 @@ class APIRoute(routing.Route):
             # would pass the validation and be returned as is.
             # By being a new field, no inheritance will be passed as is. A new model
             # will be always created.
-            # TODO (pyv2)
+            # TODO: remove when deprecating Pydantic v2
             self.secure_cloned_response_field: Optional[
                 ModelField
             ] = create_cloned_field(self.response_field)

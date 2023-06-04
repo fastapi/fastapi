@@ -122,10 +122,10 @@ def jsonable_encoder(
     if exclude is not None and not isinstance(exclude, (set, dict)):
         exclude = set(exclude)
     if isinstance(obj, BaseModel):
-        # TODO (pv2)
-        # encoder = getattr(obj.__config__, "json_encoders", {})
-        # if custom_encoder:
-        #     encoder.update(custom_encoder)
+        # TODO: remove when deprecating Pydantic v1
+        encoder = getattr(obj.__config__, "json_encoders", {})
+        if custom_encoder:
+            encoder.update(custom_encoder)
         obj_dict = _model_dump(
             obj,
             mode="json",
@@ -142,8 +142,8 @@ def jsonable_encoder(
             obj_dict,
             exclude_none=exclude_none,
             exclude_defaults=exclude_defaults,
-            # TODO (pv2)
-            # custom_encoder=encoder,
+            # TODO: remove when deprecating Pydantic v1
+            custom_encoder=encoder,
             sqlalchemy_safe=sqlalchemy_safe,
         )
     if dataclasses.is_dataclass(obj):
