@@ -31,6 +31,7 @@ class Param(FieldInfo):
         min_length: Optional[int] = None,
         max_length: Optional[int] = None,
         pattern: Optional[str] = None,
+        regex: Optional[str] = None,
         example: Any = Undefined,
         examples: Optional[List[Any]] = None,
         deprecated: Optional[bool] = None,
@@ -51,12 +52,16 @@ class Param(FieldInfo):
             le=le,
             min_length=min_length,
             max_length=max_length,
-            pattern=pattern,
             examples=examples,
             **extra,
         )
         if PYDANTIC_V2:
             kwargs["annotation"] = annotation
+            kwargs["pattern"] = pattern or regex
+        else:
+            # TODO: pv2 figure out how to deprecate regex
+            kwargs["regex"] = pattern or regex
+
         super().__init__(**kwargs)
         # TODO: pv2 decide how to handle OpenAPI examples vs JSON Schema examples
         # and how to deprecate OpenAPI examples
@@ -84,6 +89,7 @@ class Path(Param):
         min_length: Optional[int] = None,
         max_length: Optional[int] = None,
         pattern: Optional[str] = None,
+        regex: Optional[str] = None,
         example: Any = Undefined,
         examples: Optional[Dict[str, Any]] = None,
         deprecated: Optional[bool] = None,
@@ -105,6 +111,7 @@ class Path(Param):
             min_length=min_length,
             max_length=max_length,
             pattern=pattern,
+            regex=regex,
             deprecated=deprecated,
             example=example,
             examples=examples,
@@ -131,6 +138,7 @@ class Query(Param):
         min_length: Optional[int] = None,
         max_length: Optional[int] = None,
         pattern: Optional[str] = None,
+        regex: Optional[str] = None,
         example: Any = Undefined,
         examples: Optional[Dict[str, Any]] = None,
         deprecated: Optional[bool] = None,
@@ -150,6 +158,7 @@ class Query(Param):
             min_length=min_length,
             max_length=max_length,
             pattern=pattern,
+            regex=regex,
             deprecated=deprecated,
             example=example,
             examples=examples,
@@ -177,6 +186,7 @@ class Header(Param):
         min_length: Optional[int] = None,
         max_length: Optional[int] = None,
         pattern: Optional[str] = None,
+        regex: Optional[str] = None,
         example: Any = Undefined,
         examples: Optional[Dict[str, Any]] = None,
         deprecated: Optional[bool] = None,
@@ -197,6 +207,7 @@ class Header(Param):
             min_length=min_length,
             max_length=max_length,
             pattern=pattern,
+            regex=regex,
             deprecated=deprecated,
             example=example,
             examples=examples,
@@ -223,6 +234,7 @@ class Cookie(Param):
         min_length: Optional[int] = None,
         max_length: Optional[int] = None,
         pattern: Optional[str] = None,
+        regex: Optional[str] = None,
         example: Any = Undefined,
         examples: Optional[Dict[str, Any]] = None,
         deprecated: Optional[bool] = None,
@@ -242,6 +254,7 @@ class Cookie(Param):
             min_length=min_length,
             max_length=max_length,
             pattern=pattern,
+            regex=regex,
             deprecated=deprecated,
             example=example,
             examples=examples,
@@ -268,6 +281,7 @@ class Body(FieldInfo):
         min_length: Optional[int] = None,
         max_length: Optional[int] = None,
         pattern: Optional[str] = None,
+        regex: Optional[str] = None,
         example: Any = Undefined,
         examples: Optional[Dict[str, Any]] = None,
         **extra: Any,
@@ -286,11 +300,14 @@ class Body(FieldInfo):
             le=le,
             min_length=min_length,
             max_length=max_length,
-            pattern=pattern,
             **extra,
         )
         if PYDANTIC_V2:
             kwargs["annotation"] = annotation
+            kwargs["pattern"] = pattern or regex
+        else:
+            # TODO: pv2 figure out how to deprecate regex
+            kwargs["regex"] = pattern or regex
         super().__init__(
             **kwargs,
         )
@@ -319,6 +336,7 @@ class Form(Body):
         min_length: Optional[int] = None,
         max_length: Optional[int] = None,
         pattern: Optional[str] = None,
+        regex: Optional[str] = None,
         example: Any = Undefined,
         examples: Optional[Dict[str, Any]] = None,
         **extra: Any,
@@ -338,6 +356,7 @@ class Form(Body):
             min_length=min_length,
             max_length=max_length,
             pattern=pattern,
+            regex=regex,
             example=example,
             examples=examples,
             **extra,
@@ -361,6 +380,7 @@ class File(Form):
         min_length: Optional[int] = None,
         max_length: Optional[int] = None,
         pattern: Optional[str] = None,
+        regex: Optional[str] = None,
         example: Any = Undefined,
         examples: Optional[Dict[str, Any]] = None,
         **extra: Any,
@@ -379,6 +399,7 @@ class File(Form):
             min_length=min_length,
             max_length=max_length,
             pattern=pattern,
+            regex=regex,
             example=example,
             examples=examples,
             **extra,
