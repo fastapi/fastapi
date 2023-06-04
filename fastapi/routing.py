@@ -25,6 +25,7 @@ from fastapi._compat import (
     Undefined,
     _get_model_config,
     _model_dump,
+    _normalize_errors,
     lenient_issubclass,
 )
 from fastapi.datastructures import Default, DefaultPlaceholder
@@ -149,7 +150,9 @@ async def serialize_response(
         elif errors_:
             errors.append(errors_)
         if errors:
-            raise ResponseValidationError(errors=errors, body=response_content)
+            raise ResponseValidationError(
+                errors=_normalize_errors(errors), body=response_content
+            )
 
         if hasattr(field, "serialize"):
             return field.serialize(
@@ -264,7 +267,7 @@ def get_request_handler(
         )
         values, errors, background_tasks, sub_response, _ = solved_result
         if errors:
-            raise RequestValidationError(errors, body=body)
+            raise RequestValidationError(_normalize_errors(errors), body=body)
         else:
             raw_response = await run_endpoint_function(
                 dependant=dependant, values=values, is_coroutine=is_coroutine
@@ -316,7 +319,7 @@ def get_websocket_app(
         values, errors, _, _2, _3 = solved_result
         if errors:
             await websocket.close(code=WS_1008_POLICY_VIOLATION)
-            raise WebSocketRequestValidationError(errors)
+            raise WebSocketRequestValidationError(_normalize_errors(errors))
         assert dependant.call is not None, "dependant.call must be a function"
         await dependant.call(**values)
 
