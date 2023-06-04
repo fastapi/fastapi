@@ -5,8 +5,9 @@ from pathlib import PurePath, PurePosixPath, PureWindowsPath
 from typing import Optional
 
 import pytest
+from fastapi._compat import PYDANTIC_V2
 from fastapi.encoders import jsonable_encoder
-from pydantic import BaseModel, Field, ValidationError, create_model
+from pydantic import BaseModel, Field, ValidationError
 
 from .utils import needs_pydanticv1, needs_pydanticv2
 
@@ -55,7 +56,12 @@ class RoleEnum(Enum):
 class ModelWithConfig(BaseModel):
     role: Optional[RoleEnum] = None
 
-    model_config = {"use_enum_values": True}
+    if PYDANTIC_V2:
+        model_config = {"use_enum_values": True}
+    else:
+
+        class Config:
+            use_enum_values = True
 
 
 class ModelWithAlias(BaseModel):
@@ -66,23 +72,6 @@ class ModelWithDefault(BaseModel):
     foo: str = ...  # type: ignore
     bar: str = "bar"
     bla: str = "bla"
-
-
-# TODO (pv2)
-# class ModelWithRoot(BaseModel):
-#     __root__: str
-
-
-@pytest.fixture(
-    name="model_with_path", params=[PurePath, PurePosixPath, PureWindowsPath]
-)
-def fixture_model_with_path(request):
-    model_config = {"arbitrary_types_allowed": True}
-
-    ModelWithPath = create_model(
-        "ModelWithPath", path=(request.param, ...), __config__=model_config  # type: ignore
-    )
-    return ModelWithPath(path=request.param("/foo", "bar"))
 
 
 def test_encode_dict():
@@ -245,16 +234,55 @@ def test_custom_enum_encoders():
     assert encoded_instance == custom_enum_encoder(instance)
 
 
-def test_encode_model_with_path(model_with_path):
-    if isinstance(model_with_path.path, PureWindowsPath):
-        expected = "\\foo\\bar"
-    else:
-        expected = "/foo/bar"
-    assert jsonable_encoder(model_with_path) == {"path": expected}
+def test_encode_model_with_pure_path():
+    class ModelWithPath(BaseModel):
+        path: PurePath
+
+        if PYDANTIC_V2:
+            model_config = {"arbitrary_types_allowed": True}
+        else:
+
+            class Config:
+                arbitrary_types_allowed = True
+
+    obj = ModelWithPath(path=PurePath("/foo", "bar"))
+    assert jsonable_encoder(obj) == {"path": "/foo/bar"}
 
 
-def xtest_encode_root():
-    pass
-    # TODO (pv2)
-    # model = ModelWithRoot(__root__="Foo")
-    # assert jsonable_encoder(model) == "Foo"
+def test_encode_model_with_pure_posix_path():
+    class ModelWithPath(BaseModel):
+        path: PurePosixPath
+
+        if PYDANTIC_V2:
+            model_config = {"arbitrary_types_allowed": True}
+        else:
+
+            class Config:
+                arbitrary_types_allowed = True
+
+    obj = ModelWithPath(path=PurePosixPath("/foo", "bar"))
+    assert jsonable_encoder(obj) == {"path": "/foo/bar"}
+
+
+def test_encode_model_with_pure_windows_path():
+    class ModelWithPath(BaseModel):
+        path: PureWindowsPath
+
+        if PYDANTIC_V2:
+            model_config = {"arbitrary_types_allowed": True}
+        else:
+
+            class Config:
+                arbitrary_types_allowed = True
+
+    obj = ModelWithPath(path=PureWindowsPath("/foo", "bar"))
+    assert jsonable_encoder(obj) == {"path": "\\foo\\bar"}
+
+
+@needs_pydanticv1
+def test_encode_root():
+    class ModelWithRoot(BaseModel):
+        __root__: str
+
+    model = ModelWithRoot(__root__="Foo")
+    assert jsonable_encoder(model) == "Foo"
