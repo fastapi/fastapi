@@ -76,6 +76,8 @@ nav:
   - tutorial/cors.md
   - 의존성:
     - tutorial/dependencies/classes-as-dependencies.md
+- 심화 사용자 안내서:
+  - advanced/index.md
 markdown_extensions:
 - toc:
     permalink: true
