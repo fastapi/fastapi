@@ -281,10 +281,10 @@ else:
         use_errors = []
         for error in errors:
             if isinstance(error, ErrorWrapper):
-                new_error = ValidationError(
+                new_errors = ValidationError(
                     errors=[error], model=RequestErrorModel
-                ).errors()[0]
-                use_errors.append(new_error)
+                ).errors()
+                use_errors.extend(new_errors)
             elif isinstance(error, list):
                 use_errors.extend(_normalize_errors(error))
             else:
@@ -293,10 +293,11 @@ else:
 
 
 def _regenerate_error_with_loc(
-    *, errors: Sequence[ErrorDetails], loc_prefix: Tuple[Union[str, int], ...]
+    *, errors: Sequence[Any], loc_prefix: Tuple[Union[str, int], ...]
 ):
-    updated_loc_errors: List[ErrorDetails] = [
-        {**err, "loc": loc_prefix + err.get("loc", ())} for err in errors
+    updated_loc_errors: List[Any] = [
+        {**err, "loc": loc_prefix + err.get("loc", ())}
+        for err in _normalize_errors(errors)
     ]
 
     return updated_loc_errors
