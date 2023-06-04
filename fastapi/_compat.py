@@ -31,8 +31,6 @@ SetIntStr = Set[Union[int, str]]
 DictIntStrAny = Dict[Union[int, str], Any]
 ModelNameMap = Dict[Union[Type[BaseModel], Type[Enum]], str]
 
-sequence_types = (Sequence, tuple, set, frozenset, deque)
-
 sequence_annotation_to_type = {
     Sequence: list,
     List: list,
@@ -46,6 +44,8 @@ sequence_annotation_to_type = {
     Deque: deque,
     deque: deque,
 }
+
+sequence_types = tuple(sequence_annotation_to_type.keys())
 
 if PYDANTIC_V2:
     from pydantic import PydanticSchemaGenerationError as PydanticSchemaGenerationError
@@ -433,7 +433,7 @@ def is_sequence_field(field: ModelField) -> bool:
     if PYDANTIC_V2:
         return field_annotation_is_sequence(field.field_info.annotation)
     else:
-        return field.shape in sequence_shapes or field.type_ in sequence_types
+        return field.shape in sequence_shapes or _annotation_is_sequence(field.type_)
 
 
 def is_scalar_sequence_field(field: ModelField) -> bool:
