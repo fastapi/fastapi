@@ -16,7 +16,7 @@ def test_get_validation_error(insert_assert):
     )
     assert (
         # TODO: remove when deprecating Pydantic v1
-        "value is not a valid integer (type=type_error.integer)" in response.text
+        "value is not a valid integer" in response.text
         or "Input should be a valid integer, unable to parse string as an integer"
         in response.text
     )
