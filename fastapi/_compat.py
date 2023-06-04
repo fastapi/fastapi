@@ -139,11 +139,8 @@ if PYDANTIC_V2:
             exclude_defaults: bool = False,
             exclude_none: bool = False,
         ) -> Any:
-            # TODO: pv2 is this right?
-            # To avoid accepting isinstance, and leaking data
-            # This seems to break response_by_alias
-            # use_value = TypeAdapter(Any).dump_python(value)
-            # validated = self._type_adapter.validate_python(use_value)
+            # The point in code that call this method pass a value that already called
+            # self._type_adapter.validate_python(value)
             return self._type_adapter.dump_python(
                 value,
                 mode=mode,
@@ -265,7 +262,7 @@ else:
                     if not is_pv1_scalar_field(sub_field):
                         return False
             return True
-        if lenient_issubclass(field.type_, sequence_types):
+        if _annotation_is_sequence(field.type_):
             return True
         return False
 
@@ -504,6 +501,20 @@ def is_uploadfile_sequence_annotation(annotation: type[Any] | None) -> bool:
         is_uploadfile_or_nonable_uploadfile_annotation(sub_annotation)
         for sub_annotation in get_args(annotation)
     )
+
+
+def is_bytes_field(field: ModelField) -> bool:
+    if PYDANTIC_V2:
+        return is_bytes_or_nonable_bytes_annotation(field.type_)
+    else:
+        return lenient_issubclass(field.type_, bytes)
+
+
+def is_bytes_sequence_field(field: ModelField) -> bool:
+    if PYDANTIC_V2:
+        return is_bytes_sequence_annotation(field.type_)
+    else:
+        return field.shape in sequence_shapes and lenient_issubclass(field.type_, bytes)
 
 
 def copy_field_info(*, field_info: FieldInfo, annotation: Any) -> FieldInfo:

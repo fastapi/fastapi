@@ -35,8 +35,8 @@ from fastapi._compat import (
     field_annotation_is_scalar,
     get_annotation_from_field_info,
     get_missing_field_error,
-    is_bytes_or_nonable_bytes_annotation,
-    is_bytes_sequence_annotation,
+    is_bytes_field,
+    is_bytes_sequence_field,
     is_scalar_field,
     is_scalar_sequence_field,
     is_sequence_field,
@@ -523,16 +523,12 @@ async def solve_dependencies(
     dependency_cache: Optional[Dict[Tuple[Callable[..., Any], Tuple[str]], Any]] = None,
 ) -> Tuple[
     Dict[str, Any],
-    # TODO (pv2)
-    # List[ErrorWrapper],
     List[Any],
     Optional[BackgroundTasks],
     Response,
     Dict[Tuple[Callable[..., Any], Tuple[str]], Any],
 ]:
     values: Dict[str, Any] = {}
-    # TODO (pv2)
-    # errors: List[ErrorWrapper] = []
     errors: List[Any] = []
     if response is None:
         response = Response()
@@ -647,8 +643,6 @@ async def solve_dependencies(
 def request_params_to_args(
     required_params: Sequence[ModelField],
     received_params: Union[Mapping[str, Any], QueryParams, Headers],
-    # TODO (pv2)
-    # ) -> Tuple[Dict[str, Any], List[ErrorWrapper]]:
 ) -> Tuple[Dict[str, Any], List[Any]]:
     values = {}
     errors = []
@@ -693,8 +687,6 @@ def request_params_to_args(
 async def request_body_to_args(
     required_params: List[ModelField],
     received_body: Optional[Union[Dict[str, Any], FormData]],
-    # TODO (pv2)
-    # ) -> Tuple[Dict[str, Any], List[ErrorWrapper]]:
 ) -> Tuple[Dict[str, Any], List[ValidationError]]:
     values = {}
     errors = []
@@ -715,11 +707,7 @@ async def request_body_to_args(
 
             value: Optional[Any] = None
             if received_body is not None:
-                if (
-                    # TODO (pv2)
-                    # field.shape in sequence_shapes or field.type_ in sequence_types
-                    is_sequence_field(field)
-                ) and isinstance(received_body, FormData):
+                if (is_sequence_field(field)) and isinstance(received_body, FormData):
                     value = received_body.getlist(field.alias)
                 else:
                     try:
@@ -732,8 +720,6 @@ async def request_body_to_args(
                 or (isinstance(field_info, params.Form) and value == "")
                 or (
                     isinstance(field_info, params.Form)
-                    # TODO (pv2)
-                    # and field.shape in sequence_shapes
                     and is_sequence_field(field)
                     and len(value) == 0
                 )
@@ -745,14 +731,12 @@ async def request_body_to_args(
                 continue
             if (
                 isinstance(field_info, params.File)
-                and is_bytes_or_nonable_bytes_annotation(field.type_)
+                and is_bytes_field(field)
                 and isinstance(value, UploadFile)
             ):
                 value = await value.read()
             elif (
-                # TODO (pv2)
-                # field.shape in sequence_shapes
-                is_bytes_sequence_annotation(field.type_)
+                is_bytes_sequence_field(field)
                 and isinstance(field_info, params.File)
                 and value_is_sequence(value)
             ):
