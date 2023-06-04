@@ -52,7 +52,6 @@ class Param(FieldInfo):
             le=le,
             min_length=min_length,
             max_length=max_length,
-            examples=examples,
             **extra,
         )
         if PYDANTIC_V2:
