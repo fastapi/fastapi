@@ -1,9 +1,9 @@
 from enum import Enum
-from typing import Any, Callable, Dict, List, Optional, Sequence
+from typing import Any, Callable, Dict, List, Optional, Sequence, Type
 
 from pydantic.fields import FieldInfo
 
-from ._compat import Undefined
+from ._compat import PYDANTIC_V2, Undefined
 
 
 class ParamTypes(Enum):
@@ -20,6 +20,7 @@ class Param(FieldInfo):
         self,
         default: Any = Undefined,
         *,
+        annotation: Optional[Type[Any]] = None,
         alias: Optional[str] = None,
         title: Optional[str] = None,
         description: Optional[str] = None,
@@ -39,7 +40,7 @@ class Param(FieldInfo):
         self.deprecated = deprecated
         self.example = example
         self.include_in_schema = include_in_schema
-        super().__init__(
+        kwargs = dict(
             default=default,
             alias=alias,
             title=title,
@@ -54,6 +55,9 @@ class Param(FieldInfo):
             examples=examples,
             **extra,
         )
+        if PYDANTIC_V2:
+            kwargs["annotation"] = annotation
+        super().__init__(**kwargs)
         # TODO: pv2 decide how to handle OpenAPI examples vs JSON Schema examples
         # and how to deprecate OpenAPI examples
         self.examples = examples
@@ -69,6 +73,7 @@ class Path(Param):
         self,
         default: Any = ...,
         *,
+        annotation: Optional[Type[Any]] = None,
         alias: Optional[str] = None,
         title: Optional[str] = None,
         description: Optional[str] = None,
@@ -89,6 +94,7 @@ class Path(Param):
         self.in_ = self.in_
         super().__init__(
             default=default,
+            annotation=annotation,
             alias=alias,
             title=title,
             description=description,
@@ -114,6 +120,7 @@ class Query(Param):
         self,
         default: Any = Undefined,
         *,
+        annotation: Optional[Type[Any]] = None,
         alias: Optional[str] = None,
         title: Optional[str] = None,
         description: Optional[str] = None,
@@ -132,6 +139,7 @@ class Query(Param):
     ):
         super().__init__(
             default=default,
+            annotation=annotation,
             alias=alias,
             title=title,
             description=description,
@@ -157,6 +165,7 @@ class Header(Param):
         self,
         default: Any = Undefined,
         *,
+        annotation: Optional[Type[Any]] = None,
         alias: Optional[str] = None,
         convert_underscores: bool = True,
         title: Optional[str] = None,
@@ -177,6 +186,7 @@ class Header(Param):
         self.convert_underscores = convert_underscores
         super().__init__(
             default=default,
+            annotation=annotation,
             alias=alias,
             title=title,
             description=description,
@@ -202,6 +212,7 @@ class Cookie(Param):
         self,
         default: Any = Undefined,
         *,
+        annotation: Optional[Type[Any]] = None,
         alias: Optional[str] = None,
         title: Optional[str] = None,
         description: Optional[str] = None,
@@ -220,6 +231,7 @@ class Cookie(Param):
     ):
         super().__init__(
             default=default,
+            annotation=annotation,
             alias=alias,
             title=title,
             description=description,
@@ -243,6 +255,7 @@ class Body(FieldInfo):
         self,
         default: Any = Undefined,
         *,
+        annotation: Optional[Type[Any]] = None,
         embed: bool = False,
         media_type: str = "application/json",
         alias: Optional[str] = None,
@@ -262,7 +275,7 @@ class Body(FieldInfo):
         self.embed = embed
         self.media_type = media_type
         self.example = example
-        super().__init__(
+        kwargs = dict(
             default=default,
             alias=alias,
             title=title,
@@ -275,6 +288,11 @@ class Body(FieldInfo):
             max_length=max_length,
             pattern=pattern,
             **extra,
+        )
+        if PYDANTIC_V2:
+            kwargs["annotation"] = annotation
+        super().__init__(
+            **kwargs,
         )
         # TODO: pv2 decide how to handle OpenAPI examples vs JSON Schema examples
         # and how to deprecate OpenAPI examples
@@ -289,6 +307,7 @@ class Form(Body):
         self,
         default: Any = Undefined,
         *,
+        annotation: Optional[Type[Any]] = None,
         media_type: str = "application/x-www-form-urlencoded",
         alias: Optional[str] = None,
         title: Optional[str] = None,
@@ -306,6 +325,7 @@ class Form(Body):
     ):
         super().__init__(
             default=default,
+            annotation=annotation,
             embed=True,
             media_type=media_type,
             alias=alias,
@@ -329,6 +349,7 @@ class File(Form):
         self,
         default: Any = Undefined,
         *,
+        annotation: Optional[Type[Any]] = None,
         media_type: str = "multipart/form-data",
         alias: Optional[str] = None,
         title: Optional[str] = None,
@@ -346,6 +367,7 @@ class File(Form):
     ):
         super().__init__(
             default=default,
+            annotation=annotation,
             media_type=media_type,
             alias=alias,
             title=title,
