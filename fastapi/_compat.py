@@ -183,7 +183,12 @@ else:
     from pydantic.fields import Required as Required  # noqa: F401
     from pydantic.fields import Undefined as Undefined
     from pydantic.fields import UndefinedType as UndefinedType  # noqa: F401
-    from pydantic.schema import field_schema, get_model_name_map, model_process_schema
+    from pydantic.schema import (
+        field_schema,
+        get_flat_models_from_fields,
+        get_model_name_map,
+        model_process_schema,
+    )
     from pydantic.typing import evaluate_forwardref as evaluate_forwardref  # noqa: F401
     from pydantic.utils import lenient_issubclass as lenient_issubclass  # noqa: F401
 
@@ -290,9 +295,11 @@ def _model_rebuild(model: Type[BaseModel]) -> None:
         model.update_forward_refs()
 
 
-def _model_dump(model: Type[BaseModel], **kwargs) -> Dict[str, Any]:
+def _model_dump(
+    model: Type[BaseModel], mode: Literal["json", "python"] = "json", **kwargs
+) -> Dict[str, Any]:
     if PYDANTIC_V2:
-        return model.model_dump(**kwargs)
+        return model.model_dump(mode=mode, **kwargs)
     else:
         return model.dict(**kwargs)
 
@@ -337,7 +344,8 @@ def get_compat_model_name_map(fields: List[ModelField]) -> ModelNameMap:
     if PYDANTIC_V2:
         return {}
     else:
-        return get_model_name_map(fields)
+        models = get_flat_models_from_fields(fields, known_models=set())
+        return get_model_name_map(models)
 
 
 def get_definitions(
@@ -353,9 +361,8 @@ def get_definitions(
         _, definitions = schema_generator.generate_definitions(inputs=inputs)
         return definitions
     else:
-        return get_model_definitions(
-            flat_models=set(fields), model_name_map=model_name_map
-        )
+        models = get_flat_models_from_fields(fields, known_models=set())
+        return get_model_definitions(flat_models=models, model_name_map=model_name_map)
 
 
 def _annotation_is_sequence(annotation: type[Any] | None) -> bool:
