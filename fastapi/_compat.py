@@ -160,6 +160,11 @@ if PYDANTIC_V2:
     def get_model_definitions(**kwargs) -> Dict[str, Any]:
         return {}
 
+    def get_annotation_from_field_info(
+        annotation: Any, field_info: FieldInfo, field_name: str
+    ):
+        return annotation
+
 else:
     from fastapi.openapi.constants import REF_PREFIX as REF_PREFIX
     from pydantic import BaseConfig as BaseConfig  # noqa: F401
@@ -181,8 +186,11 @@ else:
     from pydantic.fields import Required as Required  # noqa: F401
     from pydantic.fields import Undefined as Undefined
     from pydantic.fields import UndefinedType as UndefinedType  # noqa: F401
+    from pydantic.schema import field_schema
+    from pydantic.schema import (  # noqa: F401
+        get_annotation_from_field_info as get_annotation_from_field_info,
+    )
     from pydantic.schema import (
-        field_schema,
         get_flat_models_from_fields,
         get_model_name_map,
         model_process_schema,
@@ -267,15 +275,6 @@ else:
         return False
 
 
-# from pydantic.schema import get_annotation_from_field_info
-
-
-def get_annotation_from_field_info(
-    annotation: Any, field_info: FieldInfo, field_name: str
-):
-    return annotation
-
-
 def _regenerate_error_with_loc(
     *, errors: Sequence[ErrorDetails], loc_prefix: Tuple[Union[str, int], ...]
 ):
@@ -316,13 +315,6 @@ def get_schema_from_model_field(
     model_name_map: ModelNameMap,
 ) -> Dict[str, Any]:
     # This expects that GenerateJsonSchema was already used to generate the definitions
-    # core_ref = field._type_adapter.core_schema.get("schema", {}).get("schema", {}).get("schema_ref")
-    # core_ref = field._type_adapter.core_schema.get("schema", {}).get("schema_ref")
-    # if core_ref:
-    #     def_ref = schema_generator.core_to_defs_refs.get((core_ref, "validation"))
-    #     json_schema = schema_generator.definitions[def_ref]
-    # else:
-    # json_schema = schema_generator.generate_inner(field._type_adapter.core_schema)
     if PYDANTIC_V2:
         json_schema = schema_generator.generate_inner(field._type_adapter.core_schema)
         if "$ref" not in json_schema:
