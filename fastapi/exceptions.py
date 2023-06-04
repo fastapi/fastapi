@@ -25,27 +25,28 @@ class FastAPIError(RuntimeError):
     """
 
 
-class RequestValidationError(Exception):
-    def __init__(self, errors: Sequence[Any], *, body: Any = None) -> None:
-        self.body = body
-        self._errors = errors
+class ValidationException(Exception):
+    def __init__(self, errors: Sequence[Any]) -> None:
+        # to avoid circular imports
+        from fastapi._compat import _normalize_errors
+
+        self._errors = _normalize_errors(errors)
 
     def errors(self) -> Sequence[Any]:
         return self._errors
+
+
+class RequestValidationError(ValidationException):
+    def __init__(self, errors: Sequence[Any], *, body: Any = None) -> None:
+        super().__init__(errors)
+        self.body = body
 
 
 class WebSocketRequestValidationError(Exception):
-    def __init__(self, errors: Sequence[Any]) -> None:
-        self._errors = errors
-
-    def errors(self) -> Sequence[Any]:
-        return self._errors
+    pass
 
 
 class ResponseValidationError(Exception):
     def __init__(self, errors: Sequence[Any], *, body: Any = None) -> None:
+        super().__init__(errors)
         self.body = body
-        self._errors = errors
-
-    def errors(self) -> Sequence[Any]:
-        return self._errors

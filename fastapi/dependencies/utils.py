@@ -53,7 +53,6 @@ from fastapi.concurrency import (
     contextmanager_in_threadpool,
 )
 from fastapi.dependencies.models import Dependant, SecurityRequirement
-from fastapi.exceptions import RequestErrorModel
 from fastapi.logger import logger
 from fastapi.security.base import SecurityBase
 from fastapi.security.oauth2 import OAuth2, SecurityScopes
@@ -672,10 +671,7 @@ def request_params_to_args(
             new_error = ValidationError(title=errors_.title, errors=new_errors)
             errors.append(new_error)
         elif isinstance(errors_, ErrorWrapper):
-            new_error = ValidationError(
-                errors=[errors_], model=RequestErrorModel
-            ).errors()[0]
-            errors.append(new_error)
+            errors.append(errors_)
         elif isinstance(errors_, list):
             new_errors = _regenerate_error_with_loc(errors=errors_, loc_prefix=loc)
             errors.extend(new_errors)
@@ -757,12 +753,7 @@ async def request_body_to_args(
 
             v_, errors_ = field.validate(value, values, loc=loc)
 
-            if isinstance(errors_, ErrorWrapper):
-                new_error = ValidationError(
-                    errors=[errors_], model=RequestErrorModel
-                ).errors()[0]
-                errors.append(new_error)
-            elif isinstance(errors_, list):
+            if isinstance(errors_, list):
                 errors.extend(errors_)
             elif errors_:
                 errors.append(errors_)

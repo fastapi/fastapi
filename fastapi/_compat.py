@@ -165,6 +165,9 @@ if PYDANTIC_V2:
     ):
         return annotation
 
+    def _normalize_errors(errors: Sequence[Any]) -> List[Dict[str, Any]]:
+        return errors
+
 else:
     from fastapi.openapi.constants import REF_PREFIX as REF_PREFIX
     from pydantic import BaseConfig as BaseConfig  # noqa: F401
@@ -273,6 +276,20 @@ else:
         if _annotation_is_sequence(field.type_):
             return True
         return False
+
+    def _normalize_errors(errors: Sequence[Any]) -> List[Dict[str, Any]]:
+        use_errors = []
+        for error in errors:
+            if isinstance(error, ErrorWrapper):
+                new_error = ValidationError(
+                    errors=[error], model=RequestErrorModel
+                ).errors()[0]
+                use_errors.append(new_error)
+            elif isinstance(error, list):
+                use_errors.extend(_normalize_errors(error))
+            else:
+                use_errors.append(error)
+        return use_errors
 
 
 def _regenerate_error_with_loc(
