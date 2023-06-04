@@ -673,7 +673,7 @@ def request_params_to_args(
         elif isinstance(errors_, ErrorWrapper):
             errors.append(errors_)
         elif isinstance(errors_, list):
-            new_errors = _regenerate_error_with_loc(errors=errors_, loc_prefix=loc)
+            new_errors = _regenerate_error_with_loc(errors=errors_, loc_prefix=())
             errors.extend(new_errors)
         else:
             values[field.name] = v_
