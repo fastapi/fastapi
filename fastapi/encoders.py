@@ -23,7 +23,7 @@ from pydantic.networks import NameEmail
 from pydantic.types import SecretBytes, SecretStr
 from pydantic_core import MultiHostUrl, Url
 
-from ._compat import _model_dump
+from ._compat import PYDANTIC_V2, _model_dump
 
 SetIntStr = Set[Union[int, str]]
 DictIntStrAny = Dict[Union[int, str], Any]
@@ -123,9 +123,11 @@ def jsonable_encoder(
         exclude = set(exclude)
     if isinstance(obj, BaseModel):
         # TODO: remove when deprecating Pydantic v1
-        encoder = getattr(obj.__config__, "json_encoders", {})
-        if custom_encoder:
-            encoder.update(custom_encoder)
+        encoder = {}
+        if not PYDANTIC_V2:
+            encoder = getattr(obj.__config__, "json_encoders", {})
+            if custom_encoder:
+                encoder.update(custom_encoder)
         obj_dict = _model_dump(
             obj,
             mode="json",
