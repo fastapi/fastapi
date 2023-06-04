@@ -1,7 +1,7 @@
 from enum import Enum
 from typing import Any, Callable, Dict, Iterable, List, Optional, Union
 
-from fastapi._compat import _model_rebuild
+from fastapi._compat import PYDANTIC_V2, _model_rebuild
 from fastapi.logger import logger
 from pydantic import AnyUrl, BaseModel, Field
 
@@ -31,14 +31,26 @@ class Contact(BaseModel):
     url: Optional[AnyUrl] = None
     email: Optional[EmailStr] = None
 
-    model_config = {"extra": "allow"}
+    if PYDANTIC_V2:
+        model_config = {"extra": "allow"}
+
+    else:
+
+        class Config:
+            extra = "allow"
 
 
 class License(BaseModel):
     name: str
     url: Optional[AnyUrl] = None
 
-    model_config = {"extra": "allow"}
+    if PYDANTIC_V2:
+        model_config = {"extra": "allow"}
+
+    else:
+
+        class Config:
+            extra = "allow"
 
 
 class Info(BaseModel):
@@ -49,7 +61,13 @@ class Info(BaseModel):
     license: Optional[License] = None
     version: str
 
-    model_config = {"extra": "allow"}
+    if PYDANTIC_V2:
+        model_config = {"extra": "allow"}
+
+    else:
+
+        class Config:
+            extra = "allow"
 
 
 class ServerVariable(BaseModel):
@@ -57,7 +75,13 @@ class ServerVariable(BaseModel):
     default: str
     description: Optional[str] = None
 
-    model_config = {"extra": "allow"}
+    if PYDANTIC_V2:
+        model_config = {"extra": "allow"}
+
+    else:
+
+        class Config:
+            extra = "allow"
 
 
 class Server(BaseModel):
@@ -65,7 +89,13 @@ class Server(BaseModel):
     description: Optional[str] = None
     variables: Optional[Dict[str, ServerVariable]] = None
 
-    model_config = {"extra": "allow"}
+    if PYDANTIC_V2:
+        model_config = {"extra": "allow"}
+
+    else:
+
+        class Config:
+            extra = "allow"
 
 
 class Reference(BaseModel):
@@ -84,14 +114,26 @@ class XML(BaseModel):
     attribute: Optional[bool] = None
     wrapped: Optional[bool] = None
 
-    model_config = {"extra": "allow"}
+    if PYDANTIC_V2:
+        model_config = {"extra": "allow"}
+
+    else:
+
+        class Config:
+            extra = "allow"
 
 
 class ExternalDocumentation(BaseModel):
     description: Optional[str] = None
     url: AnyUrl
 
-    model_config = {"extra": "allow"}
+    if PYDANTIC_V2:
+        model_config = {"extra": "allow"}
+
+    else:
+
+        class Config:
+            extra = "allow"
 
 
 class Schema(BaseModel):
@@ -132,7 +174,13 @@ class Schema(BaseModel):
     example: Optional[Any] = None
     deprecated: Optional[bool] = None
 
-    model_config = {"extra": "allow"}
+    if PYDANTIC_V2:
+        model_config = {"extra": "allow"}
+
+    else:
+
+        class Config:
+            extra = "allow"
 
 
 class Example(BaseModel):
@@ -141,7 +189,13 @@ class Example(BaseModel):
     value: Optional[Any] = None
     externalValue: Optional[AnyUrl] = None
 
-    model_config = {"extra": "allow"}
+    if PYDANTIC_V2:
+        model_config = {"extra": "allow"}
+
+    else:
+
+        class Config:
+            extra = "allow"
 
 
 class ParameterInType(Enum):
@@ -158,7 +212,13 @@ class Encoding(BaseModel):
     explode: Optional[bool] = None
     allowReserved: Optional[bool] = None
 
-    model_config = {"extra": "allow", "undefined_types_warning": False}
+    if PYDANTIC_V2:
+        model_config = {"extra": "allow", "undefined_types_warning": False}
+
+    else:
+
+        class Config:
+            extra = "allow"
 
 
 class MediaType(BaseModel):
@@ -167,7 +227,13 @@ class MediaType(BaseModel):
     examples: Optional[Dict[str, Union[Example, Reference]]] = None
     encoding: Optional[Dict[str, Encoding]] = None
 
-    model_config = {"extra": "allow", "undefined_types_warning": False}
+    if PYDANTIC_V2:
+        model_config = {"extra": "allow", "undefined_types_warning": False}
+
+    else:
+
+        class Config:
+            extra = "allow"
 
 
 class ParameterBase(BaseModel):
@@ -184,7 +250,13 @@ class ParameterBase(BaseModel):
     # Serialization rules for more complex scenarios
     content: Optional[Dict[str, MediaType]] = None
 
-    model_config = {"extra": "allow", "undefined_types_warning": False}
+    if PYDANTIC_V2:
+        model_config = {"extra": "allow", "undefined_types_warning": False}
+
+    else:
+
+        class Config:
+            extra = "allow"
 
 
 class Parameter(ParameterBase):
@@ -201,7 +273,13 @@ class RequestBody(BaseModel):
     content: Dict[str, MediaType]
     required: Optional[bool] = None
 
-    model_config = {"extra": "allow"}
+    if PYDANTIC_V2:
+        model_config = {"extra": "allow"}
+
+    else:
+
+        class Config:
+            extra = "allow"
 
 
 class Link(BaseModel):
@@ -212,7 +290,13 @@ class Link(BaseModel):
     description: Optional[str] = None
     server: Optional[Server] = None
 
-    model_config = {"extra": "allow"}
+    if PYDANTIC_V2:
+        model_config = {"extra": "allow"}
+
+    else:
+
+        class Config:
+            extra = "allow"
 
 
 class Response(BaseModel):
@@ -221,7 +305,13 @@ class Response(BaseModel):
     content: Optional[Dict[str, MediaType]] = None
     links: Optional[Dict[str, Union[Link, Reference]]] = None
 
-    model_config = {"extra": "allow"}
+    if PYDANTIC_V2:
+        model_config = {"extra": "allow"}
+
+    else:
+
+        class Config:
+            extra = "allow"
 
 
 class Operation(BaseModel):
@@ -239,7 +329,13 @@ class Operation(BaseModel):
     security: Optional[List[Dict[str, List[str]]]] = None
     servers: Optional[List[Server]] = None
 
-    model_config = {"extra": "allow", "undefined_types_warning": False}
+    if PYDANTIC_V2:
+        model_config = {"extra": "allow", "undefined_types_warning": False}
+
+    else:
+
+        class Config:
+            extra = "allow"
 
 
 class PathItem(BaseModel):
@@ -257,7 +353,13 @@ class PathItem(BaseModel):
     servers: Optional[List[Server]] = None
     parameters: Optional[List[Union[Parameter, Reference]]] = None
 
-    model_config = {"extra": "allow"}
+    if PYDANTIC_V2:
+        model_config = {"extra": "allow"}
+
+    else:
+
+        class Config:
+            extra = "allow"
 
 
 class SecuritySchemeType(Enum):
@@ -271,7 +373,13 @@ class SecurityBase(BaseModel):
     type_: SecuritySchemeType = Field(alias="type")
     description: Optional[str] = None
 
-    model_config = {"extra": "allow"}
+    if PYDANTIC_V2:
+        model_config = {"extra": "allow"}
+
+    else:
+
+        class Config:
+            extra = "allow"
 
 
 class APIKeyIn(Enum):
@@ -300,7 +408,13 @@ class OAuthFlow(BaseModel):
     refreshUrl: Optional[str] = None
     scopes: Dict[str, str] = {}
 
-    model_config = {"extra": "allow"}
+    if PYDANTIC_V2:
+        model_config = {"extra": "allow"}
+
+    else:
+
+        class Config:
+            extra = "allow"
 
 
 class OAuthFlowImplicit(OAuthFlow):
@@ -326,7 +440,13 @@ class OAuthFlows(BaseModel):
     clientCredentials: Optional[OAuthFlowClientCredentials] = None
     authorizationCode: Optional[OAuthFlowAuthorizationCode] = None
 
-    model_config = {"extra": "allow"}
+    if PYDANTIC_V2:
+        model_config = {"extra": "allow"}
+
+    else:
+
+        class Config:
+            extra = "allow"
 
 
 class OAuth2(SecurityBase):
@@ -354,7 +474,13 @@ class Components(BaseModel):
     # Using Any for Specification Extensions
     callbacks: Optional[Dict[str, Union[Dict[str, PathItem], Reference, Any]]] = None
 
-    model_config = {"extra": "allow"}
+    if PYDANTIC_V2:
+        model_config = {"extra": "allow"}
+
+    else:
+
+        class Config:
+            extra = "allow"
 
 
 class Tag(BaseModel):
@@ -362,7 +488,13 @@ class Tag(BaseModel):
     description: Optional[str] = None
     externalDocs: Optional[ExternalDocumentation] = None
 
-    model_config = {"extra": "allow"}
+    if PYDANTIC_V2:
+        model_config = {"extra": "allow"}
+
+    else:
+
+        class Config:
+            extra = "allow"
 
 
 class OpenAPI(BaseModel):
@@ -376,7 +508,13 @@ class OpenAPI(BaseModel):
     tags: Optional[List[Tag]] = None
     externalDocs: Optional[ExternalDocumentation] = None
 
-    model_config = {"extra": "allow"}
+    if PYDANTIC_V2:
+        model_config = {"extra": "allow"}
+
+    else:
+
+        class Config:
+            extra = "allow"
 
 
 _model_rebuild(Schema)
