@@ -25,6 +25,8 @@ def client():
         test_db.unlink()
 
 
+# TODO: pv2 add version with Pydantic v2
+@needs_pydanticv1
 def test_create_user(client):
     test_user = {"email": "johndoe@example.com", "password": "secret"}
     response = client.post("/users/", json=test_user)
@@ -36,6 +38,8 @@ def test_create_user(client):
     assert response.status_code == 400, response.text
 
 
+# TODO: pv2 add version with Pydantic v2
+@needs_pydanticv1
 def test_get_user(client):
     response = client.get("/users/1")
     assert response.status_code == 200, response.text
@@ -44,11 +48,15 @@ def test_get_user(client):
     assert "id" in data
 
 
+# TODO: pv2 add version with Pydantic v2
+@needs_pydanticv1
 def test_inexistent_user(client):
     response = client.get("/users/999")
     assert response.status_code == 404, response.text
 
 
+# TODO: pv2 add version with Pydantic v2
+@needs_pydanticv1
 def test_get_users(client):
     response = client.get("/users/")
     assert response.status_code == 200, response.text
@@ -94,6 +102,8 @@ def test_read_items(client):
     assert "description" in first_item
 
 
+# TODO: pv2 add version with Pydantic v2
+@needs_pydanticv1
 def test_openapi_schema(client: TestClient):
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
