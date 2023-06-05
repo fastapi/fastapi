@@ -5,6 +5,7 @@ from dataclasses import dataclass, is_dataclass
 from enum import Enum
 from typing import (
     Any,
+    Callable,
     Deque,
     Dict,
     FrozenSet,
@@ -59,7 +60,11 @@ if PYDANTIC_V2:
     from pydantic.fields import FieldInfo
     from pydantic.json_schema import GenerateJsonSchema as GenerateJsonSchema
     from pydantic.json_schema import JsonSchemaValue as JsonSchemaValue
+    from pydantic_core import CoreSchema as CoreSchema
     from pydantic_core import ErrorDetails
+    from pydantic_core.core_schema import (
+        general_plain_validator_function as general_plain_validator_function,
+    )
 
     Required = Undefined
     UndefinedType = _UndefinedType
@@ -139,7 +144,7 @@ if PYDANTIC_V2:
             exclude_defaults: bool = False,
             exclude_none: bool = False,
         ) -> Any:
-            # The point in code that call this method pass a value that already called
+            # What calls this code passes a value that already called
             # self._type_adapter.validate_python(value)
             return self._type_adapter.dump_python(
                 value,
@@ -204,6 +209,7 @@ else:
     ErrorDetails = Dict[str, Any]
     GetJsonSchemaHandler = Any
     JsonSchemaValue = Dict[str, Any]
+    CoreSchema = Any
 
     sequence_shapes = {
         SHAPE_LIST,
@@ -227,6 +233,15 @@ else:
 
     class PydanticSchemaGenerationError(Exception):
         pass
+
+    def general_plain_validator_function(
+        function: Callable[..., Any],
+        *,
+        ref: Union[str, None] = None,
+        metadata: Any = None,
+        serialization: Any = None,
+    ) -> Any:
+        return {}
 
     def get_model_definitions(
         *,
@@ -252,7 +267,6 @@ else:
         if not (
             field.shape == SHAPE_SINGLETON
             and not lenient_issubclass(field.type_, BaseModel)
-            # and not lenient_issubclass(field.type_, sequence_types + (dict,))
             and not lenient_issubclass(field.type_, dict)
             and not field_annotation_is_sequence(field.type_)
             and not is_dataclass(field.type_)

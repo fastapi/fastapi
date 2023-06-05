@@ -1,7 +1,12 @@
 from typing import Any, Callable, Dict, Iterable, Type, TypeVar
 
-from fastapi._compat import PYDANTIC_V2, GetJsonSchemaHandler, JsonSchemaValue
-from pydantic_core import CoreSchema, core_schema
+from fastapi._compat import (
+    PYDANTIC_V2,
+    CoreSchema,
+    GetJsonSchemaHandler,
+    JsonSchemaValue,
+    general_plain_validator_function,
+)
 from starlette.datastructures import URL as URL  # noqa: F401
 from starlette.datastructures import Address as Address  # noqa: F401
 from starlette.datastructures import FormData as FormData  # noqa: F401
@@ -36,15 +41,15 @@ class UploadFile(StarletteUploadFile):
 
     @classmethod
     def __get_pydantic_json_schema__(
-        cls, core_schema: core_schema.CoreSchema, handler: GetJsonSchemaHandler
+        cls, core_schema: CoreSchema, handler: GetJsonSchemaHandler
     ) -> JsonSchemaValue:
         return {"type": "string", "format": "binary"}
 
     @classmethod
     def __get_pydantic_core_schema__(
         cls, source: Type[Any], handler: Callable[[Any], CoreSchema]
-    ) -> core_schema.CoreSchema:
-        return core_schema.general_plain_validator_function(cls._validate)
+    ) -> CoreSchema:
+        return general_plain_validator_function(cls._validate)
 
 
 class DefaultPlaceholder:
