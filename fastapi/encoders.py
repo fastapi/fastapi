@@ -21,9 +21,8 @@ from pydantic import BaseModel
 from pydantic.color import Color
 from pydantic.networks import NameEmail
 from pydantic.types import SecretBytes, SecretStr
-from pydantic_core import MultiHostUrl, Url
 
-from ._compat import PYDANTIC_V2, _model_dump
+from ._compat import PYDANTIC_V2, MultiHostUrl, Url, _model_dump
 
 SetIntStr = Set[Union[int, str]]
 DictIntStrAny = Dict[Union[int, str], Any]

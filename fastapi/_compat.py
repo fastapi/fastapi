@@ -62,6 +62,8 @@ if PYDANTIC_V2:
     from pydantic.json_schema import JsonSchemaValue as JsonSchemaValue
     from pydantic_core import CoreSchema as CoreSchema
     from pydantic_core import ErrorDetails
+    from pydantic_core import MultiHostUrl as MultiHostUrl
+    from pydantic_core import Url as Url
     from pydantic_core.core_schema import (
         general_plain_validator_function as general_plain_validator_function,
     )
@@ -175,6 +177,7 @@ if PYDANTIC_V2:
 
 else:
     from fastapi.openapi.constants import REF_PREFIX as REF_PREFIX
+    from pydantic import AnyUrl as Url
     from pydantic import BaseConfig as BaseConfig  # noqa: F401
     from pydantic import ValidationError as ValidationError  # noqa: F401
     from pydantic.class_validators import Validator as Validator  # noqa: F401
@@ -194,6 +197,7 @@ else:
     from pydantic.fields import Required as Required  # noqa: F401
     from pydantic.fields import Undefined as Undefined
     from pydantic.fields import UndefinedType as UndefinedType  # noqa: F401
+    from pydantic.networks import MultiHostDsn as MultiHostUrl
     from pydantic.schema import field_schema
     from pydantic.schema import (  # noqa: F401
         get_annotation_from_field_info as get_annotation_from_field_info,
