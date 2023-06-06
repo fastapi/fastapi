@@ -26,8 +26,9 @@ class Item(ItemBase):
     id: int
     owner_id: int
 
-    model_config = {"from_attributes": True, "getter_dict": PeeweeGetterDict}
-    # TODO: Fix: getter_dict = PeeweeGetterDict
+    class Config:
+        orm_mode = True
+        getter_dict = PeeweeGetterDict
 
 
 class UserBase(BaseModel):
@@ -43,5 +44,6 @@ class User(UserBase):
     is_active: bool
     items: List[Item] = []
 
-    model_config = {"from_attributes": True}
-    # TODO: Fix: getter_dict = PeeweeGetterDict
+    class Config:
+        orm_mode = True
+        getter_dict = PeeweeGetterDict
