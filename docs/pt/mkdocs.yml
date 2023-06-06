@@ -40,7 +40,9 @@ nav:
 - Languages:
   - en: /
   - az: /az/
+  - cs: /cs/
   - de: /de/
+  - em: /em/
   - es: /es/
   - fa: /fa/
   - fr: /fr/
@@ -50,6 +52,7 @@ nav:
   - it: /it/
   - ja: /ja/
   - ko: /ko/
+  - lo: /lo/
   - nl: /nl/
   - pl: /pl/
   - pt: /pt/
@@ -70,9 +73,12 @@ nav:
   - tutorial/body.md
   - tutorial/body-multiple-params.md
   - tutorial/body-fields.md
+  - tutorial/body-nested-models.md
   - tutorial/extra-data-types.md
+  - tutorial/extra-models.md
   - tutorial/query-params-str-validations.md
   - tutorial/path-params-numeric-validations.md
+  - tutorial/path-operation-configuration.md
   - tutorial/cookie-params.md
   - tutorial/header-params.md
   - tutorial/response-status-code.md
@@ -86,6 +92,7 @@ nav:
   - tutorial/static-files.md
   - Guia de Usuário Avançado:
     - advanced/index.md
+    - advanced/events.md
 - Implantação:
   - deployment/index.md
   - deployment/versions.md
@@ -140,8 +147,12 @@ extra:
     name: en - English
   - link: /az/
     name: az
+  - link: /cs/
+    name: cs
   - link: /de/
     name: de
+  - link: /em/
+    name: 😉
   - link: /es/
     name: es - español
   - link: /fa/
@@ -160,6 +171,8 @@ extra:
     name: ja - 日本語
   - link: /ko/
     name: ko - 한국어
+  - link: /lo/
+    name: lo - ພາສາລາວ
   - link: /nl/
     name: nl
   - link: /pl/

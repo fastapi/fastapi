@@ -40,7 +40,9 @@ nav:
 - Languages:
   - en: /
   - az: /az/
+  - cs: /cs/
   - de: /de/
+  - em: /em/
   - es: /es/
   - fa: /fa/
   - fr: /fr/
@@ -50,6 +52,7 @@ nav:
   - it: /it/
   - ja: /ja/
   - ko: /ko/
+  - lo: /lo/
   - nl: /nl/
   - pl: /pl/
   - pt: /pt/
@@ -64,15 +67,33 @@ nav:
 - fastapi-people.md
 - python-types.md
 - Учебник - руководство пользователя:
+  - tutorial/first-steps.md
+  - tutorial/path-params.md
+  - tutorial/query-params-str-validations.md
+  - tutorial/path-params-numeric-validations.md
   - tutorial/body-fields.md
   - tutorial/background-tasks.md
+  - tutorial/extra-data-types.md
   - tutorial/cookie-params.md
+  - tutorial/testing.md
+  - tutorial/response-status-code.md
+  - tutorial/query-params.md
+  - tutorial/body-multiple-params.md
+  - tutorial/static-files.md
+  - tutorial/debugging.md
 - async.md
 - Развёртывание:
   - deployment/index.md
   - deployment/versions.md
+  - deployment/concepts.md
+  - deployment/https.md
+  - deployment/manually.md
+- project-generation.md
+- alternatives.md
 - history-design-future.md
 - external-links.md
+- benchmarks.md
+- help-fastapi.md
 - contributing.md
 markdown_extensions:
 - toc:
@@ -117,8 +138,12 @@ extra:
     name: en - English
   - link: /az/
     name: az
+  - link: /cs/
+    name: cs
   - link: /de/
     name: de
+  - link: /em/
+    name: 😉
   - link: /es/
     name: es - español
   - link: /fa/
@@ -137,6 +162,8 @@ extra:
     name: ja - 日本語
   - link: /ko/
     name: ko - 한국어
+  - link: /lo/
+    name: lo - ພາສາລາວ
   - link: /nl/
     name: nl
   - link: /pl/
