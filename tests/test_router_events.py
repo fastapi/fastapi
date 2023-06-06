@@ -120,7 +120,7 @@ def test_router_nested_lifespan_state(state: State) -> None:
         state.router_startup = True
         yield
         state.router_shutdown = True
-    
+
     @asynccontextmanager
     async def subrouter_lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
         state.sub_router_startup = True

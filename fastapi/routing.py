@@ -6,19 +6,19 @@ import json
 from contextlib import AsyncExitStack, asynccontextmanager
 from enum import Enum, IntEnum
 from typing import (
-    AsyncIterator,
     Any,
+    AsyncIterator,
     Callable,
     Coroutine,
     Dict,
     List,
+    Mapping,
     Optional,
     Sequence,
     Set,
     Tuple,
     Type,
     Union,
-    Mapping,
 )
 
 from fastapi import params
@@ -59,7 +59,7 @@ from starlette.routing import (
     websocket_session,
 )
 from starlette.status import WS_1008_POLICY_VIOLATION
-from starlette.types import ASGIApp, Lifespan, Scope, AppType
+from starlette.types import AppType, ASGIApp, Lifespan, Scope
 from starlette.websockets import WebSocket
 
 
