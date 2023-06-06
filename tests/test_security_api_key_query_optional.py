@@ -65,8 +65,6 @@ def test_openapi_schema():
             }
         },
         "components": {
-            "securitySchemes": {
-                "key": {"type": "apiKey", "name": "key", "in": "query"}
-            }
+            "securitySchemes": {"key": {"type": "apiKey", "name": "key", "in": "query"}}
         },
     }
