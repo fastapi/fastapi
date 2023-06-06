@@ -30,35 +30,6 @@ def read_current_user(current_user: Optional[User] = Depends(get_current_user)):
 
 client = TestClient(app)
 
-openapi_schema = {
-    "openapi": "3.0.2",
-    "info": {"title": "FastAPI", "version": "0.1.0"},
-    "paths": {
-        "/users/me": {
-            "get": {
-                "responses": {
-                    "200": {
-                        "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
-                    }
-                },
-                "summary": "Read Current User",
-                "operationId": "read_current_user_users_me_get",
-                "security": [{"key": []}],
-            }
-        }
-    },
-    "components": {
-        "securitySchemes": {"key": {"type": "apiKey", "name": "key", "in": "header"}}
-    },
-}
-
-
-def test_openapi_schema():
-    response = client.get("/openapi.json")
-    assert response.status_code == 200, response.text
-    assert response.json() == openapi_schema
-
 
 def test_security_api_key():
     response = client.get("/users/me", headers={"key": "secret"})
@@ -89,13 +60,13 @@ def test_openapi_schema():
                     },
                     "summary": "Read Current User",
                     "operationId": "read_current_user_users_me_get",
-                    "security": [{"APIKeyHeader": []}],
+                    "security": [{"key": []}],
                 }
             }
         },
         "components": {
             "securitySchemes": {
-                "APIKeyHeader": {"type": "apiKey", "name": "key", "in": "header"}
+                "key": {"type": "apiKey", "name": "key", "in": "header"}
             }
         },
     }
