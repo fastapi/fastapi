@@ -3,6 +3,8 @@ from dirty_equals import IsDict
 from fastapi.testclient import TestClient
 from fastapi.utils import match_pydantic_error_url
 
+# TODO: pv2 docs note to mention before it was regex instead of pattern
+
 
 @pytest.fixture(name="client")
 def get_client():
