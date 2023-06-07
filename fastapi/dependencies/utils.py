@@ -783,14 +783,10 @@ def get_body_field(*, dependant: Dependant, name: str) -> Optional[ModelField]:
         fields=flat_dependant.body_params, model_name=model_name
     )
     required = any(True for f in flat_dependant.body_params if f.required)
-    # TODO: pv2 is this necessary? Can I just leave the v2 version for both?
-    if PYDANTIC_V2:
-        BodyFieldInfo_kwargs: Dict[str, Any] = {
-            "annotation": BodyModel,
-            "alias": "body",
-        }
-    else:
-        BodyFieldInfo_kwargs: Dict[str, Any] = {"default": None}
+    BodyFieldInfo_kwargs: Dict[str, Any] = {
+        "annotation": BodyModel,
+        "alias": "body",
+    }
     if not required:
         BodyFieldInfo_kwargs["default"] = None
     if any(isinstance(f.field_info, params.File) for f in flat_dependant.body_params):
