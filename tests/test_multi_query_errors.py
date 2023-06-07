@@ -25,7 +25,6 @@ def test_multi_query():
 def test_multi_query_incorrect():
     response = client.get("/items/?q=five&q=six")
     assert response.status_code == 422, response.text
-    # insert_assert(response.json())
     assert response.json() == IsDict(
         {
             "detail": [

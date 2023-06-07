@@ -5,7 +5,7 @@ from docs_src.handling_errors.tutorial004 import app
 client = TestClient(app)
 
 
-def test_get_validation_error(insert_assert):
+def test_get_validation_error():
     response = client.get("/items/foo")
     assert response.status_code == 400, response.text
     # TODO: remove when deprecating Pydantic v1

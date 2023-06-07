@@ -99,10 +99,9 @@ def test_main_depends_q_foo_skip_100_limit_200():
     }
 
 
-def test_decorator_depends(insert_assert):
+def test_decorator_depends():
     response = client.get("/decorator-depends/")
     assert response.status_code == 422
-    # insert_assert(response.json())
     assert response.json() == IsDict(
         {
             "detail": [
