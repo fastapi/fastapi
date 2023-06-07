@@ -1,5 +1,5 @@
 from enum import Enum
-from typing import Any, Callable, Dict, List, Optional, Sequence, Type
+from typing import Any, Callable, Dict, Optional, Sequence, Type
 
 from pydantic.fields import FieldInfo
 
@@ -33,7 +33,7 @@ class Param(FieldInfo):
         pattern: Optional[str] = None,
         regex: Optional[str] = None,
         example: Any = Undefined,
-        examples: Optional[List[Any]] = None,
+        examples: Optional[Dict[str, Any]] = None,
         deprecated: Optional[bool] = None,
         include_in_schema: bool = True,
         **extra: Any,
