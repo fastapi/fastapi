@@ -376,10 +376,6 @@ def get_openapi_path(
     return path, security_schemes, definitions
 
 
-# TODO (pv2)
-# def get_flat_models_from_routes(
-#     routes: Sequence[BaseRoute],
-# ) -> Set[Union[Type[BaseModel], Type[Enum]]]:
 def get_fields_from_routes(
     routes: Sequence[BaseRoute],
 ) -> List[ModelField]:
@@ -408,7 +404,6 @@ def get_fields_from_routes(
     flat_models = callback_flat_models + list(
         body_fields_from_routes + responses_from_routes + request_fields_from_routes
     )
-
     return flat_models
 
 

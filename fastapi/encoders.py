@@ -28,10 +28,12 @@ SetIntStr = Set[Union[int, str]]
 DictIntStrAny = Dict[Union[int, str], Any]
 
 
+# Taken from Pydantic v1 as is
 def isoformat(o: Union[datetime.date, datetime.time]) -> str:
     return o.isoformat()
 
 
+# Taken from Pydantic v1 as is
 def decimal_encoder(dec_value: Decimal) -> Union[int, float]:
     """
     Encodes a Decimal as int of there's no exponent, otherwise float
