@@ -12,8 +12,8 @@ class Item(BaseModel):
     price: float
     tax: Union[float, None] = None
 
-    model_config = {
-        "schema_extra": {
+    class Config:
+        schema_extra = {
             "example": {
                 "name": "Foo",
                 "description": "A very nice Item",
@@ -21,7 +21,6 @@ class Item(BaseModel):
                 "tax": 3.2,
             }
         }
-    }
 
 
 @app.put("/items/{item_id}")
