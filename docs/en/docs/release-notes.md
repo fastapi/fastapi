@@ -2,6 +2,7 @@
 
 ## Latest Changes
 
+* 🐛 Fix OpenAPI model fields int validations, `gte` to `ge`. PR [#9635](https://github.com/tiangolo/fastapi/pull/9635) by [@tiangolo](https://github.com/tiangolo).
 
 ## 0.96.0
 
