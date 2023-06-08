@@ -2,6 +2,7 @@
 
 ## Latest Changes
 
+* 📌 Update minimum version of Pydantic to >=1.7.4. PR [#9567](https://github.com/tiangolo/fastapi/pull/9567) by [@Kludex](https://github.com/Kludex).
 * 🐛 Fix OpenAPI model fields int validations, `gte` to `ge`. PR [#9635](https://github.com/tiangolo/fastapi/pull/9635) by [@tiangolo](https://github.com/tiangolo).
 
 ## 0.96.0
