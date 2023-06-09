@@ -182,7 +182,7 @@
 
 Однако, когда вы используете  поле `example` или `examples` с любой другой функцией (`Query()`, `Body()`, и т.д.), эти примеры не добавляются в JSON-схему, которая описывает эти данные (даже в собственную версию JSON-схемы OpenAPI), они добавляются непосредственно в объявление *операции пути* в OpenAPI (вне частей OpenAPI, которые используют JSON-схему).
 
-Для функций `Path()`, `Query()`, `Header()`, и `Cookie()`, аргумент `example` или `examples` добавляются в <a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#parameter-object" class="external-link" target="_blank">определение OpenAPI, объекта `Parameter Object` (в спецификации)</a>.
+Для функций `Path()`, `Query()`, `Header()`, и `Cookie()`, аргументы `example` или `examples` добавляются в <a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#parameter-object" class="external-link" target="_blank">определение OpenAPI, к объекту `Parameter Object` (в спецификации)</a>.
 
 И для функций `Body()`, `File()`, и `Form()`, аргумент `example` или `examples` аналогично добавляются в <a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#mediaTypeObject" class="external-link" target="_blank"> определение OpenAPI, объекта `Request Body Object`, в поле `content`, в объекте `Media Type Object` (в спецификации)</a>.
 
