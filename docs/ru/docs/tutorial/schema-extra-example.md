@@ -184,6 +184,6 @@
 
 Для функций `Path()`, `Query()`, `Header()`, и `Cookie()`, аргументы `example` или `examples` добавляются в <a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#parameter-object" class="external-link" target="_blank">определение OpenAPI, к объекту `Parameter Object` (в спецификации)</a>.
 
-И для функций `Body()`, `File()`, и `Form()`, аргумент `example` или `examples` аналогично добавляются в <a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#mediaTypeObject" class="external-link" target="_blank"> определение OpenAPI, объекта `Request Body Object`, в поле `content`, в объекте `Media Type Object` (в спецификации)</a>.
+И для функций `Body()`, `File()` и `Form()` аргументы `example` или `examples` аналогично добавляются в <a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#mediaTypeObject" class="external-link" target="_blank"> определение OpenAPI, к объекту `Request Body Object`, в поле `content` в объекте `Media Type Object` (в спецификации)</a>.
 
 С другой стороны, существует более новая версия OpenAPI: **3.1.0**, недавно выпущенная. Она основана на последней версии JSON-схемы и большинство модификаций из OpenAPI JSON-схемы удалены в обмен на новые возможности из последней версии JSON-схемы, так что все эти мелкие отличия устранены. Тем не менее, Swagger UI в настоящее время не поддерживает OpenAPI 3.1.0, поэтому пока лучше продолжать использовать вышеупомянутые методы.
