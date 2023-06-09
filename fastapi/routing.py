@@ -1,6 +1,7 @@
 import asyncio
 import dataclasses
 import email.message
+from functools import partial
 import inspect
 import json
 from contextlib import AsyncExitStack
@@ -54,11 +55,12 @@ from starlette.routing import Mount as Mount  # noqa
 from starlette.routing import (
     compile_path,
     get_name,
-    request_response,
+    is_async_callable,
     websocket_session,
 )
+from starlette._exception_handler import wrap_app_handling_exceptions
 from starlette.status import WS_1008_POLICY_VIOLATION
-from starlette.types import ASGIApp, Lifespan, Scope
+from starlette.types import ASGIApp, Lifespan, Scope, Receive, Send
 from starlette.websockets import WebSocket
 
 
@@ -164,6 +166,28 @@ async def run_endpoint_function(
         return await dependant.call(**values)
     else:
         return await run_in_threadpool(dependant.call, **values)
+
+
+def request_response(func: Callable[..., Any]) -> ASGIApp:
+    """
+    Takes a function or coroutine `func(request) -> response`,
+    and returns an ASGI application.
+    """
+    is_coroutine = is_async_callable(func)
+
+    async def app(scope: Scope, receive: Receive, send: Send) -> None:
+        request = Request(scope, receive, send)
+
+        async def app(scope: Scope, receive: Receive, send: Send) -> None:
+            if is_coroutine:
+                response = await func(request)
+            else:
+                response = await run_in_threadpool(func, request)
+            await response(scope, receive, send)
+
+        await wrap_app_handling_exceptions(AsyncExitStackMiddleware(app), request)(scope, receive, send)
+
+    return app
 
 
 def get_request_handler(
@@ -451,7 +475,7 @@ class APIRoute(routing.Route):
                 get_parameterless_sub_dependant(depends=depends, path=self.path_format),
             )
         self.body_field = get_body_field(dependant=self.dependant, name=self.unique_id)
-        self.app = request_response(AsyncExitStackMiddleware(self.get_route_handler()))
+        self.app = request_response(self.get_route_handler())
 
     def get_route_handler(self) -> Callable[[Request], Coroutine[Any, Any, Response]]:
         return get_request_handler(

@@ -1,27 +1,21 @@
-from typing import Awaitable, Callable, Optional
+from typing import Optional
 
 from fastapi.concurrency import AsyncExitStack
-from starlette.requests import Request
-from starlette.responses import Response
+from starlette.types import ASGIApp, Receive, Scope, Send
 
 
 class AsyncExitStackMiddleware:
-    def __init__(
-        self,
-        endpoint: Callable[[Request], Awaitable[Response]],
-        context_name: str = "fastapi_astack",
-    ) -> None:
+    def __init__(self, app: ASGIApp, context_name: str = "fastapi_astack") -> None:
+        self.app = app
         self.context_name = context_name
-        self.endpoint = endpoint
 
-    async def __call__(self, request: Request) -> Response:  # type: ignore[return]
+    async def __call__(self, scope: Scope, receive: Receive, send: Send) -> None:
         if AsyncExitStack:
             dependency_exception: Optional[Exception] = None
             async with AsyncExitStack() as stack:
-                request.scope[self.context_name] = stack
+                scope[self.context_name] = stack
                 try:
-                    response = await self.endpoint(request)
-                    return response
+                    await self.app(scope, receive, send)
                 except Exception as e:
                     dependency_exception = e
                     raise e
@@ -31,4 +25,4 @@ class AsyncExitStackMiddleware:
                 # or the ExceptionMiddleware can catch and handle any other exceptions
                 raise dependency_exception
         else:
-            return await self.endpoint(request)  # pragma: no cover
+            await self.app(scope, receive, send)  # pragma: no cover
