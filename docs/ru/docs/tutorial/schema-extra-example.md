@@ -174,7 +174,7 @@
 
 И эта **JSON Schema** модели Pydantic включается в **OpenAPI** вашего API, а затем используется в UI документации.
 
-Поле `example` как такового не существует в стандартах **JSON Schema**. В последних версиях JSON-схемы определено поле <a href="https://json-schema.org/draft/2019-09/json-schema-validation.html#rfc.section.9.5" class="external-link" target="_blank">`examples`</a>, но OpenAPI 3.0.3 основан на более старой версии JSON-схемы, которая не имела поля `examples`.
+Поля `example` как такового не существует в стандартах **JSON Schema**. В последних версиях JSON-схемы определено поле <a href="https://json-schema.org/draft/2019-09/json-schema-validation.html#rfc.section.9.5" class="external-link" target="_blank">`examples`</a>, но OpenAPI 3.0.3 основан на более старой версии JSON-схемы, которая не имела поля `examples`.
 
 Таким образом, OpenAPI 3.0.3 определяет своё собственное поле <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.3.md#fixed-fields-20" class="external-link" target="_blank">`example`</a> для модифицированной версии **JSON Schema**, которую он использует чтобы достичь той же цели (однако это именно поле `example`, а не `examples`), и именно это используется API в UI документации (с интеграцией Swagger UI).
 
