@@ -81,6 +81,7 @@ nav:
   - tutorial/body-multiple-params.md
   - tutorial/static-files.md
   - tutorial/debugging.md
+  - tutorial/schema-extra-example.md
 - async.md
 - Развёртывание:
   - deployment/index.md
