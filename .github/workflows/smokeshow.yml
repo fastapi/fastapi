@@ -22,6 +22,7 @@ jobs:
 
       - uses: dawidd6/action-download-artifact@v2.27.0
         with:
+          github_token: ${{ secrets.FASTAPI_SMOKESHOW_DOWNLOAD_ARTIFACTS }}
           workflow: test.yml
           commit: ${{ github.event.workflow_run.head_sha }}
 
