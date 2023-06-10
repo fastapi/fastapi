@@ -18,7 +18,7 @@ jobs:
       - name: Download Artifact Docs
         uses: dawidd6/action-download-artifact@v2.27.0
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.FASTAPI_PREVIEW_DOCS_DOWNLOAD_ARTIFACTS }}
           workflow: build-docs.yml
           run_id: ${{ github.event.workflow_run.id }}
           name: docs-zip
