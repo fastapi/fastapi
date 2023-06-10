@@ -2,6 +2,9 @@
 
 ## Latest Changes
 
+
+## 0.96.1
+
 ### Fixes
 
 * 🐛 Fix `HTTPException` header type annotations. PR [#9648](https://github.com/tiangolo/fastapi/pull/9648) by [@tiangolo](https://github.com/tiangolo).
