@@ -108,14 +108,14 @@ class Schema(BaseModel):
     exclusiveMaximum: Optional[float] = None
     minimum: Optional[float] = None
     exclusiveMinimum: Optional[float] = None
-    maxLength: Optional[int] = Field(default=None, gte=0)
-    minLength: Optional[int] = Field(default=None, gte=0)
+    maxLength: Optional[int] = Field(default=None, ge=0)
+    minLength: Optional[int] = Field(default=None, ge=0)
     pattern: Optional[str] = None
-    maxItems: Optional[int] = Field(default=None, gte=0)
-    minItems: Optional[int] = Field(default=None, gte=0)
+    maxItems: Optional[int] = Field(default=None, ge=0)
+    minItems: Optional[int] = Field(default=None, ge=0)
     uniqueItems: Optional[bool] = None
-    maxProperties: Optional[int] = Field(default=None, gte=0)
-    minProperties: Optional[int] = Field(default=None, gte=0)
+    maxProperties: Optional[int] = Field(default=None, ge=0)
+    minProperties: Optional[int] = Field(default=None, ge=0)
     required: Optional[List[str]] = None
     enum: Optional[List[Any]] = None
     type: Optional[str] = None

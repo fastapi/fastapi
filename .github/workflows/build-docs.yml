@@ -42,7 +42,7 @@ jobs:
         with:
           publish-dir: './site'
           production-branch: master
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.FASTAPI_BUILD_DOCS_NETLIFY }}
           enable-commit-comment: false
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
