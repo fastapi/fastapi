@@ -31,7 +31,7 @@ jobs:
           key: ${{ runner.os }}-python-${{ env.pythonLocation }}-${{ hashFiles('pyproject.toml') }}-test-v03
       - name: Install Dependencies
         if: steps.cache.outputs.cache-hit != 'true'
-        run: pip install -e .[all,dev,doc,test]
+        run: pip install -r requirements-tests.txt
       - name: Lint
         run: bash scripts/lint.sh
       - run: mkdir coverage
