@@ -56,7 +56,6 @@ from starlette.routing import (
     request_response,
     websocket_session,
 )
-from starlette.status import WS_1008_POLICY_VIOLATION
 from starlette.types import ASGIApp, Lifespan, Scope
 from starlette.websockets import WebSocket
 
@@ -283,7 +282,6 @@ def get_websocket_app(
         )
         values, errors, _, _2, _3 = solved_result
         if errors:
-            await websocket.close(code=WS_1008_POLICY_VIOLATION)
             raise WebSocketRequestValidationError(errors)
         assert dependant.call is not None, "dependant.call must be a function"
         await dependant.call(**values)
