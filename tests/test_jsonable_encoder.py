@@ -4,6 +4,7 @@ from enum import Enum
 from pathlib import PurePath, PurePosixPath, PureWindowsPath
 from typing import Optional
 
+import fastapi
 import pytest
 from fastapi.encoders import jsonable_encoder
 from pydantic import BaseModel, Field, ValidationError, create_model
@@ -85,6 +86,13 @@ class ModelWithDefault(BaseModel):
 
 class ModelWithRoot(BaseModel):
     __root__: str
+
+
+class ModelWithPerson(BaseModel):
+    person: Person
+
+    class Config:
+        arbitrary_types_allowed = True
 
 
 @pytest.fixture(
@@ -237,3 +245,38 @@ def test_encode_model_with_path(model_with_path):
 def test_encode_root():
     model = ModelWithRoot(__root__="Foo")
     assert jsonable_encoder(model) == "Foo"
+
+
+def test_jsonable_encoder_mutates_config():
+    # Test mutating behavior
+    assert fastapi.encoders.jsonable_encoder_mutates_config
+    assert len(ModelWithCustomEncoder.__config__.json_encoders) == 1
+    model = ModelWithCustomEncoder(dt_field=datetime(2022, 1, 1, 8))
+    custom_encoder = {tuple: len}
+    encoded_model = jsonable_encoder(model, custom_encoder=custom_encoder)
+    assert encoded_model == {"dt_field": "2022-01-01T08:00:00+00:00"}
+    assert len(ModelWithCustomEncoder.__config__.json_encoders) == 2
+    assert ModelWithCustomEncoder.__config__.json_encoders[tuple] is len
+
+    # Test non-mutating behavior
+    fastapi.encoders.jsonable_encoder_mutates_config = False
+    custom_encoder = {int: abs}
+    encoded_model = jsonable_encoder(model, custom_encoder=custom_encoder)
+    assert encoded_model == {"dt_field": "2022-01-01T08:00:00+00:00"}
+    assert len(ModelWithCustomEncoder.__config__.json_encoders) == 2
+    assert ModelWithCustomEncoder.__config__.json_encoders[tuple] is len
+    assert int not in ModelWithCustomEncoder.__config__.json_encoders
+
+    fastapi.encoders.jsonable_encoder_mutates_config = True  # Restore state
+
+
+def test_catchall_encoder():
+    model = ModelWithPerson(person=Person(name="catchall"))
+
+    assert fastapi.encoders.catchall_encoder is None
+    assert jsonable_encoder(model) == {"person": {"name": "catchall"}}
+
+    fastapi.encoders.catchall_encoder = lambda x: x.name
+    assert jsonable_encoder(model) == {"person": "catchall"}
+
+    fastapi.encoders.catchall_encoder = None  # Restore state
