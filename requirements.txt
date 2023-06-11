@@ -1,4 +1,4 @@
-.[all]
+-e .[all]
 -r requirements-test.txt
 -r requirements-doc.txt
 ruff ==0.0.138
