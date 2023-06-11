@@ -306,7 +306,7 @@ images: List[Image]
 images: list[Image]
 ```
 
-как, например:
+например так:
 
 === "Python 3.9+"
 
