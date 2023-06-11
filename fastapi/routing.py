@@ -56,8 +56,7 @@ from starlette.routing import (
     request_response,
     websocket_session,
 )
-from starlette.status import WS_1008_POLICY_VIOLATION
-from starlette.types import ASGIApp, Scope
+from starlette.types import ASGIApp, Lifespan, Scope
 from starlette.websockets import WebSocket
 
 
@@ -283,7 +282,6 @@ def get_websocket_app(
         )
         values, errors, _, _2, _3 = solved_result
         if errors:
-            await websocket.close(code=WS_1008_POLICY_VIOLATION)
             raise WebSocketRequestValidationError(errors)
         assert dependant.call is not None, "dependant.call must be a function"
         await dependant.call(**values)
@@ -497,6 +495,9 @@ class APIRouter(routing.Router):
         route_class: Type[APIRoute] = APIRoute,
         on_startup: Optional[Sequence[Callable[[], Any]]] = None,
         on_shutdown: Optional[Sequence[Callable[[], Any]]] = None,
+        # the generic to Lifespan[AppType] is the type of the top level application
+        # which the router cannot know statically, so we use typing.Any
+        lifespan: Optional[Lifespan[Any]] = None,
         deprecated: Optional[bool] = None,
         include_in_schema: bool = True,
         generate_unique_id_function: Callable[[APIRoute], str] = Default(
@@ -509,6 +510,7 @@ class APIRouter(routing.Router):
             default=default,
             on_startup=on_startup,
             on_shutdown=on_shutdown,
+            lifespan=lifespan,
         )
         if prefix:
             assert prefix.startswith("/"), "A path prefix must start with '/'"
@@ -526,6 +528,25 @@ class APIRouter(routing.Router):
         self.route_class = route_class
         self.default_response_class = default_response_class
         self.generate_unique_id_function = generate_unique_id_function
+
+    def route(
+        self,
+        path: str,
+        methods: Optional[List[str]] = None,
+        name: Optional[str] = None,
+        include_in_schema: bool = True,
+    ) -> Callable[[DecoratedCallable], DecoratedCallable]:
+        def decorator(func: DecoratedCallable) -> DecoratedCallable:
+            self.add_route(
+                path,
+                func,
+                methods=methods,
+                name=name,
+                include_in_schema=include_in_schema,
+            )
+            return func
+
+        return decorator
 
     def add_api_route(
         self,
@@ -703,6 +724,15 @@ class APIRouter(routing.Router):
             self.add_api_websocket_route(
                 path, func, name=name, dependencies=dependencies
             )
+            return func
+
+        return decorator
+
+    def websocket_route(
+        self, path: str, name: Union[str, None] = None
+    ) -> Callable[[DecoratedCallable], DecoratedCallable]:
+        def decorator(func: DecoratedCallable) -> DecoratedCallable:
+            self.add_websocket_route(path, func, name=name)
             return func
 
         return decorator
@@ -1249,7 +1279,6 @@ class APIRouter(routing.Router):
             generate_unique_id
         ),
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
-
         return self.api_route(
             path=path,
             response_model=response_model,
@@ -1276,3 +1305,12 @@ class APIRouter(routing.Router):
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
         )
+
+    def on_event(
+        self, event_type: str
+    ) -> Callable[[DecoratedCallable], DecoratedCallable]:
+        def decorator(func: DecoratedCallable) -> DecoratedCallable:
+            self.add_event_handler(event_type, func)
+            return func
+
+        return decorator
