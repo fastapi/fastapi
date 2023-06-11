@@ -302,7 +302,7 @@ class APIWebSocketRoute(routing.WebSocketRoute):
         self.path = path
         self.endpoint = endpoint
         self.name = get_name(endpoint) if name is None else name
-        self.dependencies = dependencies or []
+        self.dependencies = list(dependencies or [])
         self.path_regex, self.path_format, self.param_convertors = compile_path(path)
         self.dependant = get_dependant(path=self.path_format, call=self.endpoint)
         for depends in self.dependencies[::-1]:
@@ -424,7 +424,7 @@ class APIRoute(routing.Route):
         else:
             self.response_field = None  # type: ignore
             self.secure_cloned_response_field = None
-        self.dependencies = dependencies or []
+        self.dependencies = list(dependencies or [])
         self.description = description or inspect.cleandoc(self.endpoint.__doc__ or "")
         # if a "form feed" character (page break) is found in the description text,
         # truncate description text to the content preceding the first "form feed"
@@ -519,7 +519,7 @@ class APIRouter(routing.Router):
             ), "A path prefix must not end with '/', as the routes will start with '/'"
         self.prefix = prefix
         self.tags: List[Union[str, Enum]] = tags or []
-        self.dependencies = dependencies or []
+        self.dependencies = list(dependencies or [])
         self.deprecated = deprecated
         self.include_in_schema = include_in_schema
         self.responses = responses or {}
@@ -591,7 +591,7 @@ class APIRouter(routing.Router):
         current_tags = self.tags.copy()
         if tags:
             current_tags.extend(tags)
-        current_dependencies = list(self.dependencies)
+        current_dependencies = self.dependencies.copy()
         if dependencies:
             current_dependencies.extend(dependencies)
         current_callbacks = self.callbacks.copy()
@@ -700,7 +700,7 @@ class APIRouter(routing.Router):
         *,
         dependencies: Optional[Sequence[params.Depends]] = None,
     ) -> None:
-        current_dependencies = list(self.dependencies)
+        current_dependencies = self.dependencies.copy()
         if dependencies:
             current_dependencies.extend(dependencies)
 
