@@ -66,10 +66,6 @@ all = [
 [tool.hatch.version]
 path = "fastapi/__init__.py"
 
-[tool.isort]
-profile = "black"
-known_third_party = ["fastapi", "pydantic", "starlette"]
-
 [tool.mypy]
 strict = true
 
@@ -125,7 +121,7 @@ select = [
     "E",  # pycodestyle errors
     "W",  # pycodestyle warnings
     "F",  # pyflakes
-    # "I",  # isort
+    "I",  # isort
     "C",  # flake8-comprehensions
     "B",  # flake8-bugbear
 ]
