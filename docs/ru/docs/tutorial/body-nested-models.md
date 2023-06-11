@@ -47,7 +47,7 @@
 my_list: list[str]
 ```
 
-В версиях Python до 3.9, это будет выглядеть так:
+В версиях Python до 3.9 это будет выглядеть так:
 
 ```Python
 from typing import List
