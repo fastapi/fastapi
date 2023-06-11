@@ -243,7 +243,7 @@ Bạn sẽ thấy một JSON response:
 {"item_id": 5, "q": "somequery"}
 ```
 
-Bạn đã sẵn sàng để tạo một API như sau: 
+Bạn đã sẵn sàng để tạo một API như sau:
 
 * Nhận HTTP request với _đường dẫn_ `/` và `/items/{item_id}`.
 * Cả hai _đường dẫn_ sử dụng <em>toán tử</em> `GET` (cũng đươc biết đến là _phương thức_ HTTP).
@@ -395,7 +395,7 @@ Quay trở lại ví dụ trước, **FastAPI** sẽ thực hiện:
 * Tài liệu hóa mọi thứ với OpenAPI, tài liệu đó có thể được sử dụng bởi:
 
     * Các hệ thống tài liệu có thể tương tác.
-    * Hệ thống sinh code tự động, cho nhiều ngôn ngữ lập trình. 
+    * Hệ thống sinh code tự động, cho nhiều ngôn ngữ lập trình.
 * Cung cấp trực tiếp 2 giao diện web cho tài liệu tương tác
 
 ---
