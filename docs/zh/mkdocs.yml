@@ -117,6 +117,8 @@ nav:
   - advanced/response-directly.md
   - advanced/custom-response.md
   - advanced/response-cookies.md
+  - advanced/response-change-status-code.md
+  - advanced/response-headers.md
   - advanced/wsgi.md
 - contributing.md
 - help-fastapi.md

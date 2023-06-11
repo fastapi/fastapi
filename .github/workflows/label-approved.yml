@@ -10,4 +10,4 @@ jobs:
     steps:
     - uses: docker://tiangolo/label-approved:0.0.2
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.FASTAPI_LABEL_APPROVED }}
