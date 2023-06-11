@@ -1,7 +1,7 @@
 -e .
 pytest >=7.1.3,<8.0.0
 coverage[toml] >= 6.5.0,< 8.0
-mypy ==0.982
+mypy ==1.3.0
 ruff ==0.0.138
 black == 23.1.0
 isort >=5.0.6,<6.0.0
