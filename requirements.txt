@@ -1,0 +1,6 @@
+.[all]
+-r requirements-test.txt
+-r requirements-doc.txt
+ruff ==0.0.138
+uvicorn[standard] >=0.12.0,<0.21.0
+pre-commit >=2.17.0,<3.0.0
