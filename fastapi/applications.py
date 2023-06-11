@@ -55,7 +55,7 @@ class FastAPI(Starlette):
         routes: Optional[List[BaseRoute]] = None,
         title: str = "FastAPI",
         description: str = "",
-        version: str = "0.96.1", # added correct version number
+        version: str = "0.96.1",  # added correct version number
         openapi_url: Optional[str] = "/openapi.json",
         openapi_tags: Optional[List[Dict[str, Any]]] = None,
         servers: Optional[List[Dict[str, Union[str, Any]]]] = None,
