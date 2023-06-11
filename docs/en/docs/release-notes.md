@@ -2,6 +2,7 @@
 
 ## Latest Changes
 
+* ✨ Add exception handler for `WebSocketRequestValidationError` (which also allows to override it). PR [#6030](https://github.com/tiangolo/fastapi/pull/6030) by [@kristjanvalur](https://github.com/kristjanvalur).
 
 ## 0.96.1
 
