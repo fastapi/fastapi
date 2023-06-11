@@ -194,7 +194,7 @@ my_list: List[str]
 
 Чтобы увидеть все варианты, которые у вас есть, ознакомьтесь с документацией <a href="https://pydantic-docs.helpmanual.io/usage/types/" class="external-link" target="_blank">по необычным типам Pydantic</a>. Вы увидите некоторые примеры в следующей главе.
 
-Например, как в модели `Image` у нас есть поле `url`, мы можем объявить его как тип `HttpUrl` из модуля Pydantic, вместо типа`str`:
+Например, так как в модели `Image` у нас есть поле `url`, то мы можем объявить его как тип `HttpUrl` из модуля Pydantic вместо типа `str`:
 
 === "Python 3.10+"
 
