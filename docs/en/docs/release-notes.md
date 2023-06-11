@@ -3,6 +3,8 @@
 ## Latest Changes
 
 
+## 0.97.0
+
 ### Features
 
 * ✨ Add support for `dependencies` in WebSocket routes. PR [#4534](https://github.com/tiangolo/fastapi/pull/4534) by [@paulo-raca](https://github.com/paulo-raca).
