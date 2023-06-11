@@ -30,7 +30,11 @@ from fastapi.dependencies.utils import (
     solve_dependencies,
 )
 from fastapi.encoders import DictIntStrAny, SetIntStr, jsonable_encoder
-from fastapi.exceptions import RequestValidationError, WebSocketRequestValidationError
+from fastapi.exceptions import (
+    FastAPIError,
+    RequestValidationError,
+    WebSocketRequestValidationError,
+)
 from fastapi.types import DecoratedCallable
 from fastapi.utils import (
     create_cloned_field,
@@ -764,7 +768,7 @@ class APIRouter(routing.Router):
                 path = getattr(r, "path")  # noqa: B009
                 name = getattr(r, "name", "unknown")
                 if path is not None and not path:
-                    raise Exception(
+                    raise FastAPIError(
                         f"Prefix and path cannot be both empty (path operation: {name})"
                     )
         if responses is None:
