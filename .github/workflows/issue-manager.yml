@@ -20,7 +20,7 @@ jobs:
     steps:
       - uses: tiangolo/issue-manager@0.4.0
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.FASTAPI_ISSUE_MANAGER }}
           config: >
             {
               "answered": {
