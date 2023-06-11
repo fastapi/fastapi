@@ -27,7 +27,7 @@ repos:
         args:
         - --fix
 -   repo: https://github.com/psf/black
-    rev: 23.1.0
+    rev: 23.3.0
     hooks:
     -   id: black
 ci:
