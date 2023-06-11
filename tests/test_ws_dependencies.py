@@ -1,17 +1,20 @@
 import json
-from typing import List, Optional
+from typing import List
 
 from fastapi import APIRouter, Depends, FastAPI, WebSocket
 from fastapi.testclient import TestClient
+from typing_extensions import Annotated
 
 
-def dependency_list(deps: Optional[str] = None) -> List[str]:
-    return [deps] if deps else []
+def dependency_list() -> List[str]:
+    return []
+
+
+DepList = Annotated[List[str], Depends(dependency_list)]
 
 
 def create_dependency(name: str):
-    def fun(deps: List[str] = Depends(dependency_list)):
-        print(f"create_dependency.fun({name})")
+    def fun(deps: DepList):
         deps.append(name)
 
     return Depends(fun)
@@ -23,21 +26,21 @@ app = FastAPI(dependencies=[create_dependency("app")])
 
 
 @app.websocket("/", dependencies=[create_dependency("index")])
-async def index(websocket: WebSocket, deps=Depends(dependency_list)):
+async def index(websocket: WebSocket, deps: DepList):
     await websocket.accept()
     await websocket.send_text(json.dumps(deps))
     await websocket.close()
 
 
 @router.websocket("/router", dependencies=[create_dependency("routerindex")])
-async def routerindex(websocket: WebSocket, deps=Depends(dependency_list)):
+async def routerindex(websocket: WebSocket, deps: DepList):
     await websocket.accept()
     await websocket.send_text(json.dumps(deps))
     await websocket.close()
 
 
 @prefix_router.websocket("/", dependencies=[create_dependency("routerprefixindex")])
-async def routerprefixindex(websocket: WebSocket, deps=Depends(dependency_list)):
+async def routerprefixindex(websocket: WebSocket, deps: DepList):
     await websocket.accept()
     await websocket.send_text(json.dumps(deps))
     await websocket.close()
