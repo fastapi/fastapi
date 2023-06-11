@@ -22,7 +22,7 @@ jobs:
         id: cache
         with:
           path: ${{ env.pythonLocation }}
-          key: ${{ runner.os }}-python-docs-${{ env.pythonLocation }}-${{ hashFiles('pyproject.toml') }}-v03
+          key: ${{ runner.os }}-python-docs-${{ env.pythonLocation }}-${{ hashFiles('pyproject.toml', 'requirements-docs.txt') }}-v03
       - name: Install docs extras
         if: steps.cache.outputs.cache-hit != 'true'
         run: pip install -r requirements-docs.txt
