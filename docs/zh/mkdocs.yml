@@ -120,6 +120,8 @@ nav:
   - advanced/response-change-status-code.md
   - advanced/response-headers.md
   - advanced/wsgi.md
+  - 高级安全:
+    - advanced/security/index.md
 - contributing.md
 - help-fastapi.md
 - benchmarks.md
