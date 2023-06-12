@@ -6,15 +6,15 @@
 
 ### Dựa trên những tiêu chuẩn mở
 
-* <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a> cho việc tạo API, bao gồm những khai báo về <abbr title="cũng được biết đến như: endpoints, routes">đường dẫn</abbr> <abbr title="cũng được biết đến như các phương thức HTTP, như POST, GET, PUT, DELETE"> các toán tử</abbr>, tham số, body requests, bảo mật, etc.
-* Tự động tài liệu hóa data model <a href="https://json-schema.org/" class="external-link" target="_blank"><strong>JSON Schema</strong></a> (OpenAPI bản thân nó được dựa trên JSON Schema).
-* Được thiết kế xung quanh các tiêu chuẩn này, sau khi nghiên cứu tỉ mỉ. Thay vì chỉ suy nghĩ đơn giản ở lớp trên cùng.
+* <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a> cho việc tạo API, bao gồm những khai báo về <abbr title="cũng được biết đến như: endpoints, routes">đường dẫn</abbr> <abbr title="cũng được biết đến như các phương thức HTTP, như POST, GET, PUT, DELETE"> các toán tử</abbr>, tham số, body requests, cơ chế bảo mật, etc.
+* Tự động tài liệu hóa data model theo <a href="https://json-schema.org/" class="external-link" target="_blank"><strong>JSON Schema</strong></a> (OpenAPI bản thân nó được dựa trên JSON Schema).
+* Được thiết kế xung quanh các tiêu chuẩn này sau khi nghiên cứu tỉ mỉ thay vì chỉ suy nghĩ đơn giản và sơ xài.
 * Điều này cho phép tự động hóa **trình sinh code client** cho nhiều ngôn ngữ lập trình khác nhau.
 
 ### Tự động hóa tài liệu
 
 
-Tài liệu tương tác API và web giao diện người dùng. Như một framework được dựa trên OpenAPI, có nhiều tùy chọn, 2 cái bên dưới là mặc định.
+Tài liệu tương tác API và web giao diện người dùng. Là một framework được dựa trên OpenAPI do đó có nhiều tùy chọn giao diện cho tài liệu API, 2 giao diện bên dưới là mặc định.
 
 * <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank"><strong>Swagger UI</strong></a>, với giao diện khám phá, gọi và kiểm thử API trực tiếp từ trình duyệt.
 
@@ -24,9 +24,9 @@ Tài liệu tương tác API và web giao diện người dùng. Như một fram
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-06-redoc-02.png)
 
-### Chỉ với bản Python hiện đại
+### Chỉ cần phiên bản Python hiện đại
 
-Tất cả được dựa trên khai báo kiểu dữ liệu chuẩn của **Python 3.6** (cảm ơn Pydantic). Không cần học cú pháp mới. Chỉ cần chuẩn Python hiện đại.
+Tất cả được dựa trên khai báo kiểu dữ liệu chuẩn của **Python 3.6** (cảm ơn Pydantic). Bạn không cần học cú pháp mới, chỉ cần biết chuẩn Python hiện đại.
 
 Nếu bạn cần 2 phút để làm mới lại cách sử dụng các kiểu dữ liệu mới của Python (thậm chí nếu bạn không sử dụng FastAPI), xem hướng dẫn ngắn: [Kiểu dữ liệu Python](python-types.md){.internal-link target=_blank}.
 
@@ -50,7 +50,7 @@ class User(BaseModel):
     joined: date
 ```
 
-Sau đó có thể được sử dụng giống như:
+Sau đó có thể được sử dụng:
 
 ```Python
 my_user: User = User(id=3, name="John Doe", joined="2018-07-19")
@@ -69,16 +69,14 @@ my_second_user: User = User(**second_user_data)
 
     Truyền các khóa và giá trị của dict `second_user_data` trực tiếp như các tham số kiểu key-value, tương đương với: `User(id=4, name="Mary", joined="2018-11-30")`
 
-### Hỗ trợ từ các trình soạn thảo
+### Được hỗ trợ từ các trình soạn thảo
 
 
-Toàn bộ framework được thiết kế để trở nên dễ dàng và trực quan khi sử dụng, toàn bộ quyết định đã được kiểm thử trên nhiều trình soạn thảo thậm chí trước khi bắt đầu quá trình phát triển, để chắc chắn trải nghiệm phát triển là tốt nhất.
+Toàn bộ framework được thiết kế để sử dụng dễ dàng và trực quan, toàn bộ quyết định đã được kiểm thử trên nhiều trình soạn thảo thậm chí trước khi bắt đầu quá trình phát triển, để chắc chắn trải nghiệm phát triển là tốt nhất.
 
-Trong lần khảo sát cuối cùng cho các lập trình viên Python, đã rõ ràng <a href="https://www.jetbrains.com/research/python-developers-survey-2017/#tools-and-features" class="external-link" target="_blank">rằng đa số các lập trình viên sử dụng tính năng "autocompletion"</a>.
+Trong lần khảo sát cuối cùng dành cho các lập trình viên Python, đã rõ ràng <a href="https://www.jetbrains.com/research/python-developers-survey-2017/#tools-and-features" class="external-link" target="_blank">rằng đa số các lập trình viên sử dụng tính năng "autocompletion"</a>.
 
-Toàn bộ framework "FastAPI" được dựa trên trên ràng buộc rằng: autocompletion hoạt động ở mọi nơi.
-
-Bạn sẽ hiếm khi cần quay lại để đọc tài liệu.
+Toàn bộ framework "FastAPI" phải đảm bảo rằng: autocompletion hoạt động ở mọi nơi. Bạn sẽ hiếm khi cần quay lại để đọc tài liệu.
 
 Đây là các trình soạn thảo có thể giúp bạn:
 
@@ -86,17 +84,17 @@ Bạn sẽ hiếm khi cần quay lại để đọc tài liệu.
 
 ![editor support](https://fastapi.tiangolo.com/img/vscode-completion.png)
 
-* in <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a>:
+* trong <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a>:
 
 ![editor support](https://fastapi.tiangolo.com/img/pycharm-completion.png)
 
-Bạn sẽ được hoàn thiện trong code, thậm chí trước đó là không thể. Như trong ví dụ, khóa `price` bên trong một JSON (đó có thể được lồng nhau) đến từ một request.
+Bạn sẽ có được auto-completion trong code, thậm chí trước đó là không thể. Như trong ví dụ, khóa `price` bên trong một JSON (đó có thể được lồng nhau) đến từ một request.
 
-Không còn phải nhập sai tên khóa, quay đi quay lại giữa các tài liệu hoặc cuộn lên cuộn xuống để tìm xem cuối cùng bạn đã sử dụng `username` hay `user_name`.
+Không còn nhập sai tên khóa, quay đi quay lại giữa các tài liệu hoặc cuộn lên cuộn xuống để tìm xem cuối cùng bạn đã sử dụng `username` hay `user_name`.
 
 ### Ngắn gọn
 
-Nó có các giá trị mặc định hợp lý cho mọi thứ, với các cấu hình tùy chọn ở mọi nơi. Tất cả các tham số có thể được tinh chỉnh để thực hiện những gì bạn cần và để định nghĩa API bạn cần.
+FastAPI có các giá trị mặc định hợp lý cho mọi thứ, với các cấu hình tùy chọn ở mọi nơi. Tất cả các tham số có thể được tinh chỉnh để thực hiện những gì bạn cần và để định nghĩa API bạn cần.
 
 Nhưng mặc định, tất cả **đều hoạt động**.
 
@@ -129,7 +127,7 @@ Tất cả cơ chế bảo mật định nghĩa trong OpenAPI, bao gồm:
     * Các tham số trong query string.
     * Cookies, etc.
 
-Cộng với tất cả các tinh năng bảo mật từ Starlette (bao gồm **session cookies**).
+Cộng với tất cả các tính năng bảo mật từ Starlette (bao gồm **session cookies**).
 
 Tất cả được xây dựng dưới dạng các công cụ và thành phần có thể tái sử dụng, dễ dàng tích hợp với hệ thống, kho lưu trữ dữ liệu, cơ sở dữ liệu quan hệ và NoSQL của bạn,...
 
@@ -157,8 +155,6 @@ Bất kì tích hợp nào được thiết kế để sử dụng đơn giản 
 * Được sử dụng cho các ứng dụng sản phẩm.
 
 ## Tính năng của Starlette
-
-**FastAPI** is fully compatible with (and based on) <a href="https://www.starlette.io/" class="external-link" target="_blank"><strong>Starlette</strong></a>. So, any additional Starlette code you have, will also work.
 
 `FastAPI` is thực sự là một sub-class của `Starlette`. Do đó, nếu bạn đã biết hoặc đã sử dụng Starlette, đa số các chức năng sẽ làm việc giống như vậy.
 
@@ -197,5 +193,5 @@ Với **FastAPI**, bạn có tất cả những tính năng của **Pydantic** (
     * Và các validators cho phép các cấu trúc dữ liệu phức tạp trở nên rõ ràng và dễ dàng để định nghĩa, kiểm tra và tài liệu hóa thành JSON Schema.
     * Bạn có thể có các object **JSON lồng nhau** và tất cả chúng đã validate và annotated.
 * **Có khả năng mở rộng**:
-    * Pydantic cho phép bạn tùy chỉnh kiểu dữ liệu bằng việc định nghĩa hoặc bạn có thể mở rộng validation với các phương thức trong một model decorated.
+    * Pydantic cho phép bạn tùy chỉnh kiểu dữ liệu bằng việc định nghĩa hoặc bạn có thể mở rộng validation với các decorator trong model.
 * 100% test coverage.
