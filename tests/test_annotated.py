@@ -26,6 +26,11 @@ async def unrelated(foo: Annotated[str, object()]):
     return {"foo": foo}
 
 
+@app.get("/description")
+async def description(foo: Annotated[str, "should default to foo"] = "foo"):
+    return {"foo": foo}
+
+
 client = TestClient(app)
 
 foo_is_missing = {
@@ -62,6 +67,8 @@ foo_is_short = {
         ("/multiple?foo=", 422, foo_is_short),
         ("/unrelated?foo=bar", 200, {"foo": "bar"}),
         ("/unrelated", 422, foo_is_missing),
+        ("/description", 200, {"foo": "foo"}),
+        ("/description?foo=bar", 200, {"foo": "bar"}),
     ],
 )
 def test_get(path, expected_status, expected_response):
@@ -92,6 +99,28 @@ def test_multiple_path():
     assert response.json() == {"foo": "bar"}
 
     response = client.get("/test2", params={"var": "baz"})
+    assert response.status_code == 200
+    assert response.json() == {"foo": "baz"}
+
+
+def test_multiple_optional_path():
+    app = FastAPI()
+
+    @app.get("/test1/{var}")
+    @app.get("/test1")
+    async def test(var: Annotated[str, "a var value"] = "bar"):
+        return {"foo": var}
+
+    client = TestClient(app)
+    response = client.get("/test1")
+    assert response.status_code == 200
+    assert response.json() == {"foo": "bar"}
+
+    response = client.get("/test1", params={"var": "baz"})
+    assert response.status_code == 200
+    assert response.json() == {"foo": "baz"}
+
+    response = client.get("/test1/baz")
     assert response.status_code == 200
     assert response.json() == {"foo": "baz"}
 
@@ -231,6 +260,42 @@ def test_openapi_schema():
                         {
                             "required": True,
                             "schema": {"title": "Foo", "type": "string"},
+                            "name": "foo",
+                            "in": "query",
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "Successful Response",
+                            "content": {"application/json": {"schema": {}}},
+                        },
+                        "422": {
+                            "description": "Validation Error",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/HTTPValidationError"
+                                    }
+                                }
+                            },
+                        },
+                    },
+                }
+            },
+            "/description": {
+                "get": {
+                    "summary": "Description",
+                    "operationId": "description_description_get",
+                    "parameters": [
+                        {
+                            "description": "should default to foo",
+                            "required": False,
+                            "schema": {
+                                "title": "Foo",
+                                "type": "string",
+                                "description": "should default to foo",
+                                "default": "foo",
+                            },
                             "name": "foo",
                             "in": "query",
                         }

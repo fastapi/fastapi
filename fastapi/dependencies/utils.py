@@ -367,6 +367,7 @@ def analyze_param(
     used_default_field_info = False
     depends = None
     type_annotation: Any = Any
+    description: Optional[str] = None
     if (
         annotation is not inspect.Signature.empty
         and get_origin(annotation) is Annotated  # type: ignore[comparison-overlap]
@@ -376,7 +377,7 @@ def analyze_param(
         fastapi_annotations = [
             arg
             for arg in annotated_args[1:]
-            if isinstance(arg, (FieldInfo, params.Depends))
+            if isinstance(arg, (FieldInfo, params.Depends, str))
         ]
         assert (
             len(fastapi_annotations) <= 1
@@ -396,6 +397,8 @@ def analyze_param(
                 field_info.default = Required
         elif isinstance(fastapi_annotation, params.Depends):
             depends = fastapi_annotation
+        elif isinstance(fastapi_annotation, str):
+            description = fastapi_annotation
     elif annotation is not inspect.Signature.empty:
         type_annotation = annotation
 
@@ -433,9 +436,10 @@ def analyze_param(
             # We might check here that `default_value is Required`, but the fact is that the same
             # parameter might sometimes be a path parameter and sometimes not. See
             # `tests/test_infer_param_optionality.py` for an example.
-            field_info = params.Path()
+            field_info = params.Path(description=description)
         else:
-            field_info = params.Query(default=default_value)
+            field_info = params.Query(default=default_value, description=description)
+
         used_default_field_info = True
 
     field = None
