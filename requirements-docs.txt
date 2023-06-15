@@ -1,0 +1,8 @@
+-e .
+mkdocs >=1.1.2,<2.0.0
+mkdocs-material >=8.1.4,<9.0.0
+mdx-include >=1.4.1,<2.0.0
+mkdocs-markdownextradata-plugin >=0.1.7,<0.3.0
+typer-cli >=0.0.13,<0.0.14
+typer[all] >=0.6.1,<0.8.0
+pyyaml >=5.3.1,<7.0.0
