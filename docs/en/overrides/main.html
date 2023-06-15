@@ -39,33 +39,44 @@
 {% endblock %}
 {%- block scripts %}
 {{ super() }}
-<!-- DocsQA integration start -->
-<script src="https://cdn.jsdelivr.net/npm/qabot@0.4"></script>
+<!-- EnhanceDocs AI Chat integration start -->
+<link href="https://unpkg.com/enhancedocs-chat@1.1.4/dist/style.css" rel="stylesheet">
+
 <script>
-  // This prevents the global search from interfering with qa-bot's internal text input.
   document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('qa-bot').forEach((x) => {
-      x.addEventListener('keydown', (event) => {
-        event.stopPropagation();
+    function loadScript(src, onLoadCallback) {
+      const script = document.createElement('script');
+      script.src = src;
+      script.onload = onLoadCallback;
+      document.head.appendChild(script);
+    }
+
+    function initEnhanceDocsChat() {
+      EnhancedocsChat.renderChat('enhancedocs-chat', {
+        config: {
+          projectId: '646e208ea04c4dd933a61e5f',
+          accessToken: 'pk_1205c3a38ee77b73515371eaae79579e4578542a767f26b9'
+        },
+        size: 'large',
+        theme: {
+          primaryColor: '#009485',
+          botName: 'FastAPI Bot',
+          logo: {
+            src: 'https://fastapi.tiangolo.com/img/icon-transparent-bg.png',
+            alt: 'FastAPI logo',
+          },
+        }
+      });
+    }
+
+    loadScript('https://unpkg.com/react@18/umd/react.production.min.js', () => {
+      loadScript('https://unpkg.com/react-dom@18/umd/react-dom.production.min.js', () => {
+        loadScript('https://unpkg.com/enhancedocs-chat@1.1.4/dist/enhancedocs-chat.umd.js', initEnhanceDocsChat);
       });
     });
-  });
+  })
 </script>
-<qa-bot
-  server="https://tiangolo-fastapi.docsqa.jina.ai"
-  theme="infer"
-  title="FastAPI Bot"
-  description="FastAPI framework, high performance, easy to learn, fast to code, ready for production"
-  style="font-size: 0.8rem"
->
-  <template>
-      <dl>
-          <dt>You can ask questions about FastAPI. Try:</dt>
-          <dd>How do you deploy FastAPI?</dd>
-          <dd>What are type hints?</dd>
-          <dd>What is OpenAPI?</dd>
-      </dl>
-  </template>
-</qa-bot>
-<!-- DocsQA integration end -->
+
+<div id="enhancedocs-chat"></div>
+<!-- EnhanceDocs AI Chat integration end -->
 {%- endblock %}
