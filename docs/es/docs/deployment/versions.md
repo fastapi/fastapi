@@ -4,7 +4,7 @@
 
 Se agregan nuevas características frecuentemente, se corrigen errores continuamente y el código está constantemente mejorando.
 
-Debido a esto, es porque las actuales versiones son aún `0.x.x`, esto significa que cada versión puede potencialmente tener <abbr title="cambios que rompen funcionalidades o compatibilidad, esto significa que algunas funcionalidades pueden cambiar o no ser incluidas, produciendo posibles errores.">*breaking changes*</abbr>. Las versiones siguen las convenciones de <a href="https://semver.org/" class="external-link" target="_blank"><abbr title="versionado semántico">*Semantic Versioning*</abbr></a>.
+Debido a esto, es porque las actuales versiones son aún `0.x.x`, esto significa que cada versión puede potencialmente tener <abbr title="cambios que rompen funcionalidades o compatibilidad">*breaking changes*</abbr>. Las versiones siguen las convenciones de <a href="https://semver.org/" class="external-link" target="_blank"><abbr title="versionado semántico">*Semantic Versioning*</abbr></a>.
 
 Puedes crear aplicaciones listas para producción con **FastAPI** ahora mismo (y probablemente ya lo estés haciendo desde hace bastante), solo debes asegurarte de que usas la versión que funciona correctamente con el resto de tu código.
 
@@ -36,7 +36,7 @@ Puedes ver las versiones disponibles (por ejemplo, para revisar cuál es la actu
 
 ## Acerca de las versiones
 
-Siguiendo las convenciones de *Semantic Versioning*, cualquier versión por debajo de `1.0.0` puede potencialmente tener <abbr title="cambios que rompen funcionalidades o compatibilidad, esto significa que algunas funcionalidades pueden cambiar o no ser incluidas, produciendo posibles errores.">*breaking changes*</abbr>.
+Siguiendo las convenciones de *Semantic Versioning*, cualquier versión por debajo de `1.0.0` puede potencialmente tener <abbr title="cambios que rompen funcionalidades o compatibilidad">*breaking changes*</abbr>.
 
 FastAPI también sigue la convención de que cualquier cambio hecho en una <abbr title="versiones de parche">"PATCH" version</abbr> es para solucionar errores y <abbr title="cambios que no rompan funcionalidades o compatibilidad">*non-breaking changes*</abbr>.
 
