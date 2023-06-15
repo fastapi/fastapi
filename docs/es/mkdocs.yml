@@ -75,6 +75,7 @@ nav:
 - async.md
 - Despliegue:
   - deployment/index.md
+  - deployment/versions.md
 markdown_extensions:
 - toc:
     permalink: true
