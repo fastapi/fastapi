@@ -4,6 +4,7 @@ from typing import Any, Callable, Dict, Iterable, List, Optional, Union
 from fastapi._compat import PYDANTIC_V2, _model_rebuild
 from fastapi.logger import logger
 from pydantic import AnyUrl, BaseModel, Field
+from typing_extensions import Literal
 
 try:
     import email_validator  # type: ignore
@@ -389,18 +390,18 @@ class APIKeyIn(Enum):
 
 
 class APIKey(SecurityBase):
-    type_: SecuritySchemeType = Field(SecuritySchemeType.apiKey, alias="type")
+    type_: SecuritySchemeType = Field(default=SecuritySchemeType.apiKey, alias="type")
     in_: APIKeyIn = Field(alias="in")
     name: str
 
 
 class HTTPBase(SecurityBase):
-    type_: SecuritySchemeType = Field(SecuritySchemeType.http, alias="type")
+    type_: SecuritySchemeType = Field(default=SecuritySchemeType.http, alias="type")
     scheme: str
 
 
 class HTTPBearer(HTTPBase):
-    scheme: str = "bearer"
+    scheme: Literal["bearer"] = "bearer"
     bearerFormat: Optional[str] = None
 
 
@@ -450,12 +451,14 @@ class OAuthFlows(BaseModel):
 
 
 class OAuth2(SecurityBase):
-    type_: SecuritySchemeType = Field(SecuritySchemeType.oauth2, alias="type")
+    type_: SecuritySchemeType = Field(default=SecuritySchemeType.oauth2, alias="type")
     flows: OAuthFlows
 
 
 class OpenIdConnect(SecurityBase):
-    type_: SecuritySchemeType = Field(SecuritySchemeType.openIdConnect, alias="type")
+    type_: SecuritySchemeType = Field(
+        default=SecuritySchemeType.openIdConnect, alias="type"
+    )
     openIdConnectUrl: str
 
 
