@@ -176,6 +176,91 @@ if PYDANTIC_V2:
     def _normalize_errors(errors: Sequence[Any]) -> List[Dict[str, Any]]:
         return errors  # type: ignore[return-value]
 
+    def _model_rebuild(model: Type[BaseModel]) -> None:
+        model.model_rebuild()
+
+    def _model_dump(
+        model: BaseModel, mode: Literal["json", "python"] = "json", **kwargs: Any
+    ) -> Any:
+        return model.model_dump(mode=mode, **kwargs)
+
+    def _get_model_config(model: BaseModel) -> Any:
+        return model.model_config
+
+    def get_schema_from_model_field(
+        *,
+        field: ModelField,
+        schema_generator: GenerateJsonSchema,
+        model_name_map: ModelNameMap,
+    ) -> Dict[str, Any]:
+        # This expects that GenerateJsonSchema was already used to generate the definitions
+        json_schema = schema_generator.generate_inner(field._type_adapter.core_schema)
+        if "$ref" not in json_schema:
+            # TODO remove when deprecating Pydantic v1
+            # Ref: https://github.com/pydantic/pydantic/blob/d61792cc42c80b13b23e3ffa74bc37ec7c77f7d1/pydantic/schema.py#L207
+            json_schema[
+                "title"
+            ] = field.field_info.title or field.alias.title().replace("_", " ")
+        return json_schema
+
+    def get_compat_model_name_map(fields: List[ModelField]) -> ModelNameMap:
+        return {}
+
+    def get_definitions(
+        *,
+        fields: List[ModelField],
+        schema_generator: GenerateJsonSchema,
+        model_name_map: ModelNameMap,
+    ) -> Dict[str, Dict[str, Any]]:
+        inputs = [
+            (field, "validation", field._type_adapter.core_schema) for field in fields
+        ]
+        _, definitions = schema_generator.generate_definitions(inputs=inputs)  # type: ignore[arg-type]
+        return definitions  # type: ignore[return-value]
+
+    def is_scalar_field(field: ModelField) -> bool:
+        from fastapi import params
+
+        return field_annotation_is_scalar(
+            field.field_info.annotation
+        ) and not isinstance(field.field_info, params.Body)
+
+    def is_sequence_field(field: ModelField) -> bool:
+        return field_annotation_is_sequence(field.field_info.annotation)
+
+    def is_scalar_sequence_field(field: ModelField) -> bool:
+        return field_annotation_is_scalar_sequence(field.field_info.annotation)
+
+    def is_bytes_field(field: ModelField) -> bool:
+        return is_bytes_or_nonable_bytes_annotation(field.type_)
+
+    def is_bytes_sequence_field(field: ModelField) -> bool:
+        return is_bytes_sequence_annotation(field.type_)
+
+    def copy_field_info(*, field_info: FieldInfo, annotation: Any) -> FieldInfo:
+        return type(field_info).from_annotation(annotation)
+
+    def serialize_sequence_value(*, field: ModelField, value: Any) -> Sequence[Any]:
+        origin_type = (
+            get_origin(field.field_info.annotation) or field.field_info.annotation
+        )
+        assert issubclass(origin_type, sequence_types)  # type: ignore[arg-type]
+        return sequence_annotation_to_type[origin_type](value)  # type: ignore[no-any-return]
+
+    def get_missing_field_error(loc: Tuple[str, ...]) -> ValidationError:
+        error = ValidationError.from_exception_data(
+            "Field required", [{"type": "missing", "loc": loc, "input": {}}]
+        ).errors()[0]
+        error["input"] = None
+        return error  # type: ignore[return-value]
+
+    def create_body_model(
+        *, fields: Sequence[ModelField], model_name: str
+    ) -> Type[BaseModel]:
+        field_params = {f.name: (f.field_info.annotation, f.field_info) for f in fields}
+        BodyModel: Type[BaseModel] = create_model(model_name, **field_params)  # type: ignore[call-overload]
+        return BodyModel
+
 else:
     from fastapi.openapi.constants import REF_PREFIX as REF_PREFIX
     from pydantic import AnyUrl as Url  # noqa: F401
@@ -333,6 +418,75 @@ else:
                 use_errors.append(error)
         return use_errors
 
+    def _model_rebuild(model: Type[BaseModel]) -> None:
+        model.update_forward_refs()
+
+    def _model_dump(
+        model: BaseModel, mode: Literal["json", "python"] = "json", **kwargs: Any
+    ) -> Any:
+        return model.dict(**kwargs)
+
+    def _get_model_config(model: BaseModel) -> Any:
+        return model.__config__  # type: ignore[attr-defined]
+
+    def get_schema_from_model_field(
+        *,
+        field: ModelField,
+        schema_generator: GenerateJsonSchema,
+        model_name_map: ModelNameMap,
+    ) -> Dict[str, Any]:
+        # This expects that GenerateJsonSchema was already used to generate the definitions
+        return field_schema(  # type: ignore[no-any-return]
+            field, model_name_map=model_name_map, ref_prefix=REF_PREFIX
+        )[0]
+
+    def get_compat_model_name_map(fields: List[ModelField]) -> ModelNameMap:
+        models = get_flat_models_from_fields(fields, known_models=set())
+        return get_model_name_map(models)  # type: ignore[no-any-return]
+
+    def get_definitions(
+        *,
+        fields: List[ModelField],
+        schema_generator: GenerateJsonSchema,
+        model_name_map: ModelNameMap,
+    ) -> Dict[str, Dict[str, Any]]:
+        models = get_flat_models_from_fields(fields, known_models=set())
+        return get_model_definitions(flat_models=models, model_name_map=model_name_map)
+
+    def is_scalar_field(field: ModelField) -> bool:
+        return is_pv1_scalar_field(field)
+
+    def is_sequence_field(field: ModelField) -> bool:
+        return field.shape in sequence_shapes or _annotation_is_sequence(field.type_)  # type: ignore[attr-defined]
+
+    def is_scalar_sequence_field(field: ModelField) -> bool:
+        return is_pv1_scalar_sequence_field(field)
+
+    def is_bytes_field(field: ModelField) -> bool:
+        return lenient_issubclass(field.type_, bytes)
+
+    def is_bytes_sequence_field(field: ModelField) -> bool:
+        return field.shape in sequence_shapes and lenient_issubclass(field.type_, bytes)  # type: ignore[attr-defined]
+
+    def copy_field_info(*, field_info: FieldInfo, annotation: Any) -> FieldInfo:
+        return copy(field_info)
+
+    def serialize_sequence_value(*, field: ModelField, value: Any) -> Sequence[Any]:
+        return sequence_shape_to_type[field.shape](value)  # type: ignore[no-any-return,attr-defined]
+
+    def get_missing_field_error(loc: Tuple[str, ...]) -> ValidationError:
+        missing_field_error = ErrorWrapper(MissingError(), loc=loc)  # type: ignore[call-arg]
+        new_error = ValidationError([missing_field_error], RequestErrorModel)
+        return new_error.errors()[0]  # type: ignore[return-value]
+
+    def create_body_model(
+        *, fields: Sequence[ModelField], model_name: str
+    ) -> Type[BaseModel]:
+        BodyModel = create_model(model_name)
+        for f in fields:
+            BodyModel.__fields__[f.name] = f  # type: ignore[index]
+        return BodyModel
+
 
 def _regenerate_error_with_loc(
     *, errors: Sequence[Any], loc_prefix: Tuple[Union[str, int], ...]
@@ -343,76 +497,6 @@ def _regenerate_error_with_loc(
     ]
 
     return updated_loc_errors
-
-
-def _model_rebuild(model: Type[BaseModel]) -> None:
-    if PYDANTIC_V2:
-        model.model_rebuild()
-    else:
-        model.update_forward_refs()
-
-
-def _model_dump(
-    model: BaseModel, mode: Literal["json", "python"] = "json", **kwargs: Any
-) -> Any:
-    if PYDANTIC_V2:
-        return model.model_dump(mode=mode, **kwargs)
-    else:
-        return model.dict(**kwargs)
-
-
-def _get_model_config(model: BaseModel) -> Any:
-    if PYDANTIC_V2:
-        return model.model_config
-    else:
-        return model.__config__  # type: ignore[attr-defined]
-
-
-def get_schema_from_model_field(
-    *,
-    field: ModelField,
-    schema_generator: GenerateJsonSchema,
-    model_name_map: ModelNameMap,
-) -> Dict[str, Any]:
-    # This expects that GenerateJsonSchema was already used to generate the definitions
-    if PYDANTIC_V2:
-        json_schema = schema_generator.generate_inner(field._type_adapter.core_schema)
-        if "$ref" not in json_schema:
-            # TODO remove when deprecating Pydantic v1
-            # Ref: https://github.com/pydantic/pydantic/blob/d61792cc42c80b13b23e3ffa74bc37ec7c77f7d1/pydantic/schema.py#L207
-            json_schema[
-                "title"
-            ] = field.field_info.title or field.alias.title().replace("_", " ")
-        return json_schema
-    else:
-        return field_schema(  # type: ignore[no-any-return]
-            field, model_name_map=model_name_map, ref_prefix=REF_PREFIX
-        )[0]
-
-
-def get_compat_model_name_map(fields: List[ModelField]) -> ModelNameMap:
-    if PYDANTIC_V2:
-        return {}
-    else:
-        models = get_flat_models_from_fields(fields, known_models=set())
-        return get_model_name_map(models)  # type: ignore[no-any-return]
-
-
-def get_definitions(
-    *,
-    fields: List[ModelField],
-    schema_generator: GenerateJsonSchema,
-    model_name_map: ModelNameMap,
-) -> Dict[str, Dict[str, Any]]:
-    if PYDANTIC_V2:
-        inputs = [
-            (field, "validation", field._type_adapter.core_schema) for field in fields
-        ]
-        _, definitions = schema_generator.generate_definitions(inputs=inputs)  # type: ignore[arg-type]
-        return definitions  # type: ignore[return-value]
-    else:
-        models = get_flat_models_from_fields(fields, known_models=set())
-        return get_model_definitions(flat_models=models, model_name_map=model_name_map)
 
 
 def _annotation_is_sequence(annotation: Union[Type[Any], None]) -> bool:
@@ -478,31 +562,6 @@ def field_annotation_is_scalar_sequence(annotation: Union[Type[Any], None]) -> b
     )
 
 
-def is_scalar_field(field: ModelField) -> bool:
-    from fastapi import params
-
-    if PYDANTIC_V2:
-        return field_annotation_is_scalar(
-            field.field_info.annotation
-        ) and not isinstance(field.field_info, params.Body)
-    else:
-        return is_pv1_scalar_field(field)
-
-
-def is_sequence_field(field: ModelField) -> bool:
-    if PYDANTIC_V2:
-        return field_annotation_is_sequence(field.field_info.annotation)
-    else:
-        return field.shape in sequence_shapes or _annotation_is_sequence(field.type_)  # type: ignore[attr-defined]
-
-
-def is_scalar_sequence_field(field: ModelField) -> bool:
-    if PYDANTIC_V2:
-        return field_annotation_is_scalar_sequence(field.field_info.annotation)
-    else:
-        return is_pv1_scalar_sequence_field(field)
-
-
 def is_bytes_or_nonable_bytes_annotation(annotation: Any) -> bool:
     if lenient_issubclass(annotation, bytes):
         return True
@@ -553,62 +612,3 @@ def is_uploadfile_sequence_annotation(annotation: Union[Type[Any], None]) -> boo
         is_uploadfile_or_nonable_uploadfile_annotation(sub_annotation)
         for sub_annotation in get_args(annotation)
     )
-
-
-def is_bytes_field(field: ModelField) -> bool:
-    if PYDANTIC_V2:
-        return is_bytes_or_nonable_bytes_annotation(field.type_)
-    else:
-        return lenient_issubclass(field.type_, bytes)
-
-
-def is_bytes_sequence_field(field: ModelField) -> bool:
-    if PYDANTIC_V2:
-        return is_bytes_sequence_annotation(field.type_)
-    else:
-        return field.shape in sequence_shapes and lenient_issubclass(field.type_, bytes)  # type: ignore[attr-defined]
-
-
-def copy_field_info(*, field_info: FieldInfo, annotation: Any) -> FieldInfo:
-    if PYDANTIC_V2:
-        return type(field_info).from_annotation(annotation)
-    else:
-        return copy(field_info)
-
-
-def serialize_sequence_value(*, field: ModelField, value: Any) -> Sequence[Any]:
-    if PYDANTIC_V2:
-        origin_type = (
-            get_origin(field.field_info.annotation) or field.field_info.annotation
-        )
-        assert issubclass(origin_type, sequence_types)  # type: ignore[arg-type]
-        return sequence_annotation_to_type[origin_type](value)  # type: ignore[no-any-return]
-    else:
-        return sequence_shape_to_type[field.shape](value)  # type: ignore[no-any-return,attr-defined]
-
-
-def get_missing_field_error(loc: Tuple[str, ...]) -> ValidationError:
-    if PYDANTIC_V2:
-        error = ValidationError.from_exception_data(
-            "Field required", [{"type": "missing", "loc": loc, "input": {}}]
-        ).errors()[0]
-        error["input"] = None
-        return error  # type: ignore[return-value]
-    else:
-        missing_field_error = ErrorWrapper(MissingError(), loc=loc)  # type: ignore[call-arg]
-        new_error = ValidationError([missing_field_error], RequestErrorModel)
-        return new_error.errors()[0]  # type: ignore[return-value]
-
-
-def create_body_model(
-    *, fields: Sequence[ModelField], model_name: str
-) -> Type[BaseModel]:
-    if PYDANTIC_V2:
-        field_params = {f.name: (f.field_info.annotation, f.field_info) for f in fields}
-        BodyModel: Type[BaseModel] = create_model(model_name, **field_params)  # type: ignore[call-overload]
-        return BodyModel
-    else:
-        BodyModel = create_model(model_name)
-        for f in fields:
-            BodyModel.__fields__[f.name] = f  # type: ignore[index]
-        return BodyModel
