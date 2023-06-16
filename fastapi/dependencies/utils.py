@@ -659,13 +659,7 @@ def request_params_to_args(
                 values[field.name] = deepcopy(field.default)
             continue
         v_, errors_ = field.validate(value, values, loc=loc)
-        if isinstance(errors_, ValidationError):
-            new_errors = _regenerate_error_with_loc(
-                errors=errors_.errors(), loc_prefix=loc
-            )
-            new_error = ValidationError(title=errors_.title, errors=new_errors)
-            errors.append(new_error)
-        elif isinstance(errors_, ErrorWrapper):
+        if isinstance(errors_, ErrorWrapper):
             errors.append(errors_)
         elif isinstance(errors_, list):
             new_errors = _regenerate_error_with_loc(errors=errors_, loc_prefix=())

@@ -113,22 +113,16 @@ if PYDANTIC_V2:
             value: Any,
             values: Dict[str, Any] = {},  # noqa: B006
             *,
-            loc: Union[Tuple[Union[int, str], ...], str] = "",
-        ) -> Tuple[Any, Union[List[ValidationError], None]]:
+            loc: Tuple[Union[int, str], ...] = (),
+        ) -> Tuple[Any, Union[List[Union[Sequence[Any], ErrorWrapper]], None]]:
             try:
                 return (
                     self._type_adapter.validate_python(value, from_attributes=True),
                     None,
                 )
             except ValidationError as exc:
-                if isinstance(loc, tuple):
-                    use_loc = loc
-                elif loc == "":
-                    use_loc = ()
-                else:
-                    use_loc = (loc,)
                 return None, _regenerate_error_with_loc(
-                    errors=exc.errors(), loc_prefix=use_loc
+                    errors=exc.errors(), loc_prefix=loc
                 )
 
         def serialize(
@@ -247,7 +241,7 @@ if PYDANTIC_V2:
         assert issubclass(origin_type, sequence_types)  # type: ignore[arg-type]
         return sequence_annotation_to_type[origin_type](value)  # type: ignore[no-any-return]
 
-    def get_missing_field_error(loc: Tuple[str, ...]) -> ValidationError:
+    def get_missing_field_error(loc: Tuple[str, ...]) -> Dict[str, Any]:
         error = ValidationError.from_exception_data(
             "Field required", [{"type": "missing", "loc": loc, "input": {}}]
         ).errors()[0]
@@ -474,7 +468,7 @@ else:
     def serialize_sequence_value(*, field: ModelField, value: Any) -> Sequence[Any]:
         return sequence_shape_to_type[field.shape](value)  # type: ignore[no-any-return,attr-defined]
 
-    def get_missing_field_error(loc: Tuple[str, ...]) -> ValidationError:
+    def get_missing_field_error(loc: Tuple[str, ...]) -> Dict[str, Any]:
         missing_field_error = ErrorWrapper(MissingError(), loc=loc)  # type: ignore[call-arg]
         new_error = ValidationError([missing_field_error], RequestErrorModel)
         return new_error.errors()[0]  # type: ignore[return-value]
@@ -490,7 +484,7 @@ else:
 
 def _regenerate_error_with_loc(
     *, errors: Sequence[Any], loc_prefix: Tuple[Union[str, int], ...]
-) -> List[ValidationError]:
+) -> List[Dict[str, Any]]:
     updated_loc_errors: List[Any] = [
         {**err, "loc": loc_prefix + err.get("loc", ())}
         for err in _normalize_errors(errors)
