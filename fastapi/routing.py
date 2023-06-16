@@ -120,10 +120,7 @@ def _merge_lifespan_context(
     async def merged_lifespan(app: AppType) -> AsyncIterator[Mapping[str, Any]]:
         async with original_context(app) as maybe_self_context:
             async with nested_context(app) as maybe_nested_context:
-                yield {
-                    **(maybe_self_context or {}),
-                    **(maybe_nested_context or {})
-                }
+                yield {**(maybe_self_context or {}), **(maybe_nested_context or {})}
 
     return merged_lifespan
 
