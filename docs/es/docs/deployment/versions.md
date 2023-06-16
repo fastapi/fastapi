@@ -48,7 +48,7 @@ Entonces, deberías fijar la versión así:
 fastapi>=0.45.0,<0.46.0
 ```
 
-<abbr title="Cambios que rompen posibles funcionalidades o compatibilidad">Breaking changes</abbr> y nuevas características son añadidos en <abbr title="versiones menores">"MINOR" versions</abbr>.
+En las <abbr title="versiones menores">"MINOR" versions</abbr> son añadidas nuevas características y posibles <abbr title="Cambios que rompen posibles funcionalidades o compatibilidad">breaking changes</abbr>.
 
 !!! tip
     La versión "MINOR" es el número en el medio, por ejemplo, en `0.2.3`, la <abbr title="versión menor">"MINOR" version</abbr> es `2`.
