@@ -383,7 +383,7 @@ def get_schema_from_model_field(
             json_schema[
                 "title"
             ] = field.field_info.title or field.alias.title().replace("_", " ")
-        return json_schema  # type: ignore[no-any-return]
+        return json_schema
     else:
         return field_schema(  # type: ignore[no-any-return]
             field, model_name_map=model_name_map, ref_prefix=REF_PREFIX
@@ -559,7 +559,7 @@ def is_bytes_field(field: ModelField) -> bool:
     if PYDANTIC_V2:
         return is_bytes_or_nonable_bytes_annotation(field.type_)
     else:
-        return lenient_issubclass(field.type_, bytes)  # type: ignore[no-any-return]
+        return lenient_issubclass(field.type_, bytes)
 
 
 def is_bytes_sequence_field(field: ModelField) -> bool:

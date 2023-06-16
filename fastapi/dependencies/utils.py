@@ -332,7 +332,7 @@ def analyze_param(
     type_annotation: Any = Any
     if (
         annotation is not inspect.Signature.empty
-        and get_origin(annotation) is Annotated  # type: ignore[comparison-overlap]
+        and get_origin(annotation) is Annotated
     ):
         annotated_args = get_args(annotation)
         type_annotation = annotated_args[0]

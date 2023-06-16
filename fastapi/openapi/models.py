@@ -7,7 +7,7 @@ from pydantic import AnyUrl, BaseModel, Field
 from typing_extensions import Literal
 
 try:
-    import email_validator  # type: ignore
+    import email_validator
 
     assert email_validator  # make autoflake ignore the unused import
     from pydantic import EmailStr
