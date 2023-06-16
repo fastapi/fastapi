@@ -1,4 +1,3 @@
-import types
 from collections import deque
 from copy import copy
 from dataclasses import dataclass, is_dataclass
@@ -19,6 +18,7 @@ from typing import (
 )
 
 from fastapi.exceptions import RequestErrorModel
+from fastapi.types import IncEx, ModelNameMap, UnionType
 from pydantic import BaseModel, create_model
 from pydantic.version import VERSION as PYDANTIC_VERSION
 from starlette.datastructures import UploadFile
@@ -26,10 +26,6 @@ from typing_extensions import Annotated, Literal, get_args, get_origin
 
 PYDANTIC_V2 = PYDANTIC_VERSION.startswith("2.")
 
-UnionType = getattr(types, "UnionType", Union)
-NoneType = getattr(types, "UnionType", None)
-ModelNameMap = Dict[Union[Type[BaseModel], Type[Enum]], str]
-IncEx = Union[Set[int], Set[str], Dict[int, Any], Dict[str, Any]]
 
 sequence_annotation_to_type = {
     Sequence: list,
@@ -49,8 +45,10 @@ sequence_types = tuple(sequence_annotation_to_type.keys())
 
 if PYDANTIC_V2:
     from pydantic import PydanticSchemaGenerationError as PydanticSchemaGenerationError
-    from pydantic import TypeAdapter, ValidationError
-    from pydantic._internal._fields import Undefined, _UndefinedType
+    from pydantic import TypeAdapter
+    from pydantic import ValidationError as ValidationError
+    from pydantic._internal._fields import Undefined as Undefined
+    from pydantic._internal._fields import _UndefinedType
     from pydantic._internal._schema_generation_shared import (  # type: ignore[attr-defined]
         GetJsonSchemaHandler as GetJsonSchemaHandler,
     )
@@ -86,11 +84,11 @@ if PYDANTIC_V2:
         @property
         def alias(self) -> str:
             a = self.field_info.alias
-            return a if a is not None else self.name  # type: ignore[no-any-return]
+            return a if a is not None else self.name
 
         @property
         def required(self) -> bool:
-            return self.field_info.is_required()  # type: ignore[no-any-return]
+            return self.field_info.is_required()
 
         @property
         def default(self) -> Any:
@@ -116,7 +114,7 @@ if PYDANTIC_V2:
             values: Dict[str, Any] = {},  # noqa: B006
             *,
             loc: Union[Tuple[Union[int, str], ...], str] = "",
-        ) -> tuple[Any, Union[List[ErrorDetails], None]]:
+        ) -> tuple[Any, Union[List[ValidationError], None]]:
             try:
                 return (
                     self._type_adapter.validate_python(value, from_attributes=True),
@@ -181,7 +179,7 @@ if PYDANTIC_V2:
 else:
     from fastapi.openapi.constants import REF_PREFIX as REF_PREFIX
     from pydantic import AnyUrl as Url  # noqa: F401
-    from pydantic import (  # type: ignore[no-redef]
+    from pydantic import (  # type: ignore[assignment]
         BaseConfig as BaseConfig,  # noqa: F401
     )
     from pydantic import ValidationError as ValidationError  # noqa: F401
@@ -192,7 +190,7 @@ else:
         ErrorWrapper as ErrorWrapper,  # noqa: F401
     )
     from pydantic.errors import MissingError
-    from pydantic.fields import (
+    from pydantic.fields import (  # type: ignore[attr-defined]
         SHAPE_FROZENSET,
         SHAPE_LIST,
         SHAPE_SEQUENCE,
@@ -202,17 +200,21 @@ else:
         SHAPE_TUPLE_ELLIPSIS,
     )
     from pydantic.fields import FieldInfo as FieldInfo
-    from pydantic.fields import (  # type: ignore[no-redef]
+    from pydantic.fields import (  # type: ignore[no-redef,attr-defined]
         ModelField as ModelField,  # noqa: F401
     )
-    from pydantic.fields import (  # type: ignore[no-redef]
+    from pydantic.fields import (  # type: ignore[no-redef,attr-defined]
         Required as Required,  # noqa: F401
     )
-    from pydantic.fields import Undefined as Undefined
-    from pydantic.fields import (  # type: ignore[no-redef]
+    from pydantic.fields import (  # type: ignore[no-redef,attr-defined]
+        Undefined as Undefined,
+    )
+    from pydantic.fields import (  # type: ignore[no-redef, attr-defined]
         UndefinedType as UndefinedType,  # noqa: F401
     )
-    from pydantic.networks import MultiHostDsn as MultiHostUrl  # noqa: F401
+    from pydantic.networks import (  # type: ignore[no-redef]
+        MultiHostDsn as MultiHostUrl,  # noqa: F401
+    )
     from pydantic.schema import (
         field_schema,
         get_flat_models_from_fields,
@@ -225,12 +227,14 @@ else:
     from pydantic.typing import (  # type: ignore[no-redef]
         evaluate_forwardref as evaluate_forwardref,  # noqa: F401
     )
-    from pydantic.utils import lenient_issubclass as lenient_issubclass  # noqa: F401
+    from pydantic.utils import (  # type: ignore[no-redef]
+        lenient_issubclass as lenient_issubclass,  # noqa: F401
+    )
 
-    ErrorDetails = Dict[str, Any]  # type: ignore[assignment]
-    GetJsonSchemaHandler = Any  # type: ignore[assignment]
-    JsonSchemaValue = Dict[str, Any]  # type: ignore[assignment]
-    CoreSchema = Any  # type: ignore[assignment]
+    ErrorDetails = Dict[str, Any]  # type: ignore[assignment,misc]
+    GetJsonSchemaHandler = Any  # type: ignore[assignment,misc]
+    JsonSchemaValue = Dict[str, Any]  # type: ignore[misc]
+    CoreSchema = Any  # type: ignore[assignment,misc]
 
     sequence_shapes = {
         SHAPE_LIST,
@@ -255,7 +259,7 @@ else:
     class PydanticSchemaGenerationError(Exception):  # type: ignore[no-redef]
         pass
 
-    def general_plain_validator_function(
+    def general_plain_validator_function(  # type: ignore[misc]
         function: Callable[..., Any],
         *,
         ref: Union[str, None] = None,
@@ -332,7 +336,7 @@ else:
 
 def _regenerate_error_with_loc(
     *, errors: Sequence[Any], loc_prefix: Tuple[Union[str, int], ...]
-) -> List[Any]:
+) -> List[ValidationError]:
     updated_loc_errors: List[Any] = [
         {**err, "loc": loc_prefix + err.get("loc", ())}
         for err in _normalize_errors(errors)
@@ -349,7 +353,7 @@ def _model_rebuild(model: Type[BaseModel]) -> None:
 
 
 def _model_dump(
-    model: Type[BaseModel], mode: Literal["json", "python"] = "json", **kwargs: Any
+    model: BaseModel, mode: Literal["json", "python"] = "json", **kwargs: Any
 ) -> Any:
     if PYDANTIC_V2:
         return model.model_dump(mode=mode, **kwargs)
@@ -399,13 +403,13 @@ def get_definitions(
     fields: List[ModelField],
     schema_generator: GenerateJsonSchema,
     model_name_map: ModelNameMap,
-) -> Dict[str, Any]:
+) -> Dict[str, Dict[str, Any]]:
     if PYDANTIC_V2:
         inputs = [
             (field, "validation", field._type_adapter.core_schema) for field in fields
         ]
-        _, definitions = schema_generator.generate_definitions(inputs=inputs)
-        return definitions  # type: ignore[no-any-return]
+        _, definitions = schema_generator.generate_definitions(inputs=inputs)  # type: ignore[arg-type]
+        return definitions  # type: ignore[return-value]
     else:
         models = get_flat_models_from_fields(fields, known_models=set())
         return get_model_definitions(flat_models=models, model_name_map=model_name_map)
@@ -414,7 +418,7 @@ def get_definitions(
 def _annotation_is_sequence(annotation: type[Any] | None) -> bool:
     if lenient_issubclass(annotation, (str, bytes)):
         return False
-    return lenient_issubclass(annotation, sequence_types)  # type: ignore[no-any-return]
+    return lenient_issubclass(annotation, sequence_types)
 
 
 def field_annotation_is_sequence(annotation: type[Any] | None) -> bool:
@@ -583,17 +587,17 @@ def serialize_sequence_value(*, field: ModelField, value: Any) -> Sequence[Any]:
         return sequence_shape_to_type[field.shape](value)  # type: ignore[no-any-return,attr-defined]
 
 
-def get_missing_field_error(loc: Tuple[str, ...]) -> Dict[str, Any]:
+def get_missing_field_error(loc: Tuple[str, ...]) -> ValidationError:
     if PYDANTIC_V2:
         error = ValidationError.from_exception_data(
             "Field required", [{"type": "missing", "loc": loc, "input": {}}]
         ).errors()[0]
         error["input"] = None
-        return error  # type: ignore[no-any-return]
+        return error  # type: ignore[return-value]
     else:
         missing_field_error = ErrorWrapper(MissingError(), loc=loc)  # type: ignore[call-arg]
         new_error = ValidationError([missing_field_error], RequestErrorModel)
-        return new_error.errors()[0]  # type: ignore[no-any-return]
+        return new_error.errors()[0]  # type: ignore[return-value]
 
 
 def create_body_model(
@@ -601,10 +605,10 @@ def create_body_model(
 ) -> Type[BaseModel]:
     if PYDANTIC_V2:
         field_params = {f.name: (f.field_info.annotation, f.field_info) for f in fields}
-        BodyModel: Type[BaseModel] = create_model(model_name, **field_params)
+        BodyModel: Type[BaseModel] = create_model(model_name, **field_params)  # type: ignore[call-overload]
         return BodyModel
     else:
         BodyModel = create_model(model_name)
         for f in fields:
-            BodyModel.__fields__[f.name] = f
+            BodyModel.__fields__[f.name] = f  # type: ignore[index]
         return BodyModel

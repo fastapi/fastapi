@@ -1,4 +1,4 @@
-from typing import Any, Callable, Dict, Iterable, Type, TypeVar
+from typing import Any, Callable, Dict, Iterable, Type, TypeVar, cast
 
 from fastapi._compat import (
     PYDANTIC_V2,
@@ -31,7 +31,7 @@ class UploadFile(StarletteUploadFile):
     def _validate(cls, __input_value: Any, _: Any) -> "UploadFile":
         if not isinstance(__input_value, StarletteUploadFile):
             raise ValueError(f"Expected UploadFile, received: {type(__input_value)}")
-        return __input_value
+        return cast(UploadFile, __input_value)
 
     if not PYDANTIC_V2:
 

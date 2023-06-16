@@ -685,7 +685,7 @@ async def request_body_to_args(
     received_body: Optional[Union[Dict[str, Any], FormData]],
 ) -> Tuple[Dict[str, Any], List[ValidationError]]:
     values = {}
-    errors = []
+    errors: List[ValidationError] = []
     if required_params:
         field = required_params[0]
         field_info = field.field_info
@@ -737,7 +737,7 @@ async def request_body_to_args(
                 and value_is_sequence(value)
             ):
                 # For types
-                assert isinstance(value, sequence_types)
+                assert isinstance(value, sequence_types)  # type: ignore[arg-type]
                 results: List[Union[bytes, str]] = []
 
                 async def process_fn(

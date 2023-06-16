@@ -93,7 +93,7 @@ def create_response_field(
             }
         )
     try:
-        return ModelField(**kwargs)
+        return ModelField(**kwargs)  # type: ignore[arg-type]
     except (RuntimeError, PydanticSchemaGenerationError):
         raise fastapi.exceptions.FastAPIError(
             "Invalid args for response field! Hint: "
@@ -133,30 +133,30 @@ def create_cloned_field(
                     f, cloned_types=cloned_types
                 )
     new_field = create_response_field(name=field.name, type_=use_type)
-    new_field.has_alias = field.has_alias
-    new_field.alias = field.alias
-    new_field.class_validators = field.class_validators
-    new_field.default = field.default
-    new_field.required = field.required
-    new_field.model_config = field.model_config
+    new_field.has_alias = field.has_alias  # type: ignore[attr-defined]
+    new_field.alias = field.alias  # type: ignore[misc]
+    new_field.class_validators = field.class_validators  # type: ignore[attr-defined]
+    new_field.default = field.default  # type: ignore[misc]
+    new_field.required = field.required  # type: ignore[misc]
+    new_field.model_config = field.model_config  # type: ignore[attr-defined]
     new_field.field_info = field.field_info
-    new_field.allow_none = field.allow_none
-    new_field.validate_always = field.validate_always
-    if field.sub_fields:
-        new_field.sub_fields = [
+    new_field.allow_none = field.allow_none  # type: ignore[attr-defined]
+    new_field.validate_always = field.validate_always  # type: ignore[attr-defined]
+    if field.sub_fields:  # type: ignore[attr-defined]
+        new_field.sub_fields = [  # type: ignore[attr-defined]
             create_cloned_field(sub_field, cloned_types=cloned_types)
-            for sub_field in field.sub_fields
+            for sub_field in field.sub_fields  # type: ignore[attr-defined]
         ]
-    if field.key_field:
-        new_field.key_field = create_cloned_field(
-            field.key_field, cloned_types=cloned_types
+    if field.key_field:  # type: ignore[attr-defined]
+        new_field.key_field = create_cloned_field(  # type: ignore[attr-defined]
+            field.key_field, cloned_types=cloned_types  # type: ignore[attr-defined]
         )
-    new_field.validators = field.validators
-    new_field.pre_validators = field.pre_validators
-    new_field.post_validators = field.post_validators
-    new_field.parse_json = field.parse_json
-    new_field.shape = field.shape
-    new_field.populate_validators()
+    new_field.validators = field.validators  # type: ignore[attr-defined]
+    new_field.pre_validators = field.pre_validators  # type: ignore[attr-defined]
+    new_field.post_validators = field.post_validators  # type: ignore[attr-defined]
+    new_field.parse_json = field.parse_json  # type: ignore[attr-defined]
+    new_field.shape = field.shape  # type: ignore[attr-defined]
+    new_field.populate_validators()  # type: ignore[attr-defined]
     return new_field
 
 

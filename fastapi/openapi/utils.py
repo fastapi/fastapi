@@ -7,7 +7,6 @@ from fastapi import routing
 from fastapi._compat import (
     GenerateJsonSchema,
     ModelField,
-    ModelNameMap,
     Undefined,
     get_compat_model_name_map,
     get_definitions,
@@ -22,6 +21,7 @@ from fastapi.openapi.constants import METHODS_WITH_BODY, REF_PREFIX, REF_TEMPLAT
 from fastapi.openapi.models import OpenAPI
 from fastapi.params import Body, Param
 from fastapi.responses import Response
+from fastapi.types import ModelNameMap
 from fastapi.utils import (
     deep_dict_update,
     generate_operation_id_for_path,

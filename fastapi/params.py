@@ -64,7 +64,7 @@ class Param(FieldInfo):
         super().__init__(**kwargs)
         # TODO: pv2 decide how to handle OpenAPI examples vs JSON Schema examples
         # and how to deprecate OpenAPI examples
-        self.examples = examples
+        self.examples = examples  # type: ignore[assignment]
 
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}({self.default})"
@@ -312,7 +312,7 @@ class Body(FieldInfo):
         )
         # TODO: pv2 decide how to handle OpenAPI examples vs JSON Schema examples
         # and how to deprecate OpenAPI examples
-        self.examples = examples
+        self.examples = examples  # type: ignore[assignment]
 
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}({self.default})"
