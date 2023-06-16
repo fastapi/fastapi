@@ -28,9 +28,8 @@ PYDANTIC_V2 = PYDANTIC_VERSION.startswith("2.")
 
 UnionType = getattr(types, "UnionType", Union)
 NoneType = getattr(types, "UnionType", None)
-SetIntStr = Set[Union[int, str]]
-DictIntStrAny = Dict[Union[int, str], Any]
 ModelNameMap = Dict[Union[Type[BaseModel], Type[Enum]], str]
+IncEx = Union[Set[int], Set[str], Dict[int, Any], Dict[str, Any]]
 
 sequence_annotation_to_type = {
     Sequence: list,
@@ -52,7 +51,7 @@ if PYDANTIC_V2:
     from pydantic import PydanticSchemaGenerationError as PydanticSchemaGenerationError
     from pydantic import TypeAdapter, ValidationError
     from pydantic._internal._fields import Undefined, _UndefinedType
-    from pydantic._internal._schema_generation_shared import (
+    from pydantic._internal._schema_generation_shared import (  # type: ignore[attr-defined]
         GetJsonSchemaHandler as GetJsonSchemaHandler,
     )
     from pydantic._internal._typing_extra import eval_type_lenient
@@ -85,23 +84,23 @@ if PYDANTIC_V2:
         name: str
 
         @property
-        def alias(self):
+        def alias(self) -> str:
             a = self.field_info.alias
-            return a if a is not None else self.name
+            return a if a is not None else self.name  # type: ignore[no-any-return]
 
         @property
-        def required(self):
-            return self.field_info.is_required()
+        def required(self) -> bool:
+            return self.field_info.is_required()  # type: ignore[no-any-return]
 
         @property
-        def default(self):
+        def default(self) -> Any:
             return self.get_default()
 
         @property
-        def type_(self):
+        def type_(self) -> Any:
             return self.field_info.annotation
 
-        def __post_init__(self):
+        def __post_init__(self) -> None:
             self._type_adapter: TypeAdapter[Any] = TypeAdapter(
                 Annotated[self.field_info.annotation, self.field_info]
             )
@@ -139,8 +138,8 @@ if PYDANTIC_V2:
             value: Any,
             *,
             mode: Literal["json", "python"] = "json",
-            include: Union[SetIntStr, DictIntStrAny, None] = None,
-            exclude: Union[SetIntStr, DictIntStrAny, None] = None,
+            include: Union[IncEx, None] = None,
+            exclude: Union[IncEx, None] = None,
             by_alias: bool = True,
             exclude_unset: bool = False,
             exclude_defaults: bool = False,
@@ -164,20 +163,24 @@ if PYDANTIC_V2:
             # ModelField to its JSON Schema.
             return id(self)
 
-    def get_model_definitions(**kwargs) -> Dict[str, Any]:
+    def get_model_definitions(
+        *,
+        flat_models: Set[Union[Type[BaseModel], Type[Enum]]],
+        model_name_map: Dict[Union[Type[BaseModel], Type[Enum]], str],
+    ) -> Dict[str, Any]:
         return {}
 
     def get_annotation_from_field_info(
         annotation: Any, field_info: FieldInfo, field_name: str
-    ):
+    ) -> Any:
         return annotation
 
     def _normalize_errors(errors: Sequence[Any]) -> List[Dict[str, Any]]:
-        return errors
+        return errors  # type: ignore[return-value]
 
 else:
     from fastapi.openapi.constants import REF_PREFIX as REF_PREFIX
-    from pydantic import AnyUrl as Url
+    from pydantic import AnyUrl as Url  # noqa: F401
     from pydantic import BaseConfig as BaseConfig  # noqa: F401
     from pydantic import ValidationError as ValidationError  # noqa: F401
     from pydantic.class_validators import Validator as Validator  # noqa: F401
@@ -197,23 +200,23 @@ else:
     from pydantic.fields import Required as Required  # noqa: F401
     from pydantic.fields import Undefined as Undefined
     from pydantic.fields import UndefinedType as UndefinedType  # noqa: F401
-    from pydantic.networks import MultiHostDsn as MultiHostUrl
-    from pydantic.schema import field_schema
-    from pydantic.schema import (  # noqa: F401
-        get_annotation_from_field_info as get_annotation_from_field_info,
-    )
+    from pydantic.networks import MultiHostDsn as MultiHostUrl  # noqa: F401
     from pydantic.schema import (
+        field_schema,
         get_flat_models_from_fields,
         get_model_name_map,
         model_process_schema,
     )
+    from pydantic.schema import (  # noqa: F401
+        get_annotation_from_field_info as get_annotation_from_field_info,
+    )
     from pydantic.typing import evaluate_forwardref as evaluate_forwardref  # noqa: F401
     from pydantic.utils import lenient_issubclass as lenient_issubclass  # noqa: F401
 
-    ErrorDetails = Dict[str, Any]
-    GetJsonSchemaHandler = Any
-    JsonSchemaValue = Dict[str, Any]
-    CoreSchema = Any
+    ErrorDetails = Dict[str, Any]  # type: ignore[assignment]
+    GetJsonSchemaHandler = Any  # type: ignore[assignment]
+    JsonSchemaValue = Dict[str, Any]  # type: ignore[assignment]
+    CoreSchema = Any  # type: ignore[assignment]
 
     sequence_shapes = {
         SHAPE_LIST,
@@ -232,10 +235,10 @@ else:
     }
 
     @dataclass
-    class GenerateJsonSchema:
+    class GenerateJsonSchema:  # type: ignore[no-redef]
         ref_template: str
 
-    class PydanticSchemaGenerationError(Exception):
+    class PydanticSchemaGenerationError(Exception):  # type: ignore[no-redef]
         pass
 
     def general_plain_validator_function(
@@ -269,7 +272,7 @@ else:
 
         field_info = field.field_info
         if not (
-            field.shape == SHAPE_SINGLETON
+            field.shape == SHAPE_SINGLETON  # type: ignore[attr-defined]
             and not lenient_issubclass(field.type_, BaseModel)
             and not lenient_issubclass(field.type_, dict)
             and not field_annotation_is_sequence(field.type_)
@@ -277,17 +280,20 @@ else:
             and not isinstance(field_info, params.Body)
         ):
             return False
-        if field.sub_fields:
-            if not all(is_pv1_scalar_field(f) for f in field.sub_fields):
+        if field.sub_fields:  # type: ignore[attr-defined]
+            if not all(
+                is_pv1_scalar_field(f)
+                for f in field.sub_fields  # type: ignore[attr-defined]
+            ):
                 return False
         return True
 
     def is_pv1_scalar_sequence_field(field: ModelField) -> bool:
-        if (field.shape in sequence_shapes) and not lenient_issubclass(
+        if (field.shape in sequence_shapes) and not lenient_issubclass(  # type: ignore[attr-defined]
             field.type_, BaseModel
         ):
-            if field.sub_fields is not None:
-                for sub_field in field.sub_fields:
+            if field.sub_fields is not None:  # type: ignore[attr-defined]
+                for sub_field in field.sub_fields:  # type: ignore[attr-defined]
                     if not is_pv1_scalar_field(sub_field):
                         return False
             return True
@@ -296,10 +302,10 @@ else:
         return False
 
     def _normalize_errors(errors: Sequence[Any]) -> List[Dict[str, Any]]:
-        use_errors = []
+        use_errors: List[Any] = []
         for error in errors:
             if isinstance(error, ErrorWrapper):
-                new_errors = ValidationError(
+                new_errors = ValidationError(  # type: ignore[call-arg]
                     errors=[error], model=RequestErrorModel
                 ).errors()
                 use_errors.extend(new_errors)
@@ -312,7 +318,7 @@ else:
 
 def _regenerate_error_with_loc(
     *, errors: Sequence[Any], loc_prefix: Tuple[Union[str, int], ...]
-):
+) -> List[Any]:
     updated_loc_errors: List[Any] = [
         {**err, "loc": loc_prefix + err.get("loc", ())}
         for err in _normalize_errors(errors)
@@ -329,8 +335,8 @@ def _model_rebuild(model: Type[BaseModel]) -> None:
 
 
 def _model_dump(
-    model: Type[BaseModel], mode: Literal["json", "python"] = "json", **kwargs
-) -> Dict[str, Any]:
+    model: Type[BaseModel], mode: Literal["json", "python"] = "json", **kwargs: Any
+) -> Any:
     if PYDANTIC_V2:
         return model.model_dump(mode=mode, **kwargs)
     else:
@@ -341,7 +347,7 @@ def _get_model_config(model: BaseModel) -> Any:
     if PYDANTIC_V2:
         return model.model_config
     else:
-        return model.__config__
+        return model.__config__  # type: ignore[attr-defined]
 
 
 def get_schema_from_model_field(
@@ -359,9 +365,9 @@ def get_schema_from_model_field(
             json_schema[
                 "title"
             ] = field.field_info.title or field.alias.title().replace("_", " ")
-        return json_schema
+        return json_schema  # type: ignore[no-any-return]
     else:
-        return field_schema(
+        return field_schema(  # type: ignore[no-any-return]
             field, model_name_map=model_name_map, ref_prefix=REF_PREFIX
         )[0]
 
@@ -371,7 +377,7 @@ def get_compat_model_name_map(fields: List[ModelField]) -> ModelNameMap:
         return {}
     else:
         models = get_flat_models_from_fields(fields, known_models=set())
-        return get_model_name_map(models)
+        return get_model_name_map(models)  # type: ignore[no-any-return]
 
 
 def get_definitions(
@@ -385,7 +391,7 @@ def get_definitions(
             (field, "validation", field._type_adapter.core_schema) for field in fields
         ]
         _, definitions = schema_generator.generate_definitions(inputs=inputs)
-        return definitions
+        return definitions  # type: ignore[no-any-return]
     else:
         models = get_flat_models_from_fields(fields, known_models=set())
         return get_model_definitions(flat_models=models, model_name_map=model_name_map)
@@ -394,7 +400,7 @@ def get_definitions(
 def _annotation_is_sequence(annotation: type[Any] | None) -> bool:
     if lenient_issubclass(annotation, (str, bytes)):
         return False
-    return lenient_issubclass(annotation, sequence_types)
+    return lenient_issubclass(annotation, sequence_types)  # type: ignore[no-any-return]
 
 
 def field_annotation_is_sequence(annotation: type[Any] | None) -> bool:
@@ -404,7 +410,7 @@ def field_annotation_is_sequence(annotation: type[Any] | None) -> bool:
 
 
 def value_is_sequence(value: Any) -> bool:
-    return isinstance(value, sequence_types) and not isinstance(value, (str, bytes))
+    return isinstance(value, sequence_types) and not isinstance(value, (str, bytes))  # type: ignore[arg-type]
 
 
 def _annotation_is_complex(annotation: Type[Any] | None) -> bool:
@@ -469,7 +475,7 @@ def is_sequence_field(field: ModelField) -> bool:
     if PYDANTIC_V2:
         return field_annotation_is_sequence(field.field_info.annotation)
     else:
-        return field.shape in sequence_shapes or _annotation_is_sequence(field.type_)
+        return field.shape in sequence_shapes or _annotation_is_sequence(field.type_)  # type: ignore[attr-defined]
 
 
 def is_scalar_sequence_field(field: ModelField) -> bool:
@@ -535,14 +541,14 @@ def is_bytes_field(field: ModelField) -> bool:
     if PYDANTIC_V2:
         return is_bytes_or_nonable_bytes_annotation(field.type_)
     else:
-        return lenient_issubclass(field.type_, bytes)
+        return lenient_issubclass(field.type_, bytes)  # type: ignore[no-any-return]
 
 
 def is_bytes_sequence_field(field: ModelField) -> bool:
     if PYDANTIC_V2:
         return is_bytes_sequence_annotation(field.type_)
     else:
-        return field.shape in sequence_shapes and lenient_issubclass(field.type_, bytes)
+        return field.shape in sequence_shapes and lenient_issubclass(field.type_, bytes)  # type: ignore[attr-defined]
 
 
 def copy_field_info(*, field_info: FieldInfo, annotation: Any) -> FieldInfo:
@@ -557,10 +563,10 @@ def serialize_sequence_value(*, field: ModelField, value: Any) -> Sequence[Any]:
         origin_type = (
             get_origin(field.field_info.annotation) or field.field_info.annotation
         )
-        assert issubclass(origin_type, sequence_types)
-        return sequence_annotation_to_type[origin_type](value)
+        assert issubclass(origin_type, sequence_types)  # type: ignore[arg-type]
+        return sequence_annotation_to_type[origin_type](value)  # type: ignore[no-any-return]
     else:
-        return sequence_shape_to_type[field.shape](value)
+        return sequence_shape_to_type[field.shape](value)  # type: ignore[no-any-return,attr-defined]
 
 
 def get_missing_field_error(loc: Tuple[str, ...]) -> Dict[str, Any]:
@@ -569,11 +575,11 @@ def get_missing_field_error(loc: Tuple[str, ...]) -> Dict[str, Any]:
             "Field required", [{"type": "missing", "loc": loc, "input": {}}]
         ).errors()[0]
         error["input"] = None
-        return error
+        return error  # type: ignore[no-any-return]
     else:
-        missing_field_error = ErrorWrapper(MissingError(), loc=loc)
+        missing_field_error = ErrorWrapper(MissingError(), loc=loc)  # type: ignore[call-arg]
         new_error = ValidationError([missing_field_error], RequestErrorModel)
-        return new_error.errors()[0]
+        return new_error.errors()[0]  # type: ignore[no-any-return]
 
 
 def create_body_model(
@@ -584,7 +590,7 @@ def create_body_model(
         BodyModel: Type[BaseModel] = create_model(model_name, **field_params)
         return BodyModel
     else:
-        BodyModel: Type[BaseModel] = create_model(model_name)
+        BodyModel = create_model(model_name)
         for f in fields:
             BodyModel.__fields__[f.name] = f
         return BodyModel
