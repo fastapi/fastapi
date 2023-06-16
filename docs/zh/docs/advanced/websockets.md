@@ -20,7 +20,7 @@ $ pip install websockets
 
 要使用 WebSockets 与后端进行通信，您可能会使用前端的工具。
 
-或者，您可能有一个本机移动应用程序，直接使用本机代码与 WebSocket 后端通信。
+或者，您可能有一个原生移动应用程序，直接使用原生代码与 WebSocket 后端通信。
 
 或者，您可能有其他与 WebSocket 终端通信的方式。
 
