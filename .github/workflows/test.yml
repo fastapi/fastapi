@@ -29,6 +29,8 @@ jobs:
       - name: Install Dependencies
         if: steps.cache.outputs.cache-hit != 'true'
         run: pip install -r requirements-tests.txt
+      - name: Install Pydantic v2
+        run: pip install --pre "pydantic>=2.0.0b2,<3.0.0"
       - name: Lint
         run: bash scripts/lint.sh
 
