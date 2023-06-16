@@ -114,7 +114,7 @@ if PYDANTIC_V2:
             values: Dict[str, Any] = {},  # noqa: B006
             *,
             loc: Union[Tuple[Union[int, str], ...], str] = "",
-        ) -> tuple[Any, Union[List[ValidationError], None]]:
+        ) -> Tuple[Any, Union[List[ValidationError], None]]:
             try:
                 return (
                     self._type_adapter.validate_python(value, from_attributes=True),
