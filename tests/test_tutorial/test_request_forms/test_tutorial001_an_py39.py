@@ -1,5 +1,7 @@
 import pytest
+from dirty_equals import IsDict
 from fastapi.testclient import TestClient
+from fastapi.utils import match_pydantic_error_url
 
 from ...utils import needs_py39
 
@@ -12,68 +14,155 @@ def get_client():
     return client
 
 
-password_required = {
-    "detail": [
-        {
-            "loc": ["body", "password"],
-            "msg": "field required",
-            "type": "value_error.missing",
-        }
-    ]
-}
-username_required = {
-    "detail": [
-        {
-            "loc": ["body", "username"],
-            "msg": "field required",
-            "type": "value_error.missing",
-        }
-    ]
-}
-username_and_password_required = {
-    "detail": [
-        {
-            "loc": ["body", "username"],
-            "msg": "field required",
-            "type": "value_error.missing",
-        },
-        {
-            "loc": ["body", "password"],
-            "msg": "field required",
-            "type": "value_error.missing",
-        },
-    ]
-}
+@needs_py39
+def test_post_body_form(client: TestClient):
+    response = client.post("/login/", data={"username": "Foo", "password": "secret"})
+    assert response.status_code == 200
+    assert response.json() == {"username": "Foo"}
 
 
 @needs_py39
-@pytest.mark.parametrize(
-    "path,body,expected_status,expected_response",
-    [
-        (
-            "/login/",
-            {"username": "Foo", "password": "secret"},
-            200,
-            {"username": "Foo"},
-        ),
-        ("/login/", {"username": "Foo"}, 422, password_required),
-        ("/login/", {"password": "secret"}, 422, username_required),
-        ("/login/", None, 422, username_and_password_required),
-    ],
-)
-def test_post_body_form(
-    path, body, expected_status, expected_response, client: TestClient
-):
-    response = client.post(path, data=body)
-    assert response.status_code == expected_status
-    assert response.json() == expected_response
+def test_post_body_form_no_password(client: TestClient):
+    response = client.post("/login/", data={"username": "Foo"})
+    assert response.status_code == 422
+    assert response.json() == IsDict(
+        {
+            "detail": [
+                {
+                    "type": "missing",
+                    "loc": ["body", "password"],
+                    "msg": "Field required",
+                    "input": None,
+                    "url": match_pydantic_error_url("missing"),
+                }
+            ]
+        }
+    ) | IsDict(
+        # TODO: remove when deprecating Pydantic v1
+        {
+            "detail": [
+                {
+                    "loc": ["body", "password"],
+                    "msg": "field required",
+                    "type": "value_error.missing",
+                }
+            ]
+        }
+    )
+
+
+@needs_py39
+def test_post_body_form_no_username(client: TestClient):
+    response = client.post("/login/", data={"password": "secret"})
+    assert response.status_code == 422
+    assert response.json() == IsDict(
+        {
+            "detail": [
+                {
+                    "type": "missing",
+                    "loc": ["body", "username"],
+                    "msg": "Field required",
+                    "input": None,
+                    "url": match_pydantic_error_url("missing"),
+                }
+            ]
+        }
+    ) | IsDict(
+        # TODO: remove when deprecating Pydantic v1
+        {
+            "detail": [
+                {
+                    "loc": ["body", "username"],
+                    "msg": "field required",
+                    "type": "value_error.missing",
+                }
+            ]
+        }
+    )
+
+
+@needs_py39
+def test_post_body_form_no_data(client: TestClient):
+    response = client.post("/login/")
+    assert response.status_code == 422
+    assert response.json() == IsDict(
+        {
+            "detail": [
+                {
+                    "type": "missing",
+                    "loc": ["body", "username"],
+                    "msg": "Field required",
+                    "input": None,
+                    "url": match_pydantic_error_url("missing"),
+                },
+                {
+                    "type": "missing",
+                    "loc": ["body", "password"],
+                    "msg": "Field required",
+                    "input": None,
+                    "url": match_pydantic_error_url("missing"),
+                },
+            ]
+        }
+    ) | IsDict(
+        # TODO: remove when deprecating Pydantic v1
+        {
+            "detail": [
+                {
+                    "loc": ["body", "username"],
+                    "msg": "field required",
+                    "type": "value_error.missing",
+                },
+                {
+                    "loc": ["body", "password"],
+                    "msg": "field required",
+                    "type": "value_error.missing",
+                },
+            ]
+        }
+    )
 
 
 @needs_py39
 def test_post_body_json(client: TestClient):
     response = client.post("/login/", json={"username": "Foo", "password": "secret"})
     assert response.status_code == 422, response.text
-    assert response.json() == username_and_password_required
+    assert response.json() == IsDict(
+        {
+            "detail": [
+                {
+                    "type": "missing",
+                    "loc": ["body", "username"],
+                    "msg": "Field required",
+                    "input": None,
+                    "url": match_pydantic_error_url("missing"),
+                },
+                {
+                    "type": "missing",
+                    "loc": ["body", "password"],
+                    "msg": "Field required",
+                    "input": None,
+                    "url": match_pydantic_error_url("missing"),
+                },
+            ]
+        }
+    ) | IsDict(
+        # TODO: remove when deprecating Pydantic v1
+        {
+            "detail": [
+                {
+                    "loc": ["body", "username"],
+                    "msg": "field required",
+                    "type": "value_error.missing",
+                },
+                {
+                    "loc": ["body", "password"],
+                    "msg": "field required",
+                    "type": "value_error.missing",
+                },
+            ]
+        }
+    )
 
 
 @needs_py39

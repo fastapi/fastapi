@@ -1,7 +1,9 @@
 from enum import Enum
-from typing import Any, Callable, Dict, Optional, Sequence
+from typing import Any, Callable, Dict, Optional, Sequence, Type
 
-from pydantic.fields import FieldInfo, Undefined
+from pydantic.fields import FieldInfo
+
+from ._compat import PYDANTIC_V2, Undefined
 
 
 class ParamTypes(Enum):
@@ -18,6 +20,7 @@ class Param(FieldInfo):
         self,
         default: Any = Undefined,
         *,
+        annotation: Optional[Type[Any]] = None,
         alias: Optional[str] = None,
         title: Optional[str] = None,
         description: Optional[str] = None,
@@ -27,6 +30,7 @@ class Param(FieldInfo):
         le: Optional[float] = None,
         min_length: Optional[int] = None,
         max_length: Optional[int] = None,
+        pattern: Optional[str] = None,
         regex: Optional[str] = None,
         example: Any = Undefined,
         examples: Optional[Dict[str, Any]] = None,
@@ -36,9 +40,8 @@ class Param(FieldInfo):
     ):
         self.deprecated = deprecated
         self.example = example
-        self.examples = examples
         self.include_in_schema = include_in_schema
-        super().__init__(
+        kwargs = dict(
             default=default,
             alias=alias,
             title=title,
@@ -49,9 +52,19 @@ class Param(FieldInfo):
             le=le,
             min_length=min_length,
             max_length=max_length,
-            regex=regex,
             **extra,
         )
+        if PYDANTIC_V2:
+            kwargs["annotation"] = annotation
+            kwargs["pattern"] = pattern or regex
+        else:
+            # TODO: pv2 figure out how to deprecate regex
+            kwargs["regex"] = pattern or regex
+
+        super().__init__(**kwargs)
+        # TODO: pv2 decide how to handle OpenAPI examples vs JSON Schema examples
+        # and how to deprecate OpenAPI examples
+        self.examples = examples  # type: ignore[assignment]
 
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}({self.default})"
@@ -64,6 +77,7 @@ class Path(Param):
         self,
         default: Any = ...,
         *,
+        annotation: Optional[Type[Any]] = None,
         alias: Optional[str] = None,
         title: Optional[str] = None,
         description: Optional[str] = None,
@@ -73,6 +87,7 @@ class Path(Param):
         le: Optional[float] = None,
         min_length: Optional[int] = None,
         max_length: Optional[int] = None,
+        pattern: Optional[str] = None,
         regex: Optional[str] = None,
         example: Any = Undefined,
         examples: Optional[Dict[str, Any]] = None,
@@ -84,6 +99,7 @@ class Path(Param):
         self.in_ = self.in_
         super().__init__(
             default=default,
+            annotation=annotation,
             alias=alias,
             title=title,
             description=description,
@@ -93,6 +109,7 @@ class Path(Param):
             le=le,
             min_length=min_length,
             max_length=max_length,
+            pattern=pattern,
             regex=regex,
             deprecated=deprecated,
             example=example,
@@ -109,6 +126,7 @@ class Query(Param):
         self,
         default: Any = Undefined,
         *,
+        annotation: Optional[Type[Any]] = None,
         alias: Optional[str] = None,
         title: Optional[str] = None,
         description: Optional[str] = None,
@@ -118,6 +136,7 @@ class Query(Param):
         le: Optional[float] = None,
         min_length: Optional[int] = None,
         max_length: Optional[int] = None,
+        pattern: Optional[str] = None,
         regex: Optional[str] = None,
         example: Any = Undefined,
         examples: Optional[Dict[str, Any]] = None,
@@ -127,6 +146,7 @@ class Query(Param):
     ):
         super().__init__(
             default=default,
+            annotation=annotation,
             alias=alias,
             title=title,
             description=description,
@@ -136,6 +156,7 @@ class Query(Param):
             le=le,
             min_length=min_length,
             max_length=max_length,
+            pattern=pattern,
             regex=regex,
             deprecated=deprecated,
             example=example,
@@ -152,6 +173,7 @@ class Header(Param):
         self,
         default: Any = Undefined,
         *,
+        annotation: Optional[Type[Any]] = None,
         alias: Optional[str] = None,
         convert_underscores: bool = True,
         title: Optional[str] = None,
@@ -162,6 +184,7 @@ class Header(Param):
         le: Optional[float] = None,
         min_length: Optional[int] = None,
         max_length: Optional[int] = None,
+        pattern: Optional[str] = None,
         regex: Optional[str] = None,
         example: Any = Undefined,
         examples: Optional[Dict[str, Any]] = None,
@@ -172,6 +195,7 @@ class Header(Param):
         self.convert_underscores = convert_underscores
         super().__init__(
             default=default,
+            annotation=annotation,
             alias=alias,
             title=title,
             description=description,
@@ -181,6 +205,7 @@ class Header(Param):
             le=le,
             min_length=min_length,
             max_length=max_length,
+            pattern=pattern,
             regex=regex,
             deprecated=deprecated,
             example=example,
@@ -197,6 +222,7 @@ class Cookie(Param):
         self,
         default: Any = Undefined,
         *,
+        annotation: Optional[Type[Any]] = None,
         alias: Optional[str] = None,
         title: Optional[str] = None,
         description: Optional[str] = None,
@@ -206,6 +232,7 @@ class Cookie(Param):
         le: Optional[float] = None,
         min_length: Optional[int] = None,
         max_length: Optional[int] = None,
+        pattern: Optional[str] = None,
         regex: Optional[str] = None,
         example: Any = Undefined,
         examples: Optional[Dict[str, Any]] = None,
@@ -215,6 +242,7 @@ class Cookie(Param):
     ):
         super().__init__(
             default=default,
+            annotation=annotation,
             alias=alias,
             title=title,
             description=description,
@@ -224,6 +252,7 @@ class Cookie(Param):
             le=le,
             min_length=min_length,
             max_length=max_length,
+            pattern=pattern,
             regex=regex,
             deprecated=deprecated,
             example=example,
@@ -238,6 +267,7 @@ class Body(FieldInfo):
         self,
         default: Any = Undefined,
         *,
+        annotation: Optional[Type[Any]] = None,
         embed: bool = False,
         media_type: str = "application/json",
         alias: Optional[str] = None,
@@ -249,6 +279,7 @@ class Body(FieldInfo):
         le: Optional[float] = None,
         min_length: Optional[int] = None,
         max_length: Optional[int] = None,
+        pattern: Optional[str] = None,
         regex: Optional[str] = None,
         example: Any = Undefined,
         examples: Optional[Dict[str, Any]] = None,
@@ -257,8 +288,7 @@ class Body(FieldInfo):
         self.embed = embed
         self.media_type = media_type
         self.example = example
-        self.examples = examples
-        super().__init__(
+        kwargs = dict(
             default=default,
             alias=alias,
             title=title,
@@ -269,9 +299,20 @@ class Body(FieldInfo):
             le=le,
             min_length=min_length,
             max_length=max_length,
-            regex=regex,
             **extra,
         )
+        if PYDANTIC_V2:
+            kwargs["annotation"] = annotation
+            kwargs["pattern"] = pattern or regex
+        else:
+            # TODO: pv2 figure out how to deprecate regex
+            kwargs["regex"] = pattern or regex
+        super().__init__(
+            **kwargs,
+        )
+        # TODO: pv2 decide how to handle OpenAPI examples vs JSON Schema examples
+        # and how to deprecate OpenAPI examples
+        self.examples = examples  # type: ignore[assignment]
 
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}({self.default})"
@@ -282,6 +323,7 @@ class Form(Body):
         self,
         default: Any = Undefined,
         *,
+        annotation: Optional[Type[Any]] = None,
         media_type: str = "application/x-www-form-urlencoded",
         alias: Optional[str] = None,
         title: Optional[str] = None,
@@ -292,6 +334,7 @@ class Form(Body):
         le: Optional[float] = None,
         min_length: Optional[int] = None,
         max_length: Optional[int] = None,
+        pattern: Optional[str] = None,
         regex: Optional[str] = None,
         example: Any = Undefined,
         examples: Optional[Dict[str, Any]] = None,
@@ -299,6 +342,7 @@ class Form(Body):
     ):
         super().__init__(
             default=default,
+            annotation=annotation,
             embed=True,
             media_type=media_type,
             alias=alias,
@@ -310,6 +354,7 @@ class Form(Body):
             le=le,
             min_length=min_length,
             max_length=max_length,
+            pattern=pattern,
             regex=regex,
             example=example,
             examples=examples,
@@ -322,6 +367,7 @@ class File(Form):
         self,
         default: Any = Undefined,
         *,
+        annotation: Optional[Type[Any]] = None,
         media_type: str = "multipart/form-data",
         alias: Optional[str] = None,
         title: Optional[str] = None,
@@ -332,6 +378,7 @@ class File(Form):
         le: Optional[float] = None,
         min_length: Optional[int] = None,
         max_length: Optional[int] = None,
+        pattern: Optional[str] = None,
         regex: Optional[str] = None,
         example: Any = Undefined,
         examples: Optional[Dict[str, Any]] = None,
@@ -339,6 +386,7 @@ class File(Form):
     ):
         super().__init__(
             default=default,
+            annotation=annotation,
             media_type=media_type,
             alias=alias,
             title=title,
@@ -349,6 +397,7 @@ class File(Form):
             le=le,
             min_length=min_length,
             max_length=max_length,
+            pattern=pattern,
             regex=regex,
             example=example,
             examples=examples,

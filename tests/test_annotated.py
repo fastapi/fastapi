@@ -1,6 +1,8 @@
 import pytest
+from dirty_equals import IsDict
 from fastapi import APIRouter, FastAPI, Query
 from fastapi.testclient import TestClient
+from fastapi.utils import match_pydantic_error_url
 from typing_extensions import Annotated
 
 app = FastAPI()
@@ -30,21 +32,46 @@ client = TestClient(app)
 
 foo_is_missing = {
     "detail": [
-        {
-            "loc": ["query", "foo"],
-            "msg": "field required",
-            "type": "value_error.missing",
-        }
+        IsDict(
+            {
+                "loc": ["query", "foo"],
+                "msg": "Field required",
+                "type": "missing",
+                "input": None,
+                "url": match_pydantic_error_url("missing"),
+            }
+        )
+        # TODO: remove when deprecating Pydantic v1
+        | IsDict(
+            {
+                "loc": ["query", "foo"],
+                "msg": "field required",
+                "type": "value_error.missing",
+            }
+        )
     ]
 }
 foo_is_short = {
     "detail": [
-        {
-            "ctx": {"limit_value": 1},
-            "loc": ["query", "foo"],
-            "msg": "ensure this value has at least 1 characters",
-            "type": "value_error.any_str.min_length",
-        }
+        IsDict(
+            {
+                "ctx": {"min_length": 1},
+                "loc": ["query", "foo"],
+                "msg": "String should have at least 1 characters",
+                "type": "string_too_short",
+                "input": "",
+                "url": match_pydantic_error_url("string_too_short"),
+            }
+        )
+        # TODO: remove when deprecating Pydantic v1
+        | IsDict(
+            {
+                "ctx": {"limit_value": 1},
+                "loc": ["query", "foo"],
+                "msg": "ensure this value has at least 1 characters",
+                "type": "value_error.any_str.min_length",
+            }
+        )
     ]
 }
 

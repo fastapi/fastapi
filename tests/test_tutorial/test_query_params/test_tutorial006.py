@@ -1,62 +1,82 @@
 import pytest
+from dirty_equals import IsDict
 from fastapi.testclient import TestClient
-
-from docs_src.query_params.tutorial006 import app
-
-client = TestClient(app)
+from fastapi.utils import match_pydantic_error_url
 
 
-query_required = {
-    "detail": [
+@pytest.fixture(name="client")
+def get_client():
+    from docs_src.query_params.tutorial006 import app
+
+    c = TestClient(app)
+    return c
+
+
+def test_foo_needy_very(client: TestClient):
+    response = client.get("/items/foo?needy=very")
+    assert response.status_code == 200
+    assert response.json() == {
+        "item_id": "foo",
+        "needy": "very",
+        "skip": 0,
+        "limit": None,
+    }
+
+
+def test_foo_no_needy(client: TestClient):
+    response = client.get("/items/foo?skip=a&limit=b")
+    assert response.status_code == 422
+    assert response.json() == IsDict(
         {
-            "loc": ["query", "needy"],
-            "msg": "field required",
-            "type": "value_error.missing",
+            "detail": [
+                {
+                    "type": "missing",
+                    "loc": ["query", "needy"],
+                    "msg": "Field required",
+                    "input": None,
+                    "url": match_pydantic_error_url("missing"),
+                },
+                {
+                    "type": "int_parsing",
+                    "loc": ["query", "skip"],
+                    "msg": "Input should be a valid integer, unable to parse string as an integer",
+                    "input": "a",
+                    "url": match_pydantic_error_url("int_parsing"),
+                },
+                {
+                    "type": "int_parsing",
+                    "loc": ["query", "limit"],
+                    "msg": "Input should be a valid integer, unable to parse string as an integer",
+                    "input": "b",
+                    "url": match_pydantic_error_url("int_parsing"),
+                },
+            ]
         }
-    ]
-}
+    ) | IsDict(
+        # TODO: remove when deprecating Pydantic v1
+        {
+            "detail": [
+                {
+                    "loc": ["query", "needy"],
+                    "msg": "field required",
+                    "type": "value_error.missing",
+                },
+                {
+                    "loc": ["query", "skip"],
+                    "msg": "value is not a valid integer",
+                    "type": "type_error.integer",
+                },
+                {
+                    "loc": ["query", "limit"],
+                    "msg": "value is not a valid integer",
+                    "type": "type_error.integer",
+                },
+            ]
+        }
+    )
 
 
-@pytest.mark.parametrize(
-    "path,expected_status,expected_response",
-    [
-        (
-            "/items/foo?needy=very",
-            200,
-            {"item_id": "foo", "needy": "very", "skip": 0, "limit": None},
-        ),
-        (
-            "/items/foo?skip=a&limit=b",
-            422,
-            {
-                "detail": [
-                    {
-                        "loc": ["query", "needy"],
-                        "msg": "field required",
-                        "type": "value_error.missing",
-                    },
-                    {
-                        "loc": ["query", "skip"],
-                        "msg": "value is not a valid integer",
-                        "type": "type_error.integer",
-                    },
-                    {
-                        "loc": ["query", "limit"],
-                        "msg": "value is not a valid integer",
-                        "type": "type_error.integer",
-                    },
-                ]
-            },
-        ),
-    ],
-)
-def test(path, expected_status, expected_response):
-    response = client.get(path)
-    assert response.status_code == expected_status
-    assert response.json() == expected_response
-
-
-def test_openapi_schema():
+def test_openapi_schema(client: TestClient):
     response = client.get("/openapi.json")
     assert response.status_code == 200
     assert response.json() == {
@@ -108,7 +128,16 @@ def test_openapi_schema():
                         },
                         {
                             "required": False,
-                            "schema": {"title": "Limit", "type": "integer"},
+                            "schema": IsDict(
+                                {
+                                    "anyOf": [{"type": "integer"}, {"type": "null"}],
+                                    "title": "Limit",
+                                }
+                            )
+                            | IsDict(
+                                # TODO: remove when deprecating Pydantic v1
+                                {"title": "Limit", "type": "integer"}
+                            ),
                             "name": "limit",
                             "in": "query",
                         },

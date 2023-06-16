@@ -1,5 +1,6 @@
 from typing import List, Tuple
 
+from dirty_equals import IsDict
 from fastapi import FastAPI, Form
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
@@ -126,16 +127,31 @@ def test_openapi_schema():
                     "requestBody": {
                         "content": {
                             "application/json": {
-                                "schema": {
-                                    "title": "Square",
-                                    "maxItems": 2,
-                                    "minItems": 2,
-                                    "type": "array",
-                                    "items": [
-                                        {"$ref": "#/components/schemas/Coordinate"},
-                                        {"$ref": "#/components/schemas/Coordinate"},
-                                    ],
-                                }
+                                "schema": IsDict(
+                                    {
+                                        "title": "Square",
+                                        "maxItems": 2,
+                                        "minItems": 2,
+                                        "type": "array",
+                                        "prefixItems": [
+                                            {"$ref": "#/components/schemas/Coordinate"},
+                                            {"$ref": "#/components/schemas/Coordinate"},
+                                        ],
+                                    }
+                                )
+                                | IsDict(
+                                    # TODO: remove when deprecating Pydantic v1
+                                    {
+                                        "title": "Square",
+                                        "maxItems": 2,
+                                        "minItems": 2,
+                                        "type": "array",
+                                        "items": [
+                                            {"$ref": "#/components/schemas/Coordinate"},
+                                            {"$ref": "#/components/schemas/Coordinate"},
+                                        ],
+                                    }
+                                )
                             }
                         },
                         "required": True,
@@ -198,13 +214,28 @@ def test_openapi_schema():
                     "required": ["values"],
                     "type": "object",
                     "properties": {
-                        "values": {
-                            "title": "Values",
-                            "maxItems": 2,
-                            "minItems": 2,
-                            "type": "array",
-                            "items": [{"type": "integer"}, {"type": "integer"}],
-                        }
+                        "values": IsDict(
+                            {
+                                "title": "Values",
+                                "maxItems": 2,
+                                "minItems": 2,
+                                "type": "array",
+                                "prefixItems": [
+                                    {"type": "integer"},
+                                    {"type": "integer"},
+                                ],
+                            }
+                        )
+                        | IsDict(
+                            # TODO: remove when deprecating Pydantic v1
+                            {
+                                "title": "Values",
+                                "maxItems": 2,
+                                "minItems": 2,
+                                "type": "array",
+                                "items": [{"type": "integer"}, {"type": "integer"}],
+                            }
+                        )
                     },
                 },
                 "Coordinate": {
@@ -235,12 +266,26 @@ def test_openapi_schema():
                         "items": {
                             "title": "Items",
                             "type": "array",
-                            "items": {
-                                "maxItems": 2,
-                                "minItems": 2,
-                                "type": "array",
-                                "items": [{"type": "string"}, {"type": "string"}],
-                            },
+                            "items": IsDict(
+                                {
+                                    "maxItems": 2,
+                                    "minItems": 2,
+                                    "type": "array",
+                                    "prefixItems": [
+                                        {"type": "string"},
+                                        {"type": "string"},
+                                    ],
+                                }
+                            )
+                            | IsDict(
+                                # TODO: remove when deprecating Pydantic v1
+                                {
+                                    "maxItems": 2,
+                                    "minItems": 2,
+                                    "type": "array",
+                                    "items": [{"type": "string"}, {"type": "string"}],
+                                }
+                            ),
                         }
                     },
                 },
