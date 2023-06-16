@@ -214,7 +214,7 @@ class Encoding(BaseModel):
     allowReserved: Optional[bool] = None
 
     if PYDANTIC_V2:
-        model_config = {"extra": "allow", "undefined_types_warning": False}
+        model_config = {"extra": "allow"}
 
     else:
 
@@ -229,7 +229,7 @@ class MediaType(BaseModel):
     encoding: Optional[Dict[str, Encoding]] = None
 
     if PYDANTIC_V2:
-        model_config = {"extra": "allow", "undefined_types_warning": False}
+        model_config = {"extra": "allow"}
 
     else:
 
@@ -252,7 +252,7 @@ class ParameterBase(BaseModel):
     content: Optional[Dict[str, MediaType]] = None
 
     if PYDANTIC_V2:
-        model_config = {"extra": "allow", "undefined_types_warning": False}
+        model_config = {"extra": "allow"}
 
     else:
 
@@ -331,7 +331,7 @@ class Operation(BaseModel):
     servers: Optional[List[Server]] = None
 
     if PYDANTIC_V2:
-        model_config = {"extra": "allow", "undefined_types_warning": False}
+        model_config = {"extra": "allow"}
 
     else:
 
