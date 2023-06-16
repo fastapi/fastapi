@@ -114,7 +114,7 @@ if PYDANTIC_V2:
             values: Dict[str, Any] = {},  # noqa: B006
             *,
             loc: Union[Tuple[Union[int, str], ...], str] = "",
-        ) -> tuple[Any, Union[List[ValidationError], None]]:
+        ) -> Tuple[Any, Union[List[ValidationError], None]]:
             try:
                 return (
                     self._type_adapter.validate_python(value, from_attributes=True),
@@ -415,13 +415,13 @@ def get_definitions(
         return get_model_definitions(flat_models=models, model_name_map=model_name_map)
 
 
-def _annotation_is_sequence(annotation: type[Any] | None) -> bool:
+def _annotation_is_sequence(annotation: Union[Type[Any], None]) -> bool:
     if lenient_issubclass(annotation, (str, bytes)):
         return False
     return lenient_issubclass(annotation, sequence_types)
 
 
-def field_annotation_is_sequence(annotation: type[Any] | None) -> bool:
+def field_annotation_is_sequence(annotation: Union[Type[Any], None]) -> bool:
     return _annotation_is_sequence(annotation) or _annotation_is_sequence(
         get_origin(annotation)
     )
@@ -431,7 +431,7 @@ def value_is_sequence(value: Any) -> bool:
     return isinstance(value, sequence_types) and not isinstance(value, (str, bytes))  # type: ignore[arg-type]
 
 
-def _annotation_is_complex(annotation: Type[Any] | None) -> bool:
+def _annotation_is_complex(annotation: Union[Type[Any], None]) -> bool:
     return (
         lenient_issubclass(annotation, (BaseModel, Mapping, UploadFile))
         or _annotation_is_sequence(annotation)
@@ -439,7 +439,7 @@ def _annotation_is_complex(annotation: Type[Any] | None) -> bool:
     )
 
 
-def field_annotation_is_complex(annotation: type[Any] | None) -> bool:
+def field_annotation_is_complex(annotation: Union[Type[Any], None]) -> bool:
     origin = get_origin(annotation)
     if origin is Union or origin is UnionType:
         return any(field_annotation_is_complex(arg) for arg in get_args(annotation))
@@ -461,7 +461,7 @@ def field_annotation_is_scalar(annotation: Any) -> bool:
     return annotation is Ellipsis or not field_annotation_is_complex(annotation)
 
 
-def field_annotation_is_scalar_sequence(annotation: type[Any] | None) -> bool:
+def field_annotation_is_scalar_sequence(annotation: Union[Type[Any], None]) -> bool:
     origin = get_origin(annotation)
     if origin is Union or origin is UnionType:
         at_least_one_scalar_sequence = False
@@ -525,7 +525,7 @@ def is_uploadfile_or_nonable_uploadfile_annotation(annotation: Any) -> bool:
     return False
 
 
-def is_bytes_sequence_annotation(annotation: type[Any] | None) -> bool:
+def is_bytes_sequence_annotation(annotation: Union[Type[Any], None]) -> bool:
     origin = get_origin(annotation)
     if origin is Union or origin is UnionType:
         at_least_one_bytes_sequence = False
@@ -540,7 +540,7 @@ def is_bytes_sequence_annotation(annotation: type[Any] | None) -> bool:
     )
 
 
-def is_uploadfile_sequence_annotation(annotation: type[Any] | None) -> bool:
+def is_uploadfile_sequence_annotation(annotation: Union[Type[Any], None]) -> bool:
     origin = get_origin(annotation)
     if origin is Union or origin is UnionType:
         at_least_one_bytes_sequence = False
