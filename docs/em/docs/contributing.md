@@ -108,7 +108,7 @@ $ python -m pip install --upgrade pip
 <div class="termy">
 
 ```console
-$ pip install -e ."[dev,doc,test]"
+$ pip install -r requirements.txt
 
 ---> 100%
 ```
