@@ -1,10 +1,4 @@
-import sys
 from typing import Any, Dict, List, Optional, Union, cast
-
-if sys.version_info < (3, 9):
-    from typing_extensions import Annotated
-else:
-    from typing import Annotated
 
 from fastapi.exceptions import HTTPException
 from fastapi.openapi.models import OAuth2 as OAuth2Model
@@ -14,6 +8,9 @@ from fastapi.security.base import SecurityBase
 from fastapi.security.utils import get_authorization_scheme_param
 from starlette.requests import Request
 from starlette.status import HTTP_401_UNAUTHORIZED, HTTP_403_FORBIDDEN
+
+# TODO: import from typing when deprecating Python 3.9
+from typing_extensions import Annotated
 
 
 class OAuth2PasswordRequestForm:
