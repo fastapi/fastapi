@@ -104,7 +104,7 @@ $ uvicorn main:app --reload
 * `Path`
 * `Query`
 
-它们的工作方式与其他 FastAPI 端点/路径操作相同：
+它们的工作方式与其他 FastAPI 端点/ *路径操作* 相同：
 
 === "Python 3.10+"
 
@@ -184,9 +184,7 @@ $ uvicorn main:app --reload
 === "Python 3.6+"
 
     ```Python hl_lines="81-83"
-    {!> ../../../docs
-
-_src/websockets/tutorial003.py!}
+    {!> ../../../docs_src/websockets/tutorial003.py!}
     ```
 
 尝试以下操作：
