@@ -1,6 +1,4 @@
 import inspect
-import types
-import typing
 from contextlib import contextmanager
 from copy import deepcopy
 from typing import (
@@ -66,9 +64,6 @@ from starlette.requests import HTTPConnection, Request
 from starlette.responses import Response
 from starlette.websockets import WebSocket
 from typing_extensions import Annotated, get_args, get_origin
-
-UnionType = getattr(types, "UnionType", typing.Union)
-
 
 multipart_not_installed_error = (
     'Form data requires "python-multipart" to be installed. \n'
