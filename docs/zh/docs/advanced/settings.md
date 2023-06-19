@@ -158,14 +158,12 @@ Hello World from Python
 
 ### 运行服务器
 
-接下来，您将运行服务器，并将配置作为环境变
-
-量传递。例如，您可以设置一个 `ADMIN_EMAIL` 和 `APP_NAME`，如下所示：
+接下来，您将运行服务器，并将配置作为环境变量传递。例如，您可以设置一个 `ADMIN_EMAIL` 和 `APP_NAME`，如下所示：
 
 <div class="termy">
 
 ```console
-$ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" uvicorn main:app
+$ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp"uvicorn main:app
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -282,9 +280,7 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" uvicorn main:app
 
 ## 从 `.env` 文件中读取设置
 
-如果您有许多可能经常更改的设置，可能在不同的环境中，将它们放在一个文件中，然后从该文件中读取它
-
-们，就像它们是环境变量一样，可能非常有用。
+如果您有许多可能经常更改的设置，可能在不同的环境中，将它们放在一个文件中，然后从该文件中读取它们，就像它们是环境变量一样，可能非常有用。
 
 这种做法相当常见，有一个名称，这些环境变量通常放在一个名为 `.env` 的文件中，该文件被称为“dotenv”。
 
@@ -358,9 +354,7 @@ def get_settings():
 === "Python 3.6+ 非注解版本"
 
     !!! tip
-        如果可能，请尽量使用 `Annotated
-
-` 版本。
+        如果可能，请尽量使用 `Annotated` 版本。
 
     ```Python hl_lines="1  10"
     {!> ../../../docs_src/settings/app03/main.py!}
