@@ -1,5 +1,9 @@
 articles:
   english:
+  - author: Mikhail Rozhkov, Elena Samuylova
+    author_link: https://www.linkedin.com/in/mnrozhkov/
+    link: https://www.evidentlyai.com/blog/fastapi-tutorial
+    title: 'ML serving and monitoring with FastAPI and Evidently'
   - author: Raf Rasenberg
     author_link: https://rafrasenberg.com/about/
     link: https://rafrasenberg.com/fastapi-lambda/
