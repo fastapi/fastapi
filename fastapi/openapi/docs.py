@@ -76,7 +76,7 @@ def get_redoc_html(
     *,
     openapi_url: str,
     title: str,
-    redoc_js_url: str = "https://cdn.jsdelivr.net/npm/redoc@next/bundles/redoc.standalone.js",
+    redoc_js_url: str = "https://cdn.jsdelivr.net/npm/redoc@2.0.0/bundles/redoc.standalone.js",
     redoc_favicon_url: str = "https://fastapi.tiangolo.com/img/favicon.png",
     with_google_fonts: bool = True,
 ) -> HTMLResponse:
