@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from datetime import datetime, timezone
+from decimal import Decimal
 from enum import Enum
 from pathlib import PurePath, PurePosixPath, PureWindowsPath
 from typing import Optional
@@ -286,3 +287,15 @@ def test_encode_root():
 
     model = ModelWithRoot(__root__="Foo")
     assert jsonable_encoder(model) == "Foo"
+
+
+@needs_pydanticv2
+def test_decimal_encoder_float():
+    data = {"value": Decimal(1.23)}
+    assert jsonable_encoder(data) == {"value": 1.23}
+
+
+@needs_pydanticv2
+def test_decimal_encoder_int():
+    data = {"value": Decimal(2)}
+    assert jsonable_encoder(data) == {"value": 2}
