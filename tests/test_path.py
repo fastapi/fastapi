@@ -409,6 +409,73 @@ def test_path_param_maxlength_foobar():
     )
 
 
+def test_path_param_min_maxlength_foo():
+    response = client.get("/path/param-min_maxlength/foo")
+    assert response.status_code == 200
+    assert response.json() == "foo"
+
+
+def test_path_param_min_maxlength_foobar():
+    response = client.get("/path/param-min_maxlength/foobar")
+    assert response.status_code == 422
+    assert response.json() == IsDict(
+        {
+            "detail": [
+                {
+                    "type": "string_too_long",
+                    "loc": ["path", "item_id"],
+                    "msg": "String should have at most 3 characters",
+                    "input": "foobar",
+                    "ctx": {"max_length": 3},
+                    "url": match_pydantic_error_url("string_too_long"),
+                }
+            ]
+        }
+    ) | IsDict(
+        # TODO: remove when deprecating Pydantic v1
+        {
+            "detail": [
+                {
+                    "loc": ["path", "item_id"],
+                    "msg": "ensure this value has at most 3 characters",
+                    "type": "value_error.any_str.max_length",
+                    "ctx": {"limit_value": 3},
+                }
+            ]
+        }
+    )
+
+
+def test_path_param_min_maxlength_f():
+    response = client.get("/path/param-min_maxlength/f")
+    assert response.status_code == 422
+    assert response.json() == IsDict(
+        {
+            "detail": [
+                {
+                    "type": "string_too_short",
+                    "loc": ["path", "item_id"],
+                    "msg": "String should have at least 2 characters",
+                    "input": "f",
+                    "ctx": {"min_length": 2},
+                    "url": match_pydantic_error_url("string_too_short"),
+                }
+            ]
+        }
+    ) | IsDict(
+        {
+            "detail": [
+                {
+                    "loc": ["path", "item_id"],
+                    "msg": "ensure this value has at least 2 characters",
+                    "type": "value_error.any_str.min_length",
+                    "ctx": {"limit_value": 2},
+                }
+            ]
+        }
+    )
+
+
 def test_path_param_gt_42():
     response = client.get("/path/param-gt/42")
     assert response.status_code == 200
