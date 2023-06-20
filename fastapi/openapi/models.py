@@ -1,7 +1,14 @@
 from enum import Enum
-from typing import Any, Callable, Dict, Iterable, List, Optional, Union
+from typing import Any, Callable, Dict, Iterable, List, Optional, Type, Union
 
-from fastapi._compat import PYDANTIC_V2, _model_rebuild
+from fastapi._compat import (
+    PYDANTIC_V2,
+    CoreSchema,
+    GetJsonSchemaHandler,
+    JsonSchemaValue,
+    _model_rebuild,
+    general_plain_validator_function,
+)
 from fastapi.logger import logger
 from pydantic import AnyUrl, BaseModel, Field
 from typing_extensions import Literal
@@ -25,6 +32,26 @@ except ImportError:  # pragma: no cover
                 "To install, run: pip install email-validator"
             )
             return str(v)
+
+        @classmethod
+        def _validate(cls, __input_value: Any, _: Any) -> str:
+            logger.warning(
+                "email-validator not installed, email fields will be treated as str.\n"
+                "To install, run: pip install email-validator"
+            )
+            return str(__input_value)
+
+        @classmethod
+        def __get_pydantic_json_schema__(
+            cls, core_schema: CoreSchema, handler: GetJsonSchemaHandler
+        ) -> JsonSchemaValue:
+            return {"type": "string", "format": "binary"}
+
+        @classmethod
+        def __get_pydantic_core_schema__(
+            cls, source: Type[Any], handler: Callable[[Any], CoreSchema]
+        ) -> CoreSchema:
+            return general_plain_validator_function(cls._validate)
 
 
 class Contact(BaseModel):

@@ -15,7 +15,6 @@ from typing import (
 from weakref import WeakKeyDictionary
 
 import fastapi
-from dirty_equals import IsStr
 from fastapi._compat import (
     PYDANTIC_V2,
     BaseConfig,
@@ -219,5 +218,7 @@ def get_value_or_default(
     return first_item
 
 
-def match_pydantic_error_url(error_type: str) -> IsStr:
+def match_pydantic_error_url(error_type: str) -> Any:
+    from dirty_equals import IsStr
+
     return IsStr(regex=rf"^https://errors\.pydantic\.dev/.*/v/{error_type}")
