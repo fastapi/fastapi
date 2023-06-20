@@ -140,6 +140,7 @@ def create_cloned_field(
     new_field.alias = field.alias
     new_field.class_validators = field.class_validators
     new_field.default = field.default
+    new_field.default_factory = field.default_factory
     new_field.required = field.required
     new_field.model_config = field.model_config
     new_field.field_info = field.field_info
