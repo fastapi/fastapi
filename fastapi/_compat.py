@@ -524,10 +524,6 @@ def field_annotation_is_complex(annotation: Union[Type[Any], None]) -> bool:
 
 
 def field_annotation_is_scalar(annotation: Any) -> bool:
-    origin = get_origin(annotation)
-    if origin is Union or origin is UnionType:
-        return all(field_annotation_is_scalar(arg) for arg in get_args(annotation))
-
     # handle Ellipsis here to make tuple[int, ...] work nicely
     return annotation is Ellipsis or not field_annotation_is_complex(annotation)
 
