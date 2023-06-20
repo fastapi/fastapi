@@ -45,7 +45,7 @@ except ImportError:  # pragma: no cover
         def __get_pydantic_json_schema__(
             cls, core_schema: CoreSchema, handler: GetJsonSchemaHandler
         ) -> JsonSchemaValue:
-            return {"type": "string", "format": "binary"}
+            return {"type": "string", "format": "email"}
 
         @classmethod
         def __get_pydantic_core_schema__(
