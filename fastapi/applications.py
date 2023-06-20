@@ -1,6 +1,5 @@
 import importlib
 import types
-
 from enum import Enum
 from typing import (
     Any,
@@ -265,6 +264,7 @@ class FastAPI(Starlette):
             self.add_route(self.docs_url, swagger_ui_html, include_in_schema=False)
 
             if self.swagger_ui_oauth2_redirect_url:
+
                 async def swagger_ui_redirect(req: Request) -> HTMLResponse:
                     return get_swagger_ui_oauth2_redirect_html()
 
@@ -274,6 +274,7 @@ class FastAPI(Starlette):
                     include_in_schema=False,
                 )
         if self.openapi_url and self.redoc_url:
+
             async def redoc_html(req: Request) -> HTMLResponse:
                 root_path = req.scope.get("root_path", "").rstrip("/")
                 openapi_url = root_path + self.openapi_url
@@ -477,12 +478,14 @@ class FastAPI(Starlette):
 
     @staticmethod
     def _get_router(module: types.ModuleType, name: str) -> routing.APIRouter:
-        name = "./" + name.replace('.', '/')
+        name = "./" + name.replace(".", "/")
         if not hasattr(module, "router"):
             raise AttributeError(f"`router` attribute is not present in {name}.py")
 
         if not isinstance(module.router, routing.APIRouter):
-            raise TypeError(f"expected type `{routing.APIRouter}` got `{type(module.router)}` instead in {name}.py")
+            raise TypeError(
+                f"expected type `{routing.APIRouter}` got `{type(module.router)}` instead in {name}.py"
+            )
 
         return module.router
 
@@ -490,26 +493,34 @@ class FastAPI(Starlette):
         router = self._get_router(importlib.import_module(name, package), name)
         self.include_router(router)
 
-    def load_routers(self, *names: str, package: str = None, dirname: str = None) -> None:
+    def load_routers(
+        self, *names: str, package: str = None, dirname: str = None
+    ) -> None:
         if len(names) == 0:
             assert dirname is not None
 
             import os
+
             for filename in os.listdir("./%s" % dirname):
                 if filename.endswith(".py") and "__pycache__" not in filename:
-                    self.load_router("%s.%s" % (dirname, filename[:-3]), package)
+                    self.load_router("{}.{}".format(dirname, filename[:-3]), package)
 
         for name in names:
             self.load_router(name, package)
 
     def unload_router(self, name: str, package: str = None) -> None:
-        self.exclude_routers(self._get_router(importlib.import_module(name, package), name))
+        self.exclude_routers(
+            self._get_router(importlib.import_module(name, package), name)
+        )
 
     def unload_routers(self, *names: str, package: str = None) -> None:
         assert len(names) >= 1
-        self.exclude_routers(*(
-            self._get_router(importlib.import_module(name, package), name) for name in names
-        ))
+        self.exclude_routers(
+            *(
+                self._get_router(importlib.import_module(name, package), name)
+                for name in names
+            )
+        )
 
     def get(
         self,
