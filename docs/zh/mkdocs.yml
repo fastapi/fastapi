@@ -108,6 +108,7 @@ nav:
   - tutorial/sql-databases.md
   - tutorial/bigger-applications.md
   - tutorial/metadata.md
+  - tutorial/static-files.md
   - tutorial/debugging.md
 - 高级用户指南:
   - advanced/index.md
@@ -116,6 +117,8 @@ nav:
   - advanced/response-directly.md
   - advanced/custom-response.md
   - advanced/response-cookies.md
+  - advanced/response-change-status-code.md
+  - advanced/response-headers.md
   - advanced/wsgi.md
 - contributing.md
 - help-fastapi.md
