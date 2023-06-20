@@ -469,7 +469,7 @@ class FastAPI(Starlette):
             generate_unique_id_function=generate_unique_id_function,
         )
 
-    def remove_routers(self, *routers: routing.APIRouter) -> None:
+    def exclude_routers(self, *routers: routing.APIRouter) -> None:
         for router in routers:
             for route in router.routes:
                 if route in self.routes:
@@ -503,11 +503,11 @@ class FastAPI(Starlette):
             self.load_router(name, package)
 
     def unload_router(self, name: str, package: str = None) -> None:
-        self.remove_routers(self._get_router(importlib.import_module(name, package), name))
+        self.exclude_routers(self._get_router(importlib.import_module(name, package), name))
 
     def unload_routers(self, *names: str, package: str = None) -> None:
         assert len(names) >= 1
-        self.remove_routers(*(
+        self.exclude_routers(*(
             self._get_router(importlib.import_module(name, package), name) for name in names
         ))
 
