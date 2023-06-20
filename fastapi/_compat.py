@@ -155,13 +155,6 @@ if PYDANTIC_V2:
             # ModelField to its JSON Schema.
             return id(self)
 
-    def get_model_definitions(
-        *,
-        flat_models: Set[Union[Type[BaseModel], Type[Enum]]],
-        model_name_map: Dict[Union[Type[BaseModel], Type[Enum]], str],
-    ) -> Dict[str, Any]:
-        return {}
-
     def get_annotation_from_field_info(
         annotation: Any, field_info: FieldInfo, field_name: str
     ) -> Any:
