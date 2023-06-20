@@ -25,7 +25,6 @@ from fastapi._compat import (
     ModelField,
     Required,
     Undefined,
-    ValidationError,
     _regenerate_error_with_loc,
     copy_field_info,
     create_body_model,
@@ -659,13 +658,7 @@ def request_params_to_args(
                 values[field.name] = deepcopy(field.default)
             continue
         v_, errors_ = field.validate(value, values, loc=loc)
-        if isinstance(errors_, ValidationError):
-            new_errors = _regenerate_error_with_loc(
-                errors=errors_.errors(), loc_prefix=loc
-            )
-            new_error = ValidationError(title=errors_.title, errors=new_errors)
-            errors.append(new_error)
-        elif isinstance(errors_, ErrorWrapper):
+        if isinstance(errors_, ErrorWrapper):
             errors.append(errors_)
         elif isinstance(errors_, list):
             new_errors = _regenerate_error_with_loc(errors=errors_, loc_prefix=())
@@ -678,9 +671,9 @@ def request_params_to_args(
 async def request_body_to_args(
     required_params: List[ModelField],
     received_body: Optional[Union[Dict[str, Any], FormData]],
-) -> Tuple[Dict[str, Any], List[ValidationError]]:
+) -> Tuple[Dict[str, Any], List[Dict[str, Any]]]:
     values = {}
-    errors: List[ValidationError] = []
+    errors: List[Dict[str, Any]] = []
     if required_params:
         field = required_params[0]
         field_info = field.field_info
