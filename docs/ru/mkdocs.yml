@@ -81,6 +81,7 @@ nav:
   - tutorial/response-status-code.md
   - tutorial/query-params.md
   - tutorial/body-multiple-params.md
+  - tutorial/metadata.md
   - tutorial/path-operation-configuration.md
   - tutorial/cors.md
   - tutorial/static-files.md
