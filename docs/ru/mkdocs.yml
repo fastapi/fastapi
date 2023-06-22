@@ -71,6 +71,7 @@ nav:
   - tutorial/path-params.md
   - tutorial/query-params-str-validations.md
   - tutorial/path-params-numeric-validations.md
+  - tutorial/body.md
   - tutorial/body-fields.md
   - tutorial/background-tasks.md
   - tutorial/extra-data-types.md
