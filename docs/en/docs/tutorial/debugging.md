@@ -42,7 +42,7 @@ $ python myapp.py
 
 </div>
 
-then the internal variable `__name__` in your file, created automatically by Python, will be set to `"__main__"`.
+then the internal variable `__name__` in your file, created automatically by Python, will have as value the string `"__main__"`.
 
 So, the section:
 
@@ -64,7 +64,7 @@ from myapp import app
 # Some more code
 ```
 
-in that case, the auto-created variable `__name__` inside of `myapp.py` will not be equal to `"__main__"`.
+in that case, the automatically created variable inside of `myapp.py` will not have the variable `__name__` with a value of `"__main__"`.
 
 So, the line:
 
