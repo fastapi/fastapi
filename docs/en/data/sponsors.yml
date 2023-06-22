@@ -31,3 +31,6 @@ bronze:
   - url: https://www.exoflare.com/open-source/?utm_source=FastAPI&utm_campaign=open_source
     title: Biosecurity risk assessments made easy.
     img: https://fastapi.tiangolo.com/img/sponsors/exoflare.png
+  - url: https://www.flint.sh
+    title: IT expertise, consulting and development by passionate people
+    img: https://fastapi.tiangolo.com/img/sponsors/flint.png
