@@ -77,6 +77,7 @@ nav:
   - tutorial/extra-data-types.md
   - tutorial/cookie-params.md
   - tutorial/testing.md
+  - tutorial/extra-models.md
   - tutorial/response-status-code.md
   - tutorial/query-params.md
   - tutorial/body-multiple-params.md
