@@ -52,6 +52,7 @@ nav:
   - it: /it/
   - ja: /ja/
   - ko: /ko/
+  - lo: /lo/
   - nl: /nl/
   - pl: /pl/
   - pt: /pt/
@@ -62,6 +63,7 @@ nav:
   - tr: /tr/
   - uk: /uk/
   - zh: /zh/
+- features.md
 - Samouczek:
   - tutorial/index.md
   - tutorial/first-steps.md
@@ -132,6 +134,8 @@ extra:
     name: ja - 日本語
   - link: /ko/
     name: ko - 한국어
+  - link: /lo/
+    name: lo - ພາສາລາວ
   - link: /nl/
     name: nl
   - link: /pl/

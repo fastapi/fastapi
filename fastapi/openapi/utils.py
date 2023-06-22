@@ -181,7 +181,7 @@ def get_openapi_operation_metadata(
         file_name = getattr(route.endpoint, "__globals__", {}).get("__file__")
         if file_name:
             message += f" at {file_name}"
-        warnings.warn(message)
+        warnings.warn(message, stacklevel=1)
     operation_ids.add(operation_id)
     operation["operationId"] = operation_id
     if route.deprecated:
@@ -332,10 +332,8 @@ def get_openapi_path(
                     openapi_response["description"] = description
             http422 = str(HTTP_422_UNPROCESSABLE_ENTITY)
             if (all_route_params or route.body_field) and not any(
-                [
-                    status in operation["responses"]
-                    for status in [http422, "4XX", "default"]
-                ]
+                status in operation["responses"]
+                for status in [http422, "4XX", "default"]
             ):
                 operation["responses"][http422] = {
                     "description": "Validation Error",

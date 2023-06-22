@@ -52,6 +52,7 @@ nav:
   - it: /it/
   - ja: /ja/
   - ko: /ko/
+  - lo: /lo/
   - nl: /nl/
   - pl: /pl/
   - pt: /pt/
@@ -107,6 +108,8 @@ nav:
   - tutorial/sql-databases.md
   - tutorial/bigger-applications.md
   - tutorial/metadata.md
+  - tutorial/static-files.md
+  - tutorial/testing.md
   - tutorial/debugging.md
 - 高级用户指南:
   - advanced/index.md
@@ -115,7 +118,13 @@ nav:
   - advanced/response-directly.md
   - advanced/custom-response.md
   - advanced/response-cookies.md
+  - advanced/response-change-status-code.md
+  - advanced/settings.md
+  - advanced/response-headers.md
+  - advanced/websockets.md
   - advanced/wsgi.md
+  - 高级安全:
+    - advanced/security/index.md
 - contributing.md
 - help-fastapi.md
 - benchmarks.md
@@ -186,6 +195,8 @@ extra:
     name: ja - 日本語
   - link: /ko/
     name: ko - 한국어
+  - link: /lo/
+    name: lo - ພາສາລາວ
   - link: /nl/
     name: nl
   - link: /pl/
