@@ -4,51 +4,6 @@ from docs_src.path_operation_advanced_configuration.tutorial007 import app
 
 client = TestClient(app)
 
-openapi_schema = {
-    "openapi": "3.0.2",
-    "info": {"title": "FastAPI", "version": "0.1.0"},
-    "paths": {
-        "/items/": {
-            "post": {
-                "summary": "Create Item",
-                "operationId": "create_item_items__post",
-                "requestBody": {
-                    "content": {
-                        "application/x-yaml": {
-                            "schema": {
-                                "title": "Item",
-                                "required": ["name", "tags"],
-                                "type": "object",
-                                "properties": {
-                                    "name": {"title": "Name", "type": "string"},
-                                    "tags": {
-                                        "title": "Tags",
-                                        "type": "array",
-                                        "items": {"type": "string"},
-                                    },
-                                },
-                            }
-                        }
-                    },
-                    "required": True,
-                },
-                "responses": {
-                    "200": {
-                        "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
-                    }
-                },
-            }
-        }
-    },
-}
-
-
-def test_openapi_schema():
-    response = client.get("/openapi.json")
-    assert response.status_code == 200, response.text
-    assert response.json() == openapi_schema
-
 
 def test_post():
     yaml_data = """
@@ -94,4 +49,47 @@ def test_post_invalid():
         "detail": [
             {"loc": ["tags", 3], "msg": "str type expected", "type": "type_error.str"}
         ]
+    }
+
+
+def test_openapi_schema():
+    response = client.get("/openapi.json")
+    assert response.status_code == 200, response.text
+    assert response.json() == {
+        "openapi": "3.0.2",
+        "info": {"title": "FastAPI", "version": "0.1.0"},
+        "paths": {
+            "/items/": {
+                "post": {
+                    "summary": "Create Item",
+                    "operationId": "create_item_items__post",
+                    "requestBody": {
+                        "content": {
+                            "application/x-yaml": {
+                                "schema": {
+                                    "title": "Item",
+                                    "required": ["name", "tags"],
+                                    "type": "object",
+                                    "properties": {
+                                        "name": {"title": "Name", "type": "string"},
+                                        "tags": {
+                                            "title": "Tags",
+                                            "type": "array",
+                                            "items": {"type": "string"},
+                                        },
+                                    },
+                                }
+                            }
+                        },
+                        "required": True,
+                    },
+                    "responses": {
+                        "200": {
+                            "description": "Successful Response",
+                            "content": {"application/json": {"schema": {}}},
+                        }
+                    },
+                }
+            }
+        },
     }

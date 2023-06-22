@@ -57,16 +57,16 @@
 
 **FastAPI** знает, что нужно сделать в каждом случае и как переиспользовать тот же объект `BackgroundTasks`, так чтобы все фоновые задачи собрались и запустились вместе в фоне:
 
-=== "Python 3.6 и выше"
-
-    ```Python hl_lines="13  15  22  25"
-    {!> ../../../docs_src/background_tasks/tutorial002.py!}
-    ```
-
-=== "Python 3.10 и выше"
+=== "Python 3.10+"
 
     ```Python hl_lines="11  13  20  23"
     {!> ../../../docs_src/background_tasks/tutorial002_py310.py!}
+    ```
+
+=== "Python 3.6+"
+
+    ```Python hl_lines="13  15  22  25"
+    {!> ../../../docs_src/background_tasks/tutorial002.py!}
     ```
 
 В этом примере сообщения будут записаны в `log.txt` *после* того, как ответ сервера был отправлен.
