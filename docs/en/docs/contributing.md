@@ -108,7 +108,7 @@ After activating the environment as described above:
 <div class="termy">
 
 ```console
-$ pip install -e ".[dev,doc,test]"
+$ pip install -r requirements.txt
 
 ---> 100%
 ```
@@ -121,9 +121,14 @@ It will install all the dependencies and your local FastAPI in your local enviro
 
 If you create a Python file that imports and uses FastAPI, and run it with the Python from your local environment, it will use your local FastAPI source code.
 
-And if you update that local FastAPI source code, as it is installed with `-e`, when you run that Python file again, it will use the fresh version of FastAPI you just edited.
+And if you update that local FastAPI source code when you run that Python file again, it will use the fresh version of FastAPI you just edited.
 
 That way, you don't have to "install" your local version to be able to test every change.
+
+!!! note "Technical Details"
+    This only happens when you install using this included `requiements.txt` instead of installing `pip install fastapi` directly.
+
+    That is because inside of the `requirements.txt` file, the local version of FastAPI is marked to be installed in "editable" mode, with the `-e` option.
 
 ### Format
 

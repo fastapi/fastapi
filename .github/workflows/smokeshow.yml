@@ -22,6 +22,7 @@ jobs:
 
       - uses: dawidd6/action-download-artifact@v2.27.0
         with:
+          github_token: ${{ secrets.FASTAPI_SMOKESHOW_DOWNLOAD_ARTIFACTS }}
           workflow: test.yml
           commit: ${{ github.event.workflow_run.head_sha }}
 
@@ -30,6 +31,6 @@ jobs:
           SMOKESHOW_GITHUB_STATUS_DESCRIPTION: Coverage {coverage-percentage}
           SMOKESHOW_GITHUB_COVERAGE_THRESHOLD: 100
           SMOKESHOW_GITHUB_CONTEXT: coverage
-          SMOKESHOW_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SMOKESHOW_GITHUB_TOKEN: ${{ secrets.FASTAPI_SMOKESHOW_UPLOAD }}
           SMOKESHOW_GITHUB_PR_HEAD_SHA: ${{ github.event.workflow_run.head_sha }}
           SMOKESHOW_AUTH_KEY: ${{ secrets.SMOKESHOW_AUTH_KEY }}
