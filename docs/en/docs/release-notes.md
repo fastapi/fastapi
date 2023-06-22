@@ -2,6 +2,9 @@
 
 ## Latest Changes
 
+
+## 0.98.0
+
 ### Features
 
 * ✨ Allow disabling `redirect_slashes` at the FastAPI app level. PR [#3432](https://github.com/tiangolo/fastapi/pull/3432) by [@cyberlis](https://github.com/cyberlis).
