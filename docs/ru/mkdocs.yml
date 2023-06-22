@@ -83,6 +83,7 @@ nav:
   - tutorial/static-files.md
   - tutorial/debugging.md
   - tutorial/schema-extra-example.md
+  - tutorial/body-nested-models.md
 - async.md
 - Развёртывание:
   - deployment/index.md
