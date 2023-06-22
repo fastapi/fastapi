@@ -49,6 +49,7 @@ dynamic = ["version"]
 [project.urls]
 Homepage = "https://github.com/tiangolo/fastapi"
 Documentation = "https://fastapi.tiangolo.com/"
+Repository = "https://github.com/tiangolo/fastapi"
 
 [project.optional-dependencies]
 all = [
