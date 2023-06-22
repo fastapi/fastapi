@@ -119,6 +119,7 @@ nav:
   - advanced/custom-response.md
   - advanced/response-cookies.md
   - advanced/response-change-status-code.md
+  - advanced/settings.md
   - advanced/response-headers.md
   - advanced/websockets.md
   - advanced/wsgi.md
