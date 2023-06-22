@@ -5,83 +5,6 @@ from fastapi.testclient import TestClient
 
 from ...utils import needs_py310
 
-openapi_schema = {
-    "openapi": "3.0.2",
-    "info": {"title": "FastAPI", "version": "0.1.0"},
-    "paths": {
-        "/items/": {
-            "post": {
-                "responses": {
-                    "200": {
-                        "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
-                    },
-                    "422": {
-                        "description": "Validation Error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
-                                }
-                            }
-                        },
-                    },
-                },
-                "summary": "Create Item",
-                "operationId": "create_item_items__post",
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {"$ref": "#/components/schemas/Item"}
-                        }
-                    },
-                    "required": True,
-                },
-            }
-        }
-    },
-    "components": {
-        "schemas": {
-            "Item": {
-                "title": "Item",
-                "required": ["name", "price"],
-                "type": "object",
-                "properties": {
-                    "name": {"title": "Name", "type": "string"},
-                    "price": {"title": "Price", "type": "number"},
-                    "description": {"title": "Description", "type": "string"},
-                    "tax": {"title": "Tax", "type": "number"},
-                },
-            },
-            "ValidationError": {
-                "title": "ValidationError",
-                "required": ["loc", "msg", "type"],
-                "type": "object",
-                "properties": {
-                    "loc": {
-                        "title": "Location",
-                        "type": "array",
-                        "items": {"anyOf": [{"type": "string"}, {"type": "integer"}]},
-                    },
-                    "msg": {"title": "Message", "type": "string"},
-                    "type": {"title": "Error Type", "type": "string"},
-                },
-            },
-            "HTTPValidationError": {
-                "title": "HTTPValidationError",
-                "type": "object",
-                "properties": {
-                    "detail": {
-                        "title": "Detail",
-                        "type": "array",
-                        "items": {"$ref": "#/components/schemas/ValidationError"},
-                    }
-                },
-            },
-        }
-    },
-}
-
 
 @pytest.fixture
 def client():
@@ -89,13 +12,6 @@ def client():
 
     client = TestClient(app)
     return client
-
-
-@needs_py310
-def test_openapi_schema(client: TestClient):
-    response = client.get("/openapi.json")
-    assert response.status_code == 200, response.text
-    assert response.json() == openapi_schema
 
 
 price_missing = {
@@ -185,7 +101,7 @@ def test_post_broken_body(client: TestClient):
     response = client.post(
         "/items/",
         headers={"content-type": "application/json"},
-        data="{some broken json}",
+        content="{some broken json}",
     )
     assert response.status_code == 422, response.text
     assert response.json() == {
@@ -225,7 +141,7 @@ def test_post_form_for_json(client: TestClient):
 def test_explicit_content_type(client: TestClient):
     response = client.post(
         "/items/",
-        data='{"name": "Foo", "price": 50.5}',
+        content='{"name": "Foo", "price": 50.5}',
         headers={"Content-Type": "application/json"},
     )
     assert response.status_code == 200, response.text
@@ -235,7 +151,7 @@ def test_explicit_content_type(client: TestClient):
 def test_geo_json(client: TestClient):
     response = client.post(
         "/items/",
-        data='{"name": "Foo", "price": 50.5}',
+        content='{"name": "Foo", "price": 50.5}',
         headers={"Content-Type": "application/geo+json"},
     )
     assert response.status_code == 200, response.text
@@ -245,7 +161,7 @@ def test_geo_json(client: TestClient):
 def test_no_content_type_is_json(client: TestClient):
     response = client.post(
         "/items/",
-        data='{"name": "Foo", "price": 50.5}',
+        content='{"name": "Foo", "price": 50.5}',
     )
     assert response.status_code == 200, response.text
     assert response.json() == {
@@ -269,17 +185,19 @@ def test_wrong_headers(client: TestClient):
         ]
     }
 
-    response = client.post("/items/", data=data, headers={"Content-Type": "text/plain"})
+    response = client.post(
+        "/items/", content=data, headers={"Content-Type": "text/plain"}
+    )
     assert response.status_code == 422, response.text
     assert response.json() == invalid_dict
 
     response = client.post(
-        "/items/", data=data, headers={"Content-Type": "application/geo+json-seq"}
+        "/items/", content=data, headers={"Content-Type": "application/geo+json-seq"}
     )
     assert response.status_code == 422, response.text
     assert response.json() == invalid_dict
     response = client.post(
-        "/items/", data=data, headers={"Content-Type": "application/not-really-json"}
+        "/items/", content=data, headers={"Content-Type": "application/not-really-json"}
     )
     assert response.status_code == 422, response.text
     assert response.json() == invalid_dict
@@ -290,3 +208,87 @@ def test_other_exceptions(client: TestClient):
     with patch("json.loads", side_effect=Exception):
         response = client.post("/items/", json={"test": "test2"})
         assert response.status_code == 400, response.text
+
+
+@needs_py310
+def test_openapi_schema(client: TestClient):
+    response = client.get("/openapi.json")
+    assert response.status_code == 200, response.text
+    assert response.json() == {
+        "openapi": "3.0.2",
+        "info": {"title": "FastAPI", "version": "0.1.0"},
+        "paths": {
+            "/items/": {
+                "post": {
+                    "responses": {
+                        "200": {
+                            "description": "Successful Response",
+                            "content": {"application/json": {"schema": {}}},
+                        },
+                        "422": {
+                            "description": "Validation Error",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/HTTPValidationError"
+                                    }
+                                }
+                            },
+                        },
+                    },
+                    "summary": "Create Item",
+                    "operationId": "create_item_items__post",
+                    "requestBody": {
+                        "content": {
+                            "application/json": {
+                                "schema": {"$ref": "#/components/schemas/Item"}
+                            }
+                        },
+                        "required": True,
+                    },
+                }
+            }
+        },
+        "components": {
+            "schemas": {
+                "Item": {
+                    "title": "Item",
+                    "required": ["name", "price"],
+                    "type": "object",
+                    "properties": {
+                        "name": {"title": "Name", "type": "string"},
+                        "price": {"title": "Price", "type": "number"},
+                        "description": {"title": "Description", "type": "string"},
+                        "tax": {"title": "Tax", "type": "number"},
+                    },
+                },
+                "ValidationError": {
+                    "title": "ValidationError",
+                    "required": ["loc", "msg", "type"],
+                    "type": "object",
+                    "properties": {
+                        "loc": {
+                            "title": "Location",
+                            "type": "array",
+                            "items": {
+                                "anyOf": [{"type": "string"}, {"type": "integer"}]
+                            },
+                        },
+                        "msg": {"title": "Message", "type": "string"},
+                        "type": {"title": "Error Type", "type": "string"},
+                    },
+                },
+                "HTTPValidationError": {
+                    "title": "HTTPValidationError",
+                    "type": "object",
+                    "properties": {
+                        "detail": {
+                            "title": "Detail",
+                            "type": "array",
+                            "items": {"$ref": "#/components/schemas/ValidationError"},
+                        }
+                    },
+                },
+            }
+        },
+    }

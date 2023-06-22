@@ -43,7 +43,7 @@ $ uvicorn main:app --reload
 <div class="termy">
 
 ```console
-$ pip install fastapi[all]
+$ pip install "fastapi[all]"
 
 ---> 100%
 ```
@@ -64,7 +64,7 @@ $ pip install fastapi[all]
     また、サーバーとして動作するように`uvicorn` をインストールします:
 
     ```
-    pip install uvicorn[standard]
+    pip install "uvicorn[standard]"
     ```
 
     そして、使用したい依存関係をそれぞれ同様にインストールします。
