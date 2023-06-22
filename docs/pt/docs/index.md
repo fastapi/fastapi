@@ -292,7 +292,7 @@ Agora vá para <a href="http://127.0.0.1:8000/docs" class="external-link" target
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-03-swagger-02.png)
 
-* Clique no botão "Try it out", ele permiirá que você preencha os parâmetros e interaja diretamente com a API:
+* Clique no botão "Try it out", ele permitirá que você preencha os parâmetros e interaja diretamente com a API:
 
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-04-swagger-03.png)
 
