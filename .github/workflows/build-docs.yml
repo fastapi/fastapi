@@ -3,6 +3,8 @@ on:
   push:
     branches:
       - master
+    paths:
+      - 'docs/en/docs/release-notes.md'
   pull_request:
     types:
       - opened
