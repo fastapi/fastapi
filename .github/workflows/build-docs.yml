@@ -18,7 +18,7 @@ jobs:
       docs: ${{ steps.filter.outputs.docs }}
     steps:
     - uses: actions/checkout@v3
-    # For pull requests it's not necessary to checkout the code
+    # For pull requests it's not necessary to checkout the code but for master it is
     - uses: dorny/paths-filter@v2
       id: filter
       with:
