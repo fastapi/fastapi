@@ -77,12 +77,17 @@ nav:
   - tutorial/extra-data-types.md
   - tutorial/cookie-params.md
   - tutorial/testing.md
+  - tutorial/extra-models.md
   - tutorial/response-status-code.md
   - tutorial/query-params.md
   - tutorial/body-multiple-params.md
+  - tutorial/metadata.md
+  - tutorial/path-operation-configuration.md
+  - tutorial/cors.md
   - tutorial/static-files.md
   - tutorial/debugging.md
   - tutorial/schema-extra-example.md
+  - tutorial/body-nested-models.md
 - async.md
 - Развёртывание:
   - deployment/index.md

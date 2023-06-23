@@ -26,7 +26,7 @@ That's what all the systems with "login with Facebook, Google, Twitter, GitHub" 
 
 ### OAuth 1
 
-There was an OAuth 1, which is very different from OAuth2, and more complex, as it included directly specifications on how to encrypt the communication.
+There was an OAuth 1, which is very different from OAuth2, and more complex, as it included direct specifications on how to encrypt the communication.
 
 It is not very popular or used nowadays.
 

@@ -439,7 +439,6 @@ item: Item
 
 Используется Pydantic:
 
-* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - для более быстрого JSON <abbr title="преобразования строки, полученной из HTTP-запроса, в данные Python">"парсинга"</abbr>.
 * <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - для проверки электронной почты.
 
 Используется Starlette:
