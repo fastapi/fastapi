@@ -62,6 +62,7 @@ class FastAPI(Starlette):
         servers: Optional[List[Dict[str, Union[str, Any]]]] = None,
         dependencies: Optional[Sequence[Depends]] = None,
         default_response_class: Type[Response] = Default(JSONResponse),
+        redirect_slashes: bool = True,
         docs_url: Optional[str] = "/docs",
         redoc_url: Optional[str] = "/redoc",
         swagger_ui_oauth2_redirect_url: Optional[str] = "/docs/oauth2-redirect",
@@ -127,6 +128,7 @@ class FastAPI(Starlette):
         self.dependency_overrides: Dict[Callable[..., Any], Callable[..., Any]] = {}
         self.router: routing.APIRouter = routing.APIRouter(
             routes=routes,
+            redirect_slashes=redirect_slashes,
             dependency_overrides_provider=self,
             on_startup=on_startup,
             on_shutdown=on_shutdown,

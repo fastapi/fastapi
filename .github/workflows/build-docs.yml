@@ -4,9 +4,33 @@ on:
     branches:
       - master
   pull_request:
-    types: [opened, synchronize]
+    types:
+      - opened
+      - synchronize
 jobs:
+  changes:
+    runs-on: ubuntu-latest
+    # Required permissions
+    permissions:
+      pull-requests: read
+    # Set job outputs to values from filter step
+    outputs:
+      docs: ${{ steps.filter.outputs.docs }}
+    steps:
+    - uses: actions/checkout@v3
+    # For pull requests it's not necessary to checkout the code but for master it is
+    - uses: dorny/paths-filter@v2
+      id: filter
+      with:
+        filters: |
+            docs:
+              - README.md
+              - docs/**
+              - docs_src/**
+              - requirements-docs.txt
   build-docs:
+    needs: changes
+    if: ${{ needs.changes.outputs.docs == 'true' }}
     runs-on: ubuntu-latest
     steps:
       - name: Dump GitHub context
