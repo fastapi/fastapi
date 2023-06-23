@@ -16,19 +16,23 @@ jobs:
           rm -rf ./site
           mkdir ./site
       - name: Download Artifact Docs
+        id: download
         uses: dawidd6/action-download-artifact@v2.27.0
         with:
+          if_no_artifact_found: ignore
           github_token: ${{ secrets.FASTAPI_PREVIEW_DOCS_DOWNLOAD_ARTIFACTS }}
           workflow: build-docs.yml
           run_id: ${{ github.event.workflow_run.id }}
           name: docs-zip
           path: ./site/
       - name: Unzip docs
+        if: steps.download.outputs.found_artifact == 'true'
         run: |
           cd ./site
           unzip docs.zip
           rm -f docs.zip
       - name: Deploy to Netlify
+        if: steps.download.outputs.found_artifact == 'true'
         id: netlify
         uses: nwtgck/actions-netlify@v2.0.0
         with:
@@ -40,6 +44,7 @@ jobs:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
       - name: Comment Deploy
+        if: steps.netlify.outputs.deploy-url != ''
         uses: ./.github/actions/comment-docs-preview-in-pr
         with:
           token: ${{ secrets.FASTAPI_PREVIEW_DOCS_COMMENT_DEPLOY }}
