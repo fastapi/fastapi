@@ -120,13 +120,6 @@ SQLALCHEMY_DATABASE_URL = "postgresql://user:password@postgresserver/db"
 
 ...并根据您的数据库数据和相关凭据（也适用于 MySQL、MariaDB 或任何其他）对其进行调整。
 
-```
-Microsoft SQL Sever = "mssql+pymssql://username@password@ip:port/db"
-
-MySQL = "mysql+pymysql://username@password@ip:port/db"
-
-Oracle = "cx_Oracle://username@password@ip:port//dbname"
-```
 !!! tip
 
     如果您想使用不同的数据库，这是就是您必须修改的地方。
