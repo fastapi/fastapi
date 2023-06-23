@@ -2,6 +2,7 @@
 
 ## Latest Changes
 
+* 👷 Build and deploy docs only on docs changes. PR [#9728](https://github.com/tiangolo/fastapi/pull/9728) by [@tiangolo](https://github.com/tiangolo).
 
 ## 0.98.0
 
