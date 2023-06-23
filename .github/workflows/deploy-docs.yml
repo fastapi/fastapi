@@ -1,4 +1,4 @@
-name: Preview Docs
+name: Deploy Docs
 on:
   workflow_run:
     workflows:
@@ -7,9 +7,13 @@ on:
       - completed
 
 jobs:
-  preview-docs:
+  deploy-docs:
     runs-on: ubuntu-latest
     steps:
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
       - uses: actions/checkout@v3
       - name: Clean site
         run: |
@@ -23,21 +27,15 @@ jobs:
           github_token: ${{ secrets.FASTAPI_PREVIEW_DOCS_DOWNLOAD_ARTIFACTS }}
           workflow: build-docs.yml
           run_id: ${{ github.event.workflow_run.id }}
-          name: docs-zip
+          name: docs-site
           path: ./site/
-      - name: Unzip docs
-        if: steps.download.outputs.found_artifact == 'true'
-        run: |
-          cd ./site
-          unzip docs.zip
-          rm -f docs.zip
       - name: Deploy to Netlify
         if: steps.download.outputs.found_artifact == 'true'
         id: netlify
         uses: nwtgck/actions-netlify@v2.0.0
         with:
           publish-dir: './site'
-          production-deploy: false
+          production-deploy: ${{ github.event.workflow_run.head_repository.full_name == github.repository && github.event.workflow_run.head_branch == 'master' }}
           github-token: ${{ secrets.FASTAPI_PREVIEW_DOCS_NETLIFY }}
           enable-commit-comment: false
         env:
