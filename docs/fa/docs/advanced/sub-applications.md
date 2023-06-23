@@ -11,8 +11,9 @@
 
 ابتدا برنامه اصلی سطح بالا، **FastAPI** و path operations آن را ایجاد کنید:
 
+
 ```Python hl_lines="3  6-8"
-{!../../../ docs_src / sub_applications / tutorial001.py!}
+{!../../../docs_src/sub_applications/tutorial001.py!}
 ```
 
 ### زیر برنامه
@@ -22,7 +23,7 @@
 این زیر برنامه فقط یکی دیگر از برنامه های استاندارد FastAPI است، اما این برنامه ای است که متصل می شود:
 
 ```Python hl_lines="11  14-16"
-{!../../../ docs_src / sub_applications / tutorial001.py!}
+{!../../../docs_src/sub_applications/tutorial001.py!}
 ```
 
 ### اتصال زیر برنامه
@@ -30,7 +31,7 @@
 در برنامه سطح بالا `app` اتصال زیر برنامه `subapi` در این نمونه `/subapi` در مسیر قرار میدهد و میشود:
 
 ```Python hl_lines="11  19"
-{!../../../ docs_src / sub_applications / tutorial001.py!}
+{!../../../docs_src/sub_applications/tutorial001.py!}
 ```
 
 ### اسناد API خودکار را بررسی کنید
@@ -48,7 +49,7 @@ $ uvicorn main:app --reload
 
 صفحه مستندات را در آدرس <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a> باز کنید.
 
-اسناد API خودکار برنامه اصلی را مشاهده خواهید کرد که فقط شامل عملیات مسیر خود می شود:
+اسناد API خودکار برنامه اصلی را مشاهده خواهید کرد که فقط شامل path operations خود می شود:
 
 <img src="/img/tutorial/sub-applications/image01.png">
 
