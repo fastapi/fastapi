@@ -11,14 +11,14 @@ theme:
     accent: amber
     toggle:
       icon: material/lightbulb
-      name: Switch to light mode
+      name: Switch to dark mode
   - media: '(prefers-color-scheme: dark)'
     scheme: slate
     primary: teal
     accent: amber
     toggle:
       icon: material/lightbulb-outline
-      name: Switch to dark mode
+      name: Switch to light mode
   features:
   - search.suggest
   - search.highlight
@@ -42,6 +42,7 @@ nav:
   - az: /az/
   - cs: /cs/
   - de: /de/
+  - em: /em/
   - es: /es/
   - fa: /fa/
   - fr: /fr/
@@ -51,6 +52,7 @@ nav:
   - it: /it/
   - ja: /ja/
   - ko: /ko/
+  - lo: /lo/
   - nl: /nl/
   - pl: /pl/
   - pt: /pt/
@@ -108,6 +110,8 @@ extra:
     name: cs
   - link: /de/
     name: de
+  - link: /em/
+    name: 😉
   - link: /es/
     name: es - español
   - link: /fa/
@@ -126,6 +130,8 @@ extra:
     name: ja - 日本語
   - link: /ko/
     name: ko - 한국어
+  - link: /lo/
+    name: lo - ພາສາລາວ
   - link: /nl/
     name: nl
   - link: /pl/

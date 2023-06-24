@@ -11,14 +11,14 @@ theme:
     accent: amber
     toggle:
       icon: material/lightbulb
-      name: Switch to light mode
+      name: Switch to dark mode
   - media: '(prefers-color-scheme: dark)'
     scheme: slate
     primary: teal
     accent: amber
     toggle:
       icon: material/lightbulb-outline
-      name: Switch to dark mode
+      name: Switch to light mode
   features:
   - search.suggest
   - search.highlight
