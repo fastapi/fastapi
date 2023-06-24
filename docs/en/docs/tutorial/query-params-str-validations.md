@@ -323,7 +323,7 @@ This specific regular expression checks that the received parameter value:
 
 If you feel lost with all these **"regular expression"** ideas, don't worry. They are a hard topic for many people. You can still do a lot of stuff without needing regular expressions yet.
 
-But whenever you need them and go and learn them, know that you can already use them directly in **FastAPI**.
+But whenever you need them, go and learn them. know that you can already use them directly in **FastAPI**.
 
 ## Default values
 
