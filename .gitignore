@@ -16,6 +16,7 @@ Pipfile.lock
 env3.*
 env
 docs_build
+site_build
 venv
 docs.zip
 archive.zip
