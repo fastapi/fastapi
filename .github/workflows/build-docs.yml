@@ -23,15 +23,45 @@ jobs:
       id: filter
       with:
         filters: |
-            docs:
-              - README.md
-              - docs/**
-              - docs_src/**
-              - requirements-docs.txt
+          docs:
+            - README.md
+            - docs/**
+            - docs_src/**
+            - requirements-docs.txt
+  langs:
+    needs:
+      - changes
+    runs-on: ubuntu-latest
+    outputs:
+      langs: ${{ steps.show-langs.outputs.langs }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+      - uses: actions/cache@v3
+        id: cache
+        with:
+          path: ${{ env.pythonLocation }}
+          key: ${{ runner.os }}-python-docs-${{ env.pythonLocation }}-${{ hashFiles('pyproject.toml', 'requirements-docs.txt') }}-v03
+      - name: Install docs extras
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: pip install -r requirements-docs.txt
+      - name: Export Language Codes
+        id: show-langs
+        run: |
+          echo "langs=$(python ./scripts/docs.py langs-json)" >> $GITHUB_OUTPUT
+
   build-docs:
-    needs: changes
+    needs:
+      - changes
+      - langs
     if: ${{ needs.changes.outputs.docs == 'true' }}
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        lang: ${{ fromJson(needs.langs.outputs.langs) }}
     steps:
       - name: Dump GitHub context
         env:
@@ -53,21 +83,24 @@ jobs:
       - name: Install Material for MkDocs Insiders
         if: ( github.event_name != 'pull_request' || github.event.pull_request.head.repo.fork == false ) && steps.cache.outputs.cache-hit != 'true'
         run: pip install git+https://${{ secrets.ACTIONS_TOKEN }}@github.com/squidfunk/mkdocs-material-insiders.git
+      - name: Update Languages
+        run: python ./scripts/docs.py update-languages
       - name: Build Docs
-        run: python ./scripts/docs.py build-all
-      - name: Zip docs
-        run: bash ./scripts/zip-docs.sh
+        run: python ./scripts/docs.py build-lang ${{ matrix.lang }}
       - uses: actions/upload-artifact@v3
         with:
-          name: docs-zip
-          path: ./site/docs.zip
-      - name: Deploy to Netlify
-        uses: nwtgck/actions-netlify@v2.0.0
+          name: docs-site
+          path: ./site/**
+
+  # https://github.com/marketplace/actions/alls-green#why
+  docs-all-green:  # This job does nothing and is only used for the branch protection
+    if: always()
+    needs:
+      - build-docs
+    runs-on: ubuntu-latest
+    steps:
+      - name: Decide whether the needed jobs succeeded or failed
+        uses: re-actors/alls-green@release/v1
         with:
-          publish-dir: './site'
-          production-branch: master
-          github-token: ${{ secrets.FASTAPI_BUILD_DOCS_NETLIFY }}
-          enable-commit-comment: false
-        env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          jobs: ${{ toJSON(needs) }}
+          allowed-skips: build-docs
