@@ -23,6 +23,7 @@ theme:
   - search.suggest
   - search.highlight
   - content.tabs.link
+  - navigation.indexes
   icon:
     repo: fontawesome/brands/github-alt
   logo: https://fastapi.tiangolo.com/img/icon-white.svg
@@ -187,3 +188,5 @@ extra_css:
 extra_javascript:
 - https://fastapi.tiangolo.com/js/termynal.js
 - https://fastapi.tiangolo.com/js/custom.js
+hooks:
+- ../../scripts/mkdocs_hooks.py
