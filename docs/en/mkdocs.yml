@@ -3,7 +3,8 @@ site_description: FastAPI framework, high performance, easy to learn, fast to co
 site_url: https://fastapi.tiangolo.com/
 theme:
   name: material
-  custom_dir: overrides
+  # Go up and to ./en/ again to make it compatible with other languages
+  custom_dir: ../en/overrides
   palette:
   - media: '(prefers-color-scheme: light)'
     scheme: default
@@ -35,7 +36,8 @@ edit_uri: ''
 plugins:
 - search
 - markdownextradata:
-    data: data
+    # Go up and to ./en/ again to make it compatible with other languages
+    data: ../en/data
 nav:
 - FastAPI: index.md
 - Languages:
