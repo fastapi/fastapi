@@ -1,4 +1,5 @@
 import json
+import logging
 import os
 import re
 import shutil
@@ -15,6 +16,8 @@ import mkdocs.utils
 import typer
 import yaml
 from jinja2 import Template
+
+logging.basicConfig(level=logging.INFO)
 
 app = typer.Typer()
 
