@@ -40,28 +40,19 @@ nav:
 - FastAPI: index.md
 - Languages:
   - en: /
-  - az: /az/
-  - cs: /cs/
   - de: /de/
   - em: /em/
   - es: /es/
   - fa: /fa/
   - fr: /fr/
   - he: /he/
-  - hy: /hy/
   - id: /id/
-  - it: /it/
   - ja: /ja/
   - ko: /ko/
-  - lo: /lo/
-  - nl: /nl/
   - pl: /pl/
   - pt: /pt/
   - ru: /ru/
-  - sq: /sq/
-  - sv: /sv/
   - tr: /tr/
-  - uk: /uk/
   - zh: /zh/
 - features.md
 - fastapi-people.md
@@ -211,10 +202,6 @@ extra:
   alternate:
   - link: /
     name: en - English
-  - link: /az/
-    name: az
-  - link: /cs/
-    name: cs
   - link: /de/
     name: de
   - link: /em/
@@ -227,34 +214,20 @@ extra:
     name: fr - français
   - link: /he/
     name: he
-  - link: /hy/
-    name: hy
   - link: /id/
     name: id
-  - link: /it/
-    name: it - italiano
   - link: /ja/
     name: ja - 日本語
   - link: /ko/
     name: ko - 한국어
-  - link: /lo/
-    name: lo - ພາສາລາວ
-  - link: /nl/
-    name: nl
   - link: /pl/
     name: pl
   - link: /pt/
     name: pt - português
   - link: /ru/
     name: ru - русский язык
-  - link: /sq/
-    name: sq - shqip
-  - link: /sv/
-    name: sv - svenska
   - link: /tr/
     name: tr - Türkçe
-  - link: /uk/
-    name: uk - українська мова
   - link: /zh/
     name: zh - 汉语
 extra_css:
