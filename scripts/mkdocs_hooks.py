@@ -8,12 +8,12 @@ from mkdocs.structure.files import File, Files
 from mkdocs.structure.nav import Link, Navigation, Section
 from mkdocs.structure.pages import Page
 
-missing_translation_content = """
-!!! warning
-    The current page still doesn't have a translation for this language.
 
-    But you can help translating it: [Contributing](https://fastapi.tiangolo.com/contributing/){.internal-link target=_blank}.
-"""
+@lru_cache()
+def get_missing_translation_content(docs_dir: str) -> str:
+    docs_dir_path = Path(docs_dir)
+    missing_translation_path = docs_dir_path.parent.parent / "missing-translation.md"
+    return missing_translation_path.read_text(encoding="utf-8")
 
 
 @lru_cache()
@@ -123,6 +123,7 @@ def on_page_markdown(
     markdown: str, *, page: Page, config: MkDocsConfig, files: Files
 ) -> str:
     if isinstance(page.file, EnFile):
+        missing_translation_content = get_missing_translation_content(config.docs_dir)
         header = ""
         body = markdown
         if markdown.startswith("#"):
