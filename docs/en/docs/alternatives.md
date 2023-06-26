@@ -37,7 +37,7 @@ It was one of the first examples of **automatic API documentation**, and this wa
 !!! check "Inspired **FastAPI** to"
     Have an automatic API documentation web user interface.
 
-### <a href="http://flask.pocoo.org/" class="external-link" target="_blank">Flask</a>
+### <a href="https://flask.palletsprojects.com" class="external-link" target="_blank">Flask</a>
 
 Flask is a "microframework", it doesn't include database integrations nor many of the things that come by default in Django.
 
@@ -57,7 +57,7 @@ Given the simplicity of Flask, it seemed like a good match for building APIs. Th
     Have a simple and easy to use routing system.
 
 
-### <a href="http://docs.python-requests.org" class="external-link" target="_blank">Requests</a>
+### <a href="https://requests.readthedocs.io" class="external-link" target="_blank">Requests</a>
 
 **FastAPI** is not actually an alternative to **Requests**. Their scope is very different.
 
@@ -123,7 +123,7 @@ That's why when talking about version 2.0 it's common to say "Swagger", and for 
 
 There are several Flask REST frameworks, but after investing the time and work into investigating them, I found that many are discontinued or abandoned, with several standing issues that made them unfit.
 
-### <a href="https://marshmallow.readthedocs.io/en/3.0/" class="external-link" target="_blank">Marshmallow</a>
+### <a href="https://marshmallow.readthedocs.io/en/stable/" class="external-link" target="_blank">Marshmallow</a>
 
 One of the main features needed by API systems is data "<abbr title="also called marshalling, conversion">serialization</abbr>" which is taking data from the code (Python) and converting it into something that can be sent through the network. For example, converting an object containing data from a database into a JSON object. Converting `datetime` objects into strings, etc.
 
@@ -235,14 +235,12 @@ It was one of the first extremely fast Python frameworks based on `asyncio`. It 
 
 !!! check "Inspired **FastAPI** to"
     Find a way to have a crazy performance.
-    
+
     That's why **FastAPI** is based on Starlette, as it is the fastest framework available (tested by third-party benchmarks).
 
 ### <a href="https://falconframework.org/" class="external-link" target="_blank">Falcon</a>
 
 Falcon is another high performance Python framework, it is designed to be minimal, and work as the foundation of other frameworks like Hug.
-
-It uses the previous standard for Python web frameworks (WSGI) which is synchronous, so it can't handle WebSockets and other use cases. Nevertheless, it also has a very good performance.
 
 It is designed to have functions that receive two parameters, one "request" and one "response". Then you "read" parts from the request, and "write" parts to the response. Because of this design, it is not possible to declare request parameters and bodies with standard Python type hints as function parameters.
 
@@ -276,7 +274,7 @@ Routes are declared in a single place, using functions declared in other places 
 
     This actually inspired updating parts of Pydantic, to support the same validation declaration style (all this functionality is now already available in Pydantic).
 
-### <a href="http://www.hug.rest/" class="external-link" target="_blank">Hug</a>
+### <a href="https://www.hug.rest/" class="external-link" target="_blank">Hug</a>
 
 Hug was one of the first frameworks to implement the declaration of API parameter types using Python type hints. This was a great idea that inspired other tools to do the same.
 
@@ -335,7 +333,7 @@ Now APIStar is a set of tools to validate OpenAPI specifications, not a web fram
     Exist.
 
     The idea of declaring multiple things (data validation, serialization and documentation) with the same Python types, that at the same time provided great editor support, was something I considered a brilliant idea.
-    
+
     And after searching for a long time for a similar framework and testing many different alternatives, APIStar was the best option available.
 
     Then APIStar stopped to exist as a server and Starlette was created, and was a new better foundation for such a system. That was the final inspiration to build **FastAPI**.
@@ -367,15 +365,14 @@ It has:
 
 * Seriously impressive performance.
 * WebSocket support.
-* GraphQL support.
 * In-process background tasks.
 * Startup and shutdown events.
-* Test client built on requests.
+* Test client built on HTTPX.
 * CORS, GZip, Static Files, Streaming responses.
 * Session and Cookie support.
 * 100% test coverage.
 * 100% type annotated codebase.
-* Zero hard dependencies.
+* Few hard dependencies.
 
 Starlette is currently the fastest Python framework tested. Only surpassed by Uvicorn, which is not a framework, but a server.
 
@@ -394,7 +391,7 @@ That's one of the main things that **FastAPI** adds on top, all based on Python 
     Handle all the core web parts. Adding features on top.
 
     The class `FastAPI` itself inherits directly from the class `Starlette`.
-    
+
     So, anything that you can do with Starlette, you can do it directly with **FastAPI**, as it is basically Starlette on steroids.
 
 ### <a href="https://www.uvicorn.org/" class="external-link" target="_blank">Uvicorn</a>
@@ -410,7 +407,7 @@ It is the recommended server for Starlette and **FastAPI**.
 
     You can combine it with Gunicorn, to have an asynchronous multi-process server.
 
-    Check more details in the [Deployment](deployment.md){.internal-link target=_blank} section.
+    Check more details in the [Deployment](deployment/index.md){.internal-link target=_blank} section.
 
 ## Benchmarks and speed
 

@@ -1,1 +1,1 @@
-from starlette.middleware.gzip import GZipMiddleware  # noqa
+from starlette.middleware.gzip import GZipMiddleware as GZipMiddleware  # noqa
