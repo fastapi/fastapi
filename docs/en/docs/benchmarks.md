@@ -10,7 +10,7 @@ When you check the benchmarks, it is common to see several tools of different ty
 
 Specifically, to see Uvicorn, Starlette and FastAPI compared together (among many other tools).
 
-The simplest the problem solved by the tool, the better performance it will get. And most of the benchmarks don't test the additional features provided by the tool.
+The simpler the problem solved by the tool, the better performance it will get. And most of the benchmarks don't test the additional features provided by the tool.
 
 The hierarchy is like:
 
