@@ -9,6 +9,7 @@ from typing import (
     Optional,
     Sequence,
     Type,
+    TypeVar,
     Union,
 )
 
@@ -18,8 +19,9 @@ from fastapi.encoders import DictIntStrAny, SetIntStr
 from fastapi.exception_handlers import (
     http_exception_handler,
     request_validation_exception_handler,
+    websocket_request_validation_exception_handler,
 )
-from fastapi.exceptions import RequestValidationError
+from fastapi.exceptions import RequestValidationError, WebSocketRequestValidationError
 from fastapi.logger import logger
 from fastapi.middleware.asyncexitstack import AsyncExitStackMiddleware
 from fastapi.openapi.docs import (
@@ -43,10 +45,12 @@ from starlette.responses import HTMLResponse, JSONResponse, Response
 from starlette.routing import BaseRoute
 from starlette.types import ASGIApp, Lifespan, Receive, Scope, Send
 
+AppType = TypeVar("AppType", bound="FastAPI")
+
 
 class FastAPI(Starlette):
     def __init__(
-        self,
+        self: AppType,
         *,
         debug: bool = False,
         routes: Optional[List[BaseRoute]] = None,
@@ -58,6 +62,7 @@ class FastAPI(Starlette):
         servers: Optional[List[Dict[str, Union[str, Any]]]] = None,
         dependencies: Optional[Sequence[Depends]] = None,
         default_response_class: Type[Response] = Default(JSONResponse),
+        redirect_slashes: bool = True,
         docs_url: Optional[str] = "/docs",
         redoc_url: Optional[str] = "/redoc",
         swagger_ui_oauth2_redirect_url: Optional[str] = "/docs/oauth2-redirect",
@@ -71,7 +76,7 @@ class FastAPI(Starlette):
         ] = None,
         on_startup: Optional[Sequence[Callable[[], Any]]] = None,
         on_shutdown: Optional[Sequence[Callable[[], Any]]] = None,
-        lifespan: Optional[Lifespan] = None,
+        lifespan: Optional[Lifespan[AppType]] = None,
         terms_of_service: Optional[str] = None,
         contact: Optional[Dict[str, Union[str, Any]]] = None,
         license_info: Optional[Dict[str, Union[str, Any]]] = None,
@@ -123,6 +128,7 @@ class FastAPI(Starlette):
         self.dependency_overrides: Dict[Callable[..., Any], Callable[..., Any]] = {}
         self.router: routing.APIRouter = routing.APIRouter(
             routes=routes,
+            redirect_slashes=redirect_slashes,
             dependency_overrides_provider=self,
             on_startup=on_startup,
             on_shutdown=on_shutdown,
@@ -141,6 +147,11 @@ class FastAPI(Starlette):
         self.exception_handlers.setdefault(HTTPException, http_exception_handler)
         self.exception_handlers.setdefault(
             RequestValidationError, request_validation_exception_handler
+        )
+        self.exception_handlers.setdefault(
+            WebSocketRequestValidationError,
+            # Starlette still has incorrect type specification for the handlers
+            websocket_request_validation_exception_handler,  # type: ignore
         )
 
         self.user_middleware: List[Middleware] = (
@@ -392,15 +403,34 @@ class FastAPI(Starlette):
         return decorator
 
     def add_api_websocket_route(
-        self, path: str, endpoint: Callable[..., Any], name: Optional[str] = None
+        self,
+        path: str,
+        endpoint: Callable[..., Any],
+        name: Optional[str] = None,
+        *,
+        dependencies: Optional[Sequence[Depends]] = None,
     ) -> None:
-        self.router.add_api_websocket_route(path, endpoint, name=name)
+        self.router.add_api_websocket_route(
+            path,
+            endpoint,
+            name=name,
+            dependencies=dependencies,
+        )
 
     def websocket(
-        self, path: str, name: Optional[str] = None
+        self,
+        path: str,
+        name: Optional[str] = None,
+        *,
+        dependencies: Optional[Sequence[Depends]] = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         def decorator(func: DecoratedCallable) -> DecoratedCallable:
-            self.add_api_websocket_route(path, func, name=name)
+            self.add_api_websocket_route(
+                path,
+                func,
+                name=name,
+                dependencies=dependencies,
+            )
             return func
 
         return decorator
