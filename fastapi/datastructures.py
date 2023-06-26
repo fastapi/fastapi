@@ -1,4 +1,4 @@
-from typing import Any, Callable, Iterable, Type, TypeVar
+from typing import Any, Callable, Dict, Iterable, Type, TypeVar
 
 from starlette.datastructures import URL as URL  # noqa: F401
 from starlette.datastructures import Address as Address  # noqa: F401
@@ -19,6 +19,10 @@ class UploadFile(StarletteUploadFile):
         if not isinstance(v, StarletteUploadFile):
             raise ValueError(f"Expected UploadFile, received: {type(v)}")
         return v
+
+    @classmethod
+    def __modify_schema__(cls, field_schema: Dict[str, Any]) -> None:
+        field_schema.update({"type": "string", "format": "binary"})
 
 
 class DefaultPlaceholder:
