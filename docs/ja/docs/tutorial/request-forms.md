@@ -45,7 +45,7 @@ HTMLフォーム（`<form></form>`）がサーバにデータを送信する方�
     フォームからのデータは通常、`application/x-www-form-urlencoded`の「media type」を使用してエンコードされます。
 
     しかし、フォームがファイルを含む場合は、`multipart/form-data`としてエンコードされます。ファイルの扱いについては次の章で説明します。
-    
+
     これらのエンコーディングやフォームフィールドの詳細については、<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST" class="external-link" target="_blank"><abbr title="Mozilla Developer Network">MDN</abbr>の<code>POST</code></a>のウェブドキュメントを参照してください。
 
 !!! warning "注意"
