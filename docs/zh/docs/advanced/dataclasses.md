@@ -23,9 +23,9 @@ FastAPI 基于 **Pydantic** 构建，前文已经介绍过如何使用 Pydantic 
 !!! info "说明"
 
     注意，数据类不支持 Pydantic 模型的所有功能。
-    
+
     因此，开发时仍需要使用 Pydantic 模型。
-    
+
     但如果数据类很多，这一技巧能给 FastAPI 开发 Web API 增添不少助力。🤓
 
 ## `response_model` 使用数据类
@@ -97,4 +97,3 @@ API 文档中也会显示相关概图：
 ## 版本
 
 本章内容自 FastAPI `0.67.0` 版起生效。🔖
-
