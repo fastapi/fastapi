@@ -6,22 +6,22 @@ To update an item you can use the <a href="https://developer.mozilla.org/en-US/d
 
 You can use the `jsonable_encoder` to convert the input data to data that can be stored as JSON (e.g. with a NoSQL database). For example, converting `datetime` to `str`.
 
-=== "Python 3.6 and above"
+=== "Python 3.10+"
 
-    ```Python hl_lines="30-35"
-    {!> ../../../docs_src/body_updates/tutorial001.py!}
+    ```Python hl_lines="28-33"
+    {!> ../../../docs_src/body_updates/tutorial001_py310.py!}
     ```
 
-=== "Python 3.9 and above"
+=== "Python 3.9+"
 
     ```Python hl_lines="30-35"
     {!> ../../../docs_src/body_updates/tutorial001_py39.py!}
     ```
 
-=== "Python 3.10 and above"
+=== "Python 3.6+"
 
-    ```Python hl_lines="28-33"
-    {!> ../../../docs_src/body_updates/tutorial001_py310.py!}
+    ```Python hl_lines="30-35"
+    {!> ../../../docs_src/body_updates/tutorial001.py!}
     ```
 
 `PUT` is used to receive data that should replace the existing data.
@@ -67,22 +67,22 @@ That would generate a `dict` with only the data that was set when creating the `
 
 Then you can use this to generate a `dict` with only the data that was set (sent in the request), omitting default values:
 
-=== "Python 3.6 and above"
+=== "Python 3.10+"
 
-    ```Python hl_lines="34"
-    {!> ../../../docs_src/body_updates/tutorial002.py!}
+    ```Python hl_lines="32"
+    {!> ../../../docs_src/body_updates/tutorial002_py310.py!}
     ```
 
-=== "Python 3.9 and above"
+=== "Python 3.9+"
 
     ```Python hl_lines="34"
     {!> ../../../docs_src/body_updates/tutorial002_py39.py!}
     ```
 
-=== "Python 3.10 and above"
+=== "Python 3.6+"
 
-    ```Python hl_lines="32"
-    {!> ../../../docs_src/body_updates/tutorial002_py310.py!}
+    ```Python hl_lines="34"
+    {!> ../../../docs_src/body_updates/tutorial002.py!}
     ```
 
 ### Using Pydantic's `update` parameter
@@ -91,22 +91,22 @@ Now, you can create a copy of the existing model using `.copy()`, and pass the `
 
 Like `stored_item_model.copy(update=update_data)`:
 
-=== "Python 3.6 and above"
+=== "Python 3.10+"
 
-    ```Python hl_lines="35"
-    {!> ../../../docs_src/body_updates/tutorial002.py!}
+    ```Python hl_lines="33"
+    {!> ../../../docs_src/body_updates/tutorial002_py310.py!}
     ```
 
-=== "Python 3.9 and above"
+=== "Python 3.9+"
 
     ```Python hl_lines="35"
     {!> ../../../docs_src/body_updates/tutorial002_py39.py!}
     ```
 
-=== "Python 3.10 and above"
+=== "Python 3.6+"
 
-    ```Python hl_lines="33"
-    {!> ../../../docs_src/body_updates/tutorial002_py310.py!}
+    ```Python hl_lines="35"
+    {!> ../../../docs_src/body_updates/tutorial002.py!}
     ```
 
 ### Partial updates recap
@@ -124,22 +124,22 @@ In summary, to apply partial updates you would:
 * Save the data to your DB.
 * Return the updated model.
 
-=== "Python 3.6 and above"
+=== "Python 3.10+"
 
-    ```Python hl_lines="30-37"
-    {!> ../../../docs_src/body_updates/tutorial002.py!}
+    ```Python hl_lines="28-35"
+    {!> ../../../docs_src/body_updates/tutorial002_py310.py!}
     ```
 
-=== "Python 3.9 and above"
+=== "Python 3.9+"
 
     ```Python hl_lines="30-37"
     {!> ../../../docs_src/body_updates/tutorial002_py39.py!}
     ```
 
-=== "Python 3.10 and above"
+=== "Python 3.6+"
 
-    ```Python hl_lines="28-35"
-    {!> ../../../docs_src/body_updates/tutorial002_py310.py!}
+    ```Python hl_lines="30-37"
+    {!> ../../../docs_src/body_updates/tutorial002.py!}
     ```
 
 !!! tip
