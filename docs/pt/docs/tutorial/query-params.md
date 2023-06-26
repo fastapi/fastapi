@@ -63,16 +63,16 @@ Os valores dos parâmetros na sua função serão:
 
 Da mesma forma, você pode declarar parâmetros de consulta opcionais, definindo o valor padrão para `None`:
 
-=== "Python 3.6 and above"
-
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/query_params/tutorial002.py!}
-    ```
-
-=== "Python 3.10 and above"
+=== "Python 3.10+"
 
     ```Python hl_lines="7"
     {!> ../../../docs_src/query_params/tutorial002_py310.py!}
+    ```
+
+=== "Python 3.6+"
+
+    ```Python hl_lines="9"
+    {!> ../../../docs_src/query_params/tutorial002.py!}
     ```
 
 Nesse caso, o parâmetro da função `q` será opcional, e `None` será o padrão.
@@ -85,16 +85,16 @@ Nesse caso, o parâmetro da função `q` será opcional, e `None` será o padrã
 
 Você também pode declarar tipos `bool`, e eles serão convertidos:
 
-=== "Python 3.6 and above"
-
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/query_params/tutorial003.py!}
-    ```
-
-=== "Python 3.10 and above"
+=== "Python 3.10+"
 
     ```Python hl_lines="7"
     {!> ../../../docs_src/query_params/tutorial003_py310.py!}
+    ```
+
+=== "Python 3.6+"
+
+    ```Python hl_lines="9"
+    {!> ../../../docs_src/query_params/tutorial003.py!}
     ```
 
 Nesse caso, se você for para:
@@ -137,16 +137,16 @@ E você não precisa declarar eles em nenhuma ordem específica.
 
 Eles serão detectados pelo nome:
 
-=== "Python 3.6 and above"
-
-    ```Python hl_lines="8  10"
-    {!> ../../../docs_src/query_params/tutorial004.py!}
-    ```
-
-=== "Python 3.10 and above"
+=== "Python 3.10+"
 
     ```Python hl_lines="6  8"
     {!> ../../../docs_src/query_params/tutorial004_py310.py!}
+    ```
+
+=== "Python 3.6+"
+
+    ```Python hl_lines="8  10"
+    {!> ../../../docs_src/query_params/tutorial004.py!}
     ```
 
 ## Parâmetros de consulta obrigatórios
@@ -203,17 +203,18 @@ http://127.0.0.1:8000/items/foo-item?needy=sooooneedy
 
 E claro, você pode definir alguns parâmetros como obrigatórios, alguns possuindo um valor padrão, e outros sendo totalmente opcionais:
 
-=== "Python 3.6 and above"
+=== "Python 3.10+"
+
+    ```Python hl_lines="8"
+    {!> ../../../docs_src/query_params/tutorial006_py310.py!}
+    ```
+
+=== "Python 3.6+"
 
     ```Python hl_lines="10"
     {!> ../../../docs_src/query_params/tutorial006.py!}
     ```
 
-=== "Python 3.10 and above"
-
-    ```Python hl_lines="8"
-    {!> ../../../docs_src/query_params/tutorial006_py310.py!}
-    ```
 Nesse caso, existem 3 parâmetros de consulta:
 
 * `needy`, um `str` obrigatório.
