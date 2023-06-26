@@ -381,6 +381,10 @@ def get_graphql_response(
         logging.error(response.text)
         raise RuntimeError(response.text)
     data = response.json()
+    if "errors" in data:
+        logging.error(f"Errors in response, after: {after}, category_id: {category_id}")
+        logging.error(response.text)
+        raise RuntimeError(response.text)
     return data
 
 
@@ -496,21 +500,25 @@ def get_discussions_experts(settings: Settings):
 
 
 def get_experts(settings: Settings):
-    (
-        issues_commentors,
-        issues_last_month_commentors,
-        issues_authors,
-    ) = get_issues_experts(settings=settings)
+    # Migrated to only use GitHub Discussions
+    # (
+    #     issues_commentors,
+    #     issues_last_month_commentors,
+    #     issues_authors,
+    # ) = get_issues_experts(settings=settings)
     (
         discussions_commentors,
         discussions_last_month_commentors,
         discussions_authors,
     ) = get_discussions_experts(settings=settings)
-    commentors = issues_commentors + discussions_commentors
-    last_month_commentors = (
-        issues_last_month_commentors + discussions_last_month_commentors
-    )
-    authors = {**issues_authors, **discussions_authors}
+    # commentors = issues_commentors + discussions_commentors
+    commentors = discussions_commentors
+    # last_month_commentors = (
+    #     issues_last_month_commentors + discussions_last_month_commentors
+    # )
+    last_month_commentors = discussions_last_month_commentors
+    # authors = {**issues_authors, **discussions_authors}
+    authors = {**discussions_authors}
     return commentors, last_month_commentors, authors
 
 
