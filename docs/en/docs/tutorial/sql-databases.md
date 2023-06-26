@@ -80,6 +80,20 @@ The file `__init__.py` is just an empty file, but it tells Python that `sql_app`
 
 Now let's see what each file/module does.
 
+## Install `SQLAlchemy`
+
+First you need to install `SQLAlchemy`:
+
+<div class="termy">
+
+```console
+$ pip install sqlalchemy
+
+---> 100%
+```
+
+</div>
+
 ## Create the SQLAlchemy parts
 
 Let's refer to the file `sql_app/database.py`.
@@ -248,22 +262,22 @@ So, the user will also have a `password` when creating it.
 
 But for security, the `password` won't be in other Pydantic *models*, for example, it won't be sent from the API when reading a user.
 
-=== "Python 3.6 and above"
+=== "Python 3.10+"
 
-    ```Python hl_lines="3  6-8  11-12  23-24  27-28"
-    {!> ../../../docs_src/sql_databases/sql_app/schemas.py!}
+    ```Python hl_lines="1  4-6  9-10  21-22  25-26"
+    {!> ../../../docs_src/sql_databases/sql_app_py310/schemas.py!}
     ```
 
-=== "Python 3.9 and above"
+=== "Python 3.9+"
 
     ```Python hl_lines="3  6-8  11-12  23-24  27-28"
     {!> ../../../docs_src/sql_databases/sql_app_py39/schemas.py!}
     ```
 
-=== "Python 3.10 and above"
+=== "Python 3.6+"
 
-    ```Python hl_lines="1  4-6  9-10  21-22  25-26"
-    {!> ../../../docs_src/sql_databases/sql_app_py310/schemas.py!}
+    ```Python hl_lines="3  6-8  11-12  23-24  27-28"
+    {!> ../../../docs_src/sql_databases/sql_app/schemas.py!}
     ```
 
 #### SQLAlchemy style and Pydantic style
@@ -292,22 +306,22 @@ The same way, when reading a user, we can now declare that `items` will contain 
 
 Not only the IDs of those items, but all the data that we defined in the Pydantic *model* for reading items: `Item`.
 
-=== "Python 3.6 and above"
+=== "Python 3.10+"
 
-    ```Python hl_lines="15-17  31-34"
-    {!> ../../../docs_src/sql_databases/sql_app/schemas.py!}
+    ```Python hl_lines="13-15  29-32"
+    {!> ../../../docs_src/sql_databases/sql_app_py310/schemas.py!}
     ```
 
-=== "Python 3.9 and above"
+=== "Python 3.9+"
 
     ```Python hl_lines="15-17  31-34"
     {!> ../../../docs_src/sql_databases/sql_app_py39/schemas.py!}
     ```
 
-=== "Python 3.10 and above"
+=== "Python 3.6+"
 
-    ```Python hl_lines="13-15  29-32"
-    {!> ../../../docs_src/sql_databases/sql_app_py310/schemas.py!}
+    ```Python hl_lines="15-17  31-34"
+    {!> ../../../docs_src/sql_databases/sql_app/schemas.py!}
     ```
 
 !!! tip
@@ -317,26 +331,26 @@ Not only the IDs of those items, but all the data that we defined in the Pydanti
 
 Now, in the Pydantic *models* for reading, `Item` and `User`, add an internal `Config` class.
 
-This <a href="https://pydantic-docs.helpmanual.io/#config" class="external-link" target="_blank">`Config`</a> class is used to provide configurations to Pydantic.
+This <a href="https://pydantic-docs.helpmanual.io/usage/model_config/" class="external-link" target="_blank">`Config`</a> class is used to provide configurations to Pydantic.
 
 In the `Config` class, set the attribute `orm_mode = True`.
 
-=== "Python 3.6 and above"
+=== "Python 3.10+"
 
-    ```Python hl_lines="15  19-20  31  36-37"
-    {!> ../../../docs_src/sql_databases/sql_app/schemas.py!}
+    ```Python hl_lines="13  17-18  29  34-35"
+    {!> ../../../docs_src/sql_databases/sql_app_py310/schemas.py!}
     ```
 
-=== "Python 3.9 and above"
+=== "Python 3.9+"
 
     ```Python hl_lines="15  19-20  31  36-37"
     {!> ../../../docs_src/sql_databases/sql_app_py39/schemas.py!}
     ```
 
-=== "Python 3.10 and above"
+=== "Python 3.6+"
 
-    ```Python hl_lines="13  17-18  29  34-35"
-    {!> ../../../docs_src/sql_databases/sql_app_py310/schemas.py!}
+    ```Python hl_lines="15  19-20  31  36-37"
+    {!> ../../../docs_src/sql_databases/sql_app/schemas.py!}
     ```
 
 !!! tip
@@ -467,16 +481,16 @@ And now in the file `sql_app/main.py` let's integrate and use all the other part
 
 In a very simplistic way create the database tables:
 
-=== "Python 3.6 and above"
-
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/sql_databases/sql_app/main.py!}
-    ```
-
-=== "Python 3.9 and above"
+=== "Python 3.9+"
 
     ```Python hl_lines="7"
     {!> ../../../docs_src/sql_databases/sql_app_py39/main.py!}
+    ```
+
+=== "Python 3.6+"
+
+    ```Python hl_lines="9"
+    {!> ../../../docs_src/sql_databases/sql_app/main.py!}
     ```
 
 #### Alembic Note
@@ -491,7 +505,7 @@ You can find an example of Alembic in a FastAPI project in the templates from [P
 
 ### Create a dependency
 
-Now use the `SessionLocal` class we created in the `sql_app/databases.py` file to create a dependency.
+Now use the `SessionLocal` class we created in the `sql_app/database.py` file to create a dependency.
 
 We need to have an independent database session/connection (`SessionLocal`) per request, use the same session through all the request and then close it after the request is finished.
 
@@ -501,16 +515,16 @@ For that, we will create a new dependency with `yield`, as explained before in t
 
 Our dependency will create a new SQLAlchemy `SessionLocal` that will be used in a single request, and then close it once the request is finished.
 
-=== "Python 3.6 and above"
-
-    ```Python hl_lines="15-20"
-    {!> ../../../docs_src/sql_databases/sql_app/main.py!}
-    ```
-
-=== "Python 3.9 and above"
+=== "Python 3.9+"
 
     ```Python hl_lines="13-18"
     {!> ../../../docs_src/sql_databases/sql_app_py39/main.py!}
+    ```
+
+=== "Python 3.6+"
+
+    ```Python hl_lines="15-20"
+    {!> ../../../docs_src/sql_databases/sql_app/main.py!}
     ```
 
 !!! info
@@ -526,16 +540,16 @@ And then, when using the dependency in a *path operation function*, we declare i
 
 This will then give us better editor support inside the *path operation function*, because the editor will know that the `db` parameter is of type `Session`:
 
-=== "Python 3.6 and above"
-
-    ```Python hl_lines="24  32  38  47  53"
-    {!> ../../../docs_src/sql_databases/sql_app/main.py!}
-    ```
-
-=== "Python 3.9 and above"
+=== "Python 3.9+"
 
     ```Python hl_lines="22  30  36  45  51"
     {!> ../../../docs_src/sql_databases/sql_app_py39/main.py!}
+    ```
+
+=== "Python 3.6+"
+
+    ```Python hl_lines="24  32  38  47  53"
+    {!> ../../../docs_src/sql_databases/sql_app/main.py!}
     ```
 
 !!! info "Technical Details"
@@ -547,16 +561,16 @@ This will then give us better editor support inside the *path operation function
 
 Now, finally, here's the standard **FastAPI** *path operations* code.
 
-=== "Python 3.6 and above"
-
-    ```Python hl_lines="23-28  31-34  37-42  45-49  52-55"
-    {!> ../../../docs_src/sql_databases/sql_app/main.py!}
-    ```
-
-=== "Python 3.9 and above"
+=== "Python 3.9+"
 
     ```Python hl_lines="21-26  29-32  35-40  43-47  50-53"
     {!> ../../../docs_src/sql_databases/sql_app_py39/main.py!}
+    ```
+
+=== "Python 3.6+"
+
+    ```Python hl_lines="23-28  31-34  37-42  45-49  52-55"
+    {!> ../../../docs_src/sql_databases/sql_app/main.py!}
     ```
 
 We are creating the database session before each request in the dependency with `yield`, and then closing it afterwards.
@@ -616,7 +630,7 @@ And as the code related to SQLAlchemy and the SQLAlchemy models lives in separat
 
 The same way, you would be able to use the same SQLAlchemy models and utilities in other parts of your code that are not related to **FastAPI**.
 
-For example, in a background task worker with <a href="https://docs.celeryproject.org" class="external-link" target="_blank">Celery</a>, <a href="https://python-rq.org/" class="external-link" target="_blank">RQ</a>, or <a href="https://arq-docs.helpmanual.io/" class="external-link" target="_blank">ARQ</a>.
+For example, in a background task worker with <a href="https://docs.celeryq.dev" class="external-link" target="_blank">Celery</a>, <a href="https://python-rq.org/" class="external-link" target="_blank">RQ</a>, or <a href="https://arq-docs.helpmanual.io/" class="external-link" target="_blank">ARQ</a>.
 
 ## Review all the files
 
@@ -640,22 +654,22 @@ For example, in a background task worker with <a href="https://docs.celeryprojec
 
 * `sql_app/schemas.py`:
 
-=== "Python 3.6 and above"
+=== "Python 3.10+"
 
     ```Python
-    {!> ../../../docs_src/sql_databases/sql_app/schemas.py!}
+    {!> ../../../docs_src/sql_databases/sql_app_py310/schemas.py!}
     ```
 
-=== "Python 3.9 and above"
+=== "Python 3.9+"
 
     ```Python
     {!> ../../../docs_src/sql_databases/sql_app_py39/schemas.py!}
     ```
 
-=== "Python 3.10 and above"
+=== "Python 3.6+"
 
     ```Python
-    {!> ../../../docs_src/sql_databases/sql_app_py310/schemas.py!}
+    {!> ../../../docs_src/sql_databases/sql_app/schemas.py!}
     ```
 
 * `sql_app/crud.py`:
@@ -666,16 +680,16 @@ For example, in a background task worker with <a href="https://docs.celeryprojec
 
 * `sql_app/main.py`:
 
-=== "Python 3.6 and above"
-
-    ```Python
-    {!> ../../../docs_src/sql_databases/sql_app/main.py!}
-    ```
-
-=== "Python 3.9 and above"
+=== "Python 3.9+"
 
     ```Python
     {!> ../../../docs_src/sql_databases/sql_app_py39/main.py!}
+    ```
+
+=== "Python 3.6+"
+
+    ```Python
+    {!> ../../../docs_src/sql_databases/sql_app/main.py!}
     ```
 
 ## Check it
@@ -725,16 +739,16 @@ A "middleware" is basically a function that is always executed for each request,
 
 The middleware we'll add (just a function) will create a new SQLAlchemy `SessionLocal` for each request, add it to the request and then close it once the request is finished.
 
-=== "Python 3.6 and above"
-
-    ```Python hl_lines="14-22"
-    {!> ../../../docs_src/sql_databases/sql_app/alt_main.py!}
-    ```
-
-=== "Python 3.9 and above"
+=== "Python 3.9+"
 
     ```Python hl_lines="12-20"
     {!> ../../../docs_src/sql_databases/sql_app_py39/alt_main.py!}
+    ```
+
+=== "Python 3.6+"
+
+    ```Python hl_lines="14-22"
+    {!> ../../../docs_src/sql_databases/sql_app/alt_main.py!}
     ```
 
 !!! info

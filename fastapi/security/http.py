@@ -38,7 +38,7 @@ class HTTPBase(SecurityBase):
     async def __call__(
         self, request: Request
     ) -> Optional[HTTPAuthorizationCredentials]:
-        authorization: str = request.headers.get("Authorization")
+        authorization = request.headers.get("Authorization")
         scheme, credentials = get_authorization_scheme_param(authorization)
         if not (authorization and scheme and credentials):
             if self.auto_error:
@@ -67,17 +67,12 @@ class HTTPBasic(HTTPBase):
     async def __call__(  # type: ignore
         self, request: Request
     ) -> Optional[HTTPBasicCredentials]:
-        authorization: str = request.headers.get("Authorization")
+        authorization = request.headers.get("Authorization")
         scheme, param = get_authorization_scheme_param(authorization)
         if self.realm:
             unauthorized_headers = {"WWW-Authenticate": f'Basic realm="{self.realm}"'}
         else:
             unauthorized_headers = {"WWW-Authenticate": "Basic"}
-        invalid_user_credentials_exc = HTTPException(
-            status_code=HTTP_401_UNAUTHORIZED,
-            detail="Invalid authentication credentials",
-            headers=unauthorized_headers,
-        )
         if not authorization or scheme.lower() != "basic":
             if self.auto_error:
                 raise HTTPException(
@@ -87,6 +82,11 @@ class HTTPBasic(HTTPBase):
                 )
             else:
                 return None
+        invalid_user_credentials_exc = HTTPException(
+            status_code=HTTP_401_UNAUTHORIZED,
+            detail="Invalid authentication credentials",
+            headers=unauthorized_headers,
+        )
         try:
             data = b64decode(param).decode("ascii")
         except (ValueError, UnicodeDecodeError, binascii.Error):
@@ -113,7 +113,7 @@ class HTTPBearer(HTTPBase):
     async def __call__(
         self, request: Request
     ) -> Optional[HTTPAuthorizationCredentials]:
-        authorization: str = request.headers.get("Authorization")
+        authorization = request.headers.get("Authorization")
         scheme, credentials = get_authorization_scheme_param(authorization)
         if not (authorization and scheme and credentials):
             if self.auto_error:
@@ -148,7 +148,7 @@ class HTTPDigest(HTTPBase):
     async def __call__(
         self, request: Request
     ) -> Optional[HTTPAuthorizationCredentials]:
-        authorization: str = request.headers.get("Authorization")
+        authorization = request.headers.get("Authorization")
         scheme, credentials = get_authorization_scheme_param(authorization)
         if not (authorization and scheme and credentials):
             if self.auto_error:

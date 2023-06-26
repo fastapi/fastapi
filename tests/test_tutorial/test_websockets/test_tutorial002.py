@@ -4,20 +4,18 @@ from fastapi.websockets import WebSocketDisconnect
 
 from docs_src.websockets.tutorial002 import app
 
-client = TestClient(app)
-
 
 def test_main():
+    client = TestClient(app)
     response = client.get("/")
     assert response.status_code == 200, response.text
     assert b"<!DOCTYPE html>" in response.content
 
 
 def test_websocket_with_cookie():
+    client = TestClient(app, cookies={"session": "fakesession"})
     with pytest.raises(WebSocketDisconnect):
-        with client.websocket_connect(
-            "/items/foo/ws", cookies={"session": "fakesession"}
-        ) as websocket:
+        with client.websocket_connect("/items/foo/ws") as websocket:
             message = "Message one"
             websocket.send_text(message)
             data = websocket.receive_text()
@@ -33,6 +31,7 @@ def test_websocket_with_cookie():
 
 
 def test_websocket_with_header():
+    client = TestClient(app)
     with pytest.raises(WebSocketDisconnect):
         with client.websocket_connect("/items/bar/ws?token=some-token") as websocket:
             message = "Message one"
@@ -50,6 +49,7 @@ def test_websocket_with_header():
 
 
 def test_websocket_with_header_and_query():
+    client = TestClient(app)
     with pytest.raises(WebSocketDisconnect):
         with client.websocket_connect("/items/2/ws?q=3&token=some-token") as websocket:
             message = "Message one"
@@ -71,6 +71,7 @@ def test_websocket_with_header_and_query():
 
 
 def test_websocket_no_credentials():
+    client = TestClient(app)
     with pytest.raises(WebSocketDisconnect):
         with client.websocket_connect("/items/foo/ws"):
             pytest.fail(
@@ -79,6 +80,7 @@ def test_websocket_no_credentials():
 
 
 def test_websocket_invalid_data():
+    client = TestClient(app)
     with pytest.raises(WebSocketDisconnect):
         with client.websocket_connect("/items/foo/ws?q=bar&token=some-token"):
             pytest.fail(
