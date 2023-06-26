@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block announce %}
+<div class="announce-wrapper">
+  <div id="announce-left">
+    <div class="item">
+      <a class="announce-link" href="https://twitter.com/fastapi" target="_blank">
+        <span class="twemoji twitter">
+          {% include ".icons/fontawesome/brands/twitter.svg" %}
+        </span> Follow <strong>@fastapi</strong> on <strong>Twitter</strong> to stay updated
+      </a>
+    </div>
+    <div class="item">
+      <a class="announce-link" href="https://fastapi.tiangolo.com/newsletter/">
+        <span class="twemoji">
+          {% include ".icons/material/email.svg" %}
+        </span> Subscribe to the <strong>FastAPI and friends</strong> newsletter 🎉
+      </a>
+    </div>
+    <div class="item">
+      <iframe style="display: inline-block; vertical-align: middle; border: none; margin-right: 0.5rem;" src="https://github.com/sponsors/tiangolo/button" title="Sponsor tiangolo" height="35" width="116" style="border: 0;"></iframe> <a class="announce-link" target="_blank" href="https://github.com/sponsors/tiangolo">You can now sponsor <strong>FastAPI</strong> 🍰</a>
+    </div>
+  </div>
+  <div id="announce-right" style="position: relative;">
+    <div class="item">
+      <a title="CryptAPI: Your easy to use, secure and privacy oriented payment gateway." style="display: block; position: relative;" href="https://cryptapi.io/" target="_blank">
+        <span class="sponsor-badge">sponsor</span>
+        <img class="sponsor-image" src="/img/sponsors/cryptapi-banner.svg" />
+      </a>
+    </div>
+    <div class="item">
+      <a title="Build, run and scale your apps on a modern, reliable, and secure PaaS." style="display: block; position: relative;" href="https://platform.sh/try-it-now/?utm_source=fastapi-signup&utm_medium=banner&utm_campaign=FastAPI-signup-June-2023" target="_blank">
+        <span class="sponsor-badge">sponsor</span>
+        <img class="sponsor-image" src="/img/sponsors/platform-sh-banner.png" />
+      </a>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{%- block scripts %}
+{{ super() }}
+<!-- DocsQA integration start -->
+<script src="https://cdn.jsdelivr.net/npm/qabot@0.4"></script>
+<script>
+  // This prevents the global search from interfering with qa-bot's internal text input.
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('qa-bot').forEach((x) => {
+      x.addEventListener('keydown', (event) => {
+        event.stopPropagation();
+      });
+    });
+  });
+</script>
+<qa-bot
+  server="https://tiangolo-fastapi.docsqa.jina.ai"
+  theme="infer"
+  title="FastAPI Bot"
+  description="FastAPI framework, high performance, easy to learn, fast to code, ready for production"
+  style="font-size: 0.8rem"
+>
+  <template>
+      <dl>
+          <dt>You can ask questions about FastAPI. Try:</dt>
+          <dd>How do you deploy FastAPI?</dd>
+          <dd>What are type hints?</dd>
+          <dd>What is OpenAPI?</dd>
+      </dl>
+  </template>
+</qa-bot>
+<!-- DocsQA integration end -->
+{%- endblock %}
