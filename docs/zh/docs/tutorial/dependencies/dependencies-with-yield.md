@@ -19,7 +19,7 @@ FastAPI 支持一些依赖项可以进行 <abbr title='有时被称作 "exit", "
 !!! note "技术细节"
     任何可与下列装饰器一起有效使用的函数:
 
-    * <a href="https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager" class="external-link" target="_blank">`@contextlib.contextmanager`</a> 或 
+    * <a href="https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager" class="external-link" target="_blank">`@contextlib.contextmanager`</a> 或
     * <a href="https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager" class="external-link" target="_blank">`@contextlib.asynccontextmanager`</a>
 
     都可以被用做有效的 **FastAPI** 依赖。
@@ -71,10 +71,10 @@ yield语句后面的代码在响应返回之后执行:
 
 您可以有子依赖项和任意大小和形状的子依赖项的 "树" ，它们中的任何一个或所有都可以使用 `yield`。
 
-**FastAPI** will make sure that the "exit code" in each dependency with `yield` is run in the correct order. 
+**FastAPI** will make sure that the "exit code" in each dependency with `yield` is run in the correct order.
 FastAPI**将确保每个 `yield` 依赖项中的 "退出代码" 以正确的顺序运行。
 
-例如，`dependency_c` 可以依赖于 `dependency_b`, 并且 `dependency_b` 依赖于 `dependency_a`: 
+例如，`dependency_c` 可以依赖于 `dependency_b`, 并且 `dependency_b` 依赖于 `dependency_a`:
 
 ```Python hl_lines="4  12  20"
 {!../../../docs_src/dependencies/tutorial008.py!}
@@ -109,7 +109,7 @@ FastAPI**将确保每个 `yield` 依赖项中的 "退出代码" 以正确的顺�
 
 在 `yield` 之后的退出代码中抛出一个 `HTTPException` 或类似的异常可能非常吸引人，但是 **它不会起作用** 。
 
-`yield` 依赖项的退出代码是在[Exception Handlers](../handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank} 之后执行。在你依赖项的退出代码(`yield` 之后)中抛出的异常并没有被捕获。 
+`yield` 依赖项的退出代码是在[Exception Handlers](../handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank} 之后执行。在你依赖项的退出代码(`yield` 之后)中抛出的异常并没有被捕获。
 
 因此，如果你在 `yield` 之后抛出 `HTTPException` ，默认的 (或任何自定义的) 捕获 `HTTPException` 并返回 HTTP 400 响应的异常处理程序将不会在那里捕获异常。
 
@@ -119,7 +119,7 @@ FastAPI**将确保每个 `yield` 依赖项中的 "退出代码" 以正确的顺�
 
 但如果后台任务创建了一个数据库错误，至少您可以在 `yield` 依赖项中回滚或干净地关闭会话，并可能记录错误或报告给远程跟踪系统。
 
-If you have some code that you know could raise an exception, do the most normal/"Pythonic" thing and add a `try` block in that section of the code. 
+If you have some code that you know could raise an exception, do the most normal/"Pythonic" thing and add a `try` block in that section of the code.
 如果你知道某些代码可能会引发异常，做最普通的/"Pythonic" 的事情，并在该代码部分添加一个 `try` 代码块。
 
 如果你有自定义异常，并且想在响应返回 *之前* 处理或可能修改该响应，甚至可能抛出一个 `HTTPException`，你可以创建一个[Custom Exception Handler](../handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank}。
@@ -216,7 +216,7 @@ with open("./somefile.txt") as f:
 !!! tip
     另一种创建上下文管理器的方法是:
 
-    * <a href="https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager" class="external-link" target="_blank">`@contextlib.contextmanager`</a> or 
+    * <a href="https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager" class="external-link" target="_blank">`@contextlib.contextmanager`</a> or
     * <a href="https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager" class="external-link" target="_blank">`@contextlib.asynccontextmanager`</a>
 
     用它们来装饰一个含有单一 `yield` 的函数。
