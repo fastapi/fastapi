@@ -76,7 +76,7 @@ http://127.0.0.1:8000/items/?skip=20
 !!! note "笔记"
 
     因为默认值为 `= None`，FastAPI 把 `q` 识别为可选参数。
-    
+
     FastAPI 不使用 `Optional[str]` 中的 `Optional`（只使用 `str`），但 `Optional[str]` 可以帮助编辑器发现代码中的错误。
 
 ## 查询参数类型转换
@@ -199,4 +199,3 @@ http://127.0.0.1:8000/items/foo-item?needy=sooooneedy
 !!! tip "提示"
 
     还可以像在[路径参数](path-params.md#predefined-values){.internal-link target=_blank} 中那样使用 `Enum`。
-
