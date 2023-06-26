@@ -4,17 +4,29 @@ from typing import Any, Dict, Optional
 from fastapi.encoders import jsonable_encoder
 from starlette.responses import HTMLResponse
 
+swagger_ui_default_parameters = {
+    "dom_id": "#swagger-ui",
+    "layout": "BaseLayout",
+    "deepLinking": True,
+    "showExtensions": True,
+    "showCommonExtensions": True,
+}
+
 
 def get_swagger_ui_html(
     *,
     openapi_url: str,
     title: str,
-    swagger_js_url: str = "https://cdn.jsdelivr.net/npm/swagger-ui-dist@3/swagger-ui-bundle.js",
-    swagger_css_url: str = "https://cdn.jsdelivr.net/npm/swagger-ui-dist@3/swagger-ui.css",
+    swagger_js_url: str = "https://cdn.jsdelivr.net/npm/swagger-ui-dist@4/swagger-ui-bundle.js",
+    swagger_css_url: str = "https://cdn.jsdelivr.net/npm/swagger-ui-dist@4/swagger-ui.css",
     swagger_favicon_url: str = "https://fastapi.tiangolo.com/img/favicon.png",
     oauth2_redirect_url: Optional[str] = None,
     init_oauth: Optional[Dict[str, Any]] = None,
+    swagger_ui_parameters: Optional[Dict[str, Any]] = None,
 ) -> HTMLResponse:
+    current_swagger_ui_parameters = swagger_ui_default_parameters.copy()
+    if swagger_ui_parameters:
+        current_swagger_ui_parameters.update(swagger_ui_parameters)
 
     html = f"""
     <!DOCTYPE html>
@@ -34,19 +46,17 @@ def get_swagger_ui_html(
         url: '{openapi_url}',
     """
 
+    for key, value in current_swagger_ui_parameters.items():
+        html += f"{json.dumps(key)}: {json.dumps(jsonable_encoder(value))},\n"
+
     if oauth2_redirect_url:
         html += f"oauth2RedirectUrl: window.location.origin + '{oauth2_redirect_url}',"
 
     html += """
-        dom_id: '#swagger-ui',
-        presets: [
+    presets: [
         SwaggerUIBundle.presets.apis,
         SwaggerUIBundle.SwaggerUIStandalonePreset
         ],
-        layout: "BaseLayout",
-        deepLinking: true,
-        showExtensions: true,
-        showCommonExtensions: true
     })"""
 
     if init_oauth:
@@ -96,6 +106,9 @@ def get_redoc_html(
     </style>
     </head>
     <body>
+    <noscript>
+        ReDoc requires Javascript to function. Please enable it to browse the documentation.
+    </noscript>
     <redoc spec-url="{openapi_url}"></redoc>
     <script src="{redoc_js_url}"> </script>
     </body>
@@ -105,12 +118,14 @@ def get_redoc_html(
 
 
 def get_swagger_ui_oauth2_redirect_html() -> HTMLResponse:
+    # copied from https://github.com/swagger-api/swagger-ui/blob/v4.14.0/dist/oauth2-redirect.html
     html = """
-    <!DOCTYPE html>
+    <!doctype html>
     <html lang="en-US">
-    <body onload="run()">
-    </body>
-    </html>
+    <head>
+        <title>Swagger UI: OAuth2 Redirect</title>
+    </head>
+    <body>
     <script>
         'use strict';
         function run () {
@@ -120,31 +135,32 @@ def get_swagger_ui_oauth2_redirect_html() -> HTMLResponse:
             var isValid, qp, arr;
 
             if (/code|token|error/.test(window.location.hash)) {
-                qp = window.location.hash.substring(1);
+                qp = window.location.hash.substring(1).replace('?', '&');
             } else {
                 qp = location.search.substring(1);
             }
 
-            arr = qp.split("&")
-            arr.forEach(function (v,i,_arr) { _arr[i] = '"' + v.replace('=', '":"') + '"';})
+            arr = qp.split("&");
+            arr.forEach(function (v,i,_arr) { _arr[i] = '"' + v.replace('=', '":"') + '"';});
             qp = qp ? JSON.parse('{' + arr.join() + '}',
                     function (key, value) {
-                        return key === "" ? value : decodeURIComponent(value)
+                        return key === "" ? value : decodeURIComponent(value);
                     }
-            ) : {}
+            ) : {};
 
-            isValid = qp.state === sentState
+            isValid = qp.state === sentState;
 
             if ((
-            oauth2.auth.schema.get("flow") === "accessCode"||
-            oauth2.auth.schema.get("flow") === "authorizationCode"
+              oauth2.auth.schema.get("flow") === "accessCode" ||
+              oauth2.auth.schema.get("flow") === "authorizationCode" ||
+              oauth2.auth.schema.get("flow") === "authorization_code"
             ) && !oauth2.auth.code) {
                 if (!isValid) {
                     oauth2.errCb({
                         authId: oauth2.auth.name,
                         source: "auth",
                         level: "warning",
-                        message: "Authorization may be unsafe, passed state was changed in server Passed state wasn't returned from auth server"
+                        message: "Authorization may be unsafe, passed state was changed in server. The passed state wasn't returned from auth server."
                     });
                 }
 
@@ -153,7 +169,7 @@ def get_swagger_ui_oauth2_redirect_html() -> HTMLResponse:
                     oauth2.auth.code = qp.code;
                     oauth2.callback({auth: oauth2.auth, redirectUrl: redirectUrl});
                 } else {
-                    let oauthErrorMsg
+                    let oauthErrorMsg;
                     if (qp.error) {
                         oauthErrorMsg = "["+qp.error+"]: " +
                             (qp.error_description ? qp.error_description+ ". " : "no accessCode received from the server. ") +
@@ -164,7 +180,7 @@ def get_swagger_ui_oauth2_redirect_html() -> HTMLResponse:
                         authId: oauth2.auth.name,
                         source: "auth",
                         level: "error",
-                        message: oauthErrorMsg || "[Authorization failed]: no accessCode received from the server"
+                        message: oauthErrorMsg || "[Authorization failed]: no accessCode received from the server."
                     });
                 }
             } else {
@@ -172,6 +188,16 @@ def get_swagger_ui_oauth2_redirect_html() -> HTMLResponse:
             }
             window.close();
         }
+
+        if (document.readyState !== 'loading') {
+            run();
+        } else {
+            document.addEventListener('DOMContentLoaded', function () {
+                run();
+            });
+        }
     </script>
+    </body>
+    </html>
         """
     return HTMLResponse(content=html)
