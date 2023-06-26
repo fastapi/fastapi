@@ -11,20 +11,20 @@ FastAPI 可以让依赖项执行<abbr title='也称为 "exit"、"cleanup"、"tea
 !!! info "说明"
 
     为了能正常运行，需要使用 **Python 3.7** 或以上版本，如果使用 **Python 3.6**，则需要安装**backports**：
-    
+
     ```
     pip install async-exit-stack async-generator
     ```
-    
+
     此命令会安装 <a href="https://github.com/sorcio/async_exit_stack" class="external-link" target="_blank">async-exit-stack</a> 和 <a href="https://github.com/python-trio/async_generator" class="external-link" target="_blank">async-generator</a>。
 
 !!! note "技术细节"
 
     任何兼容下面两个装饰器的函数都可以用作 **FastAPI** 的依赖项：
-    
-    * <a href="https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager" class="external-link" target="_blank">`@contextlib.contextmanager`</a> 或 
+
+    * <a href="https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager" class="external-link" target="_blank">`@contextlib.contextmanager`</a> 或
     * <a href="https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager" class="external-link" target="_blank">`@contextlib.asynccontextmanager`</a>
-    
+
     实际上，FastAPI 内部使用的就是这两个装饰器。
 
 ## 数据库生成器依赖项
@@ -52,7 +52,7 @@ FastAPI 可以让依赖项执行<abbr title='也称为 "exit"、"cleanup"、"tea
 !!! tip "提示"
 
     生成器依赖项可以使用**异步**函数或普通函数。
-    
+
     与普通依赖项一样，**FastAPI** 会正确处理每个生成器依赖项。
 
 ## 在依赖项中使用 `yield` 和 `try`
@@ -102,7 +102,7 @@ FastAPI 可以让依赖项执行<abbr title='也称为 "exit"、"cleanup"、"tea
 !!! note "技术细节"
 
     生成器依赖项的实现依托于 Python 的<a href="https://docs.python.org/3/library/contextlib.html" class="external-link" target="_blank">上下文管理器</a>。
-    
+
     **FastAPI** 内部使用的就是 Python 的上下文管理器。
 
 ## 生成器依赖项和 `HTTPException`
@@ -172,14 +172,14 @@ participant tasks as 后台任务
 !!! info "说明"
 
     FastAPI 只会向客户端发送**一个响应**。这个响应可能是错误响应，也可能是来自*路径操作*的响应。
-    
+
     发送完这个响应后，不能再发送其它响应。
 
 
 !!! tip "提示"
 
     上图显示的是 `HTTPException`, 但是也可以触发创建了[自定义异常处理器](../handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank}的任何其它异常。该异常不是由依赖项的退出代码处理，而是由自定义异常处理器处理。
-    
+
     但是，如果触发的不是由异常处理器处理的异常，则依赖项的退出代码将处理该异常。
 
 ## 上下文管理器
@@ -207,7 +207,7 @@ with open("./somefile.txt") as f:
 !!! warning "警告"
 
     下述内容有点**难度**。
-    
+
     如果您刚开始使用 **FastAPI**，可以先跳过这部分内容。
 
 在 Python 中可以通过<a href="https://docs.python.org/3/reference/datamodel.html#context-managers" class="external-link" target="_blank">创建含有 `__enter__()` 和 `__exit__() 这两个方法的类`</a>来创建上下文管理器。
@@ -221,14 +221,14 @@ with open("./somefile.txt") as f:
 !!! tip "提示"
 
     创建上下文管理器还可以使用另一种方法：
-    
+
     * <a href="https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager" class="external-link" target="_blank">`@contextlib.contextmanager`</a> 或
     * <a href="https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager" class="external-link" target="_blank">`@contextlib.asynccontextmanager`</a>
-    
+
     用这两个上下文管理器装饰含有单个 `yield` 的函数。
-    
+
     这是 **FastAPI** 内部的生成器依赖项使用方式。
-    
+
     但是，开发者不必为 FastAPI 依赖项使用装饰器，我们不提倡这种操作。
-    
+
     FastAPI 会在内部进行处理。
