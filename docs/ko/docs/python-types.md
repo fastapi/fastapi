@@ -6,7 +6,7 @@
 
 변수의 타입을 지정하면 에디터와 툴이 더 많은 도움을 줄 수 있게 됩니다.
 
-이 문서는 파이썬 타입 힌트에 대한 **빠른 자습서 / 내용환기** 수준의 문서입니다. 여기서는 **FastAPI**를 쓰기 위한 최소한의 내용만을 다룹니다. 
+이 문서는 파이썬 타입 힌트에 대한 **빠른 자습서 / 내용환기** 수준의 문서입니다. 여기서는 **FastAPI**를 쓰기 위한 최소한의 내용만을 다룹니다.
 
 **FastAPI**는 타입 힌트에 기반을 두고 있으며, 이는 많은 장점과 이익이 있습니다.
 
@@ -29,9 +29,9 @@
 John Doe
 ```
 
-함수는 아래와 같이 실행됩니다: 
+함수는 아래와 같이 실행됩니다:
 
-* `first_name`과 `last_name`를 받습니다. 
+* `first_name`과 `last_name`를 받습니다.
 * `title()`로 각 첫 문자를 대문자로 변환시킵니다.
 * 두 단어를 중간에 공백을 두고 <abbr title="두 개를 하나로 차례차례 이어지게 하다">연결</abbr>합니다.
 
@@ -156,7 +156,7 @@ John Doe
 
 예를 들면, `str`의 `list`인 변수를 정의해봅시다.
 
-`typing`에서  `List`(대문자 `L`)를 import 합니다. 
+`typing`에서  `List`(대문자 `L`)를 import 합니다.
 
 ```Python hl_lines="1"
 {!../../../docs_src/python_types/tutorial006.py!}
@@ -283,7 +283,7 @@ Pydantic 공식 문서 예시:
 
 !!! info "정보"
     Pydantic<에 대해 더 배우고 싶다면 <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">공식 문서</a>를 참고하세요.</a>
-    
+
 
 **FastAPI**는 모두 Pydantic을 기반으로 되어 있습니다.
 
