@@ -70,10 +70,7 @@ def complete_existing_lang(incomplete: str):
 @app.callback()
 def callback() -> None:
     if is_mkdocs_insiders():
-        print("Using mkdocs-material-insiders")
         os.environ["INSIDERS_FILE"] = "../en/mkdocs.insiders.yml"
-    else:
-        print("Using mkdocs-material")
     # For MacOS with insiders and Cairo
     os.environ["DYLD_FALLBACK_LIBRARY_PATH"] = "/opt/homebrew/lib"
 
@@ -112,6 +109,8 @@ def build_lang(
     """
     Build the docs for a language.
     """
+    insiders_env_file = os.environ["INSIDERS_FILE"]
+    print(f"Insiders file {insiders_env_file}")
     lang_path: Path = Path("docs") / lang
     if not lang_path.is_dir():
         typer.echo(f"The language translation doesn't seem to exist yet: {lang}")
