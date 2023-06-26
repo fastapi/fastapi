@@ -1,4 +1,4 @@
-# Advanced User Guide - Intro
+# Advanced User Guide
 
 ## Additional Features
 
