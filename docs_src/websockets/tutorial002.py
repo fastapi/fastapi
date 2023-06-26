@@ -1,6 +1,14 @@
-from typing import Optional
+from typing import Union
 
-from fastapi import Cookie, Depends, FastAPI, Query, WebSocket, status
+from fastapi import (
+    Cookie,
+    Depends,
+    FastAPI,
+    Query,
+    WebSocket,
+    WebSocketException,
+    status,
+)
 from fastapi.responses import HTMLResponse
 
 app = FastAPI()
@@ -57,11 +65,11 @@ async def get():
 
 async def get_cookie_or_token(
     websocket: WebSocket,
-    session: Optional[str] = Cookie(None),
-    token: Optional[str] = Query(None),
+    session: Union[str, None] = Cookie(default=None),
+    token: Union[str, None] = Query(default=None),
 ):
     if session is None and token is None:
-        await websocket.close(code=status.WS_1008_POLICY_VIOLATION)
+        raise WebSocketException(code=status.WS_1008_POLICY_VIOLATION)
     return session or token
 
 
@@ -69,7 +77,7 @@ async def get_cookie_or_token(
 async def websocket_endpoint(
     websocket: WebSocket,
     item_id: str,
-    q: Optional[int] = None,
+    q: Union[int, None] = None,
     cookie_or_token: str = Depends(get_cookie_or_token),
 ):
     await websocket.accept()
