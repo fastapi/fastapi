@@ -11,7 +11,7 @@
 !!! danger "危险"
 
     千万不要存储用户的明文密码。始终存储可以进行验证的**安全哈希值**。
-    
+
     如果不了解这方面的知识，请参阅[安全性中的章节](security/simple-oauth2.md#password-hashing){.internal-link target=_blank}，了解什么是**密码哈希**。
 
 ## 多个模型
