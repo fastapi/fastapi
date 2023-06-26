@@ -101,7 +101,7 @@ You can configure the two documentation user interfaces included:
 * **Swagger UI**: served at `/docs`.
     * You can set its URL with the parameter `docs_url`.
     * You can disable it by setting `docs_url=None`.
-* ReDoc: served at `/redoc`.
+* **ReDoc**: served at `/redoc`.
     * You can set its URL with the parameter `redoc_url`.
     * You can disable it by setting `redoc_url=None`.
 

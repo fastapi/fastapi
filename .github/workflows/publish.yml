@@ -18,7 +18,8 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: "3.7"
-          cache: "pip"
+          # Issue ref: https://github.com/actions/setup-python/issues/436
+          # cache: "pip"
           cache-dependency-path: pyproject.toml
       - uses: actions/cache@v3
         id: cache
@@ -31,16 +32,10 @@ jobs:
       - name: Build distribution
         run: python -m build
       - name: Publish
-        uses: pypa/gh-action-pypi-publish@v1.6.4
+        uses: pypa/gh-action-pypi-publish@v1.8.6
         with:
           password: ${{ secrets.PYPI_API_TOKEN }}
       - name: Dump GitHub context
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
-      # - name: Notify
-      #   env:
-      #     GITTER_TOKEN: ${{ secrets.GITTER_TOKEN }}
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #     TAG: ${{ github.event.release.name }}
-      #   run: bash scripts/notify.sh
