@@ -1,7 +1,7 @@
 from enum import Enum
-from typing import Any, Callable, Optional, Sequence
+from typing import Any, Callable, Dict, Optional, Sequence
 
-from pydantic.fields import FieldInfo
+from pydantic.fields import FieldInfo, Undefined
 
 
 class ParamTypes(Enum):
@@ -16,7 +16,7 @@ class Param(FieldInfo):
 
     def __init__(
         self,
-        default: Any,
+        default: Any = Undefined,
         *,
         alias: Optional[str] = None,
         title: Optional[str] = None,
@@ -28,12 +28,18 @@ class Param(FieldInfo):
         min_length: Optional[int] = None,
         max_length: Optional[int] = None,
         regex: Optional[str] = None,
+        example: Any = Undefined,
+        examples: Optional[Dict[str, Any]] = None,
         deprecated: Optional[bool] = None,
+        include_in_schema: bool = True,
         **extra: Any,
     ):
         self.deprecated = deprecated
+        self.example = example
+        self.examples = examples
+        self.include_in_schema = include_in_schema
         super().__init__(
-            default,
+            default=default,
             alias=alias,
             title=title,
             description=description,
@@ -56,7 +62,7 @@ class Path(Param):
 
     def __init__(
         self,
-        default: Any,
+        default: Any = ...,
         *,
         alias: Optional[str] = None,
         title: Optional[str] = None,
@@ -68,12 +74,16 @@ class Path(Param):
         min_length: Optional[int] = None,
         max_length: Optional[int] = None,
         regex: Optional[str] = None,
+        example: Any = Undefined,
+        examples: Optional[Dict[str, Any]] = None,
         deprecated: Optional[bool] = None,
+        include_in_schema: bool = True,
         **extra: Any,
     ):
+        assert default is ..., "Path parameters cannot have a default value"
         self.in_ = self.in_
         super().__init__(
-            ...,
+            default=default,
             alias=alias,
             title=title,
             description=description,
@@ -85,6 +95,9 @@ class Path(Param):
             max_length=max_length,
             regex=regex,
             deprecated=deprecated,
+            example=example,
+            examples=examples,
+            include_in_schema=include_in_schema,
             **extra,
         )
 
@@ -94,7 +107,7 @@ class Query(Param):
 
     def __init__(
         self,
-        default: Any,
+        default: Any = Undefined,
         *,
         alias: Optional[str] = None,
         title: Optional[str] = None,
@@ -106,11 +119,14 @@ class Query(Param):
         min_length: Optional[int] = None,
         max_length: Optional[int] = None,
         regex: Optional[str] = None,
+        example: Any = Undefined,
+        examples: Optional[Dict[str, Any]] = None,
         deprecated: Optional[bool] = None,
+        include_in_schema: bool = True,
         **extra: Any,
     ):
         super().__init__(
-            default,
+            default=default,
             alias=alias,
             title=title,
             description=description,
@@ -122,6 +138,9 @@ class Query(Param):
             max_length=max_length,
             regex=regex,
             deprecated=deprecated,
+            example=example,
+            examples=examples,
+            include_in_schema=include_in_schema,
             **extra,
         )
 
@@ -131,7 +150,7 @@ class Header(Param):
 
     def __init__(
         self,
-        default: Any,
+        default: Any = Undefined,
         *,
         alias: Optional[str] = None,
         convert_underscores: bool = True,
@@ -144,12 +163,15 @@ class Header(Param):
         min_length: Optional[int] = None,
         max_length: Optional[int] = None,
         regex: Optional[str] = None,
+        example: Any = Undefined,
+        examples: Optional[Dict[str, Any]] = None,
         deprecated: Optional[bool] = None,
+        include_in_schema: bool = True,
         **extra: Any,
     ):
         self.convert_underscores = convert_underscores
         super().__init__(
-            default,
+            default=default,
             alias=alias,
             title=title,
             description=description,
@@ -161,6 +183,9 @@ class Header(Param):
             max_length=max_length,
             regex=regex,
             deprecated=deprecated,
+            example=example,
+            examples=examples,
+            include_in_schema=include_in_schema,
             **extra,
         )
 
@@ -170,7 +195,7 @@ class Cookie(Param):
 
     def __init__(
         self,
-        default: Any,
+        default: Any = Undefined,
         *,
         alias: Optional[str] = None,
         title: Optional[str] = None,
@@ -182,11 +207,14 @@ class Cookie(Param):
         min_length: Optional[int] = None,
         max_length: Optional[int] = None,
         regex: Optional[str] = None,
+        example: Any = Undefined,
+        examples: Optional[Dict[str, Any]] = None,
         deprecated: Optional[bool] = None,
+        include_in_schema: bool = True,
         **extra: Any,
     ):
         super().__init__(
-            default,
+            default=default,
             alias=alias,
             title=title,
             description=description,
@@ -198,6 +226,9 @@ class Cookie(Param):
             max_length=max_length,
             regex=regex,
             deprecated=deprecated,
+            example=example,
+            examples=examples,
+            include_in_schema=include_in_schema,
             **extra,
         )
 
@@ -205,7 +236,7 @@ class Cookie(Param):
 class Body(FieldInfo):
     def __init__(
         self,
-        default: Any,
+        default: Any = Undefined,
         *,
         embed: bool = False,
         media_type: str = "application/json",
@@ -219,12 +250,16 @@ class Body(FieldInfo):
         min_length: Optional[int] = None,
         max_length: Optional[int] = None,
         regex: Optional[str] = None,
+        example: Any = Undefined,
+        examples: Optional[Dict[str, Any]] = None,
         **extra: Any,
     ):
         self.embed = embed
         self.media_type = media_type
+        self.example = example
+        self.examples = examples
         super().__init__(
-            default,
+            default=default,
             alias=alias,
             title=title,
             description=description,
@@ -245,7 +280,7 @@ class Body(FieldInfo):
 class Form(Body):
     def __init__(
         self,
-        default: Any,
+        default: Any = Undefined,
         *,
         media_type: str = "application/x-www-form-urlencoded",
         alias: Optional[str] = None,
@@ -258,10 +293,12 @@ class Form(Body):
         min_length: Optional[int] = None,
         max_length: Optional[int] = None,
         regex: Optional[str] = None,
+        example: Any = Undefined,
+        examples: Optional[Dict[str, Any]] = None,
         **extra: Any,
     ):
         super().__init__(
-            default,
+            default=default,
             embed=True,
             media_type=media_type,
             alias=alias,
@@ -274,6 +311,8 @@ class Form(Body):
             min_length=min_length,
             max_length=max_length,
             regex=regex,
+            example=example,
+            examples=examples,
             **extra,
         )
 
@@ -281,7 +320,7 @@ class Form(Body):
 class File(Form):
     def __init__(
         self,
-        default: Any,
+        default: Any = Undefined,
         *,
         media_type: str = "multipart/form-data",
         alias: Optional[str] = None,
@@ -294,10 +333,12 @@ class File(Form):
         min_length: Optional[int] = None,
         max_length: Optional[int] = None,
         regex: Optional[str] = None,
+        example: Any = Undefined,
+        examples: Optional[Dict[str, Any]] = None,
         **extra: Any,
     ):
         super().__init__(
-            default,
+            default=default,
             media_type=media_type,
             alias=alias,
             title=title,
@@ -309,6 +350,8 @@ class File(Form):
             min_length=min_length,
             max_length=max_length,
             regex=regex,
+            example=example,
+            examples=examples,
             **extra,
         )
 

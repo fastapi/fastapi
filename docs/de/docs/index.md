@@ -128,7 +128,7 @@ Sie benötigen außerdem einen ASGI-Server, für die Produktivumgebung beispiels
 <div class="termy">
 
 ```console
-$ pip install uvicorn[standard]
+$ pip install "uvicorn[standard]"
 
 ---> 100%
 ```
