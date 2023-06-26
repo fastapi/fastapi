@@ -1,0 +1,16 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security Contact
+    about: Please report security vulnerabilities to security@tiangolo.com
+  - name: Question or Problem
+    about: Ask a question or ask about a problem in GitHub Discussions.
+    url: https://github.com/tiangolo/fastapi/discussions/categories/questions
+  - name: Feature Request
+    about: To suggest an idea or ask about a feature, please start with a question saying what you would like to achieve. There might be a way to do it already.
+    url: https://github.com/tiangolo/fastapi/discussions/categories/questions
+  - name: Show and tell
+    about: Show what you built with FastAPI or to be used with FastAPI.
+    url: https://github.com/tiangolo/fastapi/discussions/categories/show-and-tell
+  - name: Translations
+    about: Coordinate translations in GitHub Discussions.
+    url: https://github.com/tiangolo/fastapi/discussions/categories/translations

@@ -2,6 +2,7 @@ import pytest
 from fastapi import APIRouter, FastAPI
 from fastapi.routing import APIRoute
 from fastapi.testclient import TestClient
+from starlette.routing import Route
 
 app = FastAPI()
 
@@ -45,49 +46,6 @@ app.include_router(router=router_a, prefix="/a")
 
 client = TestClient(app)
 
-openapi_schema = {
-    "openapi": "3.0.2",
-    "info": {"title": "FastAPI", "version": "0.1.0"},
-    "paths": {
-        "/a/": {
-            "get": {
-                "responses": {
-                    "200": {
-                        "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
-                    }
-                },
-                "summary": "Get A",
-                "operationId": "get_a_a__get",
-            }
-        },
-        "/a/b/": {
-            "get": {
-                "responses": {
-                    "200": {
-                        "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
-                    }
-                },
-                "summary": "Get B",
-                "operationId": "get_b_a_b__get",
-            }
-        },
-        "/a/b/c/": {
-            "get": {
-                "responses": {
-                    "200": {
-                        "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
-                    }
-                },
-                "summary": "Get C",
-                "operationId": "get_c_a_b_c__get",
-            }
-        },
-    },
-}
-
 
 @pytest.mark.parametrize(
     "path,expected_status,expected_response",
@@ -95,7 +53,6 @@ openapi_schema = {
         ("/a", 200, {"msg": "A"}),
         ("/a/b", 200, {"msg": "B"}),
         ("/a/b/c", 200, {"msg": "C"}),
-        ("/openapi.json", 200, openapi_schema),
     ],
 )
 def test_get_path(path, expected_status, expected_response):
@@ -106,9 +63,56 @@ def test_get_path(path, expected_status, expected_response):
 
 def test_route_classes():
     routes = {}
-    r: APIRoute
     for r in app.router.routes:
+        assert isinstance(r, Route)
         routes[r.path] = r
-    assert routes["/a/"].x_type == "A"
-    assert routes["/a/b/"].x_type == "B"
-    assert routes["/a/b/c/"].x_type == "C"
+    assert getattr(routes["/a/"], "x_type") == "A"  # noqa: B009
+    assert getattr(routes["/a/b/"], "x_type") == "B"  # noqa: B009
+    assert getattr(routes["/a/b/c/"], "x_type") == "C"  # noqa: B009
+
+
+def test_openapi_schema():
+    response = client.get("/openapi.json")
+    assert response.status_code == 200, response.text
+    assert response.json() == {
+        "openapi": "3.0.2",
+        "info": {"title": "FastAPI", "version": "0.1.0"},
+        "paths": {
+            "/a/": {
+                "get": {
+                    "responses": {
+                        "200": {
+                            "description": "Successful Response",
+                            "content": {"application/json": {"schema": {}}},
+                        }
+                    },
+                    "summary": "Get A",
+                    "operationId": "get_a_a__get",
+                }
+            },
+            "/a/b/": {
+                "get": {
+                    "responses": {
+                        "200": {
+                            "description": "Successful Response",
+                            "content": {"application/json": {"schema": {}}},
+                        }
+                    },
+                    "summary": "Get B",
+                    "operationId": "get_b_a_b__get",
+                }
+            },
+            "/a/b/c/": {
+                "get": {
+                    "responses": {
+                        "200": {
+                            "description": "Successful Response",
+                            "content": {"application/json": {"schema": {}}},
+                        }
+                    },
+                    "summary": "Get C",
+                    "operationId": "get_c_a_b_c__get",
+                }
+            },
+        },
+    }
