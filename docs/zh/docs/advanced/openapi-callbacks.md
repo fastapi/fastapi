@@ -65,7 +65,7 @@ requests.post(callback_url, json={"description": "Invoice paid", "paid": True})
 !!! tip "提示"
 
     实际的回调只是 HTTP 请求。
-    
+
     实现回调时，要使用 <a href="https://www.encode.io/httpx/" class="external-link" target="_blank">HTTPX</a> 或 <a href="https://requests.readthedocs.io/" class="external-link" target="_blank">Requests</a>。
 
 ## 编写回调文档代码
@@ -78,8 +78,8 @@ requests.post(callback_url, json={"description": "Invoice paid", "paid": True})
 
 !!! tip "提示"
 
-    编写存档回调的代码时，假设您是*外部开发者*可能会用的上。并且您当前正在实现的是*外部 API*，不是*您自己的 API*。 
-    
+    编写存档回调的代码时，假设您是*外部开发者*可能会用的上。并且您当前正在实现的是*外部 API*，不是*您自己的 API*。
+
     临时改变（为外部开发者的）视角能让您更清楚该如何放置*外部 API* 响应和请求体的参数与 Pydantic 模型等。
 
 ### 创建回调的 `APIRouter`
@@ -182,4 +182,3 @@ JSON 请求体包含如下内容：
 就能看到文档的*路径操作*已经包含了**回调**的内容以及*外部 API*：
 
 <img src="/img/tutorial/openapi-callbacks/image01.png">
-
