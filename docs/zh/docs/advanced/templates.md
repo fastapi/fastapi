@@ -37,7 +37,7 @@ $ pip install aiofiles
 * 导入 `Jinja2Templates`
 * 创建可复用的 `templates` 对象
 * 在返回模板的*路径操作*中声明 `Request` 参数
-* 使用 `templates` 渲染并返回 `TemplateResponse`， 以键值对方式在 Jinja2 的 **context** 中传递 `request` 
+* 使用 `templates` 渲染并返回 `TemplateResponse`， 以键值对方式在 Jinja2 的 **context** 中传递 `request`
 
 ```Python hl_lines="4  11  15-16"
 {!../../../docs_src/templates/tutorial001.py!}
@@ -54,7 +54,7 @@ $ pip install aiofiles
 !!! note "技术细节"
 
     您还可以使用 `from starlette.templating import Jinja2Templates`。
-    
+
     **FastAPI** 的 `fastapi.templating` 只是为开发者提供的快捷方式。实际上，绝大多数可用响应都直接继承自 Starlette。 `Request` 与 `StaticFiles` 也一样。
 
 ## 编写模板
