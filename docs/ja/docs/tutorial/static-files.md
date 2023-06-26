@@ -2,20 +2,6 @@
 
 `StaticFiles` を使用して、ディレクトリから静的ファイルを自動的に提供できます。
 
-## `aiofiles` をインストール
-
-まず、`aiofiles` をインストールする必要があります:
-
-<div class="termy">
-
-```console
-$ pip install aiofiles
-
----> 100%
-```
-
-</div>
-
 ## `StaticFiles` の使用
 
 * `StaticFiles` をインポート。

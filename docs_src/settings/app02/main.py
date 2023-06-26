@@ -2,18 +2,18 @@ from functools import lru_cache
 
 from fastapi import Depends, FastAPI
 
-from . import config
+from .config import Settings
 
 app = FastAPI()
 
 
 @lru_cache()
 def get_settings():
-    return config.Settings()
+    return Settings()
 
 
 @app.get("/info")
-async def info(settings: config.Settings = Depends(get_settings)):
+async def info(settings: Settings = Depends(get_settings)):
     return {
         "app_name": settings.app_name,
         "admin_email": settings.admin_email,
