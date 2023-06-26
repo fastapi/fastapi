@@ -1,6 +1,6 @@
 -e .
 mkdocs==1.4.3
-mkdocs-material==9.1.16
+mkdocs-material==9.1.17
 mdx-include >=1.4.1,<2.0.0
 mkdocs-markdownextradata-plugin >=0.1.7,<0.3.0
 typer-cli >=0.0.13,<0.0.14
