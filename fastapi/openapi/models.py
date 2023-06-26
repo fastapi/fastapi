@@ -3,6 +3,7 @@ from typing import Any, Callable, Dict, Iterable, List, Optional, Union
 
 from fastapi.logger import logger
 from pydantic import AnyUrl, BaseModel, Field
+from typing_extensions import Literal
 
 try:
     import email_validator  # type: ignore
@@ -73,7 +74,7 @@ class Server(BaseModel):
 
 
 class Reference(BaseModel):
-    ref: str = Field(..., alias="$ref")
+    ref: str = Field(alias="$ref")
 
 
 class Discriminator(BaseModel):
@@ -101,29 +102,29 @@ class ExternalDocumentation(BaseModel):
 
 
 class Schema(BaseModel):
-    ref: Optional[str] = Field(None, alias="$ref")
+    ref: Optional[str] = Field(default=None, alias="$ref")
     title: Optional[str] = None
     multipleOf: Optional[float] = None
     maximum: Optional[float] = None
     exclusiveMaximum: Optional[float] = None
     minimum: Optional[float] = None
     exclusiveMinimum: Optional[float] = None
-    maxLength: Optional[int] = Field(None, gte=0)
-    minLength: Optional[int] = Field(None, gte=0)
+    maxLength: Optional[int] = Field(default=None, ge=0)
+    minLength: Optional[int] = Field(default=None, ge=0)
     pattern: Optional[str] = None
-    maxItems: Optional[int] = Field(None, gte=0)
-    minItems: Optional[int] = Field(None, gte=0)
+    maxItems: Optional[int] = Field(default=None, ge=0)
+    minItems: Optional[int] = Field(default=None, ge=0)
     uniqueItems: Optional[bool] = None
-    maxProperties: Optional[int] = Field(None, gte=0)
-    minProperties: Optional[int] = Field(None, gte=0)
+    maxProperties: Optional[int] = Field(default=None, ge=0)
+    minProperties: Optional[int] = Field(default=None, ge=0)
     required: Optional[List[str]] = None
     enum: Optional[List[Any]] = None
     type: Optional[str] = None
     allOf: Optional[List["Schema"]] = None
     oneOf: Optional[List["Schema"]] = None
     anyOf: Optional[List["Schema"]] = None
-    not_: Optional["Schema"] = Field(None, alias="not")
-    items: Optional["Schema"] = None
+    not_: Optional["Schema"] = Field(default=None, alias="not")
+    items: Optional[Union["Schema", List["Schema"]]] = None
     properties: Optional[Dict[str, "Schema"]] = None
     additionalProperties: Optional[Union["Schema", Reference, bool]] = None
     description: Optional[str] = None
@@ -171,7 +172,7 @@ class Encoding(BaseModel):
 
 
 class MediaType(BaseModel):
-    schema_: Optional[Union[Schema, Reference]] = Field(None, alias="schema")
+    schema_: Optional[Union[Schema, Reference]] = Field(default=None, alias="schema")
     example: Optional[Any] = None
     examples: Optional[Dict[str, Union[Example, Reference]]] = None
     encoding: Optional[Dict[str, Encoding]] = None
@@ -188,7 +189,7 @@ class ParameterBase(BaseModel):
     style: Optional[str] = None
     explode: Optional[bool] = None
     allowReserved: Optional[bool] = None
-    schema_: Optional[Union[Schema, Reference]] = Field(None, alias="schema")
+    schema_: Optional[Union[Schema, Reference]] = Field(default=None, alias="schema")
     example: Optional[Any] = None
     examples: Optional[Dict[str, Union[Example, Reference]]] = None
     # Serialization rules for more complex scenarios
@@ -200,7 +201,7 @@ class ParameterBase(BaseModel):
 
 class Parameter(ParameterBase):
     name: str
-    in_: ParameterInType = Field(..., alias="in")
+    in_: ParameterInType = Field(alias="in")
 
 
 class Header(ParameterBase):
@@ -258,7 +259,7 @@ class Operation(BaseModel):
 
 
 class PathItem(BaseModel):
-    ref: Optional[str] = Field(None, alias="$ref")
+    ref: Optional[str] = Field(default=None, alias="$ref")
     summary: Optional[str] = None
     description: Optional[str] = None
     get: Optional[Operation] = None
@@ -284,7 +285,7 @@ class SecuritySchemeType(Enum):
 
 
 class SecurityBase(BaseModel):
-    type_: SecuritySchemeType = Field(..., alias="type")
+    type_: SecuritySchemeType = Field(alias="type")
     description: Optional[str] = None
 
     class Config:
@@ -298,18 +299,18 @@ class APIKeyIn(Enum):
 
 
 class APIKey(SecurityBase):
-    type_ = Field(SecuritySchemeType.apiKey, alias="type")
-    in_: APIKeyIn = Field(..., alias="in")
+    type_: SecuritySchemeType = Field(default=SecuritySchemeType.apiKey, alias="type")
+    in_: APIKeyIn = Field(alias="in")
     name: str
 
 
 class HTTPBase(SecurityBase):
-    type_ = Field(SecuritySchemeType.http, alias="type")
+    type_: SecuritySchemeType = Field(default=SecuritySchemeType.http, alias="type")
     scheme: str
 
 
 class HTTPBearer(HTTPBase):
-    scheme = "bearer"
+    scheme: Literal["bearer"] = "bearer"
     bearerFormat: Optional[str] = None
 
 
@@ -349,12 +350,14 @@ class OAuthFlows(BaseModel):
 
 
 class OAuth2(SecurityBase):
-    type_ = Field(SecuritySchemeType.oauth2, alias="type")
+    type_: SecuritySchemeType = Field(default=SecuritySchemeType.oauth2, alias="type")
     flows: OAuthFlows
 
 
 class OpenIdConnect(SecurityBase):
-    type_ = Field(SecuritySchemeType.openIdConnect, alias="type")
+    type_: SecuritySchemeType = Field(
+        default=SecuritySchemeType.openIdConnect, alias="type"
+    )
     openIdConnectUrl: str
 
 
