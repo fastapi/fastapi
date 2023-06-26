@@ -13,22 +13,22 @@ You can pass directly the `int` code, like `404`.
 
 But if you don't remember what each number code is for, you can use the shortcut constants in `status`:
 
-=== "Python 3.6 and above"
+=== "Python 3.10+"
 
-    ```Python hl_lines="3  17"
-    {!> ../../../docs_src/path_operation_configuration/tutorial001.py!}
+    ```Python hl_lines="1  15"
+    {!> ../../../docs_src/path_operation_configuration/tutorial001_py310.py!}
     ```
 
-=== "Python 3.9 and above"
+=== "Python 3.9+"
 
     ```Python hl_lines="3  17"
     {!> ../../../docs_src/path_operation_configuration/tutorial001_py39.py!}
     ```
 
-=== "Python 3.10 and above"
+=== "Python 3.6+"
 
-    ```Python hl_lines="1  15"
-    {!> ../../../docs_src/path_operation_configuration/tutorial001_py310.py!}
+    ```Python hl_lines="3  17"
+    {!> ../../../docs_src/path_operation_configuration/tutorial001.py!}
     ```
 
 That status code will be used in the response and will be added to the OpenAPI schema.
@@ -42,22 +42,22 @@ That status code will be used in the response and will be added to the OpenAPI s
 
 You can add tags to your *path operation*, pass the parameter `tags` with a `list` of `str` (commonly just one `str`):
 
-=== "Python 3.6 and above"
+=== "Python 3.10+"
 
-    ```Python hl_lines="17  22  27"
-    {!> ../../../docs_src/path_operation_configuration/tutorial002.py!}
+    ```Python hl_lines="15  20  25"
+    {!> ../../../docs_src/path_operation_configuration/tutorial002_py310.py!}
     ```
 
-=== "Python 3.9 and above"
+=== "Python 3.9+"
 
     ```Python hl_lines="17  22  27"
     {!> ../../../docs_src/path_operation_configuration/tutorial002_py39.py!}
     ```
 
-=== "Python 3.10 and above"
+=== "Python 3.6+"
 
-    ```Python hl_lines="15  20  25"
-    {!> ../../../docs_src/path_operation_configuration/tutorial002_py310.py!}
+    ```Python hl_lines="17  22  27"
+    {!> ../../../docs_src/path_operation_configuration/tutorial002.py!}
     ```
 
 They will be added to the OpenAPI schema and used by the automatic documentation interfaces:
@@ -80,22 +80,22 @@ In these cases, it could make sense to store the tags in an `Enum`.
 
 You can add a `summary` and `description`:
 
-=== "Python 3.6 and above"
+=== "Python 3.10+"
 
-    ```Python hl_lines="20-21"
-    {!> ../../../docs_src/path_operation_configuration/tutorial003.py!}
+    ```Python hl_lines="18-19"
+    {!> ../../../docs_src/path_operation_configuration/tutorial003_py310.py!}
     ```
 
-=== "Python 3.9 and above"
+=== "Python 3.9+"
 
     ```Python hl_lines="20-21"
     {!> ../../../docs_src/path_operation_configuration/tutorial003_py39.py!}
     ```
 
-=== "Python 3.10 and above"
+=== "Python 3.6+"
 
-    ```Python hl_lines="18-19"
-    {!> ../../../docs_src/path_operation_configuration/tutorial003_py310.py!}
+    ```Python hl_lines="20-21"
+    {!> ../../../docs_src/path_operation_configuration/tutorial003.py!}
     ```
 
 ## Description from docstring
@@ -104,22 +104,22 @@ As descriptions tend to be long and cover multiple lines, you can declare the *p
 
 You can write <a href="https://en.wikipedia.org/wiki/Markdown" class="external-link" target="_blank">Markdown</a> in the docstring, it will be interpreted and displayed correctly (taking into account docstring indentation).
 
-=== "Python 3.6 and above"
+=== "Python 3.10+"
 
-    ```Python hl_lines="19-27"
-    {!> ../../../docs_src/path_operation_configuration/tutorial004.py!}
+    ```Python hl_lines="17-25"
+    {!> ../../../docs_src/path_operation_configuration/tutorial004_py310.py!}
     ```
 
-=== "Python 3.9 and above"
+=== "Python 3.9+"
 
     ```Python hl_lines="19-27"
     {!> ../../../docs_src/path_operation_configuration/tutorial004_py39.py!}
     ```
 
-=== "Python 3.10 and above"
+=== "Python 3.6+"
 
-    ```Python hl_lines="17-25"
-    {!> ../../../docs_src/path_operation_configuration/tutorial004_py310.py!}
+    ```Python hl_lines="19-27"
+    {!> ../../../docs_src/path_operation_configuration/tutorial004.py!}
     ```
 
 It will be used in the interactive docs:
@@ -130,22 +130,22 @@ It will be used in the interactive docs:
 
 You can specify the response description with the parameter `response_description`:
 
-=== "Python 3.6 and above"
+=== "Python 3.10+"
 
-    ```Python hl_lines="21"
-    {!> ../../../docs_src/path_operation_configuration/tutorial005.py!}
+    ```Python hl_lines="19"
+    {!> ../../../docs_src/path_operation_configuration/tutorial005_py310.py!}
     ```
 
-=== "Python 3.9 and above"
+=== "Python 3.9+"
 
     ```Python hl_lines="21"
     {!> ../../../docs_src/path_operation_configuration/tutorial005_py39.py!}
     ```
 
-=== "Python 3.10 and above"
+=== "Python 3.6+"
 
-    ```Python hl_lines="19"
-    {!> ../../../docs_src/path_operation_configuration/tutorial005_py310.py!}
+    ```Python hl_lines="21"
+    {!> ../../../docs_src/path_operation_configuration/tutorial005.py!}
     ```
 
 !!! info
