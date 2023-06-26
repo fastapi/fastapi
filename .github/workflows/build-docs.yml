@@ -85,6 +85,10 @@ jobs:
         run: pip install git+https://${{ secrets.ACTIONS_TOKEN }}@github.com/squidfunk/mkdocs-material-insiders.git
       - name: Update Languages
         run: python ./scripts/docs.py update-languages
+      - uses: actions/cache@v3
+        with:
+          key: mkdocs-cards-${{ github.ref }}
+          path: docs/${{ matrix.lang }}/.cache
       - name: Build Docs
         run: python ./scripts/docs.py build-lang ${{ matrix.lang }}
       - uses: actions/upload-artifact@v3
