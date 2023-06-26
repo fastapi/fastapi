@@ -124,16 +124,16 @@ contents = myfile.file.read()
 
 您可以通过使用标准类型注解并将 None 作为默认值的方式将一个文件参数设为可选:
 
-=== "Python 3.6 及以上版本"
-
-    ```Python hl_lines="9  17"
-    {!> ../../../docs_src/request_files/tutorial001_02.py!}
-    ```
-
-=== "Python 3.9 及以上版本"
+=== "Python 3.9+"
 
     ```Python hl_lines="7  14"
     {!> ../../../docs_src/request_files/tutorial001_02_py310.py!}
+    ```
+
+=== "Python 3.6+"
+
+    ```Python hl_lines="9  17"
+    {!> ../../../docs_src/request_files/tutorial001_02.py!}
     ```
 
 ## 带有额外元数据的 `UploadFile`
@@ -152,16 +152,16 @@ FastAPI 支持同时上传多个文件。
 
 上传多个文件时，要声明含 `bytes` 或 `UploadFile` 的列表（`List`）：
 
-=== "Python 3.6 及以上版本"
-
-    ```Python hl_lines="10  15"
-    {!> ../../../docs_src/request_files/tutorial002.py!}
-    ```
-
-=== "Python 3.9 及以上版本"
+=== "Python 3.9+"
 
     ```Python hl_lines="8  13"
     {!> ../../../docs_src/request_files/tutorial002_py39.py!}
+    ```
+
+=== "Python 3.6+"
+
+    ```Python hl_lines="10  15"
+    {!> ../../../docs_src/request_files/tutorial002.py!}
     ```
 
 接收的也是含 `bytes` 或 `UploadFile` 的列表（`list`）。
@@ -177,16 +177,16 @@ FastAPI 支持同时上传多个文件。
 
 和之前的方式一样, 您可以为 `File()` 设置额外参数, 即使是 `UploadFile`:
 
-=== "Python 3.6 及以上版本"
-
-    ```Python hl_lines="18"
-    {!> ../../../docs_src/request_files/tutorial003.py!}
-    ```
-
-=== "Python 3.9 及以上版本"
+=== "Python 3.9+"
 
     ```Python hl_lines="16"
     {!> ../../../docs_src/request_files/tutorial003_py39.py!}
+    ```
+
+=== "Python 3.6+"
+
+    ```Python hl_lines="18"
+    {!> ../../../docs_src/request_files/tutorial003.py!}
     ```
 
 ## 小结
