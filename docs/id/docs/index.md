@@ -111,7 +111,7 @@ If you are building a <abbr title="Command Line Interface">CLI</abbr> app to be 
 
 ## Requirements
 
-Python 3.6+
+Python 3.7+
 
 FastAPI stands on the shoulders of giants:
 
@@ -135,7 +135,7 @@ You will also need an ASGI server, for production such as <a href="https://www.u
 <div class="termy">
 
 ```console
-$ pip install uvicorn[standard]
+$ pip install "uvicorn[standard]"
 
 ---> 100%
 ```
@@ -321,7 +321,7 @@ And now, go to <a href="http://127.0.0.1:8000/redoc" class="external-link" targe
 
 ### Recap
 
-In summary, you declare **once** the types of parameters, body, etc. as function parameters. 
+In summary, you declare **once** the types of parameters, body, etc. as function parameters.
 
 You do that with standard modern Python types.
 
@@ -378,7 +378,7 @@ Coming back to the previous code example, **FastAPI** will:
     * As the `q` parameter is declared with `= None`, it is optional.
     * Without the `None` it would be required (as is the body in the case with `PUT`).
 * For `PUT` requests to `/items/{item_id}`, Read the body as JSON:
-    * Check that it has a required attribute `name` that should be a `str`. 
+    * Check that it has a required attribute `name` that should be a `str`.
     * Check that it has a required attribute `price` that has to be a `float`.
     * Check that it has an optional attribute `is_offer`, that should be a `bool`, if present.
     * All this would also work for deeply nested JSON objects.
@@ -426,7 +426,7 @@ For a more complete example including more features, see the <a href="https://fa
 * Many extra features (thanks to Starlette) as:
     * **WebSockets**
     * **GraphQL**
-    * extremely easy tests based on `requests` and `pytest`
+    * extremely easy tests based on HTTPX and `pytest`
     * **CORS**
     * **Cookie Sessions**
     * ...and more.
@@ -441,13 +441,11 @@ To understand more about it, see the section <a href="https://fastapi.tiangolo.c
 
 Used by Pydantic:
 
-* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - for faster JSON <abbr title="converting the string that comes from an HTTP request into Python data">"parsing"</abbr>.
 * <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - for email validation.
 
 Used by Starlette:
 
-* <a href="https://requests.readthedocs.io" target="_blank"><code>requests</code></a> - Required if you want to use the `TestClient`.
-* <a href="https://github.com/Tinche/aiofiles" target="_blank"><code>aiofiles</code></a> - Required if you want to use `FileResponse` or `StaticFiles`.
+* <a href="https://www.python-httpx.org" target="_blank"><code>httpx</code></a> - Required if you want to use the `TestClient`.
 * <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - Required if you want to use the default template configuration.
 * <a href="https://andrew-d.github.io/python-multipart/" target="_blank"><code>python-multipart</code></a> - Required if you want to support form <abbr title="converting the string that comes from an HTTP request into Python data">"parsing"</abbr>, with `request.form()`.
 * <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - Required for `SessionMiddleware` support.

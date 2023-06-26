@@ -27,7 +27,7 @@ Documentation d'API interactive et interface web d'exploration. Comme le framewo
 
 Tout est basé sur la déclaration de type standard de **Python 3.6** (grâce à Pydantic). Pas de nouvelles syntaxes à apprendre. Juste du Python standard et moderne.
 
-Si vous souhaitez un rappel de 2 minutes sur l'utilisation des types en Python (même si vous ne comptez pas utiliser FastAPI), jetez un oeil au tutoriel suivant: [Python Types](python-types.md){.internal-link target=_blank}. 
+Si vous souhaitez un rappel de 2 minutes sur l'utilisation des types en Python (même si vous ne comptez pas utiliser FastAPI), jetez un oeil au tutoriel suivant: [Python Types](python-types.md){.internal-link target=_blank}.
 
 Vous écrivez du python standard avec des annotations de types:
 
@@ -190,7 +190,7 @@ Avec **FastAPI** vous aurez toutes les fonctionnalités de **Pydantic**  (comme 
 * Aide votre **<abbr title="Integrated Development Environment, il s'agit de votre éditeur de code">IDE</abbr>/<abbr title="Programme qui analyse le code à la recherche d'erreurs">linter</abbr>/cerveau**:
     * Parce que les structures de données de pydantic consistent seulement en une instance de classe que vous définissez; l'auto-complétion, le linting, mypy et votre intuition devrait être largement suffisante pour valider vos données.
 * **Rapide**:
-    * Dans les <a href="https://pydantic-docs.helpmanual.io/#benchmarks-tag" class="external-link" target="_blank">benchmarks</a> Pydantic est plus rapide que toutes les autres librairies testées.
+    * Dans les <a href="https://pydantic-docs.helpmanual.io/benchmarks/" class="external-link" target="_blank">benchmarks</a> Pydantic est plus rapide que toutes les autres librairies testées.
 * Valide les **structures complexes**:
     * Utilise les modèles hiérarchique de Pydantic, le `typage` Python pour les `Lists`, `Dict`, etc.
     * Et les validateurs permettent aux schémas de données complexes d'être clairement et facilement définis, validés et documentés sous forme d'un schéma JSON.

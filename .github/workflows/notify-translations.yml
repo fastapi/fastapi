@@ -4,12 +4,13 @@ on:
   pull_request_target:
     types:
       - labeled
+      - closed
 
 jobs:
   notify-translations:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       # Allow debugging with tmate
       - name: Setup tmate session
         uses: mxschmitt/action-tmate@v3
@@ -18,4 +19,4 @@ jobs:
           limit-access-to-actor: true
       - uses: ./.github/actions/notify-translations
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.FASTAPI_NOTIFY_TRANSLATIONS }}
