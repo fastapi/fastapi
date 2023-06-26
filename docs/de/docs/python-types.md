@@ -29,7 +29,7 @@ Der Aufruf dieses Programms liefert die Ausgaben:
 John Doe
 ```
 
-Die Funktion bewirkt das Folgende: 
+Die Funktion bewirkt das Folgende:
 
 * Nimmt einen `first_name` und `last_name`.
 * Konvertiert den ersten Buchstaben von jedem in Großbuchstaben mit `title()`.
@@ -215,7 +215,7 @@ Der zweite Typ-Parameter ist für die Werte des `dict`:
 ```
 
 Dies bedeutet:
-    
+
 * Die Variable `prices` ist ein `dict`:
     * Die Schlüssel dieses `dict` sind vom Typ `str` (z.B. die Namen der einzelnen Artikel).
     * Die Werte dieses `dict` sind vom Typ `float` (z.B. der Preis jedes Artikels).

@@ -313,7 +313,7 @@ Und nun gehen Sie auf <a href="http://127.0.0.1:8000/redoc" class="external-link
 
 ### Zusammenfassung
 
-Zusammengefasst deklarieren Sie **einmal** die Typen von Parametern, Body, etc. als Funktionsparameter. 
+Zusammengefasst deklarieren Sie **einmal** die Typen von Parametern, Body, etc. als Funktionsparameter.
 
 Das machen Sie mit modernen Standard-Python-Typen.
 
@@ -370,7 +370,7 @@ Um auf das vorherige Codebeispiel zurückzukommen, **FastAPI** wird:
     * Da der `q`-Parameter mit `= None` deklariert ist, ist er optional.
     * Ohne das `None` wäre er erforderlich (wie der Body im Fall von `PUT`).
 * Bei `PUT`-Anfragen an `/items/{item_id}` wird der Body als JSON gelesen:
-    * Prüfen Sie, ob er ein erforderliches Attribut `name` hat, das ein `str` sein sollte. 
+    * Prüfen Sie, ob er ein erforderliches Attribut `name` hat, das ein `str` sein sollte.
     * Prüfen Sie, ob er ein erforderliches Attribut `price` hat, das ein `float` sein muss.
     * Prüfen Sie, ob es ein optionales Attribut `is_offer` hat, das ein `bool` sein sollte, falls vorhanden.
     * All dies würde auch für tief verschachtelte JSON-Objekte funktionieren.
