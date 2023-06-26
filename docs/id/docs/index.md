@@ -111,7 +111,7 @@ Jika kamu membangun <abbr title="Command Line Interface">CLI</abbr> sebuah aplik
 
 ## Persyaratan
 
-Python 3.6+
+Python 3.7+
 
 FastAPI berdiri diatas bahu para raksasa:
 
@@ -135,7 +135,7 @@ Kamu juga akan membutuhkan server ASGI untuk tahap produksi seperti <a href="htt
 <div class="termy">
 
 ```console
-$ pip install uvicorn[standard]
+$ pip install "uvicorn[standard]"
 
 ---> 100%
 ```
