@@ -70,7 +70,10 @@ def complete_existing_lang(incomplete: str):
 @app.callback()
 def callback() -> None:
     if is_mkdocs_insiders():
+        print("Using mkdocs-material-insiders")
         os.environ["INSIDERS_FILE"] = "../en/mkdocs.insiders.yml"
+    else:
+        print("Using mkdocs-material")
     # For MacOS with insiders and Cairo
     os.environ["DYLD_FALLBACK_LIBRARY_PATH"] = "/opt/homebrew/lib"
 
