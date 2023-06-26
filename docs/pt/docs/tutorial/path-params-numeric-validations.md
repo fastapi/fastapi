@@ -6,16 +6,16 @@ Do mesmo modo que você pode declarar mais validações e metadados para parâme
 
 Primeiro, importe `Path` de `fastapi`:
 
-=== "Python 3.6 e superiores"
-
-    ```Python hl_lines="3"
-    {!> ../../../docs_src/path_params_numeric_validations/tutorial001.py!}
-    ```
-
-=== "Python 3.10 e superiores"
+=== "Python 3.10+"
 
     ```Python hl_lines="1"
     {!> ../../../docs_src/path_params_numeric_validations/tutorial001_py310.py!}
+    ```
+
+=== "Python 3.6+"
+
+    ```Python hl_lines="3"
+    {!> ../../../docs_src/path_params_numeric_validations/tutorial001.py!}
     ```
 
 ## Declare metadados
@@ -24,16 +24,16 @@ Você pode declarar todos os parâmetros da mesma maneira que na `Query`.
 
 Por exemplo para declarar um valor de metadado `title` para o parâmetro de rota `item_id` você pode digitar:
 
-=== "Python 3.6 e superiores"
-
-    ```Python hl_lines="10"
-    {!> ../../../docs_src/path_params_numeric_validations/tutorial001.py!}
-    ```
-
-=== "Python 3.10 e superiores"
+=== "Python 3.10+"
 
     ```Python hl_lines="8"
     {!> ../../../docs_src/path_params_numeric_validations/tutorial001_py310.py!}
+    ```
+
+=== "Python 3.6+"
+
+    ```Python hl_lines="10"
+    {!> ../../../docs_src/path_params_numeric_validations/tutorial001.py!}
     ```
 
 !!! note "Nota"
