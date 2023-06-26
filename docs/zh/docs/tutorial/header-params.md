@@ -23,7 +23,7 @@
 !!! note "技术细节"
 
     `Header` 是 `Path`、`Query`、`Cookie` 的**兄弟类**，都继承自共用的 `Param` 类。
-    
+
     注意，从 `fastapi` 导入的 `Query`、`Path`、`Header` 等对象，实际上是返回特殊类的函数。
 
 !!! info "说明"
