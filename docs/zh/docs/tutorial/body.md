@@ -11,9 +11,9 @@ API 基本上肯定要发送**响应体**，但是客户端不一定发送**请�
 !!! info "说明"
 
     发送数据使用 `POST`（最常用）、`PUT`、`DELETE`、`PATCH` 等操作。
-    
+
     规范中没有定义使用 `GET` 发送请求体的操作，但不管怎样，FastAPI 也支持这种方式，只不过仅用于非常复杂或极端的用例。
-    
+
     我们不建议使用 `GET`，因此，在 Swagger UI 交互文档中不会显示有关 `GET` 的内容，而且代理协议也不一定支持 `GET`。
 
 ## 导入 Pydantic 的 `BaseModel`
@@ -114,9 +114,9 @@ Pydantic 模型的 JSON 概图是 OpenAPI 生成的概图部件，可在 API 文
 !!! tip "提示"
 
     使用 <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a> 编辑器时，推荐安装 <a href="https://github.com/koxudaxi/pydantic-pycharm-plugin/" class="external-link" target="_blank">Pydantic PyCharm 插件</a>。
-    
+
     该插件用于完善 PyCharm 对 Pydantic 模型的支持，优化的功能如下：
-    
+
     * 自动补全
     * 类型检查
     * 代码重构
@@ -160,7 +160,7 @@ Pydantic 模型的 JSON 概图是 OpenAPI 生成的概图部件，可在 API 文
 !!! note "笔记"
 
     因为默认值是 `None`， FastAPI 会把 `q` 当作可选参数。
-    
+
     FastAPI 不使用 `Optional[str]` 中的 `Optional`， 但 `Optional` 可以让编辑器提供更好的支持，并检测错误。
 
 ## 不使用 Pydantic
