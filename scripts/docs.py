@@ -4,7 +4,9 @@ import os
 import re
 import shutil
 import subprocess
+from functools import lru_cache
 from http.server import HTTPServer, SimpleHTTPRequestHandler
+from importlib import metadata
 from multiprocessing import Pool
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Union
@@ -34,6 +36,12 @@ site_path = Path("site").absolute()
 build_site_path = Path("site_build").absolute()
 
 
+@lru_cache()
+def is_mkdocs_insiders() -> bool:
+    version = metadata.version("mkdocs-material")
+    return "insiders" in version
+
+
 def get_en_config() -> Dict[str, Any]:
     return mkdocs.utils.yaml_load(en_config_path.read_text(encoding="utf-8"))
 
@@ -57,6 +65,14 @@ def complete_existing_lang(incomplete: str):
     for lang_path in get_lang_paths():
         if lang_path.is_dir() and lang_path.name.startswith(incomplete):
             yield lang_path.name
+
+
+@app.callback()
+def callback() -> None:
+    if is_mkdocs_insiders():
+        os.environ["INSIDERS_FILE"] = "../en/mkdocs.insiders.yml"
+    # For MacOS with insiders and Cairo
+    os.environ["DYLD_FALLBACK_LIBRARY_PATH"] = "/opt/homebrew/lib"
 
 
 @app.command()
@@ -93,6 +109,10 @@ def build_lang(
     """
     Build the docs for a language.
     """
+    insiders_env_file = os.environ.get("INSIDERS_FILE")
+    print(f"Insiders file {insiders_env_file}")
+    if is_mkdocs_insiders():
+        print("Using insiders")
     lang_path: Path = Path("docs") / lang
     if not lang_path.is_dir():
         typer.echo(f"The language translation doesn't seem to exist yet: {lang}")
