@@ -14,7 +14,7 @@ class OpenIdConnect(SecurityBase):
         openIdConnectUrl: str,
         scheme_name: Optional[str] = None,
         description: Optional[str] = None,
-        auto_error: bool = True
+        auto_error: bool = True,
     ):
         self.model = OpenIdConnectModel(
             openIdConnectUrl=openIdConnectUrl, description=description
