@@ -21,6 +21,12 @@ For example, if you are squeezing performance, you can install and use <a href="
 
 Import the `Response` class (sub-class) you want to use and declare it in the *path operation decorator*.
 
+For large responses, returning a `Response` directly is much faster than returning a dictionary.
+
+This is because by default, FastAPI will inspect every item inside and make sure it is serializable with JSON, using the same [JSON Compatible Encoder](../tutorial/encoder.md){.internal-link target=_blank} explained in the tutorial. This is what allows you to return **arbitrary objects**, for example database models.
+
+But if you are certain that the content that you are returning is **serializable with JSON**, you can pass it directly to the response class and avoid the extra overhead that FastAPI would have by passing your return content through the `jsonable_encoder` before passing it to the response class.
+
 ```Python hl_lines="2  7"
 {!../../../docs_src/custom_response/tutorial001b.py!}
 ```
@@ -161,8 +167,31 @@ An alternative JSON response using <a href="https://github.com/ultrajson/ultrajs
 
 Returns an HTTP redirect. Uses a 307 status code (Temporary Redirect) by default.
 
+You can return a `RedirectResponse` directly:
+
 ```Python hl_lines="2  9"
 {!../../../docs_src/custom_response/tutorial006.py!}
+```
+
+---
+
+Or you can use it in the `response_class` parameter:
+
+
+```Python hl_lines="2  7  9"
+{!../../../docs_src/custom_response/tutorial006b.py!}
+```
+
+If you do that, then you can return the URL directly from your *path operation* function.
+
+In this case, the `status_code` used will be the default one for the `RedirectResponse`, which is `307`.
+
+---
+
+You can also use the `status_code` parameter combined with the `response_class` parameter:
+
+```Python hl_lines="2  7  9"
+{!../../../docs_src/custom_response/tutorial006c.py!}
 ```
 
 ### `StreamingResponse`
@@ -175,13 +204,23 @@ Takes an async generator or a normal generator/iterator and streams the response
 
 #### Using `StreamingResponse` with file-like objects
 
-If you have a file-like object (e.g. the object returned by `open()`), you can return it in a `StreamingResponse`.
+If you have a file-like object (e.g. the object returned by `open()`), you can create a generator function to iterate over that file-like object.
+
+That way, you don't have to read it all first in memory, and you can pass that generator function to the `StreamingResponse`, and return it.
 
 This includes many libraries to interact with cloud storage, video processing, and others.
 
-```Python hl_lines="2  10-11"
+```{ .python .annotate hl_lines="2  10-12  14" }
 {!../../../docs_src/custom_response/tutorial008.py!}
 ```
+
+1. This is the generator function. It's a "generator function" because it contains `yield` statements inside.
+2. By using a `with` block, we make sure that the file-like object is closed after the generator function is done. So, after it finishes sending the response.
+3. This `yield from` tells the function to iterate over that thing named `file_like`. And then, for each part iterated, yield that part as coming from this generator function.
+
+    So, it is a generator function that transfers the "generating" work to something else internally.
+
+    By doing it this way, we can put it in a `with` block, and that way, ensure that it is closed after finishing.
 
 !!! tip
     Notice that here as we are using standard `open()` that doesn't support `async` and `await`, we declare the path operation with normal `def`.
@@ -202,6 +241,44 @@ File responses will include appropriate `Content-Length`, `Last-Modified` and `E
 ```Python hl_lines="2  10"
 {!../../../docs_src/custom_response/tutorial009.py!}
 ```
+
+You can also use the `response_class` parameter:
+
+```Python hl_lines="2  8  10"
+{!../../../docs_src/custom_response/tutorial009b.py!}
+```
+
+In this case, you can return the file path directly from your *path operation* function.
+
+## Custom response class
+
+You can create your own custom response class, inheriting from `Response` and using it.
+
+For example, let's say that you want to use <a href="https://github.com/ijl/orjson" class="external-link" target="_blank">`orjson`</a>, but with some custom settings not used in the included `ORJSONResponse` class.
+
+Let's say you want it to return indented and formatted JSON, so you want to use the orjson option `orjson.OPT_INDENT_2`.
+
+You could create a `CustomORJSONResponse`. The main thing you have to do is create a `Response.render(content)` method that returns the content as `bytes`:
+
+```Python hl_lines="9-14  17"
+{!../../../docs_src/custom_response/tutorial009c.py!}
+```
+
+Now instead of returning:
+
+```json
+{"message": "Hello World"}
+```
+
+...this response will return:
+
+```json
+{
+  "message": "Hello World"
+}
+```
+
+Of course, you will probably find much better ways to take advantage of this than formatting JSON. 😉
 
 ## Default response class
 
