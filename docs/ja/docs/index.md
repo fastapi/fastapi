@@ -14,9 +14,6 @@
 <a href="https://pypi.org/project/fastapi" target="_blank">
     <img src="https://badge.fury.io/py/fastapi.svg" alt="Package version">
 </a>
-<a href="https://gitter.im/tiangolo/fastapi?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge" target="_blank">
-    <img src="https://badges.gitter.im/tiangolo/fastapi.svg" alt="Join the chat at https://gitter.im/tiangolo/fastapi">
-</a>
 </p>
 
 ---
@@ -27,11 +24,7 @@
 
 ---
 
-<<<<<<< HEAD
-FastAPI は、Python 3.6 以降で標準である型ヒントに基づいて API を構築するための、モダンで、高速(高パフォーマンス)な、Web フレームワークです。
-=======
 FastAPI は、Pythonの標準である型ヒントに基づいてPython 3.6 以降でAPI を構築するための、モダンで、高速(高パフォーマンス)な、Web フレームワークです。
->>>>>>> master
 
 主な特徴:
 
@@ -43,9 +36,26 @@ FastAPI は、Pythonの標準である型ヒントに基づいてPython 3.6 以�
 - **簡単**: 簡単に利用、習得できるようにデザインされています。ドキュメントを読む時間を削減します。
 - **短い**: コードの重複を最小限にしています。各パラメータからの複数の機能。少ないバグ。
 - **堅牢性**: 自動対話ドキュメントを使用して、本番環境で使用できるコードを取得します。
-- **Standards-based**: API のオープンスタンダードに基づいており、完全に互換性があります: <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (以前は Swagger として知られていました) や <a href="http://json-schema.org/" class="external-link" target="_blank">JSON スキーマ</a>.
+- **Standards-based**: API のオープンスタンダードに基づいており、完全に互換性があります: <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (以前は Swagger として知られていました) や <a href="https://json-schema.org/" class="external-link" target="_blank">JSON スキーマ</a>.
 
 <small>\* 本番アプリケーションを構築している開発チームのテストによる見積もり。</small>
+
+## Sponsors
+
+<!-- sponsors -->
+
+{% if sponsors %}
+{% for sponsor in sponsors.gold -%}
+<a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
+{% endfor -%}
+{%- for sponsor in sponsors.silver -%}
+<a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
+{% endfor %}
+{% endif %}
+
+<!-- /sponsors -->
+
+<a href="https://fastapi.tiangolo.com/fastapi-people/#sponsors" class="external-link" target="_blank">Other sponsors</a>
 
 ## 評価
 
@@ -55,11 +65,7 @@ FastAPI は、Pythonの標準である型ヒントに基づいてPython 3.6 以�
 
 ---
 
-<<<<<<< HEAD
-"_FastAPI ライブラリを採用して**REST**サーバを構築し、それをクエリして**予測**を取得しています。 [for Ludwig]_"
-=======
 "_FastAPIライブラリを採用し、クエリで**予測値**を取得できる**REST**サーバを構築しました。 [for Ludwig]_"
->>>>>>> master
 
 <div style="text-align: right; margin-right: 10%;">Piero Molino, Yaroslav Dudin, and Sai Sumanth Miryala - <strong>Uber</strong> <a href="https://eng.uber.com/ludwig-v0-2/" target="_blank"><small>(ref)</small></a></div>
 
@@ -79,7 +85,7 @@ FastAPI は、Pythonの標準である型ヒントに基づいてPython 3.6 以�
 
 "_正直、超堅実で洗練されているように見えます。いろんな意味で、それは私がハグしたかったものです。_"
 
-<div style="text-align: right; margin-right: 10%;">Timothy Crosley - <strong><a href="http://www.hug.rest/" target="_blank">Hug</a> creator</strong> <a href="https://news.ycombinator.com/item?id=19455465" target="_blank"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Timothy Crosley - <strong><a href="https://www.hug.rest/" target="_blank">Hug</a> creator</strong> <a href="https://news.ycombinator.com/item?id=19455465" target="_blank"><small>(ref)</small></a></div>
 
 ---
 
@@ -97,25 +103,16 @@ FastAPI は、Pythonの標準である型ヒントに基づいてPython 3.6 以�
 
 もし Web API の代わりにターミナルで使用する<abbr title="Command Line Interface">CLI</abbr>アプリを構築する場合は、<a href="https://typer.tiangolo.com/" class="external-link" target="_blank">**Typer**</a>を確認してください。
 
-<<<<<<< HEAD
-**Typer**は FastAPI の兄弟です。そして、**CLI 版 の FastAPI**を意図しています。
-=======
 **Typer**は FastAPI の弟分です。そして、**CLI 版 の FastAPI**を意味しています。
->>>>>>> master
 
 ## 必要条件
 
-Python 3.6+
+Python 3.7+
 
 FastAPI は巨人の肩の上に立っています。
 
-<<<<<<< HEAD
-- Web の部分のための<a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a>
-- データの部分のための<a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a>
-=======
 - Web の部分は<a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a>
 - データの部分は<a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a>
->>>>>>> master
 
 ## インストール
 
@@ -129,16 +126,12 @@ $ pip install fastapi
 
 </div>
 
-<<<<<<< HEAD
-<a href="http://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a> または、 <a href="https://gitlab.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>のように、本番環境では ASGI サーバーが必要になります。
-=======
-本番環境では、<a href="http://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a> または、 <a href="https://gitlab.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>のような、 ASGI サーバーが必要になります。
->>>>>>> master
+本番環境では、<a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a> または、 <a href="https://gitlab.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>のような、 ASGI サーバーが必要になります。
 
 <div class="termy">
 
 ```console
-$ pip install uvicorn
+$ pip install "uvicorn[standard]"
 
 ---> 100%
 ```
@@ -190,11 +183,7 @@ async def read_item(item_id: int, q: str = None):
 
 **注**:
 
-<<<<<<< HEAD
-<a href="https://fastapi.tiangolo.com/async/#in-a-hurry" target="_blank">ドキュメントの`async` と `await`</a>についてわからない場合は、"In a hurry?"セクションをチェックしてください。
-=======
 わからない場合は、<a href="https://fastapi.tiangolo.com/async/#in-a-hurry" target="_blank">ドキュメントの`async` と `await`にある</a>"In a hurry?"セクションをチェックしてください。
->>>>>>> master
 
 </details>
 
@@ -240,11 +229,7 @@ INFO:     Application startup complete.
 もうすでに以下の API が作成されています:
 
 - `/` と `/items/{item_id}`のパスで HTTP リクエストを受けます。
-<<<<<<< HEAD
-- どちらのパスも `GET` <em>演算子</em> を取ります。(HTTP メソッドとしても知られています。)
-=======
 - どちらのパスも `GET` <em>操作</em> を取ります。(HTTP メソッドとしても知られています。)
->>>>>>> master
 - `/items/{item_id}` パスのパスパラメータ `item_id` は `int` でなければなりません。
 - パス `/items/{item_id}` はオプションの `str` クエリパラメータ `q` を持ちます。
 
@@ -431,7 +416,7 @@ item: Item
 - 以下のようなたくさんのおまけ機能(Starlette のおかげです):
   - **WebSockets**
   - **GraphQL**
-  - `requests` や `pytest`をもとにした極限に簡単なテスト
+  - `httpx` や `pytest`をもとにした極限に簡単なテスト
   - **CORS**
   - **クッキーセッション**
   - ...などなど。
@@ -446,14 +431,12 @@ item: Item
 
 Pydantic によって使用されるもの:
 
-- <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - より速い JSON への<abbr title="converting the string that comes from an HTTP request into Python data">"変換"</abbr>.
 - <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - E メールの検証
 
 Starlette によって使用されるもの:
 
-- <a href="http://docs.python-requests.org" target="_blank"><code>requests</code></a> - `TestClient`を使用するために必要です。
-- <a href="https://github.com/Tinche/aiofiles" target="_blank"><code>aiofiles</code></a> - `FileResponse` または `StaticFiles`を使用したい場合は必要です。
-- <a href="http://jinja.pocoo.org" target="_blank"><code>jinja2</code></a> - デフォルトのテンプレート設定を使用する場合は必要です。
+- <a href="https://www.python-httpx.org" target="_blank"><code>httpx</code></a> - `TestClient`を使用するために必要です。
+- <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - デフォルトのテンプレート設定を使用する場合は必要です。
 - <a href="https://andrew-d.github.io/python-multipart/" target="_blank"><code>python-multipart</code></a> - <abbr title="converting the string that comes from an HTTP request into Python data">"parsing"</abbr>`request.form()`からの変換をサポートしたい場合は必要です。
 - <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - `SessionMiddleware` サポートのためには必要です。
 - <a href="https://pyyaml.org/wiki/PyYAMLDocumentation" target="_blank"><code>pyyaml</code></a> - Starlette の `SchemaGenerator` サポートのために必要です。 (FastAPI では必要ないでしょう。)
@@ -462,7 +445,7 @@ Starlette によって使用されるもの:
 
 FastAPI / Starlette に使用されるもの:
 
-- <a href="http://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - アプリケーションをロードしてサーブするサーバーのため。
+- <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - アプリケーションをロードしてサーブするサーバーのため。
 - <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - `ORJSONResponse`を使用したい場合は必要です。
 
 これらは全て `pip install fastapi[all]`でインストールできます。
