@@ -62,7 +62,7 @@ class Path(Param):
 
     def __init__(
         self,
-        default: Any = Undefined,
+        default: Any = ...,
         *,
         alias: Optional[str] = None,
         title: Optional[str] = None,
@@ -80,9 +80,10 @@ class Path(Param):
         include_in_schema: bool = True,
         **extra: Any,
     ):
+        assert default is ..., "Path parameters cannot have a default value"
         self.in_ = self.in_
         super().__init__(
-            default=...,
+            default=default,
             alias=alias,
             title=title,
             description=description,
@@ -279,7 +280,7 @@ class Body(FieldInfo):
 class Form(Body):
     def __init__(
         self,
-        default: Any,
+        default: Any = Undefined,
         *,
         media_type: str = "application/x-www-form-urlencoded",
         alias: Optional[str] = None,
@@ -319,7 +320,7 @@ class Form(Body):
 class File(Form):
     def __init__(
         self,
-        default: Any,
+        default: Any = Undefined,
         *,
         media_type: str = "multipart/form-data",
         alias: Optional[str] = None,
