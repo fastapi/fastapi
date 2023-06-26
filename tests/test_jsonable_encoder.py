@@ -1,3 +1,4 @@
+from dataclasses import dataclass
 from datetime import datetime, timezone
 from enum import Enum
 from pathlib import PurePath, PurePosixPath, PureWindowsPath
@@ -17,6 +18,12 @@ class Pet:
     def __init__(self, owner: Person, name: str):
         self.owner = owner
         self.name = name
+
+
+@dataclass
+class Item:
+    name: str
+    count: int
 
 
 class DictablePerson(Person):
@@ -67,7 +74,7 @@ class ModelWithConfig(BaseModel):
 
 
 class ModelWithAlias(BaseModel):
-    foo: str = Field(..., alias="Foo")
+    foo: str = Field(alias="Foo")
 
 
 class ModelWithDefault(BaseModel):
@@ -93,16 +100,51 @@ def fixture_model_with_path(request):
     return ModelWithPath(path=request.param("/foo", "bar"))
 
 
+def test_encode_dict():
+    pet = {"name": "Firulais", "owner": {"name": "Foo"}}
+    assert jsonable_encoder(pet) == {"name": "Firulais", "owner": {"name": "Foo"}}
+    assert jsonable_encoder(pet, include={"name"}) == {"name": "Firulais"}
+    assert jsonable_encoder(pet, exclude={"owner"}) == {"name": "Firulais"}
+    assert jsonable_encoder(pet, include={}) == {}
+    assert jsonable_encoder(pet, exclude={}) == {
+        "name": "Firulais",
+        "owner": {"name": "Foo"},
+    }
+
+
 def test_encode_class():
     person = Person(name="Foo")
     pet = Pet(owner=person, name="Firulais")
     assert jsonable_encoder(pet) == {"name": "Firulais", "owner": {"name": "Foo"}}
+    assert jsonable_encoder(pet, include={"name"}) == {"name": "Firulais"}
+    assert jsonable_encoder(pet, exclude={"owner"}) == {"name": "Firulais"}
+    assert jsonable_encoder(pet, include={}) == {}
+    assert jsonable_encoder(pet, exclude={}) == {
+        "name": "Firulais",
+        "owner": {"name": "Foo"},
+    }
 
 
 def test_encode_dictable():
     person = DictablePerson(name="Foo")
     pet = DictablePet(owner=person, name="Firulais")
     assert jsonable_encoder(pet) == {"name": "Firulais", "owner": {"name": "Foo"}}
+    assert jsonable_encoder(pet, include={"name"}) == {"name": "Firulais"}
+    assert jsonable_encoder(pet, exclude={"owner"}) == {"name": "Firulais"}
+    assert jsonable_encoder(pet, include={}) == {}
+    assert jsonable_encoder(pet, exclude={}) == {
+        "name": "Firulais",
+        "owner": {"name": "Foo"},
+    }
+
+
+def test_encode_dataclass():
+    item = Item(name="foo", count=100)
+    assert jsonable_encoder(item) == {"name": "foo", "count": 100}
+    assert jsonable_encoder(item, include={"name"}) == {"name": "foo"}
+    assert jsonable_encoder(item, exclude={"count"}) == {"name": "foo"}
+    assert jsonable_encoder(item, include={}) == {}
+    assert jsonable_encoder(item, exclude={}) == {"name": "foo", "count": 100}
 
 
 def test_encode_unsupported():
@@ -144,6 +186,14 @@ def test_encode_model_with_default():
     assert jsonable_encoder(model, exclude_unset=True, exclude_defaults=True) == {
         "foo": "foo"
     }
+    assert jsonable_encoder(model, include={"foo"}) == {"foo": "foo"}
+    assert jsonable_encoder(model, exclude={"bla"}) == {"foo": "foo", "bar": "bar"}
+    assert jsonable_encoder(model, include={}) == {}
+    assert jsonable_encoder(model, exclude={}) == {
+        "foo": "foo",
+        "bar": "bar",
+        "bla": "bla",
+    }
 
 
 def test_custom_encoders():
@@ -159,6 +209,21 @@ def test_custom_encoders():
         instance, custom_encoder={safe_datetime: lambda o: o.isoformat()}
     )
     assert encoded_instance["dt_field"] == instance.dt_field.isoformat()
+
+
+def test_custom_enum_encoders():
+    def custom_enum_encoder(v: Enum):
+        return v.value.lower()
+
+    class MyEnum(Enum):
+        ENUM_VAL_1 = "ENUM_VAL_1"
+
+    instance = MyEnum.ENUM_VAL_1
+
+    encoded_instance = jsonable_encoder(
+        instance, custom_encoder={MyEnum: custom_enum_encoder}
+    )
+    assert encoded_instance == custom_enum_encoder(instance)
 
 
 def test_encode_model_with_path(model_with_path):
