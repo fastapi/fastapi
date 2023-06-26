@@ -1,0 +1,36 @@
+gold:
+  - url: https://cryptapi.io/
+    title: "CryptAPI: Your easy to use, secure and privacy oriented payment gateway."
+    img: https://fastapi.tiangolo.com/img/sponsors/cryptapi.svg
+  - url: https://platform.sh/try-it-now/?utm_source=fastapi-signup&utm_medium=banner&utm_campaign=FastAPI-signup-June-2023
+    title: "Build, run and scale your apps on a modern, reliable, and secure PaaS."
+    img: https://fastapi.tiangolo.com/img/sponsors/platform-sh.png
+silver:
+  - url: https://www.deta.sh/?ref=fastapi
+    title: The launchpad for all your (team's) ideas
+    img: https://fastapi.tiangolo.com/img/sponsors/deta.svg
+  - url: https://training.talkpython.fm/fastapi-courses
+    title: FastAPI video courses on demand from people you trust
+    img: https://fastapi.tiangolo.com/img/sponsors/talkpython.png
+  - url: https://testdriven.io/courses/tdd-fastapi/
+    title: Learn to build high-quality web apps with best practices
+    img: https://fastapi.tiangolo.com/img/sponsors/testdriven.svg
+  - url: https://github.com/deepset-ai/haystack/
+    title: Build powerful search from composable, open source building blocks
+    img: https://fastapi.tiangolo.com/img/sponsors/haystack-fastapi.svg
+  - url: https://careers.powens.com/
+    title: Powens is hiring!
+    img: https://fastapi.tiangolo.com/img/sponsors/powens.png
+  - url: https://www.svix.com/
+    title: Svix - Webhooks as a service
+    img: https://fastapi.tiangolo.com/img/sponsors/svix.svg
+  - url: https://databento.com/
+    title: Pay as you go for market data
+    img: https://fastapi.tiangolo.com/img/sponsors/databento.svg
+bronze:
+  - url: https://www.exoflare.com/open-source/?utm_source=FastAPI&utm_campaign=open_source
+    title: Biosecurity risk assessments made easy.
+    img: https://fastapi.tiangolo.com/img/sponsors/exoflare.png
+  - url: https://www.flint.sh
+    title: IT expertise, consulting and development by passionate people
+    img: https://fastapi.tiangolo.com/img/sponsors/flint.png
