@@ -165,6 +165,7 @@ nav:
 - external-links.md
 - benchmarks.md
 - help-fastapi.md
+- newsletter.md
 - contributing.md
 - release-notes.md
 markdown_extensions:
