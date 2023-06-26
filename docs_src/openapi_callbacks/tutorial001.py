@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Union
 
 from fastapi import APIRouter, FastAPI
 from pydantic import BaseModel, HttpUrl
@@ -8,7 +8,7 @@ app = FastAPI()
 
 class Invoice(BaseModel):
     id: str
-    title: Optional[str] = None
+    title: Union[str, None] = None
     customer: str
     total: float
 
@@ -26,14 +26,14 @@ invoices_callback_router = APIRouter()
 
 
 @invoices_callback_router.post(
-    "{$callback_url}/invoices/{$request.body.id}", response_model=InvoiceEventReceived,
+    "{$callback_url}/invoices/{$request.body.id}", response_model=InvoiceEventReceived
 )
 def invoice_notification(body: InvoiceEvent):
     pass
 
 
 @app.post("/invoices/", callbacks=invoices_callback_router.routes)
-def create_invoice(invoice: Invoice, callback_url: Optional[HttpUrl] = None):
+def create_invoice(invoice: Invoice, callback_url: Union[HttpUrl, None] = None):
     """
     Create an invoice.
 

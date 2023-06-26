@@ -42,6 +42,16 @@
          x="0"
          y="0" />
     </clipPath>
+    <clipPath
+       id="clip0-3">
+      <rect
+         width="770"
+         height="222.03999"
+         fill="#ffffff"
+         id="rect14-6"
+         x="0"
+         y="0" />
+    </clipPath>
   </defs>
   <metadata
      id="metadata972">
@@ -103,12 +113,12 @@
   </g>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.65251px;line-height:1.25;font-family:Roboto, sans-serif;-inkscape-font-specification:'Roboto, sans-serif';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;stroke-width:0.116313"
-     x="31.727283"
-     y="21.847746"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333px;line-height:1.25;font-family:Roboto, sans-serif;-inkscape-font-specification:'Roboto, sans-serif';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;stroke-width:0.116313"
+     x="31.874025"
+     y="21.589594"
      id="text959"><tspan
        id="tspan957"
-       x="31.727282"
-       y="21.847746"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Roboto, sans-serif;-inkscape-font-specification:'Roboto, sans-serif';text-align:center;text-anchor:middle;stroke-width:0.116313">Wealthtech as a service</tspan></text>
+       x="31.874023"
+       y="21.589594"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333px;font-family:Roboto, sans-serif;-inkscape-font-specification:'Roboto, sans-serif';text-align:center;text-anchor:middle;stroke-width:0.116313">Wealthtech jobs with FastAPI</tspan></text>
 </svg>
