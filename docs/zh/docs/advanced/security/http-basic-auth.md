@@ -16,7 +16,7 @@ HTTP 基础授权让浏览器显示内置的用户名与密码提示。
 
 * 导入 `HTTPBsic` 与 `HTTPBasicCredentials`
 * 使用 `HTTPBsic` 创建**安全概图**
-* 在*路径操作*的依赖项中使用 `security` 
+* 在*路径操作*的依赖项中使用 `security`
 * 返回类型为 `HTTPBasicCredentials` 的对象：
     * 包含发送的 `username` 与 `password`
 
