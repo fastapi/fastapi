@@ -44,7 +44,7 @@ So the new file structure looks like:
 
 First, we create a new database session with the new database.
 
-For the tests we'll use a file `test.db` instead of `sql_app.db`.
+We'll use an in-memory database that persists during the tests instead of the local file `sql_app.db`.
 
 But the rest of the session code is more or less the same, we just copy it.
 
