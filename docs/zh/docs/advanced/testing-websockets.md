@@ -11,4 +11,3 @@
 !!! note "笔记"
 
     更多细节详见 <a href="https://www.starlette.io/testclient/#testing-websocket-sessions" class="external-link" target="_blank">Starlette 官档 - 测试 WebSockets</a>。
-
