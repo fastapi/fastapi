@@ -1,3 +1,4 @@
+INHERIT: ../en/mkdocs.maybe-insiders.yml
 site_name: FastAPI
 site_description: FastAPI framework, high performance, easy to learn, fast to code, ready for production
 site_url: https://fastapi.tiangolo.com/
@@ -24,6 +25,11 @@ theme:
   - search.highlight
   - content.tabs.link
   - navigation.indexes
+  - content.tooltips
+  - navigation.path
+  - content.code.annotate
+  - content.code.copy
+  - content.code.select
   icon:
     repo: fontawesome/brands/github-alt
   logo: img/icon-white.svg
@@ -33,8 +39,8 @@ repo_name: tiangolo/fastapi
 repo_url: https://github.com/tiangolo/fastapi
 edit_uri: ''
 plugins:
-- search
-- markdownextradata:
+  search: null
+  markdownextradata:
     data: ../en/data
 nav:
 - FastAPI: index.md
