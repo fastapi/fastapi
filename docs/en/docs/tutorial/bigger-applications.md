@@ -112,9 +112,26 @@ So we put them in their own `dependencies` module (`app/dependencies.py`).
 
 We will now use a simple dependency to read a custom `X-Token` header:
 
-```Python hl_lines="1  4-6"
-{!../../../docs_src/bigger_applications/app/dependencies.py!}
-```
+=== "Python 3.9+"
+
+    ```Python hl_lines="3  6-8"
+    {!> ../../../docs_src/bigger_applications/app_an_py39/dependencies.py!}
+    ```
+
+=== "Python 3.6+"
+
+    ```Python hl_lines="1  5-7"
+    {!> ../../../docs_src/bigger_applications/app_an/dependencies.py!}
+    ```
+
+=== "Python 3.6+ non-Annotated"
+
+    !!! tip
+        Prefer to use the `Annotated` version if possible.
+
+    ```Python hl_lines="1  4-6"
+    {!> ../../../docs_src/bigger_applications/app/dependencies.py!}
+    ```
 
 !!! tip
     We are using an invented header to simplify this example.
@@ -189,7 +206,7 @@ The end result is that the item paths are now:
 
 ### Import the dependencies
 
-This codes lives in the module `app.routers.items`, the file `app/routers/items.py`.
+This code lives in the module `app.routers.items`, the file `app/routers/items.py`.
 
 And we need to get the dependency function from the module `app.dependencies`, the file `app/dependencies.py`.
 
@@ -234,7 +251,7 @@ mean:
 
 * Starting in the same package that this module (the file `app/routers/items.py`) lives in (the directory `app/routers/`)...
 * go to the parent package (the directory `app/`)...
-* and in there, find the module `dependencies` (the file at `app/routers/dependencies.py`)...
+* and in there, find the module `dependencies` (the file at `app/dependencies.py`)...
 * and from it, import the function `get_token_header`.
 
 That works correctly! 🎉
@@ -252,7 +269,7 @@ that would mean:
 * Starting in the same package that this module (the file `app/routers/items.py`) lives in (the directory `app/routers/`)...
 * go to the parent package (the directory `app/`)...
 * then go to the parent of that package (there's no parent package, `app` is the top level 😱)...
-* and in there, find the module `dependencies` (the file at `app/routers/dependencies.py`)...
+* and in there, find the module `dependencies` (the file at `app/dependencies.py`)...
 * and from it, import the function `get_token_header`.
 
 That would refer to some package above `app/`, with its own file `__init__.py`, etc. But we don't have that. So, that would throw an error in our example. 🚨
@@ -334,7 +351,7 @@ from app.routers import items, users
     ```Python
     from .routers import items, users
     ```
-    
+
     The second version is an "absolute import":
 
     ```Python
