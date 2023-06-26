@@ -119,7 +119,7 @@ Eğer API yerine <abbr title="Command Line Interface">komut satırı uygulaması
 
 ## Gereksinimler
 
-Python 3.6+
+Python 3.7+
 
 FastAPI iki devin omuzları üstünde duruyor:
 
@@ -143,7 +143,7 @@ Uygulamanı kullanılabilir hale getirmek için <a href="http://www.uvicorn.org"
 <div class="termy">
 
 ```console
-$ pip install uvicorn[standard]
+$ pip install "uvicorn[standard]"
 
 ---> 100%
 ```
@@ -157,7 +157,7 @@ $ pip install uvicorn[standard]
 * `main.py` adında bir dosya oluştur :
 
 ```Python
-from typing import Optional
+from typing import Union
 
 from fastapi import FastAPI
 
@@ -170,7 +170,7 @@ def read_root():
 
 
 @app.get("/items/{item_id}")
-def read_item(item_id: int, q: Optional[str] = None):
+def read_item(item_id: int, q: Union[str, None] = None):
     return {"item_id": item_id, "q": q}
 ```
 
@@ -180,7 +180,7 @@ def read_item(item_id: int, q: Optional[str] = None):
 Eğer kodunda `async` / `await` var ise, `async def` kullan:
 
 ```Python hl_lines="9 14"
-from typing import Optional
+from typing import Union
 
 from fastapi import FastAPI
 
@@ -193,7 +193,7 @@ async def read_root():
 
 
 @app.get("/items/{item_id}")
-async def read_item(item_id: int, q: Optional[str] = None):
+async def read_item(item_id: int, q: Union[str, None] = None):
     return {"item_id": item_id, "q": q}
 ```
 
@@ -272,7 +272,7 @@ Senin için alternatif olarak (<a href="https://github.com/Rebilly/ReDoc" class=
 Şimdi Pydantic sayesinde, Python'un standart tiplerini kullanarak bir body tanımlayacağız.
 
 ```Python hl_lines="4  9 10 11 12  25 26 27"
-from typing import Optional
+from typing import Union
 
 from fastapi import FastAPI
 from pydantic import BaseModel
@@ -283,7 +283,7 @@ app = FastAPI()
 class Item(BaseModel):
     name: str
     price: float
-    is_offer: Optional[bool] = None
+    is_offer: Union[bool, None] = None
 
 
 @app.get("/")
@@ -292,7 +292,7 @@ def read_root():
 
 
 @app.get("/items/{item_id}")
-def read_item(item_id: int, q: Optional[str] = None):
+def read_item(item_id: int, q: Union[str, None] = None):
     return {"item_id": item_id, "q": q}
 
 
@@ -434,7 +434,7 @@ Daha fazla örnek ve özellik için <a href="https://fastapi.tiangolo.com/tutori
 * Diğer ekstra özellikler (Starlette sayesinde):
     * **WebSockets**
     * **GraphQL**
-    * `requests` ve `pytest` sayesinde aşırı kolay testler.
+    * HTTPX ve `pytest` sayesinde aşırı kolay testler.
     * **CORS**
     * **Cookie Sessions**
     * ...ve daha fazlası.
@@ -449,12 +449,11 @@ Daha fazla bilgi için, bu bölüme bir göz at <a href="https://fastapi.tiangol
 
 Pydantic tarafında kullanılan:
 
-* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - daha hızlı JSON <abbr title="HTTP bağlantısından gelen stringi Python objesine çevirmek için">"dönüşümü"</abbr> için.
 * <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - email doğrulaması için.
 
 Starlette tarafında kullanılan:
 
-* <a href="http://docs.python-requests.org" target="_blank"><code>requests</code></a> - Eğer `TestClient` kullanmak istiyorsan gerekli.
+* <a href="https://www.python-httpx.org" target="_blank"><code>httpx</code></a> - Eğer `TestClient` kullanmak istiyorsan gerekli.
 * <a href="http://jinja.pocoo.org" target="_blank"><code>jinja2</code></a> - Eğer kendine ait template konfigürasyonu oluşturmak istiyorsan gerekli
 * <a href="https://andrew-d.github.io/python-multipart/" target="_blank"><code>python-multipart</code></a> - Form kullanmak istiyorsan gerekli <abbr title="HTTP bağlantısından gelen stringi Python objesine çevirmek için">("dönüşümü")</abbr>.
 * <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - `SessionMiddleware` desteği için gerekli.

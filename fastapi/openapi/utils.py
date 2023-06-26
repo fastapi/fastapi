@@ -9,11 +9,7 @@ from fastapi.datastructures import DefaultPlaceholder
 from fastapi.dependencies.models import Dependant
 from fastapi.dependencies.utils import get_flat_dependant, get_flat_params
 from fastapi.encoders import jsonable_encoder
-from fastapi.openapi.constants import (
-    METHODS_WITH_BODY,
-    REF_PREFIX,
-    STATUS_CODES_WITH_NO_BODY,
-)
+from fastapi.openapi.constants import METHODS_WITH_BODY, REF_PREFIX
 from fastapi.openapi.models import OpenAPI
 from fastapi.params import Body, Param
 from fastapi.responses import Response
@@ -21,6 +17,7 @@ from fastapi.utils import (
     deep_dict_update,
     generate_operation_id_for_path,
     get_model_definitions,
+    is_body_allowed_for_status_code,
 )
 from pydantic import BaseModel
 from pydantic.fields import ModelField, Undefined
@@ -184,7 +181,7 @@ def get_openapi_operation_metadata(
         file_name = getattr(route.endpoint, "__globals__", {}).get("__file__")
         if file_name:
             message += f" at {file_name}"
-        warnings.warn(message)
+        warnings.warn(message, stacklevel=1)
     operation_ids.add(operation_id)
     operation["operationId"] = operation_id
     if route.deprecated:
@@ -225,9 +222,18 @@ def get_openapi_path(
             )
             parameters.extend(operation_parameters)
             if parameters:
-                operation["parameters"] = list(
-                    {param["name"]: param for param in parameters}.values()
-                )
+                all_parameters = {
+                    (param["in"], param["name"]): param for param in parameters
+                }
+                required_parameters = {
+                    (param["in"], param["name"]): param
+                    for param in parameters
+                    if param.get("required")
+                }
+                # Make sure required definitions of the same parameter take precedence
+                # over non-required definitions
+                all_parameters.update(required_parameters)
+                operation["parameters"] = list(all_parameters.values())
             if method in METHODS_WITH_BODY:
                 request_body_oai = get_openapi_operation_request_body(
                     body_field=route.body_field, model_name_map=model_name_map
@@ -265,9 +271,8 @@ def get_openapi_path(
             operation.setdefault("responses", {}).setdefault(status_code, {})[
                 "description"
             ] = route.response_description
-            if (
-                route_response_media_type
-                and route.status_code not in STATUS_CODES_WITH_NO_BODY
+            if route_response_media_type and is_body_allowed_for_status_code(
+                route.status_code
             ):
                 response_schema = {"type": "string"}
                 if lenient_issubclass(current_response_class, JSONResponse):
@@ -327,10 +332,8 @@ def get_openapi_path(
                     openapi_response["description"] = description
             http422 = str(HTTP_422_UNPROCESSABLE_ENTITY)
             if (all_route_params or route.body_field) and not any(
-                [
-                    status in operation["responses"]
-                    for status in [http422, "4XX", "default"]
-                ]
+                status in operation["responses"]
+                for status in [http422, "4XX", "default"]
             ):
                 operation["responses"][http422] = {
                     "description": "Validation Error",

@@ -37,7 +37,7 @@ FastAPI 支持创建含**子依赖项**的依赖项。
 
 接下来，就可以使用依赖项：
 
-```Python hl_lines="21"
+```Python hl_lines="22"
 {!../../../docs_src/dependencies/tutorial005.py!}
 ```
 
