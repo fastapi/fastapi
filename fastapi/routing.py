@@ -3,6 +3,7 @@ import dataclasses
 import email.message
 import inspect
 import json
+from contextlib import AsyncExitStack
 from enum import Enum, IntEnum
 from typing import (
     Any,
@@ -25,10 +26,15 @@ from fastapi.dependencies.utils import (
     get_body_field,
     get_dependant,
     get_parameterless_sub_dependant,
+    get_typed_return_annotation,
     solve_dependencies,
 )
 from fastapi.encoders import DictIntStrAny, SetIntStr, jsonable_encoder
-from fastapi.exceptions import RequestValidationError, WebSocketRequestValidationError
+from fastapi.exceptions import (
+    FastAPIError,
+    RequestValidationError,
+    WebSocketRequestValidationError,
+)
 from fastapi.types import DecoratedCallable
 from fastapi.utils import (
     create_cloned_field,
@@ -40,21 +46,22 @@ from fastapi.utils import (
 from pydantic import BaseModel
 from pydantic.error_wrappers import ErrorWrapper, ValidationError
 from pydantic.fields import ModelField, Undefined
+from pydantic.utils import lenient_issubclass
 from starlette import routing
 from starlette.concurrency import run_in_threadpool
 from starlette.exceptions import HTTPException
 from starlette.requests import Request
 from starlette.responses import JSONResponse, Response
-from starlette.routing import BaseRoute, Match
-from starlette.routing import Mount as Mount  # noqa
 from starlette.routing import (
+    BaseRoute,
+    Match,
     compile_path,
     get_name,
     request_response,
     websocket_session,
 )
-from starlette.status import WS_1008_POLICY_VIOLATION
-from starlette.types import ASGIApp, Scope
+from starlette.routing import Mount as Mount  # noqa
+from starlette.types import ASGIApp, Lifespan, Scope
 from starlette.websockets import WebSocket
 
 
@@ -127,7 +134,7 @@ async def serialize_response(
         if is_coroutine:
             value, errors_ = field.validate(response_content, {}, loc=("response",))
         else:
-            value, errors_ = await run_in_threadpool(  # type: ignore[misc]
+            value, errors_ = await run_in_threadpool(
                 field.validate, response_content, {}, loc=("response",)
             )
         if isinstance(errors_, ErrorWrapper):
@@ -190,6 +197,9 @@ def get_request_handler(
             if body_field:
                 if is_body_form:
                     body = await request.form()
+                    stack = request.scope.get("fastapi_astack")
+                    assert isinstance(stack, AsyncExitStack)
+                    stack.push_async_callback(body.close)
                 else:
                     body_bytes = await request.body()
                     if body_bytes:
@@ -209,7 +219,11 @@ def get_request_handler(
                         else:
                             body = body_bytes
         except json.JSONDecodeError as e:
-            raise RequestValidationError([ErrorWrapper(e, ("body", e.pos))], body=e.doc)
+            raise RequestValidationError(
+                [ErrorWrapper(e, ("body", e.pos))], body=e.doc
+            ) from e
+        except HTTPException:
+            raise
         except Exception as e:
             raise HTTPException(
                 status_code=400, detail="There was an error parsing the body"
@@ -254,7 +268,7 @@ def get_request_handler(
                 is_coroutine=is_coroutine,
             )
             response = actual_response_class(content, **response_args)
-            if not is_body_allowed_for_status_code(status_code):
+            if not is_body_allowed_for_status_code(response.status_code):
                 response.body = b""
             response.headers.raw.extend(sub_response.headers.raw)
             return response
@@ -273,7 +287,6 @@ def get_websocket_app(
         )
         values, errors, _, _2, _3 = solved_result
         if errors:
-            await websocket.close(code=WS_1008_POLICY_VIOLATION)
             raise WebSocketRequestValidationError(errors)
         assert dependant.call is not None, "dependant.call must be a function"
         await dependant.call(**values)
@@ -288,19 +301,27 @@ class APIWebSocketRoute(routing.WebSocketRoute):
         endpoint: Callable[..., Any],
         *,
         name: Optional[str] = None,
+        dependencies: Optional[Sequence[params.Depends]] = None,
         dependency_overrides_provider: Optional[Any] = None,
     ) -> None:
         self.path = path
         self.endpoint = endpoint
         self.name = get_name(endpoint) if name is None else name
-        self.dependant = get_dependant(path=path, call=self.endpoint)
+        self.dependencies = list(dependencies or [])
+        self.path_regex, self.path_format, self.param_convertors = compile_path(path)
+        self.dependant = get_dependant(path=self.path_format, call=self.endpoint)
+        for depends in self.dependencies[::-1]:
+            self.dependant.dependencies.insert(
+                0,
+                get_parameterless_sub_dependant(depends=depends, path=self.path_format),
+            )
+
         self.app = websocket_session(
             get_websocket_app(
                 dependant=self.dependant,
                 dependency_overrides_provider=dependency_overrides_provider,
             )
         )
-        self.path_regex, self.path_format, self.param_convertors = compile_path(path)
 
     def matches(self, scope: Scope) -> Tuple[Match, Scope]:
         match, child_scope = super().matches(scope)
@@ -315,7 +336,7 @@ class APIRoute(routing.Route):
         path: str,
         endpoint: Callable[..., Any],
         *,
-        response_model: Optional[Type[Any]] = None,
+        response_model: Any = Default(None),
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
@@ -346,6 +367,12 @@ class APIRoute(routing.Route):
     ) -> None:
         self.path = path
         self.endpoint = endpoint
+        if isinstance(response_model, DefaultPlaceholder):
+            return_annotation = get_typed_return_annotation(endpoint)
+            if lenient_issubclass(return_annotation, Response):
+                response_model = None
+            else:
+                response_model = return_annotation
         self.response_model = response_model
         self.summary = summary
         self.response_description = response_description
@@ -402,14 +429,11 @@ class APIRoute(routing.Route):
         else:
             self.response_field = None  # type: ignore
             self.secure_cloned_response_field = None
-        if dependencies:
-            self.dependencies = list(dependencies)
-        else:
-            self.dependencies = []
+        self.dependencies = list(dependencies or [])
         self.description = description or inspect.cleandoc(self.endpoint.__doc__ or "")
         # if a "form feed" character (page break) is found in the description text,
         # truncate description text to the content preceding the first "form feed"
-        self.description = self.description.split("\f")[0]
+        self.description = self.description.split("\f")[0].strip()
         response_fields = {}
         for additional_status_code, response in self.responses.items():
             assert isinstance(response, dict), "An additional response must be a dict"
@@ -476,6 +500,9 @@ class APIRouter(routing.Router):
         route_class: Type[APIRoute] = APIRoute,
         on_startup: Optional[Sequence[Callable[[], Any]]] = None,
         on_shutdown: Optional[Sequence[Callable[[], Any]]] = None,
+        # the generic to Lifespan[AppType] is the type of the top level application
+        # which the router cannot know statically, so we use typing.Any
+        lifespan: Optional[Lifespan[Any]] = None,
         deprecated: Optional[bool] = None,
         include_in_schema: bool = True,
         generate_unique_id_function: Callable[[APIRoute], str] = Default(
@@ -488,6 +515,7 @@ class APIRouter(routing.Router):
             default=default,
             on_startup=on_startup,
             on_shutdown=on_shutdown,
+            lifespan=lifespan,
         )
         if prefix:
             assert prefix.startswith("/"), "A path prefix must start with '/'"
@@ -496,7 +524,7 @@ class APIRouter(routing.Router):
             ), "A path prefix must not end with '/', as the routes will start with '/'"
         self.prefix = prefix
         self.tags: List[Union[str, Enum]] = tags or []
-        self.dependencies = list(dependencies or []) or []
+        self.dependencies = list(dependencies or [])
         self.deprecated = deprecated
         self.include_in_schema = include_in_schema
         self.responses = responses or {}
@@ -506,12 +534,31 @@ class APIRouter(routing.Router):
         self.default_response_class = default_response_class
         self.generate_unique_id_function = generate_unique_id_function
 
+    def route(
+        self,
+        path: str,
+        methods: Optional[List[str]] = None,
+        name: Optional[str] = None,
+        include_in_schema: bool = True,
+    ) -> Callable[[DecoratedCallable], DecoratedCallable]:
+        def decorator(func: DecoratedCallable) -> DecoratedCallable:
+            self.add_route(
+                path,
+                func,
+                methods=methods,
+                name=name,
+                include_in_schema=include_in_schema,
+            )
+            return func
+
+        return decorator
+
     def add_api_route(
         self,
         path: str,
         endpoint: Callable[..., Any],
         *,
-        response_model: Optional[Type[Any]] = None,
+        response_model: Any = Default(None),
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
@@ -592,7 +639,7 @@ class APIRouter(routing.Router):
         self,
         path: str,
         *,
-        response_model: Optional[Type[Any]] = None,
+        response_model: Any = Default(None),
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
@@ -651,21 +698,46 @@ class APIRouter(routing.Router):
         return decorator
 
     def add_api_websocket_route(
-        self, path: str, endpoint: Callable[..., Any], name: Optional[str] = None
+        self,
+        path: str,
+        endpoint: Callable[..., Any],
+        name: Optional[str] = None,
+        *,
+        dependencies: Optional[Sequence[params.Depends]] = None,
     ) -> None:
+        current_dependencies = self.dependencies.copy()
+        if dependencies:
+            current_dependencies.extend(dependencies)
+
         route = APIWebSocketRoute(
             self.prefix + path,
             endpoint=endpoint,
             name=name,
+            dependencies=current_dependencies,
             dependency_overrides_provider=self.dependency_overrides_provider,
         )
         self.routes.append(route)
 
     def websocket(
-        self, path: str, name: Optional[str] = None
+        self,
+        path: str,
+        name: Optional[str] = None,
+        *,
+        dependencies: Optional[Sequence[params.Depends]] = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         def decorator(func: DecoratedCallable) -> DecoratedCallable:
-            self.add_api_websocket_route(path, func, name=name)
+            self.add_api_websocket_route(
+                path, func, name=name, dependencies=dependencies
+            )
+            return func
+
+        return decorator
+
+    def websocket_route(
+        self, path: str, name: Union[str, None] = None
+    ) -> Callable[[DecoratedCallable], DecoratedCallable]:
+        def decorator(func: DecoratedCallable) -> DecoratedCallable:
+            self.add_websocket_route(path, func, name=name)
             return func
 
         return decorator
@@ -693,10 +765,10 @@ class APIRouter(routing.Router):
             ), "A path prefix must not end with '/', as the routes will start with '/'"
         else:
             for r in router.routes:
-                path = getattr(r, "path")
+                path = getattr(r, "path")  # noqa: B009
                 name = getattr(r, "name", "unknown")
                 if path is not None and not path:
-                    raise Exception(
+                    raise FastAPIError(
                         f"Prefix and path cannot be both empty (path operation: {name})"
                     )
         if responses is None:
@@ -771,8 +843,16 @@ class APIRouter(routing.Router):
                     name=route.name,
                 )
             elif isinstance(route, APIWebSocketRoute):
+                current_dependencies = []
+                if dependencies:
+                    current_dependencies.extend(dependencies)
+                if route.dependencies:
+                    current_dependencies.extend(route.dependencies)
                 self.add_api_websocket_route(
-                    prefix + route.path, route.endpoint, name=route.name
+                    prefix + route.path,
+                    route.endpoint,
+                    dependencies=current_dependencies,
+                    name=route.name,
                 )
             elif isinstance(route, routing.WebSocketRoute):
                 self.add_websocket_route(
@@ -787,7 +867,7 @@ class APIRouter(routing.Router):
         self,
         path: str,
         *,
-        response_model: Optional[Type[Any]] = None,
+        response_model: Any = Default(None),
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
@@ -843,7 +923,7 @@ class APIRouter(routing.Router):
         self,
         path: str,
         *,
-        response_model: Optional[Type[Any]] = None,
+        response_model: Any = Default(None),
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
@@ -899,7 +979,7 @@ class APIRouter(routing.Router):
         self,
         path: str,
         *,
-        response_model: Optional[Type[Any]] = None,
+        response_model: Any = Default(None),
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
@@ -955,7 +1035,7 @@ class APIRouter(routing.Router):
         self,
         path: str,
         *,
-        response_model: Optional[Type[Any]] = None,
+        response_model: Any = Default(None),
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
@@ -1011,7 +1091,7 @@ class APIRouter(routing.Router):
         self,
         path: str,
         *,
-        response_model: Optional[Type[Any]] = None,
+        response_model: Any = Default(None),
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
@@ -1067,7 +1147,7 @@ class APIRouter(routing.Router):
         self,
         path: str,
         *,
-        response_model: Optional[Type[Any]] = None,
+        response_model: Any = Default(None),
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
@@ -1123,7 +1203,7 @@ class APIRouter(routing.Router):
         self,
         path: str,
         *,
-        response_model: Optional[Type[Any]] = None,
+        response_model: Any = Default(None),
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
@@ -1179,7 +1259,7 @@ class APIRouter(routing.Router):
         self,
         path: str,
         *,
-        response_model: Optional[Type[Any]] = None,
+        response_model: Any = Default(None),
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
@@ -1204,7 +1284,6 @@ class APIRouter(routing.Router):
             generate_unique_id
         ),
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
-
         return self.api_route(
             path=path,
             response_model=response_model,
@@ -1231,3 +1310,12 @@ class APIRouter(routing.Router):
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
         )
+
+    def on_event(
+        self, event_type: str
+    ) -> Callable[[DecoratedCallable], DecoratedCallable]:
+        def decorator(func: DecoratedCallable) -> DecoratedCallable:
+            self.add_event_handler(event_type, func)
+            return func
+
+        return decorator

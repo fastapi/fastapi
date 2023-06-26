@@ -11,23 +11,57 @@ When you need to receive form fields instead of JSON, you can use `Form`.
 
 Import `Form` from `fastapi`:
 
-```Python hl_lines="1"
-{!../../../docs_src/request_forms/tutorial001.py!}
-```
+=== "Python 3.9+"
+
+    ```Python hl_lines="3"
+    {!> ../../../docs_src/request_forms/tutorial001_an_py39.py!}
+    ```
+
+=== "Python 3.6+"
+
+    ```Python hl_lines="1"
+    {!> ../../../docs_src/request_forms/tutorial001_an.py!}
+    ```
+
+=== "Python 3.6+ non-Annotated"
+
+    !!! tip
+        Prefer to use the `Annotated` version if possible.
+
+    ```Python hl_lines="1"
+    {!> ../../../docs_src/request_forms/tutorial001.py!}
+    ```
 
 ## Define `Form` parameters
 
 Create form parameters the same way you would for `Body` or `Query`:
 
-```Python hl_lines="7"
-{!../../../docs_src/request_forms/tutorial001.py!}
-```
+=== "Python 3.9+"
+
+    ```Python hl_lines="9"
+    {!> ../../../docs_src/request_forms/tutorial001_an_py39.py!}
+    ```
+
+=== "Python 3.6+"
+
+    ```Python hl_lines="8"
+    {!> ../../../docs_src/request_forms/tutorial001_an.py!}
+    ```
+
+=== "Python 3.6+ non-Annotated"
+
+    !!! tip
+        Prefer to use the `Annotated` version if possible.
+
+    ```Python hl_lines="7"
+    {!> ../../../docs_src/request_forms/tutorial001.py!}
+    ```
 
 For example, in one of the ways the OAuth2 specification can be used (called "password flow") it is required to send a `username` and `password` as form fields.
 
 The <abbr title="specification">spec</abbr> requires the fields to be exactly named `username` and `password`, and to be sent as form fields, not JSON.
 
-With `Form` you can declare the same metadata and validation as with `Body` (and `Query`, `Path`, `Cookie`).
+With `Form` you can declare the same configurations as with `Body` (and `Query`, `Path`, `Cookie`), including validation, examples, an alias (e.g. `user-name` instead of `username`), etc.
 
 !!! info
     `Form` is a class that inherits directly from `Body`.
