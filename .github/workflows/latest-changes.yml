@@ -12,7 +12,7 @@ on:
         description: PR number
         required: true
       debug_enabled:
-        description: 'Run the build with tmate debugging enabled (https://github.com/marketplace/actions/debugging-with-tmate)'     
+        description: 'Run the build with tmate debugging enabled (https://github.com/marketplace/actions/debugging-with-tmate)'
         required: false
         default: false
 
@@ -20,7 +20,7 @@ jobs:
   latest-changes:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           # To allow latest-changes to commit to master
           token: ${{ secrets.ACTIONS_TOKEN }}
@@ -30,11 +30,9 @@ jobs:
         if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.debug_enabled }}
         with:
           limit-access-to-actor: true
-          token: ${{ secrets.ACTIONS_TOKEN }}
-          standard_token: ${{ secrets.GITHUB_TOKEN }}
       - uses: docker://tiangolo/latest-changes:0.0.3
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.FASTAPI_LATEST_CHANGES }}
           latest_changes_file: docs/en/docs/release-notes.md
           latest_changes_header: '## Latest Changes\n\n'
           debug_logs: true
