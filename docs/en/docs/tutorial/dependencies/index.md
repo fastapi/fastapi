@@ -1,4 +1,4 @@
-# Dependencies - First Steps
+# Dependencies
 
 **FastAPI** has a very powerful but intuitive **<abbr title="also known as components, resources, providers, services, injectables">Dependency Injection</abbr>** system.
 

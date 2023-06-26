@@ -195,6 +195,21 @@ It will serve the documentation on `http://127.0.0.1:8008`.
 
 That way, you can edit the documentation/source files and see the changes live.
 
+!!! tip
+    Alternatively, you can perform the same steps that scripts does manually.
+
+    Go into the language directory, for the main docs in English it's at `docs/en/`:
+
+    ```console
+    $ cd docs/en/
+    ```
+
+    Then run `mkdocs` in that directory:
+
+    ```console
+    $ mkdocs serve --dev-addr 8008
+    ```
+
 #### Typer CLI (optional)
 
 The instructions here show you how to use the script at `./scripts/docs.py` with the `python` program directly.
@@ -245,13 +260,15 @@ Here are the steps to help with translations.
 
     Check the docs about <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-request-reviews" class="external-link" target="_blank">adding a pull request review</a> to approve it or request changes.
 
-* Check in the <a href="https://github.com/tiangolo/fastapi/issues" class="external-link" target="_blank">issues</a> to see if there's one coordinating translations for your language.
+* Check if there's a <a href="https://github.com/tiangolo/fastapi/discussions/categories/translations" class="external-link" target="_blank">GitHub Discussion</a> to coordinate translations for your language. You can subscribe to it, and when there's a new pull request to review, an automatic comment will be added to the discussion.
 
 * Add a single pull request per page translated. That will make it much easier for others to review it.
 
 For the languages I don't speak, I'll wait for several others to review the translation before merging.
 
 * You can also check if there are translations for your language and add a review to them, that will help me know that the translation is correct and I can merge it.
+    * You could check in the <a href="https://github.com/tiangolo/fastapi/discussions/categories/translations" class="external-link" target="_blank">GitHub Discussions</a> for your language.
+    * Or you can filter the existing PRs by the ones with the label for your language, for example, for Spanish, the label is <a href="https://github.com/tiangolo/fastapi/pulls?q=is%3Apr+is%3Aopen+sort%3Aupdated-desc+label%3Alang-es+label%3A%22awaiting+review%22" class="external-link" target="_blank">`lang-es`</a>.
 
 * Use the same Python examples and only translate the text in the docs. You don't have to change anything for this to work.
 
@@ -283,11 +300,24 @@ $ python ./scripts/docs.py live es
 
 </div>
 
+!!! tip
+    Alternatively, you can perform the same steps that scripts does manually.
+
+    Go into the language directory, for the Spanish translations it's at `docs/es/`:
+
+    ```console
+    $ cd docs/es/
+    ```
+
+    Then run `mkdocs` in that directory:
+
+    ```console
+    $ mkdocs serve --dev-addr 8008
+    ```
+
 Now you can go to <a href="http://127.0.0.1:8008" class="external-link" target="_blank">http://127.0.0.1:8008</a> and see your changes live.
 
-If you look at the FastAPI docs website, you will see that every language has all the pages. But some pages are not translated and have a notification about the missing translation.
-
-But when you run it locally like this, you will only see the pages that are already translated.
+You will see that every language has all the pages. But some pages are not translated and have a notification about the missing translation.
 
 Now let's say that you want to add a translation for the section [Features](features.md){.internal-link target=_blank}.
 
@@ -305,46 +335,6 @@ docs/es/docs/features.md
 
 !!! tip
     Notice that the only change in the path and file name is the language code, from `en` to `es`.
-
-* Now open the MkDocs config file for English at:
-
-```
-docs/en/mkdocs.yml
-```
-
-* Find the place where that `docs/features.md` is located in the config file. Somewhere like:
-
-```YAML hl_lines="8"
-site_name: FastAPI
-# More stuff
-nav:
-- FastAPI: index.md
-- Languages:
-  - en: /
-  - es: /es/
-- features.md
-```
-
-* Open the MkDocs config file for the language you are editing, e.g.:
-
-```
-docs/es/mkdocs.yml
-```
-
-* Add it there at the exact same location it was for English, e.g.:
-
-```YAML hl_lines="8"
-site_name: FastAPI
-# More stuff
-nav:
-- FastAPI: index.md
-- Languages:
-  - en: /
-  - es: /es/
-- features.md
-```
-
-Make sure that if there are other entries, the new entry with your translation is exactly in the same order as in the English version.
 
 If you go to your browser you will see that now the docs show your new section. 🎉
 
@@ -367,55 +357,32 @@ The next step is to run the script to generate a new translation directory:
 $ python ./scripts/docs.py new-lang ht
 
 Successfully initialized: docs/ht
-Updating ht
-Updating en
 ```
 
 </div>
 
 Now you can check in your code editor the newly created directory `docs/ht/`.
 
+That command created a file `docs/ht/mkdocs.yml` with a simple config that inherits everything from the `en` version:
+
+```yaml
+INHERIT: ../en/mkdocs.yml
+```
+
 !!! tip
-    Create a first pull request with just this, to set up the configuration for the new language, before adding translations.
+    You could also simply create that file with those contents manually.
 
-    That way others can help with other pages while you work on the first one. 🚀
+That command also created a dummy file `docs/ht/index.md` for the main page, you can start by translating that one.
 
-Start by translating the main page, `docs/ht/index.md`.
+You can continue with the previous instructions for an "Existing Language" for that process.
 
-Then you can continue with the previous instructions, for an "Existing Language".
-
-##### New Language not supported
-
-If when running the live server script you get an error about the language not being supported, something like:
-
-```
- raise TemplateNotFound(template)
-jinja2.exceptions.TemplateNotFound: partials/language/xx.html
-```
-
-That means that the theme doesn't support that language (in this case, with a fake 2-letter code of `xx`).
-
-But don't worry, you can set the theme language to English and then translate the content of the docs.
-
-If you need to do that, edit the `mkdocs.yml` for your new language, it will have something like:
-
-```YAML hl_lines="5"
-site_name: FastAPI
-# More stuff
-theme:
-  # More stuff
-  language: xx
-```
-
-Change that language from `xx` (from your language code) to `en`.
-
-Then you can start the live server again.
+You can make the first pull request with those two files, `docs/ht/mkdocs.yml` and `docs/ht/index.md`. 🎉
 
 #### Preview the result
 
-When you use the script at `./scripts/docs.py` with the `live` command it only shows the files and translations available for the current language.
+You can use the `./scripts/docs.py` with the `live` command to preview the results (or `mkdocs serve`).
 
-But once you are done, you can test it all as it would look online.
+Once you are done, you can also test it all as it would look online, including all the other languages.
 
 To do that, first build all the docs:
 
@@ -425,19 +392,14 @@ To do that, first build all the docs:
 // Use the command "build-all", this will take a bit
 $ python ./scripts/docs.py build-all
 
-Updating es
-Updating en
 Building docs for: en
 Building docs for: es
 Successfully built docs for: es
-Copying en index.md to README.md
 ```
 
 </div>
 
-That generates all the docs at `./docs_build/` for each language. This includes adding any files with missing translations, with a note saying that "this file doesn't have a translation yet". But you don't have to do anything with that directory.
-
-Then it builds all those independent MkDocs sites for each language, combines them, and generates the final output at `./site/`.
+This builds all those independent MkDocs sites for each language, combines them, and generates the final output at `./site/`.
 
 Then you can serve that with the command `serve`:
 
