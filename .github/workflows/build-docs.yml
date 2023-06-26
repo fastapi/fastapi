@@ -44,7 +44,7 @@ jobs:
         id: changes-cache
         with:
           path: ${{ env.pythonLocation }}
-          key: ${{ runner.os }}-python-docs-${{ env.pythonLocation }}-${{ hashFiles('pyproject.toml', 'requirements-docs.txt') }}-v03
+          key: ${{ runner.os }}-python-docs-langs-${{ env.pythonLocation }}-${{ hashFiles('pyproject.toml', 'requirements-docs.txt') }}-v01
       - name: Install docs extras
         if: steps.changes-cache.outputs.cache-hit != 'true'
         run: pip install -r requirements-docs.txt
@@ -76,7 +76,7 @@ jobs:
         id: build-cache
         with:
           path: ${{ env.pythonLocation }}
-          key: ${{ runner.os }}-python-docs-${{ env.pythonLocation }}-${{ hashFiles('pyproject.toml', 'requirements-docs.txt') }}-v03
+          key: ${{ runner.os }}-python-docs-${{ env.pythonLocation }}-${{ hashFiles('pyproject.toml', 'requirements-docs.txt') }}-v04
       - name: Install docs extras
         if: steps.build-cache.outputs.cache-hit != 'true'
         run: pip install -r requirements-docs.txt
