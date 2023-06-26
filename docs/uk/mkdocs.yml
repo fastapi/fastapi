@@ -58,8 +58,6 @@ nav:
   - tr: /tr/
   - uk: /uk/
   - zh: /zh/
-- Туторіал - Посібник користувача:
-  - tutorial/query-params.md
 markdown_extensions:
 - toc:
     permalink: true
