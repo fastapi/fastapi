@@ -67,21 +67,21 @@ fastapi
 === "Linux, macOS"
 
     <div class="termy">
-    
+
     ```console
     $ curl -fsSL https://get.deta.dev/cli.sh | sh
     ```
-    
+
     </div>
 
 === "Windows PowerShell"
 
     <div class="termy">
-    
+
     ```console
     $ iwr https://get.deta.dev/cli.ps1 -useb | iex
     ```
-    
+
     </div>
 
 安装完 CLI 后，打开新的 Terminal，就能检测到刚安装的 CLI。
