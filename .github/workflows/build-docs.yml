@@ -41,12 +41,12 @@ jobs:
         with:
           python-version: "3.11"
       - uses: actions/cache@v3
-        id: cache
+        id: changes-cache
         with:
           path: ${{ env.pythonLocation }}
           key: ${{ runner.os }}-python-docs-${{ env.pythonLocation }}-${{ hashFiles('pyproject.toml', 'requirements-docs.txt') }}-v03
       - name: Install docs extras
-        if: steps.cache.outputs.cache-hit != 'true'
+        if: steps.changes-cache.outputs.cache-hit != 'true'
         run: pip install -r requirements-docs.txt
       - name: Export Language Codes
         id: show-langs
@@ -73,12 +73,12 @@ jobs:
         with:
           python-version: "3.11"
       - uses: actions/cache@v3
-        id: cache
+        id: build-cache
         with:
           path: ${{ env.pythonLocation }}
           key: ${{ runner.os }}-python-docs-${{ env.pythonLocation }}-${{ hashFiles('pyproject.toml', 'requirements-docs.txt') }}-v03
       - name: Install docs extras
-        if: steps.cache.outputs.cache-hit != 'true'
+        if: steps.build-cache.outputs.cache-hit != 'true'
         run: pip install -r requirements-docs.txt
       - name: Install Material for MkDocs Insiders
         if: ( github.event_name != 'pull_request' || github.event.pull_request.head.repo.fork == false ) && steps.cache.outputs.cache-hit != 'true'
