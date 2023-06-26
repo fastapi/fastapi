@@ -27,11 +27,11 @@
 !!! note "技术细节"
 
     实际上，`Query`、`Path` 都是 `Params` 的子类，而 `Params` 类又是 Pydantic 中 `FieldInfo` 的子类。
-    
+
     Pydantic 的 `Field` 返回也是 `FieldInfo` 的类实例。
-    
+
     `Body` 直接返回的也是 `FieldInfo` 的子类的对象。后文还会介绍一些 `Body` 的子类。
-    
+
     注意，从 `fastapi` 导入的 `Query`、`Path` 等对象实际上都是返回特殊类的函数。
 
 !!! tip "提示"
