@@ -1,8 +1,14 @@
 import importlib
+import os
 from pathlib import Path
 
+import pytest
 
-def test_testing_dbs():
+
+def test_testing_dbs(tmp_path_factory: pytest.TempPathFactory):
+    tmp_path = tmp_path_factory.mktemp("data")
+    cwd = os.getcwd()
+    os.chdir(tmp_path)
     test_db = Path("./test.db")
     if test_db.is_file():  # pragma: nocover
         test_db.unlink()
@@ -14,3 +20,4 @@ def test_testing_dbs():
     test_sql_app.test_create_user()
     if test_db.is_file():  # pragma: nocover
         test_db.unlink()
+    os.chdir(cwd)
