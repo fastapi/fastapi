@@ -109,7 +109,7 @@ def build_lang(
     """
     Build the docs for a language.
     """
-    insiders_env_file = os.environ["INSIDERS_FILE"]
+    insiders_env_file = os.environ.get("INSIDERS_FILE")
     print(f"Insiders file {insiders_env_file}")
     lang_path: Path = Path("docs") / lang
     if not lang_path.is_dir():
