@@ -15,7 +15,7 @@
 !!! tip "提示"
 
     您可以使用 SQLAlchemy ORM（[SQL 关系型数据库一章](../tutorial/sql-databases.md){.internal-link target=_blank}）中的思路，比如，使用工具函数在数据库中执行操作，独立于 **FastAPI** 代码。
-    
+
     本章不应用这些思路，等效于 <a href="https://www.starlette.io/database/" class="external-link" target="_blank">Starlette</a> 的对应内容。
 
 ## 导入与设置 `SQLAlchemy`
@@ -31,7 +31,7 @@
 !!! tip "提示"
 
     注意，上例是都是纯 SQLAlchemy Core 代码。
-    
+
     `databases` 还没有进行任何操作。
 
 ## 导入并设置 `databases`
@@ -165,4 +165,3 @@ API 文档显示如下内容：
 ## 更多说明
 
 更多内容详见 <a href="https://github.com/encode/databases" class="external-link" target="_blank">Github 上的`encode/databases` 的说明</a>。
-
