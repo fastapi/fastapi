@@ -321,7 +321,7 @@ Server avtomatik yenilənməlidir (çünki yuxarıdakı `uvicorn` əmrinə `--re
 
 ### Xülasə
 
-In summary, you declare **once** the types of parameters, body, etc. as function parameters. 
+In summary, you declare **once** the types of parameters, body, etc. as function parameters.
 Xülasə olaraq, siz parametr növlərini, bədəni və s. **bir dəfə** funksiya parametsləri olaraq bəyan edirsiniz.
 
 Bunu standart müasir Python növləri ilə edirsiniz.
@@ -380,9 +380,9 @@ item: Item
     * `q` parametri `= None` ilə bəyan edildiyi üçün o istəyə bağlıdır.
     * `None` olmadan o tələb olunan parametr olacaq (`PUT` ilə olan vəziyyətdəki gövdə kimi).
 * `/items/{item_id}` yoluna olan `PUT` sorğuları üçün gövdəni JSON kimi oxuyacaq:
-    * Onun `str` olan tələb olunan `name` atributunun olmasını  yoxlayacaq. 
-    * Onun `float` olan tələb olunan `price` atributunun olmasını  yoxlayacaq. 
-    * Onun istəyə bağlı `is_offer` atributunun olmasını və varsa `bool` tipində olmasını yoxlayacaq. 
+    * Onun `str` olan tələb olunan `name` atributunun olmasını  yoxlayacaq.
+    * Onun `float` olan tələb olunan `price` atributunun olmasını  yoxlayacaq.
+    * Onun istəyə bağlı `is_offer` atributunun olmasını və varsa `bool` tipində olmasını yoxlayacaq.
     * Bunların hamısı həm də dərin yuvalanmış JSON obyektləri üçün işləməlidir.
 * JSON-a və JSON-dan avtomatik çevirmə.
 * OpenAPI vasitəsilə hər şeyi sənədləşdirmə, hansı ki, aşağıdakılar tərəfindən istifadə oluna bilər:
