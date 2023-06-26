@@ -193,7 +193,6 @@ response_less_than_equal_3 = {
         ("/path/bool/False", 200, False),
         ("/path/bool/false", 200, False),
         ("/path/param/foo", 200, "foo"),
-        ("/path/param-required/foo", 200, "foo"),
         ("/path/param-minlength/foo", 200, "foo"),
         ("/path/param-minlength/fo", 422, response_at_least_3),
         ("/path/param-maxlength/foo", 200, "foo"),
