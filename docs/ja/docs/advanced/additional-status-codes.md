@@ -14,7 +14,7 @@
 
 これを達成するには、 `JSONResponse` をインポートし、 `status_code` を設定して直接内容を返します。
 
-```Python hl_lines="4  23"
+```Python hl_lines="4  25"
 {!../../../docs_src/additional_status_codes/tutorial001.py!}
 ```
 
