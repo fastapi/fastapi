@@ -10,7 +10,7 @@
 
 直接返回响应可能会有用处，比如返回自定义的响应头和 cookies。
 
-## 返回 `Response` 
+## 返回 `Response`
 
 事实上，你可以返回任意 `Response` 或者任意 `Response` 的子类。
 
@@ -62,4 +62,3 @@
 但是你仍可以参考 [OpenApI 中的额外响应](additional-responses.md){.internal-link target=_blank} 给响应编写文档。
 
 在后续的章节中你可以了解到如何使用/声明这些自定义的 `Response` 的同时还保留自动化的数据转换和文档等。
-

@@ -72,7 +72,7 @@ O mesmo erro apareceria se você tivesse fornecido um `float` ao invés de um `i
 
 ## Documentação
 
-Quando você abrir o seu navegador em <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>, você verá de forma automática e interativa a documtação da API como:
+Quando você abrir o seu navegador em <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>, você verá de forma automática e interativa a documentação da API como:
 
 <img src="/img/tutorial/path-params/image01.png">
 

@@ -280,7 +280,7 @@ Tout comme celles les plus exotiques :
 
     **FastAPI** n'impose pas de sens spécifique à chacune d'elle.
 
-    Les informations qui sont présentées ici forment une directive générale, pas des obligations.  
+    Les informations qui sont présentées ici forment une directive générale, pas des obligations.
 
     Par exemple, quand l'on utilise **GraphQL**, toutes les actions sont effectuées en utilisant uniquement des opérations `POST`.
 
