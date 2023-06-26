@@ -39,14 +39,13 @@
 !!! tip "提示"
 
     注意，本例使用 Python `open()` 标准函数与文件交互。
-    
+
     这个函数执行 I/O（输入/输出）操作，需要等待内容写进磁盘。
-    
+
     但 `open()` 函数不支持使用 `async` 与 `await`。
-    
+
     因此，声明事件处理函数要使用 `def`，不能使用 `asnyc def`。
 
 !!! info "说明"
 
     有关事件处理器的详情，请参阅 <a href="https://www.starlette.io/events/" class="external-link" target="_blank">Starlette 官档 - 事件</a>。
-
