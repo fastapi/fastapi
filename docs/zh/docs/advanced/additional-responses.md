@@ -3,7 +3,7 @@
 !!! warning "警告"
 
     本章较难。
-    
+
     **FastAPI** 新手可跳过本章。
 
 本章学习为响应声明额外的状态码、媒体类型和描述。
@@ -35,11 +35,11 @@
 !!! info "说明"
 
     `model` 键不是 OpenAPI 的组件。
-    
+
     **FastAPI** 在此接收 Pydantic 模型，生成 `JSON Schema`，并把它置于正确的位置。
-    
+
     正确的位置是：
-    
+
     * `content` 键中的 JSON 对象（字典），该对象包含：
         * `application/json` 等媒体类型的键，此键中的 JSON 对象中包含：
             * `schema` 键，包含了模型中的 JSON 概图，这里就是正确的位置。
@@ -182,7 +182,7 @@ OpenAPI 概图在内部其它位置引用这个概图：
 !!! info "说明"
 
     除非在 `response` 参数中显式指定其它媒体类型，否则，FastAPI 假设该响应和主响应类的媒体类型一样（默认为 `application/json`）。
-    
+
     使用 `None` 指定自定义响应类的媒体类型时，FastAPI 会为包含关联模型的响应使用 `application/json`。
 
 ## 合并信息
