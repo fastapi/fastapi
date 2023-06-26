@@ -63,16 +63,16 @@ The parameter values in your function will be:
 
 The same way, you can declare optional query parameters, by setting their default to `None`:
 
-=== "Python 3.6 and above"
-
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/query_params/tutorial002.py!}
-    ```
-
-=== "Python 3.10 and above"
+=== "Python 3.10+"
 
     ```Python hl_lines="7"
     {!> ../../../docs_src/query_params/tutorial002_py310.py!}
+    ```
+
+=== "Python 3.6+"
+
+    ```Python hl_lines="9"
+    {!> ../../../docs_src/query_params/tutorial002.py!}
     ```
 
 In this case, the function parameter `q` will be optional, and will be `None` by default.
@@ -84,16 +84,16 @@ In this case, the function parameter `q` will be optional, and will be `None` by
 
 You can also declare `bool` types, and they will be converted:
 
-=== "Python 3.6 and above"
-
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/query_params/tutorial003.py!}
-    ```
-
-=== "Python 3.10 and above"
+=== "Python 3.10+"
 
     ```Python hl_lines="7"
     {!> ../../../docs_src/query_params/tutorial003_py310.py!}
+    ```
+
+=== "Python 3.6+"
+
+    ```Python hl_lines="9"
+    {!> ../../../docs_src/query_params/tutorial003.py!}
     ```
 
 In this case, if you go to:
@@ -137,16 +137,16 @@ And you don't have to declare them in any specific order.
 
 They will be detected by name:
 
-=== "Python 3.6 and above"
-
-    ```Python hl_lines="8  10"
-    {!> ../../../docs_src/query_params/tutorial004.py!}
-    ```
-
-=== "Python 3.10 and above"
+=== "Python 3.10+"
 
     ```Python hl_lines="6  8"
     {!> ../../../docs_src/query_params/tutorial004_py310.py!}
+    ```
+
+=== "Python 3.6+"
+
+    ```Python hl_lines="8  10"
+    {!> ../../../docs_src/query_params/tutorial004.py!}
     ```
 
 ## Required query parameters
@@ -203,16 +203,16 @@ http://127.0.0.1:8000/items/foo-item?needy=sooooneedy
 
 And of course, you can define some parameters as required, some as having a default value, and some entirely optional:
 
-=== "Python 3.6 and above"
-
-    ```Python hl_lines="10"
-    {!> ../../../docs_src/query_params/tutorial006.py!}
-    ```
-
-=== "Python 3.10 and above"
+=== "Python 3.10+"
 
     ```Python hl_lines="8"
     {!> ../../../docs_src/query_params/tutorial006_py310.py!}
+    ```
+
+=== "Python 3.6+"
+
+    ```Python hl_lines="10"
+    {!> ../../../docs_src/query_params/tutorial006.py!}
     ```
 
 In this case, there are 3 query parameters:
