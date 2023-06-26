@@ -292,7 +292,7 @@ Agora vá para <a href="http://127.0.0.1:8000/docs" class="external-link" target
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-03-swagger-02.png)
 
-* Clique no botão "Try it out", ele permiirá que você preencha os parâmetros e interaja diretamente com a API:
+* Clique no botão "Try it out", ele permitirá que você preencha os parâmetros e interaja diretamente com a API:
 
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-04-swagger-03.png)
 
@@ -430,7 +430,6 @@ Para entender mais sobre performance, veja a seção <a href="https://fastapi.ti
 
 Usados por Pydantic:
 
-* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - para JSON mais rápido <abbr title="converte uma string que chega de uma requisição HTTP para dados Python">"parsing"</abbr>.
 * <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - para validação de email.
 
 Usados por Starlette:
