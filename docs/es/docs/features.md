@@ -32,7 +32,6 @@ Si necesitas un repaso de 2 minutos de cómo usar los tipos de Python (así no u
 Escribes Python estándar con tipos así:
 
 ```Python
-from typing import List, Dict
 from datetime import date
 
 from pydantic import BaseModel
@@ -168,7 +167,7 @@ Con **FastAPI** obtienes todas las características de **Starlette** (porque Fas
 * Soporte para **GraphQL**.
 * <abbr title="En español: tareas que se ejecutan en el fondo, sin frenar requests, en el mismo proceso. En ingles: In-process background tasks">Tareas en background</abbr>.
 * Eventos de startup y shutdown.
-* Cliente de pruebas construido con `requests`.
+* Cliente de pruebas construido con HTTPX.
 * **CORS**, GZip, Static Files, Streaming responses.
 * Soporte para **Session and Cookie**.
 * Cobertura de pruebas al 100%.
@@ -192,7 +191,7 @@ Con **FastAPI** obtienes todas las características de **Pydantic** (dado que Fa
 * Interactúa bien con tu **<abbr title="en inglés: Integrated Development Environment, similar a editor de código">IDE</abbr>/<abbr title="Un programa que chequea errores en el código">linter</abbr>/cerebro**:
     * Porque las estructuras de datos de Pydantic son solo <abbr title='En español: ejemplares. Aunque a veces los llaman incorrectamente "instancias"'>instances</abbr> de clases que tu defines, el auto-completado, el linting, mypy y tu intuición deberían funcionar bien con tus datos validados.
 * **Rápido**:
-    * En <a href="https://pydantic-docs.helpmanual.io/#benchmarks-tag" class="external-link" target="_blank">benchmarks</a> Pydantic es más rápido que todas las otras <abbr title='Herramienta, paquete. A veces llamado "librería"'>libraries</abbr> probadas.
+    * En <a href="https://pydantic-docs.helpmanual.io/benchmarks/" class="external-link" target="_blank">benchmarks</a> Pydantic es más rápido que todas las otras <abbr title='Herramienta, paquete. A veces llamado "librería"'>libraries</abbr> probadas.
 * Valida **estructuras complejas**:
     * Usa modelos jerárquicos de modelos de Pydantic, `typing` de Python,  `List` y `Dict`, etc.
     * Los validadores también permiten que se definan fácil y claramente schemas complejos de datos. Estos son chequeados y documentados como JSON Schema.
