@@ -18,7 +18,7 @@ SQLAlchemy가 지원하는 어느 데이터베이스든 쉽게 적용할 수 있
 
 추후 프로덕션용 응용 프로그램에는 **PostgreSQL**과 같은 데이터베이스 서버를 사용할 수 있습니다.
 
-!!! tip "팁" 
+!!! tip "팁"
     **도커**를 기반으로 하고, 프론트엔드와 많은 도구들을 포함한 **FastAPI** 및 **PostgreSQL**을 사용하는 공식적인 프로젝트 생성기가 있습니다: <a href="https://github.com/tiangolo/full-stack-fastapi-postgresql" class="external-link" target="_blank">https://github.com/tiangolo/full-stack-fastapi-postgresql</a>
 
 !!! note "참고"
@@ -182,7 +182,7 @@ SQLAlchemy 모델을 만들기 전에 우리가 생성한 `Base` 클래스를 �
     SQLAlchemy에서는 데이터베이스와 상호작용하는 클래스 및 인스턴스를 "**모델**"이라고 지칭합니다.
 
     하지만 Pydantic 또한 다른 것들을 지칭하기 위해 "**모델**"이라는 용어를 사용하는데, 여기서는 데이터 유효성 검사, 변환, 그리고 클래스 및 인스턴스의 문서화를 의미합니다.
-    
+
 `database` (상기 `database.py` 파일)로부터 `Base` 를 임포트하십시오.
 
 이것을 상속받는 클래스들을 생성합니다.
@@ -223,7 +223,7 @@ SQLAlchemy의 `Column` 을 기본값으로 사용합니다.
 
 `my_user.items` 로  `User` 의 `items` 속성에 접근하면, 이것은 `users` 테이블의 해당 레코드를 가리키는 외래키를 갖는 SQLAlchemy 모델인 (`items` 테이블의) `Item` 의 리스트를 갖게 됩니다.
 
-`my_user.items` 에 접근하면, SQLAlchemy는 실제로 데이터베이스로부터 `items` 테이블의 항목을 가져와 이 리스트에 그들을 넣습니다. 
+`my_user.items` 에 접근하면, SQLAlchemy는 실제로 데이터베이스로부터 `items` 테이블의 항목을 가져와 이 리스트에 그들을 넣습니다.
 
 그리고 `Item` 의 `owner` 속성에 접근하면, 이것은 `users` 테이블의 `User` SQLAlchemy 모델을 포함하게 됩니다. 이것은 `users` 테이블에서 어느 레코드를 가져올지 판단하기 위해 `owner_id` 어트리뷰트/열과 그것의 외래키를 사용합니다.
 
@@ -260,7 +260,7 @@ SQLAlchemy *모델*은 `=` 을 사용해서 속성을 정의하고, `Column` 매
 name = Column(String)
 ```
 
-한편 Pydantic *모델*은 새로운 형 어노테이션 구문/형식 힌트인 `:`을 사용해 형을 선언합니다: 
+한편 Pydantic *모델*은 새로운 형 어노테이션 구문/형식 힌트인 `:`을 사용해 형을 선언합니다:
 
 ```Python
 name: str
@@ -328,7 +328,7 @@ id = data.id
 
 SQLAlchemy와 많은 다른 ORM들은 자동적으로 "지연 로딩(lazy loading)"을 합니다.
 
-이는 당신이 해당 데이터가 포함된 어트리뷰트에 접근하지 않는 한 데이터베이스에서 관계에 관한 데이터를 가져오지 않는다는 것을 의미합니다. 
+이는 당신이 해당 데이터가 포함된 어트리뷰트에 접근하지 않는 한 데이터베이스에서 관계에 관한 데이터를 가져오지 않는다는 것을 의미합니다.
 
 예를 들어, `items` 속성에 접근하면:
 
@@ -342,7 +342,7 @@ SQLAlchemy는 그제서야 `items` 테이블에 가서 해당 유저에 속한 �
 
 Pydantic 모델에서 해당 관계들을 선언한 경우라도 그러합니다.
 
-그러나 ORM 모드를 사용하면 Pydantic이 `dict` 로 가정하는 대신 어트리뷰트에서 필요한 데이터에 접근하려고 하기 때문에, 반환하고자 하는 특정한 데이터를 선언할 수 있으며 ORM에서도 데이터들을 가져올 수 있습니다.  
+그러나 ORM 모드를 사용하면 Pydantic이 `dict` 로 가정하는 대신 어트리뷰트에서 필요한 데이터에 접근하려고 하기 때문에, 반환하고자 하는 특정한 데이터를 선언할 수 있으며 ORM에서도 데이터들을 가져올 수 있습니다.
 
 ## CRUD 유틸리티
 
@@ -370,8 +370,8 @@ Pydantic 모델에서 해당 관계들을 선언한 경우라도 그러합니다
 {!../../../docs_src/sql_databases/sql_app/crud.py!}
 ```
 
-!!! tip "팁" 
-    *경로 작동 함수*와는 별개로 데이터베이스와 상호 작용하는 데에만 사용되는 함수들(사용자 또는 아이템을 가져오는 함수)을 생성함으로써 여러 부분에서 이들을 쉽게 재사용할 수 있으며 <abbr title="코드로 작성된, 다른 부분의 코드가 올바르게 동작하는지 확인하는 자동화된 테스트.">단위 테스트</abbr>를 추가할 수 있습니다. 
+!!! tip "팁"
+    *경로 작동 함수*와는 별개로 데이터베이스와 상호 작용하는 데에만 사용되는 함수들(사용자 또는 아이템을 가져오는 함수)을 생성함으로써 여러 부분에서 이들을 쉽게 재사용할 수 있으며 <abbr title="코드로 작성된, 다른 부분의 코드가 올바르게 동작하는지 확인하는 자동화된 테스트.">단위 테스트</abbr>를 추가할 수 있습니다.
 
 ### 데이터 생성
 
@@ -388,14 +388,14 @@ Pydantic 모델에서 해당 관계들을 선언한 경우라도 그러합니다
 {!../../../docs_src/sql_databases/sql_app/crud.py!}
 ```
 
-!!! tip "팁" 
+!!! tip "팁"
     `User` 을 위한 SQLAlchemy 모델은 안전하게 암호화된 비밀번호인 `hashed_password` 를 포함해야 합니다.
 
     그러나 API 클라이언트가 제공하는 것은 암호화되지 않은 비밀번호이기 때문에, 그것을 추출한 다음 응용 프로그램에서 암호화된 비밀번호를 생성해야합니다.
 
     그 다음, 해당 값을 `hashed_password` 인자에 전달하고 저장합니다.
 
-!!! warning "경고" 
+!!! warning "경고"
     비밀번호가 암호화되지 않았기 때문에 이 예시는 안전하지 않습니다.
 
     실제 응용 프로그램에서는 비밀번호를 암호화하고 절대 플레인 텍스트로 저장하지 마십시오.
@@ -404,7 +404,7 @@ Pydantic 모델에서 해당 관계들을 선언한 경우라도 그러합니다
 
     여기서는 데이터베이스의 도구와 역학에만 초점을 맞출 것입니다.
 
-!!! tip "팁" 
+!!! tip "팁"
     각각의 키워드 인자들을 `Item` 에 전달하고 이들 각각을 Pydantic *모델*로 읽는 대신, 다음과 같이 Pydantic *모델*의 데이터로 `dict` 를 생성할 수 있습니다:
 
     `item.dict()`
@@ -441,7 +441,7 @@ FastAPI 프로젝트에서의 Alembic에 대한 예시를 [Project Generation - 
 
 ### 의존성 생성
 
-!!! info "정보" 
+!!! info "정보"
     이 작업을 수행하기 위해, **파이썬 3.7** 이상의 버전을 사용하거나 **파이썬 3.6** 버전 사용시 "backports"를 설치하여야 합니다:
 
     ```console
@@ -466,7 +466,7 @@ FastAPI 프로젝트에서의 Alembic에 대한 예시를 [Project Generation - 
 {!../../../docs_src/sql_databases/sql_app/main.py!}
 ```
 
-!!! info "정보" 
+!!! info "정보"
     `SessionLocal()` 의 생성과 요청의 처리를 `try` 블록에 배치합니다.
 
     그리고 `finally` 블록에서 이를 종료합니다.
@@ -483,7 +483,7 @@ FastAPI 프로젝트에서의 Alembic에 대한 예시를 [Project Generation - 
 {!../../../docs_src/sql_databases/sql_app/main.py!}
 ```
 
-!!! info "기술적 세부사항" 
+!!! info "기술적 세부사항"
     `db` 매개변수는 사실 `SessionLocal` 형이지만, ( `sessionmaker()` 로부터 만들어진) 해당 클래스가 SQLAlchemy `Session` 의 "프록시"이므로, 에디터는 어떤 메서드들이 제공되는지는 알지 못합니다.
 
     하지만 `Session` 형으로 선언함으로써, 에디터는 사용 가능한 메서드들(`.add()`, `.query()`, `.commit()` 등)을 알 수 있고 (자동완성과 같은) 더 나은 지원을 제공할 수 있습니다. 형 선언이 실제 객체에 영향을 미치지는 않습니다.
@@ -502,12 +502,12 @@ FastAPI 프로젝트에서의 Alembic에 대한 예시를 [Project Generation - 
 
 이를 통해, *경로 작동 함수* 내부에서 `crud.get_user`를 직접 호출해서 해당 세션을 사용할 수 있습니다.
 
-!!! tip "팁" 
+!!! tip "팁"
     반환되는 값은 SQLAlchemy 모델이거나 SQLAlchemy 모델들의 목록이라는 점을 주의하십시오.
 
     하지만 모든 *경로 작동*이 'orm_mode'을 사용하여 Pydantic *모델* /스키마를 사용한 'response_model'을 가지고 있으므로 Pydantic 모델에 선언된 데이터는 이로부터 추출된 후 모든 일반 필터링 및 유효성 검사를 통해 클라이언트에게 반환됩니다.
 
-!!! tip "팁" 
+!!! tip "팁"
     `List[schemas.Item]`과 같은 표준 파이썬 형을 가진 `response_models`가 있다는 것도 주의하십시오.
 
     그러나 `List`의 요쇼 / 매개변수는 'orm_mode'가 있는 Pydantic *모델*이기 때문에, 데이터는 문제 없이 클라이언트에게 반환됩니다.
@@ -518,7 +518,7 @@ FastAPI 프로젝트에서의 Alembic에 대한 예시를 [Project Generation - 
 
 이는 잠재적으로 "대기"를 필요로 할 수 있습니다.
 
-그러나 SQLAlchemy에서는 다음과 같은 직접적인 `await`의 사용이 불가합니다: 
+그러나 SQLAlchemy에서는 다음과 같은 직접적인 `await`의 사용이 불가합니다:
 
 ```Python
 user = await db.query(User).first()
@@ -539,10 +539,10 @@ def read_user(user_id: int, db: Session = Depends(get_db)):
     ...
 ```
 
-!!! info "정보" 
+!!! info "정보"
     관계형 데이터베이스에 비동기적으로 연결해야할 경우, [Async SQL (Relational) Databases](../../../en/docs/advanced/async-sql-databases.md){.internal-link target=_blank}를 참고하십시오.
 
-!!! note "매우 세부적인 기술적 사항" 
+!!! note "매우 세부적인 기술적 사항"
     만약 당신이 호기심이 있고 깊은 기술적 지식을 갖고있을 경우, `async def` vs `def`가 어떻게 처리되는지에 대해 [Async](../../../en/docs/async.md#very-technical-details) 문서의 매우 세부적인 기술적 사항들을 확인해 보십시오.
 
 ## 마이그레이션
@@ -644,7 +644,7 @@ FastAPI와 관계 없이 디버깅을 하거나, 테이블, 컬럼, 레코드를
 {!../../../docs_src/sql_databases/sql_app/alt_main.py!}
 ```
 
-!!! info "정보"  
+!!! info "정보"
     `SessionLocal()` 의 생성과 요청의 처리를 `try` 블록에 배치합니다.
 
     그리고 `finally` 블록에서 이를 종료합니다.
@@ -673,7 +673,7 @@ FastAPI와 관계 없이 디버깅을 하거나, 테이블, 컬럼, 레코드를
 !!! tip "팁"
     `yield`를 사용하는 의존성만으로도 충분하다면, 이를 사용하는 것이 더 나을 수 있습니다.
 
-!!! info "정보" 
+!!! info "정보"
     `yield`를 사용하는 의존성은 **FastAPI**에 최근에 추가되었습니다.
 
     이전 버전의 자습서에서는 미들웨어에 대한 예시만 있었고 데이터베이스 세션 관리를 위해 미들웨어를 사용하는 여러 응용 프로그램이 있을 수 있습니다.
