@@ -91,7 +91,7 @@ jobs:
         run: python ./scripts/docs.py update-languages
       - uses: actions/cache@v3
         with:
-          key: mkdocs-cards-${{ github.ref }}
+          key: mkdocs-cards-${{ matrix.lang }}-${{ github.ref }}
           path: docs/${{ matrix.lang }}/.cache
       - name: Build Docs
         run: python ./scripts/docs.py build-lang ${{ matrix.lang }}
