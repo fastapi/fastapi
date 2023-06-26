@@ -106,7 +106,7 @@ If you are building a <abbr title="Command Line Interface">CLI</abbr> app to be 
 
 ## Anforderungen
 
-Python 3.6+
+Python 3.7+
 
 FastAPI basiert auf den Projekten:
 
@@ -130,7 +130,7 @@ Sie benötigen außerdem einen ASGI-Server, für die Produktivumgebung beispiels
 <div class="termy">
 
 ```console
-$ pip install uvicorn[standard]
+$ pip install "uvicorn[standard]"
 
 ---> 100%
 ```
@@ -144,7 +144,7 @@ $ pip install uvicorn[standard]
 * Erstellen Sie eine Datei `main.py` mit:
 
 ```Python
-from typing import Optional
+from typing import Union
 
 from fastapi import FastAPI
 
@@ -157,7 +157,7 @@ def read_root():
 
 
 @app.get("/items/{item_id}")
-def read_item(item_id: int, q: Optional[str] = None):
+def read_item(item_id: int, q: Union[str, None] = None):
     return {"item_id": item_id, "q": q}
 ```
 
@@ -167,7 +167,7 @@ def read_item(item_id: int, q: Optional[str] = None):
 Wenn Ihr Code `async` / `await` verwendet, benutzen Sie `async def`:
 
 ```Python hl_lines="9  14"
-from typing import Optional
+from typing import Union
 
 from fastapi import FastAPI
 
@@ -180,7 +180,7 @@ async def read_root():
 
 
 @app.get("/items/{item_id}")
-async def read_item(item_id: int, q: Optional[str] = None):
+async def read_item(item_id: int, q: Union[str, None] = None):
     return {"item_id": item_id, "q": q}
 ```
 
@@ -258,7 +258,7 @@ Sie sehen dann die alternative automatische Dokumentation (bereitgestellt von <a
 Deklarieren Sie den Body mit Standard-Python-Typen, dank Pydantic.
 
 ```Python hl_lines="4  9-12  25-27"
-from typing import Optional
+from typing import Union
 
 from fastapi import FastAPI
 from pydantic import BaseModel
@@ -269,7 +269,7 @@ app = FastAPI()
 class Item(BaseModel):
     name: str
     price: float
-    is_offer: Optional[bool] = None
+    is_offer: Union[bool, None] = None
 
 
 @app.get("/")
@@ -278,7 +278,7 @@ def read_root():
 
 
 @app.get("/items/{item_id}")
-def read_item(item_id: int, q: Optional[str] = None):
+def read_item(item_id: int, q: Union[str, None] = None):
     return {"item_id": item_id, "q": q}
 
 

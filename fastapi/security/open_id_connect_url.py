@@ -14,7 +14,7 @@ class OpenIdConnect(SecurityBase):
         openIdConnectUrl: str,
         scheme_name: Optional[str] = None,
         description: Optional[str] = None,
-        auto_error: bool = True
+        auto_error: bool = True,
     ):
         self.model = OpenIdConnectModel(
             openIdConnectUrl=openIdConnectUrl, description=description
@@ -23,7 +23,7 @@ class OpenIdConnect(SecurityBase):
         self.auto_error = auto_error
 
     async def __call__(self, request: Request) -> Optional[str]:
-        authorization: str = request.headers.get("Authorization")
+        authorization = request.headers.get("Authorization")
         if not authorization:
             if self.auto_error:
                 raise HTTPException(
