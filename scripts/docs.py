@@ -111,6 +111,8 @@ def build_lang(
     """
     insiders_env_file = os.environ.get("INSIDERS_FILE")
     print(f"Insiders file {insiders_env_file}")
+    if is_mkdocs_insiders():
+        print("Using insiders")
     lang_path: Path = Path("docs") / lang
     if not lang_path.is_dir():
         typer.echo(f"The language translation doesn't seem to exist yet: {lang}")
