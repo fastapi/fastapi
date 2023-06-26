@@ -32,7 +32,6 @@ nav:
   - ru: /ru/
   - uk: /uk/
   - zh: /zh/
-  - uk: /uk/
 markdown_extensions:
 - toc:
     permalink: true
