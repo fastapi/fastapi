@@ -44,13 +44,20 @@ To achieve that, first import:
 
 === "Python 3.6+"
 
-    In versions of Python below Python 3.9 you import `Annotation` from `typing_extensions`.
+    In versions of Python below Python 3.9 you import `Annotated` from `typing_extensions`.
 
     It will already be installed with FastAPI.
 
     ```Python hl_lines="3-4"
     {!> ../../../docs_src/query_params_str_validations/tutorial002_an.py!}
     ```
+
+!!! info
+    FastAPI added support for `Annotated` (and started recommending it) in version 0.95.0.
+
+    If you have an older version, you would get errors when trying to use `Annotated`.
+
+    Make sure you [Upgrade the FastAPI version](../deployment/versions.md#upgrading-the-fastapi-versions){.internal-link target=_blank} to at least 0.95.1 before using `Annotated`.
 
 ## Use `Annotated` in the type for the `q` parameter
 
@@ -110,7 +117,7 @@ Notice that the default value is still `None`, so the parameter is still optiona
 
 But now, having `Query(max_length=50)` inside of `Annotated`, we are telling FastAPI that we want it to extract this value from the query parameters (this would have been the default anyway 🤷) and that we want to have **additional validation** for this value (that's why we do this, to get the additional validation). 😎
 
-FastAPI wll now:
+FastAPI will now:
 
 * **Validate** the data making sure that the max length is 50 characters
 * Show a **clear error** for the client when the data is not valid
@@ -199,7 +206,7 @@ Instead use the actual default value of the function parameter. Otherwise, it wo
 For example, this is not allowed:
 
 ```Python
-q: Annotated[str Query(default="rick")] = "morty"
+q: Annotated[str, Query(default="rick")] = "morty"
 ```
 
 ...because it's not clear if the default value should be `"rick"` or `"morty"`.
