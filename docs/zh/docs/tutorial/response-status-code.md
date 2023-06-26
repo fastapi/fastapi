@@ -32,7 +32,7 @@
 !!! note "笔记"
 
     某些响应状态码表示响应没有响应体（参阅下一章）。
-    
+
     FastAPI 可以进行识别，并生成表明无响应体的 OpenAPI 文档。
 
 ## 关于 HTTP 状态码
@@ -87,7 +87,7 @@
 !!! note "技术细节"
 
     也可以使用 `from starlette import status`。
-    
+
     为了让开发者更方便，**FastAPI** 提供了与 `starlette.status` 完全相同的 `fastapi.status`。但它直接来自于 Starlette。
 
 ## 更改默认状态码
