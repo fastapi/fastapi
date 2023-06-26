@@ -1,5 +1,21 @@
 articles:
   english:
+  - author: Raf Rasenberg
+    author_link: https://rafrasenberg.com/about/
+    link: https://rafrasenberg.com/fastapi-lambda/
+    title: 'FastAPI lambda container: serverless simplified'
+  - author: Teresa N. Fontanella De Santis
+    author_link: https://dev.to/
+    link: https://dev.to/teresafds/authorization-on-fastapi-with-casbin-41og
+    title: Authorization on FastAPI with Casbin
+  - author: WayScript
+    author_link: https://www.wayscript.com
+    link: https://blog.wayscript.com/fast-api-quickstart/
+    title: Quickstart Guide to Build and Host Responsive APIs with Fast API and WayScript
+  - author: New Relic
+    author_link: https://newrelic.com
+    link: https://newrelic.com/instant-observability/fastapi/e559ec64-f765-4470-a15f-1901fcebb468
+    title: How to monitor FastAPI application performance using Python agent
   - author: Jean-Baptiste Rocher
     author_link: https://hashnode.com/@jibrocher
     link: https://dev.indooroutdoor.io/series/fastapi-react-poll-app
@@ -212,7 +228,15 @@ articles:
     author_link: https://twitter.com/MantoshMukul
     link: https://www.jetbrains.com/pycharm/guide/tutorials/fastapi-aws-kubernetes/
     title: Developing FastAPI Application using K8s & AWS
+  - author: KrishNa
+    author_link: https://medium.com/@krishnardt365
+    link: https://medium.com/@krishnardt365/fastapi-docker-and-postgres-91943e71be92
+    title: Fastapi, Docker(Docker compose) and Postgres
   german:
+  - author: Marcel Sander (actidoo)
+    author_link: https://www.actidoo.com
+    link: https://www.actidoo.com/de/blog/python-fastapi-domain-driven-design
+    title: Domain-driven Design mit Python und FastAPI
   - author: Nico Axtmann
     author_link: https://twitter.com/_nicoax
     link: https://blog.codecentric.de/2019/08/inbetriebnahme-eines-scikit-learn-modells-mit-onnx-und-fastapi/
@@ -288,6 +312,11 @@ articles:
     author_link: https://fullstackstation.com/author/figonking/
     link: https://fullstackstation.com/fastapi-trien-khai-bang-docker/
     title: 'FASTAPI: TRIỂN KHAI BẰNG DOCKER'
+  taiwanese:
+  - author: Leon
+    author_link: http://editor.leonh.space/
+    link: https://editor.leonh.space/2022/tortoise/
+    title: 'Tortoise ORM / FastAPI 整合快速筆記'
 podcasts:
   english:
   - author: Podcast.`__init__`

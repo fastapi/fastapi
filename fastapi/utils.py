@@ -1,9 +1,19 @@
-import functools
 import re
 import warnings
 from dataclasses import is_dataclass
 from enum import Enum
-from typing import TYPE_CHECKING, Any, Dict, Optional, Set, Type, Union, cast
+from typing import (
+    TYPE_CHECKING,
+    Any,
+    Dict,
+    MutableMapping,
+    Optional,
+    Set,
+    Type,
+    Union,
+    cast,
+)
+from weakref import WeakKeyDictionary
 
 import fastapi
 from fastapi.datastructures import DefaultPlaceholder, DefaultType
@@ -16,6 +26,28 @@ from pydantic.utils import lenient_issubclass
 
 if TYPE_CHECKING:  # pragma: nocover
     from .routing import APIRoute
+
+# Cache for `create_cloned_field`
+_CLONED_TYPES_CACHE: MutableMapping[
+    Type[BaseModel], Type[BaseModel]
+] = WeakKeyDictionary()
+
+
+def is_body_allowed_for_status_code(status_code: Union[int, str, None]) -> bool:
+    if status_code is None:
+        return True
+    # Ref: https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#patterned-fields-1
+    if status_code in {
+        "default",
+        "1XX",
+        "2XX",
+        "3XX",
+        "4XX",
+        "5XX",
+    }:
+        return True
+    current_status_code = int(status_code)
+    return not (current_status_code < 200 or current_status_code in {204, 304})
 
 
 def get_model_definitions(
@@ -30,6 +62,8 @@ def get_model_definitions(
         )
         definitions.update(m_definitions)
         model_name = model_name_map[model]
+        if "description" in m_schema:
+            m_schema["description"] = m_schema["description"].split("\f")[0]
         definitions[model_name] = m_schema
     return definitions
 
@@ -43,7 +77,7 @@ def create_response_field(
     type_: Type[Any],
     class_validators: Optional[Dict[str, Validator]] = None,
     default: Optional[Any] = None,
-    required: Union[bool, UndefinedType] = False,
+    required: Union[bool, UndefinedType] = True,
     model_config: Type[BaseConfig] = BaseConfig,
     field_info: Optional[FieldInfo] = None,
     alias: Optional[str] = None,
@@ -54,33 +88,39 @@ def create_response_field(
     class_validators = class_validators or {}
     field_info = field_info or FieldInfo()
 
-    response_field = functools.partial(
-        ModelField,
-        name=name,
-        type_=type_,
-        class_validators=class_validators,
-        default=default,
-        required=required,
-        model_config=model_config,
-        alias=alias,
-    )
-
     try:
-        return response_field(field_info=field_info)
+        return ModelField(
+            name=name,
+            type_=type_,
+            class_validators=class_validators,
+            default=default,
+            required=required,
+            model_config=model_config,
+            alias=alias,
+            field_info=field_info,
+        )
     except RuntimeError:
         raise fastapi.exceptions.FastAPIError(
-            f"Invalid args for response field! Hint: check that {type_} is a valid pydantic field type"
-        )
+            "Invalid args for response field! Hint: "
+            f"check that {type_} is a valid Pydantic field type. "
+            "If you are using a return type annotation that is not a valid Pydantic "
+            "field (e.g. Union[Response, dict, None]) you can disable generating the "
+            "response model from the type annotation with the path operation decorator "
+            "parameter response_model=None. Read more: "
+            "https://fastapi.tiangolo.com/tutorial/response-model/"
+        ) from None
 
 
 def create_cloned_field(
     field: ModelField,
     *,
-    cloned_types: Optional[Dict[Type[BaseModel], Type[BaseModel]]] = None,
+    cloned_types: Optional[MutableMapping[Type[BaseModel], Type[BaseModel]]] = None,
 ) -> ModelField:
-    # _cloned_types has already cloned types, to support recursive models
+    # cloned_types caches already cloned types to support recursive models and improve
+    # performance by avoiding unecessary cloning
     if cloned_types is None:
-        cloned_types = dict()
+        cloned_types = _CLONED_TYPES_CACHE
+
     original_type = field.type_
     if is_dataclass(original_type) and hasattr(original_type, "__pydantic_model__"):
         original_type = original_type.__pydantic_model__
@@ -133,14 +173,14 @@ def generate_operation_id_for_path(
         stacklevel=2,
     )
     operation_id = name + path
-    operation_id = re.sub("[^0-9a-zA-Z_]", "_", operation_id)
+    operation_id = re.sub(r"\W", "_", operation_id)
     operation_id = operation_id + "_" + method.lower()
     return operation_id
 
 
 def generate_unique_id(route: "APIRoute") -> str:
     operation_id = route.name + route.path_format
-    operation_id = re.sub("[^0-9a-zA-Z_]", "_", operation_id)
+    operation_id = re.sub(r"\W", "_", operation_id)
     assert route.methods
     operation_id = operation_id + "_" + list(route.methods)[0].lower()
     return operation_id
@@ -154,6 +194,12 @@ def deep_dict_update(main_dict: Dict[Any, Any], update_dict: Dict[Any, Any]) -> 
             and isinstance(value, dict)
         ):
             deep_dict_update(main_dict[key], value)
+        elif (
+            key in main_dict
+            and isinstance(main_dict[key], list)
+            and isinstance(update_dict[key], list)
+        ):
+            main_dict[key] = main_dict[key] + update_dict[key]
         else:
             main_dict[key] = value
 
