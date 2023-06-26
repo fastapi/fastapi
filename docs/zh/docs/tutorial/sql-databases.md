@@ -246,22 +246,22 @@ connect_args={"check_same_thread": False}
 
 但是为了安全起见，`password`不会出现在其他同类 Pydantic*模型*中，例如用户请求时不应该从 API 返回响应中包含它。
 
-=== "Python 3.6 及以上版本"
+=== "Python 3.10+"
 
-    ```Python hl_lines="3  6-8  11-12  23-24  27-28"
-    {!> ../../../docs_src/sql_databases/sql_app/schemas.py!}
+    ```Python hl_lines="1  4-6  9-10  21-22  25-26"
+    {!> ../../../docs_src/sql_databases/sql_app_py310/schemas.py!}
     ```
 
-=== "Python 3.9 及以上版本"
+=== "Python 3.9+"
 
     ```Python hl_lines="3  6-8  11-12  23-24  27-28"
     {!> ../../../docs_src/sql_databases/sql_app_py39/schemas.py!}
     ```
 
-=== "Python 3.10 及以上版本"
+=== "Python 3.6+"
 
-    ```Python hl_lines="1  4-6  9-10  21-22  25-26"
-    {!> ../../../docs_src/sql_databases/sql_app_py310/schemas.py!}
+    ```Python hl_lines="3  6-8  11-12  23-24  27-28"
+    {!> ../../../docs_src/sql_databases/sql_app/schemas.py!}
     ```
 
 #### SQLAlchemy 风格和 Pydantic 风格
@@ -290,22 +290,22 @@ name: str
 
 不仅是这些项目的 ID，还有我们在 Pydantic*模型*中定义的用于读取项目的所有数据：`Item`.
 
-=== "Python 3.6  及以上版本"
+=== "Python 3.10+"
 
-    ```Python hl_lines="15-17  31-34"
-    {!> ../../../docs_src/sql_databases/sql_app/schemas.py!}
+    ```Python hl_lines="13-15  29-32"
+    {!> ../../../docs_src/sql_databases/sql_app_py310/schemas.py!}
     ```
 
-=== "Python 3.9  及以上版本"
+=== "Python 3.9+"
 
     ```Python hl_lines="15-17  31-34"
     {!> ../../../docs_src/sql_databases/sql_app_py39/schemas.py!}
     ```
 
-=== "Python 3.10  及以上版本"
+=== "Python 3.6+"
 
-    ```Python hl_lines="13-15  29-32"
-    {!> ../../../docs_src/sql_databases/sql_app_py310/schemas.py!}
+    ```Python hl_lines="15-17  31-34"
+    {!> ../../../docs_src/sql_databases/sql_app/schemas.py!}
     ```
 
 !!! tip
@@ -319,22 +319,22 @@ name: str
 
 在`Config`类中，设置属性`orm_mode = True`。
 
-=== "Python 3.6 及以上版本"
+=== "Python 3.10+"
 
-    ```Python hl_lines="15  19-20  31  36-37"
-    {!> ../../../docs_src/sql_databases/sql_app/schemas.py!}
+    ```Python hl_lines="13  17-18  29  34-35"
+    {!> ../../../docs_src/sql_databases/sql_app_py310/schemas.py!}
     ```
 
-=== "Python 3.9 及以上版本"
+=== "Python 3.9+"
 
     ```Python hl_lines="15  19-20  31  36-37"
     {!> ../../../docs_src/sql_databases/sql_app_py39/schemas.py!}
     ```
 
-=== "Python 3.10 及以上版本"
+=== "Python 3.6+"
 
-    ```Python hl_lines="13  17-18  29  34-35"
-    {!> ../../../docs_src/sql_databases/sql_app_py310/schemas.py!}
+    ```Python hl_lines="15  19-20  31  36-37"
+    {!> ../../../docs_src/sql_databases/sql_app/schemas.py!}
     ```
 
 !!! tip
@@ -465,16 +465,16 @@ current_user.items
 
 以非常简单的方式创建数据库表：
 
-=== "Python 3.6 及以上版本"
-
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/sql_databases/sql_app/main.py!}
-    ```
-
-=== "Python 3.9 及以上版本"
+=== "Python 3.9+"
 
     ```Python hl_lines="7"
     {!> ../../../docs_src/sql_databases/sql_app_py39/main.py!}
+    ```
+
+=== "Python 3.6+"
+
+    ```Python hl_lines="9"
+    {!> ../../../docs_src/sql_databases/sql_app/main.py!}
     ```
 
 #### Alembic 注意
@@ -499,16 +499,16 @@ current_user.items
 
 我们的依赖项将创建一个新的 SQLAlchemy `SessionLocal`，它将在单个请求中使用，然后在请求完成后关闭它。
 
-=== "Python 3.6 及以上版本"
-
-    ```Python hl_lines="15-20"
-    {!> ../../../docs_src/sql_databases/sql_app/main.py!}
-    ```
-
-=== "Python 3.9 及以上版本"
+=== "Python 3.9+"
 
     ```Python hl_lines="13-18"
     {!> ../../../docs_src/sql_databases/sql_app_py39/main.py!}
+    ```
+
+=== "Python 3.6+"
+
+    ```Python hl_lines="15-20"
+    {!> ../../../docs_src/sql_databases/sql_app/main.py!}
     ```
 
 !!! info
@@ -524,16 +524,16 @@ current_user.items
 
 *这将为我们在路径操作函数*中提供更好的编辑器支持，因为编辑器将知道`db`参数的类型`Session`：
 
-=== "Python 3.6 及以上版本"
-
-    ```Python hl_lines="24  32  38  47  53"
-    {!> ../../../docs_src/sql_databases/sql_app/main.py!}
-    ```
-
-=== "Python 3.9 及以上版本"
+=== "Python 3.9+"
 
     ```Python hl_lines="22  30  36  45  51"
     {!> ../../../docs_src/sql_databases/sql_app_py39/main.py!}
+    ```
+
+=== "Python 3.6+"
+
+    ```Python hl_lines="24  32  38  47  53"
+    {!> ../../../docs_src/sql_databases/sql_app/main.py!}
     ```
 
 !!! info "技术细节"
@@ -545,16 +545,16 @@ current_user.items
 
 现在，到了最后，编写标准的**FastAPI** *路径操作*代码。
 
-=== "Python 3.6 及以上版本"
-
-    ```Python hl_lines="23-28  31-34  37-42  45-49  52-55"
-    {!> ../../../docs_src/sql_databases/sql_app/main.py!}
-    ```
-
-=== "Python 3.9 及以上版本"
+=== "Python 3.9+"
 
     ```Python hl_lines="21-26  29-32  35-40  43-47  50-53"
     {!> ../../../docs_src/sql_databases/sql_app_py39/main.py!}
+    ```
+
+=== "Python 3.6+"
+
+    ```Python hl_lines="23-28  31-34  37-42  45-49  52-55"
+    {!> ../../../docs_src/sql_databases/sql_app/main.py!}
     ```
 
 我们在依赖项中的每个请求之前利用`yield`创建数据库会话，然后关闭它。
@@ -638,22 +638,22 @@ def read_user(user_id: int, db: Session = Depends(get_db)):
 
 * `sql_app/schemas.py`:
 
-=== "Python 3.6 及以上版本"
+=== "Python 3.10+"
 
     ```Python
-    {!> ../../../docs_src/sql_databases/sql_app/schemas.py!}
+    {!> ../../../docs_src/sql_databases/sql_app_py310/schemas.py!}
     ```
 
-=== "Python 3.9 及以上版本"
+=== "Python 3.9+"
 
     ```Python
     {!> ../../../docs_src/sql_databases/sql_app_py39/schemas.py!}
     ```
 
-=== "Python 3.10 及以上版本"
+=== "Python 3.6+"
 
     ```Python
-    {!> ../../../docs_src/sql_databases/sql_app_py310/schemas.py!}
+    {!> ../../../docs_src/sql_databases/sql_app/schemas.py!}
     ```
 
 * `sql_app/crud.py`:
@@ -664,16 +664,16 @@ def read_user(user_id: int, db: Session = Depends(get_db)):
 
 * `sql_app/main.py`:
 
-=== "Python 3.6 及以上版本"
-
-    ```Python
-    {!> ../../../docs_src/sql_databases/sql_app/main.py!}
-    ```
-
-=== "Python 3.9 及以上版本"
+=== "Python 3.9+"
 
     ```Python
     {!> ../../../docs_src/sql_databases/sql_app_py39/main.py!}
+    ```
+
+=== "Python 3.6+"
+
+    ```Python
+    {!> ../../../docs_src/sql_databases/sql_app/main.py!}
     ```
 
 ## 执行项目
@@ -723,16 +723,16 @@ $ uvicorn sql_app.main:app --reload
 
 我们将添加中间件（只是一个函数）将为每个请求创建一个新的 SQLAlchemy`SessionLocal`，将其添加到请求中，然后在请求完成后关闭它。
 
-=== "Python 3.6 及以上版本"
-
-    ```Python hl_lines="14-22"
-    {!> ../../../docs_src/sql_databases/sql_app/alt_main.py!}
-    ```
-
-=== "Python 3.9 及以上版本"
+=== "Python 3.9+"
 
     ```Python hl_lines="12-20"
     {!> ../../../docs_src/sql_databases/sql_app_py39/alt_main.py!}
+    ```
+
+=== "Python 3.6+"
+
+    ```Python hl_lines="14-22"
+    {!> ../../../docs_src/sql_databases/sql_app/alt_main.py!}
     ```
 
 !!! info

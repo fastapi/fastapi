@@ -449,7 +449,6 @@ Daha fazla bilgi için, bu bölüme bir göz at <a href="https://fastapi.tiangol
 
 Pydantic tarafında kullanılan:
 
-* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - daha hızlı JSON <abbr title="HTTP bağlantısından gelen stringi Python objesine çevirmek için">"dönüşümü"</abbr> için.
 * <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - email doğrulaması için.
 
 Starlette tarafında kullanılan:
