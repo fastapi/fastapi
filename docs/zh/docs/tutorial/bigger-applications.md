@@ -83,7 +83,7 @@
 {!../../../docs_src/bigger_applications/app/routers/users.py!}
 ```
 
-### 使用 `APIRouter` 的*路径操作* 
+### 使用 `APIRouter` 的*路径操作*
 
 然后你可以使用它来声明*路径操作*。
 
@@ -334,7 +334,7 @@ from app.routers import items, users
     ```Python
     from .routers import items, users
     ```
-    
+
     第二个版本是「绝对导入」：
 
     ```Python

@@ -28,7 +28,7 @@ I'm the creator and maintainer of **FastAPI**. You can read more about that in [
 
 These are the people that:
 
-* [Help others with issues (questions) in GitHub](help-fastapi.md#help-others-with-issues-in-github){.internal-link target=_blank}.
+* [Help others with questions in GitHub](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank}.
 * [Create Pull Requests](help-fastapi.md#create-a-pull-request){.internal-link target=_blank}.
 * Review Pull Requests, [especially important for translations](contributing.md#translations){.internal-link target=_blank}.
 
@@ -36,13 +36,13 @@ A round of applause to them. 👏 🙇
 
 ## Most active users last month
 
-These are the users that have been [helping others the most with issues (questions) in GitHub](help-fastapi.md#help-others-with-issues-in-github){.internal-link target=_blank} during the last month. ☕
+These are the users that have been [helping others the most with questions in GitHub](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank} during the last month. ☕
 
 {% if people %}
 <div class="user-list user-list-center">
 {% for user in people.last_month_active %}
 
-<div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">Issues replied: {{ user.count }}</div></div>
+<div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">Questions replied: {{ user.count }}</div></div>
 {% endfor %}
 
 </div>
@@ -52,7 +52,7 @@ These are the users that have been [helping others the most with issues (questio
 
 Here are the **FastAPI Experts**. 🤓
 
-These are the users that have [helped others the most with issues (questions) in GitHub](help-fastapi.md#help-others-with-issues-in-github){.internal-link target=_blank} through *all time*.
+These are the users that have [helped others the most with questions in GitHub](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank} through *all time*.
 
 They have proven to be experts by helping many others. ✨
 
@@ -60,7 +60,7 @@ They have proven to be experts by helping many others. ✨
 <div class="user-list user-list-center">
 {% for user in people.experts %}
 
-<div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">Issues replied: {{ user.count }}</div></div>
+<div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">Questions replied: {{ user.count }}</div></div>
 {% endfor %}
 
 </div>
@@ -114,61 +114,62 @@ These are the **Sponsors**. 😎
 
 They are supporting my work with **FastAPI** (and others), mainly through <a href="https://github.com/sponsors/tiangolo" class="external-link" target="_blank">GitHub Sponsors</a>.
 
+{% if sponsors %}
+
+{% if sponsors.gold %}
+
 ### Gold Sponsors
 
-{% if sponsors %}
 {% for sponsor in sponsors.gold -%}
-<a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}"></a>
+<a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
 {% endfor %}
 {% endif %}
+
+{% if sponsors.silver %}
 
 ### Silver Sponsors
 
-{% if sponsors %}
 {% for sponsor in sponsors.silver -%}
-<a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}"></a>
+<a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
 {% endfor %}
 {% endif %}
 
+{% if sponsors.bronze %}
+
 ### Bronze Sponsors
 
-{% if sponsors %}
 {% for sponsor in sponsors.bronze -%}
-<a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}"></a>
+<a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
 {% endfor %}
+{% endif %}
+
 {% endif %}
 
 ### Individual Sponsors
 
-{% if people %}
-{% if people.sponsors_50 %}
+{% if github_sponsors %}
+{% for group in github_sponsors.sponsors %}
 
 <div class="user-list user-list-center">
-{% for user in people.sponsors_50 %}
+
+{% for user in group %}
+{% if user.login not in sponsors_badge.logins %}
 
 <div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a></div>
+
+{% endif %}
 {% endfor %}
 
 </div>
 
-{% endif %}
-{% endif %}
-
-{% if people %}
-<div class="user-list user-list-center">
-{% for user in people.sponsors %}
-
-<div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a></div>
 {% endfor %}
-
-</div>
 {% endif %}
 
 ## About the data - technical details
 
 The main intention of this page is to highlight the effort of the community to help others.
 
-Especially including efforts that are normally less visible, and in many cases more arduous, like helping others with issues and reviewing Pull Requests with translations.
+Especially including efforts that are normally less visible, and in many cases more arduous, like helping others with questions and reviewing Pull Requests with translations.
 
 The data is calculated each month, you can read the <a href="https://github.com/tiangolo/fastapi/blob/master/.github/actions/people/app/main.py" class="external-link" target="_blank">source code here</a>.
 

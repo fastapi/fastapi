@@ -1,4 +1,4 @@
-from typing import Any, Dict, List, Optional, Union
+from typing import Any, Dict, List, Optional, Union, cast
 
 from fastapi.exceptions import HTTPException
 from fastapi.openapi.models import OAuth2 as OAuth2Model
@@ -45,12 +45,12 @@ class OAuth2PasswordRequestForm:
 
     def __init__(
         self,
-        grant_type: str = Form(None, regex="password"),
-        username: str = Form(...),
-        password: str = Form(...),
-        scope: str = Form(""),
-        client_id: Optional[str] = Form(None),
-        client_secret: Optional[str] = Form(None),
+        grant_type: str = Form(default=None, regex="password"),
+        username: str = Form(),
+        password: str = Form(),
+        scope: str = Form(default=""),
+        client_id: Optional[str] = Form(default=None),
+        client_secret: Optional[str] = Form(default=None),
     ):
         self.grant_type = grant_type
         self.username = username
@@ -95,12 +95,12 @@ class OAuth2PasswordRequestFormStrict(OAuth2PasswordRequestForm):
 
     def __init__(
         self,
-        grant_type: str = Form(..., regex="password"),
-        username: str = Form(...),
-        password: str = Form(...),
-        scope: str = Form(""),
-        client_id: Optional[str] = Form(None),
-        client_secret: Optional[str] = Form(None),
+        grant_type: str = Form(regex="password"),
+        username: str = Form(),
+        password: str = Form(),
+        scope: str = Form(default=""),
+        client_id: Optional[str] = Form(default=None),
+        client_secret: Optional[str] = Form(default=None),
     ):
         super().__init__(
             grant_type=grant_type,
@@ -118,14 +118,17 @@ class OAuth2(SecurityBase):
         *,
         flows: Union[OAuthFlowsModel, Dict[str, Dict[str, Any]]] = OAuthFlowsModel(),
         scheme_name: Optional[str] = None,
-        auto_error: Optional[bool] = True
+        description: Optional[str] = None,
+        auto_error: bool = True,
     ):
-        self.model = OAuth2Model(flows=flows)
+        self.model = OAuth2Model(
+            flows=cast(OAuthFlowsModel, flows), description=description
+        )
         self.scheme_name = scheme_name or self.__class__.__name__
         self.auto_error = auto_error
 
     async def __call__(self, request: Request) -> Optional[str]:
-        authorization: str = request.headers.get("Authorization")
+        authorization = request.headers.get("Authorization")
         if not authorization:
             if self.auto_error:
                 raise HTTPException(
@@ -142,15 +145,23 @@ class OAuth2PasswordBearer(OAuth2):
         tokenUrl: str,
         scheme_name: Optional[str] = None,
         scopes: Optional[Dict[str, str]] = None,
+        description: Optional[str] = None,
         auto_error: bool = True,
     ):
         if not scopes:
             scopes = {}
-        flows = OAuthFlowsModel(password={"tokenUrl": tokenUrl, "scopes": scopes})
-        super().__init__(flows=flows, scheme_name=scheme_name, auto_error=auto_error)
+        flows = OAuthFlowsModel(
+            password=cast(Any, {"tokenUrl": tokenUrl, "scopes": scopes})
+        )
+        super().__init__(
+            flows=flows,
+            scheme_name=scheme_name,
+            description=description,
+            auto_error=auto_error,
+        )
 
     async def __call__(self, request: Request) -> Optional[str]:
-        authorization: str = request.headers.get("Authorization")
+        authorization = request.headers.get("Authorization")
         scheme, param = get_authorization_scheme_param(authorization)
         if not authorization or scheme.lower() != "bearer":
             if self.auto_error:
@@ -172,22 +183,31 @@ class OAuth2AuthorizationCodeBearer(OAuth2):
         refreshUrl: Optional[str] = None,
         scheme_name: Optional[str] = None,
         scopes: Optional[Dict[str, str]] = None,
+        description: Optional[str] = None,
         auto_error: bool = True,
     ):
         if not scopes:
             scopes = {}
         flows = OAuthFlowsModel(
-            authorizationCode={
-                "authorizationUrl": authorizationUrl,
-                "tokenUrl": tokenUrl,
-                "refreshUrl": refreshUrl,
-                "scopes": scopes,
-            }
+            authorizationCode=cast(
+                Any,
+                {
+                    "authorizationUrl": authorizationUrl,
+                    "tokenUrl": tokenUrl,
+                    "refreshUrl": refreshUrl,
+                    "scopes": scopes,
+                },
+            )
         )
-        super().__init__(flows=flows, scheme_name=scheme_name, auto_error=auto_error)
+        super().__init__(
+            flows=flows,
+            scheme_name=scheme_name,
+            description=description,
+            auto_error=auto_error,
+        )
 
     async def __call__(self, request: Request) -> Optional[str]:
-        authorization: str = request.headers.get("Authorization")
+        authorization = request.headers.get("Authorization")
         scheme, param = get_authorization_scheme_param(authorization)
         if not authorization or scheme.lower() != "bearer":
             if self.auto_error:
