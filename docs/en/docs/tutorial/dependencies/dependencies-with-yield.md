@@ -10,7 +10,7 @@ To do this, use `yield` instead of `return`, and write the extra steps after.
 !!! note "Technical Details"
     Any function that is valid to use with:
 
-    * <a href="https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager" class="external-link" target="_blank">`@contextlib.contextmanager`</a> or 
+    * <a href="https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager" class="external-link" target="_blank">`@contextlib.contextmanager`</a> or
     * <a href="https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager" class="external-link" target="_blank">`@contextlib.asynccontextmanager`</a>
 
     would be valid to use as a **FastAPI** dependency.
@@ -66,9 +66,26 @@ You can have sub-dependencies and "trees" of sub-dependencies of any size and sh
 
 For example, `dependency_c` can have a dependency on `dependency_b`, and `dependency_b` on `dependency_a`:
 
-```Python hl_lines="4  12  20"
-{!../../../docs_src/dependencies/tutorial008.py!}
-```
+=== "Python 3.9+"
+
+    ```Python hl_lines="6  14  22"
+    {!> ../../../docs_src/dependencies/tutorial008_an_py39.py!}
+    ```
+
+=== "Python 3.6+"
+
+    ```Python hl_lines="5  13  21"
+    {!> ../../../docs_src/dependencies/tutorial008_an.py!}
+    ```
+
+=== "Python 3.6+ non-Annotated"
+
+    !!! tip
+        Prefer to use the `Annotated` version if possible.
+
+    ```Python hl_lines="4  12  20"
+    {!> ../../../docs_src/dependencies/tutorial008.py!}
+    ```
 
 And all of them can use `yield`.
 
@@ -76,9 +93,26 @@ In this case `dependency_c`, to execute its exit code, needs the value from `dep
 
 And, in turn, `dependency_b` needs the value from `dependency_a` (here named `dep_a`) to be available for its exit code.
 
-```Python hl_lines="16-17  24-25"
-{!../../../docs_src/dependencies/tutorial008.py!}
-```
+=== "Python 3.9+"
+
+    ```Python hl_lines="18-19  26-27"
+    {!> ../../../docs_src/dependencies/tutorial008_an_py39.py!}
+    ```
+
+=== "Python 3.6+"
+
+    ```Python hl_lines="17-18  25-26"
+    {!> ../../../docs_src/dependencies/tutorial008_an.py!}
+    ```
+
+=== "Python 3.6+ non-Annotated"
+
+    !!! tip
+        Prefer to use the `Annotated` version if possible.
+
+    ```Python hl_lines="16-17  24-25"
+    {!> ../../../docs_src/dependencies/tutorial008.py!}
+    ```
 
 The same way, you could have dependencies with `yield` and `return` mixed.
 
@@ -207,7 +241,7 @@ You can also use them inside of **FastAPI** dependencies with `yield` by using
 !!! tip
     Another way to create a context manager is with:
 
-    * <a href="https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager" class="external-link" target="_blank">`@contextlib.contextmanager`</a> or 
+    * <a href="https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager" class="external-link" target="_blank">`@contextlib.contextmanager`</a> or
     * <a href="https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager" class="external-link" target="_blank">`@contextlib.asynccontextmanager`</a>
 
     using them to decorate a function with a single `yield`.
