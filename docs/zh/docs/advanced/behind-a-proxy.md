@@ -79,7 +79,7 @@ Hypercorn 也支持 `--root-path `选项。
 !!! note "技术细节"
 
     ASGI 规范定义的 `root_path` 就是为了这种用例。
-    
+
     并且 `--root-path` 命令行选项支持 `root_path`。
 
 ### 查看当前的 `root_path`
@@ -125,7 +125,7 @@ $ uvicorn main:app --root-path /api/v1
 
 ### 关于 `root_path`
 
-注意，服务器（Uvicorn）只是把 `root_path` 传递给应用。 
+注意，服务器（Uvicorn）只是把 `root_path` 传递给应用。
 
 在浏览器中输入 <a href="http://127.0.0.1:8000" class="external-link" target="_blank">http://127.0.0.1:8000/app 时能看到标准响应：</a>
 
@@ -251,7 +251,7 @@ $ uvicorn main:app --root-path /api/v1
 }
 ```
 
-但这一次 URL 包含了代理提供的路径前缀：`/api/v1`。 
+但这一次 URL 包含了代理提供的路径前缀：`/api/v1`。
 
 当然，这是通过代理访问应用的方式，因此，路径前缀 `/app/v1` 版本才是**正确**的。
 
