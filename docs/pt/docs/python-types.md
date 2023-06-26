@@ -313,4 +313,3 @@ O importante é que, usando tipos padrão de Python, em um único local (em vez 
 
 !!! info "Informação"
     Se você já passou por todo o tutorial e voltou para ver mais sobre os tipos, um bom recurso é <a href = "https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html" class = "external-link "target =" _ blank "> a "cheat sheet" do `mypy` </a>.
-
