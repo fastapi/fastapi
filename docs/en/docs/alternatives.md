@@ -385,7 +385,7 @@ That's one of the main things that **FastAPI** adds on top, all based on Python 
 !!! note "Technical Details"
     ASGI is a new "standard" being developed by Django core team members. It is still not a "Python standard" (a PEP), although they are in the process of doing that.
 
-    Nevertheless, it is already being used as a "standard" by several tools. This greatly improves interoperability, as you could switch Uvicorn for any other ASGI server (like Daphne or Hypercorn), or you could add ASGI compatible tools, like `python-socketio`.
+    Nevertheless, it is already being used as a "standard" by several tools. This greatly improves interoperability, as you could switch Uvicorn for any other ASGI server (like Daphne, Hypercorn or Granian), or you could add ASGI compatible tools, like `python-socketio`.
 
 !!! check "**FastAPI** uses it to"
     Handle all the core web parts. Adding features on top.

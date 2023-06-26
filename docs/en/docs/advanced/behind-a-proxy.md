@@ -79,7 +79,7 @@ $ fastapi run main.py --root-path /api/v1
 
 </div>
 
-If you use Hypercorn, it also has the option `--root-path`.
+If you use Hypercorn, it also has the option `--root-path`, while in Granian such option is `--url-path-prefix`.
 
 !!! note "Technical Details"
     The ASGI specification defines a `root_path` for this use case.
