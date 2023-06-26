@@ -43,7 +43,7 @@
 
 따라서 함수를 다음과 같이 선언 할 수 있습니다:
 
-```Python hl_lines="8"
+```Python hl_lines="7"
 {!../../../docs_src/path_params_numeric_validations/tutorial002.py!}
 ```
 
@@ -55,7 +55,7 @@
 
 파이썬은 `*`으로 아무런 행동도 하지 않지만, 따르는 매개변수들은 <abbr title="유래: K-ey W-ord Arg-uments"><code>kwargs</code></abbr>로도 알려진 키워드 인자(키-값 쌍)여야 함을 인지합니다. 기본값을 가지고 있지 않더라도 그렇습니다.
 
-```Python hl_lines="8"
+```Python hl_lines="7"
 {!../../../docs_src/path_params_numeric_validations/tutorial003.py!}
 ```
 
