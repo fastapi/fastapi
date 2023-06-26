@@ -41,13 +41,17 @@ jobs:
         with:
           python-version: "3.11"
       - uses: actions/cache@v3
-        id: changes-cache
+        id: cache
         with:
           path: ${{ env.pythonLocation }}
-          key: ${{ runner.os }}-python-docs-langs-${{ env.pythonLocation }}-${{ hashFiles('pyproject.toml', 'requirements-docs.txt') }}-v01
+          key: ${{ runner.os }}-python-docs-${{ env.pythonLocation }}-${{ hashFiles('pyproject.toml', 'requirements-docs.txt') }}-v05
       - name: Install docs extras
-        if: steps.changes-cache.outputs.cache-hit != 'true'
+        if: steps.cache.outputs.cache-hit != 'true'
         run: pip install -r requirements-docs.txt
+      # Install MkDocs Material Insiders here just to put it in the cache for the rest of the steps
+      - name: Install Material for MkDocs Insiders
+        if: ( github.event_name != 'pull_request' || github.event.pull_request.head.repo.fork == false ) && steps.cache.outputs.cache-hit != 'true'
+        run: pip install git+https://${{ secrets.ACTIONS_TOKEN }}@github.com/squidfunk/mkdocs-material-insiders.git
       - name: Export Language Codes
         id: show-langs
         run: |
@@ -73,15 +77,15 @@ jobs:
         with:
           python-version: "3.11"
       - uses: actions/cache@v3
-        id: build-cache
+        id: cache
         with:
           path: ${{ env.pythonLocation }}
-          key: ${{ runner.os }}-python-docs-${{ env.pythonLocation }}-${{ hashFiles('pyproject.toml', 'requirements-docs.txt') }}-v04
+          key: ${{ runner.os }}-python-docs-${{ env.pythonLocation }}-${{ hashFiles('pyproject.toml', 'requirements-docs.txt') }}-v05
       - name: Install docs extras
-        if: steps.build-cache.outputs.cache-hit != 'true'
+        if: steps.cache.outputs.cache-hit != 'true'
         run: pip install -r requirements-docs.txt
       - name: Install Material for MkDocs Insiders
-        if: ( github.event_name != 'pull_request' || github.event.pull_request.head.repo.fork == false ) && steps.build-cache.outputs.cache-hit != 'true'
+        if: ( github.event_name != 'pull_request' || github.event.pull_request.head.repo.fork == false ) && steps.cache.outputs.cache-hit != 'true'
         run: pip install git+https://${{ secrets.ACTIONS_TOKEN }}@github.com/squidfunk/mkdocs-material-insiders.git
       - name: Update Languages
         run: python ./scripts/docs.py update-languages
