@@ -9,7 +9,7 @@
 !!! danger "危险"
 
     本章内容**较难**。
-    
+
     **FastAPI** 新手可跳过本章。
 
 ## 用例
@@ -59,13 +59,13 @@
 !!! note "技术细节"
 
     `Request` 的 `request.scope` 属性是包含关联请求元数据的字典。
-    
+
     `Request` 的 `request.receive` 方法是**接收**请求体的函数。
-    
+
     `scope` 字典与 `receive` 函数都是 ASGI 规范的内容。
-    
+
     `scope` 与 `receive` 也是创建新的 `Request` 实例所需的。
-    
+
     `Request` 的更多内容详见 <a href="https://www.starlette.io/requests/" class="external-link" target="_blank">Starlette 官档 - 请求</a>。
 
 `GzipRequest.get_route_handler` 返回函数的唯一区别是把 `Request` 转换成了 `GzipRequest`。
@@ -81,7 +81,7 @@
 !!! tip "提示"
 
     为了解决同样的问题，在 `RequestValidationError` 的自定义处理器使用 `body`  （[处理错误](../tutorial/handling-errors.md#use-the-requestvalidationerror-body){.internal-link target=_blank}）可能会更容易。
-    
+
     但本例仍然可行，而且本例展示了如何与内部组件进行交互。
 
 同样也可以在异常处理器中访问请求体。
