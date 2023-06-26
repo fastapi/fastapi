@@ -1,0 +1,10 @@
+name: "Notify Translations"
+description: "Notify in the issue for a translation when there's a new PR available"
+author: "Sebastián Ramírez <tiangolo@gmail.com>"
+inputs:
+  token:
+    description: 'Token, to read the GitHub API. Can be passed in using {{ secrets.GITHUB_TOKEN }}'
+    required: true
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
