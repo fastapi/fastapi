@@ -26,7 +26,7 @@ def test_gzip_request(compress):
         data = gzip.compress(data)
         headers["Content-Encoding"] = "gzip"
     headers["Content-Type"] = "application/json"
-    response = client.post("/sum", data=data, headers=headers)
+    response = client.post("/sum", content=data, headers=headers)
     assert response.json() == {"sum": n}
 
 
