@@ -15,4 +15,3 @@
 ## 为一组路径操作定义依赖项
 
 稍后，[大型应用 - 多文件](../../tutorial/bigger-applications.md){.internal-link target=_blank}一章中会介绍如何使用多个文件创建大型应用程序，在这一章中，您将了解到如何为一组*路径操作*声明单个 `dependencies` 参数。
-

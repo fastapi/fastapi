@@ -114,6 +114,8 @@ Ce sont les **Sponsors**. 😎
 
 Ils soutiennent mon travail avec **FastAPI** (et d'autres) avec <a href="https://github.com/sponsors/tiangolo" class="external-link" target="_blank">GitHub Sponsors</a>.
 
+{% if sponsors %}
+
 {% if sponsors.gold %}
 
 ### Gold Sponsors
@@ -141,6 +143,7 @@ Ils soutiennent mon travail avec **FastAPI** (et d'autres) avec <a href="https:/
 {% endfor %}
 {% endif %}
 
+{% endif %}
 ### Individual Sponsors
 
 {% if github_sponsors %}
