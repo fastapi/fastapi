@@ -49,7 +49,7 @@
 * `Decimal`:
     * Pythonの標準的な`Decimal`です。
     * リクエストやレスポンスでは`float`と同じように扱います。
-    
+
 * Pydanticの全ての有効な型はこちらで確認できます: <a href="https://pydantic-docs.helpmanual.io/usage/types" class="external-link" target="_blank">Pydantic data types</a>。
 ## 例
 
