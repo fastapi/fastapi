@@ -32,5 +32,3 @@ La hiérarchie est la suivante :
     * Si on n'utilisait pas FastAPI mais directement Starlette (ou un outil équivalent comme Sanic, Flask, Responder, etc) il faudrait implémenter la validation des données et la sérialisation par nous-même. Le résultat serait donc le même dans les deux cas mais du travail supplémentaire serait à réaliser avec Starlette, surtout en considérant que la validation des données et la sérialisation représentent la plus grande quantité de code à écrire dans une application.
     * De ce fait, en utilisant FastAPI on minimise le temps de développement, les bugs, le nombre de lignes de code, et on obtient les mêmes performances (si ce n'est de meilleurs performances) que l'on aurait pu avoir sans ce framework (en ayant à implémenter de nombreuses fonctionnalités importantes par nous même).
     * Si on compare FastAPI, il faut le comparer à d'autres frameworks web (ou ensemble d'outils) qui fournissent la validation des données, la sérialisation et la documentation, comme Flask-apispec, NestJS, Molten, etc.
-
-
