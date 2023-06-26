@@ -233,6 +233,10 @@ articles:
     link: https://medium.com/@krishnardt365/fastapi-docker-and-postgres-91943e71be92
     title: Fastapi, Docker(Docker compose) and Postgres
   german:
+  - author: Marcel Sander (actidoo)
+    author_link: https://www.actidoo.com
+    link: https://www.actidoo.com/de/blog/python-fastapi-domain-driven-design
+    title: Domain-driven Design mit Python und FastAPI
   - author: Nico Axtmann
     author_link: https://twitter.com/_nicoax
     link: https://blog.codecentric.de/2019/08/inbetriebnahme-eines-scikit-learn-modells-mit-onnx-und-fastapi/
@@ -308,6 +312,11 @@ articles:
     author_link: https://fullstackstation.com/author/figonking/
     link: https://fullstackstation.com/fastapi-trien-khai-bang-docker/
     title: 'FASTAPI: TRIỂN KHAI BẰNG DOCKER'
+  taiwanese:
+  - author: Leon
+    author_link: http://editor.leonh.space/
+    link: https://editor.leonh.space/2022/tortoise/
+    title: 'Tortoise ORM / FastAPI 整合快速筆記'
 podcasts:
   english:
   - author: Podcast.`__init__`
