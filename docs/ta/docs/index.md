@@ -313,7 +313,7 @@ def update_item(item_id: int, item: Item):
 
  இப்பொழுது <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>  தளத்திற்க்கு செல்லுங்கள்.
 
-* மாற்று ஆவணமும் புது உடல் மற்றும் கேட்டறி அளவுருவி காண்பிக்கும்:  
+* மாற்று ஆவணமும் புது உடல் மற்றும் கேட்டறி அளவுருவி காண்பிக்கும்:
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-06-redoc-02.png)
 
