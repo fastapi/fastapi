@@ -1,4 +1,5 @@
 from enum import Enum
+from inspect import Parameter
 from typing import Any, Callable, Dict, Optional, Sequence
 
 from pydantic.fields import FieldInfo, Undefined
@@ -379,3 +380,16 @@ class Security(Depends):
     ):
         super().__init__(dependency=dependency, use_cache=use_cache)
         self.scopes = scopes or []
+
+
+class DependsContext:
+    def __init__(self, param: Parameter) -> None:
+        self.param = param
+
+
+class Deferred:
+    def __init__(self, dependency_factory: Callable[[DependsContext], Depends]) -> None:
+        self.dependency_factory = dependency_factory
+
+    def __call__(self, param: DependsContext) -> Depends:
+        return self.dependency_factory(param)

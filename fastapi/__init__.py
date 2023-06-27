@@ -7,6 +7,7 @@ from starlette import status as status
 from .applications import FastAPI as FastAPI
 from .background import BackgroundTasks as BackgroundTasks
 from .datastructures import UploadFile as UploadFile
+from .dependencies._aliases import FromLifespan as FromLifespan
 from .exceptions import HTTPException as HTTPException
 from .exceptions import WebSocketException as WebSocketException
 from .param_functions import Body as Body
