@@ -4,7 +4,7 @@ coverage[toml] >= 6.5.0,< 8.0
 mypy ==1.4.0
 ruff ==0.0.275
 black == 23.3.0
-httpx >=0.23.0,<0.24.0
+httpx >=0.23.0,<0.25.0
 email_validator >=1.1.1,<2.0.0
 # TODO: once removing databases from tutorial, upgrade SQLAlchemy
 # probably when including SQLModel
