@@ -6,16 +6,16 @@
 
 Сначала импортируйте `Cookie`:
 
-=== "Python 3.6 и выше"
-
-    ```Python hl_lines="3"
-    {!> ../../../docs_src/cookie_params/tutorial001.py!}
-    ```
-
-=== "Python 3.10 и выше"
+=== "Python 3.10+"
 
     ```Python hl_lines="1"
     {!> ../../../docs_src/cookie_params/tutorial001_py310.py!}
+    ```
+
+=== "Python 3.6+"
+
+    ```Python hl_lines="3"
+    {!> ../../../docs_src/cookie_params/tutorial001.py!}
     ```
 
 ## Объявление параметров `Cookie`
@@ -24,16 +24,16 @@
 
 Первое значение - это значение по умолчанию, вы можете передать все дополнительные параметры проверки или аннотации:
 
-=== "Python 3.6 и выше"
-
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/cookie_params/tutorial001.py!}
-    ```
-
-=== "Python 3.10 и выше"
+=== "Python 3.10+"
 
     ```Python hl_lines="7"
     {!> ../../../docs_src/cookie_params/tutorial001_py310.py!}
+    ```
+
+=== "Python 3.6+"
+
+    ```Python hl_lines="9"
+    {!> ../../../docs_src/cookie_params/tutorial001.py!}
     ```
 
 !!! note "Технические детали"
