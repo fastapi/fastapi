@@ -276,7 +276,7 @@ Also, notice that Deta Space correctly handles HTTPS for you, so you don't have 
 
 ## Create a release
 
-Space also allows you to publish your API. When you publish it, anyone else can install their own copy of your API, in their own Data Space cloud.
+Space also allows you to publish your API. When you publish it, anyone else can install their own copy of your API, in their own Deta Space cloud.
 
 To do so, run `space release` in the Space CLI to create an **unlisted release**:
 
