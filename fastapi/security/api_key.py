@@ -21,7 +21,9 @@ class APIKeyQuery(APIKeyBase):
         auto_error: bool = True,
     ):
         self.model: APIKey = APIKey(
-            **{"in": APIKeyIn.query}, name=name, description=description
+            **{"in": APIKeyIn.query},  # type: ignore[arg-type]
+            name=name,
+            description=description,
         )
         self.scheme_name = scheme_name or self.__class__.__name__
         self.auto_error = auto_error
@@ -48,7 +50,9 @@ class APIKeyHeader(APIKeyBase):
         auto_error: bool = True,
     ):
         self.model: APIKey = APIKey(
-            **{"in": APIKeyIn.header}, name=name, description=description
+            **{"in": APIKeyIn.header},  # type: ignore[arg-type]
+            name=name,
+            description=description,
         )
         self.scheme_name = scheme_name or self.__class__.__name__
         self.auto_error = auto_error
@@ -75,7 +79,9 @@ class APIKeyCookie(APIKeyBase):
         auto_error: bool = True,
     ):
         self.model: APIKey = APIKey(
-            **{"in": APIKeyIn.cookie}, name=name, description=description
+            **{"in": APIKeyIn.cookie},  # type: ignore[arg-type]
+            name=name,
+            description=description,
         )
         self.scheme_name = scheme_name or self.__class__.__name__
         self.auto_error = auto_error

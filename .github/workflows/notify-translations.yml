@@ -19,4 +19,4 @@ jobs:
           limit-access-to-actor: true
       - uses: ./.github/actions/notify-translations
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.FASTAPI_NOTIFY_TRANSLATIONS }}
