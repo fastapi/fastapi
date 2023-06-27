@@ -5,29 +5,6 @@ from fastapi.testclient import TestClient
 
 from ...utils import needs_py39
 
-openapi_schema = {
-    "openapi": "3.0.2",
-    "info": {"title": "FastAPI", "version": "0.1.0"},
-    "paths": {
-        "/users/me": {
-            "get": {
-                "responses": {
-                    "200": {
-                        "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
-                    }
-                },
-                "summary": "Read Current User",
-                "operationId": "read_current_user_users_me_get",
-                "security": [{"HTTPBasic": []}],
-            }
-        }
-    },
-    "components": {
-        "securitySchemes": {"HTTPBasic": {"type": "http", "scheme": "basic"}}
-    },
-}
-
 
 @pytest.fixture(name="client")
 def get_client():
@@ -35,13 +12,6 @@ def get_client():
 
     client = TestClient(app)
     return client
-
-
-@needs_py39
-def test_openapi_schema(client: TestClient):
-    response = client.get("/openapi.json")
-    assert response.status_code == 200, response.text
-    assert response.json() == openapi_schema
 
 
 @needs_py39
@@ -77,3 +47,31 @@ def test_security_http_basic_non_basic_credentials(client: TestClient):
     assert response.status_code == 401, response.text
     assert response.headers["WWW-Authenticate"] == "Basic"
     assert response.json() == {"detail": "Invalid authentication credentials"}
+
+
+@needs_py39
+def test_openapi_schema(client: TestClient):
+    response = client.get("/openapi.json")
+    assert response.status_code == 200, response.text
+    assert response.json() == {
+        "openapi": "3.0.2",
+        "info": {"title": "FastAPI", "version": "0.1.0"},
+        "paths": {
+            "/users/me": {
+                "get": {
+                    "responses": {
+                        "200": {
+                            "description": "Successful Response",
+                            "content": {"application/json": {"schema": {}}},
+                        }
+                    },
+                    "summary": "Read Current User",
+                    "operationId": "read_current_user_users_me_get",
+                    "security": [{"HTTPBasic": []}],
+                }
+            }
+        },
+        "components": {
+            "securitySchemes": {"HTTPBasic": {"type": "http", "scheme": "basic"}}
+        },
+    }
