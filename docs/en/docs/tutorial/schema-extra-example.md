@@ -86,6 +86,9 @@ Here we pass an `example` of the data expected in `Body()`:
 
 === "Python 3.10+ non-Annotated"
 
+    !!! tip
+        Prefer to use the `Annotated` version if possible.
+
     ```Python hl_lines="18-23"
     {!> ../../../docs_src/schema_extra_example/tutorial003_py310.py!}
     ```
@@ -137,6 +140,9 @@ Each specific example `dict` in the `examples` can contain:
     ```
 
 === "Python 3.10+ non-Annotated"
+
+    !!! tip
+        Prefer to use the `Annotated` version if possible.
 
     ```Python hl_lines="19-45"
     {!> ../../../docs_src/schema_extra_example/tutorial004_py310.py!}

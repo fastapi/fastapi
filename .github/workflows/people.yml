@@ -12,6 +12,7 @@ on:
 
 jobs:
   fastapi-people:
+    if: github.repository_owner == 'tiangolo'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
