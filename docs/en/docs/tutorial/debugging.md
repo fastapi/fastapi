@@ -64,7 +64,7 @@ from myapp import app
 # Some more code
 ```
 
-in that case, the automatic variable inside of `myapp.py` will not have the variable `__name__` with a value of `"__main__"`.
+in that case, the automatically created variable inside of `myapp.py` will not have the variable `__name__` with a value of `"__main__"`.
 
 So, the line:
 
