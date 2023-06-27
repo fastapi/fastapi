@@ -1,4 +1,4 @@
-# Advanced Security - Intro
+# Advanced Security
 
 ## Additional Features
 
