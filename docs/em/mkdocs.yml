@@ -40,7 +40,6 @@ nav:
 - Languages:
   - en: /
   - az: /az/
-  - cs: /cs/
   - de: /de/
   - em: /em/
   - es: /es/
@@ -62,7 +61,6 @@ nav:
   - ta: /ta/
   - tr: /tr/
   - uk: /uk/
-  - vi: /vi/
   - zh: /zh/
 - features.md
 - fastapi-people.md
@@ -214,8 +212,6 @@ extra:
     name: en - English
   - link: /az/
     name: az
-  - link: /cs/
-    name: cs
   - link: /de/
     name: de
   - link: /em/
@@ -258,8 +254,6 @@ extra:
     name: tr - Türkçe
   - link: /uk/
     name: uk - українська мова
-  - link: /vi/
-    name: vi
   - link: /zh/
     name: zh - 汉语
 extra_css:
