@@ -10,9 +10,9 @@ Sehingga kamu dapat kembali lagi dan mencari apa yang kamu butuhkan dengan tepat
 
 ## Jalankan kode
 
-Semua blok-blok kode dapat dicopy dan digunakan langsung (Mereka semua sebenarnya adalah file python yang sudah teruji).
+Semua blok-blok kode dapat disalin dan digunakan langsung (Mereka semua sebenarnya adalah file python yang sudah teruji).
 
-Untuk menjalankan setiap contoh, copy kode ke file `main.py`, dan jalankan `uvicorn` dengan:
+Untuk menjalankan setiap contoh, salin kode ke file `main.py`, dan jalankan `uvicorn` dengan:
 
 <div class="termy">
 
@@ -28,7 +28,7 @@ $ uvicorn main:app --reload
 
 </div>
 
-**SANGAT disarankan** agar kamu menulis atau meng-copy kode, meng-editnya dan menjalankannya secara lokal.
+**SANGAT disarankan** agar kamu menulis atau menyalin kode, mengubahnya dan menjalankannya secara lokal.
 
 Dengan menggunakannya di dalam editor, benar-benar memperlihatkan manfaat dari FastAPI, melihat bagaimana sedikitnya kode yang harus kamu tulis, semua pengecekan tipe, pelengkapan otomatis, dll.
 
@@ -38,7 +38,7 @@ Dengan menggunakannya di dalam editor, benar-benar memperlihatkan manfaat dari F
 
 Langkah pertama adalah dengan meng-install FastAPI.
 
-Untuk tutorial, kamu mungkin hendak meng-instalnya dengan semua pilihan fitur dan dependensinya:
+Untuk tutorial, kamu mungkin hendak meng-installnya dengan semua pilihan fitur dan dependensinya:
 
 <div class="termy">
 
@@ -53,15 +53,15 @@ $ pip install "fastapi[all]"
 ...yang juga termasuk `uvicorn`, yang dapat kamu gunakan sebagai server yang menjalankan kodemu.
 
 !!! catatan
-    Kamu juga dapat meng-instalnya bagian demi bagian.
+    Kamu juga dapat meng-installnya bagian demi bagian.
 
-    Hal ini mungkin yang akan kamu lakukan ketika kamu hendak men-deploy aplikasimu ke tahap produksi:
+    Hal ini mungkin yang akan kamu lakukan ketika kamu hendak menyebarkan (men-deploy) aplikasimu ke tahap produksi:
 
     ```
     pip install fastapi
     ```
 
-    Juga install `uvicorn` untk menjalankan server"
+    Juga install `uvicorn` untuk menjalankan server"
 
     ```
     pip install "uvicorn[standard]"
@@ -77,4 +77,4 @@ Tersedia juga **Pedoman Pengguna Lanjutan** yang dapat kamu baca nanti setelah *
 
 Tetapi kamu harus membaca terlebih dahulu **Tutorial - Pedoman Pengguna** (apa yang sedang kamu baca sekarang).
 
-Hal ini didesain sehingga kamu dapat membangun aplikasi lengkap dengan hanya **Tutorial - Pedoman Pengguna**, dan kemudian mengembangkannya ke banyak cara yang berbeda, tergantung dari kebutuhanmu, menggunakan beberapa ide-ide tambahan dari **Pedoman Pengguna Lanjutan**.
+Hal ini dirancang supaya kamu dapat membangun aplikasi lengkap dengan hanya **Tutorial - Pedoman Pengguna**, dan kemudian mengembangkannya ke banyak cara yang berbeda, tergantung dari kebutuhanmu, menggunakan beberapa ide-ide tambahan dari **Pedoman Pengguna Lanjutan**.

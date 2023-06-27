@@ -3,6 +3,7 @@ from typing import Any, Callable, Dict, Iterable, List, Optional, Union
 
 from fastapi.logger import logger
 from pydantic import AnyUrl, BaseModel, Field
+from typing_extensions import Literal
 
 try:
     import email_validator  # type: ignore
@@ -108,14 +109,14 @@ class Schema(BaseModel):
     exclusiveMaximum: Optional[float] = None
     minimum: Optional[float] = None
     exclusiveMinimum: Optional[float] = None
-    maxLength: Optional[int] = Field(default=None, gte=0)
-    minLength: Optional[int] = Field(default=None, gte=0)
+    maxLength: Optional[int] = Field(default=None, ge=0)
+    minLength: Optional[int] = Field(default=None, ge=0)
     pattern: Optional[str] = None
-    maxItems: Optional[int] = Field(default=None, gte=0)
-    minItems: Optional[int] = Field(default=None, gte=0)
+    maxItems: Optional[int] = Field(default=None, ge=0)
+    minItems: Optional[int] = Field(default=None, ge=0)
     uniqueItems: Optional[bool] = None
-    maxProperties: Optional[int] = Field(default=None, gte=0)
-    minProperties: Optional[int] = Field(default=None, gte=0)
+    maxProperties: Optional[int] = Field(default=None, ge=0)
+    minProperties: Optional[int] = Field(default=None, ge=0)
     required: Optional[List[str]] = None
     enum: Optional[List[Any]] = None
     type: Optional[str] = None
@@ -298,18 +299,18 @@ class APIKeyIn(Enum):
 
 
 class APIKey(SecurityBase):
-    type_ = Field(SecuritySchemeType.apiKey, alias="type")
+    type_: SecuritySchemeType = Field(default=SecuritySchemeType.apiKey, alias="type")
     in_: APIKeyIn = Field(alias="in")
     name: str
 
 
 class HTTPBase(SecurityBase):
-    type_ = Field(SecuritySchemeType.http, alias="type")
+    type_: SecuritySchemeType = Field(default=SecuritySchemeType.http, alias="type")
     scheme: str
 
 
 class HTTPBearer(HTTPBase):
-    scheme = "bearer"
+    scheme: Literal["bearer"] = "bearer"
     bearerFormat: Optional[str] = None
 
 
@@ -349,12 +350,14 @@ class OAuthFlows(BaseModel):
 
 
 class OAuth2(SecurityBase):
-    type_ = Field(SecuritySchemeType.oauth2, alias="type")
+    type_: SecuritySchemeType = Field(default=SecuritySchemeType.oauth2, alias="type")
     flows: OAuthFlows
 
 
 class OpenIdConnect(SecurityBase):
-    type_ = Field(SecuritySchemeType.openIdConnect, alias="type")
+    type_: SecuritySchemeType = Field(
+        default=SecuritySchemeType.openIdConnect, alias="type"
+    )
     openIdConnectUrl: str
 
 
