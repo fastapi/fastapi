@@ -427,4 +427,4 @@ If your utility function is a normal function with `def`, it will be called dire
 
 Again, these are very technical details that would probably be useful if you came searching for them.
 
-Otherwise, you should be good with the guidelines from the section above: [In a hurry?](/#in-a-hurry){.internal-link target=_blank}.
+Otherwise, you should be good with the guidelines from the section above: <a href="#in-a-hurry">In a hurry?</a>.
