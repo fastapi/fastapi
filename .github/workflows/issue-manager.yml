@@ -2,7 +2,7 @@ name: Issue Manager
 
 on:
   schedule:
-    - cron: "0 0 * * *"
+    - cron: "10 3 * * *"
   issue_comment:
     types:
       - created
@@ -16,6 +16,7 @@ on:
 
 jobs:
   issue-manager:
+    if: github.repository_owner == 'tiangolo'
     runs-on: ubuntu-latest
     steps:
       - uses: tiangolo/issue-manager@0.4.0
