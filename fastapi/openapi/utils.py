@@ -395,7 +395,7 @@ def get_openapi(
     openapi_version: str = "3.0.2",
     summary: Optional[str] = None,
     description: Optional[str] = None,
-    routes: Optional[Sequence[BaseRoute]] = None,
+    routes: Sequence[BaseRoute],
     webhooks: Optional[Sequence[routing.APIRoute]] = None,
     tags: Optional[List[Dict[str, Any]]] = None,
     servers: Optional[List[Dict[str, Union[str, Any]]]] = None,
@@ -457,8 +457,7 @@ def get_openapi(
         components["schemas"] = {k: definitions[k] for k in sorted(definitions)}
     if components:
         output["components"] = components
-    if paths:
-        output["paths"] = paths
+    output["paths"] = paths
     if webhook_paths:
         output["webhooks"] = webhook_paths
     if tags:
