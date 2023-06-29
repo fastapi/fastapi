@@ -113,7 +113,7 @@ class FastAPI(Starlette):
         self.swagger_ui_parameters = swagger_ui_parameters
         self.servers = servers or []
         self.extra = extra
-        self.openapi_version = "3.0.2"
+        self.openapi_version = "3.1.0"
         self.openapi_schema: Optional[Dict[str, Any]] = None
         if self.openapi_url:
             assert self.title, "A title must be provided for OpenAPI, e.g.: 'My API'"
