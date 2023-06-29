@@ -54,6 +54,7 @@ class FastAPI(Starlette):
         debug: bool = False,
         routes: Optional[List[BaseRoute]] = None,
         title: str = "FastAPI",
+        summary: Optional[str] = None,
         description: str = "",
         version: str = "0.1.0",
         openapi_url: Optional[str] = "/openapi.json",
@@ -61,6 +62,7 @@ class FastAPI(Starlette):
         servers: Optional[List[Dict[str, Union[str, Any]]]] = None,
         dependencies: Optional[Sequence[Depends]] = None,
         default_response_class: Type[Response] = Default(JSONResponse),
+        redirect_slashes: bool = True,
         docs_url: Optional[str] = "/docs",
         redoc_url: Optional[str] = "/redoc",
         swagger_ui_oauth2_redirect_url: Optional[str] = "/docs/oauth2-redirect",
@@ -83,6 +85,7 @@ class FastAPI(Starlette):
         root_path_in_servers: bool = True,
         responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
         callbacks: Optional[List[BaseRoute]] = None,
+        webhooks: Optional[List[routing.APIRoute]] = None,
         deprecated: Optional[bool] = None,
         include_in_schema: bool = True,
         swagger_ui_parameters: Optional[Dict[str, Any]] = None,
@@ -93,6 +96,7 @@ class FastAPI(Starlette):
     ) -> None:
         self.debug = debug
         self.title = title
+        self.summary = summary
         self.description = description
         self.version = version
         self.terms_of_service = terms_of_service
@@ -121,11 +125,13 @@ class FastAPI(Starlette):
                 "automatic. Check the docs at "
                 "https://fastapi.tiangolo.com/advanced/sub-applications/"
             )
+        self.webhooks = webhooks
         self.root_path = root_path or openapi_prefix
         self.state: State = State()
         self.dependency_overrides: Dict[Callable[..., Any], Callable[..., Any]] = {}
         self.router: routing.APIRouter = routing.APIRouter(
             routes=routes,
+            redirect_slashes=redirect_slashes,
             dependency_overrides_provider=self,
             on_startup=on_startup,
             on_shutdown=on_shutdown,
@@ -212,6 +218,7 @@ class FastAPI(Starlette):
                 title=self.title,
                 version=self.version,
                 openapi_version=self.openapi_version,
+                summary=self.summary,
                 description=self.description,
                 terms_of_service=self.terms_of_service,
                 contact=self.contact,
