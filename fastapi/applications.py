@@ -55,6 +55,7 @@ class FastAPI(Starlette):
         debug: bool = False,
         routes: Optional[List[BaseRoute]] = None,
         title: str = "FastAPI",
+        summary: Optional[str] = None,
         description: str = "",
         version: str = "0.1.0",
         openapi_url: Optional[str] = "/openapi.json",
@@ -85,6 +86,7 @@ class FastAPI(Starlette):
         root_path_in_servers: bool = True,
         responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
         callbacks: Optional[List[BaseRoute]] = None,
+        webhooks: Optional[List[routing.APIRoute]] = None,
         deprecated: Optional[bool] = None,
         include_in_schema: bool = True,
         swagger_ui_parameters: Optional[Dict[str, Any]] = None,
@@ -95,6 +97,7 @@ class FastAPI(Starlette):
     ) -> None:
         self.debug = debug
         self.title = title
+        self.summary = summary
         self.description = description
         self.version = version
         self.terms_of_service = terms_of_service
@@ -123,6 +126,7 @@ class FastAPI(Starlette):
                 "automatic. Check the docs at "
                 "https://fastapi.tiangolo.com/advanced/sub-applications/"
             )
+        self.webhooks = webhooks
         self.root_path = root_path or openapi_prefix
         self.state: State = State()
         self.dependency_overrides: Dict[Callable[..., Any], Callable[..., Any]] = {}
@@ -215,6 +219,7 @@ class FastAPI(Starlette):
                 title=self.title,
                 version=self.version,
                 openapi_version=self.openapi_version,
+                summary=self.summary,
                 description=self.description,
                 terms_of_service=self.terms_of_service,
                 contact=self.contact,

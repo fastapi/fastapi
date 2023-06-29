@@ -393,8 +393,10 @@ def get_openapi(
     title: str,
     version: str,
     openapi_version: str = "3.0.2",
+    summary: Optional[str] = None,
     description: Optional[str] = None,
-    routes: Sequence[BaseRoute],
+    routes: Optional[Sequence[BaseRoute]] = None,
+    webhooks: Optional[Sequence[routing.APIRoute]] = None,
     tags: Optional[List[Dict[str, Any]]] = None,
     servers: Optional[List[Dict[str, Union[str, Any]]]] = None,
     terms_of_service: Optional[str] = None,
@@ -402,6 +404,8 @@ def get_openapi(
     license_info: Optional[Dict[str, Union[str, Any]]] = None,
 ) -> Dict[str, Any]:
     info: Dict[str, Any] = {"title": title, "version": version}
+    if summary:
+        info["summary"] = summary
     if description:
         info["description"] = description
     if terms_of_service:
@@ -415,13 +419,14 @@ def get_openapi(
         output["servers"] = servers
     components: Dict[str, Dict[str, Any]] = {}
     paths: Dict[str, Dict[str, Any]] = {}
+    webhook_paths: Dict[str, Dict[str, Any]] = {}
     operation_ids: Set[str] = set()
-    flat_models = get_flat_models_from_routes(routes)
+    flat_models = get_flat_models_from_routes(list(routes or []) + list(webhooks or []))
     model_name_map = get_model_name_map(flat_models)
     definitions = get_model_definitions(
         flat_models=flat_models, model_name_map=model_name_map
     )
-    for route in routes:
+    for route in routes or []:
         if isinstance(route, routing.APIRoute):
             result = get_openapi_path(
                 route=route, model_name_map=model_name_map, operation_ids=operation_ids
@@ -436,11 +441,26 @@ def get_openapi(
                     )
                 if path_definitions:
                     definitions.update(path_definitions)
+    for webhook in webhooks or []:
+        result = get_openapi_path(
+            route=webhook, model_name_map=model_name_map, operation_ids=operation_ids
+        )
+        if result:
+            path, security_schemes, path_definitions = result
+            if path:
+                webhook_paths.setdefault(webhook.path_format, {}).update(path)
+            if security_schemes:
+                components.setdefault("securitySchemes", {}).update(security_schemes)
+            if path_definitions:
+                definitions.update(path_definitions)
     if definitions:
         components["schemas"] = {k: definitions[k] for k in sorted(definitions)}
     if components:
         output["components"] = components
-    output["paths"] = paths
+    if paths:
+        output["paths"] = paths
+    if webhook_paths:
+        output["webhooks"] = webhook_paths
     if tags:
         output["tags"] = tags
     return jsonable_encoder(OpenAPI(**output), by_alias=True, exclude_none=True)  # type: ignore
