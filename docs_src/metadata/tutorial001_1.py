@@ -28,7 +28,7 @@ app = FastAPI(
     },
     license_info={
         "name": "Apache 2.0",
-        "url": "https://www.apache.org/licenses/LICENSE-2.0.html",
+        "identifier": "MIT",
     },
 )
 
