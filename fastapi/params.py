@@ -43,8 +43,10 @@ class Param(FieldInfo):
     ):
         self.deprecated = deprecated
         self.example = example
-        self.examples = examples
         self.include_in_schema = include_in_schema
+        extra_kwargs = {**extra}
+        if examples:
+            extra_kwargs["examples"] = examples
         super().__init__(
             default=default,
             alias=alias,
@@ -57,7 +59,7 @@ class Param(FieldInfo):
             min_length=min_length,
             max_length=max_length,
             regex=regex,
-            **extra,
+            **extra_kwargs,
         )
 
     def __repr__(self) -> str:
@@ -294,7 +296,9 @@ class Body(FieldInfo):
         self.embed = embed
         self.media_type = media_type
         self.example = example
-        self.examples = examples
+        extra_kwargs = {**extra}
+        if examples is not None:
+            extra_kwargs["examples"] = examples
         super().__init__(
             default=default,
             alias=alias,
@@ -307,7 +311,7 @@ class Body(FieldInfo):
             min_length=min_length,
             max_length=max_length,
             regex=regex,
-            **extra,
+            **extra_kwargs,
         )
 
     def __repr__(self) -> str:
