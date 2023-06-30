@@ -48,4 +48,4 @@ Now you can start your app with Uvicorn and go to <a href="http://127.0.0.1:8000
 
 You will see your docs have the normal *path operations* and now also some **webhooks**:
 
-<img src="/img/tutorial/openapi-callbacks/image01.png">
+<img src="/img/tutorial/openapi-webhooks/image01.png">
