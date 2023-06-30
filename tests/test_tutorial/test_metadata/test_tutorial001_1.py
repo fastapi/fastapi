@@ -1,6 +1,6 @@
 from fastapi.testclient import TestClient
 
-from docs_src.metadata.tutorial001 import app
+from docs_src.metadata.tutorial001_1 import app
 
 client = TestClient(app)
 
@@ -28,7 +28,7 @@ def test_openapi_schema():
             },
             "license": {
                 "name": "Apache 2.0",
-                "url": "https://www.apache.org/licenses/LICENSE-2.0.html",
+                "identifier": "MIT",
             },
             "version": "0.0.1",
         },
