@@ -1,5 +1,5 @@
 from enum import Enum
-from typing import Any, Callable, Dict, Optional, Sequence, Type
+from typing import Any, Callable, Dict, Optional, Sequence, Type, Literal
 
 from pydantic.fields import FieldInfo
 
@@ -36,6 +36,8 @@ class Param(FieldInfo):
         examples: Optional[Dict[str, Any]] = None,
         deprecated: Optional[bool] = None,
         include_in_schema: bool = True,
+        style: str = None,
+        explode: bool = None,
         **extra: Any,
     ):
         self.deprecated = deprecated
@@ -65,6 +67,8 @@ class Param(FieldInfo):
         # TODO: pv2 decide how to handle OpenAPI examples vs JSON Schema examples
         # and how to deprecate OpenAPI examples
         self.examples = examples  # type: ignore[assignment]
+        self.style = style
+        self.explode = explode
 
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}({self.default})"
@@ -93,6 +97,8 @@ class Path(Param):
         examples: Optional[Dict[str, Any]] = None,
         deprecated: Optional[bool] = None,
         include_in_schema: bool = True,
+        style: Literal["matrix", "label", "simple"] = "simple",
+        explode: bool = False,
         **extra: Any,
     ):
         assert default is ..., "Path parameters cannot have a default value"
@@ -115,6 +121,8 @@ class Path(Param):
             example=example,
             examples=examples,
             include_in_schema=include_in_schema,
+            style=style,
+            explode=explode,
             **extra,
         )
 
@@ -142,8 +150,12 @@ class Query(Param):
         examples: Optional[Dict[str, Any]] = None,
         deprecated: Optional[bool] = None,
         include_in_schema: bool = True,
+        style: Literal["form", "spaceDelimited", "pipeDelimited", "deepObject"] = "form",
+        explode: bool = None,
         **extra: Any,
     ):
+        if explode is None:
+            explode = False if style != "form" else True
         super().__init__(
             default=default,
             annotation=annotation,
@@ -162,6 +174,8 @@ class Query(Param):
             example=example,
             examples=examples,
             include_in_schema=include_in_schema,
+            style=style,
+            explode=explode,
             **extra,
         )
 
@@ -190,6 +204,8 @@ class Header(Param):
         examples: Optional[Dict[str, Any]] = None,
         deprecated: Optional[bool] = None,
         include_in_schema: bool = True,
+        style: Literal["simple"] = "simple",
+        explode: bool = False,
         **extra: Any,
     ):
         self.convert_underscores = convert_underscores
@@ -211,6 +227,8 @@ class Header(Param):
             example=example,
             examples=examples,
             include_in_schema=include_in_schema,
+            style=style,
+            explode=explode,
             **extra,
         )
 
@@ -238,6 +256,8 @@ class Cookie(Param):
         examples: Optional[Dict[str, Any]] = None,
         deprecated: Optional[bool] = None,
         include_in_schema: bool = True,
+        style: Literal["form"] = "form",
+        explode: bool = False,
         **extra: Any,
     ):
         super().__init__(
@@ -259,6 +279,8 @@ class Cookie(Param):
             examples=examples,
             include_in_schema=include_in_schema,
             **extra,
+            style=style,
+            explode=explode,
         )
 
 

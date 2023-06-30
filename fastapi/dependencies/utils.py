@@ -448,7 +448,7 @@ def is_body_param(*, param_field: ModelField, is_path_param: bool) -> bool:
         return False
     elif isinstance(
         param_field.field_info, (params.Query, params.Header)
-    ) and is_scalar_sequence_field(param_field):
+    ) and (is_scalar_sequence_field(param_field) or param_field.field_info.style == "deepObject"):
         return False
     else:
         assert isinstance(
@@ -632,6 +632,34 @@ async def solve_dependencies(
         )
     return values, errors, background_tasks, response, dependency_cache
 
+import collections
+import re
+
+def _default():
+    return collections.defaultdict(lambda: _default())
+
+def decode_deepObject(data: Sequence[Tuple[str, str]]) -> Dict[str, Any]:
+    r = _default()
+
+    for k,v in data:
+        """
+        k: name[attr0][attr1]
+        v: "5"
+        -> {"name":{"attr0":{"attr1":"5"}}}
+        """
+        # p = tuple(map(lambda x: x[:-1] if x[-1] == ']' else x, k.split("[")))
+        # would do as well, but add basic validation …
+        p = re.split(r'(\[|\]\[|\]$)', k)
+        s = p[1::2]
+        assert p[-1] == '' and s[0] == '[' and s[-1] == ']' and all(map(lambda x: x == "][", s[1:-1]))
+        p = tuple(p[::2][:-1])
+
+        o = r
+        for i in p[:-1]:
+            o = o[i]
+        o[p[-1]] = v
+    return r
+
 
 def request_params_to_args(
     required_params: Sequence[ModelField],
@@ -640,13 +668,22 @@ def request_params_to_args(
     values = {}
     errors = []
     for field in required_params:
+        field_info = field.field_info
+
         if is_scalar_sequence_field(field) and isinstance(
             received_params, (QueryParams, Headers)
         ):
             value = received_params.getlist(field.alias) or field.default
         else:
-            value = received_params.get(field.alias)
-        field_info = field.field_info
+            if field_info.style == "deepObject":
+                value = []
+                for k,v in received_params.items():
+                    if k.startswith(f"{field.alias}["):
+                        value.append((k,v))
+                value = decode_deepObject(value)
+                value = value[field.alias]
+            else:
+                value = received_params.get(field.alias)
         assert isinstance(
             field_info, params.Param
         ), "Params must be subclasses of Param"
