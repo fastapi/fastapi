@@ -1,3 +1,4 @@
+import warnings
 from enum import Enum
 from typing import Any, Callable, List, Optional, Sequence
 
@@ -42,6 +43,12 @@ class Param(FieldInfo):
         **extra: Any,
     ):
         self.deprecated = deprecated
+        if example is not Undefined:
+            warnings.warn(
+                "`example` has been depreacated, please use `examples` instead",
+                category=DeprecationWarning,
+                stacklevel=1,
+            )
         self.example = example
         self.include_in_schema = include_in_schema
         extra_kwargs = {**extra}
@@ -295,6 +302,12 @@ class Body(FieldInfo):
     ):
         self.embed = embed
         self.media_type = media_type
+        if example is not Undefined:
+            warnings.warn(
+                "`example` has been depreacated, please use `examples` instead",
+                category=DeprecationWarning,
+                stacklevel=1,
+            )
         self.example = example
         extra_kwargs = {**extra}
         if examples is not None:
