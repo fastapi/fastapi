@@ -1,7 +1,8 @@
 from enum import Enum
-from typing import Any, Callable, Dict, Optional, Sequence
+from typing import Any, Callable, List, Optional, Sequence
 
 from pydantic.fields import FieldInfo, Undefined
+from typing_extensions import Annotated, deprecated
 
 
 class ParamTypes(Enum):
@@ -28,8 +29,14 @@ class Param(FieldInfo):
         min_length: Optional[int] = None,
         max_length: Optional[int] = None,
         regex: Optional[str] = None,
-        example: Any = Undefined,
-        examples: Optional[Dict[str, Any]] = None,
+        examples: Optional[List[Any]] = None,
+        example: Annotated[
+            Optional[Any],
+            deprecated(
+                "Deprecated in OpenAPI 3.1.0 that now uses JSON Schema 2020-12, "
+                "although still supported. Use examples instead."
+            ),
+        ] = Undefined,
         deprecated: Optional[bool] = None,
         include_in_schema: bool = True,
         **extra: Any,
@@ -74,8 +81,14 @@ class Path(Param):
         min_length: Optional[int] = None,
         max_length: Optional[int] = None,
         regex: Optional[str] = None,
-        example: Any = Undefined,
-        examples: Optional[Dict[str, Any]] = None,
+        examples: Optional[List[Any]] = None,
+        example: Annotated[
+            Optional[Any],
+            deprecated(
+                "Deprecated in OpenAPI 3.1.0 that now uses JSON Schema 2020-12, "
+                "although still supported. Use examples instead."
+            ),
+        ] = Undefined,
         deprecated: Optional[bool] = None,
         include_in_schema: bool = True,
         **extra: Any,
@@ -119,8 +132,14 @@ class Query(Param):
         min_length: Optional[int] = None,
         max_length: Optional[int] = None,
         regex: Optional[str] = None,
-        example: Any = Undefined,
-        examples: Optional[Dict[str, Any]] = None,
+        examples: Optional[List[Any]] = None,
+        example: Annotated[
+            Optional[Any],
+            deprecated(
+                "Deprecated in OpenAPI 3.1.0 that now uses JSON Schema 2020-12, "
+                "although still supported. Use examples instead."
+            ),
+        ] = Undefined,
         deprecated: Optional[bool] = None,
         include_in_schema: bool = True,
         **extra: Any,
@@ -163,8 +182,14 @@ class Header(Param):
         min_length: Optional[int] = None,
         max_length: Optional[int] = None,
         regex: Optional[str] = None,
-        example: Any = Undefined,
-        examples: Optional[Dict[str, Any]] = None,
+        examples: Optional[List[Any]] = None,
+        example: Annotated[
+            Optional[Any],
+            deprecated(
+                "Deprecated in OpenAPI 3.1.0 that now uses JSON Schema 2020-12, "
+                "although still supported. Use examples instead."
+            ),
+        ] = Undefined,
         deprecated: Optional[bool] = None,
         include_in_schema: bool = True,
         **extra: Any,
@@ -207,8 +232,14 @@ class Cookie(Param):
         min_length: Optional[int] = None,
         max_length: Optional[int] = None,
         regex: Optional[str] = None,
-        example: Any = Undefined,
-        examples: Optional[Dict[str, Any]] = None,
+        examples: Optional[List[Any]] = None,
+        example: Annotated[
+            Optional[Any],
+            deprecated(
+                "Deprecated in OpenAPI 3.1.0 that now uses JSON Schema 2020-12, "
+                "although still supported. Use examples instead."
+            ),
+        ] = Undefined,
         deprecated: Optional[bool] = None,
         include_in_schema: bool = True,
         **extra: Any,
@@ -250,8 +281,14 @@ class Body(FieldInfo):
         min_length: Optional[int] = None,
         max_length: Optional[int] = None,
         regex: Optional[str] = None,
-        example: Any = Undefined,
-        examples: Optional[Dict[str, Any]] = None,
+        examples: Optional[List[Any]] = None,
+        example: Annotated[
+            Optional[Any],
+            deprecated(
+                "Deprecated in OpenAPI 3.1.0 that now uses JSON Schema 2020-12, "
+                "although still supported. Use examples instead."
+            ),
+        ] = Undefined,
         **extra: Any,
     ):
         self.embed = embed
@@ -293,8 +330,14 @@ class Form(Body):
         min_length: Optional[int] = None,
         max_length: Optional[int] = None,
         regex: Optional[str] = None,
-        example: Any = Undefined,
-        examples: Optional[Dict[str, Any]] = None,
+        examples: Optional[List[Any]] = None,
+        example: Annotated[
+            Optional[Any],
+            deprecated(
+                "Deprecated in OpenAPI 3.1.0 that now uses JSON Schema 2020-12, "
+                "although still supported. Use examples instead."
+            ),
+        ] = Undefined,
         **extra: Any,
     ):
         super().__init__(
@@ -333,8 +376,14 @@ class File(Form):
         min_length: Optional[int] = None,
         max_length: Optional[int] = None,
         regex: Optional[str] = None,
-        example: Any = Undefined,
-        examples: Optional[Dict[str, Any]] = None,
+        examples: Optional[List[Any]] = None,
+        example: Annotated[
+            Optional[Any],
+            deprecated(
+                "Deprecated in OpenAPI 3.1.0 that now uses JSON Schema 2020-12, "
+                "although still supported. Use examples instead."
+            ),
+        ] = Undefined,
         **extra: Any,
     ):
         super().__init__(
