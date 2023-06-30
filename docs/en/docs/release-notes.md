@@ -2,6 +2,9 @@
 
 ## Latest Changes
 
+
+## 0.99.0
+
 ### Features
 
 * ✨ Add support for OpenAPI 3.1.0. PR [#9770](https://github.com/tiangolo/fastapi/pull/9770) by [@tiangolo](https://github.com/tiangolo).
