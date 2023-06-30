@@ -110,9 +110,7 @@ def get_openapi_operation_parameters(
         }
         if field_info.description:
             parameter["description"] = field_info.description
-        if field_info.examples:
-            parameter["examples"] = jsonable_encoder(field_info.examples)
-        elif field_info.example != Undefined:
+        if field_info.example != Undefined:
             parameter["example"] = jsonable_encoder(field_info.example)
         if field_info.deprecated:
             parameter["deprecated"] = field_info.deprecated
@@ -141,9 +139,7 @@ def get_openapi_operation_request_body(
     if required:
         request_body_oai["required"] = required
     request_media_content: Dict[str, Any] = {"schema": body_schema}
-    if field_info.examples:
-        request_media_content["examples"] = jsonable_encoder(field_info.examples)
-    elif field_info.example != Undefined:
+    if field_info.example != Undefined:
         request_media_content["example"] = jsonable_encoder(field_info.example)
     request_body_oai["content"] = {request_media_type: request_media_content}
     return request_body_oai
@@ -409,11 +405,11 @@ def get_openapi(
     *,
     title: str,
     version: str,
-    openapi_version: str = "3.0.2",
+    openapi_version: str = "3.1.0",
     summary: Optional[str] = None,
     description: Optional[str] = None,
-    routes: Optional[Sequence[BaseRoute]] = None,
-    webhooks: Optional[Sequence[routing.APIRoute]] = None,
+    routes: Sequence[BaseRoute],
+    webhooks: Optional[Sequence[BaseRoute]] = None,
     tags: Optional[List[Dict[str, Any]]] = None,
     servers: Optional[List[Dict[str, Union[str, Any]]]] = None,
     terms_of_service: Optional[str] = None,
@@ -465,26 +461,28 @@ def get_openapi(
                 if path_definitions:
                     definitions.update(path_definitions)
     for webhook in webhooks or []:
-        result = get_openapi_path(
-            route=webhook,
-            operation_ids=operation_ids,
-            schema_generator=schema_generator,
-            model_name_map=model_name_map,
-        )
-        if result:
-            path, security_schemes, path_definitions = result
-            if path:
-                webhook_paths.setdefault(webhook.path_format, {}).update(path)
-            if security_schemes:
-                components.setdefault("securitySchemes", {}).update(security_schemes)
-            if path_definitions:
-                definitions.update(path_definitions)
+        if isinstance(webhook, routing.APIRoute):
+            result = get_openapi_path(
+                route=webhook,
+                operation_ids=operation_ids,
+                schema_generator=schema_generator,
+                model_name_map=model_name_map,
+            )
+            if result:
+                path, security_schemes, path_definitions = result
+                if path:
+                    webhook_paths.setdefault(webhook.path_format, {}).update(path)
+                if security_schemes:
+                    components.setdefault("securitySchemes", {}).update(
+                        security_schemes
+                    )
+                if path_definitions:
+                    definitions.update(path_definitions)
     if definitions:
         components["schemas"] = {k: definitions[k] for k in sorted(definitions)}
     if components:
         output["components"] = components
-    if paths:
-        output["paths"] = paths
+    output["paths"] = paths
     if webhook_paths:
         output["webhooks"] = webhook_paths
     if tags:

@@ -46,7 +46,7 @@ The docs UI would also need the OpenAPI schema to declare that this API `server`
 
 ```JSON hl_lines="4-8"
 {
-    "openapi": "3.0.2",
+    "openapi": "3.1.0",
     // More stuff here
     "servers": [
         {
@@ -298,7 +298,7 @@ Will generate an OpenAPI schema like:
 
 ```JSON hl_lines="5-7"
 {
-    "openapi": "3.0.2",
+    "openapi": "3.1.0",
     // More stuff here
     "servers": [
         {
