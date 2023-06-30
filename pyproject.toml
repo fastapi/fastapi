@@ -75,10 +75,6 @@ warn_unused_ignores = false
 ignore_missing_imports = true
 
 [[tool.mypy.overrides]]
-module = "fastapi._compat"
-implicit_reexport = true
-
-[[tool.mypy.overrides]]
 module = "fastapi.tests.*"
 ignore_missing_imports = true
 check_untyped_defs = true
