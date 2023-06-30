@@ -169,24 +169,24 @@ nav:
 - contributing.md
 - release-notes.md
 markdown_extensions:
-- toc:
+  toc:
     permalink: true
-- markdown.extensions.codehilite:
+  markdown.extensions.codehilite:
     guess_lang: false
-- mdx_include:
+  mdx_include:
     base_path: docs
-- admonition
-- codehilite
-- extra
-- pymdownx.superfences:
+  admonition:
+  codehilite:
+  extra:
+  pymdownx.superfences:
     custom_fences:
     - name: mermaid
       class: mermaid
       format: !!python/name:pymdownx.superfences.fence_code_format ''
-- pymdownx.tabbed:
+  pymdownx.tabbed:
     alternate_style: true
-- attr_list
-- md_in_html
+  attr_list:
+  md_in_html:
 extra:
   analytics:
     provider: google
