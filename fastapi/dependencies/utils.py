@@ -446,9 +446,10 @@ def is_body_param(*, param_field: ModelField, is_path_param: bool) -> bool:
         return False
     elif is_scalar_field(field=param_field):
         return False
-    elif isinstance(
-        param_field.field_info, (params.Query, params.Header)
-    ) and (is_scalar_sequence_field(param_field) or param_field.field_info.style == "deepObject"):
+    elif isinstance(param_field.field_info, (params.Query, params.Header)) and (
+        is_scalar_sequence_field(param_field)
+        or param_field.field_info.style == "deepObject"
+    ):
         return False
     else:
         assert isinstance(
@@ -632,16 +633,19 @@ async def solve_dependencies(
         )
     return values, errors, background_tasks, response, dependency_cache
 
+
 import collections
 import re
+
 
 def _default():
     return collections.defaultdict(lambda: _default())
 
+
 def decode_deepObject(data: Sequence[Tuple[str, str]]) -> Dict[str, Any]:
     r = _default()
 
-    for k,v in data:
+    for k, v in data:
         """
         k: name[attr0][attr1]
         v: "5"
@@ -649,9 +653,14 @@ def decode_deepObject(data: Sequence[Tuple[str, str]]) -> Dict[str, Any]:
         """
         # p = tuple(map(lambda x: x[:-1] if x[-1] == ']' else x, k.split("[")))
         # would do as well, but add basic validation …
-        p = re.split(r'(\[|\]\[|\]$)', k)
+        p = re.split(r"(\[|\]\[|\]$)", k)
         s = p[1::2]
-        assert p[-1] == '' and s[0] == '[' and s[-1] == ']' and all(map(lambda x: x == "][", s[1:-1]))
+        assert (
+            p[-1] == ""
+            and s[0] == "["
+            and s[-1] == "]"
+            and all((x == "][" for x in s[1:-1]))
+        )
         p = tuple(p[::2][:-1])
 
         o = r
@@ -677,9 +686,9 @@ def request_params_to_args(
         else:
             if field_info.style == "deepObject":
                 value = []
-                for k,v in received_params.items():
+                for k, v in received_params.items():
                     if k.startswith(f"{field.alias}["):
-                        value.append((k,v))
+                        value.append((k, v))
                 value = decode_deepObject(value)
                 value = value[field.alias]
             else:

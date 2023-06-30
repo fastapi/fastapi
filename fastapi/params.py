@@ -1,5 +1,5 @@
 from enum import Enum
-from typing import Any, Callable, Dict, Optional, Sequence, Type, Literal
+from typing import Any, Callable, Dict, Literal, Optional, Sequence, Type
 
 from pydantic.fields import FieldInfo
 
@@ -150,7 +150,9 @@ class Query(Param):
         examples: Optional[Dict[str, Any]] = None,
         deprecated: Optional[bool] = None,
         include_in_schema: bool = True,
-        style: Literal["form", "spaceDelimited", "pipeDelimited", "deepObject"] = "form",
+        style: Literal[
+            "form", "spaceDelimited", "pipeDelimited", "deepObject"
+        ] = "form",
         explode: bool = None,
         **extra: Any,
     ):
