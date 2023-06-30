@@ -147,6 +147,7 @@ nav:
   - advanced/conditional-openapi.md
   - advanced/extending-openapi.md
   - advanced/openapi-callbacks.md
+  - advanced/openapi-webhooks.md
   - advanced/wsgi.md
   - advanced/generate-clients.md
 - async.md
