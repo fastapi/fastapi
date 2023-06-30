@@ -316,7 +316,6 @@ def test_wrong_headers(client: TestClient):
         "/items/", content=data, headers={"Content-Type": "text/plain"}
     )
     assert response.status_code == 422, response.text
-
     assert response.json() == IsDict(
         {
             "detail": [
