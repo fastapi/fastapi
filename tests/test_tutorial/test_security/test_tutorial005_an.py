@@ -10,178 +10,6 @@ from docs_src.security.tutorial005_an import (
 
 client = TestClient(app)
 
-openapi_schema = {
-    "openapi": "3.0.2",
-    "info": {"title": "FastAPI", "version": "0.1.0"},
-    "paths": {
-        "/token": {
-            "post": {
-                "responses": {
-                    "200": {
-                        "description": "Successful Response",
-                        "content": {
-                            "application/json": {
-                                "schema": {"$ref": "#/components/schemas/Token"}
-                            }
-                        },
-                    },
-                    "422": {
-                        "description": "Validation Error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
-                                }
-                            }
-                        },
-                    },
-                },
-                "summary": "Login For Access Token",
-                "operationId": "login_for_access_token_token_post",
-                "requestBody": {
-                    "content": {
-                        "application/x-www-form-urlencoded": {
-                            "schema": {
-                                "$ref": "#/components/schemas/Body_login_for_access_token_token_post"
-                            }
-                        }
-                    },
-                    "required": True,
-                },
-            }
-        },
-        "/users/me/": {
-            "get": {
-                "responses": {
-                    "200": {
-                        "description": "Successful Response",
-                        "content": {
-                            "application/json": {
-                                "schema": {"$ref": "#/components/schemas/User"}
-                            }
-                        },
-                    }
-                },
-                "summary": "Read Users Me",
-                "operationId": "read_users_me_users_me__get",
-                "security": [{"OAuth2PasswordBearer": ["me"]}],
-            }
-        },
-        "/users/me/items/": {
-            "get": {
-                "responses": {
-                    "200": {
-                        "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
-                    }
-                },
-                "summary": "Read Own Items",
-                "operationId": "read_own_items_users_me_items__get",
-                "security": [{"OAuth2PasswordBearer": ["items", "me"]}],
-            }
-        },
-        "/status/": {
-            "get": {
-                "responses": {
-                    "200": {
-                        "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
-                    }
-                },
-                "summary": "Read System Status",
-                "operationId": "read_system_status_status__get",
-                "security": [{"OAuth2PasswordBearer": []}],
-            }
-        },
-    },
-    "components": {
-        "schemas": {
-            "User": {
-                "title": "User",
-                "required": ["username"],
-                "type": "object",
-                "properties": {
-                    "username": {"title": "Username", "type": "string"},
-                    "email": {"title": "Email", "type": "string"},
-                    "full_name": {"title": "Full Name", "type": "string"},
-                    "disabled": {"title": "Disabled", "type": "boolean"},
-                },
-            },
-            "Token": {
-                "title": "Token",
-                "required": ["access_token", "token_type"],
-                "type": "object",
-                "properties": {
-                    "access_token": {"title": "Access Token", "type": "string"},
-                    "token_type": {"title": "Token Type", "type": "string"},
-                },
-            },
-            "Body_login_for_access_token_token_post": {
-                "title": "Body_login_for_access_token_token_post",
-                "required": ["username", "password"],
-                "type": "object",
-                "properties": {
-                    "grant_type": {
-                        "title": "Grant Type",
-                        "pattern": "password",
-                        "type": "string",
-                    },
-                    "username": {"title": "Username", "type": "string"},
-                    "password": {"title": "Password", "type": "string"},
-                    "scope": {"title": "Scope", "type": "string", "default": ""},
-                    "client_id": {"title": "Client Id", "type": "string"},
-                    "client_secret": {"title": "Client Secret", "type": "string"},
-                },
-            },
-            "ValidationError": {
-                "title": "ValidationError",
-                "required": ["loc", "msg", "type"],
-                "type": "object",
-                "properties": {
-                    "loc": {
-                        "title": "Location",
-                        "type": "array",
-                        "items": {"anyOf": [{"type": "string"}, {"type": "integer"}]},
-                    },
-                    "msg": {"title": "Message", "type": "string"},
-                    "type": {"title": "Error Type", "type": "string"},
-                },
-            },
-            "HTTPValidationError": {
-                "title": "HTTPValidationError",
-                "type": "object",
-                "properties": {
-                    "detail": {
-                        "title": "Detail",
-                        "type": "array",
-                        "items": {"$ref": "#/components/schemas/ValidationError"},
-                    }
-                },
-            },
-        },
-        "securitySchemes": {
-            "OAuth2PasswordBearer": {
-                "type": "oauth2",
-                "flows": {
-                    "password": {
-                        "scopes": {
-                            "me": "Read information about the current user.",
-                            "items": "Read items.",
-                        },
-                        "tokenUrl": "token",
-                    }
-                },
-            }
-        },
-    },
-}
-
-
-def test_openapi_schema():
-    response = client.get("/openapi.json")
-    assert response.status_code == 200, response.text
-    assert response.json() == openapi_schema
-
 
 def get_access_token(username="johndoe", password="secret", scope=None):
     data = {"username": username, "password": password}
@@ -345,3 +173,175 @@ def test_read_system_status_no_token():
     assert response.status_code == 401, response.text
     assert response.json() == {"detail": "Not authenticated"}
     assert response.headers["WWW-Authenticate"] == "Bearer"
+
+
+def test_openapi_schema():
+    response = client.get("/openapi.json")
+    assert response.status_code == 200, response.text
+    assert response.json() == {
+        "openapi": "3.0.2",
+        "info": {"title": "FastAPI", "version": "0.1.0"},
+        "paths": {
+            "/token": {
+                "post": {
+                    "responses": {
+                        "200": {
+                            "description": "Successful Response",
+                            "content": {
+                                "application/json": {
+                                    "schema": {"$ref": "#/components/schemas/Token"}
+                                }
+                            },
+                        },
+                        "422": {
+                            "description": "Validation Error",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/HTTPValidationError"
+                                    }
+                                }
+                            },
+                        },
+                    },
+                    "summary": "Login For Access Token",
+                    "operationId": "login_for_access_token_token_post",
+                    "requestBody": {
+                        "content": {
+                            "application/x-www-form-urlencoded": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Body_login_for_access_token_token_post"
+                                }
+                            }
+                        },
+                        "required": True,
+                    },
+                }
+            },
+            "/users/me/": {
+                "get": {
+                    "responses": {
+                        "200": {
+                            "description": "Successful Response",
+                            "content": {
+                                "application/json": {
+                                    "schema": {"$ref": "#/components/schemas/User"}
+                                }
+                            },
+                        }
+                    },
+                    "summary": "Read Users Me",
+                    "operationId": "read_users_me_users_me__get",
+                    "security": [{"OAuth2PasswordBearer": ["me"]}],
+                }
+            },
+            "/users/me/items/": {
+                "get": {
+                    "responses": {
+                        "200": {
+                            "description": "Successful Response",
+                            "content": {"application/json": {"schema": {}}},
+                        }
+                    },
+                    "summary": "Read Own Items",
+                    "operationId": "read_own_items_users_me_items__get",
+                    "security": [{"OAuth2PasswordBearer": ["items", "me"]}],
+                }
+            },
+            "/status/": {
+                "get": {
+                    "responses": {
+                        "200": {
+                            "description": "Successful Response",
+                            "content": {"application/json": {"schema": {}}},
+                        }
+                    },
+                    "summary": "Read System Status",
+                    "operationId": "read_system_status_status__get",
+                    "security": [{"OAuth2PasswordBearer": []}],
+                }
+            },
+        },
+        "components": {
+            "schemas": {
+                "User": {
+                    "title": "User",
+                    "required": ["username"],
+                    "type": "object",
+                    "properties": {
+                        "username": {"title": "Username", "type": "string"},
+                        "email": {"title": "Email", "type": "string"},
+                        "full_name": {"title": "Full Name", "type": "string"},
+                        "disabled": {"title": "Disabled", "type": "boolean"},
+                    },
+                },
+                "Token": {
+                    "title": "Token",
+                    "required": ["access_token", "token_type"],
+                    "type": "object",
+                    "properties": {
+                        "access_token": {"title": "Access Token", "type": "string"},
+                        "token_type": {"title": "Token Type", "type": "string"},
+                    },
+                },
+                "Body_login_for_access_token_token_post": {
+                    "title": "Body_login_for_access_token_token_post",
+                    "required": ["username", "password"],
+                    "type": "object",
+                    "properties": {
+                        "grant_type": {
+                            "title": "Grant Type",
+                            "pattern": "password",
+                            "type": "string",
+                        },
+                        "username": {"title": "Username", "type": "string"},
+                        "password": {"title": "Password", "type": "string"},
+                        "scope": {"title": "Scope", "type": "string", "default": ""},
+                        "client_id": {"title": "Client Id", "type": "string"},
+                        "client_secret": {"title": "Client Secret", "type": "string"},
+                    },
+                },
+                "ValidationError": {
+                    "title": "ValidationError",
+                    "required": ["loc", "msg", "type"],
+                    "type": "object",
+                    "properties": {
+                        "loc": {
+                            "title": "Location",
+                            "type": "array",
+                            "items": {
+                                "anyOf": [{"type": "string"}, {"type": "integer"}]
+                            },
+                        },
+                        "msg": {"title": "Message", "type": "string"},
+                        "type": {"title": "Error Type", "type": "string"},
+                    },
+                },
+                "HTTPValidationError": {
+                    "title": "HTTPValidationError",
+                    "type": "object",
+                    "properties": {
+                        "detail": {
+                            "title": "Detail",
+                            "type": "array",
+                            "items": {"$ref": "#/components/schemas/ValidationError"},
+                        }
+                    },
+                },
+            },
+            "securitySchemes": {
+                "OAuth2PasswordBearer": {
+                    "type": "oauth2",
+                    "flows": {
+                        "password": {
+                            "scopes": {
+                                "me": "Read information about the current user.",
+                                "items": "Read items.",
+                            },
+                            "tokenUrl": "token",
+                        }
+                    },
+                }
+            },
+        },
+    }

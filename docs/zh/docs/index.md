@@ -437,7 +437,6 @@ item: Item
 
 用于 Pydantic：
 
-* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - 更快的 JSON <abbr title="将来自 HTTP 请求中的字符串转换为 Python 数据类型">「解析」</abbr>。
 * <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - 用于 email 校验。
 
 用于 Starlette：
