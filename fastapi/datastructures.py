@@ -37,13 +37,15 @@ class UploadFile(StarletteUploadFile):
 
         @classmethod
         def __modify_schema__(cls, field_schema: Dict[str, Any]) -> None:
-            field_schema.update({"type": "string", "format": "binary"})
+            field_schema.update(
+                {"type": "string", "contentMediaType": "application/octet-stream"}
+            )
 
     @classmethod
     def __get_pydantic_json_schema__(
         cls, core_schema: CoreSchema, handler: GetJsonSchemaHandler
     ) -> JsonSchemaValue:
-        return {"type": "string", "format": "binary"}
+        return {"type": "string", "contentMediaType": "application/octet-stream"}
 
     @classmethod
     def __get_pydantic_core_schema__(

@@ -1,7 +1,9 @@
+import warnings
 from enum import Enum
-from typing import Any, Callable, Dict, Optional, Sequence, Type
+from typing import Any, Callable, List, Optional, Sequence, Type
 
 from pydantic.fields import FieldInfo
+from typing_extensions import Annotated, deprecated
 
 from ._compat import PYDANTIC_V2, Undefined
 
@@ -32,13 +34,25 @@ class Param(FieldInfo):
         max_length: Optional[int] = None,
         pattern: Optional[str] = None,
         regex: Optional[str] = None,
-        example: Any = Undefined,
-        examples: Optional[Dict[str, Any]] = None,
+        examples: Optional[List[Any]] = None,
+        example: Annotated[
+            Optional[Any],
+            deprecated(
+                "Deprecated in OpenAPI 3.1.0 that now uses JSON Schema 2020-12, "
+                "although still supported. Use examples instead."
+            ),
+        ] = Undefined,
         deprecated: Optional[bool] = None,
         include_in_schema: bool = True,
         **extra: Any,
     ):
         self.deprecated = deprecated
+        if example is not Undefined:
+            warnings.warn(
+                "`example` has been depreacated, please use `examples` instead",
+                category=DeprecationWarning,
+                stacklevel=1,
+            )
         self.example = example
         self.include_in_schema = include_in_schema
         kwargs = dict(
@@ -54,6 +68,8 @@ class Param(FieldInfo):
             max_length=max_length,
             **extra,
         )
+        if examples is not None:
+            kwargs["examples"] = examples
         if PYDANTIC_V2:
             kwargs["annotation"] = annotation
             kwargs["pattern"] = pattern or regex
@@ -62,9 +78,6 @@ class Param(FieldInfo):
             kwargs["regex"] = pattern or regex
 
         super().__init__(**kwargs)
-        # TODO: pv2 decide how to handle OpenAPI examples vs JSON Schema examples
-        # and how to deprecate OpenAPI examples
-        self.examples = examples  # type: ignore[assignment]
 
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}({self.default})"
@@ -89,8 +102,14 @@ class Path(Param):
         max_length: Optional[int] = None,
         pattern: Optional[str] = None,
         regex: Optional[str] = None,
-        example: Any = Undefined,
-        examples: Optional[Dict[str, Any]] = None,
+        examples: Optional[List[Any]] = None,
+        example: Annotated[
+            Optional[Any],
+            deprecated(
+                "Deprecated in OpenAPI 3.1.0 that now uses JSON Schema 2020-12, "
+                "although still supported. Use examples instead."
+            ),
+        ] = Undefined,
         deprecated: Optional[bool] = None,
         include_in_schema: bool = True,
         **extra: Any,
@@ -138,8 +157,14 @@ class Query(Param):
         max_length: Optional[int] = None,
         pattern: Optional[str] = None,
         regex: Optional[str] = None,
-        example: Any = Undefined,
-        examples: Optional[Dict[str, Any]] = None,
+        examples: Optional[List[Any]] = None,
+        example: Annotated[
+            Optional[Any],
+            deprecated(
+                "Deprecated in OpenAPI 3.1.0 that now uses JSON Schema 2020-12, "
+                "although still supported. Use examples instead."
+            ),
+        ] = Undefined,
         deprecated: Optional[bool] = None,
         include_in_schema: bool = True,
         **extra: Any,
@@ -186,8 +211,14 @@ class Header(Param):
         max_length: Optional[int] = None,
         pattern: Optional[str] = None,
         regex: Optional[str] = None,
-        example: Any = Undefined,
-        examples: Optional[Dict[str, Any]] = None,
+        examples: Optional[List[Any]] = None,
+        example: Annotated[
+            Optional[Any],
+            deprecated(
+                "Deprecated in OpenAPI 3.1.0 that now uses JSON Schema 2020-12, "
+                "although still supported. Use examples instead."
+            ),
+        ] = Undefined,
         deprecated: Optional[bool] = None,
         include_in_schema: bool = True,
         **extra: Any,
@@ -234,8 +265,14 @@ class Cookie(Param):
         max_length: Optional[int] = None,
         pattern: Optional[str] = None,
         regex: Optional[str] = None,
-        example: Any = Undefined,
-        examples: Optional[Dict[str, Any]] = None,
+        examples: Optional[List[Any]] = None,
+        example: Annotated[
+            Optional[Any],
+            deprecated(
+                "Deprecated in OpenAPI 3.1.0 that now uses JSON Schema 2020-12, "
+                "although still supported. Use examples instead."
+            ),
+        ] = Undefined,
         deprecated: Optional[bool] = None,
         include_in_schema: bool = True,
         **extra: Any,
@@ -281,12 +318,24 @@ class Body(FieldInfo):
         max_length: Optional[int] = None,
         pattern: Optional[str] = None,
         regex: Optional[str] = None,
-        example: Any = Undefined,
-        examples: Optional[Dict[str, Any]] = None,
+        examples: Optional[List[Any]] = None,
+        example: Annotated[
+            Optional[Any],
+            deprecated(
+                "Deprecated in OpenAPI 3.1.0 that now uses JSON Schema 2020-12, "
+                "although still supported. Use examples instead."
+            ),
+        ] = Undefined,
         **extra: Any,
     ):
         self.embed = embed
         self.media_type = media_type
+        if example is not Undefined:
+            warnings.warn(
+                "`example` has been depreacated, please use `examples` instead",
+                category=DeprecationWarning,
+                stacklevel=1,
+            )
         self.example = example
         kwargs = dict(
             default=default,
@@ -301,6 +350,8 @@ class Body(FieldInfo):
             max_length=max_length,
             **extra,
         )
+        if examples is not None:
+            kwargs["examples"] = examples
         if PYDANTIC_V2:
             kwargs["annotation"] = annotation
             kwargs["pattern"] = pattern or regex
@@ -310,9 +361,6 @@ class Body(FieldInfo):
         super().__init__(
             **kwargs,
         )
-        # TODO: pv2 decide how to handle OpenAPI examples vs JSON Schema examples
-        # and how to deprecate OpenAPI examples
-        self.examples = examples  # type: ignore[assignment]
 
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}({self.default})"
@@ -336,8 +384,14 @@ class Form(Body):
         max_length: Optional[int] = None,
         pattern: Optional[str] = None,
         regex: Optional[str] = None,
-        example: Any = Undefined,
-        examples: Optional[Dict[str, Any]] = None,
+        examples: Optional[List[Any]] = None,
+        example: Annotated[
+            Optional[Any],
+            deprecated(
+                "Deprecated in OpenAPI 3.1.0 that now uses JSON Schema 2020-12, "
+                "although still supported. Use examples instead."
+            ),
+        ] = Undefined,
         **extra: Any,
     ):
         super().__init__(
@@ -380,8 +434,14 @@ class File(Form):
         max_length: Optional[int] = None,
         pattern: Optional[str] = None,
         regex: Optional[str] = None,
-        example: Any = Undefined,
-        examples: Optional[Dict[str, Any]] = None,
+        examples: Optional[List[Any]] = None,
+        example: Annotated[
+            Optional[Any],
+            deprecated(
+                "Deprecated in OpenAPI 3.1.0 that now uses JSON Schema 2020-12, "
+                "although still supported. Use examples instead."
+            ),
+        ] = Undefined,
         **extra: Any,
     ):
         super().__init__(

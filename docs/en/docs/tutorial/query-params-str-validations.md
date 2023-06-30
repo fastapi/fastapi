@@ -44,7 +44,7 @@ To achieve that, first import:
 
 === "Python 3.6+"
 
-    In versions of Python below Python 3.9 you import `Annotation` from `typing_extensions`.
+    In versions of Python below Python 3.9 you import `Annotated` from `typing_extensions`.
 
     It will already be installed with FastAPI.
 

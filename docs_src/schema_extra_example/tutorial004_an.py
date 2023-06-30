@@ -21,8 +21,8 @@ async def update_item(
     item: Annotated[
         Item,
         Body(
-            examples={
-                "normal": {
+            examples=[
+                {
                     "summary": "A normal example",
                     "description": "A **normal** item works correctly.",
                     "value": {
@@ -32,7 +32,7 @@ async def update_item(
                         "tax": 3.2,
                     },
                 },
-                "converted": {
+                {
                     "summary": "An example with converted data",
                     "description": "FastAPI can convert price `strings` to actual `numbers` automatically",
                     "value": {
@@ -40,14 +40,14 @@ async def update_item(
                         "price": "35.4",
                     },
                 },
-                "invalid": {
+                {
                     "summary": "Invalid data is rejected with an error",
                     "value": {
                         "name": "Baz",
                         "price": "thirty five point four",
                     },
                 },
-            },
+            ],
         ),
     ],
 ):
