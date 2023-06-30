@@ -396,7 +396,7 @@ def get_openapi(
     summary: Optional[str] = None,
     description: Optional[str] = None,
     routes: Sequence[BaseRoute],
-    webhooks: Optional[Sequence[routing.APIRoute]] = None,
+    webhooks: Optional[Sequence[BaseRoute]] = None,
     tags: Optional[List[Dict[str, Any]]] = None,
     servers: Optional[List[Dict[str, Union[str, Any]]]] = None,
     terms_of_service: Optional[str] = None,
@@ -442,17 +442,22 @@ def get_openapi(
                 if path_definitions:
                     definitions.update(path_definitions)
     for webhook in webhooks or []:
-        result = get_openapi_path(
-            route=webhook, model_name_map=model_name_map, operation_ids=operation_ids
-        )
-        if result:
-            path, security_schemes, path_definitions = result
-            if path:
-                webhook_paths.setdefault(webhook.path_format, {}).update(path)
-            if security_schemes:
-                components.setdefault("securitySchemes", {}).update(security_schemes)
-            if path_definitions:
-                definitions.update(path_definitions)
+        if isinstance(webhook, routing.APIRoute):
+            result = get_openapi_path(
+                route=webhook,
+                model_name_map=model_name_map,
+                operation_ids=operation_ids,
+            )
+            if result:
+                path, security_schemes, path_definitions = result
+                if path:
+                    webhook_paths.setdefault(webhook.path_format, {}).update(path)
+                if security_schemes:
+                    components.setdefault("securitySchemes", {}).update(
+                        security_schemes
+                    )
+                if path_definitions:
+                    definitions.update(path_definitions)
     if definitions:
         components["schemas"] = {k: definitions[k] for k in sorted(definitions)}
     if components:
