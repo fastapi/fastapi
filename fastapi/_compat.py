@@ -57,9 +57,9 @@ if PYDANTIC_V2:
     from pydantic.json_schema import JsonSchemaValue as JsonSchemaValue
     from pydantic_core import CoreSchema as CoreSchema
     from pydantic_core import ErrorDetails
+    from pydantic_core import MultiHostUrl as MultiHostUrl
     from pydantic_core import PydanticUndefined as Undefined
     from pydantic_core import PydanticUndefinedType as _UndefinedType
-    from pydantic_core import MultiHostUrl as MultiHostUrl
     from pydantic_core import Url as Url
     from pydantic_core.core_schema import (
         general_plain_validator_function as general_plain_validator_function,
