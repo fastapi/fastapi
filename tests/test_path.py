@@ -145,7 +145,7 @@ def test_path_float_foobar():
                 {
                     "type": "float_parsing",
                     "loc": ["path", "item_id"],
-                    "msg": "Input should be a valid number, unable to parse string as an number",
+                    "msg": "Input should be a valid number, unable to parse string as a number",
                     "input": "foobar",
                     "url": match_pydantic_error_url("float_parsing"),
                 }
@@ -174,7 +174,7 @@ def test_path_float_True():
                 {
                     "type": "float_parsing",
                     "loc": ["path", "item_id"],
-                    "msg": "Input should be a valid number, unable to parse string as an number",
+                    "msg": "Input should be a valid number, unable to parse string as a number",
                     "input": "True",
                     "url": match_pydantic_error_url("float_parsing"),
                 }

@@ -27,7 +27,7 @@ def test_post_invalid_item():
                 {
                     "type": "float_parsing",
                     "loc": ["body", "price"],
-                    "msg": "Input should be a valid number, unable to parse string as an number",
+                    "msg": "Input should be a valid number, unable to parse string as a number",
                     "input": "invalid price",
                     "url": match_pydantic_error_url("float_parsing"),
                 }

@@ -109,7 +109,7 @@ def test_post_with_only_name_price(client: TestClient):
                 {
                     "type": "float_parsing",
                     "loc": ["body", "price"],
-                    "msg": "Input should be a valid number, unable to parse string as an number",
+                    "msg": "Input should be a valid number, unable to parse string as a number",
                     "input": "twenty",
                     "url": match_pydantic_error_url("float_parsing"),
                 }
@@ -252,11 +252,11 @@ def test_post_form_for_json(client: TestClient):
         {
             "detail": [
                 {
-                    "type": "dict_attributes_type",
+                    "type": "model_attributes_type",
                     "loc": ["body"],
-                    "msg": "Input should be a valid dictionary or instance to extract fields from",
+                    "msg": "Input should be a valid dictionary or object to extract fields from",
                     "input": "name=Foo&price=50.5",
-                    "url": match_pydantic_error_url("dict_attributes_type"),
+                    "url": match_pydantic_error_url("model_attributes_type"),
                 }
             ]
         }
@@ -316,15 +316,16 @@ def test_wrong_headers(client: TestClient):
         "/items/", content=data, headers={"Content-Type": "text/plain"}
     )
     assert response.status_code == 422, response.text
+
     assert response.json() == IsDict(
         {
             "detail": [
                 {
-                    "type": "dict_attributes_type",
+                    "type": "model_attributes_type",
                     "loc": ["body"],
-                    "msg": "Input should be a valid dictionary or instance to extract fields from",
+                    "msg": "Input should be a valid dictionary or object to extract fields from",
                     "input": '{"name": "Foo", "price": 50.5}',
-                    "url": match_pydantic_error_url("dict_attributes_type"),
+                    "url": match_pydantic_error_url("model_attributes_type"),
                 }
             ]
         }
@@ -349,11 +350,11 @@ def test_wrong_headers(client: TestClient):
         {
             "detail": [
                 {
-                    "type": "dict_attributes_type",
+                    "type": "model_attributes_type",
                     "loc": ["body"],
-                    "msg": "Input should be a valid dictionary or instance to extract fields from",
+                    "msg": "Input should be a valid dictionary or object to extract fields from",
                     "input": '{"name": "Foo", "price": 50.5}',
-                    "url": match_pydantic_error_url("dict_attributes_type"),
+                    "url": match_pydantic_error_url("model_attributes_type"),
                 }
             ]
         }
@@ -377,11 +378,11 @@ def test_wrong_headers(client: TestClient):
         {
             "detail": [
                 {
-                    "type": "dict_attributes_type",
+                    "type": "model_attributes_type",
                     "loc": ["body"],
-                    "msg": "Input should be a valid dictionary or instance to extract fields from",
+                    "msg": "Input should be a valid dictionary or object to extract fields from",
                     "input": '{"name": "Foo", "price": 50.5}',
-                    "url": match_pydantic_error_url("dict_attributes_type"),
+                    "url": match_pydantic_error_url("model_attributes_type"),
                 }
             ]
         }
