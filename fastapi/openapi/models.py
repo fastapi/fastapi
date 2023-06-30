@@ -174,7 +174,6 @@ class Schema(BaseModel):
     readOnly: Optional[bool] = None
     writeOnly: Optional[bool] = None
     examples: Optional[List[Any]] = None
-    # nullable: Annotated[Optional[bool], deprecated("Removed in OpenAPI 3.0.1")] = None
     # Ref: OpenAPI 3.1.0: https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#schema-object
     # Schema Object
     discriminator: Optional[Discriminator] = None
