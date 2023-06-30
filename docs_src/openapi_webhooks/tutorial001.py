@@ -21,5 +21,5 @@ def new_subscription(body: Subscription):
 
 
 @app.get("/users/")
-def list_subscriptions():
+def read_users():
     return ["Rick", "Morty"]

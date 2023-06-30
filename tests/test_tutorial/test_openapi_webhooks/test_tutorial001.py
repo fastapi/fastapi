@@ -25,8 +25,8 @@ def test_openapi_schema():
         "paths": {
             "/users/": {
                 "get": {
-                    "summary": "List Subscriptions",
-                    "operationId": "list_subscriptions_users__get",
+                    "summary": "Read Users",
+                    "operationId": "read_users_users__get",
                     "responses": {
                         "200": {
                             "description": "Successful Response",
