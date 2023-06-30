@@ -6,17 +6,17 @@ Here are several ways to do it.
 
 ## Pydantic `schema_extra`
 
-You can declare an `example` for a Pydantic model using `Config` and `schema_extra`, as described in <a href="https://pydantic-docs.helpmanual.io/usage/schema/#schema-customization" class="external-link" target="_blank">Pydantic's docs: Schema customization</a>:
+You can declare `examples` for a Pydantic model using `Config` and `schema_extra`, as described in <a href="https://pydantic-docs.helpmanual.io/usage/schema/#schema-customization" class="external-link" target="_blank">Pydantic's docs: Schema customization</a>:
 
 === "Python 3.10+"
 
-    ```Python hl_lines="13-21"
+    ```Python hl_lines="13-23"
     {!> ../../../docs_src/schema_extra_example/tutorial001_py310.py!}
     ```
 
 === "Python 3.6+"
 
-    ```Python hl_lines="15-23"
+    ```Python hl_lines="15-25"
     {!> ../../../docs_src/schema_extra_example/tutorial001.py!}
     ```
 
@@ -27,11 +27,16 @@ That extra info will be added as-is to the output **JSON Schema** for that model
 
     For example you could use it to add metadata for a frontend user interface, etc.
 
+!!! info
+    OpenAPI 3.1.0 (used since FastAPI 0.99.0) added support for `examples`, which is part of the **JSON Schema** standard.
+
+    Before that, it only supported the keyword `example` with a single example. That is still supported by OpenAPI 3.1.0, but is deprecated and is not part of the JSON Schema standard. So you are encouraged to migrate `example` to `examples`. 🤓
+
+    You can read more at the end of this page.
+
 ## `Field` additional arguments
 
-When using `Field()` with Pydantic models, you can also declare extra info for the **JSON Schema** by passing any other arbitrary arguments to the function.
-
-You can use this to add `example` for each field:
+When using `Field()` with Pydantic models, you can also declare additional `examples`:
 
 === "Python 3.10+"
 
@@ -45,10 +50,7 @@ You can use this to add `example` for each field:
     {!> ../../../docs_src/schema_extra_example/tutorial002.py!}
     ```
 
-!!! warning
-    Keep in mind that those extra arguments passed won't add any validation, only extra information, for documentation purposes.
-
-## `example` and `examples` in OpenAPI
+## `examples` in OpenAPI
 
 When using any of:
 
@@ -60,27 +62,27 @@ When using any of:
 * `Form()`
 * `File()`
 
-you can also declare a data `example` or a group of `examples` with additional information that will be added to **OpenAPI**.
+you can also declare a group of `examples` with additional information that will be added to **OpenAPI**.
 
-### `Body` with `example`
+### `Body` with `examples`
 
-Here we pass an `example` of the data expected in `Body()`:
+Here we pass `examples` containing one example of the data expected in `Body()`:
 
 === "Python 3.10+"
 
-    ```Python hl_lines="22-27"
+    ```Python hl_lines="22-29"
     {!> ../../../docs_src/schema_extra_example/tutorial003_an_py310.py!}
     ```
 
 === "Python 3.9+"
 
-    ```Python hl_lines="22-27"
+    ```Python hl_lines="22-29"
     {!> ../../../docs_src/schema_extra_example/tutorial003_an_py39.py!}
     ```
 
 === "Python 3.6+"
 
-    ```Python hl_lines="23-28"
+    ```Python hl_lines="23-30"
     {!> ../../../docs_src/schema_extra_example/tutorial003_an.py!}
     ```
 
@@ -89,7 +91,7 @@ Here we pass an `example` of the data expected in `Body()`:
     !!! tip
         Prefer to use the `Annotated` version if possible.
 
-    ```Python hl_lines="18-23"
+    ```Python hl_lines="18-25"
     {!> ../../../docs_src/schema_extra_example/tutorial003_py310.py!}
     ```
 
@@ -98,7 +100,7 @@ Here we pass an `example` of the data expected in `Body()`:
     !!! tip
         Prefer to use the `Annotated` version if possible.
 
-    ```Python hl_lines="20-25"
+    ```Python hl_lines="20-27"
     {!> ../../../docs_src/schema_extra_example/tutorial003.py!}
     ```
 
@@ -110,16 +112,7 @@ With any of the methods above it would look like this in the `/docs`:
 
 ### `Body` with multiple `examples`
 
-Alternatively to the single `example`, you can pass `examples` using a `dict` with **multiple examples**, each with extra information that will be added to **OpenAPI** too.
-
-The keys of the `dict` identify each example, and each value is another `dict`.
-
-Each specific example `dict` in the `examples` can contain:
-
-* `summary`: Short description for the example.
-* `description`: A long description that can contain Markdown text.
-* `value`: This is the actual example shown, e.g. a `dict`.
-* `externalValue`: alternative to `value`, a URL pointing to the example. Although this might not be supported by as many tools as `value`.
+You can of course also pass multiple `examples`:
 
 === "Python 3.10+"
 
@@ -165,25 +158,76 @@ With `examples` added to `Body()` the `/docs` would look like:
 
 ## Technical Details
 
+!!! tip
+    If you are already using **FastAPI** version **0.99.0 or above**, you can probably **skip** these details.
+
+    They are more relevant for older versions, before OpenAPI 3.1.0 was available.
+
+    You can consider this a brief OpenAPI and JSON Schema **history lesson**. 🤓
+
 !!! warning
     These are very technical details about the standards **JSON Schema** and **OpenAPI**.
 
     If the ideas above already work for you, that might be enough, and you probably don't need these details, feel free to skip them.
 
-When you add an example inside of a Pydantic model, using `schema_extra` or `Field(example="something")` that example is added to the **JSON Schema** for that Pydantic model.
+Before OpenAPI 3.1.0, OpenAPI used an older and modified version of **JSON Schema**.
+
+JSON Schema didn't have `examples`, so OpenAPI added it's own `example` field to its own modified version.
+
+OpenAPI also added `example` and `examples` fields to other parts of the specification:
+
+* <a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#parameter-object" class="external-link" target="_blank">`Parameter Object` (in the specification)</a> that was used by FastAPI's:
+    * `Path()`
+    * `Query()`
+    * `Header()`
+    * `Cookie()`
+* <a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#media-type-object" class="external-link" target="_blank">`Request Body Object`, in the field `content`, on the `Media Type Object` (in the specification)</a> that was used by FastAPI's:
+    * `Body()`
+    * `File()`
+    * `Form()`
+
+### OpenAPI's `examples` field
+
+The shape of this field `examples` from OpenAPI is a `dict` with **multiple examples**, each with extra information that will be added to **OpenAPI** too.
+
+The keys of the `dict` identify each example, and each value is another `dict`.
+
+Each specific example `dict` in the `examples` can contain:
+
+* `summary`: Short description for the example.
+* `description`: A long description that can contain Markdown text.
+* `value`: This is the actual example shown, e.g. a `dict`.
+* `externalValue`: alternative to `value`, a URL pointing to the example. Although this might not be supported by as many tools as `value`.
+
+This applies to those other parts of the OpenAPI specification apart from JSON Schema.
+
+### JSON Schema's `examples` field
+
+But then JSON Schema added an <a href="https://json-schema.org/draft/2019-09/json-schema-validation.html#rfc.section.9.5" class="external-link" target="_blank">`examples`</a> field to a new version of the specification.
+
+And then the new OpenAPI 3.1.0 was based on the latest version (JSON Schema 2020-12) that included this new field `examples`.
+
+And now this new `examples` field takes precedence over the old single (and custom) `example` field, that is now deprecated.
+
+This new `examples` field in JSON Schema is **just a `list`** of examples, not a dict with extra metadata as in the other places in OpenAPI (described above).
+
+!!! info
+    Even after OpenAPI 3.1.0 was released with this new simpler integration with JSON Schema, for a while, Swagger UI, the tool that provides the automatic docs, didn't support OpenAPI 3.1.0 (it does since version 5.0.0 🎉).
+
+    Because of that, versions of FastAPI previous to 0.99.0 still used versions of OpenAPI lower than 3.1.0.
+
+### Pydantic and FastAPI `examples`
+
+When you add `examples` inside of a Pydantic model, using `schema_extra` or `Field(examples=["something"])` that example is added to the **JSON Schema** for that Pydantic model.
 
 And that **JSON Schema** of the Pydantic model is included in the **OpenAPI** of your API, and then it's used in the docs UI.
 
-**JSON Schema** doesn't really have a field `example` in the standards. Recent versions of JSON Schema define a field <a href="https://json-schema.org/draft/2019-09/json-schema-validation.html#rfc.section.9.5" class="external-link" target="_blank">`examples`</a>, but OpenAPI 3.0.3 is based on an older version of JSON Schema that didn't have `examples`.
+In versions of FastAPI before 0.99.0 (0.99.0 and above use the newer OpenAPI 3.1.0) when you used `example` or `examples` with any of the other utilities (`Query()`, `Body()`, etc.) those examples were not added to the JSON Schema that describes that data (not even to OpenAPI's own version of JSON Schema), they were added directly to the *path operation* declaration in OpenAPI (outside the parts of OpenAPI that use JSON Schema).
 
-So, OpenAPI 3.0.3 defined its own <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.3.md#fixed-fields-20" class="external-link" target="_blank">`example`</a> for the modified version of **JSON Schema** it uses, for the same purpose (but it's a single `example`, not `examples`), and that's what is used by the API docs UI (using Swagger UI).
+But now that FastAPI 0.99.0 and above uses OpenAPI 3.1.0, that uses JSON Schema 2020-12, and Swagger UI 5.0.0 and above, everything is more consistent and the examples are included in JSON Schema.
 
-So, although `example` is not part of JSON Schema, it is part of OpenAPI's custom version of JSON Schema, and that's what will be used by the docs UI.
+### Summary
 
-But when you use `example` or `examples` with any of the other utilities (`Query()`, `Body()`, etc.) those examples are not added to the JSON Schema that describes that data (not even to OpenAPI's own version of JSON Schema), they are added directly to the *path operation* declaration in OpenAPI (outside the parts of OpenAPI that use JSON Schema).
+I used to say I didn't like history that much... and look at me now giving "tech history" lessons. 😅
 
-For `Path()`, `Query()`, `Header()`, and `Cookie()`, the `example` or `examples` are added to the <a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#parameter-object" class="external-link" target="_blank">OpenAPI definition, to the `Parameter Object` (in the specification)</a>.
-
-And for `Body()`, `File()`, and `Form()`, the `example` or `examples` are equivalently added to the <a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#mediaTypeObject" class="external-link" target="_blank">OpenAPI definition, to the `Request Body Object`, in the field `content`, on the `Media Type Object` (in the specification)</a>.
-
-On the other hand, there's a newer version of OpenAPI: **3.1.0**, recently released. It is based on the latest JSON Schema and most of the modifications from OpenAPI's custom version of JSON Schema are removed, in exchange of the features from the recent versions of JSON Schema, so all these small differences are reduced. Nevertheless, Swagger UI currently doesn't support OpenAPI 3.1.0, so, for now, it's better to continue using the ideas above.
+In short, **upgrade to FastAPI 0.99.0 or above**, and things are much **simpler, consistent, and intuitive**, and you don't have to know all these historic details. 😎
