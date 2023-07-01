@@ -108,6 +108,7 @@ def test_openapi_schema(client: TestClient):
                                         {"type": "null"},
                                     ],
                                     "title": "Query string",
+                                    "description": "Query string for the items to search in the database that have a good match",
                                 }
                             )
                             | IsDict(
