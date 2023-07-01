@@ -1,3 +1,4 @@
+from collections import deque
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from decimal import Decimal
@@ -299,3 +300,12 @@ def test_decimal_encoder_float():
 def test_decimal_encoder_int():
     data = {"value": Decimal(2)}
     assert jsonable_encoder(data) == {"value": 2}
+
+
+def test_encode_deque_encodes_child_models():
+    class Model(BaseModel):
+        test: str
+
+    dq = deque([Model(test="test")])
+
+    assert jsonable_encoder(dq)[0]["test"] == "test"

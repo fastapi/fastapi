@@ -1,5 +1,5 @@
 [build-system]
-requires = ["hatchling"]
+requires = ["hatchling >= 1.13.0"]
 build-backend = "hatchling.build"
 
 [project]
@@ -43,12 +43,14 @@ classifiers = [
 dependencies = [
     "starlette>=0.27.0,<0.28.0",
     "pydantic>=1.7.4,!=1.8,!=1.8.1,<3.0.0",
+    "typing-extensions>=4.5.0",
 ]
 dynamic = ["version"]
 
 [project.urls]
 Homepage = "https://github.com/tiangolo/fastapi"
 Documentation = "https://fastapi.tiangolo.com/"
+Repository = "https://github.com/tiangolo/fastapi"
 
 [project.optional-dependencies]
 all = [

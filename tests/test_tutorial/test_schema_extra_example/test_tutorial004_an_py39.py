@@ -33,7 +33,7 @@ def test_openapi_schema(client: TestClient):
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
     assert response.json() == {
-        "openapi": "3.0.2",
+        "openapi": "3.1.0",
         "info": {"title": "FastAPI", "version": "0.1.0"},
         "paths": {
             "/items/{item_id}": {
@@ -51,31 +51,46 @@ def test_openapi_schema(client: TestClient):
                     "requestBody": {
                         "content": {
                             "application/json": {
-                                "schema": {"$ref": "#/components/schemas/Item"},
-                                "examples": {
-                                    "normal": {
-                                        "summary": "A normal example",
-                                        "description": "A **normal** item works correctly.",
-                                        "value": {
-                                            "name": "Foo",
-                                            "description": "A very nice Item",
-                                            "price": 35.4,
-                                            "tax": 3.2,
-                                        },
-                                    },
-                                    "converted": {
-                                        "summary": "An example with converted data",
-                                        "description": "FastAPI can convert price `strings` to actual `numbers` automatically",
-                                        "value": {"name": "Bar", "price": "35.4"},
-                                    },
-                                    "invalid": {
-                                        "summary": "Invalid data is rejected with an error",
-                                        "value": {
-                                            "name": "Baz",
-                                            "price": "thirty five point four",
-                                        },
-                                    },
-                                },
+                                "schema": IsDict(
+                                    {
+                                        "$ref": "#/components/schemas/Item",
+                                        "examples": [
+                                            {
+                                                "name": "Foo",
+                                                "description": "A very nice Item",
+                                                "price": 35.4,
+                                                "tax": 3.2,
+                                            },
+                                            {"name": "Bar", "price": "35.4"},
+                                            {
+                                                "name": "Baz",
+                                                "price": "thirty five point four",
+                                            },
+                                        ],
+                                    }
+                                )
+                                | IsDict(
+                                    # TODO: remove when deprecating Pydantic v1
+                                    {
+                                        "allOf": [
+                                            {"$ref": "#/components/schemas/Item"}
+                                        ],
+                                        "title": "Item",
+                                        "examples": [
+                                            {
+                                                "name": "Foo",
+                                                "description": "A very nice Item",
+                                                "price": 35.4,
+                                                "tax": 3.2,
+                                            },
+                                            {"name": "Bar", "price": "35.4"},
+                                            {
+                                                "name": "Baz",
+                                                "price": "thirty five point four",
+                                            },
+                                        ],
+                                    }
+                                )
                             }
                         },
                         "required": True,

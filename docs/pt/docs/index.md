@@ -430,7 +430,6 @@ Para entender mais sobre performance, veja a seção <a href="https://fastapi.ti
 
 Usados por Pydantic:
 
-* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - para JSON mais rápido <abbr title="converte uma string que chega de uma requisição HTTP para dados Python">"parsing"</abbr>.
 * <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - para validação de email.
 
 Usados por Starlette:
