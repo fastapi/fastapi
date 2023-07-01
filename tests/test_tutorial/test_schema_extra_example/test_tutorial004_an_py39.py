@@ -51,23 +51,46 @@ def test_openapi_schema(client: TestClient):
                     "requestBody": {
                         "content": {
                             "application/json": {
-                                "schema": {
-                                    "allOf": [{"$ref": "#/components/schemas/Item"}],
-                                    "title": "Item",
-                                    "examples": [
-                                        {
-                                            "name": "Foo",
-                                            "description": "A very nice Item",
-                                            "price": 35.4,
-                                            "tax": 3.2,
-                                        },
-                                        {"name": "Bar", "price": "35.4"},
-                                        {
-                                            "name": "Baz",
-                                            "price": "thirty five point four",
-                                        },
-                                    ],
-                                }
+                                "schema": IsDict(
+                                    {
+                                        "$ref": "#/components/schemas/Item",
+                                        "examples": [
+                                            {
+                                                "name": "Foo",
+                                                "description": "A very nice Item",
+                                                "price": 35.4,
+                                                "tax": 3.2,
+                                            },
+                                            {"name": "Bar", "price": "35.4"},
+                                            {
+                                                "name": "Baz",
+                                                "price": "thirty five point four",
+                                            },
+                                        ],
+                                    }
+                                )
+                                | IsDict(
+                                    # TODO: remove when deprecating Pydantic v1
+                                    {
+                                        "allOf": [
+                                            {"$ref": "#/components/schemas/Item"}
+                                        ],
+                                        "title": "Item",
+                                        "examples": [
+                                            {
+                                                "name": "Foo",
+                                                "description": "A very nice Item",
+                                                "price": 35.4,
+                                                "tax": 3.2,
+                                            },
+                                            {"name": "Bar", "price": "35.4"},
+                                            {
+                                                "name": "Baz",
+                                                "price": "thirty five point four",
+                                            },
+                                        ],
+                                    }
+                                )
                             }
                         },
                         "required": True,
