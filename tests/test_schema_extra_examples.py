@@ -560,6 +560,7 @@ def test_openapi_schema():
                                 {
                                     "anyOf": [{"type": "string"}, {"type": "null"}],
                                     "title": "Data",
+                                    "examples": ["query1", "query2"],
                                 }
                             )
                             | IsDict(
@@ -603,6 +604,7 @@ def test_openapi_schema():
                                 {
                                     "anyOf": [{"type": "string"}, {"type": "null"}],
                                     "title": "Data",
+                                    "examples": ["query1", "query2"],
                                 }
                             )
                             | IsDict(
@@ -687,6 +689,7 @@ def test_openapi_schema():
                                 {
                                     "anyOf": [{"type": "string"}, {"type": "null"}],
                                     "title": "Data",
+                                    "examples": ["header1", "header2"],
                                 }
                             )
                             | IsDict(
@@ -730,6 +733,7 @@ def test_openapi_schema():
                                 {
                                     "anyOf": [{"type": "string"}, {"type": "null"}],
                                     "title": "Data",
+                                    "examples": ["header1", "header2"],
                                 }
                             )
                             | IsDict(
@@ -814,6 +818,7 @@ def test_openapi_schema():
                                 {
                                     "anyOf": [{"type": "string"}, {"type": "null"}],
                                     "title": "Data",
+                                    "examples": ["cookie1", "cookie2"],
                                 }
                             )
                             | IsDict(
@@ -824,13 +829,6 @@ def test_openapi_schema():
                                     "examples": ["cookie1", "cookie2"],
                                 }
                             ),
-                            "examples": {
-                                "example1": {
-                                    "summary": "cookie example 1",
-                                    "value": "cookie1",
-                                },
-                                "example2": {"value": "cookie2"},
-                            },
                             "name": "data",
                             "in": "cookie",
                         }
@@ -864,6 +862,7 @@ def test_openapi_schema():
                                 {
                                     "anyOf": [{"type": "string"}, {"type": "null"}],
                                     "title": "Data",
+                                    "examples": ["cookie1", "cookie2"],
                                 }
                             )
                             | IsDict(
@@ -874,13 +873,6 @@ def test_openapi_schema():
                                     "examples": ["cookie1", "cookie2"],
                                 }
                             ),
-                            "examples": {
-                                "example1": {
-                                    "summary": "Query example 1",
-                                    "value": "cookie1",
-                                },
-                                "example2": {"value": "cookie2"},
-                            },
                             "example": "cookie_overridden",
                             "name": "data",
                             "in": "cookie",
