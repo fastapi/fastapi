@@ -341,14 +341,28 @@ def test_openapi_schema():
                     "requestBody": {
                         "content": {
                             "application/json": {
-                                "schema": {
-                                    "allOf": [{"$ref": "#/components/schemas/Item"}],
-                                    "title": "Item",
-                                    "examples": [
-                                        {"data": "Data in Body examples, example1"},
-                                        {"data": "Data in Body examples, example2"},
-                                    ],
-                                }
+                                "schema": IsDict(
+                                    {
+                                        "$ref": "#/components/schemas/Item",
+                                        "examples": [
+                                            {"data": "Data in Body examples, example1"},
+                                            {"data": "Data in Body examples, example2"},
+                                        ],
+                                    }
+                                )
+                                | IsDict(
+                                    # TODO: remove this when deprecating Pydantic v1
+                                    {
+                                        "allOf": [
+                                            {"$ref": "#/components/schemas/Item"}
+                                        ],
+                                        "title": "Item",
+                                        "examples": [
+                                            {"data": "Data in Body examples, example1"},
+                                            {"data": "Data in Body examples, example2"},
+                                        ],
+                                    }
+                                )
                             }
                         },
                         "required": True,
@@ -378,14 +392,28 @@ def test_openapi_schema():
                     "requestBody": {
                         "content": {
                             "application/json": {
-                                "schema": {
-                                    "allOf": [{"$ref": "#/components/schemas/Item"}],
-                                    "title": "Item",
-                                    "examples": [
-                                        {"data": "examples example_examples 1"},
-                                        {"data": "examples example_examples 2"},
-                                    ],
-                                },
+                                "schema": IsDict(
+                                    {
+                                        "$ref": "#/components/schemas/Item",
+                                        "examples": [
+                                            {"data": "examples example_examples 1"},
+                                            {"data": "examples example_examples 2"},
+                                        ],
+                                    }
+                                )
+                                | IsDict(
+                                    # TODO: remove this when deprecating Pydantic v1
+                                    {
+                                        "allOf": [
+                                            {"$ref": "#/components/schemas/Item"}
+                                        ],
+                                        "title": "Item",
+                                        "examples": [
+                                            {"data": "examples example_examples 1"},
+                                            {"data": "examples example_examples 2"},
+                                        ],
+                                    },
+                                ),
                                 "example": {"data": "Overridden example"},
                             }
                         },
