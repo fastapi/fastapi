@@ -116,19 +116,19 @@ You can of course also pass multiple `examples`:
 
 === "Python 3.10+"
 
-    ```Python hl_lines="23-49"
+    ```Python hl_lines="23-38"
     {!> ../../../docs_src/schema_extra_example/tutorial004_an_py310.py!}
     ```
 
 === "Python 3.9+"
 
-    ```Python hl_lines="23-49"
+    ```Python hl_lines="23-38"
     {!> ../../../docs_src/schema_extra_example/tutorial004_an_py39.py!}
     ```
 
 === "Python 3.6+"
 
-    ```Python hl_lines="24-50"
+    ```Python hl_lines="24-39"
     {!> ../../../docs_src/schema_extra_example/tutorial004_an.py!}
     ```
 
@@ -137,7 +137,7 @@ You can of course also pass multiple `examples`:
     !!! tip
         Prefer to use the `Annotated` version if possible.
 
-    ```Python hl_lines="19-45"
+    ```Python hl_lines="19-34"
     {!> ../../../docs_src/schema_extra_example/tutorial004_py310.py!}
     ```
 
@@ -146,7 +146,7 @@ You can of course also pass multiple `examples`:
     !!! tip
         Prefer to use the `Annotated` version if possible.
 
-    ```Python hl_lines="21-47"
+    ```Python hl_lines="21-36"
     {!> ../../../docs_src/schema_extra_example/tutorial004.py!}
     ```
 
