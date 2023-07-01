@@ -1,3 +1,4 @@
+from collections import deque
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from enum import Enum
@@ -237,3 +238,12 @@ def test_encode_model_with_path(model_with_path):
 def test_encode_root():
     model = ModelWithRoot(__root__="Foo")
     assert jsonable_encoder(model) == "Foo"
+
+
+def test_encode_deque_encodes_child_models():
+    class Model(BaseModel):
+        test: str
+
+    dq = deque([Model(test="test")])
+
+    assert jsonable_encoder(dq)[0]["test"] == "test"

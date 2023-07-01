@@ -48,7 +48,7 @@ def test_top_level_generate_unique_id():
     response = client.get("/openapi.json")
     data = response.json()
     assert data == {
-        "openapi": "3.0.2",
+        "openapi": "3.1.0",
         "info": {"title": "FastAPI", "version": "0.1.0"},
         "paths": {
             "/": {
@@ -249,7 +249,7 @@ def test_router_overrides_generate_unique_id():
     response = client.get("/openapi.json")
     data = response.json()
     assert data == {
-        "openapi": "3.0.2",
+        "openapi": "3.1.0",
         "info": {"title": "FastAPI", "version": "0.1.0"},
         "paths": {
             "/": {
@@ -450,7 +450,7 @@ def test_router_include_overrides_generate_unique_id():
     response = client.get("/openapi.json")
     data = response.json()
     assert data == {
-        "openapi": "3.0.2",
+        "openapi": "3.1.0",
         "info": {"title": "FastAPI", "version": "0.1.0"},
         "paths": {
             "/": {
@@ -661,7 +661,7 @@ def test_subrouter_top_level_include_overrides_generate_unique_id():
     response = client.get("/openapi.json")
     data = response.json()
     assert data == {
-        "openapi": "3.0.2",
+        "openapi": "3.1.0",
         "info": {"title": "FastAPI", "version": "0.1.0"},
         "paths": {
             "/": {
@@ -928,7 +928,7 @@ def test_router_path_operation_overrides_generate_unique_id():
     response = client.get("/openapi.json")
     data = response.json()
     assert data == {
-        "openapi": "3.0.2",
+        "openapi": "3.1.0",
         "info": {"title": "FastAPI", "version": "0.1.0"},
         "paths": {
             "/": {
@@ -1136,7 +1136,7 @@ def test_app_path_operation_overrides_generate_unique_id():
     response = client.get("/openapi.json")
     data = response.json()
     assert data == {
-        "openapi": "3.0.2",
+        "openapi": "3.1.0",
         "info": {"title": "FastAPI", "version": "0.1.0"},
         "paths": {
             "/": {
@@ -1353,7 +1353,7 @@ def test_callback_override_generate_unique_id():
     response = client.get("/openapi.json")
     data = response.json()
     assert data == {
-        "openapi": "3.0.2",
+        "openapi": "3.1.0",
         "info": {"title": "FastAPI", "version": "0.1.0"},
         "paths": {
             "/": {
