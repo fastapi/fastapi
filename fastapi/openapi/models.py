@@ -1,8 +1,10 @@
 from enum import Enum
-from typing import Any, Callable, Dict, Iterable, List, Optional, Union
+from typing import Any, Callable, Dict, Iterable, List, Optional, Set, Union
 
 from fastapi.logger import logger
 from pydantic import AnyUrl, BaseModel, Field
+from typing_extensions import Annotated, Literal
+from typing_extensions import deprecated as typing_deprecated
 
 try:
     import email_validator  # type: ignore
@@ -36,6 +38,7 @@ class Contact(BaseModel):
 
 class License(BaseModel):
     name: str
+    identifier: Optional[str] = None
     url: Optional[AnyUrl] = None
 
     class Config:
@@ -44,6 +47,7 @@ class License(BaseModel):
 
 class Info(BaseModel):
     title: str
+    summary: Optional[str] = None
     description: Optional[str] = None
     termsOfService: Optional[str] = None
     contact: Optional[Contact] = None
@@ -55,7 +59,7 @@ class Info(BaseModel):
 
 
 class ServerVariable(BaseModel):
-    enum: Optional[List[str]] = None
+    enum: Annotated[Optional[List[str]], Field(min_items=1)] = None
     default: str
     description: Optional[str] = None
 
@@ -101,42 +105,87 @@ class ExternalDocumentation(BaseModel):
 
 
 class Schema(BaseModel):
+    # Ref: JSON Schema 2020-12: https://json-schema.org/draft/2020-12/json-schema-core.html#name-the-json-schema-core-vocabu
+    # Core Vocabulary
+    schema_: Optional[str] = Field(default=None, alias="$schema")
+    vocabulary: Optional[str] = Field(default=None, alias="$vocabulary")
+    id: Optional[str] = Field(default=None, alias="$id")
+    anchor: Optional[str] = Field(default=None, alias="$anchor")
+    dynamicAnchor: Optional[str] = Field(default=None, alias="$dynamicAnchor")
     ref: Optional[str] = Field(default=None, alias="$ref")
-    title: Optional[str] = None
-    multipleOf: Optional[float] = None
+    dynamicRef: Optional[str] = Field(default=None, alias="$dynamicRef")
+    defs: Optional[Dict[str, "Schema"]] = Field(default=None, alias="$defs")
+    comment: Optional[str] = Field(default=None, alias="$comment")
+    # Ref: JSON Schema 2020-12: https://json-schema.org/draft/2020-12/json-schema-core.html#name-a-vocabulary-for-applying-s
+    # A Vocabulary for Applying Subschemas
+    allOf: Optional[List["Schema"]] = None
+    anyOf: Optional[List["Schema"]] = None
+    oneOf: Optional[List["Schema"]] = None
+    not_: Optional["Schema"] = Field(default=None, alias="not")
+    if_: Optional["Schema"] = Field(default=None, alias="if")
+    then: Optional["Schema"] = None
+    else_: Optional["Schema"] = Field(default=None, alias="else")
+    dependentSchemas: Optional[Dict[str, "Schema"]] = None
+    prefixItems: Optional[List["Schema"]] = None
+    items: Optional[Union["Schema", List["Schema"]]] = None
+    contains: Optional["Schema"] = None
+    properties: Optional[Dict[str, "Schema"]] = None
+    patternProperties: Optional[Dict[str, "Schema"]] = None
+    additionalProperties: Optional["Schema"] = None
+    propertyNames: Optional["Schema"] = None
+    unevaluatedItems: Optional["Schema"] = None
+    unevaluatedProperties: Optional["Schema"] = None
+    # Ref: JSON Schema Validation 2020-12: https://json-schema.org/draft/2020-12/json-schema-validation.html#name-a-vocabulary-for-structural
+    # A Vocabulary for Structural Validation
+    type: Optional[str] = None
+    enum: Optional[List[Any]] = None
+    const: Optional[Any] = None
+    multipleOf: Optional[float] = Field(default=None, gt=0)
     maximum: Optional[float] = None
     exclusiveMaximum: Optional[float] = None
     minimum: Optional[float] = None
     exclusiveMinimum: Optional[float] = None
-    maxLength: Optional[int] = Field(default=None, gte=0)
-    minLength: Optional[int] = Field(default=None, gte=0)
+    maxLength: Optional[int] = Field(default=None, ge=0)
+    minLength: Optional[int] = Field(default=None, ge=0)
     pattern: Optional[str] = None
-    maxItems: Optional[int] = Field(default=None, gte=0)
-    minItems: Optional[int] = Field(default=None, gte=0)
+    maxItems: Optional[int] = Field(default=None, ge=0)
+    minItems: Optional[int] = Field(default=None, ge=0)
     uniqueItems: Optional[bool] = None
-    maxProperties: Optional[int] = Field(default=None, gte=0)
-    minProperties: Optional[int] = Field(default=None, gte=0)
+    maxContains: Optional[int] = Field(default=None, ge=0)
+    minContains: Optional[int] = Field(default=None, ge=0)
+    maxProperties: Optional[int] = Field(default=None, ge=0)
+    minProperties: Optional[int] = Field(default=None, ge=0)
     required: Optional[List[str]] = None
-    enum: Optional[List[Any]] = None
-    type: Optional[str] = None
-    allOf: Optional[List["Schema"]] = None
-    oneOf: Optional[List["Schema"]] = None
-    anyOf: Optional[List["Schema"]] = None
-    not_: Optional["Schema"] = Field(default=None, alias="not")
-    items: Optional[Union["Schema", List["Schema"]]] = None
-    properties: Optional[Dict[str, "Schema"]] = None
-    additionalProperties: Optional[Union["Schema", Reference, bool]] = None
-    description: Optional[str] = None
+    dependentRequired: Optional[Dict[str, Set[str]]] = None
+    # Ref: JSON Schema Validation 2020-12: https://json-schema.org/draft/2020-12/json-schema-validation.html#name-vocabularies-for-semantic-c
+    # Vocabularies for Semantic Content With "format"
     format: Optional[str] = None
+    # Ref: JSON Schema Validation 2020-12: https://json-schema.org/draft/2020-12/json-schema-validation.html#name-a-vocabulary-for-the-conten
+    # A Vocabulary for the Contents of String-Encoded Data
+    contentEncoding: Optional[str] = None
+    contentMediaType: Optional[str] = None
+    contentSchema: Optional["Schema"] = None
+    # Ref: JSON Schema Validation 2020-12: https://json-schema.org/draft/2020-12/json-schema-validation.html#name-a-vocabulary-for-basic-meta
+    # A Vocabulary for Basic Meta-Data Annotations
+    title: Optional[str] = None
+    description: Optional[str] = None
     default: Optional[Any] = None
-    nullable: Optional[bool] = None
-    discriminator: Optional[Discriminator] = None
+    deprecated: Optional[bool] = None
     readOnly: Optional[bool] = None
     writeOnly: Optional[bool] = None
+    examples: Optional[List[Any]] = None
+    # Ref: OpenAPI 3.1.0: https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#schema-object
+    # Schema Object
+    discriminator: Optional[Discriminator] = None
     xml: Optional[XML] = None
     externalDocs: Optional[ExternalDocumentation] = None
-    example: Optional[Any] = None
-    deprecated: Optional[bool] = None
+    example: Annotated[
+        Optional[Any],
+        typing_deprecated(
+            "Deprecated in OpenAPI 3.1.0 that now uses JSON Schema 2020-12, "
+            "although still supported. Use examples instead."
+        ),
+    ] = None
 
     class Config:
         extra: str = "allow"
@@ -247,7 +296,7 @@ class Operation(BaseModel):
     parameters: Optional[List[Union[Parameter, Reference]]] = None
     requestBody: Optional[Union[RequestBody, Reference]] = None
     # Using Any for Specification Extensions
-    responses: Dict[str, Union[Response, Any]]
+    responses: Optional[Dict[str, Union[Response, Any]]] = None
     callbacks: Optional[Dict[str, Union[Dict[str, "PathItem"], Reference]]] = None
     deprecated: Optional[bool] = None
     security: Optional[List[Dict[str, List[str]]]] = None
@@ -298,18 +347,18 @@ class APIKeyIn(Enum):
 
 
 class APIKey(SecurityBase):
-    type_ = Field(SecuritySchemeType.apiKey, alias="type")
+    type_: SecuritySchemeType = Field(default=SecuritySchemeType.apiKey, alias="type")
     in_: APIKeyIn = Field(alias="in")
     name: str
 
 
 class HTTPBase(SecurityBase):
-    type_ = Field(SecuritySchemeType.http, alias="type")
+    type_: SecuritySchemeType = Field(default=SecuritySchemeType.http, alias="type")
     scheme: str
 
 
 class HTTPBearer(HTTPBase):
-    scheme = "bearer"
+    scheme: Literal["bearer"] = "bearer"
     bearerFormat: Optional[str] = None
 
 
@@ -349,12 +398,14 @@ class OAuthFlows(BaseModel):
 
 
 class OAuth2(SecurityBase):
-    type_ = Field(SecuritySchemeType.oauth2, alias="type")
+    type_: SecuritySchemeType = Field(default=SecuritySchemeType.oauth2, alias="type")
     flows: OAuthFlows
 
 
 class OpenIdConnect(SecurityBase):
-    type_ = Field(SecuritySchemeType.openIdConnect, alias="type")
+    type_: SecuritySchemeType = Field(
+        default=SecuritySchemeType.openIdConnect, alias="type"
+    )
     openIdConnectUrl: str
 
 
@@ -372,6 +423,7 @@ class Components(BaseModel):
     links: Optional[Dict[str, Union[Link, Reference]]] = None
     # Using Any for Specification Extensions
     callbacks: Optional[Dict[str, Union[Dict[str, PathItem], Reference, Any]]] = None
+    pathItems: Optional[Dict[str, Union[PathItem, Reference]]] = None
 
     class Config:
         extra = "allow"
@@ -389,9 +441,11 @@ class Tag(BaseModel):
 class OpenAPI(BaseModel):
     openapi: str
     info: Info
+    jsonSchemaDialect: Optional[str] = None
     servers: Optional[List[Server]] = None
     # Using Any for Specification Extensions
-    paths: Dict[str, Union[PathItem, Any]]
+    paths: Optional[Dict[str, Union[PathItem, Any]]] = None
+    webhooks: Optional[Dict[str, Union[PathItem, Reference]]] = None
     components: Optional[Components] = None
     security: Optional[List[Dict[str, List[str]]]] = None
     tags: Optional[List[Tag]] = None
