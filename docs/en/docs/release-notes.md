@@ -2,6 +2,7 @@
 
 ## Latest Changes
 
+* 📝 Update source examples to use new JSON Schema examples field. PR [#9776](https://github.com/tiangolo/fastapi/pull/9776) by [@tiangolo](https://github.com/tiangolo).
 
 ## 0.99.0
 
