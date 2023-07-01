@@ -80,7 +80,7 @@ ORM 具有在代码和数据库表（“*关系型”）中的**对象**之间�
 ## 安装 SQLAlchemy
 
 先下载`SQLAlchemy`所需要的依赖：
-<div>
+<div class="termy">
 
 ```console
 $ pip install sqlalchemy
