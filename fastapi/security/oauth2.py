@@ -45,7 +45,7 @@ class OAuth2PasswordRequestForm:
 
     def __init__(
         self,
-        grant_type: str = Form(default=None, regex="password"),
+        grant_type: str = Form(default=None, regex="^password$"),
         username: str = Form(),
         password: str = Form(),
         scope: str = Form(default=""),
@@ -95,7 +95,7 @@ class OAuth2PasswordRequestFormStrict(OAuth2PasswordRequestForm):
 
     def __init__(
         self,
-        grant_type: str = Form(regex="password"),
+        grant_type: str = Form(regex="^password$"),
         username: str = Form(),
         password: str = Form(),
         scope: str = Form(default=""),
